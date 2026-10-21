@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="如何用 NocoBase 在 3 个月内交付复杂 OA 系统 — NocoBase" data-en="How to Deliver a Complex OA System in 3 Months with NocoBase — NocoBase">如何用 NocoBase 在 3 个月内交付复杂 OA 系统 — NocoBase</title>
+<meta name="description" content="借助NocoBase，仅用3个月完成复杂OA系统交付，实现财务、行政、预算管理等全模块上线，压缩75%交付时间，并探索AI能力集成。" data-zh="借助NocoBase，仅用3个月完成复杂OA系统交付，实现财务、行政、预算管理等全模块上线，压缩75%交付时间，并探索AI能力集成。" data-en="A team delivered a complex OA system using NocoBase in just 3 months, covering finance, administration, and budget management modules, achieving 75% time reduction while exploringtAI integration.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="customers" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../customers.html"><t-zh>客户案例</t-zh><t-en>Customer Stories</t-en></a></p>
+    <h1><t-zh>如何用 NocoBase 在 3 个月内交付复杂 OA 系统</t-zh><t-en>How to Deliver a Complex OA System in 3 Months with NocoBase</t-en></h1>
+    <p class="lede"><t-zh>借助NocoBase，仅用3个月完成复杂OA系统交付，实现财务、行政、预算管理等全模块上线，压缩75%交付时间，并探索AI能力集成。</t-zh><t-en>A team delivered a complex OA system using NocoBase in just 3 months, covering finance, administration, and budget management modules, achieving 75% time reduction while exploringtAI integration.</t-en></p>
+    <div class="bmeta"><span><t-zh>2026年4月14日</t-zh><t-en>Apr 14, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/20260414-163157-a5k5jm.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>保密说明：为保护该组织及其客户的隐私与安全，本案例以匿名形式发布。以下内容基于真实项目实践整理。</p>
+<h2 id="zh-1">项目背景</h2>
+<p>该项目由一支长期从事企业管理与流程系统实施的团队负责。团队在企业管理、石油石化等行业积累了丰富经验，熟悉流程复杂、需求多变、交付环境受限的企业级项目。</p>
+<p>过去，团队主要采用传统定制开发方式，类似规模的项目从调研到交付通常需要接近 1 年。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>本次项目中，客户提出了明确的约束条件：</p>
+<ol>
+<li>部署与网络要求：系统必须部署在企业内网，与互联网物理隔离</li>
+<li>数据安全要求：数据需完全自主可控</li>
+<li>部署方式要求：必须支持私有化部署</li>
+<li>信创环境要求：底层软硬件需完成国产化适配</li>
+</ol>
+<p>在此基础上，系统还需要具备良好的环境兼容性，能够稳定承载复杂 OA 场景下的流程、数据与系统集成。</p>
+<p>在这些约束下，团队需要一个既满足私有化与自主可控要求，又能支持快速交付、持续迭代和后续扩展的技术底座。</p>
+<p>最终，他们选择了 NocoBase。</p>
+<h2 id="zh-2">交付成果</h2>
+<h3>1. 行政与财务流程管理</h3>
+<p>项目第一阶段，项目团队先从客户最核心、最迫切的行政与财务管理场景入手，将原本依赖纸质表单流转的流程逐步迁入系统。</p>
+<p>围绕日常行政管理，团队陆续完成了接近 60 个模块的建设，把原来分散在线下、依赖纸面和人工传递的流程，纳入了统一的电子化管理体系。</p>
+<p>在具体实现上，团队并非简单“表单上云”，而是对流程进行了结构化重构：</p>
+<ul>
+<li>梳理流程之间的依赖关系</li>
+<li>将线下隐性的规则转化为系统逻辑</li>
+<li>将人工判断沉淀为可配置的业务规则</li>
+<li>明确多部门之间的协同路径</li>
+</ul>
+<p>基于 NocoBase 的能力，团队最终完成了复杂 OA 流程的系统化落地，使流程可以长期稳定运行。</p>
+<h3>2. 预算管理</h3>
+<p>此前，客户的预算管理主要依赖 Excel，各部门预算分散，通常只能事后统计与监管，难以在申请阶段进行有效控制。</p>
+<p>项目团队结合过往财务与流程项目经验，将预算与出差、审批、报销等流程打通，帮助客户建立了一套完整的预算管理机制。</p>
+<p>系统上线后，不同角色都可以实时查看预算使用情况，并在申请阶段完成额度控制与校验：</p>
+<ul>
+<li>管理层：整体掌握预算执行情况</li>
+<li>部门负责人：监控部门预算使用进度</li>
+<li>具体使用人员：在提交申请时即时校验额度</li>
+</ul>
+<p>预算不再是一个独立模块，而是嵌入到业务流程中。基于 NocoBase 的流程配置能力，预算管理从“事后统计、事后监管”，转变为“事前控制 + 过程管控 + 实时校验”的完整机制。</p>
+<h3>3. 报销审批与 ERP 打通</h3>
+<p>在报销流程与用友 ERP 的打通过程中，团队通过定制插件实现了业务单据与财务系统的自动对接。</p>
+<p>基于内置的转换引擎，系统会将 NocoBase 中的前置单据信息（如出差、借款、税费等）自动转换为符合财务规则的数据结构。该引擎支持处理复杂的分录逻辑，包括：</p>
+<ul>
+<li>增值税科目拆分</li>
+<li>员工欠款抵扣</li>
+<li>不同部门的科目匹配</li>
+</ul>
+<p>处理完成后，系统自动生成财务凭证并推送至总账系统。</p>
+<p>这一过程替代了财务人员每月约 1400 张单据的手工录入。</p>
+<p><strong>相比接口对接本身，真正的难点在于业务逻辑的结构化</strong>。团队基于 NocoBase 的<a href="https://docs.nocobase.com/cn/data-sources">数据模型</a>与<a href="https://docs.nocobase.com/cn/plugins">插件机制</a>，将原本依赖人工判断的财务规则转化为系统规则，实现了前端业务单据与后端财务处理的稳定衔接。</p>
+<h3>4. 系统打通</h3>
+<p>为支撑后续更多业务系统接入，团队首先完成了统一身份体系的整合。通过对接<a href="https://docs.nocobase.com/cn/auth-verification/auth">统一身份认证系统</a>，并以 NocoBase 作为用户管理中心，统一处理用户的新增、修改和删除，同时确保认证信息在各系统之间保持一致。</p>
+<p>在消息协同方面，团队额外部署了私有化 IM 平台，对系统原有的消息提醒机制进行了补充：</p>
+<ul>
+<li>审批与待办消息可直接推送至即时通讯工具</li>
+<li>用户无需反复登录系统查看待办</li>
+<li>支持从通知一键跳转到对应审批页面</li>
+</ul>
+<p>这使得待办处理路径明显缩短，也提升了系统的实际使用效率。</p>
+<h3>5. 物理隔离环境下的敏捷迭代</h3>
+<p>在客户“内网隔离、物理断网”的环境下，团队采用“外部开发 + 内网部署”的方式推进项目：在互联网环境完成插件开发与逻辑验证，再通过 NocoBase 专业版的迁移工具，将配置整体部署到内网生产环境。</p>
+<p>这种“配置即应用”的方式，避免了在隔离环境中反复开发与调试的成本，使系统在严格安全限制下仍能保持每周甚至更短周期的迭代速度。</p>
+<p>这一能力依赖于 NocoBase 的<a href="https://docs.nocobase.com/cn/ops-management/migration-manager/">配置迁移机制</a>，也使团队能够在复杂交付环境中维持稳定的迭代节奏。</p>
+<h2 id="zh-3">交付时间大幅压缩</h2>
+<p>项目整体推进节奏如下：</p>
+<ul>
+<li><strong>9 月初</strong>：项目启动</li>
+<li><strong>10 月中旬</strong>：确认第一阶段需求</li>
+<li><strong>11 月中旬</strong>：首批高频行政模块上线</li>
+<li><strong>12 月中旬</strong>：财务中心与行政模块整体上线</li>
+</ul>
+<p>在部署环境受限、流程复杂且涉及多系统打通的前提下，这样的节奏已经相当高效。</p>
+<p>自 1 月起，客户进入新旧流程并行阶段，团队根据实际使用情况持续优化与调整。项目团队提到，NocoBase 在流程变更、字段调整和交互修改上的灵活性，是支撑快速迭代的关键。</p>
+<p>整体来看，团队在保证业务复杂度的前提下，通过更短周期的持续迭代，不断逼近业务的真实运行状态。</p>
+<h2 id="zh-4">为系统引入 AI 能力做准备</h2>
+<p>第一阶段上线后，客户开始推进智能化能力的扩展，主要集中在两个方向：</p>
+<ul>
+<li><strong>发票处理自动化</strong>：通过视觉模型实现发票识别与合规校验，减少人工录入</li>
+<li><strong>知识检索能力建设</strong>：对内部体系文件进行向量化处理，结合私有化大模型构建知识库</li>
+</ul>
+<p>项目团队正在探索低成本私有化模型与 NocoBase 的结合方式，将 AI 能力嵌入现有业务系统。</p>
+<p>基于 NocoBase 2.0 的插件架构与 AI 能力，系统可以在现有流程与数据结构上逐步引入智能化处理，使 AI 更容易在具体业务场景中落地。</p>
+<h2 id="zh-5">结语</h2>
+<p>在本次项目中，项目团队借助 NocoBase ，仅用 <strong>3 个月</strong>时间就完成了从需求确认到财务、行政全模块上线的全过程。这种 <strong>75% 以上的时间压缩</strong>，不仅降低了复杂项目的人力投入，也让团队具备了同时承接多个高标准项目的能力。</p>
+<p>这个案例说明了一点：对于真正复杂的企业管理场景，平台能力固然重要，但能否把复杂流程梳理清楚、把系统打通、把业务逻辑沉淀下来，同样取决于实施团队本身的理解深度和交付经验。</p>
+<p>而 NocoBase 提供的，正是这样一种可能性：让有行业经验、有复杂项目能力的团队，可以更高效地把方案落到客户现场，并持续支撑后续的业务演进与智能化升级。</p>
+<p>接下来，项目团队也计划进一步加入 NocoBase 的<a href="https://www.nocobase.com/cn/partner">合作伙伴生态</a>，将这套经过实践验证的交付方式，复制到更多客户项目中。</p>
+<p>更多 NocoBase 的用户故事：</p>
+<ul>
+<li><a href="../customers/medical-device-manufacturer-builds-self-hosted-management-system-with-nocobase.html">纸质到数字化：这家医疗制造企业选择 NocoBase</a></li>
+<li><a href="../customers/software-vendor-boosts-delivery-efficiency-with-nocobase.html">石化行业软件公司用 NocoBase 把交付效率提升 70% </a></li>
+<li><a href="../customers/an-erp-built-with-nocobase.html">社区用户分享：用 NocoBase 搭建可落地的 ERP</a></li>
+<li><a href="../customers/shenzhen-chuanglianyun-tech-development-methodology.html">8 人团队如何效率拉满？——创联云的开发方法论</a></li>
+<li><a href="../customers/ai-multimodal-platform.html">华数传媒用 NocoBase 快速搭建 AI 多模态研发平台</a></li>
+<li><a href="../customers/nocobase-in-russia.html">俄罗斯合作伙伴 Mobx，用 NocoBase 交付多场景方案</a></li>
+<li><a href="../customers/university-course.html">NocoBase 走进德国大学课堂</a></li>
+<li><a href="../customers/ed.html">NocoBase 如何成为 ED 的技术底座，支撑内部系统到商业化产品？</a></li>
+</ul></div><div class="prose en-only"><p><strong>Confidentiality Note</strong></p>
+<p>To protect the privacy and security of the organization and its clients, this case study is presented anonymously. All details are based on a real-world implementation.</p>
+<h2 id="en-1">Context &#x26; Constraints</h2>
+<p>The project was led by a team experienced in enterprise management systems and process-heavy industries such as petrochemicals. They were familiar with environments where requirements are complex, constantly evolving, and operational constraints are strict.</p>
+<p>Historically, they relied on traditional custom development. A project of similar scope would normally take nearly a year from requirement analysis to delivery.</p>
+<hr>
+<p>💬 Hey, you’re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>This time, the client introduced a set of non-negotiable constraints:</p>
+<ul>
+<li><strong>Network Isolation</strong>: The system had to run entirely within an internal network, physically disconnected from the internet</li>
+<li><strong>Data Sovereignty</strong>: All data must remain fully under the organization’s control</li>
+<li><strong>Deployment Model</strong>: Only self-hosted / on-premise deployment was acceptable</li>
+</ul>
+<p>At the same time, the system still needed to support complex workflows, large volumes of data, and integration with existing systems.</p>
+<p>The team needed a foundation that could satisfy strict security requirements while still enabling <strong>fast delivery, continuous iteration, and long-term extensibility</strong>.</p>
+<p>They chose <strong>NocoBase</strong>.</p>
+<h2 id="en-2">Solution &#x26; Implementation</h2>
+<h3>1. Digitizing Administrative and Financial Workflows</h3>
+<p>The first phase focused on the most critical and frequently used scenarios: administrative and financial processes.</p>
+<p>Previously, these processes relied heavily on paper forms and manual routing. The team gradually migrated them into a unified system.</p>
+<p>They built nearly <strong>60 modules</strong> covering daily administrative operations.</p>
+<p>This was not a simple “form digitization” effort. Instead, the team restructured the workflows:</p>
+<ul>
+<li>mapped dependencies between processes</li>
+<li>converted implicit offline rules into explicit system logic</li>
+<li>transformed manual decision-making into configurable business rules</li>
+<li>clarified cross-department collaboration paths</li>
+</ul>
+<p>Using NocoBase’s data modeling and workflow capabilities, these complex processes were turned into a stable, system-driven operation.</p>
+<h3>2. Embedding Budget Control into Workflows</h3>
+<p>Previously, budget management was handled in Excel, fragmented across departments and only reviewed after spending.</p>
+<p>The team redesigned this by embedding budget logic directly into business processes such as travel, approvals, and reimbursements.</p>
+<p>After implementation:</p>
+<ul>
+<li><strong>Executives</strong> gained real-time visibility into overall budget execution</li>
+<li><strong>Department heads</strong> could track usage dynamically</li>
+<li><strong>Employees</strong> could validate budget limits at the time of request submission</li>
+</ul>
+<p>Budget management shifted from <strong>post-hoc reporting</strong> to:</p>
+<ul>
+<li>pre-control</li>
+<li>in-process enforcement</li>
+<li>real-time validation</li>
+</ul>
+<p>This was enabled by NocoBase’s ability to integrate business logic directly into workflows.</p>
+<h3>3.Automating Financial Integration with ERP</h3>
+<p>For reimbursement and financial processing, the team integrated the system with <strong>Yonyou ERP</strong> through custom plugins.</p>
+<p>Using a built-in transformation engine, the system automatically converted business data (travel requests, loans, tax data, etc.) into financial records compatible with ERP requirements.</p>
+<p>The engine handled complex accounting logic, including:</p>
+<ul>
+<li>VAT splitting</li>
+<li>employee debt offsetting</li>
+<li>department-specific account mapping</li>
+</ul>
+<p>Once processed, financial vouchers were automatically generated and pushed to the general ledger.</p>
+<p>This replaced manual entry of approximately <strong>1,400 financial records per month</strong>.</p>
+<p>The main challenge was not API integration itself, but structuring business logic.</p>
+<p>Using NocoBase’s <a href="https://docs.nocobase.com/data-sources">data models</a> and <a href="https://docs.nocobase.com/plugins/">plugin architecture</a>, the team transformed manual accounting rules into system-level logic, enabling stable end-to-end automation.</p>
+<h3>4. System Integration &#x26; Unified Identity</h3>
+<p>To support future system expansion, the team first established a unified <a href="https://docs.nocobase.com/auth-verification/auth/">identity system</a>:</p>
+<ul>
+<li>integrated with existing authentication services</li>
+<li>used NocoBase as the centralized user management layer</li>
+<li>ensured consistency of user data across systems</li>
+</ul>
+<p>For communication, a private IM system was introduced:</p>
+<ul>
+<li>approval and task notifications were pushed directly to IM</li>
+<li>users could access tasks without repeatedly logging into the system</li>
+<li>one-click navigation from message to approval page</li>
+</ul>
+<p>This significantly reduced response time and improved operational efficiency.</p>
+<h3>5. Iteration in an Air-Gapped Environment</h3>
+<p>The project was deployed in a fully isolated environment.</p>
+<p>To maintain development efficiency, the team adopted a hybrid approach:</p>
+<ul>
+<li>development and testing were done externally</li>
+<li>validated configurations were deployed into the internal network</li>
+</ul>
+<p>Using NocoBase’s configuration migration mechanism, the system could be deployed as a whole without repeated redevelopment inside the isolated environment.</p>
+<p>This enabled , <a href="https://docs.nocobase.com/ops-management/migration-manager/">weekly or even faster iteration cycles</a>despite strict security constraints.</p>
+<h2 id="en-3">Delivery Timeline</h2>
+<p>The project progressed as follows:</p>
+<ul>
+<li><strong>Early September</strong>: Project kickoff</li>
+<li><strong>Mid October</strong>: Phase 1 requirements finalized</li>
+<li><strong>Mid November</strong>: First batch of administrative modules launched</li>
+<li><strong>Mid December</strong>: Full launch of administrative + financial systems</li>
+</ul>
+<p>Given the complexity, integration scope, and deployment constraints, this delivery speed was significantly faster than typical enterprise projects.</p>
+<h2 id="en-4">Preparing for AI Integration</h2>
+<p>After the first phase, the client began exploring AI capabilities:</p>
+<ul>
+<li><strong>Invoice automation</strong>: OCR-based recognition and compliance validation</li>
+<li><strong>Knowledge retrieval</strong>: vectorizing internal documents and building a private knowledge base</li>
+</ul>
+<p>The team is currently experimenting with integrating lightweight private models into NocoBase.</p>
+<p>With NocoBase 2.0’s plugin architecture and AI capabilities, AI can be gradually embedded into existing workflows and data structures, making it practical in real business scenarios.</p>
+<h2 id="en-5">Outcome</h2>
+<p>From requirement confirmation to full rollout of administrative and financial systems, the entire project was completed in <strong>3 months</strong>, representing a <strong>75% reduction in delivery time</strong>.</p>
+<p>This not only reduced development cost, but also enabled the team to handle multiple complex projects in parallel.</p>
+<p>This case highlights a key point:</p>
+<p>In complex enterprise environments, success depends not only on the platform, but also on the ability to:</p>
+<ul>
+<li>structure complex workflows</li>
+<li>integrate systems effectively</li>
+<li>formalize business logic</li>
+</ul>
+<p>NocoBase provides the foundation that makes this possible.</p>
+<p>It allows experienced teams to deliver faster, adapt continuously, and evolve systems over time, even under strict constraints.</p>
+<p>The team plans to join the  <a href="https://www.nocobase.com/en/partner">NocoBase partner ecosystem</a> and replicate this delivery model across more enterprise projects.</p>
+<p><strong>More Customer Stories:</strong></p>
+<ul>
+<li><a href="../customers/medical-device-manufacturer-builds-self-hosted-management-system-with-nocobase.html">Case Study: Digitizing Medical Manufacturing Workflows with NocoBase</a></li>
+<li><a href="../customers/software-vendor-boosts-delivery-efficiency-with-nocobase.html">Software Vendor Boosts Delivery Efficiency by 70% with NocoBase</a></li>
+<li><a href="../customers/an-erp-built-with-nocobase.html">Community Spotlight: Building a Real-World ERP with NocoBase</a></li>
+<li><a href="../customers/shenzhen-chuanglianyun-tech-development-methodology.html">Inside: How an 8-Person Team Delivers at Enterprise Speed</a></li>
+<li><a href="../customers/ai-multimodal-platform.html">Built an AI Multimodal R&#x26;D Platform in Days — with NocoBase</a></li>
+<li><a href="../customers/nocobase-in-russia.html">NocoBase in Russia: Multi-Scenario Digital Solutions in Action</a></li>
+<li><a href="../customers/university-course.html">NocoBase Enters German University Classrooms</a></li>
+<li><a href="../customers/ed.html">NocoBase as ED’s Technology Foundation: From Internal Systems to Commercial Products</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">项目背景</a><a href="#zh-2">交付成果</a><a href="#zh-3">交付时间大幅压缩</a><a href="#zh-4">为系统引入 AI 能力做准备</a><a href="#zh-5">结语</a></div><div class="en-only"><a href="#en-1">Context &amp;#x26; Constraints</a><a href="#en-2">Solution &amp;#x26; Implementation</a><a href="#en-3">Delivery Timeline</a><a href="#en-4">Preparing for AI Integration</a><a href="#en-5">Outcome</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>更多客户案例</t-zh><t-en>More customer stories</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../customers/sungrow.html" data-tags="Customer_Stories"><span class="cv"><span class="cv-ph"><b>SUNGROW</b></span></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年10月17日</t-zh><t-en>Oct 17, 2026</t-en></span><span><t-zh>NocoBase</t-zh><t-en>NocoBase</t-en></span></div><h3><t-zh>阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统</t-zh><t-en>Sungrow: the systems behind a global business, built on NocoBase</t-en></h3><p><t-zh>全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。</t-zh><t-en>How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.</t-en></p></a><a class="bcard" href="../customers/polish-volunteer-fire-department-nocobase-case-study.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/20260722-111552-ydpnay.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月22日</t-zh><t-en>Jul 22, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>一支每年出警 200 次的消防队，如何用 NocoBase 搭建运营系统</t-zh><t-en>How a Volunteer Fire Department Manages 200 Callouts a Year with NocoBase</t-en></h3><p><t-zh>波兰 OSP Radlin II 志愿消防队用 NocoBase 统一管理出警、人员资质、车辆装备与自动化提醒，并持续迭代消防队运营系统。</t-zh><t-en>See how OSP Radlin II uses NocoBase to manage emergency callouts, personnel qualifications, vehicles, equipment, reminders, and daily operations</t-en></p></a><a class="bcard" href="../customers/astrolab-nocobase.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%B3%95%E5%9B%BD%E6%94%BF%E5%BA%9C%20(2)-8g4luf.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月3日</t-zh><t-en>Jul 3, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>法国大区政府如何用 NocoBase 建设数字化公共服务平台</t-zh><t-en>From Paperwork to Digital Public Services in France</t-en></h3><p><t-zh>基于一套 NocoBase 架构，Astrolab 为法国大区政府交付三个生产级平台，将审核周期缩短至 24 小时内，车辆冲突减少 80%，普查回收率提升至 90% 以上。</t-zh><t-en>Astrolab used NocoBase to deliver three production-ready platforms for a French regional government, reducing review cycles to under 24 hours, cutting reservation conflicts by 80%, and reaching over 90% survey response rates.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>下一个故事，可以是你的。</t-zh><t-en>The next story could be yours.</t-en></h2><p><t-zh>带一个真实需求，和我们一起把它做成可以长期使用的系统。</t-zh><t-en>Bring one real requirement and turn it into a system you’ll use for years.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../customers.html"><t-zh>全部客户案例</t-zh><t-en>All customer stories</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

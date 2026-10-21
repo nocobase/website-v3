@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase Solutions — 自带业务 Agent 的开源业务应用" data-en="NocoBase Solutions — Open-Source Business Apps with Built-In Agents">NocoBase Solutions — 自带业务 Agent 的开源业务应用</title>
+<meta name="description" content="NocoBase Solutions 是基于 NocoBase Core 开发的开源业务应用，内置业务 Agent。部署即可使用，也能让 Agent 按你的业务继续改。" data-zh="NocoBase Solutions 是基于 NocoBase Core 开发的开源业务应用，内置业务 Agent。部署即可使用，也能让 Agent 按你的业务继续改。" data-en="NocoBase Solutions are open-source business apps built on NocoBase Core, complete with domain-specific agents. Deploy and use them right away, or let coding agents customize them to your workflows.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="solutions" data-root="">
+<div id="site-header"></div>
+<main>
+<section class="phero">
+  <div class="container">
+    <p class="label"><b>NocoBase Solutions</b><i></i><span><t-zh>开源业务应用</t-zh><t-en>Open-Source Business Apps</t-en></span></p>
+    <h1><t-zh>从成熟应用起步，<span class="m">改造成贴合你业务的系统。</span></t-zh><t-en>Start from a working app. <span class="m">Make it yours.</span></t-en></h1>
+    <p class="lede"><t-zh>NocoBase Solutions 是基于 Core 构建的开源业务应用，每款都配好了懂业务的专属 Agent。部署就能用；随着业务演进，随时让 Agent 调整技能、规则、页面与代码，长成完全贴合你的系统。</t-zh><t-en>NocoBase Solutions are open-source business apps built on Core, each with domain-trained agents built in. Deploy and use them right away, then let coding agents tailor the skills, rules, UI, and code as your business evolves.</t-en></p>
+    <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>开源免费，拥有全部源码</t-zh><t-en>Open source with full code</t-en></span><span><i data-lucide="circle-check"></i><t-zh>基于 Core，可独立私有部署</t-zh><t-en>Built on Core, self-hosted standalone</t-en></span><span><i data-lucide="circle-check"></i><t-zh>业务 Agent 提建议，人做决定</t-zh><t-en>Agents suggest; humans decide</t-en></span></p>
+  </div>
+</section>
+
+<section class="sec tight">
+  <div class="container">
+    <div class="grid3">
+      <a class="card" href="solution-crm.html"><span class="ic"><i data-lucide="handshake"></i></span><h3>NocoCRM<span class="pill pass">Alpha</span></h3><p style="color:var(--muted);font-size:13.5px"><t-zh>销售管理</t-zh><t-en>Sales CRM</t-en></p><p><t-zh>7×24 小时在线的销售 Agent 团队：主动跟进每条线索和来信、会前备好要点、审批前算清利润、每日追踪重点客户动态。</t-zh><t-en>A 24/7 sales agent team that follows up on leads and emails, preps meetings, pre-checks deal margins, and monitors key accounts daily.</t-en></p><span class="more link"><t-zh>了解 NocoCRM</t-zh><t-en>Explore NocoCRM</t-en><i data-lucide="arrow-right"></i></span></a>
+      <a class="card" href="solution-itam.html"><span class="ic"><i data-lucide="monitor-smartphone"></i></span><h3>NocoITAM<span class="pill pass">Alpha</span></h3><p style="color:var(--muted);font-size:13.5px"><t-zh>IT 资产管理</t-zh><t-en>IT Asset Management</t-en></p><p><t-zh>帮 IT 核对台账、追踪设备、精算授权：采购前先查闲置库存，自动对齐 MDM 差异，入职前配齐软硬件，续费前回收闲置席位。</t-zh><t-en>Agents reconcile inventory, track hardware, and optimize licenses: check stock before buying, resolve MDM diffs, kit out new hires, and reclaim idle seats.</t-en></p><span class="more link"><t-zh>了解 NocoITAM</t-zh><t-en>Explore NocoITAM</t-en><i data-lucide="arrow-right"></i></span></a>
+      <a class="card" href="solution-reach.html"><span class="ic"><i data-lucide="megaphone"></i></span><h3>NocoReach<span class="pill pass">Alpha</span></h3><p style="color:var(--muted);font-size:13.5px"><t-zh>增长营销</t-zh><t-en>Growth</t-en></p><p><t-zh>从洞察到上线再到复盘的完整闭环：每日从数据中发掘增长机会，Agent 直接在仓库里改好提 PR，你审阅发布后持续追踪 28 天效果。</t-zh><t-en>Closed-loop growth: agents spot daily opportunities from data, open a PR in your repo, publish after your review, and measure impact at day 28.</t-en></p><span class="more link"><t-zh>了解 NocoReach</t-zh><t-en>Explore NocoReach</t-en><i data-lucide="arrow-right"></i></span></a>
+    </div>
+    <p class="grp-h" id="soon" style="margin-top:56px"><b>Coming soon</b><span><t-zh>更多官方应用即将推出</t-zh><t-en>More official apps on the way</t-en></span></p>
+    <div class="grid3">
+      <div class="card dim"><span class="ic"><i data-lucide="headset"></i></span><h3>NocoSupport<span class="pill soon">Coming soon</span></h3><p style="color:var(--muted);font-size:13.5px"><t-zh>客户服务</t-zh><t-en>Customer Support</t-en></p><p><t-zh>工单分类分派、知识库检索、起草回复与常规问题处理；升级投诉、退款与例外由人拍板。</t-zh><t-en>Triages tickets, searches docs, drafts replies, and handles routine requests. Escalations, refunds, and edge cases stay with humans.</t-en></p></div>
+      <div class="card dim"><span class="ic"><i data-lucide="folder-kanban"></i></span><h3>NocoProject<span class="pill soon">Coming soon</span></h3><p style="color:var(--muted);font-size:13.5px"><t-zh>项目协作</t-zh><t-en>Project Management</t-en></p><p><t-zh>承担调研、文档与研发任务，跟踪进度并预警风险；目标、优先级、排期与验收由人决定。</t-zh><t-en>Executes research, writing, and dev tasks while tracking progress and risks. Goals, priorities, and sign-off stay with humans.</t-en></p></div>
+      <div class="card dim"><span class="ic"><i data-lucide="users"></i></span><h3>NocoHR<span class="pill soon">Coming soon</span></h3><p style="color:var(--muted);font-size:13.5px"><t-zh>人事管理</t-zh><t-en>HR</t-en></p><p><t-zh>维护员工档案、筹备入转调离事项、解答制度咨询；录用、定薪、绩效与特批由人决定。</t-zh><t-en>Manages employee records, preps onboarding/offboarding, and answers policy questions. Hiring, comp, and reviews stay with humans.</t-en></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec wow tint">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b><t-zh>核心差异</t-zh><t-en>What’s Different</t-en></b></p>
+      <h2 class="h2"><t-zh>不是在软件旁边挂个聊天框，</t-zh><t-en>Not a chatbot bolted onto software. </t-en><span class="m"><t-zh>而是给团队配齐上岗干活的 Agent。</t-zh><t-en>An agent team with real jobs.</t-en></span></h2>
+      <p class="lead"><t-zh>多数软件的“加 AI”只是放一个等你提问的侧边栏助手。NocoBase Solutions 里的 Agent 是有明确岗位、触发时机、权限边界与工作记录的团队成员；而且整套软件的源码，也能交给 AI 随时改造。</t-zh><t-en>Most “AI features” are just sidebar chatbots waiting for prompts. In NocoBase Solutions, agents have defined roles, triggers, permissions, and track records, and the entire app is open source for coding agents to customize.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <div class="pillars" style="--n:5">
+        <div><span class="k">01</span><h3><t-zh>事件触发，主动干活</t-zh><t-en>Event-driven, not prompted</t-en></h3><p><t-zh>新线索入库、客户回信、MDM 同步或数据异动发生时，对应 Agent 立即自动上岗。</t-zh><t-en>New leads, customer replies, MDM syncs, or data changes automatically trigger the right agent.</t-en></p></div>
+        <div><span class="k">02</span><h3><t-zh>人来拍板，绩效可查</t-zh><t-en>Human sign-off, clear metrics</t-en></h3><p><t-zh>每条建议附带依据，经人采纳后才落库执行；运行次数与采纳率清晰记录。</t-zh><t-en>Suggestions include reasoning and take effect only when accepted, with run and acceptance rates tracked.</t-en></p></div>
+        <div><span class="k">03</span><h3><t-zh>用自然语言教规则</t-zh><t-en>Trained in plain language</t-en></h3><p><t-zh>把价格政策、审批权限、配发标准写进业务指导与技能，Agent 下次运行立即照办。</t-zh><t-en>Update pricing rules, approval limits, or brand tone in plain text, and agents follow them immediately.</t-en></p></div>
+        <div><span class="k">04</span><h3><t-zh>源码级自由改造</t-zh><t-en>Source-level customization</t-en></h3><p><t-zh>开放全部源码。在 Studio 里提个需求，Coding Agent 就能加字段、改流程、做新页面。</t-zh><t-en>Full source code included. Ask a coding agent in Studio to add fields, tweak workflows, or build new views.</t-en></p></div>
+        <div><span class="k">05</span><h3><t-zh>私有部署，模型自选</t-zh><t-en>Self-hosted, bring any model</t-en></h3><p><t-zh>数据留在自己服务器，自由切换 DeepSeek、Claude、GPT 等模型，Token 消耗账单透明。</t-zh><t-en>Run on your own servers with DeepSeek, Claude, GPT, or local models, with full visibility into token usage.</t-en></p></div>
+      </div>
+      <div class="feat" style="margin-top:88px">
+        <div>
+          <h3><t-zh>每个 Agent 都有清晰的岗位说明书。</t-zh><t-en>Every agent has a clear job description.</t-en></h3>
+          <p><t-zh>管什么事、何时触发、能看哪些数据、能调什么操作、按什么方法做、采纳率如何，全都一目了然，像管理同事一样管理 Agent。</t-zh><t-en>Scope, triggers, read/write access, skills, and acceptance rate are all spelled out, so you manage agents the way you manage teammates.</t-en></p>
+          <ul class="bul">
+            <li><t-zh>严格继承负责人权限，绝不越权读取数据</t-zh><t-en>Inherits its owner’s exact permissions with no unauthorized data access</t-en></li>
+            <li><t-zh>只提建议，改记录、发消息均须人工确认</t-zh><t-en>Proposes actions; records and messages update only after human confirmation</t-en></li>
+            <li><t-zh>技能与业务指导随时可查阅、可调整</t-zh><t-en>Skills and business guidance are open to inspect and edit anytime</t-en></li>
+          </ul>
+        </div>
+        <div class="sheet sm"><div class="fit" data-w="640"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div style="display:flex;gap:10px;align-items:center"><span class="i" style="display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--agent-tint);color:var(--agent)"><i data-lucide="radar"></i></span><div><h5><t-zh>线索跟进</t-zh><t-en>Lead follow-up</t-en></h5><p>NocoCRM · <t-zh>岗位说明书</t-zh><t-en>Job description</t-en></p></div></div><span class="r"><span class="tag green"><t-zh>在岗</t-zh><t-en>On duty</t-en></span></span></div><div class="jobcard"><div class="row2"><span><t-zh>职责</t-zh><t-en>Job</t-en></span><span><t-zh>给每条线索打等级，建议继续跟进、培育、转化或判为无效，并写清下一步。</t-zh><t-en>Grade every lead and recommend follow-up, nurture, convert, or close, with the next step.</t-en></span></div><div class="row2"><span><t-zh>什么时候工作</t-zh><t-en>When it works</t-en></span><div class="mini-chips"><span><t-zh>新建线索</t-zh><t-en>New lead</t-en></span><span><t-zh>每日 09:00</t-zh><t-en>Daily 09:00</t-en></span><span><t-zh>客户来信</t-zh><t-en>Customer writes</t-en></span><span><t-zh>任务完成</t-zh><t-en>Task done</t-en></span><span><t-zh>公司变更</t-zh><t-en>Company changes</t-en></span></div></div><div class="row2"><span><t-zh>能看什么</t-zh><t-en>Can read</t-en></span><span><t-zh>线索、任务、评论、往来邮件与 WhatsApp（与负责人权限一致）</t-zh><t-en>Leads, tasks, comments, email, and WhatsApp (same permissions as the owner)</t-en></span></div><div class="row2"><span><t-zh>能做什么</t-zh><t-en>Can do</t-en></span><span><t-zh>只提建议；采纳后才修改记录、建任务、发消息</t-zh><t-en>Suggest only; records, tasks, and messages change after you accept</t-en></span></div><div class="row2"><span><t-zh>怎么做</t-zh><t-en>How</t-en></span><span><t-zh>技能 lead-follow-up · 业务指导 · 模型 DeepSeek V4</t-zh><t-en>Skill lead-follow-up · business guidance · model DeepSeek V4</t-en></span></div><div class="row2"><span><t-zh>表现</t-zh><t-en>Track record</t-en></span><span><t-zh>本月运行 128 次 · 采纳 86 · 忽略 19 · 采纳率 82%</t-zh><t-en>128 runs this month · 86 accepted · 19 ignored · 82%</t-en></span></div></div></div></div></div></div></div></div>
+      </div>
+      <p class="grp-h" style="margin-top:88px"><b><t-zh>和“业务软件 + AI 助手”比</t-zh><t-en>Compared with “business software + an AI assistant”</t-en></b></p>
+      <div class="cmp2" style="margin-top:8px">
+        <div class="k h"></div>
+        <div class="v h"><b><t-zh>业务软件 + AI 助手</t-zh><t-en>Software + AI assistant</t-en></b><span><t-zh>AI 是一个等你提问的功能</t-zh><t-en>AI is a feature that waits for questions</t-en></span></div>
+        <div class="s h"><b><i data-lucide="layout-grid"></i>NocoBase Solutions</b><span><t-zh>AI 是有岗位的团队成员</t-zh><t-en>AI is a team member with a job</t-en></span></div>
+        <div class="k"><i data-lucide="bot"></i><t-zh>AI 的角色</t-zh><t-en>AI’s role</t-en></div>
+        <div class="v"><em><t-zh>业务软件 + AI 助手</t-zh><t-en>Software + AI assistant</t-en></em><i data-lucide="x"></i><span><t-zh>侧边栏里的助手，你问它答</t-zh><t-en>A sidebar assistant that answers when asked</t-en></span></div>
+        <div class="s"><em>NocoBase Solutions</em><i data-lucide="check"></i><span><t-zh>一支有岗位的 Agent 团队，事件发生就主动工作</t-zh><t-en>A team of agents with jobs, working the moment events happen</t-en></span></div>
+        <div class="k"><i data-lucide="user-check"></i><t-zh>谁做决定</t-zh><t-en>Who decides</t-en></div>
+        <div class="v"><em><t-zh>业务软件 + AI 助手</t-zh><t-en>Software + AI assistant</t-en></em><i data-lucide="x"></i><span><t-zh>要么全自动，要么全靠人工</t-zh><t-en>Either fully automatic or fully manual</t-en></span></div>
+        <div class="s"><em>NocoBase Solutions</em><i data-lucide="check"></i><span><t-zh>Agent 提建议、附理由，人采纳后才生效</t-zh><t-en>Agents suggest with reasons; changes apply after a person accepts</t-en></span></div>
+        <div class="k"><i data-lucide="book-open"></i><t-zh>业务规则</t-zh><t-en>Business rules</t-en></div>
+        <div class="v"><em><t-zh>业务软件 + AI 助手</t-zh><t-en>Software + AI assistant</t-en></em><i data-lucide="x"></i><span><t-zh>厂商定义，改不了</t-zh><t-en>Defined by the vendor</t-en></span></div>
+        <div class="s"><em>NocoBase Solutions</em><i data-lucide="check"></i><span><t-zh>用大白话写业务指导和技能，随时改</t-zh><t-en>Plain-language guidance and skills you edit any time</t-en></span></div>
+        <div class="k"><i data-lucide="code-xml"></i><t-zh>定制</t-zh><t-en>Customization</t-en></div>
+        <div class="v"><em><t-zh>业务软件 + AI 助手</t-zh><t-en>Software + AI assistant</t-en></em><i data-lucide="x"></i><span><t-zh>配置项和付费扩展</t-zh><t-en>Settings and paid add-ons</t-en></span></div>
+        <div class="s"><em>NocoBase Solutions</em><i data-lucide="check"></i><span><t-zh>源码级，由 Coding Agent 直接改</t-zh><t-en>Source-level, changed by coding agents</t-en></span></div>
+        <div class="k"><i data-lucide="server"></i><t-zh>数据与模型</t-zh><t-en>Data and models</t-en></div>
+        <div class="v"><em><t-zh>业务软件 + AI 助手</t-zh><t-en>Software + AI assistant</t-en></em><i data-lucide="x"></i><span><t-zh>数据在厂商云上，模型由厂商指定</t-zh><t-en>Data in the vendor’s cloud, model chosen for you</t-en></span></div>
+        <div class="s"><em>NocoBase Solutions</em><i data-lucide="check"></i><span><t-zh>私有部署，模型自选，用量成本透明</t-zh><t-en>Self-hosted, your choice of model, transparent usage</t-en></span></div>
+        <div class="k"><i data-lucide="chart-column"></i><t-zh>Agent 表现</t-zh><t-en>How agents perform</t-en></div>
+        <div class="v"><em><t-zh>业务软件 + AI 助手</t-zh><t-en>Software + AI assistant</t-en></em><i data-lucide="x"></i><span><t-zh>看不到</t-zh><t-en>Hidden</t-en></span></div>
+        <div class="s last"><em>NocoBase Solutions</em><i data-lucide="check"></i><span><t-zh>运行次数、采纳率、忽略原因都有记录</t-zh><t-en>Runs, acceptance, and ignores all recorded</t-en></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b><t-zh>应用构成</t-zh><t-en>What’s Included</t-en></b></p>
+      <h2 class="h2"><t-zh>不只是张皮，</t-zh><t-en>More than screens. </t-en><span class="m"><t-zh>更内置了懂业务的 Agent 与方法。</t-zh><t-en>Built-in domain agents and playbooks.</t-en></span></h2>
+    </div>
+    <div class="sec-body">
+      <div class="grid4">
+        <div class="card"><span class="ic"><i data-lucide="database"></i></span><h3><t-zh>数据模型与界面</t-zh><t-en>Data models &amp; views</t-en></h3><p><t-zh>配齐该领域所需的数据表、页面、看板与报表，开箱即用。</t-zh><t-en>Pre-built tables, pages, boards, and reports ready for day-one use.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="workflow"></i></span><h3><t-zh>流程与权限</t-zh><t-en>Workflows &amp; permissions</t-en></h3><p><t-zh>审批、提醒与角色权限全部以代码定义，运行在 Core 底座之上。</t-zh><t-en>Approvals, alerts, and RBAC defined in code on top of Core.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="bot"></i></span><h3><t-zh>业务 Agent 与技能</t-zh><t-en>Domain agents &amp; skills</t-en></h3><p><t-zh>每个 Agent 具备明确职责、触发时机与技能，只提建议，由人在收件箱拍板。</t-zh><t-en>Agents with clear triggers and skills propose actions for owners to approve in their inbox.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="flask-conical"></i></span><h3><t-zh>业务指导与评测</t-zh><t-en>Guidance &amp; evals</t-en></h3><p><t-zh>用业务指导交代企业背景与口径，用评测用例检验修改后的效果。</t-zh><t-en>Business guidance sets company context and standards; eval cases verify agent quality.</t-en></p></div>
+      </div>
+      <p class="grp-h" style="margin-top:72px"><b><t-zh>人与 Agent 的分工</t-zh><t-en>Who does what</t-en></b><span><t-zh>超出授权边界的操作，一律提交负责人批准</t-zh><t-en>Actions beyond an agent’s authority always route to its owner</t-en></span></p>
+      <div class="dt-wrap"><table class="dt">
+        <thead><tr><th><t-zh>应用</t-zh><t-en>App</t-en></th><th><span class="dot d-ag"></span><t-zh>业务 Agent 负责</t-zh><t-en>Business agents handle</t-en></th><th><span class="dot d-hu"></span><t-zh>人来拍板</t-zh><t-en>Humans decide</t-en></th></tr></thead>
+        <tbody>
+          <tr><td>NocoCRM</td><td><t-zh>整理客户与沟通记录、背调线索与公司、推荐商机下一步、预审报价</t-zh><t-en>Enrich records, research leads &amp; accounts, suggest next steps, pre-check quotes</t-en></td><td><t-zh>折扣、报价与合同承诺</t-zh><t-en>Discounts, quotes, and contract terms</t-en></td></tr>
+          <tr><td>NocoITAM</td><td><t-zh>核对资产台账与 MDM、生成入转离配发方案、初审采购与报废申请</t-zh><t-en>Reconcile inventory with MDM, prep onboarding/offboarding kits, review requests</t-en></td><td><t-zh>采购、报废与重要资产变更</t-zh><t-en>Purchases, disposals, and major changes</t-en></td></tr>
+          <tr><td>NocoReach</td><td><t-zh>每日分析数据、挖掘增长机会并附依据，在仓库改好代码提 PR</t-zh><t-en>Analyze daily metrics, pitch evidence-backed experiments, and open PRs</t-en></td><td><t-zh>采纳哪些机会、品牌把关与上线</t-zh><t-en>Which experiments to run, brand voice, and release</t-en></td></tr>
+          <tr><td>NocoSupport <span class="pill soon">Soon</span></td><td><t-zh>工单分类分派、检索知识库、起草回复</t-zh><t-en>Triage tickets, search knowledge base, draft replies</t-en></td><td><t-zh>退款、投诉升级与特例处理</t-zh><t-en>Refunds, escalations, and exceptions</t-en></td></tr>
+          <tr><td>NocoProject <span class="pill soon">Soon</span></td><td><t-zh>执行调研与文档任务、跟进进度、汇总风险</t-zh><t-en>Run research and drafting tasks, track progress, flag risks</t-en></td><td><t-zh>目标、优先级与成果验收</t-zh><t-en>Goals, priorities, and sign-off</t-en></td></tr>
+          <tr><td>NocoHR <span class="pill soon">Soon</span></td><td><t-zh>准备入职事项、整理员工档案、解答制度提问</t-zh><t-en>Prep onboarding checklists, organize records, answer policy FAQs</t-en></td><td><t-zh>录用、定薪与人事特批</t-zh><t-en>Hiring, compensation, and HR exceptions</t-en></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b><t-zh>使用与定制</t-zh><t-en>Use &amp; Customize</t-en></b></p>
+      <h2 class="h2"><t-zh>先直接用起来，</t-zh><t-en>Run it out of the box. </t-en><span class="m"><t-zh>再按你的业务改。</t-zh><t-en>Then shape it to your business.</t-en></span></h2>
+      <p class="lead"><t-zh>以基于 NocoCRM 定制为例：想改客户背调方式，直接改技能文档；想加续约提醒和客户分级，让 Agent 修改代码，跑通评测用例后即可上线。</t-zh><t-en>Take NocoCRM: to change how leads are researched, edit a skill in plain text; to add renewal alerts and customer tiers, let a coding agent update the source code, test against your eval cases, and ship.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <ol class="steps" style="--n:3">
+        <li><span class="bal">01</span><h4><t-zh>部署即用</t-zh><t-en>Deploy and run</t-en></h4><p><t-zh>每款应用均可独立部署。填好业务指导、配好模型，业务 Agent 立即上岗。</t-zh><t-en>Deploy standalone, add your business guidance, connect a model, and your agents are on duty.</t-en></p></li>
+        <li><span class="bal">02</span><h4><t-zh>改技能、规则与代码</t-zh><t-en>Edit skills, rules, and code</t-en></h4><p><t-zh>做法变了改技能，流程和字段变了让 Agent 改源码。在 Studio 中完成检查、验收与发布。</t-zh><t-en>Tweak skills for new methods or let coding agents update the source for new workflows, verified and shipped through Studio.</t-en></p></li>
+        <li><span class="bal">03</span><h4><t-zh>按需合入官方更新</t-zh><t-en>Pull upstream updates on your terms</t-en></h4><p><t-zh>定制后的源码完全归你所有，可自主选择需要的官方更新，验证后合入自己的仓库。</t-zh><t-en>You own the customized repo and can selectively merge upstream updates whenever you choose.</t-en></p></li>
+      </ol>
+      <div class="ed-strip" style="margin-top:48px">
+        <div><small><t-zh>开源</t-zh><t-en>Open source</t-en></small><b><t-zh>官方应用全部开源</t-zh><t-en>All official apps are open source</t-en></b><p><t-zh>数据模型、界面、业务 Agent、技能、规则与评测完整开放，用免费的 Community 即可部署运行。</t-zh><t-en>Models, views, agents, skills, rules, and evals are all open source and free to run on Community.</t-en></p></div>
+        <div><small><t-zh>商业版</t-zh><t-en>Commercial</t-en></small><b><t-zh>在 Studio 中定制与发布</t-zh><t-en>Customize and ship in Studio</t-en></b><p><t-zh>使用 Studio 带领 Agent 团队定制、测试和受控发布，或使用企业级 SSO、高级审批等能力，可选购商业版。</t-zh><t-en>Choose Professional or Enterprise to customize and release apps in Studio and unlock commercial Core plugins.</t-en></p></div>
+        <div><small><t-zh>伙伴</t-zh><t-en>Partners</t-en></small><b><t-zh>行业定制与交付</t-zh><t-en>Industry solutions &amp; delivery</t-en></b><p><t-zh>官方聚焦通用业务场景；合作伙伴可在此基础上打造垂直行业方案，或提供定制交付服务。</t-zh><t-en>We focus on cross-industry apps; partners build vertical solutions on top or deliver custom projects for you.</t-en></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="band sol-end">
+    <div><h2><t-zh>选一款应用，今天就跑起来。</t-zh><t-en>Pick an app. Start today.</t-en></h2><p><t-zh>三款 Alpha 应用已开源免费开放。部署后写好业务指导、接上模型，业务 Agent 即可上岗，随时按需定制。</t-zh><t-en>Three apps are available in alpha, free and open source. Deploy one, add your guidance, connect a model, and customize as you go.</t-en></p></div>
+    <div class="cta">
+      <a class="btn btn-sec" href="solution-crm.html"><i data-lucide="handshake"></i>NocoCRM</a>
+      <a class="btn btn-sec" href="solution-itam.html"><i data-lucide="monitor-smartphone"></i>NocoITAM</a>
+      <a class="btn btn-sec" href="solution-reach.html"><i data-lucide="megaphone"></i>NocoReach</a>
+      <a class="link" href="https://v3.docs.nocobase.com/zh-CN/" target="_blank" rel="noopener"><t-zh>阅读部署指南</t-zh><t-en>Read the deploy guide</t-en><i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

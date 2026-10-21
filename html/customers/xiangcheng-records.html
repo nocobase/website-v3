@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="香城档案利用 NocoBase 快速实现智能档案管理 — NocoBase" data-en="Xiangcheng Records Leverages NocoBase to Drive Rapid Development in Smart Record Management — NocoBase">香城档案利用 NocoBase 快速实现智能档案管理 — NocoBase</title>
+<meta name="description" content="探索香城档案如何通过 NocoBase 革新档案管理，通过智能系统和强大的自动化技术提高效率。" data-zh="探索香城档案如何通过 NocoBase 革新档案管理，通过智能系统和强大的自动化技术提高效率。" data-en="Explore how Xiangcheng Records revolutionizes record management with NocoBase, enhancing efficiency through intelligent systems and robust automation technology.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="customers" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../customers.html"><t-zh>客户案例</t-zh><t-en>Customer Stories</t-en></a></p>
+    <h1><t-zh>香城档案利用 NocoBase 快速实现智能档案管理</t-zh><t-en>Xiangcheng Records Leverages NocoBase to Drive Rapid Development in Smart Record Management</t-en></h1>
+    <p class="lede"><t-zh>探索香城档案如何通过 NocoBase 革新档案管理，通过智能系统和强大的自动化技术提高效率。</t-zh><t-en>Explore how Xiangcheng Records revolutionizes record management with NocoBase, enhancing efficiency through intelligent systems and robust automation technology.</t-en></p>
+    <div class="bmeta"><span><t-zh>2024年8月19日</t-zh><t-en>Aug 19, 2024</t-en></span><span><t-zh>Deng lijia, Huang yiqun</t-zh><t-en>Deng lijia, Huang yiqun</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/8062f74cef27c759eba77e832e358df4.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1"><strong>关于档案管理行业</strong></h2>
+<p>档案管理历史悠久，最早可追溯至周朝。周文王姬昌非常重视档案管理，他命令手下的管理者将这些文献和档案进行整理和分类，然后存放在专门的档案馆中。这些档案馆也被称为“金匮”，是古代国家的重要保管机构之一。</p>
+<p>如今，档案不仅保存历史，还在行政、法律、财务和文化等领域发挥着重要作用。随着需求的增加，档案服务外包逐渐兴起，企业和政府等组织将档案管理外包给专业的第三方公司，以确保高效、安全的管理。</p>
+<p>尽管档案服务外包在中国发展了近三十年，然而其整体进展相对互联网行业来说却缓慢许多，同时，档案管理服务的技术革新也相对滞后。市场上需要破局者，为档案管理注入新技术，才能打造现代化的“金匮”，为社会提供高效的档案管理服务。而香城档案就是这个行业的破局者。</p>
+<h2 id="zh-2"><strong>关于香城档案</strong></h2>
+<p>香城档案全称为成都香城档案科技有限公司，成立于 2023 年 7 月 1 日，主营档案整理、数字化、管理咨询及保管，服务对象涵盖大型企业、政府部门及家庭个人。</p>
+<p>正是在国内档案服务外包业务发展缓慢的背景下，香城档案看到了行业的契机，并迅速作出响应。为了抢占市场先机，<strong>香城档案不仅在传统档案管理上进行了深耕，还果断地迈向了智能化的未来。</strong></p>
+<p>香城档案目前拥有两个智慧档案管理中心，最新的中心于 2024 年 6 月落成，并于 7 月 25 日正式开馆投运。正式运营后，该中心受到了各大媒体报道，并吸引了国内 20 余家单位前来考察。此外，中心还与多个政府部门、法院、高校、医院、保险公司建立合作，获得了良好的市场反馈。</p>
+<p><img src="https://static-docs.nocobase.com/0eb16e8f316b84827612c0ae0803956c.png" alt="Xiangcheng Archives.png"></p>
+<p><strong>这样一个年轻的公司，如何做到快速构建智慧档案管理中心，并成功投入运营，且吸引众多合作伙伴投来橄榄枝？</strong></p>
+<h2 id="zh-3"><strong>真正智慧的档案管理中心</strong></h2>
+<p>香城智慧档案管理中心项目总建筑面积 5930.8 平方米(其中档案智能库面积 2223 平方米)，拥有 3 个档案寄存仓库，总存储量 21 万箱（200万卷)，数据机柜 22 个。使用多种智能机器人进行档案库房无人化寄存管理，配置了气体灭火、光纤温控及吸入式烟感系统，旨在打造行业内最高安全标准。</p>
+<p>数字化和自动化技术的应用，使得档案管理更加高效和安全。需要调阅、查询档案时，客户只需在软件上简单操作，经工作人员审核，就可由机器人取出，送到客户手中。</p>
+<p><strong>相比全国同行业，香城智慧档案管理中心减少了 90% 的人工投入。</strong></p>
+<p><img src="https://static-docs.nocobase.com/54e9be27a407632bf5d929f33cf65835.png" alt="robot.png"></p>
+<p><img src="https://static-docs.nocobase.com/19a4c1a116266b3d1fab2064d48fb7d5.png" alt="Digitization and automation technology.png"></p>
+<p>实现降本增效的档案管理背后，不仅需要依靠硬件设施的升级，还需要一个强大而灵活的业务管理系统，作为整个智慧档案管理中心的“大脑”，进行统一仓储管理、合同管理、客户管理等。</p>
+<p>然而，在构建这个智慧档案管理的“大脑”的过程中，香城档案却遇到了不少挑战。</p>
+<h2 id="zh-4"><strong>系统开发的难题</strong></h2>
+<p>在档案服务外包行业，业务管理系统都是同行的看家本领。由于档案管理服务的特殊性，业务需求多且复杂，市面上基本较少开箱即用的成熟产品，而重新开发及定制化，时间与成本都让香城档案难以接受；另外，出于对档案数据敏感性的考虑，中心对数据安全的要求非常高，需要系统可实现私有化部署。</p>
+<p>因此，香城档案的开发团队一致认为，通过选型低/无代码平台，进行快速开发及迭代业务管理系统，是当前最佳的选择。</p>
+<p>但是无论是商业化的软件还是开源软件，在遇到业务落地时都会遇到相似的问题：<strong>业务向系统的转换极其困难</strong>。</p>
+<p>造成业务落地困难的原因，主要是因为市面上大部分低代码平台学习成本高，而用户的思维模型难以调整。</p>
+<p>普通档案业务员对档案的收集、归档、移交、接收、检索等业务操作了如指掌，但对于信息系统的复杂技术，他们可能一筹莫展。市面上大部分的低代码软件，为了实现复杂需求，引入数据结构、视图、代码等，让香城的一线人员无从下手。</p>
+<p><strong>真正成功的低/无代码平台，一定是学习成本低、业务员能理解、愿意使用的系统。</strong></p>
+<p>面对工期紧、功能复杂的项目，香城档案急需选型一个既能私有化部署实现安全可控、又能够打破传统低代码平台的限制、满足档案中心个性化需求的低/无代码解决方案。</p>
+<h2 id="zh-5"><strong>NocoBase 如何改变低代码开发？</strong></h2>
+<p>当香城档案业务一线人员对国内外众多低代码平台试用、抛弃、再试用、再抛弃，项目交付时间越来越短已经无力折腾时，他们发现了 NocoBase。</p>
+<p>仅 NocoBase 的三项功能就让香城档案眼前一亮：</p>
+<ol>
+<li>自由切换的所见即所得开发页面</li>
+<li>自由组织的区块式布局</li>
+<li>自由对接的外部接口</li>
+</ol>
+<p>这些自由是其他低代码平台难以满足的。毕竟快速发展的组织需要的是像乐高一样可以自由组合、创意无限的工具，而不是复杂晦涩、行动缓慢的机器。例如，一线人员通过拖拽字段和操作，即可以生成档案管理的页面。将不同的页面区块组合到一起，就拼成了业务人员常用的操作页面。NocoBase 提供灵活的 API 管理能力，可以使香城档案的开发快速对接 RFID 系统和硬件，实现高效的仓储管理。</p>
+<p>通过验证了系统的可行性后，香城档案团队迅速投入项目的开发中。该团队在 2023 年年底仅用 1 个月时间上线部分业务系统，并保障了基本业务的正常运行。</p>
+<p>至 2024 年 4 月，香城档案开始对接 WMS 和 RFID 系统，在 NocoBase 与香城档案团队的合作下，均顺利完成。</p>
+<p>目前，香城档案已通过 NocoBase 搭建的综合管理系统整合了包括 CRM、RMS、WMS、AMS 和 RFID 标签在内的各系统，实现档案管理一线业务需求的灵活调整。</p>
+<p>时间来到了 2024 年 6 月，开馆时间迫在眉睫，时间紧、任务重。通过香城档案团队的通力合作，终于在 2024 年 6 月 18 日，在 NocoBase 构建的综合管理系统上跑通了整体的业务流程：从录入合同、分配任务、生成订单、打印 RFID 标签，智能设备接到指令后完成自动传送、自动堆垛、自动搬运、自动入库。</p>
+<p><strong>香城档案业务管理系统界面：</strong></p>
+<p><img src="https://static-docs.nocobase.com/10e4d851b5e770c10f2a7aac1a327298.png" alt="interface.png"></p>
+<p>各角色界面简洁易懂，流程清晰明了，业务运行一气呵成，大大提高了档案中心的自动化和智能化，提高人工操作的效率和准确性。因此，自 6 月底首批档案入库至 7 月底开馆，档案中心高效运行，首月库存使用率便达 5.9%，远超计划的每月 2.8%。</p>
+<h2 id="zh-6"><strong>展望未来</strong></h2>
+<p><img src="https://static-docs.nocobase.com/1f628fda0a0641f67b77310ae53a65b9.png" alt="Xiangcheng Archives.png"></p>
+<p>随着智慧档案管理中心的落成，香城档案迈出了万里长征第一步。更大的挑战也在接踵而至：智能园区的综合管理、物联网设备的对接、各类数据的汇聚与展示、业务系统的LLM改造、客户系统的落地……</p>
+<p>好在 NocoBase 的 Roadmap 也在持续输出新特性，计划中的新功能和插件为香城档案提供了强有力的产品支持。</p>
+<p>香城档案也将继续深挖 NocoBase 潜力，比如：NocoBase 与 IoT 的结合，加上使用 NocoBase 搭建的数据治理平台，构建一套可以用于智慧工厂、智慧园区、智慧楼宇的低代码平台。这也许会成为行业的另一个选择。</p>
+<blockquote>
+<p>在正确的战略下，NocoBase 不仅能帮助企业把战略落地中重要的手段信息化、规范化、标准化，还为香城档案打造“安全、智慧和专业”品牌形象奠定良好的基础，更重要的是：NocoBase 不仅为员工思维提升提供了沃土，也为企业发展埋下了种子，使香城档案的未来充满无限可能。</p>
+<p>—— 孙晓峰 成都香城档案科技有限公司负责人</p>
+</blockquote>
+<p><strong>工具变革<strong><strong>助力企业创新成为行业破局者</strong></strong>，也推动企业的组织变革，为发展注入无限动力。对香城档案而言，NocoBase 不只是生产工具，更是推动企业发展的关键力量。</strong></p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../customers/classmethod.html">从表格到系统：Classmethod 用 NocoBase 构建全球员工信息管理系统</a></li>
+<li><a href="../customers/olmon.html">一家家具厂，如何用零代码搭建自己的 ERP ？</a></li>
+<li><a href="../customers/l-a.html">奥雅的数字化新版图：用 NocoBase 探索精细化管理新可能</a></li>
+<li><a href="../customers/kigland.html">如何用开源工具，把“定制动漫面具”做成柔性制造？</a></li>
+<li><a href="../customers/how-400-lawyer-firm-streamlines-commission-management-with-nocobase.html">超 400 人团队律所，如何用 NocoBase 高效管理律师提成？</a></li>
+<li><a href="../customers/rapid-development-with-nocobase.html">1周上线，2个月交付！有巢数智如何用 NocoBase 颠覆建筑行业数智化效率</a></li>
+<li><a href="../customers/Orchisky.html">低代码加速智能制造，兰之天的选择是 NocoBase</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1"><strong>About the Record Management Industry</strong></h2>
+<p>Record management has been an essential practice across various civilizations throughout history. Early examples include the ancient Egyptians, who kept detailed records on papyrus, and the Romans, who maintained public records known as <em>tabularia</em>.</p>
+<p><img src="https://static-docs.nocobase.com/3ca1fa74eb8a3ee902a556d1794d9de0.png" alt="By Diliff, University of Texas at Arlington Photograph Collection.png"></p>
+<p>Over time, the importance of preserving documents for administrative, legal, and historical purposes became widely recognized, leading to the development of systematic record management practices worldwide.</p>
+<p>Today, records play a crucial role in preserving history and are indispensable in administrative, legal, financial, and cultural fields. In response to increasing demand, organizations are gradually outsourcing record management to professional third-party companies for efficient and secure management.</p>
+<p>However, in China, the development of archival service outsourcing has lagged behind faster-paced industries like the Internet. There is a pressing need for innovation to bring new technologies into record management and deliver efficient services to society. Xiangcheng Records is stepping in to fill this gap.</p>
+<h2 id="en-2"><strong>A Game-changer in the Industry</strong></h2>
+<p>Xiangcheng Records Co., Ltd. (hereinafter called Xiangcheng Records) was established on July 1, 2023. The company specializes in file sorting, digitization, management consulting, and storage services. Its clientele includes large enterprises, government departments, families, and individuals.</p>
+<p>To capitalize on the market opportunity in the records service outsourcing industry, the company has <strong>focused on traditional file management while also making a decisive move toward intelligent record management.</strong></p>
+<p>Xiangcheng Records has two intelligent record management centers, the latest of which was officially opened on July 25. The center has established cooperation with several government departments, courts, universities, hospitals, and insurance companies and has received good market feedback.</p>
+<p><img src="https://static-docs.nocobase.com/0eb16e8f316b84827612c0ae0803956c.png" alt="Xiangcheng Archives.png"></p>
+<p>How can a young company quickly establish two efficient record management centers, operate them successfully, and attract valuable partners’ attention?</p>
+<h2 id="en-3"><strong>The Real Smart Record Management Center</strong></h2>
+<p>The Xiangcheng Smart Record Management Center project covers a total construction area of 5,930.8 square meters, including 2,223 square meters for the record intelligent library. It features three records storage warehouses with 210,000 boxes (2 million volumes) and 22 data cabinets. Smart robots are used for unmanned storage management, and safety features include gas fire extinguishing, optical fiber temperature control, and inhalation smoke detection systems.</p>
+<p>Digitization and automation technology have made record management more efficient and secure. For instance, customers can submit document query requests through the software. Once the staff reviews the request, a robot can retrieve and deliver the files to the customer.</p>
+<p><strong>The center has reduced labor input by 90% compared to other record management companies.</strong></p>
+<p><img src="https://static-docs.nocobase.com/54e9be27a407632bf5d929f33cf65835.png" alt="robot.png"></p>
+<p><img src="https://static-docs.nocobase.com/19a4c1a116266b3d1fab2064d48fb7d5.png" alt="Digitization and automation technology.png"></p>
+<p>Efficient record management depends on advanced hardware facilities and, most importantly, a suite of robust and flexible business management systems. These systems serve as the “brain” of the entire smart record management center, enabling unified warehouse management, contract management, customer management, and more.</p>
+<p>However, the Xiangcheng team encountered numerous challenges while developing this central management system.</p>
+<h2 id="en-4">The Problem of “Brain” Building</h2>
+<p>How can the central management system be built to support the smart record management center’s efficient operation? Due to record management services’ unique and complex needs, few out-of-the-box products are available on the market. Additionally, the cost and time required to develop a new system are unacceptable to Xiangcheng Records. The sensitivity of archival data also requires the system’s on-premise deployment.</p>
+<p>Therefore, the Xiangcheng Records team decided to find a low/no-code platform for quickly developing the business management system. However, converting business requirements into system functions remains a significant challenge, regardless of the software type.</p>
+<p>Archivists typically understand record operations such as collection, organization, transfer, retrieval, and other related tasks. However, they may need more expertise in information systems technology. <strong>Many low-code platforms introduce data structures, views, and code, making it challenging for frontline staff to begin building the system to meet complex requirements.</strong></p>
+<p>A successful low/no-code platform should be user-friendly and easy to learn for non-technical staff. Xiangcheng Records urgently needed a solution for a project with tight deadlines and complex functions. <strong>The chosen platform should be self-hosting, secure, and able to meet the specific needs of the record center while breaking traditional low-code limitations.</strong></p>
+<h2 id="en-5"><strong>NocoBase: Putting Development on the Fast Track</strong></h2>
+<p>When Xiangcheng’s records business frontline staff tried and abandoned many low-code platforms at home and abroad, the project delivery deadline was approaching desperately. Fortunately, the team encountered NocoBase.</p>
+<p>It was the three highlights of NocoBase that captured the teams’ attention:</p>
+<ol>
+<li>Freely switchable WYSIWYG pages</li>
+<li>Freely organized block-style layout</li>
+<li>Freely adapted external interfaces</li>
+</ol>
+<p>It isn’t easy to find these freedoms with other low-code platforms. Growing organizations need tools like LEGO that can be freely combined and creative rather than complex, obscure, slow-moving machines.</p>
+<p>For instance, frontline records staff can easily create a page for records management by dragging and dropping fields and actions. Combining different page blocks builds a commonly used operation page. NocoBase offers flexible API capabilities, enabling quick integration with RFID systems and hardware for efficient warehouse management.</p>
+<p>After verifying the system’s feasibility, the Xiangcheng records team quickly invested in its development. At the end of 2023, the team launched part of the essential business systems in just one month.</p>
+<p>By April 2024, Xiangcheng Records began to connect with WMS and RFID systems, and the integration work went smoothly thanks to NocoBase’s cooperation.</p>
+<p>Xiangcheng Records has integrated various systems, including CRM, RMS, WMS, AMS, and RFID tags, through the integrated management system built by NocoBase. The system also allows flexible adjustments to meet changing needs.</p>
+<p>In June 2024, the Xiangcheng records team successfully ran the overall business process using the integrated management system built by NocoBase. The process included entering contracts, assigning tasks, generating orders, printing RFID tags, and completing automatic warehousing after receiving instructions.</p>
+<p><strong>Interface of the City of Aroma archival business management system:</strong></p>
+<p><img src="https://static-docs.nocobase.com/10e4d851b5e770c10f2a7aac1a327298.png" alt="interface.png"></p>
+<p>The interface for each role is straightforward to understand, leading to efficient business operations and improved automation. From the arrival of the first batch of records in June to the library’s opening in July, the records center operated effectively, with an inventory utilization rate of 5.9% in the first month, surpassing the planned 2.8%.</p>
+<h2 id="en-6"><strong>Looking Ahead</strong></h2>
+<p><img src="https://static-docs.nocobase.com/1f628fda0a0641f67b77310ae53a65b9.png" alt="Xiangcheng Archives.png"></p>
+<p>Xiangcheng Records has taken on a challenging journey by launching the Smart Records Management Center. However, even more challenges are ahead, including comprehensive management of smart parks, integration of IoT devices, aggregation and visualization of various data, transformation of LLMs of business systems, and implementation of customer systems.</p>
+<p>Concurrently, new features and plugins are continually being released according to NocoBase’s Roadmap, providing strong product support for Xiangcheng Records.</p>
+<p>Moving forward, Xiangcheng Records will continue to explore NocoBase’s potential. For example, the team plans to develop low-code systems for managing smart factories, parks, and buildings. This initiative will facilitate IoT integration and establish a data governance platform based on NocoBase, making it a promising option for the industry.</p>
+<blockquote>
+<p>With the right strategy, NocoBase can help enterprises streamline and standardize their essential operations, laying a solid foundation for Xiangcheng Records to build a brand image of “safety, wisdom, and professionalism.”. Additionally, NocoBase fosters employee growth and enterprise development, shaping a promising future for Xiangcheng Records.</p>
+<p>—— Sun Xiaofeng, <strong>head of Xiangcheng Records</strong></p>
+</blockquote>
+<p>Tool upgrading helps the company <strong>to innovate and become a game changer</strong> in the industry, drives organizational change, and injects unlimited impetus into development. For Xiangcheng Records, NocoBase is a production tool and a key force promoting the enterprise’s development.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../customers/classmethod.html">Beyond Spreadsheets: Classmethod’s Employee Data Management with NocoBase</a></li>
+<li><a href="../customers/olmon.html">How One Furniture Factory Built Its Own ERP—No Coding Needed</a></li>
+<li><a href="../customers/l-a.html">From Designer to Builder: L&#x26;A’s Digital Transformation with NocoBase</a></li>
+<li><a href="../customers/kigland.html">How KIGLAND Scaled Custom Anime Mask Production with Open-Source Tools</a></li>
+<li><a href="../customers/how-400-lawyer-firm-streamlines-commission-management-with-nocobase.html">How a 400+ Lawyer Firm Streamlines Commission Management with NocoBase</a></li>
+<li><a href="../customers/rapid-development-with-nocobase.html">Rapid Development with NocoBase: Driving Digital Transformation in Construction</a></li>
+<li><a href="../customers/Orchisky.html">Orchisky’s Smart Manufacturing Upgrade: Why They Chose NocoBase</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">关于档案管理行业</a><a href="#zh-2">关于香城档案</a><a href="#zh-3">真正智慧的档案管理中心</a><a href="#zh-4">系统开发的难题</a><a href="#zh-5">NocoBase 如何改变低代码开发？</a><a href="#zh-6">展望未来</a></div><div class="en-only"><a href="#en-1">About the Record Management Industry</a><a href="#en-2">A Game-changer in the Industry</a><a href="#en-3">The Real Smart Record Management Center</a><a href="#en-4">The Problem of “Brain” Building</a><a href="#en-5">NocoBase: Putting Development on the Fast Track</a><a href="#en-6">Looking Ahead</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>更多客户案例</t-zh><t-en>More customer stories</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../customers/sungrow.html" data-tags="Customer_Stories"><span class="cv"><span class="cv-ph"><b>SUNGROW</b></span></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年10月17日</t-zh><t-en>Oct 17, 2026</t-en></span><span><t-zh>NocoBase</t-zh><t-en>NocoBase</t-en></span></div><h3><t-zh>阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统</t-zh><t-en>Sungrow: the systems behind a global business, built on NocoBase</t-en></h3><p><t-zh>全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。</t-zh><t-en>How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.</t-en></p></a><a class="bcard" href="../customers/polish-volunteer-fire-department-nocobase-case-study.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/20260722-111552-ydpnay.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月22日</t-zh><t-en>Jul 22, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>一支每年出警 200 次的消防队，如何用 NocoBase 搭建运营系统</t-zh><t-en>How a Volunteer Fire Department Manages 200 Callouts a Year with NocoBase</t-en></h3><p><t-zh>波兰 OSP Radlin II 志愿消防队用 NocoBase 统一管理出警、人员资质、车辆装备与自动化提醒，并持续迭代消防队运营系统。</t-zh><t-en>See how OSP Radlin II uses NocoBase to manage emergency callouts, personnel qualifications, vehicles, equipment, reminders, and daily operations</t-en></p></a><a class="bcard" href="../customers/astrolab-nocobase.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%B3%95%E5%9B%BD%E6%94%BF%E5%BA%9C%20(2)-8g4luf.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月3日</t-zh><t-en>Jul 3, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>法国大区政府如何用 NocoBase 建设数字化公共服务平台</t-zh><t-en>From Paperwork to Digital Public Services in France</t-en></h3><p><t-zh>基于一套 NocoBase 架构，Astrolab 为法国大区政府交付三个生产级平台，将审核周期缩短至 24 小时内，车辆冲突减少 80%，普查回收率提升至 90% 以上。</t-zh><t-en>Astrolab used NocoBase to deliver three production-ready platforms for a French regional government, reducing review cycles to under 24 hours, cutting reservation conflicts by 80%, and reaching over 90% survey response rates.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>下一个故事，可以是你的。</t-zh><t-en>The next story could be yours.</t-en></h2><p><t-zh>带一个真实需求，和我们一起把它做成可以长期使用的系统。</t-zh><t-en>Bring one real requirement and turn it into a system you’ll use for years.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../customers.html"><t-zh>全部客户案例</t-zh><t-en>All customer stories</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

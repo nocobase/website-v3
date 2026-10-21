@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用 — NocoBase" data-en="10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps — NocoBase">10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用 — NocoBase</title>
+<meta name="description" content="整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。" data-zh="整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。" data-en="Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用</t-zh><t-en>10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps</t-en></h1>
+    <p class="lede"><t-zh>整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。</t-zh><t-en>Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月4日</t-zh><t-en>Sep 4, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Group%2039-8n094r.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">TL;DR</h2>
+<p>这 10 个平台大致分为三类：</p>
+<ul>
+<li>NocoBase、Activepieces、Kestra 和 Windmill 更适合把 AI 接入企业数据、自动化和业务流程；</li>
+<li>Coze Studio、Langflow 和 Dify 更适合可视化构建 Agent 与 AI 应用；</li>
+<li>MaxKB、AnythingLLM 和 RAGFlow 更适合企业知识库和 RAG。</li>
+</ul>
+<p>如果企业需要管理结构化业务数据、权限和内部应用，可以优先考虑 NocoBase；如果重点是连接多个 SaaS 并自动执行任务，可以考虑 Activepieces；如果主要构建 Agent 和 AI 工作流，可从 Dify、Langflow 或 Coze Studio 开始；如果重点是私有文档问答和复杂知识检索，则更适合 MaxKB、AnythingLLM 或 RAGFlow。</p>
+<h2 id="zh-2">写在开头</h2>
+<p>越来越多企业开始尝试把 AI Agent 用到日常工作中。客户跟进、邮件整理、任务提醒、数据汇总，很多原本需要人工反复处理的工作，都已经有了交给 AI 完成的可能。</p>
+<p><img src="https://static-docs.nocobase.com/Reddit-uemixv.png" alt="Reddit-uemixv.png"></p>
+<p>Reddit 的 <a href="https://www.reddit.com/r/smallbusiness/comments/1vkc911/small_business_owner_using_chatgpt_where_should_i/">r/smallbusiness</a> 里，一位小企业主就提到，他平时已经在用 ChatGPT，希望进一步把客户跟进、邮件分类、Proposal 提醒和每周总结交给 AI。继续了解之后，他接触到 n8n、Zapier、API、MCP 和各种 Agent 构建工具。他没有开发背景，也不打算为了几个自动化流程专门学一套技术。更让他犹豫的是，如果花几个星期把这些应用搭建起来，后面是不是还要持续维护，最后反而比原来的工作方式更复杂。</p>
+<p>这也是很多企业在选 AI Agent 工具时容易遇到的问题。如果只是直接搜索“AI Agent”，会有很多不同类型的产品：有 LangChain、CrewAI、Haystack 等面向开发者的框架，也有 Agent 构建平台、自动化工具、RAG 平台，以及能够同时管理业务数据、页面、权限和流程的企业应用平台。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>基于企业实际应用的需求，本文整理了 10 个<strong>支持自托管，且已经提供可视化应用、工作流、知识库或业务系统能力的开源 AI Agent 项目</strong>。接下来，我们会依次介绍每个项目的基础信息、值得关注的 AI Agent 能力、业务应用场景，以及更适合什么类型的团队。</p>
+<blockquote>
+<p>为了让项目范围更明确，本文选择的项目需要满足几个基本条件：<strong>核心代码公开并保持持续维护、支持自托管、已经提供 Agent、工具调用或 AI 工作流能力，同时具备可视化应用、自动化、知识库或企业业务系统中的至少一类能力。</strong> 文中的项目信息和选型判断主要依据各项目的官网、GitHub 和官方文档整理，不代表统一环境下的性能测试或完整排名。</p>
+</blockquote>
+<p>💡 如果你更关注类似 LangChain、CrewAI 的开发框架，想进一步比较不同 Agent 框架和开发平台，可以参考我们之前的文章：<a href="https://www.nocobase.com/cn/blog/8-open-source-ai-agent-platforms-for-internal-tools">企业内部工具必备：8 大开源 AI Agent 平台对比</a>。</p>
+<p>在开始逐个介绍之前，可以先快速浏览下面这张表，看看不同项目的定位、适用场景和技术门槛。</p>
+<h2 id="zh-3">一、企业应用与业务自动化 Agent</h2>
+<h3>1. NocoBase</h3>
+<p><strong>官网</strong>：<a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><strong>GitHub Stars</strong>：23.9K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>AI 员工</strong>：<a href="https://docs.nocobase.com/ai-employees/quick-start">https://docs.nocobase.com/ai-employees/quick-start</a></p>
+<p><strong>AI 搭建</strong>：<a href="https://docs.nocobase.com/ai-builder">https://docs.nocobase.com/ai-builder</a></p>
+<p>NocoBase 是一个开源、自托管的 AI 无代码企业应用平台，主要用于搭建 CRM、工单、IT 管理、审批和其他内部业务系统。它提供数据模型、页面、权限和工作流等企业应用基础能力，同时可以让 AI 参与应用的搭建和后续调整。系统中还可以配置 AI 员工，让 AI 结合当前业务数据、工具和流程完成分析、信息处理和任务执行。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-d3zdlw.png" alt="NocoBase1-d3zdlw.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>AI + 无代码构建：</strong> 可以直接用自然语言描述业务需求，由 AI 创建数据表及关联关系、页面、工作流和角色权限。NocoBase 同时提供无代码门户和 AI 门户两种构建方式，前者方便业务人员继续通过可视化方式调整，后者更适合复杂交互和高度定制的页面。</li>
+</ul>
+<p>👉 <a href="https://docs.nocobase.com/cn/ai-builder/ai-portal/">AI Portal 搭建快速开始 - NocoBase 文档</a></p>
+<p>AI 门户：</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-fbd2y1.png" alt="NocoBase2-fbd2y1.png"></p>
+<p>无代码门户：</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-hyg550.png" alt="NocoBase3-hyg550.png"></p>
+<ul>
+<li><strong>AI 员工与业务执行：</strong> AI 可以作为具体角色参与日常工作，处理数据分析、邮件整理、信息提取等任务，并调用系统工具和工作流查询数据、填写表单或触发业务流程。</li>
+</ul>
+<p>👉 让 AI 员工调用工具，立即查看： <a href="https://docs.nocobase.com/cn/ai-employees/features/tools">AI 员工使用工具 - NocoBase 文档</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-xxuvt5.png" alt="NocoBase4-xxuvt5.png"></p>
+<ul>
+<li><strong>企业知识库：</strong> AI 员工可以自动或按需检索企业知识库，并根据当前用户角色过滤可访问的内容，让客服、销售或内部助手基于企业自己的知识工作。</li>
+</ul>
+<p>👉 进一步了解： <a href="https://docs.nocobase.com/cn/ai-employees/knowledge-base/knowledge-base">NocoBase AI 知识库文档</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-xtr048.png" alt="NocoBase5-xtr048.png"></p>
+<ul>
+<li><strong>企业权限与执行控制：</strong> AI 员工沿用当前用户的数据权限，涉及数据修改等重要操作还可以要求执行前确认，避免 Agent 获得超出用户本身权限的访问范围。</li>
+</ul>
+<p>👉权限和执行控制的具体设置，查看：<a href="https://docs.nocobase.com/cn/ai-employees/permission"> AI 员工角色与权限 - NocoBase 文档</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase6-2n7cas.png" alt="NocoBase6-2n7cas.png"></p>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>CRM：</strong> 根据客户邮件或会议记录整理沟通信息、生成跟进建议，并结合客户、联系人和商机数据辅助销售。</li>
+</ul>
+<p>💡 阅读更多：<a href="https://www.nocobase.com/cn/blog/build-production-ready-crm-with-ai-and-nocobase">如何用 AI 和 NocoBase 搭建一套可投入生产的 CRM  </a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase7-rhk2ez.png" alt="NocoBase7-rhk2ez.png"></p>
+<ul>
+<li><strong>客服与工单：</strong> 分析用户提交的问题、判断分类和优先级，结合知识库生成回复建议，并参与工单处理流程。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase8-12xpon.png" alt="NocoBase8-12xpon.png"></p>
+<ul>
+<li><strong>IT 管理：</strong> 根据员工的自然语言描述识别 IT 请求类型、优先级和处理建议，并结合资产、维修、审批等数据进行处理。</li>
+</ul>
+<p>💡 阅读更多： <a href="https://www.nocobase.com/cn/blog/build-it-operations-system-with-ai-nocobase">如何用 AI 和 NocoBase 在 2 小时内搭建一套企业 IT 运维系统 </a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase9-1b5gyk.png" alt="NocoBase9-1b5gyk.png"></p>
+<ul>
+<li><strong>企业内部应用：</strong> 在采购、审批、项目管理、运营等系统中配置面向不同岗位的 AI 员工，调用业务数据和工作流完成日常任务。</li>
+</ul>
+<h4>选型建议</h4>
+<p>如果团队已经有比较明确的业务需求，比如 CRM、客服工单、IT 管理或审批，希望借助 AI 加快搭建，但又不想让 AI 从零开始写一套业务系统，NocoBase 就非常合适。数据模型、权限、工作流这些业务系统需要的基础能力已经由平台提供，业务团队可以先用无代码和 AI 完成大部分搭建，后续再通过 API、插件继续扩展。它更适合准备长期使用和持续迭代内部系统的团队。</p>
+<h3>2. Activepieces</h3>
+<p><strong>官网</strong>：<a href="https://www.activepieces.com/">https://www.activepieces.com/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/activepieces/activepieces">https://github.com/activepieces/activepieces</a></p>
+<p><strong>GitHub Stars</strong>：24.0K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>MCP</strong>：<a href="https://www.activepieces.com/docs/mcp/overview">https://www.activepieces.com/docs/mcp/overview</a></p>
+<h4>产品概览</h4>
+<p>Activepieces 是一个开源、自托管的 AI 自动化平台，主要用于连接企业正在使用的应用、数据和业务流程。它把 AI Agent、自动化流程和数据放在同一个环境中，适合处理销售、客服、运营等需要跨多个工具完成的工作。</p>
+<p>💡 阅读更多：<a href="https://www.nocobase.com/cn/blog/workbuddy-open-source-tools">6 个适合搭配 WorkBuddy 使用的开源工具</a></p>
+<p><img src="https://static-docs.nocobase.com/Activepieces1-p5mhpr.png" alt="Activepieces1-p5mhpr.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>可视化创建 AI Agent：</strong> 可以为 Agent 设置任务、模型和可调用工具，并直接放入自动化流程中运行。已有流程也可以作为 Agent 的工具继续调用。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Activepieces2-usoav3.png" alt="Activepieces2-usoav3.png"></p>
+<ul>
+<li><strong>自然语言搭建自动化：</strong> 用户可以直接描述希望完成的工作，由 AI 帮助生成 Agent 或自动化流程，也可以继续通过可视化编辑器加入条件判断、循环和代码执行。</li>
+<li><strong>连接业务工具：</strong> 平台可以连接 700 多个应用，覆盖 CRM、邮件、协作工具、表格等常用系统。通过 MCP，还可以把平台中的工具和流程提供给其他支持 MCP 的 AI 客户端使用。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Activepieces3-beqsn8.png" alt="Activepieces3-beqsn8.png"></p>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>销售线索处理：</strong> 从邮件或表单获取新线索，由 AI 判断客户类型和优先级，更新 CRM，并生成跟进内容。</li>
+<li><strong>客服流程：</strong> 自动读取客户问题，完成分类、摘要和工单分配，并同步客服系统与 CRM 中的信息。</li>
+<li><strong>日常运营自动化：</strong> 整理邮件、提取信息、同步表格或数据库，并根据多个系统的数据自动生成日报、周报和业务通知。</li>
+</ul>
+<h4>选型建议</h4>
+<p>Activepieces 更适合已经在使用多个 SaaS 工具、但开发资源有限的中小团队或业务部门。销售、市场、客服和运营如果经常需要在几个系统之间搬数据、发消息、做跟进，可以先从可视化流程开始；后续业务变复杂，再补 API 或自定义集成即可。</p>
+<h3>3. Kestra</h3>
+<p><strong>官网</strong>：<a href="https://kestra.io/">https://kestra.io/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/kestra-io/kestra">https://github.com/kestra-io/kestra</a></p>
+<p><strong>GitHub Stars</strong>：28.0K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>AI Copilot</strong>：<a href="https://kestra.io/docs/ai-tools/ai-copilot">https://kestra.io/docs/ai-tools/ai-copilot</a></p>
+<h4>产品概览</h4>
+<p>Kestra 是一个开源、自托管的工作流编排平台，主要用于管理数据、AI 和基础设施相关的自动化流程。AI Agent 可以直接作为工作流中的任务运行，根据目标调用工具、执行其他任务或触发已有流程。</p>
+<p><img src="https://static-docs.nocobase.com/Kestra1-qepx6c.png" alt="Kestra1-qepx6c.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>AI Agent 与工作流协同：</strong> 可以通过 AI Copilot 用自然语言生成或修改工作流，也可以把 Agent 直接放进现有流程中，让它调用模型、记忆、工具以及 Kestra 中已有的任务和流程，并根据执行结果决定后续步骤。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Kestra2-un0lak.png" alt="Kestra2-un0lak.png"></p>
+<ul>
+<li><strong>可视化与代码结合：</strong> 可以通过可视化界面创建和调整流程，复杂需求则可以继续使用 YAML、Python、Docker 和自定义脚本扩展。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Kestra3-favk4g.png" alt="Kestra3-favk4g.png"></p>
+<ul>
+<li><strong>运行过程可追踪：</strong> Agent 和普通任务使用同一套运行体系，可以统一查看执行状态、日志和失败记录，方便后续排查和维护。</li>
+</ul>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>数据处理自动化：</strong> 根据数据状态选择后续步骤，并调用已有流程完成清洗、分析和汇总。</li>
+<li><strong>IT 与运维流程：</strong> 根据告警或系统事件进行分析，再执行检查、通知或其他后续任务。</li>
+<li><strong>复杂业务与 AI 流程：</strong> 将模型、工具、审批、数据处理和跨系统任务组合起来，处理需要多个步骤和动态判断的流程。</li>
+</ul>
+<h4>选型建议</h4>
+<p>Kestra 更适合已经有一定自动化基础，也有开发、数据或运维人员参与的团队。现有流程开始变长，需要处理任务依赖、失败重试、运行状态和多步骤 AI 判断时，它的编排能力会更有价值。如果只是想快速搭几个简单的业务自动化，小团队未必需要这么完整的一套工作流体系。</p>
+<h3>4. Windmill</h3>
+<p><strong>官网</strong>：<a href="https://www.windmill.dev/">https://www.windmill.dev/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/windmill-labs/windmill">https://github.com/windmill-labs/windmill</a></p>
+<p><strong>GitHub Stars</strong>：17.7K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>AI Agent 应用</strong>：<a href="https://www.windmill.dev/use-cases/ai-agents">https://www.windmill.dev/use-cases/ai-agents</a></p>
+<h4>产品概览</h4>
+<p>Windmill 是一个开源、自托管的开发与自动化平台，可以把脚本、API、工作流和内部应用放在同一个环境中运行。它同时支持可视化编排和 Python、TypeScript、Go、SQL 等代码，更偏向有一定技术基础的团队。</p>
+<p><img src="https://static-docs.nocobase.com/Windmill1-u4c2db.png" alt="Windmill1-u4c2db.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>把 Agent 加入工作流：</strong> AI Agent 可以直接作为流程中的一个步骤运行，并与条件判断、审批、错误处理等节点组合，用来处理需要 AI 判断的任务。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Windmill2-86jcks.png" alt="Windmill2-86jcks.png"></p>
+<ul>
+<li><strong>调用现有技术资源：</strong> Agent 可以使用 Windmill 中已有的脚本、数据库、API 和其他工作流，也可以连接 MCP 工具，把企业已经积累的代码和内部服务直接接进 Agent。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Windmill3-jejm47.png" alt="Windmill3-jejm47.png"></p>
+<ul>
+<li><strong>权限、审批和运行记录：</strong> 可以限制 Agent 能访问和执行的资源，在重要操作前加入人工确认，并查看每次运行中的工具调用、输入输出、日志和执行状态。</li>
+</ul>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>IT 与运维自动化：</strong> 根据告警或系统状态分析问题，再调用脚本完成检查、处理和通知。</li>
+<li><strong>数据处理与分析：</strong> 查询数据库或运行现有数据脚本，由 Agent 分析结果并触发后续流程。</li>
+<li><strong>内部 AI 工具：</strong> 将 Agent、后端脚本和内部应用界面组合起来，搭建数据助手、运营工具或其他内部应用。</li>
+</ul>
+<h4>选型建议</h4>
+<p>Windmill 更适合已经有开发、数据或运维人员的团队。公司内部如果本来就有不少脚本、数据库、API 和内部服务，希望直接利用这些现有资源来做 Agent 和自动化，它会比较顺手。对于没有技术人员、主要想靠可视化快速搭几个简单流程的团队，它的开发平台属性可能会显得偏重。</p>
+<h2 id="zh-4">二、可视化 AI Agent 构建平台</h2>
+<h3>5. Coze Studio</h3>
+<p><strong>官网</strong>：<a href="https://www.coze.cn/home">https://www.coze.cn/home</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/coze-dev/coze-studio">https://github.com/coze-dev/coze-studio</a></p>
+<p><strong>GitHub Stars</strong>：21.5K<strong>AI Agent 相关文档：</strong><a href="https://github.com/coze-dev/coze-studio/wiki/1.-What-is-Coze-Studio">https://github.com/coze-dev/coze-studio/wiki/1.-What-is-Coze-Studio</a></p>
+<h4>产品概览</h4>
+<p>Coze Studio 是字节跳动开源的一站式 AI Agent 开发平台，重点是通过可视化方式完成 Agent 的创建、调试和部署。用户可以直接组合模型、知识和工具，比较适合快速搭建客服、知识问答、内容助手等 AI 应用。</p>
+<p><img src="https://static-docs.nocobase.com/Coze1-x3ltv6.png" alt="Coze1-x3ltv6.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>可视化搭建 Agent 和工作流：</strong> 可以在界面中配置模型、提示词和工具，也可以通过画布编排多步骤流程，加入条件判断、数据处理等逻辑。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Coze2-tarjfy.png" alt="Coze2-tarjfy.png"></p>
+<ul>
+<li><strong>RAG 与知识库：</strong> 可以接入企业文档和知识数据，让 Agent 基于指定内容回答问题和处理任务。</li>
+<li><strong>插件与外部工具：</strong> Agent 可以通过插件调用外部服务，把查询、搜索和数据处理等能力接进执行过程。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Coze3-abbyw4.png" alt="Coze3-abbyw4.png"></p>
+<ul>
+<li><strong>开发、调试与部署：</strong> Agent 可以在同一个平台中完成创建、测试和部署，减少在多个工具之间来回切换。</li>
+</ul>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>智能客服：</strong> 结合知识库回答产品、服务和售后问题，并通过插件查询其他业务信息。</li>
+<li><strong>企业知识助手：</strong> 基于内部文档和知识库，为员工提供问答、资料查询和信息整理。</li>
+<li><strong>内容与营销助手：</strong> 结合搜索、内容生成和工作流，完成资料收集、内容整理和初稿生成。</li>
+</ul>
+<h4>选型建议</h4>
+<p>如果团队刚开始尝试 AI Agent，主要想快速做出客服、知识问答或内容助手，又没有专门的 AI 开发人员，Coze Studio 会比较容易上手。产品、运营或业务人员可以先通过可视化方式把想法跑起来，后面再根据需要增加知识库、插件和更复杂的流程。</p>
+<h3>6. Langflow</h3>
+<p><strong>官网</strong>：<a href="https://www.langflow.org/">https://www.langflow.org/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/langflow-ai/langflow">https://github.com/langflow-ai/langflow</a></p>
+<p><strong>GitHub Stars</strong>：153.9K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>Agent</strong>：<a href="https://docs.langflow.org/agents">https://docs.langflow.org/agents</a></p>
+<h4>产品概览</h4>
+<p>Langflow 是一个开源的可视化 AI 应用构建平台，主要用于搭建 Agent 和 AI 工作流。它采用组件化的方式组合模型、工具、数据和其他 Agent，同时保留 Python 扩展能力，比较适合需要边试边调的 AI 应用开发场景。</p>
+<p><img src="https://static-docs.nocobase.com/Langflow1-dbxpex.png" alt="Langflow1-dbxpex.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>拖拽式构建与多 Agent 组合：</strong> 可以在可视化画布中配置 Agent，并把模型、提示词、工具和其他组件连接成完整流程。组件和流程也都可以作为 Agent 的工具使用，多个 Agent 还可以分工完成检索、分析、整理等任务。</li>
+<li><strong>MCP 支持：</strong> 可以连接外部 MCP 服务，也可以把 Langflow 中构建的流程提供给其他支持 MCP 的 AI 应用调用。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Langflow2-p8b1dx.png" alt="Langflow2-p8b1dx.png"></p>
+<ul>
+<li><strong>模型与 Python 扩展：</strong> 可以自由组合不同模型和数据源，遇到现成组件覆盖不到的需求时，再通过自定义 Python 组件接入企业自己的 API 和处理逻辑。</li>
+</ul>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>知识与文档应用：</strong> 把内部文档、检索、模型和 Agent 组合起来，用于知识问答、资料分析和信息提取。</li>
+<li><strong>多 Agent 流程：</strong> 让不同 Agent 分别处理检索、分析、整理等任务，再串成完整流程。</li>
+<li><strong>AI 应用原型：</strong> 快速验证客服、研究助手、内容生成等想法，再通过 API 接入现有产品。</li>
+</ul>
+<h4>选型建议</h4>
+<p>Langflow 更适合有一定技术人员参与、需要频繁尝试不同模型和 Agent 结构的团队。产品或数据人员可以先通过画布把流程搭出来，开发人员再用 Python、自定义组件和 API 补更复杂的部分。它比较适合做原型和持续实验，对完全没有技术人员、只想快速上线固定业务流程的团队来说，上手后期会更依赖开发能力。</p>
+<h3>7. Dify</h3>
+<p><strong>官网</strong>：<a href="https://dify.ai/">https://dify.ai/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/langgenius/dify">https://github.com/langgenius/dify</a></p>
+<p><strong>GitHub Stars</strong>：154.0K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>官方文档</strong>：<a href="https://docs.dify.ai/">https://docs.dify.ai/</a></p>
+<p>Dify 是一个开源的 AI 应用开发平台，可以用来搭建 Agent、知识助手和更复杂的 AI 工作流。它覆盖了从应用创建、调试到发布和后续运行管理的完整过程，适合希望在同一个平台里持续开发多种 AI 应用的团队。</p>
+<p><img src="https://static-docs.nocobase.com/Dify1-835tx4.png" alt="Dify1-835tx4.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>Agent 与工作流构建：</strong> 可以通过可视化界面配置 Agent 的模型、指令、工具和知识库，也可以用画布编排条件判断、知识检索、工具调用和人工输入等多步骤流程。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Dify2-9eaiyv.png" alt="Dify2-9eaiyv.png"></p>
+<ul>
+<li><strong>RAG 与知识处理：</strong> 支持从 PDF、PPT 等文档构建知识库，并提供内容清洗、切分、索引和检索测试等处理能力。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Dify3-xs0trk.png" alt="Dify3-xs0trk.png"></p>
+<ul>
+<li><strong>模型与插件扩展：</strong> 可以接入多个模型提供商，并通过插件增加新的工具、数据源、触发器和 Agent 能力。</li>
+<li><strong>发布与运行管理：</strong> 搭建完成的应用可以发布为网页应用或 API，同时查看日志、反馈、延迟和调用情况。</li>
+</ul>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>智能客服与知识助手：</strong> 结合企业知识库和外部工具，处理客户咨询或员工内部知识查询。</li>
+<li><strong>业务信息处理：</strong> 将信息提取、分类、分析、生成和工具调用串成完整工作流。</li>
+<li><strong>AI 应用快速上线：</strong> 将搭建好的 Agent 或工作流发布为应用或 API，再接入已有产品和业务系统。</li>
+</ul>
+<h4>选型建议</h4>
+<p>如果团队已经不只是想试一个 Agent，已经准备持续做客服、知识助手、内容处理等多个 AI 应用，Dify 会比较合适。业务和产品人员可以先通过可视化方式完成大部分配置，有开发人员时再继续做插件、API 和更深的系统集成。对于希望把多个 AI 项目放在同一个平台里管理的中小企业或产品团队，它会比单独维护几套工具更省事。</p>
+<h2 id="zh-5">三、企业知识与 RAG Agent</h2>
+<h3>8. MaxKB</h3>
+<p><strong>官网</strong>：<a href="https://maxkb.cn/">https://maxkb.cn/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/1Panel-dev/MaxKB">https://github.com/1Panel-dev/MaxKB</a></p>
+<p><strong>GitHub Stars</strong>：22.6K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>官方文档</strong>：<a href="https://maxkb.cn/docs/v2/index.html">https://maxkb.cn/docs/v2/index.html</a></p>
+<h4>产品概览</h4>
+<p>MaxKB 是一个开源、自托管的企业级智能体平台，比较适合从企业知识库和知识问答开始搭建 AI 应用。除了基础 RAG，它也提供可视化工作流和工具调用能力，可以继续扩展到客服、办公助手等场景。</p>
+<p><img src="https://static-docs.nocobase.com/MaxKB1-fgub0k.png" alt="MaxKB1-fgub0k.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>企业知识库与 RAG：</strong> 支持上传文档、抓取在线内容，并完成分段、向量化和知识检索，用来处理企业内部资料和专业知识问答。</li>
+<li><strong>可视化工作流与工具调用：</strong> 可以通过画布组合 AI 对话、知识检索、条件判断、表单和文档提取等节点，也可以接入 MCP 服务，让模型调用外部工具。</li>
+<li><strong>多模型与本地部署：</strong> 可以接入 OpenAI、Claude、Gemini、DeepSeek、通义千问等公共模型，也支持 Ollama、vLLM 等本地模型。</li>
+<li><strong>接入现有系统：</strong> 搭建完成的智能体可以通过公开链接、嵌入代码或 API 放进网站和内部应用中。</li>
+</ul>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>智能客服：</strong> 将产品知识库、常见问题和业务资料接入智能体，用来处理客户咨询。</li>
+<li><strong>专业知识应用：</strong> 面向金融、教育、研究等场景，基于行业资料完成查询、整理和分析。</li>
+</ul>
+<h4>选型建议</h4>
+<p>比较适合<strong>已经积累了大量企业文档和知识资料，希望较快搭建知识型 AI Agent 的团队</strong>。它的可视化工作流和知识库能力上手门槛相对低，同时支持本地部署和本地模型，适合对内部知识使用、数据控制和第三方系统集成有要求的企业。</p>
+<h3>9. AnythingLLM</h3>
+<p><strong>官网</strong>：<a href="https://anythingllm.com/">https://anythingllm.com/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/Mintplex-Labs/anything-llm">https://github.com/Mintplex-Labs/anything-llm</a></p>
+<p><strong>GitHub Stars</strong>：65.4K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>Agent Flow</strong>：<a href="https://docs.anythingllm.com/agent-flows/overview">https://docs.anythingllm.com/agent-flows/overview</a></p>
+<h4>产品概览</h4>
+<p>AnythingLLM 是一个开源、本地优先的 AI 应用，主要用来搭建基于私有文档和内部知识的 AI 助手。它提供桌面端和自托管版本，图形界面比较完整，不需要先搭复杂的开发环境就可以开始使用。</p>
+<p><img src="https://static-docs.nocobase.com/AnythingLLM1-5fia5p.png" alt="AnythingLLM1-5fia5p.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>私有文档与 RAG：</strong> 可以把 PDF、Word、文本等资料放入不同工作空间，让 AI 基于指定内容回答问题，并保留引用来源。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/AnythingLLM2-4h817b.png" alt="AnythingLLM2-4h817b.png"></p>
+<ul>
+<li><strong>Agent Flow</strong>：可以通过可视化方式组合网页抓取、API 调用、模型指令和文件读写等步骤，搭建固定、可重复的处理流程。</li>
+<li><strong>多用户与权限：</strong> 自托管版本支持多用户和权限管理，可以为不同团队成员划分独立的工作空间和知识访问范围。</li>
+</ul>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>内部知识与文档助手：</strong> 基于企业制度、产品资料、培训文档、合同和报告进行问答、总结和信息提取。</li>
+<li><strong>研究与资料整理：</strong> 结合内部文档、网页信息和工具调用，完成资料收集、整理和分析。</li>
+</ul>
+<h4>选型建议</h4>
+<p>AnythingLLM 更适合个人、小团队，或者想先在部门内部做私有 AI 助手试点的企业。团队没有专门的 AI 开发人员，也可以比较快地从文档问答和资料整理开始；如果主要目标是把内部知识安全地交给 AI 使用，而不是搭复杂的业务流程，它会更轻量。</p>
+<h3>10. RAGFlow</h3>
+<p><strong>官网</strong>：<a href="https://ragflow.io/">https://ragflow.io/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/infiniflow/ragflow">https://github.com/infiniflow/ragflow</a></p>
+<p><strong>GitHub Stars</strong>：89.7K</p>
+<p><strong>相关文档</strong></p>
+<p><strong>Agent 指南</strong>：<a href="https://github.com/infiniflow/ragflow/tree/main/docs/guides/agent">https://github.com/infiniflow/ragflow/tree/main/docs/guides/agent</a></p>
+<h4>产品概览</h4>
+<p>RAGFlow 是一个开源的 RAG 与 AI Agent 平台，重点放在复杂文档处理和企业知识检索上。相比普通的知识问答工具，它更适合文档类型复杂、知识量大，而且对检索准确性和引用依据要求较高的场景。</p>
+<p>💡 阅读更多：<a href="https://www.nocobase.com/cn/blog/openclaw-open-source-enterprise-tools">OpenClaw 如何用于真实业务？推荐 5 个开源工具</a></p>
+<p><img src="https://static-docs.nocobase.com/AnythingLLM2-lvcqjv.png" alt="AnythingLLM2-lvcqjv.png"></p>
+<h4>核心 AI 能力</h4>
+<ul>
+<li><strong>复杂文档理解：</strong> 可以处理 PDF、Word、PPT、表格、图片和长文档，并从这些非结构化内容中提取可用于检索和分析的信息。</li>
+<li><strong>高精度 RAG：</strong> 结合向量检索、关键词检索、重排序和元数据过滤，提高知识检索的准确性和可追溯性。</li>
+<li><strong>Agent 工作流：</strong> 可以通过可视化画布组合检索、模型、条件判断、循环和分类等步骤，也支持多 Agent、规划和反思等更复杂的流程。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/RAGFlow2-3r2pqb.png" alt="RAGFlow2-3r2pqb.png"></p>
+<ul>
+<li><strong>工具与数据源接入：</strong> Agent 可以调用外部工具，也支持 MCP；同时可以从 Confluence、S3、Notion、Google Drive 等来源同步企业知识。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/RAGFlow3-tlomcm.png" alt="RAGFlow3-tlomcm.png"></p>
+<h4>业务应用场景</h4>
+<ul>
+<li><strong>复杂企业知识库：</strong> 面向大量制度、技术手册、报告和专业资料建立统一的知识检索系统。</li>
+<li><strong>法律与合规分析：</strong> 从法规、合同、案例和内部资料中检索依据，并生成带来源的分析结果。</li>
+<li><strong>研究与决策支持：</strong> 汇总内部数据和外部资料，由 Agent 完成检索、分析和报告生成。</li>
+</ul>
+<h4>选型建议</h4>
+<p>适合知识量大、文档复杂，而且有一定技术资源的团队。法律、制造、技术支持、研究等场景里，如果资料里有大量长文档、表格、图片或专业内容，同时又很在意检索准确性和引用依据，RAGFlow 会更有优势。</p>
+<h2 id="zh-6">结语</h2>
+<p><strong>很多 AI Agent 产品的功能已经开始互相重叠。可视化工作流、知识库、MCP、工具调用，越来越多平台都能提供。实际使用时，团队更需要考虑这些能力能不能顺利接进现有工作，以及后续会带来多少新的操作和维护成本。</strong></p>
+<p>希望这篇文章能帮你先缩小选择范围，也欢迎分享给正在寻找 AI Agent 工具的朋友或团队！</p>
+<p>如果你也想用 AI 和 NocoBase 搭建类似的企业应用，可以参考这些完整案例：</p>
+<p>👉 <a href="https://www.nocobase.com/cn/blog/build-production-ready-crm-with-ai-and-nocobase">AI + NocoBase 搭建 CRM</a></p>
+<p>👉 <a href="https://www.nocobase.com/cn/blog/build-it-operations-system-with-ai-nocobase">AI + NocoBase 搭建企业 IT 运维系统</a></p>
+<p><strong>相关阅读</strong>：</p>
+<ul>
+<li><strong><a href="../blog/build-production-ready-ticketing-system-with-ai.html">如何用 AI 构建可投入生产的工单系统？</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/build-it-operations-system-with-ai-nocobase">如何用 AI 和 NocoBase 在 2 小时内搭建一套企业 IT 运维系统</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/nocobase-vs-baserow">NocoBase vs Baserow：灵活数据库与企业级系统</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/build-production-ready-crm-with-ai-and-nocobase">如何用 AI 和 NocoBase 搭建一套可投入生产的 CRM</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/enterprise-it-asset-management-system-guide">企业 IT 资产管理系统搭建指南：从需求梳理到落地</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/best-smartsheet-alternatives">7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/open-source-ai-no-code-tools-complex-relational-models">5 个适合复杂关系模型的开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/what-is-ai-no-code">什么是 AI 无代码？AI 时代无代码平台的实用指南</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/open-source-ai-no-code-tools-github-9">GitHub 上值得关注的 9 个开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/github-open-source-ai-agent-tools-16">GitHub 上值得关注的 14 个开源 AI Agent 工具</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/top-open-source-ai-assistant-tools-github-stars">GitHub 上 Stars 最多的 8 个开源 AI Assistant 工具</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/cn/blog/workbuddy-open-source-tools">6 个适合搭配 WorkBuddy 使用的开源工具</a></strong></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">TL;DR</h2>
+<p>These 10 platforms can be roughly grouped into three categories:</p>
+<ul>
+<li>NocoBase, Activepieces, Kestra, and Windmill are better suited to connecting AI with enterprise data, automation, and business processes.</li>
+<li>Coze Studio, Langflow, and Dify are better suited to visually building Agents and AI applications.</li>
+<li>MaxKB, AnythingLLM, and RAGFlow are better suited to enterprise knowledge bases and RAG.</li>
+</ul>
+<p>If a company needs to manage structured business data, permissions, and internal applications, NocoBase is worth considering first. If the main goal is to connect multiple SaaS tools and automate tasks, Activepieces is a strong option. If the focus is building Agents and AI workflows, Dify, Langflow, or Coze Studio are good starting points. If private document Q&#x26;A and complex knowledge retrieval matter most, MaxKB, AnythingLLM, or RAGFlow are more suitable.</p>
+<h2 id="en-2">Introduction</h2>
+<p>More companies are starting to bring AI Agents into everyday work. Customer follow-up, email organization, task reminders, and data summaries are all examples of repetitive work that can increasingly be handed over to AI.</p>
+<p><img src="https://static-docs.nocobase.com/Reddit-uemixv.png" alt="Reddit-uemixv.png"></p>
+<p>On Reddit’s <a href="https://www.reddit.com/r/smallbusiness/comments/1vkc911/small_business_owner_using_chatgpt_where_should_i/">r/smallbusiness</a>, one small-business owner explained that they already use ChatGPT and want to go further by letting AI handle customer follow-up, email classification, proposal reminders, and weekly summaries. As they researched further, they came across n8n, Zapier, APIs, MCP, and various Agent-building tools. They do not have a development background and do not want to learn an entire technical stack just for a few automation workflows. What made the decision even harder was the maintenance question: if it takes several weeks to build these applications, will they then need constant upkeep and eventually become more complicated than the original way of working?</p>
+<p>This is a common problem when businesses choose AI Agent tools. A simple search for “AI Agent” brings up very different types of products: developer frameworks such as LangChain, CrewAI, and Haystack; Agent-building platforms; automation tools; RAG platforms; and enterprise application platforms that can manage business data, pages, permissions, and workflows in the same system.</p>
+<hr>
+<p>💬 Hey, you’re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
+<hr>
+<p>Based on practical business use cases, this article collects 10 <strong>open-source AI Agent projects that support self-hosting and already provide visual applications, workflows, knowledge bases, or business-system capabilities</strong>. For each project, we look at the basics, notable AI Agent capabilities, business use cases, and the types of teams it is best suited for.</p>
+<blockquote>
+<p>To keep the scope clear, the projects included here need to meet several basic criteria: <strong>the core code is public and actively maintained, self-hosting is supported, Agent, tool-calling, or AI workflow capabilities are already available, and the project provides at least one of the following: visual applications, automation, knowledge bases, or enterprise business systems.</strong> Project information and selection guidance are based mainly on official websites, GitHub repositories, and official documentation. This is not a benchmark under a unified test environment or a complete ranking.</p>
+</blockquote>
+<p>💡 If you are more interested in development frameworks such as LangChain and CrewAI and want to compare different Agent frameworks and development platforms, see our earlier article: <a href="https://www.nocobase.com/en/blog/8-open-source-ai-agent-platforms-for-internal-tools">8 Open-Source AI Agent Platforms for Internal Tools</a>.</p>
+<p>Before going through the projects one by one, you can first scan the list below to understand how their positioning, use cases, and technical requirements differ.</p>
+<h2 id="en-3">1. Enterprise Applications and Business Automation</h2>
+<h3>1. NocoBase</h3>
+<p><strong>Website</strong>: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><strong>GitHub Stars</strong>: 23.9K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>AI Employees</strong>: <a href="https://docs.nocobase.com/ai-employees/quick-start">https://docs.nocobase.com/ai-employees/quick-start</a></p>
+<p><strong>AI Builder</strong>: <a href="https://docs.nocobase.com/ai-builder">https://docs.nocobase.com/ai-builder</a></p>
+<p>NocoBase is an open-source, self-hosted AI no-code platform for enterprise applications. It is mainly used to build CRM systems, ticketing systems, IT management systems, approval workflows, and other internal business applications. It provides the foundational capabilities required by enterprise applications, including data models, pages, permissions, and workflows, while also allowing AI to participate in both application building and later adjustments. AI Employees can also be configured inside the system so AI can combine current business data, tools, and processes to perform analysis, information processing, and task execution.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-d3zdlw.png" alt="NocoBase1-d3zdlw.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>AI + no-code application building</strong>: Users can describe business requirements in natural language, and AI can create data tables and relationships, pages, workflows, and role permissions. NocoBase provides both a no-code portal and an AI portal. The no-code portal makes it easier for business users to continue adjusting the application visually, while the AI portal is better suited to complex interactions and highly customized pages.</li>
+</ul>
+<p>👉 <a href="https://docs.nocobase.com/ai-builder/ai-portal/">AI Portal Quick Start - NocoBase Documentation</a></p>
+<p>AI Portal:</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-fbd2y1.png" alt="NocoBase2-fbd2y1.png"></p>
+<p>No-code Portal:</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-hyg550.png" alt="NocoBase3-hyg550.png"></p>
+<ul>
+<li><strong>AI Employees and business execution</strong>: AI can participate in daily work as a specific role, handling tasks such as data analysis, email organization, and information extraction. It can also use system tools and workflows to query data, fill forms, or trigger business processes.</li>
+</ul>
+<p>👉 <a href="https://docs.nocobase.com/ai-employees/features/tools">AI Employees: Using Tools - NocoBase Documentation</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-xxuvt5.png" alt="NocoBase4-xxuvt5.png"></p>
+<ul>
+<li><strong>Enterprise knowledge base</strong>: AI Employees can retrieve enterprise knowledge automatically or on demand, with accessible content filtered according to the current user’s role. This allows customer service, sales, or internal assistants to work with the company’s own knowledge.</li>
+</ul>
+<p>👉 <a href="https://docs.nocobase.com/ai-employees/knowledge-base/knowledge-base">NocoBase AI Knowledge Base Documentation</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-xtr048.png" alt="NocoBase5-xtr048.png"></p>
+<ul>
+<li><strong>Enterprise permissions and execution control</strong>: AI Employees inherit the current user’s data permissions. Important operations such as modifying data can also require confirmation before execution, helping prevent an Agent from gaining access beyond the user’s own permission scope.</li>
+</ul>
+<p>👉 <a href="https://docs.nocobase.com/ai-employees/permission">AI Employee Roles and Permissions - NocoBase Documentation</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase6-2n7cas.png" alt="NocoBase6-2n7cas.png"></p>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>CRM</strong>: Organize communication details from customer emails or meeting notes, generate follow-up suggestions, and assist sales using customer, contact, and opportunity data.</li>
+</ul>
+<p>💡 Read more: <a href="https://www.nocobase.com/en/blog/build-production-ready-crm-with-ai-and-nocobase">How to Build a Production-Ready CRM with AI and NocoBase</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase7-rhk2ez.png" alt="NocoBase7-rhk2ez.png"></p>
+<ul>
+<li><strong>Customer support and ticketing</strong>: Analyze submitted customer issues, determine category and priority, generate response suggestions using the knowledge base, and participate in ticket-handling workflows.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase8-12xpon.png" alt="NocoBase8-12xpon.png"></p>
+<ul>
+<li><strong>IT management</strong>: Identify IT request types, priorities, and handling suggestions from employees’ natural-language descriptions, then work with asset, maintenance, approval, and related business data.</li>
+</ul>
+<p>💡 Read more: <a href="https://www.nocobase.com/en/blog/build-it-operations-system-with-ai-nocobase">How to Build an Enterprise IT Operations System with AI and NocoBase in 2 Hours</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase9-1b5gyk.png" alt="NocoBase9-1b5gyk.png"></p>
+<ul>
+<li><strong>Internal business applications</strong>: Configure AI Employees for different roles in procurement, approval, project management, operations, and other systems, allowing them to use business data and workflows to complete routine tasks.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>NocoBase is a good fit for teams with clearly defined business needs such as CRM, customer support ticketing, IT management, or approvals, especially when they want AI to accelerate application building without asking AI to create an entire business system from scratch. Core capabilities such as data models, permissions, and workflows are already provided by the platform. Business teams can complete most of the setup with no-code tools and AI, then extend the system further through APIs and plugins. It is especially suitable for teams building internal systems that are expected to be used and iterated over the long term.</p>
+<h3>2. Activepieces</h3>
+<p><strong>Website</strong>: <a href="https://www.activepieces.com/">https://www.activepieces.com/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/activepieces/activepieces">https://github.com/activepieces/activepieces</a></p>
+<p><strong>GitHub Stars</strong>: 24.0K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>MCP</strong>: <a href="https://www.activepieces.com/docs/mcp/overview">https://www.activepieces.com/docs/mcp/overview</a></p>
+<h4>Product Overview</h4>
+<p>Activepieces is an open-source, self-hosted AI automation platform mainly used to connect the applications, data, and business processes a company already relies on. It brings AI Agents, automation workflows, and data into the same environment and is well suited to sales, customer support, operations, and other work that spans multiple tools.</p>
+<p>💡 Read more: <a href="https://www.nocobase.com/en/blog/workbuddy-open-source-tools">6 Open-Source Tools to Use with WorkBuddy</a></p>
+<p><img src="https://static-docs.nocobase.com/Activepieces1-p5mhpr.png" alt="Activepieces1-p5mhpr.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>Visual AI Agent creation</strong>: Users can define an Agent’s task, model, and available tools, then place the Agent directly inside automation workflows. Existing workflows can also be reused as Agent tools.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Activepieces2-usoav3.png" alt="Activepieces2-usoav3.png"></p>
+<ul>
+<li><strong>Natural-language automation building</strong>: Users can describe what they want to accomplish and let AI generate an Agent or automation workflow. They can then continue editing visually by adding conditions, loops, and code execution.</li>
+<li><strong>Connect business tools</strong>: The platform can connect more than 700 applications, including CRM systems, email, collaboration tools, spreadsheets, and other commonly used services. Through MCP, tools and workflows built in the platform can also be exposed to other AI clients that support MCP.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Activepieces3-beqsn8.png" alt="Activepieces3-beqsn8.png"></p>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>Sales lead processing</strong>: Capture new leads from email or forms, let AI classify customer type and priority, update the CRM, and generate follow-up content.</li>
+<li><strong>Customer support workflows</strong>: Automatically read customer issues, classify and summarize them, assign tickets, and synchronize information between customer support systems and CRM.</li>
+<li><strong>Daily operations automation</strong>: Organize email, extract information, synchronize spreadsheets or databases, and automatically generate daily reports, weekly reports, and business notifications from data across multiple systems.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>Activepieces is better suited to small and midsize teams or business departments that already use several SaaS tools but have limited development resources. Sales, marketing, customer support, and operations teams that frequently move data, send messages, and follow up across multiple systems can start with visual workflows and later add APIs or custom integrations as requirements become more complex.</p>
+<h3>3. Kestra</h3>
+<p><strong>Website</strong>: <a href="https://kestra.io/">https://kestra.io/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/kestra-io/kestra">https://github.com/kestra-io/kestra</a></p>
+<p><strong>GitHub Stars</strong>: 28.0K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>AI Copilot</strong>: <a href="https://kestra.io/docs/ai-tools/ai-copilot">https://kestra.io/docs/ai-tools/ai-copilot</a></p>
+<h4>Product Overview</h4>
+<p>Kestra is an open-source, self-hosted workflow orchestration platform mainly used to manage automation across data, AI, and infrastructure. AI Agents can run directly as tasks inside workflows, calling tools, executing other tasks, or triggering existing flows based on their goals.</p>
+<p><img src="https://static-docs.nocobase.com/Kestra1-qepx6c.png" alt="Kestra1-qepx6c.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>AI Agents working with workflows</strong>: AI Copilot can generate or modify workflows from natural-language instructions. Agents can also be placed directly inside existing workflows, where they can use models, memory, tools, and existing Kestra tasks and flows, then decide the next step based on execution results.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Kestra2-un0lak.png" alt="Kestra2-un0lak.png"></p>
+<ul>
+<li><strong>Visual and code-based development</strong>: Workflows can be created and adjusted through the visual interface, while more complex requirements can be extended with YAML, Python, Docker, and custom scripts.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Kestra3-favk4g.png" alt="Kestra3-favk4g.png"></p>
+<ul>
+<li><strong>Traceable execution</strong>: Agents and regular tasks share the same runtime system, making it possible to inspect execution status, logs, and failure records in one place for easier troubleshooting and maintenance.</li>
+</ul>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>Data-processing automation</strong>: Choose next steps based on data state and call existing workflows to complete cleaning, analysis, and aggregation.</li>
+<li><strong>IT and operations workflows</strong>: Analyze alerts or system events, then execute checks, notifications, or other follow-up tasks.</li>
+<li><strong>Complex business and AI workflows</strong>: Combine models, tools, approvals, data processing, and cross-system tasks to handle workflows that require multiple steps and dynamic decisions.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>Kestra is better suited to teams that already have some automation foundation and have developers, data engineers, or operations specialists involved. Its orchestration capabilities become more valuable when workflows grow longer and need task dependencies, retries, execution-state tracking, and multi-step AI decisions. If a small team only wants to build a few simple business automations quickly, it may not need such a complete workflow system.</p>
+<h3>4. Windmill</h3>
+<p><strong>Website</strong>: <a href="https://www.windmill.dev/">https://www.windmill.dev/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/windmill-labs/windmill">https://github.com/windmill-labs/windmill</a></p>
+<p><strong>GitHub Stars</strong>: 17.7K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>AI Agent applications</strong>: <a href="https://www.windmill.dev/use-cases/ai-agents">https://www.windmill.dev/use-cases/ai-agents</a></p>
+<h4>Product Overview</h4>
+<p>Windmill is an open-source, self-hosted development and automation platform that can run scripts, APIs, workflows, and internal applications in one environment. It supports both visual orchestration and code in Python, TypeScript, Go, SQL, and other languages, making it more suitable for teams with some technical expertise.</p>
+<p><img src="https://static-docs.nocobase.com/Windmill1-u4c2db.png" alt="Windmill1-u4c2db.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>Add Agents to workflows</strong>: AI Agents can run directly as workflow steps and be combined with conditions, approvals, error handling, and other nodes to handle tasks that require AI judgment.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Windmill2-86jcks.png" alt="Windmill2-86jcks.png"></p>
+<ul>
+<li><strong>Use existing technical resources</strong>: Agents can use scripts, databases, APIs, and other workflows already available in Windmill. They can also connect to MCP tools, allowing teams to reuse existing code and internal services directly inside Agent workflows.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Windmill3-jejm47.png" alt="Windmill3-jejm47.png"></p>
+<ul>
+<li><strong>Permissions, approvals, and execution records</strong>: Teams can limit which resources an Agent can access and execute, require human confirmation before important actions, and inspect tool calls, inputs and outputs, logs, and execution status for each run.</li>
+</ul>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>IT and operations automation</strong>: Analyze problems based on alerts or system state, then call scripts to perform checks, remediation, and notifications.</li>
+<li><strong>Data processing and analysis</strong>: Query databases or run existing data scripts, let an Agent analyze the results, and trigger subsequent workflows.</li>
+<li><strong>Internal AI tools</strong>: Combine Agents, backend scripts, and internal app interfaces to build data assistants, operations tools, and other internal applications.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>Windmill is more suitable for teams that already have developers, data specialists, or operations engineers. If a company has accumulated many scripts, databases, APIs, and internal services and wants to reuse those existing resources for Agents and automation, Windmill can be a natural fit. For teams without technical staff that mainly want to build a few simple workflows visually, its development-platform orientation may feel heavier.</p>
+<h2 id="en-4">2. Visual AI Agent Building Platforms</h2>
+<h3>5. Coze Studio</h3>
+<p><strong>Website</strong>: <a href="https://www.coze.cn/home">https://www.coze.cn/home</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/coze-dev/coze-studio">https://github.com/coze-dev/coze-studio</a></p>
+<p><strong>GitHub Stars</strong>: 21.5K</p>
+<p><strong>AI Agent documentation</strong>: <a href="https://github.com/coze-dev/coze-studio/wiki/1.-What-is-Coze-Studio">https://github.com/coze-dev/coze-studio/wiki/1.-What-is-Coze-Studio</a></p>
+<h4>Product Overview</h4>
+<p>Coze Studio is an open-source, all-in-one AI Agent development platform from ByteDance. Its main focus is visually creating, debugging, and deploying Agents. Users can combine models, knowledge, and tools directly, making it suitable for quickly building customer-service assistants, knowledge Q&#x26;A, content assistants, and other AI applications.</p>
+<p><img src="https://static-docs.nocobase.com/Coze1-x3ltv6.png" alt="Coze1-x3ltv6.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>Visual Agent and workflow building</strong>: Configure models, prompts, and tools through the interface, or orchestrate multi-step workflows on a canvas with conditions, data processing, and other logic.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Coze2-tarjfy.png" alt="Coze2-tarjfy.png"></p>
+<ul>
+<li><strong>RAG and knowledge bases</strong>: Connect enterprise documents and knowledge data so Agents can answer questions and handle tasks based on specified content.</li>
+<li><strong>Plugins and external tools</strong>: Agents can call external services through plugins, bringing search, queries, data processing, and other capabilities into the execution process.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Coze3-abbyw4.png" alt="Coze3-abbyw4.png"></p>
+<ul>
+<li><strong>Development, debugging, and deployment</strong>: Agents can be created, tested, and deployed within the same platform, reducing the need to switch between multiple tools.</li>
+</ul>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>AI customer support</strong>: Use knowledge bases to answer product, service, and after-sales questions, while plugins query additional business information.</li>
+<li><strong>Enterprise knowledge assistants</strong>: Provide employee Q&#x26;A, document lookup, and information organization based on internal documents and knowledge bases.</li>
+<li><strong>Content and marketing assistants</strong>: Combine search, content generation, and workflows for research, content organization, and first-draft creation.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>Coze Studio is a good fit for teams that are just starting to experiment with AI Agents and want to quickly build customer-service assistants, knowledge Q&#x26;A, or content assistants without dedicated AI developers. Product, operations, or business teams can validate ideas visually first, then add knowledge bases, plugins, and more complex workflows as needed.</p>
+<h3>6. Langflow</h3>
+<p><strong>Website</strong>: <a href="https://www.langflow.org/">https://www.langflow.org/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/langflow-ai/langflow">https://github.com/langflow-ai/langflow</a></p>
+<p><strong>GitHub Stars</strong>: 153.9K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>Agents</strong>: <a href="https://docs.langflow.org/agents">https://docs.langflow.org/agents</a></p>
+<h4>Product Overview</h4>
+<p>Langflow is an open-source visual AI application development platform mainly used to build Agents and AI workflows. It combines models, tools, data, and other Agents through modular components while retaining Python extensibility, making it suitable for AI application scenarios that require frequent experimentation and iteration.</p>
+<p><img src="https://static-docs.nocobase.com/Langflow1-dbxpex.png" alt="Langflow1-dbxpex.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>Drag-and-drop building and multi-Agent composition</strong>: Configure Agents on a visual canvas and connect models, prompts, tools, and other components into complete workflows. Components and flows can also be used as Agent tools, and multiple Agents can divide work such as retrieval, analysis, and organization.</li>
+<li><strong>MCP support</strong>: Connect external MCP services or expose workflows built in Langflow to other AI applications that support MCP.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Langflow2-p8b1dx.png" alt="Langflow2-p8b1dx.png"></p>
+<ul>
+<li><strong>Models and Python extensions</strong>: Freely combine different models and data sources. When built-in components do not cover a requirement, custom Python components can connect enterprise APIs and processing logic.</li>
+</ul>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>Knowledge and document applications</strong>: Combine internal documents, retrieval, models, and Agents for knowledge Q&#x26;A, document analysis, and information extraction.</li>
+<li><strong>Multi-Agent workflows</strong>: Let different Agents handle retrieval, analysis, organization, and other tasks, then connect them into one complete process.</li>
+<li><strong>AI application prototypes</strong>: Quickly validate ideas such as customer support assistants, research assistants, and content-generation tools, then connect them to existing products through APIs.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>Langflow is better suited to teams with some technical involvement that need to experiment frequently with different models and Agent structures. Product or data teams can first build workflows visually, while developers add more complex functionality through Python, custom components, and APIs. It is well suited to prototyping and continuous experimentation. For teams with no technical staff that only want to launch fixed business workflows quickly, later-stage maintenance may depend more heavily on developers.</p>
+<h3>7. Dify</h3>
+<p><strong>Website</strong>: <a href="https://dify.ai/">https://dify.ai/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/langgenius/dify">https://github.com/langgenius/dify</a></p>
+<p><strong>GitHub Stars</strong>: 154.0K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>Official documentation</strong>: <a href="https://docs.dify.ai/">https://docs.dify.ai/</a></p>
+<p>Dify is an open-source AI application development platform for building Agents, knowledge assistants, and more complex AI workflows. It covers the full lifecycle from application creation and debugging to publishing and ongoing runtime management, making it suitable for teams that want to develop multiple AI applications continuously within one platform.</p>
+<p><img src="https://static-docs.nocobase.com/Dify1-835tx4.png" alt="Dify1-835tx4.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>Agent and workflow building</strong>: Configure Agent models, instructions, tools, and knowledge bases through the visual interface, or use the canvas to orchestrate multi-step workflows with conditions, knowledge retrieval, tool calls, and human input.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Dify2-9eaiyv.png" alt="Dify2-9eaiyv.png"></p>
+<ul>
+<li><strong>RAG and knowledge processing</strong>: Build knowledge bases from PDF, PPT, and other documents, with content cleaning, chunking, indexing, and retrieval testing.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Dify3-xs0trk.png" alt="Dify3-xs0trk.png"></p>
+<ul>
+<li><strong>Model and plugin extensions</strong>: Connect multiple model providers and add new tools, data sources, triggers, and Agent capabilities through plugins.</li>
+<li><strong>Publishing and runtime management</strong>: Publish completed applications as web apps or APIs, while monitoring logs, feedback, latency, and usage.</li>
+</ul>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>AI customer support and knowledge assistants</strong>: Combine enterprise knowledge bases and external tools to handle customer inquiries or internal employee knowledge searches.</li>
+<li><strong>Business information processing</strong>: Connect extraction, classification, analysis, generation, and tool calls into complete workflows.</li>
+<li><strong>Rapid AI application launch</strong>: Publish completed Agents or workflows as applications or APIs, then integrate them with existing products and business systems.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>Dify is a good fit when a team has moved beyond experimenting with a single Agent and plans to keep building customer support, knowledge assistants, content-processing tools, and other AI applications. Business and product teams can complete most configuration visually, while developers can add plugins, APIs, and deeper integrations when needed. For small and midsize businesses or product teams that want to manage multiple AI projects on one platform, it can be easier than maintaining several separate tools.</p>
+<h2 id="en-5">3. Enterprise Knowledge and RAG Agents</h2>
+<h3>8. MaxKB</h3>
+<p><strong>Website</strong>: <a href="https://maxkb.cn/">https://maxkb.cn/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/1Panel-dev/MaxKB">https://github.com/1Panel-dev/MaxKB</a></p>
+<p><strong>GitHub Stars</strong>: 22.6K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>Official documentation</strong>: <a href="https://maxkb.cn/docs/v2/index.html">https://maxkb.cn/docs/v2/index.html</a></p>
+<h4>Product Overview</h4>
+<p>MaxKB is an open-source, self-hosted enterprise Agent platform that is well suited to starting with enterprise knowledge bases and knowledge Q&#x26;A. In addition to basic RAG, it provides visual workflows and tool-calling capabilities that can be extended into customer support, office assistants, and similar scenarios.</p>
+<p><img src="https://static-docs.nocobase.com/MaxKB1-fgub0k.png" alt="MaxKB1-fgub0k.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>Enterprise knowledge bases and RAG</strong>: Upload documents or crawl online content, then perform chunking, vectorization, and knowledge retrieval for internal materials and professional Q&#x26;A.</li>
+<li><strong>Visual workflows and tool calling</strong>: Combine AI conversation, knowledge retrieval, conditions, forms, document extraction, and other nodes on a canvas. MCP services can also be connected so models can call external tools.</li>
+<li><strong>Multiple models and local deployment</strong>: Connect public models such as OpenAI, Claude, Gemini, DeepSeek, and Qwen, as well as local models through Ollama, vLLM, and similar tools.</li>
+<li><strong>Integration with existing systems</strong>: Completed Agents can be embedded into websites and internal applications through public links, embed code, or APIs.</li>
+</ul>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>AI customer support</strong>: Connect product knowledge bases, FAQs, and business materials to an Agent for handling customer inquiries.</li>
+<li><strong>Professional knowledge applications</strong>: Use industry materials for search, organization, and analysis in finance, education, research, and other specialized scenarios.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>MaxKB is particularly suitable for <strong>teams that already have a large amount of enterprise documentation and knowledge material and want to build knowledge-focused AI Agents relatively quickly</strong>. Its visual workflows and knowledge-base capabilities have a relatively low entry barrier, while local deployment and local models make it a good fit for organizations with requirements around internal knowledge use, data control, and third-party system integration.</p>
+<h3>9. AnythingLLM</h3>
+<p><strong>Website</strong>: <a href="https://anythingllm.com/">https://anythingllm.com/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/Mintplex-Labs/anything-llm">https://github.com/Mintplex-Labs/anything-llm</a></p>
+<p><strong>GitHub Stars</strong>: 65.4K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>Agent Flow</strong>: <a href="https://docs.anythingllm.com/agent-flows/overview">https://docs.anythingllm.com/agent-flows/overview</a></p>
+<h4>Product Overview</h4>
+<p>AnythingLLM is an open-source, local-first AI application mainly used to build AI assistants based on private documents and internal knowledge. It offers both desktop and self-hosted versions with a relatively complete graphical interface, so teams can start without first setting up a complex development environment.</p>
+<p><img src="https://static-docs.nocobase.com/AnythingLLM1-5fia5p.png" alt="AnythingLLM1-5fia5p.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>Private documents and RAG</strong>: Add PDF, Word, text, and other files to separate workspaces so AI can answer questions based on selected content while preserving citations.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/AnythingLLM2-4h817b.png" alt="AnythingLLM2-4h817b.png"></p>
+<ul>
+<li><strong>Agent Flow</strong>: Visually combine web scraping, API calls, model instructions, file reading and writing, and other steps into repeatable processing flows.</li>
+<li><strong>Multi-user and permissions</strong>: The self-hosted version supports multiple users and permission management, allowing teams to separate workspaces and knowledge access by user or group.</li>
+</ul>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>Internal knowledge and document assistants</strong>: Answer questions, summarize information, and extract data from company policies, product materials, training documents, contracts, and reports.</li>
+<li><strong>Research and document organization</strong>: Combine internal documents, web information, and tool calls to collect, organize, and analyze information.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>AnythingLLM is better suited to individuals, small teams, or companies that want to pilot a private AI assistant within a department first. Even without dedicated AI developers, teams can start quickly with document Q&#x26;A and information organization. If the main goal is to let AI use internal knowledge securely rather than build complex business workflows, it is a lighter-weight option.</p>
+<h3>10. RAGFlow</h3>
+<p><strong>Website</strong>: <a href="https://ragflow.io/">https://ragflow.io/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/infiniflow/ragflow">https://github.com/infiniflow/ragflow</a></p>
+<p><strong>GitHub Stars</strong>: 89.7K</p>
+<p><strong>Related documentation</strong></p>
+<p><strong>Agent guide</strong>: <a href="https://github.com/infiniflow/ragflow/tree/main/docs/guides/agent">https://github.com/infiniflow/ragflow/tree/main/docs/guides/agent</a></p>
+<h4>Product Overview</h4>
+<p>RAGFlow is an open-source RAG and AI Agent platform focused on complex document processing and enterprise knowledge retrieval. Compared with simpler knowledge-Q&#x26;A tools, it is better suited to scenarios with complex document types, large knowledge volumes, and stronger requirements for retrieval accuracy and source traceability.</p>
+<p>💡 Read more: <a href="https://www.nocobase.com/en/blog/openclaw-open-source-enterprise-tools">How Can OpenClaw Be Used in Real Business? 5 Recommended Open-Source Tools</a></p>
+<p><img src="https://static-docs.nocobase.com/AnythingLLM2-lvcqjv.png" alt="AnythingLLM2-lvcqjv.png"></p>
+<h4>Core AI Capabilities</h4>
+<ul>
+<li><strong>Complex document understanding</strong>: Process PDF, Word, PPT, spreadsheets, images, and long documents, extracting information that can be used for retrieval and analysis.</li>
+<li><strong>High-accuracy RAG</strong>: Combine vector retrieval, keyword search, reranking, and metadata filtering to improve retrieval accuracy and traceability.</li>
+<li><strong>Agent workflows</strong>: Use a visual canvas to combine retrieval, models, conditions, loops, classification, and other steps. More complex patterns such as multi-Agent workflows, planning, and reflection are also supported.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/RAGFlow2-3r2pqb.png" alt="RAGFlow2-3r2pqb.png"></p>
+<ul>
+<li><strong>Tools and data-source integration</strong>: Agents can call external tools and support MCP. Enterprise knowledge can also be synchronized from Confluence, S3, Notion, Google Drive, and other sources.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/RAGFlow3-tlomcm.png" alt="RAGFlow3-tlomcm.png"></p>
+<h4>Business Use Cases</h4>
+<ul>
+<li><strong>Complex enterprise knowledge bases</strong>: Build a unified knowledge retrieval system across large collections of policies, technical manuals, reports, and professional materials.</li>
+<li><strong>Legal and compliance analysis</strong>: Retrieve supporting evidence from regulations, contracts, cases, and internal materials, then generate analysis with sources.</li>
+<li><strong>Research and decision support</strong>: Combine internal data and external materials so Agents can retrieve, analyze, and generate reports.</li>
+</ul>
+<h4>Selection Guidance</h4>
+<p>RAGFlow is suitable for teams with large knowledge volumes, complex documents, and some technical resources. In legal, manufacturing, technical support, research, and similar settings, it has stronger advantages when materials contain many long documents, tables, images, or specialized content and when retrieval accuracy and source evidence matter significantly.</p>
+<h2 id="en-6">Conclusion</h2>
+<p><strong>Many AI Agent products are beginning to overlap in functionality. Visual workflows, knowledge bases, MCP, and tool calling are now available on more and more platforms. In practice, teams need to consider whether these capabilities can fit smoothly into existing work and how much additional operational and maintenance overhead they will introduce.</strong></p>
+<p>Hopefully, this article helps narrow down the options. Feel free to share it with friends or teams that are also looking for AI Agent tools.</p>
+<p>If you want to build similar enterprise applications with AI and NocoBase, these complete examples may be useful:</p>
+<p>👉 <a href="https://www.nocobase.com/en/blog/build-production-ready-crm-with-ai-and-nocobase">Build a CRM with AI + NocoBase</a></p>
+<p>👉 <a href="https://www.nocobase.com/en/blog/build-it-operations-system-with-ai-nocobase">Build an Enterprise IT Operations System with AI + NocoBase</a></p>
+<p><strong>Related reading</strong>:</p>
+<ul>
+<li><strong><a href="../blog/build-production-ready-ticketing-system-with-ai.html">How to Build a Production-Ready Ticketing System with AI</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/build-it-operations-system-with-ai-nocobase">How to Build a Production-Ready IT Operations System with AI and NocoBase</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/nocobase-vs-baserow">NocoBase vs Baserow: Flexible Databases vs Enterprise Systems</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/build-production-ready-crm-with-ai-and-nocobase">How to Build a Production-Ready CRM with AI and NocoBase</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/enterprise-it-asset-management-system-guide">How to Design an IT Asset Management System: Data Model, Lifecycle, and Workflows</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/best-smartsheet-alternatives">How to Choose a Smartsheet Alternative: 7 Tools Compared</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/open-source-ai-no-code-tools-complex-relational-models">5 Open-Source AI No-Code Tools for Complex Relational Data Models</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/what-is-ai-no-code">What Is AI No-Code? A Practical Guide to No-Code Platforms in the AI Era</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/open-source-ai-no-code-tools-github-9">9 Open-Source AI No-Code Tools on GitHub Worth Watching</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/github-open-source-ai-agent-tools-16">14 Open Source AI Agent Tools with the Most GitHub Stars</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/top-open-source-ai-assistant-tools-github-stars">Top 8 Open Source AI Assistant Tools by GitHub Stars</a></strong></li>
+<li><strong><a href="https://www.nocobase.com/en/blog/workbuddy-open-source-tools">6 Open Source Tools to Use with WorkBuddy</a></strong></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">TL;DR</a><a href="#zh-2">写在开头</a><a href="#zh-3">一、企业应用与业务自动化 Agent</a><a href="#zh-4">二、可视化 AI Agent 构建平台</a><a href="#zh-5">三、企业知识与 RAG Agent</a><a href="#zh-6">结语</a></div><div class="en-only"><a href="#en-1">TL;DR</a><a href="#en-2">Introduction</a><a href="#en-3">1. Enterprise Applications and Business Automation</a><a href="#en-4">2. Visual AI Agent Building Platforms</a><a href="#en-5">3. Enterprise Knowledge and RAG Agents</a><a href="#en-6">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

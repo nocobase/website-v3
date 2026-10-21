@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="使用内置工作流与 AI 员工完成公司背景调研自动化 — NocoBase" data-en="Automating Company Background Research with Workflows and AI Employees — NocoBase">使用内置工作流与 AI 员工完成公司背景调研自动化 — NocoBase</title>
+<meta name="description" content="介绍如何用 NocoBase 工作流和 AI 员工自动完成公司背景调研，并保留任务状态、报告历史和可复核记录。" data-zh="介绍如何用 NocoBase 工作流和 AI 员工自动完成公司背景调研，并保留任务状态、报告历史和可复核记录。" data-en="Learn how NocoBase workflows and AI employees automate company background research with traceable tasks and report history.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></p>
+    <h1><t-zh>使用内置工作流与 AI 员工完成公司背景调研自动化</t-zh><t-en>Automating Company Background Research with Workflows and AI Employees</t-en></h1>
+    <p class="lede"><t-zh>介绍如何用 NocoBase 工作流和 AI 员工自动完成公司背景调研，并保留任务状态、报告历史和可复核记录。</t-zh><t-en>Learn how NocoBase workflows and AI employees automate company background research with traceable tasks and report history.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月13日</t-zh><t-en>Jul 13, 2026</t-en></span><span><t-zh>Chen Gengyang  </t-zh><t-en>Chen Gengyang  </t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/20260713-172604-dpzovb.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>在 NocoBase 中，你可以把公司背景调研做成一条可追踪的自动化任务流。业务人员仍然在熟悉的公司资料页面里工作，工作流和 AI 员工则负责补齐背景资料、记录处理过程，并把每次生成的报告留存下来。</p>
+<p><img src="https://static-docs.nocobase.com/HR1-9owfry.png" alt="HR1-9owfry.png"></p>
+<p>这个场景适合处理一种常见问题：公司背景信息不是一次录入就结束的静态字段。公开资料会变化，监管事件会出现，合作状态也会随着业务推进不断调整。如果只靠人工定期补录，容易遗漏；如果直接让 AI 覆盖公司资料，又很难解释“这次判断是怎么来的”。这里的做法是把当前资料和调研过程拆开保存——公司记录保存业务人员正在使用的版本，背景调查记录保存每一次 AI 调研的状态、输出和历史。</p>
+<h2 id="zh-1">先看两张表</h2>
+<p>公司信息表提供调研对象的基础资料，背景调查记录表负责承接每一次调研任务。一个保存当前可用信息，一个保存处理过程和历史结果。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h3><code>companies</code>：公司信息表</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>核心字段</th><th>作用</th></tr></thead><tbody><tr><td>Company name</td><td>作为调研对象的主要识别信息。</td></tr><tr><td>Website</td><td>提供官网线索，降低同名公司或简称带来的误判。</td></tr><tr><td>Address</td><td>辅助判断地区、主体和业务范围。</td></tr><tr><td>Company type</td><td>标记客户、供应商、合作伙伴等业务关系，便于后续判断跟进优先级。</td></tr><tr><td>Background information</td><td>保存当前正在使用的公司背景报告，使用 Markdown 呈现结构化内容。</td></tr></tbody></table>
+<h3><code>background_check_tasks</code>：背景调查记录表</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>核心字段</th><th>作用</th></tr></thead><tbody><tr><td>Company ID / Company name</td><td>记录本次调研面向哪家公司，便于任务执行和历史回溯。</td></tr><tr><td>Status</td><td>标记任务从<code>pending</code> 到 <code>processing</code>、<code>completed</code> 的流转，也是防止重复触发的依据。</td></tr><tr><td>Research report</td><td>保存 AI 本次生成的完整调研报告。</td></tr><tr><td>Summary</td><td>保存 AI 对调研过程、风险点和待补充信息的概括。</td></tr><tr><td>Previous background</td><td>保存写回前的旧版本，支持历史追踪和新旧报告对比。</td></tr></tbody></table>
+<p><img src="https://static-docs.nocobase.com/01-company-list-zuruic.png" alt="01-company-list-zuruic.png"></p>
+<h2 id="zh-2">从公司资料进入调研流程</h2>
+<p>公司列表是业务人员最熟悉的入口。页面中可以看到公司名称、官网、公司类型、联系人、邮箱等信息。进入某家公司后，业务人员可以查看当前背景报告，也可以主动发起一次新的背景调研。</p>
+<p>进入编辑页后，「Background information」使用 Markdown 编辑组件展示。AI 生成的内容不是一段短摘要，而是一份可以直接阅读、复制和继续维护的结构化报告。业务人员仍然可以手动修改，不过每一次由 AI 生成的结果都会在背景调查记录中留下对应历史。</p>
+<p><img src="https://static-docs.nocobase.com/02-company-edit-records-retry-axrosz.png" alt="02-company-edit-records-retry-axrosz.png"></p>
+<p>这样一来，页面看起来仍然是普通的公司资料维护界面，底层处理方式已经变成“当前资料 + 调研历史”。公司表保存当前版本，任务表保存过程和证据链。</p>
+<h2 id="zh-3">三种触发方式</h2>
+<p><img src="https://static-docs.nocobase.com/03-zsmlqk.png" alt="03-zsmlqk.png"></p>
+<p>背景调研不应该只依赖一个人工按钮。真实业务里，你可能希望新增公司后自动补齐资料，也可能需要定时补跑历史记录，还可能在签约、复审前主动重新调查一次。</p>
+<p><code>New company background check</code> 工作流处理新增或更新公司后的自动调研。它监听公司表的数据事件，当公司名称存在且背景信息为空时触发。触发后不会立刻调用 AI，而是先检查同一家公司是否已有未完成任务；如果没有，才创建新的背景调查记录。</p>
+<p><img src="https://static-docs.nocobase.com/04-pjzeiu.png" alt="04-pjzeiu.png"></p>
+<p><code>Timing company background check</code> 工作流负责历史数据的持续补齐。它每 30 分钟运行一次，查询背景信息仍为空的公司，并按批次进入循环处理。循环内部同样先检查任务是否已存在，再决定是否创建新任务。这样定时任务可以反复运行，却不会因为重复扫描而制造多条并发处理中的记录。</p>
+<p><img src="https://static-docs.nocobase.com/05-l3vy4x.png" alt="05-l3vy4x.png"></p>
+<p><code>Manual company background check</code> 工作流绑定在公司详情页的「Run background check」按钮上，适合业务人员在拜访、签约、复审前主动发起一次调研。手动触发和自动触发使用同一套后续链路：先创建背景调查记录，再由任务执行工作流接管 AI 调研。</p>
+<p><img src="https://static-docs.nocobase.com/06-nh8s24.png" alt="06-nh8s24.png"></p>
+<p>这三种入口解决的是不同时间点的问题，最后都汇入同一张背景调查记录表。新增触发、定时触发、手动触发只负责把“需要调研”这件事记录下来，具体执行、状态管理和结果写回交给后续工作流统一处理。</p>
+<h2 id="zh-4">把 AI 调研变成任务</h2>
+<p><code>Do company background check</code> 是实际执行调研的工作流。它监听背景调查记录表中的 <code>pending</code> 记录。一旦前面的自动、定时或手动流程创建了任务，这条工作流就会被异步触发。</p>
+<p>执行时，工作流先查询公司是否仍然存在。如果公司不存在，任务会被关闭并写入说明；如果公司存在，任务状态会切换为 <code>processing</code>，随后调用 AI 员工生成报告。AI 员工的提示词要求输出两部分结果：一份可直接写入公司背景字段的 Markdown 报告，以及一段用于人工复核的 summary。</p>
+<p><img src="https://static-docs.nocobase.com/07-ohym4u.png" alt="07-ohym4u.png"></p>
+<p>AI 返回结构化结果后，工作流先把报告、summary 和旧背景内容写入背景调查记录，再把新的报告写回公司记录。这个顺序避免了“只有最新结果、没有过程记录”的问题：公司页面保持最新可用内容，任务记录保留本次生成和写回前的上下文。</p>
+<p><img src="https://static-docs.nocobase.com/08-fti0m0.png" alt="08-fti0m0.png"></p>
+<p>任务化之后，批量处理也会更自然。定时工作流不需要等待每家公司调研完成，只负责创建多条待处理记录；每条记录再独立触发 AI 调研。多个公司可以并行推进，某一条任务失败或超时，也不会阻塞其他公司。</p>
+<h2 id="zh-5">让 AI 结果可复核</h2>
+<p>AI 生成的报告按照固定结构组织：公司概况、核心业务、发展历史与资本背景、市场位置和竞争视角、销售跟进判断，以及引用链接。业务人员看到的不只是“结论”，还可以看到 AI 在 summary 中给出的风险提示和待补充信息。</p>
+<p>背景调查记录详情页将「Research report」和「Previous background」分 tab 展示，并提供「Copy」操作。这样在讨论、复核或外部沟通时，可以快速复制本次报告，也可以对照旧版本查看变化。</p>
+<p>记录详情还配置了两个 AI 员工任务。其中：</p>
+<ul>
+<li>完善背景调研报告：通过对话补充信息后重新生成报告，并把结果写回公司记录</li>
+<li>对比新旧背景调研报告：读取新旧两份报告，让 AI 解释本次更新带来了哪些实质差异</li>
+</ul>
+<p>这让 AI 不停留在“生成一次文本”，而是参与到持续维护、复核和版本比较的过程里。</p>
+<p><img src="https://static-docs.nocobase.com/09-2ne40x.png" alt="09-2ne40x.png"></p>
+<h2 id="zh-6">工作流怎么组合</h2>
+<p>从整体看，这组工作流可以分成四层。</p>
+<p>第一层负责创建任务。<code>New company background check</code> 面向新增或更新后的公司，<code>Timing company background check</code> 面向历史数据补齐，<code>Manual company background check</code> 面向人工主动发起。它们都会在创建任务前检查是否已有未完成记录，从源头减少重复处理。</p>
+<p>第二层负责执行任务。<code>Do company background check</code> 监听背景调查记录，把待处理任务推进到处理中，调用 AI 员工，并在完成后写入报告、summary 和公司当前背景字段。</p>
+<p>第三层负责给 AI 员工提供受控写回能力。<code>Update company background</code> 作为工具型工作流，约束 AI 只能按明确参数写入指定记录，避免把数据修改权限放得过大。</p>
+<p>第四层负责异常清理。<code>Clean overtime processing background check</code> 每 30 分钟运行一次，清理超过 15 分钟仍未完成的非 completed 任务，避免异常中断后的任务长期停留在处理中。</p>
+<p><img src="https://static-docs.nocobase.com/10-potcr8.png" alt="10-potcr8.png"></p>
+<h2 id="zh-7">可以迁移到哪些场景</h2>
+<p>这个场景展示的不是一个孤立的表单，也不是一个单独的 AI 按钮，而是 NocoBase 中几类能力的组合：数据表负责承载业务对象和历史记录，页面负责让业务人员查看和触发，工作流负责调度和写回，AI 员工负责生成可复核的结构化结果。</p>
+<p>类似的模式可以迁移到供应商准入、客户尽调、合同风险初审、线索质量评分、舆情跟踪、投融资标的初筛等场景。只要业务里同时存在“资料需要持续补全”“AI 结果需要留痕”“历史版本不能被覆盖”这几个要求，就可以用类似的方式搭出一条可运行、可追踪、可扩展的自动化流程。</p>
+<h2 id="zh-8">参考文档</h2>
+<ul>
+<li><a href="https://docs.nocobase.com/workflow">NocoBase 工作流</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees">NocoBase AI 员工</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees/workflow/nodes/employee/configuration">NocoBase 工作流 AI 员工节点</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees/features/tools">NocoBase AI 员工自定义工具</a></li>
+</ul></div><div class="prose en-only"><p>In NocoBase, company background research can be turned into a traceable automation flow. Business users still work on the familiar company profile page, while workflows and AI employees fill in background information, record the processing steps, and keep every generated report for later review.</p>
+<p><img src="https://static-docs.nocobase.com/HR1-9owfry.png" alt="HR1-9owfry.png"></p>
+<p>This scenario addresses a common problem: company background information is not a static field that only needs to be entered once. Public information changes, regulatory events may appear, and cooperation status keeps evolving as business moves forward. If everything depends on manual updates, key information can easily be missed. If AI is allowed to overwrite company profiles directly, it becomes hard to explain how a given judgment was made. The approach here is to store current information and the research process separately. The company record keeps the version business users are working with, while background check records keep the status, output, and history of every AI research task.</p>
+<h2 id="en-1">Start With Two Tables</h2>
+<p>The company table provides the basic information about the research target, while the background check task table receives each research task. One stores the currently available information; the other stores the process and historical results.</p>
+<hr>
+<p>💬 Hey, you’re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
+<hr>
+<h3><code>companies</code>: Company Table</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Key Field</th><th>Purpose</th></tr></thead><tbody><tr><td>Company name</td><td>Serves as the main identifier of the research target.</td></tr><tr><td>Website</td><td>Provides an official website clue and reduces misjudgment caused by companies with similar names or abbreviations.</td></tr><tr><td>Address</td><td>Helps identify region, legal entity, and business scope.</td></tr><tr><td>Company type</td><td>Marks business relationships such as customer, supplier, or partner, making it easier to prioritize follow-up.</td></tr><tr><td>Background information</td><td>Stores the company background report currently in use and presents structured content in Markdown.</td></tr></tbody></table>
+<h3><code>background_check_tasks</code>: Background Check Task Table</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Key Field</th><th>Purpose</th></tr></thead><tbody><tr><td>Company ID / Company name</td><td>Records which company this research task is for, making execution and historical review easier.</td></tr><tr><td>Status</td><td>Tracks task transitions from<code>pending</code> to <code>processing</code> and <code>completed</code>; it also helps prevent duplicate triggers.</td></tr><tr><td>Research report</td><td>Stores the full research report generated by AI for this run.</td></tr><tr><td>Summary</td><td>Stores AI’s summary of the research process, risk points, and information that still needs to be supplemented.</td></tr><tr><td>Previous background</td><td>Stores the previous version before write-back, supporting history tracking and report comparison.</td></tr></tbody></table>
+<p><img src="https://static-docs.nocobase.com/01-company-list-zuruic.png" alt="01-company-list-zuruic.png"></p>
+<h2 id="en-2">Enter the Research Flow From Company Profiles</h2>
+<p>The company list is the most familiar entry point for business users. On the page, they can see company names, websites, company types, contacts, email addresses, and other information. After opening a company, users can view the current background report or actively start a new background research task.</p>
+<p>On the edit page, <code>Background information</code> is displayed with a Markdown editor. The AI output is not a short summary, but a structured report that can be read, copied, and maintained directly. Business users can still edit it manually, but every AI-generated result will leave a corresponding history record in the background check task table.</p>
+<p><img src="https://static-docs.nocobase.com/02-company-edit-records-retry-axrosz.png" alt="02-company-edit-records-retry-axrosz.png"></p>
+<p>As a result, the page still looks like a normal company profile management interface, but the underlying structure has become “current information + research history.” The company table stores the current version, while the task table stores the process and evidence chain.</p>
+<h2 id="en-3">Three Trigger Methods</h2>
+<p><img src="https://static-docs.nocobase.com/03-zsmlqk.png" alt="03-zsmlqk.png"></p>
+<p>Background research should not depend on only one manual button. In real business work, you may want to automatically complete information after a new company is added, rerun checks for historical records on a schedule, or actively start a new review before signing, revisiting, or reassessing a company.</p>
+<p>The <code>New company background check</code> workflow handles automatic research after a company is added or updated. It listens to data events in the company table and is triggered when a company name exists and background information is empty. After triggering, it does not call AI immediately. Instead, it first checks whether there is already an unfinished task for the same company. Only when no such task exists does it create a new background check record.</p>
+<p><img src="https://static-docs.nocobase.com/04-pjzeiu.png" alt="04-pjzeiu.png"></p>
+<p>The <code>Timing company background check</code> workflow continuously supplements historical data. It runs every 30 minutes, queries companies whose background information is still empty, and processes them in batches through a loop. Inside the loop, it also checks whether a task already exists before deciding whether to create a new one. This allows the scheduled task to run repeatedly without creating multiple concurrent processing records from repeated scans.</p>
+<p><img src="https://static-docs.nocobase.com/05-l3vy4x.png" alt="05-l3vy4x.png"></p>
+<p>The <code>Manual company background check</code> workflow is bound to the <code>Run background check</code> button on the company detail page. It is suitable for business users who want to actively start a research task before visits, signing, or reassessment. Manual and automatic triggers use the same downstream chain: first create a background check record, then let the task execution workflow take over AI research.</p>
+<p><img src="https://static-docs.nocobase.com/06-nh8s24.png" alt="06-nh8s24.png"></p>
+<p>These three entry points solve problems at different moments, but they all converge into the same background check task table. New-record triggers, scheduled triggers, and manual triggers only record that “research is needed.” The actual execution, status management, and result write-back are handled by the downstream workflow in a unified way.</p>
+<h2 id="en-4">Turn AI Research Into Tasks</h2>
+<p><code>Do company background check</code> is the workflow that actually performs the research. It listens to <code>pending</code> records in the background check task table. Once an automatic, scheduled, or manual flow creates a task, this workflow is triggered asynchronously.</p>
+<p>During execution, the workflow first checks whether the company still exists. If the company no longer exists, the task is closed with an explanation. If the company exists, the task status changes to <code>processing</code>, and the workflow then calls an AI employee to generate the report. The AI employee’s prompt requires two outputs: a Markdown report that can be written directly into the company background field, and a summary for manual review.</p>
+<p><img src="https://static-docs.nocobase.com/07-ohym4u.png" alt="07-ohym4u.png"></p>
+<p>After AI returns structured results, the workflow first writes the report, summary, and previous background content into the background check record, then writes the new report back to the company record. This order avoids the problem of having only the latest result without a process record: the company page keeps the latest usable content, while the task record keeps the context of this generation and the content before write-back.</p>
+<p><img src="https://static-docs.nocobase.com/08-fti0m0.png" alt="08-fti0m0.png"></p>
+<p>After research is task-based, batch processing also becomes more natural. The scheduled workflow does not need to wait for each company’s research to finish. It only creates multiple pending records; each record then independently triggers AI research. Multiple companies can move forward in parallel, and a failure or timeout in one task will not block the others.</p>
+<h2 id="en-5">Make AI Results Reviewable</h2>
+<p>AI-generated reports follow a fixed structure: company overview, core business, development history and capital background, market position and competitive perspective, sales follow-up judgment, and reference links. Business users see more than a conclusion. They can also review the risk notes and missing information highlighted by AI in the summary.</p>
+<p>The background check record detail page displays <code>Research report</code> and <code>Previous background</code> in separate tabs and provides a <code>Copy</code> action. This makes it easy to copy the current report during discussion, review, or external communication, and to compare it with the previous version when needed.</p>
+<p>The record detail page also includes two AI employee tasks:</p>
+<ul>
+<li>Improve background research report: supplement information through conversation, regenerate the report, and write the result back to the company record.</li>
+<li>Compare new and old background research reports: read both reports and let AI explain what substantive changes this update introduced.</li>
+</ul>
+<p>This allows AI to go beyond generating a one-time text. It participates in continuous maintenance, review, and version comparison.</p>
+<p><img src="https://static-docs.nocobase.com/09-2ne40x.png" alt="09-2ne40x.png"></p>
+<h2 id="en-6">How the Workflows Fit Together</h2>
+<p>At a high level, this set of workflows can be divided into four layers.</p>
+<p>The first layer creates tasks. <code>New company background check</code> handles companies after creation or update, <code>Timing company background check</code> supplements historical data, and <code>Manual company background check</code> supports active manual initiation. They all check for unfinished records before creating a task, reducing duplicate processing at the source.</p>
+<p>The second layer executes tasks. <code>Do company background check</code> listens to background check records, moves pending tasks into processing, calls the AI employee, and writes the report, summary, and current company background field after completion.</p>
+<p>The third layer provides AI employees with controlled write-back capability. <code>Update company background</code> works as a tool workflow, restricting AI to write into specified records with explicit parameters instead of granting overly broad data modification permissions.</p>
+<p>The fourth layer cleans up exceptions. <code>Clean overtime processing background check</code> runs every 30 minutes and cleans up non-completed tasks that have remained unfinished for more than 15 minutes, preventing interrupted tasks from staying in the processing state for too long.</p>
+<p><img src="https://static-docs.nocobase.com/10-potcr8.png" alt="10-potcr8.png"></p>
+<h2 id="en-7">Where This Pattern Can Be Reused</h2>
+<p>This scenario is not just a standalone form or a single AI button. It combines several NocoBase capabilities: data tables carry business objects and history records, pages allow business users to view and trigger actions, workflows handle scheduling and write-back, and AI employees generate structured results that can be reviewed.</p>
+<p>The same pattern can be applied to supplier onboarding, customer due diligence, contract risk pre-review, lead quality scoring, public opinion tracking, investment target screening, and similar scenarios. Whenever a business process requires continuously completing information, keeping traces of AI results, and preserving historical versions instead of overwriting them, this approach can be used to build a runnable, traceable, and extensible automation flow.</p>
+<h2 id="en-8">Reference Documents</h2>
+<ul>
+<li><a href="https://docs.nocobase.com/workflow">NocoBase Workflow</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees">NocoBase AI Employees</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees/workflow/nodes/employee/configuration">NocoBase Workflow AI Employee Node</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees/features/tools">NocoBase AI Employee Custom Tools</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">先看两张表</a><a href="#zh-2">从公司资料进入调研流程</a><a href="#zh-3">三种触发方式</a><a href="#zh-4">把 AI 调研变成任务</a><a href="#zh-5">让 AI 结果可复核</a><a href="#zh-6">工作流怎么组合</a><a href="#zh-7">可以迁移到哪些场景</a><a href="#zh-8">参考文档</a></div><div class="en-only"><a href="#en-1">Start With Two Tables</a><a href="#en-2">Enter the Research Flow From Company Profiles</a><a href="#en-3">Three Trigger Methods</a><a href="#en-4">Turn AI Research Into Tasks</a><a href="#en-5">Make AI Results Reviewable</a><a href="#en-6">How the Workflows Fit Together</a><a href="#en-7">Where This Pattern Can Be Reused</a><a href="#en-8">Reference Documents</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/awesome-nocobase-community-plugins.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%2094-77hcu6.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月26日</t-zh><t-en>Jul 26, 2026</t-en></span><span><t-zh>NocoBase Team</t-zh><t-en>NocoBase Team</t-en></span></div><h3><t-zh>Awesome NocoBase：发现和分享社区插件</t-zh><t-en>Awesome NocoBase: Discover and Share Plugins Built by the Community</t-en></h3><p><t-zh>通过 Awesome NocoBase 发现社区开发的插件，分享自己的扩展，共同建设更开放的 NocoBase 插件生态。</t-zh><t-en>Discover community-built NocoBase plugins and learn how to share your own extensions through Awesome NocoBase.</t-en></p></a><a class="bcard" href="../blog/build-interactive-operations-dashboard-with-nocobase.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2%20(3)-m9si79.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月9日</t-zh><t-en>Jul 9, 2026</t-en></span><span><t-zh>Yang Qia</t-zh><t-en>Yang Qia</t-en></span></div><h3><t-zh>用 NocoBase 搭建可联动的运营仪表盘</t-zh><t-en>Build an Interactive Operations Dashboard with NocoBase</t-en></h3><p><t-zh>了解如何组合 NocoBase 图表、筛选和 JS 区块，搭建支持筛选联动、图表下钻和自定义样式的运营仪表盘。</t-zh><t-en>Learn how to combine NocoBase chart, filter, and JS blocks to build an operations dashboard with linked filters and drilldowns.</t-en></p></a><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

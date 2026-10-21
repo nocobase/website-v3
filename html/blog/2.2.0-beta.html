@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase 2.2-beta 发布 — NocoBase" data-en="Announcing NocoBase 2.2-beta — NocoBase">NocoBase 2.2-beta 发布 — NocoBase</title>
+<meta name="description" content="NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。" data-zh="NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。" data-en="NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></p>
+    <h1><t-zh>NocoBase 2.2-beta 发布</t-zh><t-en>Announcing NocoBase 2.2-beta</t-en></h1>
+    <p class="lede"><t-zh>NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</t-zh><t-en>NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年7月17日</t-zh><t-en>Jul 17, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/2.2-beta-2kf9fd.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>这是一次<strong>围绕 V2 体验</strong>的重要升级。这个版本带来了 <strong>多工作区</strong>、<strong>新移动端</strong>、<strong>新评论区块</strong>，同时继续提升 AI 知识库和工作流能力。对正在使用 V2 的团队来说，更值得关注的是全新的 <code>/v/</code> 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</p>
+<h2 id="zh-1">新特性</h2>
+<h3>新增 <code>/v/</code> 分支</h3>
+<p><code>/v/</code> 是全新的独立前端入口，并且会独立构建。2.0 版本里我们对前端做了非常大的重构，当时为了兼容性，我们还保留了对 V1 模块、页面等的兼容。而 <code>/v/</code> 分支则会完全移除 V1 的历史遗留内容，无法再创建或者渲染 V1 的页面和区块，只保留面向 V2 的能力，同时 <code>/v/</code> 分支在性能方面做了较大优化，这个分支将会是 NocoBase 团队后续主要迭代的分支。</p>
+<blockquote>
+<p>我们建议，生产环境如果全部是以 v2 Page 为主的用户，可以考虑开始使用 <code>/v/</code> 分支，后续的一些新功能迭代将能直接使用；</p>
+<p>如果是以 v2 Page 为主，但是有少部分 v1 Page 的用户，可以考虑先将 v1 Page 迁移到 v2 Page 之后，再考虑使用 <code>/v/</code> 分支；</p>
+<p>如果是以 v1 Page 为主的用户，则不建议直接切换到 <code>/v/</code> 分支。我们建议你们先将当前 v1 Page 迁移到 v2 Page 之后，再切换到 <code>/v/</code> 分支。</p>
+</blockquote>
+<p>通常只要在原有的路径前面加上 <code>/v/</code> 前缀，即可进入 <code>/v/</code> 分支。</p>
+<p>比如：</p>
+<pre tabindex="0" data-language="plaintext"><code><span><span># 原本的路径</span></span>
+<span><span>https://nocobase.example.com/admin/1xl0epqn6q3</span></span>
+<span><span></span></span>
+<span><span># v 分支路径</span></span>
+<span><span>https://nocobase.example.com/v/admin/1xl0epqn6q3</span></span>
+<span><span></span></span></code></pre>
+<h4>设置应用的默认入口</h4>
+<p>你可以通过环境变量 <code>APP_CLIENT_ENTRY_MODE</code> 控制应用入口模式：</p>
+<ul>
+<li><code>legacy-default</code>：<code>/</code> 和 <code>/v/</code> 都可以访问，默认入口是 <code>/</code></li>
+<li><code>modern-default</code>：<code>/</code> 和 <code>/v/</code> 都可以访问，默认入口是 <code>/v/</code></li>
+<li><code>modern-only</code>：只能访问 <code>/v/</code></li>
+</ul>
+<h4><code>/v/</code> 分支当前情况</h4>
+<p><code>/v/</code> 分支是个渐进式迁移的分支，进入 <code>/v/</code> 分支后，将会有几个明显的变化：</p>
+<ol>
+<li>通过 Page V1 创建过的页面，在 <code>/v/</code> 分支里将不再展示。而通过 Page V2 创建的页面，在 <code>/v/</code> 分支里还能正常展示。</li>
+<li>只适配了 <code>client-v1</code> 的插件，在 <code>/v/</code> 分支里将不再加载。<code>/v/</code> 分支只会加载适配了 <code>client-v2</code> 的插件。具体可以参考<a href="https://docs.nocobase.com/cn/plugin-development/client/">客户端插件开发文档</a>。</li>
+</ol>
+<p>目前，NocoBase 内置的大部分插件，已在这个版本里进行了 client-v2 的适配和迁移，因此大部分功能是能直接使用的（还有少数一些未迁移的插件，我们会在持续迁移）。不过有些插件提供的能力，后续只会在 <code>/v/</code> 分支进行更新和迭代。具体如下：</p>
+<ul>
+<li>插件列表不再显示废弃插件和仅支持 1.x 的插件</li>
+<li>不再支持新增 Page V1</li>
+<li>公开表单会区分 v1 和 v2，<code>/v/</code> 分支不显示 v1 版本的公开表单</li>
+<li>审批工作流如果要在 <code>/v/</code> 分支使用，需要重新配置相关 UI</li>
+<li>新移动端只支持 <code>/v/</code> 分支</li>
+<li>多工作区只支持 <code>/v/</code> 分支</li>
+<li>App supervisor 中子应用的 Display 配置已移除，可以改用工作区</li>
+<li>「AI 员工 / 数据源」标签页已移除</li>
+<li>移除了评论表、日历表、表达式表、外部数据表</li>
+<li>工作流人工节点暂时还不支持 <code>/v/</code> 分支</li>
+<li>暂时还不支持给菜单添加徽标数</li>
+</ul>
+<p>可以结合生产环境的实际情况进行 <code>/v/</code> 分支的迁移。</p>
+<h3>多工作区（仅 <code>/v/</code> 分支支持）</h3>
+<p>工作区（Portal）用于在同一个应用内提供多个访问入口。每个工作区都可以拥有独立的页面、菜单、导航结构、布局和权限配置。（专业版及以上版本支持）</p>
+<p>在实际业务场景中，不同角色通常需要不同的操作界面。例如一个零售管理系统：</p>
+<pre tabindex="0" data-language="plaintext"><code><span><span>零售管理系统</span></span>
+<span><span></span></span>
+<span><span>├─ 总部工作区</span></span>
+<span><span>├─ 门店工作区</span></span>
+<span><span>├─ 经销商工作区</span></span>
+<span><span>└─ 移动工作区</span></span>
+<span><span></span></span></code></pre>
+<p>总部员工关注：</p>
+<ul>
+<li>商品管理</li>
+<li>库存管理</li>
+<li>数据分析</li>
+</ul>
+<p>门店员工关注：</p>
+<ul>
+<li>收银</li>
+<li>库存盘点</li>
+<li>订单处理</li>
+</ul>
+<p>经销商关注：</p>
+<ul>
+<li>采购</li>
+<li>对账</li>
+<li>发货状态</li>
+</ul>
+<p>虽然使用的是同一个系统，但不同角色并不需要看到相同的菜单和页面，多工作区正是用来解决这一问题的。</p>
+<p><img src="https://static-docs.nocobase.com/2026-07-10-08-06-15.png" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs.nocobase.com/cn/multi-app/multi-portal/">多工作区</a></li>
+</ul>
+<h3>新移动端（仅 <code>/v/</code> 分支支持）</h3>
+<p>新移动端提供了全新的 <code>/v/mobile</code> 入口，与此同时，工作区也支持新增移动端布局的工作区。</p>
+<p>移动端布局和桌面端布局使用相同的数据源和业务数据，不过菜单、路由和页面内容分别配置。这样可以根据移动端的使用方式重新组织页面，而不必受到桌面端页面结构的限制。同时，使用底部标签栏作为一级导航，更适合在手机上完成数据录入、查询、审批和任务处理。</p>
+<p><img src="https://static-docs.nocobase.com/2026-07-10-08-04-59.png" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs.nocobase.com/cn/interface-builder/ui-layout/mobile">移动端布局</a></li>
+</ul>
+<h3>新评论区块</h3>
+<p>新评论区块不再局限于主数据源的评论表，不是关系区块也可以使用。评论区块用于给业务记录添加评论能力。你可以在任务、文章、工单、客户等记录的详情页或弹窗里添加评论区块，让用户围绕当前记录查看、回复和新增评论。</p>
+<p><img src="https://static-docs.nocobase.com/Comments-07-01-2026_12_02_PM.png" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs.nocobase.com/cn/interface-builder/blocks/data-blocks/comment">评论区块</a></li>
+</ul>
+<h3>AI 知识库优化</h3>
+<p>这个版本 AI 知识库也完成了 <code>client-v2</code> 版本的迁移。同时，工作流创建知识库文档的时候，支持按知识库文档的 key 进行覆盖。</p>
+<p><img src="https://static-docs.nocobase.com/20260617003505.png" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs.nocobase.com/cn/ai-employees/knowledge-base/knowledge-base/">AI 知识库</a></li>
+</ul>
+<h3>工作流：数据库事务节点</h3>
+<p>工作流新增了数据库事务节点。它用于将一组数据库操作放入同一个事务中执行。适合需要保证多步数据处理 “全部成功或全部回滚” 的场景，例如创建订单后扣减库存、写入明细、更新状态等。</p>
+<p><img src="https://static-docs.nocobase.com/20260610205505.png" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs.nocobase.com/cn/workflow/nodes/transaction">数据库事务节点</a></li>
+</ul>
+<h2 id="zh-2">以下插件不再支持 V2（已废弃但尚未移除）</h2>
+<p>有一部分插件实际上在更早之前就已废弃，其中部分目前仍可使用，但会在 V3 中彻底移除。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>插件</th><th>替代品</th><th>备注</th></tr></thead><tbody><tr><td><code>@nocobase/plugin-audit-logs</code></td><td><code>@nocobase/plugin-audit-logger</code></td><td>自 1.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-backup-restore</code></td><td><code>@nocobase/plugin-backups</code></td><td>自 1.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-block-multi-step-form</code></td><td>JS Block</td><td>自 2.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-charts</code></td><td><code>@nocobase/plugin-data-visualization</code></td><td>自 2.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-collection-fdw</code></td><td>从数据库同步</td><td>自 2.2 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-comments</code></td><td><code>@nocobase/plugin-block-comment</code></td><td>自 2.2 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-custom-variables</code></td><td>事件流</td><td>自 2.2 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-data-visualization-echarts</code></td><td><code>@nocobase/plugin-data-visualization</code></td><td>自 2.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-disable-pm-add</code></td><td>无</td><td>自 2.2 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-field-component-mask</code></td><td>RunJS</td><td>自 2.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-graph-collection-manager</code></td><td>无</td><td>自 2.2 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-mobile-client</code></td><td><code>@nocobase/plugin-ui-layout</code></td><td>自 2.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-mobile</code></td><td><code>@nocobase/plugin-ui-layout</code></td><td>自 2.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-mock-collections</code></td><td>AI 搭建</td><td>自 2.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-multi-app-manager</code></td><td><code>@nocobase/plugin-app-supervisor</code></td><td>自 2.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-multi-app-share-collection</code></td><td>无</td><td>自 1.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-notifications</code></td><td><code>@nocobase/plugin-notification-manager</code></td><td>自 1.0 起废弃的功能</td></tr><tr><td><code>@nocobase/plugin-snapshot-field</code></td><td>无</td><td>自 1.0 起废弃的功能</td></tr></tbody></table></div><div class="prose en-only"><p>This is a major upgrade <strong>centered on the V2 experience</strong>. This release brings <strong>Multi Portal</strong>, a <strong>new mobile client</strong>, and a <strong>new comment block</strong>, while continuing to enhance the AI knowledge base and workflow capabilities. For teams already using V2, the more noteworthy addition is the brand-new <code>/v/</code> branch—it will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</p>
+<h2 id="en-1">New Features</h2>
+<h3>The new <code>/v/</code> branch</h3>
+<p><code>/v/</code> is a brand-new, standalone front-end entry that is built independently. In the 2.0 release we carried out a very large refactor of the front end, and at the time, for compatibility reasons, we kept support for V1 modules, pages, and so on. The <code>/v/</code> branch, however, completely removes the V1 legacy content—you can no longer create or render V1 pages and blocks, and it keeps only V2-oriented capabilities. At the same time, the <code>/v/</code> branch has been significantly optimized in terms of performance, and it will be the main branch that the NocoBase team iterates on going forward.</p>
+<blockquote>
+<p>We recommend that, if your production environment consists entirely of users centered on v2 Pages, you consider starting to use the <code>/v/</code> branch, so that upcoming new feature iterations can be used directly.</p>
+<p>If you are centered on v2 Pages but have a small number of v1 Pages, consider first migrating the v1 Pages to v2 Pages, and then consider using the <code>/v/</code> branch.</p>
+<p>If you are centered on v1 Pages, we do not recommend switching directly to the <code>/v/</code> branch. We suggest you first migrate your current v1 Pages to v2 Pages, and then switch to the <code>/v/</code> branch.</p>
+</blockquote>
+<p>Typically, you only need to add the <code>/v/</code> prefix before the original path to enter the <code>/v/</code> branch.</p>
+<p>For example:</p>
+<pre tabindex="0" data-language="plaintext"><code><span><span># Original path</span></span>
+<span><span>https://nocobase.example.com/admin/1xl0epqn6q3</span></span>
+<span><span></span></span>
+<span><span># v branch path</span></span>
+<span><span>https://nocobase.example.com/v/admin/1xl0epqn6q3</span></span>
+<span><span></span></span></code></pre>
+<h4>Setting the application’s default entry</h4>
+<p>You can control the application’s entry mode via the environment variable <code>APP_CLIENT_ENTRY_MODE</code>:</p>
+<ul>
+<li><code>legacy-default</code>: both <code>/</code> and <code>/v/</code> are accessible, and the default entry is <code>/</code></li>
+<li><code>modern-default</code>: both <code>/</code> and <code>/v/</code> are accessible, and the default entry is <code>/v/</code></li>
+<li><code>modern-only</code>: only <code>/v/</code> is accessible</li>
+</ul>
+<h4>Current status of the <code>/v/</code> branch</h4>
+<p>The <code>/v/</code> branch is a progressive-migration branch. After entering the <code>/v/</code> branch, there will be a few noticeable changes:</p>
+<ol>
+<li>Pages created via Page V1 will no longer be displayed in the <code>/v/</code> branch. Pages created via Page V2 will still display normally in the <code>/v/</code> branch.</li>
+<li>Plugins that are only adapted for <code>client-v1</code> will no longer be loaded in the <code>/v/</code> branch. The <code>/v/</code> branch only loads plugins adapted for <code>client-v2</code>. For details, refer to the <a href="https://docs.nocobase.com/plugin-development/client/">Client-side plugin development documentation</a>.</li>
+</ol>
+<p>At present, most of the plugins built into NocoBase have been adapted and migrated to client-v2 in this release, so most features can be used directly (a small number of plugins have not yet been migrated, and we will keep migrating them). However, some capabilities provided by certain plugins will only be updated and iterated on the <code>/v/</code> branch going forward. Specifically:</p>
+<ul>
+<li>The plugin list no longer shows deprecated plugins or plugins that support only 1.x</li>
+<li>Adding new Page V1 is no longer supported</li>
+<li>Public forms distinguish between v1 and v2; the <code>/v/</code> branch does not display v1 public forms</li>
+<li>If you want to use approval workflows on the <code>/v/</code> branch, you need to reconfigure the related UI</li>
+<li>The new mobile client is only supported on the <code>/v/</code> branch</li>
+<li>Multi Portal is only supported on the <code>/v/</code> branch</li>
+<li>The Display configuration for sub-applications in the App supervisor has been removed; you can use Portals instead</li>
+<li>The “AI Employees / Data Sources” tab has been removed</li>
+<li>The comment table, calendar table, expression table, and external data table have been removed</li>
+<li>The workflow manual node is not yet supported on the <code>/v/</code> branch</li>
+<li>Adding badge counts to menus is not yet supported</li>
+</ul>
+<p>You can carry out the migration to the <code>/v/</code> branch based on the actual situation of your production environment.</p>
+<h3>Multi Portal (only supported on the <code>/v/</code> branch)</h3>
+<p>Portals are used to provide multiple access entries within the same application. Each Portal can have its own independent pages, menus, navigation structure, layout, and permission configuration. (Supported in the Professional edition and above)</p>
+<p>In real-world business scenarios, different roles usually need different operational interfaces. For example, a retail management system:</p>
+<pre tabindex="0" data-language="plaintext"><code><span><span>Retail management system</span></span>
+<span><span></span></span>
+<span><span>├─ Headquarters Portal</span></span>
+<span><span>├─ Store Portal</span></span>
+<span><span>├─ Dealer Portal</span></span>
+<span><span>└─ Mobile Portal</span></span>
+<span><span></span></span></code></pre>
+<p>Headquarters staff care about:</p>
+<ul>
+<li>Product management</li>
+<li>Inventory management</li>
+<li>Data analysis</li>
+</ul>
+<p>Store staff care about:</p>
+<ul>
+<li>Checkout</li>
+<li>Stock counting</li>
+<li>Order processing</li>
+</ul>
+<p>Dealers care about:</p>
+<ul>
+<li>Procurement</li>
+<li>Reconciliation</li>
+<li>Shipping status</li>
+</ul>
+<p>Even though they use the same system, different roles don’t need to see the same menus and pages. Multi Portal is precisely what solves this problem.</p>
+<p><img src="https://static-docs.nocobase.com/2026-07-10-08-06-15.png" alt=""></p>
+<p>Reference documentation:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/multi-app/multi-portal/">Multi Portal</a></li>
+</ul>
+<h3>New mobile client (only supported on the <code>/v/</code> branch)</h3>
+<p>The new mobile client provides a brand-new <code>/v/mobile</code> entry, and at the same time, Portals also support adding Portals with a mobile layout.</p>
+<p>The mobile layout and desktop layout use the same data source and business data, but menus, routing, and page content are configured separately. This allows you to reorganize pages according to how they are used on mobile, without being constrained by the desktop page structure. In addition, using the bottom tab bar as the primary navigation makes it better suited for data entry, querying, approval, and task handling on phones.</p>
+<p><img src="https://static-docs.nocobase.com/2026-07-10-08-04-59.png" alt=""></p>
+<p>Reference documentation:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/interface-builder/ui-layout/mobile">Mobile layout</a></li>
+</ul>
+<h3>New comment block</h3>
+<p>The new comment block is no longer limited to the comment table of the main data source, and it can be used even outside of relationship blocks. The comment block is used to add commenting capabilities to business records. You can add a comment block on the detail page or popup of records such as tasks, articles, tickets, and customers, allowing users to view, reply to, and add comments around the current record.</p>
+<p><img src="https://static-docs.nocobase.com/Comments-07-01-2026_12_02_PM.png" alt=""></p>
+<p>Reference documentation:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/interface-builder/blocks/data-blocks/comment">Comment block</a></li>
+</ul>
+<h3>AI knowledge base improvements</h3>
+<p>In this release, the AI knowledge base has also completed its migration to the <code>client-v2</code> version. In addition, when a workflow creates knowledge base documents, it now supports overwriting by the knowledge base document’s key.</p>
+<p><img src="https://static-docs.nocobase.com/20260617003505.png" alt=""></p>
+<p>Reference documentation:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/ai-employees/knowledge-base/knowledge-base/">AI knowledge base</a></li>
+</ul>
+<h3>Workflow: Database transaction node</h3>
+<p>The workflow adds a database transaction node. It is used to execute a group of database operations within the same transaction. It is suited for scenarios that need to guarantee “all succeed or all roll back” across multi-step data processing—for example, deducting inventory, writing line items, and updating status after creating an order.</p>
+<p><img src="https://static-docs.nocobase.com/20260610205505.png" alt=""></p>
+<p>Reference documentation:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/workflow/nodes/transaction">Database transaction node</a></li>
+</ul>
+<h2 id="en-2">The following plugins are no longer supported in V2 (deprecated but not yet removed)</h2>
+<p>Some plugins were actually deprecated much earlier. Some of them can still be used at present, but they will be completely removed in V3.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Plugin</th><th>Replacement</th><th>Notes</th></tr></thead><tbody><tr><td><code>@nocobase/plugin-audit-logs</code></td><td><code>@nocobase/plugin-audit-logger</code></td><td>Deprecated since 1.0</td></tr><tr><td><code>@nocobase/plugin-backup-restore</code></td><td><code>@nocobase/plugin-backups</code></td><td>Deprecated since 1.0</td></tr><tr><td><code>@nocobase/plugin-block-multi-step-form</code></td><td>JS Block</td><td>Deprecated since 2.0</td></tr><tr><td><code>@nocobase/plugin-charts</code></td><td><code>@nocobase/plugin-data-visualization</code></td><td>Deprecated since 2.0</td></tr><tr><td><code>@nocobase/plugin-collection-fdw</code></td><td>Sync from database</td><td>Deprecated since 2.2</td></tr><tr><td><code>@nocobase/plugin-comments</code></td><td><code>@nocobase/plugin-block-comment</code></td><td>Deprecated since 2.2</td></tr><tr><td><code>@nocobase/plugin-custom-variables</code></td><td>Event flow</td><td>Deprecated since 2.2</td></tr><tr><td><code>@nocobase/plugin-data-visualization-echarts</code></td><td><code>@nocobase/plugin-data-visualization</code></td><td>Deprecated since 2.0</td></tr><tr><td><code>@nocobase/plugin-disable-pm-add</code></td><td>None</td><td>Deprecated since 2.2</td></tr><tr><td><code>@nocobase/plugin-field-component-mask</code></td><td>RunJS</td><td>Deprecated since 2.0</td></tr><tr><td><code>@nocobase/plugin-graph-collection-manager</code></td><td>None</td><td>Deprecated since 2.2</td></tr><tr><td><code>@nocobase/plugin-mobile-client</code></td><td><code>@nocobase/plugin-ui-layout</code></td><td>Deprecated since 2.0</td></tr><tr><td><code>@nocobase/plugin-mobile</code></td><td><code>@nocobase/plugin-ui-layout</code></td><td>Deprecated since 2.0</td></tr><tr><td><code>@nocobase/plugin-mock-collections</code></td><td>AI-assisted building</td><td>Deprecated since 2.0</td></tr><tr><td><code>@nocobase/plugin-multi-app-manager</code></td><td><code>@nocobase/plugin-app-supervisor</code></td><td>Deprecated since 2.0</td></tr><tr><td><code>@nocobase/plugin-multi-app-share-collection</code></td><td>None</td><td>Deprecated since 1.0</td></tr><tr><td><code>@nocobase/plugin-notifications</code></td><td><code>@nocobase/plugin-notification-manager</code></td><td>Deprecated since 1.0</td></tr><tr><td><code>@nocobase/plugin-snapshot-field</code></td><td>None</td><td>Deprecated since 1.0</td></tr></tbody></table></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">新特性</a><a href="#zh-2">以下插件不再支持 V2（已废弃但尚未移除）</a></div><div class="en-only"><a href="#en-1">New Features</a><a href="#en-2">The following plugins are no longer supported in V2 (deprecated but not yet removed)</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/2.2.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-hygy1r.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年8月23日</t-zh><t-en>Aug 23, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2 正式版发布</t-zh><t-en>Announcing NocoBase 2.2</t-en></h3><p><t-zh>NocoBase 2.2 正式版进一步完善 V2 的完整使用路径，带来独立、轻量的 /v/ 前端入口与全新移动端体验。同时升级文件访问与权限机制，并增强评论区块、AI 知识库、工作流及核心插件的 V2 支持。</t-zh><t-en>NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.</t-en></p></a><a class="bcard" href="../blog/2.1.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(9)-tfwpkk.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.1.0 正式版发布</t-zh><t-en>Announcing NocoBase 2.1.0</t-en></h3><p><t-zh>NocoBase 2.1 以全新的 CLI 打通人与 AI Agent 连接和管理应用的入口，并完善 AI 搭建、Skills、AI 插件开发和 AI 员工能力。同时升级多应用协作、版本管理、工作流增强及更多 2.0 适配能力。</t-zh><t-en>NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.</t-en></p></a><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

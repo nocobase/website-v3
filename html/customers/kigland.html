@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="如何用开源工具，把“定制动漫面具”做成柔性制造？ — NocoBase" data-en="How KIGLAND Scaled Custom Anime Mask Production with Open-Source Tools — NocoBase">如何用开源工具，把“定制动漫面具”做成柔性制造？ — NocoBase</title>
+<meta name="description" content="KIGLAND 是一家专注定制动漫面具的团队，如何用开源工具构建属于自己的柔性制造系统？3 周上线、3 倍提效，他们的探索将为所有追求“个性化 + 高效率”的团队带来启发。" data-zh="KIGLAND 是一家专注定制动漫面具的团队，如何用开源工具构建属于自己的柔性制造系统？3 周上线、3 倍提效，他们的探索将为所有追求“个性化 + 高效率”的团队带来启发。" data-en="How did a niche anime mask studio scale their custom production with open-source tools? KIGLAND built a flexible manufacturing system in just 3 weeks—tripling efficiency and redefining what small teams can achieve with open-source infrastructure.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="customers" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../customers.html"><t-zh>客户案例</t-zh><t-en>Customer Stories</t-en></a></p>
+    <h1><t-zh>如何用开源工具，把“定制动漫面具”做成柔性制造？</t-zh><t-en>How KIGLAND Scaled Custom Anime Mask Production with Open-Source Tools</t-en></h1>
+    <p class="lede"><t-zh>KIGLAND 是一家专注定制动漫面具的团队，如何用开源工具构建属于自己的柔性制造系统？3 周上线、3 倍提效，他们的探索将为所有追求“个性化 + 高效率”的团队带来启发。</t-zh><t-en>How did a niche anime mask studio scale their custom production with open-source tools? KIGLAND built a flexible manufacturing system in just 3 weeks—tripling efficiency and redefining what small teams can achieve with open-source infrastructure.</t-en></p>
+    <div class="bmeta"><span><t-zh>2025年4月6日</t-zh><t-en>Apr 6, 2025</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/688e4a18d9e219b4cd6cc3d9c512ff00.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">引言</h2>
+<p>在苏州，有一支团队正在悄悄改变个性化制造的方式。他们不做快消品，也不靠规模取胜，却在全球角色扮演爱好者圈子里收获了不少“忠粉”。</p>
+<p><img src="https://static-docs.nocobase.com/e8d57071ce452ab9b8ebeb759f6b3b1a.PNG" alt="KIGLAND.PNG"></p>
+<p>他们叫 <a href="https://www.kigland.cn/zh">KIGLAND</a>，一家专注 2D 风格角色头部面具（也就是：KIGURUMI）定制的工作室——这类产品极具个性化，定制复杂，手工精度要求高，是典型的<strong>小批量、高多样性</strong>制造品。</p>
+<p>听起来像是一个小众的手工艺团队？</p>
+<p>其实，他们更像一个面向文娱消费品的柔性制造实验室：通过数字化制造、标准化流程与 AI 驱动的供应链创新，<strong>实现定制类产品从“艺术品”向“准工业品”的演进。</strong></p>
+<h2 id="zh-2">从 GitHub Issues 到多维表格</h2>
+<p>创业初期的 KIGLAND，运作方式颇具极客气质：</p>
+<ul>
+<li>客户订单用 GitHub Issues 管理</li>
+<li>制作进度靠某多维表格填写</li>
+<li>沟通与反馈夹杂在评论、截图、聊天记录中</li>
+</ul>
+<p><strong>早期使用 GitHub Issues 管理订单：</strong></p>
+<p><img src="https://static-docs.nocobase.com/fdc4f9c72c572fc824f0ad0c82158f14.PNG" alt="GitHub Issues.PNG"></p>
+<p><strong>通过某多维表格产品管理订单：</strong></p>
+<p><img src="https://static-docs.nocobase.com/178e19fde0b964a6b02bd69dfc97c53c.PNG" alt="Lark&#x27;s Base.PNG"></p>
+<blockquote>
+<p><em><strong>“刚开始其实挺顺的，但当我们订单数量涨上来、团队变大，一切就开始失控。”</strong></em></p>
+</blockquote>
+<p>他们遇到的挑战，听起来非常熟悉：</p>
+<ol>
+<li><strong>资源使用受限</strong>：传统的列表不足以支撑更宽的字段，每个阶段关注范围不一致列表不适合部门场景 。</li>
+<li><strong>流程追踪难度大</strong>：Issues 无法结构化属性之外的数据，例如评论等。</li>
+<li><strong>数据协作割裂</strong>：传统岗位无法适应 GitHub 研发流程，某多维表格的权限隔离需要更高资源消耗的配置。</li>
+</ol>
+<p>随着沟通成本的指数级上升，KIGLAND 决定停下来，找一套真正适合他们的管理系统。</p>
+<h2 id="zh-3">寻找“自己能动手改”的系统</h2>
+<p>KIGLAND 的几位合伙人都是开源社区出身，技术背景不俗，他们想要的不是一个功能繁复的 SaaS，而是一套<strong>能自己掌控的系统</strong>。</p>
+<blockquote>
+<p><em><strong>“我们要的是能随业务变化而调整的工具，而不是被动迁就平台规则。”</strong></em></p>
+</blockquote>
+<p>他们开始尝试各种“类 Airtable”工具，最终选择了 NocoBase。</p>
+<p>选择的理由很简单：</p>
+<ul>
+<li>数据模型灵活，可以适配复杂订单结构</li>
+<li>插件机制+开放 API，团队可以自己拓展功能</li>
+<li>界面友好，极低的学习曲线</li>
+<li>活跃且进化迅速的社区</li>
+<li>最重要的是：<strong>开源、可自部署、自我掌控</strong></li>
+</ul>
+<h2 id="zh-4">三周上线，打造适配业务的管理系统</h2>
+<p>用了不到三周时间，KIGLAND 就基于 NocoBase 搭建起了完整的订单管理系统，包括：</p>
+<ul>
+<li><strong>订单全生命周期管理</strong>：从下单、设计、制作、质检到发货，流程细分到每个小步骤</li>
+<li><strong>跨岗位协作机制</strong>：销售、设计、生产多个角色协同，权限清晰，流程闭环</li>
+<li><strong>日志驱动责任机制</strong>：每一步都可追踪记录，问题定位更高效</li>
+<li><strong>物料与库存管理模块</strong>：支持多种自定义物料分类与关联操作</li>
+</ul>
+<p><strong>通过 NocoBase 管理订单列表：</strong></p>
+<p><img src="https://static-docs.nocobase.com/4b5ac21069bdd25c928403455c2636cd.png" alt="Order list managed in NocoBase.png"></p>
+<p><strong>通过 NocoBase 管理订单细节：</strong></p>
+<p><img src="https://static-docs.nocobase.com/a5b09d907305ae1f594d19b06242d6a6.png" alt="Order details and production steps.png"></p>
+<p><strong>通过 NocoBase 管理订单日志：</strong></p>
+<p><img src="https://static-docs.nocobase.com/4c47d7ee6976759b5923db9624ec5b5d.png" alt="Activity logs and traceability.png"></p>
+<p><strong>订单与日志建立关联：</strong></p>
+<p><img src="https://static-docs.nocobase.com/7ed0cd8c3d18698306cedf7969ab1dae.png" alt="Linking logs to specific orders.png"></p>
+<p>在系统搭建完成后，并保持持续跟随 NocoBase 官方更新。</p>
+<h2 id="zh-5">三个季度之后，数据告诉我们答案</h2>
+<blockquote>
+<p>“部署 NocoBase 后，我们从一个手忙脚乱的小型工作室，变成了这个赛道里相对靠前的团队。”</p>
+</blockquote>
+<p>KIGLAND 的成果数据也非常亮眼：</p>
+<ul>
+<li>📦 订单吞吐能力提升 3 倍</li>
+<li>❌ 协作错误率下降 80%</li>
+<li>😊 客户满意度显著提高</li>
+<li>🔧 技术团队实现功能自研与持续优化</li>
+</ul>
+<p><strong>更重要的是——团队终于从流程中解脱出来，开始有时间真正思考业务成长与用户体验。</strong></p>
+<p><strong>来自 KIGLAND 用户的真实反馈：</strong></p>
+<p><img src="https://static-docs.nocobase.com/2499e3b040253747de352eca2c9a8913.png" alt="customers.png"></p>
+<p><img src="https://static-docs.nocobase.com/265a9222e67bb37c77cfd390db76281b.png" alt="customers2.png"></p>
+<h2 id="zh-6">继续拓展系统能力</h2>
+<p>在 NocoBase 的基础上，KIGLAND 正在一步步拓展他们的系统能力，目标是打造真正的<strong>定制化自动工厂</strong>：</p>
+<ul>
+<li>基于私有部署的 LLM 和 MCP，构建智能化生产调度系统</li>
+<li>利用订单数据，建立预测性生产模型，实现与供应商的无缝对接与派单</li>
+<li>打通客户端下单系统，构建完整的端到端标准化定制路径</li>
+</ul>
+<p>对 KIGLAND 来说，这不仅是工具升级，更是战略层面的进化。</p>
+<blockquote>
+<p><em><strong>“在个性化消费制造领域，系统化早已不是加分项，而是业务扩张的基石。”</strong></em></p>
+<p><em><strong>——KIGLAND 创始人 Remi</strong></em></p>
+</blockquote>
+<h2 id="zh-7">写在最后</h2>
+<p>KIGLAND 的探索告诉我们一个朴素却深刻的事实：</p>
+<p><strong>越是复杂、个性化的业务，越需要底层结构化支撑；越想规模化，就越不能依赖‘人控流程’。</strong></p>
+<p>而他们之所以能快速完成从混乱到高效的转变，NocoBase 是关键的一环——它不是一个现成的系统，而是一套可以共建、共成长的“操作底座”。</p>
+<p><strong>对正在经历数字化转型的团队来说，也许你们要找的不是某个万能模板，而是一个像 NocoBase 这样的“积木系统”——灵活、可靠、能生长。</strong></p>
+<ul>
+<li><a href="../customers/classmethod.html">从表格到系统：Classmethod 用 NocoBase 构建全球员工信息管理系统</a></li>
+<li><a href="../customers/olmon.html">一家家具厂，如何用零代码搭建自己的 ERP ？</a></li>
+<li><a href="../customers/l-a.html">奥雅的数字化新版图：用 NocoBase 探索精细化管理新可能</a></li>
+<li><a href="../customers/how-400-lawyer-firm-streamlines-commission-management-with-nocobase.html">超 400 人团队律所，如何用 NocoBase 高效管理律师提成？</a></li>
+<li><a href="../customers/rapid-development-with-nocobase.html">1周上线，2个月交付！有巢数智如何用 NocoBase 颠覆建筑行业数智化效率</a></li>
+<li><a href="../customers/Orchisky.html">低代码加速智能制造，兰之天的选择是 NocoBase</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p>In Suzhou China, a team is quietly reinventing the world of personalized production. They don’t make fast-fashion goods or chase mass production, but they’ve built a loyal global following among cosplay fans.</p>
+<p><img src="https://static-docs.nocobase.com/e8d57071ce452ab9b8ebeb759f6b3b1a.PNG" alt="KIGLAND.PNG"></p>
+<p>Meet <a href="https://www.kigland.cn/">KIGLAND</a> — a studio that crafts 2D-style character head masks, known as KIGURUMI. These masks are highly personalized, tricky to customize, and require precise handiwork — the perfect example of low-volume, high-variety manufacturing.</p>
+<p>At first glance, they might seem like a niche artisan team.</p>
+<p>But in reality, they’re more like a flexible manufacturing lab for entertainment products. By combining digital production, standardized workflows, and AI-driven supply chain innovation, <strong>they’re transforming handcrafted creations into near-industrial products.</strong></p>
+<h2 id="en-2">From GitHub Issues to Lark’s Base</h2>
+<p>In its early days, KIGLAND ran things like a true hacker-style startup:</p>
+<ul>
+<li>Customer orders were tracked in GitHub Issues</li>
+<li>Production progress was updated in Lark’s Base</li>
+<li>Feedback and communication were scattered across comments, screenshots, and chat threads</li>
+</ul>
+<p><strong>Early use of GitHub Issues to manage orders:</strong></p>
+<p><img src="https://static-docs.nocobase.com/fdc4f9c72c572fc824f0ad0c82158f14.PNG" alt="GitHub Issues.PNG"></p>
+<p><strong>Manage orders through Lark’s Base:</strong></p>
+<p><img src="https://static-docs.nocobase.com/178e19fde0b964a6b02bd69dfc97c53c.PNG" alt="Lark&#x27;s Base.PNG"></p>
+<blockquote>
+<p>“It was manageable when we were small—but as soon as the volume picked up, the whole system started to break down.”</p>
+</blockquote>
+<p>The problems will sound familiar to anyone who’s scaled from side project to real operation:</p>
+<ul>
+<li><strong>Limited structure</strong> – Traditional Issue lists couldn’t handle the growing number of custom fields or stage-specific data needs across departments.</li>
+<li><strong>Workflow blind spots</strong> – Comments and discussions weren’t easily searchable or structured, making it hard to track progress.</li>
+<li><strong>Collaboration breakdown</strong> – Non-technical team members struggled with GitHub’s developer-oriented tools, and the spreadsheet setup required increasingly complex permission management.</li>
+</ul>
+<p>As the communication overhead grew exponentially, KIGLAND knew it was time to stop patching things together—and start looking for a real system built for their unique needs.</p>
+<h2 id="en-3">Looking for a System They Could Truly Own</h2>
+<p>As open-source veterans with strong technical backgrounds, KIGLAND’s founding team wasn’t looking for yet another bloated SaaS platform. They needed something different—something they could shape around their business, not the other way around.</p>
+<blockquote>
+<p>“We wanted a tool that could grow with us—not a rigid platform we had to constantly work around.”</p>
+</blockquote>
+<p>So they started exploring alternatives to traditional tools like Airtable. After testing several options, they landed on <strong>NocoBase</strong>.</p>
+<p>The reasons were clear:</p>
+<ul>
+<li><strong>Flexible data modeling</strong> to handle the complexity of custom orders</li>
+<li><strong>Plugin-based architecture with open APIs</strong>, giving their team the freedom to extend functionality</li>
+<li><strong>User-friendly interface</strong> with a shallow learning curve, even for non-developers</li>
+<li><strong>A fast-moving, active open-source community</strong></li>
+<li>And above all: <strong>self-hostable and fully open</strong>, giving them complete control over their system</li>
+</ul>
+<h2 id="en-4">A Custom Management System—Built in Just Three Weeks</h2>
+<p>In less than three weeks, KIGLAND had a fully functional internal management system built entirely on NocoBase. It was designed to match their workflows exactly, without compromise.</p>
+<p>Their setup included:</p>
+<ul>
+<li><strong>End-to-end order lifecycle management</strong> – covering every step from order intake, design, and production, to quality control and shipping</li>
+<li><strong>Multi-role collaboration</strong> – with clearly defined permissions for sales, design, and production teams, ensuring smooth handoffs and accountability</li>
+<li><strong>Log-driven responsibility tracking</strong> – enabling full traceability and faster issue resolution</li>
+<li><strong>Flexible materials and inventory tracking</strong> – with custom categories, linked records, and real-time visibility</li>
+</ul>
+<p><strong>Order list managed in NocoBase:</strong></p>
+<p><img src="https://static-docs.nocobase.com/4b5ac21069bdd25c928403455c2636cd.png" alt="Order list managed in NocoBase.png"></p>
+<p><strong>Order details and production steps:</strong></p>
+<p><img src="https://static-docs.nocobase.com/a5b09d907305ae1f594d19b06242d6a6.png" alt="Order details and production steps.png"></p>
+<p><strong>Activity logs and traceability:</strong></p>
+<p><img src="https://static-docs.nocobase.com/4c47d7ee6976759b5923db9624ec5b5d.png" alt="Activity logs and traceability.png"></p>
+<p><strong>Linking logs to specific orders:</strong></p>
+<p><img src="https://static-docs.nocobase.com/7ed0cd8c3d18698306cedf7969ab1dae.png" alt="Linking logs to specific orders.png"></p>
+<p>Once the core system was up and running, the team continued to evolve it alongside NocoBase’s regular updates—adapting new features as they came and contributing feedback to the community.</p>
+<h2 id="en-5">Three Quarters In, the Results Spoke for Themselves</h2>
+<blockquote>
+<p>“After adopting NocoBase, we went from a scrambling small studio to one of the top teams in our niche.”</p>
+</blockquote>
+<p>And the numbers back it up:</p>
+<ul>
+<li>📦 <strong>3× increase</strong> in order processing capacity</li>
+<li>❌ <strong>80% drop</strong> in collaboration-related errors</li>
+<li>😊 <strong>Significantly higher customer satisfaction</strong></li>
+<li>🔧 <strong>Greater self-sufficiency</strong> for the tech team, with ongoing in-house development and iteration</li>
+</ul>
+<p>But the biggest win? The team finally stepped out of the day-to-day grind and began focusing on growing the business and improving user experience.</p>
+<p>Here’s what their customers had to say:</p>
+<p><img src="https://static-docs.nocobase.com/2499e3b040253747de352eca2c9a8913.png" alt="customers.png"></p>
+<p><img src="https://static-docs.nocobase.com/265a9222e67bb37c77cfd390db76281b.png" alt="customers2.png"></p>
+<h2 id="en-6">Scaling Beyond the System</h2>
+<p>With NocoBase as their foundation, KIGLAND continues to expand what their internal systems can do—one step closer to building a fully automated, fully customized production pipeline.</p>
+<p>Their roadmap includes:</p>
+<ul>
+<li><strong>AI-powered production scheduling</strong> using self-hosted LLMs and a modular control platform (MCP)</li>
+<li><strong>Predictive manufacturing models</strong> based on historical order data, enabling real-time dispatch to suppliers</li>
+<li><strong>Client-side ordering integration</strong> for a fully standardized, end-to-end custom workflow</li>
+</ul>
+<p>For KIGLAND, this isn’t just about adopting better tools—it’s a strategic shift in how they scale.</p>
+<blockquote>
+<p>“In personalized manufacturing, systemization is no longer a ‘nice to have.’ It’s the foundation for growth.”  —Remi, Co-Founder of KIGLAND</p>
+</blockquote>
+<h2 id="en-7">Final Thoughts</h2>
+<p>KIGLAND’s journey is a reminder of a simple but powerful truth:</p>
+<p><strong>The more complex and personalized your business becomes, the more structure you need underneath. And if you want to scale, you can’t rely on manual processes alone.</strong></p>
+<p>Their transformation wasn’t powered by an out-of-the-box solution—it was made possible by a system they could shape, extend, and evolve alongside their business.</p>
+<p>For teams navigating digital transformation, the real breakthrough might not come from finding a perfect all-in-one platform—but from building on something like <strong>NocoBase</strong>: a flexible, open foundation that grows with you.</p>
+<ul>
+<li><a href="../customers/classmethod.html">Beyond Spreadsheets: Classmethod’s Employee Data Management with NocoBase</a></li>
+<li><a href="../customers/olmon.html">How One Furniture Factory Built Its Own ERP—No Coding Needed</a></li>
+<li><a href="../customers/l-a.html">From Designer to Builder: L&#x26;A’s Digital Transformation with NocoBase</a></li>
+<li><a href="../customers/how-400-lawyer-firm-streamlines-commission-management-with-nocobase.html">How a 400+ Lawyer Firm Streamlines Commission Management with NocoBase</a></li>
+<li><a href="../customers/rapid-development-with-nocobase.html">Rapid Development with NocoBase: Driving Digital Transformation in Construction</a></li>
+<li><a href="../customers/Orchisky.html">Orchisky’s Smart Manufacturing Upgrade: Why They Chose NocoBase</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">引言</a><a href="#zh-2">从 GitHub Issues 到多维表格</a><a href="#zh-3">寻找“自己能动手改”的系统</a><a href="#zh-4">三周上线，打造适配业务的管理系统</a><a href="#zh-5">三个季度之后，数据告诉我们答案</a><a href="#zh-6">继续拓展系统能力</a><a href="#zh-7">写在最后</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">From GitHub Issues to Lark’s Base</a><a href="#en-3">Looking for a System They Could Truly Own</a><a href="#en-4">A Custom Management System—Built in Just Three Weeks</a><a href="#en-5">Three Quarters In, the Results Spoke for Themselves</a><a href="#en-6">Scaling Beyond the System</a><a href="#en-7">Final Thoughts</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>更多客户案例</t-zh><t-en>More customer stories</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../customers/sungrow.html" data-tags="Customer_Stories"><span class="cv"><span class="cv-ph"><b>SUNGROW</b></span></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年10月17日</t-zh><t-en>Oct 17, 2026</t-en></span><span><t-zh>NocoBase</t-zh><t-en>NocoBase</t-en></span></div><h3><t-zh>阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统</t-zh><t-en>Sungrow: the systems behind a global business, built on NocoBase</t-en></h3><p><t-zh>全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。</t-zh><t-en>How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.</t-en></p></a><a class="bcard" href="../customers/polish-volunteer-fire-department-nocobase-case-study.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/20260722-111552-ydpnay.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月22日</t-zh><t-en>Jul 22, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>一支每年出警 200 次的消防队，如何用 NocoBase 搭建运营系统</t-zh><t-en>How a Volunteer Fire Department Manages 200 Callouts a Year with NocoBase</t-en></h3><p><t-zh>波兰 OSP Radlin II 志愿消防队用 NocoBase 统一管理出警、人员资质、车辆装备与自动化提醒，并持续迭代消防队运营系统。</t-zh><t-en>See how OSP Radlin II uses NocoBase to manage emergency callouts, personnel qualifications, vehicles, equipment, reminders, and daily operations</t-en></p></a><a class="bcard" href="../customers/astrolab-nocobase.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%B3%95%E5%9B%BD%E6%94%BF%E5%BA%9C%20(2)-8g4luf.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月3日</t-zh><t-en>Jul 3, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>法国大区政府如何用 NocoBase 建设数字化公共服务平台</t-zh><t-en>From Paperwork to Digital Public Services in France</t-en></h3><p><t-zh>基于一套 NocoBase 架构，Astrolab 为法国大区政府交付三个生产级平台，将审核周期缩短至 24 小时内，车辆冲突减少 80%，普查回收率提升至 90% 以上。</t-zh><t-en>Astrolab used NocoBase to deliver three production-ready platforms for a French regional government, reducing review cycles to under 24 hours, cutting reservation conflicts by 80%, and reaching over 90% survey response rates.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>下一个故事，可以是你的。</t-zh><t-en>The next story could be yours.</t-en></h2><p><t-zh>带一个真实需求，和我们一起把它做成可以长期使用的系统。</t-zh><t-en>Bring one real requirement and turn it into a system you’ll use for years.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../customers.html"><t-zh>全部客户案例</t-zh><t-en>All customer stories</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="数十万条数据秒级响应——Classact 在 Kubernetes 上的 NocoBase 应用实践 — NocoBase" data-en="Sub-Second Response at Scale: Classact Runs NocoBase on Kubernetes — NocoBase">数十万条数据秒级响应——Classact 在 Kubernetes 上的 NocoBase 应用实践 — NocoBase</title>
+<meta name="description" content="Classact 在 Kubernetes 上应用 NocoBase，实现数十万级数据秒级响应，覆盖人事、合规等管理场景，显著提升效率与体验。" data-zh="Classact 在 Kubernetes 上应用 NocoBase，实现数十万级数据秒级响应，覆盖人事、合规等管理场景，显著提升效率与体验。" data-en="Classact deployed NocoBase on Kubernetes, achieving sub-second response for hundreds of thousands of records, covering HR and compliance management, and significantly boosting efficiency and user experience.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="customers" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../customers.html"><t-zh>客户案例</t-zh><t-en>Customer Stories</t-en></a></p>
+    <h1><t-zh>数十万条数据秒级响应——Classact 在 Kubernetes 上的 NocoBase 应用实践</t-zh><t-en>Sub-Second Response at Scale: Classact Runs NocoBase on Kubernetes</t-en></h1>
+    <p class="lede"><t-zh>Classact 在 Kubernetes 上应用 NocoBase，实现数十万级数据秒级响应，覆盖人事、合规等管理场景，显著提升效率与体验。</t-zh><t-en>Classact deployed NocoBase on Kubernetes, achieving sub-second response for hundreds of thousands of records, covering HR and compliance management, and significantly boosting efficiency and user experience.</t-en></p>
+    <div class="bmeta"><span><t-zh>2025年9月18日</t-zh><t-en>Sep 18, 2025</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/classact%20(1)-6wsgy4.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1"><strong>Classact 介绍与技术背景</strong></h2>
+<p><a href="https://www.classact.co.jp/">Classact Co., Ltd. </a>是一家专注于 IT 基础设施的服务提供商，业务涵盖技术支持与工程师派遣。Classact 同时也是日本国内首批获得 Proxmox 金牌认证的合作伙伴，拥有丰富的虚拟化与数据中心经验。在为客户交付高可用 IT 方案的同时，Classact 也在持续优化自身内部的系统与流程，以确保运营效率和合规性。</p>
+<p>与许多公司一样，Classact 的数字化需求并不仅限于技术团队。公司内部的行政、人事、销售等多个部门同样需要高效的系统支持，以管理招聘、员工事务、培训以及信息安全合规等工作。</p>
+<p><img src="https://static-docs.nocobase.com/1-ifaq7k.png" alt="company.png"></p>
+<h2 id="zh-2"><strong>挑战与需求</strong></h2>
+<p>在引入 NocoBase 之前，Classact 主要依赖开源的 Exment 作为内部数据库管理工具。</p>
+<p><img src="https://static-docs.nocobase.com/2-x35h8j.PNG" alt="exment.PNG"></p>
+<p>然而，随着业务规模扩大和数据量增长，Exment 的性能问题开始影响 Classact 的使用体验：</p>
+<ul>
+<li><strong>页面加载缓慢</strong>：在大数据量场景下，单个页面加载需要 5–10 秒，严重拖慢操作节奏。</li>
+<li><strong>用户体验下降</strong>：冗长的等待时间导致员工抱怨频繁，降低了系统使用意愿。</li>
+<li><strong>扩展性不足</strong>：面对不断增加的业务需求，现有系统难以灵活扩展，无法支撑新的应用场景。</li>
+</ul>
+<p>与此同时，公司不同团队也在尝试其他工具。例如，部分团队使用 ClickUp 进行任务管理，与此同时 Classact 也开始尝试 Airtable 和 NocoDB。</p>
+<p>在不断探索中 Classact 明确了他们需要一个满足以下条件的解决方案：</p>
+<ul>
+<li><strong>高性能</strong>：支持数十万级数据，保持快速响应。</li>
+<li><strong>灵活性</strong>：能够根据各部门的不同需求快速定制应用。</li>
+<li><strong>企业级可控性</strong>：支持自建和私有化部署，数据完全可控。</li>
+</ul>
+<p>这些需求最终指向了 NocoBase 作为合适的解决方案。</p>
+<h2 id="zh-3"><strong>部署与验证</strong></h2>
+<p>在正式上线之前，Classact 先在测试环境中对 NocoBase 进行了性能验证。团队导入了数十万条数据，用以模拟真实业务场景，重点观察查询和页面加载速度。结果显示，NocoBase 在大数据量下依然保持了稳定的性能，完全符合预期。</p>
+<p>基于验证结果，公司将 NocoBase 部署在自建的 <strong>Kubernetes 集群</strong>中，确保系统能够在企业级环境下稳定运行。同时，技术团队购买多款插件，加速了应用的搭建过程，并快速搭建了原先未能落地的员工事务和培训管理系统。</p>
+<p>这种部署与验证的方式，不仅保证了 NocoBase 在性能和可扩展性上的可靠性，也让 Classact 能够以最小的风险完成系统迁移，并在短时间内推动内部数字化进程。</p>
+<h2 id="zh-4"><strong>应用场景覆盖</strong></h2>
+<p>在完成部署后，Classact 围绕内部运营的多个环节，快速构建并上线了一系列应用。这些应用既涵盖了 HR、员工事务、资产管理等常规业务，也扩展到了 ISMS 合规和导师计划等更专业的场景。</p>
+<p><img src="https://static-docs.nocobase.com/3-z5vksi.PNG" alt="nocobase"></p>
+<p><img src="https://static-docs.nocobase.com/4-g1sz0z.PNG" alt="nocobase.PNG"></p>
+<ul>
+<li><strong>人力资源管理</strong></li>
+</ul>
+<p>员工数据维护、培训报告与通知、招聘活动（面试记录与通知）、岗位与人员分配、员工代表选举、专业认证追踪。</p>
+<ul>
+<li><strong>员工事务处理</strong></li>
+</ul>
+<p>信息变更（如住址、通勤路线）、福利申请、费用报销、设备和书籍采购、名片申请、医疗咨询申请、庆祝或抚恤事项申报。</p>
+<ul>
+<li><strong>资产与任务管理</strong></li>
+</ul>
+<p>内部系统与设备的资产管理，以及日常任务管理。</p>
+<ul>
+<li><strong>学习与发展</strong></li>
+</ul>
+<p>E-learning 授权管理、导师制项目管理与报告，支持员工持续成长。</p>
+<ul>
+<li><strong>信息安全与合规</strong></li>
+</ul>
+<p>ISMS 运维管理，满足信息安全规范要求。</p>
+<ul>
+<li><strong>信息收集与互动</strong></li>
+</ul>
+<p>通过公共表单，收集候选人信息、员工问卷和内部调查结果。</p>
+<p>大多数企业级系统只能覆盖单一场景，企业往往不得不依赖多个工具并行管理不同流程。<strong>NocoBase 则打破了这一局限，让 Classact 能够在同一平台上自由搭建和组合应用。</strong></p>
+<p>通过这种方式，Classact 可以以更高的灵活性构建出真正符合自身需求的一体化内部管理平台。</p>
+<h2 id="zh-5">成果</h2>
+<p>通过引入 NocoBase，Classact 在性能和用户体验上都取得了显著提升：</p>
+<ul>
+<li><strong>性能优化</strong>：页面加载速度从 5–10 秒缩短至 1–2 秒，大幅改善了日常操作效率。</li>
+<li><strong>用户满意度提升</strong>：等待时间减少，员工的使用压力和抵触感明显下降，积极反馈不断。</li>
+<li><strong>可视化</strong>：借助图表、灵活的过滤与展示方式，数据呈现更直观。</li>
+<li><strong>流程优化</strong>：工作流功能进一步简化了复杂的业务流程。</li>
+</ul>
+<p>Classact 对 NocoBase 的使用体验也给予了积极反馈：</p>
+<blockquote>
+<p>“<strong>我们最看重的是 NocoBase 的稳定性和扩展能力。即使在大数据量下，它依然能够保持稳定性能</strong>。同时，图表功能让我们可以直观地进行数据可视化，LDAP 插件帮助我们与 Active Directory 无缝集成。公共表单让候选人和员工信息收集变得轻松，而工作流功能则极大简化了内部流程。”</p>
+<p>——Classact CEO 本間豪紀</p>
+</blockquote>
+<h2 id="zh-6">写在最后</h2>
+<p>Classact 的实践证明，NocoBase 不仅能在数十万级数据规模下保持秒级响应，还能通过 Kubernetes 部署和插件机制，支持企业在单一平台上覆盖多部门、多流程的复杂需求。</p>
+<p>与传统各自为政的系统不同，NocoBase 提供了<strong>可建模、可扩展、可组合</strong>的架构，让企业能够以更低的成本持续演进内部系统，同时为未来功能拓展预留空间。</p>
+<p><strong>更多 NocoBase 的用户故事：</strong></p>
+<ul>
+<li><a href="../customers/bielcrystal.html">年产量 18.5 亿，伯恩光学背后的数字敏捷工厂</a></li>
+<li><a href="../customers/distinct-healthcare.html">卓正医疗如何用 NocoBase 搭建“家庭医生式”服务体系？</a></li>
+<li><a href="../customers/shimano.html">在禧玛诺工厂，一位工程师的零代码实践</a></li>
+<li><a href="../customers/century-21.html">日本房产中介龙头为何放弃 Salesforce，转向开源平台 NocoBase？</a></li>
+<li><a href="../customers/second-brain.html">Second-Brain 如何用 NocoBase 为金融企业构建 AI 系统</a></li>
+<li><a href="../customers/plaud.html">全球第一 AI 录音笔品牌，如何搭建运营与客服系统？</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1"><strong>About Classact</strong></h2>
+<p><a href="https://www.classact.co.jp/">Classact Co., Ltd</a>. is an IT infrastructure service provider offering technical support and engineer staffing. It is also among the first companies in Japan to receive Proxmox Gold Partner certification, with extensive experience in virtualization and data centers. While delivering highly available IT solutions to clients, Classact has also been working to streamline its own internal systems and processes to ensure operational efficiency and compliance.</p>
+<p>Like many companies, Classact’s digital needs go beyond its technical teams. Departments such as administration, HR, and sales also require reliable systems to manage recruitment, employee operations, training, and information security compliance.</p>
+<p><img src="https://static-docs.nocobase.com/1-ifaq7k.png" alt="company.png"></p>
+<h2 id="en-2"><strong>Challenges and Requirements</strong></h2>
+<p>Before adopting NocoBase, Classact relied primarily on the open-source tool Exment for internal database management.</p>
+<p><img src="https://static-docs.nocobase.com/2-x35h8j.PNG" alt="exment.PNG"></p>
+<p>However, as business operations scaled and data volume grew, Exment’s performance issues began to affect daily use:</p>
+<ul>
+<li><strong>Slow page loads</strong>: In large datasets, a single page could take 5–10 seconds to load, significantly slowing down workflows.</li>
+<li><strong>Poor user experience</strong>: Long waiting times led to frequent employee complaints and reduced willingness to use the system.</li>
+<li><strong>Limited scalability</strong>: The system lacked the flexibility to accommodate growing business needs or support new application scenarios.</li>
+</ul>
+<p>At the same time, different teams were experimenting with other tools. Some adopted ClickUp for task management, while Classact also evaluated Airtable and NocoDB.</p>
+<p>Through this exploration, Classact clarified its requirements for a new solution:</p>
+<ul>
+<li><strong>High performance</strong>: Handle hundreds of thousands of records while maintaining fast response times.</li>
+<li><strong>Flexibility</strong>: Allow departments to quickly tailor applications to their specific needs.</li>
+<li><strong>Enterprise control</strong>: Support self-hosted and private deployments, ensuring full control of data.</li>
+</ul>
+<p>These requirements ultimately led Classact to choose NocoBase as the most suitable solution.</p>
+<h2 id="en-3"><strong>Deployment and Validation</strong></h2>
+<p>Before going live, Classact first tested NocoBase in a staging environment. The team imported hundreds of thousands of records to simulate real business scenarios, focusing on query and page load performance. The results showed that NocoBase maintained stable performance even with large datasets, fully meeting expectations.</p>
+<p>Based on this validation, the company deployed NocoBase on its self-managed Kubernetes cluster to ensure enterprise-grade stability. The technical team also purchased several plugins, which accelerated application development and enabled the rapid rollout of employee operations and training management systems that had previously been stalled.</p>
+<p>This deployment and validation approach not only confirmed NocoBase’s reliability in performance and scalability but also allowed Classact to migrate with minimal risk and quickly advance its internal digital transformation.</p>
+<h2 id="en-4"><strong>Application Coverage</strong></h2>
+<p>After deployment, Classact quickly built and launched a series of applications to support different aspects of internal operations. These applications covered common business processes such as HR, employee services, and asset management, as well as more specialized areas like ISMS compliance and mentoring programs.</p>
+<p><img src="https://static-docs.nocobase.com/3-z5vksi.PNG" alt="nocobase"></p>
+<p><img src="https://static-docs.nocobase.com/4-g1sz0z.PNG" alt="nocobase.PNG"></p>
+<ul>
+<li><strong>Human Resources Management</strong></li>
+</ul>
+<p>Employee data maintenance, training reports and notifications, recruitment activities (interview records and notifications), role and position assignments, employee representative elections, and professional certification tracking.</p>
+<ul>
+<li><strong>Employee Services</strong></li>
+</ul>
+<p>Information updates (e.g., address or commuting route), benefit applications, expense reimbursements, equipment and book purchases, business card requests, medical consultations, and reporting for celebrations or condolence events.</p>
+<ul>
+<li><strong>Asset and Task Management</strong></li>
+</ul>
+<p>Management of internal systems and equipment assets, along with daily task tracking.</p>
+<ul>
+<li><strong>Learning and Development</strong></li>
+</ul>
+<p>E-learning license management, mentoring program management and reporting to support ongoing employee growth.</p>
+<ul>
+<li><strong>Information Security and Compliance</strong></li>
+</ul>
+<p>ISMS operations management to meet information security standards.</p>
+<ul>
+<li><strong>Data Collection and Engagement</strong></li>
+</ul>
+<p>Public forms for collecting candidate information, employee surveys, and internal feedback.</p>
+<p>Most enterprise systems only cover a single scenario, forcing organizations to rely on multiple tools to manage different processes in parallel. <strong>NocoBase breaks this limitation, enabling Classact to build and combine applications freely within a single platform.</strong></p>
+<p>With this approach, Classact has created an integrated internal management platform tailored to its needs, with far greater flexibility than traditional solutions.</p>
+<h2 id="en-5"><strong>Results</strong></h2>
+<p>By adopting NocoBase, Classact achieved significant improvements in both performance and user experience:</p>
+<ul>
+<li><strong>Performance optimization</strong>: Page load times dropped from 5–10 seconds to just 1–2 seconds, greatly improving daily efficiency.</li>
+<li><strong>Higher user satisfaction</strong>: Reduced waiting times eased frustration and resistance, leading to consistently positive employee feedback.</li>
+<li><strong>Visualization</strong>: Charts, flexible filters, and display options made data far more intuitive to analyze.</li>
+<li><strong>Process optimization</strong>: Workflow features simplified complex business processes even further.</li>
+</ul>
+<p>Classact also shared positive feedback on their experience with NocoBase:</p>
+<blockquote>
+<p><em>“What we value most about NocoBase is its stability and scalability. Even with large datasets, it consistently delivers stable performance. The charting features give us intuitive data visualization, the LDAP plugin allows seamless integration with Active Directory, public forms make candidate and employee data collection easy, and the workflow functions have greatly streamlined our internal processes.”</em>  — <strong>Hidetoshi Honma, CEO of Classact</strong></p>
+</blockquote>
+<h2 id="en-6"><strong>Conclusion</strong></h2>
+<p>Classact’s experience shows that NocoBase not only delivers sub-second response times with datasets in the hundreds of thousands but also, through Kubernetes deployment and its plugin architecture, supports complex multi-department, multi-process needs on a single platform.</p>
+<p>Unlike traditional siloed systems, NocoBase provides a model-driven, extensible, and composable architecture. This allows enterprises to continuously evolve their internal systems at lower cost while keeping room for future expansion.</p>
+<p><strong>More Customer Stories:</strong></p>
+<ul>
+<li><a href="../customers/bielcrystal.html">BIEL Crystal’s Digital Factory: Powering 1.85 Billion Units a Year</a></li>
+<li><a href="../customers/distinct-healthcare.html">How Distinct HealthCare Uses NocoBase to Build a Personalized, Long-Term Care System</a></li>
+<li><a href="../customers/shimano.html">A No-Code Journey Inside SHIMANO</a></li>
+<li><a href="../customers/century-21.html">What made Japan’s leading real estate firm switch from Salesforce to open-source NocoBase?</a></li>
+<li><a href="../customers/second-brain.html">How Second-Brain built an AI system for financial institutions with NocoBase</a></li>
+<li><a href="../customers/plaud.html">How the No.1 AI Voice Recorder Brand Built Its Internal Systems</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">Classact 介绍与技术背景</a><a href="#zh-2">挑战与需求</a><a href="#zh-3">部署与验证</a><a href="#zh-4">应用场景覆盖</a><a href="#zh-5">成果</a><a href="#zh-6">写在最后</a></div><div class="en-only"><a href="#en-1">About Classact</a><a href="#en-2">Challenges and Requirements</a><a href="#en-3">Deployment and Validation</a><a href="#en-4">Application Coverage</a><a href="#en-5">Results</a><a href="#en-6">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>更多客户案例</t-zh><t-en>More customer stories</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../customers/sungrow.html" data-tags="Customer_Stories"><span class="cv"><span class="cv-ph"><b>SUNGROW</b></span></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年10月17日</t-zh><t-en>Oct 17, 2026</t-en></span><span><t-zh>NocoBase</t-zh><t-en>NocoBase</t-en></span></div><h3><t-zh>阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统</t-zh><t-en>Sungrow: the systems behind a global business, built on NocoBase</t-en></h3><p><t-zh>全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。</t-zh><t-en>How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.</t-en></p></a><a class="bcard" href="../customers/polish-volunteer-fire-department-nocobase-case-study.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/20260722-111552-ydpnay.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月22日</t-zh><t-en>Jul 22, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>一支每年出警 200 次的消防队，如何用 NocoBase 搭建运营系统</t-zh><t-en>How a Volunteer Fire Department Manages 200 Callouts a Year with NocoBase</t-en></h3><p><t-zh>波兰 OSP Radlin II 志愿消防队用 NocoBase 统一管理出警、人员资质、车辆装备与自动化提醒，并持续迭代消防队运营系统。</t-zh><t-en>See how OSP Radlin II uses NocoBase to manage emergency callouts, personnel qualifications, vehicles, equipment, reminders, and daily operations</t-en></p></a><a class="bcard" href="../customers/astrolab-nocobase.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%B3%95%E5%9B%BD%E6%94%BF%E5%BA%9C%20(2)-8g4luf.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月3日</t-zh><t-en>Jul 3, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>法国大区政府如何用 NocoBase 建设数字化公共服务平台</t-zh><t-en>From Paperwork to Digital Public Services in France</t-en></h3><p><t-zh>基于一套 NocoBase 架构，Astrolab 为法国大区政府交付三个生产级平台，将审核周期缩短至 24 小时内，车辆冲突减少 80%，普查回收率提升至 90% 以上。</t-zh><t-en>Astrolab used NocoBase to deliver three production-ready platforms for a French regional government, reducing review cycles to under 24 hours, cutting reservation conflicts by 80%, and reaching over 90% survey response rates.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>下一个故事，可以是你的。</t-zh><t-en>The next story could be yours.</t-en></h2><p><t-zh>带一个真实需求，和我们一起把它做成可以长期使用的系统。</t-zh><t-en>Bring one real requirement and turn it into a system you’ll use for years.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../customers.html"><t-zh>全部客户案例</t-zh><t-en>All customer stories</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

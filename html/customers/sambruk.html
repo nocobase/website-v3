@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="Sambruk 利用 NocoBase 实现瑞典教育资源的 GDPR 合规管理 — NocoBase" data-en="Sambruk Leverages NocoBase to Ensure Digital Learning Resources in Sweden Comply with GDPR — NocoBase">Sambruk 利用 NocoBase 实现瑞典教育资源的 GDPR 合规管理 — NocoBase</title>
+<meta name="description" content="了解瑞典非盈利组织 Sambruk 如何通过 NocoBase 无代码/低代码平台，快速构建符合 GDPR 的数字解决方案。通过NocoBase，他们在数周内开发出 MVP，减少了 30% 开发时间及 40% 的成本，加速了瑞典市政部门的数字化转型。" data-zh="了解瑞典非盈利组织 Sambruk 如何通过 NocoBase 无代码/低代码平台，快速构建符合 GDPR 的数字解决方案。通过NocoBase，他们在数周内开发出 MVP，减少了 30% 开发时间及 40% 的成本，加速了瑞典市政部门的数字化转型。" data-en="Learn how Sambruk, a Swedish non-profit organization, uses NocoBase’s no-code/low-code platform to develop GDPR-compliant digital solutions for schools. Discover how they rapidly built an MVP to assess digital learning resources, cutting development time by 30% and costs by 40%, driving digital transformation in Swedish municipalities.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="customers" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../customers.html"><t-zh>客户案例</t-zh><t-en>Customer Stories</t-en></a></p>
+    <h1><t-zh>Sambruk 利用 NocoBase 实现瑞典教育资源的 GDPR 合规管理</t-zh><t-en>Sambruk Leverages NocoBase to Ensure Digital Learning Resources in Sweden Comply with GDPR</t-en></h1>
+    <p class="lede"><t-zh>了解瑞典非盈利组织 Sambruk 如何通过 NocoBase 无代码/低代码平台，快速构建符合 GDPR 的数字解决方案。通过NocoBase，他们在数周内开发出 MVP，减少了 30% 开发时间及 40% 的成本，加速了瑞典市政部门的数字化转型。</t-zh><t-en>Learn how Sambruk, a Swedish non-profit organization, uses NocoBase’s no-code/low-code platform to develop GDPR-compliant digital solutions for schools. Discover how they rapidly built an MVP to assess digital learning resources, cutting development time by 30% and costs by 40%, driving digital transformation in Swedish municipalities.</t-en></p>
+    <div class="bmeta"><span><t-zh>2024年9月18日</t-zh><t-en>Sep 18, 2024</t-en></span><span><t-zh>Deng lijia, Huang yiqun</t-zh><t-en>Deng lijia, Huang yiqun</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/bc56812eddf6b12ae55625616dae86d7.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">关于 Sambruk</h2>
+<p><strong>在瑞典，有一半的城市是 Sambruk 的成员，并且 61% 的瑞典居民居住在参与 Sambruk 合作的市政区域内。</strong></p>
+<p><img src="https://static-docs.nocobase.com/f1ff0bb7d340bd614c67e43412b0de99.png" alt="Sambruk.png"></p>
+<p>Sambruk 是一家位于瑞典的非营利组织，专注于推动和支持瑞典各地市政部门的数字化转型。其主要任务是通过协作和共享资源，帮助各个市政部门更高效地实现数字化。</p>
+<p>Sambruk 工作范围包括收集和管理瑞典各个市政部门开发的数字化解决方案，然后将这些解决方案推广到其他需要的市政部门，并通过联合融资维护和改进系统。此外，Sambruk 还会组织各方共同开发新的数字化解决方案。有时候，Sambruk 也会开源这些数字化解决方案。</p>
+<p>例如，<a href="https://sambruk.se/bibblix-barnbiblioteksapp/">Bibblix</a>——一款专为瑞典 6 至 12 岁儿童设计的数字图书馆应用程序； <a href="https://sambruk.se/egil-dnp/">EGIL</a>——一个为学校管理学生数字账户的自动化系统；以及 <a href="https://sambruk.se/prao/">Tillarbetslivet</a> ——一个管理学生实习和工作安排的系统。</p>
+<p><strong>这些项目都由 Sambruk 开发或推广。</strong></p>
+<h2 id="zh-2">数字学习资源的 GDPR 合规化挑战</h2>
+<p>在现代教育中，学校广泛使用电子书、在线课程、教育软件、教学视频、互动课件等数字学习资源。在瑞典，这些资源必须符合 GDPR（通用数据保护条例）要求，确保学生的个人数据得到妥善处理。</p>
+<h3><strong>GDPR 背景</strong></h3>
+<p>GDPR 是欧盟于 2018 年 5 月实施的一项重要隐私和安全法规，适用于所有处理欧盟居民个人数据的组织。对教育部门而言，GDPR 带来了特殊的挑战：</p>
+<ol>
+<li><strong>数据最小化原则</strong>：学校只能收集和处理必要的学生数据，要求对每项数字学习资源进行严格的数据收集审查。</li>
+<li><strong>知情同意</strong>：学校必须确保使用数字学习资源时，已获得学生或其监护人的明确同意。</li>
+<li><strong>数据主体权利</strong>：学生有权访问、更正和删除其个人数据，学校需确保所使用的数字学习资源支持这些功能。</li>
+<li><strong>数据保护影响评估</strong>：对于高风险的数据处理活动，学校需进行数据保护影响评估。</li>
+<li><strong>供应商管理</strong>：学校必须确保其使用的所有数字学习资源供应商均符合 GDPR 标准。</li>
+</ol>
+<h3><strong>Tjänstekatalog 项目细节</strong></h3>
+<p><img src="https://static-docs.nocobase.com/43a4266e6883811da7c2b6cc2de3cf58.png" alt="43a4266e6883811da7c2b6cc2de3cf58.png"></p>
+<p>为了更好地管理和评估数字学习资源的 GDPR 合规性，Sambruk 联合 27 个瑞典市政部门开始推进开发 <a href="https://sambruk.se/tjanstekollen/">Tjänstekatalog</a> 数字化解决方案。</p>
+<p>项目的具体目标主要有以下三点：</p>
+<ol>
+<li><strong>信息收集与合规性评估</strong>：系统将收集有关数字学习资源的信息，帮助学校评估其合规性。</li>
+<li><strong>共享资源与决策支撑</strong>：学校可在系统中分享评估结果为其他用户提供参考，以减少重复工作，提高效率。</li>
+<li><strong>供应商信息提供</strong>：供应商需回答约 100 个问题，提供必要信息供学校评估。</li>
+</ol>
+<p><strong>然而，在项目实施过程中，Sambruk 遇到了一些技术难题：</strong></p>
+<ol>
+<li><strong>数据量与复杂性</strong>：学校需要管理大量数字学习资源，这要求系统具备高效的管理和评估能力。</li>
+<li><strong>合规性要求</strong>：确保所有资源严格符合 GDPR 的规定，特别是在学生数据处理方面。</li>
+<li><strong>多方协作</strong>：需要协调多个市政部门和学校的参与，确保系统设计和实施能够满足各方需求，实现有效的信息共享。</li>
+</ol>
+<p>Sambruk需要寻找一个技术解决方案，不仅能解决技术难题，实现项目功能，同时具备高性价比和高延展性。</p>
+<h2 id="zh-3"><strong>发现 NocoBase</strong></h2>
+<p>Sambruk 首先评估了使用传统技术从零开始开发该解决方案的成本和时间。<strong>项目组一致认为，成本过高</strong>。因此 Sambruk 开始寻找其他替代方案。最初，Sambruk 与印度的一家低代码平台公司展开合作，虽然取得了一些进展，但平台并未完全满足他们的需求。</p>
+<p>与此同时，Sambruk 开始关注 NocoBase，并决定尝试使用。</p>
+<blockquote>
+<p>“在短短几周内，我们不仅完成了解决方案核心的开发，同时也学习了如何使用这个平台。事实证明，NocoBase 直观且易于上手，我们特别喜欢它的“简洁务实”设计理念。很快我们便完成了最小可行产品（MVP）的开发，并在此基础上继续进行后续开发。”</p>
+<p>—— Thomas Wennersten, Sambruk CTO</p>
+</blockquote>
+<p>经过尝试后，Sambruk 的 CTO Thomas Wennersten 告诉了我们选择 NocoBase 的原因。</p>
+<ul>
+<li><strong>数据模型驱动</strong>：NocoBase 强调先建立数据模型，这种方法使得 Sambruk 的后续开发更加顺畅，并能轻松创建不同的界面，适应不同角色的使用需求。</li>
+<li><strong>自托管能力</strong>：NocoBase 支持自托管，这是 Sambruk 在该项目中一个至关重要的需求。自托管不仅增强了数据的控制力，也满足了数据安全和隐私保护的要求。</li>
+<li><strong>简单易用</strong>：NocoBase 的使用体验非常直接，并且不会因简化而对功能造成太大的限制。对于需要开发 CRUD 应用的团队来说，NocoBase 是一个学习门槛低、开发速度快的平台。</li>
+<li><strong>快速交付</strong>：通过 NocoBase，Sambruk 可以迅速地开发并上线最小可行产品（MVP），这对于快速验证和迭代项目非常有帮助。</li>
+</ul>
+<p><strong>Tjänstekatalog 项目系统截图：</strong></p>
+<p><img src="https://static-docs.nocobase.com/c06f5fab82d96a323a4658f44783539e.PNG" alt="Tjänstekatalog 1.PNG"></p>
+<p><img src="https://static-docs.nocobase.com/95d25163c09d69777c033361a2ea078f.PNG" alt="Tjänstekatalog 2.PNG"></p>
+<p><img src="https://static-docs.nocobase.com/37e042f7635cc0100a0f93dd3965655b.PNG" alt="Tjänstekatalog 3.PNG"></p>
+<h2 id="zh-4"><strong>成果及展望</strong></h2>
+<blockquote>
+<p>“我们在使用 NocoBase 这款无代码平台时的体验非常棒。我无法强调它的用户友好性有多么出色，使得我们的开发过程变得顺畅高效。让我印象最深的是，在数据模型建立之后，进行用户体验开发是多么容易。这种精简的方式让我们在短短几周内开发出了一个完整的系统，这个系统被设计用于数百个组织。</p>
+<p>NocoBase 有效打破了强大系统需要数月甚至数年才能完成的常见误解。我强烈推荐它给任何想要快速推进开发周期而不牺牲质量的组织。”</p>
+<p>—— Thomas Wennersten，Sambruk CTO</p>
+</blockquote>
+<p>目前，项目开发正在稳步推进，使用 NocoBase 开发的核心功能已成功投入使用。项目团队充分利用了 NocoBase 高效、直观的优势，在短短几周内便开发并上线了 MVP。这一过程中，Sambruk 团队显著节省了开发时间和成本，相较于传统开发方法，<strong>节省了约 30% 的开发时间和近 40% 的预算</strong>。</p>
+<p>NocoBase 的易用性和灵活性得到了参与市政部门和学校的高度认可。他们特别赞赏平台在数据处理和界面生成上的直观性，使得用户能够快速上手，并高效地进行应用开发。部分学校在试用阶段中已经充分体验到了 NocoBase 所带来的便利，尤其是在数据管理和决策支持方面的提升。</p>
+<p>展望未来，项目预计将在未来几个月内完成全面部署，并在更大范围内推广使用。随着项目的深入推进，Sambruk 团队将继续优化和扩展 NocoBase 的功能，确保它能够更好地满足各参与方的需求，并为瑞典更多的市政部门和教育机构带来实际的效益。</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../customers/classmethod.html">从表格到系统：Classmethod 用 NocoBase 构建全球员工信息管理系统</a></li>
+<li><a href="../customers/olmon.html">一家家具厂，如何用零代码搭建自己的 ERP ？</a></li>
+<li><a href="../customers/l-a.html">奥雅的数字化新版图：用 NocoBase 探索精细化管理新可能</a></li>
+<li><a href="../customers/kigland.html">如何用开源工具，把“定制动漫面具”做成柔性制造？</a></li>
+<li><a href="../customers/how-400-lawyer-firm-streamlines-commission-management-with-nocobase.html">超 400 人团队律所，如何用 NocoBase 高效管理律师提成？</a></li>
+<li><a href="../customers/rapid-development-with-nocobase.html">1周上线，2个月交付！有巢数智如何用 NocoBase 颠覆建筑行业数智化效率</a></li>
+<li><a href="../customers/Orchisky.html">低代码加速智能制造，兰之天的选择是 NocoBase</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">About Sambruk</h2>
+<p><strong>In Sweden, half of the municipalities are members of Sambruk, and 61% of Sweden residents live in municipal areas participating in Sambruk’s cooperation.</strong></p>
+<p><img src="https://static-docs.nocobase.com/bdb18ec7f179a4df9ec97f67b5bcf44d.png" alt="Sambruk.png"></p>
+<p>Who is Sambruk? Sambruk is a non-profit organization based in Sweden dedicated to driving and supporting the digital transformation of municipal departments nationwide. Its primary mission is to help municipalities in Sweden digitalize more efficiently through collaboration and sharing of resources.</p>
+<p>Sambruk’s scope of work includes collecting and managing digital solutions developed by various municipalities in Sweden, then rolling them out to other cities in need, and maintaining and improving the system through co-financing. In addition, Sambruk organizes and leads the development of new digital solutions. Sometimes, Sambruk also open-sources some of these digital solutions.</p>
+<p>For example,<a href="https://sambruk.se/bibblix-barnbiblioteksapp/"> Bibblix</a>, a digital library app designed for children aged 6 to 12 in Sweden;<a href="https://sambruk.se/egil-dnp/">EGIL</a>– an automated system for managing students’ digital accounts for schools; and <a href="https://sambruk.se/prao/">Tillarbetslivet</a>, a system to manage pupilswork experience programes.</p>
+<p><strong>These projects are all developed or promoted by Sambruk.</strong></p>
+<h2 id="en-2">How to Ensure Digital Learning Resources Comply with GDPR?</h2>
+<p>In present-day education, schools rely heavily on digital learning resources like e-books, online courses, educational software, instructional videos, and interactive courseware. These data resources must adhere to GDPR (General Data Protection Regulation) requirements to protect students’ data.</p>
+<h3>About GDPR</h3>
+<p>The GDPR, implemented by the European Union in May 2018, is a significant privacy and security regulation that applies to all organizations processing the personal data of EU residents.</p>
+<p>For the education sector, GDPR brought particular challenges in the following ways:</p>
+<ol>
+<li><strong>Data Minimization Principles</strong>: Schools can only collect and process necessary student data, requiring a rigorous data collection review of each digital learning resource.</li>
+<li><strong>Informed consent</strong>: Schools must ensure that explicit permission from the student or their guardian is obtained when using digital learning resources.</li>
+<li><strong>Data Subject Rights</strong>: Students have the right to access, correct, and delete their data, and schools need to ensure that the digital learning resources they use support these features.</li>
+<li><strong>Data Protection Impact Assessment</strong>: Schools are required to conduct a Data Protection Impact Assessment for high-risk data processing activities.</li>
+<li><strong>Vendor management</strong>: Schools must ensure that all digital learning resource suppliers are GDPR compliant.</li>
+</ol>
+<h3>About the Project Tjänstekatalog</h3>
+<p><img src="https://static-docs.nocobase.com/42ac799bf25a73683ea530ea868bc87a.png" alt="42ac799bf25a73683ea530ea868bc87a.png"></p>
+<p>The project <a href="https://sambruk.se/tjanstekollen/">Tjänstekatalog</a> aimed to collect data as a basis for assessment of GDPR compliance for digital learning resources. Sambruk, along with 27 Swedish municipalities, kicked off the project in 2023.</p>
+<p>The project had three main objectives in particular:</p>
+<ol>
+<li><strong>Information Collection and Compliance Assessment</strong>: The system collected information about digital learning resources to help school managers assess GDPR compliance with data use.</li>
+<li><strong>Resources Sharing and Decision-making Support</strong>: School managers can share assessment results in the system for other users to refer to, reducing duplication of effort and improving efficiency.</li>
+<li><strong>Supplier Information Enquiry</strong>: Suppliers were requested to answer approximately 100 questions in the system and provide the necessary information for the school to evaluate.</li>
+</ol>
+<p>However, to implement the project, they encountered several technical obstacles:</p>
+<ol>
+<li><strong>Large data volume and high complexity</strong>: Managing large amounts of digital learning resources requires efficient management and evaluation.</li>
+<li><strong>Strict compliance rules</strong>: Ensure all resources are strictly GDPR compliant, especially regarding student data handling.</li>
+<li><strong>Multi-stakeholder involved</strong>: Multiple municipalities and schools need to be coordinated to ensure that the system is designed and implemented to meet the needs of all parties and enable effective information sharing.</li>
+</ol>
+<p>Sambruk sought a technical solution to address these challenges, meet project requirements, and be cost-effective and scalable.</p>
+<h2 id="en-3">A Quick MVP with NocoBase</h2>
+<p>Sambruk initially assessed the cost and time required to develop the solution using traditional coding methods. <strong>The project team concluded that the cost was too high</strong>. Therefore, Sambruk began searching for other alternatives. The team partnered with a low-code platform company in India. While the team had made some progress, the platform failed to meet their needs fully.</p>
+<p>In 2023, the team heard about NocoBase and decided to try it.</p>
+<blockquote>
+<p>“We developed the core of the solution over a couple of weeks while learning the platform itself. NocoBase turned out to be very intuitive and easy to learn; we really apricated the “no bullshit” approach with the platform. We had an MVP in place quite fast and have continued to develop from that base.”</p>
+<p>—— Thomas Wennersten, Sambruk CTO</p>
+</blockquote>
+<p>Thomas Wennersten explained the reasons for choosing NocoBase to implement the project after trying it out:</p>
+<ol>
+<li><strong>Data Model-driven</strong>: NocoBase’s focus on establishing a data model first facilitated smoother subsequent development for Sambruk and made creating various interfaces tailored to different roles’ needs simple.</li>
+<li><strong>Self-hosting</strong>: Sambruk can host the applications developed with NocoBase. Self-hosting is a critical project requirement because it enhances data control and fulfills data security and privacy protection needs.</li>
+<li><strong>User Friendly</strong>: NocoBase offers a user-friendly experience without sacrificing functionality, making it an ideal platform for teams developing CRUD applications due to its low learning curve and fast development speed.</li>
+<li><strong>Rapid Delivery</strong>: With NocoBase, Sambruk can rapidly develop and launch a minimum viable product (MVP), which is extremely helpful for quickly validating and iterating on projects.</li>
+</ol>
+<p><strong>System screenshots of the project Tjänstekatalog:</strong></p>
+<p><img src="https://static-docs.nocobase.com/c06f5fab82d96a323a4658f44783539e.PNG" alt="Tjänstekatalog 1.PNG"></p>
+<p><img src="https://static-docs.nocobase.com/95d25163c09d69777c033361a2ea078f.PNG" alt="Tjänstekatalog 2.PNG"></p>
+<p><img src="https://static-docs.nocobase.com/37e042f7635cc0100a0f93dd3965655b.PNG" alt="Tjänstekatalog 3.PNG"></p>
+<h2 id="en-4">Result: Immediate Benefits From the Trial Phase</h2>
+<blockquote>
+<p>“Our experience with NocoBase, the no-code platform, has been fantastic. It’s incredibly user-friendly, and our development process is smooth and efficient. The streamlined approach allowed us to develop a complete system in just a few weeks suitable for use in hundreds of organizations.</p>
+<p>NocoBase dispels the misconception that powerful systems take months or years to complete. I highly recommend it to any organization looking for a quick development cycle without sacrificing quality.”</p>
+<p>—— Thomas Wennersten， Sambruk CTO</p>
+</blockquote>
+<p>The project’s development, based on NocoBase, is progressing steadily, with core functions of the project going live successfully. The project team efficiently leveraged NocoBase’s capabilities to develop and launch the MVP within weeks. Throughout the process, the Sambruk team significantly <strong>reduced development time by about 30% and slashed the budget by nearly 40% compared to traditional methods.</strong></p>
+<p>Municipalities and schools highly recognize NocoBase for its ease of use and flexibility. They appreciate its straightforward data processing and interface generation capabilities, allowing quick application development. Some schools have benefitted from NocoBase during the trial phase, especially regarding data management and decision support.</p>
+<p>We expect the project to be fully deployed and rolled out more broadly in the upcoming months. As the project advances, the Sambruk team will continue to improve and expand NocoBase’s capabilities with plugins to better meet the needs of all parties involved, bringing tangible benefits to more municipalities and educational institutions in Sweden.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../customers/classmethod.html">Beyond Spreadsheets: Classmethod’s Employee Data Management with NocoBase</a></li>
+<li><a href="../customers/olmon.html">How One Furniture Factory Built Its Own ERP—No Coding Needed</a></li>
+<li><a href="../customers/l-a.html">From Designer to Builder: L&#x26;A’s Digital Transformation with NocoBase</a></li>
+<li><a href="../customers/kigland.html">How KIGLAND Scaled Custom Anime Mask Production with Open-Source Tools</a></li>
+<li><a href="../customers/how-400-lawyer-firm-streamlines-commission-management-with-nocobase.html">How a 400+ Lawyer Firm Streamlines Commission Management with NocoBase</a></li>
+<li><a href="../customers/rapid-development-with-nocobase.html">Rapid Development with NocoBase: Driving Digital Transformation in Construction</a></li>
+<li><a href="../customers/Orchisky.html">Orchisky’s Smart Manufacturing Upgrade: Why They Chose NocoBase</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">关于 Sambruk</a><a href="#zh-2">数字学习资源的 GDPR 合规化挑战</a><a href="#zh-3">发现 NocoBase</a><a href="#zh-4">成果及展望</a></div><div class="en-only"><a href="#en-1">About Sambruk</a><a href="#en-2">How to Ensure Digital Learning Resources Comply with GDPR?</a><a href="#en-3">A Quick MVP with NocoBase</a><a href="#en-4">Result: Immediate Benefits From the Trial Phase</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>更多客户案例</t-zh><t-en>More customer stories</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../customers/sungrow.html" data-tags="Customer_Stories"><span class="cv"><span class="cv-ph"><b>SUNGROW</b></span></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年10月17日</t-zh><t-en>Oct 17, 2026</t-en></span><span><t-zh>NocoBase</t-zh><t-en>NocoBase</t-en></span></div><h3><t-zh>阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统</t-zh><t-en>Sungrow: the systems behind a global business, built on NocoBase</t-en></h3><p><t-zh>全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。</t-zh><t-en>How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.</t-en></p></a><a class="bcard" href="../customers/polish-volunteer-fire-department-nocobase-case-study.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/20260722-111552-ydpnay.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月22日</t-zh><t-en>Jul 22, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>一支每年出警 200 次的消防队，如何用 NocoBase 搭建运营系统</t-zh><t-en>How a Volunteer Fire Department Manages 200 Callouts a Year with NocoBase</t-en></h3><p><t-zh>波兰 OSP Radlin II 志愿消防队用 NocoBase 统一管理出警、人员资质、车辆装备与自动化提醒，并持续迭代消防队运营系统。</t-zh><t-en>See how OSP Radlin II uses NocoBase to manage emergency callouts, personnel qualifications, vehicles, equipment, reminders, and daily operations</t-en></p></a><a class="bcard" href="../customers/astrolab-nocobase.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%B3%95%E5%9B%BD%E6%94%BF%E5%BA%9C%20(2)-8g4luf.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月3日</t-zh><t-en>Jul 3, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>法国大区政府如何用 NocoBase 建设数字化公共服务平台</t-zh><t-en>From Paperwork to Digital Public Services in France</t-en></h3><p><t-zh>基于一套 NocoBase 架构，Astrolab 为法国大区政府交付三个生产级平台，将审核周期缩短至 24 小时内，车辆冲突减少 80%，普查回收率提升至 90% 以上。</t-zh><t-en>Astrolab used NocoBase to deliver three production-ready platforms for a French regional government, reducing review cycles to under 24 hours, cutting reservation conflicts by 80%, and reaching over 90% survey response rates.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>下一个故事，可以是你的。</t-zh><t-en>The next story could be yours.</t-en></h2><p><t-zh>带一个真实需求，和我们一起把它做成可以长期使用的系统。</t-zh><t-en>Bring one real requirement and turn it into a system you’ll use for years.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../customers.html"><t-zh>全部客户案例</t-zh><t-en>All customer stories</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="奥雅的数字化新版图：用 NocoBase 探索精细化管理新可能 — NocoBase" data-en="From Designer to Builder: L&amp;A’s Digital Transformation with NocoBase — NocoBase">奥雅的数字化新版图：用 NocoBase 探索精细化管理新可能 — NocoBase</title>
+<meta name="description" content="奥雅从业务需求出发，借助 NocoBase 搭建系统并应用于多场景，推动数据民主化与精细化管理 。" data-zh="奥雅从业务需求出发，借助 NocoBase 搭建系统并应用于多场景，推动数据民主化与精细化管理 。" data-en="Starting from its business needs, L&amp;A uses NocoBase to build a system and applies it to multiple scenarios, promoting data democratization and refined management.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="customers" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../customers.html"><t-zh>客户案例</t-zh><t-en>Customer Stories</t-en></a></p>
+    <h1><t-zh>奥雅的数字化新版图：用 NocoBase 探索精细化管理新可能</t-zh><t-en>From Designer to Builder: L&amp;A’s Digital Transformation with NocoBase</t-en></h1>
+    <p class="lede"><t-zh>奥雅从业务需求出发，借助 NocoBase 搭建系统并应用于多场景，推动数据民主化与精细化管理 。</t-zh><t-en>Starting from its business needs, L&amp;A uses NocoBase to build a system and applies it to multiple scenarios, promoting data democratization and refined management.</t-en></p>
+    <div class="bmeta"><span><t-zh>2025年4月10日</t-zh><t-en>Apr 10, 2025</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/b3f94fb50fd1ebcdf9a403491bcf3efe.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">引言</h2>
+<p>在<a href="https://www.aoya-hk.com/">奥雅</a>，数字化不再只是传统 ERP 体系的代名词。团队从业务端出发，深入一线场景，为设计师和项目团队提供了一个可灵活构建“智能体”的平台。通过数据驱动的低代码开发，推动了数据民主化的落地，也为奥雅的数字化体系补上了重要的一块拼图。</p>
+<p><strong>这是一次从内部需求出发，由业务驱动的数字化实践。</strong></p>
+<h2 id="zh-2">关于奥雅</h2>
+<p><img src="https://static-docs.nocobase.com/2413a60f62292fbaa52ab04ff1c504bb.JPEG" alt="About L&#x26;A"></p>
+<p>从城市公园到儿童友好空间，从文旅小镇到主题乐园，奥雅二十多年来完成了数千个落地项目，是国内城市空间和景观设计领域的佼佼者。</p>
+<p><strong>作为国内景观行业首家上市公司</strong>（300949），奥雅正以“打造具有世界影响力的亲子文旅品牌运营商与存量资产服务商”为愿景，不断拓展自己的边界。</p>
+<h2 id="zh-3">技术选型背景：寻找更灵活的工具</h2>
+<p>随着业务模式不断创新，追求完美价值观的奥雅也对内部协作提出了更高要求。他们希望引入一套更敏捷、可配置的系统平台，以支撑多部门、多项目的高频协作，同时灵活适配不断变化的业务流程与场景需求。</p>
+<p>这也让团队开始思考：<strong>是否有一种工具路径，不仅能搭建真正贴合自身业务逻辑，还能随需求持续扩展？</strong></p>
+<p>他们开始深入了解一个新的方向：<strong>新型数据库工具</strong>。</p>
+<p>这类工具模糊了传统数据库、电子表格与协作平台的边界，强调“数据库民主化”，使非技术人员也能够参与系统搭建与流程配置，为业务团队提供了更多主动性。</p>
+<p>然而在调研 Airtable、Notion 等国外工具以及众多国产平台后，他们发现主流的 SaaS 模式在实际使用中存在难以避免的痛点：</p>
+<ul>
+<li>增加一份“无限期月供”，持续增加预算负担；</li>
+<li>功能适配性差，要么超配浪费，要么低配受限；</li>
+<li>敏捷性差，定制开发成本高。</li>
+</ul>
+<p>对于奥雅来说，他们希望在现有系统平台的基础上，引入一个能够灵活互补的方案——既能满足创新业务流程的需求，也能由业务部门自主使用和配置。</p>
+<h2 id="zh-4">从设计专业到系统搭建的跨界</h2>
+<blockquote>
+<p>“机缘巧合接触到 NocoBase，但由于初次接洽，我们以业务端的角色进行交流，官方对于这种情形还是表示出一些担忧。因为 NocoBase 可能并不完全是的【开袋即食】型产品。所以其实最初并没有感受到传统销售员的那份热情，而更多的是不推销产品的真诚建议。面对这份真诚我决定一试。这就像没进过厨房的人，哪怕准备好了所有食材，要做出一道合口的菜也并不容易。但不是不可能，只要你愿意学，愿意挑战。”</p>
+</blockquote>
+<p>这是一位来自业务端负责人初识 NocoBase 的场景，可能也代表广大业务端同仁的心路，在这样的背景下奥雅开启了 NocoBase 的探索之路。</p>
+<p>在简单接触后，他便开始动手构建第一个完整的业务系统原型。<strong>从学习曲线到功能交互，NocoBase 完全满足了他的所有设想。</strong></p>
+<blockquote>
+<p>“NocoBase 完全满足了我‘即要、又要、还要’的幻想——要非 SaaS，又要低代码，还要可扩展。”</p>
+</blockquote>
+<h2 id="zh-5">快速投入业务使用</h2>
+<p>系统初步成型后，他没有把 NocoBase 停留在试验阶段，而是迅速将其投入多个团队的实际使用中。借助可配置的工作流和视图模块，将多个复杂场景一一实现落地，并开启了更多创新业务流程的探索。</p>
+<h3>场景一：打通跨部门协作与排期流程</h3>
+<p>奥雅的典型项目往往涉及数十个团队共同对接几个专业部门。每个部门的管理方式、流程节奏不同，过去的流程是：</p>
+<ol>
+<li>各团队提交申请</li>
+<li>人工协调档期</li>
+<li>不断沟通调整</li>
+</ol>
+<p>结果就是：效率低、冲突多、人力成本高。</p>
+<p><strong>使用 NocoBase 后的改变：</strong></p>
+<ul>
+<li>一个工作流节点即可完成档期判断；</li>
+<li>使用日历视图清晰查看公共资源排期；</li>
+<li>可直接在空白档期位置发起申请。</li>
+</ul>
+<p><strong>使用 NocoBase 搭建的申请页面：</strong></p>
+<p><img src="https://static-docs.nocobase.com/d4db8e384ad31529f8c73acafc5b1b15.PNG" alt="Request submission interface built with NocoBase">
+<strong>工作流节点完成档期判断：</strong></p>
+<p><img src="https://static-docs.nocobase.com/78409c6a8e11e55f4e294b2b01c758b7.png" alt="Availability check via workflow node.png"></p>
+<p>强大的工作流节点完全能满足奥雅在业务场景中的流程管理及自动化需要。投入使用后，帮助奥雅设计节省了大量的档期重排问题。</p>
+<h3>场景二：让规范查询和参数计算变成便捷的小工具</h3>
+<p>在日常工作中，设计师需要查规范算参数。若采用传统系统开发，一次需求就可能影响到整套开发流程，繁杂且成本高。这对小工具来说，毫无性价比可言。</p>
+<p><strong>使用NocoBase 如何做？</strong></p>
+<ul>
+<li>通过计算公式与联动规则，直接实现规范公式计算；</li>
+<li>中台部门可以根据业务需求，快速开发便捷工具。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/51286b97b32bfa64877a9a76cc00d2ac.png" alt="Making Spec Checks and Parameter Calculations Effortless"></p>
+<p>看似简单的功能，却极大地提升了标准执行效率。</p>
+<h3>场景三：项目数据埋点与流程追踪</h3>
+<p>奥雅已有成熟的数据体系。但真正的价值，还在“最后一公里”——如何在具体流程节点中<strong>落地数据采集与追踪</strong>。</p>
+<p><strong>NocoBase 带来的改变：</strong></p>
+<ul>
+<li>可通过工作流设置对关键节点打点；</li>
+<li>精细化管理项目文档与执行轨迹；</li>
+<li>实现自定义数据的结构化存储与自动记录。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ed101b201f2f9d03f12f3b38deea48cf.png" alt="Instrumenting Project Data and Tracking Workflow Progress"></p>
+<p>这让数据成为真正的“业务资产”。</p>
+<h2 id="zh-6">从“不被推荐使用”到“全面落地”，一切因业务而生</h2>
+<p>NocoBase 并不是一个“一键生成”的产品，它更像是一个灵活的“构件平台”。只要愿意动手、理解业务，就能用它搭建出高度匹配的系统。</p>
+<p>正如这位业务负责人所说：</p>
+<blockquote>
+<p>“只要你愿意学习，愿意挑战，NocoBase 的学习曲线还是特别平滑的。就像我这样经过几天的学习，就开始大胆的进行业务场景的深入试用，结果出乎意料。”</p>
+</blockquote>
+<p>对于像奥雅这样持续推进数字化建设的组织来说，NocoBase 不只是一个工具，而是支撑业务不断创新的核心能力之一。</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../customers/kigland.html">如何用开源工具，把“定制动漫面具”做成柔性制造？</a></li>
+<li><a href="../customers/how-400-lawyer-firm-streamlines-commission-management-with-nocobase.html">超 400 人团队律所，如何用 NocoBase 高效管理律师提成？</a></li>
+<li><a href="../customers/rapid-development-with-nocobase.html">1周上线，2个月交付！有巢数智如何用 NocoBase 颠覆建筑行业数智化效率</a></li>
+<li><a href="../customers/Orchisky.html">低代码加速智能制造，兰之天的选择是 NocoBase</a></li>
+<li><a href="../customers/nint.html">为什么任拓数据选择 NocoBase？自研转型最佳实践</a></li>
+<li><a href="../customers/GemelSoft.html">跨境科技公司如何借助 NocoBase 升级内部系统并实现外部业务增长？</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p>At L&#x26;A, digital transformation means more than just using an ERP. Driven by real business needs, the team built a flexible platform that allows designers and frontline teams to create their own intelligent tools.</p>
+<p>With data-driven low-code development, they’ve advanced data democratization and added a crucial missing piece to L&#x26;A’s digital ecosystem.</p>
+<p>This is a digitalization journey driven by business needs, starting from the inside out.</p>
+<h2 id="en-2">About L&#x26;A</h2>
+<p><img src="https://static-docs.nocobase.com/2413a60f62292fbaa52ab04ff1c504bb.JPEG" alt="About L&#x26;A"></p>
+<p>From urban parks to child-friendly spaces, and from cultural tourism towns to theme parks, L&#x26;A has delivered thousands of projects over the past 20 years, establishing itself as a leading force in China’s urban and landscape design sector.</p>
+<p>As the first publicly listed landscape design firm in China (300949), L&#x26;A continues to push boundaries with a bold vision: to become a globally influential operator of family-focused tourism brands and a key player in revitalizing existing assets.</p>
+<h2 id="en-3"><strong>Why L&#x26;A Sought a More Flexible Solution</strong></h2>
+<p>As L&#x26;A’s business model evolved, so did its expectations for internal collaboration. The team began looking for a platform flexible enough to support fast-moving projects and changing workflows.</p>
+<p>This led the team to a key question: could there be a tool that not only aligns closely with their business logic, but also grows with their needs?</p>
+<p>That question opened the door to a new direction—modern database tools.</p>
+<p>These tools blur the lines between traditional databases, spreadsheets, and collaboration platforms. By embracing the idea of “database democratization,” they empower non-technical users to take part in system building and process design, giving business teams greater autonomy and control.</p>
+<p>However, after researching tools like Airtable, Notion, and various domestic platforms, the team encountered common drawbacks in mainstream SaaS models:</p>
+<ul>
+<li>Ongoing subscription fees that put long-term pressure on budgets</li>
+<li>Poor feature alignment—either bloated with unused functions or too limited for real needs</li>
+<li>Lack of agility, with high customization costs</li>
+</ul>
+<p>What L&#x26;A needed was a solution that could complement their existing systems—something flexible enough to support innovation, yet simple enough for business teams to build and adapt on their own.</p>
+<h2 id="en-4"><strong>From Designer to Builder: A Business User’s Leap into System Development</strong></h2>
+<blockquote>
+<p>“I stumbled upon NocoBase by chance. Since we approached it purely from a business angle, the official team was understandably cautious. After all, NocoBase isn’t an out-of-the-box solution. So instead of the usual sales pitch, what I got was honest, no-pressure advice. That sincerity made me want to give it a shot.</p>
+<p>It felt like stepping into a kitchen for the first time—just having the ingredients doesn’t mean you can cook something that actually tastes good. But it’s doable, if you’re willing to learn and take on the challenge.”</p>
+</blockquote>
+<p>This was the first impression of a business-side leader encountering NocoBase, an experience that likely resonates with many others in similar roles. With that mindset, L&#x26;A began their journey with NocoBase.</p>
+<p>Soon after, he started building a fully functional business system prototype. From learning the platform to interacting with its features, NocoBase matched everything he had imagined.</p>
+<blockquote>
+<p>“NocoBase fulfilled my dream of having it all—I didn’t want SaaS, I wanted low-code, and I wanted full extensibility. And I got them all.”</p>
+</blockquote>
+<h2 id="en-5"><strong>From Prototype to Practice: Rapid Business Rollout</strong></h2>
+<p>Once the system prototype was ready, he didn’t stop at experimentation. Instead, he quickly put NocoBase into real-world use across multiple teams. By leveraging its configurable workflows and view modules, he successfully implemented several complex scenarios—and unlocked opportunities to explore even more innovative processes.</p>
+<h3><strong>Scenario 1: Bridging Cross-Department Collaboration and Scheduling</strong></h3>
+<p>In a typical L&#x26;A project, dozens of teams need to coordinate with multiple specialized departments. Each department operates with its own rhythm and rules, and the old process used to look like this:</p>
+<ol>
+<li>Teams submit requests manually</li>
+<li>Schedules are coordinated by hand</li>
+<li>Endless back-and-forth communication and adjustments</li>
+</ol>
+<p>The result? Low efficiency, high conflict, and heavy workload.</p>
+<p>With NocoBase, everything changed:</p>
+<ul>
+<li>A single workflow node now handles availability checks</li>
+<li>The calendar view makes shared resource schedules instantly clear</li>
+<li>Teams can directly request available time slots</li>
+</ul>
+<p>Request submission interface built with NocoBase:</p>
+<p><img src="https://static-docs.nocobase.com/d4db8e384ad31529f8c73acafc5b1b15.PNG" alt="Request submission interface built with NocoBase"></p>
+<p>Availability check via workflow node:</p>
+<p><img src="https://static-docs.nocobase.com/78409c6a8e11e55f4e294b2b01c758b7.png" alt="Availability check via workflow node.png"></p>
+<p>These powerful workflow capabilities have proven more than capable of handling L&#x26;A’s complex scheduling and automation needs—dramatically reducing time wasted on constant rescheduling.</p>
+<h3><strong>Scenario 2: Making Spec Checks and Parameter Calculations Effortless</strong></h3>
+<p>In their daily work, designers often need to reference design codes and run parameter calculations. With traditional development, even a small request like this could trigger a lengthy process—complex, costly, and hardly worth it for such lightweight tools.</p>
+<p>With NocoBase, things are much easier:</p>
+<ul>
+<li>Built-in formulas and dynamic rules allow direct implementation of specification-based calculations</li>
+<li>Internal platform teams can quickly create handy tools tailored to business needs</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/51286b97b32bfa64877a9a76cc00d2ac.png" alt="Making Spec Checks and Parameter Calculations Effortless"></p>
+<p>These seemingly simple features have significantly boosted the efficiency of standard compliance in day-to-day work.</p>
+<h3><strong>Scenario 3: Instrumenting Project Data and Tracking Workflow Progress</strong></h3>
+<p>L&#x26;A has a well-established data system. But the real value lies in the “last mile”: capturing and tracking data within actual process steps.</p>
+<p>Here’s how NocoBase makes a difference:</p>
+<ul>
+<li>Workflows can be configured to automatically tag key process nodes</li>
+<li>Project documents and activity histories are managed with precision</li>
+<li>Custom data is structured and recorded automatically along the way</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ed101b201f2f9d03f12f3b38deea48cf.png" alt="Instrumenting Project Data and Tracking Workflow Progress"></p>
+<p>In this way, data evolves into a true business asset—anchored in real operations and ready to drive insights.</p>
+<h2 id="en-6"><strong>A Business-Driven Journey from Hesitation to Full Adoption</strong></h2>
+<p>NocoBase isn’t a one-click solution—it’s a flexible platform built with modular components. For those who are willing to get hands-on and truly understand their business needs, it can become the foundation for a tailor-made system.</p>
+<p>As one business leader shared:</p>
+<blockquote>
+<p>“If you’re willing to learn and take on challenges, NocoBase has a surprisingly smooth learning curve. After just a few days, I was already testing it with real business cases—and the results truly exceeded expectations.”</p>
+</blockquote>
+<p>For organizations like L&#x26;A that treat digital transformation as a long-term strategy, NocoBase is more than a tool—it’s becoming a core engine for sustainable innovation, built from the ground up by the people who know the business best.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../customers/kigland.html">How KIGLAND Scaled Custom Anime Mask Production with Open-Source Tools</a></li>
+<li><a href="../customers/how-400-lawyer-firm-streamlines-commission-management-with-nocobase.html">How a 400+ Lawyer Firm Streamlines Commission Management with NocoBase</a></li>
+<li><a href="../customers/rapid-development-with-nocobase.html">Rapid Development with NocoBase: Driving Digital Transformation in Construction</a></li>
+<li><a href="../customers/Orchisky.html">Orchisky’s Smart Manufacturing Upgrade: Why They Chose NocoBase</a></li>
+<li><a href="../customers/nint.html">Why Nint Chose NocoBase: Best Practices for In-House Development Transformation</a></li>
+<li><a href="../customers/GemelSoft.html">GemelSoft Enhances Internal Systems and Expands External Business Through NocoBase Integration</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">引言</a><a href="#zh-2">关于奥雅</a><a href="#zh-3">技术选型背景：寻找更灵活的工具</a><a href="#zh-4">从设计专业到系统搭建的跨界</a><a href="#zh-5">快速投入业务使用</a><a href="#zh-6">从“不被推荐使用”到“全面落地”，一切因业务而生</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">About L&amp;#x26;A</a><a href="#en-3">Why L&amp;#x26;A Sought a More Flexible Solution</a><a href="#en-4">From Designer to Builder: A Business User’s Leap into System Development</a><a href="#en-5">From Prototype to Practice: Rapid Business Rollout</a><a href="#en-6">A Business-Driven Journey from Hesitation to Full Adoption</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>更多客户案例</t-zh><t-en>More customer stories</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../customers/sungrow.html" data-tags="Customer_Stories"><span class="cv"><span class="cv-ph"><b>SUNGROW</b></span></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年10月17日</t-zh><t-en>Oct 17, 2026</t-en></span><span><t-zh>NocoBase</t-zh><t-en>NocoBase</t-en></span></div><h3><t-zh>阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统</t-zh><t-en>Sungrow: the systems behind a global business, built on NocoBase</t-en></h3><p><t-zh>全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。</t-zh><t-en>How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.</t-en></p></a><a class="bcard" href="../customers/polish-volunteer-fire-department-nocobase-case-study.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/20260722-111552-ydpnay.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月22日</t-zh><t-en>Jul 22, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>一支每年出警 200 次的消防队，如何用 NocoBase 搭建运营系统</t-zh><t-en>How a Volunteer Fire Department Manages 200 Callouts a Year with NocoBase</t-en></h3><p><t-zh>波兰 OSP Radlin II 志愿消防队用 NocoBase 统一管理出警、人员资质、车辆装备与自动化提醒，并持续迭代消防队运营系统。</t-zh><t-en>See how OSP Radlin II uses NocoBase to manage emergency callouts, personnel qualifications, vehicles, equipment, reminders, and daily operations</t-en></p></a><a class="bcard" href="../customers/astrolab-nocobase.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%B3%95%E5%9B%BD%E6%94%BF%E5%BA%9C%20(2)-8g4luf.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月3日</t-zh><t-en>Jul 3, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>法国大区政府如何用 NocoBase 建设数字化公共服务平台</t-zh><t-en>From Paperwork to Digital Public Services in France</t-en></h3><p><t-zh>基于一套 NocoBase 架构，Astrolab 为法国大区政府交付三个生产级平台，将审核周期缩短至 24 小时内，车辆冲突减少 80%，普查回收率提升至 90% 以上。</t-zh><t-en>Astrolab used NocoBase to deliver three production-ready platforms for a French regional government, reducing review cycles to under 24 hours, cutting reservation conflicts by 80%, and reaching over 90% survey response rates.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>下一个故事，可以是你的。</t-zh><t-en>The next story could be yours.</t-en></h2><p><t-zh>带一个真实需求，和我们一起把它做成可以长期使用的系统。</t-zh><t-en>Bring one real requirement and turn it into a system you’ll use for years.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../customers.html"><t-zh>全部客户案例</t-zh><t-en>All customer stories</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

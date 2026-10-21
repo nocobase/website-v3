@@ -36,9 +36,9 @@ def win(icon, app, czh, cen, body, right=''):
 
 # NocoCRM：一支 7×24 小时的销售 Agent 团队——「Agent 做了 37 件事，你只拍板 6 件」
 # 底部一行：今天在岗的 6 个 Agent 各做了几件事（合计 37，和右侧数字对上）
-ROSTER = [('公司研究 Agent', 'Research Agent', 'building-2', 4), ('线索跟进 Agent', 'Lead Agent', 'radar', 12), ('商机跟进 Agent', 'Deal Agent', 'bell', 5),
-          ('任务助手 Agent', 'Task Agent', 'list-checks', 9), ('审批辅助 Agent', 'Approval Agent', 'stamp', 3), ('销售专家 Agent', 'Sales Expert Agent', 'message-square', 4)]
-crm_roster = ('<div class="sx-sec" style="color:var(--agent-ink)"><i data-lucide="bot" style="color:var(--agent)"></i>' + T('今天在岗的 6 个 Agent', '6 agents on duty today') + '<span class="r">' + T('合计 37 件', '37 tasks in total') + '</span></div>'
+ROSTER = [('公司情报 Agent', 'Research Agent', 'building-2', 4), ('线索跟进 Agent', 'Lead Agent', 'radar', 12), ('商机跟进 Agent', 'Deal Agent', 'bell', 5),
+          ('任务助手 Agent', 'Task Agent', 'list-checks', 9), ('审批助手 Agent', 'Approval Agent', 'stamp', 3), ('销售专家 Agent', 'Sales Expert Agent', 'message-square', 4)]
+crm_roster = ('<div class="sx-sec" style="color:var(--agent-ink)"><i data-lucide="zap" style="color:var(--agent)"></i>' + T('今天在岗的 6 个 Agent', '6 agents on duty today') + '<span class="r">' + T('合计 37 件', '37 tasks in total') + '</span></div>'
   '<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px">' + ''.join(
     '<div style="display:grid;grid-template-columns:24px minmax(0,1fr);gap:2px 8px;align-items:center;padding:9px 10px;border:1px solid var(--rule);border-radius:9px">'
     '<span class="ag" style="grid-row:span 2;width:24px;height:24px"><i data-lucide="%s"></i></span><b style="font-size:12px;font-weight:600;color:var(--agent-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">%s</b>'

@@ -79,13 +79,13 @@ save('reachHealth', solo(
 tlc = [
     ('10-08', CH('globe'), T('<b>网站表单</b>李总：想了解企业版，40 家门店，需要私有化部署', '<b>Web form</b> Mr. Li: interested in Enterprise, 40 stores, needs self-hosting'), '', tag('grey', '表单', 'Form')),
     ('10-08', AGT('radar'), T('<b>线索跟进</b>研究了公司和来源，评为 A 级，分配给陈思', '<b>Lead follow-up</b> researched the company and source, graded A, routed to Ava'), T('依据：门店规模、官网招聘、已有试用账号', 'Basis: store count, careers page, existing trial account'), AI('A 级', 'Grade A')),
-    ('10-08', YOU('陈', 'A'), T('<b>你</b>改了两句，发出首封邮件', '<b>You</b> edited two lines and sent the first email'), T('草稿由 Agent 起草，从你的邮箱发出', 'Drafted by the agent, sent from your mailbox'), tag('grey', '邮件', 'Email'), True),
+    ('10-08', YOU('陈', 'A'), T('<b>你</b> 改了两句，发出首封邮件', '<b>You</b> edited two lines and sent the first email'), T('草稿由 Agent 起草，从你的邮箱发出', 'Drafted by the agent, sent from your mailbox'), tag('grey', '邮件', 'Email'), True),
     ('10-09', CH('message-circle'), T('<b>WhatsApp</b>李总：下周三能来门店看一下吗？顺便讲讲私有化。', '<b>WhatsApp</b> Mr. Li: can you visit a store next Wednesday and cover self-hosting?'), T('Agent 建好周三拜访任务，回复已起草', 'Agent booked the Wednesday visit and drafted a reply'), tag('grey', 'WhatsApp', 'WhatsApp')),
     ('10-10', CH('mail'), T('<b>邮件</b>预算 Q4 批；需要 SSO 和审计日志；也在看另一家', '<b>Email</b> Budget approved in Q4; needs SSO and audit logs; also evaluating another vendor'), T('提取 3 条事实写入商机，附原文；预计成交日与人填的 Q3 冲突，交给你决定', '3 facts written to the deal with quotes; close date conflicts with your Q3—sent to you'), AI('3 条事实', '3 facts')),
     ('10-15', CH('calendar'), T('<b>会议</b>门店评审会，上传了录音', '<b>Meeting</b> store review; recording uploaded'), T('任务助手写好纪要和 3 个下一步', 'Task assistant wrote the notes and 3 next steps'), tag('grey', '日历', 'Calendar')),
-    ('10-16', AGT('stamp'), T('<b>审批辅助</b>15% 折扣：建议有条件同意', '<b>Approval review</b> 15% discount: approve on conditions'), T('销售经理按建议批准', 'The sales manager approved as recommended'), tag('green', '已批准', 'Approved')),
+    ('10-16', AGT('stamp'), T('<b>审批助手</b>15% 折扣：建议有条件同意', '<b>Approval review</b> 15% discount: approve on conditions'), T('销售经理按建议批准', 'The sales manager approved as recommended'), tag('green', '已批准', 'Approved')),
     ('10-21', AGT('bell'), T('<b>商机跟进</b>合同发出 3 天没有回音，起草了一条提醒', '<b>Deal follow-up</b> no reply 3 days after the contract—drafted a nudge'), T('超过 24 小时，选用已审核的 WhatsApp 模板', 'Past 24 hours, so it used an approved WhatsApp template'), tag('grey', 'WhatsApp', 'WhatsApp')),
-    ('10-24', YOU('陈', 'A'), T('<b>你</b>标记赢单，填写合同日期', '<b>You</b> marked it won and entered the contract date'), '', tag('green', '赢单', 'Won'), True),
+    ('10-24', YOU('陈', 'A'), T('<b>你</b> 标记赢单，填写合同日期', '<b>You</b> marked it won and entered the contract date'), '', tag('green', '赢单', 'Won'), True),
 ]
 facts = [('预算', 'Budget', 'Q4 批', 'Q4 approval', '10-10 邮件原文', 'Oct 10 email, quoted'), ('需求', 'Needs', 'SSO、审计日志', 'SSO, audit logs', '10-10 邮件原文', 'Oct 10 email, quoted'), ('决策人', 'Decision maker', '李总 · 运营副总', 'Mr. Li · VP Ops', '邮件签名', 'Email signature'), ('门店数', 'Stores', '40', '40', '网站表单', 'Web form')]
 facts_html = '<div class="ck2">' + ''.join(f'<div style="grid-template-columns:minmax(0,1fr) auto"><b>{T(a, b)} · {T(c, d)}</b><small style="grid-column:1">{T(e, f)}</small><span class="aisg" style="grid-row:1/3;grid-column:2">AI</span></div>' for a, b, c, d, e, f in facts) + '</div>'

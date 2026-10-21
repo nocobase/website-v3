@@ -11,21 +11,21 @@ YOU = lambda zh, en: f'<span class="av">{T(zh, en)}</span>'
 
 # ======================= NocoCRM =======================
 day = [
-    ('07:30', AGT('building-2'), T('<b>公司研究</b>发现北辰能源完成 C 轮融资 8 亿元，附 2 个来源', '<b>Company research</b> found Beichen Energy closed an ¥800M Series C, with 2 sources'), T('建议本周约对方 CFO 谈企业版扩容', 'Suggests meeting their CFO this week about expansion'), AI('建议', 'Suggestion')),
+    ('07:30', AGT('building-2'), T('<b>公司情报</b>发现北辰能源完成 C 轮融资 8 亿元，附 2 个来源', '<b>Company research</b> found Beichen Energy closed an ¥800M Series C, with 2 sources'), T('建议本周约对方 CFO 谈企业版扩容', 'Suggests meeting their CFO this week about expansion'), AI('建议', 'Suggestion')),
     ('08:00', AGT('radar'), T('<b>线索跟进</b>完成每日检查：20 条线索，3 条该跟进、1 条转培育', '<b>Lead follow-up</b> ran the daily check: 20 leads, 3 to follow up, 1 to nurture'), T('每条附等级、理由和下一步', 'Each with a grade, reasons, and next step'), AI('4 条建议', '4 suggestions')),
     ('08:30', AGT('list-checks'), T('<b>任务助手</b>为 10:00 的方案评审会准备好要点', '<b>Task assistant</b> prepped the 10:00 solution review'), T('目标、对方是谁、要问的 5 个问题、风险', 'Goal, attendees, 5 questions to ask, risks'), tag('green', '已就绪', 'Ready')),
-    ('09:05', YOU('陈', 'A'), T('<b>你</b>采纳 3 条线索建议，忽略 1 条', '<b>You</b> accepted 3 lead suggestions, ignored 1'), '', tag('grey', '1 分钟', '1 min'), True),
+    ('09:05', YOU('陈', 'A'), T('<b>你</b> 采纳 3 条线索建议，忽略 1 条', '<b>You</b> accepted 3 lead suggestions, ignored 1'), '', tag('grey', '1 分钟', '1 min'), True),
     ('10:42', AGT('message-circle'), T('<b>线索跟进</b>读到客户 WhatsApp：想下周三看方案', '<b>Lead follow-up</b> read a WhatsApp message: wants a demo next Wednesday'), T('等级 B → A，建好拜访任务，起草回复', 'Grade B → A, visit task created, reply drafted'), AI('等你确认', 'Needs you')),
-    ('11:30', YOU('陈', 'A'), T('<b>你</b>改了一句措辞，发出回复', '<b>You</b> tweaked one line and sent the reply'), '', tag('grey', '30 秒', '30 sec'), True),
-    ('14:10', AGT('stamp'), T('<b>审批辅助</b>审阅 18% 折扣申请：对照标准、历史同类与毛利', '<b>Approval review</b> checked an 18% discount against standards, history, and margin'), T('建议以 15% 为上限批准，已起草审批意见', 'Recommends a 15% cap, comment drafted'), AI('有条件同意', 'Approve on conditions')),
-    ('14:15', YOU('陈', 'A'), T('<b>你</b>按建议有条件同意', '<b>You</b> approved on conditions'), '', tag('grey', '2 分钟', '2 min'), True),
+    ('11:30', YOU('陈', 'A'), T('<b>你</b> 改了一句措辞，发出回复', '<b>You</b> tweaked one line and sent the reply'), '', tag('grey', '30 秒', '30 sec'), True),
+    ('14:10', AGT('stamp'), T('<b>审批助手</b>审阅 18% 折扣申请：对照标准、历史同类与毛利', '<b>Approval review</b> checked an 18% discount against standards, history, and margin'), T('建议以 15% 为上限批准，已起草审批意见', 'Recommends a 15% cap, comment drafted'), AI('有条件同意', 'Approve on conditions')),
+    ('14:15', YOU('陈', 'A'), T('<b>你</b> 按建议有条件同意', '<b>You</b> approved on conditions'), '', tag('grey', '2 分钟', '2 min'), True),
     ('18:20', AGT('list-checks'), T('<b>任务助手</b>整理评审会结果，更新商机阶段为「提案」', '<b>Task assistant</b> wrote up the review and moved the deal to Proposal'), '', tag('green', '已完成', 'Done')),
 ]
 day_html = '<div class="tl">' + ''.join(tl_row(*d) for d in day) + '</div>'
 save('crmDay', solo(
     f'<div class="sx-h"><div><h5>{T("周二 · 陈思的一天", "Tuesday · a day for Ava")}</h5><p>{T("销售 Agent 团队的工作记录，按时间排列", "The sales agent team’s log, in order")}</p></div></div>'
     f'<div class="duo2" style="grid-template-columns:minmax(0,1fr) 260px;align-items:start">{day_html}'
-    f'<div style="display:grid;gap:10px"><div class="bigstat"><small>{T("Agent 完成的工作", "Work done by agents")}</small><b class="ag-c">37</b><span>{T("调研、检查、准备、起草、审阅", "Research, checks, prep, drafts, reviews")}</span></div><div class="bigstat"><small>{T("你做的决定", "Decisions you made")}</small><b class="hu-c">6</b><span>{T("每个都附依据，平均 1 分钟", "Each with evidence, ~1 min each")}</span></div><div class="bigstat"><small>{T("没有被遗漏的线索", "Leads that slipped")}</small><b class="ok-c">0</b><span>{T("新线索、来信和到期任务都有人跟", "Every new lead, message, and due task covered")}</span></div></div></div>'))
+    f'<div style="display:grid;gap:10px"><div class="bigstat"><small>{T("Agent 完成的工作", "Work done by agents")}</small><b class="ag-c">37</b><span>{T("调研、检查、准备、起草、审阅", "Research, checks, prep, drafts, reviews")}</span></div><div class="bigstat"><small>{T("你做的决定", "Decisions you made")}</small><b class="hu-c">6</b><span>{T("每个都附依据，平均 1 分钟", "Each with evidence, ~1 min each")}</span></div><div class="bigstat"><small>{T("被遗漏的线索", "Leads that slipped")}</small><b class="ok-c">0</b><span>{T("新线索、来信和到期任务都有人跟", "Every new lead, message, and due task covered")}</span></div></div></div>'))
 
 # 事件链：客户来信 → Agent 判断 → 建议 → 记录更新
 chain = (
@@ -42,9 +42,9 @@ team = [
     ('message-square', '销售专家', 'Sales Expert', '懂销售的对话助手：查数据、判断进展、准备下一步', 'Talks sales: looks things up, reads the situation, preps the next step', ['随时对话|Any time'], '312', '—'),
     ('radar', '线索跟进', 'Lead follow-up', '给每条线索打等级、给下一步，整理粘贴的文字，合并重复线索', 'Grades every lead with a next step, captures pasted text, merges duplicates', ['新建线索|New lead', '每日 09:00|Daily 09:00', '客户来信|Customer writes', '任务完成|Task done'], '128', '82%'),
     ('target', '商机跟进', 'Opportunity follow-up', '对照审批标准看条件，建议推进、继续、暂停或输单', 'Checks terms against standards; advance, continue, pause, or lose', ['每日检查|Daily check', '商机变化|Deal changes'], '96', '77%'),
-    ('stamp', '审批辅助', 'Approval review', '为审批人对比标准、成本、历史决定和风险，起草意见', 'For approvers: standards, cost, past decisions, risk, drafted comment', ['提交审批|Approval submitted'], '23', '91%'),
+    ('stamp', '审批助手', 'Approval review', '为审批人对比标准、成本、历史决定和风险，起草意见', 'For approvers: standards, cost, past decisions, risk, drafted comment', ['提交审批|Approval submitted'], '23', '91%'),
     ('list-checks', '任务助手', 'Task assistant', '任务当天早上准备要点，结束后整理结果', 'Preps each task that morning and writes up the outcome', ['任务当天|Task morning', '任务完成|Task done'], '64', '88%'),
-    ('building-2', '公司研究', 'Company research', '补全新公司资料，每天盯住在谈公司的融资、招聘、高管变动', 'Fills in new companies; watches active accounts for funding, hiring, new execs', ['新建公司|New company', '每天早上|Every morning'], '41', '73%'),
+    ('building-2', '公司情报', 'Company research', '补全新公司资料，每天盯住在谈公司的融资、招聘、高管变动', 'Fills in new companies; watches active accounts for funding, hiring, new execs', ['新建公司|New company', '每天早上|Every morning'], '41', '73%'),
 ]
 def chips(lst): return '<div class="mini-chips">' + ''.join(f'<span>{T(*c.split("|"))}</span>' for c in lst) + '</div>'
 team_html = '<div class="attn" style="--cols:3;gap:10px">' + ''.join(
@@ -58,7 +58,7 @@ sig = [('北辰能源', 'Beichen Energy', '融资', 'Funding', 'violet', '完成
        ('Kestrel Logistics', 'Kestrel Logistics', '大规模招聘', 'Hiring at scale', 'green', '华南区招聘 40 名调度员', 'Hiring 40 dispatchers in South China', '调度协同需求在扩大，商机可加速', 'Dispatch needs are growing—time to accelerate', '招聘网站', 'Job boards'),
        ('明川教育', 'Mingchuan Edu', '风险', 'Risk', 'red', '被曝预算冻结至明年 Q2', 'Reported budget freeze until next Q2', '建议：商机转暂停，每月保持联系', 'Suggest: pause the deal, check in monthly', '行业媒体', 'Trade press')]
 sig_html = ''.join(f'<div class="sg"><div class="t"><b>{T(a, b)}</b>{tag(tc, c, d)}<time>{T("今天", "Today")}</time></div><p>{T(e, f)}</p><div class="t">{AI(g, h)}<span style="margin-left:auto">{T(i, j)}</span></div></div>' for a, b, c, d, tc, e, f, g, h, i, j in sig)
-save('crmSignals', solo(f'<div class="sx-h"><div><h5>{T("今天早上，你关注的公司", "Your accounts this morning")}</h5><p>{T("公司研究 Agent · 07:30 · 附来源", "Company research · 07:30 · with sources")}</p></div></div>{sig_html}'))
+save('crmSignals', solo(f'<div class="sx-h"><div><h5>{T("今天早上，你关注的公司", "Your accounts this morning")}</h5><p>{T("公司情报 Agent · 07:30 · 附来源", "Company research · 07:30 · with sources")}</p></div></div>{sig_html}'))
 
 # 会前准备
 save('crmBrief', solo(
@@ -95,7 +95,7 @@ First contact within 24h; follow up within 7 days of a quote."""
 save('crmGuide', solo(
     f'<div class="sx-h"><div><h5>{T("业务指导", "Business guidance")}</h5><p>{T("每次对话、跟进、审阅和准备都会读这里", "Read by every conversation, follow-up, review, and prep")}</p></div><span class="r"><span class="b p sm">{T("保存", "Save")}</span></span></div>'
     f'<div class="md">{T(GUIDE_ZH, GUIDE_EN)}</div>'
-    f'<p style="font-size:12px;color:var(--muted)">{ic("sparkles")} {T("改完立即生效：下一次审批辅助就按 10% / 15% 的规则判断。", "Takes effect immediately: the next approval review uses the 10% / 15% rule.")}</p>'))
+    f'<p style="font-size:12px;color:var(--muted)">{ic("sparkles")} {T("改完立即生效：下一次审批助手就按 10% / 15% 的规则判断。", "Takes effect immediately: the next approval review uses the 10% / 15% rule.")}</p>'))
 
 # 用 Studio 改整个 CRM
 save('crmCustom', solo(

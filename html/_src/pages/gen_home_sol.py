@@ -51,7 +51,7 @@ crm = win('handshake', 'CRM', 'Agent 工作', 'Agent work', wow_body('solution-c
 def ask(id_, zh, en, dzh, den, save):
     return ('<div class="sg on" style="grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:10px 12px">'
             '<div style="display:grid;gap:2px;min-width:0"><b><span class="id" style="color:var(--muted);font-weight:400;font-size:12px">%s</span> %s</b><p>%s<span style="margin-left:8px;font-family:var(--f-mono);color:var(--pass-ink)">%s</span></p></div>'
-            '<div class="acts" style="margin:0;flex-wrap:nowrap"><span class="b p sm">%s</span><span class="b sm">%s</span></div></div>') % (id_, T(zh, en), T(dzh, den), save, T('同意', 'Approve'), T('改一改', 'Edit'))
+            '<div class="acts" style="margin:0;flex-wrap:nowrap"><span class="b p sm">%s</span><span class="b sm">%s</span></div></div>') % (id_, T(zh, en), T(dzh, den), save, T('同意', 'Approve'), T('修改', 'Edit'))
 itam_ask = ('<div class="sx-sec"><i data-lucide="user-check"></i>' + T('等你确认', 'Waiting on you') + '<span class="r">' + T('确认后才会执行', 'Nothing runs until you confirm') + '</span></div>'
   '<div class="duo2" style="gap:12px">' +
   ask('PO-000052', '设计部申请 3 台显示器', '3 monitors for Design', '库存有 2 台同型号，建议只买 1 台', '2 same-model units in stock; buy just 1', T('少花 ¥ 3,198', 'Saves ¥3,198')) +
@@ -124,7 +124,7 @@ sup_body = (
     '</div>' +
     '<div class="pnl" style="gap:8px;align-content:start;background:var(--paper)"><div class="h"><i data-lucide="user-check" style="color:var(--human-ink)"></i>' + T('升级给你的 3 件', '3 escalated to you') + '<span class="r">' + T('都附好了依据', 'Context attached') + '</span></div>' +
       decide('#2381', '重复扣款退款 ¥3,200', 'Refund a ¥3,200 double charge', '超过自动退款额度 ¥1,000；Agent 已核对支付流水，确认重复扣款。', 'Above the ¥1,000 auto-refund limit; the agent matched the payment logs.', [('批准退款', 'Approve refund'), ('驳回', 'Decline')]) +
-      decide('#2396', '投诉：两次延误交付', 'Complaint: two late deliveries', '客户要求补偿；Agent 起草了致歉信和延长 1 个月服务的方案。', 'Customer wants compensation; the agent drafted an apology and a 1-month extension.', [('查看草稿', 'Review draft'), ('改一改', 'Edit')]) +
+      decide('#2396', '投诉：两次延误交付', 'Complaint: two late deliveries', '客户要求补偿；Agent 起草了致歉信和延长 1 个月服务的方案。', 'Customer wants compensation; the agent drafted an apology and a 1-month extension.', [('查看草稿', 'Review draft'), ('修改', 'Edit')]) +
       decide('#2399', '要求周末现场支持', 'Weekend on-site request', '超出合同 SLA；Agent 建议按次收费 ¥2,000。', 'Outside the contract SLA; the agent suggests a ¥2,000 one-off fee.', [('同意', 'Approve'), ('拒绝', 'Decline')]) +
     '</div>' +
   '</div>')

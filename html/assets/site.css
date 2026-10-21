@@ -1238,6 +1238,13 @@ section.sec.tint { margin-top: 160px; padding-block: 128px 136px; background: ok
 .ck2.plain > div + div { border-top: 1px solid var(--rule); }
 .ck2.plain > div:first-child { padding-top: 0; }
 .ck2.plain > div:last-child { padding-bottom: 0; }
+.aif { display: grid; }
+.aif > div { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1px 10px; padding: 7px 0; }
+.aif > div + div { border-top: 1px solid var(--rule); }
+.aif > div:first-child { padding-top: 2px; }
+.aif span { font-size: 12px; color: var(--muted); }
+.aif b { font-size: 12.5px; font-weight: 600; text-align: right; }
+.aif small { grid-column: 1 / -1; font-size: 11px; color: var(--muted); }
 .cmsg { display: grid; gap: 6px; }
 .cmsg .in, .cmsg .out { max-width: 82%; padding: 7px 11px; border-radius: 10px; font-size: 12.5px; }
 .cmsg .in { justify-self: start; background: var(--paper-2); border-radius: 3px 10px 10px 10px; }
@@ -1272,6 +1279,7 @@ section.sec.tint { margin-top: 160px; padding-block: 128px 136px; background: ok
 /* 时间线里由 Agent 完成的条目：名字带「Agent」、用 Agent 紫色，头像统一是机器人；人做的事是琥珀色底 */
 .tl .tx b.agn { color: var(--agent-ink); }
 .tl .ag { background: var(--agent-tint); color: var(--agent); }
+.tl .ag.wf { background: var(--paper-2); color: var(--ink-2); border: 0; }
 .tl-lg { display: flex; align-items: center; gap: 14px; font-size: 12px; color: var(--muted); }
 .tl-lg > span { display: inline-flex; align-items: center; }
 .bigstat { display: grid; gap: 4px; padding: 14px 16px; border-radius: 10px; background: var(--paper-2); }

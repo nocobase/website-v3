@@ -11,15 +11,15 @@ YOU = lambda zh, en: f'<span class="av">{T(zh, en)}</span>'
 
 # ======================= NocoCRM =======================
 day = [
-    ('07:30', AGT('building-2'), T('<b>公司情报</b>发现北辰能源完成 C 轮融资 8 亿元，附 2 个来源', '<b>Company research</b> found Beichen Energy closed an ¥800M Series C, with 2 sources'), T('建议本周约对方 CFO 谈企业版扩容', 'Suggests meeting their CFO this week about expansion'), AI('建议', 'Suggestion')),
-    ('08:00', AGT('radar'), T('<b>线索跟进</b>完成每日检查：20 条线索，3 条该跟进、1 条转培育', '<b>Lead follow-up</b> ran the daily check: 20 leads, 3 to follow up, 1 to nurture'), T('每条附等级、理由和下一步', 'Each with a grade, reasons, and next step'), AI('4 条建议', '4 suggestions')),
-    ('08:30', AGT('list-checks'), T('<b>任务助手</b>为 10:00 的方案评审会准备好要点', '<b>Task assistant</b> prepped the 10:00 solution review'), T('目标、对方是谁、要问的 5 个问题、风险', 'Goal, attendees, 5 questions to ask, risks'), tag('green', '已就绪', 'Ready')),
+    ('07:30', AGT('building-2'), T('<b>公司情报</b> 发现北辰能源完成 C 轮融资 8 亿元，附 2 个来源', '<b>Company research</b> found Beichen Energy closed an ¥800M Series C, with 2 sources'), T('建议本周约对方 CFO 谈企业版扩容', 'Suggests meeting their CFO this week about expansion'), AI('建议', 'Suggestion')),
+    ('08:00', AGT('radar'), T('<b>线索跟进</b> 完成每日检查：20 条线索，3 条该跟进、1 条转培育', '<b>Lead follow-up</b> ran the daily check: 20 leads, 3 to follow up, 1 to nurture'), T('每条附等级、理由和下一步', 'Each with a grade, reasons, and next step'), AI('4 条建议', '4 suggestions')),
+    ('08:30', AGT('list-checks'), T('<b>任务助手</b> 为 10:00 的方案评审会准备好要点', '<b>Task assistant</b> prepped the 10:00 solution review'), T('目标、对方是谁、要问的 5 个问题、风险', 'Goal, attendees, 5 questions to ask, risks'), tag('green', '已就绪', 'Ready')),
     ('09:05', YOU('陈', 'A'), T('<b>你</b> 采纳 3 条线索建议，忽略 1 条', '<b>You</b> accepted 3 lead suggestions, ignored 1'), '', tag('grey', '1 分钟', '1 min'), True),
-    ('10:42', AGT('message-circle'), T('<b>线索跟进</b>读到客户 WhatsApp：想下周三看方案', '<b>Lead follow-up</b> read a WhatsApp message: wants a demo next Wednesday'), T('等级 B → A，建好拜访任务，起草回复', 'Grade B → A, visit task created, reply drafted'), AI('等你确认', 'Needs you')),
+    ('10:42', AGT('message-circle'), T('<b>线索跟进</b> 读到客户 WhatsApp：想下周三看方案', '<b>Lead follow-up</b> read a WhatsApp message: wants a demo next Wednesday'), T('等级 B → A，建好拜访任务，起草回复', 'Grade B → A, visit task created, reply drafted'), AI('等你确认', 'Needs you')),
     ('11:30', YOU('陈', 'A'), T('<b>你</b> 改了一句措辞，发出回复', '<b>You</b> tweaked one line and sent the reply'), '', tag('grey', '30 秒', '30 sec'), True),
-    ('14:10', AGT('stamp'), T('<b>审批助手</b>审阅 18% 折扣申请：对照标准、历史同类与毛利', '<b>Approval review</b> checked an 18% discount against standards, history, and margin'), T('建议以 15% 为上限批准，已起草审批意见', 'Recommends a 15% cap, comment drafted'), AI('有条件同意', 'Approve on conditions')),
+    ('14:10', AGT('stamp'), T('<b>审批助手</b> 审阅 18% 折扣申请：对照标准、历史同类与毛利', '<b>Approval review</b> checked an 18% discount against standards, history, and margin'), T('建议以 15% 为上限批准，已起草审批意见', 'Recommends a 15% cap, comment drafted'), AI('有条件同意', 'Approve on conditions')),
     ('14:15', YOU('陈', 'A'), T('<b>你</b> 按建议有条件同意', '<b>You</b> approved on conditions'), '', tag('grey', '2 分钟', '2 min'), True),
-    ('18:20', AGT('list-checks'), T('<b>任务助手</b>整理评审会结果，更新商机阶段为「提案」', '<b>Task assistant</b> wrote up the review and moved the deal to Proposal'), '', tag('green', '已完成', 'Done')),
+    ('18:20', AGT('list-checks'), T('<b>任务助手</b> 整理评审会结果，更新商机阶段为「提案」', '<b>Task assistant</b> wrote up the review and moved the deal to Proposal'), '', tag('green', '已完成', 'Done')),
 ]
 day_html = '<div class="tl">' + ''.join(tl_row(*d) for d in day) + '</div>'
 save('crmDay', solo(

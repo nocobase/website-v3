@@ -81,7 +81,7 @@ save('crmPipeline', bare('handshake', 'CRM', '商机', 'Opportunities',
 
 # 收件箱里的 AI 建议
 sugs = [
-    ('商机', 'Deal', '华岳酒店 / 门店运营平台', 'Huayue Hotels / Store ops platform', '推进到谈判 · 可能', 'Advance to Negotiation · Possible', '报价已发、POC 通过、折扣在审批，可以推进到谈判阶段。', 'Quote sent, POC passed, discount in approval—ready for negotiation.', '5h', 1),
+    ('商机', 'Deal', '华岳酒店 / 门店运营平台', 'Huayue Hotels / Store ops platform', '推进到谈判 · 把握较大', 'Advance to Negotiation · Likely', '报价已发、POC 通过、折扣在审批，可以推进到谈判阶段。', 'Quote sent, POC passed, discount in approval—ready for negotiation.', '5h', 1),
     ('审批', 'Approval', '北辰能源 企业版折扣特批', 'Beichen Energy enterprise discount', '有条件同意', 'Approve on conditions', '案例合作有价值，但 18% 超出标准较多，建议以 15% 为上限批准。', 'Valuable case study, but 18% is well over standard—cap it at 15%.', '2d', 0),
     ('线索', 'Lead', '周晓 / Kestrel Logistics', 'Ethan Zhou / Kestrel Logistics', '跟进 · A 级', 'Follow up · Grade A', '需求明确，要私有化和统一身份认证，适合企业版，值得尽快跟进。', 'Clear need for self-hosting and SSO—an Enterprise fit worth pursuing now.', '2d', 0),
 ]

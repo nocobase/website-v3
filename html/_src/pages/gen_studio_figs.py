@@ -77,7 +77,7 @@ tasks = ('<div class="st-win mtw2">' + side('mine') + '<div class="st-main">' + 
           step('done', '阶段字段与数据迁移', 'Stage field and data migration', 'cx') +
           step('run', '看板拖拽与阶段变更权限', 'Drag-and-drop and stage permissions', 'cx', ('已改 7 个文件', '7 files changed')) +
           step('run', '为 6 个验收场景写测试', 'Tests for the 6 scenarios', 'cc', ('31 / 38 通过', '31 / 38 passing')) +
-          step('backlog', '代码评审与 NocoBase 规范检查', 'Code review and NocoBase checks', 'cc', off=True) +
+          step('backlog', '代码评审（换一家模型）', 'Code review by another vendor’s model', 'cc', off=True) +
           '</div>' +
         '<div class="st-chips"><span class="st-chip">' + I('git-pull-request') + 'PR #221</span><span class="st-chip">' + I('git-branch') + T('2 个分支', '2 branches') + '</span><span class="st-chip bl">' + I('rocket') + 'Preview · crm-144</span></div>' +
         '<div class="st-tabs"><span class="on">' + T('动态', 'Activity') + '</span><span>' + T('描述', 'Description') + '</span><span>' + T('子任务 5', 'Subtasks 5') + '</span><span>' + T('代码与部署', 'Code &amp; deploys') + '</span><span>' + T('运行 9', 'Runs 9') + '</span></div>' +
@@ -124,7 +124,7 @@ expert = ('<div class="st-card st-det" style="box-shadow:0 1px 2px oklch(0.25 0.
     '</div>' +
     '<div class="st-box"><div class="h">' + I('list-checks') + T('交付报告 · Agent 完成', 'Delivery report · done by agents') + '</div>' +
       '<div class="st-chips">' + ''.join('<span class="st-chip">%s%s</span>' % (I(ic), T(zh, en)) for ic, zh, en in [
-        ('git-branch', '代码与分支', 'Code &amp; branches'), ('flask-conical', '46 项测试通过', '46 tests passing'), ('database', '数据迁移已演练', 'Migration rehearsed'), ('archive', '已备份并发布', 'Backed up &amp; deployed')]) + '</div>' +
+        ('git-branch', '代码与分支', 'Code &amp; branches'), ('flask-conical', '46 项测试通过', '46 tests passing'), ('shield-check', '换模型评审通过', 'Reviewed by another model'), ('rocket', '批准后发布', 'Approved &amp; deployed')]) + '</div>' +
       '<div class="st-foot" style="display:flex;align-items:center;gap:6px">' + ag('cx') + 'Codex · GPT-5.5 · ' + ag('cc') + 'Claude Code · Opus 5.5 · ' + T('10月17日 19:02', 'Oct 17, 19:02') + '</div></div>' +
   '</div></div>')
 
@@ -139,14 +139,14 @@ govern = ('<div class="st-card" style="background:var(--card);box-shadow:0 1px 2
   '<div class="st-dh"><span class="id">CRM-152</span>·<span>NocoCRM</span><span class="r"><span class="st-pill">' + si('done') + T('已上线 · v1.8.0', 'Live · v1.8.0') + '</span></span></div>' +
   '<div class="st-db" style="gap:14px;padding:14px 16px 16px"><div><h5>' + T('客户导入去重', 'Dedupe customer imports') + '</h5><p style="margin-top:2px;font-size:12.5px;color:var(--muted)">' + T('一次改动从方案到上线，要过的每一道关', 'Every gate one change passes on its way to production') + '</p></div>' +
     '<div class="st-flow">' +
-      stg(1, '方案', 'Plan', agw('cc', 'Opus 5.5'), sk('studio-approach'), '梳理 3 条规则与 6 个验收场景', '3 rules and 6 acceptance scenarios', 'user-check', '王磊确认方案', 'Leo approved the plan') +
-      stg(2, '开发', 'Build', agw('cx', 'GPT-5.5'), sk('studio-development'), '写业务逻辑，权限与工作流复用 Core', 'Business logic on Core permissions and workflows', 'shield-check', '构建与规范检查通过', 'Build and checks passed') +
-      stg(3, '评审', 'Review', agw('cc', 'Opus 5.5'), sk('studio-review'), '逐项查权限、数据迁移与兼容性', 'Permissions, migration, and compatibility', 'shield-check', '评审意见全部关闭', 'All comments resolved') +
-      stg(4, '测试', 'Test', agw('cc', 'Sonnet 5.5'), bs('flask-conical', 'Studio 测试模块', 'Studio tests'), '按 6 个场景写测试，在数据副本演练迁移', 'Tests for 6 scenarios; migration rehearsed on a copy', 'shield-check', '46 / 46 通过方可合并', '46 / 46 passing to merge') +
+      stg(1, '方案', 'Plan', agw('cc', 'Opus 5.5'), sk('studio-approach'), '梳理 3 条规则与 6 个验收场景', '3 rules and 6 acceptance scenarios', 'user-check', '新增字段由王磊确认', 'Leo confirmed the new field') +
+      stg(2, '开发', 'Build', agw('cx', 'GPT-5.5'), sk('studio-development'), '写业务逻辑，权限与工作流复用 Core', 'Business logic on Core permissions and workflows', 'shield-check', '构建与类型检查通过', 'Build and type checks passed') +
+      stg(3, '评审', 'Review', agw('cc', 'Opus 5.5'), sk('studio-review'), '按评审规范查缺陷、安全与测试', 'Defects, security, and tests, per the review skill', 'shield-check', '评审意见全部关闭', 'All comments resolved') +
+      stg(4, '测试', 'Test', agw('cc', 'Sonnet 5.5'), bs('flask-conical', 'Studio 测试模块', 'Studio tests'), '按 6 个验收场景写测试，在 CI 中运行', 'Tests for 6 scenarios, run in CI', 'shield-check', '46 / 46 通过才交给人验收', '46 / 46 passing before sign-off') +
       stg(5, '验收', 'Accept', av('陈', 'A') + T('陈思', 'Ava Chen'), bs('eye', 'crm-import.preview', 'crm-import.preview'), '在独立预览环境走查 6 个场景', 'Walked through 6 scenarios in preview', 'user-check', '陈思验收通过', 'Ava signed off') +
-      stg(6, '发布', 'Ship', av('王', 'L') + T('王磊', 'Leo Wang'), bs('archive', '快照 db-0412', 'Snapshot db-0412'), '发布前自动备份，异常一键回滚', 'Auto backup before release, one-click rollback', 'user-check', '王磊批准上线', 'Leo approved release') +
+      stg(6, '发布', 'Ship', av('王', 'L') + T('王磊', 'Leo Wang'), bs('rocket', '部署申请 · 生产', 'Deploy request · production'), '生产发布需人批准，可回滚到上一版本', 'Production needs approval; roll back to the last release', 'user-check', '王磊批准上线', 'Leo approved release') +
     '</div>' +
-    '<div class="st-band">' + I('git-branch') + sk('studio-workflow') + '<span>' + T('串起整条流程：每个任务独立分支、独立预览，按顺序过关，不能跳步', 'Ties it together: own branch and preview per task, gates in order, no skipping') + '</span><span class="r">' + I('history') + T('谁做的、用哪个模型和技能，全部留痕', 'Who, which model, which skill: all on record') + '</span></div>' +
+    '<div class="st-band">' + I('git-branch') + sk('studio-workflow') + '<span>' + T('串起整条流程：每个任务独立分支、独立预览，按顺序过关，不能跳步', 'Ties it together: own branch and preview per task, gates in order, no skipping') + '</span><span class="r">' + I('history') + T('谁做的、用哪个模型、谁批准的，全部留痕', 'Who did it, which model, who approved: all on record') + '</span></div>' +
   '</div></div>')
 
 FIGS = {'studioHero': tasks, 'homeFleet': fleet, 'homeExpert': expert, 'homeGovern': govern}

@@ -8,7 +8,7 @@
 
   var products = [
     ['core', 'core.html', 'layers', 'NocoBase Core', T('专为企业业务系统打造的应用底座', 'The production foundation for business apps')],
-    ['studio', 'studio.html', 'git-pull-request', 'NocoBase Studio', T('带领 Agent 团队，每个人推进更多项目', 'Lead an agent team so every member ships more projects')],
+    ['studio', 'studio.html', 'git-pull-request', 'NocoBase Studio', T('团队与 Agent 协同开发的治理平台', 'Governed development for teams and their agents')],
     ['solutions', 'solutions.html', 'layout-grid', 'NocoBase Solutions', T('自带业务 Agent、可自由定制的开源应用', 'Open-source business apps with built-in agents')],
     ['launch', 'launch.html', 'graduation-cap', 'NocoBase Launch', T('带真实需求进场的实战培训与项目陪跑', 'Hands-on training &amp; guided project delivery')]
   ];

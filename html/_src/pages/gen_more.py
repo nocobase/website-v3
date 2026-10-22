@@ -130,7 +130,7 @@ envs = (f'<div class="flow" style="--n:3">'
     f'<p style="font-size:11.5px;color:var(--muted)">{T("CI 随 PR 创建，合并或关闭后连同数据删除", "Created by CI with the PR; removed with its data on merge or close")}</p></div></div>'
     f'<div><span class="st"><span class="bal">2</span>{T("预发", "Staging")}</span><div class="pnl" style="gap:8px"><div class="h">1.8.0-rc.2<span class="r">a1b2c3d</span></div>'
     f'<div class="kv" style="--n:2"><div><small>{T("包含任务", "Tasks")}</small><b>6</b></div><div><small>{T("已运行", "Running for")}</small><b>{T("46 小时", "46 h")}</b></div></div>'
-    f'<div class="rvw" style="padding:8px 10px"><div class="h" style="font-size:11.5px">{ic("activity")}{T("运维 Agent", "Ops agent")}</div><p style="font-size:12px">{T("没有新增错误；2 个数据迁移已在有数据的环境里跑过。", "No new errors; both migrations ran against real data.")}</p></div></div></div>'
+    f'<div class="rvw" style="padding:8px 10px"><div class="h" style="font-size:11.5px">{ic("activity")}{T("Claude · Opus 5.5 查看日志", "Claude · Opus 5.5 read the logs")}</div><p style="font-size:12px">{T("没有新增错误；2 个数据迁移已在预发执行。", "No new errors; both migrations ran on staging.")}</p></div></div></div>'
     f'<div><span class="st hu-s"><span class="bal">3</span>{T("生产 · 受保护", "Production · protected")}</span><div class="pnl" style="gap:8px"><div class="h">{SHIELD}1.7.3<span class="r">{T("10-09 上线", "Live since Oct 9")}</span></div>'
     f'<div class="sg on" style="padding:9px 11px"><b style="font-size:12.5px">{T("发布请求：1.8.0", "Release request: 1.8.0")}</b><p style="font-size:11.5px">{T("与预发同一份镜像 · 等王磊、陈思批准", "Same image as staging · waiting for Leo or Ava")}</p></div>'
     f'<p style="font-size:11.5px;color:var(--muted)">{T("Agent 不能直接发布到受保护的环境，只能提出请求", "Agents can’t deploy here—only request")}</p></div></div></div>')
@@ -148,13 +148,13 @@ save('studioReleaseReq', solo(
     f'<div class="sx-h"><div><h5>{T("发布 NocoCRM 1.8.0 到生产", "Release NocoCRM 1.8.0 to production")}</h5><p>{T("项目经理提出 · 等你批准", "Requested by the project manager · needs your approval")}</p></div><span class="r">{tag("amber", "等你处理", "Waiting for you")}</span></div>'
     f'<div class="kv"><div><small>{T("版本", "Version")}</small><b>1.8.0</b></div><div><small>{T("镜像", "Image")}</small><b>sha256:9f2c…</b></div><div><small>{T("提交", "Commit")}</small><b>a1b2c3d</b></div><div><small>CI</small><b style="color:var(--pass-ink)">{T("构建通过", "Passed")}</b></div></div>'
     f'<div class="mini-chips"><span>CRM-135</span><span>CRM-141</span><span>CRM-144</span><span>CRM-147</span><span>CRM-149</span><span>CRM-150</span></div>'
-    f'<div class="rvw"><div class="h">{ic("sparkles")}{T("发布前检查 · 运维 Agent", "Pre-release check · ops agent")}</div><ul>'
-    f'<li>{T("与预发运行的是同一份镜像，预发 46 小时没有新增错误", "Same image staging has run for 46 hours with no new errors")}</li>'
-    f'<li>{T("2 个数据迁移都可回退，已在预发的真实数据上验证", "Both migrations are reversible and verified on staging data")}</li>'
+    f'<div class="rvw"><div class="h">{ic("list-checks")}{T("申请里写明", "In the request")}</div><ul>'
+    f'<li>{T("与预发运行的是同一份镜像，预发已运行 46 小时", "The same image staging has run for 46 hours")}</li>'
+    f'<li>{T("包含 2 个数据迁移，已在预发执行", "Includes 2 migrations, already run on staging")}</li>'
     f'<li>{T("生产需要的 14 个变量都已设置", "All 14 variables production needs are set")}</li>'
-    f'<li>{T("建议 22:00 后发布，那时访问量最低；发布前先备份数据库", "Release after 22:00 when traffic is lowest; back up the database first")}</li></ul>'
-    f'<div class="draft"><small>{T("发布说明 · 按 6 个任务起草", "Release notes · drafted from 6 tasks")}</small>{T("新增客户分级与负责人变更审批；报价单可按模板导出；修复导入时日期格式错误……", "Adds customer tiers and owner-change approval; quotes export from templates; fixes date parsing on import…")}</div></div>'
-    f'<div class="acts" style="margin:0"><span class="b p sm">{T("批准发布", "Approve")}</span><span class="b sm">{ic("clock")}{T("22:00 发布", "Release at 22:00")}</span><span class="b sm">{T("驳回", "Reject")}</span><span class="note">{T("出问题可一键回到 1.7.3", "One click back to 1.7.3 if needed")}</span></div>'))
+    f'<li>{T("CI 构建日志可直接打开", "The CI build log is one click away")}</li></ul>'
+    f'<div class="draft"><small>{T("包含的 6 个任务", "The 6 tasks included")}</small>{T("新增客户分级与负责人变更审批；报价单可按模板导出；修复导入时日期格式错误……", "Adds customer tiers and owner-change approval; quotes export from templates; fixes date parsing on import…")}</div></div>'
+    f'<div class="acts" style="margin:0"><span class="b p sm">{T("批准发布", "Approve")}</span><span class="b sm">{ic("file-text")}{T("构建日志", "Build log")}</span><span class="b sm">{T("驳回", "Reject")}</span><span class="note">{T("出问题可一键回到 1.7.3", "One click back to 1.7.3 if needed")}</span></div>'))
 
 # ======================= 伙伴：一位顾问的一周 =======================
 pw = [('华岳酒店', 'Huayue Hotels', 'NocoCRM · 门店分级与巡店', 'NocoCRM · store tiers &amp; visits', 'amber', '等你验收', 'To accept'),
@@ -202,7 +202,7 @@ steps5 = [('done', '梳理阶段规则与 6 个验收场景', 'Stage rules and 6
           ('done', '阶段字段与数据迁移', 'Stage fields and migration', 'Codex · GPT-5.5'),
           ('run', '看板拖拽与阶段变更权限 · Server 03 · 已改 7 个文件', 'Drag-and-drop and stage permissions · Server 03 · 7 files changed', 'Codex · GPT-5.5'),
           ('run', '为 6 个验收场景写测试', 'Tests for the 6 scenarios', 'Claude · Sonnet 5.5'),
-          ('todo', '代码评审与 NocoBase 检查', 'Code review and NocoBase checks', 'Claude · Opus 5.5')]
+          ('todo', '代码评审（换一家模型）', 'Code review by another vendor’s model', 'Claude · Opus 5.5')]
 steps_html = '<div style="display:grid;gap:7px">' + ''.join(f'<div style="display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:13px{";color:var(--muted)" if k == "todo" else ""}">{STEP_IC[k]}<span>{T(z, e)}</span><span class="mn" style="font-size:12px{";color:var(--muted)" if k == "todo" else ""}">{a}</span></div>' for k, z, e, a in steps5) + '</div>'
 logs = [(f'<span class="av">{T("王", "L")}</span>', T('<b>王磊</b> 在「我的 Agent」里说清需求，建好任务并开始执行', '<b>Leo</b> scoped it in My Agent, created the task, and pressed Start'), '18:20', False),
         (AGI, T('<b>Claude · Opus 5.5</b> 按技能《需求澄清规范》写好 6 个验收场景', '<b>Claude · Opus 5.5</b> wrote 6 acceptance scenarios per the scoping skill'), '18:34', False),
@@ -314,25 +314,25 @@ offi = [('nocobase-create-app', '创建与配置应用：项目结构、数据�
         ('nocobase3-capability-usage', '能力使用规范：哪些用平台、哪些自己写、放在哪里、谁来管（15 篇）', 'Capability usage: what to use from the platform, what to write, where, who owns it (15 guides)'),
         ('nocobase-app-installer', '部署：生产安装、离线服务器、升级与回滚', 'Deploy: production installs, offline servers, upgrade and rollback'),
         ('nocobase-localization', '多语言：界面文案与文档的翻译规范', 'Localization: rules for UI copy and docs')]
-team = [('requirements-clarify', '需求澄清规范：口头需求 → 数据、规则和验收场景', 'Scoping: verbal needs → data, rules, acceptance scenarios'), ('code-review', '代码评审规范：越权、迁移、兼容性逐项看', 'Code review: permissions, migrations, compatibility'), ('release-checklist', '发布检查清单：备份、变量、迁移回退方案', 'Release checklist: backup, variables, migration rollback')]
+team = [('requirements-clarify', '需求澄清规范：口头需求 → 数据、规则和验收场景', 'Scoping: verbal needs → data, rules, acceptance scenarios'), ('code-review', '代码评审规范：缺陷、安全、设计与测试逐项看', 'Code review: defects, security, design, tests'), ('release-checklist', '发布检查清单：备份、变量、迁移回退方案', 'Release checklist: backup, variables, migration rollback')]
 def sk_rows(lst, active=None):
     return ''.join(f'<div style="display:grid;gap:1px;padding:8px 10px;border-radius:8px{";background:var(--brand-tint)" if n == active else ""}"><code style="font:12px var(--f-mono);color:var(--ink)">{n}</code><span style="font-size:11.5px;color:var(--muted)">{T(z, e)}</span></div>' for n, z, e in lst)
 cap = ['权限|Permissions', '数据模型与迁移|Data model &amp; migrations', '工作流与审批|Workflows &amp; approvals', '页面与导航|Pages &amp; navigation', '后台任务与队列|Background jobs', '通知与收件箱|Notifications', 'AI 集成|AI', '集成与凭证|Integrations &amp; secrets', '文件与附件|Files', '审计与操作记录|Audit trail', '部署与升级|Deploy &amp; upgrade', '…']
 md = (f'<div class="md"><span class="hd">## {T("新增接口", "New endpoints")}</span>\n'
-      f'- {T("每个接口声明需要的权限；没声明的，任何人和 Agent 都调不到", "Every endpoint declares its permission; undeclared means no person or agent can call it")}\n'
+      f'- {T("每个接口先检查权限，再校验输入、读写数据", "Every endpoint checks permission before it validates input or touches data")}\n'
       f'- {T("数据范围用权限集表达，不在代码里判断角色", "Express data scope with permission sets, never role checks in code")}\n'
       f'- <span class="hl">{T("Agent 用和人一样的角色，不另开接口或后门", "Agents use the same roles as people—no side doors")}</span>\n'
       f'<span class="hd">## {T("不要自己写", "Don’t build")}</span>\n'
       f'- {T("登录、会话、API 密钥：用 authentication 包", "Sign-in, sessions, API keys: use the authentication package")}</div>')
 save('studioSkills', solo(
-    f'<div class="sx-h"><div><h5>{T("技能", "Skills")}</h5><p>{T("Agent 每一步怎么做，都写在这里；写出来的代码由检查把关。", "How agents do every step lives here; checks hold the code to it.")}</p></div><span class="r">{tag("green", "与 Core 版本配套", "Matched to your Core version")}</span></div>'
+    f'<div class="sx-h"><div><h5>{T("技能", "Skills")}</h5><p>{T("Agent 每一步怎么做，都写在这里；评审时逐项对照。", "How agents do every step lives here; reviews hold the code to it.")}</p></div><span class="r">{tag("green", "与 Core 版本配套", "Matched to your Core version")}</span></div>'
     f'<div style="display:grid;grid-template-columns:330px minmax(0,1fr);gap:14px;align-items:start"><div style="display:grid;gap:2px">'
     f'<div class="sx-sec" style="padding:0 10px 4px">{ic("badge-check")}{T("NocoBase 官方开发技能", "Official NocoBase skills")}</div>{sk_rows(offi, "nocobase3-capability-usage")}'
     f'<div class="sx-sec" style="padding:10px 10px 4px">{T("团队技能", "Team skills")}</div>{sk_rows(team)}</div>'
     f'<div style="display:grid;gap:10px"><div class="pnl" style="gap:8px"><div class="h">nocobase3-capability-usage<span class="r">{T("15 篇 · 按需求读对应的一篇", "15 guides · read the one you need")}</span></div><div class="mini-chips">' + ''.join(f'<span>{T(*c.split("|")) if "|" in c else c}</span>' for c in cap) + '</div>'
     f'<div style="font-size:12px;color:var(--muted)">{T("权限应该如何开发和使用", "How to build and use permissions")}</div>{md}</div>'
-    f'<div class="duo2"><div class="pnl" style="gap:6px"><div class="h">{ic("shield-check")}{T("由检查强制执行", "Enforced by checks")}</div><div class="ck2"><div style="grid-template-columns:minmax(0,1fr) auto"><b>{T("权限", "Permissions")}</b><small style="grid-column:1">{T("新接口都声明了权限", "New endpoints declare permissions")}</small><span class="tag green" style="grid-row:1/3;grid-column:2">{T("通过", "Pass")}</span></div><div style="grid-template-columns:minmax(0,1fr) auto"><b>{T("只改业务部分", "Business code only")}</b><small style="grid-column:1">{T("没有修改 Core", "Core untouched")}</small><span class="tag green" style="grid-row:1/3;grid-column:2">{T("通过", "Pass")}</span></div></div></div>'
-    f'<div class="pnl" style="gap:6px"><div class="h">{ic("activity")}{T("本周", "This week")}</div><div class="kv" style="--n:2"><div><small>{T("被 Agent 读取", "Read by agents")}</small><b>412</b></div><div><small>{T("拦下的违规", "Violations caught")}</small><b style="color:var(--risk-ink)">7</b></div></div><p style="font-size:11.5px">{T("Codex · GPT-5.5 在 CRM-144 读了：权限、数据模型、页面与导航", "Codex · GPT-5.5 on CRM-144 read: permissions, data model, pages")}</p></div></div></div></div>'))
+    f'<div class="duo2"><div class="pnl" style="gap:6px"><div class="h">{ic("shield-check")}{T("评审时对照", "Checked in review")}</div><div class="ck2"><div style="grid-template-columns:minmax(0,1fr) auto"><b>{T("权限", "Permissions")}</b><small style="grid-column:1">{T("新接口都做了权限检查", "New endpoints check permissions")}</small><span class="tag green" style="grid-row:1/3;grid-column:2">{T("通过", "Pass")}</span></div><div style="grid-template-columns:minmax(0,1fr) auto"><b>{T("只改业务部分", "Business code only")}</b><small style="grid-column:1">{T("没有修改 Core", "Core untouched")}</small><span class="tag green" style="grid-row:1/3;grid-column:2">{T("通过", "Pass")}</span></div></div></div>'
+    f'<div class="pnl" style="gap:6px"><div class="h">{ic("activity")}{T("本周", "This week")}</div><div class="kv" style="--n:2"><div><small>{T("被 Agent 读取", "Read by agents")}</small><b>412</b></div><div><small>{T("评审发现的问题", "Issues found in review")}</small><b style="color:var(--risk-ink)">7</b></div></div><p style="font-size:11.5px">{T("Codex · GPT-5.5 在 CRM-144 读了：权限、数据模型、页面与导航", "Codex · GPT-5.5 on CRM-144 read: permissions, data model, pages")}</p></div></div></div></div>'))
 
 
 # ======================= 首页小图（640 宽）：我的 Agent、Agent 团队、开发技能 =======================
@@ -355,13 +355,13 @@ save('homeFleet', solo(
 GV_WHO = {'a': ('d-ag', ''), 'h': ('d-hu', ''), 's': ('d-ok', '')}
 gv_steps = [
     ('方案', 'Approach', 'a', 'Claude · Opus 5.5', 'Claude · Opus 5.5', 'studio-approach', '把需求写成 3 条规则、6 个验收场景', '3 rules and 6 acceptance scenarios, written down', 'h', '王磊确认方案', 'Leo confirms the plan'),
-    ('开发', 'Build', 'a', 'Codex · GPT-5.5', 'Codex · GPT-5.5', 'studio-development', '编写业务功能，权限、工作流等直接用 Core', 'Builds the business features; permissions and workflows come from Core', 's', '构建与规范检查通过', 'Build and lint pass'),
-    ('评审', 'Review', 'a', 'Claude · Opus 5.5', 'Claude · Opus 5.5', 'studio-review', '逐项看权限、数据迁移与兼容性', 'Permissions, migrations, compatibility, item by item', 's', '评审意见全部关闭', 'Review comments closed'),
-    ('测试', 'Test', 'a', 'Claude · Sonnet 5.5', 'Claude · Sonnet 5.5', None, '按 6 个验收场景写测试，迁移在数据副本上演练', 'Writes tests for all 6 scenarios; rehearses the migration on a data copy', 's', '46/46 通过才能合并', 'Merge only at 46/46'),
+    ('开发', 'Build', 'a', 'Codex · GPT-5.5', 'Codex · GPT-5.5', 'studio-development', '编写业务功能，权限、工作流等直接用 Core', 'Builds the business features; permissions and workflows come from Core', 's', '构建与类型检查通过', 'Build and type checks pass'),
+    ('评审', 'Review', 'a', 'Claude · Opus 5.5', 'Claude · Opus 5.5', 'studio-review', '按评审规范查缺陷、安全与测试', 'Defects, security, and tests, per the review skill', 's', '评审意见全部关闭', 'Review comments closed'),
+    ('测试', 'Test', 'a', 'Claude · Sonnet 5.5', 'Claude · Sonnet 5.5', None, '按 6 个验收场景写测试，在 CI 中运行', 'Writes tests for all 6 scenarios and runs them in CI', 's', '46/46 通过才交给人验收', 'Sign-off only at 46/46'),
     ('验收', 'Accept', 'h', '陈思', 'Ava Chen', None, '在独立预览环境里，按 6 个场景逐一走过', 'Walks all 6 scenarios in an isolated preview', 'h', '陈思验收通过', 'Ava accepts'),
-    ('发布', 'Release', 'h', '王磊 → 运维 Agent', 'Leo → ops agent', None, '发布前自动备份，出问题可一键回滚', 'Backup before deploy; one-click rollback', 'h', '王磊批准上线', 'Leo approves release'),
+    ('发布', 'Release', 'h', '王磊', 'Leo Wang', None, '生产发布需人批准，可回滚到上一版本', 'Production needs approval; roll back to the last release', 'h', '王磊批准上线', 'Leo approves release'),
 ]
-GV_BASIS = {3: ('flask-conical', 'Studio 测试模块', 'Studio Testing'), 4: ('eye', 'crm-import.preview', 'crm-import.preview'), 5: ('archive', '快照 db-0412', 'Snapshot db-0412')}
+GV_BASIS = {3: ('flask-conical', 'Studio 测试模块', 'Studio Testing'), 4: ('eye', 'crm-import.preview', 'crm-import.preview'), 5: ('rocket', '部署申请 · 生产', 'Deploy request · production')}
 def gv_step(k, st):
     zh, en, who, wz, we, skill, oz, oe, gk, gz, ge = st
     basis = f'<code class="gv-sk">{skill}</code>' if skill else f'<span class="gv-bs">{ic(GV_BASIS[k][0])}{T(GV_BASIS[k][1], GV_BASIS[k][2])}</span>'

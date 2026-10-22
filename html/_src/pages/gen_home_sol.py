@@ -28,8 +28,11 @@ def section_fig(page, label, cls='<div class="sx-body">'):
     return balanced(sec, sec.find(cls))
 
 def top(icon, app, crumb_zh, crumb_en, right=''):
-    return ('<div class="sx-top"><span class="sx-brand" style="padding:0"><span class="mk"><i data-lucide="%s"></i></span>Noco<span>%s</span></span><span>/</span><b>%s</b>'
-            '<span class="r">%s<span class="ai"><i data-lucide="sparkles"></i></span><span class="av">%s</span></span></div>') % (icon, app, T(crumb_zh, crumb_en), right, T('陈', 'A'))
+    # NocoCRM has its real logo (assets/nococrm-logo.svg); other apps an icon and their name.
+    brand = ('<img class="crm-logo" src="assets/nococrm-logo.svg" alt="NocoCRM">' if app == 'CRM'
+             else '<span class="mk"><i data-lucide="%s"></i></span>Noco<span>%s</span>' % (icon, app))
+    return ('<div class="sx-top"><span class="sx-brand" style="padding:0">%s</span><span>/</span><b>%s</b>'
+            '<span class="r">%s<span class="ai"><i data-lucide="sparkles"></i></span><span class="av">%s</span></span></div>') % (brand, T(crumb_zh, crumb_en), right, T('陈', 'A'))
 
 def win(icon, app, czh, cen, body, right=''):
     return '<div class="sx solo">' + '<div class="sx-main">' + top(icon, app, czh, cen, right) + '<div class="sx-body">' + body + '</div></div></div>'

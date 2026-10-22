@@ -95,7 +95,7 @@ First contact within 24h; follow up within 7 days of a quote."""
 save('crmGuide', solo(
     f'<div class="sx-h"><div><h5>{T("业务指导", "Business guidance")}</h5><p>{T("每次对话、跟进、审阅和准备都会读这里", "Read by every conversation, follow-up, review, and prep")}</p></div><span class="r"><span class="b p sm">{T("保存", "Save")}</span></span></div>'
     f'<div class="md">{T(GUIDE_ZH, GUIDE_EN)}</div>'
-    f'<p style="font-size:12px;color:var(--muted)">{ic("sparkles")} {T("改完立即生效：下一次审批助手就按 10% / 15% 的规则判断。", "Takes effect immediately: the next approval review uses the 10% / 15% rule.")}</p>'))
+    f'<p class="ai-note">{ic("sparkles")}{T("改完立即生效：下一次审批助手就按 10% / 15% 的规则判断。", "Takes effect immediately: the next approval review uses the 10% / 15% rule.")}</p>'))
 
 # 用 Studio 改整个 CRM
 save('crmCustom', solo(

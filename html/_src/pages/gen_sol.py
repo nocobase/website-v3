@@ -10,8 +10,14 @@ def AV(zh, en): return f'<span class="av">{T(zh[0], en[0])}</span>'
 def tag(cls, zh, en=None): return f'<span class="tag {cls}">{T(zh, en)}</span>'
 AI = lambda zh, en: f'<span class="aisg">{ic("sparkles")}{T(zh, en)}</span>'
 
+# The app's brand in a drawn figure: NocoCRM has its real logo (assets/nococrm-logo.svg,
+# from the CRM's own geometry); other apps keep an icon and their name.
+def brand_html(icon, brand):
+    if brand == 'CRM': return '<img class="crm-logo" src="assets/nococrm-logo.svg" alt="NocoCRM">'
+    return f'<span class="mk">{ic(icon)}</span>Noco<span>{brand}</span>'
+
 def side(brand_icon, brand, items, active, foot=True):
-    h = f'<aside class="sx-side"><div class="sx-brand"><span class="mk">{ic(brand_icon)}</span>Noco<span>{brand}</span></div>'
+    h = f'<aside class="sx-side"><div class="sx-brand">{brand_html(brand_icon, brand)}</div>'
     for it in items:
         if it[0] == 'g': h += f'<div class="g">{T(it[1], it[2])}</div>'; continue
         key, icon, zh, en = it[:4]
@@ -30,7 +36,7 @@ def win(sidebar, crumb_zh, crumb_en, body, user='陈'):
 def solo(body): return f'<div class="sx solo"><div class="sx-main"><div class="sx-body">{body}</div></div></div>'
 
 def bare(brand_icon, brand, crumb_zh, crumb_en, body, user='陈'):
-    top = f'<div class="sx-top"><span class="sx-brand" style="padding:0"><span class="mk">{ic(brand_icon)}</span>Noco<span>{brand}</span></span><span>/</span><b>{T(crumb_zh, crumb_en)}</b><span class="r"><span class="ai">{ic("sparkles")}</span><span class="av">{T(user, "A")}</span></span></div>'
+    top = f'<div class="sx-top"><span class="sx-brand" style="padding:0">{brand_html(brand_icon, brand)}</span><span>/</span><b>{T(crumb_zh, crumb_en)}</b><span class="r"><span class="ai">{ic("sparkles")}</span><span class="av">{T(user, "A")}</span></span></div>'
     return f'<div class="sx solo"><div class="sx-main">{top}<div class="sx-body">{body}</div></div></div>'
 
 def save(name, html): open(os.path.join(out, name + '.html'), 'w', encoding='utf-8').write(html)
@@ -60,6 +66,11 @@ save('crmOverview', win(crm_side('overview'), '概览', 'Overview',
     f'<div class="sx-sec">{ic("triangle-alert")}{T("需要关注", "Needs attention")}</div>{attn_html}'
     f'<div class="sx-sec">{T("最近的对话", "Recent conversations")}<span class="r">{T("全部", "View all")}</span></div>{conv_html}'))
 
+# A board card's title: the company on a small line above the deal's name.
+def deal_title(tz, te):
+    cz, dz = tz.split(' / ', 1); ce, de = te.split(' / ', 1)
+    return f'<small class="co">{T(cz, ce)}</small><b>{T(dz, de)}</b>'
+
 # 商机看板
 stages = [
     ('初步接触', 'Initial contact', [('蓝湾医疗 / 患者随访应用', 'Lanwan Health / Patient follow-up app', '¥ 86,000', '周', 'E', 1), ('森和精工 / 质检看板（专业版）', 'Senhe Precision / QA dashboard (Pro)', '¥ 64,000', '林', 'M', 1)]),
@@ -73,7 +84,7 @@ kb = '<div class="kb" style="--cols:6">'
 for zh, en, cards in stages:
     kb += f'<div class="kb-col"><header>{T(zh, en)}<span class="n">{len(cards)}</span></header>'
     for tz, te, amt, a, ae, ai in cards:
-        kb += f'<div class="kc"><b>{T(tz, te)}</b>' + (f'<div class="tgs">{AI("AI 建议", "AI suggestion")}</div>' if ai else '') + f'<div class="m"><span class="av" style="width:18px;height:18px;font-size:10px">{T(a, ae)}</span><span class="amt">{amt}</span></div></div>'
+        kb += f'<div class="kc">{deal_title(tz, te)}' + (f'<div class="tgs">{AI("AI 建议", "AI suggestion")}</div>' if ai else '') + f'<div class="m"><span class="av" style="width:18px;height:18px;font-size:10px">{T(a, ae)}</span><span class="amt">{amt}</span></div></div>'
     kb += '</div>'
 kb += '</div>'
 save('crmPipeline', bare('handshake', 'CRM', '商机', 'Opportunities',
@@ -118,7 +129,7 @@ save('crmChat', solo(
 
 # 报表
 save('crmReports', solo(
-    f'<div class="sx-h"><h5>{T("报表", "Reports")}</h5><span class="r"><span class="b sm">{ic("sparkles")}{T("让 AI 分析并写成报告", "Analyze and write a report")}</span></span></div>'
+    f'<div class="sx-h"><h5>{T("报表", "Reports")}</h5><span class="r"><span class="b sm ai">{ic("sparkles")}{T("让 AI 分析并写成报告", "Analyze and write a report")}</span></span></div>'
     f'<div class="stat"><div><small>{T("在途金额", "Open pipeline")}</small><b>{T("¥ 332.6万", "¥ 3.33M")}</b></div><div><small>{T("加权金额", "Weighted")}</small><b>{T("¥ 204.8万", "¥ 2.05M")}</b></div><div><small>{T("赢单率", "Win rate")}</small><b class="ok">58%</b></div><div><small>{T("本月新线索", "New leads")}</small><b>14</b></div></div>'
     f'<div class="duo2"><div class="pnl"><div class="h">{T("商机漏斗", "Opportunity funnel")}</div><div class="bars">'
     + ''.join(f'<div><span>{T(a, b)}</span><i style="--w:{w}%;--c:oklch(0.62 0.15 285)"></i><span>{T(vz, ve)}</span></div>' for a, b, w, vz, ve in [('初步接触', 'Initial', 92, '¥15.3万', '¥153k'), ('资格确认', 'Qualify', 78, '¥25.2万', '¥252k'), ('方案验证', 'Validate', 60, '¥20万', '¥200k'), ('提案', 'Proposal', 48, '¥111.6万', '¥1.12M'), ('谈判', 'Negotiate', 34, '¥156万', '¥1.56M'), ('合同', 'Contract', 18, '¥4.5万', '¥45k')])

@@ -14,16 +14,16 @@ day = [
     ('07:30', AGT('building-2'), T('<b>公司情报</b> 发现北辰能源完成 C 轮融资 8 亿元，附 2 个来源', '<b>Company research</b> found Beichen Energy closed an ¥800M Series C, with 2 sources'), T('建议本周约对方 CFO 谈企业版扩容', 'Suggests meeting their CFO this week about expansion'), AI('建议', 'Suggestion')),
     ('08:00', AGT('radar'), T('<b>线索跟进</b> 完成每日检查：20 条线索，3 条该跟进、1 条转培育', '<b>Lead follow-up</b> ran the daily check: 20 leads, 3 to follow up, 1 to nurture'), T('每条附等级、理由和下一步', 'Each with a grade, reasons, and next step'), AI('4 条建议', '4 suggestions')),
     ('08:30', AGT('list-checks'), T('<b>任务助手</b> 为 10:00 的方案评审会准备好要点', '<b>Task assistant</b> prepped the 10:00 solution review'), T('目标、对方是谁、要问的 5 个问题、风险', 'Goal, attendees, 5 questions to ask, risks'), tag('green', '已就绪', 'Ready')),
-    ('09:05', YOU('陈', 'A'), T('<b>你</b> 采纳 3 条线索建议，忽略 1 条', '<b>You</b> accepted 3 lead suggestions, ignored 1'), '', tag('grey', '1 分钟', '1 min'), True),
+    ('09:05', YOU('陈', 'A'), T('<b>你</b> 采纳 3 条线索建议，忽略 1 条', '<b>You</b> accepted 3 lead suggestions, ignored 1'), '', tag('grey dur', '1 分钟', '1 min'), True),
     ('10:42', AGT('message-circle'), T('<b>线索跟进</b> 读到客户 WhatsApp：想下周三看方案', '<b>Lead follow-up</b> read a WhatsApp message: wants a demo next Wednesday'), T('等级 B → A，建好拜访任务，起草回复', 'Grade B → A, visit task created, reply drafted'), AI('等你确认', 'Needs you')),
-    ('11:30', YOU('陈', 'A'), T('<b>你</b> 改了一句措辞，发出回复', '<b>You</b> tweaked one line and sent the reply'), '', tag('grey', '30 秒', '30 sec'), True),
+    ('11:30', YOU('陈', 'A'), T('<b>你</b> 改了一句措辞，发出回复', '<b>You</b> tweaked one line and sent the reply'), '', tag('grey dur', '30 秒', '30 sec'), True),
     ('14:10', AGT('stamp'), T('<b>审批助手</b> 审阅 18% 折扣申请：对照标准、历史同类与毛利', '<b>Approval review</b> checked an 18% discount against standards, history, and margin'), T('建议以 15% 为上限批准，已起草审批意见', 'Recommends a 15% cap, comment drafted'), AI('有条件同意', 'Approve on conditions')),
-    ('14:15', YOU('陈', 'A'), T('<b>你</b> 按建议有条件同意', '<b>You</b> approved on conditions'), '', tag('grey', '2 分钟', '2 min'), True),
+    ('14:15', YOU('陈', 'A'), T('<b>你</b> 按建议有条件同意', '<b>You</b> approved on conditions'), '', tag('grey dur', '2 分钟', '2 min'), True),
     ('18:20', AGT('list-checks'), T('<b>任务助手</b> 整理评审会结果，更新商机阶段为「提案」', '<b>Task assistant</b> wrote up the review and moved the deal to Proposal'), '', tag('green', '已完成', 'Done')),
 ]
 day_html = '<div class="tl">' + ''.join(tl_row(*d) for d in day) + '</div>'
 save('crmDay', solo(
-    f'<div class="sx-h"><div><h5>{T("周二 · 陈思的一天", "Tuesday · a day for Ava")}</h5><p>{T("销售 Agent 团队的工作记录，按时间排列", "The sales agent team’s log, in order")}</p></div></div>'
+    f'<div class="sx-h"><div><h5>{T("周二 · 陈思的一天", "Tuesday · a day for Ava")}</h5><p>{T("Agent 做了什么、你定了什么，按时间排列", "What the agents did and what you decided, in order")}</p></div></div>'
     f'<div class="duo2" style="grid-template-columns:minmax(0,1fr) 260px;align-items:start">{day_html}'
     f'<div style="display:grid;gap:10px"><div class="bigstat"><small>{T("Agent 完成的工作", "Work done by agents")}</small><b class="ag-c">37</b><span>{T("调研、检查、准备、起草、审阅", "Research, checks, prep, drafts, reviews")}</span></div><div class="bigstat"><small>{T("你做的决定", "Decisions you made")}</small><b class="hu-c">6</b><span>{T("每个都附依据，平均 1 分钟", "Each with evidence, ~1 min each")}</span></div><div class="bigstat"><small>{T("被遗漏的线索", "Leads that slipped")}</small><b class="ok-c">0</b><span>{T("新线索、来信和到期任务都有人跟", "Every new lead, message, and due task covered")}</span></div></div></div>'))
 

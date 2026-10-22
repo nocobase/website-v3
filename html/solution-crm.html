@@ -27,7 +27,7 @@
 /* The hero split in two on this page: the words at the left, the intro video at the right; one column on narrow screens. */
 .phero-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; }
 .phero-split h1 { font-size: 48px; }
-.phero-video { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid var(--rule); background: var(--paper-2); box-shadow: 0 24px 60px -28px var(--shadow); }
+.phero-video { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid var(--rule-2); background: var(--paper-2); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .phero-video video, .pv-cover { display: block; width: 100%; height: 100%; border: 0; padding: 0; background: var(--paper-2); }
 .phero-video video { object-fit: cover; }
 .pv-cover { position: relative; cursor: pointer; background: var(--paper-2); }
@@ -39,10 +39,10 @@
 .pv-btn small { font-size: 13px; opacity: 0.8; }
 .pv-cover:hover .pv-btn { transform: translateY(-1px); background: var(--brand-hover); }
 /* Live demo styles: the demo site itself under the hero, or a screenshot of the CRM when the site cannot be reached, and on a phone; the link under it opens the site in a new tab. */
-.ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
+.ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 .ld-frame[hidden], .ld-shot[hidden] { display: none; }
-.ld-shot { overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
+.ld-shot { overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .ld-shot t-zh, .ld-shot t-en { display: block; }
 .ld-shot img { display: block; width: 100%; height: auto; }
 .ld-bar { display: flex; flex-wrap: wrap; justify-content: center; text-align: center; align-items: center; gap: 8px 16px; margin-top: 16px; color: var(--muted); }

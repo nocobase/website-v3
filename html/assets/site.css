@@ -864,7 +864,7 @@ a.card:hover { border-color: var(--rule-2); box-shadow: 0 12px 28px -18px var(--
 .grp-h span { font-size: 14px; color: var(--muted); }
 
 /* 截图 */
-.shot { display: block; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; background: var(--card); box-shadow: 0 1px 2px var(--shadow), 0 28px 56px -28px var(--shadow); }
+.shot { display: block; border: 1px solid var(--rule-2); border-radius: 10px; overflow: hidden; background: var(--card); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .shot img { display: block; width: 100%; height: auto; }
 .shot-cap { margin-top: 14px; font-size: 13.5px; color: var(--muted); }
 
@@ -1091,7 +1091,7 @@ section.sec.tint { margin-top: 160px; padding-block: 128px 136px; background: ok
 .post-more h2 { font-size: 24px; font-weight: 650; margin-bottom: 24px; }
 
 /* ======================= 解决方案界面示意（HTML 绘制） ======================= */
-.sx { display: grid; grid-template-columns: 200px minmax(0, 1fr); background: var(--card); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; font-size: 13px; line-height: 1.5; color: var(--ink); text-align: left; box-shadow: 0 1px 2px var(--shadow), 0 28px 56px -28px var(--shadow); }
+.sx { display: grid; grid-template-columns: 200px minmax(0, 1fr); background: var(--card); border: 1px solid var(--rule-2); border-radius: 12px; overflow: hidden; font-size: 13px; line-height: 1.5; color: var(--ink); text-align: left; box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }  /* 与首页一致：阴影同“台面”一节的 .win, .sx */
 .sx.solo { grid-template-columns: minmax(0, 1fr); }
 .sx-side { display: flex; flex-direction: column; gap: 1px; padding: 12px 8px 10px; background: var(--paper-2); border-right: 1px solid var(--rule); min-width: 0; }
 .sx-brand { display: flex; align-items: center; gap: 8px; padding: 2px 8px 12px; font-size: 15px; font-weight: 650; }
@@ -1767,7 +1767,7 @@ html[lang="en"] .bookf .em { grid-column: 1 / -1; }
 /* /STUDIO-UI */
 
 /* A real screenshot of an app page in place of a drawn figure. */
-.sheet.app-shot { overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
+.sheet.app-shot { overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .app-shot t-zh, .app-shot t-en { display: block; }
 .app-shot img { display: block; width: 100%; height: auto; }
 .ai-note { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }

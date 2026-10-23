@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>知识库、项目记忆与技能 - NocoBase Studio 文档</title>
+<meta name="description" content="Studio 用得越久，Agent 越了解你的业务和代码。业务资料由人维护，经验由 Agent 自己记，开发方法已经内置。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/docs.css?v=9336a529">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">Studio 文档</span></a>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../intro/concepts.html">核心概念</a></li><li><a href="../intro/interface-tour.html">界面导览</a></li><li><a href="../quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../daily/my-tasks.html">我的任务</a></li><li><a href="../daily/sessions.html">我的会话</a></li><li><a href="../daily/raise-a-request.html">提出需求</a></li><li><a href="../daily/follow-progress.html">跟进进展</a></li><li><a href="../daily/answer-questions.html">回答提问</a></li><li><a href="../daily/accept.html">验收</a></li><li><a href="../daily/knowledge.html" aria-current="page">知识库与项目记忆</a></li><li><a href="../daily/inbox.html">收件箱与提醒</a></li><li><a href="../daily/cli.html">在终端里使用</a></li></ul></div><div class="menu-group"><p class="menu-title">项目与代码</p><ul><li><a href="../projects/create-project.html" class="todo">创建项目</a></li><li><a href="../projects/project-settings.html" class="todo">项目设置</a></li><li><a href="../projects/repos-and-prs.html" class="todo">代码仓库与 PR</a></li><li><a href="../projects/ci-checks.html" class="todo">CI 检查</a></li><li><a href="../projects/skills.html" class="todo">技能</a></li><li><a href="../projects/knowledge-admin.html" class="todo">知识库管理</a></li></ul></div><div class="menu-group"><p class="menu-title">质量管理</p><ul><li><a href="../quality/test-plans.html" class="todo">测试计划</a></li><li><a href="../quality/features-and-cases.html" class="todo">功能与用例</a></li><li><a href="../quality/reports.html" class="todo">质量报告</a></li></ul></div><div class="menu-group"><p class="menu-title">发布与部署</p><ul><li><a href="../release/previews.html" class="todo">预览</a></li><li><a href="../release/apps-and-environments.html" class="todo">应用与部署环境</a></li><li><a href="../release/approval-and-rollback.html" class="todo">发布审批与回滚</a></li></ul></div><div class="menu-group"><p class="menu-title">Agent 团队</p><ul><li><a href="../agents/runtimes.html" class="todo">运行环境</a></li><li><a href="../agents/agents.html" class="todo">Agent</a></li><li><a href="../agents/coordinator.html" class="todo">调度 Agent</a></li><li><a href="../agents/usage.html" class="todo">用量与费用</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../admin/deploy.html" class="todo">生产环境部署</a></li><li><a href="../admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../admin/git.html" class="todo">Git 连接</a></li><li><a href="../admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../reference/glossary.html" class="todo">术语表</a></li><li><a href="../reference/config.html" class="todo">配置项</a></li><li><a href="../reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">日常使用</p><h1>知识库、项目记忆与技能</h1>
+<p class="lead">Studio 用得越久，Agent 越了解你的业务和代码。业务资料由人维护，经验由 Agent 自己记，开发方法已经内置。</p>
+<article class="prose">
+<p>Agent 做事时会读三样东西。只有知识库需要人来维护：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>存什么</th>
+<th>谁来维护</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>知识库</td>
+<td>业务规则、产品说明、技术约定、决策记录</td>
+<td>人写和上传；Agent 只读</td>
+</tr>
+<tr>
+<td>项目记忆</td>
+<td>Agent 在工作中学到的经验</td>
+<td>Agent 自己记、自己读，人不需要管</td>
+</tr>
+<tr>
+<td>技能</td>
+<td>做事的方法：开发规范、评审要点、测试步骤</td>
+<td>已内置 NocoBase 开发的最佳实践，随 Core 更新</td>
+</tr>
+</tbody></table></div>
+<h2 id="知识库">知识库</h2>
+<p>知识库存放人写和上传的资料，人和 Agent 共用。下一次增加功能时，不必重新解释项目背景。</p>
+<ul>
+<li><strong>系统知识</strong>：跨项目共享，例如公司的审批制度、通用的技术约定。</li>
+<li><strong>项目知识</strong>：每个项目一个空间。能读项目知识的人，也能读系统知识。</li>
+</ul>
+<p><strong>查阅。</strong> 「开发 › 知识库」把你能访问的空间汇在一起，搜索覆盖所有这些空间，每条结果写明来自哪个项目、哪个文件夹。</p>
+<p><strong>编写。</strong> 先选中要放入的空间或文件夹，再新建文章、上传文件或建文件夹。有编辑权限的人可以直接修改；只有提议权限的人可以提出修改，由项目负责人（系统知识由管理员）在收件箱里决定是否采纳。文章保留历史版本。</p>
+<p><strong>Agent 怎样用。</strong> 执行任务时，相关的知识会放在 Agent 的工作目录旁边；在会话里，Agent 可以搜索知识库，并注明引用了哪一节。</p>
+<div class="note tip"><strong>什么值得写进知识库</strong><p>只写 Agent 从代码里看不出来的业务信息：业务规则和它的来由、术语的含义、例外情况的处理办法、做过的关键决定。</p>
+</div>
+<h2 id="项目记忆">项目记忆</h2>
+<p>项目记忆让 Agent 记住在这个项目里学到的东西，下次开工前先读，不再重复犯错。它和 Claude Code 的自动记忆是同一个思路，完全由 Agent 自己维护。</p>
+<p>Agent 只在有值得记住的事情时才记，大多数任务一条也不写：</p>
+<ul>
+<li>人纠正或确认了什么，例如“新供应商默认 B 级”；</li>
+<li>失败之后才发现的约束，例如“迁移编号要按合并顺序”；</li>
+<li>代码里看不出原因的决定；</li>
+<li>外部资料放在哪里，例如“评分权重以知识库《采购审批制度》为准”。</li>
+</ul>
+<p>记忆是代码仓库 <code>.nb-studio/memory/</code> 目录里的文件，一条记忆一个文件，随任务的 PR 一起提交，由评审的执行 Agent 和代码一并检查，合并后进入默认分支。Agent 用到一条记忆时会和当前的代码核对；对不上时以代码为准，并修正这条记忆。</p>
+<p>项目记忆是写给 Agent 看的，你不需要阅读或整理它。想让 Agent 记住某条业务规则，在任务里直接告诉它即可；需要长期给人和 Agent 共同参考的资料，写进知识库。</p>
+<div class="note warning"><strong>不要让 Agent 记下敏感信息</strong><p>记忆会进入代码仓库，任何仓库都不能写入密钥、令牌、密码和个人信息；公开仓库里的记忆是公开的。</p>
+</div>
+<h2 id="技能">技能</h2>
+<p>技能是写成文字的做事方法，Agent 每次运行都会带上。Studio 已经内置了 NocoBase 开发的官方技能：怎样使用 Core 的能力，哪些直接用底座、哪些自己写，代码放在哪里，权限和迁移怎么写。官方技能随 Core 版本更新，开箱即用，不需要你另外编写。</p>
+<p>在「Agent 团队 › 技能」可以查看当前的技能。团队有自己特殊的约定时，技术负责人可以在这里补充团队技能，并设置用在全局、某个项目或某个工作目录上。</p>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../daily/accept.html"><small>上一页</small>验收</a><a class="next" href="../daily/inbox.html"><small>下一页</small>收件箱与提醒</a></nav>
+<footer class="page-foot"><span>NocoBase Studio 文档 · 草稿 2026-10-22</span><span><a href="../../方案/01-现有文档的问题.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E7%9F%A5%E8%AF%86%E5%BA%93">知识库</a></li><li><a href="#%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BF%86">项目记忆</a></li><li><a href="#%E6%8A%80%E8%83%BD">技能</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../assets/docs.js?v=9336a529"></script>
+</body>
+</html>

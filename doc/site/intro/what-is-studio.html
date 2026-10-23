@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio 是什么 - NocoBase Studio 文档</title>
+<meta name="description" content="NocoBase Studio 是团队与 Agent 协同开发的治理平台，让团队专心做决策，执行交给 Agent 团队。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/docs.css?v=9336a529">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">Studio 文档</span></a>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../intro/what-is-studio.html" aria-current="page">Studio 是什么</a></li><li><a href="../intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../intro/concepts.html">核心概念</a></li><li><a href="../intro/interface-tour.html">界面导览</a></li><li><a href="../quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../daily/my-tasks.html">我的任务</a></li><li><a href="../daily/sessions.html">我的会话</a></li><li><a href="../daily/raise-a-request.html">提出需求</a></li><li><a href="../daily/follow-progress.html">跟进进展</a></li><li><a href="../daily/answer-questions.html">回答提问</a></li><li><a href="../daily/accept.html">验收</a></li><li><a href="../daily/knowledge.html">知识库与项目记忆</a></li><li><a href="../daily/inbox.html">收件箱与提醒</a></li><li><a href="../daily/cli.html">在终端里使用</a></li></ul></div><div class="menu-group"><p class="menu-title">项目与代码</p><ul><li><a href="../projects/create-project.html" class="todo">创建项目</a></li><li><a href="../projects/project-settings.html" class="todo">项目设置</a></li><li><a href="../projects/repos-and-prs.html" class="todo">代码仓库与 PR</a></li><li><a href="../projects/ci-checks.html" class="todo">CI 检查</a></li><li><a href="../projects/skills.html" class="todo">技能</a></li><li><a href="../projects/knowledge-admin.html" class="todo">知识库管理</a></li></ul></div><div class="menu-group"><p class="menu-title">质量管理</p><ul><li><a href="../quality/test-plans.html" class="todo">测试计划</a></li><li><a href="../quality/features-and-cases.html" class="todo">功能与用例</a></li><li><a href="../quality/reports.html" class="todo">质量报告</a></li></ul></div><div class="menu-group"><p class="menu-title">发布与部署</p><ul><li><a href="../release/previews.html" class="todo">预览</a></li><li><a href="../release/apps-and-environments.html" class="todo">应用与部署环境</a></li><li><a href="../release/approval-and-rollback.html" class="todo">发布审批与回滚</a></li></ul></div><div class="menu-group"><p class="menu-title">Agent 团队</p><ul><li><a href="../agents/runtimes.html" class="todo">运行环境</a></li><li><a href="../agents/agents.html" class="todo">Agent</a></li><li><a href="../agents/coordinator.html" class="todo">调度 Agent</a></li><li><a href="../agents/usage.html" class="todo">用量与费用</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../admin/deploy.html" class="todo">生产环境部署</a></li><li><a href="../admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../admin/git.html" class="todo">Git 连接</a></li><li><a href="../admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../reference/glossary.html" class="todo">术语表</a></li><li><a href="../reference/config.html" class="todo">配置项</a></li><li><a href="../reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">入门</p><h1>Studio 是什么</h1>
+<p class="lead">NocoBase Studio 是团队与 Agent 协同开发的治理平台，让团队专心做决策，执行交给 Agent 团队。</p>
+<article class="prose">
+<p>整理需求、提出方案、写代码、测试、评审，开发中的大部分工作已经可以交给 Agent。Agent 正在成为团队里新的执行力量。</p>
+<p>团队管理员工，靠的是组织、制度、流程和记录。管理 Agent 也需要同样的东西，Studio 提供的就是这一套，并把需要判断的事交给人。</p>
+<h2 id="studio-提供什么">Studio 提供什么</h2>
+<div class="pillars">
+<div class="pillar"><div class="k">组织</div><b>一支共用的 Agent 团队</b><p>成员电脑和团队服务器上的 Claude Code、Codex 等接入后，组成一支 Agent 团队。调度 Agent 按每个 Agent 擅长的事分派工作，多个任务同时推进，团队下班后也能继续。</p></div>
+<div class="pillar"><div class="k">制度</div><b>按团队的方法做事</b><p>Agent 按内置的 NocoBase 开发技能和团队的规范工作，读知识库里的业务规则；工作中学到的经验，Agent 自己记进项目记忆，下次开工前先读。</p></div>
+<div class="pillar"><div class="k">流程</div><b>每次交付走同一条路</b><p>每个任务在独立分支上开发，经过团队定义的检查和另一个模型的评审，再交给负责人验收；发布上线由人批准。</p></div>
+<div class="pillar"><div class="k">记录</div><b>每一步都有据可查</b><p>每次运行、每个决定、每次交付都留有记录：谁发起、哪个 Agent、在哪台机器上、做了什么、用了多少。</p></div>
+<div class="pillar wide"><div class="k">决策</div><b>判断留给人</b><p>需要判断的事，调度 Agent 会写清问题、附上依据，交给任务负责人。验收和合并由人完成。团队专心做决定，执行交给 Agent 团队。</p></div>
+</div>
+
+<h2 id="团队里的分工">团队里的分工</h2>
+<p>Studio 里有两类角色：人做决定，Agent 做执行。</p>
+<figure class="fig"><div class="roles">
+<div class="col human"><div class="col-h"><i data-lucide="user-round"></i>人：做决定</div>
+<div class="role"><b>任务负责人</b><span>每个任务都有一位，团队里的每位成员都可能是。提出需求、回答提问、验收结果。</span></div>
+<div class="role"><b>技术负责人</b><span>维护代码仓库的检查规则和团队的开发规范，关注方案和代码质量。</span></div>
+<div class="role"><b>管理员</b><span>部署 Studio，管理成员与角色、运行环境、Agent 和模型。</span></div>
+</div>
+<div class="col agent"><div class="col-h"><i data-lucide="bot"></i>Agent：做执行</div>
+<div class="sub">AGENT 团队 · 团队共用，完成任务</div>
+<div class="role"><b><span class="st-a pm">调</span>调度 Agent</b><span>Studio 内置的角色，全局一个。拆分步骤、分派给执行 Agent；需要决定时找任务负责人；完成后交付验收。它不写代码，也不能把任务标记为完成。</span></div>
+<div class="role"><b><span class="st-a cx">CX</span>执行 Agent</b><span>团队启用的其余 Agent。每次完成调度 Agent 交给它的一步：开发、测试、评审或调查。</span></div>
+<div class="sub">我的 Agent · 你自己的，陪你讨论</div>
+<div class="role"><b><span class="st-a cc">CC</span>我的 Agent</b><span>你连接到 Studio 的、自己电脑上的 Claude Code、Codex 等。在会话里帮你讨论、看代码、把需求拆成任务，任务交给 Agent 团队完成。</span></div>
+</div>
+</div></figure>
+
+
+<p>人主要在三个时刻出现：</p>
+<ol>
+<li><strong>交代目标</strong>：说清要什么，可以是一段话、一份资料，或者一次讨论的结论。</li>
+<li><strong>回答提问</strong>：方案取舍、业务规则和例外情况，由人决定。</li>
+<li><strong>验收</strong>：看交付报告和改动，确认结果。通过就合并，不通过就退回修改。</li>
+</ol>
+<p>其余时间，Agent 团队在运行环境上持续推进。「我的任务」把等你处理的事放在最前面，你不需要盯着 Agent 工作。</p>
+<h2 id="与-nocobase-core-的关系">与 NocoBase Core 的关系</h2>
+<p>NocoBase 是用 AI 开发和运行业务系统的开源平台。Agent 写代码、做执行，NocoBase 提供底座和流程，人来做决策。</p>
+<figure class="map" aria-label="团队在 Studio 中带领 Agent 团队，基于 Core 开发业务应用">
+<div class="row"><div class="box human"><b>你的团队</b><span>交代目标、回答提问、验收</span></div></div>
+<div class="down">任务</div>
+<div class="row c2"><div class="box brand"><b>NocoBase Studio</b><span>组织 Agent 团队，管理任务、流程和记录</span></div><div class="box agent"><b>Agent 团队</b><span>在团队服务器和成员电脑上开发、测试、评审</span></div></div>
+<div class="down">开发</div>
+<div class="row"><div class="box"><b>你的业务应用 · 建在 NocoBase Core 上</b><span>直接使用 Core 的权限、工作流、文件等能力；上线后独立运行</span></div></div>
+</figure>
+
+<p>Core 是开发和运行业务系统的开源底座，Studio 带领 Agent 基于 Core 开发和改进你的应用。<strong>应用上线后独立运行，日常业务请求不经过 Studio。</strong></p>
+<h2 id="适合哪些团队">适合哪些团队</h2>
+<ul>
+<li><strong>中大型企业的 IT 与数字化团队</strong>：业务系统多，需求不断，希望用 AI 扩展交付能力，同时满足安全、合规和长期维护的要求。懂业务、不写代码的专家，也可以主导一项需求，从提出到验收。</li>
+<li><strong>为企业交付系统的软件公司与伙伴</strong>：用同一套底座和方法为不同客户开发，把行业经验整理成技能和知识库。</li>
+</ul>
+<p>Studio 和开发用的 Agent 都部署在企业自己的环境中，模型与编码工具由企业选择。Studio 在 NocoBase 商业版（Professional 与 Enterprise）中提供。</p>
+<p>下一篇 <a href="how-a-request-gets-done.html">一个需求怎样完成</a>，用一个例子把上面这些串起来。</p>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../index.html"><small>上一页</small>NocoBase Studio 文档</a><a class="next" href="../intro/how-a-request-gets-done.html"><small>下一页</small>一个需求怎样完成</a></nav>
+<footer class="page-foot"><span>NocoBase Studio 文档 · 草稿 2026-10-22</span><span><a href="../../方案/01-现有文档的问题.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#studio-%E6%8F%90%E4%BE%9B%E4%BB%80%E4%B9%88">Studio 提供什么</a></li><li><a href="#%E5%9B%A2%E9%98%9F%E9%87%8C%E7%9A%84%E5%88%86%E5%B7%A5">团队里的分工</a></li><li><a href="#%E4%B8%8E-nocobase-core-%E7%9A%84%E5%85%B3%E7%B3%BB">与 NocoBase Core 的关系</a></li><li><a href="#%E9%80%82%E5%90%88%E5%93%AA%E4%BA%9B%E5%9B%A2%E9%98%9F">适合哪些团队</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../assets/docs.js?v=9336a529"></script>
+</body>
+</html>

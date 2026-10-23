@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>写作规范与术语 - NocoBase Studio 文档</title>
+<meta name="description" content="全书统一的用词、界面名称写法、语气、截图和 Markdown 约定。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../site/assets/docs.css?v=9336a529">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../site/index.html"><img class="brand-logo" src="../site/assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">Studio 文档</span></a>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><p class="menu-title">Studio 文档方案</p><ul><li><a href="01-%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98.html">现有文档的问题</a></li><li><a href="02-%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%99%E4%BD%9C%E5%8E%9F%E5%88%99.html">文档结构与写作原则</a></li><li><a href="03-%E5%91%BD%E5%90%8D%E6%96%B9%E6%A1%88.html">命名方案</a></li><li><a href="04-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83%E4%B8%8E%E6%9C%AF%E8%AF%AD.html" aria-current="page">写作规范与术语</a></li><li><a href="05-%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html">进度与待确认事项</a></li></ul></div><div class="menu-group"><p class="menu-title">文档草稿</p><ul><li><a href="../site/index.html">打开文档站</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Studio 文档方案</p><h1>写作规范与术语</h1>
+<p class="lead">全书统一的用词、界面名称写法、语气、截图和 Markdown 约定。</p>
+<article class="prose">
+<h2 id="术语表">术语表</h2>
+<p>文档一律用左列的词。名称的取舍见 <a href="03-命名方案.html">命名方案</a>；界面改名完成之前，右边两列是界面上现在的叫法。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>文档用词</th>
+<th>中文界面（现在）</th>
+<th>英文界面（现在）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>任务</td>
+<td>任务</td>
+<td>Issue</td>
+<td>不用“工单”“需求单”</td>
+</tr>
+<tr>
+<td>任务负责人</td>
+<td>负责人</td>
+<td>Owner</td>
+<td>对任务结果负责的人，总是人；默认是创建任务的人。讲角色时用全称，指任务页上的属性时可以写「负责人」</td>
+</tr>
+<tr>
+<td>执行者</td>
+<td>执行者</td>
+<td>Executor</td>
+<td>几乎总是调度 Agent；少数任务由成员自己执行</td>
+</tr>
+<tr>
+<td>调度 Agent</td>
+<td>项目经理</td>
+<td>Project manager</td>
+<td>全局唯一的系统 Agent，拆分步骤、分派、提问、交付验收，不写代码</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>Agent</td>
+<td>Agent</td>
+<td>一个“编码工具 · 模型”组合，例如“Claude · Opus 5.5”；只有调度 Agent、执行 Agent、我的 Agent 三种角色。不用“智能体”“代理”</td>
+</tr>
+<tr>
+<td>执行 Agent</td>
+<td>Agent</td>
+<td>Agent</td>
+<td>Agent 团队里完成具体步骤的 Agent；评审、开发、初始化都是它做的一步，不另起名字</td>
+</tr>
+<tr>
+<td>编码工具</td>
+<td>编码工具</td>
+<td>Coding tool</td>
+<td>Claude Code、Codex、OpenCode 等；正文不写“Coding Agent”（界面上的「用本地 Coding Agent 管理 Studio」照原样引用）</td>
+</tr>
+<tr>
+<td>擅长什么</td>
+<td>擅长什么</td>
+<td>Good at</td>
+<td>启用 Agent 时必填，调度 Agent 据此分派</td>
+</tr>
+<tr>
+<td>运行环境</td>
+<td>运行环境；部分页面写作“执行机”“运行器”</td>
+<td>Runtime / Runner</td>
+<td>运行 <code>nocobase-runner</code> 的机器，分团队和个人两种</td>
+</tr>
+<tr>
+<td>我的会话</td>
+<td>我的 Agent</td>
+<td>My Agent</td>
+<td>按会话跟进的入口</td>
+</tr>
+<tr>
+<td>我的 Agent</td>
+<td>我的 Agent（会话模式）</td>
+<td>My Agent</td>
+<td>你连接到 Studio、自己直接驱动的 Coding Agent</td>
+</tr>
+<tr>
+<td>Agent 团队</td>
+<td>Agent 团队（导航）；Runner Agent（会话模式）</td>
+<td>Agent team；Runner Agent</td>
+<td>团队启用的全部 Agent；作为会话模式时，由运行环境领取执行</td>
+</tr>
+<tr>
+<td>项目负责人</td>
+<td>负责人（项目成员角色）</td>
+<td>Lead</td>
+<td>与任务负责人区分</td>
+</tr>
+<tr>
+<td>工作目录</td>
+<td>工作目录</td>
+<td>Working directory</td>
+<td>项目的代码位置：仓库，或运行环境上的目录</td>
+</tr>
+<tr>
+<td>初始化项目</td>
+<td>初始化项目</td>
+<td>Initialize project</td>
+<td>新项目的第一个任务，其他任务等它完成</td>
+</tr>
+<tr>
+<td>待规划 / 进行中 / 阻塞中 / 待验收 / 已完成 / 已取消</td>
+<td>同左</td>
+<td>Backlog / In progress / Blocked / In review / Done / Cancelled</td>
+<td>任务的六个固定状态；不写“待审查”</td>
+</tr>
+<tr>
+<td>需要你</td>
+<td>需要你</td>
+<td>Needs you</td>
+<td>任务页顶部的卡片，写明负责人要做的决定</td>
+</tr>
+<tr>
+<td>交付报告</td>
+<td>交付报告</td>
+<td>Delivery report</td>
+<td>调度 Agent 在任务进入待验收时提交</td>
+</tr>
+<tr>
+<td>验收通过 / 合并 / 退回修改</td>
+<td>同左</td>
+<td>Accept / Merge / Send back</td>
+<td>验收时的三个动作</td>
+</tr>
+<tr>
+<td>评论 / 备注</td>
+<td>评论 / 备注</td>
+<td>Comment / Note</td>
+<td>备注只给人看，不会唤醒 Agent</td>
+</tr>
+<tr>
+<td>运行记录</td>
+<td>运行记录</td>
+<td>Runs</td>
+<td>Agent 每次运行的过程、用量和结果</td>
+</tr>
+<tr>
+<td>技能</td>
+<td>技能</td>
+<td>Skills</td>
+<td>做事的方法，人和 Agent 共用</td>
+</tr>
+<tr>
+<td>知识库</td>
+<td>知识库</td>
+<td>Knowledge</td>
+<td>人写和上传的资料，Agent 只读</td>
+</tr>
+<tr>
+<td>项目记忆</td>
+<td>项目记忆</td>
+<td>Project memory</td>
+<td>Agent 在工作中记下的经验，存进代码仓库，由 Agent 自己读写，人不需要阅读</td>
+</tr>
+<tr>
+<td>收件箱</td>
+<td>收件箱</td>
+<td>Inbox</td>
+<td>同事的消息和任务之外的事项</td>
+</tr>
+<tr>
+<td>Pull request（PR）</td>
+<td>Pull request</td>
+<td>Pull request</td>
+<td>GitLab 上叫 Merge request；文档统称 PR</td>
+</tr>
+</tbody></table></div>
+<h2 id="界面名称的写法">界面名称的写法</h2>
+<ul>
+<li>界面上的名称、按钮、菜单一律用「」括起来，与界面文字一致（按命名方案改名的除外），例如「生成安装命令」。</li>
+<li>界面路径用「A › B」，例如「Agent 团队 › 运行环境」「设置 › 集成 › Git」。</li>
+<li>只写中文界面的名称。需要对照英文时，放在术语表里，不在正文里中英混写。</li>
+</ul>
+<h2 id="语气与用词">语气与用词</h2>
+<ul>
+<li>用“你”称呼读者，用短句，一句话说一件事。</li>
+<li>中文与英文、数字之间加一个空格：“Agent 团队”“Node.js 24”。</li>
+<li>直接说明能做什么、怎么做。少用“不是……而是……”和一连串否定句。</li>
+<li>避免“X 很快，企业要的是 Y”这类对仗句、“不只是快：A，B，C”这类冒号列举，以及连续排比的“要……要……”。</li>
+<li>讲价值时说“长期稳定迭代”，不用“改坏”“失控”这类制造焦虑的词。</li>
+<li>检查项来自应用自己的 CI（代码规范、类型、测试、构建）和评审 Agent；不写“NocoBase 检查”。</li>
+<li>只写已经核实的行为。没有核实的写进“待确认事项”，不在正文里猜测。</li>
+</ul>
+<h2 id="角色标记">角色标记</h2>
+<p>概念页和流程图里，用颜色区分人和 Agent：<span class="who human">人</span> 用琥珀色，<span class="who agent">Agent</span> 用紫色，<span class="who sys">Studio</span> 等系统动作用灰色。操作步骤里不需要角色标记。</p>
+<h2 id="提示块">提示块</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>写法</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&gt; [!TIP] 标题</code></td>
+<td>好的做法、省时间的办法</td>
+</tr>
+<tr>
+<td><code>&gt; [!NOTE] 标题</code></td>
+<td>需要知道的规则或背景</td>
+</tr>
+<tr>
+<td><code>&gt; [!WARNING] 标题</code></td>
+<td>不注意会出问题的地方（安全、数据、不可撤销的操作）</td>
+</tr>
+<tr>
+<td><code>&gt; [!PENDING] 标题</code></td>
+<td>模块还在开发、内容待补充的位置</td>
+</tr>
+</tbody></table></div>
+<p>一页里的提示块不超过三四个，重要的事写进正文。</p>
+<h2 id="配图">配图</h2>
+<h3 id="用-html-画局部而不是整页截图">用 HTML 画局部，而不是整页截图</h3>
+<p>文档的配图用 HTML 画出界面的一小块，只画正在讲的那一部分，例如“需要你”卡片、「现在」一行、一条交接评论。理由：</p>
+<ul>
+<li><strong>读者一眼看到重点。</strong> 整页截图里信息太多，读者要自己找；局部图只有当前在讲的东西。</li>
+<li><strong>跟着文档主题走。</strong> 深色模式、字号、手机宽度都自动适配，截图做不到。</li>
+<li><strong>改起来容易。</strong> 界面文字或命名调整时，改 HTML 片段里的文字即可，不用重新搭环境截图。</li>
+<li><strong>没有隐私和凭据问题。</strong> 示例数据是写出来的，不会带出真实的令牌、邮箱和内网地址。</li>
+</ul>
+<p>真实截图只在一种情况下使用：读者需要在一个复杂页面里找到某个入口，而局部图不足以说明位置时。</p>
+<h3 id="配图的写法">配图的写法</h3>
+<ul>
+<li>片段放在 <code>Doc/src/figures/名称.html</code>，正文里单独一行写 <code>::figure 名称 | 说明</code>。两张并排写 <code>::figure 名称一+名称二 pair | 说明</code>。</li>
+<li>组件的类名见 <code>assets/docs.css</code> 的“Studio 界面配图”一节，写法与官网 <code>studio-ui.css</code> 一致：<code>.sw</code> 窗口（<code>.sw-top</code> 顶栏、<code>.sw-body</code> 内容、<code>.sb</code> 侧栏）、<code>.si</code> 状态图标、<code>.st-a</code> Agent 标识（<code>cc</code> Claude Code、<code>cx</code> Codex、<code>pm</code> 调度 Agent）、<code>.st-av</code> 成员头像、<code>.st-btn</code> 按钮、<code>.st-pill</code> 状态胶囊、<code>.st-chip</code> 标签、<code>.st-li</code> 列表行、<code>.st-dh</code> 任务页顶栏、<code>.st-le</code> 动态、<code>.st-cmt</code> 评论框、<code>.needs</code> 需要你、<code>.report</code> 交付报告、<code>.sess</code> 与 <code>.linkbar</code> 会话和任务进度条、<code>.lanes</code> Agent 队列。图标写 <code>&lt;i data-lucide=&quot;名称&quot;&gt;&lt;/i&gt;</code>。</li>
+<li>界面文字与中文界面一致（按命名方案改名的除外），示例数据用统一的故事：采购团队的“供应商管理”项目，任务编号 <code>PUR-23</code> 等，人名用常见中文名。</li>
+<li>每张图下面写一句说明，说清这张图要看什么。</li>
+</ul>
+<h2 id="markdown-约定">Markdown 约定</h2>
+<ul>
+<li>每页开头写 front matter：<code>title</code>（页面标题）、<code>description</code>（标题下的导语）、可选的 <code>nav</code>（侧边栏里的短名称）。</li>
+<li>正文从二级标题开始，二级标题会进入右侧的“本页内容”。</li>
+<li>页面之间的链接写 <code>.md</code> 路径，构建时会换成 <code>.html</code>。</li>
+<li>流程图、结构图直接写 HTML，类名见 <code>assets/docs.css</code> 里的 <code>.flow</code>、<code>.map</code>、<code>.states</code>、<code>.roles</code>、<code>.pillars</code>。</li>
+</ul>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="03-%E5%91%BD%E5%90%8D%E6%96%B9%E6%A1%88.html"><small>上一页</small>命名方案</a><a class="next" href="05-%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html"><small>下一页</small>进度与待确认事项</a></nav>
+<footer class="page-foot"><span>NocoBase Studio 文档 · 草稿 2026-10-22</span><span><a href="../site/index.html">文档站</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E6%9C%AF%E8%AF%AD%E8%A1%A8">术语表</a></li><li><a href="#%E7%95%8C%E9%9D%A2%E5%90%8D%E7%A7%B0%E7%9A%84%E5%86%99%E6%B3%95">界面名称的写法</a></li><li><a href="#%E8%AF%AD%E6%B0%94%E4%B8%8E%E7%94%A8%E8%AF%8D">语气与用词</a></li><li><a href="#%E8%A7%92%E8%89%B2%E6%A0%87%E8%AE%B0">角色标记</a></li><li><a href="#%E6%8F%90%E7%A4%BA%E5%9D%97">提示块</a></li><li><a href="#%E9%85%8D%E5%9B%BE">配图</a></li><li><a href="#markdown-%E7%BA%A6%E5%AE%9A">Markdown 约定</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../site/assets/docs.js?v=9336a529"></script>
+</body>
+</html>

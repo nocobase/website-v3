@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>界面导览 - NocoBase Studio 文档</title>
+<meta name="description" content="认识了核心概念之后，看看它们在 Studio 界面上的位置。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/docs.css?v=9336a529">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">Studio 文档</span></a>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../intro/concepts.html">核心概念</a></li><li><a href="../intro/interface-tour.html" aria-current="page">界面导览</a></li><li><a href="../quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../daily/my-tasks.html">我的任务</a></li><li><a href="../daily/sessions.html">我的会话</a></li><li><a href="../daily/raise-a-request.html">提出需求</a></li><li><a href="../daily/follow-progress.html">跟进进展</a></li><li><a href="../daily/answer-questions.html">回答提问</a></li><li><a href="../daily/accept.html">验收</a></li><li><a href="../daily/knowledge.html">知识库与项目记忆</a></li><li><a href="../daily/inbox.html">收件箱与提醒</a></li><li><a href="../daily/cli.html">在终端里使用</a></li></ul></div><div class="menu-group"><p class="menu-title">项目与代码</p><ul><li><a href="../projects/create-project.html" class="todo">创建项目</a></li><li><a href="../projects/project-settings.html" class="todo">项目设置</a></li><li><a href="../projects/repos-and-prs.html" class="todo">代码仓库与 PR</a></li><li><a href="../projects/ci-checks.html" class="todo">CI 检查</a></li><li><a href="../projects/skills.html" class="todo">技能</a></li><li><a href="../projects/knowledge-admin.html" class="todo">知识库管理</a></li></ul></div><div class="menu-group"><p class="menu-title">质量管理</p><ul><li><a href="../quality/test-plans.html" class="todo">测试计划</a></li><li><a href="../quality/features-and-cases.html" class="todo">功能与用例</a></li><li><a href="../quality/reports.html" class="todo">质量报告</a></li></ul></div><div class="menu-group"><p class="menu-title">发布与部署</p><ul><li><a href="../release/previews.html" class="todo">预览</a></li><li><a href="../release/apps-and-environments.html" class="todo">应用与部署环境</a></li><li><a href="../release/approval-and-rollback.html" class="todo">发布审批与回滚</a></li></ul></div><div class="menu-group"><p class="menu-title">Agent 团队</p><ul><li><a href="../agents/runtimes.html" class="todo">运行环境</a></li><li><a href="../agents/agents.html" class="todo">Agent</a></li><li><a href="../agents/coordinator.html" class="todo">调度 Agent</a></li><li><a href="../agents/usage.html" class="todo">用量与费用</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../admin/deploy.html" class="todo">生产环境部署</a></li><li><a href="../admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../admin/git.html" class="todo">Git 连接</a></li><li><a href="../admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../reference/glossary.html" class="todo">术语表</a></li><li><a href="../reference/config.html" class="todo">配置项</a></li><li><a href="../reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">入门</p><h1>界面导览</h1>
+<p class="lead">认识了核心概念之后，看看它们在 Studio 界面上的位置。</p>
+<article class="prose">
+<h2 id="侧边栏">侧边栏</h2>
+<p>登录后，左侧是 Studio 的导航。最上面三项是每个人每天都会用的；下面按“开发”“Agent 团队”等分组。</p>
+<figure class="fig"><div class="sw"><div class="tour">
+<aside class="sb"><div class="brand"><img src="../assets/logo.png" alt="NocoBase"><span>Studio</span></div>
+<div class="it on"><i data-lucide="circle-user-round"></i>我的任务<span class="n-mark">1</span></div>
+<div class="it"><i data-lucide="messages-square"></i>我的会话<span class="n-mark">2</span></div>
+<div class="it"><i data-lucide="layout-dashboard"></i>仪表盘<span class="n-mark">3</span></div>
+<div class="grp">开发</div>
+<div class="it"><i data-lucide="list-todo"></i>任务<span class="n-mark">4</span></div>
+<div class="it"><i data-lucide="folder-kanban"></i>项目</div>
+<div class="it"><i data-lucide="book-open"></i>知识库<span class="n-mark">5</span></div>
+<div class="it"><i data-lucide="brain"></i>项目记忆</div>
+<div class="grp">质量</div>
+<div class="it dim"><i data-lucide="clipboard-check"></i>质量报告</div>
+<div class="grp">发布</div>
+<div class="it dim"><i data-lucide="boxes"></i>应用</div>
+<div class="it dim"><i data-lucide="server"></i>部署环境</div>
+<div class="grp">Agent 团队</div>
+<div class="it"><i data-lucide="bot"></i>Agent<span class="n-mark">6</span></div>
+<div class="it"><i data-lucide="monitor-cog"></i>运行环境</div>
+<div class="it"><i data-lucide="sparkles"></i>技能</div>
+<div class="it"><i data-lucide="chart-column"></i>用量</div>
+<div class="it" style="margin-top:8px"><i data-lucide="settings-2"></i>设置<span class="n-mark">7</span></div>
+</aside>
+<div class="tour-notes">
+<div><span class="n-mark">1</span><p><b>我的任务</b><span>按任务跟进：与你有关的任务，等你处理的排在最前面。</span></p></div>
+<div><span class="n-mark">2</span><p><b>我的会话</b><span>按会话跟进：和我的 Agent 或 Agent 团队的讨论，以及由它创建的任务和进度。</span></p></div>
+<div><span class="n-mark">3</span><p><b>仪表盘</b><span>交付进展、Agent 表现、卡住或逾期的事项。</span></p></div>
+<div><span class="n-mark">4</span><p><b>开发</b><span>团队的全部任务和项目，可以按列表、看板或 Agent 队列查看。</span></p></div>
+<div><span class="n-mark">5</span><p><b>知识库</b><span>人写的业务资料，人和 Agent 共用。旁边的项目记忆由 Agent 读写。</span></p></div>
+<div><span class="n-mark">6</span><p><b>Agent 团队</b><span>启用 Agent、管理运行环境和技能、查看用量。</span></p></div>
+<div><span class="n-mark">7</span><p><b>设置</b><span>成员与角色、Git 连接、API 密钥、标签。</span></p></div>
+</div>
+</div></div><figcaption>Studio 的侧边栏；灰色的「质量」「发布」两组还在开发中</figcaption></figure>
+
+
+<h2 id="每个人常用的">每个人常用的</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>位置</th>
+<th>用来做什么</th>
+<th>详见</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>「我的任务」</td>
+<td>按任务跟进，等你处理的排在最前面</td>
+<td><a href="../daily/my-tasks.html">我的任务</a></td>
+</tr>
+<tr>
+<td>「我的会话」</td>
+<td>按会话跟进，和我的 Agent 或 Agent 团队讨论、创建任务</td>
+<td><a href="../daily/sessions.html">我的会话</a></td>
+</tr>
+<tr>
+<td>「仪表盘」</td>
+<td>交付进展、Agent 表现、卡住的事项</td>
+<td><a href="../daily/follow-progress.html#仪表盘">跟进进展</a></td>
+</tr>
+<tr>
+<td>「开发 › 任务」</td>
+<td>团队的全部任务；可以切换到「Agent 队列」看 Agent 在做什么</td>
+<td><a href="../daily/follow-progress.html#agent-队列">跟进进展</a></td>
+</tr>
+<tr>
+<td>「开发 › 知识库」</td>
+<td>查阅和维护业务资料</td>
+<td><a href="../daily/knowledge.html">知识库、项目记忆与技能</a></td>
+</tr>
+<tr>
+<td>顶栏的收件箱</td>
+<td>同事的消息和任务之外的事项</td>
+<td><a href="../daily/inbox.html">收件箱与提醒</a></td>
+</tr>
+</tbody></table></div>
+<h2 id="管理员和技术负责人常用的">管理员和技术负责人常用的</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>位置</th>
+<th>用来做什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>「开发 › 项目」</td>
+<td>创建项目，设置代码仓库</td>
+</tr>
+<tr>
+<td>「Agent 团队 › Agent」</td>
+<td>启用 Agent、写明擅长什么；设置调度 Agent</td>
+</tr>
+<tr>
+<td>「Agent 团队 › 运行环境」</td>
+<td>添加和管理团队服务器、成员电脑</td>
+</tr>
+<tr>
+<td>「Agent 团队 › 技能」</td>
+<td>查看内置的开发技能，按需补充团队的约定</td>
+</tr>
+<tr>
+<td>「Agent 团队 › 用量」</td>
+<td>查看每次运行的用量和费用，设置模型价格</td>
+</tr>
+<tr>
+<td>「设置」</td>
+<td>成员与角色、Git 连接、API 密钥、标签</td>
+</tr>
+</tbody></table></div>
+<h2 id="随处可用的">随处可用的</h2>
+<ul>
+<li><strong>新建任务</strong>：在任务列表、项目页点「新建任务」，或按 <kbd>C</kbd>。见 <a href="../daily/raise-a-request.html">提出需求</a>。</li>
+<li><strong>问 Agent</strong>：在任务页、项目页打开 Agent 面板，自动带上当前页面作为上下文。任何页面都可以按 <kbd>⌘</kbd> <kbd>J</kbd>（Windows 和 Linux 上是 <kbd>Ctrl</kbd> <kbd>J</kbd>）打开面板。</li>
+</ul>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../intro/concepts.html"><small>上一页</small>核心概念</a><a class="next" href="../quickstart.html"><small>下一页</small>快速开始</a></nav>
+<footer class="page-foot"><span>NocoBase Studio 文档 · 草稿 2026-10-22</span><span><a href="../../方案/01-现有文档的问题.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F">侧边栏</a></li><li><a href="#%E6%AF%8F%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E7%9A%84">每个人常用的</a></li><li><a href="#%E7%AE%A1%E7%90%86%E5%91%98%E5%92%8C%E6%8A%80%E6%9C%AF%E8%B4%9F%E8%B4%A3%E4%BA%BA%E5%B8%B8%E7%94%A8%E7%9A%84">管理员和技术负责人常用的</a></li><li><a href="#%E9%9A%8F%E5%A4%84%E5%8F%AF%E7%94%A8%E7%9A%84">随处可用的</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../assets/docs.js?v=9336a529"></script>
+</body>
+</html>

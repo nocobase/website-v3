@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>提出需求 - NocoBase Studio 文档</title>
+<meta name="description" content="把一件事交给 Agent 团队：在会话里说清要什么，由 Agent 建好任务；也可以手动填写。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/docs.css?v=9336a529">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">Studio 文档</span></a>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../intro/concepts.html">核心概念</a></li><li><a href="../intro/interface-tour.html">界面导览</a></li><li><a href="../quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../daily/my-tasks.html">我的任务</a></li><li><a href="../daily/sessions.html">我的会话</a></li><li><a href="../daily/raise-a-request.html" aria-current="page">提出需求</a></li><li><a href="../daily/follow-progress.html">跟进进展</a></li><li><a href="../daily/answer-questions.html">回答提问</a></li><li><a href="../daily/accept.html">验收</a></li><li><a href="../daily/knowledge.html">知识库与项目记忆</a></li><li><a href="../daily/inbox.html">收件箱与提醒</a></li><li><a href="../daily/cli.html">在终端里使用</a></li></ul></div><div class="menu-group"><p class="menu-title">项目与代码</p><ul><li><a href="../projects/create-project.html" class="todo">创建项目</a></li><li><a href="../projects/project-settings.html" class="todo">项目设置</a></li><li><a href="../projects/repos-and-prs.html" class="todo">代码仓库与 PR</a></li><li><a href="../projects/ci-checks.html" class="todo">CI 检查</a></li><li><a href="../projects/skills.html" class="todo">技能</a></li><li><a href="../projects/knowledge-admin.html" class="todo">知识库管理</a></li></ul></div><div class="menu-group"><p class="menu-title">质量管理</p><ul><li><a href="../quality/test-plans.html" class="todo">测试计划</a></li><li><a href="../quality/features-and-cases.html" class="todo">功能与用例</a></li><li><a href="../quality/reports.html" class="todo">质量报告</a></li></ul></div><div class="menu-group"><p class="menu-title">发布与部署</p><ul><li><a href="../release/previews.html" class="todo">预览</a></li><li><a href="../release/apps-and-environments.html" class="todo">应用与部署环境</a></li><li><a href="../release/approval-and-rollback.html" class="todo">发布审批与回滚</a></li></ul></div><div class="menu-group"><p class="menu-title">Agent 团队</p><ul><li><a href="../agents/runtimes.html" class="todo">运行环境</a></li><li><a href="../agents/agents.html" class="todo">Agent</a></li><li><a href="../agents/coordinator.html" class="todo">调度 Agent</a></li><li><a href="../agents/usage.html" class="todo">用量与费用</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../admin/deploy.html" class="todo">生产环境部署</a></li><li><a href="../admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../admin/git.html" class="todo">Git 连接</a></li><li><a href="../admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../reference/glossary.html" class="todo">术语表</a></li><li><a href="../reference/config.html" class="todo">配置项</a></li><li><a href="../reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">日常使用</p><h1>提出需求</h1>
+<p class="lead">把一件事交给 Agent 团队：在会话里说清要什么，由 Agent 建好任务；也可以手动填写。</p>
+<article class="prose">
+<h2 id="新建任务">新建任务</h2>
+<p>在「我的任务」「开发 › 任务」或项目页点「新建任务」，也可以在列表页按 <kbd>C</kbd>。</p>
+<p>Studio 会打开 Agent 面板，开始一段新会话，并带上“新建任务”的意图和当前项目：</p>
+<figure class="fig"><div class="sw w-md">
+<div class="sw-top"><i data-lucide="messages-square"></i><span class="crumb"><b>新会话</b></span><span class="r"><span class="mode"><span class="on">我的 Agent</span><span>Agent 团队</span></span><span class="st-ib"><i data-lucide="maximize-2"></i></span><span class="st-ib"><i data-lucide="x"></i></span></span></div>
+<div class="sw-body">
+<div class="composer"><div class="st-chips" style="margin-bottom:6px"><span class="st-chip bl"><i data-lucide="list-plus"></i>新建任务</span><span class="st-chip"><i data-lucide="folder-kanban"></i>供应商管理</span></div><div class="ph">描述你想做的事</div><div class="bar"><span class="st-chip"><i data-lucide="laptop"></i>周航的 MacBook</span><span class="st-chip"><span class="st-a cc">CC</span>Claude Code</span><span class="st-chip mono"><i data-lucide="folder"></i>~/code/supplier</span><span class="r"><span class="st-btn ghost">手动填写</span><span class="st-cmt" style="border:0;padding:0;min-height:0"><span class="snd"><i data-lucide="send"></i></span></span></span></div></div>
+</div>
+</div><figcaption>新建任务会开始一段会话；需要表单时点「手动填写」</figcaption></figure>
+
+
+<ol>
+<li>在输入框里描述你想做的事。可以一次说好几件事，也可以贴截图。</li>
+<li>需求清楚时，Agent 直接建好任务；不清楚的地方，它会先问你，或者先看看现有的代码再建。</li>
+<li>建好的任务会列在会话里。点「开始执行」交给 Agent 团队；暂时不做就点「先不开始」，任务留在「待规划」。</li>
+</ol>
+<p>面板右上角可以在「我的 Agent」和「Agent 团队」之间切换。连接了自己的电脑时默认用「我的 Agent」，它能直接看你电脑上的代码；没连接时由 Agent 团队回复。两者的区别见 <a href="sessions.html">我的会话</a>。</p>
+<h2 id="手动填写">手动填写</h2>
+<p>想直接填表时，在新会话里点「手动填写」：</p>
+<figure class="fig"><div class="sw" style="max-width:620px">
+<div class="sw-top"><span class="crumb"><b>新建任务</b></span><span class="r"><span class="st-ib"><i data-lucide="x"></i></span></span></div>
+<div class="sw-body">
+<label class="fld"><span>标题</span><span class="inp">资质到期提醒</span></label>
+<label class="fld"><span>描述</span><span class="inp area">供应商的营业执照、质量体系证书到期前 30 天提醒采购员……</span><small>支持 Markdown。</small></label>
+<div class="st-meta"><span><span class="k">项目</span><span class="st-pill"><i data-lucide="folder-kanban"></i>供应商管理</span></span><span><span class="k">负责人</span><span class="st-pill"><span class="st-av">周</span>周航（你）</span></span></div>
+<div class="fld"><span>什么时候开始</span><div class="opts"><div class="opt on"><div><b>立即开始</b>进入进行中，调度 Agent 马上开始安排。</div></div><div class="opt"><div><b>以后再说</b>放进待规划，之后在任务页点「开始」。</div></div></div></div>
+<div class="dlg-foot"><span class="st-btn">取消</span><span class="st-btn p">创建并开始</span></div>
+</div>
+</div><figcaption>手动填写的表单</figcaption></figure>
+
+
+<ol>
+<li>填写标题和描述。描述支持 Markdown。</li>
+<li>确认项目和负责人。负责人默认是你。</li>
+<li>选择「什么时候开始」：<ul>
+<li><strong>立即开始</strong>：任务进入「进行中」，调度 Agent 马上开始安排。</li>
+<li><strong>以后再说</strong>：任务放进「待规划」，之后在任务页点「开始」。</li>
+</ul>
+</li>
+<li>点「创建并开始」（或「创建」）。</li>
+</ol>
+<div class="note note"><strong>待规划的任务不会自动开始</strong><p>放在「待规划」里的任务，Agent 不会动。准备好后在任务页点「开始」。</p>
+</div>
+<h2 id="怎样说清一个需求">怎样说清一个需求</h2>
+<p>Agent 团队会按你写的内容理解任务，说得越清楚，返工越少。建议包括：</p>
+<ul>
+<li><strong>目标</strong>：要解决什么问题，给谁用。</li>
+<li><strong>业务规则</strong>：数据怎么算、流程怎么走、谁能看到什么。</li>
+<li><strong>验收场景</strong>：做完后你会怎样检查，例如“采购员登录后，在供应商列表里能看到每家的等级”。</li>
+<li><strong>范围</strong>：这次不做什么。</li>
+<li><strong>资料</strong>：相关的表格、截图、制度文件；已经在知识库里的，写明文档名称即可。</li>
+</ul>
+<p>不确定的地方可以直接说“不确定，请先提出方案”。调度 Agent 会先安排一个 Agent 写出方案，需要你决定时再来问你。</p>
+<h2 id="子任务和依赖">子任务和依赖</h2>
+<ul>
+<li>在任务页点「新建子任务」，同样会开始一段会话，并带上父任务。所有子任务完成后，父任务会被唤醒。</li>
+<li>在任务属性里添加「前置依赖」：依赖的任务完成之前，这个任务不会开始。</li>
+<li>优先级会影响排队：运行环境先领取紧急任务的工作。</li>
+</ul>
+<h2 id="交给人做">交给人做</h2>
+<p>任务的执行者也可以是一位成员，这种任务不会触发 Agent。之后想交给 Agent，在任务页点「交给调度 Agent 开始」即可。</p>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../daily/sessions.html"><small>上一页</small>我的会话</a><a class="next" href="../daily/follow-progress.html"><small>下一页</small>跟进进展</a></nav>
+<footer class="page-foot"><span>NocoBase Studio 文档 · 草稿 2026-10-22</span><span><a href="../../方案/01-现有文档的问题.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E6%96%B0%E5%BB%BA%E4%BB%BB%E5%8A%A1">新建任务</a></li><li><a href="#%E6%89%8B%E5%8A%A8%E5%A1%AB%E5%86%99">手动填写</a></li><li><a href="#%E6%80%8E%E6%A0%B7%E8%AF%B4%E6%B8%85%E4%B8%80%E4%B8%AA%E9%9C%80%E6%B1%82">怎样说清一个需求</a></li><li><a href="#%E5%AD%90%E4%BB%BB%E5%8A%A1%E5%92%8C%E4%BE%9D%E8%B5%96">子任务和依赖</a></li><li><a href="#%E4%BA%A4%E7%BB%99%E4%BA%BA%E5%81%9A">交给人做</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../assets/docs.js?v=9336a529"></script>
+</body>
+</html>

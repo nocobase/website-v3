@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>进度与待确认事项 - NocoBase Studio 文档</title>
+<meta name="description" content="这一版草稿完成了什么、还缺什么，以及需要产品和研发确认的问题。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../site/assets/docs.css?v=9336a529">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../site/index.html"><img class="brand-logo" src="../site/assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">Studio 文档</span></a>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><p class="menu-title">Studio 文档方案</p><ul><li><a href="01-%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98.html">现有文档的问题</a></li><li><a href="02-%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%99%E4%BD%9C%E5%8E%9F%E5%88%99.html">文档结构与写作原则</a></li><li><a href="03-%E5%91%BD%E5%90%8D%E6%96%B9%E6%A1%88.html">命名方案</a></li><li><a href="04-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83%E4%B8%8E%E6%9C%AF%E8%AF%AD.html">写作规范与术语</a></li><li><a href="05-%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html" aria-current="page">进度与待确认事项</a></li></ul></div><div class="menu-group"><p class="menu-title">文档草稿</p><ul><li><a href="../site/index.html">打开文档站</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Studio 文档方案</p><h1>进度与待确认事项</h1>
+<p class="lead">这一版草稿完成了什么、还缺什么，以及需要产品和研发确认的问题。</p>
+<article class="prose">
+<h2 id="这一版完成了什么">这一版完成了什么</h2>
+<p>文档站的“入门”“日常使用”两组已经写成草稿，共 15 页（另有 27 个占位页），配有 22 张 HTML 局部配图。正文在 <code>Doc/src/</code>，运行 <code>node Doc/build.mjs</code> 生成 <code>Doc/site/</code>，打开 <code>Doc/site/index.html</code> 即可浏览。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>部分</th>
+<th>页面</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开始</td>
+<td>首页（按角色的阅读路径、文档包括什么）</td>
+</tr>
+<tr>
+<td>入门</td>
+<td>Studio 是什么 · 一个需求怎样完成 · 核心概念 · 界面导览 · 快速开始（约 30 分钟，从部署到验收第一个任务）</td>
+</tr>
+<tr>
+<td>日常使用</td>
+<td>我的任务 · 提出需求 · 跟进进展 · 回答提问 · 验收 · 我的会话 · 项目记忆、知识库与技能 · 收件箱与提醒 · 在终端里使用</td>
+</tr>
+</tbody></table></div>
+<p>所有行为描述都对照了 Studio 仓库 <code>dev</code> 分支（<code>19a3e83</code>，包含 #164 项目记忆和 #170 统一 Agent 面板）和 NocoBase 框架 <code>v3-develop</code> 分支的代码、中文界面文案和设计文档（2026-10-22）。</p>
+<h3 id="第五轮修改根据评审意见">第五轮修改（根据评审意见）</h3>
+<ul>
+<li>文档站改为普通的样式：顶栏、左侧菜单、中间正文、右侧“本页内容”。</li>
+<li>左侧菜单列出完整的 Studio 文档：入门、日常使用、项目与代码、质量管理、发布与部署、Agent 团队、系统管理、参考。功能分组按 Studio 侧边栏的顺序排列；还没写好的 27 页生成了占位页。</li>
+</ul>
+<h3 id="第四轮修改根据评审意见">第四轮修改（根据评审意见）</h3>
+<ul>
+<li>理顺 Agent 的分类：Agent 只有一种（编码工具 · 模型），只分调度 Agent、执行 Agent、我的 Agent 三种角色，在“核心概念”第一节一次讲清；会话一节不再引入新类型，只说“和我的 Agent，或 Agent 团队里的某个 Agent 对话”。</li>
+<li>分工图把我的 Agent 也画进 Agent 一栏；“评审 Agent”“开发 Agent”“初始化 Agent”“Coding Agent”等叫法从正文中去掉。</li>
+<li>“Agent 团队与运行环境”改为“Agent 团队怎样组建”，按“运行环境上报 → 启用执行 Agent → 指定调度 Agent”的顺序讲。</li>
+</ul>
+<h3 id="第三轮修改根据评审意见">第三轮修改（根据评审意见）</h3>
+<ul>
+<li>会话的两种模式改为「我的 Agent」和「Agent 团队」，不再用“本机 Agent / 团队 Agent”：成员电脑也能作为个人运行环境加入 Agent 团队，区别在于由谁驱动，而不是在不在本机。</li>
+<li>角色名“负责人”改为“任务负责人”。</li>
+<li>「我的会话」按两种模式合并展示来写；会话列表的配图加上产品里的任务进度条。</li>
+<li>项目记忆改为“写给 Agent 看的，人不需要阅读和整理”：去掉了项目记忆页面的配图和“在哪里看”，界面导览里也不再推荐查看。</li>
+<li>快速开始的“接下来”去掉“把团队规范写成技能、把业务资料放进知识库”和“配置 CI”两条；技能一节改为说明最佳实践已经内置。</li>
+</ul>
+<h3 id="第二轮修改根据评审意见">第二轮修改（根据评审意见）</h3>
+<ul>
+<li>提出 <a href="03-命名方案.html">命名方案</a>：项目经理 → 调度 Agent，「我的 Agent」页面 → 我的会话，等等。草稿已按新名称编写。</li>
+<li>“Studio 是什么”改为从组织、制度、流程、记录、决策五个方面说明 Studio 的价值，补上流程治理；分工改为“人做决定、Agent 做执行”两栏；与 Core 的关系只保留“应用上线后独立运行，不经过 Studio”这个重点；功能地图移到新的“界面导览”。</li>
+<li>“核心概念”重新组织：一张图加八个概念，增加“两种跟进方式：任务和会话”；执行者改为“几乎总是调度 Agent”。</li>
+<li>加入项目记忆（#164）：在“Studio 是什么”“一个需求怎样完成”“核心概念”中说明，并在日常使用中排到知识库之前。</li>
+<li>按 #170 修改新建任务的说明：「新建任务」现在开始一段会话，表单改为「手动填写」，原来的“AI 整理”页签不再出现。</li>
+<li>所有截图占位换成 HTML 局部配图；快速开始改为 30 分钟。</li>
+</ul>
+<h2 id="留空的部分">留空的部分</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>部分</th>
+<th>原因</th>
+<th>文档里的处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>发布与部署</td>
+<td>模块开发中</td>
+<td>目录里占位；“一个需求怎样完成”的发布一步、快速开始的 CI 与预览、验收的预览，都用“待补充”标出</td>
+</tr>
+<tr>
+<td>质量管理</td>
+<td>模块开发中</td>
+<td>目录里占位；正文不涉及测试计划、功能与用例、质量报告</td>
+</tr>
+<tr>
+<td>项目与代码、Agent 团队、系统管理、参考</td>
+<td>这一轮没有写</td>
+<td>菜单里列出全部页面，占位页写明计划包含的内容</td>
+</tr>
+</tbody></table></div>
+<div class="note note"><strong>关于预览的归属</strong><p>这一版把 PR 预览、项目设置里的「部署」、新建项目向导的「预览」一步都归入发布与部署模块，所以快速开始让读者在向导里「跳过」预览，验收以交付报告、截图和改动为准。</p>
+</div>
+<h2 id="需要产品和研发确认的问题">需要产品和研发确认的问题</h2>
+<ol>
+<li><strong>命名方案。</strong> 确认 <a href="03-命名方案.html">命名方案</a> 里的名称；确认后 Studio 界面、CLI 帮助文字、官网和定位文档需要同步修改。界面改名之前文档不能发布。</li>
+<li><strong>「我的会话」合并两种模式的会话（已确认要做）。</strong> 现在页面只列「我的 Agent」的会话，Agent 团队的会话只在面板历史里。文档已按合并后的样子写，产品需要实现。</li>
+<li><strong>官网 Studio 页要改（已确认）。</strong> 官网写“Agent 在开发中自动提议更新知识库，人审阅后合入”，并有“来自 CRM-137 的知识库更新建议”的界面示意；#164 之后 Agent 对知识库只读，经验记进项目记忆。命名方案确认后，官网的“项目经理 Agent”“我的 Agent”等叫法也要一起改。</li>
+<li><strong>项目记忆存放在哪里（已确认）。</strong> 按代码：记忆是代码仓库 <code>.nb-studio/memory/</code> 下的文件，随任务的 PR 提交、评审、合并。文档已按此描述。</li>
+<li><strong>标准部署方式。</strong> 快速开始只给出镜像的关键参数和交给 Agent 部署的提示词。“系统管理 › 生产环境部署”需要一份官方的 compose 文件和 <code>config.yml</code> 示例，并确认：镜像仓库凭据怎样发放；默认 SQLite 数据库文件是否位于 <code>/app/storage</code> 数据卷内；团队正式使用时推荐的数据库；<code>APP_BASE_PATH</code> 能否设为根路径。</li>
+<li><strong>新建项目向导里的“初始化 Agent”。</strong> 向导的说明文字还写着“之后的任务由谁接手，取决于流程的状态规则”，而流程和状态规则已经被固定状态和调度 Agent 取代。建议更新这句说明，并确认初始化 Agent 是否仍需要手动选择。</li>
+<li><strong>“擅长什么”的预填和自动启用。</strong> 框架支持“应用常用清单里的组合在上报时自动创建并启用”，需要确认 Studio 是否配置了这个清单；如果有，快速开始的“启用 Agent”一节要说明哪些 Agent 会自动启用。</li>
+<li><strong>会话里建好的任务从哪个状态开始。</strong> 文档写的是 Agent 建好任务后，在会话里点「开始执行」；需要确认 Agent 团队模式的会话里是否也有这个按钮，还是 Agent 直接按你的要求开始。</li>
+<li><strong>运行环境的系统支持。</strong> <code>nocobase-runner</code> 暂不支持 Windows（要用 WSL），而「我的 Agent」的连接程序支持 Windows。文档已分别写明，需要确认这个差异会保持多久。</li>
+</ol>
+<h2 id="配图需要核对的地方">配图需要核对的地方</h2>
+<p>HTML 局部配图按中文界面文案和设计文档画出，没有逐张对照运行中的界面。正式发布前，请在测试环境里对照以下几张，确认布局和文字没有偏差：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>配图</th>
+<th>对照的界面</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>req-session</code>、<code>new-task-chat</code></td>
+<td>Agent 面板的新会话和会话中创建的任务（#170 之后的样子）</td>
+</tr>
+<tr>
+<td><code>req-now</code>、<code>req-accept</code>、<code>req-blocked</code></td>
+<td>任务页的摘要、“需要你”卡片和交付报告</td>
+</tr>
+<tr>
+<td><code>qs-add-runtime</code>、<code>qs-agents</code>、<code>qs-coordinator</code></td>
+<td>添加运行环境、Agent 列表、调度 Agent 设置</td>
+</tr>
+<tr>
+<td><code>agent-queue</code>、<code>runs</code></td>
+<td>Agent 队列、运行记录</td>
+</tr>
+<tr>
+<td><code>sessions-list</code></td>
+<td>会话列表和任务进度条</td>
+</tr>
+</tbody></table></div>
+<h2 id="下一步">下一步</h2>
+<ol>
+<li>产品确认命名方案和上面的问题，界面同步改名。</li>
+<li>对照运行中的界面核对配图。</li>
+<li>编写“项目与代码”“Agent 团队”“系统管理”三组。</li>
+<li>发布与部署、质量管理模块完善后，补写对应章节，并把正文里的“待补充”位置填上。</li>
+<li>编写“参考”：任务状态与权限、术语表、配置项、<code>nb-studio</code> 命令、常见问题与排错。</li>
+</ol>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="04-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83%E4%B8%8E%E6%9C%AF%E8%AF%AD.html"><small>上一页</small>写作规范与术语</a></nav>
+<footer class="page-foot"><span>NocoBase Studio 文档 · 草稿 2026-10-22</span><span><a href="../site/index.html">文档站</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E8%BF%99%E4%B8%80%E7%89%88%E5%AE%8C%E6%88%90%E4%BA%86%E4%BB%80%E4%B9%88">这一版完成了什么</a></li><li><a href="#%E7%95%99%E7%A9%BA%E7%9A%84%E9%83%A8%E5%88%86">留空的部分</a></li><li><a href="#%E9%9C%80%E8%A6%81%E4%BA%A7%E5%93%81%E5%92%8C%E7%A0%94%E5%8F%91%E7%A1%AE%E8%AE%A4%E7%9A%84%E9%97%AE%E9%A2%98">需要产品和研发确认的问题</a></li><li><a href="#%E9%85%8D%E5%9B%BE%E9%9C%80%E8%A6%81%E6%A0%B8%E5%AF%B9%E7%9A%84%E5%9C%B0%E6%96%B9">配图需要核对的地方</a></li><li><a href="#%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../site/assets/docs.js?v=9336a529"></script>
+</body>
+</html>

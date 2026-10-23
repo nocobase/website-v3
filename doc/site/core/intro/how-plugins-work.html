@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>插件怎样工作 - NocoBase 3 文档</title>
+<meta name="description" content="NocoBase 3 的插件大多没有设置界面。这一页讲清一个插件给应用带来什么、怎样进入应用、界面和管理入口在哪里，以及怎样知道应用用了哪些插件。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../../index.html"><img class="brand-logo" src="../../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../../index.html">开始</a><a href="../../core/index.html" aria-current="true">Core</a><a href="../../studio/index.html">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../core/index.html">Core 首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../core/intro/what-is-core.html">Core 是什么</a></li><li><a href="../../core/intro/how-an-app-gets-built.html">一个应用怎样做出来</a></li><li><a href="../../core/intro/concepts.html">核心概念</a></li><li><a href="../../core/intro/how-plugins-work.html" aria-current="page">插件怎样工作</a></li><li><a href="../../core/quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">开发应用</p><ul><li><a href="../../core/develop/working-with-agents.html" class="todo">和 Agent 一起开发</a></li><li><a href="../../core/develop/app-structure.html" class="todo">应用的结构</a></li><li><a href="../../core/develop/plugins.html" class="todo">管理插件</a></li><li><a href="../../core/develop/pages-and-ui-library.html" class="todo">页面与 UI 组件库</a></li><li><a href="../../core/develop/data-and-migrations.html" class="todo">数据模型与迁移</a></li><li><a href="../../core/develop/api.html" class="todo">接口与 API 文档</a></li><li><a href="../../core/develop/system-settings.html" class="todo">系统设置</a></li><li><a href="../../core/develop/testing-and-acceptance.html" class="todo">测试与验收</a></li><li><a href="../../core/develop/upgrade.html" class="todo">升级 NocoBase</a></li></ul></div><div class="menu-group"><p class="menu-title">能力</p><ul><li><a href="../../core/capabilities/index.html">能力总览</a></li><li><a href="../../core/capabilities/data.html" class="todo">数据建模</a></li><li><a href="../../core/capabilities/files.html" class="todo">文件管理</a></li><li><a href="../../core/capabilities/users.html" class="todo">用户与组织</a></li><li><a href="../../core/capabilities/permissions.html" class="todo">权限控制</a></li><li><a href="../../core/capabilities/workflows.html">工作流与审批</a></li><li><a href="../../core/capabilities/ai-agents.html" class="todo">AI 与 Agent</a></li><li><a href="../../core/capabilities/knowledge.html" class="todo">知识库</a></li><li><a href="../../core/capabilities/mail.html" class="todo">邮件互通</a></li><li><a href="../../core/capabilities/notifications.html" class="todo">消息通知</a></li><li><a href="../../core/capabilities/integrations.html" class="todo">外部集成</a></li><li><a href="../../core/capabilities/interface.html" class="todo">界面与配置</a></li><li><a href="../../core/capabilities/audit.html" class="todo">操作审计</a></li><li><a href="../../core/capabilities/operations.html" class="todo">基础运维</a></li></ul></div><div class="menu-group"><p class="menu-title">插件目录</p><ul><li><a href="../../core/plugins/index.html">插件目录总览</a></li><li class="menu-sub">用户与权限</li><li><a href="../../core/plugins/authentication.html" class="todo">认证</a></li><li><a href="../../core/plugins/users.html" class="todo">用户</a></li><li><a href="../../core/plugins/api-keys.html" class="todo">API keys</a></li><li><a href="../../core/plugins/authorization.html" class="todo">权限</a></li><li><a href="../../core/plugins/authz-default-access.html" class="todo">默认数据范围</a></li><li><a href="../../core/plugins/authz-sharing-rules.html" class="todo">共享规则</a></li><li><a href="../../core/plugins/authz-restriction-rules.html" class="todo">限制规则</a></li><li class="menu-sub">数据与文件</li><li><a href="../../core/plugins/db.html" class="todo">数据库</a></li><li><a href="../../core/plugins/database-explorer.html" class="todo">数据库浏览</a></li><li><a href="../../core/plugins/file.html">文件</a></li><li><a href="../../core/plugins/template-print.html" class="todo">模板打印</a></li><li class="menu-sub">流程</li><li><a href="../../core/plugins/lifecycle.html" class="todo">记录生命周期</a></li><li><a href="../../core/plugins/scheduler.html" class="todo">定时任务</a></li><li><a href="../../core/plugins/approval.html" class="todo">审批</a></li><li><a href="../../core/plugins/task-center.html" class="todo">任务中心</a></li><li class="menu-sub">消息</li><li><a href="../../core/plugins/notification.html" class="todo">通知</a></li><li><a href="../../core/plugins/notification-in-app.html" class="todo">站内信</a></li><li><a href="../../core/plugins/notification-providers.html" class="todo">通知渠道</a></li><li><a href="../../core/plugins/notification-web-push.html" class="todo">Web Push</a></li><li><a href="../../core/plugins/mail.html" class="todo">邮件</a></li><li class="menu-sub">AI 与 Agent</li><li><a href="../../core/plugins/agents.html" class="todo">Agents</a></li><li><a href="../../core/plugins/agent-sessions.html" class="todo">Agent 会话</a></li><li><a href="../../core/plugins/knowledge.html" class="todo">知识库</a></li><li class="menu-sub">界面与运维</li><li><a href="../../core/plugins/i18n.html" class="todo">多语言</a></li><li><a href="../../core/plugins/foundation.html" class="todo">应用底座</a></li><li class="menu-sub">研发协作</li><li><a href="../../core/plugins/projects.html" class="todo">项目</a></li><li><a href="../../core/plugins/releases.html" class="todo">发布</a></li><li class="menu-sub">基础库与工具</li><li><a href="../../core/plugins/libraries.html" class="todo">基础库</a></li><li><a href="../../core/plugins/ui-library.html" class="todo">UI 组件库</a></li><li><a href="../../core/plugins/tools.html" class="todo">开发工具</a></li></ul></div><div class="menu-group"><p class="menu-title">部署与运维</p><ul><li><a href="../../core/operations/deployment.html" class="todo">部署</a></li><li><a href="../../core/operations/config.html" class="todo">配置</a></li><li><a href="../../core/operations/database.html" class="todo">数据库</a></li><li><a href="../../core/operations/storage.html" class="todo">文件存储</a></li><li><a href="../../core/operations/jobs-and-scaling.html" class="todo">后台任务与多实例</a></li><li><a href="../../core/operations/upgrade-and-rollback.html" class="todo">升级与回滚</a></li><li><a href="../../core/operations/backup.html" class="todo">备份与恢复</a></li><li><a href="../../core/operations/logs-and-health.html" class="todo">日志与健康检查</a></li><li><a href="../../core/operations/security.html" class="todo">安全清单</a></li></ul></div><div class="menu-group"><p class="menu-title">扩展开发</p><ul><li><a href="../../core/extend/when-to-write-a-plugin.html" class="todo">什么时候写插件</a></li><li><a href="../../core/extend/create-plugin.html" class="todo">创建插件</a></li><li><a href="../../core/extend/plugin-structure.html" class="todo">插件的结构</a></li><li><a href="../../core/extend/publish.html" class="todo">发布插件</a></li><li><a href="../../core/extend/skills.html" class="todo">给插件写技能</a></li><li><a href="../../core/extend/ui-library.html" class="todo">向 UI 组件库贡献</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../core/reference/cli.html" class="todo">命令行</a></li><li><a href="../../core/reference/config.html" class="todo">配置项</a></li><li><a href="../../core/reference/http-api.html" class="todo">HTTP 接口</a></li><li><a href="../../core/reference/packages.html" class="todo">包与版本</a></li><li><a href="../../core/reference/faq.html" class="todo">常见问题</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Core · 入门</p><h1>插件怎样工作</h1>
+<p class="lead">NocoBase 3 的插件大多没有设置界面。这一页讲清一个插件给应用带来什么、怎样进入应用、界面和管理入口在哪里，以及怎样知道应用用了哪些插件。</p>
+<article class="prose">
+<p>在 NocoBase 2 里，你在插件管理器里启用一个插件，再到它的设置页里配置，插件的功能就出现在界面上。</p>
+<p>NocoBase 3 的应用是一份代码，插件的工作方式随之改变：插件是应用依赖的一个 npm 包，登记在插件清单里；它提供能力，Agent 读它的技能，把能力用进你的页面和流程；管理员在应用的「系统设置」里管理。下面逐一说明。</p>
+<h2 id="一个插件给应用带来什么">一个插件给应用带来什么</h2>
+<figure class="map" aria-label="一个插件可能带来的五样东西">
+<div class="row"><div class="box brand"><b>插件 · 一个 npm 包</b><span>登记在 <code>server/plugins.ts</code>、<code>client/plugins.ts</code>、<code>cli/plugins.ts</code> 里</span></div></div>
+<div class="down">可能带来</div>
+<div class="row c3"><div class="box"><b>服务端能力</b><span>服务、接口、数据表、权限检查，在应用的服务端运行</span></div><div class="box"><b>自带的页面</b><span>少数插件有，注册后出现在应用里</span></div><div class="box"><b>UI 组件</b><span>从 UI 组件库复制进应用源码，由 Agent 放进你的页面</span></div></div>
+<div class="row c2"><div class="box agent"><b>技能</b><span>告诉 Agent 怎样使用这个插件，同步到 <code>.agents/skills/</code></span></div><div class="box"><b>命令</b><span>加到 <code>pnpm nocobase</code> 里的命令</span></div></div>
+</figure>
+
+<p>不同插件带来的东西差别很大。几个例子（对照 <code>v3-develop</code> 分支）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>插件</th>
+<th>服务端能力</th>
+<th>自带页面</th>
+<th>UI 组件</th>
+<th>技能</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="../plugins/file.html">文件</a></td>
+<td>上传、文件仓库、稳定的文件地址；文件表由应用声明</td>
+<td>—</td>
+<td>上传、列表、缩略图、预览</td>
+<td>有</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../plugins/authorization.html">权限</a></td>
+<td>权限模型、检查、权限集</td>
+<td>—</td>
+<td>权限编辑器、角色列表</td>
+<td>有</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../plugins/scheduler.html">定时任务</a></td>
+<td>计划、执行记录</td>
+<td>—</td>
+<td>—</td>
+<td>有</td>
+<td><code>scheduler sync</code></td>
+</tr>
+<tr>
+<td><a href="../plugins/foundation.html">应用底座</a></td>
+<td>采集应用用到的能力</td>
+<td>「应用底座」</td>
+<td>—</td>
+<td>有</td>
+<td>构建时生成模块对照</td>
+</tr>
+<tr>
+<td><a href="../plugins/database-explorer.html">数据库浏览</a></td>
+<td>只读接口：连接、数据表、字段</td>
+<td>—</td>
+<td>—</td>
+<td>有</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../plugins/task-center.html">任务中心</a> <span class="tag pro">商业版</span></td>
+<td>待办索引和接口</td>
+<td>「任务中心」</td>
+<td>任务中心界面</td>
+<td>有</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="../plugins/template-print.html">模板打印</a></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>有</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<p>最后一个例子最能说明问题：模板打印插件<strong>只有技能</strong>，没有一行运行时代码。装上它，Agent 就学会了怎样在你的应用里实现“按 Word 模板生成采购单、转成 PDF”，代码写在应用里。</p>
+<h2 id="插件怎样进入应用">插件怎样进入应用</h2>
+<p>通常你不需要亲自做这些。你说出需求，Agent 发现需要某个插件时会自己完成，或者先征求你的同意（例如需要商业授权的审批插件）。了解过程，是为了能看懂它做了什么：</p>
+<ol>
+<li><strong>注册。</strong> <code>pnpm nocobase plugin register @nocobase/app-plugin-xxx</code> 把包加进 <code>package.json</code> 的依赖，并在三个插件清单里各加一行（插件有哪部分就加到哪个清单）。</li>
+<li><strong>同步技能。</strong> 插件的技能被复制到应用的 <code>.agents/skills/</code>。</li>
+<li><strong>建表。</strong> 插件有自己的数据表时，<code>pnpm nocobase db apply</code> 执行它的迁移。</li>
+<li><strong>用起来。</strong> Agent 读技能，通过插件公开的接口实现你的需求：在服务端调用它的服务，在页面里使用它的组件，在「系统设置」里加上它的管理页面。</li>
+</ol>
+<p>注册之后，你在代码仓库里能看到插件清单多了一行：</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>// client/plugins.ts（节选）
+const clientPlugins = defineClientPlugins([
+  authentication(),
+  authorization(),
+  file(),
+  approval(), // 新注册的审批插件
+]);</code></pre></div>
+<div class="note note"><strong>注册不等于功能已经做好</strong><p>注册一个插件，只是让它的能力可用。大多数插件不带页面，注册后应用里不会立刻多出什么，要等 Agent 按你的需求把它用起来。</p>
+</div>
+<h2 id="界面从哪里来">界面从哪里来</h2>
+<p>应用的界面有三个来源，用同一套样式：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>来源</th>
+<th>例子</th>
+<th>怎样修改</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>插件自带的页面</td>
+<td>「应用底座」、任务中心</td>
+<td>通过插件的注册选项或页面替换来调整，不改插件代码</td>
+</tr>
+<tr>
+<td>UI 组件库的组件</td>
+<td>「流程管理」页面、收件箱、审批进度、权限编辑器</td>
+<td>复制进应用后归应用所有，可以直接改</td>
+</tr>
+<tr>
+<td>Agent 为你的业务写的页面</td>
+<td>供应商列表、采购订单详情</td>
+<td>告诉 Agent，像改任何代码一样改</td>
+</tr>
+</tbody></table></div>
+<p>所以“插件没有界面”的准确说法是：插件很少替你决定界面。界面按你的业务做，插件提供做界面的零件和背后的能力。</p>
+<h2 id="配置在哪里">配置在哪里</h2>
+<p>NocoBase 2 的插件设置页，在 3 里拆成了三个地方：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>放在哪里</th>
+<th>放什么</th>
+<th>例子</th>
+<th>谁来改</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>config.yml</code></td>
+<td>部署相关、含密钥的配置</td>
+<td>数据库、对象存储、邮件服务商的账号、后台任务用 Redis</td>
+<td>运维</td>
+</tr>
+<tr>
+<td>代码</td>
+<td>业务规则和结构</td>
+<td>采购订单的流程、谁能看哪些订单、每天几点提醒</td>
+<td>Agent，改完重新部署</td>
+</tr>
+<tr>
+<td>「系统设置」</td>
+<td>管理员日常要调整的</td>
+<td>用户和角色、数据范围、共享规则、审批人、金额阈值、暂停定时任务</td>
+<td>应用管理员，保存就生效</td>
+</tr>
+</tbody></table></div>
+<p>哪些规则放进「系统设置」，是需求的一部分。上线后可能要调的值，提需求时说出来，Agent 会把它做成管理员可以调整的设置。</p>
+<h2 id="管理入口在哪里">管理入口在哪里</h2>
+<p>不在一个统一的插件设置页里，而在应用的「系统设置」里，按应用用到的能力出现。应用开发技能要求 Agent 交付应用时默认做好这些页面，不需要你单独提：</p>
+<ul>
+<li>「用户管理」「权限管理」（角色与权限、默认数据范围）：模板已经备好，开发业务时启用；</li>
+<li>「流程管理」：应用里有流程时；</li>
+<li>定时任务、通知等：对应的任务列表、执行记录和投递记录；</li>
+<li>「应用底座」：看应用用到了哪些能力。</li>
+</ul>
+<p>验收时可以检查：管理员能看到这些入口、页面里是真实数据；普通用户看不到入口，直接访问地址或调用接口也会被拒绝。</p>
+<h2 id="怎样知道应用用了哪些插件">怎样知道应用用了哪些插件</h2>
+<p>打开「系统设置 › 应用底座」。它按 13 类能力列出应用实际用到的部分，点开一项能看到提供它的包、在本系统里做了什么、关联哪些业务模块。只安装了包、没有用到，不算在用。</p>
+<figure class="fig"><div class="sw" style="max-width:740px">
+<div class="sw-top"><span class="crumb"><span>系统设置</span><i data-lucide="chevron-right"></i><b>应用底座</b></span><span class="r"><span class="st-btn"><i data-lucide="refresh-cw"></i>刷新</span></span></div>
+<div class="sw-body gray">
+<div class="ah"><p>你的应用专注业务，数据、权限和流程由 NocoBase Core 支撑。这些通用能力由 NocoBase 持续研发、测试和维护，并随官方版本升级。</p></div>
+<div class="st-box" style="display:grid;gap:10px">
+<div class="score"><b>9 / 13</b><span>项底座能力正在支撑本系统</span></div>
+<div class="band">
+<span class="cap on">数据建模</span><span class="cap on">文件管理</span><span class="cap on">用户与组织</span><span class="cap on">权限控制</span><span class="cap on sel">工作流与审批</span><span class="cap ready">AI 与 Agent</span><span class="cap">知识库</span><span class="cap on">邮件互通</span><span class="cap on">消息通知</span><span class="cap on">外部集成</span><span class="cap on">界面与配置</span><span class="cap">操作审计</span><span class="cap ready">基础运维</span>
+</div>
+<div class="legend"><span class="cap on">本系统在用</span><span class="cap ready">已就绪，待配置</span><span class="cap">本系统尚未使用</span></div>
+</div>
+<div class="capdetail"><b>工作流与审批 · 生命周期、状态流转与定时任务</b>
+<dl><dt>在本系统中</dt><dd>采购订单的流程；每日待审批提醒</dd><dt>关联业务模块</dt><dd>采购订单</dd><dt>提供它的 NocoBase 包</dt><dd><code>@nocobase/lifecycle</code> · <code>@nocobase/app-plugin-scheduler</code> · <code>@nocobase/app-plugin-approval</code></dd></dl>
+</div>
+</div>
+</div><figcaption>「应用底座」显示应用用到的能力和提供它们的包</figcaption></figure>
+
+
+<p>开发者还可以：</p>
+<ul>
+<li>看 <code>server/plugins.ts</code>、<code>client/plugins.ts</code>、<code>cli/plugins.ts</code>：注册了哪些插件；</li>
+<li>看 <code>package.json</code>：安装了哪些 NocoBase 包和版本；</li>
+<li>运行 <code>pnpm nocobase plugin inspect &lt;插件名&gt; --json</code>：检查一个插件的注册情况。</li>
+</ul>
+<h2 id="增加更新和移除插件">增加、更新和移除插件</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>增加</td>
+<td><code>pnpm nocobase plugin register &lt;包名&gt;</code></td>
+</tr>
+<tr>
+<td>更新</td>
+<td><code>pnpm nocobase plugin update &lt;包名&gt;</code>；不写包名则更新全部</td>
+</tr>
+<tr>
+<td>移除</td>
+<td><code>pnpm nocobase plugin unregister &lt;包名&gt;</code> 或 <code>pnpm nocobase package remove &lt;包名&gt;</code></td>
+</tr>
+</tbody></table></div>
+<p>这些命令同时维护依赖、锁文件、插件清单和技能，不要只手改其中一处。移除前先确认应用不再用到它：命令只更新依赖和登记，不会改应用的代码和配置。详见 <a href="../develop/plugins.html">管理插件</a>。</p>
+<h2 id="和-nocobase-2-的插件对比">和 NocoBase 2 的插件对比</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>NocoBase 2</th>
+<th>NocoBase 3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是什么</td>
+<td>运行时安装的功能包</td>
+<td>应用依赖的 npm 包</td>
+</tr>
+<tr>
+<td>启用</td>
+<td>在插件管理器里点启用</td>
+<td>登记进插件清单（<code>plugin register</code>），随应用一起构建和部署</td>
+</tr>
+<tr>
+<td>配置</td>
+<td>插件的设置页</td>
+<td><code>config.yml</code>、代码、「系统设置」三处</td>
+</tr>
+<tr>
+<td>界面</td>
+<td>插件提供配置界面和区块</td>
+<td>少数插件带页面；多数提供 UI 组件，由 Agent 做进你的页面</td>
+</tr>
+<tr>
+<td>谁来用它</td>
+<td>人在界面上配置</td>
+<td>Agent 读技能后写代码；管理员在「系统设置」里管理</td>
+</tr>
+<tr>
+<td>升级</td>
+<td>在插件管理器里升级</td>
+<td><code>plugin update</code>，或随 NocoBase 版本一起升级</td>
+</tr>
+<tr>
+<td>看装了什么</td>
+<td>插件管理器</td>
+<td>「应用底座」、插件清单</td>
+</tr>
+</tbody></table></div>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="注册了插件应用里为什么没有多出页面">注册了插件，应用里为什么没有多出页面？</h3>
+<p>大多数插件不带页面。把需求告诉 Agent，它会用这个插件的能力做出页面和管理入口。</p>
+<h3 id="能直接改插件的代码吗">能直接改插件的代码吗？</h3>
+<p>不能。插件随版本升级，改了会在下次更新时丢失。要定制插件自带的页面，用它的注册选项、<code>client/extensions/</code> 里的扩展或 <code>client/route-overrides.ts</code> 里的页面替换；从 UI 组件库复制进来的组件归应用所有，可以直接改。</p>
+<h3 id="agent-没用插件自己写了一套权限或通知定时任务怎么办">Agent 没用插件，自己写了一套权限（或通知、定时任务），怎么办？</h3>
+<p>让它改用插件。应用开发技能把“已有插件能做的事自己重写”列为代价最大的错误，要求 Agent 先查已安装的插件。验收时可以在「应用底座」里确认对应的能力是否点亮。</p>
+<h3 id="插件的数据在哪里">插件的数据在哪里？</h3>
+<p>在应用的数据库里，表由插件自己的迁移创建，名称有固定的前缀，例如定时任务插件的表以 <code>schedule</code> 开头。应用不直接读写这些表，通过插件的接口使用。</p>
+<h3 id="商业插件怎样安装">商业插件怎样安装？</h3>
+<p>需要相应的授权和兼容的版本。Agent 在需要时会告诉你，例如审批：确认授权和包的获取方式后，用同样的 <code>plugin register</code> 注册。见 <a href="../../start/editions.html">开源与商业</a>。</p>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../../core/intro/concepts.html"><small>上一页</small>核心概念</a><a class="next" href="../../core/quickstart.html"><small>下一页</small>快速开始</a></nav>
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-23</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E4%B8%80%E4%B8%AA%E6%8F%92%E4%BB%B6%E7%BB%99%E5%BA%94%E7%94%A8%E5%B8%A6%E6%9D%A5%E4%BB%80%E4%B9%88">一个插件给应用带来什么</a></li><li><a href="#%E6%8F%92%E4%BB%B6%E6%80%8E%E6%A0%B7%E8%BF%9B%E5%85%A5%E5%BA%94%E7%94%A8">插件怎样进入应用</a></li><li><a href="#%E7%95%8C%E9%9D%A2%E4%BB%8E%E5%93%AA%E9%87%8C%E6%9D%A5">界面从哪里来</a></li><li><a href="#%E9%85%8D%E7%BD%AE%E5%9C%A8%E5%93%AA%E9%87%8C">配置在哪里</a></li><li><a href="#%E7%AE%A1%E7%90%86%E5%85%A5%E5%8F%A3%E5%9C%A8%E5%93%AA%E9%87%8C">管理入口在哪里</a></li><li><a href="#%E6%80%8E%E6%A0%B7%E7%9F%A5%E9%81%93%E5%BA%94%E7%94%A8%E7%94%A8%E4%BA%86%E5%93%AA%E4%BA%9B%E6%8F%92%E4%BB%B6">怎样知道应用用了哪些插件</a></li><li><a href="#%E5%A2%9E%E5%8A%A0%E6%9B%B4%E6%96%B0%E5%92%8C%E7%A7%BB%E9%99%A4%E6%8F%92%E4%BB%B6">增加、更新和移除插件</a></li><li><a href="#%E5%92%8C-nocobase-2-%E7%9A%84%E6%8F%92%E4%BB%B6%E5%AF%B9%E6%AF%94">和 NocoBase 2 的插件对比</a></li><li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

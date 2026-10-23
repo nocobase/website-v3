@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI 组件库 - NocoBase 3 文档</title>
+<meta name="description" content="NocoBase 发布的业务组件和区块。Agent 安装时把源码复制进应用，之后归应用所有，可以改，不会被自动更新。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../../index.html"><img class="brand-logo" src="../../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../../index.html">开始</a><a href="../../core/index.html" aria-current="true">Core</a><a href="../../studio/index.html">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../core/index.html">Core 首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../core/intro/what-is-core.html">Core 是什么</a></li><li><a href="../../core/intro/how-an-app-gets-built.html">一个应用怎样做出来</a></li><li><a href="../../core/intro/concepts.html">核心概念</a></li><li><a href="../../core/intro/how-plugins-work.html">插件怎样工作</a></li><li><a href="../../core/quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">开发应用</p><ul><li><a href="../../core/develop/working-with-agents.html" class="todo">和 Agent 一起开发</a></li><li><a href="../../core/develop/app-structure.html" class="todo">应用的结构</a></li><li><a href="../../core/develop/plugins.html" class="todo">管理插件</a></li><li><a href="../../core/develop/pages-and-ui-library.html" class="todo">页面与 UI 组件库</a></li><li><a href="../../core/develop/data-and-migrations.html" class="todo">数据模型与迁移</a></li><li><a href="../../core/develop/api.html" class="todo">接口与 API 文档</a></li><li><a href="../../core/develop/system-settings.html" class="todo">系统设置</a></li><li><a href="../../core/develop/testing-and-acceptance.html" class="todo">测试与验收</a></li><li><a href="../../core/develop/upgrade.html" class="todo">升级 NocoBase</a></li></ul></div><div class="menu-group"><p class="menu-title">能力</p><ul><li><a href="../../core/capabilities/index.html">能力总览</a></li><li><a href="../../core/capabilities/data.html" class="todo">数据建模</a></li><li><a href="../../core/capabilities/files.html" class="todo">文件管理</a></li><li><a href="../../core/capabilities/users.html" class="todo">用户与组织</a></li><li><a href="../../core/capabilities/permissions.html" class="todo">权限控制</a></li><li><a href="../../core/capabilities/workflows.html">工作流与审批</a></li><li><a href="../../core/capabilities/ai-agents.html" class="todo">AI 与 Agent</a></li><li><a href="../../core/capabilities/knowledge.html" class="todo">知识库</a></li><li><a href="../../core/capabilities/mail.html" class="todo">邮件互通</a></li><li><a href="../../core/capabilities/notifications.html" class="todo">消息通知</a></li><li><a href="../../core/capabilities/integrations.html" class="todo">外部集成</a></li><li><a href="../../core/capabilities/interface.html" class="todo">界面与配置</a></li><li><a href="../../core/capabilities/audit.html" class="todo">操作审计</a></li><li><a href="../../core/capabilities/operations.html" class="todo">基础运维</a></li></ul></div><div class="menu-group"><p class="menu-title">插件目录</p><ul><li><a href="../../core/plugins/index.html">插件目录总览</a></li><li class="menu-sub">用户与权限</li><li><a href="../../core/plugins/authentication.html" class="todo">认证</a></li><li><a href="../../core/plugins/users.html" class="todo">用户</a></li><li><a href="../../core/plugins/api-keys.html" class="todo">API keys</a></li><li><a href="../../core/plugins/authorization.html" class="todo">权限</a></li><li><a href="../../core/plugins/authz-default-access.html" class="todo">默认数据范围</a></li><li><a href="../../core/plugins/authz-sharing-rules.html" class="todo">共享规则</a></li><li><a href="../../core/plugins/authz-restriction-rules.html" class="todo">限制规则</a></li><li class="menu-sub">数据与文件</li><li><a href="../../core/plugins/db.html" class="todo">数据库</a></li><li><a href="../../core/plugins/database-explorer.html" class="todo">数据库浏览</a></li><li><a href="../../core/plugins/file.html">文件</a></li><li><a href="../../core/plugins/template-print.html" class="todo">模板打印</a></li><li class="menu-sub">流程</li><li><a href="../../core/plugins/lifecycle.html" class="todo">记录生命周期</a></li><li><a href="../../core/plugins/scheduler.html" class="todo">定时任务</a></li><li><a href="../../core/plugins/approval.html" class="todo">审批</a></li><li><a href="../../core/plugins/task-center.html" class="todo">任务中心</a></li><li class="menu-sub">消息</li><li><a href="../../core/plugins/notification.html" class="todo">通知</a></li><li><a href="../../core/plugins/notification-in-app.html" class="todo">站内信</a></li><li><a href="../../core/plugins/notification-providers.html" class="todo">通知渠道</a></li><li><a href="../../core/plugins/notification-web-push.html" class="todo">Web Push</a></li><li><a href="../../core/plugins/mail.html" class="todo">邮件</a></li><li class="menu-sub">AI 与 Agent</li><li><a href="../../core/plugins/agents.html" class="todo">Agents</a></li><li><a href="../../core/plugins/agent-sessions.html" class="todo">Agent 会话</a></li><li><a href="../../core/plugins/knowledge.html" class="todo">知识库</a></li><li class="menu-sub">界面与运维</li><li><a href="../../core/plugins/i18n.html" class="todo">多语言</a></li><li><a href="../../core/plugins/foundation.html" class="todo">应用底座</a></li><li class="menu-sub">研发协作</li><li><a href="../../core/plugins/projects.html" class="todo">项目</a></li><li><a href="../../core/plugins/releases.html" class="todo">发布</a></li><li class="menu-sub">基础库与工具</li><li><a href="../../core/plugins/libraries.html" class="todo">基础库</a></li><li><a href="../../core/plugins/ui-library.html" class="todo" aria-current="page">UI 组件库</a></li><li><a href="../../core/plugins/tools.html" class="todo">开发工具</a></li></ul></div><div class="menu-group"><p class="menu-title">部署与运维</p><ul><li><a href="../../core/operations/deployment.html" class="todo">部署</a></li><li><a href="../../core/operations/config.html" class="todo">配置</a></li><li><a href="../../core/operations/database.html" class="todo">数据库</a></li><li><a href="../../core/operations/storage.html" class="todo">文件存储</a></li><li><a href="../../core/operations/jobs-and-scaling.html" class="todo">后台任务与多实例</a></li><li><a href="../../core/operations/upgrade-and-rollback.html" class="todo">升级与回滚</a></li><li><a href="../../core/operations/backup.html" class="todo">备份与恢复</a></li><li><a href="../../core/operations/logs-and-health.html" class="todo">日志与健康检查</a></li><li><a href="../../core/operations/security.html" class="todo">安全清单</a></li></ul></div><div class="menu-group"><p class="menu-title">扩展开发</p><ul><li><a href="../../core/extend/when-to-write-a-plugin.html" class="todo">什么时候写插件</a></li><li><a href="../../core/extend/create-plugin.html" class="todo">创建插件</a></li><li><a href="../../core/extend/plugin-structure.html" class="todo">插件的结构</a></li><li><a href="../../core/extend/publish.html" class="todo">发布插件</a></li><li><a href="../../core/extend/skills.html" class="todo">给插件写技能</a></li><li><a href="../../core/extend/ui-library.html" class="todo">向 UI 组件库贡献</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../core/reference/cli.html" class="todo">命令行</a></li><li><a href="../../core/reference/config.html" class="todo">配置项</a></li><li><a href="../../core/reference/http-api.html" class="todo">HTTP 接口</a></li><li><a href="../../core/reference/packages.html" class="todo">包与版本</a></li><li><a href="../../core/reference/faq.html" class="todo">常见问题</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Core · 插件目录</p><h1>UI 组件库</h1>
+<p class="lead">NocoBase 发布的业务组件和区块。Agent 安装时把源码复制进应用，之后归应用所有，可以改，不会被自动更新。</p>
+<article class="prose">
+<div class="note pending"><strong>正文待编写</strong><p>下表来自 NocoBase 仓库 <code>v3-develop</code> 分支的 <code>ui-library/registry/</code>。每个组件的预览见 <a href="https://ui.nocobase.com" target="_blank" rel="noopener">ui.nocobase.com</a>。</p>
+</div>
+<h2 id="计划包含">计划包含</h2>
+<ul>
+<li>组件库是什么：shadcn 方式发布，安装即复制源码</li>
+<li>安装在哪里：组件在 <code>client/components/</code>，区块在 <code>client/extensions/nocobase-&lt;名称&gt;/</code></li>
+<li>默认模板已经预装了哪些</li>
+<li>升级：组件不会自动更新，需要时由 Agent 按三方合并的方式更新</li>
+<li>每个组件依赖哪个插件</li>
+</ul>
+<h2 id="组件和区块">组件和区块</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>分组</th>
+<th>组件 / 区块</th>
+<th>依赖的插件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>通用</td>
+<td>页面框架 <code>page-container</code>、<code>page-header</code>，弹窗与抽屉 <code>route-dialog</code>、<code>route-drawer</code>、<code>route-child-page</code>，<code>data-table</code>、<code>kanban</code>、<code>property-fields</code>、<code>rich-text-editor</code>、<code>markdown-view</code>、<code>long-text</code>、<code>comment-thread</code>、<code>attachment-list</code>、<code>record-link</code>、<code>settings-dialog</code>、<code>flow-diagram</code>、<code>setup-readiness</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>登录</td>
+<td><code>auth-forms</code>、<code>auth-methods</code>、<code>auth-centered-layout</code>、<code>auth-split-layout</code>、<code>device-approval</code></td>
+<td>认证</td>
+</tr>
+<tr>
+<td>权限</td>
+<td><code>permission-editor</code>、<code>role-list</code>、<code>default-access-editor</code></td>
+<td>权限</td>
+</tr>
+<tr>
+<td>流程</td>
+<td><code>lifecycle-diagram</code>、<code>workflow-management</code>（「流程管理」页面）</td>
+<td>记录生命周期</td>
+</tr>
+<tr>
+<td>审批</td>
+<td><code>approval-ui</code></td>
+<td>审批 <span class="tag pro">商业版</span></td>
+</tr>
+<tr>
+<td>任务中心</td>
+<td><code>task-center-ui</code></td>
+<td>任务中心 <span class="tag pro">商业版</span></td>
+</tr>
+<tr>
+<td>收件箱</td>
+<td><code>inbox</code>、<code>inbox-button</code></td>
+<td>站内信</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td><code>agent-chat</code>、<code>agent-queue</code>、<code>agent-run-history</code>、<code>agent-composer</code>、<code>agent-picker</code></td>
+<td>Agents</td>
+</tr>
+<tr>
+<td>项目</td>
+<td><code>issue-table</code>、<code>issue-card</code>、<code>issue-detail</code>、<code>project-detail</code>、<code>plan-card</code></td>
+<td>项目</td>
+</tr>
+</tbody></table></div>
+<p>插件也可以发布自己的组件，例如文件插件的 <code>component-ui</code>、通知插件的 <code>logs-ui</code>。</p>
+
+</article>
+
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-23</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E8%AE%A1%E5%88%92%E5%8C%85%E5%90%AB">计划包含</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E5%92%8C%E5%8C%BA%E5%9D%97">组件和区块</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

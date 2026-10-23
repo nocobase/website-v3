@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>安装 Studio - NocoBase 3 文档</title>
+<meta name="description" content="用 Docker Compose 在一台 Linux 服务器上部署 Studio。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../index.html">开始</a><a href="../core/index.html">Core</a><a href="../studio/index.html" aria-current="true">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../studio/intro/concepts.html">核心概念</a></li><li><a href="../studio/intro/interface-tour.html">界面导览</a></li></ul></div><div class="menu-group"><p class="menu-title">安装与上手</p><ul><li><a href="../studio/install.html" aria-current="page">安装 Studio</a></li><li><a href="../studio/quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../studio/daily/my-tasks.html">我的任务</a></li><li><a href="../studio/daily/sessions.html">我的会话</a></li><li><a href="../studio/daily/raise-a-request.html">提出需求</a></li><li><a href="../studio/daily/follow-progress.html">跟进进展</a></li><li><a href="../studio/daily/answer-questions.html">回答提问</a></li><li><a href="../studio/daily/accept.html">验收</a></li><li><a href="../studio/daily/knowledge.html">知识库与项目记忆</a></li><li><a href="../studio/daily/inbox.html">收件箱与提醒</a></li><li><a href="../studio/daily/cli.html">在终端里使用</a></li></ul></div><div class="menu-group"><p class="menu-title">项目与代码</p><ul><li><a href="../studio/projects/create-project.html" class="todo">创建项目</a></li><li><a href="../studio/projects/project-settings.html" class="todo">项目设置</a></li><li><a href="../studio/projects/repos-and-prs.html" class="todo">代码仓库与 PR</a></li><li><a href="../studio/projects/ci-checks.html" class="todo">CI 检查</a></li><li><a href="../studio/projects/skills.html" class="todo">技能</a></li><li><a href="../studio/projects/knowledge-admin.html" class="todo">知识库管理</a></li></ul></div><div class="menu-group"><p class="menu-title">质量管理</p><ul><li><a href="../studio/quality/test-plans.html" class="todo">测试计划</a></li><li><a href="../studio/quality/features-and-cases.html" class="todo">功能与用例</a></li><li><a href="../studio/quality/reports.html" class="todo">质量报告</a></li></ul></div><div class="menu-group"><p class="menu-title">发布与部署</p><ul><li><a href="../studio/release/previews.html" class="todo">预览</a></li><li><a href="../studio/release/apps-and-environments.html" class="todo">应用与部署环境</a></li><li><a href="../studio/release/approval-and-rollback.html" class="todo">发布审批与回滚</a></li></ul></div><div class="menu-group"><p class="menu-title">Agent 团队</p><ul><li><a href="../studio/agents/runtimes.html" class="todo">运行环境</a></li><li><a href="../studio/agents/agents.html" class="todo">Agent</a></li><li><a href="../studio/agents/coordinator.html" class="todo">调度 Agent</a></li><li><a href="../studio/agents/usage.html" class="todo">用量与费用</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../studio/admin/git.html" class="todo">Git 连接</a></li><li><a href="../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../studio/reference/glossary.html" class="todo">术语表</a></li><li><a href="../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Studio · 安装与上手</p><h1>安装 Studio</h1>
+<p class="lead">用 Docker Compose 在一台 Linux 服务器上部署 Studio。</p>
+<article class="prose">
+<h2 id="准备">准备</h2>
+<ul>
+<li>一台 Linux 服务器，装有 Docker 和 Docker Compose，能访问镜像仓库、npm 和你的 Git 托管平台。</li>
+<li>一个解析到这台服务器的域名，下文用 <code>studio.example.com</code> 代替。</li>
+<li>NocoBase 提供的镜像仓库账号。</li>
+</ul>
+<p>想让 Claude Code 或 Codex 替你部署，跳到 <a href="#让-agent-部署">让 Agent 部署</a>。</p>
+<h2 id="部署">部署</h2>
+<ol>
+<li><p>登录镜像仓库，建好部署目录：</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>docker login pkg-v3.nocobase.com
+sudo mkdir -p /opt/studio/storage &amp;&amp; cd /opt/studio
+sudo chown 1000:1000 storage   # 容器以 UID 1000 运行，要能写这个目录</code></pre></div>
+</li>
+<li><p>从镜像里取出配置模板，保存为 <code>config.yml</code>。不需要修改，下一步的环境变量会覆盖其中的密钥、管理员账号、对外地址和语言。</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>docker run --rm pkg-v3.nocobase.com/nocobase/studio:latest cat /app/config.example.yml &gt; config.yml</code></pre></div>
+</li>
+<li><p>生成 <code>.env</code>，把域名换成你自己的：</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>cat &gt; .env &lt;&lt;EOF
+APP_PUBLIC_ORIGIN=https://studio.example.com
+APP_DEFAULT_LOCALE=zh-CN
+SECRETS_KEYS=1:$(openssl rand -hex 32)
+INITIAL_ADMIN_USERNAME=admin
+INITIAL_ADMIN_EMAIL=admin@example.com
+INITIAL_ADMIN_PASSWORD=$(openssl rand -hex 12)
+EOF
+chmod 600 .env</code></pre></div>
+</li>
+<li><p>新建 <code>compose.yaml</code>：</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>services:
+  studio:
+    image: pkg-v3.nocobase.com/nocobase/studio:latest
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - &quot;127.0.0.1:13000:13000&quot;
+    volumes:
+      - ./config.yml:/app/config.yml
+      - ./storage:/app/storage</code></pre></div>
+</li>
+<li><p>启动，等 <code>STATUS</code> 一栏变成 <code>healthy</code>：</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>docker compose up -d
+docker compose ps</code></pre></div>
+</li>
+<li><p>配置 HTTPS：用反向代理把域名转到 <code>127.0.0.1:13000</code>，WebSocket 也要转发。用 Caddy 时，在 <code>Caddyfile</code> 里加上：</p>
+<div class="code-block wrap"><button type="button" class="copy-button">复制</button><pre><code>studio.example.com {
+    reverse_proxy 127.0.0.1:13000
+}</code></pre></div>
+<p>用 Nginx 时，为 <code>/main/ws</code> 加上 <code>Upgrade</code> 和 <code>Connection</code> 请求头。</p>
+</li>
+</ol>
+<div class="note warning"><strong>保管好 SECRETS_KEYS</strong><p>已保存的 Git 凭据、API 密钥都用它加密。丢了它，这些凭据无法再解密；换掉它，所有人会被退出登录。把 <code>.env</code> 和数据一起备份。</p>
+</div>
+<h2 id="检查">检查</h2>
+<p>打开 <code>https://studio.example.com/main/</code>，用 <code>.env</code> 里的管理员账号登录。</p>
+<p>地址里的 <code>/main</code> 不能省。之后添加运行环境、登录 <code>nb-studio</code> 时填写的 Studio 地址，都是这个带 <code>/main</code> 的完整地址。</p>
+<p>登录后，按 <a href="quickstart.html">快速开始</a> 添加运行环境和 Agent。</p>
+<h2 id="让-agent-部署">让 Agent 部署</h2>
+<p>把下面的提示词交给 Claude Code 或 Codex，替换服务器地址和域名。</p>
+<div class="code-block wrap"><button type="button" class="copy-button">复制</button><pre><code>请通过 SSH 登录 &lt;服务器地址&gt;，用 Docker Compose 部署 NocoBase Studio，访问地址是 https://studio.example.com/main/。
+
+- 镜像：pkg-v3.nocobase.com/nocobase/studio:latest，镜像仓库的账号我单独提供。
+- 容器监听 13000 端口。配置文件挂载到 /app/config.yml，内容从镜像里的 /app/config.example.yml 复制；数据目录 /app/storage 挂载到宿主机，目录归属 UID 1000。
+- 环境变量：APP_PUBLIC_ORIGIN=https://studio.example.com、APP_DEFAULT_LOCALE=zh-CN、SECRETS_KEYS=1:&lt;用 openssl rand -hex 32 生成&gt;，以及 INITIAL_ADMIN_USERNAME、INITIAL_ADMIN_EMAIL 和随机生成的 INITIAL_ADMIN_PASSWORD。写进权限为 600 的 .env 文件，不要出现在命令历史和日志里。
+- 先检查服务器上已有的容器、Docker 网络和反向代理，不要影响其他服务。已有反向代理就接入它，没有就用 Caddy 提供 HTTPS。WebSocket 也要转发。
+
+完成后确认：容器状态为 healthy，https://studio.example.com/main/ 能打开并用管理员账号登录，重启容器后数据还在。告诉我部署目录在哪里，管理员密码和 SECRETS_KEYS 存在哪里。</code></pre></div>
+<h2 id="环境变量">环境变量</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>APP_PUBLIC_ORIGIN</code></td>
+<td>浏览器访问 Studio 用的地址，不带路径。Git 托管平台的回调和各种链接都用它。</td>
+</tr>
+<tr>
+<td><code>SECRETS_KEYS</code></td>
+<td>主密钥，格式为 <code>1:&lt;密钥&gt;</code>。不设置时，<code>config.yml</code> 里模板自带的占位密钥会被拒绝，Studio 无法启动。</td>
+</tr>
+<tr>
+<td><code>APP_DEFAULT_LOCALE</code></td>
+<td>默认语言。设为 <code>zh-CN</code>，界面和预置标签都是中文。</td>
+</tr>
+<tr>
+<td><code>INITIAL_ADMIN_USERNAME</code><br><code>INITIAL_ADMIN_EMAIL</code><br><code>INITIAL_ADMIN_PASSWORD</code></td>
+<td>第一个管理员。只在第一次启动、还没有用户时创建，之后修改不会改变已有账号。</td>
+</tr>
+<tr>
+<td><code>APP_BASE_PATH</code></td>
+<td>访问路径，默认 <code>/main</code>。</td>
+</tr>
+</tbody></table></div>
+<h2 id="数据与备份">数据与备份</h2>
+<p>Studio 的数据都在 <code>/opt/studio/storage</code> 里，包括数据库文件 <code>database.sqlite</code>。连同 <code>config.yml</code> 和 <code>.env</code>，整个 <code>/opt/studio</code> 就是要备份的全部内容：</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>cd /opt/studio
+docker compose stop
+sudo tar czf /backup/studio-$(date +%F).tar.gz .
+docker compose start</code></pre></div>
+<p>备份里有 <code>.env</code>，也就有主密钥，请按保管密码的方式存放。</p>
+<h2 id="使用-postgresql">使用 PostgreSQL</h2>
+<p>Studio 默认使用 SQLite。要改用 PostgreSQL，在第一次启动前把连接信息加进 <code>.env</code>：</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>DB_DIALECT=postgres
+DB_HOST=db.internal
+DB_PORT=5432
+DB_DATABASE=studio
+DB_USERNAME=studio
+DB_PASSWORD=&lt;数据库密码&gt;</code></pre></div>
+<p>启动之后再切换，已有的数据不会迁移过去。用 PostgreSQL 时，数据库要另外备份。</p>
+<h2 id="升级">升级</h2>
+<p>先备份，再拉取新镜像并重启。数据库迁移在启动时自动执行。</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>cd /opt/studio
+docker compose pull
+docker compose up -d</code></pre></div>
+<h2 id="常见问题">常见问题</h2>
+<p><strong>打开域名看不到登录页。</strong> 地址要带上 <code>/main/</code>，例如 <code>https://studio.example.com/main/</code>。</p>
+<p><strong>容器起不来或反复重启。</strong> 运行 <code>docker compose logs studio</code> 看原因，常见的有：<code>.env</code> 里没有 <code>SECRETS_KEYS</code>，或者格式不是 <code>1:&lt;密钥&gt;</code>；<code>storage</code> 目录的属主不是 UID 1000；启动前没有先取出 <code>config.yml</code>，Docker 建了一个同名目录，删掉它，重做第 2 步。</p>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../studio/intro/interface-tour.html"><small>上一页</small>界面导览</a><a class="next" href="../studio/quickstart.html"><small>下一页</small>快速开始</a></nav>
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-23</span><span><a href="../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E5%87%86%E5%A4%87">准备</a></li><li><a href="#%E9%83%A8%E7%BD%B2">部署</a></li><li><a href="#%E6%A3%80%E6%9F%A5">检查</a></li><li><a href="#%E8%AE%A9-agent-%E9%83%A8%E7%BD%B2">让 Agent 部署</a></li><li><a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a></li><li><a href="#%E6%95%B0%E6%8D%AE%E4%B8%8E%E5%A4%87%E4%BB%BD">数据与备份</a></li><li><a href="#%E4%BD%BF%E7%94%A8-postgresql">使用 PostgreSQL</a></li><li><a href="#%E5%8D%87%E7%BA%A7">升级</a></li><li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>收件箱与提醒 - NocoBase 3 文档</title>
+<meta name="description" content="收件箱放同事发来的消息和任务之外的事项；任务上的决定在「我的任务」里处理。再设置好提示音、桌面通知和手机推送。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../../index.html"><img class="brand-logo" src="../../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../../index.html">开始</a><a href="../../core/index.html">Core</a><a href="../../studio/index.html" aria-current="true">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li><li><a href="../../studio/intro/interface-tour.html">界面导览</a></li></ul></div><div class="menu-group"><p class="menu-title">安装与上手</p><ul><li><a href="../../studio/install.html">安装 Studio</a></li><li><a href="../../studio/quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/daily/my-tasks.html">我的任务</a></li><li><a href="../../studio/daily/sessions.html">我的会话</a></li><li><a href="../../studio/daily/raise-a-request.html">提出需求</a></li><li><a href="../../studio/daily/follow-progress.html">跟进进展</a></li><li><a href="../../studio/daily/answer-questions.html">回答提问</a></li><li><a href="../../studio/daily/accept.html">验收</a></li><li><a href="../../studio/daily/knowledge.html">知识库与项目记忆</a></li><li><a href="../../studio/daily/inbox.html" aria-current="page">收件箱与提醒</a></li><li><a href="../../studio/daily/cli.html">在终端里使用</a></li></ul></div><div class="menu-group"><p class="menu-title">项目与代码</p><ul><li><a href="../../studio/projects/create-project.html" class="todo">创建项目</a></li><li><a href="../../studio/projects/project-settings.html" class="todo">项目设置</a></li><li><a href="../../studio/projects/repos-and-prs.html" class="todo">代码仓库与 PR</a></li><li><a href="../../studio/projects/ci-checks.html" class="todo">CI 检查</a></li><li><a href="../../studio/projects/skills.html" class="todo">技能</a></li><li><a href="../../studio/projects/knowledge-admin.html" class="todo">知识库管理</a></li></ul></div><div class="menu-group"><p class="menu-title">质量管理</p><ul><li><a href="../../studio/quality/test-plans.html" class="todo">测试计划</a></li><li><a href="../../studio/quality/features-and-cases.html" class="todo">功能与用例</a></li><li><a href="../../studio/quality/reports.html" class="todo">质量报告</a></li></ul></div><div class="menu-group"><p class="menu-title">发布与部署</p><ul><li><a href="../../studio/release/previews.html" class="todo">预览</a></li><li><a href="../../studio/release/apps-and-environments.html" class="todo">应用与部署环境</a></li><li><a href="../../studio/release/approval-and-rollback.html" class="todo">发布审批与回滚</a></li></ul></div><div class="menu-group"><p class="menu-title">Agent 团队</p><ul><li><a href="../../studio/agents/runtimes.html" class="todo">运行环境</a></li><li><a href="../../studio/agents/agents.html" class="todo">Agent</a></li><li><a href="../../studio/agents/coordinator.html" class="todo">调度 Agent</a></li><li><a href="../../studio/agents/usage.html" class="todo">用量与费用</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/git.html" class="todo">Git 连接</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/glossary.html" class="todo">术语表</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Studio · 日常使用</p><h1>收件箱与提醒</h1>
+<p class="lead">收件箱放同事发来的消息和任务之外的事项；任务上的决定在「我的任务」里处理。再设置好提示音、桌面通知和手机推送。</p>
+<article class="prose">
+<h2 id="收件箱和我的任务的分工">收件箱和「我的任务」的分工</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>放什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>「我的任务」</td>
+<td>任务上等你做的决定：验收、回答提问、运行失败、接手任务。见 <a href="my-tasks.html">我的任务</a>。</td>
+</tr>
+<tr>
+<td>收件箱</td>
+<td>同事的评论、@ 提及和指派；任务之外的系统事项，例如知识库的修改提议、运行环境需要升级的通知。</td>
+</tr>
+</tbody></table></div>
+<p>顶栏的收件箱图标打开收件箱。</p>
+<figure class="fig"><div class="sw">
+<div class="sw-top"><i data-lucide="inbox"></i><span class="crumb"><b>收件箱</b></span><span class="r"><span class="mode"><span class="on">全部</span><span>待我决定</span><span>通知</span></span></span></div>
+<div class="st-li" style="grid-template-columns:20px minmax(0,1fr) auto;border-top:0;padding:9px 14px"><span class="st-av">林</span><b>林悦 在 PUR-19 中提到了你</b><time>10:05</time><span class="s2">“导出的字段顺序请周航确认一下。”</span></div>
+<div class="st-li" style="grid-template-columns:20px minmax(0,1fr) auto;padding:9px 14px"><span class="st-ib" style="width:20px;height:20px"><i data-lucide="book-open"></i></span><b>知识库修改提议：《采购审批制度》</b><time>09:40</time><span class="s2">李娜提议更新第 3 节的评分权重 ·<span class="w">待你决定</span></span></div>
+<div class="st-li" style="grid-template-columns:20px minmax(0,1fr) auto;padding:9px 14px"><span class="st-ib" style="width:20px;height:20px"><i data-lucide="monitor-cog"></i></span><b>运行环境 Server 03 需要升级</b><time>昨天</time><span class="s2">它的 nocobase-runner 版本过旧，暂时不会领取工作</span></div>
+</div><figcaption>收件箱里是同事的消息和任务之外的事项</figcaption></figure>
+
+
+<h2 id="收件箱的视图">收件箱的视图</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>视图</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全部</td>
+<td>所有消息。</td>
+</tr>
+<tr>
+<td>待我决定</td>
+<td>需要你做决定的非任务事项，例如是否采纳一条知识库修改提议。</td>
+</tr>
+<tr>
+<td>通知</td>
+<td>只需要知道的消息。</td>
+</tr>
+</tbody></table></div>
+<p>在列表里可以用 <kbd>J</kbd> / <kbd>K</kbd> 上下切换。处理完的事项会自动结束；已读和删除只影响你自己的收件箱。</p>
+<h2 id="提醒">提醒</h2>
+<p>有新的事项等你时：</p>
+<ul>
+<li>侧边栏「我的任务」「我的会话」旁边、顶栏和浏览器标签页的标题上会显示数量；</li>
+<li>如果打开了提示音，会响一声。你正在看的那个任务或会话不会再提醒。</li>
+</ul>
+<p>在「账号设置 › 偏好设置」里可以调整：</p>
+<ul>
+<li><strong>提示音</strong>：开或关。</li>
+<li><strong>桌面通知</strong>：默认关闭。开启后浏览器会请求通知权限；被浏览器拦截时，到浏览器的网站设置里允许通知。</li>
+<li><strong>推送通知</strong>：让手机或另一台电脑在 Studio 页面没打开时也能收到提醒。每个浏览器需要单独订阅。</li>
+</ul>
+<div class="note note"><strong>在手机上订阅推送</strong><p>Android 上用 Chrome 打开 Studio 后直接订阅。iPhone 和 iPad 需要 iOS 16.4 或更高版本：先在 Safari 里用「分享 › 添加到主屏幕」，再从主屏幕的图标打开 Studio 订阅。推送需要 Studio 通过 HTTPS 访问，并由管理员完成推送配置。</p>
+</div>
+<h2 id="订阅一个任务">订阅一个任务</h2>
+<p>任务页的「更多属性」里有「订阅通知」，列出会收到这个任务通知的人。点「订阅」或「取消订阅」，调整自己是否接收。</p>
+<p>想把一个任务放在眼前，用关注星标：关注的任务排在「我的任务」最前面。</p>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../../studio/daily/knowledge.html"><small>上一页</small>知识库、项目记忆与技能</a><a class="next" href="../../studio/daily/cli.html"><small>下一页</small>在终端里使用 Studio</a></nav>
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-23</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E6%94%B6%E4%BB%B6%E7%AE%B1%E5%92%8C%E6%88%91%E7%9A%84%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%88%86%E5%B7%A5">收件箱和「我的任务」的分工</a></li><li><a href="#%E6%94%B6%E4%BB%B6%E7%AE%B1%E7%9A%84%E8%A7%86%E5%9B%BE">收件箱的视图</a></li><li><a href="#%E6%8F%90%E9%86%92">提醒</a></li><li><a href="#%E8%AE%A2%E9%98%85%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1">订阅一个任务</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>统一文档站 - NocoBase 3 文档</title>
+<meta name="description" content="把 Core 和 Studio 的文档合并为一个 NocoBase 3 文档站：站点结构、首页、两部分怎样衔接、统一的用词和故事，以及正式站点怎样落地。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../site/assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../site/index.html"><img class="brand-logo" src="../site/assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><p class="menu-title">Core 与统一文档站</p><ul><li><a href="06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">读者与需求</a></li><li><a href="07-Core%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98.html">Core 文档的问题</a></li><li><a href="08-Core%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%99%E4%BD%9C%E5%8E%9F%E5%88%99.html">Core 文档结构与写作原则</a></li><li><a href="09-%E7%BB%9F%E4%B8%80%E6%96%87%E6%A1%A3%E7%AB%99.html" aria-current="page">统一文档站</a></li><li><a href="10-Core%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html">Core 进度与待确认事项</a></li></ul></div><div class="menu-group"><p class="menu-title">Studio 文档</p><ul><li><a href="01-%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98.html">现有文档的问题</a></li><li><a href="02-%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%99%E4%BD%9C%E5%8E%9F%E5%88%99.html">文档结构与写作原则</a></li><li><a href="03-%E5%91%BD%E5%90%8D%E6%96%B9%E6%A1%88.html">命名方案</a></li><li><a href="04-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83%E4%B8%8E%E6%9C%AF%E8%AF%AD.html">写作规范与术语</a></li><li><a href="05-%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html">进度与待确认事项</a></li></ul></div><div class="menu-group"><p class="menu-title">文档草稿</p><ul><li><a href="../site/index.html">打开文档站</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">文档方案 · Core 与统一文档站</p><h1>统一文档站</h1>
+<p class="lead">把 Core 和 Studio 的文档合并为一个 NocoBase 3 文档站：站点结构、首页、两部分怎样衔接、统一的用词和故事，以及正式站点怎样落地。</p>
+<article class="prose">
+<h2 id="为什么合并">为什么合并</h2>
+<p>读者不按产品划分自己的问题。一位技术负责人可能先用 Core 和自己的 Agent 做出第一个应用，再上 Studio 让团队一起改；评估者要同时看懂两者的分工；Studio 的成员验收时，要查 Core 的能力和插件。两套文档各说各的，读者要在两套结构、两套用词、两个故事之间来回切换。</p>
+<p>合并之后，一个站点、一套术语、一个故事、一种样式。</p>
+<h2 id="站点结构">站点结构</h2>
+<p>顶栏是三个分区，左侧菜单只列当前分区的页面：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>分区</th>
+<th>读者</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开始</td>
+<td>所有人，尤其是第一次来的人</td>
+<td>首页（按你要做什么选择入口）、NocoBase 3 是什么、开源与商业、从 NocoBase 2 来、术语表</td>
+</tr>
+<tr>
+<td>Core</td>
+<td>应用开发者、管理员、运维、插件开发者</td>
+<td>入门、开发应用、能力、插件目录、部署与运维、扩展开发、参考（见 <a href="08-Core文档结构与写作原则.html">Core 文档结构</a>）</td>
+</tr>
+<tr>
+<td>Studio</td>
+<td>Studio 的成员、技术负责人、管理员</td>
+<td>入门、安装与上手、日常使用、项目与代码、质量管理、发布与部署、Agent 团队、系统管理、参考（见 <a href="02-文档结构与写作原则.html">Studio 文档结构</a>）</td>
+</tr>
+</tbody></table></div>
+<p>Solutions 文档以后作为第四个分区加入，结构相同：入门、每个应用一组、参考。</p>
+<h3 id="首页">首页</h3>
+<p>首页不讲产品，只帮读者找到入口：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想</th>
+<th>从这里开始</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>了解 NocoBase 3</td>
+<td>NocoBase 3 是什么</td>
+</tr>
+<tr>
+<td>用自己的 Agent 基于 Core 开发一个应用</td>
+<td>Core 快速开始</td>
+</tr>
+<tr>
+<td>带领 Agent 团队开发，同时推进多个项目</td>
+<td>Studio 是什么</td>
+</tr>
+<tr>
+<td>查一个能力或插件</td>
+<td>能力总览、插件目录</td>
+</tr>
+<tr>
+<td>部署和运维应用</td>
+<td>部署与运维</td>
+</tr>
+<tr>
+<td>从 NocoBase 2 来</td>
+<td>从 NocoBase 2 来</td>
+</tr>
+<tr>
+<td>开发可复用的插件</td>
+<td>扩展开发</td>
+</tr>
+</tbody></table></div>
+<p>下面再放一张产品结构图（人、Agent、Studio、Core、Solutions），和全站的“关于这份文档”。</p>
+<h3 id="开始部分">“开始”部分</h3>
+<ul>
+<li><strong>NocoBase 3 是什么</strong>：一句话定位；人、Agent、NocoBase 的分工；Core、Studio、Solutions、Launch 各是什么；只用 Core 和用 Studio 有什么不同；应用上线后独立运行。内容取自《NocoBase 3 定位与产品结构》，只保留读者理解产品需要的部分。</li>
+<li><strong>开源与商业</strong>：Community、Professional、Enterprise 各包含什么；具体到 Core 的哪些包是商业的。</li>
+<li><strong>从 NocoBase 2 来</strong>：思路的变化；2 的功能和插件在 3 里的对应；还没有的部分；迁移路径。</li>
+<li><strong>术语表</strong>：全站共用。Studio 的术语表并入这里，Studio 参考组里的“术语表”改为链接。</li>
+</ul>
+<h2 id="core-和-studio-怎样衔接">Core 和 Studio 怎样衔接</h2>
+<p>两部分在这些地方互相链接，让读者看到同一套东西：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>衔接点</th>
+<th>Core 一侧</th>
+<th>Studio 一侧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用从哪里来</td>
+<td>快速开始：<code>pnpm create @nocobase/app</code> 用默认模板创建应用</td>
+<td>创建项目：新项目用“NocoBase 应用默认模板”初始化，就是同一个模板</td>
+</tr>
+<tr>
+<td>Agent 怎样学会 Core</td>
+<td>插件怎样工作：每个包随附技能，同步到 <code>.agents/skills/</code></td>
+<td>技能：Studio 里的 Agent 读的是同一批技能，Studio 再加上团队自己的技能</td>
+</tr>
+<tr>
+<td>能力和插件</td>
+<td>能力、插件目录</td>
+<td>提需求、验收时链接到对应能力页</td>
+</tr>
+<tr>
+<td>发布与部署</td>
+<td>部署与运维：PM2、Docker 和通过 Studio 部署三种方式，现有部署指南已经这样写</td>
+<td>发布与部署：在 Studio 里构建、审批、部署和回滚</td>
+</tr>
+<tr>
+<td>Studio 自己建在 Core 上</td>
+<td>插件目录的“研发协作”：项目、发布插件；Agents、Agent 会话、知识库插件</td>
+<td>Studio 是什么：项目、Agent、知识库等能力来自 Core 的开源插件</td>
+</tr>
+<tr>
+<td>上线后</td>
+<td>应用独立运行，日常请求不经过 Studio</td>
+<td>同左</td>
+</tr>
+</tbody></table></div>
+<h2 id="统一用词">统一用词</h2>
+<p><a href="03-命名方案.html">命名方案</a> 和 <a href="04-写作规范与术语.html">写作规范与术语</a> 为 Studio 定下的用词，全站沿用。Core 带来的新词，按同样的原则定下来：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>文档用词</th>
+<th>说明</th>
+<th>不用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用</td>
+<td>用 NocoBase 模板创建的一份代码仓库，部署后是一个业务系统</td>
+<td>项目（Studio 里“项目”另有所指）</td>
+</tr>
+<tr>
+<td>模板</td>
+<td>创建应用用的起点，默认模板和示例模板</td>
+<td>脚手架</td>
+</tr>
+<tr>
+<td>插件</td>
+<td>注册进应用的 <code>app-plugin-*</code> 包</td>
+<td>扩展、模块</td>
+</tr>
+<tr>
+<td>基础库</td>
+<td>应用直接使用、不需要注册的包，例如记录生命周期、数据库</td>
+<td></td>
+</tr>
+<tr>
+<td>UI 组件库</td>
+<td>NocoBase 发布的业务组件，复制进应用源码后归应用所有；单个叫“组件”或“区块”</td>
+<td>Registry</td>
+</tr>
+<tr>
+<td>技能</td>
+<td>随包发布、教 Agent 怎样用这个包的说明（<code>SKILL.md</code>）；与 Studio 的「技能」是同一个概念</td>
+<td>Skills（正文里）</td>
+</tr>
+<tr>
+<td>能力</td>
+<td>Core 提供的一类功能，按「应用底座」的 13 类划分</td>
+<td>功能模块</td>
+</tr>
+<tr>
+<td>系统设置</td>
+<td>应用里的管理入口，模板中文界面的名称</td>
+<td>系统管理、后台</td>
+</tr>
+<tr>
+<td>应用底座</td>
+<td>模板自带的页面，显示应用用到的 Core 能力</td>
+<td></td>
+</tr>
+<tr>
+<td>记录生命周期</td>
+<td><code>@nocobase/lifecycle</code>：记录的状态和流转在代码里声明</td>
+<td>工作流（指机制时）</td>
+</tr>
+<tr>
+<td>工作流与审批</td>
+<td>能力分类的名称，与「应用底座」一致</td>
+<td></td>
+</tr>
+<tr>
+<td>流程参数</td>
+<td>管理员在「流程管理」里可调整的审批人、金额阈值等</td>
+<td></td>
+</tr>
+<tr>
+<td>业务 Agent</td>
+<td>在应用里、按权限处理业务的 Agent，由 Agents 插件接入</td>
+<td>AI 员工（第一次出现时注明“NocoBase 2 中称 AI 员工”）</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>AI 执行者的统称；写代码的 Agent 就叫 Agent，在 Studio 里再分调度 Agent、执行 Agent、我的 Agent</td>
+<td>Coding Agent、AI Agent、智能体</td>
+</tr>
+<tr>
+<td>编码工具</td>
+<td>Claude Code、Codex、OpenCode、Cursor 等</td>
+<td>Coding Agent</td>
+</tr>
+</tbody></table></div>
+<p>“开发 Agent”只在需要和业务 Agent 对比的地方使用（例如 Core 是什么），其余地方直接写 Agent。</p>
+<h2 id="统一故事">统一故事</h2>
+<p>全站用同一个企业的同一个应用做例子：<strong>一家企业的采购团队，用 NocoBase 做采购应用</strong>（供应商、采购订单、审批、到货）。Core 讲这个应用怎样从零做出来、用了哪些能力；Studio 讲团队怎样用 Agent 团队继续改它，例如“供应商分级”（任务 <code>PUR-23</code>）。</p>
+<p>理由：</p>
+<ul>
+<li>应用模板首页的提示词示例、定位文档和官网都在用采购和供应商管理；</li>
+<li>Studio 草稿已经用“采购团队的供应商管理项目”；</li>
+<li>读者看到同一个应用在 Core 里做出来、在 Studio 里继续改，最容易理解两者的关系。</li>
+</ul>
+<p>现有 Core 文档的 Northstar 物流例子逐步改写，截图同步替换，见 <a href="10-Core进度与待确认事项.html">待确认事项</a>。</p>
+<h2 id="样式">样式</h2>
+<ul>
+<li>全站同一个外壳：顶栏（Logo、版本、三个分区、GitHub 和官网链接），左侧菜单，中间正文，宽屏时右侧“本页内容”。只做浅色，配色和字体与官网一致。</li>
+<li>配图沿用 Studio 的做法：用 HTML 画界面局部。Core 画的是默认模板自带的界面（首页、「系统设置」、「应用底座」、收件箱）和 UI 组件库的区块；Agent 按需求做出的页面，需要时用真实截图，标明“示例效果”，并且用中文界面。</li>
+<li>结构图、流程图用同一套样式：人用琥珀色，Agent 用紫色，NocoBase 用品牌蓝。</li>
+</ul>
+<h2 id="正式站点怎样落地">正式站点怎样落地</h2>
+<p>现在的 v3.docs.nocobase.com 是 NocoBase 仓库 <code>docs/</code> 下的 Astro 站点，中英文两种语言。建议：</p>
+<ol>
+<li><strong>在同一个 Astro 站点里合并。</strong> Studio 文档迁入 <code>docs/docs/&lt;lang&gt;/studio/</code>，Core 文档按新结构重组；顶栏的分区和左侧菜单用站点已有的 <code>_meta.json</code> 机制实现，每个能力和插件分类是可以折叠的分组。</li>
+<li><strong>保留已发布的地址。</strong> 站点规则要求已发布页面的地址不变。现有 <code>/capabilities/...</code> 页面在新结构里的位置不同，需要重定向；如果站点不方便做重定向，就让能力页继续使用 <code>/capabilities/</code> 路径，新页面放在 <code>/intro/</code>、<code>/plugins/</code>、<code>/operations/</code> 等路径下。要请文档站维护者确认。</li>
+<li><strong>插件档案在构建时生成。</strong> 导出脚本放在 NocoBase 仓库里，读取各包信息，CI 构建文档时运行，版本号和包内容变了，档案自动更新。</li>
+<li><strong>两种语言同步。</strong> 中文是基准，英文随后；<code>llms.txt</code> 继续按 <code>_nav.json</code> 分组输出，Agent 读到的结构和人看到的一致。</li>
+</ol>
+<p>本地草稿（<code>doc/</code>）先把结构和写法定下来，评审通过后再迁入正式站点。</p>
+<h2 id="和产品保持同步">和产品保持同步</h2>
+<p>文档的分类和产品里的几处界面互相对应，改一边要同步另一边：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>产品里</th>
+<th>文档里</th>
+<th>需要同步的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>默认模板首页的“内置能力”和提示词（代码注释写明按文档“能力”一章的顺序排列）</td>
+<td>能力总览、各能力的“怎样提需求”</td>
+<td>能力改为 13 类后，首页的分类和顺序随之调整；提示词与文档示例一致</td>
+</tr>
+<tr>
+<td>「应用底座」页的 13 类能力</td>
+<td>能力分组</td>
+<td>名称和顺序一致；建议在每项能力的详情里加“查看文档”链接</td>
+</tr>
+<tr>
+<td>模板的「系统设置」页面</td>
+<td>系统设置、权限控制、用户与组织</td>
+<td>界面名称一致</td>
+</tr>
+<tr>
+<td>各包的技能</td>
+<td>每个插件档案的“开发参考”</td>
+<td>技能名称和链接</td>
+</tr>
+</tbody></table></div>
+<h2 id="推进步骤">推进步骤</h2>
+<ol>
+<li>确认 <a href="06-读者与需求.html">读者与需求</a>、本方案和 <a href="08-Core文档结构与写作原则.html">Core 文档结构</a>，以及 <a href="10-Core进度与待确认事项.html">待确认事项</a> 里的命名、故事和地址问题。</li>
+<li>统一站点外壳和 Core 的入门、能力总览、插件目录（本地草稿已完成）。</li>
+<li>写插件档案导出脚本，补全每个插件页的正文。</li>
+<li>按 13 类重写能力各组，把现有 Northstar 页面改写为采购故事。</li>
+<li>编写开发应用、部署与运维、参考。</li>
+<li>迁入正式站点，处理地址重定向，补英文版。</li>
+</ol>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="08-Core%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%99%E4%BD%9C%E5%8E%9F%E5%88%99.html"><small>上一页</small>Core 文档结构与写作原则</a><a class="next" href="10-Core%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html"><small>下一页</small>Core 进度与待确认事项</a></nav>
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-23</span><span><a href="../site/index.html">文档站</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%90%88%E5%B9%B6">为什么合并</a></li><li><a href="#%E7%AB%99%E7%82%B9%E7%BB%93%E6%9E%84">站点结构</a></li><li><a href="#core-%E5%92%8C-studio-%E6%80%8E%E6%A0%B7%E8%A1%94%E6%8E%A5">Core 和 Studio 怎样衔接</a></li><li><a href="#%E7%BB%9F%E4%B8%80%E7%94%A8%E8%AF%8D">统一用词</a></li><li><a href="#%E7%BB%9F%E4%B8%80%E6%95%85%E4%BA%8B">统一故事</a></li><li><a href="#%E6%A0%B7%E5%BC%8F">样式</a></li><li><a href="#%E6%AD%A3%E5%BC%8F%E7%AB%99%E7%82%B9%E6%80%8E%E6%A0%B7%E8%90%BD%E5%9C%B0">正式站点怎样落地</a></li><li><a href="#%E5%92%8C%E4%BA%A7%E5%93%81%E4%BF%9D%E6%8C%81%E5%90%8C%E6%AD%A5">和产品保持同步</a></li><li><a href="#%E6%8E%A8%E8%BF%9B%E6%AD%A5%E9%AA%A4">推进步骤</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../site/assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

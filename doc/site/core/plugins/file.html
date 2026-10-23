@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文件 - NocoBase 3 文档</title>
+<meta name="description" content="给业务记录加上附件：上传、存储、预览和下载。插件提供上传接口、文件仓库和可以修改的界面组件，文件表、页面和访问权限由应用定义。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../../index.html"><img class="brand-logo" src="../../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../../index.html">开始</a><a href="../../core/index.html" aria-current="true">Core</a><a href="../../studio/index.html">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../core/index.html">Core 首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../core/intro/what-is-core.html">Core 是什么</a></li><li><a href="../../core/intro/how-an-app-gets-built.html">一个应用怎样做出来</a></li><li><a href="../../core/intro/concepts.html">核心概念</a></li><li><a href="../../core/intro/how-plugins-work.html">插件怎样工作</a></li><li><a href="../../core/quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">开发应用</p><ul><li><a href="../../core/develop/working-with-agents.html" class="todo">和 Agent 一起开发</a></li><li><a href="../../core/develop/app-structure.html" class="todo">应用的结构</a></li><li><a href="../../core/develop/plugins.html" class="todo">管理插件</a></li><li><a href="../../core/develop/pages-and-ui-library.html" class="todo">页面与 UI 组件库</a></li><li><a href="../../core/develop/data-and-migrations.html" class="todo">数据模型与迁移</a></li><li><a href="../../core/develop/api.html" class="todo">接口与 API 文档</a></li><li><a href="../../core/develop/system-settings.html" class="todo">系统设置</a></li><li><a href="../../core/develop/testing-and-acceptance.html" class="todo">测试与验收</a></li><li><a href="../../core/develop/upgrade.html" class="todo">升级 NocoBase</a></li></ul></div><div class="menu-group"><p class="menu-title">能力</p><ul><li><a href="../../core/capabilities/index.html">能力总览</a></li><li><a href="../../core/capabilities/data.html" class="todo">数据建模</a></li><li><a href="../../core/capabilities/files.html" class="todo">文件管理</a></li><li><a href="../../core/capabilities/users.html" class="todo">用户与组织</a></li><li><a href="../../core/capabilities/permissions.html" class="todo">权限控制</a></li><li><a href="../../core/capabilities/workflows.html">工作流与审批</a></li><li><a href="../../core/capabilities/ai-agents.html" class="todo">AI 与 Agent</a></li><li><a href="../../core/capabilities/knowledge.html" class="todo">知识库</a></li><li><a href="../../core/capabilities/mail.html" class="todo">邮件互通</a></li><li><a href="../../core/capabilities/notifications.html" class="todo">消息通知</a></li><li><a href="../../core/capabilities/integrations.html" class="todo">外部集成</a></li><li><a href="../../core/capabilities/interface.html" class="todo">界面与配置</a></li><li><a href="../../core/capabilities/audit.html" class="todo">操作审计</a></li><li><a href="../../core/capabilities/operations.html" class="todo">基础运维</a></li></ul></div><div class="menu-group"><p class="menu-title">插件目录</p><ul><li><a href="../../core/plugins/index.html">插件目录总览</a></li><li class="menu-sub">用户与权限</li><li><a href="../../core/plugins/authentication.html" class="todo">认证</a></li><li><a href="../../core/plugins/users.html" class="todo">用户</a></li><li><a href="../../core/plugins/api-keys.html" class="todo">API keys</a></li><li><a href="../../core/plugins/authorization.html" class="todo">权限</a></li><li><a href="../../core/plugins/authz-default-access.html" class="todo">默认数据范围</a></li><li><a href="../../core/plugins/authz-sharing-rules.html" class="todo">共享规则</a></li><li><a href="../../core/plugins/authz-restriction-rules.html" class="todo">限制规则</a></li><li class="menu-sub">数据与文件</li><li><a href="../../core/plugins/db.html" class="todo">数据库</a></li><li><a href="../../core/plugins/database-explorer.html" class="todo">数据库浏览</a></li><li><a href="../../core/plugins/file.html" aria-current="page">文件</a></li><li><a href="../../core/plugins/template-print.html" class="todo">模板打印</a></li><li class="menu-sub">流程</li><li><a href="../../core/plugins/lifecycle.html" class="todo">记录生命周期</a></li><li><a href="../../core/plugins/scheduler.html" class="todo">定时任务</a></li><li><a href="../../core/plugins/approval.html" class="todo">审批</a></li><li><a href="../../core/plugins/task-center.html" class="todo">任务中心</a></li><li class="menu-sub">消息</li><li><a href="../../core/plugins/notification.html" class="todo">通知</a></li><li><a href="../../core/plugins/notification-in-app.html" class="todo">站内信</a></li><li><a href="../../core/plugins/notification-providers.html" class="todo">通知渠道</a></li><li><a href="../../core/plugins/notification-web-push.html" class="todo">Web Push</a></li><li><a href="../../core/plugins/mail.html" class="todo">邮件</a></li><li class="menu-sub">AI 与 Agent</li><li><a href="../../core/plugins/agents.html" class="todo">Agents</a></li><li><a href="../../core/plugins/agent-sessions.html" class="todo">Agent 会话</a></li><li><a href="../../core/plugins/knowledge.html" class="todo">知识库</a></li><li class="menu-sub">界面与运维</li><li><a href="../../core/plugins/i18n.html" class="todo">多语言</a></li><li><a href="../../core/plugins/foundation.html" class="todo">应用底座</a></li><li class="menu-sub">研发协作</li><li><a href="../../core/plugins/projects.html" class="todo">项目</a></li><li><a href="../../core/plugins/releases.html" class="todo">发布</a></li><li class="menu-sub">基础库与工具</li><li><a href="../../core/plugins/libraries.html" class="todo">基础库</a></li><li><a href="../../core/plugins/ui-library.html" class="todo">UI 组件库</a></li><li><a href="../../core/plugins/tools.html" class="todo">开发工具</a></li></ul></div><div class="menu-group"><p class="menu-title">部署与运维</p><ul><li><a href="../../core/operations/deployment.html" class="todo">部署</a></li><li><a href="../../core/operations/config.html" class="todo">配置</a></li><li><a href="../../core/operations/database.html" class="todo">数据库</a></li><li><a href="../../core/operations/storage.html" class="todo">文件存储</a></li><li><a href="../../core/operations/jobs-and-scaling.html" class="todo">后台任务与多实例</a></li><li><a href="../../core/operations/upgrade-and-rollback.html" class="todo">升级与回滚</a></li><li><a href="../../core/operations/backup.html" class="todo">备份与恢复</a></li><li><a href="../../core/operations/logs-and-health.html" class="todo">日志与健康检查</a></li><li><a href="../../core/operations/security.html" class="todo">安全清单</a></li></ul></div><div class="menu-group"><p class="menu-title">扩展开发</p><ul><li><a href="../../core/extend/when-to-write-a-plugin.html" class="todo">什么时候写插件</a></li><li><a href="../../core/extend/create-plugin.html" class="todo">创建插件</a></li><li><a href="../../core/extend/plugin-structure.html" class="todo">插件的结构</a></li><li><a href="../../core/extend/publish.html" class="todo">发布插件</a></li><li><a href="../../core/extend/skills.html" class="todo">给插件写技能</a></li><li><a href="../../core/extend/ui-library.html" class="todo">向 UI 组件库贡献</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../core/reference/cli.html" class="todo">命令行</a></li><li><a href="../../core/reference/config.html" class="todo">配置项</a></li><li><a href="../../core/reference/http-api.html" class="todo">HTTP 接口</a></li><li><a href="../../core/reference/packages.html" class="todo">包与版本</a></li><li><a href="../../core/reference/faq.html" class="todo">常见问题</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Core · 插件目录</p><h1>文件</h1>
+<p class="lead">给业务记录加上附件：上传、存储、预览和下载。插件提供上传接口、文件仓库和可以修改的界面组件，文件表、页面和访问权限由应用定义。</p>
+<article class="prose">
+<p>采购订单要附报价单和签收单，供应商要存资质证书，员工要有头像：凡是“记录上挂文件”的需求，都用这个插件。</p>
+<h2 id="档案">档案</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>包名</td>
+<td><code>@nocobase/app-plugin-file</code></td>
+</tr>
+<tr>
+<td>版本</td>
+<td>1.0.0-beta.26</td>
+</tr>
+<tr>
+<td>版本范围</td>
+<td><span class="tag">开源</span> Apache-2.0</td>
+</tr>
+<tr>
+<td>默认模板</td>
+<td><span class="tag ok">已启用</span> 服务端、浏览器端</td>
+</tr>
+<tr>
+<td>依赖</td>
+<td>应用的数据库和存储（<code>@nocobase/drive</code>）</td>
+</tr>
+<tr>
+<td>自带页面</td>
+<td>无</td>
+</tr>
+<tr>
+<td>UI 组件</td>
+<td>文件组件 <code>component-ui</code>：上传、列表、缩略图、预览，默认模板已预装在 <code>client/extensions/nocobase-file-component-ui/</code>；UI 组件库的 <code>attachment-list</code></td>
+</tr>
+<tr>
+<td>数据表</td>
+<td>无，文件表由应用的迁移创建</td>
+</tr>
+<tr>
+<td>配置</td>
+<td>存储写在应用的 <code>drive</code> 配置里</td>
+</tr>
+<tr>
+<td>命令</td>
+<td>无</td>
+</tr>
+<tr>
+<td>技能</td>
+<td><code>nocobase-app-plugin-file</code>；存储配置见 <code>nocobase-drive</code></td>
+</tr>
+</tbody></table></div>
+<h2 id="它怎样工作">它怎样工作</h2>
+<p>插件提供<strong>文件仓库</strong>：上传文件、记录文件信息、按文件 ID 提供内容地址。文件内容存放在应用配置的存储里（本地磁盘、S3 兼容存储或阿里云 OSS），文件信息存在应用的数据库里。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>谁负责</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>插件</td>
+<td>上传接口（单个和批量）、文件信息的查询和删除、内容地址、上传大小限制、上传失败时清理已写入的文件</td>
+</tr>
+<tr>
+<td>存储基础库</td>
+<td>把文件写到本地磁盘、S3 兼容存储或阿里云 OSS</td>
+</tr>
+<tr>
+<td>应用（Agent 写）</td>
+<td>文件表、文件和业务记录的关联、谁能上传和查看、页面上的附件区</td>
+</tr>
+</tbody></table></div>
+<p>一次上传分两步：</p>
+<ol class="flow">
+<li><div class="step"><div class="step-head"><strong>上传</strong><span class="who sys">文件插件</span></div><p>文件写入存储，文件表里多一条记录，返回文件 ID 和内容地址。</p></div></li>
+<li><div class="step"><div class="step-head"><strong>保存业务记录</strong><span class="who sys">应用</span></div><p>提交采购订单时，把文件 ID 一起保存，订单和文件关联起来。</p></div></li>
+<li><div class="step"><div class="step-head"><strong>预览和下载</strong><span class="who sys">文件组件</span></div><p>打开订单，附件区按内容地址预览或下载文件。</p></div></li>
+</ol>
+
+<p>两步是分开提交的：上传成功但订单没有保存，文件会留在存储里，不会自动清理。</p>
+<h2 id="在应用里看到什么">在应用里看到什么</h2>
+<p>文件插件不带页面。你看到的是 Agent 用文件组件做进业务页面的部分，例如采购订单详情里的附件区：文件名、大小、预览、下载、移除。</p>
+<p>浏览器里可以直接预览：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>格式</th>
+<th>预览方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>图片、PDF、文本、Markdown、音频、视频</td>
+<td>内置预览</td>
+</tr>
+<tr>
+<td>DOCX、XLSX、PPTX</td>
+<td>在浏览器本地渲染，文件内容不发送给第三方</td>
+</tr>
+<tr>
+<td>DOC、XLS、PPT 等旧版 Office 和 OpenDocument</td>
+<td>通过 Office Online 预览，要求文件地址能从外网访问</td>
+</tr>
+<tr>
+<td>其他格式</td>
+<td>提供下载</td>
+</tr>
+</tbody></table></div>
+<h2 id="怎样让-agent-使用">怎样让 Agent 使用</h2>
+<p>要说清这几件事：</p>
+<ul>
+<li>文件挂在哪类记录上，放在哪个页面的什么位置；</li>
+<li>每条记录能有几个文件，允许哪些格式、多大；</li>
+<li>谁能上传、谁能查看和下载、谁能移除；</li>
+<li>移除时只解除和这条记录的关联，还是要删除文件。</li>
+</ul>
+<p>示例：</p>
+<div class="code-block wrap"><button type="button" class="copy-button">复制</button><pre><code>给采购订单增加附件：在订单详情里加一个附件区，每笔订单可以上传多个文件，支持 PDF、图片和 Word、Excel。
+显示文件名和大小，支持预览、下载和移除；上传后随订单一起保存，重新打开订单仍能看到。
+能查看这笔订单的人可以查看和下载附件；申请人和采购员可以上传和移除。
+没有权限的人直接访问文件地址也要被拒绝。
+移除附件只解除和这笔订单的关联，保留文件。</code></pre></div>
+<p>Agent 会创建文件表的迁移，用插件生成上传和查询接口并加上登录与权限检查，在订单详情里放上文件组件，再把文件 ID 随订单保存。</p>
+<h2 id="怎样检查结果">怎样检查结果</h2>
+<ul>
+<li>上传几种格式的文件，保存订单，刷新后仍在；预览和下载的内容与原文件一致。</li>
+<li>用三个账号分别试：未登录、没有这笔订单权限的人、有权限的人。上传接口、文件列表和文件内容地址三处都要符合规则。</li>
+<li>超过大小限制的文件给出清楚的提示。</li>
+<li>移除附件后，订单里不再显示；按需求确认文件是否保留。</li>
+</ul>
+<h2 id="管理员能调整什么">管理员能调整什么</h2>
+<p>文件插件没有管理页面。附件的访问权限跟随业务记录：在「角色与权限」里调整谁能看哪些采购订单，附件的可见范围随之变化，前提是 Agent 按上面的要求把两者接在一起。</p>
+<h2 id="部署配置">部署配置</h2>
+<ul>
+<li><strong>存储</strong>：在应用的 <code>drive</code> 配置里定义，<code>config.yml</code> 可以覆盖。默认是本地磁盘；使用对象存储时，由存储管理员准备存储桶、地址、区域和凭据，写进服务器上的配置。</li>
+<li><strong>更换默认存储</strong>：之后上传的文件进新存储，已有文件不移动。</li>
+<li><strong>备份</strong>：同时备份数据库和存储里的文件。</li>
+<li><strong>上传大小</strong>：默认单个上传 5 MiB、批量上传 20 MiB，按整个请求计算。需要更大时让 Agent 调整。</li>
+</ul>
+<h2 id="限制与尚未支持">限制与尚未支持</h2>
+<ul>
+<li>插件生成的接口和文件地址<strong>不自带登录和权限检查</strong>，必须由应用加上。验收时一定要用没有权限的账号试。</li>
+<li>删除文件记录不删除存储里的文件；取消的表单可能留下没有关联的文件。没有自动清理孤立文件。</li>
+<li>不支持断点续传、分段下载（Range）、缓存校验（ETag）。</li>
+<li>不检测文件的真实类型，也不做病毒扫描。</li>
+<li>已有业务表不会自动迁移到新的文件结构。</li>
+</ul>
+<p>需要这些能力时，作为需求告诉 Agent，在应用里实现。</p>
+<h2 id="与-nocobase-2-的对应">与 NocoBase 2 的对应</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>NocoBase 2</th>
+<th>NocoBase 3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件管理器插件，在界面上配置存储</td>
+<td>文件插件提供能力，存储写在 <code>drive</code> 配置里</td>
+</tr>
+<tr>
+<td>附件字段，在表单里直接使用</td>
+<td>应用的文件表和关联，由 Agent 用文件组件做进页面</td>
+</tr>
+<tr>
+<td>文件表统一管理所有附件</td>
+<td>每类业务可以有自己的文件表，字段固定</td>
+</tr>
+</tbody></table></div>
+<h2 id="开发参考">开发参考</h2>
+<ul>
+<li>技能：应用 <code>.agents/skills/nocobase-app-plugin-file/</code>、<code>.agents/skills/nocobase-drive/</code></li>
+<li><a href="https://github.com/nocobase/nocobase/tree/v3-develop/packages/plugins/app-plugin-file" target="_blank" rel="noopener">README</a> 与 <code>docs/README.md</code>（文件仓库手册）</li>
+<li>接口：运行中的应用在 <code>/api/swagger/docs</code> 列出生成的文件接口；文件内容地址不在 <code>/api</code> 下，不出现在接口文档里</li>
+<li>示例：<code>packages/examples/app-plugin-file-example</code></li>
+</ul>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../../core/plugins/index.html"><small>上一页</small>插件目录</a></nav>
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-23</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E6%A1%A3%E6%A1%88">档案</a></li><li><a href="#%E5%AE%83%E6%80%8E%E6%A0%B7%E5%B7%A5%E4%BD%9C">它怎样工作</a></li><li><a href="#%E5%9C%A8%E5%BA%94%E7%94%A8%E9%87%8C%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88">在应用里看到什么</a></li><li><a href="#%E6%80%8E%E6%A0%B7%E8%AE%A9-agent-%E4%BD%BF%E7%94%A8">怎样让 Agent 使用</a></li><li><a href="#%E6%80%8E%E6%A0%B7%E6%A3%80%E6%9F%A5%E7%BB%93%E6%9E%9C">怎样检查结果</a></li><li><a href="#%E7%AE%A1%E7%90%86%E5%91%98%E8%83%BD%E8%B0%83%E6%95%B4%E4%BB%80%E4%B9%88">管理员能调整什么</a></li><li><a href="#%E9%83%A8%E7%BD%B2%E9%85%8D%E7%BD%AE">部署配置</a></li><li><a href="#%E9%99%90%E5%88%B6%E4%B8%8E%E5%B0%9A%E6%9C%AA%E6%94%AF%E6%8C%81">限制与尚未支持</a></li><li><a href="#%E4%B8%8E-nocobase-2-%E7%9A%84%E5%AF%B9%E5%BA%94">与 NocoBase 2 的对应</a></li><li><a href="#%E5%BC%80%E5%8F%91%E5%8F%82%E8%80%83">开发参考</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

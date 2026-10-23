@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的任务 - NocoBase 3 文档</title>
+<meta name="description" content="每天从「我的任务」开始。各个项目里与你有关的任务汇成一张列表，等你处理的排在最前面。想按会话跟进，见「我的会话」。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../../index.html"><img class="brand-logo" src="../../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../../index.html">开始</a><a href="../../core/index.html">Core</a><a href="../../studio/index.html" aria-current="true">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li><li><a href="../../studio/intro/interface-tour.html">界面导览</a></li></ul></div><div class="menu-group"><p class="menu-title">安装与上手</p><ul><li><a href="../../studio/install.html">安装 Studio</a></li><li><a href="../../studio/quickstart.html">快速开始</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/daily/my-tasks.html" aria-current="page">我的任务</a></li><li><a href="../../studio/daily/sessions.html">我的会话</a></li><li><a href="../../studio/daily/raise-a-request.html">提出需求</a></li><li><a href="../../studio/daily/follow-progress.html">跟进进展</a></li><li><a href="../../studio/daily/answer-questions.html">回答提问</a></li><li><a href="../../studio/daily/accept.html">验收</a></li><li><a href="../../studio/daily/knowledge.html">知识库与项目记忆</a></li><li><a href="../../studio/daily/inbox.html">收件箱与提醒</a></li><li><a href="../../studio/daily/cli.html">在终端里使用</a></li></ul></div><div class="menu-group"><p class="menu-title">项目与代码</p><ul><li><a href="../../studio/projects/create-project.html" class="todo">创建项目</a></li><li><a href="../../studio/projects/project-settings.html" class="todo">项目设置</a></li><li><a href="../../studio/projects/repos-and-prs.html" class="todo">代码仓库与 PR</a></li><li><a href="../../studio/projects/ci-checks.html" class="todo">CI 检查</a></li><li><a href="../../studio/projects/skills.html" class="todo">技能</a></li><li><a href="../../studio/projects/knowledge-admin.html" class="todo">知识库管理</a></li></ul></div><div class="menu-group"><p class="menu-title">质量管理</p><ul><li><a href="../../studio/quality/test-plans.html" class="todo">测试计划</a></li><li><a href="../../studio/quality/features-and-cases.html" class="todo">功能与用例</a></li><li><a href="../../studio/quality/reports.html" class="todo">质量报告</a></li></ul></div><div class="menu-group"><p class="menu-title">发布与部署</p><ul><li><a href="../../studio/release/previews.html" class="todo">预览</a></li><li><a href="../../studio/release/apps-and-environments.html" class="todo">应用与部署环境</a></li><li><a href="../../studio/release/approval-and-rollback.html" class="todo">发布审批与回滚</a></li></ul></div><div class="menu-group"><p class="menu-title">Agent 团队</p><ul><li><a href="../../studio/agents/runtimes.html" class="todo">运行环境</a></li><li><a href="../../studio/agents/agents.html" class="todo">Agent</a></li><li><a href="../../studio/agents/coordinator.html" class="todo">调度 Agent</a></li><li><a href="../../studio/agents/usage.html" class="todo">用量与费用</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/git.html" class="todo">Git 连接</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/glossary.html" class="todo">术语表</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Studio · 日常使用</p><h1>我的任务</h1>
+<p class="lead">每天从「我的任务」开始。各个项目里与你有关的任务汇成一张列表，等你处理的排在最前面。想按会话跟进，见「我的会话」。</p>
+<article class="prose">
+<h2 id="哪些任务会出现在这里">哪些任务会出现在这里</h2>
+<p>「我的任务」列出你负责的任务和你自己执行的任务，每个任务只出现一次。你关注的任务也会出现在这里，不论负责人是谁。</p>
+<p>侧边栏「我的任务」旁边的数字，是现在等你处理的事项数。</p>
+<figure class="fig"><div class="sw w-md">
+<div class="sw-top"><i data-lucide="panel-left"></i><i class="sep"></i><span class="crumb"><b>我的任务</b></span><span class="r"><span class="st-btn p"><i data-lucide="plus"></i>新建任务<kbd>C</kbd></span></span></div>
+<div class="sw-body gray">
+<div class="st-list">
+<div class="st-card"><div class="st-gh"><i data-lucide="star" style="color:var(--human)"></i>关注<span class="st-cnt">1</span><i data-lucide="chevron-down"></i></div>
+<div class="st-li"><span class="si progress"></span><b>采购订单导出</b><time>10月21日</time><span class="s2"><span class="id">PUR-19</span>· 林悦负责 · 3 条新动态</span></div></div>
+<div class="st-card"><div class="st-gh"><i data-lucide="hand" class="hand"></i>等你处理<span class="st-cnt">2</span><i data-lucide="chevron-down"></i></div>
+<div class="st-li on"><span class="si review"></span><b>供应商评分与分级</b><time>10月22日</time><span class="s2"><span class="id">PUR-23</span>·<span class="w">等你验收</span></span></div>
+<div class="st-li"><span class="si blocked"></span><b>资质到期提醒</b><time>10月22日</time><span class="s2"><span class="id">PUR-25</span>·<span class="w">等你回复</span></span></div></div>
+<div class="st-card"><div class="st-gh"><span class="si progress"></span>进行中<span class="st-cnt">3</span><i data-lucide="chevron-down"></i></div>
+<div class="st-li"><span class="si progress"></span><b>供应商导入去重</b><time>10月22日</time><span class="s2"><span class="id">PUR-26</span>·<span class="st-spin"></span><span class="run">Codex 开发中</span></span></div></div>
+<div class="st-card"><div class="st-gh"><span class="si review"></span>等别人<span class="st-cnt">1</span><i data-lucide="chevron-down"></i></div>
+<div class="st-li"><span class="si review"></span><b>付款周期按等级调整</b><time>10月20日</time><span class="s2"><span class="id">PUR-27</span>· 等李娜验收</span></div></div>
+</div>
+<div class="st-keys"><span><kbd>J</kbd><kbd>K</kbd>切换</span><span><kbd>S</kbd>关注</span><span><kbd>Enter</kbd>打开</span><span><kbd>/</kbd>搜索</span></div>
+</div>
+</div><figcaption>「我的任务」按“轮到谁”分组，每行写明要你做什么</figcaption></figure>
+
+
+<h2 id="按轮到谁分组">按“轮到谁”分组</h2>
+<p>从上到下依次是：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>分组</th>
+<th>里面是什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关注</td>
+<td>你关注的任务，排在最前面，并显示别人新增了多少条动态。</td>
+</tr>
+<tr>
+<td>等你处理</td>
+<td>现在需要你做决定的任务，等得最久的在前。</td>
+</tr>
+<tr>
+<td>进行中</td>
+<td>Agent 或其他人正在推进的任务。</td>
+</tr>
+<tr>
+<td>等别人</td>
+<td>待验收或阻塞中、但在等别人的任务，每行写明在等谁，例如“等李娜验收”。</td>
+</tr>
+<tr>
+<td>待规划</td>
+<td>还没开始的任务。</td>
+</tr>
+<tr>
+<td>已完成</td>
+<td>最近七天完成的任务，默认折叠。</td>
+</tr>
+</tbody></table></div>
+<p>已取消的任务不显示，需要时用状态筛选找出来。</p>
+<h2 id="什么情况算等你处理">什么情况算“等你处理”</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标记</th>
+<th>什么时候出现</th>
+<th>去哪里处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>等你验收</td>
+<td>你负责的任务进入待验收</td>
+<td><a href="accept.html">验收</a></td>
+</tr>
+<tr>
+<td>等你回复</td>
+<td>你负责的任务因为一个问题进入阻塞中</td>
+<td><a href="answer-questions.html#回答阻塞中的提问">回答提问</a></td>
+</tr>
+<tr>
+<td>运行失败</td>
+<td>Agent 的一次运行重试后仍然失败，等你决定怎么办</td>
+<td><a href="answer-questions.html#运行失败">回答提问</a></td>
+</tr>
+<tr>
+<td>等你确认方案</td>
+<td>有一份关于这个任务的计划草稿等你确认</td>
+<td>任务页</td>
+</tr>
+<tr>
+<td>等你接手</td>
+<td>有人把任务的负责人转给了你</td>
+<td><a href="answer-questions.html#接手转给你的任务">回答提问</a></td>
+</tr>
+</tbody></table></div>
+<p>每一行都写明要你做什么。处理完一个任务后，它会在原位置停留，直到你切换到别的任务；页面底部会出现提示，可以撤销刚才的状态修改，或者直接跳到下一个等你处理的任务。</p>
+<h2 id="视图">视图</h2>
+<p>右上角可以切换四种视图：</p>
+<ul>
+<li><strong>分栏</strong>：左边列表，右边详情。「我的任务」默认用它，适合逐个处理。</li>
+<li><strong>表格</strong>：按任务树展开，适合看子任务。</li>
+<li><strong>看板</strong>：每个状态一列，拖动卡片即可改状态。</li>
+<li><strong>Agent 队列</strong>：每个 Agent 一条泳道，看它正在做什么、接下来做什么、在等谁。见 <a href="follow-progress.html#agent-队列">跟进进展</a>。</li>
+</ul>
+<p>你上次选的视图会被记住。</p>
+<h2 id="快捷键">快捷键</h2>
+<p>在列表里（不在输入框中时）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><kbd>J</kbd> / <kbd>K</kbd> 或方向键</td>
+<td>下一个 / 上一个任务</td>
+</tr>
+<tr>
+<td><kbd>S</kbd></td>
+<td>关注或取消关注</td>
+</tr>
+<tr>
+<td><kbd>Enter</kbd></td>
+<td>打开任务页</td>
+</tr>
+<tr>
+<td><kbd>/</kbd></td>
+<td>搜索</td>
+</tr>
+<tr>
+<td><kbd>Esc</kbd></td>
+<td>回到列表</td>
+</tr>
+</tbody></table></div>
+<h2 id="关注任务">关注任务</h2>
+<p>点任务右上角的星标即可关注。关注的任务排在列表最前面，别人新增评论或改动时会显示条数。不是你负责的任务，也可以关注后在这里跟进。最多可以同时关注 100 个任务。</p>
+<h2 id="每天怎么用">每天怎么用</h2>
+<ol>
+<li>打开「我的任务」，先处理“等你处理”分组：验收、回答问题、处理失败的运行。</li>
+<li>看一眼“关注”分组里的新动态。</li>
+<li>有新想法时，<a href="raise-a-request.html">提出需求</a>，交给 Agent 团队。</li>
+</ol>
+<p>其余的事，Agent 团队会在运行环境上继续推进；需要你时，任务会回到“等你处理”。</p>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../../studio/quickstart.html"><small>上一页</small>快速开始</a><a class="next" href="../../studio/daily/sessions.html"><small>下一页</small>我的会话</a></nav>
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-23</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E5%93%AA%E4%BA%9B%E4%BB%BB%E5%8A%A1%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%9C%A8%E8%BF%99%E9%87%8C">哪些任务会出现在这里</a></li><li><a href="#%E6%8C%89%E8%BD%AE%E5%88%B0%E8%B0%81%E5%88%86%E7%BB%84">按“轮到谁”分组</a></li><li><a href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E7%AE%97%E7%AD%89%E4%BD%A0%E5%A4%84%E7%90%86">什么情况算“等你处理”</a></li><li><a href="#%E8%A7%86%E5%9B%BE">视图</a></li><li><a href="#%E5%BF%AB%E6%8D%B7%E9%94%AE">快捷键</a></li><li><a href="#%E5%85%B3%E6%B3%A8%E4%BB%BB%E5%8A%A1">关注任务</a></li><li><a href="#%E6%AF%8F%E5%A4%A9%E6%80%8E%E4%B9%88%E7%94%A8">每天怎么用</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

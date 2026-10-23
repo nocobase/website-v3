@@ -1,7 +1,7 @@
 # NocoBase Studio 文档
 
 ```
-Doc/
+doc/
 ├── 方案/          文档方案（5 篇）：现有文档的问题、结构与原则、命名方案、写作规范与术语、进度与待确认事项
 ├── src/           文档正文（Markdown）：认识 Studio、快速开始、日常使用
 │   ├── figures/   局部配图（HTML 片段），正文里用 ::figure 名称 | 说明 引用
@@ -14,10 +14,10 @@ Doc/
 ## 构建
 
 ```bash
-node Doc/build.mjs
+node doc/build.mjs
 ```
 
-需要 `marked@4.3.0`，脚本会依次在 `Doc/node_modules` 和上一级目录的 `node_modules` 里查找。生成后打开 `Doc/site/index.html` 浏览文档站，打开 `Doc/方案/01-现有文档的问题.html` 浏览方案。
+需要 `marked@4.3.0`，脚本会依次在 `doc/node_modules` 和上一级目录的 `node_modules` 里查找。生成后打开 `doc/site/index.html` 浏览文档站，打开 `doc/方案/01-现有文档的问题.html` 浏览方案。
 
 ## 编写
 

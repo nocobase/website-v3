@@ -3,7 +3,7 @@
 //   src/**/*.md   → site/**/*.html（发布用的文档站，资源在 site/assets/）
 //   方案/*.md     → 方案/*.html（团队内部的文档方案）
 // 页面就是普通的文档站：顶栏，左侧菜单，右侧正文。
-// 运行：node Doc/build.mjs（需要 marked@4.3.0，复用上一级目录的 node_modules）。
+// 运行：node doc/build.mjs（需要 marked@4.3.0，复用上一级目录的 node_modules）。
 import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -11,7 +11,7 @@ import { createHash } from 'node:crypto';
 
 const dir = dirname(fileURLToPath(import.meta.url));
 const dependency = [join(dir, 'node_modules/marked/lib/marked.esm.js'), join(dir, '../node_modules/marked/lib/marked.esm.js')].find(existsSync);
-if (!dependency) throw new Error('需要 marked@4.3.0：在 Doc/ 或上一级目录执行 npm install marked@4.3.0。');
+if (!dependency) throw new Error('需要 marked@4.3.0：在 doc/ 或上一级目录执行 npm install marked@4.3.0。');
 const { marked } = await import(pathToFileURL(dependency).href);
 
 const DATE = '2026-10-22';

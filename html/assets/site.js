@@ -72,7 +72,7 @@
     '</div></header>';
 
   var footer = '<footer><div class="container"><div class="fgrid">' +
-    '<div><img src="assets/logo.png" alt="NocoBase" width="150" height="22"><p class="tag-line">' + T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Reliable business software.') + '</p></div>' +
+    '<div><img src="assets/logo.png" alt="NocoBase" width="150" height="22"><p class="tag-line">' + T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Build reliable business systems.') + '</p></div>' +
     '<div><h4>' + T('产品', 'Products') + '</h4><ul>' + products.map(function (x) { return '<li><a href="' + x[1] + '">' + x[3] + '</a></li>'; }).join('') + '<li><a href="' + NOCODE + '" target="_blank" rel="noopener">' + T('NocoBase 2 无代码 ↗', 'NocoBase 2 No-code ↗') + '</a></li></ul></div>' +
     '<div><h4>' + T('定价与许可', 'Pricing &amp; License') + '</h4><ul><li><a href="pricing.html">' + T('版本与价格', 'Editions &amp; Pricing') + '</a></li><li><a href="#">' + T('许可协议', 'License') + '</a></li><li><a href="' + NOCODE + '" target="_blank" rel="noopener">NocoBase 2.x ↗</a></li></ul></div>' +
     '<div><h4>' + T('伙伴', 'Partners') + '</h4><ul><li><a href="partner.html">' + T('伙伴计划', 'Partner Program') + '</a></li><li><a href="find-partner.html">' + T('寻找伙伴', 'Find a Partner') + '</a></li><li><a href="customers.html">' + T('客户案例', 'Customers') + '</a></li></ul></div>' +

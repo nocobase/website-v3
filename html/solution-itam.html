@@ -23,21 +23,37 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/site.css">
+<style>
+/* Live demo styles: the demo site itself under the hero, or a screenshot of the ITAM when the site cannot be reached, and on a phone; the link under it opens the site in a new tab. */
+.ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
+.ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.ld-frame[hidden], .ld-shot[hidden] { display: none; }
+.ld-shot { overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
+.ld-shot t-zh, .ld-shot t-en { display: block; }
+.ld-shot img { display: block; width: 100%; height: auto; }
+.ld-bar { display: flex; flex-wrap: wrap; justify-content: center; text-align: center; align-items: center; gap: 8px 16px; margin-top: 16px; color: var(--muted); }
+.ld-bar a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); }
+.ld-bar a:hover { color: var(--brand-hover); }
+.ld-bar svg.lucide { width: 16px; height: 16px; }
+#liveDemo { scroll-margin-top: 16px; }
+@media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
+</style>
 </head>
 <body data-page="itam" data-root="">
 <div id="site-header"></div>
 <main>
 <section class="phero">
   <div class="container">
-    <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoITAM · <t-zh>IT 资产管理</t-zh><t-en>IT asset management</t-en></span><span class="pill pass">Alpha</span></p>
+    <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoITAM · <t-zh>IT 资产管理</t-zh><t-en>IT asset management</t-en></span><span class="pill pass">Beta</span></p>
     <h1><t-zh>让 Agent 替 IT 核对、追踪、算账，<span class="m">IT 只做判断。</span></t-zh><t-en>Agents reconcile, track, and do the math. <span class="m">IT just decides.</span></t-en></h1>
     <p class="lede"><t-zh>传统资产系统是一本靠人手动维护的台账。在 NocoITAM 里，日常杂活由 Agent 代劳：MDM 同步后自动整理差异方案，新人入职前配齐设备与软件席位，每笔采购前先查库存和闲置，订阅续费前主动回收闲置账号。每台设备、每个席位、每一笔开支都责任到人、有据可查。</t-zh><t-en>Traditional ITAM tools are ledgers you have to maintain by hand. In NocoITAM, agents handle the daily legwork: turning MDM sync diffs into action plans, kitting out new hires before day one, checking stock and idle assets before every purchase, and reclaiming unused seats before renewals. Every device, seat, and dollar has an owner and a clear audit trail.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a>
-      <a class="btn btn-sec" href="https://v3.docs.nocobase.com/zh-CN/" target="_blank" rel="noopener"><t-zh>立即安装</t-zh><t-en>Install Now</t-en></a>
+      <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoITAM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a>
     </div>
-    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0-alpha.23</b></div><div><t-zh>MDM 对接</t-zh><t-en>MDM</t-en><b>Intune · Jamf Pro</b></div></div>
-    <div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx"><aside class="sx-side"><div class="sx-brand"><span class="mk"><i data-lucide="monitor-smartphone"></i></span>Noco<span>ITAM</span></div><a class="it on"><i data-lucide="layout-dashboard"></i><t-zh>待办</t-zh><t-en>To-do</t-en><em>31</em></a><a class="it"><i data-lucide="inbox"></i><t-zh>收件箱</t-zh><t-en>Inbox</t-en><em>13</em></a><div class="g"><t-zh>资产</t-zh><t-en>Assets</t-en></div><a class="it"><i data-lucide="laptop"></i><t-zh>设备</t-zh><t-en>Devices</t-en></a><a class="it"><i data-lucide="mouse"></i><t-zh>配件</t-zh><t-en>Accessories</t-en></a><a class="it"><i data-lucide="printer"></i><t-zh>耗材</t-zh><t-en>Consumables</t-en></a><a class="it"><i data-lucide="key"></i><t-zh>授权</t-zh><t-en>Licenses</t-en></a><div class="g"><t-zh>业务</t-zh><t-en>Operations</t-en></div><a class="it"><i data-lucide="shopping-cart"></i><t-zh>采购</t-zh><t-en>Procurement</t-en></a><a class="it"><i data-lucide="wrench"></i><t-zh>维修</t-zh><t-en>Repairs</t-en></a><a class="it"><i data-lucide="recycle"></i><t-zh>报废</t-zh><t-en>Disposal</t-en></a><a class="it"><i data-lucide="clipboard-check"></i><t-zh>盘点</t-zh><t-en>Audits</t-en></a><a class="it"><i data-lucide="chart-column"></i><t-zh>报表</t-zh><t-en>Reports</t-en></a><div class="g"><t-zh>Agent 团队</t-zh><t-en>Agent team</t-en></div><a class="it"><i data-lucide="workflow"></i><t-zh>Agent 工作</t-zh><t-en>Agent work</t-en></a><a class="it"><i data-lucide="notebook-pen"></i><t-zh>业务指导</t-zh><t-en>Business guidance</t-en></a><a class="it"><i data-lucide="sparkles"></i><t-zh>技能</t-zh><t-en>Skills</t-en></a><div class="foot"><t-zh><b>AI 自由构建</b><br>NocoBase 保障可靠</t-zh><t-en><b>AI builds freely.</b><br>NocoBase keeps it reliable.</t-en></div></aside><div class="sx-main"><div class="sx-top"><b><t-zh>待办</t-zh><t-en>To-do</t-en></b><span class="r"><span class="ai"><i data-lucide="sparkles"></i></span><span class="av"><t-zh>吴</t-zh><t-en>A</t-en></span></span></div><div class="sx-body"><div class="sx-h"><h5><t-zh>待办</t-zh><t-en>To-do</t-en></h5><span class="r"><span class="seg"><span class="on"><t-zh>看板</t-zh><t-en>Board</t-en></span><span><t-zh>列表</t-zh><t-en>List</t-en></span></span><span class="seg"><span class="on"><t-zh>全部</t-zh><t-en>All</t-en></span><span><t-zh>我负责的</t-zh><t-en>Mine</t-en></span></span></span></div><div class="sx-sec"><i data-lucide="triangle-alert"></i><t-zh>需要关注</t-zh><t-en>Needs attention</t-en></div><div class="attn"><div class="hot"><span class="i"><i data-lucide="triangle-alert"></i></span><b><t-zh>超量使用</t-zh><t-en>Over-allocated</t-en></b><small><t-zh>Office LTSC 2024 · 4/3</t-zh><t-en>Office LTSC 2024 · 4/3</t-en></small><span class="c">1</span></div><div class=""><span class="i"><i data-lucide="shield-alert"></i></span><b><t-zh>保修 30 天内到期</t-zh><t-en>Warranty ends ≤30d</t-en></b><small><t-zh>最早 11-05 · SG-LT-001 等</t-zh><t-en>From Nov 5 · SG-LT-001 +3</t-en></small><span class="c">4</span></div><div class=""><span class="i"><i data-lucide="refresh-cw"></i></span><b><t-zh>7 天内自动续订</t-zh><t-en>Auto-renews ≤7d</t-en></b><small><t-zh>Zoom Workplace Pro · 25/27</t-zh><t-en>Zoom Workplace Pro · 25/27</t-en></small><span class="c">1</span></div><div class=""><span class="i"><i data-lucide="ticket-x"></i></span><b><t-zh>已结束仍占席位</t-zh><t-en>Ended, still seated</t-en></b><small><t-zh>Zoom Workplace Pro</t-zh><t-en>Zoom Workplace Pro</t-en></small><span class="c">1</span></div><div class=""><span class="i"><i data-lucide="package-minus"></i></span><b><t-zh>低于水位的配件</t-zh><t-en>Low accessories</t-en></b><small><t-zh>MX Master 3S · 3/5</t-zh><t-en>MX Master 3S · 3/5</t-en></small><span class="c">1</span></div><div class=""><span class="i"><i data-lucide="clipboard-x"></i></span><b><t-zh>超过 365 天未盘点</t-zh><t-en>Not audited 365d+</t-en></b><small><t-zh>SG-LT-001 等 31 台</t-zh><t-en>31 devices</t-en></small><span class="c">31</span></div></div><div class="kb"><div class="kb-col"><header><t-zh>待审批</t-zh><t-en>Approvals</t-en><span class="n">4</span></header><div class="kc"><b>PO-000045</b><div class="tgs"><span class="tag red"><t-zh>待你审批</t-zh><t-en>Needs you</t-en></span><span class="aisg"><i data-lucide="sparkles"></i><t-zh>有条件同意</t-zh><t-en>Approve on conditions</t-en></span></div><div class="m"><t-zh>研发新员工 MacBook Air</t-zh><t-en>MacBook Air for new engineers</t-en></div><div class="m"><span>CNY</span><span class="amt">35,996</span></div></div><div class="kc"><b>DP-000003</b><div class="tgs"><span class="tag red"><t-zh>待你审批</t-zh><t-en>Needs you</t-en></span><span class="aisg"><i data-lucide="sparkles"></i><t-zh>建议驳回</t-zh><t-en>Reject</t-en></span></div><div class="m"><t-zh>销毁 · 1 台打印机</t-zh><t-en>Destroy · 1 printer</t-en></div><div class="m"><span>CNY</span><span class="amt">1,776</span></div></div></div><div class="kb-col"><header><t-zh>人员变动</t-zh><t-en>Joiners &amp; leavers</t-en><span class="n">3</span></header><div class="kc"><b><t-zh>孙浩 · 前端工程师</t-zh><t-en>Sun Hao · Front-end</t-en></b><div class="tgs"><span class="tag green"><t-zh>入职</t-zh><t-en>Joiner</t-en></span></div><div class="m"><t-zh>10-21 入职 · 还有 4 天</t-zh><t-en>Starts Oct 21 · in 4 days</t-en></div><div class="m"><t-zh>已配备 0 / 8</t-zh><t-en>Equipped 0 / 8</t-en></div><div class="bar"><i style="--w:0%"></i></div></div><div class="kc"><b><t-zh>陈杰 · IT 支持</t-zh><t-en>Chen Jie · IT support</t-en></b><div class="tgs"><span class="tag red"><t-zh>离职</t-zh><t-en>Leaver</t-en></span></div><div class="m"><t-zh>10-16 离职</t-zh><t-en>Leaves Oct 16</t-en></div><div class="m"><t-zh>已回收 3 / 10</t-zh><t-en>Collected 3 / 10</t-en></div><div class="bar"><i style="--w:30%"></i></div></div></div><div class="kb-col"><header><t-zh>采购中</t-zh><t-en>Purchasing</t-en><span class="n">7</span></header><div class="kc"><b>PO-000038</b><div class="tgs"><span class="tag blue"><t-zh>已下单</t-zh><t-en>Ordered</t-en></span><span class="tag red"><t-zh>到货逾期 3 天</t-zh><t-en>3 days late</t-en></span></div><div class="m"><t-zh>北桥 IT 供应</t-zh><t-en>Northbridge IT</t-en></div><div class="m"><span>CNY</span><span class="amt">2,990</span></div></div><div class="kc"><b>PO-000047</b><div class="tgs"><span class="tag blue"><t-zh>已批准</t-zh><t-en>Approved</t-en></span></div><div class="m"><t-zh>北桥 IT 供应</t-zh><t-en>Northbridge IT</t-en></div><div class="m"><span>CNY</span><span class="amt">2,899</span></div></div></div><div class="kb-col"><header><t-zh>设备跟进</t-zh><t-en>Device follow-up</t-en><span class="n">4</span></header><div class="kc"><b>DE-000005</b><div class="tgs"><span class="tag orange"><t-zh>逾期未还</t-zh><t-en>Overdue</t-en></span></div><div class="m"><t-zh>借出 · 赵敏</t-zh><t-en>On loan · Zhao Min</t-en></div><div class="m"><t-zh>预计 10-09 归还</t-zh><t-en>Due back Oct 9</t-en></div></div><div class="kc"><b>RP-000001</b><div class="tgs"><span class="tag grey"><t-zh>维修中</t-zh><t-en>In repair</t-en></span></div><div class="m"><t-zh>电池鼓包，需更换</t-zh><t-en>Swollen battery</t-en></div><div class="m"><t-zh>预计 10-20 取回</t-zh><t-en>Back Oct 20</t-en></div></div></div><div class="kb-col"><header><t-zh>MDM 核对</t-zh><t-en>MDM checks</t-en><span class="n">9</span></header><div class="kc"><b><t-zh>使用人不一致</t-zh><t-en>Assignee mismatch</t-en></b><div class="tgs"><span class="aisg"><i data-lucide="sparkles"></i><t-zh>已整理方案</t-zh><t-en>Plan ready</t-en></span></div><div class="m"><t-zh>SG-LT-011 · MDM：李娜</t-zh><t-en>SG-LT-011 · MDM: Li Na</t-en></div><div class="m"><t-zh>台账：张伟</t-zh><t-en>Register: Zhang Wei</t-en></div></div><div class="kc"><b><t-zh>台账未登记</t-zh><t-en>Not in register</t-en></b><div class="tgs"><span class="aisg"><i data-lucide="sparkles"></i><t-zh>已整理方案</t-zh><t-en>Plan ready</t-en></span></div><div class="m"><t-zh>Intune 新增 3 台</t-zh><t-en>3 new in Intune</t-en></div></div></div></div></div></div></div></div></div></div>
+    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0-beta.27</b></div><div><t-zh>MDM 对接</t-zh><t-en>MDM</t-en><b>Intune · Jamf Pro</b></div></div>
+    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoITAM" allow="clipboard-write"></iframe></div><div class="ld-shot" hidden><t-zh><img src="assets/itam-overview-zh.jpg" alt="NocoITAM 待办" loading="lazy"></t-zh><t-en><img src="assets/itam-overview-en.jpg" alt="NocoITAM to-dos" loading="lazy"></t-en></div></div>
+    <div class="ld-bar" id="liveDemoBar"><span><a href="https://solutions-cn.nocobase.com/itam/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span></div>
   </div>
 </section>
 
@@ -153,12 +169,68 @@
 
 <div class="container">
   <div class="band">
-    <div><h2><t-zh>让 IT 少对账，多做决策。</t-zh><t-en>Less reconciling, more deciding for IT.</t-en></h2><p><t-zh>在线体验或立即安装 NocoITAM。连上 MDM、导入资产表，Agent 即刻开始对账。</t-zh><t-en>Try NocoITAM online or install it now. Connect your MDM, import your assets, and let agents start reconciling.</t-en></p></div>
-    <div class="cta"><a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="https://v3.docs.nocobase.com/zh-CN/" target="_blank" rel="noopener"><t-zh>立即安装</t-zh><t-en>Install Now</t-en></a></div>
+    <div><h2><t-zh>让 IT 少对账，多做决策。</t-zh><t-en>Less reconciling, more deciding for IT.</t-en></h2><p><t-zh>在线体验 NocoITAM，或到 GitHub 获取源码自行部署。连上 MDM、导入资产表，Agent 即刻开始对账。</t-zh><t-en>Try NocoITAM online, or get the source on GitHub and run it yourself. Connect your MDM, import your assets, and let agents start reconciling.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoITAM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
   </div>
 </div>
 </main>
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
+<script>
+/* Live demo script: the Chinese site on a Chinese page and the international one otherwise, kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows: when it fails or takes over 8 seconds (the site down, gone, unreachable), a screenshot of the ITAM's to-dos stands in the demo's place and the ways into the demo (the Try It Online buttons and the link under it) go, since they would lead nowhere; ?demo=screenshot in the address shows that state. When the site answers, it loads only once a third of its frame is on screen: its sign-in page puts the cursor in a field, and loaded earlier the browser would scroll the page down to that field as it opens. A phone always shows the screenshot, with the link to the site in a new tab. Try It Online scrolls to the demo, or opens the site in a new tab on a phone. Visitors sign in there as on the site itself. */
+(function () {
+  var SITES = { zh: 'https://solutions-cn.nocobase.com/itam/', en: 'https://solutions.nocobase.com/itam/' };
+  var box = document.getElementById('liveDemo'), frameBox = box.querySelector('.ld-frame'), frame = frameBox.querySelector('iframe'), shot = box.querySelector('.ld-shot');
+  var bar = document.getElementById('liveDemoBar'), open = bar.querySelector('[data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
+  var forced = /[?&]demo=screenshot\b/.test(location.search);
+  var status = {}, shown = false;
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
+  function narrow() { return window.innerWidth < 768; }
+  function probe(url) {
+    if (status[url]) return;
+    status[url] = 'checking';
+    var img = new Image(), settled = false;
+    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); }
+    var timer = setTimeout(function () { end(false); }, 8000);
+    img.onload = function () { end(true); };
+    img.onerror = function () { end(false); };
+    img.src = url + 'assets/favicon.ico?check=' + Date.now();
+  }
+  function apply() {
+    var url = SITES[lang()], down = forced || status[url] === 'down';
+    open.href = url;
+    bar.hidden = down;
+    tries.forEach(function (a) { a.hidden = down; });
+    var useShot = down || narrow();
+    shot.hidden = !useShot;
+    frameBox.hidden = useShot;
+    if (useShot) { frame.removeAttribute('src'); return; }
+    if (shown && status[url] === 'up' && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
+  }
+  function check() {
+    if (shown) return;
+    var r = box.getBoundingClientRect(), seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+    if (seen < r.height * 0.3) return;
+    shown = true;
+    apply();
+    window.removeEventListener('scroll', check);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', function () { check(); apply(); });
+  tries.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (narrow()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
+      shown = true;
+      apply();
+      box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  function start() { if (!forced) probe(SITES[lang()]); apply(); }
+  start();
+  check();
+  new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>
 </body>
 </html>

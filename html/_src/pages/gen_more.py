@@ -145,7 +145,7 @@ save('studioEnvs', bare('git-pull-request', 'Base Studio', '发布 · NocoCRM', 
     f'<div style="display:grid;gap:8px"><div class="sx-sec">{T("生产的发布记录", "Production history")}</div><div class="tblw"><table class="tbl"><tbody>{hist_rows}</tbody></table></div></div></div>', user='王'))
 
 save('studioReleaseReq', solo(
-    f'<div class="sx-h"><div><h5>{T("发布 NocoCRM 1.8.0 到生产", "Release NocoCRM 1.8.0 to production")}</h5><p>{T("项目经理提出 · 等你批准", "Requested by the project manager · needs your approval")}</p></div><span class="r">{tag("amber", "等你处理", "Waiting for you")}</span></div>'
+    f'<div class="sx-h"><div><h5>{T("发布 NocoCRM 1.8.0 到生产", "Release NocoCRM 1.8.0 to production")}</h5><p>{T("调度 Agent 提出 · 等你批准", "Requested by the coordinator · needs your approval")}</p></div><span class="r">{tag("amber", "等你处理", "Waiting for you")}</span></div>'
     f'<div class="kv"><div><small>{T("版本", "Version")}</small><b>1.8.0</b></div><div><small>{T("镜像", "Image")}</small><b>sha256:9f2c…</b></div><div><small>{T("提交", "Commit")}</small><b>a1b2c3d</b></div><div><small>CI</small><b style="color:var(--pass-ink)">{T("构建通过", "Passed")}</b></div></div>'
     f'<div class="mini-chips"><span>CRM-135</span><span>CRM-141</span><span>CRM-144</span><span>CRM-147</span><span>CRM-149</span><span>CRM-150</span></div>'
     f'<div class="rvw"><div class="h">{ic("list-checks")}{T("申请里写明", "In the request")}</div><ul>'
@@ -168,11 +168,11 @@ save('partnerWeek', solo(
     f'{pw_rows}'))
 
 # ======================= Studio：首屏「我的任务」 =======================
-SB_ITEMS = [('circle-user', '我的任务', 'My Tasks', '2'), ('message-square', '我的 Agent', 'My Agent', ''), ('layout-dashboard', '仪表盘', 'Dashboard', ''),
+SB_ITEMS = [('circle-user', '我的任务', 'My Tasks', '2'), ('message-square', '我的会话', 'My sessions', ''), ('layout-dashboard', '仪表盘', 'Dashboard', ''),
             ('g', '开发', 'Build'), ('list-checks', '任务', 'Tasks', ''), ('folder', '项目', 'Projects', ''), ('book-open', '知识库', 'Knowledge', ''),
             ('g', '测试', 'Testing'), ('clipboard-list', '测试计划', 'Test plans', ''), ('flask-conical', '功能与用例', 'Features &amp; cases', ''),
             ('g', '发布', 'Release'), ('boxes', '应用', 'Apps', ''), ('server', '部署环境', 'Environments', ''),
-            ('g', 'Agent 团队', 'Agent team'), ('bot', 'Agents', 'Agents', ''), ('monitor', '运行环境', 'Runtimes', ''), ('sparkles', '技能', 'Skills', '')]
+            ('g', 'Agent 团队', 'Agent team'), ('bot', 'Agent', 'Agents', ''), ('monitor', '运行环境', 'Runtimes', ''), ('sparkles', '技能', 'Skills', '')]
 def ssb(active):
     h = '<aside class="sb"><div class="brand"><img src="assets/logo.png" alt=""><span>Studio</span></div>'
     for it in SB_ITEMS:
@@ -204,9 +204,9 @@ steps5 = [('done', '梳理阶段规则与 6 个验收场景', 'Stage rules and 6
           ('run', '为 6 个验收场景写测试', 'Tests for the 6 scenarios', 'Claude · Sonnet 5.5'),
           ('todo', '代码评审（换一家模型）', 'Code review by another vendor’s model', 'Claude · Opus 5.5')]
 steps_html = '<div style="display:grid;gap:7px">' + ''.join(f'<div style="display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:13px{";color:var(--muted)" if k == "todo" else ""}">{STEP_IC[k]}<span>{T(z, e)}</span><span class="mn" style="font-size:12px{";color:var(--muted)" if k == "todo" else ""}">{a}</span></div>' for k, z, e, a in steps5) + '</div>'
-logs = [(f'<span class="av">{T("王", "L")}</span>', T('<b>王磊</b> 在「我的 Agent」里说清需求，建好任务并开始执行', '<b>Leo</b> scoped it in My Agent, created the task, and pressed Start'), '18:20', False),
+logs = [(f'<span class="av">{T("王", "L")}</span>', T('<b>王磊</b> 在「我的会话」里说清需求，建好任务并开始执行', '<b>Leo</b> scoped it in My sessions, created the task, and pressed Start'), '18:20', False),
         (AGI, T('<b>Claude · Opus 5.5</b> 按技能《需求澄清规范》写好 6 个验收场景', '<b>Claude · Opus 5.5</b> wrote 6 acceptance scenarios per the scoping skill'), '18:34', False),
-        (PM, T('<b>项目经理</b> 第 2、3 步交给 <span class="mn">@Codex · GPT-5.5</span>，第 4 步并行交给 <span class="mn">@Claude · Sonnet 5.5</span>', '<b>Project manager</b> gave steps 2–3 to <span class="mn">@Codex · GPT-5.5</span> and step 4 in parallel to <span class="mn">@Claude · Sonnet 5.5</span>'), '18:36', False),
+        (PM, T('<b>调度 Agent</b> 第 2、3 步交给 <span class="mn">@Codex · GPT-5.5</span>，第 4 步并行交给 <span class="mn">@Claude · Sonnet 5.5</span>', '<b>Coordinator</b> gave steps 2–3 to <span class="mn">@Codex · GPT-5.5</span> and step 4 in parallel to <span class="mn">@Claude · Sonnet 5.5</span>'), '18:36', False),
         (AGI, T('<b>Codex · GPT-5.5</b> 正在开发看板拖拽，测试 31/38 通过', '<b>Codex · GPT-5.5</b> is building drag-and-drop; tests 31/38 passing'), T('现在', 'now'), True)]
 SPIN_S = ' <span class="spin" style="width:11px;height:11px;border-width:1.5px;vertical-align:-1px"></span>'
 log_html = '<div class="log">' + ''.join(f'<div class="le">{a}<div>{b}{SPIN_S if run else ""}</div><span class="t">{t}</span></div>' for a, b, t, run in logs) + '</div>'
@@ -214,7 +214,7 @@ det = (f'<div class="mtd"><div class="mt1"><span class="id">CRM-144</span><span>
     f'<h5>{T("商机阶段看板", "Deal stage board")}</h5>'
     f'<div class="mtn" style="border-left-color:var(--agent)"><div class="h" style="color:var(--agent-ink)">{ic("bot")}{T("Agent 团队正在做 · 第 3 / 5 步", "Agent team at work · step 3 of 5")}<span class="r" style="margin-left:auto;font-weight:400;color:var(--muted)">{T("2 个 Agent 并行", "2 agents in parallel")}</span></div>{steps_html}'
     f'<p class="t2" style="color:var(--muted);font-size:12.5px">{T("预计今晚 23:40 交给你验收。不用盯着，有问题会来问你。", "Expected for your review at 23:40 tonight. No need to watch—it’ll ask if it needs you.")}</p></div>'
-    f'<div class="fields"><span><span class="k">{T("负责人", "Owner")}</span><span class="av">{T("王", "L")}</span>{T("王磊", "Leo Walker")}</span><span><span class="k">{T("执行人", "Executor")}</span>{PM}{T("项目经理", "Project manager")}</span><span><span class="k">{T("子任务", "Subtasks")}</span>2 / 5</span></div>'
+    f'<div class="fields"><span><span class="k">{T("负责人", "Owner")}</span><span class="av">{T("王", "L")}</span>{T("王磊", "Leo Walker")}</span><span><span class="k">{T("执行者", "Executor")}</span>{PM}{T("调度 Agent", "Coordinator")}</span><span><span class="k">{T("子任务", "Subtasks")}</span>2 / 5</span></div>'
     f'<div class="mtt"><span class="on">{T("动态", "Activity")}</span><span>{T("描述", "Description")}</span><span>{T("子任务 5", "Subtasks 5")}</span><span>{T("代码与部署", "Code &amp; deploys")}</span><span>{T("运行 9", "Runs 9")}</span></div>{log_html}</div>')
 top = f'<div class="wtop"><b>{T("我的任务", "My Tasks")}</b><span class="vsw"><span class="on">{T("分栏", "Split")}</span><span>{T("表格", "Table")}</span><span>{T("看板", "Board")}</span><span>{T("Agent 队列", "Agent queue")}</span></span><span class="r"><span class="tag violet"><span class="spin" style="width:10px;height:10px;border-width:1.5px"></span>{T("14 个任务在推进", "14 tasks moving")}</span><span class="b">{T("新建任务", "New task")}</span><span class="av">{T("王", "L")}</span></span></div>'
 foot = (f'<div class="foot"><ol class="parts" style="flex-direction:column;gap:6px"><li><span class="bal">1</span>{T("各个项目的任务汇成一张列表", "Every project’s tasks in one list")}</li><li><span class="bal">2</span>{T("Agent 团队 7×24 小时开发、测试、评审、修复", "Agents build, test, review, and fix around the clock")}</li><li><span class="bal">3</span>{T("只有需要判断的事才轮到你", "Only the calls come to you")}</li></ol>'
@@ -232,12 +232,12 @@ def ntask(n): return T(f'{n} 个任务', f'{n} task' + ('' if n == 1 else 's')) 
 sl = [('今天', 'Today', [('客户批量导入去重', 'Customer import de-dup', '09:46', 'NocoCRM', 'rsb', 'need', 1), ('导入预览性能', 'Import preview speed', '10:02', 'NocoCRM', 's', 'run', 0),
                          ('商机阶段看板', 'Deal stage board', '08:30', 'NocoCRM', 'rs', 'need', 0), ('拆分 Q4 权限需求', 'Split the Q4 permission work', '08:05', 'Studio', 'ddssb', 'run', 0)]),
       ('更早', 'Earlier', [('夜间工单分派规则', 'Night ticket routing', T('昨天', 'Yday'), 'NocoSupport', 'kb', 'need', 0), ('按岗位生成入职清单', 'Onboarding lists by role', T('周一', 'Mon'), 'NocoHR', 'ddd', 'done', 0),
-                           ('Runner 磁盘满排查', 'Runner disk-full check', T('周一', 'Mon'), 'Studio', '', '', 0), ('折扣审批规则是怎么定的？', 'How do discount approvals work?', T('周一', 'Mon'), 'NocoCRM', '', '', 0)])]
+                           ('运行环境磁盘满排查', 'Runtime disk-full check', T('周一', 'Mon'), 'Studio', '', '', 0), ('折扣审批规则是怎么定的？', 'How do discount approvals work?', T('周一', 'Mon'), 'NocoCRM', '', '', 0)])]
 srows = ''.join(f'<div class="hs-g">{T(g, ge)}</div>' + ''.join(
     f'<div class="hs-it{" on" if on else ""}"><div class="hs-t"><b>{T(a, b)}</b><time>{t}</time></div><div class="hs-m"><span class="pj">{pj}</span><span>·</span><span>{ntask(len(bar))}</span>'
     + (f'<span class="lb">' + ''.join(f'<i class="{SEGC[c]}"></i>' for c in bar) + '</span>' if bar else '') + f'<span class="st-s">{sstat(st)}</span></div></div>'
     for a, b, t, pj, bar, st, on in rows) for g, ge, rows in sl)
-scol = (f'<section class="hs"><div class="hs-h">{T("我的 Agent", "My Agent")}<span class="b p">{ic("plus")}{T("新会话", "New")}</span></div><div class="hs-q">{ic("search")}{T("搜索会话", "Search sessions")}</div>'
+scol = (f'<section class="hs"><div class="hs-h">{T("我的会话", "My sessions")}<span class="b p">{ic("plus")}{T("新会话", "New")}</span></div><div class="hs-q">{ic("search")}{T("搜索会话", "Search sessions")}</div>'
         f'<div class="hs-f"><span class="on">{T("全部", "All")}</span><span>{T("等你确认 3", "Needs you 3")}</span><span>{T("进行中 2", "Active 2")}</span></div>{srows}'
         f'<div class="hs-arch">{ic("laptop")}{T("我的电脑", "My computer")}<span style="margin-left:14px;font:inherit">{T("已归档", "Archived")}</span></div></section>')
 lt = [('CRM-152', '导入时按手机号去重', 'De-dup imports by phone'), ('CRM-153', '重复客户合并工具', 'Duplicate merge tool'), ('CRM-160', '导入结果报告', 'Import result report')]
@@ -252,7 +252,7 @@ ccol = (f'<div class="hc"><div class="wtop"><b>{T("客户批量导入去重", "C
     f'<div class="hcard"><div class="ch">{ic("list-checks")}{T("已创建 3 个任务", "Created 3 tasks")}<span class="r">NocoCRM</span></div>'
     + ''.join(f'<div class="trow2">{ic("square-check")}<span class="id">{i}</span><b>{T(a, b)}</b><span class="hst {k}">{HST[k]}</span></div>' for (i, a, b), k in zip(lt, lst_st))
     + f'<div class="cf"><span class="b done">{ic("check")}{T("已交给 Agent 团队", "Handed to the agent team")}</span></div></div></div></div>'
-    + NOTE('play', '项目经理开始执行 CRM-152、CRM-153', 'Project manager started CRM-152 and CRM-153', '09:47')
+    + NOTE('play', '调度 Agent 开始执行 CRM-152、CRM-153', 'Coordinator started CRM-152 and CRM-153', '09:47')
     + NOTE('circle-check', 'CRM-152 完成，测试 38/38 通过，等你验收', 'CRM-152 done, tests 38/38, ready to accept', '22:40')
     + f'<div class="day">{T("周三", "Wednesday")}</div>'
     + NOTE('undo-2', 'CRM-153 被陈思退回：合并后保留最早的创建时间', 'Ava sent CRM-153 back: keep the earliest created date', '10:05')
@@ -265,10 +265,10 @@ rcol = (f'<aside class="hp"><div class="wtop"><b>{T("任务", "Tasks")} <span cl
     + ''.join(f'<div class="ht"><div class="ht1"><span class="si {SI2[k]}"></span><b>{T(a, b)}</b><span class="hst {k}">{HST[k]}</span></div><div class="ht2"><span class="id">{i}</span><span class="w">{w}</span></div></div>' for (i, a, b), k, w in zip(lt, lst_st, WHO))
     + f'</div><div class="hp-sec"><p class="hd">{T("会话", "Session")}</p><dl class="hkv2"><dt>{T("电脑", "Machine")}</dt><dd>{T("王磊的 Mac", "Leo’s Mac")} <i class="on-dot"></i></dd><dt>Agent</dt><dd>Claude Code 0.89</dd><dt>{T("模式", "Mode")}</dt><dd>{T("完整权限", "Full access")}</dd><dt>{T("项目", "Project")}</dt><dd>NocoCRM</dd><dt>{T("目录", "Folder")}</dt><dd class="mono">~/code/crm</dd></dl></div>'
     f'<div class="hp-sec"><p class="hd">{T("用量", "Usage")}</p><p style="font-size:12px;color:var(--ink-2)">{T("上下文 52,929 / 1,000,000 · 5.3%", "Context 52,929 / 1,000,000 · 5.3%")}</p></div></div></aside>')
-save('studioLinked', f'<div class="win hwin">{ssb("我的 Agent")}{scol}{ccol}{rcol}</div>')
+save('studioLinked', f'<div class="win hwin">{ssb("我的会话")}{scol}{ccol}{rcol}</div>')
 
 # ======================= Studio：Agent 团队的规模与范围 =======================
-agents = [('workflow', '项目经理', 'Project manager', 'Claude · Opus 5.5', '拆分任务、安排每一步、提问、交付验收', 'Splits tasks, assigns steps, asks, hands over', T('编排 24 个任务', 'Orchestrating 24'), '—'),
+agents = [('workflow', '调度 Agent', 'Coordinator', 'Claude · Opus 5.5', '拆分任务、安排每一步、提问、交付验收', 'Splits tasks, assigns steps, asks, hands over', T('编排 24 个任务', 'Orchestrating 24'), '—'),
           ('bot', 'Codex · GPT-5.5', 'Codex · GPT-5.5', '', '功能开发与修复', 'Features and fixes', '8', '61'),
           ('bot', 'Claude · Opus 5.5', 'Claude · Opus 5.5', '', '需求梳理、方案与代码评审', 'Scoping, design, code review', '5', '38'),
           ('bot', 'Claude · Sonnet 5.5', 'Claude · Sonnet 5.5', '', '测试与回归', 'Testing and regression', '6', '52'),
@@ -290,7 +290,7 @@ rts = [('Server 01', 'Team', 4, [('Codex', 'CRM-144'), ('Claude Code', 'SUP-91')
 TOOL_C = {'Codex': 'var(--ink)', 'Claude Code': 'oklch(0.64 0.15 45)', 'OpenCode': 'var(--info-ink)', 'Gemini CLI': 'var(--agent)'}
 def slot(a, t, fs):
     if a == 'PM':
-        return f'<div style="display:flex;align-items:center;gap:6px;font-size:{fs}px;line-height:1.5;white-space:nowrap;color:var(--agent-ink)"><span style="display:inline-grid;color:var(--agent)">{ic("workflow")}</span><span style="font-weight:500">{T("项目经理", "PM agent")}</span><span style="margin-left:auto;color:var(--muted)">{T("编排", "planning")}</span></div>'
+        return f'<div style="display:flex;align-items:center;gap:6px;font-size:{fs}px;line-height:1.5;white-space:nowrap;color:var(--agent-ink)"><span style="display:inline-grid;color:var(--agent)">{ic("workflow")}</span><span style="font-weight:500">{T("调度 Agent", "Coordinator")}</span><span style="margin-left:auto;color:var(--muted)">{T("编排", "planning")}</span></div>'
     return f'<div style="display:flex;align-items:center;gap:6px;font-size:{fs}px;line-height:1.5;white-space:nowrap;overflow:hidden"><i style="width:7px;height:7px;border-radius:2px;flex:none;background:{TOOL_C[a]}"></i><span style="font-weight:500">{a}</span><span style="margin-left:auto;font:{fs - 0.5}px var(--f-mono);color:var(--muted)">{t}</span></div>'
 def idle(fs, text=None):
     return f'<div style="display:flex;align-items:center;gap:6px;font-size:{fs}px;line-height:1.5;color:var(--muted)"><i style="width:7px;height:7px;border-radius:2px;flex:none;box-shadow:inset 0 0 0 1px var(--rule-2)"></i>{text or T("空闲", "Idle")}</div>'
@@ -342,7 +342,7 @@ sm_rows = ''.join(f'<div class="hs-it{" on" if on else ""}" style="margin:0 0 2p
 sm_tasks = ''.join(f'<div class="ht"><div class="ht1"><span class="si {SI2[k]}"></span><b>{T(a, b)}</b><span class="hst {k}">{HST[k]}</span></div><div class="ht2"><span class="id">{i}</span><span class="w">{w}</span></div></div>' for (i, a, b), k, w in zip(lt, lst_st, WHO))
 sm_notes = (NOTE('circle-check', 'CRM-152 完成，测试 38/38 通过', 'CRM-152 done, tests 38/38', '22:40') + NOTE('undo-2', 'CRM-153 被退回，团队接着改', 'CRM-153 sent back; team revising', '10:05')).replace('padding-left: 34px', '')
 save('homeMyAgent', solo(
-    f'<div class="sx-h"><h5>{T("我的 Agent", "My Agent")}</h5><span class="r"><span class="b p sm">{ic("plus")}{T("新会话", "New")}</span></span></div>'
+    f'<div class="sx-h"><h5>{T("我的会话", "My sessions")}</h5><span class="r"><span class="b p sm">{ic("plus")}{T("新会话", "New")}</span></span></div>'
     f'<div style="display:grid;grid-template-columns:250px minmax(0,1fr);gap:14px;align-items:start"><div>{sm_rows}</div>'
     f'<div style="display:grid;gap:8px"><div class="sx-sec">{T("客户批量导入去重 · 任务 3", "Customer import de-dup · 3 tasks")}</div><div>{sm_tasks}</div><div style="display:grid;gap:6px" class="smn">{sm_notes}</div></div></div>'))
 sm_rt = rts[:4] + rts[6:8]

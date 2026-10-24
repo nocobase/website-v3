@@ -1,186 +1,144 @@
 page: core
-title_zh: NocoBase Core — 让 Agent 专心写业务，通用底座已经就绪
-title_en: NocoBase Core — The Open-Source Foundation for Business Apps
-desc_zh: NocoBase Core 是开发和运行企业业务系统的开源底座。认证、权限、工作流、通知、文件、AI 员工等通用能力以插件提供，你的业务是自己仓库里的源码。
-desc_en: NocoBase Core is the open-source foundation for building and running business systems. Auth, permissions, workflows, notifications, files, and AI employees ship as plugins; your business is source code in your own repo.
+title_zh: NocoBase Core — 让 Agent 专心写业务，底座已经就绪
+title_en: NocoBase Core — Let agents focus on your business logic
+desc_zh: NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。
+desc_en: NocoBase Core is the open-source application foundation for business systems built and run with AI.
 ---
+<!-- 文案取自《NocoBase 产品定义与标准表述》的 NocoBase Core 一节：品牌表达做 H1，定义做导语，三条核心特色各一节；每节导语先说「问题与方案」里对应的问题，再说方案。 -->
 <section class="phero">
   <div class="container">
-    <p class="label"><b>NocoBase Core</b><i></i><span><t-zh>开源应用底座</t-zh><t-en>Open-source app foundation</t-en></span></p>
-    <h1><t-zh>让 Agent 专心写业务，<span class="m">通用底座已经就绪。</span></t-zh><t-en>Let agents focus on your domain. <span class="m">The foundation is ready.</span></t-en></h1>
-    <p class="lede"><t-zh>NocoBase Core 是开发和运行企业业务系统的开源底座。认证、权限、工作流、通知、文件、AI 员工等通用能力以插件提供，Agent 直接使用；在此之上的业务，比如页面、数据表、谁能看什么、单据怎么流转，都是你仓库里的源码，可评审、可回退。底座随版本独立升级，业务不受影响。</t-zh><t-en>NocoBase Core is the open-source foundation for building and running business systems. Auth, permissions, workflows, notifications, files, and AI employees ship as plugins that agents use directly. What you build on top—pages, tables, who can see what, how records move—is source code in your repo, reviewable and revertible. Core upgrades on its own without disturbing your business.</t-en></p>
+    <p class="label prod"><b><i data-lucide="blocks"></i>NocoBase Core</b></p>
+    <h1><t-zh>让 Agent 专心写业务，<span class="m">底座已经就绪。</span></t-zh><t-en>Let agents focus on your business logic. <span class="m">The foundation is ready.</span></t-en></h1>
+    <p class="lede"><t-zh>NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。</t-zh><t-en>NocoBase Core is the open-source application foundation for business systems built and run with AI. Permissions, workflows, files, and other building blocks come ready to use, so agents build only what is specific to your business, all on one consistent architecture.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#start"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a>
-      <a class="btn btn-sec" href="{{DOCS}}capabilities/" target="_blank" rel="noopener"><t-zh>查看能力文档</t-zh><t-en>Browse Capabilities</t-en></a>
+      <a class="btn btn-pri" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-sec" href="#blocks"><t-zh>查看基础能力</t-zh><t-en>See the Building Blocks</t-en></a>
     </div>
-    <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>开源，可用于生产与客户交付</t-zh><t-en>Open source, production-ready</t-en></span><span><i data-lucide="circle-check"></i><t-zh>私有部署，数据归企业所有</t-zh><t-en>Self-hosted, you own the data</t-en></span><span><i data-lucide="circle-check"></i><t-zh>Claude Code、Codex 等 Coding Agent 自由选择</t-zh><t-en>Any coding agent: Claude Code, Codex, and more</t-en></span></p>
+    <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>开源免费，可以直接用于生产</t-zh><t-en>Free, open source, and ready for production</t-en></span><span><i data-lucide="circle-check"></i><t-zh>代码和数据归企业所有</t-zh><t-en>Your code and data belong to you</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex 等数十种编码工具</t-zh><t-en>Works with Claude Code, Codex, and dozens of other coding tools</t-en></span></p>
     <div class="sheet blue">
-      {{FIG:coreFig:1120}}
+      {{SNIP:coreStack:1200}}
     </div>
   </div>
 </section>
 
-<section class="sec">
+<section class="sec" id="blocks">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>优势</t-zh><t-en>Why Core</t-en></b></p>
-      <h2 class="h2"><t-zh>同样让 AI 开发业务系统，</t-zh><t-en>Same AI, </t-en><span class="m"><t-zh>起点更高，交付更稳。</t-zh><t-en>higher starting point, steadier delivery.</t-en></span></h2>
-      <p class="lead"><t-zh>AI 写代码已经很快，难的是写出来的系统能不能上线、能不能放心交给业务用、明年还能不能改。Core 把这些交给底座来保证。</t-zh><t-en>AI already writes code fast. The hard part is whether the system can go live, whether the business can trust it, and whether it can still change next year. Core makes the foundation responsible for that.</t-en></p>
+      <p class="label"><b><t-zh>基础能力</t-zh><t-en>Building blocks</t-en></b></p>
+      <h2 class="h2"><t-zh>基础能力<span class="m">不用从头开发和验证。</span></t-zh><t-en>Proven building blocks, <span class="m">ready to use.</span></t-en></h2>
+      <p class="lead"><t-zh>即使交给 AI，权限、工作流引擎、审批等底层模块从零开发，设计难度依然很高，边界情况多，维护工作量大。Core 提供现成的基础能力，由 NocoBase 持续维护和升级。Agent 只开发业务部分，需要开发和验证的代码大幅减少。</t-zh><t-en>Even with AI writing the code, permissions, workflow engines, and approvals are hard to design from scratch. They are full of edge cases and take a lot of work to maintain. Core provides ready-made building blocks, and NocoBase keeps maintaining and upgrading them. Agents build only the business logic, so there is far less code to write and verify.</t-en></p>
     </div>
     <div class="sec-body">
-      <div class="pillars" style="--n:3">
-        <div><span class="k">01</span><h3><t-zh>Agent 只写业务</t-zh><t-en>Agents write only your business</t-en></h3><p><t-zh>认证、权限、工作流、审批、通知、文件、AI 员工已经做好并经过验证。Agent 不必每个项目重造一遍，代码量少、出错少、交付快。</t-zh><t-en>Auth, permissions, workflows, approvals, notifications, files, and AI employees are built and proven. Agents don’t rebuild them per project—less code, fewer bugs, faster delivery.</t-en></p></div>
-        <div><span class="k">02</span><h3><t-zh>业务都是你的源码</t-zh><t-en>Your business is your source</t-en></h3><p><t-zh>页面、数据表，以及具体的权限规则和业务流程，都在你的仓库里。每次改动可评审、可测试、可回退，复杂规则也写得出来。</t-zh><t-en>Pages, tables, and your actual permission rules and business flows live in your repo. Every change can be reviewed, tested, and reverted—and complex rules are no problem.</t-en></p></div>
-        <div><span class="k">03</span><h3><t-zh>底座独立升级</t-zh><t-en>The foundation upgrades on its own</t-en></h3><p><t-zh>Core 的能力以插件提供，业务代码不改底座。新版本带变更说明和配套的开发指引，升级平稳、可控。</t-zh><t-en>Core’s capabilities ship as plugins and your code never patches them. Each release comes with notes and matching coding guides, so upgrades are smooth and predictable.</t-en></p></div>
+      <!-- 清单按文档站的插件目录分组（doc/src/core/plugins/index.md）；这里不标开源或商业版 -->
+      <div class="capcat">
+        <div class="cc-g"><h3><i data-lucide="key-round"></i><t-zh>用户与权限</t-zh><t-en>Users and permissions</t-en></h3><ul>
+          <li><b><t-zh>登录与会话</t-zh><t-en>Sign-in and sessions</t-en></b><span><t-zh>密码登录、找回密码、会话；OIDC 统一身份、社交登录、双因素认证</t-zh><t-en>Passwords, resets, and sessions; OIDC single sign-on, social login, and two-factor authentication</t-en></span></li>
+          <li><b><t-zh>用户管理</t-zh><t-en>User management</t-en></b><span><t-zh>账号启用与停用、邀请链接、分配角色</t-zh><t-en>Activate and deactivate accounts, invite links, and role assignment</t-en></span></li>
+          <li><b><t-zh>权限</t-zh><t-en>Permissions</t-en></b><span><t-zh>页面、操作和数据范围的授权，人与 Agent 用同一套</t-zh><t-en>Access to pages, actions, and data, the same for people and agents</t-en></span></li>
+          <li><b><t-zh>数据范围规则</t-zh><t-en>Data access rules</t-en></b><span><t-zh>默认数据范围、共享规则、限制规则</t-zh><t-en>Default data scope, sharing rules, and restriction rules</t-en></span></li>
+          <li><b>API Key</b><span><t-zh>供脚本、外部系统和命令行访问应用</t-zh><t-en>For scripts, other systems, and the command line</t-en></span></li>
+        </ul></div>
+        <div class="cc-g"><h3><i data-lucide="database"></i><t-zh>数据与文件</t-zh><t-en>Data and files</t-en></h3><ul>
+          <li><b><t-zh>数据模型与迁移</t-zh><t-en>Data models and migrations</t-en></b><span><t-zh>数据表、字段、关联和迁移；SQLite、PostgreSQL、MySQL、SQL Server、Oracle</t-zh><t-en>Tables, fields, relations, and migrations on SQLite, PostgreSQL, MySQL, SQL Server, and Oracle</t-en></span></li>
+          <li><b><t-zh>国产数据库</t-zh><t-en>More databases</t-en></b><span><t-zh>达梦、人大金仓、OceanBase</t-zh><t-en>Dameng, KingbaseES, and OceanBase</t-en></span></li>
+          <li><b><t-zh>数据库浏览</t-zh><t-en>Database explorer</t-en></b><span><t-zh>浏览已有数据库的连接、数据表和字段</t-zh><t-en>Browse existing connections, tables, and fields</t-en></span></li>
+          <li><b><t-zh>文件</t-zh><t-en>Files</t-en></b><span><t-zh>上传、存储、预览和下载，文件与业务记录关联</t-zh><t-en>Upload, store, preview, and download, linked to business records</t-en></span></li>
+          <li><b><t-zh>模板打印</t-zh><t-en>Template printing</t-en></b><span><t-zh>按 Office 模板生成合同、报价单等文档</t-zh><t-en>Contracts, quotes, and other documents from Office templates</t-en></span></li>
+        </ul></div>
+        <div class="cc-g"><h3><i data-lucide="workflow"></i><t-zh>流程</t-zh><t-en>Workflows</t-en></h3><ul>
+          <li><b><t-zh>记录生命周期</t-zh><t-en>Record lifecycle</t-en></b><span><t-zh>状态和流转在代码里声明，保留完整的处理历史</t-zh><t-en>States and transitions declared in code, with full handling history</t-en></span></li>
+          <li><b><t-zh>流程管理</t-zh><t-en>Workflow management</t-en></b><span><t-zh>流程图和执行记录，管理员可以调整审批人、金额阈值</t-zh><t-en>Flow diagrams and run history; admins adjust approvers and thresholds</t-en></span></li>
+          <li><b><t-zh>定时任务</t-zh><t-en>Scheduled jobs</t-en></b><span><t-zh>按时间规则执行，记录每次执行</t-zh><t-en>Run on a schedule, with every run recorded</t-en></span></li>
+          <li><b><t-zh>审批</t-zh><t-en>Approvals</t-en></b><span><t-zh>多级、会签、或签、加签、转交、退回</t-zh><t-en>Multi-level, all-sign, any-sign, add a signer, transfer, and send back</t-en></span></li>
+          <li><b><t-zh>任务中心</t-zh><t-en>Task center</t-en></b><span><t-zh>汇总各业务来源的个人待办</t-zh><t-en>One to-do list across every business source</t-en></span></li>
+        </ul></div>
+        <div class="cc-g"><h3><i data-lucide="bell"></i><t-zh>消息</t-zh><t-en>Messaging</t-en></h3><ul>
+          <li><b><t-zh>通知</t-zh><t-en>Notifications</t-en></b><span><t-zh>通知的发送、投递和日志</t-zh><t-en>Sending, delivery, and logs</t-en></span></li>
+          <li><b><t-zh>站内信</t-zh><t-en>In-app messages</t-en></b><span><t-zh>站内信渠道和收件箱</t-zh><t-en>The in-app channel and inbox</t-en></span></li>
+          <li><b><t-zh>通知渠道</t-zh><t-en>Channels</t-en></b><span><t-zh>SMTP、Resend 邮件，飞书、钉钉群机器人</t-zh><t-en>SMTP and Resend email, Feishu and DingTalk group bots</t-en></span></li>
+          <li><b>Web Push</b><span><t-zh>浏览器推送通知</t-zh><t-en>Browser push notifications</t-en></span></li>
+          <li><b><t-zh>邮件互通</t-zh><t-en>Email</t-en></b><span><t-zh>关联个人邮箱，同步、回复和发送，往来邮件与业务记录关联</t-zh><t-en>Connect mailboxes to sync, reply, and send, with threads linked to records</t-en></span></li>
+        </ul></div>
+        <div class="cc-g"><h3><i data-lucide="bot"></i><t-zh>AI 与 Agent</t-zh><t-en>AI and agents</t-en></h3><ul>
+          <li><b><t-zh>业务 Agent</t-zh><t-en>Business agents</t-en></b><span><t-zh>Agent 定义、模型服务、运行和对话</t-zh><t-en>Agent definitions, model services, runs, and conversations</t-en></span></li>
+          <li><b><t-zh>Agent 会话</t-zh><t-en>Agent sessions</t-en></b><span><t-zh>在浏览器里和成员电脑上的编码工具对话</t-zh><t-en>Chat in the browser with the coding tools on members’ computers</t-en></span></li>
+          <li><b><t-zh>知识库</t-zh><t-en>Knowledge base</t-en></b><span><t-zh>带版本的文档和文件、全文检索，供人和 Agent 使用</t-zh><t-en>Versioned documents and files with full-text search, for people and agents</t-en></span></li>
+        </ul></div>
+        <div class="cc-g"><h3><i data-lucide="layout-dashboard"></i><t-zh>界面与运维</t-zh><t-en>Interface and operations</t-en></h3><ul>
+          <li><b><t-zh>页面与组件库</t-zh><t-en>Pages and UI library</t-en></b><span><t-zh>页面框架和 UI 组件库，表格、看板、流程图等</t-zh><t-en>The page framework and UI library: tables, boards, flow diagrams, and more</t-en></span></li>
+          <li><b><t-zh>多语言与主题</t-zh><t-en>Languages and themes</t-en></b><span><t-zh>界面语言切换，浅色、深色和紧凑模式</t-zh><t-en>Language switching, plus light, dark, and compact modes</t-en></span></li>
+          <li><b><t-zh>后台任务与队列</t-zh><t-en>Background jobs</t-en></b><span><t-zh>后台任务、队列和缓存</t-zh><t-en>Jobs, queues, and caching</t-en></span></li>
+          <li><b><t-zh>密钥管理</t-zh><t-en>Secrets</t-en></b><span><t-zh>密钥加密存储与轮换</t-zh><t-en>Encrypted secrets with rotation</t-en></span></li>
+          <li><b><t-zh>部署与升级</t-zh><t-en>Deploy and upgrade</t-en></b><span><t-zh>命令行部署、升级与回滚</t-zh><t-en>Command-line deploys, upgrades, and rollback</t-en></span></li>
+          <li><b><t-zh>应用底座</t-zh><t-en>Foundation page</t-en></b><span><t-zh>查看应用用到了哪些 Core 能力</t-zh><t-en>See which Core building blocks an app uses</t-en></span></li>
+        </ul></div>
       </div>
-      <div class="pillars" style="--n:3;margin-top:28px">
-        <div><span class="k">04</span><h3><t-zh>人和 Agent 同一套规则</t-zh><t-en>One set of rules for people and agents</t-en></h3><p><t-zh>业务 Agent 和员工使用同样的角色、权限、审批与操作记录。上线后让 Agent 干活，也守得住边界。</t-zh><t-en>Business agents use the same roles, permissions, approvals, and audit trail as staff—so agents can work in production without crossing lines.</t-en></p></div>
-        <div><span class="k">05</span><h3><t-zh>开源、私有部署</t-zh><t-en>Open source, self-hosted</t-en></h3><p><t-zh>可用于生产和客户交付。部署在你自己的环境，数据和代码都归你，不按用户数收费。</t-zh><t-en>Fit for production and client delivery. Runs in your environment; you own the data and the code, with no per-user fees.</t-en></p></div>
-        <div><span class="k">06</span><h3><t-zh>任选 Coding Agent</t-zh><t-en>Any coding agent</t-en></h3><p><t-zh>装好 NocoBase 3 的 Skills，Claude Code、Codex、OpenCode 都知道怎么开发 NocoBase 应用；指引随 Core 版本更新。</t-zh><t-en>Install the NocoBase 3 Skills and Claude Code, Codex, or OpenCode knows how to build NocoBase apps; the guides track each Core version.</t-en></p></div>
-      </div>
-      <p class="grp-h" style="margin-top:72px"><b><t-zh>和其他方式比</t-zh><t-en>Compared with the alternatives</t-en></b></p>
-      <div class="grid4">
-        <div class="card"><small class="pill soon"><t-zh>相比从零开发</t-zh><t-en>vs. from scratch</t-en></small><h3><t-zh>基础框架现成</t-zh><t-en>The framework is ready</t-en></h3><p><t-zh>认证、权限、状态机、通知、文件、数据库、多语言、部署工具都已就绪，AI 只写业务部分。</t-zh><t-en>Auth, permissions, state machines, notifications, files, database, i18n, and deploy tooling are ready. AI writes only your business.</t-en></p></div>
-        <div class="card"><small class="pill soon"><t-zh>相比其他开发框架</t-zh><t-en>vs. other frameworks</t-en></small><h3><t-zh>业务能力已封装</t-zh><t-en>Business features built in</t-en></h3><p><t-zh>不只是技术框架：权限集与共享、限制规则，审批、收件箱、Agent，以及登录、看板、流程图等业务组件，拿来即用。</t-zh><t-en>More than plumbing: permission sets, sharing and restriction rules, approvals, inbox, agents, and components like sign-in, boards, and flowcharts.</t-en></p></div>
-        <div class="card"><small class="pill soon"><t-zh>相比现成的解决方案</t-zh><t-en>vs. packaged software</t-en></small><h3><t-zh>开箱即用，也能改</t-zh><t-en>Ready to use, free to change</t-en></h3><p><t-zh>CRM 等 Solutions 开箱即用，同时可以私有部署、拿到全部源码，让 AI 按自己的业务继续开发。</t-zh><t-en>Solutions like CRM work out of the box, self-hosted with full source, so AI can keep shaping them to your business.</t-en></p></div>
-        <div class="card"><small class="pill soon"><t-zh>多年积累</t-zh><t-en>Proven experience</t-en></small><h3><t-zh>依托 NocoBase 2 的经验</t-zh><t-en>Built on NocoBase 2’s track record</t-en></h3><p><t-zh>NocoBase 2 已被全球众多企业、政府和高校用于构建业务系统，这些经验沉淀进了 NocoBase 3 的能力和 Solutions。</t-zh><t-en>Enterprises, governments, and universities worldwide run business systems on NocoBase 2. That experience went into NocoBase 3’s capabilities and Solutions.</t-en></p></div>
-      </div>
+      <p class="capfoot"><span><t-zh><b>20 多项基础能力</b>，由 NocoBase 持续维护和升级。</t-zh><t-en><b>20+ building blocks</b>, maintained and upgraded by NocoBase.</t-en></span><a class="link" href="{{DOCS}}capabilities/" target="_blank" rel="noopener"><t-zh>查看每项能力的文档</t-zh><t-en>Read the Docs for Each One</t-en><i data-lucide="arrow-up-right"></i></a></p>
     </div>
   </div>
 </section>
 
-<section class="sec">
+<section class="sec tint" id="standards">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>业务与底座</t-zh><t-en>Business &amp; Foundation</t-en></b></p>
-      <h2 class="h2"><t-zh>业务都在你的仓库里，</t-zh><t-en>Your business lives in your repo. </t-en><span class="m"><t-zh>底座以插件提供。</t-zh><t-en>The foundation ships as plugins.</t-en></span></h2>
-      <p class="lead"><t-zh>权限、工作流这些「能力」由 Core 插件提供；用这些能力写出的「规则」，比如销售只能看自己的客户、折扣超过 15% 要经理审批，是你仓库里的源码，由 Agent 编写、人来评审。业务代码不修改底座，Core 升级时业务照常运行。</t-zh><t-en>Capabilities like permissions and workflows come from Core plugins. The rules you build with them—reps see only their own accounts, discounts over 15% need a manager—are source code in your repo, written by agents and reviewed by people. Your code never patches Core, so upgrades leave your business running as before.</t-en></p>
+      <p class="label"><b><t-zh>架构和规范</t-zh><t-en>Architecture and standards</t-en></b></p>
+      <h2 class="h2"><t-zh>为 Agent 提供<span class="m">统一的架构和规范。</span></t-zh><t-en>One architecture, <span class="m">one set of standards.</span></t-en></h2>
+      <p class="lead"><t-zh>换人、换模型甚至换会话，AI 都可能随机发挥，系统越来越难维护。Core 提供统一的项目结构和开发规范，系统在统一架构下长期稳定迭代。</t-zh><t-en>Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="sheet">
-        <div class="arch">
-          <div class="col">
-            <div class="box you">
-              <h5><i data-lucide="git-branch"></i><t-zh>你的仓库</t-zh><t-en>Your repository</t-en></h5>
-              <p><t-zh>你的业务：由 Agent 编写，每次改动都可评审、可回退</t-zh><t-en>Your business: written by agents, every change reviewable and revertible</t-en></p>
-              <div class="rows">
-                <div><code>client/</code><span><t-zh>页面、路由、布局 · React · Vite · Refine</t-zh><t-en>Pages, routes, layouts · React · Vite · Refine</t-en></span></div>
-                <div><code>server/</code><span><t-zh>接口、服务，以及具体的权限规则与业务流程 · Hono</t-zh><t-en>APIs, services, and your permission rules and business flows · Hono</t-en></span></div>
-                <div><code>database/</code><span><t-zh>表结构迁移与初始数据</t-zh><t-en>Schema migrations and seed data</t-en></span></div>
-                <div><code>.agents/skills/</code><span><t-zh>与版本配套的开发指引，人和 Agent 共用</t-zh><t-en>Version-matched coding guides for people and agents</t-en></span></div>
-              </div>
-            </div>
-          </div>
-          <div class="link-col"><span><t-zh>使用</t-zh><t-en>uses</t-en></span></div>
-          <div class="col">
-            <div class="box nb">
-              <h5><i data-lucide="layers"></i><t-zh>NocoBase Core 插件</t-zh><t-en>NocoBase Core plugins</t-en></h5>
-              <p><t-zh>通用能力、业务组件和运行基础都已就绪，随版本独立升级</t-zh><t-en>Capabilities, business components, and runtime basics—ready, and upgraded on their own</t-en></p>
-              <p class="gh"><t-zh>通用能力</t-zh><t-en>Capabilities</t-en></p>
-              <div class="chips"><span><t-zh>认证</t-zh><t-en>Auth</t-en></span><span><t-zh>权限</t-zh><t-en>Permissions</t-en></span><span><t-zh>用户与组织</t-zh><t-en>Users &amp; orgs</t-en></span><span><t-zh>数据源</t-zh><t-en>Data sources</t-en></span><span><t-zh>文件</t-zh><t-en>Files</t-en></span><span><t-zh>工作流</t-zh><t-en>Workflows</t-en></span><span><t-zh>审批</t-zh><t-en>Approvals</t-en></span><span><t-zh>通知</t-zh><t-en>Notifications</t-en></span><span><t-zh>邮件</t-zh><t-en>Email</t-en></span><span><t-zh>模板打印</t-zh><t-en>Template printing</t-en></span><span><t-zh>AI 员工</t-zh><t-en>AI employees</t-en></span><span><t-zh>AI 知识库</t-zh><t-en>AI knowledge base</t-en></span><span><t-zh>多语言</t-zh><t-en>Languages</t-en></span><span><t-zh>主题</t-zh><t-en>Themes</t-en></span></div>
-              <p class="gh"><t-zh>业务组件</t-zh><t-en>Business components</t-en></p>
-              <div class="chips"><span><t-zh>登录</t-zh><t-en>Sign-in</t-en></span><span><t-zh>审批</t-zh><t-en>Approvals</t-en></span><span><t-zh>权限编辑</t-zh><t-en>Permission editor</t-en></span><span><t-zh>收件箱</t-zh><t-en>Inbox</t-en></span><span><t-zh>看板</t-zh><t-en>Boards</t-en></span><span><t-zh>流程图</t-zh><t-en>Flowcharts</t-en></span><span><t-zh>富文本</t-zh><t-en>Rich text</t-en></span></div>
-              <p class="gh"><t-zh>运行基础</t-zh><t-en>Runtime basics</t-en></p>
-              <div class="chips"><span><t-zh>数据库访问</t-zh><t-en>Database access</t-en></span><span><t-zh>后台任务</t-zh><t-en>Background jobs</t-en></span><span><t-zh>定时任务</t-zh><t-en>Scheduling</t-en></span><span><t-zh>缓存</t-zh><t-en>Caching</t-en></span></div>
-            </div>
-          </div>
-        </div>
-        <p class="arch-foot"><b><t-zh>上线后：</t-zh><t-en>In production: </t-en></b><t-zh>应用独立运行在你自己的环境里，数据库只存业务数据；界面和规则都在代码里，发布、升级和回退都清清楚楚。</t-zh><t-en>the app runs on its own in your environment and the database holds only business data. Screens and rules live in code, so releases, upgrades, and rollbacks stay clear.</t-en></p>
+        {{SNIP:coreRepo:1120}}
       </div>
       <div class="cols3">
-        <div><h3><t-zh>独立开发，分模块上线</t-zh><t-en>Ship module by module</t-en></h3><p><t-zh>每个模块在自己的分支上开发，一个任务一个 PR；合并哪些就发布哪些，没做完的不影响上线。</t-zh><t-en>Each module is built on its own branch, one task per PR. Merge what’s ready and ship it; unfinished work stays out of the release.</t-en></p></div>
-        <div><h3><t-zh>业务规则写在代码里</t-zh><t-en>Business rules in code</t-en></h3><p><t-zh>审批怎么走、谁能看什么，复杂规则也能满足；需要时再做成配置界面交给业务调整，每次改动都可评审、可回退。</t-zh><t-en>How approvals route and who sees what—complex rules are no problem, and you can still expose settings to the business. Every change is reviewable and revertible.</t-en></p></div>
-        <div><h3><t-zh>多个应用共用一份数据</t-zh><t-en>Many apps, one source of truth</t-en></h3><p><t-zh>主数据由一个应用维护，其他应用把它的库接为外部数据源，按需只读或读写，权限在服务端控制。</t-zh><t-en>One app owns the master data; others connect to it as an external source—read-only or read-write—with permissions enforced on the server.</t-en></p></div>
+        <div><h3><i data-lucide="folder-tree"></i><t-zh>项目脚手架</t-zh><t-en>Project scaffolding</t-en></h3><p><t-zh>新建的应用自带统一的目录：页面、接口、表结构变更、测试各有固定位置，Core 的基础能力以包的形式引入。</t-zh><t-en>Every new app starts with the same layout. Pages, endpoints, schema changes, and tests each have a fixed place, and Core’s building blocks come in as packages.</t-en></p></div>
+        <div><h3><i data-lucide="file-check-2"></i><t-zh>架构规范</t-zh><t-en>Architecture standards</t-en></h3><p><t-zh>AGENTS.md 和技能写明业务代码放在哪里、哪些直接用现成能力、迁移和权限怎么写。</t-zh><t-en>AGENTS.md and the skills spell out where business code goes, what to take from Core, and how to write migrations and permission checks.</t-en></p></div>
+        <div><h3><i data-lucide="sparkles"></i><t-zh>开发技能</t-zh><t-en>Development skills</t-en></h3><p><t-zh>技能随 Core 的包发布，安装依赖时同步到应用里。Claude Code、Codex 等编码工具读到的是同一套写法，换人、换模型也不变。</t-zh><t-en>Skills ship with Core’s packages and sync into the app on install. Claude Code, Codex, and other coding tools read the same playbook, so the approach holds as people and models change.</t-en></p></div>
       </div>
+      <div class="links"><a class="link" href="studio.html"><t-zh>多人、多个 Agent 一起开发：NocoBase Studio</t-zh><t-en>Building with a team of people and agents: NocoBase Studio</t-en><i data-lucide="arrow-right"></i></a></div>
     </div>
   </div>
 </section>
 
-<section class="sec">
+<section class="sec" id="open">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>应用能力</t-zh><t-en>Capabilities</t-en></b></p>
-      <h2 class="h2"><t-zh>基础能力已经就绪，</t-zh><t-en>The basics are built. </t-en><span class="m"><t-zh>专注你的业务。</t-zh><t-en>Focus on your business.</t-en></span></h2>
-      <p class="lead"><t-zh>Agent 直接使用这些能力，不必从零开发。每项能力都配有开发指引和场景提示词：说明准备条件，选一个场景，改好提示词交给 Agent 即可。</t-zh><t-en>Agents use these capabilities directly instead of building them from scratch. Each comes with a coding guide and scenario prompts: check the prerequisites, pick a scenario, tweak the prompt, and hand it to your agent.</t-en></p>
+      <p class="label"><b><t-zh>开源与私有部署</t-zh><t-en>Open source and self-hosting</t-en></b></p>
+      <h2 class="h2"><t-zh>应用和数据<span class="m">归企业私有。</span></t-zh><t-en>You own <span class="m">your apps and data.</span></t-en></h2>
+      <p class="lead"><t-zh>Core 开源免费，业务代码和数据都在企业自己的仓库和服务器上，模型和 Agent 也由企业自由选择。</t-zh><t-en>Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.</t-en></p>
     </div>
-    <div class="sec-body">
-      <p class="grp-h"><b><t-zh>身份与访问</t-zh><t-en>Identity &amp; access</t-en></b><span><t-zh>每一次访问都有明确的身份，权限决定能做什么</t-zh><t-en>Every request has an identity; permissions decide what it can do</t-en></span></p>
-      <div class="grid2">
-        <a class="card" href="{{DOCS}}capabilities/auth" target="_blank" rel="noopener"><span class="ic"><i data-lucide="log-in"></i></span><h3><t-zh>认证</t-zh><t-en>Authentication</t-en></h3><p><t-zh>账号密码、社交账号与 OIDC 单点登录（SSO），会话管理，程序通过 API key 访问；SAML、LDAP 与企业微信、飞书、钉钉登录由商业版提供。</t-zh><t-en>Password sign-in, registration and recovery, sessions, and API keys for programs. Customize the sign-in page and extend to OIDC and other enterprise or third-party sign-in.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/authorization" target="_blank" rel="noopener"><span class="ic"><i data-lucide="key-round"></i></span><h3><t-zh>权限</t-zh><t-en>Permissions</t-en></h3><p><t-zh>按岗位组合页面、操作与数据范围的权限集，支持共同范围、共享规则、限制规则和授权来源检查，人和 Agent 使用同一套权限。</t-zh><t-en>Permission sets combine pages, actions, and data scopes by role, with shared scopes, sharing rules, restriction rules, and an access inspector—the same rules for people and agents.</t-en></p></a>
-      </div>
-      <p class="grp-h"><b><t-zh>数据</t-zh><t-en>Data</t-en></b><span><t-zh>应用自己的数据，加上已有系统的数据</t-zh><t-en>Your app’s data, plus the data you already have</t-en></span></p>
-      <div class="grid2">
-        <a class="card" href="{{DOCS}}capabilities/data-sources" target="_blank" rel="noopener"><span class="ic"><i data-lucide="database"></i></span><h3><t-zh>数据源</t-zh><t-en>Data sources</t-en></h3><p><t-zh>默认使用 SQLite，也可换用其他数据库；接入已有外部数据库，明确字段对应、读取范围与访问权限，在业务页面直接使用。</t-zh><t-en>SQLite by default, or another database of your choice. Connect existing external databases—mapping fields, read scope, and access—and use them right in your pages.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/file" target="_blank" rel="noopener"><span class="ic"><i data-lucide="file"></i></span><h3><t-zh>文件</t-zh><t-en>Files</t-en></h3><p><t-zh>上传、预览、下载业务附件并关联到记录；默认本地存储，也支持 S3 兼容存储，服务端管理配置与凭据。</t-zh><t-en>Upload, preview, and download attachments linked to records. Local storage by default or any S3-compatible store, with credentials managed on the server.</t-en></p></a>
-      </div>
-      <p class="grp-h"><b><t-zh>流程与协作</t-zh><t-en>Process &amp; collaboration</t-en></b><span><t-zh>让业务按规则推进，把消息送到对的人</t-zh><t-en>Move work by the rules and reach the right people</t-en></span></p>
-      <div class="grid3">
-        <a class="card" href="{{DOCS}}capabilities/workflow" target="_blank" rel="noopener"><span class="ic"><i data-lucide="workflow"></i></span><h3><t-zh>工作流</t-zh><t-en>Workflows</t-en></h3><p><t-zh>用状态机描述阶段、分支与条件；保存等待状态，处理重试与补救；按需呈现阶段栏、流程图和办理历史。</t-zh><t-en>State machines define stages, branches, and conditions; waits, retries, and recovery are handled; show stage bars, flowcharts, and history as you need.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/approval" target="_blank" rel="noopener"><span class="ic"><i data-lucide="stamp"></i></span><h3><t-zh>审批</t-zh><t-en>Approvals</t-en><span class="pill brand"><t-zh>商业版</t-zh><t-en>Commercial</t-en></span></h3><p><t-zh>条件分级、会签、或签、加签与转交；申请、待办与进度可嵌入业务详情。由审批插件提供，需要相应授权。</t-zh><t-en>Conditional tiers, joint and any-one sign-off, add-signer and handover; requests, to-dos, and progress embedded in records. Provided by the approval plugin under a commercial license.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/notification" target="_blank" rel="noopener"><span class="ic"><i data-lucide="bell"></i></span><h3><t-zh>通知</t-zh><t-en>Notifications</t-en></h3><p><t-zh>站内信、邮件（SMTP 或 Resend）、飞书与钉钉群消息，各渠道独立保存投递结果。</t-zh><t-en>In-app messages, email (SMTP or Resend), and Feishu or DingTalk group bots, with delivery results kept per channel.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/mail" target="_blank" rel="noopener"><span class="ic"><i data-lucide="mail"></i></span><h3><t-zh>邮件</t-zh><t-en>Email</t-en></h3><p><t-zh>员工关联自己的邮箱（IMAP/SMTP、Gmail、Microsoft 365），在客户和订单页面阅读、回复与编写，使用签名和模板。</t-zh><t-en>Staff connect their own mailboxes (IMAP/SMTP, Gmail, Microsoft 365) and read, reply, and compose from customer and order pages, with signatures and templates.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/scheduler" target="_blank" rel="noopener"><span class="ic"><i data-lucide="alarm-clock"></i></span><h3><t-zh>定时任务</t-zh><t-en>Scheduled jobs</t-en></h3><p><t-zh>按时间或周期提醒待办、生成报表、同步数据，保留执行时间、耗时与状态，可暂停和恢复。</t-zh><t-en>Remind, report, and sync on a schedule, with run time, duration, and status recorded—pause and resume any time.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/template-print" target="_blank" rel="noopener"><span class="ic"><i data-lucide="printer"></i></span><h3><t-zh>模板打印</t-zh><t-en>Template printing</t-en></h3><p><t-zh>提供 Office 模板与字段，由 Agent 实现生成、预览或下载；可生成 DOCX，PDF 需服务端转换工具。</t-zh><t-en>Bring an Office template and fields; agents build generation, preview, or download. DOCX out of the box; PDF needs a server-side converter.</t-en></p></a>
-      </div>
-      <p class="grp-h"><b>AI</b><span><t-zh>让业务 Agent 理解业务，也遵守业务规则</t-zh><t-en>Business agents that know the business and follow its rules</t-en></span></p>
-      <div class="grid2">
-        <a class="card" href="{{DOCS}}capabilities/ai-employee" target="_blank" rel="noopener"><span class="ic"><i data-lucide="bot"></i></span><h3><t-zh>AI 员工</t-zh><t-en>AI employees</t-en></h3><p><t-zh>接入云端或本地模型，在独立页面、区块或侧栏中对话；通过服务端操作访问业务，沿用当前用户权限，先接入读取，再按需开放业务动作。</t-zh><t-en>Connect cloud or local models and chat from a page, block, or side panel. Agents reach business data through server actions under the current user’s permissions—reads first, actions when you allow them.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/ai-knowledge-base" target="_blank" rel="noopener"><span class="ic"><i data-lucide="book-open"></i></span><h3><t-zh>AI 知识库</t-zh><t-en>AI knowledge base</t-en></h3><p><t-zh>用空间、文件夹、文章和文件组织企业知识，按岗位控制阅读和维护；AI 在允许的范围内检索并引用来源。</t-zh><t-en>Organize knowledge in spaces, folders, articles, and files with role-based reading and editing. AI searches within what it’s allowed to see and cites its sources.</t-en></p></a>
-      </div>
-      <p class="grp-h"><b><t-zh>应用体验</t-zh><t-en>App experience</t-en></b><span><t-zh>用熟悉的语言，呈现你的品牌</t-zh><t-en>Your languages, your brand</t-en></span></p>
-      <div class="grid2">
-        <a class="card" href="{{DOCS}}capabilities/i18n" target="_blank" rel="noopener"><span class="ic"><i data-lucide="languages"></i></span><h3><t-zh>多语言</t-zh><t-en>Languages</t-en></h3><p><t-zh>内置中文与英文，即时切换；由 Agent 增加新语言、补齐翻译或设置默认语言。</t-zh><t-en>Chinese and English built in, switched instantly. Agents add languages, fill in translations, or set the default.</t-en></p></a>
-        <a class="card" href="{{DOCS}}capabilities/theme" target="_blank" rel="noopener"><span class="ic"><i data-lucide="palette"></i></span><h3><t-zh>主题</t-zh><t-en>Themes</t-en></h3><p><t-zh>内置宽松与紧凑主题，支持浅色、深色与跟随系统；主题代码就在项目里，按品牌调整配色、字体与信息密度。</t-zh><t-en>Comfortable and compact themes with light, dark, and system modes. Theme code lives in your project—tune colors, type, and density to your brand.</t-en></p></a>
-      </div>
-      <div class="links"><a class="link" href="{{DOCS}}capabilities/" target="_blank" rel="noopener"><t-zh>查看全部能力文档</t-zh><t-en>Read the capability docs</t-en><i data-lucide="arrow-right"></i></a></div>
+    <div class="sec-body open-grid">
+      <a class="ghcard" href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">
+        <div class="h"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg><span>nocobase / <b>nocobase</b></span></div>
+        <div class="stats">
+          <div><small>GitHub Stars</small><b>24.6K</b></div>
+          <div><small>Forks</small><b>2.9k</b></div>
+          <div><small><t-zh>代码贡献者</t-zh><t-en>Contributors</t-en></small><b>122</b></div>
+          <div><small><t-zh>累计下载</t-zh><t-en>Downloads</t-en></small><b><t-zh>300 万+</t-zh><t-en>3M+</t-en></b></div>
+        </div>
+        <div class="f"><span class="link"><t-zh>在 GitHub 上查看源码</t-zh><t-en>View on GitHub</t-en><i data-lucide="arrow-right"></i></span></div>
+      </a>
+      <ul class="olist">
+        <li><h3><i data-lucide="code-xml"></i><t-zh>开源免费</t-zh><t-en>Free and open source</t-en></h3><p><t-zh>Core 和所有 Solution 开源免费，可以直接用于生产。</t-zh><t-en>Core and every Solution app are free, open source, and ready for production.</t-en></p></li>
+        <li><h3><i data-lucide="server"></i><t-zh>私有部署</t-zh><t-en>Self-hosted</t-en></h3><p><t-zh>Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。</t-zh><t-en>Core, Solution, and Studio all run on your own servers. Your code and data belong to you.</t-en></p></li>
+        <li><h3><i data-lucide="shuffle"></i><t-zh>模型与 Agent 自由选择</t-zh><t-en>Your choice of models and agents</t-en></h3><p><t-zh>不绑定厂商，支持 Claude Code、Codex 等编码工具和各类大模型。</t-zh><t-en>No vendor lock-in. Works with Claude Code, Codex, and other coding tools, and with a wide range of models.</t-en></p></li>
+        <li><h3><i data-lucide="box"></i><t-zh>应用独立运行</t-zh><t-en>Apps run independently</t-en></h3><p><t-zh>业务应用发布后独立运行，日常业务请求不经过 Studio。</t-zh><t-en>Once released, your business apps run on their own. Day-to-day business requests never go through Studio.</t-en></p></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="sec">
+<section class="sec" id="start">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>业务 Agent</t-zh><t-en>Business Agents</t-en></b></p>
-      <h2 class="h2"><t-zh>业务 Agent 和同事，</t-zh><t-en>Business agents and your team </t-en><span class="m"><t-zh>遵守同一套规则。</t-zh><t-en>follow the same rules.</t-en></span></h2>
-      <p class="lead"><t-zh>系统上线后，业务 Agent 在其中整理客户资料、分类工单、准备入职事项。它们和人使用同一套角色、权限、审批与操作记录。</t-zh><t-en>Once live, business agents organize customer data, triage tickets, and prepare onboarding—using the same roles, permissions, approvals, and audit trail as people.</t-en></p>
+      <p class="label"><b><t-zh>开始使用</t-zh><t-en>Get started</t-en></b></p>
+      <h2 class="h2"><t-zh>选择适合你们团队的起点。</t-zh><t-en>Choose your starting point.</t-en></h2>
     </div>
     <div class="sec-body">
-      <div class="grid3">
-        <div class="card"><span class="ic"><i data-lucide="shield-check"></i></span><h3><t-zh>只看、只改被授权的数据</t-zh><t-en>Only the data it’s granted</t-en></h3><p><t-zh>Agent 和人使用同一套角色与权限。例如，供应商 Agent 只能读取本部门负责的供应商，不能修改准入状态。</t-zh><t-en>Agents and people share roles and permissions. A supplier agent reads only its department’s suppliers and can’t change approval status.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="stamp"></i></span><h3><t-zh>关键操作由人批准</t-zh><t-en>People approve key actions</t-en></h3><p><t-zh>审批规则写在工作流里，超出授权的操作交给负责人决定，每次都按同样的方式流转。</t-zh><t-en>Approval rules live in workflows. Anything beyond an agent’s authority goes to its owner, the same way every time.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="history"></i></span><h3><t-zh>每一步都查得到</t-zh><t-en>Every step is traceable</t-en></h3><p><t-zh>谁做的、改了什么、依据哪条规则，都有操作记录，人和 Agent 的操作一样可以查询与追溯。</t-zh><t-en>Who did it, what changed, and which rule applied—recorded and searchable for people and agents alike.</t-en></p></div>
+      <div class="start3">
+        <div class="scard pro"><div class="hd"><i data-lucide="blocks"></i><b>NocoBase Core</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>用 Core 开发自己的系统</t-zh><t-en>Build your own system on Core</t-en></h3><p><t-zh>Agent 使用 Core 的现成能力，只开发企业自己的业务部分。</t-zh><t-en>Agents use Core’s ready-made building blocks and build only what is specific to your business.</t-en></p><a class="btn btn-pri" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a></div>
+        <div class="scard"><div class="hd"><i data-lucide="layout-grid"></i><b>NocoBase Solution</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>安装现成的业务应用</t-zh><t-en>Install a ready-made business app</t-en></h3><p><t-zh>可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。</t-zh><t-en>Use it as it is, or have a coding agent tailor it to your business.</t-en></p><a class="btn btn-sec" href="solutions.html"><t-zh>查看 Solution</t-zh><t-en>View Solution Apps</t-en><i data-lucide="arrow-right"></i></a></div>
+        <div class="scard"><div class="hd"><i data-lucide="users-round"></i><b>NocoBase Studio</b><span><t-zh>商业版</t-zh><t-en>Commercial</t-en></span></div><h3><t-zh>带领 Agent 团队开发</t-zh><t-en>Lead an agent team</t-en></h3><p><t-zh>让团队专心做决策，执行交给 Agent。</t-zh><t-en>Let your team focus on decisions. Leave the execution to agents.</t-en></p><a class="btn btn-sec" href="studio.html"><t-zh>了解 Studio</t-zh><t-en>Explore Studio</t-en><i data-lucide="arrow-right"></i></a></div>
       </div>
-      <p class="subnote"><t-zh>Core 支持应用内 Agent 和外部 Agent：应用内 Agent 在应用提供的环境中运行，外部 Agent 在独立环境中运行并连接应用。具体能做什么，取决于所用的模型、工具与授权。</t-zh><t-en>Core supports in-app agents and external agents: in-app agents run inside the app’s environment; external ones run separately and connect to it. What they can do depends on the model, tools, and permissions you give them.</t-en></p>
     </div>
   </div>
 </section>
-
-<section class="sec">
-  <div class="container">
-    <div class="sec-head">
-      <p class="label"><b><t-zh>开源</t-zh><t-en>Open Source</t-en></b></p>
-      <h2 class="h2"><t-zh>开源免费，</t-zh><t-en>Open source and free, </t-en><span class="m"><t-zh>可直接用于生产。</t-zh><t-en>ready for production.</t-en></span></h2>
-      <p class="lead"><t-zh>NocoBase Core 以开源社区版（Community）提供，可用于企业内部生产，也可用于给客户交付项目。</t-zh><t-en>NocoBase Core is available as the open-source Community edition, for your own production systems and for projects you deliver to clients.</t-en></p>
-    </div>
-    <div class="sec-body">
-      <div class="grid3">
-        <div class="card"><span class="ic"><i data-lucide="boxes"></i></span><h3><t-zh>通用能力齐全</t-zh><t-en>The full set of basics</t-en></h3><p><t-zh>数据、文件、用户与组织、权限、工作流与简单审批、AI 员工与知识库、邮件、通知、外部连接、界面与设置、操作记录与基础运维。</t-zh><t-en>Data, files, users and orgs, permissions, workflows and simple approvals, AI employees and knowledge, email, notifications, integrations, UI and settings, audit trail, and basic ops.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="badge-check"></i></span><h3><t-zh>生产与交付都能用</t-zh><t-en>For production and delivery</t-en></h3><p><t-zh>直接用于内部业务系统，也能作为给客户交付的底座；不按用户数收费。</t-zh><t-en>Run your own business systems on it, or deliver client projects on it—no per-user fees.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="server"></i></span><h3><t-zh>源码与数据归你</t-zh><t-en>You own code and data</t-en></h3><p><t-zh>部署在你自己的服务器或私有云，源码公开，数据不出你的环境。</t-zh><t-en>Deploy on your own servers or private cloud. The source is open, and your data never leaves your environment.</t-en></p></div>
-      </div>
-      <div class="links"><a class="link" href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener"><t-zh>在 GitHub 上查看源码</t-zh><t-en>View on GitHub</t-en><i data-lucide="arrow-up-right"></i></a></div>
-    </div>
-  </div>
-</section>
-
-<div class="container">
-  <div class="band qs" id="start">
-    <div>
-      <h2><t-zh>底座就绪，现在就让 Agent 开工。</t-zh><t-en>The foundation is ready. Put your agent to work.</t-en></h2>
-      <p><t-zh>给 Claude Code、Codex 等 Agent 装好 NocoBase 3 的 Skills，再告诉它你要做什么，比如「帮我做一个采购管理系统」。</t-zh><t-en>Give Claude Code, Codex, or another agent the NocoBase 3 Skills, then tell it what to build—say, “a procurement system.”</t-en></p>
-      <div class="code"><span class="pr">$</span><code>npx skills@latest add nocobase/skills-v3 --skill '*' -g</code></div>
-    </div>
-    <div class="cta"><a class="btn btn-pri" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>查看快速开始文档</t-zh><t-en>Read the Quick Start</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="studio.html"><t-zh>了解 Studio</t-zh><t-en>Explore Studio</t-en></a></div>
-  </div>
-</div>

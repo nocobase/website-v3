@@ -10,7 +10,7 @@
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var lang = (u === 'en' || u === 'zh') ? u : ((s === 'en' || s === 'zh') ? s : 'zh');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
@@ -138,8 +138,8 @@
           <tr><td><t-zh>安全与审计治理</t-zh><t-en>Security &amp; audit governance</t-en></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>离线交付</t-zh><t-en>Air-gapped delivery</t-en></td><td class="n">—</td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr class="g"><th colspan="4">NocoBase Studio<span><t-zh>团队与 Agent 协同开发的治理平台</t-zh><t-en>Governed development for teams and their agents</t-en></span></th></tr>
-          <tr><td><t-zh>工作台</t-zh><t-en>Workspace</t-en><small><t-zh>我的任务、我的 Agent、仪表盘</t-zh><t-en>My tasks, My Agent, dashboard</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
-          <tr><td><t-zh>Agent 调度</t-zh><t-en>Agent orchestration</t-en><small><t-zh>项目经理 Agent 分派任务，Agent 统一接入与启用</t-zh><t-en>A PM agent assigns work; agents connected and enabled in one place</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>工作台</t-zh><t-en>Workspace</t-en><small><t-zh>我的任务、我的会话、仪表盘</t-zh><t-en>My tasks, My sessions, dashboard</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
+          <tr><td><t-zh>Agent 调度</t-zh><t-en>Agent orchestration</t-en><small><t-zh>调度 Agent 分派任务，Agent 统一接入与启用</t-zh><t-en>A coordinator agent assigns work; agents connected and enabled in one place</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>运行环境</t-zh><t-en>Run environments</t-en><small><t-zh>Agent 运行环境，以及可并行的任务环境</t-zh><t-en>Agent runtimes plus parallel task environments</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>技能与知识库</t-zh><t-en>Skills &amp; knowledge</t-en></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>
           <tr><td><t-zh>测试与验收</t-zh><t-en>Testing &amp; acceptance</t-en><small><t-zh>自动测试、换模型评审、预览与人工验收</t-zh><t-en>Automated tests, cross-model review, previews, human sign-off</t-en></small></td><td class="n">—</td><td class="y"><i data-lucide="check"></i></td><td class="y"><i data-lucide="check"></i></td></tr>

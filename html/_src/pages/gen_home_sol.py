@@ -1,5 +1,6 @@
 # 首页 Solutions：六款应用各一张专属图，组合成 <template>，插到首页 Solutions 段里。
 # 已上线的 NocoCRM、NocoITAM、NocoReach 取自各自内页成品 HTML 里最核心的图；还没上线的三款在这里直接画。
+# 首页按 880 宽排（和 Studio 段的图同一字号），图要和 Studio 段的图差不多高，放不下的内容在这里删减，内页不受影响。
 # 用法（在 _src 目录下）：python3 pages/gen_home_sol.py ..
 import re, sys, os
 root = sys.argv[1]
@@ -20,6 +21,13 @@ def wow_body(page):
     sec = s[i:s.find('</section>', i)]
     body = balanced(sec, sec.find('<div class="sx-body">'))
     return body[len('<div class="sx-body">'):-len('</div>')]
+
+def drop_tl(html, times):
+    """删掉时间线里这些时刻的行（每行是 <time> 所在的那个 div）"""
+    for t in times:
+        k = html.rfind('<div class="', 0, html.index('<time>%s</time>' % t))
+        html = html.replace(balanced(html, k), '', 1)
+    return html
 
 def section_fig(page, label, cls='<div class="sx-body">'):
     s = rd(page)
@@ -48,27 +56,27 @@ crm_roster = ('<div class="sx-sec" style="color:var(--agent-ink)"><i data-lucide
     '<div style="display:grid;grid-template-columns:24px minmax(0,1fr);gap:2px 8px;align-items:center;padding:9px 10px;border:1px solid var(--rule);border-radius:9px">'
     '<span class="ag" style="grid-row:span 2;width:24px;height:24px"><i data-lucide="%s"></i></span><b style="font-size:12px;font-weight:600;color:var(--agent-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">%s</b>'
     '<span style="font-size:11.5px;color:var(--muted)">%s</span></div>' % (ic, T(zh, en), T('今天 %d 件' % n, '%d today' % n)) for zh, en, ic, n in ROSTER) + '</div>')
-crm = win('handshake', 'CRM', 'Agent 工作', 'Agent work', wow_body('solution-crm.html'),
+crm = win('handshake', 'CRM', 'Agent 工作', 'Agent work', drop_tl(wow_body('solution-crm.html'), ['08:30', '11:30', '18:20']),
           '<span class="tag violet"><span class="spin" style="width:10px;height:10px;border-width:1.5px"></span>' + T('6 个 Agent 在岗', '6 agents on duty') + '</span>')
 
 # NocoITAM：省下的每一笔钱，都说得清来龙去脉
 # 底部补一条「等你确认」：Agent 只提建议，负责人确认后才执行
 def ask(id_, zh, en, dzh, den, save):
     return ('<div class="sg on" style="grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:10px 12px">'
-            '<div style="display:grid;gap:2px;min-width:0"><b><span class="id" style="color:var(--muted);font-weight:400;font-size:12px">%s</span> %s</b><p>%s<span style="margin-left:8px;font-family:var(--f-mono);color:var(--pass-ink)">%s</span></p></div>'
+            '<div style="display:grid;gap:2px;min-width:0"><b><span class="id" style="color:var(--muted);font-weight:400;font-size:12px">%s</span> %s</b><p>%s<span style="margin-left:8px;font-family:var(--f-mono);color:var(--pass-ink);white-space:nowrap">%s</span></p></div>'
             '<div class="acts" style="margin:0;flex-wrap:nowrap"><span class="b p sm">%s</span><span class="b sm">%s</span></div></div>') % (id_, T(zh, en), T(dzh, den), save, T('同意', 'Approve'), T('修改', 'Edit'))
 itam_ask = ('<div class="sx-sec"><i data-lucide="user-check"></i>' + T('等你确认', 'Waiting on you') + '<span class="r">' + T('确认后才会执行', 'Nothing runs until you confirm') + '</span></div>'
   '<div class="duo2" style="gap:12px">' +
   ask('PO-000052', '设计部申请 3 台显示器', '3 monitors for Design', '库存有 2 台同型号，建议只买 1 台', '2 same-model units in stock; buy just 1', T('少花 ¥ 3,198', 'Saves ¥3,198')) +
   ask('Adobe CC', '5 个席位 90 天未登录', '5 seats unused for 90 days', '下月续订前回收，续订减少 5 个', 'Reclaim before next month’s renewal', T('少花 ¥ 6,450/年', 'Saves ¥6,450/yr')) +
   '</div>')
-itam = win('monitor-smartphone', 'ITAM', '价值', 'Value', re.sub(r'<tr><td class="id">DP-000003</td>.*?</tr>', '', wow_body('solution-itam.html'), flags=re.S) + itam_ask,
+itam = win('monitor-smartphone', 'ITAM', '价值', 'Value', re.sub(r'<tr><td class="id">(DP-000003|PO-000045|Zoom Pro)</td>.*?</tr>', '', wow_body('solution-itam.html'), flags=re.S) + itam_ask,
            '<span class="tag grey">' + T('本季度', 'This quarter') + '</span>')
 
 # NocoReach：找到机会 → Agent 做完 → 上线后自动复盘（闭环在上，下面是今天的机会和已上线的成效）
 loop = wow_body('solution-reach.html')
 opp = section_fig('solution-reach.html', '机会')
-cards = [balanced(opp, m.start()) for m in re.finditer(r'<div class="sg(?: on)?">', opp)][:2]
+cards = [balanced(opp, m.start()) for m in re.finditer(r'<div class="sg(?: on)?">', opp)][:1]
 hand = '<div class="acts" style="margin:0;flex-wrap:nowrap"><span class="b p sm"><i data-lucide="bot"></i>' + T('交给 Agent', 'Hand to agent') + '</span><span class="b sm">' + T('忽略', 'Dismiss') + '</span></div>'
 def compact(c):
     # 只留标题和一句说明，按钮放右侧，一行一个机会
@@ -85,7 +93,7 @@ reach_body = (loop +
   '<div class="duo2" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px">' +
     '<div class="pnl" style="gap:8px;align-content:start;background:var(--paper)"><div class="h"><i data-lucide="lightbulb"></i>' + T('今天找到的机会', 'Today’s opportunities') + '<span class="r">' + T('待办 2 · 观察中 7', 'To do 2 · Watching 7') + '</span></div>' + ''.join(cards) + '</div>' +
     '<div class="pnl" style="gap:10px;align-content:start;background:var(--paper)"><div class="h"><i data-lucide="chart-line" style="color:var(--pass)"></i>' + T('上线后的成效', 'After launch') + '<span class="r">' + T('第 7 / 28 天自动对比', 'Auto-checked on day 7 / 28') + '</span></div>' + stat +
-      '<div class="tblw"><table class="tbl">' + tbl + '<tbody>' + ''.join(rows) + '</tbody></table></div></div>' +
+      '</div>' +
   '</div>')
 reach = win('chart-no-axes-column', 'Reach', '洞察', 'Insights', reach_body, '<span class="tag amber">' + T('15 件事等你处理', '15 items need you') + '</span>')
 
@@ -123,14 +131,12 @@ sup_body = (
       table([('工单', 'Ticket'), ('客户问题', 'Issue'), ('Agent 怎么处理', 'What the agent did'), ('结果', 'Result')], [
         [td('#2412', 'id'), td(T('月度报表导出超时', 'Monthly export times out'), 'w'), td(T('检索知识库，发去分批导出步骤，客户已确认', 'Found the KB fix, sent batch-export steps; confirmed'), 'w'), td(tag('green', '已解决', 'Resolved'))],
         [td('#2409', 'id'), td(T('SSO 登录账号被锁定', 'Locked out of SSO'), 'w'), td(T('核验身份后按授权流程解锁', 'Verified identity, unlocked per policy'), 'w'), td(tag('green', '已解决', 'Resolved'))],
-        [td('#2405', 'id'), td(T('修改增值税发票抬头', 'Change invoice entity'), 'w'), td(T('核对资质，更新抬头并重开发票', 'Checked documents, reissued the invoice'), 'w'), td(tag('green', '已解决', 'Resolved'))],
-        [td('#2403', 'id'), td(T('报表统计时区偏差', 'Report time zone is off'), 'w'), td(T('定位到账号时区设置，起草回复', 'Traced to account time zone; reply drafted'), 'w'), td(tag('violet', '草稿待发', 'Draft ready'))],
-        [td('#2401', 'id'), td(T('申请新增 5 个子账号', 'Add 5 sub-accounts'), 'w'), td(T('已追问人员名单，等客户回复', 'Asked for the user list; waiting'), 'w'), td(tag('grey', '等客户', 'Waiting'))]]) +
+        [td('#2403', 'id'), td(T('报表统计时区偏差', 'Report time zone is off'), 'w'), td(T('定位到账号时区设置，起草回复', 'Traced to account time zone; reply drafted'), 'w'), td(tag('violet', '草稿待发', 'Draft ready'))]]) +
     '</div>' +
     '<div class="pnl" style="gap:8px;align-content:start;background:var(--paper)"><div class="h"><i data-lucide="user-check" style="color:var(--human-ink)"></i>' + T('升级给你的 3 件', '3 escalated to you') + '<span class="r">' + T('都附好了依据', 'Context attached') + '</span></div>' +
       decide('#2381', '重复扣款退款 ¥3,200', 'Refund a ¥3,200 double charge', '超过自动退款额度 ¥1,000；Agent 已核对支付流水，确认重复扣款。', 'Above the ¥1,000 auto-refund limit; the agent matched the payment logs.', [('批准退款', 'Approve refund'), ('驳回', 'Decline')]) +
       decide('#2396', '投诉：两次延误交付', 'Complaint: two late deliveries', '客户要求补偿；Agent 起草了致歉信和延长 1 个月服务的方案。', 'Customer wants compensation; the agent drafted an apology and a 1-month extension.', [('查看草稿', 'Review draft'), ('修改', 'Edit')]) +
-      decide('#2399', '要求周末现场支持', 'Weekend on-site request', '超出合同 SLA；Agent 建议按次收费 ¥2,000。', 'Outside the contract SLA; the agent suggests a ¥2,000 one-off fee.', [('同意', 'Approve'), ('拒绝', 'Decline')]) +
+      '<p style="padding:2px 4px 0;font-size:12px;color:var(--muted)">' + T('另有 1 件：#2399 要求周末现场支持', '1 more: #2399 weekend on-site request') + '</p>' +
     '</div>' +
   '</div>')
 support = win('headset', 'Support', '值班交接', 'Handoff', sup_body, '<span class="tag violet">' + SPIN + T('客服 Agent 值班中', 'Support agents on duty') + '</span>')
@@ -141,7 +147,6 @@ def prog(p):
 proj_body = (
   '<div class="sx-h"><div><h5>' + T('东南亚出海 · 第 3 周', 'SEA Expansion · Week 3') + '</h5><p>' + T('目标：10 月底前签下 3 家渠道伙伴 · 负责人 王磊', 'Goal: sign 3 channel partners by end of October · Owner Leo Walker') + '</p></div><span class="r">' + tag('grey', '里程碑 2 / 5', 'Milestone 2 of 5') + '</span></div>' +
     table([('任务', 'Task'), ('执行', 'Owner'), ('进度', 'Progress'), ('截止', 'Due'), ('状态', 'Status')], [
-      [td(T('当地竞品定价调研', 'Local competitor pricing'), 'w'), td(who_agent('调研 Agent', 'Research Agent')), td(prog(100)), td('10/08', 'id'), td(tag('green', '已完成', 'Done'))],
       [td(T('潜在代理商名单（20 家）', 'Distributor shortlist (20)'), 'w'), td(who_agent('调研 Agent', 'Research Agent')), td(prog(60)), td('10/12 → 10/14', 'id'), td(tag('red', '晚 2 天', '2 days late'))],
       [td(T('分销合作协议初稿', 'Distribution agreement draft'), 'w'), td(who_agent('文书 Agent', 'Docs Agent')), td(prog(100)), td('10/15', 'id'), td(tag('amber', '待你验收', 'Needs sign-off'))],
       [td(T('渠道政策与返点方案', 'Channel policy and rebates'), 'w'), td(who_person('王磊', 'Leo Walker', '王', 'L')), td(prog(30)), td('10/18', 'id'), td(tag('blue', '进行中', 'In progress'))],
@@ -170,7 +175,6 @@ hr_body = (
     '<div class="pnl" style="gap:0;align-content:start"><div class="h" style="padding-bottom:8px">' + BOT + '<span style="color:var(--agent-ink)">' + T('入职 Agent', 'Onboarding Agent') + '</span><span style="font-weight:400;color:var(--muted)">' + T('已办好', 'has handled') + '</span></div>' +
       check('合同与入职资料核对完成', 'Contract and paperwork checked', '身份证、学历、离职证明逐项核对', 'ID, degree, and release letter verified', '10-07') +
       check('企业邮箱、Git、VPN 账号已开通', 'Email, Git, and VPN accounts ready', '按研发岗位模板开通，权限与组内一致', 'Provisioned from the engineering template', '10-07') +
-      check('门禁已录入，工位 B-12 已分配', 'Badge set up, desk B-12 assigned', '首日指引清单已发到个人邮箱', 'Day-one guide sent to his personal email', '10-08') +
       check('导师与首周日程已确认', 'Buddy and first-week plan confirmed', '周航确认带教；周一 9:30 欢迎会已发日历', 'Ethan confirmed; Monday 9:30 welcome sent', '10-09') +
       '<div class="sg on" style="margin-top:10px;gap:4px;padding:10px 12px"><b>' + T('开发机：标准 16G 内存不够用', 'Laptop: the standard 16 GB isn’t enough') + '</b><p>' + T('他要在本地跑多容器联调，需要高配开发机 ¥18,000；库房有 1 台现货，批准后今天就能配好。', 'He runs multi-container setups locally; a ¥18,000 high-spec laptop is in stock and can be set up today.') + '</p>' +
         '<div class="acts" style="margin-top:4px"><span class="b p sm">' + T('批准调配', 'Approve') + '</span><span class="b sm">' + T('维持标准配置', 'Keep standard') + '</span></div></div>' +
@@ -195,4 +199,8 @@ if not n:
     assert s.count(anchor) == 1
     s = s.replace(anchor, anchor + '\n      <!-- SOLTPL -->' + tpls + '<!-- /SOLTPL -->')
 open(p, 'w', encoding='utf-8').write(s)
+# Solution 页的应用列表用同一批图：写成 snips/solCrm.html 等，正文里用 {{SNIP:solCrm:880}} 引用
+snipdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'snips')
+for k, v in (('Crm', crm), ('Itam', itam), ('Reach', reach), ('Support', support), ('Project', project), ('Hr', hr)):
+    open(os.path.join(snipdir, 'sol%s.html' % k), 'w', encoding='utf-8').write(v)
 print('templates', len(crm), len(itam), len(reach), len(support), len(project), len(hr))

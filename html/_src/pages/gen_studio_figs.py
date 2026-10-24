@@ -1,4 +1,4 @@
-# 首页 Studio 段与 Studio 页共用的 Studio 界面图，按真实 Studio 截图的样式画（样式见 pages/studio-ui.css）。
+# Studio 页（以前也用于首页 Studio 段）的 Studio 界面图，按真实 Studio 截图的样式画（样式见 pages/studio-ui.css）。
 # 生成四张图，写进页面里对应的标记之间：
 #   studioHero  我的任务（分栏）：首页 Studio 段大图、Studio 页首屏
 #   homeFleet   运行环境：首页「接入多路 Agent」
@@ -11,7 +11,7 @@ root = sys.argv[1]
 here = os.path.dirname(os.path.abspath(__file__))
 T = lambda zh, en: '<t-zh>%s</t-zh><t-en>%s</t-en>' % (zh, en)
 I = lambda n: '<i data-lucide="%s"></i>' % n
-AG = {'cc': ('CC', 'Claude Code'), 'cx': ('CX', 'Codex'), 'oc': ('OC', 'OpenCode'), 'gm': ('GM', 'Gemini CLI'), 'pm': ('P', None)}
+AG = {'cc': ('CC', 'Claude Code'), 'cx': ('CX', 'Codex'), 'oc': ('OC', 'OpenCode'), 'gm': ('GM', 'Gemini CLI'), 'pm': (T('调', 'C'), None)}
 def ag(k): return '<span class="st-a %s">%s</span>' % (k, AG[k][0])
 def who(k, label=None): return '<span class="who">' + ag(k) + (label or AG[k][1]) + '</span>'
 def av(zh, en): return '<span class="st-av">%s</span>' % T(zh, en)
@@ -23,11 +23,11 @@ def side(active):
         return '<a class="it%s">%s%s%s</a>' % (' on' if k == active else '', I(ic), T(zh, en), extra)
     g = lambda zh, en: '<div class="grp">%s</div>' % T(zh, en)
     return ('<aside class="sb"><div class="brand"><img src="assets/logo.png" alt="NocoBase"><span>Studio</span></div>' +
-      it('mine', 'circle-user-round', '我的任务', 'My Tasks', '<em>2</em>') + it('agent', 'messages-square', '我的 Agent', 'My Agent') + it('dash', 'layout-dashboard', '仪表盘', 'Dashboard') +
+      it('mine', 'circle-user-round', '我的任务', 'My Tasks', '<em>2</em>') + it('agent', 'messages-square', '我的会话', 'My sessions') + it('dash', 'layout-dashboard', '仪表盘', 'Dashboard') +
       g('开发', 'Build') + it('tasks', 'list-todo', '任务', 'Tasks') + it('proj', 'folder-kanban', '项目', 'Projects') + it('kb', 'book-open', '知识库', 'Knowledge') +
       g('质量', 'Quality') + it('plans', 'clipboard-list', '质量报告', 'Quality reports') + it('cases', 'flask-conical', '功能与用例', 'Features &amp; cases') +
       g('发布', 'Release') + it('apps', 'boxes', '应用', 'Apps') + it('envs', 'server', '部署环境', 'Environments') +
-      g('Agent 团队', 'Agent Team') + it('agents', 'bot', 'Agents', 'Agents') + it('rt', 'monitor-cog', '运行环境', 'Runtimes') + it('skills', 'sparkles', '技能', 'Skills') +
+      g('Agent 团队', 'Agent Team') + it('agents', 'bot', 'Agent', 'Agents') + it('rt', 'monitor-cog', '运行环境', 'Runtimes') + it('skills', 'sparkles', '技能', 'Skills') +
       '</aside>')
 
 def top(zh, en):
@@ -53,7 +53,7 @@ def le(badge, zh, en, t):
 tasks = ('<div class="st-win mtw2">' + side('mine') + '<div class="st-main">' + top('我的任务', 'My Tasks') + '<div class="st-page">' +
   # 标题、搜索筛选、视图切换和新建按钮放在同一行，省出一行高度
   '<div class="st-flt"><h4 style="margin-right:10px;font-size:19px;line-height:1.3;font-weight:650">' + T('我的任务', 'My Tasks') + '</h4>' +
-    '<span class="q">' + I('search') + T('搜索任务…', 'Search tasks…') + '</span><span>' + T('全部项目', 'All projects') + I('chevron-down') + '</span><span>' + T('任意执行人', 'Any assignee') + I('chevron-down') + '</span>' +
+    '<span class="q">' + I('search') + T('搜索任务…', 'Search tasks…') + '</span><span>' + T('全部项目', 'All projects') + I('chevron-down') + '</span><span>' + T('任意执行者', 'Any executor') + I('chevron-down') + '</span>' +
     '<span class="vw"><i class="on">' + I('columns-2') + '</i><i>' + I('list') + '</i><i>' + I('square-kanban') + '</i><i>' + I('bot') + '</i></span>' +
     '<span class="st-btn p" style="padding:0 11px;color:var(--on-brand)">' + I('plus') + T('新建任务', 'New task') + '<kbd>C</kbd></span><span class="st-ib bd" style="padding:0;width:30px;height:30px">' + I('ellipsis') + '</span></div>' +
   '<div style="display:grid;grid-template-columns:292px minmax(0,1fr);gap:14px;align-items:start">' +
@@ -71,7 +71,7 @@ tasks = ('<div class="st-win mtw2">' + side('mine') + '<div class="st-main">' + 
     '<div class="st-card st-det"><div class="st-dh">' + I('chevron-up') + I('chevron-down') + '<span>3 / 16</span><span class="id">CRM-144</span>·<span>NocoCRM</span>' +
       '<span class="r"><span class="st-pill">' + si('progress') + T('进行中', 'In progress') + I('chevron-down') + '</span><span>' + I('star') + T('关注', 'Star') + '</span><span>' + I('messages-square') + T('问 Agent', 'Ask agent') + '</span>' + I('ellipsis') + '</span></div>' +
       '<div class="st-db"><h5>' + T('商机阶段看板', 'Deal stage board') + I('pencil') + '</h5>' +
-        '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊', 'Leo Wang') + '</span><span><span class="k">' + T('执行人', 'Assignee') + '</span>' + ag('pm') + T('项目经理', 'Project manager') + '</span><span><span class="k">' + T('预计', 'ETA') + '</span>' + T('今晚 23:40', 'Tonight 23:40') + '</span></div>' +
+        '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊', 'Leo Wang') + '</span><span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span><span><span class="k">' + T('预计', 'ETA') + '</span>' + T('今晚 23:40', 'Tonight 23:40') + '</span></div>' +
         '<div class="st-box"><div class="h">' + I('list-checks') + T('执行计划', 'Plan') + '<span class="r">' + T('第 3 / 5 步 · 2 个 Agent 并行', 'Step 3 of 5 · 2 agents in parallel') + '</span></div>' +
           step('done', '梳理阶段规则与 6 个验收场景', 'Stage rules and 6 acceptance scenarios', 'cc') +
           step('done', '阶段字段与数据迁移', 'Stage field and data migration', 'cx') +
@@ -82,7 +82,7 @@ tasks = ('<div class="st-win mtw2">' + side('mine') + '<div class="st-main">' + 
         '<div class="st-chips"><span class="st-chip">' + I('git-pull-request') + 'PR #221</span><span class="st-chip">' + I('git-branch') + T('2 个分支', '2 branches') + '</span><span class="st-chip bl">' + I('rocket') + 'Preview · crm-144</span></div>' +
         '<div class="st-tabs"><span class="on">' + T('动态', 'Activity') + '</span><span>' + T('描述', 'Description') + '</span><span>' + T('子任务 5', 'Subtasks 5') + '</span><span>' + T('代码与部署', 'Code &amp; deploys') + '</span><span>' + T('运行 9', 'Runs 9') + '</span></div>' +
         '<div class="st-log">' +
-          le(ag('pm'), '<b>项目经理</b> 把第 2、3 步交给 Codex，第 4 步并行交给 Claude Code', '<b>Project manager</b> gave steps 2–3 to Codex and step 4 to Claude Code in parallel', '18:36') +
+          le(ag('pm'), '<b>调度 Agent</b> 把第 2、3 步交给 Codex，第 4 步并行交给 Claude Code', '<b>Coordinator</b> gave steps 2–3 to Codex and step 4 to Claude Code in parallel', '18:36') +
           le(ag('cx'), '<b>Codex</b> 正在开发看板拖拽，测试 31 / 38 通过' + SPIN, '<b>Codex</b> is building drag-and-drop; 31 / 38 tests passing' + SPIN, T('现在', 'now')) +
         '</div>' +
       '</div></div>' +
@@ -164,13 +164,9 @@ p = os.path.join(root, 'homepage.html')
 s = open(p, encoding='utf-8').read()
 x = put_css(s)
 s = x if x else s.replace('</style>\n</head>', '/* STUDIO-UI */\n' + css + '/* /STUDIO-UI */\n</style>\n</head>', 1)
-if '<!-- SNIP:homeExpert -->' not in s:
-    a = '<div class="fit-in" id="expertFig"></div>'
-    assert s.count(a) == 1
-    s = s.replace(a, '<div class="fit-in"><!-- SNIP:homeExpert --><!-- /SNIP:homeExpert --></div>')
+# 首页 Studio 段改为四条特色各一张图（gen_home_studio.py），这几张图已不在首页；这里只同步样式，页面上还有标记的才填图
 for k, v in FIGS.items():
-    s, n = re.subn(r'<!-- SNIP:%s -->.*?<!-- /SNIP:%s -->' % (k, k), lambda m: '<!-- SNIP:%s -->%s<!-- /SNIP:%s -->' % (k, v, k), s, flags=re.S)
-    assert n == 1, k
+    s = re.sub(r'<!-- SNIP:%s -->.*?<!-- /SNIP:%s -->' % (k, k), lambda m: '<!-- SNIP:%s -->%s<!-- /SNIP:%s -->' % (k, v, k), s, flags=re.S)
 open(p, 'w', encoding='utf-8').write(s)
 
 # 共用样式
@@ -180,20 +176,5 @@ x = put_css(s)
 s = x if x else s.rstrip('\n') + '\n\n/* STUDIO-UI */\n' + css + '/* /STUDIO-UI */\n'
 open(p, 'w', encoding='utf-8').write(s)
 
-# Studio 页首屏
-p = os.path.join(root, 'studio.html')
-s = open(p, encoding='utf-8').read()
-if '<!-- SNIP:studioHero -->' not in s:
-    i = s.index('<section class="phero"'); j = s.index('</section>', i)
-    k = s.index('<div class="fit-in">', i) + len('<div class="fit-in">')
-    assert k < j
-    # 找到 fit-in 里第一个元素的结束位置
-    depth, pos = 0, k
-    for m in re.finditer(r'<div\b|</div>', s[k:]):
-        depth += 1 if m.group(0) == '<div' else -1
-        if depth == 0:
-            pos = k + m.end(); break
-    s = s[:k] + '<!-- SNIP:studioHero --><!-- /SNIP:studioHero -->' + s[pos:]
-s = re.sub(r'<!-- SNIP:studioHero -->.*?<!-- /SNIP:studioHero -->', lambda m: '<!-- SNIP:studioHero -->' + tasks + '<!-- /SNIP:studioHero -->', s, flags=re.S)
-open(p, 'w', encoding='utf-8').write(s)
+# Studio 页首屏由正文里的 {{SNIP:studioHero:1120}} 引用，改图后运行 wrap.py 重新生成 studio.html
 print('ok', {k: len(v) for k, v in FIGS.items()})

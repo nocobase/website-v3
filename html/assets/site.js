@@ -7,10 +7,10 @@
   var GH = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>';
 
   var products = [
-    ['core', 'core.html', 'layers', 'NocoBase Core', T('专为企业业务系统打造的应用底座', 'The production foundation for business apps')],
-    ['studio', 'studio.html', 'git-pull-request', 'NocoBase Studio', T('团队与 Agent 协同开发的治理平台', 'Governed development for teams and their agents')],
-    ['solutions', 'solutions.html', 'layout-grid', 'NocoBase Solutions', T('自带业务 Agent、可自由定制的开源应用', 'Open-source business apps with built-in agents')],
-    ['launch', 'launch.html', 'graduation-cap', 'NocoBase Launch', T('带真实需求进场的实战培训与项目陪跑', 'Hands-on training &amp; guided project delivery')]
+    /* 和首页的静态导航一致，短句取自《NocoBase 产品定义与标准表述》 */
+    ['core', 'core.html', 'layers', 'NocoBase Core', T('AI 开发和运行业务系统的开源应用底座', 'The open-source foundation for AI-built business systems')],
+    ['studio', 'studio.html', 'git-pull-request', 'NocoBase Studio', T('团队与 Agent 协同开发的治理平台', 'The governance platform for teams building with agents')],
+    ['solutions', 'solutions.html', 'layout-grid', 'NocoBase Solution', T('由 Agent 驱动的企业业务应用', 'Agent-driven business apps')]
   ];
   var apps = [
     ['crm', 'solution-crm.html', 'handshake', 'NocoCRM', T('销售管理 · 配备销售与续约 Agent', 'Sales · Sales &amp; Renewal Agents')],
@@ -53,7 +53,6 @@
     '<div class="right">' +
       '<div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-label="Language"><i data-lucide="globe"></i>' + T('简体中文', 'English') + '<i data-lucide="chevron-down"></i></button><div class="dd">' + LANGS.map(function (x) { return '<a href="#" data-lang="' + x[0] + '" lang="' + x[0] + '"><i data-lucide="check"></i>' + x[1] + '</a>'; }).join('') + '</div></div>' +
       '<a class="plain" href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">' + GH + '24.6K</a>' +
-      '<a class="btn btn-sec btn-sm" href="launch.html">' + T('预约实战验证', 'Book a Pilot') + '</a>' +
       '<button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" id="menuBtn"><i data-lucide="menu"></i></button>' +
     '</div></div>' +
     '<div class="container mnav" id="mnav">' +
@@ -157,7 +156,9 @@
     var a = e.target.closest('[data-lang]');
     if (!a) return;
     e.preventDefault();
+    /* 本页只有中英文：其他语言显示英文，但记住用户选的语言，回到首页时按它显示 */
     setLanguage(a.dataset.lang === 'zh' ? 'zh' : 'en');
+    try { localStorage.setItem('nb3_lang', a.dataset.lang); } catch (err) {}
     a.blur();
   });
   $('langBtnM').addEventListener('click', function () { toggle(); $('nav').classList.remove('open'); $('menuBtn').setAttribute('aria-expanded', 'false'); });
@@ -178,6 +179,30 @@
   }
   document.addEventListener('mouseover', function (e) { var m = e.target.closest && e.target.closest('.cx-mod'); if (m) coreHot(m); else if (e.target.closest && !e.target.closest('.cx')) coreHot(null); });
   document.addEventListener('focusin', function (e) { var m = e.target.closest && e.target.closest('.cx-mod'); coreHot(m || null); });
+  /* 竖排标签（Solution 页的应用列表）：左侧选一项，右侧换成它的图；各图叠在同一格里，切换时页面高度不变 */
+  document.querySelectorAll('.vtabs').forEach(function (box) {
+    var tabs = [].slice.call(box.querySelectorAll('.apptab'));
+    function show(i, focus) {
+      tabs.forEach(function (b, j) {
+        var on = j === i;
+        b.parentNode.classList.toggle('on', on);
+        b.setAttribute('aria-selected', String(on));
+        b.tabIndex = on ? 0 : -1;
+        if (on && focus) b.focus();
+        var pane = document.getElementById(b.getAttribute('aria-controls'));
+        pane.classList.toggle('on', on);
+        pane.setAttribute('aria-hidden', String(!on));
+      });
+    }
+    box.addEventListener('click', function (e) { var b = e.target.closest('.apptab'); if (b) show(tabs.indexOf(b)); });
+    box.addEventListener('keydown', function (e) {
+      var d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      var b = e.target.closest && e.target.closest('.apptab');
+      if (!d || !b) return;
+      e.preventDefault();
+      show((tabs.indexOf(b) + d + tabs.length) % tabs.length, true);
+    });
+  });
   syncMeta(window.__lang);
   if (window.lucide) lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
   fit();

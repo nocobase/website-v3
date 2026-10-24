@@ -1,0 +1,220 @@
+# Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+# 术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+# coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+# self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+title: NocoBase 3 — La plateforme open source des systèmes métier créés avec l’IA
+description: NocoBase est la plateforme open source pour créer, exploiter et faire évoluer des systèmes métier avec l’IA.
+000: Actuelle
+001: La plateforme de développement pour les agents
+002: Plateforme de développement IA + no-code
+003: Produits
+004: Le socle open source des systèmes métier créés avec l’IA
+005: La plateforme de gouvernance des équipes qui développent avec des agents
+006: Applications métier pilotées par des agents
+007: No-code
+008: Plateforme de configuration visuelle, maintenue en parallèle de la v3
+009: Solutions
+010: Ventes · Agents de vente et de renouvellement
+011: Parc informatique · Agent d’inventaire et d’audit
+012: Croissance · Agent de contenu
+013: Support · Agents de tri et de réponse
+014: Projets · Agents de recherche et de rédaction
+015: RH · Agent d’intégration
+016: Ressources
+017: Documentation
+018: Guides, fonctionnalités clés et référence de l’API
+019: Clients
+020: Comment des équipes font tourner leurs systèmes clés sur NocoBase
+021: Blog
+022: Réflexions produit et pratiques d’ingénierie
+023: Journal des modifications
+024: Les nouveautés de chaque version
+025: Communauté
+026: Posez vos questions, partagez vos pratiques
+027: Nous contacter
+028: Ventes, partenariats et support
+029: Partenaires
+030: Trouver un partenaire
+031: Faites construire et déployer votre système par un expert
+032: Devenir partenaire
+033: Un consultant, une équipe d’agents, plus de projets
+034: Tarifs
+035: Demander une démo
+036: Socle applicatif
+037: Équipes + agents
+038: Applications métier
+039: No-code ↗
+040: Construisez des systèmes métier fiables
+041: <span class="ln">NocoBase est la plateforme open source pour créer, exploiter et faire évoluer des systèmes métier avec l’IA.</span><span class="ln">Les agents écrivent le code et font le travail, NocoBase fournit le socle et la gouvernance, et ce sont les humains qui décident.</span>
+042: Voir la démo
+043: Commencer
+044: Des équipes de tous secteurs bâtissent leurs systèmes métier clés sur NocoBase
+045: Témoignage client · Sungrow
+046: Des opérations mondiales sur un socle NocoBase unique
+047: Comment un leader mondial des énergies propres construit et fait évoluer des dizaines de systèmes clés sur une seule plateforme partagée.
+048: Lire le témoignage
+049: Pourquoi NocoBase
+050: L’IA écrit du code en un rien de temps.<br>
+051: Construire des systèmes métier fiables reste difficile.
+052: Votre équipe développe déjà avec l’IA ou en vibe coding. Le code s’écrit vite, mais de nouveaux problèmes apparaissent.
+213: Un socle à bâtir de zéro
+054: Même quand l’IA écrit le code, permissions, moteurs de workflow et circuits de validation restent difficiles à concevoir de zéro. Les cas limites abondent et la maintenance est lourde.
+055: Une architecture qui dérive hors de contrôle
+056: Changez de développeur, de modèle ou même de session, et l’IA peut improviser différemment à chaque fois. Le système devient de plus en plus difficile à maintenir.
+057: Trop de travail en parallèle pour tout relire
+058: Vous jonglez entre plusieurs projets et tâches, entre terminaux et conversations, tandis que les agents livrent toujours plus de modifications. Impossible de tout relire, mais lâcher prise semble trop risqué.
+059: Un savoir-faire difficile à capitaliser et à partager
+060: Contexte des besoins, documents métier et retours d’expérience restent éparpillés dans des conversations, sur différents ordinateurs. Quand les personnes ou les agents changent, on ne les retrouve plus.
+061: Laissez les agents se concentrer sur votre logique métier.<br>
+062: Le socle est prêt.
+063: NocoBase Core est le socle applicatif open source des systèmes métier créés et exploités avec l’IA. Permissions, workflows, fichiers et autres briques sont prêts à l’emploi : les agents ne développent que ce qui est propre à votre métier, sur une architecture cohérente.
+064: Des briques éprouvées, prêtes à l’emploi
+065: Core fournit plus de 20 briques, dont les permissions, les workflows, les fichiers et les notifications, pour que les agents se concentrent sur la logique métier.
+066: Une architecture, des standards communs
+067: Core fournit la structure de projet, les standards d’architecture et les skills de développement : l’architecture reste cohérente et maîtrisée, même quand les personnes et les modèles changent.
+068: Vos applications et vos données vous appartiennent
+069: Core est gratuit et open source. Votre code métier et vos données restent dans vos propres dépôts et sur vos propres serveurs, et vous choisissez vos modèles et vos agents.
+070: Découvrir NocoBase Core
+071: Laissez votre équipe se concentrer sur les décisions.<br>
+072: Confiez l’exécution aux agents.
+073: NocoBase Studio est la plateforme de gouvernance des équipes qui développent avec des agents. Il réunit les Claude Code et Codex de votre équipe en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
+074: Une équipe d’agents qui fait avancer le travail
+075: Connectez des agents répartis sur de nombreuses machines et pilotez-les depuis un seul endroit. Ils font avancer de nombreux projets et tâches en parallèle, jour et nuit.
+076: L’avancement en un coup d’œil
+077: Avancement des projets, activité des tâches, charge des agents et consommation des modèles : tout est visible.
+078: Des décisions fondées sur des preuves
+079: Quand une décision revient à un humain, les agents joignent rapports détaillés, checklists, captures d’écran et recommandations : même les experts métier qui ne codent pas peuvent trancher.
+080: Le savoir-faire reste dans l’équipe
+081: Les skills conservent les méthodes, la base de connaissances conserve les documents métier, et la mémoire de projet conserve ce que les agents apprennent d’eux-mêmes. Quand les personnes ou les agents changent, le suivant reprend là où le précédent s’est arrêté.
+082: Découvrir NocoBase Studio
+083: Des applications métier open source.<br>
+084: <span class="ph">Pilotées par l’IA,</span> prêtes à l’emploi.
+085: NocoBase Solution est une gamme d’applications métier pilotées par des agents et construites sur Core. Les agents font l’essentiel du travail, les humains ne prennent que les décisions clés.
+086: Des agents qui prennent les devants
+087: Chaque application intègre des agents métier qui suivent vos règles et prennent en charge d’eux-mêmes l’essentiel du travail, comme vérifier des remboursements ou traiter des tickets.
+088: Les décisions clés reviennent aux humains
+089: Les agents justifient leur travail, et les décisions clés sont toujours prises par une personne. Chaque agent hérite des permissions de la personne pour qui il travaille : les données restent protégées.
+090: Faciles à personnaliser
+091: Chaque application est construite sur NocoBase Core, avec son architecture cohérente et son socle fiable : un agent de code peut l’adapter pour vous.
+092: Gratuites, open source, prêtes à l’emploi
+093: Toutes les applications NocoBase Solution sont gratuites et open source, tournent sur vos propres serveurs et fonctionnent avec le modèle de votre choix.
+094: Voir toutes les applications
+095: Quelle différence entre NocoBase et le vibe coding ?
+096: Dans les deux cas, l’IA écrit le code. Le vibe coding convient aux prototypes rapides et aux petits outils. NocoBase s’adresse aux systèmes métier qui doivent fonctionner de façon fiable pendant des années et continuer d’évoluer.
+097: Socle
+098: Vibe coding
+099: L’IA génère de zéro permissions, workflows, validations et autres modules de base pour chaque projet. C’est coûteux, et difficile à fiabiliser.
+100: Core fournit des briques prêtes à l’emploi, et les agents ne développent que la logique métier.
+101: Architecture
+102: Changez de modèle ou de session, et l’IA peut improviser. L’architecture dérive peu à peu.
+103: Core fournit une structure de projet et des standards de développement communs : le système évolue sereinement pendant des années sur une architecture cohérente.
+104: Évolution continue
+105: Les modifications de l’IA sont souvent acceptées sans que personne ne les lise, et les problèmes s’accumulent.
+106: Studio organise les contrôles et les revues. Quand une décision s’impose, les agents joignent rapports, checklists et captures d’écran, et c’est un humain qui décide.
+107: Connaissances et savoir-faire
+108: Contexte des besoins, documents de projet et retours d’expérience sont dispersés dans des conversations individuelles.
+109: Studio capitalise méthodes et expérience dans les skills, la base de connaissances et la mémoire de projet : une nouvelle personne ou un nouvel agent reprend là où le précédent s’est arrêté.
+110: Open source et auto-hébergement
+111: Gratuit, open source, auto-hébergé.<br>
+112: Votre code et vos données vous appartiennent.
+113: Core et Solution sont gratuits et open source. Studio est inclus dans les éditions commerciales.
+114: Contributeurs
+115: Téléchargements
+116: 3 M+
+117: Voir sur GitHub
+118: Gratuit et open source
+119: Core et toutes les applications Solution sont gratuits, open source et prêts pour la production.
+120: Auto-hébergé
+121: Core, Solution et Studio tournent sur vos propres serveurs. Votre code et vos données vous appartiennent.
+122: Modèles et agents au choix
+123: Aucune dépendance à un fournisseur. Compatible avec Claude Code, Codex et d’autres outils de code, et avec un large choix de modèles.
+124: Des applications autonomes
+125: Une fois publiées, vos applications métier fonctionnent seules. Les requêtes métier du quotidien ne passent jamais par Studio.
+126: Choisissez votre point de départ.
+127: Gratuit et open source
+128: Développez votre système sur Core
+129: Les agents utilisent les briques prêtes à l’emploi de Core et ne développent que ce qui est propre à votre métier.
+130: Voir le guide de déploiement
+131: Installez une application métier prête à l’emploi
+132: Utilisez-la telle quelle, ou faites-la adapter à votre métier par un agent de code.
+133: Voir les applications
+134: Commercial
+135: Pilotez une équipe d’agents
+136: Laissez votre équipe se concentrer sur les décisions. Confiez l’exécution aux agents.
+137: Voir les éditions et tarifs
+138: AI + NocoBase. Construisez des systèmes métier fiables.
+139: NocoBase 2 No-code ↗
+140: Tarifs et licence
+141: Éditions et tarifs
+142: Licence
+143: Programme partenaires
+144: Contact
+145: Forum
+146: Standards
+147: Votre logique métier · écrite par des agents
+148: Prêt
+149: Une structure de projet et des standards communs
+150: Nouvelles personnes ou nouveaux modèles, l’architecture reste cohérente et maîtrisée
+151: Structure de projet
+152: Règles d’architecture
+153: Skills de dev
+154: 20+ briques
+155: Maintenues et mises à jour par NocoBase
+156: CRM commercial
+157: Les agents ont traité 37 tâches aujourd’hui. Vous n’avez eu à trancher que 6 fois.
+158: Parc informatique
+159: Chaque économie, traçable de bout en bout.
+160: Croissance
+161: Les agents trouvent, lancent et mesurent la croissance. Vous tranchez.
+162: Support
+163: Les tickets de la nuit sont traités au matin. Seuls 3 vous attendent.
+164: Projets
+165: Les agents pilotent le plan et signalent les retards avant qu’ils n’arrivent.
+166: RH
+167: Tout est prêt la veille de l’arrivée d’un nouveau collaborateur.
+168: Découvrir {app}
+169: Bientôt
+170: La v1.8.0 est en ligne
+171: La segmentation clients est en production · retour arrière possible à tout moment
+172: La vidéo de démo arrive bientôt
+173: Les agents écrivent le code et font le travail
+174: 3 tâches · 35 tests · 3 revues de code
+175: NocoBase fournit le socle et la gouvernance
+176: {n} briques · des standards de dev communs · tests, revue et validation
+177: Les humains prennent les décisions
+178: Vous avez pris 2 décisions
+179: Données
+180: Tables, champs, relations et migrations
+181: Fichiers
+182: Stockage, aperçu et droits d’accès
+183: Utilisateurs
+184: Comptes, services et rôles
+185: Permissions
+186: Pages, actions et données, pour humains et agents
+187: Workflows
+188: Étapes, conditions et validations
+189: IA et agents
+190: Modèles, outils et exécution des agents
+191: Savoir
+192: Documents métier et recherche ciblée
+193: E-mail
+194: Synchronisation bidirectionnelle avec les fiches
+195: Notifications
+196: In-app, e-mail et chats de groupe
+197: Intégrations
+198: API, clés d’API et bases externes
+199: Interface
+200: Pages, blocs, navigation et langues
+201: Historique
+202: Historique des workflows, validations et agents
+203: Déploiement
+204: Déploiements, mises à jour et retour arrière
+205: Segmentation clients
+206: A/B/C selon le montant des contrats, chaque mois
+207: Validation des remises
+208: Au-delà de 15 %, un manager valide
+209: Relances de renouvellement
+210: Prépare les renouvellements 60 jours avant
+211: Notation fournisseurs
+212: Note délais et contrôles qualité
+214: Bientôt disponible

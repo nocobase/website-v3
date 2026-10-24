@@ -138,12 +138,12 @@ support = win('headset', 'Support', '值班交接', 'Handoff', sup_body, '<span 
 def prog(p):
     return '<span class="usage"><i style="--w:%d%%"></i><span>%d%%</span></span>' % (p, p)
 proj_body = (
-  '<div class="sx-h"><div><h5>' + T('东南亚出海 · 第 3 周', 'SEA Expansion · Week 3') + '</h5><p>' + T('目标：10 月底前签下 3 家渠道伙伴 · 负责人 王磊', 'Goal: sign 3 channel partners by end of October · Owner Leo Wang') + '</p></div><span class="r">' + tag('grey', '里程碑 2 / 5', 'Milestone 2 of 5') + '</span></div>' +
+  '<div class="sx-h"><div><h5>' + T('东南亚出海 · 第 3 周', 'SEA Expansion · Week 3') + '</h5><p>' + T('目标：10 月底前签下 3 家渠道伙伴 · 负责人 王磊', 'Goal: sign 3 channel partners by end of October · Owner Leo Walker') + '</p></div><span class="r">' + tag('grey', '里程碑 2 / 5', 'Milestone 2 of 5') + '</span></div>' +
     table([('任务', 'Task'), ('执行', 'Owner'), ('进度', 'Progress'), ('截止', 'Due'), ('状态', 'Status')], [
       [td(T('当地竞品定价调研', 'Local competitor pricing'), 'w'), td(who_agent('调研 Agent', 'Research Agent')), td(prog(100)), td('10/08', 'id'), td(tag('green', '已完成', 'Done'))],
       [td(T('潜在代理商名单（20 家）', 'Distributor shortlist (20)'), 'w'), td(who_agent('调研 Agent', 'Research Agent')), td(prog(60)), td('10/12 → 10/14', 'id'), td(tag('red', '晚 2 天', '2 days late'))],
       [td(T('分销合作协议初稿', 'Distribution agreement draft'), 'w'), td(who_agent('文书 Agent', 'Docs Agent')), td(prog(100)), td('10/15', 'id'), td(tag('amber', '待你验收', 'Needs sign-off'))],
-      [td(T('渠道政策与返点方案', 'Channel policy and rebates'), 'w'), td(who_person('王磊', 'Leo Wang', '王', 'L')), td(prog(30)), td('10/18', 'id'), td(tag('blue', '进行中', 'In progress'))],
+      [td(T('渠道政策与返点方案', 'Channel policy and rebates'), 'w'), td(who_person('王磊', 'Leo Walker', '王', 'L')), td(prog(30)), td('10/18', 'id'), td(tag('blue', '进行中', 'In progress'))],
       [td(T('首轮伙伴接洽邮件', 'First outreach emails'), 'w'), td(who_agent('文书 Agent', 'Docs Agent')), td(prog(0)), td('10/20', 'id'), td(tag('grey', '等名单', 'Blocked'))]]) +
     '<div class="duo2" style="gap:14px;align-items:start">' +
       '<div class="rvw"><div class="h"><i data-lucide="triangle-alert"></i>' + T('调研 Agent 提前发现风险', 'Research Agent flagged a risk') + '</div>' +
@@ -164,7 +164,7 @@ def ask_me(i_zh, i_en, zh, en):
 def ask_ag(zh, en, extra):
     return ('<div style="display:flex;gap:8px;align-items:flex-start">' + BOT + '<div style="display:grid;gap:5px;max-width:88%%"><span style="padding:7px 11px;border-radius:3px 10px 10px 10px;background:var(--agent-tint);font-size:12.5px">%s</span>%s</div></div>') % (T(zh, en), extra)
 hr_body = (
-  '<div class="sx-h"><div><h5>' + T('赵一鸣 · 明天入职', 'Liam Zhao · starts tomorrow') + '</h5><p>' + T('研发部 · 高级后端工程师 · 导师 周航', 'Engineering · Senior Backend Engineer · Buddy Ethan Zhou') + '</p></div><span class="r">' + tag('green', '5 项已就绪', '5 ready') + tag('amber', '1 项等你', '1 needs you') + '</span></div>' +
+  '<div class="sx-h"><div><h5>' + T('赵一鸣 · 明天入职', 'Liam Hayes · starts tomorrow') + '</h5><p>' + T('研发部 · 高级后端工程师 · 导师 周航', 'Engineering · Senior Backend Engineer · Buddy Ethan Cole') + '</p></div><span class="r">' + tag('green', '5 项已就绪', '5 ready') + tag('amber', '1 项等你', '1 needs you') + '</span></div>' +
   '<div class="duo2" style="grid-template-columns:minmax(0,1fr) 400px;gap:14px;align-items:start">' +
     '<div class="pnl" style="gap:0;align-content:start"><div class="h" style="padding-bottom:8px">' + BOT + '<span style="color:var(--agent-ink)">' + T('入职 Agent', 'Onboarding Agent') + '</span><span style="font-weight:400;color:var(--muted)">' + T('已办好', 'has handled') + '</span></div>' +
       check('合同与入职资料核对完成', 'Contract and paperwork checked', '身份证、学历、离职证明逐项核对', 'ID, degree, and release letter verified', '10-07') +

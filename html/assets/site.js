@@ -13,8 +13,8 @@
     ['solutions', 'solutions.html', 'layout-grid', 'NocoBase Solution', T('由 Agent 驱动的企业业务应用', 'Agent-driven business apps')]
   ];
   var apps = [
-    ['crm', 'solution-crm.html', 'handshake', 'NocoCRM', T('销售管理 · 配备销售与续约 Agent', 'Sales · Sales &amp; Renewal Agents')],
-    ['itam', 'solution-itam.html', 'monitor-smartphone', 'NocoITAM', T('IT 资产 · 配备资产巡检 Agent', 'IT Assets · Asset &amp; Audit Agent')],
+    ['crm', 'solution-crm.html', 'handshake', 'NocoCRM', T('销售管理 · 配备 6 个销售 Agent', 'Sales · 6 Sales Agents')],
+    ['itam', 'solution-itam.html', 'monitor-smartphone', 'NocoITAM', T('IT 资产台账与管理 · 配备 3 个资产 Agent', 'IT Asset Management · 3 IT Agents')],
     ['reach', 'solution-reach.html', 'megaphone', 'NocoReach', T('内容与增长 · 配备内容运营 Agent', 'Growth · Content Agent')],
     ['', '', 'headset', 'NocoSupport', T('客户服务 · 配备工单与客服 Agent', 'Support · Triage &amp; Reply Agents'), 1],
     ['', '', 'folder-kanban', 'NocoProject', T('项目协作 · 配备调研与文书 Agent', 'Projects · Research &amp; Doc Agents'), 1],

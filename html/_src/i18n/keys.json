@@ -52,12 +52,14 @@
  {
   "en": "Sales · Sales &amp; Renewal Agents",
   "zh": "销售管理 · 配备销售与续约 Agent",
-  "where": "menu"
+  "where": "menu",
+  "unused": true
  },
  {
   "en": "IT Assets · Asset &amp; Audit Agent",
   "zh": "IT 资产 · 配备资产巡检 Agent",
-  "where": "menu"
+  "where": "menu",
+  "unused": true
  },
  {
   "en": "Growth · Content Agent",
@@ -790,12 +792,14 @@
  {
   "en": "Agents handled 37 tasks today. You made just 6 calls.",
   "zh": "Agent 处理了 37 项日常工作，需要你拍板的只有 6 件。",
-  "where": "figure"
+  "where": "figure",
+  "unused": true
  },
  {
   "en": "IT Assets",
   "zh": "IT 资产",
-  "where": "figure"
+  "where": "figure",
+  "unused": true
  },
  {
   "en": "Every saving comes with a paper trail.",
@@ -1076,5 +1080,25 @@
   "en": "Coming soon",
   "zh": "即将发布",
   "where": "customers"
+ },
+ {
+  "en": "Sales · 6 Sales Agents",
+  "zh": "销售管理 · 配备 6 个销售 Agent",
+  "where": "menu"
+ },
+ {
+  "en": "IT Asset Management · 3 IT Agents",
+  "zh": "IT 资产台账与管理 · 配备 3 个资产 Agent",
+  "where": "menu"
+ },
+ {
+  "en": "Agents handled 37 routine tasks today. Only 6 needed your decision.",
+  "zh": "Agent 处理了 37 项日常工作，需要你拍板的只有 6 件。",
+  "where": "figure"
+ },
+ {
+  "en": "IT Asset Management",
+  "zh": "IT 资产台账与管理",
+  "where": "figure"
  }
 ]

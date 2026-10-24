@@ -218,3 +218,7 @@ description: NocoBase adalah platform open source untuk membangun, menjalankan, 
 211: Penilaian pemasok
 212: Menilai pengiriman dan pemeriksaan mutu
 214: Segera hadir
+215: Penjualan · 6 agen penjualan
+216: Manajemen aset TI · 3 agen TI
+217: Agen menyelesaikan 37 tugas rutin hari ini. Hanya 6 yang perlu keputusan Anda.
+218: Manajemen aset TI

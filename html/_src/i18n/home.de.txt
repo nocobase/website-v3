@@ -218,3 +218,7 @@ description: NocoBase ist die Open-Source-Plattform, mit der Sie Geschäftssyste
 211: Lieferantenbewertung
 212: Bewertet Lieferzeiten und Qualitätsprüfungen
 214: Demnächst verfügbar
+215: Vertrieb · 6 Vertriebs-Agenten
+216: IT-Asset-Management · 3 IT-Agenten
+217: Agenten haben heute 37 Routineaufgaben erledigt. Nur 6 brauchten Ihre Entscheidung.
+218: IT-Asset-Management

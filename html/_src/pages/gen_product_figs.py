@@ -130,7 +130,7 @@ def le(badge, zh, en, t):
     return '<div class="st-le">%s<div>%s</div><time>%s</time></div>' % (badge, T(zh, en), t)
 task = win([('我的任务', 'My tasks'), ('SUP-91', 'SUP-91')],
     '<div class="sv-dh"><div><h4>' + T('退款工单 SLA 提醒', 'Refund ticket SLA alerts') + '</h4>' +
-      '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span><span class="st-av">' + T('陈', 'A') + '</span>' + T('陈思', 'Ava Chen') + '</span>' +
+      '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span><span class="st-av">' + T('陈', 'A') + '</span>' + T('陈思', 'Ava Clarke') + '</span>' +
       '<span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span>' +
       '<span><span class="k">' + T('项目', 'Project') + '</span>' + T('客服工单', 'Support desk') + '</span></div></div>' +
       '<span class="st-pill">' + si('progress') + T('进行中', 'In progress') + '</span></div>' +

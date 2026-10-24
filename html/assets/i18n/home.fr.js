@@ -15,8 +15,6 @@
 "No-code": "No-code",
 "Visual configuration platform, maintained alongside v3": "Plateforme de configuration visuelle, maintenue en parallèle de la v3",
 "Solutions": "Solutions",
-"Sales · Sales &amp; Renewal Agents": "Ventes · Agents de vente et de renouvellement",
-"IT Assets · Asset &amp; Audit Agent": "Parc informatique · Agent d’inventaire et d’audit",
 "Growth · Content Agent": "Croissance · Agent de contenu",
 "Support · Triage &amp; Reply Agents": "Support · Agents de tri et de réponse",
 "Projects · Research &amp; Doc Agents": "Projets · Agents de recherche et de rédaction",
@@ -159,8 +157,6 @@
 "20+ capabilities": "20+ briques",
 "Maintained and upgraded by NocoBase": "Maintenues et mises à jour par NocoBase",
 "Sales CRM": "CRM commercial",
-"Agents handled 37 tasks today. You made just 6 calls.": "Les agents ont traité 37 tâches aujourd’hui. Vous n’avez eu à trancher que 6 fois.",
-"IT Assets": "Parc informatique",
 "Every saving comes with a paper trail.": "Chaque économie, traçable de bout en bout.",
 "Growth": "Croissance",
 "Agents find, ship, and measure growth. You make the calls.": "Les agents trouvent, lancent et mesurent la croissance. Vous tranchez.",
@@ -216,6 +212,10 @@
 "Supplier scoring": "Notation fournisseurs",
 "Scores delivery and QA records": "Note délais et contrôles qualité",
 "Every project rebuilds the foundation": "Un socle à bâtir de zéro",
-"Coming soon": "Bientôt disponible"
+"Coming soon": "Bientôt disponible",
+"Sales · 6 Sales Agents": "Ventes · 6 agents commerciaux",
+"IT Asset Management · 3 IT Agents": "Gestion du parc informatique · 3 agents IT",
+"Agents handled 37 routine tasks today. Only 6 needed your decision.": "Les agents ont traité 37 tâches courantes aujourd’hui. Seules 6 ont demandé votre décision.",
+"IT Asset Management": "Gestion du parc informatique"
 }
 };

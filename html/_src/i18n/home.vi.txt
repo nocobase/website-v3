@@ -218,3 +218,7 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 211: Chấm điểm nhà cung cấp
 212: Chấm điểm giao hàng và kiểm tra chất lượng
 214: Sắp ra mắt
+215: Bán hàng · 6 agent bán hàng
+216: Quản lý tài sản CNTT · 3 agent CNTT
+217: Hôm nay agent xử lý 37 việc thường ngày. Chỉ 6 việc cần bạn quyết định.
+218: Quản lý tài sản CNTT

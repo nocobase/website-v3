@@ -36,14 +36,16 @@ def section_fig(page, label, cls='<div class="sx-body">'):
     return balanced(sec, sec.find(cls))
 
 def top(icon, app, crumb_zh, crumb_en, right=''):
-    # NocoCRM has its real logo (assets/nococrm-logo.svg); other apps an icon and their name.
+    # NocoCRM and NocoITAM have their real logos (assets/noco*-logo.svg); other apps an icon and their name.
     brand = ('<img class="crm-logo" src="assets/nococrm-logo.svg" alt="NocoCRM">' if app == 'CRM'
+             else '<img class="crm-logo" src="assets/nocoitam-logo.svg" alt="NocoITAM">' if app == 'ITAM'
              else '<span class="mk"><i data-lucide="%s"></i></span>Noco<span>%s</span>' % (icon, app))
     return ('<div class="sx-top"><span class="sx-brand" style="padding:0">%s</span><span>/</span><b>%s</b>'
             '<span class="r">%s<span class="ai"><i data-lucide="sparkles"></i></span><span class="av">%s</span></span></div>') % (brand, T(crumb_zh, crumb_en), right, T('陈', 'A'))
 
 def win(icon, app, czh, cen, body, right=''):
-    return '<div class="sx solo">' + '<div class="sx-main">' + top(icon, app, czh, cen, right) + '<div class="sx-body">' + body + '</div></div></div>'
+    # NocoITAM's figure takes its own green (`.itam-theme` in homepage.html).
+    return '<div class="sx solo%s">' % (' itam-theme' if app == 'ITAM' else '') + '<div class="sx-main">' + top(icon, app, czh, cen, right) + '<div class="sx-body">' + body + '</div></div></div>'
 
 # NocoCRM：一支 7×24 小时的销售 Agent 团队——「Agent 做了 37 件事，你只拍板 6 件」
 # 底部一行：今天在岗的 6 个 Agent 各做了几件事（合计 37，和右侧数字对上）
@@ -143,11 +145,11 @@ support = win('headset', 'Support', '值班交接', 'Handoff', sup_body, '<span 
 def prog(p):
     return '<span class="usage"><i style="--w:%d%%"></i><span>%d%%</span></span>' % (p, p)
 proj_body = (
-  '<div class="sx-h"><div><h5>' + T('东南亚出海 · 第 3 周', 'SEA Expansion · Week 3') + '</h5><p>' + T('目标：10 月底前签下 3 家渠道伙伴 · 负责人 王磊', 'Goal: sign 3 channel partners by end of October · Owner Leo Wang') + '</p></div><span class="r">' + tag('grey', '里程碑 2 / 5', 'Milestone 2 of 5') + '</span></div>' +
+  '<div class="sx-h"><div><h5>' + T('东南亚出海 · 第 3 周', 'SEA Expansion · Week 3') + '</h5><p>' + T('目标：10 月底前签下 3 家渠道伙伴 · 负责人 王磊', 'Goal: sign 3 channel partners by end of October · Owner Leo Walker') + '</p></div><span class="r">' + tag('grey', '里程碑 2 / 5', 'Milestone 2 of 5') + '</span></div>' +
     table([('任务', 'Task'), ('执行', 'Owner'), ('进度', 'Progress'), ('截止', 'Due'), ('状态', 'Status')], [
       [td(T('潜在代理商名单（20 家）', 'Distributor shortlist (20)'), 'w'), td(who_agent('调研 Agent', 'Research Agent')), td(prog(60)), td('10/12 → 10/14', 'id'), td(tag('red', '晚 2 天', '2 days late'))],
       [td(T('分销合作协议初稿', 'Distribution agreement draft'), 'w'), td(who_agent('文书 Agent', 'Docs Agent')), td(prog(100)), td('10/15', 'id'), td(tag('amber', '待你验收', 'Needs sign-off'))],
-      [td(T('渠道政策与返点方案', 'Channel policy and rebates'), 'w'), td(who_person('王磊', 'Leo Wang', '王', 'L')), td(prog(30)), td('10/18', 'id'), td(tag('blue', '进行中', 'In progress'))],
+      [td(T('渠道政策与返点方案', 'Channel policy and rebates'), 'w'), td(who_person('王磊', 'Leo Walker', '王', 'L')), td(prog(30)), td('10/18', 'id'), td(tag('blue', '进行中', 'In progress'))],
       [td(T('首轮伙伴接洽邮件', 'First outreach emails'), 'w'), td(who_agent('文书 Agent', 'Docs Agent')), td(prog(0)), td('10/20', 'id'), td(tag('grey', '等名单', 'Blocked'))]]) +
     '<div class="duo2" style="gap:14px;align-items:start">' +
       '<div class="rvw"><div class="h"><i data-lucide="triangle-alert"></i>' + T('调研 Agent 提前发现风险', 'Research Agent flagged a risk') + '</div>' +
@@ -168,7 +170,7 @@ def ask_me(i_zh, i_en, zh, en):
 def ask_ag(zh, en, extra):
     return ('<div style="display:flex;gap:8px;align-items:flex-start">' + BOT + '<div style="display:grid;gap:5px;max-width:88%%"><span style="padding:7px 11px;border-radius:3px 10px 10px 10px;background:var(--agent-tint);font-size:12.5px">%s</span>%s</div></div>') % (T(zh, en), extra)
 hr_body = (
-  '<div class="sx-h"><div><h5>' + T('赵一鸣 · 明天入职', 'Liam Zhao · starts tomorrow') + '</h5><p>' + T('研发部 · 高级后端工程师 · 导师 周航', 'Engineering · Senior Backend Engineer · Buddy Ethan Zhou') + '</p></div><span class="r">' + tag('green', '5 项已就绪', '5 ready') + tag('amber', '1 项等你', '1 needs you') + '</span></div>' +
+  '<div class="sx-h"><div><h5>' + T('赵一鸣 · 明天入职', 'Liam Hayes · starts tomorrow') + '</h5><p>' + T('研发部 · 高级后端工程师 · 导师 周航', 'Engineering · Senior Backend Engineer · Buddy Ethan Cole') + '</p></div><span class="r">' + tag('green', '5 项已就绪', '5 ready') + tag('amber', '1 项等你', '1 needs you') + '</span></div>' +
   '<div class="duo2" style="grid-template-columns:minmax(0,1fr) 400px;gap:14px;align-items:start">' +
     '<div class="pnl" style="gap:0;align-content:start"><div class="h" style="padding-bottom:8px">' + BOT + '<span style="color:var(--agent-ink)">' + T('入职 Agent', 'Onboarding Agent') + '</span><span style="font-weight:400;color:var(--muted)">' + T('已办好', 'has handled') + '</span></div>' +
       check('合同与入职资料核对完成', 'Contract and paperwork checked', '身份证、学历、离职证明逐项核对', 'ID, degree, and release letter verified', '10-07') +

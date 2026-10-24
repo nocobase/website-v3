@@ -15,8 +15,6 @@
 "No-code": "No-code",
 "Visual configuration platform, maintained alongside v3": "Platform konfigurasi visual, dikelola berdampingan dengan v3",
 "Solutions": "Solusi",
-"Sales · Sales &amp; Renewal Agents": "Penjualan · Agen penjualan &amp; perpanjangan",
-"IT Assets · Asset &amp; Audit Agent": "Aset TI · Agen aset &amp; audit",
 "Growth · Content Agent": "Pertumbuhan · Agen konten",
 "Support · Triage &amp; Reply Agents": "Dukungan · Agen triase &amp; balasan",
 "Projects · Research &amp; Doc Agents": "Proyek · Agen riset &amp; dokumen",
@@ -159,8 +157,6 @@
 "20+ capabilities": "20+ komponen",
 "Maintained and upgraded by NocoBase": "Dikelola dan diperbarui oleh NocoBase",
 "Sales CRM": "CRM penjualan",
-"Agents handled 37 tasks today. You made just 6 calls.": "Agen menyelesaikan 37 tugas hari ini. Anda cukup memutuskan 6 hal.",
-"IT Assets": "Aset TI",
 "Every saving comes with a paper trail.": "Setiap penghematan tercatat jejaknya.",
 "Growth": "Pertumbuhan",
 "Agents find, ship, and measure growth. You make the calls.": "Agen menemukan, menjalankan, dan mengukur pertumbuhan. Anda yang memutuskan.",
@@ -216,6 +212,10 @@
 "Supplier scoring": "Penilaian pemasok",
 "Scores delivery and QA records": "Menilai pengiriman dan pemeriksaan mutu",
 "Every project rebuilds the foundation": "Fondasi dibangun dari nol",
-"Coming soon": "Segera hadir"
+"Coming soon": "Segera hadir",
+"Sales · 6 Sales Agents": "Penjualan · 6 agen penjualan",
+"IT Asset Management · 3 IT Agents": "Manajemen aset TI · 3 agen TI",
+"Agents handled 37 routine tasks today. Only 6 needed your decision.": "Agen menyelesaikan 37 tugas rutin hari ini. Hanya 6 yang perlu keputusan Anda.",
+"IT Asset Management": "Manajemen aset TI"
 }
 };

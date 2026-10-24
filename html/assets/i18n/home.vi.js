@@ -15,8 +15,6 @@
 "No-code": "No-code",
 "Visual configuration platform, maintained alongside v3": "Nền tảng cấu hình trực quan, được duy trì song song với v3",
 "Solutions": "Giải pháp",
-"Sales · Sales &amp; Renewal Agents": "Bán hàng · Agent bán hàng &amp; gia hạn",
-"IT Assets · Asset &amp; Audit Agent": "Tài sản CNTT · Agent tài sản &amp; kiểm toán",
 "Growth · Content Agent": "Tăng trưởng · Agent nội dung",
 "Support · Triage &amp; Reply Agents": "Hỗ trợ · Agent phân loại &amp; phản hồi",
 "Projects · Research &amp; Doc Agents": "Dự án · Agent nghiên cứu &amp; tài liệu",
@@ -159,8 +157,6 @@
 "20+ capabilities": "20+ khối chức năng",
 "Maintained and upgraded by NocoBase": "Do NocoBase duy trì và nâng cấp",
 "Sales CRM": "CRM bán hàng",
-"Agents handled 37 tasks today. You made just 6 calls.": "Hôm nay agent xử lý 37 việc. Bạn chỉ cần quyết định 6 việc.",
-"IT Assets": "Tài sản CNTT",
 "Every saving comes with a paper trail.": "Mỗi khoản tiết kiệm đều rõ nguồn gốc.",
 "Growth": "Tăng trưởng",
 "Agents find, ship, and measure growth. You make the calls.": "Agent tìm cơ hội, triển khai và đo hiệu quả tăng trưởng. Bạn chỉ cần quyết định.",
@@ -216,6 +212,10 @@
 "Supplier scoring": "Chấm điểm nhà cung cấp",
 "Scores delivery and QA records": "Chấm điểm giao hàng và kiểm tra chất lượng",
 "Every project rebuilds the foundation": "Nền móng phải xây từ đầu",
-"Coming soon": "Sắp ra mắt"
+"Coming soon": "Sắp ra mắt",
+"Sales · 6 Sales Agents": "Bán hàng · 6 agent bán hàng",
+"IT Asset Management · 3 IT Agents": "Quản lý tài sản CNTT · 3 agent CNTT",
+"Agents handled 37 routine tasks today. Only 6 needed your decision.": "Hôm nay agent xử lý 37 việc thường ngày. Chỉ 6 việc cần bạn quyết định.",
+"IT Asset Management": "Quản lý tài sản CNTT"
 }
 };

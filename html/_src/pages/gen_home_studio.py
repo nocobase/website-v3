@@ -90,7 +90,7 @@ progress = win([('我的任务', 'My tasks')],
     '<div class="st-card st-det"><div class="st-dh">' + I('chevron-up') + I('chevron-down') + '<span>3 / 16</span><span class="id">CRM-144</span>·<span>NocoCRM</span>' +
       '<span class="r"><span class="st-pill">' + si('progress') + T('进行中', 'In progress') + I('chevron-down') + '</span><span>' + I('star') + T('关注', 'Star') + '</span><span>' + I('messages-square') + T('问 Agent', 'Ask agent') + '</span></span></div>' +
       '<div class="st-db"><h5>' + T('商机阶段看板', 'Deal stage board') + '</h5>' +
-        '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊', 'Leo Wang') + '</span><span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span><span><span class="k">' + T('预计', 'ETA') + '</span>' + T('今晚 23:40', 'Tonight 23:40') + '</span></div>' +
+        '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊', 'Leo Walker') + '</span><span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span><span><span class="k">' + T('预计', 'ETA') + '</span>' + T('今晚 23:40', 'Tonight 23:40') + '</span></div>' +
         '<div class="st-box"><div class="h">' + I('list-checks') + T('执行计划', 'Plan') + '<span class="r">' + T('第 3 / 5 步 · 2 个 Agent 并行', 'Step 3 of 5 · 2 agents in parallel') + '</span></div>' +
           step('done', '梳理阶段规则与 6 个验收场景', 'Stage rules and 6 acceptance scenarios', 'cc', 'Claude Code') +
           step('done', '阶段字段与数据迁移', 'Stage field and data migration', 'cx', 'Codex') +
@@ -126,7 +126,7 @@ gallery = ('<div class="st-box sv-gal"><div class="h">' + I('images') + T('截�
   '<div class="sv-ths">' + th_list + th_dlg + '</div></div>')
 decide = win([('我的任务', 'My tasks'), ('CRM-135', 'CRM-135')],
   '<div class="sv-dh"><div><h4>' + T('客户分级与负责人变更审批', 'Customer tiers &amp; owner-change approval') + '</h4>' +
-    '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊 · 销售总监', 'Leo Wang · Sales director') + '</span><span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span></div></div>' +
+    '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊 · 销售总监', 'Leo Walker · Sales director') + '</span><span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span></div></div>' +
     '<span class="st-pill sv-wait">' + si('review') + T('等你验收', 'Waiting for your sign-off') + '</span></div>' +
   '<div class="sv-dec">' +
     '<div class="sv-main">' +

@@ -15,8 +15,6 @@
 "No-code": "無程式碼",
 "Visual configuration platform, maintained alongside v3": "視覺化設定建置，與 NocoBase 3 並行維護",
 "Solutions": "解決方案",
-"Sales · Sales &amp; Renewal Agents": "銷售管理 · 配備銷售與續約 Agent",
-"IT Assets · Asset &amp; Audit Agent": "IT 資產 · 配備資產盤點 Agent",
 "Growth · Content Agent": "內容與成長 · 配備內容經營 Agent",
 "Support · Triage &amp; Reply Agents": "客戶服務 · 配備工單與客服 Agent",
 "Projects · Research &amp; Doc Agents": "專案協作 · 配備研究與文件 Agent",
@@ -159,8 +157,6 @@
 "20+ capabilities": "20 多項基礎能力",
 "Maintained and upgraded by NocoBase": "由 NocoBase 持續維護與升級",
 "Sales CRM": "銷售管理",
-"Agents handled 37 tasks today. You made just 6 calls.": "Agent 處理了 37 項日常工作，需要你拍板的只有 6 件。",
-"IT Assets": "IT 資產",
 "Every saving comes with a paper trail.": "省下的每一筆錢，都說得清來龍去脈。",
 "Growth": "內容與成長",
 "Agents find, ship, and measure growth. You make the calls.": "Agent 找機會、做成長、看成效，你只管拍板。",
@@ -216,6 +212,10 @@
 "Supplier scoring": "供應商評分",
 "Scores delivery and QA records": "彙整交期與品檢紀錄評分",
 "Every project rebuilds the foundation": "底層能力得從零打造",
-"Coming soon": "即將發布"
+"Coming soon": "即將發布",
+"Sales · 6 Sales Agents": "銷售管理 · 配備 6 個銷售 Agent",
+"IT Asset Management · 3 IT Agents": "IT 資產清冊與管理 · 配備 3 個資產 Agent",
+"Agents handled 37 routine tasks today. Only 6 needed your decision.": "Agent 處理了 37 項日常工作，需要你拍板的只有 6 件。",
+"IT Asset Management": "IT 資產清冊與管理"
 }
 };

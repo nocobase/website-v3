@@ -218,3 +218,7 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 211: Notation fournisseurs
 212: Note délais et contrôles qualité
 214: Bientôt disponible
+215: Ventes · 6 agents commerciaux
+216: Gestion du parc informatique · 3 agents IT
+217: Les agents ont traité 37 tâches courantes aujourd’hui. Seules 6 ont demandé votre décision.
+218: Gestion du parc informatique

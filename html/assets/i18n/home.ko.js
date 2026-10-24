@@ -15,8 +15,6 @@
 "No-code": "노코드",
 "Visual configuration platform, maintained alongside v3": "시각적 설정으로 구축, NocoBase 3와 병행 유지 관리",
 "Solutions": "솔루션",
-"Sales · Sales &amp; Renewal Agents": "영업 · 영업·갱신 에이전트 탑재",
-"IT Assets · Asset &amp; Audit Agent": "IT 자산 · 자산·감사 에이전트 탑재",
 "Growth · Content Agent": "그로스 · 콘텐츠 에이전트 탑재",
 "Support · Triage &amp; Reply Agents": "고객 지원 · 분류·응답 에이전트 탑재",
 "Projects · Research &amp; Doc Agents": "프로젝트 · 리서치·문서 에이전트 탑재",
@@ -159,8 +157,6 @@
 "20+ capabilities": "20+ 기본 기능",
 "Maintained and upgraded by NocoBase": "NocoBase가 지속적으로 유지 관리·업그레이드",
 "Sales CRM": "영업 관리",
-"Agents handled 37 tasks today. You made just 6 calls.": "에이전트가 오늘 37건을 처리했습니다. 당신이 결정한 건 6건뿐입니다.",
-"IT Assets": "IT 자산",
 "Every saving comes with a paper trail.": "절감한 비용마다 근거가 명확합니다.",
 "Growth": "그로스",
 "Agents find, ship, and measure growth. You make the calls.": "에이전트가 기회를 찾고, 실행하고, 성과를 측정합니다. 당신은 결정만 하세요.",
@@ -216,6 +212,10 @@
 "Supplier scoring": "공급업체 평가",
 "Scores delivery and QA records": "납기와 품질 검사 기록으로 점수 산정",
 "Every project rebuilds the foundation": "기반을 처음부터 만들어야 한다",
-"Coming soon": "곧 공개"
+"Coming soon": "곧 공개",
+"Sales · 6 Sales Agents": "영업 관리 · 영업 에이전트 6종 탑재",
+"IT Asset Management · 3 IT Agents": "IT 자산 대장·관리 · 자산 에이전트 3종 탑재",
+"Agents handled 37 routine tasks today. Only 6 needed your decision.": "에이전트가 오늘 37건의 일상 업무를 처리했습니다. 결정이 필요한 건 6건뿐이었습니다.",
+"IT Asset Management": "IT 자산 대장·관리"
 }
 };

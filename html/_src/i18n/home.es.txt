@@ -218,3 +218,7 @@ description: NocoBase es la plataforma de código abierto para crear, ejecutar y
 211: Puntuación de proveedores
 212: Puntúa entregas y controles de calidad
 214: Próximamente
+215: Ventas · 6 agentes de ventas
+216: Gestión de activos de TI · 3 agentes de TI
+217: Los agentes resolvieron hoy 37 tareas rutinarias. Solo 6 necesitaron tu decisión.
+218: Gestión de activos de TI

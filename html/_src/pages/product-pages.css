@@ -164,3 +164,6 @@
 .phero .vtabs { margin-top: 64px; }
 .phero .vtabs .sheet { margin-top: 0; }
 @media (max-width: 900px) { .phero .vtabs { margin-top: 40px; } }
+/* NocoITAM 的图用它自己的绿色（与首页 homepage.html 里的 .itam-theme 一致） */
+.itam-theme { --agent: #047857; --agent-ink: #065f46; --agent-tint: #ecfdf5; --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
+.itam-theme .sg.on { border-color: #a7f3d0; }

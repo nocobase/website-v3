@@ -15,8 +15,6 @@
 "No-code": "No-code",
 "Visual configuration platform, maintained alongside v3": "Платформа визуальной настройки, развивается параллельно с v3",
 "Solutions": "Решения",
-"Sales · Sales &amp; Renewal Agents": "Продажи · агенты продаж и продлений",
-"IT Assets · Asset &amp; Audit Agent": "IT-активы · агент учёта и аудита",
 "Growth · Content Agent": "Рост · контент-агент",
 "Support · Triage &amp; Reply Agents": "Поддержка · агенты сортировки и ответов",
 "Projects · Research &amp; Doc Agents": "Проекты · агенты исследований и документов",
@@ -159,8 +157,6 @@
 "20+ capabilities": "20+ модулей",
 "Maintained and upgraded by NocoBase": "Поддерживаются и обновляются NocoBase",
 "Sales CRM": "CRM для продаж",
-"Agents handled 37 tasks today. You made just 6 calls.": "Агенты выполнили 37 задач за день. Вам пришлось решить только 6.",
-"IT Assets": "IT-активы",
 "Every saving comes with a paper trail.": "Каждая экономия с полной историей.",
 "Growth": "Рост",
 "Agents find, ship, and measure growth. You make the calls.": "Агенты находят возможности, действуют и измеряют рост. Решаете вы.",
@@ -216,6 +212,10 @@
 "Supplier scoring": "Оценка поставщиков",
 "Scores delivery and QA records": "Оценивает сроки поставок и контроль качества",
 "Every project rebuilds the foundation": "Фундамент каждый раз с нуля",
-"Coming soon": "Скоро"
+"Coming soon": "Скоро",
+"Sales · 6 Sales Agents": "Продажи · 6 агентов продаж",
+"IT Asset Management · 3 IT Agents": "Управление IT-активами · 3 IT-агента",
+"Agents handled 37 routine tasks today. Only 6 needed your decision.": "Агенты выполнили за день 37 рутинных задач. Ваше решение понадобилось только в 6.",
+"IT Asset Management": "Управление IT-активами"
 }
 };

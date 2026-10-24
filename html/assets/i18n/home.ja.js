@@ -15,8 +15,6 @@
 "No-code": "ノーコード",
 "Visual configuration platform, maintained alongside v3": "ビジュアル設定で構築、NocoBase 3 と並行してメンテナンス",
 "Solutions": "ソリューション",
-"Sales · Sales &amp; Renewal Agents": "営業 · 営業・更新エージェント搭載",
-"IT Assets · Asset &amp; Audit Agent": "IT 資産 · 資産・監査エージェント搭載",
 "Growth · Content Agent": "グロース · コンテンツエージェント搭載",
 "Support · Triage &amp; Reply Agents": "サポート · 振り分け・返信エージェント搭載",
 "Projects · Research &amp; Doc Agents": "プロジェクト · 調査・文書エージェント搭載",
@@ -159,8 +157,6 @@
 "20+ capabilities": "20 以上の共通機能",
 "Maintained and upgraded by NocoBase": "NocoBase が継続的にメンテナンス・アップデート",
 "Sales CRM": "営業管理",
-"Agents handled 37 tasks today. You made just 6 calls.": "エージェントが今日 37 件の業務を処理。あなたが判断したのは 6 件だけ。",
-"IT Assets": "IT 資産",
 "Every saving comes with a paper trail.": "削減したコストの一つひとつに、確かな経緯を。",
 "Growth": "グロース",
 "Agents find, ship, and measure growth. You make the calls.": "エージェントが機会を見つけて施策を実行し、効果まで測定。あなたは判断するだけ。",
@@ -216,6 +212,10 @@
 "Supplier scoring": "サプライヤー評価",
 "Scores delivery and QA records": "納期と品質検査の記録から採点",
 "Every project rebuilds the foundation": "基盤をゼロから作ることになる",
-"Coming soon": "近日公開"
+"Coming soon": "近日公開",
+"Sales · 6 Sales Agents": "営業 · 営業エージェント 6 種搭載",
+"IT Asset Management · 3 IT Agents": "IT 資産台帳・管理 · 資産エージェント 3 種搭載",
+"Agents handled 37 routine tasks today. Only 6 needed your decision.": "エージェントが今日 37 件の定型業務を処理。あなたの判断が必要だったのは 6 件だけ。",
+"IT Asset Management": "IT 資産台帳・管理"
 }
 };

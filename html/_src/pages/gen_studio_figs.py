@@ -71,7 +71,7 @@ tasks = ('<div class="st-win mtw2">' + side('mine') + '<div class="st-main">' + 
     '<div class="st-card st-det"><div class="st-dh">' + I('chevron-up') + I('chevron-down') + '<span>3 / 16</span><span class="id">CRM-144</span>·<span>NocoCRM</span>' +
       '<span class="r"><span class="st-pill">' + si('progress') + T('进行中', 'In progress') + I('chevron-down') + '</span><span>' + I('star') + T('关注', 'Star') + '</span><span>' + I('messages-square') + T('问 Agent', 'Ask agent') + '</span>' + I('ellipsis') + '</span></div>' +
       '<div class="st-db"><h5>' + T('商机阶段看板', 'Deal stage board') + I('pencil') + '</h5>' +
-        '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊', 'Leo Wang') + '</span><span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span><span><span class="k">' + T('预计', 'ETA') + '</span>' + T('今晚 23:40', 'Tonight 23:40') + '</span></div>' +
+        '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊', 'Leo Walker') + '</span><span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span><span><span class="k">' + T('预计', 'ETA') + '</span>' + T('今晚 23:40', 'Tonight 23:40') + '</span></div>' +
         '<div class="st-box"><div class="h">' + I('list-checks') + T('执行计划', 'Plan') + '<span class="r">' + T('第 3 / 5 步 · 2 个 Agent 并行', 'Step 3 of 5 · 2 agents in parallel') + '</span></div>' +
           step('done', '梳理阶段规则与 6 个验收场景', 'Stage rules and 6 acceptance scenarios', 'cc') +
           step('done', '阶段字段与数据迁移', 'Stage field and data migration', 'cx') +
@@ -116,7 +116,7 @@ def dec(zh_k, en_k, zh, en, ans):
 expert = ('<div class="st-card st-det" style="box-shadow:0 1px 2px oklch(0.25 0.05 266 / 0.05),0 12px 28px -14px oklch(0.25 0.06 266 / 0.2);border-color:var(--rule-2);border-radius:12px">' +
   '<div class="st-dh"><span class="id">CRM-162</span>·<span>NocoCRM</span><span class="r"><span class="st-pill">' + si('done') + T('已上线', 'Live') + I('chevron-down') + '</span></span></div>' +
   '<div class="st-db"><h5>' + T('供应商分级', 'Supplier tiering') + '</h5>' +
-    '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('周', 'E') + T('周航 · 采购主管', 'Ethan Zhou · Procurement lead') + '</span><span class="k">' + T('全程没看过一行代码', 'Never read a line of code') + '</span></div>' +
+    '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('周', 'E') + T('周航 · 采购主管', 'Ethan Cole · Procurement lead') + '</span><span class="k">' + T('全程没看过一行代码', 'Never read a line of code') + '</span></div>' +
     '<div class="st-box"><div class="h">' + I('user-check') + T('他做的决定', 'His decisions') + '<span class="r">' + T('3 次，共约 10 分钟', '3 calls, about 10 minutes') + '</span></div>' +
       dec('回答提问', 'Question', '质量和交期，哪个更重要？', 'Quality or delivery: which matters more?', '<span class="st-chip bl">' + I('check') + T('质量优先', 'Quality first') + '</span>') +
       dec('预览验收', 'Preview', '用真实供应商核对分级结果', 'Checked tiers against real suppliers', '<span class="st-chip bl">' + I('check') + T('验收通过', 'Approved') + '</span>') +
@@ -143,8 +143,8 @@ govern = ('<div class="st-card" style="background:var(--card);box-shadow:0 1px 2
       stg(2, '开发', 'Build', agw('cx', 'GPT-5.5'), sk('studio-development'), '写业务逻辑，权限与工作流复用 Core', 'Business logic on Core permissions and workflows', 'shield-check', '构建与类型检查通过', 'Build and type checks passed') +
       stg(3, '评审', 'Review', agw('cc', 'Opus 5.5'), sk('studio-review'), '按评审规范查缺陷、安全与测试', 'Defects, security, and tests, per the review skill', 'shield-check', '评审意见全部关闭', 'All comments resolved') +
       stg(4, '测试', 'Test', agw('cc', 'Sonnet 5.5'), bs('flask-conical', 'Studio 测试模块', 'Studio tests'), '按 6 个验收场景写测试，在 CI 中运行', 'Tests for 6 scenarios, run in CI', 'shield-check', '46 / 46 通过才交给人验收', '46 / 46 passing before sign-off') +
-      stg(5, '验收', 'Accept', av('陈', 'A') + T('陈思', 'Ava Chen'), bs('eye', 'crm-import.preview', 'crm-import.preview'), '在独立预览环境走查 6 个场景', 'Walked through 6 scenarios in preview', 'user-check', '陈思验收通过', 'Ava signed off') +
-      stg(6, '发布', 'Ship', av('王', 'L') + T('王磊', 'Leo Wang'), bs('rocket', '部署申请 · 生产', 'Deploy request · production'), '生产发布需人批准，可回滚到上一版本', 'Production needs approval; roll back to the last release', 'user-check', '王磊批准上线', 'Leo approved release') +
+      stg(5, '验收', 'Accept', av('陈', 'A') + T('陈思', 'Ava Clarke'), bs('eye', 'crm-import.preview', 'crm-import.preview'), '在独立预览环境走查 6 个场景', 'Walked through 6 scenarios in preview', 'user-check', '陈思验收通过', 'Ava signed off') +
+      stg(6, '发布', 'Ship', av('王', 'L') + T('王磊', 'Leo Walker'), bs('rocket', '部署申请 · 生产', 'Deploy request · production'), '生产发布需人批准，可回滚到上一版本', 'Production needs approval; roll back to the last release', 'user-check', '王磊批准上线', 'Leo approved release') +
     '</div>' +
     '<div class="st-band">' + I('git-branch') + sk('studio-workflow') + '<span>' + T('串起整条流程：每个任务独立分支、独立预览，按顺序过关，不能跳步', 'Ties it together: own branch and preview per task, gates in order, no skipping') + '</span><span class="r">' + I('history') + T('谁做的、用哪个模型、谁批准的，全部留痕', 'Who did it, which model, who approved: all on record') + '</span></div>' +
   '</div></div>')

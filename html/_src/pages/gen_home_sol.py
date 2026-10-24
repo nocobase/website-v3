@@ -36,7 +36,8 @@ def top(icon, app, crumb_zh, crumb_en, right=''):
             '<span class="r">%s<span class="ai"><i data-lucide="sparkles"></i></span><span class="av">%s</span></span></div>') % (brand, T(crumb_zh, crumb_en), right, T('陈', 'A'))
 
 def win(icon, app, czh, cen, body, right=''):
-    return '<div class="sx solo">' + '<div class="sx-main">' + top(icon, app, czh, cen, right) + '<div class="sx-body">' + body + '</div></div></div>'
+    # NocoITAM's figure takes its own green (`.itam-theme` in homepage.html).
+    return '<div class="sx solo%s">' % (' itam-theme' if app == 'ITAM' else '') + '<div class="sx-main">' + top(icon, app, czh, cen, right) + '<div class="sx-body">' + body + '</div></div></div>'
 
 # NocoCRM：一支 7×24 小时的销售 Agent 团队——「Agent 做了 37 件事，你只拍板 6 件」
 # 底部一行：今天在岗的 6 个 Agent 各做了几件事（合计 37，和右侧数字对上）

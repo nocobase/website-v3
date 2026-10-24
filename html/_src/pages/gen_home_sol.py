@@ -28,8 +28,9 @@ def section_fig(page, label, cls='<div class="sx-body">'):
     return balanced(sec, sec.find(cls))
 
 def top(icon, app, crumb_zh, crumb_en, right=''):
-    # NocoCRM has its real logo (assets/nococrm-logo.svg); other apps an icon and their name.
+    # NocoCRM and NocoITAM have their real logos (assets/noco*-logo.svg); other apps an icon and their name.
     brand = ('<img class="crm-logo" src="assets/nococrm-logo.svg" alt="NocoCRM">' if app == 'CRM'
+             else '<img class="crm-logo" src="assets/nocoitam-logo.svg" alt="NocoITAM">' if app == 'ITAM'
              else '<span class="mk"><i data-lucide="%s"></i></span>Noco<span>%s</span>' % (icon, app))
     return ('<div class="sx-top"><span class="sx-brand" style="padding:0">%s</span><span>/</span><b>%s</b>'
             '<span class="r">%s<span class="ai"><i data-lucide="sparkles"></i></span><span class="av">%s</span></span></div>') % (brand, T(crumb_zh, crumb_en), right, T('陈', 'A'))

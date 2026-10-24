@@ -24,6 +24,10 @@
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/site.css">
 <style>
+/* NocoITAM's AI is green, the app's primary (#047857), where the site draws agents in purple: the drawn figures on this page take the product's colour. */
+main { --agent: #047857; --agent-ink: #065f46; --agent-tint: #ecfdf5; }
+main .sg.on { border-color: #a7f3d0; }
+main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 /* Live demo styles: the demo site itself under the hero, or a screenshot of the ITAM when the site cannot be reached, and on a phone; the link under it opens the site in a new tab. */
 .ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
@@ -97,7 +101,7 @@
     <div class="sec-head">
       <p class="label"><b><t-zh>入职与离职</t-zh><t-en>Joiners &amp; Leavers</t-en></b></p>
       <h2 class="h2"><t-zh>新人首日即可开工，</t-zh><t-en>New hires are ready on day one. </t-en><span class="m"><t-zh>离职资产一件不落收回。</t-zh><t-en>Leavers return every item.</t-en></span></h2>
-      <p class="lead"><t-zh>入职前，系统按岗位标准算好所需设备与软件席位，自动匹配库存与闲置，打包生成配置方案；你只需确认一次，缺口自动起草采购单。离职时反向核销，设备、配件、席位以及停用账号、轮换密钥等系统外事项逐一追踪，不漏一项。</t-zh><t-en>Before day one, NocoITAM matches the new hire’s standard kit against stock and idle seats in a single batch. Confirm once, and any gaps become a draft PO. When someone leaves, it tracks devices, accessories, seats, and off-system tasks like revoking accounts and rotating keys until everything is cleared.</t-en></p>
+      <p class="lead"><t-zh>入职前，按岗位标准算好所需设备与软件席位，自动匹配库存与闲置，打包生成配置方案；你只需确认，缺口一键起草采购单。离职时反向核销，设备、配件、席位以及停用账号、轮换密钥等系统外事项逐一追踪，不漏一项。</t-zh><t-en>Before day one, NocoITAM matches the new hire’s standard kit against stock and idle seats in a single batch. Confirm it, and draft a PO for any gaps in one click. When someone leaves, it tracks devices, accessories, seats, and off-system tasks like revoking accounts and rotating keys until everything is cleared.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="grid2">

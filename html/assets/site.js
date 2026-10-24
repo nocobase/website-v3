@@ -13,7 +13,7 @@
     ['launch', 'launch.html', 'graduation-cap', 'NocoBase Launch', T('带真实需求进场的实战培训与项目陪跑', 'Hands-on training &amp; guided project delivery')]
   ];
   var apps = [
-    ['crm', 'solution-crm.html', 'handshake', 'NocoCRM', T('销售管理 · 配备销售与续约 Agent', 'Sales · Sales &amp; Renewal Agents')],
+    ['crm', 'solution-crm.html', 'handshake', 'NocoCRM', T('销售管理 · 配备 6 个销售 Agent', 'Sales · 6 Sales Agents')],
     ['itam', 'solution-itam.html', 'monitor-smartphone', 'NocoITAM', T('IT 资产 · 配备资产巡检 Agent', 'IT Assets · Asset &amp; Audit Agent')],
     ['reach', 'solution-reach.html', 'megaphone', 'NocoReach', T('内容与增长 · 配备内容运营 Agent', 'Growth · Content Agent')],
     ['', '', 'headset', 'NocoSupport', T('客户服务 · 配备工单与客服 Agent', 'Support · Triage &amp; Reply Agents'), 1],

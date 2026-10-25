@@ -73,29 +73,11 @@ itam_ask = ('<div class="sx-sec"><i data-lucide="user-check"></i>' + T('等你�
 itam = win('monitor-smartphone', 'ITAM', '价值', 'Value', re.sub(r'<tr><td class="id">(DP-000003|PO-000045|Zoom Pro)</td>.*?</tr>', '', wow_body('solution-itam.html'), flags=re.S) + itam_ask,
            '<span class="tag grey">' + T('本季度', 'This quarter') + '</span>')
 
-# NocoReach：找到机会 → Agent 做完 → 上线后自动复盘（闭环在上，下面是今天的机会和已上线的成效）
-loop = wow_body('solution-reach.html')
-opp = section_fig('solution-reach.html', '机会')
-cards = [balanced(opp, m.start()) for m in re.finditer(r'<div class="sg(?: on)?">', opp)][:1]
-hand = '<div class="acts" style="margin:0;flex-wrap:nowrap"><span class="b p sm"><i data-lucide="bot"></i>' + T('交给 Agent', 'Hand to agent') + '</span><span class="b sm">' + T('忽略', 'Dismiss') + '</span></div>'
-def compact(c):
-    # 只留标题和一句说明，按钮放右侧，一行一个机会
-    b = re.search(r'<b>.*?</b>', c, re.S).group(0)
-    d = re.search(r'<p>.*?</p>', c, re.S).group(0)
-    on = ' on' if c.startswith('<div class="sg on"') else ''
-    return ('<div class="sg%s" style="grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:10px 12px"><div style="display:grid;gap:2px;min-width:0">%s%s</div>' % (on, b, d)) + hand + '</div>'
-cards = [compact(c) for c in cards]
-res = section_fig('solution-reach.html', '成效')
-stat = balanced(res, res.find('<div class="stat"'))
-rows = re.findall(r'<tr><td class="id">.*?</tr>', res, re.S)[:2]
-tbl = re.search(r'<thead>.*?</thead>', res, re.S).group(0)
-reach_body = (loop +
-  '<div class="duo2" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px">' +
-    '<div class="pnl" style="gap:8px;align-content:start;background:var(--paper)"><div class="h"><i data-lucide="lightbulb"></i>' + T('今天找到的机会', 'Today’s opportunities') + '<span class="r">' + T('待办 2 · 观察中 7', 'To do 2 · Watching 7') + '</span></div>' + ''.join(cards) + '</div>' +
-    '<div class="pnl" style="gap:10px;align-content:start;background:var(--paper)"><div class="h"><i data-lucide="chart-line" style="color:var(--pass)"></i>' + T('上线后的成效', 'After launch') + '<span class="r">' + T('第 7 / 28 天自动对比', 'Auto-checked on day 7 / 28') + '</span></div>' + stat +
-      '</div>' +
-  '</div>')
-reach = win('chart-no-axes-column', 'Reach', '洞察', 'Insights', reach_body, '<span class="tag amber">' + T('15 件事等你处理', '15 items need you') + '</span>')
+# NocoReach: the Insights page itself, as the Reach page shows it (assets/reach/, drawn by _src/reach/figs.html with the
+# product's own stylesheet and the Acme example of the NocoReach film); today's daily analysis and the decisions it asks for
+reach = ('<div class="sx solo" style="padding:0;overflow:hidden">' +
+         T('<img src="assets/reach/insights-zh.webp" alt="NocoReach 洞察页" width="1280" height="720" style="display:block;width:100%;height:auto">',
+           '<img src="assets/reach/insights-en.webp" alt="NocoReach Insights" width="1280" height="720" style="display:block;width:100%;height:auto">') + '</div>')
 
 # ---------- 还没上线的三款：没有内页可取，按前三款的思路画——Agent 做了什么，留给人拍板的是哪几件 ----------
 BOT = '<span class="ag"><i data-lucide="bot"></i></span>'

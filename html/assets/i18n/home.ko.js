@@ -145,7 +145,6 @@
 "Sales CRM": "영업 관리",
 "Every saving comes with a paper trail.": "절감한 비용마다 근거가 명확합니다.",
 "Growth": "그로스",
-"Agents find, ship, and measure growth. You make the calls.": "에이전트가 기회를 찾고, 실행하고, 성과를 측정합니다. 당신은 결정만 하세요.",
 "Support": "고객 지원",
 "Overnight tickets are handled by morning. Only 3 need you.": "밤사이 들어온 티켓은 아침이면 처리 완료. 결정을 기다리는 건 3건뿐입니다.",
 "Projects": "프로젝트",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio가 여러 에이전트를 조율해 설계, 개발, 테스트, 리뷰를 함께 진행합니다. 중요한 결정은 사람이 내리며, 보고서와 스크린샷이 근거로 첨부됩니다.",
 "Know-how": "지식 축적",
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 팀과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 팀과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다.",
+"AI finds growth opportunities. Agents put them into action.": "AI가 성장 기회를 찾고, 에이전트가 실행합니다."
 }
 };

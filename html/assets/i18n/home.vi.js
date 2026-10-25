@@ -145,7 +145,6 @@
 "Sales CRM": "CRM bán hàng",
 "Every saving comes with a paper trail.": "Mỗi khoản tiết kiệm đều rõ nguồn gốc.",
 "Growth": "Tăng trưởng",
-"Agents find, ship, and measure growth. You make the calls.": "Agent tìm cơ hội, triển khai và đo hiệu quả tăng trưởng. Bạn chỉ cần quyết định.",
 "Support": "Hỗ trợ",
 "Overnight tickets are handled by morning. Only 3 need you.": "Ticket gửi đến ban đêm đã xử lý xong lúc sáng. Chỉ 3 việc chờ bạn.",
 "Projects": "Dự án",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio điều phối nhiều agent cùng thực hiện thiết kế, phát triển, kiểm thử và review; quyết định then chốt do con người kiểm soát, kèm báo cáo và ảnh chụp màn hình làm căn cứ.",
 "Know-how": "Tích lũy tri thức",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.",
+"AI finds growth opportunities. Agents put them into action.": "AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động."
 }
 };

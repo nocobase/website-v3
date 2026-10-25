@@ -66,3 +66,5 @@ description: NocoBase Solution est une gamme d’applications métier pilotées 
 079: Voir les applications
 082: Découvrir Core
 086: Découvrir Studio
+087: Croissance · Beta
+089: Analyser les données chaque jour, trouver ce qui mérite d’être fait preuves à l’appui, puis modifier des pages, rédiger des articles et préparer des réponses pour la communauté

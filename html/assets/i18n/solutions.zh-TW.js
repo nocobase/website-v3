@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "IT 資產清冊與管理 · Beta",
 "Every saving comes with a paper trail.": "省下的每一筆錢，都說得清來龍去脈。",
 "Explore NocoITAM": "了解 NocoITAM",
-"Growth · Alpha": "內容與成長 · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Agent 找機會、做成長、看成效，你只管拍板。",
 "Explore NocoReach": "了解 NocoReach",
 "Support · Soon": "客戶服務 · 即將推出",
 "Overnight tickets are handled by morning. Only 3 need you.": "夜裡進來的工單，早上已經處理完，只有 3 件等你拍板。",
@@ -40,7 +38,6 @@
 "Discounts, quotes, and contract terms": "折扣、報價與合約承諾",
 "Reconcile asset records with MDM, prepare onboarding and offboarding kits, and pre-review purchase and disposal requests": "核對資產清冊與 MDM、準備到職和離職的配置方案、初審採購與報廢申請",
 "Purchases, disposals, and major asset changes": "採購、報廢與重要資產異動",
-"Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes": "每天分析資料、找出成長機會並附上依據，在儲存庫裡改好程式碼並提出 PR",
 "Which opportunities to take, brand review, and release": "採納哪些機會、品牌把關與上線",
 "Soon": "即將推出",
 "Triage and route tickets, search the knowledge base, and draft replies": "工單分類分派、檢索知識庫、起草回覆",
@@ -86,5 +83,8 @@
 "Commercial": "商業版",
 "Lead an agent team": "帶領 Agent 團隊開發",
 "Agents keep the work moving. Your team stays in control.": "Agent 自主推進，團隊掌控全局。",
-"Explore Studio": "了解 Studio"
+"Explore Studio": "了解 Studio",
+"Growth · Beta": "內容與成長 · Beta",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "每天分析資料、找出值得做的事並附上依據，修改頁面、撰寫文章、草擬社群回覆",
+"AI finds growth opportunities. Agents put them into action.": "AI 找出成長機會，交給 Agent 執行。"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — 開源業務應用，AI 驅動，開箱即用", "description": "NocoBase Solution 是由 Agent 驅動、以 Core 打造的一系列企業業務應用，Agent 做大部分執行工作，人只做關鍵決策。"}; })((window.NB_I18N = window.NB_I18N || {})["zh-TW"] = (window.NB_I18N || {})["zh-TW"] || {});

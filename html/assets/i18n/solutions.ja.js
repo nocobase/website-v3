@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "IT 資産台帳・管理 · Beta",
 "Every saving comes with a paper trail.": "削減したコストの一つひとつに、確かな経緯を。",
 "Explore NocoITAM": "NocoITAM の詳細",
-"Growth · Alpha": "グロース · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "エージェントが機会を見つけて施策を実行し、効果まで測定。あなたは判断するだけ。",
 "Explore NocoReach": "NocoReach の詳細",
 "Support · Soon": "サポート · 近日公開",
 "Overnight tickets are handled by morning. Only 3 need you.": "夜間のチケットは朝までに処理済み。あなたの判断待ちは 3 件だけ。",
@@ -40,7 +38,6 @@
 "Discounts, quotes, and contract terms": "割引、見積もり、契約条件",
 "Reconcile asset records with MDM, prepare onboarding and offboarding kits, and pre-review purchase and disposal requests": "資産台帳と MDM の照合、入社・退職時の配布構成の準備、購買申請と廃棄申請の一次審査",
 "Purchases, disposals, and major asset changes": "購買、廃棄、重要な資産の変更",
-"Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes": "毎日のデータ分析、根拠を添えた成長機会の発見、変更を加えたプルリクエストの作成",
 "Which opportunities to take, brand review, and release": "採用する機会の選定、ブランドチェック、リリース",
 "Soon": "近日公開",
 "Triage and route tickets, search the knowledge base, and draft replies": "チケットの分類と振り分け、ナレッジベースの検索、返信の下書き",
@@ -86,5 +83,8 @@
 "Commercial": "商用版",
 "Lead an agent team": "エージェントチームを率いて開発",
 "Agents keep the work moving. Your team stays in control.": "エージェントが自律的に推進し、チームが全体を掌握する。",
-"Explore Studio": "Studio の詳細"
+"Explore Studio": "Studio の詳細",
+"Growth · Beta": "グロース · Beta",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "毎日のデータ分析、根拠を添えた取り組むべきことの発見、ページの修正、記事の執筆、コミュニティへの返信の下書き",
+"AI finds growth opportunities. Agents put them into action.": "AI が成長の機会を見つけ、エージェントが実行します。"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — オープンソースの業務アプリ、AI 駆動ですぐに使える", "description": "NocoBase Solution は、Core 上に構築された、エージェントが動かす業務アプリのシリーズです。"}; })((window.NB_I18N = window.NB_I18N || {})["ja"] = (window.NB_I18N || {})["ja"] || {});

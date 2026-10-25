@@ -828,7 +828,8 @@
  {
   "en": "Agents find, ship, and measure growth. You make the calls.",
   "zh": "Agent 找机会、做增长、看效果，你只管拍板。",
-  "where": "figure"
+  "where": "figure",
+  "unused": true
  },
  {
   "en": "Support",
@@ -1190,5 +1191,16 @@
   "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
   "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
   "where": "studio"
+ },
+ {
+  "en": "Find the opportunities in your data. NocoReach puts them into action.",
+  "zh": "从数据中发现机会，NocoReach 帮你落地。",
+  "where": "figure",
+  "unused": true
+ },
+ {
+  "en": "AI finds growth opportunities. Agents put them into action.",
+  "zh": "AI 找出增长机会，交给 Agent 执行。",
+  "where": "figure"
  }
 ]

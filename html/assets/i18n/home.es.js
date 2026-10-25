@@ -145,7 +145,6 @@
 "Sales CRM": "CRM de ventas",
 "Every saving comes with a paper trail.": "Cada ahorro, con su rastro documentado.",
 "Growth": "Crecimiento",
-"Agents find, ship, and measure growth. You make the calls.": "Los agentes encuentran oportunidades, actúan y miden el crecimiento. Tú decides.",
 "Support": "Soporte",
 "Overnight tickets are handled by morning. Only 3 need you.": "Los tickets de la noche quedan resueltos por la mañana. Solo 3 te necesitan.",
 "Projects": "Proyectos",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio coordina a varios agentes en el diseño, el desarrollo, las pruebas y la revisión. Las decisiones clave las toma una persona, con informes y capturas como respaldo.",
 "Know-how": "Conocimiento acumulado",
 "Agents keep the work moving. Your team stays in control.": "Los agentes hacen avanzar el trabajo. Tu equipo mantiene el control.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio es la plataforma de gobernanza para equipos que desarrollan con agentes. Reúne Claude Code, Codex y OpenCode en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio es la plataforma de gobernanza para equipos que desarrollan con agentes. Reúne Claude Code, Codex y OpenCode en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave.",
+"AI finds growth opportunities. Agents put them into action.": "La IA encuentra oportunidades de crecimiento. Los agentes las ponen en práctica."
 }
 };

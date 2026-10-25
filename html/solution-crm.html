@@ -44,15 +44,14 @@
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 /* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
 #tryDemo { padding-top: 72px; }
-.ld-head { margin-bottom: 20px; }
+.ld-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.ld-open a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 15px; white-space: nowrap; }
+.ld-open a:hover { color: var(--brand-hover); }
+.ld-open svg.lucide { width: 16px; height: 16px; }
 #tryDemo .sec-body { margin-top: 0; }
 .ld-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
 .ld-head p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
 #tryDemo[hidden] { display: none; }
-.ld-bar { display: flex; flex-wrap: wrap; justify-content: center; text-align: center; align-items: center; gap: 8px 16px; margin-top: 16px; color: var(--muted); }
-.ld-bar a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); }
-.ld-bar a:hover { color: var(--brand-hover); }
-.ld-bar svg.lucide { width: 16px; height: 16px; }
 #liveDemo { scroll-margin-top: 170px; } /* its section's heading stays in view above it, under the sticky header */
 @media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
 @media (max-width: 960px) { .phero-split { grid-template-columns: minmax(0, 1fr); gap: 36px; } .phero-split h1 { font-size: 40px; } }
@@ -87,12 +86,14 @@
 <section class="sec" id="tryDemo" hidden>
   <div class="container">
     <div class="ld-head">
-      <h2><t-zh>在线体验 NocoCRM</t-zh><t-en>Try NocoCRM online</t-en></h2>
-      <p><t-zh>已用演示账号自动登录，数据都是虚构的，可以随意操作。</t-zh><t-en>You're signed in to a demo account. All the data is made up, so try anything.</t-en></p>
+      <div>
+        <h2><t-zh>在线体验 NocoCRM</t-zh><t-en>Try NocoCRM online</t-en></h2>
+        <p><t-zh>已用演示账号自动登录，数据都是虚构的，可以随意操作。</t-zh><t-en>You're signed in to a demo account. All the data is made up, so try anything.</t-en></p>
+      </div>
+      <span class="ld-open" id="liveDemoBar"><a href="https://solutions-cn.nocobase.com/crm/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span>
     </div>
     <div class="sec-body">
     <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoCRM" allow="clipboard-write"></iframe></div></div>
-    <div class="ld-bar" id="liveDemoBar"><span><a href="https://solutions-cn.nocobase.com/crm/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span></div>
     </div>
   </div>
 </section>

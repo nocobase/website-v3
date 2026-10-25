@@ -492,7 +492,7 @@
 <h3 id="界面名称">界面名称</h3>
 <ul>
 <li>界面上的名称、按钮写在「」里，路径写成「A › B」，与中文界面一致。</li>
-<li>文档按标准表述写“调度 Agent”，不加括号注明界面名称。界面上它还叫「项目经理」，只在要读者到界面上找它的操作步骤里照界面写，例如「启用 Agent」一页里打开「项目经理」设置首选和备选。</li>
+<li>文档按标准表述写“调度 Agent”，界面上也全部用「调度 Agent」（2026-10-25 定）。截至 <code>dev</code> <code>c8b3c349</code>，界面上还叫「项目经理」，文档不再迁就，等界面改名。</li>
 <li>侧边栏的分组现在叫「Agent 管理」，路径照界面写，例如「Agent 管理 › 运行环境」；正文讲的是“Agent 团队”，与标准表述一致。</li>
 </ul>
 <h2 id="已核实的产品变化">已核实的产品变化</h2>
@@ -651,6 +651,36 @@
 <td>已修复 <code>assets/docs.css</code>，全站生效</td>
 </tr>
 </tbody></table></div>
+<h2 id="agent-搭建实践记录">Agent 搭建实践记录</h2>
+<p>2026-10-25 在一台全新的 Debian 服务器（OrbStack 虚拟机，只装了 Docker；运行环境用同一台机器上的专用用户 runner，事先装好 Node.js 24 和 Codex 并登录）上，让一个全新会话的 Codex（容器里运行，模拟用户的电脑）只拿着「让 Agent 搭建 Studio」的提示词和 Markdown 文档完成搭建。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>发现</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>部署、命令行、Git、运行环境、Agent 和调度 Agent 全部走通。Codex 照文档改好 <code>config.yml</code>，用文件交接密码和凭证，照「接入共享运行环境」的准备一节自己装了 gh、Chromium、pnpm 和 Playwright 浏览器，用中文写好每个 Agent 的擅长什么</td>
+<td>提示词和分步说明可以直接作为 Agent 的操作依据</td>
+</tr>
+<tr>
+<td>人要做四次：在服务器上登录镜像源、登录网页取「连接本地 Coding Agent」的配置指令、批准命令行登录、创建 GitHub App。nb-studio 只能用网页上生成的下载凭证安装，所以取配置指令这一步省不掉</td>
+<td>页面列出“你要亲自做的几步”</td>
+</tr>
+<tr>
+<td>第一次批准命令行登录时，登录进程随 Agent 的一轮结束而退出，批准没有生效</td>
+<td>提示词写明：等人批准时保持登录命令一直运行</td>
+</tr>
+<tr>
+<td>搭建约 35 分钟（一半在等人）；把正式项目（NocoBase 模板初始化约 20 分钟）和第一个需求（约 30 分钟）也放进去，总共要一个半小时以上，太长</td>
+<td>改成两段：搭建做完就停下交结果；试运行可选，用空仓库和一个最简单的任务</td>
+</tr>
+<tr>
+<td>试运行：空仓库项目 + “新建一个文件写一句话”，从开始执行到待验收 4 分 50 秒（调度、交给 Luna、改文件开 PR、交给 Astra 评审、交付报告）。任务描述里写明“没有接 CI，评审通过后直接交给我验收”，调度 Agent 就没有再停下来问 CI</td>
+<td>试运行提示词沿用这句；GitHub 新建的空仓库自带 README，所以试运行的文件用 hello.md</td>
+</tr>
+</tbody></table></div>
 <h2 id="进行中的产品变化">进行中的产品变化</h2>
 <ul>
 <li><strong>运行环境和“我的 Agent”正在统一</strong>（2026-10-25 得知，尚未合并）：以后不再区分两种类型，成员接入自己的电脑只需要一次。合并后，「加入团队」里的「连接自己的电脑」和「接入个人运行环境」合成一页；「核心概念」「Agent 团队怎样工作」「我的会话」里讲两种连接的地方一起改。写「加入团队」之前先看它是否已经合并。</li>
@@ -691,7 +721,7 @@
 <ol>
 <li>主体按一家公司用起 Studio 的先后分组：搭建 Studio、加入团队、日常使用、管理项目、系统管理。每组给一种角色看。四条核心特色在「Studio 是什么」里讲，链接到各组的页面。2026-10-24 修订，取代按核心特色分组。</li>
 <li>只写 <code>dev</code> 上已经能走通的功能。预览、发布审批和回滚按角色分别写进日常使用、搭建 Studio、管理项目和系统管理；质量管理不放进菜单。</li>
-<li>文档写“调度 Agent”，不加括号注明；只在要到界面上找它的操作步骤里写「项目经理」。</li>
+<li>文档和界面都写“调度 Agent”，不再出现「项目经理」。界面改名之前，以文档为准。</li>
 <li>「开始 › NocoBase 3 是什么」一起按标准表述修改。中文定稿后再做英文版。</li>
 </ol>
 <h2 id="进度">进度</h2>
@@ -719,6 +749,10 @@
 <td>已确认（2026-10-25）；界面文字对照 <code>dev</code> <code>c8b3c349</code> 核实，过程对照第一个需求的走查。「加入团队」等运行环境和“我的 Agent”统一后再写</td>
 </tr>
 <tr>
+<td>让 Agent 搭建 Studio</td>
+<td>已写完（2026-10-25），按实践改成搭建、试运行两段；界面名称统一为「调度 Agent」</td>
+</tr>
+<tr>
 <td>菜单和页面位置</td>
 <td>已按新结构调整（2026-10-24）：原来的快速开始拆进搭建 Studio 的各页；「我的会话」里连接电脑的部分移到「连接自己的电脑」；「跟进进展」里的 Agent 队列和仪表盘移到「Agent 工作负荷与模型用量」和「项目进展」</td>
 </tr>
@@ -732,7 +766,7 @@
 <nav class="pager" aria-label="翻页"><a class="prev" href="10-Core%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html"><small>上一页</small>Core 进度与待确认事项</a><a class="next" href="01-%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98.html"><small>下一页</small>现有文档的问题</a></nav>
 <footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span>文档站用 node doc/serve.mjs 预览</span></footer>
 </main>
-<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98">现有文档的问题</a></li><li><a href="#%E8%AF%BB%E8%80%85%E5%B8%A6%E7%9D%80%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9D%A5">读者带着什么问题来</a></li><li><a href="#%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84">文档结构</a></li><li><a href="#%E6%AF%8F%E9%A1%B5%E6%80%8E%E6%A0%B7%E5%86%99">每页怎样写</a></li><li><a href="#%E5%86%99%E7%BB%99%E8%B0%81">写给谁</a></li><li><a href="#%E6%8E%AA%E8%BE%9E%E8%A7%84%E8%8C%83">措辞规范</a></li><li><a href="#%E5%B7%B2%E6%A0%B8%E5%AE%9E%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">已核实的产品变化</a></li><li><a href="#%E5%AE%89%E8%A3%85%E8%B5%B0%E6%9F%A5%E8%AE%B0%E5%BD%95">安装走查记录</a></li><li><a href="#%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">进行中的产品变化</a></li><li><a href="#%E9%9C%80%E8%A6%81%E6%9B%B4%E6%96%B0%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E5%9C%B0%E6%96%B9">需要更新标准表述的地方</a></li><li><a href="#%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E4%BF%AE%E6%94%B9">标准表述的修改</a></li><li><a href="#%E5%B7%B2%E5%AE%9A%E7%9A%84%E4%BA%8B%E9%A1%B9">已定的事项</a></li><li><a href="#%E8%BF%9B%E5%BA%A6">进度</a></li></ul></aside>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98">现有文档的问题</a></li><li><a href="#%E8%AF%BB%E8%80%85%E5%B8%A6%E7%9D%80%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9D%A5">读者带着什么问题来</a></li><li><a href="#%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84">文档结构</a></li><li><a href="#%E6%AF%8F%E9%A1%B5%E6%80%8E%E6%A0%B7%E5%86%99">每页怎样写</a></li><li><a href="#%E5%86%99%E7%BB%99%E8%B0%81">写给谁</a></li><li><a href="#%E6%8E%AA%E8%BE%9E%E8%A7%84%E8%8C%83">措辞规范</a></li><li><a href="#%E5%B7%B2%E6%A0%B8%E5%AE%9E%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">已核实的产品变化</a></li><li><a href="#%E5%AE%89%E8%A3%85%E8%B5%B0%E6%9F%A5%E8%AE%B0%E5%BD%95">安装走查记录</a></li><li><a href="#agent-%E6%90%AD%E5%BB%BA%E5%AE%9E%E8%B7%B5%E8%AE%B0%E5%BD%95">Agent 搭建实践记录</a></li><li><a href="#%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">进行中的产品变化</a></li><li><a href="#%E9%9C%80%E8%A6%81%E6%9B%B4%E6%96%B0%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E5%9C%B0%E6%96%B9">需要更新标准表述的地方</a></li><li><a href="#%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E4%BF%AE%E6%94%B9">标准表述的修改</a></li><li><a href="#%E5%B7%B2%E5%AE%9A%E7%9A%84%E4%BA%8B%E9%A1%B9">已定的事项</a></li><li><a href="#%E8%BF%9B%E5%BA%A6">进度</a></li></ul></aside>
 </div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script src="../assets/docs.js?v=d6d88895"></script>

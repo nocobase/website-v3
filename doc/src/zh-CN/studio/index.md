@@ -9,7 +9,7 @@ description: NocoBase Studio 是团队与 Agent 协同开发的治理平台。�
 | 你要做什么 | 读这一部分 |
 | --- | --- |
 | 了解 Studio | [入门](intro/what-is-studio.md)：Studio 解决什么问题，一个需求从提出到上线怎样完成，Agent 团队怎样分工推进。 |
-| 为团队部署 Studio | [搭建 Studio](setup/install.md)：从安装到走完第一个需求、邀请成员，按顺序做一遍。 |
+| 为团队部署 Studio | [让 Agent 搭建 Studio](setup/with-agent.md)：把一段提示词交给你的 Coding Agent，由它完成部署、配置和测试；分步说明供查阅。 |
 | 第一次使用 Studio | [加入团队](join/sign-in.md)：连接自己的 Git 账号和电脑，需要时接入个人运行环境。 |
 | 提出需求，跟进进展，做决策 | [日常使用](use/raise-a-request.md)：在会话里和 Agent 讨论需求，跟进任务进展，回答 Agent 的提问，验收。 |
 | 负责一个项目 | [管理项目](project/settings.md)：技能、知识库、检查与评审、项目记忆，批准上线，掌握项目进展和用量。 |

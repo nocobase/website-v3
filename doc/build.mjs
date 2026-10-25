@@ -146,7 +146,10 @@ const SECTIONS = [
       { title: ['Get started', '入门'], items: ['intro/what-is-studio', 'intro/how-a-request-gets-done', 'intro/agent-team', 'intro/concepts'] },
       {
         title: ['Set up Studio', '搭建 Studio'],
-        items: ['setup/install', 'setup/git', 'setup/shared-runtimes', 'setup/agents', 'setup/new-project', 'setup/ci', 'setup/first-request', 'setup/invite'],
+        items: [
+          'setup/with-agent',
+          { heading: ['Step by step', '分步说明'] }, 'setup/install', 'setup/git', 'setup/shared-runtimes', 'setup/agents', 'setup/new-project', 'setup/ci', 'setup/first-request', 'setup/invite',
+        ],
       },
       { title: ['Join the team', '加入团队'], items: ['join/sign-in', 'join/connect-computer', 'join/local-agent', 'join/personal-runtime'] },
       { title: ['Daily use', '日常使用'], items: ['use/raise-a-request', 'use/sessions', 'use/my-tasks', 'use/follow-progress', 'use/answer', 'use/accept', 'use/inbox'] },

@@ -4,7 +4,7 @@
 //   src/zh-CN/**/*.md   → dist/zh-CN/**（简体中文）
 //   方案/*.md            → 方案/*.html（团队内部的文档方案，不发布）
 // 两种语言的目录结构完全相同，页面的键就是它相对语言根目录的路径（不带 .md）。产物沿用 CDN 回源规则的约定：每页输出成
-// `<路径>/index.html`，地址不带扩展名（栏目首页带尾斜杠，其余不带），所有站内链接和资源都用根路径；根目录还有 404.html、
+// `<路径>/index.html`，地址不带扩展名、以 / 结尾，所有站内链接和资源都用根路径；根目录还有 404.html、
 // sitemap.xml、robots.txt、llms.txt，以及每页去掉 front matter 的 .md 副本。
 // 文档站分三部分：开始（index.md、start/）、Core（core/）、Studio（studio/），顶栏切换，左侧菜单只列当前部分。
 // 运行：node doc/build.mjs（需要 marked@4.3.0，先在 doc/ 执行 npm ci）。站点域名读 DOCS_SITE_ORIGIN，默认
@@ -164,8 +164,9 @@ const PLAN_GROUPS = [
 ];
 
 /* ---------- 地址 ---------- */
-// 页面的键是它相对语言根目录的路径；地址不带扩展名，栏目首页带尾斜杠
-const pathOf = (key) => (key === 'index' ? '' : key.endsWith('/index') ? key.slice(0, -'index'.length) : key);
+// 页面的键是它相对语言根目录的路径；地址不带扩展名，一律以 / 结尾，和页面输出成 <路径>/index.html 的目录结构一致。
+// CDN 对不带 / 的地址同样回源到这个文件，canonical 和站内链接只用带 / 的写法。
+const pathOf = (key) => (key === 'index' ? '' : key.endsWith('/index') ? key.slice(0, -'index'.length) : `${key}/`);
 const urlOf = (lang, key) => `/${lang.prefix}${pathOf(key)}`;
 // .md 副本：栏目首页是 <栏目>/index.md，其余是 <页面>.md，正文里的相对 .md 链接因此可以原样使用
 const mdUrlOf = (lang, key) => `/${lang.prefix}${key}.md`;

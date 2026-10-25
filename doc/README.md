@@ -19,7 +19,7 @@ node build.mjs     # 生成 doc/dist/ 和 方案/*.html
 node serve.mjs     # 在 http://localhost:4321/ 预览
 ```
 
-`dist/` 的结构和线上一致：每页是 `<路径>/index.html`，地址不带扩展名，站内链接和资源都用根路径，所以要通过 `serve.mjs` 预览，不能直接打开文件。根目录还有 `404.html`、`sitemap.xml`、`robots.txt`、`llms.txt` 和每页的 `.md` 副本。canonical、hreflang 和 sitemap 用的站点域名读环境变量 `DOCS_SITE_ORIGIN`，默认 `https://docs.nocobase.com`；输出目录读 `DOCS_OUT_DIR`。
+`dist/` 的结构和线上一致：每页是 `<路径>/index.html`，地址不带扩展名、以 `/` 结尾（如 `/core/quickstart/`），站内链接和资源都用根路径，所以要通过 `serve.mjs` 预览，不能直接打开文件。根目录还有 `404.html`、`sitemap.xml`、`robots.txt`、`llms.txt` 和每页的 `.md` 副本。canonical、hreflang 和 sitemap 用的站点域名读环境变量 `DOCS_SITE_ORIGIN`，默认 `https://docs.nocobase.com`；输出目录读 `DOCS_OUT_DIR`。
 
 推送到本仓库后，CI 会构建文档站，构建失败会在 PR 和提交上显示为失败的检查。
 

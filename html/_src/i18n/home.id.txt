@@ -222,3 +222,18 @@ description: NocoBase adalah platform open source untuk membangun, menjalankan, 
 216: Manajemen aset TI · 3 agen TI
 217: Agen menyelesaikan 37 tugas rutin hari ini. Hanya 6 yang perlu keputusan Anda.
 218: Manajemen aset TI
+219: Agen menggerakkan pekerjaan secara mandiri.<br>
+220: Tim Anda tetap memegang kendali.
+221: NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code dan Codex menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.
+222: Vibe coding membuat pengembangan software jauh lebih cepat. Namun begitu proyek melibatkan logika bisnis yang kompleks, banyak orang, dan iterasi bertahun-tahun, kode buatan AI saja tidak cukup. Anda juga membutuhkan fondasi aplikasi yang andal, standar pengembangan yang konsisten, dan tata kelola yang baik. NocoBase bukan pengganti vibe coding, melainkan melengkapinya dengan fondasi dan tata kelola.
+223: Komponen dasar
+224: Tanpa NocoBase
+225: Standar arsitektur
+226: Ganti developer, model, atau sesi, dan AI bisa berimprovisasi. Arsitektur perlahan melenceng.
+227: Core menyediakan satu struktur proyek, standar pengembangan, dan skill pengembangan, sehingga sistem berkembang stabil selama bertahun-tahun di atas arsitektur yang konsisten.
+228: Tata kelola
+229: Agen menyerahkan semakin banyak perubahan, lebih dari yang sanggup ditinjau siapa pun, sehingga sering diterima begitu saja. Masalah terus menumpuk.
+230: Studio mengoordinasikan beberapa agen dalam desain, pengembangan, pengujian, dan review. Keputusan penting diambil manusia, dengan laporan dan tangkapan layar sebagai dasar.
+231: Pengetahuan tim
+232: Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.
+233: NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.

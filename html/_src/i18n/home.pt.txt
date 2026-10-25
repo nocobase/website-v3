@@ -222,3 +222,18 @@ description: NocoBase é a plataforma open source para criar, operar e evoluir s
 216: Gestão de ativos de TI · 3 agentes de TI
 217: Os agentes concluíram 37 tarefas de rotina hoje. Só 6 precisaram da sua decisão.
 218: Gestão de ativos de TI
+219: Os agentes fazem o trabalho avançar.<br>
+220: Sua equipe mantém o controle.
+221: O NocoBase Studio é a plataforma de governança para equipes que desenvolvem com agentes. Ele reúne o Claude Code e o Codex em uma única equipe de agentes que faz as tarefas avançarem sozinha. O progresso fica à vista, e as decisões importantes ficam com as pessoas.
+222: O vibe coding torna o desenvolvimento de software muito mais rápido. Mas quando um projeto envolve lógica de negócio complexa, muitas pessoas e anos de evolução, só o código gerado por IA não basta. Também é preciso uma base de aplicação confiável, padrões de desenvolvimento consistentes e uma boa governança. O NocoBase não substitui o vibe coding: ele se apoia nele e acrescenta a base e a governança.
+223: Componentes básicos
+224: Sem o NocoBase
+225: Padrões de arquitetura
+226: Troque de desenvolvedor, de modelo ou de sessão e a IA pode improvisar. A arquitetura vai se desviando aos poucos.
+227: O Core traz uma estrutura de projeto, padrões de desenvolvimento e skills de desenvolvimento únicos, para que o sistema evolua de forma estável por anos em uma arquitetura consistente.
+228: Governança
+229: Os agentes entregam cada vez mais mudanças, mais do que alguém consegue revisar, e elas acabam sendo aceitas do jeito que estão. Os problemas se acumulam.
+230: O Studio coordena vários agentes no design, desenvolvimento, testes e revisão. As decisões importantes ficam com uma pessoa, com relatórios e capturas de tela como base.
+231: Conhecimento acumulado
+232: Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.
+233: O NocoBase Studio é a plataforma de governança para equipes que desenvolvem com agentes. Ele reúne o Claude Code, o Codex e o OpenCode em uma única equipe de agentes que faz as tarefas avançarem sozinha. O progresso fica à vista, e as decisões importantes ficam com as pessoas.

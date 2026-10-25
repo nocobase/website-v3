@@ -280,6 +280,20 @@
     K.setPill = (id, k, text) => { const e = $('#' + id); e.className = 'stt ' + (ST[k] || ST.run)[0]; e.querySelector('em').textContent = text || (ST[k] || ST.run)[1]; };
     K.btnO = (icon, text, id) => `<span class="bo"${id ? ` id="${id}"` : ''}>${icon ? K.ic(icon) : ''}${text}</span>`;   // outline
     K.btnD = (icon, text, id) => `<span class="bo dk"${id ? ` id="${id}"` : ''}>${icon ? K.ic(icon) : ''}${text}</span>`; // black primary
+    // an agent at work: a pill naming who acts and what it is doing, then 工作中 (blue dot with a soft ring) or 已完成 (green
+    // dot). Only agents get one; people act through the cursor. o.cls 'tr' parks it at the top right, level with K.ftlH;
+    // o.labels replaces the two state words for a language version (default: Chinese, or Working / Done for word-split ones).
+    K.agentChip = (id, o = {}) => {
+      const lb = o.labels || (K.byWord ? ['Working', 'Done'] : ['工作中', '已完成']);
+      return `<div class="agchip${o.cls ? ' ' + o.cls : ''}" id="${id}" data-run="${lb[0]}" data-done="${lb[1]}"><i class="dot"></i>${K.ic(o.icon || 'sparkles')}<b></b><em></em></div>`;
+    };
+    // what the chip says from at on: K.agentAs('agt', '调度 Agent', '分派 3 个任务', 'run', 62.0) … ('done', 66.5)
+    K.agentAs = (id, name, what, state, at) => K.call(() => {
+      const e = $('#' + id), done = state === 'done';
+      e.querySelector('b').textContent = name;
+      e.querySelector('em').textContent = what + ' · ' + e.dataset[done ? 'done' : 'run'];
+      e.classList.toggle('run', !done);
+    }, at);
     // a request from a person: { name, role, av, msg } — full names, a role, one short sentence
     K.bubHTML = (p, id, cls = '') => `<div class="bub ${cls}"${id ? ` id="${id}"` : ''}>${K.avatar(p.name, p.av)}<div><div class="who">${K.ZH(p.role)} · ${p.name}</div>` +
       `<div class="tx">${K.ZH(p.msg)}</div></div><div class="ok">${K.ic('check')}</div></div>`;
@@ -348,10 +362,11 @@
         D.start(); D.frame();
       };
       if (/[?&]play\b/.test(location.search)) window.addEventListener('load', () => document.fonts.ready.then(() => { C.play(); D.start(); window.__onFrame = () => D.frame(); }));
-      if (/[?&]preview\b/.test(location.search)) window.addEventListener('load', () => document.fonts.ready.then(() => K.preview()));
+      // the review cut: preview.html (window.__PREVIEW), or film.html?preview
+      if (window.__PREVIEW || /[?&]preview\b/.test(location.search)) window.addEventListener('load', () => document.fonts.ready.then(() => K.preview()));
     };
 
-    // ---------------------------------------------------------------- the HTML review cut (film.html?preview)
+    // ---------------------------------------------------------------- the HTML review cut (preview.html, or film.html?preview)
     // The film plays in the browser at real time on the stage scaled to the window, with a bar: play / pause, a scrubber
     // marked with the film's sections (K.beat), a jump list, speed. Seeking forward advances the clock; seeking back rebuilds
     // the stage in place from 0 and fast-forwards (one-way class switches only play forward), so the sound keeps playing.
@@ -393,29 +408,75 @@
       addEventListener('resize', fit);
       let playing = false, last = 0, rate = 1;
       const now = () => C.vt / 1000;
-      // the soundtrack: the score and the effects as make.sh mixes them (AUDIO_ONLY=1 ./make.sh → out/film/preview.m4a, at the film's loudness), or
-      // ?preview&audio=<path>. While it plays, the picture follows the audio clock, so sound and picture stay in sync.
-      const au = new Audio(), aSrc = new URLSearchParams(location.search).get('audio') || 'out/film/preview.m4a';
-      let hasAu = false;
-      au.preload = 'auto';
-      // the whole track is read into memory and played from there: a simple file server (python http.server) answers no
-      // range requests, and without them the browser cannot seek in the track, so a jump left the sound behind and the
-      // picture waiting for it. Where fetch is not allowed (file://), the file plays directly, which can seek
-      const aUrl = aSrc + (aSrc.includes('?') ? '&' : '?') + 'v=' + (window.__v || Date.now());   // a rebuilt soundtrack, not the cached one
-      fetch(aUrl).then((r) => (r.ok ? r.blob() : Promise.reject(r.status))).then((b) => { au.src = URL.createObjectURL(b); }).catch(() => { au.src = aUrl; });
-      // the track can finish loading after play was pressed: it joins in at the picture's time
-      const auReady = () => { const r = au.readyState >= 2 && !au.error; if (r !== hasAu) { hasAu = r; if (r && playing) auPlay(); ui(); } return r; };
-      ['loadeddata', 'canplay', 'canplaythrough'].forEach((ev) => au.addEventListener(ev, auReady));
-      au.addEventListener('error', () => { hasAu = false; ui(); });
-      const auPlay = () => { if (!hasAu) return; au.currentTime = now(); au.playbackRate = rate; au.play().catch(() => { playing = false; ui(); }); };
+      // the soundtrack: the score and the effects as make.sh mixes them (AUDIO_ONLY=1 ./make.sh → out/film/preview.m4a, at the
+      // film's loudness), or ?audio=<path>. Over http (./preview.sh) the track is fetched whole and decoded into memory (Web
+      // Audio): it seeks to the sample with no range requests (python http.server answers none), and it starts the moment the
+      // play click resumes the audio context, which Safari and Chrome both require of a user gesture. While it plays, its
+      // clock leads the picture. Opened as a file (file://), where fetch is refused, an <audio> element plays it instead.
+      const aSrc = new URLSearchParams(location.search).get('audio') || window.__AUDIO || 'out/film/preview.m4a';
+      const AC = window.AudioContext || window.webkitAudioContext;
+      const A = window.__pvAudio = { mode: 'wa', state: 'loading', muted: false, ctx: null, gain: null, buf: null, node: null, t0: 0, off: 0, el: null };
+      const fail = (st) => { A.state = st; ui(); };
+      const param = new URLSearchParams(location.search).get('audio');
+      if (window.__AUDIO_B64 && AC && !param) {
+        // the soundtrack loaded as a script (out/film/preview-audio.js): decoded straight into memory, over http or as a file
+        A.ctx = new AC(); A.gain = A.ctx.createGain(); A.gain.connect(A.ctx.destination);
+        const bin = atob(window.__AUDIO_B64), u8 = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+        new Promise((ok, no) => A.ctx.decodeAudioData(u8.buffer, ok, no))
+          .then((buf) => { A.buf = buf; A.state = 'ready'; ui(); if (playing) auPlay(); })
+          .catch(() => fail('error'));
+      } else if (location.protocol === 'file:' || !AC) {
+        A.mode = 'el'; A.el = new Audio(); A.el.preload = 'auto'; A.el.src = aSrc;
+        A.el.addEventListener('loadeddata', () => { A.state = 'ready'; ui(); });
+        A.el.addEventListener('error', () => fail(location.protocol === 'file:' ? 'file' : 'none'));
+      } else {
+        A.ctx = new AC(); A.gain = A.ctx.createGain(); A.gain.connect(A.ctx.destination);   // made now, suspended until a click
+        fetch(aSrc + (aSrc.includes('?') ? '&' : '?') + 'v=' + (window.__v || Date.now()))   // a rebuilt soundtrack, not the cached one
+          .then((r) => (r.ok ? r.arrayBuffer() : Promise.reject(r.status === 404 ? 'none' : 'error')))
+          .then((b) => new Promise((ok, no) => A.ctx.decodeAudioData(b, ok, no)))
+          .then((buf) => { A.buf = buf; A.state = 'ready'; ui(); if (playing) auPlay(); })
+          .catch((e) => fail(e === 'none' ? 'none' : 'error'));
+      }
+      // any click or key on the page wakes the audio context (a browser starts it suspended until the user acts)
+      const unlock = () => { if (A.ctx && A.ctx.state !== 'running') A.ctx.resume(); };
+      addEventListener('pointerdown', unlock, true); addEventListener('keydown', unlock, true);
+      const auStop = () => {
+        if (A.node) { try { A.node.stop(); } catch (e) {} A.node.disconnect(); A.node = null; }
+        if (A.el) A.el.pause();
+      };
+      // the track from the picture's time: on play, on a seek while playing, on a speed change, when it drifts
+      const auPlay = () => {
+        auStop();
+        if (!playing || A.state !== 'ready') return;
+        const t = now();
+        if (A.mode === 'wa') {
+          unlock();
+          if (t >= A.buf.duration) return;
+          const n = A.node = A.ctx.createBufferSource();
+          n.buffer = A.buf; n.playbackRate.value = rate; n.connect(A.gain);
+          A.off = t; A.t0 = A.ctx.currentTime; n.start(0, t);
+        } else {
+          A.el.currentTime = t; A.el.playbackRate = rate; A.el.muted = A.muted;
+          A.el.play().catch(() => fail('blocked'));
+        }
+      };
+      // where the track is (seconds), or null while it is not sounding
+      const auTime = () => {
+        if (A.node && A.ctx.state === 'running') return A.off + (A.ctx.currentTime - A.t0) * rate;
+        if (A.el && !A.el.paused && !A.el.seeking && A.el.readyState >= 3) return A.el.currentTime;
+        return null;
+      };
+      const SND = { loading: '音轨加载中…', none: '这一版还没有音轨', error: '音轨无法播放', file: '这一版还没有音轨', blocked: '再点一次播放开启声音' };
       const ui = () => {
         const t = now(), p = Math.min(1, t / T.done) * 100;
         $('#pvT').textContent = t.toFixed(1); $('#pvFill').style.width = p + '%'; $('#pvHead').style.left = p + '%';
         let cur = -1; secs.forEach((s, i) => { if (t >= s.t - 1e-3) cur = i; });
         $$('#pvSecs button').forEach((b, i) => b.classList.toggle('cur', i === cur));
         $('#pvPlay').textContent = playing ? '❚❚ 暂停' : '▶ 播放'; $('#pvPlay').classList.toggle('on', playing);
-        $('#pvSnd').textContent = hasAu ? (au.muted ? '声音：关' : '声音：开') : '没有音轨';
-        $('#pvSnd').disabled = !hasAu;
+        $('#pvSnd').textContent = A.state === 'ready' ? (A.muted ? '声音：关' : '声音：开') : SND[A.state];
+        $('#pvSnd').disabled = A.state !== 'ready';
+        $('#pvSnd').title = A.state === 'none' ? '画面定稿后运行 AUDIO_ONLY=1 ./make.sh 生成音轨' : '';
       };
       const ff = (t) => { const goal = Math.min(t, T.done) * 1000; while (C.vt < goal - 0.5) { C.advance(Math.min(50, goal - C.vt)); D.frame(); } };
       const seek = (t) => {
@@ -430,27 +491,28 @@
           // with sound in step, the audio clock leads; otherwise (no track, still seeking, or out of step) real time, and a
           // track that drifted more than 0.4 s is put back at the picture's time
           let step = dt;
-          if (hasAu && !au.paused && !au.seeking) {
-            const lead = au.currentTime * 1000 - C.vt;
+          const at = auTime();
+          if (at != null) {
+            const lead = at * 1000 - C.vt;
             if (Math.abs(lead) < 400) step = Math.max(0, Math.min(250, lead));
-            else if (ts - resync > 1000) { resync = ts; au.currentTime = now() + dt / 1000; }
+            else if (ts - resync > 1000) { resync = ts; auPlay(); }   // out of step: the track starts again at the picture's time
           }
           C.advance(step); D.frame();
-          if (now() >= T.done) { playing = false; au.pause(); }
+          if (now() >= T.done) { playing = false; auStop(); }
           ui();
         }
-        if (!hasAu) auReady();
         N.raf(loop);
       };
       const toggle = () => {
-        if (!playing && now() >= T.done - 0.01) return seek(0);
+        unlock();
+        if (!playing && now() >= T.done - 0.01) seek(0);   // at the end, play again from the start
         playing = !playing; last = N.perfNow();
-        if (playing) auPlay(); else au.pause();
+        if (playing) auPlay(); else auStop();
         ui();
       };
       $('#pvPlay').onclick = toggle;
-      $('#pvSnd').onclick = () => { au.muted = !au.muted; ui(); };
-      $('#pvRate').onchange = (e) => { rate = +e.target.value; au.playbackRate = rate; };
+      $('#pvSnd').onclick = () => { A.muted = !A.muted; if (A.gain) A.gain.gain.value = A.muted ? 0 : 1; if (A.el) A.el.muted = A.muted; ui(); };
+      $('#pvRate').onchange = (e) => { rate = +e.target.value; if (playing) auPlay(); };
       $('#pvSecs').onclick = (e) => { const b = e.target.closest('button'); if (b) seek(secs[+b.dataset.i].t); };
       const tr = $('#pvTrack'), at = (e) => { const r = tr.getBoundingClientRect(); return (e.clientX - r.left) / r.width * T.done; };
       tr.onmousedown = (e) => seek(at(e));
@@ -465,7 +527,6 @@
       if (q.get('r')) { rate = +q.get('r'); $('#pvRate').value = String(rate); }
       fit();
       if (q.get('t')) ff(+q.get('t'));
-      if (q.get('p') === '1') { playing = true; last = N.perfNow(); au.addEventListener('canplay', auPlay, { once: true }); }
       ui(); N.raf(loop);
     };
     return K;

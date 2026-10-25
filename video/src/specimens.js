@@ -37,7 +37,7 @@
     // lines: ['u', prompt] · ['w', path, lines, files] · ['ok', text] · ['warn', text] · ['nbl', NocoBase line] · ['i', text, grey]
     const lineHTML = ([k, a, b, c]) => {
       if (k === 'u') return `<div class="ln u"><span class="d">&gt;</span><span class="tx">${esc(a)}</span></div>`;
-      if (k === 'w') return `<div class="ln"><span class="dot g"></span>Write(${esc(a)})${c ? `<span class="fc">${c} 个文件</span>` : ''}<span class="n">+${fmt(b)}</span></div>`;
+      if (k === 'w') return `<div class="ln"><span class="dot g"></span>Write(${esc(a)})${c ? `<span class="fc">${c} ${K.byWord ? 'files' : '个文件'}</span>` : ''}<span class="n">+${fmt(b)}</span></div>`;
       if (k === 'ok') return `<div class="ln ok"><span class="d">✓</span>${esc(a)}</div>`;
       if (k === 'warn') return `<div class="ln warn"><span class="d">⚠</span>${esc(a)}</div>`;
       if (k === 'nbl') return `<div class="ln nbl"><span class="dot b"></span>${esc(a)}</div>`;
@@ -47,8 +47,8 @@
       html: (id, style, title, lines, stat = {}) => `<div class="term${stat.sm ? ' sm' : ''}" id="${id}" style="${style}">
         <div class="tbar"><div class="tls"><i></i><i></i><i></i></div><span class="tt">${title}</span></div>
         <div class="tbody"><div class="tscroll">${lines.map(lineHTML).join('')}</div></div>
-        <div class="tstat"><span>${stat.br || 'feat/purchase'}</span><span class="fl">${stat.files || 0} 个文件</span><span class="rv"${stat.rv ? '' : ' style="opacity:0"'}>待评审</span>
-          <span class="cnt${stat.good ? ' good' : ''}"><b>+${fmt(stat.lines || 0)}</b>行</span></div></div>`,
+        <div class="tstat"><span>${stat.br || 'feat/purchase'}</span><span class="fl">${stat.files || 0} ${K.byWord ? 'files' : '个文件'}</span><span class="rv"${stat.rv ? '' : ' style="opacity:0"'}>${K.byWord ? 'To review' : '待评审'}</span>
+          <span class="cnt${stat.good ? ' good' : ''}"><b>+${fmt(stat.lines || 0)}</b>${K.byWord ? ' lines' : '行'}</span></div></div>`,
       // line k slides in at `at`; past `cap` visible lines the body scrolls up one line (27 px)
       lineIn: (id, k, at, flash, cap) => {
         const el = $$(`#${id} .ln`)[k];
@@ -60,7 +60,7 @@
       count: (id, from, to, at, dur, files) => {
         const o = { v: from }, b = $(`#${id} .cnt b`), f = $(`#${id} .fl`);
         tl.to(o, { v: to, duration: dur, ease: 'power2.out', onUpdate: () => { b.textContent = '+' + fmt(o.v); } }, at);
-        if (files !== undefined) K.call(() => { f.textContent = files + ' 个文件'; }, at + dur * 0.4);
+        if (files !== undefined) K.call(() => { f.textContent = files + (K.byWord ? ' files' : ' 个文件'); }, at + dur * 0.4);
       },
     };
 

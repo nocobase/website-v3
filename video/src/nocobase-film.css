@@ -830,6 +830,16 @@ b.pk { background: rgba(22,119,255,.1); color: var(--blue); } b.fk { background:
 
 /* ---------------------------------------------------------------- Hub: one console, three tabs */
 .hubT { position: absolute; left: 96px; top: 64px; }
+/* Agent 状态标签（K.agentChip / K.agentAs）：谁在做事、在做什么；工作中蓝点带淡光晕，已完成绿点。.tr 停在右上角，和 K.ftlH 的页头同一高度 */
+.agchip { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--hair); background: #fff;
+  box-shadow: 0 1px 2px rgba(24,24,27,.04), 0 10px 24px -14px rgba(24,24,27,.22); font: 500 14px/1 var(--sans); color: var(--ink3); white-space: nowrap; }
+.agchip > svg { width: 15px; height: 15px; stroke-width: 1.75; color: var(--ink3); }
+.agchip b { font-weight: 600; color: var(--ink); }
+.agchip em { font-style: normal; }
+.agchip .dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; flex: none; }
+.agchip.run .dot { background: var(--nb); box-shadow: 0 0 0 4px var(--nbSoft); }
+.agchip.run em { color: var(--nb); }
+.agchip.tr { position: absolute; right: 96px; top: 64px; }
 .hubT .r2 { padding-left: 34px; }
 #hBub { left: auto; right: 96px; top: 80px; }
 .hcon { position: absolute; left: 96px; top: 196px; width: 1248px; height: 504px; border-radius: var(--r-win); background: #fff; overflow: hidden; }

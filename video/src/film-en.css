@@ -1,0 +1,21 @@
+/* 英文版（film-en.html / preview-en.html）：只放英文需要的换行和尺寸，接在 film.css 后面加载。时间表和画面结构和中文版相同。 */
+
+/* 开场标题：两句分两行（中文一行），卡片的位置不动 */
+#tTop.ttl3 { top: 80px; font-size: 36px; line-height: 1.2; }
+#tTop .h2 { display: block; }
+
+/* 品牌：三个角色的说法比中文长，字小一号 */
+#bRoles { gap: 12px; }
+#bRoles .rp { padding: 0 18px; font-size: 18px; }
+
+/* 权限的表格：供应商名称更长，编号栏让出宽度 */
+#pP .dt2 .dh, #pP .dt2 .dr { grid-template-columns: 110px 290px 1fr 150px 150px; }
+
+/* Core 底座上的能力块：英文名称更长，间距收一点 */
+#slF .chips { gap: 12px; }
+#slF .fchip { padding: 0 24px; }
+
+/* 能力看板的小卡片：实体框放宽、审批按钮收窄 */
+#sW .c-er .c-e { width: 50px; padding: 5px 4px; }
+#sW .c-er .c-e b { font-size: 9px; letter-spacing: -.01em; }
+#sW .c-ap .c-bt { padding: 0 6px; }

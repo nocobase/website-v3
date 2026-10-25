@@ -64,7 +64,14 @@ const DUCK = { key: [2.5, 0.04, 0.35, 0.25], enter: [3, 0.04, 0.12, 0.24], click
 // every sample must be on disk: kenney/ ships with the skill; mixkit/ is fetched per person (its licence forbids shipping it)
 {
   const need = [...new Set(Object.values(S).map((s) => s.file))].filter((f) => !fs.existsSync(path.join(SRC, f)));
-  if (need.length) { console.error('missing sound effects in audio/sfx/: ' + need.join(', ') + '\n→ run <skill>/scripts/fetch-sfx.sh ' + DIR + ' (Mixkit licence: free use in films, no redistribution)'); process.exit(1); }
+  if (need.length) {
+    const msg = 'missing sound effects in audio/sfx/: ' + need.join(', ') + '\n→ run <skill>/scripts/fetch-sfx.sh ' + DIR + ' (Mixkit licence: free use in films, no redistribution)';
+    // SFX_PARTIAL=1: a review soundtrack without them (their roles are left out), until they are fetched
+    if (!process.env.SFX_PARTIAL) { console.error(msg); process.exit(1); }
+    const gone = Object.keys(S).filter((k) => need.includes(S[k].file));
+    console.warn(msg + '\n  SFX_PARTIAL: mixing without ' + gone.join(', '));
+    gone.forEach((k) => delete S[k]);
+  }
 }
 const cache = {};
 function sample(role) {

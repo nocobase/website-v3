@@ -3,23 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>AI + NocoBase · 品牌片</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    // the film's own files carry a fresh ?v= on every load: the review servers (python http.server) send no cache headers,
-    // and a plain reload in Chrome revalidates only the page, so it would keep playing yesterday's film.js
-    window.__v = Date.now();
-    window.__own = (files) => document.write(files.map((f) => (f.endsWith('.css') ? `<link rel="stylesheet" href="${f}?v=${__v}">` : `<script src="${f}?v=${__v}"><\/script>`)).join(''));
-    __own(['src/clock.js']);
-  </script>
-  <script>window.__VIDEO = { log: [] };</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-  <script>__own(['src/nocobase-film.css', 'src/film.css']);</script>
+  <!-- the film page the renderer opens; the review cut is preview.html (same files, src/load.js) -->
+  <script>window.__v = Date.now(); document.write('<script src="src/load.js?v=' + __v + '"><\/script>');</script>
+  <script>__load('head');</script>
 </head>
 <body>
   <div id="stage"></div>
-  <script>__own(['src/avatars.js', 'src/logo.js', 'src/kit.js', 'src/specimens.js', 'src/film.js']);</script>
+  <script>__load('body');</script>
 </body>
 </html>

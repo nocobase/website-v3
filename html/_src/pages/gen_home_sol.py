@@ -73,11 +73,11 @@ itam_ask = ('<div class="sx-sec"><i data-lucide="user-check"></i>' + T('等你�
 itam = win('monitor-smartphone', 'ITAM', '价值', 'Value', re.sub(r'<tr><td class="id">(DP-000003|PO-000045|Zoom Pro)</td>.*?</tr>', '', wow_body('solution-itam.html'), flags=re.S) + itam_ask,
            '<span class="tag grey">' + T('本季度', 'This quarter') + '</span>')
 
-# NocoReach: the Insights page itself, as the Reach page shows it (assets/reach/, drawn by _src/reach/figs.html with the
+# NocoReach: the Insights page itself, as the Reach page shows it (on static-docs, shot by _src/reach/shoot.mjs into assets/reach/ and uploaded; drawn by _src/reach/figs.html with the
 # product's own stylesheet and the Acme example of the NocoReach film); today's daily analysis and the decisions it asks for
 reach = ('<div class="sx solo" style="padding:0;overflow:hidden">' +
-         T('<img src="assets/reach/insights-zh.webp" alt="NocoReach 洞察页" width="1280" height="720" style="display:block;width:100%;height:auto">',
-           '<img src="assets/reach/insights-en.webp" alt="NocoReach Insights" width="1280" height="720" style="display:block;width:100%;height:auto">') + '</div>')
+         T('<img src="https://static-docs.nocobase.com/insights-zh.webp" alt="NocoReach 洞察页" width="1280" height="720" style="display:block;width:100%;height:auto">',
+           '<img src="https://static-docs.nocobase.com/insights-en.webp" alt="NocoReach Insights" width="1280" height="720" style="display:block;width:100%;height:auto">') + '</div>')
 
 # ---------- 还没上线的三款：没有内页可取，按前三款的思路画——Agent 做了什么，留给人拍板的是哪几件 ----------
 BOT = '<span class="ag"><i data-lucide="bot"></i></span>'

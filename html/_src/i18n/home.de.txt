@@ -222,3 +222,18 @@ description: NocoBase ist die Open-Source-Plattform, mit der Sie Geschäftssyste
 216: IT-Asset-Management · 3 IT-Agenten
 217: Agenten haben heute 37 Routineaufgaben erledigt. Nur 6 brauchten Ihre Entscheidung.
 218: IT-Asset-Management
+219: Agenten treiben die Arbeit voran.<br>
+220: Ihr Team behält die Kontrolle.
+221: NocoBase Studio ist die Governance-Plattform für Teams, die mit Agenten entwickeln. Es bündelt Claude Code und Codex zu einem Agenten-Team, das Aufgaben selbstständig vorantreibt. Der Fortschritt ist auf einen Blick sichtbar, und die wichtigen Entscheidungen treffen Menschen.
+222: Vibe Coding macht Softwareentwicklung deutlich schneller. Sobald ein Projekt aber komplexe Geschäftslogik, viele Beteiligte und jahrelange Weiterentwicklung umfasst, reicht KI-generierter Code allein nicht aus. Dann brauchen Sie auch ein verlässliches Anwendungsfundament, einheitliche Entwicklungsstandards und eine durchdachte Governance. NocoBase ersetzt Vibe Coding nicht, sondern baut darauf auf und ergänzt Fundament und Governance.
+223: Bausteine
+224: Ohne NocoBase
+225: Architekturstandards
+226: Wechseln Entwickler, Modell oder Sitzung, kann die KI improvisieren. Die Architektur driftet nach und nach ab.
+227: Core liefert eine einheitliche Projektstruktur, Entwicklungsstandards und Entwicklungs-Skills, damit sich das System über Jahre stabil auf einer einheitlichen Architektur weiterentwickelt.
+228: Governance
+229: Agenten liefern immer mehr Änderungen, mehr als jemand prüfen kann. Deshalb werden sie oft unverändert übernommen, und die Probleme häufen sich.
+230: Studio koordiniert mehrere Agenten über Entwurf, Entwicklung, Tests und Review. Wichtige Entscheidungen trifft ein Mensch, mit Berichten und Screenshots als Grundlage.
+231: Know-how
+232: Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.
+233: NocoBase Studio ist die Governance-Plattform für Teams, die mit Agenten entwickeln. Es bündelt Claude Code, Codex und OpenCode zu einem Agenten-Team, das Aufgaben selbstständig vorantreibt. Der Fortschritt ist auf einen Blick sichtbar, und die wichtigen Entscheidungen treffen Menschen.

@@ -222,3 +222,18 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 216: Quản lý tài sản CNTT · 3 agent CNTT
 217: Hôm nay agent xử lý 37 việc thường ngày. Chỉ 6 việc cần bạn quyết định.
 218: Quản lý tài sản CNTT
+219: Agent tự thúc đẩy công việc.<br>
+220: Đội ngũ làm chủ toàn cục.
+221: NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
+222: Vibe coding giúp phát triển phần mềm nhanh hơn nhiều. Nhưng khi dự án có nghiệp vụ phức tạp, nhiều người cùng làm và phải phát triển nhiều năm, chỉ dựa vào code do AI tạo ra là chưa đủ. Bạn còn cần nền móng ứng dụng tin cậy, chuẩn phát triển thống nhất và quản trị chặt chẽ. NocoBase không thay thế vibe coding, mà bổ sung nền móng và năng lực quản trị cho nó.
+223: Khối chức năng
+224: Không có NocoBase
+225: Chuẩn kiến trúc
+226: Đổi người, đổi model, đổi phiên, AI đều có thể làm theo cách khác. Kiến trúc dần trôi dạt.
+227: Core cung cấp cấu trúc dự án, chuẩn phát triển và kỹ năng phát triển thống nhất, giúp hệ thống phát triển ổn định nhiều năm trên một kiến trúc thống nhất.
+228: Quản trị phát triển
+229: Agent gửi về ngày càng nhiều thay đổi, con người xem không xuể nên thường chấp nhận luôn, vấn đề ngày càng chồng chất.
+230: Studio điều phối nhiều agent cùng thực hiện thiết kế, phát triển, kiểm thử và review; quyết định then chốt do con người kiểm soát, kèm báo cáo và ảnh chụp màn hình làm căn cứ.
+231: Tích lũy tri thức
+232: Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.
+233: NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.

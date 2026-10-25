@@ -30,6 +30,8 @@ g() { echo "$M" | sed -n "s/.*\"$1\" : \"\([^\"]*\)\".*/\1/p"; }
 LN="loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=$(g input_i):measured_TP=$(g input_tp):measured_LRA=$(g input_lra):measured_thresh=$(g input_thresh):offset=$(g target_offset):linear=true"
 # the HTML review cut's soundtrack, at the film's loudness (preview.html plays out/$OUT/preview.m4a)
 ffmpeg -y -hide_banner -loglevel error -i "out/$OUT/$MIX" -af "$LN" -c:a aac -b:a 256k -ar 48000 "out/$OUT/preview.m4a"
+# the same track as a script (base64), so preview.html plays it even when opened as a file, where fetch is refused
+node -e "const fs=require('fs');fs.writeFileSync(process.argv[2],'window.__AUDIO_B64='+JSON.stringify(fs.readFileSync(process.argv[1]).toString('base64'))+';\n')" "out/$OUT/preview.m4a" "out/$OUT/preview-audio.js"
 [ -n "${AUDIO_ONLY:-}" ] && { echo "soundtrack → out/$OUT/preview.m4a (open preview.html)"; exit 0; }
 if [ -z "${SKIP_VIDEO:-}" ]; then
   node render.mjs --fps "$FPS" --dsf "$DSF" --mb "$MB" --page "$PAGE" --out "$PWD/out/$OUT/video.mp4" 2>&1 | tr '\r' '\n' | tail -1

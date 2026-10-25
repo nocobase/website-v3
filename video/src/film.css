@@ -34,6 +34,9 @@
 #pP .vs .av:not(:has(svg)) { background: #f4f4f5; color: #52525b; box-shadow: 0 0 0 1px rgba(15,23,42,.07); }
 #pP .vs .av:not(:has(svg)) svg { width: 17px; height: 17px; stroke-width: 1.75; border-radius: 0; }
 #pP .dfoot .ag { display: none; } #pP .dfoot.ag .hu { display: none; } #pP .dfoot.ag .ag { display: inline; }
+/* 没有需求气泡（引擎的 .pf3 在页头和窗口之间给 #aclBub 留了位置，窗口在 268 px）：窗口上移，
+   让它推近到 1.03 倍时，和页头、和画面底边的距离相同（各约 88 px） */
+#pP .dwin { top: 240px; }
 
 /* ---- capability cards: the bodies this film adds */
 .mc .nlist, .mc .flist, .mc .xlist, .mc .glist { display: grid; gap: 10px; }
@@ -287,9 +290,10 @@
 #sp3 .ch2 .av { width: 32px; height: 32px; } #sp3 .ch2 b { display: block; font: 600 16.5px/1 var(--copy); color: var(--fg); } #sp3 .ch2 small { display: block; margin-top: 6px; font: 400 13.5px/1 var(--copy); color: var(--muted); }
 #sp3 .ch2 .gc { margin-left: auto; font-style: normal; height: 26px; display: inline-flex; align-items: center; padding: 0 10px; border-radius: 999px; background: #fffbeb; color: #b45309; font: 500 13.5px/1 var(--copy); }
 #sp3 .tr4 .acc { margin-top: 10px; display: grid; gap: 0; }
-#sp3 .tr4 .acc div { display: flex; align-items: center; gap: 8px; height: 26px; font: 400 14.5px/1 var(--copy); color: #3f3f46; }
+#sp3 .tr4 .acc div { display: flex; align-items: center; gap: 8px; height: 24px; font: 400 14.5px/1 var(--copy); color: #3f3f46; }
 #sp3 .tr4 .acc svg { width: 15px; height: 15px; color: #10b981; flex: none; }
 #sp3 .tr4 .prev { margin-top: 8px; }
+#sp3 .tr4 .prev .pvr { height: 30px; }   /* 验收卡片（证据一行、清单、预览、按钮）要收在栏里 */
 #sp3 .tr4 .acts { margin-top: 10px; display: flex; justify-content: flex-end; gap: 8px; }
 #sp3 .tr4 .acts .bo { height: 34px; font: 500 14.5px/1 var(--copy); padding: 0 14px; }
 #sp3 .tr4.nw { border-color: #fcd34d; background: #fffbeb; }
@@ -593,3 +597,114 @@ svg.nbmark.st { padding: 0; border-radius: 0; }
 #sp6 .m-r1 { display: flex; align-items: baseline; gap: 12px; white-space: nowrap; }
 #sp6 .m-r1 b { font: 600 15.5px/1.2 var(--copy); color: var(--fg); } #sp6 .m-r1 small { font: 400 13.5px/1 var(--copy); color: var(--muted); }
 #sp6 .m-r2 { margin-top: 7px; font: 500 15px/1.3 var(--copy); color: #1d4ed8; white-space: nowrap; }
+
+/* ===================================================================== v3 · 按标准文稿重做（2026-10-24） */
+.tb { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; box-sizing: border-box; border-radius: 5px; font: 700 10.5px/1 var(--en); flex: none; }
+.tb-cc, #stc .tool.cc { background: #fdf0ea; color: #c2410c; } .tb-cx { background: #18181b; color: #fff; } .tb-oc { background: #eef2ff; color: #4338ca; }
+.tb-cu, #stc .tool.cu { background: #fff; color: #27272a; border: 1px solid #d4d4d8; } .tb-pm { background: #f4f4f5; color: #3f3f46; font: 600 12.5px/1 var(--copy); }
+
+/* 开场标题：放在顶部，问题卡片在它下面 */
+#tTop.ttl3 { top: 88px; font-size: 44px; }
+
+/* 四个问题：卡片在中央演示（760 × 330），再缩到 0.72 收进 2×2 */
+#sP .pc { position: absolute; left: 340px; top: 292px; width: 760px; height: 330px; box-sizing: border-box; padding: 24px 26px; border-radius: 14px;
+  background: #fff; border: 1px solid var(--hair); box-shadow: var(--sh-win); overflow: hidden; }
+#sP .pc.ok { border-color: rgba(22,119,255,.45); }
+#sP .ph { display: flex; align-items: baseline; gap: 14px; }
+#sP .ph .no { font: 600 15px/1 var(--mono); color: var(--ink3); }
+#sP .ph b { font: 600 27px/1.2 var(--copy); color: var(--ink); }
+#sP .pd { margin-top: 10px; font: 400 17px/1.5 var(--copy); color: var(--ink3); white-space: nowrap; }
+#sP .il { position: absolute; left: 26px; right: 26px; top: 112px; height: 196px; }
+#sP .il1 .iw { position: absolute; left: 472px; top: 14px; display: grid; gap: 12px; justify-items: start; }
+#sP .wn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: 8px; background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; font: 500 15.5px/1 var(--copy); white-space: nowrap; }
+#sP .wn svg { width: 16px; height: 16px; stroke-width: 1.75; }
+#sP .il2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+#sP .tc { padding: 12px 14px; border: 1px solid #e4e4e7; border-radius: 10px; background: #fafafa; }
+#sP .tc .th { display: flex; align-items: center; gap: 8px; font: 400 13.5px/1 var(--copy); color: var(--ink3); white-space: nowrap; }
+#sP .tc > b { display: block; margin-top: 10px; font: 600 16.5px/1 var(--copy); color: var(--ink); }
+#sP .tc .tr { margin-top: 12px; display: grid; gap: 7px; font: 400 13.5px/1.2 var(--mono); color: #3f3f46; }
+#sP .tc .rt { color: var(--ink); font-weight: 600; transition: color .3s; }
+#sP .tc .lf { padding-left: 14px; white-space: nowrap; }
+#sP .il2.drift .rt { color: #b45309; }
+#sP .il3 .ws { position: absolute; left: 0; top: 0; width: 470px; height: 196px; }
+#sP .wn3 { position: absolute; width: 300px; height: 96px; border-radius: 9px; background: #0c0c0f; box-shadow: 0 8px 22px -10px rgba(0,0,0,.45); overflow: hidden; }
+#sP .wn3 .wt { height: 26px; display: flex; align-items: center; gap: 6px; padding: 0 10px; background: #18181b; border-bottom: 1px solid #27272a; }
+#sP .wn3 .wt i { width: 7px; height: 7px; border-radius: 50%; background: #3f3f46; }
+#sP .wn3 .wt span { margin-left: 6px; font: 500 12px/1 var(--mono); color: #a1a1aa; white-space: nowrap; }
+#sP .wn3 .wb { display: flex; align-items: center; gap: 12px; padding: 14px 12px; font: 500 14px/1 var(--mono); }
+#sP .wn3 .ad { color: #6ee7b7; } #sP .wn3 .dl { color: #f87171; } #sP .wn3 .ws2 { margin-left: auto; font: 500 13px/1 var(--copy); color: #fbbf24; }
+#sP .pend { position: absolute; right: 0; top: 26px; width: 200px; box-sizing: border-box; padding: 18px 20px; border-radius: 12px; border: 1px solid #fcd34d; background: #fffbeb; }
+#sP .pend small { display: block; font: 500 15px/1 var(--copy); color: #b45309; }
+#sP .pend b { display: block; margin-top: 12px; font: 600 56px/1 var(--en); color: #b45309; }
+#sP .il4 .ss { position: absolute; width: 214px; box-sizing: border-box; padding: 12px 14px; border-radius: 10px; border: 1px solid #e4e4e7; background: #fff; box-shadow: 0 6px 16px -10px rgba(24,24,27,.25); }
+#pS0 { left: 0; top: 4px; transform: rotate(-2deg); } #pS1 { left: 247px; top: 0; transform: rotate(1.5deg); } #pS2 { left: 494px; top: 8px; transform: rotate(-1deg); }
+#sP .ss .sh { display: flex; align-items: center; gap: 7px; } #sP .ss .sh svg { width: 15px; height: 15px; color: var(--ink3); flex: none; }
+#sP .ss .sh b { font: 500 14px/1 var(--copy); color: var(--ink); white-space: nowrap; } #sP .ss .sh small { margin-left: auto; font: 400 12.5px/1 var(--copy); color: var(--ink4); white-space: nowrap; }
+#sP .ss .dc { margin-top: 10px; display: flex; align-items: center; gap: 7px; height: 30px; padding: 0 10px; border-radius: 6px; background: #f4f4f5; font: 400 14px/1 var(--copy); color: #3f3f46; white-space: nowrap; }
+#sP .ss .dc svg { width: 14px; height: 14px; color: var(--ink3); flex: none; }
+#pS2 .dc { text-decoration: line-through; color: var(--ink4); }
+#sP .qb { position: absolute; left: 196px; top: 112px; display: flex; align-items: center; gap: 12px; padding: 10px 18px 10px 10px; border-radius: 12px; background: #fff; border: 1px solid #fcd34d; box-shadow: var(--sh-win); }
+#sP .qb .av { width: 32px; height: 32px; } #sP .qb small { display: block; font: 400 13px/1 var(--copy); color: var(--ink3); }
+#sP .qb span { display: block; margin-top: 7px; font: 500 18px/1 var(--copy); color: var(--ink); white-space: nowrap; }
+#sP .qb.lone { border-color: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,.14), var(--sh-win); }
+#sP .fx { position: absolute; left: 26px; right: 26px; bottom: 22px; display: flex; align-items: center; gap: 16px; height: 86px; box-sizing: border-box; padding: 0 20px; border-radius: 12px;
+  background: #eff6ff; border: 1px solid rgba(22,119,255,.3); }
+#sP .fx .fk { width: 34px; height: 34px; border-radius: 50%; background: var(--nb); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
+#sP .fx .fk .ck { width: 19px; height: 19px; }
+#sP .fx > div { display: grid; gap: 9px; }
+#sP .fx .fb { font: 600 17px/1 var(--en); color: var(--nb); white-space: nowrap; }
+#sP .fx .ft { font: 600 22px/1.2 var(--copy); color: var(--ink); white-space: nowrap; }
+
+/* Core · 基础能力：底部一行说明 */
+#cNote { position: absolute; left: 0; right: 0; top: 150px; text-align: center; z-index: 6; }
+#cNote b { display: block; font: 600 22px/1.3 var(--copy); color: var(--ink); }
+#cNote > span { display: block; margin-top: 8px; font: 400 18px/1.5 var(--copy); color: var(--ink3); }
+
+/* Core · 统一架构：三个人、三个工具，同一套项目结构 */
+#sA .hubT, #sS .hubT { top: 52px; }
+#sA .agchip.tr, #sS .agchip.tr { top: 58px; }
+#sA .arw { position: absolute; left: 96px; top: 250px; width: 360px; display: grid; gap: 18px; }
+#sA .au { display: flex; align-items: center; gap: 14px; height: 78px; box-sizing: border-box; padding: 0 18px; border-radius: 12px; background: #fff; border: 1px solid var(--hair); box-shadow: var(--sh-win); }
+#sA .au .tb { width: 30px; height: 30px; font-size: 12px; }
+#sA .au b { display: block; font: 600 18px/1 var(--copy); color: var(--ink); } #sA .au small { display: block; margin-top: 9px; font: 400 14px/1 var(--copy); color: var(--ink3); }
+#sA .au.on { border-color: rgba(22,119,255,.5); }
+#sA .prj { position: absolute; left: 500px; top: 200px; width: 844px; height: 500px; box-sizing: border-box; border-radius: var(--r-win); background: #fff; overflow: hidden; }
+#sA .pjh { display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 20px; border-bottom: 1px solid #e4e4e7; }
+#sA .pjh svg { width: 18px; height: 18px; color: var(--ink3); } #sA .pjh b { font: 600 17px/1 var(--mono); color: var(--ink); }
+#sA .pjh small { padding: 4px 8px; border-radius: 5px; background: #f4f4f5; font: 500 13px/1 var(--mono); color: var(--ink3); }
+#sA .pjs { display: flex; align-items: center; gap: 10px; margin: 18px 20px 6px; height: 50px; padding: 0 16px; border-radius: 10px; background: #eff6ff; border: 1px solid rgba(22,119,255,.25); }
+#sA .pjs svg { height: 15px; width: auto; } #sA .pjs svg path { fill: var(--nb); } #sA .pjs b { font: 600 16px/1 var(--en); color: var(--nb); margin-right: 6px; }
+#sA .pjs span { height: 30px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 6px; background: #fff; border: 1px solid rgba(22,119,255,.25); font: 500 15px/1 var(--copy); color: #1d4ed8; }
+#sA .pjt { margin: 10px 20px 0; display: grid; gap: 8px; }
+#sA .pr0 { display: flex; align-items: center; gap: 10px; height: 38px; font: 500 16.5px/1 var(--mono); color: var(--ink); }
+#sA .pr0 svg, #sA .pr1 svg { width: 17px; height: 17px; color: #a1a1aa; flex: none; }
+#sA .pr1 { display: flex; align-items: center; gap: 10px; height: 56px; margin-left: 26px; padding: 0 14px; border-radius: 10px; border: 1px solid #e4e4e7; background: #fafafa; font: 400 16.5px/1 var(--mono); }
+#sA .pr1 b { width: 170px; font-weight: 600; color: var(--ink); }
+#sA .mods { display: flex; gap: 8px; }
+#sA .mods i { font-style: normal; height: 30px; display: inline-flex; align-items: center; padding: 0 11px; border-radius: 6px; background: #fff; border: 1px solid #e4e4e7; font: 500 14px/1 var(--mono); color: #3f3f46; }
+#sA .pr1 .by { margin-left: auto; }
+#sA .pr0.sk { margin-top: 6px; } #sA .pr0.sk .mods { margin-left: 14px; } #sA .pr0.sk .mods i { font-family: var(--copy); }
+#sA .pjf { position: absolute; left: 20px; bottom: 18px; }
+#sA .stt { display: inline-flex; align-items: center; gap: 6px; height: 28px; box-sizing: border-box; padding: 0 11px; border-radius: 999px; font: 500 14px/1 var(--copy); white-space: nowrap; }
+#sA .stt i { width: 6px; height: 6px; border-radius: 50%; } #sA .s-run { background: #ecfdf5; color: #047857; } #sA .s-run i { background: #10b981; }
+
+/* Studio · 新增的几处 */
+#sp0 .tk .tw { margin-top: 10px; display: flex; align-items: center; gap: 8px; font: 400 14px/1 var(--copy); color: #3f3f46; white-space: nowrap; }
+#sp0 .tk .tw .tool { width: 20px; height: 20px; font-size: 10px; }
+#sp3 .tr4 .att { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+#sp3 .tr4 .att span { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 9px; border-radius: 6px; background: #eff6ff; color: #1d4ed8; font: 500 13.5px/1 var(--copy); white-space: nowrap; }
+#sp3 .tr4 .att svg { width: 14px; height: 14px; }
+#sp6 .m-run .av { width: 30px; height: 30px; flex: none; }
+#sp6 .m-r1 small .tool { display: inline-flex; vertical-align: -6px; margin: 0 6px; width: 20px; height: 20px; font-size: 10px; }
+#sp6 .m-r3 { margin-top: 9px; display: flex; align-items: center; gap: 6px; font: 400 13.5px/1 var(--copy); color: var(--ink3); white-space: nowrap; }
+#sp6 .m-r3 svg { width: 14px; height: 14px; color: #3b82f6; } #sp6 .m-r3 svg + svg, #sp6 .m-r3 svg:nth-of-type(2) { margin-left: 8px; }
+
+/* 收束 · 一年的发布线 */
+#yCnt { position: absolute; left: 0; right: 0; top: 264px; text-align: center; font: 500 20px/1 var(--copy); color: var(--ink3); }
+#yCnt b { font: 600 22px/1 var(--mono); color: var(--ink); margin: 0 4px; }
+
+/* Studio：页头和控制台之间留出 26 px（页头到 157 px 结束），控制台高度相应减小 */
+#sS #stc { top: 184px; height: 552px; }
+#stc .svp, #stc .scam, #stc .spn { height: 550px; }
+#sp0 .achat { height: 458px; }
+#sp3 .col2 { height: 506px; }

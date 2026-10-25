@@ -362,17 +362,20 @@
  {
   "en": "Let your team focus on decisions.<br>",
   "zh": "让团队专心做决策，",
-  "where": "studio"
+  "where": "studio",
+  "unused": true
  },
  {
   "en": "Leave the execution to agents.",
   "zh": "执行交给 Agent。",
-  "where": "studio"
+  "where": "studio",
+  "unused": true
  },
  {
   "en": "NocoBase Studio is the governance platform for teams building with agents. It brings your team’s Claude Code and Codex together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.",
   "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把团队的 Claude Code、Codex 组成一支 Agent 团队自动推进任务，进展一目了然，关键处由人做决策。",
-  "where": "studio"
+  "where": "studio",
+  "unused": true
  },
  {
   "en": "An agent team that keeps work moving",
@@ -487,17 +490,20 @@
  {
   "en": "In both, AI writes the code. Vibe coding works well for quick prototypes and small tools. NocoBase is for business systems that have to run reliably for years and keep evolving.",
   "zh": "二者都是由 AI 写代码。Vibe Coding 适合快速做出原型和开发小型工具，NocoBase 用来构建需要长期可靠运行、持续迭代的业务系统。",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "Foundation",
   "zh": "底层能力",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "Vibe coding",
   "zh": "Vibe Coding",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.",
@@ -512,37 +518,44 @@
  {
   "en": "Architecture",
   "zh": "架构",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "Switch models or sessions, and the AI may improvise. The architecture gradually drifts.",
   "zh": "换模型、换会话，AI 都可能随机发挥，架构逐渐漂移。",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.",
   "zh": "Core 提供统一的项目结构和开发规范，系统在统一架构下长期稳定迭代。",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "Ongoing iteration",
   "zh": "持续迭代",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "AI changes often get accepted without anyone reading them, and problems pile up.",
   "zh": "AI 做了哪些修改，往往不看就接受，问题会越积越多。",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "Studio coordinates checks and reviews. When a decision is needed, agents attach reports, checklists, and screenshots, and a person decides.",
   "zh": "Studio 组织检查和评审；需要决策时，Agent 附上报告、清单、截图，由人来做决策。",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "Knowledge and know-how",
   "zh": "知识和经验",
-  "where": "faq"
+  "where": "faq",
+  "unused": true
  },
  {
   "en": "Requirement context, project documents, and lessons learned are scattered across individual chat sessions.",
@@ -687,7 +700,8 @@
  {
   "en": "Let your team focus on decisions. Leave the execution to agents.",
   "zh": "让团队专心做决策，执行交给 Agent。",
-  "where": "start"
+  "where": "start",
+  "unused": true
  },
  {
   "en": "View Editions &amp; Pricing",
@@ -1100,5 +1114,81 @@
   "en": "IT Asset Management",
   "zh": "IT 资产台账与管理",
   "where": "figure"
+ },
+ {
+  "en": "Agents keep the work moving.<br>",
+  "zh": "Agent 自主推进，",
+  "where": "studio"
+ },
+ {
+  "en": "Your team stays in control.",
+  "zh": "团队掌控全局。",
+  "where": "studio"
+ },
+ {
+  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code and Codex together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.",
+  "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
+  "where": "studio",
+  "unused": true
+ },
+ {
+  "en": "Vibe coding makes building software much faster. But once a project involves complex business logic, many people, and years of iteration, AI-generated code alone isn’t enough. You also need a reliable application foundation, consistent development standards, and sound governance. NocoBase doesn’t replace vibe coding. It builds on it, adding the foundation and governance.",
+  "zh": "Vibe Coding 让软件开发更加高效，但当项目涉及复杂业务、多人协作和长期迭代时，仅靠 AI 生成代码还不够，还需要可靠的应用底座、统一的开发规范和完善的治理。NocoBase 并不是 Vibe Coding 的替代品，而是在它之上补齐底座和治理能力。",
+  "where": "faq"
+ },
+ {
+  "en": "Building blocks",
+  "zh": "基础能力",
+  "where": "faq"
+ },
+ {
+  "en": "Without NocoBase",
+  "zh": "没有 NocoBase",
+  "where": "faq"
+ },
+ {
+  "en": "Architecture standards",
+  "zh": "架构规范",
+  "where": "faq"
+ },
+ {
+  "en": "Switch developers, models, or sessions, and the AI may improvise. The architecture gradually drifts.",
+  "zh": "换人、换模型、换会话，AI 都可能随机发挥，架构逐渐漂移。",
+  "where": "faq"
+ },
+ {
+  "en": "Core provides one project structure, development standards, and development skills, so the system evolves steadily for years on a consistent architecture.",
+  "zh": "Core 提供统一的项目结构、开发规范和开发技能，系统在统一架构下长期稳定迭代。",
+  "where": "faq"
+ },
+ {
+  "en": "Governance",
+  "zh": "开发治理",
+  "where": "faq"
+ },
+ {
+  "en": "Agents hand back more and more changes, more than anyone can review, so they often get accepted as they are. Problems pile up.",
+  "zh": "Agent 交来的改动越来越多，人审不过来，往往直接接受，问题越积越多。",
+  "where": "faq"
+ },
+ {
+  "en": "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.",
+  "zh": "Studio 组织多个 Agent 协同完成设计、开发、测试和评审，关键决策交给人把关，并附上报告和截图作为依据。",
+  "where": "faq"
+ },
+ {
+  "en": "Know-how",
+  "zh": "知识沉淀",
+  "where": "faq"
+ },
+ {
+  "en": "Agents keep the work moving. Your team stays in control.",
+  "zh": "Agent 自主推进，团队掌控全局。",
+  "where": "start"
+ },
+ {
+  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.",
+  "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
+  "where": "studio"
  }
 ]

@@ -222,3 +222,18 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 216: Gestion du parc informatique · 3 agents IT
 217: Les agents ont traité 37 tâches courantes aujourd’hui. Seules 6 ont demandé votre décision.
 218: Gestion du parc informatique
+219: Les agents font avancer le travail.<br>
+220: Votre équipe garde la maîtrise.
+221: NocoBase Studio est la plateforme de gouvernance des équipes qui développent avec des agents. Il réunit Claude Code et Codex en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
+222: Le vibe coding accélère nettement le développement logiciel. Mais dès qu’un projet implique une logique métier complexe, de nombreux intervenants et des années d’évolution, le code généré par l’IA ne suffit plus. Il faut aussi un socle applicatif fiable, des standards de développement cohérents et une vraie gouvernance. NocoBase ne remplace pas le vibe coding : il s’appuie dessus et y ajoute le socle et la gouvernance.
+223: Briques
+224: Sans NocoBase
+225: Standards d’architecture
+226: Changez de développeur, de modèle ou de session, et l’IA peut improviser. L’architecture dérive peu à peu.
+227: Core fournit une structure de projet, des standards de développement et des skills de développement communs : le système évolue sereinement pendant des années sur une architecture cohérente.
+228: Gouvernance
+229: Les agents livrent de plus en plus de modifications, plus que personne ne peut en relire : elles sont souvent acceptées telles quelles, et les problèmes s’accumulent.
+230: Studio coordonne plusieurs agents sur la conception, le développement, les tests et la revue. Les décisions clés reviennent à un humain, rapports et captures d’écran à l’appui.
+231: Savoir-faire
+232: Les agents font avancer le travail. Votre équipe garde la maîtrise.
+233: NocoBase Studio est la plateforme de gouvernance des équipes qui développent avec des agents. Il réunit Claude Code, Codex et OpenCode en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.

@@ -222,3 +222,18 @@ description: NocoBase es la plataforma de código abierto para crear, ejecutar y
 216: Gestión de activos de TI · 3 agentes de TI
 217: Los agentes resolvieron hoy 37 tareas rutinarias. Solo 6 necesitaron tu decisión.
 218: Gestión de activos de TI
+219: Los agentes hacen avanzar el trabajo.<br>
+220: Tu equipo mantiene el control.
+221: NocoBase Studio es la plataforma de gobernanza para equipos que desarrollan con agentes. Reúne Claude Code y Codex en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave.
+222: El vibe coding hace que desarrollar software sea mucho más rápido. Pero cuando un proyecto implica lógica de negocio compleja, mucha gente y años de evolución, el código generado por IA no basta. También necesitas una base de aplicación fiable, estándares de desarrollo coherentes y una buena gobernanza. NocoBase no sustituye al vibe coding: se apoya en él y añade la base y la gobernanza.
+223: Componentes base
+224: Sin NocoBase
+225: Estándares de arquitectura
+226: Cambia de desarrollador, de modelo o de sesión y la IA puede improvisar. La arquitectura se va desviando.
+227: Core aporta una estructura de proyecto, estándares de desarrollo y skills de desarrollo comunes, para que el sistema evolucione de forma estable durante años sobre una arquitectura coherente.
+228: Gobernanza
+229: Los agentes entregan cada vez más cambios, más de los que nadie puede revisar, así que a menudo se aceptan tal cual. Los problemas se acumulan.
+230: Studio coordina a varios agentes en el diseño, el desarrollo, las pruebas y la revisión. Las decisiones clave las toma una persona, con informes y capturas como respaldo.
+231: Conocimiento acumulado
+232: Los agentes hacen avanzar el trabajo. Tu equipo mantiene el control.
+233: NocoBase Studio es la plataforma de gobernanza para equipos que desarrollan con agentes. Reúne Claude Code, Codex y OpenCode en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave.

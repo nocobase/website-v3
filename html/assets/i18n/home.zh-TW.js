@@ -479,7 +479,7 @@
 "5 个席位 90 天未登录": "5 個席位 90 天未登入",
 "下月续订前回收，续订减少 5 个": "下月續訂前回收，續訂減少 5 個",
 "少花 ¥ 6,450/年": "少花 NT$ 6,450/年",
-"<img src=\"assets/reach/insights-zh.jpg\" alt=\"NocoReach 洞察页\" width=\"1280\" height=\"720\" style=\"display:block;width:100%;height:auto\">": "<img src=\"assets/reach/insights-zh.jpg\" alt=\"NocoReach 洞察頁\" width=\"1280\" height=\"720\" style=\"display:block;width:100%;height:auto\">",
+"<img src=\"https://static-docs.nocobase.com/insights-zh.webp\" alt=\"NocoReach 洞察页\" width=\"1280\" height=\"720\" style=\"display:block;width:100%;height:auto\">": "<img src=\"https://static-docs.nocobase.com/insights-zh.webp\" alt=\"NocoReach 洞察頁\" width=\"1280\" height=\"720\" style=\"display:block;width:100%;height:auto\">",
 "值班交接": "值班交接",
 "客服 Agent 值班中": "客服 Agent 值班中",
 "早上好，周航": "早上好，周航",

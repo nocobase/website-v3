@@ -1,6 +1,7 @@
 // Capture the NocoReach page's product figures (figs.html) in headless Chrome, both languages, at twice their size:
 //   node _src/reach/shoot.mjs [figure ...]        (from html/; no names = every figure)
 // Writes assets/reach/<figure>-<zh|en>.webp, lossless so the product's text stays sharp (PNG from Chrome, then cwebp).
+// Upload them to the root of static-docs.nocobase.com; the pages reference the CDN copies, and assets/reach/ is not committed.
 // Needs Google Chrome (set CHROME for another binary) and cwebp (set CWEBP).
 import { spawn, execFileSync } from 'node:child_process';
 import fs from 'node:fs';

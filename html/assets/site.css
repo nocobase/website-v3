@@ -1022,9 +1022,16 @@ section.sec.tint { margin-top: 160px; padding-block: 128px 136px; background: ok
 /* 预约表单（Launch） */
 .bookf { display: grid; gap: 12px; min-width: 340px; }
 .bookf label { display: grid; gap: 6px; font-size: 13.5px; color: var(--on-deep-2); }
-.bookf input, .bookf textarea { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--deep-line); background: oklch(1 0 0 / 0.06); color: var(--on-deep); font: inherit; font-size: 15px; }
-.bookf input:focus, .bookf textarea:focus { outline: 2px solid var(--deep-accent); outline-offset: 1px; }
+.bookf input, .bookf textarea, .bookf select { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--deep-line); background: oklch(1 0 0 / 0.06); color: var(--on-deep); font: inherit; font-size: 15px; }
+.bookf input:focus, .bookf textarea:focus, .bookf select:focus { outline: 2px solid var(--deep-accent); outline-offset: 1px; }
 .bookf .btn { margin-top: 6px; justify-self: start; }
+.bookf select option { color: initial; background: initial; }
+.bookf select { appearance: none; -webkit-appearance: none; padding-right: 38px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-opacity='0.6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; }
+.bookf select:invalid { color: rgb(117 117 117); }
+.bookf .btn:disabled { opacity: 0.6; cursor: progress; }
+.bookf .form-msg { margin: 0; font-size: 14px; color: var(--on-deep-2); }
+.bookf .form-msg[data-state="ok"] { color: var(--on-deep); }
+.bookf .form-msg[data-state="error"] { color: oklch(0.8 0.12 30); }
 @media (max-width: 900px) { .bookf { min-width: 0; } }
 .plan ul li.hd { display: block; }
 

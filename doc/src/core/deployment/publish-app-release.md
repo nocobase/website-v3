@@ -22,9 +22,9 @@ Finish your code changes and tests, then rebuild and publish using the original 
 
 | Deployment method | How to update |
 | --- | --- |
+| [Docker](../tutorials/deploy-with-docker.md#publish-a-new-release) | Build an image with a new tag, update the image reference in Compose, and recreate the container while keeping the original configuration and storage mounts. |
 | [app-installer](../tutorials/deploy-with-app-installer.md#publish-a-new-release) | Build a new deployment archive and run `upgrade` against the existing installation directory. For remote deployment from your development machine, continue using `deploy --ssh`. |
 | [Studio](../tutorials/deploy-to-studio.md#publish-a-new-release) | Upload or build a new release in the same application, then deploy it to the existing environment. |
-| [Docker](../tutorials/deploy-with-docker.md#publish-a-new-release) | Build an image with a new tag, update the image reference in Compose, and recreate the container while keeping the original configuration and storage mounts. |
 
 See “Publish a new release” in each deployment guide for commands.
 

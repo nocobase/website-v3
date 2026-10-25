@@ -31,8 +31,8 @@ description: 创建应用，认识项目结构，并通过一个任务应用逐�
 ## 部署与运维
 
 - [选择部署方式](deployment/choose-a-deployment-method.md)：比较运行方式，准备配置、数据和恢复方案。
+- [使用 Docker 部署](tutorials/deploy-with-docker.md)：构建镜像，用容器和持久化挂载运行应用。
 - [使用 app-installer 部署](tutorials/deploy-with-app-installer.md)：管理服务器安装、进程和应用更新。
 - [部署到 Studio](tutorials/deploy-to-studio.md)：通过 Studio 管理应用、环境和发布。
-- [使用 Docker 部署](tutorials/deploy-with-docker.md)：构建镜像，用容器和持久化挂载运行应用。
 - [升级 NocoBase Core](developing-apps/upgrade-nocobase-core.md)：使用 Agent 或手动合并新模板，验证兼容性并发布升级后的应用。
 - [发布应用新版本](deployment/publish-app-release.md)：重新构建并部署，了解三种部署方式更新时的差别。

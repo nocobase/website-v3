@@ -1,9 +1,9 @@
 ---
 title: 选择部署方式
-description: 根据运行环境选择 app-installer、NocoBase Studio 或 Docker，了解首次部署、新版本发布和数据恢复的共同要求。
+description: 根据运行环境选择 Docker、app-installer 或 NocoBase Studio，了解首次部署、新版本发布和数据恢复的共同要求。
 ---
 
-应用开发并通过测试后，可以使用 app-installer、NocoBase Studio 或 Docker 部署。本栏目适用于自己的 NocoBase Core 应用；三篇指南使用任务应用作为操作示例，每篇都提供**使用 Agent**和**不使用 Agent**两条路径。
+应用开发并通过测试后，可以使用 Docker、app-installer 或 NocoBase Studio 部署。本栏目适用于自己的 NocoBase Core 应用；三篇指南使用任务应用作为操作示例，每篇都提供**使用 Agent**和**不使用 Agent**两条路径。
 
 如果你刚完成[搭建第一个应用](../tutorials/build-your-first-feature.md)，选择下面一种方式上线即可，不需要依次部署三遍。
 
@@ -11,11 +11,11 @@ description: 根据运行环境选择 app-installer、NocoBase Studio 或 Docker
 
 | 方式 | 适用场景 | 继续阅读 |
 | --- | --- | --- |
+| Docker | 使用容器运行应用，通过镜像和持久化挂载管理部署 | [使用 Docker 部署](../tutorials/deploy-with-docker.md) |
 | app-installer | 有自己的服务器，希望工具管理安装、pm2 进程和应用更新 | [使用 app-installer 部署](../tutorials/deploy-with-app-installer.md) |
 | NocoBase Studio | 已有 Studio，通过应用、环境和发布记录管理部署 | [部署到 Studio](../tutorials/deploy-to-studio.md) |
-| Docker | 使用容器运行应用，通过镜像和持久化挂载管理部署 | [使用 Docker 部署](../tutorials/deploy-with-docker.md) |
 
-已有 Studio 时，可以沿用它的环境和发布流程；由自己管理服务器时，根据现有运维方式选择 app-installer 或 Docker。目标平台、数据库和存储方案应在构建前确定，具体准备步骤见对应指南。
+已有 Studio 时，可以沿用它的环境和发布流程；由自己管理服务器时，根据现有运维方式选择 Docker 或 app-installer。目标平台、数据库和存储方案应在构建前确定，具体准备步骤见对应指南。
 
 ## 部署前准备什么
 

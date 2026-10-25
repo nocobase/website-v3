@@ -201,9 +201,9 @@ pnpm build
 
 验证完成后提交源码及锁文件，记录基线、目标版本、合并决定和验证结果，重新构建，再沿用原部署方式发布：
 
+- [使用 Docker 部署](../tutorials/deploy-with-docker.md#部署新版本)
 - [使用 app-installer 部署](../tutorials/deploy-with-app-installer.md#部署新版本)
 - [部署到 Studio](../tutorials/deploy-to-studio.md#部署新版本)
-- [使用 Docker 部署](../tutorials/deploy-with-docker.md#部署新版本)
 
 保留与旧版构建匹配的配置和数据备份。回退代码不会自动撤销数据库迁移；若旧版不能使用升级后的表结构，需要恢复匹配的数据库和文件，并处理备份之后的业务写入。
 

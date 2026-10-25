@@ -537,6 +537,6 @@ pnpm dev
 
 ## 部署应用
 
-应用搭建并通过测试后，就可以部署给团队使用。前往[选择部署方式](../deployment/choose-a-deployment-method.md)，根据运行环境选择 app-installer、NocoBase Studio 或 Docker；每种方式都提供使用 Agent 和不使用 Agent 的操作步骤。
+应用搭建并通过测试后，就可以部署给团队使用。前往[选择部署方式](../deployment/choose-a-deployment-method.md)，根据运行环境选择 Docker、app-installer 或 NocoBase Studio；每种方式都提供使用 Agent 和不使用 Agent 的操作步骤。
 
 部署后，检查登录、任务操作和角色权限，并确认重启后数据仍然保留。

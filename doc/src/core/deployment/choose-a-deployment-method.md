@@ -1,9 +1,9 @@
 ---
 title: Choose a deployment method
-description: Choose app-installer, NocoBase Studio, or Docker and prepare for initial deployment, subsequent releases, and data recovery.
+description: Choose Docker, app-installer, or NocoBase Studio and prepare for initial deployment, subsequent releases, and data recovery.
 ---
 
-After developing and testing your application, deploy it with app-installer, NocoBase Studio, or Docker. This section applies to your own NocoBase Core applications. The three guides use the task application as a worked example and each provides **With an agent** and **Without an agent** paths.
+After developing and testing your application, deploy it with Docker, app-installer, or NocoBase Studio. This section applies to your own NocoBase Core applications. The three guides use the task application as a worked example and each provides **With an agent** and **Without an agent** paths.
 
 If you have completed [Build your first app](../tutorials/build-your-first-feature.md), choose one method below to deploy it. You do not need to deploy three times.
 
@@ -11,11 +11,11 @@ If you have completed [Build your first app](../tutorials/build-your-first-featu
 
 | Method | Suitable when | Guide |
 | --- | --- | --- |
+| Docker | You run containers and manage images and persistent mounts | [Deploy with Docker](../tutorials/deploy-with-docker.md) |
 | app-installer | You manage a server and want a tool to handle installation, pm2 processes, and updates | [Deploy with app-installer](../tutorials/deploy-with-app-installer.md) |
 | NocoBase Studio | You already use Studio to manage applications, environments, and releases | [Deploy to Studio](../tutorials/deploy-to-studio.md) |
-| Docker | You run containers and manage images and persistent mounts | [Deploy with Docker](../tutorials/deploy-with-docker.md) |
 
-If you already use Studio, follow its environment and release workflow. For a server you manage yourself, choose app-installer or Docker according to your operations setup. Establish the target platform, database, and storage plan before building; each guide describes its prerequisites.
+If you already use Studio, follow its environment and release workflow. For a server you manage yourself, choose Docker or app-installer according to your operations setup. Establish the target platform, database, and storage plan before building; each guide describes its prerequisites.
 
 ## Prepare for deployment
 

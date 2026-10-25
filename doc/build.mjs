@@ -141,9 +141,9 @@ const SECTIONS = [
         title: ['Deployment and operations', '部署与运维'],
         items: [
           'deployment/choose-a-deployment-method',
+          'tutorials/deploy-with-docker',
           'tutorials/deploy-with-app-installer',
           'tutorials/deploy-to-studio',
-          'tutorials/deploy-with-docker',
           'deployment/publish-app-release',
           { planned: ['Runtime configuration', '运行配置'] },
           'developing-apps/upgrade-nocobase-core',

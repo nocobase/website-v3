@@ -22,9 +22,9 @@ description: 修改代码后重新构建，按原来的部署方式更新已有�
 
 | 部署方式 | 更新时怎么做 |
 | --- | --- |
+| [Docker](../tutorials/deploy-with-docker.md#部署新版本) | 构建新标签的镜像，修改 Compose 中的镜像版本并重新创建容器，保留原配置和存储挂载。 |
 | [app-installer](../tutorials/deploy-with-app-installer.md#部署新版本) | 构建新的部署包，使用 `upgrade` 更新原安装目录；从开发机远程发布时继续使用 `deploy --ssh`。 |
 | [Studio](../tutorials/deploy-to-studio.md#部署新版本) | 在原应用中上传或构建新版本，再部署到原运行环境。 |
-| [Docker](../tutorials/deploy-with-docker.md#部署新版本) | 构建新标签的镜像，修改 Compose 中的镜像版本并重新创建容器，保留原配置和存储挂载。 |
 
 具体命令见各部署指南的“部署新版本”章节。
 

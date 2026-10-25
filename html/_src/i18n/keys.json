@@ -295,7 +295,7 @@
   "where": "why"
  },
  {
-  "en": "You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.",
+  "en": "You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.",
   "zh": "同时处理多个项目和任务，在多个终端和对话之间切换，Agent 交过来的改动也越来越多，人看不过来，又不敢放手。",
   "where": "why"
  },
@@ -372,7 +372,7 @@
   "unused": true
  },
  {
-  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings your team’s Claude Code and Codex together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.",
+  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings your team’s Claude Code and Codex together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
   "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把团队的 Claude Code、Codex 组成一支 Agent 团队自动推进任务，进展一目了然，关键处由人做决策。",
   "where": "studio",
   "unused": true
@@ -383,7 +383,7 @@
   "where": "studio"
  },
  {
-  "en": "Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.",
+  "en": "Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.",
   "zh": "接入多台机器上的 Agent 统一调度，24 小时同步推进多个项目和大量任务。",
   "where": "studio"
  },
@@ -393,7 +393,7 @@
   "where": "studio"
  },
  {
-  "en": "Project progress, task activity, agent workload, and model usage are all clearly visible.",
+  "en": "Project progress, issue activity, agent workload, and model usage are all clearly visible.",
   "zh": "项目进展、任务推进过程、Agent 工作负荷和模型用量都清晰可见。",
   "where": "studio"
  },
@@ -891,7 +891,7 @@
   "where": "hero-finale"
  },
  {
-  "en": "3 tasks · 35 tests · 3 code reviews",
+  "en": "3 issues · 35 tests · 3 code reviews",
   "zh": "3 个任务 · 35 项测试 · 3 轮代码评审",
   "where": "hero-finale"
  },
@@ -1126,7 +1126,7 @@
   "where": "studio"
  },
  {
-  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code and Codex together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.",
+  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code and Codex together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
   "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
   "where": "studio",
   "unused": true
@@ -1187,7 +1187,7 @@
   "where": "start"
  },
  {
-  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.",
+  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
   "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
   "where": "studio"
  }

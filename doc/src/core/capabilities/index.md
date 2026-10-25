@@ -1,56 +1,56 @@
 ---
-title: 能力总览
-description: Core 的 13 类底座能力，与应用里「应用底座」页面的分类一致。每一类说明开箱即有什么、Agent 要在应用里做什么、管理员上线后能调整什么、部署时要配置什么。
+title: Capabilities overview
+description: Core's 13 building blocks, matching the categories on the App foundation page inside the app. Each one explains what comes ready out of the box, what agents build in the app, what administrators can adjust after launch, and what to configure at deployment.
 ---
 
-提需求之前先在这里查一下：要做的事 Core 有没有现成的能力，由哪些插件提供，需要说清哪些事。
+Before you write a request, check here: does Core already provide what you need, which plugins supply it, and what should the request make clear.
 
-## 13 类能力
+## The 13 building blocks
 
-| 能力 | 解决什么 | 开箱即有 | 主要的包 |
+| Building block | What it solves | Ready out of the box | Main packages |
 | --- | --- | --- | --- |
-| [数据建模](data.md) | 业务对象、字段、关联，数据结构的变更，接入已有数据库 | 数据库访问、迁移、五种数据库方言、数据库浏览接口 | 数据库、数据库浏览 |
-| [文件管理](files.md) | 记录上的附件、图片，按模板生成文档 | 上传、存储、预览、下载，文件组件 | 文件、存储、模板打印 |
-| [用户与组织](users.md) | 谁能登录，账号怎样管理 | 登录、注册、找回密码、会话、邀请，「用户管理」页面 | 认证、用户 |
-| [权限控制](permissions.md) | 谁能进哪个页面、做哪些操作、看哪些记录 | 权限模型和检查，「角色与权限」「默认数据范围」页面，共享和限制规则 | 权限及三个规则插件 |
-| [工作流与审批](workflows.md) | 单据按阶段推进，审批，定时执行 | 记录生命周期、「流程管理」组件、定时任务；商业版的审批和任务中心 | 记录生命周期、定时任务、审批 |
-| [AI 与 Agent](ai-agents.md) | 让业务 Agent 在应用里按权限处理工作 | 模型服务、Agent、运行与对话、Runner | Agents、Agent 会话 |
-| [知识库](knowledge.md) | 业务资料的管理和检索，供人和 Agent 使用 | 知识空间、版本、搜索、修改建议与审核 | 知识库 |
-| [邮件互通](mail.md) | 在应用里收发邮件，和业务记录关联 | 邮箱关联、同步、发信、签名和模板 | 邮件 |
-| [消息通知](notifications.md) | 事情发生时通知相关的人 | 发送与投递记录、站内信和收件箱、邮件和群机器人渠道 | 通知、站内信、通知渠道 |
-| [外部集成](integrations.md) | 让脚本和其他系统访问应用 | API Key、接口文档、应用命令行 | API keys |
-| [界面与配置](interface.md) | 页面、导航、语言和外观 | 页面框架、UI 组件库、多语言、主题、实时更新 | 运行时、多语言 |
-| [操作审计](audit.md) | 记录敏感操作，事后可查 | 暂无，见本页说明 | — |
-| [基础运维](operations.md) | 后台任务、队列、缓存、密钥，应用的运行状况 | 后台任务与队列、密钥加密与轮换、日志、「应用底座」 | 运行时、命令行 |
+| [Data modeling](data.md) | Business objects, fields, relations, schema changes, connecting existing databases | Database access, migrations, five database dialects, the database explorer API | Database, Database explorer |
+| [File management](files.md) | Attachments and images on records, documents generated from templates | Upload, storage, preview, download, and the file component | Files, storage, Template printing |
+| [Users and organization](users.md) | Who can sign in, and how accounts are managed | Sign-in, sign-up, password reset, sessions, invitations, and the **Users** page | Authentication, Users |
+| [Permissions](permissions.md) | Who can open which page, run which actions, and see which records | The permission model and checks, the **Roles and permissions** and **Default data scopes** pages, sharing and restriction rules | Permissions and three rule plugins |
+| [Workflows and approvals](workflows.md) | Documents that move in stages, approvals, scheduled runs | Record lifecycle, the **Workflow management** component, scheduled jobs; approvals and the task center in the commercial edition | Record lifecycle, Scheduled jobs, Approvals |
+| [AI and agents](ai-agents.md) | Business agents that handle work in the app within their permissions | Model services, agents, runs and conversations, runners | Agents, Agent sessions |
+| [Knowledge base](knowledge.md) | Managing and searching business material, for people and agents | Knowledge spaces, versions, search, change proposals and review | Knowledge base |
+| [Email](mail.md) | Sending and receiving email in the app, linked to business records | Mailbox connections, sync, sending, signatures and templates | Email |
+| [Notifications](notifications.md) | Telling the right people when something happens | Sending and delivery logs, in-app messages and the inbox, email and group bot channels | Notifications, In-app messages, Notification channels |
+| [Integrations](integrations.md) | Letting scripts and other systems reach the app | API keys, API docs, the app's command line | API keys |
+| [Interface and settings](interface.md) | Pages, navigation, language, and appearance | The page framework, UI library, languages, themes, realtime updates | Runtime, Languages |
+| [Audit log](audit.md) | Recording sensitive operations so they can be traced afterward | Not available yet, see the page | — |
+| [Operations](operations.md) | Background jobs, queues, caching, secrets, and how the app is running | Background jobs and queues, secret encryption and rotation, logs, **App foundation** | Runtime, command line |
 
-插件的详细信息见 [插件目录](../plugins/index.md)。
+For details on each plugin, see the [Plugin directory](../plugins/index.md).
 
-## 每类能力怎样读
+## How each building block is organized
 
-每一类的第一页是概览，按同样的顺序写：
+The first page of each building block is an overview, written in the same order:
 
-1. 这项能力解决什么；
-2. **四层分工**：开箱即有 / Agent 在应用里实现 / 管理员上线后调整 / 部署时配置；
-3. 由哪些包提供，开源还是商业，默认模板里有没有；
-4. 在应用里看到什么；
-5. 怎样提需求：要说清的事，以及可以复制的示例；
-6. 怎样检查结果；
-7. 限制与常见问题；
-8. 与 NocoBase 2 的对应。
+1. What the building block solves;
+2. **The four layers**: ready out of the box / agents build in the app / administrators adjust after launch / configured at deployment;
+3. Which packages provide it, whether they are open source or commercial, and whether the default template includes them;
+4. What you see in the app;
+5. How to write a request: what to make clear, and examples you can copy;
+6. How to check the result;
+7. Limits and common questions;
+8. How it maps to NocoBase 2.
 
-后面是这一类的场景页，例如“工作流与审批”下的会签、加签与转交。
+After that come scenario pages for the building block, such as all-sign, adding a signer, and transfer under "Workflows and approvals".
 
-## 提需求时通用的几件事
+## What to state in every request
 
-不论哪类能力，好的需求都说清这些。每类能力的概览页再补充它特有的要点：
+Whatever the building block, a good request makes these clear. Each building block's overview adds the points specific to it:
 
-| 要说清的 | 例子 |
+| What to make clear | Example |
 | --- | --- |
-| 谁用 | 采购员、部门经理、财务 |
-| 在哪里 | 采购订单详情里、「系统设置」里 |
-| 记录什么、规则是什么 | 金额超过 5 万元需要财务审批 |
-| 谁能看、谁能改 | 采购员只看自己的订单 |
-| 上线后谁来调整什么 | 管理员可以调整金额阈值 |
-| 怎样算完成 | 用三个账号各走一遍，结果符合规则 |
+| Who uses it | Buyers, department managers, finance |
+| Where | On the purchase order detail page, in **System settings** |
+| What is recorded and what the rules are | Amounts over 50,000 need finance approval |
+| Who can see it and who can change it | Buyers see only their own orders |
+| What gets adjusted after launch, and by whom | Administrators can change the amount threshold |
+| What counts as done | Walk through it with three accounts and the results follow the rules |
 
-写法见 [和 Agent 一起开发](../develop/working-with-agents.md)。
+For how to write it, see [Working with agents](../develop/working-with-agents.md).

@@ -62,7 +62,7 @@
 <p><code>/v/</code> 分支是个渐进式迁移的分支，进入 <code>/v/</code> 分支后，将会有几个明显的变化：</p>
 <ol>
 <li>通过 Page V1 创建过的页面，在 <code>/v/</code> 分支里将不再展示。而通过 Page V2 创建的页面，在 <code>/v/</code> 分支里还能正常展示。</li>
-<li>只适配了 <code>client-v1</code> 的插件，在 <code>/v/</code> 分支里将不再加载。<code>/v/</code> 分支只会加载适配了 <code>client-v2</code> 的插件。具体可以参考<a href="https://docs.nocobase.com/cn/plugin-development/client/">客户端插件开发文档</a>。</li>
+<li>只适配了 <code>client-v1</code> 的插件，在 <code>/v/</code> 分支里将不再加载。<code>/v/</code> 分支只会加载适配了 <code>client-v2</code> 的插件。具体可以参考<a href="https://nocode.docs.nocobase.com/cn/plugin-development/client/">客户端插件开发文档</a>。</li>
 </ol>
 <p>目前，NocoBase 内置的大部分插件，已在这个版本里进行了 client-v2 的适配和迁移，因此大部分功能是能直接使用的（还有少数一些未迁移的插件，我们会在持续迁移）。不过有些插件提供的能力，后续只会在 <code>/v/</code> 分支进行更新和迭代。具体如下：</p>
 <ul>
@@ -111,7 +111,7 @@
 <p><img src="https://static-docs.nocobase.com/2026-07-10-08-06-15.png" alt=""></p>
 <p>参考文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/multi-app/multi-portal/">多工作区</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/multi-app/multi-portal/">多工作区</a></li>
 </ul>
 <h3>新移动端（仅 <code>/v/</code> 分支支持）</h3>
 <p>新移动端提供了全新的 <code>/v/mobile</code> 入口，与此同时，工作区也支持新增移动端布局的工作区。</p>
@@ -119,28 +119,28 @@
 <p><img src="https://static-docs.nocobase.com/2026-07-10-08-04-59.png" alt=""></p>
 <p>参考文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/interface-builder/ui-layout/mobile">移动端布局</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/interface-builder/ui-layout/mobile">移动端布局</a></li>
 </ul>
 <h3>新评论区块</h3>
 <p>新评论区块不再局限于主数据源的评论表，不是关系区块也可以使用。评论区块用于给业务记录添加评论能力。你可以在任务、文章、工单、客户等记录的详情页或弹窗里添加评论区块，让用户围绕当前记录查看、回复和新增评论。</p>
 <p><img src="https://static-docs.nocobase.com/Comments-07-01-2026_12_02_PM.png" alt=""></p>
 <p>参考文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/interface-builder/blocks/data-blocks/comment">评论区块</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/interface-builder/blocks/data-blocks/comment">评论区块</a></li>
 </ul>
 <h3>AI 知识库优化</h3>
 <p>这个版本 AI 知识库也完成了 <code>client-v2</code> 版本的迁移。同时，工作流创建知识库文档的时候，支持按知识库文档的 key 进行覆盖。</p>
 <p><img src="https://static-docs.nocobase.com/20260617003505.png" alt=""></p>
 <p>参考文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/ai-employees/knowledge-base/knowledge-base/">AI 知识库</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/ai-employees/knowledge-base/knowledge-base/">AI 知识库</a></li>
 </ul>
 <h3>工作流：数据库事务节点</h3>
 <p>工作流新增了数据库事务节点。它用于将一组数据库操作放入同一个事务中执行。适合需要保证多步数据处理 “全部成功或全部回滚” 的场景，例如创建订单后扣减库存、写入明细、更新状态等。</p>
 <p><img src="https://static-docs.nocobase.com/20260610205505.png" alt=""></p>
 <p>参考文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/workflow/nodes/transaction">数据库事务节点</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/workflow/nodes/transaction">数据库事务节点</a></li>
 </ul>
 <h2 id="zh-2">以下插件不再支持 V2（已废弃但尚未移除）</h2>
 <p>有一部分插件实际上在更早之前就已废弃，其中部分目前仍可使用，但会在 V3 中彻底移除。</p>
@@ -272,7 +272,7 @@
 <p>The <code>/v/</code> branch is a progressive-migration branch. After entering the <code>/v/</code> branch, there will be a few noticeable changes:</p>
 <ol>
 <li>Pages created via Page V1 will no longer be displayed in the <code>/v/</code> branch. Pages created via Page V2 will still display normally in the <code>/v/</code> branch.</li>
-<li>Plugins that are only adapted for <code>client-v1</code> will no longer be loaded in the <code>/v/</code> branch. The <code>/v/</code> branch only loads plugins adapted for <code>client-v2</code>. For details, refer to the <a href="https://docs.nocobase.com/plugin-development/client/">Client-side plugin development documentation</a>.</li>
+<li>Plugins that are only adapted for <code>client-v1</code> will no longer be loaded in the <code>/v/</code> branch. The <code>/v/</code> branch only loads plugins adapted for <code>client-v2</code>. For details, refer to the <a href="https://nocode.docs.nocobase.com/plugin-development/client/">Client-side plugin development documentation</a>.</li>
 </ol>
 <p>At present, most of the plugins built into NocoBase have been adapted and migrated to client-v2 in this release, so most features can be used directly (a small number of plugins have not yet been migrated, and we will keep migrating them). However, some capabilities provided by certain plugins will only be updated and iterated on the <code>/v/</code> branch going forward. Specifically:</p>
 <ul>
@@ -321,7 +321,7 @@
 <p><img src="https://static-docs.nocobase.com/2026-07-10-08-06-15.png" alt=""></p>
 <p>Reference documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/multi-app/multi-portal/">Multi Portal</a></li>
+<li><a href="https://nocode.docs.nocobase.com/multi-app/multi-portal/">Multi Portal</a></li>
 </ul>
 <h3>New mobile client (only supported on the <code>/v/</code> branch)</h3>
 <p>The new mobile client provides a brand-new <code>/v/mobile</code> entry, and at the same time, Portals also support adding Portals with a mobile layout.</p>
@@ -329,28 +329,28 @@
 <p><img src="https://static-docs.nocobase.com/2026-07-10-08-04-59.png" alt=""></p>
 <p>Reference documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/interface-builder/ui-layout/mobile">Mobile layout</a></li>
+<li><a href="https://nocode.docs.nocobase.com/interface-builder/ui-layout/mobile">Mobile layout</a></li>
 </ul>
 <h3>New comment block</h3>
 <p>The new comment block is no longer limited to the comment table of the main data source, and it can be used even outside of relationship blocks. The comment block is used to add commenting capabilities to business records. You can add a comment block on the detail page or popup of records such as tasks, articles, tickets, and customers, allowing users to view, reply to, and add comments around the current record.</p>
 <p><img src="https://static-docs.nocobase.com/Comments-07-01-2026_12_02_PM.png" alt=""></p>
 <p>Reference documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/interface-builder/blocks/data-blocks/comment">Comment block</a></li>
+<li><a href="https://nocode.docs.nocobase.com/interface-builder/blocks/data-blocks/comment">Comment block</a></li>
 </ul>
 <h3>AI knowledge base improvements</h3>
 <p>In this release, the AI knowledge base has also completed its migration to the <code>client-v2</code> version. In addition, when a workflow creates knowledge base documents, it now supports overwriting by the knowledge base document’s key.</p>
 <p><img src="https://static-docs.nocobase.com/20260617003505.png" alt=""></p>
 <p>Reference documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/ai-employees/knowledge-base/knowledge-base/">AI knowledge base</a></li>
+<li><a href="https://nocode.docs.nocobase.com/ai-employees/knowledge-base/knowledge-base/">AI knowledge base</a></li>
 </ul>
 <h3>Workflow: Database transaction node</h3>
 <p>The workflow adds a database transaction node. It is used to execute a group of database operations within the same transaction. It is suited for scenarios that need to guarantee “all succeed or all roll back” across multi-step data processing—for example, deducting inventory, writing line items, and updating status after creating an order.</p>
 <p><img src="https://static-docs.nocobase.com/20260610205505.png" alt=""></p>
 <p>Reference documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/workflow/nodes/transaction">Database transaction node</a></li>
+<li><a href="https://nocode.docs.nocobase.com/workflow/nodes/transaction">Database transaction node</a></li>
 </ul>
 <h2 id="en-2">The following plugins are no longer supported in V2 (deprecated but not yet removed)</h2>
 <p>Some plugins were actually deprecated much earlier. Some of them can still be used at present, but they will be completely removed in V3.</p>

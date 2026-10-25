@@ -1,102 +1,102 @@
 ---
-title: 插件目录
-nav: 插件目录总览
-description: NocoBase 3 的全部插件，以及最常用的基础库：每个做什么、开源还是商业、默认模板里有没有。点进去看它提供了什么、在应用里是什么样子、怎样让 Agent 使用。
+title: Plugin directory
+nav: Plugin directory overview
+description: Every NocoBase 3 plugin, plus the most-used foundation libraries: what each does, whether it is open source or commercial, and whether the default template has it. Open one to see what it provides, how it looks in the app, and how to ask an agent to use it.
 ---
 
-插件是什么、怎样进入应用，见 [插件怎样工作](../intro/how-plugins-work.md)。想按业务需求查，从 [能力总览](../capabilities/index.md) 进入更快。
+For what a plugin is and how it gets into an app, see [How plugins work](../intro/how-plugins-work.md). If you want to look things up by business need, it is faster to start from the [Capabilities overview](../capabilities/index.md).
 
-## 怎样读这张表
+## How to read these tables
 
-- **版本范围**：<span class="tag">开源</span> 在 NocoBase 开源仓库里；<span class="tag pro">商业版</span> 需要相应授权。
-- **默认模板**：用默认模板新建的应用里，<span class="tag ok">已启用</span> 表示已经登记在插件清单里；<span class="tag">已安装，未注册</span> 表示包已经在依赖里，需要时注册即可；— 表示需要安装。
-- 每个插件页的“档案”由脚本从代码生成，版本号对应 2026-10-23 的 `v3-develop` 分支。
+- **Edition**: <span class="tag">Open source</span> is in NocoBase's open source repository; <span class="tag pro">Commercial</span> needs the matching license.
+- **Default template**: in an app created from the default template, <span class="tag ok">Enabled</span> means it is already listed in the plugin manifest; <span class="tag">Installed, not registered</span> means the package is already in the dependencies and you only need to register it when needed; — means it needs to be installed.
+- The "Profile" on each plugin page is generated from the code by a script, and version numbers match the `v3-develop` branch on 2026-10-23.
 
-## 用户与权限
+## Users and permissions
 
-| 插件 | 做什么 | 版本范围 | 默认模板 |
+| Plugin | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [认证](authentication.md) | 登录、注册、找回密码和会话，基于 Better Auth；企业统一身份（OIDC）、社交登录、双因素认证等通过配置接入。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [用户](users.md) | 用户管理的接口和页面组件：账号、启用与停用、重置密码、邀请链接、个人偏好、分配角色。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [API keys](api-keys.md) | 用 API Key 访问应用的接口，供脚本、外部系统和命令行使用。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [权限](authorization.md) | 页面、操作和数据范围的授权（权限集，界面上叫角色），服务端和浏览器端的权限检查。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [默认数据范围](authz-default-access.md) | 给已有操作权限的人一个共同的数据范围。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [共享规则](authz-sharing-rules.md) | 把指定记录共享给指定的人或角色。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [限制规则](authz-restriction-rules.md) | 在已有授权上进一步收窄范围，例如金额上限。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
+| [Authentication](authentication.md) | Sign-in, sign-up, password reset, and sessions, built on Better Auth; enterprise single sign-on (OIDC), social login, and two-factor authentication are added through configuration. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Users](users.md) | The APIs and page components for user management: accounts, enabling and deactivating, password reset, invitation links, personal preferences, and role assignment. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [API keys](api-keys.md) | Reach the app's APIs with an API key, for scripts, external systems, and the command line. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Permissions](authorization.md) | Authorization of pages, actions, and data scopes (permission sets, called roles in the UI), and permission checks on the server and in the browser. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Default data scope](authz-default-access.md) | Give people who already have action permissions a shared data scope. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Sharing rules](authz-sharing-rules.md) | Share specific records with specific people or roles. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Restriction rules](authz-restriction-rules.md) | Narrow an existing grant further, for example with an amount cap. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
 
-## 数据与文件
+## Data and files
 
-| 插件 | 做什么 | 版本范围 | 默认模板 |
+| Plugin | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [数据库](db.md)（基础库） | 数据表、查询、迁移和数据库连接；SQLite、PostgreSQL、MySQL、SQL Server、Oracle。 | <span class="tag">开源</span>；达梦、人大金仓、OceanBase <span class="tag pro">商业版</span> | 已包含 SQLite |
-| [数据库浏览](database-explorer.md) | 只读浏览数据库连接、数据表和字段的接口，供应用做自己的页面。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [文件](file.md) | 上传、存储、预览和下载，文件和业务记录关联。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [模板打印](template-print.md) | 只有技能：教 Agent 在应用里实现按 Office 模板生成文档。 | <span class="tag">开源</span> | 已安装（只有技能） |
+| [Database](db.md) (foundation library) | Tables, queries, migrations, and database connections; SQLite, PostgreSQL, MySQL, SQL Server, Oracle. | <span class="tag">Open source</span>; Dameng, KingbaseES, and OceanBase <span class="tag pro">Commercial</span> | SQLite included |
+| [Database explorer](database-explorer.md) | A read-only API for browsing database connections, tables, and fields, so the app can build its own pages. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Files](file.md) | Upload, storage, preview, and download, with files linked to business records. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Template printing](template-print.md) | Skill only: teaches agents to generate documents from Office templates in the app. | <span class="tag">Open source</span> | Installed (skill only) |
 
-## 流程
+## Workflows
 
-| 插件 | 做什么 | 版本范围 | 默认模板 |
+| Plugin | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [记录生命周期](lifecycle.md)（基础库） | 记录的状态和流转在代码里声明；NocoBase 3 的流程都建在它上面。 | <span class="tag">开源</span> | 已包含 |
-| [定时任务](scheduler.md) | 在代码里定义定时任务，记录每次执行；管理员可以查看记录、启用或停用。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [审批](approval.md) | 多级、会签、或签、按票数通过、加签、转交、退回，冻结送审内容。 | <span class="tag pro">商业版</span> | — |
-| [任务中心](task-center.md) | 汇总各业务来源的个人待办，自带「任务中心」页面。审批插件依赖它。 | <span class="tag pro">商业版</span> | — |
+| [Record lifecycle](lifecycle.md) (foundation library) | A record's status and transitions are declared in code; every NocoBase 3 workflow is built on it. | <span class="tag">Open source</span> | Included |
+| [Scheduled jobs](scheduler.md) | Define scheduled jobs in code and record every run; administrators can view the records and enable or disable jobs. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Approvals](approval.md) | Multi-level, all-sign, any-sign, vote-count pass rules, add a signer, transfer, and send back, with the submitted content frozen. | <span class="tag pro">Commercial</span> | — |
+| [Task center](task-center.md) | Gathers personal to-dos from every business source, with its own **Task center** page. The Approvals plugin depends on it. | <span class="tag pro">Commercial</span> | — |
 
-## 消息
+## Messaging
 
-| 插件 | 做什么 | 版本范围 | 默认模板 |
+| Plugin | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [通知](notification.md) | 通知的发送、存储、投递和日志。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [站内信](notification-in-app.md) | 站内信渠道和收件箱接口，模板的「收件箱」使用它。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [通知渠道](notification-providers.md) | SMTP、Resend 邮件，飞书、钉钉群机器人。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [Web Push](notification-web-push.md) | 浏览器推送通知。 | <span class="tag">开源</span> | — |
-| [邮件](mail.md) | 关联个人邮箱，同步、阅读、回复和发送邮件，往来邮件与业务记录关联。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
+| [Notifications](notification.md) | Sending, storing, and delivering notifications, and their logs. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [In-app messages](notification-in-app.md) | The in-app message channel and the inbox API, used by the template's **Inbox**. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Notification channels](notification-providers.md) | SMTP and Resend email, and Feishu and DingTalk group bots. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [Web Push](notification-web-push.md) | Browser push notifications. | <span class="tag">Open source</span> | — |
+| [Email](mail.md) | Connect personal mailboxes to sync, read, reply to, and send email, with correspondence linked to business records. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
 
-## AI 与 Agent
+## AI and agents
 
-| 插件 | 做什么 | 版本范围 | 默认模板 |
+| Plugin | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [Agents](agents.md) | 业务 Agent：Agent 定义、模型服务、运行和对话，以及运行 Agent 的 Runner。 | <span class="tag">开源</span> | <span class="tag">已安装，未注册</span> |
-| [Agent 会话](agent-sessions.md) | 在浏览器里和成员自己电脑上的编码工具对话，对话和它创建的工作保存在应用里。 | <span class="tag">开源</span> | — |
-| [知识库](knowledge.md) | 带版本的 Markdown 文档，搜索、修改建议与审核，供人和业务 Agent 使用。 | <span class="tag">开源</span> | <span class="tag">已安装，未注册</span> |
+| [Agents](agents.md) | Business agents: agent definitions, model services, runs and conversations, and the runner that runs agents. | <span class="tag">Open source</span> | <span class="tag">Installed, not registered</span> |
+| [Agent sessions](agent-sessions.md) | Chat in the browser with the coding tools on members' own computers, with the conversations and the work they create kept in the app. | <span class="tag">Open source</span> | — |
+| [Knowledge base](knowledge.md) | Versioned Markdown documents with search, change proposals, and review, for people and business agents. | <span class="tag">Open source</span> | <span class="tag">Installed, not registered</span> |
 
-## 界面与运维
+## Interface and operations
 
-| 插件 | 做什么 | 版本范围 | 默认模板 |
+| Plugin | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [多语言](i18n.md) | 语言切换，服务端返回的文字跟着切换。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| [应用底座](foundation.md) | 「应用底座」页面：应用用到了哪些 Core 能力、由哪些包提供。 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
+| [Languages](i18n.md) | Language switching, with text returned by the server switching along with it. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| [App foundation](foundation.md) | The **App foundation** page: which Core building blocks the app uses and which packages provide them. | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
 
-## 研发协作
+## Development collaboration
 
-Studio 的项目、任务和发布建在这两个插件上。
+Studio's projects, issues, and releases are built on these two plugins.
 
-| 插件 | 做什么 | 版本范围 | 默认模板 |
+| Plugin | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [项目](projects.md) | 项目、任务和协作：状态、优先级、成员、计划和进展。 | <span class="tag">开源</span> | — |
-| [发布](releases.md) | 应用、版本、环境和部署，部署方式由可替换的驱动实现。 | <span class="tag">开源</span> | — |
+| [Projects](projects.md) | Projects, issues, and collaboration: status, priority, members, plans, and progress. | <span class="tag">Open source</span> | — |
+| [Releases](releases.md) | Apps, versions, environments, and deployments, with deployment done by replaceable drivers. | <span class="tag">Open source</span> | — |
 
-## 自带页面的插件
+## Plugins that come with pages
 
-大多数插件不带页面。带页面的是这几个，注册后页面出现在应用里：
+Most plugins have no pages. These do, and once registered their pages appear in the app:
 
-| 插件 | 页面 |
+| Plugin | Pages |
 | --- | --- |
-| 应用底座 | 「系统设置 › 应用底座」 |
-| Agents | Agent、运行环境、技能、用量、模型 |
-| Agent 会话 | Agent 会话 |
-| 知识库 | 知识库 |
-| 项目 | 项目、任务、计划 |
-| 发布 | 应用与部署、环境 |
-| 用户 | 邀请链接页 |
-| 任务中心 <span class="tag pro">商业版</span> | 任务中心 |
+| App foundation | **System settings › App foundation** |
+| Agents | Agents, Runtimes, Skills, Usage, Models |
+| Agent sessions | Agent sessions |
+| Knowledge base | Knowledge |
+| Projects | Projects, Issues, Plans |
+| Releases | Apps, Deploy environments |
+| Users | The invitation link page |
+| Task center <span class="tag pro">Commercial</span> | Task center |
 
-登录、「用户管理」「角色与权限」「默认数据范围」「收件箱」这些页面不属于插件，是默认模板写好的应用页面，用的是插件的接口和 UI 组件。
+The sign-in, **Users**, **Roles and permissions**, **Default data scopes**, and **Inbox** pages do not belong to a plugin. They are application pages the default template already contains, and they use plugin APIs and UI components.
 
-## 基础库、UI 组件库和开发工具
+## Foundation libraries, the UI library, and developer tools
 
-- [基础库](libraries.md)：后台任务、队列、实时更新、存储、密钥、缓存、日志、多语言运行时等。
-- [UI 组件库](ui-library.md)：40 多个组件和区块，安装时复制进应用源码。
-- [开发工具](tools.md)：创建应用、创建插件、命令行、测试工具、部署安装器、模板。
+- [Libraries](libraries.md): background jobs, queues, realtime updates, storage, secrets, caching, logging, the language runtime, and more.
+- [UI library](ui-library.md): more than 40 components and blocks, copied into the app's source when installed.
+- [Developer tools](tools.md): creating apps, creating plugins, the command line, testing tools, the deployment installer, and templates.
 
-用过 NocoBase 2 的插件，想知道在 3 里对应什么，见 [从 NocoBase 2 来](../../start/from-v2.md#2-的功能在-3-里对应什么)。
+If you used a NocoBase 2 plugin and want to know what it maps to in 3, see [Coming from NocoBase 2](../../start/from-v2.md#what-each-nocobase-2-feature-maps-to-in-3).

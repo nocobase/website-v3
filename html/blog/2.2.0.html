@@ -62,7 +62,7 @@
 <p><code>/v/</code> 分支是个渐进式迁移的分支，进入 <code>/v/</code> 分支后，将会有几个明显的变化：</p>
 <ol>
 <li>通过 Page V1 创建过的页面，在 <code>/v/</code> 分支里将不再展示。而通过 Page V2 创建的页面，在 <code>/v/</code> 分支里还能正常展示。</li>
-<li>只适配了 <code>client-v1</code> 的插件，在 <code>/v/</code> 分支里将不再加载。<code>/v/</code> 分支只会加载适配了 <code>client-v2</code> 的插件。具体可以参考<a href="https://docs.nocobase.com/cn/plugin-development/client/">客户端插件开发文档</a>。</li>
+<li>只适配了 <code>client-v1</code> 的插件，在 <code>/v/</code> 分支里将不再加载。<code>/v/</code> 分支只会加载适配了 <code>client-v2</code> 的插件。具体可以参考<a href="https://nocode.docs.nocobase.com/cn/plugin-development/client/">客户端插件开发文档</a>。</li>
 </ol>
 <p>目前，NocoBase 内置的大部分插件，已在这个版本里进行了 client-v2 的适配和迁移，因此大部分功能是能直接使用的（还有少数一些未迁移的插件，我们会持续迁移）。不过有些插件提供的能力，后续只会在 <code>/v/</code> 分支进行更新和迭代。具体如下：</p>
 <ul>
@@ -79,7 +79,7 @@
 <p>可以结合生产环境的实际情况进行 <code>/v/</code> 分支的迁移。</p>
 <p>相关文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/plugin-development/client/">客户端插件开发</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/plugin-development/client/">客户端插件开发</a></li>
 </ul>
 <h3>文件访问机制升级：稳定 URL、权限校验与部署调整</h3>
 <p>2.2 对 NocoBase 管理的文件访问机制进行了重要升级。默认情况下，附件和文件不再直接把本地存储路径、对象存储地址或预签名地址作为业务 URL 返回，而是使用稳定的 NocoBase URL：</p>
@@ -121,12 +121,12 @@
 <p>对于合同、证件和内部资料等敏感文件，建议使用私有存储、短期签名 URL、CDN 鉴权等存储侧访问控制。Office 在线预览场景会在用户权限检查通过后签发绑定当前文件的短期临时 URL；该地址默认有效 10 分钟，不能作为长期分享链接保存或传播。</p>
 <p>相关文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/file-manager/stable-url">文件管理器：稳定 URL</a></li>
-<li><a href="https://docs.nocobase.com/cn/file-manager/storage/">文件存储引擎与访问控制</a></li>
-<li><a href="https://docs.nocobase.com/cn/get-started/installation/env">环境变量</a></li>
-<li><a href="https://docs.nocobase.com/cn/get-started/deployment/production">生产环境部署</a></li>
-<li><a href="https://docs.nocobase.com/cn/nocobase-cli/production/reverse-proxy/nginx">Nginx 反向代理</a></li>
-<li><a href="https://docs.nocobase.com/cn/nocobase-cli/production/reverse-proxy/caddy">Caddy 反向代理</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/file-manager/stable-url">文件管理器：稳定 URL</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/file-manager/storage/">文件存储引擎与访问控制</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/get-started/installation/env">环境变量</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/get-started/deployment/production">生产环境部署</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/nocobase-cli/production/reverse-proxy/nginx">Nginx 反向代理</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/nocobase-cli/production/reverse-proxy/caddy">Caddy 反向代理</a></li>
 </ul>
 <h3>新移动端（仅 <code>/v/</code> 入口支持）</h3>
 <p>新移动端提供 <code>/v/mobile</code> 入口，并采用独立的移动端布局。</p>
@@ -135,14 +135,14 @@
 <p><img src="https://static-docs.nocobase.com/2026-07-10-08-04-59.png" alt=""></p>
 <p>相关文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/interface-builder/ui-layout/mobile">移动端布局</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/interface-builder/ui-layout/mobile">移动端布局</a></li>
 </ul>
 <h3>新评论区块</h3>
 <p>新评论区块不再局限于主数据源的评论表，也不再要求作为关系区块使用。你可以在任务、文章、工单、客户等记录的详情页或弹窗中添加评论区块，让用户围绕当前记录查看、回复和新增评论。</p>
 <p><img src="https://static-docs.nocobase.com/Comments-07-01-2026_12_02_PM.png" alt=""></p>
 <p>相关文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/interface-builder/blocks/data-blocks/comment">评论区块</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/interface-builder/blocks/data-blocks/comment">评论区块</a></li>
 </ul>
 <h3>AI 知识库增强</h3>
 <p>AI 知识库已完成 client-v2 迁移，并进一步完善知识库和向量存储的配置能力：</p>
@@ -154,16 +154,16 @@
 <p><img src="https://static-docs.nocobase.com/20260728222404.png" alt=""></p>
 <p>相关文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/ai-employees/knowledge-base/knowledge-base/">AI 知识库</a></li>
-<li><a href="https://docs.nocobase.com/cn/ai-employees/knowledge-base/vector-database">向量数据库</a></li>
-<li><a href="https://docs.nocobase.com/cn/ai-employees/knowledge-base/dev/external-knowledge-base">External 知识库插件</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/ai-employees/knowledge-base/knowledge-base/">AI 知识库</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/ai-employees/knowledge-base/vector-database">向量数据库</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/ai-employees/knowledge-base/dev/external-knowledge-base">External 知识库插件</a></li>
 </ul>
 <h3>工作流：数据库事务节点</h3>
 <p>工作流新增数据库事务节点，用于将一组数据库操作放在同一个事务中执行。它适合需要保证多步数据处理“全部成功或全部回滚”的场景，例如创建订单后扣减库存、写入订单明细并更新状态。</p>
 <p><img src="https://static-docs.nocobase.com/20260610205505.png" alt=""></p>
 <p>相关文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/workflow/nodes/transaction">数据库事务节点</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/workflow/nodes/transaction">数据库事务节点</a></li>
 </ul>
 <h2 id="zh-2">V2 适配与体验完善</h2>
 <p>除了上述新特性，2.2 正式版还继续迁移和完善了一批常用功能的 V2 界面与交互：</p>
@@ -182,9 +182,9 @@
 <p>同时，本次版本修复了移动端、嵌入页面、子应用 SSO、打印和导出等场景中的一批问题，进一步提升 V2 入口的稳定性和一致性。</p>
 <p>相关文档：</p>
 <ul>
-<li><a href="https://docs.nocobase.com/cn/users-permissions/sync/">用户数据同步</a></li>
-<li><a href="https://docs.nocobase.com/cn/users-permissions/sync/sources/dingtalk">从钉钉同步用户数据</a></li>
-<li><a href="https://docs.nocobase.com/cn/users-permissions/sync/sources/wecom">从企业微信同步用户数据</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/users-permissions/sync/">用户数据同步</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/users-permissions/sync/sources/dingtalk">从钉钉同步用户数据</a></li>
+<li><a href="https://nocode.docs.nocobase.com/cn/users-permissions/sync/sources/wecom">从企业微信同步用户数据</a></li>
 </ul>
 <h2 id="zh-3">以下插件不再支持 V2（已废弃但尚未移除）</h2>
 <p>有一部分插件实际上在更早之前就已废弃，其中部分目前仍可使用，但会在 V3 中彻底移除。</p>
@@ -316,7 +316,7 @@
 <p>The <code>/v/</code> entry is being introduced progressively. It has several notable differences:</p>
 <ol>
 <li>Pages created with Page V1 are no longer displayed under <code>/v/</code>. Pages created with Page V2 continue to work normally.</li>
-<li>Plugins adapted only for <code>client-v1</code> are not loaded under <code>/v/</code>. The <code>/v/</code> entry loads only plugins adapted for <code>client-v2</code>. See the <a href="https://docs.nocobase.com/plugin-development/client/">client plugin development documentation</a> for details.</li>
+<li>Plugins adapted only for <code>client-v1</code> are not loaded under <code>/v/</code>. The <code>/v/</code> entry loads only plugins adapted for <code>client-v2</code>. See the <a href="https://nocode.docs.nocobase.com/plugin-development/client/">client plugin development documentation</a> for details.</li>
 </ol>
 <p>Most built-in NocoBase plugins have been adapted and migrated to client-v2 in this release, so most features are ready to use. A small number of plugins have not yet been migrated and will be handled progressively. Some plugin capabilities will receive future updates only under <code>/v/</code>. Current differences include:</p>
 <ul>
@@ -333,7 +333,7 @@
 <p>Plan the migration to <code>/v/</code> according to your production environment and current use of V1 and V2 features.</p>
 <p>Related documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/plugin-development/client/">Client plugin development</a></li>
+<li><a href="https://nocode.docs.nocobase.com/plugin-development/client/">Client plugin development</a></li>
 </ul>
 <h3>File access upgrade: stable URLs, permission checks, and deployment changes</h3>
 <p>NocoBase 2.2 introduces an important upgrade to the access mechanism for NocoBase-managed files. By default, attachments and files no longer expose local storage paths, object storage URLs, or presigned URLs as their business URLs. Instead, they use stable NocoBase URLs:</p>
@@ -375,12 +375,12 @@
 <p>For sensitive files such as contracts, identity documents, and internal materials, use storage-side controls such as private storage, short-lived signed URLs, or CDN authentication. For online Office previews, NocoBase issues a short-lived URL bound to the current file after the user’s permissions are validated. This URL is valid for 10 minutes by default and must not be stored or distributed as a long-term sharing link.</p>
 <p>Related documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/file-manager/stable-url">File manager: Stable URLs</a></li>
-<li><a href="https://docs.nocobase.com/file-manager/storage/">File storage engines and access control</a></li>
-<li><a href="https://docs.nocobase.com/get-started/installation/env">Environment variables</a></li>
-<li><a href="https://docs.nocobase.com/get-started/deployment/production">Production deployment</a></li>
-<li><a href="https://docs.nocobase.com/nocobase-cli/production/reverse-proxy/nginx">Nginx reverse proxy</a></li>
-<li><a href="https://docs.nocobase.com/nocobase-cli/production/reverse-proxy/caddy">Caddy reverse proxy</a></li>
+<li><a href="https://nocode.docs.nocobase.com/file-manager/stable-url">File manager: Stable URLs</a></li>
+<li><a href="https://nocode.docs.nocobase.com/file-manager/storage/">File storage engines and access control</a></li>
+<li><a href="https://nocode.docs.nocobase.com/get-started/installation/env">Environment variables</a></li>
+<li><a href="https://nocode.docs.nocobase.com/get-started/deployment/production">Production deployment</a></li>
+<li><a href="https://nocode.docs.nocobase.com/nocobase-cli/production/reverse-proxy/nginx">Nginx reverse proxy</a></li>
+<li><a href="https://nocode.docs.nocobase.com/nocobase-cli/production/reverse-proxy/caddy">Caddy reverse proxy</a></li>
 </ul>
 <h3>New mobile experience (<code>/v/</code> only)</h3>
 <p>The new mobile experience provides a <code>/v/mobile</code> entry with a dedicated mobile layout.</p>
@@ -389,14 +389,14 @@
 <p><img src="https://static-docs.nocobase.com/2026-07-10-08-04-59.png" alt=""></p>
 <p>Related documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/interface-builder/ui-layout/mobile">Mobile layout</a></li>
+<li><a href="https://nocode.docs.nocobase.com/interface-builder/ui-layout/mobile">Mobile layout</a></li>
 </ul>
 <h3>New comment block</h3>
 <p>The new comment block is no longer limited to the comments collection in the main data source and no longer needs to be used as a relationship block. You can add it to a record detail page or popup for tasks, articles, tickets, customers, and other records, allowing users to view, reply to, and add comments in the context of the current record.</p>
 <p><img src="https://static-docs.nocobase.com/Comments-07-01-2026_12_02_PM.png" alt=""></p>
 <p>Related documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/interface-builder/blocks/data-blocks/comment">Comment block</a></li>
+<li><a href="https://nocode.docs.nocobase.com/interface-builder/blocks/data-blocks/comment">Comment block</a></li>
 </ul>
 <h3>AI knowledge base enhancements</h3>
 <p>The AI knowledge base has been migrated to client-v2 and now offers improved knowledge base and vector storage configuration:</p>
@@ -408,16 +408,16 @@
 <p><img src="https://static-docs.nocobase.com/20260728222404.png" alt=""></p>
 <p>Related documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/ai-employees/knowledge-base/knowledge-base/">AI knowledge base</a></li>
-<li><a href="https://docs.nocobase.com/ai-employees/knowledge-base/vector-database">Vector database</a></li>
-<li><a href="https://docs.nocobase.com/ai-employees/knowledge-base/dev/external-knowledge-base">External knowledge base plugin</a></li>
+<li><a href="https://nocode.docs.nocobase.com/ai-employees/knowledge-base/knowledge-base/">AI knowledge base</a></li>
+<li><a href="https://nocode.docs.nocobase.com/ai-employees/knowledge-base/vector-database">Vector database</a></li>
+<li><a href="https://nocode.docs.nocobase.com/ai-employees/knowledge-base/dev/external-knowledge-base">External knowledge base plugin</a></li>
 </ul>
 <h3>Workflow: Database transaction node</h3>
 <p>The new database transaction node runs a group of database operations within the same transaction. It is designed for scenarios in which multiple data-processing steps must either all succeed or all roll back—for example, creating an order, reducing inventory, writing order line items, and updating the order status.</p>
 <p><img src="https://static-docs.nocobase.com/20260610205505.png" alt=""></p>
 <p>Related documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/workflow/nodes/transaction">Database transaction node</a></li>
+<li><a href="https://nocode.docs.nocobase.com/workflow/nodes/transaction">Database transaction node</a></li>
 </ul>
 <h2 id="en-2">V2 compatibility and experience improvements</h2>
 <p>In addition to the new features above, NocoBase 2.2 continues to migrate and improve the V2 interfaces and interactions of commonly used features:</p>
@@ -436,9 +436,9 @@
 <p>This release also fixes a range of issues affecting mobile devices, embedded pages, sub-application SSO, printing, and exporting, further improving the stability and consistency of the V2 entry.</p>
 <p>Related documentation:</p>
 <ul>
-<li><a href="https://docs.nocobase.com/users-permissions/sync/">User data synchronization</a></li>
-<li><a href="https://docs.nocobase.com/users-permissions/sync/sources/dingtalk">Synchronize user data from DingTalk</a></li>
-<li><a href="https://docs.nocobase.com/users-permissions/sync/sources/wecom">Synchronize user data from WeCom</a></li>
+<li><a href="https://nocode.docs.nocobase.com/users-permissions/sync/">User data synchronization</a></li>
+<li><a href="https://nocode.docs.nocobase.com/users-permissions/sync/sources/dingtalk">Synchronize user data from DingTalk</a></li>
+<li><a href="https://nocode.docs.nocobase.com/users-permissions/sync/sources/wecom">Synchronize user data from WeCom</a></li>
 </ul>
 <h2 id="en-3">Plugins that no longer support V2 (deprecated but not yet removed)</h2>
 <p>Some plugins were deprecated in earlier releases. A number of them can still be used for now, but they will be removed entirely in NocoBase 3.</p>

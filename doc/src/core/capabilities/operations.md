@@ -1,22 +1,22 @@
 ---
-title: 基础运维
-status: 待编写
-description: 应用里的后台任务、队列、缓存、密钥和日志，以及「应用底座」。部署、升级和备份见“部署与运维”。
+title: Operations
+status: To be written
+description: Background jobs, queues, caching, secrets, and logs inside the app, plus the App foundation page. Deployment, upgrades, and backups are covered under "Deployment and operations".
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 后台任务与队列：内存和 Redis
-- 密钥：加密保存的凭据，轮换步骤
-- 缓存
-- 日志
-- 实时更新在多进程时的配置
-- 「应用底座」
-- 和“部署与运维”的分工
+- Background jobs and queues: in memory and Redis
+- Secrets: encrypted credentials and the rotation steps
+- Caching
+- Logs
+- Realtime update configuration with multiple processes
+- **App foundation**
+- How this divides the work with "Deployment and operations"
 
-## 由哪些包提供
+## Provided by
 
-[应用底座](../plugins/foundation.md)
+[App foundation](../plugins/foundation.md)

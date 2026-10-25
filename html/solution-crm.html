@@ -31,23 +31,41 @@
 .pv-cover { position: relative; cursor: pointer; background: var(--paper-2); }
 .pv-cover t-zh, .pv-cover t-en { display: block; height: 100%; }
 .pv-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.pv-btn { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border-radius: 999px; background: var(--brand); color: var(--on-brand); font-size: 14.5px; font-weight: 500; white-space: nowrap; box-shadow: 0 10px 30px -8px var(--shadow); transition: transform 0.2s ease, background 0.2s ease; }
+.pv-btn { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border-radius: 999px; background: oklch(1 0 0 / 0.86); color: var(--ink); backdrop-filter: blur(6px); font-size: 14.5px; font-weight: 500; white-space: nowrap; box-shadow: 0 10px 30px -8px var(--shadow); transition: transform 0.2s ease, background 0.2s ease; }
 .pv-btn t-zh, .pv-btn t-en { display: inline; height: auto; }
 .pv-btn svg.lucide { width: 16px; height: 16px; fill: currentColor; }
 .pv-btn small { font-size: 13px; opacity: 0.8; }
-.pv-cover:hover .pv-btn { transform: translateY(-1px); background: var(--brand-hover); }
-/* Live demo styles: the demo site itself under the hero, or a screenshot of the CRM when the site cannot be reached, and on a phone; the link under it opens the site in a new tab. */
+/* The play button reads as part of the cover, translucent white, so the hero has one primary button, Try It Online (2026-10-25). */
+.pv-cover:hover .pv-btn { transform: translateY(-1px); background: oklch(1 0 0 / 0.96); }
+/* Live demo styles: the demo site itself under the hero, or nothing when the site cannot be reached or on a phone; the link under it opens the site in a new tab. */
 .ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
-.ld-frame[hidden], .ld-shot[hidden] { display: none; }
-.ld-shot { overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
-.ld-shot t-zh, .ld-shot t-en { display: block; }
-.ld-shot img { display: block; width: 100%; height: auto; }
-.ld-bar { display: flex; flex-wrap: wrap; justify-content: center; text-align: center; align-items: center; gap: 8px 16px; margin-top: 16px; color: var(--muted); }
-.ld-bar a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); }
-.ld-bar a:hover { color: var(--brand-hover); }
-.ld-bar svg.lucide { width: 16px; height: 16px; }
-#liveDemo { scroll-margin-top: 16px; }
+/* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
+#tryDemo { padding-top: 72px; }
+/* A cue at the foot of the full-screen hero, no words: a line running down into a round arrow button that scrolls to the demo; wide screens only, where the hero fills the screen (2026-10-25). */
+.phero { position: relative; }
+.scroll-cue { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; color: var(--muted); }
+.scroll-cue[hidden] { display: none !important; }
+.scroll-cue .ln { position: relative; width: 1px; height: 64px; overflow: hidden; background: linear-gradient(to bottom, transparent, var(--rule-2)); }
+.scroll-cue .ln::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--brand); animation: cue-run 2s ease-in-out infinite; }
+.scroll-cue .dot { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--rule-2); border-radius: 50%; background: var(--card); box-shadow: 0 6px 16px -10px var(--shadow); transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+.scroll-cue .dot svg.lucide { width: 16px; height: 16px; animation: cue-bob 2s ease-in-out infinite; }
+.scroll-cue:hover .dot { border-color: var(--brand); color: var(--brand); transform: translateY(2px); }
+@keyframes cue-run { to { top: 100%; } }
+@keyframes cue-bob { 0%, 100% { transform: translateY(-1px); } 50% { transform: translateY(2px); } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue .ln::after, .scroll-cue .dot svg.lucide { animation: none; } .scroll-cue .ln::after { top: 0; } }
+@media (min-width: 961px) { .scroll-cue { display: flex; } }
+/* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
+@media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 14vh; } .phero > .container { width: 100%; } }
+.ld-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.ld-open a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 15px; white-space: nowrap; }
+.ld-open a:hover { color: var(--brand-hover); }
+.ld-open svg.lucide { width: 16px; height: 16px; }
+#tryDemo .sec-body { margin-top: 0; }
+.ld-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.ld-head p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+#tryDemo[hidden] { display: none; }
+#tryDemo .ld-head { scroll-margin-top: 16px; } /* Try It Online scrolls to the title: 16px below the 80px the site keeps for its sticky header (html scroll-padding-top) */ /* its section's heading stays in view above it, under the sticky header */
 @media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
 @media (max-width: 960px) { .phero-split { grid-template-columns: minmax(0, 1fr); gap: 36px; } .phero-split h1 { font-size: 40px; } }
 </style>
@@ -61,9 +79,9 @@
     <div class="phero-text">
     <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoCRM · <t-zh>销售管理</t-zh><t-en>Sales CRM</t-en></span><span class="pill pass">Beta</span></p>
     <h1><t-zh>给你的销售，<span class="m">配一支 7×24 的 Agent 团队。</span></t-zh><t-en>Your sales team just gained <span class="m">a 24/7 agent team.</span></t-en></h1>
-    <p class="lede"><t-zh>NocoCRM 不是在传统 CRM 里加个 AI 聊天框。它内置 6 个各司其职的销售 Agent，并打通邮箱与 WhatsApp —— 线索、商机自动跟进，客户来信即时响应，沟通前备好提纲，审批时帮你分析，每天追踪客户动态。Agent 给出建议，决策由人拍板。</t-zh><t-en>Not just a CRM with an AI chat. It integrates your email and WhatsApp and comes with 6 sales agents: follow up on leads and opportunities, respond to messages, prep conversations, review approvals, and track company signals. Agents suggest; you decide.</t-en></p>
+    <p class="lede"><t-zh>NocoCRM 内置 6 个销售 Agent，并集成邮箱与 WhatsApp：自动跟进线索与商机，即时回复来信，审批时帮你分析。Agent 给建议，人来拍板。</t-zh><t-en>NocoCRM comes with 6 sales agents and integrates your email and WhatsApp: following up on leads and opportunities, replying to messages right away, and reviewing approvals with you. Agents suggest; you decide.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
       <a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoCRM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a>
     </div>
     </div>
@@ -74,9 +92,23 @@
       </button>
     </div>
     </div>
-    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0</b></div><div><t-zh>销售 Agent</t-zh><t-en>Sales agents</t-en><b>6</b></div><div><t-zh>渠道</t-zh><t-en>Channels</t-en><b><t-zh>邮件 · WhatsApp</t-zh><t-en>Email · WhatsApp</t-en></b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
-    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoCRM" allow="clipboard-write"></iframe></div><div class="ld-shot" hidden><t-zh><img src="assets/crm-overview-zh.jpg" alt="NocoCRM 工作台" loading="lazy"></t-zh><t-en><img src="assets/crm-overview-en.jpg" alt="NocoCRM overview" loading="lazy"></t-en></div></div>
-    <div class="ld-bar" id="liveDemoBar"><span><a href="https://solutions-cn.nocobase.com/crm/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span></div>
+    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0</b></div><div><t-zh>内置 Agent</t-zh><t-en>Built-in agents</t-en><b>6</b></div><div><t-zh>集成</t-zh><t-en>Integrations</t-en><b><t-zh>邮件 · WhatsApp</t-zh><t-en>Email · WhatsApp</t-en></b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
+  </div>
+  <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="ln" aria-hidden="true"></span><span class="dot" aria-hidden="true"><i data-lucide="arrow-down"></i></span></a>
+</section>
+
+<section class="sec" id="tryDemo" hidden>
+  <div class="container">
+    <div class="ld-head">
+      <div>
+        <h2><t-zh>在线体验 NocoCRM</t-zh><t-en>Try NocoCRM online</t-en></h2>
+        <p><t-zh>已用演示账号自动登录，数据都是虚构的，可以随意操作。</t-zh><t-en>You're signed in to a demo account. All the data is made up, so try anything.</t-en></p>
+      </div>
+      <span class="ld-open" id="liveDemoBar"><a href="https://solutions-cn.nocobase.com/crm/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span>
+    </div>
+    <div class="sec-body">
+    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoCRM" allow="clipboard-write"></iframe></div></div>
+    </div>
   </div>
 </section>
 
@@ -279,27 +311,28 @@ First contact within 24h; follow up within 7 days of a quote.</t-en></div><p cla
 <div class="container">
   <div class="band">
     <div><h2><t-zh>让销售少做杂事，专注成交。</t-zh><t-en>Less busywork, more focus on closing.</t-en></h2><p><t-zh>在线体验 NocoCRM，或到 GitHub 获取源码自行部署。写好业务指导、选定模型，销售 Agent 即刻上岗。</t-zh><t-en>Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.</t-en></p></div>
-    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoCRM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
+    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoCRM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
   </div>
 </div>
 </main>
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
 <script>
-/* Live demo script: the Chinese site on a Chinese page and the international one otherwise, kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows: when it fails or takes over 8 seconds (the site down, gone, unreachable), a screenshot of the CRM stands in the demo's place and the ways into the demo (the Try It Online buttons and the link under it) go, since they would lead nowhere; ?demo=screenshot in the address shows that state. When the site answers, it loads only once a third of its frame is on screen: its sign-in page puts the cursor in a field, and loaded earlier the browser would scroll the page down to that field as it opens. A phone always shows the screenshot, with the link to the site in a new tab. Try It Online scrolls to the demo, or opens the site in a new tab on a phone. Visitors sign in there as on the site itself. */
+/* Live demo script: the Chinese site on a Chinese page and the international one otherwise, kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
 (function () {
   var SITES = { zh: 'https://solutions-cn.nocobase.com/crm/', en: 'https://solutions.nocobase.com/crm/' };
-  var box = document.getElementById('liveDemo'), frameBox = box.querySelector('.ld-frame'), frame = frameBox.querySelector('iframe'), shot = box.querySelector('.ld-shot');
-  var bar = document.getElementById('liveDemoBar'), open = bar.querySelector('[data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
-  var forced = /[?&]demo=screenshot\b/.test(location.search);
-  var status = {}, shown = false;
+  var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
+  var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
+  var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
+  var status = {}, shown = false, scrolling = false;
   function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }
+  function up() { return !forced && status[SITES[lang()]] === 'up'; }
   function probe(url) {
     if (status[url]) return;
     status[url] = 'checking';
     var img = new Image(), settled = false;
-    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); }
+    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); check(); }
     var timer = setTimeout(function () { end(false); }, 8000);
     img.onload = function () { end(true); };
     img.onerror = function () { end(false); };
@@ -308,16 +341,13 @@ First contact within 24h; follow up within 7 days of a quote.</t-en></div><p cla
   function apply() {
     var url = SITES[lang()], down = forced || status[url] === 'down';
     open.href = url;
-    bar.hidden = down;
     tries.forEach(function (a) { a.hidden = down; });
-    var useShot = down || narrow();
-    shot.hidden = !useShot;
-    frameBox.hidden = useShot;
-    if (useShot) { frame.removeAttribute('src'); return; }
-    if (shown && status[url] === 'up' && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
+    section.hidden = !up() || narrow();
+    if (section.hidden) { frame.removeAttribute('src'); return; }
+    if (shown && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
   }
   function check() {
-    if (shown) return;
+    if (shown || scrolling || section.hidden) return;
     var r = box.getBoundingClientRect(), seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
     if (seen < r.height * 0.3) return;
     shown = true;
@@ -325,14 +355,18 @@ First contact within 24h; follow up within 7 days of a quote.</t-en></div><p cla
     window.removeEventListener('scroll', check);
   }
   window.addEventListener('scroll', check, { passive: true });
-  window.addEventListener('resize', function () { check(); apply(); });
+  window.addEventListener('resize', function () { apply(); check(); });
   tries.forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      if (narrow()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
-      shown = true;
-      apply();
-      box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      a.blur(); // no focus ring left on the button once the page has scrolled away and back
+      if (narrow() || !up()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
+      // Scroll first and load the demo once there: loading starts its sign-in, which puts the cursor in a field and would stop the scroll short.
+      scrolling = true;
+      section.querySelector('.ld-head').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var done = function () { if (!scrolling) return; scrolling = false; shown = true; apply(); };
+      if ('onscrollend' in window) window.addEventListener('scrollend', done, { once: true });
+      setTimeout(done, 1200);
     });
   });
   function start() { if (!forced) probe(SITES[lang()]); apply(); }

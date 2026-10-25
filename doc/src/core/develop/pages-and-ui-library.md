@@ -1,16 +1,16 @@
 ---
-title: 页面与 UI 组件库
-status: 待编写
-description: 页面、导航和组件：Agent 怎样做页面，你怎样提要求。
+title: Pages and the UI library
+status: To be written
+description: Pages, navigation, and components: how agents build pages and how you state what you want.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 路由和侧边栏
-- 弹窗、抽屉和子页面
-- UI 组件库：安装、定制、升级
-- 统一的样式和设计令牌
-- 页面的权限
+- Routes and the sidebar
+- Dialogs, drawers, and subpages
+- UI library: installing, customizing, upgrading
+- Consistent styles and design tokens
+- Page permissions

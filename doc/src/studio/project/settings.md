@@ -1,17 +1,4 @@
 ---
-title: 项目设置
-status: 待编写
-description: 项目负责人、成员、代码仓库、分支规则、变量与密钥和默认技能。
+title: Project settings
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 常规：名称、项目负责人
-- 项目成员
-- 代码仓库：添加和移除
-- 分支规则
-- 变量与密钥
-- 默认技能

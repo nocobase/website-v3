@@ -1,14 +1,14 @@
 ---
-title: 备份与恢复
-status: 待编写
-description: 备份什么，怎样恢复。
+title: Backup and restore
+status: To be written
+description: What to back up and how to restore.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 数据库和存储一起备份
-- `config.yml` 和密钥的保管
-- 恢复演练
+- Back up the database and storage together
+- Keeping `config.yml` and secrets safe
+- Restore drills

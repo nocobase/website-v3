@@ -1,16 +1,16 @@
 ---
-title: 测试与验收
-status: 待编写
-description: Agent 怎样测试，你怎样验收。
+title: Testing and acceptance
+status: To be written
+description: How agents test and how you accept.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- Agent 跑的检查：类型、规范、测试、构建
-- 浏览器测试
-- 用不同角色的账号验收
-- 直接调用接口验证权限
-- 验收清单的写法
+- Checks agents run: types, lint, tests, build
+- Browser tests
+- Accepting with accounts in different roles
+- Calling APIs directly to verify permissions
+- How to write an acceptance checklist

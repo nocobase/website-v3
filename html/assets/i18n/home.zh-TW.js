@@ -58,7 +58,7 @@
 "Architecture drifts out of control": "架構隨機漂移，逐漸失控",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.": "換人、換模型甚至換對話，AI 都可能隨意發揮，系統越來越難維護。",
 "Parallel work outpaces human review": "並行任務太多，人確認不過來",
-"You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "同時處理多個專案和任務，在多個終端機和對話之間切換，Agent 交回的變更越來越多，人看不過來，又不敢放手。",
+"You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "同時處理多個專案和任務，在多個終端機和對話之間切換，Agent 交回的變更越來越多，人看不過來，又不敢放手。",
 "Know-how is hard to capture and share": "知識和經驗難以累積與分享",
 "Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.": "需求背景、業務資料、專案經驗散落在不同電腦的不同對話裡，換人、換 Agent 就很難找到。",
 "Let agents focus on your business logic.<br>": "讓 Agent 專心寫業務，",
@@ -72,9 +72,9 @@
 "Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.": "Core 開源免費，業務程式碼和資料都在企業自己的儲存庫和伺服器上，模型和 Agent 也由企業自由選擇。",
 "Explore NocoBase Core": "深入了解 NocoBase Core",
 "An agent team that keeps work moving": "一支持續推進的 Agent 團隊",
-"Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.": "接入多台機器上的 Agent 統一調度，24 小時同步推進多個專案和大量任務。",
+"Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.": "接入多台機器上的 Agent 統一調度，24 小時同步推進多個專案和大量任務。",
 "Progress at a glance": "各項進度一目了然",
-"Project progress, task activity, agent workload, and model usage are all clearly visible.": "專案進度、任務推進過程、Agent 工作負載和模型用量都清楚可見。",
+"Project progress, issue activity, agent workload, and model usage are all clearly visible.": "專案進度、任務推進過程、Agent 工作負載和模型用量都清楚可見。",
 "Decisions backed by evidence": "有憑有據做決策",
 "When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.": "需要人做決策時，Agent 會附上詳細的報告、清單、截圖和建議，不懂程式的業務專家也能直接拍板。",
 "Know-how stays with the team": "方法、經驗、知識累積在團隊裡",
@@ -158,7 +158,7 @@
 "Customer tiering is in production · roll back anytime": "客戶分級已進入正式環境 · 可回復到上一版本",
 "Demo video coming soon": "展示影片即將上線",
 "Agents write the code and do the work": "Agent 寫程式、做執行",
-"3 tasks · 35 tests · 3 code reviews": "3 個任務 · 35 項測試 · 3 輪程式碼審查",
+"3 issues · 35 tests · 3 code reviews": "3 個任務 · 35 項測試 · 3 輪程式碼審查",
 "NocoBase provides the foundation and governance": "NocoBase 提供基礎平台與治理能力",
 "{n} building blocks · one set of dev standards · tests, review, and sign-off": "用到 {n} 項基礎能力 · 統一開發規範 · 測試、審查、驗收三道檢查",
 "People make the decisions": "人來做決策",
@@ -216,6 +216,6 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio 組織多個 Agent 協同完成設計、開發、測試和審查，關鍵決策交給人把關，並附上報告和截圖作為依據。",
 "Know-how": "知識累積",
 "Agents keep the work moving. Your team stays in control.": "Agent 自主推進，團隊掌控全局。",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio 是團隊與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。"
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio 是團隊與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。"
 }
 };

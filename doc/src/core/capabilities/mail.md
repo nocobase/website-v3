@@ -1,29 +1,29 @@
 ---
-title: 邮件互通
-status: 待编写
-description: 在应用里关联个人邮箱，收发和同步邮件，往来邮件与业务记录关联。
+title: Email
+status: To be written
+description: Connect personal mailboxes in the app, send, receive, and sync email, and link correspondence to business records.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 四层分工
-- 管理员准备邮件服务商配置
-- 用户关联自己的邮箱
-- 同步、阅读、回复、发送
-- 签名和模板
-- 在业务页面里看往来邮件
-- 业务 Agent 使用邮件
-- 与 NocoBase 2 邮件管理的对应
+- The four layers
+- Administrators prepare the email provider configuration
+- Users connect their own mailboxes
+- Syncing, reading, replying, and sending
+- Signatures and templates
+- Seeing related email on a business page
+- Business agents using email
+- How this maps to NocoBase 2 email management
 
-## 由哪些包提供
+## Provided by
 
-[邮件](../plugins/mail.md)
+[Email](../plugins/mail.md)
 
-## 现有页面的去向
+## Where existing pages go
 
-| 现有页面 | 处理 |
+| Existing page | Plan |
 | --- | --- |
-| 邮件 › 五页 | 保留，按采购故事改写 |
+| Email › five pages | Kept, rewritten around the purchasing story |

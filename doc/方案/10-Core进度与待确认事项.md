@@ -16,7 +16,7 @@ description: 这一轮完成了什么、还缺什么，以及需要产品、研�
 
 ### 统一文档站（本地草稿）
 
-`doc/` 改为一个 NocoBase 3 文档站：顶栏切换“开始”“Core”“Studio”，左侧菜单只列当前分区。运行 `node doc/build.mjs` 生成 `doc/site/`，打开 `doc/site/index.html` 浏览。
+`doc/` 改为一个 NocoBase 3 文档站：顶栏切换“开始”“Core”“Studio”，左侧菜单只列当前分区。运行 `node doc/build.mjs` 生成 `doc/dist/`，再运行 `node doc/serve.mjs` 在浏览器里预览。
 
 | 分区 | 写好的页面 | 占位页 |
 | --- | --- | --- |

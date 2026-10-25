@@ -105,10 +105,10 @@ dash = win([('仪表盘', 'Dashboard')],
     '<div class="db-hd"><div><h4>' + T('仪表盘', 'Dashboard') + '</h4><p>' + T('交付进展如何、Agent 表现怎样，以及哪些工作卡住了。', 'How delivery goes, how the agents perform, and what is stuck.') + '</p></div>' +
       '<span class="db-seg"><i>' + T('7 天', '7 days') + '</i><i class="on">' + T('30 天', '30 days') + '</i><i>' + T('90 天', '90 days') + '</i></span></div>' +
     '<div class="db-stats">' +
-      stat('完成任务', 'Tasks completed', '168', '上一周期 137', 'vs 137 before') +
+      stat('完成任务', 'Issues completed', '168', '上一周期 137', 'vs 137 before') +
       stat('周期时间中位数', 'Median cycle time', T('1.6 天', '1.6 days'), '上一周期 2.3 天', 'vs 2.3 days before') +
       stat('Agent 完成占比', 'Completed by agents', '93%', '上一周期 88%', 'vs 88% before') +
-      stat('单任务成本', 'Cost per task', T('¥ 28', '$3.90'), '上一周期 ¥ 31', 'vs $4.30 before') +
+      stat('单任务成本', 'Cost per issue', T('¥ 28', '$3.90'), '上一周期 ¥ 31', 'vs $4.30 before') +
     '</div>' +
     '<div class="st-card"><div class="sv-ch"><b>' + T('模型用量', 'Model usage') + '</b><span>' + T('Agent 运行消耗的 token，以及按当前价格估算的费用', 'Tokens used by agent runs, and the estimated cost at current prices') + '</span></div>' +
       '<table class="st-tbl db-use"><thead><tr><th>' + T('模型', 'Model') + '</th><th>' + T('运行次数', 'Runs') + '</th><th>' + T('输入', 'Input') + '</th><th>' + T('输出', 'Output') + '</th><th>' + T('估算费用', 'Est. cost') + '</th></tr></thead><tbody>' +
@@ -128,7 +128,7 @@ def step(state, zh, en, who=None, small=None):
     return '<div class="st-step%s">%s<span>%s%s</span>%s</div>' % (' off' if state == 'backlog' else '', mark, T(zh, en), ('<small>%s</small>' % T(*small)) if small else '', tail)
 def le(badge, zh, en, t):
     return '<div class="st-le">%s<div>%s</div><time>%s</time></div>' % (badge, T(zh, en), t)
-task = win([('我的任务', 'My tasks'), ('SUP-91', 'SUP-91')],
+task = win([('我的任务', 'My issues'), ('SUP-91', 'SUP-91')],
     '<div class="sv-dh"><div><h4>' + T('退款工单 SLA 提醒', 'Refund ticket SLA alerts') + '</h4>' +
       '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span><span class="st-av">' + T('陈', 'A') + '</span>' + T('陈思', 'Ava Clarke') + '</span>' +
       '<span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span>' +

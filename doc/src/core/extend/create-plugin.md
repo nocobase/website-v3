@@ -1,13 +1,13 @@
 ---
-title: 创建插件
-status: 待编写
-description: 用 `create-plugin` 创建插件，在应用里调试。
+title: Create a plugin
+status: To be written
+description: Create a plugin with `create-plugin` and debug it in the app.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 全局技能 `nocobase-app-plugin-development`
-- 创建、注册、调试
+- The global skill `nocobase-app-plugin-development`
+- Create, register, debug

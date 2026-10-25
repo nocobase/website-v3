@@ -1,60 +1,61 @@
 ---
-title: 术语表
-description: 全站统一的用词。文档、官网、产品界面和命令行说明都按这张表写。
+title: Glossary
+description: The terms used across the whole site. Documentation, the website, the product interface, and command-line help all follow this list.
 ---
 
-## 产品与角色
+## Products and roles
 
-| 用词 | 说明 |
+| Term | Meaning |
 | --- | --- |
-| NocoBase Core | 开发和运行业务系统的开源底座，一组 npm 包 |
-| NocoBase Studio | 人带领 Agent 团队开发应用的工作台，在商业版中提供 |
-| NocoBase Solutions | 基于 NocoBase 开发的开源业务应用，例如 NocoCRM |
-| Agent | AI 执行者的统称。一个编码工具加一个模型，例如“Claude · Opus 5.5”。不用“智能体”“代理”“Coding Agent” |
-| 编码工具 | Claude Code、Codex、OpenCode、Cursor 等 |
-| 业务 Agent | 在应用里、按权限处理业务的 Agent，由 Agents 插件接入。NocoBase 2 中称“AI 员工” |
-| 开发 Agent | 编写应用代码的 Agent。只在需要和业务 Agent 对比时使用，其余地方直接写 Agent |
+| NocoBase Core | The open-source foundation for building and running business systems, a set of npm packages |
+| NocoBase Studio | The workspace where people lead an agent team to build apps, available in the commercial editions |
+| NocoBase Solution | A line of open-source business apps built on NocoBase, such as NocoCRM. Individual apps are called Solution apps |
+| Agent | The general term for an AI worker: a coding tool plus a model, for example "Claude · Opus 5.5". Written in lowercase in running text |
+| Coding tool | Claude Code, Codex, OpenCode, Cursor, and so on |
+| Business agent | An agent that handles business work inside an app, within its permissions. Connected by the Agents plugin. Called "AI employee" in NocoBase 2 |
+| Development agent | An agent that writes the app's code. Used only where it needs to be contrasted with a business agent. Everywhere else, just say agent |
 
 ## Core
 
-| 用词 | 说明 |
+| Term | Meaning |
 | --- | --- |
-| 应用 | 用 NocoBase 模板创建的一份代码仓库，部署后是一个业务系统。归你所有 |
-| 模板 | 创建应用的起点：默认模板、示例模板 |
-| 插件 | 注册进应用的 `@nocobase/app-plugin-*` 包，带来服务端能力、页面、UI 组件、技能或命令 |
-| 插件清单 | 应用里登记插件的三个文件：`server/plugins.ts`、`client/plugins.ts`、`cli/plugins.ts` |
-| 基础库 | 应用直接使用、不需要注册的包，例如记录生命周期、数据库 |
-| UI 组件库 | NocoBase 发布的业务组件，安装时复制进应用源码，之后归应用所有。单个叫“组件”或“区块” |
-| 技能 | 教 Agent 怎样做事的说明（`SKILL.md`）。随包发布的技能同步到应用的 `.agents/skills/` |
-| 能力 | Core 提供的一类功能，按「应用底座」的 13 类划分 |
-| 系统设置 | 应用里的管理入口：用户管理、角色与权限、流程管理、应用底座等 |
-| 应用底座 | 默认模板自带的页面，显示应用用到的 Core 能力和提供它们的包 |
-| 记录生命周期 | 记录的状态保存在它自己的字段里，状态之间的流转在代码里声明。NocoBase 3 的流程都建在它上面 |
-| 流程参数 | 管理员在「流程管理」里可以调整的值，例如审批人、金额阈值 |
-| 权限集 | 一组页面、操作和数据范围的授权，分配给角色或人。界面上叫“角色” |
-| 数据范围 | 一项操作能作用于哪些记录，例如“本人负责的订单” |
-| 迁移 | 改变数据库结构的代码文件，按顺序执行，执行过的不再修改 |
-| `config.yml` | 应用的部署配置：数据库、存储、密钥、后台任务等。不进代码仓库 |
+| App | A code repository created from a NocoBase template. Once deployed, it is a business system. You own it |
+| Template | The starting point for creating an app: the default template and the examples template |
+| Plugin | An `@nocobase/app-plugin-*` package registered in the app. It brings server-side capabilities, pages, UI components, skills, or commands |
+| Plugin lists | The three files in the app where plugins are registered: `server/plugins.ts`, `client/plugins.ts`, and `cli/plugins.ts` |
+| Foundation library | A package the app uses directly without registering it, such as record lifecycle or the database |
+| UI library | The business components NocoBase publishes. Installing one copies it into the app's source, and it belongs to the app from then on. A single item is called a component or a block |
+| Skill | Instructions (`SKILL.md`) that teach an agent how to do something. Skills shipped with packages are synced to the app's `.agents/skills/` |
+| Capability | A kind of functionality Core provides, grouped into the 13 categories of **App foundation** |
+| System settings | The admin entry point in the app: user management, roles and permissions, workflow management, app foundation, and so on |
+| App foundation | A page that ships with the default template. It shows which Core capabilities the app uses and which packages provide them |
+| Record lifecycle | A record's state is stored in its own field, and the transitions between states are declared in code. Every NocoBase 3 workflow is built on it |
+| Workflow parameter | A value administrators can adjust in **Workflow management**, such as approvers or amount thresholds |
+| Permission set | A bundle of page, action, and data scope grants, assigned to a role or a person. Shown as "role" in the interface |
+| Data scope | Which records an action can apply to, for example "orders the user is responsible for" |
+| Migration | A code file that changes the database structure. Migrations run in order, and a migration that has run is never edited |
+| `config.yml` | The app's deployment configuration: database, storage, secrets, background jobs, and so on. It is not committed to the code repository |
 
 ## Studio
 
-| 用词 | 说明 |
+| Term | Meaning |
 | --- | --- |
-| 任务 | Studio 里交付工作的基本单位。不用“工单”“需求单” |
-| 任务负责人 | 对任务结果负责的人，总是人 |
-| 调度 Agent | 全局唯一的系统 Agent，拆分步骤、分派、提问、交付验收，不写代码 |
-| 执行 Agent | Agent 团队里完成具体步骤的 Agent |
-| 我的 Agent | 你电脑上的编码工具，连接到 Studio 后在会话里陪你讨论 |
-| Agent 团队 | 团队启用的全部 Agent |
-| 运行环境 | 运行 `nocobase-runner` 的机器，分团队和个人两种 |
-| 我的任务、我的会话 | 两种跟进工作的入口：按任务、按会话 |
-| 项目记忆 | Agent 在工作中记下的经验，存进代码仓库，由 Agent 自己读写 |
-| 知识库 | 人写和上传的资料，Agent 只读 |
-| 交付报告 | 调度 Agent 在任务进入待验收时提交 |
-| 待规划 / 进行中 / 阻塞中 / 待验收 / 已完成 / 已取消 | 任务的六个固定状态 |
+| Issue | The basic unit of delivered work in Studio. Not "ticket" or "request form" |
+| Issue owner | The person responsible for an issue's outcome. Always a person |
+| Coordinator agent | The single system agent that splits work into steps, assigns them, asks questions, and hands over for acceptance. It does not write code. |
+| Execution agent | An agent on the agent team that completes a specific step |
+| My Agent | The coding tool on your own computer. Once connected to Studio, it keeps you company in sessions |
+| Agent team | All the agents the team has enabled |
+| Runtime | A machine that runs `nocobase-runner`, either a team runtime or a personal one |
+| My issues, My sessions | The two ways to follow work: by issue, and by session |
+| Project memory | What agents note down while working. It is stored in the code repository, and agents read and write it themselves |
+| Knowledge base | Material that people write and upload. Agents can only read it |
+| Delivery report | What the coordinator agent submits when an issue moves to In review |
+| Todo / In progress / Blocked / In review / Done / Cancelled | The six fixed issue statuses. In review means delivered and waiting for the issue owner to accept |
 
-## 写法
+For the full Studio vocabulary, see Studio's [Core concepts](../studio/intro/concepts.md).
 
-- 界面上的名称、按钮、菜单用「」括起来，与中文界面一致；路径写成「A › B」。
-- 中文与英文、数字之间加一个空格。
-- 代码里的名称（包名、文件名、命令）用代码格式，只在需要时出现。
+## Conventions
+
+- Names, buttons, and menus in the interface are written in **bold**, exactly as they appear in the English interface. Paths are written as **A › B**.
+- Names in code (package names, file names, commands) use code formatting, and appear only where needed.

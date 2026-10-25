@@ -47,7 +47,7 @@
 <p>💡 延伸阅读：<a href="https://www.nocobase.com/cn/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></p>
 <h2 id="zh-1">1. 让 Coding Agent 建立完整的业务模型</h2>
 <p>开始构建前，可以先把汽车租赁的核心需求交给 Coding Agent，让它整理数据模型、业务流程、角色权限和验收标准。</p>
-<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-builder/data-modeling">数据建模 - NocoBase 文档</a></p>
+<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-builder/data-modeling">数据建模 - NocoBase 文档</a></p>
 <p>例如：</p>
 <blockquote>
 <p>我们需要管理车辆、客户、门店、员工和租赁订单。车辆涉及保险、维修和违章，订单关联客户、车辆、租赁时间和付款信息。租赁过程包括排期、交车、使用、还车、检查和结算，同时需要处理取消、逾期、维修、违章和欠款等情况。请整理核心数据关系、业务流程、角色权限和关键验收标准。</p>
@@ -59,7 +59,7 @@
 <li>异常情况对应明确的处理规则，并进一步生成可验证的条件，例如车辆不能在同一时间重复分配、维修车辆不能进入新排期、订单完成后需要正确生成应收。</li>
 </ul>
 <p>方案确认后，Coding Agent 就可以基于 NocoBase App Foundation，将这些已经确认的业务规则搭建为可运行的应用。</p>
-<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai/quick-start">如何让 Claude Code、Codex、Cursor 等 Coding Agent 接入 NocoBase</a></p>
+<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai/quick-start">如何让 Claude Code、Codex、Cursor 等 Coding Agent 接入 NocoBase</a></p>
 <h2 id="zh-2">2. Coding Agent 在 NocoBase 上完成系统构建</h2>
 <h3>2.1 将业务模型转化为实际工作页面</h3>
 <p>这些业务模型会进一步形成不同的工作页面，在这套汽车租赁系统中，主要包括：</p>
@@ -72,7 +72,7 @@
 <li><strong>运营看板</strong>：查看订单、车辆、异常和经营数据。</li>
 </ul>
 <p>这些页面使用同一套业务数据和关联关系。订单变化后，车辆状态、排期、付款和经营数据也会同步更新。</p>
-<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-builder/ui-builder">界面配置 - NocoBase 文档</a></p>
+<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-builder/ui-builder">界面配置 - NocoBase 文档</a></p>
 <h3>2.2 沿着一笔订单检查完整业务流程</h3>
 <p>应用搭建完成后，可以先用一笔订单检查主流程，重点确认订单状态变化后，车辆排期、车辆状态和付款记录是否同步更新。</p>
 <p>订单确认车辆和租赁时间后，对应时段需要进入<strong>车辆排期</strong>。已经被订单占用的车辆，不能在重叠时间段再次分配。</p>
@@ -88,7 +88,7 @@
 <p><strong>订单 → 排期 → 交车 → 租赁 → 还车 → 结算</strong></p>
 <h3>2.3 用工作流处理自动规则和跨模块联动</h3>
 <p>一些规则不需要人工反复处理，可以在满足条件时由工作流自动执行。</p>
-<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-builder/workflow">工作流管理 - NocoBase 文档</a></p>
+<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-builder/workflow">工作流管理 - NocoBase 文档</a></p>
 <p>这套系统中已经配置了逾期归还、保险和驾驶证到期、车辆维护、订单完成后生成应收，以及预约时间到达后进入提车流程等工作流。</p>
 <p><img src="https://static-docs.nocobase.com/2-3-workflow-management-m1m1uv.jpg" alt="2-3-workflow-management-m1m1uv.jpg"></p>
 <p>以违章处理为例。新增违章记录后，系统会根据车辆和违章发生时间查询当时对应的租赁订单，匹配成功后自动建立关联，方便后续确认实际用车客户和责任归属。</p>
@@ -110,7 +110,7 @@
 <h3>2.5 按照验收标准完成测试、验收和发布</h3>
 <p>系统完成后，可以按照前面确认的验收标准进行测试，检查车辆排期、状态变化、应收生成和异常处理等关键规则是否符合预期。</p>
 <p>Coding Agent 执行测试并处理发现的问题，修改后重新验证受影响的流程。关键规则通过后，由人完成验收并授权发布，再由 Coding Agent 执行发布和运行检查。</p>
-<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-builder/version-control">版本控制 - NocoBase 文档</a></p>
+<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-builder/version-control">版本控制 - NocoBase 文档</a></p>
 <p><strong>Coding Agent 实现与测试 → 人验收并授权发布 → Coding Agent 发布并检查运行结果</strong></p>
 <p>这套验收标准也可以继续保留下来。后续系统发生修改时，可以重新运行相同的检查，确认新功能是否影响已有业务规则。</p>
 <h2 id="zh-3">3. 系统上线后的使用与迭代</h2>
@@ -130,7 +130,7 @@
 <p><img src="https://static-docs.nocobase.com/3-1-dispatch-assistant-9qg1yy.png" alt="3-1-dispatch-assistant-9qg1yy.png"></p>
 <p><img src="https://static-docs.nocobase.com/3-1-dispatch-available-vehicles-0jnoz4.png" alt="3-1-dispatch-available-vehicles-0jnoz4.png"></p>
 <p>AI 员工能够读取哪些数据、调用哪些工具，以及是否允许执行具体操作，都由对应的业务权限和工具配置决定。</p>
-<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-employees/permission">AI 员工如何控制使用权限和数据访问权限</a></p>
+<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-employees/permission">AI 员工如何控制使用权限和数据访问权限</a></p>
 <h3>3.2 在现有系统上继续迭代</h3>
 <p>系统投入使用后，业务规则仍会变化，例如增加门店、调整价格、修改保险检查方式、接入新的付款方式或增加经营指标。</p>
 <p>这些需求可以重新交给 Coding Agent，并直接基于现有的数据模型、页面、权限和工作流进行修改。</p>
@@ -170,7 +170,7 @@
 <p>💡 Further reading: <a href="https://www.nocobase.com/en/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></p>
 <h2 id="en-1">1. Let the Coding Agent Build a Complete Business Model</h2>
 <p>Before development begins, you can give the core car-rental requirements to the Coding Agent and ask it to organize the data model, business processes, role permissions, and acceptance criteria.</p>
-<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-builder/data-modeling">Data Modeling - NocoBase Documentation</a></p>
+<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-builder/data-modeling">Data Modeling - NocoBase Documentation</a></p>
 <p>For example:</p>
 <blockquote>
 <p>We need to manage vehicles, customers, locations, employees, and rental orders. Vehicles involve insurance, maintenance, and traffic violations, while orders are linked to customers, vehicles, rental periods, and payment information. The rental process includes scheduling, vehicle handover, use, return, inspection, and settlement, while also handling cancellations, late returns, maintenance, violations, and outstanding payments. Please organize the core data relationships, business processes, role permissions, and key acceptance criteria.</p>
@@ -182,7 +182,7 @@
 <li>Define explicit handling rules for exceptions and turn them into verifiable conditions, such as preventing the same vehicle from being assigned to overlapping periods, preventing vehicles under maintenance from entering new schedules, and correctly generating receivables after an order is completed.</li>
 </ul>
 <p>Once the plan is confirmed, the Coding Agent can use NocoBase App Foundation to turn these agreed business rules into a working application.</p>
-<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai/quick-start">How to Connect Claude Code, Codex, Cursor, and Other Coding Agents to NocoBase</a></p>
+<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai/quick-start">How to Connect Claude Code, Codex, Cursor, and Other Coding Agents to NocoBase</a></p>
 <h2 id="en-2">2. Let the Coding Agent Build the System on NocoBase</h2>
 <h3>2.1 Turn the Business Model into Working Pages</h3>
 <p>These business models are then turned into different working pages. In this car rental system, the main pages include:</p>
@@ -195,7 +195,7 @@
 <li><strong>Operations dashboard</strong>: view orders, vehicles, exceptions, and business metrics.</li>
 </ul>
 <p>These pages all use the same business data and relationships. When an order changes, vehicle status, schedules, payments, and business metrics update accordingly.</p>
-<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-builder/ui-builder">UI Builder - NocoBase Documentation</a></p>
+<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-builder/ui-builder">UI Builder - NocoBase Documentation</a></p>
 <h3>2.2 Follow One Order Through the Full Business Process</h3>
 <p>Once the application is built, you can use a single order to verify the main process, focusing on whether the vehicle schedule, vehicle status, and payment records update correctly as the order status changes.</p>
 <p>After an order confirms the vehicle and rental period, the corresponding time slot needs to be added to the <strong>fleet schedule</strong>. A vehicle already occupied by an order cannot be assigned again during an overlapping period.</p>
@@ -211,7 +211,7 @@
 <p><strong>Order → Scheduling → Handover → Rental → Return → Settlement</strong></p>
 <h3>2.3 Use Workflows for Automated Rules and Cross-Module Coordination</h3>
 <p>Some rules do not need to be handled manually each time. They can be executed automatically by workflows when the relevant conditions are met.</p>
-<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-builder/workflow">Workflow Management - NocoBase Documentation</a></p>
+<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-builder/workflow">Workflow Management - NocoBase Documentation</a></p>
 <p>This system already includes workflows for late returns, insurance and driver’s-license expiry, vehicle maintenance, receivable generation after order completion, and moving an order into the pickup process when the scheduled time arrives.</p>
 <p><img src="https://static-docs.nocobase.com/2-3-workflow-management-m1m1uv.jpg" alt="2-3-workflow-management-m1m1uv.jpg"></p>
 <p>Take traffic violations as an example. After a violation record is created, the system looks up the rental order that corresponds to the vehicle and the time of the violation. If a match is found, the order is linked automatically, making it easier to identify the actual driver and determine responsibility later.</p>
@@ -233,7 +233,7 @@
 <h3>2.5 Test, Accept, and Release Against the Acceptance Criteria</h3>
 <p>Once the system is complete, it can be tested against the acceptance criteria confirmed earlier, checking whether key rules such as vehicle scheduling, status changes, receivable generation, and exception handling behave as expected.</p>
 <p>The Coding Agent runs the tests and fixes the issues it finds, then revalidates the affected processes after each change. Once the key rules pass, people complete acceptance and authorize the release. The Coding Agent then performs the deployment and checks the runtime result.</p>
-<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-builder/version-control">Version Control - NocoBase Documentation</a></p>
+<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-builder/version-control">Version Control - NocoBase Documentation</a></p>
 <p><strong>Coding Agent implementation and testing → Human acceptance and release authorization → Coding Agent release and runtime verification</strong></p>
 <p>These acceptance criteria can also be retained. When the system changes later, the same checks can be rerun to confirm whether new functionality affects existing business rules.</p>
 <h2 id="en-3">3. Using and Iterating the System After Launch</h2>
@@ -253,7 +253,7 @@
 <p><img src="https://static-docs.nocobase.com/3-1-dispatch-assistant-9qg1yy.png" alt="3-1-dispatch-assistant-9qg1yy.png"></p>
 <p><img src="https://static-docs.nocobase.com/3-1-dispatch-available-vehicles-0jnoz4.png" alt="3-1-dispatch-available-vehicles-0jnoz4.png"></p>
 <p>Which data an AI Employee can read, which tools it can call, and whether it can perform a specific action are all determined by the corresponding business permissions and tool configuration.</p>
-<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-employees/permission">How AI Employees Control Usage and Data Access Permissions</a></p>
+<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-employees/permission">How AI Employees Control Usage and Data Access Permissions</a></p>
 <h3>3.2 Keep Iterating on the Existing System</h3>
 <p>Business rules continue to change after a system goes live. A company may add new locations, adjust pricing, change insurance inspection methods, connect new payment methods, or add new business metrics.</p>
 <p>These requirements can be handed back to the Coding Agent, which can modify the existing data models, pages, permissions, and workflows directly.</p>

@@ -1,14 +1,14 @@
 ---
-title: 什么时候写插件
-status: 待编写
-description: 应用里的功能直接写在应用里，可复用、要单独发布的才写成插件。
+title: When to write a plugin
+status: To be written
+description: Features in an app go directly in the app. Write a plugin only for what is reusable and needs separate publishing.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 应用内开发和插件开发的区别
-- 适合写成插件的情况
-- 伙伴怎样把行业经验做成插件
+- How in-app development differs from plugin development
+- When it makes sense to write a plugin
+- How partners turn industry experience into plugins

@@ -1,15 +1,15 @@
 ---
-title: 插件的结构
-status: 待编写
-description: 插件由哪些部分组成。
+title: Plugin structure
+status: To be written
+description: What a plugin is made of.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 服务端、浏览器端、命令行三个入口
-- 迁移和数据表
-- 公开的接口和不应被依赖的内部代码
-- 依赖声明：插件的依赖用 peer
+- Three entry points: server, browser, and command line
+- Migrations and tables
+- Public interfaces, and internal code that should not be depended on
+- Dependency declarations: a plugin's dependencies are peer dependencies

@@ -1,32 +1,32 @@
 ---
-title: 数据库
-status: 待补充正文
-description: 基础库。数据表、字段、关联、查询、事务和迁移，以及各种数据库的方言。应用的数据模型都建在它上面。
+title: Database
+status: Body to be completed
+description: A foundation library. Tables, fields, relations, queries, transactions, and migrations, plus the dialects for each database. The app's data model is built on it.
 ---
 
-> [!PENDING] 正文待编写
-> 档案来自 NocoBase 仓库 `v3-develop` 分支（2026-10-23）；商业方言来自 `nocobase3-pro` 的 `develop` 分支。
+> [!PENDING] Body to be written
+> The profile comes from the NocoBase repository's `v3-develop` branch (2026-10-23); the commercial dialects come from the `develop` branch of `nocobase3-pro`.
 
-## 档案
+## Profile
 
 | | |
 | --- | --- |
-| 包名 | `@nocobase/db`，方言 `@nocobase/db-sqlite`、`db-postgres`、`db-mysql`、`db-mssql`、`db-oracle` |
-| 版本 | 1.0.0-beta.22（方言 0.1.0-beta.5 / 0.1.0-beta.6） |
-| 版本范围 | <span class="tag">开源</span>；`db-dameng`（达梦）、`db-kingbase`（人大金仓）、`db-oceanbase` <span class="tag pro">商业版</span> |
-| 默认模板 | 已包含 `@nocobase/db` 和 SQLite 方言；其他方言按需安装 |
-| 类型 | 基础库，直接使用，不需要注册 |
-| 命令 | `pnpm nocobase db apply`、`db rollback`、`db redo`、`db reset`、`db repair`、`db unlock`、`db sample`、`collections doctor` |
-| 技能 | `nocobase-db` |
-| 所属能力 | [数据建模](../capabilities/data.md) |
+| Package | `@nocobase/db`, with dialects `@nocobase/db-sqlite`, `db-postgres`, `db-mysql`, `db-mssql`, `db-oracle` |
+| Version | 1.0.0-beta.22 (dialects 0.1.0-beta.5 / 0.1.0-beta.6) |
+| Edition | <span class="tag">Open source</span>; `db-dameng` (Dameng), `db-kingbase` (KingbaseES), `db-oceanbase` <span class="tag pro">Commercial</span> |
+| Default template | Includes `@nocobase/db` and the SQLite dialect; install other dialects as needed |
+| Type | Foundation library, used directly, no registration needed |
+| Commands | `pnpm nocobase db apply`, `db rollback`, `db redo`, `db reset`, `db repair`, `db unlock`, `db sample`, `collections doctor` |
+| Skill | `nocobase-db` |
+| Building block | [Data modeling](../capabilities/data.md) |
 
-## 计划包含
+## Planned contents
 
-- 数据表、字段和关联在代码里怎样定义，读者在哪里看到当前的数据模型（`database/<连接>/collections/`）
-- 迁移：按顺序执行，执行过的不再修改；怎样回滚
-- 切换数据库：从 SQLite 换到 PostgreSQL，原有数据不会自动迁移
-- 第二个数据库连接：接入外部数据库，只读或读写
-- 各数据库的版本要求和差异
-- 商业版的达梦、人大金仓、OceanBase：授权和发布状态（待确认）
-- 与 NocoBase 2 数据源管理的对应
-- 开发参考
+- How tables, fields, and relations are defined in code, and where readers can see the current data model (`database/<connection>/collections/`)
+- Migrations: they run in order, a migration that has run is never edited, and how to roll back
+- Switching databases: moving from SQLite to PostgreSQL does not migrate existing data automatically
+- A second database connection: connecting an external database, read-only or read-write
+- Version requirements and differences for each database
+- The commercial Dameng, KingbaseES, and OceanBase: licensing and release status (to be confirmed)
+- How this maps to NocoBase 2 data source management
+- Development reference

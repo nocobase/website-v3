@@ -1,32 +1,32 @@
 ---
-title: 用户与组织
-status: 待编写
-description: 谁能登录、怎样登录，账号怎样管理：密码、注册、找回密码、企业统一身份、邀请和停用。
+title: Users and organization
+status: To be written
+description: Who can sign in and how, and how accounts are managed: passwords, sign-up, password reset, enterprise single sign-on, invitations, and deactivation.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 四层分工
-- 模板自带的登录、注册、找回密码页面
-- 「系统设置 › 用户管理」
-- 关闭自助注册、密码策略、停用账号
-- 企业统一身份（OIDC）和社交登录：身份平台要提供什么、回调地址
-- 双因素认证和通行密钥
-- 部门和组织：由应用实现，权限按部门分配
-- 公开页面和需要登录的页面
-- 部署时的对外地址
-- LDAP、SAML、钉钉、企业微信的现状（待确认）
+- The four layers
+- The sign-in, sign-up, and password reset pages that come with the template
+- **System settings › Users**
+- Turning off self-service sign-up, password policy, deactivating accounts
+- Enterprise single sign-on (OIDC) and social login: what the identity provider must supply, and the callback URL
+- Two-factor authentication and passkeys
+- Departments and organizations: implemented by the app, with permissions assigned by department
+- Public pages and pages that require sign-in
+- The public address at deployment
+- The current state of LDAP, SAML, DingTalk, and WeCom (to be confirmed)
 
-## 由哪些包提供
+## Provided by
 
-[认证](../plugins/authentication.md)、[用户](../plugins/users.md)
+[Authentication](../plugins/authentication.md), [Users](../plugins/users.md)
 
-## 现有页面的去向
+## Where existing pages go
 
-| 现有页面 | 处理 |
+| Existing page | Plan |
 | --- | --- |
-| 认证 › 认证概览、密码认证与账号、增加认证方式、保护页面和接口、定制登录页面 | 并入本组 |
-| 认证 › API keys | 移到外部集成 |
+| Authentication › Authentication overview, Passwords and accounts, Adding sign-in methods, Protecting pages and APIs, Customizing the sign-in page | Merged into this group |
+| Authentication › API keys | Moved to Integrations |

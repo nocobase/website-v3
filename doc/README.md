@@ -3,24 +3,29 @@
 ```
 doc/
 ├── 方案/          文档方案：Studio 文档（01–05、11 重构方案）、Core 与统一文档站（06–10）
-├── src/           文档正文（Markdown）：开始（index.md、start/）、Core（core/）、Studio（studio/）
-│   ├── figures/   局部配图（HTML 片段），正文里用 ::figure 名称 | 说明 引用
-│   └── images/    真实截图（少数需要时才用）
+├── src/           英文正文（Markdown），站点根路径；目前多为占位页
+│   └── zh-CN/     简体中文正文，/zh-CN/ 下；中文是基准，目录结构和英文完全相同
+├── figures/       局部配图（HTML 片段），正文里用 ::figure 名称 | 说明 引用
 ├── assets/        样式、脚本、Logo
-├── site/          生成的文档站（发布用，不要手改）
-└── build.mjs      构建脚本
+├── build.mjs      构建脚本，生成到 dist/（不提交）
+└── serve.mjs      本地预览
 ```
 
-## 构建
+## 构建与预览
 
 ```bash
-node doc/build.mjs
+cd doc && npm ci
+node build.mjs     # 生成 doc/dist/ 和 方案/*.html
+node serve.mjs     # 在 http://localhost:4321/ 预览
 ```
 
-需要 `marked@4.3.0`，脚本会依次在 `doc/node_modules` 和上一级目录的 `node_modules` 里查找。生成后打开 `doc/site/index.html` 浏览文档站，打开 `doc/方案/01-现有文档的问题.html` 浏览方案。
+`dist/` 的结构和线上一致：每页是 `<路径>/index.html`，地址不带扩展名、以 `/` 结尾（如 `/core/quickstart/`），站内链接和资源都用根路径，所以要通过 `serve.mjs` 预览，不能直接打开文件。根目录还有 `404.html`、`sitemap.xml`、`robots.txt`、`llms.txt` 和每页的 `.md` 副本。canonical、hreflang 和 sitemap 用的站点域名读环境变量 `DOCS_SITE_ORIGIN`，默认 `https://docs.nocobase.com`；输出目录读 `DOCS_OUT_DIR`。
+
+推送到本仓库后，CI 会构建文档站，构建失败会在 PR 和提交上显示为失败的检查。
 
 ## 编写
 
 - Studio 文档的结构和措辞见 `方案/11-Studio文档重构方案.md`，写法约定见 `方案/04-写作规范与术语.md`。所有措辞以《NocoBase 产品定义与标准表述》为准。
-- 新增页面：在 `src/` 下新建 Markdown，并在 `build.mjs` 的 `SECTIONS` 里登记。
-- 待写或待改写的页面在 front matter 里写 `status`（待编写、待改写），菜单里颜色较浅，不进入上一页 / 下一页。
+- 新增页面：在 `src/zh-CN/` 下新建 Markdown，在 `src/` 的同一路径下放英文页（还没翻译就只写 front matter 和 `status: placeholder`），再在 `build.mjs` 的 `SECTIONS` 里登记。菜单和源文件不一致时构建会失败。
+- front matter 写了 `status` 的是占位页（中文页写待编写、待改写）：菜单里颜色较浅，不参与上一页 / 下一页。英文占位页正文留空时，会自动提示读者看中文版。
+- 站内链接写成相对的 `.md` 路径（例如 `[我的任务](../use/my-tasks.md#视图)`），构建时换成最终地址；指向不存在的页面会让构建失败。

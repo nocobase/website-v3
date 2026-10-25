@@ -1,12 +1,12 @@
 ---
-title: 配置项
-status: 待编写
-description: `config.yml` 的全部配置项。
+title: Configuration options
+status: To be written
+description: All the options in `config.yml`.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 由 `config.example.yml` 和配置定义生成
+- Generated from `config.example.yml` and the configuration definitions

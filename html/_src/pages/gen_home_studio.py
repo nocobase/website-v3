@@ -36,7 +36,7 @@ def dispatch(t, id_, zh, en, where_zh, where_en, k):
             (t, id_, T(zh, en), ag(k), T(where_zh, where_en)))
 team = win([('运行环境', 'Runtimes')],
   head('运行环境', 'Runtimes', '23:40 · 同事们都下班了，9 台运行环境上的 Agent 仍在推进 4 个项目的 24 个任务',
-       '23:40 · The team is offline. Agents on 9 runtimes are still moving 24 tasks across 4 projects',
+       '23:40 · The team is offline. Agents on 9 runtimes are still moving 24 issues across 4 projects',
        '<span class="sv-night">' + I('moon') + T('24 小时在线', 'On around the clock') + '</span>') +
   '<div class="sv-team">' +
     '<div class="st-card"><table class="st-tbl"><thead><tr><th>' + T('名称', 'Name') + '</th><th>' + T('状态', 'Status') + '</th><th>' + T('编码工具 · 当前 / 上限', 'Tools · running / limit') + '</th></tr></thead><tbody>' +
@@ -45,7 +45,7 @@ team = win([('运行环境', 'Runtimes')],
       rt('server', 'Server 03', 'Server 03', 'linux', 1, '3/4', [('Codex', 2, 2), ('Claude Code', 1, 2)]) +
       rt('laptop', '王磊的 Mac', 'Leo’s Mac', 'macOS', 0, '2/2', [('Claude Code', 1, 1), ('Codex', 1, 1)]) +
       rt('laptop', '林悦的工作站', 'Maya’s workstation', 'linux', 0, '', [('Claude Code', 0, 1)]) +
-    '</tbody></table><div class="st-more">' + I('chevron-right') + T('另有 4 台运行环境 · 11 个任务在跑', '4 more runtimes · 11 tasks running') + '</div></div>' +
+    '</tbody></table><div class="st-more">' + I('chevron-right') + T('另有 4 台运行环境 · 11 个任务在跑', '4 more runtimes · 11 issues running') + '</div></div>' +
     '<div class="st-card sv-dps"><div class="sv-ch">' + ag('pm') + '<b>' + T('调度 Agent', 'Coordinator') + '</b><span>' + T('统一分派', 'Assigns the work') + '</span></div>' +
       dispatch('23:38', 'CRM-144', '第 4 步：写测试', 'Step 4: write tests', 'Server 02 上的 Claude Code', 'Claude Code on Server 02', 'cc') +
       dispatch('23:36', 'SUP-91', '修复评审意见', 'Fix review comments', 'Server 01 上的 Codex', 'Codex on Server 01', 'cx') +
@@ -72,10 +72,10 @@ def step(s_, zh, en, k, name, small=None, off=False):
             (' off' if off else '', SPIN if s_ == 'run' else si(s_), T(zh, en), ('<small>%s</small>' % T(*small)) if small else '', who(k, name)))
 def le(badge, zh, en, t):
     return '<div class="st-le">%s<div>%s</div><time>%s</time></div>' % (badge, T(zh, en), t)
-progress = win([('我的任务', 'My tasks')],
-  '<div class="st-flt"><h4>' + T('我的任务', 'My tasks') + '</h4>' +
-    '<span class="q">' + I('search') + T('搜索任务…', 'Search tasks…') + '</span><span>' + T('全部项目', 'All projects') + I('chevron-down') + '</span><span>' + T('任意执行者', 'Any executor') + I('chevron-down') + '</span>' +
-    '<span class="st-btn p">' + I('plus') + T('新建任务', 'New task') + '</span></div>' +
+progress = win([('我的任务', 'My issues')],
+  '<div class="st-flt"><h4>' + T('我的任务', 'My issues') + '</h4>' +
+    '<span class="q">' + I('search') + T('搜索任务…', 'Search issues…') + '</span><span>' + T('全部项目', 'All projects') + I('chevron-down') + '</span><span>' + T('任意执行者', 'Any executor') + I('chevron-down') + '</span>' +
+    '<span class="st-btn p">' + I('plus') + T('新建任务', 'New issue') + '</span></div>' +
   '<div class="sv-tasks">' +
     '<div class="st-list">' +
       grp('<i data-lucide="hand" class="hand"></i>', '等你处理', 'Needs you', 2, [
@@ -124,7 +124,7 @@ th_dlg = thumb('<div class="sv-dlg"><b>' + T('更换负责人需要审批', 'Own
   '场景 4 · 触发审批', 'Scenario 4 · approval asked', ' dim')
 gallery = ('<div class="st-box sv-gal"><div class="h">' + I('images') + T('截图', 'Screenshots') + '<span class="r">' + T('4 张', '4 images') + '</span></div>' +
   '<div class="sv-ths">' + th_list + th_dlg + '</div></div>')
-decide = win([('我的任务', 'My tasks'), ('CRM-135', 'CRM-135')],
+decide = win([('我的任务', 'My issues'), ('CRM-135', 'CRM-135')],
   '<div class="sv-dh"><div><h4>' + T('客户分级与负责人变更审批', 'Customer tiers &amp; owner-change approval') + '</h4>' +
     '<div class="st-meta"><span><span class="k">' + T('负责人', 'Owner') + '</span>' + av('王', 'L') + T('王磊 · 销售总监', 'Leo Walker · Sales director') + '</span><span><span class="k">' + T('执行者', 'Executor') + '</span>' + ag('pm') + T('调度 Agent', 'Coordinator') + '</span></div></div>' +
     '<span class="st-pill sv-wait">' + si('review') + T('等你验收', 'Waiting for your sign-off') + '</span></div>' +
@@ -174,7 +174,7 @@ memory = win([('项目', 'Projects'), ('NocoCRM 定制', 'NocoCRM custom')],
         mem('测试前先跑数据迁移，否则阶段字段为空，6 个场景会有 2 个失败。', 'Run the migration before tests, or the stage field is empty and 2 of 6 scenarios fail.', '项目', 'Project', 'cx', 'Codex · CRM-144') +
         mem('客户手机号导入前去掉 +86 前缀，否则查重会漏掉。', 'Strip +86 from phone numbers before import, or dedupe misses them.', '项目', 'Project', 'cc', 'Claude Code · CRM-152') +
         mem('评审时一并检查暗色模式，客户反馈过两次对比度问题。', 'Check dark mode in every review; the customer has flagged contrast twice.', '反馈', 'Feedback', 'cc', 'Claude Code · CRM-139') +
-        '<p class="sv-note">' + T('写在仓库的 .nb-studio/memory，下次开工前先读', 'Kept in the repo’s .nb-studio/memory and read before each task') + '</p>') +
+        '<p class="sv-note">' + T('写在仓库的 .nb-studio/memory，下次开工前先读', 'Kept in the repo’s .nb-studio/memory and read before each issue') + '</p>') +
   '</div>' +
   '<div class="sv-hand">' + I('repeat') + '<b>' + T('CRM-160 换人接手', 'CRM-160 changes hands') + '</b>' +
     '<span>' + av('林', 'M') + T('林悦', 'Maya') + I('arrow-right') + ag('cx') + 'Codex</span>' +

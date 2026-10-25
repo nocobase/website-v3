@@ -1,15 +1,15 @@
 ---
-title: 接口与 API 文档
-status: 待编写
-description: 应用的接口怎样设计，怎样查看接口文档。
+title: APIs and API docs
+status: To be written
+description: How the app's APIs are designed, and how to view the API docs.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 每个接口自己负责登录和权限检查
-- 接口文档：`/api/swagger` 和 `/api/swagger/docs`
-- 统一的返回和错误格式
-- 用 API Key 调用
+- Every API handles its own sign-in and permission checks
+- API docs: `/api/swagger` and `/api/swagger/docs`
+- A consistent response and error format
+- Calling with an API key

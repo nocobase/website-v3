@@ -1,15 +1,15 @@
 ---
-title: 文件存储
-status: 待编写
-description: 本地、S3 兼容存储和阿里云 OSS。
+title: File storage
+status: To be written
+description: Local storage, S3-compatible storage, and Alibaba Cloud OSS.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 配置存储
-- 更换默认存储
-- 公开和私有文件
-- 备份
+- Configuring storage
+- Changing the default storage
+- Public and private files
+- Backup

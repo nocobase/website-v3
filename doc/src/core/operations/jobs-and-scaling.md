@@ -1,14 +1,14 @@
 ---
-title: 后台任务与多实例
-status: 待编写
-description: 定时任务、队列和实时更新在一个或多个实例时的配置。
+title: Background jobs and multiple instances
+status: To be written
+description: How scheduled tasks, queues, and real-time updates are configured for one or several instances.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 内存和 Redis
-- Redis 的持久化和内存策略
-- 多实例部署的检查清单
+- Memory and Redis
+- Redis persistence and memory policy
+- A checklist for multi-instance deployments

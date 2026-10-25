@@ -1,28 +1,28 @@
 ---
-title: 知识库
-status: 待编写
-description: 业务资料的管理、检索和审核，供人和业务 Agent 使用。
+title: Knowledge base
+status: To be written
+description: Manage, search, and review business material, for people and business agents.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 启用知识库插件：默认模板已安装但未注册
-- 空间与访问
-- 整理与导入资料
-- 查阅与搜索
-- 业务 Agent 依据知识回答
-- 修改建议与审核、版本
-- 与 Studio 知识库的关系
+- Enabling the Knowledge base plugin: the default template has it installed but not registered
+- Spaces and access
+- Organizing and importing material
+- Reading and searching
+- Business agents answering from the knowledge base
+- Change proposals, review, and versions
+- How it relates to the Studio knowledge base
 
-## 由哪些包提供
+## Provided by
 
-[知识库](../plugins/knowledge.md)
+[Knowledge base](../plugins/knowledge.md)
 
-## 现有页面的去向
+## Where existing pages go
 
-| 现有页面 | 处理 |
+| Existing page | Plan |
 | --- | --- |
-| AI 知识库 › 六页 | 并入本组 |
+| AI knowledge base › six pages | Merged into this group |

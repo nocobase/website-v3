@@ -1,119 +1,119 @@
 ---
-title: 文件
-description: 给业务记录加上附件：上传、存储、预览和下载。插件提供上传接口、文件仓库和可以修改的界面组件，文件表、页面和访问权限由应用定义。
+title: Files
+description: Add attachments to business records: upload, storage, preview, and download. The plugin provides upload endpoints, a file repository, and editable UI components; the file tables, pages, and access permissions are defined by the app.
 ---
 
-采购订单要附报价单和签收单，供应商要存资质证书，员工要有头像：凡是“记录上挂文件”的需求，都用这个插件。
+A purchase order needs the quote and the receipt attached, a supplier needs its qualification certificates on file, and an employee needs an avatar: any request that puts files on a record uses this plugin.
 
-## 档案
+## Profile
 
 | | |
 | --- | --- |
-| 包名 | `@nocobase/app-plugin-file` |
-| 版本 | 1.0.0-beta.26 |
-| 版本范围 | <span class="tag">开源</span> Apache-2.0 |
-| 默认模板 | <span class="tag ok">已启用</span> 服务端、浏览器端 |
-| 依赖 | 应用的数据库和存储（`@nocobase/drive`） |
-| 自带页面 | 无 |
-| UI 组件 | 文件组件 `component-ui`：上传、列表、缩略图、预览，默认模板已预装在 `client/extensions/nocobase-file-component-ui/`；UI 组件库的 `attachment-list` |
-| 数据表 | 无，文件表由应用的迁移创建 |
-| 配置 | 存储写在应用的 `drive` 配置里 |
-| 命令 | 无 |
-| 技能 | `nocobase-app-plugin-file`；存储配置见 `nocobase-drive` |
+| Package | `@nocobase/app-plugin-file` |
+| Version | 1.0.0-beta.26 |
+| Edition | <span class="tag">Open source</span> Apache-2.0 |
+| Default template | <span class="tag ok">Enabled</span> server and browser |
+| Depends on | The app's database and storage (`@nocobase/drive`) |
+| Pages | None |
+| UI components | The file component `component-ui`: upload, list, thumbnails, preview, preinstalled in the default template at `client/extensions/nocobase-file-component-ui/`; UI library `attachment-list` |
+| Database tables | None; file tables are created by the app's migrations |
+| Configuration | Storage is set in the app's `drive` configuration |
+| Commands | None |
+| Skill | `nocobase-app-plugin-file`; for storage configuration see `nocobase-drive` |
 
-## 它怎样工作
+## How it works
 
-插件提供**文件仓库**：上传文件、记录文件信息、按文件 ID 提供内容地址。文件内容存放在应用配置的存储里（本地磁盘、S3 兼容存储或阿里云 OSS），文件信息存在应用的数据库里。
+The plugin provides a **file repository**: it uploads files, records file information, and serves a content URL for each file ID. File contents live in the storage the app is configured with (local disk, S3-compatible storage, or Alibaba Cloud OSS), and file information lives in the app's database.
 
-| 谁负责 | 内容 |
+| Who is responsible | What |
 | --- | --- |
-| 插件 | 上传接口（单个和批量）、文件信息的查询和删除、内容地址、上传大小限制、上传失败时清理已写入的文件 |
-| 存储基础库 | 把文件写到本地磁盘、S3 兼容存储或阿里云 OSS |
-| 应用（Agent 写） | 文件表、文件和业务记录的关联、谁能上传和查看、页面上的附件区 |
+| The plugin | Upload endpoints (single and batch), looking up and deleting file information, content URLs, upload size limits, and cleaning up already-written files when an upload fails |
+| The storage foundation library | Writing files to local disk, S3-compatible storage, or Alibaba Cloud OSS |
+| The app (written by agents) | The file table, how files link to business records, who can upload and view, and the attachment area on pages |
 
-一次上传分两步：
+An upload takes three steps:
 
 <ol class="flow">
-<li><div class="step"><div class="step-head"><strong>上传</strong><span class="who sys">文件插件</span></div><p>文件写入存储，文件表里多一条记录，返回文件 ID 和内容地址。</p></div></li>
-<li><div class="step"><div class="step-head"><strong>保存业务记录</strong><span class="who sys">应用</span></div><p>提交采购订单时，把文件 ID 一起保存，订单和文件关联起来。</p></div></li>
-<li><div class="step"><div class="step-head"><strong>预览和下载</strong><span class="who sys">文件组件</span></div><p>打开订单，附件区按内容地址预览或下载文件。</p></div></li>
+<li><div class="step"><div class="step-head"><strong>Upload</strong><span class="who sys">File plugin</span></div><p>The file is written to storage, the file table gets a new row, and the file ID and content URL are returned.</p></div></li>
+<li><div class="step"><div class="step-head"><strong>Save the business record</strong><span class="who sys">App</span></div><p>When the purchase order is submitted, the file ID is saved with it, linking the order to the file.</p></div></li>
+<li><div class="step"><div class="step-head"><strong>Preview and download</strong><span class="who sys">File component</span></div><p>When the order is opened, the attachment area previews or downloads the file through its content URL.</p></div></li>
 </ol>
 
-两步是分开提交的：上传成功但订单没有保存，文件会留在存储里，不会自动清理。
+The first two steps are submitted separately: if an upload succeeds but the order is never saved, the file stays in storage and is not cleaned up automatically.
 
-## 在应用里看到什么
+## What you see in the app
 
-文件插件不带页面。你看到的是 Agent 用文件组件做进业务页面的部分，例如采购订单详情里的附件区：文件名、大小、预览、下载、移除。
+The file plugin has no pages. What you see is the part agents build into business pages with the file component, such as the attachment area on a purchase order's detail page: file name, size, preview, download, and remove.
 
-浏览器里可以直接预览：
+The browser can preview these directly:
 
-| 格式 | 预览方式 |
+| Format | How it is previewed |
 | --- | --- |
-| 图片、PDF、文本、Markdown、音频、视频 | 内置预览 |
-| DOCX、XLSX、PPTX | 在浏览器本地渲染，文件内容不发送给第三方 |
-| DOC、XLS、PPT 等旧版 Office 和 OpenDocument | 通过 Office Online 预览，要求文件地址能从外网访问 |
-| 其他格式 | 提供下载 |
+| Images, PDF, text, Markdown, audio, video | Built-in preview |
+| DOCX, XLSX, PPTX | Rendered locally in the browser; file contents are not sent to third parties |
+| Older Office formats such as DOC, XLS, and PPT, and OpenDocument | Previewed through Office Online, which requires the file URL to be reachable from the internet |
+| Other formats | Download only |
 
-## 怎样让 Agent 使用
+## How to ask an agent to use it
 
-要说清这几件事：
+Make these points clear:
 
-- 文件挂在哪类记录上，放在哪个页面的什么位置；
-- 每条记录能有几个文件，允许哪些格式、多大；
-- 谁能上传、谁能查看和下载、谁能移除；
-- 移除时只解除和这条记录的关联，还是要删除文件。
+- Which kind of record the files attach to, and where on which page they go;
+- How many files each record can have, and which formats and sizes are allowed;
+- Who can upload, who can view and download, and who can remove;
+- Whether removing only unlinks the file from this record or deletes the file.
 
-示例：
+Example:
 
 ```text
-给采购订单增加附件：在订单详情里加一个附件区，每笔订单可以上传多个文件，支持 PDF、图片和 Word、Excel。
-显示文件名和大小，支持预览、下载和移除；上传后随订单一起保存，重新打开订单仍能看到。
-能查看这笔订单的人可以查看和下载附件；申请人和采购员可以上传和移除。
-没有权限的人直接访问文件地址也要被拒绝。
-移除附件只解除和这笔订单的关联，保留文件。
+Add attachments to purchase orders: put an attachment area on the order detail page, where each order can have multiple files, with support for PDF, images, Word, and Excel.
+Show the file name and size, with preview, download, and remove; files are saved together with the order and still show when the order is reopened.
+Anyone who can view the order can view and download its attachments; the requester and the buyer can upload and remove.
+People without permission must also be refused when they open a file URL directly.
+Removing an attachment only unlinks it from this order and keeps the file.
 ```
 
-Agent 会创建文件表的迁移，用插件生成上传和查询接口并加上登录与权限检查，在订单详情里放上文件组件，再把文件 ID 随订单保存。
+The agent creates the migration for the file table, uses the plugin to generate the upload and query endpoints and adds sign-in and permission checks, puts the file component on the order detail page, and saves the file IDs with the order.
 
-## 怎样检查结果
+## How to check the result
 
-- 上传几种格式的文件，保存订单，刷新后仍在；预览和下载的内容与原文件一致。
-- 用三个账号分别试：未登录、没有这笔订单权限的人、有权限的人。上传接口、文件列表和文件内容地址三处都要符合规则。
-- 超过大小限制的文件给出清楚的提示。
-- 移除附件后，订单里不再显示；按需求确认文件是否保留。
+- Upload files in several formats and save the order; they are still there after a refresh, and preview and download match the original file.
+- Try three accounts: not signed in, signed in without permission on this order, and signed in with permission. The upload endpoint, the file list, and the file content URL must all follow the rules.
+- A file over the size limit gets a clear message.
+- After you remove an attachment, the order no longer shows it; confirm whether the file is kept, as your request said.
 
-## 管理员能调整什么
+## What administrators can adjust
 
-文件插件没有管理页面。附件的访问权限跟随业务记录：在「角色与权限」里调整谁能看哪些采购订单，附件的可见范围随之变化，前提是 Agent 按上面的要求把两者接在一起。
+The file plugin has no admin page. Attachment access follows the business record: adjust who can see which purchase orders under **Roles and permissions**, and attachment visibility changes with it, provided the agent connected the two as described above.
 
-## 部署配置
+## Deployment configuration
 
-- **存储**：在应用的 `drive` 配置里定义，`config.yml` 可以覆盖。默认是本地磁盘；使用对象存储时，由存储管理员准备存储桶、地址、区域和凭据，写进服务器上的配置。
-- **更换默认存储**：之后上传的文件进新存储，已有文件不移动。
-- **备份**：同时备份数据库和存储里的文件。
-- **上传大小**：默认单个上传 5 MiB、批量上传 20 MiB，按整个请求计算。需要更大时让 Agent 调整。
+- **Storage**: defined in the app's `drive` configuration, which `config.yml` can override. The default is local disk. For object storage, the storage administrator prepares the bucket, address, region, and credentials and puts them in the configuration on the server.
+- **Changing the default storage**: files uploaded afterward go to the new storage; existing files do not move.
+- **Backups**: back up both the database and the files in storage.
+- **Upload size**: by default 5 MiB per upload and 20 MiB per batch upload, counted over the whole request. Ask the agent to change this if you need more.
 
-## 限制与尚未支持
+## Limits and what is not yet supported
 
-- 插件生成的接口和文件地址**不自带登录和权限检查**，必须由应用加上。验收时一定要用没有权限的账号试。
-- 删除文件记录不删除存储里的文件；取消的表单可能留下没有关联的文件。没有自动清理孤立文件。
-- 不支持断点续传、分段下载（Range）、缓存校验（ETag）。
-- 不检测文件的真实类型，也不做病毒扫描。
-- 已有业务表不会自动迁移到新的文件结构。
+- The endpoints and file URLs the plugin generates **do not come with sign-in and permission checks**; the app must add them. When you check the result, always try an account without permission.
+- Deleting a file record does not delete the file in storage, and a canceled form may leave files with no link. There is no automatic cleanup of orphaned files.
+- Resumable uploads, range downloads (Range), and cache validation (ETag) are not supported.
+- The real file type is not detected, and there is no virus scanning.
+- Existing business tables are not migrated to the new file structure automatically.
 
-需要这些能力时，作为需求告诉 Agent，在应用里实现。
+If you need any of these, tell the agent as a requirement and it will build them in the app.
 
-## 与 NocoBase 2 的对应
+## How this maps to NocoBase 2
 
 | NocoBase 2 | NocoBase 3 |
 | --- | --- |
-| 文件管理器插件，在界面上配置存储 | 文件插件提供能力，存储写在 `drive` 配置里 |
-| 附件字段，在表单里直接使用 | 应用的文件表和关联，由 Agent 用文件组件做进页面 |
-| 文件表统一管理所有附件 | 每类业务可以有自己的文件表，字段固定 |
+| The file manager plugin, with storage configured in the UI | The file plugin provides the capability, with storage set in the `drive` configuration |
+| Attachment fields, used directly in forms | The app's file tables and links, built into pages by agents with the file component |
+| One file table manages all attachments | Each kind of business can have its own file table, with fixed fields |
 
-## 开发参考
+## Development reference
 
-- 技能：应用 `.agents/skills/nocobase-app-plugin-file/`、`.agents/skills/nocobase-drive/`
-- [README](https://github.com/nocobase/nocobase/tree/v3-develop/packages/plugins/app-plugin-file) 与 `docs/README.md`（文件仓库手册）
-- 接口：运行中的应用在 `/api/swagger/docs` 列出生成的文件接口；文件内容地址不在 `/api` 下，不出现在接口文档里
-- 示例：`packages/examples/app-plugin-file-example`
+- Skills: `.agents/skills/nocobase-app-plugin-file/` and `.agents/skills/nocobase-drive/` in the app
+- [README](https://github.com/nocobase/nocobase/tree/v3-develop/packages/plugins/app-plugin-file) and `docs/README.md` (the file repository manual)
+- API: a running app lists the generated file endpoints at `/api/swagger/docs`; file content URLs are not under `/api` and do not appear in the API docs
+- Example: `packages/examples/app-plugin-file-example`

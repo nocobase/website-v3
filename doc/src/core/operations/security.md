@@ -1,17 +1,17 @@
 ---
-title: 安全清单
-status: 待编写
-description: 上线前要检查的安全事项。
+title: Security checklist
+status: To be written
+description: Security items to check before launch.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 密钥：`secrets` 的生成、保管和轮换
-- 初始管理员密码
-- 对外地址和 HTTPS
-- 接口限制
-- 文件访问权限
-- API Key 的管理
+- Secrets: generating, storing, and rotating `secrets`
+- The initial administrator password
+- The public address and HTTPS
+- API limits
+- File access permissions
+- Managing API keys

@@ -1,16 +1,16 @@
 ---
-title: 升级 NocoBase
-status: 待编写
-description: 应用怎样升级到新版本的 Core，不丢失自己的修改。
+title: Upgrade NocoBase
+status: To be written
+description: How an app upgrades to a new version of Core without losing its own changes.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 升级就是对照新版模板合并：`nocobase-app-upgrade` 技能
-- 更新插件：`plugin update`
-- UI 组件不会自动更新
-- 升级后的检查
-- 运维侧的步骤见“升级与回滚”
+- Upgrading means merging against the new template: the `nocobase-app-upgrade` skill
+- Updating plugins: `plugin update`
+- UI components are not updated automatically
+- Checks after an upgrade
+- For the operations side, see "Upgrade and rollback"

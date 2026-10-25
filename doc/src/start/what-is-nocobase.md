@@ -1,59 +1,59 @@
 ---
-title: NocoBase 3 是什么
-description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源平台。Agent 写业务部分，NocoBase 提供底座和工作流程，人确定目标、作出决定。
+title: What is NocoBase 3
+description: NocoBase is the open-source platform for building, running, and evolving business systems with AI. Agents write the business code, NocoBase provides the foundation and governance, and people set goals and make the decisions.
 ---
 
-让 Agent 做一个业务系统，第一个版本几个小时就能上线。难的是之后：每加一个功能、改一次流程、升一次级，系统都要继续可靠。业务系统要用很多年，能一直可靠地改下去，比第一版做得快更重要。
+Ask an agent to build a business system, and the first version can be live in a few hours. The hard part comes after: every new feature, every process change, and every upgrade has to keep the system reliable. A business system runs for many years, so being able to keep changing it reliably matters more than how fast the first version shipped.
 
-NocoBase 3 为此把工作分成三份：
+NocoBase 3 splits the work into three parts for this reason:
 
 <div class="roles">
-<div class="col human"><div class="col-h">人做决定</div><div class="role"><span>确定目标，作出判断，批准关键操作，验收结果。</span></div></div>
-<div class="col agent"><div class="col-h">Agent 执行</div><div class="role"><span>开发和测试功能，处理资料，推进业务任务。</span></div></div>
+<div class="col human"><div class="col-h">People make the decisions</div><div class="role"><span>Set goals, make judgment calls, approve key actions, and accept the results.</span></div></div>
+<div class="col agent"><div class="col-h">Agents do the work</div><div class="role"><span>Build and test features, handle documents, and move business tasks forward.</span></div></div>
 </div>
 
-**NocoBase 提供底座和工作流程**：Core 的数据、权限、审批和定时任务每次都按同样的规则运行，Agent 的每一步都有记录；Studio 接入并调度大量 Agent，每次变更经过检查、验收和批准再上线。
+**NocoBase provides the foundation and the workflow.** Core's data, permissions, approvals, and scheduled jobs run by the same rules every time, and every agent step is recorded. Studio connects and coordinates many agents, so every change is checked, accepted, and approved before it goes live.
 
-## 业务部分和底座分开
+## Business code and foundation are separate
 
-NocoBase 把一个业务系统分成两部分：
+NocoBase divides a business system into two parts:
 
-- **业务部分**是每个企业不一样的地方：数据模型、页面、流程、业务规则和业务 Agent。由 Agent 开发，代码在你自己的仓库里。
-- **底座**是每个系统都需要的能力：数据、权限、审批、文件、通知、部署等。由 NocoBase 提供，随版本独立升级。
+- **Business code** is what differs from one company to the next: the data model, pages, workflows, business rules, and business agents. Agents build it, and the code lives in your own repository.
+- **The foundation** is what every system needs: data, permissions, approvals, files, notifications, deployment, and more. NocoBase provides it, and it upgrades independently with each release.
 
-每次修改只动业务部分，底座不用重写。这是“可靠”的主要来源。
+Every change touches only the business code, and the foundation never needs to be rewritten. That is the main source of reliability.
 
-## 产品结构
+## Product structure
 
-| 产品 | 是什么 | 版本 |
+| Product | What it is | Edition |
 | --- | --- | --- |
-| **Core** | 开发和运行业务系统的开源底座。Agent 直接使用它的能力，把开发集中在企业自己的业务上 | 开源，商业版有增强 |
-| **Studio** | 人带领 Agent 团队开发应用的工作台。Agent 完成从需求到上线的执行，人只处理需要决定的事 | Professional、Enterprise |
-| **Solutions** | 基于 NocoBase 开发的开源业务应用，配好了业务 Agent，可以直接使用，也可以继续定制 | 开源 |
-| **Launch** | 实战培训与项目陪跑，NocoBase 团队和你的团队一起完成一个真实项目 | 按需选择 |
+| **Core** | The open-source foundation for building and running business systems. Agents use its capabilities directly, so development can focus on the company's own business | Open source, with enhancements in the commercial editions |
+| **Studio** | The workspace where people lead an agent team to build apps. Agents handle the work from request to launch, and people handle only what needs a decision | Professional, Enterprise |
+| **Solution** | A line of open-source business apps built on NocoBase, set up with business agents. Use them as they are, or keep customizing them | Open source |
+| **Launch** | Hands-on training and project coaching, where the NocoBase team and your team complete a real project together | Choose as needed |
 
-全部产品都可以私有部署，模型和 Agent 由企业自己选择。
+Everything can be self-hosted, and each company chooses its own models and agents.
 
-## 只用 Core，还是用 Studio
+## Core alone, or with Studio
 
-| | 只用 Core | 用 Studio |
+| | Core alone | With Studio |
 | --- | --- | --- |
-| 谁来开发 | 你在应用目录里打开自己的编码工具，和 Agent 一起开发 | Studio 把团队的 Agent 组成 Agent 团队，调度 Agent 安排开发、测试、评审 |
-| 适合 | 一个人或一个小团队，做一个或几个应用 | 团队同时推进多个任务和项目，懂业务的人也要主导需求 |
-| 测试、部署、备份 | 团队自己组织，Core 提供部署工具和开发指引 | 按 Studio 的流程进行：检查、评审、验收、批准后发布 |
-| 开始 | [Core 快速开始](../core/quickstart.md) | [Studio 是什么](../studio/intro/what-is-studio.md) |
+| Who builds | You open your own coding tool in the app directory and build with an agent | Studio turns your team's agents into one agent team, and a coordinator agent arranges development, testing, and review |
+| Fits | One person or a small team, building one or a few apps | A team moving several issues and projects forward at once, where business experts also lead the requirements |
+| Testing, deployment, backup | Organized by the team itself, with deployment tools and development guidance from Core | Follows Studio's process: checks, review, acceptance, and approval before release |
+| Get started | [Core quick start](../core/quickstart.md) | [What is Studio](../studio/intro/what-is-studio.md) |
 
-两种方式开发出来的应用一样，都建在 Core 上，上线后独立运行，日常业务请求不经过 Studio。
+Apps built either way are the same. Both are built on Core and run on their own after launch, and day-to-day business requests never go through Studio.
 
-## Agent 在 NocoBase 里做两类工作
+## Agents do two kinds of work in NocoBase
 
-- **开发应用**：Claude Code、Codex 等编码工具，读 Core 随包提供的技能，在应用的代码仓库里编写页面、接口、数据表和流程。
-- **在应用里处理业务**：应用上线后，**业务 Agent** 在权限范围内整理资料、分类工单、提醒到期事项，关键操作交给人批准。它由 Core 的 Agents 插件接入，使用和同事一样的角色与权限。
+- **Building apps**: coding tools such as Claude Code and Codex read the skills that ship with Core and write pages, APIs, tables, and workflows in the app's code repository.
+- **Handling business work in the app**: once the app is live, **business agents** sort out documents, triage tickets, and remind people of due items, within their permissions, and hand key actions to a person to approve. They are connected by Core's Agents plugin and use the same roles and permissions as your colleagues.
 
-两类工作遵循同一套原则：Agent 有明确的身份和授权，过程有记录，结果可以检查，关键操作由人批准，人随时可以接手。
+Both kinds of work follow the same principles: an agent has a clear identity and clear authorization, its work is recorded, its results can be checked, key actions are approved by a person, and a person can take over at any time.
 
-## 接下来
+## Next
 
-- 想动手：[Core 是什么](../core/intro/what-is-core.md) → [快速开始](../core/quickstart.md)
-- 想了解团队怎样带领 Agent 团队：[Studio 是什么](../studio/intro/what-is-studio.md)
-- 用过 NocoBase 2：[从 NocoBase 2 来](from-v2.md)
+- To get hands-on: [What is Core](../core/intro/what-is-core.md) → [Quick start](../core/quickstart.md)
+- To see how a team leads an agent team: [What is Studio](../studio/intro/what-is-studio.md)
+- If you've used NocoBase 2: [Coming from NocoBase 2](from-v2.md)

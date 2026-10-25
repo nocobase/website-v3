@@ -58,7 +58,7 @@
 "Architecture drifts out of control": "Die Architektur gerät außer Kontrolle",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.": "Wechseln Entwickler, Modell oder auch nur die Sitzung, kann die KI jedes Mal anders improvisieren. Das System wird immer schwerer wartbar.",
 "Parallel work outpaces human review": "Mehr parallele Arbeit, als sich prüfen lässt",
-"You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Sie jonglieren mit mehreren Projekten und Aufgaben, wechseln zwischen Terminals und Chats, und die Agenten liefern immer mehr Änderungen. Niemand kann alles prüfen, doch die Kontrolle abzugeben, scheint zu riskant.",
+"You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Sie jonglieren mit mehreren Projekten und Aufgaben, wechseln zwischen Terminals und Chats, und die Agenten liefern immer mehr Änderungen. Niemand kann alles prüfen, doch die Kontrolle abzugeben, scheint zu riskant.",
 "Know-how is hard to capture and share": "Wissen lässt sich schwer festhalten und teilen",
 "Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.": "Anforderungskontext, Geschäftsunterlagen und Erfahrungen verteilen sich auf Chats auf verschiedenen Rechnern. Wechseln Menschen oder Agenten, findet man sie kaum wieder.",
 "Let agents focus on your business logic.<br>": "Ihre Agenten kümmern sich um die Geschäftslogik.<br>",
@@ -72,9 +72,9 @@
 "Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.": "Core ist kostenlos und Open Source. Ihr Geschäftscode und Ihre Daten bleiben in Ihren eigenen Repositories und auf Ihren eigenen Servern, und Sie wählen Modelle und Agenten selbst.",
 "Explore NocoBase Core": "NocoBase Core entdecken",
 "An agent team that keeps work moving": "Ein Agenten-Team, das die Arbeit vorantreibt",
-"Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.": "Verbinden Sie Agenten auf vielen Rechnern und steuern Sie sie zentral. Sie treiben viele Projekte und Aufgaben parallel voran, rund um die Uhr.",
+"Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.": "Verbinden Sie Agenten auf vielen Rechnern und steuern Sie sie zentral. Sie treiben viele Projekte und Aufgaben parallel voran, rund um die Uhr.",
 "Progress at a glance": "Fortschritt auf einen Blick",
-"Project progress, task activity, agent workload, and model usage are all clearly visible.": "Projektfortschritt, Aufgabenverlauf, Auslastung der Agenten und Modellnutzung sind jederzeit transparent.",
+"Project progress, issue activity, agent workload, and model usage are all clearly visible.": "Projektfortschritt, Aufgabenverlauf, Auslastung der Agenten und Modellnutzung sind jederzeit transparent.",
 "Decisions backed by evidence": "Entscheidungen mit Belegen",
 "When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.": "Braucht eine Entscheidung einen Menschen, liefern Agenten ausführliche Berichte, Checklisten, Screenshots und Empfehlungen. So können auch Fachexperten ohne Programmierkenntnisse entscheiden.",
 "Know-how stays with the team": "Das Wissen bleibt im Team",
@@ -158,7 +158,7 @@
 "Customer tiering is in production · roll back anytime": "Kundensegmentierung ist in Produktion · jederzeit zurücksetzbar",
 "Demo video coming soon": "Demo-Video folgt in Kürze",
 "Agents write the code and do the work": "Agenten schreiben den Code und erledigen die Arbeit",
-"3 tasks · 35 tests · 3 code reviews": "3 Aufgaben · 35 Tests · 3 Code-Reviews",
+"3 issues · 35 tests · 3 code reviews": "3 Aufgaben · 35 Tests · 3 Code-Reviews",
 "NocoBase provides the foundation and governance": "NocoBase liefert Fundament und Governance",
 "{n} building blocks · one set of dev standards · tests, review, and sign-off": "{n} Bausteine · gemeinsame Dev-Standards · Tests, Review und Freigabe",
 "People make the decisions": "Menschen treffen die Entscheidungen",
@@ -216,6 +216,6 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio koordiniert mehrere Agenten über Entwurf, Entwicklung, Tests und Review. Wichtige Entscheidungen trifft ein Mensch, mit Berichten und Screenshots als Grundlage.",
 "Know-how": "Know-how",
 "Agents keep the work moving. Your team stays in control.": "Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio ist die Governance-Plattform für Teams, die mit Agenten entwickeln. Es bündelt Claude Code, Codex und OpenCode zu einem Agenten-Team, das Aufgaben selbstständig vorantreibt. Der Fortschritt ist auf einen Blick sichtbar, und die wichtigen Entscheidungen treffen Menschen."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio ist die Governance-Plattform für Teams, die mit Agenten entwickeln. Es bündelt Claude Code, Codex und OpenCode zu einem Agenten-Team, das Aufgaben selbstständig vorantreibt. Der Fortschritt ist auf einen Blick sichtbar, und die wichtigen Entscheidungen treffen Menschen."
 }
 };

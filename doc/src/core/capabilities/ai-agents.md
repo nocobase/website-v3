@@ -1,31 +1,31 @@
 ---
-title: AI 与 Agent
-status: 待编写
-description: 让业务 Agent 在应用里工作：理解页面上下文、查询业务数据、按权限执行操作、遵守工作规则。
+title: AI and agents
+status: To be written
+description: Let business agents work inside the app. They understand the page context, query business data, run actions within their permissions, and follow working rules.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 业务 Agent 是什么，和写代码的 Agent 有什么不同
-- 启用 Agents 插件：默认模板已安装但未注册
-- 配置模型服务
-- 职责与工作规则
-- 能用哪些数据和操作，权限和人一致
-- 关键操作由人批准
-- 对话入口：独立页面、业务区块、侧边面板
-- 在应用里运行的 Agent 和通过 Runner 运行的 Agent
-- 用量与费用
-- 与 NocoBase 2 AI 员工的对应
+- What a business agent is, and how it differs from an agent that writes code
+- Enabling the Agents plugin: the default template has it installed but not registered
+- Configuring model services
+- Responsibilities and working rules
+- Which data and actions an agent can use, with the same permissions as a person
+- A person approves key actions
+- Conversation entry points: a standalone page, a business block, a side panel
+- Agents that run inside the app and agents that run through a runner
+- Usage and cost
+- How this maps to NocoBase 2 AI employees
 
-## 由哪些包提供
+## Provided by
 
-[Agents](../plugins/agents.md)、[Agent 会话](../plugins/agent-sessions.md)
+[Agents](../plugins/agents.md), [Agent sessions](../plugins/agent-sessions.md)
 
-## 现有页面的去向
+## Where existing pages go
 
-| 现有页面 | 处理 |
+| Existing page | Plan |
 | --- | --- |
-| AI 员工 › 五页 | 并入本组，“AI 员工”改称业务 Agent |
+| AI employees › five pages | Merged into this group, with "AI employees" renamed "business agents" |

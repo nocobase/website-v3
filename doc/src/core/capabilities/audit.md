@@ -1,15 +1,15 @@
 ---
-title: 操作审计
-status: 待编写
-description: 记录敏感操作，事后可以查到谁、在什么时候、依据什么做了什么。
+title: Audit log
+status: To be written
+description: Record sensitive operations so you can find out afterward who did what, when, and on what basis.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 现状：「应用底座」的操作审计一项显示“尚未识别到支持的提供方”
-- 定位文档和官网把“操作记录”列为底座能力，需要确认计划
-- 在此之前已有的记录：流程的处理历史、Agent 的运行记录、通知投递记录
-- 规划（待确认）
+- Current state: the audit log item on the **App foundation** page shows "No supported provider detected"
+- The positioning document and the website list "operation records" as a foundation building block, so the plan needs to be confirmed
+- What exists until then: workflow handling history, agent run records, and notification delivery logs
+- Plan (to be confirmed)

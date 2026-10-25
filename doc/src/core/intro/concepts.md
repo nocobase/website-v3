@@ -1,132 +1,132 @@
 ---
-title: 核心概念
-description: 用一张图和十个概念说明一个 NocoBase 3 应用怎样构成：代码在哪里、Core 怎样进入应用、Agent 怎样学会使用它、上线后谁在哪里调整。
+title: Core concepts
+description: One diagram and ten concepts that explain how a NocoBase 3 app is put together: where the code lives, how Core gets into the app, how agents learn to use it, and who adjusts what after launch.
 ---
 
-## 一张图看懂
+## The picture in one diagram
 
-<figure class="map" aria-label="一个 NocoBase 3 应用的构成">
-<div class="row c2"><div class="box human"><b>人</b><span>提需求、验收；上线后在「系统设置」里管理</span></div><div class="box agent"><b>Agent</b><span>读技能，在应用的代码仓库里开发</span></div></div>
-<div class="down">都在同一个应用里工作</div>
-<div class="row"><div class="box brand"><b>应用 · 你的代码仓库</b><span>用模板创建。页面、接口、数据表、迁移、流程、「系统设置」里的管理页面都在这里，归你所有</span></div></div>
-<div class="down">依赖 Core 的包</div>
-<div class="row c3"><div class="box"><b>插件</b><span>登记在插件清单里，带来服务端能力、页面、组件、技能或命令</span></div><div class="box"><b>基础库</b><span>直接使用：数据库、记录生命周期、后台任务、存储</span></div><div class="box"><b>UI 组件库</b><span>复制进应用源码，之后归应用所有</span></div></div>
-<div class="row c3"><div class="box"><b>技能</b><span>随包发布，同步到 <code>.agents/skills/</code>，教 Agent 怎样用</span></div><div class="box"><b>命令行</b><span><code>pnpm nocobase</code>：配置、数据库、插件、技能</span></div><div class="box"><b>运行时</b><span>应用的服务端和浏览器端框架</span></div></div>
-<div class="down">部署后运行</div>
-<div class="row"><div class="box"><b>运行中的应用</b><span>读取服务器上的 <code>config.yml</code>；「应用底座」显示它用到的 Core 能力</span></div></div>
+<figure class="map" aria-label="How a NocoBase 3 app is put together">
+<div class="row c2"><div class="box human"><b>People</b><span>Make requests and accept the results; after launch, manage in <b>System settings</b></span></div><div class="box agent"><b>Agents</b><span>Read skills and build in the app's code repository</span></div></div>
+<div class="down">Both work in the same app</div>
+<div class="row"><div class="box brand"><b>App · your code repository</b><span>Created from a template. Pages, APIs, tables, migrations, workflows, and the admin pages in <b>System settings</b> are all here, and you own them</span></div></div>
+<div class="down">Depends on Core packages</div>
+<div class="row c3"><div class="box"><b>Plugins</b><span>Registered in the plugin lists, bringing server-side capabilities, pages, components, skills, or commands</span></div><div class="box"><b>Foundation libraries</b><span>Used directly: database, record lifecycle, background jobs, storage</span></div><div class="box"><b>UI library</b><span>Copied into the app's source, owned by the app from then on</span></div></div>
+<div class="row c3"><div class="box"><b>Skills</b><span>Shipped with packages and synced to <code>.agents/skills/</code>, teaching agents how to use them</span></div><div class="box"><b>Command line</b><span><code>pnpm nocobase</code>: configuration, database, plugins, skills</span></div><div class="box"><b>Runtime</b><span>The app's server-side and browser-side framework</span></div></div>
+<div class="down">Runs once deployed</div>
+<div class="row"><div class="box"><b>The running app</b><span>Reads <code>config.yml</code> on the server; <b>App foundation</b> shows the Core capabilities it uses</span></div></div>
 </figure>
 
-下面按这张图逐个说明。
+The sections below go through this diagram one piece at a time.
 
-## 应用
+## App
 
-应用是一份代码仓库，用 NocoBase 的模板创建，部署后就是一个业务系统。它的主要目录：
+An app is a code repository, created from a NocoBase template. Once deployed, it is a business system. Its main directories:
 
-| 目录 | 放什么 |
+| Directory | What goes in it |
 | --- | --- |
-| `client/` | 浏览器端：路由、页面、组件、多语言文案；`client/plugins.ts` 登记浏览器端插件 |
-| `server/` | 服务端：接口、服务；`server/plugins.ts` 登记服务端插件 |
-| `database/` | 迁移和初始数据 |
-| `cli/` | 应用自己的命令；`cli/plugins.ts` 登记带命令的插件 |
-| `tests/` | 测试 |
-| `AGENTS.md`、`.agents/` | 给 Agent 看的规则和技能 |
-| `config.example.yml` | 配置项说明；真正的 `config.yml` 含密钥，不进仓库 |
+| `client/` | Browser side: routes, pages, components, localization strings; `client/plugins.ts` registers browser-side plugins |
+| `server/` | Server side: APIs and services; `server/plugins.ts` registers server-side plugins |
+| `database/` | Migrations and seed data |
+| `cli/` | The app's own commands; `cli/plugins.ts` registers plugins that bring commands |
+| `tests/` | Tests |
+| `AGENTS.md`, `.agents/` | Rules and skills for agents |
+| `config.example.yml` | Documents the configuration options; the real `config.yml` holds secrets and stays out of the repository |
 
-**谁拥有什么：**页面、组件、接口、数据表、迁移、服务、翻译、测试、导航、主题和业务逻辑归应用。插件拥有自己的路由、组件、服务和内部数据表，应用只通过插件公开的接口使用它们，不改插件的代码，也不直接写插件的数据表。
+**Who owns what.** The app owns its pages, components, APIs, tables, migrations, services, translations, tests, navigation, themes, and business logic. A plugin owns its own routes, components, services, and internal tables. The app uses them only through the interfaces the plugin makes public, and never changes plugin code or writes to a plugin's tables directly.
 
-## 模板
+## Template
 
-模板是创建应用的起点。默认模板生成的应用已经带有：
+A template is the starting point for creating an app. An app generated from the default template already has:
 
-- 登录、注册、找回密码页面，以及命令行登录时用的设备确认页；
-- 首页：介绍怎样和 Agent 一起开发，列出内置能力和提示词；
-- 收件箱：站内信；
-- 准备好但还没启用的管理页面：「用户管理」「角色与权限」「默认数据范围」，应用开始开发业务时由 Agent 启用；
-- 「系统设置 › 应用底座」，只有拥有全部权限的管理员能看到；
-- 16 个已注册的插件，以及 Agents、知识库两个已安装但未注册的插件。
+- Sign-in, sign-up, and password reset pages, plus the device approval page used when signing in from the command line;
+- A home page that explains how to build with agents and lists the built-in capabilities and prompts;
+- An inbox, for in-app messages;
+- Admin pages that are prepared but not yet enabled: **User management**, **Roles and permissions**, and **Default data scopes**, which an agent enables when the app starts to take on business features;
+- **System settings › App foundation**, visible only to administrators with full permissions;
+- 16 registered plugins, plus two plugins that are installed but not registered: Agents and knowledge base.
 
-::figure core-app-home | 新应用的首页：说明怎样和 Agent 一起开发，“内置能力”的每一项都附带可以复制的提示词
+::figure core-app-home | The new app's home page: it explains how to build with agents, and each item under **Built-in capabilities** comes with prompts you can copy
 
-另有一个示例模板，带有可以运行的示例：文章管理、后台任务与队列、定时任务、记录生命周期和建在它上面的办公流程、实时更新、命令行、业务 Agent 等，给人和 Agent 参考。升级 NocoBase 时，应用对照新版本的模板合并变化，见 [升级 NocoBase](../develop/upgrade.md)。
+There is also an examples template, with runnable examples: article management, background jobs and queues, scheduled tasks, record lifecycle and the office workflows built on it, real-time updates, the command line, business agents, and more, for people and agents to learn from. When you upgrade NocoBase, the app merges the changes against the new version of the template. See [Upgrade NocoBase](../develop/upgrade.md).
 
-## 插件
+## Plugins
 
-插件是名为 `@nocobase/app-plugin-*` 的包，登记在应用的三个插件清单里：`server/plugins.ts`、`client/plugins.ts`、`cli/plugins.ts`。出现在清单里就启用，删掉就停用。
+A plugin is a package named `@nocobase/app-plugin-*`, registered in the app's three plugin lists: `server/plugins.ts`, `client/plugins.ts`, and `cli/plugins.ts`. A plugin is enabled when it appears in the lists and disabled when removed.
 
-一个插件可能给应用带来五样东西：服务端能力、自带的页面、UI 组件、技能和命令。大多数插件不带页面，这是 NocoBase 3 和 2 最大的不同之一，详见 [插件怎样工作](how-plugins-work.md)。
+A plugin can bring up to five things to an app: server-side capabilities, its own pages, UI components, skills, and commands. Most plugins bring no pages, which is one of the biggest differences between NocoBase 3 and 2. For details, see [How plugins work](how-plugins-work.md).
 
-## 基础库
+## Foundation libraries
 
-有些能力不需要注册，应用直接引用就能用，叫基础库。例如：
+Some capabilities need no registration. The app uses them just by importing them, and they are called foundation libraries. For example:
 
-- **记录生命周期**（`@nocobase/lifecycle`）：采购订单从草稿到完成的流程就用它写；
-- **数据库**（`@nocobase/db`）：数据表、查询、迁移，以及 SQLite、PostgreSQL、MySQL 等数据库方言；
-- **后台任务和队列**（`@nocobase/jobs`、`@nocobase/queue`）：定时和后台执行；
-- **存储**（`@nocobase/drive`）：本地、S3 兼容存储和阿里云 OSS。
+- **Record lifecycle** (`@nocobase/lifecycle`): the purchase order's path from draft to done is written with it;
+- **Database** (`@nocobase/db`): tables, queries, migrations, and dialects for SQLite, PostgreSQL, MySQL, and more;
+- **Background jobs and queues** (`@nocobase/jobs`, `@nocobase/queue`): scheduled and background execution;
+- **Storage** (`@nocobase/drive`): local storage, S3-compatible storage, and Alibaba Cloud OSS.
 
-## UI 组件库
+## UI library
 
-UI 组件库（[ui.nocobase.com](https://ui.nocobase.com)）发布 NocoBase 的业务组件，例如数据表格、看板、富文本编辑器、流程图、「流程管理」页面、收件箱、审批进度。Agent 安装一个组件时，它的源码被复制进应用（`client/components/` 或 `client/extensions/`），之后归应用所有：可以改，也不会被自动更新。
+The UI library ([ui.nocobase.com](https://ui.nocobase.com)) publishes NocoBase's business components, such as the data table, dashboards, rich text editor, flow chart, the **Workflow management** page, the inbox, and approval progress. When an agent installs a component, its source is copied into the app (`client/components/` or `client/extensions/`) and belongs to the app from then on: you can change it, and it is never updated automatically.
 
-所以应用的界面有三个来源：插件自带的页面、UI 组件库的组件、Agent 为你的业务写的页面。三者用同一套样式，看起来是一个整体。
+So an app's interface has three sources: pages that plugins ship, components from the UI library, and pages that agents write for your business. All three share one style and look like a whole.
 
-## 技能
+## Skills
 
-技能是教 Agent 做事的说明（`SKILL.md`）。NocoBase 的包随附各自的技能，例如应用开发技能 `nocobase-app-development`、权限插件的 `nocobase-app-plugin-authorization`。安装依赖后，模板会自动运行 `pnpm nocobase skills sync`，把技能同步到应用的 `.agents/skills/`，Claude Code 等编码工具在新会话里读取它们。
+A skill is a set of instructions (`SKILL.md`) that teaches an agent how to do something. NocoBase packages ship with their own skills, for example the app development skill `nocobase-app-development` and the authorization plugin's `nocobase-app-plugin-authorization`. After dependencies are installed, the template automatically runs `pnpm nocobase skills sync` to sync the skills to the app's `.agents/skills/`, where coding tools such as Claude Code read them in new sessions.
 
-- `.agents/skills/` 是生成的，下次同步会整体替换，不要修改。
-- 应用自己的约定写在 `.agents/rules/` 里，由 `AGENTS.md` 索引，提交到代码仓库。
-- 创建应用之前用的两个技能（`nocobase-create-app`、`nocobase-app-installer`）需要先全局安装，见 [快速开始](../quickstart.md)。
+- `.agents/skills/` is generated, and the next sync replaces it entirely, so don't edit it.
+- The app's own conventions go in `.agents/rules/`, indexed by `AGENTS.md` and committed to the code repository.
+- The two skills used before the app is created (`nocobase-create-app` and `nocobase-app-installer`) must be installed globally first. See the [Quick start](../quickstart.md).
 
-技能是给 Agent 的，文档是给人的。想知道 Agent 为什么这样做，可以直接读对应的技能。
+Skills are for agents, and documentation is for people. To find out why an agent did something a certain way, read the matching skill.
 
-## 命令行
+## Command line
 
-应用自带命令行 `pnpm nocobase`，Agent 和人都用它：
+The app comes with a command line, `pnpm nocobase`, used by both agents and people:
 
-| 要做的事 | 命令 |
+| To do this | Command |
 | --- | --- |
-| 生成和检查配置 | `pnpm nocobase config init`、`config set`、`config check` |
-| 执行迁移 | `pnpm nocobase db apply` |
-| 注册、更新、移除插件 | `pnpm nocobase plugin register`、`plugin update`、`plugin unregister` |
-| 同步技能 | `pnpm nocobase skills sync` |
+| Generate and check configuration | `pnpm nocobase config init`, `config set`, `config check` |
+| Run migrations | `pnpm nocobase db apply` |
+| Register, update, and remove plugins | `pnpm nocobase plugin register`, `plugin update`, `plugin unregister` |
+| Sync skills | `pnpm nocobase skills sync` |
 
-完整列表见 [命令行参考](../reference/cli.md)。
+For the full list, see the [command line reference](../reference/cli.md).
 
-## 配置
+## Configuration
 
-部署相关的设置写在应用目录的 `config.yml` 里：对外地址、数据库连接、密钥、存储、邮件服务商、后台任务用内存还是 Redis 等。它含有密钥，不进代码仓库；`config.example.yml` 说明每一项的作用。用 `pnpm nocobase config` 命令生成和检查，敏感值从环境变量读取。
+Deployment-related settings live in `config.yml` in the app directory: the public address, database connection, secrets, storage, mail provider, whether background jobs use memory or Redis, and so on. It holds secrets, so it stays out of the code repository, and `config.example.yml` explains what each option does. Generate and check it with the `pnpm nocobase config` commands, and read sensitive values from environment variables.
 
-## 系统设置
+## System settings
 
-「系统设置」是应用里的管理入口。Agent 交付一个完整的应用时，默认会把管理页面做进这里，你不需要单独提出：
+**System settings** is the admin entry point in the app. When an agent delivers a complete app, it builds the admin pages here by default, and you don't need to ask separately:
 
-- 「用户管理」和「权限管理」（「角色与权限」「默认数据范围」）；
-- 用到流程时，「流程管理」：流程列表、执行记录、流程图和流程参数；
-- 用到定时任务、通知时，对应的任务列表、执行记录和投递记录；
-- 「应用底座」。
+- **User management** and **Permission management** (**Roles and permissions** and **Default data scopes**);
+- **Workflow management** when workflows are used: the workflow list, execution records, flow charts, and workflow parameters;
+- The matching job lists, execution records, and delivery records when scheduled tasks and notifications are used;
+- **App foundation**.
 
-::figure core-settings | 采购应用的侧边栏：业务页面在上，「系统设置」里是管理页面。具体有哪些，取决于应用用到的能力
+::figure core-settings | The purchasing app's sidebar: business pages on top, and the admin pages under **System settings**. Which ones appear depends on the capabilities the app uses
 
-只有首页的新应用不显示这些页面，开始开发业务后由 Agent 按需启用。
+A new app with only a home page doesn't show these pages. An agent enables them as needed once the app starts to take on business features.
 
-## 应用底座
+## App foundation
 
-「系统设置 › 应用底座」列出这个应用实际用到的 Core 能力，按 13 类点亮：在用、已就绪待配置、尚未使用。点开一项，可以看到它在本系统里做了什么、关联哪些业务模块、由哪些包提供。页面下方还有“业务模块与底座能力”的对照表。
+**System settings › App foundation** lists the Core capabilities the app actually uses, lit up in 13 categories: in use, ready but needs setup, and not used yet. Open one to see what it does in this system, which business modules it is tied to, and which packages provide it. Below that is a table mapping business modules to foundation capabilities.
 
-::figure core-foundation | 「应用底座」：13 类能力里有 9 类在用。选中“工作流与审批”，看到它支撑采购订单的流程和每日提醒
+::figure core-foundation | **App foundation**: 9 of the 13 categories are in use. With Workflows & approvals selected, you can see that it supports the purchase order workflow and the daily reminder
 
-判断依据是应用实际的接入情况：只安装了包不算在用，配置了、被页面或接口用到才算。只有拥有全部权限的管理员能打开这个页面。
+The judgment is based on how the app is actually wired up: a package that is only installed doesn't count as in use, and a capability counts only if it is configured and used by a page or API. Only administrators with full permissions can open this page.
 
-## 四层分工
+## Four layers of responsibility
 
-一项能力落到应用里，分四层。读能力页、写需求、做验收时，都按这四层想：
+A capability lands in the app in four layers. Think in these four layers when reading capability pages, writing requirements, and doing acceptance:
 
-| 层次 | 谁负责 | 采购应用里的例子 |
+| Layer | Who is responsible | Example in the purchasing app |
 | --- | --- | --- |
-| 开箱即有 | Core | 权限检查、流程运行时、文件存储、通知发送 |
-| 在应用里实现 | Agent | 采购订单的流程、“采购员只看自己的订单”、订单详情里的附件区 |
-| 上线后调整 | 应用管理员，在「系统设置」里 | 给人分配角色、调整数据范围、改审批金额阈值、暂停某个定时任务 |
-| 部署时配置 | 运维，在 `config.yml` 里 | 数据库、对象存储、邮件服务商、后台任务用 Redis |
+| Ready out of the box | Core | Permission checks, the workflow runtime, file storage, notification delivery |
+| Implemented in the app | Agent | The purchase order workflow, "buyers see only their own orders", the attachments area in the order details |
+| Adjusted after launch | App administrator, in **System settings** | Assigning roles to people, adjusting data scopes, changing approval amount thresholds, pausing a scheduled task |
+| Configured at deployment | Operations, in `config.yml` | Database, object storage, mail provider, Redis for background jobs |
 
-第二层的改动要改代码、重新部署；第三层的改动在应用里保存就生效。哪些值放在第三层，是需求的一部分：上线后可能要调的，提需求时说出来，Agent 会把它做成管理员可以调整的参数。
+Changes in the second layer mean changing code and redeploying. Changes in the third layer take effect once saved in the app. Which values belong in the third layer is part of the requirements: if something may need adjusting after launch, say so when you make the request, and the agent will make it a parameter that administrators can adjust.

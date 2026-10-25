@@ -1,33 +1,33 @@
 ---
-title: 快速开始
-description: 约 20 分钟：装好技能，创建一个应用，认识它的首页和「应用底座」，让 Agent 做出第一个功能并验收。
+title: Quick start
+description: About 20 minutes: install the skills, create an app, get to know its home page and App foundation, then have an agent build the first feature and accept it.
 ---
 
-## 准备
+## Prerequisites
 
-- Node.js 24 或更高版本，pnpm 11。Windows 用户在 WSL 里操作。
-- 一个能加载技能的编码工具，例如 Claude Code 或 Codex。
-- 一个空目录，用来存放应用。
+- Node.js 24 or later, and pnpm 11. On Windows, work inside WSL.
+- A coding tool that can load skills, such as Claude Code or Codex.
+- An empty directory to hold the app.
 
-## 1. 安装技能
+## 1. Install the skills
 
-在终端里执行，按提示选择你用的编码工具：
+Run this in a terminal and choose the coding tool you use when prompted:
 
 ```bash
 npx skills@latest add nocobase/skills-v3 --skill '*' -g
 ```
 
-这会全局安装 NocoBase 3 的技能，其中 `nocobase-create-app` 教 Agent 创建应用。装好后重新打开编码工具的会话，让它读到新技能。以后重复执行同一条命令即可更新。
+This installs the NocoBase 3 skills globally, including `nocobase-create-app`, which teaches an agent to create apps. After it finishes, reopen a session in your coding tool so it picks up the new skills. To update later, run the same command again.
 
-## 2. 创建应用
+## 2. Create the app
 
-在空目录里打开编码工具，告诉 Agent：
+Open your coding tool in the empty directory and tell the agent:
 
 ```text
-在当前目录创建一个 NocoBase 3 应用，名字叫 purchasing，先用 SQLite，创建好后启动它。
+Create a NocoBase 3 app named purchasing in the current directory. Use SQLite for now, and start it once it's created.
 ```
 
-Agent 会创建应用、生成配置、检查配置，再启动开发服务器。也可以自己执行：
+The agent creates the app, generates the configuration, checks it, and starts the development server. You can also run the commands yourself:
 
 ```bash
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta purchasing --template-tag=beta
@@ -37,65 +37,65 @@ pnpm nocobase config check
 pnpm dev
 ```
 
-打开 `pnpm dev` 输出的 `Local:` 地址，地址里带有应用的路径，例如 `/main/`。用初始管理员登录：默认用户名 `nocobase`、密码 `admin123`，来自 `config.yml` 里的 `users.initialAdmin`。登录后请修改密码。
+Open the `Local:` address printed by `pnpm dev`. The address includes the app's path, for example `/main/`. Sign in as the initial administrator: the default username is `nocobase` and the password is `admin123`, which come from `users.initialAdmin` in `config.yml`. Change the password after signing in.
 
-**完成的标志**：能登录应用，看到首页。
+**Done when**: you can sign in to the app and see the home page.
 
-## 3. 认识首页
+## 3. Get to know the home page
 
-新应用的首页说明了这个应用怎样开发：用平常的话描述需求，交给 Agent 构建，刷新页面查看并调整。下面的“内置能力”列出 Agent 会直接使用的 Core 能力，每一项附带可以修改、复制的提示词。
+The new app's home page explains how the app is built: describe what you need in plain words, hand it to an agent to build, then refresh the page to check and refine. The **Built-in capabilities** below lists the Core capabilities agents use directly, each with prompts you can edit and copy.
 
-::figure core-app-home | 新应用的首页。打开任意一项能力，可以得到一段示例提示词
+::figure core-app-home | The new app's home page. Open any capability to get a sample prompt
 
-这时应用里还只有首页。登录、用户、权限、文件、通知等 16 个插件已经注册，等你的第一个需求用上它们。
+At this point the app has only the home page. Sixteen plugins, covering sign-in, users, permissions, files, notifications, and more, are already registered and wait for your first request to put them to use.
 
-## 4. 做出第一个功能
+## 4. Build the first feature
 
-在**应用目录**里开启一个新的编码工具会话。应用创建时，开发用的技能已经同步到应用的 `.agents/skills/`，新会话会读取它们和应用的 `AGENTS.md`。把首页上的示例需求发给 Agent：
+Start a new coding tool session in the **app directory**. When the app was created, the development skills were synced to the app's `.agents/skills/`, and a new session reads them along with the app's `AGENTS.md`. Send the agent the sample request from the home page:
 
 ```text
-帮我做一个采购订单应用。
+Build a purchase order application.
 
-订单包含编号、采购事项、申请人、金额和审批状态。申请人可以创建订单，只能查看自己的订单；审批人可以查看所有待审批订单，并通过或驳回。
-审批完成后，用站内信通知申请人，点击可以打开对应订单。
+An order has a number, item, applicant, amount, and approval status. Applicants create orders and see only their own; reviewers see all pending orders and approve or reject them.
+After a decision, notify the applicant in the inbox with a link to the order.
 ```
 
-Agent 会用上已有的能力：写订单的数据表和迁移，写带权限检查的接口和页面，设置“申请人”和“审批人”两个角色，用通知插件发站内信，并启用「系统设置」里的用户和权限页面。完成后它会告诉你改了什么、怎样验证。
+The agent puts the existing capabilities to work: it writes the order table and its migration, writes the APIs and pages with permission checks, sets up the "Applicant" and "Reviewer" roles, sends in-app messages through the notification plugin, and enables the user and permission pages in **System settings**. When it finishes, it tells you what changed and how to verify it.
 
-刷新应用，按下面几项检查：
+Refresh the app and check the following:
 
-- 在「系统设置 › 用户管理」里建两个账号，一个分配申请人角色，一个分配审批人角色；
-- 用申请人账号创建一笔订单，换另一个申请人账号，确认看不到这笔订单；
-- 用审批人账号通过这笔订单；
-- 回到申请人账号，打开收件箱（模板自带的 `/inbox` 页面，入口放在哪里由 Agent 决定），有一条通知，点开能打开这笔订单。
+- In **System settings › User management**, create two accounts, one with the applicant role and one with the reviewer role.
+- Create an order as the applicant, then switch to another applicant account and confirm it cannot see this order.
+- Approve the order as the reviewer.
+- Back in the applicant account, open the inbox (the template's `/inbox` page, with the agent deciding where to put the entry). There should be one notification, and opening it should lead to the order.
 
-不符合的地方，用同样的方式告诉 Agent。
+For anything that doesn't match, tell the agent the same way.
 
-## 5. 看看用到了哪些能力
+## 5. See which capabilities are used
 
-打开「系统设置 › 应用底座」。它按 13 类列出这个应用用到的 Core 能力，刚才的功能用到的几类会点亮，例如数据建模、权限控制、消息通知。点开一项，可以看到它在这个应用里做了什么、由哪些包提供。
+Open **System settings › App foundation**. It lists the Core capabilities the app uses, in 13 categories. The categories the feature you just built relies on light up, for example data modeling, permissions, and notifications. Open one to see what it does in this app and which packages provide it.
 
-::figure core-foundation | 「应用底座」：应用用到了哪些 Core 能力。这张图是做完整个采购应用后的样子
+::figure core-foundation | **App foundation**: which Core capabilities the app uses. This figure shows the state after the whole purchasing app is built
 
-**完成的标志**：申请人、审批人各自只能看到和做自己该做的事，审批后申请人收到站内信。
+**Done when**: applicants and reviewers each see and do only what they should, and the applicant receives an in-app message after approval.
 
-## 接下来
+## Next
 
-- 读 [一个应用怎样做出来](intro/how-an-app-gets-built.md)，了解从这里到上线还有哪些步骤。
-- 读 [插件怎样工作](intro/how-plugins-work.md)，了解插件、组件和管理入口。
-- 按需求查 [能力总览](capabilities/index.md)，比如给订单加上多级审批、附件和每日提醒。
-- 准备上线时看 [部署与运维](operations/deployment.md)。
+- Read [How an app gets built](intro/how-an-app-gets-built.md) to see what steps remain between here and launch.
+- Read [How plugins work](intro/how-plugins-work.md) to learn about plugins, components, and admin entry points.
+- Look up [Capabilities overview](capabilities/index.md) by what you need, such as adding multi-level approval, attachments, and daily reminders to orders.
+- When you are ready to launch, see [Deployment](operations/deployment.md).
 
-## 常见问题
+## FAQ
 
-### Agent 没有按 NocoBase 的方式做，自己从头写了
+### The agent didn't follow NocoBase's way and wrote everything from scratch
 
-确认会话是在应用目录里新开的，并且 `.agents/skills/` 存在。目录缺失或过期时，在应用目录执行 `pnpm nocobase skills sync`，再开新会话。
+Make sure the session was started fresh in the app directory and that `.agents/skills/` exists. If the directory is missing or out of date, run `pnpm nocobase skills sync` in the app directory, then start a new session.
 
-### 打不开应用，或者地址不对
+### The app won't open, or the address is wrong
 
-使用 `pnpm dev` 输出的 `Local:` 地址，包括其中的应用路径（例如 `/main/`），不要只用端口号拼地址。应用没有启动时，执行 `pnpm nocobase config check`，按提示修复配置。
+Use the `Local:` address printed by `pnpm dev`, including the app path in it (for example `/main/`), and don't build the address from the port alone. If the app isn't running, run `pnpm nocobase config check` and fix the configuration as prompted.
 
-### 看不到「应用底座」
+### I can't see **App foundation**
 
-只有拥有全部权限的管理员能打开它。用初始管理员登录查看。
+Only administrators with full permissions can open it. Sign in as the initial administrator.

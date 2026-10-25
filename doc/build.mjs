@@ -1,18 +1,22 @@
 #!/usr/bin/env node
 // 生成 NocoBase 3 文档站和文档方案的 HTML。Markdown 是正文的唯一来源：
-//   src/**/*.md   → site/**/*.html（发布用的文档站，资源在 site/assets/；每次构建先清空 site/）
-//   方案/*.md     → 方案/*.html（团队内部的文档方案）
-// 文档站分三部分：开始（src/index.md、src/start/）、Core（src/core/）、Studio（src/studio/），顶栏切换，
-// 左侧菜单只列当前部分。页面就是普通的文档站：顶栏，左侧菜单，右侧正文。
-// 运行：node doc/build.mjs（需要 marked@4.3.0，复用上一级目录的 node_modules）。
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join, relative } from 'node:path';
+//   src/**/*.md         → dist/**（英文，站点根路径；src/zh-CN/ 除外）
+//   src/zh-CN/**/*.md   → dist/zh-CN/**（简体中文）
+//   方案/*.md            → 方案/*.html（团队内部的文档方案，不发布）
+// 两种语言的目录结构完全相同，页面的键就是它相对语言根目录的路径（不带 .md）。产物沿用 CDN 回源规则的约定：每页输出成
+// `<路径>/index.html`，地址不带扩展名、以 / 结尾，所有站内链接和资源都用根路径；根目录还有 404.html、
+// sitemap.xml、robots.txt、llms.txt，以及每页去掉 front matter 的 .md 副本。
+// 文档站分三部分：开始（index.md、start/）、Core（core/）、Studio（studio/），顶栏切换，左侧菜单只列当前部分。
+// 运行：node doc/build.mjs（需要 marked@4.3.0，先在 doc/ 执行 npm ci）。站点域名读 DOCS_SITE_ORIGIN，默认
+// https://docs.nocobase.com；输出目录读 DOCS_OUT_DIR，默认 doc/dist。本地预览：node doc/serve.mjs。
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, join, posix, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 
 const dir = dirname(fileURLToPath(import.meta.url));
 const dependency = [join(dir, 'node_modules/marked/lib/marked.esm.js'), join(dir, '../node_modules/marked/lib/marked.esm.js')].find(existsSync);
-if (!dependency) throw new Error('需要 marked@4.3.0：在 doc/ 或上一级目录执行 npm install marked@4.3.0。');
+if (!dependency) throw new Error('需要 marked@4.3.0：在 doc/ 执行 npm ci。');
 const { marked } = await import(pathToFileURL(dependency).href);
 
 const DATE = '2026-10-24';
@@ -21,36 +25,82 @@ const LUCIDE = 'https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js';
 const VERSION = createHash('sha1').update(readFileSync(join(dir, 'assets/docs.css'))).update(readFileSync(join(dir, 'assets/docs.js'))).digest('hex').slice(0, 8);
 const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
+// 站点域名只能是 origin：带路径、查询串或片段都报错，避免 canonical、sitemap 拼出错误的地址
+function siteOrigin(value) {
+  const url = new URL(value);
+  if (!/^https?:$/.test(url.protocol) || url.pathname !== '/' || url.search || url.hash || url.username || url.password) {
+    throw new Error(`DOCS_SITE_ORIGIN 只能是 https://域名 这样的 origin，收到的是 ${value}`);
+  }
+  return url.origin;
+}
+const SITE_ORIGIN = siteOrigin(process.env.DOCS_SITE_ORIGIN || 'https://docs.nocobase.com');
+const outDir = resolve(process.env.DOCS_OUT_DIR || join(dir, 'dist'));
+
+/* ---------- 语言。英文在站点根路径，其他语言在 /<语言>/ 下 ---------- */
+const LANGS = [
+  {
+    code: 'en',
+    prefix: '',
+    src: join(dir, 'src'),
+    figures: 'en',
+    label: 'English',
+    ui: {
+      site: 'NocoBase 3 Docs', docs: 'Docs', skip: 'Skip to content', sections: 'Documentation sections', links: 'Site links', menu: 'Contents',
+      menuLabel: 'Documentation menu', toc: 'On this page', pager: 'Pages', prev: 'Previous', next: 'Next', draft: 'Draft', website: 'Website',
+      websiteUrl: 'https://www.nocobase.com/', copy: 'Copy', copied: 'Copied', copyFailed: 'Copy failed', switchTo: 'Language',
+      callouts: { TIP: 'Tip', NOTE: 'Note', WARNING: 'Warning', PENDING: 'To be written' },
+      notFound: ['Page not found', 'The page you are looking for does not exist or has moved.', 'Back to the documentation home'],
+      untranslated: (href) => `This page has not been written in English yet. Read the <a href="${href}">Simplified Chinese version</a>.`,
+      unwritten: 'This page has not been written yet.',
+    },
+  },
+  {
+    code: 'zh-CN',
+    prefix: 'zh-CN/',
+    src: join(dir, 'src/zh-CN'),
+    label: '简体中文',
+    ui: {
+      site: 'NocoBase 3 文档', docs: '文档', skip: '跳到正文', sections: '文档分区', links: '站点链接', menu: '目录', menuLabel: '文档目录',
+      toc: '本页内容', pager: '翻页', prev: '上一页', next: '下一页', draft: '草稿', website: '官网', websiteUrl: 'https://www.nocobase.com/cn/',
+      copy: '复制', copied: '已复制', copyFailed: '复制失败', switchTo: '语言',
+      callouts: { TIP: '提示', NOTE: '说明', WARNING: '注意', PENDING: '待补充' },
+      notFound: ['页面不存在', '你要找的页面不存在，或者已经移动到别的地址。', '回到文档首页'],
+    },
+  },
+];
+const DEFAULT_LANG = LANGS[0];
+
 /* ---------- 左侧菜单。front matter 写了 status 的是待编写或模块开发中的占位页 ----------
-   每一部分的页面路径相对于 dir（src/ 下的目录）；菜单里的 { heading } 是分组内的小标题，不是页面。 */
+   每一部分的页面路径相对于 dir（语言根目录下的目录）；菜单里的 { heading } 是分组内的小标题，不是页面。
+   标题写成 [英文, 中文]。 */
 const SECTIONS = [
   {
     key: 'start',
-    title: '开始',
+    title: ['Start', '开始'],
     dir: '',
     nav: [
       { items: ['index'] },
-      { title: '开始', items: ['start/what-is-nocobase', 'start/editions', 'start/from-v2', 'start/glossary'] },
+      { title: ['Start', '开始'], items: ['start/what-is-nocobase', 'start/editions', 'start/from-v2', 'start/glossary'] },
     ],
   },
   {
     key: 'core',
-    title: 'Core',
+    title: ['Core', 'Core'],
     dir: 'core/',
     /* 顺序：先入门和开发应用，这是开发者都会读的；能力按「应用底座」页的 13 类排列；插件目录按能力分类排列；
        然后是部署与运维、扩展开发；最后是参考。 */
     nav: [
       { items: ['index'] },
-      { title: '入门', items: ['intro/what-is-core', 'intro/how-an-app-gets-built', 'intro/concepts', 'intro/how-plugins-work', 'quickstart'] },
+      { title: ['Get started', '入门'], items: ['intro/what-is-core', 'intro/how-an-app-gets-built', 'intro/concepts', 'intro/how-plugins-work', 'quickstart'] },
       {
-        title: '开发应用',
+        title: ['Build apps', '开发应用'],
         items: [
           'develop/working-with-agents', 'develop/app-structure', 'develop/plugins', 'develop/pages-and-ui-library',
           'develop/data-and-migrations', 'develop/api', 'develop/system-settings', 'develop/testing-and-acceptance', 'develop/upgrade',
         ],
       },
       {
-        title: '能力',
+        title: ['Capabilities', '能力'],
         items: [
           'capabilities/index', 'capabilities/data', 'capabilities/files', 'capabilities/users', 'capabilities/permissions',
           'capabilities/workflows', 'capabilities/ai-agents', 'capabilities/knowledge', 'capabilities/mail', 'capabilities/notifications',
@@ -58,57 +108,58 @@ const SECTIONS = [
         ],
       },
       {
-        title: '插件目录',
+        title: ['Plugin directory', '插件目录'],
         items: [
           'plugins/index',
-          { heading: '用户与权限' }, 'plugins/authentication', 'plugins/users', 'plugins/api-keys', 'plugins/authorization',
+          { heading: ['Users and permissions', '用户与权限'] }, 'plugins/authentication', 'plugins/users', 'plugins/api-keys', 'plugins/authorization',
           'plugins/authz-default-access', 'plugins/authz-sharing-rules', 'plugins/authz-restriction-rules',
-          { heading: '数据与文件' }, 'plugins/db', 'plugins/database-explorer', 'plugins/file', 'plugins/template-print',
-          { heading: '流程' }, 'plugins/lifecycle', 'plugins/scheduler', 'plugins/approval', 'plugins/task-center',
-          { heading: '消息' }, 'plugins/notification', 'plugins/notification-in-app', 'plugins/notification-providers',
+          { heading: ['Data and files', '数据与文件'] }, 'plugins/db', 'plugins/database-explorer', 'plugins/file', 'plugins/template-print',
+          { heading: ['Processes', '流程'] }, 'plugins/lifecycle', 'plugins/scheduler', 'plugins/approval', 'plugins/task-center',
+          { heading: ['Messages', '消息'] }, 'plugins/notification', 'plugins/notification-in-app', 'plugins/notification-providers',
           'plugins/notification-web-push', 'plugins/mail',
-          { heading: 'AI 与 Agent' }, 'plugins/agents', 'plugins/agent-sessions', 'plugins/knowledge',
-          { heading: '界面与运维' }, 'plugins/i18n', 'plugins/foundation',
-          { heading: '研发协作' }, 'plugins/projects', 'plugins/releases',
-          { heading: '基础库与工具' }, 'plugins/libraries', 'plugins/ui-library', 'plugins/tools',
+          { heading: ['AI and agents', 'AI 与 Agent'] }, 'plugins/agents', 'plugins/agent-sessions', 'plugins/knowledge',
+          { heading: ['Interface and operations', '界面与运维'] }, 'plugins/i18n', 'plugins/foundation',
+          { heading: ['Development collaboration', '研发协作'] }, 'plugins/projects', 'plugins/releases',
+          { heading: ['Libraries and tools', '基础库与工具'] }, 'plugins/libraries', 'plugins/ui-library', 'plugins/tools',
         ],
       },
       {
-        title: '部署与运维',
+        title: ['Deployment and operations', '部署与运维'],
         items: [
           'operations/deployment', 'operations/config', 'operations/database', 'operations/storage', 'operations/jobs-and-scaling',
           'operations/upgrade-and-rollback', 'operations/backup', 'operations/logs-and-health', 'operations/security',
         ],
       },
-      { title: '扩展开发', items: ['extend/when-to-write-a-plugin', 'extend/create-plugin', 'extend/plugin-structure', 'extend/publish', 'extend/skills', 'extend/ui-library'] },
-      { title: '参考', items: ['reference/cli', 'reference/config', 'reference/http-api', 'reference/packages', 'reference/faq'] },
+      { title: ['Extend', '扩展开发'], items: ['extend/when-to-write-a-plugin', 'extend/create-plugin', 'extend/plugin-structure', 'extend/publish', 'extend/skills', 'extend/ui-library'] },
+      { title: ['Reference', '参考'], items: ['reference/cli', 'reference/config', 'reference/http-api', 'reference/packages', 'reference/faq'] },
     ],
   },
   {
     key: 'studio',
-    title: 'Studio',
+    title: ['Studio', 'Studio'],
     dir: 'studio/',
     /* 顺序：按一家公司用起 Studio 的先后。入门之后，一个人先搭建（从安装到走完第一个需求、邀请成员），
        同事再加入（连接自己的电脑和运行环境），然后是日常使用、管理项目和系统管理。每组给一种角色看，
        组里的页面按这个角色做事的先后排列；见 方案/11-Studio文档重构方案.md。 */
     nav: [
       { items: ['index'] },
-      { title: '入门', items: ['intro/what-is-studio', 'intro/how-a-request-gets-done', 'intro/agent-team', 'intro/concepts'] },
+      { title: ['Get started', '入门'], items: ['intro/what-is-studio', 'intro/how-a-request-gets-done', 'intro/agent-team', 'intro/concepts'] },
       {
-        title: '搭建 Studio',
+        title: ['Set up Studio', '搭建 Studio'],
         items: ['setup/install', 'setup/git', 'setup/shared-runtimes', 'setup/agents', 'setup/new-project', 'setup/ci', 'setup/first-request', 'setup/invite'],
       },
-      { title: '加入团队', items: ['join/sign-in', 'join/connect-computer', 'join/local-agent', 'join/personal-runtime'] },
-      { title: '日常使用', items: ['use/raise-a-request', 'use/sessions', 'use/my-tasks', 'use/follow-progress', 'use/answer', 'use/accept', 'use/inbox'] },
+      { title: ['Join the team', '加入团队'], items: ['join/sign-in', 'join/connect-computer', 'join/local-agent', 'join/personal-runtime'] },
+      { title: ['Daily use', '日常使用'], items: ['use/raise-a-request', 'use/sessions', 'use/my-tasks', 'use/follow-progress', 'use/answer', 'use/accept', 'use/inbox'] },
       {
-        title: '管理项目',
+        title: ['Manage projects', '管理项目'],
         items: ['project/settings', 'project/skills', 'project/knowledge-base', 'project/checks-and-review', 'project/project-memory', 'project/release', 'project/progress', 'project/usage'],
       },
-      { title: '系统管理', items: ['admin/environments', 'admin/members-and-roles', 'admin/api-keys', 'admin/notifications', 'admin/upgrade-and-backup'] },
-      { title: '参考', items: ['reference/statuses-and-permissions', 'reference/cli', 'reference/config', 'reference/faq'] },
+      { title: ['Administration', '系统管理'], items: ['admin/environments', 'admin/members-and-roles', 'admin/api-keys', 'admin/notifications', 'admin/upgrade-and-backup'] },
+      { title: ['Reference', '参考'], items: ['reference/statuses-and-permissions', 'reference/cli', 'reference/config', 'reference/faq'] },
     ],
   },
 ];
+const textOf = (pair, lang) => (Array.isArray(pair) ? pair[lang === DEFAULT_LANG ? 0 : 1] : pair);
 
 /* 文档方案按菜单分组；上一篇 / 下一篇按这里的顺序 */
 const PLAN_GROUPS = [
@@ -116,9 +167,18 @@ const PLAN_GROUPS = [
   { title: 'Studio 文档', items: ['11-Studio文档重构方案', '01-现有文档的问题', '02-文档结构与写作原则', '03-命名方案', '04-写作规范与术语', '05-进度与待确认事项'] },
 ];
 
+/* ---------- 地址 ---------- */
+// 页面的键是它相对语言根目录的路径；地址不带扩展名，一律以 / 结尾，和页面输出成 <路径>/index.html 的目录结构一致。
+// CDN 对不带 / 的地址同样回源到这个文件，canonical 和站内链接只用带 / 的写法。
+const pathOf = (key) => (key === 'index' ? '' : key.endsWith('/index') ? key.slice(0, -'index'.length) : `${key}/`);
+const urlOf = (lang, key) => `/${lang.prefix}${pathOf(key)}`;
+// .md 副本：栏目首页是 <栏目>/index.md，其余是 <页面>.md，正文里的相对 .md 链接因此可以原样使用
+const mdUrlOf = (lang, key) => `/${lang.prefix}${key}.md`;
+const htmlFileOf = (lang, key) => join(outDir, lang.prefix, pathOf(key), 'index.html');
+
 /* ---------- Markdown 渲染 ---------- */
 function frontMatter(source) {
-  const match = /^---\n([\s\S]*?)\n---\n/.exec(source);
+  const match = /^---\n([\s\S]*?)\n---\n?/.exec(source);
   if (!match) return { meta: {}, body: source };
   const meta = {};
   for (const line of match[1].split('\n')) {
@@ -131,15 +191,17 @@ function frontMatter(source) {
 const slugOf = (text) => text.replace(/<[^>]+>/g, '').replace(/&[a-z#0-9]+;/gi, '').trim().toLowerCase()
   .replace(/[\s/]+/g, '-').replace(/[^\p{L}\p{N}\-]/gu, '').replace(/-+/g, '-').replace(/^-|-$/g, '') || 'section';
 
-const CALLOUTS = { TIP: ['tip', '提示'], NOTE: ['note', '说明'], WARNING: ['warning', '注意'], PENDING: ['pending', '待补充'] };
+const FIGURE_LINE = /^::figure[ \t]+([\w+-]+)((?:[ \t]+[\w-]+)*)[ \t]*(?:\|[ \t]*(.*))?$/gm;
 
-// 局部配图：正文里单独一行写 `::figure 名称[+名称] [附加类名] | 说明`，内容取自 src/figures/名称.html。
-function withFigures(markdown) {
+// 局部配图：正文里单独一行写 `::figure 名称[+名称] [附加类名] | 说明`，内容取自 figures/名称.html；英文页面优先用
+// figures/en/名称.html，还没有英文版的配图沿用中文版。
+function withFigures(markdown, lang) {
   const figures = [];
-  const source = markdown.replace(/^::figure[ \t]+([\w+-]+)((?:[ \t]+[\w-]+)*)[ \t]*(?:\|[ \t]*(.*))?$/gm, (_, names, classes, caption) => {
+  const source = markdown.replace(FIGURE_LINE, (_, names, classes, caption) => {
     const parts = names.split('+').map((name) => {
-      const file = join(dir, 'src/figures', `${name}.html`);
-      if (!existsSync(file)) throw new Error(`缺少配图 src/figures/${name}.html`);
+      const localized = lang?.figures && join(dir, 'figures', lang.figures, `${name}.html`);
+      const file = localized && existsSync(localized) ? localized : join(dir, 'figures', `${name}.html`);
+      if (!existsSync(file)) throw new Error(`缺少配图 figures/${name}.html`);
       return readFileSync(file, 'utf8').trim();
     });
     figures.push(`<figure class="fig${classes.replace(/\s+/g, ' ')}">${parts.join('')}${caption ? `<figcaption>${marked.parseInline(caption)}</figcaption>` : ''}</figure>`);
@@ -148,8 +210,9 @@ function withFigures(markdown) {
   return { source, figures };
 }
 
-function render(markdown) {
-  const { source, figures } = withFigures(markdown);
+// resolveLink 把正文里的相对链接换成最终地址；解析不到的站内链接让构建失败，免得发布出死链
+function render(markdown, { lang, ui, resolveLink = (href) => href }) {
+  const { source, figures } = withFigures(markdown, lang);
   const used = new Map();
   const headings = [];
   const renderer = {
@@ -164,15 +227,15 @@ function render(markdown) {
     code(code, info) {
       const lang = (info || '').trim().split(/\s+/)[0];
       const wrap = ['text', 'prompt'].includes(lang) ? ' wrap' : '';
-      return `<div class="code-block${wrap}"><button type="button" class="copy-button">复制</button><pre><code>${escape(code)}</code></pre></div>\n`;
+      return `<div class="code-block${wrap}"><button type="button" class="copy-button" data-copied="${escape(ui.copied)}" data-failed="${escape(ui.copyFailed)}">${escape(ui.copy)}</button><pre><code>${escape(code)}</code></pre></div>\n`;
     },
     blockquote(quote) {
       const m = /^<p>\[!(TIP|NOTE|WARNING|PENDING)\][ \t]*([^\n<]*)\n?/.exec(quote);
       if (!m) return `<blockquote>\n${quote}</blockquote>\n`;
-      const [kind, fallback] = CALLOUTS[m[1]];
+      const kind = m[1].toLowerCase();
       const rest = quote.slice(m[0].length).replace(/^<\/p>\n?/, '');
       const body = rest.trim() ? (rest.startsWith('<') ? rest : `<p>${rest}`) : '';
-      return `<div class="note ${kind}"><strong>${m[2].trim() || fallback}</strong>${body}</div>\n`;
+      return `<div class="note ${kind}"><strong>${m[2].trim() || ui.callouts[m[1]]}</strong>${body}</div>\n`;
     },
     table(header, body) {
       return `<div class="table-wrap"><table>\n<thead>\n${header}</thead>\n<tbody>${body}</tbody></table></div>\n`;
@@ -181,8 +244,7 @@ function render(markdown) {
       return `<figure class="fig"><img src="${escape(href)}" alt="${escape(text)}" loading="lazy"><figcaption>${text}</figcaption></figure>`;
     },
     link(href, title, text) {
-      let target = href || '';
-      if (!/^[a-z]+:/i.test(target)) target = target.replace(/\.md(#|$)/, '.html$1');
+      const target = resolveLink(href || '');
       const external = /^https?:/i.test(target) ? ' target="_blank" rel="noopener"' : '';
       return `<a href="${escape(target)}"${title ? ` title="${escape(title)}"` : ''}${external}>${text}</a>`;
     },
@@ -191,34 +253,37 @@ function render(markdown) {
   const html = marked.parse(source, { gfm: true, headerIds: false, mangle: false, renderer: instance })
     .replace(/<p>(<figure[\s\S]*?<\/figure>)<\/p>/g, '$1')
     .replace(/<div data-figure="(\d+)"><\/div>/g, (_, i) => figures[Number(i)])
-    .replace(/<p><strong>完成的标志<\/strong>：/g, '<p class="done"><strong>完成的标志</strong>');
+    .replace(/<p><strong>完成的标志<\/strong>：/g, '<p class="done"><strong>完成的标志</strong>')
+    .replace(/<p><strong>Done when<\/strong>:\s*/g, '<p class="done"><strong>Done when</strong>');
   return { html, headings };
 }
 
 /* ---------- 页面外壳 ---------- */
-function shell({ title, description, crumb, body, toc, menu, pager, base, home, footerLinks, tabs = '' }) {
+// head 是 canonical、hreflang 等额外的 <head> 内容；base 是资源的前缀，文档站用根路径 /，文档方案用相对路径
+function shell({ lang, title, description, crumb, body, toc, menu, pager, base, home, footerLinks = '', tabs = '', head = '', switcher = '', robots = '' }) {
+  const { ui } = lang;
   return `<!doctype html>
-<html lang="zh-CN">
+<html lang="${lang.code}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escape(title)} - NocoBase 3 文档</title>
+<title>${escape(title)} - ${escape(ui.site)}</title>
 <meta name="description" content="${escape(description || title)}">
-<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+${robots ? `<meta name="robots" content="${robots}">\n` : ''}${head}<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="${base}assets/docs.css?v=${VERSION}">
 </head>
 <body>
-<a class="skip-link" href="#content">跳到正文</a>
+<a class="skip-link" href="#content">${escape(ui.skip)}</a>
 <header class="topbar">
-<a class="brand" href="${home}"><img class="brand-logo" src="${base}assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
-${tabs ? `<nav class="sections" aria-label="文档分区">${tabs}</nav>` : ''}
-<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+<a class="brand" href="${home}"><img class="brand-logo" src="${base}assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">${escape(ui.docs)}</span></a>
+${tabs ? `<nav class="sections" aria-label="${escape(ui.sections)}">${tabs}</nav>` : ''}
+<nav class="toplinks" aria-label="${escape(ui.links)}">${switcher}<a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="${ui.websiteUrl}" target="_blank" rel="noopener">${escape(ui.website)} ↗</a></nav>
 </header>
 <div class="layout">
-<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录">${menu}</nav></details></aside>
+<aside class="sidebar"><details class="menu" open><summary>${escape(ui.menu)}</summary><nav aria-label="${escape(ui.menuLabel)}">${menu}</nav></details></aside>
 <main id="content" class="content">
 ${crumb ? `<p class="crumb">${escape(crumb)}</p>` : ''}<h1>${escape(title)}</h1>
 ${description ? `<p class="lead">${escape(description)}</p>` : ''}
@@ -226,9 +291,9 @@ ${description ? `<p class="lead">${escape(description)}</p>` : ''}
 ${body}
 </article>
 ${pager}
-<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 ${DATE}</span><span>${footerLinks}</span></footer>
+<footer class="page-foot"><span>${escape(ui.site)} · ${escape(ui.draft)} ${DATE}</span><span>${footerLinks}</span></footer>
 </main>
-<aside class="toc" aria-label="本页内容">${toc}</aside>
+<aside class="toc" aria-label="${escape(ui.toc)}">${toc}</aside>
 </div>
 <script src="${LUCIDE}"></script>
 <script src="${base}assets/docs.js?v=${VERSION}"></script>
@@ -242,96 +307,246 @@ const menuOf = (groups, current) => groups.map((group) => `<div class="menu-grou
   : `<li><a href="${x.href}"${x.todo ? ' class="todo"' : ''}${x.key === current ? ' aria-current="page"' : ''}>${escape(x.label)}</a></li>`).join('')}</ul></div>`).join('');
 
 // 右侧的本页目录：列出二级标题
-const tocOf = (headings) => headings.length < 2 ? '' :
-  `<p class="toc-title">本页内容</p><ul>${headings.map((h) => `<li><a href="#${encodeURIComponent(h.id)}">${escape(h.text)}</a></li>`).join('')}</ul>`;
+const tocOf = (headings, ui) => headings.length < 2 ? '' :
+  `<p class="toc-title">${escape(ui.toc)}</p><ul>${headings.map((h) => `<li><a href="#${encodeURIComponent(h.id)}">${escape(h.text)}</a></li>`).join('')}</ul>`;
 
-const pagerOf = (prev, next) => `<nav class="pager" aria-label="翻页">${prev ? `<a class="prev" href="${prev.href}"><small>上一页</small>${escape(prev.title)}</a>` : '<span></span>'}${next ? `<a class="next" href="${next.href}"><small>下一页</small>${escape(next.title)}</a>` : ''}</nav>`;
+const pagerOf = (prev, next, ui) => `<nav class="pager" aria-label="${escape(ui.pager)}">${prev ? `<a class="prev" href="${prev.href}"><small>${escape(ui.prev)}</small>${escape(prev.title)}</a>` : '<span></span>'}${next ? `<a class="next" href="${next.href}"><small>${escape(ui.next)}</small>${escape(next.title)}</a>` : ''}</nav>`;
 
-/* ---------- 文档站 ---------- */
-const srcDir = join(dir, 'src');
-const siteDir = join(dir, 'site');
-// 页面的键是它在 src/ 下的路径（不带 .md），也是它在 site/ 下的路径
-const pages = new Map();
+/* ---------- 读取页面 ---------- */
+// 列出语言根目录下的全部 Markdown 页面键；英文的根目录里有 zh-CN/，要跳过其他语言的目录
+function pageKeysIn(root) {
+  const skip = new Set(LANGS.filter((l) => l.prefix).map((l) => join(DEFAULT_LANG.src, l.prefix.slice(0, -1))));
+  const keys = [];
+  const walk = (folder) => {
+    for (const entry of readdirSync(folder, { withFileTypes: true })) {
+      const path = join(folder, entry.name);
+      if (entry.isDirectory()) { if (!skip.has(path)) walk(path); } else if (entry.name.endsWith('.md')) keys.push(relative(root, path).split('\\').join('/').slice(0, -3));
+    }
+  };
+  walk(root);
+  return keys.sort();
+}
+
+// pages：语言代码 → 页面键 → { meta, body, group, section }
+const pages = new Map(LANGS.map((lang) => [lang.code, new Map()]));
+const problems = [];
 for (const section of SECTIONS) {
-  section.groups = section.nav.map((group) => ({
-    title: group.title,
-    items: group.items.map((item) => (typeof item === 'string' ? `${section.dir}${item}` : item)),
-  }));
-  for (const group of section.groups) {
-    for (const page of group.items) {
-      if (typeof page !== 'string') continue;
-      const file = join(srcDir, `${page}.md`);
-      if (!existsSync(file)) throw new Error(`缺少 ${relative(dir, file)}`);
-      const { meta, body } = frontMatter(readFileSync(file, 'utf8'));
-      pages.set(page, { meta, body, group: group.title, section });
+  section.keys = section.nav.flatMap((group) => group.items.filter((item) => typeof item === 'string').map((item) => `${section.dir}${item}`));
+}
+for (const lang of LANGS) {
+  const langPages = pages.get(lang.code);
+  for (const section of SECTIONS) {
+    for (const group of section.nav) {
+      for (const item of group.items) {
+        if (typeof item !== 'string') continue;
+        const key = `${section.dir}${item}`;
+        const file = join(lang.src, `${key}.md`);
+        if (!existsSync(file)) { problems.push(`菜单里有、源文件里没有：${relative(dir, file)}`); continue; }
+        const { meta, body } = frontMatter(readFileSync(file, 'utf8'));
+        if (!meta.title) problems.push(`缺少 title：${relative(dir, file)}`);
+        langPages.set(key, { meta, body, group: group.title, section });
+      }
     }
   }
-  // 上一页 / 下一页只在同一部分里、已经写好的页面之间跳
-  section.order = section.groups.flatMap((g) => g.items).filter((p) => typeof p === 'string' && !pages.get(p).meta.status);
+  for (const key of pageKeysIn(lang.src)) {
+    if (!langPages.has(key)) problems.push(`源文件里有、菜单里没有：${relative(dir, join(lang.src, `${key}.md`))}`);
+  }
+}
+if (problems.length) throw new Error(`文档结构有问题：\n${problems.join('\n')}`);
+
+/* ---------- 文档站 ---------- */
+rmSync(outDir, { recursive: true, force: true });
+mkdirSync(join(outDir, 'assets'), { recursive: true });
+cpSync(join(dir, 'assets'), join(outDir, 'assets'), { recursive: true });
+
+const absolute = (path) => `${SITE_ORIGIN}${path}`;
+const alternatesOf = (key) => LANGS.filter((l) => pages.get(l.code).has(key)).map((l) => ({ lang: l, url: absolute(urlOf(l, key)) }));
+const headOf = (lang, key, title) => {
+  const alternates = alternatesOf(key);
+  return [
+    `<link rel="canonical" href="${absolute(urlOf(lang, key))}">`,
+    ...alternates.map((a) => `<link rel="alternate" hreflang="${a.lang.code}" href="${a.url}">`),
+    `<link rel="alternate" hreflang="x-default" href="${absolute(urlOf(DEFAULT_LANG, key))}">`,
+    `<meta property="og:type" content="website">`,
+    `<meta property="og:site_name" content="${escape(lang.ui.site)}">`,
+    `<meta property="og:title" content="${escape(title)}">`,
+    `<meta property="og:url" content="${absolute(urlOf(lang, key))}">`,
+    `<meta property="og:locale" content="${lang.code.replace('-', '_')}">`,
+  ].join('\n') + '\n';
+};
+const switcherOf = (lang, key) => LANGS.filter((l) => l !== lang).map((l) => `<a href="${urlOf(l, pages.get(l.code).has(key) ? key : 'index')}" hreflang="${l.code}" lang="${l.code}">${escape(l.label)}</a>`).join('');
+
+const brokenLinks = [];
+// 正文里的相对 .md 链接按页面所在目录解析成页面键，再换成同一语言的地址；锚点保留
+function linkResolver(lang, key) {
+  return (href) => {
+    if (!href || /^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith('#') || href.startsWith('/')) return href;
+    const [path, hash = ''] = href.split('#');
+    const target = posix.normalize(posix.join(posix.dirname(key), path)).slice(0, -3);
+    if (!path.endsWith('.md') || !pages.get(lang.code).has(target)) {
+      brokenLinks.push(`${lang.prefix}${key}.md → ${href}`);
+      return href;
+    }
+    return `${urlOf(lang, target)}${hash ? `#${hash}` : ''}`;
+  };
 }
 
-rmSync(siteDir, { recursive: true, force: true });
-mkdirSync(join(siteDir, 'assets'), { recursive: true });
-cpSync(join(dir, 'assets'), join(siteDir, 'assets'), { recursive: true });
-if (existsSync(join(srcDir, 'images'))) cpSync(join(srcDir, 'images'), join(siteDir, 'images'), { recursive: true });
+const sitemapEntries = [];
+for (const lang of LANGS) {
+  const langPages = pages.get(lang.code);
+  const { ui } = lang;
+  for (const section of SECTIONS) {
+    section.order = section.keys.filter((key) => !langPages.get(key).meta.status);
+  }
+  for (const [key, info] of langPages) {
+    const { section, meta } = info;
+    const menu = menuOf(section.nav.map((group) => ({
+      title: textOf(group.title, lang),
+      items: group.items.map((item) => {
+        if (typeof item !== 'string') return { heading: textOf(item.heading, lang) };
+        const p = `${section.dir}${item}`;
+        const m = langPages.get(p).meta;
+        return { key: p, href: urlOf(lang, p), label: m.nav || m.title, todo: Boolean(m.status) };
+      }),
+    })), key);
+    const tabs = SECTIONS.map((s) => `<a href="${urlOf(lang, `${s.dir}index`)}"${s === section ? ' aria-current="true"' : ''}>${escape(textOf(s.title, lang))}</a>`).join('');
+    // 上一页 / 下一页只在同一部分里、已经写好的页面之间跳
+    const i = section.order.indexOf(key);
+    const link = (p) => p && { href: urlOf(lang, p), title: langPages.get(p).meta.title };
+    const pager = i < 0 ? '' : pagerOf(link(section.order[i - 1]), link(section.order[i + 1]), ui);
+    let markdown = info.body;
+    // 还没有英文的占位页：指向写好了的其他语言版本
+    if (meta.status && !markdown.trim() && lang !== LANGS[1]) {
+      const zh = pages.get(LANGS[1].code).get(key);
+      markdown = zh && !zh.meta.status ? `<p>${ui.untranslated(urlOf(LANGS[1], key))}</p>` : `<p>${ui.unwritten}</p>`;
+    }
+    const r = render(markdown, { lang, ui, resolveLink: linkResolver(lang, key) });
+    const out = htmlFileOf(lang, key);
+    mkdirSync(dirname(out), { recursive: true });
+    writeFileSync(out, shell({
+      lang,
+      title: meta.title,
+      description: meta.description,
+      crumb: [section.key === 'start' ? '' : textOf(section.title, lang), textOf(info.group, lang)].filter(Boolean).join(' · '),
+      body: r.html.replaceAll('{{base}}', '/'),
+      toc: tocOf(r.headings, ui),
+      menu,
+      tabs,
+      pager,
+      base: '/',
+      home: urlOf(lang, 'index'),
+      head: headOf(lang, key, meta.title),
+      switcher: switcherOf(lang, key),
+    }));
+    // .md 副本：给 Agent 和 llms.txt 用，配图行换成它的说明
+    const md = `# ${meta.title}\n\n${meta.description ? `> ${meta.description}\n\n` : ''}${info.body.replace(FIGURE_LINE, (_, names, classes, caption) => (caption ? `*${caption}*` : '')).trim()}\n`;
+    const mdOut = join(outDir, lang.prefix, `${key}.md`);
+    mkdirSync(dirname(mdOut), { recursive: true });
+    writeFileSync(mdOut, md);
+    sitemapEntries.push({ lang, key });
+  }
 
-for (const [page, info] of pages) {
-  const { section } = info;
-  const base = '../'.repeat(page.split('/').length - 1);
-  const hrefOf = (p) => `${base}${p}.html`;
-  const menu = menuOf(section.groups.map((g) => ({
-    title: g.title,
-    items: g.items.map((p) => (typeof p === 'string'
-      ? { key: p, href: hrefOf(p), label: pages.get(p).meta.nav || pages.get(p).meta.title, todo: Boolean(pages.get(p).meta.status) }
-      : p)),
-  })), page);
-  const tabs = SECTIONS.map((s) => `<a href="${hrefOf(`${s.dir}index`)}"${s === section ? ' aria-current="true"' : ''}>${escape(s.title)}</a>`).join('');
-  const i = section.order.indexOf(page);
-  const link = (p) => p && { href: hrefOf(p), title: pages.get(p).meta.title };
-  const pager = i < 0 ? '' : pagerOf(link(section.order[i - 1]), link(section.order[i + 1]));
-  const out = join(siteDir, `${page}.html`);
-  mkdirSync(dirname(out), { recursive: true });
-  writeFileSync(out, shell({
-    title: info.meta.title,
-    description: info.meta.description,
-    crumb: [section.key === 'start' ? '' : section.title, info.group].filter(Boolean).join(' · '),
-    ...(() => { const r = render(info.body); return { body: r.html.replaceAll('{{base}}', base), toc: tocOf(r.headings) }; })(),
-    menu,
-    tabs,
-    pager,
-    base,
-    home: `${base}index.html`,
-    footerLinks: `<a href="${base}../方案/${encodeURI(PLAN_GROUPS[0].items[0])}.html">文档方案</a>`,
+  // 404：CDN 回源找不到文件时返回它；英文的放在根目录，发布时还要单独传一份到 bucket 根目录
+  const home = urlOf(lang, 'index');
+  const [title, lead, back] = ui.notFound;
+  mkdirSync(join(outDir, lang.prefix), { recursive: true });
+  writeFileSync(join(outDir, lang.prefix, '404.html'), shell({
+    lang,
+    title,
+    description: lead,
+    body: `<p><a href="${home}">${escape(back)}</a></p>`,
+    toc: '',
+    menu: menuOf([{ items: SECTIONS.map((s) => ({ key: s.key, href: urlOf(lang, `${s.dir}index`), label: textOf(s.title, lang) })) }], ''),
+    tabs: SECTIONS.map((s) => `<a href="${urlOf(lang, `${s.dir}index`)}">${escape(textOf(s.title, lang))}</a>`).join(''),
+    pager: '',
+    base: '/',
+    home,
+    robots: 'noindex',
+    switcher: switcherOf(lang, 'index'),
   }));
+
+  // llms.txt：按部分和分组列出页面，链接指向 .md 副本
+  const llms = [`# ${ui.site}`, '', `> ${pages.get(lang.code).get('index').meta.description || ui.site}`, ''];
+  for (const section of SECTIONS) {
+    llms.push(`## ${textOf(section.title, lang)}`, '');
+    for (const group of section.nav) {
+      const title = textOf(group.title, lang);
+      if (title) llms.push(`### ${title}`, '');
+      for (const item of group.items) {
+        if (typeof item !== 'string') continue;
+        const key = `${section.dir}${item}`;
+        const { meta } = langPages.get(key);
+        llms.push(`- [${meta.title}](${absolute(mdUrlOf(lang, key))})${meta.description ? `: ${meta.description}` : ''}`);
+      }
+      llms.push('');
+    }
+  }
+  writeFileSync(join(outDir, lang.prefix, 'llms.txt'), llms.join('\n'));
 }
-console.log(`文档站：已生成 ${pages.size} 页 → ${relative(process.cwd(), siteDir)}/`);
+
+if (brokenLinks.length) throw new Error(`正文里有 ${brokenLinks.length} 个链接指向不存在的页面（站内链接要写成相对的 .md 路径）：\n${brokenLinks.join('\n')}`);
+
+// sitemap：每个页面一条，带上各语言版本的 alternate
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+  ...sitemapEntries.map(({ lang, key }) => [
+    `<url><loc>${absolute(urlOf(lang, key))}</loc>`,
+    ...alternatesOf(key).map((a) => `<xhtml:link rel="alternate" hreflang="${a.lang.code}" href="${a.url}"/>`),
+    `<xhtml:link rel="alternate" hreflang="x-default" href="${absolute(urlOf(DEFAULT_LANG, key))}"/></url>`,
+  ].join('')),
+  '</urlset>',
+  '',
+].join('\n');
+writeFileSync(join(outDir, 'sitemap.xml'), sitemap);
+writeFileSync(join(outDir, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${absolute('/sitemap.xml')}\n`);
+
+// 自检：sitemap 里的每个地址都有对应的 index.html，页面里的站内链接都指向生成了的页面，带锚点的链接指向页面里存在的标题
+const htmlOf = new Map();
+for (const { lang, key } of sitemapEntries) {
+  if (!existsSync(htmlFileOf(lang, key))) throw new Error(`缺少产物 ${relative(outDir, htmlFileOf(lang, key))}`);
+  htmlOf.set(urlOf(lang, key), readFileSync(htmlFileOf(lang, key), 'utf8'));
+}
+const idsOf = new Map([...htmlOf].map(([url, html]) => [url, new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1].replace(/&amp;/g, '&')))]));
+const deadLinks = [];
+for (const [url, html] of htmlOf) {
+  for (const [, href] of html.matchAll(/href="(\/[^"?]*)/g)) {
+    const [path, hash] = href.split('#');
+    if (path.startsWith('/assets/')) continue;
+    if (!htmlOf.has(path)) deadLinks.push(`${url} → ${href}（页面不存在）`);
+    else if (hash && !idsOf.get(path).has(decodeURIComponent(hash))) deadLinks.push(`${url} → ${href}（页面里没有这个锚点）`);
+  }
+}
+if (deadLinks.length) throw new Error(`有 ${deadLinks.length} 个站内链接指向不存在的页面或锚点：\n${deadLinks.join('\n')}`);
+console.log(`文档站：已生成 ${sitemapEntries.length} 页（${LANGS.map((l) => `${l.code} ${pages.get(l.code).size}`).join('，')}）→ ${relative(process.cwd(), outDir) || '.'}/，站点域名 ${SITE_ORIGIN}`);
 
 /* ---------- 文档方案 ---------- */
+const zh = LANGS[1];
 const planDir = join(dir, '方案');
 const plans = PLAN_GROUPS.flatMap((group) => group.items.map((name) => {
   const { meta, body } = frontMatter(readFileSync(join(planDir, `${name}.md`), 'utf8'));
   return { name, meta, body, group: group.title };
 }));
 const planHref = (name) => `${encodeURI(name)}.html`;
-const planMenu = (current) => menuOf([
-  ...PLAN_GROUPS.map((group) => ({
-    title: group.title,
-    items: group.items.map((name) => ({ key: name, href: planHref(name), label: plans.find((p) => p.name === name).meta.title })),
-  })),
-  { title: '文档草稿', items: [{ key: 'site', href: '../site/index.html', label: '打开文档站' }] },
-], current);
+const planMenu = (current) => menuOf(PLAN_GROUPS.map((group) => ({
+  title: group.title,
+  items: group.items.map((name) => ({ key: name, href: planHref(name), label: plans.find((p) => p.name === name).meta.title })),
+})), current);
 for (const [i, plan] of plans.entries()) {
   const link = (p) => p && { href: planHref(p.name), title: p.meta.title };
+  const r = render(plan.body, { ui: zh.ui, resolveLink: (href) => (/^[a-z]+:/i.test(href) ? href : href.replace(/\.md(#|$)/, '.html$1')) });
   writeFileSync(join(planDir, `${plan.name}.html`), shell({
+    lang: zh,
     title: plan.meta.title,
     description: plan.meta.description,
     crumb: `文档方案 · ${plan.group}`,
-    ...(() => { const r = render(plan.body); return { body: r.html.replaceAll('{{base}}', '../site/'), toc: tocOf(r.headings) }; })(),
+    body: r.html.replaceAll('{{base}}', '../'),
+    toc: tocOf(r.headings, zh.ui),
     menu: planMenu(plan.name),
-    pager: pagerOf(link(plans[i - 1]), link(plans[i + 1])),
-    base: '../site/',
-    home: '../site/index.html',
-    footerLinks: '<a href="../site/index.html">文档站</a>',
+    pager: pagerOf(link(plans[i - 1]), link(plans[i + 1]), zh.ui),
+    base: '../',
+    home: planHref(plans[0].name),
+    footerLinks: '文档站用 node doc/serve.mjs 预览',
   }));
 }
 console.log(`文档方案：已生成 ${plans.length} 篇 → ${relative(process.cwd(), planDir)}/`);

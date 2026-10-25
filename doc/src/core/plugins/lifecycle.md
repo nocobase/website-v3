@@ -1,35 +1,35 @@
 ---
-title: 记录生命周期
-status: 待补充正文
-description: 基础库。记录的状态保存在它自己的字段里，状态之间的流转在代码里声明，流转之后要做的事在提交后执行、失败可以重试。NocoBase 3 的流程和审批都建在它上面。
+title: Record lifecycle
+status: Body to be completed
+description: A foundation library. A record's status is stored in its own field, transitions between statuses are declared in code, and follow-up steps run after commit and can be retried on failure. NocoBase 3 workflows and approvals are built on it.
 ---
 
-> [!PENDING] 正文待编写
-> 档案来自 NocoBase 仓库 `v3-develop` 分支（2026-10-23）。NocoBase 2 的工作流插件已于 2026-10-10 删除，流程改用记录生命周期实现。
+> [!PENDING] Body to be written
+> The profile comes from the NocoBase repository's `v3-develop` branch (2026-10-23). The NocoBase 2 workflow plugin was removed on 2026-10-10, and workflows are now built with the record lifecycle.
 
-## 档案
+## Profile
 
 | | |
 | --- | --- |
-| 包名 | `@nocobase/lifecycle` |
-| 版本 | 0.1.0-beta.3 |
-| 版本范围 | <span class="tag">开源</span> |
-| 默认模板 | 已包含 |
-| 类型 | 基础库，直接使用，不需要注册 |
-| 入口 | `@nocobase/lifecycle`（定义、运行时、存储、流程图描述）、`/jobs`（对外事项执行、时限检查、恢复）、`/react`（读取记录、可办操作、提交）、`/testing` |
-| UI 组件 | UI 组件库的 `lifecycle-diagram`（流程图）、`workflow-management`（「流程管理」页面）、`flow-diagram` |
-| 数据表 | 应用自己的业务表上加状态、状态时间和版本字段；处理历史和对外事项由应用的迁移创建 |
-| 技能 | 应用开发技能里的“记录生命周期”“流程参数”“流程界面”三篇参考 |
-| 所属能力 | [工作流与审批](../capabilities/workflows.md) |
+| Package | `@nocobase/lifecycle` |
+| Version | 0.1.0-beta.3 |
+| Edition | <span class="tag">Open source</span> |
+| Default template | Included |
+| Type | Foundation library, used directly, no registration needed |
+| Entry points | `@nocobase/lifecycle` (definitions, runtime, storage, flow diagram description), `/jobs` (running follow-up steps, time limit checks, recovery), `/react` (reading records, available actions, submitting), `/testing` |
+| UI components | UI library `lifecycle-diagram` (the flow diagram), `workflow-management` (the **Workflow management** page), `flow-diagram` |
+| Database tables | Status, status time, and version fields added to the app's own business tables; handling history and follow-up steps are created by the app's migrations |
+| Skill | The three references "record lifecycle", "workflow parameters", and "workflow UI" in the app development skill |
+| Building block | [Workflows and approvals](../capabilities/workflows.md) |
 
-## 计划包含
+## Planned contents
 
-- 为什么状态放在记录自己的字段里，而不是单独的流程实例
-- 一个流程由什么组成：状态、流转、条件、输入、对外事项、时限
-- 流程参数：管理员可以调整的审批人、阈值
-- 「流程管理」：流程列表、执行记录、流程图、参数表单
-- 并发：两个人同时处理同一条记录
-- 当前不支持：拖拽设计器、嵌套状态、通用并行分支
-- 改流程：改代码、部署，已有记录怎样处理
-- 与 NocoBase 2 工作流的对应
-- 开发参考
+- Why the status lives in the record's own field instead of a separate workflow instance
+- What a workflow is made of: statuses, transitions, conditions, inputs, follow-up steps, time limits
+- Workflow parameters: approvers and thresholds that administrators can adjust
+- **Workflow management**: the workflow list, execution records, flow diagram, and parameter form
+- Concurrency: two people handling the same record at once
+- Not supported today: a drag-and-drop designer, nested statuses, general parallel branches
+- Changing a workflow: change the code and deploy, and how existing records are handled
+- How this maps to NocoBase 2 workflows
+- Development reference

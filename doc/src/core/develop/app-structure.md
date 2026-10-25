@@ -1,16 +1,16 @@
 ---
-title: 应用的结构
-status: 待编写
-description: 应用的目录、谁拥有什么，以及哪些地方不该改。
+title: App structure
+status: To be written
+description: The app's directories, who owns what, and what should not be changed.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 目录：client、server、database、cli、tests、.agents
-- 谁拥有什么：应用、插件、生成的文件
-- `AGENTS.md` 和 `.agents/rules/`
-- `config.yml` 和 `config.example.yml`
-- 什么时候可以改框架结构，改了要记下来
+- Directories: client, server, database, cli, tests, .agents
+- Who owns what: the app, plugins, generated files
+- `AGENTS.md` and `.agents/rules/`
+- `config.yml` and `config.example.yml`
+- When it is fine to change the framework structure, and noting it down when you do

@@ -1,28 +1,28 @@
 ---
-title: 界面与配置
-status: 待编写
-description: 页面和导航、UI 组件库、多语言、主题和实时更新。
+title: Interface and settings
+status: To be written
+description: Pages and navigation, the UI library, languages, themes, and realtime updates.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 页面怎样组织：导航、弹窗、抽屉、子页面
-- UI 组件库
-- 多语言：切换、增加语言、默认语言
-- 主题：配色、字体、深色模式
-- 实时更新：列表和统计自动刷新
-- 业务设置页面
+- How pages are organized: navigation, dialogs, drawers, child pages
+- The UI library
+- Languages: switching, adding a language, the default language
+- Themes: colors, fonts, dark mode
+- Realtime updates: lists and statistics refresh on their own
+- Business settings pages
 
-## 由哪些包提供
+## Provided by
 
-[多语言](../plugins/i18n.md)
+[Languages](../plugins/i18n.md)
 
-## 现有页面的去向
+## Where existing pages go
 
-| 现有页面 | 处理 |
+| Existing page | Plan |
 | --- | --- |
-| 多语言 › 概览、使用说明 | 并入本组 |
-| 主题 › 概览、使用说明 | 并入本组 |
+| Internationalization › Overview, Usage | Merged into this group |
+| Themes › Overview, Usage | Merged into this group |

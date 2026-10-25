@@ -1,15 +1,15 @@
 ---
-title: 数据库
-status: 待编写
-description: 选择和配置数据库。
+title: Database
+status: To be written
+description: Choosing and configuring a database.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 支持的数据库和版本
-- SQLite 适合什么场景
-- 切换数据库
-- 商业版的达梦、人大金仓、OceanBase
+- Supported databases and versions
+- What SQLite is suitable for
+- Switching databases
+- Dameng, KingbaseES, and OceanBase in the commercial editions

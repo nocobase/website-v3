@@ -1,86 +1,86 @@
 ---
-title: Core 是什么
-description: Core 是开发和运行业务系统的开源底座，一组 npm 包。Agent 用它写出你的应用，权限、审批、文件、通知这些能力不用每次重写。
+title: What is Core
+description: Core is the open-source foundation for building and running business systems, a set of npm packages. Agents use it to build your app, so permissions, approvals, files, and notifications don't get rewritten every time.
 ---
 
-让 Agent 从零写一个业务系统，权限、审批、通知、操作记录每次都要重写一遍，结构各不相同，质量难以保证，升级和维护也没有统一的做法。
+When an agent builds a business system from scratch, permissions, approvals, notifications, and audit trails get rewritten every time. The structure differs from project to project, quality is hard to guarantee, and there is no common way to upgrade or maintain them.
 
-Core 把每个系统都需要的部分做好，交给 Agent 直接使用。Agent 只写你的业务：供应商档案、采购订单、审批规则、到货登记。底座随 NocoBase 的版本独立升级，业务代码不用跟着重写。
+Core builds the parts every system needs and hands them to agents to use directly. Agents write only your business: supplier records, purchase orders, approval rules, receiving. The foundation upgrades independently with NocoBase releases, so business code doesn't have to be rewritten along with it.
 
-## Core 由什么组成
+## What Core is made of
 
-Core 是一组发布在 npm 上的包。用 Core 开发的应用依赖这些包，就像普通的项目依赖框架和库一样：
+Core is a set of packages published on npm. An app built with Core depends on these packages, just as an ordinary project depends on frameworks and libraries:
 
-| 部分 | 是什么 | 例子 |
+| Part | What it is | Examples |
 | --- | --- | --- |
-| 模板 | 创建应用的起点，生成一份完整的代码仓库 | 默认模板、示例模板 |
-| 运行时 | 应用的服务端和浏览器端框架 | `app-server`、`app-client` |
-| 插件 | 注册进应用的功能包，带来服务端能力、页面、组件、技能或命令 | 认证、权限、文件、通知、定时任务；商业版的审批 |
-| 基础库 | 应用直接使用的库，不需要注册 | 数据库、记录生命周期、后台任务、存储 |
-| UI 组件库 | 业务组件和区块，安装时复制进应用源码，之后归应用所有 | 数据表格、流程管理、收件箱、审批进度 |
-| 技能 | 随包发布、教 Agent 怎样用这个包的说明 | `nocobase-app-development`、每个插件各自的技能 |
-| 命令行 | 管理配置、数据库、插件、技能的命令 | `pnpm nocobase config check`、`pnpm nocobase plugin register` |
+| Template | The starting point for creating an app, generating a complete code repository | The default template and the examples template |
+| Runtime | The app's server-side and browser-side framework | `app-server`, `app-client` |
+| Plugins | Feature packages registered in the app, bringing server-side capabilities, pages, components, skills, or commands | Authentication, authorization, files, notifications, scheduled tasks; approvals in the commercial editions |
+| Foundation libraries | Libraries the app uses directly, with no registration | Database, record lifecycle, background jobs, storage |
+| UI library | Business components and blocks, copied into the app's source when installed and owned by the app from then on | Data table, workflow management, inbox, approval progress |
+| Skills | Instructions shipped with a package that teach an agent how to use it | `nocobase-app-development`, and a skill for each plugin |
+| Command line | Commands that manage configuration, the database, plugins, and skills | `pnpm nocobase config check`, `pnpm nocobase plugin register` |
 
-开源仓库里有 23 个插件、约 30 个基础库和工具包，UI 组件库有 40 多个组件和区块。逐个介绍见 [插件目录](../plugins/index.md)。
+The open-source repository has 23 plugins and about 30 foundation libraries and tool packages, and the UI library has more than 40 components and blocks. For a walkthrough of each, see the [plugin directory](../plugins/index.md).
 
-## 人、Agent 和 Core 怎样分工
+## How people, agents, and Core divide the work
 
-<figure class="map" aria-label="人说清需求和判断结果，Agent 写应用的代码，Core 提供底座">
-<div class="row"><div class="box human"><b>你</b><span>说清要什么，回答 Agent 的提问，试用和验收；上线后在「系统设置」里管理用户、权限和流程参数</span></div></div>
-<div class="down">需求</div>
-<div class="row"><div class="box agent"><b>Agent</b><span>读 Core 的技能，注册需要的插件，写数据表、接口、页面和流程，跑测试</span></div></div>
-<div class="down">写进你的代码仓库</div>
-<div class="row c2"><div class="box brand"><b>你的应用</b><span>供应商、采购订单、审批规则、到货登记，以及「系统设置」里的管理页面</span></div><div class="box"><b>Core</b><span>登录、用户、权限检查、文件存储、通知发送、流程运行、定时执行、部署工具</span></div></div>
+<figure class="map" aria-label="People state requirements and judge results, agents write the app's code, and Core provides the foundation">
+<div class="row"><div class="box human"><b>You</b><span>Say what you want, answer the agent's questions, try the app and accept it. After launch, manage users, permissions, and workflow parameters in <b>System settings</b></span></div></div>
+<div class="down">Requirements</div>
+<div class="row"><div class="box agent"><b>Agents</b><span>Read Core's skills, register the plugins needed, write tables, APIs, pages, and workflows, and run tests</span></div></div>
+<div class="down">Written into your code repository</div>
+<div class="row c2"><div class="box brand"><b>Your app</b><span>Suppliers, purchase orders, approval rules, receiving, and the admin pages in <b>System settings</b></span></div><div class="box"><b>Core</b><span>Sign-in, users, permission checks, file storage, notification delivery, workflow runtime, scheduled execution, and deployment tools</span></div></div>
 </figure>
 
-以采购应用为例，哪些是现成的、哪些由 Agent 写：
+Taking the purchasing app as an example, here is what is ready-made and what the agent writes:
 
-| | 现成的（Core） | Agent 写的（你的应用） |
+| | Ready-made (Core) | Written by the agent (your app) |
 | --- | --- | --- |
-| 登录和用户 | 账号、登录、找回密码、会话；模板备好的「用户管理」页面 | 是否开放注册、登录页的样子 |
-| 权限 | 权限模型和检查；模板备好的「角色与权限」页面 | “采购员只看自己的订单”这样的规则 |
-| 采购订单 | 数据库访问、迁移、流程运行时、处理历史 | 订单表、订单页面、从提交到到货的流程 |
-| 审批 | 审批插件 <span class="tag pro">商业版</span>：多级、会签、加签、转交 | 谁来审批、金额多少需要财务审批 |
-| 附件 | 上传、存储、预览 | 订单详情里的附件区，谁能上传 |
-| 提醒 | 通知发送、站内信、定时执行 | 每天 9 点提醒审批人处理待审批订单 |
+| Sign-in and users | Accounts, sign-in, password reset, and sessions; the **User management** page the template prepares | Whether sign-up is open, and what the sign-in page looks like |
+| Permissions | The permission model and checks; the **Roles and permissions** page the template prepares | Rules such as "buyers see only their own orders" |
+| Purchase orders | Database access, migrations, the workflow runtime, and processing history | The order table, order pages, and the workflow from submission to receiving |
+| Approvals | The approval plugin <span class="tag pro">Commercial</span>: multi-level, all-must-approve, add approver, transfer | Who approves, and what amount needs finance approval |
+| Attachments | Upload, storage, and preview | The attachments area in the order details, and who can upload |
+| Reminders | Notification delivery, in-app messages, and scheduled execution | A 9 a.m. daily reminder for approvers to handle pending orders |
 
-上线以后，管理员可以在应用里调整一部分：给人分配角色、调整数据范围、改审批人和金额阈值、暂停某个定时任务。流程的结构、页面的样子仍然是代码，要改就让 Agent 改，再重新部署。这几层的区别见 [核心概念](concepts.md#四层分工)。
+After launch, administrators can adjust some of this in the app: assign roles to people, adjust data scopes, change approvers and amount thresholds, and pause a scheduled task. The structure of a workflow and the look of a page are still code. To change them, have an agent change them and redeploy. For the difference between these layers, see [Core concepts](concepts.md#four-layers-of-responsibility).
 
-## 应用归你所有
+## You own the app
 
-- **代码在你自己的仓库里。** 页面、接口、数据表、流程、管理页面都是应用的源码，可以评审、测试、按版本发布、回退。
-- **底座和业务分开。** Agent 只通过插件公开的接口使用它们，不改插件的代码；从 UI 组件库复制进来的组件归应用所有，可以改。
-- **底座独立升级。** 升级 NocoBase 时，Agent 对照新版模板合并变化，不会回退你的修改。
-- **私有部署。** 应用部署在你自己的服务器上，模型和 Agent 由你选择。
+- **The code is in your own repository.** Pages, APIs, tables, workflows, and admin pages are all the app's source code, which you can review, test, release by version, and roll back.
+- **Foundation and business are separate.** Agents use plugins only through their public interfaces and never modify plugin code. Components copied in from the UI library belong to the app and can be changed.
+- **The foundation upgrades independently.** When you upgrade NocoBase, the agent merges the changes against the new template and does not undo your edits.
+- **Self-hosted.** The app is deployed on your own servers, and you choose the models and agents.
 
-## 13 类底座能力
+## 13 categories of foundation capabilities
 
-Core 的能力分为 13 类。默认模板自带的「应用底座」页面也按这 13 类列出应用实际用到了哪些：
+Core's capabilities fall into 13 categories. The **App foundation** page that ships with the default template also lists which of these the app actually uses, in the same 13 categories:
 
-| 能力 | 提供什么 |
+| Capability | What it provides |
 | --- | --- |
-| [数据建模](../capabilities/data.md) | 数据表、字段、关联关系与迁移，多种数据库，外部数据库 |
-| [文件管理](../capabilities/files.md) | 上传、存储、预览与附件 |
-| [用户与组织](../capabilities/users.md) | 账号、登录、邀请、企业统一身份 |
-| [权限控制](../capabilities/permissions.md) | 角色、数据范围、共享规则与限制规则 |
-| [工作流与审批](../capabilities/workflows.md) | 记录生命周期、状态流转、审批与定时任务 |
-| [AI 与 Agent](../capabilities/ai-agents.md) | 模型服务、业务 Agent 与 Runner |
-| [知识库](../capabilities/knowledge.md) | 知识空间、文档与检索 |
-| [邮件互通](../capabilities/mail.md) | 邮箱、同步与发信 |
-| [消息通知](../capabilities/notifications.md) | 通知渠道、投递与站内信 |
-| [外部集成](../capabilities/integrations.md) | API Key 与外部访问 |
-| [界面与配置](../capabilities/interface.md) | 页面、导航、多语言与主题 |
-| [操作审计](../capabilities/audit.md) | 敏感操作的记录 |
-| [基础运维](../capabilities/operations.md) | 迁移、后台任务、队列与密钥 |
+| [Data modeling](../capabilities/data.md) | Tables, fields, relations, and migrations, multiple databases, and external databases |
+| [File management](../capabilities/files.md) | Upload, storage, preview, and attachments |
+| [Users and organizations](../capabilities/users.md) | Accounts, sign-in, invitations, and company single sign-on |
+| [Permissions](../capabilities/permissions.md) | Roles, data scopes, sharing rules, and restriction rules |
+| [Workflows and approvals](../capabilities/workflows.md) | Record lifecycle, state transitions, approvals, and scheduled tasks |
+| [AI and agents](../capabilities/ai-agents.md) | Model services, business agents, and runners |
+| [Knowledge base](../capabilities/knowledge.md) | Knowledge spaces, documents, and retrieval |
+| [Mail](../capabilities/mail.md) | Mailboxes, sync, and sending |
+| [Notifications](../capabilities/notifications.md) | Notification channels, delivery, and in-app messages |
+| [Integrations](../capabilities/integrations.md) | API keys and external access |
+| [Interface and configuration](../capabilities/interface.md) | Pages, navigation, localization, and themes |
+| [Audit log](../capabilities/audit.md) | Records of sensitive operations |
+| [Operations](../capabilities/operations.md) | Migrations, background jobs, queues, and secrets |
 
-## 和 Studio、Solutions 的关系
+## How it relates to Studio and Solution apps
 
-- **只用 Core**：你在应用目录里打开 Claude Code、Codex 等编码工具，和 Agent 一起开发，测试、部署、备份由团队自己组织。
-- **用 Studio**：Studio 把团队的 Agent 组成 Agent 团队，按同一套流程开发、检查、评审、验收和发布。Studio 新建项目用的就是 Core 的默认模板，开发出来的应用同样建在 Core 上。见 [Studio 是什么](../../studio/intro/what-is-studio.md)。
-- **Solutions**：NocoCRM 等官方应用也建在 Core 上，可以直接部署使用，也可以让 Agent 按你的业务继续改。
+- **Core alone**: you open a coding tool such as Claude Code or Codex in the app directory and build with an agent, while the team organizes testing, deployment, and backup itself.
+- **With Studio**: Studio turns your team's agents into one agent team that builds, checks, reviews, accepts, and releases by the same process. A new project in Studio uses Core's default template, and the apps it builds are also built on Core. See [What is Studio](../../studio/intro/what-is-studio.md).
+- **Solution apps**: official apps such as NocoCRM are also built on Core. You can deploy and use them as they are, or have an agent keep changing them to fit your business.
 
-## 开源与商业
+## Open source and commercial editions
 
-Core 的绝大部分包开源。目前在商业版中提供的有审批、任务中心，以及达梦、人大金仓、OceanBase 的数据库支持。插件目录里每个插件都标明了版本范围，详见 [开源与商业](../../start/editions.md)。
+The vast majority of Core's packages are open source. What the commercial editions provide today is approvals, the task center, and database support for Dameng, KingbaseES, and OceanBase. Every plugin in the plugin directory is labeled with its edition range. See [Open source and commercial editions](../../start/editions.md) for details.
 
-下一篇 [一个应用怎样做出来](how-an-app-gets-built.md)，用采购应用把这些串起来。
+The next page, [How an app gets built](how-an-app-gets-built.md), ties these together with the purchasing app.

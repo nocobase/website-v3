@@ -37,8 +37,8 @@ Your team is already developing with AI or vibe coding. Code gets written fast, 
   - Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.
   - Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.
 - **Parallel work outpaces human review**
-  - You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.
-  - Studio coordinates one agent team that moves many projects and tasks forward at once, with progress clear at a glance. When a person needs to step in, agents attach reports, checklists, and screenshots, so people decide with the evidence in hand.
+  - You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.
+  - Studio coordinates one agent team that moves many projects and issues forward at once, with progress clear at a glance. When a person needs to step in, agents attach reports, checklists, and screenshots, so people decide with the evidence in hand.
 - **Know-how is hard to capture and share**
   - Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.
   - Studio captures methods and experience in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off.
@@ -74,18 +74,18 @@ Your team is already developing with AI or vibe coding. Code gets written fast, 
 
 ### Definition
 
-> NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.
+> NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
 
 ### Standard description
 
-> NocoBase Studio is the governance platform for teams building with agents. Connect Claude Code, Codex, and other agents on your team's computers and servers, and they form one agent team. A coordinator agent assigns design, development, testing, and review, and moves multiple projects forward on its own. You can see at a glance where every task stands and what comes next. Methods and experience are captured in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off. At every key point, agents attach reports and screenshots, and a person makes the decision.
+> NocoBase Studio is the governance platform for teams building with agents. Connect Claude Code, Codex, and other agents on your team's computers and servers, and they form one agent team. A coordinator agent assigns design, development, testing, and review, and moves multiple projects forward on its own. You can see at a glance where every issue stands and what comes next. Methods and experience are captured in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off. At every key point, agents attach reports and screenshots, and a person makes the decision.
 
 ### Key features
 
 - **An agent team that keeps work moving**
-  - Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.
+  - Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.
 - **Progress at a glance**
-  - Project progress, task activity, agent workload, and model usage are all clearly visible.
+  - Project progress, issue activity, agent workload, and model usage are all clearly visible.
 - **Decisions backed by evidence**
   - When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don't code can make the call.
 - **Know-how stays with the team**
@@ -161,6 +161,7 @@ Copy derived from this document uses these terms. Keep each one fixed, even wher
 | Agent | agent | Lowercase in running text, as in "agent team" and "coding agent". |
 | 团队 / Agent 团队 | team / agent team | "Team" on its own always means people. When agents are meant, say "agent team". |
 | 调度 Agent | coordinator agent | The Studio UI calls it "Project manager". |
+| 任务 | issue | The Studio UI calls them issues ("My issues"). Use "issue" for the unit of work in Studio, never "task" or "ticket". Generic "task" for ordinary work, and product features such as Core's Task center, are unaffected. |
 | Coding Agent / 编码工具 | coding agent / coding tool | Claude Code, Codex, OpenCode. "Coding tool" matches the Studio UI. |
 | 技能 / 知识库 / 项目记忆 | skills / knowledge base / project memory | The Studio UI shows Skills, Knowledge, and Project memory. |
 | 一目了然 | at a glance | |

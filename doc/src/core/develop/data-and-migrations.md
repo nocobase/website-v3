@@ -1,16 +1,16 @@
 ---
-title: 数据模型与迁移
-status: 待编写
-description: 数据表怎样定义和变更，怎样保证已有数据安全。
+title: Data model and migrations
+status: To be written
+description: How tables are defined and changed, and how to keep existing data safe.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 迁移：按顺序执行，执行过的不再修改
-- 初始数据
-- 开发时回滚和重来
-- 在有数据的环境里验证迁移
-- 查看当前的数据模型
+- Migrations: run in order, and a migration that has run is never edited
+- Seed data
+- Rolling back and starting over during development
+- Verifying migrations in an environment that has data
+- Viewing the current data model

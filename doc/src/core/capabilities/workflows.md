@@ -1,115 +1,115 @@
 ---
-title: 工作流与审批
-description: 让业务单据按阶段推进：谁在什么条件下能做什么操作，等待和超时怎样处理，之后要做的事失败了怎么办；多人审批；定时执行。流程写在代码里，管理员在「流程管理」里查看和调整参数。
+title: Workflows and approvals
+description: Move business documents forward in stages: who can do what under which conditions, how waiting and timeouts are handled, and what happens when a follow-up step fails; multi-person approvals; scheduled jobs. Workflows live in code, and administrators view them and adjust their parameters in Workflow management.
 ---
 
-采购订单从提交到完成要经过几个阶段：部门经理审批，金额大的还要财务审批，采购员下单，收货员登记到货。每一步只有特定的人能操作，驳回要写原因，审批通过后要通知申请人，每天还要提醒审批人处理积压的订单。这些都属于这一类能力。
+A purchase order passes through several stages from submission to completion: the department manager approves it, large amounts also need finance approval, a buyer places the order, and a receiver registers the delivery. Only specific people can act at each step, a rejection needs a reason, the requester is notified once approval is done, and approvers get a daily reminder about the backlog. All of this belongs to this building block.
 
-> [!NOTE] 和 NocoBase 2 的工作流不同
-> NocoBase 3 没有拖拽式的工作流设计器。流程的结构（有哪些阶段、怎样流转）写在应用的代码里，由 Agent 按你的描述编写；管理员在「流程管理」里看流程图、查执行记录、调整审批人和金额阈值这类参数。NocoBase 2 的工作流插件已于 2026 年 10 月删除。
+> [!NOTE] Different from NocoBase 2 workflows
+> NocoBase 3 has no drag-and-drop workflow designer. A workflow's structure (its stages and how it moves between them) is written in the app's code by an agent, following your description. Administrators use **Workflow management** to view the flow diagram, check execution records, and adjust parameters such as approvers and amount thresholds. The NocoBase 2 workflow plugin was removed in October 2026.
 
-## 四层分工
+## The four layers
 
-| 层次 | 内容 |
+| Layer | What it covers |
 | --- | --- |
-| **开箱即有** | 记录生命周期：状态保存在记录自己的字段里，只能通过声明的流转改变；流转前检查条件和输入；两人同时处理时后提交的一方收到冲突，不会覆盖；流转之后要做的事（发通知、调外部系统）在提交后执行，失败可以重试；完整的处理历史。「流程管理」和流程图组件。定时任务：按时间规则执行并记录每次执行。商业版的审批和任务中心 |
-| **Agent 在应用里实现** | 每个流程的定义：阶段、流转、谁能操作、条件、时限、之后要做的事；单据页面上的操作按钮、当前阶段和处理历史；「流程管理」页面；审批页面；定时任务做什么 |
-| **管理员上线后调整** | 在「流程管理」里看流程图和执行记录，调整流程参数（审批部门、审批人、金额阈值），新单据按新值执行；在定时任务页面里查看执行记录、启用或停用任务 |
-| **部署时配置** | 后台任务用内存还是 Redis（`jobs`）：只有一个进程时可以用内存，多个实例必须用 Redis；商业插件的授权 |
+| **Ready out of the box** | Record lifecycle: the status is stored in the record's own field and changes only through declared transitions; conditions and inputs are checked before a transition; if two people act at once, the later submission gets a conflict instead of overwriting; follow-up steps after a transition (sending a notification, calling an external system) run after commit and can be retried on failure; a complete handling history. The **Workflow management** page and the flow diagram component. Scheduled jobs: run on time rules, with every run recorded. Approvals and the task center in the commercial edition |
+| **Agents build in the app** | Each workflow's definition: stages, transitions, who can act, conditions, time limits, and follow-up steps; the action buttons, current stage, and handling history on document pages; the **Workflow management** page; approval pages; what each scheduled job does |
+| **Administrators adjust after launch** | In **Workflow management**, view flow diagrams and execution records and adjust workflow parameters (approval department, approvers, amount thresholds); new documents follow the new values. On the scheduled jobs page, view run records and enable or disable jobs |
+| **Configured at deployment** | Whether background jobs use memory or Redis (`jobs`): memory is fine for a single process, but multiple instances must use Redis; licenses for commercial plugins |
 
-流程的结构要改（加一个阶段、换一种流转），仍然是改代码、重新部署。哪些值上线后可能要调，提需求时说出来，Agent 会把它们做成流程参数。
+Changing a workflow's structure, such as adding a stage or changing a transition, is still a code change and a redeploy. When you write the request, say which values might need adjusting after launch, and the agent will make them workflow parameters.
 
-## 由哪些包提供
+## Provided by
 
-| 包 | 做什么 | 版本范围 | 默认模板 |
+| Package | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [记录生命周期](../plugins/lifecycle.md)（基础库） | 流程的定义、运行、处理历史、流程参数 | <span class="tag">开源</span> | 已包含 |
-| [定时任务](../plugins/scheduler.md) | 定时执行，记录每次执行 | <span class="tag">开源</span> | <span class="tag ok">已启用</span> |
-| 后台任务（基础库 `@nocobase/jobs`） | 定时任务和流程时限的执行 | <span class="tag">开源</span> | 已包含 |
-| [审批](../plugins/approval.md) | 多级、会签、或签、按票数、加签、转交、退回 | <span class="tag pro">商业版</span> | — |
-| [任务中心](../plugins/task-center.md) | 汇总每个人的待办，审批插件依赖它 | <span class="tag pro">商业版</span> | — |
+| [Record lifecycle](../plugins/lifecycle.md) (foundation library) | Workflow definition, running, handling history, and workflow parameters | <span class="tag">Open source</span> | Included |
+| [Scheduled jobs](../plugins/scheduler.md) | Run on a schedule and record every run | <span class="tag">Open source</span> | <span class="tag ok">Enabled</span> |
+| Background jobs (foundation library `@nocobase/jobs`) | Runs scheduled jobs and workflow time limits | <span class="tag">Open source</span> | Included |
+| [Approvals](../plugins/approval.md) | Multi-level, all-sign, any-sign, vote-count, add a signer, transfer, send back | <span class="tag pro">Commercial</span> | — |
+| [Task center](../plugins/task-center.md) | Gathers each person's to-dos; the Approvals plugin depends on it | <span class="tag pro">Commercial</span> | — |
 
-UI 组件库里与流程相关的有：`workflow-management`（「流程管理」页面）、`lifecycle-diagram`（流程图）、`approval-ui`（审批进度、历史、预计路线、操作栏）、`task-center-ui`。
+The UI library components related to workflows are `workflow-management` (the **Workflow management** page), `lifecycle-diagram` (the flow diagram), `approval-ui` (approval progress, history, expected route, and action bar), and `task-center-ui`.
 
-## 在应用里看到什么
+## What you see in the app
 
-**「系统设置 › 流程管理」**：应用里有流程时，Agent 默认会做这个页面。「流程列表」列出应用的全部流程，点开看流程图和流程参数；「执行记录」列出每张单据的流转，点开看处理历史和之后执行的事项。
+**System settings › Workflow management**: when the app has workflows, agents build this page by default. **Workflow definitions** lists every workflow in the app, and opening one shows its flow diagram and workflow parameters. **Execution records** lists how each document moved, and opening one shows its handling history and the follow-up steps that ran.
 
-::figure core-workflow-mgmt | 「流程管理」：流程列表和采购订单的流程参数。具体内容取决于应用里的流程
+::figure core-workflow-mgmt | **Workflow management**: the workflow definitions and the purchase order's workflow parameters. The actual content depends on the workflows in your app
 
-**业务单据上**：当前阶段、当前可以做的操作、处理历史，按需要可以显示流程图。这部分由 Agent 按你的需求做在单据详情里，每个应用不同。
+**On business documents**: the current stage, the actions available now, the handling history, and the flow diagram if you want it. Agents build this into the document detail page to fit your request, so it differs from app to app.
 
-## 怎样提需求
+## How to write the request
 
-在 [通用要点](index.md#提需求时通用的几件事) 之外，流程需要说清：
+Beyond the [points that apply to every request](index.md#what-to-state-in-every-request), a workflow needs these to be clear:
 
-- **阶段**：从哪里开始，经过哪些阶段，哪些是结束状态；
-- **每一步谁能做什么**：谁能提交、批准、驳回、退回，驳回和退回回到哪一步；
-- **条件和必填**：例如驳回必须写原因，到货必须上传签收单；
-- **等待和时限**：多久没处理要提醒或升级；
-- **之后要做的事**：通知谁、调用哪个外部系统，失败了怎样处理；
-- **审批**：每个审批阶段由谁审批，一人通过即可还是需要全部通过，能否加签、转交；
-- **上线后要调的值**：审批人、审批部门、金额阈值。
+- **Stages**: where it starts, which stages it passes through, and which are end states;
+- **Who can do what at each step**: who can submit, approve, reject, or send back, and which step a rejection or send-back returns to;
+- **Conditions and required inputs**: for example, a rejection must include a reason, and a delivery must include an uploaded receipt;
+- **Waiting and time limits**: how long without action before a reminder or escalation;
+- **Follow-up steps**: whom to notify, which external system to call, and what to do when that fails;
+- **Approvals**: who approves at each approval stage, whether one approver is enough or all must approve, and whether a signer can be added or the task transferred;
+- **Values to adjust after launch**: approvers, approval department, amount thresholds.
 
-示例：
+Example:
 
 ```text
-为采购订单增加处理流程：草稿 → 待审批 → 待采购 → 已到货 → 已完成。
-申请人提交后由部门经理审批；金额超过 5 万元再由财务审批，这个金额以后由管理员调整。
-审批人可以批准或驳回，驳回必须填写原因，订单退回申请人修改后重新提交。
-采购员下单后进入待采购；收货员确认到货并上传签收单后进入已到货；申请人确认后完成。
-订单详情只提供当前阶段能做的操作，普通编辑不能直接修改阶段。多人同时处理时，不要覆盖别人已提交的结果。
-每次审批结束后用站内信通知申请人；通知发送失败不影响审批结果，并且可以重试。
-在流程管理里能看到这个流程、它的执行记录和金额阈值。
+Add a workflow to purchase orders: Draft → Pending approval → Pending purchase → Delivered → Completed.
+After the requester submits, the department manager approves; amounts over 50,000 also need finance approval, and an administrator can change that amount later.
+Approvers can approve or reject; a rejection must include a reason, and the order goes back to the requester to edit and resubmit.
+After a buyer places the order, it moves to Pending purchase; once a receiver confirms delivery and uploads the receipt, it moves to Delivered; the requester confirms to complete it.
+The order detail page only offers actions available at the current stage, and ordinary editing cannot change the stage directly. When several people act at once, do not overwrite results someone else has already submitted.
+After each approval ends, notify the requester with an in-app message; a failed notification must not affect the approval result and must be retryable.
+In Workflow management I can see this workflow, its execution records, and the amount threshold.
 ```
 
-审批部分需要审批插件。应用还没有安装时，Agent 会说明需要商业授权，确认后注册插件；只是一个人确认或驳回，用流程本身的操作即可，不需要审批插件。
+The approval part needs the Approvals plugin. If the app does not have it yet, the agent tells you a commercial license is required and registers the plugin once you confirm. If a single person just confirms or rejects, use the workflow's own actions; the Approvals plugin is not needed.
 
-## 怎样检查结果
+## How to check the result
 
-- [ ] 用不同的账号走一遍完整流程，每个阶段只出现当前用户能做的操作。
-- [ ] 普通编辑改不了阶段；直接调用接口修改阶段也被拒绝。
-- [ ] 驳回不写原因无法提交；到货不上传签收单无法提交。
-- [ ] 两个人同时处理同一张单据，后提交的一方收到提示，前一个人的结果没有被覆盖。
-- [ ] 处理历史记下每一步的操作人、时间、操作、前后阶段和原因，系统自动执行的步骤标明由系统执行。
-- [ ] 「流程管理」里能看到这个流程、流程图和执行记录；修改金额阈值后，新提交的单据按新值走。
-- [ ] 让通知发送失败一次，确认审批结果不受影响，通知可以重试。
-- [ ] 定时提醒在设定的时间执行，执行记录里能看到结果；停用后不再执行。
+- [ ] Walk the full workflow with different accounts, and each stage shows only the actions the current user can take.
+- [ ] Ordinary editing cannot change the stage, and a direct API call that changes the stage is rejected too.
+- [ ] A rejection cannot be submitted without a reason, and a delivery cannot be submitted without the receipt.
+- [ ] Two people act on the same document at once: the later submission gets a notice, and the earlier result is not overwritten.
+- [ ] The handling history records each step's actor, time, action, stages before and after, and reason, and steps run automatically are marked as run by the system.
+- [ ] **Workflow management** shows the workflow, its flow diagram, and its execution records; after you change the amount threshold, newly submitted documents follow the new value.
+- [ ] Make a notification fail once and confirm the approval result is unaffected and the notification can be retried.
+- [ ] A scheduled reminder runs at the set time with its result in the run records, and stops running once disabled.
 
-## 限制与常见问题
+## Limits and common questions
 
-**当前不支持**：拖拽式设计器、嵌套阶段、通用的并行分支。需要并行处理的业务，可以拆成子单据分别推进，子单据完成后推动主单据。
+**Not supported today**: a drag-and-drop designer, nested stages, and general parallel branches. For work that needs parallel handling, split it into child documents that advance separately and let their completion move the main document forward.
 
-**审批通过了，后续的事一定做成了吗？** 不一定。审批通过是一个决定，付款、预留资源、更新正式数据是后续执行，可能失败。验收时要能看到执行结果，并为失败安排重试或人工处理。
+**If an approval passes, is the follow-up work always done?** Not necessarily. An approval is a decision; payment, reserving resources, and updating official data are follow-up steps that can fail. When you check the result, you should be able to see how those steps ended, and failures need a retry or manual handling.
 
-**多实例部署后，定时任务执行了两次或没有执行？** 检查 `jobs` 配置：多个实例必须用 Redis，并且 Redis 要开启持久化。只用内存时，每个实例各跑一份。
+**After a multi-instance deployment, a scheduled job ran twice or not at all?** Check the `jobs` configuration: multiple instances must use Redis, and Redis must have persistence on. With memory only, every instance runs its own copy.
 
-**改了流程代码，已经在途的单据怎么办？** 让 Agent 说明已有单据在新流程里对应哪个阶段，必要时用迁移调整；上线前在有数据的环境里验证。
+**What happens to documents already in flight when the workflow code changes?** Ask the agent to explain which stage each existing document maps to in the new workflow, and adjust with a migration if needed; verify in an environment that has data before launch.
 
-## 与 NocoBase 2 的对应
+## How this maps to NocoBase 2
 
 | NocoBase 2 | NocoBase 3 |
 | --- | --- |
-| 在画布上配置工作流 | 流程写在代码里；「流程管理」里看流程图 |
-| 数据表事件、操作后触发 | 记录的流转和流转之后执行的事项 |
-| 定时触发 | 定时任务插件 |
-| 审批插件 | 审批插件 <span class="tag pro">商业版</span>，绑定在记录的生命周期上 |
-| 在界面上改节点配置 | 管理员调整流程参数；结构变化改代码 |
-| 执行历史 | 「流程管理 › 执行记录」和单据的处理历史 |
+| Configure workflows on a canvas | Workflows are written in code; view the flow diagram in **Workflow management** |
+| Collection events, after-action triggers | Record transitions and the follow-up steps that run after them |
+| Schedule trigger | The Scheduled jobs plugin |
+| Approval plugin | The Approvals plugin <span class="tag pro">Commercial</span>, attached to the record's lifecycle |
+| Edit node settings in the UI | Administrators adjust workflow parameters; structural changes are code changes |
+| Execution history | **Workflow management › Execution records** and the document's handling history |
 
-## 本组页面
+## Pages in this group
 
-下面的场景页将由现有的“工作流”“审批”“定时任务”各页改写而来：
+The scenario pages below will be rewritten from the existing Workflows, Approvals, and Scheduled jobs pages:
 
-| 页面 | 来源 |
+| Page | Source |
 | --- | --- |
-| 流程阶段与操作控制 | 工作流 › 流程定义与操作控制 |
-| 等待、超时与可靠执行 | 工作流 › 等待、超时与可靠执行 |
-| 处理历史与执行记录 | 工作流 › 流程进度与处理记录 |
-| 流程参数 | 新增 |
-| 多级与条件审批 | 审批 › 多级与条件审批 |
-| 会签、或签与通过规则 | 审批 › 会签、或签与通过规则 |
-| 加签与转交 | 审批 › 加签与转交 |
-| 申请处理与进度 | 审批 › 申请处理与进度 |
-| 定时任务 | 定时任务 › 使用说明 |
-| 任务中心 | 新增 |
+| Workflow stages and action control | Workflows › Workflow definition and action control |
+| Waiting, timeouts, and reliable execution | Workflows › Waiting, timeouts, and reliable execution |
+| Handling history and execution records | Workflows › Workflow progress and handling records |
+| Workflow parameters | New |
+| Multi-level and conditional approval | Approvals › Multi-level and conditional approval |
+| All-sign, any-sign, and pass rules | Approvals › All-sign, any-sign, and pass rules |
+| Adding a signer and transfer | Approvals › Adding a signer and transfer |
+| Handling requests and progress | Approvals › Handling requests and progress |
+| Scheduled jobs | Scheduled jobs › Usage |
+| Task center | New |

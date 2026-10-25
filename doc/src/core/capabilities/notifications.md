@@ -1,29 +1,29 @@
 ---
-title: 消息通知
-status: 待编写
-description: 事情发生时通知相关的人：站内信、邮件、群机器人、浏览器推送，以及投递记录。
+title: Notifications
+status: To be written
+description: Tell the right people when something happens: in-app messages, email, group bots, browser push, and delivery logs.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 四层分工
-- 渠道配置（`notification.channels`）
-- 站内信和「收件箱」
-- 发送通知：收件人、内容、幂等
-- 投递记录和失败重试
-- 浏览器推送
-- 和流程配合：通知失败不影响业务结果
-- 与 NocoBase 2 通知的对应
+- The four layers
+- Channel configuration (`notification.channels`)
+- In-app messages and the **Inbox**
+- Sending a notification: recipients, content, idempotency
+- Delivery logs and retrying failures
+- Browser push
+- Working with workflows: a failed notification does not change the business result
+- How this maps to NocoBase 2 notifications
 
-## 由哪些包提供
+## Provided by
 
-[通知](../plugins/notification.md)、[站内信](../plugins/notification-in-app.md)、[通知渠道](../plugins/notification-providers.md)、[Web Push](../plugins/notification-web-push.md)
+[Notifications](../plugins/notification.md), [In-app messages](../plugins/notification-in-app.md), [Notification channels](../plugins/notification-providers.md), [Web Push](../plugins/notification-web-push.md)
 
-## 现有页面的去向
+## Where existing pages go
 
-| 现有页面 | 处理 |
+| Existing page | Plan |
 | --- | --- |
-| 通知 › 概览、使用说明 | 并入本组 |
+| Notifications › Overview, Usage | Merged into this group |

@@ -1,15 +1,4 @@
 ---
-title: 项目记忆
-status: 待编写
-description: 项目记忆保存 Agent 自主学到的经验，存在项目的仓库里，随任务的 PR 一起评审、合并，下次开工前先读。
+title: Project memory
+status: placeholder
 ---
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- Agent 什么时候记、记什么
-- 记忆存在哪里：代码仓库的 .nb-studio/memory/
-- 记忆怎样评审、合并、更正
-- 在「开发 › 项目记忆」查看
-- 不要让 Agent 记下敏感信息

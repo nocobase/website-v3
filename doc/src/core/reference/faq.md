@@ -1,12 +1,12 @@
 ---
-title: 常见问题
-status: 待编写
-description: 按主题整理的常见问题。
+title: FAQ
+status: To be written
+description: Frequently asked questions, organized by topic.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 从社区和客户支持收集
+- Collected from the community and customer support

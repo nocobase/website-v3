@@ -1,14 +1,4 @@
 ---
-title: 通知与推送
-status: 待编写
-description: 站内提醒、邮件和手机推送的服务器配置。
+title: Notifications and push
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 邮件通道
-- 手机推送需要的配置
-- 成员在偏好设置里的选项

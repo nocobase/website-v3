@@ -23,8 +23,8 @@ def side(active):
         return '<a class="it%s">%s%s%s</a>' % (' on' if k == active else '', I(ic), T(zh, en), extra)
     g = lambda zh, en: '<div class="grp">%s</div>' % T(zh, en)
     return ('<aside class="sb"><div class="brand"><img src="assets/logo.png" alt="NocoBase"><span>Studio</span></div>' +
-      it('mine', 'circle-user-round', '我的任务', 'My Tasks', '<em>2</em>') + it('agent', 'messages-square', '我的会话', 'My sessions') + it('dash', 'layout-dashboard', '仪表盘', 'Dashboard') +
-      g('开发', 'Build') + it('tasks', 'list-todo', '任务', 'Tasks') + it('proj', 'folder-kanban', '项目', 'Projects') + it('kb', 'book-open', '知识库', 'Knowledge') +
+      it('mine', 'circle-user-round', '我的任务', 'My issues', '<em>2</em>') + it('agent', 'messages-square', '我的会话', 'My sessions') + it('dash', 'layout-dashboard', '仪表盘', 'Dashboard') +
+      g('开发', 'Build') + it('tasks', 'list-todo', '任务', 'Issues') + it('proj', 'folder-kanban', '项目', 'Projects') + it('kb', 'book-open', '知识库', 'Knowledge') +
       g('质量', 'Quality') + it('plans', 'clipboard-list', '质量报告', 'Quality reports') + it('cases', 'flask-conical', '功能与用例', 'Features &amp; cases') +
       g('发布', 'Release') + it('apps', 'boxes', '应用', 'Apps') + it('envs', 'server', '部署环境', 'Environments') +
       g('Agent 团队', 'Agent Team') + it('agents', 'bot', 'Agent', 'Agents') + it('rt', 'monitor-cog', '运行环境', 'Runtimes') + it('skills', 'sparkles', '技能', 'Skills') +
@@ -50,12 +50,12 @@ def step(s, zh, en, k, small=None, off=False):
 def le(badge, zh, en, t):
     return '<div class="st-le">%s<div>%s</div><time>%s</time></div>' % (badge, T(zh, en), t)
 
-tasks = ('<div class="st-win mtw2">' + side('mine') + '<div class="st-main">' + top('我的任务', 'My Tasks') + '<div class="st-page">' +
+tasks = ('<div class="st-win mtw2">' + side('mine') + '<div class="st-main">' + top('我的任务', 'My issues') + '<div class="st-page">' +
   # 标题、搜索筛选、视图切换和新建按钮放在同一行，省出一行高度
-  '<div class="st-flt"><h4 style="margin-right:10px;font-size:19px;line-height:1.3;font-weight:650">' + T('我的任务', 'My Tasks') + '</h4>' +
-    '<span class="q">' + I('search') + T('搜索任务…', 'Search tasks…') + '</span><span>' + T('全部项目', 'All projects') + I('chevron-down') + '</span><span>' + T('任意执行者', 'Any executor') + I('chevron-down') + '</span>' +
+  '<div class="st-flt"><h4 style="margin-right:10px;font-size:19px;line-height:1.3;font-weight:650">' + T('我的任务', 'My issues') + '</h4>' +
+    '<span class="q">' + I('search') + T('搜索任务…', 'Search issues…') + '</span><span>' + T('全部项目', 'All projects') + I('chevron-down') + '</span><span>' + T('任意执行者', 'Any executor') + I('chevron-down') + '</span>' +
     '<span class="vw"><i class="on">' + I('columns-2') + '</i><i>' + I('list') + '</i><i>' + I('square-kanban') + '</i><i>' + I('bot') + '</i></span>' +
-    '<span class="st-btn p" style="padding:0 11px;color:var(--on-brand)">' + I('plus') + T('新建任务', 'New task') + '<kbd>C</kbd></span><span class="st-ib bd" style="padding:0;width:30px;height:30px">' + I('ellipsis') + '</span></div>' +
+    '<span class="st-btn p" style="padding:0 11px;color:var(--on-brand)">' + I('plus') + T('新建任务', 'New issue') + '<kbd>C</kbd></span><span class="st-ib bd" style="padding:0;width:30px;height:30px">' + I('ellipsis') + '</span></div>' +
   '<div style="display:grid;grid-template-columns:292px minmax(0,1fr);gap:14px;align-items:start">' +
     '<div class="st-list">' +
       grp('<i data-lucide="hand" class="hand"></i>', '等你处理', 'Needs you', 2, [
@@ -97,9 +97,9 @@ def rt(icon, name_zh, name_en, os_, on, slots, tools, team):
     return ('<tr><td><b>%s%s</b><small>%s · %s</small></td><td>%s</td><td><div class="st-tags">%s</div></td></tr>' %
             ('<i data-lucide="%s" style="width:13px;height:13px;margin-right:6px;vertical-align:-1px;color:var(--muted)"></i>' % icon, T(name_zh, name_en), os_, sh, st, tl))
 fleet = ('<div class="st-card" style="background:var(--paper);box-shadow:0 1px 2px oklch(0.25 0.05 266 / 0.05),0 12px 28px -14px oklch(0.25 0.06 266 / 0.2);border-color:var(--rule-2);border-radius:12px"><div class="st-page" style="padding:16px 16px 14px">' +
-  '<div class="st-ph"><div><h4 style="font-size:19px">' + T('运行环境', 'Runtimes') + '</h4><p>' + T('23:40 · 同事们下班了，9 台运行环境上 24 个任务仍在并行', '23:40 · Your team is offline; 24 tasks still running across 9 runtimes') + '</p></div>' +
+  '<div class="st-ph"><div><h4 style="font-size:19px">' + T('运行环境', 'Runtimes') + '</h4><p>' + T('23:40 · 同事们下班了，9 台运行环境上 24 个任务仍在并行', '23:40 · Your team is offline; 24 issues still running across 9 runtimes') + '</p></div>' +
     '<span class="r"><span class="st-btn p">' + I('plus') + T('添加运行环境', 'Add runtime') + '</span></span></div>' +
-  '<div class="st-card"><table class="st-tbl"><thead><tr><th>' + T('名称', 'Name') + '</th><th>' + T('状态', 'Status') + '</th><th>' + T('工具 · 正在做的任务', 'Tools · tasks running') + '</th></tr></thead><tbody>' +
+  '<div class="st-card"><table class="st-tbl"><thead><tr><th>' + T('名称', 'Name') + '</th><th>' + T('状态', 'Status') + '</th><th>' + T('工具 · 正在做的任务', 'Tools · issues running') + '</th></tr></thead><tbody>' +
     rt('server', 'Server 01', 'Server 01', 'linux · x64', 1, '4/4', [('cx', 2), ('cc', 2)], 1) +
     rt('server', 'Server 02', 'Server 02', 'linux · x64', 1, '4/4', [('cx', 2), ('oc', 1), ('cc', 1)], 1) +
     rt('server', 'Server 03', 'Server 03', 'linux · x64', 1, '4/4', [('cx', 2), ('cc', 1), ('gm', 1)], 1) +
@@ -107,7 +107,7 @@ fleet = ('<div class="st-card" style="background:var(--paper);box-shadow:0 1px 2
     rt('laptop', '王磊的 Mac', 'Leo’s Mac', 'darwin · arm64', 1, '2/2', [('cc', 1), ('cx', 1)], 0) +
     rt('laptop', '陈思的 MacBook', 'Ava’s MacBook', 'darwin · arm64', 1, '1/2', [('cc', 1), ('cx', 0)], 0) +
     rt('laptop', '林悦的工作站', 'Maya’s workstation', 'linux · x64', 0, '', [('cc', 0)], 0) +
-  '</tbody></table><div class="st-more">' + I('chevron-right') + T('另有 2 台运行环境 · 6 个任务在跑', '2 more runtimes · 6 tasks running') + '</div></div>' +
+  '</tbody></table><div class="st-more">' + I('chevron-right') + T('另有 2 台运行环境 · 6 个任务在跑', '2 more runtimes · 6 issues running') + '</div></div>' +
   '</div></div>')
 
 # ---------- 业务专家主导的一个任务 ----------
@@ -146,7 +146,7 @@ govern = ('<div class="st-card" style="background:var(--card);box-shadow:0 1px 2
       stg(5, '验收', 'Accept', av('陈', 'A') + T('陈思', 'Ava Clarke'), bs('eye', 'crm-import.preview', 'crm-import.preview'), '在独立预览环境走查 6 个场景', 'Walked through 6 scenarios in preview', 'user-check', '陈思验收通过', 'Ava signed off') +
       stg(6, '发布', 'Ship', av('王', 'L') + T('王磊', 'Leo Walker'), bs('rocket', '部署申请 · 生产', 'Deploy request · production'), '生产发布需人批准，可回滚到上一版本', 'Production needs approval; roll back to the last release', 'user-check', '王磊批准上线', 'Leo approved release') +
     '</div>' +
-    '<div class="st-band">' + I('git-branch') + sk('studio-workflow') + '<span>' + T('串起整条流程：每个任务独立分支、独立预览，按顺序过关，不能跳步', 'Ties it together: own branch and preview per task, gates in order, no skipping') + '</span><span class="r">' + I('history') + T('谁做的、用哪个模型、谁批准的，全部留痕', 'Who did it, which model, who approved: all on record') + '</span></div>' +
+    '<div class="st-band">' + I('git-branch') + sk('studio-workflow') + '<span>' + T('串起整条流程：每个任务独立分支、独立预览，按顺序过关，不能跳步', 'Ties it together: own branch and preview per issue, gates in order, no skipping') + '</span><span class="r">' + I('history') + T('谁做的、用哪个模型、谁批准的，全部留痕', 'Who did it, which model, who approved: all on record') + '</span></div>' +
   '</div></div>')
 
 FIGS = {'studioHero': tasks, 'homeFleet': fleet, 'homeExpert': expert, 'homeGovern': govern}

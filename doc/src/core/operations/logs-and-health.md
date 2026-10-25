@@ -1,14 +1,14 @@
 ---
-title: 日志与健康检查
-status: 待编写
-description: 看日志、查问题、做监控。
+title: Logs and health checks
+status: To be written
+description: Reading logs, investigating problems, and monitoring.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 健康检查 `/api/healthz`
-- 日志的位置和级别
-- 常见故障的排查
+- The health check `/api/healthz`
+- Log locations and levels
+- Troubleshooting common failures

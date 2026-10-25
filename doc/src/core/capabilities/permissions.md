@@ -1,28 +1,28 @@
 ---
-title: 权限控制
-status: 待编写
-description: 谁能进哪些页面、做哪些操作、看哪些记录：角色、数据范围、默认数据范围、共享规则、限制规则，以及检查权限结果。
+title: Permissions
+status: To be written
+description: Who can open which pages, run which actions, and see which records: roles, data scopes, default data scopes, sharing rules, restriction rules, and checking how a permission result came about.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- 四层分工：权限声明由 Agent 写，角色分配和范围调整由管理员在「系统设置」里做
-- 权限模型：页面、操作、数据范围
-- 「系统设置 › 权限管理」：角色与权限、默认数据范围
-- 共享规则和限制规则
-- 检查权限结果：为什么某人能看到某条记录
-- 业务 Agent 和人用同一套权限
-- 验收：普通用户、直接访问地址、直接调用接口
+- The four layers: agents write the permission declarations, and administrators assign roles and adjust scopes under **System settings**
+- The permission model: pages, actions, data scopes
+- **System settings › Permission management**: **Roles and permissions** and **Default data scopes**
+- Sharing rules and restriction rules
+- Checking a permission result: why someone can see a given record
+- Business agents and people use the same permissions
+- Acceptance: a regular user, a direct URL, a direct API call
 
-## 由哪些包提供
+## Provided by
 
-[权限](../plugins/authorization.md)、[默认数据范围](../plugins/authz-default-access.md)、[共享规则](../plugins/authz-sharing-rules.md)、[限制规则](../plugins/authz-restriction-rules.md)
+[Permissions](../plugins/authorization.md), [Default data scope](../plugins/authz-default-access.md), [Sharing rules](../plugins/authz-sharing-rules.md), [Restriction rules](../plugins/authz-restriction-rules.md)
 
-## 现有页面的去向
+## Where existing pages go
 
-| 现有页面 | 处理 |
+| Existing page | Plan |
 | --- | --- |
-| 权限 › 七页 | 保留，按采购故事改写 |
+| Permissions › seven pages | Kept, rewritten around the purchasing story |

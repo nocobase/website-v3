@@ -1,15 +1,15 @@
 ---
-title: 升级与回滚
-status: 待编写
-description: 在服务器上升级应用，出问题时回滚。
+title: Upgrade and rollback
+status: To be written
+description: Upgrading the app on a server, and rolling back when something goes wrong.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- `app-installer` 的升级前检查
-- 升级步骤
-- 回滚
-- 数据库迁移和回滚的关系
+- `app-installer` pre-upgrade checks
+- Upgrade steps
+- Rollback
+- How database migrations relate to rollback

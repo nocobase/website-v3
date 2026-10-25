@@ -1,27 +1,27 @@
 ---
-title: 外部集成
-status: 待编写
-description: 让脚本和其他系统访问应用：API Key、接口文档、接收外部回调、应用自己的命令行。
+title: Integrations
+status: To be written
+description: Let scripts and other systems reach the app: API keys, API docs, receiving external callbacks, and the app's own command line.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page is planned to cover.
 
-## 计划包含
+## Planned contents
 
-- API Key：创建、限定范围、撤销
-- 接口文档：运行中的应用在 `/api/swagger` 提供
-- 接收外部回调（Webhook）：由应用的接口实现
-- 调用外部系统：凭据放在服务器配置里
-- 应用自己的命令行：给业务用户和业务 Agent
-- 权限：外部访问用和人一样的授权
+- API keys: create, scope, revoke
+- API docs: a running app serves them at `/api/swagger`
+- Receiving external callbacks (webhooks): implemented as endpoints in the app
+- Calling external systems: credentials kept in server configuration
+- The app's own command line, for business users and business agents
+- Permissions: external access is authorized the same way as a person
 
-## 由哪些包提供
+## Provided by
 
 [API keys](../plugins/api-keys.md)
 
-## 现有页面的去向
+## Where existing pages go
 
-| 现有页面 | 处理 |
+| Existing page | Plan |
 | --- | --- |
-| 认证 › API keys | 移入本组 |
+| Authentication › API keys | Moved into this group |

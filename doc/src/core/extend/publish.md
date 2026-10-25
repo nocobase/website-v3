@@ -1,14 +1,14 @@
 ---
-title: 发布插件
-status: 待编写
-description: 把插件发布到 npm，让应用安装。
+title: Publish a plugin
+status: To be written
+description: Publish a plugin to npm so apps can install it.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 版本与兼容范围
-- 发布检查
-- 商业插件的发布方式
+- Versions and compatibility ranges
+- Pre-publish checks
+- How to publish a commercial plugin

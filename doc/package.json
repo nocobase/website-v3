@@ -1,0 +1,12 @@
+{
+  "name": "nocobase-3-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs"
+  },
+  "dependencies": {
+    "marked": "4.3.0"
+  }
+}

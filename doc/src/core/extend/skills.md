@@ -1,14 +1,14 @@
 ---
-title: 给插件写技能
-status: 待编写
-description: 让 Agent 学会使用你的插件。
+title: Write skills for a plugin
+status: To be written
+description: Teach agents to use your plugin.
 ---
 
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
+> [!PENDING] This page is to be written
+> The list below is what the page plans to cover.
 
-## 计划包含
+## Planned content
 
-- 技能写什么：公开接口、规则、验证步骤
-- 技能怎样随包发布和同步
-- 技能和文档的分工
+- What a skill covers: public interfaces, rules, verification steps
+- How skills ship with the package and get synced
+- How skills and documentation divide the work

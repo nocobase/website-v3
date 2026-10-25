@@ -216,6 +216,6 @@
 "Know-how": "지식 축적",
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
 "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 팀과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다.",
-"Find the opportunities in your data. NocoReach puts them into action.": "데이터에서 기회를 찾고, NocoReach가 실행에 옮깁니다."
+"AI finds growth opportunities. Agents put them into action.": "AI가 성장 기회를 찾고, 에이전트가 실행합니다."
 }
 };

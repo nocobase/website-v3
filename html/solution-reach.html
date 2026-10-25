@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoReach — 从数据中发现机会，NocoReach 帮你落地" data-en="NocoReach — Find the Opportunities in Your Data and Put Them into Action">NocoReach — 从数据中发现机会，NocoReach 帮你落地</title>
+<title data-zh="NocoReach — AI 找出增长机会，交给 Agent 执行" data-en="NocoReach — AI Finds Growth Opportunities, Agents Put Them into Action">NocoReach — AI 找出增长机会，交给 Agent 执行</title>
 <meta name="description" content="NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：网站分析、搜索、AI 搜索、社区、社交媒体、竞品等 20 多个来源的数据每天自动分析，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。" data-zh="NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：网站分析、搜索、AI 搜索、社区、社交媒体、竞品等 20 多个来源的数据每天自动分析，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。" data-en="NocoReach is an open-source AI growth operations platform built on NocoBase Core, with data collection, daily analysis, and agent execution in one place. Data from more than 20 sources, from web analytics, search and AI search to community, social media and competitors, is analyzed every day to find what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.">
 <script>
 (function () {
@@ -56,9 +56,6 @@
 /* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
 @media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 14vh; } .phero > .container { width: 100%; } }
 @media (max-width: 960px) { .phero-split { grid-template-columns: minmax(0, 1fr); gap: 36px; } .phero-split h1 { font-size: 40px; } }
-/* Until the English cut is ready, the English page shows the words alone */
-html:not([lang="zh"]) .phero-split { grid-template-columns: minmax(0, 1fr); }
-html:not([lang="zh"]) .phero-video { display: none; }
 /* Live demo styles: the demo site itself under the hero, or nothing when the site cannot be reached or on a phone; the link under it opens the site in a new tab. */
 .ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
@@ -96,7 +93,7 @@ html[lang="zh"] .phero .lede { word-break: keep-all; overflow-wrap: anywhere; }
     <div class="phero-split">
     <div class="phero-text">
     <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoReach · <t-zh>增长</t-zh><t-en>Growth</t-en></span><span class="pill pass">Beta</span></p>
-    <h1><t-zh>从数据中发现机会，<span class="m">NocoReach 帮你落地。</span></t-zh><t-en>Find the opportunities in your data. <span class="m">NocoReach puts them into action.</span></t-en></h1>
+    <h1><t-zh>AI 找出增长机会，<span class="m">交给 Agent 执行。</span></t-zh><t-en>AI finds growth opportunities. <span class="m">Agents put them into action.</span></t-en></h1>
     <p class="lede"><t-zh>NocoReach 是 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成。它接入网站分析、搜索、AI 搜索、社区、社交媒体、视频平台、竞品和 GitHub 等 20&nbsp;多个来源，每天自动分析全部数据，找出值得做的事并写明依据；你确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。</t-zh><t-en>NocoReach is an AI growth operations platform: data collection, daily analysis, and agent execution in one place. Data from more than 20 sources, including web analytics, search, AI search, community, social media, video, competitors and GitHub, comes together and is analyzed every day to find what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.</t-en></p>
     <div class="cta">
       <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
@@ -105,7 +102,7 @@ html[lang="zh"] .phero .lede { word-break: keep-all; overflow-wrap: anywhere; }
     </div>
     <div class="phero-video" id="introVideo">
       <button class="pv-cover" type="button" id="introPlay">
-        <t-zh><img src="assets/video/nocoreach-intro-zh.jpg" alt="NocoReach 介绍视频"></t-zh>
+        <t-zh><img src="assets/video/nocoreach-intro-zh.jpg" alt="NocoReach 介绍视频"></t-zh><t-en><img src="assets/video/nocoreach-intro-en.jpg" alt="NocoReach intro video"></t-en>
         <span class="pv-btn"><i data-lucide="play"></i><t-zh>观看介绍</t-zh><t-en>Watch the intro</t-en><small>3:08</small></span>
       </button>
     </div>

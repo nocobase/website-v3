@@ -85,6 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "Agent 自主推進，團隊掌控全局。",
 "Explore Studio": "了解 Studio",
 "Growth · Beta": "內容與成長 · Beta",
-"Find the opportunities in your data. NocoReach puts them into action.": "從資料中發現機會，NocoReach 幫你落實。",
-"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "每天分析資料、找出值得做的事並附上依據，修改頁面、撰寫文章、草擬社群回覆"
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "每天分析資料、找出值得做的事並附上依據，修改頁面、撰寫文章、草擬社群回覆",
+"AI finds growth opportunities. Agents put them into action.": "AI 找出成長機會，交給 Agent 執行。"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — 開源業務應用，AI 驅動，開箱即用", "description": "NocoBase Solution 是由 Agent 驅動、以 Core 打造的一系列企業業務應用，Agent 做大部分執行工作，人只做關鍵決策。"}; })((window.NB_I18N = window.NB_I18N || {})["zh-TW"] = (window.NB_I18N || {})["zh-TW"] || {});

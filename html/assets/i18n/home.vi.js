@@ -216,6 +216,6 @@
 "Know-how": "Tích lũy tri thức",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
 "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.",
-"Find the opportunities in your data. NocoReach puts them into action.": "Tìm ra cơ hội trong dữ liệu của bạn. NocoReach biến chúng thành hành động."
+"AI finds growth opportunities. Agents put them into action.": "AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động."
 }
 };

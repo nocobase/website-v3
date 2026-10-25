@@ -216,6 +216,6 @@
 "Know-how": "Pengetahuan tim",
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
 "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.",
-"Find the opportunities in your data. NocoReach puts them into action.": "Temukan peluang dalam data Anda. NocoReach mewujudkannya."
+"AI finds growth opportunities. Agents put them into action.": "AI menemukan peluang pertumbuhan. Agen mewujudkannya."
 }
 };

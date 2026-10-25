@@ -216,6 +216,6 @@
 "Know-how": "Know-how",
 "Agents keep the work moving. Your team stays in control.": "Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.",
 "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio ist die Governance-Plattform für Teams, die mit Agenten entwickeln. Es bündelt Claude Code, Codex und OpenCode zu einem Agenten-Team, das Aufgaben selbstständig vorantreibt. Der Fortschritt ist auf einen Blick sichtbar, und die wichtigen Entscheidungen treffen Menschen.",
-"Find the opportunities in your data. NocoReach puts them into action.": "Finden Sie die Chancen in Ihren Daten. NocoReach setzt sie um."
+"AI finds growth opportunities. Agents put them into action.": "KI findet Wachstumschancen. Agenten setzen sie um."
 }
 };

@@ -216,6 +216,6 @@
 "Know-how": "ナレッジの蓄積",
 "Agents keep the work moving. Your team stays in control.": "エージェントが自律的に推進し、チームが全体を掌握する。",
 "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio は、チームとエージェントが協働開発するためのガバナンスプラットフォームです。Claude Code、Codex、OpenCode をひとつのエージェントチームにまとめ、タスクを自律的に進めます。進捗はひと目でわかり、重要な判断は人が下します。",
-"Find the opportunities in your data. NocoReach puts them into action.": "データから機会を見つけ、NocoReach が実行に移します。"
+"AI finds growth opportunities. Agents put them into action.": "AI が成長の機会を見つけ、エージェントが実行します。"
 }
 };

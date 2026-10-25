@@ -85,6 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "Los agentes hacen avanzar el trabajo. Tu equipo mantiene el control.",
 "Explore Studio": "Descubre Studio",
 "Growth · Beta": "Crecimiento · Beta",
-"Find the opportunities in your data. NocoReach puts them into action.": "Encuentra las oportunidades en tus datos. NocoReach las pone en práctica.",
-"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Analizar los datos cada día, encontrar lo que vale la pena hacer con evidencias, y modificar páginas, escribir artículos y redactar respuestas para la comunidad"
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Analizar los datos cada día, encontrar lo que vale la pena hacer con evidencias, y modificar páginas, escribir artículos y redactar respuestas para la comunidad",
+"AI finds growth opportunities. Agents put them into action.": "La IA encuentra oportunidades de crecimiento. Los agentes las ponen en práctica."
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Apps empresariales de código abierto, impulsadas por IA y listas para usar", "description": "NocoBase Solution es una línea de apps empresariales impulsadas por agentes y construidas sobre Core."}; })((window.NB_I18N = window.NB_I18N || {})["es"] = (window.NB_I18N || {})["es"] || {});

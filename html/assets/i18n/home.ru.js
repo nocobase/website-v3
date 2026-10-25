@@ -216,6 +216,6 @@
 "Know-how": "Накопленный опыт",
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
 "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio — платформа управляемой разработки для команд, которые работают с агентами. Она объединяет Claude Code, Codex и OpenCode в одну команду агентов, которая сама продвигает задачи. Весь прогресс как на ладони, а ключевые решения принимают люди.",
-"Find the opportunities in your data. NocoReach puts them into action.": "Находите возможности в своих данных. NocoReach воплощает их в жизнь."
+"AI finds growth opportunities. Agents put them into action.": "ИИ находит возможности для роста. Агенты воплощают их в жизнь."
 }
 };

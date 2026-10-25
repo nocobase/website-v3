@@ -1195,6 +1195,12 @@
  {
   "en": "Find the opportunities in your data. NocoReach puts them into action.",
   "zh": "从数据中发现机会，NocoReach 帮你落地。",
+  "where": "figure",
+  "unused": true
+ },
+ {
+  "en": "AI finds growth opportunities. Agents put them into action.",
+  "zh": "AI 找出增长机会，交给 Agent 执行。",
   "where": "figure"
  }
 ]

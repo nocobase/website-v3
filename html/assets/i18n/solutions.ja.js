@@ -85,6 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "エージェントが自律的に推進し、チームが全体を掌握する。",
 "Explore Studio": "Studio の詳細",
 "Growth · Beta": "グロース · Beta",
-"Find the opportunities in your data. NocoReach puts them into action.": "データから機会を見つけ、NocoReach が実行に移します。",
-"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "毎日のデータ分析、根拠を添えた取り組むべきことの発見、ページの修正、記事の執筆、コミュニティへの返信の下書き"
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "毎日のデータ分析、根拠を添えた取り組むべきことの発見、ページの修正、記事の執筆、コミュニティへの返信の下書き",
+"AI finds growth opportunities. Agents put them into action.": "AI が成長の機会を見つけ、エージェントが実行します。"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — オープンソースの業務アプリ、AI 駆動ですぐに使える", "description": "NocoBase Solution は、Core 上に構築された、エージェントが動かす業務アプリのシリーズです。"}; })((window.NB_I18N = window.NB_I18N || {})["ja"] = (window.NB_I18N || {})["ja"] || {});

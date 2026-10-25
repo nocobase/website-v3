@@ -238,3 +238,4 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 232: Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.
 233: NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
 234: Tìm ra cơ hội trong dữ liệu của bạn. NocoReach biến chúng thành hành động.
+235: AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động.

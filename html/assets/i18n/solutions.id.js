@@ -85,6 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
 "Explore Studio": "Pelajari Studio",
 "Growth · Beta": "Pertumbuhan · Beta",
-"Find the opportunities in your data. NocoReach puts them into action.": "Temukan peluang dalam data Anda. NocoReach mewujudkannya.",
-"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Menganalisis data setiap hari, menemukan hal yang layak dikerjakan beserta buktinya, lalu mengubah halaman, menulis artikel, dan menyusun balasan untuk komunitas"
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Menganalisis data setiap hari, menemukan hal yang layak dikerjakan beserta buktinya, lalu mengubah halaman, menulis artikel, dan menyusun balasan untuk komunitas",
+"AI finds growth opportunities. Agents put them into action.": "AI menemukan peluang pertumbuhan. Agen mewujudkannya."
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Aplikasi bisnis open source, digerakkan AI dan siap pakai", "description": "NocoBase Solution adalah rangkaian aplikasi bisnis yang digerakkan agen dan dibangun di atas Core."}; })((window.NB_I18N = window.NB_I18N || {})["id"] = (window.NB_I18N || {})["id"] || {});

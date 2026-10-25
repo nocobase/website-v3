@@ -1,35 +1,29 @@
 ---
 title: Studio 是什么
-description: NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
+description: NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
 ---
 
 个人电脑和团队服务器上的 Claude Code、Codex 等接入后，组成一支 Agent 团队，由调度 Agent 分派设计、开发、测试、评审工作，自主推进多个项目。每个任务做到哪里、下一步做什么，都一目了然。方法和经验沉淀在技能、知识库和项目记忆中，换人、换 Agent 都能无障碍交接。在每个关键处，Agent 会附上报告、截图，由人来做决策。
 
 ## 为什么需要 Studio
 
-你的企业已经在用 AI 开发或者 Vibe Coding，代码写得很快。但团队同时推进的项目和任务一多，新的问题就随之出现。
+你的企业已经在用 AI 开发或者 Vibe Coding，代码写得很快。但团队同时推进的项目和任务一多，新的问题就随之出现。每个人在多个终端和对话之间切换，Agent 交过来的改动也越来越多，人看不过来，又不敢放手。需求背景、业务资料、项目经验散落在不同电脑的不同会话里，换人、换 Agent 就很难找到。
+
+NocoBase Studio 正是为治理人与 Agent 协同开发而生。
 
 ### 一支持续推进的 Agent 团队
 
-团队里每个人都在用 Agent，各自同时处理多个项目和任务，在多个终端和对话之间来回切换。这些 Agent 分散在每个人的电脑上，有人操作时才工作，人一离开，工作就停了。
-
-Studio 接入多台机器上的 Agent 统一调度，组成一支 Agent 团队，24 小时同步推进多个项目和大量任务。成员电脑和团队服务器上的 Claude Code、Codex、Gemini CLI、Cursor、OpenCode 等常见编码工具都可以接入。调度 Agent 怎样分派工作，见 [Agent 团队怎样工作](agent-team.md)。
+Studio 接入多台机器上的 Agent 统一调度，组成一支 Agent 团队，24 小时同步推进多个项目和大量任务。Claude Code、Codex、Gemini CLI、Cursor、OpenCode 等常见编码工具都可以接入。调度 Agent 怎样分派工作，见 [Agent 团队怎样工作](agent-team.md)。
 
 ### 各项进展一目了然
-
-任务散落在每个人的终端和对话里，哪个做到哪里、卡在哪里、花了多少，只能一个个去问。
 
 在 Studio 里，每个任务做到哪里、下一步做什么，都一目了然，项目进展、Agent 工作负荷和模型用量也都清晰可见。需要你处理的事，都排在「我的任务」最前面。见 [跟进进展](../use/follow-progress.md) 和 [项目进展](../project/progress.md)。
 
 ### 有理有据做决策
 
-Agent 交来的改动越来越多，人审不过来，往往直接接受，问题越积越多。
-
 在 Studio 里，设计、开发、测试和评审由多个 Agent 协同完成，检查和评审都通过了，才交给人。需要人做决策时，Agent 会附上详细的报告、清单、截图和建议，不懂代码的业务专家也可以直接拍板。见 [验收](../use/accept.md)。
 
 ### 方法、经验、知识沉淀在团队里
-
-需求背景、业务资料、项目经验散落在每个人电脑上的不同会话里，换个人、换个 Agent，就很难找到。
 
 Studio 用技能保存做事的方法，用知识库保存业务资料，用项目记忆保存 Agent 自主学到的经验，换人、换 Agent 都能无障碍交接。见 [技能](../project/skills.md)、[知识库](../project/knowledge-base.md) 和 [项目记忆](../project/project-memory.md)。
 
@@ -49,12 +43,12 @@ Agent 写代码、做执行，人来做决策。
 
 ## 与 NocoBase Core 的关系
 
-NocoBase 在 AI 开发之上补齐底座和治理能力。Core 是应用底座，提供业务系统共用的基础能力和开发规范；Studio 是团队与 Agent 协同开发的治理平台。
+NocoBase 在 AI 开发之上补齐底座和治理能力。Core 是应用底座，提供业务系统共用的基础能力和开发规范；Studio 是人与 Agent 协同开发的治理平台。
 
 <figure class="map" aria-label="团队在 Studio 中与 Agent 团队协同，基于 Core 开发业务应用">
 <div class="row"><div class="box human"><b>你的团队</b><span>提出需求，掌握进展，在关键处做决策</span></div></div>
 <div class="down">需求</div>
-<div class="row c2"><div class="box brand"><b>NocoBase Studio</b><span>统一调度 Agent 团队，组织检查和评审，沉淀方法和经验</span></div><div class="box agent"><b>Agent 团队</b><span>在团队服务器和个人电脑上设计、开发、测试、评审</span></div></div>
+<div class="row c2"><div class="box brand"><b>NocoBase Studio</b><span>统一调度 Agent 团队，组织检查和评审，沉淀方法和经验</span></div><div class="box agent"><b>Agent 团队</b><span>Claude Code、Codex 等编码工具，分工设计、开发、测试、评审</span></div></div>
 <div class="down">开发</div>
 <div class="row"><div class="box"><b>你的业务应用 · 建在 NocoBase Core 上</b><span>使用 Core 的权限、流程、文件等基础能力；发布后独立运行</span></div></div>
 </figure>
@@ -63,4 +57,4 @@ NocoBase 在 AI 开发之上补齐底座和治理能力。Core 是应用底座�
 
 ## 私有部署
 
-Studio 在 NocoBase 商业版中提供，Core 和 Solution 开源免费。Studio 和业务应用都部署在企业自己的服务器上，代码和数据归企业所有。模型和 Agent 由企业自由选择，不绑定厂商。版本和价格见 [开源与商业](../../start/editions.md)。
+Studio 在 NocoBase 商业版中提供，Core 和 Solution 开源免费。Studio 和业务应用都部署在企业自己的服务器上，代码和数据归企业所有。模型和 Agent 由企业自由选择，不绑定厂商。

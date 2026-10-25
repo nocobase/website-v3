@@ -9,7 +9,7 @@
   var products = [
     /* 和首页的静态导航一致，短句取自《NocoBase 产品定义与标准表述》 */
     ['core', 'core.html', 'layers', 'NocoBase Core', T('AI 开发和运行业务系统的开源应用底座', 'The open-source foundation for AI-built business systems')],
-    ['studio', 'studio.html', 'git-pull-request', 'NocoBase Studio', T('团队与 Agent 协同开发的治理平台', 'The governance platform for teams building with agents')],
+    ['studio', 'studio.html', 'git-pull-request', 'NocoBase Studio', T('人与 Agent 协同开发的治理平台', 'The governance platform for people and agents building software together')],
     ['solutions', 'solutions.html', 'layout-grid', 'NocoBase Solution', T('由 Agent 驱动的企业业务应用', 'Agent-driven business apps')]
   ];
   var apps = [

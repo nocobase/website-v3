@@ -10,7 +10,7 @@
 "AI + no-code development platform": "AI + 無程式碼開發平台",
 "Products": "產品",
 "The open-source foundation for AI-built business systems": "以 AI 開發與運行業務系統的開源應用基礎平台",
-"The governance platform for teams building with agents": "團隊與 Agent 協同開發的治理平台",
+"The governance platform for people and agents building software together": "人與 Agent 協同開發的治理平台",
 "Agent-driven business apps": "由 Agent 驅動的企業業務應用",
 "No-code": "無程式碼",
 "Visual configuration platform, maintained alongside v3": "視覺化設定建置，與 NocoBase 3 並行維護",
@@ -38,7 +38,7 @@
 "Become a Partner": "成為合作夥伴",
 "Pricing": "價格",
 "App Foundation": "應用基礎平台",
-"Teams + Agents": "團隊與 Agent 協同",
+"People + Agents": "人與 Agent 協同",
 "Business Apps": "企業業務應用",
 "No-code ↗": "無程式碼 ↗",
 "Build reliable business systems": "打造可靠的業務系統",
@@ -215,7 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio 組織多個 Agent 協同完成設計、開發、測試和審查，關鍵決策交給人把關，並附上報告和截圖作為依據。",
 "Know-how": "知識累積",
 "Agents keep the work moving. Your team stays in control.": "Agent 自主推進，團隊掌控全局。",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio 是團隊與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。",
+"NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio 是人與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。",
 "Deliver more client projects with an agent team": "用 Agent 團隊交付更多客戶專案"
 },
 "ui": {

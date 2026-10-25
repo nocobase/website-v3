@@ -1,59 +1,81 @@
 ---
 title: NocoBase 3 是什么
-description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源平台。Agent 写业务部分，NocoBase 提供底座和工作流程，人确定目标、作出决定。
+description: NocoBase 是用 AI 持续开发和运行业务系统的开源平台。Agent 写代码、做执行，NocoBase 提供底座和治理能力，人来做决策。
 ---
 
-让 Agent 做一个业务系统，第一个版本几个小时就能上线。难的是之后：每加一个功能、改一次流程、升一次级，系统都要继续可靠。业务系统要用很多年，能一直可靠地改下去，比第一版做得快更重要。
+Core 是应用底座，提供业务系统共用的基础能力和开发规范，Agent 在此基础上开发企业的业务需求；Studio 是人与 Agent 协同开发的治理平台，Agent 分工推进任务，人掌握进展，在关键处做决策。NocoBase 把 AI 的开发能力，转化为企业持续交付可靠业务系统的能力。
 
-NocoBase 3 为此把工作分成三份：
+## 为什么需要 NocoBase
 
-<div class="roles">
-<div class="col human"><div class="col-h">人做决定</div><div class="role"><span>确定目标，作出判断，批准关键操作，验收结果。</span></div></div>
-<div class="col agent"><div class="col-h">Agent 执行</div><div class="role"><span>开发和测试功能，处理资料，推进业务任务。</span></div></div>
-</div>
+AI 写代码很快，但构建可靠的业务系统依然不简单。你的企业已经在用 AI 开发或者 Vibe Coding，第一个版本很快就能做出来。可业务系统要用很多年，要不断加功能、改流程，还会换人接手，新的问题随之出现。
 
-**NocoBase 提供底座和工作流程**：Core 的数据、权限、审批和定时任务每次都按同样的规则运行，Agent 的每一步都有记录；Studio 接入并调度大量 Agent，每次变更经过检查、验收和批准再上线。
+### 底层能力要从零建设
 
-## 业务部分和底座分开
+即使交给 AI，权限、工作流引擎、审批等底层模块从零开发，设计难度依然很高，边界情况多，维护工作量大。
 
-NocoBase 把一个业务系统分成两部分：
+Core 提供现成的基础能力，由 NocoBase 持续维护和升级。例如采购团队要一个供应商管理系统，Agent 只写供应商档案、采购订单、审批规则这些业务部分，权限和审批直接用 Core 的。需要开发和验证的代码大幅减少。
 
-- **业务部分**是每个企业不一样的地方：数据模型、页面、流程、业务规则和业务 Agent。由 Agent 开发，代码在你自己的仓库里。
-- **底座**是每个系统都需要的能力：数据、权限、审批、文件、通知、部署等。由 NocoBase 提供，随版本独立升级。
+### 架构随机漂移，逐渐失控
 
-每次修改只动业务部分，底座不用重写。这是“可靠”的主要来源。
+换人、换模型甚至换一个会话，AI 都可能随机发挥，同一个系统里出现几种写法，越来越难维护。
 
-## 产品结构
+Core 提供统一的项目结构和开发规范，Agent 按随包提供的开发技能写代码，系统在统一架构下长期稳定迭代。
 
-| 产品 | 是什么 | 版本 |
-| --- | --- | --- |
-| **Core** | 开发和运行业务系统的开源底座。Agent 直接使用它的能力，把开发集中在企业自己的业务上 | 开源，商业版有增强 |
-| **Studio** | 人带领 Agent 团队开发应用的工作台。Agent 完成从需求到上线的执行，人只处理需要决定的事 | Professional、Enterprise |
-| **Solutions** | 基于 NocoBase 开发的开源业务应用，配好了业务 Agent，可以直接使用，也可以继续定制 | 开源 |
-| **Launch** | 实战培训与项目陪跑，NocoBase 团队和你的团队一起完成一个真实项目 | 按需选择 |
+### 并行任务很多，人确认不过来
 
-全部产品都可以私有部署，模型和 Agent 由企业自己选择。
+团队同时处理多个项目和任务，每个人都在多个终端和对话之间切换。Agent 交过来的改动越来越多，人看不过来，又不敢放手。
+
+Studio 统一调度 Agent 团队同时推进大量项目和任务，进展一目了然。需要人介入时，Agent 会附上报告、清单、截图，人可以有理有据做决策。
+
+### 知识和经验难以沉淀和共享
+
+需求背景、业务资料、项目经验散落在不同电脑的不同会话里，换人、换 Agent 就很难找到。
+
+Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 Agent 都能无障碍交接。
+
+## Core、Studio 和 Solution
+
+<figure class="map" aria-label="团队在 Studio 中与 Agent 团队协同，基于 Core 开发业务应用；也可以从现成的 Solution 开始">
+<div class="row"><div class="box human"><b>你的团队</b><span>提出需求，掌握进展，在关键处做决策</span></div></div>
+<div class="down">需求</div>
+<div class="row c2"><div class="box brand"><b>NocoBase Studio <span class="tag pro">商业版</span></b><span>统一调度 Agent 团队，组织检查和评审，沉淀方法和经验</span></div><div class="box agent"><b>Agent 团队</b><span>Claude Code、Codex 等编码工具，分工设计、开发、测试、评审</span></div></div>
+<div class="down">开发</div>
+<div class="row"><div class="box"><b>你的业务应用 · 建在 NocoBase Core 上</b><span>使用 Core 的权限、流程、文件等基础能力；代码和数据归企业所有，发布后独立运行</span></div></div>
+<div class="down">或者从现成的应用开始</div>
+<div class="row"><div class="box"><b>NocoBase Solution</b><span>基于 Core 构建、由 Agent 驱动的开源业务应用，可以直接使用，也可以继续定制</span></div></div>
+</figure>
+
+- **[Core](../core/index.md)** 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。
+- **[Studio](../studio/index.md)** 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
+- **Solution** 是由 Agent 驱动的、基于 Core 构建的一系列企业业务应用，例如 NocoCRM、NocoITAM。Agent 做大部分执行工作，人只做关键决策。可以直接安装使用，也可以让 Agent 按自己的业务继续定制。
 
 ## 只用 Core，还是用 Studio
 
 | | 只用 Core | 用 Studio |
 | --- | --- | --- |
-| 谁来开发 | 你在应用目录里打开自己的编码工具，和 Agent 一起开发 | Studio 把团队的 Agent 组成 Agent 团队，调度 Agent 安排开发、测试、评审 |
-| 适合 | 一个人或一个小团队，做一个或几个应用 | 团队同时推进多个任务和项目，懂业务的人也要主导需求 |
-| 测试、部署、备份 | 团队自己组织，Core 提供部署工具和开发指引 | 按 Studio 的流程进行：检查、评审、验收、批准后发布 |
+| 谁来开发 | 你在应用目录里打开 Claude Code、Codex 等编码工具，和 Agent 一起开发 | 团队的 Agent 组成 Agent 团队，调度 Agent 分派设计、开发、测试、评审 |
+| 适合 | 一个人或一个小团队，做一个或几个应用 | 团队同时推进多个项目和大量任务，业务专家也要直接提需求、做决策 |
+| 检查和上线 | 团队自己组织测试、评审和部署，Core 提供部署工具和开发指引 | 检查和评审通过后交给人验收，部署到受保护的环境要经审批人批准 |
 | 开始 | [Core 快速开始](../core/quickstart.md) | [Studio 是什么](../studio/intro/what-is-studio.md) |
 
-两种方式开发出来的应用一样，都建在 Core 上，上线后独立运行，日常业务请求不经过 Studio。
+两种方式开发出来的应用一样，都建在 Core 上。
 
-## Agent 在 NocoBase 里做两类工作
+## 业务系统里的 Agent
 
-- **开发应用**：Claude Code、Codex 等编码工具，读 Core 随包提供的技能，在应用的代码仓库里编写页面、接口、数据表和流程。
-- **在应用里处理业务**：应用上线后，**业务 Agent** 在权限范围内整理资料、分类工单、提醒到期事项，关键操作交给人批准。它由 Core 的 Agents 插件接入，使用和同事一样的角色与权限。
+应用上线后，Agent 还可以在应用里承担业务上的执行工作，比如调研客户、起草邮件、核对资产台账、处理客户工单。这些业务 Agent 由 Core 的 Agents 插件接入，和人用同一套权限，遇到需要决策的事，附上依据交给负责人拍板。Solution 的每个应用都内置了业务 Agent，自己开发的应用也可以按需加上，见 [AI 与 Agent](../core/capabilities/ai-agents.md)。
 
-两类工作遵循同一套原则：Agent 有明确的身份和授权，过程有记录，结果可以检查，关键操作由人批准，人随时可以接手。
+## 开源与私有部署
+
+Core 和 Solution 开源免费，可以直接用于生产；Studio 在商业版中提供。
+
+Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。模型和 Agent 由企业自由选择，不绑定厂商，Claude Code、Codex 等编码工具和各类大模型都可以接入。业务应用发布后独立运行，日常业务请求不经过 Studio。
+
+## 和 Vibe Coding 的关系
+
+Vibe Coding 让软件开发更加高效。项目涉及复杂业务、多人协作和长期迭代时，只靠 AI 生成代码还不够，还需要可靠的应用底座、统一的开发规范和完善的治理。NocoBase 在 Vibe Coding 之上补齐底座和治理能力，你的团队照样用 Claude Code、Codex 等编码工具写代码。
 
 ## 接下来
 
-- 想动手：[Core 是什么](../core/intro/what-is-core.md) → [快速开始](../core/quickstart.md)
-- 想了解团队怎样带领 Agent 团队：[Studio 是什么](../studio/intro/what-is-studio.md)
+- 自己动手开发一个应用：[Core 是什么](../core/intro/what-is-core.md) → [快速开始](../core/quickstart.md)
+- 了解团队怎样和 Agent 团队协同开发：[Studio 是什么](../studio/intro/what-is-studio.md)
 - 用过 NocoBase 2：[从 NocoBase 2 来](from-v2.md)

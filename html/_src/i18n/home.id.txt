@@ -9,7 +9,7 @@ description: NocoBase adalah platform open source untuk membangun, menjalankan, 
 002: Platform pengembangan AI + no-code
 003: Produk
 004: Fondasi open source untuk sistem bisnis yang dibangun dengan AI
-005: Platform tata kelola untuk tim yang membangun dengan agen
+005: Platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama
 006: Aplikasi bisnis yang digerakkan agen
 007: No-code
 008: Platform konfigurasi visual, dikelola berdampingan dengan v3
@@ -41,7 +41,7 @@ description: NocoBase adalah platform open source untuk membangun, menjalankan, 
 034: Harga
 035: Jadwalkan demo
 036: Fondasi aplikasi
-037: Tim + agen
+037: Manusia + agen
 038: Aplikasi bisnis
 039: No-code ↗
 040: Bangun sistem bisnis yang andal
@@ -77,7 +77,7 @@ description: NocoBase adalah platform open source untuk membangun, menjalankan, 
 070: Pelajari NocoBase Core
 071: Biarkan tim Anda fokus mengambil keputusan.<br>
 072: Serahkan eksekusi kepada agen.
-073: NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code dan Codex milik tim Anda menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.
+073: NocoBase Studio adalah platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama. Studio menyatukan Claude Code dan Codex milik tim Anda menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.
 074: Tim agen yang terus menggerakkan pekerjaan
 075: Hubungkan agen di banyak mesin dan atur dari satu tempat. Mereka menggerakkan banyak proyek dan tugas secara paralel, 24 jam sehari.
 076: Progres terlihat sekilas
@@ -224,7 +224,7 @@ description: NocoBase adalah platform open source untuk membangun, menjalankan, 
 218: Manajemen aset TI
 219: Agen menggerakkan pekerjaan secara mandiri.<br>
 220: Tim Anda tetap memegang kendali.
-221: NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code dan Codex menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.
+221: NocoBase Studio adalah platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama. Studio menyatukan Claude Code dan Codex menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.
 222: Vibe coding membuat pengembangan software jauh lebih cepat. Namun begitu proyek melibatkan logika bisnis yang kompleks, banyak orang, dan iterasi bertahun-tahun, kode buatan AI saja tidak cukup. Anda juga membutuhkan fondasi aplikasi yang andal, standar pengembangan yang konsisten, dan tata kelola yang baik. NocoBase bukan pengganti vibe coding, melainkan melengkapinya dengan fondasi dan tata kelola.
 223: Komponen dasar
 224: Tanpa NocoBase
@@ -236,5 +236,5 @@ description: NocoBase adalah platform open source untuk membangun, menjalankan, 
 230: Studio mengoordinasikan beberapa agen dalam desain, pengembangan, pengujian, dan review. Keputusan penting diambil manusia, dengan laporan dan tangkapan layar sebagai dasar.
 231: Pengetahuan tim
 232: Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.
-233: NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.
+233: NocoBase Studio adalah platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.
 234: Selesaikan lebih banyak proyek klien bersama tim agen

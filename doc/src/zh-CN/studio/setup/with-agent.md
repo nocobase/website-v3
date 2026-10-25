@@ -1,28 +1,26 @@
 ---
 title: 让 Agent 搭建 Studio
-description: 把提示词交给你的 Coding Agent，由它部署 Studio、完成配置；想看看 Agent 团队怎样工作，再让它用一个几分钟就能做完的任务试运行一遍。
+description: 推荐这样搭建 Studio：把提示词交给你的 Agent，例如 Claude Code、Codex，由它照着文档部署 Studio、完成配置，你只在需要人的地方亲自操作。搭好后，它会问你要不要用一个几分钟就能做完的任务试运行一遍。
 ---
-
-推荐这样搭建 Studio：把下面的提示词交给你电脑上的 Claude Code、Codex 等编码工具，由它照着文档完成。分两段：
 
 | | 做什么 | 用时 |
 | --- | --- | --- |
-| 搭建 | 部署 Studio，连接代码托管平台，接入运行环境，启用 Agent。做完就停下，把结果交给你 | 约半小时，其中有几处要你亲自操作 |
-| 试运行（可选） | 新建一个试运行项目，提一个最简单的任务，看 Agent 团队把它推进到待验收 | 约 5 分钟 |
+| 搭建 | 部署 Studio，连接代码托管平台，接入运行环境，启用 Agent。做完就停下，把结果交给你，问你要不要试运行 | 约半小时，其中有几处要你亲自操作 |
+| 试运行（可选） | 你同意后，新建一个试运行项目，提一个最简单的任务，看 Agent 团队把它推进到待验收 | 约 5 分钟 |
 
 ## 准备
 
 | 准备什么 | 说明 |
 | --- | --- |
-| 一台服务器 | Linux，装有 Docker 和 Docker Compose，你的 Coding Agent 能通过 SSH 登录，见 [安装 Studio](install.md) |
+| 一台服务器 | Linux，装有 Docker 和 Docker Compose，你的 Agent 能通过 SSH 登录，见 [安装 Studio](install.md) |
 | NocoBase Pro token | 拉取 Studio 镜像用。Agent 需要时，会请你自己在服务器上登录镜像源 |
 | 代码托管平台的账号 | GitHub、GitLab 或 Gitee。用 GitLab、Gitee 时，先准备好令牌，见 [连接 Git](git.md) |
 | 一台运行环境 | 同一台服务器上的一个专用系统用户，或者另一台机器。装好 Node.js 24，装好并登录 Claude Code、Codex 等编码工具。其余要用的软件，Agent 会照 [接入共享运行环境](shared-runtimes.md) 补齐 |
-| 你的 Coding Agent | 你电脑上的 Claude Code、Codex 等 |
+| 你的 Agent | Claude Code、Codex 等编码工具都可以，由它执行下面的提示词 |
 
 ## 搭建
 
-把下面尖括号里的内容换成你的，交给你的 Coding Agent：
+把下面尖括号里的内容换成你的，交给你的 Agent：
 
 ```prompt
 请帮我搭建 NocoBase Studio。
@@ -37,11 +35,11 @@ description: 把提示词交给你的 Coding Agent，由它部署 Studio、完�
 
 请按顺序完成：
 1. 部署 Studio，版本用 <版本号>。需要 NocoBase Pro token 时，请我自己在服务器上登录镜像源，不要让 token 经过你。完成后告诉我访问地址，以及初始管理员的密码存在服务器的哪个文件里。
-2. 等我登录 Studio 后，我会把「连接本地 Coding Agent」的配置指令交给你：照着在你所在的电脑上安装 nb-studio、登录、安装技能。登录要我在浏览器里批准，等我批准的时候，保持登录命令一直运行。之后在 Studio 里的操作都用 nb-studio。
+2. 等我登录 Studio 后，我会把「连接本地 Coding Agent」的配置指令交给你：照着它安装 nb-studio、登录、安装技能。登录要我在浏览器里批准，等我批准的时候，保持登录命令一直运行。之后在 Studio 里的操作都用 nb-studio。
 3. 连接代码托管平台。
 4. 生成共享运行环境的注册凭证，在共享运行环境上安装并注册执行机，按文档的准备一节补齐需要的软件。确认它在线、编码工具显示已登录。
 5. 检查已启用的 Agent，按各自的长处写好「擅长什么」；为调度 Agent 选好首选和备选。
-6. 做完就停下，给我一份结果：Studio 的地址，每一步的结果和在界面上哪里能看到，以及还需要我做的事。
+6. 做完就停下，给我一份结果：Studio 的地址，每一步的结果和在界面上哪里能看到，以及还需要我做的事。然后问我要不要用一个最简单的任务试运行一遍；我同意了，再按文档「让 Agent 搭建 Studio」一页「试运行」一节的提示词做。
 
 要求：
 - 需要我在网页上操作、提供令牌或回答问题时，停下来，告诉我在哪里、做什么。
@@ -66,17 +64,17 @@ Agent 最后给你的结果里，下面几项都应该是完成的。你也可�
 
 | 完成的事 | 在哪里看 |
 | --- | --- |
-| Studio 能登录，界面是中文，登录页上没有「注册」 | 登录页 |
+| Studio 能登录，界面是团队使用的语言，登录页上没有「注册」 | 登录页 |
 | 代码托管平台已连接 | 「设置 › 集成 › Git」 |
 | 共享运行环境在线，编码工具显示「已登录」 | 「Agent 管理 › 运行环境」 |
 | 至少两个已启用的 Agent，各自写好了擅长什么 | 「Agent 管理 › Agent」 |
 | 调度 Agent 设置了首选和备选 | 「Agent 管理 › Agent」上方的「调度 Agent」一栏 |
 
-到这里，Studio 就搭好了。接下来可以让 Agent 试运行一遍，也可以直接 [新建项目](new-project.md)、[邀请成员](invite.md)。
+到这里，Studio 就搭好了。Agent 问你要不要试运行时，可以让它试一遍；也可以不试，直接 [新建项目](new-project.md)、[邀请成员](invite.md)。
 
 ## 试运行
 
-想亲眼看看 Agent 团队怎样推进一个任务，把下面的提示词交给同一个 Coding Agent：
+你同意试运行后，Agent 按下面的提示词做。以后想再试，也可以把它交给同一个 Agent：
 
 ```prompt
 请在 NocoBase Studio（<访问地址>）里，用一个最简单的任务把 Agent 团队的流程试运行一遍。nb-studio 已经登录。

@@ -31,7 +31,7 @@ description: 登录、注册、找回密码和会话，基于 Better Auth；企�
 - 接入企业统一身份（OIDC）和社交登录：需要身份平台提供什么、回调地址
 - 双因素认证、通行密钥、组织等 Better Auth 官方插件
 - 部署时的对外地址 `app.publicOrigin`
-- LDAP、SAML、钉钉、企业微信的现状（待确认）
+- LDAP、SAML、钉钉、企业微信、飞书、Slack 等登录方式
 - 怎样让 Agent 使用，怎样检查结果
 - 管理员能调整什么、部署配置
 - 限制与尚未支持

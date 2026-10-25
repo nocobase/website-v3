@@ -10,7 +10,7 @@
 "AI + no-code development platform": "Nền tảng phát triển AI + no-code",
 "Products": "Sản phẩm",
 "The open-source foundation for AI-built business systems": "Nền móng mã nguồn mở cho hệ thống nghiệp vụ xây dựng bằng AI",
-"The governance platform for teams building with agents": "Nền tảng quản trị cho đội ngũ phát triển cùng agent",
+"The governance platform for people and agents building software together": "Nền tảng quản trị cho con người và agent cùng phát triển phần mềm",
 "Agent-driven business apps": "Ứng dụng nghiệp vụ do agent vận hành",
 "No-code": "No-code",
 "Visual configuration platform, maintained alongside v3": "Nền tảng cấu hình trực quan, được duy trì song song với v3",
@@ -38,7 +38,7 @@
 "Become a Partner": "Trở thành đối tác",
 "Pricing": "Bảng giá",
 "App Foundation": "Nền móng ứng dụng",
-"Teams + Agents": "Đội ngũ + Agent",
+"People + Agents": "Con người + Agent",
 "Business Apps": "Ứng dụng nghiệp vụ",
 "No-code ↗": "No-code ↗",
 "Build reliable business systems": "Xây dựng hệ thống nghiệp vụ tin cậy",
@@ -215,7 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio điều phối nhiều agent cùng thực hiện thiết kế, phát triển, kiểm thử và review; quyết định then chốt do con người kiểm soát, kèm báo cáo và ảnh chụp màn hình làm căn cứ.",
 "Know-how": "Tích lũy tri thức",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.",
+"NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.",
 "Deliver more client projects with an agent team": "Bàn giao nhiều dự án khách hàng hơn cùng một đội agent"
 }
 };

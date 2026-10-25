@@ -80,7 +80,7 @@ const SECTIONS = [
     dir: '',
     nav: [
       { items: ['index'] },
-      { title: ['Start', '开始'], items: ['start/what-is-nocobase', 'start/editions', 'start/from-v2', 'start/glossary'] },
+      { title: ['Start', '开始'], items: ['start/what-is-nocobase', 'start/from-v2', 'start/glossary'] },
     ],
   },
   {

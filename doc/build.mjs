@@ -117,9 +117,20 @@ const SECTIONS = [
         ],
       },
       {
+        title: ['Extension development', '扩展开发'],
+        items: [
+          { planned: ['When to write a plugin', '什么时候写插件'] },
+          { planned: ['Create a plugin', '创建插件'] },
+          { planned: ['Plugin structure', '插件的结构'] },
+          { planned: ['Publish a plugin', '发布插件'] },
+          { planned: ['Write plugin skills', '给插件写技能'] },
+          { planned: ['Contribute to the UI library', '向 UI 组件库贡献'] },
+        ],
+      },
+      {
         title: ['Capabilities', '能力'],
         items: [
-          { planned: ['Capability overview', '能力总览'] },
+          { planned: ['Capabilities overview', '能力总览'] },
           { planned: ['Database', '数据库'] },
           { planned: ['Authentication and users', '认证与用户'] },
           { planned: ['Access control', '权限控制'] },

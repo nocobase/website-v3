@@ -95,13 +95,10 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 .pv-btn small { font-size: 13px; opacity: 0.8; }
 /* The play button reads as part of the cover, translucent white, so the hero has one primary button, Try It Online (2026-10-25). */
 .pv-cover:hover .pv-btn { transform: translateY(-1px); background: oklch(1 0 0 / 0.96); }
-/* Live demo styles: the demo site itself under the hero, or a screenshot of the ITAM when the site cannot be reached, and on a phone; the link under it opens the site in a new tab. */
+/* Live demo styles: the demo site itself under the hero, or nothing when the site cannot be reached or on a phone; the link under it opens the site in a new tab. */
 .ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
-.ld-frame[hidden], .ld-shot[hidden] { display: none; }
-.ld-shot { overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
-.ld-shot t-zh, .ld-shot t-en { display: block; }
-.ld-shot img { display: block; width: 100%; height: auto; }
+#tryDemo[hidden] { display: none; }
 .ld-bar { display: flex; flex-wrap: wrap; justify-content: center; text-align: center; align-items: center; gap: 8px 16px; margin-top: 16px; color: var(--muted); }
 .ld-bar a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); }
 .ld-bar a:hover { color: var(--brand-hover); }
@@ -137,14 +134,14 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
   </div>
 </section>
 
-<section class="sec" id="tryDemo">
+<section class="sec" id="tryDemo" hidden>
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>在线体验</t-zh><t-en>Try It Online</t-en></b></p>
       <h2 class="h2"><t-zh>不用安装，</t-zh><t-en>No install needed. </t-en><span class="m"><t-zh>直接在浏览器里试用 NocoITAM。</t-zh><t-en>Try NocoITAM right in your browser.</t-en></span></h2>
     </div>
     <div class="sec-body">
-    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoITAM" allow="clipboard-write"></iframe></div><div class="ld-shot" hidden><t-zh><img src="assets/itam-overview-zh.jpg" alt="NocoITAM 待办" loading="lazy"></t-zh><t-en><img src="assets/itam-overview-en.jpg" alt="NocoITAM to-dos" loading="lazy"></t-en></div></div>
+    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoITAM" allow="clipboard-write"></iframe></div></div>
     <div class="ld-bar" id="liveDemoBar"><span><a href="https://solutions-cn.nocobase.com/itam/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span></div>
     </div>
   </div>
@@ -271,20 +268,21 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
 <script>
-/* Live demo script: the Chinese site on a Chinese page and the international one otherwise, kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows: when it fails or takes over 8 seconds (the site down, gone, unreachable), a screenshot of the ITAM's to-dos stands in the demo's place and the ways into the demo (the Try It Online buttons and the link under it) go, since they would lead nowhere; ?demo=screenshot in the address shows that state. When the site answers, it loads only once a third of its frame is on screen: its sign-in page puts the cursor in a field, and loaded earlier the browser would scroll the page down to that field as it opens. A phone always shows the screenshot, with the link to the site in a new tab. Try It Online scrolls to the demo, or opens the site in a new tab on a phone. Visitors sign in there as on the site itself. */
+/* Live demo script: the Chinese site on a Chinese page and the international one otherwise, kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
 (function () {
   var SITES = { zh: 'https://solutions-cn.nocobase.com/itam/', en: 'https://solutions.nocobase.com/itam/' };
-  var box = document.getElementById('liveDemo'), frameBox = box.querySelector('.ld-frame'), frame = frameBox.querySelector('iframe'), shot = box.querySelector('.ld-shot');
-  var bar = document.getElementById('liveDemoBar'), open = bar.querySelector('[data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
-  var forced = /[?&]demo=screenshot\b/.test(location.search);
+  var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
+  var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
+  var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
   var status = {}, shown = false;
   function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }
+  function up() { return !forced && status[SITES[lang()]] === 'up'; }
   function probe(url) {
     if (status[url]) return;
     status[url] = 'checking';
     var img = new Image(), settled = false;
-    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); }
+    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); check(); }
     var timer = setTimeout(function () { end(false); }, 8000);
     img.onload = function () { end(true); };
     img.onerror = function () { end(false); };
@@ -293,16 +291,13 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
   function apply() {
     var url = SITES[lang()], down = forced || status[url] === 'down';
     open.href = url;
-    bar.hidden = down;
     tries.forEach(function (a) { a.hidden = down; });
-    var useShot = down || narrow();
-    shot.hidden = !useShot;
-    frameBox.hidden = useShot;
-    if (useShot) { frame.removeAttribute('src'); return; }
-    if (shown && status[url] === 'up' && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
+    section.hidden = !up() || narrow();
+    if (section.hidden) { frame.removeAttribute('src'); return; }
+    if (shown && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
   }
   function check() {
-    if (shown) return;
+    if (shown || section.hidden) return;
     var r = box.getBoundingClientRect(), seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
     if (seen < r.height * 0.3) return;
     shown = true;
@@ -310,11 +305,11 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
     window.removeEventListener('scroll', check);
   }
   window.addEventListener('scroll', check, { passive: true });
-  window.addEventListener('resize', function () { check(); apply(); });
+  window.addEventListener('resize', function () { apply(); check(); });
   tries.forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      if (narrow()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
+      if (narrow() || !up()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
       shown = true;
       apply();
       box.scrollIntoView({ behavior: 'smooth', block: 'start' });

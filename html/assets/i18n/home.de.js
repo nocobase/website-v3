@@ -36,7 +36,6 @@
 "Find a Partner": "Partner finden",
 "Get your system built and running with an expert": "Lassen Sie Ihr System von Experten aufbauen und einführen",
 "Become a Partner": "Partner werden",
-"One consultant, an agent team, more projects": "Ein Berater, ein Agenten-Team, mehr Projekte",
 "Pricing": "Preise",
 "App Foundation": "Anwendungsfundament",
 "Teams + Agents": "Teams + Agenten",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio koordiniert mehrere Agenten über Entwurf, Entwicklung, Tests und Review. Wichtige Entscheidungen trifft ein Mensch, mit Berichten und Screenshots als Grundlage.",
 "Know-how": "Know-how",
 "Agents keep the work moving. Your team stays in control.": "Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio ist die Governance-Plattform für Teams, die mit Agenten entwickeln. Es bündelt Claude Code, Codex und OpenCode zu einem Agenten-Team, das Aufgaben selbstständig vorantreibt. Der Fortschritt ist auf einen Blick sichtbar, und die wichtigen Entscheidungen treffen Menschen."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio ist die Governance-Plattform für Teams, die mit Agenten entwickeln. Es bündelt Claude Code, Codex und OpenCode zu einem Agenten-Team, das Aufgaben selbstständig vorantreibt. Der Fortschritt ist auf einen Blick sichtbar, und die wichtigen Entscheidungen treffen Menschen.",
+"Deliver more client projects with an agent team": "Liefern Sie mit einem Agenten-Team mehr Kundenprojekte"
 }
 };

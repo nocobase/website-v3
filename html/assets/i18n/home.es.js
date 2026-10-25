@@ -36,7 +36,6 @@
 "Find a Partner": "Encuentra un partner",
 "Get your system built and running with an expert": "Construye y pon en marcha tu sistema con un experto",
 "Become a Partner": "Hazte partner",
-"One consultant, an agent team, more projects": "Un consultor, un equipo de agentes, más proyectos",
 "Pricing": "Precios",
 "App Foundation": "Base de aplicaciones",
 "Teams + Agents": "Equipos + agentes",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio coordina a varios agentes en el diseño, el desarrollo, las pruebas y la revisión. Las decisiones clave las toma una persona, con informes y capturas como respaldo.",
 "Know-how": "Conocimiento acumulado",
 "Agents keep the work moving. Your team stays in control.": "Los agentes hacen avanzar el trabajo. Tu equipo mantiene el control.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio es la plataforma de gobernanza para equipos que desarrollan con agentes. Reúne Claude Code, Codex y OpenCode en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio es la plataforma de gobernanza para equipos que desarrollan con agentes. Reúne Claude Code, Codex y OpenCode en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave.",
+"Deliver more client projects with an agent team": "Entrega más proyectos a clientes con un equipo de agentes"
 }
 };

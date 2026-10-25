@@ -153,23 +153,24 @@
  },
  {
   "en": "Find a Partner",
-  "zh": "寻找伙伴",
+  "zh": "寻找 NocoBase 伙伴",
   "where": "menu"
  },
  {
   "en": "Get your system built and running with an expert",
-  "zh": "和懂你行业的伙伴一起，把系统做出来、用起来",
+  "zh": "和懂行的伙伴一起，把系统做出来、用起来",
   "where": "menu"
  },
  {
   "en": "Become a Partner",
-  "zh": "成为伙伴",
+  "zh": "成为合作伙伴",
   "where": "menu"
  },
  {
   "en": "One consultant, an agent team, more projects",
   "zh": "一位顾问带一支 Agent 团队，交付更多项目",
-  "where": "menu"
+  "where": "menu",
+  "unused": true
  },
  {
   "en": "Pricing",
@@ -735,7 +736,7 @@
  },
  {
   "en": "Partner Program",
-  "zh": "伙伴计划",
+  "zh": "合作伙伴计划",
   "where": "footer"
  },
  {
@@ -1190,5 +1191,10 @@
   "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
   "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
   "where": "studio"
+ },
+ {
+  "en": "Deliver more client projects with an agent team",
+  "zh": "用 Agent 团队交付更多客户项目",
+  "where": "menu"
  }
 ]

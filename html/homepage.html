@@ -7,7 +7,7 @@
 <meta name="description" content="NocoBase 是用 AI 持续开发和运行业务系统的开源平台。Agent 写代码、做执行，NocoBase 提供底座和治理能力，人来做决策。">
 <script>
 /* 语言：中文、英文写在页面里；其他语言的译文在 assets/i18n/home.<语言>.js（由 _src/i18n 生成），按需加载。
-   界面示意图在中文以外的语言里都显示英文界面，因为产品界面只有中英文 */
+   界面示意图：中文、繁体中文显示本文字的界面（繁体中文的界面文字在 home.zh-TW.js 的 ui），其他语言显示英文界面 */
 (function () {
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
   var FONTS = { ru: 'inter' };
@@ -1647,9 +1647,16 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
 <script>
 (function () {
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-  /* 中文以外的语言：界面示意图显示英文界面（L），营销文案和结构图换成该语言（M）。译文以英文原文为键，缺的显示英文 */
+  /* 界面示意图（L，以及模板里成对的 <t-zh>/<t-en>）：中文显示中文界面，繁体中文显示繁体中文界面（assets/i18n/home.zh-TW.js 的 ui，
+     由 _src/i18n/ui_tw.py 生成），其他语言显示英文界面。营销文案和结构图换成该语言（M），译文以英文原文为键，缺的显示英文 */
   var isEn = function () { return window.__lang !== 'zh'; };
-  var L = function (zh, en) { return isEn() ? en : zh; };
+  var isTW = function () { return window.__lang === 'zh-TW'; };
+  var ui = function (zh) { var d = window.NB_I18N && window.NB_I18N['zh-TW']; return (d && d.ui && d.ui[zh]) || zh; };
+  var L = function (zh, en) { return isTW() ? ui(zh) : isEn() ? en : zh; };
+  /* 模板里的界面示意：页面在中文以外的语言只显示 <t-en>，繁体中文时把每对的 <t-en> 换成繁体中文 */
+  var UIH = function (h) {
+    return isTW() ? h.replace(/<t-zh>([\s\S]*?)<\/t-zh>(\s*)<t-en>[\s\S]*?<\/t-en>/g, function (m, zh, sp) { return '<t-zh>' + zh + '</t-zh>' + sp + '<t-en>' + ui(zh) + '</t-en>'; }) : h;
+  };
   var tr = function (en) { var d = window.NB_I18N && window.NB_I18N[window.__lang]; return (d && d.strings[en]) || en; };
   var M = function (zh, en) { return isEn() ? tr(en) : zh; };
   var trCaps = function (c) { return c.map(function (x) { return [x[0], tr(x[1]), tr(x[2])]; }); };
@@ -1661,7 +1668,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
   var NAMES_ZH = { WL: '王磊', CS: '陈思', LY: '林悦', ZH: '周航' };
   var NAMES_EN = { WL: 'Leo Walker', CS: 'Ava Clarke', LY: 'Maya Collins', ZH: 'ethan Zhou' };
   NAMES_EN.ZH = 'Ethan Cole';
-  var NAME = function (c) { return isEn() ? NAMES_EN[c] : NAMES_ZH[c]; };
+  var NAME = function (c) { return isTW() ? ui(NAMES_ZH[c]) : isEn() ? NAMES_EN[c] : NAMES_ZH[c]; };
   var AV = function (c) { return '<span class="av">' + NAME(c).charAt(0) + '</span>'; };
   var BOT = '<span class="ag"><i data-lucide="bot"></i></span>';
   var WF = '<span class="ag wf"><i data-lucide="workflow"></i></span>';
@@ -1837,7 +1844,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
         head: M('新人入职前一天，一切已经就绪。', 'Everything is ready the day before a new hire starts.') }
     ];
   }
-  function appFig(a) { return $('tpl-' + a.tpl).innerHTML; }
+  function appFig(a) { return UIH($('tpl-' + a.tpl).innerHTML); }
 
   /* ---------- 渲染 ---------- */
   var tabs = $('apptabs');
@@ -1891,7 +1898,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
       if (on && focus) b.focus();
     });
     $('stvPanel').setAttribute('aria-labelledby', 'stvTab-' + k);
-    $('stvFig').innerHTML = $('stv-' + k).innerHTML;
+    $('stvFig').innerHTML = UIH($('stv-' + k).innerHTML);
     /* 四张图高度不同，统一按最高的一张撑开，切换时页面不跳动 */
     var el = $('stvFig').firstElementChild;
     if (el && stvH) el.style.minHeight = stvH + 'px';
@@ -1901,7 +1908,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
   function measureStv() {
     var box = $('stvFig'), max = 0;
     box.style.width = box.closest('.fit').dataset.w + 'px';
-    stvTabs.forEach(function (b) { box.innerHTML = $('stv-' + b.dataset.k).innerHTML; icons(); max = Math.max(max, box.firstElementChild.offsetHeight); });
+    stvTabs.forEach(function (b) { box.innerHTML = UIH($('stv-' + b.dataset.k).innerHTML); icons(); max = Math.max(max, box.firstElementChild.offsetHeight); });
     stvH = max;
     stvShow(stvCur);
   }

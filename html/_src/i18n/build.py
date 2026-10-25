@@ -62,8 +62,12 @@ for f in sorted(here.glob('home.*.txt')):
     strings = {item['en']: tr[f'{i:03d}'] for i, item in enumerate(keys) if f'{i:03d}' in tr and not item.get('unused')}
     out = site / 'assets' / 'i18n' / f'home.{lang}.js'
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text('/* 由 _src/i18n/build.py 从 home.%s.txt 生成，不要直接修改 */\n(window.NB_I18N = window.NB_I18N || {})[%s] = %s;\n'
-                   % (lang, json.dumps(lang), json.dumps({'meta': meta, 'strings': strings}, ensure_ascii=False, indent=0)), encoding='utf8')
+    data = {'meta': meta, 'strings': strings}
+    ui_f = here / f'ui.{lang}.json'   # 繁体中文的产品界面示意（ui_tw.py 生成）：首页 L() 和模板按它显示本文字的界面
+    if ui_f.exists():
+        data['ui'] = json.loads(ui_f.read_text(encoding='utf8'))
+    out.write_text('/* 由 _src/i18n/build.py 从 home.%s.txt%s 生成，不要直接修改 */\n(window.NB_I18N = window.NB_I18N || {})[%s] = %s;\n'
+                   % (lang, f' 和 ui.{lang}.json' if ui_f.exists() else '', json.dumps(lang), json.dumps(data, ensure_ascii=False, indent=0)), encoding='utf8')
     print(f'{lang}: {len(strings)}/{len(keys)} 条')
 
 sys.exit(0 if ok else 1)

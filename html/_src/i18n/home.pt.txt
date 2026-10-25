@@ -237,3 +237,4 @@ description: NocoBase é a plataforma open source para criar, operar e evoluir s
 231: Conhecimento acumulado
 232: Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.
 233: O NocoBase Studio é a plataforma de governança para equipes que desenvolvem com agentes. Ele reúne o Claude Code, o Codex e o OpenCode em uma única equipe de agentes que faz as tarefas avançarem sozinha. O progresso fica à vista, e as decisões importantes ficam com as pessoas.
+234: Entregue mais projetos de clientes com uma equipe de agentes

@@ -1,0 +1,555 @@
+{
+ "items": [
+  {
+   "en": "Sales CRM",
+   "zh": "销售管理",
+   "where": "phero"
+  },
+  {
+   "en": "Your sales team just gained <span class=\"m\">a 24/7 agent team.</span>",
+   "zh": "给你的销售，<span class=\"m\">配一支 7×24 的 Agent 团队。</span>",
+   "where": "phero"
+  },
+  {
+   "en": "NocoCRM comes with 6 sales agents and integrates your email and WhatsApp: following up on leads and opportunities, replying to messages right away, and reviewing approvals with you. Agents suggest; you decide.",
+   "zh": "NocoCRM 内置 6 个销售 Agent，并集成邮箱与 WhatsApp：自动跟进线索与商机，即时回复来信，审批时帮你分析。Agent 给建议，人来拍板。",
+   "where": "phero"
+  },
+  {
+   "en": "Try It Online",
+   "zh": "在线体验",
+   "where": "phero"
+  },
+  {
+   "en": "Watch the intro",
+   "zh": "观看介绍",
+   "where": "phero"
+  },
+  {
+   "en": "License",
+   "zh": "授权",
+   "where": "phero"
+  },
+  {
+   "en": "Open source",
+   "zh": "开源",
+   "where": "phero"
+  },
+  {
+   "en": "Built on",
+   "zh": "基于",
+   "where": "phero"
+  },
+  {
+   "en": "Version",
+   "zh": "当前版本",
+   "where": "phero"
+  },
+  {
+   "en": "Built-in agents",
+   "zh": "内置 Agent",
+   "where": "phero"
+  },
+  {
+   "en": "Integrations",
+   "zh": "集成",
+   "where": "phero"
+  },
+  {
+   "en": "Email · WhatsApp",
+   "zh": "邮件 · WhatsApp",
+   "where": "phero"
+  },
+  {
+   "en": "AI models",
+   "zh": "AI 模型",
+   "where": "phero"
+  },
+  {
+   "en": "Your choice",
+   "zh": "自选",
+   "where": "phero"
+  },
+  {
+   "en": "Try NocoCRM online",
+   "zh": "在线体验 NocoCRM",
+   "where": "tryDemo"
+  },
+  {
+   "en": "You're signed in to a demo account. All the data is made up, so try anything.",
+   "zh": "已用演示账号自动登录，数据都是虚构的，可以随意操作。",
+   "where": "tryDemo"
+  },
+  {
+   "en": "Open it in full in a new tab",
+   "zh": "在新页面完整打开",
+   "where": "tryDemo"
+  },
+  {
+   "en": "A Day in Sales",
+   "zh": "销售的一天",
+   "where": "tint"
+  },
+  {
+   "en": "Agents handled 37 routine tasks today. ",
+   "zh": "Agent 处理了 37 项日常工作，",
+   "where": "tint"
+  },
+  {
+   "en": "Only 6 needed your decision.",
+   "zh": "需要你拍板的只有 6 件。",
+   "where": "tint"
+  },
+  {
+   "en": "Agents handle the time-consuming work in the background: researching accounts, following up on leads, preparing meeting briefs, drafting replies, and checking discounts. When a judgment call is needed, it comes to you with the reasons, and you decide.",
+   "zh": "查客户背景、跟进线索、准备会议要点、起草回复、核算折扣，这些日常工作都由 Agent 在后台完成。需要人拿主意的，会附好依据推给你，由你决定。",
+   "where": "tint"
+  },
+  {
+   "en": "Agent Follow-up",
+   "zh": "Agent 主动跟进",
+   "where": "sec"
+  },
+  {
+   "en": "Nothing falls through the cracks. ",
+   "zh": "不用靠人惦记，",
+   "where": "sec"
+  },
+  {
+   "en": "Agents follow up on every event automatically.",
+   "zh": "每个客户动态都有 Agent 自动跟进。",
+   "where": "sec"
+  },
+  {
+   "en": "Whether it’s a new lead, a new opportunity, a customer reply, a quiet WhatsApp thread, a completed task, or the morning check, agents trigger automatically, read the full context, and put the next step in your inbox. No lead sits forgotten.",
+   "zh": "无论是新线索入库、新开商机、客户回信、WhatsApp 会话静默、任务完成，还是每天早晨的巡检，Agent 都会自动触发，读完上下文后把下一步建议送进收件箱，不再有线索躺在列表里无人问津。",
+   "where": "sec"
+  },
+  {
+   "en": "Every suggestion states the call, confidence, and reasoning.",
+   "zh": "每条建议都写明结论、把握和依据。",
+   "where": "sec"
+  },
+  {
+   "en": "Advance, follow up, pause, or close lost; grade leads A/B/C; approve, approve with conditions, or reject. Records update only when you accept, while dismissed suggestions are logged to measure agent accuracy.",
+   "zh": "商机该推进、跟进、暂停还是输单，线索评 A/B/C 哪一档，审批该同意、有条件同意还是驳回，全都清晰给出。仅在你采纳后才修改记录；被忽略的建议也会留档，用于评估 Agent 表现。",
+   "where": "sec"
+  },
+  {
+   "en": "Every Channel",
+   "zh": "全渠道沟通",
+   "where": "sec"
+  },
+  {
+   "en": "Email, WhatsApp, calls, and meetings, ",
+   "zh": "邮件、WhatsApp、电话和会议，",
+   "where": "sec"
+  },
+  {
+   "en": "every touchpoint captured and connected.",
+   "zh": "每次客户沟通都自动归档、无缝衔接。",
+   "where": "sec"
+  },
+  {
+   "en": "Wherever a customer reaches out, an agent follows up automatically: identifying the contact, logging key facts, drafting a reply, and scheduling the next step. Once confirmed, it goes out from your own account, keeping every interaction from first inquiry to signed contract on a single timeline.",
+   "zh": "无论客户从哪个渠道联系，Agent 都会自动跟进：识别客户身份、提取关键信息并写入记录、起草回复、安排下一步。经确认后由你的账号发出，所有往来都汇总在同一条客户时间线上。",
+   "where": "sec"
+  },
+  {
+   "en": "Email",
+   "zh": "邮箱",
+   "where": "sec"
+  },
+  {
+   "en": "When an email lands, the record is updated and a reply is drafted.",
+   "zh": "邮件一到，记录已更新、草稿已就绪。",
+   "where": "sec"
+  },
+  {
+   "en": "Connect personal Gmail, Microsoft 365, or any IMAP/SMTP mailbox, or share team addresses like sales@. Read and reply right from account and deal pages using your own signature and templates.",
+   "zh": "支持绑定个人 Gmail、Microsoft 365 或任意 IMAP/SMTP 邮箱，也可共享 sales@ 等团队邮箱。直接在客户与商机页收发邮件，沿用个人签名与模板。",
+   "where": "sec"
+  },
+  {
+   "en": "Matches contacts and companies by email and domain, prompting to create new ones",
+   "zh": "按邮箱和域名自动匹配联系人与公司，新联系人自动提示创建",
+   "where": "sec"
+  },
+  {
+   "en": "Extracts budget, needs, competitors, and timelines with quotes, flagging conflicts for your call",
+   "zh": "自动提取预算、需求、竞品和时间节点并附原话；与人工填写冲突时交你裁决",
+   "where": "sec"
+  },
+  {
+   "en": "Saves reply drafts straight to your mailbox drafts folder, ready for a quick edit",
+   "zh": "回复草稿直接写入你的邮箱草稿箱，改两句就能发",
+   "where": "sec"
+  },
+  {
+   "en": "Nudges you with a follow-up draft if a thread goes quiet for days",
+   "zh": "发出后多日未回，Agent 自动提醒并起草跟进邮件",
+   "where": "sec"
+  },
+  {
+   "en": "What happens on WhatsApp stays in sync with your CRM.",
+   "zh": "WhatsApp 上聊出的进展，自动同步进 CRM。",
+   "where": "sec"
+  },
+  {
+   "en": "Link your WhatsApp Business number to automatically tie chats to leads and deals. After 30 minutes of silence, an agent summarizes the thread onto the timeline and recommends the next step.",
+   "zh": "接入 WhatsApp Business 号码后，会话自动关联至对应线索和商机。客户停止回复满 30 分钟，Agent 自动将对话摘要归档至时间线，并给出下一步建议。",
+   "where": "sec"
+  },
+  {
+   "en": "Transcribes voice notes and parses business cards or screenshots into contacts upon confirmation",
+   "zh": "语音自动转文字，名片与截图自动识别为联系人，确认后一键创建",
+   "where": "sec"
+  },
+  {
+   "en": "Matches unknown numbers to existing leads or suggests creating new ones",
+   "zh": "陌生号码自动比对已有线索，无匹配时建议新建",
+   "where": "sec"
+  },
+  {
+   "en": "Automatically selects and populates approved templates outside the 24-hour messaging window",
+   "zh": "超过 24 小时会话窗口时，自动选用已过审模板并填好内容",
+   "where": "sec"
+  },
+  {
+   "en": "Turns visits and payment terms mentioned in chat into tasks and approval requests",
+   "zh": "聊天中提及的拜访安排、付款条件，自动转化为任务与审批草稿",
+   "where": "sec"
+  },
+  {
+   "en": "More channels",
+   "zh": "更多渠道",
+   "where": "sec"
+  },
+  {
+   "en": "Every incoming touchpoint handled the same way",
+   "zh": "无论从哪个渠道进来，都按同一套标准处理",
+   "where": "sec"
+  },
+  {
+   "en": "Calendar &amp; meetings",
+   "zh": "日历与会议",
+   "where": "sec"
+  },
+  {
+   "en": "Connect Google Calendar or Outlook. Preps briefs before meetings, and turns uploaded recordings or transcripts into notes, deal updates, and next steps.",
+   "zh": "连接 Google 日历或 Outlook。会前自动准备提纲；会后上传录音或转写文本，自动生成纪要、更新商机并创建待办。",
+   "where": "sec"
+  },
+  {
+   "en": "Web forms &amp; webhooks",
+   "zh": "网站表单与 Webhook",
+   "where": "sec"
+  },
+  {
+   "en": "Inquiries, trial sign-ups, and event leads flow straight in, researched, graded, and routed automatically.",
+   "zh": "官网咨询、试用注册、活动报名自动入库，Agent 即刻完成背景调研、评级并按规则分配负责人。",
+   "where": "sec"
+  },
+  {
+   "en": "Import &amp; migration",
+   "zh": "导入与迁移",
+   "where": "sec"
+  },
+  {
+   "en": "Import Excel, CSV, or Salesforce and HubSpot exports. AI maps fields, flags duplicates, and proposes merges for your confirmation.",
+   "zh": "支持 Excel、CSV 及 Salesforce、HubSpot 导出数据。AI 自动映射字段、识别重复并给出合并方案，确认后入库。",
+   "where": "sec"
+  },
+  {
+   "en": "Paste &amp; screenshots",
+   "zh": "粘贴与截图",
+   "where": "sec"
+  },
+  {
+   "en": "Paste trade-show lists, chat screenshots, or raw notes to prefill forms, with uncertain fields left blank and highlighted.",
+   "zh": "展会名单、聊天截图或会议记录，直接粘贴即可预填表单，不确定的字段自动留空并高亮。",
+   "where": "sec"
+  },
+  {
+   "en": "Alerts where you work",
+   "zh": "多端消息提醒",
+   "where": "sec"
+  },
+  {
+   "en": "Get notified via the in-app inbox, daily digest emails, or Feishu, DingTalk, WeCom, and Slack whenever a decision is needed.",
+   "zh": "通过站内收件箱、每日邮件摘要，或飞书、钉钉、企业微信、Slack 推送待决策事项。",
+   "where": "sec"
+  },
+  {
+   "en": "Custom channels",
+   "zh": "扩展更多渠道",
+   "where": "sec"
+  },
+  {
+   "en": "Need WeCom chats, call recordings, or live chat? Have a coding agent in Studio wire them directly into the CRM’s source code.",
+   "zh": "需要接入企微会话、通话录音或在线客服？在 Studio 里让 Coding Agent 直接修改 CRM 源码即可接入。",
+   "where": "sec"
+  },
+  {
+   "en": "Agents handle",
+   "zh": "Agent 在渠道中负责",
+   "where": "sec"
+  },
+  {
+   "en": "Match emails, chats, and forms to contacts, companies, and deals",
+   "zh": "身份识别：将邮件、聊天、表单自动关联到联系人、公司与商机",
+   "where": "sec"
+  },
+  {
+   "en": "Log summaries, facts, and direct quotes onto the timeline",
+   "zh": "信息归档：将摘要、关键事实与客户原话写入时间线",
+   "where": "sec"
+  },
+  {
+   "en": "Draft replies, create tasks, and prepare approval requests",
+   "zh": "行动准备：起草回复、创建任务、发起审批",
+   "where": "sec"
+  },
+  {
+   "en": "Watch for silence, unanswered threads, and upcoming due dates",
+   "zh": "超时盯防：客户沉默、未回或任务到期时主动提醒",
+   "where": "sec"
+  },
+  {
+   "en": "You control",
+   "zh": "你始终掌控",
+   "where": "sec"
+  },
+  {
+   "en": "Every outbound message is reviewed by you and sent from your own account",
+   "zh": "所有对外消息均须经你确认，并从你本人账号发出",
+   "where": "sec"
+  },
+  {
+   "en": "Only emails with CRM contacts sync; private threads stay private",
+   "zh": "仅同步与 CRM 客户相关的邮件，私人往来可排除",
+   "where": "sec"
+  },
+  {
+   "en": "Control team visibility: share full text, summaries, or timestamps only",
+   "zh": "自由设置团队可见范围：全文、摘要或仅沟通时间",
+   "where": "sec"
+  },
+  {
+   "en": "Sales Agent Team",
+   "zh": "销售 Agent 团队",
+   "where": "sec"
+  },
+  {
+   "en": "Every agent has a clear role, ",
+   "zh": "每个 Agent 各司其职，",
+   "where": "sec"
+  },
+  {
+   "en": "with metrics to prove its impact.",
+   "zh": "表现好坏用数字说话。",
+   "where": "sec"
+  },
+  {
+   "en": "Just like human teammates, each agent has defined duties, triggers, skills, and permissions, plus live stats on runs and acceptance rates so you know which ones are delivering and which need tuning.",
+   "zh": "和真实团队一样，每个 Agent 都有明确的职责、触发条件、技能与权限，并实时统计运行次数和建议采纳率。谁靠谱、谁需要调优，一目了然。",
+   "where": "sec"
+  },
+  {
+   "en": "Intel &amp; Prep",
+   "zh": "情报与准备",
+   "where": "sec"
+  },
+  {
+   "en": "Know what your accounts are up to. ",
+   "zh": "客户动态先知道，",
+   "where": "sec"
+  },
+  {
+   "en": "Go into every conversation prepared.",
+   "zh": "每场沟通都有备而去。",
+   "where": "sec"
+  },
+  {
+   "en": "Approvals",
+   "zh": "审批",
+   "where": "sec"
+  },
+  {
+   "en": "Approvals stop stalling: the math is done, the comment is drafted.",
+   "zh": "审批不再卡壳：账已算清，意见已备好。",
+   "where": "sec"
+  },
+  {
+   "en": "When a discount, payment term, custom clause, or delivery commitment is submitted, the approval agent checks it against policy, margins, past precedents, and risks, drafting a private recommendation and comment for the approver. You make the final call.",
+   "zh": "折扣、账期、非标条款或交付承诺一提交，审批助手 Agent 即刻比对公司政策、成本底线、历史判例与潜在风险，给出建议并起草批注（仅审批人可见）。最终批与不批，由人决定。",
+   "where": "sec"
+  },
+  {
+   "en": "Agents do",
+   "zh": "Agent 做",
+   "where": "sec"
+  },
+  {
+   "en": "Organize customer and conversation history",
+   "zh": "整理客户与沟通资料",
+   "where": "sec"
+  },
+  {
+   "en": "Research leads, prepare follow-ups and quotes",
+   "zh": "研究线索，准备跟进方案和报价",
+   "where": "sec"
+  },
+  {
+   "en": "Check approvals against standards",
+   "zh": "对照标准审视审批",
+   "where": "sec"
+  },
+  {
+   "en": "You decide",
+   "zh": "你决定",
+   "where": "sec"
+  },
+  {
+   "en": "Relationships and sales strategy",
+   "zh": "客户关系与销售策略",
+   "where": "sec"
+  },
+  {
+   "en": "Discounts and final quotes",
+   "zh": "折扣与最终报价",
+   "where": "sec"
+  },
+  {
+   "en": "Key contract terms and commitments",
+   "zh": "合同关键条款与承诺",
+   "where": "sec"
+  },
+  {
+   "en": "Your Way",
+   "zh": "按你的方式",
+   "where": "sec"
+  },
+  {
+   "en": "Teach agents your rules in plain text. ",
+   "zh": "用几句话教会 Agent 规矩，",
+   "where": "sec"
+  },
+  {
+   "en": "Reshape the entire CRM with a prompt.",
+   "zh": "用一句话改造整套 CRM。",
+   "where": "sec"
+  },
+  {
+   "en": "Write your pricing, discount limits, and follow-up cadence in plain language under Business Guidance, and every agent follows it on its next run. Need new fields, workflows, or pages? Ask a coding agent to modify the CRM’s source code directly. Open-source, self-hosted, and 100% yours.",
+   "zh": "把产品定价、折扣权限、跟进节奏用自然语言写进「业务指导」，所有 Agent 下次运行即刻生效。需要改字段、调流程、加页面？告诉 Coding Agent，直接修改 CRM 源码。开源、私有部署，代码完全归你。",
+   "where": "sec"
+  },
+  {
+   "en": "The Full Sales Cycle",
+   "zh": "完整的销售流程",
+   "where": "sec"
+  },
+  {
+   "en": "From lead to close, ",
+   "zh": "从线索到成交，",
+   "where": "sec"
+  },
+  {
+   "en": "every step on record.",
+   "zh": "每一步都有记录。",
+   "where": "sec"
+  },
+  {
+   "en": "Leads",
+   "zh": "线索",
+   "where": "sec"
+  },
+  {
+   "en": "Track leads from new to converted. Paste raw text for AI to extract leads, with automatic merge proposals for duplicates.",
+   "zh": "覆盖新建、跟进、培育、转化与无效全状态。粘贴文本即可由 AI 提取创建线索，重复线索自动生成合并方案。",
+   "where": "sec"
+  },
+  {
+   "en": "Opportunities",
+   "zh": "商机",
+   "where": "sec"
+  },
+  {
+   "en": "Manage deal values, close dates, and owners in board or list views, capturing loss reasons for win/loss analysis.",
+   "zh": "支持看板与列表视图，管理金额、预计成交日与负责人；输单强制记录原因，沉淀复盘数据。",
+   "where": "sec"
+  },
+  {
+   "en": "Companies &amp; contacts",
+   "zh": "公司与联系人",
+   "where": "sec"
+  },
+  {
+   "en": "Track status, industry, size, and source, with public company profiles enriched automatically by the research agent.",
+   "zh": "统一管理客户状态、行业、规模与来源；新建公司时由 Agent 自动补全公开工商与背景信息。",
+   "where": "sec"
+  },
+  {
+   "en": "Tasks",
+   "zh": "任务",
+   "where": "sec"
+  },
+  {
+   "en": "Grouped by overdue, tomorrow, and upcoming across team or personal views, with AI-suggested tasks clearly badged.",
+   "zh": "按逾期、明日、后续清晰分组，支持团队与个人视图切换，AI 建议的任务独立标记。",
+   "where": "sec"
+  },
+  {
+   "en": "Handle discounts, payment terms, clauses, and commitments in one place, keeping every decision logged on the deal.",
+   "zh": "集中处理折扣、账期、合同条款与交付承诺，审批结论与意见全程关联在对应商机下。",
+   "where": "sec"
+  },
+  {
+   "en": "Reports",
+   "zh": "报表",
+   "where": "sec"
+  },
+  {
+   "en": "Live pipeline, weighted forecast, conversion, win rates, and loss reasons, plus one-click AI narrative reports.",
+   "zh": "实时统计在途金额、加权预测、转化率、赢单率与输单原因，支持一键生成 AI 分析报告。",
+   "where": "sec"
+  },
+  {
+   "en": "Live metrics anytime. Narrative reports written by AI.",
+   "zh": "核心指标随时看，复盘报告交给 AI 写。",
+   "where": "sec"
+  },
+  {
+   "en": "Pipeline, weighted forecasts, win rates, and funnels update in real time. Need a weekly update or quarterly review? AI reads the underlying deal timelines to explain what’s driving the numbers.",
+   "zh": "在途商机、加权预测、赢单率、漏斗转化与输单原因实时更新。需要周报、月报或阶段复盘时，AI 自动结合客户时间线里的具体沟通记录，写出数字背后的真实原因。",
+   "where": "sec"
+  },
+  {
+   "en": "Less busywork, more focus on closing.",
+   "zh": "让销售少做杂事，专注成交。",
+   "where": "sec"
+  },
+  {
+   "en": "Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.",
+   "zh": "在线体验 NocoCRM，或到 GitHub 获取源码自行部署。写好业务指导、选定模型，销售 Agent 即刻上岗。",
+   "where": "sec"
+  },
+  {
+   "en": "Approvals",
+   "zh": "审批",
+   "where": "sec",
+   "k": "Approvals (section)"
+  }
+ ],
+ "meta": {
+  "title": {
+   "zh": "NocoCRM — 给你的销售，配一支 7×24 的 Agent 团队",
+   "en": "NocoCRM — A 24/7 Agent Team for Your Sales Team"
+  },
+  "description": {
+   "zh": "NocoCRM 是基于 NocoBase 的开源 CRM，内置一支销售 Agent 团队：每条线索、每封来信、每个商机都有 Agent 主动跟进；审批、会前准备和客户情报都替你备好。关键决定由你来做。",
+   "en": "NocoCRM is an open-source CRM on NocoBase with a built-in sales agent team: every lead, message, and deal is followed up proactively, with approvals, meeting prep, and account intel ready for you. You make the calls."
+  }
+ }
+}

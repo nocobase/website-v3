@@ -1,0 +1,7 @@
+# Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+# 术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+# coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+# self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+# 页面用语：client project = projet client；all solutions = toutes les solutions
+033: Livrez plus de projets clients avec une équipe d’agents
+036: Toutes les solutions

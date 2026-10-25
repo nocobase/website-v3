@@ -1,0 +1,67 @@
+# Español（中性拉美/西班牙通用，tú）
+# 术语：foundation = base；building blocks = componentes base；governance = gobernanza；agent team = equipo de agentes；
+# coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
+# vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
+title: NocoBase Solution — Apps empresariales de código abierto, impulsadas por IA y listas para usar
+description: NocoBase Solution es una línea de apps empresariales impulsadas por agentes y construidas sobre Core.
+000: Apps empresariales de código abierto. <span class="m">Impulsadas por IA, listas para usar.</span>
+003: Se ejecuta en tus propios servidores
+004: Funciona con el modelo que elijas
+005: CRM de ventas · Beta
+007: Descubre NocoCRM
+008: Gestión de activos de TI · Beta
+010: Descubre NocoITAM
+011: Crecimiento · Alpha
+013: Descubre NocoReach
+014: Soporte · Próximamente
+016: Proyectos · Próximamente
+018: RR. HH. · Próximamente
+020: Agentes de negocio
+021: Agentes <span class="m">con iniciativa.</span>
+022: El software empresarial tradicional depende de que las personas registren los datos, hagan circular el trabajo y gestionen cada paso a mano. En NocoBase Solution, cada app incluye agentes de negocio que siguen tus reglas y asumen por iniciativa propia la mayor parte del trabajo, como revisar reembolsos o atender tickets.
+023: Cada agente deja claro de qué se encarga, cuándo trabaja y cómo.
+024: Se activa cuando pasa algo: 
+025: un nuevo lead, un correo de un cliente o una tarea terminada ponen a trabajar al agente correspondiente, y los agentes también pueden ejecutarse de forma programada.
+026: Sigue tus reglas: 
+027: las pautas de negocio recogen tu contexto y tus criterios, las skills recogen el método, y la siguiente ejecución aplica cualquier cambio que hagas.
+028: Lo deja todo registrado: 
+029: queda constancia de cuántas veces se ejecutó cada agente y de qué se aceptó o se ignoró.
+030: Quién hace qué
+031: Las personas toman <span class="m">las decisiones clave.</span>
+033: App
+034: Los agentes de negocio se encargan de
+035: Las personas deciden
+036: Mantener al día los registros de clientes y las conversaciones, investigar leads y empresas, sugerir los siguientes pasos y revisar de antemano las cotizaciones
+037: Descuentos, cotizaciones y condiciones de contrato
+038: Conciliar el registro de activos con el MDM, preparar el equipamiento para incorporaciones y salidas, y revisar de antemano las solicitudes de compra y de baja
+039: Compras, bajas y cambios importantes en los activos
+040: Analizar los datos cada día, encontrar oportunidades de crecimiento con evidencias y abrir pull requests con los cambios
+041: Qué oportunidades aprovechar, revisión de marca y publicación
+043: Clasificar y asignar tickets, buscar en la base de conocimiento y redactar respuestas
+044: Reembolsos, escalados y excepciones
+045: Ejecutar tareas de investigación y redacción, hacer seguimiento del avance y señalar riesgos
+046: Objetivos, prioridades y aprobación final
+047: Preparar las incorporaciones, mantener los expedientes de los empleados y responder preguntas sobre políticas
+048: Contrataciones, salarios y excepciones de RR. HH.
+049: Con evidencias
+050: Todo lo que entrega un agente indica de dónde sale: qué correo, qué registro, qué documento.
+051: Decide una persona
+052: En decisiones como descuentos, compras y reembolsos, el agente prepara las opciones y los motivos, y decide la persona responsable.
+053: Los permisos del responsable
+054: Un agente solo puede ver y modificar lo mismo que la persona para la que trabaja, nunca más.
+055: Personalización
+056: Fáciles <span class="m">de personalizar.</span>
+058: Despliega y ponlo en marcha
+059: Cada app se despliega por separado. Añade tus pautas de negocio, conecta un modelo y los agentes de negocio se ponen a trabajar.
+060: Cambia skills, reglas y código
+061: Si cambia el método, edita una skill. Si cambian los flujos de trabajo o los campos, pide a un agente de programación que modifique el código fuente.
+062: Incorpora las actualizaciones oficiales cuando quieras
+063: El código fuente personalizado es tuyo. Integra en tu propio repositorio las actualizaciones oficiales que quieras, después de revisarlas.
+064: Las apps de Solution están construidas sobre NocoBase Core
+065: Personaliza en equipo, con personas y agentes: NocoBase Studio
+066: Código abierto y autoalojamiento
+067: Gratuitas, de código abierto, <span class="m">listas para usar.</span>
+074: Primeros pasos
+079: Ver las apps
+082: Descubre Core
+086: Descubre Studio

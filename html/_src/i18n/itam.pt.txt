@@ -1,0 +1,73 @@
+# Português（巴西，você）
+# 术语：foundation = base；building blocks = componentes básicos；governance = governança；agent team = equipe de agentes；
+# coding agent = agente de código；business logic = lógica de negócio；business systems = sistemas de negócio；
+# vibe coding = vibe coding；self-hosted = auto-hospedado；make the call = dar a palavra final / decidir；at a glance = à vista
+# 子页面术语：agent = agente；lead = lead；opportunity / deal = oportunidade（同一概念）；account = cliente；approval = aprovação；
+# comment (approval) = parecer；timeline = linha do tempo；business guidance（概念）= regras de negócio；touchpoint = interação；
+# follow up = acompanhar；inbox = caixa de entrada；quote = proposta；asset register = cadastro de ativos；
+# entitlement = direito de uso；seat = direito de uso（不用 licença，避免与规格「Licença」混淆）；idle = ocioso；stock = estoque；stocktake / audit = inventário；
+# joiner / leaver = admissão / desligamento（new hire = novo colaborador）；discrepancy = divergência；reconcile = conciliar；
+# purchase request = solicitação de compra；PO = pedido de compra；repair = reparo；disposal = descarte
+# 界面名称保留英文：Devices、Accessories、Consumables、Components、Entitlements、Procurement、Repairs、Disposals、Audits、Business guidance、Skills、Models、Approval assistant
+title: NocoITAM — Agentes em ação. Ativos de TI em ordem.
+description: NocoITAM é a gestão de ativos de TI open source construída sobre o NocoBase. Os agentes conciliam o MDM com o cadastro, preparam as listas de admissões e desligamentos, verificam estoque e ativos ociosos antes de cada compra e recuperam direitos de uso de software ociosos antes da renovação. A TI só decide.
+000: Gestão de ativos de TI
+001: Agentes em ação. <span class="m">Ativos de TI em ordem.</span>
+002: As ferramentas tradicionais de ITAM são cadastros mantidos à mão. No NocoITAM, os agentes resolvem as divergências do MDM, preparam o kit dos novos colaboradores e verificam estoque e ativos ociosos antes de cada compra. Cada dispositivo, direito de uso e centavo fica registrado.
+003: Experimente online
+004: Ver a apresentação
+005: Licença
+006: Open source
+007: Baseado em
+008: Versão
+009: Agentes incluídos
+010: MDM
+011: Modelos de IA
+012: À sua escolha
+013: Experimente o NocoITAM online
+014: Você entrou com uma conta de demonstração. Todos os dados são fictícios, então teste à vontade.
+015: Abrir em tela cheia em uma nova aba
+016: Valor visível
+017: Cada centavo economizado, 
+018: com rastro documentado.
+019: Os agentes nunca alteram registros por conta própria. Cada ação é proposta por um agente e confirmada pelo responsável. Você vê não só quanto foi economizado, mas de qual solicitação de compra ou direito de uso de software veio a economia.
+020: Compras
+021: Antes de cada compra, 
+022: estoque, ativos ociosos e preços anteriores conferidos.
+023: Assim que uma solicitação é enviada, o Approval assistant verifica se o estoque ou os ativos ociosos podem atendê-la, compara preços unitários anteriores e solicitações parecidas, aponta informações faltantes e redige uma recomendação e um parecer.
+024: O Approval assistant oferece muito mais do que “aprovar” ou “rejeitar”.
+025: “Aprovar com condições: há 3 monitores iguais em estoque, então compre só os 2 restantes.”
+026: “Rejeitar: esta impressora tem só 20 meses de uso e nenhum histórico de reparo. Conserte antes de descartar.”
+027: “Aprovar com condições: não há este modelo em estoque, mas há 3 alternativas disponíveis. Confirme antes o orçamento e o número de novos colaboradores.”
+028: Admissões e desligamentos
+029: Novos colaboradores prontos no primeiro dia. 
+030: Quem sai devolve tudo.
+031: Antes do primeiro dia, o NocoITAM confere de uma só vez o kit padrão do novo colaborador com o estoque e os direitos de uso ociosos. Confirme e, com um clique, gere um pedido de compra para o que faltar. Quando alguém sai, ele acompanha dispositivos, acessórios, direitos de uso e tarefas fora do sistema, como revogar contas e trocar chaves, até que tudo esteja resolvido.
+032: Depois de cada sincronização do MDM, 
+033: as divergências viram um plano de ação.
+034: Depois de sincronizar com o Intune ou o Jamf Pro, o agente organiza as divergências com contexto: usuários divergentes vão para os responsáveis pelos dispositivos, dispositivos não cadastrados vão para os administradores de ativos, e casos atípicos, como notebooks offline há muito tempo, ficam marcados para revisão humana. Confira e aplique tudo de uma vez.
+035: Chega de VLOOKUP em planilhas toda semana
+036: Cada divergência tem um responsável e um motivo claros
+037: Cada conciliação fica registrada no histórico do dispositivo
+038: Cadastro de ativos
+039: Hardware, software e suprimentos, 
+040: tudo em um só cadastro.
+041: Devices
+042: Acompanhamento do ciclo de vida completo, do estoque ao descarte, conciliado continuamente com o Intune e o Jamf Pro.
+043: Accessories, Consumables e Components
+044: Acompanhe quantidades entregues, devolvidas e em estoque, com alertas abaixo do mínimo; os componentes são instalados nos dispositivos e se movem com eles.
+045: Entitlements
+046: Acompanhe direitos de uso por assinatura e perpétuos (em conformidade, ociosos ou excedentes), com alertas antes da renovação automática.
+047: Procurement, Repairs, Disposals e Audits
+048: Sinaliza entregas atrasadas, registra os custos de reparo por dispositivo e acompanha as divergências de inventário até a resolução.
+049: Do seu jeito
+050: Escreva seus padrões de kit e regras de aprovação. 
+051: Os agentes seguem à risca.
+052: Business guidance
+053: Defina kits padrão, orçamentos e limites de aprovação em texto simples, lidos por todos os agentes a cada execução.
+054: Skills
+055: As skills nativas de revisão de aprovações, catálogo, sincronização de dispositivos e admissão/desligamento podem ser lidas e personalizadas por completo.
+056: Models e código
+057: Defina o modelo de cada agente e acompanhe o uso. Precisa de campos, workflows ou relatórios personalizados? Peça a um agente de código no Studio para alterar o código-fonte: open source, auto-hospedado e seu.
+058: Menos conciliação para a TI, uma visão clara de cada ativo.
+059: Experimente o NocoITAM online ou baixe o código-fonte no GitHub e rode por conta própria. Conecte seu MDM, importe seus ativos e deixe os agentes começarem a conciliar.

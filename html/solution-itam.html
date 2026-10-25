@@ -6,16 +6,30 @@
 <title data-zh="NocoITAM — Agent 主动跟进，IT 资产井井有条" data-en="NocoITAM — Agents on It. IT Assets in Order.">NocoITAM — Agent 主动跟进，IT 资产井井有条</title>
 <meta name="description" content="NocoITAM 是基于 NocoBase 的 IT 资产管理，随专业版提供。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-zh="NocoITAM 是基于 NocoBase 的 IT 资产管理，随专业版提供。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-en="NocoITAM is IT asset management on NocoBase, included in Professional. Agents reconcile MDM with the register, prepare joiner and leaver lists, check stock and idle assets before every purchase, and reclaim idle seats before renewal. IT just decides.">
 <script>
+/* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 itam.<语言>.js，
+   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图在中文以外的语言里都显示英文界面 */
 (function () {
+  var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
+  var FONTS = { ru: 'Inter:wght@400;500;600;700', ja: 'Noto+Sans+JP:wght@400;500;600;700', ko: 'Noto+Sans+KR:wght@400;500;600;700', 'zh-TW': 'Noto+Sans+TC:wght@400;500;600;700' };
+  var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
-    window.__lang = lang;
-    document.documentElement.lang = lang;
-  } catch (e) {
-    window.__lang = 'zh';
-  }
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+  } catch (e) {}
+  window.__i18nPage = 'itam';
+  window.__lang = lang;
+  document.documentElement.lang = lang;
+  window.__font = function (l) {
+    if (!FONTS[l] || document.getElementById('font-' + l)) return;
+    var k = document.createElement('link');
+    k.id = 'font-' + l;
+    k.rel = 'stylesheet';
+    k.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[l] + '&display=swap';
+    document.head.appendChild(k);
+  };
+  window.__font(lang);
+  if (lang !== 'zh' && lang !== 'en') document.write('<script src="assets/i18n/site.' + lang + '.js"><\/script><script src="assets/i18n/itam.' + lang + '.js"><\/script>');
 })();
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
@@ -101,18 +115,19 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 /* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
 #tryDemo { padding-top: 72px; }
-/* A cue at the foot of the full-screen hero, no words: a line running down into a round arrow button that scrolls to the demo; wide screens only, where the hero fills the screen (2026-10-25). */
+/* A cue at the foot of the full-screen hero, no words: a mouse whose wheel rolls down and a line running on down to the demo, which a click scrolls to; wide screens only, where the hero fills the screen (2026-10-25). */
 .phero { position: relative; }
-.scroll-cue { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; color: var(--muted); }
-.scroll-cue[hidden] { display: none !important; }
-.scroll-cue .ln { position: relative; width: 1px; height: 64px; overflow: hidden; background: linear-gradient(to bottom, transparent, var(--rule-2)); }
-.scroll-cue .ln::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--brand); animation: cue-run 2s ease-in-out infinite; }
-.scroll-cue .dot { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--rule-2); border-radius: 50%; background: var(--card); box-shadow: 0 6px 16px -10px var(--shadow); transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
-.scroll-cue .dot svg.lucide { width: 16px; height: 16px; animation: cue-bob 2s ease-in-out infinite; }
-.scroll-cue:hover .dot { border-color: var(--brand); color: var(--brand); transform: translateY(2px); }
+.scroll-cue { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; gap: 10px; padding: 6px 6px 0; color: var(--muted); }
+.scroll-cue .ln { position: relative; width: 1px; height: 56px; overflow: hidden; background: linear-gradient(to bottom, var(--rule-2), transparent); }
+.scroll-cue .ln::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--brand); animation: cue-run 1.8s ease-in-out infinite; }
 @keyframes cue-run { to { top: 100%; } }
-@keyframes cue-bob { 0%, 100% { transform: translateY(-1px); } 50% { transform: translateY(2px); } }
-@media (prefers-reduced-motion: reduce) { .scroll-cue .ln::after, .scroll-cue .dot svg.lucide { animation: none; } .scroll-cue .ln::after { top: 0; } }
+.scroll-cue[hidden] { display: none !important; }
+.scroll-cue .mouse { position: relative; display: block; width: 24px; height: 38px; border: 1.5px solid currentColor; border-radius: 12px; opacity: 0.7; transition: color 0.2s ease, opacity 0.2s ease; }
+.scroll-cue .wheel { position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: currentColor; animation: cue-wheel 1.8s ease-in-out infinite; }
+.scroll-cue:hover { color: var(--brand); }
+.scroll-cue:hover .mouse { opacity: 1; }
+@keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue .wheel, .scroll-cue .ln::after { animation: none; } .scroll-cue .ln::after { top: 0; } }
 @media (min-width: 961px) { .scroll-cue { display: flex; } }
 /* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
 @media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 14vh; } .phero > .container { width: 100%; } }
@@ -153,7 +168,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
     </div>
     <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>专业版</t-zh><t-en>Professional</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0</b></div><div><t-zh>内置 Agent</t-zh><t-en>Built-in agents</t-en><b>3</b></div><div><t-zh>MDM 对接</t-zh><t-en>MDM</t-en><b>Intune · Jamf Pro</b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
   </div>
-  <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="ln" aria-hidden="true"></span><span class="dot" aria-hidden="true"><i data-lucide="arrow-down"></i></span></a>
+  <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="mouse" aria-hidden="true"><span class="wheel"></span></span><span class="ln" aria-hidden="true"></span></a>
 </section>
 
 <section class="sec" id="tryDemo" hidden>
@@ -292,14 +307,14 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
 <script>
-/* Live demo script: the Chinese site on a Chinese page and the international one otherwise, kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
+/* Live demo script: the Chinese site on a Simplified Chinese page and the international one in every other language (Traditional Chinese included), kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
 (function () {
   var SITES = { zh: 'https://solutions-cn.nocobase.com/itam/', en: 'https://solutions.nocobase.com/itam/' };
   var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
   var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
   var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
   var status = {}, shown = false, scrolling = false;
-  function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }
   function up() { return !forced && status[SITES[lang()]] === 'up'; }
   function probe(url) {
@@ -350,10 +365,10 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 })();
 </script>
 <script>
-/* NocoITAM intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Chinese page and the English one otherwise; switching the language puts the cover back. */
+/* NocoITAM intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Simplified Chinese page and the English one in every other language, until each has its own; switching the language puts the cover back. */
 (function () {
   var box = document.getElementById('introVideo'), cover = box.innerHTML;
-  function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
   box.addEventListener('click', function (e) {
     if (!e.target.closest('#introPlay')) return;
     var l = lang();

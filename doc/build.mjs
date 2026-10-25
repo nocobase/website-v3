@@ -496,15 +496,23 @@ const sitemap = [
 writeFileSync(join(outDir, 'sitemap.xml'), sitemap);
 writeFileSync(join(outDir, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${absolute('/sitemap.xml')}\n`);
 
-// 自检：sitemap 里的每个地址都有对应的 index.html，页面里的站内链接都指向生成了的页面
-const internal = new Set(sitemapEntries.map(({ lang, key }) => urlOf(lang, key)));
+// 自检：sitemap 里的每个地址都有对应的 index.html，页面里的站内链接都指向生成了的页面，带锚点的链接指向页面里存在的标题
+const htmlOf = new Map();
 for (const { lang, key } of sitemapEntries) {
   if (!existsSync(htmlFileOf(lang, key))) throw new Error(`缺少产物 ${relative(outDir, htmlFileOf(lang, key))}`);
-  const html = readFileSync(htmlFileOf(lang, key), 'utf8');
-  for (const [, href] of html.matchAll(/href="(\/[^"#?]*)/g)) {
-    if (!href.startsWith('/assets/') && !internal.has(href)) throw new Error(`${urlOf(lang, key)} 里有指向不存在页面的链接：${href}`);
+  htmlOf.set(urlOf(lang, key), readFileSync(htmlFileOf(lang, key), 'utf8'));
+}
+const idsOf = new Map([...htmlOf].map(([url, html]) => [url, new Set([...html.matchAll(/ id="([^"]+)"/g)].map((m) => m[1].replace(/&amp;/g, '&')))]));
+const deadLinks = [];
+for (const [url, html] of htmlOf) {
+  for (const [, href] of html.matchAll(/href="(\/[^"?]*)/g)) {
+    const [path, hash] = href.split('#');
+    if (path.startsWith('/assets/')) continue;
+    if (!htmlOf.has(path)) deadLinks.push(`${url} → ${href}（页面不存在）`);
+    else if (hash && !idsOf.get(path).has(decodeURIComponent(hash))) deadLinks.push(`${url} → ${href}（页面里没有这个锚点）`);
   }
 }
+if (deadLinks.length) throw new Error(`有 ${deadLinks.length} 个站内链接指向不存在的页面或锚点：\n${deadLinks.join('\n')}`);
 console.log(`文档站：已生成 ${sitemapEntries.length} 页（${LANGS.map((l) => `${l.code} ${pages.get(l.code).size}`).join('，')}）→ ${relative(process.cwd(), outDir) || '.'}/，站点域名 ${SITE_ORIGIN}`);
 
 /* ---------- 文档方案 ---------- */

@@ -38,7 +38,6 @@
 "Discounts, quotes, and contract terms": "할인, 견적, 계약 조건",
 "Reconcile asset records with MDM, prepare onboarding and offboarding kits, and pre-review purchase and disposal requests": "자산 대장과 MDM 대조, 입사·퇴사 구성 준비, 구매·폐기 요청 사전 검토",
 "Purchases, disposals, and major asset changes": "구매, 폐기, 중요한 자산 변경",
-"Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes": "매일 데이터를 분석해 근거와 함께 성장 기회를 찾고, 변경 사항을 담은 풀 리퀘스트 생성",
 "Which opportunities to take, brand review, and release": "채택할 기회, 브랜드 검토, 출시",
 "Soon": "출시 예정",
 "Triage and route tickets, search the knowledge base, and draft replies": "티켓 분류·배정, 지식 베이스 검색, 답장 초안 작성",
@@ -86,5 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
 "Explore Studio": "Studio 자세히 보기",
 "Growth · Beta": "그로스 · Beta",
-"Find the opportunities in your data. NocoReach puts them into action.": "데이터에서 기회를 찾고, NocoReach가 실행에 옮깁니다."
+"Find the opportunities in your data. NocoReach puts them into action.": "데이터에서 기회를 찾고, NocoReach가 실행에 옮깁니다.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "매일 데이터를 분석해 근거와 함께 할 만한 일을 찾고, 페이지 수정, 글 작성, 커뮤니티 답글 초안 작성"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — 오픈소스 비즈니스 앱, AI 기반으로 설치 즉시 사용", "description": "NocoBase Solution은 Core 위에 구축된, 에이전트가 움직이는 비즈니스 앱 시리즈입니다."}; })((window.NB_I18N = window.NB_I18N || {})["ko"] = (window.NB_I18N || {})["ko"] || {});

@@ -205,7 +205,8 @@
   {
    "en": "Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes",
    "zh": "每天分析数据、找出增长机会并附上依据，在仓库里改好代码提 PR",
-   "where": "decisions"
+   "where": "decisions",
+   "unused": true
   },
   {
    "en": "Which opportunities to take, brand review, and release",
@@ -446,6 +447,11 @@
    "en": "Find the opportunities in your data. NocoReach puts them into action.",
    "zh": "从数据中发现机会，NocoReach 帮你落地。",
    "where": "phero"
+  },
+  {
+   "en": "Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies",
+   "zh": "每天分析数据、找出值得做的事并附上依据，修改页面、撰写文章、起草社区回复",
+   "where": "decisions"
   }
  ],
  "meta": {

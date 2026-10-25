@@ -38,7 +38,6 @@
 "Discounts, quotes, and contract terms": "Diskon, penawaran harga, dan ketentuan kontrak",
 "Reconcile asset records with MDM, prepare onboarding and offboarding kits, and pre-review purchase and disposal requests": "Merekonsiliasi daftar aset dengan MDM, menyiapkan perlengkapan karyawan masuk dan keluar, dan meninjau awal permintaan pembelian dan penghapusan",
 "Purchases, disposals, and major asset changes": "Pembelian, penghapusan, dan perubahan aset besar",
-"Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes": "Menganalisis data setiap hari, menemukan peluang pertumbuhan beserta buktinya, dan membuka pull request berisi perubahannya",
 "Which opportunities to take, brand review, and release": "Peluang mana yang diambil, review merek, dan rilis",
 "Soon": "Segera",
 "Triage and route tickets, search the knowledge base, and draft replies": "Memilah dan meneruskan tiket, mencari di basis pengetahuan, dan menyusun draf balasan",
@@ -86,5 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
 "Explore Studio": "Pelajari Studio",
 "Growth · Beta": "Pertumbuhan · Beta",
-"Find the opportunities in your data. NocoReach puts them into action.": "Temukan peluang dalam data Anda. NocoReach mewujudkannya."
+"Find the opportunities in your data. NocoReach puts them into action.": "Temukan peluang dalam data Anda. NocoReach mewujudkannya.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Menganalisis data setiap hari, menemukan hal yang layak dikerjakan beserta buktinya, lalu mengubah halaman, menulis artikel, dan menyusun balasan untuk komunitas"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Aplikasi bisnis open source, digerakkan AI dan siap pakai", "description": "NocoBase Solution adalah rangkaian aplikasi bisnis yang digerakkan agen dan dibangun di atas Core."}; })((window.NB_I18N = window.NB_I18N || {})["id"] = (window.NB_I18N || {})["id"] || {});

@@ -67,3 +67,4 @@ description: NocoBase Solution adalah rangkaian aplikasi bisnis yang digerakkan 
 082: Pelajari Core
 086: Pelajari Studio
 087: Pertumbuhan · Beta
+089: Menganalisis data setiap hari, menemukan hal yang layak dikerjakan beserta buktinya, lalu mengubah halaman, menulis artikel, dan menyusun balasan untuk komunitas

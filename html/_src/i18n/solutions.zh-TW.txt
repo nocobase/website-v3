@@ -66,3 +66,4 @@ description: NocoBase Solution 是由 Agent 驅動、以 Core 打造的一系列
 082: 了解 Core
 086: 了解 Studio
 087: 內容與成長 · Beta
+089: 每天分析資料、找出值得做的事並附上依據，修改頁面、撰寫文章、草擬社群回覆

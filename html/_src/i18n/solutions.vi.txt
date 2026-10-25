@@ -66,3 +66,4 @@ description: NocoBase Solution là dòng ứng dụng nghiệp vụ do agent v�
 082: Tìm hiểu Core
 086: Tìm hiểu Studio
 087: Tăng trưởng · Beta
+089: Phân tích dữ liệu hằng ngày, tìm việc đáng làm kèm căn cứ, rồi sửa trang, viết bài và soạn trả lời cho cộng đồng

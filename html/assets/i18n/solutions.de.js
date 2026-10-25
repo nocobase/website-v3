@@ -38,7 +38,6 @@
 "Discounts, quotes, and contract terms": "Rabatte, Angebote und Vertragsbedingungen",
 "Reconcile asset records with MDM, prepare onboarding and offboarding kits, and pre-review purchase and disposal requests": "Inventar mit MDM abgleichen, Ausstattung für Ein- und Austritte vorbereiten und Bestellanforderungen und Aussonderungsanträge vorprüfen",
 "Purchases, disposals, and major asset changes": "Käufe, Aussonderungen und wichtige Asset-Änderungen",
-"Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes": "Täglich die Daten analysieren, Wachstumschancen mit Belegen finden und die Änderungen als Pull Requests einreichen",
 "Which opportunities to take, brand review, and release": "Welche Chancen umgesetzt werden, Markenprüfung und Veröffentlichung",
 "Soon": "Bald",
 "Triage and route tickets, search the knowledge base, and draft replies": "Tickets sortieren und zuweisen, die Wissensdatenbank durchsuchen und Antworten entwerfen",
@@ -86,5 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.",
 "Explore Studio": "Studio entdecken",
 "Growth · Beta": "Wachstum · Beta",
-"Find the opportunities in your data. NocoReach puts them into action.": "Finden Sie die Chancen in Ihren Daten. NocoReach setzt sie um."
+"Find the opportunities in your data. NocoReach puts them into action.": "Finden Sie die Chancen in Ihren Daten. NocoReach setzt sie um.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Täglich die Daten analysieren, mit Belegen finden, was sich lohnt, dann Seiten ändern, Artikel schreiben und Antworten für die Community entwerfen"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Open-Source-Geschäftsanwendungen, KI-gesteuert und sofort einsatzbereit", "description": "NocoBase Solution ist eine Reihe agentengesteuerter Geschäftsanwendungen auf Basis von Core."}; })((window.NB_I18N = window.NB_I18N || {})["de"] = (window.NB_I18N || {})["de"] || {});

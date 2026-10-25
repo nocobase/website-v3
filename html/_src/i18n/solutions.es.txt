@@ -66,3 +66,4 @@ description: NocoBase Solution es una línea de apps empresariales impulsadas po
 082: Descubre Core
 086: Descubre Studio
 087: Crecimiento · Beta
+089: Analizar los datos cada día, encontrar lo que vale la pena hacer con evidencias, y modificar páginas, escribir artículos y redactar respuestas para la comunidad

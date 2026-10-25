@@ -106,5 +106,6 @@
 "Live metrics anytime. Narrative reports written by AI.": "指標はいつでもリアルタイム。レポートは AI が書く。",
 "Pipeline, weighted forecasts, win rates, and funnels update in real time. Need a weekly update or quarterly review? AI reads the underlying deal timelines to explain what’s driving the numbers.": "パイプライン、加重予測、受注率、ファネルがリアルタイムで更新されます。週次報告や四半期レビューが必要なときは、AI が商談のタイムラインを読み込み、数字を動かしている要因を説明します。",
 "Less busywork, more focus on closing.": "雑務を減らし、受注に集中する。",
-"Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.": "NocoCRM をオンラインで試すか、GitHub からソースを入手してご自身で運用できます。「Business guidance」を書き、モデルを選べば、営業エージェントがすぐに働き始めます。"
+"Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.": "NocoCRM をオンラインで試すか、GitHub からソースを入手してご自身で運用できます。「Business guidance」を書き、モデルを選べば、営業エージェントがすぐに働き始めます。",
+"Approvals (section)": "承認"
 }); p.pages = p.pages || {}, p.pages["crm"] = {"title": "NocoCRM — 営業チームに、24 時間体制のエージェントチームを", "description": "NocoCRM は、NocoBase 上に構築されたオープンソースの CRM です。営業エージェントチームを搭載し、すべてのリード、メッセージ、商談をエージェントが先回りしてフォローします。承認、ミーティングの準備、顧客の情報もそろえておくので、あなたは判断するだけです。"}; })((window.NB_I18N = window.NB_I18N || {})["ja"] = (window.NB_I18N || {})["ja"] || {});

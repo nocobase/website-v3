@@ -120,3 +120,4 @@ description: NocoCRM ist ein Open-Source-CRM auf NocoBase mit eingebautem Team a
 104: Pipeline, gewichtete Prognosen, Abschlussquoten und Funnels aktualisieren sich in Echtzeit. Sie brauchen ein Wochen-Update oder einen Quartalsrückblick? Die KI liest die zugrunde liegenden Deal-Zeitleisten und erklärt, was hinter den Zahlen steckt.
 105: Weniger Kleinkram, mehr Zeit für Abschlüsse.
 106: Testen Sie NocoCRM online, oder holen Sie sich den Quellcode auf GitHub und betreiben Sie ihn selbst. Legen Sie Ihre Business guidance fest, wählen Sie Ihre Modelle, und schicken Sie Ihre Vertriebs-Agenten an die Arbeit.
+107: Freigaben

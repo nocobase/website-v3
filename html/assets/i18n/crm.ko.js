@@ -106,5 +106,6 @@
 "Live metrics anytime. Narrative reports written by AI.": "지표는 언제든 실시간으로, 분석 리포트는 AI가 쓴다.",
 "Pipeline, weighted forecasts, win rates, and funnels update in real time. Need a weekly update or quarterly review? AI reads the underlying deal timelines to explain what’s driving the numbers.": "파이프라인, 가중 예측, 수주율, 퍼널이 실시간으로 업데이트됩니다. 주간 보고나 분기 리뷰가 필요하면 AI가 영업 기회의 타임라인을 읽고 숫자 뒤에 있는 이유를 설명합니다.",
 "Less busywork, more focus on closing.": "잡무는 줄이고, 계약에 집중한다.",
-"Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.": "NocoCRM을 온라인으로 체험하거나, GitHub에서 소스를 받아 직접 실행해 보세요. Business guidance를 쓰고 모델을 고르면, 영업 에이전트가 바로 일을 시작합니다."
+"Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.": "NocoCRM을 온라인으로 체험하거나, GitHub에서 소스를 받아 직접 실행해 보세요. Business guidance를 쓰고 모델을 고르면, 영업 에이전트가 바로 일을 시작합니다.",
+"Approvals (section)": "승인"
 }); p.pages = p.pages || {}, p.pages["crm"] = {"title": "NocoCRM — 영업팀을 위한 24시간 에이전트 팀", "description": "NocoCRM은 NocoBase 기반의 오픈소스 CRM으로, 영업 에이전트 팀이 내장되어 있습니다. 모든 리드, 메시지, 영업 기회를 에이전트가 먼저 후속 조치하고, 승인 검토, 미팅 준비, 고객사 정보까지 준비해 둡니다. 결정은 당신이 내립니다."}; })((window.NB_I18N = window.NB_I18N || {})["ko"] = (window.NB_I18N || {})["ko"] || {});

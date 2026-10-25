@@ -106,5 +106,6 @@
 "Live metrics anytime. Narrative reports written by AI.": "核心指標隨時看，檢討報告交給 AI 寫。",
 "Pipeline, weighted forecasts, win rates, and funnels update in real time. Need a weekly update or quarterly review? AI reads the underlying deal timelines to explain what’s driving the numbers.": "進行中商機、加權預測、贏單率、漏斗轉換與輸單原因即時更新。需要週報、月報或階段檢討時，AI 會自動結合客戶時間軸裡的具體溝通紀錄，寫出數字背後的真正原因。",
 "Less busywork, more focus on closing.": "讓業務少做雜事，專心成交。",
-"Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.": "線上體驗 NocoCRM，或到 GitHub 取得原始碼自行部署。寫好業務指導、選定模型，銷售 Agent 立即上工。"
+"Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.": "線上體驗 NocoCRM，或到 GitHub 取得原始碼自行部署。寫好業務指導、選定模型，銷售 Agent 立即上工。",
+"Approvals (section)": "審批"
 }); p.pages = p.pages || {}, p.pages["crm"] = {"title": "NocoCRM — 給你的業務，配一支 7×24 的 Agent 團隊", "description": "NocoCRM 是基於 NocoBase 的開源 CRM，內建一支銷售 Agent 團隊：每條線索、每封來信、每個商機都有 Agent 主動跟進；審批、會前準備和客戶情報都替你備好。關鍵決定由你來做。"}; })((window.NB_I18N = window.NB_I18N || {})["zh-TW"] = (window.NB_I18N || {})["zh-TW"] || {});

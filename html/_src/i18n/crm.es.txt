@@ -120,3 +120,4 @@ description: NocoCRM es un CRM de código abierto sobre NocoBase con un equipo d
 104: El pipeline, las previsiones ponderadas, las tasas de éxito y los embudos se actualizan en tiempo real. ¿Necesitas un resumen semanal o una revisión trimestral? La IA lee las cronologías de las oportunidades para explicar qué hay detrás de las cifras.
 105: Menos tareas administrativas, más foco en cerrar ventas.
 106: Prueba NocoCRM en línea, o descarga el código fuente en GitHub y ejecútalo tú mismo. Define tus pautas de negocio, elige tus modelos y pon a trabajar a tus agentes de ventas.
+107: Aprobaciones

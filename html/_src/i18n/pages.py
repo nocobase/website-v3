@@ -57,16 +57,20 @@ def page_items(name):
     body = src.index('<main')
     regions = fit_regions(src)
     items = []
-    for m in re.finditer(r'(?:<t-zh>((?:(?!</t-zh>).)*)</t-zh>)?<t-en>((?:(?!</t-en>).)*)</t-en>', src, re.S):
+    # 同一段英文在页面上意思不同时（比如章节小标题和同名的模块卡片），用 <t-en data-k="…"> 给它单独的键
+    for m in re.finditer(r'(?:<t-zh>((?:(?!</t-zh>).)*)</t-zh>)?<t-en(?: data-k="([^"]*)")?>((?:(?!</t-en>).)*)</t-en>', src, re.S):
         if m.start() < body or any(a <= m.start() < b for a, b in regions):
             continue
         # 图片（视频封面、截图）按中英文各一张，其他语言用英文那张，不是文字
-        if m.group(2).lstrip().startswith('<img'):
+        if m.group(3).lstrip().startswith('<img'):
             continue
         sec = src.rfind('<section', 0, m.start())
         cls = re.match(r'<section class="([^"]*)"(?: id="([^"]*)")?', src[sec:]) if sec >= 0 else None
         where = (cls.group(2) or cls.group(1).split(' ')[-1]) if cls else 'main'
-        items.append({'en': m.group(2), 'zh': m.group(1) or '', 'where': where})
+        item = {'en': m.group(3), 'zh': m.group(1) or '', 'where': where}
+        if m.group(2):
+            item['k'] = m.group(2)
+        items.append(item)
     meta = {
         'title': re.search(r'<title data-zh="([^"]*)" data-en="([^"]*)"', src).groups(),
         'description': re.search(r'<meta name="description"[^>]*data-zh="([^"]*)" data-en="([^"]*)"', src).groups(),
@@ -89,15 +93,16 @@ def extract():
     for group, (found, meta) in groups.items():
         current = {}
         for it in found:
-            current.setdefault(it['en'], it)
+            current.setdefault(it.get('k', it['en']), it)
         kp = here / f'{group}.keys.json'
         old = json.loads(kp.read_text(encoding='utf8')) if kp.exists() else {'items': []}
         keys = old['items']
-        known = {k['en'] for k in keys}
+        key = lambda it: it.get('k', it['en'])
+        known = {key(k) for k in keys}
         for k in keys:
-            if k['en'] in current:
+            if key(k) in current:
                 k.pop('unused', None)
-                k['zh'] = current[k['en']]['zh']
+                k['zh'] = current[key(k)]['zh']
             else:
                 k['unused'] = True
         added = [it for en, it in current.items() if en not in known]
@@ -173,7 +178,7 @@ def build():
                 print(f'{group}.{lang}：')
                 for p in problems:
                     print('  ' + p)
-            strings = {item['en']: tr[f'{i:03d}'] for i, item in enumerate(keys) if f'{i:03d}' in tr and not item.get('unused')}
+            strings = {item.get('k', item['en']): tr[f'{i:03d}'] for i, item in enumerate(keys) if f'{i:03d}' in tr and not item.get('unused')}
             page = f', p.pages[{json.dumps(group)}] = {json.dumps(meta, ensure_ascii=False)}' if group != 'site' else ''
             out = site / 'assets' / 'i18n' / f'{group}.{lang}.js'
             out.parent.mkdir(parents=True, exist_ok=True)

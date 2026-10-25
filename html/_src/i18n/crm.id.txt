@@ -117,3 +117,4 @@ description: NocoCRM adalah CRM open source di atas NocoBase dengan tim agen pen
 104: Pipeline, prakiraan berbobot, tingkat kemenangan, dan funnel diperbarui secara real-time. Butuh laporan mingguan atau tinjauan kuartalan? AI membaca linimasa peluang di baliknya untuk menjelaskan apa yang menggerakkan angka-angka itu.
 105: Lebih sedikit pekerjaan remeh, lebih fokus pada closing.
 106: Coba NocoCRM online, atau ambil kode sumbernya di GitHub dan jalankan sendiri. Atur panduan bisnis, pilih model Anda, dan biarkan agen penjualan mulai bekerja.
+107: Persetujuan

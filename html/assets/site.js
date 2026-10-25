@@ -106,8 +106,8 @@
   STATIC_EN.forEach(function (n) { n.__en = n.innerHTML; });
   function applyI18n(lang) {
     var d = window.NB_I18N && window.NB_I18N[lang];
-    var tr = function (en) { return (lang !== 'zh' && lang !== 'en' && d && d.strings[en]) || en; };
-    STATIC_EN.forEach(function (n) { var v = tr(n.__en); if (n.innerHTML !== v) n.innerHTML = v; });
+    var tr = function (en, k) { return (lang !== 'zh' && lang !== 'en' && d && d.strings[k || en]) || en; };
+    STATIC_EN.forEach(function (n) { var v = tr(n.__en, n.dataset.k); if (n.innerHTML !== v) n.innerHTML = v; });
     var name = $('langName');
     if (name) name.textContent = LANG_NAMES[lang];
     document.querySelectorAll('#langMenu [data-lang]').forEach(function (a) { a.classList.toggle('cur', a.dataset.lang === lang); });

@@ -118,3 +118,4 @@ description: NocoCRM là CRM mã nguồn mở xây dựng trên NocoBase, tích 
 104: Pipeline, dự báo có trọng số, tỷ lệ thắng và phễu bán hàng cập nhật theo thời gian thực. Cần bản cập nhật hằng tuần hay đánh giá quý? AI đọc dòng thời gian của từng cơ hội để giải thích điều gì đang tác động đến các con số.
 105: Bớt việc vặt, tập trung chốt đơn.
 106: Dùng thử NocoCRM trực tuyến, hoặc lấy mã nguồn trên GitHub và tự triển khai. Thiết lập Business guidance, chọn model và để các agent bán hàng bắt tay vào việc.
+107: Phê duyệt

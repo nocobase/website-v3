@@ -534,6 +534,12 @@
    "en": "Try NocoCRM online, or get the source on GitHub and run it yourself. Set your business guidance, pick your models, and put your sales agents to work.",
    "zh": "在线体验 NocoCRM，或到 GitHub 获取源码自行部署。写好业务指导、选定模型，销售 Agent 即刻上岗。",
    "where": "sec"
+  },
+  {
+   "en": "Approvals",
+   "zh": "审批",
+   "where": "sec",
+   "k": "Approvals (section)"
   }
  ],
  "meta": {

@@ -85,9 +85,9 @@
 </ul>
 <p>处理完成后，系统自动生成财务凭证并推送至总账系统。</p>
 <p>这一过程替代了财务人员每月约 1400 张单据的手工录入。</p>
-<p><strong>相比接口对接本身，真正的难点在于业务逻辑的结构化</strong>。团队基于 NocoBase 的<a href="https://docs.nocobase.com/cn/data-sources">数据模型</a>与<a href="https://docs.nocobase.com/cn/plugins">插件机制</a>，将原本依赖人工判断的财务规则转化为系统规则，实现了前端业务单据与后端财务处理的稳定衔接。</p>
+<p><strong>相比接口对接本身，真正的难点在于业务逻辑的结构化</strong>。团队基于 NocoBase 的<a href="https://nocode.docs.nocobase.com/cn/data-sources">数据模型</a>与<a href="https://nocode.docs.nocobase.com/cn/plugins">插件机制</a>，将原本依赖人工判断的财务规则转化为系统规则，实现了前端业务单据与后端财务处理的稳定衔接。</p>
 <h3>4. 系统打通</h3>
-<p>为支撑后续更多业务系统接入，团队首先完成了统一身份体系的整合。通过对接<a href="https://docs.nocobase.com/cn/auth-verification/auth">统一身份认证系统</a>，并以 NocoBase 作为用户管理中心，统一处理用户的新增、修改和删除，同时确保认证信息在各系统之间保持一致。</p>
+<p>为支撑后续更多业务系统接入，团队首先完成了统一身份体系的整合。通过对接<a href="https://nocode.docs.nocobase.com/cn/auth-verification/auth">统一身份认证系统</a>，并以 NocoBase 作为用户管理中心，统一处理用户的新增、修改和删除，同时确保认证信息在各系统之间保持一致。</p>
 <p>在消息协同方面，团队额外部署了私有化 IM 平台，对系统原有的消息提醒机制进行了补充：</p>
 <ul>
 <li>审批与待办消息可直接推送至即时通讯工具</li>
@@ -98,7 +98,7 @@
 <h3>5. 物理隔离环境下的敏捷迭代</h3>
 <p>在客户“内网隔离、物理断网”的环境下，团队采用“外部开发 + 内网部署”的方式推进项目：在互联网环境完成插件开发与逻辑验证，再通过 NocoBase 专业版的迁移工具，将配置整体部署到内网生产环境。</p>
 <p>这种“配置即应用”的方式，避免了在隔离环境中反复开发与调试的成本，使系统在严格安全限制下仍能保持每周甚至更短周期的迭代速度。</p>
-<p>这一能力依赖于 NocoBase 的<a href="https://docs.nocobase.com/cn/ops-management/migration-manager/">配置迁移机制</a>，也使团队能够在复杂交付环境中维持稳定的迭代节奏。</p>
+<p>这一能力依赖于 NocoBase 的<a href="https://nocode.docs.nocobase.com/cn/ops-management/migration-manager/">配置迁移机制</a>，也使团队能够在复杂交付环境中维持稳定的迭代节奏。</p>
 <h2 id="zh-3">交付时间大幅压缩</h2>
 <p>项目整体推进节奏如下：</p>
 <ul>
@@ -191,9 +191,9 @@
 <p>Once processed, financial vouchers were automatically generated and pushed to the general ledger.</p>
 <p>This replaced manual entry of approximately <strong>1,400 financial records per month</strong>.</p>
 <p>The main challenge was not API integration itself, but structuring business logic.</p>
-<p>Using NocoBase’s <a href="https://docs.nocobase.com/data-sources">data models</a> and <a href="https://docs.nocobase.com/plugins/">plugin architecture</a>, the team transformed manual accounting rules into system-level logic, enabling stable end-to-end automation.</p>
+<p>Using NocoBase’s <a href="https://nocode.docs.nocobase.com/data-sources">data models</a> and <a href="https://nocode.docs.nocobase.com/plugins/">plugin architecture</a>, the team transformed manual accounting rules into system-level logic, enabling stable end-to-end automation.</p>
 <h3>4. System Integration &#x26; Unified Identity</h3>
-<p>To support future system expansion, the team first established a unified <a href="https://docs.nocobase.com/auth-verification/auth/">identity system</a>:</p>
+<p>To support future system expansion, the team first established a unified <a href="https://nocode.docs.nocobase.com/auth-verification/auth/">identity system</a>:</p>
 <ul>
 <li>integrated with existing authentication services</li>
 <li>used NocoBase as the centralized user management layer</li>
@@ -214,7 +214,7 @@
 <li>validated configurations were deployed into the internal network</li>
 </ul>
 <p>Using NocoBase’s configuration migration mechanism, the system could be deployed as a whole without repeated redevelopment inside the isolated environment.</p>
-<p>This enabled , <a href="https://docs.nocobase.com/ops-management/migration-manager/">weekly or even faster iteration cycles</a>despite strict security constraints.</p>
+<p>This enabled , <a href="https://nocode.docs.nocobase.com/ops-management/migration-manager/">weekly or even faster iteration cycles</a>despite strict security constraints.</p>
 <h2 id="en-3">Delivery Timeline</h2>
 <p>The project progressed as follows:</p>
 <ul>

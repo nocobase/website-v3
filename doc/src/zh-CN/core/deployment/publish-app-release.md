@@ -1,47 +1,33 @@
 ---
 title: 发布应用新版本
-description: 用可选截止日期演练一次带数据库迁移的业务发布，保留已有任务、权限和配置。
+description: 修改代码后重新构建，按原来的部署方式更新已有应用。
 ---
 
-本篇使用历史示例 `03-filtering-pagination` → `04-task-due-date`，在独立环境中演练带迁移的业务发布。当前入门示例应用已经包含截止日期，不要向它重复添加这个字段；请单独准备旧标签的示例，再执行下面的演练。
+发布应用新版本，就是把修改后的代码重新构建，再部署到原来的应用。沿用已有数据库、运行配置和文件存储，应用地址通常也不需要改变。
 
-接下来给任务增加截止日期。发布到原来的应用，保留数据库、运行配置、密钥和文件存储，在已有任务上执行新迁移并验证结果。
+## 使用 Agent
 
-这是一次业务功能发布。如需更新框架及相关依赖，请阅读[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)，再按[部署指南](choose-a-deployment-method.md)发布。
+告诉 Agent 原应用部署在哪里、使用哪种部署方式，例如：
 
-## 演练：给任务增加截止日期
-
-新版完整源码见 [04-task-due-date](https://github.com/nocobase/app-tutorials/tree/04-task-due-date)，[与上一章的比较](https://github.com/nocobase/app-tutorials/compare/03-filtering-pagination...04-task-due-date) 展示新增迁移、页面和测试。本篇以仓库标签为基线。
-
-在独立的旧版部署里创建两条带负责人的任务，完成其中一条，再准备一个只读成员。在开发项目中参考上述源码差异加入截止日期，保留已有修改，然后运行：
-
-```bash
-pnpm install --frozen-lockfile
-pnpm typecheck
-pnpm exec vitest run --config vitest.tutorial.config.ts
-pnpm exec vitest run tests/client/tutorial-tasks-date-picker.test.tsx
+```text
+请把当前应用的新版本部署到原来的服务器，继续使用 Docker。
+部署目录是 /srv/nocobase/tasks。保留已有数据和配置，更新前做好备份，更新后检查应用是否正常。
 ```
 
-源码修改在开发项目进行，不在服务器安装目录中进行。本篇只以明确列出的历史仓库标签为基线，不使用当前入门示例的源码版本。
+使用 app-installer 时提供服务器和安装目录；使用 Studio 时提供应用和目标环境。
 
-示例只新增一个可为空的 `dueDate` 字段，用新迁移保存，已有迁移保持原样。新建弹窗可以选择或清除截止日期，接口校验 `YYYY-MM-DD`，列表显示日期。旧任务的日期为空，标题、负责人和完成状态不变；完成／恢复仍只修改完成状态。
+## 不使用 Agent
 
-![新建任务时选择可选的截止日期。](/assets/core/tutorials/tasks-update/choose-date.png)
+先完成代码修改和测试，再按照原部署方式重新构建、发布。三种方式主要有以下差别：
 
-启动开发应用后，可以用示例中的 `tests/playwright/tutorial-tasks-due-date.test.ts` 验证真实页面操作。按该标签下测试文件的要求配置 `APP_URL` 和测试账号；测试会写入任务，应只运行在开发或独立演练环境。
+| 部署方式 | 更新时怎么做 |
+| --- | --- |
+| [app-installer](../tutorials/deploy-with-app-installer.md#部署新版本) | 构建新的部署包，使用 `upgrade` 更新原安装目录；从开发机远程发布时继续使用 `deploy --ssh`。 |
+| [Studio](../tutorials/deploy-to-studio.md#部署新版本) | 在原应用中上传或构建新版本，再部署到原运行环境。 |
+| [Docker](../tutorials/deploy-with-docker.md#部署新版本) | 构建新标签的镜像，修改 Compose 中的镜像版本并重新创建容器，保留原配置和存储挂载。 |
 
-## 按原来的部署方式发布
+具体命令见各部署指南的“部署新版本”章节。
 
-功能验证通过后，保留旧版构建及对应源码，构建新包或新镜像，再使用原部署方式：
+如果修改涉及数据库结构，将新增迁移随代码一起发布，保留已经执行过的迁移。更新前备份数据库和文件，并留存旧部署包或镜像；切回旧代码不一定能恢复数据库。
 
-- [app-installer：部署新版本](../tutorials/deploy-with-app-installer.md#部署新版本)：检查更新计划，备份并执行新增迁移，切换 release。
-- [Studio：部署新版本](../tutorials/deploy-to-studio.md#部署新版本)：向原应用上传新版本，再部署到原运行环境。
-- [Docker：部署新版本](../tutorials/deploy-with-docker.md#部署新版本)：使用新镜像标签，保留配置与存储挂载，重建容器。
-
-发布后不只检查进程健康，还要检查旧任务的负责人和完成状态是否保留，新日期能否创建并在刷新后保留，以及原只读成员是否仍然不能写入。
-
-![新版本中，旧任务保留负责人和完成状态，截止日期为未设置；新任务显示截止日期。](/assets/core/tutorials/tasks-update/updated-list.png)
-
-本例已实际通过 app-installer 在已有 SQLite 数据库上执行更新，并验证任务、角色和配置保留，以及重启后的读写行为。Studio 和 Docker 的首次部署另有实操记录；这次没有在它们上面执行带新迁移的更新。
-
-本轮仓库重建使用模板 `.78`，重新验证开发流程、测试和构建，并重拍任务界面；此前三种部署及 app-installer 更新的实操使用 `.77`。新截图不代表三种部署都在 `.78` 上重新演练。
+更新后检查应用能否访问、已有数据和权限是否保留、新功能是否正常。需要升级框架依赖时，先按[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)完成升级和验证，再按同样的流程部署。

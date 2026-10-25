@@ -192,7 +192,7 @@ docker compose -p tasks-app up -d --force-recreate --wait --wait-timeout 180
 
 ## 部署新版本
 
-业务功能修改并验证后，按前面的构建步骤生成新镜像，使用新标签，例如 `tasks-app:2`，并传到目标服务器。可以用 [截止日期示例](../deployment/publish-app-release.md#演练给任务增加截止日期) 演练带新增迁移的发布。
+业务功能修改并验证后，按前面的构建步骤生成新镜像，使用新标签，例如 `tasks-app:2`，并传到目标服务器。更新流程概览见[发布应用新版本](../deployment/publish-app-release.md)。
 
 在原部署目录备份数据库、文件和配置，修改 Compose 的 `image`，保留原来的挂载路径和密钥。使用新镜像检查配置、迁移和历史校验值：
 

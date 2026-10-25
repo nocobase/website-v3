@@ -190,7 +190,7 @@ curl --fail https://tasks.example.com/tasks/api/healthz
 
 ## 部署新版本
 
-业务功能修改并验证后，在开发机重新构建部署包，再发布到原来的安装目录。可以用 [截止日期示例](../deployment/publish-app-release.md#演练给任务增加截止日期) 演练：旧任务保留，新版增加一个可选日期字段。这次更新业务功能，不升级 NocoBase Core 或模板依赖。
+业务功能修改并验证后，在开发机重新构建部署包，再发布到原来的安装目录。更新流程概览见[发布应用新版本](../deployment/publish-app-release.md)。
 
 ### 使用 Agent
 

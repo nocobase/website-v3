@@ -36,7 +36,7 @@ Running `node dist/server/standalone.js` can check a build artifact. A deploymen
 | Run migrations and required initialization on a new database, or migrate existing data according to a plan | Back up existing data, review and apply new migrations |
 | Verify sign-in, business behavior, permissions, and persistence | Verify new behavior, retained data, and existing permissions together |
 
-For subsequent business releases, change source, test, rebuild, and update through the original deployment method. Each guide includes a “Publish a new release” section. The [application release exercise](publish-app-release.md#exercise-add-an-optional-due-date) demonstrates a business release with a new migration.
+For subsequent business releases, change source, test, rebuild, and update through the original deployment method. Each guide includes a “Publish a new release” section. [Publish an application release](publish-app-release.md) summarizes the differences between the three update methods.
 
 To update the framework and related dependencies, first follow [Upgrade NocoBase Core](../developing-apps/upgrade-nocobase-core.md), verify compatibility, then deploy.
 

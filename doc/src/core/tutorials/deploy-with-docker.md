@@ -174,7 +174,7 @@ Check the same task and state survive, the password still works and an ordinary 
 
 ## Publish a new release
 
-Build a new image tag, such as `tasks-app:2`, and transfer it to the server. The [due-date exercise](../deployment/publish-app-release.md#exercise-add-an-optional-due-date) adds a migration. Back up database, files and configuration, then change only the image reference while retaining mounts and secrets.
+Build a new image tag, such as `tasks-app:2`, and transfer it to the server. See [Publish an application release](../deployment/publish-app-release.md) for an overview. Back up database, files and configuration, then change only the image reference while retaining mounts and secrets.
 
 Check the new image against the existing installation:
 

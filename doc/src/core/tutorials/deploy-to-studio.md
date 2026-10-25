@@ -122,7 +122,7 @@ The repository is private: Studio's integration needs access. Creating this GitH
 
 ## Publish a new release
 
-Test and build the new feature, upload to the **same application**, then deploy to the existing environment. Preserve database, files and stable secrets. Use the [due-date exercise](../deployment/publish-app-release.md#exercise-add-an-optional-due-date) to prepare a new migration; review backups, compatibility and recovery before publishing. Check old task data, roles and new behavior afterward.
+Test and build the new feature, upload to the **same application**, then deploy to the existing environment. Preserve database, files and stable secrets. Review backups, migration compatibility and recovery before publishing; see [Publish an application release](../deployment/publish-app-release.md) for an overview. Check old task data, roles and new behavior afterward.
 
 With an Agent, provide the original App ID, environment and new archive path, and require those same checks. Switching a release does not reverse business writes or replace data recovery.
 

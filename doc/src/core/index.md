@@ -35,4 +35,4 @@ Look up application conventions by topic; prepare the corresponding data and end
 - [Deploy to Studio](tutorials/deploy-to-studio.md): manage applications, environments, and releases in Studio.
 - [Deploy with Docker](tutorials/deploy-with-docker.md): build images and run containers with persistent mounts.
 - [Upgrade NocoBase Core](developing-apps/upgrade-nocobase-core.md): merge a newer template with an agent or manually, verify compatibility, and deploy the upgraded application.
-- [Publish an application release](deployment/publish-app-release.md): rehearse a business release with a migration while preserving data and permissions.
+- [Publish an application release](deployment/publish-app-release.md): rebuild and redeploy, with the update steps for each deployment method.

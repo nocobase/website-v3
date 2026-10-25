@@ -132,7 +132,7 @@ Create and complete a task, refresh, and test a read-only user. Restart only thi
 
 ## Publish a new release
 
-Use the [due-date exercise](../deployment/publish-app-release.md#exercise-add-an-optional-due-date) for a schema-changing business release. Keep old artifacts and source revisions. Build a new archive, then inspect status and the update plan.
+See [Publish an application release](../deployment/publish-app-release.md) for an overview of the update process. Keep old artifacts and source revisions. Build a new archive, then inspect status and the update plan.
 
 ### With an agent
 

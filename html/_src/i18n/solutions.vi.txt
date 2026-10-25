@@ -1,0 +1,67 @@
+# Tiếng Việt（bạn）
+# 术语：platform = nền tảng；foundation = nền móng（与 nền tảng 区分）；building blocks = khối chức năng；governance = quản trị；
+# agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
+# business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
+title: NocoBase Solution — Ứng dụng nghiệp vụ mã nguồn mở, vận hành bằng AI, dùng được ngay
+description: NocoBase Solution là dòng ứng dụng nghiệp vụ do agent vận hành, xây dựng trên Core.
+000: Ứng dụng nghiệp vụ mã nguồn mở. <span class="m">Vận hành bằng AI, dùng được ngay.</span>
+003: Triển khai trên máy chủ của bạn
+004: Tự do chọn model
+005: CRM bán hàng · Beta
+007: Tìm hiểu NocoCRM
+008: Quản lý tài sản CNTT · Beta
+010: Tìm hiểu NocoITAM
+011: Tăng trưởng · Alpha
+013: Tìm hiểu NocoReach
+014: Hỗ trợ · Sắp ra mắt
+016: Dự án · Sắp ra mắt
+018: Nhân sự · Sắp ra mắt
+020: Agent nghiệp vụ
+021: Agent <span class="m">chủ động làm việc.</span>
+022: Phần mềm nghiệp vụ truyền thống dựa vào con người để ghi chép dữ liệu, chuyển giao công việc và tự tay xử lý từng bước. Trong NocoBase Solution, mỗi ứng dụng tích hợp sẵn các agent nghiệp vụ, làm theo quy tắc của bạn và chủ động đảm nhận phần lớn công việc, như kiểm tra hoàn tiền hay xử lý ticket.
+023: Mỗi agent đều ghi rõ nhiệm vụ, khi nào làm việc và làm theo cách nào.
+024: Bắt đầu khi có việc xảy ra: 
+025: khách hàng tiềm năng mới, email từ khách hàng hay một tác vụ hoàn tất đều kích hoạt đúng agent, và agent cũng có thể chạy theo lịch.
+026: Làm theo quy tắc của bạn: 
+027: hướng dẫn nghiệp vụ ghi rõ bối cảnh và tiêu chuẩn của bạn, kỹ năng ghi rõ cách làm, và lần chạy tiếp theo sẽ làm theo mọi thay đổi của bạn.
+028: Mọi việc đều được ghi lại: 
+029: mỗi agent đã chạy bao nhiêu lần, kết quả nào được chấp nhận hay bị bỏ qua, đều được ghi lại đầy đủ.
+030: Ai làm gì
+031: Con người nắm <span class="m">quyết định then chốt.</span>
+033: Ứng dụng
+034: Agent nghiệp vụ đảm nhận
+035: Con người quyết định
+036: Cập nhật hồ sơ khách hàng và lịch sử trao đổi, tìm hiểu khách hàng tiềm năng và công ty, đề xuất bước tiếp theo, kiểm tra trước báo giá
+037: Chiết khấu, báo giá và điều khoản hợp đồng
+038: Đối soát sổ tài sản với MDM, chuẩn bị bộ thiết bị khi nhận việc và nghỉ việc, xem xét trước yêu cầu mua sắm và thanh lý
+039: Mua sắm, thanh lý và thay đổi tài sản quan trọng
+040: Phân tích dữ liệu hằng ngày, tìm cơ hội tăng trưởng kèm căn cứ và mở pull request với các thay đổi
+041: Chọn cơ hội nào, kiểm duyệt thương hiệu và phát hành
+043: Phân loại và phân công ticket, tra cứu kho tri thức, soạn phản hồi
+044: Hoàn tiền, khiếu nại cần chuyển cấp và trường hợp ngoại lệ
+045: Thực hiện tác vụ nghiên cứu và soạn tài liệu, theo dõi tiến độ, cảnh báo rủi ro
+046: Mục tiêu, ưu tiên và nghiệm thu
+047: Chuẩn bị onboarding, cập nhật hồ sơ nhân viên, giải đáp câu hỏi về chính sách
+048: Tuyển dụng, lương và ngoại lệ nhân sự
+049: Kèm căn cứ
+050: Mọi kết quả agent bàn giao đều ghi rõ nguồn gốc: email nào, bản ghi nào, tài liệu nào.
+051: Con người quyết định
+052: Với các quyết định như chiết khấu, mua sắm hay hoàn tiền, agent chuẩn bị phương án và lý do, còn người phụ trách đưa ra quyết định.
+053: Quyền của người phụ trách
+054: Agent chỉ được xem và thay đổi những gì người mà nó phục vụ được phép, không hơn.
+055: Tùy biến
+056: Dễ <span class="m">tùy biến.</span>
+058: Triển khai là dùng được
+059: Mỗi ứng dụng triển khai độc lập. Thêm hướng dẫn nghiệp vụ, kết nối model, và các agent nghiệp vụ bắt tay vào việc.
+060: Sửa kỹ năng, quy tắc và code
+061: Khi cách làm thay đổi, hãy sửa kỹ năng. Khi workflow hay trường dữ liệu thay đổi, hãy để coding agent sửa mã nguồn.
+062: Nhận bản cập nhật chính thức khi bạn muốn
+063: Mã nguồn đã tùy biến thuộc về bạn. Kiểm tra rồi hợp nhất các bản cập nhật chính thức bạn cần vào kho mã của chính bạn.
+064: Ứng dụng Solution được xây dựng trên NocoBase Core
+065: Cùng con người và agent tùy biến: NocoBase Studio
+066: Mã nguồn mở &amp; tự triển khai
+067: Miễn phí, mã nguồn mở, <span class="m">dùng được ngay.</span>
+074: Bắt đầu
+079: Xem các ứng dụng
+082: Tìm hiểu Core
+086: Tìm hiểu Studio

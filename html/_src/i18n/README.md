@@ -27,6 +27,6 @@
 
 改完运行 `build.py`，再用浏览器在 1440、1180、768、390 几个宽度看一遍：标题和能力条不能溢出。
 
-## 解决方案页（NocoCRM、NocoITAM）
+## 解决方案页（Solution 总览、NocoCRM、NocoITAM）
 
-`solution-crm.html`、`solution-itam.html` 的其他语言用 `pages.py`，写法和首页相同，用法见它开头的说明。产品界面上的名称照 `ui-terms.md` 写。
+`solutions.html`、`solution-crm.html`、`solution-itam.html` 的其他语言用 `pages.py`，写法和首页相同，用法见它开头的说明。产品界面上的名称照 `ui-terms.md` 写。

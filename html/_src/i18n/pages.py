@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""子页面的其他语言（目前是 NocoCRM、NocoITAM 两页）。在 _src 目录下运行：
+"""子页面的其他语言（目前是 Solution 总览、NocoCRM、NocoITAM 三页）。在 _src 目录下运行：
 
   python3 i18n/pages.py extract ..   抽取要翻译的条目，更新 <组>.keys.json
   python3 i18n/pages.py build ..     检查译文，生成 assets/i18n/<组>.<语言>.js
 
 条目分三组：
 - site：顶部导航和页脚，写在 assets/site.js 的 T(zh, en) 里，所有接入的页面共用；
-- crm、itam：各页正文里的 <t-en>，以及页面标题和描述（title、description）。
+- solutions、crm、itam：各页正文里的 <t-en>，以及页面标题和描述（title、description）。
 界面示意图（.fit-in 里的内容）不抽取：产品界面只有中文和英文，其他语言都显示英文界面，和首页一致。
 
 译文文件 <组>.<语言>.txt 的写法和首页的 home.<语言>.txt 相同：开头是这种语言的固定用语，每行「编号: 译文」，
-页面组另有 title、description 两行。site 组里和首页英文原文相同的条目，没写译文时沿用 home.<语言>.txt 的译文。
+页面组另有 title、description 两行。和首页英文原文相同的条目，没写译文时沿用 home.<语言>.txt 的译文。
 生成的 js 并入 window.NB_I18N[语言].strings（以英文原文为键），页面标题和描述放在 window.NB_I18N[语言].pages[组]。
 缺的译文显示英文，不会出错。
 """
@@ -19,7 +19,7 @@ from pathlib import Path
 
 here = Path(__file__).resolve().parent
 site = Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else here.parent.parent
-PAGES = {'crm': 'solution-crm.html', 'itam': 'solution-itam.html'}
+PAGES = {'solutions': 'solutions.html', 'crm': 'solution-crm.html', 'itam': 'solution-itam.html'}
 LANGS = ['es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko']
 
 
@@ -150,14 +150,13 @@ def build():
         for lang in LANGS:
             f = here / f'{group}.{lang}.txt'
             meta, tr, problems = read_tr(f, lang)
-            if group == 'site':
-                # 和首页相同的英文，沿用首页的译文
-                _, home, _ = read_tr(here / f'home.{lang}.txt', lang)
-                home_by_en = {item['en']: home[f'{i:03d}'] for i, item in enumerate(home_keys) if f'{i:03d}' in home}
-                for i, item in enumerate(keys):
-                    k = f'{i:03d}'
-                    if k not in tr and item['en'] in home_by_en:
-                        tr[k] = home_by_en[item['en']]
+            # 和首页相同的英文，没写译文时沿用首页的译文
+            _, home, _ = read_tr(here / f'home.{lang}.txt', lang)
+            home_by_en = {item['en']: home[f'{i:03d}'] for i, item in enumerate(home_keys) if f'{i:03d}' in home}
+            for i, item in enumerate(keys):
+                k = f'{i:03d}'
+                if k not in tr and 'k' not in item and item['en'] in home_by_en:
+                    tr[k] = home_by_en[item['en']]
             for i, item in enumerate(keys):
                 k = f'{i:03d}'
                 if item.get('unused'):

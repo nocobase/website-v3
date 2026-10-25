@@ -137,15 +137,15 @@ const SECTIONS = [
     key: 'studio',
     title: ['Studio', 'Studio'],
     dir: 'studio/',
-    /* 顺序：先入门、安装与上手；然后按一个需求的经过排：交给 Agent 团队 → 跟进 → 拍板；再是团队积累和系统管理；最后是参考。 */
+    /* 顺序：先入门、安装与上手；中间四组和官网 Studio 页（html/studio.html）的四段一致：Agent 团队 → 进展 → 决策 → 知识沉淀；然后是系统管理；最后是参考。 */
     nav: [
       { items: ['index'] },
       { title: ['Get started', '入门'], items: ['intro/what-is-studio', 'intro/how-a-task-gets-done', 'intro/concepts'] },
       { title: ['Install and set up', '安装与上手'], items: ['install', 'quickstart'] },
       { title: ['Agent team', 'Agent 团队'], items: ['team/hand-over', 'team/sessions', 'team/coordinator', 'team/connect', 'team/cli'] },
-      { title: ['Follow up', '跟进'], items: ['progress/my-tasks', 'progress/task-page', 'progress/inbox', 'progress/usage'] },
-      { title: ['Decide', '拍板'], items: ['decisions/answer', 'decisions/accept', 'decisions/previews', 'decisions/release'] },
-      { title: ['Team knowledge', '团队积累'], items: ['knowledge/knowledge-base', 'knowledge/skills'] },
+      { title: ['Progress', '进展'], items: ['progress/my-tasks', 'progress/task-page', 'progress/inbox', 'progress/usage'] },
+      { title: ['Decisions', '决策'], items: ['decisions/answer', 'decisions/accept', 'decisions/previews', 'decisions/release'] },
+      { title: ['Know-how', '知识沉淀'], items: ['knowledge/knowledge-base', 'knowledge/skills'] },
       {
         title: ['Administration', '系统管理'],
         items: ['admin/members-and-roles', 'admin/projects', 'admin/git', 'admin/api-keys', 'admin/notifications', 'admin/release-settings', 'admin/upgrade-and-backup'],

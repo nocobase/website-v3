@@ -1,4 +1,4 @@
 ---
-title: Runtime environments
+title: Runtimes
 status: placeholder
 ---

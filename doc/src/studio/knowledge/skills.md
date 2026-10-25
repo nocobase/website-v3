@@ -1,15 +1,4 @@
 ---
-title: 技能
-status: 待编写
-description: 内置的 NocoBase 开发技能，以及什么时候需要补充团队技能。
+title: Skills
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 内置的官方技能：随 Core 版本更新
-- 什么时候需要团队技能
-- 技能设在全局、项目、工作目录上时的优先级
-- 新项目默认带上的技能

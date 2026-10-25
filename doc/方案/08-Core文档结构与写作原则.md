@@ -129,6 +129,6 @@ Core 是统一文档站的一个部分，顶栏切换到「Core」后，左侧�
 
 ## 发布形式
 
-本地草稿和 Studio 一样：正文写在 `doc/src/core/`，`node doc/build.mjs` 生成到 `doc/site/core/`。正式站点的落地方式见 [统一文档站](09-统一文档站.md#正式站点怎样落地)。
+本地草稿和 Studio 一样：中文正文写在 `doc/src/zh-CN/core/`，`node doc/build.mjs` 生成到 `doc/dist/zh-CN/core/`。正式站点的落地方式见 [统一文档站](09-统一文档站.md#正式站点怎样落地)。
 
 插件档案的生成：在 NocoBase 仓库里加一个导出脚本，读取每个包的 `package.json`（名称、版本、许可、入口、依赖）、`client/routes.ts`（自带页面）、`registry.json`（UI 组件）、`database/`（数据表）、`skills/`（技能）以及默认模板的三个插件清单（注册状态），输出一份 JSON，文档构建时填进档案。本轮草稿用同样的方法从 `v3-develop` 读取，生成了全部插件页的档案部分。

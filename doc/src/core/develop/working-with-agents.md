@@ -1,18 +1,4 @@
 ---
-title: 和 Agent 一起开发
-status: 待编写
-description: 怎样把需求说清楚，Agent 会怎样工作，怎样跟进和验收。
+title: Developing with agents
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 在应用目录里开启新会话，Agent 才会读到应用的技能
-- 需求要说清的事和示例
-- 先讨论方案再动手
-- 边预览边修改
-- Agent 先查已有能力，不重写插件已有的功能
-- 看懂 Agent 的改动：迁移、接口、页面、插件清单
-- 应用自己的约定写进 `.agents/rules/`

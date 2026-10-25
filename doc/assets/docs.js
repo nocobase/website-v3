@@ -18,17 +18,19 @@
     targets.forEach((t) => observer.observe(t));
   }
 
+  // 按钮文字随页面语言，由构建写在按钮上：原文、data-copied、data-failed
   for (const button of document.querySelectorAll('.copy-button')) {
+    const label = button.textContent;
     button.addEventListener('click', async () => {
       const code = button.closest('.code-block')?.querySelector('pre code');
       if (!code) return;
       try {
         await navigator.clipboard.writeText(code.innerText);
-        button.textContent = '已复制';
+        button.textContent = button.dataset.copied || '已复制';
       } catch {
-        button.textContent = '复制失败';
+        button.textContent = button.dataset.failed || '复制失败';
       }
-      setTimeout(() => { button.textContent = '复制'; }, 1600);
+      setTimeout(() => { button.textContent = label; }, 1600);
     });
   }
 })();

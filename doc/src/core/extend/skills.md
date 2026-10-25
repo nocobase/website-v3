@@ -1,14 +1,4 @@
 ---
-title: 给插件写技能
-status: 待编写
-description: 让 Agent 学会使用你的插件。
+title: Write skills for a plugin
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 技能写什么：公开接口、规则、验证步骤
-- 技能怎样随包发布和同步
-- 技能和文档的分工

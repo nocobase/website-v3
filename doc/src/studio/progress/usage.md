@@ -1,14 +1,4 @@
 ---
-title: 用量与费用
-status: 待编写
-description: 每次运行用了多少、花了多少，以及模型价格怎样设置。
+title: Usage and costs
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 用量页
-- 模型价格、价格规则与订阅计费
-- 仪表盘里的单任务成本

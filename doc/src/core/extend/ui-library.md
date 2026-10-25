@@ -1,13 +1,4 @@
 ---
-title: 向 UI 组件库贡献
-status: 待编写
-description: 给插件配套界面组件。
+title: Contribute to the UI library
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 插件自己的组件
-- 组件的所有权和升级方式

@@ -1,14 +1,4 @@
 ---
-title: 后台任务与多实例
-status: 待编写
-description: 定时任务、队列和实时更新在一个或多个实例时的配置。
+title: Background jobs and multiple instances
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 内存和 Redis
-- Redis 的持久化和内存策略
-- 多实例部署的检查清单

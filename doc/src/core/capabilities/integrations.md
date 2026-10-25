@@ -1,27 +1,4 @@
 ---
-title: 外部集成
-status: 待编写
-description: 让脚本和其他系统访问应用：API Key、接口文档、接收外部回调、应用自己的命令行。
+title: Integrations
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- API Key：创建、限定范围、撤销
-- 接口文档：运行中的应用在 `/api/swagger` 提供
-- 接收外部回调（Webhook）：由应用的接口实现
-- 调用外部系统：凭据放在服务器配置里
-- 应用自己的命令行：给业务用户和业务 Agent
-- 权限：外部访问用和人一样的授权
-
-## 由哪些包提供
-
-[API keys](../plugins/api-keys.md)
-
-## 现有页面的去向
-
-| 现有页面 | 处理 |
-| --- | --- |
-| 认证 › API keys | 移入本组 |

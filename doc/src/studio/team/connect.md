@@ -1,17 +1,4 @@
 ---
-title: 运行环境
-status: 待编写
-description: 团队服务器和成员电脑怎样接入，成为 Agent 团队的算力。
+title: Runtime environments
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 团队运行环境与个人运行环境
-- 添加运行环境：编码工具、最大并发数、按编码工具限制
-- 本机策略文件：限制一台机器接哪些工作
-- 离线、重新排队与额度用完
-- nocobase-runner 的升级
-- 用专用用户、容器或虚拟机隔离

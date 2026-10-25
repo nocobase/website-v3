@@ -1,7 +1,4 @@
 ---
-title: 预览
-status: 模块开发中
+title: Previews
+status: placeholder
 ---
-
-> [!PENDING] 模块开发中
-> 这部分功能还在开发中，模块完善后补充本页。

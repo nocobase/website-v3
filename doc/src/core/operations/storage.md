@@ -1,15 +1,4 @@
 ---
-title: 文件存储
-status: 待编写
-description: 本地、S3 兼容存储和阿里云 OSS。
+title: File storage
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 配置存储
-- 更换默认存储
-- 公开和私有文件
-- 备份

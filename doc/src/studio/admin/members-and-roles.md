@@ -1,15 +1,4 @@
 ---
-title: 成员与角色
-status: 待编写
-description: 邀请同事，分配角色，管理账号。
+title: Members and roles
+status: placeholder
 ---
-
-> [!PENDING] 本页待编写
-> 下面是计划包含的内容。
-
-## 计划包含
-
-- 邀请成员
-- 内置角色与自定义角色
-- 修改资料、重置密码、停用账号
-- 所有者与系统管理员

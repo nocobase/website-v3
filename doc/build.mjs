@@ -154,7 +154,7 @@ const SECTIONS = [
       {
         title: ['Reference', '参考'],
         items: [
-          { planned: ['Plugin overview', '插件总览'] },
+          'reference/plugins',
           { planned: ['Command line', '命令行'] },
           { planned: ['Configuration options', '配置项'] },
           { planned: ['FAQ', '常见问题'] },

@@ -100,6 +100,8 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 /* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
 #tryDemo { padding-top: 72px; }
+/* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
+@media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; } .phero > .container { width: 100%; } }
 .ld-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
 .ld-open a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 15px; white-space: nowrap; }
 .ld-open a:hover { color: var(--brand-hover); }

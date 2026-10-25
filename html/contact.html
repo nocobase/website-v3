@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="联系我们 — NocoBase" data-en="Contact Us — NocoBase">联系我们 — NocoBase</title>
+<meta name="description" content="需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。" data-zh="需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。" data-en="Reach NocoBase by email or through the form for sales, and commercial services.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="contact" data-root="">
+<div id="site-header"></div>
+<main>
+<section class="phero">
+  <div class="container">
+    <p class="label"><b>NocoBase</b><i></i><span><t-zh>联系我们</t-zh><t-en>Contact Us</t-en></span></p>
+    <h1><t-zh>联系我们，<span class="m">聊聊你想做的系统。</span></t-zh><t-en>Contact us. <span class="m">Tell us what you want to build.</span></t-en></h1>
+    <p class="lede"><t-zh>需要产品咨询和商业服务咨询，都可以与我们联系。使用中遇到的技术问题，欢迎到<a href="https://forum.nocobase.com/" target="_blank" rel="noopener">社区论坛</a>交流。</t-zh><t-en>For sales, and commercial services, reach us here. For technical questions, the <a href="https://forum.nocobase.com/" target="_blank" rel="noopener">community forum</a> is the best place to ask.</t-en></p>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="container">
+    <div class="band book" style="margin-top:0;align-items:start">
+      <div>
+        <h2><t-zh>和我们聊聊</t-zh><t-en>Get in touch</t-en></h2>
+        <p><t-zh>填写右侧表单，我们会尽快联系你；也可以直接写信或加微信。</t-zh><t-en>Fill in the form and we’ll get back to you soon, or write to us directly.</t-en></p>
+        <div class="cinfo">
+          <div>
+            <h3><t-zh>通过邮箱联系</t-zh><t-en>Email</t-en></h3>
+            <p><a href="mailto:hello@nocobase.com">hello@nocobase.com</a></p>
+          </div>
+          <div class="zh-only">
+            <h3>通过微信联系</h3>
+            <p>微信只提供商业版本和商业服务咨询，不提供开源版本技术支持。使用问题请到<a href="https://forum.nocobase.com/" target="_blank" rel="noopener">社区论坛</a>交流。</p>
+            <img class="qr" src="https://nocobase-file.oss-cn-beijing.aliyuncs.com/wechat.png" width="104" height="104" alt="NocoBase 微信二维码" loading="lazy">
+          </div>
+          <div>
+            <h3><t-zh>我们在哪里</t-zh><t-en>Where we are</t-en></h3>
+            <ul class="zh-only">
+              <li>中国：北京市海淀区北四环西路 68 号 6 层 609</li>
+              <li>中国：广州市海珠区南州路 183 号二层 A169</li>
+              <li>中国：武汉市汉阳区江城大道 356 号 3 栋 30 层 G20 室</li>
+              <li>新加坡：68 Circular Road, #02-01, Singapore</li>
+              <li>日本：東京都北区赤羽 1-55-8 501</li>
+            </ul>
+            <div class="en-only">
+              <p>We are a remote team across several countries, with offices in:</p>
+              <ul>
+                <li>68 Circular Road, #02-01, Singapore</li>
+                <li>501, 1-55-8 Akabane, Kita-ku, Tokyo, Japan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="bookf" data-public-form-zh="https://service-cn.nocobase.com|ujh5fsw3vem" data-public-form-en="https://service-en.nocobase.com|ect266yzsld" data-ok-zh="已收到你的信息，我们会尽快与你联系。" data-ok-en="Thanks! We’ve received your message and will be in touch soon." data-mail="hello@nocobase.com">
+        <div class="two"><label><span><t-zh>姓名</t-zh><t-en>Your name</t-en></span><input type="text" name="name" autocomplete="name" required></label><label class="zh-only" data-lang-only="zh"><span>电话</span><input type="tel" name="phone" autocomplete="tel" required></label><label class="en-only" data-lang-only="en"><span>Your email</span><input type="email" name="email" autocomplete="email" required></label></div>
+        <div class="two"><label><span><t-zh>职位</t-zh><t-en>Your job title</t-en></span><input type="text" name="job_title" autocomplete="organization-title" required></label><label><span><t-zh>公司名称</t-zh><t-en>Company name</t-en></span><input type="text" name="company_name" autocomplete="organization" required></label></div>
+        <label class="en-only" data-lang-only="en"><span>Where is your company located</span><select name="country_region_id" data-options="countries" required><option value="">Select your country or region</option></select></label>
+        <label><span><t-zh>你是通过什么渠道了解到 NocoBase 的</t-zh><t-en>How did you find out about NocoBase</t-en></span><select name="source" data-options="enum" data-field="source" required><option value="" data-text-zh="请选择" data-text-en="Select one">请选择</option></select></label>
+        <fieldset class="opts" data-options="enum" data-field="what_to_do" data-required><legend><t-zh>你希望用 NocoBase 做什么（可多选）</t-zh><t-en>What do you want to do with NocoBase (choose all that apply)</t-en></legend></fieldset>
+        <label><span><t-zh>请介绍一下你的团队，以及使用 NocoBase 的具体场景</t-zh><t-en>Tell us about your team and your use cases for NocoBase</t-en></span><textarea name="details" data-name-zh="Details" rows="4" required></textarea></label>
+        <label><span><t-zh>你希望获得哪些帮助</t-zh><t-en>What kind of help are you hoping to receive</t-en></span><textarea name="questions" rows="4" required></textarea></label>
+        <button class="btn btn-pri" type="submit"><t-zh>提交</t-zh><t-en>Submit</t-en><i data-lucide="arrow-right"></i></button>
+        <p class="form-msg" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="assets/public-form.js"></script>
+</main>
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

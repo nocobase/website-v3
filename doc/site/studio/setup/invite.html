@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>邀请成员 - NocoBase 3 文档</title>
-<meta name="description" content="流程走通后，邀请同事加入，分配角色。">
+<meta name="description" content="第一个需求走通后，邀请同事加入 Studio，分配角色和项目。">
 <link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+<link rel="stylesheet" href="../../assets/docs.css?v=ce5256f5">
 </head>
 <body>
 <a class="skip-link" href="#content">跳到正文</a>
@@ -19,27 +19,65 @@
 <nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
 </header>
 <div class="layout">
-<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html" class="todo">安装 Studio</a></li><li><a href="../../studio/setup/git.html" class="todo">连接 Git</a></li><li><a href="../../studio/setup/shared-runtimes.html">接入共享运行环境</a></li><li><a href="../../studio/setup/agents.html" class="todo">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html" class="todo">新建项目</a></li><li><a href="../../studio/setup/ci.html" class="todo">连接 CI</a></li><li><a href="../../studio/setup/first-request.html" class="todo">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html" class="todo" aria-current="page">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html" class="todo">提出需求</a></li><li><a href="../../studio/use/sessions.html" class="todo">我的会话</a></li><li><a href="../../studio/use/my-tasks.html" class="todo">我的任务</a></li><li><a href="../../studio/use/follow-progress.html" class="todo">跟进进展</a></li><li><a href="../../studio/use/answer.html" class="todo">回答提问</a></li><li><a href="../../studio/use/accept.html" class="todo">验收</a></li><li><a href="../../studio/use/inbox.html" class="todo">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html">安装 Studio</a></li><li><a href="../../studio/setup/git.html">连接 Git</a></li><li><a href="../../studio/setup/shared-runtimes.html">接入共享运行环境</a></li><li><a href="../../studio/setup/agents.html">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html">新建项目</a></li><li><a href="../../studio/setup/ci.html">连接 CI</a></li><li><a href="../../studio/setup/first-request.html">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html" aria-current="page">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html" class="todo">提出需求</a></li><li><a href="../../studio/use/sessions.html" class="todo">我的会话</a></li><li><a href="../../studio/use/my-tasks.html" class="todo">我的任务</a></li><li><a href="../../studio/use/follow-progress.html" class="todo">跟进进展</a></li><li><a href="../../studio/use/answer.html" class="todo">回答提问</a></li><li><a href="../../studio/use/accept.html" class="todo">验收</a></li><li><a href="../../studio/use/inbox.html" class="todo">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
 <main id="content" class="content">
 <p class="crumb">Studio · 搭建 Studio</p><h1>邀请成员</h1>
-<p class="lead">流程走通后，邀请同事加入，分配角色。</p>
+<p class="lead">第一个需求走通后，邀请同事加入 Studio，分配角色和项目。</p>
 <article class="prose">
-<div class="note pending"><strong>本页待编写</strong><p>下面是计划包含的内容。</p>
+<p>第一个需求走通，说明 Studio、运行环境、Agent 和代码仓库都配好了，可以邀请同事加入。</p>
+<h2 id="邀请">邀请</h2>
+<ol>
+<li>打开「设置 › 成员」，点「邀请成员」。</li>
+<li>填写同事的邮箱，每行一个，或者用逗号、空格分隔，一次最多 50 个。</li>
+<li>「加入的项目」选上他们要参与的项目，被邀请人以成员身份加入这些项目。</li>
+<li>点「发送邀请」。</li>
+</ol>
+<p>每个邮箱会收到一封邀请邮件，打开链接、设置姓名和密码就加入了。链接 7 天内有效。</p>
+<p>Studio 还没有配置邮件时，结果里会显示「邮件未发送」。点「复制邀请链接」，自己把链接发给同事即可。</p>
+<figure class="fig"><div class="sw" style="max-width:560px">
+<div class="sw-top"><i data-lucide="user-plus"></i><span class="crumb"><b>邀请成员</b></span><span class="r"><span class="st-ib"><i data-lucide="x"></i></span></span></div>
+<div class="sw-body">
+<p style="font-size:12.5px;color:var(--muted)">每个邮箱会收到一封邮件，打开链接设置姓名和密码即可加入。链接 7 天内有效。</p>
+<div class="st-card"><div class="pr-head"><i data-lucide="mail"></i><b>zhou.hang@example.com</b><span class="r st-chip wait">邮件未发送</span></div><div class="st-btns"><span class="st-btn"><i data-lucide="link"></i>复制邀请链接</span></div></div>
+<div class="dlg-foot"><span class="st-btn p">完成</span></div>
 </div>
-<h2 id="计划包含">计划包含</h2>
-<ul>
-<li>在「设置 › 成员」邀请同事，或邀请到某个项目</li>
-<li>内置角色：成员、管理员、所有者</li>
-<li>同事收到邀请后，按 <a href="../join/sign-in.html">加入团队</a> 开始使用</li>
-</ul>
+</div><figcaption>没有配置邮件时，复制邀请链接发给同事</figcaption></figure>
+
+
+<h2 id="角色">角色</h2>
+<p>新成员加入时，自动获得「设置 › 常规」里设定的默认角色。Studio 内置三个角色：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>角色</th>
+<th>能做什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>成员</td>
+<td>提出需求、跟进和验收自己相关的任务；在自己负责的项目里管理设置和知识库；接入个人运行环境</td>
+</tr>
+<tr>
+<td>管理员</td>
+<td>所有页面和所有设置：接入共享运行环境、启用 Agent、管理部署环境、Git 连接、组织的 API 密钥</td>
+</tr>
+<tr>
+<td>所有者</td>
+<td>和管理员一样，另外可以管理账号：修改资料、停用账号、重置密码</td>
+</tr>
+</tbody></table></div>
+<p>需要时，在「设置 › 成员」里调整某个人的角色，或者在「设置 › 角色」里定义新的角色，见 <a href="../admin/members-and-roles.html">成员与角色</a>。</p>
+<h2 id="同事加入之后">同事加入之后</h2>
+<p>请同事按 <a href="../join/sign-in.html">加入团队</a> 做一遍：连接自己的 Git 账号，把自己的电脑接入 Studio，然后就可以 <a href="../use/raise-a-request.html">提出需求</a> 了。</p>
+<p class="done"><strong>完成的标志</strong>同事出现在「设置 › 成员」的列表里，状态是正常。</p>
 
 </article>
-
+<nav class="pager" aria-label="翻页"><a class="prev" href="../../studio/setup/first-request.html"><small>上一页</small>走完第一个需求</a></nav>
 <footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
 </main>
-<aside class="toc" aria-label="本页内容"></aside>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E9%82%80%E8%AF%B7">邀请</a></li><li><a href="#%E8%A7%92%E8%89%B2">角色</a></li><li><a href="#%E5%90%8C%E4%BA%8B%E5%8A%A0%E5%85%A5%E4%B9%8B%E5%90%8E">同事加入之后</a></li></ul></aside>
 </div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-<script src="../../assets/docs.js?v=e9ad5699"></script>
+<script src="../../assets/docs.js?v=ce5256f5"></script>
 </body>
 </html>

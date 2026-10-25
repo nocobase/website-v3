@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="../site/assets/docs.css?v=e9ad5699">
+<link rel="stylesheet" href="../site/assets/docs.css?v=ce5256f5">
 </head>
 <body>
 <a class="skip-link" href="#content">跳到正文</a>
@@ -582,6 +582,66 @@
 <td><code>dev</code> 的界面把团队共用的运行环境叫「共享」（「仅限共享运行环境」「任务需要共享运行环境」）</td>
 <td>文档统一写“共享运行环境”，页面改名为「接入共享运行环境」</td>
 </tr>
+<tr>
+<td>初始管理员的用户名是 <code>nocobase</code>，密码在 <code>.env</code> 的 <code>INITIAL_ADMIN_PASSWORD</code> 里；试用时不知道去哪里找登录账号</td>
+<td>「安装 Studio」单列“登录”一节，写明用户名和查看密码的命令</td>
+</tr>
+<tr>
+<td><code>APP_DEFAULT_LOCALE</code> 在代码里不存在（旧文档写过），语言只能在 <code>config.yml</code> 的 <code>i18n.defaultLocale</code> 设置；<code>dev</code> 的模板仍然不关自助注册</td>
+<td>「安装 Studio」第 2 步改 <code>config.yml</code></td>
+</tr>
+<tr>
+<td>连接 GitHub 时 Webhook 开关默认打开；Studio 只在内网时 GitHub 报错 “Hook url is not supported because it isn&#39;t reachable over the public Internet”</td>
+<td>「连接 Git」单列“要不要开 Webhook”，引用这条报错</td>
+</tr>
+<tr>
+<td>GitHub App 安装时只选了部分仓库，新建项目会提示“仓库已创建，但尚未确认 App 的访问权限”；<code>gh</code> 的令牌改不了 App 的仓库权限，只能在 GitHub 网页上加</td>
+<td>「连接 Git」要求选 All repositories；「新建项目」写明补救办法</td>
+</tr>
+<tr>
+<td>镜像里的新建项目还是三步（基本信息、代码、预览），还有“运行器上的目录”；<code>dev</code> 是一个对话框，代码位置为新建仓库、已有仓库、稍后添加，CI 改到项目设置里接入</td>
+<td>按 <code>dev</code> 写</td>
+</tr>
+<tr>
+<td>选「已有仓库」时没有“NocoBase 应用默认模板”，只有初始化提示词</td>
+<td>「新建项目」写明</td>
+</tr>
+<tr>
+<td>初始化项目约 20 分钟（下载依赖两次）；Agent 的回复说明了验证了什么、没验证什么</td>
+<td>「新建项目」写“通常需要十几到二十分钟”</td>
+</tr>
+<tr>
+<td>运行环境缺少浏览器的系统库，Agent 无法截图验证界面</td>
+<td>「接入共享运行环境」的准备里加上浏览器</td>
+</tr>
+<tr>
+<td>常用的“编码工具 · 模型”组合上报后自动启用，「擅长什么」预填（镜像里是英文）；其余模型通过「添加 Agent」或「新发现」启用</td>
+<td>「启用 Agent」按 <code>dev</code> 的界面文字写</td>
+</tr>
+<tr>
+<td>没有配置邮件时，邀请结果显示「邮件未发送」，可以「复制邀请链接」</td>
+<td>「邀请成员」写明</td>
+</tr>
+<tr>
+<td>走完第一个需求（供应商数据表和页面）：调度 Agent 先请 GPT-6 Astra 写方案，再交给 GPT-6.1 Sol 开发；Sol 写测试、截图、开 PR（分支 <code>agent/PM-2</code>）；Astra 评审通过；从开始到可以验收约半小时</td>
+<td>「走完第一个需求」写明过程和用时</td>
+</tr>
+<tr>
+<td>没有接 CI 时，PR 没有检查结果，调度 Agent 把任务移到「阻塞中」，问先补 CI 还是不经 CI 验收；回复后两分钟内进入「待验收」</td>
+<td>「走完第一个需求」的“回答提问”用这个真实例子</td>
+</tr>
+<tr>
+<td>合并确认框：“压缩合并到 main”、提交标题、合并后任务进入已完成；没有检查结果时按钮是「仍然合并」，可填原因，Studio 记在 PR 和任务动态里</td>
+<td>「走完第一个需求」写明</td>
+</tr>
+<tr>
+<td>交付报告的各节和内置技能 <code>studio-comment-style</code> 一致；截图附在报告旁边</td>
+<td>与「一个需求怎样完成」一致</td>
+</tr>
+<tr>
+<td>文档站样式：列表里的代码块套用了行内代码的底色和内边距</td>
+<td>已修复 <code>assets/docs.css</code>，全站生效</td>
+</tr>
 </tbody></table></div>
 <h2 id="进行中的产品变化">进行中的产品变化</h2>
 <ul>
@@ -643,6 +703,10 @@
 <td>已确认（2026-10-25）；对照 <code>dev</code> <code>2851c86a</code> 核实，接入共享运行环境按实际安装走查过</td>
 </tr>
 <tr>
+<td>第二回合：搭建 Studio 其余 7 页（安装 Studio、连接 Git、启用 Agent、新建项目、连接 CI、走完第一个需求、邀请成员）</td>
+<td>已确认（2026-10-25）；在测试环境里实际走了一遍：GitHub 连接、Codex 运行环境、新建项目和初始化、第一个需求从提出到合并</td>
+</tr>
+<tr>
 <td>菜单和页面位置</td>
 <td>已按新结构调整（2026-10-24）：原来的快速开始拆进搭建 Studio 的各页；「我的会话」里连接电脑的部分移到「连接自己的电脑」；「跟进进展」里的 Agent 队列和仪表盘移到「Agent 工作负荷与模型用量」和「项目进展」</td>
 </tr>
@@ -659,6 +723,6 @@
 <aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98">现有文档的问题</a></li><li><a href="#%E8%AF%BB%E8%80%85%E5%B8%A6%E7%9D%80%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9D%A5">读者带着什么问题来</a></li><li><a href="#%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84">文档结构</a></li><li><a href="#%E6%AF%8F%E9%A1%B5%E6%80%8E%E6%A0%B7%E5%86%99">每页怎样写</a></li><li><a href="#%E5%86%99%E7%BB%99%E8%B0%81">写给谁</a></li><li><a href="#%E6%8E%AA%E8%BE%9E%E8%A7%84%E8%8C%83">措辞规范</a></li><li><a href="#%E5%B7%B2%E6%A0%B8%E5%AE%9E%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">已核实的产品变化</a></li><li><a href="#%E5%AE%89%E8%A3%85%E8%B5%B0%E6%9F%A5%E8%AE%B0%E5%BD%95">安装走查记录</a></li><li><a href="#%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">进行中的产品变化</a></li><li><a href="#%E9%9C%80%E8%A6%81%E6%9B%B4%E6%96%B0%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E5%9C%B0%E6%96%B9">需要更新标准表述的地方</a></li><li><a href="#%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E4%BF%AE%E6%94%B9">标准表述的修改</a></li><li><a href="#%E5%B7%B2%E5%AE%9A%E7%9A%84%E4%BA%8B%E9%A1%B9">已定的事项</a></li><li><a href="#%E8%BF%9B%E5%BA%A6">进度</a></li></ul></aside>
 </div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-<script src="../site/assets/docs.js?v=e9ad5699"></script>
+<script src="../site/assets/docs.js?v=ce5256f5"></script>
 </body>
 </html>

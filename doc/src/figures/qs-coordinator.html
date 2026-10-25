@@ -1,8 +1,10 @@
 <div class="sw" style="max-width:640px">
-<div class="sw-top"><span class="crumb"><span>Agent</span><i data-lucide="chevron-right"></i><b>调度 Agent</b></span></div>
+<div class="sw-top"><span class="crumb"><span>Agent</span><i data-lucide="chevron-right"></i><b>项目经理</b></span></div>
 <div class="sw-body">
 <p style="font-size:12.5px;color:var(--muted)">全局只有一个，所有项目的任务都由它安排。</p>
-<div class="fld"><span>用哪个 Agent 跑</span><div class="st-meta"><span><span class="k">首选</span><span class="st-pill"><span class="st-a cc">CC</span>Claude · Opus 5.5<i data-lucide="chevron-down"></i></span></span><span><span class="k">备选</span><span class="st-pill"><span class="st-a cx">CX</span>Codex · GPT-5.5<i data-lucide="chevron-down"></i></span></span></div><small>首选排队超时后由空闲备选领取；首选无兼容执行机时立即尝试备选。</small></div>
+<div class="fld"><span>用哪个 Agent 跑</span><div class="st-meta"><span><span class="k">首选</span><span class="st-pill"><span class="st-a cc">CC</span>Claude · Opus 5.5<i data-lucide="chevron-down"></i></span></span><span><span class="k">备选</span><span class="st-pill"><span class="st-a cx">CX</span>Codex · GPT-6.1 Sol<i data-lucide="chevron-down"></i></span></span></div><small>首选排队超时后由空闲备选领取；首选无兼容执行机时立即尝试备选。</small></div>
+<div class="fld"><span>备选等待时间（秒）</span><span class="inp short">120</span></div>
+<div class="fld"><span>委派排队超时（秒）</span><span class="inp short">600</span></div>
 <div class="fld"><span>分配原则 <span class="st-tag nd" style="margin-left:4px">内置</span></span><span class="inp area mute">同一时间只有一个步骤修改代码；改动涉及数据、迁移或权限时先写方案；代码交给另一家厂商的 Agent 评审……</span></div>
 <div class="fld"><span>运行上限</span><span class="inp short">每个任务每 24 小时 20 次</span></div>
 <div class="dlg-foot"><span class="st-btn p">保存</span></div>

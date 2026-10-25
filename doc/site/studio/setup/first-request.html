@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>走完第一个需求 - NocoBase 3 文档</title>
-<meta name="description" content="提出一个小需求，看 Agent 团队分派、检查和评审，回答提问，验收合并，确认整个流程走得通。">
+<meta name="description" content="提出一个小需求，看 Agent 团队写方案、开发和评审，回答提问，验收合并，确认整个流程走得通。">
 <link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+<link rel="stylesheet" href="../../assets/docs.css?v=ce5256f5">
 </head>
 <body>
 <a class="skip-link" href="#content">跳到正文</a>
@@ -19,29 +19,37 @@
 <nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
 </header>
 <div class="layout">
-<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html" class="todo">安装 Studio</a></li><li><a href="../../studio/setup/git.html" class="todo">连接 Git</a></li><li><a href="../../studio/setup/shared-runtimes.html">接入共享运行环境</a></li><li><a href="../../studio/setup/agents.html" class="todo">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html" class="todo">新建项目</a></li><li><a href="../../studio/setup/ci.html" class="todo">连接 CI</a></li><li><a href="../../studio/setup/first-request.html" class="todo" aria-current="page">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html" class="todo">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html" class="todo">提出需求</a></li><li><a href="../../studio/use/sessions.html" class="todo">我的会话</a></li><li><a href="../../studio/use/my-tasks.html" class="todo">我的任务</a></li><li><a href="../../studio/use/follow-progress.html" class="todo">跟进进展</a></li><li><a href="../../studio/use/answer.html" class="todo">回答提问</a></li><li><a href="../../studio/use/accept.html" class="todo">验收</a></li><li><a href="../../studio/use/inbox.html" class="todo">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html">安装 Studio</a></li><li><a href="../../studio/setup/git.html">连接 Git</a></li><li><a href="../../studio/setup/shared-runtimes.html">接入共享运行环境</a></li><li><a href="../../studio/setup/agents.html">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html">新建项目</a></li><li><a href="../../studio/setup/ci.html">连接 CI</a></li><li><a href="../../studio/setup/first-request.html" aria-current="page">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html" class="todo">提出需求</a></li><li><a href="../../studio/use/sessions.html" class="todo">我的会话</a></li><li><a href="../../studio/use/my-tasks.html" class="todo">我的任务</a></li><li><a href="../../studio/use/follow-progress.html" class="todo">跟进进展</a></li><li><a href="../../studio/use/answer.html" class="todo">回答提问</a></li><li><a href="../../studio/use/accept.html" class="todo">验收</a></li><li><a href="../../studio/use/inbox.html" class="todo">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
 <main id="content" class="content">
 <p class="crumb">Studio · 搭建 Studio</p><h1>走完第一个需求</h1>
-<p class="lead">提出一个小需求，看 Agent 团队分派、检查和评审，回答提问，验收合并，确认整个流程走得通。</p>
+<p class="lead">提出一个小需求，看 Agent 团队写方案、开发和评审，回答提问，验收合并，确认整个流程走得通。</p>
 <article class="prose">
-<h2 id="提出第一个需求">提出第一个需求</h2>
+<p>Studio、Git 连接、运行环境、Agent 和项目都配好之后，用一个小需求把流程从头到尾走一遍。走完这一遍，你会看到 Agent 团队怎样推进一个任务，也能确认每个环节都接通了，再邀请同事加入。</p>
+<h2 id="准备">准备</h2>
+<ul>
+<li>项目的“初始化项目”任务已经完成，见 <a href="new-project.html">新建项目</a>。</li>
+<li>至少启用了两个 Agent，调度 Agent 选好了首选，见 <a href="agents.html">启用 Agent</a>。</li>
+<li>运行环境在线。</li>
+</ul>
+<h2 id="1-提出需求">1. 提出需求</h2>
 <ol>
-<li><p>在项目里点「新建任务」。Studio 会打开 Agent 面板，开始一段新会话。你还没有连接自己的电脑，所以由 Agent 团队回复。</p>
+<li><p>打开项目，点「新建任务」。右侧打开一段和 Agent 的会话，当前项目会作为上下文一起发过去。</p>
 </li>
-<li><p>描述第一个需求。可以简单些，例如：</p>
-<div class="code-block wrap"><button type="button" class="copy-button">复制</button><pre><code>在应用里新建“供应商”数据表，字段包括名称、联系人、电话、状态（合作中/暂停），并在导航中加入“供应商”页面，可以新增、编辑和查看供应商。
-验收：登录后能从导航打开“供应商”页面，新增一条供应商并在列表中看到它。</code></pre></div>
+<li><p>用业务语言写一个小需求，连同验收方式。例如：</p>
+<div class="code-block wrap"><button type="button" class="copy-button">复制</button><pre><code>在应用里新建“供应商”数据表，字段包括名称、联系人、电话、状态（合作中、暂停），并在导航里加一个“供应商”页面，可以新增、编辑和查看供应商。
+验收：登录后能从导航打开“供应商”页面，新增一条供应商并在列表里看到它。</code></pre></div>
 </li>
-<li><p>Agent 建好任务后，在会话里点「开始执行」。</p>
+<li><p>发送。需求说清楚了，Agent 会直接把它整理成任务；有不清楚的地方，会先问你。</p>
+</li>
+<li><p>任务建好后，在会话里点「开始执行」。也可以打开任务，点「开始」。</p>
 </li>
 </ol>
-<p>想直接填表，点面板里的「手动填写」，填写标题和描述，「什么时候开始」选择「立即开始」，再点「创建并开始」。</p>
-<p>任务进入「进行中」，执行者变为调度 Agent。打开任务，可以看到：</p>
-<ul>
-<li>顶部的「现在」一行写着任务正在等什么，例如哪个 Agent 正在工作、在哪台机器上；</li>
-<li>「动态」里是调度 Agent 的交接和执行 Agent 的回复；</li>
-<li>「运行记录」里是每次运行的过程。</li>
-</ul>
+<p>不想经过会话，点会话里的「手动填写」，直接填写标题和描述。</p>
+<p class="done"><strong>完成的标志</strong>任务进入「进行中」，执行者是调度 Agent。</p>
+<h2 id="2-看-agent-团队推进">2. 看 Agent 团队推进</h2>
+<p>打开任务。最上方的「现在」一行，随时写着哪个 Agent 在做、做了多久、在哪台运行环境上，下面是接下来做什么。</p>
+<p>「动态」里能看到调度 Agent 每一次交接：交给谁、做什么、读什么、做到什么程度算完成，以及为什么选它。这个需求要新增数据表，调度 Agent 会先请擅长设计的 Agent 写一份简短方案，再把开发交给擅长开发的 Agent。开发的 Agent 写代码、写测试、在运行的应用里截图，然后开 PR，分支是 <code>agent/任务编号</code>。最后，调度 Agent 把代码交给另一个模型评审，评审提出的问题交回去修改，改完再评审。</p>
+<p>像上面这样的小需求，从开始到可以验收，大约半小时。</p>
 <figure class="fig"><div class="sw">
 <div class="st-dh"><i data-lucide="chevron-up"></i><i data-lucide="chevron-down"></i><span>3 / 16</span><span class="id">PUR-23</span><span>· 供应商管理</span><span class="r"><span class="st-pill"><span class="si progress"></span>进行中<i data-lucide="chevron-down"></i></span><span><i data-lucide="star"></i>关注</span><span><i data-lucide="messages-square"></i>问 Agent</span><i data-lucide="ellipsis"></i></span></div>
 <div class="sw-body">
@@ -50,16 +58,22 @@
 <div class="st-meta"><span><span class="k">负责人</span><span class="st-av">周</span>周航</span><span><span class="k">执行者</span><span class="st-a pm">调</span>调度 Agent</span><span><span class="k">优先级</span>高</span></div>
 <div class="st-chips"><span class="st-chip"><i data-lucide="git-pull-request"></i>PR #31</span><span class="st-chip mono"><i data-lucide="git-branch"></i>agent/PUR-23</span><span class="st-chip"><span class="st-spin"></span>检查进行中</span></div>
 </div>
-</div><figcaption>进行中的任务</figcaption></figure>
+</div><figcaption>任务页最上方：现在谁在做，接下来做什么</figcaption></figure>
 
 
-<h2 id="验收">验收</h2>
-<p>开发、检查和评审完成后，任务会进入「待验收」，你会在「我的任务」的“等你处理”里看到它。</p>
+<p>「运行记录」里是每一次运行的过程，排查问题时用得上。</p>
+<h2 id="3-回答提问">3. 回答提问</h2>
+<p>遇到需求里没有说清的事，例如方案有两种取法，调度 Agent 会把任务移到「阻塞中」，写清要你决定什么。你会在「我的任务」最前面看到它，打开后在“需要你”卡片里点「回复」，写下决定。调度 Agent 收到回复后接着安排。</p>
+<p>需求写得清楚，这一步可能不会出现。</p>
+<p>还没有连接 CI 时，这一步会出现：PR 没有检查结果，调度 Agent 会问你，是先补上 CI，还是不经过 CI，凭交付报告和截图验收。试运行时可以回复“这次不接 CI，我看交付报告和截图验收，确认后自己合并”，它就会把任务交给你验收。正式使用前，记得 <a href="ci.html">连接 CI</a>。</p>
+<h2 id="4-验收">4. 验收</h2>
+<p>PR 通过评审和检查后，任务进入「待验收」，「我的任务」的“等你处理”里会出现它。</p>
 <ol>
-<li>打开任务。顶部的“需要你”卡片写明要你做什么，下面是交付报告：改动前的情况、约定的方案、改了什么、怎么验证的，以及验收标准和截图。</li>
-<li>点「看改动」查看 PR。</li>
-<li>结果符合预期，点「合并」并确认。PR 合并后，任务变为「已完成」。</li>
-<li>有地方不对，点「退回修改」，写清哪里需要改，再点「发送并退回进行中」。调度 Agent 会安排修改，改完后再交给你。</li>
+<li>打开任务。“需要你”卡片写明要你验收什么，下面是交付报告：原来的情况、改了什么、怎么验证的、遗留问题和建议，最后是验收标准和截图。</li>
+<li>点「看改动」，查看 PR。</li>
+<li>连接了 CI 时，在任务页打开预览，用初始管理员登录，按验收标准试一遍。</li>
+<li>结果符合预期，点「合并」。确认框里写着合并方式（例如压缩合并到 <code>main</code>）、提交标题，以及合并后任务会进入「已完成」，确认即可。没有检查结果时，按钮是「仍然合并」，可以填写合并的原因，Studio 会把这次合并记在 PR 和任务动态里。</li>
+<li>有地方不对，点「退回修改」，写清哪里要改。调度 Agent 会安排修改，改完再交给你。</li>
 </ol>
 <figure class="fig"><div class="sw">
 <div class="st-dh"><span class="id">PUR-23</span><span>· 供应商管理</span><span class="r"><span class="st-pill"><span class="si review"></span>待验收<i data-lucide="chevron-down"></i></span><span><i data-lucide="star"></i>关注</span><span><i data-lucide="messages-square"></i>问 Agent</span></span></div>
@@ -75,33 +89,23 @@
 <h5>验收标准</h5><ul><li>供应商列表显示每家的等级（截图 1）</li><li>给 C 级供应商下一笔 1 万元的订单，提交后进入采购经理的审批（截图 2、3）</li></ul>
 <div class="thumbs"><span></span><span></span><span></span></div></div>
 </div>
-</div><figcaption>待验收的任务</figcaption></figure>
+</div><figcaption>验收时看交付报告、验收标准和截图</figcaption></figure>
 
 
-<p class="done"><strong>完成的标志</strong>任务「已完成」，仓库的默认分支上有了这次改动。</p>
+<p class="done"><strong>完成的标志</strong>任务「已完成」，代码仓库的默认分支上有了这次的改动。连接了 CI 时，改动部署到预发布环境，任务上标出它已经部署到的环境。</p>
 <h2 id="常见问题">常见问题</h2>
-<p><strong>运行环境不在线。</strong> 检查 <code>nocobase-runner</code> 是否在运行，以及这台机器能否访问 Studio 的地址。运行环境 150 秒没有心跳就显示离线。</p>
-<p><strong>Agent 页面没有出现新的 Agent。</strong> 只有在「添加运行环境」时勾选的编码工具才会上报；工具还需要在运行环境上，用运行 <code>nocobase-runner</code> 的那个系统用户登录。登录后等一次心跳即可出现。</p>
-<p><strong>任务一直在排队。</strong> 看任务页的「现在」一行或「开发 › 任务」的「Agent 队列」，会写明原因：没有在线的运行环境、并发已满，或者这个 Agent 只在别人的个人运行环境上。排队超过 24 小时没有被领取，运行会失败，负责人会收到可以重试的卡片。</p>
-<p><strong>“初始化项目”一直没开始。</strong> 确认有在线的运行环境，且装有 Node.js 24 和 pnpm 11，能访问 npm。</p>
-<p><strong>连接 GitHub 后跳转失败。</strong> 检查 <code>APP_PUBLIC_ORIGIN</code> 是否是浏览器实际访问 Studio 的地址，见 <a href="install.html#环境变量">安装 Studio › 环境变量</a>。</p>
-<h2 id="计划包含">计划包含</h2>
-<ul>
-<li>提出一个小需求，看调度 Agent 分派、检查和评审</li>
-<li>回答提问</li>
-<li>验收合并</li>
-<li>连接了 CI 时：在预览里试一遍，看它部署到预发布环境</li>
-<li>每一步的完成的标志；详细说明链接到日常使用</li>
-<li>接下来：邀请成员</li>
-</ul>
+<p><strong>任务一直没有开始。</strong> 看任务页的「现在」一行，会写明在等什么：没有在线的运行环境、并发已满，或者这个 Agent 只在别人的个人运行环境上。排队超过 24 小时没有运行环境领取，这次运行会失败，你会收到可以重试的通知。</p>
+<p><strong>“初始化项目”还没完成。</strong> 项目里新建的任务都要等它完成后才开始。</p>
+<p><strong>Agent 说截图没有做成。</strong> 运行环境上缺少浏览器，见 <a href="shared-runtimes.html">接入共享运行环境</a> 的准备。</p>
+<p>走通之后，<a href="invite.html">邀请成员</a>。</p>
 
 </article>
-
+<nav class="pager" aria-label="翻页"><a class="prev" href="../../studio/setup/ci.html"><small>上一页</small>连接 CI</a><a class="next" href="../../studio/setup/invite.html"><small>下一页</small>邀请成员</a></nav>
 <footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
 </main>
-<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E6%8F%90%E5%87%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%9C%80%E6%B1%82">提出第一个需求</a></li><li><a href="#%E9%AA%8C%E6%94%B6">验收</a></li><li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a></li><li><a href="#%E8%AE%A1%E5%88%92%E5%8C%85%E5%90%AB">计划包含</a></li></ul></aside>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E5%87%86%E5%A4%87">准备</a></li><li><a href="#1-%E6%8F%90%E5%87%BA%E9%9C%80%E6%B1%82">1. 提出需求</a></li><li><a href="#2-%E7%9C%8B-agent-%E5%9B%A2%E9%98%9F%E6%8E%A8%E8%BF%9B">2. 看 Agent 团队推进</a></li><li><a href="#3-%E5%9B%9E%E7%AD%94%E6%8F%90%E9%97%AE">3. 回答提问</a></li><li><a href="#4-%E9%AA%8C%E6%94%B6">4. 验收</a></li><li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a></li></ul></aside>
 </div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-<script src="../../assets/docs.js?v=e9ad5699"></script>
+<script src="../../assets/docs.js?v=ce5256f5"></script>
 </body>
 </html>

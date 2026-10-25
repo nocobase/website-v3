@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>验收 - NocoBase 3 文档</title>
-<meta name="description" content="任务交付后，由任务负责人确认结果。读交付报告、看改动，通过就合并，不通过就退回修改。">
+<meta name="description" content="任务交付后，由任务负责人确认结果。读交付报告和截图，需要时在预览里试一遍，通过就合并，不通过就退回修改。">
 <link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,13 +19,14 @@
 <nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
 </header>
 <div class="layout">
-<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html">安装 Studio</a></li><li><a href="../../studio/setup/git.html">连接 Git</a></li><li><a href="../../studio/setup/shared-runtimes.html">接入共享运行环境</a></li><li><a href="../../studio/setup/agents.html">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html">新建项目</a></li><li><a href="../../studio/setup/ci.html">连接 CI</a></li><li><a href="../../studio/setup/first-request.html">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html" class="todo">提出需求</a></li><li><a href="../../studio/use/sessions.html" class="todo">我的会话</a></li><li><a href="../../studio/use/my-tasks.html" class="todo">我的任务</a></li><li><a href="../../studio/use/follow-progress.html" class="todo">跟进进展</a></li><li><a href="../../studio/use/answer.html" class="todo">回答提问</a></li><li><a href="../../studio/use/accept.html" class="todo" aria-current="page">验收</a></li><li><a href="../../studio/use/inbox.html" class="todo">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html">安装 Studio</a></li><li><a href="../../studio/setup/git.html">连接 Git</a></li><li><a href="../../studio/setup/shared-runtimes.html">接入共享运行环境</a></li><li><a href="../../studio/setup/agents.html">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html">新建项目</a></li><li><a href="../../studio/setup/ci.html">连接 CI</a></li><li><a href="../../studio/setup/first-request.html">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html">提出需求</a></li><li><a href="../../studio/use/sessions.html">我的会话</a></li><li><a href="../../studio/use/my-tasks.html">我的任务</a></li><li><a href="../../studio/use/follow-progress.html">跟进进展</a></li><li><a href="../../studio/use/answer.html">回答提问</a></li><li><a href="../../studio/use/accept.html" aria-current="page">验收</a></li><li><a href="../../studio/use/inbox.html">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
 <main id="content" class="content">
 <p class="crumb">Studio · 日常使用</p><h1>验收</h1>
-<p class="lead">任务交付后，由任务负责人确认结果。读交付报告、看改动，通过就合并，不通过就退回修改。</p>
+<p class="lead">任务交付后，由任务负责人确认结果。读交付报告和截图，需要时在预览里试一遍，通过就合并，不通过就退回修改。</p>
 <article class="prose">
+<p>验收是人做决策最关键的一处。Agent 团队交过来的，不只是一个 PR：交付报告写清原来的情况、改了什么、怎么验证的、还有哪些遗留问题，附上验收标准和截图，连接了 CI 时还有可以亲自试用的预览。不懂代码的业务专家，也可以据此直接拍板。</p>
 <h2 id="什么时候需要验收">什么时候需要验收</h2>
-<p>调度 Agent 只在 PR 通过检查和评审之后，才把任务转为「待验收」并交给你。这时：</p>
+<p>调度 Agent 只在 PR 通过检查和评审之后，才把任务转为「待验收」并交给你；项目还没有接 CI 时，它会先问你是否不经 CI 直接验收。任务进入待验收后：</p>
 <ul>
 <li>任务出现在「我的任务」的“等你处理”里，标着“等你验收”；</li>
 <li>任务页顶部的“需要你”卡片写明要你确认什么；</li>
@@ -33,7 +34,7 @@
 </ul>
 <p>只有人能完成验收。调度 Agent 和执行 Agent 都不能把任务标记为完成，也不能合并 PR。</p>
 <h2 id="读交付报告">读交付报告</h2>
-<p>交付报告是验收的主要依据，通常包括：</p>
+<p>交付报告是验收的主要依据。调度 Agent 按内置的写法组织它，包括：</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -42,27 +43,35 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>改动前的情况</td>
-<td>原来是什么样，问题在哪里。</td>
+<td>原来的情况</td>
+<td>原来是什么样，问题在哪里</td>
 </tr>
 <tr>
-<td>约定的方案</td>
-<td>这次按什么方案做，范围到哪里为止。</td>
+<td>确定的方案</td>
+<td>这次按什么方案做，范围到哪里为止</td>
 </tr>
 <tr>
 <td>改了什么</td>
-<td>用业务语言列出的变化。</td>
+<td>用业务语言列出的变化</td>
 </tr>
 <tr>
 <td>怎么验证的</td>
-<td>Agent 跑了哪些测试、在什么环境里检查过。</td>
+<td>Agent 跑了哪些测试、在什么环境里检查过，评审的结论</td>
+</tr>
+<tr>
+<td>遗留问题</td>
+<td>这次没解决或者有风险的地方，每条附上建议</td>
+</tr>
+<tr>
+<td>细节</td>
+<td>PR、提交、数据迁移等技术细节</td>
 </tr>
 <tr>
 <td>验收标准</td>
-<td>你可以逐条对照的检查点。</td>
+<td>你可以对照的检查点，以及对应的截图</td>
 </tr>
 </tbody></table></div>
-<p>报告旁边还有 Agent 评论里附的截图，点开可以放大、左右切换。</p>
+<p>报告旁边是开发的 Agent 附的截图，点开可以放大、左右切换。</p>
 <figure class="fig"><div class="sw">
 <div class="st-dh"><span class="id">PUR-23</span><span>· 供应商管理</span><span class="r"><span class="st-pill"><span class="si review"></span>待验收<i data-lucide="chevron-down"></i></span><span><i data-lucide="star"></i>关注</span><span><i data-lucide="messages-square"></i>问 Agent</span></span></div>
 <div class="sw-body">
@@ -87,12 +96,35 @@
 <li>「代码与部署」页签列出任务关联的所有 PR、每个 PR 的检查结果和冲突情况。</li>
 </ul>
 <p>不读代码也能验收：重点看交付报告里的验收标准和截图是否满足你的需求。有疑问时，在任务里发评论问，或者用「问 Agent」。</p>
-<div class="note pending"><strong>在预览中验收</strong><p>为每个 PR 生成可以实际操作的预览环境，属于发布与部署模块，模块完善后补充。</p>
+<h2 id="在预览里试一遍">在预览里试一遍</h2>
+<p>项目连接了 CI 时，每个 PR 都有一个预览。在任务页打开预览，用初始管理员登录，按验收标准亲自操作一遍。</p>
+<figure class="fig"><div class="sw w-md">
+<div class="sw-top"><span class="crumb"><b>PUR-23</b><i data-lucide="chevron-right"></i><span>预览</span></span></div>
+<div class="sw-body">
+<div class="st-card"><div class="pr-head"><i data-lucide="monitor-play"></i><b>procurement 的预览</b><span class="id">PR #31</span><span class="r st-chip ok"><i data-lucide="check"></i>就绪</span></div>
+<div class="checks">
+<div class="check"><i data-lucide="link"></i><span>地址</span><span class="t">studio-preview.example.com/procurement-pr-31/</span></div>
+<div class="check"><span class="si done"></span><span>构建</span><span class="t">已构建 · CI 日志</span></div>
+<div class="check"><i data-lucide="git-commit-horizontal"></i><span>运行中的提交</span><span class="t">a1b2c3d</span></div>
+<div class="check"><i data-lucide="key-round"></i><span>初始管理员</span><span class="t">admin · ••••••••</span></div>
 </div>
+<div class="checks"><div class="st-btns"><span class="st-btn p"><i data-lucide="external-link"></i>打开</span><span class="st-btn">重新部署</span><span class="st-btn">销毁</span></div></div>
+</div>
+</div>
+</div><figcaption>PR 的预览，可以亲自试一遍</figcaption></figure>
+
+
+<ul>
+<li>能编辑这个任务的人，可以在任务页看到预览的初始管理员账号和密码。</li>
+<li>预览用示例数据，没有企业的真实数据。</li>
+<li>预览一段时间没人访问会停止、休眠，再次打开时会重新启动，稍等片刻即可。</li>
+<li>PR 合并或关闭后，预览自动删除。</li>
+</ul>
+<p>项目还没有连接 CI 时没有预览，见 <a href="../setup/ci.html">连接 CI</a>。</p>
 <h2 id="通过">通过</h2>
 <p><strong>有 PR 的任务</strong>：点「合并」。确认框会先向代码托管平台核对 PR 和检查结果，并写明：</p>
 <ul>
-<li>合并提交的标题和合并方式（GitHub 上是压缩合并；GitLab 按项目的设置）；</li>
+<li>合并提交的标题和合并方式，例如“压缩合并到 main”（GitHub 和 Gitee 上是压缩合并；GitLab 按项目的设置）；</li>
 <li>合并后任务会变成什么状态。</li>
 </ul>
 <figure class="fig"><div class="sw" style="max-width:520px">
@@ -108,11 +140,11 @@
 
 <p>确认后，Studio 合并你确认时的那个版本；如果这期间 PR 又有了新提交，会提示你重新确认。任务关联的 PR 全部合并后，任务自动变为「已完成」。</p>
 <p><strong>没有 PR 的任务</strong>（例如调研、文档整理）：点「验收通过」，任务变为「已完成」。</p>
-<div class="note note"><strong>合并以谁的身份进行</strong><p>你在「账号设置 › Git」连接了自己的账号时，合并以你的身份进行；否则用工作区的 Git 连接。</p>
+<div class="note note"><strong>合并以谁的身份进行</strong><p>你在「个人设置 › Git」连接了自己的账号时，合并以你的身份进行；否则用工作区的 Git 连接。</p>
 </div>
 <h2 id="检查没有通过时">检查没有通过时</h2>
 <p>下面几种情况，「合并」不可用，需要先解决：PR 有冲突、检查还在进行、PR 还是草稿，或者代码托管平台自己的规则不允许合并。</p>
-<p>必需的检查失败或缺少检查结果时，项目负责人等有相应权限的人可以选择「仍然合并」，并填写原因。这次强制合并会记录在任务动态里，并以评论的形式写到 PR 上。Agent 永远不能强制合并。</p>
+<p>必需的检查失败，或者没有检查结果（例如项目还没有接 CI）时，确认框里的按钮是「仍然合并」，可以填写合并的原因。Studio 会把这次强制合并评论到 PR 上，并记录在任务动态里；代码托管平台自身的规则仍然生效。Agent 永远不能强制合并。</p>
 <h2 id="退回修改">退回修改</h2>
 <p>结果不符合预期时：</p>
 <ol>
@@ -125,10 +157,10 @@
 <p>如果有人直接在 GitHub 或 GitLab 上合并了 PR，Studio 会通过 Webhook 或轮询发现，任务同样会自动完成。确实需要时，也可以在 Studio 里点「标记为已合并」，记录为已合并。</p>
 
 </article>
-
+<nav class="pager" aria-label="翻页"><a class="prev" href="../../studio/use/answer.html"><small>上一页</small>回答 Agent 的提问</a><a class="next" href="../../studio/use/inbox.html"><small>下一页</small>收件箱与提醒</a></nav>
 <footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
 </main>
-<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E9%AA%8C%E6%94%B6">什么时候需要验收</a></li><li><a href="#%E8%AF%BB%E4%BA%A4%E4%BB%98%E6%8A%A5%E5%91%8A">读交付报告</a></li><li><a href="#%E7%9C%8B%E6%94%B9%E5%8A%A8">看改动</a></li><li><a href="#%E9%80%9A%E8%BF%87">通过</a></li><li><a href="#%E6%A3%80%E6%9F%A5%E6%B2%A1%E6%9C%89%E9%80%9A%E8%BF%87%E6%97%B6">检查没有通过时</a></li><li><a href="#%E9%80%80%E5%9B%9E%E4%BF%AE%E6%94%B9">退回修改</a></li><li><a href="#%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%E4%B8%8A%E5%B7%B2%E7%BB%8F%E5%90%88%E5%B9%B6">在代码托管平台上已经合并</a></li></ul></aside>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E9%AA%8C%E6%94%B6">什么时候需要验收</a></li><li><a href="#%E8%AF%BB%E4%BA%A4%E4%BB%98%E6%8A%A5%E5%91%8A">读交付报告</a></li><li><a href="#%E7%9C%8B%E6%94%B9%E5%8A%A8">看改动</a></li><li><a href="#%E5%9C%A8%E9%A2%84%E8%A7%88%E9%87%8C%E8%AF%95%E4%B8%80%E9%81%8D">在预览里试一遍</a></li><li><a href="#%E9%80%9A%E8%BF%87">通过</a></li><li><a href="#%E6%A3%80%E6%9F%A5%E6%B2%A1%E6%9C%89%E9%80%9A%E8%BF%87%E6%97%B6">检查没有通过时</a></li><li><a href="#%E9%80%80%E5%9B%9E%E4%BF%AE%E6%94%B9">退回修改</a></li><li><a href="#%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%E4%B8%8A%E5%B7%B2%E7%BB%8F%E5%90%88%E5%B9%B6">在代码托管平台上已经合并</a></li></ul></aside>
 </div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script src="../../assets/docs.js?v=ce5256f5"></script>

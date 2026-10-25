@@ -134,7 +134,7 @@ echo "<YOUR_TOKEN>" | docker login pkg-v3.nocobase.com -u nocobase --password-st
 - 用户名：`nocobase`
 - 密码：`.env` 里的 `INITIAL_ADMIN_PASSWORD`，用 `grep INITIAL_ADMIN_PASSWORD .env` 查看
 
-登录后，在右上角的账户菜单里打开「个人资料」，修改密码。
+登录后，在右上角的账户菜单里打开「个人设置 › 账号与安全」，修改密码。
 
 地址里的 `/main` 不能省。之后添加运行环境、登录 `nb-studio` 时用的 Studio 地址，都是这个带 `/main` 的完整地址。
 

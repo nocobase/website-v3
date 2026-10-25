@@ -94,7 +94,7 @@ core_repo = '<div class="rp">' + repo + skill + '</div>'
 # 「现在」一栏的写法对照 Studio 的 issue progress 文案：「{Agent} 正在…」「已运行 N 分钟」「在 {执行机}」「接下来：…」。
 def win(crumbs, body):
     cr = ''.join(('<b>%s</b>' if i == len(crumbs) - 1 else '<span>%s</span>' + I('chevron-right')) % T(*c) for i, c in enumerate(crumbs))
-    return ('<div class="sv-win"><div class="sv-top"><span class="sv-brand"><img src="assets/logo.png" alt="NocoBase"><span>Studio</span></span>'
+    return ('<div class="sv-win"><div class="sv-top"><span class="sv-brand"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase"><span>Studio</span></span>'
             '<i class="sep"></i>%s<span class="r"><span class="st-av">%s</span></span></div><div class="sv-body">%s</div></div>') % (cr, T('王', 'L'), body)
 def stat(zh, en, val, dzh, den, good=True):
     return ('<div class="st-card db-stat"><small>%s</small><b>%s</b><span class="%s">%s</span></div>' %

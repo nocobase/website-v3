@@ -238,3 +238,14 @@ description: NocoBase ist die Open-Source-Plattform, mit der Sie Geschäftssyste
 232: Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.
 233: NocoBase Studio ist die Governance-Plattform für Menschen und Agenten, die gemeinsam Software entwickeln. Es bündelt Claude Code, Codex und OpenCode zu einem Agenten-Team, das Aufgaben selbstständig vorantreibt. Der Fortschritt ist auf einen Blick sichtbar, und die wichtigen Entscheidungen treffen Menschen.
 234: Liefern Sie mit einem Agenten-Team mehr Kundenprojekte
+235: Open Source zum Start, sofort einsatzbereit
+236: NocoCRM, NocoReach und NocoProject sind kostenlos und Open Source. NocoITAM, NocoSupport und NocoHR sind in den kommerziellen Editionen enthalten. Alle Apps laufen auf Ihren eigenen Servern und arbeiten mit dem Modell Ihrer Wahl.
+237: Core, Studio und Solution-Apps wie NocoCRM sind kostenlos, Open Source und produktionsreif. Die kommerziellen Editionen ergänzen Governance auf Team- und Organisationsebene, Enterprise-Integration, weitere Solution-Apps und offiziellen Support.
+238: Core, Studio, NocoCRM, NocoReach und NocoProject sind kostenlos, Open Source und bereit für Produktion und Kundenprojekte. Ohne Lizenzkauf kann Ihr Team ein Agenten-Team von der Anforderung bis zum Release führen.
+239: Kommerzielle Editionen
+240: Core, Studio und Solution erhalten jeweils kommerzielle Erweiterungen, alle unter einer Lizenz. Professional ergänzt Freigaben für Produktions-Releases, Enterprise-SSO, weitere Apps wie NocoITAM und offiziellen Support. Enterprise ergänzt organisationsweite Governance über Teams und Umgebungen hinweg sowie Hochverfügbarkeit.
+241: Selbst gehostet, eigenständig im Betrieb
+242: Core, Solution und Studio laufen auf Ihren eigenen Servern. Ihr Code und Ihre Daten gehören Ihnen. Einmal veröffentlicht, laufen Ihre Geschäftsanwendungen selbstständig, und alltägliche Geschäftsanfragen laufen nie über Studio.
+243: Open Source zum Start
+244: Core und Solution-Apps wie NocoCRM sind kostenlos und Open Source. Studio und Solution-Apps wie NocoITAM sind in den kommerziellen Editionen enthalten.
+245: Core, NocoCRM, NocoReach und NocoProject sind kostenlos, Open Source und produktionsreif.

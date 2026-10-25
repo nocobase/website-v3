@@ -38,6 +38,9 @@ page = f'''<!doctype html>
   }}
 }})();
 </script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
 <link rel="stylesheet" href="{root}assets/fonts/fonts.css">
 <script src="{root}assets/vendor/lucide-0.460.0/lucide.min.js"></script>
 <link rel="stylesheet" href="{root}assets/site.css">

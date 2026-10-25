@@ -238,3 +238,14 @@ description: NocoBase는 AI로 비즈니스 시스템을 지속적으로 개발�
 232: 에이전트는 스스로 추진하고, 팀은 전체를 장악한다.
 233: NocoBase Studio는 사람과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다.
 234: 에이전트 팀과 함께 더 많은 고객 프로젝트를 수행하세요
+235: 오픈소스로 시작, 바로 사용
+236: NocoCRM, NocoReach, NocoProject는 무료 오픈소스이며, NocoITAM, NocoSupport, NocoHR는 상용 에디션에서 제공합니다. 모든 앱은 기업의 자체 서버에 배포하고 모델도 자유롭게 선택할 수 있습니다.
+237: Core, Studio와 NocoCRM 등 Solution 앱은 무료 오픈소스이며 그대로 프로덕션에 사용할 수 있습니다. 상용 에디션은 팀과 조직 단위의 거버넌스, 엔터프라이즈 연동, 더 많은 Solution 앱, 공식 지원을 더합니다.
+238: Core, Studio, NocoCRM, NocoReach, NocoProject는 무료 오픈소스이며, 프로덕션과 고객 납품에 그대로 사용할 수 있습니다. 라이선스를 구매하지 않아도 팀이 에이전트 팀을 이끌고 요구사항부터 출시까지 진행할 수 있습니다.
+239: 상용 에디션
+240: Core, Studio, Solution 각각에 상용 기능이 더해지며, 하나의 라이선스로 모두 적용됩니다. Professional은 프로덕션 배포 승인, 엔터프라이즈 SSO, NocoITAM 등 추가 앱, 공식 지원을 제공합니다. Enterprise는 팀과 환경을 아우르는 조직 단위의 거버넌스와 고가용성을 더합니다.
+241: 셀프 호스팅, 독립 실행
+242: Core, Solution, Studio 모두 기업의 자체 서버에 배포되며, 코드와 데이터는 기업이 소유합니다. 비즈니스 앱은 배포 후 독립적으로 실행되며, 일상적인 비즈니스 요청은 Studio를 거치지 않습니다.
+243: 오픈소스로 시작
+244: Core와 NocoCRM 등 Solution 앱은 무료 오픈소스이며, Studio와 NocoITAM 등 Solution 앱은 상용 에디션에서 제공합니다.
+245: Core, NocoCRM, NocoReach, NocoProject는 무료 오픈소스이며, 그대로 프로덕션에 사용할 수 있습니다.

@@ -10,11 +10,11 @@ def AV(zh, en): return f'<span class="av">{T(zh[0], en[0])}</span>'
 def tag(cls, zh, en=None): return f'<span class="tag {cls}">{T(zh, en)}</span>'
 AI = lambda zh, en: f'<span class="aisg">{ic("sparkles")}{T(zh, en)}</span>'
 
-# The app's brand in a drawn figure: NocoCRM and NocoITAM have their real logos (assets/noco*-logo.svg,
+# The app's brand in a drawn figure: NocoCRM and NocoITAM have their real logos (static-docs.nocobase.com/noco*-logo.svg,
 # from the CRM's own geometry); other apps keep an icon and their name.
 def brand_html(icon, brand):
-    if brand == 'CRM': return '<img class="crm-logo" src="assets/nococrm-logo.svg" alt="NocoCRM">'
-    if brand == 'ITAM': return '<img class="crm-logo" src="assets/nocoitam-logo.svg" alt="NocoITAM">'
+    if brand == 'CRM': return '<img class="crm-logo" src="https://static-docs.nocobase.com/nococrm-logo.svg" alt="NocoCRM">'
+    if brand == 'ITAM': return '<img class="crm-logo" src="https://static-docs.nocobase.com/nocoitam-logo.svg" alt="NocoITAM">'
     return f'<span class="mk">{ic(icon)}</span>Noco<span>{brand}</span>'
 
 def side(brand_icon, brand, items, active, foot=True):

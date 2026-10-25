@@ -88,8 +88,6 @@
 "Agents show the evidence behind their work, and key decisions are always made by a person. Each agent inherits the permissions of the person it works for, so data stays secure.": "Os agentes mostram em que se baseia cada trabalho, e as decisões importantes são sempre tomadas por uma pessoa. Cada agente herda as permissões de quem ele atende, então os dados ficam protegidos.",
 "Easy to customize": "Fáceis de personalizar",
 "Every app is built on NocoBase Core, with its consistent architecture and reliable foundation, so you can have a coding agent customize it.": "Todo app é construído sobre o NocoBase Core, com arquitetura consistente e base confiável, então você pode pedir a um agente de código que o personalize.",
-"Free, open source, ready to use": "Gratuitos, open source, prontos para usar",
-"Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.": "Todos os apps do NocoBase Solution são gratuitos e open source, rodam nos seus próprios servidores e funcionam com o modelo que você escolher.",
 "View All Solution Apps": "Ver todos os apps",
 "How is NocoBase different from vibe coding?": "Qual a diferença entre NocoBase e vibe coding?",
 "AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.": "A IA gera do zero permissões, workflows, aprovações e outros módulos básicos em cada projeto. Isso é caro e difícil de tornar confiável.",
@@ -99,13 +97,11 @@
 "Open Source &amp; Self-Hosting": "Open source e auto-hospedagem",
 "Free, open source, self-hosted.<br>": "Gratuito, open source, auto-hospedado.<br>",
 "Your code and data belong to you.": "Seu código e seus dados pertencem a você.",
-"Core and Solution are free and open source. Studio is available in the commercial editions.": "Core e Solution são gratuitos e open source. O Studio está disponível nas edições comerciais.",
 "Contributors": "Contribuidores",
 "Downloads": "Downloads",
 "3M+": "3 mi+",
 "View on GitHub": "Ver no GitHub",
 "Free and open source": "Gratuito e open source",
-"Core and every Solution app are free, open source, and ready for production.": "O Core e todos os apps do Solution são gratuitos, open source e prontos para produção.",
 "Self-hosted": "Auto-hospedado",
 "Core, Solution, and Studio all run on your own servers. Your code and data belong to you.": "Core, Solution e Studio rodam nos seus próprios servidores. Seu código e seus dados pertencem a você.",
 "Your choice of models and agents": "Modelos e agentes à sua escolha",
@@ -216,6 +212,11 @@
 "Know-how": "Conhecimento acumulado",
 "Agents keep the work moving. Your team stays in control.": "Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "O NocoBase Studio é a plataforma de governança para pessoas e agentes que desenvolvem software juntos. Ele reúne o Claude Code, o Codex e o OpenCode em uma única equipe de agentes que faz as tarefas avançarem sozinha. O progresso fica à vista, e as decisões importantes ficam com as pessoas.",
-"Deliver more client projects with an agent team": "Entregue mais projetos de clientes com uma equipe de agentes"
+"Deliver more client projects with an agent team": "Entregue mais projetos de clientes com uma equipe de agentes",
+"Start with open source, ready to use": "Comece com open source, prontos para usar",
+"NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.": "NocoCRM, NocoReach e NocoProject são gratuitos e open source. NocoITAM, NocoSupport e NocoHR vêm com as edições comerciais. Todos os apps rodam nos seus próprios servidores e funcionam com o modelo que você escolher.",
+"Start Open Source": "Comece com open source",
+"Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.": "O Core e apps do Solution como o NocoCRM são gratuitos e open source. O Studio e apps do Solution como o NocoITAM estão disponíveis nas edições comerciais.",
+"Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.": "Core, NocoCRM, NocoReach e NocoProject são gratuitos, open source e prontos para produção."
 }
 };

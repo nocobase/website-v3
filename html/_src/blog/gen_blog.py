@@ -138,7 +138,7 @@ for slug in order:
 
 # ======================= 客户案例：独立的列表与详情 =======================
 corder = ['sungrow'] + sorted([k for k in stories if k != 'sungrow'], key=lambda k: stories[k]['en']['date'], reverse=True)
-logos = ''.join(f'<img src="assets/logos/{n}.png" alt="{a}">' for n, a in [('nxp', 'NXP'), ('lenovo', 'Lenovo'), ('sony', 'Sony'), ('ntt-data', 'NTT DATA'), ('american-express', 'American Express'), ('smfl', 'SMFL'), ('vinfast', 'VinFast')])
+logos = ''.join(f'<img src="https://static-docs.nocobase.com/{n}.png" alt="{a}">' for n, a in [('nxp', 'NXP'), ('lenovo', 'Lenovo'), ('sony', 'Sony'), ('ntt-data', 'NTT DATA'), ('american-express', 'American Express'), ('smfl', 'SMFL'), ('vinfast', 'VinFast')])
 fe, fc = stories['sungrow']['en'], stories['sungrow']['cn']
 clist = f'''<section class="phero">
   <div class="container">

@@ -238,3 +238,14 @@ description: NocoBase é a plataforma open source para criar, operar e evoluir s
 232: Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.
 233: O NocoBase Studio é a plataforma de governança para pessoas e agentes que desenvolvem software juntos. Ele reúne o Claude Code, o Codex e o OpenCode em uma única equipe de agentes que faz as tarefas avançarem sozinha. O progresso fica à vista, e as decisões importantes ficam com as pessoas.
 234: Entregue mais projetos de clientes com uma equipe de agentes
+235: Comece com open source, prontos para usar
+236: NocoCRM, NocoReach e NocoProject são gratuitos e open source. NocoITAM, NocoSupport e NocoHR vêm com as edições comerciais. Todos os apps rodam nos seus próprios servidores e funcionam com o modelo que você escolher.
+237: Core, Studio e apps do Solution como o NocoCRM são gratuitos, open source e prontos para produção. As edições comerciais adicionam governança no nível da equipe e da organização, integração corporativa, mais apps do Solution e suporte oficial.
+238: Core, Studio, NocoCRM, NocoReach e NocoProject são gratuitos, open source e prontos para produção e entregas a clientes. Sem comprar licença, sua equipe pode liderar uma equipe de agentes da solicitação ao lançamento.
+239: Edições comerciais
+240: Core, Studio e Solution ganham recursos comerciais, todos com uma única licença. O Professional adiciona aprovação de releases em produção, SSO corporativo, mais apps como o NocoITAM e suporte oficial. O Enterprise adiciona governança para toda a organização, entre equipes e ambientes, além de alta disponibilidade.
+241: Auto-hospedado, roda de forma independente
+242: Core, Solution e Studio rodam nos seus próprios servidores. Seu código e seus dados pertencem a você. Depois de publicados, seus apps de negócio rodam sozinhos, e as requisições do dia a dia nunca passam pelo Studio.
+243: Comece com open source
+244: O Core e apps do Solution como o NocoCRM são gratuitos e open source. O Studio e apps do Solution como o NocoITAM estão disponíveis nas edições comerciais.
+245: Core, NocoCRM, NocoReach e NocoProject são gratuitos, open source e prontos para produção.

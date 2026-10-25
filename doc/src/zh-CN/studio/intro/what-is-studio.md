@@ -57,4 +57,4 @@ NocoBase 在 AI 开发之上补齐底座和治理能力。Core 是应用底座�
 
 ## 私有部署
 
-Studio 在 NocoBase 商业版中提供，Core 和 Solution 开源免费。Studio 和业务应用都部署在企业自己的服务器上，代码和数据归企业所有。模型和 Agent 由企业自由选择，不绑定厂商。
+Studio 在 NocoBase 商业版中提供，Core 和 NocoCRM 等 Solution 应用开源免费。Studio 和业务应用都部署在企业自己的服务器上，代码和数据归企业所有。模型和 Agent 由企业自由选择，不绑定厂商。

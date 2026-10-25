@@ -42,7 +42,7 @@ Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 
 <div class="down">开发</div>
 <div class="row"><div class="box"><b>你的业务应用 · 建在 NocoBase Core 上</b><span>使用 Core 的权限、流程、文件等基础能力；代码和数据归企业所有，发布后独立运行</span></div></div>
 <div class="down">或者从现成的应用开始</div>
-<div class="row"><div class="box"><b>NocoBase Solution</b><span>基于 Core 构建、由 Agent 驱动的开源业务应用，可以直接使用，也可以继续定制</span></div></div>
+<div class="row"><div class="box"><b>NocoBase Solution</b><span>基于 Core 构建、由 Agent 驱动的业务应用，NocoCRM 等开源，可以直接使用，也可以继续定制</span></div></div>
 </figure>
 
 - **[Core](../core/index.md)** 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。
@@ -64,9 +64,7 @@ Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 
 
 应用上线后，Agent 还可以在应用里承担业务上的执行工作，比如调研客户、起草邮件、核对资产台账、处理客户工单。这些业务 Agent 由 Core 的 Agents 插件接入，和人用同一套权限，遇到需要决策的事，附上依据交给负责人拍板。Solution 的每个应用都内置了业务 Agent，自己开发的应用也可以按需加上，见 [AI 与 Agent](../core/capabilities/ai-agents.md)。
 
-## 开源与私有部署
-
-Core 和 Solution 开源免费，可以直接用于生产；Studio 在商业版中提供。
+## 私有部署
 
 Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。模型和 Agent 由企业自由选择，不绑定厂商，Claude Code、Codex 等编码工具和各类大模型都可以接入。业务应用发布后独立运行，日常业务请求不经过 Studio。
 

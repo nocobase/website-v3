@@ -25,7 +25,7 @@ description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源
 <div class="down">基于 Core 开发</div>
 <div class="row"><div class="box"><b>你的业务应用 · 建在 Core 上</b><span>Core 提供数据、权限、工作流与审批、文件、通知等底座能力；应用归你所有，上线后独立运行</span></div></div>
 <div class="down">或者从现成的应用开始</div>
-<div class="row"><div class="box"><b>Solutions</b><span>基于 NocoBase 开发的开源业务应用，例如 NocoCRM、NocoITAM，可以直接使用，也可以继续定制</span></div></div>
+<div class="row"><div class="box"><b>Solutions</b><span>基于 NocoBase 开发的业务应用，例如开源的 NocoCRM，可以直接使用，也可以继续定制</span></div></div>
 </figure>
 
 - **[Core](core/index.md)** 是开发和运行业务系统的开源底座。只用 Core，你可以让自己的 Agent 直接开发应用。

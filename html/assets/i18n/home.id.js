@@ -88,8 +88,6 @@
 "Agents show the evidence behind their work, and key decisions are always made by a person. Each agent inherits the permissions of the person it works for, so data stays secure.": "Agen menunjukkan dasar dari setiap hasil kerjanya, dan keputusan penting selalu diambil oleh manusia. Setiap agen mewarisi izin akses orang yang dilayaninya, sehingga data tetap aman.",
 "Easy to customize": "Mudah dikustomisasi",
 "Every app is built on NocoBase Core, with its consistent architecture and reliable foundation, so you can have a coding agent customize it.": "Setiap aplikasi dibangun di atas NocoBase Core, dengan arsitektur yang konsisten dan fondasi yang andal, sehingga Anda bisa meminta agen coding untuk menyesuaikannya.",
-"Free, open source, ready to use": "Gratis, open source, siap pakai",
-"Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.": "Semua aplikasi NocoBase Solution gratis dan open source, berjalan di server Anda sendiri, dan bekerja dengan model pilihan Anda.",
 "View All Solution Apps": "Lihat semua aplikasi",
 "How is NocoBase different from vibe coding?": "Apa bedanya NocoBase dengan vibe coding?",
 "AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.": "AI membuat izin akses, alur kerja, persetujuan, dan modul dasar lainnya dari nol di setiap proyek. Mahal, dan sulit dibuat andal.",
@@ -99,13 +97,11 @@
 "Open Source &amp; Self-Hosting": "Open Source &amp; Self-Hosting",
 "Free, open source, self-hosted.<br>": "Gratis, open source, self-hosted.<br>",
 "Your code and data belong to you.": "Kode dan data Anda adalah milik Anda.",
-"Core and Solution are free and open source. Studio is available in the commercial editions.": "Core dan Solution gratis dan open source. Studio tersedia di edisi komersial.",
 "Contributors": "Kontributor",
 "Downloads": "Unduhan",
 "3M+": "3 jt+",
 "View on GitHub": "Lihat di GitHub",
 "Free and open source": "Gratis dan open source",
-"Core and every Solution app are free, open source, and ready for production.": "Core dan semua aplikasi Solution gratis, open source, dan siap untuk produksi.",
 "Self-hosted": "Self-hosted",
 "Core, Solution, and Studio all run on your own servers. Your code and data belong to you.": "Core, Solution, dan Studio semuanya berjalan di server Anda sendiri. Kode dan data Anda adalah milik Anda.",
 "Your choice of models and agents": "Bebas memilih model dan agen",
@@ -216,6 +212,11 @@
 "Know-how": "Pengetahuan tim",
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio adalah platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.",
-"Deliver more client projects with an agent team": "Selesaikan lebih banyak proyek klien bersama tim agen"
+"Deliver more client projects with an agent team": "Selesaikan lebih banyak proyek klien bersama tim agen",
+"Start with open source, ready to use": "Mulai dengan open source, siap pakai",
+"NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.": "NocoCRM, NocoReach, dan NocoProject gratis dan open source. NocoITAM, NocoSupport, dan NocoHR tersedia di edisi komersial. Semua aplikasi berjalan di server Anda sendiri dan bekerja dengan model pilihan Anda.",
+"Start Open Source": "Mulai dengan open source",
+"Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.": "Core dan aplikasi Solution seperti NocoCRM gratis dan open source. Studio dan aplikasi Solution seperti NocoITAM tersedia di edisi komersial.",
+"Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.": "Core, NocoCRM, NocoReach, dan NocoProject gratis, open source, dan siap untuk produksi."
 }
 };

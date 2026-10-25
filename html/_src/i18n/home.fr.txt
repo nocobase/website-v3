@@ -238,3 +238,14 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 232: Les agents font avancer le travail. Votre équipe garde la maîtrise.
 233: NocoBase Studio est la plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble. Il réunit Claude Code, Codex et OpenCode en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
 234: Livrez plus de projets clients avec une équipe d’agents
+235: Open source pour démarrer, prêtes à l’emploi
+236: NocoCRM, NocoReach et NocoProject sont gratuites et open source. NocoITAM, NocoSupport et NocoHR sont incluses dans les éditions commerciales. Toutes les applications tournent sur vos propres serveurs et fonctionnent avec le modèle de votre choix.
+237: Core, Studio et les applications Solution comme NocoCRM sont gratuits, open source et prêts pour la production. Les éditions commerciales ajoutent la gouvernance à l’échelle de l’équipe et de l’organisation, l’intégration en entreprise, davantage d’applications Solution et le support officiel.
+238: Core, Studio, NocoCRM, NocoReach et NocoProject sont gratuits, open source et prêts pour la production comme pour les livraisons clients. Sans acheter de licence, votre équipe peut piloter une équipe d’agents, de la demande à la mise en production.
+239: Éditions commerciales
+240: Core, Studio et Solution bénéficient chacun de compléments commerciaux, tous couverts par une seule licence. Professional ajoute l’approbation des mises en production, le SSO d’entreprise, davantage d’applications comme NocoITAM et le support officiel. Enterprise ajoute une gouvernance à l’échelle de l’organisation, entre équipes et environnements, ainsi que la haute disponibilité.
+241: Auto-hébergé, fonctionnement autonome
+242: Core, Solution et Studio tournent sur vos propres serveurs. Votre code et vos données vous appartiennent. Une fois publiées, vos applications métier fonctionnent seules, et les requêtes métier du quotidien ne passent jamais par Studio.
+243: Open source pour démarrer
+244: Core et les applications Solution comme NocoCRM sont gratuits et open source. Studio et les applications Solution comme NocoITAM sont inclus dans les éditions commerciales.
+245: Core, NocoCRM, NocoReach et NocoProject sont gratuits, open source et prêts pour la production.

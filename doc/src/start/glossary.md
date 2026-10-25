@@ -9,7 +9,7 @@ description: The terms used across the whole site. Documentation, the website, t
 | --- | --- |
 | NocoBase Core | The open-source foundation for building and running business systems, a set of npm packages |
 | NocoBase Studio | The workspace where people lead an agent team to build apps, available in the commercial editions |
-| NocoBase Solution | A line of open-source business apps built on NocoBase, such as NocoCRM. Individual apps are called Solution apps |
+| NocoBase Solution | A line of business apps built on NocoBase. Individual apps are called Solution apps. NocoCRM, NocoReach, and NocoProject are open source; NocoITAM, NocoSupport, and NocoHR come with the commercial editions |
 | Agent | The general term for an AI worker: a coding tool plus a model, for example "Claude · Opus 5.5". Written in lowercase in running text |
 | Coding tool | Claude Code, Codex, OpenCode, Cursor, and so on |
 | Business agent | An agent that handles business work inside an app, within its permissions. Connected by the Agents plugin. Called "AI employee" in NocoBase 2 |
@@ -43,15 +43,15 @@ description: The terms used across the whole site. Documentation, the website, t
 | Issue | The basic unit of delivered work in Studio. Not "ticket" or "request form" |
 | Issue owner | The person responsible for an issue's outcome. Always a person |
 | Coordinator agent | The single system agent that splits work into steps, assigns them, asks questions, and hands over for acceptance. It does not write code. |
-| Execution agent | An agent on the agent team that completes a specific step |
-| My Agent | The coding tool on your own computer. Once connected to Studio, it keeps you company in sessions |
+| Worker agent | An agent on the agent team that carries out the steps the coordinator agent assigns |
+| My agent | Your own coding tool, such as Claude Code or Codex. Once connected to Studio, it talks requests through with you in My sessions |
 | Agent team | All the agents the team has enabled |
-| Runtime | A machine that runs `nocobase-runner`, either a team runtime or a personal one |
+| Runtime | A machine that runs `nocobase-runner`, either a shared runtime or a personal one |
 | My issues, My sessions | The two ways to follow work: by issue, and by session |
 | Project memory | What agents note down while working. It is stored in the code repository, and agents read and write it themselves |
 | Knowledge base | Material that people write and upload. Agents can only read it |
 | Delivery report | What the coordinator agent submits when an issue moves to In review |
-| Todo / In progress / Blocked / In review / Done / Cancelled | The six fixed issue statuses. In review means delivered and waiting for the issue owner to accept |
+| Backlog / In progress / Blocked / In review / Done / Cancelled | The six fixed issue statuses. In review means delivered and waiting for the issue owner to accept |
 
 For the full Studio vocabulary, see Studio's [Core concepts](../studio/intro/concepts.md).
 

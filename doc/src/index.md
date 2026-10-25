@@ -25,7 +25,7 @@ description: NocoBase is the open-source platform for building, running, and evo
 <div class="down">Build on Core</div>
 <div class="row"><div class="box"><b>Your business app · built on Core</b><span>Core provides the building blocks: data, permissions, workflows and approvals, files, notifications, and more. You own the app, and it runs on its own after launch</span></div></div>
 <div class="down">Or start from a ready-made app</div>
-<div class="row"><div class="box"><b>Solution apps</b><span>Open-source business apps built on NocoBase, such as NocoCRM and NocoITAM. Use them as they are, or keep customizing them</span></div></div>
+<div class="row"><div class="box"><b>Solution apps</b><span>Business apps built on NocoBase, such as the open-source NocoCRM. Use them as they are, or keep customizing them</span></div></div>
 </figure>
 
 - **[Core](core/index.md)** is the open-source foundation for building and running business systems. With Core alone, you can have your own agent build apps directly.

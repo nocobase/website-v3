@@ -31,16 +31,17 @@
   }).join(''); };
 
   var header = '<header class="nav" id="nav"><div class="container in">' +
-    '<a class="logo" href="homepage.html" aria-label="NocoBase"><img src="assets/logo.png" alt="NocoBase" width="150" height="22"></a>' +
+    '<a class="logo" href="homepage.html" aria-label="NocoBase"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase" width="150" height="22"></a>' +
     '<div class="mi ver"><button type="button" aria-haspopup="true" aria-label="NocoBase 3">3<i data-lucide="chevron-down"></i></button><div class="dd"><a class="cur" href="homepage.html"><i data-lucide="check"></i><b>NocoBase 3<em class="kind-tag">' + T('当前', 'Current') + '</em></b><span>' + T('面向 Agent 的开发平台', 'The development platform for agents') + '</span></a><a class="ext" href="' + NOCODE + '" target="_blank" rel="noopener"><i data-lucide="mouse-pointer-click"></i><b>NocoBase 2<i data-lucide="arrow-up-right"></i></b><span>' + T('AI + 无代码开发平台', 'AI + no-code development platform') + '</span></a></div></div>' +
     '<nav class="menu" aria-label="Primary">' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('产品', 'Products') + '<i data-lucide="chevron-down"></i></button><div class="dd">' + dd(products) + v2 + '</div></div>' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('解决方案', 'Solutions') + '<i data-lucide="chevron-down"></i></button><div class="dd two">' + dd(apps) + '</div></div>' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('资源', 'Resources') + '<i data-lucide="chevron-down"></i></button><div class="dd">' +
         '<a href="' + DOCS + '" target="_blank" rel="noopener"><i data-lucide="book-open"></i><b>' + T('文档', 'Docs') + '</b><span>' + T('上手指南、核心能力与扩展开发参考', 'Guides, core capabilities, and API reference') + '</span></a>' +
-        '<a href="customers.html"' + on('customers') + '><i data-lucide="building-2"></i><b>' + T('客户案例', 'Customers') + '</b><span>' + T('看看各行业团队如何用 NocoBase 搭建核心系统', 'How teams run core systems on NocoBase') + '</span></a>' +
-        '<a href="blog.html"' + on('blog') + '><i data-lucide="newspaper"></i><b>' + T('博客', 'Blog') + '</b><span>' + T('产品思考、工程实践与方法论', 'Product thinking and engineering practices') + '</span></a>' +
-        '<a href="#"><i data-lucide="history"></i><b>' + T('更新日志', 'Changelog') + '</b><span>' + T('每次版本迭代的新能力与改进', 'What shipped in every release') + '</span></a>' +
+        /* 客户案例、博客、更新日志暂不开放：置灰，不可点击 */
+        '<div class="soon" aria-disabled="true"><i data-lucide="building-2"></i><b>' + T('客户案例', 'Customers') + '</b><span>' + T('看看各行业团队如何用 NocoBase 搭建核心系统', 'How teams run core systems on NocoBase') + '</span></div>' +
+        '<div class="soon" aria-disabled="true"><i data-lucide="newspaper"></i><b>' + T('博客', 'Blog') + '</b><span>' + T('产品思考、工程实践与方法论', 'Product thinking and engineering practices') + '</span></div>' +
+        '<div class="soon" aria-disabled="true"><i data-lucide="history"></i><b>' + T('更新日志', 'Changelog') + '</b><span>' + T('每次版本迭代的新能力与改进', 'What shipped in every release') + '</span></div>' +
         '<a href="https://forum.nocobase.com/" target="_blank" rel="noopener"><i data-lucide="messages-square"></i><b>' + T('社区', 'Community') + '</b><span>' + T('在论坛提问、交流经验与反馈建议', 'Ask questions and share patterns') + '</span></a>' +
         '<a href="contact.html"><i data-lucide="mail"></i><b>' + T('联系我们', 'Contact Us') + '</b><span>' + T('商务合作、产品咨询与技术支持', 'Partnerships, product questions, and support') + '</span></a>' +
       '</div></div>' +
@@ -60,8 +61,8 @@
       '<a href="' + NOCODE + '" target="_blank" rel="noopener">NocoBase 2<small>' + T('无代码 ↗', 'No-code ↗') + '</small></a>' +
       '<a href="solutions.html">' + T('全部解决方案', 'All Solutions') + '</a>' +
       '<a href="' + DOCS + '" target="_blank" rel="noopener">' + T('文档', 'Docs') + '</a>' +
-      '<a href="customers.html"' + on('customers') + '>' + T('客户案例', 'Customers') + '</a>' +
-      '<a href="blog.html"' + on('blog') + '>' + T('博客', 'Blog') + '</a>' +
+      '<span class="off" aria-disabled="true">' + T('客户案例', 'Customers') + '</span>' +
+      '<span class="off" aria-disabled="true">' + T('博客', 'Blog') + '</span>' +
       '<a href="find-partner.html"' + on('find-partner') + '>' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</a>' +
       '<a href="partner.html"' + on('partner') + '>' + T('成为合作伙伴', 'Become a Partner') + '</a>' +
       '<a href="pricing.html"' + on('pricing') + '>' + T('定价', 'Pricing') + '</a>' +
@@ -71,7 +72,7 @@
     '</div></header>';
 
   var footer = '<footer><div class="container"><div class="fgrid">' +
-    '<div><img src="assets/logo.png" alt="NocoBase" width="150" height="22"><p class="tag-line">' + T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Build reliable business systems.') + '</p></div>' +
+    '<div><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase" width="150" height="22"><p class="tag-line">' + T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Build reliable business systems.') + '</p></div>' +
     '<div><h4>' + T('产品', 'Products') + '</h4><ul>' + products.map(function (x) { return '<li><a href="' + x[1] + '">' + x[3] + '</a></li>'; }).join('') + '<li><a href="' + NOCODE + '" target="_blank" rel="noopener">' + T('NocoBase 2 无代码 ↗', 'NocoBase 2 No-code ↗') + '</a></li></ul></div>' +
     '<div><h4>' + T('定价与许可', 'Pricing &amp; License') + '</h4><ul><li><a href="pricing.html">' + T('版本与价格', 'Editions &amp; Pricing') + '</a></li><li><a href="#">' + T('许可协议', 'License') + '</a></li><li><a href="' + NOCODE + '" target="_blank" rel="noopener">NocoBase 2.x ↗</a></li></ul></div>' +
     '<div><h4>' + T('伙伴', 'Partners') + '</h4><ul><li><a href="partner.html">' + T('合作伙伴计划', 'Partner Program') + '</a></li><li><a href="find-partner.html">' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</a></li><li><a href="customers.html">' + T('客户案例', 'Customers') + '</a></li></ul></div>' +

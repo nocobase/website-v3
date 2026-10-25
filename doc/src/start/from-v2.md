@@ -34,7 +34,7 @@ To see which plugins an app uses, open **System settings › App foundation**. I
 | Users, roles, and permissions | The authentication, users, and authorization plugins, plus three plugins for default data scopes, sharing rules, and restriction rules | Enabled in the default template, which ships with the **User management**, **Roles and permissions**, and **Default data scopes** pages |
 | Data sources and collections | The database foundation library and migrations; an external database is connected as a second connection | Supports SQLite, PostgreSQL, MySQL, SQL Server, and Oracle; Dameng, KingbaseES, and OceanBase are in the commercial editions |
 | File manager | The file plugin and the storage foundation library | Local storage, S3-compatible storage, and Alibaba Cloud OSS |
-| Workflows | Record lifecycle (a foundation library) and the scheduled tasks plugin | Process structure is written in code, with no drag-and-drop designer; the workflow plugin was removed in October 2026 |
+| Workflows | Record lifecycle (a foundation library) and the scheduled tasks plugin | Process structure is written in code, with no drag-and-drop designer |
 | Approvals | The approval plugin <span class="tag pro">Commercial</span> | Multi-level, all-must-approve, any-can-approve, add approver, transfer, and send back |
 | Notifications and in-app messages | The notification, in-app message, and notification channel plugins | In-app messages; email (SMTP, Resend); Feishu and DingTalk group bots |
 | Email management | The mail plugin | Link personal mailboxes, then send, receive, and sync email |
@@ -44,7 +44,7 @@ To see which plugins an app uses, open **System settings › App foundation**. I
 | Template printing | The template printing skill pack | Guidance for agents only. The agent implements it in the app |
 | Charts, import and export, and other blocks | Implemented in the app by agents | The UI library provides components such as data tables and dashboards |
 | Audit logs | Not available yet | The audit item in **App foundation** shows that no provider has been detected yet |
-| LDAP, SAML, DingTalk, and WeCom sign-in | To be confirmed | The authentication plugin is built on Better Auth, and OIDC and social sign-in are connected through configuration |
+| LDAP, SAML, DingTalk, WeCom, Feishu, Slack, and other sign-in methods | Authentication plugin | All supported. The authentication plugin is built on Better Auth, and enterprise identity and social sign-in are connected through configuration |
 
 Each plugin's details are in the [plugin directory](../core/plugins/index.md), and every page there has a "Mapping from NocoBase 2" section.
 

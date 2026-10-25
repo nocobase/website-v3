@@ -238,3 +238,14 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 232: Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.
 233: NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
 234: Bàn giao nhiều dự án khách hàng hơn cùng một đội agent
+235: Khởi đầu với mã nguồn mở, dùng được ngay
+236: NocoCRM, NocoReach và NocoProject miễn phí, mã nguồn mở. NocoITAM, NocoSupport và NocoHR có trong các phiên bản thương mại. Mọi ứng dụng đều triển khai trên máy chủ của bạn, tự do chọn model.
+237: Core, Studio và các ứng dụng Solution như NocoCRM đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production. Các phiên bản thương mại bổ sung quản trị ở cấp đội và cấp tổ chức, tích hợp doanh nghiệp, thêm ứng dụng Solution và hỗ trợ chính thức.
+238: Core, Studio, NocoCRM, NocoReach và NocoProject đều miễn phí, mã nguồn mở, dùng được ngay cho production và bàn giao cho khách hàng. Không cần mua giấy phép, đội của bạn vẫn có thể dẫn dắt đội agent từ yêu cầu đến phát hành.
+239: Phiên bản thương mại
+240: Core, Studio và Solution đều có phần bổ sung thương mại, dùng chung một giấy phép. Professional bổ sung phê duyệt phát hành lên production, SSO doanh nghiệp, thêm ứng dụng như NocoITAM và hỗ trợ chính thức. Enterprise bổ sung quản trị cấp tổ chức xuyên suốt các đội và môi trường, cùng khả năng sẵn sàng cao.
+241: Tự triển khai, vận hành độc lập
+242: Core, Solution và Studio đều triển khai trên máy chủ của bạn. Code và dữ liệu thuộc về bạn. Sau khi phát hành, ứng dụng nghiệp vụ vận hành độc lập, các yêu cầu nghiệp vụ hằng ngày không đi qua Studio.
+243: Khởi đầu mã nguồn mở
+244: Core và các ứng dụng Solution như NocoCRM miễn phí, mã nguồn mở. Studio và các ứng dụng Solution như NocoITAM có trong các phiên bản thương mại.
+245: Core, NocoCRM, NocoReach và NocoProject đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production.

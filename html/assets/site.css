@@ -90,6 +90,7 @@ svg.lucide { width: 16px; height: 16px; stroke-width: 1.8; flex: none; }
 .mnav { display: none; border-top: 1px solid var(--rule); padding-block: 8px 20px; }
 .mnav a { display: block; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
 .mnav a small { color: var(--muted); margin-left: 8px; font-size: 13px; }
+.mnav .off { display: block; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 15px; color: var(--muted); cursor: default; }
 @media (max-width: 1000px) {
   .menu, .nav .right .plain { display: none; }
   .menu-btn { display: grid; }

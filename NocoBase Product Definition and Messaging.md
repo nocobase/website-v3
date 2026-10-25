@@ -70,11 +70,11 @@ Your team is already developing with AI or vibe coding. Code gets written fast, 
 
 ### Tagline
 
-> Let your team focus on decisions. Leave the execution to agents.
+> Agents keep the work moving. Your team stays in control.
 
 ### Definition
 
-> NocoBase Studio is the governance platform for teams building with agents. It brings your team's Claude Code and Codex together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.
+> NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.
 
 ### Standard description
 
@@ -132,19 +132,19 @@ Your team is already developing with AI or vibe coding. Code gets written fast, 
 ## FAQ
 
 - **How is NocoBase different from vibe coding?**
-  - In both, AI writes the code. Vibe coding works well for quick prototypes and small tools. NocoBase is for business systems that have to run reliably for years and keep evolving.
-    - **Foundation**
-      - Vibe coding: AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.
-      - NocoBase: Core provides ready-made building blocks, and agents build only the business logic.
-    - **Architecture**
-      - Vibe coding: Switch models or sessions, and the AI may improvise. The architecture gradually drifts.
-      - NocoBase: Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.
-    - **Ongoing iteration**
-      - Vibe coding: AI changes often get accepted without anyone reading them, and problems pile up.
-      - NocoBase: Studio coordinates checks and reviews. When a decision is needed, agents attach reports, checklists, and screenshots, and a person decides.
-    - **Knowledge and know-how**
-      - Vibe coding: Requirement context, project documents, and lessons learned are scattered across individual chat sessions.
-      - NocoBase: Studio captures methods and experience in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off.
+  - Vibe coding makes building software much faster. But once a project involves complex business logic, many people, and years of iteration, AI-generated code alone isn't enough. You also need a reliable application foundation, consistent development standards, and sound governance. NocoBase doesn't replace vibe coding. It builds on it, adding the foundation and governance.
+    - **Building blocks**
+      - Without NocoBase: AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.
+      - With NocoBase: Core provides ready-made building blocks, and agents build only the business logic.
+    - **Architecture standards**
+      - Without NocoBase: Switch developers, models, or sessions, and the AI may improvise. The architecture gradually drifts.
+      - With NocoBase: Core provides one project structure, development standards, and development skills, so the system evolves steadily for years on a consistent architecture.
+    - **Governance**
+      - Without NocoBase: Agents hand back more and more changes, more than anyone can review, so they often get accepted as they are. Problems pile up.
+      - With NocoBase: Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.
+    - **Know-how**
+      - Without NocoBase: Requirement context, project documents, and lessons learned are scattered across individual chat sessions.
+      - With NocoBase: Studio captures methods and experience in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off.
 
 ## Terminology and style
 
@@ -159,6 +159,7 @@ Copy derived from this document uses these terms. Keep each one fixed, even wher
 | 长期稳定迭代 | evolves steadily for years | |
 | 统一架构 / 开发规范 | one consistent architecture / development standards | |
 | Agent | agent | Lowercase in running text, as in "agent team" and "coding agent". |
+| 团队 / Agent 团队 | team / agent team | "Team" on its own always means people. When agents are meant, say "agent team". |
 | 调度 Agent | coordinator agent | The Studio UI calls it "Project manager". |
 | Coding Agent / 编码工具 | coding agent / coding tool | Claude Code, Codex, OpenCode. "Coding tool" matches the Studio UI. |
 | 技能 / 知识库 / 项目记忆 | skills / knowledge base / project memory | The Studio UI shows Skills, Knowledge, and Project memory. |

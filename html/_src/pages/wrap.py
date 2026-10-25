@@ -15,7 +15,7 @@ def fig(mo):
 body = re.sub(r'\{\{FIG:(\w+):(\d+)\}\}', fig, body)
 snipdir = os.path.join(os.path.dirname(__file__), 'snips')
 body = re.sub(r'\{\{SNIP:(\w+):(\d+)\}\}', lambda mo: '<div class="fit" data-w="%s"><div class="fit-in">%s</div></div>' % (mo.group(2), open(os.path.join(snipdir, mo.group(1) + '.html'), encoding='utf-8').read()), body)
-DOCS = 'https://v3.docs.nocobase.com/zh-CN/'
+DOCS = 'https://docs.nocobase.com/zh-CN/'
 body = body.replace('{{DOCS}}', DOCS)
 q = lambda s: html.escape(s, quote=True)
 page = f'''<!doctype html>

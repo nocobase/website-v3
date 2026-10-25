@@ -318,11 +318,10 @@ html[lang="zh"] .phero .lede { word-break: keep-all; overflow-wrap: anywhere; }
   var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
   var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
   var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
-  // The demo signs in inside the frame only once its session cookies are SameSite=None, Secure and Partitioned (a frame
-  // on another site does not keep SameSite=Lax ones; nocobase/NocoReach#282). Until that release reaches Solutions,
-  // Try It Online opens the demo in a new tab, as a phone does; ?demo=frame shows the frame to check the release.
-  // Once it signs in there, make the frame the default again (?demo=tab then opens a new tab).
-  var FRAME = /[?&]demo=frame\b/.test(location.search);
+  // The demo signs in inside the frame once its session cookies are SameSite=None, Secure and Partitioned (a frame on
+  // another site does not keep SameSite=Lax ones; nocobase/NocoReach#282); ?demo=tab opens it in a new tab instead, as
+  // a phone does.
+  var FRAME = !/[?&]demo=tab\b/.test(location.search);
   var status = {}, shown = false, scrolling = false;
   function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }

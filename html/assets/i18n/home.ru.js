@@ -58,7 +58,7 @@
 "Architecture drifts out of control": "Архитектура выходит из-под контроля",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.": "Смените разработчика, модель или даже сессию, и ИИ каждый раз может импровизировать по-своему. Систему всё труднее поддерживать.",
 "Parallel work outpaces human review": "Параллельной работы больше, чем можно проверить",
-"You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Вы ведёте несколько проектов и задач, переключаетесь между терминалами и чатами, а агенты присылают всё больше изменений. Проверить всё невозможно, а отпустить контроль слишком рискованно.",
+"You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Вы ведёте несколько проектов и задач, переключаетесь между терминалами и чатами, а агенты присылают всё больше изменений. Проверить всё невозможно, а отпустить контроль слишком рискованно.",
 "Know-how is hard to capture and share": "Знания трудно сохранить и передать",
 "Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.": "Контекст требований, бизнес-документы и накопленный опыт разбросаны по чатам на разных компьютерах. Когда меняются люди или агенты, найти их почти невозможно.",
 "Let agents focus on your business logic.<br>": "Пусть агенты займутся бизнес-логикой.<br>",
@@ -72,9 +72,9 @@
 "Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.": "Core бесплатен и с открытым кодом. Ваш бизнес-код и данные хранятся в ваших репозиториях и на ваших серверах, а модели и агентов вы выбираете сами.",
 "Explore NocoBase Core": "Подробнее о NocoBase Core",
 "An agent team that keeps work moving": "Команда агентов, которая двигает работу вперёд",
-"Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.": "Подключайте агентов на множестве машин и управляйте ими централизованно. Они параллельно продвигают множество проектов и задач круглые сутки.",
+"Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.": "Подключайте агентов на множестве машин и управляйте ими централизованно. Они параллельно продвигают множество проектов и задач круглые сутки.",
 "Progress at a glance": "Прогресс как на ладони",
-"Project progress, task activity, agent workload, and model usage are all clearly visible.": "Ход проектов, движение задач, загрузка агентов и расход моделей всегда на виду.",
+"Project progress, issue activity, agent workload, and model usage are all clearly visible.": "Ход проектов, движение задач, загрузка агентов и расход моделей всегда на виду.",
 "Decisions backed by evidence": "Решения на основе фактов",
 "When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.": "Когда решение должен принять человек, агенты прикладывают подробные отчёты, чек-листы, скриншоты и рекомендации, так что решить может даже бизнес-эксперт, который не пишет код.",
 "Know-how stays with the team": "Опыт остаётся в команде",
@@ -158,7 +158,7 @@
 "Customer tiering is in production · roll back anytime": "Сегментация клиентов в продакшене · откат в любой момент",
 "Demo video coming soon": "Демо-видео скоро появится",
 "Agents write the code and do the work": "Агенты пишут код и выполняют работу",
-"3 tasks · 35 tests · 3 code reviews": "3 задачи · 35 тестов · 3 код-ревью",
+"3 issues · 35 tests · 3 code reviews": "3 задачи · 35 тестов · 3 код-ревью",
 "NocoBase provides the foundation and governance": "NocoBase даёт фундамент и контроль",
 "{n} building blocks · one set of dev standards · tests, review, and sign-off": "Базовых модулей: {n} · единые стандарты · тесты, ревью и приёмка",
 "People make the decisions": "Решения принимают люди",
@@ -216,6 +216,6 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio координирует нескольких агентов на этапах проектирования, разработки, тестирования и ревью. Ключевые решения принимает человек, опираясь на отчёты и скриншоты.",
 "Know-how": "Накопленный опыт",
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio — платформа управляемой разработки для команд, которые работают с агентами. Она объединяет Claude Code, Codex и OpenCode в одну команду агентов, которая сама продвигает задачи. Весь прогресс как на ладони, а ключевые решения принимают люди."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio — платформа управляемой разработки для команд, которые работают с агентами. Она объединяет Claude Code, Codex и OpenCode в одну команду агентов, которая сама продвигает задачи. Весь прогресс как на ладони, а ключевые решения принимают люди."
 }
 };

@@ -58,7 +58,7 @@
 "Architecture drifts out of control": "La arquitectura se desvía sin control",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.": "Cambia de desarrollador, de modelo o incluso de sesión, y la IA puede improvisar de forma distinta cada vez. El sistema es cada vez más difícil de mantener.",
 "Parallel work outpaces human review": "Más trabajo en paralelo del que se puede revisar",
-"You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Llevas varios proyectos y tareas a la vez, saltando entre terminales y chats, mientras los agentes entregan cada vez más cambios. Hay más de lo que nadie puede revisar, pero soltar el control parece demasiado arriesgado.",
+"You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Llevas varios proyectos y tareas a la vez, saltando entre terminales y chats, mientras los agentes entregan cada vez más cambios. Hay más de lo que nadie puede revisar, pero soltar el control parece demasiado arriesgado.",
 "Know-how is hard to capture and share": "El conocimiento es difícil de capturar y compartir",
 "Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.": "El contexto de los requisitos, los documentos de negocio y las lecciones aprendidas quedan dispersos en chats de distintos dispositivos. Cuando cambian las personas o los agentes, cuesta encontrarlos.",
 "Let agents focus on your business logic.<br>": "Deja que los agentes se centren en tu lógica de negocio.<br>",
@@ -72,9 +72,9 @@
 "Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.": "Core es gratuito y de código abierto. Tu código de negocio y tus datos se quedan en tus propios repositorios y servidores, y tú eliges los modelos y los agentes.",
 "Explore NocoBase Core": "Descubre NocoBase Core",
 "An agent team that keeps work moving": "Un equipo de agentes que mantiene el trabajo en marcha",
-"Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.": "Conecta agentes de muchas máquinas y coordínalos desde un solo lugar. Hacen avanzar muchos proyectos y tareas en paralelo, las 24 horas.",
+"Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.": "Conecta agentes de muchas máquinas y coordínalos desde un solo lugar. Hacen avanzar muchos proyectos y tareas en paralelo, las 24 horas.",
 "Progress at a glance": "El progreso, de un vistazo",
-"Project progress, task activity, agent workload, and model usage are all clearly visible.": "El avance de los proyectos, la actividad de cada tarea, la carga de los agentes y el uso de modelos quedan siempre a la vista.",
+"Project progress, issue activity, agent workload, and model usage are all clearly visible.": "El avance de los proyectos, la actividad de cada tarea, la carga de los agentes y el uso de modelos quedan siempre a la vista.",
 "Decisions backed by evidence": "Decisiones basadas en evidencias",
 "When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.": "Cuando una decisión requiere a una persona, los agentes adjuntan informes, listas de verificación, capturas y recomendaciones detalladas, para que incluso los expertos de negocio que no programan puedan decidir.",
 "Know-how stays with the team": "El conocimiento se queda en el equipo",
@@ -158,7 +158,7 @@
 "Customer tiering is in production · roll back anytime": "La segmentación de clientes ya está en producción · reversible en cualquier momento",
 "Demo video coming soon": "La demo en video llegará pronto",
 "Agents write the code and do the work": "Los agentes escriben el código y hacen el trabajo",
-"3 tasks · 35 tests · 3 code reviews": "3 tareas · 35 pruebas · 3 revisiones de código",
+"3 issues · 35 tests · 3 code reviews": "3 tareas · 35 pruebas · 3 revisiones de código",
 "NocoBase provides the foundation and governance": "NocoBase aporta la base y la gobernanza",
 "{n} building blocks · one set of dev standards · tests, review, and sign-off": "{n} componentes base · estándares de desarrollo comunes · pruebas, revisión y aprobación",
 "People make the decisions": "Las personas toman las decisiones",
@@ -216,6 +216,6 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio coordina a varios agentes en el diseño, el desarrollo, las pruebas y la revisión. Las decisiones clave las toma una persona, con informes y capturas como respaldo.",
 "Know-how": "Conocimiento acumulado",
 "Agents keep the work moving. Your team stays in control.": "Los agentes hacen avanzar el trabajo. Tu equipo mantiene el control.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio es la plataforma de gobernanza para equipos que desarrollan con agentes. Reúne Claude Code, Codex y OpenCode en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio es la plataforma de gobernanza para equipos que desarrollan con agentes. Reúne Claude Code, Codex y OpenCode en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave."
 }
 };

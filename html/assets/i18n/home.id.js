@@ -58,7 +58,7 @@
 "Architecture drifts out of control": "Arsitektur melenceng tak terkendali",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.": "Ganti developer, model, atau bahkan sesi, dan AI bisa berimprovisasi secara berbeda setiap kali. Sistem makin sulit dipelihara.",
 "Parallel work outpaces human review": "Pekerjaan paralel melampaui kapasitas review",
-"You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Anda menangani banyak proyek dan tugas sekaligus, berpindah antara terminal dan chat, sementara agen terus mengirim perubahan. Terlalu banyak untuk ditinjau, tetapi melepas kendali terasa terlalu berisiko.",
+"You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Anda menangani banyak proyek dan tugas sekaligus, berpindah antara terminal dan chat, sementara agen terus mengirim perubahan. Terlalu banyak untuk ditinjau, tetapi melepas kendali terasa terlalu berisiko.",
 "Know-how is hard to capture and share": "Pengetahuan sulit didokumentasikan dan dibagikan",
 "Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.": "Konteks kebutuhan, dokumen bisnis, dan pelajaran proyek tersebar di sesi chat pada komputer yang berbeda. Saat orang atau agen berganti, semuanya sulit ditemukan.",
 "Let agents focus on your business logic.<br>": "Biarkan agen fokus pada logika bisnis Anda.<br>",
@@ -72,9 +72,9 @@
 "Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.": "Core gratis dan open source. Kode bisnis dan data Anda tetap di repositori dan server Anda sendiri, dan Anda bebas memilih model serta agen.",
 "Explore NocoBase Core": "Pelajari NocoBase Core",
 "An agent team that keeps work moving": "Tim agen yang terus menggerakkan pekerjaan",
-"Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.": "Hubungkan agen di banyak mesin dan atur dari satu tempat. Mereka menggerakkan banyak proyek dan tugas secara paralel, 24 jam sehari.",
+"Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.": "Hubungkan agen di banyak mesin dan atur dari satu tempat. Mereka menggerakkan banyak proyek dan tugas secara paralel, 24 jam sehari.",
 "Progress at a glance": "Progres terlihat sekilas",
-"Project progress, task activity, agent workload, and model usage are all clearly visible.": "Progres proyek, aktivitas tugas, beban kerja agen, dan pemakaian model selalu terlihat jelas.",
+"Project progress, issue activity, agent workload, and model usage are all clearly visible.": "Progres proyek, aktivitas tugas, beban kerja agen, dan pemakaian model selalu terlihat jelas.",
 "Decisions backed by evidence": "Keputusan berbasis bukti",
 "When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.": "Saat keputusan membutuhkan manusia, agen melampirkan laporan, checklist, tangkapan layar, dan rekomendasi yang rinci, sehingga pakar bisnis yang tidak bisa coding pun dapat memutuskan.",
 "Know-how stays with the team": "Pengetahuan tetap di tim",
@@ -158,7 +158,7 @@
 "Customer tiering is in production · roll back anytime": "Segmentasi pelanggan sudah di produksi · bisa di-rollback kapan saja",
 "Demo video coming soon": "Video demo segera hadir",
 "Agents write the code and do the work": "Agen menulis kode dan mengerjakan tugas",
-"3 tasks · 35 tests · 3 code reviews": "3 tugas · 35 tes · 3 code review",
+"3 issues · 35 tests · 3 code reviews": "3 tugas · 35 tes · 3 code review",
 "NocoBase provides the foundation and governance": "NocoBase menyediakan fondasi dan tata kelola",
 "{n} building blocks · one set of dev standards · tests, review, and sign-off": "{n} komponen dasar · satu standar pengembangan · tes, review, dan persetujuan",
 "People make the decisions": "Manusia yang mengambil keputusan",
@@ -216,6 +216,6 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio mengoordinasikan beberapa agen dalam desain, pengembangan, pengujian, dan review. Keputusan penting diambil manusia, dengan laporan dan tangkapan layar sebagai dasar.",
 "Know-how": "Pengetahuan tim",
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia."
 }
 };

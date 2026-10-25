@@ -58,7 +58,7 @@
 "Architecture drifts out of control": "아키텍처가 제멋대로 흔들리고 통제를 벗어난다",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.": "사람이나 모델, 심지어 세션만 바뀌어도 AI는 매번 다르게 구현할 수 있습니다. 시스템은 점점 유지 보수하기 어려워집니다.",
 "Parallel work outpaces human review": "병렬 작업이 넘쳐 사람이 확인하지 못한다",
-"You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "여러 프로젝트와 작업을 동시에 맡아 여러 터미널과 대화창을 오가는 동안, 에이전트가 넘기는 변경은 계속 늘어납니다. 다 볼 수도 없고, 그렇다고 손을 놓을 수도 없습니다.",
+"You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "여러 프로젝트와 작업을 동시에 맡아 여러 터미널과 대화창을 오가는 동안, 에이전트가 넘기는 변경은 계속 늘어납니다. 다 볼 수도 없고, 그렇다고 손을 놓을 수도 없습니다.",
 "Know-how is hard to capture and share": "지식과 경험이 쌓이지도, 공유되지도 않는다",
 "Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.": "요구 사항의 배경, 업무 자료, 프로젝트 경험이 여러 컴퓨터의 여러 대화에 흩어져 있어, 사람이나 에이전트가 바뀌면 찾기 어렵습니다.",
 "Let agents focus on your business logic.<br>": "에이전트는 비즈니스 개발에만 집중하세요.<br>",
@@ -72,9 +72,9 @@
 "Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.": "Core는 무료 오픈소스입니다. 비즈니스 코드와 데이터는 모두 기업의 저장소와 서버에 있으며, 모델과 에이전트도 자유롭게 선택할 수 있습니다.",
 "Explore NocoBase Core": "NocoBase Core 자세히 보기",
 "An agent team that keeps work moving": "멈추지 않고 일하는 에이전트 팀",
-"Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.": "여러 머신의 에이전트를 연결해 한곳에서 배분하고, 24시간 여러 프로젝트와 많은 작업을 동시에 진행합니다.",
+"Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.": "여러 머신의 에이전트를 연결해 한곳에서 배분하고, 24시간 여러 프로젝트와 많은 작업을 동시에 진행합니다.",
 "Progress at a glance": "모든 진행 상황을 한눈에",
-"Project progress, task activity, agent workload, and model usage are all clearly visible.": "프로젝트 진행 상황, 작업 진행 과정, 에이전트 작업량, 모델 사용량까지 모두 한눈에 보입니다.",
+"Project progress, issue activity, agent workload, and model usage are all clearly visible.": "프로젝트 진행 상황, 작업 진행 과정, 에이전트 작업량, 모델 사용량까지 모두 한눈에 보입니다.",
 "Decisions backed by evidence": "근거를 바탕으로 결정",
 "When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.": "사람의 결정이 필요할 때 에이전트가 상세한 보고서, 체크리스트, 스크린샷, 제안을 첨부하므로 코드를 모르는 업무 전문가도 바로 결정할 수 있습니다.",
 "Know-how stays with the team": "방법, 경험, 지식이 팀에 쌓인다",
@@ -158,7 +158,7 @@
 "Customer tiering is in production · roll back anytime": "고객 등급 분류가 프로덕션에 반영됨 · 언제든 롤백 가능",
 "Demo video coming soon": "데모 영상 곧 공개",
 "Agents write the code and do the work": "에이전트가 코드를 작성하고 실행",
-"3 tasks · 35 tests · 3 code reviews": "작업 3개 · 테스트 35개 · 코드 리뷰 3회",
+"3 issues · 35 tests · 3 code reviews": "작업 3개 · 테스트 35개 · 코드 리뷰 3회",
 "NocoBase provides the foundation and governance": "NocoBase가 기반과 거버넌스를 제공",
 "{n} building blocks · one set of dev standards · tests, review, and sign-off": "기본 기능 {n}가지 · 통일된 개발 규칙 · 테스트, 리뷰, 검수 3단계 확인",
 "People make the decisions": "결정은 사람이",
@@ -216,6 +216,6 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio가 여러 에이전트를 조율해 설계, 개발, 테스트, 리뷰를 함께 진행합니다. 중요한 결정은 사람이 내리며, 보고서와 스크린샷이 근거로 첨부됩니다.",
 "Know-how": "지식 축적",
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 팀과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 팀과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다."
 }
 };

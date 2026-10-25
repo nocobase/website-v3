@@ -58,7 +58,7 @@
 "Architecture drifts out of control": "Kiến trúc trôi dạt, dần mất kiểm soát",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.": "Đổi người, đổi model, thậm chí đổi phiên làm việc, AI đều có thể làm theo một cách khác. Hệ thống ngày càng khó bảo trì.",
 "Parallel work outpaces human review": "Việc song song quá nhiều, người duyệt không xuể",
-"You juggle several projects and tasks, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Bạn xử lý nhiều dự án và tác vụ cùng lúc, chuyển qua lại giữa các terminal và cuộc trò chuyện, trong khi agent gửi về ngày càng nhiều thay đổi. Không ai xem hết được, nhưng buông tay thì quá rủi ro.",
+"You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.": "Bạn xử lý nhiều dự án và tác vụ cùng lúc, chuyển qua lại giữa các terminal và cuộc trò chuyện, trong khi agent gửi về ngày càng nhiều thay đổi. Không ai xem hết được, nhưng buông tay thì quá rủi ro.",
 "Know-how is hard to capture and share": "Tri thức và kinh nghiệm khó lưu giữ, khó chia sẻ",
 "Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.": "Bối cảnh yêu cầu, tài liệu nghiệp vụ và kinh nghiệm dự án nằm rải rác trong các cuộc trò chuyện trên nhiều máy khác nhau. Đổi người hay đổi agent là khó tìm lại.",
 "Let agents focus on your business logic.<br>": "Để agent tập trung vào logic nghiệp vụ.<br>",
@@ -72,9 +72,9 @@
 "Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.": "Core miễn phí và mã nguồn mở. Code nghiệp vụ và dữ liệu nằm trong kho mã và máy chủ của chính bạn, model và agent cũng do bạn tự chọn.",
 "Explore NocoBase Core": "Tìm hiểu NocoBase Core",
 "An agent team that keeps work moving": "Một đội agent không ngừng thúc đẩy công việc",
-"Connect agents across many machines and schedule them centrally. They move many projects and tasks forward in parallel, around the clock.": "Kết nối agent trên nhiều máy và điều phối tập trung. Chúng đồng thời thúc đẩy nhiều dự án và tác vụ, suốt 24 giờ.",
+"Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.": "Kết nối agent trên nhiều máy và điều phối tập trung. Chúng đồng thời thúc đẩy nhiều dự án và tác vụ, suốt 24 giờ.",
 "Progress at a glance": "Tiến độ rõ ràng trong nháy mắt",
-"Project progress, task activity, agent workload, and model usage are all clearly visible.": "Tiến độ dự án, quá trình xử lý tác vụ, khối lượng công việc của agent và mức sử dụng model đều hiển thị rõ ràng.",
+"Project progress, issue activity, agent workload, and model usage are all clearly visible.": "Tiến độ dự án, quá trình xử lý tác vụ, khối lượng công việc của agent và mức sử dụng model đều hiển thị rõ ràng.",
 "Decisions backed by evidence": "Quyết định có căn cứ",
 "When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.": "Khi cần con người quyết định, agent đính kèm báo cáo, checklist, ảnh chụp màn hình và đề xuất chi tiết, để cả chuyên gia nghiệp vụ không biết code cũng có thể quyết định ngay.",
 "Know-how stays with the team": "Tri thức ở lại với đội ngũ",
@@ -158,7 +158,7 @@
 "Customer tiering is in production · roll back anytime": "Phân hạng khách hàng đã lên production · có thể rollback bất cứ lúc nào",
 "Demo video coming soon": "Video demo sắp ra mắt",
 "Agents write the code and do the work": "Agent viết code và thực thi công việc",
-"3 tasks · 35 tests · 3 code reviews": "3 tác vụ · 35 test · 3 lượt review code",
+"3 issues · 35 tests · 3 code reviews": "3 tác vụ · 35 test · 3 lượt review code",
 "NocoBase provides the foundation and governance": "NocoBase cung cấp nền móng và năng lực quản trị",
 "{n} building blocks · one set of dev standards · tests, review, and sign-off": "{n} khối chức năng · chuẩn phát triển thống nhất · test, review và nghiệm thu",
 "People make the decisions": "Con người đưa ra quyết định",
@@ -216,6 +216,6 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio điều phối nhiều agent cùng thực hiện thiết kế, phát triển, kiểm thử và review; quyết định then chốt do con người kiểm soát, kèm báo cáo và ảnh chụp màn hình làm căn cứ.",
 "Know-how": "Tích lũy tri thức",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves tasks forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra."
 }
 };

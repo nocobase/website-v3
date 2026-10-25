@@ -145,7 +145,6 @@
 "Sales CRM": "営業管理",
 "Every saving comes with a paper trail.": "削減したコストの一つひとつに、確かな経緯を。",
 "Growth": "グロース",
-"Agents find, ship, and measure growth. You make the calls.": "エージェントが機会を見つけて施策を実行し、効果まで測定。あなたは判断するだけ。",
 "Support": "サポート",
 "Overnight tickets are handled by morning. Only 3 need you.": "夜間のチケットは朝までに処理済み。あなたの判断待ちは 3 件だけ。",
 "Projects": "プロジェクト",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio が複数のエージェントを束ね、設計、開発、テスト、レビューを協働で進めます。重要な判断は人が行い、エージェントはレポートとスクリーンショットを根拠として添えます。",
 "Know-how": "ナレッジの蓄積",
 "Agents keep the work moving. Your team stays in control.": "エージェントが自律的に推進し、チームが全体を掌握する。",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio は、チームとエージェントが協働開発するためのガバナンスプラットフォームです。Claude Code、Codex、OpenCode をひとつのエージェントチームにまとめ、タスクを自律的に進めます。進捗はひと目でわかり、重要な判断は人が下します。"
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio は、チームとエージェントが協働開発するためのガバナンスプラットフォームです。Claude Code、Codex、OpenCode をひとつのエージェントチームにまとめ、タスクを自律的に進めます。進捗はひと目でわかり、重要な判断は人が下します。",
+"Find the opportunities in your data. NocoReach puts them into action.": "データから機会を見つけ、NocoReach が実行に移します。"
 }
 };

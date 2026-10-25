@@ -237,3 +237,4 @@ description: NocoBase adalah platform open source untuk membangun, menjalankan, 
 231: Pengetahuan tim
 232: Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.
 233: NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.
+234: Temukan peluang dalam data Anda. NocoReach mewujudkannya.

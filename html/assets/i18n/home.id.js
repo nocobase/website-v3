@@ -145,7 +145,6 @@
 "Sales CRM": "CRM penjualan",
 "Every saving comes with a paper trail.": "Setiap penghematan tercatat jejaknya.",
 "Growth": "Pertumbuhan",
-"Agents find, ship, and measure growth. You make the calls.": "Agen menemukan, menjalankan, dan mengukur pertumbuhan. Anda yang memutuskan.",
 "Support": "Dukungan",
 "Overnight tickets are handled by morning. Only 3 need you.": "Tiket semalam sudah tertangani pagi harinya. Hanya 3 yang menunggu Anda.",
 "Projects": "Proyek",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio mengoordinasikan beberapa agen dalam desain, pengembangan, pengujian, dan review. Keputusan penting diambil manusia, dengan laporan dan tangkapan layar sebagai dasar.",
 "Know-how": "Pengetahuan tim",
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio adalah platform tata kelola untuk tim yang membangun dengan agen. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.",
+"Find the opportunities in your data. NocoReach puts them into action.": "Temukan peluang dalam data Anda. NocoReach mewujudkannya."
 }
 };

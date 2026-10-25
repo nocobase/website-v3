@@ -65,3 +65,4 @@ description: O NocoBase Solution é uma linha de apps de negócio movidos por ag
 079: Ver os apps
 082: Conheça o Core
 086: Conheça o Studio
+087: Crescimento · Beta

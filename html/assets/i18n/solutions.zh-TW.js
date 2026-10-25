@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "IT 資產清冊與管理 · Beta",
 "Every saving comes with a paper trail.": "省下的每一筆錢，都說得清來龍去脈。",
 "Explore NocoITAM": "了解 NocoITAM",
-"Growth · Alpha": "內容與成長 · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Agent 找機會、做成長、看成效，你只管拍板。",
 "Explore NocoReach": "了解 NocoReach",
 "Support · Soon": "客戶服務 · 即將推出",
 "Overnight tickets are handled by morning. Only 3 need you.": "夜裡進來的工單，早上已經處理完，只有 3 件等你拍板。",
@@ -86,5 +84,7 @@
 "Commercial": "商業版",
 "Lead an agent team": "帶領 Agent 團隊開發",
 "Agents keep the work moving. Your team stays in control.": "Agent 自主推進，團隊掌控全局。",
-"Explore Studio": "了解 Studio"
+"Explore Studio": "了解 Studio",
+"Growth · Beta": "內容與成長 · Beta",
+"Find the opportunities in your data. NocoReach puts them into action.": "從資料中發現機會，NocoReach 幫你落實。"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — 開源業務應用，AI 驅動，開箱即用", "description": "NocoBase Solution 是由 Agent 驅動、以 Core 打造的一系列企業業務應用，Agent 做大部分執行工作，人只做關鍵決策。"}; })((window.NB_I18N = window.NB_I18N || {})["zh-TW"] = (window.NB_I18N || {})["zh-TW"] || {});

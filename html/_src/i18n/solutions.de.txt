@@ -66,3 +66,4 @@ description: NocoBase Solution ist eine Reihe agentengesteuerter Geschäftsanwen
 079: Apps ansehen
 082: Core entdecken
 086: Studio entdecken
+087: Wachstum · Beta

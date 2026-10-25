@@ -58,12 +58,14 @@
   {
    "en": "Growth · Alpha",
    "zh": "内容与增长 · Alpha",
-   "where": "phero"
+   "where": "phero",
+   "unused": true
   },
   {
    "en": "Agents find, ship, and measure growth. You make the calls.",
    "zh": "Agent 找机会、做增长、看效果，你只管拍板。",
-   "where": "phero"
+   "where": "phero",
+   "unused": true
   },
   {
    "en": "Explore NocoReach",
@@ -434,6 +436,16 @@
    "en": "Explore Studio",
    "zh": "了解 Studio",
    "where": "start"
+  },
+  {
+   "en": "Growth · Beta",
+   "zh": "内容与增长 · Beta",
+   "where": "phero"
+  },
+  {
+   "en": "Find the opportunities in your data. NocoReach puts them into action.",
+   "zh": "从数据中发现机会，NocoReach 帮你落地。",
+   "where": "phero"
   }
  ],
  "meta": {

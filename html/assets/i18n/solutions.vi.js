@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "Quản lý tài sản CNTT · Beta",
 "Every saving comes with a paper trail.": "Mỗi khoản tiết kiệm đều rõ nguồn gốc.",
 "Explore NocoITAM": "Tìm hiểu NocoITAM",
-"Growth · Alpha": "Tăng trưởng · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Agent tìm cơ hội, triển khai và đo hiệu quả tăng trưởng. Bạn chỉ cần quyết định.",
 "Explore NocoReach": "Tìm hiểu NocoReach",
 "Support · Soon": "Hỗ trợ · Sắp ra mắt",
 "Overnight tickets are handled by morning. Only 3 need you.": "Ticket gửi đến ban đêm đã xử lý xong lúc sáng. Chỉ 3 việc chờ bạn.",
@@ -86,5 +84,7 @@
 "Commercial": "Thương mại",
 "Lead an agent team": "Dẫn dắt một đội agent",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
-"Explore Studio": "Tìm hiểu Studio"
+"Explore Studio": "Tìm hiểu Studio",
+"Growth · Beta": "Tăng trưởng · Beta",
+"Find the opportunities in your data. NocoReach puts them into action.": "Tìm ra cơ hội trong dữ liệu của bạn. NocoReach biến chúng thành hành động."
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Ứng dụng nghiệp vụ mã nguồn mở, vận hành bằng AI, dùng được ngay", "description": "NocoBase Solution là dòng ứng dụng nghiệp vụ do agent vận hành, xây dựng trên Core."}; })((window.NB_I18N = window.NB_I18N || {})["vi"] = (window.NB_I18N || {})["vi"] || {});

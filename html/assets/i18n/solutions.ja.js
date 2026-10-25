@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "IT 資産台帳・管理 · Beta",
 "Every saving comes with a paper trail.": "削減したコストの一つひとつに、確かな経緯を。",
 "Explore NocoITAM": "NocoITAM の詳細",
-"Growth · Alpha": "グロース · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "エージェントが機会を見つけて施策を実行し、効果まで測定。あなたは判断するだけ。",
 "Explore NocoReach": "NocoReach の詳細",
 "Support · Soon": "サポート · 近日公開",
 "Overnight tickets are handled by morning. Only 3 need you.": "夜間のチケットは朝までに処理済み。あなたの判断待ちは 3 件だけ。",
@@ -86,5 +84,7 @@
 "Commercial": "商用版",
 "Lead an agent team": "エージェントチームを率いて開発",
 "Agents keep the work moving. Your team stays in control.": "エージェントが自律的に推進し、チームが全体を掌握する。",
-"Explore Studio": "Studio の詳細"
+"Explore Studio": "Studio の詳細",
+"Growth · Beta": "グロース · Beta",
+"Find the opportunities in your data. NocoReach puts them into action.": "データから機会を見つけ、NocoReach が実行に移します。"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — オープンソースの業務アプリ、AI 駆動ですぐに使える", "description": "NocoBase Solution は、Core 上に構築された、エージェントが動かす業務アプリのシリーズです。"}; })((window.NB_I18N = window.NB_I18N || {})["ja"] = (window.NB_I18N || {})["ja"] || {});

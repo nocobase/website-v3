@@ -66,3 +66,4 @@ description: NocoBase Solution は、Core 上に構築された、エージェ�
 079: アプリを見る
 082: Core の詳細
 086: Studio の詳細
+087: グロース · Beta

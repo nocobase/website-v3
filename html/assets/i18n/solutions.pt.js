@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "Gestão de ativos de TI · Beta",
 "Every saving comes with a paper trail.": "Cada economia com rastro documentado.",
 "Explore NocoITAM": "Conheça o NocoITAM",
-"Growth · Alpha": "Crescimento · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Os agentes encontram, executam e medem o crescimento. Você decide.",
 "Explore NocoReach": "Conheça o NocoReach",
 "Support · Soon": "Suporte · Em breve",
 "Overnight tickets are handled by morning. Only 3 need you.": "Os tickets da madrugada estão resolvidos de manhã. Só 3 precisam de você.",
@@ -86,5 +84,7 @@
 "Commercial": "Comercial",
 "Lead an agent team": "Lidere uma equipe de agentes",
 "Agents keep the work moving. Your team stays in control.": "Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.",
-"Explore Studio": "Conheça o Studio"
+"Explore Studio": "Conheça o Studio",
+"Growth · Beta": "Crescimento · Beta",
+"Find the opportunities in your data. NocoReach puts them into action.": "Encontre as oportunidades nos seus dados. O NocoReach as coloca em prática."
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Apps de negócio open source, movidos por IA e prontos para usar", "description": "O NocoBase Solution é uma linha de apps de negócio movidos por agentes e construídos sobre o Core."}; })((window.NB_I18N = window.NB_I18N || {})["pt"] = (window.NB_I18N || {})["pt"] || {});

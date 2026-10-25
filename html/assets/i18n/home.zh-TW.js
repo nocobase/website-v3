@@ -145,7 +145,6 @@
 "Sales CRM": "銷售管理",
 "Every saving comes with a paper trail.": "省下的每一筆錢，都說得清來龍去脈。",
 "Growth": "內容與成長",
-"Agents find, ship, and measure growth. You make the calls.": "Agent 找機會、做成長、看成效，你只管拍板。",
 "Support": "客戶服務",
 "Overnight tickets are handled by morning. Only 3 need you.": "夜裡進來的工單，早上已經處理完，只有 3 件等你拍板。",
 "Projects": "專案協作",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio 組織多個 Agent 協同完成設計、開發、測試和審查，關鍵決策交給人把關，並附上報告和截圖作為依據。",
 "Know-how": "知識累積",
 "Agents keep the work moving. Your team stays in control.": "Agent 自主推進，團隊掌控全局。",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio 是團隊與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。"
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio 是團隊與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。",
+"Find the opportunities in your data. NocoReach puts them into action.": "從資料中發現機會，NocoReach 幫你落實。"
 }
 };

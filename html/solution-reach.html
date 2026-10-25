@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoReach — Agent 找机会、做增长、看效果" data-en="NocoReach — Agents That Find, Ship, and Measure Growth">NocoReach — Agent 找机会、做增长、看效果</title>
-<meta name="description" content="NocoReach 是基于 NocoBase 的开源 AI 增长团队：每天分析网站、搜索、社区和 GitHub 数据，找出值得做的机会；交给 Agent 按预设流程完成，经你审阅后发布，上线后自动衡量效果。" data-zh="NocoReach 是基于 NocoBase 的开源 AI 增长团队：每天分析网站、搜索、社区和 GitHub 数据，找出值得做的机会；交给 Agent 按预设流程完成，经你审阅后发布，上线后自动衡量效果。" data-en="NocoReach is an open-source AI growth team built on NocoBase: it analyzes your site, search, community, and GitHub data daily, surfaces evidence-backed opportunities, has agents execute them by playbook, publishes after your review, and measures the impact.">
+<title data-zh="NocoReach — 从数据中发现机会，NocoReach 帮你落地" data-en="NocoReach — Find the Opportunities in Your Data and Put Them into Action">NocoReach — 从数据中发现机会，NocoReach 帮你落地</title>
+<meta name="description" content="NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：每天分析网站、搜索、AI 搜索、GitHub 和社区数据，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。" data-zh="NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：每天分析网站、搜索、AI 搜索、GitHub 和社区数据，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。" data-en="NocoReach is an open-source AI growth operations platform built on NocoBase Core, with data collection, daily analysis, and agent execution in one place. Every day it analyzes your website, search, AI search, GitHub, and community data and finds what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.">
 <script>
 (function () {
   try {
@@ -23,21 +23,52 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/site.css">
+<style>
+/* Live demo styles: the demo site itself under the hero, or nothing when the site cannot be reached or on a phone; the link under it opens the site in a new tab. */
+.ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
+.ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+/* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
+#tryDemo { padding-top: 72px; }
+.ld-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.ld-open a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 15px; white-space: nowrap; }
+.ld-open a:hover { color: var(--brand-hover); }
+.ld-open svg.lucide { width: 16px; height: 16px; }
+#tryDemo .sec-body { margin-top: 0; }
+.ld-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.ld-head p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+#tryDemo[hidden] { display: none; }
+#tryDemo .ld-head { scroll-margin-top: 16px; } /* Try It Online scrolls to the title: 16px below the 80px the site keeps for its sticky header (html scroll-padding-top) */ /* its section's heading stays in view above it, under the sticky header */
+@media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
+</style>
 </head>
 <body data-page="reach" data-root="">
 <div id="site-header"></div>
 <main>
 <section class="phero">
   <div class="container">
-    <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoReach · <t-zh>增长</t-zh><t-en>Growth</t-en></span><span class="pill pass">Alpha</span></p>
-    <h1><t-zh>Agent 找机会、做增长、看效果，<span class="m">你只管拍板。</span></t-zh><t-en>Agents find, ship, and measure growth. <span class="m">You make the calls.</span></t-en></h1>
-    <p class="lede"><t-zh>NocoReach 是你的 AI 增长团队。它每天分析网站、搜索、AI 问答、社区、GitHub 和 CRM 数据，带依据找出增长机会；一键派给 Agent，按预设流程改页面、写文档、回复社区问题、修复技术故障。经你审阅后发布，并在上线第 7 天和第 28 天自动复盘效果。</t-zh><t-en>NocoReach is your AI growth team. Every day it analyzes your web, search, AI answers, community, GitHub, and CRM data to surface evidence-backed opportunities. With one click, agents follow playbooks to update pages, write docs, reply to threads, or fix technical issues. Nothing ships without your review, and impact is measured automatically on days 7 and 28.</t-en></p>
+    <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoReach · <t-zh>增长</t-zh><t-en>Growth</t-en></span><span class="pill pass">Beta</span></p>
+    <h1><t-zh>从数据中发现机会，<span class="m">NocoReach 帮你落地。</span></t-zh><t-en>Find the opportunities in your data. <span class="m">NocoReach puts them into action.</span></t-en></h1>
+    <p class="lede"><t-zh>NocoReach 是 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成。每天分析网站、搜索、AI 搜索、GitHub 和社区数据，找出值得做的事并写明依据；你确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。</t-zh><t-en>NocoReach is an AI growth operations platform: data collection, daily analysis, and agent execution in one place. Every day it analyzes your website, search, AI search, GitHub, and community data and finds what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
-      <a class="btn btn-sec" href="https://docs.nocobase.com/zh-CN/" target="_blank" rel="noopener"><t-zh>立即安装</t-zh><t-en>Install Now</t-en></a>
+      <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
+      <a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoReach" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a>
     </div>
-    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0-alpha.68</b></div><div><t-zh>可接入平台</t-zh><t-en>Platforms</t-en><b><t-zh>50+，支持 MCP</t-zh><t-en>50+, plus MCP</t-en></b></div><div><t-zh>内置流程</t-zh><t-en>Built-in playbooks</t-en><b>12</b></div></div>
-    <div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx"><aside class="sx-side"><div class="sx-brand"><span class="mk"><i data-lucide="chart-no-axes-column"></i></span>Noco<span>Reach</span></div><a class="it on"><i data-lucide="sparkles"></i><t-zh>洞察</t-zh><t-en>Insights</t-en></a><a class="it"><i data-lucide="lightbulb"></i><t-zh>机会</t-zh><t-en>Opportunities</t-en><em class="hot">2</em></a><a class="it"><i data-lucide="list-checks"></i><t-zh>任务</t-zh><t-en>Tasks</t-en><em class="hot">15</em></a><a class="it"><i data-lucide="chart-no-axes-column"></i><t-zh>成效</t-zh><t-en>Results</t-en></a><a class="it"><i data-lucide="globe"></i><t-zh>网站与产品</t-zh><t-en>Site & product</t-en><em><i data-lucide="chevron-right"></i></em></a><a class="it"><i data-lucide="search"></i><t-zh>搜索与市场</t-zh><t-en>Search & market</t-en><em><i data-lucide="chevron-right"></i></em></a><a class="it"><i data-lucide="messages-square"></i><t-zh>社区</t-zh><t-en>Community</t-en><em><i data-lucide="chevron-right"></i></em></a><a class="it"><i data-lucide="bot"></i><t-zh>AI 团队</t-zh><t-en>AI team</t-en><em><i data-lucide="chevron-right"></i></em></a><a class="it"><i data-lucide="settings-2"></i><t-zh>设置</t-zh><t-en>Settings</t-en><em><i data-lucide="chevron-right"></i></em></a><div class="foot"><t-zh><b>在数据里找到机会，</b><br>NocoReach 把它做完。</t-zh><t-en><b>Find the opportunities in your data.</b><br>NocoReach gets them done.</t-en></div></aside><div class="sx-main"><div class="sx-top"><b><t-zh>洞察</t-zh><t-en>Insights</t-en></b><span class="r"><span class="ai"><i data-lucide="sparkles"></i></span><span class="av"><t-zh>陈</t-zh><t-en>A</t-en></span></span></div><div class="sx-body"><div class="sx-h"><div><h5><t-zh>洞察</t-zh><t-en>Insights</t-en></h5><p><t-zh>近 28 天 · 数据截至 10-13 · 今天 06:53 完成分析</t-zh><t-en>Last 28 days · data through Oct 13 · analyzed today 06:53</t-en></p></div><span class="r"><span class="b sm"><i data-lucide="refresh-cw"></i><t-zh>重新分析</t-zh><t-en>Update analysis</t-en></span></span></div><div class="sg" style="background:var(--human-tint);border-color:transparent;grid-template-columns:auto 1fr auto;display:grid;align-items:center;gap:10px"><span style="color:var(--human-ink)"><i data-lucide="bell"></i></span><span style="font-size:12.5px;color:var(--human-ink)"><b style="font-size:12.5px"><t-zh>15 件事等你处理</t-zh><t-en>15 things need you</t-en></b> · <t-zh>发布 v2.2.26 更新说明 · 等你开始　内容选题：nocobase github · 等你审核</t-zh><t-en>Release notes v2.2.26 · waiting to start　Topic: nocobase github · review</t-en></span><span style="font-size:12px;color:var(--human-ink)"><t-zh>查看全部</t-zh><t-en>View all</t-en></span></div><div class="sx-sec"><t-zh>关键指标</t-zh><t-en>Key metrics</t-en></div><div class="stat" style="--n:6"><div><small><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></small><b>12,490</b><span class="d" style="color:var(--risk-ink)">↓ 5.5%</span><svg viewBox="0 0 140 26" width="100%" height="26" preserveAspectRatio="none" style="display:block;margin-top:6px"><polyline fill="none" stroke="var(--risk-ink)" stroke-width="1.4" points="0.0,2.0 12.7,16.7 25.5,9.3 38.2,24.0 50.9,2.0 63.6,9.3 76.4,16.7 89.1,2.0 101.8,24.0 114.5,9.3 127.3,2.0 140.0,16.7"/></svg></div><div><small><t-zh>搜索曝光</t-zh><t-en>Impressions</t-en></small><b>758,828</b><span class="d" style="color:var(--risk-ink)">↓ 20%</span><svg viewBox="0 0 140 26" width="100%" height="26" preserveAspectRatio="none" style="display:block;margin-top:6px"><polyline fill="none" stroke="var(--risk-ink)" stroke-width="1.4" points="0.0,2.0 12.7,7.5 25.5,2.0 38.2,13.0 50.9,7.5 63.6,18.5 76.4,13.0 89.1,18.5 101.8,13.0 114.5,24.0 127.3,18.5 140.0,18.5"/></svg></div><div><small><t-zh>会话</t-zh><t-en>Sessions</t-en></small><b>55,197</b><span class="d" style="color:var(--risk-ink)">↓ 13%</span><svg viewBox="0 0 140 26" width="100%" height="26" preserveAspectRatio="none" style="display:block;margin-top:6px"><polyline fill="none" stroke="var(--risk-ink)" stroke-width="1.4" points="0.0,9.3 12.7,2.0 25.5,16.7 38.2,9.3 50.9,2.0 63.6,16.7 76.4,24.0 89.1,9.3 101.8,16.7 114.5,24.0 127.3,16.7 140.0,24.0"/></svg></div><div><small><t-zh>关键事件</t-zh><t-en>Key events</t-en></small><b>22,354</b><span class="d" style="color:var(--risk-ink)">↓ 16%</span><svg viewBox="0 0 140 26" width="100%" height="26" preserveAspectRatio="none" style="display:block;margin-top:6px"><polyline fill="none" stroke="var(--risk-ink)" stroke-width="1.4" points="0.0,13.0 12.7,7.5 25.5,18.5 38.2,2.0 50.9,13.0 63.6,18.5 76.4,7.5 89.1,18.5 101.8,24.0 114.5,13.0 127.3,18.5 140.0,7.5"/></svg></div><div><small><t-zh>新增 Star</t-zh><t-en>New stars</t-en></small><b>+356</b><span class="d" style="color:var(--risk-ink)">↓ 37%</span><svg viewBox="0 0 140 26" width="100%" height="26" preserveAspectRatio="none" style="display:block;margin-top:6px"><polyline fill="none" stroke="var(--risk-ink)" stroke-width="1.4" points="0.0,16.7 12.7,13.0 25.5,20.3 38.2,13.0 50.9,16.7 63.6,20.3 76.4,16.7 89.1,13.0 101.8,20.3 114.5,24.0 127.3,16.7 140.0,2.0"/></svg></div><div><small><t-zh>下载量</t-zh><t-en>Downloads</t-en></small><b>43,573</b><span class="d" style="color:var(--pass-ink)">↑ 4%</span><svg viewBox="0 0 140 26" width="100%" height="26" preserveAspectRatio="none" style="display:block;margin-top:6px"><polyline fill="none" stroke="var(--pass)" stroke-width="1.4" points="0.0,24.0 12.7,18.5 25.5,18.5 38.2,13.0 50.9,18.5 63.6,13.0 76.4,7.5 89.1,13.0 101.8,7.5 114.5,7.5 127.3,2.0 140.0,2.0"/></svg></div></div><div class="duo2" style="grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)"><div class="pnl"><div class="h"><t-zh>今天的变化</t-zh><t-en>Today’s changes</t-en><span class="tag grey">36</span><span class="r"><t-zh>待办 5 · 观察中 7</t-zh><t-en>To do 5 · Watching 7</t-en></span></div><div class="rows"><div style="grid-template-columns:minmax(0,1fr) auto"><b><t-zh>给 /tutorials 索引页补教程清单</t-zh><t-en>Add the tutorial list to /tutorials</t-en> <span class="tag amber"><t-zh>正文仅 72 字</t-zh><t-en>72 chars of body</t-en></span></b><small style="grid-column:1"><t-zh>网站内容 · 近 28 天仍有 265 次曝光</t-zh><t-en>Website content · still 265 impressions in 28 days</t-en></small><span class="acts" style="grid-row:1/3;grid-column:2;margin:0"><span class="b sm"><t-zh>交给 Agent</t-zh><t-en>Hand off to agent</t-en></span><span class="b sm"><t-zh>忽略</t-zh><t-en>Ignore</t-en></span></span></div><div style="grid-template-columns:minmax(0,1fr) auto"><b><t-zh>给 Docker 安装页改标题和摘要</t-zh><t-en>Rewrite the Docker install page title</t-en> <span class="tag red"><t-zh>↓ 61%</t-zh><t-en>↓ 61%</t-en></span></b><small style="grid-column:1"><t-zh>Search Console · 搜索点击从 31 降到 12</t-zh><t-en>Search Console · clicks down from 31 to 12</t-en></small><span class="acts" style="grid-row:1/3;grid-column:2;margin:0"><span class="b sm"><t-zh>交给 Agent</t-zh><t-en>Hand off to agent</t-en></span><span class="b sm"><t-zh>忽略</t-zh><t-en>Ignore</t-en></span></span></div><div style="grid-template-columns:minmax(0,1fr) auto"><b><t-zh>/es/api/auth 平均排名 8.5，接近首页</t-zh><t-en>/es/api/auth at position 8.5, near page one</t-en> <span class="tag blue"><t-zh>排名 8.5</t-zh><t-en>Position 8.5</t-en></span></b><small style="grid-column:1"><t-zh>Search Console · 曝光 1,461，只有 1 次点击</t-zh><t-en>Search Console · 1,461 impressions, 1 click</t-en></small><span class="acts" style="grid-row:1/3;grid-column:2;margin:0"><span class="b sm"><t-zh>交给 Agent</t-zh><t-en>Hand off to agent</t-en></span><span class="b sm"><t-zh>忽略</t-zh><t-en>Ignore</t-en></span></span></div><div style="grid-template-columns:minmax(0,1fr) auto"><b><t-zh>/cn/commercial 访问多、关键事件少</t-zh><t-en>/cn/commercial: many visits, few key events</t-en> <span class="tag amber"><t-zh>转化偏低</t-zh><t-en>Low conversion</t-en></span></b><small style="grid-column:1"><t-zh>GA4 · 浏览 2,560，关键事件率不足站均四分之一</t-zh><t-en>GA4 · 2,560 views, under a quarter of the site’s event rate</t-en></small><span class="acts" style="grid-row:1/3;grid-column:2;margin:0"><span class="b sm"><t-zh>交给 Agent</t-zh><t-en>Hand off to agent</t-en></span><span class="b sm"><t-zh>忽略</t-zh><t-en>Ignore</t-en></span></span></div></div></div><div class="pnl"><div class="h"><t-zh>当前形势</t-zh><t-en>Current situation</t-en></div><div class="rows"><div style="grid-template-columns:8px minmax(0,1fr)"><span style="grid-row:1/3;width:7px;height:7px;border-radius:50%;background:var(--human)"></span><b><t-zh>Google 关注度 ↓ 36%</t-zh><t-en>Google interest ↓ 36%</t-en></b><small><t-zh>Trends · 与 NocoDB、Baserow、Budibase 同期对比</t-zh><t-en>Trends · vs NocoDB, Baserow, Budibase</t-en></small></div><div style="grid-template-columns:8px minmax(0,1fr)"><span style="grid-row:1/3;width:7px;height:7px;border-radius:50%;background:var(--human)"></span><b><t-zh>53 个页面超过一年没更新</t-zh><t-en>53 pages not updated in a year</t-en></b><small><t-zh>网站内容 · 共 458 页</t-zh><t-en>Website content · 458 pages</t-en></small></div><div style="grid-template-columns:8px minmax(0,1fr)"><span style="grid-row:1/3;width:7px;height:7px;border-radius:50%;background:var(--human)"></span><b><t-zh>5 个论坛主题没人回复</t-zh><t-en>5 forum topics without replies</t-en></b><small><t-zh>论坛 · 近 14 天新增 23 个主题</t-zh><t-en>Forum · 23 new topics in 14 days</t-en></small></div><div style="grid-template-columns:8px minmax(0,1fr)"><span style="grid-row:1/3;width:7px;height:7px;border-radius:50%;background:var(--human)"></span><b><t-zh>竞品近 7 天更新 12 次</t-zh><t-en>12 competitor updates in 7 days</t-en></b><small><t-zh>竞品 · Budibase 6、Retool 4、NocoDB 1</t-zh><t-en>Competitors · Budibase 6, Retool 4, NocoDB 1</t-en></small></div><div style="grid-template-columns:8px minmax(0,1fr)"><span style="grid-row:1/3;width:7px;height:7px;border-radius:50%;background:var(--human)"></span><b><t-zh>跟踪 50 个关键词，14 个在前 10</t-zh><t-en>50 keywords tracked, 14 in the top 10</t-en></b><small><t-zh>排名跟踪 · 本周 3 升 1 降</t-zh><t-en>Rank tracking · 3 up, 1 down this week</t-en></small></div></div></div></div></div></div></div></div></div></div>
+    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0-beta.71</b></div><div><t-zh>数据来源</t-zh><t-en>Data sources</t-en><b>20+</b></div><div><t-zh>内置做法</t-zh><t-en>Built-in playbooks</t-en><b>12</b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
+  </div>
+</section>
+
+<section class="sec" id="tryDemo" hidden>
+  <div class="container">
+    <div class="ld-head">
+      <div>
+        <h2><t-zh>在线体验 NocoReach</t-zh><t-en>Try NocoReach online</t-en></h2>
+        <p><t-zh>已用演示账号自动登录，数据都是虚构的，可以随意操作。</t-zh><t-en>You're signed in to a demo account. All the data is made up, so try anything.</t-en></p>
+      </div>
+      <span class="ld-open" id="liveDemoBar"><a href="https://solutions-cn.nocobase.com/reach/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span>
+    </div>
+    <div class="sec-body">
+    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoReach" allow="clipboard-write"></iframe></div></div>
+    </div>
   </div>
 </section>
 
@@ -205,11 +236,69 @@
 <div class="container">
   <div class="band">
     <div><h2><t-zh>每天打开，都知道增长该做什么。</t-zh><t-en>Know your next growth move, every single day.</t-en></h2><p><t-zh>输入网站地址，自动发现可接入的数据源，第二天即可收到首份机会清单。</t-zh><t-en>Enter your website URL to auto-discover data sources and get your first opportunity list tomorrow.</t-en></p></div>
-    <div class="cta"><a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up"></i></a><a class="btn btn-sec" href="https://docs.nocobase.com/zh-CN/" target="_blank" rel="noopener"><t-zh>立即安装</t-zh><t-en>Install Now</t-en></a></div>
+    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoReach" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
   </div>
 </div>
 </main>
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
+<script>
+/* Live demo script: the Chinese site on a Simplified Chinese page and the international one in every other language (Traditional Chinese included), kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
+(function () {
+  var SITES = { zh: 'https://solutions-cn.nocobase.com/reach/', en: 'https://solutions.nocobase.com/reach/' };
+  var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
+  var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
+  var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
+  var status = {}, shown = false, scrolling = false;
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
+  function narrow() { return window.innerWidth < 768; }
+  function up() { return !forced && status[SITES[lang()]] === 'up'; }
+  function probe(url) {
+    if (status[url]) return;
+    status[url] = 'checking';
+    var img = new Image(), settled = false;
+    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); check(); }
+    var timer = setTimeout(function () { end(false); }, 8000);
+    img.onload = function () { end(true); };
+    img.onerror = function () { end(false); };
+    img.src = url + 'assets/favicon.ico?check=' + Date.now();
+  }
+  function apply() {
+    var url = SITES[lang()], down = forced || status[url] === 'down';
+    open.href = url;
+    tries.forEach(function (a) { a.hidden = down; });
+    section.hidden = !up() || narrow();
+    if (section.hidden) { frame.removeAttribute('src'); return; }
+    if (shown && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
+  }
+  function check() {
+    if (shown || scrolling || section.hidden) return;
+    var r = box.getBoundingClientRect(), seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+    if (seen < r.height * 0.3) return;
+    shown = true;
+    apply();
+    window.removeEventListener('scroll', check);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', function () { apply(); check(); });
+  tries.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      a.blur(); // no focus ring left on the button once the page has scrolled away and back
+      if (narrow() || !up()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
+      // Scroll first and load the demo once there: loading starts its sign-in, which puts the cursor in a field and would stop the scroll short.
+      scrolling = true;
+      section.querySelector('.ld-head').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var done = function () { if (!scrolling) return; scrolling = false; shown = true; apply(); };
+      if ('onscrollend' in window) window.addEventListener('scrollend', done, { once: true });
+      setTimeout(done, 1200);
+    });
+  });
+  function start() { if (!forced) probe(SITES[lang()]); apply(); }
+  start();
+  check();
+  new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>
 </body>
 </html>

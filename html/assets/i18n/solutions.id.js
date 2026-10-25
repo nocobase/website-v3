@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "Manajemen aset TI · Beta",
 "Every saving comes with a paper trail.": "Setiap penghematan tercatat jejaknya.",
 "Explore NocoITAM": "Pelajari NocoITAM",
-"Growth · Alpha": "Pertumbuhan · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Agen menemukan, menjalankan, dan mengukur pertumbuhan. Anda yang memutuskan.",
 "Explore NocoReach": "Pelajari NocoReach",
 "Support · Soon": "Dukungan · Segera",
 "Overnight tickets are handled by morning. Only 3 need you.": "Tiket semalam sudah tertangani pagi harinya. Hanya 3 yang menunggu Anda.",
@@ -86,5 +84,7 @@
 "Commercial": "Komersial",
 "Lead an agent team": "Pimpin tim agen",
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
-"Explore Studio": "Pelajari Studio"
+"Explore Studio": "Pelajari Studio",
+"Growth · Beta": "Pertumbuhan · Beta",
+"Find the opportunities in your data. NocoReach puts them into action.": "Temukan peluang dalam data Anda. NocoReach mewujudkannya."
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Aplikasi bisnis open source, digerakkan AI dan siap pakai", "description": "NocoBase Solution adalah rangkaian aplikasi bisnis yang digerakkan agen dan dibangun di atas Core."}; })((window.NB_I18N = window.NB_I18N || {})["id"] = (window.NB_I18N || {})["id"] || {});

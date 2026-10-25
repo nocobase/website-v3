@@ -145,7 +145,6 @@
 "Sales CRM": "CRM de vendas",
 "Every saving comes with a paper trail.": "Cada economia com rastro documentado.",
 "Growth": "Crescimento",
-"Agents find, ship, and measure growth. You make the calls.": "Os agentes encontram, executam e medem o crescimento. Você decide.",
 "Support": "Suporte",
 "Overnight tickets are handled by morning. Only 3 need you.": "Os tickets da madrugada estão resolvidos de manhã. Só 3 precisam de você.",
 "Projects": "Projetos",
@@ -216,6 +215,7 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "O Studio coordena vários agentes no design, desenvolvimento, testes e revisão. As decisões importantes ficam com uma pessoa, com relatórios e capturas de tela como base.",
 "Know-how": "Conhecimento acumulado",
 "Agents keep the work moving. Your team stays in control.": "Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "O NocoBase Studio é a plataforma de governança para equipes que desenvolvem com agentes. Ele reúne o Claude Code, o Codex e o OpenCode em uma única equipe de agentes que faz as tarefas avançarem sozinha. O progresso fica à vista, e as decisões importantes ficam com as pessoas."
+"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "O NocoBase Studio é a plataforma de governança para equipes que desenvolvem com agentes. Ele reúne o Claude Code, o Codex e o OpenCode em uma única equipe de agentes que faz as tarefas avançarem sozinha. O progresso fica à vista, e as decisões importantes ficam com as pessoas.",
+"Find the opportunities in your data. NocoReach puts them into action.": "Encontre as oportunidades nos seus dados. O NocoReach as coloca em prática."
 }
 };

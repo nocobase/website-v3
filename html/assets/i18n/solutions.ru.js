@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "Управление IT-активами · Beta",
 "Every saving comes with a paper trail.": "Каждая экономия с полной историей.",
 "Explore NocoITAM": "Подробнее о NocoITAM",
-"Growth · Alpha": "Рост · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Агенты находят возможности, действуют и измеряют рост. Решаете вы.",
 "Explore NocoReach": "Подробнее о NocoReach",
 "Support · Soon": "Поддержка · Скоро",
 "Overnight tickets are handled by morning. Only 3 need you.": "Ночные заявки к утру обработаны. Только 3 ждут вас.",
@@ -86,5 +84,7 @@
 "Commercial": "Коммерческая",
 "Lead an agent team": "Руководите командой агентов",
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
-"Explore Studio": "Подробнее о Studio"
+"Explore Studio": "Подробнее о Studio",
+"Growth · Beta": "Рост · Beta",
+"Find the opportunities in your data. NocoReach puts them into action.": "Находите возможности в своих данных. NocoReach воплощает их в жизнь."
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — бизнес-приложения с открытым кодом на основе ИИ, готовые к работе", "description": "NocoBase Solution — линейка бизнес-приложений на основе агентов, построенных на Core."}; })((window.NB_I18N = window.NB_I18N || {})["ru"] = (window.NB_I18N || {})["ru"] || {});

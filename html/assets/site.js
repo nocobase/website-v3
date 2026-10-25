@@ -42,7 +42,7 @@
         '<a href="blog.html"' + on('blog') + '><i data-lucide="newspaper"></i><b>' + T('博客', 'Blog') + '</b><span>' + T('产品思考、工程实践与方法论', 'Product thinking and engineering practices') + '</span></a>' +
         '<a href="#"><i data-lucide="history"></i><b>' + T('更新日志', 'Changelog') + '</b><span>' + T('每次版本迭代的新能力与改进', 'What shipped in every release') + '</span></a>' +
         '<a href="https://forum.nocobase.com/" target="_blank" rel="noopener"><i data-lucide="messages-square"></i><b>' + T('社区', 'Community') + '</b><span>' + T('在论坛提问、交流经验与反馈建议', 'Ask questions and share patterns') + '</span></a>' +
-        '<a href="contact.html"><i data-lucide="mail"></i><b>' + T('联系我们', 'Contact Us') + '</b><span>' + T('商务合作、产品咨询与技术支持', 'Sales, partnerships, and support') + '</span></a>' +
+        '<a href="contact.html"><i data-lucide="mail"></i><b>' + T('联系我们', 'Contact Us') + '</b><span>' + T('商务合作、产品咨询与技术支持', 'Partnerships, product questions, and support') + '</span></a>' +
       '</div></div>' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('伙伴', 'Partners') + '<i data-lucide="chevron-down"></i></button><div class="dd">' +
         '<a href="find-partner.html"' + on('find-partner') + '><i data-lucide="search"></i><b>' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</b><span>' + T('和懂行的伙伴一起，把系统做出来、用起来', 'Get your system built and running with an expert') + '</span></a>' +

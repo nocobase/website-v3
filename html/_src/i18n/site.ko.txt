@@ -1,0 +1,14 @@
+# 한국어（제목은 명사형·해라체, 본문은 합니다체, 목록 항목은 명사형 개조식）
+# 용어：foundation = 기반；building blocks = 기본 기능；governance = 거버넌스；agent team = 에이전트 팀；
+# coding agent = 코딩 에이전트；business logic = 비즈니스 로직；business systems = 비즈니스 시스템；
+# vibe coding = 바이브 코딩；self-hosted = 셀프 호스팅；at a glance = 한눈에
+# 영업：lead = 리드；opportunity / deal = 영업 기회；account / customer = 고객사；contact = 연락처；company = 회사；
+# approval = 승인；approve with conditions = 조건부 승인；reject = 반려；approval assistant = 승인 도우미；
+# timeline = 타임라인；inbox = 수신함；business guidance = 업무 지침；follow up = 후속 조치；
+# close lost = 실주 처리；win rate = 수주율；pipeline = 파이프라인；weighted forecast = 가중 예측；report = 리포트
+# IT 자산：asset register = 자산 대장；device = 기기；entitlement / license = 라이선스；seat = 시트；idle = 유휴；
+# stock = 재고；stocktake / audit = 실사；reconcile = 대조；discrepancy = 불일치；standard kit = 표준 구성；
+# purchase request = 구매 요청；PO = 발주서；joiner / leaver = 입사자 / 퇴사자；onboarding / offboarding = 입사·퇴사 처리；
+# renewal = 갱신；skill = 스킬
+033: 에이전트 팀으로 더 많은 고객 프로젝트 수행
+036: 모든 솔루션

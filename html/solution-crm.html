@@ -6,16 +6,30 @@
 <title data-zh="NocoCRM — 给你的销售，配一支 7×24 的 Agent 团队" data-en="NocoCRM — A 24/7 Agent Team for Your Sales Team">NocoCRM — 给你的销售，配一支 7×24 的 Agent 团队</title>
 <meta name="description" content="NocoCRM 是基于 NocoBase 的开源 CRM，内置一支销售 Agent 团队：每条线索、每封来信、每个商机都有 Agent 主动跟进；审批、会前准备和客户情报都替你备好。关键决定由你来做。" data-zh="NocoCRM 是基于 NocoBase 的开源 CRM，内置一支销售 Agent 团队：每条线索、每封来信、每个商机都有 Agent 主动跟进；审批、会前准备和客户情报都替你备好。关键决定由你来做。" data-en="NocoCRM is an open-source CRM on NocoBase with a built-in sales agent team: every lead, message, and deal is followed up proactively, with approvals, meeting prep, and account intel ready for you. You make the calls.">
 <script>
+/* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 crm.<语言>.js，
+   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图在中文以外的语言里都显示英文界面 */
 (function () {
+  var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
+  var FONTS = { ru: 'Inter:wght@400;500;600;700', ja: 'Noto+Sans+JP:wght@400;500;600;700', ko: 'Noto+Sans+KR:wght@400;500;600;700', 'zh-TW': 'Noto+Sans+TC:wght@400;500;600;700' };
+  var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
-    window.__lang = lang;
-    document.documentElement.lang = lang;
-  } catch (e) {
-    window.__lang = 'zh';
-  }
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+  } catch (e) {}
+  window.__i18nPage = 'crm';
+  window.__lang = lang;
+  document.documentElement.lang = lang;
+  window.__font = function (l) {
+    if (!FONTS[l] || document.getElementById('font-' + l)) return;
+    var k = document.createElement('link');
+    k.id = 'font-' + l;
+    k.rel = 'stylesheet';
+    k.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[l] + '&display=swap';
+    document.head.appendChild(k);
+  };
+  window.__font(lang);
+  if (lang !== 'zh' && lang !== 'en') document.write('<script src="assets/i18n/site.' + lang + '.js"><\/script><script src="assets/i18n/crm.' + lang + '.js"><\/script>');
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -321,14 +335,14 @@ First contact within 24h; follow up within 7 days of a quote.</t-en></div><p cla
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
 <script>
-/* Live demo script: the Chinese site on a Chinese page and the international one otherwise, kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
+/* Live demo script: the Chinese site on a Simplified Chinese page and the international one in every other language (Traditional Chinese included), kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
 (function () {
   var SITES = { zh: 'https://solutions-cn.nocobase.com/crm/', en: 'https://solutions.nocobase.com/crm/' };
   var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
   var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
   var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
   var status = {}, shown = false, scrolling = false;
-  function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }
   function up() { return !forced && status[SITES[lang()]] === 'up'; }
   function probe(url) {
@@ -379,10 +393,10 @@ First contact within 24h; follow up within 7 days of a quote.</t-en></div><p cla
 })();
 </script>
 <script>
-/* NocoCRM intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Chinese page and the English one otherwise; switching the language puts the cover back. */
+/* NocoCRM intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Simplified Chinese page and the English one in every other language, until each has its own; switching the language puts the cover back. */
 (function () {
   var box = document.getElementById('introVideo'), cover = box.innerHTML;
-  function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
   box.addEventListener('click', function (e) {
     if (!e.target.closest('#introPlay')) return;
     var l = lang();

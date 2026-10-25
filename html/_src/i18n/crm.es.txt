@@ -1,0 +1,122 @@
+# Español（中性拉美/西班牙通用，tú）
+# 术语：foundation = base；building blocks = componentes base；governance = gobernanza；agent team = equipo de agentes；
+# coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
+# vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
+# 子页面用语：lead = lead（复数 leads）；opportunity / deal = oportunidad；account = cliente；approval = aprobación；
+# approval assistant = asistente de aprobación；follow up = hacer seguimiento；timeline = cronología；inbox = bandeja de entrada；
+# business guidance = pautas de negocio；quote = cotización；reports = informes；win rate = tasa de éxito；
+# asset register = registro de activos；stock = stock；idle = sin uso；entitlement = licencia de software；seat = puesto；
+# stocktake / audit = auditoría；reconcile = conciliar；discrepancy = discrepancia；disposal = baja；
+# joiner = nueva incorporación；leaver = salida / quien se va；standard kit = equipamiento estándar；
+# purchase request = solicitud de compra；PO = orden de compra；Try It Online = Probar en línea；Watch the intro = Ver el video
+# 界面名称照英文界面原样写（西语读者看到的是英文界面）：Inbox、Approvals、Leads、Opportunities、Companies、Contacts、Tasks、Reports、
+# Business guidance、Research Agent、Approval Agent；上面的用语只用于一般描述
+title: NocoCRM — Un equipo de agentes 24/7 para tu equipo de ventas
+description: NocoCRM es un CRM de código abierto sobre NocoBase con un equipo de agentes de ventas integrado: cada lead, mensaje y oportunidad recibe seguimiento proactivo, con aprobaciones, preparación de reuniones e información de clientes listas para ti. Tú decides.
+000: CRM de ventas
+001: Tus ventas ya tienen <span class="m">un equipo de agentes 24/7.</span>
+002: NocoCRM incluye 6 agentes de ventas e integra tu correo y WhatsApp: hacen seguimiento de leads y oportunidades, responden los mensajes al instante y revisan contigo las aprobaciones. Los agentes sugieren; tú decides.
+003: Probar en línea
+004: Ver el video
+005: Licencia
+006: Código abierto
+007: Basado en
+008: Versión
+009: Agentes incluidos
+010: Integraciones
+011: Correo · WhatsApp
+012: Modelos de IA
+013: Tú eliges
+014: Prueba NocoCRM en línea
+015: Ya iniciaste sesión con una cuenta de demostración. Todos los datos son ficticios, así que prueba lo que quieras.
+016: Abrir completo en una pestaña nueva
+017: Un día en ventas
+018: Los agentes resolvieron hoy 37 tareas rutinarias. 
+019: Solo 6 necesitaron tu decisión.
+020: Los agentes se encargan en segundo plano del trabajo que consume tiempo: investigar clientes, hacer seguimiento de leads, preparar resúmenes para reuniones, redactar respuestas y revisar descuentos. Cuando hace falta criterio, te llega con sus razones y tú decides.
+021: Seguimiento con agentes
+022: Nada se queda por el camino. 
+023: Los agentes hacen seguimiento de cada evento automáticamente.
+024: Ya sea un lead nuevo, una nueva oportunidad, la respuesta de un cliente, una conversación de WhatsApp que se queda en silencio, una tarea completada o la revisión de cada mañana, los agentes se activan solos, leen todo el contexto y dejan el siguiente paso en tu Inbox. Ningún lead queda olvidado.
+025: Cada sugerencia indica la decisión, el grado de confianza y el razonamiento.
+026: Avanzar, hacer seguimiento, pausar o dar por perdida; calificar leads como A/B/C; aprobar, aprobar con condiciones o rechazar. Los registros solo se actualizan cuando aceptas, y las sugerencias descartadas se guardan para medir la precisión de los agentes.
+027: Todos los canales
+028: Correo, WhatsApp, llamadas y reuniones: 
+029: cada punto de contacto, registrado y conectado.
+030: Te escriba el cliente por donde te escriba, un agente hace el seguimiento automáticamente: identifica el contacto, registra los datos clave, redacta una respuesta y programa el siguiente paso. Una vez confirmado, se envía desde tu propia cuenta, y cada interacción, desde la primera consulta hasta el contrato firmado, queda en una sola cronología.
+031: Correo
+032: Cuando llega un correo, el registro se actualiza y la respuesta queda redactada.
+033: Conecta tu Gmail, Microsoft 365 o cualquier buzón IMAP/SMTP personal, o comparte direcciones de equipo como sales@. Lee y responde directamente desde las páginas de clientes y oportunidades, con tu propia firma y tus plantillas.
+034: Asocia contactos y empresas por dirección de correo y dominio, y propone crear los nuevos
+035: Extrae presupuesto, necesidades, competidores y plazos con citas textuales, y te señala los conflictos para que decidas
+036: Guarda los borradores de respuesta directamente en la carpeta de borradores de tu buzón, listos para un retoque rápido
+037: Te avisa con un borrador de seguimiento si una conversación lleva días sin respuesta
+038: Lo que pasa en WhatsApp se mantiene sincronizado con tu CRM.
+039: Vincula tu número de WhatsApp Business para asociar automáticamente los chats a leads y oportunidades. Tras 30 minutos de silencio, un agente resume la conversación en la cronología y recomienda el siguiente paso.
+040: Transcribe notas de voz y convierte tarjetas de visita o capturas en contactos tras tu confirmación
+041: Asocia números desconocidos a leads existentes o propone crear uno nuevo
+042: Fuera de la ventana de mensajería de 24 horas, elige y completa automáticamente plantillas aprobadas
+043: Convierte las visitas y condiciones de pago mencionadas en el chat en tareas y solicitudes de aprobación
+044: Más canales
+045: Cada punto de contacto entrante, tratado de la misma forma
+046: Calendario y reuniones
+047: Conecta Google Calendar u Outlook. Prepara resúmenes antes de las reuniones y convierte las grabaciones o transcripciones que subas en notas, actualizaciones de oportunidades y siguientes pasos.
+048: Formularios web y webhooks
+049: Consultas, registros de prueba y leads de eventos entran directamente, ya investigados, calificados y asignados automáticamente.
+050: Importación y migración
+051: Importa Excel, CSV o exportaciones de Salesforce y HubSpot. La IA asigna los campos, detecta duplicados y propone fusiones para que las confirmes.
+052: Pegar y capturas
+053: Pega listas de ferias, capturas de chats o notas sin procesar para rellenar formularios; los campos dudosos quedan vacíos y resaltados.
+054: Avisos donde trabajas
+055: Recibe avisos en el Inbox de la app, en resúmenes diarios por correo o en Feishu, DingTalk, WeCom y Slack cuando haga falta una decisión.
+056: Canales a medida
+057: ¿Necesitas chats de WeCom, grabaciones de llamadas o chat en vivo? Pide a un agente de programación en Studio que los conecte directamente en el código fuente del CRM.
+058: Los agentes se encargan de
+059: Asociar correos, chats y formularios a contactos, empresas y oportunidades
+060: Registrar resúmenes, datos y citas textuales en la cronología
+061: Redactar respuestas, crear tareas y preparar solicitudes de aprobación
+062: Vigilar silencios, conversaciones sin respuesta y vencimientos próximos
+063: Tú tienes el control
+064: Cada mensaje saliente lo revisas tú y se envía desde tu propia cuenta
+065: Solo se sincronizan los correos con contactos del CRM; las conversaciones privadas siguen siendo privadas
+066: Controla qué ve el equipo: el texto completo, un resumen o solo la fecha y hora
+067: Equipo de agentes de ventas
+068: Cada agente tiene un rol claro, 
+069: con métricas que demuestran su impacto.
+070: Como cualquier compañero de equipo, cada agente tiene funciones, disparadores, skills y permisos definidos, además de estadísticas en vivo de ejecuciones y tasas de aceptación, para que sepas cuáles están rindiendo y cuáles necesitan ajustes.
+071: Información y preparación
+072: Sabe qué está pasando con tus clientes. 
+073: Llega preparado a cada conversación.
+074: Approvals
+075: Las aprobaciones ya no se atascan: las cuentas están hechas y el comentario, redactado.
+076: Cuando se envía un descuento, un plazo de pago, una cláusula personalizada o un compromiso de entrega, el Approval Agent lo contrasta con la política, los márgenes, los precedentes y los riesgos, y redacta una recomendación y un comentario privados para quien aprueba. La decisión final es tuya.
+077: Los agentes hacen
+078: Organizar el historial de clientes y conversaciones
+079: Investigar leads y preparar seguimientos y cotizaciones
+080: Revisar las aprobaciones según los estándares
+081: Tú decides
+082: Relaciones y estrategia de ventas
+083: Descuentos y cotizaciones finales
+084: Condiciones y compromisos clave del contrato
+085: A tu manera
+086: Enseña tus reglas a los agentes en texto simple. 
+087: Transforma todo el CRM con una instrucción.
+088: Escribe en lenguaje natural tus precios, límites de descuento y ritmo de seguimiento en Business guidance, y cada agente los aplicará en su siguiente ejecución. ¿Necesitas campos, flujos de trabajo o páginas nuevos? Pide a un agente de programación que modifique directamente el código fuente del CRM. De código abierto, autoalojado y 100 % tuyo.
+089: El ciclo de ventas completo
+090: Del lead al cierre, 
+091: cada paso queda registrado.
+092: Leads
+093: Sigue cada lead desde que entra hasta que se convierte. Pega texto sin formato para que la IA extraiga leads, con propuestas automáticas de fusión para los duplicados.
+094: Opportunities
+095: Gestiona importes, fechas de cierre y responsables en vista de tablero o de lista, y registra los motivos de pérdida para analizar ventas ganadas y perdidas.
+096: Companies y Contacts
+097: Registra estado, sector, tamaño y origen; el Research Agent completa automáticamente los perfiles públicos de las empresas.
+098: Tasks
+099: Agrupadas en vencidas, para mañana y próximas, en vista de equipo o personal, con las tareas sugeridas por la IA claramente marcadas.
+100: Gestiona descuentos, plazos de pago, cláusulas y compromisos en un solo lugar, con cada decisión registrada en la oportunidad.
+101: Reports
+102: Pipeline en vivo, previsión ponderada, conversión, tasas de éxito y motivos de pérdida, además de informes narrativos de IA con un clic.
+103: Métricas en vivo cuando quieras. Informes narrativos escritos por la IA.
+104: El pipeline, las previsiones ponderadas, las tasas de éxito y los embudos se actualizan en tiempo real. ¿Necesitas un resumen semanal o una revisión trimestral? La IA lee las cronologías de las oportunidades para explicar qué hay detrás de las cifras.
+105: Menos tareas administrativas, más foco en cerrar ventas.
+106: Prueba NocoCRM en línea, o descarga el código fuente en GitHub y ejecútalo tú mismo. Define tus pautas de negocio, elige tus modelos y pon a trabajar a tus agentes de ventas.

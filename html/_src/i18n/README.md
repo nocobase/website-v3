@@ -26,3 +26,7 @@
 - 法文 `? ! : ;` 前的不换行空格、数字和 `%` 之间的不换行空格由 `build.py` 自动加。
 
 改完运行 `build.py`，再用浏览器在 1440、1180、768、390 几个宽度看一遍：标题和能力条不能溢出。
+
+## 解决方案页（NocoCRM、NocoITAM）
+
+`solution-crm.html`、`solution-itam.html` 的其他语言用 `pages.py`，写法和首页相同，用法见它开头的说明。产品界面上的名称照 `ui-terms.md` 写。

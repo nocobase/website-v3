@@ -1,0 +1,7 @@
+# Русский（вы）
+# 术语：foundation = фундамент；building blocks = базовые модули；governance = контроль / управляемая разработка；
+# agent team = команда агентов；coding agent = кодинг-агент；business logic = бизнес-логика；business systems = бизнес-системы；
+# AI = ИИ；vibe coding = вайб-кодинг；open source = с открытым кодом；at a glance = как на ладони
+# 页面用语：Solutions = решения；agent team = команда агентов
+033: Больше клиентских проектов с командой агентов
+036: Все решения

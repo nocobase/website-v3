@@ -20,7 +20,11 @@
     ['', '', 'folder-kanban', 'NocoProject', T('项目协作 · 配备调研与文书 Agent', 'Projects · Research &amp; Doc Agents'), 1],
     ['', '', 'users', 'NocoHR', T('人事管理 · 配备入职与人事 Agent', 'HR · Onboarding Agent'), 1]
   ];
-  /* 语言列表：目前只有中文、英文内容，其他语言先显示英文 */
+  /* 语言列表。多数页面只有中文、英文内容，其他语言先显示英文；页面在 <head> 里设了 window.__i18nPage 的（NocoCRM、NocoITAM），
+     其他语言的译文由 _src/i18n/pages.py 生成在 assets/i18n/site.<语言>.js 和 <页面>.<语言>.js，见下方 applyI18n */
+  var I18N = window.__i18nPage || '';
+  var LANG_NAMES = { zh: '简体中文', en: 'English', es: 'Español', fr: 'Français', de: 'Deutsch', pt: 'Português', ru: 'Русский', id: 'Bahasa Indonesia', vi: 'Tiếng Việt', 'zh-TW': '繁體中文', ja: '日本語', ko: '한국어' };
+  if (I18N && !LANG_NAMES[window.__lang]) window.__lang = 'en';
   var LANGS = [['en', 'English'], ['es', 'Español'], ['fr', 'Français'], ['de', 'Deutsch'], ['pt', 'Português'], ['ru', 'Русский'], ['id', 'Bahasa Indonesia'], ['vi', 'Tiếng Việt'], ['zh', '简体中文'], ['zh-TW', '繁體中文'], ['ja', '日本語'], ['ko', '한국어']];
   var SOON = '<em class="soon-tag">Coming soon</em>';
   var NOCODE = 'https://nocode.nocobase.com/';
@@ -51,7 +55,7 @@
       '<div class="mi"><a href="pricing.html"' + on('pricing') + '>' + T('定价', 'Pricing') + '</a></div>' +
     '</nav>' +
     '<div class="right">' +
-      '<div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-label="Language"><i data-lucide="globe"></i>' + T('简体中文', 'English') + '<i data-lucide="chevron-down"></i></button><div class="dd">' + LANGS.map(function (x) { return '<a href="#" data-lang="' + x[0] + '" lang="' + x[0] + '"><i data-lucide="check"></i>' + x[1] + '</a>'; }).join('') + '</div></div>' +
+      '<div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-label="Language"><i data-lucide="globe"></i>' + (I18N ? '<span id="langName">' + LANG_NAMES[window.__lang] + '</span>' : T('简体中文', 'English')) + '<i data-lucide="chevron-down"></i></button><div class="dd">' + LANGS.map(function (x) { return '<a href="#" data-lang="' + x[0] + '" lang="' + x[0] + '"><i data-lucide="check"></i>' + x[1] + '</a>'; }).join('') + '</div></div>' +
       '<a class="plain" href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">' + GH + '24.6K</a>' +
       '<button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" id="menuBtn"><i data-lucide="menu"></i></button>' +
     '</div></div>' +
@@ -91,9 +95,33 @@
   var $ = function (id) { return document.getElementById(id); };
   var titleEl = document.querySelector('title');
   function syncMeta(lang) {
-    if (titleEl && titleEl.dataset[lang]) document.title = titleEl.dataset[lang];
+    var p = I18N && lang !== 'zh' && lang !== 'en' && window.NB_I18N && window.NB_I18N[lang] && window.NB_I18N[lang].pages[I18N];
+    var key = lang === 'zh' ? 'zh' : 'en';
+    if (titleEl && titleEl.dataset[key]) document.title = (p && p.title) || titleEl.dataset[key];
     var m = document.querySelector('meta[name="description"]');
-    if (m && m.dataset[lang]) m.setAttribute('content', m.dataset[lang]);
+    if (m && m.dataset[key]) m.setAttribute('content', (p && p.description) || m.dataset[key]);
+  }
+  /* 其他语言：页面上写死的英文（<t-en>）记下原文，换成译文；界面示意图（.fit-in）保持英文，产品界面只有中英文。缺的译文显示英文 */
+  var STATIC_EN = I18N ? [].slice.call(document.querySelectorAll('t-en')).filter(function (n) { return !n.closest('.fit-in'); }) : [];
+  STATIC_EN.forEach(function (n) { n.__en = n.innerHTML; });
+  function applyI18n(lang) {
+    var d = window.NB_I18N && window.NB_I18N[lang];
+    var tr = function (en) { return (lang !== 'zh' && lang !== 'en' && d && d.strings[en]) || en; };
+    STATIC_EN.forEach(function (n) { var v = tr(n.__en); if (n.innerHTML !== v) n.innerHTML = v; });
+    var name = $('langName');
+    if (name) name.textContent = LANG_NAMES[lang];
+    document.querySelectorAll('#langMenu [data-lang]').forEach(function (a) { a.classList.toggle('cur', a.dataset.lang === lang); });
+  }
+  /* 译文按需加载：先共用的导航和页脚，再本页 */
+  function loadI18n(lang, done) {
+    var files = ['site', I18N], n = files.length;
+    files.forEach(function (f) {
+      var sc = document.createElement('script');
+      sc.src = ROOT + 'assets/i18n/' + f + '.' + lang + '.js';
+      sc.async = false;
+      sc.onload = sc.onerror = function () { if (--n === 0) done(); };
+      document.head.appendChild(sc);
+    });
   }
   /* 手机上（视口窄于 640px）界面图最小按 PAN_MIN 倍显示，字不会小到看不清；超出屏幕的部分左右滑动查看。
      初始位置停在界面主体：有 data-focus（设计稿横坐标）就用它，否则跳过最左侧的导航栏 */
@@ -145,6 +173,12 @@
     });
   }
   function setLanguage(lang) {
+    if (I18N && lang !== 'zh' && lang !== 'en' && !(window.NB_I18N && window.NB_I18N[lang])) {
+      loadI18n(lang, function () { setLanguage(lang); });
+      return;
+    }
+    if (I18N && window.__font) window.__font(lang);
+    if (I18N) applyI18n(lang);
     window.__lang = lang;
     document.documentElement.lang = lang;
     try { localStorage.setItem('nb3_lang', lang); } catch (e) {}
@@ -156,8 +190,9 @@
     var a = e.target.closest('[data-lang]');
     if (!a) return;
     e.preventDefault();
-    /* 本页只有中英文：其他语言显示英文，但记住用户选的语言，回到首页时按它显示 */
-    setLanguage(a.dataset.lang === 'zh' ? 'zh' : 'en');
+    /* 多数页面只有中英文：其他语言显示英文，但记住用户选的语言，回到首页时按它显示 */
+    if (I18N) setLanguage(a.dataset.lang);
+    else setLanguage(a.dataset.lang === 'zh' ? 'zh' : 'en');
     try { localStorage.setItem('nb3_lang', a.dataset.lang); } catch (err) {}
     a.blur();
   });
@@ -203,6 +238,7 @@
       show((tabs.indexOf(b) + d + tabs.length) % tabs.length, true);
     });
   });
+  if (I18N) applyI18n(window.__lang);
   syncMeta(window.__lang);
   if (window.lucide) lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
   fit();

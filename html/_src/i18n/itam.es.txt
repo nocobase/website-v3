@@ -1,0 +1,75 @@
+# Español（中性拉美/西班牙通用，tú）
+# 术语：foundation = base；building blocks = componentes base；governance = gobernanza；agent team = equipo de agentes；
+# coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
+# vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
+# 子页面用语：lead = lead（复数 leads）；opportunity / deal = oportunidad；account = cliente；approval = aprobación；
+# approval assistant = asistente de aprobación；follow up = hacer seguimiento；timeline = cronología；inbox = bandeja de entrada；
+# business guidance = pautas de negocio；quote = cotización；reports = informes；win rate = tasa de éxito；
+# asset register = registro de activos；stock = stock；idle = sin uso；entitlement = licencia de software；seat = puesto；
+# stocktake / audit = auditoría；reconcile = conciliar；discrepancy = discrepancia；disposal = baja；
+# joiner = nueva incorporación；leaver = salida / quien se va；standard kit = equipamiento estándar；
+# purchase request = solicitud de compra；PO = orden de compra；Try It Online = Probar en línea；Watch the intro = Ver el video
+# 界面名称照英文界面原样写（西语读者看到的是英文界面）：Approval assistant、Devices、Accessories、Consumables、Components、
+# Entitlements、Procurement、Repairs、Disposals、Audits、Business guidance、Skills、Models；上面的用语只用于一般描述
+title: NocoITAM — Agentes en acción. Activos de TI en orden.
+description: NocoITAM es la gestión de activos de TI de código abierto sobre NocoBase. Los agentes concilian el MDM con el registro de activos, preparan las listas de incorporaciones y salidas, revisan el stock y los activos sin uso antes de cada compra y recuperan los puestos sin uso antes de cada renovación. TI solo decide.
+000: Gestión de activos de TI
+001: Agentes en acción. <span class="m">Activos de TI en orden.</span>
+002: Las herramientas de ITAM tradicionales son registros que se llevan a mano. En NocoITAM, los agentes resuelven las diferencias con el MDM, equipan a las nuevas incorporaciones y revisan el stock y los activos sin uso antes de cada compra. Cada dispositivo, cada puesto y cada dólar quedan registrados.
+003: Probar en línea
+004: Ver el video
+005: Licencia
+006: Código abierto
+007: Basado en
+008: Versión
+009: Agentes incluidos
+010: MDM
+011: Modelos de IA
+012: Tú eliges
+013: Prueba NocoITAM en línea
+014: Ya iniciaste sesión con una cuenta de demostración. Todos los datos son ficticios, así que prueba lo que quieras.
+015: Abrir completo en una pestaña nueva
+016: Valor visible
+017: Cada ahorro, 
+018: con su rastro documentado.
+019: Los agentes nunca modifican registros por su cuenta. Cada acción la propone un agente y la confirma su responsable. No solo ves cuánto se ahorró, sino de qué solicitud de compra o de qué puesto de licencia salió el ahorro.
+020: Compras
+021: Antes de cada compra, 
+022: se revisan el stock, los activos sin uso y los precios anteriores.
+023: En cuanto se envía una solicitud, el Approval assistant comprueba si el stock o los activos sin uso pueden cubrirla, compara precios unitarios anteriores y solicitudes similares, señala los datos que faltan y redacta una recomendación y un comentario.
+024: El Approval assistant ofrece mucho más que “aprobar” o “rechazar”.
+025: “Aprobar con condiciones: hay 3 monitores del mismo modelo en stock, así que compra solo los 2 restantes.”
+026: “Rechazar: esta impresora tiene solo 20 meses y ningún historial de reparaciones. Repárala antes de darla de baja.”
+027: “Aprobar con condiciones: no hay stock de este modelo, pero hay 3 alternativas disponibles. Confirma primero el presupuesto y el número de nuevas incorporaciones.”
+028: Incorporaciones y salidas
+029: Las nuevas incorporaciones, listas desde el primer día. 
+030: Quien se va devuelve todo.
+031: Antes del primer día, NocoITAM compara de una sola vez el equipamiento estándar de la nueva incorporación con el stock y los puestos sin uso. Confírmalo y redacta con un clic una orden de compra para lo que falte. Cuando alguien se va, hace seguimiento de dispositivos, accesorios, puestos y tareas fuera del sistema, como revocar cuentas y rotar claves, hasta que todo queda resuelto.
+032: Después de cada sincronización con el MDM, 
+033: las discrepancias se convierten en un plan de acción.
+034: Tras sincronizar con Intune o Jamf Pro, el agente clasifica las discrepancias con su contexto: si el usuario asignado no coincide, van a los responsables de los dispositivos; los dispositivos no registrados, a los administradores de activos; y los casos especiales, como portátiles desconectados desde hace tiempo, quedan marcados para revisión humana. Revisa y aplica todo en un solo lote.
+035: Se acabaron los VLOOKUP semanales en hojas de cálculo
+036: Cada discrepancia tiene un responsable y un motivo claros
+037: Cada conciliación queda registrada en el historial del dispositivo
+038: Registro de activos
+039: Hardware, software y consumibles, 
+040: todo en un solo registro.
+041: Devices
+042: Seguimiento de todo el ciclo de vida, del stock a la baja, conciliado continuamente con Intune y Jamf Pro.
+043: Accessories, Consumables y Components
+044: Controla las cantidades entregadas, devueltas y en stock, con alertas por debajo del mínimo; los componentes se instalan en los dispositivos y se mueven con ellos.
+045: Entitlements
+046: Controla los puestos de suscripción y perpetuos (en cumplimiento, sin uso o sobreasignados), con alertas antes de la renovación automática.
+047: Procurement, Repairs, Disposals y Audits
+048: Señala las entregas con retraso, registra los costos de reparación por dispositivo y hace seguimiento de las discrepancias de auditoría hasta resolverlas.
+049: A tu manera
+050: Escribe tus estándares de equipamiento y tus reglas de aprobación. 
+051: Los agentes se rigen por ellos.
+052: Business guidance
+053: Define en texto simple tu equipamiento estándar, tus presupuestos y tus umbrales de aprobación; cada agente los lee en cada ejecución.
+054: Skills
+055: Las skills incluidas para revisión de aprobaciones, catálogo, sincronización de dispositivos e incorporaciones y salidas se pueden leer y personalizar por completo.
+056: Models y código
+057: Asigna modelos por agente y controla su uso. ¿Necesitas campos, flujos de trabajo o informes a medida? Pide a un agente de programación en Studio que modifique el código fuente: de código abierto, autoalojado y tuyo.
+058: Menos conciliaciones para TI y una visión clara de cada activo.
+059: Prueba NocoITAM en línea, o descarga el código fuente en GitHub y ejecútalo tú mismo. Conecta tu MDM, importa tus activos y deja que los agentes empiecen a conciliar.

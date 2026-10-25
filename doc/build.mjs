@@ -42,6 +42,7 @@ const LANGS = [
     code: 'en',
     prefix: '',
     src: join(dir, 'src'),
+    figures: 'en',
     label: 'English',
     ui: {
       site: 'NocoBase 3 Docs', docs: 'Docs', skip: 'Skip to content', sections: 'Documentation sections', links: 'Site links', menu: 'Contents',
@@ -187,12 +188,14 @@ const slugOf = (text) => text.replace(/<[^>]+>/g, '').replace(/&[a-z#0-9]+;/gi, 
 
 const FIGURE_LINE = /^::figure[ \t]+([\w+-]+)((?:[ \t]+[\w-]+)*)[ \t]*(?:\|[ \t]*(.*))?$/gm;
 
-// 局部配图：正文里单独一行写 `::figure 名称[+名称] [附加类名] | 说明`，内容取自 figures/名称.html。
-function withFigures(markdown) {
+// 局部配图：正文里单独一行写 `::figure 名称[+名称] [附加类名] | 说明`，内容取自 figures/名称.html；英文页面优先用
+// figures/en/名称.html，还没有英文版的配图沿用中文版。
+function withFigures(markdown, lang) {
   const figures = [];
   const source = markdown.replace(FIGURE_LINE, (_, names, classes, caption) => {
     const parts = names.split('+').map((name) => {
-      const file = join(dir, 'figures', `${name}.html`);
+      const localized = lang?.figures && join(dir, 'figures', lang.figures, `${name}.html`);
+      const file = localized && existsSync(localized) ? localized : join(dir, 'figures', `${name}.html`);
       if (!existsSync(file)) throw new Error(`缺少配图 figures/${name}.html`);
       return readFileSync(file, 'utf8').trim();
     });
@@ -203,8 +206,8 @@ function withFigures(markdown) {
 }
 
 // resolveLink 把正文里的相对链接换成最终地址；解析不到的站内链接让构建失败，免得发布出死链
-function render(markdown, { ui, resolveLink = (href) => href }) {
-  const { source, figures } = withFigures(markdown);
+function render(markdown, { lang, ui, resolveLink = (href) => href }) {
+  const { source, figures } = withFigures(markdown, lang);
   const used = new Map();
   const headings = [];
   const renderer = {
@@ -245,7 +248,8 @@ function render(markdown, { ui, resolveLink = (href) => href }) {
   const html = marked.parse(source, { gfm: true, headerIds: false, mangle: false, renderer: instance })
     .replace(/<p>(<figure[\s\S]*?<\/figure>)<\/p>/g, '$1')
     .replace(/<div data-figure="(\d+)"><\/div>/g, (_, i) => figures[Number(i)])
-    .replace(/<p><strong>完成的标志<\/strong>：/g, '<p class="done"><strong>完成的标志</strong>');
+    .replace(/<p><strong>完成的标志<\/strong>：/g, '<p class="done"><strong>完成的标志</strong>')
+    .replace(/<p><strong>Done when<\/strong>:\s*/g, '<p class="done"><strong>Done when</strong>');
   return { html, headings };
 }
 
@@ -411,7 +415,7 @@ for (const lang of LANGS) {
       const zh = pages.get(LANGS[1].code).get(key);
       markdown = zh && !zh.meta.status ? `<p>${ui.untranslated(urlOf(LANGS[1], key))}</p>` : `<p>${ui.unwritten}</p>`;
     }
-    const r = render(markdown, { ui, resolveLink: linkResolver(lang, key) });
+    const r = render(markdown, { lang, ui, resolveLink: linkResolver(lang, key) });
     const out = htmlFileOf(lang, key);
     mkdirSync(dirname(out), { recursive: true });
     writeFileSync(out, shell({

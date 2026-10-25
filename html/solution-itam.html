@@ -108,7 +108,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 .ld-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
 .ld-head p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
 #tryDemo[hidden] { display: none; }
-#liveDemo { scroll-margin-top: 170px; } /* its section's heading stays in view above it, under the sticky header */
+#tryDemo .ld-head { scroll-margin-top: 16px; } /* Try It Online scrolls to the title: 16px below the 80px the site keeps for its sticky header (html scroll-padding-top) */ /* its section's heading stays in view above it, under the sticky header */
 @media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
 @media (max-width: 960px) { .phero-split { grid-template-columns: minmax(0, 1fr); gap: 36px; } .phero-split h1 { font-size: 40px; } }
 </style>
@@ -281,7 +281,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
   var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
   var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
   var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
-  var status = {}, shown = false;
+  var status = {}, shown = false, scrolling = false;
   function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }
   function up() { return !forced && status[SITES[lang()]] === 'up'; }
@@ -304,7 +304,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
     if (shown && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
   }
   function check() {
-    if (shown || section.hidden) return;
+    if (shown || scrolling || section.hidden) return;
     var r = box.getBoundingClientRect(), seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
     if (seen < r.height * 0.3) return;
     shown = true;
@@ -317,9 +317,12 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
     a.addEventListener('click', function (e) {
       e.preventDefault();
       if (narrow() || !up()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
-      shown = true;
-      apply();
-      box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Scroll first and load the demo once there: loading starts its sign-in, which puts the cursor in a field and would stop the scroll short.
+      scrolling = true;
+      section.querySelector('.ld-head').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var done = function () { if (!scrolling) return; scrolling = false; shown = true; apply(); };
+      if ('onscrollend' in window) window.addEventListener('scrollend', done, { once: true });
+      setTimeout(done, 1200);
     });
   });
   function start() { if (!forced) probe(SITES[lang()]); apply(); }

@@ -1,0 +1,64 @@
+# docs.nocobase.com 上 301 到 https://nocode.docs.nocobase.com 同一地址的一级路径（v2 文档的旧地址）。
+# 必须和阿里云 CDN 上 docs.nocobase.com 的 EdgeScript 规则 v2_paths_to_nocode_301 的正则保持一致，改一边就要改另一边。
+# v3 文档的顶层目录和根目录文件不能用这里的名字，否则整个目录都会被转走；build.mjs 构建时会检查。
+# 一行一个路径段，# 开头的是注释。
+
+# v2 文档的一级路径（来自 nocode.docs.nocobase.com 的 sitemap）
+ai
+ai-builder
+ai-dev
+ai-employees
+api
+auth-verification
+building-tips
+calculation-engine
+changelog
+cluster-mode
+data-sources
+data-visualization
+database
+development
+email-manager
+file-manager
+flow-engine
+get-started
+guide
+integration
+interface-builder
+log-and-monitor
+multi-app
+nocobase-cli
+notification-manager
+ops-management
+plugin-development
+plugins
+record-history
+routes
+runjs
+security
+shared-components
+solution
+system-management
+template-print
+tutorials
+ui-development-action
+ui-development-block
+ui-development-field
+users-permissions
+workflow
+
+# v2 更早的旧地址（原来由 302 规则跳转）
+handbook
+welcome
+v1
+
+# v2 的语言前缀（英文没有前缀）
+cn
+de
+es
+fr
+id
+ja
+pt
+ru
+vi

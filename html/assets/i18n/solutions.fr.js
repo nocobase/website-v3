@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "Gestion du parc informatique · Beta",
 "Every saving comes with a paper trail.": "Chaque économie, traçable de bout en bout.",
 "Explore NocoITAM": "Découvrir NocoITAM",
-"Growth · Alpha": "Croissance · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Les agents trouvent, lancent et mesurent la croissance. Vous tranchez.",
 "Explore NocoReach": "Découvrir NocoReach",
 "Support · Soon": "Support · Bientôt",
 "Overnight tickets are handled by morning. Only 3 need you.": "Les tickets de la nuit sont traités au matin. Seuls 3 vous attendent.",
@@ -40,7 +38,6 @@
 "Discounts, quotes, and contract terms": "Remises, devis et conditions contractuelles",
 "Reconcile asset records with MDM, prepare onboarding and offboarding kits, and pre-review purchase and disposal requests": "Rapprocher le registre des actifs et le MDM, préparer les dotations d’arrivée et de départ, et pré-examiner les demandes d’achat et de mise au rebut",
 "Purchases, disposals, and major asset changes": "Achats, mises au rebut et changements majeurs sur les actifs",
-"Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes": "Analyser les données chaque jour, trouver des opportunités de croissance preuves à l’appui, et ouvrir des pull requests avec les modifications",
 "Which opportunities to take, brand review, and release": "Opportunités à retenir, validation de la marque et mise en ligne",
 "Soon": "Bientôt",
 "Triage and route tickets, search the knowledge base, and draft replies": "Trier et router les tickets, chercher dans la base de connaissances et rédiger les réponses",
@@ -86,5 +83,8 @@
 "Commercial": "Commercial",
 "Lead an agent team": "Pilotez une équipe d’agents",
 "Agents keep the work moving. Your team stays in control.": "Les agents font avancer le travail. Votre équipe garde la maîtrise.",
-"Explore Studio": "Découvrir Studio"
+"Explore Studio": "Découvrir Studio",
+"Growth · Beta": "Croissance · Beta",
+"AI finds growth opportunities. Agents put them into action.": "L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Analyser les données chaque jour, trouver ce qui mérite d’être fait preuves à l’appui, puis modifier des pages, rédiger des articles et préparer des réponses pour la communauté"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Des applications métier open source, pilotées par l’IA et prêtes à l’emploi", "description": "NocoBase Solution est une gamme d’applications métier pilotées par des agents et construites sur Core."}; })((window.NB_I18N = window.NB_I18N || {})["fr"] = (window.NB_I18N || {})["fr"] || {});

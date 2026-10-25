@@ -74,3 +74,5 @@ description: NocoBase Solution adalah rangkaian aplikasi bisnis yang digerakkan 
 092: Proyek · Open source · Segera
 093: SDM · Professional · Segera
 094: Mulai dengan open source, <span class="m">siap pakai.</span>
+098: Pertumbuhan · Beta
+100: Menganalisis data setiap hari, menemukan hal yang layak dikerjakan beserta buktinya, lalu mengubah halaman, menulis artikel, dan menyusun balasan untuk komunitas

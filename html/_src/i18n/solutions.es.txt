@@ -73,3 +73,5 @@ description: NocoBase Solution es una línea de apps empresariales impulsadas po
 092: Proyectos · Código abierto · Próximamente
 093: RR. HH. · Professional · Próximamente
 094: Código abierto para empezar, <span class="m">listas para usar.</span>
+098: Crecimiento · Beta
+100: Analizar los datos cada día, encontrar lo que vale la pena hacer con evidencias, y modificar páginas, escribir artículos y redactar respuestas para la comunidad

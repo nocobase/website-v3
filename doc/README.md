@@ -7,6 +7,7 @@ doc/
 │   └── zh-CN/     简体中文正文，/zh-CN/ 下；中文是基准，目录结构和英文完全相同
 ├── figures/       局部配图（HTML 片段），正文里用 ::figure 名称 | 说明 引用
 ├── assets/        样式、脚本、Logo
+├── scripts/       构建用到的检查脚本
 ├── build.mjs      构建脚本，生成到 dist/（不提交）
 └── serve.mjs      本地预览
 ```
@@ -22,6 +23,8 @@ node serve.mjs     # 在 http://localhost:4321/ 预览
 `dist/` 的结构和线上一致：每页是 `<路径>/index.html`，地址不带扩展名、以 `/` 结尾（如 `/core/quickstart/`），站内链接和资源都用根路径，所以要通过 `serve.mjs` 预览，不能直接打开文件。根目录还有 `404.html`、`sitemap.xml`、`robots.txt`、`llms.txt` 和每页的 `.md` 副本。canonical、hreflang 和 sitemap 用的站点域名读环境变量 `DOCS_SITE_ORIGIN`，默认 `https://docs.nocobase.com`；输出目录读 `DOCS_OUT_DIR`。
 
 推送到本仓库后，CI 会构建文档站，构建失败会在 PR 和提交上显示为失败的检查。
+
+`docs.nocobase.com` 上 v2 文档的旧地址（`/guide/`、`/api/`、`/cn/` 等一级路径和语言前缀）会 301 到 `nocode.docs.nocobase.com` 的同一地址，所以文档站的顶层目录不能和它们同名。名单在 `scripts/v2-redirect-prefixes.txt`，和 CDN 上的 EdgeScript 规则 `v2_paths_to_nocode_301` 保持一致；`build.mjs` 生成完会用 `scripts/check-v2-redirect-prefixes.mjs` 检查，同名就构建失败，CI 也就不会发布。确实要用名单里的名字时，从名单和 EdgeScript 里同时去掉它。
 
 ## 编写
 

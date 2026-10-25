@@ -144,7 +144,6 @@
 "Sales CRM": "営業管理",
 "Every saving comes with a paper trail.": "削減したコストの一つひとつに、確かな経緯を。",
 "Growth": "グロース",
-"Agents find, ship, and measure growth. You make the calls.": "エージェントが機会を見つけて施策を実行し、効果まで測定。あなたは判断するだけ。",
 "Support": "サポート",
 "Overnight tickets are handled by morning. Only 3 need you.": "夜間のチケットは朝までに処理済み。あなたの判断待ちは 3 件だけ。",
 "Projects": "プロジェクト",
@@ -216,6 +215,7 @@
 "Know-how": "ナレッジの蓄積",
 "Agents keep the work moving. Your team stays in control.": "エージェントが自律的に推進し、チームが全体を掌握する。",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio は、人とエージェントが協働開発するためのガバナンスプラットフォームです。Claude Code、Codex、OpenCode をひとつのエージェントチームにまとめ、タスクを自律的に進めます。進捗はひと目でわかり、重要な判断は人が下します。",
-"Deliver more client projects with an agent team": "エージェントチームで、より多くの顧客プロジェクトを納品"
+"Deliver more client projects with an agent team": "エージェントチームで、より多くの顧客プロジェクトを納品",
+"AI finds growth opportunities. Agents put them into action.": "AI が成長の機会を見つけ、エージェントが実行します。"
 }
 };

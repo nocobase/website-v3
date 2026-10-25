@@ -144,7 +144,6 @@
 "Sales CRM": "CRM bán hàng",
 "Every saving comes with a paper trail.": "Mỗi khoản tiết kiệm đều rõ nguồn gốc.",
 "Growth": "Tăng trưởng",
-"Agents find, ship, and measure growth. You make the calls.": "Agent tìm cơ hội, triển khai và đo hiệu quả tăng trưởng. Bạn chỉ cần quyết định.",
 "Support": "Hỗ trợ",
 "Overnight tickets are handled by morning. Only 3 need you.": "Ticket gửi đến ban đêm đã xử lý xong lúc sáng. Chỉ 3 việc chờ bạn.",
 "Projects": "Dự án",
@@ -216,6 +215,7 @@
 "Know-how": "Tích lũy tri thức",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.",
-"Deliver more client projects with an agent team": "Bàn giao nhiều dự án khách hàng hơn cùng một đội agent"
+"Deliver more client projects with an agent team": "Bàn giao nhiều dự án khách hàng hơn cùng một đội agent",
+"AI finds growth opportunities. Agents put them into action.": "AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động."
 }
 };

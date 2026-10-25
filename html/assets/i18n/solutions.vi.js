@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "Quản lý tài sản CNTT · Beta",
 "Every saving comes with a paper trail.": "Mỗi khoản tiết kiệm đều rõ nguồn gốc.",
 "Explore NocoITAM": "Tìm hiểu NocoITAM",
-"Growth · Alpha": "Tăng trưởng · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Agent tìm cơ hội, triển khai và đo hiệu quả tăng trưởng. Bạn chỉ cần quyết định.",
 "Explore NocoReach": "Tìm hiểu NocoReach",
 "Support · Soon": "Hỗ trợ · Sắp ra mắt",
 "Overnight tickets are handled by morning. Only 3 need you.": "Ticket gửi đến ban đêm đã xử lý xong lúc sáng. Chỉ 3 việc chờ bạn.",
@@ -40,7 +38,6 @@
 "Discounts, quotes, and contract terms": "Chiết khấu, báo giá và điều khoản hợp đồng",
 "Reconcile asset records with MDM, prepare onboarding and offboarding kits, and pre-review purchase and disposal requests": "Đối soát sổ tài sản với MDM, chuẩn bị bộ thiết bị khi nhận việc và nghỉ việc, xem xét trước yêu cầu mua sắm và thanh lý",
 "Purchases, disposals, and major asset changes": "Mua sắm, thanh lý và thay đổi tài sản quan trọng",
-"Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes": "Phân tích dữ liệu hằng ngày, tìm cơ hội tăng trưởng kèm căn cứ và mở pull request với các thay đổi",
 "Which opportunities to take, brand review, and release": "Chọn cơ hội nào, kiểm duyệt thương hiệu và phát hành",
 "Soon": "Sắp ra mắt",
 "Triage and route tickets, search the knowledge base, and draft replies": "Phân loại và phân công ticket, tra cứu kho tri thức, soạn phản hồi",
@@ -86,5 +83,8 @@
 "Commercial": "Thương mại",
 "Lead an agent team": "Dẫn dắt một đội agent",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
-"Explore Studio": "Tìm hiểu Studio"
+"Explore Studio": "Tìm hiểu Studio",
+"Growth · Beta": "Tăng trưởng · Beta",
+"AI finds growth opportunities. Agents put them into action.": "AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Phân tích dữ liệu hằng ngày, tìm việc đáng làm kèm căn cứ, rồi sửa trang, viết bài và soạn trả lời cho cộng đồng"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Ứng dụng nghiệp vụ mã nguồn mở, vận hành bằng AI, dùng được ngay", "description": "NocoBase Solution là dòng ứng dụng nghiệp vụ do agent vận hành, xây dựng trên Core."}; })((window.NB_I18N = window.NB_I18N || {})["vi"] = (window.NB_I18N || {})["vi"] || {});

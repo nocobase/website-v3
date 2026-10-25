@@ -74,3 +74,5 @@ description: NocoBase Solution est une gamme d’applications métier pilotées 
 092: Projets · Open source · Bientôt
 093: RH · Professional · Bientôt
 094: L’open source pour démarrer, <span class="m">prêt à l’emploi.</span>
+098: Croissance · Beta
+100: Analyser les données chaque jour, trouver ce qui mérite d’être fait preuves à l’appui, puis modifier des pages, rédiger des articles et préparer des réponses pour la communauté

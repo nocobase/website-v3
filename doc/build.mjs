@@ -13,6 +13,7 @@ import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, write
 import { dirname, join, posix, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
+import { assertNoV2RedirectConflicts } from './scripts/check-v2-redirect-prefixes.mjs';
 
 const dir = dirname(fileURLToPath(import.meta.url));
 const dependency = [join(dir, 'node_modules/marked/lib/marked.esm.js'), join(dir, '../node_modules/marked/lib/marked.esm.js')].find(existsSync);
@@ -521,6 +522,8 @@ for (const [url, html] of htmlOf) {
   }
 }
 if (deadLinks.length) throw new Error(`有 ${deadLinks.length} 个站内链接指向不存在的页面或锚点：\n${deadLinks.join('\n')}`);
+// docs.nocobase.com 会把 v2 旧地址的一级路径 301 到 nocode.docs，顶层目录不能和它们同名
+assertNoV2RedirectConflicts(outDir);
 console.log(`文档站：已生成 ${sitemapEntries.length} 页（${LANGS.map((l) => `${l.code} ${pages.get(l.code).size}`).join('，')}）→ ${relative(process.cwd(), outDir) || '.'}/，站点域名 ${SITE_ORIGIN}`);
 
 /* ---------- 文档方案 ---------- */

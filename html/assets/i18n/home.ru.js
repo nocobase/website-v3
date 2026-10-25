@@ -144,7 +144,6 @@
 "Sales CRM": "CRM для продаж",
 "Every saving comes with a paper trail.": "Каждая экономия с полной историей.",
 "Growth": "Рост",
-"Agents find, ship, and measure growth. You make the calls.": "Агенты находят возможности, действуют и измеряют рост. Решаете вы.",
 "Support": "Поддержка",
 "Overnight tickets are handled by morning. Only 3 need you.": "Ночные заявки к утру обработаны. Только 3 ждут вас.",
 "Projects": "Проекты",
@@ -216,6 +215,7 @@
 "Know-how": "Накопленный опыт",
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio — платформа управляемой разработки для совместной работы людей и агентов. Она объединяет Claude Code, Codex и OpenCode в одну команду агентов, которая сама продвигает задачи. Весь прогресс как на ладони, а ключевые решения принимают люди.",
-"Deliver more client projects with an agent team": "Выполняйте больше клиентских проектов с командой агентов"
+"Deliver more client projects with an agent team": "Выполняйте больше клиентских проектов с командой агентов",
+"AI finds growth opportunities. Agents put them into action.": "ИИ находит возможности для роста. Агенты воплощают их в жизнь."
 }
 };

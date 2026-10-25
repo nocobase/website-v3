@@ -11,8 +11,6 @@
 "IT Asset Management · Beta": "Управление IT-активами · Beta",
 "Every saving comes with a paper trail.": "Каждая экономия с полной историей.",
 "Explore NocoITAM": "Подробнее о NocoITAM",
-"Growth · Alpha": "Рост · Alpha",
-"Agents find, ship, and measure growth. You make the calls.": "Агенты находят возможности, действуют и измеряют рост. Решаете вы.",
 "Explore NocoReach": "Подробнее о NocoReach",
 "Support · Soon": "Поддержка · Скоро",
 "Overnight tickets are handled by morning. Only 3 need you.": "Ночные заявки к утру обработаны. Только 3 ждут вас.",
@@ -40,7 +38,6 @@
 "Discounts, quotes, and contract terms": "Скидки, коммерческие предложения и условия договоров",
 "Reconcile asset records with MDM, prepare onboarding and offboarding kits, and pre-review purchase and disposal requests": "Сверяют реестр активов с MDM, готовят комплекты для новых и увольняющихся сотрудников, заранее проверяют заявки на закупку и списание",
 "Purchases, disposals, and major asset changes": "Закупки, списания и крупные изменения активов",
-"Analyze the data every day, find growth opportunities with evidence, and open pull requests with the changes": "Ежедневно анализируют данные, находят возможности для роста с обоснованием и открывают pull request с изменениями",
 "Which opportunities to take, brand review, and release": "Какие возможности брать в работу, проверка бренда и выпуск",
 "Soon": "Скоро",
 "Triage and route tickets, search the knowledge base, and draft replies": "Сортируют и распределяют заявки, ищут в базе знаний и готовят черновики ответов",
@@ -86,5 +83,8 @@
 "Commercial": "Коммерческая",
 "Lead an agent team": "Руководите командой агентов",
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
-"Explore Studio": "Подробнее о Studio"
+"Explore Studio": "Подробнее о Studio",
+"Growth · Beta": "Рост · Beta",
+"AI finds growth opportunities. Agents put them into action.": "ИИ находит возможности для роста. Агенты воплощают их в жизнь.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Ежедневно анализируют данные, находят с обоснованием то, что стоит сделать, меняют страницы, пишут статьи и готовят ответы для сообщества"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — бизнес-приложения с открытым кодом на основе ИИ, готовые к работе", "description": "NocoBase Solution — линейка бизнес-приложений на основе агентов, построенных на Core."}; })((window.NB_I18N = window.NB_I18N || {})["ru"] = (window.NB_I18N || {})["ru"] || {});

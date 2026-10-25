@@ -73,3 +73,5 @@ description: NocoBase Solution là dòng ứng dụng nghiệp vụ do agent v�
 092: Dự án · Mã nguồn mở · Sắp ra mắt
 093: Nhân sự · Professional · Sắp ra mắt
 094: Khởi đầu với mã nguồn mở, <span class="m">dùng được ngay.</span>
+098: Tăng trưởng · Beta
+100: Phân tích dữ liệu hằng ngày, tìm việc đáng làm kèm căn cứ, rồi sửa trang, viết bài và soạn trả lời cho cộng đồng

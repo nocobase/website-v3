@@ -249,3 +249,4 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 243: Khởi đầu mã nguồn mở
 244: Core và các ứng dụng Solution như NocoCRM miễn phí, mã nguồn mở. Studio và các ứng dụng Solution như NocoITAM có trong các phiên bản thương mại.
 245: Core, NocoCRM, NocoReach và NocoProject đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production.
+246: AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động.

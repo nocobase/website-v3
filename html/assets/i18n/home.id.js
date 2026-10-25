@@ -144,7 +144,6 @@
 "Sales CRM": "CRM penjualan",
 "Every saving comes with a paper trail.": "Setiap penghematan tercatat jejaknya.",
 "Growth": "Pertumbuhan",
-"Agents find, ship, and measure growth. You make the calls.": "Agen menemukan, menjalankan, dan mengukur pertumbuhan. Anda yang memutuskan.",
 "Support": "Dukungan",
 "Overnight tickets are handled by morning. Only 3 need you.": "Tiket semalam sudah tertangani pagi harinya. Hanya 3 yang menunggu Anda.",
 "Projects": "Proyek",
@@ -216,6 +215,7 @@
 "Know-how": "Pengetahuan tim",
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio adalah platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.",
-"Deliver more client projects with an agent team": "Selesaikan lebih banyak proyek klien bersama tim agen"
+"Deliver more client projects with an agent team": "Selesaikan lebih banyak proyek klien bersama tim agen",
+"AI finds growth opportunities. Agents put them into action.": "AI menemukan peluang pertumbuhan. Agen mewujudkannya."
 }
 };

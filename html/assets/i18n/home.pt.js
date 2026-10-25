@@ -144,7 +144,6 @@
 "Sales CRM": "CRM de vendas",
 "Every saving comes with a paper trail.": "Cada economia com rastro documentado.",
 "Growth": "Crescimento",
-"Agents find, ship, and measure growth. You make the calls.": "Os agentes encontram, executam e medem o crescimento. Você decide.",
 "Support": "Suporte",
 "Overnight tickets are handled by morning. Only 3 need you.": "Os tickets da madrugada estão resolvidos de manhã. Só 3 precisam de você.",
 "Projects": "Projetos",
@@ -216,6 +215,7 @@
 "Know-how": "Conhecimento acumulado",
 "Agents keep the work moving. Your team stays in control.": "Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "O NocoBase Studio é a plataforma de governança para pessoas e agentes que desenvolvem software juntos. Ele reúne o Claude Code, o Codex e o OpenCode em uma única equipe de agentes que faz as tarefas avançarem sozinha. O progresso fica à vista, e as decisões importantes ficam com as pessoas.",
-"Deliver more client projects with an agent team": "Entregue mais projetos de clientes com uma equipe de agentes"
+"Deliver more client projects with an agent team": "Entregue mais projetos de clientes com uma equipe de agentes",
+"AI finds growth opportunities. Agents put them into action.": "A IA encontra oportunidades de crescimento. Os agentes as colocam em prática."
 }
 };

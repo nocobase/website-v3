@@ -6,7 +6,7 @@ description: Move business documents forward in stages: who can do what under wh
 A purchase order passes through several stages from submission to completion: the department manager approves it, large amounts also need finance approval, a buyer places the order, and a receiver registers the delivery. Only specific people can act at each step, a rejection needs a reason, the requester is notified once approval is done, and approvers get a daily reminder about the backlog. All of this belongs to this building block.
 
 > [!NOTE] Different from NocoBase 2 workflows
-> NocoBase 3 has no drag-and-drop workflow designer. A workflow's structure (its stages and how it moves between them) is written in the app's code by an agent, following your description. Administrators use **Workflow management** to view the flow diagram, check execution records, and adjust parameters such as approvers and amount thresholds. The NocoBase 2 workflow plugin was removed in October 2026.
+> NocoBase 3 has no drag-and-drop workflow designer. A workflow's structure (its stages and how it moves between them) is written in the app's code by an agent, following your description. Administrators use **Workflow management** to view the flow diagram, check execution records, and adjust parameters such as approvers and amount thresholds.
 
 ## The four layers
 

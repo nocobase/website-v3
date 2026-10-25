@@ -1,0 +1,86 @@
+# Bahasa Indonesia（Anda）
+# 术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+# coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+# self-hosted = self-hosted；at a glance = terlihat sekilas
+title: NocoBase Core — Biarkan agen fokus pada logika bisnis Anda
+description: NocoBase Core adalah fondasi aplikasi open source untuk sistem bisnis yang dibangun dan dijalankan dengan AI.
+000: Biarkan agen fokus pada logika bisnis Anda. <span class="m">Fondasinya sudah siap.</span>
+002: Mulai cepat
+003: Lihat komponen dasar
+004: Gratis, open source, dan siap untuk produksi
+005: Kode dan data milik Anda
+006: Bekerja dengan Claude Code, Codex, dan puluhan alat coding lainnya
+008: Komponen dasar yang teruji, <span class="m">siap pakai.</span>
+009: Meski kodenya ditulis AI, izin akses, mesin alur kerja, dan persetujuan tetap sulit dirancang dari nol: banyak kasus tepi dan perawatannya berat. Core menyediakan komponen dasar siap pakai yang terus dipelihara dan ditingkatkan oleh NocoBase. Agen hanya membangun logika bisnis, sehingga kode yang perlu ditulis dan diverifikasi jauh lebih sedikit.
+010: Pengguna dan izin akses
+011: Masuk dan sesi
+012: Kata sandi, reset, dan sesi; single sign-on OIDC, login sosial, dan autentikasi dua faktor
+013: Manajemen pengguna
+014: Aktifkan dan nonaktifkan akun, tautan undangan, dan penetapan peran
+016: Akses ke halaman, aksi, dan data, dengan aturan yang sama untuk manusia dan agen
+017: Aturan akses data
+018: Cakupan data bawaan, aturan berbagi, dan aturan pembatasan
+019: Untuk skrip, sistem lain, dan command line
+020: Data dan file
+021: Model data dan migrasi
+022: Tabel, field, relasi, dan migrasi di SQLite, PostgreSQL, MySQL, SQL Server, dan Oracle
+023: Database lainnya
+024: Dameng, KingbaseES, dan OceanBase
+025: Penjelajah database
+026: Telusuri koneksi, tabel, dan field yang sudah ada
+028: Unggah, simpan, pratinjau, dan unduh, terhubung ke catatan bisnis
+029: Cetak dari templat
+030: Kontrak, penawaran harga, dan dokumen lain dari templat Office
+032: Siklus hidup catatan
+033: Status dan transisi dideklarasikan di kode, dengan riwayat penanganan lengkap
+034: Manajemen alur kerja
+035: Diagram alur dan riwayat eksekusi; admin dapat mengubah penyetuju dan ambang batas
+036: Tugas terjadwal
+037: Berjalan sesuai jadwal, setiap eksekusi tercatat
+038: Persetujuan
+039: Bertingkat, semua harus setuju atau cukup satu, tambah penyetuju, alihkan, dan kembalikan
+040: Pusat tugas
+041: Satu daftar tugas dari semua sumber bisnis
+042: Pesan
+044: Pengiriman, penyampaian, dan log
+045: Pesan dalam aplikasi
+046: Kanal dalam aplikasi dan kotak masuk
+047: Kanal
+048: Email SMTP dan Resend, bot grup Feishu dan DingTalk
+049: Notifikasi push browser
+051: Hubungkan kotak surat untuk sinkronisasi, membalas, dan mengirim, dengan percakapan terhubung ke catatan
+052: AI dan agen
+053: Agen bisnis
+054: Definisi agen, layanan model, eksekusi, dan percakapan
+055: Sesi agen
+056: Mengobrol di browser dengan alat coding di komputer anggota tim
+057: Basis pengetahuan
+058: Dokumen dan file berversi dengan pencarian teks lengkap, untuk manusia dan agen
+059: Antarmuka dan operasional
+060: Halaman dan pustaka UI
+061: Kerangka halaman dan pustaka UI: tabel, papan, diagram alur, dan lainnya
+062: Bahasa dan tema
+063: Ganti bahasa, serta mode terang, gelap, dan ringkas
+064: Tugas latar belakang
+065: Tugas, antrean, dan cache
+066: Rahasia
+067: Rahasia terenkripsi dengan rotasi
+068: Deploy dan upgrade
+069: Deploy, upgrade, dan rollback lewat command line
+070: Halaman fondasi
+071: Lihat komponen dasar Core mana saja yang dipakai aplikasi
+072: <b>20+ komponen dasar</b>, dipelihara dan ditingkatkan oleh NocoBase.
+073: Baca dokumentasi tiap komponen
+074: Arsitektur dan standar
+075: Satu arsitektur, <span class="m">satu standar.</span>
+076: Ganti developer, model, atau bahkan sesi, dan AI bisa berimprovisasi berbeda setiap kali. Sistem makin sulit dipelihara. Core menyediakan satu struktur proyek dan satu standar pengembangan, sehingga sistem berkembang stabil selama bertahun-tahun di atas arsitektur yang konsisten.
+077: Kerangka proyek
+078: Setiap aplikasi baru dimulai dengan struktur yang sama. Halaman, endpoint, perubahan skema, dan tes masing-masing punya tempat tetap, dan komponen dasar Core masuk sebagai paket.
+080: AGENTS.md dan skill menjelaskan di mana kode bisnis ditempatkan, apa yang diambil dari Core, serta cara menulis migrasi dan pemeriksaan izin.
+081: Skill pengembangan
+082: Skill dirilis bersama paket Core dan disinkronkan ke aplikasi saat instalasi. Claude Code, Codex, dan alat coding lainnya membaca panduan yang sama, jadi caranya tetap sama meski orang dan model berganti.
+083: Membangun bersama tim manusia dan agen: NocoBase Studio
+084: Open source dan self-hosting
+085: Aplikasi dan data <span class="m">milik Anda.</span>
+099: Mulai
+111: Pelajari Studio

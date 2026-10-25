@@ -5,3 +5,8 @@
 # 站点用语：Solutions = Solusi；client project = proyek klien
 033: Selesaikan lebih banyak proyek klien bersama tim agen
 036: Semua solusi
+046: Kemitraan, pertanyaan produk, dan dukungan
+047: Pilih setidaknya satu opsi
+048: Mengirim…
+049: Terima kasih! Kami sudah menerima permintaan Anda dan akan segera menghubungi Anda.
+050: Terjadi kesalahan. Coba lagi, atau kirim email ke {mail}.

@@ -85,6 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
 "Explore Studio": "Подробнее о Studio",
 "Growth · Beta": "Рост · Beta",
-"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Ежедневно анализируют данные, находят с обоснованием то, что стоит сделать, меняют страницы, пишут статьи и готовят ответы для сообщества",
-"AI finds growth opportunities. Agents put them into action.": "ИИ находит возможности для роста. Агенты воплощают их в жизнь."
+"AI finds growth opportunities. Agents put them into action.": "ИИ находит возможности для роста. Агенты воплощают их в жизнь.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Ежедневно анализируют данные, находят с обоснованием то, что стоит сделать, меняют страницы, пишут статьи и готовят ответы для сообщества"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — бизнес-приложения с открытым кодом на основе ИИ, готовые к работе", "description": "NocoBase Solution — линейка бизнес-приложений на основе агентов, построенных на Core."}; })((window.NB_I18N = window.NB_I18N || {})["ru"] = (window.NB_I18N || {})["ru"] || {});

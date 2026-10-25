@@ -4,7 +4,7 @@ This document is the English baseline for how NocoBase 3 is defined and describe
 
 This edition is adapted from the Chinese baseline, *NocoBase 产品定义与标准表述*, for English-speaking readers rather than translated word for word. When the Chinese edition changes, update this one to match.
 
-Last revised: October 24, 2026.
+Last revised: October 25, 2026.
 
 ## NocoBase
 
@@ -18,7 +18,7 @@ Last revised: October 24, 2026.
 
 ### Standard description
 
-> NocoBase is the open-source platform for building, running, and evolving business systems with AI. Core is the application foundation. It provides the building blocks and development standards that every business system shares, and agents build on it to meet each company's own needs. Studio is the governance platform where teams and agents develop together. Agents divide up the work and keep it moving, while people stay on top of progress and make the key decisions. NocoBase turns AI's ability to build software into an organization's ability to deliver reliable business systems, release after release.
+> NocoBase is the open-source platform for building, running, and evolving business systems with AI. Core is the application foundation. It provides the building blocks and development standards that every business system shares, and agents build on it to meet each company's own needs. Studio is the governance platform where people and agents build software together. Agents divide up the work and keep it moving, while people stay on top of progress and make the key decisions. NocoBase turns AI's ability to build software into an organization's ability to deliver reliable business systems, release after release.
 
 ## Why NocoBase
 
@@ -74,11 +74,11 @@ Your team is already developing with AI or vibe coding. Code gets written fast, 
 
 ### Definition
 
-> NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
+> NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
 
 ### Standard description
 
-> NocoBase Studio is the governance platform for teams building with agents. Connect Claude Code, Codex, and other agents on your team's computers and servers, and they form one agent team. A coordinator agent assigns design, development, testing, and review, and moves multiple projects forward on its own. You can see at a glance where every issue stands and what comes next. Methods and experience are captured in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off. At every key point, agents attach reports and screenshots, and a person makes the decision.
+> NocoBase Studio is the governance platform for people and agents building software together. Connect Claude Code, Codex, and other agents on your team's computers and servers, and they form one agent team. A coordinator agent assigns design, development, testing, and review, and moves multiple projects forward on its own. You can see at a glance where every issue stands and what comes next. Methods and experience are captured in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off. At every key point, agents attach reports and screenshots, and a person makes the decision.
 
 ### Key features
 
@@ -154,7 +154,7 @@ Copy derived from this document uses these terms. Keep each one fixed, even wher
 | --- | --- | --- |
 | 底座 / 应用底座 | foundation / application foundation | What Core is. |
 | 基础能力 | building blocks | Permissions, workflows, files, and so on. Avoid "core capabilities", which collides with the product name. |
-| 治理 / 治理平台 | governance / governance platform | What Studio is. Always say "for teams building with agents" nearby, so it doesn't read as compliance software. |
+| 治理 / 治理平台 | governance / governance platform | What Studio is. Always say "for people and agents building software together" nearby, so it doesn't read as compliance software. |
 | 持续开发和运行 | building, running, and evolving | |
 | 长期稳定迭代 | evolves steadily for years | |
 | 统一架构 / 开发规范 | one consistent architecture / development standards | |

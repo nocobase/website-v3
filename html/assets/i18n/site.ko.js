@@ -1,7 +1,6 @@
 /* 由 _src/i18n/pages.py 从 site.ko.txt 生成，不要直接修改 */
 (function (p) { p.strings = Object.assign(p.strings || {}, {
 "The open-source foundation for AI-built business systems": "AI로 비즈니스 시스템을 개발하고 운영하는 오픈소스 애플리케이션 기반",
-"The governance platform for teams building with agents": "팀과 에이전트가 함께 개발하는 거버넌스 플랫폼",
 "Agent-driven business apps": "에이전트가 움직이는 비즈니스 앱",
 "Sales · 6 Sales Agents": "영업 관리 · 영업 에이전트 6종 탑재",
 "IT Asset Management · 3 IT Agents": "IT 자산 대장·관리 · 자산 에이전트 3종 탑재",
@@ -28,7 +27,6 @@
 "Community": "커뮤니티",
 "Ask questions and share patterns": "포럼에서 질문하고 경험을 나누세요",
 "Contact Us": "문의하기",
-"Sales, partnerships, and support": "영업, 파트너십, 기술 지원",
 "Partners": "파트너",
 "Find a Partner": "파트너 찾기",
 "Get your system built and running with an expert": "업계를 잘 아는 전문가와 함께 시스템을 구축하고 운영하세요",
@@ -44,5 +42,11 @@
 "License": "라이선스",
 "Partner Program": "파트너 프로그램",
 "Connect": "연결",
-"Forum": "포럼"
+"Forum": "포럼",
+"The governance platform for people and agents building software together": "사람과 에이전트가 함께 개발하는 거버넌스 플랫폼",
+"Partnerships, product questions, and support": "비즈니스 협력, 제품 문의, 기술 지원",
+"Please choose at least one option": "하나 이상 선택해 주세요",
+"Submitting…": "제출하는 중…",
+"Thanks! We’ve received your request and will be in touch soon.": "감사합니다! 요청을 접수했으며 곧 연락드리겠습니다.",
+"Something went wrong. Please try again, or email {mail}.": "제출하지 못했습니다. 잠시 후 다시 시도하거나 {mail}로 메일을 보내 주세요."
 }); p.pages = p.pages || {}; })((window.NB_I18N = window.NB_I18N || {})["ko"] = (window.NB_I18N || {})["ko"] || {});

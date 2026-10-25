@@ -1,7 +1,6 @@
 /* 由 _src/i18n/pages.py 从 site.ja.txt 生成，不要直接修改 */
 (function (p) { p.strings = Object.assign(p.strings || {}, {
 "The open-source foundation for AI-built business systems": "AI で業務システムを開発・運用するためのオープンソースのアプリケーション基盤",
-"The governance platform for teams building with agents": "チームとエージェントが協働開発するためのガバナンスプラットフォーム",
 "Agent-driven business apps": "エージェントが動かす業務アプリ",
 "Sales · 6 Sales Agents": "営業 · 営業エージェント 6 種搭載",
 "IT Asset Management · 3 IT Agents": "IT 資産台帳・管理 · 資産エージェント 3 種搭載",
@@ -28,7 +27,6 @@
 "Community": "コミュニティ",
 "Ask questions and share patterns": "フォーラムで質問し、知見を共有",
 "Contact Us": "お問い合わせ",
-"Sales, partnerships, and support": "営業、パートナーシップ、サポート",
 "Partners": "パートナー",
 "Find a Partner": "パートナーを探す",
 "Get your system built and running with an expert": "業界を知るパートナーと、システムの構築から運用まで",
@@ -44,5 +42,11 @@
 "License": "ライセンス",
 "Partner Program": "パートナープログラム",
 "Connect": "つながる",
-"Forum": "フォーラム"
+"Forum": "フォーラム",
+"The governance platform for people and agents building software together": "人とエージェントが協働開発するためのガバナンスプラットフォーム",
+"Partnerships, product questions, and support": "業務提携、製品のご相談、技術サポート",
+"Please choose at least one option": "1 つ以上選択してください",
+"Submitting…": "送信しています…",
+"Thanks! We’ve received your request and will be in touch soon.": "ありがとうございます。ご依頼を受け付けました。追ってご連絡いたします。",
+"Something went wrong. Please try again, or email {mail}.": "送信できませんでした。時間をおいて再度お試しいただくか、{mail} までメールでご連絡ください。"
 }); p.pages = p.pages || {}; })((window.NB_I18N = window.NB_I18N || {})["ja"] = (window.NB_I18N || {})["ja"] || {});

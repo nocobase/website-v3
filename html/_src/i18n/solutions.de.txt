@@ -66,5 +66,13 @@ description: NocoBase Solution ist eine Reihe agentengesteuerter Geschäftsanwen
 079: Apps ansehen
 082: Core entdecken
 086: Studio entdecken
-087: Wachstum · Beta
-089: Täglich die Daten analysieren, mit Belegen finden, was sich lohnt, dann Seiten ändern, Artikel schreiben und Antworten für die Community entwerfen
+087: NocoCRM und weitere, kostenlos und Open Source
+088: Vertriebs-CRM · Open Source · Beta
+089: IT-Asset-Management · Professional · Beta
+090: Wachstum · Open Source · Alpha
+091: Support · Professional · Bald
+092: Projekte · Open Source · Bald
+093: HR · Professional · Bald
+094: Mit Open Source starten, <span class="m">sofort einsatzbereit.</span>
+098: Wachstum · Beta
+100: Täglich die Daten analysieren, mit Belegen finden, was sich lohnt, dann Seiten ändern, Artikel schreiben und Antworten für die Community entwerfen

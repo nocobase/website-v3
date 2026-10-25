@@ -72,3 +72,5 @@ description: NocoITAM là phần mềm quản lý tài sản CNTT mã nguồn m�
 057: Chỉ định model cho từng agent và theo dõi mức sử dụng. Cần trường, workflow hay báo cáo riêng? Hãy để coding agent sửa mã nguồn trong Studio: mã nguồn mở, tự triển khai và thuộc về bạn.
 058: Đội CNTT bớt đối soát, mọi tài sản luôn rõ ràng.
 059: Dùng thử NocoITAM trực tuyến, hoặc lấy mã nguồn trên GitHub và tự triển khai. Kết nối MDM, nhập dữ liệu tài sản và để agent bắt đầu đối soát.
+061: Professional
+062: Chỉ định model cho từng agent và theo dõi mức sử dụng. Cần trường, workflow hay báo cáo riêng? Hãy để coding agent sửa mã nguồn trong Studio: có trong bản Professional, tự triển khai và thuộc về bạn.

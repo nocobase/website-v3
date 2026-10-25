@@ -1,0 +1,86 @@
+# Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+# 术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+# coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+# self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+title: NocoBase Core — Laissez les agents se concentrer sur votre logique métier
+description: NocoBase Core est le socle applicatif open source des systèmes métier créés et exploités avec l’IA.
+000: Laissez les agents se concentrer sur votre logique métier. <span class="m">Le socle est prêt.</span>
+002: Démarrage rapide
+003: Voir les briques
+004: Gratuit, open source et prêt pour la production
+005: Votre code et vos données vous appartiennent
+006: Compatible avec Claude Code, Codex et des dizaines d’autres outils de code
+008: Des briques éprouvées, <span class="m">prêtes à l’emploi.</span>
+009: Même quand l’IA écrit le code, les permissions, les moteurs de workflow et les validations restent difficiles à concevoir de zéro : les cas limites sont nombreux et la maintenance est lourde. Core fournit des briques prêtes à l’emploi, que NocoBase maintient et fait évoluer en continu. Les agents ne développent que la logique métier : il y a bien moins de code à écrire et à vérifier.
+010: Utilisateurs et permissions
+011: Connexion et sessions
+012: Mots de passe, réinitialisation et sessions ; authentification unique OIDC, connexion via réseaux sociaux et double authentification
+013: Gestion des utilisateurs
+014: Activation et désactivation des comptes, liens d’invitation et attribution des rôles
+016: Accès aux pages, aux actions et aux données, avec les mêmes règles pour les humains et les agents
+017: Règles d’accès aux données
+018: Périmètre de données par défaut, règles de partage et règles de restriction
+019: Pour les scripts, les autres systèmes et la ligne de commande
+020: Données et fichiers
+021: Modèles de données et migrations
+022: Tables, champs, relations et migrations sur SQLite, PostgreSQL, MySQL, SQL Server et Oracle
+023: Autres bases de données
+024: Dameng, KingbaseES et OceanBase
+025: Explorateur de bases de données
+026: Parcourez les connexions, tables et champs existants
+028: Téléversement, stockage, aperçu et téléchargement, liés aux fiches métier
+029: Impression par modèle
+030: Contrats, devis et autres documents à partir de modèles Office
+032: Cycle de vie des fiches
+033: États et transitions déclarés dans le code, avec tout l’historique de traitement
+034: Gestion des workflows
+035: Diagrammes de flux et historique d’exécution ; les administrateurs ajustent valideurs et seuils
+036: Tâches planifiées
+037: Exécution selon un planning, chaque exécution est enregistrée
+038: Validations
+039: Multi-niveaux, validation par tous ou par un seul, ajout d’un valideur, transfert et renvoi
+040: Centre de tâches
+041: Une seule liste de tâches pour toutes les sources métier
+042: Messagerie
+044: Envoi, distribution et journaux
+045: Messages in-app
+046: Le canal in-app et la boîte de réception
+047: Canaux
+048: E-mail via SMTP et Resend, bots de groupe Feishu et DingTalk
+049: Notifications push du navigateur
+051: Connectez des boîtes mail pour synchroniser, répondre et envoyer, avec des fils liés aux fiches
+052: IA et agents
+053: Agents métier
+054: Définition des agents, services de modèles, exécutions et conversations
+055: Sessions d’agents
+056: Discutez dans le navigateur avec les outils de code installés sur les ordinateurs des membres
+057: Base de connaissances
+058: Documents et fichiers versionnés avec recherche plein texte, pour les humains et les agents
+059: Interface et exploitation
+060: Pages et bibliothèque d’interface
+061: Le framework de pages et la bibliothèque d’interface : tableaux, kanbans, diagrammes de flux, etc.
+062: Langues et thèmes
+063: Changement de langue, et modes clair, sombre et compact
+064: Tâches en arrière-plan
+065: Tâches, files d’attente et cache
+066: Secrets
+067: Secrets chiffrés, avec rotation
+068: Déploiement et mises à jour
+069: Déploiement, mises à jour et retour arrière en ligne de commande
+070: Page Socle
+071: Voir quelles briques de Core une application utilise
+072: <b>Plus de 20 briques</b>, maintenues et mises à jour par NocoBase.
+073: Lire la documentation de chacune
+074: Architecture et standards
+075: Une architecture, <span class="m">des standards communs.</span>
+076: Changez de développeur, de modèle ou même de session, et l’IA peut improviser différemment à chaque fois : le système devient de plus en plus difficile à maintenir. Core fournit une structure de projet et des standards de développement communs, pour que le système évolue sereinement pendant des années sur une architecture cohérente.
+077: Structure de projet
+078: Chaque nouvelle application démarre avec la même arborescence. Pages, endpoints, changements de schéma et tests ont chacun leur place, et les briques de Core arrivent sous forme de paquets.
+080: AGENTS.md et les skills précisent où placer le code métier, ce qu’il faut reprendre de Core, et comment écrire les migrations et les contrôles de permissions.
+081: Skills de développement
+082: Les skills sont livrées avec les paquets de Core et synchronisées dans l’application à l’installation. Claude Code, Codex et les autres outils de code lisent les mêmes règles : la méthode reste la même quand les personnes ou les modèles changent.
+083: Pour développer à plusieurs, humains et agents : NocoBase Studio
+084: Open source et auto-hébergement
+085: Vos applications et vos données <span class="m">vous appartiennent.</span>
+099: Commencer
+111: Découvrir Studio

@@ -10,7 +10,7 @@
 "AI + no-code development platform": "AI + 노코드 개발 플랫폼",
 "Products": "제품",
 "The open-source foundation for AI-built business systems": "AI로 비즈니스 시스템을 개발하고 운영하는 오픈소스 애플리케이션 기반",
-"The governance platform for teams building with agents": "팀과 에이전트가 함께 개발하는 거버넌스 플랫폼",
+"The governance platform for people and agents building software together": "사람과 에이전트가 함께 개발하는 거버넌스 플랫폼",
 "Agent-driven business apps": "에이전트가 움직이는 비즈니스 앱",
 "No-code": "노코드",
 "Visual configuration platform, maintained alongside v3": "시각적 설정으로 구축, NocoBase 3와 병행 유지 관리",
@@ -36,10 +36,9 @@
 "Find a Partner": "파트너 찾기",
 "Get your system built and running with an expert": "업계를 잘 아는 전문가와 함께 시스템을 구축하고 운영하세요",
 "Become a Partner": "파트너 되기",
-"One consultant, an agent team, more projects": "한 명의 컨설턴트, 하나의 에이전트 팀, 더 많은 프로젝트",
 "Pricing": "가격",
 "App Foundation": "애플리케이션 기반",
-"Teams + Agents": "팀 + 에이전트",
+"People + Agents": "사람 + 에이전트",
 "Business Apps": "비즈니스 앱",
 "No-code ↗": "노코드 ↗",
 "Build reliable business systems": "신뢰할 수 있는 비즈니스 시스템 구축",
@@ -215,7 +214,8 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio가 여러 에이전트를 조율해 설계, 개발, 테스트, 리뷰를 함께 진행합니다. 중요한 결정은 사람이 내리며, 보고서와 스크린샷이 근거로 첨부됩니다.",
 "Know-how": "지식 축적",
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 팀과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다.",
+"NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 사람과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다.",
+"Deliver more client projects with an agent team": "에이전트 팀과 함께 더 많은 고객 프로젝트를 수행하세요",
 "AI finds growth opportunities. Agents put them into action.": "AI가 성장 기회를 찾고, 에이전트가 실행합니다."
 }
 };

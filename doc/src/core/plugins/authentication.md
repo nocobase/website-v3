@@ -31,7 +31,7 @@ description: Sign-in, sign-up, password reset, and sessions, built on Better Aut
 - Connecting enterprise single sign-on (OIDC) and social login: what the identity provider must supply, and the callback URL
 - Official Better Auth plugins for two-factor authentication, passkeys, organizations, and more
 - The public address at deployment, `app.publicOrigin`
-- The current state of LDAP, SAML, DingTalk, and WeCom (to be confirmed)
+- LDAP, SAML, DingTalk, WeCom, Feishu, Slack, and other sign-in methods
 - How to ask an agent to use it, and how to check the result
 - What administrators can adjust, and deployment configuration
 - Limits and what is not yet supported

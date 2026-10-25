@@ -1,4 +1,5 @@
 page: core
+i18n: core
 title_zh: NocoBase Core — 让 Agent 专心写业务，底座已经就绪
 title_en: NocoBase Core — Let agents focus on your business logic
 desc_zh: NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。
@@ -11,7 +12,7 @@ desc_en: NocoBase Core is the open-source application foundation for business sy
     <h1><t-zh>让 Agent 专心写业务，<span class="m">底座已经就绪。</span></t-zh><t-en>Let agents focus on your business logic. <span class="m">The foundation is ready.</span></t-en></h1>
     <p class="lede"><t-zh>NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。</t-zh><t-en>NocoBase Core is the open-source application foundation for business systems built and run with AI. Permissions, workflows, files, and other building blocks come ready to use, so agents build only what is specific to your business, all on one consistent architecture.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-pri" href="{{DOCS}}core/quickstart/" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a>
       <a class="btn btn-sec" href="#blocks"><t-zh>查看基础能力</t-zh><t-en>See the Building Blocks</t-en></a>
     </div>
     <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>开源免费，可以直接用于生产</t-zh><t-en>Free, open source, and ready for production</t-en></span><span><i data-lucide="circle-check"></i><t-zh>代码和数据归企业所有</t-zh><t-en>Your code and data belong to you</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex 等数十种编码工具</t-zh><t-en>Works with Claude Code, Codex, and dozens of other coding tools</t-en></span></p>
@@ -40,7 +41,7 @@ desc_en: NocoBase Core is the open-source application foundation for business sy
         </ul></div>
         <div class="cc-g"><h3><i data-lucide="database"></i><t-zh>数据与文件</t-zh><t-en>Data and files</t-en></h3><ul>
           <li><b><t-zh>数据模型与迁移</t-zh><t-en>Data models and migrations</t-en></b><span><t-zh>数据表、字段、关联和迁移；SQLite、PostgreSQL、MySQL、SQL Server、Oracle</t-zh><t-en>Tables, fields, relations, and migrations on SQLite, PostgreSQL, MySQL, SQL Server, and Oracle</t-en></span></li>
-          <li><b><t-zh>国产数据库</t-zh><t-en>More databases</t-en></b><span><t-zh>达梦、人大金仓、OceanBase</t-zh><t-en>Dameng, KingbaseES, and OceanBase</t-en></span></li>
+          <li class="zh-only"><b>国产数据库</b><span>达梦、人大金仓、OceanBase</span></li><!-- 国产数据库只在中文版列出 -->
           <li><b><t-zh>数据库浏览</t-zh><t-en>Database explorer</t-en></b><span><t-zh>浏览已有数据库的连接、数据表和字段</t-zh><t-en>Browse existing connections, tables, and fields</t-en></span></li>
           <li><b><t-zh>文件</t-zh><t-en>Files</t-en></b><span><t-zh>上传、存储、预览和下载，文件与业务记录关联</t-zh><t-en>Upload, store, preview, and download, linked to business records</t-en></span></li>
           <li><b><t-zh>模板打印</t-zh><t-en>Template printing</t-en></b><span><t-zh>按 Office 模板生成合同、报价单等文档</t-zh><t-en>Contracts, quotes, and other documents from Office templates</t-en></span></li>
@@ -135,8 +136,8 @@ desc_en: NocoBase Core is the open-source application foundation for business sy
     </div>
     <div class="sec-body">
       <div class="start3">
-        <div class="scard pro"><div class="hd"><i data-lucide="blocks"></i><b>NocoBase Core</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>用 Core 开发自己的系统</t-zh><t-en>Build your own system on Core</t-en></h3><p><t-zh>Agent 使用 Core 的现成能力，只开发企业自己的业务部分。</t-zh><t-en>Agents use Core’s ready-made building blocks and build only what is specific to your business.</t-en></p><a class="btn btn-pri" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a></div>
-        <div class="scard"><div class="hd"><i data-lucide="layout-grid"></i><b>NocoBase Solution</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>安装现成的业务应用</t-zh><t-en>Install a ready-made business app</t-en></h3><p><t-zh>可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。</t-zh><t-en>Use it as it is, or have a coding agent tailor it to your business.</t-en></p><a class="btn btn-sec" href="solutions.html"><t-zh>查看 Solution</t-zh><t-en>View Solution Apps</t-en><i data-lucide="arrow-right"></i></a></div>
+        <div class="scard pro"><div class="hd"><i data-lucide="blocks"></i><b>NocoBase Core</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>用 Core 开发自己的系统</t-zh><t-en>Build your own system on Core</t-en></h3><p><t-zh>Agent 使用 Core 的现成能力，只开发企业自己的业务部分。</t-zh><t-en>Agents use Core’s ready-made building blocks and build only what is specific to your business.</t-en></p><a class="btn btn-pri" href="{{DOCS}}core/quickstart/" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a></div>
+        <div class="scard"><div class="hd"><i data-lucide="layout-grid"></i><b>NocoBase Solution</b><span><t-zh>开源起步</t-zh><t-en>Start Open Source</t-en></span></div><h3><t-zh>安装现成的业务应用</t-zh><t-en>Install a ready-made business app</t-en></h3><p><t-zh>可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。</t-zh><t-en>Use it as it is, or have a coding agent tailor it to your business.</t-en></p><a class="btn btn-sec" href="solutions.html"><t-zh>查看 Solution</t-zh><t-en>View Solution Apps</t-en><i data-lucide="arrow-right"></i></a></div>
         <div class="scard"><div class="hd"><i data-lucide="users-round"></i><b>NocoBase Studio</b><span><t-zh>商业版</t-zh><t-en>Commercial</t-en></span></div><h3><t-zh>带领 Agent 团队开发</t-zh><t-en>Lead an agent team</t-en></h3><p><t-zh>Agent 自主推进，团队掌控全局。</t-zh><t-en>Agents keep the work moving. Your team stays in control.</t-en></p><a class="btn btn-sec" href="studio.html"><t-zh>了解 Studio</t-zh><t-en>Explore Studio</t-en><i data-lucide="arrow-right"></i></a></div>
       </div>
     </div>

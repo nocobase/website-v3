@@ -22,7 +22,7 @@ def side(active):
     def it(k, ic, zh, en, extra=''):
         return '<a class="it%s">%s%s%s</a>' % (' on' if k == active else '', I(ic), T(zh, en), extra)
     g = lambda zh, en: '<div class="grp">%s</div>' % T(zh, en)
-    return ('<aside class="sb"><div class="brand"><img src="assets/logo.png" alt="NocoBase"><span>Studio</span></div>' +
+    return ('<aside class="sb"><div class="brand"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase"><span>Studio</span></div>' +
       it('mine', 'circle-user-round', '我的任务', 'My issues', '<em>2</em>') + it('agent', 'messages-square', '我的会话', 'My sessions') + it('dash', 'layout-dashboard', '仪表盘', 'Dashboard') +
       g('开发', 'Build') + it('tasks', 'list-todo', '任务', 'Issues') + it('proj', 'folder-kanban', '项目', 'Projects') + it('kb', 'book-open', '知识库', 'Knowledge') +
       g('质量', 'Quality') + it('plans', 'clipboard-list', '质量报告', 'Quality reports') + it('cases', 'flask-conical', '功能与用例', 'Features &amp; cases') +

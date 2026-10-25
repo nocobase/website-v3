@@ -10,7 +10,7 @@
 "AI + no-code development platform": "Plateforme de développement IA + no-code",
 "Products": "Produits",
 "The open-source foundation for AI-built business systems": "Le socle open source des systèmes métier créés avec l’IA",
-"The governance platform for teams building with agents": "La plateforme de gouvernance des équipes qui développent avec des agents",
+"The governance platform for people and agents building software together": "La plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble",
 "Agent-driven business apps": "Applications métier pilotées par des agents",
 "No-code": "No-code",
 "Visual configuration platform, maintained alongside v3": "Plateforme de configuration visuelle, maintenue en parallèle de la v3",
@@ -36,10 +36,9 @@
 "Find a Partner": "Trouver un partenaire",
 "Get your system built and running with an expert": "Faites construire et déployer votre système par un expert",
 "Become a Partner": "Devenir partenaire",
-"One consultant, an agent team, more projects": "Un consultant, une équipe d’agents, plus de projets",
 "Pricing": "Tarifs",
 "App Foundation": "Socle applicatif",
-"Teams + Agents": "Équipes + agents",
+"People + Agents": "Humains + agents",
 "Business Apps": "Applications métier",
 "No-code ↗": "No-code ↗",
 "Build reliable business systems": "Construisez des systèmes métier fiables",
@@ -215,7 +214,8 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio coordonne plusieurs agents sur la conception, le développement, les tests et la revue. Les décisions clés reviennent à un humain, rapports et captures d’écran à l’appui.",
 "Know-how": "Savoir-faire",
 "Agents keep the work moving. Your team stays in control.": "Les agents font avancer le travail. Votre équipe garde la maîtrise.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio est la plateforme de gouvernance des équipes qui développent avec des agents. Il réunit Claude Code, Codex et OpenCode en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.",
+"NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio est la plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble. Il réunit Claude Code, Codex et OpenCode en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.",
+"Deliver more client projects with an agent team": "Livrez plus de projets clients avec une équipe d’agents",
 "AI finds growth opportunities. Agents put them into action.": "L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre."
 }
 };

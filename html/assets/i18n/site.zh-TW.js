@@ -1,7 +1,6 @@
 /* 由 _src/i18n/pages.py 从 site.zh-TW.txt 生成，不要直接修改 */
 (function (p) { p.strings = Object.assign(p.strings || {}, {
 "The open-source foundation for AI-built business systems": "以 AI 開發與運行業務系統的開源應用基礎平台",
-"The governance platform for teams building with agents": "團隊與 Agent 協同開發的治理平台",
 "Agent-driven business apps": "由 Agent 驅動的企業業務應用",
 "Sales · 6 Sales Agents": "銷售管理 · 配備 6 個銷售 Agent",
 "IT Asset Management · 3 IT Agents": "IT 資產清冊與管理 · 配備 3 個資產 Agent",
@@ -28,11 +27,10 @@
 "Community": "社群",
 "Ask questions and share patterns": "在論壇提問、交流經驗與回饋建議",
 "Contact Us": "聯絡我們",
-"Sales, partnerships, and support": "商務合作、產品諮詢與技術支援",
 "Partners": "合作夥伴",
-"Find a Partner": "尋找夥伴",
-"Get your system built and running with an expert": "和懂你產業的夥伴一起，把系統做出來、用起來",
-"Become a Partner": "成為夥伴",
+"Find a Partner": "尋找 NocoBase 夥伴",
+"Get your system built and running with an expert": "和懂行的夥伴一起，把系統做出來、用起來",
+"Become a Partner": "成為合作夥伴",
 "Deliver more client projects with an agent team": "用 Agent 團隊交付更多客戶專案",
 "Pricing": "價格",
 "No-code ↗": "無程式碼 ↗",
@@ -42,7 +40,13 @@
 "Pricing &amp; License": "價格與授權",
 "Editions &amp; Pricing": "版本與價格",
 "License": "授權條款",
-"Partner Program": "夥伴計畫",
+"Partner Program": "合作夥伴計畫",
 "Connect": "聯絡",
-"Forum": "社群論壇"
+"Forum": "社群論壇",
+"The governance platform for people and agents building software together": "人與 Agent 協同開發的治理平台",
+"Partnerships, product questions, and support": "商務合作、產品諮詢與技術支援",
+"Please choose at least one option": "請至少選擇一項",
+"Submitting…": "正在送出…",
+"Thanks! We’ve received your request and will be in touch soon.": "已收到你的需求，我們會盡快與你聯絡。",
+"Something went wrong. Please try again, or email {mail}.": "送出沒有成功，請稍後再試，或寫信到 {mail}。"
 }); p.pages = p.pages || {}; })((window.NB_I18N = window.NB_I18N || {})["zh-TW"] = (window.NB_I18N || {})["zh-TW"] || {});

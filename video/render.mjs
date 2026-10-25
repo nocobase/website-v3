@@ -39,8 +39,11 @@ const PORT = server.address().port;
 
 // ---------- Chrome + CDP ----------
 const profile = fs.mkdtempSync(path.join(process.env.TMPDIR || os.tmpdir(), 'nb3-chrome-'));
+// the HTTP cache outlives the throwaway profile, so GSAP, lucide and the fonts load from disk once fetched: a slow or
+// unreachable CDN then no longer stops a render
+const cacheDir = path.join(process.env.TMPDIR || os.tmpdir(), 'nb3-chrome-cache');
 const chrome = spawn(CHROME, [
-  '--headless=new', '--remote-debugging-port=0', '--user-data-dir=' + profile, '--no-first-run', '--no-default-browser-check',
+  '--headless=new', '--remote-debugging-port=0', '--user-data-dir=' + profile, '--disk-cache-dir=' + cacheDir, '--no-first-run', '--no-default-browser-check',
   '--disable-extensions', '--hide-scrollbars', '--mute-audio', '--force-color-profile=srgb', '--window-size=1440,810',
   '--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows',
   'about:blank',

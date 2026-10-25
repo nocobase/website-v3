@@ -85,6 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
 "Explore Studio": "Studio 자세히 보기",
 "Growth · Beta": "그로스 · Beta",
-"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "매일 데이터를 분석해 근거와 함께 할 만한 일을 찾고, 페이지 수정, 글 작성, 커뮤니티 답글 초안 작성",
-"AI finds growth opportunities. Agents put them into action.": "AI가 성장 기회를 찾고, 에이전트가 실행합니다."
+"AI finds growth opportunities. Agents put them into action.": "AI가 성장 기회를 찾고, 에이전트가 실행합니다.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "매일 데이터를 분석해 근거와 함께 할 만한 일을 찾고, 페이지 수정, 글 작성, 커뮤니티 답글 초안 작성"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — 오픈소스 비즈니스 앱, AI 기반으로 설치 즉시 사용", "description": "NocoBase Solution은 Core 위에 구축된, 에이전트가 움직이는 비즈니스 앱 시리즈입니다."}; })((window.NB_I18N = window.NB_I18N || {})["ko"] = (window.NB_I18N || {})["ko"] || {});

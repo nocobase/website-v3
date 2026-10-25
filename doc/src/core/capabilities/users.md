@@ -18,7 +18,7 @@ description: Who can sign in and how, and how accounts are managed: passwords, s
 - Departments and organizations: implemented by the app, with permissions assigned by department
 - Public pages and pages that require sign-in
 - The public address at deployment
-- The current state of LDAP, SAML, DingTalk, and WeCom (to be confirmed)
+- LDAP, SAML, DingTalk, WeCom, Feishu, Slack, and other sign-in methods
 
 ## Provided by
 

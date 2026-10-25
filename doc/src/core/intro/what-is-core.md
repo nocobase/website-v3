@@ -81,6 +81,6 @@ Core's capabilities fall into 13 categories. The **App foundation** page that sh
 
 ## Open source and commercial editions
 
-The vast majority of Core's packages are open source. What the commercial editions provide today is approvals, the task center, and database support for Dameng, KingbaseES, and OceanBase. Every plugin in the plugin directory is labeled with its edition range. See [Open source and commercial editions](../../start/editions.md) for details.
+The vast majority of Core's packages are open source. What the commercial editions provide today is approvals, the task center, and database support for Dameng, KingbaseES, and OceanBase. Every plugin in the plugin directory is labeled with its edition range.
 
 The next page, [How an app gets built](how-an-app-gets-built.md), ties these together with the purchasing app.

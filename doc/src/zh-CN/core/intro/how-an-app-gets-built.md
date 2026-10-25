@@ -85,6 +85,6 @@ Agent 在应用目录里工作。它按应用的 `AGENTS.md` 和 `.agents/skills
 NocoBase 发布新版本时，开发者让 Agent 升级：Agent 按 `nocobase-app-upgrade` 技能对照新版模板合并变化，不回退应用自己的修改，再跑一遍测试。见 [升级 NocoBase](../develop/upgrade.md)。
 
 > [!NOTE] 用 Studio 做同样的事
-> 第 2 到第 4 步在 Studio 里是一个任务：你在会话里说清需求，调度 Agent 安排执行 Agent 开发、检查、评审，最后交给你验收。见 [一个需求怎样完成](../../studio/intro/how-a-task-gets-done.md)。
+> 第 2 到第 4 步在 Studio 里是一个任务：你在会话里说清需求，调度 Agent 安排执行 Agent 开发、检查、评审，最后交给你验收。见 [一个需求怎样完成](../../studio/intro/how-a-request-gets-done.md)。
 
 下一篇 [核心概念](concepts.md)，把这里出现的应用、模板、插件、技能、系统设置逐个讲清。

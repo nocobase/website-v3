@@ -143,4 +143,4 @@ In the app's database. The tables are created by the plugin's own migrations and
 
 ### How do I install a commercial plugin?
 
-You need the matching license and a compatible version. The agent tells you when it's needed, for example for approvals: after you confirm the license and how to get the package, register it with the same `plugin register`. See [Open source and commercial editions](../../start/editions.md).
+You need the matching license and a compatible version. The agent tells you when it's needed, for example for approvals: after you confirm the license and how to get the package, register it with the same `plugin register`.

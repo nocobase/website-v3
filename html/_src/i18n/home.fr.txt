@@ -9,7 +9,7 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 002: Plateforme de développement IA + no-code
 003: Produits
 004: Le socle open source des systèmes métier créés avec l’IA
-005: La plateforme de gouvernance des équipes qui développent avec des agents
+005: La plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble
 006: Applications métier pilotées par des agents
 007: No-code
 008: Plateforme de configuration visuelle, maintenue en parallèle de la v3
@@ -41,7 +41,7 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 034: Tarifs
 035: Demander une démo
 036: Socle applicatif
-037: Équipes + agents
+037: Humains + agents
 038: Applications métier
 039: No-code ↗
 040: Construisez des systèmes métier fiables
@@ -77,7 +77,7 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 070: Découvrir NocoBase Core
 071: Laissez votre équipe se concentrer sur les décisions.<br>
 072: Confiez l’exécution aux agents.
-073: NocoBase Studio est la plateforme de gouvernance des équipes qui développent avec des agents. Il réunit les Claude Code et Codex de votre équipe en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
+073: NocoBase Studio est la plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble. Il réunit les Claude Code et Codex de votre équipe en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
 074: Une équipe d’agents qui fait avancer le travail
 075: Connectez des agents répartis sur de nombreuses machines et pilotez-les depuis un seul endroit. Ils font avancer de nombreux projets et tâches en parallèle, jour et nuit.
 076: L’avancement en un coup d’œil
@@ -224,7 +224,7 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 218: Gestion du parc informatique
 219: Les agents font avancer le travail.<br>
 220: Votre équipe garde la maîtrise.
-221: NocoBase Studio est la plateforme de gouvernance des équipes qui développent avec des agents. Il réunit Claude Code et Codex en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
+221: NocoBase Studio est la plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble. Il réunit Claude Code et Codex en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
 222: Le vibe coding accélère nettement le développement logiciel. Mais dès qu’un projet implique une logique métier complexe, de nombreux intervenants et des années d’évolution, le code généré par l’IA ne suffit plus. Il faut aussi un socle applicatif fiable, des standards de développement cohérents et une vraie gouvernance. NocoBase ne remplace pas le vibe coding : il s’appuie dessus et y ajoute le socle et la gouvernance.
 223: Briques
 224: Sans NocoBase
@@ -236,6 +236,17 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 230: Studio coordonne plusieurs agents sur la conception, le développement, les tests et la revue. Les décisions clés reviennent à un humain, rapports et captures d’écran à l’appui.
 231: Savoir-faire
 232: Les agents font avancer le travail. Votre équipe garde la maîtrise.
-233: NocoBase Studio est la plateforme de gouvernance des équipes qui développent avec des agents. Il réunit Claude Code, Codex et OpenCode en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
-234: Trouvez les opportunités dans vos données. NocoReach les met en œuvre.
-235: L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre.
+233: NocoBase Studio est la plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble. Il réunit Claude Code, Codex et OpenCode en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.
+234: Livrez plus de projets clients avec une équipe d’agents
+235: Open source pour démarrer, prêtes à l’emploi
+236: NocoCRM, NocoReach et NocoProject sont gratuites et open source. NocoITAM, NocoSupport et NocoHR sont incluses dans les éditions commerciales. Toutes les applications tournent sur vos propres serveurs et fonctionnent avec le modèle de votre choix.
+237: Core, Studio et les applications Solution comme NocoCRM sont gratuits, open source et prêts pour la production. Les éditions commerciales ajoutent la gouvernance à l’échelle de l’équipe et de l’organisation, l’intégration en entreprise, davantage d’applications Solution et le support officiel.
+238: Core, Studio, NocoCRM, NocoReach et NocoProject sont gratuits, open source et prêts pour la production comme pour les livraisons clients. Sans acheter de licence, votre équipe peut piloter une équipe d’agents, de la demande à la mise en production.
+239: Éditions commerciales
+240: Core, Studio et Solution bénéficient chacun de compléments commerciaux, tous couverts par une seule licence. Professional ajoute l’approbation des mises en production, le SSO d’entreprise, davantage d’applications comme NocoITAM et le support officiel. Enterprise ajoute une gouvernance à l’échelle de l’organisation, entre équipes et environnements, ainsi que la haute disponibilité.
+241: Auto-hébergé, fonctionnement autonome
+242: Core, Solution et Studio tournent sur vos propres serveurs. Votre code et vos données vous appartiennent. Une fois publiées, vos applications métier fonctionnent seules, et les requêtes métier du quotidien ne passent jamais par Studio.
+243: Open source pour démarrer
+244: Core et les applications Solution comme NocoCRM sont gratuits et open source. Studio et les applications Solution comme NocoITAM sont inclus dans les éditions commerciales.
+245: Core, NocoCRM, NocoReach et NocoProject sont gratuits, open source et prêts pour la production.
+246: L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre.

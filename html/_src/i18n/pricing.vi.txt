@@ -1,0 +1,170 @@
+# Tiếng Việt（bạn）
+# 术语：platform = nền tảng；foundation = nền móng（与 nền tảng 区分）；building blocks = khối chức năng；governance = quản trị；
+# agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
+# business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
+# 页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（8.000 USD）；信创数据库只在中文版列出
+title: Phiên bản và giá — NocoBase 3
+description: Core và mọi ứng dụng Solution miễn phí, mã nguồn mở. Professional giá 8.000 USD trả một lần, gồm Studio, 1 năm nâng cấp và hỗ trợ kỹ thuật, một lần triển khai. Enterprise báo giá theo nhu cầu.
+001: Bắt đầu miễn phí. <span class="m">Mua một lần, dùng mãi mãi.</span>
+002: Mã nguồn mở
+003: Phát triển và vận hành hệ thống nghiệp vụ bằng coding agent của riêng bạn.
+004: Miễn phí
+006: Toàn bộ khối chức năng của Core: phân quyền, quy trình, tệp, thông báo…
+007: Khung dự án, chuẩn phát triển và kỹ năng, dùng được với mọi coding agent
+008: NocoCRM, NocoReach, NocoProject cùng các agent nghiệp vụ
+009: Dùng miễn phí cho production và bàn giao thương mại
+010: Tài liệu và hỗ trợ từ cộng đồng
+011: Có Studio
+012: Cho một đội dùng Studio dẫn dắt đội agent phát triển và bàn giao.
+013: 8.000 USD
+014: trả một lần
+015: Giấy phép vĩnh viễn · 1 năm nâng cấp và hỗ trợ kỹ thuật
+016: Liên hệ mua
+017: Toàn bộ Community, thêm:
+018: NocoBase Studio, điều phối đội agent phát triển
+019: Kiểm thử, review và nghiệm thu thủ công trước mỗi lần phát hành
+021: NocoITAM, NocoSupport và NocoHR
+022: Agent nâng cấp Core, cổng kiểm soát chất lượng và kiểm soát chi phí
+023: Một lần triển khai do đội ngũ NocoBase thực hiện
+024: Nhiều đội
+025: Cho nhiều đội, nhiều môi trường, cần quản trị cấp tổ chức và tính sẵn sàng cao.
+026: Liên hệ
+027: Báo giá theo nhu cầu · cũng trả một lần, giấy phép vĩnh viễn
+028: Toàn bộ Professional, thêm:
+029: Phát hành đa môi trường, khung thời gian thay đổi và giai đoạn đóng băng
+030: Quản trị liên đội: thống nhất kỹ năng, kho tri thức và chính sách model
+031: Nhật ký kiểm toán và cách ly an toàn cho agent
+032: Cụm và tính sẵn sàng cao, kiến trúc đa tenant, triển khai ngoại tuyến
+033: Hỗ trợ ưu tiên, phản hồi đầu tiên trong vòng 4&nbsp;giờ
+034: 3 ngày dịch vụ: triển khai, đào tạo, áp dụng
+035: Máy chủ, model và coding agent do bạn tự chọn, thanh toán trực tiếp cho nhà cung cấp.
+036: Chi tiết tính năng
+037: Mỗi phiên bản gồm những gì
+038: Nền móng ứng dụng mã nguồn mở
+039: Đăng nhập và SSO
+040: Mật khẩu, tài khoản mạng xã hội, OIDC
+041: Người dùng và tổ chức
+042: Người dùng, phòng ban và cấp trên–cấp dưới
+044: Phân quyền theo vai trò cho trang, thao tác và phạm vi dữ liệu, người và agent dùng chung quy tắc
+045: Cơ sở dữ liệu
+046: Nguồn dữ liệu bên ngoài
+047: Kết nối cơ sở dữ liệu sẵn có
+048: Lưu trữ tệp
+049: Cục bộ hoặc tương thích S3
+050: Quy trình và tác vụ định kỳ
+051: Phê duyệt cơ bản
+052: Một người duyệt, lưu lịch sử xử lý
+054: Trong ứng dụng, email, Feishu, DingTalk
+056: Gửi và nhận email ngay trong bản ghi nghiệp vụ
+057: Model
+058: Model đám mây hoặc cục bộ
+059: Agent nghiệp vụ
+060: Truy vấn dữ liệu theo quyền của người dùng, thực hiện thao tác sau khi xác nhận
+061: Kho tri thức AI
+062: Truy cập theo quyền, có phiên bản, câu trả lời ghi rõ nguồn
+063: Phát triển trên mã nguồn
+064: Cấu trúc dự án, chuẩn phát triển và kỹ năng thống nhất, dùng được với mọi coding agent
+065: Giao diện
+066: Đa ngôn ngữ, giao diện, thành phần nghiệp vụ
+067: In theo mẫu
+068: Nhật ký thao tác cơ bản
+069: Thao tác của quy trình, phê duyệt và agent đều được ghi lại
+070: Triển khai và nâng cấp
+071: Triển khai, nâng cấp và rollback
+072: SSO doanh nghiệp
+073: SAML 2.0, LDAP, WeCom, Feishu, DingTalk
+074: Phê duyệt nâng cao
+075: Định tuyến theo điều kiện, duyệt đồng thời, thêm người duyệt, ủy quyền, trả lại
+078: Cụm và tính sẵn sàng cao
+079: Kiến trúc đa tenant
+080: Nhật ký kiểm toán
+081: Ghi lại đầy đủ mọi thao tác
+082: Triển khai ngoại tuyến
+083: Cho mạng nội bộ không kết nối internet
+085: Không gian làm việc
+086: My issues, My sessions, bảng điều khiển
+087: Đội agent
+088: Agent điều phối phân công cho các agent kết nối từ nhiều máy
+089: Runtimes
+090: Nơi agent chạy, nhiều nhiệm vụ song song
+091: Kỹ năng, kho tri thức và bộ nhớ dự án
+092: Kiểm thử và nghiệm thu
+093: Kiểm thử tự động, review bằng model khác, xem trước, nghiệm thu thủ công
+094: Triển khai và rollback
+095: Triển khai lên staging và các môi trường khác, có sự cố thì rollback về phiên bản trước
+096: Lịch sử chạy và mức sử dụng
+097: Mỗi lần chạy đều được ghi lại, mức dùng và chi phí rõ ràng trong nháy mắt
+098: Phê duyệt phát hành production
+099: Mỗi lần triển khai vào môi trường được bảo vệ đều cần người phê duyệt
+100: Vai trò tùy chỉnh
+101: Định nghĩa thành viên được làm gì theo trang, cài đặt và thao tác
+102: Cổng kiểm soát chất lượng
+103: Kiểm tra bắt buộc, kiểm tra chuyên biệt cho migration dữ liệu, thay đổi quyền và tương thích với Core
+104: Kiểm soát chi phí
+105: Đặt ngân sách theo dự án, thành viên, agent; vượt ngân sách thì tạm dừng và thông báo
+106: Agent nâng cấp Core
+107: Khi Core ra phiên bản mới, tự động mở PR nâng cấp, chạy kiểm tra tương thích, kèm mô tả thay đổi
+108: Ra quyết định ngay trong Feishu, DingTalk hoặc WeCom
+109: Trả lời câu hỏi, nghiệm thu, phê duyệt phát hành mà không cần mở Studio
+110: Phản hồi từ production
+111: Lỗi trên production và phản hồi người dùng tự động thành nhiệm vụ, agent tìm nguyên nhân và gửi bản sửa
+112: Chỉ số bàn giao
+113: Tỷ lệ đạt, tỷ lệ làm lại, chi phí mỗi nhiệm vụ, tỷ lệ chấp nhận, tự động tạo báo cáo tuần
+114: Phát hành đa môi trường
+115: Đưa đúng phiên bản đã kiểm chứng trên staging lên production
+116: Khung thời gian thay đổi và đóng băng
+117: Quy định khi nào được phát hành
+118: Quản trị liên đội
+119: Không gian làm việc cho nhiều đội, phân phối kỹ năng và kho tri thức cho từng đội, thống nhất model và nhà cung cấp được phép dùng
+120: Chính sách chất lượng cấp tổ chức
+121: Thống nhất các kiểm tra bắt buộc cho mọi dự án, bao gồm quét bảo mật
+122: Kiểm toán quá trình phát triển
+123: Ai giao cho agent việc gì, agent đã sửa gì, ai merge, ai phê duyệt, đều được lưu vết và có thể xuất ra
+124: Cách ly an toàn cho agent
+125: Mỗi nhiệm vụ một môi trường chạy cách ly dùng một lần, giới hạn truy cập mạng bên ngoài, agent dùng được khóa bí mật nhưng không thấy bản rõ
+126: Nâng cấp hàng loạt
+127: Xem phiên bản Core của mọi ứng dụng, nâng cấp hàng chục ứng dụng cùng lúc
+128: Phân bổ chi phí
+129: Phân bổ mức dùng và chi phí cho phòng ban và trung tâm chi phí
+131: Bán hàng
+134: Quản lý tài sản CNTT
+136: Nhân sự
+137: Tùy biến và phát hành trong Studio
+138: Đồng bộ cập nhật chính thức
+139: Ứng dụng đã tùy biến vẫn theo kịp phiên bản chính thức, agent merge, xử lý xung đột và kiểm chứng
+140: Dịch vụ và hỗ trợ
+141: Tài liệu và cộng đồng
+142: Nâng cấp phiên bản
+143: Phiên bản mới phát hành sau khi mua
+144: 1 năm
+145: Hỗ trợ kỹ thuật
+146: 1 năm, ưu tiên
+147: Thời gian phản hồi đầu tiên
+148: Trong vòng 12 giờ
+149: Trong vòng 4 giờ
+150: Dịch vụ triển khai
+151: Do đội ngũ NocoBase cung cấp
+152: Một lần triển khai
+153: 3 ngày: triển khai, đào tạo, áp dụng
+154: Câu hỏi thường gặp
+155: Chọn Professional hay Enterprise?
+156: Một đội dùng Studio để phát triển thì chọn Professional: gồm một lần triển khai do đội ngũ NocoBase thực hiện, hỗ trợ kỹ thuật phản hồi đầu tiên trong vòng 12&nbsp;giờ.
+157: Nhiều đội cùng làm việc, hoặc cần phát hành đa môi trường, tính sẵn sàng cao, nhật ký kiểm toán, triển khai ngoại tuyến thì chọn Enterprise: gồm 3 ngày dịch vụ triển khai, đào tạo và áp dụng, hỗ trợ kỹ thuật phản hồi đầu tiên trong vòng 4&nbsp;giờ.
+158: Community có dùng được cho production không?
+159: Có. Community gồm toàn bộ Core cùng NocoCRM, NocoReach, NocoProject, dùng được cho production và bàn giao thương mại. Cài kỹ năng phát triển của NocoBase cho coding agent là có thể bắt đầu phát triển; kiểm thử, phát hành và vận hành do đội của bạn tự đảm nhận.
+160: Giấy phép thương mại có hiệu lực bao lâu?
+161: Vĩnh viễn. Phiên bản thương mại trả một lần, không có phí hằng năm, phiên bản đã mua dùng mãi mãi.
+162: Hết 1 năm nâng cấp và hỗ trợ kỹ thuật thì sao?
+163: Hệ thống vẫn chạy bình thường. Muốn tiếp tục nhận phiên bản mới và hỗ trợ kỹ thuật, có thể mua riêng dịch vụ nâng cấp và hỗ trợ, không bắt buộc mua liên tục.
+164: Phiên bản thương mại có tự triển khai không?
+165: Có. Studio, agent và ứng dụng nghiệp vụ đều triển khai trên máy chủ của bạn. Ứng dụng sau khi phát hành chạy độc lập, các yêu cầu nghiệp vụ hằng ngày không đi qua Studio.
+166: Có mua riêng Studio được không?
+167: Không. Studio có trong Professional và Enterprise.
+168: Người dùng bản thương mại NocoBase 2 có cần mua lại không?
+169: Chỉ cần bản thương mại NocoBase 2 còn trong thời hạn nâng cấp là có thể dùng ngay NocoBase 3, không cần mua lại. 2.x và 3.x được bảo trì song song lâu dài.
+170: Chưa biết chọn phiên bản nào?
+171: Hãy cho chúng tôi biết về đội ngũ và bài toán nghiệp vụ của bạn, chúng tôi sẽ giúp phân tích và thiết kế.
+173: Bắt đầu miễn phí
+174: Phê duyệt nâng cao và SSO doanh nghiệp
+175: Toàn bộ ứng dụng Solution như NocoCRM, NocoITAM, NocoReach cùng các agent nghiệp vụ
+176: Có. Community gồm toàn bộ Core và mọi ứng dụng Solution, dùng được cho production và bàn giao thương mại. Cài kỹ năng phát triển của NocoBase cho coding agent là có thể bắt đầu phát triển; kiểm thử, phát hành và vận hành do đội của bạn tự đảm nhận.

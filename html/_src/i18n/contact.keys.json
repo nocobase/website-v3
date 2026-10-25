@@ -1,0 +1,234 @@
+{
+ "items": [
+  {
+   "en": "Contact Us",
+   "zh": "联系我们",
+   "where": "phero"
+  },
+  {
+   "en": "Contact us. <span class=\"m\">Tell us what you want to build.</span>",
+   "zh": "联系我们，<span class=\"m\">聊聊你想做的系统。</span>",
+   "where": "phero"
+  },
+  {
+   "en": "For sales, and commercial services, reach us here. For technical questions, the <a href=\"https://forum.nocobase.com/\" target=\"_blank\" rel=\"noopener\">community forum</a> is the best place to ask.",
+   "zh": "需要产品咨询和商业服务咨询，都可以与我们联系。使用中遇到的技术问题，欢迎到<a href=\"https://forum.nocobase.com/\" target=\"_blank\" rel=\"noopener\">社区论坛</a>交流。",
+   "where": "phero"
+  },
+  {
+   "en": "Get in touch",
+   "zh": "和我们聊聊",
+   "where": "contact"
+  },
+  {
+   "en": "Fill in the form and we’ll get back to you soon, or write to us directly.",
+   "zh": "填写右侧表单，我们会尽快联系你；也可以直接写信或加微信。",
+   "where": "contact"
+  },
+  {
+   "en": "Email",
+   "zh": "通过邮箱联系",
+   "where": "contact"
+  },
+  {
+   "en": "Where we are",
+   "zh": "我们在哪里",
+   "where": "contact"
+  },
+  {
+   "en": "Your name",
+   "zh": "姓名",
+   "where": "contact"
+  },
+  {
+   "en": "Your job title",
+   "zh": "职位",
+   "where": "contact"
+  },
+  {
+   "en": "Company name",
+   "zh": "公司名称",
+   "where": "contact"
+  },
+  {
+   "en": "How did you find out about NocoBase",
+   "zh": "你是通过什么渠道了解到 NocoBase 的",
+   "where": "contact"
+  },
+  {
+   "en": "What do you want to do with NocoBase (choose all that apply)",
+   "zh": "你希望用 NocoBase 做什么（可多选）",
+   "where": "contact"
+  },
+  {
+   "en": "Tell us about your team and your use cases for NocoBase",
+   "zh": "请介绍一下你的团队，以及使用 NocoBase 的具体场景",
+   "where": "contact"
+  },
+  {
+   "en": "What kind of help are you hoping to receive",
+   "zh": "你希望获得哪些帮助",
+   "where": "contact"
+  },
+  {
+   "en": "Submit",
+   "zh": "提交",
+   "where": "contact"
+  },
+  {
+   "en": "Thanks! We’ve received your message and will be in touch soon.",
+   "zh": "已收到你的信息，我们会尽快与你联系。",
+   "where": "form"
+  },
+  {
+   "en": "Select one",
+   "zh": "请选择",
+   "where": "form"
+  },
+  {
+   "en": "Search Engine",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "GitHub",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "LinkedIn",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Facebook",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Instagram",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "TikTok",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "YouTube",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "X",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Business Partner or Third-Party Recommendation",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Friends/Colleagues",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Reddit",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Online Community",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "AI Chat",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Article/Blog post",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Hacker News",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Product Hunt",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Review Site",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Others",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Internal use for developing business systems or tools",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Provide outsourcing services based on NocoBase",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Develop commercial products based on NocoBase",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Study or research",
+   "zh": "",
+   "where": "form-options"
+  },
+  {
+   "en": "Your email",
+   "zh": "",
+   "where": "contact"
+  },
+  {
+   "en": "Where is your company located",
+   "zh": "",
+   "where": "contact"
+  },
+  {
+   "en": "Select your country or region",
+   "zh": "",
+   "where": "form"
+  },
+  {
+   "en": "We are a remote team across several countries, with offices in:",
+   "zh": "",
+   "where": "contact"
+  },
+  {
+   "en": "501, 1-55-8 Akabane, Kita-ku, Tokyo, Japan",
+   "zh": "",
+   "where": "contact"
+  }
+ ],
+ "meta": {
+  "title": {
+   "zh": "联系我们 — NocoBase",
+   "en": "Contact Us — NocoBase"
+  },
+  "description": {
+   "zh": "需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。",
+   "en": "Reach NocoBase by email or through the form for sales, and commercial services."
+  }
+ }
+}

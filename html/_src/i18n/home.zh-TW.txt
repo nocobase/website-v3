@@ -8,7 +8,7 @@ description: NocoBase 是以 AI 持續開發與運行業務系統的開源平台
 002: AI + 無程式碼開發平台
 003: 產品
 004: 以 AI 開發與運行業務系統的開源應用基礎平台
-005: 團隊與 Agent 協同開發的治理平台
+005: 人與 Agent 協同開發的治理平台
 006: 由 Agent 驅動的企業業務應用
 007: 無程式碼
 008: 視覺化設定建置，與 NocoBase 3 並行維護
@@ -33,14 +33,14 @@ description: NocoBase 是以 AI 持續開發與運行業務系統的開源平台
 027: 聯絡我們
 028: 商務合作、產品諮詢與技術支援
 029: 合作夥伴
-030: 尋找夥伴
-031: 和懂你產業的夥伴一起，把系統做出來、用起來
-032: 成為夥伴
+030: 尋找 NocoBase 夥伴
+031: 和懂行的夥伴一起，把系統做出來、用起來
+032: 成為合作夥伴
 033: 一位顧問帶一支 Agent 團隊，交付更多專案
 034: 價格
 035: 預約展示
 036: 應用基礎平台
-037: 團隊與 Agent 協同
+037: 人與 Agent 協同
 038: 企業業務應用
 039: 無程式碼 ↗
 040: 打造可靠的業務系統
@@ -76,7 +76,7 @@ description: NocoBase 是以 AI 持續開發與運行業務系統的開源平台
 070: 深入了解 NocoBase Core
 071: 讓團隊專心做決策，
 072: 執行交給 Agent。
-073: NocoBase Studio 是團隊與 Agent 協同開發的治理平台。把團隊的 Claude Code、Codex 組成一支 Agent 團隊自動推進任務，進度一目了然，關鍵處由人做決策。
+073: NocoBase Studio 是人與 Agent 協同開發的治理平台。把團隊的 Claude Code、Codex 組成一支 Agent 團隊自動推進任務，進度一目了然，關鍵處由人做決策。
 074: 一支持續推進的 Agent 團隊
 075: 接入多台機器上的 Agent 統一調度，24 小時同步推進多個專案和大量任務。
 076: 各項進度一目了然
@@ -146,7 +146,7 @@ description: NocoBase 是以 AI 持續開發與運行業務系統的開源平台
 140: 價格與授權
 141: 版本與價格
 142: 授權條款
-143: 夥伴計畫
+143: 合作夥伴計畫
 144: 聯絡
 145: 社群論壇
 146: 開發規範
@@ -223,7 +223,7 @@ description: NocoBase 是以 AI 持續開發與運行業務系統的開源平台
 218: IT 資產清冊與管理
 219: Agent 自主推進，
 220: 團隊掌控全局。
-221: NocoBase Studio 是團隊與 Agent 協同開發的治理平台。把 Claude Code、Codex 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。
+221: NocoBase Studio 是人與 Agent 協同開發的治理平台。把 Claude Code、Codex 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。
 222: Vibe Coding 讓軟體開發更有效率，但當專案涉及複雜業務、多人協作和長期迭代時，只靠 AI 產生程式碼還不夠，還需要可靠的基礎平台、統一的開發規範和完善的治理。NocoBase 並不是 Vibe Coding 的替代品，而是在它之上補齊基礎平台和治理能力。
 223: 基礎能力
 224: 沒有 NocoBase
@@ -235,6 +235,17 @@ description: NocoBase 是以 AI 持續開發與運行業務系統的開源平台
 230: Studio 組織多個 Agent 協同完成設計、開發、測試和審查，關鍵決策交給人把關，並附上報告和截圖作為依據。
 231: 知識累積
 232: Agent 自主推進，團隊掌控全局。
-233: NocoBase Studio 是團隊與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。
-234: 從資料中發現機會，NocoReach 幫你落實。
-235: AI 找出成長機會，交給 Agent 執行。
+233: NocoBase Studio 是人與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。
+234: 用 Agent 團隊交付更多客戶專案
+235: 開源起步，開箱即用
+236: NocoCRM、NocoReach 和 NocoProject 開源免費，NocoITAM、NocoSupport 和 NocoHR 於商業版中提供。所有應用都部署在企業自己的伺服器上，模型自由選擇。
+237: Core、Studio 和 NocoCRM 等 Solution 應用開源免費，可直接用於正式環境；商業版增加團隊與組織層級的治理、企業整合、更多 Solution 應用與官方支援。
+238: Core、Studio，以及 NocoCRM、NocoReach、NocoProject 開源免費，可直接用於正式環境與商業交付。不必購買授權，團隊就能帶領 Agent 團隊從需求做到上線。
+239: 商業版
+240: Core、Studio 和 Solution 每一層都有商業增強，一份授權同時生效。Professional 增加正式環境上線簽核、企業 SSO、NocoITAM 等更多應用與官方支援；Enterprise 增加跨團隊、跨環境的組織層級治理與高可用性。
+241: 地端部署，獨立運行
+242: Core、Solution 和 Studio 都部署在企業自己的伺服器上，程式碼和資料歸企業所有。業務應用發布後獨立運行，日常業務請求不經過 Studio。
+243: 開源起步
+244: Core 和 NocoCRM 等 Solution 應用開源免費；Studio 和 NocoITAM 等 Solution 應用於商業版中提供。
+245: Core 以及 NocoCRM、NocoReach、NocoProject 開源免費，可直接用於正式環境。
+246: AI 找出成長機會，交給 Agent 執行。

@@ -1,0 +1,750 @@
+{
+ "items": [
+  {
+   "en": "Partner Program",
+   "zh": "合作伙伴计划",
+   "where": "phero"
+  },
+  {
+   "en": "AI reshaped software delivery. <span class=\"m\">Turn it into your business.</span>",
+   "zh": "AI 改写了软件交付模式，<span class=\"m\">把它变成你的生意。</span>",
+   "where": "phero"
+  },
+  {
+   "en": "Project capacity used to be capped by developer headcount. Today, your consultants only need to focus on analyzing client needs, key decisions, and acceptance, while an agent team handles coding, testing, and deployment, so many client projects can move in parallel. NocoBase 3 provides Core as the foundation, Studio, and Solution business apps. Your domain expertise and client relationships are what set you apart.",
+   "zh": "过去，能接多少项目取决于养多少开发人员。现在，你的实施顾问只需专注分析客户需求、方案拍板与交付验收，开发、测试与部署都交给 Agent 团队，多个客户项目可以并行推进。NocoBase 3 提供 Core 底座、Studio 与 Solution 业务应用，你的行业经验与客户关系，就是最核心的竞争力。",
+   "where": "phero"
+  },
+  {
+   "en": "Become a Partner",
+   "zh": "申请成为合作伙伴",
+   "where": "phero"
+  },
+  {
+   "en": "Find a Partner",
+   "zh": "寻找伙伴",
+   "where": "phero"
+  },
+  {
+   "en": "Channel commission",
+   "zh": "渠道佣金",
+   "where": "phero"
+  },
+  {
+   "en": "Accumulation",
+   "zh": "累计方式",
+   "where": "phero"
+  },
+  {
+   "en": "Lifetime, never decreases",
+   "zh": "终身累计，只升不降",
+   "where": "phero"
+  },
+  {
+   "en": "Service revenue",
+   "zh": "服务收入",
+   "where": "phero"
+  },
+  {
+   "en": "100% yours",
+   "zh": "100% 归你",
+   "where": "phero"
+  },
+  {
+   "en": "Delivered code",
+   "zh": "交付的代码",
+   "where": "phero"
+  },
+  {
+   "en": "Client-owned, maintainable",
+   "zh": "归客户，可长期维护",
+   "where": "phero"
+  },
+  {
+   "en": "Delivery in the AI Era",
+   "zh": "AI 时代的交付",
+   "where": "tint"
+  },
+  {
+   "en": "Stop scaling by headcount. ",
+   "zh": "项目规模不再取决于人数，",
+   "where": "tint"
+  },
+  {
+   "en": "Scale by your domain judgment.",
+   "zh": "而在于你的业务判断力。",
+   "where": "tint"
+  },
+  {
+   "en": "AI made writing code cheap. What clients pay for now is someone who understands their business, along with a production-grade system that can keep evolving for years. That is the core value partners bring.",
+   "zh": "AI 让写代码变得廉价，客户真正愿意付费的，是懂业务的专家，以及一套上线后稳定可靠、未来还能持续演进的系统，这正是伙伴能带来的核心价值。",
+   "where": "tint"
+  },
+  {
+   "en": "Traditional delivery",
+   "zh": "传统交付模式",
+   "where": "tint"
+  },
+  {
+   "en": "Scaled by headcount",
+   "zh": "靠增加人手扩规模",
+   "where": "tint"
+  },
+  {
+   "en": "With NocoBase 3",
+   "zh": "基于 NocoBase 3 交付",
+   "where": "tint"
+  },
+  {
+   "en": "Scaled by domain judgment",
+   "zh": "靠业务判断力扩规模",
+   "where": "tint"
+  },
+  {
+   "en": "Capacity",
+   "zh": "交付能力",
+   "where": "tint"
+  },
+  {
+   "en": "Project capacity capped by developer headcount",
+   "zh": "项目数量受限于开发人员规模",
+   "where": "tint"
+  },
+  {
+   "en": "One agent team moves every client project forward, around the clock",
+   "zh": "一支 Agent 团队 24 小时同步推进所有客户项目",
+   "where": "tint"
+  },
+  {
+   "en": "Pricing",
+   "zh": "报价方式",
+   "where": "tint"
+  },
+  {
+   "en": "Billed by man-days; margins locked to hours",
+   "zh": "按人天报价，利润被工时锁死",
+   "where": "tint"
+  },
+  {
+   "en": "Price by module and outcome for faster delivery and higher margins",
+   "zh": "按模块与成果定价，交付更快、毛利更高",
+   "where": "tint"
+  },
+  {
+   "en": "What you hand over",
+   "zh": "交付物",
+   "where": "tint"
+  },
+  {
+   "en": "Opaque configs or bespoke code that’s painful to hand over",
+   "zh": "黑盒配置或定制代码，换人即难以维护",
+   "where": "tint"
+  },
+  {
+   "en": "Clean source code on a standard foundation, auditable, upgradable, and AI-evolvable",
+   "zh": "标准底座上的干净源码，可审查、可升级、可持续交由 AI 迭代",
+   "where": "tint"
+  },
+  {
+   "en": "Know-how",
+   "zh": "行业经验",
+   "where": "tint"
+  },
+  {
+   "en": "Know-how stays in a few people’s heads",
+   "zh": "经验留在老员工脑子里，人员流动即流失",
+   "where": "tint"
+  },
+  {
+   "en": "Captured in Skills and knowledge bases, ready to reuse on the next client",
+   "zh": "沉淀为技能与知识库，下一个同类客户直接复用",
+   "where": "tint"
+  },
+  {
+   "en": "After go-live",
+   "zh": "上线之后",
+   "where": "tint"
+  },
+  {
+   "en": "Post-launch firefighting that’s hard to bill",
+   "zh": "上线后陷入被动救火，维保难收钱",
+   "where": "tint"
+  },
+  {
+   "en": "Agent teams take on upgrades and everyday improvements, turning into recurring annual care",
+   "zh": "Agent 团队承接升级与日常改进，轻松转化为年度维保与迭代服务",
+   "where": "tint"
+  },
+  {
+   "en": "One consultant, four client projects moving in parallel.",
+   "zh": "一位实施顾问，并行推进四个客户项目。",
+   "where": "tint"
+  },
+  {
+   "en": "In NocoBase Studio, each client gets an isolated project and repo. The consultant only steps in for key calls in My issues (verifying previews, answering business questions, and approving releases), while agents build, test, and prep deployments in the background.",
+   "zh": "在 NocoBase Studio 中，每个客户拥有独立的项目与代码仓库。顾问只需在「我的任务」里处理关键节点：验收预览、解答业务疑问、批准发版；编码、测试与发版准备均由 Agent 团队在后台完成。",
+   "where": "tint"
+  },
+  {
+   "en": "Client stakeholders can submit feedback and accept features directly in live previews",
+   "zh": "客户业务方可在独立预览环境内直接提反馈、做验收",
+   "where": "tint"
+  },
+  {
+   "en": "Every change passes automated checks and human sign-off, ensuring quality without burnout",
+   "zh": "每次变更均经自动化测试与人工审批，交付质量不靠加班堆砌",
+   "where": "tint"
+  },
+  {
+   "en": "Deliver complete source code, Skills, and knowledge bases at handover",
+   "zh": "结项时将源码、技能与知识库完整移交客户",
+   "where": "tint"
+  },
+  {
+   "en": "Partnership Models",
+   "zh": "合作方式",
+   "where": "sec"
+  },
+  {
+   "en": "Resell, deliver, or build industry solutions. ",
+   "zh": "分销、交付、共建行业方案，",
+   "where": "sec"
+  },
+  {
+   "en": "Pick one or combine them.",
+   "zh": "按需选择，也可自由组合。",
+   "where": "sec"
+  },
+  {
+   "en": "Channel Distribution",
+   "zh": "渠道分销",
+   "where": "sec"
+  },
+  {
+   "en": "Recommend and resell NocoBase commercial licenses for tiered commission.",
+   "zh": "推广与销售 NocoBase 商业授权，按累计销售额获取阶梯返佣。",
+   "where": "sec"
+  },
+  {
+   "en": "15%–40% commission based on lifetime cumulative sales",
+   "zh": "佣金比例 15%–40%，按历史累计销售额定级",
+   "where": "sec"
+  },
+  {
+   "en": "Lifetime accumulation, so your tier never resets or drops",
+   "zh": "业绩终身累计不清零，佣金比例只升不降",
+   "where": "sec"
+  },
+  {
+   "en": "One-time perpetual licensing with unlimited seats makes client approval easy",
+   "zh": "一次付费、永久授权、不限席位，客户采购门槛低",
+   "where": "sec"
+  },
+  {
+   "en": "Backed by sales collateral, demo environments, and battlecards",
+   "zh": "提供全套销售资料、演示环境与竞品对比手册",
+   "where": "sec"
+  },
+  {
+   "en": "Service Delivery",
+   "zh": "服务交付",
+   "where": "sec"
+  },
+  {
+   "en": "Deliver deployment, customization, integration, and training in Studio with your agent team.",
+   "zh": "用 Studio 和 Agent 团队，为客户提供部署、定制、集成与培训服务。",
+   "where": "sec"
+  },
+  {
+   "en": "Keep 100% of your service revenue, with zero cut to NocoBase",
+   "zh": "服务收入 100% 归你，官方不抽成",
+   "where": "sec"
+  },
+  {
+   "en": "Price your way: fixed project, per module, or annual retainer",
+   "zh": "自主定价：支持按项目、按模块或按年维保收费",
+   "where": "sec"
+  },
+  {
+   "en": "Move up tiers as you ship projects to get priority lead referrals",
+   "zh": "按成功上线项目数晋升等级，高级别优先获得官方商机推荐",
+   "where": "sec"
+  },
+  {
+   "en": "Industry Solutions",
+   "zh": "行业方案",
+   "where": "sec"
+  },
+  {
+   "en": "Build vertical solutions on Core with built-in domain agents, just like NocoCRM.",
+   "zh": "基于 Core 打造垂直行业解决方案，像 NocoCRM 一样内置专属业务 Agent。",
+   "where": "sec"
+  },
+  {
+   "en": "Build once, then deploy and maintain across clients in your vertical",
+   "zh": "一次沉淀，面向同行业客户批量复制与维护",
+   "where": "sec"
+  },
+  {
+   "en": "Package domain rules into Skills and guidance so agents know the industry day one",
+   "zh": "将行业经验封装进技能与业务指导，让 Agent 开箱即懂行",
+   "where": "sec"
+  },
+  {
+   "en": "Get listed in the NocoBase Solutions catalog with joint launch and marketing",
+   "zh": "上架官方 Solutions 目录，享联合发布与市场推广",
+   "where": "sec"
+  },
+  {
+   "en": "Technology Ecosystem",
+   "zh": "技术生态",
+   "where": "sec"
+  },
+  {
+   "en": "Bring models, agent tooling, cloud infrastructure, or connectors into NocoBase 3 deployments.",
+   "zh": "将模型、Agent 工具、云设施或连接器融入 NocoBase 3 客户方案。",
+   "where": "sec"
+  },
+  {
+   "en": "Publish Skills, connectors, and UI components for developers and agents",
+   "zh": "发布技能包、连接器与 UI 组件，供开发者与 Agent 直接调用",
+   "where": "sec"
+  },
+  {
+   "en": "Co-publish solutions, technical docs, and customer case studies",
+   "zh": "联合输出解决方案、技术文档与标杆案例",
+   "where": "sec"
+  },
+  {
+   "en": "Get early access to Core releases for compatibility validation",
+   "zh": "提前获取 Core 预览版，完成兼容性认证",
+   "where": "sec"
+  },
+  {
+   "en": "Why NocoBase",
+   "zh": "为什么是 NocoBase",
+   "where": "sec"
+  },
+  {
+   "en": "Faster, steadier delivery. ",
+   "zh": "交付更快更稳，",
+   "where": "sec"
+  },
+  {
+   "en": "More confident clients.",
+   "zh": "客户更放心。",
+   "where": "sec"
+  },
+  {
+   "en": "100% source code",
+   "zh": "全量源码交付",
+   "where": "sec"
+  },
+  {
+   "en": "Deliverables pass technical due diligence with zero vendor lock-in, building the trust that closes deals.",
+   "zh": "交付物经得起客户技术团队审查，权属清晰、无黑盒锁定，打消客户顾虑、加速签单。",
+   "where": "sec"
+  },
+  {
+   "en": "Enterprise primitives built in",
+   "zh": "企业级能力开箱即用",
+   "where": "sec"
+  },
+  {
+   "en": "Auth, permissions, workflows, approvals, and AI employees come standard, so agents only write client-specific logic.",
+   "zh": "认证、权限、工作流、审批、通知与 AI 员工现成可用，Agent 只需专注编写客户特定业务逻辑。",
+   "where": "sec"
+  },
+  {
+   "en": "Scalable delivery in Studio",
+   "zh": "Studio 支撑规模化交付",
+   "where": "sec"
+  },
+  {
+   "en": "Manage multiple clients and repos in one workspace with tests and review, isolated previews, and gated releases.",
+   "zh": "集中管理多客户、多项目，用测试与评审、独立预览和受控发布保障一致的交付质量。",
+   "where": "sec"
+  },
+  {
+   "en": "Start from ready-made Solutions",
+   "zh": "基于现成方案高起点起步",
+   "where": "sec"
+  },
+  {
+   "en": "Customize open-source NocoCRM or NocoReach, or Professional apps such as NocoITAM, to fit your client instead of building from scratch.",
+   "zh": "NocoCRM、NocoReach 开源可用，NocoITAM 等应用随专业版提供，在其基础上按客户需求定制，远快于从零开发。",
+   "where": "sec",
+   "unused": true
+  },
+  {
+   "en": "Self-hosted, full data sovereignty",
+   "zh": "私有部署，数据主权归客户",
+   "where": "sec"
+  },
+  {
+   "en": "Deploy on-prem with any model, meeting strict compliance requirements for finance, government, and manufacturing.",
+   "zh": "支持纯内网部署与本地模型接入，轻松满足政务、金融、制造等行业的严苛合规要求。",
+   "where": "sec"
+  },
+  {
+   "en": "Proven global adoption",
+   "zh": "成熟的全球社区与口碑",
+   "where": "sec"
+  },
+  {
+   "en": "With 24.6K GitHub stars, NocoBase powers enterprises, governments, and universities worldwide, now upgrading to the AI era.",
+   "zh": "GitHub 24.6K Star，NocoBase 已服务全球众多企业、机构与高校，庞大存量客户正迈向 AI 时代。",
+   "where": "sec"
+  },
+  {
+   "en": "How We Support You",
+   "zh": "我们怎么支持你",
+   "where": "sec"
+  },
+  {
+   "en": "From your very first client, ",
+   "zh": "从首个客户开始，",
+   "where": "sec"
+  },
+  {
+   "en": "we’re in it with you.",
+   "zh": "全程与你并肩。",
+   "where": "sec"
+  },
+  {
+   "en": "Training &amp; certification",
+   "zh": "培训与认证",
+   "where": "sec"
+  },
+  {
+   "en": "Bring a real requirement to learn how to direct agents, verify previews, and ship safely in Studio.",
+   "zh": "带着真实需求参加实战培训，掌握在 Studio 中调度 Agent、验收预览与受控发布的完整方法。",
+   "where": "sec"
+  },
+  {
+   "en": "Sales enablement",
+   "zh": "销售赋能",
+   "where": "sec"
+  },
+  {
+   "en": "Access pitch decks, case studies, battlecards, and demo environments, plus joint calls on key deals.",
+   "zh": "提供售前物料、客户案例、竞品分析与演示环境；重点项目提供原厂联合支持与演示。",
+   "where": "sec"
+  },
+  {
+   "en": "Technical support",
+   "zh": "原厂技术支持",
+   "where": "sec"
+  },
+  {
+   "en": "Dedicated support channels with priority response for higher tiers, plus early access to Core releases and Skills.",
+   "zh": "开通专属支持通道，高等级伙伴享优先响应；提前获取 Core 新版本、更新说明与配套技能包。",
+   "where": "sec"
+  },
+  {
+   "en": "Lead referrals",
+   "zh": "官方商机推荐",
+   "where": "sec"
+  },
+  {
+   "en": "Receive qualified client leads matched by region, industry, language, and service, and deliver NocoBase-built business systems to them.",
+   "zh": "按地区、行业、语言与服务类型精准派发客户线索，为客户交付基于 NocoBase 搭建的业务系统。",
+   "where": "sec"
+  },
+  {
+   "en": "Brand &amp; co-marketing",
+   "zh": "品牌与市场合作",
+   "where": "sec"
+  },
+  {
+   "en": "Official partner badge, directory listing, co-marketing events, and joint customer stories.",
+   "zh": "授予官方伙伴证书与标识使用权，入驻官网伙伴名录，联合开展市场活动与标杆案例推广。",
+   "where": "sec"
+  },
+  {
+   "en": "Requirements",
+   "zh": "加入条件",
+   "where": "sec"
+  },
+  {
+   "en": "Start free. ",
+   "zh": "零门槛起步，",
+   "where": "sec"
+  },
+  {
+   "en": "Commit more, get more support.",
+   "zh": "投入越深，支持越多。",
+   "where": "sec"
+  },
+  {
+   "en": "Channel Partner",
+   "zh": "渠道合作伙伴",
+   "where": "sec"
+  },
+  {
+   "en": "Official Partner",
+   "zh": "官方合作伙伴",
+   "where": "sec"
+  },
+  {
+   "en": "Register for free and sign the channel agreement",
+   "zh": "免费注册，签署渠道合作协议",
+   "where": "sec"
+  },
+  {
+   "en": "Hold a Professional license and sign the partner agreement",
+   "zh": "持有专业版授权，签署合作伙伴协议",
+   "where": "sec"
+  },
+  {
+   "en": "Mainly public documentation",
+   "zh": "以公开的文档资源为主",
+   "where": "sec"
+  },
+  {
+   "en": "Dedicated training and certification program",
+   "zh": "专属的培训与认证体系",
+   "where": "sec"
+  },
+  {
+   "en": "Commission",
+   "zh": "渠道佣金",
+   "where": "sec"
+  },
+  {
+   "en": "Activated by your first license sale",
+   "zh": "卖出首笔商业授权后激活佣金权益",
+   "where": "sec"
+  },
+  {
+   "en": "Tiered by lifetime sales, 15% up to 40%, never decreasing",
+   "zh": "按终身累计销售额分级，15% 起，最高 40%，只升不降",
+   "where": "sec"
+  },
+  {
+   "en": "Partner certificate",
+   "zh": "伙伴认证证书",
+   "where": "sec"
+  },
+  {
+   "en": "Directory listing",
+   "zh": "伙伴名录展示",
+   "where": "sec"
+  },
+  {
+   "en": "Community support",
+   "zh": "社区支持",
+   "where": "sec"
+  },
+  {
+   "en": "Dedicated channel",
+   "zh": "专属渠道",
+   "where": "sec"
+  },
+  {
+   "en": "Co-marketing",
+   "zh": "联合市场与案例",
+   "where": "sec"
+  },
+  {
+   "en": "How to Join",
+   "zh": "加入流程",
+   "where": "sec"
+  },
+  {
+   "en": "Four steps ",
+   "zh": "从申请到交付，",
+   "where": "sec"
+  },
+  {
+   "en": "to your first NocoBase 3 project.",
+   "zh": "开启你的第一个项目。",
+   "where": "sec"
+  },
+  {
+   "en": "Apply",
+   "zh": "提交申请",
+   "where": "sec"
+  },
+  {
+   "en": "Tell us about your team, region, industries, and the models you want.",
+   "zh": "介绍你的团队、所在地区、擅长的行业和想选的合作方式。",
+   "where": "sec"
+  },
+  {
+   "en": "Talk &amp; sign",
+   "zh": "沟通与签约",
+   "where": "sec"
+  },
+  {
+   "en": "Agree on models, target clients, and a first-year plan, then sign.",
+   "zh": "一起确认合作方式、目标客户和首年计划，签署伙伴协议。",
+   "where": "sec"
+  },
+  {
+   "en": "Train &amp; certify",
+   "zh": "培训与认证",
+   "where": "sec"
+  },
+  {
+   "en": "Bring a real requirement and ship it in Studio (built, accepted, and released) to complete training and certification.",
+   "zh": "带一个真实需求，在 Studio 里完成开发、验收和上线，完成培训认证。",
+   "where": "sec"
+  },
+  {
+   "en": "Sell &amp; deliver",
+   "zh": "开始销售与交付",
+   "where": "sec"
+  },
+  {
+   "en": "Join the partner ecosystem, receive referrals, and resell NocoBase licenses and deliver for clients.",
+   "zh": "加入伙伴生态，接收客户推荐，分销 NocoBase 授权并为客户交付。",
+   "where": "sec"
+  },
+  {
+   "en": "FAQ",
+   "zh": "常见问题",
+   "where": "sec"
+  },
+  {
+   "en": "Do we need a large development team first?",
+   "zh": "需要先组建一支开发团队吗？",
+   "where": "sec"
+  },
+  {
+   "en": "No need to grow your dev team. Consultants lead scoping and acceptance in Studio. We recommend having at least one technical lead to oversee environments, integrations, and release sign-off.",
+   "zh": "不需要扩充开发团队。实施顾问在 Studio 中主导需求与验收；建议至少配备一位技术负责人，把关环境、系统集成与上线发布。",
+   "where": "sec"
+  },
+  {
+   "en": "Can we combine partnership models?",
+   "zh": "多种合作方式可以同时选吗？",
+   "where": "sec"
+  },
+  {
+   "en": "Yes. Many partners resell licenses while delivering implementation and annual care, and vertical specialists often package their own industry solutions.",
+   "zh": "可以。许多伙伴既分销商业授权，又提供定制交付与年度维保；深耕垂直行业的伙伴还会将经验沉淀为自有行业方案。",
+   "where": "sec"
+  },
+  {
+   "en": "Do we share service revenue with NocoBase?",
+   "zh": "服务收入需要和 NocoBase 分成吗？",
+   "where": "sec"
+  },
+  {
+   "en": "No. 100% of your revenue from deployment, customization, integration, training, and maintenance stays with you at whatever prices you set.",
+   "zh": "不需要。部署、定制、集成、培训和运维收入 100% 归你，定价完全自主。",
+   "where": "sec"
+  },
+  {
+   "en": "How are models and agent tools billed?",
+   "zh": "模型和 Agent 工具的费用怎么算？",
+   "where": "sec"
+  },
+  {
+   "en": "You or your client pay the providers directly with zero markup from NocoBase. Use Claude Code, Codex, OpenCode, and any cloud or local model.",
+   "zh": "由你或客户直接向对应服务商采购，NocoBase 不加收任何差价。可自由接入 Claude Code、Codex、OpenCode 及各类云端或本地私有模型。",
+   "where": "sec"
+  },
+  {
+   "en": "Can we still deliver projects on NocoBase 2?",
+   "zh": "还能继续用 NocoBase 2 为客户交付吗？",
+   "where": "sec"
+  },
+  {
+   "en": "Yes. NocoBase 2 is maintained alongside NocoBase 3. Use 2.x for UI-configured apps and 3.x for AI-built, complex systems.",
+   "zh": "可以。NocoBase 2 与 NocoBase 3 长期并行维护：适合可视化配置的项目用 2.x，需要 AI 深度开发与复杂逻辑的项目用 3.x。",
+   "where": "sec"
+  },
+  {
+   "en": "Who owns the industry solutions we build?",
+   "zh": "我们开发的行业方案知识产权归谁？",
+   "where": "sec"
+  },
+  {
+   "en": "You do. Open-source or license them commercially on your own terms; catalog listing and co-marketing are arranged together.",
+   "zh": "完全归你。你可自行决定开源或商业授权方式；上架官方目录及联合推广事宜在合作中具体沟通约定。",
+   "where": "sec"
+  },
+  {
+   "en": "Apply to become a NocoBase partner",
+   "zh": "申请成为 NocoBase 合作伙伴",
+   "where": "apply"
+  },
+  {
+   "en": "Tell us about your team and plans, and we’ll get back to you soon. Or write to partner@nocobase.com.",
+   "zh": "告诉我们你的团队和想做的事，我们会尽快联系你。也可以直接写信到 partner@nocobase.com。",
+   "where": "apply"
+  },
+  {
+   "en": "Contact name",
+   "zh": "联系人姓名",
+   "where": "apply"
+  },
+  {
+   "en": "Contact email",
+   "zh": "联系人邮箱",
+   "where": "apply"
+  },
+  {
+   "en": "Company name",
+   "zh": "公司名称",
+   "where": "apply"
+  },
+  {
+   "en": "About your company",
+   "zh": "公司简介",
+   "where": "apply"
+  },
+  {
+   "en": "How you’d like to work with us",
+   "zh": "合作意向简述",
+   "where": "apply"
+  },
+  {
+   "en": "Submit Application",
+   "zh": "提交申请",
+   "where": "apply"
+  },
+  {
+   "en": "Thanks! We’ve received your application and will be in touch soon.",
+   "zh": "已收到你的申请，我们会尽快与你联系。",
+   "where": "form"
+  },
+  {
+   "en": "Team size, the industries you serve, and current clients",
+   "zh": "团队规模、擅长的行业和已有客户",
+   "where": "form"
+  },
+  {
+   "en": "The partnership models you’re interested in (distribution, delivery, industry solutions, technology), and your target clients and regions",
+   "zh": "想选的合作方式（渠道分销、服务交付、行业方案、技术生态），以及目标客户和地区",
+   "where": "form"
+  },
+  {
+   "en": "Country / region",
+   "zh": "",
+   "where": "apply"
+  },
+  {
+   "en": "Select your country or region",
+   "zh": "",
+   "where": "form"
+  },
+  {
+   "en": "Customize open-source NocoCRM, NocoITAM, or NocoReach to fit your client instead of building from scratch.",
+   "zh": "NocoCRM、NocoITAM、NocoReach 均开源可用，在其基础上按客户需求定制，远快于从零开发。",
+   "where": "sec"
+  }
+ ],
+ "meta": {
+  "title": {
+   "zh": "NocoBase 合作伙伴计划 — 用 Agent 团队交付更多客户项目",
+   "en": "NocoBase Partner Program — Deliver More Client Projects with an Agent Team"
+  },
+  "description": {
+   "zh": "成为 NocoBase 合作伙伴：渠道分销佣金 15%–40%，服务收入 100% 归你。基于 Core、Studio 与 Solution，实施顾问专注客户需求，开发交给 Agent 团队，同时推进多个客户项目。",
+   "en": "Become a NocoBase partner: 15–40% channel commission and 100% of your service revenue. With Core, Studio, and Solution, your consultants focus on client needs while an agent team builds, so many client projects move at once."
+  }
+ }
+}

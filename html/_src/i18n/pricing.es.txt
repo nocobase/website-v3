@@ -1,0 +1,170 @@
+# Español（中性拉美/西班牙通用，tú）
+# 术语：foundation = base；building blocks = componentes base；governance = gobernanza；agent team = equipo de agentes；
+# coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
+# vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
+# 页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（8.000 USD）；信创数据库只在中文版列出
+title: Ediciones y precios — NocoBase 3
+description: Core y todas las apps de Solution son gratuitos y de código abierto. Professional cuesta 8.000 USD en un único pago e incluye Studio, 1 año de actualizaciones y soporte y un despliegue. Enterprise se cotiza según tus necesidades.
+001: Empieza gratis. <span class="m">Compra una vez, úsalo para siempre.</span>
+002: Código abierto
+003: Desarrolla y opera sistemas empresariales con tus propios agentes de programación.
+004: Gratis
+006: Todos los componentes base de Core: permisos, flujos de trabajo, archivos, notificaciones y más
+007: Estructura de proyecto, estándares de desarrollo y skills para cualquier agente de programación
+008: NocoCRM, NocoReach y NocoProject, con sus agentes de negocio
+009: Uso gratuito en producción y en proyectos para clientes
+010: Documentación y soporte de la comunidad
+011: Incluye Studio
+012: Para un equipo que desarrolla y entrega con un equipo de agentes en Studio.
+013: 8.000 USD
+014: pago único
+015: Licencia perpetua · 1 año de actualizaciones y soporte
+016: Contactar para comprar
+017: Todo lo de Community, y además:
+018: NocoBase Studio, con un equipo de agentes que desarrolla por ti
+019: Pruebas, revisión y aceptación humana antes de cada publicación
+021: NocoITAM, NocoSupport y NocoHR
+022: Agente de actualización de Core, controles de calidad y control de costos
+023: Un despliegue, realizado por el equipo de NocoBase
+024: Varios equipos
+025: Para varios equipos y entornos que necesitan gobernanza a nivel de organización y alta disponibilidad.
+026: Contáctanos
+027: Precio a medida · también licencia perpetua de pago único
+028: Todo lo de Professional, y además:
+029: Publicación en varios entornos, ventanas de cambio y periodos de congelación
+030: Gobernanza entre equipos: skills, conocimiento y política de modelos compartidos
+031: Registros de auditoría y aislamiento de agentes
+032: Clúster y alta disponibilidad, arquitectura multiinquilino y entrega en entornos aislados
+033: Soporte prioritario, con primera respuesta en menos de 4&nbsp;horas
+034: 3 días de despliegue, formación e implementación
+035: Tú eliges los servidores, los modelos y los agentes de programación, y pagas directamente a sus proveedores.
+036: Detalles
+037: Qué incluye cada edición
+038: La base de aplicaciones de código abierto
+039: Inicio de sesión y SSO
+040: Contraseña, redes sociales, OIDC
+041: Usuarios y organización
+042: Usuarios, departamentos y jerarquía
+044: Acceso por roles a páginas, acciones y datos, con las mismas reglas para personas y agentes
+045: Bases de datos
+046: Fuentes de datos externas
+047: Conecta bases de datos existentes
+048: Almacenamiento de archivos
+049: Local o compatible con S3
+050: Flujos de trabajo y tareas programadas
+051: Aprobaciones básicas
+052: Un solo aprobador, con historial
+054: En la app, correo, Feishu, DingTalk
+056: Envía y recibe correos desde los registros
+057: Modelos
+058: En la nube o locales
+059: Agentes de negocio
+060: Consultan datos dentro de los permisos del usuario y actúan tras su confirmación
+061: Base de conocimiento de IA
+062: Con permisos y versiones, y respuestas que citan sus fuentes
+063: Desarrollo con código fuente
+064: Una estructura de proyecto, estándares de desarrollo y skills para cualquier agente de programación
+065: Interfaz
+066: Idiomas, temas, componentes de negocio
+067: Impresión con plantillas
+068: Historial de actividad básico
+069: Quedan registradas las acciones de flujos, aprobaciones y agentes
+070: Despliegue y actualización
+071: Despliegue, actualización y reversión
+072: SSO empresarial
+073: SAML 2.0, LDAP, WeCom, Feishu, DingTalk
+074: Aprobaciones avanzadas
+075: Enrutamiento condicional, aprobación conjunta, añadir aprobadores, delegar, devolver
+078: Clúster y alta disponibilidad
+079: Arquitectura multiinquilino
+080: Registros de auditoría
+081: Registro completo de cada acción
+082: Entrega en entornos aislados
+083: Para redes sin acceso a internet
+085: Espacio de trabajo
+086: My issues, My sessions, panel
+087: Equipo de agentes
+088: Un agente coordinador reparte el trabajo entre agentes conectados desde cualquier máquina
+089: Runtimes
+090: Donde se ejecutan los agentes, con varias tareas en paralelo
+091: Skills, base de conocimiento y memoria del proyecto
+092: Pruebas y aceptación
+093: Pruebas automáticas, revisión con otro modelo, vistas previas, aceptación humana
+094: Despliegue y reversión
+095: Despliegue a staging y otros entornos, y reversión a la versión anterior si algo falla
+096: Historial de ejecuciones y uso
+097: Cada ejecución queda registrada, con uso y costo de un vistazo
+098: Aprobación de publicación en producción
+099: Cada despliegue a un entorno protegido necesita un aprobador
+100: Roles personalizados
+101: Define qué pueden hacer los miembros en páginas, ajustes y acciones
+102: Controles de calidad
+103: Comprobaciones obligatorias, más comprobaciones específicas para migraciones de datos, cambios de permisos y compatibilidad con Core
+104: Control de costos
+105: Presupuestos por proyecto, miembro o agente; si se agota uno, el trabajo se pausa y recibes un aviso
+106: Agente de actualización de Core
+107: Cuando Core publica una nueva versión, abre un PR de actualización, ejecuta las comprobaciones de compatibilidad y explica los cambios
+108: Decide desde Feishu, DingTalk o WeCom
+109: Responde preguntas, acepta trabajo y aprueba publicaciones sin abrir Studio
+110: Retroalimentación desde producción
+111: Los errores de producción y los comentarios de los usuarios se convierten en tareas automáticamente, y los agentes encuentran la causa y envían una corrección
+112: Métricas de entrega
+113: Tasa de aprobación, tasa de retrabajo, costo por tarea y tasa de aceptación, con un informe semanal
+114: Publicación en varios entornos
+115: Lleva a producción exactamente lo que se validó en staging
+116: Ventanas de cambio y congelaciones
+117: Define cuándo se puede publicar
+118: Gobernanza entre equipos
+119: Espacios de trabajo para muchos equipos, skills y conocimiento distribuidos a cada uno, y una sola política de modelos y proveedores permitidos
+120: Política de calidad de toda la organización
+121: Un mismo conjunto de comprobaciones obligatorias, incluidos los análisis de seguridad, para todos los proyectos
+122: Auditoría del desarrollo
+123: Quién pidió qué a un agente, qué cambió, y quién lo fusionó y aprobó: todo queda registrado y se puede exportar
+124: Aislamiento de agentes
+125: Un entorno de ejecución aislado y desechable por tarea, acceso a la red restringido y secretos que los agentes pueden usar pero nunca ver
+126: Actualizaciones en bloque
+127: Consulta la versión de Core de cada app y actualiza decenas de apps a la vez
+128: Reparto de costos
+129: Reparte el uso y los costos por departamento y centro de costos
+131: Ventas
+134: Gestión de activos de TI
+136: RR. HH.
+137: Personaliza y publica en Studio
+138: Actualizaciones oficiales integradas automáticamente
+139: Las apps personalizadas siguen las versiones oficiales: los agentes fusionan, resuelven conflictos y verifican
+140: Servicios y soporte
+141: Documentación y comunidad
+142: Actualizaciones
+143: Nuevas versiones tras la compra
+144: 1 año
+145: Soporte técnico
+146: 1 año, prioritario
+147: Tiempo de primera respuesta
+148: En menos de 12 horas
+149: En menos de 4 horas
+150: Puesta en marcha
+151: A cargo del equipo de NocoBase
+152: Un despliegue
+153: 3 días: despliegue, formación e implementación
+154: Preguntas frecuentes
+155: ¿Cómo elijo entre Professional y Enterprise?
+156: Elige Professional si un solo equipo desarrolla con Studio. Incluye un despliegue a cargo del equipo de NocoBase y una primera respuesta a las solicitudes de soporte en menos de 12&nbsp;horas.
+157: Elige Enterprise si trabajan varios equipos o si necesitas publicación en varios entornos, alta disponibilidad, registros de auditoría o entrega en entornos aislados. Incluye 3 días de despliegue, formación e implementación, y una primera respuesta en menos de 4&nbsp;horas.
+158: ¿Puedo usar Community en producción?
+159: Sí. Community incluye todo Core, además de NocoCRM, NocoReach y NocoProject, de uso gratuito en producción y en proyectos para clientes. Añade las skills de desarrollo de NocoBase a tu agente de programación y empieza a desarrollar. Tu equipo se encarga de las pruebas, las publicaciones y la operación.
+160: ¿Cuánto dura una licencia comercial?
+161: No caduca nunca. Las ediciones comerciales se compran una sola vez, sin cuotas anuales.
+162: ¿Qué pasa cuando termina el primer año de actualizaciones y soporte?
+163: Todo sigue funcionando. Si quieres nuevas versiones y soporte, puedes comprar actualizaciones y soporte por separado, sin necesidad de renovar cada año.
+164: ¿Las ediciones comerciales son autoalojadas?
+165: Sí. Studio, tus agentes y tus apps se ejecutan en tus propios servidores. Una vez publicadas, tus apps funcionan por sí solas, y las solicitudes diarias del negocio nunca pasan por Studio.
+166: ¿Puedo comprar Studio por separado?
+167: No. Studio viene incluido en Professional y Enterprise.
+168: ¿Los clientes con licencia comercial de NocoBase 2 tienen que volver a comprar?
+169: Mientras tu licencia comercial de NocoBase 2 siga dentro de su periodo de actualizaciones, puedes usar NocoBase 3 sin volver a comprar. Las versiones 2.x y 3.x se mantienen en paralelo.
+170: ¿No sabes qué edición te conviene?
+171: Cuéntanos sobre tu equipo y lo que quieres construir. Te ayudamos a analizarlo y a diseñar la configuración adecuada.
+173: Empieza gratis
+174: Aprobaciones avanzadas y SSO empresarial
+175: Todas las apps de Solution, como NocoCRM, NocoITAM y NocoReach, con sus agentes de negocio
+176: Sí. Community incluye todo Core, además de todas las apps de Solution, de uso gratuito en producción y en proyectos para clientes. Añade las skills de desarrollo de NocoBase a tu agente de programación y empieza a desarrollar. Tu equipo se encarga de las pruebas, las publicaciones y la operación.

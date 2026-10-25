@@ -85,6 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "Les agents font avancer le travail. Votre équipe garde la maîtrise.",
 "Explore Studio": "Découvrir Studio",
 "Growth · Beta": "Croissance · Beta",
-"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Analyser les données chaque jour, trouver ce qui mérite d’être fait preuves à l’appui, puis modifier des pages, rédiger des articles et préparer des réponses pour la communauté",
-"AI finds growth opportunities. Agents put them into action.": "L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre."
+"AI finds growth opportunities. Agents put them into action.": "L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Analyser les données chaque jour, trouver ce qui mérite d’être fait preuves à l’appui, puis modifier des pages, rédiger des articles et préparer des réponses pour la communauté"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Des applications métier open source, pilotées par l’IA et prêtes à l’emploi", "description": "NocoBase Solution est une gamme d’applications métier pilotées par des agents et construites sur Core."}; })((window.NB_I18N = window.NB_I18N || {})["fr"] = (window.NB_I18N || {})["fr"] || {});

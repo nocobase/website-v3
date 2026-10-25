@@ -171,7 +171,7 @@ ${copyBtn(`${plain(title)}\n${plain(problem)}\n${plain(answer)}`)}</li>`;
       else html += `<div class="block">${g.title ? `<h3 class="sub">${esc(g.title)}</h3>` : ''}${generic(sec, g.tokens)}</div>`;
     }
     flush();
-    const mark = sec.logo ? `<img class="mark-logo" src="html/assets/logo.png" alt="">` : sec.icon ? `<span class="mark">${icon(sec.icon)}</span>` : '';
+    const mark = sec.logo ? `<img class="mark-logo" src="https://static-docs.nocobase.com/logo-nocobase.png" alt="">` : sec.icon ? `<span class="mark">${icon(sec.icon)}</span>` : '';
     const name = sec.logo ? `<span class="vh">${esc(sec.title)}</span>` : esc(sec.title);
     return `<section class="sec${sec.band ? ` band-${sec.band}` : ''}" id="${sec.id}">
 <div class="container">
@@ -204,7 +204,7 @@ ${html}
 <a class="skip-link" href="#content">${t.skip}</a>
 <header class="bar">
 <div class="container in">
-<a class="logo" href="#top" aria-label="NocoBase"><img src="html/assets/logo.png" alt="NocoBase" width="150" height="22"></a>
+<a class="logo" href="#top" aria-label="NocoBase"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase" width="150" height="22"></a>
 <nav class="toc" aria-label="${t.sections}">${nav}</nav>
 <div class="tools">
 <div class="langs">${langs}</div>
@@ -225,7 +225,7 @@ ${doc.revised ? `<p class="revised">${icon('calendar')}${esc(doc.revised)}</p>` 
 ${doc.sections.map(renderSection).join('\n')}
 </main>
 <footer>
-<div class="container"><img src="html/assets/logo.png" alt="NocoBase" width="150" height="22"><span>${esc(doc.title)} · ${esc(meta.version)}${doc.revised ? ` · ${esc(doc.revised)}` : ''}</span><a href="${other.slug}.html" class="lang-link">${other.label}</a></div>
+<div class="container"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase" width="150" height="22"><span>${esc(doc.title)} · ${esc(meta.version)}${doc.revised ? ` · ${esc(doc.revised)}` : ''}</span><a href="${other.slug}.html" class="lang-link">${other.label}</a></div>
 </footer>
 <script>
 (function () {

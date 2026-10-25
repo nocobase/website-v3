@@ -5,7 +5,7 @@ description: A foundation library. A record's status is stored in its own field,
 ---
 
 > [!PENDING] Body to be written
-> The profile comes from the NocoBase repository's `v3-develop` branch (2026-10-23). The NocoBase 2 workflow plugin was removed on 2026-10-10, and workflows are now built with the record lifecycle.
+> The profile comes from the NocoBase repository's `v3-develop` branch (2026-10-23).
 
 ## Profile
 

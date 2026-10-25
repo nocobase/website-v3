@@ -55,23 +55,24 @@
 <div class="it"><i data-lucide="circle-user-round"></i>我的任务</div><div class="it"><i data-lucide="messages-square"></i>我的会话</div>
 <div class="grp">Agent 管理</div><div class="it on"><i data-lucide="bot"></i>Agent</div><div class="it"><i data-lucide="monitor-cog"></i>运行环境</div><div class="it"><i data-lucide="sparkles"></i>技能</div><div class="it"><i data-lucide="chart-column"></i>用量</div></aside>
 <div>
-<div class="sw-top"><span class="crumb"><span>Agent 管理</span><i data-lucide="chevron-right"></i><b>Agent</b></span><span class="r"><span class="st-chip">已启用 2</span><span class="st-chip wait">新发现（1）</span></span></div>
+<div class="sw-top"><span class="crumb"><span>Agent 管理</span><i data-lucide="chevron-right"></i><b>Agent</b></span><span class="r"><span class="st-chip">已启用 3</span><span class="st-btn">添加 Agent</span></span></div>
 <table class="st-tbl"><thead><tr><th>Agent</th><th>擅长什么</th><th>在哪跑</th><th>状态</th></tr></thead><tbody>
 <tr><td><b><span class="st-a cc">CC</span>Claude · Opus 5.5</b></td><td>方案设计、疑难排查和代码评审</td><td>共享 1 台</td><td><span class="st-tag on">已启用</span></td></tr>
 <tr><td><b><span class="st-a cx">CX</span>Codex · GPT-6.1 Sol</b></td><td>常规功能开发、跨模块的改动和重构</td><td>共享 1 台</td><td><span class="st-tag on">已启用</span></td></tr>
-<tr><td><b><span class="st-a cx">CX</span>Codex · GPT-6 Luna</b></td><td style="color:var(--muted)">还没写</td><td>共享 1 台</td><td><span class="st-btn p">填写并启用</span></td></tr>
+<tr><td><b><span class="st-a cx">CX</span>Codex · GPT-6 Luna</b></td><td>小改动、补测试、查 CI 失败的原因</td><td>共享 1 台</td><td><span class="st-tag on">已启用</span></td></tr>
 </tbody></table>
 </div>
 </div><figcaption>Agent 列表：每个 Agent 擅长什么、在哪台运行环境上跑</figcaption></figure>
 
 
-<h2 id="启用其他模型">启用其他模型</h2>
-<p>不在常用清单里的模型，不会自动启用：</p>
-<ul>
-<li>列表上方的「新发现」里，是运行环境上报的、还没有启用的 Agent。点「填写并启用」，写好擅长什么，点「启用」。</li>
-<li>或者点「添加 Agent」，在可用模型里选中要用的，写好擅长什么，点「添加」。</li>
-</ul>
-<p>可用模型里，显示「需要设置」或「版本过低」的，按提示在运行环境上设置或升级这个编码工具，再刷新检测。</p>
+<h2 id="添加其他模型">添加其他模型</h2>
+<p>不在常用清单里的模型，要手动添加：</p>
+<ol>
+<li>点「添加 Agent」。「可用模型」里按编码工具分组，列出运行环境上报的每个模型；常用清单里的标着「上报后自动启用」，已经加过的标着「已添加」。</li>
+<li>选中要用的模型，为每个写好擅长什么。</li>
+<li>点「添加」。添加后立即启用。</li>
+</ol>
+<p>模型显示「需要设置」或「版本过低」时，按提示在运行环境上设置或升级这个编码工具，再刷新检测。</p>
 <p>只在个人运行环境上有的 Agent，会标明「仅个人执行机」：只有那台运行环境的主人自己发起的任务，调度 Agent 才会派给它。</p>
 <p>至少启用两家厂商的 Agent。评审时，调度 Agent 会把代码交给另一家厂商的 Agent；只有一家时，换同一家的另一个模型。</p>
 <h2 id="设置调度-agent">设置调度 Agent</h2>
@@ -122,18 +123,17 @@
 </tbody></table></div>
 <p class="done"><strong>完成的标志</strong>Agent 列表里有两个以上已启用的 Agent，「在哪跑」一栏显示你的运行环境；「项目经理」一栏显示首选和备选。</p>
 <p>接着 <a href="new-project.html">新建项目</a>。</p>
-<h2 id="停用和清理">停用和清理</h2>
+<h2 id="停用">停用</h2>
 <ul>
-<li>不再使用的 Agent，在「编辑」里关掉「启用」。已停用的 Agent 默认不显示，勾选「显示已停用」可以看到。</li>
+<li>不再使用的 Agent，在「编辑」里关掉「启用」。已停用的 Agent 默认不显示，勾选「显示已停用」可以看到，需要时再打开。</li>
 <li>运行环境 14 天没有上报某个 Agent，它会显示没有运行环境，调度 Agent 也不再派活给它。</li>
-<li>「清理」会列出运行环境上报出来、从没启用也从没运行过的 Agent，可以一并删除。</li>
 </ul>
 
 </article>
 <nav class="pager" aria-label="翻页"><a class="prev" href="../../studio/setup/shared-runtimes.html"><small>上一页</small>接入共享运行环境</a><a class="next" href="../../studio/setup/new-project.html"><small>下一页</small>新建项目</a></nav>
 <footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
 </main>
-<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E6%A3%80%E6%9F%A5%E8%87%AA%E5%8A%A8%E5%90%AF%E7%94%A8%E7%9A%84-agent">检查自动启用的 Agent</a></li><li><a href="#%E5%90%AF%E7%94%A8%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9E%8B">启用其他模型</a></li><li><a href="#%E8%AE%BE%E7%BD%AE%E8%B0%83%E5%BA%A6-agent">设置调度 Agent</a></li><li><a href="#%E5%81%9C%E7%94%A8%E5%92%8C%E6%B8%85%E7%90%86">停用和清理</a></li></ul></aside>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E6%A3%80%E6%9F%A5%E8%87%AA%E5%8A%A8%E5%90%AF%E7%94%A8%E7%9A%84-agent">检查自动启用的 Agent</a></li><li><a href="#%E6%B7%BB%E5%8A%A0%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9E%8B">添加其他模型</a></li><li><a href="#%E8%AE%BE%E7%BD%AE%E8%B0%83%E5%BA%A6-agent">设置调度 Agent</a></li><li><a href="#%E5%81%9C%E7%94%A8">停用</a></li></ul></aside>
 </div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script src="../../assets/docs.js?v=ce5256f5"></script>

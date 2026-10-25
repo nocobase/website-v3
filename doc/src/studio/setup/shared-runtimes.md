@@ -59,7 +59,7 @@ curl -fsSL https://studio.example.com/main/api/agents/dist/installScript | sh -s
 | 需要登录 | 装了，但还没有登录 | 在这台机器上，用运行执行机的系统用户登录这个工具，再在详情里点「重新检测」 |
 | 未安装 | 没有找到这个工具 | 安装它；已经装了还显示未安装，见下文常见问题 |
 
-**完成的标志**：运行环境显示在线，要用的编码工具显示「已登录」。这时「Agent 管理 › Agent」里会出现待启用的 Agent，接着 [启用 Agent](agents.md)。
+**完成的标志**：运行环境显示在线，要用的编码工具显示「已登录」。这时「Agent 管理 › Agent」里会出现常用模型的 Agent，其余模型可以从「添加 Agent」添加，接着 [启用 Agent](agents.md)。
 
 ## 管理运行环境
 

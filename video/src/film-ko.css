@@ -1,0 +1,8 @@
+/* 韩语（film-ko.html / preview-ko.html）：接在 film.css、film-en.css 后面加载，只放这一版需要的换行、尺寸和字体。
+   产品界面沿用英文版（film-en.css 的界面调整照样生效），时间表和画面结构和中文版相同。 */
+
+/* 文案和界面字体：西文、数字用 Inter，韩语用系统字体（其他系统用 Noto Sans，src/load.js 加载） */
+:root { --copy: 'Inter', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; --sans: 'Inter', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif; --mono: 'JetBrains Mono', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', ui-monospace, monospace; }
+
+/* 品牌：「NocoBase가」的助词紧贴品牌名，这一枚角色标签里去掉图标组和文字之间的间距 */
+#bRoles #rp1 { gap: 0; }

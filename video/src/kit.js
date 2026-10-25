@@ -28,6 +28,10 @@
     // Cyrillic ones (en, de, fr, es, pt, ru, id, vi) word by word, with staggers ×2.3 so a line takes about as long
     K.lang = document.documentElement.lang || 'zh';
     K.byWord = /^(en|de|fr|es|pt|ru|id|vi)\b/i.test(K.lang);
+    // the product UI's language, as the website shows it: Chinese for the Chinese version, Traditional Chinese for zh-TW,
+    // English for every other version. Specimens pick their UI words by this (K.uiW), not by K.byWord.
+    K.uiEn = !/^zh\b/i.test(K.lang);
+    K.uiW = (zh, en, tw) => (K.uiEn ? en : K.lang === 'zh-TW' && tw != null ? tw : zh);
     K.stag = (s) => (K.byWord ? +(s * 2.3).toFixed(3) : s);
 
     // ---------------------------------------------------------------- DOM and text
@@ -36,9 +40,10 @@
     K.esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     K.ic = (n) => `<i data-lucide="${n}"></i>`;                       // a lucide icon
     K.fmt = (n) => Math.round(n).toLocaleString('en-US');             // 102,640
-    // Chinese copy: Latin runs (AI, NocoBase, API, SAP, CI …) set in the Latin face, not left to font fallback; a Latin-script
-    // version needs no second face, so K.ZH passes its copy through
-    K.ZH = (s) => K.byWord ? s : s.replace(/[A-Za-z][A-Za-z0-9+#.\-]*(?: (?:\+|[A-Za-z][A-Za-z0-9+#.\-]*))*/g, (m) => `<span class="en">${m}</span>`);
+    // Chinese copy: Latin runs (AI, NocoBase, API, SAP, CI …) set in the Latin face, not left to font fallback. Only the
+    // Chinese version needs it: a Latin-script version has one face, and the Japanese, Korean and Traditional Chinese ones put
+    // Inter first in their own face stacks (film-<lang>.css) and show the English UI, so K.ZH passes their text through
+    K.ZH = (s) => K.uiEn ? s : s.replace(/[A-Za-z][A-Za-z0-9+#.\-]*(?: (?:\+|[A-Za-z][A-Za-z0-9+#.\-]*))*/g, (m) => `<span class="en">${m}</span>`);
     K.NB = (s) => `<span class="nb">${s}</span>`;                     // the blue: only what NocoBase provides
     // illustrated avatars (DiceBear Notionists, CC0; tools/avatars.mjs writes src/avatars.js); each copy gets its own ids.
     // A language version renames the cast but keeps each person's drawing: NBFilm({ T, avatars: { 'Emily Carter': '何静' } })

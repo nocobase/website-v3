@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>启用 Agent - NocoBase 3 文档</title>
+<meta name="description" content="运行环境上报编码工具和模型后，写好每个 Agent 擅长什么并启用；再为调度 Agent 选好首选和备选。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../../index.html"><img class="brand-logo" src="../../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../../index.html">开始</a><a href="../../core/index.html">Core</a><a href="../../studio/index.html" aria-current="true">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html" class="todo">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html" class="todo">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html" class="todo">安装 Studio</a></li><li><a href="../../studio/setup/git.html" class="todo">连接 Git</a></li><li><a href="../../studio/setup/team-runtimes.html" class="todo">接入团队运行环境</a></li><li><a href="../../studio/setup/agents.html" class="todo" aria-current="page">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html" class="todo">新建项目</a></li><li><a href="../../studio/setup/ci.html" class="todo">连接 CI</a></li><li><a href="../../studio/setup/first-request.html" class="todo">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html" class="todo">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html" class="todo">提出需求</a></li><li><a href="../../studio/use/sessions.html" class="todo">我的会话</a></li><li><a href="../../studio/use/my-tasks.html" class="todo">我的任务</a></li><li><a href="../../studio/use/follow-progress.html" class="todo">跟进进展</a></li><li><a href="../../studio/use/answer.html" class="todo">回答提问</a></li><li><a href="../../studio/use/accept.html" class="todo">验收</a></li><li><a href="../../studio/use/inbox.html" class="todo">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Studio · 搭建 Studio</p><h1>启用 Agent</h1>
+<p class="lead">运行环境上报编码工具和模型后，写好每个 Agent 擅长什么并启用；再为调度 Agent 选好首选和备选。</p>
+<article class="prose">
+<h2 id="启用-agent">启用 Agent</h2>
+<p>运行环境上报后，每个“编码工具 · 模型”组合都会作为一个 Agent 出现在「Agent 团队 › Agent」的新发现里，处于「待启用」。</p>
+<ol>
+<li>打开「Agent 团队 › Agent」，展开新发现。</li>
+<li>找到要用的 Agent，点「填写并启用」。</li>
+<li>写好「擅长什么」。Studio 会预填一段建议，按团队的实际用法修改。</li>
+<li>按需要选择默认的推理强度，点「启用」。</li>
+</ol>
+<p>至少启用两家厂商的 Agent。「擅长什么」是调度 Agent 分派工作的唯一依据，写成它适合承担的工作，例如：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>擅长什么（示例）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude · Opus 5.5</td>
+<td>需求梳理、方案设计和代码评审</td>
+</tr>
+<tr>
+<td>Codex · GPT-5.5</td>
+<td>功能开发与缺陷修复</td>
+</tr>
+<tr>
+<td>Claude · Sonnet 5.5</td>
+<td>编写和运行测试、回归验证</td>
+</tr>
+</tbody></table></div>
+<figure class="fig"><div class="sw side">
+<aside class="sb"><div class="brand"><img src="../../assets/logo.png" alt="NocoBase"><span>Studio</span></div>
+<div class="it"><i data-lucide="circle-user-round"></i>我的任务</div><div class="it"><i data-lucide="messages-square"></i>我的会话</div>
+<div class="grp">Agent 团队</div><div class="it on"><i data-lucide="bot"></i>Agent</div><div class="it"><i data-lucide="monitor-cog"></i>运行环境</div><div class="it"><i data-lucide="sparkles"></i>技能</div><div class="it"><i data-lucide="chart-column"></i>用量</div></aside>
+<div>
+<div class="sw-top"><span class="crumb"><span>Agent 团队</span><i data-lucide="chevron-right"></i><b>Agent</b></span><span class="r"><span class="st-chip">已启用 2</span><span class="st-chip wait">待启用 1</span></span></div>
+<table class="st-tbl"><thead><tr><th>Agent</th><th>擅长什么</th><th>在哪跑</th><th>状态</th></tr></thead><tbody>
+<tr><td><b><span class="st-a cc">CC</span>Claude · Opus 5.5</b></td><td>需求梳理、方案设计和代码评审</td><td>团队 1 台在线</td><td><span class="st-tag on">已启用</span></td></tr>
+<tr><td><b><span class="st-a cx">CX</span>Codex · GPT-5.5</b></td><td>功能开发与缺陷修复</td><td>团队 1 台在线</td><td><span class="st-tag on">已启用</span></td></tr>
+<tr><td><b><span class="st-a cc">CC</span>Claude · Sonnet 5.5</b></td><td style="color:var(--muted)">还没写</td><td>团队 1 台在线</td><td><span class="st-btn p">填写并启用</span></td></tr>
+</tbody></table>
+</div>
+</div><figcaption>两个已启用的 Agent，一个待启用</figcaption></figure>
+
+
+<p class="done"><strong>完成的标志</strong>列表里有两个以上已启用的 Agent，「在哪跑」一栏显示你的运行环境。</p>
+<h2 id="设置调度-agent">设置调度 Agent</h2>
+<p>调度 Agent 负责安排所有交给 Agent 的任务，它本身也需要一个 Agent 来运行。</p>
+<ol>
+<li>在「Agent 团队 › Agent」打开「调度 Agent」。</li>
+<li>在「用哪个 Agent 跑」里选择「首选」，再选择一个「备选」。首选排队超时或没有可用的运行环境时，由备选接手。</li>
+<li>保存。</li>
+</ol>
+<p>「分配原则」先保留内置的内容。</p>
+<figure class="fig"><div class="sw" style="max-width:640px">
+<div class="sw-top"><span class="crumb"><span>Agent</span><i data-lucide="chevron-right"></i><b>调度 Agent</b></span></div>
+<div class="sw-body">
+<p style="font-size:12.5px;color:var(--muted)">全局只有一个，所有项目的任务都由它安排。</p>
+<div class="fld"><span>用哪个 Agent 跑</span><div class="st-meta"><span><span class="k">首选</span><span class="st-pill"><span class="st-a cc">CC</span>Claude · Opus 5.5<i data-lucide="chevron-down"></i></span></span><span><span class="k">备选</span><span class="st-pill"><span class="st-a cx">CX</span>Codex · GPT-5.5<i data-lucide="chevron-down"></i></span></span></div><small>首选排队超时后由空闲备选领取；首选无兼容执行机时立即尝试备选。</small></div>
+<div class="fld"><span>分配原则 <span class="st-tag nd" style="margin-left:4px">内置</span></span><span class="inp area mute">同一时间只有一个步骤修改代码；改动涉及数据、迁移或权限时先写方案；代码交给另一家厂商的 Agent 评审……</span></div>
+<div class="fld"><span>运行上限</span><span class="inp short">每个任务每 24 小时 20 次</span></div>
+<div class="dlg-foot"><span class="st-btn p">保存</span></div>
+</div>
+</div><figcaption>调度 Agent 的设置</figcaption></figure>
+
+
+<p class="done"><strong>完成的标志</strong>调度 Agent 的首选显示在线。</p>
+<h2 id="计划包含">计划包含</h2>
+<ul>
+<li>Agent 从哪里来：每个「编码工具 · 模型」组合是一个 Agent</li>
+<li>写明擅长什么：调度 Agent 分派工作的依据</li>
+<li>调度 Agent（界面上叫「项目经理」）：首选、备选和等待时间；分配原则；每个任务 24 小时内由 Agent 评论触发的运行上限</li>
+<li>变量与密钥；仅限团队运行环境的密钥</li>
+</ul>
+
+</article>
+
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E5%90%AF%E7%94%A8-agent">启用 Agent</a></li><li><a href="#%E8%AE%BE%E7%BD%AE%E8%B0%83%E5%BA%A6-agent">设置调度 Agent</a></li><li><a href="#%E8%AE%A1%E5%88%92%E5%8C%85%E5%90%AB">计划包含</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

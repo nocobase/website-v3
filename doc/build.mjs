@@ -15,7 +15,7 @@ const dependency = [join(dir, 'node_modules/marked/lib/marked.esm.js'), join(dir
 if (!dependency) throw new Error('需要 marked@4.3.0：在 doc/ 或上一级目录执行 npm install marked@4.3.0。');
 const { marked } = await import(pathToFileURL(dependency).href);
 
-const DATE = '2026-10-23';
+const DATE = '2026-10-24';
 const LUCIDE = 'https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js';
 // 样式表和脚本的地址带上内容的版本号，改了样式后浏览器不会继续用缓存里的旧文件
 const VERSION = createHash('sha1').update(readFileSync(join(dir, 'assets/docs.css'))).update(readFileSync(join(dir, 'assets/docs.js'))).digest('hex').slice(0, 8);
@@ -88,24 +88,24 @@ const SECTIONS = [
     key: 'studio',
     title: 'Studio',
     dir: 'studio/',
-    /* 顺序：先入门、安装与上手和日常使用；后面的功能分组与 Studio 侧边栏一致（开发 → 质量 → 发布 → Agent 团队 → 设置）；最后是参考。 */
+    /* 顺序：按一家公司用起 Studio 的先后。入门之后，一个人先搭建（从安装到走完第一个需求、邀请成员），
+       同事再加入（连接自己的电脑和运行环境），然后是日常使用、管理项目和系统管理。每组给一种角色看，
+       组里的页面按这个角色做事的先后排列；见 方案/11-Studio文档重构方案.md。 */
     nav: [
       { items: ['index'] },
-      { title: '入门', items: ['intro/what-is-studio', 'intro/how-a-request-gets-done', 'intro/concepts', 'intro/interface-tour'] },
-      { title: '安装与上手', items: ['install', 'quickstart'] },
+      { title: '入门', items: ['intro/what-is-studio', 'intro/how-a-request-gets-done', 'intro/agent-team', 'intro/concepts'] },
       {
-        title: '日常使用',
-        items: [
-          'daily/my-tasks', 'daily/sessions', 'daily/raise-a-request', 'daily/follow-progress', 'daily/answer-questions',
-          'daily/accept', 'daily/knowledge', 'daily/inbox', 'daily/cli',
-        ],
+        title: '搭建 Studio',
+        items: ['setup/install', 'setup/git', 'setup/team-runtimes', 'setup/agents', 'setup/new-project', 'setup/ci', 'setup/first-request', 'setup/invite'],
       },
-      { title: '项目与代码', items: ['projects/create-project', 'projects/project-settings', 'projects/repos-and-prs', 'projects/ci-checks', 'projects/skills', 'projects/knowledge-admin'] },
-      { title: '质量管理', items: ['quality/test-plans', 'quality/features-and-cases', 'quality/reports'] },
-      { title: '发布与部署', items: ['release/previews', 'release/apps-and-environments', 'release/approval-and-rollback'] },
-      { title: 'Agent 团队', items: ['agents/runtimes', 'agents/agents', 'agents/coordinator', 'agents/usage'] },
-      { title: '系统管理', items: ['admin/members-and-roles', 'admin/git', 'admin/api-keys', 'admin/notifications', 'admin/upgrade-and-backup'] },
-      { title: '参考', items: ['reference/statuses-and-permissions', 'reference/glossary', 'reference/config', 'reference/cli', 'reference/faq'] },
+      { title: '加入团队', items: ['join/sign-in', 'join/connect-computer', 'join/local-agent', 'join/personal-runtime'] },
+      { title: '日常使用', items: ['use/raise-a-request', 'use/sessions', 'use/my-tasks', 'use/follow-progress', 'use/answer', 'use/accept', 'use/inbox'] },
+      {
+        title: '管理项目',
+        items: ['project/settings', 'project/skills', 'project/knowledge-base', 'project/checks-and-review', 'project/project-memory', 'project/release', 'project/progress', 'project/usage'],
+      },
+      { title: '系统管理', items: ['admin/environments', 'admin/members-and-roles', 'admin/api-keys', 'admin/notifications', 'admin/upgrade-and-backup'] },
+      { title: '参考', items: ['reference/statuses-and-permissions', 'reference/cli', 'reference/config', 'reference/faq'] },
     ],
   },
 ];
@@ -113,7 +113,7 @@ const SECTIONS = [
 /* 文档方案按菜单分组；上一篇 / 下一篇按这里的顺序 */
 const PLAN_GROUPS = [
   { title: 'Core 与统一文档站', items: ['06-读者与需求', '07-Core文档的问题', '08-Core文档结构与写作原则', '09-统一文档站', '10-Core进度与待确认事项'] },
-  { title: 'Studio 文档', items: ['01-现有文档的问题', '02-文档结构与写作原则', '03-命名方案', '04-写作规范与术语', '05-进度与待确认事项'] },
+  { title: 'Studio 文档', items: ['11-Studio文档重构方案', '01-现有文档的问题', '02-文档结构与写作原则', '03-命名方案', '04-写作规范与术语', '05-进度与待确认事项'] },
 ];
 
 /* ---------- Markdown 渲染 ---------- */

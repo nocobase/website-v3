@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>回答 Agent 的提问 - NocoBase 3 文档</title>
+<meta name="description" content="任务等你做决定时怎样处理：回答提问、运行失败、运行上限、接手任务。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../../index.html"><img class="brand-logo" src="../../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../../index.html">开始</a><a href="../../core/index.html">Core</a><a href="../../studio/index.html" aria-current="true">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html" class="todo">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html" class="todo">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html" class="todo">安装 Studio</a></li><li><a href="../../studio/setup/git.html" class="todo">连接 Git</a></li><li><a href="../../studio/setup/team-runtimes.html" class="todo">接入团队运行环境</a></li><li><a href="../../studio/setup/agents.html" class="todo">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html" class="todo">新建项目</a></li><li><a href="../../studio/setup/ci.html" class="todo">连接 CI</a></li><li><a href="../../studio/setup/first-request.html" class="todo">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html" class="todo">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html" class="todo">提出需求</a></li><li><a href="../../studio/use/sessions.html" class="todo">我的会话</a></li><li><a href="../../studio/use/my-tasks.html" class="todo">我的任务</a></li><li><a href="../../studio/use/follow-progress.html" class="todo">跟进进展</a></li><li><a href="../../studio/use/answer.html" class="todo" aria-current="page">回答提问</a></li><li><a href="../../studio/use/accept.html" class="todo">验收</a></li><li><a href="../../studio/use/inbox.html" class="todo">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Studio · 日常使用</p><h1>回答 Agent 的提问</h1>
+<p class="lead">任务等你做决定时怎样处理：回答提问、运行失败、运行上限、接手任务。</p>
+<article class="prose">
+<h2 id="agent-什么时候会找你">Agent 什么时候会找你</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>你会看到</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>需要你做一个决定</td>
+<td>任务进入「阻塞中」，「我的任务」里标着“等你回复”</td>
+<td>回复问题</td>
+</tr>
+<tr>
+<td>一次运行重试后仍然失败</td>
+<td>任务上出现运行失败的决定卡片，标着“运行失败”</td>
+<td>重试、改派给人，或不再重试</td>
+</tr>
+<tr>
+<td>Agent 之间触发的运行达到上限</td>
+<td>任务页提示「继续（评论运行已达上限）」</td>
+<td>确认后继续</td>
+</tr>
+<tr>
+<td>有人把任务转给你负责</td>
+<td>「我的任务」里标着“等你接手”</td>
+<td>接手或拒绝</td>
+</tr>
+<tr>
+<td>有人请求在你的个人运行环境上继续</td>
+<td>任务页上的请求</td>
+<td>确认或拒绝</td>
+</tr>
+</tbody></table></div>
+<p>这些事都在任务页上处理，并汇总在「我的任务」的“等你处理”里。</p>
+<h2 id="回答阻塞中的提问">回答阻塞中的提问</h2>
+<p>调度 Agent 遇到需要人判断的事，例如方案取舍、业务规则、例外情况，会把任务转为「阻塞中」，并在任务页顶部的“需要你”卡片里写清要你决定或提供什么。</p>
+<ol>
+<li>打开任务，读“需要你”卡片。需要背景时，点「查看调度 Agent 最新说明」，看它的完整说明。</li>
+<li>点「回复」。回复框会打开在调度 Agent 那条说明的下面。</li>
+<li>写下你的决定，点发送。</li>
+</ol>
+<p>调度 Agent 收到回复后会被唤醒，根据你的回答继续安排。</p>
+<figure class="fig"><div class="sw">
+<div class="st-dh"><span class="id">PUR-23</span><span>· 供应商管理</span><span class="r"><span class="st-pill"><span class="si blocked"></span>阻塞中<i data-lucide="chevron-down"></i></span><span><i data-lucide="star"></i>关注</span><span><i data-lucide="messages-square"></i>问 Agent</span></span></div>
+<div class="sw-body">
+<p class="st-title">供应商评分与分级<i data-lucide="pencil"></i></p>
+<div class="needs"><b>需要你</b><p>周航：现有规则是订单金额超过 5 万元才需要采购经理审批。C 级供应商的订单，是不论金额都要审批，还是仍按金额？确认后开始开发。</p><span class="lnk">查看调度 Agent 最新说明</span><div class="st-btns"><span class="st-btn p"><i data-lucide="reply"></i>回复</span></div></div>
+<div class="st-cmt"><span class="st-av">周</span><span class="txt">C 级供应商的订单不论金额都要审批，其他供应商仍按金额。</span><span class="r"><i data-lucide="paperclip"></i><span class="snd"><i data-lucide="send"></i></span></span></div>
+</div>
+</div><figcaption>阻塞中的任务：读问题，点「回复」写下决定</figcaption></figure>
+
+
+<div class="note tip"><strong>怎样回答更快推进</strong><p>直接给结论，再补一句理由，例如“新供应商先按 B 级，满三个月后重新评分。因为没有历史数据，不宜直接定为 A 级。”拿不准的，可以让它先列出几种方案和各自的影响。</p>
+</div>
+<h2 id="运行失败">运行失败</h2>
+<p>Agent 的运行可能因为运行环境离线、编码工具额度用完、网络问题等失败。可以重试的失败会自动重试；重试次数用完后，负责人会收到一张决定卡片：</p>
+<figure class="fig"><div class="sw w-md">
+<div class="st-dh"><span class="id">PUR-26</span><span>· 供应商管理</span><span class="r"><span class="st-pill"><span class="si progress"></span>进行中<i data-lucide="chevron-down"></i></span></span></div>
+<div class="sw-body">
+<div class="needs"><b>运行失败</b><p style="display:flex;align-items:center;gap:6px"><span class="st-a cx">CX</span>Codex · GPT-5.5 的运行在 3 次尝试后仍然失败：运行环境已离线。</p><p class="meta">任务负责人或能编辑这个任务的人可以处理</p><div class="st-btns"><span class="st-btn p"><i data-lucide="refresh-cw"></i>重试</span><span class="st-btn"><i data-lucide="user-round"></i>改派给人</span><span class="st-btn">不再重试</span></div></div>
+</div>
+</div><figcaption>运行失败的决定卡片</figcaption></figure>
+
+
+<ul>
+<li><strong>重试</strong>：让 Agent 重新尝试。适合临时性的问题，例如运行环境刚恢复在线。</li>
+<li><strong>改派给人</strong>：把执行者改成一位成员，由人来做。</li>
+<li><strong>不再重试</strong>：放弃这次运行。</li>
+</ul>
+<p>运行记录里可以看到失败的原因。调度 Agent 也可能自己把失败的步骤换给另一个合适的 Agent；同一步失败两次后，它会把任务转为「阻塞中」来问你。</p>
+<h2 id="评论运行达到上限">评论运行达到上限</h2>
+<p>为防止 Agent 之间来回触发，每个任务每 24 小时内由 Agent 评论触发的运行有上限（默认 20 次，管理员可以调整）。达到上限后，Agent 的评论不再启动新的运行，负责人会收到通知。</p>
+<p>确认任务确实需要继续后，在任务页点「继续（评论运行已达上限）」。你自己发一条会唤醒 Agent 的评论，也会重新开始计数。</p>
+<div class="note note"><strong>达到上限往往是个信号</strong><p>先看看动态和运行记录：Agent 是不是在反复修同一个问题？如果是，补充说明或调整任务，比直接继续更有效。</p>
+</div>
+<h2 id="接手转给你的任务">接手转给你的任务</h2>
+<p>有人把任务的负责人转给你后，任务会出现在“等你接手”。在你接手之前，Agent 的工作会暂停，任务上等负责人决定的事也要等你接手后才能处理。</p>
+<ul>
+<li>打开任务，点「接手任务」，你就成为负责人，可以继续回答提问、验收。</li>
+<li>也可以拒绝。拒绝后任务回到原负责人手里；原负责人的账号已停用时，任务由你保留并保持暂停。</li>
+</ul>
+<h2 id="个人运行环境的请求">个人运行环境的请求</h2>
+<p>个人运行环境只运行主人自己发起的工作。别人在你负责的任务上发评论，而接下来的工作要用到你的个人运行环境时，任务页会出现“某某请求在你的个人执行机上继续”，你可以「确认」或「拒绝」。确认后，这次工作才会在你的个人运行环境上运行。</p>
+
+</article>
+
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#agent-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E6%89%BE%E4%BD%A0">Agent 什么时候会找你</a></li><li><a href="#%E5%9B%9E%E7%AD%94%E9%98%BB%E5%A1%9E%E4%B8%AD%E7%9A%84%E6%8F%90%E9%97%AE">回答阻塞中的提问</a></li><li><a href="#%E8%BF%90%E8%A1%8C%E5%A4%B1%E8%B4%A5">运行失败</a></li><li><a href="#%E8%AF%84%E8%AE%BA%E8%BF%90%E8%A1%8C%E8%BE%BE%E5%88%B0%E4%B8%8A%E9%99%90">评论运行达到上限</a></li><li><a href="#%E6%8E%A5%E6%89%8B%E8%BD%AC%E7%BB%99%E4%BD%A0%E7%9A%84%E4%BB%BB%E5%8A%A1">接手转给你的任务</a></li><li><a href="#%E4%B8%AA%E4%BA%BA%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%B7%E6%B1%82">个人运行环境的请求</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

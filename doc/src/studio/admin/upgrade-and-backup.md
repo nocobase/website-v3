@@ -7,7 +7,7 @@ description: 升级 Studio，备份数据库和密钥。
 > [!PENDING] 本页待编写
 > 下面是计划包含的内容。
 
-升级和备份的基本命令见 [安装 Studio](../install.md#数据与备份)。
+升级和备份的基本命令见 [安装 Studio](../setup/install.md#数据与备份)。
 
 ## 计划包含
 

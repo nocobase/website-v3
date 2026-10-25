@@ -1,5 +1,6 @@
 ---
 title: 核心概念
+status: 待改写
 description: Studio 里的人和 Agent、任务、交付流程、运行环境和团队积累，以及它们之间的关系。
 ---
 

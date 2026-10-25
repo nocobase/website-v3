@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>接入共享运行环境 - NocoBase 3 文档</title>
+<meta name="description" content="在团队的服务器或虚拟机上安装执行机，接入 Studio。机器上装好的编码工具成为 Agent 团队的一员，执行所有人的任务。">
+<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/docs.css?v=e9ad5699">
+</head>
+<body>
+<a class="skip-link" href="#content">跳到正文</a>
+<header class="topbar">
+<a class="brand" href="../../index.html"><img class="brand-logo" src="../../assets/logo.png" alt="NocoBase"><span class="version">3</span><span class="doc-label">文档</span></a>
+<nav class="sections" aria-label="文档分区"><a href="../../index.html">开始</a><a href="../../core/index.html">Core</a><a href="../../studio/index.html" aria-current="true">Studio</a></nav>
+<nav class="toplinks" aria-label="站点链接"><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.nocobase.com/cn/" target="_blank" rel="noopener">官网 ↗</a></nav>
+</header>
+<div class="layout">
+<aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><ul><li><a href="../../studio/index.html">首页</a></li></ul></div><div class="menu-group"><p class="menu-title">入门</p><ul><li><a href="../../studio/intro/what-is-studio.html">Studio 是什么</a></li><li><a href="../../studio/intro/how-a-request-gets-done.html">一个需求怎样完成</a></li><li><a href="../../studio/intro/agent-team.html">Agent 团队怎样工作</a></li><li><a href="../../studio/intro/concepts.html">核心概念</a></li></ul></div><div class="menu-group"><p class="menu-title">搭建 Studio</p><ul><li><a href="../../studio/setup/install.html" class="todo">安装 Studio</a></li><li><a href="../../studio/setup/git.html" class="todo">连接 Git</a></li><li><a href="../../studio/setup/shared-runtimes.html" aria-current="page">接入共享运行环境</a></li><li><a href="../../studio/setup/agents.html" class="todo">启用 Agent</a></li><li><a href="../../studio/setup/new-project.html" class="todo">新建项目</a></li><li><a href="../../studio/setup/ci.html" class="todo">连接 CI</a></li><li><a href="../../studio/setup/first-request.html" class="todo">走完第一个需求</a></li><li><a href="../../studio/setup/invite.html" class="todo">邀请成员</a></li></ul></div><div class="menu-group"><p class="menu-title">加入团队</p><ul><li><a href="../../studio/join/sign-in.html" class="todo">登录与个人设置</a></li><li><a href="../../studio/join/connect-computer.html" class="todo">连接自己的电脑</a></li><li><a href="../../studio/join/local-agent.html" class="todo">在本地 Coding Agent 里使用</a></li><li><a href="../../studio/join/personal-runtime.html" class="todo">接入个人运行环境</a></li></ul></div><div class="menu-group"><p class="menu-title">日常使用</p><ul><li><a href="../../studio/use/raise-a-request.html" class="todo">提出需求</a></li><li><a href="../../studio/use/sessions.html" class="todo">我的会话</a></li><li><a href="../../studio/use/my-tasks.html" class="todo">我的任务</a></li><li><a href="../../studio/use/follow-progress.html" class="todo">跟进进展</a></li><li><a href="../../studio/use/answer.html" class="todo">回答提问</a></li><li><a href="../../studio/use/accept.html" class="todo">验收</a></li><li><a href="../../studio/use/inbox.html" class="todo">收件箱与提醒</a></li></ul></div><div class="menu-group"><p class="menu-title">管理项目</p><ul><li><a href="../../studio/project/settings.html" class="todo">项目设置</a></li><li><a href="../../studio/project/skills.html" class="todo">技能</a></li><li><a href="../../studio/project/knowledge-base.html" class="todo">知识库</a></li><li><a href="../../studio/project/checks-and-review.html" class="todo">检查与评审</a></li><li><a href="../../studio/project/project-memory.html" class="todo">项目记忆</a></li><li><a href="../../studio/project/release.html" class="todo">批准上线与回滚</a></li><li><a href="../../studio/project/progress.html" class="todo">项目进展</a></li><li><a href="../../studio/project/usage.html" class="todo">Agent 工作负荷与模型用量</a></li></ul></div><div class="menu-group"><p class="menu-title">系统管理</p><ul><li><a href="../../studio/admin/environments.html" class="todo">部署环境</a></li><li><a href="../../studio/admin/members-and-roles.html" class="todo">成员与角色</a></li><li><a href="../../studio/admin/api-keys.html" class="todo">API 密钥</a></li><li><a href="../../studio/admin/notifications.html" class="todo">通知与推送</a></li><li><a href="../../studio/admin/upgrade-and-backup.html" class="todo">升级与备份</a></li></ul></div><div class="menu-group"><p class="menu-title">参考</p><ul><li><a href="../../studio/reference/statuses-and-permissions.html" class="todo">任务状态与权限</a></li><li><a href="../../studio/reference/cli.html" class="todo">nb-studio 命令</a></li><li><a href="../../studio/reference/config.html" class="todo">配置项</a></li><li><a href="../../studio/reference/faq.html" class="todo">常见问题与排错</a></li></ul></div></nav></details></aside>
+<main id="content" class="content">
+<p class="crumb">Studio · 搭建 Studio</p><h1>接入共享运行环境</h1>
+<p class="lead">在团队的服务器或虚拟机上安装执行机，接入 Studio。机器上装好的编码工具成为 Agent 团队的一员，执行所有人的任务。</p>
+<article class="prose">
+<p>运行环境是 Agent 工作的机器。共享运行环境通常是团队的服务器或虚拟机，接入后执行团队里所有人的任务，Agent 团队靠它 24 小时推进工作。接入共享运行环境需要管理员权限；成员把自己的电脑接进来，见 <a href="../join/personal-runtime.html">接入个人运行环境</a>。</p>
+<h2 id="准备一台机器">准备一台机器</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>准备什么</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统</td>
+<td>macOS 或 Linux；Windows 要在 WSL 的 Ubuntu 里运行</td>
+</tr>
+<tr>
+<td>基础软件</td>
+<td>Node.js 24 或更高版本，Git。项目用 NocoBase 应用模板时还要 pnpm，用 Node.js 自带的 corepack 启用：<code>corepack enable</code></td>
+</tr>
+<tr>
+<td>编码工具</td>
+<td>用官方方式安装并登录，例如 Claude Code 和 Codex。用运行执行机的那个系统用户登录。建议准备两家厂商的工具，评审才能交给另一家厂商的模型</td>
+</tr>
+<tr>
+<td>代码托管平台的命令行</td>
+<td>Agent 用它开 PR：GitHub 用 <code>gh</code>，GitLab 用 <code>glab</code>，Gitee 用 <code>gitee</code></td>
+</tr>
+<tr>
+<td>网络</td>
+<td>能访问 Studio 的地址；编码工具能访问各自的模型服务</td>
+</tr>
+</tbody></table></div>
+<div class="note warning"><strong>执行机不是安全边界</strong><p>Agent 在这台机器上以运行执行机的系统用户的身份工作，能读写这个用户能访问的一切，包括 SSH 密钥和其他凭证。请用专用的系统用户、容器或虚拟机，不要和 Studio 本身装在同一个用户下。</p>
+</div>
+<h2 id="添加运行环境">添加运行环境</h2>
+<ol>
+<li>打开「Agent 管理 › 运行环境」，点「添加运行环境」。</li>
+<li>「使用范围」选「共享」：可以执行所有用户发起的任务，并会收到发起人的变量和密钥。</li>
+<li>「编码工具」勾选这台机器上要用的工具。只有勾选的工具的工作会派到这里。</li>
+<li>「最大并发数」是这台机器同时运行的工作数，默认 3，按机器的资源和模型额度设置。订阅会话数较少的工具，可以在「高级：按编码工具限制」里单独设上限。</li>
+<li>点「生成安装命令」，选择这台机器的系统。</li>
+</ol>
+<p>工具和并发数，之后都可以在运行环境的详情里修改。</p>
+<figure class="fig"><div class="sw" style="max-width:640px">
+<div class="sw-top"><i data-lucide="monitor-cog"></i><span class="crumb"><b>添加运行环境</b></span><span class="r"><span class="st-ib"><i data-lucide="x"></i></span></span></div>
+<div class="sw-body">
+<div class="fld"><span>使用范围</span><div class="opts"><div class="opt on"><div><b>共享</b>可执行所有用户发起的任务</div></div><div class="opt"><div><b>个人</b>仅执行所属用户发起的任务</div></div></div></div>
+<div class="fld"><span>编码工具</span><div class="st-chips" style="gap:14px"><span class="chk on">Claude Code</span><span class="chk on">Codex</span><span class="chk">OpenCode</span></div><small>只有勾选的工具的工作会派到这个运行环境。</small></div>
+<div class="fld"><span>最大并发数</span><span class="inp short">3</span></div>
+<div class="st-btns"><span class="st-btn p">生成安装命令</span></div>
+<div class="st-chips"><span class="st-chip">macOS</span><span class="st-chip bl">Linux</span><span class="st-chip">Windows</span><span class="r st-chips"><span class="st-chip">提示词</span><span class="st-chip bl">手动安装</span></span></div>
+<div class="cmd">curl -fsSL https://studio.example.com/main/api/agents/dist/installScript | sh -s -- --runner …</div>
+<p style="font-size:11.5px;color:var(--muted)">命令中带有一次性凭证，用于添加一个「共享」运行环境。只能使用一次。几秒钟后，运行环境会出现在列表中。</p>
+</div>
+</div><figcaption>添加一台共享运行环境</figcaption></figure>
+
+
+<h2 id="在机器上安装">在机器上安装</h2>
+<p>安装有两种方式，任选一种。</p>
+<p><strong>提示词。</strong> 把对话框里的完整提示词复制给这台机器上的编码工具，例如 Claude Code。它会检查 Node.js 和编码工具，运行注册命令，把执行机装成后台服务，处理 PATH、代理和 npm 权限这些常见问题，最后告诉你还要亲自完成哪些登录或网络设置。</p>
+<p><strong>手动安装。</strong> 用准备运行 Agent 的系统用户，在这台机器上运行对话框里的命令，例如：</p>
+<div class="code-block"><button type="button" class="copy-button">复制</button><pre><code>curl -fsSL https://studio.example.com/main/api/agents/dist/installScript | sh -s -- --runner --server https://studio.example.com/main --token &lt;一次性凭证&gt;</code></pre></div>
+<p>命令从你的 Studio 下载执行机 <code>nocobase-runner</code> 和命令行 <code>nb-studio</code>，注册执行机，并设置为登录后自动启动。机器上已经装过 <code>nocobase-runner</code> 的，改用对话框里的 <code>nocobase-runner register</code> 命令注册。</p>
+<p><strong>Windows。</strong> 先在 PowerShell 里运行 <code>wsl --install</code>，重启 Windows；再打开 Ubuntu，运行 Linux 的命令。Node.js 和编码工具都装在 WSL 的 Ubuntu 里。WSL 访问不了外网时，开启 WSL 的镜像网络。</p>
+<p>提示词和命令里带有一次性凭证，只能用一次，有效期在对话框里写明，通常只有几分钟。过期了就重新生成。提示词只交给这台机器上的编码工具，不要转发给别人。</p>
+<h2 id="确认接入成功">确认接入成功</h2>
+<p>几秒钟后，运行环境出现在列表里，显示「在线」和它正在运行的工作数，例如「在线 0/3」，并列出勾选的每个编码工具的状态：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>意思</th>
+<th>怎么办</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>已登录</td>
+<td>可以接活</td>
+<td>不用处理</td>
+</tr>
+<tr>
+<td>需要登录</td>
+<td>装了，但还没有登录</td>
+<td>在这台机器上，用运行执行机的系统用户登录这个工具，再在详情里点「重新检测」</td>
+</tr>
+<tr>
+<td>未安装</td>
+<td>没有找到这个工具</td>
+<td>安装它；已经装了还显示未安装，见下文常见问题</td>
+</tr>
+</tbody></table></div>
+<p class="done"><strong>完成的标志</strong>运行环境显示在线，要用的编码工具显示「已登录」。这时「Agent 管理 › Agent」里会出现待启用的 Agent，接着 <a href="agents.html">启用 Agent</a>。</p>
+<h2 id="管理运行环境">管理运行环境</h2>
+<p>在列表里点一个运行环境，打开它的详情：</p>
+<ul>
+<li><strong>常规</strong>：名称、最大并发数、使用范围。</li>
+<li><strong>工具</strong>：每个编码工具是否启用、状态、额度和同时运行的上限。关闭的工具，工作不会派到这里。</li>
+<li><strong>本机策略</strong>：机器的主人在那台机器上限定它接哪些工作，Studio 里只能查看。</li>
+<li><strong>本机提供的变量</strong>：那台机器能提供给运行的变量，只显示名字，值留在机器上，用 <code>nocobase-runner env set NAME</code> 设置。</li>
+<li><strong>工作目录</strong>和<strong>运行记录</strong>：这台机器上的任务目录，以及它执行过的运行。</li>
+</ul>
+<p>执行机在没有 Agent 运行时会自动升级。要立即升级，在那台机器上运行 <code>nocobase-runner update</code>。</p>
+<p>不再使用一台运行环境时，先吊销它的凭证：执行机在下一次请求时停止，它手上的工作退回队列。吊销后可以删除，历史运行记录会保留。要重新接入，再添加一次。</p>
+<h2 id="常见问题">常见问题</h2>
+<p><strong>运行环境显示离线。</strong> 执行机 150 秒没有联系 Studio，就显示离线，它手上的工作回到队列，由其他运行环境接手。在那台机器上运行 <code>nocobase-runner status</code>，确认执行机在运行，并且这台机器能访问 Studio 的地址。</p>
+<p><strong>工具已经装好，还是显示未安装。</strong> 后台服务的 PATH 里没有这个工具。在能运行 <code>which claude</code> 或 <code>which codex</code> 的终端里，重新运行 <code>nocobase-runner service install</code>，再重启服务。</p>
+<p><strong>下载执行机时失败。</strong> 需要代理时，为下载和后台服务都配置代理。npm 全局安装权限不足时，用当前用户自己的安装目录或 Node 版本管理器，不要用 <code>sudo npm install</code>。</p>
+
+</article>
+<nav class="pager" aria-label="翻页"><a class="prev" href="../../studio/intro/concepts.html"><small>上一页</small>核心概念</a></nav>
+<footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span><a href="../../../方案/06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">文档方案</a></span></footer>
+</main>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E5%87%86%E5%A4%87%E4%B8%80%E5%8F%B0%E6%9C%BA%E5%99%A8">准备一台机器</a></li><li><a href="#%E6%B7%BB%E5%8A%A0%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83">添加运行环境</a></li><li><a href="#%E5%9C%A8%E6%9C%BA%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85">在机器上安装</a></li><li><a href="#%E7%A1%AE%E8%AE%A4%E6%8E%A5%E5%85%A5%E6%88%90%E5%8A%9F">确认接入成功</a></li><li><a href="#%E7%AE%A1%E7%90%86%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83">管理运行环境</a></li><li><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">常见问题</a></li></ul></aside>
+</div>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="../../assets/docs.js?v=e9ad5699"></script>
+</body>
+</html>

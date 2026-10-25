@@ -52,7 +52,7 @@
 <tr>
 <td>团队电脑和服务器上的 Agent 怎样接进来、分工、同时推进？</td>
 <td>一支持续推进的 Agent 团队</td>
-<td>Agent 团队怎样工作；接入团队运行环境、启用 Agent、接入个人运行环境</td>
+<td>Agent 团队怎样工作；接入共享运行环境、启用 Agent、接入个人运行环境</td>
 </tr>
 <tr>
 <td>我不盯着，怎样知道做到哪里了、花了多少？</td>
@@ -134,7 +134,7 @@
 <td>搭建 Studio</td>
 <td>管理员</td>
 <td>团队开始用之前，按顺序做一遍</td>
-<td>安装 Studio · 连接 Git · 接入团队运行环境 · 启用 Agent · 新建项目 · 连接 CI · 走完第一个需求 · 邀请成员</td>
+<td>安装 Studio · 连接 Git · 接入共享运行环境 · 启用 Agent · 新建项目 · 连接 CI · 走完第一个需求 · 邀请成员</td>
 </tr>
 <tr>
 <td>加入团队</td>
@@ -173,7 +173,7 @@
 <ol>
 <li>安装 Studio，用初始管理员登录。</li>
 <li>连接 Git：在「设置 › 集成 › Git」连接团队的 GitHub 或 GitLab。</li>
-<li>接入团队运行环境：在一台装好编码工具的服务器上安装运行环境，团队所有人的任务都可以在上面执行。</li>
+<li>接入共享运行环境：在一台装好编码工具的服务器上安装运行环境，团队所有人的任务都可以在上面执行。</li>
 <li>启用 Agent：运行环境上报编码工具和模型后，写好每个 Agent「擅长什么」，启用；再为调度 Agent 选好首选和备选模型。</li>
 <li>新建项目：新建或选择代码仓库，用 NocoBase 应用模板初始化。</li>
 <li>连接 CI：需要 PR 预览、部署到各个环境时做。</li>
@@ -188,7 +188,7 @@
 <li>在本地 Coding Agent 里使用 Studio：让自己常用的 Claude Code、Codex 通过 <code>nb-studio</code> 查询项目、创建任务。</li>
 <li>接入个人运行环境（可选）：把自己的电脑或服务器接成个人运行环境，只执行你自己发起的任务，用你自己的编码工具和订阅。</li>
 </ol>
-<p>运行环境分两种，已对照代码核实：团队运行环境由管理员接入，执行所有人的任务；个人运行环境每位成员都可以接入，只执行它的主人自己发起的任务。两页各写各的角色要做的部分，系统要求和排错写在「接入团队运行环境」里，个人那页链接过去。</p>
+<p>运行环境分两种，已对照代码核实：共享运行环境由管理员接入，执行所有人的任务；个人运行环境每位成员都可以接入，只执行它的主人自己发起的任务。两页各写各的角色要做的部分，系统要求和排错写在「接入共享运行环境」里，个人那页链接过去。</p>
 <h3 id="四条核心特色在哪里讲">四条核心特色在哪里讲</h3>
 <p>四条核心特色在「Studio 是什么」里讲：每条先说问题，再说 Studio 怎样解决，然后链接到各组里的页面。</p>
 <div class="table-wrap"><table>
@@ -200,7 +200,7 @@
 </thead>
 <tbody><tr>
 <td>一支持续推进的 Agent 团队</td>
-<td>入门 › Agent 团队怎样工作；搭建 Studio › 接入团队运行环境、启用 Agent；加入团队 › 接入个人运行环境；日常使用 › 提出需求</td>
+<td>入门 › Agent 团队怎样工作；搭建 Studio › 接入共享运行环境、启用 Agent；加入团队 › 接入个人运行环境；日常使用 › 提出需求</td>
 </tr>
 <tr>
 <td>各项进展一目了然</td>
@@ -241,11 +241,11 @@
 </tr>
 <tr>
 <td>安装与上手 › 快速开始</td>
-<td>拆进搭建 Studio 的各页：连接 Git、接入团队运行环境、启用 Agent、新建项目、走完第一个需求</td>
+<td>拆进搭建 Studio 的各页：连接 Git、接入共享运行环境、启用 Agent、新建项目、走完第一个需求</td>
 </tr>
 <tr>
 <td>Agent 团队 › 接入多台机器上的 Agent</td>
-<td>搭建 Studio › 接入团队运行环境；加入团队 › 接入个人运行环境</td>
+<td>搭建 Studio › 接入共享运行环境；加入团队 › 接入个人运行环境</td>
 </tr>
 <tr>
 <td>管理 › 项目与代码仓库</td>
@@ -365,7 +365,7 @@
 <ul>
 <li>Studio 支持 18 种编码工具：Claude Code、Codex、Gemini CLI、GitHub Copilot、Cursor、OpenCode、Qwen Code、Kimi CLI、CodeBuddy Code、Qoder CLI、Goose、Auggie、Factory Droid、Kilo Code、Cline、Amp、Mistral Vibe 和 Pi（<code>@nocobase/acp-bridge</code> 的工具目录加上运行环境原生支持的工具）。</li>
 <li>引用标准表述原文时保留“Claude Code、Codex 等”。自己展开写时，多举几种常见的工具，例如“Claude Code、Codex、Gemini CLI、Cursor、OpenCode 等常见编码工具”，不要让读者以为只支持两种。</li>
-<li>完整的列表放在「接入团队运行环境」，随产品更新。</li>
+<li>完整的列表放在「接入共享运行环境」，随产品更新。</li>
 </ul>
 <h3 id="固定用词">固定用词</h3>
 <div class="table-wrap"><table>
@@ -513,8 +513,8 @@
 <td>启用 Agent</td>
 </tr>
 <tr>
-<td>运行环境分团队和个人两种：任何登录的人都可以接入个人运行环境，只执行它的主人自己发起的任务；团队运行环境需要管理员权限，执行所有人的任务。新运行环境默认同时执行 3 个任务；Windows 通过 WSL 接入</td>
-<td>接入团队运行环境、接入个人运行环境</td>
+<td>运行环境分团队和个人两种：任何登录的人都可以接入个人运行环境，只执行它的主人自己发起的任务；共享运行环境需要管理员权限，执行所有人的任务。新运行环境默认同时执行 3 个任务；Windows 通过 WSL 接入</td>
+<td>接入共享运行环境、接入个人运行环境</td>
 </tr>
 <tr>
 <td>首页提供两种连接：「连接本地 Coding Agent」安装 <code>nb-studio</code> 并登录；「连接你的电脑」再运行 <code>nb-studio acp service install</code>，让这台电脑在线，供「我的会话」使用，可以在「我的电脑」里限制允许访问的目录</td>
@@ -549,6 +549,44 @@
 <td>不写</td>
 </tr>
 </tbody></table></div>
+<h2 id="安装走查记录">安装走查记录</h2>
+<p>2026-10-24 按 <code>reference/</code> 里的两篇部署文档，用镜像 <code>pkg-v3.nocobase.com/nocobase/studio:1.0.0-beta.61</code> 在本机 Docker 里装了一遍，又在一个 Debian 容器里接入了一台共享运行环境。镜像不是最新版，界面和行为以 Studio <code>dev</code> 为准；走查只用来验证安装流程。商业版的获取和验证机制以后另补，这次不写。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>发现</th>
+<th>文档里的处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>照「完整示例」直接部署，界面是英文，登录页开放自助注册。<code>config.yml</code> 模板里没有 <code>i18n.defaultLocale</code>，也没有 <code>disableSignUp</code>；客户部署指南里有</td>
+<td>「安装 Studio」要求在 <code>config.yml</code> 里设置 <code>i18n.defaultLocale: zh-CN</code> 和 <code>auth.emailAndPassword.disableSignUp: true</code>，并建议告知部署文档的作者</td>
+</tr>
+<tr>
+<td>拉取 <code>postgres:16</code> 时，Docker Hub 连不上（TLS 握手超时）</td>
+<td>「安装 Studio」说明：访问不了 Docker Hub 时，配置镜像加速，或改用已有的 PostgreSQL</td>
+</tr>
+<tr>
+<td>首次启动约 10 秒就显示 healthy，文档写约 1 分钟</td>
+<td>写“通常一分钟内”</td>
+</tr>
+<tr>
+<td>安装执行机时提示 pnpm 不在 PATH，用 <code>corepack enable</code> 启用</td>
+<td>「接入共享运行环境」的准备里写上 pnpm</td>
+</tr>
+<tr>
+<td>执行机以机器的主机名注册；一次性凭证有效期约 10 分钟；镜像里默认并发数是 4、使用范围叫「为谁工作 · 团队」，<code>dev</code> 上是 3 和「使用范围 · 共享」，还多了「提示词」安装方式</td>
+<td>按 <code>dev</code> 写</td>
+</tr>
+<tr>
+<td><code>dev</code> 的界面把团队共用的运行环境叫「共享」（「仅限共享运行环境」「任务需要共享运行环境」）</td>
+<td>文档统一写“共享运行环境”，页面改名为「接入共享运行环境」</td>
+</tr>
+</tbody></table></div>
+<h2 id="进行中的产品变化">进行中的产品变化</h2>
+<ul>
+<li><strong>运行环境和“我的 Agent”正在统一</strong>（2026-10-25 得知，尚未合并）：以后不再区分两种类型，成员接入自己的电脑只需要一次。合并后，「加入团队」里的「连接自己的电脑」和「接入个人运行环境」合成一页；「核心概念」「Agent 团队怎样工作」「我的会话」里讲两种连接的地方一起改。写「加入团队」之前先看它是否已经合并。</li>
+</ul>
 <h2 id="需要更新标准表述的地方">需要更新标准表述的地方</h2>
 <p>标准表述是唯一的依据，文档里新写的说法应该先补进标准表述：</p>
 <ol>
@@ -601,6 +639,10 @@
 <td>已按新叙事改写，链接和阅读路径已按新分组调整</td>
 </tr>
 <tr>
+<td>第一回合：Agent 团队怎样工作 · 核心概念 · 接入共享运行环境</td>
+<td>已确认（2026-10-25）；对照 <code>dev</code> <code>2851c86a</code> 核实，接入共享运行环境按实际安装走查过</td>
+</tr>
+<tr>
 <td>菜单和页面位置</td>
 <td>已按新结构调整（2026-10-24）：原来的快速开始拆进搭建 Studio 的各页；「我的会话」里连接电脑的部分移到「连接自己的电脑」；「跟进进展」里的 Agent 队列和仪表盘移到「Agent 工作负荷与模型用量」和「项目进展」</td>
 </tr>
@@ -614,7 +656,7 @@
 <nav class="pager" aria-label="翻页"><a class="prev" href="10-Core%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html"><small>上一页</small>Core 进度与待确认事项</a><a class="next" href="01-%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98.html"><small>下一页</small>现有文档的问题</a></nav>
 <footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span><a href="../site/index.html">文档站</a></span></footer>
 </main>
-<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98">现有文档的问题</a></li><li><a href="#%E8%AF%BB%E8%80%85%E5%B8%A6%E7%9D%80%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9D%A5">读者带着什么问题来</a></li><li><a href="#%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84">文档结构</a></li><li><a href="#%E6%AF%8F%E9%A1%B5%E6%80%8E%E6%A0%B7%E5%86%99">每页怎样写</a></li><li><a href="#%E5%86%99%E7%BB%99%E8%B0%81">写给谁</a></li><li><a href="#%E6%8E%AA%E8%BE%9E%E8%A7%84%E8%8C%83">措辞规范</a></li><li><a href="#%E5%B7%B2%E6%A0%B8%E5%AE%9E%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">已核实的产品变化</a></li><li><a href="#%E9%9C%80%E8%A6%81%E6%9B%B4%E6%96%B0%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E5%9C%B0%E6%96%B9">需要更新标准表述的地方</a></li><li><a href="#%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E4%BF%AE%E6%94%B9">标准表述的修改</a></li><li><a href="#%E5%B7%B2%E5%AE%9A%E7%9A%84%E4%BA%8B%E9%A1%B9">已定的事项</a></li><li><a href="#%E8%BF%9B%E5%BA%A6">进度</a></li></ul></aside>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98">现有文档的问题</a></li><li><a href="#%E8%AF%BB%E8%80%85%E5%B8%A6%E7%9D%80%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E6%9D%A5">读者带着什么问题来</a></li><li><a href="#%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84">文档结构</a></li><li><a href="#%E6%AF%8F%E9%A1%B5%E6%80%8E%E6%A0%B7%E5%86%99">每页怎样写</a></li><li><a href="#%E5%86%99%E7%BB%99%E8%B0%81">写给谁</a></li><li><a href="#%E6%8E%AA%E8%BE%9E%E8%A7%84%E8%8C%83">措辞规范</a></li><li><a href="#%E5%B7%B2%E6%A0%B8%E5%AE%9E%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">已核实的产品变化</a></li><li><a href="#%E5%AE%89%E8%A3%85%E8%B5%B0%E6%9F%A5%E8%AE%B0%E5%BD%95">安装走查记录</a></li><li><a href="#%E8%BF%9B%E8%A1%8C%E4%B8%AD%E7%9A%84%E4%BA%A7%E5%93%81%E5%8F%98%E5%8C%96">进行中的产品变化</a></li><li><a href="#%E9%9C%80%E8%A6%81%E6%9B%B4%E6%96%B0%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E5%9C%B0%E6%96%B9">需要更新标准表述的地方</a></li><li><a href="#%E6%A0%87%E5%87%86%E8%A1%A8%E8%BF%B0%E7%9A%84%E4%BF%AE%E6%94%B9">标准表述的修改</a></li><li><a href="#%E5%B7%B2%E5%AE%9A%E7%9A%84%E4%BA%8B%E9%A1%B9">已定的事项</a></li><li><a href="#%E8%BF%9B%E5%BA%A6">进度</a></li></ul></aside>
 </div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <script src="../site/assets/docs.js?v=e9ad5699"></script>

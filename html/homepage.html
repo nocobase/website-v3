@@ -10,7 +10,7 @@
    界面示意图在中文以外的语言里都显示英文界面，因为产品界面只有中英文 */
 (function () {
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
-  var FONTS = { ru: 'Inter:wght@400;500;600;700', ja: 'Noto+Sans+JP:wght@400;500;600;700', ko: 'Noto+Sans+KR:wght@400;500;600;700', 'zh-TW': 'Noto+Sans+TC:wght@400;500;600;700' };
+  var FONTS = { ru: 'inter' };
   var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
@@ -24,17 +24,15 @@
     var k = document.createElement('link');
     k.id = 'font-' + l;
     k.rel = 'stylesheet';
-    k.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[l] + '&display=swap';
+    k.href = 'assets/fonts/' + FONTS[l] + '.css';
     document.head.appendChild(k);
   };
   window.__font(lang);
   if (lang !== 'zh' && lang !== 'en') document.write('<script src="assets/i18n/home.' + lang + '.js"><\/script>');
 })();
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
-<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<script src="assets/vendor/lucide-0.460.0/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/site.css">
 <style>
 :root {
@@ -78,7 +76,8 @@
   --orange-ink: oklch(0.55 0.15 50);
   --orange-tint: oklch(0.955 0.045 60);
   --shadow: oklch(0.25 0.05 266 / 0.2);
-  --f-sans: "Archivo", "Noto Sans SC", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* 中文用系统字体（苹方、微软雅黑），不加载网络字体；西文字体在 assets/fonts/ */
+  --f-sans: "Archivo", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   color-scheme: light;
 }
@@ -89,10 +88,11 @@ body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.75 v
 t-zh, t-en { display: inline; }
 html[lang="zh"] t-en, html:not([lang="zh"]) t-zh { display: none !important; }
 html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) body { line-height: 1.65; }
+/* 日文、韩文、繁体中文也用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
 html[lang="ru"] { --f-sans: "Inter", "Archivo", ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
-html[lang="ja"] { --f-sans: "Archivo", "Noto Sans JP", ui-sans-serif, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; }
-html[lang="ko"] { --f-sans: "Archivo", "Noto Sans KR", ui-sans-serif, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
-html[lang="zh-TW"] { --f-sans: "Archivo", "Noto Sans TC", ui-sans-serif, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif; }
+html[lang="ja"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; }
+html[lang="ko"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+html[lang="zh-TW"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif; }
 /* 日文标题按词组断行；韩文和中文一样只在空格、标点处断 */
 html[lang="ja"] :is(h1, h2, h3, .h2, .hero .lede, .lead) { word-break: auto-phrase; }
 html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }

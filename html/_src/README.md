@@ -2,6 +2,7 @@
 
 页面 HTML 由这里的脚本生成，改完后重新生成即可（在 `_src` 目录下运行）。
 
+- 字体和第三方资源都放在本地，页面不引用 Google Fonts、unpkg 等第三方 CDN（之后统一放到 static-docs.nocobase.com；已经在 static-docs 上的图片、视频保持原样）。中日韩文用系统字体（苹方、微软雅黑、Hiragino 等），不加载网络字体；西文 Archivo、IBM Plex Mono（俄语 Inter）由 `fonts/fetch.py` 下载到 `assets/fonts/`，改字体或字重时改脚本里的 SETS，在 `_src` 下运行 `python3 fonts/fetch.py ..`。图标库 Lucide 在 `assets/vendor/lucide-0.460.0/`，联系页的微信二维码在 `assets/wechat.png`。
 - `pages/*.body.html`：各页正文（中英双语，`<t-zh>` / `<t-en>`）。生成：`python3 pages/wrap.py pages/core.body.html ../core.html`
 - `pages/gen_sol.py`：用 HTML 画 NocoCRM、NocoITAM 的界面示意，输出到 `pages/snips/`；正文里用 `{{SNIP:名称:宽度}}` 引用。改完先运行它，再运行 wrap.py。
 - `sol/figs/`：从首页提取的 Studio、Core 图纸（中英两份），正文里用 `{{FIG:名称:宽度}}` 引用。

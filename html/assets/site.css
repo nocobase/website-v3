@@ -40,7 +40,8 @@
   --orange-ink: oklch(0.55 0.15 50);
   --orange-tint: oklch(0.955 0.045 60);
   --shadow: oklch(0.25 0.05 266 / 0.2);
-  --f-sans: "Archivo", "Noto Sans SC", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* 中文用系统字体（苹方、微软雅黑），不加载网络字体；西文字体在 assets/fonts/ */
+  --f-sans: "Archivo", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   color-scheme: light;
 }

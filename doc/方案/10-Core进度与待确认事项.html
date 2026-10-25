@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Core 进度与待确认事项 - NocoBase 3 文档</title>
-<meta name="description" content="这一轮完成了什么、还缺什么，以及需要产品、研发和文档站维护者确认的问题。">
+<meta name="description" content="现有 app-docs 已替换新版站点的 Core 内容，记录迁入范围与后续事项。">
 <link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="../assets/docs.css?v=d6d88895">
+<link rel="stylesheet" href="../assets/docs.css?v=bc403564">
 </head>
 <body>
 <a class="skip-link" href="#content">跳到正文</a>
@@ -22,117 +22,41 @@
 <aside class="sidebar"><details class="menu" open><summary>目录</summary><nav aria-label="文档目录"><div class="menu-group"><p class="menu-title">Core 与统一文档站</p><ul><li><a href="06-%E8%AF%BB%E8%80%85%E4%B8%8E%E9%9C%80%E6%B1%82.html">读者与需求</a></li><li><a href="07-Core%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98.html">Core 文档的问题</a></li><li><a href="08-Core%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%99%E4%BD%9C%E5%8E%9F%E5%88%99.html">Core 文档结构与写作原则</a></li><li><a href="09-%E7%BB%9F%E4%B8%80%E6%96%87%E6%A1%A3%E7%AB%99.html">统一文档站</a></li><li><a href="10-Core%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html" aria-current="page">Core 进度与待确认事项</a></li></ul></div><div class="menu-group"><p class="menu-title">Studio 文档</p><ul><li><a href="11-Studio%E6%96%87%E6%A1%A3%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html">Studio 文档重构方案</a></li><li><a href="01-%E7%8E%B0%E6%9C%89%E6%96%87%E6%A1%A3%E7%9A%84%E9%97%AE%E9%A2%98.html">现有文档的问题</a></li><li><a href="02-%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%99%E4%BD%9C%E5%8E%9F%E5%88%99.html">文档结构与写作原则</a></li><li><a href="03-%E5%91%BD%E5%90%8D%E6%96%B9%E6%A1%88.html">命名方案</a></li><li><a href="04-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83%E4%B8%8E%E6%9C%AF%E8%AF%AD.html">写作规范与术语</a></li><li><a href="05-%E8%BF%9B%E5%BA%A6%E4%B8%8E%E5%BE%85%E7%A1%AE%E8%AE%A4%E4%BA%8B%E9%A1%B9.html">进度与待确认事项</a></li></ul></div></nav></details></aside>
 <main id="content" class="content">
 <p class="crumb">文档方案 · Core 与统一文档站</p><h1>Core 进度与待确认事项</h1>
-<p class="lead">这一轮完成了什么、还缺什么，以及需要产品、研发和文档站维护者确认的问题。</p>
+<p class="lead">现有 app-docs 已替换新版站点的 Core 内容，记录迁入范围与后续事项。</p>
 <article class="prose">
-<h2 id="这一轮完成了什么">这一轮完成了什么</h2>
-<h3 id="方案">方案</h3>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>方案</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="06-读者与需求.html">读者与需求</a></td>
-<td>八类读者，各自来文档要解决什么；他们会问的问题；文档和技能的分工；阅读路径</td>
-</tr>
-<tr>
-<td><a href="07-Core文档的问题.html">Core 文档的问题</a></td>
-<td>现有 Core 文档的十个问题，以及要保留的部分</td>
-</tr>
-<tr>
-<td><a href="08-Core文档结构与写作原则.html">Core 文档结构与写作原则</a></td>
-<td>八条原则；七个分组；能力按 13 类重组；三种页面模板；写作规范的补充；插件档案的生成方式</td>
-</tr>
-<tr>
-<td><a href="09-统一文档站.html">统一文档站</a></td>
-<td>开始 · Core · Studio 三个分区；首页；Core 和 Studio 的衔接；统一用词和故事；正式站点怎样落地</td>
-</tr>
-</tbody></table></div>
-<h3 id="统一文档站本地草稿">统一文档站（本地草稿）</h3>
-<p><code>doc/</code> 改为一个 NocoBase 3 文档站：顶栏切换“开始”“Core”“Studio”，左侧菜单只列当前分区。运行 <code>node doc/build.mjs</code> 生成 <code>doc/dist/</code>，再运行 <code>node doc/serve.mjs</code> 在浏览器里预览。</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>分区</th>
-<th>写好的页面</th>
-<th>占位页</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>开始</td>
-<td>首页、NocoBase 3 是什么、从 NocoBase 2 来、术语表</td>
-<td>无</td>
-</tr>
-<tr>
-<td>Core</td>
-<td>Core 首页；入门五篇（Core 是什么、一个应用怎样做出来、核心概念、插件怎样工作、快速开始）；能力总览、工作流与审批；插件目录总览、文件</td>
-<td>开发应用 9 页、能力 12 类、部署与运维 9 页、扩展开发 6 页、参考 5 页；插件 27 页已有档案，正文待写</td>
-</tr>
-<tr>
-<td>Studio</td>
-<td>沿用 Studio 草稿，源文件移到 <code>doc/src/studio/</code>，菜单不变</td>
-<td>同 Studio 方案</td>
-</tr>
-</tbody></table></div>
-<p>Core 新增 4 张 HTML 局部配图：模板首页、「系统设置」侧边栏、「应用底座」、「流程管理」。</p>
-<h3 id="核对依据">核对依据</h3>
+<h2 id="已完成的内容迁入">已完成的内容迁入</h2>
+<p>Core 使用 <code>nocobase/app-docs</code> 修订 <code>5d8bdbe93bf63c6066013b121b189b3f8fdcad33</code> 的全部文章，中英文各 22 篇：首页 1 篇、开始使用 4 篇、开发应用 11 篇、部署与运维 6 篇。原 Core 草稿和占位文章移除，能力、参考和未写的运维主题保留为不可点击的规划菜单。</p>
+<p>迁入文章引用的 19 张真实英文截图和 1 个示例下载包；保留 Agent 提示词、手动实现代码、固定版本源码链接、历史示例说明和原验证范围。开始与 Studio 不更换内容体系，只修正失效的 Core 链接和全站首页对示例场景的说明。</p>
+<p>新增中英文插件总览各 1 篇，Core 现为各 23 篇；列出 24 个主仓库插件、2 个商业仓库插件和 19 个示例插件，并注明是否内置及源码核对版本。</p>
+<h2 id="已确认的取舍">已确认的取舍</h2>
 <ul>
-<li>NocoBase 仓库 <code>v3-develop</code> 分支 <code>4d61361</code>（2026-10-23）：各包的 <code>package.json</code>、README、技能，默认模板和示例模板的代码与中文文案，UI 组件库的 <code>registry.json</code>，<code>docs/docs/cn/</code> 下的现有文档。</li>
-<li><code>nocobase3-pro</code> 仓库 <code>develop</code> 分支：审批、任务中心插件和三个数据库方言。</li>
-<li>插件档案由脚本从上述代码读取：版本、入口、依赖、自带页面、UI 组件、数据表、技能，以及默认模板里的注册状态。</li>
-<li>《NocoBase 3 定位与产品结构》：产品结构、版本范围、13 类底座能力。</li>
+<li>Core 内容以现有 app-docs 为准，不合并旧采购教程、能力草稿或插件档案。</li>
+<li>入门示例使用团队任务应用；Studio 继续使用采购团队场景。</li>
+<li>中文是写作基准，代码、示例应用和截图使用英文。</li>
+<li>使用 Agent 的提示词简短、自然；不使用 Agent 展示每一步的关键代码。</li>
+<li>新站仍使用现有静态构建器，不迁入 Fumadocs 框架。</li>
 </ul>
-<h2 id="需要确认的问题">需要确认的问题</h2>
-<h3 id="读者与内容">读者与内容</h3>
+<h2 id="能力内容退回待编写">能力内容退回待编写</h2>
+<p>用户认为能力总览、数据库、认证与用户、权限控制、文件管理的首版内容不合适，要求先退回待编写。中英文共 10 篇正文已从文章源目录移除，5 个菜单项均改为不可点击的待编写条目，不生成页面，也不参与翻页和 sitemap。能力菜单其余条目继续保持待编写，后续重新梳理内容再上线。</p>
+<p>插件总览继续保留，Core 当前中英文各 23 篇。已有示例代码和图片资源未随文章下线删除。</p>
+<h2 id="扩展开发规划">扩展开发规划</h2>
+<p>按用户确认，在开发应用之后增加扩展开发，依次列出什么时候写插件、创建插件、插件的结构、发布插件、给插件写技能、向 UI 组件库贡献。中英文均显示为不可点击的待编写条目，尚不生成文章或加入 sitemap，现有文章数量不变。</p>
+<h2 id="后续事项">后续事项</h2>
 <ol>
-<li><strong>读者的真实问题。</strong> <a href="06-读者与需求.html">读者与需求</a> 里除了用户反馈的两个问题，其余是推断。建议从社区论坛、客户支持和售前记录里收集一轮，修正问题清单和阅读路径。</li>
-<li><strong>能力改为 13 类。</strong> 与「应用底座」和定位文档一致，现有“能力”一章的 14 组要重组（见 <a href="08-Core文档结构与写作原则.html#能力">结构</a>）。模板首页的“内置能力”代码注释写明按文档的顺序排列，需要同步调整。</li>
-<li><strong>统一故事。</strong> 建议全站用采购应用，Core 现有的 Northstar 物流例子逐步改写，77 张英文截图同步替换为中文界面或 HTML 局部图。</li>
-<li><strong>Agent 按需求做出的页面怎样配图。</strong> 建议：模板和插件自带的界面用 HTML 局部图；Agent 做出的页面需要时用中文界面的真实截图，标明“示例效果”。</li>
-</ol>
-<h3 id="用词">用词</h3>
-<ol start="5">
-<li><strong>业务 Agent 与 AI 员工。</strong> 建议文档统一用“业务 Agent”，第一次出现时注明 NocoBase 2 的叫法。</li>
-<li><strong>工作流。</strong> 能力分类沿用「应用底座」的“工作流与审批”，机制叫“记录生命周期”。需要确认模板首页“内置能力”里的“工作流”是否改名。</li>
-<li><strong>技能。</strong> Core 文档现在写“Skills”，Studio 写“技能”。建议全站正文用“技能”，文件名和命令里保留 <code>SKILL.md</code>、<code>skills sync</code>。</li>
-<li><strong>“开发 Agent”。</strong> 定位文档用“开发 Agent / 业务 Agent”，Studio 的命名方案规定不再引入新的 Agent 叫法。建议只在需要和业务 Agent 对比时使用“开发 Agent”。</li>
-</ol>
-<h3 id="产品现状">产品现状</h3>
-<ol start="9">
-<li><strong>开源许可证。</strong> <code>v3-develop</code> 分支根目录没有 LICENSE 文件，只有 5 个包在 <code>package.json</code> 里声明了 Apache-2.0。评估者一定会问，文档需要明确的说法。</li>
-<li><strong>操作审计。</strong> 「应用底座」的操作审计一项显示“尚未识别到支持的提供方”，定位文档和官网把“操作记录”列为底座能力。需要确认现状和计划。</li>
-<li><strong>企业身份登录。</strong> 认证插件基于 Better Auth，OIDC、社交登录可以配置；定位文档写商业版增加“企业身份”。需要确认 LDAP、SAML、钉钉、企业微信在 3 里的计划。</li>
-<li><strong>可视化流程设计。</strong> 应用开发技能提到“管理员在界面上画流程时，使用 DAG 流程插件（安装时）”，仓库里没有这个插件。需要确认是否有计划，文档才能回答 NocoBase 2 用户最关心的问题。</li>
-<li><strong>信创数据库。</strong> 商业仓库有达梦、人大金仓、OceanBase 方言，需要确认发布状态和授权方式。</li>
-<li><strong>默认模板里“已安装、未注册”的 Agents 和知识库。</strong> 需要确认是有意为之，以及推荐的启用方式。</li>
-<li><strong>研发协作插件。</strong> 项目、发布、Agent 会话插件是否推荐在业务应用里使用，还是主要给 Studio 用。</li>
-<li><strong>通知插件的投递记录页面。</strong> 通知插件 <code>logs-ui</code> 组件的说明写着“插件默认提供 <code>/settings/notifications/logs</code>”，代码里只找到接口，没有页面路由。需要核实。</li>
-<li><strong>NocoBase 2 的迁移。</strong> 有客户项目在做 2 到 3 的迁移，需要官方的迁移路径和 2 的维护计划。</li>
-</ol>
-<h3 id="正式站点">正式站点</h3>
-<ol start="18">
-<li><strong>地址。</strong> 现有 <code>/capabilities/...</code> 已经发布，站点规则要求地址不变。新结构是做重定向，还是让能力页保留原路径，需要文档站维护者确定。</li>
-<li><strong>插件档案的生成脚本。</strong> 需要在 NocoBase 仓库里加一个导出脚本，在文档构建时运行。需要确定由谁负责。</li>
-</ol>
-<h2 id="下一步">下一步</h2>
-<ol>
-<li>确认上面的问题，尤其是 2、3、5 到 7、9、18。</li>
-<li>写插件档案导出脚本，补全每个插件页的正文，先写最常用的：认证、权限、定时任务、通知、审批。</li>
-<li>按 13 类重写能力各组，把 Northstar 页面改写为采购故事。</li>
-<li>编写“开发应用”和“部署与运维”，部署沿用现有指南。</li>
-<li>Studio 一侧加上和 Core 的链接：Studio 是什么、创建项目、技能、发布与部署。</li>
-<li>迁入正式站点，补英文版。</li>
+<li>扩展开发、能力、参考及未编写的运维主题按已确认菜单逐篇补充，不恢复空文章。</li>
+<li>示例源码仓库 app-tutorials 仍为私有；正式公开文档前需要确认读者获取完整源码的方式，迁移不改变仓库可见性。</li>
+<li>各专题使用的示例版本和历史部署验证范围不同，后续升级按文章逐项验证，不能把迁移构建成功当作应用重新验收通过。</li>
+<li>站点搜索、语法高亮、图片放大等阅读功能不属于本次内容迁移，后续单独决定。</li>
+<li>正式发布沿用现有 CI 与 CDN 流程；本次 PR 不修改部署配置。</li>
 </ol>
 
 </article>
 <nav class="pager" aria-label="翻页"><a class="prev" href="09-%E7%BB%9F%E4%B8%80%E6%96%87%E6%A1%A3%E7%AB%99.html"><small>上一页</small>统一文档站</a><a class="next" href="11-Studio%E6%96%87%E6%A1%A3%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html"><small>下一页</small>Studio 文档重构方案</a></nav>
 <footer class="page-foot"><span>NocoBase 3 文档 · 草稿 2026-10-24</span><span>文档站用 node doc/serve.mjs 预览</span></footer>
 </main>
-<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E8%BF%99%E4%B8%80%E8%BD%AE%E5%AE%8C%E6%88%90%E4%BA%86%E4%BB%80%E4%B9%88">这一轮完成了什么</a></li><li><a href="#%E9%9C%80%E8%A6%81%E7%A1%AE%E8%AE%A4%E7%9A%84%E9%97%AE%E9%A2%98">需要确认的问题</a></li><li><a href="#%E4%B8%8B%E4%B8%80%E6%AD%A5">下一步</a></li></ul></aside>
+<aside class="toc" aria-label="本页内容"><p class="toc-title">本页内容</p><ul><li><a href="#%E5%B7%B2%E5%AE%8C%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9%E8%BF%81%E5%85%A5">已完成的内容迁入</a></li><li><a href="#%E5%B7%B2%E7%A1%AE%E8%AE%A4%E7%9A%84%E5%8F%96%E8%88%8D">已确认的取舍</a></li><li><a href="#%E8%83%BD%E5%8A%9B%E5%86%85%E5%AE%B9%E9%80%80%E5%9B%9E%E5%BE%85%E7%BC%96%E5%86%99">能力内容退回待编写</a></li><li><a href="#%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E8%A7%84%E5%88%92">扩展开发规划</a></li><li><a href="#%E5%90%8E%E7%BB%AD%E4%BA%8B%E9%A1%B9">后续事项</a></li></ul></aside>
 </div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-<script src="../assets/docs.js?v=d6d88895"></script>
+<script src="../assets/docs.js?v=bc403564"></script>
 </body>
 </html>

@@ -56,13 +56,13 @@ Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 
 | 谁来开发 | 你在应用目录里打开 Claude Code、Codex 等编码工具，和 Agent 一起开发 | 团队的 Agent 组成 Agent 团队，调度 Agent 分派设计、开发、测试、评审 |
 | 适合 | 一个人或一个小团队，做一个或几个应用 | 团队同时推进多个项目和大量任务，业务专家也要直接提需求、做决策 |
 | 检查和上线 | 团队自己组织测试、评审和部署，Core 提供部署工具和开发指引 | 检查和评审通过后交给人验收，部署到受保护的环境要经审批人批准 |
-| 开始 | [Core 快速开始](../core/quickstart.md) | [Studio 是什么](../studio/intro/what-is-studio.md) |
+| 开始 | [创建 Core 应用](../core/getting-started/create-app.md) | [Studio 是什么](../studio/intro/what-is-studio.md) |
 
 两种方式开发出来的应用一样，都建在 Core 上。
 
 ## 业务系统里的 Agent
 
-应用上线后，Agent 还可以在应用里承担业务上的执行工作，比如调研客户、起草邮件、核对资产台账、处理客户工单。这些业务 Agent 由 Core 的 Agents 插件接入，和人用同一套权限，遇到需要决策的事，附上依据交给负责人拍板。Solution 的每个应用都内置了业务 Agent，自己开发的应用也可以按需加上，见 [AI 与 Agent](../core/capabilities/ai-agents.md)。
+应用上线后，Agent 还可以在应用里承担业务上的执行工作，比如调研客户、起草邮件、核对资产台账、处理客户工单。这些业务 Agent 由 Core 的 Agents 插件接入，和人用同一套权限，遇到需要决策的事，附上依据交给负责人拍板。Solution 的每个应用都内置了业务 Agent，自己开发的应用也可以按需加上。
 
 ## 私有部署
 
@@ -74,6 +74,6 @@ Vibe Coding 让软件开发更加高效。项目涉及复杂业务、多人协�
 
 ## 接下来
 
-- 自己动手开发一个应用：[Core 是什么](../core/intro/what-is-core.md) → [快速开始](../core/quickstart.md)
+- 自己动手开发一个应用：[Core 是什么](../core/getting-started/what-is-core.md) → [创建应用](../core/getting-started/create-app.md)
 - 了解团队怎样和 Agent 团队协同开发：[Studio 是什么](../studio/intro/what-is-studio.md)
 - 用过 NocoBase 2：[从 NocoBase 2 来](from-v2.md)

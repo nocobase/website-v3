@@ -13,10 +13,10 @@ NocoBase 2 里，表、页面、权限和工作流以**配置**的形式存在�
 
 | 在 NocoBase 2 里 | 在 NocoBase 3 里 |
 | --- | --- |
-| 在插件管理器里启用插件 | 把插件注册进应用的插件清单，通常由 Agent 用 `pnpm nocobase plugin register` 完成。见 [插件怎样工作](../core/intro/how-plugins-work.md) |
+| 在插件管理器里启用插件 | 把插件注册进应用的插件清单，通常由 Agent 用 `pnpm nocobase plugin register` 完成。见 [管理插件](../core/developing-apps/manage-plugins.md) |
 | 在插件的设置页里配置 | 分三种：部署相关的（数据库、存储、邮件服务商）写在 `config.yml`；业务规则由 Agent 写进代码；管理员需要日常调整的（用户、角色、数据范围、审批人、金额阈值）在应用的「系统设置」里 |
 | 在界面上拖拽页面和区块 | 向 Agent 描述页面，Agent 用 UI 组件库的组件写成代码 |
-| 在工作流画布上配置流程 | 流程写在代码里（记录生命周期）；管理员在「流程管理」里看流程图、调整流程参数、查执行记录。见 [工作流与审批](../core/capabilities/workflows.md) |
+| 在工作流画布上配置流程 | 流程写在代码里（记录生命周期）；管理员在「流程管理」里看流程图、调整流程参数、查执行记录 |
 | 在数据源管理里建表、加字段 | Agent 写迁移文件，`pnpm nocobase db apply` 执行 |
 | 改动保存后直接生效 | 改动是代码，经过开发、验证、部署后生效 |
 | AI 员工 | 业务 Agent，由 Agents 插件接入，使用和人一样的角色与权限 |
@@ -46,7 +46,7 @@ NocoBase 2 里，表、页面、权限和工作流以**配置**的形式存在�
 | 审计日志 | 暂无 | 「应用底座」的操作审计一项显示尚未识别到提供方 |
 | LDAP、SAML、钉钉、企业微信、飞书、Slack 等登录 | 认证插件 | 都支持。认证插件基于 Better Auth，企业统一身份和社交登录通过配置接入 |
 
-每个插件的详情见 [插件目录](../core/plugins/index.md)，每页都有“与 NocoBase 2 的对应”。
+查看应用已使用的插件及其注册、更新和移除方式，见 [管理插件](../core/developing-apps/manage-plugins.md)。
 
 ## 2 的应用能迁到 3 吗
 
@@ -57,6 +57,5 @@ NocoBase 2 里，表、页面、权限和工作流以**配置**的形式存在�
 
 ## 接下来
 
-- [Core 是什么](../core/intro/what-is-core.md)：建立对 NocoBase 3 的整体认识
-- [插件怎样工作](../core/intro/how-plugins-work.md)：插件给应用带来什么，管理入口在哪里
-- [工作流与审批](../core/capabilities/workflows.md)：流程在 3 里怎样定义和管理
+- [Core 是什么](../core/getting-started/what-is-core.md)：建立对 NocoBase 3 的整体认识
+- [管理插件](../core/developing-apps/manage-plugins.md)：插件给应用带来什么，管理入口在哪里

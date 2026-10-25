@@ -56,13 +56,13 @@ Studio captures methods and experience in skills, the knowledge base, and projec
 | Who builds | You open Claude Code, Codex, or another coding tool in the app directory and build with the agent | Your team's agents form an agent team, and the coordinator agent assigns design, development, testing, and review |
 | Good for | One person or a small team working on one or a few apps | A team moving many projects and issues forward at once, where business experts raise requests and make decisions directly |
 | Checks and releases | Your team organizes testing, review, and deployment itself, with deployment tools and development guides from Core | Work reaches a person for acceptance after it passes checks and review, and deployments to protected environments need an approver's sign-off |
-| Get started | [Core quick start](../core/quickstart.md) | [What is Studio](../studio/intro/what-is-studio.md) |
+| Get started | [Create a Core app](../core/getting-started/create-app.md) | [What is Studio](../studio/intro/what-is-studio.md) |
 
 Either way, the apps you build are the same, all built on Core.
 
 ## Agents inside your business systems
 
-Once an app is live, agents can also take on business work inside it, such as researching customers, drafting emails, reconciling asset records, and handling support tickets. These business agents are connected through Core's Agents plugin and use the same permissions as people. When something needs a decision, they hand it to the person responsible with the supporting evidence. Every Solution app comes with built-in business agents, and you can add them to your own apps as needed. See [AI and agents](../core/capabilities/ai-agents.md).
+Once an app is live, agents can also take on business work inside it, such as researching customers, drafting emails, reconciling asset records, and handling support tickets. These business agents are connected through Core's Agents plugin and use the same permissions as people. When something needs a decision, they hand it to the person responsible with the supporting evidence. Every Solution app comes with built-in business agents, and you can add them to your own apps as needed.
 
 ## Self-hosting
 
@@ -74,6 +74,6 @@ Vibe coding makes building software faster. But when a project involves complex 
 
 ## Next steps
 
-- Build an app yourself: [What is Core](../core/intro/what-is-core.md), then the [quick start](../core/quickstart.md)
+- Build an app yourself: [What is Core](../core/getting-started/what-is-core.md), then the [create-app guide](../core/getting-started/create-app.md)
 - See how your team and the agent team build together: [What is Studio](../studio/intro/what-is-studio.md)
 - Used NocoBase 2 before: [Coming from NocoBase 2](from-v2.md)

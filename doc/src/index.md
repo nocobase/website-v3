@@ -9,12 +9,10 @@ description: NocoBase is the open-source platform for building, running, and evo
 | You want to | Start here |
 | --- | --- |
 | Learn about NocoBase 3 | [What is NocoBase 3](start/what-is-nocobase.md) |
-| Build an app on Core with your own agent | [What is Core](core/intro/what-is-core.md) → [Quick start](core/quickstart.md) |
+| Build an app on Core with your own agent | [What is Core](core/getting-started/what-is-core.md) → [Create an app](core/getting-started/create-app.md) |
 | Lead an agent team and move several projects forward at once | [What is Studio](studio/intro/what-is-studio.md) |
-| Look up a capability or a plugin | [Capabilities overview](core/capabilities/index.md) · [Plugin directory](core/plugins/index.md) |
-| Deploy and operate an app | [Deployment](core/operations/deployment.md) |
-| Coming from NocoBase 2 | [Coming from NocoBase 2](start/from-v2.md) · [How plugins work](core/intro/how-plugins-work.md) |
-| Build reusable plugins | [Extend](core/extend/when-to-write-a-plugin.md) |
+| Deploy and operate an app | [Deployment](core/deployment/choose-a-deployment-method.md) |
+| Coming from NocoBase 2 | [Coming from NocoBase 2](start/from-v2.md) · [Manage plugins](core/developing-apps/manage-plugins.md) |
 
 ## What NocoBase 3 is made of
 
@@ -34,7 +32,7 @@ description: NocoBase is the open-source platform for building, running, and evo
 ## About this documentation
 
 - The documentation has three parts, which you switch between in the top bar: **Start** (introductions and terms shared by the whole site), **Core**, and **Studio**.
-- The examples all come from one scenario: a company's purchasing team builds a purchasing app with NocoBase. Core covers how that app gets built, and Studio covers how the team leads an agent team to keep improving it.
+- Core uses a team task app to explain development, testing, and deployment. Studio uses a purchasing team scenario to explain how people lead an agent team.
 - The documentation is written against the English interface. Interface names that ship with the product are shown in **bold**, and paths are written as **A › B**, for example **System settings › User management**.
 - Every NocoBase 3 package is currently in beta, so APIs and interfaces may still change. The product is the source of truth.
 - Pages shown in a lighter color in the left menu are not written yet.

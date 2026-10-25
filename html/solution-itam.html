@@ -268,8 +268,6 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
   var status = {}, shown = false;
   function lang() { return String(document.documentElement.lang || window.__lang || 'en').indexOf('zh') === 0 ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }
-  // The demo signs visitors in by itself (demo mode), and its session cookie is SameSite=Lax: a page on another site (a local preview, say) never gets the cookie back in the frame, so it signs in again and again and the frame flickers. Embed it only from a nocobase.com page; elsewhere the screenshot shows, and Try It Online opens the demo in a new tab.
-  function embeddable() { return /(^|\.)nocobase\.com$/.test(location.hostname); }
   function probe(url) {
     if (status[url]) return;
     status[url] = 'checking';
@@ -285,7 +283,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
     open.href = url;
     bar.hidden = down;
     tries.forEach(function (a) { a.hidden = down; });
-    var useShot = down || narrow() || !embeddable();
+    var useShot = down || narrow();
     shot.hidden = !useShot;
     frameBox.hidden = useShot;
     if (useShot) { frame.removeAttribute('src'); return; }
@@ -304,7 +302,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
   tries.forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      if (narrow() || !embeddable()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
+      if (narrow()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
       shown = true;
       apply();
       box.scrollIntoView({ behavior: 'smooth', block: 'start' });

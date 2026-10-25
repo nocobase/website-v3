@@ -23,7 +23,7 @@ The knowledge base holds material that people write and upload, shared by people
 
 **Write.** First select the space or folder to put things in, then create an article, upload a file, or create a folder. People with edit permission can change things directly; people with only propose permission can propose changes, and the project owner (an administrator, for system knowledge) decides in the inbox whether to adopt them. Articles keep their version history.
 
-**How agents use it.** When running a task, the relevant knowledge is placed next to the agent's working directory. In a session, the agent can search the knowledge base and says which section it cited.
+**How agents use it.** When running an issue, the relevant knowledge is placed next to the agent's working directory. In a session, the agent can search the knowledge base and says which section it cited.
 
 > [!TIP] What is worth writing into the knowledge base
 > Write only business information that an agent cannot tell from the code: business rules and where they come from, what terms mean, how to handle exceptions, and key decisions that were made.
@@ -32,16 +32,16 @@ The knowledge base holds material that people write and upload, shared by people
 
 Project memory lets agents remember what they learned in this project and read it before starting next time, so they do not repeat mistakes. It works on the same idea as Claude Code's automatic memory and is maintained entirely by agents.
 
-An agent records something only when it is worth remembering, and most tasks write nothing:
+An agent records something only when it is worth remembering, and most issues write nothing:
 
 - What a person corrected or confirmed, for example "New suppliers default to grade B".
 - Constraints discovered only after a failure, for example "Migration numbers follow the order of merging".
 - Decisions whose reasons cannot be seen in the code.
 - Where outside material lives, for example "Scoring weights follow the knowledge base article Purchase Approval Policy".
 
-Memories are files in the repository's `.nb-studio/memory/` directory, one file per memory. They are committed with the task's PR, checked together with the code by the reviewing executing agent, and enter the default branch after the merge. When an agent uses a memory, it checks it against the current code; if they do not match, the code wins and the memory is corrected.
+Memories are files in the repository's `.nb-studio/memory/` directory, one file per memory. They are committed with the issue's PR, checked together with the code by the reviewing executing agent, and enter the default branch after the merge. When an agent uses a memory, it checks it against the current code; if they do not match, the code wins and the memory is corrected.
 
-Project memory is written for agents, so you do not need to read or tidy it. To make an agent remember a business rule, just tell it in the task. Material that people and agents should both consult over the long term belongs in the knowledge base.
+Project memory is written for agents, so you do not need to read or tidy it. To make an agent remember a business rule, just tell it in the issue. Material that people and agents should both consult over the long term belongs in the knowledge base.
 
 > [!WARNING] Do not let agents record sensitive information
 > Memories go into the code repository, and no repository may hold keys, tokens, passwords, or personal information. Memories in a public repository are public.

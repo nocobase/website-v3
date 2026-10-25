@@ -69,11 +69,11 @@ For what a plugin is and how it gets into an app, see [How plugins work](../intr
 
 ## Development collaboration
 
-Studio's projects, tasks, and releases are built on these two plugins.
+Studio's projects, issues, and releases are built on these two plugins.
 
 | Plugin | What it does | Edition | Default template |
 | --- | --- | --- | --- |
-| [Projects](projects.md) | Projects, tasks, and collaboration: status, priority, members, plans, and progress. | <span class="tag">Open source</span> | — |
+| [Projects](projects.md) | Projects, issues, and collaboration: status, priority, members, plans, and progress. | <span class="tag">Open source</span> | — |
 | [Releases](releases.md) | Apps, versions, environments, and deployments, with deployment done by replaceable drivers. | <span class="tag">Open source</span> | — |
 
 ## Plugins that come with pages
@@ -86,7 +86,7 @@ Most plugins have no pages. These do, and once registered their pages appear in 
 | Agents | Agents, Runtimes, Skills, Usage, Models |
 | Agent sessions | Agent sessions |
 | Knowledge base | Knowledge |
-| Projects | Projects, Tasks, Plans |
+| Projects | Projects, Issues, Plans |
 | Releases | Apps, Deploy environments |
 | Users | The invitation link page |
 | Task center <span class="tag pro">Commercial</span> | Task center |

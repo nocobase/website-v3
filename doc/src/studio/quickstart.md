@@ -1,9 +1,9 @@
 ---
 title: Quickstart
-description: Connect a runtime, agents, and a code repository, then hand your first task to the agent team and accept the result.
+description: Connect a runtime, agents, and a code repository, then hand your first issue to the agent team and accept the result.
 ---
 
-When you finish this page you will have an online runtime, two or more enabled agents, a project built on NocoBase Core, and a task that an agent completed and you accepted and merged.
+When you finish this page you will have an online runtime, two or more enabled agents, a project built on NocoBase Core, and an issue that an agent completed and you accepted and merged.
 
 ## Prerequisites
 
@@ -62,9 +62,9 @@ Enable agents from at least two vendors. What an agent is **Good at** is the onl
 
 ## Set up the coordinator agent
 
-The coordinator agent arranges every task handed to agents, and it needs an agent of its own to run on.
+The coordinator agent arranges every issue handed to agents, and it needs an agent of its own to run on.
 
-1. On **Agent team › Agents**, open **Project manager**, the interface name for the coordinator agent.
+1. On **Agent team › Agents**, open **Coordinator agent**.
 2. Under **The agent it runs with**, choose a **First choice**, then choose a **Fallback**. The fallback takes over when the first choice has waited in the queue too long or no runtime is available for it.
 3. Save.
 
@@ -72,7 +72,7 @@ Leave **Allocation principles** as the built-in text for now.
 
 ::figure qs-coordinator | The coordinator's settings
 
-**Done when**: the project manager's first choice shows as online.
+**Done when**: the coordinator agent's first choice shows as online.
 
 ## Connect code hosting
 
@@ -101,55 +101,55 @@ Open **Account settings › Git** and connect your own GitHub or GitLab account.
 4. **Preview**: this step belongs to the release and deployment module, so click **Skip** for now.
 5. Click **Create project**.
 
-Studio creates the repository on the code hosting platform and generates an "Initialize project" task. The agent in charge creates the app from the NocoBase app template on the runtime and pushes it to the default branch as the first commit. Every later task in the project waits for this one to finish.
+Studio creates the repository on the code hosting platform and generates an "Initialize project" issue. The agent in charge creates the app from the NocoBase app template on the runtime and pushes it to the default branch as the first commit. Every later issue in the project waits for this one to finish.
 
 > [!NOTE] Initialization needs a runtime
 > Initializing from the NocoBase app template needs an online runtime with Node.js 24 and pnpm 11. If no runtime is online right now, the project is created first, and initialization starts once a runtime comes online.
 
-**Done when**: the "Initialize project" task is **Done** and the repository contains the app code.
+**Done when**: the "Initialize project" issue is **Done** and the repository contains the app code.
 
 > [!PENDING] CI and previews
 > Generating a preview environment for each PR automatically and viewing build results in Studio belong to the release and deployment module. They will be added as the module matures.
 
-## Hand over your first task
+## Hand over your first issue
 
-1. In the project, click **New task**. Studio opens the agent panel and starts a new session. You have not connected your own computer yet, so the agent team replies.
-2. Describe the first task. It can be simple, for example:
+1. In the project, click **New issue**. Studio opens the agent panel and starts a new session. You have not connected your own computer yet, so the agent team replies.
+2. Describe the first issue. It can be simple, for example:
 
    ```text
    Create a "Suppliers" data table in the app with these fields: name, contact, phone, and status (active/paused). Add a "Suppliers" page to the navigation where I can add, edit, and view suppliers.
    Acceptance: after signing in, I can open the "Suppliers" page from the navigation, add a supplier, and see it in the list.
    ```
 
-3. After the agent creates the task, click **Start** in the session.
+3. After the agent creates the issue, click **Start** in the session.
 
 If you would rather fill in a form, click **Fill in manually** in the panel, enter a title and description, choose **Start now** under **When to start**, and click **Create and start**.
 
-The task moves to **In progress**, and its executor becomes the coordinator. Open the task and you will see:
+The issue moves to **In progress**, and its executor becomes the coordinator. Open the issue and you will see:
 
-- The **Now** line at the top says what the task is waiting on, for example which agent is working and on which machine.
+- The **Now** line at the top says what the issue is waiting on, for example which agent is working and on which machine.
 - **Activity** holds the coordinator's handoffs and the worker agents' replies.
 - **Runs** holds the process of every run.
 
-::figure req-now | A task in progress
+::figure req-now | An issue in progress
 
 ## Accept the work
 
-After development, checks, and review are done, the task moves to **In review**, and you will see it under "Waiting for you" in **My Tasks**.
+After development, checks, and review are done, the issue moves to **In review**, and you will see it under "Waiting for you" in **My issues**.
 
-1. Open the task. The "Needs you" card at the top says what you need to do, and below it is the delivery report: the situation before the change, the agreed plan, what changed, how it was verified, plus the acceptance criteria and screenshots.
+1. Open the issue. The "Needs you" card at the top says what you need to do, and below it is the delivery report: the situation before the change, the agreed plan, what changed, how it was verified, plus the acceptance criteria and screenshots.
 2. Click **View changes** to look at the PR.
-3. If the result is what you expected, click **Merge** and confirm. Once the PR is merged, the task becomes **Done**.
-4. If something is wrong, select **Send back for changes**, write what needs to change, and click **Send and return to In progress**. The coordinator arranges the changes and hands the task back to you when they are done.
+3. If the result is what you expected, click **Merge** and confirm. Once the PR is merged, the issue becomes **Done**.
+4. If something is wrong, select **Send back for changes**, write what needs to change, and click **Send and return to In progress**. The coordinator arranges the changes and hands the issue back to you when they are done.
 
-::figure req-accept | A task waiting for acceptance
+::figure req-accept | An issue waiting for acceptance
 
-**Done when**: the task is **Done** and the repository's default branch contains the change.
+**Done when**: the issue is **Done** and the repository's default branch contains the change.
 
 ## Next steps
 
 - Invite colleagues under **Settings › Members**, and have them start with [Daily use](progress/my-tasks.md).
-- Connect your own computer, then use **My agent** in **My sessions** to discuss requests and split them into tasks. See [My sessions](team/sessions.md).
+- Connect your own computer, then use **My agent** in **My sessions** to discuss requests and split them into issues. See [My sessions](team/sessions.md).
 
 ## FAQ
 
@@ -157,7 +157,7 @@ After development, checks, and review are done, the task moves to **In review**,
 
 **No new agents appear on the Agents page.** Only the coding tools you checked in **Add runtime** report in, and each tool must also be signed in on the runtime as the system user that runs `nocobase-runner`. After you sign in, wait for one heartbeat and they appear.
 
-**The task stays queued.** The **Now** line on the task page, or the agent queue under **Development › Tasks**, gives the reason: no runtime is online, concurrency is full, or the agent only runs on someone else's personal runtime. If a run waits more than 24 hours without being picked up, it fails and the owner gets a card with a retry option.
+**The issue stays queued.** The **Now** line on the issue page, or the agent queue under **Development › Issues**, gives the reason: no runtime is online, concurrency is full, or the agent only runs on someone else's personal runtime. If a run waits more than 24 hours without being picked up, it fails and the owner gets a card with a retry option.
 
 **"Initialize project" never starts.** Make sure an online runtime has Node.js 24 and pnpm 11 and can reach npm.
 

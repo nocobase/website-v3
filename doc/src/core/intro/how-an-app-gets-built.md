@@ -85,6 +85,6 @@ A month later, Zhou Hang wants to grade suppliers. The new request follows steps
 When NocoBase releases a new version, the developer has an agent upgrade: following the `nocobase-app-upgrade` skill, the agent merges the changes against the new template without undoing the app's own edits, then runs the tests again. See [Upgrade NocoBase](../develop/upgrade.md).
 
 > [!NOTE] Doing the same in Studio
-> Steps 2 to 4 are one task in Studio: you state the request in a session, the coordinator agent arranges for execution agents to build, check, and review it, and finally hands it to you for acceptance. See [How a request gets done](../../studio/intro/how-a-task-gets-done.md).
+> Steps 2 to 4 are one issue in Studio: you state the request in a session, the coordinator agent arranges for execution agents to build, check, and review it, and finally hands it to you for acceptance. See [How a request gets done](../../studio/intro/how-a-task-gets-done.md).
 
 The next page, [Core concepts](concepts.md), explains the app, template, plugins, skills, and system settings that appeared here one by one.

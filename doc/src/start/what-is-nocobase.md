@@ -39,7 +39,7 @@ Everything can be self-hosted, and each company chooses its own models and agent
 | | Core alone | With Studio |
 | --- | --- | --- |
 | Who builds | You open your own coding tool in the app directory and build with an agent | Studio turns your team's agents into one agent team, and a coordinator agent arranges development, testing, and review |
-| Fits | One person or a small team, building one or a few apps | A team moving several tasks and projects forward at once, where business experts also lead the requirements |
+| Fits | One person or a small team, building one or a few apps | A team moving several issues and projects forward at once, where business experts also lead the requirements |
 | Testing, deployment, backup | Organized by the team itself, with deployment tools and development guidance from Core | Follows Studio's process: checks, review, acceptance, and approval before release |
 | Get started | [Core quick start](../core/quickstart.md) | [What is Studio](../studio/intro/what-is-studio.md) |
 

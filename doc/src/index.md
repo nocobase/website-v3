@@ -21,7 +21,7 @@ description: NocoBase is the open-source platform for building, running, and evo
 <figure class="map" aria-label="Your team leads agents to build business apps on Core; Studio organizes the agent team; Solution apps are ready-made apps">
 <div class="row"><div class="box human"><b>Your team</b><span>Sets goals, answers questions, and accepts the results. After launch, manages users and permissions</span></div></div>
 <div class="down">Hand over the request</div>
-<div class="row c2"><div class="box agent"><b>Agents</b><span>Coding tools such as Claude Code and Codex, writing the app's code by following skills</span></div><div class="box brand"><b>Studio <span class="tag pro">Commercial</span></b><span>Organizes agents into an agent team and manages tasks, workflows, and records</span></div></div>
+<div class="row c2"><div class="box agent"><b>Agents</b><span>Coding tools such as Claude Code and Codex, writing the app's code by following skills</span></div><div class="box brand"><b>Studio <span class="tag pro">Commercial</span></b><span>Organizes agents into an agent team and manages issues, workflows, and records</span></div></div>
 <div class="down">Build on Core</div>
 <div class="row"><div class="box"><b>Your business app · built on Core</b><span>Core provides the building blocks: data, permissions, workflows and approvals, files, notifications, and more. You own the app, and it runs on its own after launch</span></div></div>
 <div class="down">Or start from a ready-made app</div>

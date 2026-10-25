@@ -1,10 +1,10 @@
 ---
 title: Using Studio in the terminal
 nav: In the terminal
-description: Install the nb-studio command line so the Claude Code or Codex in your terminal can look up projects, create tasks, and analyze problems for you.
+description: Install the nb-studio command line so the Claude Code or Codex in your terminal can look up projects, create issues, and analyze problems for you.
 ---
 
-`nb-studio` is Studio's command line. Once it is installed and you are signed in, the Claude Code, Codex, or other tool you use in your terminal can work in Studio as you: look up tasks, create tasks, post comments, and read the knowledge base.
+`nb-studio` is Studio's command line. Once it is installed and you are signed in, the Claude Code, Codex, or other tool you use in your terminal can work in Studio as you: look up issues, create issues, post comments, and read the knowledge base.
 
 It differs from **My agent** in [My sessions](sessions.md): **My agent** is talking to the agent on your computer inside the Studio page, while `nb-studio` stays in the terminal and lets an agent operate Studio through the command line. You can use both at the same time, and connecting a computer also installs `nb-studio`.
 
@@ -30,15 +30,15 @@ Once it is installed, tell the coding tool what you want in plain language, and 
 
 ```text
 https://studio.example.com/main/issues/PUR-23
-Help me analyze where this task is stuck and how to handle it. Analysis only, no changes.
+Help me analyze where this issue is stuck and how to handle it. Analysis only, no changes.
 ```
 
 ```text
-Look at which tasks in Studio are waiting for me, and list them by urgency.
+Look at which issues in Studio are waiting for me, and list them by urgency.
 ```
 
 ```text
-Read docs/supplier-rating.md, split the requirements in it into tasks, and create them in the "Supplier Management" project. Do not start them yet.
+Read docs/supplier-rating.md, split the requirements in it into issues, and create them in the "Supplier Management" project. Do not start them yet.
 ```
 
 ```text
@@ -54,10 +54,10 @@ You usually do not need to type commands yourself, but knowing a few helps you f
 | `nb-studio whoami` | The identity you are signed in as, and its permissions |
 | `nb-studio docs` | A description of the available commands |
 | `nb-studio <command> --help` | Detailed usage for a command |
-| `nb-studio issue get <task>` | Read a task |
-| `nb-studio issue progress <task>` | What the task is waiting on right now |
-| `nb-studio issue comment add <task>` | Post a comment on a task |
-| `nb-studio follow-up list` | The tasks you own and follow, and what each is waiting on |
+| `nb-studio issue get <issue>` | Read an issue |
+| `nb-studio issue progress <issue>` | What the issue is waiting on right now |
+| `nb-studio issue comment add <issue>` | Post a comment on an issue |
+| `nb-studio follow-up list` | The issues you own and follow, and what each is waiting on |
 | `nb-studio kb read <document>` | Read a knowledge base document |
 
 For the full list of commands, see [nb-studio commands](../reference/cli.md).

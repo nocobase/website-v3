@@ -40,18 +40,18 @@ description: The terms used across the whole site. Documentation, the website, t
 
 | Term | Meaning |
 | --- | --- |
-| Task | The basic unit of delivered work in Studio. Not "ticket" or "request form" |
-| Task owner | The person responsible for a task's outcome. Always a person |
-| Coordinator agent | The single system agent that splits work into steps, assigns them, asks questions, and hands over for acceptance. It does not write code. The Studio interface calls it "Project manager" |
+| Issue | The basic unit of delivered work in Studio. Not "ticket" or "request form" |
+| Issue owner | The person responsible for an issue's outcome. Always a person |
+| Coordinator agent | The single system agent that splits work into steps, assigns them, asks questions, and hands over for acceptance. It does not write code. |
 | Execution agent | An agent on the agent team that completes a specific step |
 | My Agent | The coding tool on your own computer. Once connected to Studio, it keeps you company in sessions |
 | Agent team | All the agents the team has enabled |
 | Runtime | A machine that runs `nocobase-runner`, either a team runtime or a personal one |
-| My Tasks, My sessions | The two ways to follow work: by task, and by session |
+| My issues, My sessions | The two ways to follow work: by issue, and by session |
 | Project memory | What agents note down while working. It is stored in the code repository, and agents read and write it themselves |
 | Knowledge base | Material that people write and upload. Agents can only read it |
-| Delivery report | What the coordinator agent submits when a task moves to In review |
-| Todo / In progress / Blocked / In review / Done / Cancelled | The six fixed task statuses. In review means delivered and waiting for the task owner to accept |
+| Delivery report | What the coordinator agent submits when an issue moves to In review |
+| Todo / In progress / Blocked / In review / Done / Cancelled | The six fixed issue statuses. In review means delivered and waiting for the issue owner to accept |
 
 For the full Studio vocabulary, see Studio's [Core concepts](../studio/intro/concepts.md).
 

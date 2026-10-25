@@ -12,4 +12,4 @@ description: Which agent the coordinator agent runs on, and the principles it us
 - First choice and fallback, and the waiting time
 - The built-in allocation principles, and how to change them
 - The run limit
-- Handing a task to the coordinator agent to start
+- Handing an issue to the coordinator agent to start

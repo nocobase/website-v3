@@ -1,7 +1,7 @@
 ---
-title: Task statuses and permissions
+title: Issue statuses and permissions
 status: To be written
-description: The six task statuses, and what people and agents can each do.
+description: The six issue statuses, and what people and agents can each do.
 ---
 
 > [!PENDING] This page is to be written
@@ -9,6 +9,6 @@ description: The six task statuses, and what people and agents can each do.
 
 ## Planned content
 
-- The six statuses and how a task moves between them
+- The six statuses and how an issue moves between them
 - What people, the coordinator agent, and executing agents can do
 - An agent's permissions never exceed those of the person who started the work

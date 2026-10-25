@@ -1,7 +1,7 @@
 ---
 title: Projects
 status: Body to be completed
-description: Projects, tasks, and collaboration: status, priority, members, plans, attachments, and progress. Studio's projects and tasks are built on it.
+description: Projects, issues, and collaboration: status, priority, members, plans, attachments, and progress. Studio's projects and issues are built on it.
 ---
 
 > [!PENDING] Body to be written
@@ -16,7 +16,7 @@ description: Projects, tasks, and collaboration: status, priority, members, plan
 | Edition | <span class="tag">Open source</span> |
 | Default template | Not in the default template |
 | Depends on | [Authentication](authentication.md), [Permissions](authorization.md), [Files](file.md), [Notifications](notification.md), [Users](users.md) |
-| Pages | **Projects** (`/projects`) plus task and plan pages |
+| Pages | **Projects** (`/projects`) plus issue and plan pages |
 | UI components | UI library `issue-table`, `issue-card`, `issue-detail`, `project-detail`, `plan-card` |
 | Database tables | Yes, migrations ship with the plugin, table names start with `pm` |
 | Commands | None |

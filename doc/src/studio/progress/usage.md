@@ -11,4 +11,4 @@ description: How much each run used and cost, and how model prices are set.
 
 - The **Usage** page
 - Model prices, pricing rules, and subscription billing
-- Cost per task in the dashboard
+- Cost per issue in the dashboard

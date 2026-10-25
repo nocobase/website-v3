@@ -1,7 +1,10 @@
 /* 把页面里的表单提交到 NocoBase 2 的公开表单。
    表单上写 data-public-form-zh / data-public-form-en，值为「实例地址|表单 key」：中文页提交到前者，其他语言提交到后者。
    流程与公开表单页面相同：先用 publicForms:getMeta 换取一小时有效的 token，再带 X-Form-Token 调用 <数据表>:publicSubmit。
-   只在当前语言显示的字段放在 data-lang-only="zh|en" 的元素里，另一种语言下会被禁用，不参与校验和提交。 */
+   只在当前语言显示的字段放在 data-lang-only="zh|en" 的元素里，另一种语言下会被禁用，不参与校验和提交。
+   两种语言字段名不同时，在字段上写 data-name-zh / data-name-en。
+   选项来自 NocoBase 2 的字段：<select data-options="enum" data-field="字段名"> 生成下拉选项，<fieldset class="opts" data-options="enum" data-field="字段名"> 生成多选；
+   多选的 fieldset 加 data-required 表示至少选一项。 */
 (function () {
   var forms = Array.prototype.slice.call(document.querySelectorAll('form[data-public-form-zh][data-public-form-en]'));
   if (!forms.length) return;
@@ -52,6 +55,44 @@
       .catch(function () { delete select.dataset.loaded; });
   };
 
+  /* 下拉和多选的选项按当前语言取自对应表单的字段定义，中英文的选项不完全相同 */
+  var loadEnums = function (form) {
+    var boxes = form.querySelectorAll('[data-options="enum"]');
+    if (!boxes.length) return;
+    var l = lang();
+    form._meta = form._meta || {};
+    var meta = form._meta[l] || (form._meta[l] = getMeta(target(form)));
+    meta.then(function (m) {
+      if (lang() !== l) return;
+      var fields = m.dataSource.collections[0].fields;
+      boxes.forEach(function (box) {
+        var name = box.getAttribute('data-field');
+        var f = fields.filter(function (x) { return x.name === name; })[0];
+        var items = (f && f.uiSchema && f.uiSchema.enum) || [];
+        box.querySelectorAll('.opt').forEach(function (o) { o.remove(); });
+        items.forEach(function (it) {
+          if (box.tagName === 'SELECT') {
+            var o = document.createElement('option');
+            o.className = 'opt';
+            o.value = it.value;
+            o.textContent = it.label;
+            box.appendChild(o);
+          } else {
+            var lb = document.createElement('label');
+            lb.className = 'opt';
+            var i = document.createElement('input');
+            i.type = 'checkbox';
+            i.name = name;
+            i.value = it.value;
+            lb.appendChild(i);
+            lb.appendChild(document.createTextNode(it.label));
+            box.appendChild(lb);
+          }
+        });
+      });
+    }).catch(function () { delete form._meta[l]; });
+  };
+
   var sync = function (form) {
     var l = lang();
     form.querySelectorAll('[data-lang-only]').forEach(function (el) {
@@ -61,18 +102,36 @@
     form.querySelectorAll('[data-ph-zh]').forEach(function (el) {
       el.placeholder = el.getAttribute('data-ph-' + l) || '';
     });
+    form.querySelectorAll('[data-text-zh]').forEach(function (el) {
+      el.textContent = el.getAttribute('data-text-' + l) || '';
+    });
     if (l === 'en') loadCountries(form);
+    loadEnums(form);
   };
 
   forms.forEach(function (form) {
     form.removeAttribute('onsubmit');
     sync(form);
+    form.addEventListener('change', function (e) {
+      if (e.target.type === 'checkbox') e.target.closest('fieldset').querySelectorAll('input').forEach(function (i) { i.setCustomValidity(''); });
+    });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      form.querySelectorAll('fieldset[data-required]').forEach(function (fs) {
+        var first = fs.querySelector('input[type="checkbox"]');
+        if (first) first.setCustomValidity(fs.querySelector('input:checked') ? '' : (lang() === 'zh' ? '请至少选择一项' : 'Please choose at least one option'));
+      });
       if (!form.reportValidity()) return;
       var data = {};
-      new FormData(form).forEach(function (v, k) {
-        v = String(v).trim();
+      var l = lang();
+      Array.prototype.forEach.call(form.elements, function (el) {
+        if (!el.name || el.disabled) return;
+        var k = el.getAttribute('data-name-' + l) || el.name;
+        if (el.type === 'checkbox') {
+          if (el.checked) (data[k] = data[k] || []).push(el.value);
+          return;
+        }
+        var v = String(el.value).trim();
         if (v) data[k] = v;
       });
       var btn = form.querySelector('button[type="submit"]');
@@ -95,7 +154,8 @@
           say(form, 'ok', form.getAttribute('data-ok-zh') || '已收到你的需求，我们会尽快与你联系。', form.getAttribute('data-ok-en') || 'Thanks! We’ve received your request and will be in touch soon.');
         })
         .catch(function () {
-          say(form, 'error', '提交没有成功，请稍后再试，或写信到 partner@nocobase.com。', 'Something went wrong. Please try again, or email partner@nocobase.com.');
+          var mail = form.getAttribute('data-mail') || 'partner@nocobase.com';
+          say(form, 'error', '提交没有成功，请稍后再试，或写信到 ' + mail + '。', 'Something went wrong. Please try again, or email ' + mail + '.');
         })
         .then(function () { if (btn) btn.disabled = false; });
     });

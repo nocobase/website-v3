@@ -1580,6 +1580,12 @@ html[lang="zh"] .nav .lang a[data-lang="zh"] svg.lucide, html[lang="en"] .nav .l
 /* Launch 预约：表单占更大的一栏 */
 .band.book { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 32px 64px; }
 .band.book .bookf { min-width: 0; gap: 16px; }
+.cinfo { display: grid; gap: 28px; margin-top: 36px; }
+.cinfo h3 { font-size: 15.5px; font-weight: 600; color: var(--on-deep); }
+.band .cinfo p { margin-top: 6px; font-size: 14.5px; line-height: 1.75; }
+.cinfo a { color: var(--deep-accent); }
+.cinfo ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; font-size: 14.5px; line-height: 1.7; color: var(--on-deep-2); }
+.cinfo .qr { display: block; width: 104px; height: 104px; margin-top: 12px; padding: 6px; border-radius: 8px; background: #fff; }
 html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .bookf .em { grid-column: 1 / -1; }
 .bookf fieldset.opts label { font-size: 14px; }
 @media (max-width: 900px) { .band.book { grid-template-columns: minmax(0, 1fr); } }

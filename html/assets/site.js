@@ -42,7 +42,7 @@
         '<a href="blog.html"' + on('blog') + '><i data-lucide="newspaper"></i><b>' + T('博客', 'Blog') + '</b><span>' + T('产品思考、工程实践与方法论', 'Product thinking and engineering practices') + '</span></a>' +
         '<a href="#"><i data-lucide="history"></i><b>' + T('更新日志', 'Changelog') + '</b><span>' + T('每次版本迭代的新能力与改进', 'What shipped in every release') + '</span></a>' +
         '<a href="https://forum.nocobase.com/" target="_blank" rel="noopener"><i data-lucide="messages-square"></i><b>' + T('社区', 'Community') + '</b><span>' + T('在论坛提问、交流经验与反馈建议', 'Ask questions and share patterns') + '</span></a>' +
-        '<a href="#"><i data-lucide="mail"></i><b>' + T('联系我们', 'Contact Us') + '</b><span>' + T('商务合作、产品咨询与技术支持', 'Sales, partnerships, and support') + '</span></a>' +
+        '<a href="contact.html"><i data-lucide="mail"></i><b>' + T('联系我们', 'Contact Us') + '</b><span>' + T('商务合作、产品咨询与技术支持', 'Sales, partnerships, and support') + '</span></a>' +
       '</div></div>' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('伙伴', 'Partners') + '<i data-lucide="chevron-down"></i></button><div class="dd">' +
         '<a href="find-partner.html"' + on('find-partner') + '><i data-lucide="search"></i><b>' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</b><span>' + T('和懂行的伙伴一起，把系统做出来、用起来', 'Get your system built and running with an expert') + '</span></a>' +
@@ -65,7 +65,7 @@
       '<a href="find-partner.html"' + on('find-partner') + '>' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</a>' +
       '<a href="partner.html"' + on('partner') + '>' + T('成为合作伙伴', 'Become a Partner') + '</a>' +
       '<a href="pricing.html"' + on('pricing') + '>' + T('定价', 'Pricing') + '</a>' +
-      '<a href="#">' + T('联系我们', 'Contact Us') + '</a>' +
+      '<a href="contact.html">' + T('联系我们', 'Contact Us') + '</a>' +
       '<a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub<small>24.6K</small></a>' +
       '<button class="lang-switch-m" type="button" id="langBtnM"><i data-lucide="globe"></i>' + T('Switch to English', '切换为中文') + '</button>' +
     '</div></header>';
@@ -76,7 +76,7 @@
     '<div><h4>' + T('定价与许可', 'Pricing &amp; License') + '</h4><ul><li><a href="pricing.html">' + T('版本与价格', 'Editions &amp; Pricing') + '</a></li><li><a href="#">' + T('许可协议', 'License') + '</a></li><li><a href="' + NOCODE + '" target="_blank" rel="noopener">NocoBase 2.x ↗</a></li></ul></div>' +
     '<div><h4>' + T('伙伴', 'Partners') + '</h4><ul><li><a href="partner.html">' + T('合作伙伴计划', 'Partner Program') + '</a></li><li><a href="find-partner.html">' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</a></li><li><a href="customers.html">' + T('客户案例', 'Customers') + '</a></li></ul></div>' +
     '<div><h4>' + T('资源', 'Resources') + '</h4><ul><li><a href="' + DOCS + '" target="_blank" rel="noopener">' + T('文档', 'Docs') + '</a></li><li><a href="blog.html">' + T('博客', 'Blog') + '</a></li><li><a href="#">' + T('更新日志', 'Changelog') + '</a></li></ul></div>' +
-    '<div><h4>' + T('联系', 'Connect') + '</h4><ul><li><a href="#">' + T('联系我们', 'Contact Us') + '</a></li><li><a href="https://forum.nocobase.com/" target="_blank" rel="noopener">' + T('社区论坛', 'Forum') + '</a></li><li><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub</a></li></ul></div>' +
+    '<div><h4>' + T('联系', 'Connect') + '</h4><ul><li><a href="contact.html">' + T('联系我们', 'Contact Us') + '</a></li><li><a href="https://forum.nocobase.com/" target="_blank" rel="noopener">' + T('社区论坛', 'Forum') + '</a></li><li><a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub</a></li></ul></div>' +
     '</div><div class="fbot"><span>© 2020-2026 NocoBase. All rights reserved.</span></div></div></footer>';
 
   /* 子目录里的页面（blog/、customers/）在 body 上写 data-root="../"，站内链接和图片都从那里往上找 */

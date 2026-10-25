@@ -5,9 +5,11 @@
 <dl class="st-now"><dt>接下来</dt><dd>周航查看交付报告，验收 PR #31。</dd></dl>
 <div class="needs"><b>需要你</b><p>周航：查看交付报告，验收供应商分级；通过后合并 PR #31，不通过就退回修改。</p><p class="meta">检查通过 · 评审：通过</p><div class="st-btns"><span class="st-btn p"><i data-lucide="git-merge"></i>合并</span><span class="st-btn">标记为已合并</span><span class="st-btn"><i data-lucide="external-link"></i>看改动</span><span class="st-btn"><i data-lucide="undo-2"></i>退回修改</span></div></div>
 <div class="report"><div class="rh"><i data-lucide="list-checks"></i>交付报告</div>
-<h5>改动前的情况</h5><p>供应商只有基本资料，没有评分和等级，C 级供应商下单不需要审批。</p>
-<h5>改了什么</h5><ul><li>供应商有了评分和 A、B、C 等级，每晚自动重算</li><li>向 C 级供应商下单需要采购经理审批</li><li>新供应商默认 B 级，满三个月后重新定级</li></ul>
-<h5>验收标准</h5><ul><li>供应商列表显示每家的等级</li><li>给 C 级供应商下单时，提交后进入采购经理的审批</li></ul>
+<h5>原来的情况</h5><p>供应商只有基本资料，没有评分和等级；订单金额超过 5 万元才需要采购经理审批。</p>
+<h5>改了什么</h5><ul><li>供应商有了评分和 A、B、C 等级，每晚按交付准时率、质量合格率和价格重算</li><li>向 C 级供应商下单，不论金额，提交后都进入采购经理的审批；其他供应商仍按金额</li><li>新供应商默认 B 级，满三个月后重新定级</li></ul>
+<h5>怎么验证的</h5><p>在预览里按三个验收场景各走了一遍，测试全部通过，CI 通过，另一家厂商的模型评审通过。</p>
+<h5>遗留问题</h5><ul><li>已有供应商的等级要等第一次夜间重算后才出现。建议上线当天手动重算一次。</li></ul>
+<h5>验收标准</h5><ul><li>供应商列表显示每家的等级（截图 1）</li><li>给 C 级供应商下一笔 1 万元的订单，提交后进入采购经理的审批（截图 2、3）</li></ul>
 <div class="thumbs"><span></span><span></span><span></span></div></div>
 </div>
 </div>

@@ -1,0 +1,147 @@
+# Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+# 术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+# coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+# self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+# 页面用语：partner = partenaire；consultant = consultant；channel distribution = distribution；My issues 等产品界面名称照英文
+title: Programme partenaires NocoBase — Livrez plus de projets clients avec une équipe d’agents
+description: Devenez partenaire NocoBase : 15 à 40 % de commission de distribution et 100 % de vos revenus de services. Avec Core, Studio et Solution, vos consultants se concentrent sur les besoins des clients pendant qu’une équipe d’agents développe, et de nombreux projets avancent en même temps.
+001: L’IA a transformé la livraison de logiciels. <span class="m">Faites-en votre business.</span>
+002: Autrefois, le nombre de projets dépendait du nombre de développeurs. Aujourd’hui, vos consultants se concentrent sur l’analyse des besoins, les décisions clés et la recette, tandis qu’une équipe d’agents code, teste et déploie : de nombreux projets clients avancent en parallèle. NocoBase 3 fournit Core comme socle, Studio et les applications métier de Solution. Votre expertise sectorielle et vos relations clients font la différence.
+005: Commission de distribution
+006: Cumul
+007: À vie, jamais revue à la baisse
+008: Revenus de services
+009: 100 % pour vous
+010: Code livré
+011: Au client, maintenable
+012: La livraison à l’ère de l’IA
+013: Ne grandissez plus par les effectifs. 
+014: Grandissez par votre expertise métier.
+015: L’IA a rendu l’écriture de code bon marché. Ce que les clients paient désormais, c’est quelqu’un qui comprend leur métier, et un système de niveau production capable d’évoluer pendant des années. C’est la valeur essentielle qu’apportent les partenaires.
+016: Livraison traditionnelle
+017: Croissance par les effectifs
+018: Avec NocoBase 3
+019: Croissance par l’expertise métier
+020: Capacité
+021: Nombre de projets plafonné par l’effectif de développeurs
+022: Une équipe d’agents fait avancer tous les projets clients, jour et nuit
+024: Facturation au jour-homme, marges liées aux heures
+025: Tarification par module et par résultat : livraison plus rapide, marges plus élevées
+026: Ce que vous livrez
+027: Configurations opaques ou code sur mesure difficile à transmettre
+028: Code source propre sur un socle standard : auditable, évolutif et améliorable par l’IA
+030: Le savoir-faire reste dans quelques têtes
+031: Capitalisé dans les skills et bases de connaissances, réutilisable pour le client suivant
+032: Après la mise en production
+033: Gestion des urgences après la mise en production, difficile à facturer
+034: Les équipes d’agents prennent en charge mises à jour et améliorations courantes, qui deviennent un contrat annuel récurrent
+035: Un consultant, quatre projets clients en parallèle.
+036: Dans NocoBase Studio, chaque client a son propre projet et son propre dépôt, isolés. Le consultant n’intervient que pour les décisions clés dans My issues (vérifier les aperçus, répondre aux questions métier, approuver les mises en production), tandis que les agents développent, testent et préparent les déploiements en arrière-plan.
+037: Les interlocuteurs côté client font leurs retours et valident directement dans des aperçus en ligne
+038: Chaque modification passe des contrôles automatisés et une validation humaine : la qualité sans épuisement
+039: À la clôture, remettez l’intégralité du code source, des skills et des bases de connaissances
+040: Modes de partenariat
+041: Revendez, livrez ou bâtissez des solutions sectorielles. 
+042: Choisissez-en une ou combinez-les.
+043: Distribution
+044: Recommandez et revendez les licences commerciales NocoBase, avec une commission par paliers.
+045: Commission de 15 % à 40 % selon les ventes cumulées
+046: Cumul à vie : votre palier n’est jamais remis à zéro ni abaissé
+047: Licence perpétuelle en paiement unique et sièges illimités : facile à faire valider par le client
+048: Avec supports de vente, environnements de démo et fiches concurrentielles
+049: Prestation de services
+050: Assurez déploiement, personnalisation, intégration et formation dans Studio avec votre équipe d’agents.
+051: Vous gardez 100 % des revenus de services, sans commission pour NocoBase
+052: Fixez vos prix : au forfait, par module ou en contrat annuel
+053: Montez en palier au fil des projets livrés et recevez en priorité des opportunités
+054: Solutions sectorielles
+055: Bâtissez des solutions verticales sur Core avec des agents métier intégrés, comme NocoCRM.
+056: Construisez une fois, puis déployez et maintenez chez tous les clients de votre secteur
+057: Intégrez les règles métier dans des skills et des consignes : les agents connaissent le secteur dès le premier jour
+058: Référencement dans le catalogue NocoBase Solution, avec lancement et marketing conjoints
+059: Écosystème technologique
+060: Intégrez modèles, outils pour agents, infrastructure cloud ou connecteurs aux déploiements NocoBase 3.
+061: Publiez skills, connecteurs et composants d’interface pour les développeurs et les agents
+062: Co-publiez solutions, documentation technique et études de cas clients
+063: Accédez en avance aux versions de Core pour valider la compatibilité
+065: Une livraison plus rapide et plus sûre. 
+066: Des clients plus confiants.
+067: 100 % du code source
+068: Les livrables passent l’audit technique du client, sans dépendance fournisseur : la confiance qui fait signer.
+069: Fonctions entreprise intégrées
+070: Authentification, permissions, workflows, validations et employés IA sont fournis : les agents n’écrivent que la logique propre au client.
+071: Une livraison à l’échelle avec Studio
+072: Gérez plusieurs clients et dépôts dans un même espace, avec tests et revue, aperçus isolés et mises en production contrôlées.
+073: Partir de Solutions prêtes à l’emploi
+075: Auto-hébergé, souveraineté totale des données
+076: Déployez sur site avec le modèle de votre choix, en répondant aux exigences de conformité strictes de la finance, du secteur public et de l’industrie.
+077: Une adoption mondiale éprouvée
+078: Avec 24,6K étoiles sur GitHub, NocoBase équipe entreprises, administrations et universités dans le monde entier, qui passent aujourd’hui à l’ère de l’IA.
+079: Comment nous vous accompagnons
+080: Dès votre premier client, 
+081: nous sommes à vos côtés.
+082: Formation et certification
+083: Venez avec un vrai besoin et apprenez à diriger des agents, vérifier les aperçus et livrer en toute sécurité dans Studio.
+084: Accompagnement commercial
+085: Accédez aux présentations, études de cas, fiches concurrentielles et environnements de démo, avec des rendez-vous conjoints sur les affaires clés.
+086: Support technique
+087: Canaux de support dédiés, réponse prioritaire pour les paliers supérieurs, et accès anticipé aux versions de Core et aux skills.
+088: Apport d’affaires
+089: Recevez des leads qualifiés selon la région, le secteur, la langue et le service, et livrez-leur des systèmes métier bâtis sur NocoBase.
+090: Marque et co-marketing
+091: Badge de partenaire officiel, présence dans l’annuaire, événements co-marketing et témoignages clients communs.
+092: Conditions
+093: Démarrez gratuitement. 
+094: Plus vous vous engagez, plus nous vous soutenons.
+095: Partenaire distributeur
+096: Partenaire officiel
+097: Inscription gratuite et signature de l’accord de distribution
+098: Détenir une licence Professional et signer l’accord de partenariat
+099: Principalement la documentation publique
+100: Programme de formation et de certification dédié
+101: Commission
+102: Activée dès votre première vente de licence
+103: Par paliers selon les ventes cumulées, de 15 % jusqu’à 40 %, jamais à la baisse
+104: Certificat de partenaire
+105: Présence dans l’annuaire
+106: Support communautaire
+107: Canal dédié
+108: Co-marketing et témoignages
+109: Comment nous rejoindre
+110: Quatre étapes 
+111: jusqu’à votre premier projet NocoBase 3.
+112: Candidature
+113: Présentez votre équipe, votre région, vos secteurs et les modes de partenariat qui vous intéressent.
+114: Échange et signature
+115: Convenez ensemble du mode de partenariat, des clients cibles et d’un plan pour la première année, puis signez.
+116: Formation et certification
+117: Venez avec un vrai besoin et menez-le à bout dans Studio (développement, validation, mise en production) pour terminer la formation et la certification.
+118: Vendre et livrer
+119: Rejoignez l’écosystème des partenaires, recevez des recommandations, revendez des licences NocoBase et livrez vos clients.
+120: FAQ
+121: Faut-il d’abord une grande équipe de développement ?
+122: Inutile d’agrandir votre équipe de développement. Les consultants pilotent le cadrage et la validation dans Studio. Nous recommandons au moins un responsable technique pour superviser les environnements, les intégrations et la validation des mises en production.
+123: Peut-on combiner plusieurs modes de partenariat ?
+124: Oui. Beaucoup de partenaires revendent des licences tout en assurant l’intégration et la maintenance annuelle, et les spécialistes sectoriels packagent souvent leurs propres solutions.
+125: Partageons-nous les revenus de services avec NocoBase ?
+126: Non. 100 % des revenus de déploiement, personnalisation, intégration, formation et maintenance vous reviennent, aux prix que vous fixez.
+127: Comment sont facturés les modèles et les outils d’agents ?
+128: Vous ou votre client payez directement les fournisseurs, sans marge de NocoBase. Utilisez Claude Code, Codex, OpenCode et tout modèle cloud ou local.
+129: Peut-on continuer à livrer des projets sur NocoBase 2 ?
+130: Oui. NocoBase 2 est maintenu en parallèle de NocoBase 3. Utilisez 2.x pour les applications configurées visuellement et 3.x pour les systèmes complexes développés avec l’IA.
+131: À qui appartiennent les solutions sectorielles que nous développons ?
+132: À vous. Publiez-les en open source ou sous licence commerciale, selon vos conditions ; le référencement dans le catalogue et le co-marketing se décident ensemble.
+133: Devenir partenaire NocoBase
+134: Présentez-nous votre équipe et vos projets, nous revenons vers vous rapidement. Ou écrivez à partner@nocobase.com.
+135: Nom du contact
+136: E-mail du contact
+137: Nom de l’entreprise
+138: Votre entreprise
+139: Comment vous souhaitez travailler avec nous
+140: Envoyer la candidature
+141: Merci ! Nous avons bien reçu votre candidature et revenons vers vous rapidement.
+142: Taille de l’équipe, secteurs servis et clients actuels
+143: Les modes de partenariat qui vous intéressent (distribution, prestation, solutions sectorielles, technologie), vos clients et régions cibles
+144: Pays ou région
+145: Sélectionnez votre pays ou région
+146: Personnalisez NocoCRM, NocoITAM ou NocoReach, open source, pour votre client au lieu de partir de zéro.

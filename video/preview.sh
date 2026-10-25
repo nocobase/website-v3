@@ -3,10 +3,10 @@
 # 经由本地服务打开，音轨整段读进内存播放，跳转、倍速、声画同步都可靠；直接双击 preview.html（file://）时声音不一定能播。
 #   ./preview.sh            打开 preview.html
 #   ./preview.sh 48         从第 48 秒开始
-#   ./preview.sh en [48]    英文版（preview-en.html）
+#   ./preview.sh en [48]    英文版（preview-en.html）；其他语言同理：de、es、fr、pt、ru、id、vi、zh-TW、ja、ko
 cd "$(dirname "$0")"
 PAGE=preview.html
-if [ "$1" = en ]; then PAGE=preview-en.html; shift; fi
+case "$1" in en|de|es|fr|pt|ru|id|vi|zh-TW|ja|ko) PAGE=preview-$1.html; shift ;; esac
 PORT=${PORT:-8765}
 while lsof -nP -iTCP:$PORT -sTCP:LISTEN >/dev/null 2>&1; do PORT=$((PORT + 1)); done
 python3 -m http.server "$PORT" --bind 127.0.0.1 >/dev/null 2>&1 &

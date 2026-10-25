@@ -10,7 +10,7 @@
 "AI + no-code development platform": "Платформа разработки с ИИ и no-code",
 "Products": "Продукты",
 "The open-source foundation for AI-built business systems": "Фундамент с открытым кодом для бизнес-систем, созданных с ИИ",
-"The governance platform for teams building with agents": "Платформа управляемой разработки для команд и агентов",
+"The governance platform for people and agents building software together": "Платформа управляемой разработки для людей и агентов",
 "Agent-driven business apps": "Бизнес-приложения на основе агентов",
 "No-code": "No-code",
 "Visual configuration platform, maintained alongside v3": "Платформа визуальной настройки, развивается параллельно с v3",
@@ -36,10 +36,9 @@
 "Find a Partner": "Найти партнёра",
 "Get your system built and running with an expert": "Эксперт построит и запустит вашу систему",
 "Become a Partner": "Стать партнёром",
-"One consultant, an agent team, more projects": "Один консультант, команда агентов, больше проектов",
 "Pricing": "Цены",
 "App Foundation": "Фундамент приложений",
-"Teams + Agents": "Команды + агенты",
+"People + Agents": "Люди + агенты",
 "Business Apps": "Бизнес-приложения",
 "No-code ↗": "No-code ↗",
 "Build reliable business systems": "Создавайте надёжные бизнес-системы",
@@ -215,7 +214,8 @@
 "Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.": "Studio координирует нескольких агентов на этапах проектирования, разработки, тестирования и ревью. Ключевые решения принимает человек, опираясь на отчёты и скриншоты.",
 "Know-how": "Накопленный опыт",
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
-"NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio — платформа управляемой разработки для команд, которые работают с агентами. Она объединяет Claude Code, Codex и OpenCode в одну команду агентов, которая сама продвигает задачи. Весь прогресс как на ладони, а ключевые решения принимают люди.",
+"NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio — платформа управляемой разработки для совместной работы людей и агентов. Она объединяет Claude Code, Codex и OpenCode в одну команду агентов, которая сама продвигает задачи. Весь прогресс как на ладони, а ключевые решения принимают люди.",
+"Deliver more client projects with an agent team": "Выполняйте больше клиентских проектов с командой агентов",
 "AI finds growth opportunities. Agents put them into action.": "ИИ находит возможности для роста. Агенты воплощают их в жизнь."
 }
 };

@@ -19,7 +19,7 @@ SPIN = '<span class="st-spin"></span>'
 def win(crumbs, body, right=''):
     # 窗口只留顶栏和内容：Studio 标识 + 面包屑，不画侧栏
     cr = ''.join(('<b>%s</b>' if i == len(crumbs) - 1 else '<span>%s</span>' + I('chevron-right')) % T(*c) for i, c in enumerate(crumbs))
-    return ('<div class="sv-win"><div class="sv-top"><span class="sv-brand"><img src="assets/logo.png" alt="NocoBase"><span>Studio</span></span>'
+    return ('<div class="sv-win"><div class="sv-top"><span class="sv-brand"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase"><span>Studio</span></span>'
             '<i class="sep"></i>%s<span class="r">%s<span class="st-av">%s</span></span></div><div class="sv-body">%s</div></div>') % (cr, right, T('王', 'L'), body)
 def head(zh, en, pzh, pen, right=''):
     return '<div class="st-ph"><div><h4>%s</h4><p>%s</p></div>%s</div>' % (T(zh, en), T(pzh, pen), ('<span class="r">%s</span>' % right) if right else '')

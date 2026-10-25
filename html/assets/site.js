@@ -3,13 +3,13 @@
   var page = document.body.getAttribute('data-page') || '';
   var T = function (zh, en) { return '<t-zh>' + zh + '</t-zh><t-en>' + en + '</t-en>'; };
   var on = function (k) { return k === page ? ' class="on"' : ''; };
-  var DOCS = 'https://docs.nocobase.com/zh-CN/';
+  var DOCS = 'https://docs.nocobase.com/';  /* 顶部导航、手机菜单和页脚的「文档」 */
   var GH = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>';
 
   var products = [
     /* 和首页的静态导航一致，短句取自《NocoBase 产品定义与标准表述》 */
     ['core', 'core.html', 'layers', 'NocoBase Core', T('AI 开发和运行业务系统的开源应用底座', 'The open-source foundation for AI-built business systems')],
-    ['studio', 'studio.html', 'git-pull-request', 'NocoBase Studio', T('团队与 Agent 协同开发的治理平台', 'The governance platform for teams building with agents')],
+    ['studio', 'studio.html', 'git-pull-request', 'NocoBase Studio', T('人与 Agent 协同开发的治理平台', 'The governance platform for people and agents building software together')],
     ['solutions', 'solutions.html', 'layout-grid', 'NocoBase Solution', T('由 Agent 驱动的企业业务应用', 'Agent-driven business apps')]
   ];
   var apps = [
@@ -20,8 +20,9 @@
     ['', '', 'folder-kanban', 'NocoProject', T('项目协作 · 配备调研与文书 Agent', 'Projects · Research &amp; Doc Agents'), 1],
     ['', '', 'users', 'NocoHR', T('人事管理 · 配备入职与人事 Agent', 'HR · Onboarding Agent'), 1]
   ];
-  /* 语言列表。多数页面只有中文、英文内容，其他语言先显示英文；页面在 <head> 里设了 window.__i18nPage 的（NocoCRM、NocoITAM），
-     其他语言的译文由 _src/i18n/pages.py 生成在 assets/i18n/site.<语言>.js 和 <页面>.<语言>.js，见下方 applyI18n */
+  /* 语言列表。页面在 <head> 里设了 window.__i18nPage 的（Core、Studio、Solution、NocoCRM、NocoITAM、定价、伙伴、联系，由 wrap.py 的 i18n: 生成）有 12 种语言，
+     其他语言的译文由 _src/i18n/pages.py 生成在 assets/i18n/site.<语言>.js 和 <页面>.<语言>.js，见下方 applyI18n；
+     其余页面（博客、客户案例、NocoReach）只有中文、英文内容，其他语言先显示英文 */
   var I18N = window.__i18nPage || '';
   var LANG_NAMES = { zh: '简体中文', en: 'English', es: 'Español', fr: 'Français', de: 'Deutsch', pt: 'Português', ru: 'Русский', id: 'Bahasa Indonesia', vi: 'Tiếng Việt', 'zh-TW': '繁體中文', ja: '日本語', ko: '한국어' };
   if (I18N && !LANG_NAMES[window.__lang]) window.__lang = 'en';
@@ -35,18 +36,19 @@
   }).join(''); };
 
   var header = '<header class="nav" id="nav"><div class="container in">' +
-    '<a class="logo" href="homepage.html" aria-label="NocoBase"><img src="assets/logo.png" alt="NocoBase" width="150" height="22"></a>' +
+    '<a class="logo" href="homepage.html" aria-label="NocoBase"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase" width="150" height="22"></a>' +
     '<div class="mi ver"><button type="button" aria-haspopup="true" aria-label="NocoBase 3">3<i data-lucide="chevron-down"></i></button><div class="dd"><a class="cur" href="homepage.html"><i data-lucide="check"></i><b>NocoBase 3<em class="kind-tag">' + T('当前', 'Current') + '</em></b><span>' + T('面向 Agent 的开发平台', 'The development platform for agents') + '</span></a><a class="ext" href="' + NOCODE + '" target="_blank" rel="noopener"><i data-lucide="mouse-pointer-click"></i><b>NocoBase 2<i data-lucide="arrow-up-right"></i></b><span>' + T('AI + 无代码开发平台', 'AI + no-code development platform') + '</span></a></div></div>' +
     '<nav class="menu" aria-label="Primary">' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('产品', 'Products') + '<i data-lucide="chevron-down"></i></button><div class="dd">' + dd(products) + v2 + '</div></div>' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('解决方案', 'Solutions') + '<i data-lucide="chevron-down"></i></button><div class="dd two">' + dd(apps) + '</div></div>' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('资源', 'Resources') + '<i data-lucide="chevron-down"></i></button><div class="dd">' +
         '<a href="' + DOCS + '" target="_blank" rel="noopener"><i data-lucide="book-open"></i><b>' + T('文档', 'Docs') + '</b><span>' + T('上手指南、核心能力与扩展开发参考', 'Guides, core capabilities, and API reference') + '</span></a>' +
-        '<a href="customers.html"' + on('customers') + '><i data-lucide="building-2"></i><b>' + T('客户案例', 'Customers') + '</b><span>' + T('看看各行业团队如何用 NocoBase 搭建核心系统', 'How teams run core systems on NocoBase') + '</span></a>' +
-        '<a href="blog.html"' + on('blog') + '><i data-lucide="newspaper"></i><b>' + T('博客', 'Blog') + '</b><span>' + T('产品思考、工程实践与方法论', 'Product thinking and engineering practices') + '</span></a>' +
-        '<a href="#"><i data-lucide="history"></i><b>' + T('更新日志', 'Changelog') + '</b><span>' + T('每次版本迭代的新能力与改进', 'What shipped in every release') + '</span></a>' +
+        /* 客户案例、博客、更新日志暂不开放：置灰，不可点击 */
+        '<div class="soon" aria-disabled="true"><i data-lucide="building-2"></i><b>' + T('客户案例', 'Customers') + '</b><span>' + T('看看各行业团队如何用 NocoBase 搭建核心系统', 'How teams run core systems on NocoBase') + '</span></div>' +
+        '<div class="soon" aria-disabled="true"><i data-lucide="newspaper"></i><b>' + T('博客', 'Blog') + '</b><span>' + T('产品思考、工程实践与方法论', 'Product thinking and engineering practices') + '</span></div>' +
+        '<div class="soon" aria-disabled="true"><i data-lucide="history"></i><b>' + T('更新日志', 'Changelog') + '</b><span>' + T('每次版本迭代的新能力与改进', 'What shipped in every release') + '</span></div>' +
         '<a href="https://forum.nocobase.com/" target="_blank" rel="noopener"><i data-lucide="messages-square"></i><b>' + T('社区', 'Community') + '</b><span>' + T('在论坛提问、交流经验与反馈建议', 'Ask questions and share patterns') + '</span></a>' +
-        '<a href="contact.html"><i data-lucide="mail"></i><b>' + T('联系我们', 'Contact Us') + '</b><span>' + T('商务合作、产品咨询与技术支持', 'Sales, partnerships, and support') + '</span></a>' +
+        '<a href="contact.html"><i data-lucide="mail"></i><b>' + T('联系我们', 'Contact Us') + '</b><span>' + T('商务合作、产品咨询与技术支持', 'Partnerships, product questions, and support') + '</span></a>' +
       '</div></div>' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('伙伴', 'Partners') + '<i data-lucide="chevron-down"></i></button><div class="dd">' +
         '<a href="find-partner.html"' + on('find-partner') + '><i data-lucide="search"></i><b>' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</b><span>' + T('和懂行的伙伴一起，把系统做出来、用起来', 'Get your system built and running with an expert') + '</span></a>' +
@@ -64,18 +66,19 @@
       '<a href="' + NOCODE + '" target="_blank" rel="noopener">NocoBase 2<small>' + T('无代码 ↗', 'No-code ↗') + '</small></a>' +
       '<a href="solutions.html">' + T('全部解决方案', 'All Solutions') + '</a>' +
       '<a href="' + DOCS + '" target="_blank" rel="noopener">' + T('文档', 'Docs') + '</a>' +
-      '<a href="customers.html"' + on('customers') + '>' + T('客户案例', 'Customers') + '</a>' +
-      '<a href="blog.html"' + on('blog') + '>' + T('博客', 'Blog') + '</a>' +
+      '<span class="off" aria-disabled="true">' + T('客户案例', 'Customers') + '</span>' +
+      '<span class="off" aria-disabled="true">' + T('博客', 'Blog') + '</span>' +
       '<a href="find-partner.html"' + on('find-partner') + '>' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</a>' +
       '<a href="partner.html"' + on('partner') + '>' + T('成为合作伙伴', 'Become a Partner') + '</a>' +
       '<a href="pricing.html"' + on('pricing') + '>' + T('定价', 'Pricing') + '</a>' +
       '<a href="contact.html">' + T('联系我们', 'Contact Us') + '</a>' +
       '<a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub<small>24.6K</small></a>' +
-      '<button class="lang-switch-m" type="button" id="langBtnM"><i data-lucide="globe"></i>' + T('Switch to English', '切换为中文') + '</button>' +
+      (I18N ? '<label class="lang-switch-m"><i data-lucide="globe"></i><select id="langSelM" aria-label="Language">' + LANGS.map(function (x) { return '<option value="' + x[0] + '" lang="' + x[0] + '">' + x[1] + '</option>'; }).join('') + '</select></label>'
+        : '<button class="lang-switch-m" type="button" id="langBtnM"><i data-lucide="globe"></i>' + T('Switch to English', '切换为中文') + '</button>') +
     '</div></header>';
 
   var footer = '<footer><div class="container"><div class="fgrid">' +
-    '<div><img src="assets/logo.png" alt="NocoBase" width="150" height="22"><p class="tag-line">' + T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Build reliable business systems.') + '</p></div>' +
+    '<div><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase" width="150" height="22"><p class="tag-line">' + T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Build reliable business systems.') + '</p></div>' +
     '<div><h4>' + T('产品', 'Products') + '</h4><ul>' + products.map(function (x) { return '<li><a href="' + x[1] + '">' + x[3] + '</a></li>'; }).join('') + '<li><a href="' + NOCODE + '" target="_blank" rel="noopener">' + T('NocoBase 2 无代码 ↗', 'NocoBase 2 No-code ↗') + '</a></li></ul></div>' +
     '<div><h4>' + T('定价与许可', 'Pricing &amp; License') + '</h4><ul><li><a href="pricing.html">' + T('版本与价格', 'Editions &amp; Pricing') + '</a></li><li><a href="#">' + T('许可协议', 'License') + '</a></li><li><a href="' + NOCODE + '" target="_blank" rel="noopener">NocoBase 2.x ↗</a></li></ul></div>' +
     '<div><h4>' + T('伙伴', 'Partners') + '</h4><ul><li><a href="partner.html">' + T('合作伙伴计划', 'Partner Program') + '</a></li><li><a href="find-partner.html">' + T('寻找 NocoBase 伙伴', 'Find a Partner') + '</a></li><li><a href="customers.html">' + T('客户案例', 'Customers') + '</a></li></ul></div>' +
@@ -101,16 +104,46 @@
     var m = document.querySelector('meta[name="description"]');
     if (m && m.dataset[key]) m.setAttribute('content', (p && p.description) || m.dataset[key]);
   }
-  /* 其他语言：页面上写死的英文（<t-en>）记下原文，换成译文；界面示意图（.fit-in）保持英文，产品界面只有中英文。缺的译文显示英文 */
+  /* 文档站：英文在根目录，中文在 zh-CN/。指向文档站的链接按当前语言补上或去掉 zh-CN/（繁体中文也看中文文档） */
+  function docsLinks(lang) {
+    var zh = lang === 'zh' || lang === 'zh-TW';
+    document.querySelectorAll('a[href^="https://docs.nocobase.com/"]').forEach(function (a) {
+      var path = a.getAttribute('href').replace(/^https:\/\/docs\.nocobase\.com\/(zh-CN\/)?/, '');
+      a.setAttribute('href', 'https://docs.nocobase.com/' + (zh ? 'zh-CN/' : '') + path);
+    });
+  }
+  /* 其他语言：页面上写死的英文（<t-en>）记下原文，换成译文。缺的译文显示英文。
+     界面示意图（.fit-in）不翻译，和首页一样：繁体中文显示繁体中文界面（把中文那份转成繁体，放进英文的位置：<t-zh>/<t-en>、.zh-only/.en-only 成对的），
+     其他语言显示英文界面。繁体的界面文字按文本节点查 NB_I18N['zh-TW'].ui（pages.py 生成） */
   var STATIC_EN = I18N ? [].slice.call(document.querySelectorAll('t-en')).filter(function (n) { return !n.closest('.fit-in'); }) : [];
   STATIC_EN.forEach(function (n) { n.__en = n.innerHTML; });
+  var UI_EN = I18N ? [].slice.call(document.querySelectorAll('.fit-in t-en, .fit-in .en-only')).filter(function (n) {
+    var z = n.previousElementSibling;
+    if (n.tagName === 'T-EN') return z && z.tagName === 'T-ZH' && !n.closest('.fit-in .en-only');
+    return z && z.classList.contains('zh-only');
+  }) : [];
+  UI_EN.forEach(function (n) { n.__en = n.innerHTML; });
+  function twHTML(h, ui) {
+    var t = document.createElement('template');
+    t.innerHTML = h;
+    var w = document.createTreeWalker(t.content, NodeFilter.SHOW_TEXT);
+    for (var n = w.nextNode(); n; n = w.nextNode()) if (ui[n.nodeValue]) n.nodeValue = ui[n.nodeValue];
+    return t.innerHTML;
+  }
   function applyI18n(lang) {
     var d = window.NB_I18N && window.NB_I18N[lang];
     var tr = function (en, k) { return (lang !== 'zh' && lang !== 'en' && d && d.strings[k || en]) || en; };
     STATIC_EN.forEach(function (n) { var v = tr(n.__en, n.dataset.k); if (n.innerHTML !== v) n.innerHTML = v; });
+    var ui = lang === 'zh-TW' && d && d.ui;
+    UI_EN.forEach(function (n) {
+      var v = ui ? (n.__tw || (n.__tw = twHTML(n.previousElementSibling.innerHTML, ui))) : n.__en;
+      if (n.innerHTML !== v) n.innerHTML = v;
+    });
+    if (UI_EN.length && window.lucide) lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
     var name = $('langName');
     if (name) name.textContent = LANG_NAMES[lang];
     document.querySelectorAll('#langMenu [data-lang]').forEach(function (a) { a.classList.toggle('cur', a.dataset.lang === lang); });
+    if ($('langSelM')) $('langSelM').value = lang;
   }
   /* 译文按需加载：先共用的导航和页脚，再本页 */
   function loadI18n(lang, done) {
@@ -183,6 +216,7 @@
     document.documentElement.lang = lang;
     try { localStorage.setItem('nb3_lang', lang); } catch (e) {}
     syncMeta(lang);
+    docsLinks(lang);
     fit();
   }
   var toggle = function () { setLanguage(window.__lang === 'en' ? 'zh' : 'en'); };
@@ -196,7 +230,9 @@
     try { localStorage.setItem('nb3_lang', a.dataset.lang); } catch (err) {}
     a.blur();
   });
-  $('langBtnM').addEventListener('click', function () { toggle(); $('nav').classList.remove('open'); $('menuBtn').setAttribute('aria-expanded', 'false'); });
+  var closeMenu = function () { $('nav').classList.remove('open'); $('menuBtn').setAttribute('aria-expanded', 'false'); };
+  if ($('langBtnM')) $('langBtnM').addEventListener('click', function () { toggle(); closeMenu(); });
+  if ($('langSelM')) $('langSelM').addEventListener('change', function () { setLanguage(this.value); closeMenu(); });
   $('menuBtn').addEventListener('click', function () {
     var nav = $('nav'), open = !nav.classList.contains('open');
     nav.classList.toggle('open', open);
@@ -240,6 +276,7 @@
   });
   if (I18N) applyI18n(window.__lang);
   syncMeta(window.__lang);
+  docsLinks(window.__lang);
   if (window.lucide) lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
   fit();
   window.addEventListener('resize', fit);

@@ -1,0 +1,375 @@
+{
+ "items": [
+  {
+   "en": "Agents keep the work moving. <span class=\"m\">Your team stays in control.</span>",
+   "zh": "Agent 自主推进，<span class=\"m\">团队掌控全局。</span>",
+   "where": "phero"
+  },
+  {
+   "en": "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
+   "zh": "NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
+   "where": "phero"
+  },
+  {
+   "en": "Try It Online",
+   "zh": "在线体验",
+   "where": "phero"
+  },
+  {
+   "en": "View Editions &amp; Pricing",
+   "zh": "查看版本与价格",
+   "where": "phero"
+  },
+  {
+   "en": "Runs on your own servers",
+   "zh": "私有部署在企业自己的服务器上",
+   "where": "phero"
+  },
+  {
+   "en": "Works with Claude Code, Codex, and dozens of other coding tools",
+   "zh": "支持 Claude Code、Codex 等数十种编码工具",
+   "where": "phero"
+  },
+  {
+   "en": "Available in the commercial editions",
+   "zh": "在商业版中提供",
+   "where": "phero"
+  },
+  {
+   "en": "Agent team",
+   "zh": "Agent 团队",
+   "where": "team"
+  },
+  {
+   "en": "An agent team <span class=\"m\">that keeps work moving.</span>",
+   "zh": "一支持续推进的 <span class=\"m\">Agent 团队。</span>",
+   "where": "team"
+  },
+  {
+   "en": "Studio connects agents across many machines and schedules them centrally. They move many projects and issues forward in parallel, around the clock.",
+   "zh": "Studio 接入多台机器上的 Agent 统一调度，24 小时同步推进多个项目和大量任务。",
+   "where": "team"
+  },
+  {
+   "en": "Agents on many machines",
+   "zh": "接入多台机器上的 Agent",
+   "where": "team"
+  },
+  {
+   "en": "Connect Claude Code, Codex, and other agents on your team’s computers and servers, and Studio finds the coding tools and models signed in there. Say what each agent is good at, enable it, and it joins the agent team.",
+   "zh": "个人电脑和团队服务器上的 Claude Code、Codex 等接入后，Studio 自动识别已登录的编码工具和模型。写明每个 Agent 擅长什么并启用，它就加入 Agent 团队。",
+   "where": "team"
+  },
+  {
+   "en": "A coordinator assigns the work",
+   "zh": "调度 Agent 分派工作",
+   "where": "team"
+  },
+  {
+   "en": "A coordinator agent assigns design, development, testing, and review by what each agent is good at. It writes no code and merges nothing; a person always accepts the work.",
+   "zh": "调度 Agent 按每个 Agent 的专长分派设计、开发、测试、评审工作。它不写代码、不合并代码，验收始终由人来做。",
+   "where": "team"
+  },
+  {
+   "en": "Many issues at once",
+   "zh": "多个任务同时推进",
+   "where": "team"
+  },
+  {
+   "en": "Each issue has its own branch, and every run works in a separate worktree, so many issues move at once without colliding. Add machines to run more in parallel.",
+   "zh": "每个任务在自己的分支上开发，每次运行使用独立的 worktree，多个任务同时推进、互不干扰。机器越多，能同时推进的任务越多。",
+   "where": "team"
+  },
+  {
+   "en": "My sessions",
+   "zh": "我的会话",
+   "where": "team"
+  },
+  {
+   "en": "In Studio, talk with the agent on your own computer to discuss and clarify requests, record issues, and follow their progress. Once an issue starts, the coordinator agent puts the agent team to work.",
+   "zh": "在 Studio 里和自己电脑上的 Agent 对话，讨论和澄清需求、记录任务、跟进进展。任务开始后，由调度 Agent 安排 Agent 团队开发。",
+   "where": "team"
+  },
+  {
+   "en": "Progress",
+   "zh": "进展",
+   "where": "progress"
+  },
+  {
+   "en": "Progress <span class=\"m\">at a glance.</span>",
+   "zh": "各项进展<span class=\"m\">一目了然。</span>",
+   "where": "progress"
+  },
+  {
+   "en": "Project progress, issue activity, agent workload, and model usage are all clearly visible. You can see at a glance where every issue stands and what comes next.",
+   "zh": "项目进展、任务推进过程、Agent 工作负荷和模型用量都清晰可见。每个任务做到哪里、下一步做什么，都一目了然。",
+   "where": "progress"
+  },
+  {
+   "en": "Project progress",
+   "zh": "项目进展",
+   "where": "progress"
+  },
+  {
+   "en": "Each project’s progress, plus issues completed, cycle time, the share completed by agents, and cost per issue, compared with the period before.",
+   "zh": "每个项目的进度，以及完成的任务、周期时间、Agent 完成占比和单任务成本，都和上一周期对比。",
+   "where": "progress"
+  },
+  {
+   "en": "Issue activity",
+   "zh": "任务推进过程",
+   "where": "progress"
+  },
+  {
+   "en": "Every issue shows at the top which step it is on, which agent is working on it, and what comes next.",
+   "zh": "每个任务做到哪一步、哪个 Agent 在做、接下来做什么，都显示在任务的最上方。",
+   "where": "progress"
+  },
+  {
+   "en": "Agent workload and model usage",
+   "zh": "Agent 工作负荷和模型用量",
+   "where": "progress"
+  },
+  {
+   "en": "See which issues the agents on each machine are working on, and how many tokens each model has used at what cost.",
+   "zh": "每台机器上的 Agent 在推进哪些任务，各个模型用了多少 token、花了多少钱，随时可查。",
+   "where": "progress"
+  },
+  {
+   "en": "Decisions",
+   "zh": "决策",
+   "where": "decide"
+  },
+  {
+   "en": "Decisions <span class=\"m\">backed by evidence.</span>",
+   "zh": "有理有据<span class=\"m\">做决策。</span>",
+   "where": "decide"
+  },
+  {
+   "en": "When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.",
+   "zh": "需要人做决策时，Agent 会附上详细的报告、清单、截图和建议，不懂代码的业务专家也可以直接拍板。",
+   "where": "decide"
+  },
+  {
+   "en": "Report and checklist",
+   "zh": "报告与清单",
+   "where": "decide"
+  },
+  {
+   "en": "Every hand-over says what changed and how it was verified, with an acceptance checklist item by item.",
+   "zh": "交付时写明做了什么、怎样验证的，并附上逐条的验收清单。",
+   "where": "decide"
+  },
+  {
+   "en": "Screenshots and previews",
+   "zh": "截图与预览",
+   "where": "decide"
+  },
+  {
+   "en": "Each scenario comes with screenshots, and when you want to try it yourself, a separate preview environment is ready.",
+   "zh": "每个场景附上截图；需要时打开独立的预览环境，亲自试一遍。",
+   "where": "decide"
+  },
+  {
+   "en": "Accept or send back",
+   "zh": "通过或退回",
+   "where": "decide"
+  },
+  {
+   "en": "With the evidence in hand, accept the work or send it back. Say why, and the agents carry on from there.",
+   "zh": "看完依据，通过或退回。退回时写明原因，Agent 接着改。",
+   "where": "decide"
+  },
+  {
+   "en": "Business experts",
+   "zh": "业务专家",
+   "where": "decide"
+  },
+  {
+   "en": "Business experts who don’t code can make the call.",
+   "zh": "不懂代码的业务专家，也可以直接拍板。",
+   "where": "decide"
+  },
+  {
+   "en": "Business experts describe what they need in plain words, answer the agents’ questions, and check the result in a preview with real data. Environments, branches, tests, and releases are handled by the agents and Studio.",
+   "zh": "业务专家用业务语言提需求、回答 Agent 的提问，在预览里用真实数据验收。环境、分支、测试和发布，由 Agent 和 Studio 承担。",
+   "where": "decide"
+  },
+  {
+   "en": "Tech leads set the rules and approve releases. Business experts own the requirements and the sign-off.",
+   "zh": "技术负责人定规则、批准上线；业务专家定需求、负责验收。",
+   "where": "decide"
+  },
+  {
+   "en": "Before work reaches a person, Studio coordinates checks and reviews.",
+   "zh": "交到人手上之前，Studio 组织检查和评审。",
+   "where": "decide"
+  },
+  {
+   "en": "Every change follows the same path. It reaches a person only after its tests and code review pass, and reaches production only after a person approves. If something goes wrong, roll it back.",
+   "zh": "每次改动走同样的流程：测试和代码评审都通过，才交给人验收；经人批准，才发布到生产，出了问题可以回滚。",
+   "where": "decide"
+  },
+  {
+   "en": "Branch and worktree",
+   "zh": "分支与 worktree",
+   "where": "decide"
+  },
+  {
+   "en": "Each issue has its own branch, and every run works in a separate worktree. Pull requests from that branch link to the issue.",
+   "zh": "每个任务有自己的分支，每次运行在独立的 worktree 里进行；分支上的 PR 自动关联到任务。",
+   "where": "decide"
+  },
+  {
+   "en": "Test and review",
+   "zh": "测试与评审",
+   "where": "decide"
+  },
+  {
+   "en": "CI runs checks and tests, then a different model reviews the code, from another vendor when one is available.",
+   "zh": "CI 跑检查和测试，再换一个模型评审代码，优先用另一家厂商的模型。",
+   "where": "decide"
+  },
+  {
+   "en": "Preview",
+   "zh": "预览验收",
+   "where": "decide"
+  },
+  {
+   "en": "When needed, a pull request gets its own preview environment for a person to try and sign off.",
+   "zh": "需要时为 PR 启动独立的预览环境，供人试用验收。",
+   "where": "decide"
+  },
+  {
+   "en": "Merge and release",
+   "zh": "合并发布",
+   "where": "decide"
+  },
+  {
+   "en": "Merged after sign-off, and the issue is done once all its pull requests merge. Releases to production need a person’s approval.",
+   "zh": "验收通过后合并，任务的 PR 全部合并后任务自动完成；发布到生产由人批准。",
+   "where": "decide"
+  },
+  {
+   "en": "Roll back",
+   "zh": "回滚",
+   "where": "decide"
+  },
+  {
+   "en": "If anything breaks, go back to the last release.",
+   "zh": "出了问题，退回上一个版本。",
+   "where": "decide"
+  },
+  {
+   "en": "Know-how",
+   "zh": "知识沉淀",
+   "where": "memory"
+  },
+  {
+   "en": "Know-how <span class=\"m\">stays with the team.</span>",
+   "zh": "方法、经验、知识<span class=\"m\">沉淀在团队里。</span>",
+   "where": "memory"
+  },
+  {
+   "en": "Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find. Studio captures methods and experience in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off.",
+   "zh": "需求背景、业务资料、项目经验散落在不同电脑的不同会话里，换人、换 Agent 就很难找到。Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 Agent 都能无障碍交接。",
+   "where": "memory"
+  },
+  {
+   "en": "Skills",
+   "zh": "技能",
+   "where": "memory"
+  },
+  {
+   "en": "Skills hold how work gets done. Write down how you clarify, build, review, and release, at the global, project, or working-directory level, and every run carries them.",
+   "zh": "技能保存做事的方法。需求澄清、开发、评审、发布的做法写成技能，分全局、项目、工作目录三级，每次运行自动带上。",
+   "where": "memory"
+  },
+  {
+   "en": "Knowledge base",
+   "zh": "知识库",
+   "where": "memory"
+  },
+  {
+   "en": "The knowledge base holds business documents. Requirements, business rules, contract templates, and other material are written or uploaded by people, and agents read them as they work.",
+   "zh": "知识库保存业务资料。需求文档、业务规则、合同模板等由人编写或上传，Agent 工作时直接查阅。",
+   "where": "memory"
+  },
+  {
+   "en": "Project memory",
+   "zh": "项目记忆",
+   "where": "memory"
+  },
+  {
+   "en": "Project memory holds what agents learn on their own. It lives in the project’s repository, is reviewed and merged with each issue’s pull request, and is read before the next issue starts.",
+   "zh": "项目记忆保存 Agent 自主学到的经验，存在项目的仓库里，随任务的 PR 一起评审、合并，下次开工前先读。",
+   "where": "memory"
+  },
+  {
+   "en": "Open source and self-hosting",
+   "zh": "开源与私有部署",
+   "where": "open"
+  },
+  {
+   "en": "Self-hosted. <span class=\"m\">Your code and data belong to you.</span>",
+   "zh": "私有部署，<span class=\"m\">代码和数据归企业所有。</span>",
+   "where": "open"
+  },
+  {
+   "en": "Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.",
+   "zh": "Core 和 NocoCRM 等 Solution 应用开源免费；Studio 和 NocoITAM 等 Solution 应用在商业版中提供。",
+   "where": "open",
+   "unused": true
+  },
+  {
+   "en": "Self-hosted",
+   "zh": "私有部署",
+   "where": "open"
+  },
+  {
+   "en": "Core, Solution, and Studio all run on your own servers. Your code and data belong to you.",
+   "zh": "Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。",
+   "where": "open"
+  },
+  {
+   "en": "Your choice of models and agents",
+   "zh": "模型与 Agent 自由选择",
+   "where": "open"
+  },
+  {
+   "en": "No vendor lock-in. Works with Claude Code, Codex, and other coding tools, and with a wide range of models.",
+   "zh": "不绑定厂商，支持 Claude Code、Codex 等编码工具和各类大模型。",
+   "where": "open"
+  },
+  {
+   "en": "Apps run independently",
+   "zh": "应用独立运行",
+   "where": "open"
+  },
+  {
+   "en": "Once released, your business apps run on their own. Day-to-day business requests never go through Studio.",
+   "zh": "业务应用发布后独立运行，日常业务请求不经过 Studio。",
+   "where": "open"
+  },
+  {
+   "en": "The code agents write is built on NocoBase Core",
+   "zh": "Agent 写的代码建在 NocoBase Core 上",
+   "where": "open"
+  },
+  {
+   "en": "Core and Solution are free and open source. Studio is available in the commercial editions.",
+   "zh": "Core 和 Solution 开源免费；Studio 在商业版中提供。",
+   "where": "open"
+  }
+ ],
+ "meta": {
+  "title": {
+   "zh": "NocoBase Studio — Agent 自主推进，团队掌控全局",
+   "en": "NocoBase Studio — Agents keep the work moving. Your team stays in control."
+  },
+  "description": {
+   "zh": "NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
+   "en": "NocoBase Studio is the governance platform for people and agents building software together."
+  }
+ }
+}

@@ -11,3 +11,8 @@
 # joiners & leavers = Ein- und Austritte；skills = Skills
 033: Mit einem Agenten-Team mehr Kundenprojekte umsetzen
 036: Alle Lösungen
+046: Partnerschaften, Produktfragen und Support
+047: Bitte wählen Sie mindestens eine Option
+048: Wird gesendet…
+049: Vielen Dank! Wir haben Ihre Anfrage erhalten und melden uns in Kürze.
+050: Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut, oder schreiben Sie an {mail}.

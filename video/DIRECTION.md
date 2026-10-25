@@ -108,6 +108,8 @@ v3.1 的和弦表按新的段落长度重排：开场 Dm · B♭ · C（3 小节
 - **收束**：52 周，每周一个发布点；标出的需求：供应商分级、对接 ERP、新增生产二部、外协厂纳入分级、移动端审批、Core 升级、负责人交接、年度供应商评估；版本 v1.0 → v2.26。
 - 所有人名、供应商、数字都是虚构的演示数据，前后对得上。
 - **英文版**（`preview-en.html`，`tools/make-en.py` 生成）：文案按《NocoBase Product Definition and Messaging》，品牌表达、定义、核心特色用原句或缩写，术语按它的术语表（building blocks、coordinator agent、project memory…）。人名按技能的英文角色表，头像不变：周航 Owen Hart、王磊 Ethan Walker、陈宇 Marcus Lee、林悦 Maya Brooks、孙悦 Olivia Hayes、何静 Emily Carter、刘博文 Ryan Patel、陈思 Ava Turner；金额 ¥ 换成 $，数字不变（50 万 → $500,000）；供应商 Eastline Precision、Brightsource、Clearwater Packaging、Steadfast Logistics、Summit Chemicals。Studio 菜单用英文界面的叫法（My tasks、My sessions、Knowledge、Project memory、Runtimes…）。开场标题分两行；其余画面结构、时间表、声音和中文版相同。
+- **繁体中文版**（`tools/make-zh-TW.py` 从中文版生成）：和官网首页一样，是繁体中文界面。整份转成繁体后按台湾用语改写（专案、资料、品质、合约、签核、程式码、审查、对话、地端部署、地基已经打好……），官网已有的句子用官网的繁体中文原句；人名转繁体（头像不变），金额用 NT$，数字不变；飞书、钉钉换成 Webhook，通义千问写 Qwen。
+- **其他语言版本**（de、es、fr、pt、ru、id、vi、ja、ko，和官网首页一致；`tools/make-lang.py` 从英文版生成，文案在 `tools/lang/<语言>.json`）：按官网首页的译文规则（`../html/_src/i18n/README.md`），这些语言显示英文界面：终端、会话卡片、供应商列表、工作流画布、能力卡片里的小界面、Studio 控制台都和英文版一样，人名用英文角色表，金额用 $。翻译的是片子对观众说的话：开场问句和角标、标题、四个问题卡片（标题用官网的译文，说明和解决标签按卡片宽度缩写）、问题 ① 的红色边界问题、③ 的待看改动、④ 的提问、品牌的定义和三个分工、Core 底座上的字、章节副标题、页头、图注（权限的说明条、工作流的规则条和说明）、能力看板的名称和标题、统一架构的蓝色条和「结构一致」、2×2 的解决标签、Agent 状态标签（连同两个状态词）、23:40 那句话、发布线（标题、周数、需求）、落版。官网已有的句子（品牌表达、定义、四个问题的标题、Core / Studio 的品牌表达和核心特色、落版标签、能力名称）用官网的译文。日文、韩文、繁体中文的文案用系统字体（Hiragino Sans、Apple SD Gothic Neo、PingFang TC），其他系统用 Noto Sans。为了放得下而缩短的说法见各语言文件，主要是：能力卡片名称用官网 Core 能力条的短名；发布线第 2 周写成「A/B/C 分级」（如 Niveles A/B/C）；④ 的提问改成「财务复核：为什么是 50 万？」的句式；西语、葡语、俄语的 Agent 团队页标题缩短，俄语的问题 ③ 标题缩短为「Работы больше, чем можно проверить」。
 
 ## 6. 音效
 

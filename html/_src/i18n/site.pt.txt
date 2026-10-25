@@ -10,3 +10,8 @@
 # purchase request = solicitação de compra；PO = pedido de compra；repair = reparo；disposal = descarte
 033: Entregue mais projetos de clientes com uma equipe de agentes
 036: Todas as soluções
+046: Parcerias, dúvidas sobre o produto e suporte
+047: Escolha pelo menos uma opção
+048: Enviando…
+049: Obrigado! Recebemos sua solicitação e entraremos em contato em breve.
+050: Algo deu errado. Tente novamente ou escreva para {mail}.

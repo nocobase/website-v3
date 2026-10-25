@@ -9,7 +9,7 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 002: Nền tảng phát triển AI + no-code
 003: Sản phẩm
 004: Nền móng mã nguồn mở cho hệ thống nghiệp vụ xây dựng bằng AI
-005: Nền tảng quản trị cho đội ngũ phát triển cùng agent
+005: Nền tảng quản trị cho con người và agent cùng phát triển phần mềm
 006: Ứng dụng nghiệp vụ do agent vận hành
 007: No-code
 008: Nền tảng cấu hình trực quan, được duy trì song song với v3
@@ -41,7 +41,7 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 034: Bảng giá
 035: Đặt lịch demo
 036: Nền móng ứng dụng
-037: Đội ngũ + Agent
+037: Con người + Agent
 038: Ứng dụng nghiệp vụ
 039: No-code ↗
 040: Xây dựng hệ thống nghiệp vụ tin cậy
@@ -77,7 +77,7 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 070: Tìm hiểu NocoBase Core
 071: Để đội ngũ tập trung ra quyết định.<br>
 072: Việc thực thi giao cho agent.
-073: NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex của đội ngũ thành một đội agent tự động thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
+073: NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm. Studio kết nối Claude Code, Codex của đội ngũ thành một đội agent tự động thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
 074: Một đội agent không ngừng thúc đẩy công việc
 075: Kết nối agent trên nhiều máy và điều phối tập trung. Chúng đồng thời thúc đẩy nhiều dự án và tác vụ, suốt 24 giờ.
 076: Tiến độ rõ ràng trong nháy mắt
@@ -224,7 +224,7 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 218: Quản lý tài sản CNTT
 219: Agent tự thúc đẩy công việc.<br>
 220: Đội ngũ làm chủ toàn cục.
-221: NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
+221: NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm. Studio kết nối Claude Code, Codex thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
 222: Vibe coding giúp phát triển phần mềm nhanh hơn nhiều. Nhưng khi dự án có nghiệp vụ phức tạp, nhiều người cùng làm và phải phát triển nhiều năm, chỉ dựa vào code do AI tạo ra là chưa đủ. Bạn còn cần nền móng ứng dụng tin cậy, chuẩn phát triển thống nhất và quản trị chặt chẽ. NocoBase không thay thế vibe coding, mà bổ sung nền móng và năng lực quản trị cho nó.
 223: Khối chức năng
 224: Không có NocoBase
@@ -236,6 +236,17 @@ description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận
 230: Studio điều phối nhiều agent cùng thực hiện thiết kế, phát triển, kiểm thử và review; quyết định then chốt do con người kiểm soát, kèm báo cáo và ảnh chụp màn hình làm căn cứ.
 231: Tích lũy tri thức
 232: Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.
-233: NocoBase Studio là nền tảng quản trị cho đội ngũ phát triển cùng agent. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
-234: Tìm ra cơ hội trong dữ liệu của bạn. NocoReach biến chúng thành hành động.
-235: AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động.
+233: NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.
+234: Bàn giao nhiều dự án khách hàng hơn cùng một đội agent
+235: Khởi đầu với mã nguồn mở, dùng được ngay
+236: NocoCRM, NocoReach và NocoProject miễn phí, mã nguồn mở. NocoITAM, NocoSupport và NocoHR có trong các phiên bản thương mại. Mọi ứng dụng đều triển khai trên máy chủ của bạn, tự do chọn model.
+237: Core, Studio và các ứng dụng Solution như NocoCRM đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production. Các phiên bản thương mại bổ sung quản trị ở cấp đội và cấp tổ chức, tích hợp doanh nghiệp, thêm ứng dụng Solution và hỗ trợ chính thức.
+238: Core, Studio, NocoCRM, NocoReach và NocoProject đều miễn phí, mã nguồn mở, dùng được ngay cho production và bàn giao cho khách hàng. Không cần mua giấy phép, đội của bạn vẫn có thể dẫn dắt đội agent từ yêu cầu đến phát hành.
+239: Phiên bản thương mại
+240: Core, Studio và Solution đều có phần bổ sung thương mại, dùng chung một giấy phép. Professional bổ sung phê duyệt phát hành lên production, SSO doanh nghiệp, thêm ứng dụng như NocoITAM và hỗ trợ chính thức. Enterprise bổ sung quản trị cấp tổ chức xuyên suốt các đội và môi trường, cùng khả năng sẵn sàng cao.
+241: Tự triển khai, vận hành độc lập
+242: Core, Solution và Studio đều triển khai trên máy chủ của bạn. Code và dữ liệu thuộc về bạn. Sau khi phát hành, ứng dụng nghiệp vụ vận hành độc lập, các yêu cầu nghiệp vụ hằng ngày không đi qua Studio.
+243: Khởi đầu mã nguồn mở
+244: Core và các ứng dụng Solution như NocoCRM miễn phí, mã nguồn mở. Studio và các ứng dụng Solution như NocoITAM có trong các phiên bản thương mại.
+245: Core, NocoCRM, NocoReach và NocoProject đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production.
+246: AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động.

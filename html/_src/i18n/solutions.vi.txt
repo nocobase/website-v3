@@ -65,5 +65,13 @@ description: NocoBase Solution là dòng ứng dụng nghiệp vụ do agent v�
 079: Xem các ứng dụng
 082: Tìm hiểu Core
 086: Tìm hiểu Studio
-087: Tăng trưởng · Beta
-089: Phân tích dữ liệu hằng ngày, tìm việc đáng làm kèm căn cứ, rồi sửa trang, viết bài và soạn trả lời cho cộng đồng
+087: NocoCRM và các ứng dụng khác, miễn phí, mã nguồn mở
+088: CRM bán hàng · Mã nguồn mở · Beta
+089: Quản lý tài sản CNTT · Professional · Beta
+090: Tăng trưởng · Mã nguồn mở · Alpha
+091: Hỗ trợ · Professional · Sắp ra mắt
+092: Dự án · Mã nguồn mở · Sắp ra mắt
+093: Nhân sự · Professional · Sắp ra mắt
+094: Khởi đầu với mã nguồn mở, <span class="m">dùng được ngay.</span>
+098: Tăng trưởng · Beta
+100: Phân tích dữ liệu hằng ngày, tìm việc đáng làm kèm căn cứ, rồi sửa trang, viết bài và soạn trả lời cho cộng đồng

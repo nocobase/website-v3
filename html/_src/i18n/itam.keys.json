@@ -299,6 +299,24 @@
    "en": "Try NocoITAM online, or get the source on GitHub and run it yourself. Connect your MDM, import your assets, and let agents start reconciling.",
    "zh": "在线体验 NocoITAM，或到 GitHub 获取源码自行部署。连上 MDM、导入资产表，Agent 即刻开始对账。",
    "where": "sec"
+  },
+  {
+   "en": "View Editions &amp; Pricing",
+   "zh": "查看版本与价格",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "Professional",
+   "zh": "专业版",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "Assign models per agent and track usage. Need custom fields, workflows, or reports? Have a coding agent modify the source in Studio: included in Professional, self-hosted, and yours.",
+   "zh": "按 Agent 指定模型并监控用量。需要改字段、流程或报表？在 Studio 里让 Coding Agent 直接改源码。随专业版提供，私有部署，代码归你。",
+   "where": "sec",
+   "unused": true
   }
  ],
  "meta": {

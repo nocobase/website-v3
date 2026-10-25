@@ -11,3 +11,8 @@
 # purchase request = solicitud de compra；PO = orden de compra；Try It Online = Probar en línea；Watch the intro = Ver el video
 033: Entrega más proyectos a clientes con un equipo de agentes
 036: Todas las soluciones
+046: Alianzas, consultas sobre el producto y soporte
+047: Elige al menos una opción
+048: Enviando…
+049: ¡Gracias! Recibimos tu solicitud y te contactaremos pronto.
+050: Algo salió mal. Inténtalo de nuevo o escribe a {mail}.

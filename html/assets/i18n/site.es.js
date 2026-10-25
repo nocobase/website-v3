@@ -1,7 +1,6 @@
 /* 由 _src/i18n/pages.py 从 site.es.txt 生成，不要直接修改 */
 (function (p) { p.strings = Object.assign(p.strings || {}, {
 "The open-source foundation for AI-built business systems": "La base de código abierto para sistemas empresariales creados con IA",
-"The governance platform for teams building with agents": "La plataforma de gobernanza para equipos que desarrollan con agentes",
 "Agent-driven business apps": "Aplicaciones empresariales impulsadas por agentes",
 "Sales · 6 Sales Agents": "Ventas · 6 agentes de ventas",
 "IT Asset Management · 3 IT Agents": "Gestión de activos de TI · 3 agentes de TI",
@@ -28,7 +27,6 @@
 "Community": "Comunidad",
 "Ask questions and share patterns": "Haz preguntas y comparte buenas prácticas",
 "Contact Us": "Contacto",
-"Sales, partnerships, and support": "Ventas, alianzas y soporte",
 "Partners": "Partners",
 "Find a Partner": "Encuentra un partner",
 "Get your system built and running with an expert": "Construye y pon en marcha tu sistema con un experto",
@@ -44,5 +42,11 @@
 "License": "Licencia",
 "Partner Program": "Programa de partners",
 "Connect": "Contacto",
-"Forum": "Foro"
+"Forum": "Foro",
+"The governance platform for people and agents building software together": "La plataforma de gobernanza para personas y agentes que desarrollan software juntos",
+"Partnerships, product questions, and support": "Alianzas, consultas sobre el producto y soporte",
+"Please choose at least one option": "Elige al menos una opción",
+"Submitting…": "Enviando…",
+"Thanks! We’ve received your request and will be in touch soon.": "¡Gracias! Recibimos tu solicitud y te contactaremos pronto.",
+"Something went wrong. Please try again, or email {mail}.": "Algo salió mal. Inténtalo de nuevo o escribe a {mail}."
 }); p.pages = p.pages || {}; })((window.NB_I18N = window.NB_I18N || {})["es"] = (window.NB_I18N || {})["es"] || {});

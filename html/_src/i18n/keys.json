@@ -25,8 +25,8 @@
   "where": "menu"
  },
  {
-  "en": "The governance platform for teams building with agents",
-  "zh": "团队与 Agent 协同开发的治理平台",
+  "en": "The governance platform for people and agents building software together",
+  "zh": "人与 Agent 协同开发的治理平台",
   "where": "menu"
  },
  {
@@ -153,23 +153,24 @@
  },
  {
   "en": "Find a Partner",
-  "zh": "寻找伙伴",
+  "zh": "寻找 NocoBase 伙伴",
   "where": "menu"
  },
  {
   "en": "Get your system built and running with an expert",
-  "zh": "和懂你行业的伙伴一起，把系统做出来、用起来",
+  "zh": "和懂行的伙伴一起，把系统做出来、用起来",
   "where": "menu"
  },
  {
   "en": "Become a Partner",
-  "zh": "成为伙伴",
+  "zh": "成为合作伙伴",
   "where": "menu"
  },
  {
   "en": "One consultant, an agent team, more projects",
   "zh": "一位顾问带一支 Agent 团队，交付更多项目",
-  "where": "menu"
+  "where": "menu",
+  "unused": true
  },
  {
   "en": "Pricing",
@@ -188,8 +189,8 @@
   "where": "nav"
  },
  {
-  "en": "Teams + Agents",
-  "zh": "团队与 Agent 协同",
+  "en": "People + Agents",
+  "zh": "人与 Agent 协同",
   "where": "nav"
  },
  {
@@ -372,8 +373,8 @@
   "unused": true
  },
  {
-  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings your team’s Claude Code and Codex together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
-  "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把团队的 Claude Code、Codex 组成一支 Agent 团队自动推进任务，进展一目了然，关键处由人做决策。",
+  "en": "NocoBase Studio is the governance platform for people and agents building software together. It brings your team’s Claude Code and Codex together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
+  "zh": "NocoBase Studio 是人与 Agent 协同开发的治理平台。把团队的 Claude Code、Codex 组成一支 Agent 团队自动推进任务，进展一目了然，关键处由人做决策。",
   "where": "studio",
   "unused": true
  },
@@ -735,7 +736,7 @@
  },
  {
   "en": "Partner Program",
-  "zh": "伙伴计划",
+  "zh": "合作伙伴计划",
   "where": "footer"
  },
  {
@@ -1127,8 +1128,8 @@
   "where": "studio"
  },
  {
-  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code and Codex together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
-  "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
+  "en": "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code and Codex together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
+  "zh": "NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
   "where": "studio",
   "unused": true
  },
@@ -1188,14 +1189,79 @@
   "where": "start"
  },
  {
-  "en": "NocoBase Studio is the governance platform for teams building with agents. It brings Claude Code, Codex, and OpenCode together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
-  "zh": "NocoBase Studio 是团队与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
+  "en": "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.",
+  "zh": "NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。",
   "where": "studio"
  },
  {
-  "en": "Find the opportunities in your data. NocoReach puts them into action.",
-  "zh": "从数据中发现机会，NocoReach 帮你落地。",
-  "where": "figure",
+  "en": "Deliver more client projects with an agent team",
+  "zh": "用 Agent 团队交付更多客户项目",
+  "where": "menu"
+ },
+ {
+  "en": "Start with open source, ready to use",
+  "zh": "开源起步，开箱即用",
+  "where": "solutions",
+  "unused": true
+ },
+ {
+  "en": "NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.",
+  "zh": "NocoCRM、NocoReach 和 NocoProject 开源免费，NocoITAM、NocoSupport 和 NocoHR 在商业版中提供。所有应用都部署在企业自己的服务器上，模型自由选择。",
+  "where": "solutions",
+  "unused": true
+ },
+ {
+  "en": "Core, Studio, and Solution apps such as NocoCRM are free, open source, and ready for production. The commercial editions add team- and organization-level governance, enterprise integration, more Solution apps, and official support.",
+  "zh": "Core、Studio 和 NocoCRM 等 Solution 应用开源免费，可以直接用于生产；商业版增加团队和组织级的治理、企业集成、更多 Solution 应用与官方支持。",
+  "where": "open",
+  "unused": true
+ },
+ {
+  "en": "Core, Studio, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production and client delivery. Without buying a license, your team can lead an agent team from request to release.",
+  "zh": "Core、Studio，以及 NocoCRM、NocoReach、NocoProject 开源免费，可以直接用于生产和商业交付。不用购买授权，团队就能带领 Agent 团队从需求做到上线。",
+  "where": "open",
+  "unused": true
+ },
+ {
+  "en": "Commercial editions",
+  "zh": "商业版",
+  "where": "open",
+  "unused": true
+ },
+ {
+  "en": "Core, Studio, and Solution each get commercial additions, all under one license. Professional adds production release approval, enterprise SSO, more apps such as NocoITAM, and official support. Enterprise adds org-wide governance across teams and environments, plus high availability.",
+  "zh": "Core、Studio 和 Solution 每一层都有商业增强，一份授权同时生效。Professional 增加生产环境上线审批、企业 SSO、NocoITAM 等更多应用和官方支持；Enterprise 增加跨团队、跨环境的组织级治理和高可用。",
+  "where": "open",
+  "unused": true
+ },
+ {
+  "en": "Self-hosted, runs independently",
+  "zh": "私有部署，独立运行",
+  "where": "open",
+  "unused": true
+ },
+ {
+  "en": "Core, Solution, and Studio all run on your own servers. Your code and data belong to you. Once released, your business apps run on their own, and day-to-day business requests never go through Studio.",
+  "zh": "Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。业务应用发布后独立运行，日常业务请求不经过 Studio。",
+  "where": "open",
+  "unused": true
+ },
+ {
+  "en": "Start Open Source",
+  "zh": "开源起步",
+  "where": "start",
+  "unused": true
+ },
+ {
+  "en": "Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.",
+  "zh": "Core 和 NocoCRM 等 Solution 应用开源免费；Studio 和 NocoITAM 等 Solution 应用在商业版中提供。",
+  "where": "open",
+  "unused": true
+ },
+ {
+  "en": "Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.",
+  "zh": "Core 以及 NocoCRM、NocoReach、NocoProject 开源免费，可以直接用于生产。",
+  "where": "open",
   "unused": true
  },
  {

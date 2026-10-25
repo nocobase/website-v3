@@ -85,6 +85,6 @@
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
 "Explore Studio": "Tìm hiểu Studio",
 "Growth · Beta": "Tăng trưởng · Beta",
-"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Phân tích dữ liệu hằng ngày, tìm việc đáng làm kèm căn cứ, rồi sửa trang, viết bài và soạn trả lời cho cộng đồng",
-"AI finds growth opportunities. Agents put them into action.": "AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động."
+"AI finds growth opportunities. Agents put them into action.": "AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động.",
+"Analyze the data every day, find what is worth doing with the evidence, then change pages, write articles and draft community replies": "Phân tích dữ liệu hằng ngày, tìm việc đáng làm kèm căn cứ, rồi sửa trang, viết bài và soạn trả lời cho cộng đồng"
 }); p.pages = p.pages || {}, p.pages["solutions"] = {"title": "NocoBase Solution — Ứng dụng nghiệp vụ mã nguồn mở, vận hành bằng AI, dùng được ngay", "description": "NocoBase Solution là dòng ứng dụng nghiệp vụ do agent vận hành, xây dựng trên Core."}; })((window.NB_I18N = window.NB_I18N || {})["vi"] = (window.NB_I18N || {})["vi"] || {});

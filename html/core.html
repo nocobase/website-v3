@@ -6,22 +6,38 @@
 <title data-zh="NocoBase Core — 让 Agent 专心写业务，底座已经就绪" data-en="NocoBase Core — Let agents focus on your business logic">NocoBase Core — 让 Agent 专心写业务，底座已经就绪</title>
 <meta name="description" content="NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。" data-zh="NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。" data-en="NocoBase Core is the open-source application foundation for business systems built and run with AI.">
 <script>
+/* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 core.<语言>.js，
+   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
 (function () {
+  var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
+  /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
+  var FONTS = { ru: 'inter' };
+  var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
-    window.__lang = lang;
-    document.documentElement.lang = lang;
-  } catch (e) {
-    window.__lang = 'zh';
-  }
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+  } catch (e) {}
+  window.__i18nPage = 'core';
+  window.__lang = lang;
+  document.documentElement.lang = lang;
+  window.__font = function (l) {
+    if (!FONTS[l] || document.getElementById('font-' + l)) return;
+    var k = document.createElement('link');
+    k.id = 'font-' + l;
+    k.rel = 'stylesheet';
+    k.href = 'assets/fonts/' + FONTS[l] + '.css';
+    document.head.appendChild(k);
+  };
+  window.__font(lang);
+  if (lang !== 'zh' && lang !== 'en') document.write('<script src="assets/i18n/site.' + lang + '.js"><\/script><script src="assets/i18n/core.' + lang + '.js"><\/script>');
 })();
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
-<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<script src="assets/vendor/lucide-0.460.0/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body data-page="core" data-root="">
@@ -34,7 +50,7 @@
     <h1><t-zh>让 Agent 专心写业务，<span class="m">底座已经就绪。</span></t-zh><t-en>Let agents focus on your business logic. <span class="m">The foundation is ready.</span></t-en></h1>
     <p class="lede"><t-zh>NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。</t-zh><t-en>NocoBase Core is the open-source application foundation for business systems built and run with AI. Permissions, workflows, files, and other building blocks come ready to use, so agents build only what is specific to your business, all on one consistent architecture.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="https://docs.nocobase.com/zh-CN/" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-pri" href="https://docs.nocobase.com/core/quickstart/" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a>
       <a class="btn btn-sec" href="#blocks"><t-zh>查看基础能力</t-zh><t-en>See the Building Blocks</t-en></a>
     </div>
     <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>开源免费，可以直接用于生产</t-zh><t-en>Free, open source, and ready for production</t-en></span><span><i data-lucide="circle-check"></i><t-zh>代码和数据归企业所有</t-zh><t-en>Your code and data belong to you</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex 等数十种编码工具</t-zh><t-en>Works with Claude Code, Codex, and dozens of other coding tools</t-en></span></p>
@@ -63,7 +79,7 @@
         </ul></div>
         <div class="cc-g"><h3><i data-lucide="database"></i><t-zh>数据与文件</t-zh><t-en>Data and files</t-en></h3><ul>
           <li><b><t-zh>数据模型与迁移</t-zh><t-en>Data models and migrations</t-en></b><span><t-zh>数据表、字段、关联和迁移；SQLite、PostgreSQL、MySQL、SQL Server、Oracle</t-zh><t-en>Tables, fields, relations, and migrations on SQLite, PostgreSQL, MySQL, SQL Server, and Oracle</t-en></span></li>
-          <li><b><t-zh>国产数据库</t-zh><t-en>More databases</t-en></b><span><t-zh>达梦、人大金仓、OceanBase</t-zh><t-en>Dameng, KingbaseES, and OceanBase</t-en></span></li>
+          <li class="zh-only"><b>国产数据库</b><span>达梦、人大金仓、OceanBase</span></li><!-- 国产数据库只在中文版列出 -->
           <li><b><t-zh>数据库浏览</t-zh><t-en>Database explorer</t-en></b><span><t-zh>浏览已有数据库的连接、数据表和字段</t-zh><t-en>Browse existing connections, tables, and fields</t-en></span></li>
           <li><b><t-zh>文件</t-zh><t-en>Files</t-en></b><span><t-zh>上传、存储、预览和下载，文件与业务记录关联</t-zh><t-en>Upload, store, preview, and download, linked to business records</t-en></span></li>
           <li><b><t-zh>模板打印</t-zh><t-en>Template printing</t-en></b><span><t-zh>按 Office 模板生成合同、报价单等文档</t-zh><t-en>Contracts, quotes, and other documents from Office templates</t-en></span></li>
@@ -96,7 +112,7 @@
           <li><b><t-zh>应用底座</t-zh><t-en>Foundation page</t-en></b><span><t-zh>查看应用用到了哪些 Core 能力</t-zh><t-en>See which Core building blocks an app uses</t-en></span></li>
         </ul></div>
       </div>
-      <p class="capfoot"><span><t-zh><b>20 多项基础能力</b>，由 NocoBase 持续维护和升级。</t-zh><t-en><b>20+ building blocks</b>, maintained and upgraded by NocoBase.</t-en></span><a class="link" href="https://docs.nocobase.com/zh-CN/core/capabilities/" target="_blank" rel="noopener"><t-zh>查看每项能力的文档</t-zh><t-en>Read the Docs for Each One</t-en><i data-lucide="arrow-up-right"></i></a></p>
+      <p class="capfoot"><span><t-zh><b>20 多项基础能力</b>，由 NocoBase 持续维护和升级。</t-zh><t-en><b>20+ building blocks</b>, maintained and upgraded by NocoBase.</t-en></span><a class="link" href="https://docs.nocobase.com/core/capabilities/" target="_blank" rel="noopener"><t-zh>查看每项能力的文档</t-zh><t-en>Read the Docs for Each One</t-en><i data-lucide="arrow-up-right"></i></a></p>
     </div>
   </div>
 </section>
@@ -158,8 +174,8 @@
     </div>
     <div class="sec-body">
       <div class="start3">
-        <div class="scard pro"><div class="hd"><i data-lucide="blocks"></i><b>NocoBase Core</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>用 Core 开发自己的系统</t-zh><t-en>Build your own system on Core</t-en></h3><p><t-zh>Agent 使用 Core 的现成能力，只开发企业自己的业务部分。</t-zh><t-en>Agents use Core’s ready-made building blocks and build only what is specific to your business.</t-en></p><a class="btn btn-pri" href="https://docs.nocobase.com/zh-CN/" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a></div>
-        <div class="scard"><div class="hd"><i data-lucide="layout-grid"></i><b>NocoBase Solution</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>安装现成的业务应用</t-zh><t-en>Install a ready-made business app</t-en></h3><p><t-zh>可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。</t-zh><t-en>Use it as it is, or have a coding agent tailor it to your business.</t-en></p><a class="btn btn-sec" href="solutions.html"><t-zh>查看 Solution</t-zh><t-en>View Solution Apps</t-en><i data-lucide="arrow-right"></i></a></div>
+        <div class="scard pro"><div class="hd"><i data-lucide="blocks"></i><b>NocoBase Core</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>用 Core 开发自己的系统</t-zh><t-en>Build your own system on Core</t-en></h3><p><t-zh>Agent 使用 Core 的现成能力，只开发企业自己的业务部分。</t-zh><t-en>Agents use Core’s ready-made building blocks and build only what is specific to your business.</t-en></p><a class="btn btn-pri" href="https://docs.nocobase.com/core/quickstart/" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a></div>
+        <div class="scard"><div class="hd"><i data-lucide="layout-grid"></i><b>NocoBase Solution</b><span><t-zh>开源起步</t-zh><t-en>Start Open Source</t-en></span></div><h3><t-zh>安装现成的业务应用</t-zh><t-en>Install a ready-made business app</t-en></h3><p><t-zh>可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。</t-zh><t-en>Use it as it is, or have a coding agent tailor it to your business.</t-en></p><a class="btn btn-sec" href="solutions.html"><t-zh>查看 Solution</t-zh><t-en>View Solution Apps</t-en><i data-lucide="arrow-right"></i></a></div>
         <div class="scard"><div class="hd"><i data-lucide="users-round"></i><b>NocoBase Studio</b><span><t-zh>商业版</t-zh><t-en>Commercial</t-en></span></div><h3><t-zh>带领 Agent 团队开发</t-zh><t-en>Lead an agent team</t-en></h3><p><t-zh>Agent 自主推进，团队掌控全局。</t-zh><t-en>Agents keep the work moving. Your team stays in control.</t-en></p><a class="btn btn-sec" href="studio.html"><t-zh>了解 Studio</t-zh><t-en>Explore Studio</t-en><i data-lucide="arrow-right"></i></a></div>
       </div>
     </div>

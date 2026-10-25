@@ -9,7 +9,7 @@ description: 全站统一的用词。文档、官网、产品界面和命令行�
 | --- | --- |
 | NocoBase Core | 开发和运行业务系统的开源底座，一组 npm 包 |
 | NocoBase Studio | 人带领 Agent 团队开发应用的工作台，在商业版中提供 |
-| NocoBase Solutions | 基于 NocoBase 开发的开源业务应用，例如 NocoCRM |
+| NocoBase Solutions | 基于 NocoBase 开发的开源业务应用，例如 NocoCRM、NocoITAM |
 | Agent | AI 执行者的统称。一个编码工具加一个模型，例如“Claude · Opus 5.5”。不用“智能体”“代理”“Coding Agent” |
 | 编码工具 | Claude Code、Codex、OpenCode、Cursor 等 |
 | 业务 Agent | 在应用里、按权限处理业务的 Agent，由 Agents 插件接入。NocoBase 2 中称“AI 员工” |
@@ -44,9 +44,9 @@ description: 全站统一的用词。文档、官网、产品界面和命令行�
 | 任务负责人 | 对任务结果负责的人，总是人 |
 | 调度 Agent | 全局唯一的系统 Agent，拆分步骤、分派、提问、交付验收，不写代码 |
 | 执行 Agent | Agent 团队里完成具体步骤的 Agent |
-| 我的 Agent | 你电脑上的编码工具，连接到 Studio 后在会话里陪你讨论 |
+| 我的 Agent | 你自己用的编码工具，例如 Claude Code、Codex。接入 Studio 后，在「我的会话」里和你讨论需求 |
 | Agent 团队 | 团队启用的全部 Agent |
-| 运行环境 | 运行 `nocobase-runner` 的机器，分团队和个人两种 |
+| 运行环境 | 运行 `nocobase-runner` 的机器，分共享和个人两种 |
 | 我的任务、我的会话 | 两种跟进工作的入口：按任务、按会话 |
 | 项目记忆 | Agent 在工作中记下的经验，存进代码仓库，由 Agent 自己读写 |
 | 知识库 | 人写和上传的资料，Agent 只读 |

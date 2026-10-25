@@ -1,0 +1,67 @@
+# Deutsch（Sie）
+# 术语：foundation = Fundament；building blocks = Bausteine；governance = Governance；agent team = Agenten-Team；
+# coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
+# vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
+# 页面用语：issue = Aufgabe；coordinator agent = Koordinations-Agent；sign-off = Abnahme；My sessions 等产品界面名称照英文
+title: NocoBase Studio — Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.
+description: NocoBase Studio ist die Governance-Plattform für Menschen und Agenten, die gemeinsam Software entwickeln.
+000: Agenten treiben die Arbeit voran. <span class="m">Ihr Team behält die Kontrolle.</span>
+002: Online testen
+004: Läuft auf Ihren eigenen Servern
+005: Funktioniert mit Claude Code, Codex und Dutzenden weiteren Coding-Tools
+006: In den kommerziellen Editionen enthalten
+007: Agenten-Team
+008: Ein Agenten-Team, <span class="m">das die Arbeit vorantreibt.</span>
+009: Studio verbindet Agenten auf vielen Rechnern und steuert sie zentral. Sie treiben viele Projekte und Aufgaben parallel voran, rund um die Uhr.
+010: Agenten auf vielen Rechnern
+011: Verbinden Sie Claude Code, Codex und andere Agenten auf den Rechnern und Servern Ihres Teams, und Studio erkennt die dort angemeldeten Coding-Tools und Modelle. Beschreiben Sie, worin jeder Agent gut ist, aktivieren Sie ihn, und er wird Teil des Agenten-Teams.
+012: Ein Koordinator verteilt die Arbeit
+013: Ein Koordinations-Agent verteilt Design, Entwicklung, Tests und Review nach den Stärken der einzelnen Agenten. Er schreibt keinen Code und merget nichts; die Abnahme macht immer ein Mensch.
+014: Viele Aufgaben gleichzeitig
+015: Jede Aufgabe hat ihren eigenen Branch, und jeder Lauf arbeitet in einem eigenen Worktree. So kommen viele Aufgaben gleichzeitig voran, ohne sich zu stören. Mehr Rechner bedeuten mehr Parallelität.
+016: My sessions
+017: Sprechen Sie in Studio mit dem Agenten auf Ihrem eigenen Rechner, um Anforderungen zu besprechen und zu klären, Aufgaben festzuhalten und ihren Fortschritt zu verfolgen. Sobald eine Aufgabe startet, setzt der Koordinations-Agent das Agenten-Team ein.
+018: Fortschritt
+019: Fortschritt <span class="m">auf einen Blick.</span>
+020: Projektfortschritt, Aufgabenverlauf, Auslastung der Agenten und Modellnutzung sind jederzeit transparent. Sie sehen auf einen Blick, wo jede Aufgabe steht und was als Nächstes kommt.
+021: Projektfortschritt
+022: Der Fortschritt jedes Projekts sowie erledigte Aufgaben, Durchlaufzeit, Anteil der von Agenten erledigten Arbeit und Kosten pro Aufgabe, jeweils im Vergleich zur Vorperiode.
+023: Aufgabenverlauf
+024: Oben in jeder Aufgabe steht, in welchem Schritt sie ist, welcher Agent daran arbeitet und was als Nächstes kommt.
+025: Auslastung der Agenten und Modellnutzung
+026: Sehen Sie, an welchen Aufgaben die Agenten auf jedem Rechner arbeiten und wie viele Tokens jedes Modell zu welchen Kosten verbraucht hat.
+027: Entscheidungen
+028: Entscheidungen <span class="m">mit Belegen.</span>
+030: Bericht und Checkliste
+031: Jede Übergabe beschreibt, was sich geändert hat und wie es geprüft wurde, mit einer Abnahme-Checkliste Punkt für Punkt.
+032: Screenshots und Vorschauen
+033: Zu jedem Szenario gibt es Screenshots, und wenn Sie es selbst ausprobieren möchten, steht eine eigene Vorschauumgebung bereit.
+034: Abnehmen oder zurückgeben
+035: Mit den Belegen in der Hand nehmen Sie die Arbeit ab oder geben sie zurück. Nennen Sie den Grund, und die Agenten machen dort weiter.
+036: Fachexperten
+037: Auch Fachexperten, die nicht programmieren, können entscheiden.
+038: Fachexperten beschreiben ihren Bedarf in ihren eigenen Worten, beantworten die Fragen der Agenten und prüfen das Ergebnis in einer Vorschau mit echten Daten. Umgebungen, Branches, Tests und Releases übernehmen die Agenten und Studio.
+039: Tech Leads legen die Regeln fest und geben Releases frei. Fachexperten verantworten die Anforderungen und die Abnahme.
+040: Bevor Arbeit bei einem Menschen ankommt, organisiert Studio Prüfungen und Reviews.
+041: Jede Änderung durchläuft denselben Weg: Sie landet erst bei einem Menschen, wenn Tests und Code-Review bestanden sind, und geht erst in Produktion, wenn ein Mensch zustimmt. Geht etwas schief, wird sie zurückgerollt.
+042: Branch und Worktree
+043: Jede Aufgabe hat ihren eigenen Branch, und jeder Lauf arbeitet in einem eigenen Worktree. Pull Requests aus diesem Branch werden mit der Aufgabe verknüpft.
+044: Tests und Review
+045: Die CI führt Prüfungen und Tests aus, dann prüft ein anderes Modell den Code, wenn möglich von einem anderen Anbieter.
+046: Vorschau
+047: Bei Bedarf erhält ein Pull Request eine eigene Vorschauumgebung, in der ein Mensch testet und abnimmt.
+048: Merge und Release
+049: Nach der Abnahme wird gemergt, und die Aufgabe ist erledigt, sobald alle ihre Pull Requests gemergt sind. Releases in die Produktion brauchen die Zustimmung eines Menschen.
+050: Rollback
+051: Wenn etwas kaputtgeht, zurück zum letzten Release.
+053: Das Wissen <span class="m">bleibt im Team.</span>
+054: Anforderungskontext, Geschäftsunterlagen und Erfahrungen verteilen sich auf Chats auf verschiedenen Rechnern. Wechseln Menschen oder Agenten, findet man sie kaum wieder. Studio hält Methoden und Erfahrung in Skills, Wissensdatenbank und Projektgedächtnis fest. So macht jede neue Person und jeder neue Agent dort weiter, wo der vorherige aufgehört hat.
+055: Skills
+056: Skills halten fest, wie gearbeitet wird. Beschreiben Sie, wie Sie Anforderungen klären, entwickeln, reviewen und releasen, global, pro Projekt oder pro Arbeitsverzeichnis, und jeder Lauf bringt sie mit.
+057: Wissensdatenbank
+058: Die Wissensdatenbank enthält Geschäftsunterlagen. Anforderungen, Geschäftsregeln, Vertragsvorlagen und anderes Material werden von Menschen geschrieben oder hochgeladen, und Agenten lesen sie bei der Arbeit.
+059: Projektgedächtnis
+060: Das Projektgedächtnis bewahrt, was Agenten selbst lernen. Es liegt im Repository des Projekts, wird mit dem Pull Request jeder Aufgabe reviewt und gemergt und vor der nächsten Aufgabe gelesen.
+061: Open Source und Self-Hosting
+062: Selbst gehostet. <span class="m">Ihr Code und Ihre Daten gehören Ihnen.</span>
+070: Der Code der Agenten baut auf NocoBase Core auf

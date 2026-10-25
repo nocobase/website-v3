@@ -174,7 +174,7 @@ SB_ITEMS = [('circle-user', '我的任务', 'My issues', '2'), ('message-square'
             ('g', '发布', 'Release'), ('boxes', '应用', 'Apps', ''), ('server', '部署环境', 'Environments', ''),
             ('g', 'Agent 团队', 'Agent team'), ('bot', 'Agent', 'Agents', ''), ('monitor', '运行环境', 'Runtimes', ''), ('sparkles', '技能', 'Skills', '')]
 def ssb(active):
-    h = '<aside class="sb"><div class="brand"><img src="assets/logo.png" alt=""><span>Studio</span></div>'
+    h = '<aside class="sb"><div class="brand"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt=""><span>Studio</span></div>'
     for it in SB_ITEMS:
         if it[0] == 'g': h += f'<div class="grp">{T(it[1], it[2])}</div>'; continue
         i, z, e, c = it

@@ -20,7 +20,7 @@ const dependency = [join(dir, 'node_modules/marked/lib/marked.esm.js'), join(dir
 if (!dependency) throw new Error('需要 marked@4.3.0：在 doc/ 执行 npm ci。');
 const { marked } = await import(pathToFileURL(dependency).href);
 
-const DATE = '2026-10-23';
+const DATE = '2026-10-24';
 const LUCIDE = 'https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js';
 // 样式表和脚本的地址带上内容的版本号，改了样式后浏览器不会继续用缓存里的旧文件
 const VERSION = createHash('sha1').update(readFileSync(join(dir, 'assets/docs.css'))).update(readFileSync(join(dir, 'assets/docs.js'))).digest('hex').slice(0, 8);
@@ -81,7 +81,7 @@ const SECTIONS = [
     dir: '',
     nav: [
       { items: ['index'] },
-      { title: ['Start', '开始'], items: ['start/what-is-nocobase', 'start/editions', 'start/from-v2', 'start/glossary'] },
+      { title: ['Start', '开始'], items: ['start/what-is-nocobase', 'start/from-v2', 'start/glossary'] },
     ],
   },
   {
@@ -177,20 +177,27 @@ const SECTIONS = [
     key: 'studio',
     title: ['Studio', 'Studio'],
     dir: 'studio/',
-    /* 顺序：先入门、安装与上手；中间四组和官网 Studio 页（html/studio.html）的四段一致：Agent 团队 → 进展 → 决策 → 知识沉淀；然后是系统管理；最后是参考。 */
+    /* 顺序：按一家公司用起 Studio 的先后。入门之后，一个人先搭建（从安装到走完第一个需求、邀请成员），
+       同事再加入（连接自己的电脑和运行环境），然后是日常使用、管理项目和系统管理。每组给一种角色看，
+       组里的页面按这个角色做事的先后排列；见 方案/11-Studio文档重构方案.md。 */
     nav: [
       { items: ['index'] },
-      { title: ['Get started', '入门'], items: ['intro/what-is-studio', 'intro/how-a-task-gets-done', 'intro/concepts'] },
-      { title: ['Install and set up', '安装与上手'], items: ['install', 'quickstart'] },
-      { title: ['Agent team', 'Agent 团队'], items: ['team/hand-over', 'team/sessions', 'team/coordinator', 'team/connect', 'team/cli'] },
-      { title: ['Progress', '进展'], items: ['progress/my-tasks', 'progress/task-page', 'progress/inbox', 'progress/usage'] },
-      { title: ['Decisions', '决策'], items: ['decisions/answer', 'decisions/accept', 'decisions/previews', 'decisions/release'] },
-      { title: ['Know-how', '知识沉淀'], items: ['knowledge/knowledge-base', 'knowledge/skills'] },
+      { title: ['Get started', '入门'], items: ['intro/what-is-studio', 'intro/how-a-request-gets-done', 'intro/agent-team', 'intro/concepts'] },
       {
-        title: ['Administration', '系统管理'],
-        items: ['admin/members-and-roles', 'admin/projects', 'admin/git', 'admin/api-keys', 'admin/notifications', 'admin/release-settings', 'admin/upgrade-and-backup'],
+        title: ['Set up Studio', '搭建 Studio'],
+        items: [
+          'setup/with-agent',
+          { heading: ['Step by step', '分步说明'] }, 'setup/install', 'setup/git', 'setup/shared-runtimes', 'setup/agents', 'setup/new-project', 'setup/ci', 'setup/first-request', 'setup/invite',
+        ],
       },
-      { title: ['Reference', '参考'], items: ['reference/statuses-and-permissions', 'reference/config', 'reference/cli', 'reference/faq'] },
+      { title: ['Join the team', '加入团队'], items: ['join/sign-in', 'join/connect-computer', 'join/local-agent', 'join/personal-runtime'] },
+      { title: ['Daily use', '日常使用'], items: ['use/raise-a-request', 'use/sessions', 'use/my-tasks', 'use/follow-progress', 'use/answer', 'use/accept', 'use/inbox'] },
+      {
+        title: ['Manage projects', '管理项目'],
+        items: ['project/settings', 'project/skills', 'project/knowledge-base', 'project/checks-and-review', 'project/project-memory', 'project/release', 'project/progress', 'project/usage'],
+      },
+      { title: ['Administration', '系统管理'], items: ['admin/environments', 'admin/members-and-roles', 'admin/api-keys', 'admin/notifications', 'admin/upgrade-and-backup'] },
+      { title: ['Reference', '参考'], items: ['reference/statuses-and-permissions', 'reference/cli', 'reference/config', 'reference/faq'] },
     ],
   },
 ];
@@ -199,7 +206,7 @@ const textOf = (pair, lang) => (Array.isArray(pair) ? pair[lang === DEFAULT_LANG
 /* 文档方案按菜单分组；上一篇 / 下一篇按这里的顺序 */
 const PLAN_GROUPS = [
   { title: 'Core 与统一文档站', items: ['06-读者与需求', '07-Core文档的问题', '08-Core文档结构与写作原则', '09-统一文档站', '10-Core进度与待确认事项'] },
-  { title: 'Studio 文档', items: ['01-现有文档的问题', '02-文档结构与写作原则', '03-命名方案', '04-写作规范与术语', '05-进度与待确认事项'] },
+  { title: 'Studio 文档', items: ['11-Studio文档重构方案', '01-现有文档的问题', '02-文档结构与写作原则', '03-命名方案', '04-写作规范与术语', '05-进度与待确认事项'] },
 ];
 
 /* ---------- 地址 ---------- */

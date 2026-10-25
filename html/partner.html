@@ -6,22 +6,38 @@
 <title data-zh="NocoBase 合作伙伴计划 — 用 Agent 团队交付更多客户项目" data-en="NocoBase Partner Program — Deliver More Client Projects with an Agent Team">NocoBase 合作伙伴计划 — 用 Agent 团队交付更多客户项目</title>
 <meta name="description" content="成为 NocoBase 合作伙伴：渠道分销佣金 15%–40%，服务收入 100% 归你。基于 Core、Studio 与 Solution，实施顾问专注客户需求，开发交给 Agent 团队，同时推进多个客户项目。" data-zh="成为 NocoBase 合作伙伴：渠道分销佣金 15%–40%，服务收入 100% 归你。基于 Core、Studio 与 Solution，实施顾问专注客户需求，开发交给 Agent 团队，同时推进多个客户项目。" data-en="Become a NocoBase partner: 15–40% channel commission and 100% of your service revenue. With Core, Studio, and Solution, your consultants focus on client needs while an agent team builds, so many client projects move at once.">
 <script>
+/* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 partner.<语言>.js，
+   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
 (function () {
+  var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
+  /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
+  var FONTS = { ru: 'inter' };
+  var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
-    window.__lang = lang;
-    document.documentElement.lang = lang;
-  } catch (e) {
-    window.__lang = 'zh';
-  }
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+  } catch (e) {}
+  window.__i18nPage = 'partner';
+  window.__lang = lang;
+  document.documentElement.lang = lang;
+  window.__font = function (l) {
+    if (!FONTS[l] || document.getElementById('font-' + l)) return;
+    var k = document.createElement('link');
+    k.id = 'font-' + l;
+    k.rel = 'stylesheet';
+    k.href = 'assets/fonts/' + FONTS[l] + '.css';
+    document.head.appendChild(k);
+  };
+  window.__font(lang);
+  if (lang !== 'zh' && lang !== 'en') document.write('<script src="assets/i18n/site.' + lang + '.js"><\/script><script src="assets/i18n/partner.' + lang + '.js"><\/script>');
 })();
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
-<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<script src="assets/vendor/lucide-0.460.0/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body data-page="partner" data-root="">
@@ -203,7 +219,7 @@
       <div><h2><t-zh>申请成为 NocoBase 合作伙伴</t-zh><t-en>Apply to become a NocoBase partner</t-en></h2><p><t-zh>告诉我们你的团队和想做的事，我们会尽快联系你。也可以直接写信到 partner@nocobase.com。</t-zh><t-en>Tell us about your team and plans, and we’ll get back to you soon. Or write to partner@nocobase.com.</t-en></p></div>
       <form class="bookf" data-public-form-zh="https://service-cn.nocobase.com|kn6r0dh1tu1" data-public-form-en="https://service-en.nocobase.com|rl8c0cnkyzx" data-ok-zh="已收到你的申请，我们会尽快与你联系。" data-ok-en="Thanks! We’ve received your application and will be in touch soon.">
         <div class="two"><label><span><t-zh>联系人姓名</t-zh><t-en>Contact name</t-en></span><input type="text" name="contact_name" autocomplete="name" required></label><label><span><t-zh>联系人邮箱</t-zh><t-en>Contact email</t-en></span><input type="email" name="contact_email" autocomplete="email" required></label></div>
-        <div class="two"><label class="zh-only" data-lang-only="zh"><span>联系人电话（选填）</span><input type="tel" name="contact_phone" autocomplete="tel"></label><label class="en-only" data-lang-only="en"><span>Country / region</span><select name="country_code" data-options="countries" required><option value="">Select your country or region</option></select></label><label><span><t-zh>公司名称</t-zh><t-en>Company name</t-en></span><input type="text" name="company_name" autocomplete="organization" required></label></div>
+        <div class="two"><label class="zh-only" data-lang-only="zh"><span>联系人电话（选填）</span><input type="tel" name="contact_phone" autocomplete="tel"></label><label class="en-only" data-lang-only="en"><span><t-en>Country / region</t-en></span><select name="country_code" data-options="countries" required><option value="" data-text-zh="" data-text-en="Select your country or region">Select your country or region</option></select></label><label><span><t-zh>公司名称</t-zh><t-en>Company name</t-en></span><input type="text" name="company_name" autocomplete="organization" required></label></div>
         <label><span><t-zh>公司简介</t-zh><t-en>About your company</t-en></span><textarea name="company_detail" rows="3" required data-ph-zh="团队规模、擅长的行业和已有客户" data-ph-en="Team size, the industries you serve, and current clients"></textarea></label>
         <label><span><t-zh>合作意向简述</t-zh><t-en>How you’d like to work with us</t-en></span><textarea name="cooperation_intention" rows="3" required data-ph-zh="想选的合作方式（渠道分销、服务交付、行业方案、技术生态），以及目标客户和地区" data-ph-en="The partnership models you’re interested in (distribution, delivery, industry solutions, technology), and your target clients and regions"></textarea></label>
         <button class="btn btn-pri" type="submit"><t-zh>提交申请</t-zh><t-en>Submit Application</t-en><i data-lucide="arrow-right"></i></button>

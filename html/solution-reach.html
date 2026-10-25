@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-zh="NocoReach — 从数据中发现机会，NocoReach 帮你落地" data-en="NocoReach — Find the Opportunities in Your Data and Put Them into Action">NocoReach — 从数据中发现机会，NocoReach 帮你落地</title>
-<meta name="description" content="NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：每天分析网站、搜索、AI 搜索、GitHub 和社区数据，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。" data-zh="NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：每天分析网站、搜索、AI 搜索、GitHub 和社区数据，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。" data-en="NocoReach is an open-source AI growth operations platform built on NocoBase Core, with data collection, daily analysis, and agent execution in one place. Every day it analyzes your website, search, AI search, GitHub, and community data and finds what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.">
+<meta name="description" content="NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：网站分析、搜索、AI 搜索、社区、社交媒体、竞品等 20 多个来源的数据每天自动分析，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。" data-zh="NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：网站分析、搜索、AI 搜索、社区、社交媒体、竞品等 20 多个来源的数据每天自动分析，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。" data-en="NocoReach is an open-source AI growth operations platform built on NocoBase Core, with data collection, daily analysis, and agent execution in one place. Data from more than 20 sources, from web analytics, search and AI search to community, social media and competitors, is analyzed every day to find what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.">
 <script>
 (function () {
   try {
@@ -24,6 +24,41 @@
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="assets/site.css">
 <style>
+/* The hero split in two on this page: the words at the left, the intro video at the right; one column on narrow screens. */
+.phero-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; }
+.phero-split h1 { font-size: 48px; }
+.phero-video { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid var(--rule-2); background: var(--paper-2); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
+.phero-video video, .pv-cover { display: block; width: 100%; height: 100%; border: 0; padding: 0; background: var(--paper-2); }
+.phero-video video { object-fit: cover; }
+.pv-cover { position: relative; cursor: pointer; background: var(--paper-2); }
+.pv-cover t-zh, .pv-cover t-en { display: block; height: 100%; }
+.pv-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pv-btn { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border-radius: 999px; background: oklch(1 0 0 / 0.86); color: var(--ink); backdrop-filter: blur(6px); font-size: 14.5px; font-weight: 500; white-space: nowrap; box-shadow: 0 10px 30px -8px var(--shadow); transition: transform 0.2s ease, background 0.2s ease; }
+.pv-btn t-zh, .pv-btn t-en { display: inline; height: auto; }
+.pv-btn svg.lucide { width: 16px; height: 16px; fill: currentColor; }
+.pv-btn small { font-size: 13px; opacity: 0.8; }
+/* The play button reads as part of the cover, translucent white, so the hero has one primary button, Try It Online (2026-10-25). */
+.pv-cover:hover .pv-btn { transform: translateY(-1px); background: oklch(1 0 0 / 0.96); }
+/* A cue at the foot of the full-screen hero, no words: a mouse whose wheel rolls down and a line running on down to the demo, which a click scrolls to; wide screens only, where the hero fills the screen (2026-10-25). */
+.phero { position: relative; }
+.scroll-cue { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; gap: 10px; padding: 6px 6px 0; color: var(--muted); }
+.scroll-cue .ln { position: relative; width: 1px; height: 56px; overflow: hidden; background: linear-gradient(to bottom, var(--rule-2), transparent); }
+.scroll-cue .ln::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--brand); animation: cue-run 1.8s ease-in-out infinite; }
+@keyframes cue-run { to { top: 100%; } }
+.scroll-cue[hidden] { display: none !important; }
+.scroll-cue .mouse { position: relative; display: block; width: 24px; height: 38px; border: 1.5px solid currentColor; border-radius: 12px; opacity: 0.7; transition: color 0.2s ease, opacity 0.2s ease; }
+.scroll-cue .wheel { position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: currentColor; animation: cue-wheel 1.8s ease-in-out infinite; }
+.scroll-cue:hover { color: var(--brand); }
+.scroll-cue:hover .mouse { opacity: 1; }
+@keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue .wheel, .scroll-cue .ln::after { animation: none; } .scroll-cue .ln::after { top: 0; } }
+@media (min-width: 961px) { .scroll-cue { display: flex; } }
+/* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
+@media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 14vh; } .phero > .container { width: 100%; } }
+@media (max-width: 960px) { .phero-split { grid-template-columns: minmax(0, 1fr); gap: 36px; } .phero-split h1 { font-size: 40px; } }
+/* Until the English cut is ready, the English page shows the words alone */
+html:not([lang="zh"]) .phero-split { grid-template-columns: minmax(0, 1fr); }
+html:not([lang="zh"]) .phero-video { display: none; }
 /* Live demo styles: the demo site itself under the hero, or nothing when the site cannot be reached or on a phone; the link under it opens the site in a new tab. */
 .ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
@@ -46,6 +81,11 @@
 .loop5 .pnl b { font-size: 20px; font-weight: 600; line-height: 1.2; color: var(--ink); }
 /* No line ends on a lone character or two */
 .lead, .lede, .feat > div > p, .card p, .steps p, .bul li, .duo li { text-wrap: pretty; }
+/* The hero's lede breaks between phrases rather than inside a word */
+html[lang="zh"] .phero .lede { word-break: keep-all; overflow-wrap: anywhere; }
+/* What each of the two smaller figures shows, above it */
+.shot-cap { margin: 0 0 14px; font-size: 14.5px; line-height: 1.7; color: var(--ink-2); text-wrap: pretty; }
+.shot-cap b { display: block; margin-bottom: 4px; font-size: 17px; font-weight: 600; color: var(--ink); }
 </style>
 </head>
 <body data-page="reach" data-root="">
@@ -53,15 +93,26 @@
 <main>
 <section class="phero">
   <div class="container">
+    <div class="phero-split">
+    <div class="phero-text">
     <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoReach · <t-zh>增长</t-zh><t-en>Growth</t-en></span><span class="pill pass">Beta</span></p>
     <h1><t-zh>从数据中发现机会，<span class="m">NocoReach 帮你落地。</span></t-zh><t-en>Find the opportunities in your data. <span class="m">NocoReach puts them into action.</span></t-en></h1>
-    <p class="lede"><t-zh>NocoReach 是 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成。每天分析网站、搜索、AI 搜索、GitHub 和社区数据，找出值得做的事并写明依据；你确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。</t-zh><t-en>NocoReach is an AI growth operations platform: data collection, daily analysis, and agent execution in one place. Every day it analyzes your website, search, AI search, GitHub, and community data and finds what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.</t-en></p>
+    <p class="lede"><t-zh>NocoReach 是 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成。它接入网站分析、搜索、AI 搜索、社区、社交媒体、视频平台、竞品和 GitHub 等 20&nbsp;多个来源，每天自动分析全部数据，找出值得做的事并写明依据；你确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。</t-zh><t-en>NocoReach is an AI growth operations platform: data collection, daily analysis, and agent execution in one place. Data from more than 20 sources, including web analytics, search, AI search, community, social media, video, competitors and GitHub, comes together and is analyzed every day to find what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up-right"></i></a>
+      <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
       <a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoReach" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a>
+    </div>
+    </div>
+    <div class="phero-video" id="introVideo">
+      <button class="pv-cover" type="button" id="introPlay">
+        <t-zh><img src="assets/video/nocoreach-intro-zh.jpg" alt="NocoReach 介绍视频"></t-zh>
+        <span class="pv-btn"><i data-lucide="play"></i><t-zh>观看介绍</t-zh><t-en>Watch the intro</t-en><small>3:08</small></span>
+      </button>
+    </div>
     </div>
     <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0-beta.71</b></div><div><t-zh>数据来源</t-zh><t-en>Data sources</t-en><b>20+</b></div><div><t-zh>内置做法</t-zh><t-en>Built-in playbooks</t-en><b>12</b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
   </div>
+  <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="mouse" aria-hidden="true"><span class="wheel"></span></span><span class="ln" aria-hidden="true"></span></a>
 </section>
 
 <section class="sec" id="tryDemo" hidden>
@@ -86,7 +137,7 @@
       <h2 class="h2"><t-zh>数据里有很多机会，</t-zh><t-en>Your data holds many opportunities. </t-en><span class="m"><t-zh>以前大多没被发现，也没人去做。</t-zh><t-en>Most were never found, and fewer got done.</t-en></span></h2>
       <p class="lead"><t-zh>以前，市场团队每天导出数据做表，放进 BI 看结果，再由人一项项安排执行，能顾上的只是少数。现在，NocoReach 每天分析全部数据，找出值得做的事并写明依据；你确认后，多项任务同时交给 Agent 执行，上线后自动对比效果。</t-zh><t-en>Until now, marketing teams exported data to spreadsheets every day, loaded it into BI to see the numbers, and assigned the work one item at a time, so only a few opportunities ever got attention. NocoReach analyzes all of your data every day, finds what is worth doing and shows the evidence. Once you confirm, many tasks go to agents at once, and the impact is compared automatically after launch.</t-en></p>
     </div>
-    <div class="sec-body"><div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>Acme 的一天</t-zh><t-en>A day at Acme</t-en></h5><p><t-zh>从数据，到上线，再回到数据</t-zh><t-en>From data, to live, and back to data</t-en></p></div></div>
+    <div class="sec-body"><div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>从数据到效果，每天自动推进</t-zh><t-en>From data to impact, every day</t-en></h5><p><t-zh>从数据，到上线，再回到数据</t-zh><t-en>From data, to live, and back to data</t-en></p></div></div>
       <div class="flow loop5" style="--n:5">
         <div><span class="st"><span class="bal">1</span><t-zh>数据汇在一处</t-zh><t-en>All data in one place</t-en></span><div class="pnl"><p><t-zh>网站、搜索、AI 搜索、社区和竞品，每天同步</t-zh><t-en>Site, search, AI search, community and competitors, synced daily</t-en></p><b><t-zh>22 个数据源</t-zh><t-en>22 sources</t-en></b></div></div>
         <div><span class="st"><span class="bal">2</span><t-zh>每日分析</t-zh><t-en>Daily analysis</t-en></span><div class="pnl"><p><t-zh>AI 逐条判断今天的 1,286 条变化</t-zh><t-en>AI weighs each of today’s 1,286 changes</t-en></p><b><t-zh>12 个机会</t-zh><t-en>12 opportunities</t-en></b></div></div>
@@ -110,7 +161,7 @@
         <li><span class="bal">02</span><h4><t-zh>AI 判断值不值得做</t-zh><t-en>AI weighs each change</t-en></h4><p><t-zh>结合项目知识逐条判断，结论分三种：建议处理、建议观察、无需处理，并写明理由和依据。</t-zh><t-en>With your project knowledge in mind, AI gives each change one of three verdicts (act on it, watch it, or no action needed) with its reasons and evidence.</t-en></p></li>
         <li><span class="bal">03</span><h4><t-zh>写成机会</t-zh><t-en>Opportunities, written up</t-en></h4><p><t-zh>建议处理的写成机会，等你交给 Agent 或忽略；建议观察的写明判断条件和截止日期，到期再判断。没有新发现时，不凑数。</t-zh><t-en>Changes worth acting on become opportunities for you to hand off or dismiss. Changes to watch get a condition and a deadline and are judged again then. A day with nothing new adds nothing.</t-en></p></li>
       </ol>
-      <div class="sheet app-shot" style="margin-top:48px"><t-zh><img src="assets/reach/insights-zh.jpg" alt="NocoReach 洞察页：今天的每日分析和要你决定的机会" width="1280" height="720" loading="lazy"></t-zh><t-en><img src="assets/reach/insights-en.jpg" alt="NocoReach Insights: today’s daily analysis and the decisions it asks of you" width="1280" height="720" loading="lazy"></t-en></div>
+      <div class="sheet app-shot" style="margin-top:48px"><t-zh><img src="assets/reach/insights-zh.webp" alt="NocoReach 洞察页：今天的每日分析和要你决定的机会" width="1280" height="720" loading="lazy"></t-zh><t-en><img src="assets/reach/insights-en.webp" alt="NocoReach Insights: today’s daily analysis and the decisions it asks of you" width="1280" height="720" loading="lazy"></t-en></div>
     </div>
   </div>
 </section>
@@ -122,7 +173,7 @@
       <h2 class="h2"><t-zh>每个机会，</t-zh><t-en>Every opportunity </t-en><span class="m"><t-zh>都写明依据。</t-zh><t-en>comes with its evidence.</t-en></span></h2>
     </div>
     <div class="sec-body">
-      <div class="sheet app-shot"><t-zh><img src="assets/reach/opportunities-zh.jpg" alt="NocoReach 机会页：待处理的机会和其中一个的依据" width="1280" height="760" loading="lazy"></t-zh><t-en><img src="assets/reach/opportunities-en.jpg" alt="NocoReach Opportunities: the opportunities to decide on, one of them in full" width="1280" height="760" loading="lazy"></t-en></div>
+      <div class="sheet app-shot"><t-zh><img src="assets/reach/opportunities-zh.webp" alt="NocoReach 机会页：待处理的机会和其中一个的依据" width="1280" height="760" loading="lazy"></t-zh><t-en><img src="assets/reach/opportunities-en.webp" alt="NocoReach Opportunities: the opportunities to decide on, one of them in full" width="1280" height="760" loading="lazy"></t-en></div>
       <div class="grid3" style="margin-top:40px">
         <div class="card"><span class="ic"><i data-lucide="search-check"></i></span><h3><t-zh>发生了什么</t-zh><t-en>What happened</t-en></h3><p><t-zh>具体到页面、指标、变化幅度和数据来源。</t-zh><t-en>The page, the metric, how far it moved, and where the data came from.</t-en></p></div>
         <div class="card"><span class="ic"><i data-lucide="target"></i></span><h3><t-zh>为什么值得做</t-zh><t-en>Why it matters</t-en></h3><p><t-zh>结合项目知识说明影响，标出优先级和投入。</t-zh><t-en>What it means for your product, with its priority and the effort it takes.</t-en></p></div>
@@ -140,10 +191,10 @@
       <p class="lead"><t-zh>Agent 按做法完成后停下来等你：文章按读者看到的样子预览，页面修改显示改动前后。满意就通过并发布；不满意就提修改意见，Agent 按意见调整，也可以直接编辑。</t-zh><t-en>When the agent is done, it stops for you. Articles are previewed as readers will see them, and page changes show before and after. Approve and publish, request changes for the agent to make, or edit it yourself.</t-en></p>
     </div>
     <div class="sec-body">
-      <div class="sheet app-shot"><t-zh><img src="assets/reach/review-zh.jpg" alt="NocoReach 任务页：一篇等你审核的文章" width="1280" height="800" loading="lazy"></t-zh><t-en><img src="assets/reach/review-en.jpg" alt="NocoReach task page: an article waiting for your review" width="1280" height="800" loading="lazy"></t-en></div>
+      <div class="sheet app-shot"><t-zh><img src="assets/reach/review-zh.webp" alt="NocoReach 任务页：一篇等你审核的文章" width="1280" height="800" loading="lazy"></t-zh><t-en><img src="assets/reach/review-en.webp" alt="NocoReach task page: an article waiting for your review" width="1280" height="800" loading="lazy"></t-en></div>
       <div class="grid2" style="margin-top:20px">
-        <div><div class="sheet app-shot"><t-zh><img src="assets/reach/replies-zh.jpg" alt="社区回复草稿：逐条复制，去原帖回复" width="680" height="500" loading="lazy"></t-zh><t-en><img src="assets/reach/replies-en.jpg" alt="Community reply drafts, copied into each thread by you" width="680" height="500" loading="lazy"></t-en></div></div>
-        <div><div class="sheet app-shot"><t-zh><img src="assets/reach/revise-zh.jpg" alt="提修改意见：Agent 按意见调整" width="680" height="500" loading="lazy"></t-zh><t-en><img src="assets/reach/revise-en.jpg" alt="Requesting changes for the agent to make" width="680" height="500" loading="lazy"></t-en></div></div>
+        <div><p class="shot-cap"><b><t-zh>社区回复：Agent 起草，你来发</t-zh><t-en>Community replies: drafted by the agent, posted by you</t-en></b><t-zh>Agent 读过文档，给没人回复的帖子逐条起草回复；你复制到原帖发出，NocoReach 不会替你发帖。</t-zh><t-en>The agent reads your docs and drafts a reply to each unanswered post. You copy it into the thread; NocoReach never posts for you.</t-en></p><div class="sheet app-shot"><t-zh><img src="assets/reach/replies-zh.webp" alt="社区回复草稿：逐条复制，去原帖回复" width="680" height="500" loading="lazy"></t-zh><t-en><img src="assets/reach/replies-en.webp" alt="Community reply drafts, copied into each thread by you" width="680" height="500" loading="lazy"></t-en></div></div>
+        <div><p class="shot-cap"><b><t-zh>提出修改意见，Agent 按意见调整</t-zh><t-en>Request changes, and the agent makes them</t-en></b><t-zh>不满意就写下要改什么，Agent 按意见改出新的一版，再交给你审核。</t-zh><t-en>Not happy yet? Write what should change, and the agent comes back with a new version for your review.</t-en></p><div class="sheet app-shot"><t-zh><img src="assets/reach/revise-zh.webp" alt="提修改意见：Agent 按意见调整" width="680" height="500" loading="lazy"></t-zh><t-en><img src="assets/reach/revise-en.webp" alt="Requesting changes for the agent to make" width="680" height="500" loading="lazy"></t-en></div></div>
       </div>
     </div>
   </div>
@@ -162,14 +213,14 @@
           <li><t-zh>用 Skills 写清做事的方法，用项目知识交代品牌和产品背景</t-zh><t-en>Skills say how the work is done; project knowledge carries your brand and product</t-en></li>
         </ul>
       </div>
-      <div class="sheet app-shot"><t-zh><img src="assets/reach/playbook-zh.jpg" alt="NocoReach 做法页：内置的 12 种做法" width="760" height="600" loading="lazy"></t-zh><t-en><img src="assets/reach/playbook-en.jpg" alt="NocoReach Playbooks: the 12 built-in playbooks" width="760" height="600" loading="lazy"></t-en></div>
+      <div class="sheet app-shot"><t-zh><img src="assets/reach/playbook-zh.webp" alt="NocoReach 做法页：内置的 12 种做法" width="760" height="600" loading="lazy"></t-zh><t-en><img src="assets/reach/playbook-en.webp" alt="NocoReach Playbooks: the 12 built-in playbooks" width="760" height="600" loading="lazy"></t-en></div>
     </div>
     <div class="feat rev">
       <div>
         <h3><t-zh>多项任务，同时推进。</t-zh><t-en>Many tasks, moving at once.</t-en></h3>
         <p><t-zh>按 Agent 看任务：每个 Agent 正在做什么、接下来做什么、哪些在等你，一眼看清。任务来自每日分析（Found by AI），也可以由你新建。</t-zh><t-en>See tasks agent by agent: what each is working on, what comes next and what waits for you. Tasks come from the daily analysis (Found by AI) or from you.</t-en></p>
       </div>
-      <div class="sheet app-shot"><t-zh><img src="assets/reach/tasks-zh.jpg" alt="NocoReach 任务页：按 Agent 查看正在推进的任务" width="600" height="663" loading="lazy"></t-zh><t-en><img src="assets/reach/tasks-en.jpg" alt="NocoReach Tasks by agent: the work each agent has in hand" width="600" height="682" loading="lazy"></t-en></div>
+      <div class="sheet app-shot"><t-zh><img src="assets/reach/tasks-zh.webp" alt="NocoReach 任务页：按 Agent 查看正在推进的任务" width="600" height="663" loading="lazy"></t-zh><t-en><img src="assets/reach/tasks-en.webp" alt="NocoReach Tasks by agent: the work each agent has in hand" width="600" height="682" loading="lazy"></t-en></div>
     </div>
   </div>
 </section>
@@ -182,7 +233,7 @@
         <h3><t-zh>上线之后，效果自动对比。</t-zh><t-en>After launch, the impact is compared for you.</t-en></h3>
         <p><t-zh>改动上线后第 7 天和第 28 天，自动对比改过的页面在上线前后同样天数的搜索点击和浏览量。结论分为上升、下降、无明显变化和数据不足，只描述数据变化，不推断因果。</t-zh><t-en>On days 7 and 28 after launch, NocoReach compares each changed page’s search clicks and views with the same number of days before. Each result reads up, down, no clear change, or not enough data. It describes the data and does not claim causes.</t-en></p>
       </div>
-      <div class="sheet app-shot"><t-zh><img src="assets/reach/results-zh.jpg" alt="NocoReach 成果页：上线的改动和改过页面的变化" width="780" height="672" loading="lazy"></t-zh><t-en><img src="assets/reach/results-en.jpg" alt="NocoReach Results: what went live and how the changed pages moved" width="780" height="672" loading="lazy"></t-en></div>
+      <div class="sheet app-shot"><t-zh><img src="assets/reach/results-zh.webp" alt="NocoReach 成果页：上线的改动和改过页面的变化" width="780" height="672" loading="lazy"></t-zh><t-en><img src="assets/reach/results-en.webp" alt="NocoReach Results: what went live and how the changed pages moved" width="780" height="672" loading="lazy"></t-en></div>
     </div>
   </div>
 </section>
@@ -200,21 +251,21 @@
         <div class="sg" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center"><span style="color:var(--agent)"><i data-lucide="plug"></i></span><p><t-zh>需要的来源还没有？NocoReach 开源，可以让 Coding Agent 按你的需求开发新的数据源，接入后同样进入每日分析。</t-zh><t-en>Missing a source you need? NocoReach is open source: have a coding agent build it to your needs, and the daily analysis reads it like the rest.</t-en></p></div>
       </div></div></div></div></div></div>
       <div class="sheet" style="margin-top:20px"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>数据怎么变成工作</t-zh><t-en>How data becomes work</t-en></h5><p><t-zh>每个信号都写清：来自哪里、AI 怎么判断、交给哪种做法、上线后对比什么。</t-zh><t-en>Every signal says where it came from, how AI read it, which playbook takes it, and what is compared after launch.</t-en></p></div></div>
-        <div class="tblw"><table class="tbl"><thead><tr><th><t-zh>来源</t-zh><t-en>Source</t-en></th><th><t-zh>发现了什么</t-zh><t-en>What changed</t-en></th><th><t-zh>AI 的判断</t-zh><t-en>AI’s read</t-en></th><th><t-zh>做法</t-zh><t-en>Playbook</t-en></th><th><t-zh>上线后对比</t-zh><t-en>Compared after launch</t-en></th></tr></thead><tbody><tr><td><b style="font-weight:600">Search Console</b></td><td class="w"><t-zh>「项目管理软件」平均排名 11 → 6，点击率 1.2%</t-zh><t-en>“Project management software” average position 11 → 6, 1.2% click rate</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>排名接近首页，标题和摘要没写清用途</t-zh><t-en>Close to page one, but the title and description don’t say what it is for</t-en></span></td><td><span class="tag violet"><t-zh>优化现有页面</t-zh><t-en>Improve existing page</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600">GA4</b></td><td class="w"><t-zh>定价页访问 4,820，比前 28 天多 35%</t-zh><t-en>Pricing page: 4,820 visits, up 35%</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>来的人多了，页面缺少能帮人下决定的客户案例</t-zh><t-en>More people arrive, and the page lacks customer stories to help them decide</t-en></span></td><td><span class="tag violet"><t-zh>优化现有页面</t-zh><t-en>Improve existing page</t-en></span></td><td style="color:var(--muted)"><t-zh>浏览量</t-zh><t-en>Views</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>论坛</t-zh><t-en>Forum</t-en></b></td><td class="w"><t-zh>近 14 天 5 个主题问怎么导入 Excel</t-zh><t-en>5 topics in 14 days ask how to import from Excel</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>有真实需求，网站上还没有教程</t-zh><t-en>A real need, and no tutorial on the site</t-en></span></td><td><span class="tag violet"><t-zh>写博客文章</t-zh><t-en>Write blog post</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>AI 搜索</t-zh><t-en>AI search</t-en></b></td><td class="w"><t-zh>「最好用的项目管理软件有哪些？」提到 Nimbus、Fieldbook，没有 Acme</t-zh><t-en>“Best project management software?” mentions Nimbus and Fieldbook, not Acme</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>缺一页 AI 能引用的推荐和对比内容</t-zh><t-en>No page AI could cite for a recommendation</t-en></span></td><td><span class="tag violet"><t-zh>内容选题与大纲</t-zh><t-en>Content topic and outline</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600">Reddit</b></td><td class="w"><t-zh>有人在比较 Acme 和 Trackly，2 天 46 条评论</t-zh><t-en>A thread compares Acme and Trackly: 46 comments in 2 days</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>还没有官方回复，值得说明差别</t-zh><t-en>No official reply yet; worth explaining the difference</t-en></span></td><td><span class="tag violet"><t-zh>起草社区回复</t-zh><t-en>Draft community replies</t-en></span></td><td style="color:var(--muted)"><t-zh>不做数据对比</t-zh><t-en>Not compared</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>网站审计</t-zh><t-en>Site audit</t-en></b></td><td class="w"><t-zh>38 个页面缺少描述</t-zh><t-en>38 pages without a description</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>来自同一个模板，一次就能修好</t-zh><t-en>One template causes them all; one fix covers them</t-en></span></td><td><span class="tag violet"><t-zh>技术修复</t-zh><t-en>Technical fix</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>竞品动态</t-zh><t-en>Competitors</t-en></b></td><td class="w"><t-zh>Nimbus 近 7 天新增 3 个对比页</t-zh><t-en>Nimbus added 3 comparison pages in 7 days</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>先观察：看这些页面是否排到我们的关键词</t-zh><t-en>Watch first: see whether they rank for our keywords</t-en></span></td><td><span class="tag grey"><t-zh>观察中 · 10-30 到期</t-zh><t-en>Watching · due 10-30</t-en></span></td><td style="color:var(--muted)"><t-zh>—</t-zh><t-en>—</t-en></td></tr></tbody></table></div>
+        <div class="tblw"><table class="tbl"><thead><tr><th><t-zh>来源</t-zh><t-en>Source</t-en></th><th><t-zh>发现了什么</t-zh><t-en>What changed</t-en></th><th><t-zh>AI 的判断</t-zh><t-en>AI’s read</t-en></th><th><t-zh>做法</t-zh><t-en>Playbook</t-en></th><th><t-zh>上线后对比</t-zh><t-en>Compared after launch</t-en></th></tr></thead><tbody><tr><td><b style="font-weight:600">Search Console</b></td><td class="w"><t-zh>「项目管理软件」平均排名 11 → 6，点击率 1.2%</t-zh><t-en>“Project management software” average position 11 → 6, 1.2% click rate</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>排名接近首页，标题和摘要没写清用途</t-zh><t-en>Close to page one, but the title and description don’t say what it is for</t-en></span></td><td><span class="tag violet"><t-zh>优化现有页面</t-zh><t-en>Improve existing page</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600">GA4</b></td><td class="w"><t-zh>定价页访问 4,820，比前 28 天多 35%</t-zh><t-en>Pricing page: 4,820 visits, up 35%</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>来的人多了，页面缺少能帮人下决定的客户案例</t-zh><t-en>More people arrive, and the page lacks customer stories to help them decide</t-en></span></td><td><span class="tag violet"><t-zh>优化现有页面</t-zh><t-en>Improve existing page</t-en></span></td><td style="color:var(--muted)"><t-zh>浏览量</t-zh><t-en>Views</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>论坛</t-zh><t-en>Forum</t-en></b></td><td class="w"><t-zh>近 14 天 5 个主题问怎么导入 Excel</t-zh><t-en>5 topics in 14 days ask how to import from Excel</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>有真实需求，网站上还没有教程</t-zh><t-en>A real need, and no tutorial on the site</t-en></span></td><td><span class="tag violet"><t-zh>写博客文章</t-zh><t-en>Write blog post</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>AI 搜索</t-zh><t-en>AI search</t-en></b></td><td class="w"><t-zh>AI 回答「最好用的项目管理软件有哪些？」时提到 2 个竞品，没有提到你</t-zh><t-en>AI answers “best project management software?” name two competitors, not you</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>缺一页 AI 能引用的推荐和对比内容</t-zh><t-en>No page AI could cite for a recommendation</t-en></span></td><td><span class="tag violet"><t-zh>内容选题与大纲</t-zh><t-en>Content topic and outline</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600">Reddit</b></td><td class="w"><t-zh>有人在比较你和一个竞品，2 天 46 条评论</t-zh><t-en>A thread compares you with a competitor: 46 comments in 2 days</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>还没有官方回复，值得说明差别</t-zh><t-en>No official reply yet; worth explaining the difference</t-en></span></td><td><span class="tag violet"><t-zh>起草社区回复</t-zh><t-en>Draft community replies</t-en></span></td><td style="color:var(--muted)"><t-zh>不做数据对比</t-zh><t-en>Not compared</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>网站审计</t-zh><t-en>Site audit</t-en></b></td><td class="w"><t-zh>38 个页面缺少描述</t-zh><t-en>38 pages without a description</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>来自同一个模板，一次就能修好</t-zh><t-en>One template causes them all; one fix covers them</t-en></span></td><td><span class="tag violet"><t-zh>技术修复</t-zh><t-en>Technical fix</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>竞品动态</t-zh><t-en>Competitors</t-en></b></td><td class="w"><t-zh>一个竞品近 7 天新增 3 个对比页</t-zh><t-en>A competitor added 3 comparison pages in 7 days</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>先观察：看这些页面是否排到我们的关键词</t-zh><t-en>Watch first: see whether they rank for our keywords</t-en></span></td><td><span class="tag grey"><t-zh>观察中 · 10-30 到期</t-zh><t-en>Watching · due 10-30</t-en></span></td><td style="color:var(--muted)"><t-zh>—</t-zh><t-en>—</t-en></td></tr></tbody></table></div>
       </div></div></div></div></div></div>
       <div class="feat">
         <div>
           <h3><t-zh>看到值得做的，也能直接交给 Agent。</t-zh><t-en>See something worth doing? Hand it off right there.</t-en></h3>
           <p><t-zh>比如 AI 搜索：追踪 ChatGPT 和 Google AI 概览怎么回答你所在领域的问题，提到了谁、引用了哪些网站。勾选别人出现、你没有的问题，直接交给 Agent。</t-zh><t-en>Take AI search: it tracks how ChatGPT and Google AI Overviews answer questions in your field, which brands they mention and which sites they cite. Tick the questions where others appear and you don’t, and hand them to an agent.</t-en></p>
         </div>
-        <div class="sheet app-shot"><t-zh><img src="assets/reach/aisearch-zh.jpg" alt="NocoReach AI 搜索页：勾选的问题交给 Agent" width="840" height="761" loading="lazy"></t-zh><t-en><img src="assets/reach/aisearch-en.jpg" alt="NocoReach AI search: questions ticked and handed to an agent" width="840" height="761" loading="lazy"></t-en></div>
+        <div class="sheet app-shot"><t-zh><img src="assets/reach/aisearch-zh.webp" alt="NocoReach AI 搜索页：勾选的问题交给 Agent" width="840" height="761" loading="lazy"></t-zh><t-en><img src="assets/reach/aisearch-en.webp" alt="NocoReach AI search: questions ticked and handed to an agent" width="840" height="761" loading="lazy"></t-en></div>
       </div>
       <div class="feat rev">
         <div>
           <h3><t-zh>交给 Agent，一次接好。</t-zh><t-en>Let an agent connect them all at once.</t-en></h3>
           <p><t-zh>不用一个个接入。把指引复制给你电脑上的 Claude Code 或 Codex，它会调研你的网站和仓库，列出接入计划，你确认后一次接好。授权和 token 仍由你在浏览器里填写。</t-zh><t-en>No need to connect sources one by one. Copy the instructions to Claude Code or Codex on your computer: it researches your site and repositories, proposes a plan, and connects everything once you confirm. Authorizations and tokens stay in your browser.</t-en></p>
         </div>
-        <div class="sheet app-shot"><t-zh><img src="assets/reach/connect-zh.jpg" alt="交给电脑上的 Agent：终端里的接入计划和接好的数据源" width="620" height="790" loading="lazy"></t-zh><t-en><img src="assets/reach/connect-en.jpg" alt="An agent on your computer connects the data sources from its plan" width="620" height="790" loading="lazy"></t-en></div>
+        <div class="sheet app-shot"><t-zh><img src="assets/reach/connect-zh.webp" alt="交给电脑上的 Agent：终端里的接入计划和接好的数据源" width="620" height="790" loading="lazy"></t-zh><t-en><img src="assets/reach/connect-en.webp" alt="An agent on your computer connects the data sources from its plan" width="620" height="790" loading="lazy"></t-en></div>
       </div>
       <div class="feat">
         <div>
@@ -227,7 +278,7 @@
             <li><t-zh>自托管，数据存放在你自己的服务器上</t-zh><t-en>Self-hosted, so your data stays on your own servers</t-en></li>
           </ul>
         </div>
-        <div class="sheet app-shot"><t-zh><img src="assets/reach/health-zh.jpg" alt="NocoReach 数据健康：需要留意的来源和各来源的同步状态" width="780" height="591" loading="lazy"></t-zh><t-en><img src="assets/reach/health-en.jpg" alt="NocoReach data health: what needs attention and every source’s sync state" width="780" height="591" loading="lazy"></t-en></div>
+        <div class="sheet app-shot"><t-zh><img src="assets/reach/health-zh.webp" alt="NocoReach 数据健康：需要留意的来源和各来源的同步状态" width="780" height="591" loading="lazy"></t-zh><t-en><img src="assets/reach/health-en.webp" alt="NocoReach data health: what needs attention and every source’s sync state" width="780" height="591" loading="lazy"></t-en></div>
       </div>
     </div>
   </div>
@@ -257,7 +308,7 @@
 <div class="container">
   <div class="band">
     <div><h2><t-zh>发现机会，执行落地，跟踪效果。</t-zh><t-en>Find opportunities. Put them into action. Track the impact.</t-en></h2><p><t-zh>在线体验 NocoReach，或到 GitHub 获取源码自行部署。开源免费、私有部署，模型与 Agent 自由选择。</t-zh><t-en>Try NocoReach online, or get the source on GitHub and run it yourself. Open source and free, self-hosted, with the models and agents of your choice.</t-en></p></div>
-    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up-right"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoReach" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
+    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoReach" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
   </div>
 </div>
 </main>
@@ -270,9 +321,9 @@
   var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
   var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
   var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
-  // The demo cannot sign in inside a frame yet (its session cookie is SameSite=Lax, which a frame on another site does not
-  // keep), so Try It Online opens it in a new tab and the section stays hidden; ?demo=frame shows the frame for testing.
-  var FRAME = /[?&]demo=frame\b/.test(location.search);
+  // The demo signs in inside the frame once its session cookies are SameSite=None, Secure and Partitioned (a frame on
+  // another site does not keep SameSite=Lax ones); ?demo=tab opens it in a new tab instead, as a phone does.
+  var FRAME = !/[?&]demo=tab\b/.test(location.search);
   var status = {}, shown = false, scrolling = false;
   function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }
@@ -322,6 +373,23 @@
   start();
   check();
   new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>
+<script>
+/* NocoReach intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Simplified Chinese page and the English one in every other language, until each has its own; switching the language puts the cover back. */
+(function () {
+  var box = document.getElementById('introVideo'), cover = box.innerHTML;
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
+  box.addEventListener('click', function (e) {
+    if (!e.target.closest('#introPlay')) return;
+    var l = lang();
+    box.innerHTML = '<video src="assets/video/nocoreach-intro-' + l + '.mp4" poster="assets/video/nocoreach-intro-' + l + '.jpg" controls controlslist="nodownload" autoplay playsinline></video>';
+  });
+  new MutationObserver(function () {
+    if (!box.querySelector('video')) return;
+    box.innerHTML = cover;
+    if (window.lucide) window.lucide.createIcons();
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 })();
 </script>
 </body>

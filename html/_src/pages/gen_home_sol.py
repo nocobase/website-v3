@@ -76,8 +76,8 @@ itam = win('monitor-smartphone', 'ITAM', '价值', 'Value', re.sub(r'<tr><td cla
 # NocoReach: the Insights page itself, as the Reach page shows it (assets/reach/, drawn by _src/reach/figs.html with the
 # product's own stylesheet and the Acme example of the NocoReach film); today's daily analysis and the decisions it asks for
 reach = ('<div class="sx solo" style="padding:0;overflow:hidden">' +
-         T('<img src="assets/reach/insights-zh.jpg" alt="NocoReach 洞察页" width="1280" height="720" style="display:block;width:100%;height:auto">',
-           '<img src="assets/reach/insights-en.jpg" alt="NocoReach Insights" width="1280" height="720" style="display:block;width:100%;height:auto">') + '</div>')
+         T('<img src="assets/reach/insights-zh.webp" alt="NocoReach 洞察页" width="1280" height="720" style="display:block;width:100%;height:auto">',
+           '<img src="assets/reach/insights-en.webp" alt="NocoReach Insights" width="1280" height="720" style="display:block;width:100%;height:auto">') + '</div>')
 
 # ---------- 还没上线的三款：没有内页可取，按前三款的思路画——Agent 做了什么，留给人拍板的是哪几件 ----------
 BOT = '<span class="ag"><i data-lucide="bot"></i></span>'

@@ -1,7 +1,8 @@
 // Capture the NocoReach page's product figures (figs.html) in headless Chrome, both languages, at twice their size:
 //   node _src/reach/shoot.mjs [figure ...]        (from html/; no names = every figure)
-// Writes assets/reach/<figure>-<zh|en>.jpg. Needs Google Chrome; set CHROME to use another binary.
-import { spawn } from 'node:child_process';
+// Writes assets/reach/<figure>-<zh|en>.webp, lossless so the product's text stays sharp (PNG from Chrome, then cwebp).
+// Needs Google Chrome (set CHROME for another binary) and cwebp (set CWEBP).
+import { spawn, execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -10,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.resolve(DIR, '../../assets/reach');
 const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const CWEBP = process.env.CWEBP || 'cwebp';
 const ALL = ['insights', 'opportunities', 'review', 'replies', 'revise', 'playbook', 'tasks', 'results', 'aisearch', 'connect', 'health'];
 const figs = process.argv.slice(2).length ? process.argv.slice(2) : ALL;
 fs.mkdirSync(OUT, { recursive: true });
@@ -36,9 +38,10 @@ for (const fig of figs) for (const lang of ['zh', 'en']) {
   if (!ok) { console.log('not ready:', fig, lang); continue; }
   await new Promise((r) => setTimeout(r, 300));
   const b = await js(`(() => { const r = document.getElementById('shot').getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height }; })()`);
-  const shot = await send('Page.captureScreenshot', { format: 'jpeg', quality: 86, captureBeyondViewport: true, clip: { x: b.x, y: b.y, width: b.w, height: b.h, scale: 1 } });
-  const file = path.join(OUT, `${fig}-${lang}.jpg`);
-  fs.writeFileSync(file, Buffer.from(shot.data, 'base64'));
+  const shot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true, clip: { x: b.x, y: b.y, width: b.w, height: b.h, scale: 1 } });
+  const png = path.join(prof, `${fig}-${lang}.png`), file = path.join(OUT, `${fig}-${lang}.webp`);
+  fs.writeFileSync(png, Buffer.from(shot.data, 'base64'));
+  execFileSync(CWEBP, ['-quiet', '-lossless', '-z', '6', png, '-o', file]);
   console.log('wrote', path.relative(process.cwd(), file), `${Math.round(b.w)}×${Math.round(b.h)}`, Math.round(fs.statSync(file).size / 1024) + ' KB');
 }
 if (errs.length) console.log('errors:', errs);

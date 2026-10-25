@@ -193,15 +193,20 @@
      </div>`));
   } };
 
+  // the top of a task page: number and title, its status, and its steps
+  const TASKHEAD = (tid, title, status, steps) => {
+    const STAG = (state, tone, text, first) => `<li class="flex items-center gap-1">${first ? '' : '<i data-lucide="chevron-right" class="size-3 text-muted-foreground"></i>'}<span data-slot="tag" class="inline-flex w-fit shrink-0 items-center gap-1 rounded-full px-2 py-0 badge-text font-medium whitespace-nowrap [&_svg]:size-3 [&_svg]:shrink-0 bg-nr-tint-${tone} text-nr-ink-${tone} ${state === 'current' ? 'ring-1 ring-current' : ''}">${state === 'done' ? '<i data-lucide="check"></i>' : state === 'current' ? '<span class="size-1.5 shrink-0 rounded-full bg-current"></span>' : ''}${text}</span></li>`;
+    return `<header class="flex flex-col gap-2"><div class="flex items-start justify-between gap-3"><h1 class="font-heading text-xl font-semibold tracking-tight min-w-0 break-words"><span class="mr-2 text-muted-foreground">${tid}</span>${title}</h1><div class="flex shrink-0 items-center gap-1 pt-1">${status}</div></div><ol class="nr-td-stepbar flex flex-wrap items-center gap-1">${steps.map((x, i) => STAG(x[0], x[1], x[2], i === 0)).join('')}</ol></header>`;
+  };
+
   // reply drafts, accepted: you copy each one into its thread (NocoReach posts nowhere)
   F.replies = { w: 680, h: 500, html: () => {
     const REPLY = (title, asking, reply, refs) => `<section class="min-w-0 max-w-full py-4 text-sm first:pt-0 last:pb-0"><h3 class="font-heading text-sm font-semibold">${title}</h3><p class="mt-1 text-sm text-muted-foreground">${L('在问：', 'Asking: ')}${asking}</p><div class="mt-2 min-w-0 border-l-2 pl-3"><p class="leading-relaxed">${reply}</p></div>
       <div class="mt-2 flex flex-wrap items-center gap-2">${BTN_SM(L('复制 Markdown 原文', 'Copy Markdown source'), '', 'copy')}${BTN_SM(L('打开原帖', 'Open post') + '<i data-lucide="external-link"></i>', 'ghost')}<span class="min-w-0 text-sm text-muted-foreground">${L('引用：', 'References: ')}${refs}</span></div></section>`;
-    return PAGE(`<section class="flex min-w-0 flex-col rounded-lg border bg-card text-card-foreground nr-td-now">
+    return PAGE(`${TASKHEAD('T-28', L('回复论坛里 3 个没人回的帖子', 'Reply to 3 unanswered forum posts'), DOT_TAG('green', L('已完成', 'Done')), [['done', 'green', L('Agent 起草回复', 'Agent Draft replies')], ['done', 'green', L('你审核', 'Review (you)')]])}<section class="flex min-w-0 flex-col rounded-lg border bg-card text-card-foreground nr-td-now">
       <header class="flex flex-wrap items-start justify-between gap-x-4 gap-y-3 p-4"><div class="flex min-w-0 flex-col gap-1"><h2 class="font-heading text-sm font-semibold">${L('回复草稿已通过', 'Reply drafts approved')}</h2><div class="text-sm text-muted-foreground">${L('逐条复制，去原帖回复。NocoReach 不会替你发帖。', 'Copy each one into its thread. NocoReach never posts for you.')}</div></div></header>
       <div class="flex min-w-0 flex-col px-4 pb-4 pt-0"><div class="flex min-w-0 max-w-full flex-col divide-y">
        ${REPLY(L('怎么把 Excel 里的任务导入 Acme？', 'How do I import my tasks from Excel?'), L('有一个 200 行的项目计划表，想整体导入，保留负责人和截止日期。', 'A 200-row project plan, imported in one go, keeping owners and due dates.'), L('可以整体导入：在项目里点「导入」，选择 Excel 文件，确认每一列对应的字段，负责人和截止日期都会带过来。完整步骤见教程《从 Excel 导入任务到 Acme》。', 'Yes. In the project, click Import, choose the Excel file and confirm the field for each column; owners and due dates come along. The full steps are in the tutorial “Import your tasks from Excel into Acme”.'), L('帮助中心《导入数据》', 'Help center: Importing data'))}
-       ${REPLY(L('截止日期导入后差了一天', 'Due dates are a day off after the import'), L('表里的日期导入后都提前了一天。', 'Every date in the sheet came in a day early.'), L('导入时会按项目设置的时区换算日期。先在「项目设置」里把时区改成你所在的时区，再重新导入。', 'Dates are converted to the project’s time zone on import. Set the time zone in Project settings to yours, then import again.'), L('帮助中心《时区与日期》', 'Help center: Time zones and dates'))}
        ${REPLY(L('导入后负责人一栏是空的', 'Owners are empty after the import'), L('表里写的是中文姓名，导入后负责人没有对上。', 'The sheet has people’s names, and the owners didn’t match after the import.'), L('负责人按成员的显示名匹配。先在「成员」里确认显示名和表里一致，再重新导入；对不上的行会在导入预览里标出来。', 'Owners are matched by members’ display names. Check that the names in Members match the sheet, then import again; rows that don’t match are flagged in the import preview.'), L('帮助中心《成员与显示名》', 'Help center: Members and display names'))}
       </div></div></section>`, 'nr-pad-0');
   } };
@@ -209,7 +214,7 @@
   // asking for changes: what you want different, and the agent works it in
   F.revise = { w: 680, h: 500, html: () => {
     const SEGI = 'inline-flex h-8 items-center gap-1.5 px-3 text-sm whitespace-nowrap text-muted-foreground tabular-nums aria-pressed:bg-muted aria-pressed:font-medium aria-pressed:text-foreground';
-    return PAGE(`<section class="flex min-w-0 flex-col rounded-lg border bg-card text-card-foreground nr-td-now">
+    return PAGE(`${TASKHEAD('T-34', L('写一篇导入 Excel 的教程', 'Write a tutorial on importing from Excel'), DOT_TAG('violet', L('待确认', 'Needs you')), [['done', 'green', L('Agent 修改', 'Agent Change')], ['current', 'violet', L('你审核', 'Review (you)')], ['todo', 'grey', L('发布上线', 'Publish')], ['todo', 'grey', L('观察', 'Watch')]])}<section class="flex min-w-0 flex-col rounded-lg border bg-card text-card-foreground nr-td-now">
       <header class="flex flex-wrap items-start justify-between gap-x-4 gap-y-3 p-4"><div class="flex min-w-0 flex-[1_1_16rem] flex-col gap-1"><h2 class="font-heading text-sm font-semibold">${L('文章改动已就绪，确认后发布', 'The article is ready. Publish it once you approve')}</h2><div class="text-sm text-muted-foreground">Claude Code · ${L('第 1 版 · 今天 10:24', 'version 1 · today 10:24')}</div></div>
        <div class="flex flex-wrap items-center gap-2">${BTN(L('通过并发布', 'Approve and publish'), 'primary', 'check')}${BTN(L('提修改意见', 'Request changes'))}</div></header>
       <div class="flex min-w-0 flex-col px-4 pb-4 pt-0 gap-4">

@@ -70,3 +70,5 @@ description: NocoITAM est une solution open source de gestion du parc informatiq
 057: Choisissez un modèle par agent et suivez la consommation. Besoin de champs, workflows ou rapports sur mesure ? Demandez à un agent de code de modifier le code source dans Studio : open source, auto-hébergé, et à vous.
 058: Moins de rapprochements pour l’IT, une vision claire de chaque actif.
 059: Essayez NocoITAM en ligne, ou récupérez le code source sur GitHub et faites-le tourner vous-même. Connectez votre MDM, importez vos actifs et laissez les agents commencer les rapprochements.
+061: Professional
+062: Choisissez un modèle par agent et suivez la consommation. Besoin de champs, workflows ou rapports sur mesure ? Demandez à un agent de code de modifier le code source dans Studio : inclus dans Professional, auto-hébergé, et à vous.

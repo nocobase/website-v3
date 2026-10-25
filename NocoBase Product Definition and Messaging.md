@@ -103,7 +103,7 @@ Your team is already developing with AI or vibe coding. Code gets written fast, 
 
 ### Standard description
 
-> NocoBase Solution is a line of agent-driven business apps built on Core. Traditional business software depends on people to record data, route work, and handle every step by hand. In NocoBase Solution, agents do most of that work: researching customers, drafting emails, reconciling asset records, handling support tickets, and finding SEO and GEO opportunities, acting on them, and tracking the results. When something needs a decision, the agent hands it to the person responsible, with detailed supporting evidence, for the final call. The sales, growth, and project apps are free and open source, and the IT asset, support, and HR apps come with the commercial editions. Install and use any of them as they are, or have a coding agent tailor them to your business.
+> NocoBase Solution is a line of agent-driven business apps built on Core. Traditional business software depends on people to record data, route work, and handle every step by hand. In NocoBase Solution, agents do most of that work: researching customers, drafting emails, reconciling asset records, handling support tickets, and finding SEO and GEO opportunities, acting on them, and tracking the results. When something needs a decision, the agent hands it to the person responsible, with detailed supporting evidence, for the final call. Solution apps are free and open source. Install and use them as they are, or have a coding agent tailor them to your business.
 
 ### Key features
 
@@ -113,15 +113,15 @@ Your team is already developing with AI or vibe coding. Code gets written fast, 
   - Agents show the evidence behind their work, and key decisions are always made by a person. Each agent inherits the permissions of the person it works for, so data stays secure.
 - **Easy to customize**
   - Every app is built on NocoBase Core, with its consistent architecture and reliable foundation, so you can have a coding agent customize it.
-- **Start with open source, ready to use**
-  - NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.
+- **Free, open source, ready to use**
+  - Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.
 
 ## Open source and self-hosting
 
-> Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.
+> Core and Solution are free and open source. Studio is available in the commercial editions.
 
 - **Free and open source**
-  - Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.
+  - Core and every Solution app are free, open source, and ready for production.
 - **Self-hosted**
   - Core, Solution, and Studio all run on your own servers. Your code and data belong to you.
 - **Your choice of models and agents**

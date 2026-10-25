@@ -66,3 +66,11 @@ description: NocoBase Solution est une gamme d’applications métier pilotées 
 079: Voir les applications
 082: Découvrir Core
 086: Découvrir Studio
+087: NocoCRM et d’autres, gratuites et open source
+088: CRM commercial · Open source · Beta
+089: Gestion du parc informatique · Professional · Beta
+090: Croissance · Open source · Alpha
+091: Support · Professional · Bientôt
+092: Projets · Open source · Bientôt
+093: RH · Professional · Bientôt
+094: L’open source pour démarrer, <span class="m">prêt à l’emploi.</span>

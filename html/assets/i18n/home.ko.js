@@ -88,6 +88,8 @@
 "Agents show the evidence behind their work, and key decisions are always made by a person. Each agent inherits the permissions of the person it works for, so data stays secure.": "에이전트의 작업 결과에는 근거가 첨부되고, 중요한 결정은 반드시 사람이 내립니다. 에이전트는 담당자의 권한을 이어받아 데이터를 안전하게 지킵니다.",
 "Easy to customize": "쉬운 맞춤 개발",
 "Every app is built on NocoBase Core, with its consistent architecture and reliable foundation, so you can have a coding agent customize it.": "NocoBase Core로 개발되어 통일된 아키텍처와 신뢰할 수 있는 기반을 갖추고 있어, 코딩 에이전트에게 맞춤 개발을 맡길 수 있습니다.",
+"Free, open source, ready to use": "무료 오픈소스, 바로 사용",
+"Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.": "모든 Solution은 무료 오픈소스이며, 기업의 자체 서버에 배포하고 모델도 자유롭게 선택할 수 있습니다.",
 "View All Solution Apps": "모든 Solution 보기",
 "How is NocoBase different from vibe coding?": "NocoBase와 바이브 코딩은 무엇이 다른가요?",
 "AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.": "권한, 워크플로, 승인 같은 기반 모듈을 프로젝트마다 AI가 처음부터 생성합니다. 비용이 크고 신뢰성을 보장하기 어렵습니다.",
@@ -97,11 +99,13 @@
 "Open Source &amp; Self-Hosting": "오픈소스와 셀프 호스팅",
 "Free, open source, self-hosted.<br>": "무료 오픈소스, 셀프 호스팅.<br>",
 "Your code and data belong to you.": "코드와 데이터는 기업의 소유입니다.",
+"Core and Solution are free and open source. Studio is available in the commercial editions.": "Core와 Solution은 무료 오픈소스이며, Studio는 상용 에디션에서 제공합니다.",
 "Contributors": "기여자",
 "Downloads": "누적 다운로드",
 "3M+": "300만+",
 "View on GitHub": "GitHub에서 소스 보기",
 "Free and open source": "무료 오픈소스",
+"Core and every Solution app are free, open source, and ready for production.": "Core와 모든 Solution은 무료 오픈소스이며, 그대로 프로덕션에 사용할 수 있습니다.",
 "Self-hosted": "셀프 호스팅",
 "Core, Solution, and Studio all run on your own servers. Your code and data belong to you.": "Core, Solution, Studio 모두 기업의 자체 서버에 배포되며, 코드와 데이터는 기업이 소유합니다.",
 "Your choice of models and agents": "모델과 에이전트를 자유롭게 선택",
@@ -212,11 +216,6 @@
 "Know-how": "지식 축적",
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 사람과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다.",
-"Deliver more client projects with an agent team": "에이전트 팀과 함께 더 많은 고객 프로젝트를 수행하세요",
-"Start with open source, ready to use": "오픈소스로 시작, 바로 사용",
-"NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.": "NocoCRM, NocoReach, NocoProject는 무료 오픈소스이며, NocoITAM, NocoSupport, NocoHR는 상용 에디션에서 제공합니다. 모든 앱은 기업의 자체 서버에 배포하고 모델도 자유롭게 선택할 수 있습니다.",
-"Start Open Source": "오픈소스로 시작",
-"Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.": "Core와 NocoCRM 등 Solution 앱은 무료 오픈소스이며, Studio와 NocoITAM 등 Solution 앱은 상용 에디션에서 제공합니다.",
-"Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.": "Core, NocoCRM, NocoReach, NocoProject는 무료 오픈소스이며, 그대로 프로덕션에 사용할 수 있습니다."
+"Deliver more client projects with an agent team": "에이전트 팀과 함께 더 많은 고객 프로젝트를 수행하세요"
 }
 };

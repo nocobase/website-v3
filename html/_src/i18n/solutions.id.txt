@@ -66,3 +66,11 @@ description: NocoBase Solution adalah rangkaian aplikasi bisnis yang digerakkan 
 079: Lihat aplikasi
 082: Pelajari Core
 086: Pelajari Studio
+087: NocoCRM dan lainnya, gratis dan open source
+088: CRM penjualan · Open source · Beta
+089: Manajemen aset TI · Professional · Beta
+090: Pertumbuhan · Open source · Alpha
+091: Dukungan · Professional · Segera
+092: Proyek · Open source · Segera
+093: SDM · Professional · Segera
+094: Mulai dengan open source, <span class="m">siap pakai.</span>

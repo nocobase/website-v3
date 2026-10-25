@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
-"""子页面的其他语言（目前是 Solution 总览、NocoCRM、NocoITAM 三页）。在 _src 目录下运行：
+"""子页面的其他语言（Core、Studio、Solution 总览、NocoCRM、NocoITAM、定价、成为伙伴、寻找伙伴、联系我们）。在 _src 目录下运行：
 
-  python3 i18n/pages.py extract ..   抽取要翻译的条目，更新 <组>.keys.json
+  python3 i18n/pages.py extract ..   抽取要翻译的条目，更新 <组>.keys.json；繁体中文的界面文字写进 <组>.ui.zh-TW.json（需要 macOS 的 swift）
   python3 i18n/pages.py build ..     检查译文，生成 assets/i18n/<组>.<语言>.js
 
-条目分三组：
-- site：顶部导航和页脚，写在 assets/site.js 的 T(zh, en) 里，所有接入的页面共用；
-- solutions、crm、itam：各页正文里的 <t-en>，以及页面标题和描述（title、description）。
-界面示意图（.fit-in 里的内容）不抽取：产品界面只有中文和英文，其他语言都显示英文界面，和首页一致。
+页面接入：正文头部写 i18n: <组名>（pages/wrap.py 据此生成按需加载译文的 head），再把组名和页面加进下面的 PAGES。
+NocoCRM、NocoITAM 的成品页比正文源新，不经 wrap.py，head 直接写在成品页里。
+
+条目分组：
+- site：顶部导航和页脚，写在 assets/site.js 的 T(zh, en) 里；表单的提示语，写在 assets/public-form.js 的 T(zh, en) 里。所有接入的页面共用；
+- 各页：正文里的 <t-en>，表单上 data-ph-en、data-text-en、data-ok-en 的英文（输入框占位、选项、提交成功的提示），
+  联系页下拉选项（FORM_OPTIONS，取自 NocoBase 2 英文表单的字段），以及页面标题和描述（title、description）。
+界面示意图（.fit-in 里的内容）不翻译，和首页一样：繁体中文显示繁体中文界面，其他语言显示英文界面。
+繁体中文的界面文字：抽取时收集 .fit-in 里含中文的文本节点，用 tw.py 转成繁体（台湾用语），写进 <组>.ui.zh-TW.json
+（已有的条目保留，可以手改；页面上已经没有的删掉），生成时放进 <组>.zh-TW.js 的 ui，assets/site.js 按文本节点替换。
+用语和首页一样换成台湾说法；NocoCRM、NocoITAM 两页按 ui-terms.md 只换字形（線索、審批），和这两页的正文一致。
 
 译文文件 <组>.<语言>.txt 的写法和首页的 home.<语言>.txt 相同：开头是这种语言的固定用语，每行「编号: 译文」，
 页面组另有 title、description 两行。和首页英文原文相同的条目，没写译文时沿用 home.<语言>.txt 的译文。
@@ -19,7 +26,15 @@ from pathlib import Path
 
 here = Path(__file__).resolve().parent
 site = Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else here.parent.parent
-PAGES = {'solutions': 'solutions.html', 'crm': 'solution-crm.html', 'itam': 'solution-itam.html'}
+PAGES = {'core': 'core.html', 'studio': 'studio.html', 'solutions': 'solutions.html', 'crm': 'solution-crm.html', 'itam': 'solution-itam.html',
+         'pricing': 'pricing.html', 'partner': 'partner.html', 'find-partner': 'find-partner.html', 'contact': 'contact.html'}
+# 联系页的两道选择题，选项由 public-form.js 从 NocoBase 2 的英文表单（service-en，ect266yzsld）读取：source、what_to_do 两个字段的 enum
+FORM_OPTIONS = {'contact': [
+    'Search Engine', 'GitHub', 'LinkedIn', 'Facebook', 'Instagram', 'TikTok', 'YouTube', 'X', 'Business Partner or Third-Party Recommendation',
+    'Friends/Colleagues', 'Reddit', 'Online Community', 'AI Chat', 'Article/Blog post', 'Hacker News', 'Product Hunt', 'Review Site', 'Others',
+    'Internal use for developing business systems or tools', 'Provide outsourcing services based on NocoBase',
+    'Develop commercial products based on NocoBase', 'Study or research',
+]}
 LANGS = ['es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko']
 
 
@@ -71,6 +86,13 @@ def page_items(name):
         if m.group(2):
             item['k'] = m.group(2)
         items.append(item)
+    # 表单：输入框占位、选项文字、提交成功的提示，由 public-form.js 按语言取用
+    for m in re.finditer(r'<[a-z]+\b[^>]*\bdata-(ph|text|ok)-en="([^"]*)"[^>]*>', src):
+        if m.start() < body or any(a <= m.start() < b for a, b in regions):
+            continue
+        zh = re.search(r'\bdata-%s-zh="([^"]*)"' % m.group(1), m.group(0))
+        items.append({'en': html.unescape(m.group(2)), 'zh': html.unescape(zh.group(1)) if zh else '', 'where': 'form'})
+    items += [{'en': en, 'zh': '', 'where': 'form-options'} for en in FORM_OPTIONS.get(name, [])]
     meta = {
         'title': re.search(r'<title data-zh="([^"]*)" data-en="([^"]*)"', src).groups(),
         'description': re.search(r'<meta name="description"[^>]*data-zh="([^"]*)" data-en="([^"]*)"', src).groups(),
@@ -79,11 +101,49 @@ def page_items(name):
 
 
 def site_items():
-    js = (site / 'assets' / 'site.js').read_text(encoding='utf8')
     unq = lambda x: x.replace("\\'", "'")
-    return [{'en': unq(e), 'zh': unq(z), 'where': 'site'}
-            for z, e in re.findall(r"\bT\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*\)", js)
-            if e != 'English' and z != 'Switch to English']
+    out = []
+    for f in ('site.js', 'public-form.js'):
+        js = (site / 'assets' / f).read_text(encoding='utf8')
+        out += [{'en': unq(e), 'zh': unq(z), 'where': 'site' if f == 'site.js' else 'form'}
+                for z, e in re.findall(r"\bT\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*\)", js)
+                if e != 'English' and z != 'Switch to English']
+    return out
+
+
+def ui_texts(name):
+    """界面示意图（.fit-in）里含中文（或 ¥）的文本节点，和浏览器里的文本节点一致（实体已解码）"""
+    src = (site / PAGES[name]).read_text(encoding='utf8')
+    found = []
+
+    class P(html.parser.HTMLParser):
+        def handle_data(self, data):
+            if re.search(r'[一-鿿¥]', data):
+                found.append(data)
+
+    for a, b in fit_regions(src):
+        p = P(convert_charrefs=True)
+        p.feed(src[a:b])
+        p.close()
+    return list(dict.fromkeys(found))
+
+
+def ui_tw(name):
+    from tw import CHARS, TERMS, convert, leftover
+    f = here / f'{name}.ui.zh-TW.json'
+    old = json.loads(f.read_text(encoding='utf8')) if f.exists() else {}
+    keys = ui_texts(name)
+    new = [k for k in keys if k not in old]
+    # 文本节点可能跨行：逐行转换后再拼回去
+    conv = {}
+    if new:
+        lines = [ln for k in new for ln in k.split('\n')]
+        out = iter(convert(lines, CHARS if name in ('crm', 'itam') else TERMS))
+        conv = {k: '\n'.join(next(out) for _ in k.split('\n')) for k in new}
+    ui = {k: old.get(k, conv.get(k)) for k in keys}
+    f.write_text(json.dumps(ui, ensure_ascii=False, indent=1) + '\n', encoding='utf8')
+    left = leftover([ln for v in ui.values() for ln in v.split('\n') if ln.strip()])
+    print(f'{name}.ui.zh-TW.json: {len(ui)} 条（新增 {len(new)}，删掉 {len(set(old) - set(ui))}）' + (f'，还有简体字：{left}' if left else ''))
 
 
 def extract():
@@ -112,6 +172,8 @@ def extract():
             out['meta'] = {k: {'zh': v[0], 'en': v[1]} for k, v in meta.items()}
         kp.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding='utf8')
         print(f'{group}: {len(keys)} 条，新增 {len(added)}，不再使用 {sum(1 for k in keys if k.get("unused"))}')
+    for name in PAGES:
+        ui_tw(name)
 
 
 def read_tr(f, lang):
@@ -179,6 +241,9 @@ def build():
                     print('  ' + p)
             strings = {item.get('k', item['en']): tr[f'{i:03d}'] for i, item in enumerate(keys) if f'{i:03d}' in tr and not item.get('unused')}
             page = f', p.pages[{json.dumps(group)}] = {json.dumps(meta, ensure_ascii=False)}' if group != 'site' else ''
+            uf = here / f'{group}.ui.zh-TW.json'
+            if lang == 'zh-TW' and uf.exists():
+                page += ', p.ui = Object.assign(p.ui || {}, %s)' % json.dumps(json.loads(uf.read_text(encoding='utf8')), ensure_ascii=False, indent=0)
             out = site / 'assets' / 'i18n' / f'{group}.{lang}.js'
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text('/* 由 _src/i18n/pages.py 从 %s.%s.txt 生成，不要直接修改 */\n'

@@ -73,3 +73,5 @@ description: NocoITAM es la gestión de activos de TI de código abierto sobre N
 057: Asigna modelos por agente y controla su uso. ¿Necesitas campos, flujos de trabajo o informes a medida? Pide a un agente de programación en Studio que modifique el código fuente: de código abierto, autoalojado y tuyo.
 058: Menos conciliaciones para TI y una visión clara de cada activo.
 059: Prueba NocoITAM en línea, o descarga el código fuente en GitHub y ejecútalo tú mismo. Conecta tu MDM, importa tus activos y deja que los agentes empiecen a conciliar.
+061: Professional
+062: Asigna modelos por agente y controla su uso. ¿Necesitas campos, flujos de trabajo o informes a medida? Pide a un agente de programación en Studio que modifique el código fuente: incluido en Professional, autoalojado y tuyo.

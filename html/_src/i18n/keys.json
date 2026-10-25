@@ -471,14 +471,12 @@
  {
   "en": "Free, open source, ready to use",
   "zh": "开源免费，开箱即用",
-  "where": "solutions",
-  "unused": true
+  "where": "solutions"
  },
  {
   "en": "Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.",
   "zh": "所有 Solution 均开源免费，部署在企业自己的服务器上，模型自由选择。",
-  "where": "solutions",
-  "unused": true
+  "where": "solutions"
  },
  {
   "en": "View All Solution Apps",
@@ -588,8 +586,7 @@
  {
   "en": "Core and Solution are free and open source. Studio is available in the commercial editions.",
   "zh": "Core 和 Solution 开源免费；Studio 在商业版中提供。",
-  "where": "open",
-  "unused": true
+  "where": "open"
  },
  {
   "en": "Contributors",
@@ -619,8 +616,7 @@
  {
   "en": "Core and every Solution app are free, open source, and ready for production.",
   "zh": "Core 和所有 Solution 开源免费，可以直接用于生产。",
-  "where": "open",
-  "unused": true
+  "where": "open"
  },
  {
   "en": "Self-hosted",
@@ -1204,12 +1200,14 @@
  {
   "en": "Start with open source, ready to use",
   "zh": "开源起步，开箱即用",
-  "where": "solutions"
+  "where": "solutions",
+  "unused": true
  },
  {
   "en": "NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.",
   "zh": "NocoCRM、NocoReach 和 NocoProject 开源免费，NocoITAM、NocoSupport 和 NocoHR 在商业版中提供。所有应用都部署在企业自己的服务器上，模型自由选择。",
-  "where": "solutions"
+  "where": "solutions",
+  "unused": true
  },
  {
   "en": "Core, Studio, and Solution apps such as NocoCRM are free, open source, and ready for production. The commercial editions add team- and organization-level governance, enterprise integration, more Solution apps, and official support.",
@@ -1250,16 +1248,19 @@
  {
   "en": "Start Open Source",
   "zh": "开源起步",
-  "where": "start"
+  "where": "start",
+  "unused": true
  },
  {
   "en": "Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.",
   "zh": "Core 和 NocoCRM 等 Solution 应用开源免费；Studio 和 NocoITAM 等 Solution 应用在商业版中提供。",
-  "where": "open"
+  "where": "open",
+  "unused": true
  },
  {
   "en": "Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.",
   "zh": "Core 以及 NocoCRM、NocoReach、NocoProject 开源免费，可以直接用于生产。",
-  "where": "open"
+  "where": "open",
+  "unused": true
  }
 ]

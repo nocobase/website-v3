@@ -1,7 +1,6 @@
 /* 由 _src/i18n/pages.py 从 site.id.txt 生成，不要直接修改 */
 (function (p) { p.strings = Object.assign(p.strings || {}, {
 "The open-source foundation for AI-built business systems": "Fondasi open source untuk sistem bisnis yang dibangun dengan AI",
-"The governance platform for teams building with agents": "Platform tata kelola untuk tim yang membangun dengan agen",
 "Agent-driven business apps": "Aplikasi bisnis yang digerakkan agen",
 "Sales · 6 Sales Agents": "Penjualan · 6 agen penjualan",
 "IT Asset Management · 3 IT Agents": "Manajemen aset TI · 3 agen TI",
@@ -28,7 +27,6 @@
 "Community": "Komunitas",
 "Ask questions and share patterns": "Bertanya dan berbagi praktik terbaik",
 "Contact Us": "Hubungi kami",
-"Sales, partnerships, and support": "Penjualan, kemitraan, dan dukungan",
 "Partners": "Mitra",
 "Find a Partner": "Cari mitra",
 "Get your system built and running with an expert": "Bangun dan jalankan sistem Anda bersama ahlinya",
@@ -44,5 +42,11 @@
 "License": "Lisensi",
 "Partner Program": "Program mitra",
 "Connect": "Kontak",
-"Forum": "Forum"
+"Forum": "Forum",
+"The governance platform for people and agents building software together": "Platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama",
+"Partnerships, product questions, and support": "Kemitraan, pertanyaan produk, dan dukungan",
+"Please choose at least one option": "Pilih setidaknya satu opsi",
+"Submitting…": "Mengirim…",
+"Thanks! We’ve received your request and will be in touch soon.": "Terima kasih! Kami sudah menerima permintaan Anda dan akan segera menghubungi Anda.",
+"Something went wrong. Please try again, or email {mail}.": "Terjadi kesalahan. Coba lagi, atau kirim email ke {mail}."
 }); p.pages = p.pages || {}; })((window.NB_I18N = window.NB_I18N || {})["id"] = (window.NB_I18N || {})["id"] || {});

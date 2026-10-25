@@ -9,7 +9,7 @@ description: 全站统一的用词。文档、官网、产品界面和命令行�
 | --- | --- |
 | NocoBase Core | 开发和运行业务系统的开源底座，一组 npm 包 |
 | NocoBase Studio | 人带领 Agent 团队开发应用的工作台，在商业版中提供 |
-| NocoBase Solutions | 基于 NocoBase 开发的业务应用。NocoCRM、NocoReach、NocoProject 开源，NocoITAM、NocoSupport、NocoHR 在商业版中提供 |
+| NocoBase Solutions | 基于 NocoBase 开发的开源业务应用，例如 NocoCRM、NocoITAM |
 | Agent | AI 执行者的统称。一个编码工具加一个模型，例如“Claude · Opus 5.5”。不用“智能体”“代理”“Coding Agent” |
 | 编码工具 | Claude Code、Codex、OpenCode、Cursor 等 |
 | 业务 Agent | 在应用里、按权限处理业务的 Agent，由 Agents 插件接入。NocoBase 2 中称“AI 员工” |

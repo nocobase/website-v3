@@ -71,3 +71,5 @@ description: NocoITAM é a gestão de ativos de TI open source construída sobre
 057: Defina o modelo de cada agente e acompanhe o uso. Precisa de campos, workflows ou relatórios personalizados? Peça a um agente de código no Studio para alterar o código-fonte: open source, auto-hospedado e seu.
 058: Menos conciliação para a TI, uma visão clara de cada ativo.
 059: Experimente o NocoITAM online ou baixe o código-fonte no GitHub e rode por conta própria. Conecte seu MDM, importe seus ativos e deixe os agentes começarem a conciliar.
+061: Professional
+062: Defina o modelo de cada agente e acompanhe o uso. Precisa de campos, workflows ou relatórios personalizados? Peça a um agente de código no Studio para alterar o código-fonte: incluído no Professional, auto-hospedado e seu.

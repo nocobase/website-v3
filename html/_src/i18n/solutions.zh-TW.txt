@@ -65,3 +65,11 @@ description: NocoBase Solution 是由 Agent 驅動、以 Core 打造的一系列
 079: 瀏覽應用
 082: 了解 Core
 086: 了解 Studio
+087: NocoCRM 等應用開源免費
+088: 銷售管理 · 開源 · Beta
+089: IT 資產管理 · 專業版 · Beta
+090: 內容與成長 · 開源 · Alpha
+091: 客戶服務 · 專業版 · 即將推出
+092: 專案協作 · 開源 · 即將推出
+093: 人資管理 · 專業版 · 即將推出
+094: 開源起步，<span class="m">開箱即用。</span>

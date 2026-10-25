@@ -88,6 +88,8 @@
 "Agents show the evidence behind their work, and key decisions are always made by a person. Each agent inherits the permissions of the person it works for, so data stays secure.": "Kết quả làm việc của agent luôn kèm căn cứ, quyết định then chốt bắt buộc do con người đưa ra. Agent kế thừa quyền của người phụ trách, đảm bảo an toàn dữ liệu.",
 "Easy to customize": "Dễ tùy biến",
 "Every app is built on NocoBase Core, with its consistent architecture and reliable foundation, so you can have a coding agent customize it.": "Xây dựng trên NocoBase Core với kiến trúc thống nhất và nền móng tin cậy, bạn có thể để coding agent tùy biến theo nhu cầu.",
+"Free, open source, ready to use": "Miễn phí, mã nguồn mở, dùng được ngay",
+"Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.": "Mọi ứng dụng NocoBase Solution đều miễn phí và mã nguồn mở, triển khai trên máy chủ của bạn, tự do chọn model.",
 "View All Solution Apps": "Xem tất cả ứng dụng",
 "How is NocoBase different from vibe coding?": "NocoBase khác vibe coding ở điểm nào?",
 "AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.": "Phân quyền, workflow, phê duyệt và các module nền tảng khác đều do AI tạo lại từ đầu ở mỗi dự án. Tốn kém và khó đảm bảo tin cậy.",
@@ -97,11 +99,13 @@
 "Open Source &amp; Self-Hosting": "Mã nguồn mở &amp; tự triển khai",
 "Free, open source, self-hosted.<br>": "Miễn phí, mã nguồn mở, tự triển khai.<br>",
 "Your code and data belong to you.": "Code và dữ liệu thuộc về bạn.",
+"Core and Solution are free and open source. Studio is available in the commercial editions.": "Core và Solution miễn phí, mã nguồn mở. Studio có trong các phiên bản thương mại.",
 "Contributors": "Người đóng góp",
 "Downloads": "Lượt tải",
 "3M+": "3 triệu+",
 "View on GitHub": "Xem trên GitHub",
 "Free and open source": "Miễn phí và mã nguồn mở",
+"Core and every Solution app are free, open source, and ready for production.": "Core và mọi ứng dụng Solution đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production.",
 "Self-hosted": "Tự triển khai",
 "Core, Solution, and Studio all run on your own servers. Your code and data belong to you.": "Core, Solution và Studio đều triển khai trên máy chủ của bạn. Code và dữ liệu thuộc về bạn.",
 "Your choice of models and agents": "Tự do chọn model và agent",
@@ -212,11 +216,6 @@
 "Know-how": "Tích lũy tri thức",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.",
-"Deliver more client projects with an agent team": "Bàn giao nhiều dự án khách hàng hơn cùng một đội agent",
-"Start with open source, ready to use": "Khởi đầu với mã nguồn mở, dùng được ngay",
-"NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.": "NocoCRM, NocoReach và NocoProject miễn phí, mã nguồn mở. NocoITAM, NocoSupport và NocoHR có trong các phiên bản thương mại. Mọi ứng dụng đều triển khai trên máy chủ của bạn, tự do chọn model.",
-"Start Open Source": "Khởi đầu mã nguồn mở",
-"Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.": "Core và các ứng dụng Solution như NocoCRM miễn phí, mã nguồn mở. Studio và các ứng dụng Solution như NocoITAM có trong các phiên bản thương mại.",
-"Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.": "Core, NocoCRM, NocoReach và NocoProject đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production."
+"Deliver more client projects with an agent team": "Bàn giao nhiều dự án khách hàng hơn cùng một đội agent"
 }
 };

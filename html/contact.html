@@ -6,16 +6,31 @@
 <title data-zh="联系我们 — NocoBase" data-en="Contact Us — NocoBase">联系我们 — NocoBase</title>
 <meta name="description" content="需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。" data-zh="需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。" data-en="Reach NocoBase by email or through the form for sales, and commercial services.">
 <script>
+/* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 contact.<语言>.js，
+   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
 (function () {
+  var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
+  /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
+  var FONTS = { ru: 'inter' };
+  var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
-    window.__lang = lang;
-    document.documentElement.lang = lang;
-  } catch (e) {
-    window.__lang = 'zh';
-  }
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+  } catch (e) {}
+  window.__i18nPage = 'contact';
+  window.__lang = lang;
+  document.documentElement.lang = lang;
+  window.__font = function (l) {
+    if (!FONTS[l] || document.getElementById('font-' + l)) return;
+    var k = document.createElement('link');
+    k.id = 'font-' + l;
+    k.rel = 'stylesheet';
+    k.href = 'assets/fonts/' + FONTS[l] + '.css';
+    document.head.appendChild(k);
+  };
+  window.__font(lang);
+  if (lang !== 'zh' && lang !== 'en') document.write('<script src="assets/i18n/site.' + lang + '.js"><\/script><script src="assets/i18n/contact.' + lang + '.js"><\/script>');
 })();
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
@@ -62,19 +77,19 @@
               <li>日本：東京都北区赤羽 1-55-8 501</li>
             </ul>
             <div class="en-only">
-              <p>We are a remote team across several countries, with offices in:</p>
+              <p><t-en>We are a remote team across several countries, with offices in:</t-en></p>
               <ul>
                 <li>68 Circular Road, #02-01, Singapore</li>
-                <li>501, 1-55-8 Akabane, Kita-ku, Tokyo, Japan</li>
+                <li><t-en>501, 1-55-8 Akabane, Kita-ku, Tokyo, Japan</t-en></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
       <form class="bookf" data-public-form-zh="https://service-cn.nocobase.com|ujh5fsw3vem" data-public-form-en="https://service-en.nocobase.com|ect266yzsld" data-ok-zh="已收到你的信息，我们会尽快与你联系。" data-ok-en="Thanks! We’ve received your message and will be in touch soon." data-mail="hello@nocobase.com">
-        <div class="two"><label><span><t-zh>姓名</t-zh><t-en>Your name</t-en></span><input type="text" name="name" autocomplete="name" required></label><label class="zh-only" data-lang-only="zh"><span>电话</span><input type="tel" name="phone" autocomplete="tel" required></label><label class="en-only" data-lang-only="en"><span>Your email</span><input type="email" name="email" autocomplete="email" required></label></div>
+        <div class="two"><label><span><t-zh>姓名</t-zh><t-en>Your name</t-en></span><input type="text" name="name" autocomplete="name" required></label><label class="zh-only" data-lang-only="zh"><span>电话</span><input type="tel" name="phone" autocomplete="tel" required></label><label class="en-only" data-lang-only="en"><span><t-en>Your email</t-en></span><input type="email" name="email" autocomplete="email" required></label></div>
         <div class="two"><label><span><t-zh>职位</t-zh><t-en>Your job title</t-en></span><input type="text" name="job_title" autocomplete="organization-title" required></label><label><span><t-zh>公司名称</t-zh><t-en>Company name</t-en></span><input type="text" name="company_name" autocomplete="organization" required></label></div>
-        <label class="en-only" data-lang-only="en"><span>Where is your company located</span><select name="country_region_id" data-options="countries" required><option value="">Select your country or region</option></select></label>
+        <label class="en-only" data-lang-only="en"><span><t-en>Where is your company located</t-en></span><select name="country_region_id" data-options="countries" required><option value="" data-text-zh="" data-text-en="Select your country or region">Select your country or region</option></select></label>
         <label><span><t-zh>你是通过什么渠道了解到 NocoBase 的</t-zh><t-en>How did you find out about NocoBase</t-en></span><select name="source" data-options="enum" data-field="source" required><option value="" data-text-zh="请选择" data-text-en="Select one">请选择</option></select></label>
         <fieldset class="opts" data-options="enum" data-field="what_to_do" data-required><legend><t-zh>你希望用 NocoBase 做什么（可多选）</t-zh><t-en>What do you want to do with NocoBase (choose all that apply)</t-en></legend></fieldset>
         <label><span><t-zh>请介绍一下你的团队，以及使用 NocoBase 的具体场景</t-zh><t-en>Tell us about your team and your use cases for NocoBase</t-en></span><textarea name="details" data-name-zh="Details" rows="4" required></textarea></label>

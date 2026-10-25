@@ -5,3 +5,8 @@
 # 本组术语：Solutions = giải pháp；client project = dự án khách hàng
 033: Cùng đội agent triển khai nhiều dự án khách hàng hơn
 036: Tất cả giải pháp
+046: Hợp tác kinh doanh, tư vấn sản phẩm và hỗ trợ kỹ thuật
+047: Vui lòng chọn ít nhất một mục
+048: Đang gửi…
+049: Cảm ơn bạn! Chúng tôi đã nhận được yêu cầu và sẽ sớm liên hệ với bạn.
+050: Gửi không thành công. Vui lòng thử lại hoặc gửi email đến {mail}.

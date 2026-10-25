@@ -434,6 +434,72 @@
    "en": "Explore Studio",
    "zh": "了解 Studio",
    "where": "start"
+  },
+  {
+   "en": "NocoCRM and more, free and open source",
+   "zh": "NocoCRM 等应用开源免费",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "Sales CRM · Open source · Beta",
+   "zh": "销售管理 · 开源 · Beta",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "IT Asset Management · Professional · Beta",
+   "zh": "IT 资产管理 · 专业版 · Beta",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "Growth · Open source · Alpha",
+   "zh": "内容与增长 · 开源 · Alpha",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "Support · Professional · Soon",
+   "zh": "客户服务 · 专业版 · 即将推出",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "Projects · Open source · Soon",
+   "zh": "项目协作 · 开源 · 即将推出",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "HR Ops · Professional · Soon",
+   "zh": "人事管理 · 专业版 · 即将推出",
+   "where": "phero",
+   "unused": true
+  },
+  {
+   "en": "Start with open source, <span class=\"m\">ready to use.</span>",
+   "zh": "开源起步，<span class=\"m\">开箱即用。</span>",
+   "where": "open",
+   "unused": true
+  },
+  {
+   "en": "NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.",
+   "zh": "NocoCRM、NocoReach 和 NocoProject 开源免费，NocoITAM、NocoSupport 和 NocoHR 在商业版中提供。所有应用都部署在企业自己的服务器上，模型自由选择。",
+   "where": "open",
+   "unused": true
+  },
+  {
+   "en": "Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.",
+   "zh": "Core 以及 NocoCRM、NocoReach、NocoProject 开源免费，可以直接用于生产。",
+   "where": "open",
+   "unused": true
+  },
+  {
+   "en": "Start Open Source",
+   "zh": "开源起步",
+   "where": "start",
+   "unused": true
   }
  ],
  "meta": {

@@ -71,3 +71,5 @@ description: NocoITAM adalah manajemen aset TI open source di atas NocoBase. Age
 057: Tetapkan model per agen dan pantau pemakaiannya. Butuh field, alur kerja, atau laporan khusus? Minta agen coding mengubah kode sumbernya di Studio: open source, self-hosted, dan milik Anda.
 058: Lebih sedikit rekonsiliasi untuk TI, setiap aset terlihat jelas.
 059: Coba NocoITAM online, atau ambil kode sumbernya di GitHub dan jalankan sendiri. Hubungkan MDM Anda, impor aset Anda, dan biarkan agen mulai merekonsiliasi.
+061: Professional
+062: Tetapkan model per agen dan pantau pemakaiannya. Butuh field, alur kerja, atau laporan khusus? Minta agen coding mengubah kode sumbernya di Studio: termasuk dalam Professional, self-hosted, dan milik Anda.

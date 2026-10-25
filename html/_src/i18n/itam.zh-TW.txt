@@ -69,3 +69,5 @@ description: NocoITAM 是基於 NocoBase 的開源 IT 資產管理系統。Agent
 057: 依 Agent 指定模型並監控用量。需要改欄位、流程或報表？在 Studio 裡讓 Coding Agent 直接改原始碼。開源、地端部署，程式碼歸你所有。
 058: IT 少對帳，資產始終清楚。
 059: 線上體驗 NocoITAM，或到 GitHub 取得原始碼自行部署。連上 MDM、匯入資產表，Agent 立即開始對帳。
+061: 專業版
+062: 依 Agent 指定模型並監控用量。需要改欄位、流程或報表？在 Studio 裡讓 Coding Agent 直接改原始碼。隨專業版提供，地端部署，程式碼歸你所有。

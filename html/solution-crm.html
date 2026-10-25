@@ -7,10 +7,11 @@
 <meta name="description" content="NocoCRM 是基于 NocoBase 的开源 CRM，内置一支销售 Agent 团队：每条线索、每封来信、每个商机都有 Agent 主动跟进；审批、会前准备和客户情报都替你备好。关键决定由你来做。" data-zh="NocoCRM 是基于 NocoBase 的开源 CRM，内置一支销售 Agent 团队：每条线索、每封来信、每个商机都有 Agent 主动跟进；审批、会前准备和客户情报都替你备好。关键决定由你来做。" data-en="NocoCRM is an open-source CRM on NocoBase with a built-in sales agent team: every lead, message, and deal is followed up proactively, with approvals, meeting prep, and account intel ready for you. You make the calls.">
 <script>
 /* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 crm.<语言>.js，
-   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图在中文以外的语言里都显示英文界面 */
+   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
 (function () {
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
-  var FONTS = { ru: 'Inter:wght@400;500;600;700', ja: 'Noto+Sans+JP:wght@400;500;600;700', ko: 'Noto+Sans+KR:wght@400;500;600;700', 'zh-TW': 'Noto+Sans+TC:wght@400;500;600;700' };
+  /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
+  var FONTS = { ru: 'inter' };
   var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
@@ -25,7 +26,7 @@
     var k = document.createElement('link');
     k.id = 'font-' + l;
     k.rel = 'stylesheet';
-    k.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[l] + '&display=swap';
+    k.href = 'assets/fonts/' + FONTS[l] + '.css';
     document.head.appendChild(k);
   };
   window.__font(lang);

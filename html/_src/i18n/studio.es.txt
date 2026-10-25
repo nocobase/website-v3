@@ -1,0 +1,67 @@
+# Español（中性拉美/西班牙通用，tú）
+# 术语：foundation = base；building blocks = componentes base；governance = gobernanza；agent team = equipo de agentes；
+# coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
+# vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
+# 页面用语：issue = tarea；coordinator agent = agente coordinador；My sessions 等产品界面名称照英文
+title: NocoBase Studio — Los agentes hacen avanzar el trabajo. Tu equipo mantiene el control.
+description: NocoBase Studio es la plataforma de gobernanza para personas y agentes que desarrollan software juntos.
+000: Los agentes hacen avanzar el trabajo. <span class="m">Tu equipo mantiene el control.</span>
+002: Pruébalo en línea
+004: Se ejecuta en tus propios servidores
+005: Compatible con Claude Code, Codex y decenas de herramientas de programación más
+006: Disponible en las ediciones comerciales
+007: Equipo de agentes
+008: Un equipo de agentes <span class="m">que hace avanzar el trabajo.</span>
+009: Studio conecta agentes de muchas máquinas y los coordina de forma centralizada. Hacen avanzar muchos proyectos y tareas en paralelo, día y noche.
+010: Agentes en muchas máquinas
+011: Conecta Claude Code, Codex y otros agentes de las computadoras y servidores de tu equipo, y Studio detecta las herramientas de programación y los modelos con sesión iniciada. Indica en qué destaca cada agente, actívalo y se suma al equipo de agentes.
+012: Un coordinador reparte el trabajo
+013: Un agente coordinador reparte el diseño, el desarrollo, las pruebas y la revisión según lo que mejor hace cada agente. No escribe código ni fusiona nada; la aceptación siempre la hace una persona.
+014: Muchas tareas a la vez
+015: Cada tarea tiene su propia rama y cada ejecución trabaja en un worktree independiente, así que muchas tareas avanzan a la vez sin chocar. Agrega máquinas para ejecutar más en paralelo.
+016: My sessions
+017: En Studio, conversa con el agente de tu propia computadora para discutir y aclarar requisitos, registrar tareas y seguir su avance. Cuando una tarea arranca, el agente coordinador pone a trabajar al equipo de agentes.
+018: Avance
+019: El avance, <span class="m">de un vistazo.</span>
+020: El avance de los proyectos, la actividad de las tareas, la carga de los agentes y el uso de modelos se ven con claridad. De un vistazo sabes en qué punto está cada tarea y qué sigue.
+021: Avance de los proyectos
+022: El avance de cada proyecto, junto con las tareas completadas, el tiempo de ciclo, la proporción completada por agentes y el costo por tarea, comparados con el periodo anterior.
+023: Actividad de las tareas
+024: Cada tarea muestra arriba en qué paso está, qué agente trabaja en ella y qué sigue.
+025: Carga de los agentes y uso de modelos
+026: Consulta en qué tareas trabajan los agentes de cada máquina y cuántos tokens ha usado cada modelo, y a qué costo.
+027: Decisiones
+028: Decisiones <span class="m">basadas en evidencias.</span>
+030: Informe y lista de verificación
+031: Cada entrega explica qué cambió y cómo se verificó, con una lista de aceptación punto por punto.
+032: Capturas y vistas previas
+033: Cada escenario incluye capturas de pantalla y, si quieres probarlo tú mismo, tienes listo un entorno de vista previa independiente.
+034: Aceptar o devolver
+035: Con la evidencia en mano, acepta el trabajo o devuélvelo. Explica el motivo y los agentes siguen a partir de ahí.
+036: Expertos de negocio
+037: Los expertos de negocio que no programan también pueden decidir.
+038: Los expertos de negocio describen lo que necesitan con sus propias palabras, responden las preguntas de los agentes y revisan el resultado en una vista previa con datos reales. Los entornos, las ramas, las pruebas y las publicaciones quedan a cargo de los agentes y de Studio.
+039: Los líderes técnicos fijan las reglas y aprueban las publicaciones. Los expertos de negocio definen los requisitos y se encargan de la aceptación.
+040: Antes de que el trabajo llegue a una persona, Studio organiza las comprobaciones y revisiones.
+041: Cada cambio sigue el mismo camino: llega a una persona solo después de pasar las pruebas y la revisión de código, y llega a producción solo cuando una persona lo aprueba. Si algo sale mal, se revierte.
+042: Rama y worktree
+043: Cada tarea tiene su propia rama y cada ejecución trabaja en un worktree independiente. Los pull requests de esa rama se vinculan a la tarea.
+044: Pruebas y revisión
+045: La CI ejecuta las comprobaciones y pruebas, y luego otro modelo revisa el código, de otro proveedor si lo hay.
+046: Vista previa
+047: Cuando hace falta, un pull request tiene su propio entorno de vista previa para que una persona lo pruebe y lo apruebe.
+048: Fusión y publicación
+049: Se fusiona tras la aceptación, y la tarea se completa cuando se fusionan todos sus pull requests. Publicar en producción requiere la aprobación de una persona.
+050: Revertir
+051: Si algo falla, vuelve a la versión anterior.
+053: El conocimiento <span class="m">se queda en el equipo.</span>
+054: El contexto de los requisitos, los documentos de negocio y la experiencia del proyecto quedan dispersos en conversaciones de distintas computadoras. Cuando cambian las personas o los agentes, cuesta encontrarlos. Studio guarda los métodos y la experiencia en skills, la base de conocimiento y la memoria del proyecto, para que quien llegue después retome el trabajo donde lo dejó el anterior.
+055: Skills
+056: Las skills guardan cómo se hace el trabajo. Escribe cómo aclaras requisitos, desarrollas, revisas y publicas, a nivel global, de proyecto o de directorio de trabajo, y cada ejecución las incluye.
+057: Base de conocimiento
+058: La base de conocimiento guarda los documentos de negocio. Requisitos, reglas de negocio, plantillas de contrato y otros materiales los escriben o suben las personas, y los agentes los consultan mientras trabajan.
+059: Memoria del proyecto
+060: La memoria del proyecto guarda lo que los agentes aprenden por sí mismos. Vive en el repositorio del proyecto, se revisa y fusiona junto con el pull request de cada tarea, y se lee antes de empezar la siguiente.
+061: Código abierto y autoalojamiento
+062: Autoalojado. <span class="m">Tu código y tus datos te pertenecen.</span>
+070: El código que escriben los agentes se basa en NocoBase Core

@@ -9,7 +9,7 @@ description: The terms used across the whole site. Documentation, the website, t
 | --- | --- |
 | NocoBase Core | The open-source foundation for building and running business systems, a set of npm packages |
 | NocoBase Studio | The workspace where people lead an agent team to build apps, available in the commercial editions |
-| NocoBase Solution | A line of business apps built on NocoBase. Individual apps are called Solution apps. NocoCRM, NocoReach, and NocoProject are open source; NocoITAM, NocoSupport, and NocoHR come with the commercial editions |
+| NocoBase Solution | A line of open-source business apps built on NocoBase, such as NocoCRM and NocoITAM. Individual apps are called Solution apps |
 | Agent | The general term for an AI worker: a coding tool plus a model, for example "Claude · Opus 5.5". Written in lowercase in running text |
 | Coding tool | Claude Code, Codex, OpenCode, Cursor, and so on |
 | Business agent | An agent that handles business work inside an app, within its permissions. Connected by the Agents plugin. Called "AI employee" in NocoBase 2 |

@@ -1,0 +1,67 @@
+# Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+# 术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+# coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+# self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+# 页面用语：issue = tâche；coordinator agent = agent coordinateur；sign-off = validation；My sessions 等产品界面名称照英文
+title: NocoBase Studio — Les agents font avancer le travail. Votre équipe garde la maîtrise.
+description: NocoBase Studio est la plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble.
+000: Les agents font avancer le travail. <span class="m">Votre équipe garde la maîtrise.</span>
+002: Essayer en ligne
+004: Sur vos propres serveurs
+005: Compatible avec Claude Code, Codex et des dizaines d’autres outils de code
+006: Inclus dans les éditions commerciales
+007: Équipe d’agents
+008: Une équipe d’agents <span class="m">qui fait avancer le travail.</span>
+009: Studio connecte des agents répartis sur de nombreuses machines et les pilote depuis un seul endroit. Ils font avancer de nombreux projets et tâches en parallèle, jour et nuit.
+010: Des agents sur de nombreuses machines
+011: Connectez Claude Code, Codex et d’autres agents installés sur les ordinateurs et les serveurs de votre équipe : Studio détecte les outils de code et les modèles qui y sont connectés. Indiquez le point fort de chaque agent, activez-le, et il rejoint l’équipe d’agents.
+012: Un coordinateur répartit le travail
+013: Un agent coordinateur répartit conception, développement, tests et revue selon les points forts de chaque agent. Il n’écrit pas de code et ne fusionne rien ; la validation revient toujours à un humain.
+014: Plusieurs tâches à la fois
+015: Chaque tâche a sa propre branche et chaque exécution travaille dans un worktree séparé : de nombreuses tâches avancent en même temps sans se gêner. Ajoutez des machines pour en mener davantage en parallèle.
+016: My sessions
+017: Dans Studio, échangez avec l’agent de votre propre ordinateur pour discuter et clarifier les besoins, consigner des tâches et suivre leur avancement. Dès qu’une tâche démarre, l’agent coordinateur met l’équipe d’agents au travail.
+018: Avancement
+019: L’avancement <span class="m">en un coup d’œil.</span>
+020: Avancement des projets, activité des tâches, charge des agents et consommation des modèles : tout est visible. Vous voyez en un coup d’œil où en est chaque tâche et ce qui suit.
+021: Avancement des projets
+022: L’avancement de chaque projet, ainsi que les tâches terminées, le temps de cycle, la part réalisée par les agents et le coût par tâche, comparés à la période précédente.
+023: Activité des tâches
+024: En haut de chaque tâche : l’étape en cours, l’agent qui s’en occupe et la suite.
+025: Charge des agents et consommation des modèles
+026: Voyez sur quelles tâches travaillent les agents de chaque machine, et combien de tokens chaque modèle a consommés, pour quel coût.
+027: Décisions
+028: Des décisions <span class="m">fondées sur des preuves.</span>
+030: Rapport et checklist
+031: Chaque livraison indique ce qui a changé et comment cela a été vérifié, avec une checklist de validation point par point.
+032: Captures et aperçus
+033: Chaque scénario est accompagné de captures d’écran, et si vous voulez essayer vous-même, un environnement d’aperçu dédié est prêt.
+034: Valider ou renvoyer
+035: Preuves à l’appui, validez le travail ou renvoyez-le. Indiquez pourquoi, et les agents reprennent à partir de là.
+036: Experts métier
+037: Les experts métier qui ne codent pas peuvent trancher.
+038: Les experts métier décrivent leur besoin avec leurs propres mots, répondent aux questions des agents et vérifient le résultat dans un aperçu avec de vraies données. Environnements, branches, tests et mises en production sont pris en charge par les agents et Studio.
+039: Les responsables techniques fixent les règles et approuvent les mises en production. Les experts métier portent les besoins et la validation.
+040: Avant qu’un travail n’arrive à un humain, Studio orchestre contrôles et revues.
+041: Chaque modification suit le même parcours : elle n’arrive à un humain qu’après avoir passé les tests et la revue de code, et n’atteint la production qu’avec l’accord d’un humain. En cas de problème, on revient en arrière.
+042: Branche et worktree
+043: Chaque tâche a sa propre branche et chaque exécution travaille dans un worktree séparé. Les pull requests de cette branche sont liées à la tâche.
+044: Tests et revue
+045: La CI exécute les contrôles et les tests, puis un autre modèle relit le code, d’un autre fournisseur quand c’est possible.
+046: Aperçu
+047: Si besoin, une pull request dispose de son propre environnement d’aperçu, où un humain peut tester et valider.
+048: Fusion et mise en production
+049: Fusion après validation ; la tâche est terminée une fois toutes ses pull requests fusionnées. Toute mise en production doit être approuvée par un humain.
+050: Retour arrière
+051: En cas de problème, revenez à la version précédente.
+053: Le savoir-faire <span class="m">reste dans l’équipe.</span>
+054: Contexte des besoins, documents métier et retours d’expérience restent éparpillés dans des conversations, sur différents ordinateurs. Quand les personnes ou les agents changent, on ne les retrouve plus. Studio capitalise méthodes et expérience dans les skills, la base de connaissances et la mémoire de projet : une nouvelle personne ou un nouvel agent reprend là où le précédent s’était arrêté.
+055: Skills
+056: Les skills conservent les méthodes. Décrivez comment vous clarifiez, développez, relisez et livrez, au niveau global, du projet ou du répertoire de travail : chaque exécution les applique.
+057: Base de connaissances
+058: La base de connaissances conserve les documents métier. Besoins, règles métier, modèles de contrat et autres documents sont rédigés ou déposés par les humains, et les agents les consultent en travaillant.
+059: Mémoire de projet
+060: La mémoire de projet conserve ce que les agents apprennent d’eux-mêmes. Elle vit dans le dépôt du projet, est relue et fusionnée avec la pull request de chaque tâche, et lue avant de commencer la suivante.
+061: Open source et auto-hébergement
+062: Auto-hébergé. <span class="m">Votre code et vos données vous appartiennent.</span>
+070: Le code écrit par les agents repose sur NocoBase Core

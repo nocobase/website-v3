@@ -88,6 +88,8 @@
 "Agents show the evidence behind their work, and key decisions are always made by a person. Each agent inherits the permissions of the person it works for, so data stays secure.": "エージェントの成果には根拠が添えられ、重要な判断は必ず人が行います。エージェントは担当者の権限を引き継ぐため、データの安全性も保たれます。",
 "Easy to customize": "カスタマイズしやすい",
 "Every app is built on NocoBase Core, with its consistent architecture and reliable foundation, so you can have a coding agent customize it.": "NocoBase Core 上で開発され、統一されたアーキテクチャと信頼できる基盤を備えているため、コーディングエージェントにカスタマイズを任せられます。",
+"Free, open source, ready to use": "無料のオープンソース、すぐに使える",
+"Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.": "すべての Solution は無料のオープンソースで、自社サーバーにデプロイでき、モデルも自由に選べます。",
 "View All Solution Apps": "すべての Solution を見る",
 "How is NocoBase different from vibe coding?": "NocoBase とバイブコーディングの違いは？",
 "AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.": "権限、ワークフロー、承認などの基盤モジュールを、プロジェクトごとに AI がゼロから生成します。コストが高く、信頼性の確保も困難です。",
@@ -97,11 +99,13 @@
 "Open Source &amp; Self-Hosting": "オープンソースとセルフホスト",
 "Free, open source, self-hosted.<br>": "無料のオープンソース、セルフホスト。<br>",
 "Your code and data belong to you.": "コードとデータは自社のもの。",
+"Core and Solution are free and open source. Studio is available in the commercial editions.": "Core と Solution は無料のオープンソースです。Studio は商用版で提供しています。",
 "Contributors": "コントリビューター",
 "Downloads": "ダウンロード数",
 "3M+": "300 万+",
 "View on GitHub": "GitHub でソースを見る",
 "Free and open source": "無料のオープンソース",
+"Core and every Solution app are free, open source, and ready for production.": "Core とすべての Solution は無料のオープンソースで、そのまま本番環境で使えます。",
 "Self-hosted": "セルフホスト",
 "Core, Solution, and Studio all run on your own servers. Your code and data belong to you.": "Core、Solution、Studio はすべて自社サーバーにデプロイされ、コードとデータは自社が所有します。",
 "Your choice of models and agents": "モデルとエージェントを自由に選べる",
@@ -212,11 +216,6 @@
 "Know-how": "ナレッジの蓄積",
 "Agents keep the work moving. Your team stays in control.": "エージェントが自律的に推進し、チームが全体を掌握する。",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio は、人とエージェントが協働開発するためのガバナンスプラットフォームです。Claude Code、Codex、OpenCode をひとつのエージェントチームにまとめ、タスクを自律的に進めます。進捗はひと目でわかり、重要な判断は人が下します。",
-"Deliver more client projects with an agent team": "エージェントチームで、より多くの顧客プロジェクトを納品",
-"Start with open source, ready to use": "オープンソースから始めて、すぐに使える",
-"NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.": "NocoCRM、NocoReach、NocoProject は無料のオープンソースです。NocoITAM、NocoSupport、NocoHR は商用版で提供しています。すべてのアプリを自社サーバーにデプロイでき、モデルも自由に選べます。",
-"Start Open Source": "オープンソースから始める",
-"Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.": "Core と NocoCRM などの Solution アプリは無料のオープンソースです。Studio と NocoITAM などの Solution アプリは商用版で提供しています。",
-"Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.": "Core、NocoCRM、NocoReach、NocoProject は無料のオープンソースで、そのまま本番環境で使えます。"
+"Deliver more client projects with an agent team": "エージェントチームで、より多くの顧客プロジェクトを納品"
 }
 };

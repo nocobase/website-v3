@@ -3,7 +3,7 @@
   var page = document.body.getAttribute('data-page') || '';
   var T = function (zh, en) { return '<t-zh>' + zh + '</t-zh><t-en>' + en + '</t-en>'; };
   var on = function (k) { return k === page ? ' class="on"' : ''; };
-  var DOCS = 'https://v3.docs.nocobase.com/zh-CN/';
+  var DOCS = 'https://docs.nocobase.com/';  /* 顶部导航、手机菜单和页脚的「文档」 */
   var GH = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>';
 
   var products = [
@@ -20,8 +20,9 @@
     ['', '', 'folder-kanban', 'NocoProject', T('项目协作 · 配备调研与文书 Agent', 'Projects · Research &amp; Doc Agents'), 1],
     ['', '', 'users', 'NocoHR', T('人事管理 · 配备入职与人事 Agent', 'HR · Onboarding Agent'), 1]
   ];
-  /* 语言列表。多数页面只有中文、英文内容，其他语言先显示英文；页面在 <head> 里设了 window.__i18nPage 的（NocoCRM、NocoITAM），
-     其他语言的译文由 _src/i18n/pages.py 生成在 assets/i18n/site.<语言>.js 和 <页面>.<语言>.js，见下方 applyI18n */
+  /* 语言列表。页面在 <head> 里设了 window.__i18nPage 的（Core、Studio、Solution、NocoCRM、NocoITAM、定价、伙伴、联系，由 wrap.py 的 i18n: 生成）有 12 种语言，
+     其他语言的译文由 _src/i18n/pages.py 生成在 assets/i18n/site.<语言>.js 和 <页面>.<语言>.js，见下方 applyI18n；
+     其余页面（博客、客户案例、NocoReach）只有中文、英文内容，其他语言先显示英文 */
   var I18N = window.__i18nPage || '';
   var LANG_NAMES = { zh: '简体中文', en: 'English', es: 'Español', fr: 'Français', de: 'Deutsch', pt: 'Português', ru: 'Русский', id: 'Bahasa Indonesia', vi: 'Tiếng Việt', 'zh-TW': '繁體中文', ja: '日本語', ko: '한국어' };
   if (I18N && !LANG_NAMES[window.__lang]) window.__lang = 'en';
@@ -72,7 +73,8 @@
       '<a href="pricing.html"' + on('pricing') + '>' + T('定价', 'Pricing') + '</a>' +
       '<a href="contact.html">' + T('联系我们', 'Contact Us') + '</a>' +
       '<a href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">GitHub<small>24.6K</small></a>' +
-      '<button class="lang-switch-m" type="button" id="langBtnM"><i data-lucide="globe"></i>' + T('Switch to English', '切换为中文') + '</button>' +
+      (I18N ? '<label class="lang-switch-m"><i data-lucide="globe"></i><select id="langSelM" aria-label="Language">' + LANGS.map(function (x) { return '<option value="' + x[0] + '" lang="' + x[0] + '">' + x[1] + '</option>'; }).join('') + '</select></label>'
+        : '<button class="lang-switch-m" type="button" id="langBtnM"><i data-lucide="globe"></i>' + T('Switch to English', '切换为中文') + '</button>') +
     '</div></header>';
 
   var footer = '<footer><div class="container"><div class="fgrid">' +
@@ -102,16 +104,46 @@
     var m = document.querySelector('meta[name="description"]');
     if (m && m.dataset[key]) m.setAttribute('content', (p && p.description) || m.dataset[key]);
   }
-  /* 其他语言：页面上写死的英文（<t-en>）记下原文，换成译文；界面示意图（.fit-in）保持英文，产品界面只有中英文。缺的译文显示英文 */
+  /* 文档站：英文在根目录，中文在 zh-CN/。指向文档站的链接按当前语言补上或去掉 zh-CN/（繁体中文也看中文文档） */
+  function docsLinks(lang) {
+    var zh = lang === 'zh' || lang === 'zh-TW';
+    document.querySelectorAll('a[href^="https://docs.nocobase.com/"]').forEach(function (a) {
+      var path = a.getAttribute('href').replace(/^https:\/\/docs\.nocobase\.com\/(zh-CN\/)?/, '');
+      a.setAttribute('href', 'https://docs.nocobase.com/' + (zh ? 'zh-CN/' : '') + path);
+    });
+  }
+  /* 其他语言：页面上写死的英文（<t-en>）记下原文，换成译文。缺的译文显示英文。
+     界面示意图（.fit-in）不翻译，和首页一样：繁体中文显示繁体中文界面（把中文那份转成繁体，放进英文的位置：<t-zh>/<t-en>、.zh-only/.en-only 成对的），
+     其他语言显示英文界面。繁体的界面文字按文本节点查 NB_I18N['zh-TW'].ui（pages.py 生成） */
   var STATIC_EN = I18N ? [].slice.call(document.querySelectorAll('t-en')).filter(function (n) { return !n.closest('.fit-in'); }) : [];
   STATIC_EN.forEach(function (n) { n.__en = n.innerHTML; });
+  var UI_EN = I18N ? [].slice.call(document.querySelectorAll('.fit-in t-en, .fit-in .en-only')).filter(function (n) {
+    var z = n.previousElementSibling;
+    if (n.tagName === 'T-EN') return z && z.tagName === 'T-ZH' && !n.closest('.fit-in .en-only');
+    return z && z.classList.contains('zh-only');
+  }) : [];
+  UI_EN.forEach(function (n) { n.__en = n.innerHTML; });
+  function twHTML(h, ui) {
+    var t = document.createElement('template');
+    t.innerHTML = h;
+    var w = document.createTreeWalker(t.content, NodeFilter.SHOW_TEXT);
+    for (var n = w.nextNode(); n; n = w.nextNode()) if (ui[n.nodeValue]) n.nodeValue = ui[n.nodeValue];
+    return t.innerHTML;
+  }
   function applyI18n(lang) {
     var d = window.NB_I18N && window.NB_I18N[lang];
     var tr = function (en, k) { return (lang !== 'zh' && lang !== 'en' && d && d.strings[k || en]) || en; };
     STATIC_EN.forEach(function (n) { var v = tr(n.__en, n.dataset.k); if (n.innerHTML !== v) n.innerHTML = v; });
+    var ui = lang === 'zh-TW' && d && d.ui;
+    UI_EN.forEach(function (n) {
+      var v = ui ? (n.__tw || (n.__tw = twHTML(n.previousElementSibling.innerHTML, ui))) : n.__en;
+      if (n.innerHTML !== v) n.innerHTML = v;
+    });
+    if (UI_EN.length && window.lucide) lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
     var name = $('langName');
     if (name) name.textContent = LANG_NAMES[lang];
     document.querySelectorAll('#langMenu [data-lang]').forEach(function (a) { a.classList.toggle('cur', a.dataset.lang === lang); });
+    if ($('langSelM')) $('langSelM').value = lang;
   }
   /* 译文按需加载：先共用的导航和页脚，再本页 */
   function loadI18n(lang, done) {
@@ -184,6 +216,7 @@
     document.documentElement.lang = lang;
     try { localStorage.setItem('nb3_lang', lang); } catch (e) {}
     syncMeta(lang);
+    docsLinks(lang);
     fit();
   }
   var toggle = function () { setLanguage(window.__lang === 'en' ? 'zh' : 'en'); };
@@ -197,7 +230,9 @@
     try { localStorage.setItem('nb3_lang', a.dataset.lang); } catch (err) {}
     a.blur();
   });
-  $('langBtnM').addEventListener('click', function () { toggle(); $('nav').classList.remove('open'); $('menuBtn').setAttribute('aria-expanded', 'false'); });
+  var closeMenu = function () { $('nav').classList.remove('open'); $('menuBtn').setAttribute('aria-expanded', 'false'); };
+  if ($('langBtnM')) $('langBtnM').addEventListener('click', function () { toggle(); closeMenu(); });
+  if ($('langSelM')) $('langSelM').addEventListener('change', function () { setLanguage(this.value); closeMenu(); });
   $('menuBtn').addEventListener('click', function () {
     var nav = $('nav'), open = !nav.classList.contains('open');
     nav.classList.toggle('open', open);
@@ -241,6 +276,7 @@
   });
   if (I18N) applyI18n(window.__lang);
   syncMeta(window.__lang);
+  docsLinks(window.__lang);
   if (window.lucide) lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
   fit();
   window.addEventListener('resize', fit);

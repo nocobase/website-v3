@@ -28,6 +28,12 @@
 
 改完运行 `build.py`，再用浏览器在 1440、1180、768、390 几个宽度看一遍：标题和能力条不能溢出。
 
-## 解决方案页（Solution 总览、NocoCRM、NocoITAM）
+## 子页面（Core、Studio、Solution 总览、NocoCRM、NocoITAM、定价、成为伙伴、寻找伙伴、联系我们）
 
-`solutions.html`、`solution-crm.html`、`solution-itam.html` 的其他语言用 `pages.py`，写法和首页相同，用法见它开头的说明。产品界面上的名称照 `ui-terms.md` 写。
+这些页面的其他语言用 `pages.py`，写法和首页相同，用法见它开头的说明。产品界面上的名称照 `ui-terms.md` 写：中文以外的语言照英文界面原样写（如 Studio 的 My issues、My sessions、Runtimes），繁体中文写繁体。
+
+- **接入一个页面**：正文头部写 `i18n: <组名>`，wrap.py 据此生成 head（按需加载 `site.<语言>.js` 和 `<组名>.<语言>.js`，俄语加载 Inter，日韩繁中用系统字体）；再把组名和页面加进 `pages.py` 的 `PAGES`，运行 `extract`、写译文、运行 `build`。NocoCRM、NocoITAM 的成品页不经 wrap.py，head 直接写在成品页里。
+- **繁体中文的界面示意图**：和首页一样显示繁体中文界面。`extract` 收集界面图（`.fit-in`）里含中文的文本节点，用 `tw.py`（和首页 `ui_tw.py` 共用的简繁转换与台湾用语表）转成繁体，写进 `<组名>.ui.zh-TW.json`（可以手改）；`assets/site.js` 把中文那份转成繁体放进英文的位置。NocoCRM、NocoITAM 两页只换字形（線索、審批），和这两页正文的产品界面名称一致。
+- **表单**：联系、伙伴两页的表单提交到 NocoBase 2 的英文表单。标签用 `<t-en>`；输入框占位、选项文字、提交成功提示写在 `data-ph-en`、`data-text-en`、`data-ok-en` 上，`pages.py` 一并抽取；`assets/public-form.js` 的提示语写成 `T(中文, 英文)`，归在 `site` 组；联系页两道选择题的选项来自英文表单的字段，列在 `pages.py` 的 `FORM_OPTIONS`，表单字段改了要跟着改。国家列表保持英文。
+- **只给中文的内容**：用 `.zh-only`（如定价页的信创数据库一行、联系页的微信和国内地址），中文以外的语言都不显示，里面不写 `<t-en>`。
+- 价格：其他语言写美元，按各语言习惯写数字（见 `pricing.<语言>.txt` 开头）。

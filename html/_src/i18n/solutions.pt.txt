@@ -65,3 +65,11 @@ description: O NocoBase Solution é uma linha de apps de negócio movidos por ag
 079: Ver os apps
 082: Conheça o Core
 086: Conheça o Studio
+087: NocoCRM e outros, gratuitos e open source
+088: CRM de vendas · Open source · Beta
+089: Gestão de ativos de TI · Professional · Beta
+090: Crescimento · Open source · Alpha
+091: Suporte · Professional · Em breve
+092: Projetos · Open source · Em breve
+093: RH · Professional · Em breve
+094: Comece com open source, <span class="m">pronto para usar.</span>

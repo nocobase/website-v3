@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-zh="NocoITAM — Agent 主动跟进，IT 资产井井有条" data-en="NocoITAM — Agents on It. IT Assets in Order.">NocoITAM — Agent 主动跟进，IT 资产井井有条</title>
-<meta name="description" content="NocoITAM 是基于 NocoBase 的 IT 资产管理，随专业版提供。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-zh="NocoITAM 是基于 NocoBase 的 IT 资产管理，随专业版提供。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-en="NocoITAM is IT asset management on NocoBase, included in Professional. Agents reconcile MDM with the register, prepare joiner and leaver lists, check stock and idle assets before every purchase, and reclaim idle seats before renewal. IT just decides.">
+<meta name="description" content="NocoITAM 是基于 NocoBase 的开源 IT 资产管理。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-zh="NocoITAM 是基于 NocoBase 的开源 IT 资产管理。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-en="NocoITAM is open-source IT asset management on NocoBase. Agents reconcile MDM with the register, prepare joiner and leaver lists, check stock and idle assets before every purchase, and reclaim idle seats before renewal. IT just decides.">
 <script>
 /* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 itam.<语言>.js，
-   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图在中文以外的语言里都显示英文界面 */
+   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
 (function () {
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
-  var FONTS = { ru: 'Inter:wght@400;500;600;700', ja: 'Noto+Sans+JP:wght@400;500;600;700', ko: 'Noto+Sans+KR:wght@400;500;600;700', 'zh-TW': 'Noto+Sans+TC:wght@400;500;600;700' };
+  /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
+  var FONTS = { ru: 'inter' };
   var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
@@ -25,7 +26,7 @@
     var k = document.createElement('link');
     k.id = 'font-' + l;
     k.rel = 'stylesheet';
-    k.href = 'https://fonts.googleapis.com/css2?family=' + FONTS[l] + '&display=swap';
+    k.href = 'assets/fonts/' + FONTS[l] + '.css';
     document.head.appendChild(k);
   };
   window.__font(lang);
@@ -156,7 +157,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
     <p class="lede"><t-zh>传统资产系统靠人维护台账。在 NocoITAM 里，Agent 整理 MDM 差异、为新人配齐设备、采购前先查库存和闲置。每台设备、每个席位、每笔开支都有据可查。</t-zh><t-en>Traditional ITAM tools are ledgers kept by hand. In NocoITAM, agents sort out MDM differences, kit out new hires, and check stock and idle assets before every purchase. Every device, seat, and dollar is on record.</t-en></p>
     <div class="cta">
       <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
-      <a class="btn btn-sec" href="pricing.html"><t-zh>查看版本与价格</t-zh><t-en>View Editions &amp; Pricing</t-en></a>
+      <a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoITAM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a>
     </div>
     </div>
     <div class="phero-video" id="introVideo">
@@ -166,7 +167,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
       </button>
     </div>
     </div>
-    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>专业版</t-zh><t-en>Professional</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0</b></div><div><t-zh>内置 Agent</t-zh><t-en>Built-in agents</t-en><b>3</b></div><div><t-zh>MDM 对接</t-zh><t-en>MDM</t-en><b>Intune · Jamf Pro</b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
+    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0</b></div><div><t-zh>内置 Agent</t-zh><t-en>Built-in agents</t-en><b>3</b></div><div><t-zh>MDM 对接</t-zh><t-en>MDM</t-en><b>Intune · Jamf Pro</b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
   </div>
   <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="mouse" aria-hidden="true"><span class="wheel"></span></span><span class="ln" aria-hidden="true"></span></a>
 </section>
@@ -291,7 +292,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
       <div class="grid3">
         <div class="card"><span class="ic"><i data-lucide="notebook-pen"></i></span><h3><t-zh>业务指导</t-zh><t-en>Business guidance</t-en></h3><p><t-zh>用自然语言写明公司概况、岗位标准配置、预算与审批红线，所有 Agent 每次运行都会读取遵循。</t-zh><t-en>Define your standard kits, budgets, and approval thresholds in plain text, read by every agent on every run.</t-en></p></div>
         <div class="card"><span class="ic"><i data-lucide="sparkles"></i></span><h3><t-zh>技能</t-zh><t-en>Skills</t-en></h3><p><t-zh>内置采购审阅、型号建档、MDM 对账、入转离等技能，随时查看或按内部流程修改。</t-zh><t-en>Built-in skills for approval review, catalog, device sync, and onboarding/offboarding are fully readable and customizable.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="code"></i></span><h3><t-zh>模型与源码</t-zh><t-en>Models &amp; code</t-en></h3><p><t-zh>按 Agent 指定模型并监控用量。需要改字段、流程或报表？在 Studio 里让 Coding Agent 直接改源码。随专业版提供，私有部署，代码归你。</t-zh><t-en>Assign models per agent and track usage. Need custom fields, workflows, or reports? Have a coding agent modify the source in Studio: included in Professional, self-hosted, and yours.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="code"></i></span><h3><t-zh>模型与源码</t-zh><t-en>Models &amp; code</t-en></h3><p><t-zh>按 Agent 指定模型并监控用量。需要改字段、流程或报表？在 Studio 里让 Coding Agent 直接改源码。开源、私有部署，代码归你。</t-zh><t-en>Assign models per agent and track usage. Need custom fields, workflows, or reports? Have a coding agent modify the source in Studio: open-source, self-hosted, and yours.</t-en></p></div>
       </div>
     </div>
   </div>
@@ -300,7 +301,7 @@ main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 <div class="container">
   <div class="band">
     <div><h2><t-zh>IT 少对账，资产始终清楚。</t-zh><t-en>Less reconciling for IT, a clear view of every asset.</t-en></h2><p><t-zh>在线体验 NocoITAM，或到 GitHub 获取源码自行部署。连上 MDM、导入资产表，Agent 即刻开始对账。</t-zh><t-en>Try NocoITAM online, or get the source on GitHub and run it yourself. Connect your MDM, import your assets, and let agents start reconciling.</t-en></p></div>
-    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up"></i></a><a class="btn btn-sec" href="pricing.html"><t-zh>查看版本与价格</t-zh><t-en>View Editions &amp; Pricing</t-en></a></div>
+    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoITAM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
   </div>
 </div>
 </main>

@@ -1,4 +1,5 @@
 page: contact
+i18n: contact
 title_zh: 联系我们 — NocoBase
 title_en: Contact Us — NocoBase
 desc_zh: 需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。
@@ -8,7 +9,7 @@ desc_en: Reach NocoBase by email or through the form for sales, and commercial s
   <div class="container">
     <p class="label"><b>NocoBase</b><i></i><span><t-zh>联系我们</t-zh><t-en>Contact Us</t-en></span></p>
     <h1><t-zh>联系我们，<span class="m">聊聊你想做的系统。</span></t-zh><t-en>Contact us. <span class="m">Tell us what you want to build.</span></t-en></h1>
-    <p class="lede"><t-zh>需要产品咨询和商业服务咨询，都可以在这里找到我们。使用中遇到的技术问题，欢迎到<a href="https://forum.nocobase.com/" target="_blank" rel="noopener">社区论坛</a>交流。</t-zh><t-en>For sales, and commercial services, reach us here. For technical questions, the <a href="https://forum.nocobase.com/" target="_blank" rel="noopener">community forum</a> is the best place to ask.</t-en></p>
+    <p class="lede"><t-zh>需要产品咨询和商业服务咨询，都可以与我们联系。使用中遇到的技术问题，欢迎到<a href="https://forum.nocobase.com/" target="_blank" rel="noopener">社区论坛</a>交流。</t-zh><t-en>For sales, and commercial services, reach us here. For technical questions, the <a href="https://forum.nocobase.com/" target="_blank" rel="noopener">community forum</a> is the best place to ask.</t-en></p>
   </div>
 </section>
 
@@ -38,19 +39,19 @@ desc_en: Reach NocoBase by email or through the form for sales, and commercial s
               <li>日本：東京都北区赤羽 1-55-8 501</li>
             </ul>
             <div class="en-only">
-              <p>We are a remote team across several countries, with offices in:</p>
+              <p><t-en>We are a remote team across several countries, with offices in:</t-en></p>
               <ul>
                 <li>68 Circular Road, #02-01, Singapore</li>
-                <li>501, 1-55-8 Akabane, Kita-ku, Tokyo, Japan</li>
+                <li><t-en>501, 1-55-8 Akabane, Kita-ku, Tokyo, Japan</t-en></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
       <form class="bookf" data-public-form-zh="https://service-cn.nocobase.com|ujh5fsw3vem" data-public-form-en="https://service-en.nocobase.com|ect266yzsld" data-ok-zh="已收到你的信息，我们会尽快与你联系。" data-ok-en="Thanks! We’ve received your message and will be in touch soon." data-mail="hello@nocobase.com">
-        <div class="two"><label><span><t-zh>姓名</t-zh><t-en>Your name</t-en></span><input type="text" name="name" autocomplete="name" required></label><label class="zh-only" data-lang-only="zh"><span>电话</span><input type="tel" name="phone" autocomplete="tel" required></label><label class="en-only" data-lang-only="en"><span>Your email</span><input type="email" name="email" autocomplete="email" required></label></div>
+        <div class="two"><label><span><t-zh>姓名</t-zh><t-en>Your name</t-en></span><input type="text" name="name" autocomplete="name" required></label><label class="zh-only" data-lang-only="zh"><span>电话</span><input type="tel" name="phone" autocomplete="tel" required></label><label class="en-only" data-lang-only="en"><span><t-en>Your email</t-en></span><input type="email" name="email" autocomplete="email" required></label></div>
         <div class="two"><label><span><t-zh>职位</t-zh><t-en>Your job title</t-en></span><input type="text" name="job_title" autocomplete="organization-title" required></label><label><span><t-zh>公司名称</t-zh><t-en>Company name</t-en></span><input type="text" name="company_name" autocomplete="organization" required></label></div>
-        <label class="en-only" data-lang-only="en"><span>Where is your company located</span><select name="country_region_id" data-options="countries" required><option value="">Select your country or region</option></select></label>
+        <label class="en-only" data-lang-only="en"><span><t-en>Where is your company located</t-en></span><select name="country_region_id" data-options="countries" required><option value="" data-text-zh="" data-text-en="Select your country or region">Select your country or region</option></select></label>
         <label><span><t-zh>你是通过什么渠道了解到 NocoBase 的</t-zh><t-en>How did you find out about NocoBase</t-en></span><select name="source" data-options="enum" data-field="source" required><option value="" data-text-zh="请选择" data-text-en="Select one">请选择</option></select></label>
         <fieldset class="opts" data-options="enum" data-field="what_to_do" data-required><legend><t-zh>你希望用 NocoBase 做什么（可多选）</t-zh><t-en>What do you want to do with NocoBase (choose all that apply)</t-en></legend></fieldset>
         <label><span><t-zh>请介绍一下你的团队，以及使用 NocoBase 的具体场景</t-zh><t-en>Tell us about your team and your use cases for NocoBase</t-en></span><textarea name="details" data-name-zh="Details" rows="4" required></textarea></label>

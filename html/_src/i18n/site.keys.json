@@ -8,7 +8,8 @@
   {
    "en": "The governance platform for teams building with agents",
    "zh": "团队与 Agent 协同开发的治理平台",
-   "where": "site"
+   "where": "site",
+   "unused": true
   },
   {
    "en": "Agent-driven business apps",
@@ -143,7 +144,8 @@
   {
    "en": "Sales, partnerships, and support",
    "zh": "商务合作、产品咨询与技术支持",
-   "where": "site"
+   "where": "site",
+   "unused": true
   },
   {
    "en": "Partners",
@@ -224,6 +226,36 @@
    "en": "Forum",
    "zh": "社区论坛",
    "where": "site"
+  },
+  {
+   "en": "The governance platform for people and agents building software together",
+   "zh": "人与 Agent 协同开发的治理平台",
+   "where": "site"
+  },
+  {
+   "en": "Partnerships, product questions, and support",
+   "zh": "商务合作、产品咨询与技术支持",
+   "where": "site"
+  },
+  {
+   "en": "Please choose at least one option",
+   "zh": "请至少选择一项",
+   "where": "form"
+  },
+  {
+   "en": "Submitting…",
+   "zh": "正在提交…",
+   "where": "form"
+  },
+  {
+   "en": "Thanks! We’ve received your request and will be in touch soon.",
+   "zh": "已收到你的需求，我们会尽快与你联系。",
+   "where": "form"
+  },
+  {
+   "en": "Something went wrong. Please try again, or email {mail}.",
+   "zh": "提交没有成功，请稍后再试，或写信到 {mail}。",
+   "where": "form"
   }
  ]
 }

@@ -6,16 +6,31 @@
 <title data-zh="NocoBase Studio — Agent 自主推进，团队掌控全局" data-en="NocoBase Studio — Agents keep the work moving. Your team stays in control.">NocoBase Studio — Agent 自主推进，团队掌控全局</title>
 <meta name="description" content="NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。" data-zh="NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。" data-en="NocoBase Studio is the governance platform for people and agents building software together.">
 <script>
+/* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 studio.<语言>.js，
+   由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
 (function () {
+  var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
+  /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
+  var FONTS = { ru: 'inter' };
+  var lang = 'zh';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
-    window.__lang = lang;
-    document.documentElement.lang = lang;
-  } catch (e) {
-    window.__lang = 'zh';
-  }
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+  } catch (e) {}
+  window.__i18nPage = 'studio';
+  window.__lang = lang;
+  document.documentElement.lang = lang;
+  window.__font = function (l) {
+    if (!FONTS[l] || document.getElementById('font-' + l)) return;
+    var k = document.createElement('link');
+    k.id = 'font-' + l;
+    k.rel = 'stylesheet';
+    k.href = 'assets/fonts/' + FONTS[l] + '.css';
+    document.head.appendChild(k);
+  };
+  window.__font(lang);
+  if (lang !== 'zh' && lang !== 'en') document.write('<script src="assets/i18n/site.' + lang + '.js"><\/script><script src="assets/i18n/studio.' + lang + '.js"><\/script>');
 })();
 </script>
 <link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
@@ -160,7 +175,7 @@
     <div class="sec-head">
       <p class="label"><b><t-zh>开源与私有部署</t-zh><t-en>Open source and self-hosting</t-en></b></p>
       <h2 class="h2"><t-zh>私有部署，<span class="m">代码和数据归企业所有。</span></t-zh><t-en>Self-hosted. <span class="m">Your code and data belong to you.</span></t-en></h2>
-      <p class="lead"><t-zh>Core 和 NocoCRM 等 Solution 应用开源免费；Studio 和 NocoITAM 等 Solution 应用在商业版中提供。</t-zh><t-en>Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.</t-en></p>
+      <p class="lead"><t-zh>Core 和 Solution 开源免费；Studio 在商业版中提供。</t-zh><t-en>Core and Solution are free and open source. Studio is available in the commercial editions.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="cols3" style="margin-top:0">

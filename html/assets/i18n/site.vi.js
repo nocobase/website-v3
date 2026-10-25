@@ -1,7 +1,6 @@
 /* 由 _src/i18n/pages.py 从 site.vi.txt 生成，不要直接修改 */
 (function (p) { p.strings = Object.assign(p.strings || {}, {
 "The open-source foundation for AI-built business systems": "Nền móng mã nguồn mở cho hệ thống nghiệp vụ xây dựng bằng AI",
-"The governance platform for teams building with agents": "Nền tảng quản trị cho đội ngũ phát triển cùng agent",
 "Agent-driven business apps": "Ứng dụng nghiệp vụ do agent vận hành",
 "Sales · 6 Sales Agents": "Bán hàng · 6 agent bán hàng",
 "IT Asset Management · 3 IT Agents": "Quản lý tài sản CNTT · 3 agent CNTT",
@@ -28,7 +27,6 @@
 "Community": "Cộng đồng",
 "Ask questions and share patterns": "Đặt câu hỏi và chia sẻ kinh nghiệm",
 "Contact Us": "Liên hệ",
-"Sales, partnerships, and support": "Kinh doanh, hợp tác và hỗ trợ",
 "Partners": "Đối tác",
 "Find a Partner": "Tìm đối tác",
 "Get your system built and running with an expert": "Cùng chuyên gia xây dựng và vận hành hệ thống của bạn",
@@ -44,5 +42,11 @@
 "License": "Giấy phép",
 "Partner Program": "Chương trình đối tác",
 "Connect": "Kết nối",
-"Forum": "Diễn đàn"
+"Forum": "Diễn đàn",
+"The governance platform for people and agents building software together": "Nền tảng quản trị cho con người và agent cùng phát triển phần mềm",
+"Partnerships, product questions, and support": "Hợp tác kinh doanh, tư vấn sản phẩm và hỗ trợ kỹ thuật",
+"Please choose at least one option": "Vui lòng chọn ít nhất một mục",
+"Submitting…": "Đang gửi…",
+"Thanks! We’ve received your request and will be in touch soon.": "Cảm ơn bạn! Chúng tôi đã nhận được yêu cầu và sẽ sớm liên hệ với bạn.",
+"Something went wrong. Please try again, or email {mail}.": "Gửi không thành công. Vui lòng thử lại hoặc gửi email đến {mail}."
 }); p.pages = p.pages || {}; })((window.NB_I18N = window.NB_I18N || {})["vi"] = (window.NB_I18N || {})["vi"] || {});

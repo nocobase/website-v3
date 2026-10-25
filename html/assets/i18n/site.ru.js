@@ -1,7 +1,6 @@
 /* 由 _src/i18n/pages.py 从 site.ru.txt 生成，不要直接修改 */
 (function (p) { p.strings = Object.assign(p.strings || {}, {
 "The open-source foundation for AI-built business systems": "Фундамент с открытым кодом для бизнес-систем, созданных с ИИ",
-"The governance platform for teams building with agents": "Платформа управляемой разработки для команд и агентов",
 "Agent-driven business apps": "Бизнес-приложения на основе агентов",
 "Sales · 6 Sales Agents": "Продажи · 6 агентов продаж",
 "IT Asset Management · 3 IT Agents": "Управление IT-активами · 3 IT-агента",
@@ -28,7 +27,6 @@
 "Community": "Сообщество",
 "Ask questions and share patterns": "Задавайте вопросы и делитесь опытом",
 "Contact Us": "Связаться с нами",
-"Sales, partnerships, and support": "Продажи, партнёрство и поддержка",
 "Partners": "Партнёры",
 "Find a Partner": "Найти партнёра",
 "Get your system built and running with an expert": "Эксперт построит и запустит вашу систему",
@@ -44,5 +42,11 @@
 "License": "Лицензия",
 "Partner Program": "Партнёрская программа",
 "Connect": "Связь",
-"Forum": "Форум"
+"Forum": "Форум",
+"The governance platform for people and agents building software together": "Платформа управляемой разработки для людей и агентов",
+"Partnerships, product questions, and support": "Партнёрство, вопросы о продукте и поддержка",
+"Please choose at least one option": "Выберите хотя бы один вариант",
+"Submitting…": "Отправляем…",
+"Thanks! We’ve received your request and will be in touch soon.": "Спасибо! Мы получили вашу заявку и скоро свяжемся с вами.",
+"Something went wrong. Please try again, or email {mail}.": "Не удалось отправить. Попробуйте ещё раз или напишите на {mail}."
 }); p.pages = p.pages || {}; })((window.NB_I18N = window.NB_I18N || {})["ru"] = (window.NB_I18N || {})["ru"] || {});

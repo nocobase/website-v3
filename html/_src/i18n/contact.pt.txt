@@ -1,0 +1,48 @@
+# Português（巴西，você）
+# 术语：foundation = base；building blocks = componentes básicos；governance = governança；agent team = equipe de agentes；
+# coding agent = agente de código；business logic = lógica de negócio；business systems = sistemas de negócio；
+# vibe coding = vibe coding；self-hosted = auto-hospedado；make the call = dar a palavra final / decidir；at a glance = à vista
+title: Fale conosco — NocoBase
+description: Fale com a NocoBase por e-mail ou pelo formulário sobre vendas e serviços comerciais.
+001: Fale conosco. <span class="m">Conte o que você quer construir.</span>
+002: Para vendas e serviços comerciais, fale conosco aqui. Para dúvidas técnicas, o <a href="https://forum.nocobase.com/" target="_blank" rel="noopener">fórum da comunidade</a> é o melhor lugar.
+003: Vamos conversar
+004: Preencha o formulário e entraremos em contato em breve, ou escreva diretamente para nós.
+006: Onde estamos
+007: Seu nome
+008: Seu cargo
+009: Nome da empresa
+010: Como você conheceu o NocoBase?
+011: O que você quer fazer com o NocoBase? (pode escolher mais de uma)
+012: Conte sobre sua equipe e seus casos de uso para o NocoBase
+013: Que tipo de ajuda você espera receber?
+014: Enviar
+015: Obrigado! Recebemos sua mensagem e entraremos em contato em breve.
+016: Selecione
+017: Mecanismo de busca
+018: GitHub
+019: LinkedIn
+020: Facebook
+021: Instagram
+022: TikTok
+023: YouTube
+024: X
+025: Indicação de parceiro ou terceiros
+026: Amigos ou colegas
+027: Reddit
+028: Comunidade online
+029: Chat de IA
+030: Artigo ou blog
+031: Hacker News
+032: Product Hunt
+033: Site de avaliações
+034: Outros
+035: Uso interno para desenvolver sistemas ou ferramentas de negócio
+036: Oferecer serviços de desenvolvimento para terceiros com o NocoBase
+037: Desenvolver produtos comerciais baseados no NocoBase
+038: Estudo ou pesquisa
+039: Seu e-mail
+040: Onde fica sua empresa?
+041: Selecione seu país ou região
+042: Somos uma equipe remota em vários países, com escritórios em:
+043: 501, 1-55-8 Akabane, Kita-ku, Tóquio, Japão

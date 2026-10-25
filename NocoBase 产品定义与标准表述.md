@@ -101,7 +101,7 @@
 
 ### 标准介绍
 
-> NocoBase Solution 是由 Agent 驱动的、基于 Core 构建的一系列企业业务应用。传统业务软件靠人来记录、流转和操作；在 Solution 里，大部分执行工作都由 Agent 完成，比如调研客户、起草邮件、核对资产台账、做内容增长、处理客户工单，遇到需要决策的事，Agent 附上详细依据交给负责人拍板。Solution 的销售、内容增长和项目协作应用开源免费，IT 资产、客户服务和人事应用在商业版中提供，都可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。
+> NocoBase Solution 是由 Agent 驱动的、基于 Core 构建的一系列企业业务应用。传统业务软件靠人来记录、流转和操作；在 Solution 里，大部分执行工作都由 Agent 完成，比如调研客户、起草邮件、核对资产台账、做内容增长、处理客户工单，遇到需要决策的事，Agent 附上详细依据交给负责人拍板。Solution 开源免费，可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。
 
 ### 核心特色
 
@@ -111,15 +111,15 @@
   - Agent 的工作成果会附上依据，关键决策必须由人来做。Agent 继承负责人的权限，保证数据安全。
 - **方便定制开发**
   - 基于 NocoBase Core 开发，具备统一的架构和可靠的底座，可以让 Coding Agent 对它们进行定制开发。
-- **开源起步，开箱即用**
-  - NocoCRM、NocoReach 和 NocoProject 开源免费，NocoITAM、NocoSupport 和 NocoHR 在商业版中提供。所有应用都部署在企业自己的服务器上，模型自由选择。
+- **开源免费，开箱即用**
+  - 所有 Solution 均开源免费，部署在企业自己的服务器上，模型自由选择。
 
 ## 开源与私有部署
 
-> Core 和 NocoCRM 等 Solution 应用开源免费；Studio 和 NocoITAM 等 Solution 应用在商业版中提供。
+> Core 和 Solution 开源免费；Studio 在商业版中提供。
 
 - **开源免费**
-  - Core 以及 NocoCRM、NocoReach、NocoProject 开源免费，可以直接用于生产。
+  - Core 和所有 Solution 开源免费，可以直接用于生产。
 - **私有部署**
   - Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。
 - **模型与 Agent 自由选择**

@@ -73,3 +73,5 @@ description: NocoITAM ist Open-Source-IT-Asset-Management auf NocoBase. Agenten 
 057: Weisen Sie jedem Agenten ein Modell zu, und behalten Sie die Nutzung im Blick. Eigene Felder, Workflows oder Berichte nötig? Lassen Sie einen Coding-Agenten in Studio den Quellcode anpassen: Open Source, selbst gehostet und Ihr Eigentum.
 058: Weniger Abgleich für die IT, klarer Überblick über jedes Asset.
 059: Testen Sie NocoITAM online, oder holen Sie sich den Quellcode auf GitHub und betreiben Sie ihn selbst. Verbinden Sie Ihr MDM, importieren Sie Ihre Assets, und lassen Sie die Agenten mit dem Abgleich beginnen.
+061: Professional
+062: Weisen Sie jedem Agenten ein Modell zu, und behalten Sie die Nutzung im Blick. Eigene Felder, Workflows oder Berichte nötig? Lassen Sie einen Coding-Agenten in Studio den Quellcode anpassen: in Professional enthalten, selbst gehostet und Ihr Eigentum.

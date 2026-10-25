@@ -41,7 +41,7 @@ Everything can be self-hosted, and each company chooses its own models and agent
 | Who builds | You open your own coding tool in the app directory and build with an agent | Studio turns your team's agents into one agent team, and a coordinator agent arranges development, testing, and review |
 | Fits | One person or a small team, building one or a few apps | A team moving several issues and projects forward at once, where business experts also lead the requirements |
 | Testing, deployment, backup | Organized by the team itself, with deployment tools and development guidance from Core | Follows Studio's process: checks, review, acceptance, and approval before release |
-| Get started | [Core quick start](../core/quickstart.md) | [What is Studio](../studio/intro/what-is-studio.md) |
+| Get started | [Create a Core app](../core/getting-started/create-app.md) | [What is Studio](../studio/intro/what-is-studio.md) |
 
 Apps built either way are the same. Both are built on Core and run on their own after launch, and day-to-day business requests never go through Studio.
 
@@ -54,6 +54,6 @@ Both kinds of work follow the same principles: an agent has a clear identity and
 
 ## Next
 
-- To get hands-on: [What is Core](../core/intro/what-is-core.md) → [Quick start](../core/quickstart.md)
+- To get hands-on: [What is Core](../core/getting-started/what-is-core.md) → [Create an app](../core/getting-started/create-app.md)
 - To see how a team leads an agent team: [What is Studio](../studio/intro/what-is-studio.md)
 - If you've used NocoBase 2: [Coming from NocoBase 2](from-v2.md)

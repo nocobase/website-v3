@@ -41,7 +41,7 @@ NocoBase 把一个业务系统分成两部分：
 | 谁来开发 | 你在应用目录里打开自己的编码工具，和 Agent 一起开发 | Studio 把团队的 Agent 组成 Agent 团队，调度 Agent 安排开发、测试、评审 |
 | 适合 | 一个人或一个小团队，做一个或几个应用 | 团队同时推进多个任务和项目，懂业务的人也要主导需求 |
 | 测试、部署、备份 | 团队自己组织，Core 提供部署工具和开发指引 | 按 Studio 的流程进行：检查、评审、验收、批准后发布 |
-| 开始 | [Core 快速开始](../core/quickstart.md) | [Studio 是什么](../studio/intro/what-is-studio.md) |
+| 开始 | [创建 Core 应用](../core/getting-started/create-app.md) | [Studio 是什么](../studio/intro/what-is-studio.md) |
 
 两种方式开发出来的应用一样，都建在 Core 上，上线后独立运行，日常业务请求不经过 Studio。
 
@@ -54,6 +54,6 @@ NocoBase 把一个业务系统分成两部分：
 
 ## 接下来
 
-- 想动手：[Core 是什么](../core/intro/what-is-core.md) → [快速开始](../core/quickstart.md)
+- 想动手：[Core 是什么](../core/getting-started/what-is-core.md) → [创建应用](../core/getting-started/create-app.md)
 - 想了解团队怎样带领 Agent 团队：[Studio 是什么](../studio/intro/what-is-studio.md)
 - 用过 NocoBase 2：[从 NocoBase 2 来](from-v2.md)

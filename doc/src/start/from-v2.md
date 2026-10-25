@@ -13,10 +13,10 @@ Once changes are code, you can manage them like code: develop on a branch, revie
 
 | In NocoBase 2 | In NocoBase 3 |
 | --- | --- |
-| Enable a plugin in the plugin manager | Register the plugin in the app's plugin lists, usually done by an agent with `pnpm nocobase plugin register`. See [How plugins work](../core/intro/how-plugins-work.md) |
+| Enable a plugin in the plugin manager | Register the plugin in the app's plugin lists, usually done by an agent with `pnpm nocobase plugin register`. See [Manage plugins](../core/developing-apps/manage-plugins.md) |
 | Configure it on the plugin's settings page | Three places: deployment settings (database, storage, mail provider) go in `config.yml`; business rules are written into the code by agents; what administrators adjust day to day (users, roles, data scopes, approvers, amount thresholds) lives in the app's **System settings** |
 | Drag and drop pages and blocks in the interface | Describe the page to an agent, and it writes the page as code using components from the UI library |
-| Configure processes on the workflow canvas | Processes are written in code (record lifecycle). Administrators view the flow chart, adjust workflow parameters, and check execution records in **Workflow management**. See [Workflows and approvals](../core/capabilities/workflows.md) |
+| Configure processes on the workflow canvas | Processes are written in code (record lifecycle). Administrators view the flow chart, adjust workflow parameters, and check execution records in **Workflow management**. |
 | Create tables and add fields in data source management | Agents write migration files, and `pnpm nocobase db apply` runs them |
 | Changes take effect as soon as they are saved | Changes are code, and take effect after development, verification, and deployment |
 | AI employees | Business agents, connected by the Agents plugin, using the same roles and permissions as people |
@@ -46,7 +46,7 @@ To see which plugins an app uses, open **System settings › App foundation**. I
 | Audit logs | Not available yet | The audit item in **App foundation** shows that no provider has been detected yet |
 | LDAP, SAML, DingTalk, and WeCom sign-in | To be confirmed | The authentication plugin is built on Better Auth, and OIDC and social sign-in are connected through configuration |
 
-Each plugin's details are in the [plugin directory](../core/plugins/index.md), and every page there has a "Mapping from NocoBase 2" section.
+See [Manage plugins](../core/developing-apps/manage-plugins.md) to inspect, register, update, or remove the plugins used by an app.
 
 ## Can a NocoBase 2 app move to 3?
 
@@ -57,6 +57,5 @@ The two are structured differently: in 2 the business definitions are configurat
 
 ## Next
 
-- [What is Core](../core/intro/what-is-core.md): build an overall picture of NocoBase 3
-- [How plugins work](../core/intro/how-plugins-work.md): what plugins bring to an app, and where the admin entry points are
-- [Workflows and approvals](../core/capabilities/workflows.md): how processes are defined and managed in 3
+- [What is Core](../core/getting-started/what-is-core.md): build an overall picture of NocoBase 3
+- [Manage plugins](../core/developing-apps/manage-plugins.md): what plugins bring to an app, and where the admin entry points are

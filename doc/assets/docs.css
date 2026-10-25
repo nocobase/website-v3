@@ -556,3 +556,7 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .capdetail dd { margin: 0; }
 .capdetail code { font-size: 11px; }
 @media (max-width: 600px) { .capgrid { grid-template-columns: 1fr 1fr; } }
+
+/* Planned Core chapters have no destination until their content is written. */
+.menu-planned { display: block; padding: 5px 10px; color: var(--muted); font-size: 13px; }
+.menu-planned small { margin-left: 4px; font-size: 11px; }

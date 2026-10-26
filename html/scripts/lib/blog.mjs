@@ -39,6 +39,8 @@ export function blogPages() {
   const order = Object.keys(posts).sort((a, b) => (posts[a].en.date < posts[b].en.date ? 1 : posts[a].en.date > posts[b].en.date ? -1 : 0));
   // CMS 文章带 listed：false 的只有详情页，不进列表和「相关文章」（规则见 scripts/cms-import.mjs）
   const listed = order.filter(k => posts[k].listed ?? true);
+  // 旧官网 hideOnBlog 的文章（onBlog：false）不进博客列表「全部」，按标签筛选时显示，和旧官网的 /blog 首页与标签页一致
+  const onHome = k => posts[k] ? (posts[k].onBlog ?? true) : true;
 
   function localLinks(body) {
     // 指向 v2 文档的旧地址换成 nocode.docs.nocobase.com，指向旧官网的换成新地址或 nocode.nocobase.com（CMS 导入时已经换过，这里再保险一次）
@@ -68,10 +70,12 @@ export function blogPages() {
   };
   const cover = (img, title = '') => (img ? `<img src="${img}" alt="">` : `<span class="cv-ph"><b>${title}</b></span>`);
   const href = slug => (slug in posts ? `blog/${slug}.html` : `customers/${slug}.html`);
-  const card = slug => {
+  // inList：博客列表页的卡片，带 data-home，onBlog：false 的默认隐藏；相关文章、客户案例列表不受影响
+  const card = (slug, inList) => {
     const { en: e, cn: c } = src(slug);
     const keys = e.tags.map(t => t.replaceAll(' ', '_')).join(' ');
-    return `<a class="bcard" href="${href(slug)}" data-tags="${keys}"><span class="cv">${cover(e.image, 'SUNGROW')}</span>` +
+    const home = !inList || onHome(slug);
+    return `<a class="bcard" href="${href(slug)}" data-tags="${keys}"${inList ? ` data-home="${home ? 1 : 0}"${home ? '' : ' hidden'}` : ''}><span class="cv">${cover(e.image, 'SUNGROW')}</span>` +
       `${meta(slug)}<h3>${T(esc(c.title), esc(e.title))}</h3><p>${T(esc(c.desc), esc(e.desc))}</p></a>`;
   };
   // 每页一条：地址（blog、blog/<slug>……）、导航高亮、中英文标题和描述、正文
@@ -80,7 +84,7 @@ export function blogPages() {
   // 列表页
   const alltags = [];
   for (const s of listed) for (const [x, z] of zip(posts[s].en.tags, posts[s].cn.tags)) if (!alltags.some(a => a[0] === x)) alltags.push([x, z]);
-  const feat = listed[0], fe = posts[feat].en, fc = posts[feat].cn;
+  const feat = listed.find(onHome) || listed[0], fe = posts[feat].en, fc = posts[feat].cn;
   const chips = '<button type="button" class="on" data-f="">' + T('全部', 'All') + '</button>' + alltags.map(([x, z]) =>
     `<button type="button" data-f="${x.replaceAll(' ', '_')}">${T(esc(z), esc(x))}</button>`).join('') + `<a class="to-cs" href="customers.html">${T('客户案例', 'Customer stories')}<i data-lucide="arrow-right"></i></a>`;
   const listing = `<section class="phero">
@@ -94,7 +98,7 @@ export function blogPages() {
   <div class="container">
     <a class="bfeat" href="blog/${feat}.html"><span class="cv"><img src="${fe.image}" alt=""></span><span class="tx">${meta(feat)}<h2>${T(esc(fc.title), esc(fe.title))}</h2><p>${T(esc(fc.desc), esc(fe.desc))}</p><span class="link">${T('阅读全文', 'Read the post')}<i data-lucide="arrow-right"></i></span></span></a>
     <div class="bfilter" role="group" aria-label="Filter">${chips}</div>
-    <div class="bgrid" id="bgrid">${listed.slice(1).map(card).join('')}</div>
+    <div class="bgrid" id="bgrid">${listed.filter(s => s !== feat).map(s => card(s, true)).join('')}</div>
   </div>
 </section>
 <script>
@@ -103,7 +107,7 @@ export function blogPages() {
   chips.forEach(function (b) { b.addEventListener('click', function () {
     chips.forEach(function (x) { x.classList.toggle('on', x === b); });
     var f = b.getAttribute('data-f');
-    cards.forEach(function (c) { c.hidden = !!f && (' ' + c.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') < 0; });
+    cards.forEach(function (c) { c.hidden = f ? (' ' + c.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') < 0 : c.getAttribute('data-home') === '0'; });
   }); });
 })();
 </script>`;

@@ -2,7 +2,7 @@
 // 把 CMS 推送的文章（src/blog/cms/articles/<slug>/metadata.json、index.md、index.cn.md）合并进 src/blog/posts.json，构建时由 lib/blog.mjs 生成页面。
 // 推送由 CMS 工作流「Website_v3_github_sync」完成，格式和旧官网 nocobase/website 的 content/articles 相同。
 // 显示规则沿用旧官网：status 为 published 且没有 hideDetailPage 的文章有详情页；再没有 hideOnListPage 的进博客列表。
-// hideOnBlog 的文章旧官网不进 /blog 首页，但出现在标签页和侧栏；v3 只有一个带标签筛选的列表，所以也列出来。
+// hideOnBlog 的文章旧官网不进 /blog 首页，但出现在标签页和侧栏；v3 照此处理：记为 onBlog: false，博客列表「全部」里不显示，按标签筛选时显示。
 // 打了 Release Notes 标签、已发布的 v3 版本（slug 以 v3. 开头）另外写进 releases.json，给 lib/changelog.mjs 生成更新日志；含没有详情页的。
 // v2 及更早的版本留在旧官网的 /blog/timeline，更新日志页上有链接。
 // 正文里指向 v2 文档和旧官网的地址换成新地址（规则见 lib/links.mjs 的 legacyDocLinks、legacySiteLinks）；旧官网地址的替换也作用于手工抓取的文章和 cs-posts.json。
@@ -64,6 +64,7 @@ for (const slug of existsSync(root) ? readdirSync(root).sort() : []) {
   posts[m.slug || slug] = {
     source: 'cms',
     listed: !m.hideOnListPage,
+    onBlog: !m.hideOnBlog,
     en: { title: m.title || m.title_cn, desc: m.description || m.description_cn || '', date, author, tags: tags.map(t => t.title), image, body: marked.parse(en || cn).trim() },
     cn: { title: m.title_cn || m.title, desc: m.description_cn || m.description || '', date, author, tags: tags.map(t => t.title_cn || t.title), image, body: marked.parse(cn).trim() },
   };

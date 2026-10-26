@@ -2,6 +2,7 @@
  "10-open-source-tools-developers-use-to-reduce-repetitive-crud": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "10 Open Source Tools Developers Use to Reduce Repetitive CRUD",
    "desc": "A developer-focused overview of open-source tools and approaches to reduce repetitive CRUD, from code generators to configurable platforms and long-term system reuse.",
@@ -28,6 +29,7 @@
  "14-ai-low-code-platforms-github": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "14 AI-Powered Low-Code Platforms on GitHub Worth Watching",
    "desc": "We’ve rounded up 14 popular AI-powered low-code platforms on GitHub — covering workflows, agents, system building, and intelligent databases — to help you build smarter and more scalable systems.",
@@ -54,6 +56,7 @@
  "2-0-beta": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Announcing NocoBase 2.0-beta",
    "desc": "After 8 weeks of intensive refinement, NocoBase 2.0 has entered the stable beta phase. This release brings deep optimizations to AI Employee, Visualization 2.0, and the Approval 2.0, while introducing the all-new UI Templates and Multi-app Architecture.",
@@ -80,6 +83,7 @@
  "2.1.0": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Announcing NocoBase 2.1.0",
    "desc": "NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.",
@@ -106,6 +110,7 @@
  "2.1.0-beta": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Announcing NocoBase 2.1-beta",
    "desc": "Major AI upgrade: from CLI integration and AI-powered building to NocoBase Skills, AI plugin development, and enhanced AI Employees—covering the full lifecycle of building, extending, and operating business systems. Build and run real business systems faster with AI.",
@@ -132,6 +137,7 @@
  "2.2.0": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Announcing NocoBase 2.2",
    "desc": "NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.",
@@ -158,6 +164,7 @@
  "2.2.0-beta": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Announcing NocoBase 2.2-beta",
    "desc": "NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.",
@@ -184,6 +191,7 @@
  "20-best-self-hosted-tools-for-enterprises": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "20+ Best Self Hosted Tools for Enterprises with Full Data Control",
    "desc": "This article reviews more than 20 self hosted tools for enterprise use and compares them across six key dimensions, including deployment, access control, auditing, recovery, maintainability, and AI readiness, to help teams make better software decisions.",
@@ -210,6 +218,7 @@
  "4-lightweight-enterprise-software-for-business-processes": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "4 Lightweight Enterprise Software for Business Processes (With Real-World Cases)",
    "desc": "Starting from real-world cases, this article recommends lightweight open-source software solutions for enterprise business processes.",
@@ -236,6 +245,7 @@
  "4-no-code-tools-to-build-ticketing-system": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "4 Best Open Source No-Code/Low-Code Platforms to Build Ticketing System",
    "desc": "Discover four open-source no-code/low-code platforms — NocoBase, Budibase, Appsmith, and Refine — to easily build highly customizable ticketing systems for your business.",
@@ -262,6 +272,7 @@
  "4-open-source-data-management-tools-for-business-systems": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "4 Open Source Data Management Tools for Business Systems",
    "desc": "This article examines data management from a business system perspective, comparing NocoBase, Directus, Budibase, and Appsmith across data modeling, relationships, permissions, workflows, and extensibility to clarify their practical positioning and use cases.",
@@ -288,6 +299,7 @@
  "5-challenges-of-developing-with-a-no-code-platform": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "5 Challenges of Developing with a No-Code Platform",
    "desc": "Discover the top 5 challenges faced when using no-code/low-code platforms for development, including project complexity assessment, customization difficulties, platform dependency, learning curve, and security issues. Learn how NocoBase addresses these challenges with a microkernel architecture, modular plugins, open-source code, WYSIWYG page configuration, and model-driven design.",
@@ -314,6 +326,7 @@
  "5-management-tools-perfect-for-small-businesses": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "5 Management Tools Perfect for Small Businesses (Based on Real Experience)",
    "desc": "In this article, we share how the NocoBase team leveraged their own product to build a customized management system and recommend five management tools suitable for small businesses to enhance team collaboration and operational efficiency.",
@@ -340,6 +353,7 @@
  "5-most-popular-open-source-ai-project-management-tools-on-github": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "5 Most Popular Open-Source AI Project Management Tools on GitHub",
    "desc": "A review of five open-source tools that have already integrated AI capabilities or are actively advancing AI-driven collaboration",
@@ -366,6 +380,7 @@
  "5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Not Just PostgreSQL: Comparing 5 No-Code/Low-Code Platforms with External Database Support",
    "desc": "This article compares five low-code platforms: NocoBase, Retool, Appsmith, Budibase, and ToolJet. It analyzes data sources, business relationships, permissions, efficiency, and AI capabilities to clarify their strengths and applicable scenarios.",
@@ -392,6 +407,7 @@
  "5-self-hosted-airtable-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Is Airtable Too Expensive? 5 Self-Hosted Alternatives Compared by Cost & Features",
    "desc": "Is Airtable too pricey? Here come 5 self-hosted alternatives! This article compares costs and functions to help you find a more cost-saving and flexible option.",
@@ -418,6 +434,7 @@
  "6-best-open-source-ai-ticketing-systems": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Best Open-Source AI Ticketing Systems ",
    "desc": "Based on real community feedback, this article reviews open-source AI ticketing systems, focusing on how AI capabilities integrate into workflows rather than surface-level features.",
@@ -444,6 +461,7 @@
  "6-best-open-source-ai-tools-to-build-dashboards": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Best Open-Source AI Tools to Build Dashboards ",
    "desc": "A review of six open source AI powered dashboard tools, highlighting their core features and use cases to help you create data driven dashboards with ease.",
@@ -470,6 +488,7 @@
  "6-developer-tools-with-rbac-support": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 6 Developer Tools with RBAC Support",
    "desc": "This article compares and recommends 6 development tools that support RBAC, covering open-source, self-hosted, and SaaS solutions. It helps developers quickly build secure and efficient permission control systems based on actual needs.",
@@ -496,6 +515,7 @@
  "6-enterprise-softwares-to-replace-excel-for-internal-operations": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Enterprise Softwares to Replace Excel for Internal Operations",
    "desc": "An analysis of six Excel alternatives for internal management based on business complexity and usage patterns",
@@ -522,6 +542,7 @@
  "6-github-top-open-source-ai-tools-for-ai-agents": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": " Top 6 Open Source AI Tools by GitHub Stars for Stronger AI Agents",
    "desc": "This article reviews six highly starred open source AI tools from GitHub ai-tools and explains how they strengthen AI Agents across browser automation, coding, prompts, and business systems.",
@@ -548,6 +569,7 @@
  "6-in-depth-comparison-rbac-no-code-low-code-platforms": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 In-Depth Comparison of RBAC in Enterprise-Grade No-Code/Low-Code Platforms",
    "desc": "This article compares the RBAC systems of six leading no-code/low-code platforms — NocoBase, Retool, OutSystems, Appsmith, Budibase, and Mendix — analyzing their permission granularity, flexibility, and user experience to help you choose the right platform for your access control needs.",
@@ -574,6 +596,7 @@
  "6-no-code-tools-supporting-postgresql": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Best No-Code Tools for PostgreSQL",
    "desc": "Looking for no-code platforms that truly support PostgreSQL? This article compares 6 tools based on schema modeling, permission control, and self-hosting capabilities—ideal for building internal tools, collaborative apps, or complex business systems.",
@@ -600,6 +623,7 @@
  "6-open-source-integration-tools-to-replace-custom-middleware": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Best Open-Source Tools to Replace Custom Integration Middleware",
    "desc": "Compare 6 open-source integration tools by deployment, connectivity, extensibility, and long-term cost to support tool selection.",
@@ -626,6 +650,7 @@
  "6-open-source-no-code-database-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Open-Source no-code Database Tools Like Airtable and Notion",
    "desc": "This article introduces a variety of open-source no-code database tools, comparing their free version's data capacity, differences between open-source and commercial editions, and suitability for team deployment, providing references for individual or team tool selection.",
@@ -652,6 +677,7 @@
  "6-open-source-no-code-low-code-tools-for-software-agencies": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Open-Source No-Code & Low-Code Tools for Software Agencies",
    "desc": "A practical comparison of open-source no-code platforms for client project delivery. Learn which tools are best suited for long-term maintenance, cost control, and system extensibility.",
@@ -678,6 +704,7 @@
  "6-open-source-no-low-code-tools-for-building-pocs": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Open-Source No/Low-Code Tools for Building PoCs",
    "desc": "This summary covers six open source low code and no code tools for quickly building PoCs and offers guidance on choosing the right option for different validation needs.",
@@ -704,6 +731,7 @@
  "7-self-hosted-ai-tools-build-business-app": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "7 Best Self-Hosted AI Tools for Building Business Apps",
    "desc": "Seven self-hosted AI tools that enable secure, flexible, and intelligent business application development.",
@@ -730,6 +758,7 @@
  "8-no-code-tools-to-build-crm": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "8 No-Code Tools to Build a CRM（Open Source & SaaS Compared）",
    "desc": "This article explores approaches to building adaptive CRMs with no-code platforms, compares differences between open-source and SaaS tools, and recommends 8 practical CRM tools for developers.",
@@ -756,6 +785,7 @@
  "8-open-source-ai-agent-platforms-for-internal-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "8 Open-Source AI Agent Platforms for Building Internal Tools",
    "desc": "Compare 8 open-source AI agent platforms for internal tools by self-hosting, permissions, workflows, business data, extensibility, and maintenance needs.",
@@ -782,6 +812,7 @@
  "GemelSoft": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "GemelSoft Enhances Internal Systems and Expands External Business Through NocoBase Integration",
    "desc": "GemelSoft utilizes NocoBase to quickly upgrade internal systems and create personalized solutions!",
@@ -808,6 +839,7 @@
  "Orchisky": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Orchisky’s Smart Manufacturing Upgrade: Why They Chose NocoBase",
    "desc": "Orchisky leverages NocoBase to break through the digital transformation bottleneck for SMEs, reducing the development cycle of intelligent manufacturing systems from months to weeks.",
@@ -834,6 +866,7 @@
  "SFCC": {
   "source": "cms",
   "listed": false,
+  "onBlog": false,
   "en": {
    "title": "Discover How Sinopec No.5 Construction Maximizes NocoBase to Drive Informatization of Singapore's CRISP Project!",
    "desc": "Discover how SFCC successfully implemented digital management using NocoBase in the Singapore CRISP project, exploring the application advantages and implementation methods of NocoBase in the petrochemical industry.",
@@ -860,6 +893,7 @@
  "a-developers-technical-decision-guide-to-no-code-and-low-code": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "A Developer’s Technical Decision Guide to No-Code and Low-Code (2026)",
    "desc": "A concise decision guide for developers. Clear best-fit cases, non-fit cases, and key risks of no-code.",
@@ -886,6 +920,7 @@
  "add-ai-to-existing-enterprise-systems-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Start Using AI Without Replacing Existing Business Systems",
    "desc": "Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.",
@@ -912,6 +947,7 @@
  "ai-business-analysis-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis",
    "desc": "See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.",
@@ -938,6 +974,7 @@
  "ai-multimodal-platform": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Built an AI Multimodal R&D Platform in Days — with NocoBase",
    "desc": "NocoBase empowers Wasu Media to efficiently build an AI multimodal platform, enhancing workflow management and improving content generation efficiency.",
@@ -964,6 +1001,7 @@
  "ai-powered-ticketing-built-with-nocobase-2-0": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "AI-Powered Ticketing Built with NocoBase 2.0",
    "desc": "A more extensible AI ticketing solution when off-the-shelf systems fall short.",
@@ -990,6 +1028,7 @@
  "airtable-data-limit-reached-3-common-solutions": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Airtable Data Limit Reached: 3 Common Solutions",
    "desc": "This article explores solutions for Airtable hitting data limits. It covers upgrading plans, splitting Bases + syncing via scripts, and building self - hosted systems.",
@@ -1016,6 +1055,7 @@
  "airtable-vs-nocobase-migration-cost-comparison": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Replace Excel with NocoBase or Airtable? A Cost-by-Cost Comparison",
    "desc": "This article compares the real migration costs of Airtable and NocoBase across data structure, workflows, permissions, deployment, pricing, and long term scalability, helping teams choose the right path when moving beyond Excel.",
@@ -1042,6 +1082,7 @@
  "all-in-one-business-software": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 5 All-in-One Business Software for 2026",
    "desc": "Explore the mysteries of top-tier all-in-one business software, covering functionalities such as CRM, invoicing, project management, and more. Analyze their strengths and limitations to help you build the perfect software combination that fits your business needs, enhancing management efficiency and helping businesses reduce costs.",
@@ -1068,6 +1109,7 @@
  "an-erp-built-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Community Spotlight: Building a Real-World ERP with NocoBase",
    "desc": "A user from Mexico shares how he independently built an ERP system using NocoBase. This case study is\nadapted and translated from his original community post.",
@@ -1094,6 +1136,7 @@
  "an-open-source-project-without-ai-can-still-earn-millions-a-year": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "No AI, No VC, Just 17K Stars and Real Revenue",
    "desc": "In the past 12 months, we received orders from more than 400 companies across 57 countries, with total revenue reaching 1.45 million USD (converted at current exchange rates).",
@@ -1122,6 +1165,7 @@
  "app-builder-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 4 Open-source App Builder Tools with the Most GitHub Stars",
    "desc": "Explore the most popular open-source app builder tools on GitHub.",
@@ -1148,6 +1192,7 @@
  "appsheet-alternative": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "AppSheet Alternative: Build a Many-to-Many Task System No-Code",
    "desc": "Building many-to-many relationships in no-code tools can be a pain. This article shows how to build a task management system with NocoBase—linking contacts, projects, and tasks, all with no code and full automation.",
@@ -1176,6 +1221,7 @@
  "appsheet-open-source-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "The Best Open-Source Alternatives to AppSheet in 2026",
    "desc": "Looking for an open-source alternative to AppSheet? This article compares five open-source platforms—NocoBase, Budibase, Directus, Appsmith, and ToolJet—examining them from the perspectives of cost, self-hosting, performance, and more, to help you find the right solution for you!",
@@ -1202,6 +1248,7 @@
  "astrolab-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "From Paperwork to Digital Public Services in France",
    "desc": "Astrolab used NocoBase to deliver three production-ready platforms for a French regional government, reducing review cycles to under 24 hours, cutting reservation conflicts by 80%, and reaching over 90% survey response rates.",
@@ -1228,6 +1275,7 @@
  "automate-company-background-research-with-workflows-and-ai-employees": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Automating Company Background Research with Workflows and AI Employees",
    "desc": "Learn how NocoBase workflows and AI employees automate company background research with traceable tasks and report history.\n",
@@ -1254,6 +1302,7 @@
  "awesome-nocobase-community-plugins": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Awesome NocoBase: Discover and Share Plugins Built by the Community",
    "desc": "Discover community-built NocoBase plugins and learn how to share your own extensions through Awesome NocoBase.",
@@ -1280,6 +1329,7 @@
  "awesome-open-source-projects-for-developers-1": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Awesome Open-Source Projects for Developers (Part 1)",
    "desc": "This article will introduce the open-source projects used by NocoBase, analyze their strengths, weaknesses, use cases, and more examples. ",
@@ -1306,6 +1356,7 @@
  "best-ai-crm-open-source-nocobase-twenty-krayin": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Best Open Source AI CRM: NocoBase vs Twenty vs Krayin",
    "desc": "Compare NocoBase, Twenty, and Krayin CRM by AI depth, flexibility, and deployment to choose the right fit.",
@@ -1332,6 +1383,7 @@
  "best-erp-solutions-for-small-businesses": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Best ERP Solutions for Small Businesses: 4 Tools to Improve Efficiency",
    "desc": "Discover the best ERP solutions for small businesses, boosting efficiency and streamlining operations. Learn how tools like NocoBase can help you integrate orders, inventory, and finances seamlessly.",
@@ -1358,6 +1410,7 @@
  "best-open-source-ai-projects-github-2026": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 20 AI Projects on GitHub to Watch in 2026: Not Just OpenClaw",
    "desc": "OpenClaw is exploding on GitHub, but it’s not the only project worth watching. Here are 20 fast-growing AI repositories developers should know about in 2026.",
@@ -1384,6 +1437,7 @@
  "best-smartsheet-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Choose a Smartsheet Alternative: 7 Tools Compared",
    "desc": "Compare 7 Smartsheet alternatives by positioning, key differences, ideal teams, and estimated three-year costs.\n",
@@ -1410,6 +1464,7 @@
  "bestone": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Bestone Leverages NocoBase to Streamline Legal Case Processing to Improve Productivity",
    "desc": "Bestone uses NocoBase to optimize legal case processing, enabling batch data management, automating complex workflows, and customizing role-based permissions. These improvements simplify operations and significantly enhance case processing efficiency.",
@@ -1436,6 +1491,7 @@
  "bielcrystal": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "BIEL Crystal’s Digital Factory: Powering 1.85 Billion Units a Year",
    "desc": "With the help of NocoBase, BIEL Crystal has built an equipment inspection system, replicated it across factories, and quickly deployed multiple systems—driving digital transformation across various operations at low cost and accelerating its evolution into a digitally agile factory.",
@@ -1462,6 +1518,7 @@
  "build-apps-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to build apps with NocoBase?",
    "desc": "Let's explore how to build a pet tracking app with NocoBase!",
@@ -1490,6 +1547,7 @@
  "build-car-rental-management-system-with-ai-and-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example",
    "desc": "See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.\n",
@@ -1516,6 +1574,7 @@
  "build-interactive-operations-dashboard-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Build an Interactive Operations Dashboard with NocoBase",
    "desc": "Learn how to combine NocoBase chart, filter, and JS blocks to build an operations dashboard with linked filters and drilldowns.\n",
@@ -1542,6 +1601,7 @@
  "build-it-operations-system-with-ai-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Build a Production-Ready IT Operations System with AI and NocoBase",
    "desc": " Learn how to build an IT operations system with AI and NocoBase in two hours, covering assets, requests, maintenance, licenses, and AI.\n",
@@ -1568,6 +1628,7 @@
  "build-production-ready-crm-with-ai-and-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Build a Production-Ready CRM with AI and NocoBase",
    "desc": "Learn how to build a production-ready CRM with AI and NocoBase, including permissions, workflows, automation, and AI Employees.\n",
@@ -1594,6 +1655,7 @@
  "build-production-ready-ticketing-system-with-ai": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Build a Production-Ready Ticketing System with AI ",
    "desc": "Learn how AI and NocoBase build a production-ready ticketing system with data relationships, permissions, workflows, and AI Employees.\n",
@@ -1620,6 +1682,7 @@
  "building-ai-assistant-langflow-astradb-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Building an AI Assistant with Langflow and AstraDB: From Architecture to Integration with NocoBase",
    "desc": "This article demonstrates how to integrate NocoBase, LangFlow, and AstraDB to create an AI assistant, generating insights through data vectorization and semantic search, and optimizing results using RAG technology to enhance data management and intelligent retrieval capabilities.",
@@ -1648,6 +1711,7 @@
  "building-an-application-catalog-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Simplified Architecture Governance: Building an Application Catalog with NocoBase",
    "desc": "The goal is to demonstrate the potential and ease of NocoBase for developing web applications without coding.",
@@ -1676,6 +1740,7 @@
  "building-internal-tools-with-codex": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Building Internal Tools with Codex: 6 Open-Source Projects for Developers",
    "desc": "Explore open source projects such as NocoBase, Refine, and Payload CMS that help Codex build more stable and maintainable internal tools.",
@@ -1702,6 +1767,7 @@
  "building-inventory-management-system-vibe-coding-vs-nocobase-ai": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Building an Inventory Management System: Vibe Coding vs NocoBase + AI",
    "desc": "Comparison of building with Vibe Coding versus AI + NocoBase, taking an inventory management system as an example.",
@@ -1728,6 +1794,7 @@
  "business-application-development": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Complete Guide to Efficient Business Application Development",
    "desc": "Learn how to streamline business application development with NocoBase's no-code platform. This guide covers key strategies for building scalable, flexible applications, from defining business requirements to automating workflows and managing security.",
@@ -1754,6 +1821,7 @@
  "business-process-management": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "What is BPM and How to Build a BPM App?",
    "desc": "Learn how Business Process Management (BPM) can revolutionize your business efficiency. This article explores what BPM is, how it benefits online education platforms, and guides you through building a simple BPM app using tools like NocoBase. Perfect for those looking to optimize processes with BPM tools.",
@@ -1780,6 +1848,7 @@
  "century-21": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "What made Japan's leading real estate firm switch from Salesforce to open-source NocoBase?",
    "desc": "HouseWell shifted from Salesforce to NocoBase, transitioning from high long-term costs to a flexible one-time purchase model, from rigid modules to an open architecture, and evolving into an industry solution developer and provider.",
@@ -1806,6 +1875,7 @@
  "choosing-and-deploying-low-code-tools-a-developers-guide": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Choosing and Deploying Low-Code Tools: A Developer's Guide",
    "desc": "How to choose low-code tools? This article offers the ultimate guide for developers, covering key selection points, tool recommendations, and implementation strategies to help you get started quickly, avoid common pitfalls, and accelerate the development process!",
@@ -1832,6 +1902,7 @@
  "classact": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Sub-Second Response at Scale: Classact Runs NocoBase on Kubernetes",
    "desc": "Classact deployed NocoBase on Kubernetes, achieving sub-second response for hundreds of thousands of records, covering HR and compliance management, and significantly boosting efficiency and user experience.",
@@ -1858,6 +1929,7 @@
  "classmethod": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Beyond Spreadsheets: Classmethod’s Employee Data Management with NocoBase",
    "desc": "Classmethod built a centralized employee information management system with NocoBase, moving beyond spreadsheets to achieve structured, scalable operations—while turning internal experience into client-facing value.",
@@ -1884,6 +1956,7 @@
  "core-app-dashboard-building-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 6 Core App Dashboard Building Tools",
    "desc": "Easily create data-driven dashboards with these no-code/low-code tools.",
@@ -1910,6 +1983,7 @@
  "crm-solution": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase CRM Solution is Now Live — Ready for You to Explore",
    "desc": "Leveraging the features of an open-source no-code platform, the NocoBase CRM solution integrates core functions such as customer management and process approval. It supports plugin expansion, can be directly copied to one's own environment, and provides flexible options for business adaptation.",
@@ -1936,6 +2010,7 @@
  "crud-projects": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 8 Open-Source CRUD Projects with the Most GitHub Stars",
    "desc": "Explore the most popular CRUD projects on GitHub.",
@@ -1962,6 +2037,7 @@
  "custom-crm-case-studies": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 4 Custom CRM Case Studies (Helping You Choose a More Flexible CRM Solution)",
    "desc": "This article will present four successful custom CRM case studies, demonstrating how custom CRM can help businesses enhance the efficiency of customer relationship management and address industry-specific challenges through flexible customization features.",
@@ -1988,6 +2064,7 @@
  "data-integration-platforms": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "7 Best Data Integration Platforms: Reviews & Top Picks",
    "desc": "Explore 7 best data integration platforms, covering data model-driven, enterprise ETL, and iPaaS/no-code automation categories to help businesses break through data silos.",
@@ -2014,6 +2091,7 @@
  "data-transformation-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "The Ultimate Guide to Data Transformation Tools",
    "desc": "Explore the best open source self-hosted data transformation tools, such as NocoBase, Airflow, Singer, etc.",
@@ -2040,6 +2118,7 @@
  "deliver-complex-oa-system-nocobase-3-months": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How to Deliver a Complex OA System in 3 Months with NocoBase",
    "desc": "A team delivered a complex OA system using NocoBase in just 3 months, covering finance, administration, and budget      management modules, achieving 75% time reduction while exploringtAI integration.",
@@ -2066,6 +2145,7 @@
  "developing-a-plugin-to-send-whatsapp-messages": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Developing a Plugin to Send WhatsApp Messages in NocoBase",
    "desc": "The goal of this article is to demonstrate the steps for creating a plugin in NocoBase to meet specific needs.",
@@ -2094,6 +2174,7 @@
  "distinct-healthcare": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How Distinct HealthCare Uses NocoBase to Build a Personalized, Long-Term Care System",
    "desc": "For Distinct HealthCare, NocoBase means more than just a system. It lowers the barrier for internal tool-building, reshapes digital understanding, and enables rapid response and demand standardization.",
@@ -2120,6 +2201,7 @@
  "ed": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase as ED’s Technology Foundation: From Internal Systems to Commercial Products",
    "desc": "ED built its technology foundation on NocoBase, cutting delivery cycles by one-third, accelerating testing and launch, and ensuring greater stability across both internal systems and commercial products.",
@@ -2146,6 +2228,7 @@
  "employee-management-system": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Best Employee Management Systems for 2026",
    "desc": "Discover the 6 employee management systems to focus on in 2026 and explore the future trends of employee management.",
@@ -2172,6 +2255,7 @@
  "enterprise-it-asset-management-system-guide": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Design an IT Asset Management System: Data Model, Lifecycle, and Workflows",
    "desc": "Learn how to build an IT asset management system with NocoBase, covering data models, lifecycles, workflows, permissions, and AI.\n",
@@ -2198,6 +2282,7 @@
  "excel-to-web-app-4-methods": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "4 Ways to Quickly Build Web Apps from Excel Data",
    "desc": "This article compares four common ways to turn Excel data into web applications, and explains which business stage each approach fits best and where its limits appear.",
@@ -2224,6 +2309,7 @@
  "first-optimization-process-for-nocobase-server-side-apis": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "First Optimization Process for NocoBase Server-Side APIs",
    "desc": "Discover the comprehensive optimization process for NocoBase's server-side APIs. This detailed guide covers performance testing, code analysis, and strategic improvements to enhance API efficiency. Learn about the impact of various middleware and caching strategies on performance, and explore the significant enhancements achieved. Ideal for developers looking to optimize API performance in complex scenarios.",
@@ -2250,6 +2336,7 @@
  "future-of-software-programmers-revenue-doubled": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Do Software and Programmers Still Have a Future? ",
    "desc": "AI is reshaping the software industry. After months of anxiety, debate, and adaptation, we share what NocoBase has learned about the future of software and programmers.",
@@ -2278,6 +2365,7 @@
  "github-open-source-ai-agent-projects": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 18 Open Source AI Agent Projects with the Most GitHub Stars",
    "desc": "This article reviews the top 18 open-source AI Agent projects on GitHub by star count, analyzing their features and use cases to help you choose and implement effectively.",
@@ -2304,6 +2392,7 @@
  "github-open-source-ai-agent-tools-16": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "14 Open Source AI Agent Tools with the Most GitHub Stars",
    "desc": "Explore 14 open source AI Agent tools on GitHub for business systems, web automation, AI coding, knowledge management, and personal assistants.",
@@ -2330,6 +2419,7 @@
  "github-open-source-ai-projects": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 20 Open Source AI Projects with the Most GitHub Stars",
    "desc": "OpenAI released two open-source large language models, sparking excitement across the developer community. This article highlights 20 of the most popular open-source AI projects on GitHub to help you dive into the AI world with confidence and speed.",
@@ -2356,6 +2446,7 @@
  "github-open-source-crm-projects": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "⭐️ Top 11 Open-source CRM Projects with the Most GitHub Stars",
    "desc": "Discover the most popular open-source CRM projects on GitHub, ranging from lightweight tools to feature-rich enterprise-level solutions.",
@@ -2382,6 +2473,7 @@
  "github-open-source-developer-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 40 Open-source Developer Tools with the Most GitHub Stars",
    "desc": "Discover the top 40 GitHub Star projects for developers, covering 7 key areas including low-code, AI assistants, and API development. Boost your efficiency and optimize project quality.",
@@ -2408,6 +2500,7 @@
  "github-open-source-mcp-projects": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 8 Open Source MCP Projects with the Most GitHub Stars",
    "desc": "This article features 8 of the most popular open-source MCP projects on GitHub, covering AI automation, smart assistants, and visual workflows to help you build powerful AI-integrated systems faster.",
@@ -2434,6 +2527,7 @@
  "github-open-source-project-management-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 10 Open Source Project Management Tools with the Most GitHub Stars",
    "desc": "Discover 10 of the most popular open-source project management tools on GitHub, covering agile, traditional management, and team collaboration to help you quickly choose the best tool.",
@@ -2460,6 +2554,7 @@
  "github-open-source-web-applications": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 7 Open Source Web Applications with the Most GitHub Stars",
    "desc": "7 of the most popular open-source web applications on GitHub—covering trending areas like data visualization, AI assistants, and no-code platforms. Practical, easy to deploy, and built with modern tech—must-sees for developers!",
@@ -2486,6 +2581,7 @@
  "github-top15-fastest-growing-open-source-low-code-projects": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 15 Fastest-Growing Open-Source Low-Code Projects on GitHub in 2025",
    "desc": "In the first quarter of 2025, the Star count of 15 open-source low-code projects on GitHub surged. What are their advantages and highlights? Let's explore in this article.",
@@ -2512,6 +2608,7 @@
  "hidden-cost-in-commen-low-code-platform": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 4 Open Source Products to Help You Avoid Hidden Costs in Low-Code Platforms",
    "desc": "This article reveals the hidden costs of common low-code platforms, discusses how to avoid vendor lock-in, cost surges, and performance bottlenecks, and recommends several open-source low-code platforms to help enterprises reduce long-term costs and improve scalability.",
@@ -2538,6 +2635,7 @@
  "how-400-lawyer-firm-streamlines-commission-management-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How a 400+ Lawyer Firm Streamlines Commission Management with NocoBase",
    "desc": "A 400+ lawyer firm struggled with inefficiency and errors in commission management due to diverse cases, complex hierarchies, and frequent rule changes. Using NocoBase's no-code platform for dynamic rule configuration and automated workflows, they achieved 6x faster calculations, zero errors, and $70k+ loss prevention.",
@@ -2564,6 +2662,7 @@
  "how-much-revenue-can-an-unknown-open-source-project-get": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How much revenue can an unknown open-source project get",
    "desc": "Discover how NocoBase, an open-source no-code platform, achieved remarkable growth and revenue over three years. Learn about their journey, strategies, and the significant impact on various industries, from AI to petrochemical construction. Explore insights on building a successful open-source project and fostering a global community. Read the full story of NocoBase’s transformation and future plans.",
@@ -2592,6 +2691,7 @@
  "how-to-build-a-custom-crm-with-postgresql": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Build a Custom CRM with PostgreSQL",
    "desc": "Most CRM tools break down when you can’t truly control the data model. This article shows how to build a fully customizable CRM on PostgreSQL and turn it into a real system with NocoBase.",
@@ -2618,6 +2718,7 @@
  "how-to-build-efficient-crud-apps": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Build Efficient CRUD Applications?",
    "desc": "Discover how to master CRUD operations and build efficient CRUD apps with this comprehensive guide. Learn about common challenges, the advantages of code generation tools, and how low-code platforms like NocoBase can revolutionize your development process.",
@@ -2644,6 +2745,7 @@
  "how-to-choose-a-no-code-tool": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Best No-Code Tools in 2026: How to Choose the Right One",
    "desc": "We'll take you step-by-step through your requirements and provide you with a guide to choosing the best no-code tools for different scenarios. Avoid falling into the mistake of \"choosing a tool before finding its use\"!",
@@ -2670,6 +2772,7 @@
  "how-to-create-a-good-data-model": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Create a Good Data Model？",
    "desc": "This article will guide you through creating an effective data model, using NocoBase as an example, to quickly build a data structure that meets your business needs.",
@@ -2696,6 +2799,7 @@
  "how-to-design-rbac-role-based-access-control-system": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Design an RBAC (Role-Based Access Control) System",
    "desc": "Detailed explanation of RBAC system's core concepts, design patterns, and implementation methods, with NocoBase practical cases to help you build a secure and efficient permission system.",
@@ -2722,6 +2826,7 @@
  "how-to-evaluate-open-source-admin-dashboards-extensibility-customization-6-key-dimensions": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "A Practical Guide to Evaluating Open-Source Admin Dashboards’ Flexibility",
    "desc": "This article introduces six key dimensions for evaluating the extensibility and customization capabilities of open-source admin dashboards: interface capability, data modeling, plugin architecture, automation & workflow, permission control, and UI customization, assisting technical teams in selection.",
@@ -2748,6 +2853,7 @@
  "how-to-quickly-build-a-real-system-to-replace-excel": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "How to Quickly Build a Real System to Replace Excel: A Complete Guide",
    "desc": "Starting from a messy Excel sheet, this guide walks you through building a structured, collaborative, and scalable business system.",
@@ -2774,6 +2880,7 @@
  "inventory-management-tools-for-small-business": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top Inventory System for Small Business (Including Free and Open-Source Options)",
    "desc": "Discover 6 inventory management tools for small businesses, including free, open-source, and paid options, to help you manage inventory efficiently and save costs.",
@@ -2800,6 +2907,7 @@
  "it-asset-management-software": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 8 Open Source IT Asset Management Software for 2026",
    "desc": "Explore 8 top open source IT asset management software, covering comprehensive features from asset tracking to lifecycle management, helping enterprises improve asset management efficiency and reduce costs.",
@@ -2826,6 +2934,7 @@
  "jira-open-source-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Best Open Source Alternatives to Jira",
    "desc": "This article introduces 6 open-source Jira alternatives, comparing their features, use cases, and technical details to help you choose a lightweight, efficient, self-hosted project management solution.",
@@ -2852,6 +2961,7 @@
  "kigland": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How KIGLAND Scaled Custom Anime Mask Production with Open-Source Tools",
    "desc": "How did a niche anime mask studio scale their custom production with open-source tools? KIGLAND built a flexible manufacturing system in just 3 weeks—tripling efficiency and redefining what small teams can achieve with open-source infrastructure.",
@@ -2878,6 +2988,7 @@
  "l-a": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "From Designer to Builder: L&A’s Digital Transformation with NocoBase",
    "desc": "Starting from its business needs, L&A uses NocoBase to build a system and applies it to multiple scenarios, promoting data democratization and refined management.",
@@ -2904,6 +3015,7 @@
  "load-docker-image": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How to upload a Docker image to an intranet server",
    "desc": "The article guides users on how to load Docker images in NocoBase for easy instance migration and offline deployment.",
@@ -2930,6 +3042,7 @@
  "low-code-no-code-crm-builder": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know",
    "desc": "Discover the best no-code and low-code tools that can help you build a fully customized CRM in just a few hours. ",
@@ -2956,6 +3069,7 @@
  "low-code-no-code-integration": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Deep Dive: Low Code/No Code Integration Capabilities",
    "desc": "Explore the integration capabilities of popular low-code/no-code platforms like NocoBase, Mendix, and OutSystems. ",
@@ -2982,6 +3096,7 @@
  "medical-device-manufacturer-builds-self-hosted-management-system-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Case Study: Digitizing Medical Manufacturing Workflows with NocoBase",
    "desc": "A medical device manufacturer used NocoBase to build an internal, self-hosted management system that unified equipment, IT asset, and validation record management, improving traceability, compliance readiness, and full control over enterprise data.",
@@ -3008,6 +3123,7 @@
  "microsoft-access-open-source-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Open Source Alternatives to Microsoft Access",
    "desc": "Explore 6 open-source Microsoft Access alternatives, from NocoBase to DBeaver, and easily achieve more flexible data management and business applications.",
@@ -3034,6 +3150,7 @@
  "nint": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Why Nint Chose NocoBase: Best Practices for In-House Development Transformation",
    "desc": "Nint adopts NocoBase as the core tool for digital transformation, significantly enhancing management efficiency and resource integration capabilities.",
@@ -3060,6 +3177,7 @@
  "no-code-itam-system": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 No-Code Tools to Build a Flexible ITAM System",
    "desc": "This article explores IT Asset Management (ITAM) tools, comparing Airtable, Glide, Appsmith, Budibase, and Retool, highlighting their key features, benefits, and use cases to help businesses choose the best IT asset management system.",
@@ -3086,6 +3204,7 @@
  "no-code-or-vibe-coding": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "No-Code or Vibe Coding? 9 Tools to Consider",
    "desc": "In early 2025, the community hotly debated whether Vibe Coding would end no-code. This article points out that each has its suitable scenarios, their boundaries are gradually blurring, and recommends the best Vibe Coding platforms, no-code platforms, and hybrid solutions that combine both.",
@@ -3112,6 +3231,7 @@
  "nocobase-1-3": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 1.3: REST API data source, mobile v2, and more features",
    "desc": "NocoBase 1.3 introduces REST API and MSSQL data sources, support for opening pop-ups via URL, dynamically configuring field components, enhanced mobile version, WeCom authentication, many-to-many arrays, and a new date calculation node in workflows.",
@@ -3138,6 +3258,7 @@
  "nocobase-1-4-0": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase v1.4.0 Officially Released",
    "desc": "Public forms, new data sources, and more features.",
@@ -3164,6 +3285,7 @@
  "nocobase-1-5-0": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase v1.5.0 Officially Released",
    "desc": "Core optimizations, large-scale data import/export, email management, template printing, and other features comprehensively enhance system performance and user experience.",
@@ -3190,6 +3312,7 @@
  "nocobase-1-6-0": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase v1.6.0 Officially Released",
    "desc": "Cluster mode deployment, security policy optimization, and migration Manager, led to a comprehensive enhancement in performance, security, and user experience.",
@@ -3216,6 +3339,7 @@
  "nocobase-1-7-0": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase v1.7.0 Officially Released",
    "desc": "Enhanced permission management, optimized system performance, and open-sourced plugins to comprehensively improve functionality and user experience",
@@ -3242,6 +3366,7 @@
  "nocobase-1-8-0": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Announcing NocoBase v1.8.0",
    "desc": "Improved Authentication Process, Supporting Custom Statistical Variables And Email Management Upgrades, Optimizing Workflow Experience And Mobile Interaction",
@@ -3268,6 +3393,7 @@
  "nocobase-1-9-0": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Announcing NocoBase v1.9.0",
    "desc": "Enhanced data validation and task scheduling, supporting service decoupling and graceful shutdown to improve overall system stability and flexibility.",
@@ -3294,6 +3420,7 @@
  "nocobase-2-0": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase 2.0: Meet Your AI Employees",
    "desc": "Now, it’s time to officially introduce NocoBase 2.0-alpha!",
@@ -3320,6 +3447,7 @@
  "nocobase-2-0-officially-released": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase 2.0 Officially Released ",
    "desc": "This release brings systematic improvements to AI capabilities, application architecture, data editing experience, and frontend event flow, along with full adaptation of V2 pages and core features.",
@@ -3346,6 +3474,7 @@
  "nocobase-backup-restore": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How to Backup and Restore NocoBase",
    "desc": "How should backup and restoration be handled in the new version? This article will provide a detailed introduction to the new backup solution.",
@@ -3372,6 +3501,7 @@
  "nocobase-in-russia": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase in Russia: Multi-Scenario Digital Solutions in Action",
    "desc": "From small teams to projects with tens of thousands of people, NocoBase has brought significant efficiency improvements to organizations in Russia.",
@@ -3398,6 +3528,7 @@
  "nocobase-partner-program": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "The NocoBase Partner Program Is Live",
    "desc": "Building a long-term, open, and sustainable partner ecosystem to more efficiently connect customer needs, platform capabilities, and professional services.",
@@ -3424,6 +3555,7 @@
  "nocobase-transforms-education-management-at-university-of-siena": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase Transforms Education Management at University of Siena",
    "desc": "Learn how University of Siena has revolutionized education management within the university through NocoBase's no-code solutions, enhancing administrative efficiency and student engagement.",
@@ -3450,6 +3582,7 @@
  "nocobase-vs-airtable": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase vs Airtable: A Flexible and Customizable Open-Source Alternative",
    "desc": "This article starts from the common operations of Airtable, demonstrates their implementation in NocoBase, and compares the differences in system-building capabilities between the two, providing a reference for users considering migration.",
@@ -3478,6 +3611,7 @@
  "nocobase-vs-appsmith": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase vs. Appsmith: Which Open Source Low-Code Platform is Right for You?",
    "desc": "Discover the key differences between NocoBase and Appsmith, two leading low-code platforms. Learn which one suits your project needs better with our in-depth comparison covering data management, integration, UI/UX design, and more.",
@@ -3506,6 +3640,7 @@
  "nocobase-vs-baserow": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase vs Baserow: Flexible Databases vs Enterprise Systems",
    "desc": "Compare NocoBase and Baserow across data, pages, permissions, workflows, and AI to choose the right platform for your needs.",
@@ -3534,6 +3669,7 @@
  "nocobase-vs-nocodb": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoDB vs NocoBase: Open-Source No-Code Tools Compared",
    "desc": "Compare NocoDB and NocoBase across use cases, data modeling, workflows, permissions, integrations, and enterprise features to find the right no-code tool for your team.",
@@ -3562,6 +3698,7 @@
  "nocobase-vs-outsystems": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase vs OutSystems: Open-Source or Enterprise Low-Code?",
    "desc": "Open-source or enterprise low-code? Discover the key differences between NocoBase and OutSystems—cost, scalability, flexibility—so you can make the right choice!",
@@ -3590,6 +3727,7 @@
  "nocobase-vs-powerapps": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Enterprise Low-Code Development? Power Apps vs NocoBase In-Depth Comparison",
    "desc": "How to choose an enterprise low-code platform? A comprehensive comparison between Power Apps and NocoBase! Analyzing core functionalities, cost structures, and scalability to provide a reference for enterprise selection.",
@@ -3618,6 +3756,7 @@
  "nocobase-vs-refine": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Open Source CRUD Development Tools: NocoBase vs Refine",
    "desc": "This article provides an in-depth comparison of the two open-source CRUD tools, NocoBase and Refine, in terms of functionality, extensibility, and applicable scenarios.",
@@ -3646,6 +3785,7 @@
  "nocobase-vs-salesforce": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase vs Salesforce: who is your ideal CRM?",
    "desc": "NocoBase vs Salesforce: Which CRM is right for your team? NocoBase, an open-source no-code platform, delivers a highly flexible CRM solution at less than one-tenth of Salesforce's cost, catering to businesses of all sizes.",
@@ -3674,6 +3814,7 @@
  "olmon": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How One Furniture Factory Built Its Own ERP—No Coding Needed",
    "desc": "OLMON Furniture Factory built an ERP system using NocoBase, solving problems such as chaotic data and complex processes in traditional management. After the system went live, the time for rule adjustments was reduced from 14 days to 2 hours, the data error rate dropped from 12% to 0.3%, labor costs were significantly reduced, and customer complaint rates decreased markedly.",
@@ -3700,6 +3841,7 @@
  "open-source-ai-agent-platforms-for-business": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps  ",
    "desc": "Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.",
@@ -3726,6 +3868,7 @@
  "open-source-ai-no-code-tools-complex-relational-models": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "5 Open-Source AI No-Code Tools for Complex Relational Data Models",
    "desc": "Compare 5 open-source AI no-code tools for complex relational models, AI capabilities, and business system use cases.\n",
@@ -3752,6 +3895,7 @@
  "open-source-ai-no-code-tools-enterprise-software-development": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 10 Open-Source AI And No-Code Tools for Enterprise Software Development",
    "desc": "This article introduces 10 open-source AI no-code and low-code tools for enterprise software development, helping teams compare AI collaboration, deployment, extensibility, and use cases.",
@@ -3778,6 +3922,7 @@
  "open-source-ai-no-code-tools-github-9": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "9 Open-Source AI No-Code Tools on GitHub Worth Watching",
    "desc": "Explore 9 open-source AI no-code tools on GitHub for workflows, agents, knowledge bases, design, and business systems.\n",
@@ -3804,6 +3949,7 @@
  "open-source-airtable-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 7 OSS Airtable Alternatives Ranked by GitHub Stars",
    "desc": "Explore the most popular open-source alternatives to Airtable on GitHub.",
@@ -3830,6 +3976,7 @@
  "open-source-data-apps": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "10 Best Open-Source Tools to Build Internal Data Apps",
    "desc": "Discover 10 popular open-source data application tools covering visualization, real-time monitoring, and API management to help you build efficient, flexible data apps faster.",
@@ -3856,6 +4003,7 @@
  "open-source-firebase-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Open-Source Firebase Alternatives for Self-Hosting and Data Control",
    "desc": "When Firebase faces data lock-in, cost spikes, or permission limits, how can developers break through? This article analyzes 6 open-source alternatives like NocoBase, Supabase, and Appwrite to help you achieve data freedom and cost control.",
@@ -3882,6 +4030,7 @@
  "open-source-internal-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 11 Open Source Internal Tools with the Most GitHub Stars",
    "desc": "Explore the most popular open-source internal tools on GitHub.",
@@ -3908,6 +4057,7 @@
  "open-source-internal-tools-self-hosted-ai-agent-hermes": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "5 Open-Source Internal Tools to Use with Hermes Agent",
    "desc": "Learn how NocoBase, Appsmith, Budibase, Directus, and Baserow can work with Hermes Agent to improve internal tool building, configuration, and maintenance.\n",
@@ -3934,6 +4084,7 @@
  "open-source-project-management-tool-selection-guide-2026-edition": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Open Source Project Management Tool Selection Guide, 2026 Edition",
    "desc": "A Complete Guide to Open Source Project Management Tools in 2026, covering OpenProject, Plane, NocoBase, and more, with a focus on AI, selection criteria, and best fit scenarios.",
@@ -3960,6 +4111,7 @@
  "open-source-ticketing-systems": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Best Open-Source Ticketing Systems for 2026",
    "desc": "Explore 6 best open-source ticketing systems for 2026, including NocoBase and UVdesk, analyzes core functional requirements, and helps enterprises improve customer support efficiency and management flexibility.",
@@ -3986,6 +4138,7 @@
  "open-source-tools-after-claude-code": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "After Claude Code: 6 Open-Source Tools You Should Know",
    "desc": "Claude Code improves development efficiency and works better with open-source tools to build stable, maintainable enterprise systems.",
@@ -4012,6 +4165,7 @@
  "open-source-tools-for-bpm": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Best Open-Source Tools for BPM",
    "desc": "Explore how top open-source tools address the business process management (BPM) scenarios across various industries.",
@@ -4038,6 +4192,7 @@
  "open-source-zendesk-alternatives-self-hosted-ai-ticketing-systems": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Open-source Zendesk Alternatives: Self-Hosted AI Ticketing Systems",
    "desc": "This article examines the impact of AI on ticketing systems and highlights open source Zendesk alternatives worth considering.",
@@ -4064,6 +4219,7 @@
  "openclaw-open-source-enterprise-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "OpenClaw and 5 Open-Source Tools for Monitoring Business Workflows",
    "desc": "Learn how OpenClaw can support real enterprise workflows, with five open source tools including NocoBase, n8n, RAGFlow, ERPNext, and Plane.",
@@ -4090,6 +4246,7 @@
  "opencode-open-source-tools-ai-agents": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "What Open-Source Tools Work Well with OpenCode? 5 Projects to Try",
    "desc": "Explore 5 open source projects that work well with OpenCode, covering internal tools, data APIs, BI, knowledge bases, and identity management for more reliable AI-assisted development.",
@@ -4116,6 +4273,7 @@
  "outsystems-open-source-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Why Open-Source Alternatives Are Replacing OutSystems in 2026?",
    "desc": "Why are enterprises adopting open source in 2026? Explore OutSystems' four major pain points and discover alternatives like NocoBase, Appsmith, and Budibase to achieve technical freedom and cost efficiency for your team.",
@@ -4142,6 +4300,7 @@
  "plaud": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How the No.1 AI Voice Recorder Brand Built Its Internal Systems",
    "desc": "Facing business growth, PLAUD, the world's No.1 AI Voice Recorder Brand, chose the open-source no-code platform NocoBase to build customer service and operations systems, meeting flexibility and control requirements while improving work efficiency.",
@@ -4168,6 +4327,7 @@
  "polish-volunteer-fire-department-nocobase-case-study": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How a Volunteer Fire Department Manages 200 Callouts a Year with NocoBase",
    "desc": "See how OSP Radlin II uses NocoBase to manage emergency callouts, personnel qualifications, vehicles, equipment, reminders, and daily operations",
@@ -4194,6 +4354,7 @@
  "pricing-adjustment": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase Pricing adjustment",
    "desc": "We have adjusted the pricing for commercial plugins, commercial plugin bundles, and commercial editions benefits. Additionally, we offer free adjustments for users who have already made purchases.",
@@ -4220,6 +4381,7 @@
  "pricing-adjustment-202602": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase Open Source License and Pricing Adjustments",
    "desc": "We have adjusted the license agreement and the pricing for commercial plugins, commercial plugin bundles, and commercial editions benefits. Additionally, we offer free adjustments for users who have already made purchases.",
@@ -4246,6 +4408,7 @@
  "project-management-systems-for-small-businesses": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Project Management Systems for Small Businesses: Real Needs from Reddit Users",
    "desc": "Small businesses often face tool fragmentation and inefficient collaboration. This article compares 5 project management systems to help you choose the right solution.",
@@ -4272,6 +4435,7 @@
  "project-management-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "5 Best Open-Source No-Code Tools for Project Management ",
    "desc": "Explore the top 5 best open-source no-code tools to optimize your project management!",
@@ -4298,6 +4462,7 @@
  "rapid-application-development-best-application-cases": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Exploring RAD: 5 Best Application Cases",
    "desc": "This article explores five best application cases of Rapid Application Development (RAD), demonstrating how effective tools and methods can enhance application development speed and efficiency, helping businesses rapidly respond to market demands and optimize product features.",
@@ -4324,6 +4489,7 @@
  "rapid-development-platform": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 7 Open Source Rapid Development Platform",
    "desc": "Explore the top 7 open-source rapid development platforms, covering core functions, technical features, and applicable scenarios, to help your team find the suitable rapid development platform and accelerate the development process.",
@@ -4350,6 +4516,7 @@
  "rapid-development-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Rapid Development with NocoBase: Driving Digital Transformation in Construction",
    "desc": "They launched their project within 1 week and delivered it within 2 months, significantly enhancing project delivery efficiency. Discover how they rapidly built and adjusted functionalities using NocoBase's plugin-based architecture to meet complex business needs.",
@@ -4376,6 +4543,7 @@
  "release-v010": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.10: New features in the second quarter",
    "desc": "NocoBase 0.10 improves the relational field component by supporting multiple component switches and adds quick create relational data functionality with two quick create modes and other updates.",
@@ -4402,6 +4570,7 @@
  "release-v011": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.11: New client application, plugin and router",
    "desc": "NocoBase 0.11 introduces a new client application, plugin, and router, with an update to antd v5 and new plugins for data visualization, API keys, and Google Maps integration.",
@@ -4428,6 +4597,7 @@
  "release-v012": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.12: New plugin build tool",
    "desc": "NocoBase 0.12 introduces a new plugin build tool for seamless production use, updates installation methods, and merges @nocobase/app-client and @nocobase/app-server into @nocobase-app.",
@@ -4454,6 +4624,7 @@
  "release-v013": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.13: New application status flow",
    "desc": "NocoBase 0.13 introduces a new application status flow.",
@@ -4480,6 +4651,7 @@
  "release-v014": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.14: New plugin manager, supports adding plugins through UI",
    "desc": "NocoBase 0.14 introduces a new plugin manager that allows adding plugins through the UI, supports downloads from npm registry, local uploads, and URL downloads, enhancing plugin management flexibility.",
@@ -4506,6 +4678,7 @@
  "release-v015": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.15：New plugin settings manager",
    "desc": "NocoBase 0.15 introduces a new plugin settings manager with improved plugin configuration, streamlined registration processes, and several updates to enhance user experience.",
@@ -4532,6 +4705,7 @@
  "release-v016": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.16: New cache manager",
    "desc": "NocoBase 0.16 introduces a new cache manager supporting memory and Redis stores, requires Node v18, and updates cache creation methods and environment variables.",
@@ -4558,6 +4732,7 @@
  "release-v017": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.17: New SchemaInitializer and SchemaSettings",
    "desc": "NocoBase 0.17 refactors the UI Schema designer with new SchemaInitializer and SchemaSettings, reorganizes documentation, and introduces several improvements for better frontend development.",
@@ -4584,6 +4759,7 @@
  "release-v018": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.18: Establish a sound testing system",
    "desc": "NocoBase 0.18 enhances robustness with comprehensive E2E testing, an optimized auth plugin, and modular decomposition into plugins, improving flexibility and performance.",
@@ -4610,6 +4786,7 @@
  "release-v019": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.19：Application process optimization",
    "desc": "NocoBase 0.19 introduces telemetry, application backup and restore, command line optimizations, and various kernel improvements to enhance installation, startup, and upgrade processes.",
@@ -4636,6 +4813,7 @@
  "release-v020": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.20：Support for Multiple Data Sources",
    "desc": "NocoBase 0.20 introduces support for multiple data sources, adjustments to collection management, non-ID primary keys, improved user and permission interfaces, and new workflow nodes for enhanced flexibility and performance.",
@@ -4662,6 +4840,7 @@
  "release-v021": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 0.21：Multi-DataSource support for Charts and workflow",
    "desc": "NocoBase 0.21 introduces Multi-DataSource support for charts and workflows, optimized workflow trigger events, and several new field types, enhancing flexibility and performance.",
@@ -4688,6 +4867,7 @@
  "release-v10": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Major Update! NocoBase V1.0 Officially Released",
    "desc": "Discover the major updates in NocoBase  V1.0, including new features, plugins, and significant performance improvements. Learn how this milestone release enhances stability, security, and functionality for developers. Get detailed insights on the new theme editor, data visualization improvements, and the full changelog. Understand the upgrade process, especially if you use SSO plugins, and explore the impact of these changes on your projects.",
@@ -4714,6 +4894,7 @@
  "release-v100-alpha15": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase 1.0.0-alpha.15: New Plugins and Improved 'Configure actions' Interaction",
    "desc": "NocoBase v1.0.0-alpha.15 introduces LDAP authentication, custom action triggers, Gantt and Kanban support, and more. This update also improves 'Configure actions' interaction and addresses various bug fixes to enhance platform performance.",
@@ -4740,6 +4921,7 @@
  "release-v101-alpha1": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "NocoBase v1.0.1-alpha.1: Blocks support height settings",
    "desc": "NocoBase v1.0.1-alpha.1 introduces new features like block height settings, URL link actions, and variable support for iframes, along with various improvements and bug fixes to enhance platform functionality and performance.",
@@ -4766,6 +4948,7 @@
  "removed-deprecated-authentication-apis-in-users-plugin": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Removed：drepcated authentication APIs in Users plugin",
    "desc": "Learn about the removal of deprecated authentication APIs in the NocoBase Users plugin. This update replaces old APIs with the new Auth plugin, improving security and functionality. Understand the changes, new endpoints, and how to transition smoothly. Essential reading for developers managing user authentication in NocoBase.",
@@ -4788,6 +4971,7 @@
  "retool-open-source-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "The Best Open-Source Alternatives to Retool In 2026",
    "desc": "Explore the top open-source alternatives to Retool, including NocoBase, Budibase, Appsmith, and Refine. Discover how these platforms offer flexibility, customization, and cost-effective solutions for building internal tools quickly and efficiently.",
@@ -4814,6 +4998,7 @@
  "salesforce-open-source-crmalternative": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "4 Powerful Open Source Alternatives to Salesforce (With Cost Comparison You’ll Love)",
    "desc": "Discover the best open-source alternatives to Salesforce CRM. Learn how tools like NocoBase offer powerful customization, flexibility, and cost-efficiency for businesses seeking robust CRM solutions.",
@@ -4840,6 +5025,7 @@
  "sambruk": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Sambruk Leverages NocoBase to Ensure Digital Learning Resources in Sweden Comply with GDPR",
    "desc": "Learn how Sambruk, a Swedish non-profit organization, uses NocoBase’s no-code/low-code platform to develop GDPR-compliant digital solutions for schools. Discover how they rapidly built an MVP to assess digital learning resources, cutting development time by 30% and costs by 40%, driving digital transformation in Swedish municipalities.",
@@ -4866,6 +5052,7 @@
  "second-brain": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "How Second-Brain built an AI system for financial institutions with NocoBase",
    "desc": "Hong Kong-based AI company Second-Brain used NocoBase to overcome high-security and short-cycle challenges, building an AI system for financial enterprises to achieve efficient delivery and capability accumulation.",
@@ -4892,6 +5079,7 @@
  "self-hsosted-projects-list": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 13 Self-Hosted Projects with the Most GitHub Stars",
    "desc": "Explore the most popular open-source self-hosted projects on GitHub.",
@@ -4918,6 +5106,7 @@
  "servicenow-open-source-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "5 Best Open-Source Alternatives to ServiceNow (with Pricing Comparison)",
    "desc": "Explore open-source alternatives to ServiceNow: This guide reviews NocoBase, Budibase, GLPI, Zammad, and EspoCRM, comparing features, pricing, and use cases to help you quickly choose the best ITSM tool.",
@@ -4944,6 +5133,7 @@
  "shenzhen-chuanglianyun-tech-development-methodology": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Inside: How an 8-Person Team Delivers at Enterprise Speed ",
    "desc": "This eight-person team has long served clients in the food inspection industry, completing three full projects in just two months — with half the usual manpower and no compromise on quality.",
@@ -4970,6 +5160,7 @@
  "shimano": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "A No-Code Journey Inside SHIMANO",
    "desc": "Zdenek is not a developer, but he has truly reshaped the internal management of Shimano's Czech factory using no-code methods.",
@@ -4996,6 +5187,7 @@
  "simplify-the-process-of-adding-and-updating-plugins": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Simplify the process of adding and updating plugins",
    "desc": "Learn how NocoBase’s latest update simplifies plugin management, enabling easier installation and updates. ",
@@ -5022,6 +5214,7 @@
  "software-vendor-boosts-delivery-efficiency-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Software Vendor Boosts Delivery Efficiency by 70% with NocoBase",
    "desc": "For software companies with strong internal engineering capabilities, open source no code tools remain the most effective way to meet long tail requirements.",
@@ -5048,6 +5241,7 @@
  "stock-management-systems-for-small-businesses": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 5 Stock Management Systems for Small Businesses (with Price Comparison)",
    "desc": "Recommend 5 stock management systems suitable for small enterprises, covering open-source self-built solutions and lightweight SaaS options, to help enterprises improve inventory efficiency and achieve clear and controllable inventory management.",
@@ -5074,6 +5268,7 @@
  "tedxduth": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "The TEDxDUTH Transformation with NocoBase",
    "desc": "TEDxDUTH, in partnership with NocoBase, has successfully optimized work processes, reducing management time by 50%, and together promotes the dissemination of innovation and inspiration!",
@@ -5100,6 +5295,7 @@
  "the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "The 8 Best Google Sheets Alternatives (Specs & Pricing)",
    "desc": "This article reviews eight alternatives to Google Sheets, comparing costs, use cases, and core capabilities. It helps teams facing growing data and collaboration needs choose scalable, structured tools better suited for long-term business operations.",
@@ -5126,6 +5322,7 @@
  "the-best-4-crm-software-for-small-businesses": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "4 Best Open Source CRM Software for Small Businesses: Lightweight & Efficient",
    "desc": "Explore lightweight and efficient open-source CRM solutions for small businesses! Simplify customer relationship management and boost your efficiency with ease.",
@@ -5152,6 +5349,7 @@
  "the-best-self-hosted-crm-for-enterprise-teams": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "The Best Enterprise-Grade Self-Hosted CRMs with RBAC, AI, and Open API Support",
    "desc": "Compare 13 self-hosted CRM tools across RBAC, AI, and API to find the best fit for your enterprise workflows.",
@@ -5178,6 +5376,7 @@
  "the-nocobase-community-is-officially-launched": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "The NocoBase community is officially launched!",
    "desc": "Join the celebration as the NocoBase community officially launches! Discover how you can contribute, learn, and grow with a network of developers and no-code enthusiasts. ",
@@ -5204,6 +5403,7 @@
  "the-top-12-open-source-no-code-tools-with-the-most-github-stars": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "The Top 12 Open-Source No-Code Tools with the Most GitHub Stars",
    "desc": "Discover the top 12 Open-Source No-Code tools with the most GitHub stars. Learn how these tools empower developers and businesses to build applications quickly.",
@@ -5230,6 +5430,7 @@
  "the-ultimate-guide-to-awesome-self-hosted-solutions": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Awesome Self-Hosted Tools You Can Set Up in Minutes",
    "desc": "Take control of your data today with the best self-hosted solutions. Easy setup, powerful integrations, and expert tips.",
@@ -5256,6 +5457,7 @@
  "top-10-most-starred-open-source-erp-and-crm-on-github": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 10 Most-Starred Open-Source ERP and CRM on GitHub",
    "desc": "Explore the top 10 most-starred open-source ERP and CRM projects on GitHub. From Odoo to ERPNext and NocoBase, discover developer-validated tools ideal for self-hosted, customizable business management systems.",
@@ -5282,6 +5484,7 @@
  "top-10-open-source-ai-crm-projects-with-the-most-github-stars": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 10 Open-source AI CRM Projects with the Most GitHub Stars",
    "desc": "A roundup of the most popular open source AI CRM projects on GitHub, including both platforms with native AI features and those that support flexible integrations.",
@@ -5308,6 +5511,7 @@
  "top-10-open-source-workflows-projects-with-the-most-github-stars": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "⭐️ Top 10 Open-source Workflows Projects with the Most GitHub Stars",
    "desc": "Discover the top 10 open-source workflow tools on GitHub with the highest star counts. From automation to integration, explore how these powerful tools simplify processes and boost efficiency.",
@@ -5334,6 +5538,7 @@
  "top-11-github-open-source-no-code-ai-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "11 AI Agent and No-Code Tools on GitHub (2026 Update)",
    "desc": "Compare 11 AI agent and no-code tools on GitHub by use case, deployment checks, and maintenance needs, with selected 2026 updates and license distinctions.",
@@ -5360,6 +5565,7 @@
  "top-11-open-source-admin-dashboard-projects-on-github": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 11 Open-Source Admin Dashboard Projects on GitHub",
    "desc": "This article covers the top 11 open-source admin dashboard projects on GitHub, ranging from basic templates to powerful platforms. These projects help developers quickly build flexible and efficient admin dashboards, improving development efficiency and meeting various management needs.",
@@ -5386,6 +5592,7 @@
  "top-12-ai-workflows-projects-with-the-most-github-stars": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 12 Open-source AI Workflows Projects with the Most GitHub Stars",
    "desc": "This article reviews a selection of top-starred workflow projects on GitHub that closely integrate AI, based on the workflow topic.",
@@ -5412,6 +5619,7 @@
  "top-15-open-source-low-code-projects-with-the-most-github-Stars": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 15 Open-Source Low-Code Projects with the Most GitHub Stars",
    "desc": "Explore the most popular open-source low-code projects on GitHub.",
@@ -5438,6 +5646,7 @@
  "top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 3 Open Source ERP with AI on GitHub: NocoBase vs Odoo vs ERPNext",
    "desc": "This article compares NocoBase, Odoo, and ERPNext in terms of core architecture and AI integration capabilities, analyzing their suitable scenarios and team types to provide guidance for small and mid-sized businesses selecting an ERP system.",
@@ -5464,6 +5673,7 @@
  "top-5-open-source-ai-internal-tools-on-github": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 5 Open-Source AI Internal Tools on GitHub",
    "desc": "A review of five open source internal tools with over 20k stars, along with an analysis of their AI capabilities and key use cases.",
@@ -5490,6 +5700,7 @@
  "top-5-open-source-projects-for-building-internal-tools-in-2024": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 5 Open Source Projects for Building Internal Tools",
    "desc": "Explore the top 5 open-source projects in 2026 for building internal tools that enhance business efficiency. Find out which platforms lead the way in open-source development.",
@@ -5516,6 +5727,7 @@
  "top-5-success-cases-of-low-code-open-source-platforms": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 5 Success Cases of Low-Code Open-Source Platforms",
    "desc": "This article delves into five case studies across logistics, finance, and other industries, revealing how low-code open-source platforms empower businesses to tackle complex technological challenges and ignite innovation.",
@@ -5542,6 +5754,7 @@
  "top-6-no-code-tools-for-developers": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 6 No-Code Tools for Developers",
    "desc": "Learn from this article: Why do developers also need no-code? Plus, discover the top 6 no-code tools recommended for developers.",
@@ -5568,6 +5781,7 @@
  "top-8-open-source-projects-to-build-task-management-system": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 8 Open-Source Projects (Rated) to Build Your Own Task Management System",
    "desc": "Discover the top 8 open-source projects for building your own task management system. We provide detailed reviews and ratings for each tool, helping you choose the best fit for your needs. Perfect for teams looking for customizable, cost-effective task management solutions.",
@@ -5594,6 +5808,7 @@
  "top-8-open-source-tools-for-web-application-development": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 8 Open-Source Tools for Web Application Development",
    "desc": "Discover 8 open-source web app dev tools on GitHub. Deeply analyze their functional advantages, suitable scenarios, and key points of use, helping you efficiently build your ideal web application.",
@@ -5620,6 +5835,7 @@
  "top-8-powerful-no-code-development-platforms-in-2024": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 8 Powerful No-Code Development Platforms in 2026",
    "desc": "Discover the top 8 powerful no-code development platforms of 2026.",
@@ -5646,6 +5862,7 @@
  "top-open-source-ai-assistant-tools-github-stars": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Top 8 Open Source AI Assistant Tools by GitHub Stars",
    "desc": "Explore eight high-star open source AI Assistant tools for enterprise systems, desktop workflows, development, and in-app copilots.",
@@ -5672,6 +5889,7 @@
  "turcomp": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Energy company Turcomp, empowers agile and secure development with NocoBase ",
    "desc": "Deep dive into how Turcomp accelerates development progress and meets security requirements using NocoBase.",
@@ -5698,6 +5916,7 @@
  "two-commercial-plugins-are-now-open-source": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Two Commercial Plugins Are Now Open Source",
    "desc": "Covers the reasons behind the open-sourcing, the plugin capabilities, and the adjustments for existing customers.",
@@ -5724,6 +5943,7 @@
  "university-course": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "NocoBase Enters German University Classrooms",
    "desc": "Leveraging NocoBase as a classroom tool to lead students in building applications from scratch, completing the journey from low-code/no-code theory to practice.",
@@ -5750,6 +5970,7 @@
  "update-localization-management": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Update（localization-management）：Organize text namespaces by modules",
    "desc": "Optimize your localization management with NocoBase's module-based text namespaces. This guide details the new approach to organizing translation texts by modules, eliminating deduplication issues and enhancing customization. Learn about the changes, migration steps, and impact on your development process.",
@@ -5776,6 +5997,7 @@
  "uul-saves-70-on-logistics-system-upgrade-with-nocobase": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "UUL Saves 70% on Logistics System Upgrade with NocoBase",
    "desc": "Learn how UUL saved 70% on their logistics system upgrade with NocoBase, improving efficiency and reducing costs. Discover the power of no-code development for logistics.",
@@ -5802,6 +6024,7 @@
  "web-application-development": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Discover Top Tools: Accelerate Web Application Development",
    "desc": "This article will introduce some top tools from a beginner-friendly perspective and showcase their application examples, helping novice developers quickly get started with web application development.",
@@ -5828,6 +6051,7 @@
  "what-is-ai-no-code": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "What Is AI No-Code? A Practical Guide to No-Code Platforms in the AI Era",
    "desc": "Learn what AI no-code means, how AI no-code tools differ, and how to choose the right no-code platform for prototypes, automation, AI apps, and business systems.",
@@ -5854,6 +6078,7 @@
  "what-is-no-code": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "What are Low-Code, No-Code, and NocoBase? ",
    "desc": "Quickly understand the concepts of low-code, no-code, and NocoBase.",
@@ -5880,6 +6105,7 @@
  "why-do-developers-struggle-with-low-code": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "Why Do Developers Struggle with Low-Code? (6 Tools That Actually Help)",
    "desc": "Many developers struggle with low-code—does drag-and-drop really improve efficiency? Issues like black-box limitations, restricted flexibility, and poor integrations often make low-code harder than expected. This article breaks down why low-code can be frustrating and introduces 6 truly flexible, developer-friendly tools to help you build better applications with fewer headaches.",
@@ -5906,6 +6132,7 @@
  "workbuddy-open-source-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "6 Open Source Tools to Use with WorkBuddy",
    "desc": "Explore six open source tools, including NocoBase, Activepieces, and Twenty, and learn how they work with WorkBuddy to connect business systems, automation workflows, CRM, project management, data APIs, and BI analytics.",
@@ -5932,6 +6159,7 @@
  "workflow-automation-tools": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "5 Workflow Automation Tools Compared: Uses and Trade-offs",
    "desc": "Compare five workflow automation tools by use case, integrations, hosting, and maintenance. See practical examples and choose software for your business process.",
@@ -5958,6 +6186,7 @@
  "xiangcheng-records": {
   "source": "cms",
   "listed": true,
+  "onBlog": true,
   "en": {
    "title": "Xiangcheng Records Leverages NocoBase to Drive Rapid Development in Smart Record Management",
    "desc": "Explore how Xiangcheng Records revolutionizes record management with NocoBase, enhancing efficiency through intelligent systems and robust automation technology.",
@@ -5984,6 +6213,7 @@
  "zapier-open-source-alternatives": {
   "source": "cms",
   "listed": true,
+  "onBlog": false,
   "en": {
    "title": "7 Powerful Open Source Alternatives to Zapier",
    "desc": "Discover 7 best open-source Zapier alternatives with self-hosting, AI integration, and visual workflows to boost automation, cut costs, and secure data.",

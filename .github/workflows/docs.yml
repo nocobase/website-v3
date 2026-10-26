@@ -16,6 +16,8 @@ name: Docs
 # all but the newest two versions are removed (see `scripts/deploy-cdn/deploy-cdn.mjs`). `404.html` is also uploaded to
 # the bucket root, where the bucket's static-website error document is read from.
 #
+# To roll back, point every back-to-origin rewrite rule of each domain at the older version directory in the CDN console.
+#
 # Configuration: every value is a secret of the `production` environment, so only the publish job can read it:
 # `ALI_ACCESS_KEY_ID`, `ALI_ACCESS_KEY_SECRET`, `ALI_OSS_REGION` (e.g. `cn-beijing`), `DOCS_OSS_BUCKET` and
 # `DOCS_CDN_DOMAINS` (whitespace- or comma-separated; required).
@@ -73,6 +75,10 @@ jobs:
             fi
           done
           exit "$missing"
+
+      # Pure logic of the publishing script (argument parsing, which versions a cleanup removes); needs no dependency.
+      - name: Test the publishing script
+        run: node --test scripts/deploy-cdn/versions.test.mjs
 
       - name: Upload the site
         uses: actions/upload-artifact@v4

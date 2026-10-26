@@ -13,8 +13,10 @@ name: Site
 #
 # Publishing works like the documentation's: the build is uploaded to its own timestamp directory in the bucket, then the
 # back-to-origin rewrite rules of every domain in `SITE_CDN_DOMAINS` are pointed at it, the CDN cache is refreshed and
-# all but the newest two versions are removed (see `scripts/deploy-cdn/deploy-cdn.mjs`). While `SITE_CDN_DOMAINS` is
-# empty, a run only uploads: it switches no CDN and removes no old version.
+# all but the newest three versions are removed (see `scripts/deploy-cdn/deploy-cdn.mjs`). While `SITE_CDN_DOMAINS` is
+# empty, a run switches no CDN and refreshes no cache, but still removes all but the newest three versions.
+#
+# To roll back, point every back-to-origin rewrite rule of each domain at an older version directory in the CDN console.
 #
 # Configuration: every value is a secret of the `production` environment, so only the publish job can read it:
 # `ALI_ACCESS_KEY_ID`, `ALI_ACCESS_KEY_SECRET`, `ALI_OSS_REGION` (e.g. `cn-beijing`), `SITE_OSS_BUCKET` and,
@@ -78,6 +80,10 @@ jobs:
             missing=1
           fi
           exit "$missing"
+
+      # Pure logic of the publishing script (argument parsing, which versions a cleanup removes); needs no dependency.
+      - name: Test the publishing script
+        run: node --test scripts/deploy-cdn/versions.test.mjs
 
       - name: Upload the site
         uses: actions/upload-artifact@v4
@@ -201,21 +207,24 @@ jobs:
               -f --region "$REGION"
           fi
 
-          # The CDN domains are optional: without them the run uploads and stops there.
+          # The CDN domains are optional. Without them nothing serves the bucket yet, so there is nothing to switch or
+          # refresh, but old versions are still removed so the bucket keeps the same history it will keep once served.
           if [ -z "${ALI_CDN_DOMAINS//[[:space:],]/}" ]; then
-            echo "::notice::SITE_CDN_DOMAINS is not set, so version $TIMESTAMP was only uploaded: no CDN was switched to it and no old version was removed."
+            ALI_CDN_DOMAINS='' node scripts/deploy-cdn/deploy-cdn.mjs --timestamp "$TIMESTAMP" --keep 2 --cleanup-only
+            echo "::notice::SITE_CDN_DOMAINS is not set, so no CDN was switched to version $TIMESTAMP and no cache was refreshed. Old versions were removed: the bucket keeps the newest 3 version directories."
             {
               echo "### Site uploaded"
               echo
-              echo "Version \`$TIMESTAMP\` is in the bucket (\`SITE_OSS_BUCKET\`). No CDN domain is configured (\`SITE_CDN_DOMAINS\`), so nothing was switched to it and no old version was removed."
+              echo "Version \`$TIMESTAMP\` is in the bucket (\`SITE_OSS_BUCKET\`). No CDN domain is configured (\`SITE_CDN_DOMAINS\`), so nothing was switched to it and no cache was refreshed. Old versions were removed; the newest 3 version directories are kept."
             } >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
 
-          node scripts/deploy-cdn/deploy-cdn.mjs --timestamp "$TIMESTAMP"
+          # Keeps two older versions besides this one to roll back to.
+          node scripts/deploy-cdn/deploy-cdn.mjs --timestamp "$TIMESTAMP" --keep 2
 
           {
             echo "### Site published"
             echo
-            echo "Version \`$TIMESTAMP\` is live on every domain in \`SITE_CDN_DOMAINS\`."
+            echo "Version \`$TIMESTAMP\` is live on every domain in \`SITE_CDN_DOMAINS\`. The newest 3 version directories are kept."
           } >> "$GITHUB_STEP_SUMMARY"

@@ -6,8 +6,14 @@
  * the new one, never a half-replaced mixture, and a bad release is rolled back by pointing the rules at the previous
  * directory rather than by re-uploading anything.
  *
- * This script does not upload. The workflow has already put the files in place by the time it runs; its argument is
- * the directory to switch to.
+ * This script does not upload. The workflow has already put the files in place by the time it runs; its arguments are
+ * the directory to switch to and how many older versions to keep for rollback:
+ *
+ *   node deploy-cdn.mjs --timestamp <YYYYMMDDHHMMSS> [--keep <n>] [--cleanup-only]
+ *
+ * `--keep` defaults to 1, so the bucket holds the new version and the one before it. `--cleanup-only` is for a bucket
+ * no CDN domain serves yet (`ALI_CDN_DOMAINS` empty): it switches and refreshes nothing and only removes the versions
+ * `--keep` does not keep. Without it, an empty `ALI_CDN_DOMAINS` is an error.
  *
  * It serves both sites in this repository: `.github/workflows/docs.yml` (the documentation, `doc/`) and
  * `.github/workflows/site.yml` (the website, `html/`). Each passes its own bucket and domains through the environment:
@@ -15,17 +21,21 @@
  * - `ALI_ACCESS_KEY_ID`, `ALI_ACCESS_KEY_SECRET`: an Aliyun key allowed to manage the bucket and the CDN domains.
  * - `ALI_OSS_REGION`: the bucket's region as the OSS console shows it, `cn-beijing`; the `oss-` form is accepted too.
  * - `ALI_OSS_BUCKET`: the bucket the version directories live in.
- * - `ALI_CDN_DOMAINS`: the domains that serve the bucket, separated by whitespace or commas.
+ * - `ALI_CDN_DOMAINS`: the domains that serve the bucket, separated by whitespace or commas; must be empty with
+ *   `--cleanup-only`.
  *
  * Copied from `.github/nocobase3/docs-publish/deploy-cdn.mjs` in 2013xile/nocobase-ci, which published the v3
  * documentation while this repository was private; that copy came from `docs/scripts/deploy-cdn.mjs` on `v3-develop` of
- * nocobase/nocobase. It differs only in the names of its environment variables. Ported from the v2 `nocobase
+ * nocobase/nocobase. It differs in the names of its environment variables, in `--keep` and `--cleanup-only`, and in
+ * refusing to clean up when the version just published is not in the bucket. Ported from the v2 `nocobase
  * docs:update` command. The rewrite rules are the load-bearing part and are reproduced with their original semantics —
  * read the comment above REWRITE_RULES before changing any of them.
  */
 import openapi from '@alicloud/openapi-client';
 import cdn20180510 from '@alicloud/cdn20180510';
 import OSS from 'ali-oss';
+
+import { hasFlag, readKeep, readOption, selectStaleVersions } from './versions.mjs';
 
 // Both SDKs are CommonJS. Their client classes sit on a nested `default`, and destructuring the request classes from
 // the namespace object is what works under Node's interop — named imports resolve to `undefined` here.
@@ -37,22 +47,13 @@ const {
   RefreshObjectCachesRequest,
 } = cdn20180510;
 
+// `ALI_CDN_DOMAINS` is checked separately: `--cleanup-only` requires it empty.
 const REQUIRED_ENV_VARS = [
   'ALI_ACCESS_KEY_ID',
   'ALI_ACCESS_KEY_SECRET',
   'ALI_OSS_BUCKET',
   'ALI_OSS_REGION',
-  'ALI_CDN_DOMAINS',
 ];
-
-/** A published version directory: `20260904150000/`. Anything else in the bucket root is left alone. */
-const TIMESTAMP_DIR_PATTERN = /^\d{14}\/$/u;
-
-/**
- * Versions to keep besides the one being published. One is enough to roll back to, and each version is a full copy of
- * the site, so keeping more is storage spent on directories nothing will ever point at again.
- */
-const KEEP_VERSIONS = 1;
 
 const OSS_LIST_MAX_KEYS = 1000;
 const OSS_DELETE_BATCH_SIZE = 1000;
@@ -241,35 +242,24 @@ async function listObjectsUnder(ossClient, prefix) {
 }
 
 /**
- * Delete the version directories that are neither current nor the one kept for rollback.
- *
- * Timestamp names sort chronologically as strings, so the newest are the tail of the sorted list. Only names matching
- * the timestamp pattern are considered — `404.html` and anything else at the bucket root is never touched.
+ * Delete the version directories that are neither the one just published nor among the `keep` older ones kept for
+ * rollback. Which ones those are is decided by `selectStaleVersions`, which throws, deleting nothing, when the version
+ * just published is not in the bucket.
  */
-async function cleanUpOldVersions(ossClient) {
+async function cleanUpOldVersions(ossClient, timestamp, keep) {
   const result = await ossClient.list({
     prefix: '',
     delimiter: '/',
     'max-keys': OSS_LIST_MAX_KEYS,
   });
 
-  const versions = (result.prefixes ?? [])
-    .filter((prefix) => TIMESTAMP_DIR_PATTERN.test(prefix))
-    .sort();
-
-  // The version just published is in this list, so it is kept alongside KEEP_VERSIONS older ones.
-  const keep = KEEP_VERSIONS + 1;
-  if (versions.length <= keep) {
-    console.log(
-      `${versions.length} version(s) in the bucket; nothing to remove.`,
-    );
+  const stale = selectStaleVersions(result.prefixes ?? [], timestamp, keep);
+  if (stale.length === 0) {
+    console.log(`Keeping /${timestamp}/ and up to ${keep} older version(s); nothing to remove.`);
     return;
   }
 
-  const stale = versions.slice(0, versions.length - keep);
-  console.log(
-    `${versions.length} version(s) in the bucket; removing ${stale.length} of them.`,
-  );
+  console.log(`Keeping /${timestamp}/ and ${keep} older version(s); removing ${stale.length} version(s).`);
 
   for (const prefix of stale) {
     const names = await listObjectsUnder(ossClient, prefix);
@@ -283,14 +273,6 @@ async function cleanUpOldVersions(ossClient) {
 
     console.log(`  removed ${prefix} (${names.length} objects)`);
   }
-}
-
-function readTimestamp(argv) {
-  const index = argv.indexOf('--timestamp');
-  if (index !== -1) return argv[index + 1];
-
-  const inline = argv.find((arg) => arg.startsWith('--timestamp='));
-  return inline?.slice('--timestamp='.length);
 }
 
 /** The domains in `ALI_CDN_DOMAINS`, separated by whitespace or commas, without duplicates. */
@@ -311,7 +293,8 @@ async function main() {
     process.exit(1);
   }
 
-  const timestamp = readTimestamp(process.argv.slice(2));
+  const argv = process.argv.slice(2);
+  const timestamp = readOption(argv, 'timestamp');
   if (!timestamp || !/^\d{14}$/u.test(timestamp)) {
     console.error(
       'Pass the uploaded version directory as --timestamp <YYYYMMDDHHMMSS>.',
@@ -319,7 +302,35 @@ async function main() {
     process.exit(1);
   }
 
-  const domains = readDomains(process.env.ALI_CDN_DOMAINS);
+  let keep;
+  try {
+    keep = readKeep(argv);
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
+
+  const cleanupOnly = hasFlag(argv, 'cleanup-only');
+  const domains = readDomains(process.env.ALI_CDN_DOMAINS ?? '');
+
+  if (cleanupOnly) {
+    // Removing versions while a domain serves the bucket could delete the directory its rules still point at; a
+    // bucket with domains is cleaned up only after they have all been switched, by a normal run.
+    if (domains.length > 0) {
+      console.error('--cleanup-only switches no CDN, so ALI_CDN_DOMAINS must be empty with it.');
+      process.exit(1);
+    }
+
+    // Nothing is live to protect here, so a failed cleanup fails the run: it is the only thing the run does.
+    try {
+      await cleanUpOldVersions(createOssClient(), timestamp, keep);
+    } catch (error) {
+      console.error(`Cleanup failed: ${error.message}`);
+      process.exit(1);
+    }
+    return;
+  }
+
   if (domains.length === 0) {
     console.error('ALI_CDN_DOMAINS names no domain.');
     process.exit(1);
@@ -352,7 +363,7 @@ async function main() {
   }
 
   try {
-    await cleanUpOldVersions(ossClient);
+    await cleanUpOldVersions(ossClient, timestamp, keep);
   } catch (error) {
     console.warn(
       `Cleanup failed, leaving old versions in place: ${error.message}`,

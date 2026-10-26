@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "description": "Switches the CDN to a freshly uploaded site version. Run by the publish jobs of .github/workflows/docs.yml and site.yml.",
+  "scripts": {
+    "test": "node --test versions.test.mjs"
+  },
   "dependencies": {
     "@alicloud/cdn20180510": "4.2.2",
     "@alicloud/openapi-client": "0.4.15",

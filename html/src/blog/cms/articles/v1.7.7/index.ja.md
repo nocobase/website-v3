@@ -1,1 +1,0 @@
-fetch is not defined

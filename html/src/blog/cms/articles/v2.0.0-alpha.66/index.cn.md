@@ -1,4 +1,0 @@
-### 🐛 修复
-
-- **[前端流引擎]** 修复无法正确解析包含中划线字符的变量的问题。 ([#8432](https://github.com/nocobase/nocobase/pull/8432)) by @gchust
-

@@ -71,7 +71,6 @@
 "Foundation page": "Página da base",
 "See which Core building blocks an app uses": "Mostra quais componentes do Core um app usa",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>Mais de 20 componentes básicos</b>, mantidos e atualizados pela NocoBase.",
-"Read the Docs for Each One": "Leia a documentação de cada um",
 "Architecture and standards": "Arquitetura e padrões",
 "One architecture, <span class=\"m\">one set of standards.</span>": "Uma arquitetura, <span class=\"m\">um só padrão.</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "Troque de desenvolvedor, de modelo ou até de sessão, e a IA pode improvisar de um jeito diferente a cada vez. O sistema fica cada vez mais difícil de manter. O Core oferece uma estrutura de projeto e um padrão de desenvolvimento únicos, para que o sistema evolua com estabilidade por anos sobre uma arquitetura consistente.",
@@ -109,5 +108,6 @@
 "Lead an agent team": "Lidere uma equipe de agentes",
 "Agents keep the work moving. Your team stays in control.": "Os agentes fazem o trabalho avançar. Sua equipe mantém o controle.",
 "Explore Studio": "Conheça o Studio",
-"Core and every Solution app are free, open source, and ready for production.": "O Core e todos os apps do Solution são gratuitos, open source e prontos para produção."
+"Core and every Solution app are free, open source, and ready for production.": "O Core e todos os apps do Solution são gratuitos, open source e prontos para produção.",
+"Read the Core Docs": "Ver a documentação do Core"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — Deixe os agentes focarem na sua lógica de negócio", "description": "O NocoBase Core é a base de aplicações open source para sistemas de negócio criados e operados com IA."}; })((window.NB_I18N = window.NB_I18N || {})["pt"] = (window.NB_I18N || {})["pt"] || {});

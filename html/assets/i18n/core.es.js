@@ -71,7 +71,6 @@
 "Foundation page": "Página de la base",
 "See which Core building blocks an app uses": "Muestra qué componentes base de Core usa una app",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>Más de 20 componentes base</b>, mantenidos y actualizados por NocoBase.",
-"Read the Docs for Each One": "Lee la documentación de cada uno",
 "Architecture and standards": "Arquitectura y estándares",
 "One architecture, <span class=\"m\">one set of standards.</span>": "Una arquitectura, <span class=\"m\">unos mismos estándares.</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "Si cambian los desarrolladores, los modelos o incluso las sesiones, la IA puede improvisar de forma distinta cada vez, y el sistema se vuelve cada vez más difícil de mantener. Core ofrece una estructura de proyecto y unos estándares de desarrollo comunes, para que el sistema evolucione de forma estable durante años sobre una arquitectura coherente.",
@@ -109,5 +108,6 @@
 "Lead an agent team": "Dirige un equipo de agentes",
 "Agents keep the work moving. Your team stays in control.": "Los agentes hacen avanzar el trabajo. Tu equipo mantiene el control.",
 "Explore Studio": "Descubre Studio",
-"Core and every Solution app are free, open source, and ready for production.": "Core y todas las apps de Solution son gratuitos, de código abierto y están listos para producción."
+"Core and every Solution app are free, open source, and ready for production.": "Core y todas las apps de Solution son gratuitos, de código abierto y están listos para producción.",
+"Read the Core Docs": "Ver la documentación de Core"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — Deja que los agentes se centren en tu lógica de negocio", "description": "NocoBase Core es la base de aplicaciones de código abierto para sistemas empresariales creados y operados con IA."}; })((window.NB_I18N = window.NB_I18N || {})["es"] = (window.NB_I18N || {})["es"] || {});

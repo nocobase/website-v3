@@ -71,7 +71,6 @@
 "Foundation page": "Страница фундамента",
 "See which Core building blocks an app uses": "Какие базовые модули Core использует приложение",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>Более 20 базовых модулей</b>, которые NocoBase поддерживает и обновляет.",
-"Read the Docs for Each One": "Документация по каждому модулю",
 "Architecture and standards": "Архитектура и стандарты",
 "One architecture, <span class=\"m\">one set of standards.</span>": "Одна архитектура, <span class=\"m\">единые стандарты.</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "Стоит сменить разработчика, модель или даже сессию, и ИИ каждый раз может импровизировать по-своему, а поддерживать систему становится всё сложнее. Core задаёт единую структуру проекта и единые стандарты разработки, поэтому система годами стабильно развивается на одной архитектуре.",
@@ -109,5 +108,6 @@
 "Lead an agent team": "Руководите командой агентов",
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
 "Explore Studio": "Подробнее о Studio",
-"Core and every Solution app are free, open source, and ready for production.": "Core и все приложения Solution бесплатны, с открытым кодом и готовы к продакшену."
+"Core and every Solution app are free, open source, and ready for production.": "Core и все приложения Solution бесплатны, с открытым кодом и готовы к продакшену.",
+"Read the Core Docs": "Документация Core"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — Пусть агенты займутся бизнес-логикой", "description": "NocoBase Core — фундамент приложений с открытым кодом для бизнес-систем, которые создаются и работают с помощью ИИ."}; })((window.NB_I18N = window.NB_I18N || {})["ru"] = (window.NB_I18N || {})["ru"] || {});

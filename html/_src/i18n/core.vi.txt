@@ -84,3 +84,4 @@ description: NocoBase Core là nền móng ứng dụng mã nguồn mở để p
 085: Ứng dụng và dữ liệu <span class="m">thuộc về bạn.</span>
 099: Bắt đầu
 111: Tìm hiểu Studio
+113: Xem tài liệu Core

@@ -71,7 +71,6 @@
 "Foundation page": "기반 페이지",
 "See which Core building blocks an app uses": "앱이 사용하는 Core 기본 기능 확인",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>20가지 이상의 기본 기능</b>을 NocoBase가 지속적으로 유지보수하고 업그레이드합니다.",
-"Read the Docs for Each One": "기능별 문서 보기",
 "Architecture and standards": "아키텍처와 규칙",
 "One architecture, <span class=\"m\">one set of standards.</span>": "에이전트를 위한 <span class=\"m\">통일된 아키텍처와 규칙.</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "사람, 모델, 심지어 세션만 바뀌어도 AI는 매번 다르게 즉흥적으로 구현할 수 있고, 시스템은 점점 유지보수하기 어려워집니다. Core는 통일된 프로젝트 구조와 개발 규칙을 제공해, 시스템이 일관된 아키텍처 위에서 오랫동안 안정적으로 발전합니다.",
@@ -109,5 +108,6 @@
 "Lead an agent team": "에이전트 팀을 이끌며 개발",
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
 "Explore Studio": "Studio 자세히 보기",
-"Core and every Solution app are free, open source, and ready for production.": "Core와 모든 Solution은 무료 오픈소스이며, 그대로 프로덕션에 사용할 수 있습니다."
+"Core and every Solution app are free, open source, and ready for production.": "Core와 모든 Solution은 무료 오픈소스이며, 그대로 프로덕션에 사용할 수 있습니다.",
+"Read the Core Docs": "Core 문서 보기"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — 에이전트는 비즈니스 개발에만 집중, 기반은 이미 준비됨", "description": "NocoBase Core는 AI로 비즈니스 시스템을 개발하고 운영하는 오픈소스 애플리케이션 기반입니다. 권한, 워크플로, 파일 등 기본 기능이 준비되어 있어 에이전트는 통일된 아키텍처 위에서 기업 고유의 비즈니스만 개발합니다."}; })((window.NB_I18N = window.NB_I18N || {})["ko"] = (window.NB_I18N || {})["ko"] || {});

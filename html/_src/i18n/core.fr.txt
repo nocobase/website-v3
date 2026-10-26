@@ -84,3 +84,4 @@ description: NocoBase Core est le socle applicatif open source des systèmes mé
 085: Vos applications et vos données <span class="m">vous appartiennent.</span>
 099: Commencer
 111: Découvrir Studio
+113: Consulter la documentation de Core

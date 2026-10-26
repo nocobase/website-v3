@@ -84,3 +84,4 @@ description: NocoBase Core adalah fondasi aplikasi open source untuk sistem bisn
 085: Aplikasi dan data <span class="m">milik Anda.</span>
 099: Mulai
 111: Pelajari Studio
+113: Baca dokumentasi Core

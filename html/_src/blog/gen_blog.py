@@ -132,7 +132,7 @@ for slug in order:
   </section>
   <div class="band">
     <div><h2>{T('用 AI 构建可靠的业务系统。', 'Build reliable business systems with AI.')}</h2><p>{T('从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。', 'Start with open-source NocoBase Core, or bring a real requirement and work with us.')}</p></div>
-    <div class="cta"><a class="btn btn-pri" href="core.html">{T('了解 NocoBase Core', 'Explore NocoBase Core')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="launch.html#book">{T('预约实战验证', 'Book a Pilot')}</a></div>
+    <div class="cta"><a class="btn btn-pri" href="core.html">{T('了解 NocoBase Core', 'Explore NocoBase Core')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="contact.html#contact">{T('预约实战验证', 'Book a Pilot')}</a></div>
   </div>
 </div>'''
     build('blog/' + slug, 'blog', c['title'] + ' — NocoBase', e['title'] + ' — NocoBase', c['desc'].replace('\n', ' '), e['desc'].replace('\n', ' '), body)
@@ -159,7 +159,7 @@ clist = f'''<section class="phero">
 <div class="container">
   <div class="band">
     <div><h2>{T('下一个故事，可以是你的。', 'The next story could be yours.')}</h2><p>{T('带一个真实需求，和我们一起把它做成可以长期使用的系统。', 'Bring one real requirement and turn it into a system you’ll use for years.')}</p></div>
-    <div class="cta"><a class="btn btn-pri" href="launch.html#book">{T('预约实战验证', 'Book a Pilot')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="solutions.html">{T('查看解决方案', 'See Solutions')}</a></div>
+    <div class="cta"><a class="btn btn-pri" href="contact.html#contact">{T('预约实战验证', 'Book a Pilot')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="solutions.html">{T('查看解决方案', 'See Solutions')}</a></div>
   </div>
 </div>'''
 build('customers', 'customers', '客户案例 — NocoBase', 'Customer Stories — NocoBase', '全球各行业团队如何用 NocoBase 构建核心业务系统。', 'How teams worldwide build core business systems on NocoBase.', clist)
@@ -194,7 +194,7 @@ for slug in corder:
   </section>
   <div class="band">
     <div><h2>{T('下一个故事，可以是你的。', 'The next story could be yours.')}</h2><p>{T('带一个真实需求，和我们一起把它做成可以长期使用的系统。', 'Bring one real requirement and turn it into a system you’ll use for years.')}</p></div>
-    <div class="cta"><a class="btn btn-pri" href="launch.html#book">{T('预约实战验证', 'Book a Pilot')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="customers.html">{T('全部客户案例', 'All customer stories')}</a></div>
+    <div class="cta"><a class="btn btn-pri" href="contact.html#contact">{T('预约实战验证', 'Book a Pilot')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="customers.html">{T('全部客户案例', 'All customer stories')}</a></div>
   </div>
 </div>'''
     build('customers/' + slug, 'customers', c['title'] + ' — NocoBase', e['title'] + ' — NocoBase', c['desc'].replace('\n', ' '), e['desc'].replace('\n', ' '), body)

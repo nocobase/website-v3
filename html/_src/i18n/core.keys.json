@@ -370,7 +370,8 @@
   {
    "en": "Read the Docs for Each One",
    "zh": "查看每项能力的文档",
-   "where": "blocks"
+   "where": "blocks",
+   "unused": true
   },
   {
    "en": "Architecture and standards",
@@ -567,6 +568,11 @@
    "en": "Core and every Solution app are free, open source, and ready for production.",
    "zh": "Core 和所有 Solution 开源免费，可以直接用于生产。",
    "where": "open"
+  },
+  {
+   "en": "Read the Core Docs",
+   "zh": "查看 Core 文档",
+   "where": "blocks"
   }
  ],
  "meta": {

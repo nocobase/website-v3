@@ -71,7 +71,6 @@
 "Foundation page": "Trang nền móng",
 "See which Core building blocks an app uses": "Xem ứng dụng dùng những khối chức năng nào của Core",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>Hơn 20 khối chức năng</b>, được NocoBase bảo trì và nâng cấp.",
-"Read the Docs for Each One": "Xem tài liệu từng khối chức năng",
 "Architecture and standards": "Kiến trúc và chuẩn",
 "One architecture, <span class=\"m\">one set of standards.</span>": "Một kiến trúc, <span class=\"m\">một bộ chuẩn.</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "Đổi người, đổi model hay thậm chí đổi phiên, AI đều có thể tùy hứng mỗi lần một kiểu, hệ thống ngày càng khó bảo trì. Core cung cấp cấu trúc dự án và chuẩn phát triển thống nhất, để hệ thống phát triển ổn định lâu dài trên một kiến trúc nhất quán.",
@@ -109,5 +108,6 @@
 "Lead an agent team": "Dẫn dắt một đội agent",
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
 "Explore Studio": "Tìm hiểu Studio",
-"Core and every Solution app are free, open source, and ready for production.": "Core và mọi ứng dụng Solution đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production."
+"Core and every Solution app are free, open source, and ready for production.": "Core và mọi ứng dụng Solution đều miễn phí, mã nguồn mở, dùng được ngay cho môi trường production.",
+"Read the Core Docs": "Xem tài liệu Core"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — Để agent tập trung vào logic nghiệp vụ", "description": "NocoBase Core là nền móng ứng dụng mã nguồn mở để phát triển và vận hành hệ thống nghiệp vụ bằng AI."}; })((window.NB_I18N = window.NB_I18N || {})["vi"] = (window.NB_I18N || {})["vi"] || {});

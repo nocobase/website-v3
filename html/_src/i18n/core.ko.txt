@@ -84,3 +84,4 @@ description: NocoBase Core는 AI로 비즈니스 시스템을 개발하고 운�
 085: 앱과 데이터는 <span class="m">기업의 소유.</span>
 099: 시작하기
 111: Studio 자세히 보기
+113: Core 문서 보기

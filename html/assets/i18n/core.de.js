@@ -71,7 +71,6 @@
 "Foundation page": "Fundament-Seite",
 "See which Core building blocks an app uses": "Zeigt, welche Core-Bausteine eine App nutzt",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>Über 20 Bausteine</b>, gepflegt und weiterentwickelt von NocoBase.",
-"Read the Docs for Each One": "Dokumentation zu jedem Baustein",
 "Architecture and standards": "Architektur und Standards",
 "One architecture, <span class=\"m\">one set of standards.</span>": "Eine Architektur, <span class=\"m\">gemeinsame Standards.</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "Wechseln Entwickler, Modell oder auch nur die Sitzung, kann die KI jedes Mal anders improvisieren. Das System wird immer schwerer wartbar. Core liefert eine einheitliche Projektstruktur und gemeinsame Entwicklungsstandards, damit sich das System über Jahre stabil auf einer einheitlichen Architektur weiterentwickelt.",
@@ -109,5 +108,6 @@
 "Lead an agent team": "Ein Agenten-Team führen",
 "Agents keep the work moving. Your team stays in control.": "Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.",
 "Explore Studio": "Studio entdecken",
-"Core and every Solution app are free, open source, and ready for production.": "Core und alle Solution-Apps sind kostenlos, Open Source und produktionsreif."
+"Core and every Solution app are free, open source, and ready for production.": "Core und alle Solution-Apps sind kostenlos, Open Source und produktionsreif.",
+"Read the Core Docs": "Core-Dokumentation lesen"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — Ihre Agenten kümmern sich um die Geschäftslogik", "description": "NocoBase Core ist das Open-Source-Anwendungsfundament für Geschäftssysteme, die mit KI entwickelt und betrieben werden."}; })((window.NB_I18N = window.NB_I18N || {})["de"] = (window.NB_I18N || {})["de"] || {});

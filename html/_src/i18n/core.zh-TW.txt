@@ -83,3 +83,4 @@ description: NocoBase Core 是以 AI 開發與運行業務系統的開源應用�
 085: 應用和資料<span class="m">歸企業私有。</span>
 099: 開始使用
 111: 了解 Studio
+113: 查看 Core 文件

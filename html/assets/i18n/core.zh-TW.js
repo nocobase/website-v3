@@ -71,7 +71,6 @@
 "Foundation page": "應用基礎平台",
 "See which Core building blocks an app uses": "查看應用用到了哪些 Core 能力",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>20 多項基礎能力</b>，由 NocoBase 持續維護與升級。",
-"Read the Docs for Each One": "查看每項能力的文件",
 "Architecture and standards": "架構和規範",
 "One architecture, <span class=\"m\">one set of standards.</span>": "為 Agent 提供<span class=\"m\">統一的架構與規範。</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "換人、換模型甚至換對話，AI 都可能隨意發揮，系統越來越難維護。Core 提供統一的專案結構與開發規範，系統在統一架構下長期穩定迭代。",
@@ -109,7 +108,8 @@
 "Lead an agent team": "帶領 Agent 團隊開發",
 "Agents keep the work moving. Your team stays in control.": "Agent 自主推進，團隊掌控全局。",
 "Explore Studio": "了解 Studio",
-"Core and every Solution app are free, open source, and ready for production.": "Core 和所有 Solution 開源免費，可直接用於正式環境。"
+"Core and every Solution app are free, open source, and ready for production.": "Core 和所有 Solution 開源免費，可直接用於正式環境。",
+"Read the Core Docs": "查看 Core 文件"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — 讓 Agent 專心寫業務，地基已經打好", "description": "NocoBase Core 是以 AI 開發與運行業務系統的開源應用基礎平台。權限、流程、檔案等基礎能力現成可用，Agent 在統一架構上只開發企業自己的業務。"}, p.ui = Object.assign(p.ui || {}, {
 "你的业务 · Agent 编写": "你的業務 · Agent 編寫",
 "客户分级": "客戶分級",

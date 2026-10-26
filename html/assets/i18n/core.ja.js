@@ -71,7 +71,6 @@
 "Foundation page": "基盤ページ",
 "See which Core building blocks an app uses": "アプリが使っている Core の共通機能を確認",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>20 以上の共通機能</b>を、NocoBase が継続的に保守・アップデート。",
-"Read the Docs for Each One": "各機能のドキュメントを見る",
 "Architecture and standards": "アーキテクチャと規約",
 "One architecture, <span class=\"m\">one set of standards.</span>": "エージェントに<span class=\"m\">統一のアーキテクチャと規約を。</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "担当者やモデル、さらには会話が変わるたびに、AI はその場しのぎの実装をしがちで、システムはどんどん保守しにくくなります。Core は統一されたプロジェクト構成と開発規約を提供し、システムは統一されたアーキテクチャのもとで長期にわたって安定して進化します。",
@@ -109,5 +108,6 @@
 "Lead an agent team": "エージェントチームを率いて開発",
 "Agents keep the work moving. Your team stays in control.": "エージェントが自律的に推進し、チームが全体を掌握する。",
 "Explore Studio": "Studio の詳細",
-"Core and every Solution app are free, open source, and ready for production.": "Core とすべての Solution は無料のオープンソースで、そのまま本番環境で使えます。"
+"Core and every Solution app are free, open source, and ready for production.": "Core とすべての Solution は無料のオープンソースで、そのまま本番環境で使えます。",
+"Read the Core Docs": "Core のドキュメントを見る"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — エージェントは業務の開発に専念、基盤はもう整っている", "description": "NocoBase Core は、AI で業務システムを開発・運用するためのオープンソースのアプリケーション基盤です。権限、ワークフロー、ファイルなどの共通機能がそろい、エージェントは統一されたアーキテクチャの上で自社の業務部分だけを開発します。"}; })((window.NB_I18N = window.NB_I18N || {})["ja"] = (window.NB_I18N || {})["ja"] || {});

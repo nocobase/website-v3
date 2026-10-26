@@ -71,7 +71,6 @@
 "Foundation page": "Page Socle",
 "See which Core building blocks an app uses": "Voir quelles briques de Core une application utilise",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>Plus de 20 briques</b>, maintenues et mises à jour par NocoBase.",
-"Read the Docs for Each One": "Lire la documentation de chacune",
 "Architecture and standards": "Architecture et standards",
 "One architecture, <span class=\"m\">one set of standards.</span>": "Une architecture, <span class=\"m\">des standards communs.</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "Changez de développeur, de modèle ou même de session, et l’IA peut improviser différemment à chaque fois : le système devient de plus en plus difficile à maintenir. Core fournit une structure de projet et des standards de développement communs, pour que le système évolue sereinement pendant des années sur une architecture cohérente.",
@@ -109,5 +108,6 @@
 "Lead an agent team": "Pilotez une équipe d’agents",
 "Agents keep the work moving. Your team stays in control.": "Les agents font avancer le travail. Votre équipe garde la maîtrise.",
 "Explore Studio": "Découvrir Studio",
-"Core and every Solution app are free, open source, and ready for production.": "Core et toutes les applications Solution sont gratuits, open source et prêts pour la production."
+"Core and every Solution app are free, open source, and ready for production.": "Core et toutes les applications Solution sont gratuits, open source et prêts pour la production.",
+"Read the Core Docs": "Consulter la documentation de Core"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — Laissez les agents se concentrer sur votre logique métier", "description": "NocoBase Core est le socle applicatif open source des systèmes métier créés et exploités avec l’IA."}; })((window.NB_I18N = window.NB_I18N || {})["fr"] = (window.NB_I18N || {})["fr"] || {});

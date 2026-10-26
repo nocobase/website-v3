@@ -71,7 +71,6 @@
 "Foundation page": "Halaman fondasi",
 "See which Core building blocks an app uses": "Lihat komponen dasar Core mana saja yang dipakai aplikasi",
 "<b>20+ building blocks</b>, maintained and upgraded by NocoBase.": "<b>20+ komponen dasar</b>, dipelihara dan ditingkatkan oleh NocoBase.",
-"Read the Docs for Each One": "Baca dokumentasi tiap komponen",
 "Architecture and standards": "Arsitektur dan standar",
 "One architecture, <span class=\"m\">one set of standards.</span>": "Satu arsitektur, <span class=\"m\">satu standar.</span>",
 "Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.": "Ganti developer, model, atau bahkan sesi, dan AI bisa berimprovisasi berbeda setiap kali. Sistem makin sulit dipelihara. Core menyediakan satu struktur proyek dan satu standar pengembangan, sehingga sistem berkembang stabil selama bertahun-tahun di atas arsitektur yang konsisten.",
@@ -109,5 +108,6 @@
 "Lead an agent team": "Pimpin tim agen",
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
 "Explore Studio": "Pelajari Studio",
-"Core and every Solution app are free, open source, and ready for production.": "Core dan semua aplikasi Solution gratis, open source, dan siap untuk produksi."
+"Core and every Solution app are free, open source, and ready for production.": "Core dan semua aplikasi Solution gratis, open source, dan siap untuk produksi.",
+"Read the Core Docs": "Baca dokumentasi Core"
 }); p.pages = p.pages || {}, p.pages["core"] = {"title": "NocoBase Core — Biarkan agen fokus pada logika bisnis Anda", "description": "NocoBase Core adalah fondasi aplikasi open source untuk sistem bisnis yang dibangun dan dijalankan dengan AI."}; })((window.NB_I18N = window.NB_I18N || {})["id"] = (window.NB_I18N || {})["id"] || {});

@@ -84,3 +84,4 @@ description: NocoBase Core は、AI で業務システムを開発・運用す�
 085: アプリとデータは<span class="m">自社のもの。</span>
 099: はじめる
 111: Studio の詳細
+113: Core のドキュメントを見る

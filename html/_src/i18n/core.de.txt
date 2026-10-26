@@ -84,3 +84,4 @@ description: NocoBase Core ist das Open-Source-Anwendungsfundament für Geschäf
 085: Ihre Apps und Daten <span class="m">gehören Ihnen.</span>
 099: Loslegen
 111: Studio entdecken
+113: Core-Dokumentation lesen

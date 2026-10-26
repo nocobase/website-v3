@@ -84,3 +84,4 @@ description: NocoBase Core es la base de aplicaciones de código abierto para si
 085: Tus apps y tus datos <span class="m">son tuyos.</span>
 099: Primeros pasos
 111: Descubre Studio
+113: Ver la documentación de Core

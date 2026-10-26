@@ -16,6 +16,8 @@ tmp = os.path.join(here, 'out'); os.makedirs(tmp, exist_ok=True)
 T = lambda zh, en: f'<t-zh>{zh}</t-zh><t-en>{en}</t-en>'
 esc = lambda s: html.escape(s, quote=False)
 order = sorted(posts, key=lambda k: posts[k]['en']['date'], reverse=True)
+# CMS 文章带 listed：false 的只有详情页，不进列表和「相关文章」（规则见 cms_import.mjs）
+listed = [k for k in order if posts[k].get('listed', True)]
 
 def fmt_date(d, lang):
     y, m, dd = d.split('-')
@@ -71,10 +73,10 @@ def build(name, page, tz, te, dz, de, body):
 
 # 列表页
 alltags = []
-for s in order:
+for s in listed:
     for x, z in zip(posts[s]['en']['tags'], posts[s]['cn']['tags']):
         if x not in [a[0] for a in alltags]: alltags.append((x, z))
-feat = order[0]; fe, fc = posts[feat]['en'], posts[feat]['cn']
+feat = listed[0]; fe, fc = posts[feat]['en'], posts[feat]['cn']
 chips = '<button type="button" class="on" data-f="">' + T('全部', 'All') + '</button>' + ''.join(
     f'<button type="button" data-f="{x.replace(" ", "_")}">{T(esc(z), esc(x))}</button>' for x, z in alltags) + f'<a class="to-cs" href="customers.html">{T("客户案例", "Customer stories")}<i data-lucide="arrow-right"></i></a>'
 listing = f'''<section class="phero">
@@ -88,7 +90,7 @@ listing = f'''<section class="phero">
   <div class="container">
     <a class="bfeat" href="blog/{feat}.html"><span class="cv"><img src="{fe["image"]}" alt=""></span><span class="tx">{meta(feat)}<h2>{T(esc(fc["title"]), esc(fe["title"]))}</h2><p>{T(esc(fc["desc"]), esc(fe["desc"]))}</p><span class="link">{T('阅读全文', 'Read the post')}<i data-lucide="arrow-right"></i></span></span></a>
     <div class="bfilter" role="group" aria-label="Filter">{chips}</div>
-    <div class="bgrid" id="bgrid">{''.join(card(s) for s in order[1:])}</div>
+    <div class="bgrid" id="bgrid">{''.join(card(s) for s in listed[1:])}</div>
   </div>
 </section>
 <script>
@@ -109,8 +111,8 @@ for slug in order:
     bz, tz = with_ids(local_links(c['body']), 'zh')
     be, te = with_ids(local_links(e['body']), 'en')
     toc = lambda t: ''.join(f'<a href="#{i}">{esc(x)}</a>' for i, x in t)
-    same = [s for s in order if s != slug and set(posts[s]['en']['tags']) & set(e['tags'])]
-    rest = [s for s in order if s != slug and s not in same]
+    same = [s for s in listed if s != slug and set(posts[s]['en']['tags']) & set(e['tags'])]
+    rest = [s for s in listed if s != slug and s not in same]
     related = (same + rest)[:3]
     body = f'''<div class="container">
   <header class="post-hero">

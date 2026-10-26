@@ -13,6 +13,56 @@ export function legacyDocLinks(text) {
     .replace(/https?:\/\/docs\.nocobase\.com\/([\w-]+)(?![\w-])/g, (m, seg) => (V2_DOC_PREFIXES.has(seg) ? `${NOCODE_DOCS}/${seg}` : m));
 }
 
+const SITE = 'https://www.nocobase.com';
+const NOCODE_SITE = 'https://nocode.nocobase.com';
+// 旧官网（NocoBase 2）的语言前缀
+const LEGACY_LANGS = new Set(['en', 'cn', 'tw', 'ja', 'ko', 'ru', 'es', 'fr', 'de', 'pt', 'id', 'vi']);
+// 插件页和 www.nocobase.com 上 CDN EdgeScript 的跳转一致：旧语言前缀下的 plugins（含子路径）和 plugins.html、plugins-cn.html 指向 v2 文档站的插件列表
+const PLUGINS = { en: '/plugins', cn: '/cn/plugins', ja: '/ja/plugins', fr: '/fr/plugins' };
+const PLUGINS_HTML = { 'plugins.html': '/plugins', 'plugins-cn.html': '/cn/plugins' };
+
+// 一条指向 www.nocobase.com（或 nocobase.com）的地址怎么换，返回 { kind, url }。site 是新官网的文章：{ blog: Set<slug>, customers: Set<slug> }，每篇都有英文和 zh-CN 版。
+// kind：blog、customers（旧博客地址换成新站文章）、home（旧首页）、plugins（v2 文档站的插件列表）、nocode（其余旧页面搬到 nocode.nocobase.com，路径不变）、keep（新站的地址或认不出的，不动）。
+// 换掉的地址一律用 https，保留查询串和锚点。
+export function siteLink(url, site) {
+  const m = /^https?:\/\/(?:www\.)?nocobase\.com((?:\/[^?#]*)?)((?:[?#].*)?)$/.exec(url);
+  if (!m) return { kind: 'keep', url };
+  const path = m[1] || '/', rest = m[2];
+  const segs = path.split('/').filter(Boolean);
+  const lang = segs[0];
+  const blog = /^\/(en|cn)\/blog\/([^/]+)\/?$/.exec(path);
+  if (blog) {
+    const [, l, slug] = blog, zh = l === 'cn' ? '/zh-CN' : '';
+    if (site.blog.has(slug)) return { kind: 'blog', url: `${SITE}${zh}/blog/${slug}/${rest}` };
+    if (site.customers.has(slug)) return { kind: 'customers', url: `${SITE}${zh}/customers/${slug}/${rest}` };
+  }
+  if (segs.length === 1 && (lang === 'en' || lang === 'cn')) return { kind: 'home', url: `${SITE}${lang === 'cn' ? '/zh-CN/' : '/'}${rest}` };
+  if (segs.length === 1 && segs[0] in PLUGINS_HTML) return { kind: 'plugins', url: NOCODE_DOCS + PLUGINS_HTML[segs[0]] + rest };
+  if (segs[1] === 'plugins' && lang in PLUGINS) return { kind: 'plugins', url: NOCODE_DOCS + PLUGINS[lang] + rest };
+  if (LEGACY_LANGS.has(lang) || /\.html$/.test(path)) return { kind: 'nocode', url: NOCODE_SITE + path + rest };
+  return { kind: 'keep', url };
+}
+
+// 正文里的地址：主机后面不能紧跟域名字符（nocobase.com.cn 之类不算），句末的标点不算地址
+const SITE_URL = /https?:\/\/(?:www\.)?nocobase\.com(?![\w.-])(?:[/?#][^\s"'<>()\]\\`]*)?/g;
+const urlParts = u => {
+  const tail = /[.,;:!?]+$/.exec(u);
+  return tail ? [u.slice(0, tail.index), tail[0]] : [u, ''];
+};
+
+// 博客、客户案例、更新日志正文里指向旧官网的地址换成新地址（规则见 siteLink）。CMS 导入（scripts/cms-import.mjs）用它，构建生成文章页时再换一次。
+export function legacySiteLinks(text, site) {
+  return text.replace(SITE_URL, m => {
+    const [u, tail] = urlParts(m);
+    return siteLink(u, site).url + tail;
+  });
+}
+
+// 统计和检查用：正文里每条 www.nocobase.com 地址和它的换法
+export function siteLinksIn(text, site) {
+  return [...text.matchAll(SITE_URL)].map(([m]) => ({ from: urlParts(m)[0], ...siteLink(urlParts(m)[0], site) }));
+}
+
 // 中文页面（简体、繁体）上指向 v3 文档站的链接补上 zh-CN/（文档站英文在根目录，中文在 zh-CN/）
 export function zhDocLinks(text) {
   return text.replace(/https:\/\/docs\.nocobase\.com\/(?!zh-CN\/)([^"'\s<>]*)/g, (m, path) => (DOCS_V3.has(path.split(/[/#?]/)[0]) ? `https://docs.nocobase.com/zh-CN/${path}` : m));

@@ -5,11 +5,13 @@
 // hideOnBlog 的文章旧官网不进 /blog 首页，但出现在标签页和侧栏；v3 只有一个带标签筛选的列表，所以也列出来。
 // 打了 Release Notes 标签、已发布的 v3 版本（slug 以 v3. 开头）另外写进 releases.json，给 lib/changelog.mjs 生成更新日志；含没有详情页的。
 // v2 及更早的版本留在旧官网的 /blog/timeline，更新日志页上有链接。
+// 正文里指向 v2 文档和旧官网的地址换成新地址（规则见 lib/links.mjs 的 legacyDocLinks、legacySiteLinks）；旧官网地址的替换也作用于手工抓取的文章和 cs-posts.json。
 // 运行：在 html/ 下 pnpm cms:import（先 pnpm install）。
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { marked } from 'marked';
-import { legacyDocLinks } from './lib/links.mjs';
+import { articleSlugs } from './lib/blog.mjs';
+import { legacyDocLinks, legacySiteLinks } from './lib/links.mjs';
 import { SRC } from './lib/paths.mjs';
 
 const here = join(SRC, 'blog');
@@ -19,7 +21,9 @@ marked.setOptions({ gfm: true, headerIds: false, mangle: false });
 const root = join(here, 'cms', 'articles');
 const postsPath = join(here, 'posts.json');
 const releasesPath = join(here, 'releases.json');
+const csPath = join(here, 'cs-posts.json');
 const posts = JSON.parse(readFileSync(postsPath, 'utf8'));
+const cs = JSON.parse(readFileSync(csPath, 'utf8'));
 const read = p => (existsSync(p) ? readFileSync(p, 'utf8') : '');
 
 // 日期取 UTC 的那一天，和 nocobase.com 现在显示的一致
@@ -67,8 +71,16 @@ for (const slug of existsSync(root) ? readdirSync(root).sort() : []) {
   if (posts[m.slug || slug].listed) listed++;
 }
 
+// 指向旧官网（NocoBase 2 时代的 www.nocobase.com，已经整体搬到 nocode.nocobase.com）的地址换成新地址，规则见 lib/links.mjs 的 legacySiteLinks：旧博客文章新站有的换成 /blog/<slug>/、/customers/<slug>/（中文换成 zh-CN/ 下的），旧首页换成新首页，插件页换成 v2 文档站的插件列表，其余旧页面换成 nocode.nocobase.com 上的同一路径。
+// 博客的全部文章（含手工抓取的）、客户案例（cs-posts.json）和更新日志都换；构建生成页面时再按同样的规则换一次。
+const site = articleSlugs(posts, cs);
+for (const entry of [...Object.values(posts), ...Object.values(cs), ...Object.values(releases)]) {
+  for (const l of ['en', 'cn']) for (const f of ['desc', 'body']) if (entry[l] && entry[l][f]) entry[l][f] = legacySiteLinks(entry[l][f], site);
+}
+
 // 按 slug 排序写出，每次运行结果一样，diff 里只有真正改动的文章
 const sorted = Object.fromEntries(Object.keys(posts).sort().map(k => [k, posts[k]]));
 writeFileSync(postsPath, JSON.stringify(sorted, null, 1) + '\n');
+writeFileSync(csPath, JSON.stringify(cs, null, 1) + '\n');
 writeFileSync(releasesPath, JSON.stringify(Object.fromEntries(Object.keys(releases).sort().map(k => [k, releases[k]])), null, 1) + '\n');
 console.log(`cms: ${pages} pages, ${listed} listed, ${Object.keys(releases).length} releases`);

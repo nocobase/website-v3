@@ -3,8 +3,9 @@
 // v2 及更早的版本在旧官网的更新日志里，页面顶部有链接。
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { fmtDate } from './blog.mjs';
+import { fmtDate, readArticleSlugs } from './blog.mjs';
 import { unescape } from './html.mjs';
+import { legacyDocLinks, legacySiteLinks } from './links.mjs';
 import { SRC } from './paths.mjs';
 
 const V2 = 'https://nocode.nocobase.com/{lang}/blog/timeline';
@@ -53,6 +54,9 @@ export function changelogPages() {
   const key = k => [releases[k].en.date, k];
   const order = Object.keys(releases).sort((a, b) => { const x = key(a), y = key(b); return x[0] < y[0] ? 1 : x[0] > y[0] ? -1 : x[1] < y[1] ? 1 : x[1] > y[1] ? -1 : 0; });
   const href = slug => (releases[slug].post ? `blog/${slug}.html` : `changelog/${slug}.html`);
+  // 正文里指向 v2 文档和旧官网的地址换成新地址（CMS 导入时已经换过，这里再保险一次，规则见 lib/links.mjs）
+  const site = readArticleSlugs();
+  const links = body => legacySiteLinks(legacyDocLinks(body), site);
   const build = (id, tz, te, dz, de, main) => OUT.push({ id, meta: { page: 'changelog', title_zh: tz, title_en: te, desc_zh: dz, desc_en: de }, main });
 
   // 列表页
@@ -118,7 +122,7 @@ export function changelogPages() {
     <div class="bmeta">${pill(r.kind)}<span>${T(fmtDate(c.date, 'cn'), fmtDate(e.date, 'en'))}</span></div>
   </header>
   <div class="post-body">
-    <article><div class="prose zh-only">${c.body}</div><div class="prose en-only">${e.body}</div></article>
+    <article><div class="prose zh-only">${links(c.body)}</div><div class="prose en-only">${links(e.body)}</div></article>
     <div></div>
   </div>
   <section class="post-more">

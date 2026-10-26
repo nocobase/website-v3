@@ -2,7 +2,7 @@
 // 站内链接写成源文件名（blog/<slug>.html、customers.html、contact.html#contact），构建时换成各语言的地址。
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { legacyDocLinks } from './links.mjs';
+import { legacyDocLinks, legacySiteLinks } from './links.mjs';
 import { SRC } from './paths.mjs';
 
 const T = (zh, en) => `<t-zh>${zh}</t-zh><t-en>${en}</t-en>`;
@@ -14,10 +14,19 @@ export function fmtDate(d, lang) {
 }
 const zip = (a, b) => a.slice(0, Math.min(a.length, b.length)).map((x, i) => [x, b[i]]);
 
+// 新官网的文章：posts.json 里打了 Customer Stories 标签的和 cs-posts.json 的（加上阳光电源）是客户案例 /customers/<slug>/，其余是博客 /blog/<slug>/，都有英文和 zh-CN 版。正文里旧博客地址的替换（lib/links.mjs 的 legacySiteLinks）按它判断。
+export function articleSlugs(allposts, cs) {
+  const story = slug => allposts[slug].en.tags.includes('Customer Stories');
+  const blog = new Set(Object.keys(allposts).filter(k => !story(k)));
+  return { blog, customers: new Set(['sungrow', ...Object.keys(cs), ...Object.keys(allposts).filter(story)].filter(k => !blog.has(k))) };
+}
+const readBlog = name => JSON.parse(readFileSync(join(SRC, 'blog', name), 'utf8'));
+export const readArticleSlugs = () => articleSlugs(readBlog('posts.json'), readBlog('cs-posts.json'));
+
 export function blogPages() {
-  const dir = join(SRC, 'blog');
-  const allposts = JSON.parse(readFileSync(join(dir, 'posts.json'), 'utf8'));
-  let stories = JSON.parse(readFileSync(join(dir, 'cs-posts.json'), 'utf8'));
+  const allposts = readBlog('posts.json');
+  let stories = readBlog('cs-posts.json');
+  const site = articleSlugs(allposts, stories);
   for (const [k, v] of Object.entries(allposts)) if (v.en.tags.includes('Customer Stories') && !(k in stories)) stories[k] = v;
   const posts = Object.fromEntries(Object.entries(allposts).filter(([, v]) => !v.en.tags.includes('Customer Stories')));
   // 阳光电源：官网还没有全文，先放标题与摘要
@@ -32,9 +41,10 @@ export function blogPages() {
   const listed = order.filter(k => posts[k].listed ?? true);
 
   function localLinks(body) {
-    // 指向 v2 文档的旧地址换成 nocode.docs.nocobase.com（CMS 导入时已经换过，这里再保险一次）
-    body = legacyDocLinks(body);
-    return body.replace(/href="(https:\/\/www\.nocobase\.com)?\/(?:en|cn)\/blog\/([^"#?]+)"/g, (m, host, s) => {
+    // 指向 v2 文档的旧地址换成 nocode.docs.nocobase.com，指向旧官网的换成新地址或 nocode.nocobase.com（CMS 导入时已经换过，这里再保险一次）
+    body = legacySiteLinks(legacyDocLinks(body), site);
+    // 不带主机的旧博客地址换成站内链接
+    return body.replace(/href="\/(?:en|cn)\/blog\/([^"#?]+)"/g, (m, s) => {
       const slug = s.replace(/\/+$/, '');
       if (slug in posts) return `href="blog/${slug}.html"`;
       if (slug in stories) return `href="customers/${slug}.html"`;

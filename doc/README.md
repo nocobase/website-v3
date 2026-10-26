@@ -2,7 +2,6 @@
 
 ```
 doc/
-├── 方案/          文档方案：Studio 文档（01–05、11 重构方案）、Core 与统一文档站（06–10）
 ├── src/           英文正文（Markdown），站点根路径；Core 已迁入完整中英文文章
 │   └── zh-CN/     简体中文正文，/zh-CN/ 下；中文是基准，目录结构和英文完全相同
 ├── figures/       局部配图（HTML 片段），正文里用 ::figure 名称 | 说明 引用
@@ -16,7 +15,7 @@ doc/
 
 ```bash
 cd doc && npm ci
-node build.mjs     # 生成 doc/dist/ 和 方案/*.html
+node build.mjs     # 生成 doc/dist/
 node serve.mjs     # 在 http://localhost:4321/ 预览
 ```
 
@@ -28,7 +27,7 @@ node serve.mjs     # 在 http://localhost:4321/ 预览
 
 ## 编写
 
-- Studio 文档的结构和措辞见 `方案/11-Studio文档重构方案.md`，写法约定见 `方案/04-写作规范与术语.md`。所有措辞以《NocoBase 产品定义与标准表述》（在 [nocobase/nocobase-v3-standard](https://github.com/nocobase/nocobase-v3-standard) 仓库）为准。
+- 所有措辞以《NocoBase 产品定义与标准表述》（在 [nocobase/nocobase-v3-standard](https://github.com/nocobase/nocobase-v3-standard) 仓库）为准。
 - 新增页面：在 `src/zh-CN/` 下新建 Markdown，在 `src/` 的同一路径下放英文页（还没翻译就只写 front matter 和 `status: placeholder`），再在 `build.mjs` 的 `SECTIONS` 里登记。菜单和源文件不一致时构建会失败。
 - front matter 写了 `status` 的是占位页（中文页写待编写、待改写）：菜单里颜色较浅，不参与上一页 / 下一页。英文占位页正文留空时，会自动提示读者看中文版。
 - 站内链接写成相对的 `.md` 路径（例如 `[我的任务](../use/my-tasks.md#视图)`），构建时换成最终地址；指向不存在的页面会让构建失败。
@@ -41,4 +40,4 @@ Core 全部采用 `nocobase/app-docs` 的现有内容和菜单，迁入基线为
 
 保留原文章的目录和文件名并加 `core/` 前缀；MDX 转成 Markdown，内部链接改为相对 `.md`。中文以 `/zh-CN/core/` 开头，英文以 `/core/` 开头。截图保存在 `assets/core/`，正文通过 `/assets/core/...` 引用；示例下载包保存在 `assets/core/downloads/`。只迁入文章引用的资源，不复制旧站框架、运行数据或本地测试账号。
 
-中文是写作基准，示例代码、应用界面和截图使用英文。保留使用 Agent 与不使用 Agent 两条路径、关键代码、原有折叠内容、固定版本源码链接和验证范围。详细写作规则见 [Core 文档结构与写作原则](方案/08-Core文档结构与写作原则.md)。
+中文是写作基准，示例代码、应用界面和截图使用英文。保留使用 Agent 与不使用 Agent 两条路径、关键代码、原有折叠内容、固定版本源码链接和验证范围。

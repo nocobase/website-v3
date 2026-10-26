@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-// 生成 NocoBase 3 文档站和文档方案的 HTML。Markdown 是正文的唯一来源：
+// 生成 NocoBase 3 文档站的 HTML。Markdown 是正文的唯一来源：
 //   src/**/*.md         → dist/**（英文，站点根路径；src/zh-CN/ 除外）
 //   src/zh-CN/**/*.md   → dist/zh-CN/**（简体中文）
-//   方案/*.md            → 方案/*.html（团队内部的文档方案，不发布）
 // 两种语言的目录结构完全相同，页面的键就是它相对语言根目录的路径（不带 .md）。产物沿用 CDN 回源规则的约定：每页输出成
 // `<路径>/index.html`，地址不带扩展名、以 / 结尾，所有站内链接和资源都用根路径；根目录还有 404.html、
 // sitemap.xml、robots.txt、llms.txt，以及每页去掉 front matter 的 .md 副本。
@@ -180,7 +179,7 @@ const SECTIONS = [
     dir: 'studio/',
     /* 顺序：按一家公司用起 Studio 的先后。入门之后，一个人先搭建（从安装到走完第一个需求、邀请成员），
        同事再加入（连接自己的电脑和运行环境），然后是日常使用、管理项目和系统管理。每组给一种角色看，
-       组里的页面按这个角色做事的先后排列；见 方案/11-Studio文档重构方案.md。 */
+       组里的页面按这个角色做事的先后排列。 */
     nav: [
       { items: ['index'] },
       { title: ['Get started', '入门'], items: ['intro/what-is-studio', 'intro/how-a-request-gets-done', 'intro/agent-team', 'intro/concepts'] },
@@ -203,12 +202,6 @@ const SECTIONS = [
   },
 ];
 const textOf = (pair, lang) => (Array.isArray(pair) ? pair[lang === DEFAULT_LANG ? 0 : 1] : pair);
-
-/* 文档方案按菜单分组；上一篇 / 下一篇按这里的顺序 */
-const PLAN_GROUPS = [
-  { title: 'Core 与统一文档站', items: ['06-读者与需求', '07-Core文档的问题', '08-Core文档结构与写作原则', '09-统一文档站', '10-Core进度与待确认事项'] },
-  { title: 'Studio 文档', items: ['11-Studio文档重构方案', '01-现有文档的问题', '02-文档结构与写作原则', '03-命名方案', '04-写作规范与术语', '05-进度与待确认事项'] },
-];
 
 /* ---------- 地址 ---------- */
 // 页面的键是它相对语言根目录的路径；地址不带扩展名，一律以 / 结尾，和页面输出成 <路径>/index.html 的目录结构一致。
@@ -308,8 +301,8 @@ function render(markdown, { lang, ui, resolveLink = (href) => href }) {
 }
 
 /* ---------- 页面外壳 ---------- */
-// head 是 canonical、hreflang 等额外的 <head> 内容；base 是资源的前缀，文档站用根路径 /，文档方案用相对路径
-function shell({ lang, title, description, crumb, body, toc, menu, pager, base, home, footerLinks = '', tabs = '', head = '', switcher = '', robots = '' }) {
+// head 是 canonical、hreflang 等额外的 <head> 内容；base 是资源的前缀，文档站用根路径 /
+function shell({ lang, title, description, crumb, body, toc, menu, pager, base, home, tabs = '', head = '', switcher = '', robots = '' }) {
   const { ui } = lang;
   return `<!doctype html>
 <html lang="${lang.code}">
@@ -342,7 +335,7 @@ ${description ? `<p class="lead">${escape(description)}</p>` : ''}
 ${body}
 </article>
 ${pager}
-<footer class="page-foot"><span>${escape(ui.site)} · ${escape(ui.draft)} ${DATE}</span><span>${footerLinks}</span></footer>
+<footer class="page-foot"><span>${escape(ui.site)} · ${escape(ui.draft)} ${DATE}</span></footer>
 </main>
 <aside class="toc" aria-label="${escape(ui.toc)}">${toc}</aside>
 </div>
@@ -581,34 +574,3 @@ if (deadLinks.length) throw new Error(`有 ${deadLinks.length} 个站内链接�
 // docs.nocobase.com 会把 v2 旧地址的一级路径 301 到 nocode.docs，顶层目录不能和它们同名
 assertNoV2RedirectConflicts(outDir);
 console.log(`文档站：已生成 ${sitemapEntries.length} 页（${LANGS.map((l) => `${l.code} ${pages.get(l.code).size}`).join('，')}）→ ${relative(process.cwd(), outDir) || '.'}/，站点域名 ${SITE_ORIGIN}`);
-
-/* ---------- 文档方案 ---------- */
-const zh = LANGS[1];
-const planDir = join(dir, '方案');
-const plans = PLAN_GROUPS.flatMap((group) => group.items.map((name) => {
-  const { meta, body } = frontMatter(readFileSync(join(planDir, `${name}.md`), 'utf8'));
-  return { name, meta, body, group: group.title };
-}));
-const planHref = (name) => `${encodeURI(name)}.html`;
-const planMenu = (current) => menuOf(PLAN_GROUPS.map((group) => ({
-  title: group.title,
-  items: group.items.map((name) => ({ key: name, href: planHref(name), label: plans.find((p) => p.name === name).meta.title })),
-})), current);
-for (const [i, plan] of plans.entries()) {
-  const link = (p) => p && { href: planHref(p.name), title: p.meta.title };
-  const r = render(plan.body, { ui: zh.ui, resolveLink: (href) => (/^[a-z]+:/i.test(href) ? href : href.replace(/\.md(#|$)/, '.html$1')) });
-  writeFileSync(join(planDir, `${plan.name}.html`), shell({
-    lang: zh,
-    title: plan.meta.title,
-    description: plan.meta.description,
-    crumb: `文档方案 · ${plan.group}`,
-    body: r.html.replaceAll('{{base}}', '../'),
-    toc: tocOf(r.headings, zh.ui),
-    menu: planMenu(plan.name),
-    pager: pagerOf(link(plans[i - 1]), link(plans[i + 1]), zh.ui),
-    base: '../',
-    home: planHref(plans[0].name),
-    footerLinks: '文档站用 node doc/serve.mjs 预览',
-  }));
-}
-console.log(`文档方案：已生成 ${plans.length} 篇 → ${relative(process.cwd(), planDir)}/`);

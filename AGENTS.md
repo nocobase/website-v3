@@ -12,7 +12,7 @@
 - 产物的约定不要随手改：每页输出成 `<路径>/index.html`，地址不带扩展名、以 `/` 结尾，站内链接和资源用根路径，根目录有 `404.html`、`sitemap.xml`、`robots.txt`、`llms.txt`。这是 CDN 回源规则依赖的格式，改了线上会整站 404。
 - 顶层目录不能和 v2 文档的旧地址同名（名单在 `doc/scripts/v2-redirect-prefixes.txt`，如 `guide`、`api`、`cn`），`docs.nocobase.com` 会把这些路径 301 到 `nocode.docs.nocobase.com`，构建时同名会失败。不要为了让构建通过去改名单，名单要和 CDN 上的 EdgeScript 规则一起改，先问用户。
 - 改完必须在本地跑一遍 `cd doc && npm ci && node build.mjs`，确认成功；改了页面外壳或样式的，再用 `node doc/serve.mjs` 打开看一眼。`doc/dist/` 是构建产物，不要提交。
-- 改了文档结构，同步更新 `doc/README.md` 和 `doc/方案/` 里描述结构的地方。
+- 改了文档结构，同步更新 `doc/README.md`。
 
 ## 官网（`html/`）
 

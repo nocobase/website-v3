@@ -13,6 +13,7 @@ import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, write
 import { dirname, join, posix, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
+import hljs from 'highlight.js';
 import { assertNoV2RedirectConflicts } from './scripts/check-v2-redirect-prefixes.mjs';
 
 const dir = dirname(fileURLToPath(import.meta.url));
@@ -263,13 +264,19 @@ function render(markdown, { lang, ui, resolveLink = (href) => href }) {
       const n = used.get(id) ?? 0;
       used.set(id, n + 1);
       if (n) id = `${id}-${n + 1}`;
-      if (level === 2) headings.push({ id, text: text.replace(/<[^>]+>/g, '') });
+      if (level >= 2 && level <= 4) headings.push({ id, level, text: text.replace(/<[^>]+>/g, '') });
       return `<h${level} id="${escape(id)}">${text}</h${level}>\n`;
     },
     code(code, info) {
-      const lang = (info || '').trim().split(/\s+/)[0];
+      const lang = (info || '').trim().split(/\s+/)[0].toLowerCase();
       const wrap = ['text', 'prompt'].includes(lang) ? ' wrap' : '';
-      return `<div class="code-block${wrap}"><button type="button" class="copy-button" data-copied="${escape(ui.copied)}" data-failed="${escape(ui.copyFailed)}">${escape(ui.copy)}</button><pre><code>${escape(code)}</code></pre></div>\n`;
+      const language = lang === 'tsx' ? 'typescript' : lang;
+      const grammar = hljs.getLanguage(language);
+      const highlighted = grammar && !wrap
+        ? hljs.highlight(code, { language, ignoreIllegals: true }).value
+        : escape(code);
+      const label = lang === 'tsx' ? 'TSX' : grammar?.name || lang || 'text';
+      return `<div class="code-block${wrap}"><div class="code-toolbar"><span class="code-language">${escape(label)}</span><button type="button" class="copy-button" data-copied="${escape(ui.copied)}" data-failed="${escape(ui.copyFailed)}" aria-live="polite">${escape(ui.copy)}</button></div><pre tabindex="0"><code>${highlighted}</code></pre></div>\n`;
     },
     blockquote(quote) {
       const m = /^<p>\[!(TIP|NOTE|WARNING|PENDING)\][ \t]*([^\n<]*)\n?/.exec(quote);
@@ -349,9 +356,9 @@ const menuOf = (groups, current) => groups.map((group) => `<div class="menu-grou
   : x.planned ? `<li><span class="menu-planned">${escape(x.planned)} <small>${escape(x.plannedLabel)}</small></span></li>`
   : `<li><a href="${x.href}"${x.todo ? ' class="todo"' : ''}${x.key === current ? ' aria-current="page"' : ''}>${escape(x.label)}</a></li>`).join('')}</ul></div>`).join('');
 
-// 右侧的本页目录：列出二级标题
+// On-page navigation includes headings from h2 through h4.
 const tocOf = (headings, ui) => headings.length < 2 ? '' :
-  `<p class="toc-title">${escape(ui.toc)}</p><ul>${headings.map((h) => `<li><a href="#${encodeURIComponent(h.id)}">${escape(h.text)}</a></li>`).join('')}</ul>`;
+  `<p class="toc-title">${escape(ui.toc)}</p><ul>${headings.map((h) => `<li class="toc-level-${h.level}"><a href="#${encodeURIComponent(h.id)}">${escape(h.text)}</a></li>`).join('')}</ul>`;
 
 const pagerOf = (prev, next, ui) => `<nav class="pager" aria-label="${escape(ui.pager)}">${prev ? `<a class="prev" href="${prev.href}"><small>${escape(ui.prev)}</small>${escape(prev.title)}</a>` : '<span></span>'}${next ? `<a class="next" href="${next.href}"><small>${escape(ui.next)}</small>${escape(next.title)}</a>` : ''}</nav>`;
 

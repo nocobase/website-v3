@@ -477,7 +477,7 @@ const routes = [appRoutes, systemSettingsRoutes];
 
 功能实现后，在 `tests/` 中补充对应的自动化测试。沿用项目已有的测试配置和工具，使用真实应用和测试数据库验证业务行为。本例实现了以下测试，完整代码见 [tests 目录](https://github.com/nocobase/app-tutorials/tree/da050f4dd4d9ddc36c8585489bd002c6e01ad76f/tests)：
 
-```text
+```bash
 tests/
 ├── database/
 │   └── tasks-migration.test.ts                  # 建表、回退与重新应用

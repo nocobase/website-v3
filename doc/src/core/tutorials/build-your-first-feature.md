@@ -477,7 +477,7 @@ Assign roles to specific people in System settings → Users. Do not give busine
 
 After implementing the feature, add its automated tests under `tests/`. Reuse the project's test configuration and helpers, and verify business behavior with a real application and test database. The example implements the following tests. See the [tests directory](https://github.com/nocobase/app-tutorials/tree/da050f4dd4d9ddc36c8585489bd002c6e01ad76f/tests) for the complete code:
 
-```text
+```bash
 tests/
 ├── database/
 │   └── tasks-migration.test.ts                  # Create, roll back, and reapply the task table

@@ -1,0 +1,16 @@
+### 🎉 新特性
+
+- **[AI 员工]** 更新 AI 对话用户提示词编辑 ([#8725](https://github.com/nocobase/nocobase/pull/8725)) by @heziqiang
+
+### 🐛 修复
+
+- **[server]** 通过追加 hash 参数解决缓存未更新问题 ([#8730](https://github.com/nocobase/nocobase/pull/8730)) by @chenos
+- **[AI 员工]** 修复 AI 数据源配置渲染异常 ([#8731](https://github.com/nocobase/nocobase/pull/8731)) by @cgyrock
+- **[工作流：自定义操作事件]** 修复自定义操作事件作为子流程被调用时卡住的问题 ([#8738](https://github.com/nocobase/nocobase/pull/8738)) by @mytharcher
+- **[工作流：审批]**
+
+  - 在审批操作中过滤关系字段的值，以避免越权的数据操作 by @mytharcher
+  - 修复手动执行审批工作流时的报错 by @mytharcher
+  - 修复加签和转签后由于缺失 `dataAfter` 字段值导致的加载列表报错问题 by @mytharcher
+  - 修复基于 ACL 过滤 appends 参数的问题 by @mytharcher
+  - 修复用户没有相关权限时关系字段不应该被创建或更新的权限问题 by @mytharcher

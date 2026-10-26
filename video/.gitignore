@@ -1,9 +1,0 @@
-# 渲染和混音的中间文件（./make.sh 每次重新生成，单个混音文件 50 MB 以上）、静帧和成片；只保留审片用的音轨（m4a，和双击打开也能播的脚本版）
-out/*
-!out/film/
-out/film/*
-!out/film/preview.m4a
-!out/film/preview-audio.js
-
-# Mixkit 音效的授权不允许单独分发文件，只放在本地，不进仓库（见 audio/sfx/CREDITS.md）
-audio/sfx/mixkit/

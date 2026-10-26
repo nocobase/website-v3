@@ -45,7 +45,7 @@ pnpm preview        # 本地预览 http://localhost:4322/，按 CDN 回源规则
 
 ## 内容约定
 
-- Core、Studio、Solution 三个产品页按《NocoBase 产品定义与标准表述》写：品牌表达做 H1，定义做导语，核心特色按标准文稿的顺序各一节（标题用特色原文，导语先说「问题与方案」里对应的问题，再说方案；问题句要一读就是困难。Studio「一支持续推进的 Agent 团队」一节只留方案），然后是开源与私有部署、开始使用。和 Vibe Coding 的对比只放在首页 FAQ。改文案先改标准文稿，再从它摘录。
+- Core、Studio、Solution 三个产品页按《NocoBase 产品定义与标准表述》（在 [nocobase/nocobase-v3-standard](https://github.com/nocobase/nocobase-v3-standard) 仓库）写：品牌表达做 H1，定义做导语，核心特色按标准文稿的顺序各一节（标题用特色原文，导语先说「问题与方案」里对应的问题，再说方案；问题句要一读就是困难。Studio「一支持续推进的 Agent 团队」一节只留方案），然后是开源与私有部署、开始使用。和 Vibe Coding 的对比只放在首页 FAQ。改文案先改标准文稿，再从它摘录。
 - 定价页的开源与商业划分以《NocoBase 产品定义与标准表述》的「开源与私有部署」一节为准。
 - 博客、客户案例列表和详情页的业务咨询入口指向联系页（`contact.html#contact`），按钮保留「预约实战验证」（英文 Book a Pilot）。
 

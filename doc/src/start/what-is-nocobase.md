@@ -35,14 +35,15 @@ Studio captures methods and experience in skills, the knowledge base, and projec
 
 ## Core, Studio, and Solution
 
-<figure class="map" aria-label="Your team works with the agent team in Studio to build business apps on Core, or starts from a ready-made Solution app">
-<div class="row"><div class="box human"><b>Your team</b><span>Raises requests, keeps track of progress, and makes the key decisions</span></div></div>
-<div class="down">Requests</div>
-<div class="row c2"><div class="box brand"><b>NocoBase Studio <span class="tag pro">Commercial</span></b><span>Schedules the agent team, runs checks and reviews, and keeps the team's know-how</span></div><div class="box agent"><b>Agent team</b><span>Claude Code, Codex, and other coding tools, sharing out design, development, testing, and review</span></div></div>
-<div class="down">Development</div>
-<div class="row"><div class="box"><b>Your business apps · built on NocoBase Core</b><span>Use Core's permissions, workflows, files, and other building blocks. Your code and data stay yours, and the apps run on their own once released</span></div></div>
-<div class="down">Or start from a ready-made app</div>
-<div class="row"><div class="box"><b>NocoBase Solution</b><span>Agent-driven business apps built on Core, with NocoCRM and others open source. Use them as they are, or keep customizing them</span></div></div>
+<figure class="layers" aria-label="Studio is where people and agents build business apps together; the apps are built on Core">
+<div class="ly-b st"><b>NocoBase Studio</b><span>The governance platform for people and agents building software together</span></div>
+<div class="ly-t"><b>People make the decisions. Agents write the code and do the work</b><span>Schedules the agent team, runs checks and reviews, and keeps the team's know-how.</span></div>
+<div class="ly-k down">Build · Deliver · Govern · Evolve</div><div class="ly-gap"></div>
+<div class="ly-b"><b>Business apps</b><span>Your organization's business systems</span></div>
+<div class="ly-t"><b>Your business apps, plus ready-made Solution apps</b><span>Your code and data stay yours, and the apps run on their own once released. Use Solution apps as they are, or keep customizing them.</span></div>
+<div class="ly-k up">Building blocks · Standards</div><div class="ly-gap"></div>
+<div class="ly-b co"><b>NocoBase Core</b><span>The open-source application foundation</span></div>
+<div class="ly-t"><b>Building blocks and one consistent architecture</b><span>20+ building blocks such as permissions, workflows, and files, plus one consistent project structure and development standards.</span></div>
 </figure>
 
 - **[Core](../core/index.md)** is the open-source application foundation for business systems built and run with AI. Permissions, workflows, files, and other building blocks come ready to use, so agents build only what is specific to your business, all on one consistent architecture.

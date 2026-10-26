@@ -35,14 +35,15 @@ Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 
 
 ## Core、Studio 和 Solution
 
-<figure class="map" aria-label="团队在 Studio 中与 Agent 团队协同，基于 Core 开发业务应用；也可以从现成的 Solution 开始">
-<div class="row"><div class="box human"><b>你的团队</b><span>提出需求，掌握进展，在关键处做决策</span></div></div>
-<div class="down">需求</div>
-<div class="row c2"><div class="box brand"><b>NocoBase Studio <span class="tag pro">商业版</span></b><span>统一调度 Agent 团队，组织检查和评审，沉淀方法和经验</span></div><div class="box agent"><b>Agent 团队</b><span>Claude Code、Codex 等编码工具，分工设计、开发、测试、评审</span></div></div>
-<div class="down">开发</div>
-<div class="row"><div class="box"><b>你的业务应用 · 建在 NocoBase Core 上</b><span>使用 Core 的权限、流程、文件等基础能力；代码和数据归企业所有，发布后独立运行</span></div></div>
-<div class="down">或者从现成的应用开始</div>
-<div class="row"><div class="box"><b>NocoBase Solution</b><span>基于 Core 构建、由 Agent 驱动的业务应用，NocoCRM 等开源，可以直接使用，也可以继续定制</span></div></div>
+<figure class="layers" aria-label="Studio 让人与 Agent 协同开发业务应用，业务应用建在 Core 上">
+<div class="ly-b st"><b>NocoBase Studio</b><span>人与 Agent 协同开发的治理平台</span></div>
+<div class="ly-t"><b>人做决策，Agent 写代码、做执行</b><span>统一调度 Agent 团队，组织检查和评审，沉淀方法和经验。</span></div>
+<div class="ly-k down">开发 · 交付 · 治理 · 迭代</div><div class="ly-gap"></div>
+<div class="ly-b"><b>业务应用</b><span>企业的业务系统</span></div>
+<div class="ly-t"><b>你的业务应用，以及现成的 Solution</b><span>代码和数据归企业所有，发布后独立运行；Solution 可以直接使用，也可以继续定制。</span></div>
+<div class="ly-k up">基础能力 · 架构规范</div><div class="ly-gap"></div>
+<div class="ly-b co"><b>NocoBase Core</b><span>开源应用底座</span></div>
+<div class="ly-t"><b>基础能力和统一的架构规范</b><span>权限、流程、文件等 20 多项基础能力，以及统一的项目结构和开发规范。</span></div>
 </figure>
 
 - **[Core](../core/index.md)** 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。

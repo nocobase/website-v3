@@ -63,7 +63,7 @@ const LANGS = [
     label: '简体中文',
     ui: {
       site: 'NocoBase 3 文档', docs: '文档', skip: '跳到正文', sections: '文档分区', links: '站点链接', menu: '目录', menuLabel: '文档目录',
-      toc: '本页内容', pager: '翻页', prev: '上一页', next: '下一页', draft: '草稿', website: '官网', websiteUrl: 'https://www.nocobase.com/cn/',
+      toc: '本页内容', pager: '翻页', prev: '上一页', next: '下一页', draft: '草稿', website: '官网', websiteUrl: 'https://www.nocobase.com/zh-CN/',
       copy: '复制', copied: '已复制', copyFailed: '复制失败', switchTo: '语言',
       callouts: { TIP: '提示', NOTE: '说明', WARNING: '注意', PENDING: '待补充' },
       notFound: ['页面不存在', '你要找的页面不存在，或者已经移动到别的地址。', '回到文档首页'],
@@ -318,7 +318,9 @@ function shell({ lang, title, description, crumb, body, toc, menu, pager, base, 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(title)} - ${escape(ui.site)}</title>
 <meta name="description" content="${escape(description || title)}">
-${robots ? `<meta name="robots" content="${robots}">\n` : ''}${head}<link rel="icon" href="https://www.nocobase.com/images/favicon/apple-touch-icon.png">
+${robots ? `<meta name="robots" content="${robots}">\n` : ''}${head}<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
@@ -424,7 +426,13 @@ const headOf = (lang, key, title) => {
     `<meta property="og:locale" content="${lang.code.replace('-', '_')}">`,
   ].join('\n') + '\n';
 };
-const switcherOf = (lang, key) => LANGS.filter((l) => l !== lang).map((l) => `<a href="${urlOf(l, pages.get(l.code).has(key) ? key : 'index')}" hreflang="${l.code}" lang="${l.code}">${escape(l.label)}</a>`).join('');
+// 语言菜单：悬停或聚焦时展开，列出全部语言，当前语言打勾；某种语言没有这一页时链到它的首页
+const ICON_GLOBE = '<svg class="lang-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>';
+const ICON_CHEVRON = '<svg class="lang-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+const ICON_CHECK = '<svg class="lang-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+const switcherOf = (lang, key) => `<div class="lang-menu"><button type="button" aria-haspopup="true" aria-label="${escape(lang.ui.switchTo)}">${ICON_GLOBE}<span>${escape(lang.label)}</span>${ICON_CHEVRON}</button><div class="lang-dd">${LANGS.map((l) => (l === lang
+  ? `<a href="${urlOf(l, key)}" hreflang="${l.code}" lang="${l.code}" aria-current="true" class="on">${ICON_CHECK}${escape(l.label)}</a>`
+  : `<a href="${urlOf(l, pages.get(l.code).has(key) ? key : 'index')}" hreflang="${l.code}" lang="${l.code}"><span class="lang-check"></span>${escape(l.label)}</a>`)).join('')}</div></div>`;
 
 const brokenLinks = [];
 // 正文里的相对 .md 链接按页面所在目录解析成页面键，再换成同一语言的地址；锚点保留

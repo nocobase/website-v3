@@ -32,7 +32,8 @@
   <header class="post-hero">
     <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></p>
     <h1><t-zh>使用内置工作流与 AI 员工完成公司背景调研自动化</t-zh><t-en>Automating Company Background Research with Workflows and AI Employees</t-en></h1>
-    <p class="lede"><t-zh>介绍如何用 NocoBase 工作流和 AI 员工自动完成公司背景调研，并保留任务状态、报告历史和可复核记录。</t-zh><t-en>Learn how NocoBase workflows and AI employees automate company background research with traceable tasks and report history.</t-en></p>
+    <p class="lede"><t-zh>介绍如何用 NocoBase 工作流和 AI 员工自动完成公司背景调研，并保留任务状态、报告历史和可复核记录。</t-zh><t-en>Learn how NocoBase workflows and AI employees automate company background research with traceable tasks and report history.
+</t-en></p>
     <div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月13日</t-zh><t-en>Jul 13, 2026</t-en></span><span><t-zh>Chen Gengyang  </t-zh><t-en>Chen Gengyang  </t-en></span></div>
   </header>
   <div class="post-cover"><img src="https://static-docs.nocobase.com/20260713-172604-dpzovb.jpg" alt=""></div>
@@ -46,67 +47,63 @@
 <p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
 <hr>
 <h3><code>companies</code>：公司信息表</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>核心字段</th><th>作用</th></tr></thead><tbody><tr><td>Company name</td><td>作为调研对象的主要识别信息。</td></tr><tr><td>Website</td><td>提供官网线索，降低同名公司或简称带来的误判。</td></tr><tr><td>Address</td><td>辅助判断地区、主体和业务范围。</td></tr><tr><td>Company type</td><td>标记客户、供应商、合作伙伴等业务关系，便于后续判断跟进优先级。</td></tr><tr><td>Background information</td><td>保存当前正在使用的公司背景报告，使用 Markdown 呈现结构化内容。</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>核心字段</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Company name</td>
+<td>作为调研对象的主要识别信息。</td>
+</tr>
+<tr>
+<td>Website</td>
+<td>提供官网线索，降低同名公司或简称带来的误判。</td>
+</tr>
+<tr>
+<td>Address</td>
+<td>辅助判断地区、主体和业务范围。</td>
+</tr>
+<tr>
+<td>Company type</td>
+<td>标记客户、供应商、合作伙伴等业务关系，便于后续判断跟进优先级。</td>
+</tr>
+<tr>
+<td>Background information</td>
+<td>保存当前正在使用的公司背景报告，使用 Markdown 呈现结构化内容。</td>
+</tr>
+</tbody></table>
 <h3><code>background_check_tasks</code>：背景调查记录表</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>核心字段</th><th>作用</th></tr></thead><tbody><tr><td>Company ID / Company name</td><td>记录本次调研面向哪家公司，便于任务执行和历史回溯。</td></tr><tr><td>Status</td><td>标记任务从<code>pending</code> 到 <code>processing</code>、<code>completed</code> 的流转，也是防止重复触发的依据。</td></tr><tr><td>Research report</td><td>保存 AI 本次生成的完整调研报告。</td></tr><tr><td>Summary</td><td>保存 AI 对调研过程、风险点和待补充信息的概括。</td></tr><tr><td>Previous background</td><td>保存写回前的旧版本，支持历史追踪和新旧报告对比。</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>核心字段</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Company ID / Company name</td>
+<td>记录本次调研面向哪家公司，便于任务执行和历史回溯。</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>标记任务从<code>pending</code> 到 <code>processing</code>、<code>completed</code> 的流转，也是防止重复触发的依据。</td>
+</tr>
+<tr>
+<td>Research report</td>
+<td>保存 AI 本次生成的完整调研报告。</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>保存 AI 对调研过程、风险点和待补充信息的概括。</td>
+</tr>
+<tr>
+<td>Previous background</td>
+<td>保存写回前的旧版本，支持历史追踪和新旧报告对比。</td>
+</tr>
+</tbody></table>
 <p><img src="https://static-docs.nocobase.com/01-company-list-zuruic.png" alt="01-company-list-zuruic.png"></p>
 <h2 id="zh-2">从公司资料进入调研流程</h2>
 <p>公司列表是业务人员最熟悉的入口。页面中可以看到公司名称、官网、公司类型、联系人、邮箱等信息。进入某家公司后，业务人员可以查看当前背景报告，也可以主动发起一次新的背景调研。</p>
@@ -152,80 +149,76 @@
 <p>类似的模式可以迁移到供应商准入、客户尽调、合同风险初审、线索质量评分、舆情跟踪、投融资标的初筛等场景。只要业务里同时存在“资料需要持续补全”“AI 结果需要留痕”“历史版本不能被覆盖”这几个要求，就可以用类似的方式搭出一条可运行、可追踪、可扩展的自动化流程。</p>
 <h2 id="zh-8">参考文档</h2>
 <ul>
-<li><a href="https://nocode.docs.nocobase.com/workflow">NocoBase 工作流</a></li>
-<li><a href="https://nocode.docs.nocobase.com/ai-employees">NocoBase AI 员工</a></li>
-<li><a href="https://nocode.docs.nocobase.com/ai-employees/workflow/nodes/employee/configuration">NocoBase 工作流 AI 员工节点</a></li>
-<li><a href="https://nocode.docs.nocobase.com/ai-employees/features/tools">NocoBase AI 员工自定义工具</a></li>
+<li><a href="https://docs.nocobase.com/workflow">NocoBase 工作流</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees">NocoBase AI 员工</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees/workflow/nodes/employee/configuration">NocoBase 工作流 AI 员工节点</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees/features/tools">NocoBase AI 员工自定义工具</a></li>
 </ul></div><div class="prose en-only"><p>In NocoBase, company background research can be turned into a traceable automation flow. Business users still work on the familiar company profile page, while workflows and AI employees fill in background information, record the processing steps, and keep every generated report for later review.</p>
 <p><img src="https://static-docs.nocobase.com/HR1-9owfry.png" alt="HR1-9owfry.png"></p>
 <p>This scenario addresses a common problem: company background information is not a static field that only needs to be entered once. Public information changes, regulatory events may appear, and cooperation status keeps evolving as business moves forward. If everything depends on manual updates, key information can easily be missed. If AI is allowed to overwrite company profiles directly, it becomes hard to explain how a given judgment was made. The approach here is to store current information and the research process separately. The company record keeps the version business users are working with, while background check records keep the status, output, and history of every AI research task.</p>
 <h2 id="en-1">Start With Two Tables</h2>
 <p>The company table provides the basic information about the research target, while the background check task table receives each research task. One stores the currently available information; the other stores the process and historical results.</p>
 <hr>
-<p>💬 Hey, you’re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
 <hr>
 <h3><code>companies</code>: Company Table</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Key Field</th><th>Purpose</th></tr></thead><tbody><tr><td>Company name</td><td>Serves as the main identifier of the research target.</td></tr><tr><td>Website</td><td>Provides an official website clue and reduces misjudgment caused by companies with similar names or abbreviations.</td></tr><tr><td>Address</td><td>Helps identify region, legal entity, and business scope.</td></tr><tr><td>Company type</td><td>Marks business relationships such as customer, supplier, or partner, making it easier to prioritize follow-up.</td></tr><tr><td>Background information</td><td>Stores the company background report currently in use and presents structured content in Markdown.</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>Key Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Company name</td>
+<td>Serves as the main identifier of the research target.</td>
+</tr>
+<tr>
+<td>Website</td>
+<td>Provides an official website clue and reduces misjudgment caused by companies with similar names or abbreviations.</td>
+</tr>
+<tr>
+<td>Address</td>
+<td>Helps identify region, legal entity, and business scope.</td>
+</tr>
+<tr>
+<td>Company type</td>
+<td>Marks business relationships such as customer, supplier, or partner, making it easier to prioritize follow-up.</td>
+</tr>
+<tr>
+<td>Background information</td>
+<td>Stores the company background report currently in use and presents structured content in Markdown.</td>
+</tr>
+</tbody></table>
 <h3><code>background_check_tasks</code>: Background Check Task Table</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Key Field</th><th>Purpose</th></tr></thead><tbody><tr><td>Company ID / Company name</td><td>Records which company this research task is for, making execution and historical review easier.</td></tr><tr><td>Status</td><td>Tracks task transitions from<code>pending</code> to <code>processing</code> and <code>completed</code>; it also helps prevent duplicate triggers.</td></tr><tr><td>Research report</td><td>Stores the full research report generated by AI for this run.</td></tr><tr><td>Summary</td><td>Stores AI’s summary of the research process, risk points, and information that still needs to be supplemented.</td></tr><tr><td>Previous background</td><td>Stores the previous version before write-back, supporting history tracking and report comparison.</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>Key Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Company ID / Company name</td>
+<td>Records which company this research task is for, making execution and historical review easier.</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>Tracks task transitions from<code>pending</code> to <code>processing</code> and <code>completed</code>; it also helps prevent duplicate triggers.</td>
+</tr>
+<tr>
+<td>Research report</td>
+<td>Stores the full research report generated by AI for this run.</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>Stores AI’s summary of the research process, risk points, and information that still needs to be supplemented.</td>
+</tr>
+<tr>
+<td>Previous background</td>
+<td>Stores the previous version before write-back, supporting history tracking and report comparison.</td>
+</tr>
+</tbody></table>
 <p><img src="https://static-docs.nocobase.com/01-company-list-zuruic.png" alt="01-company-list-zuruic.png"></p>
 <h2 id="en-2">Enter the Research Flow From Company Profiles</h2>
 <p>The company list is the most familiar entry point for business users. On the page, they can see company names, websites, company types, contacts, email addresses, and other information. After opening a company, users can view the current background report or actively start a new background research task.</p>
@@ -271,16 +264,18 @@
 <p>The same pattern can be applied to supplier onboarding, customer due diligence, contract risk pre-review, lead quality scoring, public opinion tracking, investment target screening, and similar scenarios. Whenever a business process requires continuously completing information, keeping traces of AI results, and preserving historical versions instead of overwriting them, this approach can be used to build a runnable, traceable, and extensible automation flow.</p>
 <h2 id="en-8">Reference Documents</h2>
 <ul>
-<li><a href="https://nocode.docs.nocobase.com/workflow">NocoBase Workflow</a></li>
-<li><a href="https://nocode.docs.nocobase.com/ai-employees">NocoBase AI Employees</a></li>
-<li><a href="https://nocode.docs.nocobase.com/ai-employees/workflow/nodes/employee/configuration">NocoBase Workflow AI Employee Node</a></li>
-<li><a href="https://nocode.docs.nocobase.com/ai-employees/features/tools">NocoBase AI Employee Custom Tools</a></li>
+<li><a href="https://docs.nocobase.com/workflow">NocoBase Workflow</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees">NocoBase AI Employees</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees/workflow/nodes/employee/configuration">NocoBase Workflow AI Employee Node</a></li>
+<li><a href="https://docs.nocobase.com/ai-employees/features/tools">NocoBase AI Employee Custom Tools</a></li>
 </ul></div></article>
     <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">先看两张表</a><a href="#zh-2">从公司资料进入调研流程</a><a href="#zh-3">三种触发方式</a><a href="#zh-4">把 AI 调研变成任务</a><a href="#zh-5">让 AI 结果可复核</a><a href="#zh-6">工作流怎么组合</a><a href="#zh-7">可以迁移到哪些场景</a><a href="#zh-8">参考文档</a></div><div class="en-only"><a href="#en-1">Start With Two Tables</a><a href="#en-2">Enter the Research Flow From Company Profiles</a><a href="#en-3">Three Trigger Methods</a><a href="#en-4">Turn AI Research Into Tasks</a><a href="#en-5">Make AI Results Reviewable</a><a href="#en-6">How the Workflows Fit Together</a><a href="#en-7">Where This Pattern Can Be Reused</a><a href="#en-8">Reference Documents</a></div></nav>
   </div>
   <section class="post-more">
     <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
-    <div class="bgrid"><a class="bcard" href="../blog/awesome-nocobase-community-plugins.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%2094-77hcu6.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月26日</t-zh><t-en>Jul 26, 2026</t-en></span><span><t-zh>NocoBase Team</t-zh><t-en>NocoBase Team</t-en></span></div><h3><t-zh>Awesome NocoBase：发现和分享社区插件</t-zh><t-en>Awesome NocoBase: Discover and Share Plugins Built by the Community</t-en></h3><p><t-zh>通过 Awesome NocoBase 发现社区开发的插件，分享自己的扩展，共同建设更开放的 NocoBase 插件生态。</t-zh><t-en>Discover community-built NocoBase plugins and learn how to share your own extensions through Awesome NocoBase.</t-en></p></a><a class="bcard" href="../blog/build-interactive-operations-dashboard-with-nocobase.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2%20(3)-m9si79.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月9日</t-zh><t-en>Jul 9, 2026</t-en></span><span><t-zh>Yang Qia</t-zh><t-en>Yang Qia</t-en></span></div><h3><t-zh>用 NocoBase 搭建可联动的运营仪表盘</t-zh><t-en>Build an Interactive Operations Dashboard with NocoBase</t-en></h3><p><t-zh>了解如何组合 NocoBase 图表、筛选和 JS 区块，搭建支持筛选联动、图表下钻和自定义样式的运营仪表盘。</t-zh><t-en>Learn how to combine NocoBase chart, filter, and JS blocks to build an operations dashboard with linked filters and drilldowns.</t-en></p></a><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a></div>
+    <div class="bgrid"><a class="bcard" href="../blog/awesome-nocobase-community-plugins.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%2094-77hcu6.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月26日</t-zh><t-en>Jul 26, 2026</t-en></span><span><t-zh>NocoBase Team</t-zh><t-en>NocoBase Team</t-en></span></div><h3><t-zh>Awesome NocoBase：发现和分享社区插件</t-zh><t-en>Awesome NocoBase: Discover and Share Plugins Built by the Community</t-en></h3><p><t-zh>通过 Awesome NocoBase 发现社区开发的插件，分享自己的扩展，共同建设更开放的 NocoBase 插件生态。</t-zh><t-en>Discover community-built NocoBase plugins and learn how to share your own extensions through Awesome NocoBase.</t-en></p></a><a class="bcard" href="../blog/build-interactive-operations-dashboard-with-nocobase.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2%20(3)-m9si79.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月9日</t-zh><t-en>Jul 9, 2026</t-en></span><span><t-zh>Yang Qia</t-zh><t-en>Yang Qia</t-en></span></div><h3><t-zh>用 NocoBase 搭建可联动的运营仪表盘</t-zh><t-en>Build an Interactive Operations Dashboard with NocoBase</t-en></h3><p><t-zh>了解如何组合 NocoBase 图表、筛选和 JS 区块，搭建支持筛选联动、图表下钻和自定义样式的运营仪表盘。
+</t-zh><t-en>Learn how to combine NocoBase chart, filter, and JS blocks to build an operations dashboard with linked filters and drilldowns.
+</t-en></p></a><a class="bcard" href="../blog/building-ai-assistant-langflow-astradb-nocobase.html" data-tags="Tech_&_Tutorials AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/982a0465b381654182c7acc725a0815f.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年3月10日</t-zh><t-en>Mar 10, 2025</t-en></span><span><t-zh>Leandro Martins</t-zh><t-en>Leandro Martins</t-en></span></div><h3><t-zh>使用Langflow和AstraDB构建AI助手：从架构设计到与NocoBase的集成</t-zh><t-en>Building an AI Assistant with Langflow and AstraDB: From Architecture to Integration with NocoBase</t-en></h3><p><t-zh>本文演示了如何集成 NocoBase、LangFlow 和 AstraDB 创建 AI 助手，通过数据向量化和语义搜索生成洞察，利用 RAG 技术优化结果，提升数据管理和智能检索能力。</t-zh><t-en>This article demonstrates how to integrate NocoBase, LangFlow, and AstraDB to create an AI assistant, generating insights through data vectorization and semantic search, and optimizing results using RAG technology to enhance data management and intelligent retrieval capabilities.</t-en></p></a></div>
   </section>
   <div class="band">
     <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>

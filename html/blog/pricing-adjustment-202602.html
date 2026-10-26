@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase 开源协议和定价调整 — NocoBase" data-en="NocoBase Open Source License and Pricing Adjustments — NocoBase">NocoBase 开源协议和定价调整 — NocoBase</title>
+<meta name="description" content="对开源许可协议、商业插件、商业插件包及商业版本权益进行调整，并为已购用户提供免费调整服务。" data-zh="对开源许可协议、商业插件、商业插件包及商业版本权益进行调整，并为已购用户提供免费调整服务。" data-en="We have adjusted the license agreement and the pricing for commercial plugins, commercial plugin bundles, and commercial editions benefits. Additionally, we offer free adjustments for users who have already made purchases.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>最新动态</t-zh><t-en>Latest Updates</t-en></p>
+    <h1><t-zh>NocoBase 开源协议和定价调整</t-zh><t-en>NocoBase Open Source License and Pricing Adjustments</t-en></h1>
+    <p class="lede"><t-zh>对开源许可协议、商业插件、商业插件包及商业版本权益进行调整，并为已购用户提供免费调整服务。</t-zh><t-en>We have adjusted the license agreement and the pricing for commercial plugins, commercial plugin bundles, and commercial editions benefits. Additionally, we offer free adjustments for users who have already made purchases.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>最新动态</t-zh><t-en>Latest Updates</t-en></span><span><t-zh>2026年2月15日</t-zh><t-en>Feb 15, 2026</t-en></span><span><t-zh>NocoBase Team</t-zh><t-en>NocoBase Team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/2c6d8546a08c884f1d0ea607e0ff024a-p8iky4.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>NocoBase 2.0 于 2026 年 2 月 15 日发布。从这个版本开始，NocoBase 将逐步转向 AI 驱动，助力传统企业落地 AI 能力，让 AI 在实际业务场景中发挥价值。为了配合这个方向调整，我们对开源协议和定价体系做出调整，目的是希望协议更宽松友好、定价方案更简单、用户使用成本更低。</p>
+<h3>开源协议由 AGPL-3.0 变更为 Apache-2.0</h3>
+<p>这将为用户提供更具商业友好的授权条款，以及更灵活的二次开发与分发空间。</p>
+<h3>将大量商业插件开源免费提供</h3>
+<p>以下商业插件均已开源，可以免费使用。</p>
+<table>
+<thead>
+<tr>
+<th>插件</th>
+<th>包名</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI LLM: GigaChat</td>
+<td><code>@nocobase/plugin-ai-gigachat</code></td>
+<td></td>
+</tr>
+<tr>
+<td>多步骤表单</td>
+<td><code>@nocobase/plugin-block-multi-step-form</code></td>
+<td>适用于 Page V1，尚未适配 2.0</td>
+</tr>
+<tr>
+<td>区块：树</td>
+<td><code>@nocobase/plugin-block-tree</code></td>
+<td>适用于 Page V1，尚未适配 2.0</td>
+</tr>
+<tr>
+<td>评论</td>
+<td><code>@nocobase/plugin-comments</code></td>
+<td></td>
+</tr>
+<tr>
+<td>自定义变量</td>
+<td><code>@nocobase/plugin-custom-variables</code></td>
+<td>适用于 Page V1，尚未适配 2.0</td>
+</tr>
+<tr>
+<td>数据可视化：ECharts</td>
+<td><code>@nocobase/plugin-data-visualization-echarts</code></td>
+<td>2.0 已弃用，请使用 Chart 区块</td>
+</tr>
+<tr>
+<td>嵌入 NocoBase</td>
+<td><code>@nocobase/plugin-embed</code></td>
+<td>适用于 Page V1，尚未适配 2.0</td>
+</tr>
+<tr>
+<td>字段：代码</td>
+<td><code>@nocobase/plugin-field-code</code></td>
+<td>尚未适配 2.0</td>
+</tr>
+<tr>
+<td>表单草稿</td>
+<td><code>@nocobase/plugin-form-drafts</code></td>
+<td>仅支持 Form 区块 2.0</td>
+</tr>
+<tr>
+<td>多关键词筛选</td>
+<td><code>@nocobase/plugin-multi-keyword-filter</code></td>
+<td></td>
+</tr>
+<tr>
+<td>工作流：自定义操作事件</td>
+<td><code>@nocobase/plugin-workflow-custom-action-trigger</code></td>
+<td></td>
+</tr>
+<tr>
+<td>工作流：日期计算节点</td>
+<td><code>@nocobase/plugin-workflow-date-calculation</code></td>
+<td></td>
+</tr>
+<tr>
+<td>工作流：JavaScript 节点</td>
+<td><code>@nocobase/plugin-workflow-javascript</code></td>
+<td></td>
+</tr>
+<tr>
+<td>工作流：操作前事件</td>
+<td><code>@nocobase/plugin-workflow-request-interceptor</code></td>
+<td></td>
+</tr>
+<tr>
+<td>工作流：变量</td>
+<td><code>@nocobase/plugin-workflow-variable</code></td>
+<td></td>
+</tr>
+<tr>
+<td>数据表：连接外部数据 (FDW)</td>
+<td><code>@nocobase/plugin-collection-fdw</code></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>将其余商业插件合并到商业许可证中</h3>
+<p>其余商业插件不再单独提供购买，均合并到商业许可证中，购买商业许可证后即可使用。明细请见定价页面：<a href="https://www.nocobase.com/cn/commercial">https://www.nocobase.com/cn/commercial</a></p>
+<h3>从低版本向高版本升级，可全额抵扣</h3>
+<p>2 月 15 日之前定价方案中，从低版本向高版本升级，剩余有效金额可以抵扣，如购买标准版 6 个月后升级到专业版，剩余有效金额为 2500 元，需补差价 47500 元。</p>
+<p>2 月 15 日之后定价方案中，从低版本向高版本升级，低版本所花费金额可全额抵扣。如购买标准版 18 个月后升级到专业版，可全额抵扣标准版的 5000 元，需补差价 45000 元。</p>
+<h3>对于已经购买了商业版本许可证、商业插件、商业插件包的用户，做出如下免费调整：</h3>
+<ul>
+<li>2 月 15 日之前已购买的任何权益均不受影响，按照原政策执行，即：<ul>
+<li>已购买了商业许可证的用户，原许可证中包含的插件点数依然可以兑换商业插件，原许可证中包含的所有功能均不受影响。</li>
+<li>已经购买和兑换的商业插件不变。</li>
+<li>已经购买了商业插件包且仍有剩余点数的用户，仍可继续兑换商业插件。</li>
+</ul>
+</li>
+<li>2 月 15 日之后在商业版本中新增的功能，均免费为之前已购买对应商业版本的用户开放。</li>
+<li>2 月 15 日之前已购买了商业版本，2 月15 日之后要升级到更高版本的，原版本费用可全额抵扣。</li>
+<li>2 月 15 日之前已购买了商业插件，2 月15 日之后要购买商业版本的，若所购商业插件包含在要购买的商业版本中的，原插件费用可全额抵扣。</li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>我在 2 月 15 日之前购买了专业版，其中包含多应用和多空间功能。2 月 15 日起该功能只在企业版中提供，是否会影响到我？<ul>
+<li>答：不影响。你已经拥有的所有功能均不受影响，包括多应用和多空间，都将永久包含在你的许可证中。</li>
+</ul>
+</li>
+<li>我在 2 月 15 日之前购买了标准版，还剩下 8 个插件点数未使用，想兑换审批功能，但发现该功能在 2 月 15 日之后只在专业版中提供，我是否可以兑换？<ul>
+<li>答：可以兑换。账户中剩余的插件点数仍可正常兑换兑换全部商业插件。</li>
+</ul>
+</li>
+<li>我在 2 月 15 日之前购买了标准版，当时没有外部数据源功能，2 月 15 日之后标准版中包含了外部数据源，我是否可以免费使用？<ul>
+<li>答：可以。2 月 15 日之后商业版本中包含的新功能，都将免费向在此之前购买过相应版本的用户免费提供。MariaDB、MySQL、PostgreSQL、MSSQL、Rest API 等外部数据源都将免费为你开通。</li>
+</ul>
+</li>
+<li>我在 2 月 15 日之前购买了标准版以及审批插件，共计 5000 元 + 4800 元 = 9800 元。现在要升级到专业版，是否可以抵扣？<ul>
+<li>答：可以。9800 元可全额抵扣。</li>
+</ul>
+</li>
+</ul>
+<p>以上调整的解释权归 NocoBase 母公司所有。已经购买商业许可证、商业插件、商业插件包的用户，赠送权益将在 2 月 24 日之前调整完成。</p>
+<p>再次感谢所有付费和免费用户的支持，感谢所有 NocoBase 开源贡献者。我们将持续快速迭代，为大家提供更好的产品，更低的价格。</p></div><div class="prose en-only"><p>NocoBase 2.0 was officially released on February 15, 2026. Starting with this version, NocoBase is pivoting toward being AI-driven, helping traditional enterprises implement AI capabilities and ensuring AI delivers real value in practical business scenarios. In line with this new direction, we have adjusted our open-source license and pricing structure to ensure the license is more flexible and friendly, the pricing plan is simpler, and the cost of use is lower for our users.</p>
+<h3>License Change: From AGPL-3.0 to Apache-2.0</h3>
+<p>This transition provides a more business-friendly environment, offering users greater flexibility for customization and commercial distribution with fewer constraints.</p>
+<h3>Open-Sourcing Major Commercial Plugins</h3>
+<p>The following commercial plugins are now <strong>open-source and free to use</strong></p>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Package Name</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI LLM: GigaChat</td>
+<td><code>@nocobase/plugin-ai-gigachat</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Multi-step form</td>
+<td><code>@nocobase/plugin-block-multi-step-form</code></td>
+<td>Available in Page V1, not yet adapted for 2.0</td>
+</tr>
+<tr>
+<td>Block: Tree</td>
+<td><code>@nocobase/plugin-block-tree</code></td>
+<td>Available in Page V1, not yet adapted for 2.0</td>
+</tr>
+<tr>
+<td>Comments</td>
+<td><code>@nocobase/plugin-comments</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Custom variables</td>
+<td><code>@nocobase/plugin-custom-variables</code></td>
+<td>Available in Page V1, not yet adapted for 2.0</td>
+</tr>
+<tr>
+<td>Data visualization: ECharts</td>
+<td><code>@nocobase/plugin-data-visualization-echarts</code></td>
+<td>Deprecated in 2.0, use Chart block instead</td>
+</tr>
+<tr>
+<td>Embed NocoBase</td>
+<td><code>@nocobase/plugin-embed</code></td>
+<td>Available in Page V1, not yet adapted for 2.0</td>
+</tr>
+<tr>
+<td>Field: Code</td>
+<td><code>@nocobase/plugin-field-code</code></td>
+<td>Not yet adapted for 2.0</td>
+</tr>
+<tr>
+<td>Form drafts</td>
+<td><code>@nocobase/plugin-form-drafts</code></td>
+<td>Supports Form block 2.0 only</td>
+</tr>
+<tr>
+<td>Multi-keyword filter</td>
+<td><code>@nocobase/plugin-multi-keyword-filter</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Workflow: Custom action trigger</td>
+<td><code>@nocobase/plugin-workflow-custom-action-trigger</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Workflow: Date calculation node</td>
+<td><code>@nocobase/plugin-workflow-date-calculation</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Workflow: JavaScript node</td>
+<td><code>@nocobase/plugin-workflow-javascript</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Workflow: Request interceptor</td>
+<td><code>@nocobase/plugin-workflow-request-interceptor</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Workflow: Variable</td>
+<td><code>@nocobase/plugin-workflow-variable</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Collection: Connect to foreign data (FDW)</td>
+<td><code>@nocobase/plugin-collection-fdw</code></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>Consolidating Remaining Commercial Plugins</h3>
+<p>Remaining commercial plugins will no longer be sold individually. Instead, they are now <strong>bundled into the Commercial License</strong>. Once you purchase a Commercial License, you gain access to these features. For full details, please visit our pricing page: <a href="https://www.google.com/search?q=https://www.nocobase.com/commercial">https://www.nocobase.com/commercial</a></p>
+<h3>Full Credit Toward Upgrades from Lower to Higher Editions</h3>
+<p>Under the pricing policy prior to February 15, when upgrading from a lower edition to a higher edition, only the remaining prorated value could be credited. For example, if upgrading from the Standard Edition to the Professional Edition after 6 months, with a remaining value of 400 USD, the required price difference would be 7,600 USD.</p>
+<p>Under the pricing policy after February 15, when upgrading from a lower edition to a higher edition, the full amount spent on the lower edition can be credited. For example, if upgrading from the Standard Edition to the Professional Edition after 18 months, the full 800 USD spent on the Standard Edition can be credited, and the required price difference would be 7,200 USD.</p>
+<h3>Policies for Existing Customers</h3>
+<p>For users who purchased commercial licenses, plugins, or plugin packs before the transition:</p>
+<ol>
+<li>Rights purchased before February 15 remain unaffected.<ul>
+<li>All previously purchased or redeemed commercial plugins remain yours.</li>
+<li>Remaining points in plugin packs can still be used to redeem any commercial plugin.</li>
+</ul>
+</li>
+<li>New features added to commercial versions after February 15 will be available for free to users who previously purchased the corresponding commercial Edition.</li>
+<li>Upgrading from a Commercial Edition purchased before February 15: When upgrading to a higher edition after February 15, the full amount paid for the original edition can be credited toward the upgrade.</li>
+<li>Upgrading from individual Commercial Plugins to a Commercial Edition: If you purchased commercial plugins before February 15 and wish to upgrade to a Commercial Edition that now includes those plugins, the full amount spent on the original plugins can be credited toward the purchase of the edition.</li>
+</ol>
+<h3>FAQ</h3>
+<p><strong>Q:</strong> I bought the Professional Edition before Feb 15, which included Multi-app and Multi-space. Now those features are only in the EnterpriseEdition. Will I lose them?</p>
+<p><strong>A:</strong> No. All features you already own, including Multi-app and Multi-space, are permanently included in your license.</p>
+<p><strong>Q:</strong> I bought the Standard Edition before Feb 15 and have 8 points left. I want to redeem the Approval plugin, but it&#39;s now restricted to the Professional Edition. Can I still get it?</p>
+<p><strong>A:</strong> Yes. Your remaining plugin points can still be used to redeem any commercial plugin regardless of the new tiering.</p>
+<p><strong>Q:</strong> I bought the Standard Edition before it included External Data Sources. Now that the Standard Edition includes them (post-Feb 15), do I get them for free?</p>
+<p><strong>A:</strong> Yes. Any new features added to your Edition after Feb 15 are free for existing owners of that Edition. This includes MariaDB, MySQL, PostgreSQL, MSSQL, and Rest API external data sources.</p>
+<p><strong>Q:</strong> I purchased the Standard Edition and the Approval plugin before February 15, for a total of 800 USD + 800 USD = 1,600 USD. Can I credit this amount toward an upgrade to the Professional Edition?</p>
+<p><strong>A:</strong> Yes. The full 1,600 USD can be credited toward the upgrade.</p>
+<p><em>The interpretation of these adjustments belongs to the parent company of NocoBase. For existing commercial users, all complimentary rights and adjustments will be finalized by <strong>February 24</strong>.</em></p>
+<p>We want to thank all our paid and free users, as well as our open-source contributors. We will continue to iterate rapidly to provide a better product at a lower price.</p></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"></div><div class="en-only"></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/nocobase-partner-program.html" data-tags="Latest_Updates"><span class="cv"><img src="https://static-docs.nocobase.com/20260324-105652-eep0cq.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>最新动态</t-zh><t-en>Latest Updates</t-en></span><span><t-zh>2026年3月23日</t-zh><t-en>Mar 23, 2026</t-en></span><span><t-zh>NocoBase Team</t-zh><t-en>NocoBase Team</t-en></span></div><h3><t-zh>NocoBase 合作伙伴计划正式发布</t-zh><t-en>The NocoBase Partner Program Is Live</t-en></h3><p><t-zh>建立长期、开放、可持续的合作伙伴生态，更高效地连接客户需求、平台能力与专业服务。</t-zh><t-en>Building a long-term, open, and sustainable partner ecosystem to more efficiently connect customer needs, platform capabilities, and professional services.</t-en></p></a><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

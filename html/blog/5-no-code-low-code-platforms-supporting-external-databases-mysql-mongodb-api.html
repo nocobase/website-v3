@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="不只 PostgreSQL：5 个支持外部数据库的无代码/低代码平台对比 — NocoBase" data-en="Not Just PostgreSQL: Comparing 5 No-Code/Low-Code Platforms with External Database Support — NocoBase">不只 PostgreSQL：5 个支持外部数据库的无代码/低代码平台对比 — NocoBase</title>
+<meta name="description" content="本文对比 NocoBase、Retool、Appsmith、Budibase、ToolJet 五款低代码平台，从数据源、业务关系、流程权限、搭建效率、AI 能力展开分析，明确各平台适用场景与核心优势。" data-zh="本文对比 NocoBase、Retool、Appsmith、Budibase、ToolJet 五款低代码平台，从数据源、业务关系、流程权限、搭建效率、AI 能力展开分析，明确各平台适用场景与核心优势。" data-en="This article compares five low-code platforms: NocoBase, Retool, Appsmith, Budibase, and ToolJet. It analyzes data sources, business relationships, permissions, efficiency, and AI capabilities to clarify their strengths and applicable scenarios.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>资讯</t-zh><t-en>News</t-en></p>
+    <h1><t-zh>不只 PostgreSQL：5 个支持外部数据库的无代码/低代码平台对比</t-zh><t-en>Not Just PostgreSQL: Comparing 5 No-Code/Low-Code Platforms with External Database Support</t-en></h1>
+    <p class="lede"><t-zh>本文对比 NocoBase、Retool、Appsmith、Budibase、ToolJet 五款低代码平台，从数据源、业务关系、流程权限、搭建效率、AI 能力展开分析，明确各平台适用场景与核心优势。</t-zh><t-en>This article compares five low-code platforms: NocoBase, Retool, Appsmith, Budibase, and ToolJet. It analyzes data sources, business relationships, permissions, efficiency, and AI capabilities to clarify their strengths and applicable scenarios.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年3月30日</t-zh><t-en>Mar 30, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2099%20(1)-686kfp.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">本文要点</h2>
+<p>如果你需要在现有数据库基础上搭建完整的业务系统（CRM、ERP、审批、工单），<strong>NocoBase</strong> 是最合适的选择，因为它支持多数据源管理、跨源关联和深度业务建模。如果你只需要快速搭建内部工具或操作界面，<strong>Retool、Appsmith、ToolJet</strong> 会更快上手。如果重点是流程型应用（审批、工单），<strong>Budibase</strong> 更合适。</p>
+<h2 id="zh-2">写在开头</h2>
+<p>随着企业业务需求越来越多元，很多团队希望在现有数据和系统基础上，尽快补齐业务应用层，搭建 CRM、ERP、审批、工单等内部运营系统。在这种情况下，能够不改动底层系统、又能灵活连接现有数据源的无代码/低代码平台，成为了许多企业的优先选择。</p>
+<p>我们之前围绕 PostgreSQL 写过两类内容：一类是从实操角度出发的 <a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">《如何基于 PostgreSQL 搭建一个可用的 CRM》</a>，另一类是偏选型的 <a href="../blog/6-no-code-tools-supporting-postgresql.html">《6 个支持 PostgreSQL 的无代码工具》</a>，主要对不同平台支持 PostgreSQL 的深度进行了横向比较，重点从原生集成、关系建模、自托管等维度去看它们之间的差异。</p>
+<p>PostgreSQL 只是常见选项之一，很多团队现有的数据库可能是 MySQL、MariaDB、MongoDB，还有一部分数据并不直接存放在数据库中，而是通过 REST API 或 GraphQL 接口提供。</p>
+<p>这篇文章我们将从外部数据源支持与接入深度、复杂业务关系与流程权限能力、业务系统搭建效率，以及长期扩展能力几个角度出发，深入分析几个主流无代码/低代码平台的表现。</p>
+<blockquote>
+<p><strong>说明：本文信息来源</strong></p>
+<p>本文涉及的产品能力、数据源支持情况等相关内容，主要基于各产品的官网、官方文档、GitHub 仓库及公开资料整理总结。</p>
+</blockquote>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>我们选择了五个当下备受关注的无代码/低代码开发平台来进行分析，它们分别是：</p>
+<h3>NocoBase</h3>
+<p><img src="https://static-docs.nocobase.com/nocobase1-qzflkw.png" alt="nocobase1.png"></p>
+<p>以数据模型驱动的开源 AI 无代码/低代码平台，把复杂数据关系、权限、工作流和插件扩展一起纳入同一套系统底座，适合在现有数据基础上持续搭建企业级应用、内部工具和复杂业务系统。</p>
+<p>官网：<a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>数据源相关文档：<a href="https://docs.nocobase.com/data-sources/data-source-manager/">https://docs.nocobase.com/data-sources/data-source-manager/</a></p>
+<h3>Retool</h3>
+<p><img src="https://static-docs.nocobase.com/Retool1-zn0fig.png" alt="Retool1.png"></p>
+<p>面向内部团队的操作台和数据工具，可以把数据库、API、工作流和前端组件迅速拼成可用的内部软件，适合管理后台、运营面板、数据处理工具这类内部软件交付场景。</p>
+<p>官网：<a href="https://retool.com/">https://retool.com/</a></p>
+<p>GitHub：<a href="https://github.com/retool">https://github.com/retool</a></p>
+<p>数据源相关文档：<a href="https://docs.retool.com/data-sources/">https://docs.retool.com/data-sources/</a></p>
+<h3>Appsmith</h3>
+<p><img src="https://static-docs.nocobase.com/Appsmith1-91mu10.png" alt="Appsmith1.png"></p>
+<p>偏向开发者友好的低代码前端层，能让工程团队在现有数据库、API 和脚本之上，更快做出 CRUD 应用、后台页面和定制化内部工具，而且保留较强的 JavaScript 和 Git 工作流控制感。</p>
+<p>官网：<a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p>GitHub：<a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>数据源相关文档：<a href="https://docs.appsmith.com/connect-data/overview">https://docs.appsmith.com/connect-data/overview</a></p>
+<h3>Budibase</h3>
+<p><img src="https://static-docs.nocobase.com/image-sazj02.png" alt="image-sazj02.png"></p>
+<p>擅长处理表单、审批、请求和流程驱动型应用，它的产品重心明显更靠近内部流程自动化这一侧，所以比较适合服务申请、工单流转、审批处理、数据收集这类流程先行的场景。</p>
+<p>官网：<a href="https://budibase.com/">https://budibase.com/</a></p>
+<p>GitHub：<a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></p>
+<p>数据源相关文档：<a href="https://docs.budibase.com/docs/data-sources">https://docs.budibase.com/docs/data-sources</a></p>
+<h3>ToolJet</h3>
+<p><img src="https://static-docs.nocobase.com/ToolJet1-cnwb3k.png" alt="ToolJet1.png"></p>
+<p>一个强调多数据源接入 + 快速做企业内部工具的平台，它的连接面比较广，既能接数据库，也能接 API、SaaS 和云服务，适合需要把多套现有系统快速拼成一个统一操作界面的团队。</p>
+<p>官网：<a href="https://www.tooljet.com/">https://www.tooljet.com/</a></p>
+<p>GitHub：<a href="https://github.com/ToolJet/ToolJet">https://github.com/ToolJet/ToolJet</a></p>
+<p>数据源相关文档：<a href="https://docs.tooljet.com/docs/data-sources/overview/">https://docs.tooljet.com/docs/data-sources/overview/</a></p>
+<h2 id="zh-3">一、外部数据源支持与接入深度</h2>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>支持的数据源类型</th>
+<th>典型数据源</th>
+<th>接入深度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>关系型数据库、NoSQL、API、文件型数据源</td>
+<td>MySQL、MariaDB、PostgreSQL、MSSQL、Oracle、KingbaseES、REST API</td>
+<td>不只是连接和读写数据，也支持多数据源统一管理、跨数据源关联查询，并可围绕现有数据继续建模</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>关系型数据库、NoSQL、数据仓库、API</td>
+<td>PostgreSQL、MySQL、MongoDB、Snowflake、BigQuery、REST API、GraphQL、Google Sheets</td>
+<td>更偏向把现有数据源接入统一界面，通过查询、组件和工作流完成读取、修改和编排</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>关系型数据库、NoSQL、搜索引擎、API</td>
+<td>PostgreSQL、MySQL、MongoDB、Microsoft SQL Server、Oracle、Redis、Snowflake、GraphQL</td>
+<td>更偏向在现有数据库和 API 之上配置查询、页面和交互逻辑，快速形成应用前端层</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>关系型数据库、NoSQL、缓存、API、对象存储</td>
+<td>PostgreSQL、MySQL / MariaDB、MongoDB、MS SQL Server、Oracle、Redis、S3、Google Sheets</td>
+<td>既能连接外部数据源，也能通过查询、表单和流程配置把数据接入应用，但整体仍以数据驱动页面和流程为主</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>关系型数据库、NoSQL、数据仓库、API、SaaS 数据源</td>
+<td>PostgreSQL、MySQL、MongoDB、MS SQL Server、Snowflake、BigQuery、REST API、GraphQL</td>
+<td>更偏向连接多类数据源后进行读取、修改和统一操作，也支持 SQL 与可视化方式配置查询</td>
+</tr>
+</tbody></table>
+<p><strong>亮点总结</strong></p>
+<ul>
+<li><strong>Retool、Appsmith</strong> 和 <strong>ToolJet</strong> 是在现有数据库和 API 之上快速搭一层操作界面或工具层，把数据接进来、查出来、改起来</li>
+<li><strong>Budibase</strong> 在此基础上更靠近流程型应用</li>
+<li><strong>NocoBase</strong> 的切入点更靠近“以现有数据为底座继续搭系统”，在多数据源管理、跨源关联和继续建模上更有延展性</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-1y15os.png" alt="NocoBase2.png"></p>
+<h2 id="zh-4">二、复杂业务关系、流程与权限能力</h2>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>复杂关系承接</th>
+<th>流程 / 自动化</th>
+<th>权限粒度</th>
+<th>适合的业务复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>强，适合多表关系和复杂业务对象</td>
+<td>内置工作流，支持数据驱动流程</td>
+<td>角色、操作、数据、字段级权限</td>
+<td>中高复杂度业务系统</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>中强，偏内部工具逻辑编排</td>
+<td>工作流成熟，适合多步骤任务</td>
+<td>角色权限、权限组、对象级控制</td>
+<td>中等复杂度内部软件</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>中等，关系承接更依赖开发配置</td>
+<td>可用查询、脚本和事件编排流程</td>
+<td>应用、页面、查询等细粒度控制</td>
+<td>中等复杂度定制应用</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>中等，偏表单和流程关系</td>
+<td>适合审批、请求、状态流转</td>
+<td>角色、数据集、字段级控制</td>
+<td>中等复杂度流程型应用</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>中等，偏工具层整合</td>
+<td>支持工作流、条件判断、通知</td>
+<td>角色、工作区、自定义组权限</td>
+<td>中低到中等复杂度工具</td>
+</tr>
+</tbody></table>
+<p><strong>亮点总结</strong></p>
+<ul>
+<li>如果你的业务复杂，且希望在现有数据库基础上继续搭建 CRM、ERP、审批或工单这类完整业务系统，<strong>NocoBase</strong> 会更合适。</li>
+<li>如果你的需求更偏轻量，重点是快速做一个内部工具、运营后台或流程应用，那么 <strong>Retool</strong> 这类平台会更容易上手。
+<img src="https://static-docs.nocobase.com/Retool2-bn1u34.png" alt="Retool2.png"></li>
+</ul>
+<h2 id="zh-5">三、业务页面搭建效率</h2>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>页面支持</th>
+<th>搭建方式</th>
+<th>代码参与</th>
+<th>适合场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>表格、表单、详情、看板、图表、操作页</td>
+<td>区块配置 + JS 区块扩展 + 动作配置 + AI 员工辅助生成</td>
+<td>低，复杂需求可扩展脚本或插件</td>
+<td>数据驱动的业务页面、复杂后台</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>表格、表单、图表、面板、管理后台</td>
+<td>画布 + 组件拖拽 + 代码</td>
+<td>中，常见场景常会配合 SQL、JS 使用</td>
+<td>操作台、数据工具、内部后台</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>表格、表单、图表、仪表盘、CRUD 页面</td>
+<td>拖拽组件 + JS 定制</td>
+<td>中高，更适合开发者参与</td>
+<td>定制化内部应用、开发者主导页面</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>表单、表格、审批页、请求页、后台页面</td>
+<td>低代码配置 + 表单流程</td>
+<td>低到中，复杂逻辑再补配置</td>
+<td>表单驱动、流程型页面</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>表格、表单、图表、仪表盘、内部工具页面</td>
+<td>拖拽式前端构建器</td>
+<td>中，复杂工具页通常要配查询和事件</td>
+<td>多数据源工具页、运营后台</td>
+</tr>
+</tbody></table>
+<p><strong>亮点总结</strong></p>
+<ul>
+<li><strong>Retool、Appsmith 和 ToolJet</strong> 更适合有开发能力、希望保留定制和逻辑控制空间的团队。</li>
+<li><strong>Budibase</strong> 更适合技术门槛不高、希望通过配置方式快速搭建页面和流程的团队。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Budibase2-jzwsgn.png" alt="Budibase2.png"></p>
+<ul>
+<li><strong>NocoBase</strong> 更灵活，既支持所见即所得配置，也支持通过 <strong>JS 区块</strong> 和 <strong>AI 员工</strong> 进一步降低搭建门槛。</li>
+</ul>
+<h2 id="zh-6">四、长期扩展能力</h2>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>扩展方式</th>
+<th>开放程度</th>
+<th>后续维护延续性</th>
+<th>典型适配场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>插件扩展、围绕数据模型扩展页面/区块/动作/API</td>
+<td>高，微内核 + 全插件化</td>
+<td>强，适合逐步扩模块和长期建设</td>
+<td>复杂业务系统、流程型应用、持续迭代的企业应用</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>模块复用、自定义组件、代码扩展、版本控制</td>
+<td>高，组件和查询可复用，也支持自定义 React 组件</td>
+<td>强，适合多人持续迭代内部软件</td>
+<td>内部软件、运营工具、数据应用、持续迭代项目</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>JavaScript 定制、自定义组件、Git 工作流、包版本管理</td>
+<td>高，开发者可深度介入</td>
+<td>强，但更依赖开发团队持续维护</td>
+<td>定制化内部应用、开发者主导项目、持续迭代的后台系统</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>自动化、自定义插件、自定义数据源、自托管扩展</td>
+<td>中高，插件和数据源扩展在自托管环境更灵活</td>
+<td>中强，适合流程和应用逐步扩展</td>
+<td>流程型应用、审批/请求系统、内部运营应用</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>组件配置、查询逻辑、工作流扩展、自定义组件</td>
+<td>中高，支持扩展但整体更偏工具层延展</td>
+<td>中，适合继续扩页面和整合更多数据源</td>
+<td>工具型应用、多系统整合、内部后台和运营工具</td>
+</tr>
+</tbody></table>
+<p><strong>亮点总结</strong></p>
+<ul>
+<li><strong>NocoBase</strong> 的插件机制非常强，更适合那些需要较高控制力和深度自定义能力的团队，在后续维护和持续扩展上也更有空间。</li>
+<li>开发者可以更深入参与 <strong>Appsmith</strong> 的页面和逻辑控制，后期持续迭代和定制化方面也比较很优秀。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Appsmith2-hu5ul4.png" alt="Appsmith2.png"></p>
+<h2 id="zh-7">五、AI 支持程度</h2>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>当前 AI 能力</th>
+<th>与业务数据 / 流程的结合方式</th>
+<th>后续 AI 接入空间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>内置 AI 员工，支持在系统中基于业务需求定义 AI 员工的角色和能力</td>
+<td>可结合当前页面、数据和表结构理解业务上下文，并直接执行查询数据库、填写表单、更新数据等真实业务操作</td>
+<td>强，适合把 AI 接到现有业务系统和流程里</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>支持 AI 生成 app、AI 生成 workflow、Retool Agents</td>
+<td>Agents 可连接外部系统、工作流和数据源，也可直接从 app / workflow 调用</td>
+<td>强，适合把 AI 接到内部软件、流程和系统操作层里</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>提供 Appsmith AI 查询能力</td>
+<td>更偏在应用层调用 AI 能力，补充文本生成、分类、分析等能力</td>
+<td>中高，适合在现有应用中补 AI 交互能力</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>已提供 Agents、Agent Chat 和 AI automation</td>
+<td>Agent 可接入 automation flow，也能与 workspace 内的数据和工具配合</td>
+<td>强，适合把 AI 接到审批、请求处理和流程型应用里</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>支持用自然语言生成 app / query / workflow，也有 OpenAI 插件</td>
+<td>可通过 AI 生成应用，并结合工作流和数据源继续补逻辑</td>
+<td>中高，适合把 AI 作为构建加速器和辅助能力接入工具层</td>
+</tr>
+</tbody></table>
+<p><strong>亮点总结</strong></p>
+<ul>
+<li><strong>Retool、ToolJet、Appsmith</strong> 这类平台的 AI 能力更偏向生成应用、生成查询或提升开发效率。</li>
+<li><strong>Budibase</strong> 更适合把 AI 放进业务页面和流程中实际使用。</li>
+<li><strong>NocoBase</strong> 既可以在搭建阶段借助 AI 降低配置门槛，也可以在后续业务页面和流程中继续使用 AI。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-nwiahc.png" alt="NocoBase3.png"></p>
+<h2 id="zh-8">总结</h2>
+<p><strong>NocoBase</strong> 作为一个以数据模型和插件机制为核心的平台，不仅支持多样的外部数据源，也更适合在现有数据库基础上继续搭建 CRM、ERP、审批、工单等更完整的业务系统，且后续计划逐步把 AI 能力接入到系统中；如果你拥有技术团队，并希望在现有数据基础上做更深度的控制和定制，NocoBase 会是更合适的选择。</p>
+<p><strong>Retool</strong> 适合把数据库、API 和工作流快速接成一个内部操作层，优势在于内部软件、运营后台和数据工具的交付效率；如果你的重点是快速做出一个可用的内部系统，并且团队本身具备一定开发能力，Retool 会更顺手。 Retool 官网也强调其可将数据、系统和规则连接起来，用于构建内部软件，并支持数据库、API、工作流与版本控制。</p>
+<p><strong>Appsmith</strong> 偏向开发者友好的低代码前端层，适合在已有数据库和 API 之上快速补齐定制化内部应用；如果你的团队希望保留较强的 JavaScript、自定义组件和 Git 工作流控制能力，Appsmith 会更合适。其官网定位本身就是开源低代码应用平台，强调开发者可在现有系统之上构建定制化应用。</p>
+<p><strong>Budibase</strong> 更适合表单、审批、请求处理和流程型应用这类场景，优势在于围绕数据和流程把内部应用更快组织起来；如果你的技术门槛要求不高，同时更关注审批、工单和运营流程这类应用，Budibase 会更自然。其官网也把内部工具、工作流和业务流程自动化放在核心位置。</p>
+<p><strong>ToolJet</strong> 可以把数据库、API 和第三方系统接成统一的工具层界面，优势在于多数据源连接下的企业内部工具构建；如果你的需求更偏多系统整合、运营后台或工具型应用，ToolJet 会是一个更直接的选择。其官网将自己定位为可快速构建企业级应用的平台。</p>
+<h2 id="zh-9">FAQ（常见问题）</h2>
+<ol>
+<li><h3>如果我们更看重复杂业务关系，而不只是简单 CRUD，选型时该关注哪个平台</h3>
+</li>
+</ol>
+<p><strong>NocoBase</strong>。如果业务里有较多多表关系、关联对象、角色差异和业务动作，NocoBase 会更适合围绕数据模型继续搭建系统。</p>
+<ol start="2">
+<li><h3>如果数据源不只一个，而是数据库和 API 混在一起，选型时最该看什么？</h3>
+</li>
+</ol>
+<p>平台是否支持<strong>多数据源并存</strong>，能不能同时对接数据库和 API，页面和流程会不会因为数据源变多而变得难维护，以及后续新增数据源时是否容易继续接入。</p>
+<ol start="3">
+<li><h3>如果我们的数据库后面还会继续加字段、加表，甚至改关系，平台选型时该看什么？</h3>
+</li>
+</ol>
+<p>重点要看平台的数据和页面是不是强绑定。相比之下，<strong>数据模型驱动</strong>的平台通常更适合这种场景，比如 NocoBase。当数据结构变化时，页面、流程和权限会容易继续调整和承接。</p>
+<ol start="4">
+<li><h3>如果现在只是想先做一个后台或内部工具，后面再慢慢补审批、工单和更多模块，应该怎么选？</h3>
+</li>
+</ol>
+<p><strong>Retool</strong> 更适合先把现有数据库接成一个工具层或操作层界面，用来快速搭后台、数据工具和内部应用。<strong>NocoBase</strong> 则更适合后续继续增加流程、权限和模块。 如果一开始就判断这个项目后面会往更完整的业务系统方向发展，选型时更建议看 <strong>NocoBase</strong> 这类更适合承接业务结构的平台。</p>
+<ol start="5">
+<li><h3>如果我的需求主要是审批、请求处理、工单流转这类流程型应用，应该选什么？</h3>
+</li>
+</ol>
+<p><strong>Budibase</strong>。因为这类应用里，数据库更多只是底层数据来源，真正决定使用体验的，往往是平台对表单、状态流转、流程自动化和权限配置的支持。</p>
+<ol start="6">
+<li><h3>我的团队本身会 JavaScript，也希望开发者主导页面和逻辑控制，适合选什么样的平台？</h3>
+</li>
+</ol>
+<p>如果团队本身具备一定前端或 JavaScript 能力，并希望开发者继续掌握页面、查询和交互逻辑，那么更适合看 <strong>Appsmith、Retool</strong> 这类平台。 这类产品通常更适合在已有数据库和 API 之上，由开发者主导去搭内部工具、操作台和定制页面。</p>
+<p><strong>你可以结合文中整理的官网、文档和数据源接入相关链接，进一步查看各个平台对你当前数据源的支持情况。在确认数据源能够顺利对接的基础上，再结合自身的业务流程、页面需求和后续扩展方向，选择更适合的平台进行搭建。</strong></p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">开源项目管理工具选型指南（2026年最新）</a></li>
+<li><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">如何用 PostgreSQL 构建一个自定义 CRM</a></li>
+<li><a href="../blog/best-open-source-ai-projects-github-2026.html">2026 年值得关注的 20 个 GitHub AI 项目：不只有 OpenClaw</a></li>
+<li><a href="../blog/best-ai-crm-open-source-nocobase-twenty-krayin.html">GitHub 上开源 CRM AI 能力深度拆解：NocoBase vs Twenty vs Krayin CRM</a></li>
+<li><a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">GitHub 上 3 款开源 AI ERP 对比：NocoBase、Odoo 与 ERPNext</a></li>
+<li><a href="../blog/5-most-popular-open-source-ai-project-management-tools-on-github.html">5 个 GitHub 上最受欢迎的开源 AI 项目管理工具</a></li>
+<li><a href="../blog/6-best-open-source-ai-ticketing-systems.html">6 个值得关注的开源 AI 工单系统</a></li>
+<li><a href="../blog/4-open-source-data-management-tools-for-business-systems.html">4 个值得关注的开源业务数据管理工具</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Key Takeaways</h2>
+<p>If you need to build a full business system on top of your existing database, such as CRM, ERP, approval workflows, or ticketing, <strong>NocoBase</strong> is the best fit. It supports multi source data management, cross source relationships, and deep business modeling. If you simply want to build internal tools or admin interfaces quickly, <strong>Retool, Appsmith, and ToolJet</strong> are easier to adopt. If your main focus is workflow driven applications such as approvals and ticketing, <strong>Budibase</strong> is a better choice.</p>
+<h2 id="en-2">Before We Begin</h2>
+<p>As business needs become more diverse, many teams want to quickly add an application layer on top of their existing data and systems to build internal operating systems such as CRM, ERP, approvals, and ticketing. In this context, no code and low code platforms that can connect flexibly to existing data sources without changing the underlying system have become a priority for many companies.</p>
+<p>We have previously published two types of content around PostgreSQL. One is a practical guide, <a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">How to Build a Usable CRM Based on PostgreSQL</a>. The other focuses on tool selection, <a href="../blog/6-no-code-tools-supporting-postgresql.html">6 No Code Tools That Support PostgreSQL</a>, comparing how different platforms support PostgreSQL across areas such as native integration, relationship modeling, and self hosted deployment.</p>
+<p>PostgreSQL is only one common option. Many teams may already be working with MySQL, MariaDB, or MongoDB. In some cases, data is not stored directly in a database at all, but exposed through REST APIs or GraphQL interfaces.</p>
+<p>In this article, we compare several mainstream no code and low code platforms across four key dimensions: support for external data sources and depth of integration, handling of complex business relationships, workflows and permissions, efficiency in building business systems, and long term extensibility.</p>
+<blockquote>
+<p><strong>Note: Sources used in this article</strong></p>
+<p>The product capabilities, data source support, and related information covered here are mainly compiled from each product’s official website, official documentation, GitHub repository, and other public materials.</p>
+</blockquote>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a>]</p>
+<hr>
+<p>For this article, we selected five low code and no code platforms that are drawing strong attention right now:</p>
+<h3><strong>NocoBase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/nocobase1-qzflkw.png" alt="nocobase1.png"></p>
+<p>An open source AI no code and low code platform built around a data model driven architecture. It brings complex data relationships, permissions, workflows, and plugin extensions into one unified system foundation, making it well suited for continuously building enterprise applications, internal tools, and complex business systems on top of existing data.</p>
+<p>Official website: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>Data source documentation: <a href="https://docs.nocobase.com/data-sources/data-source-manager/">https://docs.nocobase.com/data-sources/data-source-manager/</a></p>
+<h3><strong>Retool</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Retool1-zn0fig.png" alt="Retool1.png"></p>
+<p>An internal tool and operations platform designed for teams. It can quickly combine databases, APIs, workflows, and front end components into usable internal software, making it a good fit for admin panels, operations dashboards, and data tools.</p>
+<p>Official website: <a href="https://retool.com/">https://retool.com/</a></p>
+<p>GitHub: <a href="https://github.com/retool">https://github.com/retool</a></p>
+<p>Data source documentation: <a href="https://docs.retool.com/data-sources/">https://docs.retool.com/data-sources/</a></p>
+<h3><strong>Appsmith</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Appsmith1-91mu10.png" alt="Appsmith1.png"></p>
+<p>A developer friendly low code front end layer that helps engineering teams build CRUD apps, admin pages, and custom internal tools faster on top of existing databases, APIs, and scripts, while keeping strong control over JavaScript and Git workflows.</p>
+<p>Official website: <a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p>GitHub: <a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>Data source documentation: <a href="https://docs.appsmith.com/connect-data/overview">https://docs.appsmith.com/connect-data/overview</a></p>
+<h3><strong>Budibase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/image-sazj02.png" alt="image-sazj02.png"></p>
+<p>Best known for form based, approval based, request based, and workflow driven applications. Its product focus is clearly closer to internal process automation, so it is especially suitable for service requests, ticket routing, approval handling, and data collection.</p>
+<p>Official website: <a href="https://budibase.com/">https://budibase.com/</a></p>
+<p>GitHub: <a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></p>
+<p>Data source documentation: <a href="https://docs.budibase.com/docs/data-sources">https://docs.budibase.com/docs/data-sources</a></p>
+<h3>ToolJet</h3>
+<p><img src="https://static-docs.nocobase.com/ToolJet1-cnwb3k.png" alt="ToolJet1.png"></p>
+<p>A platform focused on multi source connectivity and rapid internal tool building. It supports databases, APIs, SaaS tools, and cloud services, making it a strong choice for teams that need to bring multiple existing systems into one unified interface quickly.</p>
+<p>Official website: <a href="https://www.tooljet.com/">https://www.tooljet.com/</a></p>
+<p>GitHub: <a href="https://github.com/ToolJet/ToolJet">https://github.com/ToolJet/ToolJet</a></p>
+<p>Data source documentation: <a href="https://docs.tooljet.com/docs/data-sources/overview/">https://docs.tooljet.com/docs/data-sources/overview/</a></p>
+<h2 id="en-3">1. External Data Source Support and Integration Depth</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Supported Data Source Types</th>
+<th>Typical Data Sources</th>
+<th>Integration Depth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Relational databases, NoSQL, APIs, file based sources</td>
+<td>MySQL, MariaDB, PostgreSQL, MSSQL, Oracle, KingbaseES, REST API</td>
+<td>More than simple data connection and read or write access. It also supports unified multi source management, cross source relationships, and continued modeling on top of existing data</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>Relational databases, NoSQL, data warehouses, APIs</td>
+<td>PostgreSQL, MySQL, MongoDB, Snowflake, BigQuery, REST API, GraphQL, Google Sheets</td>
+<td>More focused on bringing existing data sources into one interface, then using queries, components, and workflows for reading, updating, and orchestration</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>Relational databases, NoSQL, search engines, APIs</td>
+<td>PostgreSQL, MySQL, MongoDB, Microsoft SQL Server, Oracle, Redis, Snowflake, GraphQL</td>
+<td>More focused on configuring queries, pages, and interaction logic on top of existing databases and APIs to quickly form an application front end</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Relational databases, NoSQL, cache, APIs, object storage</td>
+<td>PostgreSQL, MySQL / MariaDB, MongoDB, MS SQL Server, Oracle, Redis, S3, Google Sheets</td>
+<td>Supports both external data source connections and app building through queries, forms, and workflow configuration, though it still centers mainly on data driven pages and workflows</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>Relational databases, NoSQL, data warehouses, APIs, SaaS data sources</td>
+<td>PostgreSQL, MySQL, MongoDB, MS SQL Server, Snowflake, BigQuery, REST API, GraphQL</td>
+<td>More focused on connecting many kinds of data sources for reading, updating, and unified operations, with support for both SQL and visual query building</td>
+</tr>
+</tbody></table>
+<p><strong>Highlights</strong></p>
+<ul>
+<li>Retool, Appsmith, and ToolJet are best suited to quickly adding an operations layer or tool layer on top of existing databases and APIs, so teams can connect, query, and update data more easily</li>
+<li>Budibase goes a step further toward workflow driven applications</li>
+<li>NocoBase is positioned closer to building systems on top of existing data, with stronger extensibility in multi source management, cross source relationships, and continued modeling</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-1y15os.png" alt="NocoBase2.png"></p>
+<h2 id="en-4">2. Complex Business Relationships, Workflows, and Permissions</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Handling Complex Relationships</th>
+<th>Workflows / Automation</th>
+<th>Permission Granularity</th>
+<th>Suitable Business Complexity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Strong, well suited for multi table relationships and complex business objects</td>
+<td>Built in workflows, supports data driven processes</td>
+<td>Role, action, data, and field level permissions</td>
+<td>Medium to high complexity business systems</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>Moderately strong, more focused on internal tool orchestration</td>
+<td>Mature workflows, suitable for multi step tasks</td>
+<td>Role permissions, permission groups, and object level control</td>
+<td>Medium complexity internal software</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>Moderate, with relationship handling relying more on developer configuration</td>
+<td>Supports workflow orchestration through queries, scripts, and events</td>
+<td>Fine grained control at the app, page, and query level</td>
+<td>Medium complexity custom applications</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Moderate, more focused on forms and workflow relationships</td>
+<td>Well suited for approvals, requests, and status transitions</td>
+<td>Role, dataset, and field level control</td>
+<td>Medium complexity workflow driven applications</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>Moderate, more focused on tool layer integration</td>
+<td>Supports workflows, conditional logic, and notifications</td>
+<td>Role, workspace, and custom group permissions</td>
+<td>Low to medium complexity tools</td>
+</tr>
+</tbody></table>
+<p><strong>Highlights</strong></p>
+<ul>
+<li>If your business is complex and you want to continue building complete business systems such as CRM, ERP, approvals, or ticketing on top of your existing database, NocoBase is the better fit.</li>
+<li>If your needs are lighter and your priority is to quickly build an internal tool, operations backend, or workflow app, platforms like Retool are easier to adopt.
+<img src="https://static-docs.nocobase.com/Retool2-bn1u34.png" alt="Retool2.png"></li>
+</ul>
+<h2 id="en-5">3. Efficiency in Building Business Pages</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Page Support</th>
+<th>Build Method</th>
+<th>Code Involvement</th>
+<th>Suitable Scenarios</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Tables, forms, detail views, kanban boards, charts, action pages</td>
+<td>Block configuration + JS block extension + action configuration + AI employee assisted generation</td>
+<td>Low, with scripts or plugins available for more complex needs</td>
+<td>Data driven business pages and complex backends</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>Tables, forms, charts, panels, admin backends</td>
+<td>Canvas + drag and drop components + code</td>
+<td>Medium, with common scenarios often combining SQL and JS</td>
+<td>Operations consoles, data tools, and internal backends</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>Tables, forms, charts, dashboards, CRUD pages</td>
+<td>Drag and drop components + JS customization</td>
+<td>Medium to high, better suited for developer involvement</td>
+<td>Custom internal apps and developer led pages</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Forms, tables, approval pages, request pages, backend pages</td>
+<td>Low code configuration + form workflows</td>
+<td>Low to medium, with extra configuration added for complex logic</td>
+<td>Form driven and workflow driven pages</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>Tables, forms, charts, dashboards, internal tool pages</td>
+<td>Drag and drop front end builder</td>
+<td>Medium, with complex tool pages usually requiring query and event setup</td>
+<td>Multi source tool pages and operations backends</td>
+</tr>
+</tbody></table>
+<p><strong>Highlights</strong></p>
+<ul>
+<li><strong>Retool, Appsmith, and ToolJet</strong> are a better fit for teams with engineering resources that want to keep room for customization and logic control.</li>
+<li><strong>Budibase</strong> is better for teams with a lower technical barrier that want to build pages and workflows quickly through configuration.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Budibase2-jzwsgn.png" alt="Budibase2.png"></p>
+<ul>
+<li><strong>NocoBase</strong> is more flexible. It supports visual configuration while also lowering the setup barrier further through <strong>JS blocks</strong> and <strong>AI employees</strong>.</li>
+</ul>
+<h2 id="en-6">4. Long Term Extensibility</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Extension Method</th>
+<th>Openness</th>
+<th>Long Term Maintainability</th>
+<th>Typical Fit Scenarios</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Plugin extensions and extending pages, blocks, actions, and APIs around the data model</td>
+<td>High, with a microkernel and fully plugin based architecture</td>
+<td>Strong, suitable for gradual module expansion and long term development</td>
+<td>Complex business systems, workflow driven applications, and enterprise apps under continuous iteration</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>Module reuse, custom components, code extensions, version control</td>
+<td>High, with reusable components and queries and support for custom React components</td>
+<td>Strong, suitable for continuous internal software iteration by multiple team members</td>
+<td>Internal software, operations tools, data applications, and continuously evolving projects</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>JavaScript customization, custom components, Git workflows, package version management</td>
+<td>High, with room for deep developer involvement</td>
+<td>Strong, but relies more on continued support from the development team</td>
+<td>Custom internal apps, developer led projects, and continuously evolving backend systems</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Automation, custom plugins, custom data sources, self hosted extensions</td>
+<td>Medium to high, with more flexibility for plugin and data source extension in self hosted environments</td>
+<td>Moderately strong, suitable for gradually expanding workflows and applications</td>
+<td>Workflow driven applications, approval and request systems, and internal operations apps</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>Component configuration, query logic, workflow extensions, custom components</td>
+<td>Medium to high, supports extension but remains more focused on expanding the tool layer</td>
+<td>Medium, suitable for continuing to add pages and integrate more data sources</td>
+<td>Tool based apps, multi system integration, internal backends, and operations tools</td>
+</tr>
+</tbody></table>
+<p><strong>Highlights</strong></p>
+<ul>
+<li>NocoBase has a particularly strong plugin mechanism, making it more suitable for teams that need a high degree of control and deep customization. It also offers more room for ongoing maintenance and continued expansion.</li>
+<li>Appsmith also allows developers to take deeper control of page and logic behavior, and it performs well in long term iteration and customization.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Appsmith2-hu5ul4.png" alt="Appsmith2.png"></p>
+<h2 id="en-7">5. AI Capabilities</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Current AI Capabilities</th>
+<th>How AI Connects with Business Data / Workflows</th>
+<th>Future AI Integration Potential</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Built in AI employees, with support for defining AI roles and capabilities in the system based on business needs</td>
+<td>Can understand business context through the current page, data, and table structure, and can directly perform real business actions such as querying databases, filling forms, and updating data</td>
+<td>Strong, well suited for connecting AI directly into existing business systems and workflows</td>
+</tr>
+<tr>
+<td>Retool</td>
+<td>Supports AI generated apps, AI generated workflows, and Retool Agents</td>
+<td>Agents can connect to external systems, workflows, and data sources, and can also be called directly from apps or workflows</td>
+<td>Strong, suitable for bringing AI into internal software, workflows, and operational layers</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>Provides Appsmith AI query capabilities</td>
+<td>More focused on using AI at the application layer to add text generation, classification, analysis, and similar functions</td>
+<td>Medium to high, suitable for adding AI interaction to existing apps</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Already offers Agents, Agent Chat, and AI automation</td>
+<td>Agents can connect to automation flows and also work with data and tools inside the workspace</td>
+<td>Strong, suitable for bringing AI into approvals, request handling, and workflow driven applications</td>
+</tr>
+<tr>
+<td>ToolJet</td>
+<td>Supports generating apps, queries, and workflows with natural language, and also offers an OpenAI plugin</td>
+<td>Can use AI to generate applications and then continue building logic with workflows and data sources</td>
+<td>Medium to high, suitable for using AI as a build accelerator and support capability in the tool layer</td>
+</tr>
+</tbody></table>
+<p><strong>Highlights</strong></p>
+<p><strong>Retool, ToolJet, and Appsmith</strong> focus their AI capabilities more on app generation, query generation, or development efficiency.</p>
+<p><strong>Budibase</strong> is better suited for putting AI directly into business pages and workflows.</p>
+<p><strong>NocoBase</strong> can use AI both during setup to lower the configuration barrier and later inside business pages and workflows.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-nwiahc.png" alt="NocoBase3.png"></p>
+<h2 id="en-8">Conclusion</h2>
+<p><strong>NocoBase</strong> is centered on a data model and plugin architecture. It supports a wide range of external data sources and is especially well suited for continuing to build more complete business systems such as CRM, ERP, approvals, and ticketing on top of existing databases. It is also positioned to bring AI into the system over time. If you have a technical team and want deeper control and customization on top of your existing data, NocoBase is the stronger choice.</p>
+<p><strong>Retool</strong> is a strong option for quickly connecting databases, APIs, and workflows into an internal operations layer. Its main advantage is the delivery speed of internal software, operations backends, and data tools. If your priority is to build a usable internal system quickly and your team already has some development capability, Retool will likely feel more efficient. Its official website also emphasizes connecting data, systems, and rules to build internal software, with support for databases, APIs, workflows, and version control.</p>
+<p><strong>Appsmith</strong> is more of a developer friendly low code front end layer, making it a good fit for quickly building custom internal apps on top of existing databases and APIs. If your team wants to keep strong control over JavaScript, custom components, and Git workflows, Appsmith is more suitable. Its official positioning is also that of an open source low code application platform that enables developers to build custom applications on top of existing systems.</p>
+<p><strong>Budibase</strong> is a better fit for forms, approvals, request handling, and workflow driven applications. Its strength lies in helping teams organize internal applications more quickly around data and workflows. If your technical threshold is lower and your focus is on approvals, ticketing, and operational workflows, Budibase will feel more natural. Its official website also places internal tools, workflows, and business process automation at the center.</p>
+<p><strong>ToolJet</strong> can connect databases, APIs, and third party systems into a unified tool layer interface. Its key advantage lies in building enterprise internal tools across multiple data sources. If your needs focus more on multi system integration, operations backends, or tool based apps, ToolJet is a more direct option. Its official website positions it as a platform for quickly building enterprise applications.</p>
+<h2 id="en-9">FAQ</h2>
+<ol>
+<li><h3>If we care more about complex business relationships, not just simple CRUD, which platform should we focus on?</h3>
+</li>
+</ol>
+<p><strong>NocoBase.</strong> If your business involves many multi table relationships, related objects, role differences, and business actions, NocoBase is better suited for continuing to build the system around the data model.</p>
+<ol start="2">
+<li><h3>If we have more than one data source, with databases and APIs mixed together, what should we pay most attention to when choosing?</h3>
+</li>
+</ol>
+<p>Whether the platform supports <strong>multiple data sources at the same time</strong>, whether it can connect both databases and APIs together, whether pages and workflows become harder to maintain as more data sources are added, and whether it stays easy to connect new sources later.</p>
+<ol start="3">
+<li><h3>If our database will continue to add fields, add tables, or even change relationships later, what should we look at when choosing a platform?</h3>
+</li>
+</ol>
+<p>The key is whether the platform’s data layer and page layer are tightly bound together. In this kind of scenario, a <strong>data model driven</strong> platform is usually more suitable, such as NocoBase. When the data structure changes, pages, workflows, and permissions are easier to adjust and carry forward.</p>
+<ol start="4">
+<li><h3>If we only want to build an admin backend or internal tool first, and then gradually add approvals, ticketing, and more modules later, how should we choose?</h3>
+</li>
+</ol>
+<p><strong>Retool</strong> is better suited for first turning an existing database into a tool layer or operations interface, so you can quickly build admin backends, data tools, and internal apps. <strong>NocoBase</strong> is more suitable if you want to keep adding workflows, permissions, and modules over time. If you already know the project will eventually grow into a more complete business system, then a platform like <strong>NocoBase</strong> that is better at supporting business structure is the more recommended choice.</p>
+<ol start="5">
+<li><h3>If my needs are mainly workflow driven applications such as approvals, request handling, and ticket routing, what should I choose?</h3>
+</li>
+</ol>
+<p><strong>Budibase</strong>. In this kind of application, the database is more of a foundational data source. What really shapes the user experience is usually the platform’s support for forms, status transitions, workflow automation, and permission settings.</p>
+<ol start="6">
+<li><h3>My team already knows JavaScript, and we also want developers to lead page and logic control. What kind of platform is suitable?</h3>
+</li>
+</ol>
+<p>If your team already has front end or JavaScript capability and wants developers to stay in control of pages, queries, and interaction logic, then platforms like <strong>Appsmith</strong> and <strong>Retool</strong> are a better fit. These products are usually more suitable for developer led internal tools, operations consoles, and custom pages built on top of existing databases and APIs.</p>
+<p><strong>You can use the official websites, documentation, and data source links collected in this article to further review how each platform supports your current data sources. Once you confirm that your data sources can be connected smoothly, you can then choose the platform that best fits your business workflows, page requirements, and future expansion plans.</strong></p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">Open Source Project Management Tool Selection Guide, 2026 Edition </a></li>
+<li><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">How to Build a Custom CRM with PostgreSQL</a></li>
+<li><a href="../blog/best-open-source-ai-projects-github-2026.html">Top 20 AI Projects on GitHub to Watch in 2026: Not Just OpenClaw</a></li>
+<li><a href="../blog/best-ai-crm-open-source-nocobase-twenty-krayin.html">Best Open Source AI CRM: NocoBase vs Twenty vs Krayin</a></li>
+<li><a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">Top 3 Open Source ERP with AI on GitHub: NocoBase vs Odoo vs ERPNext</a></li>
+<li><a href="../blog/5-most-popular-open-source-ai-project-management-tools-on-github.html">5 Most Popular Open-Source AI Project Management Tools on GitHub</a></li>
+<li><a href="../blog/6-best-open-source-ai-ticketing-systems.html">6 Best Open-Source AI Ticketing Systems</a></li>
+<li><a href="../blog/4-open-source-data-management-tools-for-business-systems.html">4 Open Source Data Management Tools for Business Systems</a></li>
+<li><a href="../blog/4-lightweight-enterprise-software-for-business-processes.html">4 Lightweight Enterprise Software for Business Processes (With Real-World Cases)</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">本文要点</a><a href="#zh-2">写在开头</a><a href="#zh-3">一、外部数据源支持与接入深度</a><a href="#zh-4">二、复杂业务关系、流程与权限能力</a><a href="#zh-5">三、业务页面搭建效率</a><a href="#zh-6">四、长期扩展能力</a><a href="#zh-7">五、AI 支持程度</a><a href="#zh-8">总结</a><a href="#zh-9">FAQ（常见问题）</a></div><div class="en-only"><a href="#en-1">Key Takeaways</a><a href="#en-2">Before We Begin</a><a href="#en-3">1. External Data Source Support and Integration Depth</a><a href="#en-4">2. Complex Business Relationships, Workflows, and Permissions</a><a href="#en-5">3. Efficiency in Building Business Pages</a><a href="#en-6">4. Long Term Extensibility</a><a href="#en-7">5. AI Capabilities</a><a href="#en-8">Conclusion</a><a href="#en-9">FAQ</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/best-smartsheet-alternatives.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20114-fps2v0.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月23日</t-zh><t-en>Jul 23, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</t-zh><t-en>How to Choose a Smartsheet Alternative: 7 Tools Compared</t-en></h3><p><t-zh>本文对比 7 款 Smartsheet 替代品，介绍各产品的定位、核心差异、适用团队及三年使用成本，帮助团队评估更合适的项目管理与业务系统工具。</t-zh><t-en>Compare 7 Smartsheet alternatives by positioning, key differences, ideal teams, and estimated three-year costs.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-complex-relational-models.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20113%20(1)-e3gf7a.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月15日</t-zh><t-en>Jul 15, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>5 个适合复杂关系模型的开源 AI 无代码工具</t-zh><t-en>5 Open-Source AI No-Code Tools for Complex Relational Data Models</t-en></h3><p><t-zh>本文对比 5 款开源 AI 无代码工具，分析复杂关系模型、AI 搭建能力和企业业务系统适用场景。
+</t-zh><t-en>Compare 5 open-source AI no-code tools for complex relational models, AI capabilities, and business system use cases.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-github-9.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20110-xkd2sy.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年6月29日</t-zh><t-en>Jun 29, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>GitHub 上值得关注的 9 个开源 AI 无代码工具</t-zh><t-en>9 Open-Source AI No-Code Tools on GitHub Worth Watching</t-en></h3><p><t-zh>盘点 GitHub 上 9 个开源 AI 无代码工具，覆盖工作流自动化、知识库、智能体编排与企业业务系统搭建。
+</t-zh><t-en>Explore 9 open-source AI no-code tools on GitHub for workflows, agents, knowledge bases, design, and business systems.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

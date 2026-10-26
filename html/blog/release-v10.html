@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="重大更新！NocoBase V1.0 正式发布 — NocoBase" data-en="Major Update! NocoBase V1.0 Officially Released — NocoBase">重大更新！NocoBase V1.0 正式发布 — NocoBase</title>
+<meta name="description" content="了解 NocoBase V1.0的主要更新，包括新特性、新插件和显著的性能改进。此版本提升了稳定性、安全性和功能性，特别是主题编辑器和数据可视化的改进。详细了解升级流程，特别是使用 SSO 插件的情况，以及这些变化对项目的影响。" data-zh="了解 NocoBase V1.0的主要更新，包括新特性、新插件和显著的性能改进。此版本提升了稳定性、安全性和功能性，特别是主题编辑器和数据可视化的改进。详细了解升级流程，特别是使用 SSO 插件的情况，以及这些变化对项目的影响。" data-en="Discover the major updates in NocoBase  V1.0, including new features, plugins, and significant performance improvements. Learn how this milestone release enhances stability, security, and functionality for developers. Get detailed insights on the new theme editor, data visualization improvements, and the full changelog. Understand the upgrade process, especially if you use SSO plugins, and explore the impact of these changes on your projects.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></p>
+    <h1><t-zh>重大更新！NocoBase V1.0 正式发布</t-zh><t-en>Major Update! NocoBase V1.0 Officially Released</t-en></h1>
+    <p class="lede"><t-zh>了解 NocoBase V1.0的主要更新，包括新特性、新插件和显著的性能改进。此版本提升了稳定性、安全性和功能性，特别是主题编辑器和数据可视化的改进。详细了解升级流程，特别是使用 SSO 插件的情况，以及这些变化对项目的影响。</t-zh><t-en>Discover the major updates in NocoBase  V1.0, including new features, plugins, and significant performance improvements. Learn how this milestone release enhances stability, security, and functionality for developers. Get detailed insights on the new theme editor, data visualization improvements, and the full changelog. Understand the upgrade process, especially if you use SSO plugins, and explore the impact of these changes on your projects.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2024年4月28日</t-zh><t-en>Apr 28, 2024</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/f7be6f3986cb70af284b962cede7ecf5.svg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">V1.0 里程碑</h2>
+<p>历时 3 年，NocoBase 迎来第一次根版本号升级，版本号从 0.x 升级到 1.0。这是一个新的里程碑。</p>
+<ul>
+<li>在 0.x 阶段：核心 API 和功能快速变化，每一个新的版本都可能存在不兼容的变更；</li>
+<li>在 1.x 阶段：核心 API 基本稳定，NocoBase 将在保持稳定的基础上不断增加新的插件，优化安全性和性能。</li>
+</ul>
+<h2 id="zh-2">新特性</h2>
+<ul>
+<li>主题编辑器可以配置页面和弹窗内边距、区块间距、区块圆角</li>
+<li>添加区块时，数据表支持过滤</li>
+<li>关系数据支持排序</li>
+<li>改进数据可视化的交互</li>
+<li>支持移动端添加图表区块</li>
+<li>图表筛选区块支持设置字段数据范围</li>
+<li>新增更多变量，<a href="https://docs-cn.nocobase.com/handbook/ui/variables">查看详情</a></li>
+<li>弹窗中支持添加任意数据表的区块</li>
+<li>工作流：“操作后事件”支持关系区块内按钮触发</li>
+<li>弹窗内数据变动时，关闭弹窗自动刷新上一层容器内的数据</li>
+<li>大幅提升表格区块的性能</li>
+<li>大幅提升测试覆盖率</li>
+</ul>
+<h2 id="zh-3">新插件</h2>
+<ul>
+<li>Field: Markdown(Vditor)<ul>
+<li>用于存储 Markdown，并使用 Vditor 编辑器渲染，支持常见 Markdown 语法，如列表，代码，引用等，并支持上传图片，录音等。同时可以做到即时渲染，所见即所得。</li>
+</ul>
+</li>
+<li>Comments<ul>
+<li>提供评论数据表模板和区块，为任意数据表的数据添加评论功能。</li>
+</ul>
+</li>
+</ul>
+<h2 id="zh-4">完整更新记录</h2>
+<ul>
+<li>feat(plugin-workflow): refresh the list after sync #4177</li>
+<li>feat(plugin-workflow): show workflow key as tooltip on title #4178</li>
+<li>test(plugin-workflow): add test cases #4199</li>
+<li>chore: api cache control header #4203</li>
+<li>feat: load vditor dep from local #4190</li>
+<li>test: input number separator test #4204</li>
+<li>fix: number field shuold support separator setting #4197</li>
+<li>fix(plugin-workflow): refine experience #4195</li>
+<li>chore: optimize warning wordings of import &amp; export #4196</li>
+<li>refactor: external data source collection manager #4193</li>
+<li>fix: env bug #4191</li>
+<li>fix: empty operator with association field #4189</li>
+<li>chore: add e2e #4184</li>
+<li>fix: vditor version #4183</li>
+<li>refactor: form data template locale improve #4188</li>
+<li>test: add automated testing #4098</li>
+<li>chore: data source logger instance #4181</li>
+<li>chore: get database instance in relation repository #4179</li>
+<li>chore: add e2e for variables #4152</li>
+<li>chore: define collection debug message #4176</li>
+<li>chore: unsupportedFields in view collection #4155</li>
+<li>feat: add plugin-field-markdown-vditor #4065</li>
+<li>fix: bulk edit form acl action error #4166</li>
+<li>fix: auto create uuid foreign key in relation field #4160</li>
+<li>fix(plugin-fm): fix confusing size limit hint #4153</li>
+<li>fix(users): improve users:updateProfile #4162</li>
+<li>fix(client): get api url #4161</li>
+<li>feat: remove plugin-ui-routes-storage #4140</li>
+<li>fix: lock cytoscape version #4158</li>
+<li>refactor: collection template support presetFieldsDisabled #4159</li>
+<li>fix: grid schema #4157</li>
+<li>client unit test #4150</li>
+<li>fix: update belongs to many association that target key is not primary key #4146</li>
+<li>refactor: form data template locale improve #4148</li>
+<li>fix(database): column name in array field #4110</li>
+<li>test: refresh on action e2e test #4147</li>
+<li>fix(custom-request): support configuring content type #4144</li>
+<li>chore: deprecate the current record variable from the form #4063</li>
+<li>feat(Theme): add some tokens #4137</li>
+<li>fix(client): fix some warnings #4143</li>
+<li>style: tableActionColumn style improve #4138</li>
+<li>fix: actionBar style improve #4123</li>
+<li>chore: warning message if on delete conflict #4141</li>
+<li>fix(plugin-workflow-manual): allow pass node when no assignee #4139</li>
+<li>chore: datasource manager api #4124</li>
+<li>fix(plugin-workflow-manual): fix assignees parsing bug #4125</li>
+<li>fix: load association field in collection #4122</li>
+<li>perf: remove all Skeleton animation #4113</li>
+<li>test: add e2e #4121</li>
+<li>chore(data-vi): adjust api #4116</li>
+<li>fix: scheduleEventTrigger #4114</li>
+<li>feat(plugin-workflow): add checker for intervally dispatching #4119</li>
+<li>feat: add filterOtherRecordsCollection for DataBlockInitializer #4117</li>
+<li>refactor: optimize CollectionField #4111</li>
+<li>fix: improve sort field migration #4112</li>
+<li>fix: field component #4102</li>
+<li>fix: association select support add mode #4108</li>
+<li>fix: createdBy &amp; updatedBy target option #4109</li>
+<li>fix(linkage-rule): linkage rule support empty condiction #4103</li>
+<li>fix: add SanitizedCollectionProvider #4100</li>
+<li>fix: tree collection target error #4105</li>
+<li>fix: add ClearCollectionFieldContext #4101</li>
+<li>feat: improve form block #4099</li>
+<li>chore: migrate sortable options to sort field #4011</li>
+<li>feat: support sort option in appends #4056</li>
+<li>feat(data-vi): allows pie chart to accept negative numbers, fix T-4075 #4094</li>
+<li>fix(data-vi): number becomes string after precision transformation #4092</li>
+<li>fix: encode url params #4055</li>
+<li>test(plugin-workflow): add test case for duplicated triggering schedule workflow #3817</li>
+<li>perf(LinkageRules): solve lagging problems #4090</li>
+<li>fix(subTable): should not display Allow add new data option #4086</li>
+<li>fix: missing fields #4083</li>
+<li>fix: table select pagination error #4078</li>
+<li>fix: reset page when setting block data scope #4081</li>
+<li>fix: custom request role list #4074</li>
+<li>fix: parse iso week #4068</li>
+<li>fix(sourceId): avoid error #4077</li>
+<li>fix(sql-collection): can’t select interface when setting fields #4079</li>
+<li>fix: load with source field #4075</li>
+<li>fix: deletion of operation linkage rules does not take effect in real time #4058</li>
+<li>fix(core): fix round bug in formula evaluator #4070</li>
+<li>test: add e2e for data loading mode #4069</li>
+<li>fix(filterForm): avoid duplicate names #4071</li>
+<li>chore: optimize block title #4040</li>
+<li>fix: sync default value in view #4067</li>
+<li>fix(defaultValue): fix the issue of default values disappearing after refreshing the page #4066</li>
+<li>refactor: gantt block #4059</li>
+<li>fix: sub-table big field should support variable default value #4062</li>
+<li>chore(Theme): set the default font size of the Compact theme to 16 #4064</li>
+<li>test: add e2e for actions #4053</li>
+<li>fix(variable): missing variables and invalid translations #4054</li>
+<li>test: add backend unit tests #4000</li>
+<li>fix: improve card item #4036</li>
+<li>chore(acl): disable register association fields actions #4014</li>
+<li>fix(variable): fix parent record variable reporting errors in data scope #4039</li>
+<li>test(e2e): add assertions on field values #4034</li>
+<li>feat(Variable): add a new variable #4025</li>
+<li>feat: run e2e with pro plugins #3890</li>
+<li>fix: bug #4038</li>
+<li>fix: array operator with camel case field #4032</li>
+<li>fix: scopeKeyOptions should be obtained in real-time #4029</li>
+<li>fix(addText): should use FormItemSchemaToolbar instead of BlockSchema… #3963</li>
+<li>feat: register once hook in datasource manager #4024</li>
+<li>fix: snippets #4030</li>
+<li>fix: vitest single bug #4031</li>
+<li>feat(data-vi): improved user experiences (refer to pr) #4013</li>
+<li>test: add frontend unit test #3991</li>
+<li>feat: support Others option in popup #4015</li>
+<li>fix(collection-manager): no refresh after override the field #4022</li>
+<li>chore: add export &amp; import warnings #4027</li>
+<li>refactor: third party data source support sort field grouped sorting edit #4023</li>
+<li>fix(plugin-acl): pm.acl.roles snippet #4026</li>
+<li>test: association name block e2e test #4021</li>
+<li>fix: get api url #4020</li>
+<li>fix(Sub-details): the initializer button is not displayed when the field value is empty #4019</li>
+<li>fix: initializer use useAassociationName #4018</li>
+<li>fix(auth): cas login bug when use subdirectory deployment #4017</li>
+<li>fix(TreeTable): add child error #4008</li>
+<li>fix: remove active field should not clear value #4012</li>
+<li>fix(plugin-acl): datasource roles snippet #4016</li>
+<li>fix: after selecting all, bulk update prompts for unselected data #4010</li>
+<li>refactor: tree table is not enabled by default #4001</li>
+<li>feat(plugin-workflow-action-trigger): support association actions to trigger #4007</li>
+<li>Update application.ts #4006</li>
+<li>fix: tag filed setting #4009</li>
+<li>fix(users): remove phone validation due to incorrect check of foreign phone numebrs #4005</li>
+<li>fix: association block action permission verification failed #3994</li>
+<li>refactor: fields for table sorting cannot select sorting fields with scopekey #3984</li>
+<li>fix(Form): invalid parentRecord #3998</li>
+<li>fix(plugin-workflow): adjust locale #3993</li>
+<li>fix: sub -table support allowSelectExistingRecord setting #4004</li>
+<li>fix(auth): sign up page not found when entering with url directly #4002</li>
+<li>chore(database): set null value when field is unique and value is empty string #3997</li>
+<li>chore(gateway): report error with cause message #3999</li>
+<li>chore(error-handler): display message cause the error #3996</li>
+<li>fix: restore with table name in camel case #3995</li>
+<li>refactor(plugin-workflow): adjust comments #3990</li>
+<li>fix: gantt collapse &amp; expand #3982</li>
+<li>fix(BulkForm): should be required when switching to ‘Changed to’ #3965</li>
+<li>fix: move action #3985</li>
+<li>refactor: sort field should not has defaultValue #3986</li>
+<li>chore: update class names of plugins #3981</li>
+<li>feat(plugin-workflow-sync): add sync when multi-app-share-collection enabled #3969</li>
+<li>fix(localization): incorrect locale when first entering #3968</li>
+<li>chore: adjust and add api comments #3951</li>
+<li>refactor: select options configuration #3964</li>
+<li>fix(GridCard): set the count of columns displayed in a row #3960</li>
+<li>refactor: only numerical formula fields support format #3962</li>
+<li>chore(plugin-workflow): add comments #3959</li>
+<li>chore: remove legacy formula plugins #3939</li>
+<li>fix(LinkageRules): should be effective immediately #3958</li>
+<li>fix(Picker): should display Allow add new data option #3957</li>
+<li>fix(connect-data-blocks): should immediately show in the drop-down menu #3953</li>
+<li>fix: left menu title modify #3956</li>
+<li>fix: template list provider bug #3950</li>
+<li>refactor: nanoid &amp;uuid autoFill #3955</li>
+<li>feat: getParentJsonSchema in ui schema repository #3690</li>
+<li>fix: save uuid &amp; nano id field value with sequelize validation #3952</li>
+<li>fix: throughCollection support fuzzy search #3949</li>
+<li>fix: getSourceKeyByAssocation #3947</li>
+<li>fix(RichText): unify style #3946</li>
+<li>fix(connectDataBlocks): should add FilterBlockProvider to Grid #3944</li>
+<li>chore: add appVersion to Schema #3936</li>
+<li>fix: collectionFieldInterfaceSelect #3945</li>
+<li>fix: fix sourceId of templates #3941</li>
+<li>fix(collection manager): collection manager primarykey &amp; nanoid &amp; uuid suport index setting #3943</li>
+<li>fix(plugin-formula-field): fix component context #3937</li>
+<li>fix: nanoid availableTypes #3942</li>
+<li>fix: automatically generate default values #3940</li>
+<li>fix: formula field caluation error #3938</li>
+<li>fix: formula field support format #3928</li>
+<li>refactor: unify tab initailizer naming #3932</li>
+<li>fix: add zIndex to Lightbox overlay style #3934</li>
+<li>fix(Table): fix the problem that the content of the association field is not displayed #3930</li>
+<li>fix(evaluators): fix array flatten #3931</li>
+<li>refactor: main data source view collection support filterTargetKey #3818</li>
+<li>fix: formula field calculation error #3929</li>
+<li>fix: load view collection belongs to association with source options #3912</li>
+<li>fix: edit form unchanged should not appear unSaveed warning when cloas modal #3920</li>
+<li>fix(Collapse): fix error for chinaRegions #3925</li>
+<li>fix: number display format #3924</li>
+<li>fix(defaultValue): should immediate effect when set default value #3923</li>
+<li>feat: action support refreshDataBlockRequest configuration #3882</li>
+<li>refactor: formBlockProvider &amp; detailBlockProvider #3898</li>
+<li>feat(data-vi): allows to add charts for mobile client #3922</li>
+<li>chore: add API comments #3919</li>
+<li>fix: fix Pagination #3921</li>
+<li>test(plugin-error-handler): middleware #3909</li>
+<li>fix: update plugin #3895</li>
+<li>fix: gantt block pagination #3918</li>
+<li>fix: source id null #3917</li>
+<li>fix(Table): fix Pagination #3916</li>
+<li>fix: get the correct sourceId #3897</li>
+<li>fix(DataScope): fix no immediate effect issue after saving #3910</li>
+<li>fix: select field options initialValue #3911</li>
+<li>fix: external link click #3908</li>
+<li>fix(inputNumber): loss of accuracy in inputNumber #3902</li>
+<li>feat(plugin-workflow-action-trigger): add global action events #3883</li>
+<li>docs: add api comment #3868</li>
+<li>fix: vitest config bug #3907</li>
+<li>fix: table fixed bug #3901</li>
+<li>fix: list data undefined error #3905</li>
+<li>fix: lazy render bug #3886</li>
+<li>fix: sort params missing #3906</li>
+<li>refactor: change useProps to x-use-component-props #3853</li>
+<li>fix(withDynamicSchemaProps): change deep merge to shallow merge #3899</li>
+<li>fix: history block add print button, click print button to report error #3900</li>
+<li>fix: tar bug #3891</li>
+<li>chore: return bigInt as string type #3887</li>
+<li>feat(data-vi): data scope for chart filter fields #3894</li>
+<li>feat: adjust menu of add new #3884</li>
+<li>fix(plugin-custom-request): fix edit button dialog #3893</li>
+<li>fix: fieldNames missing when setting data scope #3892</li>
+<li>fix: deps check error when dev add production plugin #3848</li>
+<li>fix: workflow tabs not exists #3889</li>
+<li>fix: association field support data scope linkage #3888</li>
+<li>fix: templateBlockProvider support association field append #3866</li>
+<li>chore: main datasource api #3880</li>
+<li>feat: run vitest with coverage #3802</li>
+<li>fix: avoid duplicate menu keys #3885</li>
+<li>fix(data-vi): dual axes chart displays abnormally #3881</li>
+<li>fix: reject update when filter is empty object #3777</li>
+<li>chore: update field with primary key attribute #3852</li>
+<li>refactor: uuid &amp; nanoid support default value configuration #3830</li>
+<li>feat: table performance #3791</li>
+<li>fix: setFormValueChanged undefined #3879</li>
+<li>fix(client): fix diabled in filter dynamic component #3874</li>
+<li>fix(plugin-workflow-parallel): fix locale #3876</li>
+<li>fix(formula-field): formula field set form value change #3873</li>
+<li>fix: formBlockProvider block display #3877</li>
+<li>refactor(plugin-workflow): change to #3871</li>
+<li>fix: kanban card modal display abnormal #3863</li>
+<li>fix: filterTargetKey only support view collection #3872</li>
+</ul>
+<h2 id="zh-5">插件变更</h2>
+<p>以下插件不再提供开源版本（已经在生产环境使用的用户请联系我们获得升级）</p>
+<ul>
+<li>@nocobase/plugin-auth-cas：通过 CAS 协议认证身份；</li>
+<li>@nocobase/plugin-auth-odic：通过 OIDC (OpenID Connect) 协议认证身份；</li>
+<li>@nocobase/plugin-auth-saml：通过 SAML 2.0 认证身份。</li>
+</ul>
+<p>以下插件已废弃，将在近期版本里移除</p>
+<ul>
+<li>@nocobase/plugin-audit-logs：已废弃，暂时不删除，新版不会安装</li>
+<li>@nocobase/plugin-snapshot-field：已废弃，暂时不删除，新版不会安装</li>
+<li>@nocobase/plugin-charts：使用 @nocobase/plugin-data-visualization 代替</li>
+<li>@nocobase/plugin-excel-formula-field：使用 @nocobase/plugin-field-formula 代替</li>
+<li>@nocobase/plugin-math-formula-field：使用 @nocobase/plugin-field-formula 代替</li>
+<li>@nocobase/plugin-ui-routes-storage：已废弃，前端路由直接在前端扩展即可</li>
+</ul>
+<p>完整插件列表请查看：<a href="https://cn.nocobase.com/plugins-cn.html">https://cn.nocobase.com/plugins-cn.html</a></p>
+<h2 id="zh-6">代码注释</h2>
+<p>为了提供更好的开发体验，我们为一些特殊的 API 添加了注释：</p>
+<ul>
+<li><code>@internal</code> 通常用于标识代码中的内部实现细节或内部方法，这些方法或功能不是为了公共使用而设计的，而是为了在代码内部使用而存在。</li>
+<li><code>@experimental</code> 用于标识实验性功能或 API。该 API 尚处于开发和测试阶段，可能会发生较大变化，甚至可能在以后的版本中被移除或替换。</li>
+<li><code>@deprecated</code> 用于标识代码中已经过时或不推荐使用的功能、方法或 API。这意味着虽然它们仍然可用，但是可能在将来的版本中被移除，或者已经有更好的替代方案可供使用。</li>
+</ul>
+<h2 id="zh-7">许可协议</h2>
+<p>NocoBase 采取 AGPL-3.0 和 商业许可双重授权，详情请参考 <a href="https://cn.nocobase.com/agreement-cn.html">NocoBase 许可协议</a>。</p>
+<h2 id="zh-8">升级指南</h2>
+<ul>
+<li>升级前一定要先备份数据库！一定要先备份数据库！一定要先备份数据库！</li>
+<li>可以将整个项目代码也进行备份。</li>
+</ul>
+<p>因为 Auth: CAS，Auth: OIDC，Auth: SAML 三个 SSO 插件从开源代码中移除，因此升级将分为两种情况。</p>
+<h3>如果你未使用 SSO 插件</h3>
+<p>请按照 <a href="https://docs-cn.nocobase.com/welcome/getting-started/upgrading">常规方法</a> 正常升级。</p>
+<h3>如果你使用了 SSO 插件</h3>
+<p>请按照以下步骤升级：</p>
+<h4>1. 升级应用</h4>
+<p>参考 <a href="https://docs-cn.nocobase.com/welcome/getting-started/upgrading">NocoBase 升级概述</a>，将 NocoBase 升级到最新版。</p>
+<p>如果你之前启用了 CAS、OIDC、SAML 插件，升级时会有以下提示：</p>
+<p>命令行升级时终端提示：</p>
+<p><img src="https://static-docs.nocobase.com/20240428212151.png" alt="20240428212151"></p>
+<p>Docker 版界面提示：</p>
+<p><img src="https://static-docs.nocobase.com/20240428194926.png" alt="20240428194926"></p>
+<h4>2. 删除插件 or 获取插件 1.0 版本？</h4>
+<p><em><strong>如果你选择删除插件后继续升级：</strong></em></p>
+<p>根据提示删除插件</p>
+<pre><code># 主应用
+yarn pm remove cas oidc saml --force
+# 如果是子应用，需要添加 --app 参数
+yarn pm remove cas oidc saml --force --app=sub-app1
+</code></pre>
+<p>继续升级</p>
+<pre><code>yarn nocobase upgrade
+</code></pre>
+<p><em><strong>如果你选择插件更新到 1.0 版本</strong></em></p>
+<p>联系 NocoBase 团队获取插件 1.0 版本，并继续进行升级</p>
+<h4>3. CAS、OIDC、SAML 插件升级流程</h4>
+<p>此时，应用界面已经无法访问了，所以我们需要用手动的方式升级</p>
+<ol>
+<li>使用账号登录 <a href="https://service.nocobase.com/">service.nocobase.com</a> 下载最新版插件</li>
+<li>将插件解压到指定目录<ul>
+<li>CAS 插件解压至 <code>./storage/plugins/@nocobase/plugin-auth-cas</code></li>
+<li>OIDC 插件解压至 <code>./storage/plugins/@nocobase/plugin-auth-oidc</code></li>
+<li>SAML 插件解压至 <code>./storage/plugins/@nocobase/plugin-auth-saml</code></li>
+</ul>
+</li>
+<li>升级应用<ul>
+<li>docker 版本直接重启容器即可</li>
+<li>源码或 create-nocobase-app 版本<ol>
+<li>下载依赖 <code>yarn install</code></li>
+<li>执行升级命令 <code>yarn nocobase upgrade</code></li>
+<li>重启应用</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol></div><div class="prose en-only"><h2 id="en-1">V1.0 Milestone</h2>
+<p>After 3 years of development, NocoBase has reached its first major version upgrade, transitioning from version 0.x to 1.0. This marks a significant milestone.</p>
+<ul>
+<li>During the 0.x phase: The core API and features underwent rapid changes, with each new version potentially introducing incompatible changes.</li>
+<li>During the 1.x phase: The core API has stabilized, and NocoBase will focus on adding new plugins, optimizing security, and enhancing performance while maintaining stability.</li>
+</ul>
+<h2 id="en-2">New Features</h2>
+<ul>
+<li>Theme editor can configure page and modal padding, block spacing, and block corner radius.</li>
+<li>When adding blocks, collections support filtering.</li>
+<li>Relationship records supports sorting.</li>
+<li>Improved interactivity of data visualization.</li>
+<li>Support for adding chart blocks on mobile devices.</li>
+<li>Chart filter blocks support setting field data scope.</li>
+<li>Add more variables, <a href="https://docs.nocobase.com/handbook/ui/variables">see details</a>.</li>
+<li>Blocks from any collections can be added in popups.</li>
+<li>Workflows: “Post-action event” can be triggered by buttons inside association blocks.</li>
+<li>Automatic refresh of data in the parent container when data changes within a popup.</li>
+<li>Significant performance improvements in table blocks.</li>
+<li>Substantial increase in test coverage.</li>
+</ul>
+<h2 id="en-3">New Plugins</h2>
+<ul>
+<li>Field: Markdown (Vditor)<ul>
+<li>Used to store Markdown and render it using Vditor editor, supports common Markdown syntax and supports uploading images, recordings, etc.It also allows for instant rendering, where what you see is what you get.</li>
+</ul>
+</li>
+<li>Comments<ul>
+<li>Provides comment collection template and block to add commenting functionality for any collection.</li>
+</ul>
+</li>
+</ul>
+<h2 id="en-4">Full Changelog</h2>
+<ul>
+<li>feat(plugin-workflow): refresh the list after sync #4177</li>
+<li>feat(plugin-workflow): show workflow key as tooltip on title #4178</li>
+<li>test(plugin-workflow): add test cases #4199</li>
+<li>chore: api cache control header #4203</li>
+<li>feat: load vditor dep from local #4190</li>
+<li>test: input number separator test #4204</li>
+<li>fix: number field shuold support separator setting #4197</li>
+<li>fix(plugin-workflow): refine experience #4195</li>
+<li>chore: optimize warning wordings of import &amp; export #4196</li>
+<li>refactor: external data source collection manager #4193</li>
+<li>fix: env bug #4191</li>
+<li>fix: empty operator with association field #4189</li>
+<li>chore: add e2e #4184</li>
+<li>fix: vditor version #4183</li>
+<li>refactor: form data template locale improve #4188</li>
+<li>test: add automated testing #4098</li>
+<li>chore: data source logger instance #4181</li>
+<li>chore: get database instance in relation repository #4179</li>
+<li>chore: add e2e for variables #4152</li>
+<li>chore: define collection debug message #4176</li>
+<li>chore: unsupportedFields in view collection #4155</li>
+<li>feat: add plugin-field-markdown-vditor #4065</li>
+<li>fix: bulk edit form acl action error #4166</li>
+<li>fix: auto create uuid foreign key in relation field #4160</li>
+<li>fix(plugin-fm): fix confusing size limit hint #4153</li>
+<li>fix(users): improve users:updateProfile #4162</li>
+<li>fix(client): get api url #4161</li>
+<li>feat: remove plugin-ui-routes-storage #4140</li>
+<li>fix: lock cytoscape version #4158</li>
+<li>refactor: collection template support presetFieldsDisabled #4159</li>
+<li>fix: grid schema #4157</li>
+<li>client unit test #4150</li>
+<li>fix: update belongs to many association that target key is not primary key #4146</li>
+<li>refactor: form data template locale improve #4148</li>
+<li>fix(database): column name in array field #4110</li>
+<li>test: refresh on action e2e test #4147</li>
+<li>fix(custom-request): support configuring content type #4144</li>
+<li>chore: deprecate the current record variable from the form #4063</li>
+<li>feat(Theme): add some tokens #4137</li>
+<li>fix(client): fix some warnings #4143</li>
+<li>style: tableActionColumn style improve #4138</li>
+<li>fix: actionBar style improve #4123</li>
+<li>chore: warning message if on delete conflict #4141</li>
+<li>fix(plugin-workflow-manual): allow pass node when no assignee #4139</li>
+<li>chore: datasource manager api #4124</li>
+<li>fix(plugin-workflow-manual): fix assignees parsing bug #4125</li>
+<li>fix: load association field in collection #4122</li>
+<li>perf: remove all Skeleton animation #4113</li>
+<li>test: add e2e #4121</li>
+<li>chore(data-vi): adjust api #4116</li>
+<li>fix: scheduleEventTrigger #4114</li>
+<li>feat(plugin-workflow): add checker for intervally dispatching #4119</li>
+<li>feat: add filterOtherRecordsCollection for DataBlockInitializer #4117</li>
+<li>refactor: optimize CollectionField #4111</li>
+<li>fix: improve sort field migration #4112</li>
+<li>fix: field component #4102</li>
+<li>fix: association select support add mode #4108</li>
+<li>fix: createdBy &amp; updatedBy target option #4109</li>
+<li>fix(linkage-rule): linkage rule support empty condiction #4103</li>
+<li>fix: add SanitizedCollectionProvider #4100</li>
+<li>fix: tree collection target error #4105</li>
+<li>fix: add ClearCollectionFieldContext #4101</li>
+<li>feat: improve form block #4099</li>
+<li>chore: migrate sortable options to sort field #4011</li>
+<li>feat: support sort option in appends #4056</li>
+<li>feat(data-vi): allows pie chart to accept negative numbers, fix T-4075 #4094</li>
+<li>fix(data-vi): number becomes string after precision transformation #4092</li>
+<li>fix: encode url params #4055</li>
+<li>test(plugin-workflow): add test case for duplicated triggering schedule workflow #3817</li>
+<li>perf(LinkageRules): solve lagging problems #4090</li>
+<li>fix(subTable): should not display Allow add new data option #4086</li>
+<li>fix: missing fields #4083</li>
+<li>fix: table select pagination error #4078</li>
+<li>fix: reset page when setting block data scope #4081</li>
+<li>fix: custom request role list #4074</li>
+<li>fix: parse iso week #4068</li>
+<li>fix(sourceId): avoid error #4077</li>
+<li>fix(sql-collection): can’t select interface when setting fields #4079</li>
+<li>fix: load with source field #4075</li>
+<li>fix: deletion of operation linkage rules does not take effect in real time #4058</li>
+<li>fix(core): fix round bug in formula evaluator #4070</li>
+<li>test: add e2e for data loading mode #4069</li>
+<li>fix(filterForm): avoid duplicate names #4071</li>
+<li>chore: optimize block title #4040</li>
+<li>fix: sync default value in view #4067</li>
+<li>fix(defaultValue): fix the issue of default values disappearing after refreshing the page #4066</li>
+<li>refactor: gantt block #4059</li>
+<li>fix: sub-table big field should support variable default value #4062</li>
+<li>chore(Theme): set the default font size of the Compact theme to 16 #4064</li>
+<li>test: add e2e for actions #4053</li>
+<li>fix(variable): missing variables and invalid translations #4054</li>
+<li>test: add backend unit tests #4000</li>
+<li>fix: improve card item #4036</li>
+<li>chore(acl): disable register association fields actions #4014</li>
+<li>fix(variable): fix parent record variable reporting errors in data scope #4039</li>
+<li>test(e2e): add assertions on field values #4034</li>
+<li>feat(Variable): add a new variable #4025</li>
+<li>feat: run e2e with pro plugins #3890</li>
+<li>fix: bug #4038</li>
+<li>fix: array operator with camel case field #4032</li>
+<li>fix: scopeKeyOptions should be obtained in real-time #4029</li>
+<li>fix(addText): should use FormItemSchemaToolbar instead of BlockSchema… #3963</li>
+<li>feat: register once hook in datasource manager #4024</li>
+<li>fix: snippets #4030</li>
+<li>fix: vitest single bug #4031</li>
+<li>feat(data-vi): improved user experiences (refer to pr) #4013</li>
+<li>test: add frontend unit test #3991</li>
+<li>feat: support Others option in popup #4015</li>
+<li>fix(collection-manager): no refresh after override the field #4022</li>
+<li>chore: add export &amp; import warnings #4027</li>
+<li>refactor: third party data source support sort field grouped sorting edit #4023</li>
+<li>fix(plugin-acl): pm.acl.roles snippet #4026</li>
+<li>test: association name block e2e test #4021</li>
+<li>fix: get api url #4020</li>
+<li>fix(Sub-details): the initializer button is not displayed when the field value is empty #4019</li>
+<li>fix: initializer use useAassociationName #4018</li>
+<li>fix(auth): cas login bug when use subdirectory deployment #4017</li>
+<li>fix(TreeTable): add child error #4008</li>
+<li>fix: remove active field should not clear value #4012</li>
+<li>fix(plugin-acl): datasource roles snippet #4016</li>
+<li>fix: after selecting all, bulk update prompts for unselected data #4010</li>
+<li>refactor: tree table is not enabled by default #4001</li>
+<li>feat(plugin-workflow-action-trigger): support association actions to trigger #4007</li>
+<li>Update application.ts #4006</li>
+<li>fix: tag filed setting #4009</li>
+<li>fix(users): remove phone validation due to incorrect check of foreign phone numebrs #4005</li>
+<li>fix: association block action permission verification failed #3994</li>
+<li>refactor: fields for table sorting cannot select sorting fields with scopekey #3984</li>
+<li>fix(Form): invalid parentRecord #3998</li>
+<li>fix(plugin-workflow): adjust locale #3993</li>
+<li>fix: sub -table support allowSelectExistingRecord setting #4004</li>
+<li>fix(auth): sign up page not found when entering with url directly #4002</li>
+<li>chore(database): set null value when field is unique and value is empty string #3997</li>
+<li>chore(gateway): report error with cause message #3999</li>
+<li>chore(error-handler): display message cause the error #3996</li>
+<li>fix: restore with table name in camel case #3995</li>
+<li>refactor(plugin-workflow): adjust comments #3990</li>
+<li>fix: gantt collapse &amp; expand #3982</li>
+<li>fix(BulkForm): should be required when switching to ‘Changed to’ #3965</li>
+<li>fix: move action #3985</li>
+<li>refactor: sort field should not has defaultValue #3986</li>
+<li>chore: update class names of plugins #3981</li>
+<li>feat(plugin-workflow-sync): add sync when multi-app-share-collection enabled #3969</li>
+<li>fix(localization): incorrect locale when first entering #3968</li>
+<li>chore: adjust and add api comments #3951</li>
+<li>refactor: select options configuration #3964</li>
+<li>fix(GridCard): set the count of columns displayed in a row #3960</li>
+<li>refactor: only numerical formula fields support format #3962</li>
+<li>chore(plugin-workflow): add comments #3959</li>
+<li>chore: remove legacy formula plugins #3939</li>
+<li>fix(LinkageRules): should be effective immediately #3958</li>
+<li>fix(Picker): should display Allow add new data option #3957</li>
+<li>fix(connect-data-blocks): should immediately show in the drop-down menu #3953</li>
+<li>fix: left menu title modify #3956</li>
+<li>fix: template list provider bug #3950</li>
+<li>refactor: nanoid &amp;uuid autoFill #3955</li>
+<li>feat: getParentJsonSchema in ui schema repository #3690</li>
+<li>fix: save uuid &amp; nano id field value with sequelize validation #3952</li>
+<li>fix: throughCollection support fuzzy search #3949</li>
+<li>fix: getSourceKeyByAssocation #3947</li>
+<li>fix(RichText): unify style #3946</li>
+<li>fix(connectDataBlocks): should add FilterBlockProvider to Grid #3944</li>
+<li>chore: add appVersion to Schema #3936</li>
+<li>fix: collectionFieldInterfaceSelect #3945</li>
+<li>fix: fix sourceId of templates #3941</li>
+<li>fix(collection manager): collection manager primarykey &amp; nanoid &amp; uuid suport index setting #3943</li>
+<li>fix(plugin-formula-field): fix component context #3937</li>
+<li>fix: nanoid availableTypes #3942</li>
+<li>fix: automatically generate default values #3940</li>
+<li>fix: formula field caluation error #3938</li>
+<li>fix: formula field support format #3928</li>
+<li>refactor: unify tab initailizer naming #3932</li>
+<li>fix: add zIndex to Lightbox overlay style #3934</li>
+<li>fix(Table): fix the problem that the content of the association field is not displayed #3930</li>
+<li>fix(evaluators): fix array flatten #3931</li>
+<li>refactor: main data source view collection support filterTargetKey #3818</li>
+<li>fix: formula field calculation error #3929</li>
+<li>fix: load view collection belongs to association with source options #3912</li>
+<li>fix: edit form unchanged should not appear unSaveed warning when cloas modal #3920</li>
+<li>fix(Collapse): fix error for chinaRegions #3925</li>
+<li>fix: number display format #3924</li>
+<li>fix(defaultValue): should immediate effect when set default value #3923</li>
+<li>feat: action support refreshDataBlockRequest configuration #3882</li>
+<li>refactor: formBlockProvider &amp; detailBlockProvider #3898</li>
+<li>feat(data-vi): allows to add charts for mobile client #3922</li>
+<li>chore: add API comments #3919</li>
+<li>fix: fix Pagination #3921</li>
+<li>test(plugin-error-handler): middleware #3909</li>
+<li>fix: update plugin #3895</li>
+<li>fix: gantt block pagination #3918</li>
+<li>fix: source id null #3917</li>
+<li>fix(Table): fix Pagination #3916</li>
+<li>fix: get the correct sourceId #3897</li>
+<li>fix(DataScope): fix no immediate effect issue after saving #3910</li>
+<li>fix: select field options initialValue #3911</li>
+<li>fix: external link click #3908</li>
+<li>fix(inputNumber): loss of accuracy in inputNumber #3902</li>
+<li>feat(plugin-workflow-action-trigger): add global action events #3883</li>
+<li>docs: add api comment #3868</li>
+<li>fix: vitest config bug #3907</li>
+<li>fix: table fixed bug #3901</li>
+<li>fix: list data undefined error #3905</li>
+<li>fix: lazy render bug #3886</li>
+<li>fix: sort params missing #3906</li>
+<li>refactor: change useProps to x-use-component-props #3853</li>
+<li>fix(withDynamicSchemaProps): change deep merge to shallow merge #3899</li>
+<li>fix: history block add print button, click print button to report error #3900</li>
+<li>fix: tar bug #3891</li>
+<li>chore: return bigInt as string type #3887</li>
+<li>feat(data-vi): data scope for chart filter fields #3894</li>
+<li>feat: adjust menu of add new #3884</li>
+<li>fix(plugin-custom-request): fix edit button dialog #3893</li>
+<li>fix: fieldNames missing when setting data scope #3892</li>
+<li>fix: deps check error when dev add production plugin #3848</li>
+<li>fix: workflow tabs not exists #3889</li>
+<li>fix: association field support data scope linkage #3888</li>
+<li>fix: templateBlockProvider support association field append #3866</li>
+<li>chore: main datasource api #3880</li>
+<li>feat: run vitest with coverage #3802</li>
+<li>fix: avoid duplicate menu keys #3885</li>
+<li>fix(data-vi): dual axes chart displays abnormally #3881</li>
+<li>fix: reject update when filter is empty object #3777</li>
+<li>chore: update field with primary key attribute #3852</li>
+<li>refactor: uuid &amp; nanoid support default value configuration #3830</li>
+<li>feat: table performance #3791</li>
+<li>fix: setFormValueChanged undefined #3879</li>
+<li>fix(client): fix diabled in filter dynamic component #3874</li>
+<li>fix(plugin-workflow-parallel): fix locale #3876</li>
+<li>fix(formula-field): formula field set form value change #3873</li>
+<li>fix: formBlockProvider block display #3877</li>
+<li>refactor(plugin-workflow): change to #3871</li>
+<li>fix: kanban card modal display abnormal #3863</li>
+<li>fix: filterTargetKey only support view collection #3872</li>
+</ul>
+<h2 id="en-5">Plugin Changes</h2>
+<p>The following plugins are no longer provided as open-source version (users who have been using them in production environments, please contact us for upgrades):</p>
+<ul>
+<li>@nocobase/plugin-auth-cas: Authenticates identity via the CAS protocol.</li>
+<li>@nocobase/plugin-auth-odic: Authenticates identity via OIDC (OpenID Connect) protocol.</li>
+<li>@nocobase/plugin-auth-saml: Authenticates identity via SAML 2.0.</li>
+</ul>
+<p>The following plugins have been deprecated and will be removed in upcoming versions:</p>
+<ul>
+<li>@nocobase/plugin-audit-logs: Deprecated, temporarily not removed, won’t be installed in the new version.</li>
+<li>@nocobase/plugin-snapshot-field: Deprecated, temporarily not removed, won’t be installed in the new version.</li>
+<li>@nocobase/plugin-charts: Use @nocobase/plugin-data-visualization instead.</li>
+<li>@nocobase/plugin-excel-formula-field: Use @nocobase/plugin-field-formula instead.</li>
+<li>@nocobase/plugin-math-formula-field: Use @nocobase/plugin-field-formula instead.</li>
+<li>@nocobase/plugin-ui-routes-storage: Deprecated, frontend routes can be extended directly in the frontend.</li>
+</ul>
+<p>For the complete list of plugins, please refer to: <a href="https://www.nocobase.com/plugins.html">https://www.nocobase.com/plugins.html</a></p>
+<h2 id="en-6">Code Comments</h2>
+<p>To provide a better development experience, we’ve added comments to some special APIs:</p>
+<ul>
+<li><code>@internal</code>: Typically used to identify internal implementation details or methods that are not designed for public use but exist for internal use within the code.</li>
+<li><code>@experimental</code>: Used to identify experimental features or APIs. These APIs are still in development and testing phases, may undergo significant changes, or even be removed or replaced in future versions.</li>
+<li><code>@deprecated</code>: Used to identify deprecated features, methods, or APIs in the code. Although they are still available, they may be removed in future versions, or there may be better alternative solutions available.</li>
+</ul>
+<h2 id="en-7">License Agreement</h2>
+<p>NocoBase is dual-licensed under AGPL-3.0 and commercial licenses. For details, please refer to the <a href="https://cn.nocobase.com/agreement-cn.html">NocoBase License Agreement</a>.</p>
+<h2 id="en-8">Upgrade Guide</h2>
+<ul>
+<li>Always backup your database before upgrading! Always backup your database! Always backup your database!</li>
+<li>You can also backup the entire project code.</li>
+</ul>
+<p>Since the Auth: CAS, Auth: OIDC, Auth: SAML three SSO plugins are removed from the open-source code, the upgrade will be divided into two cases.</p>
+<h3>If you are not using SSO plugins</h3>
+<p>Please follow the <a href="https://docs.nocobase.com/welcome/getting-started/upgrading">conventional method</a> for upgrading.</p>
+<h3>If you are using SSO plugins</h3>
+<p>Please follow these steps to upgrade:</p>
+<h4>1. Upgrade the Application</h4>
+<p>Refer to <a href="https://docs.nocobase.com/welcome/getting-started/upgrading">NocoBase Upgrade Overview</a>, and upgrade NocoBase to the latest version.</p>
+<p>If you previously enabled CAS, OIDC, SAML plugins, you will see the following prompts during the upgrade:</p>
+<p>Command line upgrade terminal prompt:</p>
+<p><img src="https://static-docs.nocobase.com/20240428212151.png" alt="20240428212151"></p>
+<p>Docker version interface prompt:</p>
+<p><img src="https://static-docs.nocobase.com/20240428194926.png" alt="20240428194926"></p>
+<h4>2. Remove Plugins or Obtain Plugin Version 1.0?</h4>
+<p><em><strong>If you choose to remove the plugins and continue upgrading:</strong></em></p>
+<p>Remove the plugins according to the prompts</p>
+<pre><code># Main application
+yarn pm remove cas oidc saml --force
+# If it&#39;s a sub-application, add the --app parameter
+yarn pm remove cas oidc saml --force --app=sub-app1
+</code></pre>
+<p>Continue upgrading</p>
+<pre><code>yarn nocobase upgrade
+</code></pre>
+<p><em><strong>If you choose to update the plugins to version 1.0</strong></em></p>
+<p>Contact the NocoBase team to obtain version 1.0 of the plugins and continue with the upgrade.</p>
+<h4>3. CAS, OIDC, SAML Plugin Upgrade Process</h4>
+<p>At this point, the application interface is no longer accessible, so we need to upgrade manually.</p>
+<ol>
+<li>Log in with your account at <a href="https://service.nocobase.com/">service.nocobase.com</a> to download the latest version of the plugins.</li>
+<li>Unzip the plugins to the specified directory<ul>
+<li>CAS plugin unzip to <code>./storage/plugins/@nocobase/plugin-auth-cas</code></li>
+<li>OIDC plugin unzip to <code>./storage/plugins/@nocobase/plugin-auth-oidc</code></li>
+<li>SAML plugin unzip to <code>./storage/plugins/@nocobase/plugin-auth-saml</code></li>
+</ul>
+</li>
+<li>Upgrade the application<ul>
+<li>For Docker version, simply restart the container</li>
+<li>For source code or create-nocobase-app version<ol>
+<li>Download dependencies <code>yarn install</code></li>
+<li>Execute upgrade command <code>yarn nocobase upgrade</code></li>
+<li>Restart the application</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">V1.0 里程碑</a><a href="#zh-2">新特性</a><a href="#zh-3">新插件</a><a href="#zh-4">完整更新记录</a><a href="#zh-5">插件变更</a><a href="#zh-6">代码注释</a><a href="#zh-7">许可协议</a><a href="#zh-8">升级指南</a></div><div class="en-only"><a href="#en-1">V1.0 Milestone</a><a href="#en-2">New Features</a><a href="#en-3">New Plugins</a><a href="#en-4">Full Changelog</a><a href="#en-5">Plugin Changes</a><a href="#en-6">Code Comments</a><a href="#en-7">License Agreement</a><a href="#en-8">Upgrade Guide</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/2.2.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-hygy1r.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年8月23日</t-zh><t-en>Aug 23, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2 正式版发布</t-zh><t-en>Announcing NocoBase 2.2</t-en></h3><p><t-zh>NocoBase 2.2 正式版进一步完善 V2 的完整使用路径，带来独立、轻量的 /v/ 前端入口与全新移动端体验。同时升级文件访问与权限机制，并增强评论区块、AI 知识库、工作流及核心插件的 V2 支持。</t-zh><t-en>NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.</t-en></p></a><a class="bcard" href="../blog/2.2.0-beta.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-beta-2kf9fd.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年7月17日</t-zh><t-en>Jul 17, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2-beta 发布</t-zh><t-en>Announcing NocoBase 2.2-beta</t-en></h3><p><t-zh>NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</t-zh><t-en>NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</t-en></p></a><a class="bcard" href="../blog/2.1.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(9)-tfwpkk.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.1.0 正式版发布</t-zh><t-en>Announcing NocoBase 2.1.0</t-en></h3><p><t-zh>NocoBase 2.1 以全新的 CLI 打通人与 AI Agent 连接和管理应用的入口，并完善 AI 搭建、Skills、AI 插件开发和 AI 员工能力。同时升级多应用协作、版本管理、工作流增强及更多 2.0 适配能力。</t-zh><t-en>NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="最适合外包交付的 6 个开源无代码与低代码 — NocoBase" data-en="6 Open-Source No-Code &amp; Low-Code Tools for Software Agencies — NocoBase">最适合外包交付的 6 个开源无代码与低代码 — NocoBase</title>
+<meta name="description" content="从外包交付视角，对比主流开源无代码平台，分析它们在长期维护、成本控制、权限、流程和扩展性上的差异，帮助你选择最适合交付给客户的方案。" data-zh="从外包交付视角，对比主流开源无代码平台，分析它们在长期维护、成本控制、权限、流程和扩展性上的差异，帮助你选择最适合交付给客户的方案。" data-en="A practical comparison of open-source no-code platforms for client project delivery. Learn which tools are best suited for long-term maintenance, cost control, and system extensibility.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>最适合外包交付的 6 个开源无代码与低代码</t-zh><t-en>6 Open-Source No-Code &amp; Low-Code Tools for Software Agencies</t-en></h1>
+    <p class="lede"><t-zh>从外包交付视角，对比主流开源无代码平台，分析它们在长期维护、成本控制、权限、流程和扩展性上的差异，帮助你选择最适合交付给客户的方案。</t-zh><t-en>A practical comparison of open-source no-code platforms for client project delivery. Learn which tools are best suited for long-term maintenance, cost control, and system extensibility.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年12月22日</t-zh><t-en>Dec 22, 2025</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2088%20(1)-wpxg4z.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">写在开头</h2>
+<p>外包团队和技术工作室在接项目时，最常面对的问题：<strong>客户希望以最快速度上线。</strong></p>
+<p>因此很多团队会利用无代码/低代码工具来快速上线功能原型或 PoC 。</p>
+<p>但并不是每个无代码/低代码平台都适合用来交付客户的长期项目，尤其是当需求不断变更、流程复杂、权限细化时。</p>
+<p>在一些<a href="https://www.reddit.com/r/nocode/comments/1g1plyf/what_is_wrong_with_vendor_lockin/">开发者社区里</a>，大家对无代码的看法也差异很大：有人认为它能快速交付，有人则认为供应商锁定的风险以及<strong>在复杂系统和长期维护上不那么可靠</strong>。</p>
+<p><img src="https://static-docs.nocobase.com/720X720-m0s664.PNG" alt="reddit.PNG"></p>
+<p>因此，这篇文章我们从外包交付的视角出发，帮你分析：<strong>在开源无代码与低代码平台里，哪一个更适合被用来交付给客户长期使用？</strong></p>
+<p>💡 扩展阅读：<a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6个适合做 PoC 的开源无代码/低代码工具推荐</a></p>
+<hr>
+<p>💬嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2"><strong>外包项目 vs 公司内部项目：本质区别在哪？</strong></h2>
+<p>许多无代码平台在设计时，往往默认一个前提：<strong>用于构建内部项目，由同一个团队长期维护。</strong></p>
+<p>但一旦放到外包交付场景，这个前提就不成立了。</p>
+<p><strong>第一，需求变化是常态</strong></p>
+<p>在外包项目里，第一版上线往往只是起点。客户会不断追加需求，甚至推翻原有逻辑。这要求无代码工具能<strong>在不破坏既有结构的情况下持续迭代。</strong></p>
+<p><strong>第二，部署和交付环境更复杂</strong></p>
+<p>很多外包项目最终要交付给客户自己的环境：本地服务器、私有云、内网部署。无代码工具不仅要支持自托管，还要让“部署、升级、迁移”成为可控成本，而不是项目后期的隐形风险。</p>
+<p><strong>第三，交付完成并不等于项目结束</strong></p>
+<p>对外包项目来说，交付上线只是开始。后续的需求调整、问题修复、功能扩展，都会持续消耗时间和人力。如果平台在结构上不支持维护，项目往往会变成长期负担</p>
+<p><strong>第四，成本控制决定项目是否真正“赚钱”</strong></p>
+<p>这是外包项目最现实、也最容易被忽略的一点。如果平台在后期修改、扩展和维护上成本过高，即使项目顺利交付，也可能在后续阶段持续亏损。因此，平台选型本质上是在控制<strong>长期人力成本和不可预期风险</strong>，而不仅仅是交付速度。</p>
+<h2 id="zh-3">外包交付视角下的核心维度对比</h2>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>NocoBase</th>
+<th>Appsmith</th>
+<th>Budibase</th>
+<th>NocoDB</th>
+<th>ToolJet</th>
+<th>Directus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否开源</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>是否支持自托管</td>
+<td>✅ 原生</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>数据模型能力</td>
+<td>强（关系型，模型先行）</td>
+<td>中</td>
+<td>中</td>
+<td>弱（表结构为主）</td>
+<td>中</td>
+<td>强</td>
+</tr>
+<tr>
+<td>关系数据支持</td>
+<td>完整（多对多等）</td>
+<td>有限</td>
+<td>有限</td>
+<td>⚠️ 非核心设计</td>
+<td>有限</td>
+<td>强</td>
+</tr>
+<tr>
+<td>权限系统（RBAC）</td>
+<td>系统级、细粒度</td>
+<td>基础</td>
+<td>基础</td>
+<td>基础</td>
+<td>基础</td>
+<td>强</td>
+</tr>
+<tr>
+<td>流程 / 工作流</td>
+<td>内建，适合业务流转</td>
+<td>弱</td>
+<td>中</td>
+<td>❌</td>
+<td>中</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>扩展方式</td>
+<td>插件机制，轻量扩展也可以在前端通过 JS 区块实现</td>
+<td>JS 为主</td>
+<td>有限</td>
+<td>❌</td>
+<td>JS 为主</td>
+<td>Hooks</td>
+</tr>
+<tr>
+<td>需求持续演进能力</td>
+<td>强</td>
+<td>一般</td>
+<td>一般</td>
+<td>弱</td>
+<td>一般</td>
+<td>中</td>
+</tr>
+<tr>
+<td>多客户项目复用</td>
+<td>适合</td>
+<td>一般</td>
+<td>一般</td>
+<td>不适合</td>
+<td>一般</td>
+<td>一般</td>
+</tr>
+<tr>
+<td>外包长期交付适配度</td>
+<td>高</td>
+<td>⚠️</td>
+<td>⚠️</td>
+<td>❌</td>
+<td>⚠️</td>
+<td>⚠️</td>
+</tr>
+</tbody></table>
+<h2 id="zh-4">NocoBase</h2>
+<p>官网：<a href="https://www.nocobase.com">https://www.nocobase.com</a></p>
+<p>GitHub：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Star 数：20.8k</p>
+<p>NocoBase 是一款<strong>开源、自托管的 AI 无代码/低代码开发平台</strong>，以数据模型和插件机制为核心，用于构建可扩展的业务系统。</p>
+<p>从外包交付的角度看，NocoBase 更像是一套<strong>灵活、轻量、可扩展的开发底座</strong>。</p>
+<p><img src="https://static-docs.nocobase.com/1280X1280%20(45)-nwyljo.PNG" alt="NocoBase.PNG"></p>
+<p><strong>什么时候适合用 NocoBase 做外包项目？</strong></p>
+<p>在外包场景中，NocoBase 非常适合以下几类项目：</p>
+<p><strong>1. 项目对 AI 能力有明确需求</strong></p>
+<p>NocoBase 将 AI 作为“AI 员工”内置在系统中，AI 可以作为系统角色参与表单、流程和数据操作，其行为逻辑和权限边界是可配置、可控制的。这使它更适合交付带有智能辅助能力、且需要逐步引入 AI 的业务系统。</p>
+<p><img src="https://static-docs.nocobase.com/94fe5c16-f0e2-49df-adf4-f4aa6cadfa7f-ydx3ki.png" alt="AI Employee.png"></p>
+<p>比如，AI 员工可以直接读取系统内的线索数据进行分析。</p>
+<p><strong>2. 数据关系、权限和流程是系统核心复杂度的项目</strong></p>
+<p>当项目涉及多个业务对象、复杂权限或跨角色流程流转时，系统级的数据关系、RBAC 和工作流能力会明显降低后期维护成本。</p>
+<p><img src="https://static-docs.nocobase.com/6dd829c6-de63-4534-aa65-5fbb2f6b3450-ijazui.png" alt="data modeling.png"></p>
+<p>这是 NocoBase 的数据设置界面。NocoBase 以数据为核心驱动力，支持主数据库、外部数据库（包括：MySQL、MariaDB、PostgreSQL、Oracle 等）、以及 API 等多种数据源。页面上的区块与操作与数据源完全解耦，使系统结构更贴近专业软件开发方式，能灵活应对各种复杂业务。</p>
+<p><img src="https://static-docs.nocobase.com/cd822014-956f-476c-938e-8d9a40992fb2-fq56hv.png" alt="field-level permission control.png"></p>
+<p>NocoBase 的权限设置可以到字段级别。</p>
+<p><strong>3. 需求会持续变化的系统</strong> NocoBase 以数据模型为核心，先稳定结构，再配置界面、流程和权限，更适合在后期不断增加字段、关系和业务逻辑。</p>
+<p><img src="https://static-docs.nocobase.com/448f7aac-a483-471f-a419-dce163adf67b-rbwhf8.png" alt="UI.png"></p>
+<p>在 NocoBase 中，前端页面的修改调整非常简单。点击右上角进入编辑模式，即可开始编辑与调整。</p>
+<p><strong>4. 需要定制和扩展的项目</strong>  对于标准功能无法完全覆盖的场景，NocoBase 可以通过插件机制进行代码级扩展，而不是被限制在平台预设能力内。轻量功能还可以在前端使用 JS 区块完成，比如这几个字段的个性化展示。</p>
+<p><img src="https://static-docs.nocobase.com/f0bc985d-7aa5-4e4f-bb4f-81135c1aa756-p6kh42.png" alt="frontend JS blocks.png"></p>
+<p><strong>在外包中，NocoBase 常被用来交付的系统</strong></p>
+<ul>
+<li>CRM 客户管理系统</li>
+<li>项目管理系统</li>
+<li>轻量 ERP / 业务管理系统</li>
+<li>客户成功 / 售后管理系统</li>
+<li>审批与流程系统</li>
+<li>行业定制化管理系统</li>
+</ul>
+<p>共同特点：<strong>数据结构清晰但关系复杂，需求会持续变化，并且需要长期维护。</strong></p>
+<h2 id="zh-5"><strong>Appsmith</strong></h2>
+<p>官网：<a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p>GitHub：<a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>GitHub Star 数：38.7k</p>
+<p>Appsmith 是一款开源、可自托管的无代码/低代码平台，核心定位是<strong>快速构建基于 API 的内部工具和管理界面</strong>。</p>
+<p>从外包交付的角度看，Appsmith 更偏向于<strong>界面层和工具型应用。</strong></p>
+<p><img src="https://static-docs.nocobase.com/f31dc2fb-9a7f-4eed-a67e-de3a1d5ff92a-fr0sr5.png" alt="Appsmith.png"></p>
+<p><strong>什么时候适合用 Appsmith 做外包项目？</strong></p>
+<p>在外包场景中，Appsmith 通常适合以下几类项目：</p>
+<p><strong>1.以界面和数据操作为主的工具型项目</strong></p>
+<p>当项目目标是快速搭建管理后台、运营工具或数据操作界面，Appsmith 的组件化 UI 和 API 绑定方式可以显著缩短交付时间。</p>
+<p><img src="https://static-docs.nocobase.com/3ea5fb6c-ead8-4d4a-95a8-9a49aee75c48-mbjbkv.png" alt="UI.png"></p>
+<p><strong>2.后端逻辑已经存在的项目</strong></p>
+<p>如果客户已经有稳定的后端服务或数据库，只需要一个前端工具来做查询、编辑和简单操作，Appsmith 的使用成本较低。</p>
+<p><img src="https://static-docs.nocobase.com/3ea5fb6c-ead8-4d4a-95a8-9a49aee75c48-mbjbkv.png" alt="UI.png"></p>
+<p><strong>3.需求相对稳定、变更频率不高的项目</strong></p>
+<p>在字段、数据关系和流程基本确定的情况下，Appsmith 可以较快完成交付，而不需要复杂的前期建模。</p>
+<p><strong>在外包中，Appsmith 常被用来交付的系统</strong></p>
+<ul>
+<li>内部管理后台</li>
+<li>数据查询与维护工具</li>
+<li>运营或客服使用的操作界面</li>
+<li>API 驱动的业务工具</li>
+<li>简单的内部表单系统</li>
+</ul>
+<p>共同特点：<strong>以界面和操作效率为核心，对数据关系、流程和权限的复杂度要求较低。</strong></p>
+<h2 id="zh-6"><strong>Budibase</strong></h2>
+<p>官网：<a href="https://budibase.com/">https://budibase.com/</a></p>
+<p>GitHub：<a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></p>
+<p>GitHub Star 数：27.5k</p>
+<p>Budibase 是一款开源、可自托管的无代码平台，定位在<strong>快速构建基于数据库或表结构的业务应用</strong>，强调上手速度和模板化体验。</p>
+<p>从外包交付的角度看，Budibase 与 Appsmith 类似，擅长构建界面工具。如果有模版能满足你的需求，那么构建起来会非常迅速。</p>
+<p><img src="https://static-docs.nocobase.com/d99173bc-e9b3-4837-abb3-486fc6f6bb56-k2fnmm.png" alt="Budibase.png"></p>
+<p><strong>什么时候适合用 Budibase 做外包项目？</strong></p>
+<p>在外包场景中，Budibase 通常适合以下几类项目：</p>
+<p><strong>1.中低复杂度的数据管理类系统</strong></p>
+<p>当项目以数据录入、查询、状态更新为主，且数据关系相对简单时，Budibase 可以较快完成交付。</p>
+<p><img src="https://static-docs.nocobase.com/b80cc4d9-2b74-4cd4-97e6-e976202255d8-v60vra.png" alt="databases.png"></p>
+<p><strong>2.需要较快落地的项目</strong></p>
+<p>Budibase 的配置方式和内置组件可以帮助外包团队快速完成第一版，适合交付周期较短、后续改动有限的项目。</p>
+<p><img src="https://static-docs.nocobase.com/f2ab748d-4e8e-4f3f-981f-cbd4ab7dab31-qmix9k.png" alt="UI components.png"></p>
+<p><strong>3.基于现有数据库或表结构的应用</strong></p>
+<p>如果客户已经有明确的数据结构，Budibase 可以在此基础上直接构建应用界面，减少前期建模成本。</p>
+<p><strong>在外包中，Budibase 常被用来交付的系统</strong></p>
+<ul>
+<li>简单 CRM / 客户信息管理系统</li>
+<li>内部数据管理与录入系统</li>
+<li>轻量级审批或状态流转系统</li>
+<li>运营或业务部门使用的管理工具</li>
+</ul>
+<p>共同特点：<strong>数据结构相对扁平，流程和权限复杂度有限，对系统可扩展性的要求不高。</strong></p>
+<h2 id="zh-7"><strong>NocoDB</strong></h2>
+<p>官网：<a href="https://nocodb.com/">https://nocodb.com/</a></p>
+<p>GitHub：<a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></p>
+<p>GitHub Star 数：59.2k</p>
+<p>NocoDB 是一款开源、可自托管的无代码平台，核心定位是<strong>将关系型数据库转化为类似 Airtable 的可视化表格界面</strong>，强调数据查看与协作体验。</p>
+<p>从外包交付的角度看，NocoDB 更接近“数据库可视化与协作层”，而不是完整的业务系统框架。</p>
+<p><img src="https://static-docs.nocobase.com/6322e1f7-36dc-4263-adec-a139784ce851-39wkzj.png" alt="NocoDB.png"></p>
+<p><strong>什么时候适合用 NocoDB 做外包项目？</strong></p>
+<p>在外包场景中，NocoDB 适用的场景稍微有些局限，主要集中在“表格”类型的项目中。</p>
+<p><strong>1.以表格为核心的数据管理需求</strong></p>
+<p>当客户需求本质上仍是“表格协作”，只是希望比 Excel 更安全、更可控，NocoDB 可以较快完成交付。</p>
+<p><strong>2.客户明确希望要 Airtable 的开源替代方案</strong></p>
+<p>在对 SaaS 有顾虑、但又不需要复杂流程和权限的情况下，NocoDB 是一个直接且易理解的选择。</p>
+<p><strong>3.数据结构相对固定的项目</strong></p>
+<p>如果表结构基本稳定，且不涉及复杂关系或业务逻辑。NocoDB 支持 MySQL 和 PostgreSQL 两种外部数据源。</p>
+<p><img src="https://static-docs.nocobase.com/5ee128e4-bb07-41cb-9321-e1c32bca7b08-vvsw2p.png" alt="MySQL and PostgreSQL.png"></p>
+<p><strong>在外包中，NocoDB 常被用来交付的系统</strong></p>
+<ul>
+<li>Excel / Airtable 替代方案</li>
+<li>简单的客户或资产台账</li>
+<li>数据录入与共享表</li>
+<li>以表格为核心的内部协作工具</li>
+</ul>
+<p>共同特点：<strong>以表格操作为中心，业务逻辑较轻，对流程、权限和系统扩展的要求有限。</strong></p>
+<h2 id="zh-8"><strong>ToolJet</strong></h2>
+<p>官网：<a href="https://www.tooljet.com/">https://www.tooljet.com/</a></p>
+<p>GitHub：<a href="https://github.com/ToolJet/ToolJet">https://github.com/ToolJet/ToolJet</a></p>
+<p>GitHub Star 数：37.1k</p>
+<p>ToolJet 是一款开源、可自托管的低代码平台。用户可以通过自然语言描述和可视化构建的方式快速开发业务应用。平台结合了 AI 驱动的应用生成、视觉化构建器、数据库与 API 集成。</p>
+<p>从外包交付的角度看，ToolJet 既具备低代码开发的可视化构建能力，又支持通过自然语言提示快速生成基础结构，但其核心适用领域仍然偏向于<strong>内部工具和业务应用加速构建平台。</strong></p>
+<p><img src="https://static-docs.nocobase.com/941b14d2-d59e-4940-8255-bde5298e7864-43c3vd.png" alt="ToolJet.png"></p>
+<p><strong>什么时候适合用 ToolJet 做外包项目？</strong></p>
+<p><strong>1.需要快速从需求到应用原型的项目</strong></p>
+<p>ToolJet 支持用自然语言描述需求并生成初始应用结构，加快从想法到可迭代应用的速度，适合外包团队在早期快速搭建原型和演示版本。</p>
+<p><img src="https://static-docs.nocobase.com/a5e5b76b-a8dd-42dd-9fab-56120d8adbf7-sxzn7k.png" alt="describe requirements.png"></p>
+<p><strong>2.以内部工具为主、数据整合驱动的应用</strong></p>
+<p>当项目目标是将数据库、API 或现有业务数据整合为一个内部使用的管理界面、仪表盘或操作面板时，ToolJet 的可视化界面和数据源连接能力能够降低开发成本。</p>
+<p><strong>3.需要简单流程或自动化触发的业务逻辑</strong></p>
+<p>ToolJet 支持定义触发事件、工作流节点和自动化逻辑，可以满足一些基础的业务流程自动化需求。</p>
+<p><strong>在外包中，ToolJet 常被用来交付的系统</strong></p>
+<ul>
+<li>内部管理或运营工具</li>
+<li>数据查询与编辑后台</li>
+<li>简单的业务操作界面</li>
+<li>API 驱动的管理面板</li>
+</ul>
+<p>共同特点：<strong>以界面效率为核心，对系统层建模、流程和权限的依赖较低。</strong></p>
+<h2 id="zh-9"><strong>Directus</strong></h2>
+<p>官网：<a href="https://directus.io/">https://directus.io/</a></p>
+<p>GitHub：<a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p>GitHub Star 数：33.7k</p>
+<p>Directus 是一款开源、可自托管的 Headless 平台，核心定位是<strong>在数据库之上提供统一的数据访问、权限控制和 API 层</strong>，常被用作 Headless CMS 或数据服务中枢。</p>
+<p>从外包交付的角度看，Directus 更偏向于<strong>数据与内容管理层</strong>。</p>
+<p><img src="https://static-docs.nocobase.com/ea9cced2-111f-43a8-980c-c016e998457a-d0zdlr.png" alt="Directus.png"></p>
+<p><strong>什么时候适合用 Directus 做外包项目？</strong></p>
+<p><strong>1.以内容或数据管理为核心的项目</strong></p>
+<p>当项目重点在于管理内容结构、数据权限和对外 API，Directus 非常适合。</p>
+<p><img src="https://static-docs.nocobase.com/a60780f9-605b-4319-821e-7f2f7f39e354-pwclss.png" alt="managing content.png"></p>
+<p><strong>2.需要稳定数据模型和强权限控制的项目</strong></p>
+<p>Directus 在数据层权限控制和 API 生成方面能力较强，适合对数据访问有严格要求的场景。</p>
+<p><strong>3.作为系统中的“数据中台”或后端服务</strong></p>
+<p>在一些外包项目中，Directus 更适合作为底层数据服务，为多个前端或应用提供统一的数据接口。</p>
+<p><strong>在外包中，Directus 常被用来交付的系统</strong></p>
+<ul>
+<li>Headless CMS / 内容管理系统</li>
+<li>数据管理与分发平台</li>
+<li>作为前端应用的后端服务层</li>
+<li>多应用共用的数据中台</li>
+</ul>
+<p>共同特点：<strong>重数据和权限，轻业务流程和应用层交互。</strong></p>
+<h2 id="zh-10">总结</h2>
+<p>开源无代码平台之间的最适合的<strong>交付场景都有不同</strong>。</p>
+<ul>
+<li><strong>Appsmith、ToolJet、Budibase：</strong> 更偏向应用和工具层，适合快速构建内部工具、管理界面或原型，在交付效率和系统能力之间做了折中。</li>
+<li><strong>NocoDB：</strong> 本质是表格协作和数据库可视化方案，更适合替代 Excel 或 Airtable。</li>
+<li><strong>Directus：</strong> 更像数据和内容管理基础设施，适合作为系统后端或数据中台。</li>
+<li><strong>NocoBase：</strong> 接近一个可扩展的业务系统底座，适合需求持续变化、数据关系复杂、权限和流程是核心问题的外包项目。</li>
+</ul>
+<p>归根结底，最适合场景的工具才是最好的工具。</p>
+<p>❤️ 感谢你阅读到最后，如果你认为这篇文章有帮助，欢迎分享给更多的朋友！</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">如何快速搭建一个替换 Excel 的系统？（完整指南）</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">GitHub Star 数量前 5 的开源 AI 内部工具</a></li>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">8 个最佳 Google Sheets 替代方案（附成本与能力分析）</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6个适合做 PoC 的开源无代码/低代码工具推荐</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">给开发者的无代码/低代码技术决策指南（2026）</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 大企业级无代码低代码平台 RBAC 权限体系深度对比</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">GitHub 上最值得关注的 14 个开源 AI 低代码工具</a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">11 个在 GitHub 上最受欢迎的开源无代码 AI 工具</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">At the start</h2>
+<p>When software agencies take on new client projects, the pressure is almost always the same: <strong>clients want results fast, but they also expect stability, flexibility, and long-term maintainability.</strong></p>
+<p>That is why many agencies turn to no-code and low-code tools to quickly build prototypes or PoCs.</p>
+<p>However, not every no-code or low-code platform is suitable for long-term client delivery. As requirements evolve, workflows become more complex, and access control needs to be more granular, the limitations of many tools start to surface.</p>
+<p>Within <a href="https://www.reddit.com/r/nocode/comments/1g1plyf/what_is_wrong_with_vendor_lockin/">developer communities</a>, opinions on no-code vary widely. Some see it as a powerful way to ship faster, while others worry about <strong>vendor lock-in, architectural constraints</strong>, and the cost of maintaining complex systems over time.</p>
+<p><img src="https://static-docs.nocobase.com/screenshot-20251222-090754-btu2gy.png" alt="reddit.png"></p>
+<p>From the perspective of teams delivering real client systems, this raises a key question: among open-source no-code and low-code platforms, which ones are truly suitable for building systems that clients will rely on for years, not just weeks?</p>
+<p>💡Read more: <a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6 Open-Source No/Low-Code Tools for Building PoCs</a></p>
+<hr>
+<p>💬Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-2">Client Projects vs. Internal Projects</h2>
+<p>Many no-code platforms are built around a simple assumption: t<strong>hey are primarily used for internal projects and maintained by the same team over a long period of time.</strong></p>
+<p>Once you move into client-facing projects, this assumption quickly breaks down.</p>
+<p>When a system is built for external clients, the delivery model, technical requirements, and long-term responsibilities change in fundamental ways.</p>
+<p><strong>First, changing requirements are the norm</strong></p>
+<p>In client projects, the first release is rarely the finish line. Requirements evolve constantly. Clients add new features, adjust workflows, and sometimes even reverse earlier decisions. This means a no-code platform must support continuous iteration without breaking existing functionality or forcing costly rework.</p>
+<p><strong>Second, deployment and delivery are far more complex</strong></p>
+<p>Many client projects are eventually deployed into the client’s own environment, such as on-premise servers, private clouds, or restricted internal networks. A suitable platform must support self-hosting and make deployment, upgrades, and migrations predictable and controllable, rather than hidden risks that surface months later.</p>
+<p><strong>Third, delivery is only the beginning</strong></p>
+<p>For teams building client systems, going live does not mean the project is finished. Ongoing changes, bug fixes, and feature extensions continue long after launch. If a platform is not designed for long-term maintenance, each new request increases technical debt and operational friction.</p>
+<p><strong>Finally, cost control determines whether a project is actually profitable</strong></p>
+<p>This is the most practical and often overlooked factor. If a platform is expensive to modify, extend, or maintain over time, a project can keep losing money even after a successful launch. Choosing the right platform is ultimately about controlling long-term labor costs and reducing unpredictable delivery risks, not just shipping faster at the beginning.</p>
+<h2 id="en-3">Key Comparison Dimensions for Client Project Delivery</h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>NocoBase</th>
+<th>Appsmith</th>
+<th>Budibase</th>
+<th>NocoDB</th>
+<th>ToolJet</th>
+<th>Directus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Open source</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Self-hosted deployment</td>
+<td>✅ Built-in, production-ready</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Data modeling capability</td>
+<td>Strong (relational, model-first)</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Weak (table-centric)</td>
+<td>Medium</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Relational data support</td>
+<td>Full support (many-to-many, junction tables, constraints)</td>
+<td>Limited</td>
+<td>Limited</td>
+<td>⚠️ Not a core focus</td>
+<td>Limited</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Permission system (RBAC)</td>
+<td>System-level, fine-grained (role, data, action)</td>
+<td>Basic</td>
+<td>Basic</td>
+<td>Basic</td>
+<td>Basic</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Business processes &amp; workflows</td>
+<td>Built-in, designed for real business processes</td>
+<td>Weak</td>
+<td>Medium</td>
+<td>❌</td>
+<td>Medium</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Extension &amp; customization approach</td>
+<td>Plugin-based architecture; frontend JS blocks for lightweight extensions</td>
+<td>Primarily custom JS</td>
+<td>Limited</td>
+<td>❌</td>
+<td>Primarily custom JS</td>
+<td>Hooks-based</td>
+</tr>
+<tr>
+<td>Support for evolving requirements</td>
+<td>Strong, designed for continuous iteration</td>
+<td>Average</td>
+<td>Average</td>
+<td>Weak</td>
+<td>Average</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Reuse across multiple client projects</td>
+<td>Well suited (templates, plugins, repeatable patterns)</td>
+<td>Average</td>
+<td>Average</td>
+<td>Not suitable</td>
+<td>Average</td>
+<td>Average</td>
+</tr>
+<tr>
+<td>Suitability for long-term client delivery</td>
+<td>High</td>
+<td>⚠️ Limited</td>
+<td>⚠️ Limited</td>
+<td>❌</td>
+<td>⚠️ Limited</td>
+<td>⚠️ Limited</td>
+</tr>
+</tbody></table>
+<h2 id="en-4">NocoBase</h2>
+<p><strong>Website:</strong><a href="https://www.nocobase.com">https://www.nocobase.com</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><strong>GitHub stars:</strong> 20.8k</p>
+<p>NocoBase is an open-source, self-hosted AI no-code and low-code platform built around <strong>data models</strong> and a <strong>plugin-based architecture</strong>. It is designed for building scalable, production-ready business systems rather than lightweight internal tools.</p>
+<p>From a <strong>client project delivery</strong> perspective, NocoBase behaves less like a fixed-feature no-code tool and more like a <strong>flexible, extensible development foundation</strong>. This makes it particularly suitable for agencies and service teams responsible for long-term delivery, maintenance, and ongoing system evolution.</p>
+<p><img src="https://static-docs.nocobase.com/1280X1280%20(45)-nwyljo.PNG" alt="NocoBase.PNG"></p>
+<p><strong>When does NocoBase make sense for client projects?</strong></p>
+<p>In real-world client delivery scenarios, NocoBase is especially well suited for the following types of projects.</p>
+<p><strong>1.Projects with clear or evolving AI requirements</strong></p>
+<p>NocoBase integrates AI directly into the system through <strong>AI Employees</strong>. Instead of treating AI as an external add-on, AI is modeled as a first-class system role that can participate in forms, workflows, and data operations, all within clearly defined permission boundaries.</p>
+<p>This approach works well for projects that:</p>
+<ul>
+<li>Need intelligent assistance inside business workflows</li>
+<li>Want to introduce AI gradually, without redesigning the system later</li>
+<li>Require strict control over what AI can access and modify</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/94fe5c16-f0e2-49df-adf4-f4aa6cadfa7f-ydx3ki.png" alt="AI Employee.png"></p>
+<p>For example, an AI Employee can read and analyze lead data stored in the system and assist sales teams with classification, enrichment, or follow-up suggestions.</p>
+<p><strong>2.Projects where data relationships, permissions, and workflows define the core complexity</strong></p>
+<p>Many client systems are not complex because of UI, but because of:</p>
+<ul>
+<li>Multiple business entities with relationships</li>
+<li>Role-based and data-level permissions</li>
+<li>Cross-role approval flows and business processes</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/6dd829c6-de63-4534-aa65-5fbb2f6b3450-ijazui.png" alt="data modeling.png"></p>
+<p>NocoBase provides system-level support for <strong>relational data modeling</strong>, <strong>RBAC</strong>, and <strong>workflows</strong>, which significantly reduces long-term maintenance costs compared to tools that rely heavily on custom scripts.</p>
+<p>At its core, NocoBase is <strong>data-driven</strong>. It supports:</p>
+<ul>
+<li>A primary internal database</li>
+<li>External databases such as MySQL, MariaDB, PostgreSQL, and Oracle</li>
+<li>API-based data sources</li>
+</ul>
+<p>UI blocks and user actions are fully decoupled from underlying data sources, resulting in an architecture closer to traditional software development and far better suited for complex business scenarios.</p>
+<p><img src="https://static-docs.nocobase.com/cd822014-956f-476c-938e-8d9a40992fb2-fq56hv.png" alt="field-level permission control.png"></p>
+<p>NocoBase also supports <strong>field-level permission control</strong>, which is critical for multi-role client systems.</p>
+<p><strong>3.Systems with continuously evolving requirements</strong></p>
+<p>In client projects, change is the default. New fields, new relationships, and new workflows are introduced long after the first release.</p>
+<p>NocoBase follows a <strong>model-first approach</strong>: stabilize the data structure first, then layer UI, workflows, and permissions on top. This makes it easier to extend systems over time without breaking existing functionality or accumulating fragile workarounds.</p>
+<p><img src="https://static-docs.nocobase.com/448f7aac-a483-471f-a419-dce163adf67b-rbwhf8.png" alt="UI.png"></p>
+<p>Adjusting the UI is straightforward. Teams can enter edit mode directly from the interface and iterate quickly without touching the underlying data model.</p>
+<p><strong>4.Projects that require customization and extension</strong></p>
+<p>When built-in features are not enough, NocoBase allows <strong>code-level extensions through its plugin mechanism</strong>, rather than forcing teams into predefined capabilities.</p>
+<p><img src="https://static-docs.nocobase.com/f0bc985d-7aa5-4e4f-bb4f-81135c1aa756-p6kh42.png" alt="frontend JS blocks.png"></p>
+<p>For lighter customization needs, <strong>frontend JS blocks</strong> can be used to implement custom field rendering, interactions, or integrations. This combination allows teams to balance speed and flexibility without sacrificing maintainability.</p>
+<p><strong>Typical client systems built with NocoBase</strong></p>
+<p>In practice, NocoBase is commonly used to deliver:</p>
+<ul>
+<li>CRM systems</li>
+<li>Project and delivery management systems</li>
+<li>Lightweight ERP and business management systems</li>
+<li>Customer success and after-sales systems</li>
+<li>Approval and workflow systems</li>
+<li>Industry-specific customized management systems</li>
+</ul>
+<p>What these systems have in common is not their domain, but their structure: <strong>clear data models with complex relationships, continuously evolving requirements, and a strong need for long-term maintenance and controlled delivery costs</strong>.</p>
+<h2 id="en-5">Appsmith</h2>
+<p><strong>Website:</strong><a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p><strong>GitHub stars:</strong> 38.7k</p>
+<p>Appsmith is an open-source, self-hosted no-code and low-code platform designed for rapidly building <strong>API-driven internal tools and admin interfaces</strong>. Its core strength lies in UI composition, direct API bindings, and fast interaction with existing services.</p>
+<p>From a <strong>client project delivery</strong> perspective, Appsmith is best suited for <strong>UI-centric, tool-focused applications</strong>, rather than full-fledged business systems with complex data models and workflows.</p>
+<p><img src="https://static-docs.nocobase.com/f31dc2fb-9a7f-4eed-a67e-de3a1d5ff92a-fr0sr5.png" alt="Appsmith.png"></p>
+<p><strong>When does Appsmith make sense for client projects?</strong></p>
+<p>In real-world client delivery scenarios, Appsmith is typically a good fit for the following types of projects.</p>
+<p><strong>1.UI- and operation-focused tools</strong></p>
+<p>When the primary goal is to quickly build admin dashboards, operational panels, or data manipulation interfaces, Appsmith’s component-based UI and direct API bindings can significantly accelerate delivery.</p>
+<p><img src="https://static-docs.nocobase.com/3ea5fb6c-ead8-4d4a-95a8-9a49aee75c48-mbjbkv.png" alt="UI.png"></p>
+<p><strong>2.Projects with an existing backend</strong></p>
+<p>If the client already has stable backend services or databases and only needs a frontend layer for querying, editing, and triggering basic actions, Appsmith is easy to adopt and quick to roll out.</p>
+<p>In these cases, Appsmith acts as a thin UI layer on top of existing systems, avoiding the need for heavy data modeling or workflow configuration.</p>
+<p><strong>3.Projects with relatively stable requirements</strong></p>
+<p>When data fields, relationships, and workflows are largely fixed and unlikely to change frequently, Appsmith can be delivered efficiently without extensive upfront modeling or architectural planning.</p>
+<p>This makes it suitable for tools where the structure is known early and long-term evolution is limited.</p>
+<p><strong>Typical client tools built with Appsmith</strong></p>
+<p>In practice, Appsmith is commonly used to deliver:</p>
+<ul>
+<li>Internal admin dashboards</li>
+<li>Data querying and maintenance tools</li>
+<li>Operational or customer support interfaces</li>
+<li>API-driven business tools</li>
+<li>Simple internal form-based systems</li>
+</ul>
+<p>What these tools have in common is a clear focus on <strong>UI efficiency and operational convenience</strong>, with limited complexity in data relationships, workflows, and permission models.</p>
+<h2 id="en-6">Budibase</h2>
+<p><strong>Website:</strong><a href="https://budibase.com/">https://budibase.com/</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></p>
+<p><strong>GitHub stars:</strong> 27.5k</p>
+<p>Budibase is an open-source, self-hosted no-code platform designed for rapidly building business applications on top of databases or table-based data. It emphasizes <strong>ease of use</strong>, <strong>prebuilt components</strong>, and a <strong>template-first development experience</strong>.</p>
+<p>From a <strong>client project delivery</strong> perspective, Budibase occupies a similar position to Appsmith. It is particularly strong at building <strong>UI-driven tools</strong> and straightforward business applications.</p>
+<p><img src="https://static-docs.nocobase.com/d99173bc-e9b3-4837-abb3-486fc6f6bb56-k2fnmm.png" alt="Budibase.png"></p>
+<p><strong>When does Budibase make sense for client projects?</strong></p>
+<p>In real-world client delivery scenarios, Budibase is typically a good fit for the following types of projects.</p>
+<p><strong>1.Low- to medium-complexity data management systems</strong></p>
+<p>When a project primarily involves data entry, querying, basic updates, and status tracking, and the underlying data relationships are relatively simple, Budibase can be delivered efficiently with minimal setup.</p>
+<p><img src="https://static-docs.nocobase.com/b80cc4d9-2b74-4cd4-97e6-e976202255d8-v60vra.png" alt="databases.png"></p>
+<p><strong>2.Projects with tight delivery timelines</strong></p>
+<p>Budibase’s configuration model and ready-to-use UI components make it well suited for projects where <strong>time-to-first-version</strong> is the main constraint.</p>
+<p><img src="https://static-docs.nocobase.com/f2ab748d-4e8e-4f3f-981f-cbd4ab7dab31-qmix9k.png" alt="UI components.png"></p>
+<p><strong>3.Applications built on existing databases or table schemas</strong></p>
+<p>If a client already has a well-defined database or table schema, Budibase can be layered directly on top of it to build application interfaces.</p>
+<p><strong>Typical client systems built with Budibase</strong></p>
+<p>In practice, Budibase is commonly used to deliver:</p>
+<ul>
+<li>Simple CRM or customer information management systems</li>
+<li>Internal data entry and management tools</li>
+<li>Lightweight approval or status-tracking applications</li>
+<li>Operational tools used by business or operations teams</li>
+</ul>
+<p>What these systems have in common is a focus on <strong>straightforward data operations and UI efficiency</strong>, with relatively flat data models, limited workflow and permission complexity, and <strong>modest requirements for long-term extensibility</strong>.</p>
+<h2 id="en-7">NocoDB</h2>
+<p><strong>Website:</strong><a href="https://nocodb.com/">https://nocodb.com/</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></p>
+<p><strong>GitHub stars:</strong> 59.2k</p>
+<p>NocoDB is an open-source, self-hosted no-code platform designed to turn relational databases into <strong>Airtable-style visual tables</strong>, with a strong emphasis on data access, collaboration, and spreadsheet-like interaction.</p>
+<p>From a <strong>client project delivery</strong> perspective, NocoDB functions primarily as a <strong>database visualization and collaboration layer</strong>. It excels at making structured data more accessible, but intentionally keeps business logic and process complexity to a minimum.</p>
+<p><img src="https://static-docs.nocobase.com/6322e1f7-36dc-4263-adec-a139784ce851-39wkzj.png" alt="NocoDB.png"></p>
+<p><strong>When does NocoDB make sense for client projects?</strong></p>
+<p>In real-world client delivery scenarios, NocoDB is best suited for a relatively narrow, table-centric set of use cases.</p>
+<p><strong>1.Spreadsheet-driven data management</strong></p>
+<p>When a client’s core requirement is still collaborative, spreadsheet-style data work, but with better access control and deployment flexibility than Excel or Google Sheets, NocoDB can be delivered quickly with minimal overhead.</p>
+<p><strong>2.Clients explicitly seeking an open-source Airtable alternative</strong></p>
+<p>For teams that want to avoid SaaS products and prefer a self-hosted, open-source alternative to Airtable, NocoDB is a direct and intuitive choice.</p>
+<p><strong>3.Projects with stable and simple data structures</strong></p>
+<p>If table schemas are largely fixed and there is little need for complex relationships or evolving business logic, NocoDB is a practical option.</p>
+<p>It supports external databases such as MySQL and PostgreSQL, making it suitable for exposing existing data in a more user-friendly format without restructuring the underlying schema.</p>
+<p><img src="https://static-docs.nocobase.com/5ee128e4-bb07-41cb-9321-e1c32bca7b08-vvsw2p.png" alt="MySQL and PostgreSQL.png"></p>
+<p><strong>Typical client systems built with NocoDB</strong></p>
+<p>In practice, NocoDB is commonly used to deliver:</p>
+<ul>
+<li>Excel or Airtable replacements</li>
+<li>Simple customer, inventory, or asset records</li>
+<li>Data entry and sharing tables</li>
+<li>Spreadsheet-centric internal collaboration tools</li>
+</ul>
+<p>What these systems have in common is a strong focus on <strong>table-based operations</strong>, with lightweight business logic and <strong>limited requirements for workflows, permissions, and long-term extensibility</strong>.</p>
+<h2 id="en-8">ToolJet</h2>
+<p><strong>Website:</strong><a href="https://www.tooljet.com/">https://www.tooljet.com/</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/ToolJet/ToolJet">https://github.com/ToolJet/ToolJet</a></p>
+<p><strong>GitHub stars:</strong> 37.1k</p>
+<p>ToolJet is an open-source, self-hosted low-code platform that combines <strong>AI-assisted app generation</strong>, a <strong>visual builder</strong>, and integrations with databases and APIs. It allows teams to bootstrap applications using natural language prompts and then refine them through visual configuration.</p>
+<p>From a <strong>client project delivery</strong> perspective, ToolJet blends visual low-code development with fast, prompt-based scaffolding. Its strengths lie in <strong>rapid prototyping and internal business tools</strong>, rather than serving as a foundation for complex, long-lived business systems.</p>
+<p><img src="https://static-docs.nocobase.com/941b14d2-d59e-4940-8255-bde5298e7864-43c3vd.png" alt="ToolJet.png"></p>
+<p><strong>When does ToolJet make sense for client projects?</strong></p>
+<p>In real-world client delivery scenarios, ToolJet is most effective in the following situations.</p>
+<p><strong>1.Projects that require rapid prototyping from requirements</strong></p>
+<p>ToolJet allows teams to describe requirements in natural language and generate an initial application structure. This makes it well suited for quickly producing prototypes, demos, or early-stage versions of client applications.</p>
+<p>ToolJet can significantly shorten the path from idea to working interface.</p>
+<p><img src="https://static-docs.nocobase.com/a5e5b76b-a8dd-42dd-9fab-56120d8adbf7-sxzn7k.png" alt="describe requirements.png"></p>
+<p><strong>2.Data-integration-driven internal tools</strong></p>
+<p>When the primary goal is to consolidate data from databases, APIs, or existing business systems into dashboards, admin panels, or operational interfaces, ToolJet’s visual builder and data connectors help reduce development effort.</p>
+<p><strong>3.Business logic with simple workflows or automation</strong></p>
+<p>ToolJet supports event triggers, basic workflow steps, and lightweight automation logic. This is sufficient for straightforward business process automation, such as form submissions, status updates, or simple approval actions.</p>
+<p><strong>Typical client tools built with ToolJet</strong></p>
+<p>In practice, ToolJet is commonly used to deliver:</p>
+<ul>
+<li>Internal management or operations tools</li>
+<li>Data querying and editing backends</li>
+<li>Simple business operation interfaces</li>
+<li>API-driven management panels</li>
+</ul>
+<p>What these tools have in common is a strong focus on <strong>UI efficiency and fast iteration</strong>, with limited reliance on system-level data modeling, complex workflows, or advanced permission control.</p>
+<h2 id="en-9">Directus</h2>
+<p><strong>Website:</strong><a href="https://directus.io/">https://directus.io/</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p><strong>GitHub stars:</strong> 33.7k</p>
+<p>Directus is an open-source, self-hosted <strong>headless data platform</strong> that sits on top of existing databases to provide unified data access, fine-grained permission control, and auto-generated APIs. It is commonly used as a <strong>Headless CMS</strong> or a centralized data service layer.</p>
+<p>From a <strong>client project delivery</strong> perspective, Directus is best understood as a <strong>data and content management layer</strong>, rather than a full application framework responsible for UI, workflows, or end-to-end business processes.</p>
+<p><img src="https://static-docs.nocobase.com/ea9cced2-111f-43a8-980c-c016e998457a-d0zdlr.png" alt="Directus.png"></p>
+<p><strong>When does Directus make sense for client projects?</strong></p>
+<p>In real-world client delivery scenarios, Directus is a strong fit for projects where <strong>data structure, access control, and API consistency</strong> are the primary concerns.</p>
+<p><strong>1.Content- or data-centric projects</strong></p>
+<p>When the core focus of a project is managing content structures, defining data schemas, and exposing clean APIs to multiple consumers, Directus is a natural choice.</p>
+<p><img src="https://static-docs.nocobase.com/a60780f9-605b-4319-821e-7f2f7f39e354-pwclss.png" alt="managing content.png"></p>
+<p><strong>2.Projects requiring stable data models and strict access control</strong></p>
+<p>Directus offers robust, data-level permission management and automatic API generation, making it well suited for environments with strict governance, compliance, or data access requirements.</p>
+<p><strong>3.Acting as a data backbone or backend service</strong></p>
+<p>In many client projects, Directus is most effective when positioned as a <strong>foundational data service</strong>, rather than the application layer itself.</p>
+<p><strong>Typical client systems built with Directus</strong></p>
+<p>In practice, Directus is commonly used to deliver:</p>
+<ul>
+<li>Headless CMS and content management systems</li>
+<li>Data management and distribution platforms</li>
+<li>Backend service layers for frontend applications</li>
+<li>Shared data platforms used across multiple applications</li>
+</ul>
+<p>What these systems have in common is a strong emphasis on <strong>data structure, access control, and API reliability</strong>, with relatively limited focus on business workflows, UI interactions, or application-layer process orchestration.</p>
+<h2 id="en-10">Summary</h2>
+<p>Each open-source no-code platform excels in <strong>different client delivery scenarios</strong>. The key is not which tool is “better,” but <strong>which layer of the system you are actually building</strong>.</p>
+<ul>
+<li><strong>Appsmith</strong>, <strong>ToolJet</strong>, and <strong>Budibase</strong></li>
+</ul>
+<p>These tools focus primarily on the <strong>application and tooling layer</strong>. They are well suited for rapidly building internal tools, admin panels, and operational interfaces, offering fast delivery at the cost of limited system depth and long-term extensibility.</p>
+<ul>
+<li><strong>NocoDB</strong></li>
+</ul>
+<p>NocoDB functions essentially as a <strong>spreadsheet collaboration and database visualization tool</strong>. It is a strong replacement for Excel or Airtable when teams want better control and self-hosting, but it is not designed for complex business systems.</p>
+<ul>
+<li><strong>Directus</strong></li>
+</ul>
+<p>Directus operates as <strong>data and content infrastructure</strong>. It is commonly used as a backend service or a centralized data layer, especially when data governance and API consistency are the primary concerns.</p>
+<ul>
+<li><strong>NocoBase</strong></li>
+</ul>
+<p>NocoBase is closer to an <strong>extensible business system foundation</strong>. It is particularly well suited for client projects with continuously evolving requirements, complex data relationships, and permissions and workflows at the core of the system.</p>
+<p>In the end, the best tool is the one that fits the <strong>delivery scenario, system boundaries, and long-term responsibility</strong> of your project.</p>
+<p>❤️ Thanks for reading to the end. If you found this article useful, feel free to share it with others who build and deliver real client systems.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">How to Quickly Build a Real System to Replace Excel: A Complete Guide</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">Top 5 Open-Source AI Internal Tools on GitHub</a></li>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">The 8 Best Google Sheets Alternatives (Specs &amp; Pricing)</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6 Open-Source No/Low-Code Tools for Building PoCs</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">A Developer’s Technical Decision Guide to No-Code and Low-Code (2026)</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 In-Depth Comparison of RBAC in Enterprise-Grade No-Code/Low-Code Platforms</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">14 AI-Powered Low-Code Platforms on GitHub Worth Watching</a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">Top 11 Open Source No-Code AI Tools with the Most GitHub Stars </a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">写在开头</a><a href="#zh-2">外包项目 vs 公司内部项目：本质区别在哪？</a><a href="#zh-3">外包交付视角下的核心维度对比</a><a href="#zh-4">NocoBase</a><a href="#zh-5">Appsmith</a><a href="#zh-6">Budibase</a><a href="#zh-7">NocoDB</a><a href="#zh-8">ToolJet</a><a href="#zh-9">Directus</a><a href="#zh-10">总结</a></div><div class="en-only"><a href="#en-1">At the start</a><a href="#en-2">Client Projects vs. Internal Projects</a><a href="#en-3">Key Comparison Dimensions for Client Project Delivery</a><a href="#en-4">NocoBase</a><a href="#en-5">Appsmith</a><a href="#en-6">Budibase</a><a href="#en-7">NocoDB</a><a href="#en-8">ToolJet</a><a href="#en-9">Directus</a><a href="#en-10">Summary</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="两个商业插件改为开源插件 — NocoBase" data-en="Two Commercial Plugins Are Now Open Source — NocoBase">两个商业插件改为开源插件 — NocoBase</title>
+<meta name="description" content="说明开源原因、插件功能，以及对已购买用户的调整。" data-zh="说明开源原因、插件功能，以及对已购买用户的调整。" data-en="Covers the reasons behind the open-sourcing, the plugin capabilities, and the adjustments for existing customers.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>最新动态</t-zh><t-en>News &amp; Updates</t-en></p>
+    <h1><t-zh>两个商业插件改为开源插件</t-zh><t-en>Two Commercial Plugins Are Now Open Source</t-en></h1>
+    <p class="lede"><t-zh>说明开源原因、插件功能，以及对已购买用户的调整。</t-zh><t-en>Covers the reasons behind the open-sourcing, the plugin capabilities, and the adjustments for existing customers.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>最新动态</t-zh><t-en>News &amp; Updates</t-en></span><span><t-zh>2025年11月19日</t-zh><t-en>Nov 19, 2025</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(5)-b38hws.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>根据用户反馈，我们决定将两款商业工作流插件调整为开源插件：</p>
+<ul>
+<li><a href="https://docs-cn.nocobase.com/handbook/workflow-json-query">JSON 计算</a></li>
+<li><a href="https://docs-cn.nocobase.com/handbook/workflow-json-variable-mapping">JSON 变量映射</a></li>
+</ul>
+<h2 id="zh-1">为什么开源？</h2>
+<p>这两款插件在工作流里非常常用，并且通常是 SQL 、HTTP 请求等节点的下游必备节点。作为商业插件，它们经常阻断社区版用户使用 HTTP 请求节点，带来不好的体验。因此我们决定将它们改为开源插件。</p>
+<h2 id="zh-2">插件简介</h2>
+<h3><strong>JSON 计算</strong></h3>
+<p>用于对上游节点产生的复杂 JSON 数据进行计算、提取或结构转换。</p>
+<p>典型场景包括：</p>
+<ul>
+<li>SQL 查询的结果</li>
+<li>HTTP 请求返回的数据</li>
+</ul>
+<p>都可以通过该节点转换成你后续节点需要的变量格式或字段值。</p>
+<h3><strong>JSON 变量映射</strong></h3>
+<p>用于将上游节点中的复杂 JSON 结构映射为需要的变量形态。</p>
+<p>典型场景包括：</p>
+<ul>
+<li>从 API/SQL 返回的嵌套 JSON 里提取关键字段</li>
+<li>调整字段名称、数组结构</li>
+<li>为后续节点准备好更易用的变量</li>
+</ul>
+<p>有了它，你无需在每个节点重复配置复杂的字段路径。</p>
+<h2 id="zh-3">已购买用户的调整</h2>
+<p>已购用户的权益不会受影响，我们会按规则退还对应插件点数：</p>
+<ul>
+<li>永久使用, 1 年升级 退还 <strong>2 个点数</strong></li>
+<li>永久使用和升级 退还 <strong>4 个点数</strong></li>
+</ul>
+<p>以上调整的解释权归 NocoBase 母公司所有。已经购买或兑换了这两款商业插件的用户，赠送权益将在 2025 年 11 月 23 日之前调整完成。</p>
+<h2 id="zh-4">最后</h2>
+<p>感谢每一位 NocoBase 用户和开源贡献者。你们的需求、反馈和 Issue 推动我们不断迭代。未来我们会继续加快开发节奏，为大家提供更强的能力和更友好的价格。</p></div><div class="prose en-only"><p>Based on user feedback, we decided to make two commercial workflow plugins open-source:</p>
+<ul>
+<li><a href="https://v2.docs.nocobase.com/workflow/nodes/json-query">JSON Calculation</a></li>
+<li><a href="https://v2.docs.nocobase.com/workflow/nodes/json-variable-mapping">JSON Variable Mapping</a></li>
+</ul>
+<h2 id="en-1">Why open source?</h2>
+<p>These plugins are among the most frequently used in workflows and are often required after SQL or HTTP Request nodes. When they were commercial plugins, community-edition users were unable to fully use the HTTP Request node, which created a poor experience. That is why we are making them open-source.</p>
+<h2 id="en-2">Plugin overview</h2>
+<h3>JSON Calculation</h3>
+<p>Handles complex JSON produced by upstream nodes, allowing you to compute, extract, or reshape the data.</p>
+<p>Common use cases include:</p>
+<ul>
+<li>SQL query results</li>
+<li>Data returned from HTTP requests  It helps convert these outputs into the variable formats and field values needed by downstream nodes.</li>
+</ul>
+<h3>JSON Variable Mapping</h3>
+<p>Maps complex JSON structures into variables that are easier to use in later workflow steps.</p>
+<p>Common use cases include:</p>
+<ul>
+<li>Extracting key fields from nested JSON returned by APIs or SQL</li>
+<li>Renaming fields or adjusting array structures</li>
+<li>Preparing cleaner variables for subsequent nodes</li>
+</ul>
+<p>With this plugin, you avoid repeatedly configuring deep field paths in every node.</p>
+<h2 id="en-3">Adjustments for existing customers</h2>
+<p>Your entitlements will remain unchanged. We will refund plugin points as follows:</p>
+<ul>
+<li><em>Lifetime use, 1-year upgrade</em> → 2 points</li>
+<li><em>Lifetime use &amp; upgrade</em> → 4 points</li>
+</ul>
+<p>These adjustments will be completed for all existing customers by November 23, 2025, and NocoBase’s parent company will provide the final interpretation.</p>
+<h2 id="en-4">In closing</h2>
+<p>Thank you to all NocoBase users and open-source contributors. Your feedback and issues help us improve with every release. We will continue to move faster and deliver stronger capabilities at a more friendly price.</p></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">为什么开源？</a><a href="#zh-2">插件简介</a><a href="#zh-3">已购买用户的调整</a><a href="#zh-4">最后</a></div><div class="en-only"><a href="#en-1">Why open source?</a><a href="#en-2">Plugin overview</a><a href="#en-3">Adjustments for existing customers</a><a href="#en-4">In closing</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-powered-ticketing-built-with-nocobase-2-0.html" data-tags="News_&_Updates"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%8D%9A%E5%AE%A2%E5%B0%81%E9%9D%A2%20(2)-ix82wc.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>最新动态</t-zh><t-en>News &amp; Updates</t-en></span><span><t-zh>2026年1月8日</t-zh><t-en>Jan 8, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>基于 NocoBase 2.0 构建的智能工单系统</t-zh><t-en>AI-Powered Ticketing Built with NocoBase 2.0</t-en></h3><p><t-zh>当现成工单系统无法满足变化，这是一种更可扩展的 AI 工单方案。</t-zh><t-en>A more extensible AI ticketing solution when off-the-shelf systems fall short.</t-en></p></a><a class="bcard" href="../blog/crm-solution.html" data-tags="News_&_Updates"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%B0%81%E9%9D%A2-ktudoe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>最新动态</t-zh><t-en>News &amp; Updates</t-en></span><span><t-zh>2025年7月15日</t-zh><t-en>Jul 15, 2025</t-en></span><span><t-zh>Albert Ma, Deng lijia</t-zh><t-en>Albert Ma, Deng lijia</t-en></span></div><h3><t-zh>NocoBase CRM 解决方案正式上线！欢迎体验</t-zh><t-en>NocoBase CRM Solution is Now Live — Ready for You to Explore</t-en></h3><p><t-zh>依托开源无代码的平台特性，NocoBase CRM 解决方案整合客户管理、流程审批等核心功能，支持插件扩展，可直接复制至自有环境，为业务适配提供灵活选择。</t-zh><t-en>Leveraging the features of an open-source no-code platform, the NocoBase CRM solution integrates core functions such as customer management and process approval. It supports plugin expansion, can be directly copied to one's own environment, and provides flexible options for business adaptation.</t-en></p></a><a class="bcard" href="../blog/pricing-adjustment.html" data-tags="News_&_Updates"><span class="cv"><img src="https://static-docs.nocobase.com/2c6d8546a08c884f1d0ea607e0ff024a.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>最新动态</t-zh><t-en>News &amp; Updates</t-en></span><span><t-zh>2025年4月1日</t-zh><t-en>Apr 1, 2025</t-en></span><span><t-zh>NocoBase Team</t-zh><t-en>NocoBase Team</t-en></span></div><h3><t-zh>NocoBase 定价调整</t-zh><t-en>NocoBase Pricing adjustment</t-en></h3><p><t-zh>对商业插件、商业插件包及商业版本权益进行定价调整，并为已购用户提供免费调整服务。</t-zh><t-en>We have adjusted the pricing for commercial plugins, commercial plugin bundles, and commercial editions benefits. Additionally, we offer free adjustments for users who have already made purchases.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

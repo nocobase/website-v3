@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="完全指南：如何高效进行业务应用开发？ — NocoBase" data-en="Complete Guide to Efficient Business Application Development — NocoBase">完全指南：如何高效进行业务应用开发？ — NocoBase</title>
+<meta name="description" content="了解如何通过 NocoBase 的无代码（零代码）平台简化业务应用开发。本文涵盖了从业务需求定义到工作流程自动化及安全管理的关键策略，帮助企业构建灵活、可扩展的应用。" data-zh="了解如何通过 NocoBase 的无代码（零代码）平台简化业务应用开发。本文涵盖了从业务需求定义到工作流程自动化及安全管理的关键策略，帮助企业构建灵活、可扩展的应用。" data-en="Learn how to streamline business application development with NocoBase&#x27;s no-code platform. This guide covers key strategies for building scalable, flexible applications, from defining business requirements to automating workflows and managing security.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>完全指南：如何高效进行业务应用开发？</t-zh><t-en>Complete Guide to Efficient Business Application Development</t-en></h1>
+    <p class="lede"><t-zh>了解如何通过 NocoBase 的无代码（零代码）平台简化业务应用开发。本文涵盖了从业务需求定义到工作流程自动化及安全管理的关键策略，帮助企业构建灵活、可扩展的应用。</t-zh><t-en>Learn how to streamline business application development with NocoBase's no-code platform. This guide covers key strategies for building scalable, flexible applications, from defining business requirements to automating workflows and managing security.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年10月16日</t-zh><t-en>Oct 16, 2024</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/4e8e7a7de8f44284340be48cc42450d4.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p><strong>❤️ 温馨提醒</strong></p>
+<p>本篇文章较长，你可以根据目录选择最感兴趣的部分阅读。当然，我相信如果你全部阅读完，一定会有不少的收获。</p>
+<p><img src="https://static-docs.nocobase.com/2df2bb7c1d34d9956a61a5941b66b09e.jpg" alt="Business Application Development.jpg"></p>
+<h2 id="zh-1">引言</h2>
+<p>企业对业务应用开发的需求正在日益增长。</p>
+<p>据 Gartner 统计，全球企业软件市场预计将在 2025 年达到 5000 亿美元。<strong>然而，尽管需求旺盛，很多企业在开发业务应用时却面临着效率低下的问题。</strong></p>
+<p><img src="https://static-docs.nocobase.com/c117ca38cf47081531934efe71be8c91.PNG" alt="CHAOS Report.PNG"></p>
+<p>根据 Standish Group 发布的 <strong><a href="https://www.csus.edu/indiv/v/velianitis/161/chaosreport.pdf">CHAOS Report</a></strong> 显示，<strong>超过 60% 的IT项目无法按时交付，近 50% 的项目超出预算。</strong></p>
+<p>这些挑战常常源于传统开发模式的复杂性：开发周期过长、对专业开发技能的依赖以及不断攀升的开发成本。</p>
+<p>企业需要更快、更高效地响应业务需求，但现实情况是，面对技术门槛和资源限制，许多企业难以快速推出能够满足市场需求的业务应用。</p>
+<p>这个痛点在中小型企业中尤为突出，因为他们往往没有足够的资源组建庞大的开发团队。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2">无代码（零代码）与低代码能加速业务应用开发吗？</h2>
+<p>在这样的背景下，低代码和无代码（零代码）开发平台为解决这一难题提供了新的思路。</p>
+<p>通过提供直观的开发环境，让企业无需复杂的编程，即可快速、高效地构建和部署定制化的业务应用。这不仅缩短了开发周期，还显著降低了开发成本，让企业能够更灵活地应对市场变化。</p>
+<p>然而低代码和无代码（零代码）就是完美答案吗？现实告诉我们并非如此。</p>
+<p>依然是根据 Gartner 的研究，虽然低代码开发的生产力提高了，但部分用户仍对其持怀疑态度，尤其是在复杂业务逻辑和系统集成的场景中。</p>
+<p>一些用户认为，低代码/无代码（零代码）平台虽然适合快速原型设计或简单应用，<strong>但对于大规模、复杂业务系统的开发，可能无法完全替代传统开发方法。</strong></p>
+<p>一位低代码平台用户在社区中分享：“虽然无代码平台让我们快速构建了应用，但后期维护和扩展变得困难，特别是在面对不断变化的需求时，灵活性似乎不足。”</p>
+<p><img src="https://static-docs.nocobase.com/d6655d1a2105187e09457fc2a199b080.PNG" alt="hackernews.PNG"></p>
+<p>此外，低代码/无代码（零代码）平台的定制化能力也是企业关注的一个痛点。根据 2021 年 OutSystems 的报<strong>告</strong>，<strong>53%的开发人员担心低代码平台无法处理复杂的业务流程，43%的人认为这些平台在可扩展性方面存在局限。</strong></p>
+<p>这表明，虽然低代码/无代码（零代码）平台可以有效降低开发门槛，但其在复杂场景下的表现往往让开发者感到困扰。许多用户提到低代码工具虽然<strong>易于上手，但在集成外部系统或处理复杂的业务逻辑时，面临很多制约。</strong></p>
+<h2 id="zh-3">NocoBase 对此的思考</h2>
+<p>许多无代码（零代码）/低代码平台在快速构建应用方面表现不俗，尤其在原型设计和简单应用开发中能够大大缩短开发时间。然而，当企业面临更复杂的业务需求、系统集成问题以及高度定制化要求时，现有平台往往显得力不从心。</p>
+<p>NocoBase 在产品设计过程中深刻认识到这些挑战。<strong>我们不仅思考如何帮助用户快速开发应用，更着眼于如何让平台应对复杂的业务场景和持续增长的定制需求。</strong></p>
+<p>🙌 上手实践：<a href="https://www.nocobase.com/cn/tutorials/task-tutorial-introduction">NocoBase 实战教程 —— 任务管理系统</a></p>
+<p>无代码（零代码）/低代码平台必须具备更强的灵活性、可扩展性和可集成性，才能真正支持企业从简单应用到复杂系统的全面发展。因此，NocoBase从一开始就基于以下几个核心理念进行设计，确保平台能够满足各种业务场景下的需求：</p>
+<p><strong>灵活的数据模型驱动</strong></p>
+<p><img src="https://static-docs.nocobase.com/775859b52b61455ef8f2856dd4838401.PNG" alt="Flexible Data Model-Driven Design.PNG"></p>
+<p>在处理复杂的业务流程和数据结构时，许多低代码平台常常受到框架限制，难以灵活调整。NocoBase采用了<strong>数据模型驱动</strong>的设计理念，允许用户根据具体的业务需求灵活构建和调整数据模型。</p>
+<p>💡 阅读更多：<a href="../blog/how-to-create-a-good-data-model.html">如何创建良好的数据模型？</a></p>
+<p>无论是构建简单的客户管理系统，还是需要处理复杂数据关联的业务场景，NocoBase都能够为用户提供充足的灵活性。</p>
+<p><strong>插件化架构与高度可扩展性</strong></p>
+<p><img src="https://static-docs.nocobase.com/528fbfeb4656d12f5709d2c9ea84365c.PNG" alt="Microkernel architecture and High Scalability.PNG"></p>
+<p>NocoBase 的另一个亮点在于其<strong>插件化架构</strong>。这意味着用户可以根据需求选择和添加功能模块，避免了传统平台中一刀切的设计。这不仅提高了系统的可扩展性，还能够根据业务发展灵活扩展应用程序功能，无论是集成第三方系统，还是自定义业务流程，NocoBase 都能够以插件的形式快速实现。</p>
+<p>💡 阅读更多：<a href="../blog/low-code-no-code-integration.html">无代码（零代码）/低代码平台集成能力深度分析</a></p>
+<p>插件化的设计降低了模块之间的耦合度，提高了复用率。随着插件库的不断扩充，常见的场景只需要组合插件即可完成基础搭建。</p>
+<p><strong>强大的自动化工作流程</strong></p>
+<p><img src="https://static-docs.nocobase.com/c50c9fe8b9413e7e2421535656c91f19.png" alt="Workflow Automation.png"></p>
+<p>NocoBase 通过内置的<strong>工作流</strong>，使得业务流程自动化变得更加简单。用户无需编写复杂的代码即可轻松创建和管理自动化流程，从而大幅减少手动操作的工作量，提高工作效率。无论是审批流程的自动化，还是数据更新和通知的自动化，NocoBase 都可以快速设置并自动执行，帮助企业节省时间和人力成本。</p>
+<p>💡 阅读更多：<a href="../blog/workflow-automation-tools.html">构建工作流自动化的 5 个最佳工具</a></p>
+<p><strong>复杂系统集成能力</strong></p>
+<p><img src="https://static-docs.nocobase.com/581e9b1ae51eda78a41cfbf575530a65.png" alt="Advanced System Integration Capabilities.png"></p>
+<p>NocoBase 不仅适用于简单的业务应用，还具备处理复杂业务逻辑和系统集成的能力。通过开放的 API 接口和灵活的插件机制，NocoBase 可以与其他企业系统无缝集成，如 ERP、CRM 等，帮助企业实现数据的无缝流转。这解决了许多企业在选择低代码平台时最担心的问题：如何在不牺牲系统灵活性和可扩展性的前提下，快速完成开发。</p>
+<p><strong>开源与社区支持</strong></p>
+<p><img src="https://static-docs.nocobase.com/1c11db00edd2fed947706d6a2763fbfd.png" alt="Open-Source and Community Support.png"></p>
+<p>除了技术上的灵活性与强大功能，NocoBase 坚持<a href="https://github.com/nocobase/nocobase">开源</a>。开源不仅意味着透明性和可控性，更为企业和开发者提供了高度的自主权。通过开源，用户能够完全掌握代码和数据，避免厂商锁定的问题。NocoBase 的开源架构还支持用户进行二次开发和深度定制，确保每个企业都能根据自身需求灵活调整平台功能。</p>
+<p>与此同时，NocoBase 拥有活跃的<a href="https://forum.nocobase.com/">开源社区</a>，用户和开发者可以在社区中获取支持、分享经验并共同推动平台的发展，这进一步提升了平台的可持续性与可靠性。</p>
+<h2 id="zh-4">使用 <strong>NocoBase 快速开发业务应用</strong></h2>
+<p>下面就请让我为你展示，如何使用 NocoBase 快速开发灵活、可扩展的业务应用。</p>
+<h3><strong>定义业务需求</strong></h3>
+<p>在开始开发任何业务应用之前，明确业务需求是至关重要的步骤。</p>
+<p>清晰的需求定义不仅可以避免后期的返工和调整，还能帮助开发团队保持方向一致，确保应用能够有效解决实际业务问题。</p>
+<p>💡 阅读更多：<a href="../blog/low-code-no-code-crm-builder.html">在数小时内构建 CRM：你需要了解的顶级无代码（零代码）/低代码工具</a></p>
+<p>以构建一个客户关系管理系统（CRM）为例：</p>
+<p><img src="https://static-docs.nocobase.com/23a1d9f6d0ba50cae0964ef117d36f59.png" alt="Customer Relationship Management CRM.png"></p>
+<h4><strong>第一步，明确目标</strong></h4>
+<p>在开发 CRM 系统之前，首先要明确这个系统的核心目标。你需要思考它主要是用于解决什么问题。例如，CRM 的主要目标可能是帮助企业更好地管理客户信息、跟踪销售线索、提升客户互动并优化销售流程。这个目标可以进一步细化为：</p>
+<ul>
+<li>提高客户数据的管理效率</li>
+<li>增强销售团队对潜在客户的跟进能力</li>
+<li>提供数据分析工具，帮助决策者洞察客户行为</li>
+<li>促进跨部门协作，确保营销、销售和客户服务部门的数据共享</li>
+</ul>
+<p>明确这些目标，有助于后续的功能设计和开发工作围绕具体的业务需求展开。</p>
+<h4><strong>第二步，列出核心功能模块</strong></h4>
+<p>为了实现 CRM 的主要目标，接下来需要确定应用程序的关键功能模块。对于一个标准的CRM系统，通常包括以下核心功能：</p>
+<ul>
+<li><strong>客户管理</strong>：用于存储和管理客户的基本信息，如联系方式、公司信息、历史购买记录等。</li>
+<li><strong>销售线索跟踪</strong>：帮助销售团队跟踪潜在客户（Leads）的进展状态，从初步接触到成交或失效。</li>
+<li><strong>任务管理</strong>：支持团队成员设置和跟踪与客户相关的任务，如安排会议、发送邮件等。</li>
+<li><strong>活动记录</strong>：记录与每个客户的所有互动，如电话、会议、电子邮件沟通记录等，确保团队成员能掌握客户的完整历史。</li>
+<li><strong>报告与分析</strong>：提供数据分析工具，生成客户行为、销售业绩等报表，帮助管理者做出更明智的决策。</li>
+<li><strong>客户服务模块</strong>：支持客户提交问题工单，并由客服人员进行跟进处理，提升客户满意度。</li>
+<li><strong>附加功能</strong>：根据企业的具体需求，还可以加入额外的功能模块，如：<ul>
+<li><strong>自动化营销工具</strong>：自动发送营销邮件、提醒销售人员进行客户跟进等。</li>
+<li><strong>集成其他系统</strong>：例如与财务系统集成，自动生成发票；或与邮件系统集成，直接从 CRM 发送和接收电子邮件。</li>
+</ul>
+</li>
+</ul>
+<h4><strong>第三步，分析业务流程</strong></h4>
+<p>一个成功的CRM系统需要紧密结合企业的实际业务流程。以销售为例，可以将客户的生命周期分为几个阶段，并为每个阶段设计适当的流程。例如：</p>
+<ul>
+<li><strong>潜在客户获取</strong>：企业通过市场营销活动或社交媒体获取潜在客户的信息，自动录入 CRM。</li>
+<li><strong>销售跟进</strong>：销售团队根据潜在客户的进展情况分配跟进任务，如预约电话、安排演示等。</li>
+<li><strong>成交与合同管理</strong>：一旦客户同意购买，系统将自动生成合同，并通知财务部门处理后续步骤。</li>
+<li><strong>客户服务和维护</strong>：成交后的客户服务由客服团队处理，所有相关工单和互动记录也会存储在 CRM 中。</li>
+</ul>
+<p><strong>优化流程设计</strong>：通过 CRM 自动化部分流程，可以减少手动操作的时间。例如，潜在客户进入系统后，CRM 可以自动分配给销售团队成员并发送提醒，或者根据客户的行为触发自动化营销流程（如发送个性化邮件）。这种自动化的工作流设计能大幅提升工作效率。</p>
+<p>以上便是以 CRM 为例进行的业务需求分析步骤。你在搭建其他业务应用时，也可以参考这个三个核心步骤来进行分析，帮助你更好的细化需求。</p>
+<p><img src="https://static-docs.nocobase.com/4db9842e6f5809514987eb899bf3e941.png" alt="三个核心步骤.png"></p>
+<h3><strong>设计数据模型</strong></h3>
+<p>在明确了业务需求后，接下来我们正式进入系统搭建的关键步骤——<strong>设计数据模型</strong>。在 NocoBase 中，数据模型是应用程序的核心基础，决定了系统如何存储、组织和管理数据。通过构建合理的数据模型，应用程序可以实现高效的数据处理和灵活的功能扩展。</p>
+<h4><strong>构建数据模型</strong></h4>
+<p>在 NocoBase 中，<a href="https://docs-cn.nocobase.com/handbook/data-modeling">构建数据模型</a>的过程十分直观，用户可以根据业务需求定义不同的实体和它们之间的关系。实体是数据的基本组成部分，例如客户（Customer）、订单（Order）、产品（Product）等。在构建过程中，从业务场景的实际需求出发，设计出既能满足当前需求，又有足够灵活性应对未来扩展的数据结构。</p>
+<p><img src="https://static-docs.nocobase.com/cd111713bc0c07708a83ae3e40b94057.png" alt="Data Model.png"></p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>在一个 CRM 系统中，典型的实体包括客户、销售机会、合同、支持请求等。</li>
+<li>你可以使用 NocoBase 的可视化界面，通过拖拽来创建这些实体，并定义它们的属性。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ac2b5a5d4b80b86a6bdf303f776726f5.png" alt="visual interface.png"></p>
+<h4><strong>定义字段和数据关系</strong></h4>
+<p>在为每个实体添加字段时，需要确保这些字段能够涵盖所有必要的信息。例如，客户实体中的字段可以包括客户姓名、联系方式、公司信息等。每个字段应该根据实际数据类型进行设置，如文本、数字、日期、布尔值等。</p>
+<p><img src="https://static-docs.nocobase.com/3646b19d741e506b7d15e03ec5c82b4d.png" alt="Defining Fields and Data Relationships.png"></p>
+<p>在数据模型设计中，实体之间的关系同样至关重要。你可以通过 NocoBase 的<a href="https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/associations">关系字段</a>，定义实体之间的关联关系，例如：</p>
+<ul>
+<li><a href="https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/associations/o2m">一对多（One-to-Many）</a>：在 CRM 中一个客户可能有多个订单。截图展示的是班级和学生的关系，一个班级可以有多个学生，但一个学生只能属于一个班级。这种情况下，班级和学生之间就是一对多关系。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ee587bb9a3e7c05f5915a37eb78e6e33.png" alt="One-to-Many.png"></p>
+<ul>
+<li><a href="https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/associations/m2m">多对多（Many-to-Many）</a>：同样，一个产品可能出现在多个订单中，一个订单可能包含多个产品。截图展示的是在选课系统中，有学生和课程两个实体，一个学生可以选修多门课程，一门课程也可以有多个学生选修，这就构成了多对多的关系。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/83ce063092a73012a814f65475ff4dc0.png" alt="Many-to-Many.png"></p>
+<p>通过合理地定义这些关系，确保数据在不同实体之间能够灵活流动，并确保应用能够有效支持各类复杂的业务场景。</p>
+<h4><strong>优化数据模型</strong></h4>
+<p>在设计好初步的模型后，建议进一步优化数据结构，确保系统的性能和扩展性。例如，考虑如何通过索引提升查询效率，或者通过冗余设计减少重复数据的存储。在 NocoBase 中，你可以通过简单的配置和插件轻松实现这些优化，确保数据模型在未来需求变化时具备足够的灵活性。</p>
+<p>关于如何优化数据模型，你可以阅读我们的这篇博客：<a href="../blog/how-to-create-a-good-data-model.html">如何创建良好的数据模型？</a></p>
+<h3><strong>配置界面</strong></h3>
+<p>数据模型搭建好之后，我们需要将数据显示在前端界面。得益于 NocoBase “数据结构”与“使用界面”分离的设计，这使得前端界面的设计非常灵活：同一张表、同一条记录可以创建任意数量、任意形态的区块和操作。</p>
+<p>下面让我为你一一展开。</p>
+<h4>设计用户界面</h4>
+<p>NocoBase 提供了所见即的界面设计工具。通过<a href="https://docs-cn.nocobase.com/handbook/ui/blocks">添加区块</a>（跟 Notion 一样），你可以快速构建应用的前端界面，例如表单、数据视图和仪表板。值得一提的是，NocoBase 区块也是由插件提供，这意味着你可以根据自己的需求开发新的区块插件，以满足特殊的展示需求。</p>
+<p><img src="https://static-docs.nocobase.com/58eef206e3374f6bd3f2ea2362e878e1.png" alt="user interface.png"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/ui/blocks/data-blocks/form">表单设计</a>：你可以设计自定义表单，允许用户输入和编辑信息，如客户信息表单、订单录入表单等。通过点击选择字段，轻松配置表单的布局和字段类型。并且表单也支持对外公开访问，这个功能由最新的免费插件支持。</p>
+<p><img src="https://static-docs.nocobase.com/05ae7a10223bc7525e9440e885d89846.png" alt="form.png"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/ui/blocks/data-blocks/table">数据展示</a>：通过NocoBase，用户可以快速创建数据展示视图，将从数据库中检索到的数据以表格、列表或卡片的形式展示出来，方便浏览和管理。例如，客户列表视图可以显示每个客户的基本信息，并提供操作按钮供进一步处理。</p>
+<p><img src="https://static-docs.nocobase.com/d37118a6721dd8ff359a6f5a93c4c0de.png" alt="data views.png"></p>
+<p><img src="https://static-docs.nocobase.com/f2a5dcffe7eb2b0c3982347404666928.png" alt="data views2.png"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/data-visualization/">仪表板（Dashboard）</a>：NocoBase 支持将多种数据和可视化元素集成到仪表板中，帮助用户实时查看关键数据指标。例如，你可以通过图表、进度条和统计模块展示客户数量、订单状态、销售数据等关键信息，从而提供更好的业务洞察。</p>
+<p><img src="https://static-docs.nocobase.com/802c24187b705f30c3e02a55c5765dcd.png" alt="chart.png"></p>
+<p><img src="https://static-docs.nocobase.com/7cc7066aee00f19b1cd5c8e6b5e4f7f7.png" alt="dashboard.png"></p>
+<h4><strong>配置用户交互</strong></h4>
+<p>在设计好界面之后，下一步是<strong>配置用户与应用之间的交互方式</strong>。这包括定义用户如何与表单、按钮、导航栏等元素进行交互，确保用户体验流畅，操作便捷。</p>
+<p>除了这些常规基本操作之外，NocoBase 还支持更复杂的交互，例如：设置不同用户数据可见范围、不同区块之间连接实现筛选联动、配置字段复杂操作等等。</p>
+<p>以下是典型的场景展示：</p>
+<p><strong>表格设置排序规则</strong>：比如我们在 CRM 中将单据按发货日期倒序显示。</p>
+<p><img src="https://static-docs.nocobase.com/cabe970137940c9837d0b0432240cfdf.png" alt="Setting Table Sorting Rules.png"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/ui/blocks/data-blocks/form">表单数据模板</a>：表单数据模板目的是简化数据录入流程，提高录入效率。通过数据范围筛选出一条或一组数据作为模板，选中的目标数据模板将作为表单的默认值填充。例如电商平台需要频繁添加新商品，而这些新商品与现有商品在很多属性上相似或相同。那我们就可以选择一个现有商品作为模板，将其属性信息作为表单数据模板。在新建商品时，用户可以选择应用该模板，从而快速复制模板商品的属性信息到新商品中,提高了新商品录入的效率。</p>
+<p><img src="https://static-docs.nocobase.com/34246fd37237dfeccb7f2eaad9002471.png" alt="Form Data Templates.png"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/ui/actions">按钮点击</a>：定义按钮的行为，例如在用户点击“提交”按钮后，系统将保存表单数据并<a href="https://docs-cn.nocobase.com/handbook/ui/actions/action-settings/bind-workflow">触发相应的业务流程</a>（如生成订单、发送通知等）。你还可以配置不同按钮执行不同的操作，如“保存并继续”或“取消”。</p>
+<p><img src="https://static-docs.nocobase.com/5cd803d3e475e4442249a70cdb4b9e0d.png" alt="Button Clicks.png"></p>
+<p><img src="https://static-docs.nocobase.com/defc446a15c156e80d1257ed43e1c816.png" alt="Button Clicks2.png"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/ui/actions/action-settings/linkage-rule">动态交互</a>：NocoBase 支持根据用户操作动态改变界面元素，例如，当用户选择特定选项时，自动显示或隐藏额外的输入字段，或者根据用户输入实时计算和显示结果。截图就是在配置一个已取消的订单便隐藏复制按钮的动态交互。</p>
+<p><img src="https://static-docs.nocobase.com/126e1b5590dc72151a24002d26be486d.png" alt="Dynamic Interactions.png"></p>
+<p>通过这些简单的配置，在 NocoBase 中你可以实现复杂的业务应用场景。这些设置可以确保应用的操作流程符合用户预期，提供顺畅的用户体验，让应用更加高效实用。</p>
+<h3><strong>创建自动化工作流程</strong></h3>
+<p>在完成了数据模型和用户界面的配置后，下一步是为应用程序添加自动化功能，以提高工作效率并减少手动操作。NocoBase 的工作流为用户提供了强大的工具，可以轻松定义和管理业务流程中的自动化任务。</p>
+<h4><strong>定义工作流程</strong></h4>
+<p>首先，你可以先梳理并确定在你的业务流程中，哪些流程可以被自动化的处理。以下是在 CRM 场景中常见的自动化流程。这里有个小建议：复杂流程可以用流程图先梳理出步骤，方便后续配置时参照。</p>
+<ul>
+<li><strong>自动发送确认邮件</strong>：例如，当客户通过在线表单提交信息后，系统可以自动发送一封确认邮件给客户，告知其信息已成功接收并会进行处理。这个自动化场景的流程图就可以参考下图。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/61bccdc730e1e1d33a54b59dc67c511d.png" alt="自动发送确认邮件.png"></p>
+<ul>
+<li><strong>订单状态通知</strong>：在订单处理系统中，当订单状态从“待处理”更新为“已发货”时，系统可以自动发送通知给相关部门或客户，确保信息及时传递。</li>
+<li><strong>定期生成报表</strong>：自动生成并发送定期报告，如每周销售统计数据或月度客户分析报告，从而减少手动操作的负担。</li>
+</ul>
+<p>确定好场景后，就可以开始着手进行配置了。</p>
+<h4>配置工作流</h4>
+<p><img src="https://static-docs.nocobase.com/cc2f7dda6a60b929e0370504b9d2677d.png" alt="Configuring Workflows.png"></p>
+<p>在 NocoBase 中，工作流有几个相关的基础概念：</p>
+<p><img src="https://static-docs.nocobase.com/c9d7d6589ae39b6dd76dd49dd8eb8328.png" alt="Workflow.png"></p>
+<p><strong>工作流</strong>：用于定义流程的基本信息，包括名称、触发器类型和启用状态等，可在其中配置任意多个执行节点，是承载流程的实体。</p>
+<p><img src="https://static-docs.nocobase.com/d2706e9ba4d1a7bbd95958cdb4906671.png" alt="Trigger.png"></p>
+<p><strong>触发器</strong>：每个工作流都包含一个触发器，可配置为工作流被触发的特定条件，是流程的入口。</p>
+<p><img src="https://static-docs.nocobase.com/e7e1fd66b060322e63fa409cd5dfb484.png" alt="Node.png"></p>
+<p><strong>节点</strong>：节点是工作流内的执行特定操作的指令单元，工作流中多个节点之间通过上下游关系组成完整的执行流程。</p>
+<p><img src="https://static-docs.nocobase.com/d80b28a47102b237f2f77df30be62dff.png" alt="Execution.png"></p>
+<p><strong>执行计划</strong>：执行计划是工作流触发后的具体执行对象，也称为执行记录或执行历史，包含了执行的状态、触发上下文数据等信息。其中针对每个节点也有对应的执行结果，包含了节点执行后的状态和结果数据信息。</p>
+<p>更多关于配置工作流的详细内容，可以阅读 NocoBase 的<a href="https://docs-cn.nocobase.com/handbook/workflow">文档-工作流</a>。在这里我就不过多赘述。</p>
+<p>配置好工作流后，这些自动化流程都能按照预期在合适的时间自动执行，减少人工干预，提升操作的准确性和效率。</p>
+<h3><strong>配置权限和角色</strong></h3>
+<p>在构建业务应用程序时，安全性和数据的访问控制至关重要。NocoBase 提供了灵活的权限和角色管理功能，确保不同类型的用户只能访问和操作与其职责相关的数据和功能模块。通过合理的权限配置，企业能够更好地保护敏感信息，并确保系统的使用安全。</p>
+<p>NocoBase 的用户认证也是以插件的形式提供。</p>
+<p><img src="https://static-docs.nocobase.com/91fac8f01738bb561e9662fc6fb58617.png" alt="NocoBase 的用户认证也是以插件的形式提供.png"></p>
+<p>通过这些插件，管理员配置好相应的认证方式以后，用户可以直接使用 Google Workspace, Microsoft Azure 等平台提供的用户身份登录系统，也可以对 接Auth0, Logto, Keycloak 等平台工具。</p>
+<p>回到用户角色，在 NocoBase 中，用户角色管理允许你根据不同用户的职责分配相应的权限。这有助于确保每个用户只能访问和操作他们需要的功能和数据，而不会影响到其他业务模块的安全性。</p>
+<p><img src="https://static-docs.nocobase.com/9f4858bc0bd7a1208e80b172e90651dd.png" alt="role management.png"></p>
+<p><strong>常见的一些用户角色有：</strong></p>
+<ul>
+<li><strong>管理员</strong>：拥有系统的最高权限，能够管理所有的数据、配置、用户和工作流。他们可以添加或删除用户，修改系统设置，并查看所有敏感数据。</li>
+<li><strong>普通用户</strong>：可以访问他们负责的模块和数据。例如，销售人员可以查看和管理他们的客户信息和订单状态，但无法访问财务数据或系统设置。</li>
+<li><strong>访客</strong>：访客或外部用户可能只能访问公开的数据，无法对系统进行任何修改。他们可能只能查看公开的报表或部分数据记录。</li>
+</ul>
+<p>通过这种基于角色的权限管理，NocoBase能够为企业提供细粒度的控制，确保每个用户只能在其职责范围内操作。</p>
+<h3><strong>测试、优化与发布</strong></h3>
+<p>完成以上步骤后，我们需要确保应用的正常运行。</p>
+<p>你需要验证应用的各个模块是否正常工作，特别是自动化流程和数据之间的关系是否处理得当。功能测试后，可以在小范围内发布给团队或测试用户，收集实际使用中的反馈，并根据用户体验进行调整，优化应用的功能逻辑。</p>
+<p>一旦所有测试通过并且用户反馈满意，就可以开始准备<strong>应用的上线和部署</strong>。</p>
+<p>通过 NocoBase 建议的<a href="https://docs-cn.nocobase.com/welcome/getting-started/deployment">三种不同部署方式</a>，轻松将应用发布至生产环境，确保用户可以正常访问和使用。</p>
+<p>上线后，持续的<strong>维护与迭代</strong>同样重要。你可以通过<a href="https://docs-cn.nocobase.com/handbook/logger">日志和监控</a>来维护 NocoBase，帮助你及时发现和解决问题，优化系统性能，确保系统的安全性和稳定性，提高系统的可靠性和可用性。</p>
+<p>并且根据业务需求的变化及时进行更新和功能扩展（<a href="https://docs-cn.nocobase.com/development">开发插件</a>），确保应用能够持续满足业务的发展。</p>
+<h2 id="zh-5">总结</h2>
+<p>随着企业对业务应用开发的需求不断增加，如何在保持灵活性和效率的前提下满足复杂的业务需求，成为了每个开发者和管理者必须面对的挑战。</p>
+<p>传统的开发方式往往时间长、成本高，而 NocoBase 则为企业提供了一条更加高效的路径——能够应对复杂业务场景、实现自动化、并且具备高度扩展性的解决方案。</p>
+<p>通过使用 NocoBase，企业能够从定义需求、设计数据模型、配置界面，到创建自动化工作流程和安全管理等各个环节，快速构建出满足自身业务需求的应用程序。同时，经过测试和优化后，应用可以平稳部署并随着业务的发展进行迭代升级。无论是中小型企业还是大型企业，NocoBase 都为高效的业务应用开发提供了强大的支持。</p>
+<div style="text-align: center;">
+
+</div>
+
+<p><a href="https://www.nocobase.com/cn/">欢迎尝试</a>使用 NocoBase 加速你的业务应用开发，帮助企业快速响应市场变化并保持竞争优势。</p>
+<p>😊 最后，如果这篇文章为你在业务应用开发上带来了灵感，请将它分享给你的好友，感谢！</p>
+<h3>相关阅读</h3>
+<ul>
+<li><a href="../blog/nocobase-vs-appsmith.html">NocoBase 与 Appsmith：哪个开源低代码平台更适合你？</a></li>
+<li><a href="../blog/nocobase-vs-refine.html">开源 CRUD 开发工具：NocoBase 与 Refine 对比</a></li>
+<li><a href="../blog/low-code-no-code-integration.html">无代码/低代码平台集成能力深度分析</a></li>
+<li><a href="../blog/nocobase-vs-nocodb.html">NocoBase 与 NocoDB：开源无代码工具深度对比</a></li>
+<li><a href="../blog/core-app-dashboard-building-tools.html">6 个最佳核心应用仪表盘构建工具</a></li>
+<li><a href="../blog/open-source-airtable-alternatives.html">GitHub上 Star 数量最多的 Airtable 开源替代者</a></li>
+</ul></div><div class="prose en-only"><p><strong>❤️ Friendly Reminder</strong></p>
+<p>This article is quite long, so feel free to jump to the sections that interest you the most using the table of contents. Of course, I believe if you read through the entire piece, you&#39;ll find plenty of valuable insights.</p>
+<p><img src="https://static-docs.nocobase.com/2df2bb7c1d34d9956a61a5941b66b09e.jpg" alt="Business Application Development.jpg"></p>
+<h2 id="en-1"><strong>Introduction</strong></h2>
+<p>The demand for business application development is growing rapidly.</p>
+<p>According to Gartner, the global enterprise software market is expected to reach $500 billion by 2025. <strong>However, despite the high demand, many companies face significant challenges in developing business applications efficiently.</strong></p>
+<p><img src="https://static-docs.nocobase.com/c117ca38cf47081531934efe71be8c91.PNG" alt="CHAOS Report.PNG"></p>
+<p>The <a href="https://www.csus.edu/indiv/v/velianitis/161/chaosreport.pdf">CHAOS Report</a> from the Standish Group shows that <strong>more than 60% of IT projects fail to deliver on time, and nearly 50% exceed their budgets</strong>.</p>
+<p>These issues often stem from the complexity of traditional development models: long development cycles, reliance on specialized skills, and increasing development costs.</p>
+<p>Companies need to respond to business needs more quickly and efficiently. But in reality, many face limitations in terms of technical expertise and resources, making it difficult to rapidly deliver business applications that meet market demands.</p>
+<p>This pain point is particularly pronounced for small and medium-sized businesses, as they often lack the resources to build large development teams.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-2"><strong>Can No-Code and Low-Code Accelerate Business Application Development?</strong></h2>
+<p>Against this backdrop, low-code and no-code platforms have emerged as a solution to these challenges.</p>
+<p>By offering intuitive development environments, these platforms allow businesses to build and deploy custom business applications quickly and efficiently, without needing complex programming skills. This not only shortens development cycles but also significantly reduces costs, enabling businesses to respond more flexibly to market changes.</p>
+<p><strong>But are Low-Code and No-Code the Perfect Solution?</strong> Not entirely. Reality tells us that it&#39;s not always the perfect answer.</p>
+<p>According to Gartner, while low-code platforms do improve productivity, some users remain skeptical, especially when it comes to handling complex business logic and system integrations.</p>
+<p>Some users feel that although low-code/no-code platforms are great for rapid prototyping or simple applications, <strong>they may not be able to fully replace traditional development methods for large-scale, complex business systems.</strong></p>
+<p>As one low-code platform user shared in a community forum, &quot;No-code platforms allowed us to build applications quickly, but maintenance and scaling became challenging. Flexibility seems lacking, especially when dealing with constantly changing requirements.&quot;
+<img src="https://static-docs.nocobase.com/d6655d1a2105187e09457fc2a199b080.PNG" alt="hackernews.PNG"></p>
+<p>Additionally, customization capabilities of low-code/no-code platforms remain a concern for businesses. According to the 2021 OutSystems report, <strong>53% of developers worry that low-code platforms cannot handle complex business processes, and 43% believe these platforms have limitations when it comes to scalability.</strong></p>
+<p>This indicates that while low-code/no-code platforms lower development barriers, their performance in complex scenarios often leaves developers frustrated. Many users point out that although low-code tools are <strong>easy to get started with, they face restrictions when it comes to integrating with external systems or handling intricate business logic.</strong></p>
+<h2 id="en-3">NocoBase&#39;s Approach</h2>
+<p>Many no-code and low-code platforms excel in quickly building applications, especially for prototyping and developing simple applications, which significantly shortens development time. However, when businesses face more complex demands, system integration challenges, or require a high degree of customization, many existing platforms struggle.</p>
+<p>During the design of NocoBase, we deeply understood these challenges. Our goal was not only to help users build applications quickly, but also to ensure that the platform could handle complex business scenarios and ever-growing customization needs.</p>
+<p>🙌 Have a try: <a href="https://www.nocobase.com/en/tutorials/task-tutorial-introduction">NocoBase Tutorial – Task Management System</a></p>
+<p>A no-code/low-code platform must offer greater flexibility, scalability, and integration capabilities to truly support businesses in developing everything from simple applications to complex systems.</p>
+<p>With this in mind, NocoBase was built on several core principles to ensure the platform meets diverse business needs:</p>
+<p><strong>Flexible Data Model-Driven Design</strong></p>
+<p><img src="https://static-docs.nocobase.com/775859b52b61455ef8f2856dd4838401.PNG" alt="Flexible Data Model-Driven Design.PNG"></p>
+<p>In dealing with complex business processes and data structures, many low-code platforms are limited by rigid frameworks, making it difficult to adapt to changing requirements. NocoBase adopts a data model-driven design, allowing users to build and adjust data models flexibly based on specific business needs.</p>
+<p>💡 Read More: <a href="../blog/how-to-create-a-good-data-model.html">How to Create a Good Data Model？</a></p>
+<p>Whether you are constructing a simple customer management system or handling complex data relationships, NocoBase provides the flexibility needed to accommodate a wide range of business complexities.</p>
+<p><strong>Microkernel architecture and High Scalability</strong></p>
+<p><img src="https://static-docs.nocobase.com/528fbfeb4656d12f5709d2c9ea84365c.PNG" alt="Microkernel architecture and High Scalability.PNG"></p>
+<p>NocoBase adopts a microkernel architecture, where various functionalities are extended in the form of plugins. This allows users to select and add functional modules as needed, avoiding the one-size-fits-all design found in many traditional platforms. This approach enhances scalability, allowing businesses to easily extend application functionality as they grow, whether integrating third-party systems or customizing business processes. NocoBase can implement these extensions quickly through plugins.</p>
+<p>💡 Read More: <a href="../blog/low-code-no-code-integration.html">Deep Dive: Low Code/No Code Integration Capabilities</a></p>
+<p>The plugin-based design reduces the coupling between modules, increasing reusability. With the continuous expansion of the plugin library, common scenarios can be easily built by combining plugins. NocoBase&#39;s no-code platform is composed of various plugins.</p>
+<p><strong>Workflow Automation</strong></p>
+<p><img src="https://static-docs.nocobase.com/c50c9fe8b9413e7e2421535656c91f19.png" alt="Workflow Automation.png"></p>
+<p>NocoBase simplifies workflow automation with its built-in workflow engine. Users can easily create and manage automated processes without writing complex code, significantly reducing manual tasks and boosting efficiency. Whether it’s automating approval workflows or triggering notifications and data updates, NocoBase allows businesses to quickly configure and execute these processes, saving time and labor costs.</p>
+<p>💡 Read More: <a href="../blog/workflow-automation-tools.html">5 Best Tools for Building Workflow Automation</a></p>
+<p><strong>Advanced System Integration Capabilities</strong></p>
+<p><img src="https://static-docs.nocobase.com/581e9b1ae51eda78a41cfbf575530a65.png" alt="Advanced System Integration Capabilities.png"></p>
+<p>NocoBase is not just for simple applications; it’s built to handle complex business logic and system integrations. Through open APIs and a flexible plugin system, NocoBase seamlessly integrates with other enterprise systems such as ERP or CRM, ensuring smooth data flow across systems. This addresses one of the key concerns businesses have when choosing a low-code platform: how to quickly develop applications without sacrificing flexibility or scalability.</p>
+<p><strong>Open-Source and Community Support</strong></p>
+<p><img src="https://static-docs.nocobase.com/1c11db00edd2fed947706d6a2763fbfd.png" alt="Open-Source and Community Support.png"></p>
+<p>In addition to technical flexibility and robust features, NocoBase is committed to being an <a href="https://github.com/nocobase/nocobase">open-source</a> platform. Open-source offers transparency and control, giving businesses and developers a high degree of autonomy. With open-source, users have full control over their code and data, avoiding vendor lock-in. NocoBase’s open-source architecture also supports extensive customization and further development, ensuring that every business can tailor the platform to meet its unique needs.</p>
+<p>Additionally, NocoBase is backed by a vibrant <a href="https://forum.nocobase.com/">open-source community</a>, where users and developers can receive support, share experiences, and contribute to the platform’s ongoing growth, further enhancing its sustainability and reliability.</p>
+<h2 id="en-4">Developing Business Applications Quickly with NocoBase</h2>
+<p>Now, let me show you how to use NocoBase to quickly develop flexible and scalable business applications.</p>
+<h3>Defining Business Requirements</h3>
+<p>Before starting the development of any business application, defining the business requirements is a crucial step.</p>
+<p>A clear definition of requirements not only helps avoid rework and adjustments later, but also ensures the development team stays aligned and that the application effectively addresses actual business problems.</p>
+<p>💡 Read More: <a href="../blog/low-code-no-code-crm-builder.html">Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know</a></p>
+<p>Let’s take building a <strong>Customer Relationship Management (CRM)</strong> system as an example:</p>
+<p><img src="https://static-docs.nocobase.com/23a1d9f6d0ba50cae0964ef117d36f59.png" alt="Customer Relationship Management CRM.png"></p>
+<h4><strong>Step 1: Define the Objectives</strong></h4>
+<p>Before developing a CRM system, it’s essential to define the system’s core objectives. You need to think about what specific problems the system is meant to solve. For instance, the primary goal of a CRM might be to help businesses better manage customer information, track sales leads, enhance customer engagement, and optimize sales processes. These goals can be further refined into specific objectives, such as:</p>
+<ul>
+<li>Improving customer data management efficiency</li>
+<li>Enhancing the sales team’s ability to follow up on potential leads</li>
+<li>Providing data analysis tools to help decision-makers gain insights into customer behavior</li>
+<li>Facilitating cross-department collaboration, ensuring marketing, sales, and customer service teams share the same data</li>
+</ul>
+<p>Clearly defining these objectives will guide the subsequent steps of feature design and development, ensuring they are focused on actual business needs.</p>
+<h4>Step 2: List Core Features</h4>
+<p>To achieve the main objectives of the CRM, the next step is to determine the key features required. A standard CRM system usually includes the following core features:</p>
+<ul>
+<li><strong>Customer Management</strong>: Store and manage essential customer information such as contact details, company info, and purchase history.</li>
+<li><strong>Sales Lead Tracking</strong>: Help the sales team track the progress of potential customers (leads), from initial contact to closure or loss.</li>
+<li><strong>Task Management</strong>: Enable team members to set and track tasks related to customers, such as scheduling meetings or sending emails.</li>
+<li><strong>Activity Log</strong>: Record all interactions with each customer, such as phone calls, meetings, and email communications, ensuring team members have a complete history of the customer.</li>
+<li><strong>Reports &amp; Analytics</strong>: Provide data analysis tools to generate reports on customer behavior, sales performance, etc., helping managers make informed decisions.</li>
+<li><strong>Customer Service Module</strong>: Allow customers to submit service tickets, which are then followed up by the support team to enhance customer satisfaction.</li>
+</ul>
+<p>Additional features may be added based on the specific needs of the business, such as:</p>
+<ul>
+<li><strong>Automated Marketing Tools</strong>: Automatically send marketing emails or remind the sales team to follow up with customers.</li>
+<li><strong>Integration with Other Systems</strong>: For instance, integration with financial systems to automatically generate invoices, or with email systems to send and receive emails directly from the CRM.</li>
+</ul>
+<h4>Step 3: Analyze Business Processes</h4>
+<p>A successful CRM system needs to be tightly integrated with the actual business processes. For example, in sales, you can break down the customer lifecycle into several stages and design appropriate processes for each stage:</p>
+<ul>
+<li><strong>Lead Acquisition</strong>: The business acquires potential customer information through marketing campaigns or social media, and this information is automatically entered into the CRM.</li>
+<li><strong>Sales Follow-Up</strong>: The sales team assigns follow-up tasks based on the lead’s progress, such as scheduling a call or setting up a product demo.</li>
+<li><strong>Deal Closure and Contract Management</strong>: Once a customer agrees to purchase, the system automatically generates a contract and notifies the finance team to process the next steps.</li>
+<li><strong>Customer Service &amp; Maintenance</strong>: After a deal is closed, the customer service team handles customer service inquiries, and all related tickets and interactions are stored in the CRM.</li>
+</ul>
+<p><strong>Process Optimization</strong>: By automating parts of the CRM’s workflow, you can reduce manual effort. For example, once a lead enters the system, the CRM can automatically assign it to a sales team member and send reminders, or trigger automated marketing workflows (such as sending personalized emails) based on customer behavior. This automation significantly improves operational efficiency.</p>
+<p>The above example illustrates how to analyze business requirements for building a CRM system. <strong>You can apply these three core steps—defining objectives</strong>, listing features, and analyzing processes—when when developing other business applications to help refine your requirements and guide the development process.</p>
+<p><img src="https://static-docs.nocobase.com/5d80fe026cf7e8de7e2538d09d2bdeae.png" alt="analyzing processes.png"></p>
+<h3>Designing the Data Model</h3>
+<p>After defining your business requirements, the next critical step is designing the <strong>data model</strong>. In NocoBase, the data model forms the core foundation of the application, determining how the system will store, organize, and manage data. By constructing a well-structured data model, the application can achieve efficient data processing and flexible functionality expansion.</p>
+<h4>Building the Data Model</h4>
+<p>In NocoBase, the process of building a <a href="https://docs.nocobase.com/handbook/data-modeling">data model</a> is intuitive. Users can define various entities and their relationships based on business needs. Entities are the basic components of data, such as <em>Customer</em>, <em>Order</em>, <em>Product</em>, etc. When building your model, it&#39;s essential to design a data structure that not only meets current needs but also remains flexible enough for future expansion.</p>
+<p><img src="https://static-docs.nocobase.com/cd111713bc0c07708a83ae3e40b94057.png" alt="Data Model.png"></p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>In a CRM system, typical entities include <em>Customer</em>, <em>Sales Opportunity</em>, <em>Contract</em>, and <em>Support Request</em>.</li>
+<li>You can use NocoBase’s visual interface to drag and drop these entities and define their attributes.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ac2b5a5d4b80b86a6bdf303f776726f5.png" alt="visual interface.png"></p>
+<h4>Defining Fields and Data Relationships</h4>
+<p>When adding fields to each entity, ensure that these fields cover all necessary information. For instance, the <strong>Customer</strong> entity might have fields such as Customer Name, Contact Info, and Company Information. Each field should be set according to the actual data type, such as text, numbers, dates, or boolean values.</p>
+<p><img src="https://static-docs.nocobase.com/3646b19d741e506b7d15e03ec5c82b4d.png" alt="Defining Fields and Data Relationships.png"></p>
+<p>In data model design, the relationships between entities are equally important. NocoBase allows you to define these relationships through its <a href="https://docs.nocobase.com/handbook/data-modeling/collection-fields/associations">Relationship Fields</a>. Examples include:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/handbook/data-modeling/collection-fields/associations/o2m">One-to-Many</a>: In a CRM, one customer may have multiple orders. The screenshot example shows the relationship between <strong>Class</strong> and <strong>Student</strong>, where one class can have many students, but each student belongs to only one class. In this case, there is a one-to-many relationship between classes and students.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ee587bb9a3e7c05f5915a37eb78e6e33.png" alt="One-to-Many.png"></p>
+<ul>
+<li><a href="https://docs.nocobase.com/handbook/data-modeling/collection-fields/associations/m2m">Many-to-Many</a>: Similarly, one product might appear in multiple orders, and one order might contain multiple products. The screenshot example shows the relationship between <strong>Students</strong> and <strong>Courses</strong> in a course enrollment system.  A student can enroll in multiple courses, and a course can have multiple students enrolled, constituting a many-to-many relationship.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/83ce063092a73012a814f65475ff4dc0.png" alt="Many-to-Many.png"></p>
+<p>By defining these relationships correctly, you ensure that data can flow smoothly between different entities, supporting complex business scenarios.</p>
+<h4>Optimizing the Data Model</h4>
+<p>After designing the initial model, it&#39;s recommended to optimize the data structure to ensure system performance and scalability. For example, consider using indexes to improve query efficiency or adding redundancy to reduce repeated data storage. In NocoBase, these optimizations can be easily achieved through simple configurations and plugins, ensuring your data model has enough flexibility to adapt to changing future needs.</p>
+<p>For more detailed information on optimizing data models, check out our blog post: <strong><a href="../blog/how-to-create-a-good-data-model.html">How to Create an Good Data Model?</a></strong></p>
+<h3>Configuring the Interface</h3>
+<p>Once the data model is set up, the next step is displaying the data on the frontend interface. Thanks to NocoBase’s separation of <strong>data structure</strong> and <strong>user interface</strong>, the frontend design remains highly flexible. The same table or record can be used to create multiple blocks and actions in various forms.</p>
+<p><img src="https://static-docs.nocobase.com/58eef206e3374f6bd3f2ea2362e878e1.png" alt="user interface.png"></p>
+<p>Let me walk you through how to configure the interface in the next section.</p>
+<h4>Designing the User Interface</h4>
+<p>NocoBase provides a WYSIWYG interface design tool. By <a href="https://docs.nocobase.com/handbook/ui/blocks">adding blocks</a> (similar to Notion), you can quickly build the front-end interface for your applications, such as forms, data views, and dashboards. Notably, NocoBase’s blocks are also provided through plugins, meaning you can develop new block plugins to meet specific display needs based on your requirements.</p>
+<p><a href="https://docs.nocobase.com/handbook/ui/blocks/data-blocks/form">Form Design</a>: You can design custom forms, allowing users to input and edit information, such as customer information forms or order entry forms. Simply click and select fields to configure the layout and field types of the form. The forms also support public access, a feature supported by the latest free plugin.</p>
+<p><img src="https://static-docs.nocobase.com/05ae7a10223bc7525e9440e885d89846.png" alt="form.png"></p>
+<p><a href="https://docs.nocobase.com/handbook/ui/blocks/data-blocks/table">Data Display</a>: With NocoBase, users can quickly create data views, presenting data retrieved from the database in the form of tables, lists, or cards for easy browsing and management. For example, a customer list view can display each customer’s basic information and provide action buttons for further processing.</p>
+<p><img src="https://static-docs.nocobase.com/d37118a6721dd8ff359a6f5a93c4c0de.png" alt="data views.png"></p>
+<p><img src="https://static-docs.nocobase.com/f2a5dcffe7eb2b0c3982347404666928.png" alt="data views2.png"></p>
+<p><a href="https://docs.nocobase.com/handbook/data-visualization/">Dashboard</a>: NocoBase supports integrating various data and visualization elements into dashboards, helping users view key data metrics in real-time. For instance, you can display key business insights like customer count, order status, and sales data using charts, progress bars, and statistic modules.</p>
+<p><img src="https://static-docs.nocobase.com/802c24187b705f30c3e02a55c5765dcd.png" alt="chart.png"></p>
+<p><img src="https://static-docs.nocobase.com/7cc7066aee00f19b1cd5c8e6b5e4f7f7.png" alt="dashboard.png"></p>
+<h4>Configuring User Interactions</h4>
+<p>After designing the interface, the next step is to configure <strong>how users interact with the application</strong>. This includes defining how users interact with forms, buttons, navigation bars, and other elements, ensuring a smooth and intuitive user experience.</p>
+<p>Beyond these basic interactions, NocoBase supports more advanced interactions, such as setting data visibility for different users, linking blocks for filtering and synchronization, and configuring complex field operations.</p>
+<p>Some typical scenarios include:</p>
+<p><strong>Setting Table Sorting Rules</strong>: For example, in a CRM, you can display documents sorted by shipping date in descending order.</p>
+<p><img src="https://static-docs.nocobase.com/cabe970137940c9837d0b0432240cfdf.png" alt="Setting Table Sorting Rules.png"></p>
+<p><a href="https://docs.nocobase.com/handbook/ui/blocks/data-blocks/form">Form Data Templates</a>: The purpose of form data templates is to simplify data entry and improve efficiency. By filtering a set of data as a template, the selected template data can be used to pre-fill form fields. For instance, on an e-commerce platform, where new products are frequently added and share similar attributes with existing products, you can select an existing product as a template. This template’s attribute information can then be applied to new products, significantly improving the efficiency of new product entry.</p>
+<p><img src="https://static-docs.nocobase.com/34246fd37237dfeccb7f2eaad9002471.png" alt="Form Data Templates.png"></p>
+<p><a href="https://docs.nocobase.com/handbook/ui/actions">Button Clicks</a>: Define the actions for buttons, such as saving form data and <a href="https://docs.nocobase.com/handbook/ui/actions/action-settings/bind-workflow">triggering workflows</a> when the user clicks the &quot;Submit&quot; button (e.g., generating orders or sending notifications). You can also configure different buttons to perform different actions, like &quot;Save and Continue&quot; or &quot;Cancel.&quot;</p>
+<p><img src="https://static-docs.nocobase.com/5cd803d3e475e4442249a70cdb4b9e0d.png" alt="Button Clicks.png"></p>
+<p><img src="https://static-docs.nocobase.com/defc446a15c156e80d1257ed43e1c816.png" alt="Button Clicks2.png"></p>
+<p><a href="https://docs.nocobase.com/handbook/ui/actions/action-settings/linkage-rule">Dynamic Interactions</a>: NocoBase allows dynamic changes to interface elements based on user actions. For example, when a user selects a specific option, additional input fields can be shown or hidden, or calculations can be performed based on user input and displayed in real-time. A screenshot could show configuring a dynamic interaction where the &quot;Copy&quot; button is hidden for canceled orders.</p>
+<p><img src="https://static-docs.nocobase.com/126e1b5590dc72151a24002d26be486d.png" alt="Dynamic Interactions.png"></p>
+<p>With these simple configurations, NocoBase allows you to implement complex business application scenarios. These settings ensure the application’s workflow meets user expectations, providing a seamless user experience and making the application more efficient and practical.</p>
+<h3>Creating Automated Workflows</h3>
+<p>After configuring the data model and user interface, the next step is to add automation features to the application, improving efficiency and reducing manual operations. NocoBase’s workflow tool provides users with powerful capabilities to define and manage automated tasks within business processes.</p>
+<h4>Defining Workflows</h4>
+<p>First, you need to identify which processes in your business can be automated. Below are common automated workflows in a CRM scenario. For more complex workflows, it’s recommended to sketch out the steps in a flowchart before configuration for easier reference.</p>
+<ul>
+<li><strong>Automatically Send Confirmation Emails</strong>: For instance, when a customer submits information through an online form, the system can automatically send a confirmation email to the customer, informing them that their information has been received and will be processed.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/32ffb9f11b3f725e7abaeadff326b430.png" alt="Automatically Send Confirmation Emails.png"></p>
+<ul>
+<li><strong>Order Status Notifications</strong>: In an order management system, when the order status is updated from “Pending” to “Shipped,” the system can automatically send notifications to relevant departments or customers to ensure timely communication.</li>
+<li><strong>Scheduled Report Generation</strong>: Automatically generate and send scheduled reports, such as weekly sales statistics or monthly customer analytics, reducing the manual workload.</li>
+</ul>
+<p>Once you’ve defined your automation scenarios, you can begin configuration.</p>
+<h4>Configuring Workflows</h4>
+<p><img src="https://static-docs.nocobase.com/cc2f7dda6a60b929e0370504b9d2677d.png" alt="Configuring Workflows.png"></p>
+<p>In NocoBase, workflows consist of several key concepts:</p>
+<p><img src="https://static-docs.nocobase.com/c9d7d6589ae39b6dd76dd49dd8eb8328.png" alt="Workflow.png"></p>
+<p><strong>Workflow</strong>: It defines the basic information of the workflow, including its name, trigger type, and On/Off status. Within a workflow, you can configure multiple nodes. It serves as the container for the process.</p>
+<p><img src="https://static-docs.nocobase.com/d2706e9ba4d1a7bbd95958cdb4906671.png" alt="Trigger.png"></p>
+<p><strong>Trigger</strong>: Each workflow contains a trigger, which can be configured to specific conditions that triggers the workflow. It serves as the entry point of the workflow.</p>
+<p><img src="https://static-docs.nocobase.com/e7e1fd66b060322e63fa409cd5dfb484.png" alt="Node.png"></p>
+<p><strong>Node</strong>: A node is an instruction unit within the workflow that performs specific actions. Multiple nodes within a workflow are interconnected in an upstream and downstream relationship, forming a complete process flow.</p>
+<p><img src="https://static-docs.nocobase.com/d80b28a47102b237f2f77df30be62dff.png" alt="Execution.png"></p>
+<p><strong>Execution</strong>: The execution represents the specific objects that are executed after the workflow is triggered. It is also known as execution record or execution history, and it includes information such as the execution status and trigger context data. For each node, there is a corresponding execution result which includes the node&#39;s execution status and data.</p>
+<p>For more details on configuring workflows, you can refer to NocoBase’s <a href="https://docs.nocobase.com/handbook/workflow">workflow documentation</a>.</p>
+<p>After setting up workflows, these automated processes will run as expected, reducing manual intervention and improving the accuracy and efficiency of operations.</p>
+<h3>Configuring Permissions and Roles</h3>
+<p>Security and access control are crucial when building business applications. NocoBase provides flexible permissions and role management features, ensuring that different types of users can only access and operate data and features relevant to their responsibilities. With proper permissions configuration, businesses can better protect sensitive information and ensure secure system usage.</p>
+<p>NocoBase offers user authentication as a plugin.</p>
+<p><img src="https://static-docs.nocobase.com/6e7d3b5de1d199c7f19dffc6b65d9043.png" alt="NocoBase offers user authentication as a plugin.png"></p>
+<p>By configuring the relevant authentication methods, users can log into the system using <a href="https://www.larksuite.com/en_us/blog/google-workspace-alternatives">platforms like Google Workspace</a>, Microsoft Azure, or third-party tools like Auth0, Logto, and Keycloak.</p>
+<p>In NocoBase, role management allows you to assign appropriate permissions based on the responsibilities of different users, ensuring that each user can only access and operate within their authorized scope.</p>
+<p><img src="https://static-docs.nocobase.com/9f4858bc0bd7a1208e80b172e90651dd.png" alt="role management.png"></p>
+<p>Common user roles include:</p>
+<ul>
+<li><strong>Administrator</strong>: Has the highest level of permissions, able to manage all data, configurations, users, and workflows. Administrators can add or remove users, modify system settings, and view all sensitive data.</li>
+<li><strong>User</strong>: Can access modules and data relevant to their role. For example, salespeople can view and manage their customers and order statuses but cannot access financial data or system settings.</li>
+<li><strong>Guest</strong>: Guests or external users may only access public data and cannot modify the system. They might be able to view public reports or partial data records.</li>
+</ul>
+<p>With role-based permissions, NocoBase provides businesses with granular control, ensuring that each user operates within their defined responsibilities.</p>
+<h3>Testing, Optimizing, and Deploying</h3>
+<p>After completing the above steps, the next phase is ensuring the application runs smoothly. You’ll need to test whether all modules are functioning correctly, especially the automation processes and data relationships. Once the testing is complete, you can release the application to a small group of users for feedback and fine-tune the application based on user experience.</p>
+<p>Once all tests are passed and users are satisfied, the application is ready for deployment. With NocoBase’s recommended <a href="https://docs.nocobase.com/welcome/getting-started/deployment">three different deployment methods</a>, you can easily publish the application to the production environment, ensuring users can access and use it without issues.</p>
+<p>Post-deployment, continuous maintenance and iteration are equally important. By using <a href="https://docs.nocobase.com/handbook/logger">logs and monitoring</a> tools, you can maintain NocoBase efficiently, helping you detect and resolve problems in a timely manner, optimize system performance, and ensure the reliability and availability of the system.</p>
+<p>Additionally, you can update and extend the application based on changing business needs (e.g., <a href="https://docs.nocobase.com/development">developing plugins</a>), ensuring that the application can continue to meet the demands of a growing business.</p>
+<h2 id="en-5">Conclusion</h2>
+<p>As businesses’ demand for application development increases, the challenge lies in how to meet complex business needs while maintaining flexibility and efficiency. Traditional development methods are often time-consuming and expensive, whereas NocoBase offers a more efficient solution. It’s capable of handling complex business scenarios, enabling automation, and providing high scalability.</p>
+<p>By using NocoBase, businesses can quickly develop applications that meet their needs, from defining requirements, designing data models, and configuring the interface to creating automated workflows and managing security. After testing and optimization, the application can be smoothly deployed and iterated as the business grows. Whether for small, medium, or large enterprises, NocoBase provides strong support for efficient business application development.</p>
+<p><a href="https://www.nocobase.com/cn/">We invite you to try NocoBase</a> to accelerate your business application development and help your company quickly respond to market changes and maintain a competitive edge.</p>
+<p>😊 Finally, if this article has inspired you in business application development, please share it with your friends. Thanks!</p>
+<h3>Related reading</h3>
+<ul>
+<li><a href="../blog/nocobase-vs-appsmith.html">NocoBase vs. Appsmith: Which Open Source Low-Code Platform is Right for You?</a></li>
+<li><a href="../blog/nocobase-vs-refine.html">Open Source CRUD Development Tools: NocoBase vs Refine</a></li>
+<li><a href="../blog/low-code-no-code-integration.html">Deep Dive: Low Code/No Code Integration Capabilities</a></li>
+<li><a href="../blog/nocobase-vs-nocodb.html">NocoBase vs NocoDB: An In-Depth Comparison of Open Source No-Code Tools</a></li>
+<li><a href="../blog/core-app-dashboard-building-tools.html">Top 6 Core App Dashboard Building Tools</a></li>
+<li><a href="../blog/open-source-airtable-alternatives.html">Top 7 Open Source Alternatives to Airtable with the Most GitHub Stars</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">引言</a><a href="#zh-2">无代码（零代码）与低代码能加速业务应用开发吗？</a><a href="#zh-3">NocoBase 对此的思考</a><a href="#zh-4">使用 NocoBase 快速开发业务应用</a><a href="#zh-5">总结</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">Can No-Code and Low-Code Accelerate Business Application Development?</a><a href="#en-3">NocoBase&amp;#39;s Approach</a><a href="#en-4">Developing Business Applications Quickly with NocoBase</a><a href="#en-5">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

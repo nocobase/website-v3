@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase vs Salesforce：谁才是你的理想 CRM？ — NocoBase" data-en="NocoBase vs Salesforce: who is your ideal CRM? — NocoBase">NocoBase vs Salesforce：谁才是你的理想 CRM？ — NocoBase</title>
+<meta name="description" content="NocoBase 和 Salesforce 谁更适合你的团队？NocoBase 作为开源无代码（零代码）工具，以不到 Salesforce 十分之一的成本，为你提供高度灵活的 CRM 解决方案，适合从中小企业到大型组织的多样化需求。" data-zh="NocoBase 和 Salesforce 谁更适合你的团队？NocoBase 作为开源无代码（零代码）工具，以不到 Salesforce 十分之一的成本，为你提供高度灵活的 CRM 解决方案，适合从中小企业到大型组织的多样化需求。" data-en="NocoBase vs Salesforce: Which CRM is right for your team? NocoBase, an open-source no-code platform, delivers a highly flexible CRM solution at less than one-tenth of Salesforce&#x27;s cost, catering to businesses of all sizes.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>洞见 · AI 与无代码</t-zh><t-en>Insights · AI &amp; No-Code</t-en></p>
+    <h1><t-zh>NocoBase vs Salesforce：谁才是你的理想 CRM？</t-zh><t-en>NocoBase vs Salesforce: who is your ideal CRM?</t-en></h1>
+    <p class="lede"><t-zh>NocoBase 和 Salesforce 谁更适合你的团队？NocoBase 作为开源无代码（零代码）工具，以不到 Salesforce 十分之一的成本，为你提供高度灵活的 CRM 解决方案，适合从中小企业到大型组织的多样化需求。</t-zh><t-en>NocoBase vs Salesforce: Which CRM is right for your team? NocoBase, an open-source no-code platform, delivers a highly flexible CRM solution at less than one-tenth of Salesforce's cost, catering to businesses of all sizes.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>洞见</t-zh><t-en>Insights</t-en></span><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年12月18日</t-zh><t-en>Dec 18, 2024</t-en></span><span><t-zh>Zhang lu, Deng lijia</t-zh><t-en>Zhang lu, Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/dea9a40ea08c6961788c011001e6dc4e.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">背景</h2>
+<p><img src="https://static-docs.nocobase.com/be4d6bf3c87e36b98e7173de634f8e44.jpg" alt="NocoBase vs Salesforce.jpg"></p>
+<p>这是我们第四篇产品对比文章。</p>
+<p>这次，我们将带大家深入了解 <strong><a href="https://www.nocobase.com/cn/">NocoBase</a></strong> 和 <strong>Salesforce</strong> 这两款在功能定位、适用场景和成本模式上截然不同的 CRM 工具。如果你正在为自己的团队挑选一款高效且适合的客户关系管理系统，这篇文章或许能为你提供一些启发。</p>
+<p>作为 CRM 市场的领头羊，Salesforce 凭借其全面的功能模块和强大的 SaaS 平台，已成为许多中大型企业的首选。然而，它的强大也伴随着不容忽视的成本投入：Enterprise 版每用户每月 $165，Unlimited 版更是高达 $330。<strong>以一个 10 人团队为例，仅第一年的订阅费用就达到 $19,800。</strong></p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>相比之下，NocoBase 的定价模式显得更灵活且经济。标准版一次性费用 $800，专业版 $8,000，而企业版则根据具体需求定制报价。这种一次性购买的方式，让许多希望在预算上有更多可控性的企业得以享受高性价比的 CRM 构建体验。</p>
+<table>
+<thead>
+<tr>
+<th>团队规模</th>
+<th>NocoBase</th>
+<th>Salesforce</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10 人</td>
+<td>标准版：$800（一次性）</td>
+<td>$19,800/年~$39,600/年</td>
+</tr>
+<tr>
+<td>100 人</td>
+<td>专业版：$8,000（一次性）</td>
+<td>$198,000/年~$396,000/年</td>
+</tr>
+<tr>
+<td>500 人</td>
+<td>企业版（预估一次性费用~$50,000+）</td>
+<td>$990,000/年~$1,980,000/年</td>
+</tr>
+</tbody></table>
+<p>两款产品在成本结构上的巨大差异，正是它们定位和适用场景的真实写照：</p>
+<ul>
+<li><strong>Salesforce</strong> 更适合追求稳定性和成熟解决方案的中大型企业，尤其是希望借助强大生态和行业标准工具快速优化客户管理的团队。</li>
+<li><strong>NocoBase</strong> 则为希望深度定制、灵活扩展的企业提供了可能性，尤其适合需要完全掌控数据、快速响应业务需求的技术团队。</li>
+</ul>
+<p>接下来的内容，我们将从产品功能、用户体验等多个维度展开对比，帮助你更清晰地判断哪款 CRM 才是你的理想选择。</p>
+<h2 id="zh-2">产品能力对比</h2>
+<p>我们从 CRM 方案、数据库、自动化、UI界面、数据可视化、插件与集成等能力进行展开，这些功能是一个 CRM 基本能力。</p>
+<h3>CRM 方案一览</h3>
+<h4><strong>NocoBase 的 CRM 方案</strong></h4>
+<p><img src="https://static-docs.nocobase.com/d3f44d71e075b91d8040dfcc4e565dac.png" alt="NocoBase&#39;s CRM Solution.png"></p>
+<p>NocoBase 提供了一种灵活、可定制的 CRM 方案，核心优势在于其开源架构和高度自由的数据模型驱动设计，用户可以根据实际业务需求快速构建专属的客户管理系统。</p>
+<p>🎉 <a href="../blog/crm-solution.html">NocoBase CRM 解决方案正式上线！欢迎体验</a></p>
+<p><strong>与传统的预设解决方案不同，NocoBase 的 CRM 方案不受固定字段、数据容量和布局框架的限制。用户可以从零开始搭建，定义数据结构、字段类型以及页面布局，完全符合自身业务逻辑。</strong></p>
+<p>在实际场景中，NocoBase 的开放性使其不仅仅局限于标准化的 CRM 系统。许多大型企业通过 NocoBase 定制行业特定的解决方案，如集成项目管理、销售绩效分析、售后服务流程等，形成高度匹配业务需求的工具。</p>
+<p>对于团队而言，NocoBase 的低门槛特性也十分突出。无需专业开发经验的成员也能通过拖拽操作快速搭建功能模块，支持快速原型设计和不断迭代。同时，NocoBase 通过插件体系实现功能扩展，用户可以在基础 CRM 方案上自由增加新的功能模块，具备极强的可扩展性和长期可维护性。</p>
+<p>💡 阅读更多：<a href="../blog/low-code-no-code-crm-builder.html">在数小时内构建 CRM：你需要了解的顶级无代码（零代码）/低代码工具</a></p>
+<h4><strong>Salesforce 的 CRM 方案</strong></h4>
+<p><img src="https://static-docs.nocobase.com/db85b4c2bc37698802ecead7b0625716.png" alt="Salesforce&#39;s CRM Solution.png"></p>
+<p>Salesforce 作为行业领先的 CRM 解决方案，有着一套成熟、标准化的客户关系管理系统，适合企业快速上线并大规模推广使用。Salesforce 的核心能力涵盖销售自动化、客户支持、市场营销和数据分析等多方面，帮助企业在各个客户生命周期阶段进行全面管理。</p>
+<p>在销售环节，Salesforce 提供了强大的销售漏斗管理功能，从线索跟踪、商机管理到订单转化，都能够实现一站式操作，帮助企业高效管理销售流程。同时，企业可以通过内置的报表和仪表盘功能，实时获取销售业绩数据，洞察销售趋势并调整策略。</p>
+<p>在服务与支持方面，Salesforce 提供客户服务案例管理功能，帮助企业高效处理客户问题，缩短响应时间。通过知识库、工单分配和 SLA 管控等功能，Salesforce 能够确保客户服务团队协同工作，为客户提供高质量的服务体验。</p>
+<p>值得注意的是，Salesforce 的标准化方案虽然能够快速部署，但对于一些业务逻辑复杂、定制化需求较高的企业，可能需要依赖额外的开发和第三方工具进行功能拓展，灵活性相对有限。</p>
+<h3>数据库</h3>
+<p>在 CRM 系统中，数据库是核心组成部分，它决定了企业数据的存储、管理和扩展能力。无论是客户信息、销售记录，还是业务流程数据，强大的数据库功能能够确保数据的安全性、可访问性和灵活性，为企业业务决策提供支撑。</p>
+<h4><strong>NocoBase 的数据库功能</strong></h4>
+<p><img src="https://static-docs.nocobase.com/9f756fce1893118ddc4064676bc9964b.png" alt="NocoBase&#39;s Database Capabilities.png"></p>
+<p>NocoBase 以数据模型驱动为核心，允许用户根据业务需求自由定义复杂的数据结构，特别适合 CRM 场景中多层级、关联性强的数据管理需求。</p>
+<p>并且 NocoBase 支持企业内部数据库和多种外部数据源接入，为企业提供数据存储和管理的高度自由性。用户可以根据实际业务需求，灵活定义数据结构，实现数据模型的无上限扩展。</p>
+<ul>
+<li><strong>数据私有化</strong>：数据可部署在企业自有服务器中，确保数据安全和隐私完全掌控。</li>
+<li><strong>高自由度与可扩展性</strong>：用户可以随时调整数据模型，添加或修改字段，快速响应业务变化。</li>
+<li><strong>多数据源支持</strong>：NocoBase 能够对接外部数据源，实现跨系统的数据整合与管理，提升整体数据流通效率。</li>
+</ul>
+<h4><strong>Salesforce 的数据库功能</strong></h4>
+<p><img src="https://static-docs.nocobase.com/7fb0a997c52fbd515f1efc81276fbd1e.png" alt="Salesforce&#39;s Database Capabilities.png"></p>
+<p>在 Salesforce 中，数据管理通过 <strong>对象管理（Object Manager）</strong> 实现，你可以通过标准对象和自定义对象来存储和管理业务数据。</p>
+<p>Salesforce 数据托管于其云端，提供开箱即用的数据库功能。</p>
+<ul>
+<li><strong>云端托管</strong>：数据集中存储在 Salesforce 云平台中，用户无需考虑服务器运维与基础设施管理。</li>
+<li><strong>标准对象与自定义对象</strong>：通过对象管理，用户可以灵活创建新的对象（如客户、订单等），以适应不同业务场景，同时确保核心功能快速上线。</li>
+<li><strong>标准化数据管理</strong>：提供预设的数据结构，适合大多数企业的客户关系管理需求。</li>
+<li><strong>内置扩展功能</strong>：借助 Salesforce 的生态系统和 AppExchange，用户可以通过第三方工具进行数据管理与分析的进一步扩展。</li>
+</ul>
+<p>然而，Salesforce 数据库在高度定制和二次开发方面存在一定局限性，尤其是面对复杂业务需求时，扩展难度大、成本较高。此外，标准对象与字段容量存在限制，可能无法完全满足对数据结构要求更高的业务场景。</p>
+<h3>自动化</h3>
+<p>自动化能力是提升业务效率、减少人工错误、优化客户体验的关键因素。</p>
+<h4>NocoBase 的工作流功能</h4>
+<p><img src="https://static-docs.nocobase.com/75507fdda749374f3789d7050fad6d56.png" alt="NocoBase&#39;s Workflow Capabilities.png"></p>
+<p>NocoBase 提供了强大的工作流插件，允许用户通过图形化界面设计并自动化复杂的业务流程。</p>
+<ul>
+<li><strong>可视化流程设计</strong>：用户可以通过直观的界面，拖拽节点，设置触发条件和执行步骤，轻松构建业务流程。</li>
+<li><strong>多种触发方式</strong>：支持基于数据表事件、定时任务、操作后事件等多种触发方式，满足不同的业务需求。</li>
+<li><strong>灵活的节点配置</strong>：提供条件判断、数据更新、通知发送、外部 API 调用等多种节点类型，帮助用户实现复杂的业务逻辑。</li>
+<li><strong>无代码（零代码）实现</strong>：无需编写代码，业务人员即可通过配置完成流程的设计和部署，降低开发成本。</li>
+<li><strong>版本管理</strong>：支持工作流的版本控制，用户可以在不同版本之间切换，确保流程的可追溯性和稳定性。</li>
+</ul>
+<h4><strong>Salesforce 的 Flow 功能</strong></h4>
+<p><img src="https://static-docs.nocobase.com/74c58148c7b9f6bed2ebd122e44154de.png" alt="Salesforce&#39;s Flow Capabilities.png"></p>
+<p>Salesforce 提供了强大的低代码工具——Flow，旨在帮助用户自动化业务流程，提升效率。</p>
+<ul>
+<li><strong>Flow Builder</strong>：一个直观的图形化界面，用户可以在其中创建和管理流程，包括屏幕流、记录触发流和自动启动流等。</li>
+<li><strong>多种流程类型</strong>：支持屏幕流（与用户交互）、记录触发流（基于数据变化）和自动启动流（后台运行），满足不同的自动化需求。</li>
+<li><strong>条件逻辑和操作</strong>：通过决策元素，用户可以在流程中设置条件逻辑，实现复杂的业务规则和操作。</li>
+<li><strong>与 Salesforce 平台集成</strong>：Flow 与 Salesforce 的其他功能无缝集成，如快速操作、Lightning 页面或站点等，提供一致的用户体验。</li>
+<li><strong>调试和测试</strong>：提供调试和测试功能，用户可以在部署前验证流程的正确性，确保业务流程的可靠性。</li>
+</ul>
+<h3>UI <strong>界面搭建</strong></h3>
+<p>用户界面的灵活性与易用性对提升用户体验、快速响应需求起到至关重要的作用。</p>
+<h4>NocoBase所见即所得的页面设计</h4>
+<p><img src="https://static-docs.nocobase.com/d145c9878796fc12efdadbd05b22180e.png" alt="NocoBase&#39;s WYSIWYG Page Design.png"></p>
+<p>NocoBase 提供了 <strong>所见即所得</strong> 的页面设计功能，让用户可以通过可视化编辑器快速构建前端界面。</p>
+<ul>
+<li><strong>所见即所得</strong>：用户通过拖拽组件即可实时搭建界面，无需切换到其他配置页面，所见即所得，操作直观。</li>
+<li><strong>区块概念</strong>：NocoBase 引入了 <strong>区块</strong> 的设计理念（与 Notion 类似），用户可以根据业务需求，将数据以不同形式展示在前端界面中，包括表格、表单、看板、日历等常用样式，满足多样化的展示需求。</li>
+<li><strong>高自由度</strong>：NocoBase 支持页面布局的高度定制，用户可以根据业务需求灵活调整组件的位置、数据展示方式等内容。</li>
+<li><strong>低门槛设计</strong>：即使没有专业的前端开发经验，普通用户也能快速上手，实现个性化的页面搭建。</li>
+<li><strong>插件支持</strong>：通过插件扩展，NocoBase 可以实现更复杂的 UI 功能，例如交互表单、动态展示、图表分析等。</li>
+</ul>
+<p>NocoBase 的 UI 搭建能力更加适合需要快速响应、灵活调整的团队，尤其是在构建高度定制化系统时，能够极大提高效率。</p>
+<h4><strong>Salesforce 的 UI 界面搭建</strong></h4>
+<p><img src="https://static-docs.nocobase.com/327bca676dde8116e3d5bf640ce3cf8f.png" alt="Salesforce&#39;s UI Interface Design.png"></p>
+<p>Salesforce 提供了页面模板和配置功能，用户可以通过 <strong>Lightning 页面</strong> 和 <strong>页面模板</strong> 来完成界面搭建。</p>
+<ul>
+<li><strong>多样化模板</strong>：Salesforce 提供丰富的页面模板，用户可以根据不同的业务场景选择最适合的模板，灵活性较高。</li>
+<li><strong>独立维护页面</strong>：用户需要在单独的设置页面中配置和维护界面模板，与实际展示页面分离。</li>
+<li><strong>功能集成</strong>：通过 Lightning 页面，用户可以将标准组件、自定义组件及第三方扩展功能嵌入页面，适配 Salesforce 的整体生态系统。</li>
+</ul>
+<p>然而，Salesforce 的界面搭建相对繁琐，用户需要切换多个设置页面完成操作，增加了搭建步骤和学习成本。此外，在高度定制化需求场景下，依赖于开发资源实现更复杂的交互功能。</p>
+<h3><strong>数据可视化与分析</strong></h3>
+<p>数据可视化与分析是 UI 界面的自然延续，它将企业的业务数据以直观的方式呈现，帮助用户快速洞察趋势、分析结果、优化决策。</p>
+<h4><strong>NocoBase 的数据可视化与分析</strong></h4>
+<p><img src="https://static-docs.nocobase.com/5be7c985515aa2803ab947995cd749c6.png" alt="NocoBase&#39;s Data Visualization and Analysis.png"></p>
+<p>NocoBase 通过灵活的 <strong>区块概念</strong> 和插件体系，实现了多样化的数据可视化与分析功能：</p>
+<ul>
+<li><strong>多样化区块展示</strong>：数据可以通过多种区块形式展示，满足不同的业务场景需求。</li>
+<li><strong>数据自定义分析</strong>：用户可以根据自身业务逻辑自由设置数据过滤、排序和分组展示，打造高度契合需求的分析界面。</li>
+<li><strong>ECharts 图表支持</strong>：除了基本的图表外，NocoBase 也支持使用 <a href="https://echarts.apache.org/">ECharts</a> 实现数据可视化，支持漏斗图、雷达图等更多图表类型，并提供更友好的可视化配置。</li>
+</ul>
+<p>NocoBase 的数据可视化强调高自由度与灵活性，用户不仅可以选择数据展示的形式，还能深度自定义分析逻辑。</p>
+<h4><strong>Salesforce 的数据可视化与分析</strong></h4>
+<p><img src="https://static-docs.nocobase.com/8c80361ed2887a61c760ba99d69dd880.png" alt="Salesforce&#39;s Data Visualization and Analysis.png"></p>
+<p>Salesforce 提供了成熟的 <strong>报告与仪表盘</strong> 功能，帮助用户快速展示和分析业务数据：</p>
+<ul>
+<li><strong>标准报告功能</strong>：用户可以基于预设模板快速生成报告，涵盖销售业绩、客户活动、市场表现等常见分析需求。</li>
+<li><strong>丰富的图表类型</strong>：支持柱状图、折线图、漏斗图、堆叠图等多种数据展示形式，适配各种业务场景。</li>
+<li><strong>深度数据分析</strong>：与 Salesforce 的 AI 工具（如 Einstein Analytics）集成，可实现预测性分析，帮助企业发现潜在业务机会。</li>
+</ul>
+<p>然而，Salesforce 的数据可视化功能较为标准化，复杂的自定义需求可能需要依赖开发资源或借助第三方工具进行扩展。</p>
+<h3><strong>插件与扩展</strong></h3>
+<p>插件与扩展功能决定了平台的灵活性、可定制性以及对多样化业务需求的适应能力。</p>
+<h4><strong>NocoBase 的插件化架构</strong></h4>
+<p><img src="https://static-docs.nocobase.com/6d9780e423305a83df416cbe3b3df9ed.png" alt="NocoBase’s Plugin-Based Architecture.png"></p>
+<p>NocoBase 采用微内核设计，强调“一切皆插件”的理念，用户可以根据需求选择、安装或开发插件，以扩展系统功能。</p>
+<ul>
+<li><strong>丰富的插件生态</strong>：NocoBase 提供了大量免费和商业插件，涵盖数据源管理、工作流、数据可视化、通知管理等多种功能，满足不同业务场景的需求。</li>
+<li><strong>自定义插件开发</strong>：用户可以根据项目需求自行开发插件，扩展 NocoBase 的业务能力，实现更强大的功能。</li>
+<li><strong>插件管理便捷</strong>：通过插件管理器，用户可以轻松启用、禁用或配置插件，灵活调整系统功能。</li>
+<li><strong>插件点数机制</strong>：商业插件采用插件点数兑换机制，用户可以根据需要选择购买，灵活控制成本。</li>
+</ul>
+<p>这种插件化架构使 NocoBase 能够快速适应不同的业务需求，用户可以根据实际情况定制系统功能，提升业务效率。</p>
+<h4><strong>Salesforce 的插件与扩展功能</strong></h4>
+<p><img src="https://static-docs.nocobase.com/30bdbb920ec3fdd5b71f227ddb455989.png" alt="Salesforce’s Plugin and Extension Features.png"></p>
+<p>Salesforce 拥有庞大的生态系统，提供多种扩展工具和插件，帮助用户定制和增强平台功能。</p>
+<ul>
+<li><strong>AppExchange 应用市场</strong>：Salesforce 的官方应用商店，用户可以在其中找到各种第三方应用和插件，扩展 CRM 的功能，如营销自动化、数据分析、项目管理等。</li>
+<li><strong>开发者工具</strong>：Salesforce 提供了多种开发工具和扩展，如适用于 Visual Studio Code 的 Salesforce 扩展包，帮助开发者高效地进行代码编写、调试和部署。</li>
+<li><strong>浏览器扩展</strong>：为提升用户体验，Salesforce 提供了适用于 Chrome 的 Lightning Extension，用户可以通过该扩展试用新功能，如组件自定义、链接捕获器等。</li>
+</ul>
+<h3><strong>系统集成</strong></h3>
+<p>系统集成能力是衡量 CRM 平台的重要指标之一。有效的集成能够打破数据孤岛，实现企业内部和外部系统的数据联通，提升整体业务效率。</p>
+<h4><strong>NocoBase 的系统集成能力</strong></h4>
+<p><img src="https://static-docs.nocobase.com/79eca4ed29ed03c0aaf7c3d4589ed632.png" alt="NocoBase’s System Integration Capabilities.png"></p>
+<p>NocoBase 支持多种数据源对接，帮助企业快速实现系统集成：</p>
+<ul>
+<li><strong>外部数据源支持</strong>：NocoBase 可直接连接企业内部数据库，如 MySQL、PostgreSQL 等，也支持 HTTP 数据源，灵活对接外部系统。</li>
+<li><strong>API 支持</strong>：NocoBase 提供完善的 API 支持，用户可以通过 RESTful API 进行数据读写、更新和查询，轻松实现与第三方系统的对接和数据同步。</li>
+<li><strong>拖拽展示</strong>：数据集成后，用户可通过拖拽的方式，将数据直接展示到 NocoBase 前端页面，方便在一个平台中进行操作和管理。</li>
+<li><strong>无代码（零代码）配置</strong>：用户无需编写复杂的代码即可建立数据源连接，快速完成与其他系统的集成。</li>
+<li><strong>高自由度的数据关系管理</strong>：用户可以根据业务需求，灵活建立数据关联与展示逻辑，确保数据的统一管理与高效利用。</li>
+</ul>
+<p>NocoBase 的系统集成功能以 <strong>简便、灵活、开放</strong> 为核心，结合 API 支持和数据源直连，帮助企业快速实现系统间的数据打通。然而，数据关系的设置和管理需要用户具备一定的业务逻辑理解能力。</p>
+<h4><strong>Salesforce 的系统集成能力</strong></h4>
+<p><img src="https://static-docs.nocobase.com/6fbb837386d46eedc38c755fcf3743c6.png" alt="Salesforce’s System Integration Capabilities.png"></p>
+<p>Salesforce 凭借强大的生态系统和集成工具，支持企业实现复杂的系统集成需求：</p>
+<ul>
+<li><strong>生态系统完善</strong>：通过 Salesforce 的 AppExchange 应用市场，用户可以找到大量与第三方系统集成的插件和应用，减少开发工作量。</li>
+<li><strong>原生 API 支持</strong>：Salesforce 提供强大的 API 接口，帮助企业与 ERP、BI、外部数据库等多种系统无缝集成。</li>
+<li><strong>数据连接器</strong>：借助 Salesforce 的数据连接器，用户可以轻松对接外部数据源，实现数据同步与交换。</li>
+<li><strong>高定制化能力</strong>：对于复杂的业务需求，开发者可以使用 Apex 编程语言和 MuleSoft 集成平台，自定义集成逻辑，构建高效的数据流通体系。</li>
+</ul>
+<p>Salesforce 在系统集成方面更具 <strong>全面性与深度</strong>，适合需要复杂集成和高定制化的企业。但相较于 NocoBase，Salesforce 的配置步骤更复杂，且开发和维护成本较高。</p>
+<h3>安全与权限管理</h3>
+<p>安全与权限管理是选择 CRM 系统时的重要考量因素，它决定了数据的安全性和用户访问控制的精细程度。</p>
+<h4><strong>NocoBase 的安全与权限管理</strong></h4>
+<p><img src="https://static-docs.nocobase.com/4be0934eba1c9b11e54bb666aa812531.png" alt="NocoBase’s Security and Permission Management.png"></p>
+<p>NocoBase 提供了高度灵活且直观的权限控制功能，用户可以根据角色和条件进行多层次定制，同时支持多种标准协议，确保安全性与企业级需求：</p>
+<ul>
+<li><strong>多级权限控制</strong>：每个角色可以在 <strong>数据源</strong>、<strong>页面</strong> 和 <strong>区块级别</strong> 进行条件控制，实现精细化的数据访问权限管理。</li>
+<li><strong>条件式权限</strong>：通过条件控制机制（类似于 Salesforce 的“Based on criteria”），可以精确定义用户在特定条件下对数据的读写、更新、删除等操作。</li>
+<li><strong>数据关联管理</strong>：权限不仅限于单个表结构，还可以与其他表结构和对象的数据进行关联，确保复杂业务场景中的数据安全和一致性。</li>
+<li><strong>支持企业级认证协议</strong>：NocoBase 支持 <strong>CAS</strong>、<strong>OIDC</strong>（OpenID Connect）、<strong>SAML 2.0</strong> 和 <strong>LDAP</strong> 等标准协议，帮助企业轻松实现单点登录（SSO）和用户身份管理，满足企业在安全合规性方面的需求。</li>
+</ul>
+<p>NocoBase 的安全与权限管理不仅具备精细化的控制能力，还通过支持主流身份认证协议，为企业级用户提供更高的安全性和便利性，适合对安全标准有较高要求的企业场景。</p>
+<h4><strong>Salesforce 的安全与权限管理</strong></h4>
+<p><img src="https://static-docs.nocobase.com/155534f2857412b9e86bb185979193f0.png" alt="Salesforce’s Security and Permission Management.png"></p>
+<p>Salesforce 提供了一套成熟的多层次安全与权限管理机制，涵盖用户、角色和数据访问控制：</p>
+<ul>
+<li><strong>基于角色的访问控制</strong>：通过角色层级和共享规则，定义用户对数据的访问范围。</li>
+<li><strong>对象级权限</strong>：用户可以控制对特定对象（如客户、订单）的访问权限，包括读取、编辑、删除等操作。</li>
+<li><strong>字段级安全</strong>：支持对特定字段进行隐藏或限制访问，确保敏感数据的安全性。</li>
+<li><strong>基于条件的共享规则</strong>：管理员可以设置条件规则，在特定条件下共享或限制数据访问。</li>
+</ul>
+<p>Salesforce 的安全与权限管理更加标准化，预设了丰富的角色和权限规则，适合企业快速部署。但在灵活性方面，相较于 NocoBase 略显不足，复杂场景下需要较多配置和开发支持。</p>
+<h2 id="zh-3">用户体验对比</h2>
+<p>核心功能了解完毕后，我们最后围绕用户体验再简单进行对比。</p>
+<h3><strong>学习曲线</strong></h3>
+<p><img src="https://static-docs.nocobase.com/c189a9f8024bc21304eb599e28ba0d4c.png" alt="NocoBase.png"></p>
+<p>NocoBase 的学习曲线相对平缓，用户可以通过直观的<strong>所见即所得</strong>界面快速上手，无需专业的开发经验即可完成基础系统搭建。对于初次接触无代码（零代码）工具的用户，简单的拖拽操作即可实现页面布局、数据建模和工作流配置，极大降低了使用门槛。</p>
+<p>同时，<strong>技术人员可以深入探索 NocoBase 的插件架构和 API 接口</strong>，进行高度定制和功能扩展，充分发挥其灵活性与开放性的优势。因此，NocoBase 既适合业务人员快速实现需求，也为具备开发能力的团队提供了足够的深度。</p>
+<p><img src="https://static-docs.nocobase.com/374bc165b7011894dcd0b94fc164b3d6.png" alt="Salesforce.png"></p>
+<p>Salesforce 作为一款功能丰富、系统庞大的企业级 CRM 平台，学习曲线相对较陡。新用户需要一定时间来理解其多层次的功能架构，包括对象管理、工作流配置、权限控制等模块。同时，由于 Salesforce 的高度定制化和集成能力，深入使用往往需要熟悉平台专属工具（如 Flow、Apex 开发语言等）。</p>
+<p>不过，<strong>Salesforce 拥有完善的学习资源和生态支持</strong>，如官方文档、Trailhead 学习平台和社区论坛，用户可以通过丰富的教程逐步掌握系统的使用技巧，逐步实现从入门到精通的过渡。</p>
+<h2 id="zh-4"><strong>总结：选择 NocoBase 还是 Salesforce？</strong></h2>
+<p>简单将两个产品的特点整理为如下表格：</p>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>NocoBase</th>
+<th>Salesforce</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>部署方式</td>
+<td>自托管，支持本地部署，企业完全掌控数据，满足高安全性和隐私需求。</td>
+<td>云端托管，数据存储在第三方平台。</td>
+</tr>
+<tr>
+<td>定制性</td>
+<td>高度灵活，支持功能、页面、数据模型的深度定制，适合复杂业务场景和行业解决方案。</td>
+<td>定制能力强大，但依赖开发者和第三方工具，过程相对复杂。</td>
+</tr>
+<tr>
+<td>功能</td>
+<td>支持全面的 CRM 功能，包括数据建模、权限管理、工作流自动化和可视化展示。适合从中小企业到大型企业的多样化需求，并支持行业级解决方案的开发和对外输出。</td>
+<td>提供成熟、全面的 CRM 解决方案，功能模块完备，特别适合大型企业快速部署。</td>
+</tr>
+<tr>
+<td>自动化与 AI</td>
+<td>支持高度可定制的自动化工作流，提供基础自动化功能，AI 支持正在规划中。</td>
+<td>拥有强大的自动化功能，并集成 AI 工具（如 Einstein Analytics）提供智能分析和预测。</td>
+</tr>
+<tr>
+<td>技术要求</td>
+<td>初次使用上手简单，适合业务人员快速搭建；对于复杂功能和深度定制，技术人员可借助插件开发、API 接口实现高级功能。</td>
+<td>无需编写代码即可使用，但功能配置和操作复杂，需要一定的学习时间。</td>
+</tr>
+<tr>
+<td>支持</td>
+<td>提供详细文档、社区支持，开放性强，开发者可贡献插件和解决方案。</td>
+<td>提供全面的技术支持、官方培训和丰富的学习资源（如 Trailhead）。</td>
+</tr>
+</tbody></table>
+<p>最后，无论是 NocoBase 还是 Salesforce，都有其独特的优势和适用场景。</p>
+<p>如果您倾向于灵活、低成本的开源解决方案，并且能够承担技术上的一定挑战，NocoBase 会是一个非常不错的选择。而如果您需要一个成熟、全面、可扩展的企业级 CRM 系统，并且预算充足，Salesforce 则是一个更为适合的方案。</p>
+<p><strong>希望大家都能选到最适合自己的平台，在客户管理和业务发展上取得最大的成功。</strong></p>
+<p>💡欢迎阅读我们的产品对比系列文章：</p>
+<p><a href="../blog/nocobase-vs-nocodb.html">NocoBase 与 NocoDB：开源无代码（零代码）工具深度对比</a></p>
+<p><a href="../blog/nocobase-vs-refine.html">开源 CRUD 开发工具：NocoBase 与 Refine 对比</a></p>
+<p><a href="../blog/nocobase-vs-appsmith.html">NocoBase 与 Appsmith：哪个开源低代码平台更适合你？</a></p>
+<p>如果你对更多的开源 CRM 感兴趣，可以阅读：<a href="../blog/salesforce-open-source-crmalternative.html">四个强大的 Salesforce 开源替代方案</a></p></div><div class="prose en-only"><h2 id="en-1">Background</h2>
+<p><img src="https://static-docs.nocobase.com/be4d6bf3c87e36b98e7173de634f8e44.jpg" alt="NocoBase vs Salesforce.jpg"></p>
+<p>This is our fourth product comparison article.</p>
+<p>Today, we’ll explore two CRM tools—<a href="https://www.nocobase.com/en/">NocoBase</a> and Salesforce—that differ widely in functionality, use cases, and pricing. If you’re in the market for an efficient and tailored customer relationship management system for your team, this article may offer valuable insights.</p>
+<p>Salesforce, as the leading name in the CRM market, is widely adopted by medium and large enterprises for its robust SaaS platform and comprehensive features. However, its powerful capabilities come with a steep price: the Enterprise edition costs $165 per user per month, while the Unlimited edition reaches $330. <strong>For a 10-person team, the first year’s subscription costs alone would total $19,800.</strong></p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>NocoBase, on the other hand, offers a more budget-friendly and flexible pricing model. The Standard edition has a one-time fee of $800, the Professional edition is $8,000, and the Enterprise edition is custom-priced to fit specific needs. This approach provides cost-conscious businesses with a more controllable and value-driven CRM solution.</p>
+<table>
+<thead>
+<tr>
+<th>Team Size</th>
+<th>NocoBase</th>
+<th>Salesforce</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>Standard Version:$800 (one-time)</td>
+<td>$19,800/year~$39,600/year</td>
+</tr>
+<tr>
+<td>100</td>
+<td>Professional:$8,000 (one-time)</td>
+<td>$198,000/year~$396,000/year</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Enterprise Edition (estimated one-time cost~$50,000+)</td>
+<td>$990,000/year~$1,980,000/year</td>
+</tr>
+</tbody></table>
+<p>The pricing differences highlight the distinct positioning and use cases of these two products:</p>
+<ul>
+<li>Salesforce is ideal for medium and large enterprises that prioritize stability and proven solutions, particularly those seeking a robust ecosystem to enhance customer management.</li>
+<li>NocoBase is perfect for businesses that need deep customization and flexibility, especially for technical teams requiring complete control over their data and the ability to respond quickly to evolving business needs.</li>
+</ul>
+<p>In the next sections, we’ll break down the two products across key dimensions, including features and user experience, to help you decide which CRM best suits your needs.</p>
+<h2 id="en-2"><strong>Product Capability Comparison</strong></h2>
+<p>This section compares NocoBase and Salesforce across key areas such as CRM solutions, database management, automation, user interface, data visualization, and integrations—core functionalities essential for any CRM system.</p>
+<h3>CRM Solution Overview</h3>
+<h4><strong>NocoBase&#39;s CRM Solution</strong></h4>
+<p><img src="https://static-docs.nocobase.com/d3f44d71e075b91d8040dfcc4e565dac.png" alt="NocoBase&#39;s CRM Solution.png"></p>
+<p>NocoBase offers a highly flexible and customizable CRM solution, built on an open-source foundation and a dynamic data model-driven design. Users can design and implement customer management systems tailored to their unique business needs.</p>
+<p>🎉 <a href="../blog/crm-solution.html">NocoBase CRM Solution is Now Live — Ready for You to Explore</a></p>
+<p><strong>Unlike traditional pre-configured solutions, NocoBase’s CRM platform eliminates restrictions on fixed fields, data capacity, or layout designs. Users have the freedom to define data structures, field types, and page layouts from the ground up, aligning precisely with their business logic.</strong></p>
+<p>NocoBase’s adaptability extends beyond standard CRM applications. Many large enterprises leverage it to create industry-specific solutions, such as integrated project management tools, sales performance analytics, and automated after-sales service workflows. These custom-built tools align perfectly with business requirements.</p>
+<p>For teams, NocoBase stands out with its user-friendly approach. Even members without technical expertise can quickly create functional modules using drag-and-drop tools, enabling rapid prototyping and iterative development. With its robust plugin ecosystem, users can further enhance the basic CRM framework, adding new modules as needed for greater scalability and long-term usability.</p>
+<p>💡 Read More: <a href="../blog/low-code-no-code-crm-builder.html">Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know</a></p>
+<h4><strong>Salesforce&#39;s CRM Solution</strong></h4>
+<p><img src="https://static-docs.nocobase.com/db85b4c2bc37698802ecead7b0625716.png" alt="Salesforce&#39;s CRM Solution.png"></p>
+<p>As a leading CRM provider, Salesforce delivers a mature, standardized platform designed for quick implementation and large-scale use. Its core features span sales automation, customer support, marketing, and data analytics, offering businesses a comprehensive solution for managing every stage of the customer lifecycle.</p>
+<p>Salesforce excels in sales management, providing end-to-end tools for lead tracking, opportunity management, and order conversion. Its built-in dashboards and reporting tools offer real-time insights into sales performance, helping businesses monitor trends and refine strategies.</p>
+<p>For customer support, Salesforce includes advanced case management tools, enabling businesses to resolve customer issues quickly and efficiently. Features like knowledge bases, automated ticket assignment, and SLA tracking empower teams to collaborate seamlessly and deliver exceptional service.</p>
+<p>While Salesforce’s standardized solutions are ideal for rapid deployment, businesses with more complex workflows or advanced customization needs may require additional development or third-party tools, which could reduce overall flexibility.</p>
+<h3><strong>Database</strong></h3>
+<p>The database is a crucial element of any CRM system, shaping how businesses store, manage, and scale their data. Whether it’s customer information, sales records, or operational data, a strong database ensures security, accessibility, and adaptability, providing the foundation for informed decision-making.</p>
+<h4>NocoBase&#39;s Database Capabilities</h4>
+<p><img src="https://static-docs.nocobase.com/9f756fce1893118ddc4064676bc9964b.png" alt="NocoBase&#39;s Database Capabilities.png"></p>
+<p>NocoBase’s data model-driven approach empowers users to design complex data structures tailored to specific business requirements. This makes it particularly effective for CRM scenarios that involve multi-layered, highly interconnected data.</p>
+<p>In addition, NocoBase supports both internal databases and external data source integration, offering businesses flexibility in managing and storing their data. Its dynamic design allows for unlimited data model expansion to meet evolving needs.</p>
+<ul>
+<li><strong>Data Privacy</strong>: Enterprises can deploy data on their own servers, ensuring complete control over security and privacy.</li>
+<li><strong>Flexibility and Scalability</strong>: Data models can be adjusted in real-time, enabling users to add or modify fields and quickly adapt to changing business needs.</li>
+<li><strong>Integration with Multiple Sources</strong>: NocoBase facilitates external data integration, enabling seamless cross-system data management and improving overall efficiency.</li>
+</ul>
+<h4>Salesforce&#39;s Database Capabilities</h4>
+<p><img src="https://static-docs.nocobase.com/7fb0a997c52fbd515f1efc81276fbd1e.png" alt="Salesforce&#39;s Database Capabilities.png"></p>
+<p>Salesforce manages data through its Object Manager, where businesses can use standard and custom objects to store and manage data. Hosted entirely on the Salesforce cloud, it provides ready-to-use database features.</p>
+<ul>
+<li><strong>Cloud-Based Hosting</strong>: Data is stored on Salesforce’s centralized cloud platform, removing the need for server maintenance and infrastructure management.</li>
+<li><strong>Standard and Custom Objects</strong>: Users can create custom objects (e.g., customers, orders) to fit various business needs while ensuring quick deployment of core features.</li>
+<li><strong>Predefined Data Management</strong>: Standardized structures are designed to meet the needs of most businesses.</li>
+<li><strong>Ecosystem Expansion</strong>: Salesforce’s AppExchange allows businesses to enhance data management and analysis using third-party tools.</li>
+</ul>
+<p>While Salesforce’s database is easy to deploy, it has limitations in handling highly customized or complex business scenarios. Extensive customization often requires additional development or third-party tools, increasing cost and complexity. Moreover, predefined capacity limits for objects and fields may not suffice for businesses with advanced data structure requirements.</p>
+<h3><strong>Automation</strong></h3>
+<p>Automation is essential for enhancing business efficiency, minimizing manual errors, and improving customer experience.</p>
+<h4>NocoBase&#39;s Workflow Capabilities</h4>
+<p><img src="https://static-docs.nocobase.com/75507fdda749374f3789d7050fad6d56.png" alt="NocoBase&#39;s Workflow Capabilities.png"></p>
+<p>NocoBase provides a robust workflow plugin that empowers users to visually design and automate intricate business processes.</p>
+<ul>
+<li><strong>Intuitive Visual Design</strong>: Users can drag and drop nodes, define triggers, and configure actions through an easy-to-use interface to build workflows effortlessly.</li>
+<li><strong>Versatile Trigger Options</strong>: Supports a wide range of triggers, including table events, scheduled tasks, and post-operation events, catering to diverse business needs.</li>
+<li><strong>Customizable Nodes</strong>: Offers a variety of node types, such as condition checks, data updates, notifications, and external API calls, enabling users to handle complex business logic.</li>
+<li><strong>Code-Free Deployment</strong>: Business users can design and implement workflows without coding knowledge, making automation accessible while reducing development costs.</li>
+<li><strong>Workflow Versioning</strong>: Includes version control for workflows, allowing users to switch between versions to ensure traceability and process stability.</li>
+</ul>
+<h4>Salesforce&#39;s Flow Capabilities</h4>
+<p><img src="https://static-docs.nocobase.com/74c58148c7b9f6bed2ebd122e44154de.png" alt="Salesforce&#39;s Flow Capabilities.png"></p>
+<p>Salesforce’s Flow is a low-code tool designed to streamline and automate business processes efficiently.</p>
+<ul>
+<li><strong>Flow Builder</strong>: A user-friendly graphical interface for creating and managing workflows, including screen flows, record-triggered flows, and auto-launched flows.</li>
+<li><strong>Diverse Flow Types</strong>: Supports screen flows (for user interaction), record-triggered flows (based on data changes), and auto-launched flows (running in the background) to address various automation requirements.</li>
+<li><strong>Conditional Logic</strong>: Decision elements enable users to define advanced conditional logic, streamlining complex business rules and actions.</li>
+<li><strong>Integrated Salesforce Features</strong>: Flow integrates seamlessly with Salesforce tools like Quick Actions and Lightning pages, delivering a unified experience across the platform.</li>
+<li><strong>Built-In Debugging and Testing</strong>: Provides tools to test and debug workflows before deployment, ensuring reliable automation processes.</li>
+</ul>
+<h3><strong>UI Interface Design</strong></h3>
+<p>The flexibility and ease of use in UI design are vital for enhancing user experience and adapting quickly to business needs.</p>
+<h4>NocoBase&#39;s WYSIWYG Page Design</h4>
+<p><img src="https://static-docs.nocobase.com/d145c9878796fc12efdadbd05b22180e.png" alt="NocoBase&#39;s WYSIWYG Page Design.png"></p>
+<p>NocoBase provides a user-friendly WYSIWYG (What You See Is What You Get) editor, enabling users to design and customize front-end interfaces effortlessly.</p>
+<ul>
+<li><strong>Intuitive Real-Time Design</strong>: Users can drag and drop components to create interfaces directly without switching between configuration pages, making the process highly intuitive.</li>
+<li><strong>Block-Based Concept</strong>: Drawing inspiration from Notion, NocoBase uses a block-based structure, allowing data to be displayed in various formats such as tables, forms, kanban boards, and calendars to suit diverse business needs.</li>
+<li><strong>Customizable Layouts</strong>: NocoBase offers extensive flexibility for page layouts, enabling users to modify component positions and data presentation styles to match their specific requirements.</li>
+<li><strong>User-Friendly for Non-Developers</strong>: Even without technical experience, users can easily create customized pages, making the platform accessible to all team members.</li>
+<li><strong>Advanced Plugin Features</strong>: Plugins allow for additional UI capabilities, such as interactive forms, dynamic content displays, and detailed analytics through charts.</li>
+</ul>
+<p>NocoBase’s UI design is particularly well-suited for teams needing quick iterations and extensive customization, providing a highly efficient solution for building tailored systems.</p>
+<h4>Salesforce&#39;s UI Interface Design</h4>
+<p><img src="https://static-docs.nocobase.com/327bca676dde8116e3d5bf640ce3cf8f.png" alt="Salesforce&#39;s UI Interface Design.png"></p>
+<p>Salesforce offers page design tools through its Lightning Pages and Page Templates, enabling users to create functional and integrated interfaces.</p>
+<ul>
+<li><strong>Extensive Template Options</strong>: Salesforce provides a wide selection of templates tailored to different business scenarios, ensuring adaptability to various needs.</li>
+<li><strong>Centralized Maintenance</strong>: Page templates are configured and maintained separately from display pages, offering an organized approach to interface management.</li>
+<li><strong>Seamless Integration</strong>: Lightning Pages integrate standard and custom components alongside third-party tools, ensuring a cohesive experience within the Salesforce ecosystem.</li>
+</ul>
+<p>While Salesforce’s design tools offer robust capabilities, the process can be time-consuming, requiring users to navigate multiple settings pages, which increases complexity and learning time. Moreover, achieving advanced customizations often relies on additional development resources, limiting flexibility in highly specialized scenarios.</p>
+<h3><strong>Data Visualization and Analysis</strong></h3>
+<p>Data visualization and analysis are crucial extensions of UI design, transforming business data into actionable insights. By presenting information intuitively, these features help users identify trends, evaluate performance, and make better decisions.</p>
+<h4>NocoBase&#39;s Data Visualization and Analysis</h4>
+<p><img src="https://static-docs.nocobase.com/5be7c985515aa2803ab947995cd749c6.png" alt="NocoBase&#39;s Data Visualization and Analysis.png"></p>
+<p>NocoBase uses its block-based framework and plugin ecosystem to provide a wide range of data visualization and analysis options:</p>
+<ul>
+<li><strong>Flexible Block Displays</strong>: Present data in various formats, such as tables, forms, or charts, to adapt to diverse business needs.</li>
+<li><strong>Custom Analysis</strong>: Configure filters, sorting, and groupings to align with specific business logic, enabling fully tailored analytical views.</li>
+<li><strong>ECharts Support</strong>: Beyond standard charts, NocoBase integrates with <a href="https://echarts.apache.org/en/index.html">ECharts</a>, offering advanced visualization options like funnel charts and radar charts with easy-to-use customization settings.</li>
+</ul>
+<p>NocoBase prioritizes flexibility and customization, empowering users to control how data is presented and analyzed for highly personalized insights.</p>
+<h4>Salesforce&#39;s Data Visualization and Analysis</h4>
+<p><img src="https://static-docs.nocobase.com/8c80361ed2887a61c760ba99d69dd880.png" alt="Salesforce&#39;s Data Visualization and Analysis.png"></p>
+<p>Salesforce delivers comprehensive reporting and dashboard tools to visualize and analyze business data efficiently:</p>
+<ul>
+<li><strong>Pre-Built Reports</strong>: Quickly generate reports using templates designed for common needs, such as tracking sales performance, monitoring customer activities, or evaluating marketing campaigns.</li>
+<li><strong>Varied Chart Types</strong>: Supports bar charts, line charts, funnel charts, and stacked charts to suit a range of business scenarios.</li>
+<li><strong>Integrated Predictive Analytics</strong>: With tools like Einstein Analytics, Salesforce enables predictive analysis to identify potential opportunities and optimize strategies.</li>
+</ul>
+<p>While Salesforce’s visualization tools are robust, they are more standardized. Customizing complex analysis often requires additional development or third-party integrations.</p>
+<h3><strong>Plugins and Extensions</strong></h3>
+<p>The ability to adapt to diverse business needs relies heavily on a platform’s flexibility and customizability through plugins and extensions.</p>
+<h4>NocoBase’s Plugin-Based Architecture</h4>
+<p><img src="https://static-docs.nocobase.com/6d9780e423305a83df416cbe3b3df9ed.png" alt="NocoBase’s Plugin-Based Architecture.png"></p>
+<p>NocoBase employs a microkernel architecture with the philosophy that “everything is a plugin,” allowing users to customize and expand system functionality with ease.</p>
+<ul>
+<li><strong>Comprehensive Plugin Ecosystem</strong>: NocoBase provides a wide range of free and commercial plugins for features like data management, workflows, data visualization, and notifications, catering to various business needs.</li>
+<li><strong>Custom Plugin Development</strong>: Users can develop their own plugins to meet unique project requirements, further extending NocoBase’s functionality.</li>
+<li><strong>Simplified Plugin Management</strong>: With the plugin manager, users can activate, deactivate, or configure plugins easily, making system adjustments hassle-free.</li>
+<li><strong>Flexible Cost Control</strong>: A point-based system for commercial plugins allows businesses to purchase and use only the plugins they need, keeping costs manageable.</li>
+</ul>
+<p>NocoBase’s plugin architecture ensures it can rapidly adapt to changing business requirements, offering users a highly customizable and efficient platform to optimize workflows.</p>
+<h4>Salesforce’s Plugin and Extension Features</h4>
+<p><img src="https://static-docs.nocobase.com/30bdbb920ec3fdd5b71f227ddb455989.png" alt="Salesforce’s Plugin and Extension Features.png"></p>
+<p>Salesforce’s extensive ecosystem supports customization and functionality enhancements through a wide variety of tools and plugins.</p>
+<ul>
+<li><strong>AppExchange Marketplace</strong>: Salesforce’s official marketplace offers an extensive selection of third-party apps and plugins to enhance CRM features, including marketing automation, analytics, and project management.</li>
+<li><strong>Developer Tools</strong>: Tools like the Salesforce extension pack for Visual Studio Code enable developers to efficiently write, debug, and deploy code, making complex customizations easier to implement.</li>
+<li><strong>Chrome Lightning Extension</strong>: Salesforce’s browser extension enhances usability by introducing features such as component customization and link tracking, streamlining everyday tasks for users.</li>
+</ul>
+<h3><strong>System Integration</strong></h3>
+<p>System integration is a critical measure of a CRM platform’s effectiveness. Seamless integration connects internal and external systems, eliminating data silos and boosting overall business efficiency.</p>
+<h4>NocoBase’s System Integration Capabilities</h4>
+<p><img src="https://static-docs.nocobase.com/79eca4ed29ed03c0aaf7c3d4589ed632.png" alt="NocoBase’s System Integration Capabilities.png"></p>
+<p>NocoBase offers robust integration features to help businesses connect various data sources efficiently:</p>
+<ul>
+<li><strong>Direct External Data Integration</strong>: NocoBase supports connections to internal databases like MySQL and PostgreSQL, as well as HTTP-based data sources, enabling flexible integration with external systems.</li>
+<li><strong>Comprehensive API Support</strong>: With RESTful APIs, users can easily read, write, update, and query data, facilitating smooth synchronization with third-party systems.</li>
+<li><strong>Drag-and-Drop Interface</strong>: Integrated data can be displayed directly on NocoBase’s front-end interface through drag-and-drop actions, simplifying unified management.</li>
+<li><strong>No-Code Setup</strong>: Establishing connections and integrating systems requires no coding knowledge, allowing users to complete the process quickly and easily.</li>
+<li><strong>Custom Data Relationships</strong>: Users can define associations and display logic based on specific business needs, ensuring efficient and unified data management.</li>
+</ul>
+<p>NocoBase’s integration focuses on <strong>ease of use, flexibility, and openness</strong>, enabling businesses to connect systems rapidly while maintaining control over data relationships. However, effective configuration may require a basic understanding of business processes.</p>
+<h4>Salesforce’s System Integration Capabilities</h4>
+<p><img src="https://static-docs.nocobase.com/6fbb837386d46eedc38c755fcf3743c6.png" alt="Salesforce’s System Integration Capabilities.png"></p>
+<p>Salesforce provides advanced tools and a rich ecosystem to handle complex integration scenarios:</p>
+<ul>
+<li><strong>Extensive App Marketplace</strong>: AppExchange, Salesforce’s official marketplace, offers a vast selection of third-party apps and plugins for integrating systems like marketing automation, analytics, and project management, minimizing the need for custom development.</li>
+<li><strong>Robust API Support</strong>: Salesforce’s APIs allow seamless integration with ERP, BI platforms, and external databases, enabling efficient data exchange.</li>
+<li><strong>Streamlined Data Connectors</strong>: Salesforce data connectors simplify linking external data sources, ensuring smooth data synchronization.</li>
+<li><strong>Custom Integration Solutions</strong>: Developers can leverage Apex and MuleSoft to create tailored integration logic, accommodating complex workflows and ensuring efficient data flow across systems.</li>
+</ul>
+<p>Salesforce excels in <strong>advanced and comprehensive integration capabilities</strong>, making it ideal for enterprises with complex requirements. However, its setup process is more intricate than NocoBase, and achieving high customization often involves significant development resources and costs.</p>
+<h3><strong>Security and Permission Management</strong></h3>
+<p>Effective security and permission management are essential in any CRM system, ensuring data protection and granular user access control.</p>
+<h4>NocoBase’s Security and Permission Management</h4>
+<p><img src="https://static-docs.nocobase.com/4be0934eba1c9b11e54bb666aa812531.png" alt="NocoBase’s Security and Permission Management.png"></p>
+<p>NocoBase provides a highly customizable and intuitive permission system, enabling detailed access control and compliance with enterprise security standards:</p>
+<ul>
+<li><strong>Granular Access Control</strong>: Permissions can be configured at multiple levels, including data sources, pages, and individual blocks, ensuring precise control over data access for each role.</li>
+<li><strong>Condition-Based Rules</strong>: Users can define conditions to specify when data can be read, updated, or deleted, offering advanced flexibility for complex scenarios.</li>
+<li><strong>Cross-Object Permissions</strong>: NocoBase allows permissions to extend across tables and objects, ensuring data consistency and security in intricate workflows.</li>
+<li><strong>Enterprise-Grade Authentication</strong>: With support for CAS, OIDC, SAML 2.0, and LDAP, NocoBase simplifies single sign-on (SSO) and identity management while meeting stringent security standards.</li>
+</ul>
+<p>NocoBase’s robust security framework is ideal for businesses that require a high level of customization and enterprise-grade data protection. Its flexibility ensures seamless adaptation to complex workflows and evolving security needs.</p>
+<h4>Salesforce’s Security and Permission Management</h4>
+<p><img src="https://static-docs.nocobase.com/155534f2857412b9e86bb185979193f0.png" alt="Salesforce’s Security and Permission Management.png"></p>
+<p>Salesforce delivers a comprehensive and structured security framework, designed to streamline role-based access and data protection:</p>
+<ul>
+<li><strong>Role-Based Access</strong>: Define user permissions through hierarchical roles and sharing rules, specifying access to data at multiple levels.</li>
+<li><strong>Object-Level Control</strong>: Manage user actions on specific objects (e.g., customers, orders) with granular permissions for reading, editing, and deleting data.</li>
+<li><strong>Field-Level Security</strong>: Hide or restrict access to sensitive fields, ensuring critical data is protected from unauthorized access.</li>
+<li><strong>Dynamic Sharing Rules</strong>: Administrators can configure conditional rules to grant or restrict access based on predefined criteria.</li>
+</ul>
+<p>Salesforce’s predefined roles and permissions enable rapid deployment, making it suitable for businesses needing immediate scalability. However, achieving flexibility in highly customized workflows often requires additional configurations and development resources.</p>
+<h2 id="en-3"><strong>User Experience Comparison</strong></h2>
+<p>After reviewing the core features, let’s conclude with a concise comparison of user experience.</p>
+<h3>Learning Curve</h3>
+<p><img src="https://static-docs.nocobase.com/c189a9f8024bc21304eb599e28ba0d4c.png" alt="NocoBase.png"></p>
+<p>NocoBase offers an approachable learning curve, enabling users to quickly get started with its intuitive WYSIWYG interface. Basic system setup, including page layouts, data modeling, and workflow configuration, can be accomplished through simple drag-and-drop actions, eliminating the need for prior development experience.</p>
+<p>For technical users, NocoBase provides advanced options through its plugin architecture and API integrations, allowing for extensive customization and feature expansion. This dual-layer approach makes NocoBase ideal for business users who need quick solutions, while also catering to development teams seeking deeper flexibility and control.</p>
+<p><img src="https://static-docs.nocobase.com/374bc165b7011894dcd0b94fc164b3d6.png" alt="Salesforce.png"></p>
+<p>Salesforce, with its extensive features and robust enterprise capabilities, presents a steeper learning curve. New users need time to navigate its multi-tiered functionality, including object management, workflow configuration, and permission settings. Moreover, making full use of Salesforce’s customization and integration capabilities often requires proficiency with platform-specific tools like Flow and the Apex programming language.</p>
+<p>That said, Salesforce compensates with a wealth of learning resources and community support. Tools like the Trailhead learning platform, comprehensive documentation, and active forums provide users with step-by-step guidance, enabling them to gradually transition from novice to expert and fully leverage the platform’s potential.</p>
+<h2 id="en-4"><strong>Summary</strong></h2>
+<p><strong>NocoBase or Salesforce – Which Should You Choose?</strong> Below is a quick comparison of the key features of NocoBase and Salesforce:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>NocoBase</th>
+<th>Salesforce</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Deployment</td>
+<td>Self-hosted, supports on-premise deployment, giving enterprises full control over data to meet high security and privacy needs.</td>
+<td>Cloud-hosted, with data stored on a third-party platform.</td>
+</tr>
+<tr>
+<td>Customization</td>
+<td>Highly flexible, supporting deep customization of features, pages, and data models, making it ideal for complex business scenarios and industry solutions.</td>
+<td>Strong customization capabilities, but heavily reliant on developers and third-party tools, making the process more complex.</td>
+</tr>
+<tr>
+<td>Features</td>
+<td>Comprehensive CRM functionality, including data modeling, permission management, workflow automation, and visualization. Suitable for diverse needs from small to large enterprises, with support for industry-specific solutions and external outputs.</td>
+<td>Provides a mature, comprehensive CRM solution with complete functional modules, particularly suited for quick deployment in large enterprises.</td>
+</tr>
+<tr>
+<td>Automation &amp; AI</td>
+<td>Offers highly customizable workflow automation with basic automation features. AI capabilities are currently in development.</td>
+<td>Includes powerful automation features and integrates AI tools (e.g., Einstein Analytics) for intelligent analysis and predictions.</td>
+</tr>
+<tr>
+<td>Technical Requirements</td>
+<td>Easy for beginners to start, allowing business users to quickly set up systems. For advanced features and deep customization, technical teams can use plugins and APIs to implement sophisticated solutions.</td>
+<td>No coding required for basic use, but the system&#39;s configuration and operations are complex, requiring a significant learning curve.</td>
+</tr>
+<tr>
+<td>Support</td>
+<td>Offers detailed documentation and community support, with strong openness for developers to contribute plugins and solutions.</td>
+<td>Provides comprehensive technical support, official training, and extensive learning resources (e.g., Trailhead).</td>
+</tr>
+</tbody></table>
+<p>Both NocoBase and Salesforce offer distinct advantages and serve different needs.</p>
+<p>If you’re looking for a flexible, cost-effective open-source solution and are ready to tackle some technical challenges, NocoBase is a great option. On the other hand, if your priority is a mature, all-encompassing enterprise CRM system and you have the budget to support it, Salesforce is likely the better choice.</p>
+<p><strong>We hope this guide helps you find the platform that best fits your requirements, setting you up for success in customer management and business growth.</strong></p>
+<p>💡 Explore our other product comparison articles:</p>
+<p><a href="../blog/nocobase-vs-nocodb.html">NocoBase vs NocoDB: An In-Depth Comparison of Open Source No-Code Tools</a></p>
+<p><a href="../blog/nocobase-vs-refine.html">Open Source CRUD Development Tools: NocoBase vs Refine</a></p>
+<p><a href="../blog/nocobase-vs-appsmith.html">NocoBase vs. Appsmith: Which Open Source Low-Code Platform is Right for You?</a></p>
+<p>Interested in open-source CRM options? Don’t miss: <a href="../blog/salesforce-open-source-crmalternative.html">4 Powerful Open Source Alternatives to Salesforce </a></p></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">背景</a><a href="#zh-2">产品能力对比</a><a href="#zh-3">用户体验对比</a><a href="#zh-4">总结：选择 NocoBase 还是 Salesforce？</a></div><div class="en-only"><a href="#en-1">Background</a><a href="#en-2">Product Capability Comparison</a><a href="#en-3">User Experience Comparison</a><a href="#en-4">Summary</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

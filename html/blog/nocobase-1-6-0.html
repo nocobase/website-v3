@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase v1.6.0 正式版发布 — NocoBase" data-en="NocoBase v1.6.0 Officially Released — NocoBase">NocoBase v1.6.0 正式版发布 — NocoBase</title>
+<meta name="description" content="集群模式部署、安全策略优化和迁移管理，性能、安全性和用户体验的全面提升" data-zh="集群模式部署、安全策略优化和迁移管理，性能、安全性和用户体验的全面提升" data-en="Cluster mode deployment, security policy optimization, and migration Manager, led to a comprehensive enhancement in performance, security, and user experience.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></p>
+    <h1><t-zh>NocoBase v1.6.0 正式版发布</t-zh><t-en>NocoBase v1.6.0 Officially Released</t-en></h1>
+    <p class="lede"><t-zh>集群模式部署、安全策略优化和迁移管理，性能、安全性和用户体验的全面提升</t-zh><t-en>Cluster mode deployment, security policy optimization, and migration Manager, led to a comprehensive enhancement in performance, security, and user experience.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2025年3月13日</t-zh><t-en>Mar 13, 2025</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/1dbf3728fce06f755ddf6957285ff8eb.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">新特性</h2>
+<h3>集群模式</h3>
+<p>企业版可通过相关插件支持集群模式部署，应用以集群模式运行时，可以通过多个实例和使用多核模式来提高应用的对并发访问处理的性能。</p>
+<p><img src="https://static-docs.nocobase.com/20241231010814.png" alt="20241231010814"></p>
+<p>参考文档：<a href="https://docs-cn.nocobase.com/welcome/getting-started/deployment/cluster-mode">集群部署</a></p>
+<h3>密码策略</h3>
+<p>为所有用户设置密码规则，密码有效期和密码登录安全策略，管理锁定用户。</p>
+<p><img src="https://static-docs.nocobase.com/202412281329313.png" alt=""></p>
+<p>参考文档：<a href="https://docs-cn.nocobase.com/handbook/password-policy">密码策略和用户锁定</a></p>
+<h3>Token 安全策略</h3>
+<p>Token 安全策略是一种用于保护系统安全和体验的功能配置。它包括了三个主要配置项：“会话有效期”、“Token 有效周期” 和 “过期 Token 刷新时限” 。</p>
+<p><img src="https://static-docs.nocobase.com/20250105111821-2025-01-05-11-18-24.png" alt="20250105111821-2025-01-05-11-18-24"></p>
+<p>参考文档：<a href="https://docs-cn.nocobase.com/handbook/token-policy">Token 安全策略</a></p>
+<h3>IP 限制</h3>
+<p>NocoBase 支持管理员对用户访问 IP 设置白名单或黑名单，以限制未授权的外部网络连接或阻止已知的恶意 IP 地址，降低安全风险。同时支持管理员查询访问拒绝日志，识别风险 IP。</p>
+<p><img src="https://static-docs.nocobase.com/2025-01-23-10-07-34-20250123100733.png" alt="2025-01-23-10-07-34-20250123100733"></p>
+<p>参考文档：<a href="https://docs-cn.nocobase.com/handbook/IP-restriction">IP 限制</a></p>
+<h3>变量和密钥</h3>
+<p>集中配置和管理环境变量和密钥，用于敏感数据存储、配置数据重用、环境配置隔离等。</p>
+<p><img src="https://static-docs.nocobase.com/1ee6c3fa09533b19f4d6038f53b06006.png" alt="1ee6c3fa09533b19f4d6038f53b06006.png"></p>
+<p>参考文档：<a href="https://docs-cn.nocobase.com/handbook/environment-variables">变量和密钥</a></p>
+<h3>迁移管理</h3>
+<p>用于将应用配置从一个应用环境迁移到另一个应用环境。</p>
+<p><img src="https://static-docs.nocobase.com/20250107105005.png" alt="20250107105005"></p>
+<p>参考文档：</p>
+<ul>
+<li><p><a href="https://docs-cn.nocobase.com/handbook/migration-manager">迁移管理</a></p>
+</li>
+<li><p><a href="https://docs-cn.nocobase.com/handbook/release-management">发布管理</a></p>
+</li>
+</ul>
+<h3>路由管理</h3>
+<ul>
+<li><strong>菜单数据独立并改名为路由</strong>：菜单数据从 UI Schema 中拆分出来，改名为<strong>路由</strong>，分为 <code>desktopRoutes</code> 和 <code>mobileRoutes</code> 两张表，分别对应桌面端路由和移动端路由。</li>
+<li><strong>菜单前端优化，支持折叠与响应式</strong>：菜单在前端实现了<strong>折叠</strong>与<strong>响应式</strong>适配，提升了使用体验。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/20250107115449.png" alt="20250107115449"></p>
+<p>参考文档：<a href="https://docs-cn.nocobase.com/handbook/routes">路由管理</a></p>
+<h3>角色和权限</h3>
+<ul>
+<li><p>支持配置更多的操作按钮权限，包括弹窗、链接、扫码、触发工作流
+<img src="https://static-docs.nocobase.com/b0a7905d9fd4beaaf21592b1f56fe752.png" alt="b0a7905d9fd4beaaf21592b1f56fe752.png"></p>
+</li>
+<li><p>支持配置标签页权限</p>
+<p><img src="https://static-docs.nocobase.com/4fd3a5144a2301638b9f24b033d33add.png" alt="4fd3a5144a2301638b9f24b033d33add.png"></p>
+</li>
+</ul>
+<h3>用户管理</h3>
+<p>支持配置用户个人资料表单</p>
+<p><img src="https://static-docs.nocobase.com/171e5a4c61033afb237c9ae1a3d89000.png" alt="171e5a4c61033afb237c9ae1a3d89000.png"></p>
+<h3>工作流</h3>
+<p>在全局工具栏中增加流程待办中心入口，并实时提示人工节点、审批的相关待办任务数量。</p>
+<p><img src="https://static-docs.nocobase.com/855c58536f9fd29ae353dd19b3aff73f.png" alt="855c58536f9fd29ae353dd19b3aff73f.png"></p>
+<h3>工作流：自定义操作事件</h3>
+<p>支持全局和批量数据触发自定义操作事件。</p>
+<p><img src="https://static-docs.nocobase.com/106ae1296d180718799eb6d7f423805c.png" alt="106ae1296d180718799eb6d7f423805c.png"></p>
+<h3>工作流：审批</h3>
+<ul>
+<li>支持转签、加签。<img src="https://static-docs.nocobase.com/20241226232013.png" alt="审批节点_界面配置_操作表单区块"></li>
+<li>支持审批人在提交审批时修改申请内容。<img src="https://static-docs.nocobase.com/20241226232124.png" alt="审批节点_界面配置_操作表单_修改审批内容字段"></li>
+<li>支持在审批界面中配置审批基础信息区块。</li>
+<li>优化审批发起和待办区块的样式和交互，同时也在全局的流程待办中心中内置。<img src="https://static-docs.nocobase.com/20250310161203.png" alt="待办中心-审批"></li>
+<li>不再区分发起审批的位置，审批中心区块可以发起和处理所有审批。</li>
+</ul>
+<h3>工作流：JSON 变量映射节点</h3>
+<p>新增用于将上游节点结果中的 JSON 数据映射为变量的专用节点。</p>
+<p><img src="https://static-docs.nocobase.com/20250113173635.png" alt="创建节点"></p>
+<p>参考文档：<a href="https://docs-cn.nocobase.com/handbook/workflow/nodes/json-variable-mapping">JSON 变量映射</a></p>
+<h3>扩展能力提升及插件示例</h3>
+<table>
+<thead>
+<tr>
+<th>扩展项</th>
+<th>插件示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据表预置字段扩展</td>
+<td>@nocobase-sample/plugin-data-source-main-custom-preset-fields</td>
+</tr>
+<tr>
+<td>日历颜色字段可选项扩展</td>
+<td>@nocobase-sample/plugin-calendar-register-color-field</td>
+</tr>
+<tr>
+<td>日历标题字段可选项扩展</td>
+<td>@nocobase-sample/plugin-calendar-register-title-field</td>
+</tr>
+<tr>
+<td>公式可选项字段扩展</td>
+<td>@nocobase-sample/plugin-field-formula-register-expression-field</td>
+</tr>
+<tr>
+<td>看板分组字段扩展</td>
+<td>@nocobase-sample/plugin-kanban-register-group-field</td>
+</tr>
+<tr>
+<td>筛选操作符扩展</td>
+<td>@nocobase-sample/plugin-register-filter-operator</td>
+</tr>
+<tr>
+<td>文件存储扩展</td>
+<td>@nocobase-sample/plugin-file-storage-demo</td>
+</tr>
+</tbody></table>
+<h2 id="zh-2">不兼容变更</h2>
+<h3>Token 安全策略更新</h3>
+<p>1.6 版本新增了 <a href="https://docs-cn.nocobase.com/handbook/token-policy">Token 安全策略</a>，Auth 认证检查未通过时，将返回 401 错误并跳转至登录页。此行为与之前版本有所不同。如需跳过检查，可参考以下示例进行处理：</p>
+<p>前端请求</p>
+<pre><code class="language-javascript">useRequest({
+  url: &#39;/test&#39;,
+  skipAuth: true,
+});
+
+api.request({
+  url: &#39;/test&#39;,
+  skipAuth: true,
+});
+</code></pre>
+<p>后端中间件</p>
+<pre><code class="language-javascript">class PluginMiddlewareExampleServer extends plugin {
+  middlewareExample = (ctx, next) =&gt; {
+    if (ctx.path === &#39;/path/to&#39;) {
+      ctx.skipAuthCheck = true;
+    }
+    await next();
+  };
+  async load() {
+    this.app.dataSourceManager.afterAddDataSource((dataSource) =&gt; {
+      dataSource.resourceManager.use(this.middlewareExample, {
+        before: &#39;auth&#39;,
+      });
+    });
+  }
+}
+</code></pre>
+<h3>单元测试函数 agent.login 由同步改为异步</h3>
+<p>由于认证流程需要进行一些异步操作，测试函数 login 改为异步, 示例：</p>
+<pre><code class="language-TypeScript">import { createMockServer } from &#39;@nocobase/test&#39;;
+
+describe(&#39;my db suite&#39;, () =&gt; {
+  let app;
+  let agent;
+
+  beforeEach(async () =&gt; {
+    app = await createMockServer({
+      registerActions: true,
+      acl: true,
+      plugins: [&#39;users&#39;, &#39;auth&#39;, &#39;acl&#39;],
+    });
+    agent = await app.agent().login(1);
+  });
+
+  test(&#39;case1&#39;, async () =&gt; {
+    await agent.get(&#39;/examples&#39;);
+    await agent.get(&#39;/examples&#39;);
+    await agent.resource(&#39;examples&#39;).create();
+  });
+});
+</code></pre>
+<h3>提供全新的用户中心设置项的扩展 API</h3>
+<p>API</p>
+<pre><code class="language-ts">type UserCenterSettingsItemOptions = SchemaSettingsItemType &amp; { aclSnippet?: string };
+
+class Application {
+  addUserCenterSettingsItem(options: UserCenterSettingsItemOptions);
+}
+</code></pre>
+<p>示例</p>
+<pre><code class="language-javascript">class PluginUserCenterSettingsExampleClient extends plugin {
+  async load() {
+    this.app.addUserCenterSettingsItem({
+      name: &#39;nickName&#39;,
+      Component: NickName,
+      sort: 0,
+    });
+  }
+}
+</code></pre></div><div class="prose en-only"><h2 id="en-1">New Features</h2>
+<h3>Cluster Mode</h3>
+<p>The Enterprise edition supports cluster mode deployment via relevant plugins. When the application runs in cluster mode, it can leverage multiple instances and multi-core processing to improve its performance in handling concurrent access.</p>
+<p><img src="https://static-docs.nocobase.com/20241231010814.png" alt="Cluster Mode Screenshot"></p>
+<p>Reference: <a href="https://docs.nocobase.com/welcome/getting-started/deployment/cluster-mode">Deployment - Cluster Mode</a></p>
+<h3>Password Policy</h3>
+<p>A password policy is established for all users, including rules for password complexity, validity periods, and login security strategies, along with the management of locked accounts.</p>
+<p><img src="https://static-docs.nocobase.com/202412281329313.png" alt="Password Policy Screenshot"></p>
+<p>Reference: <a href="https://docs.nocobase.com/handbook/password-policy">Password Policy</a></p>
+<h3>Token Policy</h3>
+<p>The Token Security Policy is a function configuration designed to protect system security and enhance user experience. It includes three main configuration items: &quot;session validity,&quot; &quot;token effective period,&quot; and &quot;expired token refresh limit.&quot;</p>
+<p><img src="https://static-docs.nocobase.com/20250105111821-2025-01-05-11-18-24.png" alt="Token Policy Screenshot"></p>
+<p>Reference: <a href="https://docs.nocobase.com/handbook/token-policy">Token Policy</a></p>
+<h3>IP Restriction</h3>
+<p>NocoBase allows administrators to set up an IP allowlist or blacklist for user access to restrict unauthorized external network connections or block known malicious IP addresses, thereby reducing security risks. It also supports querying access denial logs to identify risky IPs.</p>
+<p><img src="https://static-docs.nocobase.com/2025-01-23-10-07-34-20250123100733.png" alt="IP Restriction Screenshot"></p>
+<p>Reference: <a href="https://docs.nocobase.com/handbook/IP-restriction">IP Restriction</a></p>
+<h3>Variables and Secrets</h3>
+<p>Centralized configuration and management of environment variables and secrets are provided for sensitive data storage, configuration reuse, environment isolation, and more.</p>
+<p><img src="https://static-docs.nocobase.com/1ee6c3fa09533b19f4d6038f53b06006.png" alt="Environment Variables Screenshot"></p>
+<p>Reference: <a href="https://docs.nocobase.com/handbook/environment-variables">Variables and Secrets</a></p>
+<h3>Migration Manager</h3>
+<p>This feature allows you to migrate application configurations from one environment to another.</p>
+<p><img src="https://static-docs.nocobase.com/20250107105005.png" alt="Migration Manager Screenshot"></p>
+<p>Reference:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/handbook/migration-manager">Migration Manager</a></li>
+<li><a href="https://docs.nocobase.com/handbook/release-management">Release Management</a></li>
+</ul>
+<h3>Route Management</h3>
+<ul>
+<li><strong>Menu Data Separated and Renamed to Routes</strong>: The menu data has been decoupled from the UI Schema and renamed as &quot;routes.&quot; It is divided into two tables, desktopRoutes and mobileRoutes, which correspond to desktop and mobile routes respectively.</li>
+<li><strong>Frontend Menu Optimization with Collapse and Responsive Support</strong>: The frontend menu now supports collapse functionality and responsive design for an improved user experience.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/20250107115449.png" alt="Route Management Screenshot"></p>
+<p>Reference: <a href="https://docs.nocobase.com/handbook/routes">Routes</a></p>
+<h3>Roles and Permissions</h3>
+<ul>
+<li>Supports configuration of action permissions.
+<img src="https://static-docs.nocobase.com/b0a7905d9fd4beaaf21592b1f56fe752.png" alt="Roles and Permissions Screenshot 1"></li>
+<li>Supports configuration of tab permissions.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/4fd3a5144a2301638b9f24b033d33add.png" alt="Roles and Permissions Screenshot 2"></p>
+<h3>User Management</h3>
+<p>Supports customization of user profile forms.</p>
+<p><img src="https://static-docs.nocobase.com/171e5a4c61033afb237c9ae1a3d89000.png" alt="User Management Screenshot"></p>
+<h3>Workflow</h3>
+<p>An entry for the workflow to-do center has been added to the global toolbar, providing real-time notifications for manual nodes and pending approval tasks.</p>
+<p><img src="https://static-docs.nocobase.com/855c58536f9fd29ae353dd19b3aff73f.png" alt="Workflow Screenshot"></p>
+<h3>Workflow: Custom Action Events</h3>
+<p>Supports triggering custom action events both globally and in batch actions.</p>
+<p><img src="https://static-docs.nocobase.com/106ae1296d180718799eb6d7f423805c.png" alt="Custom Action Events Screenshot"></p>
+<h3>Workflow: Approval</h3>
+<ul>
+<li>Supports transferring approval responsibilities and adding extra approvers.
+<img src="https://static-docs.nocobase.com/20241226232013.png" alt="Approval Form Screenshot"></li>
+<li>Allows approvers to modify the application content when submitting an approval.
+<img src="https://static-docs.nocobase.com/20241226232124.png" alt="Approval Modification Screenshot"></li>
+<li>Supports configuration of a basic information block within the approval interface.</li>
+<li>Optimizes the style and interaction of initiating approvals and viewing pending tasks, with these improvements also integrated into the global process to-do center.
+<img src="https://static-docs.nocobase.com/20250310161203.png" alt="Approval To-do Center Screenshot"></li>
+<li>No longer distinguishes the location where the approval is initiated; the approval center block can both initiate and process all approvals.</li>
+</ul>
+<h3>Workflow: JSON Variable Mapping Node</h3>
+<p>A new dedicated node has been added to map JSON data from upstream node results into variables.</p>
+<p><img src="https://static-docs.nocobase.com/20250113173635.png" alt="JSON Variable Mapping Node Screenshot"></p>
+<p>Reference: <a href="https://docs.nocobase.com/handbook/workflow/nodes/json-variable-mapping">JSON Variable Mapping</a></p>
+<h3>Capability Enhancements and Plugin Examples</h3>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Plugin Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data Source Custom Preset Fields</td>
+<td>@nocobase-sample/plugin-data-source-main-custom-preset-fields</td>
+</tr>
+<tr>
+<td>Calendar Register Color Field</td>
+<td>@nocobase-sample/plugin-calendar-register-color-field</td>
+</tr>
+<tr>
+<td>Calendar Register Title Field</td>
+<td>@nocobase-sample/plugin-calendar-register-title-field</td>
+</tr>
+<tr>
+<td>Formula Register Expression Field</td>
+<td>@nocobase-sample/plugin-field-formula-register-expression-field</td>
+</tr>
+<tr>
+<td>Kanban Register Group Field</td>
+<td>@nocobase-sample/plugin-kanban-register-group-field</td>
+</tr>
+<tr>
+<td>Register Filter Operator</td>
+<td>@nocobase-sample/plugin-register-filter-operator</td>
+</tr>
+<tr>
+<td>File Storage Extension</td>
+<td>@nocobase-sample/plugin-file-storage-demo</td>
+</tr>
+</tbody></table>
+<h2 id="en-2">Breaking Changes</h2>
+<h3>Update to Token Policy</h3>
+<p>In version 1.6, a new <a href="https://docs.nocobase.com/handbook/token-policy">Token Policy</a> was introduced. When authentication fails, a 401 error will be returned along with a redirection to the login page. This behavior differs from previous versions. To bypass the check, refer to the following examples:</p>
+<p>Frontend Request:</p>
+<pre><code class="language-javascript">useRequest({
+  url: &#39;/test&#39;,
+  skipAuth: true,
+});
+
+api.request({
+  url: &#39;/test&#39;,
+  skipAuth: true,
+});
+</code></pre>
+<p>Backend Middleware:</p>
+<pre><code class="language-javascript">class PluginMiddlewareExampleServer extends plugin {
+  middlewareExample = (ctx, next) =&gt; {
+    if (ctx.path === &#39;/path/to&#39;) {
+      ctx.skipAuthCheck = true;
+    }
+    await next();
+  };
+  async load() {
+    this.app.dataSourceManager.afterAddDataSource((dataSource) =&gt; {
+      dataSource.resourceManager.use(this.middlewareExample, {
+        before: &#39;auth&#39;,
+      });
+    });
+  }
+}
+</code></pre>
+<h3>Unit Test Function agent.login Changed from Synchronous to Asynchronous</h3>
+<p>Due to several asynchronous operations required in the authentication process, the test function login is now asynchronous. Example:</p>
+<pre><code class="language-TypeScript">import { createMockServer } from &#39;@nocobase/test&#39;;
+
+describe(&#39;my db suite&#39;, () =&gt; {
+  let app;
+  let agent;
+
+  beforeEach(async () =&gt; {
+    app = await createMockServer({
+      registerActions: true,
+      acl: true,
+      plugins: [&#39;users&#39;, &#39;auth&#39;, &#39;acl&#39;],
+    });
+    agent = await app.agent().login(1);
+  });
+
+  test(&#39;case1&#39;, async () =&gt; {
+    await agent.get(&#39;/examples&#39;);
+    await agent.get(&#39;/examples&#39;);
+    await agent.resource(&#39;examples&#39;).create();
+  });
+});
+</code></pre>
+<h3>New Extension API for User Center Settings Items</h3>
+<p>API:</p>
+<pre><code class="language-TypeScript">type UserCenterSettingsItemOptions = SchemaSettingsItemType &amp; { aclSnippet?: string };
+
+class Application {
+  addUserCenterSettingsItem(options: UserCenterSettingsItemOptions);
+}
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-javascript">class PluginUserCenterSettingsExampleClient extends plugin {
+  async load() {
+    this.app.addUserCenterSettingsItem({
+      name: &#39;nickName&#39;,
+      Component: NickName,
+      sort: 0,
+    });
+  }
+}
+</code></pre></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">新特性</a><a href="#zh-2">不兼容变更</a></div><div class="en-only"><a href="#en-1">New Features</a><a href="#en-2">Breaking Changes</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/2.2.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-hygy1r.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年8月23日</t-zh><t-en>Aug 23, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2 正式版发布</t-zh><t-en>Announcing NocoBase 2.2</t-en></h3><p><t-zh>NocoBase 2.2 正式版进一步完善 V2 的完整使用路径，带来独立、轻量的 /v/ 前端入口与全新移动端体验。同时升级文件访问与权限机制，并增强评论区块、AI 知识库、工作流及核心插件的 V2 支持。</t-zh><t-en>NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.</t-en></p></a><a class="bcard" href="../blog/2.2.0-beta.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-beta-2kf9fd.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年7月17日</t-zh><t-en>Jul 17, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2-beta 发布</t-zh><t-en>Announcing NocoBase 2.2-beta</t-en></h3><p><t-zh>NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</t-zh><t-en>NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</t-en></p></a><a class="bcard" href="../blog/2.1.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(9)-tfwpkk.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.1.0 正式版发布</t-zh><t-en>Announcing NocoBase 2.1.0</t-en></h3><p><t-zh>NocoBase 2.1 以全新的 CLI 打通人与 AI Agent 连接和管理应用的入口，并完善 AI 搭建、Skills、AI 插件开发和 AI 员工能力。同时升级多应用协作、版本管理、工作流增强及更多 2.0 适配能力。</t-zh><t-en>NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

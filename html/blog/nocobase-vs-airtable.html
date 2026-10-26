@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase vs Airtable：更灵活的开源替代方案 — NocoBase" data-en="NocoBase vs Airtable: A Flexible and Customizable Open-Source Alternative — NocoBase">NocoBase vs Airtable：更灵活的开源替代方案 — NocoBase</title>
+<meta name="description" content="从 Airtable 常见操作出发，演示其在 NocoBase 中的实现方式，对比两者系统构建能力差异，为用户迁移提供参考。" data-zh="从 Airtable 常见操作出发，演示其在 NocoBase 中的实现方式，对比两者系统构建能力差异，为用户迁移提供参考。" data-en="This article starts from the common operations of Airtable, demonstrates their implementation in NocoBase, and compares the differences in system-building capabilities between the two, providing a reference for users considering migration.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>洞见 · AI 与无代码</t-zh><t-en>Insights · AI &amp; No-Code</t-en></p>
+    <h1><t-zh>NocoBase vs Airtable：更灵活的开源替代方案</t-zh><t-en>NocoBase vs Airtable: A Flexible and Customizable Open-Source Alternative</t-en></h1>
+    <p class="lede"><t-zh>从 Airtable 常见操作出发，演示其在 NocoBase 中的实现方式，对比两者系统构建能力差异，为用户迁移提供参考。</t-zh><t-en>This article starts from the common operations of Airtable, demonstrates their implementation in NocoBase, and compares the differences in system-building capabilities between the two, providing a reference for users considering migration.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>洞见</t-zh><t-en>Insights</t-en></span><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年7月4日</t-zh><t-en>Jul 4, 2025</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2080-4zwr8e.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">前言</h2>
+<p>如果你已经用 Airtable 搭建过内容排期系统、客户数据库、任务管理表，甚至构建过一个初步的 CRM，你一定体会过它的高效与灵活——<strong>尤其是在系统搭建的早期阶段，它几乎就是表格进化的终极形态。</strong></p>
+<p><img src="https://static-docs.nocobase.com/1-99pvxt.PNG" alt="Airtable"></p>
+<p>但当你的业务开始变得复杂，比如：</p>
+<ul>
+<li>表与表之间的关系越来越多；</li>
+<li>团队成员角色多样、权限需求精细；</li>
+<li>希望把 Airtable 打造成一个“真正的系统”，不仅仅是工具；</li>
+<li>越来越多的团队成员，让使用成本陡增。</li>
+</ul>
+<p>你可能也开始意识到：<strong>Airtable 很强，但不一定够用。</strong></p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>于是，许多 Airtable 用户开始寻找更强大的替代方案。在这些替代方案中，NocoBase 被越来越多开发者和业务团队提到。作为一个开源、AI 驱动的无代码开发平台，NocoBase 不仅保留了可视化操作的便利性，还在 AI 驱动能力的辅助下，提供了真正系统级的能力：复杂数据建模、精细权限控制、内置工作流、插件扩展、自托管部署等，能够支撑更高复杂度的业务场景。</p>
+<p>但问题来了：<strong>你习惯的 Airtable 用法，在 NocoBase 里还能实现吗？</strong></p>
+<p>本篇文章，我们会从 Airtable 用户最常见的操作出发，逐项演示它们在 NocoBase 中的实现方式，并进一步对比两者在系统构建能力上的差异。</p>
+<p>无论你是刚开始考虑迁移，还是已经遇到 Airtable 的瓶颈，这篇对比都能帮你找到答案。</p>
+<p>最近我们还发布了一系列的 <strong>Airtable 相关话题文章，欢迎阅读：</strong></p>
+<ul>
+<li><a href="../blog/airtable-data-limit-reached-3-common-solutions.html">Airtable 的数据超出上限，3 种常见应对方式</a></li>
+<li><a href="../blog/5-self-hosted-airtable-alternatives.html">Airtable 太贵了？5 个自托管替代方案成本&amp;功能对比 </a></li>
+<li><a href="../blog/open-source-airtable-alternatives.html">GitHub上 Star 数量最多的 Airtable 开源替代者 </a></li>
+</ul>
+<h2 id="zh-2">NocoBase 如何实现 Airtable 的典型用法？</h2>
+<p>对于很多团队来说，Airtable 是他们第一次体验“用表格就能搭系统”。它直观、灵活、易于协作，确实适合快速起步。</p>
+<p>那么，如果你熟悉了 Airtable 的典型用法，是否能无缝迁移到 NocoBase？我们来一个一个对照。</p>
+<table>
+<thead>
+<tr>
+<th>使用场景</th>
+<th>Airtable 做法</th>
+<th>NocoBase 实现方式</th>
+<th>是否支持</th>
+<th>拓展能力说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表格视图</td>
+<td>默认 Grid</td>
+<td>默认表格视图，可配置字段排序与过滤，即将发布可编辑表格，与 Airtable 的 Grid 用法完全一致。</td>
+<td>✅</td>
+<td>支持嵌套子表、视图权限分配</td>
+</tr>
+<tr>
+<td>表间关联</td>
+<td>Linked Record + Lookup</td>
+<td>数据建模中配置多表关系，支持一对多/多对多</td>
+<td>✅</td>
+<td>支持嵌套展示、级联过滤</td>
+</tr>
+<tr>
+<td>看板视图</td>
+<td>Kanban View</td>
+<td>配置前端区块，实现按字段分组的看板</td>
+<td>✅</td>
+<td>可结合状态字段、权限控制使用</td>
+</tr>
+<tr>
+<td>表单收集</td>
+<td>Form View</td>
+<td>表单插件 + 页面表单，支持匿名提交</td>
+<td>✅</td>
+<td>可自定义表单样式、逻辑与流程连接</td>
+</tr>
+<tr>
+<td>多人协作</td>
+<td>用户共享视图 + 权限</td>
+<td>内置用户系统 + 字段级、视图级、条件级权限</td>
+<td>✅</td>
+<td>支持多角色协作、数据隔离</td>
+</tr>
+<tr>
+<td>自动化提醒</td>
+<td>Automations + Email</td>
+<td>工作流引擎 + 通知节点</td>
+<td>✅</td>
+<td>支持多条件触发、分支逻辑</td>
+</tr>
+</tbody></table>
+<h3>1. <strong>表格视图</strong></h3>
+<p><strong>✅ 熟悉的工作方式，无需重新学习</strong></p>
+<p><img src="https://static-docs.nocobase.com/2-x65mxg.PNG" alt="NocoBase in edit mode"></p>
+<p>NocoBase 在编辑模式下</p>
+<p><img src="https://static-docs.nocobase.com/3-e140dd.PNG" alt="Airtable&#39;s Grid View"></p>
+<p>Airtable 的 Grid view</p>
+<p>NocoBase 默认提供类似 Airtable 的表格视图（Grid view），你可以快速浏览数据、排序、筛选、分页，并支持配置默认视图字段。</p>
+<p>虽然目前还不支持类似 Airtable 的表格内直接编辑的功能，但是这个功能即将发布，在不久之后可以实现和 Airtable 几乎一模一样的编辑方式。</p>
+<p><strong>进阶能力</strong>：你还可以为不同用户配置不同视图，限制可见字段，或者嵌套子表，适合主从表结构的呈现。</p>
+<p><img src="https://static-docs.nocobase.com/4-8iw8mo.png" alt="Field-Level Permission Settings"></p>
+<p>字段级别的权限设置</p>
+<h3>2. <strong>表间关联</strong></h3>
+<p><strong>✅ 从“链接字段”到真正的结构化建模</strong></p>
+<p>在 Airtable 中，常用 Linked Record + Lookup 来实现跨表取值。但当你有多对多、多层嵌套需求时，会变得越来越复杂。</p>
+<p><img src="https://static-docs.nocobase.com/5-l0l74c.png" alt="To add a Linked Record field in Airtable"></p>
+<p>在 Airtable 中添加 Linked Record 列</p>
+<p>NocoBase 原生支持多种实体关系配置，可以定义一对多、多对多，并在前端区块中可视化嵌套展示。</p>
+<p><img src="https://static-docs.nocobase.com/6-b8r28b.png" alt="Field relationships can be defined at the time the data field is created"></p>
+<p>在创建数据字段时即可定义字段关系</p>
+<p>复杂关系的多层嵌套视图也能流畅实现。</p>
+<p><img src="https://static-docs.nocobase.com/7-dea9rf.png" alt="Account view includes multiple relationship fields"></p>
+<p>Account 视图内包括多个关系字段</p>
+<h3>3. <strong>看板视图</strong></h3>
+<p><strong>✅  可配置的看板，更灵活展示</strong></p>
+<p>在 Airtable 中，你可以为你的数据切换不同视图，其中包括看板。</p>
+<p><img src="https://static-docs.nocobase.com/8-cwxpjj.png" alt="Airtable&#39;s Kanban"></p>
+<p>Airtable 的看板视图</p>
+<p>而在 NocoBase 中，逻辑有一些不同。由于前后端分离的设计，在设置好数据源、数据表及字段后。你可以在前端进行区块配置，实现“按字段值分组”的看板效果。例如，任务按状态分为“待办 / 进行中 / 已完成”。</p>
+<p><img src="https://static-docs.nocobase.com/9-f9es0h.png" alt="Select the data table you want to display as a Kanban"></p>
+<p>选择你想要展示为看板的数据表</p>
+<p><img src="https://static-docs.nocobase.com/10-osy53e.png" alt="Kanban&#39;s display data can also be chosen arbitrarily"></p>
+<p>看板的展示数据也可以任意选择</p>
+<p>不同于 Airtable 的固定视图，NocoBase 的看板可以与权限联动，也可以作为流程触发点（例如：从“跟进”拖到“成交”，自动触发流程）。</p>
+<h3>4. <strong>表单收集</strong></h3>
+<p><strong>✅  支持匿名提交和流程衔接</strong></p>
+<p><img src="https://static-docs.nocobase.com/11-lt1res.png" alt="Form Configuration for Airtable"></p>
+<p>Airtable 的表单配置</p>
+<p>表单是很多团队用 Airtable 做外部收集的利器。NocoBase 同样支持表单收集，支持生成独立访问链接或嵌入页面，并允许配置匿名权限。</p>
+<p><img src="https://static-docs.nocobase.com/12-613ty1.png" alt="Form Configuration for NocoBase"></p>
+<p>NocoBase 的表单配置页面</p>
+<p>你还可以为每个表单设置提交后的流程逻辑，比如自动通知、数据审批或状态变更。</p>
+<p>并且，NocoBase 的表单还能优雅的嵌入你的各种业务场景，比如：官网、弹窗、移动端以及作为单独页面出现。</p>
+<p><img src="https://static-docs.nocobase.com/13-mxvrlv.png" alt="Embedding NocoBase Forms into Popups"></p>
+<p>将 NocoBase 表单嵌入弹窗</p>
+<h3>5. <strong>多人协作与权限控制</strong></h3>
+<p><strong>✅  不仅仅是共享视图</strong></p>
+<p>Airtable 的权限控制比较简单，通常以“可编辑/可查看”级别为主。</p>
+<p><img src="https://static-docs.nocobase.com/14-1i55qg.png" alt="Airtable’s permission system"></p>
+<p>NocoBase 则提供了完整的权限系统，包括字段级权限、条件级权限、视图控制等。</p>
+<p><img src="https://static-docs.nocobase.com/15-8astlh.png" alt="NocoBase&#39;s permission settings"></p>
+<p>NocoBase 的权限设置</p>
+<p>比如你可以设置“销售只能查看自己创建的客户”，“财务可以编辑付款状态但不能修改客户信息”。</p>
+<h3>6. <strong>自动化提醒与流程</strong></h3>
+<p><strong>✅  从简单提醒到完整业务流程</strong></p>
+<p>Airtable 的 Automations 多用于发送提醒或更新字段，但流程较简单。</p>
+<p><img src="https://static-docs.nocobase.com/16-kpogla.png" alt="Airtable currently has 9 default trigger conditions"></p>
+<p>Airtable 目前有 9 种默认的触发条件</p>
+<p>NocoBase 拥有完整的流程引擎（<a href="https://docs.nocobase.com/handbook/workflow/triggers/">7 种触发器</a>，<a href="https://docs.nocobase.com/handbook/workflow/nodes">24 种节点</a>），可以设置多步骤、多条件、审批流、状态流转等，适合用来搭建复杂业务流程，比如合同审批、请假流、入职流程等。</p>
+<p><img src="https://static-docs.nocobase.com/17-q5yvlt.png" alt="NocoBase&#39;s Workflow Configuration Interface"></p>
+<p>NocoBase 的工作流节点配置界面</p>
+<h2 id="zh-3">从数据管理迈向系统层级：进阶能力对比</h2>
+<p>当你开始把 Airtable 用得越来越“像个系统”时，说明你的需求已经超出了数据管理，而进入了“业务建模”的范畴。</p>
+<p>这个阶段的关键标志是：<strong>你不再只是“使用数据”，而是想控制数据的结构、流转、权限和生命周期。</strong></p>
+<p>在这一部分，我们对比 Airtable 与 NocoBase 在<strong>系统构建能力</strong>上的核心差异：</p>
+<table>
+<thead>
+<tr>
+<th>能力维度</th>
+<th>Airtable 表现</th>
+<th>NocoBase 表现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据建模能力</td>
+<td>以表格为主，支持关联字段，但不支持多对多、子模型结构</td>
+<td>配置式数据建模，支持 ER 模型、多对多、嵌套结构</td>
+</tr>
+<tr>
+<td>界面定制能力</td>
+<td>Interface 视图可用，但灵活性较弱</td>
+<td>完全可配置的页面和区块系统，支持嵌套组件</td>
+</tr>
+<tr>
+<td>插件机制</td>
+<td>支持市场插件 + 脚本块，但扩展受限</td>
+<td>插件架构开放，支持自研扩展、集成第三方服务</td>
+</tr>
+<tr>
+<td>数据容量限制</td>
+<td>免费版/Pro 版有记录上限、附件限制</td>
+<td>基于数据库，无理论上限</td>
+</tr>
+<tr>
+<td>部署与数据控制</td>
+<td>云端托管，不支持自托管；数据存储位置不可控</td>
+<td>支持完全自托管，代码与数据自主可控</td>
+</tr>
+</tbody></table>
+<h3>1. <strong>数据建模</strong></h3>
+<p><strong>✅  从“表”到“结构”的进化</strong></p>
+<p>在 Airtable 中，数据建模更多是用表格加上 Link、Lookup 来拼接结构，适合简单场景。</p>
+<p><img src="https://static-docs.nocobase.com/18-0w1lh4.png" alt="Creating Lookup Fields in Airtable"></p>
+<p>Airtable 中创建 Lookup 字段</p>
+<p>NocoBase 则具备数据库级的数据建模能力 —— 支持实体关系建模、主外键、多对多结构，适合承载复杂的业务模型，比如多层审批流、客户订单关系、权限隔离逻辑等。</p>
+<p><img src="https://static-docs.nocobase.com/19-r6gsh8.png" alt="NocoBase&#39;s data source management,decouple data and UI"></p>
+<p>NocoBase 的数据源管理，数据和 UI 解耦</p>
+<h3>2. <strong>界面构建</strong></h3>
+<p><strong>✅  从工具界面到产品级体验</strong></p>
+<p>很多 Airtable 用户会遇到 Interface 功能局限 —— 不能自由定义页面结构或交互逻辑，只能在不同的视图中切换。</p>
+<p><img src="https://static-docs.nocobase.com/20-zsgp5c.png" alt="Airtable’s Interface view"></p>
+<p>NocoBase 提供可配置的前端区块系统，可以像拼乐高一样搭建自己的工作台、任务面板、客户详情页。</p>
+<p><img src="https://static-docs.nocobase.com/21-3nwsu5.png" alt="In NocoBase you can combine different blocks in the page"></p>
+<p>在 NocoBase 中你可以在页面中组合不同的区块</p>
+<p>这让你的系统看起来不再是“表格 + 数据”，而是“应用 + 工作流”。</p>
+<h3>3. <strong>插件机制</strong></h3>
+<p><strong>✅  打破边界，让工具变成平台</strong></p>
+<p>Airtable 的能力边界就是平台本身。</p>
+<p>NocoBase 则采用更灵活的插件化架构，权限系统、流程引擎、页面布局等功能本身就是插件。</p>
+<p><img src="https://static-docs.nocobase.com/22-fyio6x.png" alt="NocoBase is built on a modular plugin architecture"></p>
+<p>这意味着你可以按需安装、替换、开发插件，甚至打造属于你团队的“专属系统平台”。</p>
+<h3>4. <strong>数据容量限制</strong></h3>
+<p><strong>✅  从灵活到瓶颈的分界点</strong></p>
+<p><img src="https://static-docs.nocobase.com/23-pjhk1a.png" alt="Airtable pricing"></p>
+<p>Airtable 免费版与付费版均有记录数和附件空间的限制。对于成长型团队来说，一旦数据规模膨胀，就可能触顶或增加成本。你还可以阅读这篇文章：<a href="../blog/5-self-hosted-airtable-alternatives.html">Airtable 太贵了？5 个自托管替代方案成本&amp;功能对比</a></p>
+<p><img src="https://static-docs.nocobase.com/24-md6kvb.png" alt="NocoBase pricing"></p>
+<p>NocoBase 作为无代码开发平台，不设记录上限和用户限制，更适合数据密集型的场景。并且大部分用户使用免费开源版本即可满足需求。</p>
+<h3>5. <strong>部署方式与数据掌控</strong></h3>
+<p><strong>✅  从信任平台，到拥有平台</strong></p>
+<p>对于企业来说，部署方式与数据控制权不只是技术选项，而是战略问题。</p>
+<p>Airtable 只能 SaaS 托管，意味着你的数据、权限、业务流程都托管在它的平台上。</p>
+<p>NocoBase 开源、支持完全自托管，你可以部署在内网、云服务器或私有环境中，真正做到完全掌控。</p>
+<h2 id="zh-4">常见问题解答</h2>
+<p><strong>Q1：NocoBase 支持直接导入 Airtable 数据吗？</strong></p>
+<p>目前你可以将 Airtable 数据导出为 CSV 后批量导入 NocoBase，也可以通过 API 进行对接。如果你使用的是标准结构（如客户列表、项目表等），迁移过程会非常顺畅。</p>
+<p><strong>Q2：我们团队的 CRM 系统已经跑在 Airtable 上，能迁移到 NocoBase 吗？</strong></p>
+<p>完全可以。NocoBase 支持复杂权限、流程和页面布局，适合搭建完整的业务系统。</p>
+<p><strong>Q3：NocoBase 的工作流比 Airtable 的 Automations 强在哪？</strong></p>
+<p>支持多步骤、条件判断、状态流转，更适合构建真正的业务流程，而不只是发送提醒。</p>
+<p><strong>Q4：权限很细粒度，配置会不会很麻烦？</strong></p>
+<p>不复杂。NocoBase 提供界面化配置，常见权限逻辑无需写代码，按需设置即可。</p>
+<p><strong>Q5：我们有开发团队，能不能在 NocoBase 上二次开发？比如做插件或外部集成？</strong></p>
+<p>支持。NocoBase 提供了完整的插件机制和开放 API（REST 和 GraphQL），你可以为业务场景开发专属插件，也可以集成外部系统。</p>
+<h2 id="zh-5">写在最后：工具的边界，探索的开始</h2>
+<p>Airtable 给我们展示了一个友好的起点——用表格就能开始系统搭建，用简单的配置解决过去必须写代码才能完成的任务。</p>
+<p>也正是因为 Airtable 的出现，我们才开始思考：</p>
+<blockquote>
+<p>原来，系统可以不靠代码，也可以变得如此灵活和强大。</p>
+</blockquote>
+<p>它让更多非技术团队迈出了数字化的第一步，也在工具演进的历史上写下了重要的一笔。</p>
+<p>但任何优秀的工具都有它最擅长的边界。当你开始追求更复杂的数据结构、更精细的权限控制、更系统化的流程编排，<strong>你需要的也许不是“更强的 Airtable”，而是“下一阶段的工具”。</strong></p>
+<p>NocoBase 的出现，不是为了替代 Airtable，而是为更多正在探索系统化、模块化、自主可控方向的团队，提供另一条路径。</p>
+<p>我们相信真正强大的工具，不是取代彼此，而是启发用户在每一个阶段，都能做出最适合自己的选择。</p>
+<p>👉 最后！如果你也正在思考这些问题，不妨试试 <a href="https://www.nocobase.com/">NocoBase</a> —— 它或许能帮你打开下一个阶段的可能性。</p>
+<p>阅读更多对比文章：</p>
+<ul>
+<li><a href="../blog/nocobase-vs-nocodb.html">NocoBase 与 NocoDB：开源无代码（零代码）工具深度对比 </a></li>
+<li><a href="../blog/nocobase-vs-refine.html">开源 CRUD 开发工具：NocoBase 与 Refine 对比 </a></li>
+<li><a href="../blog/nocobase-vs-appsmith.html">NocoBase 与 Appsmith：哪个开源低代码平台更适合你？</a></li>
+<li><a href="../blog/nocobase-vs-salesforce.html">NocoBase vs Salesforce：谁才是你的理想 CRM？</a></li>
+<li><a href="../blog/nocobase-vs-outsystems.html">NocoBase vs OutSystems：低代码平台，开源还是闭源？ </a></li>
+<li><a href="../blog/nocobase-vs-powerapps.html">企业级低代码开发？Power Apps vs NocoBase 深度对比</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1"><strong>Introduction</strong></h2>
+<p>If you&#39;ve ever built a content calendar, customer database, task manager, or even a basic CRM with Airtable, you&#39;ve likely appreciated how efficient and flexible it is—especially during the early stages of system building. It often feels like the ultimate evolution of spreadsheets.</p>
+<p><img src="https://static-docs.nocobase.com/1-99pvxt.PNG" alt="Airtable"></p>
+<p>But as your operations grow more complex—</p>
+<ul>
+<li>With increasingly interrelated tables</li>
+<li>Teams requiring varied roles and precise permission settings</li>
+<li>A desire to turn Airtable into a full-fledged system rather than just a tool</li>
+<li>Rising usage costs as your team scales</li>
+</ul>
+<p>— you may find that Airtable, while powerful, no longer meets all your needs.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>As a result, many Airtable users have started looking for more powerful alternatives. Among these options, NocoBase is increasingly mentioned by developers and business teams. As an open-source, AI-driven no-code development platform, NocoBase retains the convenience of visual operations while, with AI-driven capabilities, offering true system-level features such as complex data modeling, fine-grained access control, built-in workflows, plugin extensibility, and self-hosted deployment, making it suitable for more demanding business scenarios.</p>
+<p>But that raises an important question: can you replicate your familiar Airtable workflows in NocoBase?</p>
+<p>In this article, we’ll walk through common use cases from Airtable and show how they can be implemented in NocoBase. We&#39;ll also highlight key differences between the two platforms when it comes to building scalable systems.</p>
+<p>Whether you&#39;re just beginning to consider a switch or already feeling Airtable&#39;s limitations, this comparison is designed to guide your next step.</p>
+<p>We’ve also published several related articles you might find useful:</p>
+<ul>
+<li><em><a href="../blog/airtable-data-limit-reached-3-common-solutions.html">Airtable Data Limit Reached: 3 Common Solutions</a></em></li>
+<li><em><a href="../blog/5-self-hosted-airtable-alternatives.html">Is Airtable Too Expensive? 5 Self-Hosted Alternatives Compared by Cost &amp; Features</a></em></li>
+<li><em><a href="../blog/open-source-airtable-alternatives.html">Top 7 OSS Airtable Alternatives Ranked by GitHub Stars</a></em></li>
+</ul>
+<h2 id="en-2">How NocoBase Replicates Typical Airtable Usage</h2>
+<p>For many teams, Airtable is their first experience building systems from spreadsheets. It’s intuitive, flexible, and great for collaboration—making it ideal for getting started fast.</p>
+<p>But if you&#39;re already comfortable with Airtable’s common workflows, can you switch to NocoBase without missing a beat? Let’s break it down case by case:</p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>In Airtable</th>
+<th>In NocoBase</th>
+<th>Supported</th>
+<th>Notes on Extendability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Grid View</td>
+<td>Default Grid view</td>
+<td>Comes with a default table view that lets you sort and filter fields; editable table view is coming soon and closely mirrors Airtable’s Grid.</td>
+<td>✅</td>
+<td>Supports nested sub-tables and view-specific permissions</td>
+</tr>
+<tr>
+<td>Table Relationships</td>
+<td>Linked Record + Lookup</td>
+<td>Configure one-to-many or many-to-many relationships during data modeling</td>
+<td>✅</td>
+<td>Enables nested display and cascading filters</td>
+</tr>
+<tr>
+<td>Kanban View</td>
+<td>Kanban View</td>
+<td>Use frontend blocks to group entries by a chosen field</td>
+<td>✅</td>
+<td>Works well with status fields and permission controls</td>
+</tr>
+<tr>
+<td>Form Submission</td>
+<td>Form View</td>
+<td>Combine the form plugin with page-based forms; allows anonymous submissions</td>
+<td>✅</td>
+<td>Fully customizable form styles, field logic, and workflow linkage</td>
+</tr>
+<tr>
+<td>Team Collaboration</td>
+<td>Shared views + permissions</td>
+<td>Built-in user system with field-level, view-level, and conditional controls</td>
+<td>✅</td>
+<td>Supports role-based collaboration and secure data separation</td>
+</tr>
+<tr>
+<td>Automation</td>
+<td>Automations + Email</td>
+<td>Use the workflow engine with notification steps</td>
+<td>✅</td>
+<td>Allows multi-condition triggers and branching workflows</td>
+</tr>
+</tbody></table>
+<h3>1. Grid</h3>
+<p><strong>✅ Works Just Like You’re Used To—No New Learning Curve</strong></p>
+<p><img src="https://static-docs.nocobase.com/2-x65mxg.PNG" alt="NocoBase in edit mode"></p>
+<p>NocoBase in edit mode</p>
+<p><img src="https://static-docs.nocobase.com/3-e140dd.PNG" alt="Airtable&#39;s Grid View"></p>
+<p>Airtable&#39;s Grid View</p>
+<p>NocoBase comes with a familiar table (Grid) view, allowing you to quickly browse, sort, filter, and paginate data, with customizable default field settings.</p>
+<p>Inline editing—like what Airtable offers—is not yet available, but it’s on the way. Once released, you’ll be able to edit directly within the table, just like in Airtable.</p>
+<p><strong>Advanced Features:</strong> You can create different views for different users, control which fields are visible, and even nest sub-tables—ideal for displaying parent-child data relationships.</p>
+<p><img src="https://static-docs.nocobase.com/4-8iw8mo.png" alt="Field-Level Permission Settings"></p>
+<p>Field-Level Permission Settings</p>
+<h3>2. Table Relationships</h3>
+<p><strong>✅ From Linked Records to Fully Structured Data Modeling</strong></p>
+<p>In Airtable, cross-table references are typically achieved using Linked Records and Lookups. But as your data model grows—with many-to-many or deeply nested relationships—it can quickly become difficult to manage.</p>
+<p><img src="https://static-docs.nocobase.com/5-l0l74c.png" alt="To add a Linked Record field in Airtable"></p>
+<p>To add a Linked Record field in Airtable</p>
+<p>NocoBase offers native support for complex relationship configurations, including one-to-many and many-to-many. You can also visually display nested data structures using configurable frontend blocks.</p>
+<p><img src="https://static-docs.nocobase.com/6-b8r28b.png" alt="Field relationships can be defined at the time the data field is created"></p>
+<p>Field relationships can be defined at the time the data field is created</p>
+<p>Even complex, multi-level nested views are easy to build and run smoothly in NocoBase.</p>
+<p><img src="https://static-docs.nocobase.com/7-dea9rf.png" alt="Account view includes multiple relationship fields"></p>
+<p>Account view includes multiple relationship fields</p>
+<h3>3. Kanban</h3>
+<p><strong>✅ A Flexible, Configurable Board for Visual Workflows</strong></p>
+<p>Airtable lets you switch between different views of your data, including a built-in Kanban.</p>
+<p><img src="https://static-docs.nocobase.com/8-cwxpjj.png" alt="Airtable&#39;s Kanban"></p>
+<p>Airtable&#39;s Kanban</p>
+<p>In NocoBase, the approach is slightly different. Thanks to its decoupled frontend-backend design, once you’ve defined your data source, tables, and fields, you can use visual layout blocks to create a Kanban board grouped by any field—such as organizing tasks by status: “To Do / In Progress / Done.”</p>
+<p><img src="https://static-docs.nocobase.com/9-f9es0h.png" alt="Select the data table you want to display as a Kanban"></p>
+<p>Select the data table you want to display as a Kanban</p>
+<p><img src="https://static-docs.nocobase.com/10-osy53e.png" alt="Kanban&#39;s display data can also be chosen arbitrarily"></p>
+<p>Kanban&#39;s display data can also be chosen arbitrarily</p>
+<p>Unlike Airtable’s fixed view types, NocoBase’s Kanban boards are more dynamic. You can link them to permission settings and even use them to trigger workflows—for example, dragging a record from “Follow-up” to “Closed” can automatically start a predefined process.</p>
+<h3>4. Form</h3>
+<p>✅ <strong>Anonymous Submission and Seamless Workflow Integration</strong></p>
+<p><img src="https://static-docs.nocobase.com/11-lt1res.png" alt="Form Configuration for Airtable"></p>
+<p>Form Configuration for Airtable</p>
+<p>Forms are a go-to feature in Airtable for collecting external input, and NocoBase offers the same capability. You can create forms with public access links or embed them directly into a webpage—and you can enable anonymous submissions when needed.</p>
+<p><img src="https://static-docs.nocobase.com/12-613ty1.png" alt="Form Configuration for NocoBase"></p>
+<p>Form Configuration for NocoBase</p>
+<p>Each form can be paired with custom workflows after submission, such as sending notifications, launching approval steps, or updating record statuses.</p>
+<p>NocoBase forms also integrate easily across various scenarios—on your website, as pop-ups, in mobile apps, or even as standalone pages.</p>
+<p><img src="https://static-docs.nocobase.com/13-mxvrlv.png" alt="Embedding NocoBase Forms into Popups"></p>
+<p>Embedding NocoBase Forms into Popups</p>
+<h3>5. Team Collaboration &amp; Permissions</h3>
+<p>✅ <strong>Go Beyond Basic View Sharing</strong></p>
+<p>While Airtable’s permission system mainly allows you to set who can view or edit, it lacks finer control.</p>
+<p><img src="https://static-docs.nocobase.com/14-1i55qg.png" alt="Airtable’s permission system"></p>
+<p>NocoBase provides a robust permission framework that includes field-level access, condition-based rules, and per-view visibility.</p>
+<p><img src="https://static-docs.nocobase.com/15-8astlh.png" alt="NocoBase&#39;s permission settings"></p>
+<p>NocoBase&#39;s permission settings</p>
+<p>For example, you can set rules like:</p>
+<ul>
+<li>Sales team members can only see the customers they’ve personally added</li>
+<li>Finance can update payment statuses without access to other customer details</li>
+</ul>
+<h3>6. Automation &amp; Workflow Management</h3>
+<p><strong>✅ From Basic Alerts to End-to-End Business Processes</strong></p>
+<p>Airtable’s Automations are mainly used for simple tasks like sending alerts or updating records, but they lack the complexity needed for advanced workflows.</p>
+<p><img src="https://static-docs.nocobase.com/16-kpogla.png" alt="Airtable currently has 9 default trigger conditions"></p>
+<p>Airtable currently has 9 default trigger conditions</p>
+<p>NocoBase features a powerful workflow engine—with <a href="https://docs.nocobase.com/handbook/workflow/triggers">7 types of triggers</a> and <a href="https://docs.nocobase.com/handbook/workflow/nodes">24 types of action nodes</a>—enabling you to build multi-step, condition-based processes including approvals, status transitions, and more.</p>
+<p>It’s perfect for creating sophisticated flows such as contract approvals, leave requests, employee onboarding, and other real-world business processes.</p>
+<p><img src="https://static-docs.nocobase.com/17-q5yvlt.png" alt="NocoBase&#39;s Workflow Configuration Interface"></p>
+<p>NocoBase&#39;s Workflow Configuration Interface</p>
+<h2 id="en-3">From Managing Data to Building Systems: A Deeper Capability Comparison</h2>
+<p>When you start using Airtable more like a full-fledged system, it’s a clear sign your needs have shifted from simple data tracking to actual business modeling.</p>
+<p>At this point, you’re no longer just interacting with data—you want to shape how it’s structured, how it flows, who can access it, and how it evolves over time.</p>
+<p>Here’s how Airtable and NocoBase compare when it comes to system-level capabilities:</p>
+<table>
+<thead>
+<tr>
+<th>Capability Area</th>
+<th>Airtable</th>
+<th>NocoBase</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data Modeling</td>
+<td>Table-based with linked fields; doesn’t support many-to-many or nested models</td>
+<td>Visual schema modeling with support for entity relationships, many-to-many, and nested structures</td>
+</tr>
+<tr>
+<td>UI Customization</td>
+<td>Offers Interface view, but limited in flexibility</td>
+<td>Fully configurable pages and layout blocks; supports nested components</td>
+</tr>
+<tr>
+<td>Plugin Architecture</td>
+<td>Limited to marketplace plugins and scripting</td>
+<td>Open plugin system supporting custom extensions and third-party services</td>
+</tr>
+<tr>
+<td>Data Limits</td>
+<td>Record and attachment limits apply</td>
+<td>Database-driven; no practical data limit</td>
+</tr>
+<tr>
+<td>Deployment &amp; Ownership</td>
+<td>Cloud-only, no self-hosting; users can’t control where data is stored</td>
+<td>Fully self-hostable; complete ownership of both code and data</td>
+</tr>
+</tbody></table>
+<h3>1. Data Modeling</h3>
+<p>✅ <strong>From Tables to True Structural Modeling</strong></p>
+<p>In Airtable, data modeling relies on linking tables through Link and Lookup fields—a method that works well for straightforward use cases.</p>
+<p><img src="https://static-docs.nocobase.com/18-0w1lh4.png" alt="Creating Lookup Fields in Airtable"></p>
+<p>Creating Lookup Fields in Airtable</p>
+<p>NocoBase takes it further with modeling capabilities on par with traditional databases. It supports defining entity relationships, primary and foreign keys, and many-to-many structures—making it well-suited for complex business scenarios like multi-level approvals, customer-order mappings, and role-based data access.</p>
+<p><img src="https://static-docs.nocobase.com/19-r6gsh8.png" alt="NocoBase&#39;s data source management,decouple data and UI"></p>
+<p>NocoBase&#39;s data source management,decouple data and UI</p>
+<h3>2. Interface Building</h3>
+<p><strong>✅ From Simple Views to a Truly Custom Experience</strong></p>
+<p>Airtable’s Interface view is often too limited—you can’t freely design page layouts or define interactive logic, and switching between views can feel restrictive.</p>
+<p><img src="https://static-docs.nocobase.com/20-zsgp5c.png" alt="Airtable’s Interface view"></p>
+<p>With NocoBase, you get a modular frontend block system that lets you build workspaces, task boards, and customer detail pages with full flexibility—almost like assembling your own UI from components.</p>
+<p><img src="https://static-docs.nocobase.com/21-3nwsu5.png" alt="In NocoBase you can combine different blocks in the page"></p>
+<p>In NocoBase you can combine different blocks in the page</p>
+<p>It upgrades your system from “just data and tables” to a real “business application with workflows.”</p>
+<h3>3. Plugin Architecture</h3>
+<p>✅ <strong>Go Beyond Built-in Tools—Build Your Own System</strong></p>
+<p>Airtable’s functionality is bound by what the platform provides.</p>
+<p>NocoBase is built on a modular plugin architecture—core features like permissions, workflows, and layouts are all plugins.</p>
+<p><img src="https://static-docs.nocobase.com/22-fyio6x.png" alt="NocoBase is built on a modular plugin architecture"></p>
+<p>This gives you the freedom to install, replace, or even develop your own plugins, turning NocoBase into a platform customized entirely for your team.</p>
+<h3>4. Data Capacity Limits</h3>
+<p><strong>✅ When Flexibility Meets the Wall</strong></p>
+<p><img src="https://static-docs.nocobase.com/23-pjhk1a.png" alt="Airtable pricing"></p>
+<p>Airtable imposes limits on both record count and attachment size, even in its paid plans. For fast-growing teams, these restrictions can become a bottleneck—or result in higher subscription costs. (Related: <em><a href="../blog/5-self-hosted-airtable-alternatives.html">Is Airtable Too Expensive? 5 Self-Hosted Alternatives Compared by Cost &amp; Features</a></em>)</p>
+<p><img src="https://static-docs.nocobase.com/24-md6kvb.png" alt="NocoBase pricing"></p>
+<p>NocoBase, on the other hand, has no hard limits on records or users. It’s designed to handle data-heavy use cases, and most teams find the free, open-source version fully meets their needs.</p>
+<h3>5. Deployment &amp; Data Ownership</h3>
+<p><strong>✅ From Platform Dependency to Full Autonomy</strong></p>
+<p>For many organizations, how and where systems are deployed is more than just a technical detail—it affects compliance, security, and strategic control.</p>
+<p>Airtable is strictly SaaS, meaning all your data, user permissions, and business processes are managed within their cloud environment.</p>
+<p>NocoBase is open-source and fully self-hostable. Whether you deploy it on a local server, in the cloud, or within a private environment, you retain full ownership of your system—data, workflows, access controls, and more.</p>
+<h2 id="en-4"><strong>FAQ</strong></h2>
+<p><strong>Q1: Can I import my Airtable data into NocoBase?</strong> Yes—you can export data from Airtable as CSV and import it into NocoBase, or connect the two via API. If your data uses a standard structure (like customer lists or project tables), the migration is typically smooth and straightforward.</p>
+<p><strong>Q2: Our CRM system is already built in Airtable. Can it be migrated to NocoBase?</strong> Definitely. NocoBase supports complex permissions, workflows, and customizable interfaces, making it suitable for building a fully featured business system.</p>
+<p><strong>Q3: What makes NocoBase’s workflow engine more powerful than Airtable’s Automations?</strong> It supports multi-step workflows, branching logic, and state transitions—ideal for handling real business processes beyond simple alerts or field updates.</p>
+<p><strong>Q4: The permission system sounds quite advanced. Is it hard to configure?</strong> Not at all. Permissions are set up through a visual interface, and common rules—like user-level visibility or field-based restrictions—can be configured without writing any code.</p>
+<p><strong>Q5: Our developers want to extend the system. Can we build plugins or integrate third-party tools with NocoBase?</strong> Yes. NocoBase provides an open plugin architecture and APIs (REST and GraphQL), so you can create custom features or connect external services as needed.</p>
+<h2 id="en-5"><strong>Final Thoughts: When a Tool Reaches Its Limit, Exploration Begins</strong></h2>
+<p>Airtable introduced a refreshing way to build systems—using tables, not code—and helped teams solve problems once reserved for developers.</p>
+<p>It showed us that system building doesn’t always have to start with coding. And in doing so, it opened the door for many non-technical teams to step into the digital world.</p>
+<p>But as your needs grow—toward more structured data, advanced permissions, and business logic—what you need may not be a more powerful Airtable, but a new kind of platform.</p>
+<p>NocoBase isn’t meant to replace Airtable. It’s here for those ready to take the next step toward modular, self-managed, scalable systems.</p>
+<p>We believe the best tools don’t compete—they complement, offering users the freedom to evolve with their needs.</p>
+<p>👉 If you’re thinking about what comes next, consider giving <a href="https://www.nocobase.com/">NocoBase</a> a try. It might just be what you&#39;re looking for.</p>
+<p><strong>Read more:</strong></p>
+<ul>
+<li><a href="../blog/nocobase-vs-nocodb.html">NocoBase vs NocoDB: An In-Depth Comparison of Open Source No-Code Tools</a></li>
+<li><a href="../blog/nocobase-vs-refine.html">Open Source CRUD Development Tools: NocoBase vs Refine</a></li>
+<li><a href="../blog/nocobase-vs-appsmith.html">NocoBase vs. Appsmith: Which Open Source Low-Code Platform is Right for You?</a></li>
+<li><a href="../blog/nocobase-vs-salesforce.html">NocoBase vs Salesforce: who is your ideal CRM?</a></li>
+<li><a href="../blog/nocobase-vs-outsystems.html">NocoBase vs OutSystems: Open-Source or Enterprise Low-Code?</a></li>
+<li><a href="../blog/nocobase-vs-powerapps.html">Enterprise Low-Code Development? Power Apps vs NocoBase In-Depth Comparison</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">前言</a><a href="#zh-2">NocoBase 如何实现 Airtable 的典型用法？</a><a href="#zh-3">从数据管理迈向系统层级：进阶能力对比</a><a href="#zh-4">常见问题解答</a><a href="#zh-5">写在最后：工具的边界，探索的开始</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">How NocoBase Replicates Typical Airtable Usage</a><a href="#en-3">From Managing Data to Building Systems: A Deeper Capability Comparison</a><a href="#en-4">FAQ</a><a href="#en-5">Final Thoughts: When a Tool Reaches Its Limit, Exploration Begins</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase 0.21：图表及工作流支持多数据源 — NocoBase" data-en="NocoBase 0.21：Multi-DataSource support for Charts and workflow — NocoBase">NocoBase 0.21：图表及工作流支持多数据源 — NocoBase</title>
+<meta name="description" content="NocoBase 0.21 版本引入多数据源支持图表和工作流、优化工作流触发事件，并增加多种字段类型，提升灵活性和性能。" data-zh="NocoBase 0.21 版本引入多数据源支持图表和工作流、优化工作流触发事件，并增加多种字段类型，提升灵活性和性能。" data-en="NocoBase 0.21 introduces Multi-DataSource support for charts and workflows, optimized workflow trigger events, and several new field types, enhancing flexibility and performance.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></p>
+    <h1><t-zh>NocoBase 0.21：图表及工作流支持多数据源</t-zh><t-en>NocoBase 0.21：Multi-DataSource support for Charts and workflow</t-en></h1>
+    <p class="lede"><t-zh>NocoBase 0.21 版本引入多数据源支持图表和工作流、优化工作流触发事件，并增加多种字段类型，提升灵活性和性能。</t-zh><t-en>NocoBase 0.21 introduces Multi-DataSource support for charts and workflows, optimized workflow trigger events, and several new field types, enhancing flexibility and performance.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2024年3月29日</t-zh><t-en>Mar 29, 2024</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/15671a34a0f8cf83b9570170d7b2add3.svg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">预告</h2>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/img_v3_029o_5f3bdbd4-1180-43dc-8ccb-1a24eebebbcg.png" alt="v1.0"></p>
+<h2 id="zh-2">新特性</h2>
+<h3>图表支持多数据源</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222304.png" alt="20240407222304"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/data-visualization">更多内容查看 [数据可视化] 文档</a></p>
+<h3>工作流支持多数据源</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222523.png" alt="20240407222523"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/workflow">更多内容查看 [工作流] 文档</a></p>
+<h3>工作流触发事件优化</h3>
+<p>触发器名称的变更</p>
+<table>
+<thead>
+<tr>
+<th>原名</th>
+<th>更改为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表单事件、操作事件</td>
+<td>操作后事件</td>
+</tr>
+<tr>
+<td>定时任务</td>
+<td>定时事件</td>
+</tr>
+<tr>
+<td>请求拦截器</td>
+<td>操作前事件</td>
+</tr>
+<tr>
+<td>审批</td>
+<td>审批事件</td>
+</tr>
+</tbody></table>
+<p>完善以下事件的触发模式配置</p>
+<h4>操作后事件</h4>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222652.png" alt="20240407222652"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/workflow-custom-action-trigger">更多内容查看 [工作流 - 操作后事件] 文档</a></p>
+<h4>操作前事件</h4>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222834.png" alt="20240407222834"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/workflow-request-interceptor">更多内容查看 [工作流 - 操作前事件] 文档</a></p>
+<h3>自定义品牌插件</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222949.png" alt="20240407222949"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/custom-brand">更多内容查看 [自定义品牌] 文档</a></p>
+<h3>支持 nanoid 字段</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407223221.png" alt="20240407223221"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/advanced/nano-id">更多内容查看 [nanoid 字段] 文档</a></p>
+<h3>支持 uuid 字段</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407223431.png" alt="20240407223431"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/advanced/uuid">更多内容查看 [uuid 字段] 文档</a></p>
+<h3>支持 Unix 时间戳字段</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407223512.png" alt="20240407223512"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/data-modeling/collection-fields/datetime/unix-timestamp">更多内容查看 [Unix 时间戳字段] 文档</a></p>
+<h3>数字类型字段支持格式化配置</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407223736_rec_.gif" alt="20240407223736_rec_"></p>
+<p><a href="https://docs-cn.nocobase.com/handbook/ui/fields/field-settings/number-format">更多内容查看 [配置字段 / 特有属性设置 / 数字组件] 文档</a></p>
+<h3>支持子路径部署</h3>
+<p>新增 <code>APP_PUBLIC_PATH</code> 环境变量，用于支持子路径部署。例如：</p>
+<pre><code>APP_PUBLIC_PATH=/nocobase/
+</code></pre>
+<p>本地访问 URL <a href="http://localhost:13000/nocobase/">http://localhost:13000/nocobase/</a></p>
+<p>nginx 代理的示例：</p>
+<pre><code>server {
+    listen 80;
+    server_name your_domain.com;  # 将 your_domain.com 替换为您的域名
+
+    location /nocobase/ {
+        proxy_pass http://127.0.0.1:13000/nocobase/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;Upgrade&quot;;
+        proxy_set_header Host $host;
+    }
+}
+</code></pre>
+<p>最后，就可以通过 <a href="http://your%5C_domain.com/nocobase/">http://your\_domain.com/nocobase/</a> 访问了。</p>
+<h3>区块性能优化</h3>
+<h4>支持骨架屏效果</h4>
+<p>区块卡片</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407224956.png" alt="20240407224956"></p>
+<p>看板卡片</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407224811.png" alt="20240407224811"></p>
+<p>表格单元格</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407230028.png" alt="20240407230028"></p>
+<h4>区块配置的分布式处理</h4>
+<p>以前，整个页面的所有 Schema 的变更都会导致整个页面重新渲染，现在每个区块的 Schema 都独立了</p>
+<pre><code>&lt;SchemaComponent distributed schema={} /&gt;
+</code></pre>
+<p>Grid 组件也支持分布式处理</p>
+<pre><code>{
+  &#39;x-component&#39;: &#39;Grid&#39;,
+  &#39;x-component-props&#39;: {
+    distributed: true,
+  },
+}
+</code></pre>
+<h2 id="zh-3">不兼容变更</h2>
+<h3>UI Schema 的各种 useProps 使用 x-use-decorator-props 和 x-use-component-props 代替</h3>
+<p>x-use-decorator-props 和 x-use-component-props 无入侵，所有组件都支持</p></div><div class="prose en-only"><h2 id="en-1">Announcement</h2>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/img_v3_029o_3dd91ba0-bb96-4315-a273-208f06d432fg.png" alt="v1.0"></p>
+<h2 id="en-2">New features</h2>
+<h3>Multi-DataSource support for Charts</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222304.png" alt="20240407222304"></p>
+<p><a href="https://docs.nocobase.com/handbook/data-visualization">For more information, see the [Data Visualization] documentation</a></p>
+<h3>Multi-DataSource support for workflow</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222523.png" alt="20240407222523"></p>
+<p><a href="https://docs.nocobase.com/handbook/workflow">For more information, see the [Workflow] documentation</a></p>
+<h3>Optimization of workflow Trigger Events</h3>
+<p>Changes to trigger names:</p>
+<table>
+<thead>
+<tr>
+<th>Original Name</th>
+<th>Changed to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Form Events, Operation Events</td>
+<td>Post-operation Events</td>
+</tr>
+<tr>
+<td>Scheduled Tasks</td>
+<td>Scheduled Events</td>
+</tr>
+<tr>
+<td>Request Interceptors</td>
+<td>Pre-operation Events</td>
+</tr>
+<tr>
+<td>Approval</td>
+<td>Approval Events</td>
+</tr>
+</tbody></table>
+<p>Enhancements to trigger mode configuration for the following events:</p>
+<h4>Post-action events</h4>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222652.png" alt="20240407222652"></p>
+<p><a href="https://docs.nocobase.com/handbook/workflow-custom-action-trigger">For more information, see the [Workflow - Post-action events] documentation</a></p>
+<h4>Pre-action events</h4>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222834.png" alt="20240407222834"></p>
+<p><a href="https://docs.nocobase.com/handbook/workflow-request-interceptor">For more information, see the [Workflow - Pre-action events] documentation</a></p>
+<h3>Custom brand Plugin</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407222949.png" alt="20240407222949"></p>
+<p><a href="https://docs.nocobase.com/handbook/custom-brand">For more information, see the [Custom Branding] documentation</a></p>
+<h3>Support for nanoid field</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407223221.png" alt="20240407223221"></p>
+<p><a href="https://docs.nocobase.com/handbook/data-modeling/collection-fields/advanced/nano-id">For more information, see the [nanoid field] documentation</a></p>
+<h3>Support for uuid field</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407223431.png" alt="20240407223431"></p>
+<p><a href="https://docs.nocobase.com/handbook/data-modeling/collection-fields/advanced/uuid">For more information, see the [uuid field] documentation</a></p>
+<h3>Support for unix timestamp field</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407223512.png" alt="20240407223512"></p>
+<p><a href="https://docs.nocobase.com/handbook/data-modeling/collection-fields/datetime/unix-timestamp">For more information, see the [Unix timestamp field] documentation</a></p>
+<h3>Number type field supports formatting configuration</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407223736_rec_.gif" alt="20240407223736_rec_"></p>
+<p><a href="https://docs.nocobase.com/handbook/ui/fields/field-settings/number-format">For more information, see the [Field configure / Specific property settings / Number component] documentation</a></p>
+<h3>Support for subpath deployment</h3>
+<p>Added <code>APP_PUBLIC_PATH</code> environment variable to support subpath deployment. For example:</p>
+<pre><code>APP_PUBLIC_PATH=/nocobase/
+</code></pre>
+<p>Access locally via URL <a href="http://localhost:13000/nocobase/">http://localhost:13000/nocobase/</a></p>
+<p>Example nginx proxy:</p>
+<pre><code>server {
+    listen 80;
+    server_name your_domain.com;  # Replace your_domain.com with your domain
+
+    location /nocobase/ {
+        proxy_pass http://127.0.0.1:13000/nocobase/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;Upgrade&quot;;
+        proxy_set_header Host $host;
+    }
+}
+</code></pre>
+<p>Now, you can access via <a href="http://your%5C_domain.com/nocobase/">http://your\_domain.com/nocobase/</a>.</p>
+<h3>Block performance optimization</h3>
+<h4>Support for skeleton screen effect</h4>
+<p>Block Cards</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407224956.png" alt="20240407224956"></p>
+<p>Kanban Cards</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407224811.png" alt="20240407224811"></p>
+<p>Table Cells</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240407230028.png" alt="20240407230028"></p>
+<h4>Distributed processing of block configuration</h4>
+<p>Previously, changes to any Schema on the entire page would cause the entire page to re-render. Now, each block’s Schema is independent.</p>
+<pre><code>&lt;SchemaComponent distributed schema={} /&gt;
+</code></pre>
+<p>Grid component also supports distributed processing.</p>
+<pre><code>{
+  &#39;x-component&#39;: &#39;Grid&#39;,
+  &#39;x-component-props&#39;: {
+    distributed: true,
+  },
+}
+</code></pre>
+<h2 id="en-3">Incompatible changes</h2>
+<h3>Various useProps of UI Schema replaced with x-use-decorator-props and x-use-component-props</h3>
+<p>x-use-decorator-props and x-use-component-props are non-intrusive and supported by all components.</p></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">预告</a><a href="#zh-2">新特性</a><a href="#zh-3">不兼容变更</a></div><div class="en-only"><a href="#en-1">Announcement</a><a href="#en-2">New features</a><a href="#en-3">Incompatible changes</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/2.2.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-hygy1r.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年8月23日</t-zh><t-en>Aug 23, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2 正式版发布</t-zh><t-en>Announcing NocoBase 2.2</t-en></h3><p><t-zh>NocoBase 2.2 正式版进一步完善 V2 的完整使用路径，带来独立、轻量的 /v/ 前端入口与全新移动端体验。同时升级文件访问与权限机制，并增强评论区块、AI 知识库、工作流及核心插件的 V2 支持。</t-zh><t-en>NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.</t-en></p></a><a class="bcard" href="../blog/2.2.0-beta.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-beta-2kf9fd.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年7月17日</t-zh><t-en>Jul 17, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2-beta 发布</t-zh><t-en>Announcing NocoBase 2.2-beta</t-en></h3><p><t-zh>NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</t-zh><t-en>NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</t-en></p></a><a class="bcard" href="../blog/2.1.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(9)-tfwpkk.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.1.0 正式版发布</t-zh><t-en>Announcing NocoBase 2.1.0</t-en></h3><p><t-zh>NocoBase 2.1 以全新的 CLI 打通人与 AI Agent 连接和管理应用的入口，并完善 AI 搭建、Skills、AI 插件开发和 AI 员工能力。同时升级多应用协作、版本管理、工作流增强及更多 2.0 适配能力。</t-zh><t-en>NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

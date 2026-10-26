@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="如何使用 NocoBase 构建应用程序？ — NocoBase" data-en="How to build apps with NocoBase? — NocoBase">如何使用 NocoBase 构建应用程序？ — NocoBase</title>
+<meta name="description" content="来一起探索如何利用 NocoBase 构建一个宠物追踪应用程序吧！" data-zh="来一起探索如何利用 NocoBase 构建一个宠物追踪应用程序吧！" data-en="Let&#x27;s explore how to build a pet tracking app with NocoBase!">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>技术 &amp; 教程 · AI 与无代码</t-zh><t-en>Tech &amp; Tutorials · AI &amp; No-Code</t-en></p>
+    <h1><t-zh>如何使用 NocoBase 构建应用程序？</t-zh><t-en>How to build apps with NocoBase?</t-en></h1>
+    <p class="lede"><t-zh>来一起探索如何利用 NocoBase 构建一个宠物追踪应用程序吧！</t-zh><t-en>Let's explore how to build a pet tracking app with NocoBase!</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年11月20日</t-zh><t-en>Nov 20, 2024</t-en></span><span><t-zh>Don Freeman</t-zh><t-en>Don Freeman</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/78987554ee3e5ba8ccf130927dfe0ce4.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>这篇博客来自 <a href="https://freemantechconsulting.com/">Freeman Tech Consulting</a> 的 Don Freeman，首发于<a href="http://nocodefounders.com/">nocodefounders.com</a>。Freeman Tech Consulting 是一家全方位服务的软件工程公司，可以帮助进行无代码（零代码）部署、网页应用开发、云基础设施设计/构建、GRC管理、数据分析等多种服务。</p>
+<h2 id="zh-1">🌟什么是 NocoBase？</h2>
+<p><strong>NocoBase</strong> 是一个 AI 无代码（零代码）/低代码平台，用于轻松构建数据驱动的应用程序。用户可以定义数据模型，然后围绕该模型构建应用程序。该平台提供去除 NocoBase 标志的付费版本。NocoBase 作为开源项目，你可以在 GitHub 上轻松贡献代码。值得一提的是，NocoBase 的插件化架构能够在需要时轻松扩展平台的功能。</p>
+<h2 id="zh-2">🚀 本地部署 NocoBase</h2>
+<h3><strong>本地运行 NocoBase 需要哪些条件？</strong></h3>
+<ul>
+<li><strong>Docker</strong></li>
+<li><strong>Docker compose</strong></li>
+<li><strong>PostgreSQL 数据库</strong>：在本篇博客中，我们将通过 Docker Compose 来运行一个数据库，但在实际的生产环境中，建议使用专用的 PostgreSQL 数据库。</li>
+</ul>
+<h3><strong>如何在本地运行 NocoBase？</strong></h3>
+<ul>
+<li>你可以在 NocoBase 的<a href="https://docs-cn.nocobase.com/welcome/getting-started/installation/docker-compose">官方文档</a>上找到在本地运行 NocoBase 的具体步骤。</li>
+</ul>
+<p>首先，创建一个工作目录，并在终端中切换到该目录。之后，你需要创建一个 docker compose 文件。我参考了 NocoBase 官网上的入门指南，并调整了细节。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p><em><strong>下面的 docker compose 显示了在本地运行 PostgreSQL 数据库，但建议在实际生产环境中使用专用数据库。</strong></em></p>
+<p><img src="https://static-docs.nocobase.com/8c25f1c572a1330beb04376b5053dcd4.png" alt="docker compose.png"></p>
+<p>在本地目录中创建好文件后，运行以下命令以拉取所需的镜像：</p>
+<p><img src="https://static-docs.nocobase.com/222cba9fddfe376ee2d031bfb1aa1708.png" alt="pull the needed images.png"></p>
+<p>然后运行以下命令以在后台启动容器。</p>
+<p><img src="https://static-docs.nocobase.com/7fc3c0958673e3264b2881c18a5e949d.png" alt="start the containers.png"></p>
+<p>现在你可以在 <a href="http://localhost:13000">http://localhost:13000</a> 访问 NocoBase。</p>
+<h2 id="zh-3">🐶 构建 NocoBase 应用程序：宠物追踪应用程序</h2>
+<p><img src="https://static-docs.nocobase.com/0960fcf248fce60c67d186aaa5b1e8fe.png" alt="Pet Tracking Application.png"></p>
+<p>在此示例中，我们将构建一个宠物追踪应用程序🐕 🐈！此应用程序将追踪宠物主人及其宠物的信息。首先，我们需要为应用程序定义数据模型，这一操作在 NocoBase 中非常简单。</p>
+<h3><strong>NocoBase 数据模型</strong></h3>
+<p><strong>🔍 找到数据模型编辑器（Data Model Editor）</strong></p>
+<p>在 NocoBase UI 界面中，你可以单击右上角的小齿轮⚙️，然后单击“数据源”。这将打开数据模型编辑器。在那里，你将看到 “main” 的默认数据源。单击主数据源的配置（Configure）。</p>
+<p><strong>创建集合</strong></p>
+<p>现在，我们可以在主数据源中创建集合。这些集合将存储应用程序的数据。在此示例中，我们将创建两个集合。一个用于宠物主人，另一个用于宠物。</p>
+<p><strong>宠物主人集合</strong></p>
+<p>在集合界面上，单击“新建集合”<code>New Collection</code>按钮。然后为集合指定一个显示名称<code>Collection Display Name</code>“宠物主人”，集合名称<code>Collection Name</code>则定为“Pet Owner”。</p>
+<p>现在，让我们为宠物主人集合添加所需的字段。在集合界面上，单击 Pet Owner 集合旁边的“配置字段”<code>Configure Fields</code>。使用“添加字段”<code>Add Field</code>按钮，可以向该集合中添加所需字段。宠物主人集合将包含以下字段：</p>
+<ul>
+<li>名字（单行文本字段）</li>
+<li>姓氏（单行文本字段）</li>
+<li>电子邮件（电子邮件字段）</li>
+</ul>
+<p><strong>宠物集合</strong></p>
+<p>现在我们可以对宠物集合重复上述步骤。宠物集合将包括以下字段：</p>
+<ul>
+<li>名字（单行文本字段）</li>
+<li>宠物类型（多项选择字段）</li>
+<li>出生日期（日期时间字段）</li>
+</ul>
+<p><strong>🔗 将宠物主人集合链接至宠物集合</strong></p>
+<p>要将宠物主人集合与宠物集合关联，请返回宠物集合，然后单击集合配置界面的“添加字段”<code>Add Field</code>按钮。找到 “一对多接口” 类型，并为关系指定一个显示名称，选择“宠物”作为目标集合<code>Target Collection</code>，并将“ID”设置为目标键<code>Target Key</code>。</p>
+<p><strong>🥳 数据模型已完成!!!</strong></p>
+<p>这就是数据模型设置的全部内容。以下是我的宠物数据模型示例。</p>
+<p><img src="https://static-docs.nocobase.com/5b683b9ddaeab7c644512fa7dbdbbeb6.png" alt="pet data model.png"></p>
+<h3><strong>构建 NocoBase UI</strong></h3>
+<p><strong>🏠 创建主页</strong></p>
+<p>现在我们已经完成了数据模型，接下来可以快速构建一个用户界面，来与数据模型进行交互。返回应用程序的主页，顶部可以看到“添加新菜单项”<code>Add New Menu</code>。单击它，然后选择页面<code>page</code>。为页面命名为“主页”，然后你会看到类似这样的界面。</p>
+<p><img src="https://static-docs.nocobase.com/06081448ef1a5b90c1703905e42bb727.png" alt="Create the Home Page.png"></p>
+<p><strong>📜 创建宠物主人列表</strong></p>
+<p>接下来，我们将添加卡片列表，以便与我们的宠物主人集合进行交互。点击“添加区块”<code>Add Block</code> → “网格卡片” <code>Grid Card</code>→ <code>PetOwner</code>。这将实现以卡片网格的形式展示宠物主人。点击“配置字段”<code>Configure Fields</code>，添加名字、姓氏和电子邮件字段。</p>
+<p><strong>➕ 添加宠物主人</strong></p>
+<p>现在我们需要能够创建新的宠物主人。在区块的右上角点击“配置操作”<code>Configure Action</code>（注意不是在卡片中的“配置操作”）。然后点击“添加”<code>Add New</code>。这将创建一个名为“Add New”的按钮。点击此按钮来配置添加宠物主人的操作。</p>
+<p><strong>🍿 添加新宠物主人弹窗</strong></p>
+<p>在弹窗中，点击“添加区块”<code>Add Block</code> → “表单”<code>Form</code> → “当前集合”<code>Current Collection</code>。点击“配置字段”<code>Configure Fields</code>，添加名字、姓氏和电子邮件字段。这将使你在创建新宠物主人时能够填入这些信息。最后，点击“配置操作” <code>Configure Action</code>→ “提交”<code>Submit</code>。然后点击弹窗外部关闭它。</p>
+<p><strong>➕ 添加新宠物</strong></p>
+<p>现在我们可以查看和创建新宠物主人，接下来需要实现添加宠物的功能。回到主页，在卡片中点击“配置操作”<code>Configure Action</code>，然后选择“弹窗”。这将为卡片创建一个名为“弹窗”的链接，点击该链接。在弹窗内，点击“添加区块” <code>Add Block</code>→ “表单（添加）<code>Form (add new)</code>” → “关联记录” <code>Associated Records</code>→ “宠物”<code>Pets</code>。在这个新区块中，点击“配置字段”<code>Configure Fields</code>，添加名字、宠物类型和出生日期。这将实现在创建新宠物时能够填写这些信息。最后，点击“配置操作” <code>Configure Action</code>→ “提交”<code>Submit</code>。</p>
+<p><strong>📜 列出现有宠物</strong></p>
+<p>在这个新区块的下方，点击“添加区块”<code>Add Block</code> → “列表” <code>List</code>→ “关联记录”<code>Associated Records</code> → “宠物”<code>Pets</code>。在这个新区块中，点击“配置字段”<code>Configure Fields</code>，添加名字、宠物类型和出生日期。</p>
+<p>弹窗应如下所示。我的数据库中已经有一只宠物，所以它看起来可能略有不同。</p>
+<p><img src="https://static-docs.nocobase.com/3cfc6fadf38b4f88dcee4478aa1b65cb.png" alt="List Existing Pets.png"></p>
+<p>点击弹窗外部以关闭它。现在我们可以创建和查看宠物了。你的 UI 界面现在应该类似于以下截图：</p>
+<p><img src="https://static-docs.nocobase.com/97149b76b62c72ccc9d484ceffd50208.png" alt="UI.png"></p>
+<p><strong>🧪 测试</strong></p>
+<p>点击橙色的“UI 编辑器”按钮以退出 UI 编辑模式。您可以尝试操作 UI，创建宠物和宠物主人。</p>
+<p>本文遗漏了许多主题，包括用户认证、更复杂的用户界面、生产环境的部署等。我可能会在后续博客中涵盖这些内容。</p>
+<p>💡 阅读更多：</p>
+<ul>
+<li><a href="../blog/building-ai-assistant-langflow-astradb-nocobase.html">使用Langflow和AstraDB构建AI助手：从架构设计到与NocoBase的集成</a></li>
+<li><a href="../blog/developing-a-plugin-to-send-whatsapp-messages.html">如何在 NocoBase 中开发插件发送 WhatsApp 消息？</a></li>
+<li><a href="../blog/building-an-application-catalog-with-nocobase.html">简化的架构治理：使用 NocoBase 构建应用程序目录</a></li>
+</ul></div><div class="prose en-only"><p>This blog was produced by Don Freeman from <a href="https://freemantechconsulting.com/">Freeman Tech Consulting</a> and was originally published on <a href="https://www.aidutu.cn/info/link?url=http://nocodefounders.com">nocodefounders.com</a>. Freeman Tech Consulting is a full-service Software Engineering Firm that can help with No Code deployments, web app development, cloud infrastructure design/build, GRC Management, data analytics, and much more.</p>
+<h2 id="en-1">🌟What is NocoBase?</h2>
+<p><strong>NocoBase</strong> is an AI no-code (zero-code) / low-code platform designed to make it easy to build data-driven applications. They provide paid versions where the NocoBase logo is removed. It is open source, so if you want to contribute to it, you can easily on GitHub. They provide a plugin system to extend the platform&#39;s functionality where needed.</p>
+<h2 id="en-2">🚀 Deploy NocoBase Locally</h2>
+<h3><strong>What is needed to run NocoBase locally?</strong></h3>
+<ul>
+<li><strong>Docker</strong></li>
+<li><strong>Docker compose</strong></li>
+<li><strong>A PostgreSQL DB</strong> In this blog we will run one with docker compose but in a real production environment you would want to have a dedicated PostgreSQL DB</li>
+</ul>
+<h3><strong>Run NocoBase Locally</strong></h3>
+<ul>
+<li>There are steps to run NocoBase locally on their website <a href="https://docs.nocobase.com/welcome/getting-started/installation/docker-compose">here</a></li>
+</ul>
+<p>First, create a directory where you will be working. In your terminal switch into that directory. After that, you need to create a docker compose file. I used the one from the above references getting started on the NocoBase website and slightly modified it.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p><em><strong>The below docker compose shows running a PostgreSQL DB locally but it is suggested to have a dedicated DB in a real production environment.</strong></em></p>
+<p><img src="https://static-docs.nocobase.com/8c25f1c572a1330beb04376b5053dcd4.png" alt="docker compose.png"></p>
+<p>After creating this in the local directory run the following command to pull the needed images.</p>
+<p><img src="https://static-docs.nocobase.com/222cba9fddfe376ee2d031bfb1aa1708.png" alt="pull the needed images.png"></p>
+<p>Now run the following command to start the containers in the background.</p>
+<p><img src="https://static-docs.nocobase.com/7fc3c0958673e3264b2881c18a5e949d.png" alt="start the containers.png"></p>
+<p>Now you can access NocoBase at <a href="http://localhost:13000">http://localhost:13000</a></p>
+<h2 id="en-3">🐶 Building the NocoBase App: Pet Tracking Application</h2>
+<p><img src="https://static-docs.nocobase.com/0960fcf248fce60c67d186aaa5b1e8fe.png" alt="Pet Tracking Application.png"></p>
+<p>In this example, we will build a pet tracking application 🐕 🐈! This application will track Pet owners and what their pet&#39;s information is. First we need to define the data model for our application. This is super easy in NocoBase.</p>
+<h3><strong>NocoBase Data Model</strong></h3>
+<p><strong>🔍 Find the Data Model Editor</strong></p>
+<p>In the NocoBase UI you can click on the little gear ⚙️ in the top right corner and then click on <code>Data Sources</code>. This will open the data model editor. Once there you will see the default data source that should be called main. Click on <code>Configure</code> for the main data source.</p>
+<p><strong>Create Collections</strong></p>
+<p>Now we can create collections within the main data source. These collections will hold the data for our application. For this example, we will create two collections. One for the pet owners and one for the pets.</p>
+<p><strong>Pet Owner Collection</strong></p>
+<p>On the Collection screen click the <code>New Collection</code> button. Then give the collection a <code>Collection Display Name</code> of Pet Owner and a <code>Collection Name</code> of petowner.</p>
+<p>Now let&#39;s add the fields we need to the pet owner collection. From the collection screen click <code>Configure Fields</code> next to the Pet Owner collection. With the <code>Add Field</code> button, you can add the fields we need to the collection. The pet owner collection will have the following fields.</p>
+<ul>
+<li><strong>First Name</strong> <em>Single Line Text Field Interface</em></li>
+<li><strong>Last Name</strong> <em>Single Line Text Field Interface</em></li>
+<li><strong>Email</strong> <em>Email Field Interface</em></li>
+</ul>
+<p><strong>Pet Collection</strong></p>
+<p>Now we can repeat these same steps for the pet collection. The pet collection will have the following fields.</p>
+<ul>
+<li><strong>Name</strong> <em>Single Line Text Field Interface</em></li>
+<li><strong>Pet Type</strong> <em>Multiple Select Field Interface</em></li>
+<li><strong>Birthdate</strong> <em>Datetime Field Interface</em></li>
+</ul>
+<p><strong>🔗 Link Pet Owner Collection to Pet Collection</strong></p>
+<p>To link the Pet Owner collection to the Pet collection go back to the <strong>Pet</strong> collection and click the <code>Add Field</code> button under the collection configuration screen. Find the One to Many Interface Type. Give the relationship a display name, select pet as the <code>Target Collection</code>, and then ID as the <code>Target Key</code>.</p>
+<p><strong>🥳 Data model is done!!!</strong></p>
+<p>That is it for the data model setup. Here is my example for the pet data model.</p>
+<p><img src="https://static-docs.nocobase.com/5b683b9ddaeab7c644512fa7dbdbbeb6.png" alt="pet data model.png"></p>
+<h3><strong>Building the NocoBase UI</strong></h3>
+<p><strong>🏠 Create the Home Page</strong></p>
+<p>Now that we have our data model complete we can quickly build a UI to interact with that data model. Go back to the main page of the application and you should see <code>Add New Menu</code> item at the top of the page. Click on it and then click <code>page</code>. Give the page a name of Home then you should see something similar to this.</p>
+<p><img src="https://static-docs.nocobase.com/06081448ef1a5b90c1703905e42bb727.png" alt="Create the Home Page.png"></p>
+<p><strong>📜 Create List of Pet Owners</strong></p>
+<p>Now we will add a list of cards to allow us to interact with our pet owners&#39; collection. Click on <code>Add Block</code> → <code>Grid Card</code> → <code>PetOwner</code>. This allows us to display our pet owners in a grid of cards. Click <code>Configure Fields</code> to add the First Name, Last Name, and Email fields.</p>
+<p><strong>➕ Add Pet Owners</strong></p>
+<p>Now we need to be able to create pet owners. Click on <code>Configure Action</code> in the top right corner of the block (<strong>not</strong> the <code>Configure Action</code> in the Card). Then click <code>Add New</code>. This creates a button that says Add New. Click on that button to configure what can be done when adding a pet owner.</p>
+<p><strong>🍿 Add New Pet Owner popup</strong></p>
+<p>Inside of the popup click <code>Add Block</code> → <code>Form</code> → <code>Current Collection</code>. Click on <code>Configure Fields</code> and add First Name, Last Name, and Email. This allows you to populate these values when creating a new pet owner. Finally, click <code>Configure Action</code> → <code>Submit</code>. Click out of the popup to close it.</p>
+<p><strong>➕ Add New Pet</strong></p>
+<p>Now that we have the ability to view and create new pet owners we need to be able to add their pets. now back on the <strong>Home Page</strong> click on the <code>Configure Action</code><em>inside of the card</em> and click popup. This will create a link in the card called popup, click it. Inside of the popup click <code>Add Block</code> → <code>Form (add new)</code> → <code>Associated Records</code> → <code>Pets</code>. Inside this new block click <code>Configure Fields</code> and add Name, Pet Type, Birthdate. This allows you to populate these values when creating a new pet. Finally. click <code>Configure Action</code> → <code>Submit</code>.</p>
+<p><strong>📜 List Existing Pets</strong></p>
+<p>Now just below this new block click <code>Add Block</code> → <code>List</code> → <code>Associated Records</code> → <code>Pets</code>. Inside this new block click <code>Configure Fields</code> and add Name, Pet Type, and Birthdate.  The popup should look something like this. I already had one pet in my database so it may look slightly different.</p>
+<p><img src="https://static-docs.nocobase.com/3cfc6fadf38b4f88dcee4478aa1b65cb.png" alt="List Existing Pets.png"></p>
+<p>Click out of the popup to close it. Now we have the ability to create and view pets. Your UI should now look something like this.</p>
+<p><img src="https://static-docs.nocobase.com/97149b76b62c72ccc9d484ceffd50208.png" alt="UI.png"></p>
+<p><strong>🧪 Test it Out</strong></p>
+<p>Now click on the orange UI Editor button to leave the UI Editor. You can play around with the UI and create Pets and Pet Owners.</p>
+<p>This blog was missing many pieces including Authenticating Users, more complex UIs, deploying a production environment, etc. I may cover these in later blogs.</p>
+<p>💡 Read More:</p>
+<ul>
+<li><a href="../blog/building-ai-assistant-langflow-astradb-nocobase.html">Building an AI Assistant with Langflow and AstraDB: From Architecture to Integration with NocoBase</a></li>
+<li><a href="../blog/developing-a-plugin-to-send-whatsapp-messages.html">Developing a Plugin to Send WhatsApp Messages in NocoBase</a></li>
+<li><a href="../blog/building-an-application-catalog-with-nocobase.html">Simplified Architecture Governance: Building an Application Catalog with NocoBase</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">🌟什么是 NocoBase？</a><a href="#zh-2">🚀 本地部署 NocoBase</a><a href="#zh-3">🐶 构建 NocoBase 应用程序：宠物追踪应用程序</a></div><div class="en-only"><a href="#en-1">🌟What is NocoBase?</a><a href="#en-2">🚀 Deploy NocoBase Locally</a><a href="#en-3">🐶 Building the NocoBase App: Pet Tracking Application</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

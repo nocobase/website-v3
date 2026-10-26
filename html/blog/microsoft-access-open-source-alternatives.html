@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="6 个替代 Microsoft Access 的开源数据库工具推荐 — NocoBase" data-en="6 Open Source Alternatives to Microsoft Access — NocoBase">6 个替代 Microsoft Access 的开源数据库工具推荐 — NocoBase</title>
+<meta name="description" content="探索 6 大开源 Microsoft Access 替代品，从 NocoBase 到 DBeaver，轻松实现更灵活的数据管理与业务应用。" data-zh="探索 6 大开源 Microsoft Access 替代品，从 NocoBase 到 DBeaver，轻松实现更灵活的数据管理与业务应用。" data-en="Explore 6 open-source Microsoft Access alternatives, from NocoBase to DBeaver, and easily achieve more flexible data management and business applications.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>6 个替代 Microsoft Access 的开源数据库工具推荐</t-zh><t-en>6 Open Source Alternatives to Microsoft Access</t-en></h1>
+    <p class="lede"><t-zh>探索 6 大开源 Microsoft Access 替代品，从 NocoBase 到 DBeaver，轻松实现更灵活的数据管理与业务应用。</t-zh><t-en>Explore 6 open-source Microsoft Access alternatives, from NocoBase to DBeaver, and easily achieve more flexible data management and business applications.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年9月26日</t-zh><t-en>Sep 26, 2025</t-en></span><span><t-zh>Zhang Lu</t-zh><t-en>Zhang Lu</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2097-6bkoo9.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>在 <a href="https://www.reddit.com/r/brdev/comments/1h2s9tm/microsoft_acess/">Reddit</a> 上，一位开发者用一段话生动描绘了 <strong>Microsoft Access 的生命周期</strong>：</p>
+<p><img src="https://static-docs.nocobase.com/reddit-wzra4s.PNG" alt="reddit"></p>
+<p>这段话几乎浓缩了 Access 在现实企业中的使用场景：从最初的便利，到团队共享，再到数据损坏和性能瓶颈，最后不得不被更现代的<strong>数据库解决方案</strong>取代。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>作为微软 Office 套件中的桌面数据库管理系统，Access 的确方便上手，但它在性能、安全性和扩展性上存在局限：</p>
+<ul>
+<li><strong>性能有限</strong>：单个数据库文件最大容量为 2GB，在处理大型数据集和高并发时性能显著下降。</li>
+<li><strong>安全性较低</strong>：数据库文件容易被复制，密码保护功能也不够强大。</li>
+<li><strong>扩展性差</strong>：扩展性较差，难以应对业务规模的扩展。</li>
+</ul>
+<p>这些<a href="https://www.reddit.com/r/CAStateWorkers/comments/1k34y6z/do_you_use_microsoft_access/">局限</a>在真实的使用场景下被用户频繁提到：</p>
+<blockquote>
+<p>Access 文件容量有限，难以处理大型数据集，用户表示正在考虑迁移到 Power BI 或其他数据库工具。</p>
+</blockquote>
+<p><img src="https://static-docs.nocobase.com/issue1-8ff1sr.png" alt="issue1"></p>
+<blockquote>
+<p>在一些机构中，Access 多为遗留系统，如果出现问题，团队需要自行修复，而 IT 部门不熟悉或不支持 Access。</p>
+</blockquote>
+<p><img src="https://static-docs.nocobase.com/issue2-qdx5lj.png" alt="issue2"></p>
+<blockquote>
+<p>部分团队成员仍在使用 Access，感到系统过时，同时导出大量数据存在限制，处理大型工程数据时显得效率低下。</p>
+</blockquote>
+<p><img src="https://static-docs.nocobase.com/issue3-j4hdp6.png" alt="issue3"></p>
+<p>为了应对性能、安全性和扩展性的不足，越来越多企业开始寻找 <strong>Microsoft Access 替代品</strong>。</p>
+<p>下面我们推荐的工具不仅涵盖开源数据库管理工具，还包括无代码开发平台等新型解决方案。它们都能在一些场景下替代 Access 的数据库功能，同时提供更强的扩展性、多人协作能力和更高的安全性，为企业带来更现代化的解决方案。</p>
+<h2 id="zh-1">NocoBase</h2>
+<p><img src="https://static-docs.nocobase.com/NocoBase-1vgudn.PNG" alt="NocoBase"></p>
+<p><strong>项目概况</strong></p>
+<p>NocoBase 是一款极易扩展的开源 AI 低代码 / 无代码平台，专为企业级应用和业务系统设计。它支持可视化的数据建模、权限管理和工作流配置，并可通过插件机制灵活扩展功能，满足复杂业务场景的需求。</p>
+<p>虽然 NocoBase 与 Microsoft Access 的定位并不相同——Access 是桌面数据库，而 NocoBase 是 AI 无代码平台，但在许多企业常见的使用场景下，NocoBase 依然可以成为理想的替代方案，例如团队协作数据库、表单驱动的业务应用、部门级数据管理和可视化报表分析等。</p>
+<ul>
+<li>GitHub Star：⭐21.3k</li>
+<li>GitHub：<a href="https://github.com/nocobase/nocobase?utm_source=chatgpt.com">https://github.com/nocobase/nocobase</a></li>
+<li>官网：<a href="https://www.nocobase.com">https://www.nocobase.com</a></li>
+</ul>
+<p><strong>作为 Microsoft Access 替代品的核心亮点</strong></p>
+<ul>
+<li><strong>可视化数据建模</strong>：支持多表关联、字段类型丰富，并能直观展示数据关系，方便快速设计复杂业务模型。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/%E5%8F%AF%E8%A7%86%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1-9ywxwb.png" alt="可视化数据建模"></p>
+<ul>
+<li><strong>权限与多用户协作</strong>：提供角色级、条件级、字段级的细粒度权限设置，可为不同用户或角色分配查看、编辑或管理权限。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/%E6%9D%83%E9%99%90-61os9m.png" alt="权限"></p>
+<ul>
+<li><strong>灵活的工作流</strong>：支持业务流程自动化，通过工作流模块实现审批、提醒等操作，用户无需深入编程即可快速搭建业务应用。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/%E5%B7%A5%E4%BD%9C%E6%B5%81-6bz4ez.png" alt="工作流"></p>
+<ul>
+<li><strong>强大的插件扩展</strong>：支持通过 API 和插件接入不同的数据源（数据库、API、第三方服务），满足企业不同业务需求。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/%E6%8F%92%E4%BB%B6-k6smfx.png" alt="插件"></p>
+<ul>
+<li><strong>融入系统的 AI 员工</strong>：将 AI 能力无缝集成到交互界面、业务流程和数据上下文中，让 AI 真正落地于企业场景。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/AI%20%E5%91%98%E5%B7%A52-qwgmgh.png" alt="AI employees.png"></p>
+<p><strong>使用场景</strong></p>
+<p>NocoBase 可广泛应用于企业内部管理和业务系统建设，适合需要数据可视化、多用户协作和灵活扩展的场景。目前 NocoBase 上线了三大企业级解决方案：</p>
+<ul>
+<li><a href="https://www.nocobase.com/en/solutions/crm">客户关系管理</a>：管理客户信息、跟进销售线索，实现业务全流程可视化。</li>
+<li><a href="https://www.nocobase.com/en/solutions/ticketing">工单系统</a>：用于 IT 支持、售后服务或内部任务管理，实现任务分配和状态追踪。</li>
+<li><a href="https://www.nocobase.com/en/solutions/project-management">项目管理</a>：支持项目任务、进度跟踪和团队协作，让数据与业务流程紧密结合。</li>
+</ul>
+<h2 id="zh-2">NocoDB</h2>
+<p><img src="https://static-docs.nocobase.com/NocoDB-x8b8ve.png" alt="NocoDB"></p>
+<p><strong>项目概况</strong></p>
+<p>NocoDB 是一款开源的无代码数据库管理工具，旨在将传统关系型数据库（如 MySQL、PostgreSQL、SQLite 等）转化为类似 Airtable 的表格界面，方便用户进行数据管理和应用构建。</p>
+<ul>
+<li>GitHub Star：⭐57.7k</li>
+<li>GitHub：<a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></li>
+<li>官网：<a href="https://nocodb.com/">https://nocodb.com/</a></li>
+</ul>
+<p><strong>作为 Microsoft Access 替代品的核心亮点</strong></p>
+<ul>
+<li><strong>电子表格视图</strong>：将数据库数据呈现为类似 Excel 的电子表格视图，用户无需编写 SQL 即可进行数据操作。</li>
+<li><strong>无代码应用开发</strong>：通过简单的拖放操作，用户可以创建复杂的业务逻辑和数据管理应用。</li>
+<li><strong>多用户支持</strong>：支持团队协作和多用户操作，通过权限管理控制数据访问和操作权限。</li>
+<li><strong>API 支持</strong>：自动生成 REST API，使数据可以通过 API 进行访问和操作，便于与其他系统集成。</li>
+</ul>
+<p><strong>使用场景</strong></p>
+<ul>
+<li>项目管理：快速搭建任务分配、进度跟踪和团队协作平台。</li>
+<li>客户关系管理：集中管理客户信息、销售线索和业务机会。</li>
+<li>库存管理：实现商品信息录入、库存状态跟踪和自动提醒。</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/nocobase-vs-nocodb.html">NocoBase 与 NocoDB：开源无代码（零代码）工具深度对比</a></p>
+<h2 id="zh-3">Baserow</h2>
+<p><img src="https://static-docs.nocobase.com/Baserow-ekfmgo.png" alt="Baserow"></p>
+<p><strong>项目概况</strong></p>
+<p>Baserow 是一款开源的无代码数据库和应用构建平台，允许用户在无需编程知识的情况下创建和管理数据库。</p>
+<ul>
+<li>GitLab Star：⭐2.2k</li>
+<li>GitLab：<a href="https://gitlab.com/baserow/baserow">https://gitlab.com/baserow/baserow</a></li>
+<li>官网：<a href="https://baserow.io/">https://baserow.io/</a></li>
+</ul>
+<p><strong>作为 Microsoft Access 替代品的核心亮点</strong></p>
+<ul>
+<li><strong>无代码平台</strong>：用户可以通过直观的界面创建和管理数据库，无需编写代码。</li>
+<li><strong>API 优先</strong>：每个功能都可以通过 API 进行集成，方便与其他系统进行数据交互。</li>
+<li><strong>插件扩展</strong>：支持前端和后端插件的定制和扩展，满足不同业务需求。</li>
+<li><strong>自托管和云部署</strong>：提供自托管和云部署选项，用户可以根据需求选择最适合的方式。</li>
+</ul>
+<p><strong>使用场景</strong></p>
+<ul>
+<li>市场活动管理：集中管理活动计划、参与人信息和效果跟踪。</li>
+<li>数据收集与整理：通过可视化表格整合不同渠道的数据。</li>
+<li>团队协作数据库：跨部门共享数据并进行实时更新。</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/6-open-source-no-code-database-tools.html">6 个替代飞书多维表格的开源无代码数据库工具</a></p>
+<h2 id="zh-4">LibreOffice Base</h2>
+<p><img src="https://static-docs.nocobase.com/LibreOffice%20Base-oiaw2k.png" alt="LibreOffice Base"></p>
+<p><strong>项目概况</strong></p>
+<p>LibreOffice Base 是 LibreOffice 套件中的数据库管理工具，提供图形用户界面，允许用户创建、访问、修改和查看数据库及其数据。</p>
+<ul>
+<li>GitHub Star：⭐3.3k</li>
+<li>GitHub：<a href="https://github.com/LibreOffice/core">https://github.com/LibreOffice/core</a></li>
+<li>官网：<a href="https://www.libreoffice.org/discover/base/">https://www.libreoffice.org/discover/base/</a></li>
+</ul>
+<p><strong>作为 Microsoft Access 替代品的核心亮点</strong></p>
+<ul>
+<li><strong>跨平台兼容性</strong>：支持 Windows、macOS 和 Linux 操作系统，适用于多种平台。</li>
+<li><strong>图形用户界面</strong>：提供图形用户界面，简化数据库的创建和管理过程。</li>
+<li><strong>多种数据库支持</strong>：支持多种数据库系统，包括 MySQL、MariaDB 和 PostgreSQL 等。</li>
+</ul>
+<p><strong>使用场景</strong></p>
+<ul>
+<li>个人数据库管理：管理联系人、书籍收藏或研究数据。</li>
+<li>小型企业数据存储：维护客户信息、库存数据和销售记录。</li>
+<li>报告与查询生成：快速输出结构化报告，支持打印与分享。</li>
+</ul>
+<h2 id="zh-5">Kexi</h2>
+<p><img src="https://static-docs.nocobase.com/Kexi-czoqhz.png" alt="Kexi"></p>
+<p><strong>项目概况</strong></p>
+<p>Kexi 是一款开源的可视化数据库应用构建工具，旨在填补电子表格和需要更复杂开发的数据库服务之间的空白。</p>
+<ul>
+<li>GitHub Star：⭐50</li>
+<li>GitHub：<a href="https://github.com/KDE/kexi">https://github.com/KDE/kexi</a></li>
+<li>官网：<a href="https://kexi-project.org/en/">https://kexi-project.org/en/</a></li>
+</ul>
+<p><strong>作为 Microsoft Access 替代品的核心亮点</strong></p>
+<ul>
+<li><strong>可视化设计器</strong>：提供可视化设计器，简化数据库表的创建和修改过程。</li>
+<li><strong>表单和报告生成</strong>：支持创建表单和报告，方便数据的输入和输出。</li>
+<li><strong>多种数据库支持</strong>：支持多种数据库系统，包括 PostgreSQL、MySQL 和 SQLite 等。</li>
+<li><strong>数据处理功能</strong>：提供数据插入、编辑、查询和处理功能，满足多种数据管理需求。</li>
+</ul>
+<p><strong>使用场景</strong></p>
+<ul>
+<li>表单驱动应用：为业务人员提供友好的数据录入表单。</li>
+<li>数据可视化报表：生成直观图表和统计分析结果。</li>
+</ul>
+<h2 id="zh-6">DBeaver</h2>
+<p><img src="https://static-docs.nocobase.com/DBeaver-7it7k8.png" alt="DBeaver"></p>
+<p><strong>项目概况</strong></p>
+<p>DBeaver 是一款开源的通用数据库工具，支持多种数据库系统，包括 SQL 和 NoSQL 数据库。</p>
+<ul>
+<li>GitHub Star：⭐45.5k</li>
+<li>GitHub：<a href="https://github.com/dbeaver/dbeaver/">https://github.com/dbeaver/dbeaver/</a></li>
+<li>官网：<a href="https://dbeaver.io/">https://dbeaver.io/</a></li>
+</ul>
+<p><strong>作为 Microsoft Access 替代品的核心亮点</strong></p>
+<ul>
+<li><strong>多种数据库支持</strong>：支持多种数据库系统，包括 MySQL、PostgreSQL、SQLite 和 MongoDB 等。</li>
+<li><strong>图形用户界面</strong>：提供图形用户界面，简化数据库的管理和操作过程。</li>
+<li><strong>SQL 编辑器</strong>：提供功能强大的 SQL 编辑器，支持代码补全和语法高亮。</li>
+</ul>
+<p><strong>使用场景</strong></p>
+<ul>
+<li>跨数据库查询：同时管理和操作多个不同类型的数据库。</li>
+<li>开发调试：帮助开发人员进行 SQL 脚本编写与测试。</li>
+<li>数据分析：将查询结果可视化，用于业务分析和决策支持。</li>
+</ul>
+<h2 id="zh-7">写在最后</h2>
+<p>正如开头的用户反馈所揭示的那样，Microsoft Access 在实际使用中常常面临性能、扩展性和协作上的限制。随着业务的发展，许多团队逐渐意识到需要寻找更灵活、更现代的替代方案。</p>
+<p>本文介绍的开源替代品为不同的使用场景提供了可能的解决之道：</p>
+<ul>
+<li>如果你需要可视化建模和企业级扩展能力：选择 NocoBase 或 NocoDB 更为合适。</li>
+<li>如果你习惯表格风格的简单协作工具：可以考虑 Baserow。</li>
+<li>如果你偏好传统桌面型数据库：LibreOffice Base 和 Kexi 是不错的选择。</li>
+<li>如果你是开发者或数据分析人员：DBeaver 提供了最强大的跨数据库支持。</li>
+</ul>
+<p>如果你正受限于 Microsoft Access 的使用局限，不妨从这些开源工具入手，寻找契合业务需求的替代方案。</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/jira-open-source-alternatives.html">6 个替代 Jira 的开源项目管理工具推荐</a></li>
+<li><a href="../blog/zapier-open-source-alternatives.html">7 款替代 Zapier 的开源工作流工具推荐</a></li>
+<li><a href="../blog/servicenow-open-source-alternatives.html">5 个最佳 ServiceNow 开源替代品（含价格对比）</a></li>
+<li><a href="../blog/open-source-firebase-alternatives.html">开发者推荐：6 款更灵活的 Firebase 开源替代品</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">2025 年 AppSheet 最佳开源替代品</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">2025 年开源替代方案为何正在取代 OutSystems？技术自由度与成本优势深度解析</a></li>
+</ul></div><div class="prose en-only"><p>On <a href="https://www.reddit.com/r/brdev/comments/1h2s9tm/microsoft_acess/">Reddit</a>, one developer vividly described <strong>the lifecycle of Microsoft Access</strong> as below:</p>
+<p><img src="https://static-docs.nocobase.com/reddit-en-3gae5i.png" alt="reddit"></p>
+<p>This description neatly sums up how Access is often used in real-world businesses: starting as a convenient tool, then shared across teams, eventually running into corruption and performance bottlenecks, and finally being replaced by <strong>more modern database solutions</strong>.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>As part of the Microsoft Office suite, Access is indeed easy to get started with. However, it has well-known limitations in performance, security, and scalability:</p>
+<ul>
+<li><strong>Limited performance</strong>: The maximum size of a single database file is 2GB. Performance declines sharply with large datasets and high concurrency.</li>
+<li><strong>Weak security</strong>: Database files can be easily copied, and password protection is not robust.</li>
+<li><strong>Poor scalability</strong>: Difficult to scale alongside growing business needs.</li>
+</ul>
+<p>These <a href="https://www.reddit.com/r/CAStateWorkers/comments/1k34y6z/do_you_use_microsoft_access/">issues</a> are frequently mentioned by real users:</p>
+<blockquote>
+<p>Access files struggle with large datasets, prompting users to migrate to Power BI or other tools.</p>
+</blockquote>
+<p><img src="https://static-docs.nocobase.com/issue1-8ff1sr.png" alt="issue1"></p>
+<blockquote>
+<p>In some organizations, Access survives as a legacy system. When problems arise, teams must fix them on their own because IT no longer supports Access.</p>
+</blockquote>
+<p><img src="https://static-docs.nocobase.com/issue2-qdx5lj.png" alt="issue2"></p>
+<blockquote>
+<p>Some team members still use Access but find it outdated. Exporting large datasets is limited, and handling engineering-scale data becomes inefficient.</p>
+</blockquote>
+<p><img src="https://static-docs.nocobase.com/issue3-j4hdp6.png" alt="issue3"></p>
+<p>To overcome these limitations in performance, security, and scalability, more and more organizations are turning to modern <strong>open source alternatives</strong>.</p>
+<p>These tools go beyond simple database management—they also include no-code development platforms. They can replicate Access’s database functionality in some scenarios while providing stronger scalability, multi-user collaboration, and better security.</p>
+<h2 id="en-1">NocoBase</h2>
+<p><img src="https://static-docs.nocobase.com/NocoBase-en-ccbi6v.png" alt="NocoBase"></p>
+<p><strong>Overview</strong></p>
+<p>NocoBase is a highly extensible, open-source AI low-code / no-code platform designed for enterprise applications and business systems. It supports visual data modeling, permission management, and workflow configuration, and can be flexibly extended through plugins to address complex business requirements.</p>
+<p>Unlike Microsoft Access, which is a desktop database tool, NocoBase is a AI comprehensive platform for building online business applications. In many enterprise use cases—such as collaborative databases, form-driven applications, departmental data management, and visual reporting—NocoBase can serve as a modern alternative to Access.</p>
+<ul>
+<li>GitHub Star: ⭐21.3k</li>
+<li>GitHub: <a href="https://github.com/nocobase/nocobase?utm_source=chatgpt.com">https://github.com/nocobase/nocobase</a></li>
+<li>Website: <a href="https://www.nocobase.com">https://www.nocobase.com</a></li>
+</ul>
+<p><strong>Key Highlights as an Access Alternative</strong></p>
+<ul>
+<li><strong>Visual data modeling</strong>: Supports multi-table relationships and rich field types, with intuitive visualization of data structures for designing complex models.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Visual%20data%20modeling-nq8hwe.png" alt="Visual data modeling"></p>
+<ul>
+<li><strong>Granular permissions &amp; collaboration</strong>: Role-, condition-, and field-level access controls, enabling secure multi-user operations.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/permissions-3mg75h.png" alt="permissions"></p>
+<ul>
+<li><strong>Flexible workflows</strong>: Build business process automation (approvals, reminders, etc.) without deep programming knowledge.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/workflows-0j76g0.png" alt="workflows"></p>
+<ul>
+<li><strong>Plugin ecosystem</strong>: Extend functionality via APIs and plugins, connecting with external databases, APIs, and third-party services.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Plugin-y61b0i.png" alt="Plugin"></p>
+<ul>
+<li><strong>AI employees embedded in the system</strong>: Seamlessly integrate AI capabilities into user interfaces, business workflows, and data contexts, enabling AI to be practically applied in real enterprise scenarios.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/AI%20%E5%91%98%E5%B7%A52-qwgmgh.png" alt="AI employees.png"></p>
+<p><strong>Use Cases</strong></p>
+<p>NocoBase can be widely applied to internal enterprise management and business system construction, and is suitable for scenarios that require data visualization, multi-user collaboration, and flexible expansion. Currently, NocoBase has launched three major enterprise-level solutions:</p>
+<ul>
+<li><strong><a href="https://www.nocobase.com/en/solutions/crm">CRM systems</a></strong>: Manage customer data, track leads, and visualize the sales pipeline.</li>
+<li><strong><a href="https://www.nocobase.com/en/solutions/ticketing">Ticketing systems</a></strong>: Handle IT support, after-sales, or internal task management with clear assignment and tracking.</li>
+<li><strong><a href="https://www.nocobase.com/en/solutions/project-management">Project management</a></strong>: Monitor tasks, deadlines, and team collaboration with data tightly integrated into workflows.</li>
+</ul>
+<h2 id="en-2">NocoDB</h2>
+<p><img src="https://static-docs.nocobase.com/NocoDB-x8b8ve.png" alt="NocoDB"></p>
+<p><strong>Overview</strong></p>
+<p>NocoDB is an open-source no-code database management tool that turns traditional relational databases (MySQL, PostgreSQL, SQLite, etc.) into a spreadsheet-like interface for easier data management and app building.</p>
+<ul>
+<li>GitHub Star：⭐57.7k</li>
+<li>GitHub：<a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></li>
+<li>Website: <a href="https://nocodb.com/">https://nocodb.com/</a></li>
+</ul>
+<p><strong>Key Highlights as an Access Alternative</strong></p>
+<ul>
+<li><strong>Spreadsheet View</strong>: Presents database data in a spreadsheet-like view similar to Excel, allowing users to operate data without writing SQL.</li>
+<li><strong>No-Code Application Development</strong>: By using simple drag-and-drop actions, users can create complex business logic and data management applications.</li>
+<li><strong>Multi-User Support</strong>: Supports team collaboration and multi-user operations, with permission management to control data access and operations.</li>
+<li><strong>API Support</strong>: Automatically generates REST APIs, enabling data access and operations via APIs, making it easier to integrate with other systems.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>Project Management</strong>: Quickly build task allocation, progress tracking, and team collaboration platforms.</li>
+<li><strong>Customer Relationship Management</strong>: Centralize customer information, sales leads, and business opportunities.</li>
+<li><strong>Inventory Management</strong>: Record product information, track inventory status, and set up automatic reminders.</li>
+</ul>
+<p>💡 Read more: <a href="../blog/nocobase-vs-nocodb.html">NocoBase vs NocoDB: An In-Depth Comparison of Open Source No-Code Tools</a></p>
+<h2 id="en-3">Baserow</h2>
+<p><img src="https://static-docs.nocobase.com/Baserow-ekfmgo.png" alt="Baserow"></p>
+<p><strong>Overview</strong></p>
+<p>Baserow is an open-source no-code database and application-building platform that allows users to create and manage databases without programming knowledge.</p>
+<ul>
+<li>GitLab Star：⭐2.2k</li>
+<li>GitLab：<a href="https://gitlab.com/baserow/baserow">https://gitlab.com/baserow/baserow</a></li>
+<li>Website: <a href="https://baserow.io/">https://baserow.io/</a></li>
+</ul>
+<p><strong>Key Highlights as an Access Alternative</strong></p>
+<ul>
+<li><strong>No-Code Platform</strong>: Users can create and manage databases through an intuitive interface, with no coding required.</li>
+<li><strong>API-First</strong>: Every feature can be integrated via API, making data exchange with other systems easy.</li>
+<li><strong>Plugin Extensions</strong>: Supports customization and extension of frontend and backend plugins to meet diverse business needs.</li>
+<li><strong>Self-Hosting and Cloud Deployment</strong>: Offers both self-hosted and cloud deployment options, allowing users to choose what best fits their requirements.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>Marketing Campaign Management</strong>: Centrally manage campaign planning, participant information, and performance tracking.</li>
+<li><strong>Data Collection and Organization</strong>: Consolidate multi-channel data through visualized tables.</li>
+<li><strong>Collaborative Team Database</strong>: Share and update data across departments in real time.</li>
+</ul>
+<p>💡 Read more: <a href="../blog/6-open-source-no-code-database-tools.html">6 Open-Source no-code Database Tools Like Airtable and Notion</a></p>
+<h2 id="en-4">LibreOffice Base</h2>
+<p><img src="https://static-docs.nocobase.com/LibreOffice%20Base-oiaw2k.png" alt="LibreOffice Base"></p>
+<p><strong>Overview</strong></p>
+<p>LibreOffice Base is the database management tool within the LibreOffice suite. It provides a graphical user interface that allows users to create, access, modify, and view databases and their data.</p>
+<ul>
+<li>GitHub Star：⭐3.3k</li>
+<li>GitHub：<a href="https://github.com/LibreOffice/core">https://github.com/LibreOffice/core</a></li>
+<li>Website: <a href="https://www.libreoffice.org/discover/base/">https://www.libreoffice.org/discover/base/</a></li>
+</ul>
+<p><strong>Key Highlights as an Access Alternative</strong></p>
+<ul>
+<li><strong>Cross-Platform Compatibility</strong>: Supports Windows, macOS, and Linux, making it versatile across environments.</li>
+<li><strong>Graphical User Interface</strong>: Provides a GUI that simplifies the process of creating and managing databases.</li>
+<li><strong>Multiple Database Support</strong>: Compatible with various database systems, including MySQL, MariaDB, and PostgreSQL.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>Personal Database Management</strong>: Manage contacts, book collections, or research data.</li>
+<li><strong>Small Business Data Storage</strong>: Maintain customer information, inventory data, and sales records.</li>
+<li><strong>Reports and Query Generation</strong>: Quickly output structured reports, with support for printing and sharing.</li>
+</ul>
+<h2 id="en-5">Kexi</h2>
+<p><img src="https://static-docs.nocobase.com/Kexi-czoqhz.png" alt="Kexi"></p>
+<p><strong>Overview</strong></p>
+<p>Kexi is an open-source visual database application builder designed to fill the gap between spreadsheets and more complex database services that require advanced development.</p>
+<ul>
+<li>GitHub Star：⭐50</li>
+<li>GitHub：<a href="https://github.com/KDE/kexi">https://github.com/KDE/kexi</a></li>
+<li>Website: <a href="https://kexi-project.org/en/">https://kexi-project.org/en/</a></li>
+</ul>
+<p><strong>Key Highlights as an Access Alternative</strong></p>
+<ul>
+<li><strong>Visual Designer</strong>: Provides a visual designer that simplifies the creation and modification of database tables.</li>
+<li><strong>Form and Report Generation</strong>: Supports the creation of forms and reports for easier data input and output.</li>
+<li><strong>Multiple Database Support</strong>: Works with PostgreSQL, MySQL, SQLite, and more.</li>
+<li><strong>Data Processing Functions</strong>: Offers insertion, editing, querying, and processing capabilities to handle diverse data management needs.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>Form-Driven Applications</strong>: Provide user-friendly data entry forms for business staff.</li>
+<li><strong>Data Visualization Reports</strong>: Generate intuitive charts and statistical analysis results.</li>
+</ul>
+<h2 id="en-6">DBeaver</h2>
+<p><img src="https://static-docs.nocobase.com/DBeaver-7it7k8.png" alt="DBeaver"></p>
+<p><strong>Overview</strong></p>
+<p>DBeaver is an open-source universal database tool that supports a wide range of database systems, including both SQL and NoSQL databases.</p>
+<ul>
+<li>GitHub Star：⭐45.5k</li>
+<li>GitHub：<a href="https://github.com/dbeaver/dbeaver/">https://github.com/dbeaver/dbeaver/</a></li>
+<li>Website: <a href="https://dbeaver.io/">https://dbeaver.io/</a></li>
+</ul>
+<p><strong>Key Highlights as an Access Alternative</strong></p>
+<ul>
+<li><strong>Broad Database Support</strong>: Compatible with MySQL, PostgreSQL, SQLite, MongoDB, and many others.</li>
+<li><strong>Graphical User Interface</strong>: Provides a GUI to simplify database management and operations.</li>
+<li><strong>SQL Editor</strong>: Includes a powerful SQL editor with code completion and syntax highlighting.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>Cross-Database Queries</strong>: Manage and operate multiple types of databases simultaneously.</li>
+<li><strong>Development and Debugging</strong>: Assist developers in writing and testing SQL scripts.</li>
+<li><strong>Data Analysis</strong>: Visualize query results to support business analysis and decision-making.</li>
+</ul>
+<h2 id="en-7">Final Thoughts</h2>
+<p>As highlighted by the user feedback at the beginning, Microsoft Access often encounters real-world limitations in performance, scalability, and collaboration. As businesses grow, many teams realize the need for more flexible and modern alternatives.</p>
+<p>The open-source options introduced here provide solutions tailored to different use cases:</p>
+<ul>
+<li>If you need visual modeling and enterprise-grade extensibility, <strong>NocoBase</strong> or <strong>NocoDB</strong> are the best fit.</li>
+<li>If you prefer spreadsheet-style collaboration, <strong>Baserow</strong> is a good choice.</li>
+<li>If you prefer traditional desktop-style databases, <strong>LibreOffice Base</strong> and <strong>Kexi</strong> are reliable options.</li>
+<li>If you are a developer or data analyst, <strong>DBeaver</strong> provides the most powerful cross-database support.</li>
+</ul>
+<p>If you find yourself constrained by the limitations of Microsoft Access, these open-source tools can help you transition to a more modern, collaborative, and scalable solution that aligns with your business needs.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/jira-open-source-alternatives.html">6 Best Open Source Alternatives to Jira</a></li>
+<li><a href="../blog/zapier-open-source-alternatives.html">7 Powerful Open Source Alternatives to Zapier</a></li>
+<li><a href="../blog/servicenow-open-source-alternatives.html">5 Best Open-Source Alternatives to ServiceNow (with Pricing Comparison)</a></li>
+<li><a href="../blog/open-source-firebase-alternatives.html">6 Open-Source Firebase Alternatives for Self-Hosting and Data Control</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">The Best Open-Source Alternatives to AppSheet in 2025</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">Why Open-Source Alternatives Are Replacing OutSystems in 2025?</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">NocoBase</a><a href="#zh-2">NocoDB</a><a href="#zh-3">Baserow</a><a href="#zh-4">LibreOffice Base</a><a href="#zh-5">Kexi</a><a href="#zh-6">DBeaver</a><a href="#zh-7">写在最后</a></div><div class="en-only"><a href="#en-1">NocoBase</a><a href="#en-2">NocoDB</a><a href="#en-3">Baserow</a><a href="#en-4">LibreOffice Base</a><a href="#en-5">Kexi</a><a href="#en-6">DBeaver</a><a href="#en-7">Final Thoughts</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

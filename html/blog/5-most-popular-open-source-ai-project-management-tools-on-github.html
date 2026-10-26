@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="5 个 GitHub 上最受欢迎的开源 AI 项目管理工具 — NocoBase" data-en="5 Most Popular Open-Source AI Project Management Tools on GitHub — NocoBase">5 个 GitHub 上最受欢迎的开源 AI 项目管理工具 — NocoBase</title>
+<meta name="description" content="盘点 5 款已经融入 AI 能力或正在明确推进 AI 协作方向的开源工具" data-zh="盘点 5 款已经融入 AI 能力或正在明确推进 AI 协作方向的开源工具" data-en="A review of five open-source tools that have already integrated AI capabilities or are actively advancing AI-driven collaboration">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>资讯</t-zh><t-en>News</t-en></p>
+    <h1><t-zh>5 个 GitHub 上最受欢迎的开源 AI 项目管理工具</t-zh><t-en>5 Most Popular Open-Source AI Project Management Tools on GitHub</t-en></h1>
+    <p class="lede"><t-zh>盘点 5 款已经融入 AI 能力或正在明确推进 AI 协作方向的开源工具</t-zh><t-en>A review of five open-source tools that have already integrated AI capabilities or are actively advancing AI-driven collaboration</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年2月5日</t-zh><t-en>Feb 5, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2090%20(1)-5tpqk1.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>我们之前 整理过 <a href="../blog/github-open-source-project-management-tools.html">GitHub 上 Star 数量前 10 的开源项目管理工具 </a>，这类内容一直被不少用户收藏和讨论，自托管 + 开源的项目管理工具，仍然是很多团队的现实需求。</p>
+<p>但最近在 <a href="https://www.reddit.com/r/projectmanagement/comments/1nlsyz0/best_ai_tools_for_project_managers_right_now/">Reddit 项目管理的社区</a>中，我们发现越来越多用户开始关注一个更直接的问题——AI 是否真的能参与项目管理的日常工作。</p>
+<p><img src="https://static-docs.nocobase.com/Reddit-cm87lz.PNG" alt="Reddit.PNG"></p>
+<p>在这些讨论中，不少用户已经开始分享自己的实践经验：</p>
+<ul>
+<li>很多团队已经在使用 AI 自动整理会议记录，并从讨论内容中提取行动项和待办任务。</li>
+<li>AI 被用来整理项目资料和内部知识库，减少团队查找信息和重复沟通的时间。</li>
+<li>一些用户开始尝试让 AI 参与任务拆解、优先级判断以及项目风险预警。</li>
+</ul>
+<p>项目管理工作正在被重新分工，AI 逐步被用来承担整理与分析类工作，相信团队对 AI 的期待，也在逐渐从提升效率转向了参与具体的业务流程。</p>
+<p>也正因为如此，本文不再泛泛介绍项目管理工具，而是结合各产品官方发布的信息，从 <a href="https://github.com/topics/project-management">GitHub 项目管理话题</a>下筛选出 TOP 5 已经融入 AI 能力或正在明确推进 AI 协作方向的开源工具，重点拆解它们的 AI 能力，以及它们在项目管理场景中的实际使用方式。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-1">推荐工具清单</h2>
+<p><strong>NocoBase</strong> —— 面向企业应用开发的开源平台，可灵活构建高度自定义的项目管理系统，AI 可参与业务流程执行。</p>
+<p><strong>Huly</strong> —— 体化协作平台，AI 侧重沟通整理与知识管理。</p>
+<p><strong>ERPNext</strong> —— 企业流程型项目管理系统，AI 用于业务数据整理与项目报告生成。</p>
+<p><strong>Plane</strong> —— 敏捷研发规划工具，AI 辅助需求拆解与迭代管理。</p>
+<p><strong>AppFlowy</strong> —— 文档驱动协作工具，AI 支持文档整理与知识信息管理。</p>
+<h2 id="zh-2">No 5 NocoBase</h2>
+<p><img src="../" alt=""><img src="https://static-docs.nocobase.com/NocoBase1-npjv8t.PNG" alt="NocoBase1.PNG"></p>
+<ol>
+<li><h3>基本信息</h3>
+</li>
+</ol>
+<p>官网链接：<a href="https://www.nocobase.com">https://www.nocobase.com</a></p>
+<p>GitHub 链接：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Star：21.4k</p>
+<ol start="2">
+<li><h3>简介</h3>
+</li>
+</ol>
+<p>与传统项目管理工具不同，NocoBase 并不是预设固定项目管理流程的软件，而是一个数据模型驱动的开源 AI 无代码/低代码开发平台，可以让团队按自身业务模式构建项目管理系统、协作系统或交付管理系统。</p>
+<p>在项目管理模式上，NocoBase 更偏向：</p>
+<ul>
+<li>自定义项目管理系统</li>
+<li>跨流程业务协作管理</li>
+<li>复杂交付与多角色协同场景</li>
+</ul>
+<p>平台内置表格、看板、日历、表单、流程自动化等区块，可灵活组合形成敏捷、看板或混合项目管理方式。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-pv6utg.png" alt="NocoBase2.png"></p>
+<p>NocoBase 引入了一个核心概念——AI 员工。 AI 员工被设计为可以理解业务数据、页面结构以及工作流程的数字同事，不仅可以生成内容，还可以执行真实业务操作，例如查询数据库、更新任务状态或自动填写表单。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-tpgybd.png" alt="NocoBase3.png"></p>
+<ol start="3">
+<li><h3>AI 能力</h3>
+</li>
+</ol>
+<ul>
+<li><strong>信息整理与内容生成</strong></li>
+</ul>
+<p>在需求沟通或会议结束后，AI 员工可以帮助团队将讨论内容整理为结构化需求信息或执行要点，帮助团队更快推进后续工作。</p>
+<ul>
+<li><strong>业务数据读取与操作</strong></li>
+</ul>
+<p>在项目执行过程中，AI 员工可以在权限范围内读取系统数据，辅助补充任务信息、更新执行记录或维护相关数据，帮助团队减少重复录入和跨系统同步数据的工作。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-mj49ku.PNG" alt="NocoBase4.PNG"></p>
+<ul>
+<li><strong>工作流协同与流程自动化</strong></li>
+</ul>
+<p>AI 可以作为工作流中的智能节点参与流程推进。在审批、任务流转或交付流程中，AI 可以根据流程触发条件执行数据处理或业务操作，使流程不仅依赖固定规则运行，还能够结合业务上下文自动推进流程节点，减少人工衔接环节。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-u0jmvo.PNG" alt="NocoBase5.PNG"></p>
+<h2 id="zh-3">No 4 Huly</h2>
+<p><img src="https://static-docs.nocobase.com/Huly1-8g3zon.png" alt="Huly1.png"></p>
+<ol>
+<li><h3>简介</h3>
+</li>
+</ol>
+<p>Huly 是一款开源的一体化团队协作平台，目标是替代 Linear、Jira、Slack 和 Notion 等多种工具，将任务管理、沟通、文档协作和流程管理集中到同一系统中。</p>
+<p>在项目管理模式上，Huly 更偏向：</p>
+<ul>
+<li>敏捷研发协作</li>
+<li>工程团队任务管理</li>
+<li>协作与沟通高度融合的项目管理</li>
+</ul>
+<p>相比纯任务管理工具，Huly 的核心定位是构建一个统一协作空间，让团队可以在同一环境中完成任务规划、讨论沟通、文档沉淀和项目推进。</p>
+<ol start="2">
+<li><h3>基本信息</h3>
+</li>
+</ol>
+<p>官网链接：<a href="https://huly.io?utm_source=chatgpt.com">https://huly.io</a></p>
+<p>GitHub 链接：<a href="https://github.com/hcengineering/platform?utm_source=chatgpt.com">https://github.com/hcengineering/platform</a></p>
+<p>GitHub Star：24.3k</p>
+<ol start="3">
+<li><h3>AI 能力</h3>
+</li>
+</ol>
+<ul>
+<li><strong>协作沟通内容自动整理</strong></li>
+</ul>
+<p>Huly 支持在沟通和会议场景中引入 AI，例如实时转录和整理讨论内容，将团队交流信息转化为结构化记录，减少会议整理成本。</p>
+<p><img src="https://static-docs.nocobase.com/Huly2-gle59e.png" alt="Huly2.png"></p>
+<ul>
+<li><strong>辅助信息管理与知识整理</strong></li>
+</ul>
+<p>Huly 将项目数据、文档和团队沟通集中管理，并支持 AI 对知识内容进行整理和查询，使团队更容易查找项目资料和历史记录。</p>
+<p><img src="https://static-docs.nocobase.com/Huly3-tmnwjc.png" alt="Huly3.png"></p>
+<h2 id="zh-4">No 3 ERPNext</h2>
+<p><img src="https://static-docs.nocobase.com/ERPNext1-p6ac0s.png" alt="ERPNext1.png"></p>
+<h3>1. 简介</h3>
+<p>ERPNext 是一款开源企业管理系统，提供 ERP、CRM、HR、财务和项目管理等模块，适合需要将项目交付与企业运营流程整合的组织使用。</p>
+<p>在项目管理模式上，ERPNext 更偏向：</p>
+<ul>
+<li>企业级项目交付管理</li>
+<li>业务流程驱动型项目管理</li>
+<li>跨部门资源与成本管理</li>
+</ul>
+<p>相比专注研发协作的项目管理工具，ERPNext 的 AI 能力更多体现在业务协作与企业流程内容层面，适用于项目型企业或服务型组织。</p>
+<p><img src="https://static-docs.nocobase.com/ERPNext2-l0gnjp.png" alt="ERPNext2.png"></p>
+<h3>2. 基本信息</h3>
+<ul>
+<li>官网链接：<a href="https://erpnext.com">https://erpnext.com</a></li>
+<li>GitHub 链接：<a href="https://github.com/frappe/erpnext">https://github.com/frappe/erpnext</a></li>
+<li>GitHub Star：31.5k</li>
+</ul>
+<h3>3. AI 能力</h3>
+<ul>
+<li><strong>业务文档与沟通内容生成辅助</strong></li>
+</ul>
+<p>在 ERPNext 生态中，通过 AI 扩展方案可以辅助生成业务文档、客户沟通内容以及项目相关文本信息，例如合同草稿、业务说明或项目汇报内容，帮助团队减少日常业务写作与整理工作。</p>
+<p><img src="https://static-docs.nocobase.com/ERPNext3-dbch1g.png" alt="ERPNext3.png"></p>
+<h2 id="zh-5">No 2 Plane</h2>
+<p><img src="https://static-docs.nocobase.com/Plane1-wotnvk.png" alt="Plane1.png"></p>
+<ol>
+<li><h3>简介</h3>
+</li>
+</ol>
+<p>Plane 是一款开源的敏捷项目管理工具，主要面向产品与研发团队，支持需求管理、迭代规划、任务跟踪和团队协作等核心能力，并提供接近 Linear 等现代敏捷工具的使用体验。</p>
+<p>在项目管理模式上，Plane 更偏向：</p>
+<ul>
+<li>敏捷研发管理</li>
+<li>迭代与需求规划管理</li>
+<li>产品与工程协同管理</li>
+</ul>
+<p>相比传统项目管理工具，Plane 更强调需求拆解和迭代节奏管理，适合需要持续交付和快速迭代的软件团队。</p>
+<ol start="2">
+<li><h3>基本信息</h3>
+</li>
+</ol>
+<p>官网链接：<a href="https://plane.so">https://plane.so</a></p>
+<p>GitHub 链接：<a href="https://github.com/makeplane/plane">https://github.com/makeplane/plane</a></p>
+<p>GitHub Star：45.3k</p>
+<h3>3. AI 能力</h3>
+<ul>
+<li><strong>需求与任务内容生成辅助</strong></li>
+</ul>
+<p>Plane AI 支持根据需求描述或项目背景自动生成任务内容、子任务结构以及补充任务说明，帮助团队更快速地完成需求拆解与任务规划。</p>
+<p><img src="https://static-docs.nocobase.com/Plane2-ggbubt.png" alt="Plane2.png"></p>
+<ul>
+<li><strong>迭代规划与工作项组织辅助</strong></li>
+</ul>
+<p>Plane AI 支持基于已有任务信息协助整理工作项结构，例如帮助团队优化任务组织方式或补充任务背景信息，使迭代计划更加完整和易于执行。</p>
+<p><img src="https://static-docs.nocobase.com/Plane3-4qd6fe.png" alt="Plane3.png"></p>
+<h2 id="zh-6">No 1 AppFlowy</h2>
+<p><img src="https://static-docs.nocobase.com/AppFlowy1-6yes30.png" alt="AppFlowy1.png"></p>
+<ol>
+<li><h3>简介</h3>
+</li>
+</ol>
+<p>AppFlowy 是一款开源协作工具，定位类似 Notion，支持文档编辑、数据库管理、任务协作和知识沉淀等功能，并强调本地部署和数据自主控制能力。</p>
+<p>在项目管理模式上，AppFlowy 更偏向：</p>
+<ul>
+<li>文档驱动的项目协作</li>
+<li>知识沉淀型任务管理</li>
+<li>轻量团队协作与信息管理</li>
+</ul>
+<p>相比传统任务管理工具，AppFlowy 更强调内容与任务的融合，适合需要在文档、知识管理与项目推进之间保持连续性的团队。</p>
+<ol start="2">
+<li><h3>基本信息</h3>
+</li>
+</ol>
+<p>官网链接：<a href="https://appflowy.io">https://appflowy.io</a></p>
+<p>GitHub 链接：<a href="https://github.com/AppFlowy-IO/AppFlowy">https://github.com/AppFlowy-IO/AppFlowy</a></p>
+<p>GitHub Star：67.9k</p>
+<h3>3. AI 能力</h3>
+<ul>
+<li><strong>文档与内容生成辅助</strong></li>
+</ul>
+<p>AppFlowy AI 支持在文档编辑过程中辅助生成内容、优化文本表达以及整理笔记信息，帮助团队更高效地记录需求、项目资料或协作内容，使信息沉淀更加结构化。</p>
+<p><img src="https://static-docs.nocobase.com/AppFlowy2-bjmdii.png" alt="AppFlowy2.png"></p>
+<ul>
+<li><strong>知识整理与信息检索辅助</strong></li>
+</ul>
+<p>AppFlowy AI 可以基于文档与数据库内容辅助整理知识信息，并支持通过自然语言方式查找项目资料或团队知识内容，使团队更方便获取历史记录与协作信息。</p>
+<p><img src="https://static-docs.nocobase.com/AppFlowy3-vas31g.png" alt="AppFlowy3.png"></p>
+<h2 id="zh-7">写在最后</h2>
+<p>随着协作方式不断变化，未来的项目管理工具可能也会逐渐从单一任务管理工具，向更具协作与智能辅助能力的平台发展。</p>
+<p>在开源与自托管模式下，你的团队不必被固定功能或单一工作方式限制，可以根据自身业务流程选择更匹配的工具，并逐步探索 AI 在实际协作中的应用方式。</p>
+<p>如果你觉得这篇文章对你有帮助，欢迎分享给感兴趣的朋友～</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/6-best-open-source-ai-ticketing-systems.html">6 个值得关注的开源 AI 工单系统 </a></li>
+<li><a href="../blog/4-open-source-data-management-tools-for-business-systems.html">4 个值得关注的开源业务数据管理工具 </a></li>
+<li><a href="../blog/4-lightweight-enterprise-software-for-business-processes.html">4个适合企业业务流程的轻量化软件（附真实案例）</a></li>
+<li><a href="../blog/6-enterprise-softwares-to-replace-excel-for-internal-operations.html">6 个替代 Excel 的企业内部管理软件</a></li>
+<li><a href="../blog/10-open-source-tools-developers-use-to-reduce-repetitive-crud.html">开发者收藏！10 个减少重复 CRUD 的开源工具</a></li>
+<li><a href="../blog/top-12-ai-workflows-projects-with-the-most-github-stars.html">GitHub Star 数量前 12 的 AI 工作流项目</a></li>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">最适合外包交付的 6 个开源无代码与低代码</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">GitHub 上星星数量前 10 的 AI CRM 开源项目 </a></li>
+</ul></div><div class="prose en-only"><p>We previously compiled <a href="../blog/github-open-source-project-management-tools.html">Top 10 Open Source Project Management Tools with the Most GitHub Stars</a>. This type of content has been widely bookmarked and discussed, and self-hosted, open-source project management tools remain a practical requirement for many teams.</p>
+<p>Recently, however, discussions in the <a href="https://www.reddit.com/r/projectmanagement/comments/1nlsyz0/best_ai_tools_for_project_managers_right_now/">Reddit project management community</a> show that more users are focusing on a more direct question — can AI meaningfully support the day-to-day work of project management?</p>
+<p><img src="https://static-docs.nocobase.com/Reddit-cm87lz.PNG" alt="Reddit.PNG"></p>
+<p>In these discussions, many users have begun sharing their hands-on experience:</p>
+<ul>
+<li>Many teams are already using AI to automatically summarize meeting notes and extract action items and task lists from discussions.</li>
+<li>AI is being used to structure project documentation and internal knowledge bases, reducing the time spent searching for information and minimizing repetitive communication.</li>
+<li>Some users are experimenting with using AI for task breakdown, prioritization, and early project risk detection.</li>
+</ul>
+<p>The division of project management work is gradually evolving, with AI increasingly handling information organization and analytical tasks. As a result, teams are shifting their expectations of AI from simply improving efficiency to actively supporting core business workflows.</p>
+<p>For this reason, this article does not provide a general overview of project management tools. Instead, based on official product information, it selects the TOP 5 open-source tools under the <a href="https://github.com/topics/project-management">GitHub project management topic</a> that have already integrated AI capabilities or are actively advancing AI-driven collaboration. The article focuses on analyzing their AI features and their practical applications in project management scenarios.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-1">Recommended Tool List</h2>
+<p><strong>NocoBase</strong> — An open-source platform for enterprise application development that enables teams to build highly customizable project management systems, with AI integrated into business workflow execution.</p>
+<p><strong>Huly</strong> — An integrated collaboration platform where AI is primarily used for communication summarization and knowledge management.</p>
+<p><strong>ERPNext</strong> — A process-oriented enterprise project management system where AI supports business data organization and automated project reporting.</p>
+<p><strong>Plane</strong> — An agile planning tool where AI assists with requirement breakdown and iteration management.</p>
+<p><strong>AppFlowy</strong> — A document-centric collaboration tool where AI supports document structuring and knowledge management</p>
+<h2 id="en-2">No 5 NocoBase</h2>
+<p><img src="../" alt=""><img src="https://static-docs.nocobase.com/NocoBase1-npjv8t.PNG" alt="NocoBase1.PNG"></p>
+<h3>1. Key Information</h3>
+<p>Official website: <a href="https://www.nocobase.com">https://www.nocobase.com</a></p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Stars: 21.4k</p>
+<h3>2. Overview</h3>
+<p>Unlike traditional project management tools, NocoBase is not built around predefined project workflows. Instead, it is an open-source AI-powered no-code/low-code development platform based on data modeling, enabling teams to build project management, collaboration, or delivery management systems tailored to their own business processes.</p>
+<p>From a project management perspective, NocoBase is particularly suited for:</p>
+<ul>
+<li>Building fully customized project management systems</li>
+<li>Managing cross-process business collaboration</li>
+<li>Supporting complex delivery processes and multi-role coordination</li>
+</ul>
+<p>The platform provides built-in components such as tables, kanban boards, calendars, forms, and workflow automation, which can be flexibly combined to support agile, kanban, or hybrid project management approaches.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-pv6utg.png" alt="NocoBase2.png"></p>
+<p>NocoBase introduces a core concept known as AI Employees. These digital teammates are designed to understand business data, interface structures, and workflows. Beyond generating content, they can also perform real operational tasks, such as querying databases, updating task statuses, and automatically completing forms.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-tpgybd.png" alt="NocoBase3.png"></p>
+<h3>3. AI Capabilities</h3>
+<ul>
+<li><strong>Information Structuring and Content Generation</strong></li>
+</ul>
+<p>After requirement discussions or meetings, AI Employees can help transform discussion content into structured requirements or actionable summaries, enabling teams to move forward more efficiently.</p>
+<ul>
+<li><strong>Business Data Access and Operations</strong></li>
+</ul>
+<p>During project execution, AI Employees can access system data within permission boundaries, assist with completing task information, updating execution records, and maintaining related data. This helps reduce repetitive manual input and cross-system data synchronization.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-mj49ku.PNG" alt="NocoBase4.PNG"></p>
+<ul>
+<li><strong>Workflow Collaboration and Process Automation</strong></li>
+</ul>
+<p>AI can act as an intelligent workflow node to help drive process execution. In approval workflows, task transitions, or delivery processes, AI can perform data processing and business actions based on workflow triggers. This allows workflows to operate beyond fixed rules by leveraging business context to automatically move tasks forward, reducing the need for manual handoffs between teams.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-u0jmvo.PNG" alt="NocoBase5.PNG"></p>
+<h2 id="en-3">No 4 Huly</h2>
+<p><img src="https://static-docs.nocobase.com/Huly1-8g3zon.png" alt="Huly1.png"></p>
+<h3>1. Overview</h3>
+<p>Huly is an open-source all-in-one team collaboration platform designed to replace tools such as Linear, Jira, Slack, and Notion by consolidating task management, communication, document collaboration, and process management into a single system.</p>
+<p>From a project management perspective, Huly is well suited for:</p>
+<ul>
+<li>Agile development collaboration</li>
+<li>Task management for engineering teams</li>
+<li>Project management with tightly integrated communication and collaboration</li>
+</ul>
+<p>Compared with standalone task management tools, Huly focuses on building a unified collaboration workspace where teams can plan tasks, communicate, manage documentation, and drive projects forward within the same environment.</p>
+<h3>2. Key Information</h3>
+<p>Official website: <a href="https://huly.io?utm_source=chatgpt.com">https://huly.io</a></p>
+<p>GitHub: <a href="https://github.com/hcengineering/platform?utm_source=chatgpt.com">https://github.com/hcengineering/platform</a></p>
+<p>GitHub Stars: 24.3k</p>
+<h3>3. AI Capabilities</h3>
+<ul>
+<li><strong>Automated Communication and Meeting Summarization</strong></li>
+</ul>
+<p>Huly integrates AI into communication and meeting workflows, such as real-time transcription and structured summarization of discussions, helping reduce post-meeting processing effort.</p>
+<p><img src="https://static-docs.nocobase.com/Huly2-gle59e.png" alt="Huly2.png"></p>
+<ul>
+<li><strong>Knowledge and Information Management Assistance</strong></li>
+</ul>
+<p>Huly centralizes project data, documents, and team communication, while enabling AI to organize and retrieve knowledge content, making it easier for teams to locate project resources and historical information.</p>
+<p><img src="https://static-docs.nocobase.com/Huly3-tmnwjc.png" alt="Huly3.png"></p>
+<h2 id="en-4">No 3 ERPNext</h2>
+<p><img src="https://static-docs.nocobase.com/ERPNext1-p6ac0s.png" alt="ERPNext1.png"></p>
+<h3>1. Overview</h3>
+<p>ERPNext is an open-source ERP suite that includes modules for CRM, HR, finance, and project management. It is well suited for organizations that need to connect project delivery with broader operational workflows.</p>
+<p>From a project management perspective, ERPNext is best suited for:</p>
+<ul>
+<li>Enterprise-grade project delivery management</li>
+<li>Process-driven project management</li>
+<li>Cross-department resource and cost control</li>
+</ul>
+<p>Compared with project tools built primarily for engineering collaboration, ERPNext’s AI capabilities are mainly applied to business workflows and enterprise process content, making it a strong fit for project-based companies and service organizations.</p>
+<p><img src="https://static-docs.nocobase.com/ERPNext2-l0gnjp.png" alt="ERPNext2.png"></p>
+<h3>2. Key Information</h3>
+<ul>
+<li>Official website: <a href="https://erpnext.com">https://erpnext.com</a></li>
+<li>GitHub: <a href="https://github.com/frappe/erpnext">https://github.com/frappe/erpnext</a></li>
+<li>GitHub Stars: 31.5k</li>
+</ul>
+<h3>3. AI Capabilities</h3>
+<ul>
+<li><strong>Business Document and Communication Drafting Support</strong></li>
+</ul>
+<p>Within the ERPNext ecosystem, AI-based extensions can help generate business documents, customer-facing messages, and project-related text — such as contract drafts, business notes, or project updates — reducing day-to-day writing and content整理 work for teams.</p>
+<p><img src="https://static-docs.nocobase.com/ERPNext3-dbch1g.png" alt="ERPNext3.png"></p>
+<h2 id="en-5">No 2 Plane</h2>
+<p><img src="https://static-docs.nocobase.com/Plane1-wotnvk.png" alt="Plane1.png"></p>
+<h3>1. Overview</h3>
+<p>Plane is an open-source agile project management tool built for product and engineering teams. It supports requirements management, sprint and iteration planning, task tracking, and team collaboration, offering a workflow and user experience similar to modern tools like Linear.</p>
+<p>From a project management perspective, Plane is best suited for:</p>
+<ul>
+<li>Agile product development</li>
+<li>Iteration and requirements planning</li>
+<li>Cross-functional collaboration between product and engineering</li>
+</ul>
+<p>Compared with traditional project management tools, Plane puts greater emphasis on breaking down requirements and managing the pace of iterations, making it a strong fit for software teams that ship continuously and iterate quickly.</p>
+<h3>2. Key Information</h3>
+<p>Official website: <a href="https://plane.so">https://plane.so</a></p>
+<p>GitHub: <a href="https://github.com/makeplane/plane">https://github.com/makeplane/plane</a></p>
+<p>GitHub Stars: 45.3k</p>
+<h3>3. AI Capabilities</h3>
+<ul>
+<li><strong>Requirement and Task Drafting Support</strong></li>
+</ul>
+<p>Plane AI can generate task descriptions, sub-task structures, and additional context based on a requirement brief or project background, helping teams break down work and plan tasks faster.</p>
+<p><img src="https://static-docs.nocobase.com/Plane2-ggbubt.png" alt="Plane2.png"></p>
+<ul>
+<li><strong>Iteration Planning and Work-Item Structuring Support</strong></li>
+</ul>
+<p>Plane AI can also help structure work items based on existing tasks — for example, by improving how tasks are organized or filling in missing background information — making iteration plans more complete and easier to execute.</p>
+<p><img src="https://static-docs.nocobase.com/Plane3-4qd6fe.png" alt="Plane3.png"></p>
+<h2 id="en-6">No 1 AppFlowy</h2>
+<p><img src="https://static-docs.nocobase.com/AppFlowy1-6yes30.png" alt="AppFlowy1.png"></p>
+<h3>1. Overview</h3>
+<p>AppFlowy is an open-source collaboration platform positioned as an alternative to Notion. It supports document editing, database management, task collaboration, and knowledge management, with a strong emphasis on local deployment and full data ownership.</p>
+<p>From a project management perspective, AppFlowy is best suited for:</p>
+<ul>
+<li>Document-driven project collaboration</li>
+<li>Knowledge-centric task management</li>
+<li>Lightweight team collaboration and information organization</li>
+</ul>
+<p>Compared with traditional task management tools, AppFlowy emphasizes the integration of content and tasks, making it well suited for teams that need seamless continuity between documentation, knowledge management, and project execution.</p>
+<h3>2. Key Information</h3>
+<p>Official website: <a href="https://appflowy.io">https://appflowy.io</a></p>
+<p>GitHub: <a href="https://github.com/AppFlowy-IO/AppFlowy">https://github.com/AppFlowy-IO/AppFlowy</a></p>
+<p>GitHub Stars: 67.9k</p>
+<h3>3. AI Capabilities</h3>
+<ul>
+<li><strong>Document and Content Creation Support</strong></li>
+</ul>
+<p>AppFlowy AI assists with content generation, text refinement, and note organization during document editing. This helps teams record requirements, project materials, and collaboration content more efficiently while improving content structure and clarity.</p>
+<p><img src="https://static-docs.nocobase.com/AppFlowy2-bjmdii.png" alt="AppFlowy2.png"></p>
+<ul>
+<li><strong>Knowledge Organization and Information Retrieval Support</strong></li>
+</ul>
+<p>AppFlowy AI can organize knowledge using document and database content and enables natural language search across project resources and team knowledge, making it easier to access historical records and collaboration data.</p>
+<p><img src="https://static-docs.nocobase.com/AppFlowy3-vas31g.png" alt="AppFlowy3.png"></p>
+<h2 id="en-7">Final Thoughts</h2>
+<p>As collaboration models continue to evolve, project management tools are likely to move beyond standalone task management and toward more collaborative, AI-assisted platforms.</p>
+<p>With open-source and self-hosted options, teams are no longer restricted by fixed features or rigid workflows. Instead, they can select tools that align with their business processes and gradually explore how AI can support real-world collaboration.</p>
+<p>If you found this article helpful, feel free to share it with others who may be interested.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/6-best-open-source-ai-ticketing-systems.html">6 Best Open-Source AI Ticketing Systems </a></li>
+<li><a href="../blog/4-open-source-data-management-tools-for-business-systems.html">4 Open Source Data Management Tools for Business Systems </a></li>
+<li><a href="../blog/4-lightweight-enterprise-software-for-business-processes.html">4 Lightweight Enterprise Software for Business Processes (With Real-World Cases) </a></li>
+<li><a href="../blog/6-enterprise-softwares-to-replace-excel-for-internal-operations.html">6 Enterprise Softwares to Replace Excel for Internal Operations</a></li>
+<li><a href="../blog/10-open-source-tools-developers-use-to-reduce-repetitive-crud.html">10 Open Source Tools Developers Use to Reduce Repetitive CRUD</a></li>
+<li><a href="../blog/top-12-ai-workflows-projects-with-the-most-github-stars.html">Top 12 Open-source AI Workflows Projects with the Most GitHub Stars </a></li>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">6 Open-Source No-Code &amp; Low-Code Tools for Software Agencies</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">Top 10 Open-source AI CRM Projects with the Most GitHub Stars</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">推荐工具清单</a><a href="#zh-2">No 5 NocoBase</a><a href="#zh-3">No 4 Huly</a><a href="#zh-4">No 3 ERPNext</a><a href="#zh-5">No 2 Plane</a><a href="#zh-6">No 1 AppFlowy</a><a href="#zh-7">写在最后</a></div><div class="en-only"><a href="#en-1">Recommended Tool List</a><a href="#en-2">No 5 NocoBase</a><a href="#en-3">No 4 Huly</a><a href="#en-4">No 3 ERPNext</a><a href="#en-5">No 2 Plane</a><a href="#en-6">No 1 AppFlowy</a><a href="#en-7">Final Thoughts</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/best-smartsheet-alternatives.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20114-fps2v0.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月23日</t-zh><t-en>Jul 23, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</t-zh><t-en>How to Choose a Smartsheet Alternative: 7 Tools Compared</t-en></h3><p><t-zh>本文对比 7 款 Smartsheet 替代品，介绍各产品的定位、核心差异、适用团队及三年使用成本，帮助团队评估更合适的项目管理与业务系统工具。</t-zh><t-en>Compare 7 Smartsheet alternatives by positioning, key differences, ideal teams, and estimated three-year costs.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-complex-relational-models.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20113%20(1)-e3gf7a.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月15日</t-zh><t-en>Jul 15, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>5 个适合复杂关系模型的开源 AI 无代码工具</t-zh><t-en>5 Open-Source AI No-Code Tools for Complex Relational Data Models</t-en></h3><p><t-zh>本文对比 5 款开源 AI 无代码工具，分析复杂关系模型、AI 搭建能力和企业业务系统适用场景。
+</t-zh><t-en>Compare 5 open-source AI no-code tools for complex relational models, AI capabilities, and business system use cases.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-github-9.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20110-xkd2sy.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年6月29日</t-zh><t-en>Jun 29, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>GitHub 上值得关注的 9 个开源 AI 无代码工具</t-zh><t-en>9 Open-Source AI No-Code Tools on GitHub Worth Watching</t-en></h3><p><t-zh>盘点 GitHub 上 9 个开源 AI 无代码工具，覆盖工作流自动化、知识库、智能体编排与企业业务系统搭建。
+</t-zh><t-en>Explore 9 open-source AI no-code tools on GitHub for workflows, agents, knowledge bases, design, and business systems.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

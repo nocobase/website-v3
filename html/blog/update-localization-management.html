@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="更新（多语言管理）：按照模块划分翻译文本的命名空间 — NocoBase" data-en="Update（localization-management）：Organize text namespaces by modules — NocoBase">更新（多语言管理）：按照模块划分翻译文本的命名空间 — NocoBase</title>
+<meta name="description" content="使用 NocoBase 的模块化文本命名空间优化本地化管理。本文详细介绍了通过模块组织翻译文本的新方法，消除了重复问题并增强了自定义功能。了解变更内容、迁移步骤及其对开发流程的影响。" data-zh="使用 NocoBase 的模块化文本命名空间优化本地化管理。本文详细介绍了通过模块组织翻译文本的新方法，消除了重复问题并增强了自定义功能。了解变更内容、迁移步骤及其对开发流程的影响。" data-en="Optimize your localization management with NocoBase&#x27;s module-based text namespaces. This guide details the new approach to organizing translation texts by modules, eliminating deduplication issues and enhancing customization. Learn about the changes, migration steps, and impact on your development process.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></p>
+    <h1><t-zh>更新（多语言管理）：按照模块划分翻译文本的命名空间</t-zh><t-en>Update（localization-management）：Organize text namespaces by modules</t-en></h1>
+    <p class="lede"><t-zh>使用 NocoBase 的模块化文本命名空间优化本地化管理。本文详细介绍了通过模块组织翻译文本的新方法，消除了重复问题并增强了自定义功能。了解变更内容、迁移步骤及其对开发流程的影响。</t-zh><t-en>Optimize your localization management with NocoBase's module-based text namespaces. This guide details the new approach to organizing translation texts by modules, eliminating deduplication issues and enhancing customization. Learn about the changes, migration steps, and impact on your development process.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2023年12月6日</t-zh><t-en>Dec 6, 2023</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/fd8c5e499b4569aab04827da71d00e10.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">背景</h2>
+<ul>
+<li>之前多语言管理插件在同步文本的时候，会将所有文本放到同一个命名空间，不同插件如果有相同的文本，只会保留一个，翻译会以 <a href="https://github.com/nocobase/nocobase/tree/main/packages/core/client/src/locale"><code>packages/core/client/src/locale</code></a> 中的翻译为准。</li>
+<li>之前客户端 <code>i18n</code> 在实例化的时候会配置 <code>fallbackNS: &quot;client&quot;</code> <a href="https://github.com/nocobase/nocobase/blob/8983eed3308d018a309f1d39f5c6988bbc632878/packages/core/client/src/i18n/i18n.ts#L20">(参考)</a>, 从而在开发插件的时候，可以省略一些 <code>packages/core/client/src/locale</code> 中已经存在的文本的翻译。</li>
+</ul>
+<p>但是以上两个设定会导致一个问题，相同的文本只能应用同一个翻译，无法按命名空间（模块）区分。此时如果用户创建了和已有翻译原文相同的内容，该内容也会被翻译。例如：系统中有 “Users” - “用户” 的中文翻译，用户创建了一个 “Users” 菜单，在中文环境下会被显示为 “用户”，即使用户可能并不想展示翻译后的菜单内容。</p>
+<h2 id="zh-2">改进</h2>
+<p>翻译文本按照对应模块（菜单、数据表和字段、不同插件）进行分类，不再去重。在管理界面可以通过下拉菜单选择对应模块，筛选翻译文本。</p>
+<p><img src="https://static-docs.nocobase.com/148e5cf34a8a761f7d16429f1c0338f1.jpg" alt="localization management page"></p>
+<h2 id="zh-3">如何升级</h2>
+<p>按照系统正常的<a href="https://docs-cn.nocobase.com/welcome/getting-started/upgrading">升级流程</a>进行升级，然后切换到对应的语言环境，在管理界面上重新<strong>同步</strong>翻译文本。对于不同模块的重复文本，可能需要重新添加翻译。</p>
+<p><img src="https://static-docs.nocobase.com/bb1c1563770b5c7bfc4f683fc8efaad9.jpg" alt="How to migrate"></p>
+<h2 id="zh-4">不兼容的变化</h2>
+<h3>翻译文本不去重</h3>
+<p>不同模块重复的文本不再只保留一个，需要分别添加对应的翻译</p>
+<p><img src="https://static-docs.nocobase.com/c090ade730c7d71841cef340d865615b.jpg" alt="Translation texts are no longer deduplicated"></p>
+<h3><code>i18n</code> 实例移除 <code>fallbackNS</code> 选项</h3>
+<p>客户端 <code>i18n</code> 实例化不再配置 <code>fallbackNS: &quot;client&quot;</code>. 对于插件开发者，如果插件的多语言文件中省略了部分内核客户端中已有的文本，需要进行补充。如果还是想复用 <code>packages/core/client/src/locale</code> 中已有的内容，需要在使用的时候传递参数，例如：</p>
+<pre><code>import { useTranslation } from &#39;react-i18next&#39;;
+
+export const NAMESPACE = &#39;localization-management&#39;;
+
+export const useLocalTranslation = () =&gt; {
+  return useTranslation([NAMESPACE, &#39;client&#39;], { nsMode: &#39;fallback&#39; });
+};
+</code></pre></div><div class="prose en-only"><h2 id="en-1">Background</h2>
+<ul>
+<li>The localization management plugin synchronizes original texts by placing them in the same namespace (module). When encountering identical texts in different plugins, it removes duplicates and preserves the translation found in <a href="https://github.com/nocobase/nocobase/tree/main/packages/core/client/src/locale"><code>packages/core/client/src/locale</code></a> for further use.</li>
+<li>The NocoBase client creates an <code>i18n</code> instance with the option <code>fallbackNS: &quot;client&quot;</code> (<a href="https://github.com/nocobase/nocobase/blob/8983eed3308d018a309f1d39f5c6988bbc632878/packages/core/client/src/i18n/i18n.ts#L20">reference</a>). Consequently, during plugin development, certain texts that already exist in <code>packages/core/client/src/locale</code> can be omitted from the plugin’s locale files.</li>
+</ul>
+<p>These two settings, however, present a issue. The same original texts can only be associated with one translation and can not differ across namespaces. For instance, if a user creates content with the same text as an existing translation, such as “Users” with the Chinese translation “用户,” it will be displayed as “用户” in the “zh-CN” environment. This happens even if the user prefers to show the original text rather than the translation.</p>
+<h2 id="en-2">Change</h2>
+<p>Translation texts are categorized based on their corresponding modules (menus, collections &amp; fields, different plugins), with no deduplication. On the localization management page, texts can be filtered using a dropdown menu by selecting the corresponding module.</p>
+<p><img src="https://static-docs.nocobase.com/148e5cf34a8a761f7d16429f1c0338f1.jpg" alt="localization management page"></p>
+<h2 id="en-3">How to migrate</h2>
+<p>Follow the normal <a href="https://docs.nocobase.com/welcome/getting-started/upgrading">upgrade process</a> to upgrade the system. Then switch to the corresponding language environment, and on the localization management page, synchronize translation texts by clicking the <strong>“Sync”</strong> button.</p>
+<p><img src="https://static-docs.nocobase.com/bb1c1563770b5c7bfc4f683fc8efaad9.jpg" alt="How to migrate"></p>
+<h2 id="en-4">Breaking changes</h2>
+<h3>Translation texts are no longer deduplicated</h3>
+<p>Duplicate texts across modules require separate translations.</p>
+<p><img src="https://static-docs.nocobase.com/c090ade730c7d71841cef340d865615b.jpg" alt="Translation texts are no longer deduplicated"></p>
+<h3>Removed <code>fallbackNS</code> option from <code>i18n</code> instance</h3>
+<p>The <code>i18n</code> instance of client no longer includes the option <code>fallbackNS: &quot;client&quot;</code>.</p>
+<p>For plugin developers, if language files in a plugin omit some texts already present in the core client, it’s necessary to supplement them. If you still want to reuse content from <code>packages/core/client/src/locale</code>, pass the appropriate parameters when using it, for example:</p>
+<pre><code>import { useTranslation } from &#39;react-i18next&#39;;
+
+export const NAMESPACE = &#39;localization-management&#39;;
+
+export const useLocalTranslation = () =&gt; {
+  return useTranslation([NAMESPACE, &#39;client&#39;], { nsMode: &#39;fallback&#39; });
+};
+</code></pre></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">背景</a><a href="#zh-2">改进</a><a href="#zh-3">如何升级</a><a href="#zh-4">不兼容的变化</a></div><div class="en-only"><a href="#en-1">Background</a><a href="#en-2">Change</a><a href="#en-3">How to migrate</a><a href="#en-4">Breaking changes</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/2.2.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-hygy1r.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年8月23日</t-zh><t-en>Aug 23, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2 正式版发布</t-zh><t-en>Announcing NocoBase 2.2</t-en></h3><p><t-zh>NocoBase 2.2 正式版进一步完善 V2 的完整使用路径，带来独立、轻量的 /v/ 前端入口与全新移动端体验。同时升级文件访问与权限机制，并增强评论区块、AI 知识库、工作流及核心插件的 V2 支持。</t-zh><t-en>NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.</t-en></p></a><a class="bcard" href="../blog/2.2.0-beta.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-beta-2kf9fd.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年7月17日</t-zh><t-en>Jul 17, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2-beta 发布</t-zh><t-en>Announcing NocoBase 2.2-beta</t-en></h3><p><t-zh>NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</t-zh><t-en>NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</t-en></p></a><a class="bcard" href="../blog/2.1.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(9)-tfwpkk.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.1.0 正式版发布</t-zh><t-en>Announcing NocoBase 2.1.0</t-en></h3><p><t-zh>NocoBase 2.1 以全新的 CLI 打通人与 AI Agent 连接和管理应用的入口，并完善 AI 搭建、Skills、AI 插件开发和 AI 员工能力。同时升级多应用协作、版本管理、工作流增强及更多 2.0 适配能力。</t-zh><t-en>NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

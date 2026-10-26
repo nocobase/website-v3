@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="5 个最佳 ServiceNow 开源替代品（含价格对比） — NocoBase" data-en="5 Best Open-Source Alternatives to ServiceNow (with Pricing Comparison) — NocoBase">5 个最佳 ServiceNow 开源替代品（含价格对比） — NocoBase</title>
+<meta name="description" content="探索 ServiceNow 开源替代品：本文精选 NocoBase、Budibase、GLPI、Zammad、EspoCRM，全面对比功能、价格与适用场景，助你快速选择最合适的 ITSM 工具。" data-zh="探索 ServiceNow 开源替代品：本文精选 NocoBase、Budibase、GLPI、Zammad、EspoCRM，全面对比功能、价格与适用场景，助你快速选择最合适的 ITSM 工具。" data-en="Explore open-source alternatives to ServiceNow: This guide reviews NocoBase, Budibase, GLPI, Zammad, and EspoCRM, comparing features, pricing, and use cases to help you quickly choose the best ITSM tool.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>5 个最佳 ServiceNow 开源替代品（含价格对比）</t-zh><t-en>5 Best Open-Source Alternatives to ServiceNow (with Pricing Comparison)</t-en></h1>
+    <p class="lede"><t-zh>探索 ServiceNow 开源替代品：本文精选 NocoBase、Budibase、GLPI、Zammad、EspoCRM，全面对比功能、价格与适用场景，助你快速选择最合适的 ITSM 工具。</t-zh><t-en>Explore open-source alternatives to ServiceNow: This guide reviews NocoBase, Budibase, GLPI, Zammad, and EspoCRM, comparing features, pricing, and use cases to help you quickly choose the best ITSM tool.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年8月26日</t-zh><t-en>Aug 26, 2025</t-en></span><span><t-zh>Zhang Lu</t-zh><t-en>Zhang Lu</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2091%20(1)-hcqun1.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1"><strong>引言</strong></h2>
+<p><a href="https://www.servicenow.com/">ServiceNow</a> 是 Gartner 评选的“企业 ITSM 三巨头”之一，与 AWS、Azure 齐名，功能覆盖 <strong>IT 服务管理 (ITSM)<strong>、</strong>资产管理 (ITAM)<strong>、</strong>客户支持 (CSM)<strong>、</strong>HR 流程</strong>等多个企业核心场景。</p>
+<p><img src="https://static-docs.nocobase.com/1-63kgee.png" alt="ServiceNow"></p>
+<p>然而，在 Reddit 等社区中，越来越多用户开始思考一个问题：<a href="https://www.reddit.com/r/servicenow/comments/1inmvii/is_servicenow_a_good_move_right_now/">现在选择 ServiceNow 是一个好的决定吗？</a></p>
+<p><img src="https://static-docs.nocobase.com/2-e7m7cm.png" alt="Is ServiceNow a good move right now?"></p>
+<p>不少用户在评论中给出了自己关于 ServiceNow 的使用反馈：</p>
+<p><strong>1. ServiceNow 功能强大，但价格高昂</strong></p>
+<p><img src="https://static-docs.nocobase.com/3-xzk3rk.png" alt="Powerful but expensive"></p>
+<p><strong>2. 过度定制导致维护难度/成本高</strong></p>
+<p><img src="https://static-docs.nocobase.com/4-yk8svh.png" alt="Customized to hell"></p>
+<p><strong>3. 客户需求与平台能力不匹配</strong></p>
+<p><img src="https://static-docs.nocobase.com/5-ye8xfb.png" alt="Feature mismatch"></p>
+<p>因此，越来越多企业开始寻找 ServiceNow 的<strong>开源替代品</strong>，希望通过<strong>低成本、高可扩展性、灵活部署</strong>的方式，构建更高效的 IT 服务管理平台。</p>
+<p>本文为你精选出 5 款优秀的 ServiceNow 开源替代品，分为<strong>无代码/低代码平台、全功能 ITSM 平台、轻量工单系统</strong>三类，帮助你根据业务需求快速做出选择：</p>
+<ul>
+<li><strong>无代码/低代码平台</strong> → 适合自定义 ITSM 系统</li>
+<li><strong>全功能 ITSM 平台</strong> → 功能最接近 ServiceNow</li>
+<li><strong>轻量工单与客服系统</strong> → 简洁高效，部署快速</li>
+</ul>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>❤ 除了 ServiceNow，我们之前也整理过 Firebase、AppSheet、OutSystems、Salesforce 的开源替代品，欢迎点击阅读～</p>
+<ul>
+<li><a href="../blog/open-source-firebase-alternatives.html">开发者推荐：6 款更灵活的 Firebase 开源替代品</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">2025 年 AppSheet 最佳开源替代品</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">2025 年开源替代方案为何正在取代 OutSystems？</a></li>
+<li><a href="../blog/salesforce-open-source-crmalternative.html">四个强大的 Salesforce 开源替代方案（附成本对比）</a></li>
+</ul>
+<h2 id="zh-2">5 款 ServiceNow 开源替代品推荐</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>类型</th>
+<th>核心亮点</th>
+<th>适用企业</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>低代码/无代码平台</td>
+<td>高度可定制、插件架构、开源、流程自动化强</td>
+<td>希望快速在开源平台上搭建工单系统、审批流程的团队</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>低代码平台</td>
+<td>开源、支持外部数据连接、自生成 UI、免费 SSO、可自托管</td>
+<td>IT 团队构建自定义 ITSM 工具、资产管理与审批流程</td>
+</tr>
+<tr>
+<td>GLPI</td>
+<td>全功能 ITSM</td>
+<td>工单管理、CMDB、资产管理、成熟社区插件生态</td>
+<td>中大型企业，尤其注重 IT 资产与配置管理</td>
+</tr>
+<tr>
+<td>Zammad</td>
+<td>轻量级工单系统</td>
+<td>多渠道客服、多重 SLA、API 扩展性好</td>
+<td>中小企业、SaaS 初创公司构建客服/运维平台</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>CRM + 工单系统</td>
+<td>客户关系管理 + 服务工单一体化</td>
+<td>需要 CRM 与客服工单融合管理的企业</td>
+</tr>
+</tbody></table>
+<h2 id="zh-3">开源替代品价格对比</h2>
+<p>ServiceNow 是按模块和用户数量收费的 SaaS 平台，价格结构较为复杂：</p>
+<ul>
+<li>按模块计费：例如 ITSM、ITOM、HR、Customer Service Management 等，每个模块单独计费。</li>
+<li>按用户类型计费：通常区分全功能用户（Full Users）与轻量用户（Light Users），不同用户类型价格差别大。</li>
+<li>年度订阅制：最低合同周期通常为一年，价格随企业规模和模块组合而变化。</li>
+</ul>
+<p><strong>参考价格范围</strong>：</p>
+<p>平均成本每年可能在 50,000 美元到 500,000 美元之间，具体取决于许可证、功能和其他配置要求的数量。</p>
+<p>👉 更多详细信息：<a href="https://www.servicenow.com/upgrade-schedules.html">https://www.servicenow.com/upgrade-schedules.html</a></p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>版本</th>
+<th>预估10人团队每年成本</th>
+<th>预估50人团队每年成本</th>
+<th>预估100人团队每年成本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Standard</td>
+<td>$800</td>
+<td>$800</td>
+<td>$800</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>Professional</td>
+<td>$8,000</td>
+<td>$8,000</td>
+<td>$8,000</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Premium</td>
+<td>$1680 (2 Creator + 8 Users)</td>
+<td>$5,700 (5 Creator + 45 Users)</td>
+<td>$11,400 (10 Creator + 90 Users)</td>
+</tr>
+<tr>
+<td>GLPI</td>
+<td>On-premises</td>
+<td>€1,200</td>
+<td>€3,600</td>
+<td>€12,000</td>
+</tr>
+<tr>
+<td>Zammad</td>
+<td>Self-hosted</td>
+<td>€2,999</td>
+<td>€5,999</td>
+<td>€9,999</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>Basic</td>
+<td>$1,800</td>
+<td>$9,000</td>
+<td>$18,000</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>Enterprise</td>
+<td>$3,000</td>
+<td>$15,000</td>
+<td>$30,000</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>Ultimate</td>
+<td>$8,280</td>
+<td>$41,400</td>
+<td>$82,800</td>
+</tr>
+</tbody></table>
+<h2 id="zh-4">一、无代码/低代码平台</h2>
+<h3>1. <strong>NocoBase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/6-lj6zp6.png" alt="NocoBase"></p>
+<p><strong>项目概览</strong></p>
+<ul>
+<li>GitHub Star: 21.3k</li>
+<li>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></li>
+<li>Website: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></li>
+</ul>
+<p>NocoBase 是高度灵活的开源 AI 无代码 / 低代码工具，通过直观的用户界面和拖放功能，帮助开发者快速创建和管理应用程序。</p>
+<p><strong>核心功能</strong></p>
+<ul>
+<li><strong>插件式架构</strong>：所有功能模块均以插件形式存在，包括数据建模、权限控制、工作流、报表等。企业可以按需安装或自行开发插件，避免系统臃肿，同时保持高度可扩展性。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/7-46b0xx.png" alt="Plugin-Based Architecture"></p>
+<ul>
+<li><strong>数据模型驱动</strong>：可视化数据建模支持快速定义数据表、字段、关联关系和权限控制。NocoBase 的所有功能都基于数据模型运行，能够灵活适应不同业务场景，如资产管理、配置管理（CMDB）或工单系统。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/8-z21dfu.png" alt="Data-Model Driven"></p>
+<ul>
+<li><strong>自动化工作流引擎</strong>：内置低代码流程编排工具，支持条件判断、审批节点、跨系统 API 调用等操作，可轻松实现自动派单、工单升级、跨部门协作等复杂流程。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/9-oh2cyu.png" alt="Built-In Workflow Automation"></p>
+<ul>
+<li><strong>融入系统的 AI 员工</strong>：将 AI 能力无缝集成到交互界面、业务流程和数据上下文中，让 AI 真正落地于企业场景。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/AI%20%E5%91%98%E5%B7%A52-qwgmgh.png" alt="AI employees.png"></p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>ITSM 工单系统：自定义 SLA、审批流和通知逻辑</li>
+<li>资产与配置管理：构建与 CMDB 集成的资产管理后台</li>
+<li>跨部门业务流程：连接 HR、财务、IT，实现统一审批</li>
+</ul>
+<p><strong>对比 ServiceNow</strong></p>
+<ul>
+<li>灵活性更强 → 开源可自托管，插件扩展无限制</li>
+<li>成本更低 → 无高昂订阅费，适合中小团队</li>
+<li>上手更快 → 可视化建模降低技术门槛</li>
+</ul>
+<h3><strong>2.</strong> <strong>Budibase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/10-i9nskr.png" alt="Budibase"></p>
+<p><strong>项目概览</strong></p>
+<ul>
+<li>GitHub Star: 26.4k</li>
+<li>GitHub: <a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></li>
+<li>Website: <a href="https://budibase.com/">https://budibase.com/</a></li>
+</ul>
+<p>Budibase 是一款开源低代码平台，专注于快速构建企业内部工具、流程自动化和数据驱动应用，适合需要快速迭代和高度定制的 ITSM 场景。</p>
+<p><strong>核心功能</strong></p>
+<ul>
+<li><strong>低代码表单与应用构建</strong>：提供拖拽式可视化界面，可快速创建工单系统、审批表单、知识库等应用，支持自定义 UI、字段和业务逻辑，降低开发门槛。</li>
+<li><strong>自动化流程与触发器</strong>：内置自动化引擎，支持基于条件、时间或事件的触发器，可连接外部 API 和数据库，实现跨系统数据同步和流程自动化。</li>
+<li><strong>多数据源集成</strong>：原生支持 PostgreSQL、MySQL、MongoDB、REST API 等数据源，能够将 ServiceNow 中的工单、资产数据等无缝对接到 Budibase 应用中，统一管理和可视化。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>ITSM 工单系统：构建自定义工单表单、SLA 管理与审批流</li>
+<li>内部业务工具：快速搭建 HR、财务、采购等后台应用</li>
+<li>数据可视化平台：整合多源数据，创建仪表盘与分析视图</li>
+</ul>
+<p><strong>对比 ServiceNow</strong></p>
+<ul>
+<li>轻量高效 → 无需大型配置即可快速上线应用</li>
+<li>更灵活 → 可视化设计 + 自定义代码支持，满足个性化需求</li>
+<li>低成本 → 开源自托管模式，无需支付高昂订阅费</li>
+</ul>
+<h2 id="zh-5">二、<strong>全功能 ITSM 平台</strong></h2>
+<h3><strong>1.</strong> <strong>GLPI</strong></h3>
+<p><img src="https://static-docs.nocobase.com/11-uvczir.png" alt="GLPI"></p>
+<ul>
+<li>GitHub Star: 5.1k</li>
+<li>GitHub: <a href="https://github.com/glpi-project/glpi">https://github.com/glpi-project/glpi</a></li>
+<li>Website: <a href="https://glpi-project.org/">https://glpi-project.org/</a></li>
+</ul>
+<p><strong>项目概览</strong></p>
+<p>GLPI 是一款开源 ITSM 平台，专注于 IT资产管理、工单处理和服务管理。它功能全面，适合中大型企业构建自主管理的 IT 服务环境。</p>
+<p><strong>核心功能</strong></p>
+<ul>
+<li><strong>资产与配置管理</strong>：支持自动发现和管理硬件、软件、网络设备，提供 CMDB 功能，可追踪资产生命周期。</li>
+<li><strong>工单与服务管理</strong>：提供工单创建、分配、优先级管理和 SLA 追踪，支持自动化通知与审批流程。</li>
+<li><strong>报表与仪表盘</strong>：内置可视化报表，实时监控 IT 服务状态、故障统计和资源使用情况。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>企业 ITSM 平台：工单管理、SLA 管理</li>
+<li>资产管理与 CMDB：硬件、软件、网络设备追踪</li>
+<li>IT 服务分析：报表与仪表盘展示 IT 运营状况</li>
+</ul>
+<p><strong>对比 ServiceNow</strong></p>
+<ul>
+<li>成本低 → 完全开源，无订阅费用</li>
+<li>易上手 → 适合标准 ITSM 流程的快速部署</li>
+<li>功能聚焦 → 聚焦 ITSM 核心功能，不复杂冗余</li>
+</ul>
+<h2 id="zh-6">三、<strong>轻量工单与客服系统</strong></h2>
+<h3><strong>1.</strong> <strong>Zammad</strong></h3>
+<p><img src="https://static-docs.nocobase.com/12-a0i00u.png" alt="Zammad"></p>
+<p><strong>项目概览</strong></p>
+<ul>
+<li>GitHub Star: 5k</li>
+<li>GitHub: <a href="https://github.com/zammad/zammad">https://github.com/zammad/zammad</a></li>
+<li>Website: <a href="https://zammad.com/">https://zammad.com/</a></li>
+</ul>
+<p>Zammad 是一款开源客服与工单系统，强调实时沟通与多渠道支持，适合需要高效客户支持的团队。</p>
+<p><strong>核心功能</strong></p>
+<ul>
+<li><strong>多渠道工单管理</strong>：支持电子邮件、聊天、电话和社交媒体的工单集中管理，统一处理请求。</li>
+<li><strong>自动化与 SLA 管理</strong>：提供自动分配工单、优先级设置和 SLA 监控功能，提高响应效率。</li>
+<li><strong>报表与分析</strong>：可视化统计客户请求量、处理时间、团队绩效，支持持续优化服务流程。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>客户支持中心：统一处理多渠道请求</li>
+<li>工单自动化：自动分配与 SLA 追踪</li>
+<li>团队绩效分析：报表与数据分析</li>
+</ul>
+<p><strong>对比 ServiceNow</strong></p>
+<ul>
+<li>轻量快速 → 部署简便，适合中小企业</li>
+<li>多渠道整合 → 客户支持体验更好</li>
+<li>低成本 → 开源免费，自托管可控</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/open-source-ticketing-systems.html">2025 年 6 个最佳开源工单系统推荐</a></p>
+<h3><strong>2.</strong> <strong>EspoCRM</strong></h3>
+<p><img src="https://static-docs.nocobase.com/13-dokxz2.png" alt="EspoCRM"></p>
+<p><strong>项目概览</strong></p>
+<ul>
+<li>GitHub Star: 2.4k</li>
+<li>GitHub: <a href="https://github.com/espocrm/espocrm">https://github.com/espocrm/espocrm</a></li>
+<li>Website: <a href="https://www.espocrm.com/">https://www.espocrm.com/</a></li>
+</ul>
+<p>EspoCRM 是一款开源客户关系管理系统，同时支持工单、项目和流程管理，适合需要 CRM 与 ITSM 结合的企业。</p>
+<p><strong>核心功能</strong></p>
+<ul>
+<li><strong>客户与工单管理</strong>：提供工单分配、状态跟踪和优先级设置，支持 CRM 与服务管理一体化。</li>
+<li><strong>流程自动化</strong>：可配置触发器和工作流，实现自动任务分配、通知和审批。</li>
+<li><strong>报表与仪表盘</strong>：内置可视化报表和 KPI 监控，支持销售、服务和项目绩效分析。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>客户支持与售后管理</li>
+<li>工单与流程自动化</li>
+<li>CRM 与 ITSM 结合的企业应用</li>
+</ul>
+<p><strong>对比 ServiceNow</strong></p>
+<ul>
+<li>集成 CRM → 同时管理客户关系和工单</li>
+<li>灵活开源 → 可自托管，满足定制需求</li>
+<li>轻量快速 → 部署方便，适合中小团队</li>
+</ul>
+<h2 id="zh-7">写在最后</h2>
+<p>相比 ServiceNow，<strong>开源替代品在成本和灵活性上有明显优势</strong>。</p>
+<p>NocoBase、Budibase、GLPI、Zammad 和 EspoCRM 各具特点，覆盖从工单系统、资产管理到客户关系管理的不同场景。根据团队规模和业务需求选择合适的工具，可以快速搭建高效、可扩展的业务流程。</p>
+<p>如果你在寻找 ServiceNow 的替代品，不妨挑选一款开源工具，打造属于你的定制化 ITSM 或业务管理平台！</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/open-source-firebase-alternatives.html">开发者推荐：6 款更灵活的 Firebase 开源替代品</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">2025 年 AppSheet 最佳开源替代品</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">2025 年开源替代方案为何正在取代 OutSystems？技术自由度与成本优势深度解析</a></li>
+<li><a href="../blog/salesforce-open-source-crmalternative.html">四个强大的 Salesforce 开源替代方案（附成本对比）</a></li>
+<li><a href="../blog/retool-open-source-alternatives.html">2025 年最佳的 Retool 开源替代方案</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1"><strong>Introduction</strong></h2>
+<p><a href="https://www.servicenow.com/">ServiceNow</a> is widely recognized as one of Gartner’s “Big Three” enterprise ITSM platforms, alongside AWS and Azure. It offers a comprehensive suite of features covering <strong>IT Service Management (ITSM)</strong>, <strong>IT Asset Management (ITAM)</strong>, <strong>Customer Service Management (CSM)</strong>, <strong>HR workflows</strong>, and more.</p>
+<p><img src="https://static-docs.nocobase.com/1-63kgee.png" alt="ServiceNow"></p>
+<p>However, discussions on Reddit and other tech communities show a growing trend: <a href="https://www.reddit.com/r/servicenow/comments/1inmvii/is_servicenow_a_good_move_right_now/">“Is ServiceNow a good move right now?”</a></p>
+<p><img src="https://static-docs.nocobase.com/2-e7m7cm.png" alt="Is ServiceNow a good move right now?"></p>
+<p>User feedback highlights several recurring concerns:</p>
+<p><strong>1. Powerful but expensive</strong></p>
+<p><img src="https://static-docs.nocobase.com/3-xzk3rk.png" alt="Powerful but expensive"></p>
+<p><strong>2. Customized to hell</strong></p>
+<p><img src="https://static-docs.nocobase.com/4-yk8svh.png" alt="Customized to hell"></p>
+<p><strong>3. Feature mismatch</strong></p>
+<p><img src="https://static-docs.nocobase.com/5-ye8xfb.png" alt="Feature mismatch"></p>
+<p>Because of these challenges, more and more companies are exploring <strong>open-source alternatives</strong> — platforms that offer lower costs, greater flexibility, and self-hosted deployment options.</p>
+<p>In this guide, we’ve selected <strong>5 of the best open-source ServiceNow alternatives</strong>, divided into three categories to help you make the right choice based on your business needs:</p>
+<ul>
+<li><strong>No-Code / Low-Code Platforms</strong> → Best for building fully customized ITSM systems</li>
+<li><strong>Full-Featured ITSM Platforms</strong> → Closest in functionality to ServiceNow</li>
+<li><strong>Lightweight Ticketing &amp; Helpdesk Systems</strong> → Simple, fast to deploy, and highly efficient</li>
+</ul>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>💡 Looking for more open-source alternatives?</p>
+<p>We’ve also covered Firebase, AppSheet, OutSystems, and Salesforce:</p>
+<ul>
+<li><a href="../blog/open-source-firebase-alternatives.html">6 Open-Source Firebase Alternatives for Self-Hosting and Data Control</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">The Best Open-Source Alternatives to AppSheet in 2025</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">Why Open-Source Alternatives Are Replacing OutSystems in 2025?</a></li>
+<li><a href="../blog/salesforce-open-source-crmalternative.html">4 Powerful Open Source Alternatives to Salesforce (With Cost Comparison You’ll Love)</a></li>
+</ul>
+<h2 id="en-2"><strong>5 Best Open-Source ServiceNow Alternatives</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Type</th>
+<th>Key Highlights</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Low-Code / No-Code Platform</td>
+<td>Highly customizable, plugin-based architecture, open-source, powerful workflow automation</td>
+<td>Teams looking to quickly build ticketing systems, approval workflows, or business apps on an open-source platform</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Low-Code Platform</td>
+<td>Open-source, supports external data connections, auto-generated UI, free SSO, self-hosting</td>
+<td>IT teams building custom ITSM tools, asset management systems, and approval workflows</td>
+</tr>
+<tr>
+<td>GLPI</td>
+<td>Full-Featured ITSM</td>
+<td>Ticketing management, CMDB, asset management, mature plugin ecosystem</td>
+<td>Medium to large enterprises, especially those focusing on IT asset and configuration management</td>
+</tr>
+<tr>
+<td>Zammad</td>
+<td>Lightweight Ticketing System</td>
+<td>Multi-channel support, advanced SLA features, strong API extensibility</td>
+<td>SMEs and SaaS startups building customer support or operations platforms</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>CRM + Ticketing System</td>
+<td>Integrated CRM and service ticketing, customizable, workflow automation</td>
+<td>Businesses needing unified management of CRM and service tickets</td>
+</tr>
+</tbody></table>
+<h2 id="en-3">Pricing Overview: ServiceNow vs. Open-Source Alternatives</h2>
+<p>ServiceNow follows a <strong>SaaS subscription model</strong> with pricing based on modules, user roles, and contract terms:</p>
+<ul>
+<li><strong>Module-based pricing</strong> → ITSM, ITOM, HR, and CSM are billed separately.</li>
+<li><strong>User-type pricing</strong> → “Full Users” and “Light Users” are priced differently.</li>
+<li><strong>Annual contracts</strong> → Minimum one-year commitment, pricing varies based on modules and organization size.</li>
+</ul>
+<p><strong>Estimated cost range</strong>: <strong>$50,000 – $500,000 per year</strong>, depending on licenses, features, and configurations.</p>
+<p>👉 See details: <a href="https://www.servicenow.com/upgrade-schedules.html">https://www.servicenow.com/upgrade-schedules.html</a></p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Version</th>
+<th>Estimated Annual Cost for 10-Person Team</th>
+<th>Estimated Annual Cost for 50-Person Team</th>
+<th>Estimated Annual Cost for 100-Person Team</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Standard</td>
+<td>$800</td>
+<td>$800</td>
+<td>$800</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>Professional</td>
+<td>$8,000</td>
+<td>$8,000</td>
+<td>$8,000</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Premium</td>
+<td>$1680 (2 Creator + 8 Users)</td>
+<td>$5,700 (5 Creator + 45 Users)</td>
+<td>$11,400 (10 Creator + 90 Users)</td>
+</tr>
+<tr>
+<td>GLPI</td>
+<td>On-premises</td>
+<td>€1,200</td>
+<td>€3,600</td>
+<td>€12,000</td>
+</tr>
+<tr>
+<td>Zammad</td>
+<td>Self-hosted</td>
+<td>€2,999</td>
+<td>€5,999</td>
+<td>€9,999</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>Basic</td>
+<td>$1,800</td>
+<td>$9,000</td>
+<td>$18,000</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>Enterprise</td>
+<td>$3,000</td>
+<td>$15,000</td>
+<td>$30,000</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>Ultimate</td>
+<td>$8,280</td>
+<td>$41,400</td>
+<td>$82,800</td>
+</tr>
+</tbody></table>
+<h2 id="en-4">Category 1: No-Code / Low-Code Platforms</h2>
+<h3>1. <strong>NocoBase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/6-lj6zp6.png" alt="NocoBase"></p>
+<p><strong>Overview</strong></p>
+<ul>
+<li>GitHub Star: 21.3k</li>
+<li>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></li>
+<li>Website: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></li>
+</ul>
+<p>NocoBase is a highly flexible, open-source AI no-code / low-code tool that helps developers quickly create and manage applications through an intuitive user interface and drag-and-drop functionality.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Plugin-Based Architecture</strong>: Every module — from data modeling to role-based access control, workflows, and reporting — is packaged as a plugin. Teams can install only what they need or build custom plugins for maximum extensibility.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/7-46b0xx.png" alt="Plugin-Based Architecture"></p>
+<ul>
+<li><strong>Data-Model Driven</strong>: Offers a powerful visual data modeling interface for defining tables, fields, relationships, and permissions. Since all features run on top of the data model, NocoBase adapts seamlessly to scenarios like asset management, CMDB, or ticketing systems.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/8-z21dfu.png" alt="Data-Model Driven"></p>
+<ul>
+<li><strong>Built-In Workflow Automation</strong>: Includes a low-code process orchestration engine with conditions, approvals, API integrations, and cross-system triggers. You can automate SLA escalations, ticket routing, and inter-department workflows without heavy coding.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/9-oh2cyu.png" alt="Built-In Workflow Automation"></p>
+<ul>
+<li><strong>AI employees embedded in the system</strong>: Seamlessly integrate AI capabilities into user interfaces, business workflows, and data contexts, enabling AI to be practically applied in real enterprise scenarios.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/AI%20%E5%91%98%E5%B7%A52-qwgmgh.png" alt="AI employees.png"></p>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li>ITSM ticketing system with custom SLAs and approval flows</li>
+<li>Asset and configuration management integrated with CMDB</li>
+<li>Cross-department workflows connecting HR, finance, and IT</li>
+</ul>
+<p><strong>Compared to ServiceNow</strong></p>
+<ul>
+<li>Greater flexibility → Fully open-source, self-hosted, unlimited plugin extensions</li>
+<li>Lower cost → No recurring subscription fees, ideal for startups and SMEs</li>
+<li>Faster deployment → Visual modeling reduces setup complexity</li>
+</ul>
+<h3><strong>2.</strong> <strong>Budibase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/10-i9nskr.png" alt="Budibase"></p>
+<p><strong>Overview</strong></p>
+<ul>
+<li>GitHub Star: 26.4k</li>
+<li>GitHub: <a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></li>
+<li>Website: <a href="https://budibase.com/">https://budibase.com/</a></li>
+</ul>
+<p>Budibase is another open-source low-code platform focused on rapidly creating internal tools, process automation, and data-driven applications. It’s well-suited for ITSM teams that need fast iteration and high customization.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Low-Code Form &amp; App Builder</strong>: Build applications like ticketing systems, approval forms, knowledge bases, and dashboards with a drag-and-drop interface. Supports custom UI components, fields, and business logic for full flexibility.</li>
+<li><strong>Automation Engine &amp; Triggers</strong>: Includes a built-in automation system that supports event-based, time-based, and condition-based triggers. Connect to external APIs and databases to sync data across systems seamlessly.</li>
+<li><strong>Multi-Source Data Integration</strong>: Natively integrates with PostgreSQL, MySQL, MongoDB, REST APIs, and more, allowing teams to centralize ServiceNow data alongside other business data in Budibase apps.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li>Build a custom ITSM ticketing system with SLA tracking and approval workflows</li>
+<li>Develop internal tools for HR, finance, procurement, and other departments</li>
+<li>Create data visualization dashboards with real-time reporting</li>
+</ul>
+<p><strong>Compared to ServiceNow</strong></p>
+<ul>
+<li>Lightweight &amp; efficient → Deploy apps without complex setup</li>
+<li>More flexible → Visual builder plus custom code for advanced requirements</li>
+<li>Cost-effective → Open-source, self-hosted, no expensive subscription fees</li>
+</ul>
+<h2 id="en-5">Category 2: Full-Featured ITSM Platforms</h2>
+<h3><strong>1.</strong> <strong>GLPI</strong></h3>
+<p><img src="https://static-docs.nocobase.com/11-uvczir.png" alt="GLPI"></p>
+<ul>
+<li>GitHub Star: 5.1k</li>
+<li>GitHub: <a href="https://github.com/glpi-project/glpi">https://github.com/glpi-project/glpi</a></li>
+<li>Website: <a href="https://glpi-project.org/">https://glpi-project.org/</a></li>
+</ul>
+<p><strong>Overview</strong></p>
+<p>GLPI is an open-source ITSM platform designed for IT asset management, ticketing, and service management. It offers a comprehensive set of features suitable for mid- to large-sized enterprises seeking a self-managed IT service environment.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Multi-Channel Ticketing</strong>: Consolidate email, chat, phone, and social media requests into a single interface for seamless ticket management.</li>
+<li><strong>Automation &amp; SLA Management</strong>: Automate ticket assignments, set priorities, and track SLAs to improve response times.</li>
+<li><strong>Reporting &amp; Analytics</strong>: Offers visual dashboards and reports to track customer requests, resolution times, and team performance.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li>Enterprise ITSM platforms for ticketing and SLA management</li>
+<li>Asset management and CMDB for hardware, software, and network devices</li>
+<li>IT service analytics with real-time reporting and dashboards</li>
+</ul>
+<p><strong>Compared to ServiceNow</strong></p>
+<ul>
+<li>Lower Cost → 100% open-source with no subscription fees</li>
+<li>Easy Deployment → Ideal for standard ITSM processes</li>
+<li>Focused Features → Prioritizes core ITSM capabilities without unnecessary complexity</li>
+</ul>
+<h2 id="en-6">Category 3: Lightweight Ticketing &amp; Customer Support Systems</h2>
+<h3><strong>1.</strong> <strong>Zammad</strong></h3>
+<p><img src="https://static-docs.nocobase.com/12-a0i00u.png" alt="Zammad"></p>
+<p><strong>Overview</strong></p>
+<ul>
+<li>GitHub Star: 5k</li>
+<li>GitHub: <a href="https://github.com/zammad/zammad">https://github.com/zammad/zammad</a></li>
+<li>Website: <a href="https://zammad.com/">https://zammad.com/</a></li>
+</ul>
+<p>Zammad is an open-source ticketing and customer support system built for efficient, real-time communication. It’s ideal for teams that need to handle multi-channel support effectively.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Multi-Channel Ticketing</strong>: Consolidate email, chat, phone, and social media requests into a single interface for seamless ticket management.</li>
+<li><strong>Automation &amp; SLA Management</strong>: Automate ticket assignments, set priorities, and track SLAs to improve response times.</li>
+<li><strong>Reporting &amp; Analytics</strong>: Offers visual dashboards and reports to track customer requests, resolution times, and team performance.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li>Customer support centers handling multi-channel requests</li>
+<li>Automated ticket workflows with SLA tracking</li>
+<li>Performance analysis for support teams</li>
+</ul>
+<p><strong>Compared to ServiceNow</strong></p>
+<ul>
+<li>Lightweight &amp; Fast → Easy deployment for SMEs</li>
+<li>Better Multi-Channel Support → Enhances customer experience</li>
+<li>Cost-Effective → Open-source and self-hosted options available</li>
+</ul>
+<p>💡 Read more: <a href="../blog/open-source-ticketing-systems.html">6 Best Open-Source Ticketing Systems for 2025</a></p>
+<h3><strong>2.</strong> <strong>EspoCRM</strong></h3>
+<p><img src="https://static-docs.nocobase.com/13-dokxz2.png" alt="EspoCRM"></p>
+<p><strong>Overview</strong></p>
+<ul>
+<li>GitHub Star: 2.4k</li>
+<li>GitHub: <a href="https://github.com/espocrm/espocrm">https://github.com/espocrm/espocrm</a></li>
+<li>Website: <a href="https://www.espocrm.com/">https://www.espocrm.com/</a></li>
+</ul>
+<p>EspoCRM is an open-source customer relationship management system that integrates ticketing, project management, and process automation. It’s a great fit for businesses seeking a CRM and ITSM hybrid solution.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Customer &amp; Ticket Management</strong>: Manage tickets with assignment, status tracking, and prioritization, fully integrated with CRM capabilities.</li>
+<li><strong>Workflow Automation</strong>: Set up triggers and workflows to automate task assignments, notifications, and approvals.</li>
+<li><strong>Reports &amp; Dashboards</strong>: Includes visual reports and KPI monitoring to analyze sales, service performance, and project outcomes.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li>Customer support and after-sales service</li>
+<li>Automated workflows for ticketing and processes</li>
+<li>Integrated CRM + ITSM applications for growing businesses</li>
+</ul>
+<p><strong>Compared to ServiceNow</strong></p>
+<ul>
+<li>Built-In CRM → Manage customer relationships alongside ticketing</li>
+<li>Flexible &amp; Open-Source → Self-hosting and full customization supported</li>
+<li>Lightweight Deployment → Easy to set up for small and mid-sized teams</li>
+</ul>
+<h2 id="en-7">Final Thoughts</h2>
+<p>Compared to ServiceNow, open-source alternatives offer significant advantages in <strong>cost, flexibility, and customization</strong>.</p>
+<p>NocoBase, Budibase, GLPI, Zammad, and EspoCRM each address different needs, covering use cases from ITSM and ticketing to customer relationship management.</p>
+<p>Choosing the right tool based on your team size, IT maturity, and business requirements can help you <strong>build an efficient, scalable, and fully customized service management platform</strong>—without the high costs of enterprise software.</p>
+<p>🚀 <strong>Ready to explore?</strong></p>
+<p>Try one of these open-source solutions today and start building your <strong>own ServiceNow alternative</strong> tailored to your business.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/open-source-firebase-alternatives.html">6 Open-Source Firebase Alternatives for Self-Hosting and Data Control</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">The Best Open-Source Alternatives to AppSheet in 2025</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">Why Open-Source Alternatives Are Replacing OutSystems in 2025?</a></li>
+<li><a href="../blog/salesforce-open-source-crmalternative.html">4 Powerful Open Source Alternatives to Salesforce (With Cost Comparison You’ll Love)</a></li>
+<li><a href="../blog/retool-open-source-alternatives.html">The Best Open-Source Alternatives to Retool In 2025</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">引言</a><a href="#zh-2">5 款 ServiceNow 开源替代品推荐</a><a href="#zh-3">开源替代品价格对比</a><a href="#zh-4">一、无代码/低代码平台</a><a href="#zh-5">二、全功能 ITSM 平台</a><a href="#zh-6">三、轻量工单与客服系统</a><a href="#zh-7">写在最后</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">5 Best Open-Source ServiceNow Alternatives</a><a href="#en-3">Pricing Overview: ServiceNow vs. Open-Source Alternatives</a><a href="#en-4">Category 1: No-Code / Low-Code Platforms</a><a href="#en-5">Category 2: Full-Featured ITSM Platforms</a><a href="#en-6">Category 3: Lightweight Ticketing &amp;amp; Customer Support Systems</a><a href="#en-7">Final Thoughts</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

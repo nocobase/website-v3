@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="石化行业的数字化变革：五建公司如何利用 NocoBase 助力新加坡 CRISP 项目信息化？ — NocoBase" data-en="Discover How Sinopec No.5 Construction Maximizes NocoBase to Drive Informatization of Singapore&#x27;s CRISP Project! — NocoBase">石化行业的数字化变革：五建公司如何利用 NocoBase 助力新加坡 CRISP 项目信息化？ — NocoBase</title>
+<meta name="description" content="了解中石化第五建设有限公司在新加坡 CRISP 项目中，通过 NocoBase 实现数字化管理的成功案例，探索 NocoBase 在石化行业的应用优势及实现方式。" data-zh="了解中石化第五建设有限公司在新加坡 CRISP 项目中，通过 NocoBase 实现数字化管理的成功案例，探索 NocoBase 在石化行业的应用优势及实现方式。" data-en="Discover how SFCC successfully implemented digital management using NocoBase in the Singapore CRISP project, exploring the application advantages and implementation methods of NocoBase in the petrochemical industry.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="customers" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../customers.html"><t-zh>客户案例</t-zh><t-en>Customer Stories</t-en></a></p>
+    <h1><t-zh>石化行业的数字化变革：五建公司如何利用 NocoBase 助力新加坡 CRISP 项目信息化？</t-zh><t-en>Discover How Sinopec No.5 Construction Maximizes NocoBase to Drive Informatization of Singapore's CRISP Project!</t-en></h1>
+    <p class="lede"><t-zh>了解中石化第五建设有限公司在新加坡 CRISP 项目中，通过 NocoBase 实现数字化管理的成功案例，探索 NocoBase 在石化行业的应用优势及实现方式。</t-zh><t-en>Discover how SFCC successfully implemented digital management using NocoBase in the Singapore CRISP project, exploring the application advantages and implementation methods of NocoBase in the petrochemical industry.</t-en></p>
+    <div class="bmeta"><span><t-zh>2024年7月2日</t-zh><t-en>Jul 2, 2024</t-en></span><span><t-zh>Deng lijia, Huang yiqun</t-zh><t-en>Deng lijia, Huang yiqun</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/600dc0d1115b275152ebdcc371e24ef2.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">序</h2>
+<p>业务庞大的石化行业公司如何利用 NocoBase 进行数字化变革？本文将带你深入了解中石化第五建设有限公司及其 IT 主管董科的故事。</p>
+<h2 id="zh-2"><strong>数字化开篇</strong></h2>
+<p>中石化第五建设有限公司（以下简称五建公司）是<strong>中国最早从事石油化工建设的大型施工企业</strong>。五建公司的主要业务之一是帮助海内外各地区修建炼油、化工、天然气及存储运输等工程项目。例如：科威特新炼厂项目，合同额达 5.19 亿美元。项目投入运营后，科威特每年将增加 3150 万吨石油产量[<a href="http://industry.people.com.cn/n1/2019/0410/c413883-31023309.html">1</a>]。</p>
+<p><img src="https://static-docs.nocobase.com/296cb1e212172bd83f826ef2d78610c6.PNG" alt="petrochemical industry"></p>
+<p>作为石油化工建设的龙头企业，五建公司也是行业内<strong>最早尝试信息化和数字化的企业之一</strong>。技术负责人董科与五建公司一同经历了这一数字化转型的重要时期。</p>
+<p>传统行业的数字化转型可以追溯到 20 世纪 90 年代中后期，随着信息技术和自动化技术的迅速发展而逐渐展开。经过几十年的发展，当工业行业的 ERP 市场早已百花齐放，石化行业依旧难以找到通用的数字化系统或解决方案。</p>
+<p>这主要是由于行业自身的特殊性。董科说：“<strong>软件开发公司不懂石化行业<strong><strong>的具体需求</strong></strong>，而我们行业又没有专业的软件开发人员。”</strong></p>
+<p>石化行业需求过于复杂，找不到现成的解决方案，只能自行“开疆拓土”。董科与团队一起摸索，尝试使用 Access 和 VB 宏语言进行早期的系统搭建。这种方案成本低、上手快，使五建公司迅速进入数字化的快车道。</p>
+<p>然而，项目初期看似成本效益颇高，但随着深入推进，Access 和 VB 宏语言的弊端逐渐显现。Access 数据库适合小型至中型应用，在处理大量数据或多用户同时访问时，性能问题随之而来。同时，在项目后期，随着业务需求的变更，系统更新需要大量手工编程，不仅增加了维护成本，还提高了出错的风险。</p>
+<h2 id="zh-3"><strong>寻找替代方案</strong></h2>
+<p>由于五建公司全新的管理工作台项目有更高的要求，原有方法已无法满足需求，董科需要寻找新的解决方案。根据全面质量管理理论中的“人机料法环”（即：人员、机器、原料、方法、环境），新项目需要将这五个影响产品质量的主要因素全部纳入系统进行数字化管理。</p>
+<p>经过多年的实践经验，董科仍然优先选择自主研发。虽然没有现成的系统方案可以使用，但可以选择一些开源项目或开发框架来最大程度减少<strong>从零开始的问题</strong>。</p>
+<p>系统 UI 设计选择了 Ant Design Pro，表单管理使用了 Formily，图表展示则采用了 G2Plot。然而，要完成整个系统的开发，仍然有很长的路要走。</p>
+<p>正如准备建房子的你找到了称手的工具：铲子、锤子、几袋水泥和一堆砖头，但房子还是得由你一砖一瓦地砌起来。</p>
+<p>系统开发也是如此，要真正用起来，还有很多工作要做，比如：用户系统、权限管理、图表库引入、表单库引用等。</p>
+<p>就在董科继续在 GitHub 上寻找一些开源工具时，他看到了 NocoBase 。NocoBase 的特点吸引了他：</p>
+<ul>
+<li><strong>数据模型驱动</strong>：非常符合系统开发的逻辑，先进行数据建模。</li>
+<li><strong>所见即所得的页面编辑器</strong>：这让系统页面搭建变得非常简单。</li>
+<li><strong>一切功能皆为插件</strong>：所有新功能都可以通过开发和安装插件来实现。</li>
+</ul>
+<p>如果 NocoBase 能顺利应用于五建公司的系统开发中，将极大减少开发工作量。</p>
+<p>回到建房子的比喻：你不用再一砖一瓦地砌了，现在你有了预制构件和自动化施工设备。这些预制的房屋部分可以迅速组装，而自动化设备则可以确保施工的精准和高效，大大减少了手动砌砖的劳动量和时间。</p>
+<p><img src="https://static-docs.nocobase.com/a93725c4ef24a8d05c8401f28b521ff5.PNG" alt="修建房子，图片由 ChatGPT 生成"></p>
+<p>同样，NocoBase 作为一个无代码开发平台，可以为用户提供预制组件和自动化构建工具，使其不必逐行编写代码来构建系统。巧合的是，NocoBase 使用的技术栈和董科的项目非常一致。这使得董科和他的团队能够快速上手 NocoBase，并进行一些项目的验证。</p>
+<p>通用需求只用简单点击和拖拽，即可通过 NocoBase 的无代码部分“所见即所得”地快速实现。对于定制功能，董科和他的团队可以根据<a href="https://docs-cn.nocobase.com/development">开发文档开发新插件</a>。<strong>这种灵活性得益于 NocoBase 的微内核和插件架构。</strong></p>
+<p>产品能力得到验证后，董科和团队开始基于 NocoBase 进行系统研发。同时，董科也积极参与 NocoBase 的开源社区，这一参与便是两年。</p>
+<h2 id="zh-4"><strong>初见成效</strong></h2>
+<p>在 NocoBase 不断成长的两年多时间里，董科在五建公司海外分公司负责系统创新和自研工作。期间，他带领团队对<strong>新加坡 CRISP 项目</strong>进行系统改进和推广，这是信息化建设的重点项目之一。</p>
+<p>由于 NocoBase 的 API 设计直观且规范，因此能够快速通过 HTTP RESTful API 提供服务资源；同时，NocoBase 可以快速扩展并集成第三方服务，使系统内外的资源能够灵活交互和调度。这种设计使得董科和团队可以用更灵活、高效的方式处理数据请求和业务逻辑，并根据需求选择最合适的交互模式。</p>
+<p>目前，新加坡项目的人力资源管理部分已经使用 NocoBase 完成了搭建，并且运行良好，这为后续整个公司内部的推广积累了最佳实践经验。</p>
+<h3>系统结构</h3>
+<ol>
+<li><strong>控制中心 &amp; 应用中心（NocoBase），作为中心枢纽，负责开发和搭建业务应用，并管理和集成不同系统。</strong><ul>
+<li>Authentication plugins（认证插件）：负责身份验证和授权，确保系统安全。</li>
+<li>User &amp; Permissions（用户和权限管理）：管理用户及其权限，确保不同用户有适当的访问权限。</li>
+<li>Resources APIs（资源 API）：提供对外和对内的资源访问接口，支持RESTful API和内部服务调用（RPC）。</li>
+<li>Data visualization（数据可视化）：将数据以可视化的形式展示，便于分析和决策。</li>
+<li>Automated flows（自动化流程）：实现业务流程的自动化，提升工作效率。</li>
+<li>Applications（各业务应用）：用于满足各业务场景需求。</li>
+</ul>
+</li>
+<li><strong>集成对接的第三方平台</strong><ul>
+<li>Cloudflare Workers：用来处理HTTP请求，提高内容分发速度和应用的响应时间。</li>
+<li>飞书集成平台：用于集成飞书服务，实现企业内部的协作和通信。</li>
+<li>Supabase：作为后端服务，提供数据库存储、身份验证等功能。</li>
+<li>Logto：负责身份验证和授权，确保系统安全。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/1fa541d7f52bad8d111b0f72e7777b95.png" alt="technical architecture.png"></p>
+<p>董科分享到：“**NocoBase 最好用的功能是一键切换配置模式和完善的 <a href="https://docs-cn.nocobase.com/handbook/api-doc">HTTP API 支持</a>**。”</p>
+<p>点击右上角一键切换配置模式，一个页面只需几分钟就可以完成搭建。</p>
+<p>通过 API 与数据进行交互，可以灵活地将 NocoBase 集成到现有的系统中，方便自定义和扩展数据处理能力。</p>
+<p>五建公司系统中的“考勤工效监测”部分使用 NocoBase 进行开发，通过 API 连接了 60 台考勤机，并利用 NocoBase 工作流的能力，实现了很多流程的自动化处理，从而节省了上百万的费用。</p>
+<p><img src="https://static-docs.nocobase.com/a54b49b032513b3628ecb24909b0167d.jpeg" alt="dashboard"></p>
+<p>系统的其他板块也在稳步推进中。<strong>董科预计整个项目将在5个月内完成上线，比最初预期的11个月提前了6个月，为项目节约了55%的时间。</strong></p>
+<p><img src="https://static-docs.nocobase.com/3d7ccb4af4f8c5ad8b1c1557ed838533.png" alt="dashboard"></p>
+<p>作为资深的一线发开者，董科深知<strong>低代码、性能和灵活性</strong>之间的平衡很难把握。经过实践验证后，<strong>董科表示 NocoBase 在这三个特性中很好地找到了平衡点。</strong></p>
+<p>完成五建公司这种石化行业标杆企业的复杂项目验证，对 NocoBase 来说是一次充满惊喜的旅程。不仅产品能力在真实项目中得到了锤炼和反馈，更展示了在 NocoBase 的帮助下，这种深度复杂的行业项目也能加快数字化变革。</p>
+<p>随着<a href="../blog/release-v10.html"> NocoBase 1.0 版本的发布</a>，董科也期待产品向更稳定、性能更强的方向发展，这也是 NocoBase 团队目前的工作重点。</p>
+<p>NocoBase 希望在未来能持续帮助五建公司加快其在石化行业的数字化进程，并全面提升其业务效率。</p></div><div class="prose en-only"><p>Sinopec Fifth Construction Co., Ltd., a significant player in the petrochemical industry, is using NocoBase as part of its digital transformation under the leadership of IT director Mr. Dong Ke. Let&#39;s dive into the story!</p>
+<h2 id="en-1">1. <strong>Background and Challenge</strong></h2>
+<p>Sinopec No.5 Construction Co., Ltd. (after this referred to as SFCC) is the earliest large-scale construction enterprise engaged in petrochemical construction in China. One of the company&#39;s main businesses is constructing petrochemical infrastructures, including oil refining, chemical, natural gas, storage, and transportation for domestic and international regions. One typical project SFCC implemented is the new refinery project in Kuwait, which had a contract of up to US$519 million. After the system is used, Kuwait&#39;s oil production will increase by 31.5 million tonnes per year[<a href="http://industry.people.com.cn/n1/2019/0410/c413883-31023309.html">1</a>].</p>
+<p><img src="https://static-docs.nocobase.com/296cb1e212172bd83f826ef2d78610c6.PNG" alt="petrochemical industry"></p>
+<p>As a significant player in petrochemical construction, SFCC is also one of the earliest enterprises in the industry to embrace informatization and digitalization. The technical leader, Mr. Dong Ke, experienced an essential digital transformation period with SFCC.</p>
+<p>The digital transformation of traditional industries can be traced back to the mid-90s of the 20th century, with the rapid development of information and automation technology. After decades of development, the market for industry ERP systems continues to mature, and thousands of solutions emerge. Nevertheless, it is still difficult for the petrochemical industry to find a versatile digital software or solution.</p>
+<p>This is primarily due to the industry&#39;s unique nature. As Mr. Dong said, &quot;(The question is that) software vendors can&#39;t understand the specific requirements of the petrochemical industry, while we don&#39;t have professional software developers to turn our sophisticated requests into codes.&quot;</p>
+<p>Consequently, Mr. Dong and his team had to start from scratch, explore various technologies, and try to build the alpha version of the system with Access and VB macro languages. This solution was quite low-cost and quick to get started, which helped SFCC enter the fast lane of digitalization.</p>
+<p>At the beginning phase, the solution worked and was cost-effective. As the project moved on to the middle phase, the drawbacks of the Access and VB macro languages began to emerge. Firstly, Access databases are ideal for small to medium-sized database applications. However, performance issues may arise when dealing with large amounts of data or simultaneously accessed by multiple users. Secondly, updating the system to meet rapidly changing business requirements would require a significant amount of manual programming work, leading to increased maintenance costs and the risk of errors.</p>
+<h2 id="en-2">2. <strong>Seeking for alternatives</strong></h2>
+<p>The turning point occurred when Mr. Dong sought a new software solution to satisfy the increased requirements of SFCC&#39;s new management workbench project. The project aimed to adopt the principles of overall quality management into the digital management system, which integrates the five key factors that affect product quality: personnel, machines, raw materials, methods, and environment.</p>
+<p>After years of practice, Mr. Dong Ke prefers in-house development. Since there was no out-of-the-box solution, he turned to open-source projects or development frameworks to minimize the cost and problems of starting from scratch.</p>
+<p>He utilized a series of tools to implement the different elements of the system: Ant Design Pro to design system user interfaces, Formily to implement forms management, and the tool G2Plot to present charts and graphs, etc. However, there is still a long way to go to complete the development of an entire system.</p>
+<p>Imagine building a house with ready tools: shovels, hammers, bags of cement, and bricks, but you still have to make the entire house brick by brick.</p>
+<p>The same applies to software development. Before use, numerous functions need implementation, including user system, privilege management, chart library invocation, and form library referencing...</p>
+<p>Just as Mr. Dong continued to explore suitable open-source tools on GitHub, NocoBase caught his eyes with the following highlights:</p>
+<ul>
+<li>Data Model Driven: in line with the logic of system development, where data modeling comes first.</li>
+<li>WYSIWYG Editor: makes it very easy to build forms &amp; pages.</li>
+<li>Plug-and-Play: new plugins can be developed and installed to realize new requirements.</li>
+</ul>
+<p>He thought that if his team could develop the SFCC&#39;s system based on NocoBase, it would help to solve current pain points and thus significantly reduce the workload and complexity of system development.</p>
+<p>Let&#39;s revisit the analogy of building a house. Prefabricated components and automated construction equipment have transformed the construction process. Instead of brick by brick, prefabricated house parts can be quickly assembled using automated equipment, leading to precise and efficient construction. This approach significantly reduces the manual labor and time required for building.</p>
+<p><img src="https://static-docs.nocobase.com/a93725c4ef24a8d05c8401f28b521ff5.PNG" alt="building a house, The image is generated by ChatGPT."></p>
+<p>Likewise, NocoBase is a No-code platform that offers pre-made components and automated construction tools for SFCC to build software without coding line by line. Additionally, the technology stack used by NocoBase is well-aligned with SFCC projects, enabling Dong and his team to quickly start using NocoBase for the proof of concept.</p>
+<p>Using the WYSIWYG editor, general requirements of SFCC can also be quickly implemented through the no-code part of NocoBase by simple drag-and-drop. For customized functions, Dong’s team can develop new plugins based on dedicated <a href="https://docs.nocobase.com/development">development documents</a>. <strong>The flexibility is enabled by NocoBase&#39;s microkernel and plug-in architecture.</strong></p>
+<p>Once they validated the product concepts, Dong&#39;s team started building the entire system using NocoBase. Meanwhile, Dong has actively contributed to the NocoBase open-source community for over two years.</p>
+<h2 id="en-3">3. Progress and Result</h2>
+<p>As NocoBase has grown over the past two years, Mr. Dong is responsible for system innovation and in-house development in SFCC&#39;s overseas branches. During this time, he led the team to accomplish the system improvement and promoting of the <strong>Singapore CRISP project</strong>, one of SFCC&#39;s critical projects.</p>
+<p>NocoBase&#39;s <strong><strong>straightforward</strong></strong> <strong><strong>and standard</strong></strong> API design specifications facilitate the swift input and output of service resources through HTTP RESTful APIs. Additionally, NocoBase can quickly scale out and integrate third-party services, allowing for flexible interaction and scheduling of resources both within and outside the system. As a result, Mr. Dong and his team can efficiently handle data requests and business logic and choose the most suitable interaction mode based on their needs.</p>
+<p>Currently, the Human Resource Working Efficiency Management system, part of the Singapore CRISP project, has been developed with NocoBase and runs smoothly.  This case has yielded invaluable best practices that will significantly enhance the success of the company-wide rollout.</p>
+<h3>The technical architecture of the system</h3>
+<p><strong>NocoBase - The control and application center is a central hub</strong> for building, developing, and managing applications and integrating different systems.</p>
+<ul>
+<li>Authentication plugins: are responsible for authentication and authorization to ensure system security.</li>
+<li>User &amp; Permissions: to manage users and their permissions to ensure that different users have appropriate access.</li>
+<li>Resources APIs: to provide external and internal resource access interfaces and to support RESTful APIs and internal service calls (RPC).</li>
+<li>Data visualization: to visualize data for analysis and decision-making.</li>
+<li>Automated workflow: to automate business processes to improve productivity.</li>
+<li>Applications (business applications): to effectively meet the diverse demands of business scenarios.</li>
+</ul>
+<p><strong>Integrated third-party platforms:</strong></p>
+<ul>
+<li>Cloudflare Workers: Handles HTTP requests to improve content distribution speed and application response time.</li>
+<li>Lark Integration Platform: Integrates Lark services (an IM application) to achieve collaboration and communication within the company.</li>
+<li>Supabase: Provides database storage and authentication as a back-end service.</li>
+<li>Logto: Responsible for authentication and authorization to ensure system security.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ed5586e6e972ff5beaa41548e55b844e.png" alt="technical architecture"></p>
+<p>Mr. Dong shared, &quot;NocoBase&#39;s best feature is its one-click configuration mode switching and comprehensive <a href="https://docs.nocobase.com/handbook/api-doc">HTTP API support</a>.&quot;</p>
+<p>NocoBase allows developers to click the mode-switching button in the upper right corner to switch from developing to product mode. As a result, developers can build a page within just a few minutes.</p>
+<p>Developers can easily integrate NocoBase into their existing systems by interacting with the data via API requests, which allows for customizable and extended data processing capabilities.</p>
+<p>For instance, Dong’s team utilizedNocoBase to develop the data dashboards for monitoring human resource efficiency of SFCC.The system was linked to around 60 attendance machines via NocoBase API. Once the raw data was collected via the API, it was processed using automated business process management in NocoBase Workflow and then delivered to the managers&#39; dashboards.</p>
+<p>Previously, the total data collection, automatic processing, and visualization cost was more than 1 million CNY (or 140,000 dollars). <strong>Using NocoBase can reduce the cost by 85%.</strong></p>
+<p><img src="https://static-docs.nocobase.com/a54b49b032513b3628ecb24909b0167d.jpeg" alt="dashboard"></p>
+<p>Currently, the other parts of the system development are also making steady progress. Mr. Dong has estimated that it will take a total of 5 months to complete the entire system and go live, which is half a year earlier than the initial planning time of 11 months, <strong>reducing the delivery time by 55%.</strong></p>
+<p><img src="https://static-docs.nocobase.com/3d7ccb4af4f8c5ad8b1c1557ed838533.png" alt="dashboard"></p>
+<p>As a senior front-end developer, Mr. Dong understands the challenge of balancing low code, performance, and flexibility. However, based on his experience, he believes that NocoBase has achieved a good balance among these three features.</p>
+<p>Completing the project verification for SFCC, a leading enterprise in the petrochemical industry, was a surprising journey for NocoBase. The product capabilities have not only been enhanced by the real project, but it also demonstrates NocoBase&#39;s ability to drive digital transformation for such a complex and in-depth industrial project.</p>
+<p>With the <a href="../blog/release-v10.html">release of NocoBase 1.0</a>, the product team is now focusing on <strong>improving stability and performance,</strong> meeting the expectations of developers like Mr. Dong. The NocoBase product team aims to help SFCC accelerate business rollout in the petrochemical industry and promote overall business efficiency.</p></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">序</a><a href="#zh-2">数字化开篇</a><a href="#zh-3">寻找替代方案</a><a href="#zh-4">初见成效</a></div><div class="en-only"><a href="#en-1">1. Background and Challenge</a><a href="#en-2">2. Seeking for alternatives</a><a href="#en-3">3. Progress and Result</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>更多客户案例</t-zh><t-en>More customer stories</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../customers/sungrow.html" data-tags="Customer_Stories"><span class="cv"><span class="cv-ph"><b>SUNGROW</b></span></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年10月17日</t-zh><t-en>Oct 17, 2026</t-en></span><span><t-zh>NocoBase</t-zh><t-en>NocoBase</t-en></span></div><h3><t-zh>阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统</t-zh><t-en>Sungrow: the systems behind a global business, built on NocoBase</t-en></h3><p><t-zh>全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。</t-zh><t-en>How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.</t-en></p></a><a class="bcard" href="../customers/polish-volunteer-fire-department-nocobase-case-study.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/20260722-111552-ydpnay.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月22日</t-zh><t-en>Jul 22, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>一支每年出警 200 次的消防队，如何用 NocoBase 搭建运营系统</t-zh><t-en>How a Volunteer Fire Department Manages 200 Callouts a Year with NocoBase</t-en></h3><p><t-zh>波兰 OSP Radlin II 志愿消防队用 NocoBase 统一管理出警、人员资质、车辆装备与自动化提醒，并持续迭代消防队运营系统。</t-zh><t-en>See how OSP Radlin II uses NocoBase to manage emergency callouts, personnel qualifications, vehicles, equipment, reminders, and daily operations</t-en></p></a><a class="bcard" href="../customers/astrolab-nocobase.html" data-tags="Customer_Stories"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%B3%95%E5%9B%BD%E6%94%BF%E5%BA%9C%20(2)-8g4luf.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>客户故事</t-zh><t-en>Customer Stories</t-en></span><span><t-zh>2026年7月3日</t-zh><t-en>Jul 3, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>法国大区政府如何用 NocoBase 建设数字化公共服务平台</t-zh><t-en>From Paperwork to Digital Public Services in France</t-en></h3><p><t-zh>基于一套 NocoBase 架构，Astrolab 为法国大区政府交付三个生产级平台，将审核周期缩短至 24 小时内，车辆冲突减少 80%，普查回收率提升至 90% 以上。</t-zh><t-en>Astrolab used NocoBase to deliver three production-ready platforms for a French regional government, reducing review cycles to under 24 hours, cutting reservation conflicts by 80%, and reaching over 90% survey response rates.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>下一个故事，可以是你的。</t-zh><t-en>The next story could be yours.</t-en></h2><p><t-zh>带一个真实需求，和我们一起把它做成可以长期使用的系统。</t-zh><t-en>Bring one real requirement and turn it into a system you’ll use for years.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../customers.html"><t-zh>全部客户案例</t-zh><t-en>All customer stories</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

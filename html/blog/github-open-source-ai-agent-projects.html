@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="GitHub 上 Star 数量前 18 的开源 AI Agent 项目 — NocoBase" data-en="Top 18 Open Source AI Agent Projects with the Most GitHub Stars — NocoBase">GitHub 上 Star 数量前 18 的开源 AI Agent 项目 — NocoBase</title>
+<meta name="description" content="本文精选 GitHub 上 Star 数排名前 18 的开源 AI Agent 项目，解析其功能与应用场景，助你高效选型与落地。" data-zh="本文精选 GitHub 上 Star 数排名前 18 的开源 AI Agent 项目，解析其功能与应用场景，助你高效选型与落地。" data-en="This article reviews the top 18 open-source AI Agent projects on GitHub by star count, analyzing their features and use cases to help you choose and implement effectively.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>GitHub 上 Star 数量前 18 的开源 AI Agent 项目</t-zh><t-en>Top 18 Open Source AI Agent Projects with the Most GitHub Stars</t-en></h1>
+    <p class="lede"><t-zh>本文精选 GitHub 上 Star 数排名前 18 的开源 AI Agent 项目，解析其功能与应用场景，助你高效选型与落地。</t-zh><t-en>This article reviews the top 18 open-source AI Agent projects on GitHub by star count, analyzing their features and use cases to help you choose and implement effectively.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年8月14日</t-zh><t-en>Aug 14, 2025</t-en></span><span><t-zh>Zhang Lu</t-zh><t-en>Zhang Lu</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2088-hu1l31.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>✨2026 年最新版 GitHub 开源 AI 项目盘点，立即查看：<a href="../blog/best-open-source-ai-projects-github-2026.html">https://www.nocobase.com/cn/blog/best-open-source-ai-projects-github-2026</a></p>
+<p>大概一个多月前，我在 <a href="https://news.ycombinator.com/item?id=44450160">Hacker News</a> 上刷到一篇讨论热度很高的文章——<a href="https://decodingml.substack.com/p/stop-building-ai-agents">《停止构建 AI Agent》</a>。</p>
+<p><img src="https://static-docs.nocobase.com/1-472k2u.png" alt="Stop Building AI Agents"></p>
+<p>作者在文中分享了自己的亲身经历：他用 CrewAI 组建了一个“研究小组”——三名 Agent、五个工具，纸面上分工完美无缺。但真正运行时，研究员 Agent 无视爬虫工具，摘要员忘记引用，协调员在处理长文档时直接放弃，原本看似天衣无缝的方案，在实践中却像多米诺骨牌般接连失灵。</p>
+<p>下面这张流程图，是作者在经历无数次代理系统的调试与翻车后，总结出的“是否该用 Agent”的经验指南。</p>
+<p><img src="https://static-docs.nocobase.com/2-45bvv4.png" alt="Should I use an Agent"></p>
+<p>Image source: <a href="https://decodingml.substack.com/p/stop-building-ai-agents">https://decodingml.substack.com/p/stop-building-ai-agents</a></p>
+<p>文章提炼出一个重要原则：<strong>Agent 最适合在“人类参与监督”的非稳定型流程中发挥作用</strong>——这种场景下，Agent 的探索能力和创造性往往优于工作流。</p>
+<ul>
+<li><strong>可用场景</strong>：数据科学助手（自动写 SQL、生成可视化、探索数据趋势）；创意写作伙伴（头脑风暴、文案改进）；代码重构助手（提出优化建议、发现潜在问题）。在这些任务中，人类可随时评估结果并纠正偏差。</li>
+<li><strong>不建议使用</strong>：企业核心自动化（关键业务流程的稳定性无法交给 LLM 决定）；高风险决策（金融交易、医疗诊断、法律合规等需要确定性逻辑的领域）。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/3-ba22w7.png" alt="scenarios"></p>
+<p>Image source: <a href="https://decodingml.substack.com/p/stop-building-ai-agents">https://decodingml.substack.com/p/stop-building-ai-agents</a></p>
+<p>如果看完上面的内容，你依然觉得自己的业务场景适合构建 Agent，那么这篇文章将为你盘点 GitHub 上<a href="https://github.com/topics/agent"> Agent</a> 话题下 Star 数排名前 18 的开源项目，并从项目概览、核心功能与应用场景三个维度剖析它们的优势与边界，帮助你在合适的场景中发挥 Agent 的最大价值。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>💡 也欢迎阅读我们往期最受欢迎的 GitHub 项目系列文章（部分项目会在不同主题中重复出现）：</p>
+<ul>
+<li><a href="../blog/github-open-source-ai-projects.html">GitHub 上 Star 数量前 20 的开源 AI 项目</a></li>
+<li><a href="../blog/github-open-source-mcp-projects.html">GitHub 上 Star 数量前 8 的开源 MCP 项目</a></li>
+<li><a href="../blog/github-open-source-developer-tools.html">GitHub 上 Star 数排名前 40 的开发者工具</a></li>
+</ul>
+<h2 id="zh-1">No.1: Dify</h2>
+<p><img src="https://static-docs.nocobase.com/4-in2l5n.png" alt="Dify"></p>
+<ul>
+<li>GitHub Star: 110k</li>
+<li>GitHub: <a href="https://github.com/langgenius/dify">https://github.com/langgenius/dify</a></li>
+<li>Website: <a href="https://dify.ai/">https://dify.ai/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/5-psa2vb.png" alt="Dify"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>Dify</strong> 是一个开源的 LLM 应用开发平台。它融合了直观可视化界面、RAG 工作流、Agent 能力、模型管理与全链路可观测性，让开发者能够迅速搭建、调试并部署 AI 应用。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>可视化工作流编排</strong>：提供拖拽式构建界面，开发者可以在画布上设计并测试复杂的 AI 流程，包括提示、模型调用与任务串联等。</li>
+<li><strong>RAG 管道支持</strong>：支持多格式文档（如 PDF、PPT）摄入，自动抽取内容并构建检索管道，实现知识增强生成能力。</li>
+<li><strong>全模型生态与提示编辑器</strong>：兼容 GPT、Mistral、Llama3 及所有 OpenAI API 兼容模型，一站式管理模型与调优提示，简化模型切换与性能比对流程。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>构建智能客服与 QA 系统</li>
+<li>对接企业知识库</li>
+<li>快速部署内容生成工具</li>
+</ul>
+<h2 id="zh-2">No.2: Lobe Chat</h2>
+<p><img src="https://static-docs.nocobase.com/6-8eachs.png" alt="Lobe Chat"></p>
+<ul>
+<li>GitHub Star: 64.3k</li>
+<li>GitHub: <a href="https://github.com/lobehub/lobe-chat">https://github.com/lobehub/lobe-chat</a></li>
+<li>Website: <a href="https://lobechat.com/">https://lobechat.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/7-t7pkjl.png" alt="Lobe Chat"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>Lobe Chat</strong> 是一个开源的多模型聊天与应用平台，强调 UX 体验，支持语音、视觉识别、多模态输入、插件市场、移动端适配和多用户管理。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>多模态 &amp; 插件支持</strong>：支持语音对话、图像识别与生成，并通过插件市场扩展功能，满足多样交互需求。</li>
+<li><strong>智能体指数平台</strong>：通过一个社区驱动的索引，用户可浏览、添加或提交自定义助手，便于扩展和复用。</li>
+<li><strong>统一模型适配</strong>：提供统一接口与插件化架构，轻松衔接 OpenAI、Anthropic、Gemini、Ollama 等模型服务商，便于平台迁移与模型升级。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>快速搭建高交互、多模态的智能聊天应用</li>
+<li>部署领域定制助手</li>
+</ul>
+<h2 id="zh-3">No.3: RAGFlow</h2>
+<p><img src="https://static-docs.nocobase.com/8-p4g4dr.png" alt="RAGFlow"></p>
+<ul>
+<li>GitHub Star: 62.1k</li>
+<li>GitHub: <a href="https://github.com/infiniflow/ragflow">https://github.com/infiniflow/ragflow</a></li>
+<li>Website: <a href="https://ragflow.io/">https://ragflow.io/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/9-9lvp8h.png" alt="RAGFlow"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>RAGFlow</strong> 是一款基于深度文档理解的开源 RAG 引擎，旨在为企业与个人提供高质量、可解释的问答与 Agent 服务。它不仅能处理复杂格式文档，还能提供引用性回复与可视化块管理。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>深度文档理解</strong>：擅长解析 PDF、Word、PPT、Excel、图片等非结构化内容，提取可检索信息块，确保生成内容真实、可验证。</li>
+<li><strong>RAG 问答与引用追踪</strong>：结合向量检索与 LLM，生成带引用的回答，并支持手动调整检索块以优化准确度。</li>
+<li><strong>灵活部署与集成</strong>：提供 Docker Compose 部署方式，可与各类 LLM 集成。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>构建文档驱动的问答系统与知识助手</li>
+<li>实施内容审核与引用追踪</li>
+<li>部署支持复杂文件结构的 RAG 应用</li>
+</ul>
+<h2 id="zh-4">No.4: OpenHands</h2>
+<p><img src="https://static-docs.nocobase.com/10-b9ssqh.png" alt="OpenHands"></p>
+<ul>
+<li>GitHub Star: 62k</li>
+<li>GitHub: <a href="https://github.com/All-Hands-AI/OpenHands">https://github.com/All-Hands-AI/OpenHands</a></li>
+<li>Website: <a href="https://all-hands.dev/">https://all-hands.dev/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/11-a2rzhi.png" alt="OpenHands"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>OpenHands</strong> 的核心理念是让 AI 能像人类开发者一样“写更少的代码，完成更多工作”，提供代码编辑、命令执行、网页浏览、API 调用等多种能力支持。</p>
+<p>作为一个 MIT 开源项目，OpenHands 可以在本地通过 Docker 快速部署，也提供 OpenHands Cloud SaaS 版以便免配置上手，其中 Cloud 版本更提供初始使用额度，适合快速试用。随着版本更新，OpenHands 架构不断完善，逐步实现了通用 Agent 控制器、多 Agent 协同、多交互会话管理、沙箱安全执行等特性，成为一个针对软件开发者的通用 AI 工具平台。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>通用开发者 Agent 能力</strong>：Agent 能执行“修改代码、运行命令、浏览网页、调用 API”等任务，模拟人类开发者的行为路径。</li>
+<li><strong>多 Agent 协作与会话管理</strong>：系统支持多个 Agent 协同工作，具备会话管理能力（Session、EventStream、AgentController 等），实现任务分工或协同处理复杂需求。</li>
+<li><strong>安全沙箱机制</strong>：Agent 执行代码和命令时，运行环境由沙箱（如 Docker 容器）隔离，确保执行安全，减少对宿主系统风险。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>辅助开发者完成常规代码任务</li>
+<li>自动化测试与部署流程</li>
+<li>快速原型与工具搭建</li>
+</ul>
+<h2 id="zh-5">No.5: MetaGPT</h2>
+<p><img src="https://static-docs.nocobase.com/12-btl5l3.png" alt="MetaGPT"></p>
+<ul>
+<li>GitHub Star: 57.8k</li>
+<li>GitHub: <a href="https://github.com/FoundationAgents/MetaGPT">https://github.com/FoundationAgents/MetaGPT</a></li>
+<li>Website: <a href="https://mgx.dev/">https://mgx.dev/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/13-2pwtad.png" alt="13-2pwtad.png"></p>
+<p><strong>项目概览：</strong></p>
+<p>MetaGPT 是一个多智能体协作框架，强调“软件公司模拟”，将自然语言需求转化为从用户故事、竞品分析到 API 设计、文档编写的一整套流程。其核心理念是“Code = SOP(Team)”——将标准作业程序（SOP）具体化，安排产品经理、架构师、工程师等角色协作完成任务。</p>
+<p><img src="https://static-docs.nocobase.com/14-8jh7z3.png" alt="MetaGPT"></p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>多角色智能体协作</strong>：内置产品经理、架构师、项目经理、工程师等 AI 智能体，模拟真实团队依照 SOP 协同推进项目。</li>
+<li><strong>SOP 驱动流程</strong>：通过标准作业程序指导每个 Agent 执行任务，实现任务拆解与结构化执行，减少偏差与幻觉。</li>
+<li><strong>自然语言编程</strong>：用户只需一句话描述需求，MetaGPT 即可生成对应的用户故事、数据结构、API 接口与架构设计。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>自动生成软件项目开发提案</li>
+<li>快速构建团队协作原型</li>
+<li>探索 AI 驱动的软件开发流程优化与自动化研究</li>
+</ul>
+<h2 id="zh-6">No.6: LLMs-from-scratch</h2>
+<p><img src="https://static-docs.nocobase.com/15-w7easd.png" alt="LLMs-from-scratch"></p>
+<ul>
+<li>GitHub Star: 56k</li>
+<li>GitHub: <a href="https://github.com/rasbt/LLMs-from-scratch">https://github.com/rasbt/LLMs-from-scratch</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/16-68zqun.png" alt="LLMs-from-scratch"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>LLMs-from-scratch</strong> 是一个从零实现大型语言模型的教学型项目，帮助开发者理解 LLM 的核心原理与训练过程。</p>
+<p>👉 <a href="https://www.nocobase.com/cn/blog/github-open-source-ai-projects#no15-llms-from-scratch">点击查看 LLMs-from-scratch 的完整介绍与应用场景</a></p>
+<h2 id="zh-7">No.7: Huginn</h2>
+<p><img src="https://static-docs.nocobase.com/17-wzc3ll.png" alt="Huginn"></p>
+<ul>
+<li>GitHub Star: 47k</li>
+<li>GitHub: <a href="https://github.com/huginn/huginn">https://github.com/huginn/huginn</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/18-orl7h1.png" alt="Huginn"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>Huginn</strong> 是一个开源自动化工具，让用户可在自有服务器上运行 agents，从网络采集信息并基于条件进行触发动作，如邮件通知、关键词监控等。Huginn 的设计初衷有力捍卫了用户对数据的控制权，以其数据可控、自托管、可扩展代理系统特点长期活跃在开源社区。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>自托管 Web 代理平台</strong>：用户可在自己的服务器上部署 agents，自主处理数据与执行任务，确保隐私与可控性。</li>
+<li><strong>事件—动作规则引擎</strong>：支持配置条件触发 logic，当指定的网络事件发生时，可以自动执行通知、脚本或 HTTP 调用等操作。</li>
+<li><strong>扩展性 Agents 机制</strong>：内置多种 agents，可通过 Huginn Agent gem 扩展自定义 agent 功能，生态丰富。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>信息监控与提醒</li>
+<li>数据抓取与自动化流程</li>
+<li>自定义自动化工具构建</li>
+</ul>
+<h2 id="zh-8">No.8: Unsloth</h2>
+<p><img src="https://static-docs.nocobase.com/19-ihomc8.png" alt="Unsloth"></p>
+<ul>
+<li>GitHub Star: 43.8k</li>
+<li>GitHub: <a href="https://github.com/unslothai/unsloth">https://github.com/unslothai/unsloth</a></li>
+<li>Website: <a href="https://docs.unsloth.ai/">https://docs.unsloth.ai/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/20-eci5h1.png" alt="Unsloth"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>Unsloth</strong> 是一款专为微调 LLM（如 OpenAI gpt-oss、Qwen3、Llama 4）而设计的开源工具，目标是提供更加高效且显存友好的训练流程。其核心代码采用 OpenAI 开发的 Triton 架构，显著提升训练速度并降低显存占用。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>高效显存优化微调</strong>：在主流 LLM 上实现 1.5-2.2× 的微调速度提升，并减少高达 70–80% 的显存使用。</li>
+<li><strong>易用 Notebook 工作流</strong>：用户只需添加数据集并点击“Run All”即可完成模型微调，便可快速完成模型训练。</li>
+<li><strong>广泛模型兼容</strong>：支持微调包括 Llama、Gemma、Qwen 等多个 LLM 模型。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>快速微调 LLM 模型用于研究或产品原型验证</li>
+<li>教育与教学工具：让入门者在免费 GPU 环境中体验模型训练流程</li>
+<li>高显存节省需求的开发场景，如部署在资源受限设备上</li>
+</ul>
+<h2 id="zh-9">No.9: Mem0</h2>
+<p><img src="https://static-docs.nocobase.com/21-uxkki5.png" alt="Mem0"></p>
+<ul>
+<li>GitHub Star: 38.1k</li>
+<li>GitHub: <a href="https://github.com/mem0ai/mem0">https://github.com/mem0ai/mem0</a></li>
+<li>Website: <a href="https://mem0.ai/">https://mem0.ai/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/22-bmb2sv.png" alt="Mem0"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>Mem0</strong> 是一款专为 AI Agent 设计的长期记忆管理系统，致力于解决 AI 常见的“遗忘”问题。它通过统一记忆层使智能体能够跨会话、跨应用持续保留用户偏好与历史上下文，实现个性化且连续的交互体验。在 LOCOMO 基准测试中，Mem0 相比 OpenAI Memory，在准确率上提升约 26%，响应延迟降低 91%，且 Token 消耗降低 90%。适合用于客服机器人、AI 助手和自主系统等需要上下文延续的场景。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>多级记忆架构</strong>：支持用户级、会话级、智能体级的多层记忆管理，让信息层次化保存。</li>
+<li><strong>高性能与高效成本</strong>：显著提高准确率、降低延迟与 Token 消耗，实现更省资源的长期记忆支持。</li>
+<li><strong>本地化隐私优先</strong>：所有数据可在本地处理与存储，用户对数据拥有完全控制权。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>客服机器人：记住用户偏好、历史问题，提高响应相关性</li>
+<li>AI 助手：跨会话记忆任务和人设，使互动更连贯自然</li>
+<li>医疗与咨询系统：保留上下文信息以提升服务质量与精准反馈</li>
+</ul>
+<h2 id="zh-10">No.10: ChatTTS</h2>
+<p><img src="https://static-docs.nocobase.com/23-azdged.png" alt="ChatTTS"></p>
+<ul>
+<li>GitHub Star: 37.5k</li>
+<li>GitHub: <a href="https://github.com/2noise/ChatTTS">https://github.com/2noise/ChatTTS</a></li>
+<li>Website: <a href="https://2noise.com/">https://2noise.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/24-e17utt.png" alt="ChatTTS"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>ChatTTS</strong> 是一个专为对话式任务优化的开源文本转语音系统，支持多说话人场景，重点在于表达自然、情绪丰富。为了防止滥用，项目在训练模型中加入少量高频噪音，并压低文件质量，同时计划部署检测机制以加强伦理使用指导。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>对话优化 TTS</strong>：专门优化用于对话场景的语音合成，支持多角色对话和自然节奏表达。</li>
+<li><strong>细粒度韵律控制</strong>：精确控制语音中的笑声、停顿、插入词等韵律元素，使合成显得更自然生动。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>构建人性化语音机器人或互动对话系统。</li>
+<li>教育类产品中的角色配音与语言练习工具。</li>
+<li>语音内容创作与播客自动生成音频辅助工具。</li>
+</ul>
+<h2 id="zh-11">No.11: Arthas</h2>
+<p><img src="https://static-docs.nocobase.com/25-1e8yxo.png" alt="Arthas"></p>
+<ul>
+<li>GitHub Star: 36.6k</li>
+<li>GitHub: <a href="https://github.com/alibaba/arthas">https://github.com/alibaba/arthas</a></li>
+<li>Website: <a href="https://arthas.aliyun.com/">https://arthas.aliyun.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/26-rnqi0c.png" alt="Arthas"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>Arthas</strong> 是阿里巴巴开源的 Java 诊断工具，自发布以来便成为 Java 开发者排查生产环境问题的利器。它的设计初衷是让开发者无需修改代码或重启服务器即可动态 attach 到生产环境应用，执行调试命令、查看栈信息或打断点，极大提升了定位线上问题的效率与安全性。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>动态 Attach 执行</strong>：无需重启或修改代码，直接将 Arthas 注入进生产 JVM 应用，立即调试与监控。</li>
+<li><strong>命令行交互诊断</strong>：提供像 <code>stack</code>, <code>trace</code>, <code>watch</code>,<code>monitor</code> 等命令，通过 CLI 即时查看运行堆栈、方法调用次数及性能指标等诊断信息。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>线上故障快速定位</li>
+<li>性能瓶颈分析</li>
+<li>回归测试问题排查</li>
+</ul>
+<h2 id="zh-12">No.12: AgentGPT</h2>
+<p><img src="https://static-docs.nocobase.com/27-yvq9f7.png" alt="AgentGPT"></p>
+<ul>
+<li>GitHub Star: 34.7k</li>
+<li>GitHub: <a href="https://github.com/reworkd/AgentGPT">https://github.com/reworkd/AgentGPT</a></li>
+<li>Website: <a href="https://arthas.aliyun.com/">https://arthas.aliyun.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/28-fwguw8.png" alt="AgentGPT"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>AgentGPT</strong> 是一个开源项目，让用户可以在浏览器中自主配置和部署 AI 代理，无需复杂部署背景。它提供了更友好的界面，通过输入目标即可让代理“思考—执行—学习”，完成任务目标。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>浏览器式代理配置</strong>：用户只需在网页端设置目标与名字，即可启动 Agent 运行，极大降低部署门槛。</li>
+<li><strong>目标驱动执行</strong>：Agent 会“思考”如何完成设定目标，生成任务子步骤并自动执行、反馈、优化。</li>
+<li><strong>自动化环境初始化</strong>：内置 CLI 可自动配置环境变量、数据库 (MySQL)、后端 (FastAPI) 和前端 (Next.js)，一键启动运行环境。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>任务型辅助智能体</li>
+<li>原型验证工具</li>
+<li>学习与演示平台</li>
+</ul>
+<h2 id="zh-13">No.13: Cherry Studio</h2>
+<p><img src="https://static-docs.nocobase.com/29-z4pzy1.png" alt="Cherry Studio"></p>
+<ul>
+<li>GitHub Star: 31.3k</li>
+<li>GitHub: <a href="https://github.com/CherryHQ/cherry-studio">https://github.com/CherryHQ/cherry-studio</a></li>
+<li>Website: <a href="https://cherry-ai.com/">https://cherry-ai.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/30-qageqb.png" alt="Cherry Studio"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>Cherry Studio</strong> 是由 CSDN、GitCode 与华为云 CodeArts IDE 联合打造的一款 AI 编程助手平台，于 2024 年 12 月亮相业界，并迅速吸引关注。其定位是为开发者提供一站式 AI 助手矩阵，支持自然语言交互、项目级代码改写与全栈开发支持。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>AI 助手矩阵</strong>：内置 300+ 行业专属 AI 助手模板，并支持自定义创建，覆盖写作、编程等多个领域。</li>
+<li><strong>多模型聚合平台</strong>：可自由切换 OpenAI、Gemini 等云端模型与本地模型，并支持多模型对话输出对比。</li>
+<li><strong>可视化 Agent 编辑</strong>：用户可在“智能体广场”中选择预设助理，也可创建自定义 Agent，并可使用 AI 优化提示词。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>项目级代码助手</li>
+<li>行业专属解决方案</li>
+<li>知识驱动的代码生成</li>
+</ul>
+<h2 id="zh-14">No.14: Khoj</h2>
+<p><img src="https://static-docs.nocobase.com/31-l08bdf.png" alt="Khoj"></p>
+<ul>
+<li>GitHub Star: 31.3k</li>
+<li>GitHub: <a href="https://github.com/khoj-ai/khoj">https://github.com/khoj-ai/khoj</a></li>
+<li>Website: <a href="https://khoj.dev/">https://khoj.dev/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/32-x8rb4x.png" alt="Khoj"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>Khoj</strong> 是一款定位为“个人 AI 第二大脑”的开源助手，支持将多源文档整合为知识库，通过语义检索实现内容问答与智能提醒。Khoj 支持通过创建自定义 Agent 来自动执行定时任务、内容推送或即时对话响应。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>多源知识整合</strong>：支持导入 PDF、Markdown、Notion、GitHub 等多种格式内容，构建统一知识库。</li>
+<li><strong>语义搜索与通知</strong>：基于自然语言检索文档内容，并支持定时推送、邮件提醒等功能。</li>
+<li><strong>跨平台 Agent 支持</strong>：可在桌面端、Obsidian 插件、Web 端、Emacs、WhatsApp 等多种环境进行交互。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>个人知识管理助手</li>
+<li>自动提醒系统</li>
+<li>跨工具集成体验</li>
+</ul>
+<h2 id="zh-15">No.15: AIHawk</h2>
+<p><img src="https://static-docs.nocobase.com/33-dxlkjy.png" alt="AIHawk"></p>
+<ul>
+<li>GitHub Star: 28.6k</li>
+<li>GitHub: <a href="https://github.com/feder-cr/Jobs%5C_Applier%5C_AI%5C_Agent%5C_AIHawk">https://github.com/feder-cr/Jobs\_Applier\_AI\_Agent\_AIHawk</a></li>
+<li>Website: <a href="https://laboro.co/">https://laboro.co/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/34-g4zibv.png" alt="AIHawk"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>AIHawk</strong> 是一个 AGPL 授权的开源 AI Agent，专注于自动申请工作职位。它会抓取招聘网站信息，并使用语言模型生成针对性的申请材料，帮助用户高效应聘。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>自动职位申请</strong>：通过爬取招聘网站的信息，自动生成并提交流程优化的申请材料。</li>
+<li><strong>开源架构可扩展</strong>：核心系统保持开源，方便开发者自定义行为或添加插件。</li>
+<li><strong>平台化商业延展</strong>：项目演变为 laboro.co 平台，提供托管服务与更多招聘自动化功能。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>求职者自动申请助手</li>
+<li>招聘流程自动化研究</li>
+<li>招聘平台集成工具</li>
+</ul>
+<h2 id="zh-16">No.16: FastGPT</h2>
+<p><img src="https://static-docs.nocobase.com/35-xvxjpm.png" alt="FastGPT"></p>
+<ul>
+<li>GitHub Star: 25.5k</li>
+<li>GitHub: <a href="https://github.com/labring/FastGPT">https://github.com/labring/FastGPT</a></li>
+<li>Website: <a href="https://fastgpt.io/">https://fastgpt.io/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/36-bu5ifv.png" alt="FastGPT"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>FastGPT</strong> 旨在成为一个 “AI Agent 构建平台”，让开发者无需繁琐配置即可使用可视化工作流与知识库构建复杂 AI 应用，简化部署流程。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>可视化工作流编排</strong>：提供拖拽式界面，支持对话节点、HTTP 调用、RPA、条件分支等，帮助开发者像“搭积木”一样组装 AI 应用。</li>
+<li><strong>知识库与 RAG 支持</strong>：允许导入多格式文件（如 txt、md、pdf 等），支持向量检索与混合检索，实现知识驱动的问答与自动化处理.</li>
+<li><strong>多模型与接口兼容</strong>：统一接入 OpenAI、Claude 等模型；同时提供 OpenAPI-compatible 接口，便于二次开发与嵌入到现有系统中。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>快速搭建智能问答机器人（如客服助手）。</li>
+<li>文档分析与自动摘要生成流程。</li>
+<li>接入外部 API 实现自动化任务处理</li>
+</ul>
+<h2 id="zh-17">No.17: GPT Researcher</h2>
+<p><img src="https://static-docs.nocobase.com/37-dzrr44.png" alt="GPT Researcher"></p>
+<ul>
+<li>GitHub Star: 22.9k</li>
+<li>GitHub: <a href="https://github.com/assafelovic/gpt-researcher">https://github.com/assafelovic/gpt-researcher</a></li>
+<li>Website: <a href="https://gptr.dev/">https://gptr.dev/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/38-34tscx.png" alt="GPT Researcher"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>GPT Researcher</strong> 是一个专注于深度研究任务的 AI Agent 框架，能够自动规划研究流程，爬取信息、生成研究报告，并输出带引用的内容，具备高度报告质量和可定制性。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>并行代理研究</strong>：Planner Agent 生成研究问题，多个 Executor Agents 并行抓取资料与总结，大幅提升效率与确定性。</li>
+<li><strong>事实性报告输出</strong>：自动整理引用内容，输出结构化、客观、带来源的研究报告。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>快速撰写竞品分析或技术调研报告。</li>
+<li>自动化生成学术研究线稿或背景资料汇总。</li>
+<li>构建定制化领域知识代理，用于企业知识汇总。</li>
+</ul>
+<h2 id="zh-18">No.18: CopilotKit</h2>
+<p><img src="https://static-docs.nocobase.com/39-z4vv5d.png" alt="CopilotKit"></p>
+<ul>
+<li>GitHub Star: 22.4k</li>
+<li>GitHub: <a href="https://github.com/CopilotKit/CopilotKit">https://github.com/CopilotKit/CopilotKit</a></li>
+<li>Website: <a href="https://docs.copilotkit.ai/">https://docs.copilotkit.ai/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/40-u5mh13.png" alt="CopilotKit"></p>
+<p><strong>项目概览：</strong></p>
+<p><strong>CopilotKit</strong> 是一个开源框架，旨在帮助开发者将 AI Copilots 无缝集成到应用中，无论是内嵌式聊天、智能文本区，还是完整的 Agent 界面。该项目不仅提供 React UI 组件，还支持 headless 架构，灵活嵌入多种界面。</p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>React 与 Headless UI 支持</strong>：提供即插即用的 UI 组件，也可支持仅 API 驱动的无界面部署方式。</li>
+<li><strong>应用上下文连接</strong>：将应用的逻辑、状态与用户上下文无缝对接到 AI Agent，使功能更加贴合用户需求。</li>
+<li><strong>模型与架构解耦</strong>：支持与任意模型或代理架构独立运作，便于在不影响用户体验的前提下升级 AI 技术栈。</li>
+</ul>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>嵌入式 AI 助手</li>
+<li>自定义 AI 工具</li>
+<li>多模态交互体验</li>
+</ul>
+<h2 id="zh-19">写在最后</h2>
+<p>Agent 擅长探索，不擅长遵守规则。</p>
+<p>上面介绍的 18 个开源 Agent 项目，既是工具箱，也是提醒：选择合适的场景和设计合理的边界，才是让 Agent 发挥最大价值的关键。</p>
+<p>如果这篇文章对你有所启发，欢迎分享给同样在探索 AI Agent 的朋友。👍</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/github-open-source-ai-projects.html">GitHub 上 Star 数量前 20 的开源 AI 项目</a></li>
+<li><a href="../blog/github-open-source-mcp-projects.html">GitHub 上 Star 数量前 8 的开源 MCP 项目</a></li>
+<li><a href="../blog/github-open-source-web-applications.html">GitHub 上 Star 数量前 8 的开源 Web 应用项目</a></li>
+<li><a href="../blog/github-open-source-developer-tools.html">GitHub 上 Star 数排名前 40 的开发者工具</a></li>
+<li><a href="../blog/github-top15-fastest-growing-open-source-low-code-projects.html">2025年GitHub Star增长最快的15个开源低代码项目</a></li>
+<li><a href="../blog/github-open-source-crm-projects.html">GitHub 上星星数量前 11 的开源 CRM 项目</a></li>
+</ul></div><div class="prose en-only"><p>✨ Check out our updated 2026 roundup of open-source AI projects on GitHub: <a href="../blog/best-open-source-ai-projects-github-2026.html">https://www.nocobase.com/en/blog/best-open-source-ai-projects-github-2026</a></p>
+<p>About a month ago, I came across a highly discussed post on <a href="https://news.ycombinator.com/item?id=44450160">Hacker News</a> — “<a href="https://decodingml.substack.com/p/stop-building-ai-agents">Stop Building AI Agents</a>”</p>
+<p><img src="https://static-docs.nocobase.com/1-472k2u.png" alt="Stop Building AI Agents"></p>
+<p>In the post, the author shared a personal experience: he built a &quot;research crew&quot; with CrewAI: three agents, five tools, perfect coordination on paper. But in practice, the researcher ignored the web scraper, the summarizer forgot to use the citation tool and the coordinator gave up entirely when processing longer documents. It was a beautiful plan falling apart in spectacular ways.</p>
+<p>The flowchart below was created by the author after countless rounds of debugging and failed attempts, summarizing his decision guide for <strong>Should I use an Agent</strong>.</p>
+<p><img src="https://static-docs.nocobase.com/2-45bvv4.png" alt="Should I use an Agent"></p>
+<p>Image source: <a href="https://decodingml.substack.com/p/stop-building-ai-agents">https://decodingml.substack.com/p/stop-building-ai-agents</a></p>
+<p>The article distilled an important principle: <strong>agents work best in unstable processes where humans remain in the loop for oversight</strong> — in these scenarios, an agent’s exploratory and creative capabilities often outperform a rigid workflow.</p>
+<ul>
+<li><strong>Recommended scenarios:</strong> data science assistant (auto-generating SQL, creating visualizations, exploring data trends); creative writing partner (brainstorming ideas, refining copy); code refactoring assistant (suggesting optimizations, detecting potential issues). In these cases, humans can continuously evaluate results and correct deviations.</li>
+<li><strong>Not recommended for:</strong> mission-critical enterprise automation (key business processes that cannot risk instability from LLM-driven decisions); high-stakes decision-making (finance, medical diagnosis, legal compliance — areas that require deterministic logic).</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/3-ba22w7.png" alt="scenarios"></p>
+<p>Image source: <a href="https://decodingml.substack.com/p/stop-building-ai-agents">https://decodingml.substack.com/p/stop-building-ai-agents</a></p>
+<p>If you’ve read the above and still feel your business scenario is a good fit for building an agent, this article will walk you through the <strong>top 18 open source <strong><strong><a href="https://github.com/topics/agent">agent projects</a></strong></strong> on GitHub by star count</strong>. For each, we’ll analyze their strengths and limitations from three perspectives — project overview, core features, and use cases — helping you maximize the value of agents in the right contexts.</p>
+<p>If your goal is to compare complete platforms for building internal business systems around Agents, see <a href="../blog/8-open-source-ai-agent-platforms-for-internal-tools.html">8 Open-Source AI Agent Platforms for Building Internal Tools</a>.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>💡 You might also enjoy our previous popular GitHub project roundups (some projects appear in multiple themes):</p>
+<ul>
+<li><a href="../blog/github-open-source-ai-projects.html">Top 20 Open Source AI Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-mcp-projects.html">Top 8 Open Source MCP Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-developer-tools.html">Top 40 Open-source Developer Tools with the Most GitHub Stars</a></li>
+</ul>
+<h2 id="en-1">Update Methodology</h2>
+<p>This article was originally published in 2025, so we keep the original project order rather than re-ranking the list each time it is updated.</p>
+<p>Project information, however, is reviewed regularly. GitHub Stars, licenses, repository status, and other basic details are updated based on the latest available information, so some numbers or project details may differ from the original version.</p>
+<p><strong>Last verified:</strong> September 11, 2026.</p>
+<h2 id="en-2">No.1: Dify</h2>
+<p><img src="https://static-docs.nocobase.com/4-in2l5n.png" alt="Dify"></p>
+<ul>
+<li>GitHub Stars: 155.3k</li>
+<li>License: Dify Open Source License (based on Apache-2.0 with additional conditions)</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/langgenius/dify">https://github.com/langgenius/dify</a></li>
+<li>Website: <a href="https://dify.ai/">https://dify.ai/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/5-psa2vb.png" alt="Dify"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>Dify</strong> is an open-source LLM application development platform that combines an intuitive visual interface, RAG workflows, agent capabilities, model management, and full-stack observability. It enables developers to rapidly build, debug, and deploy AI applications.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Visual Workflow Orchestration:</strong> Drag-and-drop builder that allows developers to design and test complex AI workflows directly on a canvas, including prompts, model calls, and task chaining.</li>
+<li><strong>RAG Pipeline Support:</strong> Ingests multi-format documents (e.g., PDF, PPT), automatically extracts content, and builds retrieval pipelines for knowledge-augmented generation.</li>
+<li><strong>Comprehensive Model Ecosystem &amp; Prompt Editor:</strong> Compatible with GPT, Mistral, Llama3, and all OpenAI API-compatible models. Offers unified model management and prompt tuning, simplifying model switching and performance comparison.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Building intelligent customer service and QA systems</li>
+<li>Integrating with enterprise knowledge bases</li>
+<li>Rapid deployment of content generation tools</li>
+</ul>
+<h2 id="en-3">No.2: Lobe Chat</h2>
+<p><img src="https://static-docs.nocobase.com/6-8eachs.png" alt="Lobe Chat"></p>
+<ul>
+<li>GitHub Stars: 81.5k</li>
+<li>License: LobeHub Community License (based on Apache-2.0 with additional conditions)</li>
+<li>Project status: Active; repository renamed/moved to <code>lobehub/lobehub</code> and the product is now presented as LobeHub</li>
+<li>GitHub: <a href="https://github.com/lobehub/lobe-chat">https://github.com/lobehub/lobe-chat</a></li>
+<li>Website: <a href="https://lobechat.com/">https://lobechat.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/7-t7pkjl.png" alt="Lobe Chat"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>Lobe Chat</strong> is an open-source multi-model chat and application platform with a strong focus on UX. It supports voice, visual recognition, multimodal input, a plugin marketplace, mobile optimization, and multi-user management.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Multimodal &amp; Plugin Support:</strong> Handles voice conversations, image recognition and generation, and can extend functionality via a plugin marketplace to support diverse interaction needs.</li>
+<li><strong>Agent Index Platform:</strong> Community-driven index where users can browse, add, or submit custom assistants for easier extension and reuse.</li>
+<li><strong>Unified Model Integration:</strong> Provides a unified API interface and modular architecture to easily connect with model providers such as OpenAI, Anthropic, Gemini, and Ollama, making platform migration and upgrades seamless.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Quickly building high-interaction, multimodal AI chat applications</li>
+<li>Deploying domain-specific assistants</li>
+</ul>
+<h2 id="en-4">No.3: RAGFlow</h2>
+<p><img src="https://static-docs.nocobase.com/8-p4g4dr.png" alt="RAGFlow"></p>
+<ul>
+<li>GitHub Stars: 90.4k</li>
+<li>License: Apache-2.0</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/infiniflow/ragflow">https://github.com/infiniflow/ragflow</a></li>
+<li>Website: <a href="https://ragflow.io/">https://ragflow.io/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/9-9lvp8h.png" alt="RAGFlow"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>RAGFlow</strong> is an open-source RAG engine focused on deep document understanding, designed to provide high-quality, explainable Q&amp;A and agent services for enterprises and individuals. It can process complex document formats and deliver citation-based answers with visual block management.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Deep Document Understanding:</strong> Excels at parsing unstructured content such as PDF, Word, PPT, Excel, and images, extracting searchable information blocks to ensure generated content is factual and verifiable.</li>
+<li><strong>RAG Q&amp;A with Citation Tracking:</strong> Combines vector retrieval with LLMs to generate cited answers, while allowing manual adjustments to retrieval blocks for improved accuracy.</li>
+<li><strong>Flexible Deployment &amp; Integration:</strong> Offers Docker Compose deployment and integration with various LLMs.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Building document-driven Q&amp;A systems and knowledge assistants</li>
+<li>Implementing content auditing and citation tracking</li>
+<li>Deploying RAG applications that handle complex file structures</li>
+</ul>
+<h2 id="en-5">No.4: OpenHands</h2>
+<p><img src="https://static-docs.nocobase.com/10-b9ssqh.png" alt="OpenHands"></p>
+<ul>
+<li>GitHub Stars: 86.9k</li>
+<li>License: MIT</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/All-Hands-AI/OpenHands">https://github.com/All-Hands-AI/OpenHands</a></li>
+<li>Website: <a href="https://all-hands.dev/">https://all-hands.dev/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/11-a2rzhi.png" alt="OpenHands"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>OpenHands</strong> is built around the idea that AI should “write less code, get more done” — offering capabilities such as code editing, command execution, web browsing, and API calls.</p>
+<p>As an MIT-licensed open-source project, OpenHands can be deployed locally via Docker or accessed through OpenHands Cloud SaaS, which includes initial usage credits for quick trials. With continuous updates, OpenHands has evolved into a comprehensive developer-focused AI platform, now featuring a universal agent controller, multi-agent collaboration, multi-session management, and secure sandbox execution.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>General Developer Agent Capabilities:</strong> Agents can perform tasks like modifying code, running commands, browsing the web, and calling APIs, mimicking the workflows of human developers.</li>
+<li><strong>Multi-Agent Collaboration &amp; Session Management:</strong> Supports multiple agents working together, with built-in session management components (Session, EventStream, AgentController) for task division or collaborative problem-solving.</li>
+<li><strong>Secure Sandbox Execution:</strong> Code and commands run in isolated environments (e.g., Docker containers) to ensure safety and minimize risks to the host system.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Assisting developers with routine coding tasks</li>
+<li>Automating testing and deployment pipelines</li>
+<li>Rapid prototyping and tool development</li>
+</ul>
+<h2 id="en-6">No.5: MetaGPT</h2>
+<p><img src="https://static-docs.nocobase.com/12-btl5l3.png" alt="MetaGPT"></p>
+<ul>
+<li>GitHub Stars: 69.9k</li>
+<li>License: MIT</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/FoundationAgents/MetaGPT">https://github.com/FoundationAgents/MetaGPT</a></li>
+<li>Website: <a href="https://mgx.dev/">https://mgx.dev/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/13-2pwtad.png" alt="13-2pwtad.png"></p>
+<p><strong>Overview:</strong></p>
+<p>MetaGPT is a multi-agent collaboration framework inspired by the concept of simulating a “software company.” It transforms natural language requirements into a complete workflow — from user stories and competitive analysis to API design and documentation. Its core philosophy is “Code = SOP(Team),” turning standard operating procedures (SOPs) into actionable steps across roles like product managers, architects, and engineers.</p>
+<p><img src="https://static-docs.nocobase.com/14-8jh7z3.png" alt="MetaGPT"></p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Multi-Role Agent Collaboration:</strong> Includes built-in agents for roles such as product manager, architect, project manager, and engineer, simulating a real-world team executing SOP-driven projects.</li>
+<li><strong>SOP-Driven Processes:</strong> Guides each agent with standard operating procedures for task breakdown, structured execution, and reduced deviation or hallucination.</li>
+<li><strong>Natural Language Programming:</strong> Users can describe their requirements in plain language, and MetaGPT will generate corresponding user stories, data structures, API interfaces, and architecture designs.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Automatically generating software project proposals</li>
+<li>Rapidly prototyping collaborative team workflows</li>
+<li>Exploring AI-driven software development optimization and automation</li>
+</ul>
+<h2 id="en-7">No.6: LLMs-from-scratch</h2>
+<p><img src="https://static-docs.nocobase.com/15-w7easd.png" alt="LLMs-from-scratch"></p>
+<ul>
+<li>GitHub Stars: 102.3k</li>
+<li>License: Apache-2.0</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/rasbt/LLMs-from-scratch">https://github.com/rasbt/LLMs-from-scratch</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/16-68zqun.png" alt="LLMs-from-scratch"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>LLMs-from-scratch</strong> is an educational project that builds a large language model from the ground up, helping developers understand the core principles and training process of LLMs.</p>
+<p>👉 <a href="https://www.nocobase.com/en/blog/github-open-source-ai-projects#no15-llms-from-scratch">See the full introduction and use cases for more details.</a></p>
+<h2 id="en-8">No.7: Huginn</h2>
+<p><img src="https://static-docs.nocobase.com/17-wzc3ll.png" alt="Huginn"></p>
+<ul>
+<li>GitHub Stars: 49.9k</li>
+<li>License: MIT</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/huginn/huginn">https://github.com/huginn/huginn</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/18-orl7h1.png" alt="Huginn"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>Huginn</strong> is an open-source automation tool that allows users to run agents on their own servers to collect information from the web and trigger actions based on conditions — such as sending email notifications or monitoring keywords. Designed with data control in mind, Huginn has maintained long-term community activity thanks to its self-hosted, privacy-friendly, and extensible agent system.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Self-Hosted Web Agent Platform:</strong> Users deploy agents on their own servers, process data autonomously, and ensure full privacy and control.</li>
+<li><strong>Event–Action Rules Engine:</strong> Supports conditional triggers that automatically execute actions like sending notifications, running scripts, or making HTTP calls when specific web events occur.</li>
+<li><strong>Extensible Agent Mechanism:</strong> Comes with many built-in agents and supports adding custom agents via Huginn Agent gems.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Information monitoring and alerts</li>
+<li>Data scraping and automated workflows</li>
+<li>Building custom automation tools</li>
+</ul>
+<h2 id="en-9">No.8: Unsloth</h2>
+<p><img src="https://static-docs.nocobase.com/19-ihomc8.png" alt="Unsloth"></p>
+<ul>
+<li>GitHub Stars: 75.9k</li>
+<li>License: Apache-2.0 for the core package; AGPL-3.0 for optional components such as Unsloth Studio</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/unslothai/unsloth">https://github.com/unslothai/unsloth</a></li>
+<li>Website: <a href="https://docs.unsloth.ai/">https://docs.unsloth.ai/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/20-eci5h1.png" alt="Unsloth"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>Unsloth</strong> is an open-source toolkit designed for fine-tuning LLMs (such as OpenAI gpt-oss, Qwen3, Llama 4) with a focus on higher efficiency and memory optimization. Built on OpenAI’s Triton architecture, it significantly accelerates training speed while reducing GPU memory usage.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Memory-Optimized Fine-Tuning:</strong> Delivers a 1.5–2.2× speed boost for fine-tuning mainstream LLMs while reducing GPU memory usage by up to 70–80%.</li>
+<li><strong>Easy Notebook Workflow:</strong> Users simply add a dataset and click “Run All” to complete model fine-tuning quickly.</li>
+<li><strong>Broad Model Compatibility:</strong> Supports fine-tuning LLMs including Llama, Gemma, Qwen, and more.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Rapidly fine-tuning LLMs for research or product prototyping</li>
+<li>Education and training</li>
+<li>Scenarios requiring high memory efficiency, such as deployment on resource-limited devices</li>
+</ul>
+<h2 id="en-10">No.9: Mem0</h2>
+<p><img src="https://static-docs.nocobase.com/21-uxkki5.png" alt="Mem0"></p>
+<ul>
+<li>GitHub Stars: 65.0k</li>
+<li>License: Apache-2.0</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/mem0ai/mem0">https://github.com/mem0ai/mem0</a></li>
+<li>Website: <a href="https://mem0.ai/">https://mem0.ai/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/22-bmb2sv.png" alt="Mem0"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>Mem0</strong> is a long-term memory management system purpose-built for AI agents, addressing the common issue of “forgetfulness” in AI. By introducing a unified memory layer, it allows agents to persist user preferences and historical context across sessions and applications, enabling personalized and continuous interactions.</p>
+<p>In LOCOMO benchmark tests, Mem0 outperformed OpenAI Memory with around 26% higher accuracy, 91% lower response latency, and 90% lower token usage. It’s ideal for scenarios like customer service bots, AI assistants, and autonomous systems where context continuity is essential.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Multi-Level Memory Architecture:</strong> Supports user-level, session-level, and agent-level memory layers for structured information storage.</li>
+<li><strong>High Performance &amp; Cost Efficiency:</strong> Improves accuracy while significantly reducing latency and token consumption, delivering long-term memory support with fewer resources.</li>
+<li><strong>Privacy-First Local Processing:</strong> All data can be processed and stored locally, giving users complete control over their information.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><strong>Customer Service Bots:</strong> Retain user preferences and history to improve response relevance</li>
+<li><strong>AI Assistants:</strong> Maintain task and persona memory across sessions for more natural, coherent interactions</li>
+<li><strong>Medical &amp; Counseling Systems:</strong> Preserve context to enhance service quality and precision feedback</li>
+</ul>
+<h2 id="en-11">No.10: ChatTTS</h2>
+<p><img src="https://static-docs.nocobase.com/23-azdged.png" alt="ChatTTS"></p>
+<ul>
+<li>GitHub Stars: 39.8k</li>
+<li>License: AGPLv3+ for code; CC BY-NC 4.0 for the model</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/2noise/ChatTTS">https://github.com/2noise/ChatTTS</a></li>
+<li>Website: <a href="https://2noise.com/">https://2noise.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/24-e17utt.png" alt="ChatTTS"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>ChatTTS</strong> is an open-source text-to-speech system optimized specifically for conversational tasks, supporting multi-speaker scenarios with a focus on natural, emotionally rich expression. To prevent misuse, the project incorporates a small amount of high-frequency noise into the trained model and reduces file quality, with plans to implement detection mechanisms to further guide ethical use.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Conversation-optimized TTS:</strong> Specially tuned for dialogue scenarios, supporting multi-role conversations and natural pacing.</li>
+<li><strong>Fine-grained prosody control:</strong> Precisely manages prosodic elements like laughter, pauses, and filler words, making synthesized speech more vivid and lifelike.</li>
+</ul>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li>Building human-like voice bots or interactive dialogue systems.</li>
+<li>Character dubbing and language practice tools in educational products.</li>
+<li>Audio assistance for voice content creation and automated podcast generation.</li>
+</ul>
+<h2 id="en-12">No.11: Arthas</h2>
+<p><img src="https://static-docs.nocobase.com/25-1e8yxo.png" alt="Arthas"></p>
+<ul>
+<li>GitHub Stars: 37.5k</li>
+<li>License: Apache-2.0</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/alibaba/arthas">https://github.com/alibaba/arthas</a></li>
+<li>Website: <a href="https://arthas.aliyun.com/">https://arthas.aliyun.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/26-rnqi0c.png" alt="Arthas"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>Arthas</strong> is an open-source Java diagnostic tool from Alibaba, and since its release, it has become a go-to solution for Java developers troubleshooting production environment issues. Designed to attach dynamically to production applications without modifying code or restarting servers, it allows developers to run debugging commands, inspect stack traces, or set breakpoints, greatly improving efficiency and safety in production issue resolution.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Dynamic attach execution:</strong> Inject Arthas into a running production JVM app without restarts or code changes to start debugging and monitoring instantly.</li>
+<li><strong>CLI-based interactive diagnostics:</strong> Provides commands like <code>stack</code>, <code>trace</code>, <code>watch</code>, and <code>monitor</code> to instantly view runtime stacks, method call counts, performance metrics, and more.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Rapid production incident resolution.</li>
+<li>Performance bottleneck analysis.</li>
+<li>Regression testing issue investigation.</li>
+</ul>
+<h2 id="en-13">No.12: AgentGPT</h2>
+<p><img src="https://static-docs.nocobase.com/27-yvq9f7.png" alt="AgentGPT"></p>
+<ul>
+<li>GitHub Stars: 36.3k</li>
+<li>License: GPL-3.0</li>
+<li>Project status: Archived on January 28, 2026; repository is read-only</li>
+<li>GitHub: <a href="https://github.com/reworkd/AgentGPT">https://github.com/reworkd/AgentGPT</a></li>
+<li>Website: <a href="https://arthas.aliyun.com/">https://arthas.aliyun.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/28-fwguw8.png" alt="AgentGPT"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>AgentGPT</strong> is an open-source project that allows users to configure and deploy AI agents directly in the browser without complex setup. With a user-friendly interface, simply input a goal, and the agent will “think–act–learn” to accomplish it.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Browser-based agent configuration:</strong> Set goals and names directly in the web interface to launch agents, lowering deployment barriers.</li>
+<li><strong>Goal-driven execution:</strong> Agents autonomously plan sub-tasks, execute them, provide feedback, and optimize their approach.</li>
+<li><strong>Automated environment setup:</strong> Built-in CLI configures environment variables, database (MySQL), backend (FastAPI), and frontend (Next.js) for one-click deployment.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Task-focused intelligent assistants.</li>
+<li>Prototype validation tools.</li>
+<li>Learning and demonstration platforms.</li>
+</ul>
+<h2 id="en-14">No.13: Cherry Studio</h2>
+<p><img src="https://static-docs.nocobase.com/29-z4pzy1.png" alt="Cherry Studio"></p>
+<ul>
+<li>GitHub Stars: 51.6k</li>
+<li>License: AGPL-3.0 for the Community Edition</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/CherryHQ/cherry-studio">https://github.com/CherryHQ/cherry-studio</a></li>
+<li>Website: <a href="https://cherry-ai.com/">https://cherry-ai.com/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/30-qageqb.png" alt="Cherry Studio"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>Cherry Studio</strong>, launched in December 2024, is a joint AI coding assistant platform by CSDN, GitCode, and Huawei Cloud CodeArts IDE. It aims to provide a one-stop matrix of AI assistants for developers, supporting natural language interaction, project-level code refactoring, and full-stack development support.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>AI assistant matrix:</strong> Includes 300+ industry-specific AI assistant templates, with the option to create custom ones, covering areas from writing to programming.</li>
+<li><strong>Multi-model aggregation:</strong> Freely switch between cloud models like OpenAI and Gemini or local models, and compare outputs from multiple models in parallel.</li>
+<li><strong>Visual agent editing:</strong> Choose from preset assistants in the “Agent Marketplace” or create custom agents, with AI-assisted prompt optimization.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Project-level code assistance.</li>
+<li>Industry-specific solutions.</li>
+<li>Knowledge-driven code generation.</li>
+</ul>
+<h2 id="en-15">No.14: Khoj</h2>
+<p><img src="https://static-docs.nocobase.com/31-l08bdf.png" alt="Khoj"></p>
+<ul>
+<li>GitHub Stars: 37.2k</li>
+<li>License: AGPL-3.0</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/khoj-ai/khoj">https://github.com/khoj-ai/khoj</a></li>
+<li>Website: <a href="https://khoj.dev/">https://khoj.dev/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/32-x8rb4x.png" alt="Khoj"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>Khoj</strong> is an open-source personal “second brain” assistant that integrates documents from multiple sources into a knowledge base, enabling semantic search for Q&amp;A and intelligent reminders. It supports creating custom agents for scheduled tasks, content delivery, or real-time conversational responses.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Multi-source knowledge integration:</strong> Imports content from PDF, Markdown, Notion, GitHub, and more into a unified knowledge base.</li>
+<li><strong>Semantic search and notifications:</strong> Retrieves document content using natural language queries, with scheduled push notifications and email reminders.</li>
+<li><strong>Cross-platform agent support:</strong> Works on desktop, as an Obsidian plugin, web, Emacs, WhatsApp, and more.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Personal knowledge management assistant.</li>
+<li>Automated reminder systems.</li>
+<li>Cross-tool integration experiences.</li>
+</ul>
+<h2 id="en-16">No.15: AIHawk</h2>
+<p><img src="https://static-docs.nocobase.com/33-dxlkjy.png" alt="AIHawk"></p>
+<ul>
+<li>GitHub Stars: 30.3k</li>
+<li>License: MIT for current releases; versions distributed before September 2, 2026 remain AGPL-3.0</li>
+<li>Project status: Active; repositioned in 2026 from job-application automation to a general-purpose browser/computer-use agent</li>
+<li>GitHub: <a href="https://github.com/feder-cr/Jobs_Applier_AI_Agent_AIHawk">https://github.com/feder-cr/Jobs_Applier_AI_Agent_AIHawk</a></li>
+<li>Website: <a href="https://laboro.co/">https://laboro.co/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/34-g4zibv.png" alt="AIHawk"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>AIHawk</strong> is an AGPL-licensed open-source AI agent focused on automating job applications. It scrapes job listings and uses language models to generate tailored application materials, helping users apply efficiently.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Automated job applications:</strong> Crawls job websites and generates optimized application materials.</li>
+<li><strong>Extensible open-source architecture:</strong> Developers can customize behavior or add plugins.</li>
+<li><strong>Commercial platform extension:</strong> Evolved into the laboro.co platform, offering hosted services and expanded recruitment automation features.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Automatic job application assistant.</li>
+<li>Recruitment process automation research.</li>
+<li>Recruitment platform integration tools.</li>
+</ul>
+<h2 id="en-17">No.16: FastGPT</h2>
+<p><img src="https://static-docs.nocobase.com/35-xvxjpm.png" alt="FastGPT"></p>
+<ul>
+<li>GitHub Stars: 29.6k</li>
+<li>License: FastGPT Open Source License</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/labring/FastGPT">https://github.com/labring/FastGPT</a></li>
+<li>Website: <a href="https://fastgpt.io/">https://fastgpt.io/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/36-bu5ifv.png" alt="FastGPT"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>FastGPT</strong> is designed as an “AI agent building platform,” enabling developers to construct complex AI applications using visual workflows and knowledge bases, without tedious configuration.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Visual workflow orchestration:</strong> Drag-and-drop interface supporting dialogue nodes, HTTP calls, RPA, conditional branches, and more.</li>
+<li><strong>Knowledge base &amp; RAG support:</strong> Import multiple file formats (txt, md, pdf, etc.), with vector and hybrid retrieval for knowledge-driven Q&amp;A and automation.</li>
+<li><strong>Multi-model &amp; API compatibility:</strong> Integrates with OpenAI, Claude, and others; provides OpenAPI-compatible interfaces for easy embedding into existing systems.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Rapidly building intelligent Q&amp;A bots (e.g., customer service assistants).</li>
+<li>Document analysis and automated summarization workflows.</li>
+<li>Automated task handling with external API integration.</li>
+</ul>
+<h2 id="en-18">No.17: GPT Researcher</h2>
+<p><img src="https://static-docs.nocobase.com/37-dzrr44.png" alt="GPT Researcher"></p>
+<ul>
+<li>GitHub Stars: 28.9k</li>
+<li>License: Apache-2.0</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/assafelovic/gpt-researcher">https://github.com/assafelovic/gpt-researcher</a></li>
+<li>Website: <a href="https://gptr.dev/">https://gptr.dev/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/38-34tscx.png" alt="GPT Researcher"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>GPT Researcher</strong> is an AI agent framework specialized for deep research tasks. It can automatically plan research workflows, scrape information, generate research reports, and output content with citations, offering high report quality and customizability.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>Parallel agent research:</strong> A planner agent creates research questions, while multiple executor agents gather and summarize information in parallel for greater efficiency and reliability.</li>
+<li><strong>Factual report generation:</strong> Organizes and cites content automatically, producing structured, objective research reports with sources.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Writing competitive analysis or technical research reports quickly.</li>
+<li>Automated creation of academic research outlines or background summaries.</li>
+<li>Building domain-specific knowledge agents for enterprise knowledge aggregation.</li>
+</ul>
+<h2 id="en-19">No.18: CopilotKit</h2>
+<p><img src="https://static-docs.nocobase.com/39-z4vv5d.png" alt="CopilotKit"></p>
+<ul>
+<li>GitHub Stars: 37.3k</li>
+<li>License: MIT</li>
+<li>Project status: Active</li>
+<li>GitHub: <a href="https://github.com/CopilotKit/CopilotKit">https://github.com/CopilotKit/CopilotKit</a></li>
+<li>Website: <a href="https://docs.copilotkit.ai/">https://docs.copilotkit.ai/</a></li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/40-u5mh13.png" alt="CopilotKit"></p>
+<p><strong>Overview:</strong></p>
+<p><strong>CopilotKit</strong> is an open-source framework for seamlessly integrating AI copilots into applications—whether as embedded chat, intelligent text areas, or full agent interfaces. It provides React UI components and a headless architecture for flexible embedding.</p>
+<p><strong>Core Features:</strong></p>
+<ul>
+<li><strong>React &amp; headless UI support:</strong> Plug-and-play UI components or headless API-only deployments.</li>
+<li><strong>Application context integration:</strong> Connects app logic, state, and user context to AI agents for more tailored functionality.</li>
+<li><strong>Model-architecture decoupling:</strong> Works independently of specific models or agent frameworks, allowing AI stack upgrades without affecting user experience.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Embedded AI assistants.</li>
+<li>Custom AI tools.</li>
+<li>Multi-modal interactive experiences.</li>
+</ul>
+<h2 id="en-20">Final Note</h2>
+<p>Agents excel at exploration but struggle with strict rule-following.</p>
+<p>The 18 open-source agent projects above are both a toolbox and a reminder: selecting the right scenarios and designing reasonable boundaries is key to maximizing the value of agents.</p>
+<p>If this article inspired you, feel free to share it with others exploring AI agents. 👍</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/github-open-source-ai-projects.html">Top 20 Open Source AI Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-mcp-projects.html">Top 8 Open Source MCP Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-web-applications.html">Top 7 Open Source Web Applications with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-developer-tools.html">Top 40 Open-source Developer Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-top15-fastest-growing-open-source-low-code-projects.html">Top 15 Fastest-Growing Open-Source Low-Code Projects on GitHub in 2025</a></li>
+<li><a href="../blog/github-open-source-crm-projects.html">Top 11 Open-source CRM Projects with the Most GitHub Stars</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">No.1: Dify</a><a href="#zh-2">No.2: Lobe Chat</a><a href="#zh-3">No.3: RAGFlow</a><a href="#zh-4">No.4: OpenHands</a><a href="#zh-5">No.5: MetaGPT</a><a href="#zh-6">No.6: LLMs-from-scratch</a><a href="#zh-7">No.7: Huginn</a><a href="#zh-8">No.8: Unsloth</a><a href="#zh-9">No.9: Mem0</a><a href="#zh-10">No.10: ChatTTS</a><a href="#zh-11">No.11: Arthas</a><a href="#zh-12">No.12: AgentGPT</a><a href="#zh-13">No.13: Cherry Studio</a><a href="#zh-14">No.14: Khoj</a><a href="#zh-15">No.15: AIHawk</a><a href="#zh-16">No.16: FastGPT</a><a href="#zh-17">No.17: GPT Researcher</a><a href="#zh-18">No.18: CopilotKit</a><a href="#zh-19">写在最后</a></div><div class="en-only"><a href="#en-1">Update Methodology</a><a href="#en-2">No.1: Dify</a><a href="#en-3">No.2: Lobe Chat</a><a href="#en-4">No.3: RAGFlow</a><a href="#en-5">No.4: OpenHands</a><a href="#en-6">No.5: MetaGPT</a><a href="#en-7">No.6: LLMs-from-scratch</a><a href="#en-8">No.7: Huginn</a><a href="#en-9">No.8: Unsloth</a><a href="#en-10">No.9: Mem0</a><a href="#en-11">No.10: ChatTTS</a><a href="#en-12">No.11: Arthas</a><a href="#en-13">No.12: AgentGPT</a><a href="#en-14">No.13: Cherry Studio</a><a href="#en-15">No.14: Khoj</a><a href="#en-16">No.15: AIHawk</a><a href="#en-17">No.16: FastGPT</a><a href="#en-18">No.17: GPT Researcher</a><a href="#en-19">No.18: CopilotKit</a><a href="#en-20">Final Note</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

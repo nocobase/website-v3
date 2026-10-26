@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase 0.11：全新的客户端 Application、Plugin 和 Router — NocoBase" data-en="NocoBase 0.11: New client application, plugin and router — NocoBase">NocoBase 0.11：全新的客户端 Application、Plugin 和 Router — NocoBase</title>
+<meta name="description" content="NocoBase 0.11 版本引入全新的客户端应用、插件和路由器，升级 antd 到 v5，并新增数据可视化、API 密钥和 Google 地图插件。" data-zh="NocoBase 0.11 版本引入全新的客户端应用、插件和路由器，升级 antd 到 v5，并新增数据可视化、API 密钥和 Google 地图插件。" data-en="NocoBase 0.11 introduces a new client application, plugin, and router, with an update to antd v5 and new plugins for data visualization, API keys, and Google Maps integration.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></p>
+    <h1><t-zh>NocoBase 0.11：全新的客户端 Application、Plugin 和 Router</t-zh><t-en>NocoBase 0.11: New client application, plugin and router</t-en></h1>
+    <p class="lede"><t-zh>NocoBase 0.11 版本引入全新的客户端应用、插件和路由器，升级 antd 到 v5，并新增数据可视化、API 密钥和 Google 地图插件。</t-zh><t-en>NocoBase 0.11 introduces a new client application, plugin, and router, with an update to antd v5 and new plugins for data visualization, API keys, and Google Maps integration.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2023年7月7日</t-zh><t-en>Jul 7, 2023</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/07123a2f9b8ae93ba5abb07d7dd45fb2.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">新特性</h2>
+<ul>
+<li>全新的客户端 Application、Plugin 和 Router</li>
+<li>antd 升级到 v5</li>
+<li>新插件<ul>
+<li>数据可视化</li>
+<li>API 秘钥</li>
+<li>Google 地图</li>
+</ul>
+</li>
+</ul>
+<h2 id="zh-2">不兼容的变化</h2>
+<h3>全新的客户端 Application、Plugin 和 Router</h3>
+<h4>插件的变化</h4>
+<p>以前必须传递一个组件，并且组件需要透传 <code>props.children</code>，例如：</p>
+<pre><code>const HelloProvider = (props) =&gt; {
+  // do something logic
+  return &lt;div&gt;
+    {props.children}
+  &lt;/div&gt;;
+}
+
+export default HelloProvider
+</code></pre>
+<p>现在需要改为插件的方式，例如：</p>
+<pre><code>+import { Plugin } from &#39;@nocobase/client&#39;
+
+const HelloProvider = (props) =&gt; {
+  // do something logic
+  return &lt;div&gt;
+    {props.children}
+  &lt;/div&gt;;
+}
+
++ export class HelloPlugin extends Plugin {
++   async load() {
++     this.app.addProvider(HelloProvider);
++   }
++ }
+
+- export default HelloProvider;
++ export default HelloPlugin;
+</code></pre>
+<p>插件的功能很强大，可以在 <code>load</code> 阶段做很多事情：</p>
+<ul>
+<li>修改路由</li>
+<li>增加 Components</li>
+<li>增加 Providers</li>
+<li>增加 Scopes</li>
+<li>加载其他插件</li>
+</ul>
+<h4>路由的变化</h4>
+<p>如果之前使用了 <code>RouteSwitchContext</code> 进行路由修改，现在需要通过插件替换：</p>
+<pre><code>import { RouteSwitchContext } from &#39;@nocobase/client&#39;;
+
+const HelloProvider = () =&gt; {
+  const { routes, ...others } = useContext(RouteSwitchContext);
+  routes[1].routes.unshift({
+    path: &#39;/hello&#39;,
+    component: Hello,
+  });
+
+  return &lt;div&gt;
+    &lt;RouteSwitchContext.Provider value={{ ...others, routes }}&gt;
+      {props.children}
+    &lt;/RouteSwitchContext.Provider&gt;
+  &lt;/div&gt;
+}
+</code></pre>
+<p>需要改为：</p>
+<pre><code>- import { RouteSwitchContext } from &#39;@nocobase/client&#39;;
++ import { Plugin } from &#39;@nocobase/client&#39;;
+
+const HelloProvider = (props) =&gt; {
+-  const { routes, ...others } = useContext(RouteSwitchContext);
+-  routes[1].routes.unshift({
+-    path: &#39;/hello&#39;,
+-    component: Hello,
+-  });
+
+  return &lt;div&gt;
+-   &lt;RouteSwitchContext.Provider value={{ ...others, routes }}&gt;
+      {props.children}
+-   &lt;/RouteSwitchContext.Provider&gt;
+  &lt;/div&gt;
+}
+
++ export class HelloPlugin extends Plugin {
++  async load() {
++    this.app.router.add(&#39;admin.hello&#39;, {
++       path: &#39;/hello&#39;,
++       Component: Hello,
++    });
++    this.app.addProvider(HelloProvider);
++  }
++ }
++ export default HelloPlugin;
+</code></pre>
+<p>更多文档和示例见 <a href="https://github.com/nocobase/nocobase/blob/main/packages/core/client/src/application/index.md">packages/core/client/src/application/index.md</a></p></div><div class="prose en-only"><h2 id="en-1">New features</h2>
+<ul>
+<li>New client application, plugin and router</li>
+<li>Ant design upgrade to v5</li>
+<li>New plugin<ul>
+<li>Data visualization</li>
+<li>API keys</li>
+<li>Google map</li>
+</ul>
+</li>
+</ul>
+<h2 id="en-2">Incompatible changes</h2>
+<h3>New client application, plugin and router</h3>
+<h4>Plugin changes</h4>
+<p>before you had to pass a component and the component needed to pass <code>props.children</code>, for example:</p>
+<pre><code>const HelloProvider = (props) =&gt; {
+  // do something logic
+  return &lt;div&gt;{props.children}&lt;/div&gt;;
+};
+
+export default HelloProvider;
+</code></pre>
+<p>now you need to change to the plugin way, for example:</p>
+<pre><code>+import { Plugin } from &#39;@nocobase/client&#39;
+
+const HelloProvider = (props) =&gt; {
+  // do something logic
+  return &lt;div&gt;
+    {props.children}
+  &lt;/div&gt;;
+}
+
++ export class HelloPlugin extends Plugin {
++   async load() {
++     this.app.addProvider(HelloProvider);
++   }
++ }
+
+- export default HelloProvider;
++ export default HelloPlugin;
+</code></pre>
+<p>plugins are very powerful and can do a lot of things in the <code>load</code> phase:</p>
+<ul>
+<li>modify routes</li>
+<li>add Components</li>
+<li>add Providers</li>
+<li>add Scopes</li>
+<li>load other plugins</li>
+</ul>
+<h4>Routing changes</h4>
+<p>if you used <code>RouteSwitchContext</code> to modify the route before, you now need to replace it with a plugin:</p>
+<pre><code>import { RouteSwitchContext } from &#39;@nocobase/client&#39;;
+
+const HelloProvider = () =&gt; {
+  const { routes, ...others } = useContext(RouteSwitchContext);
+  routes[1].routes.unshift({
+    path: &#39;/hello&#39;,
+    component: Hello,
+  });
+
+  return (
+    &lt;div&gt;
+      &lt;RouteSwitchContext.Provider value={{ ...others, routes }}&gt;
+        {props.children}
+      &lt;/RouteSwitchContext.Provider&gt;
+    &lt;/div&gt;
+  );
+};
+</code></pre>
+<p>now you need to change to the plugin way, for example:</p>
+<pre><code>- import { RouteSwitchContext } from &#39;@nocobase/client&#39;;
++ import { Plugin } from &#39;@nocobase/client&#39;;
+
+const HelloProvider = (props) =&gt; {
+-  const { routes, ...others } = useContext(RouteSwitchContext);
+-  routes[1].routes.unshift({
+-    path: &#39;/hello&#39;,
+-    component: Hello,
+-  });
+
+  return &lt;div&gt;
+-   &lt;RouteSwitchContext.Provider value={{ ...others, routes }}&gt;
+      {props.children}
+-   &lt;/RouteSwitchContext.Provider&gt;
+  &lt;/div&gt;
+}
+
++ export class HelloPlugin extends Plugin {
++  async load() {
++    this.app.router.add(&#39;admin.hello&#39;, {
++       path: &#39;/hello&#39;,
++       Component: Hello,
++    });
++    this.app.addProvider(HelloProvider);
++  }
++ }
++ export default HelloPlugin;
+</code></pre>
+<p>more details can be found in <a href="https://github.com/nocobase/nocobase/blob/main/packages/core/client/src/application/index.md">packages/core/client/src/application/index.md</a></p>
+<h3>antd upgrade to v5</h3>
+<ul>
+<li>antd related details view the official website <a href="https://ant.design/docs/react/migration-v5">V4 to V5</a></li>
+<li><code>@formily/antd</code> replace with <code>@formily/antd-v5</code></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">新特性</a><a href="#zh-2">不兼容的变化</a></div><div class="en-only"><a href="#en-1">New features</a><a href="#en-2">Incompatible changes</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/2.2.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-hygy1r.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年8月23日</t-zh><t-en>Aug 23, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2 正式版发布</t-zh><t-en>Announcing NocoBase 2.2</t-en></h3><p><t-zh>NocoBase 2.2 正式版进一步完善 V2 的完整使用路径，带来独立、轻量的 /v/ 前端入口与全新移动端体验。同时升级文件访问与权限机制，并增强评论区块、AI 知识库、工作流及核心插件的 V2 支持。</t-zh><t-en>NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.</t-en></p></a><a class="bcard" href="../blog/2.2.0-beta.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-beta-2kf9fd.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年7月17日</t-zh><t-en>Jul 17, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2-beta 发布</t-zh><t-en>Announcing NocoBase 2.2-beta</t-en></h3><p><t-zh>NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</t-zh><t-en>NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</t-en></p></a><a class="bcard" href="../blog/2.1.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(9)-tfwpkk.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.1.0 正式版发布</t-zh><t-en>Announcing NocoBase 2.1.0</t-en></h3><p><t-zh>NocoBase 2.1 以全新的 CLI 打通人与 AI Agent 连接和管理应用的入口，并完善 AI 搭建、Skills、AI 插件开发和 AI 员工能力。同时升级多应用协作、版本管理、工作流增强及更多 2.0 适配能力。</t-zh><t-en>NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

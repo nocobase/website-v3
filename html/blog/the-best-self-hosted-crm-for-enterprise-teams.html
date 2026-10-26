@@ -1,0 +1,2135 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="企业级自托管 CRM 推荐（支持 RBAC、AI 和 API） — NocoBase" data-en="The Best Enterprise-Grade Self-Hosted CRMs with RBAC, AI, and Open API Support — NocoBase">企业级自托管 CRM 推荐（支持 RBAC、AI 和 API） — NocoBase</title>
+<meta name="description" content="梳理13款主流自托管CRM，从RBAC权限、AI能力、开放API等维度逐一对比，帮助企业找到最契合自身业务流程的开源CRM解决方案。" data-zh="梳理13款主流自托管CRM，从RBAC权限、AI能力、开放API等维度逐一对比，帮助企业找到最契合自身业务流程的开源CRM解决方案。" data-en="Compare 13 self-hosted CRM tools across RBAC, AI, and API to find the best fit for your enterprise workflows.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>资讯</t-zh><t-en>News</t-en></p>
+    <h1><t-zh>企业级自托管 CRM 推荐（支持 RBAC、AI 和 API）</t-zh><t-en>The Best Enterprise-Grade Self-Hosted CRMs with RBAC, AI, and Open API Support</t-en></h1>
+    <p class="lede"><t-zh>梳理13款主流自托管CRM，从RBAC权限、AI能力、开放API等维度逐一对比，帮助企业找到最契合自身业务流程的开源CRM解决方案。</t-zh><t-en>Compare 13 self-hosted CRM tools across RBAC, AI, and API to find the best fit for your enterprise workflows.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年4月24日</t-zh><t-en>Apr 24, 2026</t-en></span><span><t-zh>Yuan Tianqi，Deng Lijia</t-zh><t-en>Yuan Tianqi，Deng Lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Group%2029-cca3df-c3xupk.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">TL;DR</h2>
+<p>SuiteCRM、EspoCRM、Twenty CRM 和 Odoo 提供了出色的自托管 CRM 解决方案，但它们都有固定的数据结构和预定义的工作流，可能不适合你的业务。</p>
+<p>NocoBase 不同，它是可以构建你自己的 CRM 的底座：</p>
+<ul>
+<li>数据模型驱动，完全由你定义数据架构</li>
+<li>AI 员工在你的工作流中工作（不只是 AI 功能）</li>
+<li>企业级安全的字段级权限</li>
+<li>完全的数据主权</li>
+</ul>
+<p>传统 CRM 要求你适应它们的流程，而 NocoBase 适应你的流程，无厂商锁定，无需妥协。</p>
+<hr>
+<p>最近，<a href="https://www.reddit.com/r/CRMSoftware/comments/1skc3hu/whats_the_best_crm_for_enterprise_teams_with/">Reddit 的 r/CRMSoftware 社区里有人抛出了一个问题</a>：工作流复杂的企业团队，到底该用哪款 CRM？</p>
+<p><img src="https://static-docs.nocobase.com/reddit-t2gayw.png" alt="reddit.png"></p>
+<p>标准 CRM 的预设流程根本装不下团队的业务逻辑，要么改流程迁就工具，要么花大价钱定制。为此，我们梳理了 13 款主流自托管 CRM 工具，从 RBAC 权限、AI 能力、开放 API 等维度逐一拆解，希望能帮你快速找到契合业务需求的工具。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2">企业如何自托管 CRM？</h2>
+<p>并非所有自托管 CRM 都生而平等。企业需要：</p>
+<ol>
+<li><strong>RBAC（基于角色的访问控制）</strong>——为销售、支持、管理层提供细粒度权限</li>
+<li><strong>AI 能力</strong>——智能自动化、预测分析、AI 驱动的洞察</li>
+<li><strong>开放 API</strong>——与现有系统集成（ERP、营销、支持）</li>
+</ol>
+<p>让我们从这些关键维度评估 13 款自托管 CRM 解决方案。</p>
+<h2 id="zh-3">评估框架：企业 CRM 的 6 个维度</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>衡量内容</th>
+<th>为什么对企业重要</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. RBAC 能力</td>
+<td>角色和权限管理的深度</td>
+<td>企业需要细粒度访问控制（销售 vs 支持 vs 管理层）</td>
+</tr>
+<tr>
+<td>2. AI 集成</td>
+<td>原生 AI 功能或 API 就绪度</td>
+<td>AI 是 2026 年 CRM 的第一大趋势——预测线索评分、自动化、洞察</td>
+</tr>
+<tr>
+<td>3. API 开放度</td>
+<td>API 质量、文档和集成便利性</td>
+<td>必须与 ERP、营销自动化、支持工具集成</td>
+</tr>
+<tr>
+<td>4. 定制化</td>
+<td>系统适应业务的灵活性</td>
+<td>每个企业都有独特的工作流</td>
+</tr>
+<tr>
+<td>5. 部署选项</td>
+<td>Docker、Kubernetes、云选项</td>
+<td>IT 团队有特定的基础设施要求</td>
+</tr>
+<tr>
+<td>6. 总成本</td>
+<td>3 年的设置 + 维护 + 托管成本</td>
+<td>预算决策包括隐性维护成本</td>
+</tr>
+</tbody></table>
+<h2 id="zh-4">第一类：构建自定义 CRM 的低代码平台</h2>
+<blockquote>
+<p><strong>最适合</strong>：工作流独特、不符合标准 CRM 模式的企业</p>
+<p><strong>权衡</strong>： 需要更多前期工作，但完美适配你的业务</p>
+</blockquote>
+<h3>#1 NocoBase | 数据模型驱动的 CRM 构建平台</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/nocobase/nocobase">github.com/nocobase/nocobase</a>(22k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（开源）</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐（细粒度、字段级权限）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐⭐⭐（AI 员工、工作流集成）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐（RESTful API，完全可编程）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/nocobase1-p16yr4.png" alt="nocobase1.png"></p>
+<p><strong>NocoBase 的不同之处</strong>：</p>
+<p>NocoBase 不是 CRM——它是<strong>构建你自己的 CRM 的平台</strong>。可以这样理解：</p>
+<pre><code class="language-Plain">传统 CRM = 买一件成衣
+NocoBase = 获得一件量身定制的西装
+</code></pre>
+<p>💡 <strong><a href="https://docs.nocobase.com/cn/solution/crm/">如何用 NocoBase 从零开始构建 CRM？</a></strong></p>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>✅ <strong>企业级 RBAC</strong>：细粒度权限，下至字段级别</li>
+<li>✅ <strong>AI 原生</strong>：AI 员工在你的 CRM 工作流中工作</li>
+<li>✅ <strong>开放 API</strong>：RESTful API 实现完整集成</li>
+<li>✅ <strong>你控制的数据模型</strong>：设计你的客户数据结构</li>
+<li>✅ <strong>插件生态系统</strong>：扩展而不破坏系统</li>
+<li>✅ <strong>自托管</strong>：完全的数据主权</li>
+</ul>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>销售流程独特的企业</li>
+<li>需要深度 AI 集成的公司</li>
+<li>拥有开发资源的团队（或使用 AI + NocoBase）</li>
+<li>已超越传统 CRM 的组织</li>
+</ul>
+<p><strong>NocoBase CRM 能力</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>NocoBase 优势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据模型</td>
+<td>设计你的客户实体（而非固定字段）</td>
+</tr>
+<tr>
+<td>销售管道</td>
+<td>为你的阶段设计的可视化工作流构建器</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>字段级 RBAC（例如，销售看不到利润）</td>
+</tr>
+<tr>
+<td>AI 员工</td>
+<td>合格线索、更新记录、触发工作流的 AI 智能体</td>
+</tr>
+<tr>
+<td>集成</td>
+<td>API 优先设计，连接任何东西</td>
+</tr>
+<tr>
+<td>报告</td>
+<td>包含你的指标的自定义仪表板</td>
+</tr>
+</tbody></table>
+<p>🎉 <strong><a href="https://www.nocobase.com/cn/solutions/crm-v2">欢迎体验 NocoBase CRM 解决方案！</a></strong></p>
+<h3>#2 Baserow | 数据库优先的 CRM 构建器</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/bram2w/baserow">github.com/bram2w/baserow</a>(18k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（自托管）/ 云版付费</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐（团队级权限）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐（通过集成）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐（REST API、JWT 认证）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Baserow-iusx5k.png" alt="Baserow.png"></p>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>简单的 CRM 需求</li>
+<li>数据库优先的方法</li>
+<li>类似 Airtable 的体验</li>
+</ul>
+<h3>#3 Appsmith | 快速构建 CRM UI</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/appsmithorg/appsmith">github.com/appsmithorg/appsmith</a>(32k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（自托管）/ 云版付费</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐（用户组和权限）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐（通过 AI 小部件）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐（连接任何数据源）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Appsmith-b6m5rp.png" alt="Appsmith.png"></p>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>在现有数据库之上构建 CRM UI</li>
+<li>内部工具团队</li>
+<li>快速原型开发</li>
+</ul>
+<h3>#4 Budibase | 低代码 CRM 构建器</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/Budibase/budibase">github.com/Budibase/budibase</a>(21k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（自托管）/ 云版付费</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐（行级权限）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐（通过扩展）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐（REST API）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Budibase-2p0flp.png" alt="Budibase.png"></p>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>内部 CRM 工具</li>
+<li>简单的客户数据库</li>
+<li>低代码开发团队</li>
+</ul>
+<h2 id="zh-5">第二类：专用自托管 CRM 平台</h2>
+<blockquote>
+<p><strong>最适合：</strong> 希望获得开箱即用全功能 CRM 的组织</p>
+<p><strong>权衡：</strong> 灵活性不如自己构建，但部署更快</p>
+</blockquote>
+<h3>#5 SuiteCRM  | 全功能开箱即用的老牌 CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/salesagility/SuiteCRM">github.com/salesagility/SuiteCRM</a>(4.5k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（开源）</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐（基于角色，灵活）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐（通过插件/扩展）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐（提供 REST API）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/SuiteCRM-fx41y4.png" alt="SuiteCRM.png"></p>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>✅ SugarCRM 的分支，持续活跃开发</li>
+<li>✅ 全面的功能集（销售、营销、服务）</li>
+<li>✅ 庞大的社区和扩展市场</li>
+<li>✅ 经过验证的企业级部署记录</li>
+</ul>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>从 SugarCRM 迁移的企业</li>
+<li>希望获得传统 CRM 体验的组织</li>
+<li>拥有 PHP 开发资源的团队</li>
+</ul>
+<p><strong>RBAC 能力</strong>：</p>
+<ul>
+<li>基于角色的灵活访问控制</li>
+<li>敏感数据的字段级安全</li>
+<li>基于团队的数据分区</li>
+</ul>
+<h3>#6 EspoCRM  | 架构轻量、权限细腻的开源 CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/espocrm/espocrm">github.com/espocrm/espocrm</a>(2.5k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（开源）</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐（优秀的细粒度权限）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐⭐（开放的 AI 集成架构）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐（RESTful API，文档完善）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/EspoCRM-bdt0y1.png" alt="EspoCRM.png"></p>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>✅ 现代轻量级架构，PHP 后端，前端已完成现代化重构</li>
+<li>✅ 出色的 RBAC，支持基于角色和团队的权限</li>
+<li>✅ 清晰的 REST API，易于集成</li>
+<li>✅ 响应式移动界面</li>
+</ul>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>现代 IT 技术栈</li>
+<li>API 优先的集成</li>
+<li>希望精细权限控制的团队</li>
+</ul>
+<p><strong>RBAC 能力</strong>：</p>
+<ul>
+<li>基于角色的细粒度权限</li>
+<li>基于团队的数据可见性</li>
+<li>字段级访问控制</li>
+<li>自定义角色创建</li>
+</ul>
+<h3>#7 Twenty CRM | 面向现代技术栈的新兴开源 CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/twentyhq/twenty">github.com/twentyhq/twenty</a>(22k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（开源）</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐（能力快速提升中）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐⭐（AI 原生架构，功能持续迭代中）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐（GraphQL API）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Twenty%20CRM-k6cj69.png" alt="Twenty CRM.png"></p>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>✅ 现代技术栈（React、NestJS、PostgreSQL）</li>
+<li>✅ 惊艳的 UI/UX 设计</li>
+<li>✅ GraphQL API 实现灵活集成</li>
+<li>✅ 高度活跃的开发（22k+ GitHub Stars）</li>
+<li>✅ AI 原生架构设计，功能仍在快速落地</li>
+</ul>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>初创公司和现代化企业</li>
+<li>GraphQL 优先的开发团队</li>
+<li>优先考虑 AI 能力的组织</li>
+</ul>
+<p><strong>RBAC 能力</strong>：</p>
+<ul>
+<li>基于角色的权限（快速改进中）</li>
+<li>基于工作区的隔离</li>
+<li>API 级访问控制</li>
+</ul>
+<h3>#8 Dolibarr | 轻量一体化的中小企业 CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/Dolibarr/dolibarr">github.com/Dolibarr/dolibarr</a>(5.5k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（开源）</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐（基本基于角色的权限）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐（通过第三方模块）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐（提供 REST API）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Dolibarr-xwx1w4.png" alt="Dolibarr.png"></p>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>✅ 一体化（CRM + ERP + 开票）</li>
+<li>✅ 简单易用，易于设置</li>
+<li>✅ 广泛的模块生态系统</li>
+<li>✅ 非常适合中小型企业</li>
+</ul>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>需要在一个系统中使用 CRM + ERP 的中小企业</li>
+<li>CRM 需求简单的组织</li>
+<li>预算有限的团队</li>
+</ul>
+<h3>#9 YetiForce | 权限深度突出的高度可配置 CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/YetiForceCompany/YetiForceCRM">github.com/YetiForceCompany/YetiForceCRM</a>(1.2k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（开源）</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐（深度权限系统）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐（通过集成）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐（REST API）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/YetiForce-1m711z.png" alt="YetiForce.png"></p>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>✅ 极度可定制</li>
+<li>✅ 高级安全和权限</li>
+<li>✅ 广泛的模块范围</li>
+<li>✅ 活跃开发</li>
+</ul>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>有复杂权限需求的企业</li>
+<li>愿意投入定制化的团队</li>
+<li>希望精细控制的组织</li>
+</ul>
+<h3>#10 CiviCRM | 专为非营利组织设计的 CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/civicrm/civicrm-core">github.com/civicrm/civicrm-core</a>(1k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（开源）</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐（ACL 系统）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐（通过扩展）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐（REST v3 和 v4 API）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/CiviCRM-bo2149.png" alt="CiviCRM.png"></p>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>非营利组织</li>
+<li>协会</li>
+</ul>
+<h3>#11 Vtiger（开源版） | 界面传统、上手平缓的开源 CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/vtiger/vtigercrm">github.com/vtiger/vtigercrm</a>(1.5k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（开源版）</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐（基于角色）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐（开源版中有限）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐（REST API）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Vtiger%EF%BC%88%E5%BC%80%E6%BA%90%E7%89%88%EF%BC%89-czbyg3.png" alt="Vtiger.png"></p>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>希望获得熟悉 CRM 界面的团队</li>
+<li>小企业</li>
+<li>从商业 Vtiger 迁移</li>
+</ul>
+<h2 id="zh-6">第三类：内置 CRM 的 ERP</h2>
+<h3>#12 ERPNext | 开源 ERP + CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/frappe/erpnext">github.com/frappe/erpnext</a>(23k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>免费（自托管）/ 云版付费</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐（权限系统）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐（通过集成）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐（REST API）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/ERPNext-4ag578.png" alt="ERPNext.png"></p>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>制造公司</li>
+<li>分销企业</li>
+<li>需要 ERP + CRM 的组织</li>
+</ul>
+<h3>#13 Odoo CRM | 生态完整的模块化 ERP + CRM</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/odoo/odoo">github.com/odoo/odoo</a>(35k+ stars)</td>
+</tr>
+<tr>
+<td>定价</td>
+<td>社区版免费 / 企业版付费</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐（高级访问权限）</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐⭐（企业版中的 AI 功能）</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐（外部 API、XML-RPC、JSON-RPC）</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Odoo%20CRM-k40gky.png" alt="Odoo CRM.png"></p>
+<p><strong>优势</strong>：</p>
+<ul>
+<li>✅ 无缝的 CRM + ERP 集成</li>
+<li>✅ 庞大的应用生态系统（15,000+ 应用）</li>
+<li>✅ 高级记录规则和访问控制</li>
+<li>✅ 经过验证的企业级部署</li>
+</ul>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>需要 CRM + ERP 集成的公司</li>
+<li>制造和分销企业</li>
+<li>希望统一平台的企业</li>
+</ul>
+<p><strong>RBAC 能力</strong>：</p>
+<ul>
+<li>记录级访问规则</li>
+<li>字段级权限</li>
+<li>高级多公司规则</li>
+<li>自定义角色和组</li>
+</ul>
+<h2 id="zh-7">全平台对比矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>CRM</th>
+<th>类型</th>
+<th>RBAC</th>
+<th>AI</th>
+<th>API</th>
+<th>定制化</th>
+<th>部署</th>
+<th>3年总成本</th>
+<th>综合评分</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>平台</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>低</td>
+<td>9.5/10</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>CRM</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>低</td>
+<td>8.8/10</td>
+</tr>
+<tr>
+<td>Twenty CRM</td>
+<td>CRM</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>低</td>
+<td>8.7/10</td>
+</tr>
+<tr>
+<td>Odoo</td>
+<td>ERP+CRM</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>中</td>
+<td>8.5/10</td>
+</tr>
+<tr>
+<td>SuiteCRM</td>
+<td>CRM</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>低</td>
+<td>7.8/10</td>
+</tr>
+<tr>
+<td>YetiForce</td>
+<td>CRM</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>低</td>
+<td>7.8/10</td>
+</tr>
+<tr>
+<td>Dolibarr</td>
+<td>ERP+CRM</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>低</td>
+<td>7.2/10</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>平台</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>低</td>
+<td>7.5/10</td>
+</tr>
+</tbody></table>
+<h2 id="zh-8">常见问题</h2>
+<h3>Q1: 哪个自托管 CRM 最适合企业？</h3>
+<p><strong>A:</strong> 取决于你的需求：</p>
+<table>
+<thead>
+<tr>
+<th>你的优先级</th>
+<th>最佳选择</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开箱即用的 CRM</td>
+<td>EspoCRM 或 SuiteCRM</td>
+</tr>
+<tr>
+<td>自定义工作流</td>
+<td>NocoBase</td>
+</tr>
+<tr>
+<td>ERP + CRM 集成</td>
+<td>NocoBase、Odoo 或 ERPNext</td>
+</tr>
+<tr>
+<td>现代技术栈</td>
+<td>Twenty CRM</td>
+</tr>
+<tr>
+<td>预算有限</td>
+<td>NocoBase、Dolibarr 或 Twenty CRM</td>
+</tr>
+</tbody></table>
+<p><strong>首选推荐</strong>： 对于希望完全控制和定制化的企业，<strong>NocoBase</strong> 提供了 RBAC、AI 集成和 API 开放度的最佳组合。</p>
+<h3>Q2: 应该使用现成的 CRM 还是自己构建？</h3>
+<p><strong>A:</strong> 使用这个决策框架：</p>
+<p><strong>选择现成 CRM 如果</strong>：</p>
+<ul>
+<li>你的销售流程相当标准</li>
+<li>希望快速部署</li>
+<li>没有开发者资源</li>
+<li>符合传统 CRM 工作流</li>
+</ul>
+<p><strong>选择自己构建（NocoBase）如果</strong>：</p>
+<ul>
+<li>你的业务流程独特</li>
+<li>需要深度 AI 集成</li>
+<li>有开发者资源（或使用 AI 编程代理）</li>
+<li>希望完全控制</li>
+<li>已超越传统 CRM</li>
+</ul>
+<p><strong>混合方法</strong>： 使用 NocoBase 用自定义工作流和 AI 能力扩展现有 CRM。</p>
+<h3>Q3: NocoBase 与 Salesforce 相比如何？</h3>
+<p><strong>A:</strong> 它们服务于不同的目的：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Salesforce</th>
+<th>NocoBase</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>SaaS CRM</td>
+<td>构建 CRM 的平台</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>$150-300美元/用户/年</td>
+<td>免费（自托管）</td>
+</tr>
+<tr>
+<td>定制化</td>
+<td>有限（在平台内）</td>
+<td>无限（你控制代码）</td>
+</tr>
+<tr>
+<td>数据控制</td>
+<td>Salesforce 云端</td>
+<td>你的服务器</td>
+</tr>
+<tr>
+<td>AI 功能</td>
+<td>Einstein AI（付费附加）</td>
+<td>AI 员工（内置，免费）</td>
+</tr>
+<tr>
+<td>厂商锁定</td>
+<td>高</td>
+<td>无</td>
+</tr>
+<tr>
+<td>最适合</td>
+<td>标准销售流程</td>
+<td>自定义业务流程</td>
+</tr>
+</tbody></table>
+<p><strong>结论</strong>： 如果想要快速获得标准功能，选择 Salesforce。如果想完全掌控、构建完全贴合自己业务的系统，选择 NocoBase。</p>
+<p>💡 推荐阅读：**<a href="../blog/nocobase-vs-salesforce.html">NocoBase vs Salesforce：谁才是你的理想 CRM？</a>**</p>
+<h3>Q4: 可以从 Salesforce 迁移到自托管 CRM 吗？</h3>
+<p><strong>A:</strong> 可以，但需要规划：</p>
+<p><strong>迁移过程</strong>：</p>
+<ol>
+<li>从 Salesforce <strong>导出数据</strong>（CSV 或 API）</li>
+<li>将字段<strong>映射</strong>到新 CRM 结构</li>
+<li><strong>迁移自定义工作流</strong>（在新系统中重建）</li>
+<li>将数据<strong>导入</strong>自托管 CRM</li>
+<li>切换前彻底<strong>测试</strong></li>
+<li>在新系统上<strong>培训用户</strong></li>
+</ol>
+<p><strong>时间线</strong>： 根据复杂性 1-2 个月</p>
+<p><strong>工具</strong>： 大多数自托管 CRM 提供迁移工具或服务</p>
+<p>💡 推荐阅读；**<a href="../blog/salesforce-open-source-crmalternative.html">四个强大的 Salesforce 开源替代方案（附成本对比）</a>**</p>
+<h3>Q5: 哪个自托管 CRM 的 AI 功能最好？</h3>
+<p><strong>A:</strong> 按 AI 能力排名：</p>
+<table>
+<thead>
+<tr>
+<th>CRM</th>
+<th>AI 能力</th>
+<th>评分</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>AI 员工、工作流集成、自动化洞察</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Twenty CRM</td>
+<td>AI 原生架构，功能持续迭代落地中</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Odoo</td>
+<td>企业版中的 AI 功能</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>开放的 AI 集成架构</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>SuiteCRM</td>
+<td>通过第三方插件</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Dolibarr</td>
+<td>通过模块</td>
+<td>⭐⭐</td>
+</tr>
+</tbody></table>
+<p><strong>AI 优先 CRM</strong>： NocoBase 或 Twenty CRM</p>
+<p>💡 <strong>推荐阅读</strong>：**<a href="https://docs.nocobase.com/cn/ai-employees">AI 员工 - NocoBase 文档</a>**</p>
+<h3>Q6: 设置自托管 CRM 有多难？</h3>
+<p><strong>A:</strong> 难度级别：</p>
+<table>
+<thead>
+<tr>
+<th>CRM</th>
+<th>技术难度</th>
+<th>设置时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dolibarr</td>
+<td>⭐（简单）</td>
+<td>1-2 小时</td>
+</tr>
+<tr>
+<td>Twenty CRM</td>
+<td>⭐⭐（中等）</td>
+<td>2-4 小时</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>⭐⭐（中等）</td>
+<td>3-6 小时</td>
+</tr>
+<tr>
+<td>SuiteCRM</td>
+<td>⭐⭐⭐（中级）</td>
+<td>1-2 天</td>
+</tr>
+<tr>
+<td>Odoo</td>
+<td>⭐⭐⭐⭐（高级）</td>
+<td>3-5 天</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>⭐⭐（中等）</td>
+<td>2-4 小时（构建 CRM：2-4 天）</td>
+</tr>
+</tbody></table>
+<p><strong>所有都支持 Docker 部署</strong>以简化设置。</p>
+<p><strong>非技术团队</strong>： 考虑托管服务或聘请顾问。</p>
+<h3>Q7: 合规性如何（GDPR、HIPAA、SOC 2）？</h3>
+<p><strong>A:</strong> 自托管 CRM 提供<strong>合规优势</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>法规</th>
+<th>自托管优势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GDPR</td>
+<td>数据留在欧盟；完全控制数据处理</td>
+</tr>
+<tr>
+<td>HIPAA</td>
+<td>本地部署；内置审计跟踪</td>
+</tr>
+<tr>
+<td>SOC 2</td>
+<td>控制你的安全控制；无第三方风险</td>
+</tr>
+<tr>
+<td>数据本地化</td>
+<td>在你的国家部署；符合当地法律</td>
+</tr>
+</tbody></table>
+<p><strong>NocoBase 优势</strong>： 内置审计日志、字段级权限和基于角色的访问支持合规要求。</p>
+<h3>Q8: 自托管 CRM 可以与其他工具集成吗？</h3>
+<p><strong>A:</strong> 可以，大多数提供强大的集成选项：</p>
+<table>
+<thead>
+<tr>
+<th>集成类型</th>
+<th>工作方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>邮件</td>
+<td>SMTP/IMAP 集成、日历同步</td>
+</tr>
+<tr>
+<td>营销自动化</td>
+<td>Zapier、Make、n8n 或自定义 API</td>
+</tr>
+<tr>
+<td>支持工具</td>
+<td>API 集成、共享数据库</td>
+</tr>
+<tr>
+<td>ERP</td>
+<td>数据库级同步或 API 调用</td>
+</tr>
+<tr>
+<td>自定义系统</td>
+<td>REST API、webhooks、GraphQL</td>
+</tr>
+</tbody></table>
+<p><strong>NocoBase 优势</strong>： 开放的 RESTful API 和 webhook 支持，无限集成。</p>
+<h2 id="zh-9">结语</h2>
+<p>SuiteCRM 和 EspoCRM 适合想开箱即用的团队，Odoo 和 ERPNext 适合需要打通 ERP 的企业，Twenty CRM 和 Dolibarr 适合预算有限的初创公司。</p>
+<p>但如果你的业务流程本身有独特性，套用任何一款现成 CRM 都难免遇到摩擦。这时候更值得考虑的，是用 NocoBase 从头搭建一套真正属于自己的 CRM——无论是精细的权限管控、深度的 AI 集成，还是完全自定义的数据模型，都可以按需适配。</p>
+<p>如果这篇文章对你有帮助，欢迎分享给有同样需求的朋友。</p>
+<p><strong>相关阅读</strong>：</p>
+<ul>
+<li><strong><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">告别自研中间件：6个开源系统集成工具推荐</a></strong></li>
+<li><strong><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Airtable 与 NocoBase：从Excel迁移的真实成本对比</a></strong></li>
+<li><strong><a href="../blog/excel-to-web-app-4-methods.html">为 Excel 数据快速构建 Web 应用：4 种方法对比</a></strong></li>
+<li><strong><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">不只 PostgreSQL：5 个支持外部数据库的无代码/低代码平台对比</a></strong></li>
+<li><strong><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">开源项目管理工具选型指南（2026年最新）</a></strong></li>
+<li><strong><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">如何用 PostgreSQL 构建一个自定义 CRM</a></strong></li>
+<li><strong><a href="../blog/best-open-source-ai-projects-github-2026.html">2026 年值得关注的 20 个 GitHub AI 项目：不只有 OpenClaw</a></strong></li>
+<li><strong><a href="../blog/best-ai-crm-open-source-nocobase-twenty-krayin.html">GitHub 上开源 CRM AI 能力深度拆解：NocoBase vs Twenty vs Krayin CRM</a></strong></li>
+<li><strong><a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">GitHub 上 3 款开源 AI ERP 对比：NocoBase、Odoo 与 ERPNext</a></strong></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">TL;DR</h2>
+<p>SuiteCRM, EspoCRM, Twenty CRM, and Odoo are all solid self-hosted CRM options — but they come with fixed data structures and predefined workflows that may not align with how your business actually operates.</p>
+<p>NocoBase takes a different approach: it&#39;s the foundation you build your own CRM on.</p>
+<ul>
+<li>Data model-driven — you define the entire data architecture</li>
+<li>AI agents that work inside your workflows (not just bolt-on AI features)</li>
+<li>Enterprise-grade, field-level security</li>
+<li>Full data sovereignty</li>
+</ul>
+<p>Traditional CRMs expect you to conform to their processes. NocoBase conforms to yours — no vendor lock-in, no trade-offs.</p>
+<hr>
+<p>Recently, <a href="https://www.reddit.com/r/CRMSoftware/comments/1skc3hu/whats_the_best_crm_for_enterprise_teams_with/">someone in Reddit&#39;s r/CRMSoftware community posed a question</a>: for enterprise teams with complex workflows, which CRM actually works?</p>
+<p><img src="https://static-docs.nocobase.com/reddit-t2gayw.png" alt="reddit.png"></p>
+<p>The problem is that standard CRMs aren&#39;t built for complex business logic — you either reshape your processes around the tool, or pay a premium for customization. To help cut through the noise, we evaluated 13 leading self-hosted CRM tools across key dimensions: RBAC, AI capabilities, and API openness, so you can quickly find the right fit for your business.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-2">How Do Enterprises Self-Host a CRM?</h2>
+<p>Not all self-hosted CRMs are built the same. Enterprises typically require:</p>
+<ol>
+<li><strong>RBAC (Role-Based Access Control)</strong> — granular permissions across sales, support, and management</li>
+<li><strong>AI capabilities</strong> — intelligent automation, predictive analytics, and AI-driven insights</li>
+<li><strong>Open APIs</strong> — seamless integration with existing systems (ERP, marketing, support)</li>
+</ol>
+<p>With those requirements in mind, let&#39;s evaluate 13 self-hosted CRM solutions across each of these dimensions.</p>
+<h2 id="en-3">Evaluation Framework: 6 Dimensions for Enterprise CRM</h2>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>What It Measures</th>
+<th>Why It Matters for Enterprises</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. RBAC</td>
+<td>Depth of role and permission management</td>
+<td>Enterprises need granular access control across sales, support, and management</td>
+</tr>
+<tr>
+<td>2. AI Integration</td>
+<td>Native AI features or API readiness</td>
+<td>AI is the top CRM priority in 2026 — lead scoring, automation, and insights</td>
+</tr>
+<tr>
+<td>3. API Openness</td>
+<td>API quality, documentation, and ease of integration</td>
+<td>Must connect with ERP, marketing automation, and support platforms</td>
+</tr>
+<tr>
+<td>4. Customization</td>
+<td>How well the system adapts to your business</td>
+<td>Every enterprise has unique workflows</td>
+</tr>
+<tr>
+<td>5. Deployment Options</td>
+<td>Docker, Kubernetes, cloud options</td>
+<td>IT teams have specific infrastructure requirements</td>
+</tr>
+<tr>
+<td>6. Total Cost</td>
+<td>Setup + maintenance + hosting costs over 3 years</td>
+<td>Budget decisions must account for hidden maintenance costs</td>
+</tr>
+</tbody></table>
+<h2 id="en-4">Category 1: Low-Code Platforms for Building a Custom CRM</h2>
+<blockquote>
+<p><strong>Best for</strong>: Enterprises with workflows that don&#39;t fit standard CRM molds</p>
+<p><strong>Trade-off</strong>: More upfront effort required, but the result is a perfect fit for your business</p>
+</blockquote>
+<h3>#1 NocoBase | Data Model-Driven CRM Platform</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/nocobase/nocobase">github.com/nocobase/nocobase</a> (22k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (open-source)</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐ (granular, field-level permissions)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐⭐⭐ (AI agents, workflow integration)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐ (RESTful API, fully programmable)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/nocobase1-p16yr4.png" alt="nocobase1.png"></p>
+<p><strong>What Sets NocoBase Apart</strong>:</p>
+<p>NocoBase isn&#39;t a CRM — it&#39;s <strong>the platform you use to build your own CRM</strong>. Think of it this way:</p>
+<pre><code>Traditional CRM = Buying off the rack
+NocoBase = Getting a bespoke suit
+</code></pre>
+<p>💡 <strong><a href="https://docs.nocobase.com/en/solution/crm/">How to Build a CRM from Scratch with NocoBase?</a></strong></p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>✅ <strong>Enterprise-grade RBAC</strong>: Granular permissions down to the field level</li>
+<li>✅ <strong>AI-native</strong>: AI agents embedded directly in your CRM workflows</li>
+<li>✅ <strong>Open API</strong>: Full RESTful API for seamless integration</li>
+<li>✅ <strong>You own the data model</strong>: Design your customer data structure from the ground up</li>
+<li>✅ <strong>Plugin ecosystem</strong>: Extend the system without breaking it</li>
+<li>✅ <strong>Self-hosted</strong>: Complete data sovereignty</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Enterprises with non-standard sales processes</li>
+<li>Companies that need deep AI integration</li>
+<li>Teams with development resources (or leveraging AI + NocoBase)</li>
+<li>Organizations that have outgrown traditional CRMs</li>
+</ul>
+<p><strong>NocoBase CRM Capabilities</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>NocoBase Advantage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data Model</td>
+<td>Define your own customer entities — no rigid fields</td>
+</tr>
+<tr>
+<td>Sales Pipeline</td>
+<td>Visual workflow builder tailored to your pipeline stages</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>Field-level RBAC (e.g., sales reps can&#39;t view profit margins)</td>
+</tr>
+<tr>
+<td>AI Agents</td>
+<td>Qualify leads, update records, and trigger workflows automatically</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>API-first design — connect to any system</td>
+</tr>
+<tr>
+<td>Reporting</td>
+<td>Custom dashboards built around your own metrics</td>
+</tr>
+</tbody></table>
+<p>🎉 <strong><a href="https://www.nocobase.com/en/solutions/crm-v2">Explore the NocoBase CRM Solution!</a></strong></p>
+<h3>#2 Baserow | Database-First CRM Builder</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/bram2w/baserow">github.com/bram2w/baserow</a> (18k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (self-hosted) / Paid cloud plans</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐ (team-level permissions)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐ (via integrations)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐ (REST API with JWT authentication)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Baserow-iusx5k.png" alt="Baserow.png"></p>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Simple CRM use cases</li>
+<li>Database-first workflows</li>
+<li>Teams looking for an Airtable-like experience</li>
+</ul>
+<h3>#3 Appsmith | Build CRM UIs Fast</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/appsmithorg/appsmith">github.com/appsmithorg/appsmith</a> (32k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (self-hosted) / Paid cloud plans</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐ (user groups and permissions)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐ (via AI widgets)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐ (connects to any data source)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Appsmith-b6m5rp.png" alt="Appsmith.png"></p>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Building CRM frontends on top of existing databases</li>
+<li>Internal tooling teams</li>
+<li>Rapid prototyping</li>
+</ul>
+<h3>#4 Budibase | Low-Code CRM Builder</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/Budibase/budibase">github.com/Budibase/budibase</a> (21k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (self-hosted) / Paid cloud plans</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐ (row-level permissions)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐ (via extensions)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐ (REST API)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Budibase-2p0flp.png" alt="Budibase.png"></p>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Internal CRM tools</li>
+<li>Simple customer databases</li>
+<li>Low-code development teams</li>
+</ul>
+<h2 id="en-5">Category 2: Dedicated Self-Hosted CRM Platforms</h2>
+<blockquote>
+<p><strong>Best for</strong>: Organizations that want a full-featured CRM ready to go out of the box</p>
+<p><strong>Trade-off</strong>: Less flexible than building your own, but significantly faster to deploy</p>
+</blockquote>
+<h3>#5 SuiteCRM | Battle-Tested, Full-Featured Open-Source CRM</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/salesagility/SuiteCRM">github.com/salesagility/SuiteCRM</a> (4.5k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (open-source)</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐ (role-based, flexible)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐ (via plugins/extensions)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐ (REST API)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/SuiteCRM-fx41y4.png" alt="SuiteCRM.png"></p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>✅ Forked from SugarCRM, with a continuously active development community</li>
+<li>✅ Comprehensive feature set covering sales, marketing, and service</li>
+<li>✅ Large community with a rich extension marketplace</li>
+<li>✅ Proven track record in enterprise deployments</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Enterprises migrating from SugarCRM</li>
+<li>Organizations looking for a conventional CRM experience</li>
+<li>Teams with PHP development resources</li>
+</ul>
+<p><strong>RBAC Capabilities</strong>:</p>
+<ul>
+<li>Flexible role-based access control</li>
+<li>Field-level security for sensitive data</li>
+<li>Team-based data segmentation</li>
+</ul>
+<h3>#6 EspoCRM | Lightweight Architecture, Exceptional Permission Control</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/espocrm/espocrm">github.com/espocrm/espocrm</a> (2.5k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (open-source)</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐ (outstanding granular permissions)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐⭐ (open AI integration architecture)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐ (RESTful API, well-documented)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/EspoCRM-bdt0y1.png" alt="EspoCRM.png"></p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>✅ Modern, lightweight architecture — PHP backend with a fully modernized frontend</li>
+<li>✅ Excellent RBAC with both role-based and team-based permissions</li>
+<li>✅ Clean, well-structured REST API that&#39;s easy to integrate with</li>
+<li>✅ Responsive mobile interface</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Modern IT stacks</li>
+<li>API-first integration scenarios</li>
+<li>Teams that need granular permission control</li>
+</ul>
+<p><strong>RBAC Capabilities</strong>:</p>
+<ul>
+<li>Granular role-based permissions</li>
+<li>Team-based data visibility controls</li>
+<li>Field-level access control</li>
+<li>Custom role creation</li>
+</ul>
+<h3>#7 Twenty CRM | A Modern Open-Source CRM Built for Today&#39;s Tech Stacks</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/twentyhq/twenty">github.com/twentyhq/twenty</a> (22k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (open-source)</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐ (capabilities rapidly improving)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐⭐ (AI-native architecture, features actively being rolled out)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐ (GraphQL API)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Twenty%20CRM-k6cj69.png" alt="Twenty CRM.png"></p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>✅ Modern tech stack (React, NestJS, PostgreSQL)</li>
+<li>✅ Polished, well-crafted UI/UX</li>
+<li>✅ GraphQL API for flexible, efficient integrations</li>
+<li>✅ Highly active development community (22k+ GitHub stars)</li>
+<li>✅ AI-native by design, with new features being actively shipped</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Startups and modern-minded enterprises</li>
+<li>GraphQL-first development teams</li>
+<li>Organizations prioritizing AI capabilities</li>
+</ul>
+<p><strong>RBAC Capabilities</strong>:</p>
+<ul>
+<li>Role-based permissions (under rapid development)</li>
+<li>Workspace-level data isolation</li>
+<li>API-level access control</li>
+</ul>
+<h3>#8 Dolibarr | Lightweight All-in-One Solution for SMBs</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/Dolibarr/dolibarr">github.com/Dolibarr/dolibarr</a> (5.5k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (open-source)</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐ (basic role-based permissions)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐ (via third-party modules)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐ (REST API)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Dolibarr-xwx1w4.png" alt="Dolibarr.png"></p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>✅ Truly all-in-one: CRM + ERP + invoicing in one package</li>
+<li>✅ Simple to set up and easy to use</li>
+<li>✅ Extensive module ecosystem</li>
+<li>✅ A great fit for small and mid-sized businesses</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>SMBs that want CRM + ERP under one roof</li>
+<li>Organizations with straightforward CRM needs</li>
+<li>Budget-conscious teams</li>
+</ul>
+<h3>#9 YetiForce | Highly Configurable CRM with Deep Permission Controls</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/YetiForceCompany/YetiForceCRM">github.com/YetiForceCompany/YetiForceCRM</a> (1.2k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (open-source)</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐ (deep, layered permission system)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐ (via integrations)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐ (REST API)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/YetiForce-1m711z.png" alt="YetiForce.png"></p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>✅ Extensively customizable</li>
+<li>✅ Advanced security controls and granular permissions</li>
+<li>✅ Broad module coverage</li>
+<li>✅ Actively maintained</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Enterprises with complex permission requirements</li>
+<li>Teams willing to invest in custom configuration</li>
+<li>Organizations that demand fine-grained control</li>
+</ul>
+<h3>#10 CiviCRM | Purpose-Built CRM for Nonprofits</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/civicrm/civicrm-core">github.com/civicrm/civicrm-core</a> (1k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (open-source)</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐ (ACL system)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐ (via extensions)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐ (REST v3 and v4 API)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/CiviCRM-bo2149.png" alt="CiviCRM.png"></p>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Nonprofit organizations</li>
+<li>Membership associations</li>
+</ul>
+<h3>#11 Vtiger (Open Source) | Familiar Interface, Low Learning Curve</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/vtiger/vtigercrm">github.com/vtiger/vtigercrm</a> (1.5k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (open-source version)</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐ (role-based)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐ (limited in the open-source edition)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐ (REST API)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Vtiger%EF%BC%88%E5%BC%80%E6%BA%90%E7%89%88%EF%BC%89-czbyg3.png" alt="Vtiger.png"></p>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Teams who prefer a conventional CRM interface</li>
+<li>Small businesses</li>
+<li>Organizations migrating from commercial Vtiger</li>
+</ul>
+<h2 id="en-6">Category 3: ERPs with Built-In CRM</h2>
+<h3>#12 ERPNext | Open-Source ERP + CRM</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/frappe/erpnext">github.com/frappe/erpnext</a> (23k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Free (self-hosted) / Paid cloud plans</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐ (robust permission system)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐ (via integrations)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐ (REST API)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/ERPNext-4ag578.png" alt="ERPNext.png"></p>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Manufacturing companies</li>
+<li>Distribution businesses</li>
+<li>Organizations that need unified ERP + CRM</li>
+</ul>
+<h3>#13 Odoo CRM | Modular ERP + CRM with a Complete App Ecosystem</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td><a href="https://github.com/odoo/odoo">github.com/odoo/odoo</a> (35k+ stars)</td>
+</tr>
+<tr>
+<td>Pricing</td>
+<td>Community edition: free / Enterprise edition: paid</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>⭐⭐⭐⭐⭐ (advanced access controls)</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>⭐⭐⭐⭐ (AI features available in Enterprise edition)</td>
+</tr>
+<tr>
+<td>API</td>
+<td>⭐⭐⭐⭐⭐ (External API, XML-RPC, JSON-RPC)</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/Odoo%20CRM-k40gky.png" alt="Odoo CRM.png"></p>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>✅ Native CRM + ERP integration</li>
+<li>✅ Massive app ecosystem (15,000+ apps)</li>
+<li>✅ Advanced record rules and access controls</li>
+<li>✅ Proven enterprise-grade deployment history</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Companies requiring tight CRM + ERP integration</li>
+<li>Manufacturing and distribution enterprises</li>
+<li>Organizations seeking a unified business platform</li>
+</ul>
+<p><strong>RBAC Capabilities</strong>:</p>
+<ul>
+<li>Record-level access rules</li>
+<li>Field-level permissions</li>
+<li>Advanced multi-company access controls</li>
+<li>Custom roles and user groups</li>
+</ul>
+<h2 id="en-7">Full Platform Comparison Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>CRM</th>
+<th>Type</th>
+<th>RBAC</th>
+<th>AI</th>
+<th>API</th>
+<th>Customization</th>
+<th>Deployment</th>
+<th>3-Year Cost</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Platform</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>Low</td>
+<td>9.5/10</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>CRM</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>Low</td>
+<td>8.8/10</td>
+</tr>
+<tr>
+<td>Twenty CRM</td>
+<td>CRM</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>Low</td>
+<td>8.7/10</td>
+</tr>
+<tr>
+<td>Odoo</td>
+<td>ERP+CRM</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>Medium</td>
+<td>8.5/10</td>
+</tr>
+<tr>
+<td>SuiteCRM</td>
+<td>CRM</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>Low</td>
+<td>7.8/10</td>
+</tr>
+<tr>
+<td>YetiForce</td>
+<td>CRM</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>Low</td>
+<td>7.8/10</td>
+</tr>
+<tr>
+<td>Dolibarr</td>
+<td>ERP+CRM</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>Low</td>
+<td>7.2/10</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>Platform</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>Low</td>
+<td>7.5/10</td>
+</tr>
+</tbody></table>
+<h2 id="en-8">FAQ</h2>
+<h3>Q1: Which self-hosted CRM is best for enterprises?</h3>
+<p><strong>A:</strong> It depends on your priorities:</p>
+<table>
+<thead>
+<tr>
+<th>Your Priority</th>
+<th>Best Choice</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Out-of-the-box CRM</td>
+<td>EspoCRM or SuiteCRM</td>
+</tr>
+<tr>
+<td>Custom workflows</td>
+<td>NocoBase</td>
+</tr>
+<tr>
+<td>ERP + CRM integration</td>
+<td>NocoBase, Odoo, or ERPNext</td>
+</tr>
+<tr>
+<td>Modern tech stack</td>
+<td>Twenty CRM</td>
+</tr>
+<tr>
+<td>Limited budget</td>
+<td>NocoBase, Dolibarr, or Twenty CRM</td>
+</tr>
+</tbody></table>
+<p><strong>Top recommendation</strong>: For enterprises that want complete control and deep customization, <strong>NocoBase</strong> delivers the strongest combination of RBAC, AI integration, and API openness.</p>
+<h3>Q2: Should I use an off-the-shelf CRM or build my own?</h3>
+<p><strong>A:</strong> Use this decision framework:</p>
+<p><strong>Go with an off-the-shelf CRM if</strong>:</p>
+<ul>
+<li>Your sales process is fairly standard</li>
+<li>You need to get up and running quickly</li>
+<li>You don&#39;t have dedicated developer resources</li>
+<li>A traditional CRM workflow fits your team</li>
+</ul>
+<p><strong>Build your own with NocoBase if</strong>:</p>
+<ul>
+<li>Your business processes are genuinely unique</li>
+<li>You need deep AI integration</li>
+<li>You have developer resources (or use AI coding agents)</li>
+<li>You want complete ownership and control</li>
+<li>You&#39;ve outgrown what traditional CRMs can offer</li>
+</ul>
+<p><strong>Hybrid approach</strong>: Use NocoBase to extend an existing CRM with custom workflows and AI capabilities.</p>
+<h3>Q3: How does NocoBase compare to Salesforce?</h3>
+<p><strong>A:</strong> They serve fundamentally different purposes:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Salesforce</th>
+<th>NocoBase</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Type</td>
+<td>SaaS CRM</td>
+<td>Platform for building CRMs</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>$150–300/user/year</td>
+<td>Free (self-hosted)</td>
+</tr>
+<tr>
+<td>Customization</td>
+<td>Limited (within the platform&#39;s constraints)</td>
+<td>Unlimited (you own the code)</td>
+</tr>
+<tr>
+<td>Data Control</td>
+<td>Salesforce cloud</td>
+<td>Your own servers</td>
+</tr>
+<tr>
+<td>AI Features</td>
+<td>Einstein AI (paid add-on)</td>
+<td>AI agents (built-in, free)</td>
+</tr>
+<tr>
+<td>Vendor Lock-in</td>
+<td>High</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Best For</td>
+<td>Standard sales workflows</td>
+<td>Custom business processes</td>
+</tr>
+</tbody></table>
+<p><strong>Bottom line</strong>: Choose Salesforce if you want standard capabilities with minimal setup. Choose NocoBase if you want full ownership of a system built entirely around your business.</p>
+<p>💡 Recommended reading: <strong><a href="../blog/nocobase-vs-salesforce.html">NocoBase vs Salesforce: Which Is Your Ideal CRM?</a></strong></p>
+<h3>Q4: Can I migrate from Salesforce to a self-hosted CRM?</h3>
+<p><strong>A:</strong> Absolutely — but it takes planning:</p>
+<p><strong>Migration steps</strong>:</p>
+<ol>
+<li><strong>Export your data</strong> from Salesforce (via CSV or API)</li>
+<li><strong>Map fields</strong> to the structure of your new CRM</li>
+<li><strong>Recreate custom workflows</strong> in the new system</li>
+<li><strong>Import data</strong> into your self-hosted CRM</li>
+<li><strong>Test thoroughly</strong> before going live</li>
+<li><strong>Train your team</strong> on the new platform</li>
+</ol>
+<p><strong>Timeline</strong>: 1–2 months, depending on complexity</p>
+<p><strong>Tools</strong>: Most self-hosted CRMs provide migration utilities or professional services</p>
+<p>💡 Recommended reading: <a href="../blog/salesforce-open-source-crmalternative.html">Four Powerful Open-Source Alternatives to Salesforce (With Cost Comparison)</a></p>
+<h3>Q5: Which self-hosted CRM has the best AI capabilities?</h3>
+<p><strong>A:</strong> Ranked by AI capability:</p>
+<table>
+<thead>
+<tr>
+<th>CRM</th>
+<th>AI Capability</th>
+<th>Rating</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>AI agents, workflow integration, automated insights</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Twenty CRM</td>
+<td>AI-native architecture, features actively being shipped</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Odoo</td>
+<td>AI features in the Enterprise edition</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>Open AI integration architecture</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td>SuiteCRM</td>
+<td>Via third-party plugins</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td>Dolibarr</td>
+<td>Via modules</td>
+<td>⭐⭐</td>
+</tr>
+</tbody></table>
+<p><strong>Top AI-first picks</strong>: NocoBase or Twenty CRM</p>
+<p>💡 <strong>Recommended reading</strong>: <strong><a href="https://docs.nocobase.com/en/ai-employees">AI Agents — NocoBase Documentation</a></strong></p>
+<h3>Q6: How difficult is it to set up a self-hosted CRM?</h3>
+<p><strong>A:</strong> Here&#39;s a difficulty breakdown:</p>
+<table>
+<thead>
+<tr>
+<th>CRM</th>
+<th>Technical Difficulty</th>
+<th>Setup Time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dolibarr</td>
+<td>⭐ (Beginner)</td>
+<td>1–2 hours</td>
+</tr>
+<tr>
+<td>Twenty CRM</td>
+<td>⭐⭐ (Moderate)</td>
+<td>2–4 hours</td>
+</tr>
+<tr>
+<td>EspoCRM</td>
+<td>⭐⭐ (Moderate)</td>
+<td>3–6 hours</td>
+</tr>
+<tr>
+<td>SuiteCRM</td>
+<td>⭐⭐⭐ (Intermediate)</td>
+<td>1–2 days</td>
+</tr>
+<tr>
+<td>Odoo</td>
+<td>⭐⭐⭐⭐ (Advanced)</td>
+<td>3–5 days</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>⭐⭐ (Moderate)</td>
+<td>2–4 hours to deploy; 2–4 days to build out your CRM</td>
+</tr>
+</tbody></table>
+<p><strong>All support Docker deployment</strong> for a streamlined setup experience.</p>
+<p><strong>Non-technical teams</strong>: Consider a managed hosting service or bringing in an external consultant.</p>
+<h3>Q7: What about compliance (GDPR, HIPAA, SOC 2)?</h3>
+<p><strong>A:</strong> Self-hosted CRMs offer distinct <strong>compliance advantages</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Regulation</th>
+<th>Self-Hosting Advantage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GDPR</td>
+<td>Data stays within the EU; full control over data processing</td>
+</tr>
+<tr>
+<td>HIPAA</td>
+<td>On-premises deployment with built-in audit trails</td>
+</tr>
+<tr>
+<td>SOC 2</td>
+<td>You manage your own security controls with no third-party exposure</td>
+</tr>
+<tr>
+<td>Data Localization</td>
+<td>Deploy in-country to meet local regulatory requirements</td>
+</tr>
+</tbody></table>
+<p><strong>NocoBase advantage</strong>: Built-in audit logs, field-level permissions, and role-based access controls make it easier to satisfy compliance requirements.</p>
+<h3>Q8: Can self-hosted CRMs integrate with other tools?</h3>
+<p><strong>A:</strong> Yes — most offer robust integration options out of the box:</p>
+<table>
+<thead>
+<tr>
+<th>Integration Type</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Email</td>
+<td>SMTP/IMAP integration with calendar sync</td>
+</tr>
+<tr>
+<td>Marketing Automation</td>
+<td>Zapier, Make, n8n, or custom API</td>
+</tr>
+<tr>
+<td>Support Tools</td>
+<td>API integration or shared database connections</td>
+</tr>
+<tr>
+<td>ERP</td>
+<td>Database-level sync or API-based integration</td>
+</tr>
+<tr>
+<td>Custom Systems</td>
+<td>REST API, webhooks, GraphQL</td>
+</tr>
+</tbody></table>
+<p><strong>NocoBase advantage</strong>: An open RESTful API with webhook support enables unlimited integrations with virtually any system.</p>
+<h2 id="en-9">Conclusion</h2>
+<p>SuiteCRM and EspoCRM are strong picks for teams that want an out-of-the-box solution. Odoo and ERPNext are the go-to choices for enterprises that need ERP integration. Twenty CRM and Dolibarr are well-suited to budget-conscious startups.</p>
+<p>But if your business operates differently from the norm, forcing it into an off-the-shelf CRM will always create friction. In that case, the more strategic move is to build a CRM that&#39;s truly yours using NocoBase — one that fits your exact permission model, integrates AI where it actually matters, and is shaped entirely around your own data architecture.</p>
+<p>If you found this guide useful, feel free to share it with anyone navigating the same decision.</p>
+<p><strong>Related reading</strong></p>
+<ul>
+<li><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">6 Best Open-Source Tools to Replace Custom Integration Middleware</a></li>
+<li><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Replace Excel with NocoBase or Airtable? A Cost-by-Cost Comparison</a></li>
+<li><a href="../blog/excel-to-web-app-4-methods.html">4 Ways to Quickly Build Web Apps from Excel Data</a></li>
+<li><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">Not Just PostgreSQL: Comparing 5 No-Code/Low-Code Platforms with External Database Support</a></li>
+<li><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">Open Source Project Management Tool Selection Guide, 2026 Edition</a></li>
+<li><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">How to Build a Custom CRM with PostgreSQL</a></li>
+<li><a href="../blog/best-open-source-ai-projects-github-2026.html">Top 20 AI Projects on GitHub to Watch in 2026: Not Just OpenClaw</a></li>
+<li><a href="../blog/best-ai-crm-open-source-nocobase-twenty-krayin.html">Best Open Source AI CRM: NocoBase vs Twenty vs Krayin</a></li>
+<li><a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">Top 3 Open Source ERP with AI on GitHub: NocoBase vs Odoo vs ERPNext</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">TL;DR</a><a href="#zh-2">企业如何自托管 CRM？</a><a href="#zh-3">评估框架：企业 CRM 的 6 个维度</a><a href="#zh-4">第一类：构建自定义 CRM 的低代码平台</a><a href="#zh-5">第二类：专用自托管 CRM 平台</a><a href="#zh-6">第三类：内置 CRM 的 ERP</a><a href="#zh-7">全平台对比矩阵</a><a href="#zh-8">常见问题</a><a href="#zh-9">结语</a></div><div class="en-only"><a href="#en-1">TL;DR</a><a href="#en-2">How Do Enterprises Self-Host a CRM?</a><a href="#en-3">Evaluation Framework: 6 Dimensions for Enterprise CRM</a><a href="#en-4">Category 1: Low-Code Platforms for Building a Custom CRM</a><a href="#en-5">Category 2: Dedicated Self-Hosted CRM Platforms</a><a href="#en-6">Category 3: ERPs with Built-In CRM</a><a href="#en-7">Full Platform Comparison Matrix</a><a href="#en-8">FAQ</a><a href="#en-9">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/best-smartsheet-alternatives.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20114-fps2v0.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月23日</t-zh><t-en>Jul 23, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</t-zh><t-en>How to Choose a Smartsheet Alternative: 7 Tools Compared</t-en></h3><p><t-zh>本文对比 7 款 Smartsheet 替代品，介绍各产品的定位、核心差异、适用团队及三年使用成本，帮助团队评估更合适的项目管理与业务系统工具。</t-zh><t-en>Compare 7 Smartsheet alternatives by positioning, key differences, ideal teams, and estimated three-year costs.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-complex-relational-models.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20113%20(1)-e3gf7a.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月15日</t-zh><t-en>Jul 15, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>5 个适合复杂关系模型的开源 AI 无代码工具</t-zh><t-en>5 Open-Source AI No-Code Tools for Complex Relational Data Models</t-en></h3><p><t-zh>本文对比 5 款开源 AI 无代码工具，分析复杂关系模型、AI 搭建能力和企业业务系统适用场景。
+</t-zh><t-en>Compare 5 open-source AI no-code tools for complex relational models, AI capabilities, and business system use cases.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-github-9.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20110-xkd2sy.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年6月29日</t-zh><t-en>Jun 29, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>GitHub 上值得关注的 9 个开源 AI 无代码工具</t-zh><t-en>9 Open-Source AI No-Code Tools on GitHub Worth Watching</t-en></h3><p><t-zh>盘点 GitHub 上 9 个开源 AI 无代码工具，覆盖工作流自动化、知识库、智能体编排与企业业务系统搭建。
+</t-zh><t-en>Explore 9 open-source AI no-code tools on GitHub for workflows, agents, knowledge bases, design, and business systems.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

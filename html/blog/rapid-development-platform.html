@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="国内外十大开源快速开发平台推荐 — NocoBase" data-en="Top 7 Open Source Rapid Development Platform — NocoBase">国内外十大开源快速开发平台推荐 — NocoBase</title>
+<meta name="description" content="探索国内外十大开源快速开发平台，涵盖核心功能、技术特点及适用场景，帮助你的团队找到适合的快速开发平台，加速开发进程。" data-zh="探索国内外十大开源快速开发平台，涵盖核心功能、技术特点及适用场景，帮助你的团队找到适合的快速开发平台，加速开发进程。" data-en="Explore the top 7 open-source rapid development platforms, covering core functions, technical features, and applicable scenarios, to help your team find the suitable rapid development platform and accelerate the development process.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>国内外十大开源快速开发平台推荐</t-zh><t-en>Top 7 Open Source Rapid Development Platform</t-en></h1>
+    <p class="lede"><t-zh>探索国内外十大开源快速开发平台，涵盖核心功能、技术特点及适用场景，帮助你的团队找到适合的快速开发平台，加速开发进程。</t-zh><t-en>Explore the top 7 open-source rapid development platforms, covering core functions, technical features, and applicable scenarios, to help your team find the suitable rapid development platform and accelerate the development process.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年11月27日</t-zh><t-en>Nov 27, 2024</t-en></span><span><t-zh>Zhang Lu</t-zh><t-en>Zhang Lu</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/7fdbdb92f225cc88e2778523e395f70d.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">核心要点</h2>
+<ul>
+<li>开源快速开发平台能显著提升开发效率，平均缩短项目交付时间20%。</li>
+<li>国内平台本地化支持强，社区活跃，但技术创新和国际化支持较弱；国外平台技术创新领先，国际化支持好，但本地化和社区响应可能不足。</li>
+<li>选择合适的平台时，需考虑技术栈的匹配性，以确保与现有系统的无缝集成。</li>
+<li>根据项目需求、技术背景和预算选择平台，对于需要高度自定义和插件化架构的项目，NocoBase 是理想选择；而对于追求特定技术栈深度集成的项目，可以考虑 JeecgBoot 等平台。</li>
+</ul>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2">什么是快速开发平台？</h2>
+<p>快速开发平台，也称为<a href="../blog/rapid-application-development-best-application-cases.html">快速应用开发平台（RAD）</a>，是一种开发工具，旨在通过提供预构建的模块、自动化流程和简化的编程接口来加速应用程序的开发和部署。这类平台包括<a href="../blog/top-15-open-source-low-code-projects-with-the-most-github-Stars.html">低代码（Low-code）</a>和<a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">无代码（零代码）（No-code）</a>解决方案，允许开发者和非技术用户通过可视化界面和模型驱动的逻辑来构建应用程序，而无需深入编写代码。</p>
+<p><strong>快速开发平台的优势：</strong></p>
+<ol>
+<li><strong>提高开发速度</strong>：通过使用预构建的组件和自动化工作流，开发者可以快速搭建应用程序原型，从而缩短开发周期。</li>
+<li><strong>降低技术门槛</strong>：低代码和无代码（零代码）平台使得非技术背景的用户也能参与到应用程序的开发中，促进跨部门协作。</li>
+<li><strong>减少成本</strong>：由于开发速度的提升和对技术团队的依赖减少，企业可以在软件开发上节省大量的时间和金钱。</li>
+<li><strong>增强灵活性和可扩展性</strong>：快速开发平台通常提供模块化架构，使得应用程序可以根据业务需求灵活调整和扩展。</li>
+</ol>
+<h2 id="zh-3">国内外开源快速开发平台的对比分析</h2>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>国内平台</strong></th>
+<th><strong>国外平台</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>本地化支持</strong><br/></td>
+<td>- 优化本地业务逻辑<br />- 提供中文界面和文档<br />- 与国内技术栈兼容</td>
+<td>- 界面和文档主要英文<br />- 可能增加国内开发者学习难度</td>
+</tr>
+<tr>
+<td><strong>社区支持</strong></td>
+<td>- 活跃的社区- 快速获取帮助<br />- 丰富的模板和组件库</td>
+<td>- 资源丰富- 技术支持依赖于社区<br />- 响应速度可能较慢</td>
+</tr>
+<tr>
+<td><strong>技术创新</strong></td>
+<td>- 功能扩展性和灵活性较弱<br />- 插件生态和第三方集成支持有待提升</td>
+<td>- 提供全面工具套件<br />- 支持多语言和多数据库集成<br />- 注重数据安全和稳定性</td>
+</tr>
+<tr>
+<td><strong>国际化支持</strong></td>
+<td>- 缺乏多语言支持<br />- 缺乏全球化社区资源</td>
+<td>- 适合全球化业务需求<br />- 社区资源丰富</td>
+</tr>
+<tr>
+<td><strong>成本问题</strong></td>
+<td>- 通常免费或低成本<br />- 适合预算有限的团队</td>
+<td>- 高级功能或企业版可能需要额外付费<br />- 对预算有限的团队构成负担</td>
+</tr>
+<tr>
+<td><strong>文档质量</strong></td>
+<td>- 文档质量参差不齐<br />- 增加学习成本</td>
+<td>- 文档质量通常较高<br />- 但可能需要英文阅读能力</td>
+</tr>
+</tbody></table>
+<h2 id="zh-4">国内外十大开源私有化快速开发平台概览</h2>
+<ol>
+<li><strong><a href="https://www.nocobase.com/">NocoBase</a></strong> ：基于插件化架构的 AI 无代码平台，支持高自由度的功能定制和业务流程自动化，并结合 AI 能力，适用于多场景数据管理与内部工具构建。</li>
+<li>**<a href="https://jeecg.com/">JeecgBoot</a>**：基于 BPM 的低代码平台，采用 SpringBoot + Vue 技术架构，适合OA、CRM等企业级应用。</li>
+<li>**<a href="https://www.jiandaoyun.com/">简道云</a>**：无代码（零代码）/低代码开发平台，支持通过拖拽组件快速构建应用。</li>
+<li>**<a href="https://www.informat.cn/">织信Informat</a>**：无需代码或少量代码即可搭建企业管理系统的能力，非常适合中小型企业的数字化转型需求。</li>
+<li>**<a href="https://www.appsmith.com/">Appsmith</a>**：专注于内部工具和管理面板构建，集成多种数据库和 API，助力企业高效开发。</li>
+<li>**<a href="https://budibase.com/">Budibase</a>**：适合构建内部工具的开源低代码平台，提供了丰富的模板和组件。</li>
+<li>**<a href="https://www.joget.com/">Joget DX</a>**：低代码开发平台，支持丰富插件与模板，用于快速搭建复杂业务流程应用。</li>
+<li>**<a href="https://skyve.org/">Skyve</a>**：灵活的开源开发平台，内置强大的数据建模和自动化工具，适合多样化业务需求。</li>
+<li>**<a href="https://www.rintagi.com/">Rintagi</a>**：企业级低代码开发平台，内置丰富模板与组件，专注于快速开发 ERP 和供应链管理系统。</li>
+<li>**<a href="https://saltcorn.com/">Saltcorn</a>**：无需编程知识，通过拖拽操作即可构建应用，适合个人开发者和小型团队。</li>
+</ol>
+<p>下面我们对每个平台的主要功能、技术特点和适用场景进行详细介绍，你可以<strong>点击目录跳转</strong>至感兴趣的平台。</p>
+<ol>
+<li><h3>NocoBase</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/c2f69f6d2ba87865af5ecc3dfdfd8cf9.PNG" alt="NocoBase.PNG"></p>
+<p><strong><a href="https://www.nocobase.com/">NocoBase</a></strong> 插件化架构提供了灵活的数据库管理和应用构建能力，支持自定义数据模型和工作流。其核心功能包括：</p>
+<ul>
+<li><strong>数据模型驱动</strong>：支持复杂的数据关系和自定义字段，满足多样化的业务需求。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/4ab3ee0ee629c4215ed5e4a1cba5401b.png" alt="Data Model-Driven.png"></p>
+<ul>
+<li><strong>工作流自动化</strong>：内置可视化工作流设计器，简化业务流程的自动化配置。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/73d5bc247df626fcb09d20e9752a3ced.png" alt="Workflow Automation.png"></p>
+<ul>
+<li><strong>数据可视化</strong>：提供多样化的图表和可视化工具，直观展示数据。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/a8e403e3b46f6b28205cb28800b3dea4.png" alt="Data Visualization.png"></p>
+<ul>
+<li><strong>权限管理</strong>：细粒度的权限控制，保障数据安全。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/fbb8e9074f787fe17aad11a4fb220ac8.png" alt="Permission Management.png"></p>
+<ul>
+<li><strong>插件扩展</strong>：采用微内核和插件架构设计，支持功能扩展和第三方集成。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/6d2f5cc5ac2b28b4cefb5774f31caba0.png" alt="Plugin Extensibility.png"></p>
+<p><strong>技术特点</strong></p>
+<p>NocoBase 采用前后端分离架构，前端基于 Vue.js，后端基于 Node.js。它支持多种数据库后端，如 MySQL、PostgreSQL 等，并且可以部署在本地或云上。NocoBase 的插件系统允许用户根据需要扩展功能，同时支持 Docker 容器化部署，简化运维流程。</p>
+<p><strong>适用场景</strong></p>
+<p>NocoBase 非常适合需要灵活定制数据库和应用的团队。它在<strong>项目管理、客户关系管理、业务流程管理</strong>等场景中表现出色。对于追求灵活性和自定义能力的中小型企业以及个人开发者，NocoBase 是一个理想的选择。</p>
+<p>🙌 上手实践：<a href="https://www.nocobase.com/cn/tutorials/task-tutorial-introduction">NocoBase 实战教程 —— 任务管理系统</a></p>
+<p>💡 阅读更多：<a href="../blog/build-apps-with-nocobase.html">如何使用 NocoBase 构建应用程序？</a></p>
+<ol start="2">
+<li><h3>JeecgBoot</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/11645fbd4b13f92aa5870c7e54b02fa9.png" alt="JeecgBoot.png"></p>
+<p><strong><a href="https://jeecg.com/">JeecgBoot</a></strong> 提供了强大的低代码开发能力，支持企业级应用的快速构建。其核心功能包括：</p>
+<ul>
+<li>代码生成器：一键生成前后端代码，减少重复性工作。</li>
+<li>在线编码：支持在线设计和开发，快速实现业务需求。</li>
+<li>大屏设计器：轻松创建数据可视化大屏。</li>
+<li>报表设计器：生成多样化的业务报表。</li>
+<li>门户设计：构建企业门户页面，提升用户体验。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/4514e7f8c0d9e76c01f4a48dfd8c4401.png" alt="Key Features.png"></p>
+<p><strong>技术特点</strong></p>
+<p>JeecgBoot 基于 SpringBoot2.x 和 Vue 架构，采用前后端分离设计，支持微服务架构。它集成了 Mybatis-plus、Shiro 和 JWT 等技术，确保系统的高性能和安全性。此外，JeecgBoot 支持多数据库，灵活适配不同的业务需求。</p>
+<p><strong>适用场景</strong></p>
+<p>JeecgBoot 非常适合需要快速开发企业级应用的团队。它在 OA 系统、CRM 系统 和 ERP 系统 等场景中表现出色。对于希望减少开发时间并提升效率的企业，JeecgBoot 是一个理想选择。</p>
+<ol start="3">
+<li><h3>简道云</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/5a90ad643572f4c9c9c24e61c2eb66cc.png" alt="简道云.png"></p>
+<p><strong><a href="https://www.jiandaoyun.com/">简道云</a></strong> 是一个灵活的无代码（零代码）/低代码开发平台，允许用户快速构建和部署业务应用。其核心功能包括：</p>
+<ul>
+<li>表单构建：快速创建自定义表单，收集和管理数据。</li>
+<li>数据分析：提供丰富的图表和报表功能，实现数据可视化。</li>
+<li>流程设计：可视化设计业务流程，包括审批和自动化工作流。</li>
+<li>集成与API：支持与其他系统的数据集成和API调用。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/32df356ba86d71638ab6672a164527c3.png" alt="简道云.png"></p>
+<p><strong>技术特点</strong></p>
+<p>简道云采用云原生技术，支持弹性扩展和高可用性。它提供了一个直观的用户界面，使得非技术用户也能轻松构建应用。简道云还提供了丰富的模板库，可以快速启动项目，并且支持自定义域名和企业品牌定制。。</p>
+<p><strong>适用场景</strong></p>
+<p>简道云适用于各种业务场景，特别是在数据收集、分析和协作方面。它非常适合中小企业、教育机构和非营利组织，用于构建 CRM、项目管理等应用。</p>
+<ol start="4">
+<li><h3><strong>织信Informat</strong></h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/352e481208ef7303467583367dee889a.png" alt="织信Informat.png"></p>
+<p><strong><a href="https://www.informat.cn/">织信Informat</a></strong> 是一个企业级的低代码开发平台，提供快速应用构建和自动化工作流。其核心功能包括：</p>
+<ul>
+<li>应用构建：无需代码或少量代码即可搭建企业管理系统。</li>
+<li>自动化流程：可视化设计和自动化业务流程，提高工作效率。</li>
+<li>数据集成：集成企业内部各种数据源，实现数据统一管理。</li>
+<li>移动办公：支持移动设备，实现随时随地的办公。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/221943c6bffa56ee76b7887b240863dc.png" alt="织信Informat.png"></p>
+<p><strong>技术特点</strong></p>
+<p>织信Informat 基于云平台，支持多租户架构，确保数据隔离和安全性。它提供了一个强大的低代码开发环境，允许快速构建复杂的业务逻辑和用户界面。织信Informat 还支持自定义开发，可以扩展平台功能，满足特定的业务需求。</p>
+<p><strong>适用场景</strong></p>
+<p>织信Informat 适用于需要快速构建和管理复杂业务流程的企业。它在 ERP、CRM、供应链管理、人力资源管理等场景中表现出色。</p>
+<ol start="5">
+<li><h3>Appsmith</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/fced7e486b929a2abcbe7fd21d7c8f39.png" alt="Appsmith.png"></p>
+<p><strong><a href="https://www.appsmith.com/">Appsmith</a></strong> 是一个开源低代码平台，专注于构建内部工具和管理面板。它的核心功能包括：</p>
+<ul>
+<li>可视化界面：通过拖拽组件快速设计用户界面，降低开发门槛。</li>
+<li>数据库集成：支持与多种数据库（如 MySQL、PostgreSQL、MongoDB）无缝连接，轻松管理数据。</li>
+<li>API 集成：快速连接 REST API 和 GraphQL，简化数据交互流程。</li>
+<li>实时协作：团队成员可以同时编辑和查看项目，提升协作效率。</li>
+<li>权限管理：内置用户权限控制功能，确保数据安全性。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/105dd3fd69003c2062e99cd00b878033.png" alt="Appsmith.png"></p>
+<p><strong>技术特点</strong></p>
+<p>Appsmith 提供了直观的开发体验，适合不同技术水平的用户。它支持多种数据源和第三方服务的集成，帮助你快速实现复杂的业务逻辑。Appsmith 的开源特性允许你根据需求自定义功能，满足个性化开发需求。此外，它的社区资源丰富，开发者可以通过社区获取支持和灵感。</p>
+<p><strong>适用场景</strong></p>
+<p>Appsmith 非常适合需要快速构建内部工具的团队。它在 数据管理系统、客户支持面板 和 销售仪表盘 等场景中表现出色。</p>
+<ol start="6">
+<li><h3>BudiBase</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/36559bde99289a01da3b3886e1b5b39a.png" alt="BudiBase.png"></p>
+<p><strong><a href="https://budibase.com/">Budibase</a></strong> 是一个开源低代码平台，专为构建内部工具而设计。它的主要功能包括：</p>
+<ul>
+<li>模板支持：提供多种预构建模板，帮助你快速启动项目。</li>
+<li>自托管选项：支持将应用部署到自己的服务器，确保数据隐私和安全性。</li>
+<li>组件库：内置丰富的 UI 组件，减少开发时间。</li>
+<li>自动化工作流：通过简单配置实现任务自动化，提升工作效率。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/c12d4ab63cc33dd75f663698d9e2d1f5.png" alt="BudiBase.png"></p>
+<p><strong>技术特点</strong></p>
+<p>BudiBase 的设计注重简单性和灵活性，适合中小型企业和个人开发者使用。它支持自托管，确保数据的完全控制权。BudiBase 的模块化架构允许你根据需求扩展功能，同时保持系统的高性能和稳定性。</p>
+<p><strong>适用场景</strong></p>
+<p>BudiBase 非常适合中小型企业和初创团队。它在 内部工具开发、数据可视化 和 流程自动化 等场景中表现优异。</p>
+<ol start="7">
+<li><h3>Joget DX</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/0956b396a29c74f713e8a6c599c0b809.png" alt="Joget DX.png"></p>
+<p><strong><a href="https://www.joget.com/">Joget DX</a></strong> 是一个低代码平台，专注于快速开发和部署复杂的业务流程。其主要功能包括：</p>
+<ul>
+<li>流程设计器：通过图形化界面轻松设计业务流程。</li>
+<li>插件支持：提供丰富的插件库，扩展应用功能。</li>
+<li>移动端支持：支持跨平台开发，确保应用在移动设备上的流畅运行。</li>
+<li>实时分析：内置数据分析工具，帮助用户监控和优化业务流程。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/1d8c36582a263abcedb23e4ed07937da.png" alt="Joget DX.png"></p>
+<p><strong>技术特点</strong></p>
+<p>Joget DX 采用模块化架构，支持与多种数据库和第三方服务集成。它的跨平台支持使开发者能够在不同操作系统上无缝运行应用。Joget DX 的社区资源丰富，用户可以通过社区获取技术支持和开发灵感。</p>
+<p><strong>适用场景</strong></p>
+<p>Joget DX 非常适合需要快速开发复杂业务流程的企业。它在 客户关系管理 (CRM)、人力资源管理 (HRM) 和 供应链管理 等场景中表现优异。</p>
+<ol start="8">
+<li><h3>Skyve</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/9fa110d97489a8fdb51f6915cc33a13b.png" alt="Skyve.png"></p>
+<p><strong><a href="https://skyve.org/">Skyve</a></strong> 是一个功能强大的开源快速开发平台，支持多种应用类型的构建。其主要功能包括：</p>
+<ul>
+<li>数据建模工具：内置数据建模功能，快速创建和管理复杂数据结构。</li>
+<li>自动化开发：支持自动生成代码和界面，简化开发流程。</li>
+<li>模块化架构：提供高度可扩展的模块化设计。</li>
+<li>开箱即用功能：包括用户管理、权限控制和审计日志，减少重复开发工作。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ac94e70b4192d9c5a312dfb833577903.png" alt="Skyve.png"></p>
+<p><strong>技术特点</strong></p>
+<p>Skyve 强调开发效率与灵活性，适合具有一定技术背景的开发者。其模块化架构允许开发者根据需求自由扩展功能，同时具备企业级稳定性和性能表现。丰富的开箱即用组件和工具，使其在快速开发中脱颖而出，特别适用于需要复杂业务逻辑的企业应用。</p>
+<p><strong>适用场景</strong></p>
+<p>Skyve 非常适合构建需要复杂数据建模的业务应用、跨平台支持的项目以及企业级的内部工具，尤其在客户关系管理（CRM）和企业资源计划（ERP）等领域有出色表现。</p>
+<ol start="9">
+<li><h3>Rintagi</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/e0a2f3c44f0b3c42e4d90846dcfe2aac.png" alt="Rintagi.png"></p>
+<p><strong><a href="https://www.rintagi.com/">Rintagi</a></strong> 是一个专注于企业级应用的开源低代码开发平台，以其可扩展性和快速交付能力著称。其主要功能包括：</p>
+<ul>
+<li>应用模板库：内置多种应用模板，支持快速开发 ERP、供应链管理等业务系统。</li>
+<li>动态扩展架构：允许随业务变化调整系统结构。</li>
+<li>多语言支持：支持多语言界面和多地区业务部署，方便国际化运营。</li>
+<li>自定义规则引擎：内置业务规则引擎，简化复杂逻辑实现。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/d8c6d78e20b91a11294d3dff569e0f01.png" alt="Rintagi.png"></p>
+<p><strong>技术特点</strong></p>
+<p>Rintagi 的动态架构设计是其亮点之一，能够根据业务需求快速调整和扩展应用。该平台专注于企业场景的复杂需求，适合有长远规划的企业开发。Rintagi 的灵活性和低学习成本，特别适合技术团队和业务部门协作开发。</p>
+<p><strong>适用场景</strong></p>
+<p>Rintagi 非常适用于快速构建和持续扩展的企业级系统，能够高效应对跨语言、跨区域部署需求，适合 ERP、财务管理及供应链等复杂业务场景。</p>
+<ol start="10">
+<li><h3>Saltcorn</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/5d1397283dd72916bd75a835f638100e.png" alt="Saltcorn.png"></p>
+<p><strong><a href="https://saltcorn.com/">Saltcorn</a></strong> 是一个完全开源的快速开发平台，专为构建简单应用程序而设计。它的核心功能包括：</p>
+<ul>
+<li>拖拽式界面：无需编程知识，用户可以通过拖拽组件快速创建应用。</li>
+<li>数据管理：支持轻松管理和操作数据库中的数据。</li>
+<li>插件扩展：提供丰富的插件库，满足不同场景的功能需求。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/3e25ca17dd47b0b9ee1e7778024c82f4.png" alt="Saltcorn.png"></p>
+<p><strong>技术特点</strong></p>
+<p>Saltcorn 的技术架构简单直观，适合初学者和小型团队使用。它支持多种数据库集成，如 PostgreSQL 和 SQLite，确保数据存储的灵活性。Saltcorn 的模块化设计允许用户根据需求添加或移除功能组件，极大地提高了平台的可扩展性。</p>
+<p><strong>适用场景</strong></p>
+<p>Saltcorn 非常适合个人开发者、小型团队以及教育领域的用户。它在构建简单的内部工具、数据管理系统和原型设计时表现出色。</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/rapid-application-development-best-application-cases.html">探索 RAD：5 个最佳实践案例解析</a></li>
+<li><a href="../blog/web-application-development.html">探索最佳无代码（零代码）低代码工具：加速 Web 应用开发</a></li>
+<li><a href="../blog/top-5-success-cases-of-low-code-open-source-platforms.html">5大低代码开源平台案例研究</a></li>
+<li><a href="../blog/build-apps-with-nocobase.html">如何使用 NocoBase 构建应用程序？</a></li>
+<li><a href="../blog/app-builder-tools.html">GitHub Star 数量前 5 的开源无代码/低代码应用开发平台</a></li>
+<li><a href="../blog/top-10-open-source-workflows-projects-with-the-most-github-stars.html">⭐️ GitHub Star 数量前十的工作流项目</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Key Points</h2>
+<ul>
+<li>Open-source rapid development platforms can significantly enhance development efficiency, typically <strong>reducing project delivery time by 20%</strong>.</li>
+<li>When choosing the right platform, it&#39;s essential to consider <strong>the compatibility with the technology stack</strong> to ensure seamless integration with existing systems.</li>
+<li>Choose a platform based on <strong>project requirements, technical background, and budget</strong>. For projects needing high customization and a plugin-based architecture, <strong>NocoBase</strong> is an ideal choice.</li>
+</ul>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-2">What is a Rapid Development Platform?</h2>
+<p>A rapid development platform, also known as a <a href="../blog/rapid-application-development-best-application-cases.html">Rapid Application Development (RAD)</a> platform, is a development tool designed to accelerate application development and deployment by providing pre-built modules, automated workflows, and simplified programming interfaces. These platforms include both<a href="../blog/top-15-open-source-low-code-projects-with-the-most-github-Stars.html"> low-code</a> and <a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">no-code </a>solutions, enabling developers and non-technical users to build applications through visual interfaces and model-driven logic without extensive coding.</p>
+<p><strong>Advantages of Rapid Development Platforms:</strong></p>
+<ol>
+<li><strong>Improved Development Speed</strong>: By using pre-built components and automated workflows, developers can quickly prototype applications, shortening development cycles.</li>
+<li><strong>Lower Technical Barriers</strong>: Low-code and no-code platforms enable non-technical users to participate in application development, fostering cross-department collaboration.</li>
+<li><strong>Cost Savings</strong>: Due to faster development and reduced reliance on technical teams, businesses can save significant time and money in software development.</li>
+<li><strong>Enhanced Flexibility and Scalability</strong>: These platforms often provide modular architectures, allowing applications to be adjusted and expanded based on evolving business needs.</li>
+</ol>
+<h2 id="en-3">Overview of  top 7 open-source rapid development platforms</h2>
+<ol>
+<li><strong><a href="https://www.nocobase.com/">NocoBase</a></strong></li>
+</ol>
+<p><strong>NocoBase</strong> is an AI no-code platform built on a plugin-based architecture. It supports highly flexible functional customization and business process automation, and with AI capabilities, enables multi-scenario data management and internal tool development.</p>
+<ol start="2">
+<li><strong><a href="https://www.appsmith.com/">Appsmith</a></strong></li>
+</ol>
+<p>Appsmith is an open-source low-code platform focused on internal tools and management dashboards, integrating various databases and APIs.</p>
+<ol start="3">
+<li><strong><a href="https://budibase.com/">Budibase</a></strong></li>
+</ol>
+<p>Budibase is a low-code platform designed for building internal tools, offering a rich template library and self-hosting options.</p>
+<ol start="4">
+<li><strong><a href="https://www.joget.com/">Joget DX</a></strong></li>
+</ol>
+<p>Joget DX is a low-code platform designed for quickly developing complex business processes, with a rich plugin library and cross-platform support.</p>
+<ol start="5">
+<li><strong><a href="https://skyve.org/">Skyve</a></strong></li>
+</ol>
+<p>Skyve is a powerful open-source rapid development platform that supports various application types, offering data modeling and automation tools.</p>
+<ol start="6">
+<li><strong><a href="https://www.rintagi.com/">Rintagi</a></strong></li>
+</ol>
+<p>Rintagi is an enterprise-level low-code platform focused on ERP and supply chain management systems, with dynamic scalability and a multi-language interface.</p>
+<ol start="7">
+<li><strong><a href="https://saltcorn.com/">Saltcorn</a></strong></li>
+</ol>
+<p>Saltcorn is an open-source rapid development platform designed for building simple applications through drag-and-drop, ideal for individual developers and small teams.</p>
+<p>Now, we will provide a detailed introduction to the main functions, technical characteristics, and applicable scenarios of each platform. You can <strong>click on the directory</strong> to jump to the platform that interests you.</p>
+<ol>
+<li><h3>NocoBase</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/c2f69f6d2ba87865af5ecc3dfdfd8cf9.PNG" alt="NocoBase.PNG"></p>
+<p><strong><a href="https://www.nocobase.com/">NocoBase</a></strong> <strong>Key Features</strong></p>
+<ul>
+<li><strong>Data Model-Driven</strong>: Supports complex data relationships and custom fields to meet diverse business needs.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/4ab3ee0ee629c4215ed5e4a1cba5401b.png" alt="Data Model-Driven.png"></p>
+<ul>
+<li><strong>Workflow Automation</strong>: Built-in visual workflow designer simplifies the configuration of business process automation.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/73d5bc247df626fcb09d20e9752a3ced.png" alt="Workflow Automation.png"></p>
+<ul>
+<li><strong>Data Visualization</strong>: Provides various charts and visualization tools for intuitive data representation.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/a8e403e3b46f6b28205cb28800b3dea4.png" alt="Data Visualization.png"></p>
+<ul>
+<li><strong>Permission Management</strong>: Fine-grained access control to ensure data security.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/fbb8e9074f787fe17aad11a4fb220ac8.png" alt="Permission Management.png"></p>
+<ul>
+<li><strong>Plugin Extensibility</strong>: Modular architecture allows for third-party integrations and feature expansions.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/6d2f5cc5ac2b28b4cefb5774f31caba0.png" alt="Plugin Extensibility.png"></p>
+<p><strong>Technology Features</strong></p>
+<p>NocoBase utilizes a decoupled front-end and back-end architecture, with Vue.js for the front end and Node.js for the back end. It supports multiple databases like MySQL and PostgreSQL and can be deployed on-premise or on the cloud. The plugin system allows for feature customization and Docker-based deployment simplifies operations.</p>
+<p><strong>Use Cases</strong></p>
+<p>NocoBase is perfect for teams requiring flexible database and application customization. It excels in <strong>project management, CRM, business process management</strong>, and other scenarios. NocoBase is ideal for small to medium-sized businesses and individual developers who need flexibility and customization.</p>
+<p>🙌 Have a try: <a href="https://www.nocobase.com/en/tutorials/task-tutorial-introduction">NocoBase Tutorial – Task Management System</a></p>
+<p>💡 Read more: <a href="../blog/build-apps-with-nocobase.html">How to build apps with NocoBase?</a></p>
+<ol start="2">
+<li><h3>Appsmith</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/fced7e486b929a2abcbe7fd21d7c8f39.png" alt="Appsmith.png"></p>
+<p><strong><a href="https://www.appsmith.com/">Appsmith</a></strong> <strong>Key Features</strong></p>
+<ul>
+<li><strong>Visual Interface</strong>: Quickly design user interfaces using drag-and-drop components, reducing development complexity.</li>
+<li><strong>Database Integration</strong>: Seamlessly connects with multiple databases, such as MySQL, PostgreSQL, and MongoDB, for effortless data management.</li>
+<li><strong>API Integration</strong>: Easily connect to REST APIs and GraphQL, simplifying data interaction processes.</li>
+<li><strong>Real-Time Collaboration</strong>: Team members can simultaneously edit and view projects, enhancing collaboration efficiency.</li>
+<li><strong>Permission Management</strong>: Built-in user access control ensures data security.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/105dd3fd69003c2062e99cd00b878033.png" alt="Appsmith.png"></p>
+<p><strong>Technical Features</strong></p>
+<p>Appsmith offers an intuitive development experience suitable for users with varying technical expertise. It supports integration with multiple data sources and third-party services to implement complex business logic quickly. Its open-source nature allows customization to meet specific development needs. Additionally, the platform benefits from a rich community, providing support and inspiration for developers.</p>
+<p><strong>Use Cases</strong></p>
+<p>Appsmith is perfect for teams needing to rapidly create internal tools. It excels in data management systems, customer support panels, and sales dashboards.</p>
+<ol start="3">
+<li><h3>BudiBase</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/36559bde99289a01da3b3886e1b5b39a.png" alt="BudiBase.png"></p>
+<p><strong><a href="https://budibase.com/">Budibase</a></strong> <strong>Key Features</strong></p>
+<ul>
+<li><strong>Template Support</strong>: Offers a variety of pre-built templates to jumpstart projects.</li>
+<li><strong>Self-Hosting Options</strong>: Enables deployment on your own servers, ensuring data privacy and security.</li>
+<li><strong>Component Library</strong>: Includes a rich set of UI components, reducing development time.</li>
+<li><strong>Automated Workflows</strong>: Simplifies task automation through easy configuration, enhancing productivity.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/c12d4ab63cc33dd75f663698d9e2d1f5.png" alt="BudiBase.png"></p>
+<p><strong>Technical Features</strong></p>
+<p>Budibase prioritizes simplicity and flexibility, making it ideal for small to medium-sized businesses and individual developers. It supports self-hosting for full data control and features a modular architecture that allows functionality extensions while maintaining high performance and stability.</p>
+<p><strong>Use Cases</strong></p>
+<p>Budibase is particularly well-suited for small and medium-sized businesses and startup teams. It performs exceptionally in internal tool development, data visualization, and workflow automation.</p>
+<ol start="4">
+<li><h3>Joget DX</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/0956b396a29c74f713e8a6c599c0b809.png" alt="Joget DX.png"></p>
+<p><strong><a href="https://www.joget.com/">Joget DX</a> Key Features</strong></p>
+<ul>
+<li><strong>Process Designer</strong>: Design business processes effortlessly using a graphical interface.</li>
+<li><strong>Plugin Support</strong>: Offers a rich plugin library for extending application functionality.</li>
+<li><strong>Mobile Support</strong>: Enables cross-platform development for smooth operation on mobile devices.</li>
+<li><strong>Real-Time Analytics</strong>: Built-in tools help users monitor and optimize business processes.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/1d8c36582a263abcedb23e4ed07937da.png" alt="Joget DX.png"></p>
+<p><strong>Technical Features</strong></p>
+<p>Joget DX features a modular architecture that supports integration with various databases and third-party services. Its cross-platform compatibility ensures seamless application performance across operating systems. With a vibrant community, Joget DX provides abundant technical support and development inspiration.</p>
+<p><strong>Use Cases</strong></p>
+<p>Joget DX is ideal for enterprises requiring rapid development of complex business processes. It excels in Customer Relationship Management (CRM), Human Resource Management (HRM), and Supply Chain Management scenarios.</p>
+<ol start="5">
+<li><h3>Skyve</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/9fa110d97489a8fdb51f6915cc33a13b.png" alt="Skyve.png"></p>
+<p><strong><a href="https://skyve.org/">Skyve</a> Key Features</strong></p>
+<ul>
+<li><strong>Data Modeling Tools</strong>: Built-in tools for quickly creating and managing complex data structures.</li>
+<li><strong>Automated Development</strong>: Supports automatic code and interface generation, simplifying development processes.</li>
+<li><strong>Modular Architecture</strong>: Provides highly extensible modular designs.</li>
+<li><strong>Ready-to-Use Features</strong>: Includes user management, access control, and audit logs to reduce repetitive development work.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/ac94e70b4192d9c5a312dfb833577903.png" alt="Skyve.png"></p>
+<p><strong>Technical Features</strong></p>
+<p>Skyve emphasizes development efficiency and flexibility, making it suitable for developers with some technical expertise. Its modular architecture allows developers to freely extend features as needed, while maintaining enterprise-level stability and performance. The platform&#39;s rich ready-to-use components and tools make it stand out for fast-paced development, especially for applications with complex business logic.</p>
+<p><strong>Use Cases</strong></p>
+<p>Skyve is perfect for building applications requiring complex data modeling, cross-platform support, and enterprise-grade internal tools. It shines in fields like Customer Relationship Management (CRM) and Enterprise Resource Planning (ERP).</p>
+<ol start="6">
+<li><h3>Rintagi</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/e0a2f3c44f0b3c42e4d90846dcfe2aac.png" alt="Rintagi.png"></p>
+<p><strong><a href="https://www.rintagi.com/">Rintagi</a> Key Features</strong></p>
+<ul>
+<li><strong>Application Template Library</strong>: Offers a variety of templates to facilitate the development of ERP, supply chain management, and other business systems.</li>
+<li><strong>Dynamic Expansion Architecture</strong>: Adjusts system structures to align with business changes.</li>
+<li><strong>Multi-Language Support</strong>: Supports multilingual interfaces and multi-regional deployments, enabling international operations.</li>
+<li><strong>Custom Rules Engine</strong>: Built-in business rules engine simplifies the implementation of complex logic.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/d8c6d78e20b91a11294d3dff569e0f01.png" alt="Rintagi.png"></p>
+<p><strong>Technical Features</strong></p>
+<p>Rintagi&#39;s dynamic architecture is its standout feature, allowing applications to be rapidly adjusted and expanded as business needs evolve. The platform caters to enterprises with long-term plans, offering flexibility and a low learning curve for collaborative development between technical teams and business units.</p>
+<p><strong>Use Cases</strong></p>
+<p>Rintagi is highly suitable for building and continuously expanding enterprise-level systems. It is effective in ERP, financial management, and supply chain scenarios, especially for multilingual and multi-regional deployments.</p>
+<ol start="7">
+<li><h3>Saltcorn</h3>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/5d1397283dd72916bd75a835f638100e.png" alt="Saltcorn.png"></p>
+<p><strong><a href="https://saltcorn.com/">Saltcorn</a> Key Features</strong></p>
+<ul>
+<li><strong>Drag-and-Drop Interface</strong>: Users can create applications quickly by dragging and dropping components, without requiring programming skills.</li>
+<li><strong>Data Management</strong>: Facilitates easy management and operation of database data.</li>
+<li><strong>Plugin Extensions</strong>: Offers a rich library of plugins to meet functional needs across various scenarios.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/3e25ca17dd47b0b9ee1e7778024c82f4.png" alt="Saltcorn.png"></p>
+<p><strong>Technical Features</strong></p>
+<p>Saltcorn&#39;s architecture is simple and intuitive, making it ideal for beginners and small teams. It supports integration with multiple databases like PostgreSQL and SQLite, ensuring flexibility in data storage. Saltcorn’s modular design enables users to add or remove components as needed, greatly enhancing platform scalability.</p>
+<p><strong>Use Cases</strong></p>
+<p>Saltcorn is well-suited for individual developers, small teams, and the education sector. It excels in creating simple internal tools, data management systems, and prototype designs.</p>
+<p>Related reading:</p>
+<ul>
+<li><a href="../blog/rapid-application-development-best-application-cases.html">Exploring RAD: 5 Best Application Cases</a></li>
+<li><a href="../blog/web-application-development.html">Discover Top Tools: Accelerate Web Application Development</a></li>
+<li><a href="../blog/top-5-success-cases-of-low-code-open-source-platforms.html">Top 5 Success Cases of Low-Code Open-Source Platforms</a></li>
+<li><a href="../blog/build-apps-with-nocobase.html">How to build apps with NocoBase?</a></li>
+<li><a href="../blog/app-builder-tools.html">Top 5 Open-source App Builder Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/top-10-open-source-workflows-projects-with-the-most-github-stars.html">⭐️ Top 10 Open-source Workflows Projects with the Most GitHub Stars</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">核心要点</a><a href="#zh-2">什么是快速开发平台？</a><a href="#zh-3">国内外开源快速开发平台的对比分析</a><a href="#zh-4">国内外十大开源私有化快速开发平台概览</a></div><div class="en-only"><a href="#en-1">Key Points</a><a href="#en-2">What is a Rapid Development Platform?</a><a href="#en-3">Overview of  top 7 open-source rapid development platforms</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

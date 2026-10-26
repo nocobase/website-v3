@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="如何在 NocoBase 中开发插件发送 WhatsApp 消息？ — NocoBase" data-en="Developing a Plugin to Send WhatsApp Messages in NocoBase — NocoBase">如何在 NocoBase 中开发插件发送 WhatsApp 消息？ — NocoBase</title>
+<meta name="description" content="本文的目标是展示在 NocoBase 中创建插件的步骤，以满足特定需求。" data-zh="本文的目标是展示在 NocoBase 中创建插件的步骤，以满足特定需求。" data-en="The goal of this article is to demonstrate the steps for creating a plugin in NocoBase to meet specific needs.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>技术 &amp; 教程 · AI 与无代码</t-zh><t-en>Tech &amp; Tutorials · AI &amp; No-Code</t-en></p>
+    <h1><t-zh>如何在 NocoBase 中开发插件发送 WhatsApp 消息？</t-zh><t-en>Developing a Plugin to Send WhatsApp Messages in NocoBase</t-en></h1>
+    <p class="lede"><t-zh>本文的目标是展示在 NocoBase 中创建插件的步骤，以满足特定需求。</t-zh><t-en>The goal of this article is to demonstrate the steps for creating a plugin in NocoBase to meet specific needs.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年1月10日</t-zh><t-en>Jan 10, 2025</t-en></span><span><t-zh>Leandro Martins</t-zh><t-en>Leandro Martins</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/65d76e5288ef41d6a1e5372a0988dfc1.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>本文由 Leandro Martins 编写，最初发布于 <a href="https://leandromartins.hashnode.dev/developing-a-plugin-to-send-whatsapp-messages-in-nocobase">Developing a Plugin to Send WhatsApp Messages in NocoBase</a>。</p>
+<p>本文的目标是展示在 NocoBase 中创建插件的步骤，以满足特定需求。我们将涵盖架构设计、创建基础结构、激活插件、定义和创建集合、创建端点、构建配置界面、与工作流集成以及导出插件等内容。</p>
+<p>本文将使用以下技术：NocoBase、PostgreSQL 和 Docker。这些工具应该已经配置好。有关安装说明，请参考我编写的<a href="../blog/building-an-application-catalog-with-nocobase.html">指南</a>。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-1">插件架构</h2>
+<p><img src="https://static-docs.nocobase.com/dfcb0082a99b45aa4334c8460708a50b.png" alt="Plugin Architecture.png"></p>
+<h2 id="zh-2">创建插件结构</h2>
+<p>要创建插件，只需运行以下命令。有关插件结构、初始代码和命令的更多细节，请参阅<a href="https://docs.nocobase.com/development/your-fisrt-plugin">文档</a>。</p>
+<pre><code>yarn pm create @my-project/plugin-whatsapp
+</code></pre>
+<p>创建后，生成的文件将位于 <code>packages</code> 文件夹下，插件的名称如下面的图片所示。为了更好地理解文件夹结构，您可以参考手册<a href="https://docs.nocobase.com/development/app-ds">这里</a>。</p>
+<p><img src="https://static-docs.nocobase.com/c63fb5375b27a5c2520437df9bfbb253.png" alt="plugin&#39;s defined name.png"></p>
+<h2 id="zh-3">激活插件</h2>
+<p>要激活插件，您可以进入插件屏幕并使用切换按钮启用它，如下图所示，或者运行以下命令。</p>
+<pre><code>yarn pm enable @my-project/plugin-hello
+</code></pre>
+<p><img src="https://static-docs.nocobase.com/12c6a36ffb3acdddd4e95a415d19460a.png" alt="Activating the Plugin.png"></p>
+<h2 id="zh-4">创建集合</h2>
+<p>集合非常重要，因为它们定义了存储在数据库表中的数据结构。在这个示例中，我创建了两个集合，如下所述。</p>
+<ol>
+<li><strong>ProvideConfig</strong><ul>
+<li><strong>API Key</strong>：用于访问 WhatsApp API 的 Meta API 密钥</li>
+<li><strong>URL</strong>：API URL</li>
+<li><strong>Cell Phone From</strong>：WhatsApp Business 电话号码</li>
+</ul>
+</li>
+<li><strong>MessageQueue</strong><ul>
+<li><strong>Content</strong>：消息内容</li>
+<li><strong>Status</strong>：待处理或已完成</li>
+</ul>
+</li>
+</ol>
+<p>在NocoBase中，集合位于<code>/src/server/collections/</code>文件夹中。基本结构如下所示。有关更多详细信息，请参阅文档<a href="https://docs.nocobase.com/development/server/collections">这里</a>。</p>
+<pre><code>##File: ProvideConfig
+import { defineCollection } from &#39;@nocobase/database&#39;;
+
+export default defineCollection({
+  name: &#39;ProvideConfig&#39;,
+  fields: [
+    { type: &#39;string&#39;, name: &#39;api_key&#39; },
+    { type: &#39;string&#39;, name: &#39;url&#39; },
+    { type: &#39;string&#39;, name: &#39;cell_phone_from&#39; },
+  ],
+},
+);
+
+##File: MessageQueue
+import { defineCollection } from &#39;@nocobase/database&#39;;
+
+export default defineCollection({
+  name: &#39;MessageQueue&#39;,
+  fields: [
+    { type: &#39;string&#39;, name: &#39;content&#39; },
+    { type: &#39;string&#39;, name: &#39;status&#39; }
+  ],
+},
+);
+</code></pre>
+<h2 id="zh-5">创建端点</h2>
+<p>端点允许外部系统与您的应用程序中的操作进行交互，从而实现它们之间的集成。在此案例中，我们将创建一个端点，以安排异步调用 WhatsApp API 来发送消息。</p>
+<p>要创建端点，您可以使用<code>/src/server/plugin.ts</code>文件，并将代码添加到<code>load</code>方法中，如下面的示例所示。在ACL（访问控制列表）中，您定义了端点的权限。使用<code>resourceManager</code>，您可以注册端点及其方法。配置完成后，端点将在以下位置可用：配置完成后，端点将在以下位置可用：</p>
+<p><a href="http://localhost:13001/api/whatsapp:sendMessage"><code>http://localhost:13001/api/whatsapp:sendMessage</code></a></p>
+<pre><code>import { Plugin } from &#39;@nocobase/server&#39;;
+
+export class PluginHelloServer extends Plugin {
+
+  async afterAdd() {}
+
+  async beforeLoad() {}
+
+  async load() {
+    this.app.acl.allow(&#39;whatsapp&#39;, &#39;*&#39;, &#39;public&#39;);
+
+    this.app.resourceManager.define({
+      name: &#39;whatsapp&#39;,
+      actions: {
+        async sendMessage(ctx, next) {
+
+          //Save message in the queu status: pending
+
+          //Recovery API Whataap paramters in database;
+
+          //Try send message whats using API
+
+          // If OK, update status: done Else: update status: error
+        }
+      }
+    });
+
+  }
+
+...
+</code></pre>
+<h2 id="zh-6"><strong>创建配置界面</strong></h2>
+<p>NocoBase 允许您使用 React 和 Ant Design 创建界面。在这个例子中，我将在插件的设置区域创建一个界面。该界面将使您能够定义 WhatsApp API 设置，并查看已发送的消息及其状态，如下图所示。</p>
+<p><img src="https://static-docs.nocobase.com/e52ce1228c1d80069b3a415f744eefb9.png" alt="Creating the Configuration Interface.png"></p>
+<p>在<code>/src/client</code>文件夹中，您可以使用 React 和 Ant Design 创建界面。下面的代码展示了创建屏幕所需的简单结构。有关更多详细信息，您可以查看此链接，其中包含创建菜单、屏幕和路由的信息。</p>
+<pre><code>
+##File: index.tsx
+import { Plugin } from &#39;@nocobase/client&#39;;
+import { Alert, Button, Form, Input, Table, Tabs, TabsProps } from &#39;antd&#39;;
+import React, { useState } from &#39;react&#39;;
+
+/**
+ *
+ */
+export class PluginWhatsappClient extends Plugin {
+
+  async afterAdd() {
+    // await this.app.pm.add()
+  }
+
+  async beforeLoad() {
+  }
+
+  async load() {
+
+    // this.app.addComponents({})
+    // this.app.addScopes({})
+    // this.app.addProvider()
+    // this.app.addProviders()
+    // this.app.router.add()
+
+    const PluginWhatsAppTabs = () =&gt; {
+
+      const [apiKey, setApiKey] = useState();
+      const [url, setUrl] = useState();
+      const [cellPhoneFrom, setCellPhoneFrom] = useState();
+
+      const onChange = async (key: string) =&gt; {
+
+        //Retrive the data from api and set in inputs.
+        const { data } = await this.app.apiClient.request({ url: &#39;ProvideConfig:get&#39;, params: { filterByTk: 1 } });
+        setApiKey(data.data.api_key);
+        setUrl(data.data.url);
+        setCellPhoneFrom(data.data.celular_from);
+      };
+
+      const onClickSubmit = () =&gt; {
+
+        //Action for update input in DB using API.
+        console.log(&#39;Ok&#39;);
+      }
+
+      //Mock data with messages
+      const dataSource = [
+        {
+          key: &#39;1&#39;,
+          content: &#39;Olá bem vindo&#39;,
+          date: &#39;24/12/2024&#39;,
+          status: &#39;Pendente&#39;,
+        },
+        {
+          key: &#39;2&#39;,
+          content: &#39;Olá bem vindo&#39;,
+          date: &#39;23/12/2024&#39;,
+          status: &#39;Enviado&#39;,
+        }
+      ];
+
+      const columns = [
+        {
+          title: &#39;Content&#39;,
+          dataIndex: &#39;content&#39;,
+          key: &#39;content&#39;,
+        },
+        {
+          title: &#39;Date&#39;,
+          dataIndex: &#39;date&#39;,
+          key: &#39;date&#39;,
+        },
+        {
+          title: &#39;Status&#39;,
+          dataIndex: &#39;status&#39;,
+          key: &#39;status&#39;,
+        },
+      ];
+
+      const instructions = (&lt;&gt;&lt;p&gt;Instructions:&lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;The settings below are from Meta&#39;s messaging provider, and must be filled in with correct information to send messages automatically. For more details, visit: https://developers.facebook.com/docs/whatsapp/cloud-api&lt;/li&gt;
+          &lt;li&gt;After configuring the settings below, to send messages, simply use the /api/sendMessage:post endpoint&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/&gt;);
+
+      const itemsTabs: TabsProps[&#39;items&#39;] = [
+        {
+          key: &#39;1&#39;,
+          label: &#39;Messages&#39;,
+          children: (&lt;Table dataSource={dataSource} columns={columns} /&gt;),
+        },
+        {
+          key: &#39;2&#39;,
+          label: &#39;Configurations&#39;,
+          children: (&lt;&gt;
+            &lt;p&gt;&lt;Alert message={instructions} type=&quot;error&quot; /&gt;&lt;/p&gt;
+            &lt;Form layout=&quot;vertical&quot;&gt;
+              &lt;Form.Item label=&quot;* API Key Meta:&quot; style={{ fontWeight: &#39;bold&#39; }}&gt;
+                &lt;Input placeholder=&quot;xxxxxxxxxx&quot; value={apiKey} /&gt;
+              &lt;/Form.Item&gt;
+              &lt;Form.Item label=&quot;* URL API Meta:&quot; style={{ fontWeight: &#39;bold&#39; }}&gt;
+                &lt;Input placeholder=&quot;domain.com...&quot; value={url} /&gt;
+              &lt;/Form.Item&gt;
+              &lt;Form.Item label=&quot;* Cell phone from:&quot; style={{ fontWeight: &#39;bold&#39; }}&gt;
+                &lt;Input placeholder=&quot;5554899991234&quot; value={cellPhoneFrom} /&gt;
+              &lt;/Form.Item&gt;
+              &lt;Form.Item&gt;
+                &lt;Button type=&quot;primary&quot; onClick={onClickSubmit}&gt;Submit&lt;/Button&gt;
+              &lt;/Form.Item&gt;
+            &lt;/Form&gt;&lt;/&gt;
+          ),
+        }
+      ];
+
+      return (&lt;Tabs defaultActiveKey=&quot;1&quot; items={itemsTabs} onChange={onChange}/&gt;)
+
+    }
+
+    this.app.pluginSettingsManager.add(&#39;whatsapp&#39;, {
+      title: &#39;WhatsApp&#39;,
+      icon: &#39;WhatsAppOutlined&#39;,
+      Component: PluginWhatsAppTabs,
+      sort: 100,
+    });
+  }
+}
+
+export default PluginWhatsappClient;
+</code></pre>
+<p>上面的代码会为创建的插件生成下面的屏幕。为了简洁起见，某些部分已被注释掉。</p>
+<p><img src="https://static-docs.nocobase.com/d0e00558051e08b313e118b34a6c1352.png" alt="Creating the Configuration Interface.png"></p>
+<h2 id="zh-7">与 NocoBase 工作流集成</h2>
+<p>有多种方法可以在工作流中触发插件中创建的端点来发送消息。一个常见的方法是在 NocoBase 工作流中创建一个“HTTP 请求”类型的工作流，并传递数据，如下图所示。</p>
+<p><img src="https://static-docs.nocobase.com/d02220eeba3f609f6d9f5174b954f42f.png" alt="**Integrating with NocoBase Workflow.png"></p>
+<h2 id="zh-8"><strong>将插件导出为文件</strong></h2>
+<p>要导出创建的插件，只需运行以下命令。这将生成一个<code>.tar</code>文件，可以在其他 NocoBase 实例中安装。有关更多详细信息，您可以参考<a href="https://docs.nocobase.com/development/your-fisrt-plugin">文档</a><a href="https://leandromartins.hashnode.dev/developing-a-plugin-to-send-whatsapp-messages-in-nocobase#">.</a></p>
+<pre><code>yarn build @my-project/plugin-hello
+yarn nocobase tar @my-project/plugin-hello
+</code></pre>
+<h2 id="zh-9">结论</h2>
+<p>本文的目的是展示在 NocoBase 中创建插件的过程和基本结构。代码的某些部分可以进行重写和改进。很快，我计划将该项目添加到一个代码库，并与社区共享修订后的插件。</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/building-an-application-catalog-with-nocobase.html">简化的架构治理：使用 NocoBase 构建应用程序目录</a></li>
+<li><a href="../blog/nocobase-backup-restore.html">如何备份和还原 NocoBase</a></li>
+<li><a href="../blog/build-apps-with-nocobase.html">如何使用 NocoBase 构建应用程序？</a></li>
+<li><a href="../blog/load-docker-image.html">如何上传 Docker 镜像到内网服务器</a></li>
+<li><a href="../blog/first-optimization-process-for-nocobase-server-side-apis.html">NocoBase 服务端接口初步优化的过程</a></li>
+</ul></div><div class="prose en-only"><p>This blog was produced by Leandro Martins and was originally published at <a href="https://leandromartins.hashnode.dev/developing-a-plugin-to-send-whatsapp-messages-in-nocobase">Developing a Plugin to Send WhatsApp Messages in NocoBase</a>.</p>
+<p>The goal of this article is to demonstrate the steps for creating a plugin in NocoBase to meet specific needs. We will cover the architectural design, create the basic structure, activate the plugin, define and create collections, create an endpoint, build a configuration interface, integrate with workflows, and export the plugin.</p>
+<p>For this article, we’ll use the following technologies: NocoBase, PostgreSQL, and Docker. These tools should already be configured. For installation instructions, refer to a separate guide I’ve written <a href="../blog/building-an-application-catalog-with-nocobase.html">here</a>.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-1">Plugin Architecture</h2>
+<p><img src="https://static-docs.nocobase.com/dfcb0082a99b45aa4334c8460708a50b.png" alt="Plugin Architecture.png"></p>
+<h2 id="en-2">Creating the Plugin Structure</h2>
+<p>To create the plugin, simply run the command below. You can find more details about the plugin structure, initial code, and commands in the <a href="https://docs.nocobase.com/development/your-fisrt-plugin">documentation</a>.</p>
+<pre><code>yarn pm create @my-project/plugin-whatsapp
+</code></pre>
+<p>Once created, the generated files will be located in the <code>packages</code> folder under the plugin&#39;s defined name, as shown in the image below. To better understand the folder structure, you can refer to the manual <a href="https://docs.nocobase.com/development/app-ds">here</a>.</p>
+<p><img src="https://static-docs.nocobase.com/c63fb5375b27a5c2520437df9bfbb253.png" alt="plugin&#39;s defined name.png"></p>
+<h2 id="en-3">Activating the Plugin</h2>
+<p>To activate the plugin, you can either go to the plugin screen and enable it using the toggle button, as shown in the image below, or run the command below.</p>
+<pre><code>yarn pm enable @my-project/plugin-hello
+</code></pre>
+<p><img src="https://static-docs.nocobase.com/12c6a36ffb3acdddd4e95a415d19460a.png" alt="Activating the Plugin.png"></p>
+<h2 id="en-4">Creating Collections</h2>
+<p>Collections are essential because they define the structure of the data stored in tables within your database. For this example, I created two collections, as described below.</p>
+<ol>
+<li><strong>ProvideConfig</strong><ul>
+<li><strong>API Key</strong>: Meta&#39;s API Key to access the WhatsApp API</li>
+<li><strong>URL</strong>: API URL</li>
+<li><strong>Cell Phone From</strong>: WhatsApp Business phone number</li>
+</ul>
+</li>
+<li><strong>MessageQueue</strong><ul>
+<li><strong>Content</strong>: Message content</li>
+<li><strong>Status</strong>: Pending or Completed</li>
+</ul>
+</li>
+</ol>
+<p>In NocoBase, collections are located in the <code>/src/server/collections/</code> folder. The basic structure is shown below. For more details, refer to the documentation <a href="https://docs.nocobase.com/development/server/collections">here</a>.</p>
+<pre><code>##File: ProvideConfig
+import { defineCollection } from &#39;@nocobase/database&#39;;
+
+export default defineCollection({
+  name: &#39;ProvideConfig&#39;,
+  fields: [
+    { type: &#39;string&#39;, name: &#39;api_key&#39; },
+    { type: &#39;string&#39;, name: &#39;url&#39; },
+    { type: &#39;string&#39;, name: &#39;cell_phone_from&#39; },
+  ],
+},
+);
+
+##File: MessageQueue
+import { defineCollection } from &#39;@nocobase/database&#39;;
+
+export default defineCollection({
+  name: &#39;MessageQueue&#39;,
+  fields: [
+    { type: &#39;string&#39;, name: &#39;content&#39; },
+    { type: &#39;string&#39;, name: &#39;status&#39; }
+  ],
+},
+);
+</code></pre>
+<h2 id="en-5">Creating Endpoints</h2>
+<p>Endpoints allow external systems to interact with actions within your application, enabling integration between them. In this case, we will create an endpoint to schedule an execution that asynchronously calls the WhatsApp API to send a message.</p>
+<p>To create the endpoint, you can use the <code>/src/server/plugin.ts</code> file and add the code within the <code>load</code> method, as shown in the example below. In the ACL (Access Control List), you define the permissions for the endpoint. Using the <code>resourceManager</code>, you register the endpoint with its method. Once configured, the endpoint will be available at:<a href="http://localhost:13001/api/whatsapp:sendMessage"><code>http://localhost:13001/api/whatsapp:sendMessage</code></a></p>
+<pre><code>import { Plugin } from &#39;@nocobase/server&#39;;
+
+export class PluginHelloServer extends Plugin {
+
+  async afterAdd() {}
+
+  async beforeLoad() {}
+
+  async load() {
+    this.app.acl.allow(&#39;whatsapp&#39;, &#39;*&#39;, &#39;public&#39;);
+
+    this.app.resourceManager.define({
+      name: &#39;whatsapp&#39;,
+      actions: {
+        async sendMessage(ctx, next) {
+
+          //Save message in the queu status: pending
+
+          //Recovery API Whataap paramters in database;
+
+          //Try send message whats using API
+
+          // If OK, update status: done Else: update status: error
+        }
+      }
+    });
+
+  }
+
+...
+</code></pre>
+<h2 id="en-6"><strong>Creating the Configuration Interface</strong></h2>
+<p>NocoBase allows you to create interfaces using React and Ant Design. In this case, I will create an interface within the plugin&#39;s settings area. This interface will enable defining the WhatsApp API settings and viewing the messages that have been sent along with their statuses, as shown in the images below.</p>
+<p><img src="https://static-docs.nocobase.com/e52ce1228c1d80069b3a415f744eefb9.png" alt="Creating the Configuration Interface.png"></p>
+<p>In the <code>/src/client</code> folder, you can create your interfaces using React and Ant Design. The code below gives an idea of the simple structure needed to create the screens shown in the images. For more details, you can check this link, where you&#39;ll find information on creating menus, screens, and routes.</p>
+<pre><code>
+##File: index.tsx
+import { Plugin } from &#39;@nocobase/client&#39;;
+import { Alert, Button, Form, Input, Table, Tabs, TabsProps } from &#39;antd&#39;;
+import React, { useState } from &#39;react&#39;;
+
+/**
+ *
+ */
+export class PluginWhatsappClient extends Plugin {
+
+  async afterAdd() {
+    // await this.app.pm.add()
+  }
+
+  async beforeLoad() {
+  }
+
+  async load() {
+
+    // this.app.addComponents({})
+    // this.app.addScopes({})
+    // this.app.addProvider()
+    // this.app.addProviders()
+    // this.app.router.add()
+
+    const PluginWhatsAppTabs = () =&gt; {
+
+      const [apiKey, setApiKey] = useState();
+      const [url, setUrl] = useState();
+      const [cellPhoneFrom, setCellPhoneFrom] = useState();
+
+      const onChange = async (key: string) =&gt; {
+
+        //Retrive the data from api and set in inputs.
+        const { data } = await this.app.apiClient.request({ url: &#39;ProvideConfig:get&#39;, params: { filterByTk: 1 } });
+        setApiKey(data.data.api_key);
+        setUrl(data.data.url);
+        setCellPhoneFrom(data.data.celular_from);
+      };
+
+      const onClickSubmit = () =&gt; {
+
+        //Action for update input in DB using API.
+        console.log(&#39;Ok&#39;);
+      }
+
+      //Mock data with messages
+      const dataSource = [
+        {
+          key: &#39;1&#39;,
+          content: &#39;Olá bem vindo&#39;,
+          date: &#39;24/12/2024&#39;,
+          status: &#39;Pendente&#39;,
+        },
+        {
+          key: &#39;2&#39;,
+          content: &#39;Olá bem vindo&#39;,
+          date: &#39;23/12/2024&#39;,
+          status: &#39;Enviado&#39;,
+        }
+      ];
+
+      const columns = [
+        {
+          title: &#39;Content&#39;,
+          dataIndex: &#39;content&#39;,
+          key: &#39;content&#39;,
+        },
+        {
+          title: &#39;Date&#39;,
+          dataIndex: &#39;date&#39;,
+          key: &#39;date&#39;,
+        },
+        {
+          title: &#39;Status&#39;,
+          dataIndex: &#39;status&#39;,
+          key: &#39;status&#39;,
+        },
+      ];
+
+      const instructions = (&lt;&gt;&lt;p&gt;Instructions:&lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;The settings below are from Meta&#39;s messaging provider, and must be filled in with correct information to send messages automatically. For more details, visit: https://developers.facebook.com/docs/whatsapp/cloud-api&lt;/li&gt;
+          &lt;li&gt;After configuring the settings below, to send messages, simply use the /api/sendMessage:post endpoint&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/&gt;);
+
+      const itemsTabs: TabsProps[&#39;items&#39;] = [
+        {
+          key: &#39;1&#39;,
+          label: &#39;Messages&#39;,
+          children: (&lt;Table dataSource={dataSource} columns={columns} /&gt;),
+        },
+        {
+          key: &#39;2&#39;,
+          label: &#39;Configurations&#39;,
+          children: (&lt;&gt;
+            &lt;p&gt;&lt;Alert message={instructions} type=&quot;error&quot; /&gt;&lt;/p&gt;
+            &lt;Form layout=&quot;vertical&quot;&gt;
+              &lt;Form.Item label=&quot;* API Key Meta:&quot; style={{ fontWeight: &#39;bold&#39; }}&gt;
+                &lt;Input placeholder=&quot;xxxxxxxxxx&quot; value={apiKey} /&gt;
+              &lt;/Form.Item&gt;
+              &lt;Form.Item label=&quot;* URL API Meta:&quot; style={{ fontWeight: &#39;bold&#39; }}&gt;
+                &lt;Input placeholder=&quot;domain.com...&quot; value={url} /&gt;
+              &lt;/Form.Item&gt;
+              &lt;Form.Item label=&quot;* Cell phone from:&quot; style={{ fontWeight: &#39;bold&#39; }}&gt;
+                &lt;Input placeholder=&quot;5554899991234&quot; value={cellPhoneFrom} /&gt;
+              &lt;/Form.Item&gt;
+              &lt;Form.Item&gt;
+                &lt;Button type=&quot;primary&quot; onClick={onClickSubmit}&gt;Submit&lt;/Button&gt;
+              &lt;/Form.Item&gt;
+            &lt;/Form&gt;&lt;/&gt;
+          ),
+        }
+      ];
+
+      return (&lt;Tabs defaultActiveKey=&quot;1&quot; items={itemsTabs} onChange={onChange}/&gt;)
+
+    }
+
+    this.app.pluginSettingsManager.add(&#39;whatsapp&#39;, {
+      title: &#39;WhatsApp&#39;,
+      icon: &#39;WhatsAppOutlined&#39;,
+      Component: PluginWhatsAppTabs,
+      sort: 100,
+    });
+  }
+}
+
+export default PluginWhatsappClient;
+</code></pre>
+<p>The code above generates the screen below for the created plugin. Some parts are commented out to keep the code concise.</p>
+<p><img src="https://static-docs.nocobase.com/d0e00558051e08b313e118b34a6c1352.png" alt="Creating the Configuration Interface.png"></p>
+<h2 id="en-7"><strong>Integrating with NocoBase Workflow</strong></h2>
+<p>There are several ways to use the endpoint created in the plugin to send messages. One of them is by triggering it within the NocoBase workflow. Essentially, this involves creating a workflow of the &quot;HTTP Request&quot; type and passing the data as shown in the image below.</p>
+<p><img src="https://static-docs.nocobase.com/d02220eeba3f609f6d9f5174b954f42f.png" alt="**Integrating with NocoBase Workflow.png"></p>
+<h2 id="en-8"><strong>Exporting the Plugin as a File</strong></h2>
+<p>To export the created plugin, simply run the command below. This will generate a <code>.tar</code> file that can be installed in other NocoBase instances. For more details, you can refer to the documentation <a href="https://docs.nocobase.com/development/your-fisrt-plugin">here</a><a href="https://leandromartins.hashnode.dev/developing-a-plugin-to-send-whatsapp-messages-in-nocobase#">.</a></p>
+<pre><code>yarn build @my-project/plugin-hello
+yarn nocobase tar @my-project/plugin-hello
+</code></pre>
+<h2 id="en-9">Conclusion</h2>
+<p>The purpose of this article was to demonstrate the process of creating and the basic structure of a plugin in NocoBase. Some parts of the code can be rewritten and improved. Soon, I plan to add the project to a repository and share the revised plugin with the community.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/building-an-application-catalog-with-nocobase.html">Simplified Architecture Governance: Building an Application Catalog with NocoBase</a></li>
+<li><a href="../blog/nocobase-backup-restore.html">How to Backup and Restore NocoBase</a></li>
+<li><a href="../blog/build-apps-with-nocobase.html">How to build apps with NocoBase?</a></li>
+<li><a href="../blog/load-docker-image.html">How to upload a Docker image to an intranet server</a></li>
+<li><a href="../blog/first-optimization-process-for-nocobase-server-side-apis.html">First Optimization Process for NocoBase Server-Side APIs</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">插件架构</a><a href="#zh-2">创建插件结构</a><a href="#zh-3">激活插件</a><a href="#zh-4">创建集合</a><a href="#zh-5">创建端点</a><a href="#zh-6">创建配置界面</a><a href="#zh-7">与 NocoBase 工作流集成</a><a href="#zh-8">将插件导出为文件</a><a href="#zh-9">结论</a></div><div class="en-only"><a href="#en-1">Plugin Architecture</a><a href="#en-2">Creating the Plugin Structure</a><a href="#en-3">Activating the Plugin</a><a href="#en-4">Creating Collections</a><a href="#en-5">Creating Endpoints</a><a href="#en-6">Creating the Configuration Interface</a><a href="#en-7">Integrating with NocoBase Workflow</a><a href="#en-8">Exporting the Plugin as a File</a><a href="#en-9">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

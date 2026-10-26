@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="一个不知名的开源项目可以带来多少收入 —— NocoBase 3 年总结分享 — NocoBase" data-en="How much revenue can an unknown open-source project get — NocoBase">一个不知名的开源项目可以带来多少收入 —— NocoBase 3 年总结分享 — NocoBase</title>
+<meta name="description" content="探索 NocoBase 款开源无代码平台在三年内如何实现显著增长和收入。本文详细介绍了 NocoBase 的成长历程、策略及成功经验，包括其在 AI 和石化建设等行业的影响。了解开源开发和社区参与如何推动他们的成就，并发现该创新平台的未来规划。" data-zh="探索 NocoBase 款开源无代码平台在三年内如何实现显著增长和收入。本文详细介绍了 NocoBase 的成长历程、策略及成功经验，包括其在 AI 和石化建设等行业的影响。了解开源开发和社区参与如何推动他们的成就，并发现该创新平台的未来规划。" data-en="Discover how NocoBase, an open-source no-code platform, achieved remarkable growth and revenue over three years. Learn about their journey, strategies, and the significant impact on various industries, from AI to petrochemical construction. Explore insights on building a successful open-source project and fostering a global community. Read the full story of NocoBase’s transformation and future plans.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>洞见 · NocoBase 故事</t-zh><t-en>Insights · NocoBase stories</t-en></p>
+    <h1><t-zh>一个不知名的开源项目可以带来多少收入 —— NocoBase 3 年总结分享</t-zh><t-en>How much revenue can an unknown open-source project get</t-en></h1>
+    <p class="lede"><t-zh>探索 NocoBase 款开源无代码平台在三年内如何实现显著增长和收入。本文详细介绍了 NocoBase 的成长历程、策略及成功经验，包括其在 AI 和石化建设等行业的影响。了解开源开发和社区参与如何推动他们的成就，并发现该创新平台的未来规划。</t-zh><t-en>Discover how NocoBase, an open-source no-code platform, achieved remarkable growth and revenue over three years. Learn about their journey, strategies, and the significant impact on various industries, from AI to petrochemical construction. Explore insights on building a successful open-source project and fostering a global community. Read the full story of NocoBase’s transformation and future plans.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>洞见</t-zh><t-en>Insights</t-en></span><span class="pill"><t-zh>NocoBase 故事</t-zh><t-en>NocoBase stories</t-en></span><span><t-zh>2024年5月13日</t-zh><t-en>May 13, 2024</t-en></span><span><t-zh>Zhou Yanliang</t-zh><t-en>Zhou Yanliang</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/2c3c0ad71d43eada40069cb5f919bd23.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">起源</h2>
+<p>2020 年新冠疫情开始蔓延，当时我在同时经营 3 个不同的公司。除了其中的体育赛事平台因为疫情关门大吉之外，另外两个公司并没有受影响，营收和利润反而都持续增加。但是连续几个月不能出远门，也不能随便见朋友和客户，这让我很抑郁。</p>
+<p>有一天，我跟我老婆说，我不想就此与世界失联，我希望每天都能听到新鲜的故事，我要开始做一个会让我长期兴奋的产品。</p>
+<p>于是，我马上联系了 Chenlin。他当时在我们的另一个团队里，负责体育赛事平台的开发。实际上，我们俩从 2018 年开始就断断续续在聊这个产品。经过几个星期的碰撞，我们将目标场景、设计原则、产品形态、技术架构等关键因素都确定下来，我又从另一个团队里拉来一位同事，最初的团队就形成了。</p>
+<p>直到几个月后，我们才从几个备选名字中确定了这个产品的最终名称：<a href="https://cn.nocobase.com/" title="NocoBase">NocoBase</a>。它是为开发者准备的无代码开发平台，它是开发团队的基础设施。它的设计原则是：80% 的需求通过无代码实现，另外 20% 的部分通过扩展开发实现。它被设计为微内核、插件化的架构，一切功能都以插件的形式扩展。</p>
+<p>同时，我们还确定了 3 件事：</p>
+<ul>
+<li><strong>开源</strong>。这个产品的代码将是开源的。只有开源、开放，才能最大化发挥出它的扩展性优势。而且，开源将帮助我们无需在市场、销售方面投入太多资源，就可以触达全世界的用户。</li>
+<li><strong>6 年</strong>。不要过早判断这件事情是否正确，至少先做够 6 年再下结论。第一个 2 年，做出 MVP，表达出我们的核心理念；第二个 2 年，将产品投入到生产环境中实际使用，不断验证和完善；第三个 2 年，向更多企业介绍我们的产品，并投入到开源社区的建设。我们会根据收支情况来逐步扩充团队，做好发展速度和风险的平衡。</li>
+<li>**20%**。一旦我们开始盈利，将每年利润的 20%（目前已经增加至 30%） 分配给核心团队。核心团队在共同创立一份事业，共同创作一件让自己自豪的作品，而不是从事一份普通的工作。 事情就这样开始了。</li>
+</ul>
+<h2 id="zh-2">现状</h2>
+<p>从 2021 年 3 月 29 日第一次在 GitHub 和 Gitee 提交代码，到现在过去 3 年多一点，也就是我们的第二个 2 年计划正在进行中。</p>
+<p>在这 3 年多的时间里，我们在 Reddit、Dev、V2ex、Oschina 等社区发过少量关于 NocoBase 的帖子，除此之外，没有做过更多的宣传和推广活动。原因是 NocoBase 作为企业产品，作为基础设施，它还远不够完善。我们在文档首页和 GitHub Readme 开头强调：NocoBase 处于早期开发阶段，请谨慎用于生产环境。</p>
+<p>另外，来自多个国家的用户在自己的博客和社交媒体中介绍过 NocoBase，为 NocoBase 带来很多新用户。有数十位贡献者为 NocoBase 贡献过代码。在此向你们表示感谢。</p>
+<p>下面是我们目前的一些数据。从这些数据可以看出来，作为一个开源项目，NocoBase 并没有被太多人知道和使用，它还是一个不知名的项目。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Item</th>
+<th align="left">data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">GitHub Star</td>
+<td align="left">5.7k</td>
+</tr>
+<tr>
+<td align="left">Gitee Star</td>
+<td align="left">1.8k</td>
+</tr>
+<tr>
+<td align="left">Contributors</td>
+<td align="left">57</td>
+</tr>
+<tr>
+<td align="left">Google results</td>
+<td align="left">11.2k</td>
+</tr>
+<tr>
+<td align="left">Npm package downloads</td>
+<td align="left">37k</td>
+</tr>
+<tr>
+<td align="left">Docker image pulls</td>
+<td align="left">50k</td>
+</tr>
+<tr>
+<td align="left">Git cloners</td>
+<td align="left">50/day</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/star-history.png" alt="star-history"><img src="https://static-docs.nocobase.com/google.png" alt="google"></p>
+<p>值得庆祝的是，我们在 2 个星期前，4 月最后一天，将根版本号从 0 升级到了 1，正式发布了 1.0-alpha 版本。同时也在各个社交平台开通了 NocoBase 的官方账号。我们开始准备向更多人介绍 NocoBase，也准备开启我们的商业化之旅。</p>
+<h2 id="zh-3">过去 12 个月的收入</h2>
+<p>虽然我们刚刚发布 1.0-alpha，还未公开提供标准的商业许可证和商业插件，但在 2022 年 10 月我们就收到了第一笔大额的收入。在过去的 12 个月里（2023 年 5 月 至 2024 年 4 月），我们的收入共计人民币 226 万元（外币全部兑换成人民币）。</p>
+<p><img src="https://static-docs.nocobase.com/income-2024-05-11-10-55-47.jpeg" alt="income-2024-05-11-10-55-47"></p>
+<p>这些收入主要来自：</p>
+<ul>
+<li>中国</li>
+<li>美国</li>
+<li>印度</li>
+<li>欧洲</li>
+<li>巴西</li>
+</ul>
+<p>收入的类型主要有：</p>
+<ul>
+<li>用户付费让我们优先开发所需的插件（非定制）</li>
+<li>商业许可证</li>
+<li>商业插件</li>
+<li>衍生产品的收入分成</li>
+</ul>
+<p>对于一个做了 3 年的产品来说，这个收入普普通通。但这超出了我们的预期。</p>
+<h2 id="zh-4">更重要的收获</h2>
+<p><img src="https://static-docs.nocobase.com/sun-2-2024-05-11-11-04-09.jpg" alt="sun-2-2024-05-11-11-04-09"></p>
+<p>2 个月前的一天，我正开车走在高速路上，Todd 联系到我。于是我停在路边，我们畅聊了 1 个多小时，聊完之后已经是傍晚。我继续上路，看着后视镜中红火热烈的夕阳，越发感觉心潮澎湃，仿佛在与整个世界一起跳动脉搏。</p>
+<p>Todd 所在的公司叫做 <a href="https://www.plaud.ai/" title="PLAUD">PLAUD</a>，他们的产品叫做 PLAUD NOTE，是全球第一款使用 AI 大语言模型进行智能录音、转写和总结的 AI 设备。当时他们刚完成了数百万美元的众筹，几个月后的今天，他们的销售额已经超过 1000 万美元。他们有强大专业的技术团队来研发全球最优秀的产品，但是并没有太多精力投入到业务支撑系统的研发，导致市场、售后等团队的工作效率远远跟不上业务增长的速度。</p>
+<p>看过 PLAUD NOTE 的产品介绍之后，我觉得它太酷了，它背后的团队也很酷，我情不自禁的将它介绍给了周围很多朋友。Todd 的团队觉得 NocoBase 也很酷，我们一拍即合。他们的开发团队用了几天时间就基于 NocoBase 开发出了业务支撑系统，大幅提高了团队的工作效率。</p>
+<p>在这个过程中，NocoBase 团队仿佛也亲身参与了 PLAUD 的飞速增长。</p>
+<p><img src="https://static-docs.nocobase.com/plaud-2024-05-11-11-06-30.png" alt="plaud-2024-05-11-11-06-30"></p>
+<p>Ke 从 2 年前就活跃于 NocoBase 开源社区，并成为贡献者。他就职于中石化第五建设有限公司，是中国最早从事石油化工建设的大型施工企业，也是石化工程系统最早做信息化、数字化的施工单位。同很多传统行业面临的问题一样，软件开发公司不懂他们的行业，他们的行业内又很缺乏专业的开发人员。</p>
+<p>NocoBase 给他们的开发模式带来了巨大的改变。他们打通了原有的数据库，接入了很多硬件设备，业务专家基于 NocoBase 所见即所得的无代码开发方式，一步一步探索整个行业的数字化变革。</p>
+<p>在与 Ke 的日常交流中，我们了解到沙特项目，了解到科威特项目，聆听了从不曾想象过的故事。不得不感慨，中国的建设能力非常令人钦佩和自豪。</p>
+<p><img src="https://static-docs.nocobase.com/shihua-2024-05-11-11-06-48.jpeg" alt="shihua-2024-05-11-11-06-48"></p>
+<p>800 年，8000 公里，你能想象在某个清晨，打开邮箱，就能跨越时空与如此遥远的另一个人就像老朋友一样交谈、合作？</p>
+<p>锡耶纳大学成立于 1240 年，是全球历史最悠久的学术机构之一。它坐落在意大利托斯卡纳一座中世纪小镇的中心，拥有悠久的学术和创新历史。上一次距离意大利和 1240 年这么近，还是在我上中学的时候，在历史课本中学习罗马帝国、文艺复兴的故事。而今天，在这所 8000 公里以外的、创建于 800 年前的大学里，有一支由技术专家、培训专家、电子学习支持部门共同组成的团队，正在使用 NocoBase 作为他们的基础设施，来整合从行政系统到在线教育系统再到工单系统等广泛的、庞大的流程。</p>
+<p>传奇故事并没有停下，就在昨天，这个团队里的 Fabrizio 发给我一条关于温州大学与锡耶纳大学<a href="https://www.wzu.edu.cn/info/1505/46432.htm" title="NocoBase">互相访问和合作的新闻</a>。8000 公里瞬间变的近在咫尺，因为温州大学就在我们的身边，而 Fabrizio 告诉我，新闻照片里这栋楼，就是他的办公室所在地。</p>
+<p><img src="https://static-docs.nocobase.com/siena-2024-05-11-11-24-43.jpg" alt="siena-2024-05-11-11-24-43"></p>
+<p>我们从来没做过像 PLAUD NOTE 这么酷的硬件产品，从没接触过石油化工建设，甚至从没去过意大利。如果没有 NocoBase，它们或许将永远不会出现在我们的视野和生活中。</p>
+<p>但现在，我们做到了。我们做出了 NocoBase，它被世界上的一些人发现了。这些人正在认真地用数字技术改善生活，改善工作，甚至改善整个行业。在他们认真改善世界的旅途中，NocoBase 成为了他们的得力助手。</p>
+<p>而对我们来说，NocoBase 成为了我们与世界的连接器。它连接我们没做过的事，没见过的人，没去过的地方。我们的生活半径不再是几公里，我们的工作范围不再是几行代码。我们每天都可以进入到崭新的故事中。</p>
+<p>这样的回报，又岂是金钱可以衡量的呢？</p>
+<h2 id="zh-5">我们是如何做的</h2>
+<h4>1. 找到合适的方向</h4>
+<p>找到合适的方向，这可能是所有的创业课程里都会首先谈到的话题，主流观点是去寻找用户痛点、计算市场规模。</p>
+<p>对于这个话题，我有不一样的想法。过去这些年，我自己经营过几家公司，也投资过几家公司，它们当中有些已经关张了，有些还在稳步发展，源源不断地创造利润。当我去评价 NocoBase 这样的产品机会，首先关注的并不是用户需求，更不是市场规模。我更想关注它是否适合我。我对自己的性格有最深入的了解，知道自己想要什么，擅长什么，不适合什么。决定做 NocoBase 的时候，我重点考虑了以下几个问题：</p>
+<ul>
+<li>它是否会为我补充精神能量，而不是消耗我的能量</li>
+<li>它是否是一件值得投入十年以上的事情，而且时间越久，积累越多</li>
+<li>它是否有一条细分的、少有人选择的路径</li>
+<li>它是否能创造利润，而不需要依赖融资</li>
+<li>它是否是一个标准化的产品，通过授权产生收入，而不是通过项目实施</li>
+</ul>
+<p>当这些问题都得到肯定的答案后，我们就开始了。</p>
+<h4>2. 放低预期，顺其自然</h4>
+<p>几乎所有的创业教程中都会强调增长、甚至指数级增长的重要性。我很佩服那些可以快速增长的企业。可是我们做不了这样的事，一方面能力有限，另一方面并不想让自己和团队被数字牵着鼻子走。我希望我们做的事情能为平稳的生活带来积极的影响，而不是竭尽全力追逐数字。</p>
+<p>因此，我们从开始就设置了很低的预期，并且不会过多的关注增长速度，也不设置收入目标。</p>
+<h4>3. 接受不足，长期投入</h4>
+<p>我们团队中没有来自世界顶尖大学的辍学生，也没有被媒体光环环绕的明星创业者。大家都是普通人，都是情绪稳定、责任心强、接受过良好的教育、有丰富经验的普通人。我们在开发 NocoBase 的过程中，经常会遇到很难解决的问题，经常要花费比预期多的多的时间，经常会发现 NocoBase 某个地方被做的很难用。我们用了3 年时间才将版本号升级到 1.0，而且还是 1.0-alpha。我们坦然接受这些状况，不为它们焦虑。</p>
+<p>在过去的 1000 天里，我们几乎每天都有新的 Commit，每天的 NocoBase 都比前一天更好。</p>
+<h4>4. 把握节奏，控制风险</h4>
+<p>我们不融资，需要健康的利润来保证正常发展。利润= 收入 - 支出，因此我们前期要控制支出不会比收入多太多，并尽快实现收入大于支出。</p>
+<p>在开工的第一天，我们做的最坏打算是 6 年没有收入，我准备好 6 年的资金，确保我们在极端情况下也可以生存下来，大家可以安心创造产品而无需担心失业。</p>
+<p>对于 NocoBase 这样的团队，主要的支出就是工资，因此我们从 3 个人开始，持续了 10 几个月的时间，将每个月的成本控制在几万元。当离产生收入越来越近时，才逐步扩大团队规模，直到最近才增加到 10 个人。</p>
+<p>实际上，我们现在已经实现了盈利，并且收入结构越来越健康。</p>
+<h4>5. 工作的理想是为了理想的生活</h4>
+<p>NocoBase 是一个远程工作的团队，大家居住在不同的城市，有各自不同的生活习惯。我们每周有一次固定的周会，除此之外再没有其他约束。没有工作量统计，没有工时记录，有事无需请假。每个人都是某一方面的负责人，每个人都为结果负责。</p>
+<p>如开头所说，我们每年将 30% 的利润分配给核心团队。大家为 NocoBase 负责，实际上就是为自己的事业负责。</p>
+<p>当我写下这段文字的时候，大家正在为两个星期后的团队集体聚会、度假做准备。</p>
+<h4>6. 帮助用户成功</h4>
+<p>我们没有销售团队，未来很长时间应该也不会有。我们希望通过产品本身吸引用户，与用户建立连接，然后再通过产品来帮助用户达成他们的目标。我们不向用户兜售商业许可证，我们建议用户尽可能使用开源许可证达成目标，或者至少在自己的业务场景中经过几个月的实际测试。NocoBase 切实帮助用户赚到更多钱，或者降低更多成本，这是用户愿意向我们付费的基础。</p>
+<h2 id="zh-6">接下来做什么</h2>
+<p>我们其实没有非常详细的时间表，也没有增长计划。但至少可以确定的是，我们的 6 年计划刚过半，在接下来的 1000 天里，我们仍然会几乎每天都有 Commit，每一天的 NocoBase 依然会比前一天更好。</p>
+<p>当然，我们也很期待能连接到更多精彩的故事，期待能紧密地与精彩故事共舞。如果你的公司正在使用或者准备尝试 NocoBase，或者你对于参与 NocoBase 的开发很感兴趣，欢迎与我们<a href="https://cn.nocobase.com/contact-cn.html" title="NocoBase">取得联系</a>。</p></div><div class="prose en-only"><h2 id="en-1">Origin</h2>
+<p>In 2020, as the COVID-19 pandemic began to spread, I ran three companies simultaneously. The other two companies were unaffected except for one sports event platform that had to close due to the pandemic. Their revenues and profits continued to increase. However, being unable to travel or meet friends and clients for several months in a row made me feel depressed. One day, I told my wife I didn’t want to disconnect from the world. I wanted to hear fresh stories daily and start working on a product that would excite me in the long run.</p>
+<p>So, I immediately contacted Chenlin. At that time, he was working on another team of ours and was responsible for developing the sports event platform. The two of us had been intermittently discussing this product since 2018. After several weeks of brainstorming, we finalized the target scenarios, design principles, product forms, technical architecture, and other vital factors. I also brought in a colleague from another team, and the initial team was formed.</p>
+<p>It wasn’t until several months later that we settled on the final name for this product from several alternative names: <a href="https://github.com/nocobase/nocobase" title="NocoBase">NocoBase</a>. It is a no-code development platform designed for developers, serving as the infrastructure for development teams. Its design principle is that 80% of requirements can be implemented without code, while the remaining 20% can be implemented through extension development. It is designed with a microkernel, plugin-based architecture, extending all functionalities as plugins.</p>
+<p>At the same time, we also established three principles:</p>
+<ul>
+<li><strong>Open Source</strong>: The code for this product will be open source. Only by being open source and open can its extensibility advantage be maximized. Moreover, open source will help us reach users worldwide without investing too many resources in marketing and sales.</li>
+<li><strong>6 Years</strong>: Refrain from judging whether this is correct too early; at least do it for six years before concluding. In the first two years, create an MVP to express our core ideas; in the second two years, deploy the product for actual use in production environments and continuously verify and improve it; in the third two years, introduce our product to more enterprises and invest in building the open-source community. We will gradually expand the team and balance development speed and risk according to income and expenditure.</li>
+<li><strong>20%</strong>: Once we start making profits, allocate 20% (now increased to 30%) of the annual earnings to the core team. The core team is creating a career, jointly creating work they are proud of rather than just doing an ordinary job.</li>
+</ul>
+<p>And so it began.</p>
+<h2 id="en-2">Current Situation</h2>
+<p>Over three years have passed since the first commit on GitHub on March 29, 2021, which is in the middle of our second two-year plan.</p>
+<p>During these three years, we have posted a small number of posts about NocoBase on communities such as Reddit, Dev; besides that, we have yet to do much promotion and publicity. The reason is that NocoBase could be better as an enterprise product and infrastructure. We emphasize the documentation homepage and GitHub Readme: NocoBase is in the early development stage; please use it cautiously in production environments. In addition, users from multiple countries have introduced NocoBase on their blogs and social media, bringing many new users to NocoBase. Dozens of contributors have contributed code to NocoBase. Thank you all for your contributions.</p>
+<p>Here are some of our current data. From these data, it can be seen that NocoBase is not well known and is not used by many people as an open-source project; it is still an unknown project.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Item</th>
+<th align="left">data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">GitHub Star</td>
+<td align="left">5.7k</td>
+</tr>
+<tr>
+<td align="left">Contributors</td>
+<td align="left">57</td>
+</tr>
+<tr>
+<td align="left">Google results</td>
+<td align="left">11.2k</td>
+</tr>
+<tr>
+<td align="left">Npm package downloads</td>
+<td align="left">37k</td>
+</tr>
+<tr>
+<td align="left">Docker image pulls</td>
+<td align="left">50k</td>
+</tr>
+<tr>
+<td align="left">Git cloners</td>
+<td align="left">50/day</td>
+</tr>
+</tbody></table>
+<p><img src="https://static-docs.nocobase.com/star-history.png" alt="star-history"></p>
+<p><img src="https://static-docs.nocobase.com/google.png" alt="google"></p>
+<p>It is worth celebrating that two weeks ago, on the last day of April, we upgraded the root version number from 0 to 1 and officially released version 1.0-alpha. We also opened official accounts for NocoBase on various social platforms. We are preparing to introduce NocoBase to more people and embark on our journey of commercialization.</p>
+<h2 id="en-3">Revenue for the Past 12 Months</h2>
+<p>Although we have just released 1.0-alpha and have yet to offer standard commercial licenses and commercial plugins publicly, we received our first considerable revenue in October 2022. In the past 12 months (from May 2023 to April 2024), our total revenue was $315,000 (the currency unit in the screenshot is CNY)</p>
+<p><img src="https://static-docs.nocobase.com/income-2024-05-11-10-55-47.jpeg" alt="income-2024-05-11-10-55-47"></p>
+<p>The primary sources of this revenue are:</p>
+<ul>
+<li>United States</li>
+<li>China</li>
+<li>India</li>
+<li>Europe</li>
+<li>Brazil</li>
+</ul>
+<p>The types of revenue mainly include:</p>
+<ul>
+<li>Users paying us to prioritize the development of required plugins (non-customized)</li>
+<li>Commercial licenses</li>
+<li>Commercial plugins</li>
+<li>Revenue sharing from derivative products</li>
+</ul>
+<p>This revenue is just average for a product developed for three years, but it exceeded our expectations.</p>
+<h2 id="en-4">More Important Gains</h2>
+<p><img src="https://static-docs.nocobase.com/sun-2-2024-05-11-11-04-09.jpg" alt="sun-2-2024-05-11-11-04-09"></p>
+<p>Two months ago, while I was driving on the highway, Todd contacted me. So, I stopped by the roadside and chatted for over an hour. After the conversation, it was already evening. As I continued on the road, watching the fiery sunset in the rearview mirror, I felt increasingly excited, as if pulsating with the whole world.</p>
+<p>Todd works at a company called <a href="https://www.plaud.ai/" title="PLAUD">PLAUD</a>. Their flagship product, PLAUD NOTE, is the world’s first AI device that uses LLM for intelligent recording, transcription, and summarizing. At that time, they had just completed a crowdfunding campaign of millions of dollars, and today, their sales have exceeded 10 million dollars. They have a strong professional technical team to develop the world’s best products, but they could have invested more energy in developing business support systems, resulting in the market, after-sales, and other teams’ work efficiency far behind the pace of business growth.</p>
+<p>After seeing PLAUD NOTE’s product introduction, I thought it was very cool, and the team behind it was also cool. I couldn’t help but introduce it to many friends around me. Todd’s team also found NocoBase very cool, and we hit it off. Their development team spent a few days developing a business support system based on NocoBase, greatly improving the team’s work efficiency.</p>
+<p>In this process, the NocoBase team personally participated in the rapid growth of PLAUD.</p>
+<p><img src="https://static-docs.nocobase.com/plaud-2024-05-11-11-06-30.png" alt="plaud-2024-05-11-11-06-30"></p>
+<p>Ke has been active in the NocoBase open-source community for two years and has become a contributor. He works at SINOPEC FIFTH CONSTRUCTION CO.LTD, the earliest large-scale construction enterprise engaged in petrochemical construction in China and the earliest construction unit to informatize and digitize petrochemical engineering systems. Facing the same problems as many traditional industries, external software development companies need to understand their industry, and their sector needs more professional developers.</p>
+<p>NocoBase has significantly changed its development model. They have integrated the original databases and connected to many hardware devices, and business experts are exploring the digital transformation of the entire industry step by step based on the WYSIWYG no-code development method provided by NocoBase.</p>
+<p>In daily communication with Ke, we learned about projects in Saudi Arabia and Kuwait and listened to stories we never imagined. It is inevitable to admire and be proud of China’s construction capabilities.</p>
+<p><img src="https://static-docs.nocobase.com/shihua-2024-05-11-11-06-48.jpeg" alt="shihua-2024-05-11-11-06-48"></p>
+<p>800 years, 8000 kilometers – can you imagine opening your mailbox one clear morning and engaging in conversation or collaboration with someone from such a distant place as if he was an old friend?</p>
+<p>Founded in 1240, the University of Siena is one of the oldest academic institutions globally. Nestled in the heart of a medieval town in Tuscany, Italy, it boasts a rich history of scholarship and innovation. The last time Italy and the year 1240 felt this close was when I was in high school, studying the tales of the Roman Empire and the Renaissance in history class. And today, in this university established 800 years ago, situated 8000 kilometers away, there’s a team comprised of tech experts, training specialists, and e-learning support departments, all using NocoBase as their infrastructure to streamline a vast array of processes, from administrative systems to online education platforms to ticketing systems.</p>
+<p>The saga continues—just last Friday, Fabrizio from this team sent me <a href="https://www.wzu.edu.cn/info/1505/46432.htm" title="NocoBase">news</a> about a collaboration between Wenzhou University and the University of Siena. Suddenly, those 8,000 kilometers felt much closer, as Wenzhou University is right in our neighborhood. Fabrizio told me that his office is located in the building in the news photo.</p>
+<p><img src="https://static-docs.nocobase.com/siena-2024-05-11-11-24-43.jpg" alt="siena-2024-05-11-11-24-43"></p>
+<p>We’ve never ventured into producing excellent hardware products like PLAUD NOTE, never touched upon petrochemical construction, and never even set foot in Italy. Without NocoBase, they might never have appeared in our sights and lives.</p>
+<p>But now they have. We created NocoBase, and people around the world are discovering it. These individuals leverage digital technology to enhance lives, improve work, and even transform entire industries. In their journey of earnestly bettering the world, NocoBase becomes their reliable assistant. For us, NocoBase becomes our connector to the world. It bridges what we’ve never done, people we’ve never met, and places we’ve never been. Our life radius is no longer just a few kilometers, and our scope of work is no longer just a few lines of code. Every day, we step into fresh narratives. How can mere money measure such rewards?</p>
+<h2 id="en-5">How We Did It</h2>
+<h4>1. Finding the Right Direction</h4>
+<p>The foremost topic discussed in all entrepreneurship courses is finding the right direction. Conventional wisdom suggests identifying user pain points and assessing market size.</p>
+<p>On this subject, I have a different perspective. Over the years, I’ve run several companies and invested in others, some of which have closed down while others have steadily grown, continuously generating profits. When evaluating opportunities like NocoBase, my focus is on something other than user needs or market size. Instead, I’m more concerned with its suitability for me. I have the most profound understanding of my personality, knowing what I want, what I excel at, and what I’m not suited for. When deciding to create NocoBase, I considered the following questions:</p>
+<ul>
+<li>Will it replenish my mental energy rather than deplete it?</li>
+<li>Is it something worth investing ten years or more into, with more accumulation over time?</li>
+<li>Does it offer a niche, less-traveled path?</li>
+<li>Can it generate profits without relying on financing?</li>
+<li>Is it a standardized product that generates revenue through licensing rather than project implementation?</li>
+</ul>
+<p>Once all these questions received affirmative answers, we began.</p>
+<h4>2. Lowering Expectations and Going with the Flow</h4>
+<p>Almost all startup tutorials emphasize the importance of growth, even exponential growth. I admire companies that can proliferate. However, we cannot do the same. On one hand, our capabilities are limited; on the other hand, we don’t want ourselves and our team to be led by numbers. What we do can positively impact a stable life rather than relentlessly chasing figures.</p>
+<p>Therefore, we set meager expectations from the beginning and pay little attention to the speed of growth or set income targets.</p>
+<h4>3. Embracing Shortcomings, Long-term Commitment</h4>
+<p>There are no dropouts from the world’s top universities or celebrity entrepreneurs surrounded by media glare in our team. Everyone is ordinary, emotionally stable, responsible, well-educated, and experienced. During the development of NocoBase, we often encounter complex problems to solve, frequently spend much more time than expected, and usually find certain aspects of NocoBase challenging to use. It took us three years to upgrade the version number to 1.0, and it’s still 1.0 alpha. We accept these situations calmly and without anxiety.</p>
+<p>In the past 1000 days, we’ve had new commits almost every day, and every day, NocoBase is better than the day before.</p>
+<h4>4. Setting the Pace, Managing Risks</h4>
+<p>We don’t seek funding; we need healthy profits to ensure normal development. Profit = Income - Expenses, so we need to control expenses early to stay within income by less and achieve income greater than expenses as soon as possible.</p>
+<p>Our worst-case scenario was no income for six years on the first day of operation. I prepared funding for six years to ensure we could survive even in extreme situations so everyone could create products with peace of mind without worrying about unemployment.</p>
+<p>The main expense for a team like NocoBase is salaries. So, starting with three people, we kept costs under $10,000 per month for over ten months. As income generation approached, we gradually expanded the team until recently, when we reached ten people.</p>
+<p>We are already profitable now, and the income structure is becoming healthier.</p>
+<h4>5. Working for an Ideal Life</h4>
+<p>NocoBase is a remote team living in different cities with different lifestyles. We have a fixed weekly meeting and no other constraints. There’s no workload tracking or clocking in and out; you don’t need to ask for permission. Each person is responsible for certain aspects, and everyone is accountable for the results.</p>
+<p>As mentioned at the beginning, we distribute 30% of the profits annually to the core team. Everyone is responsible for NocoBase, which means being accountable for their career.</p>
+<p>As I write this, everyone is preparing for a team gathering and vacation two weeks from now.</p>
+<h4>6. Helping Users Succeed</h4>
+<p>We don’t have a sales team and won’t have one for a long time. We aim to attract users through the product itself, establish a connection with them, and then help them achieve their goals through the product. We don’t sell commercial licenses to users; we recommend using open-source licenses to achieve their goals as much as possible or at least undergo several months of practical testing in their business scenarios. NocoBase effectively helps users earn more money or reduce costs, which is the basis for users willing to pay us.</p>
+<h2 id="en-6">What We Do Next?</h2>
+<p>We don’t have a detailed schedule or a growth plan, but we can be confident that our six-year plan has just passed its midpoint. Over the next 1000 days, we will still have commits almost every day, and NocoBase will continue to improve day by day.</p>
+<p>Of course, we also look forward to connecting with more exciting stories and dancing closely with them. If your company is using or planning to try NocoBase, or if you’re interested in participating in its development, feel free to <a href="https://github.com/nocobase/nocobase" title="NocoBase">get in touch with us</a>.</p></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">起源</a><a href="#zh-2">现状</a><a href="#zh-3">过去 12 个月的收入</a><a href="#zh-4">更重要的收获</a><a href="#zh-5">我们是如何做的</a><a href="#zh-6">接下来做什么</a></div><div class="en-only"><a href="#en-1">Origin</a><a href="#en-2">Current Situation</a><a href="#en-3">Revenue for the Past 12 Months</a><a href="#en-4">More Important Gains</a><a href="#en-5">How We Did It</a><a href="#en-6">What We Do Next?</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/nocobase-vs-baserow.html" data-tags="Insights AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20115%20(2)-hdb59s.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>洞见</t-zh><t-en>Insights</t-en></span><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年8月11日</t-zh><t-en>Aug 11, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div><h3><t-zh>NocoBase vs Baserow：灵活数据库与企业级系统</t-zh><t-en>NocoBase vs Baserow: Flexible Databases vs Enterprise Systems</t-en></h3><p><t-zh>对比 NocoBase 与 Baserow 在数据管理、权限、工作流和 AI 上的差异，帮助团队按业务复杂度选择平台。</t-zh><t-en>Compare NocoBase and Baserow across data, pages, permissions, workflows, and AI to choose the right platform for your needs.</t-en></p></a><a class="bcard" href="../blog/future-of-software-programmers-revenue-doubled.html" data-tags="Insights NocoBase_stories"><span class="cv"><img src="https://static-docs.nocobase.com/photo-1644792863360-40fa85ea52e7%20(1)-onuuif.avif" alt=""></span><div class="bmeta"><span class="pill"><t-zh>洞见</t-zh><t-en>Insights</t-en></span><span class="pill"><t-zh>NocoBase 故事</t-zh><t-en>NocoBase stories</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>Zhou Yanliang</t-zh><t-en>Zhou Yanliang</t-en></span></div><h3><t-zh>程序员和软件还有前途吗 —— 从 NocoBase 收入再翻倍谈起</t-zh><t-en>Do Software and Programmers Still Have a Future? </t-en></h3><p><t-zh>AI 正在重塑软件行业。经历焦虑、碰撞与转型后，我们分享 NocoBase 对软件、程序员与未来的最新思考。</t-zh><t-en>AI is reshaping the software industry. After months of anxiety, debate, and adaptation, we share what NocoBase has learned about the future of software and programmers.</t-en></p></a><a class="bcard" href="../blog/an-open-source-project-without-ai-can-still-earn-millions-a-year.html" data-tags="Insights NocoBase_stories"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%2084%20(1)-kjl1lo.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>洞见</t-zh><t-en>Insights</t-en></span><span class="pill"><t-zh>NocoBase 故事</t-zh><t-en>NocoBase stories</t-en></span><span><t-zh>2025年11月3日</t-zh><t-en>Nov 3, 2025</t-en></span><span><t-zh>Zhou Yanliang</t-zh><t-en>Zhou Yanliang</t-en></span></div><h3><t-zh>没有 AI，没有融资，一个 17K Star 开源项目的真实收入</t-zh><t-en>No AI, No VC, Just 17K Stars and Real Revenue</t-en></h3><p><t-zh>在过去的 12 个月里，我们总共收到 57 个国家、400 多家企业的订单，总收入合计为人民币 1030 万元（外币按当前汇率折算成人民币）。</t-zh><t-en>In the past 12 months, we received orders from more than 400 companies across 57 countries, with total revenue reaching 1.45 million USD (converted at current exchange rates).</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

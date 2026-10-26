@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="什么是低代码、无代码（零代码）和 NocoBase? — NocoBase" data-en="What are Low-Code, No-Code, and NocoBase?  — NocoBase">什么是低代码、无代码（零代码）和 NocoBase? — NocoBase</title>
+<meta name="description" content="快速了解低代码、无代码（零代码）和 NocoBase 三个概念。" data-zh="快速了解低代码、无代码（零代码）和 NocoBase 三个概念。" data-en="Quickly understand the concepts of low-code, no-code, and NocoBase.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>什么是低代码、无代码（零代码）和 NocoBase?</t-zh><t-en>What are Low-Code, No-Code, and NocoBase? </t-en></h1>
+    <p class="lede"><t-zh>快速了解低代码、无代码（零代码）和 NocoBase 三个概念。</t-zh><t-en>Quickly understand the concepts of low-code, no-code, and NocoBase.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年7月1日</t-zh><t-en>Jul 1, 2024</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/18ddc8c0374ea4185f93d00b184c22ef.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">什么是低代码？</h2>
+<p>低代码开发是一种简化的软件创建方法。这种方法使团队能够在最少编码的情况下打造数字解决方案和企业应用。低代码平台为用户提供预构建组件和模板脚本的工具包，支持快速开发新流程和应用程序—无需大量编码或脚本测试。这些平台具备直观的拖放界面，使组织中的任何人都能设计和开发业务应用，即使没有专业的编码技能。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2">低代码是代码生成器吗？</h2>
+<p>虽然低代码平台可以作为代码生成器使用，但它们的功能和目标远超传统的代码生成器。低代码平台不仅仅是生成代码，它们还提供了一个全面的开发环境和工具集，使用户能够通过图形界面快速构建、测试和部署应用程序，提高了开发者和非开发者的工作效率和便捷性。</p>
+<h2 id="zh-3">哪些人适合使用低代码？</h2>
+<p>低代码平台非常适合 IT 专业人员和具有技术背景的团队。它们可以快速开发应用程序，同时保留对代码的访问和控制权，便于进行更复杂或定制化的开发。</p>
+<p>这使得低代码平台成为一个强大的工具，可以帮助开发者加速开发周期，而不会牺牲对应用程序的精细调整和定制的能力。</p>
+<h2 id="zh-4">什么是无代码（零代码）？</h2>
+<p>无代码（No-code）即零代码（Zero-code）是一种软件开发方法，旨在彻底消除或极大减少传统编码的需求。它允许非技术用户通过使用可视化编程工具和拖放界面来构建和配置应用程序。</p>
+<p>无代码（零代码）平台让用户能够快速创建复杂的应用程序，无需深入学习编程语言或开发技术。这种易用性推动了各行各业的数字化转型，使应用开发更具包容性。</p>
+<h2 id="zh-5">无代码（零代码）和低代码的区别是什么？</h2>
+<h3><strong>无代码（零代码）平台</strong></h3>
+<ul>
+<li>通常适用于创建相对简单的应用，如数据收集表单、小型管理系统等。对于更复杂的系统或需要高度定制的应用，这类平台可能会有局限性。</li>
+<li>设计理念是尽可能减少或完全消除编写代码的需要。用户通过拖拽组件和设置配置来构建应用，整个过程无需接触代码。</li>
+<li>提供了高度标准化的开发环境，用户在设计和功能上的自由度较低。</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">GitHub Star 数量前 12 的开源无代码工具</a></p>
+<h3><strong>低代码平台</strong></h3>
+<ul>
+<li>可以支持更复杂的应用开发，包括企业级应用和需要复杂数据处理或业务逻辑的系统。开发者可以通过平台提供的工具快速构建基础部分，同时通过编程解决更复杂的问题。</li>
+<li>虽然也提供可视化的开发工具，但在某些情况下，用户可能需要编写一些代码来实现特定的功能或集成，提供了代码编辑器和更高级的自定义选项。</li>
+<li>虽然简化了开发过程，但通常允许更多的定制和扩展，开发者可以介入更深层的系统设置和代码级的定制。</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/top-15-open-source-low-code-projects-with-the-most-github-Stars.html">GitHub Star 数量前 15 的开源低代码项目</a></p>
+<h2 id="zh-6">哪些人适合使用无代码（零代码）？</h2>
+<p>非技术用户，如业务分析师、市场营销人员和其他业务领域的专业人士。这些平台通过提供完全图形化的用户界面，使得无需任何编程知识的用户也能构建和部署应用。</p>
+<h2 id="zh-7">什么是 NocoBase ？</h2>
+<p>NocoBase 是一个极易拓展的 AI 无代码开发平台。既保留无代码的简单、易操作性，同时保留了原生开发的极易拓展性。NocoBase 产品设计原则是：80% 的需求通过无代码实现，20% 由扩展开发实现。所以 NocoBase 也提出了“功能即插件”的理念。NocoBase 采用微内核架构，<a href="https://www.nocobase.com/cn/plugins">全部功能都是插件</a>。并且插件即插即用，无论是页面、区块、操作，还是 API、数据源，都可以开发新的插件来满足新的需求。</p>
+<p><img src="https://static-docs.nocobase.com/651c0f798095fa32b3f8ba8be19a43f9.webp" alt="NocoBase 插件管理界面"></p>
+<h2 id="zh-8">NocoBase 是低代码平台吗？</h2>
+<p>在 NocoBase 中，你可以通过 JS 区块在前端写代码 。但是，NocoBase 不是代码生成器，不提供代码导出。如果想要拓展 NocoBase 功能，也可以选择开发插件。</p>
+<h2 id="zh-9">NocoBase 是无代码（零代码）平台吗？</h2>
+<p>NocoBase 是无代码（零代码）平台。NocoBase 可以开发复杂和有特色的业务系统，但它的使用却非常简单。一键切换使用模式和配置模式，页面就是一块画布，在画布上摆放各种区块和操作，组合出合适的界面，就像 Notion 一样。并且界面配置模式为普通人设计，而不是为程序员设计，使用起来非常简单。</p>
+<p><img src="https://static-docs.nocobase.com/46ad80c89fce3e3f1ecd82ba59e25b0e.gif" alt="UI 交互演示"></p>
+<h2 id="zh-10">NocoBase 和 NocoDB 一样吗？</h2>
+<p>这是完全不同的两个产品。</p>
+<p><a href="https://docs-cn.nocobase.com/welcome/introduction">NocoBase</a> 是数据模型驱动的无代码开发平台。</p>
+<p>NocoDB 是表单驱动的无代码数据库。</p>
+<p>💡 阅读更多：<a href="../blog/nocobase-vs-nocodb.html">NocoBase 与 NocoDB：开源无代码工具深度对比</a></p>
+<h2 id="zh-11">哪些人适合使用 NocoBase ？</h2>
+<p>想要充分发挥 NocoBase 的能力需要一定技术背景，但非技术人员也可以和技术人员配合进行使用。开发团队将 NocoBase 作为基础设施，可以极大提升交付速度和效率。最佳的使用方式是：开发团队通过扩展插件来扩充能力，非开发人员可以在此基础上进行无代码搭建。</p>
+<p>🙌 上手实践：<a href="https://www.nocobase.com/cn/tutorials/task-tutorial-introduction">NocoBase 实战教程 —— 任务管理系统</a></p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/open-source-internal-tools.html">GitHub Star 数量前 11 的开源内部工具</a></li>
+<li><a href="../blog/crud-projects.html">GitHub 上 Stars 数量最多的 8 个开源 CRUD 项目</a></li>
+<li><a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">GitHub Star 数量前 12 的开源无代码工具</a></li>
+<li><a href="../blog/how-to-build-efficient-crud-apps.html">如何构建高效的 CRUD 应用程序？</a></li>
+<li><a href="../blog/web-application-development.html">探索最佳无代码低代码工具：加速 Web 应用开发</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">在数小时内构建 CRM：你需要了解的顶级无代码/低代码工具</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1"><strong>What is Low-Code?</strong></h2>
+<p>Low-code development is a streamlined approach to software creation. This method enables teams to craft digital solutions and enterprise applications with minimal coding.</p>
+<p>Low-code platforms provide users with a toolkit. This toolkit includes pre-built components and template scripts. Users can develop new processes and apps quickly. There is no need for extensive code writing or script testing.</p>
+<p>These platforms feature intuitive drag-and-drop interfaces. This design allows anyone in an organization to develop business applications. No specialized coding expertise is required.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-2"><strong>Is Low-Code a Code Generator?</strong></h2>
+<p>While low-code platforms may function as code generators, they encompass far more than traditional code generators. Low-code platforms do not merely generate code; they offer a comprehensive development environment and toolkit. This enables users to quickly build, test, and deploy applications through a graphical interface, enhancing efficiency and accessibility for developers and non-developers alike.</p>
+<h2 id="en-3"><strong>Who Should Use Low-Code?</strong></h2>
+<p>Low-code platforms are ideal for IT professionals and teams with technical backgrounds. These platforms enable rapid application development. They provide access to and control over the code. This is ideal for more complex or customized developments.</p>
+<p>These platforms are powerful tools for developers. They accelerate the development cycle. Developers can still fine-tune and customize their applications as needed.</p>
+<h2 id="en-4"><strong>What is No-Code?</strong></h2>
+<p>No-code is a software development approach designed to eliminate or drastically reduce the need for traditional coding. It enables non-technical users to build and configure applications using visual programming tools and drag-and-drop interfaces.</p>
+<p>No-code platforms empower users to create complex applications quickly. Users do not need to delve into programming languages or development techniques. This accessibility accelerates digital transformation across various industries by making app development more inclusive.</p>
+<h2 id="en-5"><strong>What is the Difference Between No-Code and Low-Code?</strong></h2>
+<h3><strong>No-Code Platforms</strong></h3>
+<ul>
+<li><strong>Use Cases:</strong> Usually suitable for creating relatively simple applications like data collection forms and small management systems. These platforms might have limitations when it comes to more complex systems or highly customized applications.</li>
+<li><strong>Design Philosophy:</strong> Aim to minimize or completely eliminate the need to write code. Users build applications by dragging and dropping components and setting configurations, with no need to interact with code.</li>
+<li><strong>Development Environment:</strong> Offer a highly standardized development environment, with lower freedom in design and functionality.</li>
+</ul>
+<p>💡 Read More: <a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">The Top 12 Open-Source No-Code Tools with the Most GitHub Stars</a></p>
+<h3><strong>Low-Code Platforms</strong></h3>
+<ul>
+<li><strong>Use Cases:</strong> Can support more complex application development, including enterprise-level applications and systems that require complex data processing or business logic. Developers can quickly build the foundational parts using the platform&#39;s tools while addressing more complex problems through coding.</li>
+<li><strong>Design Philosophy:</strong> Although they also provide visual development tools, users might need to write some code in certain situations to achieve specific functions or integrations. They offer code editors and more advanced customization options.</li>
+<li><strong>Development Environment:</strong> Simplifies the development process but allows for more customization and extension. Developers can delve deeper into system settings and perform code-level customizations.</li>
+</ul>
+<p>💡 Read More: <a href="../blog/top-15-open-source-low-code-projects-with-the-most-github-Stars.html">Top 15 Open-Source Low-Code Projects with the Most GitHub Stars</a></p>
+<h2 id="en-6"><strong>Who Should Use No-Code?</strong></h2>
+<p>No-code platforms are ideal for non-technical users. They suit business analysts, marketers, and professionals in various sectors.</p>
+<p>These platforms offer a completely graphical user interface, allowing users without any programming knowledge to build and deploy applications.</p>
+<h2 id="en-7"><strong>What is NocoBase?</strong></h2>
+<p>NocoBase is an AI-powered no-code platform designed for easy and extensive extensibility.</p>
+<p>It combines the simplicity and ease of use of no-code with the extensive flexibility of native development. The design principle of NocoBase is: 80% of needs can be met through no-code solutions, while the remaining 20% can be achieved through extended development. This is why NocoBase embraces the concept of &quot;<a href="https://www.nocobase.com/en/plugins">Everything is implemented as plugins.</a>&quot;</p>
+<p>Plugins are plug-and-play, allowing users to develop new plugins to meet new requirements, whether it&#39;s for pages, blocks, operations, APIs, or data sources.</p>
+<p><img src="https://static-docs.nocobase.com/651c0f798095fa32b3f8ba8be19a43f9.webp" alt="NocoBase Plugin manager"></p>
+<h2 id="en-8"><strong>Is NocoBase a Low-Code Platform?</strong></h2>
+<p>In NocoBase, you can write frontend logic using JS blocks. However, NocoBase is not a code generator and does not support code export. To extend its functionality, you can develop custom plugins.</p>
+<h2 id="en-9"><strong>Is NocoBase a No-Code Platform?</strong></h2>
+<p>Yes, NocoBase is a no-code platform. It allows for the development of complex and unique business systems, yet it remains very simple to use.</p>
+<p>Users can switch between usage mode and configuration mode with one click. The page acts as a canvas where various blocks and operations can be placed and combined to create the desired interface, similar to Notion. The interface configuration mode is designed for ordinary users, not programmers.</p>
+<p><img src="https://static-docs.nocobase.com/46ad80c89fce3e3f1ecd82ba59e25b0e.gif" alt="UI"></p>
+<h2 id="en-10"><strong>Is NocoBase the Same as NocoDB?</strong></h2>
+<p>No, these are completely different products. <a href="https://docs.nocobase.com/welcome/introduction">NocoBase</a> is a data model-driven no-code development platform, while NocoDB is a form-driven no-code database.</p>
+<p>💡 Read More: <a href="../blog/nocobase-vs-nocodb.html">NocoBase vs NocoDB: An In-Depth Comparison of Open Source No-Code Tools</a></p>
+<h2 id="en-11"><strong>Who Should Use NocoBase?</strong></h2>
+<p>To fully utilize NocoBase&#39;s capabilities, a certain level of technical background is needed, but non-technical users can also collaborate with technical personnel. Development teams can use NocoBase as infrastructure to greatly enhance delivery speed and efficiency.</p>
+<p>The best way to use NocoBase is for development teams to extend its capabilities through plugins, while non-developers build on this foundation using no-code tools.</p>
+<p>🙌 Have a try: <a href="https://www.nocobase.com/en/tutorials/task-tutorial-introduction">NocoBase Tutorial – Task Management System</a></p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/open-source-internal-tools.html">Top 11 Open Source Internal Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/crud-projects.html">Top 8 Open-Source CRUD Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">The Top 12 Open-Source No-Code Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/how-to-build-efficient-crud-apps.html">How to Build Efficient CRUD Apps?</a></li>
+<li><a href="../blog/web-application-development.html">Discover Top Tools: Accelerate Web Application Development</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">什么是低代码？</a><a href="#zh-2">低代码是代码生成器吗？</a><a href="#zh-3">哪些人适合使用低代码？</a><a href="#zh-4">什么是无代码（零代码）？</a><a href="#zh-5">无代码（零代码）和低代码的区别是什么？</a><a href="#zh-6">哪些人适合使用无代码（零代码）？</a><a href="#zh-7">什么是 NocoBase ？</a><a href="#zh-8">NocoBase 是低代码平台吗？</a><a href="#zh-9">NocoBase 是无代码（零代码）平台吗？</a><a href="#zh-10">NocoBase 和 NocoDB 一样吗？</a><a href="#zh-11">哪些人适合使用 NocoBase ？</a></div><div class="en-only"><a href="#en-1">What is Low-Code?</a><a href="#en-2">Is Low-Code a Code Generator?</a><a href="#en-3">Who Should Use Low-Code?</a><a href="#en-4">What is No-Code?</a><a href="#en-5">What is the Difference Between No-Code and Low-Code?</a><a href="#en-6">Who Should Use No-Code?</a><a href="#en-7">What is NocoBase?</a><a href="#en-8">Is NocoBase a Low-Code Platform?</a><a href="#en-9">Is NocoBase a No-Code Platform?</a><a href="#en-10">Is NocoBase the Same as NocoDB?</a><a href="#en-11">Who Should Use NocoBase?</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

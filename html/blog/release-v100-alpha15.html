@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase 1.0.0-alpha.15: 新增插件、改进「配置操作」交互 — NocoBase" data-en="NocoBase 1.0.0-alpha.15: New Plugins and Improved &#x27;Configure actions&#x27; Interaction — NocoBase">NocoBase 1.0.0-alpha.15: 新增插件、改进「配置操作」交互 — NocoBase</title>
+<meta name="description" content="NocoBase 1.0.0-alpha.15 版本新增 LDAP 认证、自定义操作事件、甘特图和看板区块，改进「配置操作」交互，修复多项问题，提升平台性能。" data-zh="NocoBase 1.0.0-alpha.15 版本新增 LDAP 认证、自定义操作事件、甘特图和看板区块，改进「配置操作」交互，修复多项问题，提升平台性能。" data-en="NocoBase v1.0.0-alpha.15 introduces LDAP authentication, custom action triggers, Gantt and Kanban support, and more. This update also improves &#x27;Configure actions&#x27; interaction and addresses various bug fixes to enhance platform performance.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></p>
+    <h1><t-zh>NocoBase 1.0.0-alpha.15: 新增插件、改进「配置操作」交互</t-zh><t-en>NocoBase 1.0.0-alpha.15: New Plugins and Improved 'Configure actions' Interaction</t-en></h1>
+    <p class="lede"><t-zh>NocoBase 1.0.0-alpha.15 版本新增 LDAP 认证、自定义操作事件、甘特图和看板区块，改进「配置操作」交互，修复多项问题，提升平台性能。</t-zh><t-en>NocoBase v1.0.0-alpha.15 introduces LDAP authentication, custom action triggers, Gantt and Kanban support, and more. This update also improves 'Configure actions' interaction and addresses various bug fixes to enhance platform performance.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2024年5月19日</t-zh><t-en>May 19, 2024</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/319139df40a73be37d86a02557222556.svg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">新增</h2>
+<h3>认证插件：LDAP 认证</h3>
+<p>支持用户使用 LDAP 服务器账号密码登录 NocoBase，详情参考 <a href="https://docs-cn.nocobase.com/handbook/auth-ldap">认证：LDAP</a> 文档。</p>
+<p><img src="https://static-docs.nocobase.com/202405191513995.png" alt=""></p>
+<h3>工作流插件：自定义操作事件</h3>
+<p>当常规的增删改操作无法满足需求时，可以使用工作流的自定义操作事件，自行编排数据处理逻辑，详情参考 <a href="https://docs-cn.nocobase.com/handbook/workflow/plugins/custom-action-trigger">工作流 / 自定义操作事件</a> 文档。</p>
+<p><img src="https://static-docs.nocobase.com/202405191515770.png" alt=""></p>
+<h3>表格区块支持固定表格列</h3>
+<p><img src="https://static-docs.nocobase.com/202405191512587.png" alt=""></p>
+<h3>弹窗里支持添加甘特图、看板区块</h3>
+<p><img src="https://static-docs.nocobase.com/202405191512280.png" alt=""></p>
+<h3>详情区块支持联动规则</h3>
+<p>详情区块中的联动规则允许配置字段的显示与隐藏。</p>
+<p><img src="https://static-docs.nocobase.com/202405191513781.png" alt=""></p>
+<h3>工作流 HTTP 请求节点支持 <code>application/www-x-form-urlencoded</code> 格式数据</h3>
+<p><img src="https://static-docs.nocobase.com/202405191514472.png" alt=""></p>
+<h3>工作流 HTTP 请求节点输入框支持字符串模板</h3>
+<p><img src="https://static-docs.nocobase.com/202405191514748.png" alt=""></p>
+<h3>插件开发示例</h3>
+<p>查看 <a href="https://docs-cn.nocobase.com/plugin-samples">插件示例</a> 文档</p>
+<p><img src="https://static-docs.nocobase.com/20240520160633.png" alt="20240520160633"></p>
+<h2 id="zh-2">优化</h2>
+<h3>改进「配置操作」交互</h3>
+<p>下拉菜单里所有操作统一显示在一个列表中，不再区分“启用操作”和“自定义”。</p>
+<ul>
+<li>只能添加一次的操作：这些操作保留 Switch 效果。</li>
+<li>可以重复添加的操作：这些操作不再使用 Switch 交互，可以多次添加。</li>
+<li>合并功能相似的操作<ul>
+<li>“添加” 和 “添加记录”</li>
+<li>“提交” 和 “保存数据”</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/20240520153033.png" alt="20240520153033"></p>
+<h3>工作流 HTTP 请求节点结果数据格式统一为：</h3>
+<pre><code>{
+  config: {},
+  headers: {},
+  status: 500,
+  statusText: &#39;xxx&#39;,
+  data: {}
+}
+</code></pre>
+<h3>重新梳理工作流使用手册文档</h3>
+<p><img src="https://static-docs.nocobase.com/20240520160527.png" alt="20240520160527"></p>
+<h2 id="zh-3">修复</h2>
+<h3>日志插件的日志列表只显示当前应用内容</h3>
+<p>当存在多个应用程序时：</p>
+<ul>
+<li>日志插件仅显示当前应用程序的日志文件列表；</li>
+<li>工作流程和自定义请求文件夹放置在应用程序文件夹内。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/20240520152448.png" alt="20240520152448"></p>
+<p>其他主要修复内容有：</p>
+<ul>
+<li>图表在使用日期字段为维度查询聚合数据时，没有按客户端时区转换。<a href="https://github.com/nocobase/nocobase/pull/4366">fix(data-vi): should use local timezone when formatting date #4366</a></li>
+<li>视图刷新不良，同步数据库视图后必须要退出去重进才会刷新。<a href="https://github.com/nocobase/nocobase/pull/4224">fix: collection fields should refreshed after editing sync from database #4224</a></li>
+<li>树表表格区块添加子节点的时候不收起所有节点。<a href="https://github.com/nocobase/nocobase/pull/4289">fix: do not collapse all nodes when adding a child node in the tree table block #4289</a></li>
+<li>数据表标题字段设置失效。<a href="https://github.com/nocobase/nocobase/pull/4358">fix: collection title field setting is invalid #4358</a></li>
+<li>bigint 字段阅读状态下数值精度丢失。<a href="https://github.com/nocobase/nocobase/pull/4360">fix: bigint field loses precision in read pretty mode #4360</a></li>
+<li>子应用停止后，打开的日志文件没有关闭。<a href="https://github.com/nocobase/nocobase/pull/4380">fix(logger): should close log stream after destroying app #4380</a></li>
+<li>工作流聚合节点关系数据模式选择 bug. <a href="https://github.com/nocobase/nocobase/pull/4315">fix(plugin-workflow-aggregate): fix association field select #4315</a></li>
+<li>工作流 HTTP 请求节点同步模式下忽略错误选项无效。<a href="https://github.com/nocobase/nocobase/pull/4334">fix(plugin-workflow-request): fix ignoreFail in sync mode #4334</a></li>
+<li>工作流 HTTP 请求节点变量输入框溢出。<a href="https://github.com/nocobase/nocobase/pull/4353">fix(plugin-workflow-request): fix value fields overflowing #4354</a></li>
+<li>特殊字符导致工作流 HTTP 请求节点挂起。<a href="https://github.com/nocobase/nocobase/pull/4376">fix(plugin-workflow-request): fix request hanging when invalid header value #4376</a></li>
+<li>修复主题编辑器中设置 marginBlock 之后会影响表单字段间距的问题。<a href="https://github.com/nocobase/nocobase/pull/4374">fix(theme-editor): form field spacing should not be affected by token.marginBlock #4374</a></li>
+<li>修复点击页面右上角的“许可证”选项时跳转错误的问题。<a href="https://github.com/nocobase/nocobase/pull/4415">PR #4415</a></li>
+<li>修复当把筛选表单保存为区块模板后，字段的操作符无效的问题。<a href="https://github.com/nocobase/nocobase/pull/4390">PR #4390</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">New features</h2>
+<h3>Auth plugin: LDAP authentication</h3>
+<p>Supports users logging in to NocoBase using their LDAP server credentials. For more information, refer to the <a href="https://docs.nocobase.com/handbook/auth-ldap">Authentication: LDAP</a> documentation.</p>
+<p><img src="https://static-docs.nocobase.com/202405191513995.png" alt=""></p>
+<h3>Workflow plugin: custom action trigger</h3>
+<p>When CRUD actions cannot satisfy your needs, you can use the custom action trigger of the workflow to orchestrate your own data processing logic. For more information, refer to the <a href="https://docs.nocobase.com/handbook/workflow-custom-action-trigger">Workflow / Custom action trigger</a> documentation.</p>
+<p><img src="https://static-docs.nocobase.com/202405191515770.png" alt=""></p>
+<h3>Table block supports fixed columns</h3>
+<p><img src="https://static-docs.nocobase.com/202405191512587.png" alt=""></p>
+<h3>Supports adding Gantt and Kanban in pop-up windows</h3>
+<p><img src="https://static-docs.nocobase.com/202405191512280.png" alt=""></p>
+<h3>The details block supports linkage rules</h3>
+<p>Allows configuring the visible and hidden properties of fields.</p>
+<p><img src="https://static-docs.nocobase.com/202405191513781.png" alt=""></p>
+<h3>Workflow HTTP request node supports <code>application/www-x-form-urlencoded</code> format data</h3>
+<p><img src="https://static-docs.nocobase.com/202405191514472.png" alt=""></p>
+<h3>Workflow HTTP request node input boxes supports string templates</h3>
+<p><img src="https://static-docs.nocobase.com/202405191514748.png" alt=""></p>
+<h3>Plugin samples for development</h3>
+<p>View the documentation for <a href="https://docs.nocobase.com/plugin-samples">plugin examples</a>.</p>
+<p><img src="https://static-docs.nocobase.com/20240521105056.png" alt="20240521105056"></p>
+<h2 id="en-2">Improvements</h2>
+<h3>Improved “Configure actions” interaction</h3>
+<p>All actions are displayed in a single list in the dropdown menu, no longer distinguishing between “Enable actions” and “Customize”.</p>
+<ul>
+<li>Actions that can only be added once: These actions retain the switch effect.</li>
+<li>Actions that can be added repeatedly: These actions no longer use the switch interaction and can be added multiple times.</li>
+<li>Merged similar actions<ul>
+<li>“Add new” and “Add record”</li>
+<li>“Submit” and “Save record”</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/20240520153033.png" alt="20240520153033"></p>
+<h3>Unified data format for workflow HTTP request node result:</h3>
+<pre><code>{
+  config: {},
+  headers: {},
+  status: 500,
+  statusText: &#39;xxx&#39;,
+  data: {}
+}
+</code></pre>
+<h3>Reorganize workflow handbook</h3>
+<p><img src="https://static-docs.nocobase.com/20240521104934.png" alt="20240521104934"></p>
+<h2 id="en-3">Fixes</h2>
+<h3>Log plugin now only shows logs of the current application</h3>
+<p>When there are multiple applications:</p>
+<ul>
+<li>The log plugin only displays the log file list for the current application.</li>
+<li>Workflow and custom request folders are placed within the application folder.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/20240520152448.png" alt="20240520152448"></p>
+<p>Other major fixes include:</p>
+<ul>
+<li>Charts did not convert date fields to client time zone when querying aggregated data by date field. <a href="https://github.com/nocobase/nocobase/pull/4366">fix(data-vi): should use local timezone when formatting date #4366</a></li>
+<li>View refresh issue, where the view needed to be exited and re-entered after syncing with the database. <a href="https://github.com/nocobase/nocobase/pull/4224">fix: collection fields should be refreshed after editing sync from database #4224</a></li>
+<li>Tree table block did not collapse all nodes when adding a child node. <a href="https://github.com/nocobase/nocobase/pull/4289">fix: do not collapse all nodes when adding a child node in the tree table block #4289</a></li>
+<li>Data table title field settings were invalid. <a href="https://github.com/nocobase/nocobase/pull/4358">fix: collection title field setting is invalid #4358</a></li>
+<li>Bigint field lost precision in read-only mode. <a href="https://github.com/nocobase/nocobase/pull/4360">fix: bigint field loses precision in read pretty mode #4360</a></li>
+<li>Open log files were not closed after stopping a sub-application. <a href="https://github.com/nocobase/nocobase/pull/4380">fix(logger): should close log stream after destroying app #4380</a></li>
+<li>Workflow aggregate node relationship data model selection bug. <a href="https://github.com/nocobase/nocobase/pull/4315">fix(plugin-workflow-aggregate): fix association field select #4315</a></li>
+<li>Ignoring errors option was ineffective in synchronous mode for workflow HTTP request node. <a href="https://github.com/nocobase/nocobase/pull/4334">fix(plugin-workflow-request): fix ignoreFail in sync mode #4334</a></li>
+<li>Workflow HTTP request node value input box overflowed. <a href="https://github.com/nocobase/nocobase/pull/4353">fix(plugin-workflow-request): fix value fields overflowing #4354</a></li>
+<li>Special characters caused workflow HTTP request node to hang. <a href="https://github.com/nocobase/nocobase/pull/4376">fix(plugin-workflow-request): fix request hanging when invalid header value #4376</a></li>
+<li>Fixed issue where setting marginBlock in the theme editor affected form field spacing. <a href="https://github.com/nocobase/nocobase/pull/4374">fix(theme-editor): form field spacing should not be affected by token.marginBlock #4374</a></li>
+<li>Fixed issue where clicking the “License” option in the top right corner of the page redirected incorrectly. <a href="https://github.com/nocobase/nocobase/pull/4415">PR #4415</a></li>
+<li>Fixed issue where the field operator was invalid when saving a filter form as a block template. <a href="https://github.com/nocobase/nocobase/pull/4390">PR #4390</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">新增</a><a href="#zh-2">优化</a><a href="#zh-3">修复</a></div><div class="en-only"><a href="#en-1">New features</a><a href="#en-2">Improvements</a><a href="#en-3">Fixes</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/2.2.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-hygy1r.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年8月23日</t-zh><t-en>Aug 23, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2 正式版发布</t-zh><t-en>Announcing NocoBase 2.2</t-en></h3><p><t-zh>NocoBase 2.2 正式版进一步完善 V2 的完整使用路径，带来独立、轻量的 /v/ 前端入口与全新移动端体验。同时升级文件访问与权限机制，并增强评论区块、AI 知识库、工作流及核心插件的 V2 支持。</t-zh><t-en>NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.</t-en></p></a><a class="bcard" href="../blog/2.2.0-beta.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-beta-2kf9fd.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年7月17日</t-zh><t-en>Jul 17, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2-beta 发布</t-zh><t-en>Announcing NocoBase 2.2-beta</t-en></h3><p><t-zh>NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</t-zh><t-en>NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</t-en></p></a><a class="bcard" href="../blog/2.1.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(9)-tfwpkk.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.1.0 正式版发布</t-zh><t-en>Announcing NocoBase 2.1.0</t-en></h3><p><t-zh>NocoBase 2.1 以全新的 CLI 打通人与 AI Agent 连接和管理应用的入口，并完善 AI 搭建、Skills、AI 插件开发和 AI 员工能力。同时升级多应用协作、版本管理、工作流增强及更多 2.0 适配能力。</t-zh><t-en>NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

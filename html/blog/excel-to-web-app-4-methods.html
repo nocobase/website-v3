@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="为 Excel 数据快速构建 Web 应用：4 种方法对比  — NocoBase" data-en="4 Ways to Quickly Build Web Apps from Excel Data — NocoBase">为 Excel 数据快速构建 Web 应用：4 种方法对比  — NocoBase</title>
+<meta name="description" content="本文围绕 4 种常见方法，比较企业如何将 Excel 数据逐步升级为 Web 应用，并分析它们各自适合的业务阶段与使用边界。" data-zh="本文围绕 4 种常见方法，比较企业如何将 Excel 数据逐步升级为 Web 应用，并分析它们各自适合的业务阶段与使用边界。" data-en="This article compares four common ways to turn Excel data into web applications, and explains which business stage each approach fits best and where its limits appear.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>资讯</t-zh><t-en>News</t-en></p>
+    <h1><t-zh>为 Excel 数据快速构建 Web 应用：4 种方法对比 </t-zh><t-en>4 Ways to Quickly Build Web Apps from Excel Data</t-en></h1>
+    <p class="lede"><t-zh>本文围绕 4 种常见方法，比较企业如何将 Excel 数据逐步升级为 Web 应用，并分析它们各自适合的业务阶段与使用边界。</t-zh><t-en>This article compares four common ways to turn Excel data into web applications, and explains which business stage each approach fits best and where its limits appear.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年4月3日</t-zh><t-en>Apr 3, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Group%2026-acxcsm.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>很多企业的内部流程，并不是一开始就在正式系统中运行的。</p>
+<p>我们最近在梳理客户案例时，发现了一个很常见的现象：在业务早期，或者系统还没有完善的时候，很多企业会先用 Excel 来承接客户管理、订单记录、项目跟踪、审批流转、库存台账等工作。</p>
+<p>💡阅读更多：<a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">如何快速搭建一个替换 Excel 的系统？（完整指南）</a></p>
+<p>但当这些表格开始承接越来越多业务信息时，Excel 的局限也会逐渐显现。很多原本只是用来记录信息的表格，后来实际上已经承担起了 CRM、ERP、工单管理或项目管理中的一部分功能。</p>
+<p>也正是在这样的背景下，把 Excel 数据进一步升级为 Web 应用，正在成为越来越多企业的现实需求。不过，不同方法适合的场景、实现复杂度和后续扩展空间都不一样。接下来，我们会沿着几种常见的方法展开，看看哪一种更适合你当前的业务阶段。</p>
+<p>💡精彩案例：<a href="../customers/medical-device-manufacturer-builds-self-hosted-management-system-with-nocobase.html">纸质到数字化：这家医疗制造企业选择 NocoBase - NocoBase</a></p>
+<p><strong>在展开具体介绍之前，可以先通过下面这张表，快速了解本文要讨论的 4 种方法。</strong></p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>方法 1：无代码平台</th>
+<th>方法 2：在线数据平台</th>
+<th>方法 3：AI 生成工具</th>
+<th>方法 4：在线表格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>核心对象</td>
+<td>业务系统</td>
+<td>数据结构</td>
+<td>应用原型 / 页面</td>
+<td>表格文件</td>
+</tr>
+<tr>
+<td>主要目标</td>
+<td>从 Excel 升级为正式系统</td>
+<td>先在线化、结构化，再逐步搭应用</td>
+<td>快速生成 demo、原型或轻量应用</td>
+<td>在线协作编辑</td>
+</tr>
+<tr>
+<td>典型能力</td>
+<td>数据建模、页面搭建、权限、流程、插件扩展</td>
+<td>关联表、视图、表单、轻量自动化</td>
+<td>自然语言生成页面、前后端雏形、快速迭代</td>
+<td>共享、协作、批注、基础筛选</td>
+</tr>
+<tr>
+<td>代表工具</td>
+<td>NocoBase、Appsmith、Budibase、ToolJet</td>
+<td>Airtable、飞书多维表格、Baserow</td>
+<td>Lovable、Bolt、v0</td>
+<td>Excel for the web、Google Sheets、WPS 在线表格</td>
+</tr>
+<tr>
+<td>更适合</td>
+<td>CRM、ERP、工单、项目管理等正式业务场景</td>
+<td>从 Excel 走向系统前的过渡阶段</td>
+<td>原型验证、内部演示、快速试错</td>
+<td>轻量协作和短期共享</td>
+</tr>
+<tr>
+<td>优势</td>
+<td>扩展性强，适合长期使用</td>
+<td>上手相对快，能先把数据整理清楚</td>
+<td>启动速度最快，试错成本低</td>
+<td>学习成本低，切换最轻</td>
+</tr>
+<tr>
+<td>边界</td>
+<td>前期需要梳理数据结构和流程</td>
+<td>适合过渡阶段，不一定适合复杂正式业务</td>
+<td>不一定适合复杂权限和长期维护</td>
+<td>本质仍是表格，不是正式应用</td>
+</tr>
+</tbody></table>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-1">方法 1：使用可扩展的无代码平台，把 Excel 升级为正式的业务系统</h2>
+<h3>核心思路</h3>
+<p>这类方式的重点，是把已经沉淀在 Excel 里的业务数据，进一步升级为真正可用的 Web 应用，而不是继续把表格当作主要承载方式。</p>
+<p>适用的工具通常包括支持应用搭建、数据建模、权限配置和流程扩展的无代码/低代码平台，例如 NocoBase、Appsmith、Budibase、ToolJet。</p>
+<p>本文以 NocoBase 为例进行介绍，因为它本身就面向企业级应用、内部工具和各类业务系统的搭建，同时支持私有化部署、插件扩展，以及更长期的系统演进。</p>
+<p>和很多围绕表格直接生成页面的工具不同，NocoBase 的底层思路是数据模型驱动。数据结构和页面展示是分开的，先梳理数据模型，再决定页面怎么展示。这样做的好处是，后续业务继续扩展时，团队不一定还停留在 Excel 本身。无论是优化数据库结构、增加表关系，还是接入 MySQL、PostgreSQL、MongoDB、REST API、GraphQL 等其他数据源，均可以继续延伸。。</p>
+<p>另外，这类平台如果原生带有 AI 能力，会更适合后续业务升级。NocoBase 的 AI 员工不只是聊天入口，而是可以结合当前页面、数据和表结构理解上下文，并执行查询数据、填写表单、更新记录等实际操作。这一点对后续做运营、客服、数据分析或重复性流程处理会更有价值。</p>
+<blockquote>
+<p>相关链接</p>
+<p>NocoBase 官网：<a href="https://www.nocobase.com/cn/">https://www.nocobase.com/cn/</a></p>
+<p>NocoBase 文档：<a href="https://docs.nocobase.com/cn/">https://docs.nocobase.com/cn/</a></p>
+</blockquote>
+<h3>适用团队</h3>
+<ul>
+<li>已经在用 Excel 管理客户、订单、项目、工单或审批流程</li>
+<li>希望在现有表格基础上逐步升级，而不是从零重做</li>
+<li>后续还会继续增加权限、流程、自动化或多部门协作需求</li>
+<li>对数据安全、私有化部署或长期扩展性有要求</li>
+<li>具备基础实施能力，或愿意先梳理业务结构</li>
+</ul>
+<h3>落地方式</h3>
+<p><strong>1. 先创建数据表和字段</strong> 先把 Excel 里的客户、订单、项目、工单、审批等信息拆成对应的数据表，再配置字段类型，并建立表之间的关联关系。</p>
+<p><img src="https://static-docs.nocobase.com/nocobase1-dymi39.png" alt="nocobase1.png"></p>
+<p><img src="https://static-docs.nocobase.com/nocobase2-mek7bh.png" alt="nocobase2.png"></p>
+<p><strong>2. 再把 Excel 数据导入到对应数据表里</strong> 数据表结构确定之后，再把现有 Excel 里的数据导入进去，把原来散落在表格里的记录放进已经建好的表和字段中。</p>
+<p><strong>3. 配置列表、表单和详情页面</strong> 数据进入系统之后，再配置列表页、表单页和详情页，让这些数据可以被查看、新增、编辑和维护。</p>
+<p><img src="https://static-docs.nocobase.com/nocobase3-r25mgk.png" alt="nocobase3.png"></p>
+<p><strong>4. 配置角色和权限</strong> 页面可用之后，再按角色区分菜单权限、操作权限和数据范围，让不同角色看到不同内容、处理不同数据。</p>
+<p><img src="https://static-docs.nocobase.com/nocobase4-uyjo0g.png" alt="nocobase4.png"></p>
+<p><strong>5. 配置工作流和扩展能力</strong> 把状态流转、自动提醒、流程处理、消息通知，以及后续要接入的 API、数据库或 AI 能力补进去，让系统真正开始承接业务运行。</p>
+<p><img src="https://static-docs.nocobase.com/nocobase5-wu14im.png" alt="nocobase5.png"></p>
+<p><img src="https://static-docs.nocobase.com/nocobase6-qkjbcs.png" alt="nocobase6.png"></p>
+<h3>使用边界</h3>
+<ul>
+<li>前期投入更高，通常要先梳理数据结构和业务流程</li>
+<li>不用大量写代码，但需要有人能理解数据模型、页面结构和权限逻辑</li>
+<li>更适合中长期使用，不适合只想临时搭一个简单页面</li>
+<li>软件本身可能未必是最大成本，真正需要考虑的往往是实施、梳理、迁移和后续维护成本</li>
+</ul>
+<p>🎉  <a href="https://docs.nocobase.com/cn/tutorials/v2/">NocoBase 2.0 教程</a>现已上线，以工单系统为例，从 0 到 1 搭建一套完整业务系统，欢迎查看！</p>
+<h2 id="zh-2">方法 2：先导入在线数据平台，再逐步搭建应用</h2>
+<h3>核心思路</h3>
+<p>这类方式的重点是先把原本散落在表格中的数据搬到一个在线、结构化的平台里，再围绕这些数据继续补充视图、协作和轻量流程。它更像是介于 Excel 和正式系统之间的一层过渡方案，先把数据整理清楚，再决定后面是否继续往更完整的应用形态升级。</p>
+<p>适用的工具通常包括支持表格管理、字段配置、视图展示和基础自动化的在线数据平台，例如 Airtable、Baserow、飞书多维表格等。</p>
+<p>💡阅读更多：<a href="../blog/nocobase-vs-airtable.html">NocoBase vs Airtable：更灵活的开源替代方案</a></p>
+<p>对已经在使用飞书的团队来说，飞书多维表格通常是最先被用起来的工具之一。一方面，它和现有协作环境衔接更顺，团队接受成本相对更低；另一方面，它也确实能承接不少原本放在 Excel 里的轻量业务场景。</p>
+<p>它可以用来整理和维护客户信息、项目进度、活动排期、内容选题、线索跟进、简单工单、运营台账等数据，也支持在此基础上补充不同视图、表单入口、协作评论和基础自动化。对于那些还没有进入复杂系统建设阶段，但已经希望把 Excel 数据先在线化、结构化的组织来说，这类工具通常足够实用。</p>
+<blockquote>
+<p>相关链接</p>
+<p>飞书多维表格官网：<a href="https://base.feishu.cn/">https://base.feishu.cn/</a></p>
+<p>飞书多维表格文档：<a href="https://www.feishu.cn/hc/zh-CN/category/6933474572494716956-%E5%A4%9A%E7%BB%B4%E8%A1%A8%E6%A0%BC">https://www.feishu.cn/hc/zh-CN/category/6933474572494716956-%E5%A4%9A%E7%BB%B4%E8%A1%A8%E6%A0%BC</a></p>
+</blockquote>
+<h3>适用团队</h3>
+<ul>
+<li>已经在用 Excel 管理客户、订单、项目或运营数据，但主要问题集中在共享和维护上</li>
+<li>希望先把数据在线化、结构化，再逐步补充页面或流程</li>
+<li>需要比 Excel 更清晰的字段管理、筛选视图和协作方式</li>
+<li>想先低成本验证一套业务结构，再决定是否继续系统化升级</li>
+<li>当前更关注上手速度和协作效率，而不是一次性搭建完整系统</li>
+</ul>
+<h3>落地方式</h3>
+<p><strong>1. 先把 Excel 数据导入飞书多维表格</strong> 先把现有的客户、订单、项目、工单或运营数据迁移进去，把原本分散在本地文件里的内容变成可在线共享、多人维护的数据表。</p>
+<p><img src="https://static-docs.nocobase.com/feishu1-7rzrip.png" alt="feishu1.png"></p>
+<p><strong>2. 再整理字段、视图和表间关系</strong> 导入之后，通常需要先整理字段命名、数据类型和基础关系，再根据不同使用角色配置表格视图、看板视图、筛选方式或表单入口，让数据从“文件”变成“在线数据底座”。</p>
+<p><img src="https://static-docs.nocobase.com/feishu2-eber7k.png" alt="feishu2.png"></p>
+<p><strong>3. 按实际需要补充协作和轻量流程</strong> 在数据结构基本稳定之后，可以继续补充提醒、评论、权限分配、简单自动化或轻量审批能力，让它逐步承接更多协作和日常管理工作。</p>
+<p><img src="https://static-docs.nocobase.com/feishu3-8zurm5.png" alt="feishu3.png"></p>
+<h3>使用边界</h3>
+<ul>
+<li>更适合数据在线化和结构化的过渡阶段，不一定适合复杂正式业务</li>
+<li>当权限、流程、跨表关系继续增加时，平台本身的边界会逐渐显现</li>
+<li>更适合先把数据整理到一起，但不一定足以支撑一套完整系统的持续运行</li>
+<li>如果后续还要接更复杂的数据库、API、业务模块或更细的权限体系，往往还需要再往下一步升级</li>
+</ul>
+<h2 id="zh-3">方法 3：用 AI 工具直接生成应用或页面</h2>
+<h3>核心思路</h3>
+<p>这类方式的重点，不是先把数据结构、权限和流程完整梳理清楚，再逐步搭系统，而是先通过自然语言把页面、原型或应用快速生成出来，用更低的启动成本完成验证和试错。</p>
+<p>这一类工具通常包括 Lovable、Bolt、v0 等 AI 应用生成工具。它们更适合把一个想法快速变成可展示、可点击、可修改的页面或应用。 以 Lovable 为例，它属于这一类比较典型的 AI 应用生成工具，更适合用自然语言快速生成 Web 应用原型、页面和轻量工具。可以基于文字描述生成前端界面，也可以配合后端、数据库、认证等基础能力一起完成第一版应用搭建，并支持后续继续调整和发布。</p>
+<h3>适用团队</h3>
+<ul>
+<li>需要快速做一个 demo、原型或内部展示版本</li>
+<li>还在探索需求，很多功能和流程没有完全定下来</li>
+<li>想先验证页面形态、交互方式或产品方向</li>
+<li>更关注启动速度，而不是一开始就把系统架构搭完整</li>
+<li>有一定试错空间，能接受后续再重构或迁移</li>
+</ul>
+<h3>落地方式</h3>
+<p><strong>1. 用自然语言生成第一版页面或应用框架</strong> 先用自然语言把需求描述清楚，例如要做一个客户管理页面、项目跟踪面板，或者一个简单的内部工具，然后直接生成第一版页面或应用框架。</p>
+<p><img src="https://static-docs.nocobase.com/Lovable1-wt4dfd.png" alt="Lovable1.png"></p>
+<p><strong>2. 再围绕页面继续调整字段、交互和逻辑</strong> 在第一版出来之后，再逐步补充表单、按钮、页面结构和基本交互，让其更接近实际要演示或验证的场景。</p>
+<p><strong>3. 最后把它用于验证、演示或短期试用</strong> 如果目标只是原型验证、项目提案、轻量页面或短期上线版本，这一步通常已经够用。很多时候，这类工具的价值就在于帮助团队更快进入讨论和试用阶段。</p>
+<p><img src="https://static-docs.nocobase.com/Lovable2-yex95o.png" alt="Lovable2.png"></p>
+<h3>使用边界</h3>
+<ul>
+<li>更适合原型、demo 和快速试错，不一定适合复杂正式业务</li>
+<li>页面生成速度很快，但数据结构、权限体系和流程逻辑往往还需要后续补很多工作</li>
+<li>更容易先把页面和交互做出来，但不代表底层已经适合长期运行</li>
+<li>如果后续要承接复杂权限、跨表关系、数据库设计或长期维护，通常还需要重新梳理</li>
+</ul>
+<p>💡阅读更多：<a href="../blog/6-developer-tools-with-rbac-support.html">6 款支持角色权限控制（RBAC）的开发工具对比与应用场景解析 - NocoBase</a></p>
+<ul>
+<li>对很多组织来说，它更适合做前期探索和验证，而不是直接作为最终系统形态</li>
+</ul>
+<blockquote>
+<p>相关链接</p>
+<p>Lovable 官网：<a href="https://lovable.dev/">https://lovable.dev/</a></p>
+<p>Lovable 文档：<a href="https://docs.lovable.dev/">https://docs.lovable.dev/</a></p>
+</blockquote>
+<h2 id="zh-4">方法 4：使用在线表格进行共享与协作</h2>
+<h3>核心思路</h3>
+<p>这类方式的重点，不是把 Excel 升级成应用或系统，而是把原来的表格放到线上，继续用表格的方式完成共享、编辑和协作。</p>
+<p>适用的工具通常包括 Microsoft Excel for the web、Google Sheets、WPS 在线表格等。这类工具更接近“在线表格”，本质上还是围绕表格文件本身在工作，只是把原来本地使用的方式搬到了在线环境里。</p>
+<p>本文以 Google Sheets 为例进行介绍。它比较适合用来承接那些还不需要系统化改造、但已经希望解决多人共享和在线协作问题的场景。对很多本来就一直在用 Excel 的团队来说，这种方式几乎不需要重新学习，也不需要先梳理太多结构，切换成本会更低。</p>
+<p>💡阅读更多：<a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">8 个最佳 Google Sheets 替代方案（附成本与能力分析）</a></p>
+<p>可以用来做多人在线编辑、共享链接、批注讨论、简单筛选和基础权限控制，也适合先把一些日常维护型表格放到线上继续协作。</p>
+<h3>适用团队</h3>
+<ul>
+<li>主要需求还是多人共享和同时编辑同一份表格</li>
+<li>问题更多出在文件传来传去、版本混乱、更新不同步</li>
+<li>没有明确的系统化建设需求</li>
+<li>业务逻辑相对简单，主要以记录、汇总和维护为主</li>
+<li>更关注低门槛和立即可用，而不是扩展性和长期系统能力</li>
+</ul>
+<h3>落地方式</h3>
+<p><strong>1. 把本地 Excel 文件导入线上</strong> 先把原来保存在本地或部门共享盘里的 Excel 文件迁移到在线环境中，让团队可以通过同一个入口访问和维护。</p>
+<p><img src="https://static-docs.nocobase.com/Google%20Sheets1-22ps4j.png" alt="Google Sheets1.png"></p>
+<p><strong>2. 通过共享、权限和批注完成协作</strong> 把原本靠邮件发送、反复改版本的方式，改成在线共享、多人编辑、批注讨论和实时同步，先解决最直接的协作问题。</p>
+<p><img src="https://static-docs.nocobase.com/Google%20Sheets2-zr1r6p.png" alt="Google Sheets2.png"></p>
+<p><strong>3. 按实际需要继续补充基础管理方式</strong> 在这个基础上，可以继续通过工作表划分、简单权限设置、筛选和视图管理，让表格更适合多人共同维护。</p>
+<p><img src="https://static-docs.nocobase.com/Google%20Sheets3-ipg6jg.png" alt="Google Sheets3.png"></p>
+<h3>使用边界</h3>
+<ul>
+<li>本质仍然是表格，不是正式 Web 应用</li>
+<li>更适合轻协作和在线共享，不适合承接复杂业务流程</li>
+<li>能先解决版本和协作问题，但不一定能解决权限、流程和系统结构问题</li>
+<li>对很多组织来说，这种方式适合作为最轻量的一步，但通常不是从 Excel 走向系统的终点</li>
+</ul>
+<blockquote>
+<p>相关链接</p>
+<p>Google Sheets 官网：<a href="https://workspace.google.com/products/sheets/">https://workspace.google.com/products/sheets/</a></p>
+<p>Google Sheets 文档：<a href="https://support.google.com/docs/?hl=en">https://support.google.com/docs/?hl=en</a></p>
+</blockquote>
+<h2 id="zh-5">FAQ</h2>
+<h3>1. Excel 权限不够细，应该换成什么工具？</h3>
+<p>如果已经需要区分谁能看、谁能改、谁能审批，就可以考虑直接升级，用 <strong>NocoBase</strong> 这样的平台直接搭建 CRM、工单、审批或内部管理系统。</p>
+<h3>2. AI 生成应用工具适合正式业务系统吗？</h3>
+<p>更适合做原型、demo、MVP 或前期试错，不适合作为复杂正式业务的最终方案。如果只是想快速做一版出来，可以用 <strong>Lovable</strong> 这类工具。</p>
+<h3>3. 多张 Excel 表之间要维护关联关系，适合用什么方法？</h3>
+<p>如果数据已经拆成客户表、订单表、项目表、工单表，并且这些表之间要持续维护关联关系，就不太适合继续停留在普通表格层。 可以选用 <strong>NocoBase</strong> 这类数据模型驱动的平台来做系统化管理。</p>
+<h3>4. Excel 用到什么程度，就该考虑转系统了？</h3>
+<p>当 Excel 已经开始承接多人协作、权限分工、状态流转和跨表关系时，就可以尝试升级了。 如果已经接近 CRM、ERP、工单、项目管理这类场景，可以考虑可扩展的无代码平台，比如<strong>NocoBase</strong>，把 Excel 升级为正式的业务系统</p>
+<h3>5. 需求还没想清楚时，先用什么工具最稳？</h3>
+<p>如果当前只是想先把数据整理到线上、把结构理顺，用 <strong>Airtable</strong> 或 <strong>飞书多维表格</strong> 会更合适。</p>
+<p><strong>Excel 依然是很多团队日常工作的有效载体，但当业务需求不断增加时，单靠表格很难继续承接完整流程，所以引入更合适的外部工具或系统通常会是更现实的选择。希望这篇文章能给你一些参考，也欢迎分享给同样在关注这个话题的朋友。</strong></p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">不只 PostgreSQL：5 个支持外部数据库的无代码/低代码平台对比</a></li>
+<li><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">开源项目管理工具选型指南（2026年最新）</a></li>
+<li><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">如何用 PostgreSQL 构建一个自定义 CRM</a></li>
+<li><a href="../blog/best-open-source-ai-projects-github-2026.html">2026 年值得关注的 20 个 GitHub AI 项目：不只有 OpenClaw</a></li>
+<li><a href="../blog/best-ai-crm-open-source-nocobase-twenty-krayin.html">GitHub 上开源 CRM AI 能力深度拆解：NocoBase vs Twenty vs Krayin CRM</a></li>
+<li><a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">GitHub 上 3 款开源 AI ERP 对比：NocoBase、Odoo 与 ERPNext</a></li>
+<li><a href="../blog/5-most-popular-open-source-ai-project-management-tools-on-github.html">5 个 GitHub 上最受欢迎的开源 AI 项目管理工具</a></li>
+<li><a href="../blog/6-best-open-source-ai-ticketing-systems.html">6 个值得关注的开源 AI 工单系统</a></li>
+</ul></div><div class="prose en-only"><p>Many companies do not start with formal systems for their internal processes.</p>
+<p>As we recently reviewed customer cases, we noticed a very common pattern. In the early stages of a business, or before internal systems are fully in place, many companies rely on Excel to manage customers, track orders, follow projects, handle approvals, and maintain inventory records.</p>
+<p>💡Read more: <a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">How to Quickly Build a System to Replace Excel? (Complete Guide)</a></p>
+<p>But as more and more business data and workflow logic are pushed into spreadsheets, Excel’s limitations gradually become harder to ignore. Many spreadsheets that were originally used only for recordkeeping eventually begin to take on part of the role of CRM, ERP, ticketing, or project management tools.</p>
+<p>That is exactly why turning Excel-based workflows into web applications has become a practical need for more and more companies. Still, different approaches fit different business stages, involve different levels of implementation effort, and offer different levels of long-term flexibility. In the following sections, we will walk through several common approaches and look at which one may fit your current stage best.</p>
+<p>💡Featured case: <a href="../customers/medical-device-manufacturer-builds-self-hosted-management-system-with-nocobase.html">From Paper to Digital: How This Medical Manufacturer Chose NocoBase</a></p>
+<p><strong>Before we get into the details, the table below gives a quick overview of the 4 approaches covered in this article.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Method 1: No-code platform</th>
+<th>Method 2: Online data platform</th>
+<th>Method 3: AI generation tools</th>
+<th>Method 4: Online spreadsheets</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core focus</td>
+<td>Business system</td>
+<td>Data structure</td>
+<td>App prototypes / pages</td>
+<td>Spreadsheet file</td>
+</tr>
+<tr>
+<td>Main goal</td>
+<td>Turn Excel into a formal system</td>
+<td>Move data online and structure it first, then gradually build apps</td>
+<td>Quickly create demos, prototypes, or lightweight apps</td>
+<td>Support online collaborative editing</td>
+</tr>
+<tr>
+<td>Typical capabilities</td>
+<td>Data modeling, page building, permissions, workflows, plugin extensions</td>
+<td>Related tables, views, forms, lightweight automation</td>
+<td>Natural language page generation, front-end and back-end scaffolding, rapid iteration</td>
+<td>Sharing, collaboration, comments, basic filtering</td>
+</tr>
+<tr>
+<td>Representative tools</td>
+<td>NocoBase, Appsmith, Budibase, ToolJet</td>
+<td>Airtable, Feishu Bitable, Baserow</td>
+<td>Lovable, Bolt, v0</td>
+<td>Excel for the web, Google Sheets, WPS Online Sheets</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Formal business scenarios such as CRM, ERP, ticketing, and project management</td>
+<td>The transition stage from Excel to a more structured system</td>
+<td>Prototype validation, internal demos, rapid experimentation</td>
+<td>Lightweight collaboration and short-term sharing</td>
+</tr>
+<tr>
+<td>Strengths</td>
+<td>Highly extensible and well suited for long-term use</td>
+<td>Faster to start with and useful for organizing data first</td>
+<td>Fastest to launch and lowest cost for testing ideas</td>
+<td>Easy to learn and the lightest switch from Excel</td>
+</tr>
+<tr>
+<td>Limits</td>
+<td>Requires some upfront work to sort out data structure and processes</td>
+<td>Good for transition, but not always suitable for complex business operations</td>
+<td>Not always suitable for complex permissions or long-term maintenance</td>
+<td>Still a spreadsheet at its core, not a formal application</td>
+</tr>
+</tbody></table>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-1">Method 1: Use an extensible no-code platform to turn Excel into a formal business system</h2>
+<h3>Core idea</h3>
+<p>The core of this approach is to upgrade the business data already stored in Excel into a real web application, instead of continuing to rely on spreadsheets as the main way to run the business.</p>
+<p>Typical tools for this approach include no-code or low-code platforms that support app building, data modeling, permission settings, and workflow extensions, such as NocoBase, Appsmith, Budibase, and ToolJet.</p>
+<p>This article uses NocoBase as the main example because it is designed for building enterprise applications, internal tools, and many kinds of business systems. It also supports private deployment, plugin-based extensions, and long-term system growth.</p>
+<p>Unlike many tools that generate pages directly from spreadsheets, NocoBase is built around a data model driven approach. Data structure and page presentation are separated. You define the data model first, then decide how the pages should appear. The advantage is that as the business continues to grow, the team does not have to stay tied to Excel. Whether you need to optimize your database structure, add table relationships, or connect to other data sources such as MySQL, PostgreSQL, MongoDB, REST API, or GraphQL, the system can keep expanding.</p>
+<p>If this type of platform also includes native AI capabilities, it becomes even more useful for later business upgrades. NocoBase’s AI employee is not just a chat interface. It can understand context based on the current page, data, and table structure, and then perform real actions such as querying data, filling in forms, and updating records. This can be especially valuable for operations, customer service, data analysis, or repetitive workflow tasks.</p>
+<blockquote>
+<p>Related links</p>
+<p>NocoBase official website: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>NocoBase documentation: <a href="https://docs.nocobase.com/">https://docs.nocobase.com/</a></p>
+</blockquote>
+<h3>Suitable teams</h3>
+<ul>
+<li>Already using Excel to manage customers, orders, projects, tickets, or approval workflows</li>
+<li>Want to upgrade gradually based on existing spreadsheets instead of rebuilding everything from scratch</li>
+<li>Expect to add permissions, workflows, automation, or cross-team collaboration later</li>
+<li>Have requirements around data security, private deployment, or long-term scalability</li>
+<li>Have basic implementation capability, or are willing to sort out the business structure first</li>
+</ul>
+<h3>Implementation approach</h3>
+<p><strong>1. Start by creating tables and fields</strong> Break the customer, order, project, ticket, approval, and other data in Excel into separate tables, then define field types and relationships between the tables.</p>
+<p><img src="https://static-docs.nocobase.com/nocobase1-dymi39.png" alt="nocobase1.png"></p>
+<p><img src="https://static-docs.nocobase.com/nocobase2-mek7bh.png" alt="nocobase2.png"></p>
+<p><strong>2. Then import the Excel data into those tables</strong> Once the table structure is ready, import the existing Excel data so the records that were scattered across spreadsheets are placed into properly structured tables and fields.</p>
+<p><strong>3. Configure list, form, and detail pages</strong> After the data is in the system, set up list pages, form pages, and detail pages so the records can be viewed, added, edited, and maintained.</p>
+<p><img src="https://static-docs.nocobase.com/nocobase3-r25mgk.png" alt="nocobase3.png"></p>
+<p><strong>4. Configure roles and permissions</strong> Once the pages are usable, define menu access, action permissions, and data scope by role, so different users can see different content and handle different data.</p>
+<p><img src="https://static-docs.nocobase.com/nocobase4-uyjo0g.png" alt="nocobase4.png"></p>
+<p><strong>5. Add workflows and extension capabilities</strong> Then add status flows, automatic reminders, process handling, notifications, and any APIs, databases, or AI capabilities you may want to connect later, so the system can truly begin supporting day-to-day business operations.</p>
+<p><img src="https://static-docs.nocobase.com/nocobase5-wu14im.png" alt="nocobase5.png"></p>
+<p><img src="https://static-docs.nocobase.com/nocobase6-qkjbcs.png" alt="nocobase6.png"></p>
+<h3>Usage limits</h3>
+<ul>
+<li>It usually requires more upfront work, since you need to sort out the data structure and business processes first</li>
+<li>It does not require heavy coding, but someone still needs to understand data models, page structure, and permission logic</li>
+<li>It is better suited to medium and long-term use, not to quickly building a temporary page</li>
+<li>The software itself may not be the biggest cost. In many cases, the real cost comes from implementation, process design, migration, and ongoing maintenance</li>
+</ul>
+<p>🎉 <a href="https://docs.nocobase.com/tutorials/v2/">NocoBase 2.0 Tutorial</a> is now available. Using a ticketing system as an example, it shows how to build a complete business system from zero.</p>
+<h2 id="en-2">Method 2: Move data into an online data platform first, then gradually build applications</h2>
+<h3>Core idea</h3>
+<p>The idea behind this approach is to first move data scattered across spreadsheets into an online, structured platform, and then build views, collaboration features, and lightweight workflows around that data. It works as a transition layer between Excel and a more complete business system. You start by organizing the data clearly, then decide whether to keep evolving it into a fuller application later.</p>
+<p>Suitable tools for this approach usually include online data platforms that support spreadsheet-style management, field settings, multiple views, and basic automation, such as Airtable, Baserow, Coda, and Smartsheet.
+💡Read more: <a href="../blog/nocobase-vs-airtable.html">NocoBase vs Airtable: A Flexible and Customizable Open-Source Alternative </a></p>
+<p>For many teams already using online collaboration tools, Airtable is often an easy place to start. On one side, it retains a spreadsheet-style experience, so the learning curve is relatively low. On the other, it also offers fields, views, linked records, and lightweight automation, which makes it a good fit for many lighter business scenarios that were previously handled in Excel.</p>
+<p>It can be used to organize and maintain customer information, project progress, campaign schedules, content management, lead follow-up, simple ticketing, operational records, and similar data. It also supports different views, forms, comments, and basic automation on top of that. For organizations that are not yet ready to build complex systems, but already want to make Excel data more structured and collaborative online, tools like this are often sufficient.</p>
+<blockquote>
+<p>Related links</p>
+<p>Airtable official website: <a href="https://www.airtable.com/">https://www.airtable.com/</a></p>
+<p>Airtable documentation: <a href="https://support.airtable.com/">https://support.airtable.com/</a></p>
+</blockquote>
+<h3>Suitable teams</h3>
+<p>Already using Excel to manage customers, orders, projects, or operational data, but mainly struggling with sharing and maintenance
+Want to move data online and structure it first, then gradually add pages or workflows
+Need clearer field management, filtered views, and collaboration methods than Excel can offer
+Want to validate a business structure at low cost before deciding whether to move toward a more systematic solution
+Currently care more about speed of adoption and collaboration efficiency than building a complete system all at once</p>
+<h3>Implementation approach</h3>
+<p><strong>1. First import Excel data into Airtable</strong>
+Move your existing customer, order, project, ticket, or operational data into Airtable, so information that was previously scattered across local files becomes shared online tables that multiple people can maintain together.</p>
+<p><img src="https://static-docs.nocobase.com/airtable1-h2b0rl.png" alt="airtable1.png"><img src="../" alt=""></p>
+<p><strong>2. Then organize fields, views, and table relationships</strong></p>
+<p>After importing, you will usually need to clean up field names, data types, and basic relationships first, then configure views such as Grid, Kanban, Calendar, Gallery, or Form for different users or use cases. This helps the data move beyond a spreadsheet file and become a structure better suited to online collaboration.</p>
+<p><img src="https://static-docs.nocobase.com/airtable2-vbqvnb.png" alt="airtable2.png"></p>
+<p><strong>3. Add collaboration and lightweight workflows as needed</strong>
+Once the data structure is relatively stable, you can continue adding comments, reminders, simple automations, lightweight approvals, or Interface pages, allowing the platform to gradually support more collaboration and daily operations.</p>
+<h3>Usage limits</h3>
+<p>Better suited to the transition stage of putting data online and structuring it, but not always suitable for complex business operations
+As permissions, workflows, and cross-table relationships become more complex, the limits of the platform itself become more visible
+Useful for bringing data together first, but not always enough to support the ongoing operation of a complete system
+If you later need to connect more complex databases, APIs, business modules, or finer-grained permission controls, another upgrade step is often still needed</p>
+<h2 id="en-3">Method 3: Use AI tools to generate applications or pages directly</h2>
+<h3>Core idea</h3>
+<p>This approach does not begin by fully sorting out data structures, permissions, and workflows. Instead, it uses natural language to quickly generate pages, prototypes, or simple applications, making it easier to validate ideas and experiment at a lower initial cost.</p>
+<p>Typical tools in this category include Lovable, Bolt, and v0. These are better suited to quickly turning an idea into a page or application that can be viewed, clicked, and revised. Lovable, for example, is a representative tool in this category. It is particularly useful for quickly generating web app prototypes, pages, and lightweight tools through natural language. Based on text descriptions, it can generate front-end interfaces, and it can also work with back-end, database, and authentication features to help create a first version of the application and support later changes and publishing.</p>
+<h3>Suitable teams</h3>
+<ul>
+<li>Need to quickly create a demo, prototype, or internal presentation version</li>
+<li>Are still exploring requirements, and many features or workflows are not fully defined yet</li>
+<li>Want to validate page structure, interaction design, or product direction first</li>
+<li>Care more about speed than building a complete system architecture from the beginning</li>
+<li>Have room for experimentation and can accept later rebuilding or migration</li>
+</ul>
+<h3>Implementation approach</h3>
+<p><strong>1. Use natural language to generate the first version of the page or app framework</strong> Start by clearly describing the need in natural language, such as a customer management page, a project tracking dashboard, or a simple internal tool, and generate the first version directly.</p>
+<p><img src="https://static-docs.nocobase.com/Lovable1-wt4dfd.png" alt="Lovable1.png"></p>
+<p><strong>2. Then continue refining fields, interactions, and logic</strong> Once the first version is generated, keep adding forms, buttons, page structure, and basic interactions step by step so it gets closer to the real scenario you want to validate or present.</p>
+<p><strong>3. Finally use it for validation, demos, or short-term trials</strong> If the goal is only prototype validation, project proposals, lightweight pages, or a short-term online version, this is often enough. In many cases, the real value of these tools is that they help teams move into discussion and testing much faster.</p>
+<p><img src="https://static-docs.nocobase.com/Lovable2-yex95o.png" alt="Lovable2.png"></p>
+<h3>Usage limits</h3>
+<ul>
+<li>Better suited to prototypes, demos, and rapid experimentation, but not always to complex production use</li>
+<li>Page generation is very fast, but data structures, permission systems, and workflow logic often still need substantial follow-up work</li>
+<li>It is easy to create the interface and interaction first, but that does not mean the underlying structure is ready for long-term operation</li>
+<li>If the product later needs to support complex permissions, cross-table relationships, database design, or long-term maintenance, it usually still needs to be redesigned</li>
+</ul>
+<p>💡Read more: <a href="../blog/6-developer-tools-with-rbac-support.html">Comparison and Use Cases of 6 Development Tools with RBAC Support </a></p>
+<ul>
+<li>For many organizations, this approach is better suited to early exploration and validation than to serving directly as the final system form</li>
+</ul>
+<blockquote>
+<p>Related links</p>
+<p>Lovable official website: <a href="https://lovable.dev/">https://lovable.dev/</a></p>
+<p>Lovable documentation: <a href="https://docs.lovable.dev/">https://docs.lovable.dev/</a></p>
+</blockquote>
+<h2 id="en-4">Method 4: Use online spreadsheets for sharing and collaboration</h2>
+<h3>Core idea</h3>
+<p>The purpose of this approach is not to turn Excel into an application or system, but to move spreadsheets online and continue using them for sharing, editing, and collaboration.</p>
+<p>Typical tools in this category include Microsoft Excel for the web, Google Sheets, and WPS Online Sheets. These are essentially online spreadsheets. The work still revolves around the spreadsheet file itself, but it happens in an online environment rather than a local one.</p>
+<p>This article uses Google Sheets as the example. It is better suited to scenarios that do not yet require full system-level transformation, but already need better support for shared access and online collaboration. For teams that are already used to Excel, this approach requires almost no relearning and very little structural redesign, so the switching cost is lower.</p>
+<p>💡Read more: <a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">The 8 Best Google Sheets Alternatives with Full Cost and Capability Analysis</a></p>
+<p>It can support online co-editing, shared links, comments, simple filtering, and basic access control. It is also a practical option for moving routine maintenance spreadsheets online so teams can continue collaborating more easily.</p>
+<h3>Suitable teams</h3>
+<ul>
+<li>Mainly need multiple people to share and edit the same spreadsheet at the same time</li>
+<li>Are mostly facing problems such as files being passed around, version confusion, and inconsistent updates</li>
+<li>Do not yet have a clear need for formal system building</li>
+<li>Have relatively simple business logic focused on recording, summarizing, and maintenance</li>
+<li>Care more about low barriers and immediate usability than long-term extensibility or system capability</li>
+</ul>
+<h3>Implementation approach</h3>
+<p><strong>1. Import local Excel files into an online environment</strong> Move the Excel files that were originally stored locally or on a shared drive into an online workspace, so the team can access and maintain them from one shared entry point.</p>
+<p><img src="https://static-docs.nocobase.com/Google%20Sheets1-22ps4j.png" alt="Google Sheets1.png"></p>
+<p><strong>2. Use sharing, permissions, and comments to collaborate</strong> Replace email attachments and repeated version updates with online sharing, multi-person editing, comment discussions, and real-time syncing, so the most immediate collaboration issues are addressed first.</p>
+<p><img src="https://static-docs.nocobase.com/Google%20Sheets2-zr1r6p.png" alt="Google Sheets2.png"></p>
+<p><strong>3. Add basic management methods as needed</strong> From there, you can further organize the spreadsheet through worksheets, simple permission settings, filtering, and views, making it easier for multiple people to maintain together.</p>
+<p><img src="https://static-docs.nocobase.com/Google%20Sheets3-ipg6jg.png" alt="Google Sheets3.png"></p>
+<h3>Usage limits</h3>
+<ul>
+<li>It is still a spreadsheet at its core, not a formal web application</li>
+<li>Better suited to lightweight collaboration and online sharing than to handling complex business processes</li>
+<li>It can solve version control and collaboration issues first, but may not solve deeper problems related to permissions, workflows, or system structure</li>
+<li>For many organizations, this is the lightest first step, but it is usually not the final destination in the move from Excel to systems</li>
+</ul>
+<blockquote>
+<p>Related links</p>
+<p>Google Sheets official website: <a href="https://workspace.google.com/products/sheets/">https://workspace.google.com/products/sheets/</a></p>
+<p>Google Sheets documentation: <a href="https://support.google.com/docs/?hl=en">https://support.google.com/docs/?hl=en</a></p>
+</blockquote>
+<h2 id="en-5">FAQ</h2>
+<h3>1. Excel permissions are not detailed enough. What should we switch to?</h3>
+<p>If you already need to define who can view, edit, or approve, then it may be time to upgrade directly and use a platform like <strong>NocoBase</strong> to build CRM, ticketing, approval, or internal management systems.</p>
+<h3>2. Are AI app generation tools suitable for formal business systems?</h3>
+<p>They are better suited to prototypes, demos, MVPs, or early experimentation, and not ideal as the final solution for complex business systems. If you simply want to create a first version quickly, tools like <strong>Lovable</strong> can work well.</p>
+<h3>3. If multiple Excel sheets need to maintain relationships with each other, which method is more suitable?</h3>
+<p>If your data has already been split into customer tables, order tables, project tables, and ticket tables, and those relationships need to be maintained continuously, then ordinary spreadsheets are usually no longer enough. In that case, a data model driven platform like <strong>NocoBase</strong> is a better fit for structured system-level management.</p>
+<h3>4. At what point should Excel users start considering a move to a real system?</h3>
+<p>Once Excel starts handling multi-person collaboration, permission control, status changes, and cross-table relationships, it is usually a sign that an upgrade is worth considering. If the workflow is already close to CRM, ERP, ticketing, or project management scenarios, then an extensible no-code platform such as <strong>NocoBase</strong> may be a suitable next step.</p>
+<h3>5. If the requirements are still unclear, which tool is the safest place to start?</h3>
+<p>If the current goal is simply to organize data online and sort out the structure first, then <strong>Airtable</strong> or <strong>Feishu Bitable</strong> would usually be a better starting point.</p>
+<p><strong>Excel is still an effective tool for many teams in everyday work. But as business needs continue to grow, spreadsheets alone often become less able to support the full workflow. In that situation, introducing more suitable tools or systems is usually the more practical choice. We hope this article gives you a useful reference, and feel free to share it with others who are thinking about the same issue.</strong></p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">Not Just PostgreSQL: Comparing 5 No-Code/Low-Code Platforms with External Database Support </a></li>
+<li><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">Open Source Project Management Tool Selection Guide, 2026 Edition </a></li>
+<li><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">How to Build a Custom CRM with PostgreSQL</a></li>
+<li><a href="../blog/best-open-source-ai-projects-github-2026.html">Top 20 AI Projects on GitHub to Watch in 2026: Not Just OpenClaw</a></li>
+<li><a href="../blog/best-ai-crm-open-source-nocobase-twenty-krayin.html">Best Open Source AI CRM: NocoBase vs Twenty vs Krayin</a></li>
+<li><a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">Top 3 Open Source ERP with AI on GitHub: NocoBase vs Odoo vs ERPNext</a></li>
+<li><a href="../blog/5-most-popular-open-source-ai-project-management-tools-on-github.html">5 Most Popular Open-Source AI Project Management Tools on GitHub</a></li>
+<li><a href="../blog/6-best-open-source-ai-ticketing-systems.html">6 Best Open-Source AI Ticketing Systems</a></li>
+<li><a href="../blog/4-open-source-data-management-tools-for-business-systems.html">4 Open Source Data Management Tools for Business Systems</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">方法 1：使用可扩展的无代码平台，把 Excel 升级为正式的业务系统</a><a href="#zh-2">方法 2：先导入在线数据平台，再逐步搭建应用</a><a href="#zh-3">方法 3：用 AI 工具直接生成应用或页面</a><a href="#zh-4">方法 4：使用在线表格进行共享与协作</a><a href="#zh-5">FAQ</a></div><div class="en-only"><a href="#en-1">Method 1: Use an extensible no-code platform to turn Excel into a formal business system</a><a href="#en-2">Method 2: Move data into an online data platform first, then gradually build applications</a><a href="#en-3">Method 3: Use AI tools to generate applications or pages directly</a><a href="#en-4">Method 4: Use online spreadsheets for sharing and collaboration</a><a href="#en-5">FAQ</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/best-smartsheet-alternatives.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20114-fps2v0.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月23日</t-zh><t-en>Jul 23, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</t-zh><t-en>How to Choose a Smartsheet Alternative: 7 Tools Compared</t-en></h3><p><t-zh>本文对比 7 款 Smartsheet 替代品，介绍各产品的定位、核心差异、适用团队及三年使用成本，帮助团队评估更合适的项目管理与业务系统工具。</t-zh><t-en>Compare 7 Smartsheet alternatives by positioning, key differences, ideal teams, and estimated three-year costs.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-complex-relational-models.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20113%20(1)-e3gf7a.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月15日</t-zh><t-en>Jul 15, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>5 个适合复杂关系模型的开源 AI 无代码工具</t-zh><t-en>5 Open-Source AI No-Code Tools for Complex Relational Data Models</t-en></h3><p><t-zh>本文对比 5 款开源 AI 无代码工具，分析复杂关系模型、AI 搭建能力和企业业务系统适用场景。
+</t-zh><t-en>Compare 5 open-source AI no-code tools for complex relational models, AI capabilities, and business system use cases.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-github-9.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20110-xkd2sy.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年6月29日</t-zh><t-en>Jun 29, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>GitHub 上值得关注的 9 个开源 AI 无代码工具</t-zh><t-en>9 Open-Source AI No-Code Tools on GitHub Worth Watching</t-en></h3><p><t-zh>盘点 GitHub 上 9 个开源 AI 无代码工具，覆盖工作流自动化、知识库、智能体编排与企业业务系统搭建。
+</t-zh><t-en>Explore 9 open-source AI no-code tools on GitHub for workflows, agents, knowledge bases, design, and business systems.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

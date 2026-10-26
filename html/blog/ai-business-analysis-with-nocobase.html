@@ -37,7 +37,7 @@
   </header>
   <div class="post-cover"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></div>
   <div class="post-body">
-    <article><div class="prose zh-only"><p>在之前的文章中，我们陆续介绍了<a href="https://www.nocobase.com/cn/blog/build-production-ready-crm-with-ai-and-nocobase">如何结合 AI 和 NocoBase 搭建 CRM</a>、<a href="https://www.nocobase.com/cn/blog/enterprise-it-asset-management-system-guide">IT 资产管理</a>和<a href="../blog/build-production-ready-ticketing-system-with-ai.html">工单系统</a>，让 AI 将自然语言描述的业务需求转化为可以实际使用的企业应用。</p>
+    <article><div class="prose zh-only"><p>在之前的文章中，我们陆续介绍了<a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">如何结合 AI 和 NocoBase 搭建 CRM</a>、<a href="../blog/enterprise-it-asset-management-system-guide.html">IT 资产管理</a>和<a href="../blog/build-production-ready-ticketing-system-with-ai.html">工单系统</a>，让 AI 将自然语言描述的业务需求转化为可以实际使用的企业应用。</p>
 <p>最近在 Reddit 的 <a href="https://www.reddit.com/r/AI_Agents/comments/1w311yz/">r/AI_Agents</a> 里，一位开发者分享了自己正在做的项目：帮助一家小工厂整理考勤和薪酬数据，并计划接入 AI Agent，让老板可以直接通过 WhatsApp 查询员工出勤、加班情况和异常数据。</p>
 <p><img src="https://static-docs.nocobase.com/intro-ai-agents-reddit-post-pkc444.png" alt="intro-ai-agents-reddit-post-pkc444.png"></p>
 <p>但他也有些疑问：Agent 接入后，客户究竟需要哪些功能？哪些只是 Demo 中看起来不错？真正投入使用时，数据质量、查询准确性和使用习惯又会带来哪些挑战？</p>
@@ -56,39 +56,37 @@
 <p>本次使用的 NocoBase All-in-one 系统包含销售、库存、采购和财务等业务模块，记录了从客户商机、商品库存到采购订单和应收账款的相关信息。</p>
 <p><img src="https://static-docs.nocobase.com/01-business-overview-dashboard-l39279.png" alt="01-business-overview-dashboard-l39279.png"></p>
 <p>这些模块为本次经营分析提供了以下数据：</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>业务模块</th><th>系统中的数据</th><th>对经营决策的作用</th></tr></thead><tbody><tr><td>销售管理</td><td>客户、销售商机、商机阶段、收入预测</td><td>了解潜在订单和未来销售需求</td></tr><tr><td>库存管理</td><td>商品、库存数量、库存变动、补货点</td><td>查看现有库存及可能的缺货风险</td></tr><tr><td>采购管理</td><td>采购订单、供应商、采购金额、订单状态</td><td>了解当前采购安排和资金需求</td></tr><tr><td>财务管理</td><td>发票、应收账款、费用、预算</td><td>查看回款情况和经营资金压力</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>业务模块</th>
+<th>系统中的数据</th>
+<th>对经营决策的作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>销售管理</td>
+<td>客户、销售商机、商机阶段、收入预测</td>
+<td>了解潜在订单和未来销售需求</td>
+</tr>
+<tr>
+<td>库存管理</td>
+<td>商品、库存数量、库存变动、补货点</td>
+<td>查看现有库存及可能的缺货风险</td>
+</tr>
+<tr>
+<td>采购管理</td>
+<td>采购订单、供应商、采购金额、订单状态</td>
+<td>了解当前采购安排和资金需求</td>
+</tr>
+<tr>
+<td>财务管理</td>
+<td>发票、应收账款、费用、预算</td>
+<td>查看回款情况和经营资金压力</td>
+</tr>
+</tbody></table>
 <p>不过，系统里有数据，并不意味着 AI 能直接得出可靠的结论。</p>
-<p>💡 延伸阅读：<a href="https://www.nocobase.com/cn/blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext">GitHub 上 3 款开源 AI ERP 对比：NocoBase、Odoo 与 ERPNext</a></p>
+<p>💡 延伸阅读：<a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">GitHub 上 3 款开源 AI ERP 对比：NocoBase、Odoo 与 ERPNext</a></p>
 <p>例如，销售商机中的预计成交金额代表潜在收入，最终能否成交还存在不确定性；现有库存需要结合实际需求和已经安排的采购订单来判断；财务模块中的发票金额，也不能直接等同于企业已经收到的款项。</p>
 <p>这些信息需要结合具体业务记录进行分析，才能为后续的经营判断提供可靠依据。</p>
 <h2 id="zh-2">02｜从销售商机入手，了解未来业务需求</h2>
@@ -167,22 +165,22 @@
 <li><strong><a href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html">如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</a></strong></li>
 <li><strong><a href="../blog/open-source-ai-agent-platforms-for-business.html">10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用</a></strong></li>
 <li><strong><a href="../blog/build-production-ready-ticketing-system-with-ai.html">如何用 AI 构建可投入生产的工单系统？</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/build-it-operations-system-with-ai-nocobase">如何用 AI 和 NocoBase 在 2 小时内搭建一套企业 IT 运维系统</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/nocobase-vs-baserow">NocoBase vs Baserow：灵活数据库与企业级系统</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/build-production-ready-crm-with-ai-and-nocobase">如何用 AI 和 NocoBase 搭建一套可投入生产的 CRM</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/enterprise-it-asset-management-system-guide">企业 IT 资产管理系统搭建指南：从需求梳理到落地</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/best-smartsheet-alternatives">7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/open-source-ai-no-code-tools-complex-relational-models">5 个适合复杂关系模型的开源 AI 无代码工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/what-is-ai-no-code">什么是 AI 无代码？AI 时代无代码平台的实用指南</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/open-source-ai-no-code-tools-github-9">GitHub 上值得关注的 9 个开源 AI 无代码工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/github-open-source-ai-agent-tools-16">GitHub 上值得关注的 14 个开源 AI Agent 工具</a></strong></li>
-</ul></div><div class="prose en-only"><p>In previous articles, we introduced <a href="https://www.nocobase.com/en/blog/build-production-ready-crm-with-ai-and-nocobase">how to build a CRM with AI and NocoBase</a>, <a href="https://www.nocobase.com/en/blog/enterprise-it-asset-management-system-guide">IT asset management</a>, and a <a href="../blog/build-production-ready-ticketing-system-with-ai.html">ticketing system</a>, showing how AI can turn business requirements described in natural language into enterprise applications that can actually be used.</p>
-<p>Recently, in Reddit’s <a href="https://www.reddit.com/r/AI_Agents/comments/1w311yz/">r/AI_Agents</a>, a developer shared a project they were working on: helping a small factory organize attendance and payroll data, with plans to connect an AI Agent so the owner could query employee attendance, overtime, and exception data directly through WhatsApp.</p>
+<li><strong><a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></strong></li>
+<li><strong><a href="../blog/build-it-operations-system-with-ai-nocobase.html">如何用 AI 和 NocoBase 在 2 小时内搭建一套企业 IT 运维系统</a></strong></li>
+<li><strong><a href="../blog/nocobase-vs-baserow.html">NocoBase vs Baserow：灵活数据库与企业级系统</a></strong></li>
+<li><strong><a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">如何用 AI 和 NocoBase 搭建一套可投入生产的 CRM</a></strong></li>
+<li><strong><a href="../blog/enterprise-it-asset-management-system-guide.html">企业 IT 资产管理系统搭建指南：从需求梳理到落地</a></strong></li>
+<li><strong><a href="../blog/best-smartsheet-alternatives.html">7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-complex-relational-models.html">5 个适合复杂关系模型的开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/what-is-ai-no-code.html">什么是 AI 无代码？AI 时代无代码平台的实用指南</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-github-9.html">GitHub 上值得关注的 9 个开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/github-open-source-ai-agent-tools-16.html">GitHub 上值得关注的 14 个开源 AI Agent 工具</a></strong></li>
+</ul></div><div class="prose en-only"><p>In previous articles, we introduced <a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">how to build a CRM with AI and NocoBase</a>, <a href="../blog/enterprise-it-asset-management-system-guide.html">IT asset management</a>, and a <a href="../blog/build-production-ready-ticketing-system-with-ai.html">ticketing system</a>, showing how AI can turn business requirements described in natural language into enterprise applications that can actually be used.</p>
+<p>Recently, in Reddit&#39;s <a href="https://www.reddit.com/r/AI_Agents/comments/1w311yz/">r/AI_Agents</a>, a developer shared a project they were working on: helping a small factory organize attendance and payroll data, with plans to connect an AI Agent so the owner could query employee attendance, overtime, and exception data directly through WhatsApp.</p>
 <p><img src="https://static-docs.nocobase.com/intro-ai-agents-reddit-post-pkc444.png" alt="intro-ai-agents-reddit-post-pkc444.png"></p>
 <p>But they also had questions: once the Agent is connected, which features will the client actually need? Which ones only look good in a demo? And when the system is used in real operations, what challenges will data quality, query accuracy, and user habits create?</p>
 <hr>
-<p>💬 Hey, you’re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
 <hr>
 <p>The same questions apply to business analysis. When business data spans sales, inventory, procurement, and finance, looking at only one type of data is often not enough to support a complete management decision. If data sources are inconsistent or records are incomplete, AI analysis can also be affected.</p>
 <p>In this article, we use a company that sells multiple categories of electronic devices and office supplies as an example. It built an All-in-one business system with AI and NocoBase, covering sales, inventory, procurement, finance, and other modules.</p>
@@ -192,59 +190,57 @@
 <p>Sometimes sales opportunities keep increasing while inventory is already building up. In other cases, the order outlook may look positive while the company still faces cash pressure.</p>
 <p>We want to use AI to analyze a common business question:</p>
 <p><strong>As sales opportunities increase, should the company keep expanding procurement, or should it prioritize controlling inventory and working-capital usage?</strong></p>
-<p>To answer this question, we need to understand how many orders may be coming, whether current inventory can support the expected demand, how much procurement has already been arranged, and whether the company’s current financial position can support additional investment.</p>
+<p>To answer this question, we need to understand how many orders may be coming, whether current inventory can support the expected demand, how much procurement has already been arranged, and whether the company&#39;s current financial position can support additional investment.</p>
 <p>The NocoBase All-in-one system used in this example includes sales, inventory, procurement, and finance modules. It records information ranging from customer opportunities and product inventory to purchase orders and accounts receivable.</p>
 <p><img src="https://static-docs.nocobase.com/01-business-overview-dashboard-l39279.png" alt="01-business-overview-dashboard-l39279.png"></p>
 <p>These modules provide the following data for this analysis:</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Business module</th><th>Data in the system</th><th>Role in business decisions</th></tr></thead><tbody><tr><td>Sales management</td><td>Customers, sales opportunities, opportunity stages, revenue forecasts</td><td>Understand potential orders and future sales demand</td></tr><tr><td>Inventory management</td><td>Products, inventory quantities, inventory movements, reorder points</td><td>Review current inventory and possible stockout risks</td></tr><tr><td>Procurement management</td><td>Purchase orders, suppliers, purchase amounts, order status</td><td>Understand current procurement plans and funding requirements</td></tr><tr><td>Finance management</td><td>Invoices, accounts receivable, expenses, budgets</td><td>Review collections and operating cash pressure</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>Business module</th>
+<th>Data in the system</th>
+<th>Role in business decisions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sales management</td>
+<td>Customers, sales opportunities, opportunity stages, revenue forecasts</td>
+<td>Understand potential orders and future sales demand</td>
+</tr>
+<tr>
+<td>Inventory management</td>
+<td>Products, inventory quantities, inventory movements, reorder points</td>
+<td>Review current inventory and possible stockout risks</td>
+</tr>
+<tr>
+<td>Procurement management</td>
+<td>Purchase orders, suppliers, purchase amounts, order status</td>
+<td>Understand current procurement plans and funding requirements</td>
+</tr>
+<tr>
+<td>Finance management</td>
+<td>Invoices, accounts receivable, expenses, budgets</td>
+<td>Review collections and operating cash pressure</td>
+</tr>
+</tbody></table>
 <p>However, simply having data in the system does not mean AI can immediately produce a reliable conclusion.</p>
-<p>💡 Further reading: <a href="https://www.nocobase.com/en/blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext">Top 3 Open Source ERP with AI on GitHub: NocoBase vs Odoo vs ERPNext</a></p>
+<p>💡 Further reading: <a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">Top 3 Open Source ERP with AI on GitHub: NocoBase vs Odoo vs ERPNext</a></p>
 <p>For example, the expected deal value of a sales opportunity represents potential revenue, but there is still uncertainty about whether the deal will close. Current inventory needs to be assessed together with actual demand and purchase orders that have already been placed. Invoice amounts in the finance module also cannot be treated as cash already collected.</p>
 <p>This information needs to be analyzed together with the underlying business records before it can provide a reliable basis for later decisions.</p>
 <h2 id="en-2">02 | Start with Sales Opportunities to Understand Future Demand</h2>
 <p>An increase in sales opportunities is usually a positive signal, but the company also needs to understand how likely those opportunities are to become actual orders and how much business demand they may generate.</p>
-<p>In NocoBase’s sales management module, users can review customer opportunities, expected deal values, opportunity stages, and expected closing dates.</p>
+<p>In NocoBase&#39;s sales management module, users can review customer opportunities, expected deal values, opportunity stages, and expected closing dates.</p>
 <p><img src="https://static-docs.nocobase.com/02-sales-pipeline-dbtmhm.png" alt="02-sales-pipeline-dbtmhm.png"></p>
 <p>Opportunities at different stages have different value for procurement planning.</p>
 <p>For example, one customer may have only just expressed purchase intent, while another is already in quotation or contract negotiation. Both count as potential sales opportunities, but they are at different distances from an actual order.</p>
-<p>For opportunities expected to close soon, the company can start monitoring the relevant products’ inventory and fulfillment capacity in advance. For customers still in early-stage discussions, actual demand needs to be evaluated more cautiously to avoid arranging large purchases too early.</p>
-<p>In addition to opportunity progress, NocoBase’s revenue forecast page can be used to see how potential revenue is distributed across different time periods.</p>
+<p>For opportunities expected to close soon, the company can start monitoring the relevant products&#39; inventory and fulfillment capacity in advance. For customers still in early-stage discussions, actual demand needs to be evaluated more cautiously to avoid arranging large purchases too early.</p>
+<p>In addition to opportunity progress, NocoBase&#39;s revenue forecast page can be used to see how potential revenue is distributed across different time periods.</p>
 <p><img src="https://static-docs.nocobase.com/02-sales-pipeline-d7xrjd.png" alt="02-sales-pipeline-d7xrjd.png"></p>
 <p>Revenue forecasts can inform procurement planning, but final deal values, order quantities, and delivery dates may still change. Specific purchase quantities therefore still need to be determined using actual orders and product demand.</p>
 <p>Next, we continue with inventory and procurement data to see whether current stock and planned purchases can support this potential demand.</p>
 <h2 id="en-3">03 | Combine Inventory and Procurement to Evaluate Replenishment Needs</h2>
 <h3>3.1 Let AI Help Identify Inventory Risks</h3>
-<p>In NocoBase’s inventory management module, users can review inventory quantities, reorder points, and historical inventory movement records for different products.</p>
+<p>In NocoBase&#39;s inventory management module, users can review inventory quantities, reorder points, and historical inventory movement records for different products.</p>
 <p>The product list provides an initial view of which products are approaching their reorder points and which still have relatively high inventory. For products with low inventory, recent sales demand and supplier lead times also need to be considered before deciding whether to replenish early.</p>
 <p><img src="https://static-docs.nocobase.com/03-product-inventory-list-uuovuz.png" alt="03-product-inventory-list-uuovuz.png"></p>
 <p>Historical movements also matter. By reviewing receipts, issues, and inventory adjustments, the company can better understand inventory trends. A product may still have plenty of inventory, for example, but if outbound volume has been very low recently, there may be a risk of overstock.</p>
@@ -256,23 +252,23 @@
 <p>Even within inventory data, some records represent current inventory quantities while others store historical receipts, issues, and inventory adjustments. Using the wrong data source can mix up current inventory with historical movements and affect the analysis that follows.</p>
 <p>Inventory data is also only one part of deciding whether more stock needs to be purchased. The company may already have purchase orders with suppliers even if the products have not yet arrived. We therefore also need to review existing procurement arrangements to understand which needs are already covered and how much funding may be required.</p>
 <h3>3.2 Review Procurement Plans and Future Funding Requirements</h3>
-<p>In NocoBase’s procurement management module, users can review suppliers, purchase amounts, and order status for existing purchase orders, along with purchase commitments and supplier spending.</p>
+<p>In NocoBase&#39;s procurement management module, users can review suppliers, purchase amounts, and order status for existing purchase orders, along with purchase commitments and supplier spending.</p>
 <p><img src="https://static-docs.nocobase.com/03-purchase-orders-commitments-zqata0.png" alt="03-purchase-orders-commitments-zqata0.png"></p>
 <p>These records help the company understand which requirements already have procurement arranged.</p>
 <p>For example, a product may currently have low inventory, but if a corresponding purchase order is already being processed, the company should first check the ordered quantity and expected arrival time before placing another order. This helps avoid duplicate purchasing and unnecessary inventory buildup.</p>
-<p>The funding involved in procurement also needs attention. Existing purchase orders reflect the company’s current procurement arrangements, but order amounts, purchase commitments, and actual payments may differ. To understand how much more funding will be required, payment records and supplier payment terms should also be considered.</p>
+<p>The funding involved in procurement also needs attention. Existing purchase orders reflect the company&#39;s current procurement arrangements, but order amounts, purchase commitments, and actual payments may differ. To understand how much more funding will be required, payment records and supplier payment terms should also be considered.</p>
 <p>Combining current inventory, purchase orders, and the sales demand identified earlier helps the company assess whether additional procurement is necessary, avoiding unnecessary stock increases while existing purchases are still pending.</p>
 <p>Procurement decisions are also affected by customer collections and overall working-capital conditions. Next, we turn to the finance data.</p>
 <h2 id="en-4">04 | Review Financial Data to Understand Revenue and Profitability</h2>
 <p>From a finance perspective, there are three main questions: How has recent revenue performed? What is the status of accounts receivable and collections? And is the available data sufficient to evaluate profitability?</p>
 <h3>4.1 Review Invoices and Accounts Receivable</h3>
-<p>We first open NocoBase’s finance management module and review customer invoices and related accounts-receivable records to understand invoicing, outstanding amounts, and collection progress.</p>
+<p>We first open NocoBase&#39;s finance management module and review customer invoices and related accounts-receivable records to understand invoicing, outstanding amounts, and collection progress.</p>
 <p><img src="https://static-docs.nocobase.com/04-invoices-receivables-mu3cox.png" alt="04-invoices-receivables-mu3cox.png"></p>
 <p>These records are closely related to day-to-day cash planning.</p>
 <p>For example, a sales order may already have been fulfilled and invoiced, but the customer may not pay until later. If the company needs to pay suppliers at the same time, procurement cash outflows may occur before customer collections.</p>
 <p>That is why financial analysis needs to distinguish between invoice amounts, recognized revenue, accounts receivable, and cash actually collected. For a company considering additional procurement, understanding outstanding receivables and expected collection dates helps evaluate whether more purchasing will create additional cash pressure.</p>
 <h3>4.2 Let AI Analyze Revenue and Profitability</h3>
-<p>Next, we ask AI to analyze the company’s revenue and profitability in more depth.</p>
+<p>Next, we ask AI to analyze the company&#39;s revenue and profitability in more depth.</p>
 <p>On the NocoBase finance page, we asked AI to analyze revenue growth and profitability using the financial data already available in the system, with the goal of understanding recent revenue changes and whether profitability had improved.</p>
 <p><img src="https://static-docs.nocobase.com/04-ai-finance-analysis-cteu81.png" alt="04-ai-finance-analysis-cteu81.png"></p>
 <p>AI queried the data it could currently access and generated a revenue-growth and profitability analysis report.</p>
@@ -307,22 +303,24 @@
 <li><strong><a href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html">How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</a></strong></li>
 <li><strong><a href="../blog/open-source-ai-agent-platforms-for-business.html">10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps</a></strong></li>
 <li><strong><a href="../blog/build-production-ready-ticketing-system-with-ai.html">How to Build a Production-Ready Ticketing System with AI</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/build-it-operations-system-with-ai-nocobase">How to Build a Production-Ready IT Operations System with AI and NocoBase</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/nocobase-vs-baserow">NocoBase vs Baserow: Flexible Databases vs Enterprise Systems</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/build-production-ready-crm-with-ai-and-nocobase">How to Build a Production-Ready CRM with AI and NocoBase</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/enterprise-it-asset-management-system-guide">How to Design an IT Asset Management System: Data Model, Lifecycle, and Workflows</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/best-smartsheet-alternatives">How to Choose a Smartsheet Alternative: 7 Tools Compared</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/open-source-ai-no-code-tools-complex-relational-models">5 Open-Source AI No-Code Tools for Complex Relational Data Models</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/what-is-ai-no-code">What Is AI No-Code? A Practical Guide to No-Code Platforms in the AI Era</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/open-source-ai-no-code-tools-github-9">9 Open-Source AI No-Code Tools on GitHub Worth Watching</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/github-open-source-ai-agent-tools-16">14 Open Source AI Agent Tools with the Most GitHub Stars</a></strong></li>
+<li><strong><a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></strong></li>
+<li><strong><a href="../blog/build-it-operations-system-with-ai-nocobase.html">How to Build a Production-Ready IT Operations System with AI and NocoBase</a></strong></li>
+<li><strong><a href="../blog/nocobase-vs-baserow.html">NocoBase vs Baserow: Flexible Databases vs Enterprise Systems</a></strong></li>
+<li><strong><a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">How to Build a Production-Ready CRM with AI and NocoBase</a></strong></li>
+<li><strong><a href="../blog/enterprise-it-asset-management-system-guide.html">How to Design an IT Asset Management System: Data Model, Lifecycle, and Workflows</a></strong></li>
+<li><strong><a href="../blog/best-smartsheet-alternatives.html">How to Choose a Smartsheet Alternative: 7 Tools Compared</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-complex-relational-models.html">5 Open-Source AI No-Code Tools for Complex Relational Data Models</a></strong></li>
+<li><strong><a href="../blog/what-is-ai-no-code.html">What Is AI No-Code? A Practical Guide to No-Code Platforms in the AI Era</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-github-9.html">9 Open-Source AI No-Code Tools on GitHub Worth Watching</a></strong></li>
+<li><strong><a href="../blog/github-open-source-ai-agent-tools-16.html">14 Open Source AI Agent Tools with the Most GitHub Stars</a></strong></li>
 </ul></div></article>
     <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">01｜明确经营问题，了解现有业务数据</a><a href="#zh-2">02｜从销售商机入手，了解未来业务需求</a><a href="#zh-3">03｜结合库存与采购，评估后续备货需求</a><a href="#zh-4">04｜查看财务数据，了解收入与盈利情况</a><a href="#zh-5">05｜综合业务数据，让 AI 辅助经营决策</a><a href="#zh-6">结语</a></div><div class="en-only"><a href="#en-1">01 | Define the Business Question and Understand the Available Data</a><a href="#en-2">02 | Start with Sales Opportunities to Understand Future Demand</a><a href="#en-3">03 | Combine Inventory and Procurement to Evaluate Replenishment Needs</a><a href="#en-4">04 | Review Financial Data to Understand Revenue and Profitability</a><a href="#en-5">05 | Combine Business Data and Let AI Support Management Decisions</a><a href="#en-6">Conclusion</a></div></nav>
   </div>
   <section class="post-more">
     <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
-    <div class="bgrid"><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.</t-en></p></a><a class="bcard" href="../blog/open-source-ai-agent-platforms-for-business.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2039-8n094r.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月4日</t-zh><t-en>Sep 4, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用</t-zh><t-en>10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps</t-en></h3><p><t-zh>整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。</t-zh><t-en>Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.</t-en></p></a></div>
+    <div class="bgrid"><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-agent-platforms-for-business.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2039-8n094r.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月4日</t-zh><t-en>Sep 4, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用  </t-zh><t-en>10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps  </t-en></h3><p><t-zh>整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。</t-zh><t-en>Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.</t-en></p></a></div>
   </section>
   <div class="band">
     <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>

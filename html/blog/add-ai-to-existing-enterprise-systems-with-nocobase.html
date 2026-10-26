@@ -51,7 +51,7 @@
 <p>这样不需要一开始就处理完整的系统迁移；等新应用逐渐成熟以后，再根据实际需要，把更多数据和业务逐步转移过来。</p>
 <p>例如，一家已有库存管理系统的制造企业，团队希望新增一个<strong>移动端盘点应用</strong>，让仓库人员可以在现场完成扫码、数量录入和差异处理，同时继续使用原有的商品、SKU、仓库和库存数据。类似范围清楚、又需要复用现有数据的需求，就很适合借助 <strong>AI 与 NocoBase</strong> 先做成一个独立应用，再根据实际使用逐步扩展。</p>
 <p>接下来，我们就以这个场景为例，介绍如何借助 AI 与 NocoBase，把一个相对独立的新需求，做成一个新的内部应用，并逐步加入 AI 分析和自动化能力。</p>
-<p>💡 阅读更多：<a href="https://www.nocobase.com/cn/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></p>
+<p>💡 阅读更多：<a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></p>
 <h2 id="zh-1">01｜选择一个适合独立试点的业务场景</h2>
 <p>优先选择范围清楚、收益可判断、能够独立试点的业务需求。</p>
 <ol>
@@ -63,27 +63,25 @@
 <p><img src="https://static-docs.nocobase.com/01-products-inventory-qee4wq.png" alt="01-products-inventory-qee4wq.png"></p>
 <p>现在新增的需求，是希望仓库人员能够直接在现场完成盘点，包括领取任务、扫码商品、录入实盘数量、记录库存差异，并对异常结果进行复盘。</p>
 <p>因此，原有系统和新应用的分工可以先划分清楚：</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th></th><th>应用</th><th>负责的内容</th></tr></thead><tbody><tr><td>旧系统</td><td>库存管理系统</td><td>商品、SKU、仓库、当前库存、库存变动</td></tr><tr><td>新需求</td><td>移动盘点应用</td><td>盘点任务、扫码、实盘数量、库存差异、差异原因、复盘状态</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>应用</th>
+<th>负责的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>旧系统</td>
+<td>库存管理系统</td>
+<td>商品、SKU、仓库、当前库存、库存变动</td>
+</tr>
+<tr>
+<td>新需求</td>
+<td>移动盘点应用</td>
+<td>盘点任务、扫码、实盘数量、库存差异、差异原因、复盘状态</td>
+</tr>
+</tbody></table>
 <p>移动盘点主要围绕任务领取、扫码、数量录入和差异复核展开，同时需要继续使用原库存系统中的商品和库存数据。试点时，可以先从一个仓库、一组操作人员或一轮盘点任务开始使用，同时继续调用库存管理系统中的基础数据。投入使用后，也可以通过盘点效率、人工操作量、差异处理时间等指标来判断试点效果。</p>
 <h2 id="zh-2">02｜借助 AI 与 NocoBase，把新需求做成内部应用</h2>
 <p>业务范围确定以后，可以先把现有系统、业务规则和新增需求整理出来，再借助 AI 完成应用的初始构建。</p>
@@ -103,24 +101,22 @@
 <p>📃 <a href="https://www.nocobase.com/cn/highlights/data-source">数据源 - NocoBase</a></p>
 <p><img src="https://static-docs.nocobase.com/03-nocobase-data-sources-ze3rwy.png" alt="03-nocobase-data-sources-ze3rwy.png"></p>
 <p>例如，仓库人员盘点“刹车片套装”时，可以同时看到原库存系统里的<strong>当前库存、安全库存和最近库存变动</strong>，再在移动盘点应用中录入<strong>实盘数量、库存差异、差异原因和处理结果</strong>。</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>数据来源</th><th>盘点时使用的信息</th></tr></thead><tbody><tr><td>库存管理系统</td><td>当前库存、安全库存、最近库存变动</td></tr><tr><td>移动盘点应用</td><td>实盘数量、库存差异、差异原因、处理状态</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>数据来源</th>
+<th>盘点时使用的信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>库存管理系统</td>
+<td>当前库存、安全库存、最近库存变动</td>
+</tr>
+<tr>
+<td>移动盘点应用</td>
+<td>实盘数量、库存差异、差异原因、处理状态</td>
+</tr>
+</tbody></table>
 <p>为了避免盘点期间库存持续变化影响结果，可以记录任务开始时的系统库存和对应时间，作为本次盘点的核对基准。日常库存仍然由原有库存管理系统维护。</p>
 <p><img src="https://static-docs.nocobase.com/03-stock-count-mobile-context-d55czr.png" alt="03-stock-count-mobile-context-d55czr.png"></p>
 <p>如果最终确认存在库存差异，可以先在移动盘点应用中完成原因记录和复核，再根据原有流程处理库存调整。是否由新应用直接回写，则取决于现有系统开放的接口和权限。</p>
@@ -128,7 +124,7 @@
 <h2 id="zh-4">04｜应用上线后，让 AI 进一步参与盘点业务</h2>
 <p>移动盘点应用投入使用后，盘点任务、实盘数量、差异原因和复核结果会持续形成新的业务数据。除了查看单条记录，负责人还需要了解整体盘点进度、长期未处理的任务，以及哪些 SKU 反复出现库存差异。</p>
 <p>应用搭建阶段，Coding Agent 主要协助应用构建和调整；应用上线后，NocoBase 的 <strong>AI 员工</strong> 可以基于已有数据参与日常盘点分析等工作。</p>
-<p>📃 <a href="https://nocode.docs.nocobase.com/cn/ai-employees">AI 员工 - NocoBase 文档</a></p>
+<p>📃 <a href="https://docs.nocobase.com/cn/ai-employees">AI 员工 - NocoBase 文档</a></p>
 <p>例如，可以让 AI 员工生成一份盘点概况，汇总完成率、准确率和库存差异，并整理需要优先关注的任务和商品：</p>
 <p><img src="https://static-docs.nocobase.com/04-ai-stock-count-summary-mhl82t.png" alt="04-ai-stock-count-summary-mhl82t.png"></p>
 <p>这些结果来自应用中的实际记录，负责人也可以随时返回对应任务核对明细。</p>
@@ -160,38 +156,38 @@
 <p>如果你已经在使用 CRM、供应链管理或项目管理类 SaaS，又刚好有一个现有工具难以满足的新需求，借助 AI 和 NocoBase，一个范围清楚、已经确认的需求，就可以先用更轻量的方式尝试起来。</p>
 <ul>
 <li><strong>体验 NocoBase + AI Demo：</strong> <a href="https://demo.nocobase.com/new">申请在线 Demo</a></li>
-<li><strong>自己上手搭建：</strong> <a href="https://nocode.docs.nocobase.com/cn/ai-builder">查看 AI Builder 文档</a></li>
+<li><strong>自己上手搭建：</strong> <a href="https://docs.nocobase.com/cn/ai-builder">查看 AI Builder 文档</a></li>
 </ul>
 <p><strong>相关阅读</strong>：</p>
 <ul>
 <li><strong><a href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html">如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</a></strong></li>
 <li><strong><a href="../blog/open-source-ai-agent-platforms-for-business.html">10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用</a></strong></li>
 <li><strong><a href="../blog/build-production-ready-ticketing-system-with-ai.html">如何用 AI 构建可投入生产的工单系统？</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/build-it-operations-system-with-ai-nocobase">如何用 AI 和 NocoBase 在 2 小时内搭建一套企业 IT 运维系统</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/nocobase-vs-baserow">NocoBase vs Baserow：灵活数据库与企业级系统</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/build-production-ready-crm-with-ai-and-nocobase">如何用 AI 和 NocoBase 搭建一套可投入生产的 CRM</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/enterprise-it-asset-management-system-guide">企业 IT 资产管理系统搭建指南：从需求梳理到落地</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/best-smartsheet-alternatives">7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/open-source-ai-no-code-tools-complex-relational-models">5 个适合复杂关系模型的开源 AI 无代码工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/what-is-ai-no-code">什么是 AI 无代码？AI 时代无代码平台的实用指南</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/open-source-ai-no-code-tools-github-9">GitHub 上值得关注的 9 个开源 AI 无代码工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/github-open-source-ai-agent-tools-16">GitHub 上值得关注的 14 个开源 AI Agent 工具</a></strong></li>
+<li><strong><a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></strong></li>
+<li><strong><a href="../blog/build-it-operations-system-with-ai-nocobase.html">如何用 AI 和 NocoBase 在 2 小时内搭建一套企业 IT 运维系统</a></strong></li>
+<li><strong><a href="../blog/nocobase-vs-baserow.html">NocoBase vs Baserow：灵活数据库与企业级系统</a></strong></li>
+<li><strong><a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">如何用 AI 和 NocoBase 搭建一套可投入生产的 CRM</a></strong></li>
+<li><strong><a href="../blog/enterprise-it-asset-management-system-guide.html">企业 IT 资产管理系统搭建指南：从需求梳理到落地</a></strong></li>
+<li><strong><a href="../blog/best-smartsheet-alternatives.html">7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-complex-relational-models.html">5 个适合复杂关系模型的开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/what-is-ai-no-code.html">什么是 AI 无代码？AI 时代无代码平台的实用指南</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-github-9.html">GitHub 上值得关注的 9 个开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/github-open-source-ai-agent-tools-16.html">GitHub 上值得关注的 14 个开源 AI Agent 工具</a></strong></li>
 </ul></div><div class="prose en-only"><p>AI capabilities are entering every part of enterprise software, from code generation and data analysis to Agents, automation, and business assistance. We previously reviewed <a href="../blog/open-source-ai-agent-platforms-for-business.html">10 Open-Source AI Agent Platforms for Business</a>, covering automation, Agent building, and internal applications. Enterprises now have more options than ever.</p>
 <p>But for companies that already rely on CRM, ERP, MES, SaaS, or custom-built systems, actually adopting AI is not that simple. Existing systems often have years of operational history, accumulated data, established processes, permission models, integrations, and user habits. Even when a company wants to add AI capabilities, migrating or rebuilding the entire system is rarely easy.</p>
-<p>Recently, in Reddit’s <a href="https://www.reddit.com/r/CRMSoftware/comments/1vmymee/7_years_on_salesforce_12_employees_upgrade_quote/">r/CRMSoftware</a>, a small-business owner shared a similar experience.</p>
+<p>Recently, in Reddit&#39;s <a href="https://www.reddit.com/r/CRMSoftware/comments/1vmymee/7_years_on_salesforce_12_employees_upgrade_quote/">r/CRMSoftware</a>, a small-business owner shared a similar experience.</p>
 <p>Their company started using Salesforce in 2019 with only one account and has since grown to a team of 12. Over the past seven years, they have built extensive customizations around their business, and Salesforce has gradually become a core operational system.</p>
 <p><img src="https://static-docs.nocobase.com/intro-salesforce-reddit-post-wasudu.png" alt="intro-salesforce-reddit-post-wasudu.png"></p>
 <p>As the business continued to grow, they needed more automation, cross-platform integrations, call logging, financial synchronization, LLM integrations, and forms. They also wanted to explore AI Agents, intelligent analytics, and AI-driven business automation. Continuing with Salesforce would require a plan upgrade and additional budget for APIs, Agentforce, and other third-party tools. Migrating, on the other hand, would mean dealing with custom objects, non-standard workflows, historical data, and the time and cost of the entire transition.</p>
 <p>This situation is common in many companies: there are new, relatively independent requirements, but the business still needs to keep using data from existing systems. A full migration is expensive, while rebuilding everything from scratch creates additional maintenance pressure.</p>
 <hr>
-<p>💬 Hey, you’re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
 <hr>
 <p>A more flexible approach is to use <strong>AI with NocoBase</strong> to turn the new requirement into a separate internal application first. Compared with relying on AI to build everything from scratch, enterprise applications still need stable data relationships, permissions, workflows, and long-term maintainability. NocoBase already provides these foundational capabilities, while AI can help build the new application on top of them and continue using data from the existing system.</p>
 <p>This means the company does not need to solve a full-system migration at the beginning. As the new application matures, more data and business processes can be moved over gradually based on actual needs.</p>
 <p>For example, imagine a manufacturing company that already has an Inventory Management System but wants to add a <strong>mobile inventory counting app</strong>. Warehouse staff need to scan items, enter actual quantities, and handle discrepancies on site, while continuing to use the existing product, SKU, warehouse, and inventory data. A requirement with a clear scope that still needs to reuse existing data is a good fit for building a separate application with <strong>AI and NocoBase</strong>, then expanding it gradually based on real usage.</p>
 <p>Next, we will use this scenario to show how AI and NocoBase can turn a relatively independent new requirement into a new internal application, while gradually adding AI analysis and automation capabilities.</p>
-<p>💡 Read more: <a href="https://www.nocobase.com/en/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></p>
+<p>💡 Read more: <a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></p>
 <h2 id="en-1">01 | Choose a Business Scenario That Can Be Piloted Independently</h2>
 <p>Start with a business requirement that has a clear scope, measurable value, and can be piloted independently.</p>
 <ol>
@@ -203,27 +199,25 @@
 <p><img src="https://static-docs.nocobase.com/01-products-inventory-qee4wq.png" alt="01-products-inventory-qee4wq.png"></p>
 <p>The new requirement is to let warehouse staff complete inventory counting on site, including claiming tasks, scanning items, entering actual quantities, recording inventory discrepancies, and reviewing exceptions.</p>
 <p>The division of responsibilities between the old system and the new application can therefore be defined first:</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th></th><th>Application</th><th>Responsibilities</th></tr></thead><tbody><tr><td>Existing system</td><td>Inventory Management System</td><td>Products, SKUs, warehouses, current inventory, inventory movements</td></tr><tr><td>New requirement</td><td>Mobile inventory counting app</td><td>Counting tasks, scanning, actual quantities, inventory discrepancies, discrepancy reasons, review status</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Application</th>
+<th>Responsibilities</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Existing system</td>
+<td>Inventory Management System</td>
+<td>Products, SKUs, warehouses, current inventory, inventory movements</td>
+</tr>
+<tr>
+<td>New requirement</td>
+<td>Mobile inventory counting app</td>
+<td>Counting tasks, scanning, actual quantities, inventory discrepancies, discrepancy reasons, review status</td>
+</tr>
+</tbody></table>
 <p>The mobile inventory counting process mainly covers task claiming, scanning, quantity entry, and discrepancy review, while continuing to use product and inventory data from the existing Inventory Management System. During the pilot, the company can start with one warehouse, one group of operators, or one inventory-counting cycle, while continuing to call the foundational data from the existing system. After launch, the team can evaluate the pilot using metrics such as counting efficiency, manual workload, and discrepancy-handling time.</p>
 <h2 id="en-2">02 | Use AI and NocoBase to Turn the New Requirement into an Internal Application</h2>
 <p>Once the business scope is clear, the team can organize the existing system, business rules, and new requirements, then use AI to complete the initial application build.</p>
@@ -243,24 +237,22 @@
 <p>📃 <a href="https://www.nocobase.com/en/highlights/data-source">Data Sources - NocoBase</a></p>
 <p><img src="https://static-docs.nocobase.com/03-nocobase-data-sources-ze3rwy.png" alt="03-nocobase-data-sources-ze3rwy.png"></p>
 <p>For example, when warehouse staff count a “brake pad set,” they can see the <strong>current inventory, safety stock, and recent inventory movements</strong> from the original system while entering the <strong>actual quantity, inventory discrepancy, discrepancy reason, and processing result</strong> in the mobile inventory counting app.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Data source</th><th>Information used during counting</th></tr></thead><tbody><tr><td>Inventory Management System</td><td>Current inventory, safety stock, recent inventory movements</td></tr><tr><td>Mobile inventory counting app</td><td>Actual quantity, inventory discrepancy, discrepancy reason, processing status</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>Data source</th>
+<th>Information used during counting</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Inventory Management System</td>
+<td>Current inventory, safety stock, recent inventory movements</td>
+</tr>
+<tr>
+<td>Mobile inventory counting app</td>
+<td>Actual quantity, inventory discrepancy, discrepancy reason, processing status</td>
+</tr>
+</tbody></table>
 <p>To avoid inventory changes during counting from affecting the result, the application can record the system inventory and corresponding timestamp at the start of the task as the baseline for that count. Daily inventory continues to be maintained by the existing Inventory Management System.</p>
 <p><img src="https://static-docs.nocobase.com/03-stock-count-mobile-context-d55czr.png" alt="03-stock-count-mobile-context-d55czr.png"></p>
 <p>If an inventory discrepancy is ultimately confirmed, the team can first complete the reason recording and review in the mobile inventory counting app, then handle the inventory adjustment according to the existing process. Whether the new application writes directly back to the original system depends on the APIs and permissions exposed by that system.</p>
@@ -268,7 +260,7 @@
 <h2 id="en-4">04 | After Launch, Let AI Participate Further in Inventory Counting</h2>
 <p>Once the mobile inventory counting app is in use, counting tasks, actual quantities, discrepancy reasons, and review results will continue to create new business data. Beyond checking individual records, managers also need to understand overall counting progress, long-unprocessed tasks, and which SKUs repeatedly show inventory discrepancies.</p>
 <p>During the application-building stage, the Coding Agent mainly helps build and adjust the application. After launch, NocoBase <strong>AI Employees</strong> can use the accumulated data to participate in day-to-day inventory analysis and related work.</p>
-<p>📃 <a href="https://nocode.docs.nocobase.com/ai-employees">AI Employees - NocoBase Documentation</a></p>
+<p>📃 <a href="https://docs.nocobase.com/ai-employees">AI Employees - NocoBase Documentation</a></p>
 <p>For example, an AI Employee can generate an inventory-counting overview that summarizes completion rate, accuracy, and inventory discrepancies, while highlighting tasks and products that need priority attention:</p>
 <p><img src="https://static-docs.nocobase.com/04-ai-stock-count-summary-mhl82t.png" alt="04-ai-stock-count-summary-mhl82t.png"></p>
 <p>These results come from actual records in the application, and managers can always return to the corresponding tasks to verify the details.</p>
@@ -300,29 +292,31 @@
 <p>If your company already uses CRM, supply chain management, project management SaaS, or similar systems and has a new requirement that the existing tools do not handle well, AI and NocoBase make it possible to start with a smaller, clearly scoped, confirmed requirement and test it in a more lightweight way.</p>
 <ul>
 <li><strong>Try the NocoBase + AI Demo:</strong> <a href="https://demo.nocobase.com/new">Request an online demo</a></li>
-<li><strong>Build it yourself:</strong> <a href="https://nocode.docs.nocobase.com/ai-builder">View the AI Builder documentation</a></li>
+<li><strong>Build it yourself:</strong> <a href="https://docs.nocobase.com/ai-builder">View the AI Builder documentation</a></li>
 </ul>
 <p><strong>Related reading</strong>:</p>
 <ul>
 <li><strong><a href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html">How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</a></strong></li>
 <li><strong><a href="../blog/open-source-ai-agent-platforms-for-business.html">10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps</a></strong></li>
 <li><strong><a href="../blog/build-production-ready-ticketing-system-with-ai.html">How to Build a Production-Ready Ticketing System with AI</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/build-it-operations-system-with-ai-nocobase">How to Build a Production-Ready IT Operations System with AI and NocoBase</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/nocobase-vs-baserow">NocoBase vs Baserow: Flexible Databases vs Enterprise Systems</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/build-production-ready-crm-with-ai-and-nocobase">How to Build a Production-Ready CRM with AI and NocoBase</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/enterprise-it-asset-management-system-guide">How to Design an IT Asset Management System: Data Model, Lifecycle, and Workflows</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/best-smartsheet-alternatives">How to Choose a Smartsheet Alternative: 7 Tools Compared</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/open-source-ai-no-code-tools-complex-relational-models">5 Open-Source AI No-Code Tools for Complex Relational Data Models</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/what-is-ai-no-code">What Is AI No-Code? A Practical Guide to No-Code Platforms in the AI Era</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/open-source-ai-no-code-tools-github-9">9 Open-Source AI No-Code Tools on GitHub Worth Watching</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/github-open-source-ai-agent-tools-16">14 Open Source AI Agent Tools with the Most GitHub Stars</a></strong></li>
+<li><strong><a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></strong></li>
+<li><strong><a href="../blog/build-it-operations-system-with-ai-nocobase.html">How to Build a Production-Ready IT Operations System with AI and NocoBase</a></strong></li>
+<li><strong><a href="../blog/nocobase-vs-baserow.html">NocoBase vs Baserow: Flexible Databases vs Enterprise Systems</a></strong></li>
+<li><strong><a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">How to Build a Production-Ready CRM with AI and NocoBase</a></strong></li>
+<li><strong><a href="../blog/enterprise-it-asset-management-system-guide.html">How to Design an IT Asset Management System: Data Model, Lifecycle, and Workflows</a></strong></li>
+<li><strong><a href="../blog/best-smartsheet-alternatives.html">How to Choose a Smartsheet Alternative: 7 Tools Compared</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-complex-relational-models.html">5 Open-Source AI No-Code Tools for Complex Relational Data Models</a></strong></li>
+<li><strong><a href="../blog/what-is-ai-no-code.html">What Is AI No-Code? A Practical Guide to No-Code Platforms in the AI Era</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-github-9.html">9 Open-Source AI No-Code Tools on GitHub Worth Watching</a></strong></li>
+<li><strong><a href="../blog/github-open-source-ai-agent-tools-16.html">14 Open Source AI Agent Tools with the Most GitHub Stars</a></strong></li>
 </ul></div></article>
     <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">01｜选择一个适合独立试点的业务场景</a><a href="#zh-2">02｜借助 AI 与 NocoBase，把新需求做成内部应用</a><a href="#zh-3">03｜继续使用现有系统中的数据</a><a href="#zh-4">04｜应用上线后，让 AI 进一步参与盘点业务</a><a href="#zh-5">05｜验证试点效果</a><a href="#zh-6">结尾</a></div><div class="en-only"><a href="#en-1">01 | Choose a Business Scenario That Can Be Piloted Independently</a><a href="#en-2">02 | Use AI and NocoBase to Turn the New Requirement into an Internal Application</a><a href="#en-3">03 | Continue Using Data from the Existing System</a><a href="#en-4">04 | After Launch, Let AI Participate Further in Inventory Counting</a><a href="#en-5">05 | Validate the Pilot Results</a><a href="#en-6">Conclusion</a></div></nav>
   </div>
   <section class="post-more">
     <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
-    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.</t-en></p></a><a class="bcard" href="../blog/open-source-ai-agent-platforms-for-business.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2039-8n094r.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月4日</t-zh><t-en>Sep 4, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用</t-zh><t-en>10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps</t-en></h3><p><t-zh>整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。</t-zh><t-en>Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.</t-en></p></a></div>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-agent-platforms-for-business.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2039-8n094r.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月4日</t-zh><t-en>Sep 4, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用  </t-zh><t-en>10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps  </t-en></h3><p><t-zh>整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。</t-zh><t-en>Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.</t-en></p></a></div>
   </section>
   <div class="band">
     <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>

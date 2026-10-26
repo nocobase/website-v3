@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="6 个替代 Excel 的企业内部管理软件 — NocoBase" data-en="6 Enterprise Softwares to Replace Excel for Internal Operations — NocoBase">6 个替代 Excel 的企业内部管理软件 — NocoBase</title>
+<meta name="description" content="结合不同业务复杂度与使用方式，解析 6 种适合企业内部管理的 Excel 替代方案" data-zh="结合不同业务复杂度与使用方式，解析 6 种适合企业内部管理的 Excel 替代方案" data-en="An analysis of six Excel alternatives for internal management based on business complexity and usage patterns">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>6 个替代 Excel 的企业内部管理软件</t-zh><t-en>6 Enterprise Softwares to Replace Excel for Internal Operations</t-en></h1>
+    <p class="lede"><t-zh>结合不同业务复杂度与使用方式，解析 6 种适合企业内部管理的 Excel 替代方案</t-zh><t-en>An analysis of six Excel alternatives for internal management based on business complexity and usage patterns</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年1月10日</t-zh><t-en>Jan 10, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2087-w6820s.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">引言</h2>
+<p>在企业内部运营中，Excel 仍然是使用最广泛的管理工具之一。</p>
+<p>销售报价表、排班表、运营数据统计表……大量关键业务信息都被放进了一个个Excel表格里面，逐渐成为团队最熟悉、也最依赖的数据载体。</p>
+<p>当这些表格开始被多个角色、多个团队同时编辑时，版本冲突、权限失控、数据口径不一致等问题几乎不可避免。</p>
+<p>我最近在浏览在 <a href="https://www.reddit.com/r/projectmanagement/comments/1nluzb2/tool_recommendation_to_replace_excel/">Reddit</a> 发现，持续有来自不同行业、不同规模企业的从业者讨论。</p>
+<blockquote>
+<p>有没有更合适的工具可以替代 Excel？</p>
+</blockquote>
+<p><img src="https://static-docs.nocobase.com/reddit1-gghgoj.png" alt="reddit1.png"></p>
+<p>这些讨论都集中在同一类问题上： 在多人协作场景下，表格难以同步，数据修改缺乏清晰记录，权限和流程能力不足，Excel 很难继续承载更复杂的业务管理需求。</p>
+<p><img src="https://static-docs.nocobase.com/reddit2-lsdznz.png" alt="reddit2.png"></p>
+<p>社区中也有不少建议，但被反复提及的，往往是 Google Sheets、Smartsheet 等大家已经非常熟悉的成熟产品。</p>
+<p>💡 阅读更多：<a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">8 个最佳 Google Sheets 替代方案（附成本与能力分析）</a></p>
+<blockquote>
+<p>这些工具真的适合每一家企业，或者企业发展的每一个阶段吗？</p>
+</blockquote>
+<p>基于这样的思考，本文将不止于重复这些“耳熟能详”的选择，而是从企业内部运营的实际使用出发，结合不同管理需求和使用方式，介绍 6 个可以在不同场景下替代 Excel 的企业内部管理软件。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>这些产品既包括 SaaS 方案，也包括在相同场景下可选的开源替代方案。我会根据企业实际使用 Excel 的方式，分为几类进行说明。</p>
+<ol>
+<li>业务运营类：</li>
+</ol>
+<p>NocoBase（开源）</p>
+<p>monday work management（SaaS）</p>
+<ol start="2">
+<li>协作与表格类</li>
+</ol>
+<p>NocoDB（开源）</p>
+<p>Airtable（SaaS）</p>
+<ol start="3">
+<li>内部工具类</li>
+</ol>
+<p>Appsmith（开源）</p>
+<p>Retool（SaaS）</p>
+<h2 id="zh-2">一、业务运营类</h2>
+<p>这一类产品通常用于承载核心业务数据和流程规则。</p>
+<p>原本依赖 Excel 维护的业务台账、状态规则和协作逻辑，可以被拆解为清晰的数据模型、权限和流程配置，从而将零散的表格使用转为可配置的业务系统。</p>
+<h3><strong>NocoBase</strong></h3>
+<ul>
+<li><strong>产品类型</strong>：业务系统构建平台（无代码 / 低代码）</li>
+<li><strong>开源 / 闭源</strong>：开源（Apache-2.0）</li>
+<li><strong>部署方式</strong>：自托管（Self-hosted）</li>
+<li><strong>目标使用对象</strong>：IT 团队、业务与职能部门、跨部门协作场景</li>
+<li><strong>官网</strong>：<a href="https://www.nocobase.com">https://www.nocobase.com</a></li>
+<li><strong>GitHub</strong>：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></li>
+<li><strong>GitHub Stars</strong>：21.1k</li>
+<li><strong>文档</strong>：<a href="../%5Bhttps://v2.docs.nocobase.com/%5D(https://v2.docs.nocobase.com/)">https://v2.docs.nocobase.com/</a></li>
+</ul>
+<p><strong>概览</strong></p>
+<p>NocoBase 是一款开源的 AI 无代码 / 低代码业务系统构建平台，用于搭建企业内部应用、运营系统和管理工具。 面向需要进行内部运营管理或跨团队协作的组织，通过自托管方式部署在企业自己的服务器或私有云环境中，适合对数据主权和系统可控性有要求的组织。</p>
+<p>从产品定位来看，NocoBase 以数据模型为核心，面向内部业务系统的构建，而不是单纯协作表格的使用体验，更适合用来承载和管理复杂的业务结构。</p>
+<p><img src="https://static-docs.nocobase.com/nocobase1-0hxryu.png" alt="nocobase1.png"></p>
+<p>在企业内部运营中，运用 NocoBase 可以将原本分散在 Excel 表格中的业务数据、状态规则和协作关系，整理为清晰的数据模型、权限配置和流程逻辑，从而形成结构明确、可治理、也更易扩展的系统，减少对人工维护表格的依赖。</p>
+<p><strong>核心能力</strong></p>
+<p><strong>数据模型驱动的数据管理能力</strong></p>
+<p>NocoBase 采用数据模型优先的设计方式，先定义业务数据结构，再构建界面和操作逻辑。数据结构与界面解耦，同一份数据可以以表格、表单、看板或图表等多种形式呈现，更适合表达真实且复杂的业务关系，而不是将所有信息堆叠在单一表格中。</p>
+<p><img src="https://static-docs.nocobase.com/nocobase2-fs5rju.png" alt="nocobase2.png"></p>
+<p><strong>多角色协作与细粒度权限控制</strong></p>
+<p>系统内置完整的权限体系，覆盖角色、字段、数据行和操作层级。通过权限配置，企业可以清晰界定不同角色的可见范围和可执行操作，解决 Excel 在多人协作场景下权限粗糙、责任边界不清的问题。</p>
+<p><img src="https://static-docs.nocobase.com/nocobase3-8az6mc.png" alt="nocobase3.png"></p>
+<p><strong>AI 员工</strong></p>
+<p>NocoBase 将 AI 能力以“员工”的形式嵌入到业务系统中。AI 员工可以理解当前页面、数据行和表结构，并执行查询、分析、填写表单等实际业务操作，用于数据分析、内容辅助或流程自动化，而不仅仅是提供对话式建议。</p>
+<p><img src="https://static-docs.nocobase.com/nocobase4-x06yij.png" alt="nocobase4.png"></p>
+<p><strong>典型使用场景</strong></p>
+<p>CRM 与客户线索管理、项目与任务管理、内部审批流与表单系统、运营数据与管理台账、ERP 模块（如订单、库存、供应商管理）、定制化内部业务系统等</p>
+<h3>monday work management</h3>
+<ul>
+<li><strong>产品类型</strong>：业务运营管理平台</li>
+<li><strong>开源 / 闭源</strong>：闭源（SaaS）</li>
+<li><strong>部署方式</strong>：SaaS</li>
+<li><strong>目标使用对象</strong>：业务团队、职能部门、跨团队协作场景</li>
+<li><strong>官网</strong>：<a href="https://monday.com/work-management">https://monday.com/work-management</a></li>
+<li><strong>文档</strong>：<a href="../%5Bhttps://support.monday.com/hc/en-us%5D(https://support.monday.com/hc/en-us)">https://support.monday.com/hc/en-us</a></li>
+</ul>
+<p><strong>概览</strong></p>
+<p>monday work management 是一款以协作和流程可视化为核心的 SaaS 工作管理平台，主要用于组织团队工作、管理业务进度和协调跨部门协作。产品通过云端方式交付，用户无需自行部署或维护基础设施。</p>
+<p><img src="https://static-docs.nocobase.com/monday1-pvrdnn.png" alt="monday1.png"></p>
+<p>在企业内部运营中，monday work management 通常用于替代 Excel 在任务跟踪、进度管理和协作台账等场景下的使用。Excel 里需要手动更新的状态字段、负责人和截止时间，会被转移到实时同步的协作看板中，减少沟通成本和重复维护。</p>
+<p><strong>核心能力</strong></p>
+<p><strong>结构化看板与多视图管理</strong></p>
+<p>monday work management 以看板为核心数据载体。 同一份数据可以通过表格、看板、时间轴、日历等视图展示，适合用于管理任务状态、项目进度和业务流程节点，比传统 Excel 更直观。</p>
+<p><img src="https://static-docs.nocobase.com/monday2-zqhdzn.png" alt="monday2.png"></p>
+<p><strong>多人协作与实时状态同步</strong></p>
+<p>平台天然支持多人同时操作，所有修改都会实时同步并保留操作记录。相比 Excel 文件反复传递和合并版本，monday 更适合持续协作和日常运营管理。</p>
+<p><strong>智能建议与内容生成能力</strong></p>
+<p>在 monday work management 的 AI 体系下，集成的 AI 助手可以根据上下文提供智能建议，例如为任务分配资源、生成文本摘要、整理会议记录或生成自动化流程模板等。这种能力减少了手工整理信息的负担，让团队更专注于执行和策略。</p>
+<p><strong>典型使用场景</strong></p>
+<p>项目与任务管理、跨部门协作、运营进度跟踪、工作台账管理、轻量级业务流程管理</p>
+<h2 id="zh-3">二、协作与表格类</h2>
+<p>这一类工具，主要解决的问题是：多人协作下，Excel 作为表格和数据载体不好用。</p>
+<p>它们关注的是在线协作、结构化表格和视图管理，而不是复杂流程或业务逻辑。</p>
+<h3>NocoDB</h3>
+<ul>
+<li><strong>产品类型</strong>：协作表格数据管理工具</li>
+<li><strong>开源 / 闭源</strong>：开源（AGPL-3.0）</li>
+<li><strong>部署方式</strong>：自托管（Self-hosted）</li>
+<li><strong>目标使用对象</strong>：业务团队、数据团队、需要协作管理数据的中小团队</li>
+<li><strong>官网</strong>：<a href="https://nocodb.com">https://nocodb.com</a></li>
+<li><strong>GitHub</strong>：<a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></li>
+<li><strong>GitHub Stars</strong>：61.1k</li>
+<li><strong>文档</strong>：<a href="../%5Bhttps://nocodb.com/docs/product-docs%5D(https://nocodb.com/docs/product-docs)">https://nocodb.com/docs/product-docs</a></li>
+</ul>
+<p><strong>概览</strong></p>
+<p>NocoDB 是一款开源的协作表格工具，常被视为 Airtable 的开源替代方案。它将现有的关系型数据库（如 MySQL、PostgreSQL）直接转换为可协作的在线表格界面，非技术用户也可以通过类似 Excel 的方式查看和维护数据。</p>
+<p><img src="https://static-docs.nocobase.com/nocodb1-z5hu2c.png" alt="nocodb1.png"></p>
+<p>NocoDB 主要用于支持 Excel 在数据台账、清单管理和多人协作表格等场景下的使用。分散在多个 Excel 文件中的数据，可以集中存储在数据库中，通过统一的表格界面进行协作维护。</p>
+<p><strong>核心能力</strong></p>
+<p><strong>数据库即表格的协作模式</strong></p>
+<p>NocoDB 直接基于已有数据库工作。数据库表会被映射为可编辑的在线表格，用户无需理解 SQL，也能完成数据查看和修改，降低了数据协作门槛。</p>
+<p><strong>多人协作与基础权限控制</strong></p>
+<p>平台支持多人同时访问和编辑同一份数据，并提供基础的权限控制能力。相比 Excel 文件反复传递，NocoDB 能避免版本冲突问题，但权限粒度相对有限，更适合轻量协作场景。</p>
+<p><strong>AI 驱动的字段与视图建议</strong> 在编辑数据结构时，NocoAI 会根据现有上下文提供字段、关联关系和视图的推荐建议，这减少了用户对数据库结构细节的认知负担，同时提高了基础构建效率。即便是缺乏数据库经验的业务人员，也可以迅速完成基础表和视图的配置。</p>
+<p><img src="https://static-docs.nocobase.com/nocodb2-nsnsiw.png" alt="nocodb2.png"></p>
+<p><strong>典型使用场景</strong></p>
+<p>协作数据表、运营数据台账、内容或资源清单管理、轻量级内部数据维护、Airtable 替代方案</p>
+<h3>Airtable</h3>
+<ul>
+<li><strong>产品类型</strong>：协作表格数据管理平台</li>
+<li><strong>开源 / 闭源</strong>：闭源（SaaS）</li>
+<li><strong>部署方式</strong>：SaaS</li>
+<li><strong>目标使用对象</strong>：业务团队、运营团队、产品与项目团队</li>
+<li><strong>官网</strong>：<a href="https://www.airtable.com">https://www.airtable.com</a></li>
+<li><strong>文档</strong>：<a href="https://www.airtable.com/guides">https://www.airtable.com/guides</a></li>
+</ul>
+<p><strong>概览</strong></p>
+<p>Airtable 是一款以协作表格为核心的 SaaS 数据管理平台，通过将表格、视图和轻量自动化结合，帮助团队更高效地管理结构化数据。从产品定位来看，Airtable 关注的是如何让数据以表格形态被更好地协作和可视化。</p>
+<p><img src="https://static-docs.nocobase.com/Airtable1-036rzf.png" alt="Airtable1.png"></p>
+<p>Airtable 通常用于替代 Excel 在协作数据表、运营台账和跨团队信息同步等场景下的使用。Excel 文件共享和手动维护的数据，可以通过在线表格实现实时协作和统一管理。</p>
+<p><strong>核心能力</strong></p>
+<p><strong>多视图的协作表格体验</strong></p>
+<p>Airtable 在表格基础上提供了看板、日历、时间轴等多种视图。同一份数据可以从不同角度查看和维护，适合任务、资源和状态类信息的管理。</p>
+<p><strong>字段类型与轻量规则配置</strong></p>
+<p>平台提供丰富的字段类型和基础公式能力。用户可以在不写代码的情况下，对数据进行简单计算、校验和关联，降低表格维护成本。</p>
+<p><strong>面向工作流的 AI 辅助能力</strong></p>
+<p>与单纯的内容生成不同，Airtable 的 AI 更侧重于服务既有工作流。AI 可以嵌入自动化流程中，用于触发摘要、内容补全或数据路由等操作，帮助团队在保持协作表格使用习惯的同时，引入一定程度的智能化支持。</p>
+<p><img src="https://static-docs.nocobase.com/Airtable2-aw1grq.png" alt="Airtable2.png"></p>
+<p><strong>典型使用场景</strong></p>
+<p>协作表格、运营数据管理、项目与资源台账、内容与素材管理、跨团队信息同步</p>
+<p>💡 阅读更多：<a href="../blog/5-self-hosted-airtable-alternatives.html">Airtable 太贵了？5 个自托管替代方案成本&amp;功能对比 </a></p>
+<h2 id="zh-4">三、内部工具类</h2>
+<p>这一类场景中，Excel 更多承担的是操作界面的角色。</p>
+<p>例如数据录入、状态修改、审批操作或简单管理视图。这些产品通常提供可配置的管理界面，用于替代直接操作表格。</p>
+<h3>Appsmith</h3>
+<ul>
+<li><strong>产品类型</strong>：低代码平台</li>
+<li><strong>开源 / 闭源</strong>：开源（Apache-2.0）</li>
+<li><strong>部署方式</strong>：自托管 / SaaS（商业版）</li>
+<li><strong>目标使用对象</strong>：IT 团队、工程团队、需要构建内部管理界面的业务团队</li>
+<li><strong>官网</strong>：<a href="https://www.appsmith.com">https://www.appsmith.com</a></li>
+<li><strong>GitHub</strong>：<a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></li>
+<li><strong>GitHub Stars</strong>：38.8k</li>
+<li><strong>文档</strong>：<a href="https://docs.appsmith.com/">https://docs.appsmith.com/</a></li>
+</ul>
+<p><strong>概览</strong></p>
+<p>Appsmith 是一款开源的低代码内部工具开发平台，主要用于快速构建面向内部使用的管理界面和操作后台。它通过可视化组件和数据源连接能力，让团队能够在较短时间内搭建用于数据录入、状态修改和管理操作的 Web 界面。</p>
+<p><img src="https://static-docs.nocobase.com/Appsmith1-sz0ee1.png" alt="Appsmith1.png"></p>
+<p>在企业内部运营中，Appsmith 通常用于替代 Excel 在数据操作和管理界面方面的角色。原本通过 Excel 完成的数据录入、状态更新或简单审批操作，可以被迁移到结构更清晰、权限更明确的管理界面中完成。</p>
+<p><strong>核心能力</strong></p>
+<p><strong>可视化界面构建能力</strong></p>
+<p>Appsmith 提供大量现成的 UI 组件，如表格、表单、按钮和图表。</p>
+<p>用户可以通过拖拽和配置方式，快速拼装内部管理页面，而无需从零开发前端界面。</p>
+<p><strong>多数据源连接与操作</strong></p>
+<p>平台支持直接连接关系型数据库、REST API 以及第三方服务。界面上的操作可以直接触发数据查询和更新，使 Appsmith 成为 Excel 与后端系统之间的中间层。</p>
+<p><img src="https://static-docs.nocobase.com/Appsmith2-ss8bb1.png" alt="Appsmith2.png"></p>
+<p><strong>智能驱动能力</strong> Appsmith 平台内置了与主流大型语言模型，推出了 Appsmith AI 功能，开发人员可以在应用中快速添加文本生成、分析和分类等 AI 动作。这种能力让内部工具不仅能展示数据，还能基于业务上下文自动生成内容、提取洞察和辅助分析，减少重复性工作，提高效率。</p>
+<p><strong>典型使用场景</strong></p>
+<p>内部管理后台、数据录入与维护界面、运营或支持工具、简单审批与操作界面、内部系统操作入口</p>
+<p>💡 阅读更多：<a href="../blog/5-management-tools-perfect-for-small-businesses.html">五个适合小型企业使用的管理软件！（真实经验）</a></p>
+<h3>Retool</h3>
+<ul>
+<li><strong>产品类型</strong>：低代码内部工具平台</li>
+<li><strong>开源 / 闭源</strong>：闭源（SaaS，提供企业级私有部署选项）</li>
+<li><strong>部署方式</strong>：SaaS / 私有部署（企业版）</li>
+<li><strong>目标使用对象</strong>：工程团队、IT 团队、需要快速交付内部工具的业务团队</li>
+<li><strong>官网</strong>：<a href="https://retool.com">https://retool.com</a></li>
+<li><strong>文档</strong>：<a href="https://docs.retool.com/">https://docs.retool.com/</a></li>
+</ul>
+<p><strong>概览</strong></p>
+<p>Retool 是一款以开发者效率为核心的低代码内部工具平台，用于快速构建企业内部的管理界面和操作后台。 产品以云端 SaaS 形式为主，强调与现有数据库和 API 的深度连接能力，适合需要频繁操作业务数据的内部场景。</p>
+<p><img src="https://static-docs.nocobase.com/Retool1-xjfakg.png" alt="Retool1.png"></p>
+<p>Excel 在数据操作、状态维护和内部管理界面方面的使用，Retool 均可以替代。原本通过 Excel 手动维护的数据修改和操作流程，可以被迁移到更安全、可控的 Web 管理界面中完成。</p>
+<p><strong>核心能力</strong></p>
+<p><strong>组件化的内部界面构建能力</strong></p>
+<p>Retool 提供丰富的现成组件，包括表格、表单、图表和控制组件。这些组件可以快速组合成内部工具界面，减少前端开发工作量。</p>
+<p><img src="https://static-docs.nocobase.com/Retool2-x5cr9o.png" alt="Retool2.png"></p>
+<p><strong>强大的数据源连接能力</strong></p>
+<p>平台支持直接连接 PostgreSQL、MySQL 等数据库，以及 REST API 和第三方服务。界面操作可以实时触发数据查询和更新，使 Retool 成为内部系统和数据之间的高效操作入口。</p>
+<p><strong>AI 驱动的智能开发与工作流自动化能力</strong> Retool 的 AI 能力允许用户直接在内部工具的构建过程中使用大型语言模型来生成逻辑、查询和界面代码，支持将自然语言描述转换成功能组件和业务逻辑，减少手动编写样板代码的工作量，提升开发效率。</p>
+<p><strong>典型使用场景</strong></p>
+<p>内部管理后台、数据操作与维护工具、运营与支持系统、审批与状态管理界面、工程团队自用工具</p>
+<h2 id="zh-5">如何选择适合企业的 Excel 替代方案</h2>
+<p><strong>组织复杂度与流程成熟度</strong></p>
+<p>如果只是单一团队内部维护清单或台账等基础需求，选择协作表格类工具已经足够了；如果涉及多个部门、明确的角色分工，甚至跨系统的数据流转，就需要考虑能否承载流程和规则的产品。</p>
+<p><strong>治理与合规要求</strong></p>
+<p>不同企业对数据治理的要求差异很大。是否需要细粒度的权限控制、是否需要保留完整的修改记录、数据是否必须由企业自行托管，这些都会直接影响可选工具的范围。</p>
+<p><strong>与现有 IT 架构的适配性</strong></p>
+<p>有些团队只需要一个独立工具，而有些场景则需要与 CRM、ERP、协作工具或数据平台打通，所以还需要考虑工具是否要融入现有系统。</p>
+<p><strong>变更与扩展能力</strong></p>
+<p>当规则调整或流程变化时，是通过配置就能适配，还是需要整体替换工具，会直接影响后续的维护成本和使用稳定性。</p>
+<p>💡 阅读更多：<a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">如何快速搭建一个替换 Excel 的系统？（完整指南）</a></p>
+<h2 id="zh-6">结语</h2>
+<p>Excel 是企业内部非常重要的工具，在台账、统计和日常记录等场景中，依旧是高效且可靠的。</p>
+<p>在合适的场景中引入企业级管理软件，与 Excel 形成更清晰的分工，企业的协作和管理往往会更加顺畅。</p>
+<p>如果你觉得这篇内容对你有所帮助，欢迎分享给感兴趣朋友。</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/10-open-source-tools-developers-use-to-reduce-repetitive-crud.html">开发者收藏！10 个减少重复 CRUD 的开源工具</a></li>
+<li><a href="../blog/top-12-ai-workflows-projects-with-the-most-github-stars.html">GitHub Star 数量前 12 的 AI 工作流项目</a></li>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">最适合外包交付的 6 个开源无代码与低代码</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">GitHub 上星星数量前 10 的 AI CRM 开源项目 </a></li>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">如何快速搭建一个替换 Excel 的系统？（完整指南）</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">GitHub Star 数量前 5 的开源 AI 内部工具</a></li>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">8 个最佳 Google Sheets 替代方案（附成本与能力分析）</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6个适合做 PoC 的开源无代码/低代码工具推荐</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p>In internal business operations, Excel remains one of the most widely used management tools.</p>
+<p>Sales quotes, shift schedules, operational reports… a large amount of critical business information is stored in Excel spreadsheets, which have gradually become the most familiar and most relied upon data carrier for many teams.</p>
+<p>However, once these spreadsheets are edited simultaneously by multiple roles and teams, issues such as version conflicts, poor access control, and inconsistent data definitions become almost unavoidable.</p>
+<p>Recently, while browsing <a href="https://www.reddit.com/r/projectmanagement/comments/1nluzb2/tool_recommendation_to_replace_excel/">Reddit</a>, I noticed ongoing discussions among professionals from different industries and companies of various sizes around the same question.</p>
+<blockquote>
+<p>Is there a more suitable tool to replace Excel?</p>
+<p><img src="https://static-docs.nocobase.com/reddit1-gghgoj.png" alt="reddit1.png"></p>
+</blockquote>
+<p>These discussions consistently point to similar problems:</p>
+<p>in collaborative, multi user environments, spreadsheets are difficult to keep in sync, changes lack clear audit trails, and permission and workflow capabilities are limited, making Excel increasingly unable to support more complex business management needs.</p>
+<p><img src="https://static-docs.nocobase.com/reddit2-lsdznz.png" alt="reddit2.png"></p>
+<p>Many suggestions appear in the community, but the tools mentioned most often are familiar, established products such as Google Sheets and Smartsheet.</p>
+<p>💡 Read more: <a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">The 8 Best Google Sheets Alternatives (Specs &amp; Pricing)</a></p>
+<p>But are these tools truly suitable for every company, or for every stage of a company’s growth?</p>
+<p>With this question in mind, this article goes beyond repeating these “well known” options. Instead, based on real world internal operations and different management needs and usage patterns, it introduces six internal management software options that can replace Excel in different scenarios.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>These products include both SaaS solutions and open source alternatives that can be used in similar contexts. Based on how companies actually use Excel, they are grouped into several categories.</p>
+<ol>
+<li>Business operations tools: NocoBase (open source), monday work management (SaaS)</li>
+<li>Collaboration and spreadsheet tools: NocoDB (open source),  Airtable (SaaS)</li>
+<li>Internal tools platforms: Appsmith (open source),  Retool (SaaS)</li>
+</ol>
+<h2 id="en-2">1.Business Operations Tools</h2>
+<p>This category of products is typically used to support core business data and process logic.</p>
+<p>Business records, status rules, and collaboration workflows that were previously maintained in Excel can be restructured into clear data models, access controls, and process configurations, transforming fragmented spreadsheet usage into configurable business systems.</p>
+<h3><strong>NocoBase</strong></h3>
+<ul>
+<li><strong>Product type</strong>: Business system building platform (no code / low code)</li>
+<li><strong>Open source / closed source</strong>: Open source (Apache-2.0)</li>
+<li><strong>Deployment model</strong>: Self hosted</li>
+<li><strong>Target users</strong>: IT teams, business and functional departments, cross department collaboration scenarios</li>
+<li><strong>Official website</strong>: <a href="https://www.nocobase.com">https://www.nocobase.com</a></li>
+<li><strong>GitHub</strong>: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></li>
+<li><strong>GitHub Stars</strong>: 21.1k</li>
+<li><strong>Documentation</strong>: <a href="https://v2.docs.nocobase.com/">https://v2.docs.nocobase.com/</a></li>
+</ul>
+<p><strong>Overview</strong></p>
+<p>NocoBase is an open source, AI enabled no code / low code platform for building internal applications, operational systems, and management tools.</p>
+<p>It is designed for organizations that require internal operations management or cross team collaboration and is deployed on the company’s own servers or private cloud, making it well suited for teams with strong requirements around data ownership and system control.</p>
+<p>From a positioning standpoint, NocoBase is centered on data models and focuses on building internal business systems rather than replicating spreadsheet based collaboration, which makes it better suited to managing complex business structures.</p>
+<p><img src="https://static-docs.nocobase.com/nocobase1-0hxryu.png" alt="nocobase1.png"></p>
+<p>In practice, NocoBase enables organizations to consolidate business data, status rules, and collaboration relationships that were once scattered across Excel files into structured data models, access controls, and process logic. The result is a system that is clearer, easier to govern, and more scalable, while reducing reliance on manual spreadsheet maintenance.</p>
+<p><strong>Core capabilities</strong></p>
+<p><strong>Data model driven management</strong></p>
+<p>NocoBase follows a data first design approach, defining business data structures before building interfaces and interaction logic. Because data and presentation are decoupled, the same dataset can be displayed as tables, forms, kanban boards, or charts. This makes it more effective for representing complex, real world business relationships than forcing all information into a single spreadsheet.</p>
+<p><img src="https://static-docs.nocobase.com/nocobase2-fs5rju.png" alt="nocobase2.png"></p>
+<p><strong>Multi role collaboration with fine grained access control</strong></p>
+<p>The platform provides a comprehensive permission system covering roles, fields, data rows, and actions. Through configuration, organizations can clearly define what each role can view and operate, addressing Excel’s limitations in collaborative environments where permissions are coarse and accountability is unclear.</p>
+<p><img src="https://static-docs.nocobase.com/nocobase3-8az6mc.png" alt="nocobase3.png"></p>
+<p><strong>AI employees</strong></p>
+<p>NocoBase embeds AI capabilities into business systems in the form of “employees”. These AI employees can understand the current context, including pages, data rows, and table structures, and perform practical actions such as querying data, running analyses, and filling out forms. They support data analysis, content assistance, and process automation, rather than functioning as simple conversational tools.</p>
+<p><img src="https://static-docs.nocobase.com/nocobase4-x06yij.png" alt="nocobase4.png"></p>
+<p><strong>Typical use cases</strong></p>
+<p>CRM and lead management, project and task management, internal approval workflows and form systems, operational reporting and management ledgers, ERP modules such as order, inventory, and supplier management, and customized internal business systems</p>
+<h3><strong>monday work management</strong></h3>
+<ul>
+<li><strong>Product type</strong>: Business operations management platform</li>
+<li><strong>Open source / closed source</strong>: Closed source (SaaS)</li>
+<li><strong>Deployment model</strong>: SaaS</li>
+<li><strong>Target users</strong>: Business teams, functional departments, cross team collaboration scenarios</li>
+<li><strong>Official website</strong>: <a href="https://monday.com/work-management">https://monday.com/work-management</a></li>
+<li><strong>Documentation</strong>: <a href="https://support.monday.com/hc/en-us">https://support.monday.com/hc/en-us</a></li>
+</ul>
+<p><strong>Overview</strong></p>
+<p>monday work management is a SaaS work management platform focused on collaboration and process visualization. It is primarily used to organize team work, track progress, and coordinate cross department efforts, and is delivered entirely through the cloud without the need for self managed infrastructure.</p>
+<p><img src="https://static-docs.nocobase.com/monday1-pvrdnn.png" alt="monday1.png"></p>
+<p>In internal operations, monday work management is often used to replace Excel for task tracking, progress management, and collaborative records. Status updates, owners, and deadlines that require manual maintenance in Excel are handled through real time synchronized boards, reducing communication overhead and duplicated effort.</p>
+<p><strong>Core capabilities</strong></p>
+<p><strong>Structured boards and multiple views</strong></p>
+<p>Boards serve as the core data structure in monday work management. The same data can be viewed as tables, boards, timelines, or calendars, making it easier to manage task statuses, project progress, and workflow milestones in a more visual and intuitive way than traditional spreadsheets.</p>
+<p><strong>Real time collaboration and synchronization</strong></p>
+<p>The platform supports multiple users working simultaneously, with all changes synchronized in real time and fully logged. Compared with repeatedly sharing and merging Excel files, monday is better suited for continuous collaboration and day to day operations.</p>
+<p><strong>Intelligent assistance and content generation</strong></p>
+<p>Through its AI capabilities, monday work management provides contextual assistance such as suggesting resource allocation, generating summaries, organizing meeting notes, and creating automation templates. These features reduce manual information handling and allow teams to focus more on execution and strategic work.</p>
+<p><img src="https://static-docs.nocobase.com/monday2-zqhdzn.png" alt="monday2.png"></p>
+<p><strong>Typical use cases</strong></p>
+<p>Project and task management, cross department collaboration, operational progress tracking, work record management, and lightweight business process management</p>
+<h2 id="en-3">2. Collaborative Spreadsheet Tools</h2>
+<p>This category of tools primarily addresses a single issue: Excel performs poorly as a shared spreadsheet and data container in collaborative environments.</p>
+<p>Their focus is on online collaboration, structured tables, and flexible views, rather than complex workflows or business logic.</p>
+<h3><strong>NocoDB</strong></h3>
+<ul>
+<li><strong>Product type</strong>: Collaborative spreadsheet data management tool</li>
+<li><strong>Open source / closed source</strong>: Open source (AGPL-3.0)</li>
+<li><strong>Deployment model</strong>: Self hosted</li>
+<li><strong>Target users</strong>: Business teams, data teams, and small to medium sized teams that need collaborative data management</li>
+<li><strong>Official website</strong>: <a href="https://nocodb.com">https://nocodb.com</a></li>
+<li><strong>GitHub</strong>: <a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></li>
+<li><strong>GitHub Stars</strong>: 61.1k</li>
+<li><strong>Documentation</strong>: <a href="https://nocodb.com/docs/product-docs">https://nocodb.com/docs/product-docs</a></li>
+</ul>
+<p><strong>Overview</strong></p>
+<p>NocoDB is an open source collaborative spreadsheet tool, often positioned as an open source alternative to Airtable. It turns existing relational databases such as MySQL and PostgreSQL directly into collaborative online spreadsheets, enabling non technical users to view and maintain data in a familiar, Excel like interface.</p>
+<p><img src="https://static-docs.nocobase.com/nocodb1-z5hu2c.png" alt="nocodb1.png"></p>
+<p>NocoDB is typically used to replace Excel in scenarios such as data records, list management, and shared spreadsheets. Data that was previously scattered across multiple Excel files can be centralized in a database and collaboratively maintained through a unified spreadsheet interface.</p>
+<p><strong>Core capabilities</strong></p>
+<p><strong>Database backed spreadsheet collaboration</strong></p>
+<p>NocoDB works directly on top of existing databases, mapping database tables to editable online spreadsheets. Users can view and update data without needing to understand SQL, significantly lowering the barrier to collaborative data management.</p>
+<p><strong>Multi user collaboration with basic access control</strong></p>
+<p>The platform supports multiple users editing the same data simultaneously and provides basic permission controls. Compared with repeatedly sharing Excel files, NocoDB avoids version conflicts, but its access control remains relatively coarse, making it better suited for lightweight collaboration scenarios.</p>
+<p><strong>AI assisted field and view recommendations</strong></p>
+<p>When designing data structures, NocoAI offers recommendations for fields, relationships, and views based on the current context. This reduces the cognitive load associated with database design and improves setup efficiency. Even users without database experience can quickly configure basic tables and views.</p>
+<p><img src="https://static-docs.nocobase.com/nocodb2-nsnsiw.png" alt="nocodb2.png"></p>
+<p><strong>Typical use cases</strong></p>
+<p>Collaborative data tables, operational data records, content or resource list management, lightweight internal data maintenance, Airtable alternatives</p>
+<h3>Airtable</h3>
+<ul>
+<li><strong>Product type</strong>: Collaborative spreadsheet data management platform</li>
+<li><strong>Open source / closed source</strong>: Closed source (SaaS)</li>
+<li><strong>Deployment model</strong>: SaaS</li>
+<li><strong>Target users</strong>: Business teams, operations teams, product and project teams</li>
+<li><strong>Official website</strong>: <a href="https://www.airtable.com">https://www.airtable.com</a></li>
+<li><strong>Documentation</strong>: <a href="https://www.airtable.com/guides">https://www.airtable.com/guides</a></li>
+</ul>
+<p><strong>Overview</strong></p>
+<p>Airtable is a SaaS data management platform built around collaborative spreadsheets. By combining tables, multiple views, and lightweight automation, it helps teams manage structured data more efficiently. Its core focus is enabling data to be collaboratively edited and visualized in spreadsheet form.</p>
+<p><img src="https://static-docs.nocobase.com/Airtable1-036rzf.png" alt="Airtable1.png"></p>
+<p>Airtable is commonly used to replace Excel in scenarios such as shared data tables, operational records, and cross team information synchronization. Data that once depended on shared Excel files and manual updates can be managed through online tables with real time collaboration.</p>
+<p><strong>Core capabilities</strong></p>
+<p><strong>Multi view collaborative tables</strong></p>
+<p>In addition to standard spreadsheets, Airtable provides views such as kanban boards, calendars, and timelines. The same dataset can be managed from different perspectives, making it well suited for tasks, resources, and status driven information.</p>
+<p><strong>Flexible field types and lightweight rules</strong></p>
+<p>The platform offers a rich set of field types along with basic formula and validation capabilities. Users can perform simple calculations, checks, and relationships without writing code, reducing the ongoing maintenance cost of spreadsheets.</p>
+<p><strong>Workflow focused AI assistance</strong></p>
+<p>Rather than acting purely as a content generator, Airtable’s AI is designed to support existing workflows. It can be embedded into automations to trigger summaries, content completion, or data routing, allowing teams to introduce a degree of intelligence while maintaining familiar spreadsheet based collaboration.</p>
+<p><img src="https://static-docs.nocobase.com/Airtable2-aw1grq.png" alt="Airtable2.png"></p>
+<p><strong>Typical use cases</strong></p>
+<p>Collaborative spreadsheets, operational data management, project and resource records, content and asset management, cross team information synchronization</p>
+<p>💡 Read more: <a href="../blog/5-self-hosted-airtable-alternatives.html">Is Airtable Too Expensive? 5 Self-Hosted Alternatives Compared by Cost &amp; Features</a></p>
+<h2 id="en-4">3. Internal Tools</h2>
+<p>In these scenarios, Excel is used primarily as an operational interface.</p>
+<p>Typical use cases include data entry, status updates, approval actions, and simple management views. Tools in this category provide configurable management interfaces that replace direct interaction with spreadsheets.</p>
+<h3><strong>Appsmith</strong></h3>
+<ul>
+<li><strong>Product type</strong>: Low code platform</li>
+<li><strong>Open source / closed source</strong>: Open source (Apache-2.0)</li>
+<li><strong>Deployment model</strong>: Self hosted / SaaS (commercial edition)</li>
+<li><strong>Target users</strong>: IT teams, engineering teams, and business teams building internal management interfaces</li>
+<li><strong>Official website</strong>: <a href="https://www.appsmith.com">https://www.appsmith.com</a></li>
+<li><strong>GitHub</strong>: <a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></li>
+<li><strong>GitHub Stars</strong>: 38.8k</li>
+<li><strong>Documentation</strong>: <a href="https://docs.appsmith.com/">https://docs.appsmith.com/</a></li>
+</ul>
+<p><strong>Overview</strong></p>
+<p>Appsmith is an open source low code platform for building internal tools, designed to rapidly create management interfaces and operational back offices for internal use. By combining visual components with data source integrations, teams can quickly build web interfaces for data entry, status updates, and administrative actions.</p>
+<p><img src="https://static-docs.nocobase.com/Appsmith1-sz0ee1.png" alt="Appsmith1.png"></p>
+<p>In internal operations, Appsmith often replaces Excel as the interface for interacting with data. Tasks such as data entry, status updates, and simple approval steps that were previously handled in spreadsheets can be moved into clearer, more structured management interfaces with well defined access controls.</p>
+<p><strong>Core capabilities</strong></p>
+<p><strong>Visual interface construction</strong></p>
+<p>Appsmith offers a wide range of ready made UI components, including tables, forms, buttons, and charts.</p>
+<p>Through drag and drop and configuration, users can quickly assemble internal management pages without developing front end interfaces from scratch.</p>
+<p><strong>Multiple data source integration</strong></p>
+<p>The platform supports direct connections to relational databases, REST APIs, and third party services. Actions taken in the interface can trigger data queries and updates, positioning Appsmith as a practical intermediary between spreadsheets and backend systems.</p>
+<p><img src="https://static-docs.nocobase.com/Appsmith2-ss8bb1.png" alt="Appsmith2.png"></p>
+<p><strong>AI enabled capabilities</strong></p>
+<p>Appsmith integrates large language models through its Appsmith AI features, allowing developers to add AI powered actions such as text generation, analysis, and classification. This enables internal tools not only to display data, but also to generate content, extract insights, and assist analysis based on business context, reducing repetitive work and improving overall efficiency.</p>
+<p><strong>Typical use cases</strong></p>
+<p>Internal management back offices, data entry and maintenance interfaces, operations or support tools, simple approval and action interfaces, internal system access points</p>
+<p>💡 Read more:  <a href="../blog/5-management-tools-perfect-for-small-businesses.html">5 Management Tools Perfect for Small Businesses (Based on Real Experience)</a></p>
+<h3>Retool</h3>
+<ul>
+<li><strong>Product type</strong>: Low code internal tool platform</li>
+<li><strong>Open source / closed source</strong>: Closed source (SaaS, with enterprise private deployment options)</li>
+<li><strong>Deployment model</strong>: SaaS / private deployment (enterprise edition)</li>
+<li><strong>Target users</strong>: Engineering teams, IT teams, and business teams that need to deliver internal tools quickly</li>
+<li><strong>Official website</strong>: <a href="https://retool.com">https://retool.com</a></li>
+<li><strong>Documentation</strong>: <a href="https://docs.retool.com/">https://docs.retool.com/</a></li>
+</ul>
+<p><strong>Overview</strong></p>
+<p>Retool is a low code internal tool platform built around developer productivity, enabling teams to quickly create internal management interfaces and operational back offices.</p>
+<p>Delivered primarily as a cloud based SaaS product, Retool emphasizes deep integration with existing databases and APIs, making it well suited for internal use cases that involve frequent data operations.</p>
+<p><img src="https://static-docs.nocobase.com/Retool1-xjfakg.png" alt="Retool1.png"></p>
+<p>Use cases where Excel is applied for data manipulation, status tracking, and internal management interfaces can all be replaced by Retool. Manual update and operation workflows previously handled in spreadsheets can be migrated to more secure and controllable web based management interfaces.</p>
+<p><strong>Core capabilities</strong></p>
+<p><strong>Component based interface building</strong></p>
+<p>Retool provides a rich library of prebuilt components, including tables, forms, charts, and control elements. These components can be rapidly combined to create internal tools, significantly reducing front end development effort.</p>
+<p><img src="https://static-docs.nocobase.com/Retool2-x5cr9o.png" alt="Retool2.png"></p>
+<p><strong>Robust data source connectivity</strong></p>
+<p>The platform connects directly to databases such as PostgreSQL and MySQL, as well as REST APIs and third party services. Interface interactions can trigger real time data queries and updates, making Retool an efficient operational gateway between systems and data.</p>
+<p><strong>AI driven development and workflow automation</strong></p>
+<p>Retool’s AI capabilities allow users to leverage large language models during tool development to generate logic, queries, and interface code. Natural language descriptions can be transformed into functional components and business logic, reducing boilerplate coding and accelerating development.</p>
+<p><strong>Typical use cases</strong></p>
+<p>Internal management back offices, data operation and maintenance tools, operations and support systems, approval and status management interfaces, internal tools for engineering teams</p>
+<h2 id="en-5"><strong>How to choose the right Excel alternative</strong></h2>
+<p><strong>Organizational complexity and process maturity</strong></p>
+<p>For basic needs such as maintaining lists or records within a single team, collaborative spreadsheet tools are often sufficient. When multiple departments, defined roles, or cross system data flows are involved, solutions that can support structured processes and rules become necessary.</p>
+<p><strong>Governance and compliance requirements</strong></p>
+<p>Data governance expectations vary widely. Requirements for fine grained access control, complete change histories, or self hosted data will significantly narrow the range of viable tools.</p>
+<p><strong>Alignment with existing IT architecture</strong></p>
+<p>Some teams need a standalone solution, while others require integration with CRM, ERP, collaboration tools, or data platforms. Tool selection should account for how well a solution fits into the existing system landscape.</p>
+<p><strong>Change management and scalability</strong></p>
+<p>When processes or rules evolve, whether a system can adapt through configuration or requires replacement will directly affect long term maintenance costs and operational stability.</p>
+<p>💡 Read more: <a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">How to Quickly Build a Real System to Replace Excel: A Complete Guide</a></p>
+<h2 id="en-6">Conclusion</h2>
+<p>Excel remains a critical tool in internal environments and continues to be efficient and reliable for records, reporting, and daily tracking.</p>
+<p>By introducing enterprise management software in the right scenarios and establishing a clearer division of responsibilities alongside Excel, organizations can often achieve smoother collaboration and more effective management.</p>
+<p>If you found this content useful, feel free to share it with others who may be interested.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/10-open-source-tools-developers-use-to-reduce-repetitive-crud.html">10 Open Source Tools Developers Use to Reduce Repetitive CRUD</a></li>
+<li><a href="../blog/top-12-ai-workflows-projects-with-the-most-github-stars.html">Top 12 Open-source AI Workflows Projects with the Most GitHub Stars </a></li>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">6 Open-Source No-Code &amp; Low-Code Tools for Software Agencies</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">Top 10 Open-source AI CRM Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">How to Quickly Build a Real System to Replace Excel: A Complete Guide</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">Top 5 Open-Source AI Internal Tools on GitHub</a></li>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">The 8 Best Google Sheets Alternatives (Specs &amp; Pricing)</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6 Open-Source No/Low-Code Tools for Building PoCs</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">A Developer’s Technical Decision Guide to No-Code and Low-Code (2026)</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 In-Depth Comparison of RBAC in Enterprise-Grade No-Code/Low-Code Platforms</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">引言</a><a href="#zh-2">一、业务运营类</a><a href="#zh-3">二、协作与表格类</a><a href="#zh-4">三、内部工具类</a><a href="#zh-5">如何选择适合企业的 Excel 替代方案</a><a href="#zh-6">结语</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">1.Business Operations Tools</a><a href="#en-3">2. Collaborative Spreadsheet Tools</a><a href="#en-4">3. Internal Tools</a><a href="#en-5">How to choose the right Excel alternative</a><a href="#en-6">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

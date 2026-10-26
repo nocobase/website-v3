@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="别让 Codex 从零生成应用：6 个可组合的开源项目 — NocoBase" data-en="Building Internal Tools with Codex: 6 Open-Source Projects for Developers — NocoBase">别让 Codex 从零生成应用：6 个可组合的开源项目 — NocoBase</title>
+<meta name="description" content="推荐 NocoBase、Refine、Payload CMS 等开源项目，帮助 Codex 在清晰框架中构建更稳定、可维护的内部工具。" data-zh="推荐 NocoBase、Refine、Payload CMS 等开源项目，帮助 Codex 在清晰框架中构建更稳定、可维护的内部工具。" data-en="Explore open source projects such as NocoBase, Refine, and Payload CMS that help Codex build more stable and maintainable internal tools.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>资讯</t-zh><t-en>News</t-en></p>
+    <h1><t-zh>别让 Codex 从零生成应用：6 个可组合的开源项目</t-zh><t-en>Building Internal Tools with Codex: 6 Open-Source Projects for Developers</t-en></h1>
+    <p class="lede"><t-zh>推荐 NocoBase、Refine、Payload CMS 等开源项目，帮助 Codex 在清晰框架中构建更稳定、可维护的内部工具。</t-zh><t-en>Explore open source projects such as NocoBase, Refine, and Payload CMS that help Codex build more stable and maintainable internal tools.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年5月18日</t-zh><t-en>May 18, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%20104-p1ufh8.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">背景</h2>
+<p>最近在 <a href="https://news.ycombinator.com/item?id=47796469">Hacker News</a> 上，看到一条关于 AI Coding Agent 的讨论：<strong>直接让 AI 从零构建应用，并不是最靠谱的使用方式。</strong></p>
+<p><img src="https://static-docs.nocobase.com/HN-nb8ae5.png" alt="HN.png"></p>
+<p>这位开发者提到，如果你只是直接告诉 AI：“帮我构建一个应用”，它往往会生成一个<strong>看起来不错、但结构并不可靠的结果。</strong></p>
+<p>AI 很适合提升执行效率，但前提是它需要在一个清晰的结构里工作。</p>
+<p>对于真实的企业内部工具来说，你需要一个可靠的基础框架再配合 Coding Agent 提效。</p>
+<p>今天我们就围绕企业内部工具这个场景，推荐一些适合和 Codex 配合使用的开源项目，帮助开发者更高效地搭建内部系统或工具。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>最佳场景</th>
+<th>适合开发者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>构建 CRM、工单、审批、资产管理等内部业务系统</td>
+<td>适合需要快速搭建可维护业务系统的开发者</td>
+</tr>
+<tr>
+<td>Refine</td>
+<td>构建 React 管理后台、Dashboard 和 B2B 应用</td>
+<td>适合熟悉 React、希望保留代码控制权的开发者</td>
+</tr>
+<tr>
+<td>Payload CMS</td>
+<td>构建 TypeScript / Next.js 数据后台和管理系统</td>
+<td>适合偏好 TypeScript-first 后端与 Admin Panel 的开发者</td>
+</tr>
+<tr>
+<td>Directus</td>
+<td>为现有 SQL 数据库生成 API 和管理后台</td>
+<td>适合已有数据库、需要快速补齐后台和 API 层的团队</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>构建内部工具的 Postgres 后端</td>
+<td>适合需要认证、数据库、存储、实时能力和后端函数的开发者</td>
+</tr>
+<tr>
+<td>Windmill</td>
+<td>将脚本变成内部工具、任务和工作流</td>
+<td>适合有大量内部脚本和自动化任务的技术团队</td>
+</tr>
+</tbody></table>
+<h2 id="zh-2">1. NocoBase</h2>
+<p>官网：<a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Stars： 22.4k</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-nfhndl.png" alt="NocoBase1.png"></p>
+<p>NocoBase 是一个开源的 AI 无代码平台，适合用来构建 CRM、工单系统、审批系统、项目管理、资产管理、运营后台等企业内部业务系统。</p>
+<p>NocoBase 的核心价值，<strong>是为内部系统提供一套完整的基础框架</strong>，包括数据模型、页面配置、权限控制、工作流、插件扩展和 AI 能力。对于开发者来说，它不是一个只能拖拽页面的工具，而是一个可以继续通过代码扩展的业务系统基础设施。</p>
+<p>NocoBase 官方提供了 Codex 相关文档：<a href="https://docs.nocobase.com/cn/ai/codex">用 Codex 操作 NocoBase，搭建开发两不误</a></p>
+<p>连接 Codex 后，Codex 可以借助 <a href="https://docs.nocobase.com/cn/ai-builder#nocobase-skills">NocoBase Skills</a> 和 <a href="https://docs.nocobase.com/cn/api/cli/">CLI</a> 理解平台的配置方式与开发规则，帮助开发者通过自然语言创建数据表、配置页面、设计工作流、设置权限，并进一步完成插件开发、功能扩展和问题排查。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-40774f.png" alt="NocoBase2.png"></p>
+<p><strong>相比让 Codex 从零生成一个内部系统，NocoBase 提供了更稳定的系统框架</strong>。这样生成出来的不是一套难以维护的一次性代码，而是运行在 NocoBase 体系内的可持续迭代系统。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-qu1ijq.png" alt="NocoBase3.png"></p>
+<p>除了搭建阶段，NocoBase 也提供 AI 员工能力。AI 员工可以结合业务页面、数据表和流程上下文工作，协助完成数据整理、数据分析、翻译、研究、邮件处理、数据建模和图表配置等任务。也就是说，Codex 更适合帮助开发者搭建和扩展系统，而 NocoBase AI 员工则可以参与系统上线后的日常业务操作。</p>
+<p><img src="https://static-docs.nocobase.com/ai%E5%91%98%E5%B7%A5%E5%A1%AB%E8%A1%A8%E5%8D%95-yhms5j.gif" alt="ai员工填表单-yhms5j.gif"></p>
+<p>通过配置 LLM 服务、Skills、知识库和快捷任务，AI 员工可以更自然地参与到具体业务操作中，帮助团队提升系统搭建和日常使用效率。</p>
+<h3>Codex 结合 NocoBase 可以做什么</h3>
+<p>Codex 结合 NocoBase，可以帮助开发者更快搭建可维护的企业内部业务系统，例如：</p>
+<ul>
+<li>CRM</li>
+<li>工单系统</li>
+<li>审批系统</li>
+<li>项目管理</li>
+<li>资产管理</li>
+<li>运营后台</li>
+<li>数据看板</li>
+</ul>
+<p>Codex 负责理解需求、拆解业务结构和生成实现；NocoBase 负责承载数据模型、权限、页面、工作流和插件扩展。开发者不需要让 AI 从零生成一套难以维护的代码，而是让 Codex 在 NocoBase 已有的系统框架中完成搭建和开发。</p>
+<h3>建议 prompt</h3>
+<h4>安装 NocoBase</h4>
+<p>将下方提示词复制给 Codex ，即可自动完成 NocoBase 的安装和配置：</p>
+<pre><code class="language-text">帮我安装 NocoBase CLI 并完成初始化：https://docs.nocobase.com/cn/ai/ai-quick-start.md （请直接访问链接内容）
+</code></pre>
+<h4>设计系统</h4>
+<pre><code class="language-text">帮我用 nocobase-dsl-reconciler skill 搭建一个工单管理系统，包含仪表盘、工单列表、用户管理、SLA 配置
+</code></pre>
+<h4>实际效果</h4>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-1klco2.png" alt="NocoBase4.png"></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-fhuwo3.png" alt="NocoBase5.png"></p>
+<h3>相关资源</h3>
+<p>可以复制发送给 Codex ，方便直接使用</p>
+<p>文档：<a href="https://docs.nocobase.com/cn/ai/">https://docs.nocobase.com/cn/ai/</a></p>
+<p>CLI：<a href="https://docs.nocobase.com/cn/api/cli/">https://docs.nocobase.com/cn/api/cli/</a></p>
+<p>Skills：<a href="https://docs.nocobase.com/cn/ai-builder#nocobase-skills">https://docs.nocobase.com/cn/ai-builder#nocobase-skills</a></p>
+<p>Mcp：<a href="https://docs.nocobase.com/cn/ai/mcp/">https://docs.nocobase.com/cn/ai/mcp/</a></p>
+<h2 id="zh-3">2. Refine</h2>
+<p>官网：<a href="https://refine.dev/">https://refine.dev/</a></p>
+<p>GitHub：<a href="https://github.com/refinedev/refine">https://github.com/refinedev/refine</a></p>
+<p>GitHub Stars：34.7k</p>
+<p><img src="https://static-docs.nocobase.com/Refine1-8qgxcz.png" alt="Refine1.png"></p>
+<p>Refine 是一个面向开发者的开源 React 框架，主要用于构建内部工具、管理后台、Dashboard 和 B2B 应用。它提供了认证、权限控制、路由、数据请求、状态管理、国际化等基础能力，适合开发者快速搭建 CRUD 密集型应用。</p>
+<p>Refine 现在也在强化 AI Agent 场景。它提供了一套适合 AI 生成应用的流程：连接现有 REST API 或 Supabase 项目，分析后端结构，再为 AI agents 创建 blueprint，让生成结果更贴合真实数据模型。</p>
+<p>这也是 Refine 适合和 Codex 结合的原因。Codex 不需要从零猜测一个内部工具应该怎么写，而是可以基于 Refine 的工程结构、资源模型和数据源配置，生成列表页、详情页、编辑页、表单、筛选、权限判断和 API 调用逻辑。</p>
+<p><img src="https://static-docs.nocobase.com/Refine2-jpcnwg.png" alt="Refine2.png"></p>
+<p>Refine 还提供 CLI，可以用于创建资源、管理更新、swizzle 组件，以及运行 build、start、dev 等项目任务。对于 Codex 这类 Coding Agent 来说，这类明确的命令行入口更容易被自动化调用，也更适合在现有项目中持续迭代。</p>
+<h3>Codex 结合 Refine 可以做什么</h3>
+<p>Codex 结合 Refine，最适合用来快速开发 React 技术栈下的内部管理界面，比如 CRM 后台、订单管理后台、运营审核平台、客服工作台、数据管理面板和 B2B SaaS 管理端。</p>
+<p>比如你要做一个订单管理后台，Codex 可以根据订单、客户、商品、支付状态等数据结构，基于 Refine 生成订单列表、订单详情、编辑表单、筛选条件、状态更新按钮和权限判断逻辑。Refine 负责提供 React 内部工具的基础结构，Codex 负责加速具体业务页面开发。</p>
+<p>它更适合希望保留完整代码控制权的开发者。最终交付的是 React 项目，而不是封闭平台里的配置结果。后续你仍然可以继续用 Codex 修改组件、重构逻辑、接入新的 API 或扩展业务模块。</p>
+<h3>建议 prompt</h3>
+<pre><code class="language-text">帮我基于 Refine 创建一个订单管理后台，使用 REST API 作为数据源，包含订单列表、订单详情、订单编辑表单、客户筛选、订单状态更新和基础权限控制。
+</code></pre>
+<h2 id="zh-4">3. Payload CMS</h2>
+<p>官网：<a href="https://payloadcms.com/">https://payloadcms.com/</a></p>
+<p>GitHub：<a href="https://github.com/payloadcms/payload">https://github.com/payloadcms/payload</a></p>
+<p>GitHub Stars：42.5k</p>
+<p><img src="https://static-docs.nocobase.com/Payload%20CMS1-9l7yh9.png" alt="Payload CMS1.png"></p>
+<p>Payload CMS 是一个开源的全栈 Next.js 框架，可以用来构建 CMS、管理后台、数据驱动应用和企业内部工具。它提供了 TypeScript 配置、数据集合、权限控制、Admin Panel、REST / GraphQL API、Hooks、插件和文件管理等能力。</p>
+<p>Payload 通过代码定义数据模型和业务逻辑。你可以用 TypeScript 配置 collections、fields、access control、hooks 和 admin UI，让内部工具的后端、API 和管理界面保持在同一个代码项目里。</p>
+<p>Payload 也已经开始支持 AI Agent 相关场景。官方文档中提供了 MCP Plugin，可以让开发者控制哪些 collections 和 globals 允许 AI 执行 find、create、update、delete 等操作，也可以定义自己的 prompts、tools 和 resources。</p>
+<p><img src="https://static-docs.nocobase.com/Payload%20CMS2-jczl8t.png" alt="Payload CMS2.png"></p>
+<h3>Codex 结合 Payload 可以做什么</h3>
+<p>Codex 结合 Payload，适合用来快速开发 TypeScript / Next.js 技术栈下的数据后台、内容管理系统、客户后台、订单后台、资产管理后台和运营管理工具。</p>
+<p><img src="https://static-docs.nocobase.com/Payload%20CMS3-lejqn0.png" alt="Payload CMS3.png"></p>
+<p>比如你要做一个资产管理后台，Codex 可以根据“设备、员工、部门、领用记录、维修记录、审批状态”等需求，生成 Payload collections、字段配置、访问权限和 hooks。Payload 则负责提供数据管理界面、API 和权限执行。后续如果需要增加业务逻辑，也可以继续让 Codex 修改 TypeScript 配置和扩展代码。</p>
+<h3>建议 prompt</h3>
+<pre><code class="language-text">帮我基于 Payload CMS 创建一个资产管理后台，包含设备、员工、部门、领用记录和维修记录这几个 collections，并配置基础字段、访问权限、Admin Panel 展示字段和常用 hooks。
+</code></pre>
+<h2 id="zh-5">4. Directus</h2>
+<p>官网：<a href="https://directus.io/">https://directus.io/</a></p>
+<p>GitHub：<a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p>GitHub Stars：35.7k</p>
+<p><img src="https://static-docs.nocobase.com/Directus1-7w23p8.png" alt="Directus1.png"></p>
+<p>Directus 是一个开源的数据后台平台，可以把 PostgreSQL、MySQL、SQLite、MariaDB、MS SQL、OracleDB 等 SQL 数据库快速转换成 REST / GraphQL API 和可视化管理后台。它适合用于构建数据管理后台、内容管理系统、运营后台、客户数据后台、内部 API 层等项目。</p>
+<p>Directus 的特点是对已有数据库非常友好。很多内部工具不是从零开始，而是已经有一套业务数据库，只是缺少一个好用的后台、权限管理和 API 层。Directus 可以直接连接现有 SQL 数据库，并在上面提供数据模型管理、角色权限、文件管理、自动化流程和扩展能力。</p>
+<p>Directus 已经提供 MCP Server，可以让 Claude、ChatGPT、Cursor 等 AI 工具连接到 Directus。AI 可以在现有权限体系下创建、编辑和管理内容，不需要额外复制数据，也不需要绕过 Directus 的权限控制。</p>
+<p><img src="https://static-docs.nocobase.com/Directus2-otlau7.png" alt="Directus2.png"></p>
+<h3>Codex 结合 Directus 可以做什么</h3>
+<p>Codex 结合 Directus，适合用来快速搭建基于现有数据库的内部数据后台和 API 层。比如客户数据管理、订单数据管理、内容管理、产品目录管理、运营配置后台、数据审核后台等。</p>
+<p>这套组合的价值在于：Directus 负责连接数据库、生成 API、提供管理后台和权限体系；Codex 负责理解业务需求，设计数据结构，编写扩展逻辑、Hooks、Custom Endpoints、数据脚本和前端调用代码。</p>
+<p>这种方式的优势是，开发者不需要重写现有数据库和后端。Directus 提供数据层和管理后台，Codex 负责加速业务逻辑和扩展开发，适合那些已经有数据库、但需要快速补齐内部工具能力的团队。</p>
+<h3>建议 prompt</h3>
+<pre><code class="language-text">帮我基于 Directus 为现有订单数据库设计一个内部管理后台，包含订单、客户、商品、支付记录四类数据，并配置基础权限、列表视图、状态更新流程和订单状态变更后的通知 Hook。
+</code></pre>
+<h2 id="zh-6">5. Supabase</h2>
+<p>官网：<a href="https://supabase.com/">https://supabase.com/</a></p>
+<p>GitHub：<a href="https://github.com/supabase/supabase">https://github.com/supabase/supabase</a></p>
+<p>GitHub Stars：103k</p>
+<p>Supabase 应该不需要再过多介绍了。</p>
+<p>Supabase 官方提供了 Supabase MCP Server，可以让 AI 工具连接 Supabase 项目，并在权限范围内查询和操作项目。Supabase 也有面向 AI agents 的 skills，覆盖数据库、Auth、Edge Functions、Realtime、Storage、Vectors、Cron、Queues、CLI、MCP、schema changes、migrations、RLS 策略和安全审计等场景。</p>
+<p><img src="https://static-docs.nocobase.com/Supabase1-rq907o.png" alt="Supabase1-rq907o.png"></p>
+<h3>Codex 结合 Supabase 可以做什么？</h3>
+<p>Codex 结合 Supabase，适合用来快速搭建内部工具的后端部分。Supabase 提供数据库、认证、API、存储和函数运行环境；Codex 负责根据业务需求设计 schema、编写 SQL、配置 RLS 权限、生成 Edge Functions，并帮助前端调用 Supabase API。</p>
+<p>比如你要做一个客户管理后台，Codex 可以根据“客户、联系人、跟进记录、销售机会、合同、附件”等需求，设计 Postgres 表结构、字段关系、索引和 RLS 策略。Supabase 则负责提供数据库、认证、自动 API 和权限执行。后续如果需要自动分配客户、同步外部数据、生成 AI 摘要，也可以继续让 Codex 编写 Edge Functions 或数据库函数。</p>
+<h3>建议 prompt</h3>
+<pre><code class="language-text">帮我基于 Supabase 设计一个客户管理后台的后端，包含 customers、contacts、opportunities、contracts、follow_ups 和 attachments 表。请生成 SQL migration、基础索引、RLS 策略、认证权限设计，以及一个用于自动分配销售负责人的 Edge Function。
+</code></pre>
+<h2 id="zh-7">6. Windmill</h2>
+<p>官网：<a href="https://www.windmill.dev/">https://www.windmill.dev/</a></p>
+<p>GitHub：<a href="https://github.com/windmill-labs/windmill">https://github.com/windmill-labs/windmill</a></p>
+<p>GitHub Stars：16.5k</p>
+<p>Windmill 是一个面向开发者的开源平台，可以把 Python、TypeScript、Go、Bash、SQL 等脚本快速变成 API、后台任务、工作流和内部应用。它适合用来构建自动化流程、数据处理任务、运营工具、后台任务管理、内部脚本平台和轻量级管理界面。</p>
+<p><img src="https://static-docs.nocobase.com/Windmill1-kcvxsb.png" alt="Windmill1-kcvxsb.png"></p>
+<p>Windmill 可以通过 CLI 和内置 AI skills，在本地使用 Claude Code 或 Codex 开发，然后通过 <code>wmill sync push</code> 部署到远程 workspace。也就是说，Codex 可以负责写脚本和工作流逻辑，Windmill 负责运行、调度、权限、日志和可视化操作界面。</p>
+<h3>Codex 结合 Windmill 可以做什么</h3>
+<p>Codex 结合 Windmill，最适合用来把开发者写的脚本快速变成团队可用的内部工具。比如数据同步、报表生成、批量导入导出、Webhook 处理、定时任务、客户数据清洗、订单状态同步、Slack / Email 通知、AI 数据处理流程等。</p>
+<p>比如你要做一个“每晚同步 CRM 客户数据并生成异常报告”的内部流程。Codex 可以帮你写数据读取、清洗、比对和报告生成脚本；Windmill 可以把它配置成定时任务，记录执行日志，并提供一个内部页面让团队手动触发或查看结果。</p>
+<h3>建议 prompt</h3>
+<pre><code class="language-text">帮我基于 Windmill 创建一个客户数据同步流程：每天晚上从 PostgreSQL 读取客户数据，清洗重复记录，识别异常邮箱，生成一份异常报告，并通过 Slack 通知运营团队。请使用 TypeScript 编写脚本，并说明如何配置定时任务和输入参数。
+</code></pre>
+<h2 id="zh-8">写在最后</h2>
+<p>Codex 这类 AI Coding Agent 正在改变开发者构建内部工具的方式。</p>
+<p>NocoBase、Refine、Payload、Directus、Supabase、Windmill 这些项目，分别从业务系统、前端框架、数据后台、后端服务、脚本自动化等不同角度，为开发者提供了更清晰的工程基础。</p>
+<p>Codex 的价值，是在这些基础之上进一步提升开发效率：帮你拆解需求、生成代码、配置资源、编写脚本、设计工作流、处理集成和排查问题。</p>
+<p>更理想的开发方式是：</p>
+<blockquote>
+<p>开发者选择合适的开源基础设施，再让 Codex 在明确的结构中完成具体实现。</p>
+</blockquote>
+<p>这样构建出来的内部工具，才更容易维护、扩展和真正投入使用。</p>
+<p><strong>相关阅读</strong>：</p>
+<ul>
+<li><strong><a href="../blog/open-source-tools-after-claude-code.html">在用 Claude Code 之后，你需要这 6 个开源工具 </a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-enterprise-software-development.html">10 个适合企业软件开发的开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/8-open-source-ai-agent-platforms-for-internal-tools.html">企业内部工具必备：8大开源 AI Agent 平台对比</a></strong></li>
+<li><strong><a href="../blog/the-best-self-hosted-crm-for-enterprise-teams.html">企业级自托管 CRM 推荐（支持 RBAC、AI 和 API）</a></strong></li>
+<li><strong><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">告别自研中间件：6个开源系统集成工具推荐</a></strong></li>
+<li><strong><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Airtable 与 NocoBase：从Excel迁移的真实成本对比</a></strong></li>
+<li><strong><a href="../blog/excel-to-web-app-4-methods.html">为 Excel 数据快速构建 Web 应用：4 种方法对比</a></strong></li>
+<li><strong><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">不只 PostgreSQL：5 个支持外部数据库的无代码/低代码平台对比</a></strong></li>
+<li><strong><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">开源项目管理工具选型指南（2026年最新）</a></strong></li>
+<li><strong><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">如何用 PostgreSQL 构建一个自定义 CRM</a></strong></li>
+<li><strong><a href="../blog/best-open-source-ai-projects-github-2026.html">2026 年值得关注的 20 个 GitHub AI 项目：不只有 OpenClaw</a></strong></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Background</h2>
+<p>Recently, I came across a discussion about AI Coding Agents on <a href="https://news.ycombinator.com/item?id=47796469">Hacker News</a>: <strong>asking AI to build an app from scratch is usually not the most reliable way to use it.</strong></p>
+<p><img src="https://static-docs.nocobase.com/HN-nb8ae5.png" alt="HN.png"></p>
+<p>The developer pointed out that if you simply tell AI, “Help me build an app,” it often generates something that <strong>looks good at first, but has an unreliable structure underneath.</strong></p>
+<p>AI is great at improving execution speed, but it works best when it operates within a clear structure.</p>
+<p>For real enterprise internal tools, you need a reliable technical foundation first, and then use a Coding Agent to improve development efficiency.</p>
+<p>In this article, we will focus on enterprise internal tools and recommend several open source projects that work well with Codex, helping developers build internal systems and tools more efficiently.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Best for</th>
+<th>Best suited for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Building internal business systems such as CRM, ticketing, approval, and asset management</td>
+<td>Developers who need to quickly build maintainable business systems</td>
+</tr>
+<tr>
+<td>Refine</td>
+<td>Building React admin panels, dashboards, and B2B apps</td>
+<td>Developers familiar with React who want full control over code</td>
+</tr>
+<tr>
+<td>Payload CMS</td>
+<td>Building TypeScript / Next.js data backends and admin systems</td>
+<td>Developers who prefer a TypeScript-first backend and Admin Panel</td>
+</tr>
+<tr>
+<td>Directus</td>
+<td>Generating APIs and admin panels for existing SQL databases</td>
+<td>Teams with existing databases that need an admin panel and API layer quickly</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>Building a Postgres backend for internal tools</td>
+<td>Developers who need authentication, database, storage, realtime features, and backend functions</td>
+</tr>
+<tr>
+<td>Windmill</td>
+<td>Turning scripts into internal tools, tasks, and workflows</td>
+<td>Technical teams with many internal scripts and automation tasks</td>
+</tr>
+</tbody></table>
+<h2 id="en-2">1. NocoBase</h2>
+<p>Official website: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Stars: 22.4k</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-nfhndl.png" alt="NocoBase1.png"></p>
+<p>NocoBase is an open source AI no-code platform for building enterprise internal systems such as CRM, ticketing systems, approval systems, project management, asset management, and operations backends.</p>
+<p>The core value of NocoBase <strong>is that it provides a complete system framework for internal tools</strong>, including data models, page configuration, permission control, workflows, plugin extensions, and AI capabilities. For developers, it is more than a drag-and-drop page builder. It is business system infrastructure that can still be extended with code.</p>
+<p>NocoBase provides official Codex documentation: <a href="https://docs.nocobase.com/en/ai/codex">Using Codex with NocoBase for both building and development</a></p>
+<p>After connecting Codex, Codex can use <a href="https://docs.nocobase.com/en/ai-builder#nocobase-skills">NocoBase Skills</a> and the <a href="https://docs.nocobase.com/en/api/cli/">CLI</a> to understand how NocoBase is configured and developed. It can help developers create data tables, configure pages, design workflows, set permissions, and further handle plugin development, feature extensions, and troubleshooting through natural language.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-40774f.png" alt="NocoBase2.png"></p>
+<p><strong>Compared with asking Codex to generate an internal system from scratch, NocoBase gives it a more stable system framework to work within</strong>. The result is not disposable code that is hard to maintain, but a system that runs within the NocoBase framework and can be continuously improved.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-qu1ijq.png" alt="NocoBase3.png"></p>
+<p>Beyond the initial building stage, NocoBase also provides AI Employee capabilities. AI Employees can work with business pages, data tables, and workflow context to help with data organization, data analysis, translation, research, email processing, data modeling, chart configuration, and more. In other words, Codex is better suited for helping developers build and extend systems, while NocoBase AI Employees can take part in daily business operations after the system goes live.</p>
+<p><img src="https://static-docs.nocobase.com/ai%E5%91%98%E5%B7%A5%E5%A1%AB%E8%A1%A8%E5%8D%95-yhms5j.gif" alt="ai员工填表单-yhms5j.gif"></p>
+<p>By configuring LLM services, Skills, knowledge bases, and quick tasks, AI Employees can fit more naturally into real business operations, helping teams improve both system building and day-to-day usage efficiency.</p>
+<h3>What you can build with Codex and NocoBase</h3>
+<p>Codex and NocoBase can help developers build maintainable enterprise internal systems faster, such as:</p>
+<ul>
+<li>CRM</li>
+<li>Ticketing systems</li>
+<li>Approval systems</li>
+<li>Project management</li>
+<li>Asset management</li>
+<li>Operations backends</li>
+<li>Data dashboards</li>
+</ul>
+<p>Codex handles requirement understanding, business structure breakdown, and implementation generation. NocoBase provides the data models, permissions, pages, workflows, and plugin extensions. Instead of asking AI to generate hard-to-maintain code from scratch, developers can let Codex build and develop within NocoBase’s existing system framework.</p>
+<h3>Suggested prompt</h3>
+<h4>Install NocoBase</h4>
+<p>Copy the prompt below into Codex to automatically install and configure NocoBase:</p>
+<pre><code class="language-text">Help me install the NocoBase CLI and complete initialization: https://docs.nocobase.com/en/ai/ai-quick-start.md Please open and read the link directly.
+</code></pre>
+<h4>Design a system</h4>
+<pre><code class="language-text">Help me use the nocobase-dsl-reconciler skill to build a ticket management system, including a dashboard, ticket list, user management, and SLA configuration.
+</code></pre>
+<h4>Actual result</h4>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-1klco2.png" alt="NocoBase4.png"></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-fhuwo3.png" alt="NocoBase5.png"></p>
+<h3>Related resources</h3>
+<p>You can copy these links and send them to Codex for direct use.</p>
+<p>Documentation: <a href="https://docs.nocobase.com/en/ai/">https://docs.nocobase.com/en/ai/</a></p>
+<p>CLI: <a href="https://docs.nocobase.com/en/api/cli/">https://docs.nocobase.com/en/api/cli/</a></p>
+<p>Skills: <a href="https://docs.nocobase.com/en/ai-builder#nocobase-skills">https://docs.nocobase.com/en/ai-builder#nocobase-skills</a></p>
+<p>MCP: <a href="https://docs.nocobase.com/en/ai/mcp/">https://docs.nocobase.com/en/ai/mcp/</a></p>
+<h2 id="en-3">2. Refine</h2>
+<p>Official website: <a href="https://refine.dev/">https://refine.dev/</a></p>
+<p>GitHub: <a href="https://github.com/refinedev/refine">https://github.com/refinedev/refine</a></p>
+<p>GitHub Stars: 34.7k</p>
+<p><img src="https://static-docs.nocobase.com/Refine1-8qgxcz.png" alt="Refine1.png"></p>
+<p>Refine is an open source React framework for developers. It is mainly used to build internal tools, admin panels, dashboards, and B2B applications. It provides core capabilities such as authentication, permission control, routing, data fetching, state management, and internationalization, making it suitable for quickly building CRUD-heavy applications.</p>
+<p>Refine is also strengthening its support for AI Agent scenarios. It provides a workflow designed for AI-generated applications: connect to an existing REST API or Supabase project, analyze the backend structure, and create blueprints for AI agents so the generated results better match real data models.</p>
+<p>This is why Refine works well with Codex. Codex does not need to guess how an internal tool should be built from scratch. It can generate list pages, detail pages, edit pages, forms, filters, permission checks, and API call logic based on Refine’s project structure, resource model, and data source configuration.</p>
+<p><img src="https://static-docs.nocobase.com/Refine2-jpcnwg.png" alt="Refine2.png"></p>
+<p>Refine also provides a CLI for creating resources, managing updates, swizzling components, and running project tasks such as build, start, and dev. For Coding Agents like Codex, these clear command-line entry points are easier to automate and better suited for continuous iteration in existing projects.</p>
+<h3>What you can build with Codex and Refine</h3>
+<p>Codex and Refine are especially suitable for quickly developing internal admin interfaces in the React stack, such as CRM backends, order management backends, operations review platforms, customer service workbenches, data management panels, and B2B SaaS admin portals.</p>
+<p>For example, if you want to build an order management backend, Codex can generate order lists, order detail pages, edit forms, filters, status update buttons, and permission logic based on data structures such as orders, customers, products, and payment status. Refine provides the basic structure for React internal tools, while Codex speeds up the development of specific business pages.</p>
+<p>This setup is better for developers who want full control over code. The final output is a React project, rather than configuration locked inside a closed platform. You can continue using Codex later to modify components, refactor logic, connect new APIs, or extend business modules.</p>
+<h3>Suggested prompt</h3>
+<pre><code class="language-text">Help me create an order management backend based on Refine, using a REST API as the data source. It should include an order list, order details, an order edit form, customer filters, order status updates, and basic permission control.
+</code></pre>
+<h2 id="en-4">3. Payload CMS</h2>
+<p>Official website: <a href="https://payloadcms.com/">https://payloadcms.com/</a></p>
+<p>GitHub: <a href="https://github.com/payloadcms/payload">https://github.com/payloadcms/payload</a></p>
+<p>GitHub Stars: 42.5k</p>
+<p><img src="https://static-docs.nocobase.com/Payload%20CMS1-9l7yh9.png" alt="Payload CMS1.png"></p>
+<p>Payload CMS is an open source full-stack Next.js framework for building CMSs, admin panels, data-driven applications, and enterprise internal tools. It provides TypeScript configuration, data collections, permission control, an Admin Panel, REST / GraphQL APIs, Hooks, plugins, file management, and more.</p>
+<p>Payload defines data models and business logic through code. You can configure collections, fields, access control, hooks, and the admin UI in TypeScript, keeping the backend, API, and admin interface of an internal tool in one codebase.</p>
+<p>Payload has also started supporting AI Agent scenarios. Its official documentation provides an MCP Plugin that lets developers control which collections and globals AI can use for operations such as find, create, update, and delete. Developers can also define their own prompts, tools, and resources.</p>
+<p><img src="https://static-docs.nocobase.com/Payload%20CMS2-jczl8t.png" alt="Payload CMS2.png"></p>
+<h3>What you can build with Codex and Payload</h3>
+<p>Codex and Payload are suitable for quickly developing TypeScript / Next.js based data backends, content management systems, customer portals, order backends, asset management systems, and operations management tools.</p>
+<p><img src="https://static-docs.nocobase.com/Payload%20CMS3-lejqn0.png" alt="Payload CMS3.png"></p>
+<p>For example, if you want to build an asset management backend, Codex can generate Payload collections, field configurations, access permissions, and hooks based on requirements such as equipment, employees, departments, usage records, maintenance records, and approval status. Payload provides the data management interface, APIs, and permission enforcement. If you need to add more business logic later, you can continue using Codex to modify TypeScript configurations and extension code.</p>
+<h3>Suggested prompt</h3>
+<pre><code class="language-text">Help me create an asset management backend based on Payload CMS, including collections for equipment, employees, departments, usage records, and maintenance records. Also configure basic fields, access permissions, Admin Panel display fields, and common hooks.
+</code></pre>
+<h2 id="en-5">4. Directus</h2>
+<p>Official website: <a href="https://directus.io/">https://directus.io/</a></p>
+<p>GitHub: <a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p>GitHub Stars: 35.7k</p>
+<p><img src="https://static-docs.nocobase.com/Directus1-7w23p8.png" alt="Directus1.png"></p>
+<p>Directus is an open source data backend platform that can quickly turn SQL databases such as PostgreSQL, MySQL, SQLite, MariaDB, MS SQL, and OracleDB into REST / GraphQL APIs and a visual admin panel. It is suitable for building data management backends, content management systems, operations backends, customer data backends, internal API layers, and similar projects.</p>
+<p>Directus is especially friendly to existing databases. Many internal tools do not start from scratch. A business database may already exist, but the team still lacks a usable admin panel, permission management, and API layer. Directus can connect directly to an existing SQL database and provide data model management, role permissions, file management, automation workflows, and extension capabilities on top of it.</p>
+<p>Directus already provides an MCP Server, allowing AI tools such as Claude, ChatGPT, and Cursor to connect to Directus. AI can create, edit, and manage content within the existing permission system, without copying data elsewhere or bypassing Directus permission controls.</p>
+<p><img src="https://static-docs.nocobase.com/Directus2-otlau7.png" alt="Directus2.png"></p>
+<h3>What you can build with Codex and Directus</h3>
+<p>Codex and Directus are suitable for quickly building internal data backends and API layers on top of existing databases, such as customer data management, order data management, content management, product catalog management, operations configuration backends, and data review systems.</p>
+<p>The value of this combination is clear: Directus connects the database, generates APIs, provides the admin panel, and handles permissions. Codex understands business requirements, designs data structures, writes extension logic, Hooks, Custom Endpoints, data scripts, and frontend integration code.</p>
+<p>The advantage is that developers do not need to rewrite existing databases or backends. Directus provides the data layer and admin panel, while Codex accelerates business logic and extension development. This makes the combination suitable for teams that already have a database but need to quickly add internal tool capabilities.</p>
+<h3>Suggested prompt</h3>
+<pre><code class="language-text">Help me design an internal admin panel for an existing order database based on Directus. It should include four data types: orders, customers, products, and payment records. Also configure basic permissions, list views, status update workflows, and a notification Hook after order status changes.
+</code></pre>
+<h2 id="en-6">5. Supabase</h2>
+<p>Official website: <a href="https://supabase.com/">https://supabase.com/</a></p>
+<p>GitHub: <a href="https://github.com/supabase/supabase">https://github.com/supabase/supabase</a></p>
+<p>GitHub Stars: 103k</p>
+<p>Supabase probably needs little introduction.</p>
+<p>Supabase provides an official Supabase MCP Server that allows AI tools to connect to Supabase projects and query or operate on them within the allowed permission scope. Supabase also provides skills for AI agents, covering databases, Auth, Edge Functions, Realtime, Storage, Vectors, Cron, Queues, CLI, MCP, schema changes, migrations, RLS policies, security audits, and more.</p>
+<p><img src="https://static-docs.nocobase.com/Supabase1-rq907o.png" alt="Supabase1-rq907o.png"></p>
+<h3>What can you build with Codex and Supabase?</h3>
+<p>Codex and Supabase are suitable for quickly building the backend layer of internal tools. Supabase provides the database, authentication, API, storage, and function runtime environment. Codex designs schemas based on business requirements, writes SQL, configures RLS permissions, generates Edge Functions, and helps the frontend call Supabase APIs.</p>
+<p>For example, if you want to build a customer management backend, Codex can design Postgres tables, field relationships, indexes, and RLS policies based on requirements such as customers, contacts, follow-up records, sales opportunities, contracts, and attachments. Supabase provides the database, authentication, automatic APIs, and permission enforcement. Later, if you need automatic customer assignment, external data synchronization, or AI summary generation, you can continue using Codex to write Edge Functions or database functions.</p>
+<h3>Suggested prompt</h3>
+<pre><code class="language-text">Help me design the backend for a customer management system based on Supabase. It should include tables for customers, contacts, opportunities, contracts, follow_ups, and attachments. Please generate SQL migration, basic indexes, RLS policies, authentication and permission design, and an Edge Function for automatically assigning sales owners.
+</code></pre>
+<h2 id="en-7">6. Windmill</h2>
+<p>Official website: <a href="https://www.windmill.dev/">https://www.windmill.dev/</a></p>
+<p>GitHub: <a href="https://github.com/windmill-labs/windmill">https://github.com/windmill-labs/windmill</a></p>
+<p>GitHub Stars: 16.5k</p>
+<p>Windmill is an open source platform for developers. It can quickly turn scripts written in Python, TypeScript, Go, Bash, SQL, and other languages into APIs, background tasks, workflows, and internal apps. It is suitable for building automation workflows, data processing tasks, operations tools, background task management, internal script platforms, and lightweight admin interfaces.</p>
+<p><img src="https://static-docs.nocobase.com/Windmill1-kcvxsb.png" alt="Windmill1-kcvxsb.png"></p>
+<p>With its CLI and built-in AI skills, Windmill lets developers use Claude Code or Codex locally, then deploy to a remote workspace through <code>wmill sync push</code>. In this setup, Codex writes scripts and workflow logic, while Windmill handles execution, scheduling, permissions, logs, and visual operation interfaces.</p>
+<h3>What you can build with Codex and Windmill</h3>
+<p>Codex and Windmill are especially suitable for turning developer-written scripts into internal tools that the whole team can use. Examples include data synchronization, report generation, batch import and export, Webhook processing, scheduled tasks, customer data cleaning, order status synchronization, Slack / Email notifications, and AI data processing workflows.</p>
+<p>For example, if you want to build an internal workflow that syncs CRM customer data every night and generates an exception report, Codex can help write scripts for reading, cleaning, comparing, and reporting data. Windmill can configure the workflow as a scheduled task, record execution logs, and provide an internal page where the team can manually trigger the workflow or view the results.</p>
+<h3>Suggested prompt</h3>
+<pre><code class="language-text">Help me create a customer data synchronization workflow based on Windmill: read customer data from PostgreSQL every night, clean duplicate records, identify abnormal emails, generate an exception report, and notify the operations team through Slack. Please write the script in TypeScript and explain how to configure the scheduled task and input parameters.
+</code></pre>
+<h2 id="en-8">Final thoughts</h2>
+<p>AI Coding Agents like Codex are changing how developers build internal tools.</p>
+<p>NocoBase, Refine, Payload, Directus, Supabase, and Windmill each provide a clearer engineering foundation from different angles, including business systems, frontend frameworks, data backends, backend services, and script automation.</p>
+<p>The value of Codex is that it improves development efficiency on top of these foundations: it helps you break down requirements, generate code, configure resources, write scripts, design workflows, handle integrations, and troubleshoot issues.</p>
+<p>A better development approach is:</p>
+<blockquote>
+<p>Choose the right open source infrastructure first, then let Codex complete the specific implementation within a clear structure.</p>
+</blockquote>
+<p>Internal tools built this way are easier to maintain, extend, and put into real use.</p>
+<p><strong>Related reading</strong></p>
+<ul>
+<li><a href="../blog/open-source-tools-after-claude-code.html">After Claude Code: 6 Open-Source Tools You Should Know </a></li>
+<li><a href="../blog/open-source-ai-no-code-tools-enterprise-software-development.html">Top 10 Open-Source AI And No-Code Tools for Enterprise Software Development</a></li>
+<li><a href="../blog/8-open-source-ai-agent-platforms-for-internal-tools.html">8 Open-Source AI Agent Platforms for Building Internal Tools</a></li>
+<li><a href="../blog/the-best-self-hosted-crm-for-enterprise-teams.html">The Best Enterprise-Grade Self-Hosted CRMs with RBAC, AI, and Open API Support</a></li>
+<li><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">6 Best Open-Source Tools to Replace Custom Integration Middleware</a></li>
+<li><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Replace Excel with NocoBase or Airtable? A Cost-by-Cost Comparison</a></li>
+<li><a href="../blog/excel-to-web-app-4-methods.html">4 Ways to Quickly Build Web Apps from Excel Data</a></li>
+<li><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">Not Just PostgreSQL: Comparing 5 No-Code/Low-Code Platforms with External Database Support</a></li>
+<li><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">Open Source Project Management Tool Selection Guide, 2026 Edition</a></li>
+<li><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">How to Build a Custom CRM with PostgreSQL</a></li>
+<li><a href="../blog/best-open-source-ai-projects-github-2026.html">Top 20 AI Projects on GitHub to Watch in 2026: Not Just OpenClaw</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">背景</a><a href="#zh-2">1. NocoBase</a><a href="#zh-3">2. Refine</a><a href="#zh-4">3. Payload CMS</a><a href="#zh-5">4. Directus</a><a href="#zh-6">5. Supabase</a><a href="#zh-7">6. Windmill</a><a href="#zh-8">写在最后</a></div><div class="en-only"><a href="#en-1">Background</a><a href="#en-2">1. NocoBase</a><a href="#en-3">2. Refine</a><a href="#en-4">3. Payload CMS</a><a href="#en-5">4. Directus</a><a href="#en-6">5. Supabase</a><a href="#en-7">6. Windmill</a><a href="#en-8">Final thoughts</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/best-smartsheet-alternatives.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20114-fps2v0.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月23日</t-zh><t-en>Jul 23, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</t-zh><t-en>How to Choose a Smartsheet Alternative: 7 Tools Compared</t-en></h3><p><t-zh>本文对比 7 款 Smartsheet 替代品，介绍各产品的定位、核心差异、适用团队及三年使用成本，帮助团队评估更合适的项目管理与业务系统工具。</t-zh><t-en>Compare 7 Smartsheet alternatives by positioning, key differences, ideal teams, and estimated three-year costs.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-complex-relational-models.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20113%20(1)-e3gf7a.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月15日</t-zh><t-en>Jul 15, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>5 个适合复杂关系模型的开源 AI 无代码工具</t-zh><t-en>5 Open-Source AI No-Code Tools for Complex Relational Data Models</t-en></h3><p><t-zh>本文对比 5 款开源 AI 无代码工具，分析复杂关系模型、AI 搭建能力和企业业务系统适用场景。
+</t-zh><t-en>Compare 5 open-source AI no-code tools for complex relational models, AI capabilities, and business system use cases.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-github-9.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20110-xkd2sy.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年6月29日</t-zh><t-en>Jun 29, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>GitHub 上值得关注的 9 个开源 AI 无代码工具</t-zh><t-en>9 Open-Source AI No-Code Tools on GitHub Worth Watching</t-en></h3><p><t-zh>盘点 GitHub 上 9 个开源 AI 无代码工具，覆盖工作流自动化、知识库、智能体编排与企业业务系统搭建。
+</t-zh><t-en>Explore 9 open-source AI no-code tools on GitHub for workflows, agents, knowledge bases, design, and business systems.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

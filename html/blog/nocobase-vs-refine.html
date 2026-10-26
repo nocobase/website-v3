@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="开源 CRUD 开发工具：NocoBase 与 Refine 对比 — NocoBase" data-en="Open Source CRUD Development Tools: NocoBase vs Refine — NocoBase">开源 CRUD 开发工具：NocoBase 与 Refine 对比 — NocoBase</title>
+<meta name="description" content="本文从功能、扩展性和适用场景等方面深入对比NocoBase和Refine两款开源CRUD工具。" data-zh="本文从功能、扩展性和适用场景等方面深入对比NocoBase和Refine两款开源CRUD工具。" data-en="This article provides an in-depth comparison of the two open-source CRUD tools, NocoBase and Refine, in terms of functionality, extensibility, and applicable scenarios.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>洞见 · AI 与无代码</t-zh><t-en>Insights · AI &amp; No-Code</t-en></p>
+    <h1><t-zh>开源 CRUD 开发工具：NocoBase 与 Refine 对比</t-zh><t-en>Open Source CRUD Development Tools: NocoBase vs Refine</t-en></h1>
+    <p class="lede"><t-zh>本文从功能、扩展性和适用场景等方面深入对比NocoBase和Refine两款开源CRUD工具。</t-zh><t-en>This article provides an in-depth comparison of the two open-source CRUD tools, NocoBase and Refine, in terms of functionality, extensibility, and applicable scenarios.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>洞见</t-zh><t-en>Insights</t-en></span><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年9月27日</t-zh><t-en>Sep 27, 2024</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/f0e8e799ca4b4855978e3b6da287bf34.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">引言</h2>
+<p>今天我们来聚焦两款非常优秀的开源 CRUD 开发工具：**<a href="https://www.nocobase.com/">NocoBase</a>** 和 **<a href="https://refine.dev/">Refine</a>**，它们分别是无代码/低代码开发平台和低代码前端开发框架的典型代表。</p>
+<p><img src="https://static-docs.nocobase.com/79ac1d3a930854b204f743234c17b1e4.JPEG" alt="NocoBasevsRefine.JPEG"></p>
+<p>特别值得一提的是，NocoBase 截止目前已经在GitHub 上获得了 12k 的 Star。Refine 作为 Retool 的开源替代品，在 GitHub 更是有 27k 的 Star。</p>
+<p>💡 阅读更多：<a href="../blog/retool-open-source-alternatives.html">2025 年最佳的 Retool 开源替代方案</a></p>
+<p><strong>NocoBase</strong> 作为一款 AI 无代码 / 低代码开发平台，其特点在于操作界面直观、易于上手，用户可以通过 NocoBase 快速构建复杂的业务应用。对于具备技术背景的开发者而言，NocoBase 同样提供了广泛的扩展能力，借助插件架构和灵活的数据模型设计，开发者能够更高效地定制和部署应用，从而显著提升开发效率。</p>
+<p><strong>Refine</strong> 作为一个低代码前端开发框架则专注于为开发人员提供高度的灵活性和定制能力。凭借其基于 React 的架构，Refine 让开发者能够自由地设计复杂的用户界面，并通过最小化的代码快速实现功能。</p>
+<p>我们将从使用者的角度，通过比较这两个平台帮助你了解它们各自的优势和适用场景。</p>
+<p>本文将分为三大部分：</p>
+<ol>
+<li>功能对比</li>
+<li>集成能力与扩展性对比</li>
+<li>适用场景总结</li>
+</ol>
+<p>你可以随意选择感兴趣的部分进行阅读，希望这篇文章能帮你更好的选择适合自己的 CRUD 开发工具。😁</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2">功能对比</h2>
+<p>在功能方面，NocoBase 和 Refine 各自有独特的优势，分别适应不同的用户需求。我们将从 CRUD 功能、数据模型和权限控制、前端开发与自定义组件，以及工作流与自动化四个方面进行展开。</p>
+<h3>CRUD</h3>
+<p><strong>NocoBase</strong> 和 <strong>Refine</strong> 都是出色的 CRUD（Create, Read, Update, Delete）工具，专为管理数据、处理数据库操作和构建业务应用而设计。</p>
+<p>💡拓展阅读：<a href="../blog/crud-projects.html">GitHub 上 Stars 数量最多的 8 个开源 CRUD 项目</a></p>
+<p><strong>NocoBase</strong> 提供了完整的 CRUD 功能，用户可以通过无代码的方式轻松创建、读取、更新和删除数据。</p>
+<p><img src="https://static-docs.nocobase.com/5dbbe8b0fd9426209ad871496b7c4ea3.PNG" alt="CRUD.PNG"></p>
+<p>以下是 NocoBase 在 CRUD 操作上的一些核心优势：</p>
+<ol>
+<li><strong>直观的图形化界面</strong>：NocoBase 的可视化界面允许用户通过拖拽式操作来设计和管理数据库表。用户可以轻松配置数据表结构、字段类型和关系，并实时管理数据，极大简化了数据库的管理和操作流程。</li>
+<li><strong>模块化数据管理</strong>：NocoBase 支持模块化的 CRUD 操作，用户可以通过数据表、数据源和字段模块创建复杂的业务数据模型。其灵的数据模型设计使得用户能够自定义表单、列表视图等，适合多样化的数据管理需求。</li>
+<li><strong>权限与数据控制</strong>：在处理 CRUD 操作时，NocoBase 允许基于角色的权限管理，确保不同用户在访问和操作数据时具有适当的权限控制。这一功能在企业级应用中尤为关键，能够保护数据安全并保持合规性。</li>
+<li><strong>数据的动态展示与操作</strong>：NocoBase 提供了 CRUD 操作的动态交互界面，允许用户通过表单或数据视图快速操作数据，支持大规模数据的批量处理和管理，适合需要快速构建内部业务管理系统的团队。</li>
+</ol>
+<p>🙌 上手实践：<a href="https://www.nocobase.com/cn/tutorials/task-tutorial-introduction">NocoBase 实战教程 —— 任务管理系统</a></p>
+<p><strong>Refine 同样非常擅长 CRUD 操作。</strong></p>
+<p><img src="https://static-docs.nocobase.com/4d415ba36f35b58563b483f10b15daee.PNG" alt="CRUD.PNG"></p>
+<p>Refine 在 CRUD 开发中的关键特性：</p>
+<ol>
+<li><strong>基于 React 的高度灵活性</strong>：Refine 允许开发者通过少量代码实现 CRUD 功能。通过使用 <code>useData</code> hooks 和内置的数据管理功能，开发者可以轻松与 REST API、GraphQL 或其他数据源进行集成，动态获取和操作数据。</li>
+<li><strong>自定义表单和数据展示</strong>：开发者可以使用 Refine 提供的 UI 组件，如 Ant Design 或 Material UI，快速创建和管理数据输入表单和展示页面。这种高度自定义的前端操作让开发者能够根据业务需求灵活调整 CRUD 界面的布局与功能。</li>
+<li><strong>状态管理与数据交互</strong>：Refine 通过 React 状态管理机制提供了流畅的数据处理体验。开发人员可以轻松管理数据的增删改查操作，并将这些操作与用户交互无缝连接。这种低代码方式减少了开发者的工作量，同时提供了强大的前端功能控制。</li>
+<li><strong>模块化设计</strong>：Refine 的模块化结构允许开发者为不同的页面或组件创建独立的 CRUD 功能，适用于需要构建多个模块化数据管理页面的项目。开发者可以通过复用组件和逻辑，快速开发复杂应用中的不同部分。</li>
+</ol>
+<h3><strong>数据模型和权限控制</strong></h3>
+<p>数据模型是 CRUD 操作的支柱，它定义了系统内信息的结构、存储和关联方式。高效的数据模型管理可确保用户能够无缝地创建、读取、更新和删除数据，从而使应用程序按预期运行。同样重要的是权限控制，它规定了谁可以访问和操作特定数据。对于任何企业级应用程序来说，确保不同用户组拥有适当的访问级别对于维护数据安全性和系统完整性至关重要。</p>
+<p><strong>NocoBase</strong> 的核心优势之一在于其灵活的<a href="https://docs-cn.nocobase.com/handbook/data-modeling">数据模型</a>和强大的<a href="https://docs-cn.nocobase.com/handbook/users">权限控制</a>系统。</p>
+<p><img src="https://static-docs.nocobase.com/533f86a309c52b11a57d2d59376f1987.png" alt="flexible data model.png"></p>
+<p>NocoBase 基于关系数据库设计，支持用户创建复杂的数据结构，并能够通过其图形化界面灵活配置数据表之间的关系。对于开发者来说，NocoBase 允许定制化的数据管理方式，用户可以根据业务需求自由扩展和调整数据模型，而不需要编写复杂的代码。</p>
+<p><img src="https://static-docs.nocobase.com/8ba8fefe0f52ffd8e088ac0b95ea42cb.png" alt="customizable data management.png"></p>
+<p>同时，NocoBase 提供了完善的权限管理和用户认证功能。用户可以基于角色和具体操作对数据进行精细化权限设置，从而确保不同用户组之间的操作权限严格分离。</p>
+<p><img src="https://static-docs.nocobase.com/143cad1bf26ff415206a5374d7cf55a4.png" alt="access control.png"></p>
+<p>这种强大的权限控制系统在企业级应用中尤为关键，确保数据的安全性与合规性。用户认证的多种方式由 NocoBase 的插件提供。包括：短信验证、SAML SSO、OIDC SSO、CAS SSO等。用户可以直接使用 Google Workspace, Microsoft Azure 等平台提供的用户身份登录系统，也可以对接 Auth0, Logto, Keycloak 等平台工具。除此之外，开发者也可以通过 NocoBase 提供的基础接口很方便地扩展自己所需要的其他认证方式。</p>
+<p>相比之下，<strong>Refine</strong> 处理数据模型的方式主要依赖于后端服务的集成，结合了数据获取与权限管理的灵活性。</p>
+<p><img src="https://static-docs.nocobase.com/81befa3d5f00825d25d02c1f15089565.png" alt="backend service integration.png"></p>
+<p>通过 Refine 的数据获取功能，开发者可以轻松与多种后端 API 进行交互，如 REST API、GraphQL，或与服务如 Strapi、Supabase、Airtable 进行集成 。</p>
+<p><img src="https://static-docs.nocobase.com/20b3a853d2d5b725648f48d3c2f29a4d.png" alt="backend APIs.png"></p>
+<p>Refine 提供了一种无缝的数据获取模式，自动处理请求状态（例如 loading、error、success），让开发者可以专注于处理业务逻辑。</p>
+<p><img src="https://static-docs.nocobase.com/a7a5db98116ef9da6434f3bc3b951f72.png" alt="seamless data retrieval model.png"></p>
+<p>在权限控制方面，<strong>Refine</strong> 提供了灵活的认证和授权机制。首先，Refine 支持多种常见的认证方式，如基于 OAuth、JWT 或自定义的认证方案 。这使得开发者能够通过与后端服务的集成，轻松管理用户身份验证，并根据项目需求灵活配置不同的认证流程。</p>
+<h3><strong>前端开发与自定义组件</strong></h3>
+<p>在前端开发与自定义组件方面，<strong>NocoBase</strong> 和 <strong>Refine</strong> 各有不同的侧重点。</p>
+<p><img src="https://static-docs.nocobase.com/c1caccbc7c0270c10e943867e102223d.png" alt="WYSIWYG.png"></p>
+<p><strong>NocoBase</strong> 提供了一个直观的 WYSIWYG（所见即所得）用户界面编辑器，用户可以通过简单的拖拽操作快速搭建和配置前端界面，而无需编写代码。这个界面编辑器允许用户灵活定制页面布局、区块展示和数据视图，极大简化了应用的前端开发工作，尤其适合没有前端开发经验的用户。</p>
+<p>NocoBase 的<strong>UI 编辑器</strong>功能具备以下几个显著优势：</p>
+<p><img src="https://static-docs.nocobase.com/13174618869b9eb4ab69b379961cb3b9.png" alt="UI editor.png"></p>
+<ol>
+<li><strong>模块化设计</strong>：用户可以通过预设的区块，如表单、表格、卡片和列表等，快速构建应用界面。这些组件可以通过拖拽方式灵活组合，帮助用户根据实际需求定制不同的页面布局。</li>
+<li><strong>实时预览和快速调试</strong>：NocoBase 提供实时预览功能，用户可以在设计过程中实时查看界面效果，并根据需要进行调整。这种快速反馈机制可以极大提升开发效率，尤其在迭代频繁的业务场景中。</li>
+<li><strong>自定义和扩展性</strong>：虽然 NocoBase 的界面编辑器非常适合无代码用户，但对于具备开发能力的用户，它同样支持通过扩展插件的形式来进行自定义的集成与开发。</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/318c29d41b5be6852d8481e6e8822304.gif" alt="visual interface design.gif"></p>
+<p>这种高度可视化的界面设计方式，不仅能够帮助用户快速实现页面布局和功能设计，还支持复杂的交互逻辑配置和动态数据展示。</p>
+<p>相较于 NocoBase，<strong>Refine</strong> 更适合有前端开发经验的开发人员，它允许开发者使用少量代码快速构建前端界面。Refine 提供了高度模块化的组件系统，开发者可以使用如 Ant Design、Material UI 等流行的 UI 库。</p>
+<p><img src="https://static-docs.nocobase.com/7369b60625ce93759dddea0eb4f613e1.png" alt="modular component system.png"></p>
+<p>Refine 的组件化设计和其与 React 生态的无缝集成，使得开发者在构建页面时有极大的灵活性。开发人员可以自定义组件，定义复杂的页面逻辑，并通过组件的复用和组合。此外，Refine 的布局和状态管理系统极大简化了应用的开发流程，开发者无需关注底层的状态管理细节，可以专注于业务逻辑的实现。</p>
+<p><img src="https://static-docs.nocobase.com/5aaf8c3d4b53bc9000990ec2238b9b93.png" alt="Reactecosystem.png"></p>
+<p>在复杂的前端开发场景中，Refine 提供了更大的自由度和灵活性，而 NocoBase 则专注于通过图形化界面和预设的组件，帮助用户以更高的效率构建前端界面。</p>
+<h3><strong>工作流与自动化</strong></h3>
+<p>在工作流和自动化方面，<strong>NocoBase</strong> 提供了强大的业务流程配置和自动化能力。相比于需要依赖自定义代码来实现复杂业务逻辑的低代码平台，NocoBase 的图形化工作流编辑器让用户能够通过简单的点击操作来设计、配置并自动化整个业务流程。</p>
+<p><img src="https://static-docs.nocobase.com/f56a67f876450a3343a6db6b0b9ec3c9.png" alt="automation.png"></p>
+<p>NocoBase 的工作流功能基于可视化的流程设计器，允许用户通过定义触发条件、执行操作和流程节点来实现复杂的业务自动化。它的<strong>核心优势</strong>包括：</p>
+<ol>
+<li><strong>图形化流程设计</strong>：NocoBase 提供了一个直观的图形化界面，每个步骤的执行逻辑清晰可见。无论是审批流程、自动化任务分配，还是跨系统的数据处理，用户都可以通过简单的配置来实现复杂的流程控制。</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/77f34ec214a8d37a0e4a54557936e770.png" alt="Graphical Workflow Design.png"></p>
+<ol start="2">
+<li><strong>触发器和条件分支</strong>：支持多种事件触发机制，用户可以根据数据变动、时间条件或手动操作来启动工作流。结合条件分支功能，用户可以为每个节点设置不同的判断条件，从而根据业务逻辑动态选择接下来的执行步骤。</li>
+<li><strong>自动化任务</strong>：用户可以将各种任务自动化处理。例如，用户可以设置当新数据被添加或更新时，系统自动发送通知、更新相关记录，或调用外部 API 触发其他系统中的操作。</li>
+<li><strong>外部集成与 API 调用</strong>：NocoBase 的工作流不仅限于平台内部，还可以与外部系统进行集成。用户可以在工作流中配置外部 API 调用，允许平台自动化与第三方服务进行数据交互。这使得 NocoBase 在处理跨系统业务场景时具备极大的优势。</li>
+</ol>
+<p>相比之下，<strong>Refine</strong> 作为一个前端开发框架，并不直接提供内置的工作流管理功能。然而，Refine 的优势在于它能够与外部工作流引擎或后端自动化工具无缝集成。开发者可以通过 Refine 构建自定义的前端界面，并与后端的工作流系统（如 n8n、Integromat 等）结合，完成复杂的自动化任务。</p>
+<p>💡 阅读更多：<a href="../blog/workflow-automation-tools.html">构建工作流自动化的 5 个最佳工具</a></p>
+<h2 id="zh-3">集成能力与扩展性</h2>
+<p>在集成能力和扩展性方面，<strong>NocoBase</strong> 和 <strong>Refine</strong> 各自提供了不同的方式来满足用户的需求。<strong>NocoBase</strong> 不仅可以快速扩展前端功能，还可以在后端层面实现与第三方服务的深度集成，涵盖了前后端完整的业务逻辑。</p>
+<p><strong>Refine</strong> 扩展能力主要集中在前端，允许与外部 API 和数据源集成，但它没有直接的后端扩展机制，需要依赖外部服务（如 Strapi、Supabase 等）来处理数据和业务逻辑。</p>
+<h3><strong>NocoBase</strong> 能够提供更全面的集成能力</h3>
+<p><strong>NocoBase</strong> 的插件架构为其提供了强大的扩展性，用户和开发者可以通过简单地安装和启用插件来快速集成所需的功能和第三方服务。NocoBase 的所有核心功能（包括数据管理、权限控制、工作流等）都是通过插件提供的，这种模块化设计不仅简化了系统的维护，还允许用户根据自身需求自由选择和配置功能。</p>
+<p><img src="https://static-docs.nocobase.com/97782eb52aee16623ab595e159ee95a1.png" alt="Integration Capabilities.png"></p>
+<ul>
+<li><strong>插件的开发与扩展</strong>：NocoBase 支持开发自定义插件，开发者可以根据业务需求编写插件来扩展系统功能。例如，可以为应用集成新的数据源、外部 API 或者自定义的业务逻辑。这种方式不仅灵活，而且降低了对系统核心代码的修改风险，保持了系统的可维护性。</li>
+<li><strong>第三方服务集成</strong>：NocoBase 支持通过插件快速集成第三方服务，如外部数据库、身份验证服务等。通过插件，用户可以直接调用这些服务并将它们无缝地嵌入到业务流程中。例如，可以通过插件集成 OAuth 认证与外部用户管理系统连接。这大大降低了实现集成的复杂度，使用户无需开发经验也能实现跨系统的数据和功能集成。</li>
+</ul>
+<p>💡 拓展阅读：<a href="../blog/low-code-no-code-integration.html">无代码/低代码平台集成能力深度分析</a></p>
+<p>这种插件化架构极大地增强了 NocoBase 的扩展性，让它可以随着业务需求的变化进行功能扩展，而无需对底层代码做大规模改动，确保系统的稳定性和灵活性。</p>
+<h3><strong>Refine</strong> 偏重于前端开发和界面自定义</h3>
+<p><strong>Refine</strong> 的核心优势在于它基于 React 框架提供了高度的前端功能自定义能力。Refine 允许开发者利用 React 的生态系统和已有的组件库来进行灵活扩展，从而在前端开发中实现更多定制化的功能。比如下图所展示的页面——一个在线实时协作的像素绘制平台。</p>
+<p><img src="https://static-docs.nocobase.com/4cdf0deee9a59640d4dfd6c09baca397.png" alt="Frontend Development and Customization.png"></p>
+<ul>
+<li><strong>自定义前端组件</strong>：Refine 允许开发人员根据项目需求，自定义和复用 React 组件，构建高度复杂的前端应用。通过引入 UI 库（如 Ant Design 或 Material UI），开发人员可以快速搭建现代化的界面，并根据业务需求进行灵活调整。例如，可以根据用户角色自定义页面布局、动态渲染不同的数据展示界面，或通过自定义表单组件扩展交互功能。</li>
+<li><strong>模块化开发</strong>：Refine 提供了模块化的开发方式，开发人员可以为项目中的不同部分创建独立的模块，并根据需要进行功能扩展。这使得在大型项目中，开发团队可以分工协作，通过不同的模块实现高效的前端开发。同时，Refine 的代码结构清晰且符合开发标准，便于后续的维护和迭代。</li>
+<li><strong>无缝集成外部库与工具</strong>：由于 Refine 完全基于 React，开发者可以轻松集成任何符合 React 生态的外部库和工具。无论是数据可视化工具、状态管理库，还是复杂的路由与权限管理逻辑，开发者都可以根据项目需求灵活选用并集成到 Refine 项目中。</li>
+</ul>
+<h3>示例：如何集成外部 API 或服务</h3>
+<p>对于 <strong>NocoBase</strong>，集成外部 API 和服务通过其插件机制灵活实现。开发者可以编写自定义插件，将外部 API 数据与 NocoBase 的数据模型、界面或业务流程集成，独立于工作流系统的运作。</p>
+<p><img src="https://static-docs.nocobase.com/64386b8d8a3df3d4deb511c54f149ec6.png" alt="Integrate External APIs or Services.png"></p>
+<p>具体操作流程通常包括：</p>
+<ol>
+<li><strong>开发自定义 API 插件</strong>：开发者根据业务需求编写自定义插件，来调用外部 API 并处理返回的数据。</li>
+<li><strong>与数据模型或界面集成</strong>：插件可以直接将外部 API 返回的数据整合到 NocoBase 的数据模型或用户界面中，供用户操作和展示，完全不依赖工作流。</li>
+<li><strong>结合工作流（可选）</strong>：在需要自动化操作的场景下，开发者可以选择结合工作流功能，通过触发器（如数据变更或用户操作）自动调用外部 API，进一步提高效率。</li>
+</ol>
+<p>这种插件化的架构为用户提供了灵活性，可以根据不同的业务需求和场景选择是否结合工作流使用。外部 API 返回的数据可以直接用于界面展示、数据处理或业务流程管理，满足多样化的集成需求。</p>
+<p>在 <strong>Refine</strong> 中，开发者可以通过 React 组件直接调用外部 API，实现数据的获取和操作。通过自定义 hooks 或内置的 <code>useData</code> 功能，开发人员可以轻松获取外部 API 返回的数据并进行处理。例如，在构建一个 CRM 应用时，开发者可以：</p>
+<ol>
+<li>使用 Refine 的数据获取功能从 REST API 或 GraphQL 获取客户数据。</li>
+<li>将数据通过自定义表格或图表组件进行展示。</li>
+<li>使用 React 的状态管理工具处理数据的增删改查，并同步更新到外部服务。</li>
+</ol>
+<h2 id="zh-4">适用场景结论</h2>
+<p>通过以上的分析我们可以看到这两个工具各自的侧重点和优势完全不同。无论是从开发方式还是扩展能力，这两个产品都为不同的用户提供了合适的解决方案。</p>
+<h3><strong>NocoBase 适合以下场景</strong></h3>
+<ol>
+<li><strong>企业内部系统的快速构建</strong>：NocoBase 的设计非常适合需要快速开发和迭代的业务系统，例如 CRM、RMS（档案管理系统）、MES（生产执行系统）等。这些系统可以通过简单配置或插件快速搭建，非技术人员也能够轻松参与开发，极大缩短开发周期和降低成本。</li>
+<li><strong>适合数字化转型中的企业</strong>：对于希望实现数字化转型、降本增效的企业，NocoBase 提供了一种灵活且可扩展的解决方案。通过插件扩展功能，可以轻松集成外部系统，使得系统能够快速响应业务需求。</li>
+<li><strong>技术和非技术用户的协作</strong>：NocoBase 既支持技术团队通过插件开发进行深度定制，也允许非技术用户通过无代码方式快速构建基础功能。这种灵活性使其成为技术团队和业务团队协作开发的理想平台。</li>
+</ol>
+<p>💡 阅读更多：<a href="../blog/low-code-no-code-crm-builder.html">在数小时内构建 CRM：你需要了解的顶级无代码（零代码）/低代码工具</a></p>
+<h3>Refine 更加适合以下场景</h3>
+<ol>
+<li><strong>复杂前端界面的定制开发</strong>：对于需要高度定制化的前端界面和交互逻辑的项目甚至是游戏界面，Refine 提供了强大的灵活性。它允许开发者使用 React 生态系统中的组件库，进行高度自定义的开发，非常适合需要构建复杂、多页面应用的场景。</li>
+<li><strong>技术团队主导的项目</strong>：Refine 更适合那些具备一定前端开发能力的团队。开发者能够通过自定义代码和数据集成，构建复杂业务逻辑，适合企业级复杂应用的开发。</li>
+<li><strong>长周期、大型项目</strong>：对于那些需要长期维护和频繁迭代的项目，Refine 提供了良好的扩展性和可维护性，适合希望保持对代码库高度控制的技术团队。</li>
+</ol>
+<h3>选择推荐</h3>
+<ul>
+<li>如果你的项目需要快速构建 CRUD 应用，比如内部业务系统或数据管理平台，NocoBase 是一个理想选择。<strong>NocoBase</strong> 能够以较低的开发成本和技术门槛实现复杂应用，并通过插件架构提供扩展能力。</li>
+<li>Refine 则适合那些需要更高自由度的前端开发项目，尤其是复杂的 CRUD 操作和交互。如果你有一个技术团队支持，Refine 可以做到快速构建复杂的前端应用，同时保持高水平的定制和控制能力。</li>
+</ul>
+<p>❤️ 感谢你的阅读。以上便是本文的全部内容，如果你有所收获欢迎分享给你身边的朋友。</p>
+<p>推荐阅读：</p>
+<ul>
+<li><a href="../blog/nocobase-vs-nocodb.html">NocoBase 与 NocoDB：开源无代码工具深度对比</a></li>
+<li><a href="../blog/project-management-tools.html">5 个最佳开源无代码项目管理工具</a></li>
+<li><a href="../blog/crud-projects.html">GitHub 上 Stars 数量最多的 8 个开源 CRUD 项目</a></li>
+<li><a href="../blog/open-source-internal-tools.html">GitHub Star 数量前 11 的开源内部工具</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">在数小时内构建 CRM：你需要了解的顶级无代码/低代码工具</a></li>
+<li><a href="../blog/web-application-development.html">探索最佳无代码低代码工具：加速 Web 应用开发</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p><strong>Today, we’re focusing on two outstanding open-source CRUD development tools: <a href="https://www.nocobase.com/">NocoBase</a> and <a href="https://refine.dev/">Refine</a>.</strong> These tools are excellent representatives of no-code/low-code development platforms and low-code frontend development frameworks, respectively.</p>
+<p><img src="https://static-docs.nocobase.com/79ac1d3a930854b204f743234c17b1e4.JPEG" alt="NocoBasevsRefine.JPEG"></p>
+<p>It’s worth mentioning that <strong>NocoBase has already gained 12k stars on GitHub</strong>, while <strong>Refine</strong>, known as an open-source alternative to Retool, has amassed an impressive <strong>27k stars</strong> on GitHub.</p>
+<p>💡 Read More: <a href="../blog/retool-open-source-alternatives.html">The Best Open-Source Alternatives to Retool In 2025</a></p>
+<p><strong>NocoBase</strong>, as an AI no-code / low-code development platform, features an intuitive and easy-to-use interface that allows users to quickly build complex business applications. For developers with technical backgrounds, NocoBase also offers extensive extensibility. Through its plugin architecture and flexible data model design, developers can customize and deploy applications more efficiently, significantly improving development productivity.</p>
+<p>On the other hand, <strong>Refine</strong> is a low-code frontend development framework that focuses on providing developers with high flexibility and customization options. Built on a React-based architecture, Refine enables developers to freely design complex user interfaces while achieving functionality with minimal code.</p>
+<p>From a user’s perspective, we will compare these two platforms to help you understand their respective strengths and suitable use cases.</p>
+<p>This article is divided into three main sections:</p>
+<ol>
+<li>Feature Comparison</li>
+<li>Integration and Extensibility Comparison</li>
+<li>Use Case Summary</li>
+</ol>
+<p>Feel free to jump to the section that interests you most. We hope this article helps you choose the right CRUD development tool for your needs. 😁</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-2">Feature Comparison</h2>
+<p>When it comes to features, <strong>NocoBase</strong> and <strong>Refine</strong> each offer unique advantages that cater to different user needs. We&#39;ll break down the comparison into four key areas: CRUD functionality, data models and access control, frontend development with custom components, and workflow automation.</p>
+<h3>CRUD</h3>
+<p>Both <strong>NocoBase</strong> and <strong>Refine</strong> are excellent CRUD (Create, Read, Update, Delete) tools designed for managing data, handling database operations, and building business applications.</p>
+<p>💡 Dig deeper: <a href="../blog/crud-projects.html">Top 8 Open-Source CRUD Projects with the Most GitHub Stars</a></p>
+<p><strong>NocoBase</strong> provides a complete set of CRUD functionalities, allowing users to easily create, read, update, and delete data without writing any code.</p>
+<p><img src="https://static-docs.nocobase.com/5dbbe8b0fd9426209ad871496b7c4ea3.PNG" alt="CRUD.PNG"></p>
+<p>Here are some core strengths of <strong>NocoBase</strong> in CRUD operations:</p>
+<ol>
+<li><strong>Intuitive Graphical Interface</strong>: NocoBase offers a visual interface that allows users to design and manage database tables through drag-and-drop operations. Users can effortlessly configure table structures, field types, and relationships, while managing data in real-time, simplifying the database management process significantly.</li>
+<li><strong>Modular Data Management</strong>: NocoBase supports modular CRUD operations, enabling users to create complex business data models through tables, data sources, and field modules. Its flexible data model design allows users to customize forms, list views, and more, making it suitable for diverse data management needs.</li>
+<li><strong>Role-Based Access Control</strong>: When performing CRUD operations, NocoBase allows role-based permission management, ensuring that different users have appropriate access and control over data. This feature is particularly crucial in enterprise applications, as it helps protect data security and maintain compliance.</li>
+<li><strong>Dynamic Data Display and Operations</strong>: NocoBase provides a dynamic interface for CRUD interactions, enabling users to quickly manage data through forms or views. It also supports batch processing and management of large-scale data, making it ideal for teams looking to rapidly build internal business management systems.</li>
+</ol>
+<p>🙌 Have a try: <a href="https://www.nocobase.com/en/tutorials/task-tutorial-introduction">NocoBase Tutorial – Task Management System</a></p>
+<p>Similarly, <strong>Refine</strong> is highly capable in CRUD operations.</p>
+<p><img src="https://static-docs.nocobase.com/4d415ba36f35b58563b483f10b15daee.PNG" alt="CRUD.PNG"></p>
+<p>Key features of <strong>Refine</strong> in CRUD development:</p>
+<ol>
+<li><strong>High Flexibility with React</strong>: Refine enables developers to implement CRUD functionality with minimal code. Using <code>useData</code> hooks and built-in data management features, developers can easily integrate with REST APIs, GraphQL, or other data sources to dynamically fetch and manipulate data.</li>
+<li><strong>Custom Forms and Data Display</strong>: Developers can leverage Refine’s UI components, such as Ant Design or Material UI, to quickly create and manage data input forms and display pages. This highly customizable frontend operation allows developers to adjust CRUD interface layouts and functionalities based on business requirements.</li>
+<li><strong>State Management and Data Interaction</strong>: Refine offers a smooth data handling experience through React&#39;s state management mechanisms. Developers can easily manage CRUD operations and seamlessly connect them with user interactions. This low-code approach reduces the developer’s workload while providing powerful control over frontend features.</li>
+<li><strong>Modular Design</strong>: Refine’s modular structure allows developers to create independent CRUD functionalities for different pages or components, which is suitable for projects requiring multiple modular data management pages. Developers can reuse components and logic to quickly develop different parts of complex applications.</li>
+</ol>
+<h3>Data Models and Access Control</h3>
+<p>Data models are the backbone of CRUD operations, defining how information is structured, stored, and related within a system. Efficient data model management ensures users can seamlessly create, read, update, and delete data, allowing applications to function as expected. Equally important is access control, which determines who can access and modify specific data. For any enterprise-level application, ensuring different user groups have appropriate access levels is crucial for maintaining data security and system integrity.</p>
+<p>One of <strong>NocoBase</strong>&#39;s core strengths is its <strong>flexible data model</strong> and robust access control system.</p>
+<p><img src="https://static-docs.nocobase.com/533f86a309c52b11a57d2d59376f1987.png" alt="flexible data model.png"></p>
+<p><strong>NocoBase</strong> is based on a relational database design, allowing users to create complex data structures and flexibly configure relationships between tables through its graphical interface. For developers, NocoBase offers customizable data management options, enabling users to expand and adjust data models based on business requirements without writing complex code.</p>
+<p><img src="https://static-docs.nocobase.com/8ba8fefe0f52ffd8e088ac0b95ea42cb.png" alt="customizable data management.png"></p>
+<p>Additionally, <strong>NocoBase</strong> provides comprehensive access control and user authentication features. Users can set granular permissions for data based on roles and specific operations, ensuring strict separation of access rights between different user groups.</p>
+<p><img src="https://static-docs.nocobase.com/143cad1bf26ff415206a5374d7cf55a4.png" alt="access control.png"></p>
+<p>This powerful access control system is especially critical for enterprise applications, ensuring both data security and regulatory compliance. NocoBase offers multiple user authentication methods via plugins, including SMS verification, SAML SSO, OIDC SSO, and CAS SSO. Users can leverage platforms like <strong>Google Workspace</strong> or <strong>Microsoft Azure</strong> for identity login systems or integrate with tools like <strong>Auth0</strong>, <strong>Logto</strong>, and <strong>Keycloak</strong>. Moreover, developers can easily extend authentication options via NocoBase’s foundational interfaces to suit their specific needs.</p>
+<p>In comparison, <strong>Refine</strong> handles data models primarily through backend service integration, combining flexibility in data retrieval and access control.</p>
+<p><img src="https://static-docs.nocobase.com/81befa3d5f00825d25d02c1f15089565.png" alt="backend service integration.png"></p>
+<p>With Refine&#39;s data retrieval capabilities, developers can easily interact with various backend APIs such as <strong>REST API</strong>, <strong>GraphQL</strong>, or integrate with services like <strong>Strapi</strong>, <strong>Supabase</strong>, and <strong>Airtable</strong>.</p>
+<p><img src="https://static-docs.nocobase.com/20b3a853d2d5b725648f48d3c2f29a4d.png" alt="backend APIs.png"></p>
+<p>Refine offers a seamless data retrieval model, automatically managing request states (e.g., loading, error, success), allowing developers to focus on business logic rather than the intricacies of data fetching.</p>
+<p><img src="https://static-docs.nocobase.com/a7a5db98116ef9da6434f3bc3b951f72.png" alt="seamless data retrieval model.png"></p>
+<p>Regarding access control, Refine offers a flexible authentication and authorization mechanism. Refine supports multiple common authentication methods such as <strong>OAuth</strong>, <strong>JWT</strong>, or custom authentication schemes. This allows developers to manage user authentication easily by integrating with backend services and configuring different authentication flows based on project needs.</p>
+<h3>Frontend Development and Custom Components</h3>
+<p>When it comes to frontend development and custom components, <strong>NocoBase</strong> and <strong>Refine</strong> have different areas of focus.</p>
+<p><img src="https://static-docs.nocobase.com/c1caccbc7c0270c10e943867e102223d.png" alt="WYSIWYG.png"></p>
+<p><strong>NocoBase</strong> offers an intuitive <strong>WYSIWYG (What You See Is What You Get)</strong> user interface editor, allowing users to quickly build and configure frontend interfaces through simple drag-and-drop actions without writing code. This editor provides users with the flexibility to customize page layouts, block displays, and data views, greatly simplifying frontend development tasks—especially for users without frontend development experience.</p>
+<p>The key advantages of <strong>NocoBase’s UI editor</strong> include:</p>
+<p><img src="https://static-docs.nocobase.com/13174618869b9eb4ab69b379961cb3b9.png" alt="UI editor.png"></p>
+<ol>
+<li><strong>Modular Design</strong>: Users can quickly build application interfaces using predefined blocks such as forms, tables, cards, and lists. These components can be flexibly combined through drag-and-drop, helping users customize page layouts based on their specific needs.</li>
+<li><strong>Real-Time Preview and Fast Debugging</strong>: NocoBase offers a real-time preview feature that allows users to view interface effects during the design process and make adjustments as needed. This fast feedback mechanism significantly improves development efficiency, especially in fast-paced, iterative business environments.</li>
+<li><strong>Customization and Extensibility</strong>: While NocoBase’s interface editor is ideal for no-code users, it also supports custom integrations and development through plugins for users with coding experience.</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/318c29d41b5be6852d8481e6e8822304.gif" alt="visual interface design.gif"></p>
+<p>This highly visual interface design approach helps users quickly achieve page layout and functionality, while also supporting complex interaction logic and dynamic data displays.</p>
+<p>In contrast, <strong>Refine</strong> is more suited for developers with frontend development experience, allowing them to build frontend interfaces with minimal code. <strong>Refine</strong> provides a highly modular component system, enabling developers to use popular UI libraries such as <strong>Ant Design</strong> and <strong>Material UI</strong>.</p>
+<p><img src="https://static-docs.nocobase.com/7369b60625ce93759dddea0eb4f613e1.png" alt="modular component system.png"></p>
+<p>Refine’s componentized design, along with its seamless integration with the <strong>React</strong> ecosystem, gives developers great flexibility in building pages. Developers can customize components, define complex page logic, and reuse and combine components efficiently. Additionally, Refine’s layout and state management system simplifies the development process, allowing developers to focus on business logic without worrying about underlying state management details.</p>
+<p><img src="https://static-docs.nocobase.com/5aaf8c3d4b53bc9000990ec2238b9b93.png" alt="Reactecosystem.png"></p>
+<p>In complex frontend development scenarios, <strong>Refine</strong> offers greater freedom and flexibility, while <strong>NocoBase</strong> focuses on providing a graphical interface and predefined components to help users build frontend interfaces more efficiently.</p>
+<h3>Workflows and Automation</h3>
+<p>When it comes to workflows and automation, <strong>NocoBase</strong> provides powerful business process configuration and automation capabilities. Unlike low-code platforms that require custom code to implement complex business logic, NocoBase’s graphical workflow editor allows users to design, configure, and automate entire business processes with just a few clicks.</p>
+<p><img src="https://static-docs.nocobase.com/f56a67f876450a3343a6db6b0b9ec3c9.png" alt="automation.png"></p>
+<p><strong>NocoBase’s workflow features</strong> are based on a visual process designer, enabling users to implement complex business automation by defining triggers, actions, and workflow nodes. Its core strengths include:</p>
+<ol>
+<li><strong>Graphical Workflow Design</strong>: NocoBase provides an intuitive graphical interface where the execution logic of each step is clearly visible. Whether it’s approval processes, automated task assignments, or cross-system data processing, users can configure these processes through simple settings, achieving advanced workflow control.
+<img src="https://static-docs.nocobase.com/77f34ec214a8d37a0e4a54557936e770.png" alt="Graphical Workflow Design.png"></li>
+<li><strong>Triggers and Conditional Branching</strong>: NocoBase supports a variety of event triggers, allowing workflows to start based on data changes, time-based conditions, or manual actions. Combined with conditional branching, users can set different conditions for each node, enabling dynamic selection of the next steps according to business logic.</li>
+<li><strong>Automated Tasks</strong>: Users can automate a range of tasks. For example, when new data is added or updated, the system can automatically send notifications, update related records, or invoke external APIs to trigger actions in other systems.</li>
+<li><strong>External Integration and API Calls</strong>: NocoBase workflows are not limited to internal operations but can also integrate with external systems. Users can configure external API calls within workflows, allowing the platform to automate interactions with third-party services. This capability gives NocoBase a significant advantage in handling cross-system business scenarios.</li>
+</ol>
+<p>In contrast, <strong>Refine</strong>, being a frontend development framework, does not directly provide built-in workflow management features. However, Refine excels at <strong>seamlessly integrating with external workflow engines</strong> or backend automation tools. Developers can use Refine to build custom frontend interfaces and integrate them with backend workflow systems like <strong>n8n</strong>, <strong>Integromat</strong>, and others to complete complex automation tasks.</p>
+<p>💡 Read More: <a href="../blog/workflow-automation-tools.html">5 Best Tools for Building Workflow Automation</a></p>
+<h2 id="en-3">Integration Capabilities and Extensibility</h2>
+<p>When it comes to integration and extensibility, <strong>NocoBase</strong> and <strong>Refine</strong> offer different approaches to meet user needs. <strong>NocoBase</strong> can rapidly extend both frontend functionality and backend integration with third-party services, covering the entire business logic from front to back. On the other hand, <strong>Refine</strong> focuses mainly on frontend extensibility, allowing integration with external APIs and data sources, but lacks direct backend extensibility, relying on external services (e.g., Strapi, Supabase) to handle data and business logic.</p>
+<h3>NocoBase: Comprehensive Integration Capabilities</h3>
+<p><strong>NocoBase</strong>&#39;s plugin architecture provides robust extensibility, allowing users and developers to quickly integrate necessary features and third-party services by simply installing and enabling plugins. All of NocoBase’s core functionalities (such as data management, access control, and workflows) are provided through plugins. This modular design not only simplifies system maintenance but also allows users to freely select and configure features based on their specific needs.</p>
+<p><img src="https://static-docs.nocobase.com/97782eb52aee16623ab595e159ee95a1.png" alt="Integration Capabilities.png"></p>
+<ul>
+<li><strong>Plugin Development and Extensibility</strong>: NocoBase supports the development of custom plugins, enabling developers to write plugins to extend system functionality according to business requirements. For instance, they can integrate new data sources, external APIs, or custom business logic. This flexible approach minimizes the need for modifying core system code, reducing risks and maintaining system integrity.</li>
+<li><strong>Third-Party Service Integration</strong>: NocoBase enables seamless integration with third-party services such as external databases and authentication services through plugins. Users can directly invoke these services and embed them into their business processes. For example, integrating <strong>OAuth</strong> for user authentication or connecting to external user management systems can be achieved through plugins, greatly reducing the complexity of implementation without requiring development experience.</li>
+</ul>
+<p>💡 Dig deeper: <a href="../blog/low-code-no-code-integration.html">Deep Dive: Low Code/No Code Integration Capabilities</a></p>
+<p>This plugin-based architecture enhances NocoBase&#39;s extensibility, allowing it to expand features as business needs evolve without requiring large-scale changes to the underlying code, ensuring stability and flexibility.</p>
+<h3>Refine: Focused on Frontend Development and Customization</h3>
+<p><strong>Refine</strong> excels in frontend development and customization, leveraging its <strong>React</strong> framework to offer high flexibility in building frontend functionalities. Refine allows developers to tap into the React ecosystem and existing component libraries to implement more customized frontend features, as shown in the example below of a real-time collaborative pixel art platform.</p>
+<p><img src="https://static-docs.nocobase.com/4cdf0deee9a59640d4dfd6c09baca397.png" alt="Frontend Development and Customization.png"></p>
+<ul>
+<li><strong>Custom Frontend Components</strong>: Refine allows developers to customize and reuse React components according to project requirements, enabling the creation of highly complex frontend applications. By integrating UI libraries like <strong>Ant Design</strong> or <strong>Material UI</strong>, developers can rapidly create modern interfaces and adjust them flexibly to meet business needs. For example, they can customize page layouts based on user roles, dynamically render different data displays, or extend interactive capabilities using custom form components.</li>
+<li><strong>Modular Development</strong>: Refine provides a modular development approach, allowing developers to create independent modules for different parts of a project and extend functionality as needed. This makes collaboration more efficient in large projects, where teams can work on different modules simultaneously. Additionally, Refine’s code structure is clear and follows development standards, making future maintenance and iteration more straightforward.</li>
+<li><strong>Seamless Integration of External Libraries and Tools</strong>: Since Refine is entirely based on React, developers can easily integrate any external libraries and tools from the React ecosystem. Whether it’s data visualization tools, state management libraries, or complex routing and access control logic, developers can flexibly choose and integrate them into their Refine projects based on project requirements.</li>
+</ul>
+<h3>Example: How to Integrate External APIs or Services</h3>
+<p>In <strong>NocoBase</strong>, integrating external APIs and services is achieved flexibly through its plugin mechanism. Developers can create custom plugins to integrate external API data with NocoBase’s data models, interfaces, or business processes, independent of workflow operations.</p>
+<p><img src="https://static-docs.nocobase.com/64386b8d8a3df3d4deb511c54f149ec6.png" alt="Integrate External APIs or Services.png"></p>
+<p>The typical process includes:</p>
+<ol>
+<li><strong>Developing Custom API Plugins</strong>: Developers create custom plugins that call external APIs and process the returned data according to business requirements.</li>
+<li><strong>Integration with Data Models or Interfaces</strong>: The plugin can integrate external API data directly into NocoBase’s data models or user interfaces for manipulation and display, without relying on the workflow system.</li>
+<li><strong>Combining with Workflows (Optional)</strong>: For automation scenarios, developers can combine the workflow functionality, using triggers (e.g., data changes or user actions) to automatically call external APIs, further enhancing efficiency.</li>
+</ol>
+<p>This plugin-based architecture offers flexibility, allowing users to decide whether to combine workflows based on different business needs. External API data can be used directly for interface display, data processing, or business process management, meeting diverse integration requirements.</p>
+<p>In <strong>Refine</strong>, developers can directly call external APIs using React components to retrieve and manipulate data. By using custom hooks or the built-in <code>useData</code> feature, developers can easily fetch external API data and process it. For example, when building a CRM application, developers can:</p>
+<ol>
+<li>Use Refine’s data retrieval capabilities to fetch customer data from <strong>REST API</strong> or <strong>GraphQL</strong>.</li>
+<li>Display the data using custom table or chart components.</li>
+<li>Manage data operations (CRUD) with React state management tools and sync updates to external services.</li>
+</ol>
+<p>Both platforms provide solid extensibility but with different strengths—NocoBase offers a comprehensive backend and frontend integration through its plugin architecture, while Refine emphasizes frontend customization and flexibility through its React-based modular design.</p>
+<h2 id="en-4">Use Case Summary</h2>
+<p>From the analysis above, we can see that <strong>NocoBase</strong> and <strong>Refine</strong> have distinct focuses and strengths, offering solutions tailored to different user needs. Whether it&#39;s the development approach or extensibility, these two tools serve diverse users with fitting solutions.</p>
+<h3>NocoBase is Suitable for the Following Scenarios:</h3>
+<ol>
+<li><strong>Rapid Development of Internal Business Systems</strong>: NocoBase is ideal for quickly developing and iterating business systems like CRM, RMS (Records Management System), or MES (Manufacturing Execution System). These systems can be built swiftly through simple configuration or plugins, allowing non-technical users to participate in development, significantly reducing the development cycle and cost.</li>
+<li><strong>Digital Transformation for Enterprises</strong>: For enterprises looking to achieve digital transformation and improve efficiency while reducing costs, NocoBase offers a flexible and scalable solution. Its plugin extension capabilities enable seamless integration with external systems, allowing businesses to quickly respond to new demands.</li>
+<li><strong>Collaboration Between Technical and Non-Technical Users</strong>: NocoBase supports deep customization by technical teams through plugin development, while also allowing non-technical users to build basic features with no-code tools. This flexibility makes it an ideal platform for collaboration between business and technical teams.</li>
+</ol>
+<p>💡 Read More: <a href="../blog/low-code-no-code-crm-builder.html">Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know</a></p>
+<h3>Refine is More Suitable for the Following Scenarios:</h3>
+<ol>
+<li><strong>Custom Development of Complex Frontend Interfaces</strong>: For projects that require highly customized frontend interfaces and interaction logic, or even game-like interfaces, Refine offers powerful flexibility. It allows developers to leverage the React ecosystem and component libraries for high levels of customization, making it suitable for building complex, multi-page applications.</li>
+<li><strong>Developer-Led Projects</strong>: Refine is more suited for teams with frontend development expertise. Developers can use custom code and data integration to build complex business logic, making it ideal for developing enterprise-grade complex applications.</li>
+<li><strong>Long-Term, Large-Scale Projects</strong>: For projects that require long-term maintenance and frequent iterations, Refine provides excellent extensibility and maintainability. It is well-suited for technical teams that want to maintain tight control over the codebase.</li>
+</ol>
+<h3>Recommendations</h3>
+<ul>
+<li>If your project requires quickly building <strong>CRUD applications</strong>, such as internal business systems or data management platforms, <strong>NocoBase</strong> is an ideal choice. It offers a low development cost and technical barrier for building complex applications and provides extensibility through its plugin architecture.</li>
+<li><strong>Refine</strong> is a better fit for projects that require greater freedom in frontend development, especially for complex <strong>CRUD operations</strong> and interactions. If you have a technical team, Refine allows you to build complex frontend applications quickly, while maintaining high levels of customization and control.</li>
+</ul>
+<p>❤️ Thank you for reading! If you found this article helpful, feel free to share it with your friends.</p>
+<p>Related reading:</p>
+<ul>
+<li><a href="../blog/nocobase-vs-nocodb.html">NocoBase vs NocoDB: An In-Depth Comparison of Open Source No-Code Tools</a></li>
+<li><a href="../blog/project-management-tools.html">5 Best Open-Source No-Code Tools for Project Management</a></li>
+<li><a href="../blog/crud-projects.html">Top 8 Open-Source CRUD Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/open-source-internal-tools.html">Top 11 Open Source Internal Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know</a></li>
+<li><a href="../blog/web-application-development.html">Discover Top Tools: Accelerate Web Application Development</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">引言</a><a href="#zh-2">功能对比</a><a href="#zh-3">集成能力与扩展性</a><a href="#zh-4">适用场景结论</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">Feature Comparison</a><a href="#en-3">Integration Capabilities and Extensibility</a><a href="#en-4">Use Case Summary</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

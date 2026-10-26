@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="开源 Zendesk 替代，自部署 AI 工单系统 — NocoBase" data-en="Open-source Zendesk Alternatives: Self-Hosted AI Ticketing Systems — NocoBase">开源 Zendesk 替代，自部署 AI 工单系统 — NocoBase</title>
+<meta name="description" content="本文讨论了 AI 对工单系统的影响，梳理了值得关注的 Zendesk 开源替代方案。" data-zh="本文讨论了 AI 对工单系统的影响，梳理了值得关注的 Zendesk 开源替代方案。" data-en="This article examines the impact of AI on ticketing systems and highlights open source Zendesk alternatives worth considering.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>开源 Zendesk 替代，自部署 AI 工单系统</t-zh><t-en>Open-source Zendesk Alternatives: Self-Hosted AI Ticketing Systems</t-en></h1>
+    <p class="lede"><t-zh>本文讨论了 AI 对工单系统的影响，梳理了值得关注的 Zendesk 开源替代方案。</t-zh><t-en>This article examines the impact of AI on ticketing systems and highlights open source Zendesk alternatives worth considering.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年1月27日</t-zh><t-en>Jan 27, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/20260127-213232-u3j135.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">写在开头</h2>
+<p>如果要在工单系统领域选一个最具代表性的产品，一定是 Zendesk。某种意义上就像 Salesforce 之于 CRM。</p>
+<p>Zendesk 成立于 2007 年，并在很长一段时间里定义了现代客服工单系统的标准形态：邮件转工单、多渠道支持、SLA 管理、知识库与团队协作。</p>
+<p><img src="https://static-docs.nocobase.com/Zendesk-vr5j27.PNG" alt="Zendesk.PNG"></p>
+<p>但进入 2026 年，企业对工单系统的期待似乎正在发生变化。</p>
+<p>一方面，Zendesk 作为商业 SaaS 平台，在成本、深度定制和数据主权上逐渐显现出一定限制。</p>
+<p>另一方面，<strong>AI 正在改变工单系统的角色</strong>。企业不再只需要自动回复，而是希望 AI 能在权限控制下访问真实数据、调用历史案例、触发工作流动作，让支持流程真正走向自动化。</p>
+<p>在这篇文章中，我们将梳理最值得关注的 Zendesk 开源替代方案。其中既包括像 Zammad、osTicket 这样发展多年、能力成熟的经典项目，也包括一些如 NocoBase 更强调扩展性、自动化，甚至开始与 AI 场景结合的新一代方案。</p>
+<p>无论你希望快速替换 Zendesk，还是想为 AI 支持流程打下基础，都可以在下面的对比中找到适合自己的方向。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2">开源 Zendesk 替代品</h2>
+<p>一个合格的 Zendesk 开源替代方案，至少需要回答以下问题：</p>
+<ul>
+<li>工单是否足够成熟，能否承载日常客服工作？</li>
+<li>是否具备知识库、自动化规则与权限体系？</li>
+<li>是否支持扩展集成，能随着业务迭代？</li>
+<li>在 AI 趋势下，是否具备进一步智能化的潜力？</li>
+</ul>
+<p>下面是本文评估开源替代品：</p>
+<ol>
+<li><strong>NocoBase</strong>：面向业务系统的 AI 工单基础设施，让 AI 在真实数据与工作流中参与处理</li>
+<li><strong>Zammad</strong>：成熟的开源 help desk，功能全面，典型的 Zendesk 替代方案之一</li>
+<li><strong>FreeScout</strong>：轻量级共享邮箱工单工具，适合中小团队快速上线</li>
+<li><strong>osTicket</strong>：经典的开源工单系统，覆盖核心支持流程，稳定但偏传统</li>
+<li><strong>GLPI</strong>：面向企业内部 IT 服务管理（ITSM）的工单与资产管理平台</li>
+</ol>
+<p>如果你只想寻找一个成熟、直接可用的传统 Zendesk 开源替代方案，可以重点关注 <strong>Zammad</strong>；而如果你希望搭建一个能够与业务深度集成、并为 AI 支持流程打下基础的系统级底座，那么 <strong>NocoBase</strong> 会更值得深入了解。</p>
+<p>接下来让我为你详细介绍每一个开源替代方案。</p>
+<p>💡 如果你正在从零选择工单系统，可以先看 **<a href="../blog/open-source-ticketing-systems.html">6 个开源工单系统</a>**，重点比较工单流转、权限管理和自动化等基础能力。</p>
+<h3>NocoBase</h3>
+<p><strong>官网</strong>： <a href="https://www.nocobase.com/?utm_source=chatgpt.com">https://www.nocobase.com/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><strong>GitHub Stars</strong>：21.4k</p>
+<p><strong>在线体验：</strong><a href="https://www.nocobase.com/cn/solutions/ticketing-v2">AI 驱动的智能工单系统</a></p>
+<p>NocoBase 是一个<strong>开源、自托管、AI 驱动的无代码/低代码开发平台</strong>，以数据模型驱动和插件化架构为核心，可以快速构建与迭代企业业务系统。它不仅能用于构建 CRM、项目管理，还支持构建可扩展的智能工单系统。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-p08slg.PNG" alt="NocoBase1.PNG"></p>
+<p>NocoBase 的工单系统覆盖从请求接入、自动分派、SLA 管理到知识沉淀的完整支持流程。</p>
+<p>与传统 help desk 产品不同，NocoBase 是一个<strong>数据模型驱动的平台</strong>：你可以先定义工单背后的业务结构（客户、服务等级、资产、流程节点），再在此基础上组合页面、权限与自动化规则。</p>
+<p>因此，工单系统不再是固定模板，而是可以随着业务持续迭代：</p>
+<ul>
+<li>你可以把工单与 CRM、项目管理或内部审批流程打通</li>
+<li>为不同团队配置不同的数据权限与处理视图</li>
+<li>在业务流程中嵌入 AI 员工，让 AI 基于真实数据执行分类、检索和回复建议</li>
+</ul>
+<p>这种系统级的可扩展性，是 NocoBase 在开源 Zendesk 替代品中最不同的一点。</p>
+<h4><strong>Email 工单</strong></h4>
+<p>NocoBase 的工单系统支持<strong>多源统一接入</strong>，包括：</p>
+<ul>
+<li>公开表单</li>
+<li>客户门户</li>
+<li>邮件解析/转工单</li>
+<li>API/Webhook 接入</li>
+</ul>
+<p>所有渠道的请求都能自动去重并纳入统一工单入口，能够覆盖典型的邮件转工单场景。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-na72wr.gif" alt="NocoBase2.gif"></p>
+<p>在 NocoBase 中，邮件转工单也可以与 AI 员工协作。比如，当一轮邮件沟通结束后，你可以直接调用 AI 员工 Dex 自动整理邮件内容，并将关键信息填入工单表单中。整个过程只需一次点击，无需手动复制、粘贴或重复输入，就能快速生成一条结构化工单。</p>
+<h4><strong>知识库</strong></h4>
+<p>NocoBase 工单系统包含<strong>知识自动沉淀能力</strong>：</p>
+<ul>
+<li>工单解决过程可以自动转为知识条目</li>
+<li>新工单创建时可基于已有知识推荐相似解决方案</li>
+<li>AI 员工可以辅助查找已有知识，并生成建议回复</li>
+</ul>
+<p>这让工单系统不仅处理请求，还逐步构建知识库闭环。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-p503vt.gif" alt="NocoBase3.gif"></p>
+<p><strong>自动化/SLA</strong></p>
+<p>系统支持完整的 <strong>自动化与 SLA 管理机制</strong>：</p>
+<ul>
+<li>定义不同优先级（如 P0–P3）对应响应与解决时效</li>
+<li>自动追踪响应/解决时间、超时预警与升级机制</li>
+<li>流程自动流转与规则触发能力</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-5kmvne.png" alt="NocoBase4.png"></p>
+<p>智能工单流程将 SLA 纳入生命周期的每个环节，而不是仅作为静态字段。</p>
+<h4><strong>RBAC</strong></h4>
+<p>作为一个企业应用开发平台，NocoBase 本身具备完善的<strong>角色与权限控制（RBAC）机制</strong>。这一能力在其工单模块中也被继承：</p>
+<ul>
+<li>基于用户角色与数据范围控制访问</li>
+<li>可以为不同角色配置不同权限和视图</li>
+<li>支持行级、字段级权限约束</li>
+<li>AI 员工同样支持 RBAC</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-y8x54g.png" alt="NocoBase5.png"></p>
+<p>这种权限架构非常适合企业级服务台与多团队协作场景。</p>
+<h4><strong>扩展与集成</strong></h4>
+<p>NocoBase 的扩展能力并不只是加几个字段，而是面向系统级集成设计的。</p>
+<p>一方面，它提供开放 API、SSO、Webhook 和工作流中的 HTTP 请求节点，方便与 CRM、资产管理、告警系统等外部服务联动。</p>
+<p>另一方面，NocoBase 的插件体系允许你在服务端和界面侧持续扩展能力，例如自定义区块、字段和业务动作，让工单系统可以随着业务需求不断演进，而不是停留在固定模板里。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase6-uwhzw1.png" alt="NocoBase6.png"></p>
+<p>以前端扩展为例，在 NocoBase 的工单系统中，一些更灵活的页面展示可以通过 <strong>JS 区块</strong>来实现。这些区块的代码可以由 AI 员工直接生成并完成配置。你只需要描述想要的效果，AI 就能快速产出可用的展示组件。</p>
+<p>更重要的是，这些区块并不是孤立的“脚本片段”，它们依然运行在系统的数据模型和权限体系之上，可以与工单字段、流程状态以及其他页面区块联动，让界面和业务逻辑随着需求持续扩展。</p>
+<h4><strong>AI 能力</strong></h4>
+<p>从上面的各个维度可以看到，NocoBase 的 AI 能力贯穿在工单系统的各个环节之中：从邮件转工单的信息整理，到知识检索与回复建议，再到工作流中的自动分类与分派，AI 员工都可以作为系统的一部分参与执行。</p>
+<p>在许多传统工单系统中，AI 的主要形态往往是<strong>自动客服机器人</strong>或<strong>回复生成</strong>，更多停留在工单处理的最后一步：帮助客服更快回答用户。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase7-m9r2ai.png" alt="NocoBase7.png"></p>
+<p>而在 NocoBase 中，AI 员工使用场景非常广泛，可以跟你自己的业务系统来个性化设置。</p>
+<h3>Zammad</h3>
+<p><strong>官网</strong>： <a href="https://zammad.com/">https://zammad.com/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/zammad/zammad">https://github.com/zammad/zammad</a></p>
+<p><strong>GitHub Stars</strong>：5.3k</p>
+<p>Zammad 是一款成熟的<strong>开源工单与客服支持系统</strong>，发布于 2016 年。它可运行在自有服务器或 Docker 环境，提供统一的工单入口，将来自邮件、聊天、电话和社交渠道的请求集中管理。作为一个 AGPL-3.0 开源项目，Zammad 强调透明、可定制和长期可维护的帮助台解决方案。</p>
+<p><img src="https://static-docs.nocobase.com/Zammad1-sshj01.png" alt="Zammad1.png"></p>
+<h4><strong>Email 工单</strong></h4>
+<p>Zammad 原生支持<strong>邮件转工单机制</strong>，并且可以将来自各种渠道的客户请求（包括邮件、聊天消息）转换成结构化工单，让客服团队无需手工录入即可处理大量来信。</p>
+<p><img src="https://static-docs.nocobase.com/Zammad2-ikwx76.png" alt="Zammad2.png"></p>
+<h4><strong>知识库</strong></h4>
+<p>Zammad 内置<strong>知识库与文本模块</strong>功能，支持团队创建常见问题回答、标准回复模板以及可查询的客户帮助内容。客服人员和最终用户均可从知识库中查找信息，从而减少重复工单提交。</p>
+<p><img src="https://static-docs.nocobase.com/Zammad3-ln6l3a.png" alt="Zammad3.png"></p>
+<h4><strong>自动化/SLA</strong></h4>
+<p>Zammad 内建对 SLA 的支持，让团队可以为不同类型的请求定义明确的响应和解决时间目标。管理员可以根据工单类别、客户群体或优先级设置<strong>首次响应时间、更新响应时间和最终解决时间</strong>，并根据这些时间点自动追踪和升级工单状态。系统还会基于定义的业务时间进行 SLA 计算，并在临近或超过目标时通过通知提示相关人员，从而帮助团队按承诺及时处理客户请求。</p>
+<p><img src="https://static-docs.nocobase.com/Zammad4-lmfbx5.png" alt="Zammad4.png"></p>
+<h4><strong>RBAC</strong></h4>
+<p>Zammad 的权限控制是以 <strong>Roles（角色）+ Groups（工单组）访问级别</strong>为核心。角色本质上是一组权限集合，除了内置的 admin、agent、customer 角色外，也支持自定义角色，并为不同角色配置不同的权限项。</p>
+<p>在工单层面，Zammad 通过 <strong>Group Access Levels</strong> 来控制代理在特定组内的可见范围与操作能力（例如只读、可修改、可创建/可分配等）。角色还可以包含组权限配置，使不同团队在不同工单组里的权限边界更清晰。</p>
+<p><img src="https://static-docs.nocobase.com/Zammad5-181ish.png" alt="Zammad5.png"></p>
+<h4><strong>扩展与集成</strong></h4>
+<p>Zammad 提供全面的 <strong>REST API</strong>，你可以通过 API 与其他业务系统或自动化服务联动；<strong>Webhook</strong> 功能则让工单事件可以实时推送到第三方平台，实现跨系统数据联动。Zammad 也支持多种身份验证集成，例如将现有的 LDAP/Active Directory 与单点登录（SAML、OpenID Connect）接入，这让权限与访问控制可以与企业身份体系保持一致。</p>
+<p>此外，一些内置集成（如 GitHub/GitLab 的 Issue 关联）也让开发团队能在帮助台中查看和操作代码仓库问题。</p>
+<p><img src="https://static-docs.nocobase.com/Zammad6-blwrqc.png" alt="Zammad6.png"></p>
+<h4><strong>AI 能力</strong></h4>
+<p>Zammad没有内建 AI 代理或智能工单执行功能。AI 通常需要通过外部集成（如调用 LLM 接口或与自动化引擎配合）来实现智能辅助手段。</p>
+<p>从当前产品状态看：</p>
+<ul>
+<li>Zammad 在原生架构中<strong>不直接内置</strong> AI 运行环境</li>
+<li>可以借助 API 与外部智能服务结合，但需要额外配置与开发</li>
+</ul>
+<h3>FreeScout</h3>
+<p><strong>官网</strong>： <a href="https://freescout.net/">https://freescout.net/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/freescout-helpdesk/freescout">https://github.com/freescout-helpdesk/freescout</a></p>
+<p><strong>GitHub Stars</strong>：4k</p>
+<p>FreeScout 是一个轻量级开源帮助台系统，定位为<strong>开源 Help Scout 替代品</strong>。它的核心目标是以最小成本提供一个可自托管的共享邮箱工单管理平台，尤其适合中小团队进行邮件支持与工单协作。</p>
+<p>与一些传统工单系统不同，它的侧重点不是复杂工作流或企业级 SLA 管理，而是让团队可以快速开始和维护基础的支持流程。</p>
+<p><img src="https://static-docs.nocobase.com/FreeScout1-0qtoo9.png" alt="FreeScout1.png"></p>
+<p><strong>Email 工单</strong></p>
+<p>FreeScout 的核心功能之一就是<strong>邮件转工单</strong>：</p>
+<ul>
+<li>支持从一个或多个邮箱自动拉取邮件</li>
+<li>将邮件转换成可分配的支持工单</li>
+<li>支持邮件与工单的双向回复同步</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/FreeScout2-whkj1v.png" alt="FreeScout2.png"></p>
+<p>对于多数邮件驱动的支持流程，这是 FreeScout 的基础能力，且逻辑清晰、运行稳定。</p>
+<h4><strong>知识库</strong></h4>
+<p>FreeScout 提供了<strong>基础的知识库模块</strong>，可以用来发布常见问题、标准答案和帮助文档，但与某些更成熟的帮助台系统相比，其内容管理能力相对简单：</p>
+<ul>
+<li>支持标题、内容分类</li>
+<li>可供客户自助查询常见问题</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/FreeScout3-6boq0u.png" alt="FreeScout3.png"></p>
+<p>整体而言，它适合用作问题解答汇总，但不够强大或复杂。</p>
+<h4><strong>自动化/SLA</strong></h4>
+<p>FreeScout 的自动化能力是基础级别的：</p>
+<ul>
+<li>支持简单规则触发（如条件分配、自动回复模板）</li>
+<li>支持一些扩展模块来增强自动化逻辑</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/FreeScout4-62bkh8.png" alt="FreeScout4.png"></p>
+<p>但它不具备像企业级工单系统那样的细粒度 <strong>SLA 管理、复杂条件判断与工作流链</strong>。通常需要借助插件或外部自动化引擎来实现更复杂的流程需求。</p>
+<h4><strong>RBAC</strong></h4>
+<p>FreeScout 提供基础的<strong>角色与权限控制</strong>，让管理员可以管理用户在系统中的可见性和操作权限。</p>
+<p>系统默认有管理员和普通用户两类角色，管理员可以在 “设置 → 权限（Settings → Permissions）” 中为不同用户分配不同权限。</p>
+<h4><strong>扩展与集成</strong></h4>
+<p>FreeScout 的扩展主要通过官方的 <a href="https://freescout.net/modules/">Modules 模块体系</a>实现，户可以根据团队规模和支持流程启用不同模块，例如团队协作、客户门户、自动化规则、SSO 登录、Telegram 通知等。这种模块化设计让 FreeScout 保持了轻量和易部署的特点，也适合中小团队快速补齐所需功能。</p>
+<p><img src="https://static-docs.nocobase.com/FreeScout5-prh0ab.png" alt="FreeScout5b.png"></p>
+<h4><strong>AI 能力</strong></h4>
+<p>FreeScout 本身没有内置 AI 功能，也没有原生为 AI 场景设计的能力。</p>
+<p>但由于 FreeScout 是开源的，从技术层面你可以借助 API、自定义插件等方式与第三方 AI 服务集成，这种方式能满足一些简单的智能辅助场景。</p>
+<h3>osTicket</h3>
+<p><strong>官网</strong>：<a href="https://osticket.com/">https://osticket.com/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/osTicket/osTicket">https://github.com/osTicket/osTicket</a></p>
+<p><strong>GitHub Stars</strong>：3.6k</p>
+<p>osTicket 是一款经典的<strong>开源工单系统。</strong>它的设计理念是<strong>简单、稳定、低维护成本。</strong>用最少的复杂度满足核心支持需求。osTicket 将邮件、表单、Web 门户等多渠道请求转为结构化工单，并通过队列、分配和状态管理实现这些请求的处理流转。</p>
+<p><img src="https://static-docs.nocobase.com/osTicket1-q0at15.png" alt="osTicket1.png"></p>
+<p>osTicket 的整体功能覆盖了常规支持团队所需的核心能力：</p>
+<ul>
+<li><strong>邮件工单收集</strong>：可以自动将邮箱邮件转成工单并在系统内组织处理。</li>
+<li><strong>工单队列与流程管理</strong>：支持多队列、多状态流转和工单分配，便于团队协作。</li>
+<li><strong>知识库（FAQ）</strong>：提供基础的常见问题与标准回复模板管理。</li>
+<li><strong>权限体系</strong>：基础的角色与访问控制，通常划分管理员、支持代理和访客角色。</li>
+<li><strong>扩展机制（插件/集成）</strong>：osTicket 提供一些插件/扩展支持，不过整体生态不像现代平台那样丰富。</li>
+</ul>
+<p>在界面设计和工作体验方面，osTicket 保持了它一贯的“实用优先”风格，虽然没有最新产品那种华丽或模块化的配置界面，但其稳定、清晰且经过长期社区验证的 workflow 支持，依然让它成为很多团队选择的经典开源方案。</p>
+<p>需要注意的是，osTicket <strong>不具备任何原生的 AI 能力</strong>，无法希望实现智能回复、自动分类或基于上下文的智能辅助。</p>
+<p>除了面向客服的工单系统之外，开源社区中也有不少面向其他<a href="https://github.com/topics/ticketing">工单场景的项目</a>，例如 GLPI 和 Attendize 。</p>
+<h3>GLPI</h3>
+<p><strong>官网</strong>：<a href="https://glpi-project.org/">https://glpi-project.org/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/glpi-project/glpi">https://github.com/glpi-project/glpi</a></p>
+<p><strong>GitHub Stars</strong>：5.5k</p>
+<p><strong>GLPI</strong> 更偏向企业内部的 IT 服务管理（ITSM），用于处理设备报修、权限申请、运维支持等内部服务请求。</p>
+<p><img src="https://static-docs.nocobase.com/GLPI1-6jttq6.png" alt="GLPI1.png"></p>
+<h2 id="zh-3">总结</h2>
+<p>开源世界里并不缺 Zendesk 的替代品，但它们大致可以分成两类：</p>
+<p>第一类是<strong>成熟的开源 help desk</strong>，例如 Zammad、osTicket、FreeScout。它们覆盖邮件转工单、知识库、SLA 和基础权限体系，适合希望快速摆脱 SaaS 成本、获得自托管能力的团队。</p>
+<p>第二类则开始走向新的方向：工单系统不再只是“客服工具”，而是企业业务流程的一部分，并逐步进入 <strong>AI 驱动的阶段</strong>。以 NocoBase 为代表的新一代方案，把工单放在数据模型、权限、工作流和 AI 员工的统一上下文中，使 AI 不只是生成回复，而是真正参与到分类、检索、流程推进和系统搭建中。</p>
+<p>如果你的目标只是替换 Zendesk，一个成熟的开源 help desk 可能已经足够；但如果你希望工单系统未来能够与业务深度集成，并成为 AI 支持流程的基础，那么选择 NocoBase 会更具长期价值。</p>
+<p>❤️ 感谢你阅读到这里，如果你觉得这篇文章内容还不错，欢迎分享给更多朋友！</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/4-open-source-data-management-tools-for-business-systems.html">4 个值得关注的开源业务数据管理工具 </a></li>
+<li><a href="../blog/4-lightweight-enterprise-software-for-business-processes.html">4个适合企业业务流程的轻量化软件（附真实案例）</a></li>
+<li><a href="../blog/6-enterprise-softwares-to-replace-excel-for-internal-operations.html">6 个替代 Excel 的企业内部管理软件</a></li>
+<li><a href="../blog/10-open-source-tools-developers-use-to-reduce-repetitive-crud.html">开发者收藏！10 个减少重复 CRUD 的开源工具</a></li>
+<li><a href="../blog/top-12-ai-workflows-projects-with-the-most-github-stars.html">GitHub Star 数量前 12 的 AI 工作流项目</a></li>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">最适合外包交付的 6 个开源无代码与低代码</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">GitHub 上星星数量前 10 的 AI CRM 开源项目 </a></li>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">如何快速搭建一个替换 Excel 的系统？（完整指南）</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">GitHub Star 数量前 5 的开源 AI 内部工具</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p>If there is one product that best represents the ticketing system space, it is Zendesk, much like Salesforce in the CRM world.</p>
+<p>Founded in 2007, Zendesk shaped the modern customer support ticketing model for many years, introducing capabilities such as email-to-ticket conversion, multi-channel support, SLA management, knowledge bases, and team collaboration.</p>
+<p><img src="https://static-docs.nocobase.com/Zendesk-vr5j27.PNG" alt="Zendesk.PNG"></p>
+<p>As we move into 2026, however, enterprise expectations for ticketing systems are clearly shifting.</p>
+<p>On one side, Zendesk, as a commercial SaaS platform, is increasingly constrained by cost, limited deep customization, and concerns around data ownership.</p>
+<p>On the other side, AI is redefining what a ticketing system can be. Companies are no longer satisfied with simple auto-replies. They expect AI to work with real data under proper permission controls, reference historical cases, and trigger workflow actions, pushing support operations toward true automation.</p>
+<p>In this article, we review some of the most notable open-source alternatives to Zendesk. These include long-established and proven projects such as Zammad and osTicket, as well as newer solutions like NocoBase that place stronger emphasis on extensibility and automation, and are already starting to integrate AI into real scenarios.</p>
+<p>Whether you want a fast replacement for Zendesk or are looking to build a foundation for AI-driven support workflows, the comparisons below should help you find the right direction.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-2">Open-source Zendesk Alternatives</h2>
+<p>A capable open-source alternative to Zendesk should be able to answer several key questions:</p>
+<ul>
+<li>Is the ticketing system mature enough to handle everyday customer support?</li>
+<li>Does it provide a knowledge base, automation rules, and a solid permission model?</li>
+<li>Can it be extended and integrated as business needs evolve?</li>
+<li>With AI becoming more important, does it have room to grow into a more intelligent system?</li>
+</ul>
+<p>The following open-source solutions are evaluated in this article:</p>
+<ol>
+<li>NocoBase: An AI-ready ticketing foundation for business systems, allowing AI to operate within real data and workflows</li>
+<li>Zammad: A mature and full-featured open-source help desk, widely regarded as a direct Zendesk alternative</li>
+<li>FreeScout: A lightweight shared inbox ticketing tool, ideal for small and medium-sized teams that need quick deployment</li>
+<li>osTicket: A classic open-source ticketing system covering core support workflows, stable but more traditional in design</li>
+<li>GLPI: A ticketing and asset management platform focused on internal enterprise IT service management (ITSM)</li>
+</ol>
+<p>If your goal is simply to find a mature, ready-to-use open-source replacement for Zendesk, Zammad is a strong choice. If you are aiming to build a system-level platform that deeply integrates with business processes and prepares your support workflows for AI, NocoBase is well worth closer examination.</p>
+<p>Next, we will take a closer look at each open-source alternative in detail.</p>
+<p>💡If you&#39;re choosing a ticketing system from scratch, start with our guide to <strong><a href="../blog/open-source-ticketing-systems.html">6 Open-Source Ticketing Systems</a></strong> and compare core capabilities such as ticket workflows, permission management, and automation.</p>
+<h3>NocoBase</h3>
+<p>Official website: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Stars: 21.4k</p>
+<p>Online demo: <a href="https://www.nocobase.com/en/solutions/ticketing-v2">AI-Powered Intelligent Ticketing System</a></p>
+<p>NocoBase is an open-source, self-hosted, AI-powered no-code and low-code development platform. Built on a data-model-driven foundation with a plugin-based architecture, it allows teams to rapidly build and iterate enterprise business systems. Beyond CRM and project management, NocoBase can also be used to create highly extensible intelligent ticketing systems.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-p08slg.PNG" alt="NocoBase1.PNG"></p>
+<p>The NocoBase ticketing system covers the entire support lifecycle, from request intake and automated assignment to SLA management and knowledge accumulation.</p>
+<p>Unlike traditional help desk products, NocoBase treats the ticketing system as part of a broader data model. You start by defining the underlying business structure, such as customers, service levels, assets, and process stages, and then layer pages, permissions, and automation rules on top.</p>
+<p>As a result, the ticketing system is not a fixed template, but a system that evolves continuously with the business:</p>
+<ul>
+<li>Tickets can be connected with CRM, project management, or internal approval workflows</li>
+<li>Different teams can be assigned different data permissions and processing views</li>
+<li>AI employees can be embedded into workflows to perform classification, retrieval, and reply suggestions based on real business data</li>
+</ul>
+<p>This level of system-wide extensibility is what most clearly differentiates NocoBase from other open-source Zendesk alternatives.</p>
+<h4>Email-to-ticket</h4>
+<p>NocoBase supports unified ticket intake from multiple sources, including:</p>
+<ul>
+<li>Public forms</li>
+<li>Customer portals</li>
+<li>Email parsing and email-to-ticket conversion</li>
+<li>API and webhook integrations</li>
+</ul>
+<p>Requests from all channels are automatically deduplicated and routed into a single ticket entry point, fully covering common email-to-ticket use cases.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-na72wr.gif" alt="NocoBase2.gif"></p>
+<p>Email-based ticketing in NocoBase can also work together with AI employees. For example, once an email conversation is completed, you can invoke the AI employee Dex to summarize the conversation and automatically fill key information into the ticket form. With a single click, a structured ticket is created, without manual copying, pasting, or repeated data entry.</p>
+<h4>Knowledge base</h4>
+<p>The NocoBase ticketing system includes built-in mechanisms for continuous knowledge accumulation:</p>
+<ul>
+<li>Ticket resolution processes can be automatically converted into knowledge articles</li>
+<li>When new tickets are created, similar solutions can be recommended based on existing knowledge</li>
+<li>AI employees can help search the knowledge base and generate suggested replies</li>
+</ul>
+<p>This allows the ticketing system to handle requests while gradually forming a self-reinforcing knowledge loop.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-p503vt.gif" alt="NocoBase3.gif"></p>
+<h4>Automation and SLA</h4>
+<p>NocoBase provides comprehensive automation and SLA management:</p>
+<ul>
+<li>Define response and resolution targets for different priority levels, such as P0 to P3</li>
+<li>Automatically track response times, resolution times, timeout alerts, and escalation rules</li>
+<li>Enable automated workflow transitions and rule-based triggers</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-5kmvne.png" alt="NocoBase4.png"></p>
+<p>In intelligent ticketing workflows, SLAs are embedded throughout the entire lifecycle rather than treated as static attributes.</p>
+<h4>RBAC</h4>
+<p>As an enterprise application development platform, NocoBase includes a robust role-based access control (RBAC) model, which is fully inherited by the ticketing system:</p>
+<ul>
+<li>Access control based on user roles and data scope</li>
+<li>Role-specific permissions and views</li>
+<li>Support for row-level and field-level access control</li>
+<li>AI employees are also governed by RBAC rules</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-y8x54g.png" alt="NocoBase5.png"></p>
+<p>This permission model is well suited for enterprise service desks and multi-team collaboration.</p>
+<h4>Extensibility and integration</h4>
+<p>NocoBase is designed for system-level extensibility, not just incremental customization.</p>
+<p>It provides open APIs, SSO, webhooks, and HTTP request nodes within workflows, making it easy to integrate with external systems such as CRM platforms, asset management tools, and alerting services.</p>
+<p>At the same time, its plugin system allows continuous extension on both the server side and the UI, including custom blocks, fields, and business actions. This ensures the ticketing system can grow with business needs instead of being locked into predefined templates.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase6-uwhzw1.png" alt="NocoBase6.png"></p>
+<p>On the frontend, more flexible page layouts can be implemented using JS blocks. These blocks can be generated and configured directly by AI employees. You simply describe the desired outcome, and the AI produces usable UI components.</p>
+<p>Crucially, these blocks are not isolated scripts. They operate within the same data model and permission framework as the rest of the system, and can interact with ticket fields, workflow states, and other page components. This allows both the interface and business logic to evolve continuously as requirements change.</p>
+<h4>AI capabilities</h4>
+<p>Across all of these dimensions, AI capabilities are embedded throughout the NocoBase ticketing system. From structuring information during email-to-ticket conversion, to knowledge retrieval and reply suggestions, to automated classification and assignment within workflows, AI employees act as an integral part of the system.</p>
+<p>In many traditional ticketing systems, AI is usually limited to chatbots or response generation and is often applied only at the final step of ticket handling, helping agents reply faster.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase7-m9r2ai.png" alt="NocoBase7.png"></p>
+<p>In NocoBase, AI employees can be applied far more broadly and can be customized to work closely with your own business systems.</p>
+<h3>Zammad</h3>
+<p>Official website: <a href="https://zammad.com/">https://zammad.com/</a></p>
+<p>GitHub: <a href="https://github.com/zammad/zammad">https://github.com/zammad/zammad</a></p>
+<p>GitHub Stars: 5.3k</p>
+<p>Zammad is a well-established open-source ticketing and customer support system released in 2016. It can be deployed on self-hosted servers or via Docker, offering a unified ticket entry point that consolidates requests from email, chat, phone, and social channels. Licensed under AGPL-3.0, Zammad focuses on transparency, flexibility, and long-term maintainability as a help desk solution.</p>
+<p><img src="https://static-docs.nocobase.com/Zammad1-sshj01.png" alt="Zammad1.png"></p>
+<h4>Email-to-ticket</h4>
+<p>Zammad provides native support for email-to-ticket workflows, automatically converting customer requests from email and other channels, such as chat, into structured tickets. This allows support teams to process large volumes of incoming requests without manual data entry.</p>
+<p><img src="https://static-docs.nocobase.com/Zammad2-ikwx76.png" alt="Zammad2.png"></p>
+<h4>Knowledge base</h4>
+<p>Zammad includes a built-in knowledge base and reusable text modules, enabling teams to create FAQs, standard reply templates, and searchable help content. Both agents and end users can access the knowledge base to find relevant information, helping reduce duplicate ticket submissions.</p>
+<p><img src="https://static-docs.nocobase.com/Zammad3-ln6l3a.png" alt="Zammad3.png"></p>
+<h4>Automation and SLA</h4>
+<p>Zammad offers built-in SLA management, allowing teams to define response and resolution targets for different request types. Administrators can set first response times, update response times, and final resolution deadlines based on ticket category, customer group, or priority. The system tracks ticket progress against these targets, applies escalation rules, and calculates SLAs based on business hours. Notifications are triggered as deadlines approach or are exceeded, helping teams meet their service commitments.</p>
+<p><img src="https://static-docs.nocobase.com/Zammad4-lmfbx5.png" alt="Zammad4.png"></p>
+<h4>RBAC</h4>
+<p>Zammad’s access control model is based on roles and ticket groups. Roles represent collections of permissions, and in addition to predefined roles such as admin, agent, and customer, custom roles can be created with tailored permission sets.</p>
+<p>At the ticket level, group access levels determine what agents can see and do within specific groups, for example read-only access, editing, creation, or assignment. Roles can also include group-specific permissions, making access boundaries between teams and ticket groups clear and manageable.</p>
+<p><img src="https://static-docs.nocobase.com/Zammad5-181ish.png" alt="Zammad5.png"></p>
+<h4>Extensibility and integration</h4>
+<p>Zammad exposes a full REST API for integration with other business systems and automation services. Webhooks allow ticket events to be pushed to third-party platforms in real time, enabling cross-system workflows. It also supports enterprise authentication integrations, including LDAP, Active Directory, and single sign-on via SAML or OpenID Connect, keeping access control aligned with existing identity systems.</p>
+<p>Built-in integrations, such as linking GitHub or GitLab issues, further support collaboration between support and development teams by surfacing code-related issues directly within the help desk.</p>
+<p><img src="https://static-docs.nocobase.com/Zammad6-blwrqc.png" alt="Zammad6.png"></p>
+<h4>AI capabilities</h4>
+<p>Zammad does not natively include AI agents or intelligent ticket execution features. AI-related functionality is typically achieved through external integrations, such as connecting to LLM services or automation tools.</p>
+<p>At its current stage, Zammad does not embed an AI runtime in its core architecture. While it can be extended through APIs to work with external intelligent services, this requires additional setup and development effort.</p>
+<h3>FreeScout</h3>
+<p>Official website: <a href="https://freescout.net/">https://freescout.net/</a></p>
+<p>GitHub: <a href="https://github.com/freescout-helpdesk/freescout">https://github.com/freescout-helpdesk/freescout</a></p>
+<p>GitHub Stars: 4k</p>
+<p>FreeScout is a lightweight open-source help desk positioned as an open-source alternative to Help Scout. Its primary goal is to deliver a low-cost, self-hosted shared inbox ticketing system, making it a good fit for small and medium-sized teams that rely mainly on email-based support.</p>
+<p>Rather than focusing on complex workflows or enterprise-level SLA management, FreeScout prioritizes simplicity, quick setup, and easy maintenance of core support processes.</p>
+<p><img src="https://static-docs.nocobase.com/FreeScout1-0qtoo9.png" alt="FreeScout1.png"></p>
+<h4>Email-to-ticket</h4>
+<p>Email handling is one of FreeScout’s core strengths:</p>
+<ul>
+<li>Automatically pulls emails from one or multiple mailboxes</li>
+<li>Converts incoming emails into assignable support tickets</li>
+<li>Keeps email replies and ticket conversations fully synchronized</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/FreeScout2-whkj1v.png" alt="FreeScout2.png"></p>
+<p>For teams whose support workflows are primarily driven by email, this functionality is stable, straightforward, and easy to operate.</p>
+<h4>Knowledge base</h4>
+<p>FreeScout includes a basic knowledge base module for publishing FAQs, standard responses, and help articles. Compared with more feature-rich help desk platforms, its content management is intentionally simple:</p>
+<ul>
+<li>Supports basic titles and content categorization</li>
+<li>Allows customers to search and browse common questions</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/FreeScout3-6boq0u.png" alt="FreeScout3.png"></p>
+<p>It works well as a centralized FAQ repository, but is not designed for complex or highly structured knowledge management.</p>
+<h4>Automation and SLA</h4>
+<p>FreeScout offers entry-level automation features:</p>
+<ul>
+<li>Simple rule-based triggers, such as conditional assignment and automated reply templates</li>
+<li>Optional modules to extend automation capabilities</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/FreeScout4-62bkh8.png" alt="FreeScout4.png"></p>
+<p>However, it does not provide the fine-grained SLA controls, complex conditions, or multi-step workflows found in enterprise ticketing systems. More advanced automation typically requires plugins or integration with external automation tools.</p>
+<h4>RBAC</h4>
+<p>FreeScout includes basic role-based permission management to control what users can see and do in the system.</p>
+<p>By default, it distinguishes between administrators and regular users. Administrators can assign specific permissions to individual users through the “Settings → Permissions” interface.</p>
+<h4>Extensibility and integration</h4>
+<p>FreeScout’s extensibility is centered around its official module system. Teams can enable modules as needed, such as team collaboration, customer portals, automation rules, SSO authentication, or Telegram notifications. This modular design helps keep the system lightweight while allowing teams to selectively add functionality as their support needs grow.</p>
+<p><img src="https://static-docs.nocobase.com/FreeScout5-prh0ab.png" alt="FreeScout5b.png"></p>
+<h4>AI capabilities</h4>
+<p>FreeScout does not provide built-in AI functionality and is not natively designed for AI-driven workflows.</p>
+<p>That said, because it is open source, it can be integrated with third-party AI services through APIs or custom extensions, which may be sufficient for basic intelligent assistance scenarios.</p>
+<h3>osTicket</h3>
+<p>Official website: <a href="https://osticket.com/">https://osticket.com/</a></p>
+<p>GitHub: <a href="https://github.com/osTicket/osTicket">https://github.com/osTicket/osTicket</a></p>
+<p>GitHub Stars: 3.6k</p>
+<p>osTicket is a long-standing open-source ticketing system built around simplicity, stability, and low maintenance overhead. Its goal is to satisfy essential support requirements with as little complexity as possible. Requests from email, forms, and web portals are converted into structured tickets and handled through queues, assignments, and status-based workflows.</p>
+<p><img src="https://static-docs.nocobase.com/osTicket1-q0at15.png" alt="osTicket1.png"></p>
+<p>At a functional level, osTicket provides the core capabilities most support teams need:</p>
+<ul>
+<li>Email-based ticket intake that automatically turns incoming messages into tickets</li>
+<li>Queue and workflow management with multiple queues, statuses, and assignment options</li>
+<li>A basic knowledge base for FAQs and standard response templates</li>
+<li>A simple permission model with administrator, agent, and guest roles</li>
+<li>Limited plugin and integration support, with a smaller ecosystem than modern extensible platforms</li>
+</ul>
+<p>From a user experience perspective, osTicket follows a clear “function over form” approach. It does not offer the polished or highly configurable interfaces seen in newer products, but its stable, well-understood workflows, refined through years of community use, continue to make it a reliable choice for many teams.</p>
+<p>However, osTicket does not include any native AI functionality and does not support intelligent replies, automatic classification, or context-aware assistance.</p>
+<p>In addition to customer support ticketing systems, the open-source ecosystem also includes projects aimed at other ticketing use cases, such as internal IT service management.</p>
+<h3>GLPI</h3>
+<p>Official website: <a href="https://glpi-project.org/">https://glpi-project.org/</a></p>
+<p>GitHub: <a href="https://github.com/glpi-project/glpi">https://github.com/glpi-project/glpi</a></p>
+<p>GitHub Stars: 5.5k</p>
+<p>GLPI is primarily designed for internal enterprise IT service management (ITSM), supporting scenarios such as hardware repairs, access requests, and day-to-day operations and maintenance support.</p>
+<p><img src="https://static-docs.nocobase.com/GLPI1-6jttq6.png" alt="GLPI1.png"></p>
+<h2 id="en-3">Conclusion</h2>
+<p>There is no shortage of open-source alternatives to Zendesk, but they broadly fall into two categories.</p>
+<p>The first includes mature open-source help desk systems such as Zammad, osTicket, and FreeScout. These tools typically cover email-to-ticket workflows, knowledge bases, SLA management, and basic access control, making them a good fit for teams that want to reduce SaaS costs and adopt a self-hosted solution with minimal friction.</p>
+<p>The second category represents a shift in how ticketing systems are defined. Instead of being limited to customer support, ticketing becomes part of broader business workflows and increasingly AI-driven. New-generation platforms like NocoBase place tickets within a unified framework of data models, permissions, workflows, and AI employees. In this context, AI does more than generate responses. It actively participates in classification, retrieval, workflow progression, and even system configuration.</p>
+<p>If your goal is simply to replace Zendesk, a mature open-source help desk may be sufficient. If, however, you want your ticketing system to integrate deeply with business processes and evolve into the foundation of AI-powered support workflows, NocoBase offers stronger long-term value.</p>
+<p>❤️ Thank you for reading through to the end. If you found this article valuable, feel free to share it with others.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/4-open-source-data-management-tools-for-business-systems.html">4 Open Source Data Management Tools for Business Systems </a></li>
+<li><a href="../blog/4-lightweight-enterprise-software-for-business-processes.html">4 Lightweight Enterprise Software for Business Processes (With Real-World Cases) </a></li>
+<li><a href="../blog/6-enterprise-softwares-to-replace-excel-for-internal-operations.html">6 Enterprise Softwares to Replace Excel for Internal Operations</a></li>
+<li><a href="../blog/10-open-source-tools-developers-use-to-reduce-repetitive-crud.html">10 Open Source Tools Developers Use to Reduce Repetitive CRUD</a></li>
+<li><a href="../blog/top-12-ai-workflows-projects-with-the-most-github-stars.html">Top 12 Open-source AI Workflows Projects with the Most GitHub Stars </a></li>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">6 Open-Source No-Code &amp; Low-Code Tools for Software Agencies</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">Top 10 Open-source AI CRM Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">How to Quickly Build a Real System to Replace Excel: A Complete Guide</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">Top 5 Open-Source AI Internal Tools on GitHub</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">写在开头</a><a href="#zh-2">开源 Zendesk 替代品</a><a href="#zh-3">总结</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">Open-source Zendesk Alternatives</a><a href="#en-3">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

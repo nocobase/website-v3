@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh=" GitHub Star 数量前 12 的 AI 工作流项目 — NocoBase" data-en="Top 12 Open-source AI Workflows Projects with the Most GitHub Stars — NocoBase"> GitHub Star 数量前 12 的 AI 工作流项目 — NocoBase</title>
+<meta name="description" content="本文基于 GitHub 的 workflow 话题，梳理了一批 Star 数排名靠前且与 AI 结合紧密的工作流项目。" data-zh="本文基于 GitHub 的 workflow 话题，梳理了一批 Star 数排名靠前且与 AI 结合紧密的工作流项目。" data-en="This article reviews a selection of top-starred workflow projects on GitHub that closely integrate AI, based on the workflow topic.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh> GitHub Star 数量前 12 的 AI 工作流项目</t-zh><t-en>Top 12 Open-source AI Workflows Projects with the Most GitHub Stars</t-en></h1>
+    <p class="lede"><t-zh>本文基于 GitHub 的 workflow 话题，梳理了一批 Star 数排名靠前且与 AI 结合紧密的工作流项目。</t-zh><t-en>This article reviews a selection of top-starred workflow projects on GitHub that closely integrate AI, based on the workflow topic.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年12月28日</t-zh><t-en>Dec 28, 2025</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2086%20(1)-nrlcig.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>提到工作流和自动化，无论是开源的 <a href="https://n8n.io/">n8n</a> 、<a href="https://dify.ai/zh">Dify</a>，还是一些较为知名的商业化产品，例如 <a href="https://zapier.com/">Zapier</a>、<a href="https://www.make.com/en">Make</a>，你可能都不陌生。不过，在这一期 GitHub AI 项目系列盘点中，我们将视角放回到 GitHub 的 <a href="https://github.com/topics/workflows">workflow</a> 话题本身，发现另一些值得关注的项目。在这些 Star 数排名靠前的工具中，有些规模并不算大，但在能力设计上更加聚焦，持续围绕工作流与 AI 的结合进行打磨。本文重新梳理了这部分与 AI 结合较为紧密的工作流项目，基于它们各自的功能亮点与典型使用场景展开。希望能帮助你更直观地理解，这一轮 AI 加入之后，工作流工具究竟在哪些方面带来了真实的改进。</p>
+<p>基于项目定位和能力侧重点的差异，本文在梳理过程中将这些 AI 工作流项目大致分为三类进行介绍：</p>
+<ul>
+<li>业务系统型平台：NocoBase、Appsmith、OpenProject</li>
+<li>自动化工作流引擎：Continue、Mastra、wshobson / agents、Activepieces、Trigger.dev</li>
+<li>工作流基础设施 &amp; 场景型工具：Temporal、Conductor、Dagger、UVDesk</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/workflow-automation-tools.html">构建工作流自动化的  5  个最佳工具 </a></p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-1"><strong>业务系统型平台</strong></h2>
+<p>已经将 AI、工作流与业务系统整合在同一体系中，具备直接落地真实业务场景的能力。</p>
+<h3><strong>NocoBase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-jw0ize.PNG" alt="NocoBase1.PNG"></p>
+<p>NocoBase 是一个开源、自托管的 AI 无代码/低代码业务系统平台，它以数据模型驱动、插件化架构为核心，支持快速构建和自定义复杂业务系统，同时通过内嵌 AI 功能使系统具备智能协作能力。</p>
+<p>GitHub Stars: 20.9k</p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>官网: <a href="https://www.nocobase.com/cn/">https://www.nocobase.com/cn/</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>AI 员工作为系统内协作角色参与业务执行 NocoBase 的 AI 能力以 AI 员工的形式存在。这些 AI 员工可以读取系统中的数据模型、界面配置和业务上下文，并在用户操作或工作流触发时参与具体任务执行。它们并非仅用于对话，而是可以作为系统的一部分，与用户共同完成业务操作。</li>
+<li>AI 员工深度集成至工作流节点 NocoBase 的工作流系统提供了与 AI 员工相关的专用节点，包括文本对话、多模态对话以及结构化输出节点。通过这些节点，AI 可以在工作流执行过程中读取上下文信息、生成结构化结果或参与条件判断，使工作流不再局限于固定规则，而具备一定的智能处理能力。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-m357m3.PNG" alt="NocoBase2.PNG"></p>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>构建具备智能协作能力的内部业务系统</li>
+</ul>
+<p>NocoBase 适合用于构建 CRM、审批系统、资产管理等内部业务系统。在这些系统中，AI 员工以系统内角色的形式存在，能够理解业务数据结构和页面上下文，协助完成信息整理、字段补全或内容生成等操作，从而减轻人工在系统操作层面的重复性工作负担。</p>
+<p>💡 阅读更多：<a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">GitHub 上星星数量前 10 的 AI CRM 开源项目</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-x5t14a.PNG" alt="NocoBase3.PNG"></p>
+<ul>
+<li>在流程关键节点引入 AI 执行与判断能力</li>
+</ul>
+<p>在业务流程运行过程中，NocoBase 的工作流可以在特定节点引入 AI 员工参与执行，例如对文本内容进行理解与校验、生成结构化输出结果，或在流程推进前提供辅助判断。这种方式并不改变原有流程结构，而是在关键步骤增强流程的处理能力，使自动化流程从规则执行过渡到具备一定智能参与。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-l7s91h.png" alt="NocoBase4.png"></p>
+<ul>
+<li>基于知识库实现上下文感知的流程执行</li>
+</ul>
+<p>借助官方提供的知识库与向量数据库能力，AI 员工可以在工作流执行过程中检索已有文档和业务数据，并基于检索结果生成输出内容。这一能力适用于需要结合历史资料、制度文档或业务知识执行流程的场景，使系统在自动化运行时具备更强的上下文理解和信息整合能力。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-ib2brm.png" alt="NocoBase5.png"></p>
+<h3><strong>Appsmith</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Appsmith-bvnvgb.png" alt="Appsmith.png"></p>
+<p>Appsmith 是一款开源的低代码应用平台，旨在帮助开发者和团队快速构建内部工具、业务应用以及自动化流程界面。在 AI 方向，Appsmith 通过集成多种大模型服务以及 Appsmith AI 功能，开发者能够将 AI 能力融入应用逻辑和工作流执行中，从而提升内部流程智能化水平。</p>
+<p>💡 阅读更多：<a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">GitHub Star 数量前 5 的开源 AI 内部工具 </a></p>
+<p>GitHub Stars: 38.7k</p>
+<p>GitHub: <a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>官网: <a href="https://www.appsmith.com">https://www.appsmith.com</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>原生集成 AI 查询与模型交互 Appsmith 提供官方支持的 Appsmith AI 功能，可在应用内部直接发起文本生成、分类、摘要、实体抽取以及图像分类等操作，并支持通过上传文件为模型提供上下文，从而让应用具备智能内容处理能力。</li>
+<li>支持构建智能助手与可编排工作逻辑 通过 Appsmith Agents，用户可以构建基于业务数据和后台逻辑的智能助理。这些智能助理能够根据用户查询调用后台数据或自动触发流程，从而实现“AI 驱动的工作流行为”。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>构建智能业务流程自动化面板 在企业内部，客户服务或运营团队可以利用 Appsmith 构建自动化面板。例如结合 Appsmith Workflows 和 AI 能力，实现自动发送邮件通知、更新数据状态和在后台同步异构系统的数据，提高业务执行效率。</li>
+<li>增强现有应用的智能分析能力 将 LLM 能力融入自定义应用中后，可以实现对长文本的摘要、分类、语义检索等功能。例如将 Appsmith 内收集的反馈信息传入模型进行分析，从而自动生成可操作的业务洞察。</li>
+</ul>
+<h3><strong>OpenProject</strong></h3>
+<p><img src="https://static-docs.nocobase.com/OpenProject-9rg5c8.png" alt="OpenProject.png"></p>
+<p>OpenProject 是一款开源的 Web 项目管理软件，支持团队从项目规划、任务管理、进度跟踪到协作沟通的全生命周期管理。它既支持传统项目管理方法，也支持敏捷与混合方法，通过工作包、看板和甘特图等视图帮助团队清晰组织工作流程。</p>
+<p>GitHub Stars: 13.4k</p>
+<p>GitHub: <a href="https://github.com/opf/openproject">https://github.com/opf/openproject</a></p>
+<p>官网: <a href="https://www.openproject.org">https://www.openproject.org</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>AI 助力项目管理建议与分析 官方展示了利用大型语言模型为用户提供项目管理建议的能力。这个功能基于对项目数据的理解，向用户展示改善项目执行的信息提示，使团队可在早期识别风险并优化流程。该能力正在开发与测试中，强调在自动化常规任务之余提升工作流程效率。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>提升日常项目管理效率 在大型项目环境中，OpenProject 可以将复杂的工作包、任务依赖和团队成员分工可视化，使整个项目流程更加透明。配合 AI 管理建议功能，团队能够更加直观地掌握项目执行状态，并针对潜在风险调整计划。</li>
+<li>智能化生成与完善文档内容 通过自动状态报告、任务摘要和文本分析等 AI 功能，用户在处理项目文档、会议记录和计划总结时能够节省大量重复性劳作，让人工编辑过程更聚焦于内容质量提升。</li>
+</ul>
+<h2 id="zh-2"><strong>自动化工作流引擎</strong></h2>
+<p>以 Agent 或流程执行为核心，更偏向框架、引擎或开发者工具，需要与现有系统结合使用。</p>
+<h3><strong>Continue</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Continue-xf8ep9.png" alt="Continue.png"></p>
+<p>Continue 是一个开源的 AI 编程助手项目，定位于开发者日常工作流中的智能协作工具。它以编辑器为核心使用场景，通过深度集成代码上下文、项目结构和历史修改记录，使 AI 能够在编码、理解代码和执行多步任务时更贴近真实开发流程。</p>
+<p>GitHub Stars: 30.5k</p>
+<p>GitHub: <a href="https://github.com/continuedev/continue">https://github.com/continuedev/continue</a></p>
+<p>官网: <a href="https://continue.dev">https://continue.dev</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>基于代码上下文的持续智能协作 Continue 的核心能力在于对当前代码仓库的深度理解。AI 可以读取文件结构、函数定义和上下游调用关系，在此基础上生成代码建议或执行修改任务，使 AI 不再脱离实际开发上下文。</li>
+<li>多步骤任务执行能力 官方文档中明确强调，Continue 并非只用于生成单段代码，而是可以在用户指令下执行一系列连续操作，例如分析问题、修改多个文件并给出结果说明。这种能力使其更接近一种嵌入开发流程中的智能工作流执行者。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>提升日常开发工作流效率 在实际开发过程中，Continue 可以协助完成代码补全、重构建议和逻辑解释等任务，减少开发者在文档查阅和上下文切换上的时间成本，使编码流程更加连贯。</li>
+<li>辅助复杂改动和问题排查 当项目中需要进行跨文件调整或排查潜在问题时，Continue 可以基于整体代码结构提供修改建议，帮助开发者更高效地完成复杂变更。这种能力使 AI 成为开发工作流中的一部分，而不是孤立的工具。</li>
+</ul>
+<h3><strong>Mastra</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Mastra-231hhv.png" alt="Mastra.png"></p>
+<p>Mastra 是一个开源的 TypeScript 框架，用于构建具有智能能力的应用与代理。它提供了构建多步骤工作流、管理上下文和记忆、集成大型语言模型以及构建智能代理的基础设施，使开发者可以用统一的方式定义和编排复杂的 AI 驱动流程。</p>
+<p>GitHub Stars: 19k</p>
+<p>GitHub: <a href="https://github.com/mastra-ai/mastra">https://github.com/mastra-ai/mastra</a></p>
+<p>官网: <a href="https://mastra.ai">https://mastra.ai</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>长期上下文管理与记忆能力 Mastra 为智能代理提供对上下文的持久管理，使得工作流中的 AI 操作可以记住历史信息，支持更连贯的多步骤执行和更复杂的任务重用。这种记忆能力是实现长时 AI 工作流不可或缺的部分。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>实现带上下文保持的多步智能交互 在需要持续理解上下文的工作流场景中，Mastra 能让智能代理在执行多步任务时持续追踪先前状态。例如，在知识检索与整合流程中，工作流可以先从数据源获取信息，然后让代理基于已有记忆执行进一步的生成和总结任务。</li>
+</ul>
+<h3><strong>wshobson agents</strong></h3>
+<p><img src="https://static-docs.nocobase.com/wshobson%20agents-mahvoo.png" alt="wshobson agents.png"></p>
+<p>wshobson agents 是一个开源的 AI Agent 扩展与插件集合项目，目标是为 AI Agent 提供可复用的工具能力与任务组件。该项目并不试图构建完整的平台或执行引擎，而是通过一组标准化的 Agent 组件，帮助开发者在既有的 AI Agent 或工作流体系中，快速扩展可执行能力，使 Agent 能够完成更具体、更结构化的任务。</p>
+<p>GitHub Stars: 23.4k</p>
+<p>GitHub: <a href="https://github.com/wshobson/agents">https://github.com/wshobson/agents</a></p>
+<p>官网: <a href="https://sethhobson.com/">https://sethhobson.com/</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>面向 Agent 的插件化工具体系 官方仓库中提供了多种可供 Agent 使用的工具模块，用于执行具体任务，例如信息处理、外部服务调用或任务辅助。这种设计使 Agent 的能力可以通过组合插件进行扩展，而不需要反复实现底层逻辑。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>为 AI 工作流补充可执行能力模块 在已有的 AI 工作流或 Agent 编排体系中，可以引入 wshobson agents 提供的工具组件，让 Agent 在特定步骤中执行明确任务，例如数据处理或外部系统交互，从而增强整体流程的可操作性。</li>
+<li>构建可组合的 Agent 执行流程 通过将多个 Agent 工具组合使用，开发者可以设计出结构化的执行流程，使 AI 在多步骤任务中具备更稳定的行为模式。这种方式适合用于需要一定确定性和可控性的 AI 自动化场景。</li>
+</ul>
+<h3><strong>Activepieces</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Activepieces-lmwl57.png" alt="Activepieces.png"></p>
+<p>Activepieces 是一款开源的自动化流程平台，旨在帮助团队通过可视化的工作流构建与执行功能，在不同系统和服务之间自动连接与协作。随着平台的演进，Activepieces 也引入了 AI 能力，为工作流提供智能化处理与 Agent 功能，从而实现更复杂的自动化逻辑。</p>
+<p>GitHub Stars: 20k</p>
+<p>GitHub: <a href="https://github.com/activepieces/activepieces">https://github.com/activepieces/activepieces</a></p>
+<p>官网: <a href="https://www.activepieces.com">https://www.activepieces.com</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>内置 AI Agent 功能提升流程智能化 Activepieces 提供内置的 AI Agent 功能，这些智能实体可被嵌入工作流中，并根据触发条件或上下文执行任务。这意味着工作流不仅能够按照固定规则运行，还能够在关键步骤中由 AI 进行语言理解、判断和下一步决策，使流程在面对非结构化信息时更灵活。</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/zapier-open-source-alternatives.html">7 款替代 Zapier 的开源工作流工具推荐</a></p>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>构建带智能决策的自动化工作流 在日常业务自动化场景中，Activepieces 不仅支持传统的触发器与动作设计，还可以将 AI Agent 集成到流程中。通过定义触发事件和步骤逻辑，用户可以让 Agent 在必要时分析数据、理解文本意图或作出决策，从而将人工干预降到最低。这样的流程适用于客服自动化、邮件智能处理等场景。</li>
+<li>扩展跨系统自动化流程的能力 Activepieces 的生态中包含许多预构建的集成组件，可以将不同服务如日历、文档服务、消息平台与 AI 能力组合起来，使业务自动化流程既能执行规则性任务，又能在流程中结合 AI 分析或内容生成能力，从而提高效率并减少重复性工作。</li>
+</ul>
+<h3><strong>Trigger.dev</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Trigger.dev-ppvc62.png" alt="Trigger.png"></p>
+<p>Trigger.dev 是一个开源的平台，用于编写和运行AI 工作流与后台任务，目标是让开发者可以使用标准的异步代码来构建可靠、可伸缩且持久的工作流。它不仅支持常规的工作流任务，还提供与 AI 相关的能力，使得长时间运行的 AI 任务、复杂的任务队列和智能代理能够稳定运行。</p>
+<p>GitHub Stars: 13.1k</p>
+<p>GitHub: <a href="https://github.com/triggerdotdev/trigger.dev">https://github.com/triggerdotdev/trigger.dev</a></p>
+<p>官网: <a href="https://trigger.dev">https://trigger.dev</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>支持构建持久、生产级 AI 工作流 Trigger.dev 的官方定位明确指出它是一个用于构建 AI 工作流和 AI 代理的平台。它允许开发者用标准的异步代码来定义任务，并支持无超时执行、队列管理、自动重试和任务可观测性等，这些特性让长时间运行的 AI 任务成为可能，同时也为构建 AI Agent 提供了基础设施支持。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>执行长期运行的 AI 任务 在一些需要长时间处理的 AI 使用场景中，例如图片生成、视频处理、语义分析等，Trigger.dev 可以帮助开发者在后台执行这些任务而不会因超时失败。它的任务管理、队列控制及自动重试机制使得这些复杂的 AI 操作可以更可靠地完成。</li>
+</ul>
+<h2 id="zh-3"><strong>工作流基础设施 &amp; 场景型工具</strong></h2>
+<p>为流程的稳定运行或特定业务场景提供支持，更多承担底层能力或单一场景补充的角色。</p>
+<h3><strong>Temporal</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Temporal-9nl4ir.png" alt="Temporal.png"></p>
+<p>Temporal 是一个开源的分布式工作流编排平台，主要用于运行持久化和可靠的业务流程代码。开发者可以使用熟悉的编程语言在其 SDK 中定义工作流逻辑，使得流程能够跨服务、跨节点稳定运行并自动处理失败与恢复。</p>
+<p>GitHub Stars: 17.2k</p>
+<p>GitHub: <a href="https://github.com/temporalio/temporal">https://github.com/temporalio/temporal</a></p>
+<p>官网: <a href="https://temporal.io">https://temporal.io</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>为 AI Agent 提供持久化执行基础 Temporal 会将工作流的执行状态记录为事件历史，即使在节点故障或服务中断的情况下，流程也可以从已确认的状态继续运行。这种执行模型非常适合需要长时间运行的 AI Agent 场景，在多次模型调用或工具操作过程中，任务进度和上下文都能够被持续保存，用于支撑复杂的 AI 驱动流程。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>支撑复杂、长时间运行的 AI 工作流 在需要多次调用模型并执行多个步骤的智能流程中，Temporal 常用于管理任务顺序和执行状态。例如在 AI Agent 场景下，可以将模型推理和工具调用拆分为不同的活动步骤，由工作流统一调度和恢复，使流程在出现异常时仍然可以继续推进。</li>
+<li>作为 AI 工作流的底层执行基础 在构建可靠、可扩展的自动化流程时，例如多步骤的数据分析流程或模型训练与评估流水线，Temporal 的状态持久化和重试机制被用来保障每一步流程的连续执行。基于这些特性，Temporal 经常出现在生产级后台工作流体系中，用于承载包含 AI 服务调用在内的复杂流程逻辑。</li>
+</ul>
+<h3>Conductor</h3>
+<p><img src="https://static-docs.nocobase.com/Conductor-5cw1xs.png" alt="Conductor.png"></p>
+<p>Conductor 是一个开源的微服务工作流编排引擎，最初由 Netflix 开源，用于在分布式系统中协调和管理复杂的业务流程。它通过将流程定义为可执行的工作流，统一调度多个任务与服务调用，帮助团队在高并发和高复杂度场景下保持流程的可控性与可恢复性。</p>
+<p>GitHub Stars: 31.7k</p>
+<p>GitHub: <a href="https://github.com/conductor-oss/conductor">https://github.com/conductor-oss/conductor</a></p>
+<p>官网:  <a href="https://conductor-oss.org/">https://conductor-oss.org/</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>作为 AI 工作流的稳定编排与控制层 官方文档明确将 Conductor 定位为通用的工作流编排引擎，而非特定领域工具。在 AI 场景中，模型调用、推理服务、数据处理等步骤通常被封装为独立任务，由 Conductor 负责调度顺序 状态管理 失败重试与补偿逻辑，从而为 AI 驱动流程提供可靠的执行保障。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>作为 AI 服务与业务系统之间的中间层 Conductor 常被用于连接业务系统与后端服务。在引入 AI 能力后，它可以作为中间协调层，将 AI 推理步骤嵌入原有业务流程中，而无需对业务系统做大规模重构，使 AI 能力逐步融入既有自动化体系。</li>
+</ul>
+<h3>Dagger</h3>
+<p><img src="https://static-docs.nocobase.com/Dagger-wxcy12.png" alt="Dagger.png"></p>
+<p>Dagger 是一个开源的工作流引擎，最初面向持续集成与持续交付场景设计，核心理念是将工作流定义为可组合的代码模块。随着使用场景的扩展，Dagger 逐渐被用于承载数据处理和 AI 相关任务，成为工程型工作流与 AI 管道的重要基础工具。</p>
+<p>GitHub Stars: 15.2k</p>
+<p>GitHub: <a href="https://github.com/dagger/dagger">https://github.com/dagger/dagger</a></p>
+<p>官网: <a href="https://dagger.io">https://dagger.io</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>以代码形式编排多步骤 AI 工作流 Dagger 允许将复杂流程拆分为多个可组合的任务模块。对于包含 AI 调用的流程，可以将数据准备模型运行结果处理等步骤明确编排，使整个 AI 工作流更清晰可维护且易于扩展。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>作为 AI 任务自动化的基础工具 在更广义的自动化场景中，Dagger 可作为底层执行工具，与其他系统配合使用，将 AI 推理或数据处理任务纳入既有工程流程中，逐步实现自动化和智能化。</li>
+</ul>
+<h3>UVDesk</h3>
+<p><img src="https://static-docs.nocobase.com/UVDesk-2cp9j3.png" alt="UVDesk.png"></p>
+<p>UVDesk 是一个开源的客户支持与工单管理系统，主要用于帮助团队构建客服中心和支持流程。随着产品演进，UVDesk 在客服场景中引入了 AI 相关能力，用于提升工单处理效率和响应质量，使支持流程在自动化基础上具备一定的智能化特征。</p>
+<p>GitHub Stars: 17k</p>
+<p>GitHub: <a href="https://github.com/uvdesk">https://github.com/uvdesk</a></p>
+<p>官网: <a href="https://www.uvdesk.com">https://www.uvdesk.com</a></p>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>基于规则与智能建议的流程优化 UVDesk 的核心仍然是规则驱动的工单流程，而 AI 能力更多作为补充存在，用于在工单创建或处理阶段提供智能建议。这种方式并未改变原有工作流结构，而是在关键节点提升处理质量。</li>
+</ul>
+<p><strong>可以用来做什么？</strong></p>
+<ul>
+<li>构建智能化客服工作流 在客户支持场景中，UVDesk 可以通过工单分配、状态流转和通知机制组织客服流程，并在其中引入 AI 自动回复或内容建议功能，减少人工重复操作，提高整体响应效率。</li>
+<li>处理高频重复问题的自动化流程 对于常见问题或标准化咨询，UVDesk 可以结合自动化规则和 AI 内容生成能力，在工单进入系统后快速给出初步回复，从而缩短用户等待时间。</li>
+</ul>
+<p>非常感谢你能够阅读到这里，若这份内容对你有所帮助，欢迎分享给更多正在探索 AI 自动化和工作流实践的团队。</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">最适合外包交付的 6 个开源无代码与低代码</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">GitHub 上星星数量前 10 的 AI CRM 开源项目 </a></li>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">如何快速搭建一个替换 Excel 的系统？（完整指南）</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">GitHub Star 数量前 5 的开源 AI 内部工具</a></li>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">8 个最佳 Google Sheets 替代方案（附成本与能力分析）</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6个适合做 PoC 的开源无代码/低代码工具推荐</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">给开发者的无代码/低代码技术决策指南（2026）</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 大企业级无代码低代码平台 RBAC 权限体系深度对比</a></li>
+</ul></div><div class="prose en-only"><p>When discussing workflows and automation, tools like <a href="https://n8n.io/">n8n</a>, <a href="https://dify.ai/zh">Dify</a>, as well as well-known commercial products such as <a href="https://zapier.com/">Zapier</a> and <a href="https://www.make.com/en">Make</a>, are likely familiar to you. However, in this GitHub AI project roundup, we’ll shift our focus back to GitHub workflows and highlight other notable projects. Among the tools with high star ratings, some may not be large in scale but are designed with a more specific focus, continuously refining the integration of workflows and AI. This article explores AI-integrated <a href="https://github.com/topics/workflows">workflow</a> projects, showcasing their unique features and use cases. It aims to provide a clearer understanding of how AI has enhanced workflow tools.</p>
+<p>Based on project positioning and key features, this article categorizes AI workflow tools into three groups:</p>
+<ul>
+<li>Business System Platforms: NocoBase, Appsmith, OpenProject</li>
+<li>Automation Workflow Engines: Continue, Mastra, wshobson/agents, Activepieces, Trigger.dev</li>
+<li>Workflow Infrastructure &amp; Scenario Tools: Temporal, Conductor, Dagger, UVDesk</li>
+</ul>
+<p>💡 Read More: <a href="../blog/workflow-automation-tools.html">5 Best Tools for Building Workflow Automation</a></p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-1">Business System Platforms</h2>
+<p>These platforms integrate AI, workflows, and business systems into one framework, enabling real-world business applications.</p>
+<h3>NocoBase</h3>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-jw0ize.PNG" alt="NocoBase1.PNG"></p>
+<p>NocoBase is an open-source, self-hosted AI no-code/low-code platform designed for building business systems. It is built around data models and plugins, supporting the rapid creation and customization of complex business systems while embedding AI features for smarter collaboration.</p>
+<p>GitHub Stars: 20.9k</p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>Official Website: <a href="https://www.nocobase.com">https://www.nocobase.com</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>AI employees act as roles in business operations NocoBase’s AI functions as AI employees who can read data models, interface configurations, and business context. They assist in executing tasks when users interact or workflows are triggered. These AI employees are more than just conversational agents—they function as integral parts of the system, helping users complete tasks.</li>
+<li>Deep integration of AI employees into workflow nodes The platform’s workflow system includes nodes specifically for AI employees, such as text and multimodal conversations and structured output. These nodes allow AI to process workflow context, generate structured results, and contribute to decision-making, turning workflows from rule-based processes into ones that can incorporate intelligent inputs.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-m357m3.PNG" alt="NocoBase2.PNG"></p>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Building internal business systems with AI collaboration NocoBase is ideal for creating internal systems like CRMs, approval systems, or asset management systems. In these systems, AI employees can understand data structures and context, assisting with tasks such as organizing information, completing fields, or generating content, which reduces repetitive manual work.</li>
+</ul>
+<p>💡 Read More: <a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">Top 10 Open-source AI CRM Projects with the Most GitHub Stars </a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-x5t14a.PNG" alt="NocoBase3.PNG"></p>
+<ul>
+<li>Enhancing workflow with AI at key decision points During workflow execution, AI employees can assist at critical points, such as verifying text content, generating structured outputs, or offering judgment before advancing the process. This adds intelligent processing without altering the underlying workflow structure.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-l7s91h.png" alt="NocoBase4.png"></p>
+<ul>
+<li>Context-aware workflow execution using knowledge bases With access to a knowledge base and vector databases, AI employees can retrieve and utilize historical documents or business data, helping to generate output based on relevant content. This is especially useful for workflows requiring historical or policy-related data, improving contextual understanding during automation.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-ib2brm.png" alt="NocoBase5.png"></p>
+<h3><strong>Appsmith</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Appsmith-bvnvgb.png" alt="Appsmith.png"></p>
+<p>Appsmith is an open-source low-code application platform designed to help developers and teams quickly create internal tools, business applications, and automation interfaces. In the AI space, Appsmith integrates various large model services and its own Appsmith AI features, allowing developers to embed AI capabilities into application logic and workflow execution, thereby enhancing the intelligence of internal processes.</p>
+<p>💡 Read More: <a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">Top 5 Open-Source AI Internal Tools on GitHub</a></p>
+<p>GitHub Stars: 38.7k</p>
+<p>GitHub: <a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>Official Website: <a href="https://www.appsmith.com">https://www.appsmith.com</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Native integration of AI queries and model interactions Appsmith provides an official Appsmith AI feature, allowing users to perform text generation, classification, summarization, entity extraction, and image classification directly within their applications. Users can also upload files to provide context for the model, enabling the application to process content intelligently.</li>
+<li>Support for building intelligent assistants and programmable workflows Using Appsmith Agents, users can build intelligent assistants based on business data and backend logic. These assistants can retrieve backend data or trigger workflows automatically based on user queries, enabling AI-driven workflow actions.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Build intelligent business automation dashboards Customer service or operations teams can use Appsmith to create automation dashboards. By combining Appsmith Workflows and AI capabilities, users can automatically send email notifications, update data statuses, and sync data between different systems in the background, improving overall business efficiency.</li>
+<li>Enhance the analytics capabilities of existing applications By integrating large language models (LLM) into custom applications, users can perform tasks such as text summarization, classification, and semantic search. For instance, feedback collected within Appsmith can be analyzed by the model to generate actionable business insights.</li>
+</ul>
+<h3><strong>OpenProject</strong></h3>
+<p><img src="https://static-docs.nocobase.com/OpenProject-9rg5c8.png" alt="OpenProject.png"></p>
+<p>OpenProject is an open-source web project management software that supports full project lifecycle management, from planning and task management to progress tracking and collaboration. It supports both traditional project management methods and agile/hybrid approaches, helping teams organize workflows clearly with views like work packages, Kanban boards, and Gantt charts.</p>
+<p>GitHub Stars: 13.4k</p>
+<p>GitHub: <a href="https://github.com/opf/openproject">https://github.com/opf/openproject</a></p>
+<p>Official Website: <a href="https://www.openproject.org">https://www.openproject.org</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>AI-powered project management suggestions and analysis OpenProject uses large language models to provide project management suggestions. By analyzing project data, this feature offers insights that help teams improve project execution, identify risks early, and optimize processes. This feature is still under development but focuses on increasing workflow efficiency while automating routine tasks.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Improve project management efficiency OpenProject visualizes complex work packages, task dependencies, and team assignments, making the project process more transparent. With AI suggestions, teams can better understand the project status and adjust plans to address potential risks.</li>
+<li>Intelligent document generation and improvement With AI capabilities like automated status reports, task summaries, and text analysis, users can save significant time on repetitive tasks when working on project documents, meeting notes, and planning summaries, allowing them to focus on improving content quality.</li>
+</ul>
+<h2 id="en-2"><strong>Automation Workflow Engines</strong></h2>
+<p>These tools are centered around Agents or process execution, and are more aligned with frameworks, engines, or developer tools that need to integrate with existing systems.</p>
+<h3><strong>Continue</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Continue-xf8ep9.png" alt="Continue.png"></p>
+<p>Continue is an open-source AI programming assistant designed as an intelligent collaboration tool for developers&#39; daily workflows. It focuses on the editor as the primary use case, deeply integrating code context, project structure, and historical modification data. This allows the AI to closely match real development workflows while coding, understanding code, and executing multi-step tasks.</p>
+<p>GitHub Stars: 30.5k</p>
+<p>GitHub: <a href="https://github.com/continuedev/continue">https://github.com/continuedev/continue</a></p>
+<p>Official Website: <a href="https://continue.dev">https://continue.dev</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Continuous collaboration based on code context Continue&#39;s core strength lies in its deep understanding of the current code repository. AI can understand file structures, function definitions, and dependencies, providing code suggestions or executing modifications based on this context, making it a seamless part of the development workflow.</li>
+<li>Multi-step task execution Continue is not limited to generating individual code snippets. It can execute a series of actions under user instructions, such as problem analysis, modifying multiple files, and providing explanations. This turns it into an intelligent workflow executor embedded within the development process.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Improve daily development workflow efficiency Continue can assist with tasks like code completion, refactoring suggestions, and logic explanations, reducing time spent switching contexts or searching documentation, resulting in a smoother coding experience.</li>
+<li>Aid with complex changes and troubleshooting For projects requiring cross-file changes or debugging, Continue can provide suggestions based on the overall code structure, helping developers implement changes more efficiently. This makes AI an integral part of the development workflow, not just a standalone tool.</li>
+</ul>
+<h3><strong>Mastra</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Mastra-231hhv.png" alt="Mastra.png"></p>
+<p>Mastra is an open-source TypeScript framework designed for building intelligent applications and agents. It provides infrastructure for creating multi-step workflows, managing context and memory, integrating large language models, and building intelligent agents, allowing developers to define and orchestrate complex AI-driven processes in a unified manner.</p>
+<p>GitHub Stars: 19k</p>
+<p>GitHub: <a href="https://github.com/mastra-ai/mastra">https://github.com/mastra-ai/mastra</a></p>
+<p>Official Website: <a href="https://mastra.ai">https://mastra.ai</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Persistent context management and memory Mastra allows intelligent agents to retain context over time, enabling multi-step tasks to remember historical information, which supports more coherent execution and reusability of complex tasks. This memory function is crucial for long-term AI workflows.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Build intelligent multi-step interactions with context retention For workflows that require continuous context understanding, Mastra enables intelligent agents to track previous states during multi-step tasks. For example, in knowledge retrieval workflows, it can first gather information from a data source and then use its memory to perform further tasks like content generation and summarization.</li>
+</ul>
+<h3><strong>wshobson agents</strong></h3>
+<p><img src="https://static-docs.nocobase.com/wshobson%20agents-mahvoo.png" alt="wshobson agents.png"></p>
+<p>wshobson agents is an open-source collection of AI Agent extensions and plugins designed to provide reusable tool capabilities and task components for AI Agents. Rather than creating a complete platform or execution engine, this project offers standardized Agent components that help developers quickly extend executable capabilities in existing AI Agent or workflow systems, enabling Agents to perform more specific, structured tasks.</p>
+<p>GitHub Stars: 23.4k</p>
+<p>GitHub: <a href="https://github.com/wshobson/agents">https://github.com/wshobson/agents</a></p>
+<p>Official Website: <a href="https://sethhobson.com/">https://sethhobson.com/</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Plugin-based toolset for Agents The repository offers a variety of tool modules for Agents, allowing them to perform specific tasks like information processing, external service calls, and task assistance. This design allows Agents to expand their capabilities by combining plugins without needing to repeatedly implement underlying logic.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Enhance AI workflows with executable capability modules In existing AI workflows or Agent orchestration systems, you can integrate tools from wshobson agents to let Agents execute specific tasks at defined steps, such as data processing or interacting with external systems, enhancing the overall process.</li>
+<li>Build composable Agent execution workflows By combining multiple Agent tools, developers can create structured execution workflows, ensuring more stable behavior patterns for AI in multi-step tasks. This approach is ideal for AI automation scenarios requiring predictability and control.</li>
+</ul>
+<h3><strong>Activepieces</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Activepieces-lmwl57.png" alt="Activepieces.png"></p>
+<p>Activepieces is an open-source automation platform designed to help teams visually build and execute workflows, enabling seamless connection and collaboration between systems and services. As the platform evolves, Activepieces has integrated AI capabilities to add intelligent processing and Agent functionality, enabling more complex automation logic.</p>
+<p>GitHub Stars: 20k</p>
+<p>GitHub: <a href="https://github.com/activepieces/activepieces">https://github.com/activepieces/activepieces</a></p>
+<p>Official Website: <a href="https://www.activepieces.com">https://www.activepieces.com</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Built-in AI Agent functionality for smarter workflows Activepieces offers built-in AI Agent capabilities that can be embedded directly into workflows to execute tasks based on triggers or context. This allows workflows to not only run based on fixed rules but also incorporate AI-driven language understanding, judgment, and decision-making, making the process more flexible when dealing with unstructured information.</li>
+</ul>
+<p>💡 Read More: <a href="../blog/zapier-open-source-alternatives.html">7 Powerful Open Source Alternatives to Zapier</a></p>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Build automated workflows with intelligent decision-making Activepieces supports traditional trigger-action workflows and allows AI Agents to be integrated. By defining trigger events and step logic, users can have Agents analyze data, interpret text, and make decisions, minimizing manual intervention. This is ideal for customer service automation, email processing, and similar tasks.</li>
+<li>Extend cross-system automation capabilities Activepieces offers many pre-built integration components, allowing businesses to combine services like calendars, document services, messaging platforms, and AI capabilities to create workflows that not only perform rule-based tasks but also incorporate AI analysis or content generation, improving efficiency and reducing repetitive work.</li>
+</ul>
+<h3><strong>Trigger.dev</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Trigger.dev-ppvc62.png" alt="Trigger.png"></p>
+<p>Trigger.dev is an open-source platform for writing and running AI workflows and backend tasks, allowing developers to use standard asynchronous code to build reliable, scalable, and durable workflows. It not only supports regular workflow tasks but also provides AI-related capabilities, enabling long-running AI tasks, complex task queues, and intelligent agents to run smoothly.</p>
+<p>GitHub Stars: 13.1k</p>
+<p>GitHub: <a href="https://github.com/triggerdotdev/trigger.dev">https://github.com/triggerdotdev/trigger.dev</a></p>
+<p>Official Website: <a href="https://trigger.dev">https://trigger.dev</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Support for building persistent, production-grade AI workflows Trigger.dev is designed as a platform for building AI workflows and agents. It allows developers to define tasks using standard asynchronous code and supports features such as unlimited execution, queue management, automatic retries, and task observability. These features make long-running AI tasks feasible while providing the necessary infrastructure for building AI Agents.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Execute long-running AI tasks In scenarios where AI tasks require extended processing time, such as image generation, video processing, or semantic analysis, Trigger.dev helps developers run these tasks in the background without risking timeout failures. Its task management, queue control, and automatic retry mechanisms ensure reliable completion of complex AI operations.</li>
+</ul>
+<h2 id="en-3"><strong>Workflow Infrastructure &amp; Scenario-based Tools</strong></h2>
+<p>Providing support for stable operations or specific business scenarios, primarily focusing on foundational capabilities or supplementary roles for specific cases.</p>
+<h3><strong>Temporal</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Temporal-9nl4ir.png" alt="Temporal.png"></p>
+<p>Temporal is an open-source distributed workflow orchestration platform designed to run persistent and reliable business process code. Developers can define workflow logic using familiar programming languages in its SDK, enabling processes to run stably across services and nodes while automatically handling failures and recovery.</p>
+<p>GitHub Stars: 17.2k</p>
+<p>GitHub: <a href="https://github.com/temporalio/temporal">https://github.com/temporalio/temporal</a></p>
+<p>Official Website: <a href="https://temporal.io">https://temporal.io</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Persistent execution support for AI Agents Temporal records the execution state of workflows as event history, allowing processes to continue from a confirmed state even in case of node failure or service interruption. This execution model is well-suited for long-running AI Agent scenarios, where task progress and context can be continuously saved during multiple model calls or tool operations to support complex AI-powered workflows.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Supporting complex, long-running AI workflows In intelligent workflows that require multiple model calls and several steps, Temporal is often used to manage task order and execution states. For example, in AI Agent scenarios, model inference and tool calls can be broken down into separate steps, with workflows scheduling and recovering them, ensuring the process continues even if disruptions occur.</li>
+<li>Underlying execution foundation for AI workflows When building reliable and scalable automation workflows, such as multi-step data analysis or model training pipelines, Temporal’s state persistence and retry mechanisms ensure continuous execution of each process. These features make Temporal a core part of production-grade backend workflow systems, supporting complex processes, including AI service calls.</li>
+</ul>
+<h3><strong>Conductor</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Conductor-5cw1xs.png" alt="Conductor.png"></p>
+<p>Conductor is an open-source microservices workflow orchestration engine originally released by Netflix, designed to coordinate and manage complex business processes in distributed systems. It defines workflows as executable tasks and orchestrates multiple tasks and service calls, helping teams maintain workflow controllability and recoverability in high concurrency and complex scenarios.</p>
+<p>GitHub Stars: 31.7k</p>
+<p>GitHub: <a href="https://github.com/conductor-oss/conductor">https://github.com/conductor-oss/conductor</a></p>
+<p>Official Website:  <a href="https://conductor-oss.org/">https://conductor-oss.org/</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Stable orchestration and control layer for AI-powered workflows Conductor is positioned as a general-purpose workflow orchestration engine, not a domain-specific tool. In AI scenarios, model calls, inference services, and data processing are typically encapsulated as independent tasks, with Conductor responsible for task scheduling, state management, failure retries, and compensation logic, ensuring reliable execution for AI-powered workflows.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Middleware between AI services and business systems Conductor is often used to bridge business systems and backend services. After introducing AI capabilities, it serves as an intermediary layer, embedding AI inference steps into existing business workflows without requiring large-scale system reworks, gradually integrating AI into the existing automation framework.</li>
+</ul>
+<h3><strong>Dagger</strong></h3>
+<p><img src="https://static-docs.nocobase.com/Dagger-wxcy12.png" alt="Dagger.png"></p>
+<p>Dagger is an open-source workflow engine originally designed for continuous integration and delivery. The core idea is to define workflows as composable code modules. As use cases expanded, Dagger evolved to handle data processing and AI tasks, becoming a crucial tool for engineering workflows and AI pipelines.</p>
+<p>GitHub Stars: 15.2k</p>
+<p>GitHub: <a href="https://github.com/dagger/dagger">https://github.com/dagger/dagger</a></p>
+<p>Official Website: <a href="https://dagger.io">https://dagger.io</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li>Composing multi-step AI workflows as code Dagger allows complex processes to be broken down into modular, composable tasks. For workflows involving AI calls, tasks like data preparation, model inference, and result processing can be clearly orchestrated, making the entire AI workflow more maintainable, scalable, and extensible.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li>Foundation for AI task automation In broader automation scenarios, Dagger can serve as the underlying execution tool, integrating AI inference or data processing tasks into existing engineering workflows, progressively automating and smartening them.</li>
+</ul>
+<h3><strong>UVDesk</strong></h3>
+<p><img src="https://static-docs.nocobase.com/UVDesk-2cp9j3.png" alt="UVDesk.png"></p>
+<p>UVDesk is an open-source customer support and ticket management system designed to help teams build customer service centers and support workflows. Over time, UVDesk has integrated AI capabilities into the customer support scenario, enhancing ticket handling efficiency and response quality, adding intelligence to the support process based on automation.</p>
+<p>GitHub Stars: 17k</p>
+<p>GitHub: <a href="https://github.com/uvdesk">https://github.com/uvdesk</a></p>
+<p>Official Website: <a href="https://www.uvdesk.com">https://www.uvdesk.com</a></p>
+<p><strong>AI Features</strong></p>
+<ul>
+<li><strong>Rule-based and intelligent suggestion-based process optimization</strong> UVDesk&#39;s core remains a rule-driven ticket process, with AI capabilities serving as a supplement. These AI features provide intelligent suggestions during ticket creation or handling, improving processing quality at critical steps without altering the core workflow structure.</li>
+</ul>
+<p><strong>What can it be used for?</strong></p>
+<ul>
+<li><strong>Building intelligent customer support workflows</strong> In customer support scenarios, UVDesk can organize ticket processes through ticket assignment, status transitions, and notification mechanisms, integrating AI auto-replies or content suggestions to reduce repetitive manual tasks and improve overall response efficiency.</li>
+<li><strong>Automating processes for frequently occurring issues</strong> For common or standardized inquiries, UVDesk can quickly generate initial responses by combining automation rules with AI content generation capabilities, reducing customer waiting time when tickets enter the system.</li>
+</ul>
+<p>Thank you for reading this. If this content was helpful, feel free to share it with teams exploring AI automation and workflow practices.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">6 Open-Source No-Code &amp; Low-Code Tools for Software Agencies</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">Top 10 Open-source AI CRM Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">How to Quickly Build a Real System to Replace Excel: A Complete Guide</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">Top 5 Open-Source AI Internal Tools on GitHub</a></li>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">The 8 Best Google Sheets Alternatives (Specs &amp; Pricing)</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6 Open-Source No/Low-Code Tools for Building PoCs</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">A Developer’s Technical Decision Guide to No-Code and Low-Code (2026)</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 In-Depth Comparison of RBAC in Enterprise-Grade No-Code/Low-Code Platforms</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">14 AI-Powered Low-Code Platforms on GitHub Worth Watching</a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">Top 11 Open Source No-Code AI Tools with the Most GitHub Stars </a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">业务系统型平台</a><a href="#zh-2">自动化工作流引擎</a><a href="#zh-3">工作流基础设施 &amp;amp; 场景型工具</a></div><div class="en-only"><a href="#en-1">Business System Platforms</a><a href="#en-2">Automation Workflow Engines</a><a href="#en-3">Workflow Infrastructure &amp;amp; Scenario-based Tools</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

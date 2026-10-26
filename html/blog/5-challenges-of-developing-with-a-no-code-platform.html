@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="使用无代码/低代码平台进行开发的 5 大挑战  — NocoBase" data-en="5 Challenges of Developing with a No-Code Platform — NocoBase">使用无代码/低代码平台进行开发的 5 大挑战  — NocoBase</title>
+<meta name="description" content="探讨使用无代码（零代码）/低代码平台开发面临的五大挑战：项目复杂度评估、定制化难题、平台依赖、学习曲线和安全问题。了解 NocoBase 如何通过微内核架构、插件化、开源代码、所见即所得的页面配置和模型驱动设计应对这些挑战。" data-zh="探讨使用无代码（零代码）/低代码平台开发面临的五大挑战：项目复杂度评估、定制化难题、平台依赖、学习曲线和安全问题。了解 NocoBase 如何通过微内核架构、插件化、开源代码、所见即所得的页面配置和模型驱动设计应对这些挑战。" data-en="Discover the top 5 challenges faced when using no-code/low-code platforms for development, including project complexity assessment, customization difficulties, platform dependency, learning curve, and security issues. Learn how NocoBase addresses these challenges with a microkernel architecture, modular plugins, open-source code, WYSIWYG page configuration, and model-driven design.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>使用无代码/低代码平台进行开发的 5 大挑战 </t-zh><t-en>5 Challenges of Developing with a No-Code Platform</t-en></h1>
+    <p class="lede"><t-zh>探讨使用无代码（零代码）/低代码平台开发面临的五大挑战：项目复杂度评估、定制化难题、平台依赖、学习曲线和安全问题。了解 NocoBase 如何通过微内核架构、插件化、开源代码、所见即所得的页面配置和模型驱动设计应对这些挑战。</t-zh><t-en>Discover the top 5 challenges faced when using no-code/low-code platforms for development, including project complexity assessment, customization difficulties, platform dependency, learning curve, and security issues. Learn how NocoBase addresses these challenges with a microkernel architecture, modular plugins, open-source code, WYSIWYG page configuration, and model-driven design.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年3月11日</t-zh><t-en>Mar 11, 2024</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/9a310391a89cddea1b93d9ab8722425d.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>近年来，越来越多的开发者会选择使用无代码（零代码）/低代码平台进行业务系统的开发。原因很简单：不用从零开始研发一整套系统，并且有易用的模版和可视化的操作界面，大大减少了业务开发的难度和所需时间。</p>
+<p>然而，真正尝试过的开发者会发现，无代码（零代码）/低代码确实能让开发变“简单”，但新的挑战也随之而来。</p>
+<p>在这篇文章中，我们将与大家探讨这些已有的挑战，并且可以怎样更好地应对。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p><img src="https://static-docs.nocobase.com/4bf9d0eabeb989779d6249d224565e7d.jpg" alt="4bf9d0eabeb989779d6249d224565e7d.jpg"></p>
+<h2 id="zh-1">挑战 1 ：难以准确评估项目复杂度和无代码/低代码平台的灵活性</h2>
+<p>开发者在推进系统研发前会做技术可行性分析，平台选择也是一样的道理。</p>
+<p>低代码（零代码）/无代码平台为了简化开发流程通常会提供一些抽象层（如：高级组件、模块或工具）。抽象层会隐藏底层的复杂性，这可能导致在需要对底层进行更细致控制的情况下，开发者无法直接操作底层代码。</p>
+<p>举个最简单的例子：开发者想实现一个定制化的库存调整界面，其中包括特定字段的显示、隐藏或排列等。但由于平台提供了一些通用的界面定制选项，使得开发者无法自由地设计符合他们特定需求的库存调整界面。</p>
+<p>所以开发者在选择平台时需要先准确评估自身项目的复杂度，同时判断目标平台的灵活性是否能满足业务需求。（如何才能做到准确评估？之后我们可以单独写一篇文章分享。）</p>
+<p>💡 阅读更多：<a href="../blog/top-8-open-source-projects-to-build-task-management-system.html">8 个最佳的开源任务管理系统（附打分）</a></p>
+<h2 id="zh-2">挑战 2：大量定制导致项目后期难度陡增</h2>
+<p>无代码（零代码）/低代码平台由于自身特点使然，不可能做到不定制开发就完全满足业务需求。特别是在一些庞大、复杂且深入行业的场景下，定制更是一种刚需。如果前期评估不佳，导致选择的平台本身与项目不是特别匹配，到后期就需要额外增加许多定制开发才能满足复杂的业务需求。</p>
+<p>而到此时，业务通常已经进入中后期，无论是继续投入大量定制或者选择迁移整个项目，对企业来说都是一笔不小的成本。</p>
+<p>所以前期选择时要重点考量目标无代码/低代码平台可拓展性以及对定制开发的接受程度，避免产生沉没成本。</p>
+<p>💡 阅读更多：<a href="../blog/business-application-development.html">完全指南：如何高效进行业务应用开发？</a></p>
+<h2 id="zh-3">挑战 3：项目依赖无代码/低代码平台提供商</h2>
+<p>选择某一平台后，项目难以避免依赖平台提供商。这时便需要多维度的考量平台提供商的能力，包括但不限于：可用性和稳定性、服务级别协议（SLA）、数据隐私安全、平台兼容性等。</p>
+<p>其中平台的兼容性代表与新旧业务系统的对接难度（特别是难以预计的新项目）。需要平台有尽可能大的兼容度，能对接不同数据源或不同业务平台。</p>
+<p>💡 阅读更多：<a href="../blog/top-15-open-source-low-code-projects-with-the-most-github-Stars.html">GitHub Star 数量前 15 的开源低代码项目</a></p>
+<h2 id="zh-4">挑战 4：学习曲线</h2>
+<p>你可能会觉得，无代码（零代码）/低代码平台不就是主打简单吗？为什么还会有学习曲线的问题？但对于一些开发者而言，不同的平台有不同的概念、工具和工作流程。</p>
+<p>此外，对于经验丰富的开发者来说，需要适应的则是平台的限制和抽象。优秀的抽象层可以提高开发效率，降低学习曲线，并减少开发过程中的错误；而糟糕的抽象层则会带来限制，同时也会使得问题追踪和调试变得困难。</p>
+<p>所以选择更符合开发者逻辑的平台显得尤为重要。</p>
+<h2 id="zh-5">挑战 5：安全性问题</h2>
+<p>通过无代码开发自动生成的代码可能容易受到安全威胁。由于无法直接操作底层代码，开发者也难以实施一些复杂的安全策略。</p>
+<p>如果是闭源软件，对代码的可控程度也会降低。同时系统的部署形式不同，也会面对不一样的安全风险。独立部署通常安全性会更强，但是随之而来的管理和维护工作也需要开发者投入时间。</p>
+<p>除此外，还需要考虑的安全性问题还包括：身份验证和授权问题、数据加密和传输安全问题以及平台自身漏洞等问题。</p>
+<p>💡 阅读更多：<a href="../blog/the-ultimate-guide-to-awesome-self-hosted-solutions.html">终极自托管解决方案指南</a></p>
+<h2 id="zh-6">平台提供好用的工具，同时需要开发者能力加持</h2>
+<p>最后我们总结一下。要想使用好无代码/低代码开发平台，一定要提前知晓这些挑战，尽量降低项目风险。开发者的能力在这里起到了更为主导的作用，无代码/低代码开发平台为做工具，目的是提供更便捷的业务实现方式。</p>
+<p>NocoBase 作为一个面向开发者使用的 AI 无代码开发平台，我们期望提供一个更强大且易用的工具。为了尽可能避免无代码（零代码）/低代码开发平台的短板，我们在产品设计之初就确定了产品的架构形式：</p>
+<p><strong>1.微内核</strong></p>
+<p><strong>2.功能插件化</strong></p>
+<p><strong>3.开放源代码</strong></p>
+<p><strong>4.页面配置所见即所得</strong></p>
+<p><strong>5.模型驱动，界面与数据分离</strong></p>
+<p><strong>6.融入系统的 AI 员工</strong></p>
+<p>这样的设计让 NocoBase 既拥有了无代码开发的易用性，同时也有定制功能拓展的灵活性。业务构建可以从数据关系入手，再进一步搭建上面的应用层，这样的逻辑也更符合开发者的工作习惯。同时拥抱开源也让我们的产品更健康，来自世界各地的开发者可以轻易地与我们沟通、反馈甚至加入开发。</p>
+<p>🙌 上手实践：<a href="https://www.nocobase.com/cn/tutorials/task-tutorial-introduction">NocoBase 实战教程 —— 任务管理系统</a></p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/open-source-internal-tools.html">GitHub Star 数量前 11 的开源内部工具</a></li>
+<li><a href="../blog/crud-projects.html">GitHub 上 Stars 数量最多的 8 个开源 CRUD 项目</a></li>
+<li><a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">GitHub Star 数量前 12 的开源无代码工具</a></li>
+<li><a href="../blog/how-to-build-efficient-crud-apps.html">如何构建高效的 CRUD 应用程序？</a></li>
+<li><a href="../blog/web-application-development.html">探索最佳无代码低代码工具：加速 Web 应用开发</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">在数小时内构建 CRM：你需要了解的顶级无代码/低代码工具</a></li>
+</ul></div><div class="prose en-only"><p>In recent years, many developers use no-code platforms to build business systems. Developers don&#39;t need to build the entire system from the beginning. <a href="https://docs.nocobase.com/welcome/introduction">No-code platforms</a> provide easy templates and visual tools, saving time.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p><img src="https://static-docs.nocobase.com/e8a79b853596a2079a1859bca0e87235.jpg" alt="e8a79b853596a2079a1859bca0e87235.jpg"></p>
+<p>No-code platforms help developers and businesses create applications without needing extensive coding knowledge. These platforms offer a range of pre-built components and drag-and-drop features that simplify the development process. This convenience benefits small businesses and startups that lack resources for a full development team.</p>
+<p>However, while no-code platforms offer many advantages, they also present unique challenges. These challenges can impact the efficiency and effectiveness of the development process. In this blog, we will delve into the existing challenges and explore effective ways to address them.</p>
+<h2 id="en-1">Challenge 1: Project Complexity and Flexibility</h2>
+<p>Before starting, developers ensure the project is feasible. No-code platforms make development easier with visual tools. But they hide the complex parts, making it hard to change the code.</p>
+<p>For example, creating a custom inventory interface is hard if the platform has limited options. Developers should think about project complexity and platform flexibility before choosing a no-code platform.</p>
+<p>When evaluating a no-code platform, it&#39;s essential to consider how well it can handle complex projects. No-code tools are great for simple apps but may not suit complex systems needing deep customization. Developers must check if the platform can scale with their project and offer flexibility for changes.</p>
+<p>Another critical factor is the platform&#39;s ability to integrate with other systems and databases. The no-code platform must seamlessly connect to specific data sources for smooth data flow and functionality. Without this capability, developers might face significant challenges in creating a cohesive system.</p>
+<p>Furthermore, the ability to update and maintain the application as the business grows is crucial.</p>
+<p>Developers must ensure the platform can support more users, new features, and changing requirements without major changes or slowdowns.</p>
+<p>💡 Read More: <a href="../blog/top-8-open-source-projects-to-build-task-management-system.html">Top 8 Open-Source Projects (Rated) to Build Your Own Task Management System</a></p>
+<h2 id="en-2">Challenge 2: Customizations Increasing Project Complexity in Later Stages</h2>
+<p>No-code platforms need customization to meet business needs, especially for complex scenarios. If the initial evaluation isn&#39;t good, the team may need more custom development later, which can be costly.</p>
+<p>Ensure the platform works well with various data sources and business platforms. Check the platform&#39;s growth and customization abilities from the beginning to avoid wasting money.</p>
+<p>Customization is a double-edged sword in the world of no-code development. On the one hand, it allows developers to tailor the application to specific business needs. On the other hand, extensive customization can lead to increased project complexity, especially in later stages of development.</p>
+<p>When a project requires significant customization, developers may find themselves constantly tweaking and adjusting the application to meet evolving requirements. Ongoing customization can be costly and time-consuming, reducing the initial savings of using a no-code platform.</p>
+<p>To mitigate these risks, developers should thoroughly evaluate the no-code platform&#39;s customization capabilities during the selection process. They should look for platforms that offer robust customization options and have a track record of supporting complex projects. Also, ensure the platform can scale with business needs and handle complexity without losing performance.</p>
+<p>Another aspect to consider is the support and documentation provided by the platform.</p>
+<p>Comprehensive documentation and responsive support can significantly ease the customization process and reduce troubleshooting time.</p>
+<p>💡 Read More: <a href="../blog/business-application-development.html">Complete Guide to Efficient Business Application Development</a></p>
+<h2 id="en-3">Challenge 3: Dependency on No-Code Platform Provider</h2>
+<p>Once you choose a no-code platform, it’s hard to avoid relying on the provider. Check the provider&#39;s capabilities in availability, stability, SLAs, data privacy, security, and compatibility with old and new systems.</p>
+<p>Dependency on a no-code platform provider is a significant concern for many businesses. When a company chooses a platform, it relies on the provider for support, updates, and maintenance. This dependency is risky if the provider faces downtime, security breaches, or performance issues.</p>
+<p>To minimize these risks, businesses should carefully evaluate the provider&#39;s capabilities and track record before committing to a platform. Key areas to assess include:</p>
+<ul>
+<li><strong>Availability</strong>: How often is the platform available, and what is the provider&#39;s uptime guarantee?</li>
+<li><strong>Stability</strong>: How stable is the platform, and how frequently does it experience technical issues?</li>
+<li><strong>Service Level Agreements (SLAs):</strong> What SLAs does the provider offer, and do they align with the business&#39;s needs?</li>
+<li><strong>Data Privacy:</strong> How does the provider handle data privacy, and what measures are in place to protect sensitive information?</li>
+<li><strong>Security:</strong> What security protocols does the provider implement to safeguard the platform and its users?</li>
+<li><strong>Compatibility:</strong> How well does the platform integrate with existing systems and future projects?</li>
+</ul>
+<p>By evaluating these factors, businesses can choose a no-code platform that minimizes dependency risks.</p>
+<p>Additionally, businesses should consider the provider&#39;s ability to innovate and keep up with industry trends.</p>
+<p>💡 Read More: <a href="../blog/top-15-open-source-low-code-projects-with-the-most-github-Stars.html">Top 15 Open-Source Low-Code Projects with the Most GitHub Stars</a></p>
+<h2 id="en-4">Challenge 4: Increased Learning Curve</h2>
+<p>If no-code platforms are easy, why discuss the learning curve? Developers need to learn the platform’s unique tools and workflows. Experienced developers might find it hard to adapt to new platform limitations.</p>
+<p>A good abstraction layer makes development easy, reduces errors, and simplifies learning. A poorly designed one can impose restrictions and complicate debugging. Choose a platform that fits developers’ logic.</p>
+<p>Despite their user-friendly design, no-code platforms still have a learning curve. Developers must familiarize themselves with the platform&#39;s unique tools, features, and workflows. This learning process can be time-consuming, especially for experienced developers accustomed to traditional coding methods.</p>
+<p>One of the primary challenges is adapting to the platform&#39;s limitations and abstractions. No-code platforms hide much complexity, making it hard for developers to understand and control the underlying mechanics. As a result, troubleshooting and debugging can become more challenging.</p>
+<p>To address these issues, developers should choose a no-code platform that aligns with their existing skills and workflows. A well-designed abstraction layer simplifies development, reduces errors, and makes it easier for developers to learn and use.</p>
+<p>Training and onboarding programs can also help reduce the learning curve. Providers with comprehensive training materials, tutorials, and community support help developers quickly learn and master the platform.</p>
+<h3>Challenge 5: Security Issues</h3>
+<p>Focus on security: code safety, login, access control, data encryption, transmission, and platform weaknesses. Auto-generated code from no-code platforms may have security threats. Limited access to the underlying code makes security management tough.</p>
+<p>If the platform isn’t open-source, developers can&#39;t see the source code, complicating security. Different deployment models also pose security risks. Standalone deployments are secure but need time and money for maintenance.</p>
+<p>Security is a critical concern when using no-code platforms. Because these platforms often generate code automatically, there is a risk that the code may contain vulnerabilities. Developers have limited access to the underlying code, making it challenging to implement robust security measures.</p>
+<p>To mitigate these risks, developers should focus on several key areas of security:</p>
+<ul>
+<li><strong>Code Safety</strong>: Ensure that the code generated by the platform is secure and free from vulnerabilities.</li>
+<li><strong>Login and Access Control</strong>: Implement strong authentication and authorization mechanisms to protect sensitive data.</li>
+<li><strong>Data Encryption and Transmission</strong>: Use encryption to secure data both at rest and in transit.</li>
+<li><strong>Platform Weaknesses</strong>: Regularly assess the platform for potential security weaknesses and address them promptly.</li>
+</ul>
+<p>If the no-code platform isn&#39;t open-source, developers have less code visibility, making security management harder. Businesses should work closely with the provider to ensure proper security measures.</p>
+<p>Different deployment models also affect security. Standalone deployments on a business&#39;s infrastructure offer better security control but need more resources for management and maintenance. On the other hand, cloud-based deployments may be easier to manage but could introduce additional security risks.</p>
+<p>Businesses should also stay informed about the latest security threats and best practices. Regular security audits and updates can help ensure that the application remains secure over time.</p>
+<p>💡 Read More: <a href="../blog/the-ultimate-guide-to-awesome-self-hosted-solutions.html">Awesome Self-Hosted Tools You Can Set Up in Minutes</a></p>
+<h2 id="en-5">Summary</h2>
+<p>While no-code platforms offer useful tools, users need design and development skills to create effective apps. Understand these challenges early to reduce risks. Developer skills are key, with platforms serving as tools to simplify business solutions.</p>
+<p>In summary, no-code platforms provide a valuable resource for businesses looking to streamline application development. However, it is essential to recognize and address the unique challenges associated with these platforms. By understanding project management, customization, provider dependency, learning curves, and security, developers can effectively use no-code platforms.</p>
+<p>Selecting the right platform and provider, investing in proper training, and maintaining security vigilance are crucial for success. With careful planning, businesses can use no-code platforms to create robust, scalable, and secure applications.</p>
+<h2 id="en-6">About NocoBase</h2>
+<p>NocoBase is a no-code platform designed for developers, offering powerful and user-friendly tools. To avoid common shortcomings, we designed our product with:</p>
+<ul>
+<li><strong>Data Model-Driven</strong>: NocoBase uses a robust data model with professional development capabilities, allowing for flexible and scalable application development.</li>
+<li><strong>Easy-to-Use WYSIWYG</strong>: NocoBase is intuitive and user-friendly, allowing developers to quickly and efficiently create applications.</li>
+<li><strong>Everything as a Plugin</strong>: NocoBase implements everything as plugins, allowing developers to add new features through a plugin architecture. This modular approach ensures that the platform can evolve with the business&#39;s needs.</li>
+<li><strong>Open Source</strong>: Using mainstream technology stacks, NocoBase is open source, providing transparency and flexibility for developers. This open approach fosters collaboration and innovation within the developer community.</li>
+<li><strong>Integration with Third-Party Systems</strong>: NocoBase seamlessly connects with various third-party systems, ensuring compatibility and enhancing application functionality.</li>
+</ul>
+<p>Request a demo and receive a test site via email within a minute. Explore the capabilities of NocoBase and see how it can transform your development process.</p>
+<p>🙌 Have a try: <a href="https://www.nocobase.com/en/tutorials/task-tutorial-introduction">NocoBase Tutorial – Task Management System</a></p>
+<p><a href="https://github.com/nocobase/nocobase">NocoBase on GitHub</a></p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/open-source-internal-tools.html">Top 11 Open Source Internal Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/crud-projects.html">Top 8 Open-Source CRUD Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">The Top 12 Open-Source No-Code Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/how-to-build-efficient-crud-apps.html">How to Build Efficient CRUD Apps?</a></li>
+<li><a href="../blog/web-application-development.html">Discover Top Tools: Accelerate Web Application Development</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">挑战 1 ：难以准确评估项目复杂度和无代码/低代码平台的灵活性</a><a href="#zh-2">挑战 2：大量定制导致项目后期难度陡增</a><a href="#zh-3">挑战 3：项目依赖无代码/低代码平台提供商</a><a href="#zh-4">挑战 4：学习曲线</a><a href="#zh-5">挑战 5：安全性问题</a><a href="#zh-6">平台提供好用的工具，同时需要开发者能力加持</a></div><div class="en-only"><a href="#en-1">Challenge 1: Project Complexity and Flexibility</a><a href="#en-2">Challenge 2: Customizations Increasing Project Complexity in Later Stages</a><a href="#en-3">Challenge 3: Dependency on No-Code Platform Provider</a><a href="#en-4">Challenge 4: Increased Learning Curve</a><a href="#en-5">Summary</a><a href="#en-6">About NocoBase</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

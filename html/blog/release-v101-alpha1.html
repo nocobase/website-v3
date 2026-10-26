@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="NocoBase 1.0.1-alpha.1: 区块支持高度设置 — NocoBase" data-en="NocoBase v1.0.1-alpha.1: Blocks support height settings — NocoBase">NocoBase 1.0.1-alpha.1: 区块支持高度设置 — NocoBase</title>
+<meta name="description" content="NocoBase 1.0.1-alpha.1 版本新增区块高度设置、URL 链接操作、变量支持及多项改进和修复，提升平台功能与性能。" data-zh="NocoBase 1.0.1-alpha.1 版本新增区块高度设置、URL 链接操作、变量支持及多项改进和修复，提升平台功能与性能。" data-en="NocoBase v1.0.1-alpha.1 introduces new features like block height settings, URL link actions, and variable support for iframes, along with various improvements and bug fixes to enhance platform functionality and performance.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></p>
+    <h1><t-zh>NocoBase 1.0.1-alpha.1: 区块支持高度设置</t-zh><t-en>NocoBase v1.0.1-alpha.1: Blocks support height settings</t-en></h1>
+    <p class="lede"><t-zh>NocoBase 1.0.1-alpha.1 版本新增区块高度设置、URL 链接操作、变量支持及多项改进和修复，提升平台功能与性能。</t-zh><t-en>NocoBase v1.0.1-alpha.1 introduces new features like block height settings, URL link actions, and variable support for iframes, along with various improvements and bug fixes to enhance platform functionality and performance.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2024年6月7日</t-zh><t-en>Jun 7, 2024</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/8cb9971f51881e85e93a3eb1bb931336.svg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">新特性</h2>
+<h3>区块支持高度设置（<a href="https://github.com/nocobase/nocobase/pull/4441">#4441</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/20240603115253.gif" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs-cn.nocobase.com/handbook/ui/blocks/block-settings/block-height">区块高度</a></li>
+</ul>
+<h3>链接操作：跳转到指定 URL（<a href="https://github.com/nocobase/nocobase/pull/4506">#4506</a>）</h3>
+<p>支持在 URL 或 Search parametrs 上传递变量。</p>
+<p><video controls="" height="280" width="100%"></video></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs-cn.nocobase.com/handbook/ui/actions/types/link">链接操作</a></li>
+</ul>
+<h3>新增 “URL 查询参数” 变量（<a href="https://github.com/nocobase/nocobase/pull/4506">#4506</a>）</h3>
+<p>该变量仅在页面 URL 中存在查询字符串时可用，与 <a href="https://docs-cn.nocobase.com/handbook/ui/actions/types/link">链接操作</a> 结合使用效果更佳。</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240603170651.png" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs-cn.nocobase.com/handbook/ui/variables#url-%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0">URL 查询参数</a></li>
+<li><a href="https://docs-cn.nocobase.com/handbook/ui/actions/types/link">链接操作</a></li>
+</ul>
+<h3>Iframe支持变量（<a href="https://github.com/nocobase/nocobase/pull/4512">#4512</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/20240603114711.png" alt=""></p>
+<p><img src="https://static-docs.nocobase.com/20240603114750.png" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs-cn.nocobase.com/handbook/block-iframe">iframe 区块</a></li>
+</ul>
+<h3>文件存储支持配置文件大小和文件类型（<a href="https://github.com/nocobase/nocobase/pull/4118">#4118</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/20240603115303.png" alt=""></p>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://docs-cn.nocobase.com/handbook/file-manager/storage">文件存储引擎</a></li>
+</ul>
+<h3>工作流：变量节点支持选择变量的中间层级数据对象作为变量的值</h3>
+<p><img src="https://static-docs.nocobase.com/20240531211727.png" alt=""></p>
+<h3>URL 字段支持预览（<a href="https://github.com/nocobase/nocobase/pull/4559">#4559</a>）</h3>
+<p>暂时只支持图片类型的预览。</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/337101796-916a6c97-bc08-4560-9526-53e482e2ac6c.gif" alt=""></p>
+<h3>数据可视化：支持“URL 查询参数”和“当前角色”变量（<a href="https://github.com/nocobase/nocobase/pull/4586">#4586</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/202406071148997.png" alt=""></p>
+<p><img src="https://static-docs.nocobase.com/202406071149567.png" alt=""></p>
+<h2 id="zh-2">优化</h2>
+<h3>导入导出功能优化 (<a href="https://github.com/nocobase/nocobase/pull/4468">#4468</a>)</h3>
+<p>提升导入导出功能的稳定性，增加导入导出的限制至 2000 条记录。支持扩展自定义字段类型的导入导出逻辑。</p>
+<p><img src="https://static-docs.nocobase.com/20240611112948.png" alt=""></p>
+<h3>通过禁用日期变量选项，来避免产生误操作（<a href="https://github.com/nocobase/nocobase/pull/4452">#4452</a>）</h3>
+<p>日期的变量除了 current time 是时刻（字符串），其他的都是时段（数组），可以用于筛选，但并不能直接作为默认值。</p>
+<p><img src="https://static-docs.nocobase.com/20240527150429.png" alt=""></p>
+<h3>联动规则赋值交互优化 (<a href="https://github.com/nocobase/nocobase/pull/4492">#4492</a>)</h3>
+<p>多选字段不出现赋值选项，单选字段选了赋值后再多选字段，将清空配置。</p>
+<p><img src="https://static-docs.nocobase.com/20240603143309.png" alt=""></p>
+<h3>调整表格区块的操作栏的右上角图标（<a href="https://github.com/nocobase/nocobase/pull/4538">#4538</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/20240603115131.png" alt=""></p>
+<h3>ErrorFallback (<a href="https://github.com/nocobase/nocobase/pull/4459">#4459</a>)</h3>
+<p>细化前端捕获错误的组件级别，避免因前端错误导致整个页面不可用。</p>
+<p><img src="https://static-docs.nocobase.com/20240604122043_rec_.gif" alt=""></p>
+<h3>支持在前端报错时收集相关信息并快捷下载日志（<a href="https://github.com/nocobase/nocobase/pull/4524">#4524</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/202406041224009.png" alt=""></p>
+<h3>其他</h3>
+<ul>
+<li>修改用户名长度限制为 1-50 (<a href="https://github.com/nocobase/nocobase/pull/4502">#4502</a>)</li>
+<li>不隐藏外键字段（<a href="https://github.com/nocobase/nocobase/pull/4499">#4499</a>）</li>
+</ul>
+<h2 id="zh-3">修复</h2>
+<h3>配置权限弹窗中的数据范围中不应该支持“当前表单”和“当前弹窗记录”变量（<a href="https://github.com/nocobase/nocobase/pull/4484">#4484</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/20240527145519.png" alt=""></p>
+<h3>支持直接选择变量的值作为关系字段的默认值（<a href="https://github.com/nocobase/nocobase/pull/4439">#4439</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/20240603121447.png" alt=""></p>
+<h3>修复多次添加“自定义请求”操作时报错的问题（<a href="https://github.com/nocobase/nocobase/pull/4458">#4458</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/20240603115234.png" alt=""></p>
+<h3>其它</h3>
+<ul>
+<li>修复表单提交后，子表格中的内容没有被清空的问题。（<a href="https://github.com/nocobase/nocobase/pull/4475">#4475</a>）</li>
+<li>修复在子表格中使用“当前对象”变量异常的问题。（<a href="https://github.com/nocobase/nocobase/pull/4521">#4521</a>）</li>
+<li>修复表单中的地图字段缺少“地图默认缩放级别”选项的问题。（<a href="https://github.com/nocobase/nocobase/pull/4527">#4527</a>）</li>
+<li>修复在弹窗中使用区块模板添加区块不显示的问题。（<a href="https://github.com/nocobase/nocobase/pull/4531">#4531</a>）</li>
+<li>修复表单数据模板的样式问题。（<a href="https://github.com/nocobase/nocobase/pull/4536">#4536</a>）</li>
+<li>工作流：运算节点表达式输入框样式丢失问题。（<a href="https://github.com/nocobase/nocobase/pull/4513">#4513</a>）</li>
+<li>工作流：人工节点自定义表单创建字段类型错误问题。（<a href="https://github.com/nocobase/nocobase/pull/4519">#4519</a>）</li>
+<li>工作流：自定义操作事件触发权限问题。（<a href="https://github.com/nocobase/nocobase/pull/4522">#4522</a>）</li>
+<li>工作流：预加载关系字段配置对多数据源支持层级深度不够的问题。（<a href="https://github.com/nocobase/nocobase/pull/4526">#4526</a>）</li>
+<li><code>json-templates</code> 库拼串错误问题。（<a href="https://github.com/nocobase/nocobase/pull/4525">#4525</a>）</li>
+<li>文件管理器：腾讯云上传和删除报错的问题。（<a href="https://github.com/nocobase/nocobase/pull/4529">#4529</a>, <a href="https://github.com/nocobase/nocobase/pull/4537">#4537</a>）</li>
+<li>表单联动规则赋值数字字段值为0.00时显示[object Object]。（<a href="https://github.com/nocobase/nocobase/pull/4482">#4482</a>）</li>
+<li>子表格缺失添加按钮控制项。（<a href="https://github.com/nocobase/nocobase/pull/4498">#4498</a>）</li>
+<li>表格编辑表单中提交按钮缺失联动规则配置项。（<a href="https://github.com/nocobase/nocobase/pull/4515">#4515</a>）</li>
+<li>数据可视化：修复设置图表筛选字段默认值时，字段组件消失的问题。（<a href="https://github.com/nocobase/nocobase/pull/4509">#4509</a>）</li>
+<li>用户认证：修复新建的密码认证，注册页面找不到的问题。（<a href="https://github.com/nocobase/nocobase/pull/4556">#4556</a>）</li>
+<li>本地化：修复翻译菜单，页面标题没有同步翻译的问题。（<a href="https://github.com/nocobase/nocobase/pull/4557">#4557</a>）</li>
+<li>地图：修复高德地图配置正确但提示密钥错误的问题。（<a href="https://github.com/nocobase/nocobase/pull/4574">#4574</a>）</li>
+</ul></div><div class="prose en-only"><h2 id="en-1">New features</h2>
+<h3>Blocks support height settings (<a href="https://github.com/nocobase/nocobase/pull/4441">#4441</a>)</h3>
+<p><img src="https://static-docs.nocobase.com/20240603115253.gif" alt="20240603115253"></p>
+<p>Reference document:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/handbook/ui/blocks/block-settings/block-height">set block height</a></li>
+</ul>
+<h3>Link action: navigate to the specified URL (<a href="https://github.com/nocobase/nocobase/pull/4506">#4506</a>)</h3>
+<p>Support configuring variables in the URL or search params.</p>
+<p><video controls="" height="250" width="100%"></video></p>
+<p>Reference document:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/handbook/ui/actions/types/link">Link action</a></li>
+</ul>
+<h3>Add a new variable called “URL search params” (<a href="https://github.com/nocobase/nocobase/pull/4506">#4506</a>)</h3>
+<p>The variable is only available when there is a query string in the page URL, making it more convenient to use in conjunction with <a href="https://docs.nocobase.com/handbook/ui/actions/types/link">link action</a>.</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240603170651.png" alt="20240603170651"></p>
+<p>Reference document:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/handbook/ui/variables#url-search-params">URL search params</a></li>
+<li><a href="https://docs.nocobase.com/handbook/ui/actions/types/link">Link action</a></li>
+</ul>
+<h3>Iframe support variables (<a href="https://github.com/nocobase/nocobase/pull/4512">#4512</a>)</h3>
+<p><img src="https://static-docs.nocobase.com/20240603114711.png" alt="20240603114711"></p>
+<p><img src="https://static-docs.nocobase.com/20240603114750.png" alt="20240603114750"></p>
+<p>Reference document:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/handbook/block-iframe">iframe block</a></li>
+</ul>
+<h3>File storages support configuring file size and file type (<a href="https://github.com/nocobase/nocobase/pull/4118">#4118</a>)</h3>
+<p><img src="https://static-docs.nocobase.com/20240603115303.png" alt="20240603115303"></p>
+<p>Reference document:</p>
+<ul>
+<li><a href="https://docs.nocobase.com/handbook/file-manager/storage">File Storage</a></li>
+</ul>
+<h3>Workflow: variable nodes support selecting partial path of data objects as the value of variables</h3>
+<p><img src="https://static-docs.nocobase.com/20240531211727.png" alt="20240531211727"></p>
+<h3>URL fields support preview (<a href="https://github.com/nocobase/nocobase/pull/4559">#4559</a>)</h3>
+<p>Currently only support image preview.</p>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/337101796-916a6c97-bc08-4560-9526-53e482e2ac6c.gif" alt="337101796-916a6c97-bc08-4560-9526-53e482e2ac6c"></p>
+<h3>Data visualization: Support for “URL query parameters” and “current role” variables (<a href="https://github.com/nocobase/nocobase/pull/4586">#4586</a>)</h3>
+<p><img src="https://static-docs.nocobase.com/202406071148997.png" alt="data-visualization-filter-block"></p>
+<p><img src="https://static-docs.nocobase.com/202406071149567.png" alt="data-visualization-filter"></p>
+<h2 id="en-2">Improvements</h2>
+<h3>Import and export function optimization (<a href="https://github.com/nocobase/nocobase/pull/4468">#4468</a>)</h3>
+<p>Improved the stability of import and export function, increased the limit of import and export to 2000 records. Supports extended import and export logic of custom field types.</p>
+<p><img src="https://static-docs.nocobase.com/20240611112948.png" alt="20240611112948"></p>
+<h3>Avoid misoperation by disabling the date variable option (<a href="https://github.com/nocobase/nocobase/pull/4452">#4452</a>)</h3>
+<p>Except for the “current time”, the variables representing dates are intervals (arrays) rather than moments (strings). They can be used for filtering, but cannot be directly used as default values.</p>
+<p><img src="https://static-docs.nocobase.com/20240527150429.png" alt="20240527150429"></p>
+<h3>Linkage rule assignment interaction optimization (<a href="https://github.com/nocobase/nocobase/pull/4492">#4492</a>)</h3>
+<p>Multi-select fields do not show assignment options. If a single-select field is selected and assigned, then switching to a multi-select field will clear the configuration</p>
+<p><img src="https://static-docs.nocobase.com/20240603143309.png" alt="20240603143309"></p>
+<h3>Adjust the top-right icon of the action column in the table block (<a href="https://github.com/nocobase/nocobase/pull/4538">#4538</a>)</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240603115131.png" alt="20240603115131"></p>
+<h3>ErrorFallback (<a href="https://github.com/nocobase/nocobase/pull/4459">#4459</a>)</h3>
+<p>Refining error fallback for different components in the frontend to prevent the entrie page from becoming unusable due to a frontend error.</p>
+<p><img src="https://static-docs.nocobase.com/20240604122043_rec_.gif" alt="error-fallback"></p>
+<h3>Collect debug information and quickly download logs when a frontend error occurs（<a href="https://github.com/nocobase/nocobase/pull/4524">#4524</a>）</h3>
+<p><img src="https://static-docs.nocobase.com/202406041224009.png" alt="error-fallback-log"></p>
+<h3>Others</h3>
+<ul>
+<li>Modify character length limit of username to 1-50 (<a href="https://github.com/nocobase/nocobase/pull/4502">#4502</a>)</li>
+<li>Do not hide foreign key fields（<a href="https://github.com/nocobase/nocobase/pull/4499">#4499</a>）</li>
+</ul>
+<h2 id="en-3">Bug fixes</h2>
+<h3>The data scope in the permission configuration dialog should not support the “Current form” and “Current popup record” variables (<a href="https://github.com/nocobase/nocobase/pull/4484">#4484</a>)</h3>
+<p><img src="https://static-docs.nocobase.com/20240527145519.png" alt="20240527145519"></p>
+<h3>Support selecting the value of a variable directly as the default value for a association field (<a href="https://github.com/nocobase/nocobase/pull/4439">#4439</a>)</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240603121447.png" alt="20240603121447"></p>
+<h3>Fix the issue of error when adding “Custom request” action multiple times (<a href="https://github.com/nocobase/nocobase/pull/4458">#4458</a>)</h3>
+<p><img src="https://nocobase-docs.oss-cn-beijing.aliyuncs.com/20240603115234.png" alt="20240603115234"></p>
+<h3>Others</h3>
+<ul>
+<li>Fix the issue of content in the sub-table not being cleared after form submission. (<a href="https://github.com/nocobase/nocobase/pull/4475">#4475</a>)</li>
+<li>Fix the issue of abnormal use of the “Current object” variable in the sub-table. (<a href="https://github.com/nocobase/nocobase/pull/4521">#4521</a>)</li>
+<li>add ‘Set default zoom level’ option for map fields. (<a href="https://github.com/nocobase/nocobase/pull/4527">#4527</a>)</li>
+<li>Fix the issue of block not being displayed when adding a block using block templates in a popup window. (<a href="https://github.com/nocobase/nocobase/pull/4531">#4531</a>)</li>
+<li>Fix the style issue of form data templates. (<a href="https://github.com/nocobase/nocobase/pull/4536">#4536</a>)</li>
+<li>Workflow: expression box style disappeared in calculation node. (<a href="https://github.com/nocobase/nocobase/pull/4513">#4513</a>)</li>
+<li>Workflow: field type incorrect when created in custom form of manual node. (<a href="https://github.com/nocobase/nocobase/pull/4519">#4519</a>)</li>
+<li>Workflow: permission issue of triggering custom action event. (<a href="https://github.com/nocobase/nocobase/pull/4522">#4522</a>)</li>
+<li>Workflow: incorrect depth configuration of preloading assoacition for multiple data source. (<a href="https://github.com/nocobase/nocobase/pull/4526">#4526</a>)</li>
+<li><code>json-templates</code> library bug. (<a href="https://github.com/nocobase/nocobase/pull/4525">#4525</a>)</li>
+<li>File manager: error when uploading or deleting file on COS. (<a href="https://github.com/nocobase/nocobase/pull/4529">#4529</a>, <a href="https://github.com/nocobase/nocobase/pull/4537">#4537</a>)</li>
+<li>Form linkage rule displays [object Object] when assigning a value of 0.00 to a numeric field. (<a href="https://github.com/nocobase/nocobase/pull/4482">#4482</a>)</li>
+<li>Subtable is missing the control setting item for the add new button. (<a href="https://github.com/nocobase/nocobase/pull/4498">#4498</a>)</li>
+<li>Submit button in the table edit form is missing the linkage rule setting item. (<a href="https://github.com/nocobase/nocobase/pull/4515">#4515</a>)</li>
+<li>Data-visualization: fix the issue of field components invisible when setting default values for chart filter fields (<a href="https://github.com/nocobase/nocobase/pull/4509">#4509</a>)</li>
+<li>Authentication: fix the issue where the sign up page is not found for newly created basic authenticator. (<a href="https://github.com/nocobase/nocobase/pull/4556">#4556</a>)</li>
+<li>Localization: fix the issue where the page titles is not translated when translating the menu texts. (<a href="https://github.com/nocobase/nocobase/pull/4557">#4557</a>)</li>
+<li>Map: fix the issue where AMap shows a key error despite correct configuration. (<a href="https://github.com/nocobase/nocobase/pull/4574">#4574</a>)</li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">新特性</a><a href="#zh-2">优化</a><a href="#zh-3">修复</a></div><div class="en-only"><a href="#en-1">New features</a><a href="#en-2">Improvements</a><a href="#en-3">Bug fixes</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/2.2.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-hygy1r.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年8月23日</t-zh><t-en>Aug 23, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2 正式版发布</t-zh><t-en>Announcing NocoBase 2.2</t-en></h3><p><t-zh>NocoBase 2.2 正式版进一步完善 V2 的完整使用路径，带来独立、轻量的 /v/ 前端入口与全新移动端体验。同时升级文件访问与权限机制，并增强评论区块、AI 知识库、工作流及核心插件的 V2 支持。</t-zh><t-en>NocoBase 2.2 further completes the V2 experience with a standalone, lightweight /v/ frontend and an all-new mobile experience. It also upgrades file access and permission controls while expanding V2 support across comments, AI knowledge bases, workflows, and core plugins.</t-en></p></a><a class="bcard" href="../blog/2.2.0-beta.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/2.2-beta-2kf9fd.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年7月17日</t-zh><t-en>Jul 17, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.2-beta 发布</t-zh><t-en>Announcing NocoBase 2.2-beta</t-en></h3><p><t-zh>NocoBase 2.2-beta 版本带来了多工作区、新移动端、新评论区块，同时继续提升 AI 知识库和工作流能力。以及全新的 `/v/` 分支——它会作为面向 V2 的独立前端入口，承接后续的功能演进。</t-zh><t-en>NocoBase 2.2-beta brings Multi Portal, a new mobile client, and a new comment block, while continuing to enhance the AI knowledge base and workflow capabilities. It also introduces the brand-new /v/ branch—which will serve as a dedicated front-end entry for V2 and carry forward all future feature development.</t-en></p></a><a class="bcard" href="../blog/2.1.0.html" data-tags="Release_Notes"><span class="cv"><img src="https://static-docs.nocobase.com/%E5%A4%A7%E7%89%88%E6%9C%AC%E5%8F%91%E5%B8%83%20(9)-tfwpkk.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>发布日志</t-zh><t-en>Release Notes</t-en></span><span><t-zh>2026年6月15日</t-zh><t-en>Jun 15, 2026</t-en></span><span><t-zh>NocoBase team</t-zh><t-en>NocoBase team</t-en></span></div><h3><t-zh>NocoBase 2.1.0 正式版发布</t-zh><t-en>Announcing NocoBase 2.1.0</t-en></h3><p><t-zh>NocoBase 2.1 以全新的 CLI 打通人与 AI Agent 连接和管理应用的入口，并完善 AI 搭建、Skills、AI 插件开发和 AI 员工能力。同时升级多应用协作、版本管理、工作流增强及更多 2.0 适配能力。</t-zh><t-en>NocoBase 2.1 introduces a new CLI for people and AI Agents to connect to and manage applications. It also enhances AI building, Skills, AI plugin development, AI Employees, multi-app collaboration, version management, workflows, and 2.0 compatibility.</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

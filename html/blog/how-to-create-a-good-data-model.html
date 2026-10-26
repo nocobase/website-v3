@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="如何创建良好的数据模型？ — NocoBase" data-en="How to Create a Good Data Model？ — NocoBase">如何创建良好的数据模型？ — NocoBase</title>
+<meta name="description" content="本文将带你深入了解如何创建一个高效的数据模型，并以 NocoBase 为例，展示如何快速建立适合业务需求的数据结构。" data-zh="本文将带你深入了解如何创建一个高效的数据模型，并以 NocoBase 为例，展示如何快速建立适合业务需求的数据结构。" data-en="This article will guide you through creating an effective data model, using NocoBase as an example, to quickly build a data structure that meets your business needs.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>如何创建良好的数据模型？</t-zh><t-en>How to Create a Good Data Model？</t-en></h1>
+    <p class="lede"><t-zh>本文将带你深入了解如何创建一个高效的数据模型，并以 NocoBase 为例，展示如何快速建立适合业务需求的数据结构。</t-zh><t-en>This article will guide you through creating an effective data model, using NocoBase as an example, to quickly build a data structure that meets your business needs.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年8月9日</t-zh><t-en>Aug 9, 2024</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/df965d74316592c4c6cfbdb998d5d3cd.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>数据模型是构建高效和稳定系统的基础。它不仅决定了如何存储和管理数据，还直接影响系统的性能和可扩展性。</p>
+<p>本文将带你深入了解如何创建一个高效的数据模型，并以 NocoBase 为例，展示如何快速建立适合业务需求的数据结构。</p>
+<p>无论你是刚接触数据建模的新手，还是希望优化现有模型的经验丰富的开发者，本指南都将为你提供有价值的参考。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-1">什么是数据模型？</h2>
+<p>简单来说，数据模型是用来组织和管理数据的一种方式。就像你在整理文件夹时，会把相关的文件放在同一个文件夹里，以便查找。</p>
+<p><img src="https://static-docs.nocobase.com/cae938db8e7ce6eae7a5804bca4d473d.png" alt="organizing files.png"></p>
+<h3>举个简单的例子</h3>
+<p>假设你在管理一个生产工厂，需要跟踪产品的生产过程和员工的信息。你可以用以下数据模型来组织这些数据：</p>
+<ul>
+<li><strong>员工表</strong>：记录工厂中所有员工的信息，比如员工ID、姓名、职位和所属部门。</li>
+<li><strong>产品表</strong>：记录生产的每种产品的信息，包括产品ID、产品名称、规格和生产成本。</li>
+<li><strong>生产订单表</strong>：每次生产任务会生成一个生产订单，记录了生产哪种产品、生产数量、负责的员工、生产开始和结束时间。</li>
+</ul>
+<p>通过这样的数据模型，你可以快速了解：</p>
+<ul>
+<li>哪位员工负责了哪些生产任务？</li>
+<li>每种产品的生产状态如何？</li>
+<li>生产过程中的资源分配和时间管理。</li>
+</ul>
+<p>数据模型帮助工厂管理人员更高效地分配资源、跟踪生产进度，并确保生产过程的透明度和可控性。</p>
+<p>💡阅读更多：<a href="../blog/how-to-build-efficient-crud-apps.html">如何构建高效的 CRUD 应用程序？</a></p>
+<h2 id="zh-2">良好数据模型的重要性</h2>
+<h3>先来看一个反面案例</h3>
+<p>糟糕的数据模型会给你带来什么样的后果？</p>
+<p>同样是管理生产工厂，如果你在设计数据模型时没有考虑到数据的关系和规范化，会出现以下问题：</p>
+<p><strong>❌  重复存储数据</strong></p>
+<p>在生产订单表中，你直接记录了员工的姓名、产品名称，而不是通过关联 ID 来链接到“员工”表和“产品”表。这意味着每当一个生产订单创建时，员工的姓名和产品名称都需要重复输入和存储。</p>
+<p>❌ <strong>缺乏关系管理</strong></p>
+<p>你没有明确设计员工和生产订单、产品之间的关系。比如，一个员工可以参与多个订单，但你没有设计这样的关联关系。订单表中每次都需要手动输入员工信息，而不是从员工表中选择。</p>
+<p><strong>糟糕的数据模型设计：</strong></p>
+<p><img src="https://static-docs.nocobase.com/114058d5d873826a69966bdee71cf1ec.png" alt="A Poor Data Modeling.png"></p>
+<h3>导致后果</h3>
+<p>😭 <strong>数据冗余和不一致性</strong></p>
+<p>由于员工姓名和产品名称在多个订单中重复出现，一旦员工的姓名或产品信息发生变化，所有相关订单都需要手动更新，容易导致数据不一致。如果忘记更新某个订单，那么系统中同一个员工可能有多个不同的名字，或者同一个产品有多个不同的名称。</p>
+<p><strong>😭 数据维护难度加大</strong></p>
+<p>每次录入新订单时，都要手动输入员工和产品信息。这不仅增加了工作量，也容易出错。如果工厂有很多订单，维护这些数据会变得非常困难。</p>
+<p><strong>😭 查询和分析变得复杂</strong></p>
+<p>由于没有建立良好的关系，查询某个员工参与的所有生产订单或者统计某个产品的生产情况变得复杂且耗时。你可能需要手动筛选或通过复杂的查询条件来获取数据。</p>
+<p><strong>😭 性能问题</strong></p>
+<p>随着数据量的增加，查询和操作变得越来越慢，系统的性能会显著下降，影响日常业务的运行效率。</p>
+<p>由此可见，建立一个良好的数据模型对于任何系统的成功运行至关重要，尤其是在复杂的数据环境中。</p>
+<h2 id="zh-3">如何建立一个良好的数据模型？</h2>
+<p>想要建立良好的数据模型，是有标准方法的。你可以按照以下步骤拆解你的业务，然后再进行数据建模。</p>
+<h3>第一步：了解业务需求</h3>
+<ul>
+<li><strong>定义目的</strong>：明确你想要解决的问题或满足的需求。例如，你是要管理工厂的生产流程，还是跟踪库存和员工信息？</li>
+<li><strong>列出关键数据</strong>：找出你需要管理的数据类型，比如员工信息、产品信息、生产订单记录等。</li>
+</ul>
+<h3>第二步：识别数据实体</h3>
+<ul>
+<li><strong>确定实体</strong>：实体是你数据模型中的核心元素。比如在工厂管理系统中，“员工”就是一个实体；“产品”和“生产订单”也是实体。</li>
+<li><strong>定义属性</strong>：每个实体都有一些属性，代表实体的特征。例如，员工的属性可以包括姓名、职位、部门；产品的属性可以包括名称、规格、生产成本；生产订单的属性可以包括订单号、生产数量、开始时间和结束时间。</li>
+</ul>
+<h3>第三步：定义实体之间的关系</h3>
+<ul>
+<li><strong>确定关系</strong>：实体之间通常存在某种关系，比如一个员工可以参与多个生产订单，一个订单可能包含多个产品。</li>
+<li><strong>画出关系图</strong>：简单地画出实体之间的关系图，帮助你清楚地看到数据之间的连接。例如，员工与生产订单之间的关系，产品与生产订单之间的关系。</li>
+</ul>
+<h3>第四步：规范数据模型</h3>
+<ul>
+<li><strong>避免数据冗余</strong>：确保每条信息只在数据模型中出现一次，避免重复。例如，不要在多个表中重复存储员工的联系方式或产品信息，而是通过关系链接这些信息。</li>
+<li><strong>确保数据一致性</strong>：数据模型中，数据的格式和类型应保持一致。比如，确保所有的日期格式相同，产品规格的单位统一。</li>
+</ul>
+<h3>第五步：测试与优化</h3>
+<ul>
+<li><strong>模拟数据操作</strong>：尝试用你的模型处理一些模拟数据，看看是否能满足你的业务需求。这有助于你发现潜在的问题。比如，试着通过模型查询某个产品的所有生产订单，或某个员工参与的所有生产任务。</li>
+<li><strong>调整模型</strong>：根据测试结果，优化你的数据模型。调整不合理的关系，或者添加遗漏的属性，例如在发现需要记录生产订单的完成状态后添加一个新的字段。</li>
+</ul>
+<h3>第六步：使用工具实现数据模型</h3>
+<ul>
+<li><strong>选择工具</strong>：如果你不熟悉编程，可以使用一些可视化工具来建立数据模型，如Excel、Google Sheets，或者专门的数据库建模工具如 Lucidchart、Draw.io 等。如果你需要一个更强大的解决方案，可以使用 <a href="https://docs-cn.nocobase.com/welcome/introduction">NocoBase</a>，它提供了强大的数据模型功能，并将前端显示与后端数据分离。当数据模型建立好后，可以在前端页面自由地进行数据操作，灵活管理工厂的各项数据。</li>
+<li><strong>录入数据</strong>：使用这些工具录入数据和设置关系，确保你的数据模型可以实际运作。比如在 NocoBase 中创建表格和字段，定义实体之间的关系，并通过其功能强大的系统来管理和操作数据，满足工厂管理的需求。</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/data-transformation-tools.html">开源自托管数据管理工具全面指南</a></p>
+<h3>第七步：维护与更新</h3>
+<ul>
+<li><strong>定期检查</strong>：随着业务的发展，定期检查并更新数据模型，确保它仍然适合当前的业务需求。例如，随着工厂生产的扩展，可能需要添加新的产品种类或员工角色。</li>
+<li><strong>记录变更</strong>：如果对模型进行了更改，记录这些变更，确保团队中的其他人也能理解和使用新的模型。例如，当你增加了新的订单管理功能，记录下这个变化并通知相关的同事。</li>
+</ul>
+<h2 id="zh-4">用 NocoBase 10 分钟快速建立一个良好的数据模型</h2>
+<p>请再次回到你的岗位，尊敬的生产工厂管理员。😉</p>
+<p>我们来结合上面的步骤实际操作一下，使用 NocoBase 建立一个良好的数据模型，用于更高效的进行工厂管理。</p>
+<p>💡阅读更多：<a href="../customers/uul-saves-70-on-logistics-system-upgrade-with-nocobase.html">美航通过 NocoBase 节省了 70% 的物流系统升级成本</a></p>
+<h3>第一步：了解业务需求</h3>
+<p>你的工厂需要管理以下信息：</p>
+<ul>
+<li><strong>员工信息</strong>：包括员工的姓名、职位和部门。</li>
+<li><strong>产品信息</strong>：包括产品名称、规格和生产成本。</li>
+<li><strong>生产订单</strong>：记录每个生产任务的细节，如负责员工、产品名称、生产数量、任务开始与结束时间等。</li>
+</ul>
+<h3>第二步：识别数据实体和属性</h3>
+<p>根据需求，我们可以确定以下数据实体及其属性：</p>
+<table>
+<thead>
+<tr>
+<th>表名称</th>
+<th>员工（Employees）</th>
+<th>产品（Products）</th>
+<th>生产订单（Production Orders）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>字段名称</td>
+<td>员工ID (自动生成)</td>
+<td>产品ID (自动生成)</td>
+<td>订单ID (自动生成)</td>
+</tr>
+<tr>
+<td></td>
+<td>姓名</td>
+<td>名称</td>
+<td>产品ID（关联产品表）</td>
+</tr>
+<tr>
+<td></td>
+<td>职位</td>
+<td>规格</td>
+<td>负责员工ID（关联员工表）</td>
+</tr>
+<tr>
+<td></td>
+<td>部门</td>
+<td>生产成本</td>
+<td>生产数量</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>开始时间</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>结束时间</td>
+</tr>
+</tbody></table>
+<h3>第三步：定义实体之间的关系</h3>
+<ul>
+<li>一个<strong>员工</strong>可以参与多个<strong>生产订单，</strong>但是<strong>负责员工</strong>只会有一位（多对一关系）。</li>
+<li>一个<strong>生产订单</strong>可以包含多个<strong>产品，</strong>一个<strong>产品</strong>也可以出现在多个<strong>生产订单</strong>中（多对多关系）。</li>
+</ul>
+<h3>第四步：在 NocoBase 中建立数据模型</h3>
+<p>现在我们开始使用NocoBase来建立这个数据模型。</p>
+<ol>
+<li><strong>创建“员工”表</strong>：<ul>
+<li>在 NocoBase 的管理界面中，创建一个新表，命名为“员工”。</li>
+<li>添加字段：姓名、职位、部门。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/a3eebce411a2c0751f7ea0d5633c2f13.png" alt="Employee Table.png"></p>
+<ol start="2">
+<li><strong>创建“产品”表</strong>：<ul>
+<li>创建另一个表，命名为“产品”。</li>
+<li>添加字段：名称、规格、生产成本。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/6042fbf7475cad92f88b4bada269baa3.png" alt="Product Table.png"></p>
+<ol start="3">
+<li><strong>创建“生产订单”表</strong>：<ul>
+<li>创建一个表，命名为“生产订单”。</li>
+<li>添加字段：生产数量、开始时间、结束时间。</li>
+<li>添加关系字段：选择“关联”字段类型，分别关联到“员工”表和“产品”表，以表示员工和产品之间的关系。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/8e626e70aaffebf7380282f643ec1be5.png" alt="Production Order Table.png"></p>
+<p><strong>创建好后的可以在 NocoBase 看到数据模型关系：</strong></p>
+<p><img src="https://static-docs.nocobase.com/afc97bedaba01764d2a67fe92c5a1aab.png" alt="data model relationships.png"></p>
+<p><strong>数据管理界面：</strong></p>
+<p><img src="https://static-docs.nocobase.com/dcfce7142fb78480d557df4a8d75abf9.png" alt="Data Management Interface.png"></p>
+<h3>第五步：测试与优化</h3>
+<ol>
+<li><strong>录入测试数据</strong>：向每个表中录入一些测试数据，比如几个员工、几个产品以及一些生产订单。</li>
+</ol>
+<p><strong>导入数据：</strong></p>
+<p><img src="https://static-docs.nocobase.com/5b7e13035c6fe2d7be811976230277d7.gif" alt="Input data.gif"></p>
+<ol start="2">
+<li><strong>模拟操作</strong>：尝试在系统中进行常见操作，如创建生产订单，或者查看某个员工参与的所有生产订单。</li>
+</ol>
+<p><strong>创建生产订单：</strong></p>
+<p><img src="https://static-docs.nocobase.com/03303fbd4067fd70a3fa6b653e71014c.gif" alt="Creating production orders.gif"></p>
+<p><strong>查看某个员工参与的所有生产订单：</strong></p>
+<p><img src="https://static-docs.nocobase.com/13490f23e9f2e0d6ddfc66b77ed55690.gif" alt="Viewing all production orders an employee is involved in.gif"></p>
+<ol start="3">
+<li><strong>调整模型</strong>：根据测试反馈，优化字段设置或关系结构。例如，可能需要添加额外的字段来更好地描述订单状态。</li>
+</ol>
+<h3>第六步：使用工作流</h3>
+<p>如果你的工厂管理系统需要更复杂的业务逻辑，可以使用 NocoBase 的工作流功能来自动化某些操作。</p>
+<p>例如，订单完成后自动更新库存信息。</p>
+<p><img src="https://static-docs.nocobase.com/2f080ec66f3aecee8dd34247af175986.png" alt="Workflow.png"></p>
+<p>💡 教程：<a href="https://www.nocobase.com/cn/tutorials/task-tutorial-workflow">第七章：工作流——自动赋能，效率飞跃</a></p>
+<h2 id="zh-5">结语</h2>
+<p>数据模型是任何应用程序的核心，它不仅影响到数据的存储与管理，还直接关系到系统的性能和扩展性。通过本文的介绍，相信你已经掌握了如何使用 NocoBase 创建一个高效的数据模型的基本方法。</p>
+<p>从理解业务需求到实际操作，每一步都至关重要。</p>
+<p>希望你能在实际开发中应用这些知识，不断优化你的数据模型，以应对复杂的业务需求。</p>
+<p>记住，一个好的数据模型不仅能提高工作效率，还能为未来的扩展打下坚实的基础。</p>
+<p>💡<a href="https://www.nocobase.com/cn">在线试用 NocoBase Demo，感受快速搭建数据模型的强大能力</a></p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/top-5-success-cases-of-low-code-open-source-platforms.html">5大低代码开源平台案例研究</a></li>
+<li><a href="../blog/5-challenges-of-developing-with-a-no-code-platform.html">使用无代码/低代码平台进行开发的 5 大挑战</a></li>
+<li><a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">GitHub Star 数量前 12 的开源无代码工具</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">在数小时内构建 CRM：你需要了解的顶级无代码/低代码工具</a></li>
+<li><a href="../blog/business-process-management.html">什么是BPM，如何构建一个BPM App？</a></li>
+<li><a href="../blog/rapid-application-development-best-application-cases.html">探索 RAD：5 个最佳实践案例解析</a></li>
+</ul></div><div class="prose en-only"><p>A data model is the foundation of building an efficient and stable system. It not only determines how data is stored and managed but also directly impacts the performance and scalability of the system.</p>
+<p>This article will guide you through creating an effective data model, using NocoBase as an example, to quickly build a data structure that meets your business needs.</p>
+<p>Whether you are new to data modeling or an experienced developer looking to optimize an existing model, this guide will provide you with valuable insights.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-1">What is a Data Model?</h2>
+<p>Simply put, a data model is a method of organizing and managing data. It’s like organizing files in a folder where related documents are stored together for easy access.</p>
+<p><img src="https://static-docs.nocobase.com/cae938db8e7ce6eae7a5804bca4d473d.png" alt="organizing files.png"></p>
+<h3><strong>A Simple Example</strong></h3>
+<p>Imagine you are managing a production factory. You need to track the production process and employee information. You can use the following data model to organize this data:</p>
+<ul>
+<li><strong>Employee Table</strong>: Records information about all employees in the factory, such as employee ID, name, position, and department.</li>
+<li><strong>Product Table</strong>: Records information about each product, including product ID, product name, specifications, and production costs.</li>
+<li><strong>Production Order Table</strong>: Every production task generates a production order that records which product to produce, the quantity, the responsible employee, and the start and end times.</li>
+</ul>
+<p>With this data model, you can quickly understand:</p>
+<ul>
+<li>Which employee is responsible for which production task?</li>
+<li>What is the production status of each product?</li>
+<li>How resources and time are managed during production.</li>
+</ul>
+<p>A well-structured data model helps factory managers efficiently allocate resources, track production progress, and ensure transparency and control over the production process.</p>
+<p>💡Dig deeper:<a href="../blog/how-to-build-efficient-crud-apps.html"> How to Build Efficient CRUD Apps?</a></p>
+<h2 id="en-2">The Importance of a Good Data Model</h2>
+<h3>Case of a Poor Data Model</h3>
+<p>What Happens When a Data Model is Poorly Designed?</p>
+<p>If you design a data model without considering data relationships and normalization, you might face the following issues:</p>
+<p><strong>❌ Data Duplication</strong></p>
+<p>If you directly record employee names and product names in the production order table without linking them to the &quot;Employee&quot; and &quot;Product&quot; tables via ID, you will need to repeatedly input and store this information every time a production order is created.</p>
+<p><strong>❌ Lack of Relationship Management</strong></p>
+<p>If you don’t clearly design relationships between employees, production orders, and products, it could lead to redundant and inconsistent data entries. For example, an employee participating in multiple orders might have to be manually entered each time rather than selecting from the employee table.</p>
+<p><strong>A Poor Data Modeling:</strong></p>
+<p><img src="https://static-docs.nocobase.com/114058d5d873826a69966bdee71cf1ec.png" alt="A Poor Data Modeling.png"></p>
+<h3><strong>Consequences</strong></h3>
+<p><strong>😭 Data Redundancy and Inconsistency</strong>:</p>
+<p>When employee names and product names appear in multiple orders, any change in employee name or product information will require manual updates across all related orders. This increases the risk of data inconsistency, such as having different names for the same employee or product across the system.</p>
+<p><strong>😭 Increased Data Maintenance Difficulty</strong>:</p>
+<p>Manually entering employee and product information for every new order adds to the workload and increases the likelihood of errors. As the number of orders grows, maintaining this data becomes increasingly difficult.</p>
+<p><strong>😭 Complex Query and Analysis</strong>:</p>
+<p>Without proper relationships, querying all production orders involving a specific employee or summarizing production data for a product becomes complicated and time-consuming. You might need to manually filter or use complex query conditions to retrieve the data.</p>
+<p><strong>😭 Performance Issues</strong></p>
+<p>As the data volume increases, queries and operations become slower, significantly affecting the system&#39;s performance and the efficiency of daily business operations.</p>
+<p>Establishing a good data model is crucial for the successful operation of any system, especially in complex data environments.</p>
+<h2 id="en-3">How to Build a Good Data Model?</h2>
+<p>Building a good data model involves several standard steps.</p>
+<p>You can break down your business requirements and then proceed with data modeling:</p>
+<h3>Step 1: Understand Business Requirements</h3>
+<ul>
+<li><strong>Define the Purpose</strong>: Clearly identify the problems you want to solve or the needs you want to meet. For example, are you managing the factory’s production processes or tracking inventory and employee information?</li>
+<li><strong>List Key Data</strong>: Identify the types of data you need to manage, such as employee information, product information, and production order records.</li>
+</ul>
+<h3>Step 2: Identify Data Entities</h3>
+<ul>
+<li><strong>Determine Entities</strong>: Entities are the core elements in your data model. For example, in a factory management system, &quot;Employee&quot; is an entity; &quot;Product&quot; and &quot;Production Order&quot; are also entities.</li>
+<li><strong>Define Attributes</strong>: Each entity has attributes that represent its characteristics. For example, an employee’s attributes might include name, position, and department; a product’s attributes might include name, specifications, and production costs; a production order’s attributes might include order number, production quantity, start time, and end time.</li>
+</ul>
+<h3>Step 3: Define Relationships Between Entities</h3>
+<ul>
+<li><strong>Determine Relationships</strong>: Entities usually have relationships, such as one employee participating in multiple production orders or one order containing multiple products.</li>
+<li><strong>Draw Relationship Diagrams</strong>: Simply draw out the relationship diagrams between entities to clearly see the connections between the data. For example, the relationship between employees and production orders, and between products and production orders.</li>
+</ul>
+<h3>Step 4: Normalize the Data Model</h3>
+<ul>
+<li><strong>Avoid Data Redundancy</strong>: Ensure that each piece of information appears only once in the data model to avoid duplication. For instance, do not store employee contact details or product information in multiple tables; instead, link this information through relationships.</li>
+<li><strong>Ensure Data Consistency</strong>: Keep the format and type of data consistent in the data model. For example, ensure all date formats are the same and product specifications are uniform.</li>
+</ul>
+<h3>Step 5: Test and Optimize</h3>
+<ul>
+<li><strong>Simulate Data Operations</strong>: Try processing some simulated data with your model to see if it meets your business needs. This helps you identify potential issues. For example, try querying all production orders for a product or all production tasks an employee is involved in.</li>
+<li><strong>Adjust the Model</strong>: Optimize your data model based on the test results. Adjust unreasonable relationships or add missing attributes, such as adding a new field to record the completion status of production orders.</li>
+</ul>
+<h3>Step 6: Implement the Data Model with Tools</h3>
+<ul>
+<li><strong>Choose Tools</strong>: If you are not familiar with programming, you can use visualization tools to build the data model, such as Excel, Google Sheets, or specialized database modeling tools like Lucidchart or Draw.io. If you need a more powerful solution, use <a href="https://docs.nocobase.com/">NocoBase</a>, which provides robust data modeling features and separates frontend display from backend data. Once the data model is established, you can flexibly manage factory data through NocoBase’s system.</li>
+<li><strong>Enter Data</strong>: Use these tools to enter data and set relationships, ensuring your data model works in practice. For example, create tables and fields in NocoBase, define relationships between entities, and manage and operate data through its powerful system to meet factory management needs.</li>
+</ul>
+<p>💡 Read More: <a href="../blog/data-transformation-tools.html">The Ultimate Guide to Data Transformation Tools</a></p>
+<h3>Step 7: Maintain and Update</h3>
+<ul>
+<li><strong>Regularly Check</strong>: Regularly check and update the data model as the business evolves, ensuring it still fits the current business needs. For example, as the factory expands its production, you might need to add new product categories or employee roles.</li>
+<li><strong>Document Changes</strong>: If changes are made to the model, document these changes to ensure others in your team can understand and use the new model. For instance, when you add new order management features, record this change and inform relevant colleagues.</li>
+</ul>
+<h2 id="en-4">Quickly Build a Data Model with NocoBase in 10 Minutes</h2>
+<p>Let’s return to your role as a factory manager. 😉</p>
+<p>Let’s go through the steps to create a good data model using NocoBase for more efficient factory management.</p>
+<p>💡Dig deeper: <a href="../customers/uul-saves-70-on-logistics-system-upgrade-with-nocobase.html">UUL Saves 70% on Logistics System Upgrade with NocoBase</a></p>
+<h3><strong>Step 1: Understand Business Requirements</strong></h3>
+<p>Your factory needs to manage the following information:</p>
+<ul>
+<li><strong>Employee Information</strong>: Including employee name, position, and department.</li>
+<li><strong>Product Information</strong>: Including product name, specifications, and production costs.</li>
+<li><strong>Production Orders</strong>: Recording details of each production task, such as responsible employees, product name, production quantity, task start and end times.</li>
+</ul>
+<h3><strong>Step 2: Identify Data Entities and Attributes</strong></h3>
+<p>Based on the requirements, we can determine the following data entities and their attributes.</p>
+<table>
+<thead>
+<tr>
+<th>Table Name</th>
+<th>Employees</th>
+<th>Products</th>
+<th>Production Orders</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Field Name</td>
+<td>Employee ID (Auto-generated)</td>
+<td>Product ID (Auto-generated)</td>
+<td>Order ID (Auto-generated)</td>
+</tr>
+<tr>
+<td></td>
+<td>Name</td>
+<td>Name</td>
+<td>Product ID (Linked to Product Table)</td>
+</tr>
+<tr>
+<td></td>
+<td>Position</td>
+<td>Specification</td>
+<td>Employee ID (Linked to Employee Table)</td>
+</tr>
+<tr>
+<td></td>
+<td>Department</td>
+<td>Production Cost</td>
+<td>Production Quantity</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>Start Time</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>End Time</td>
+</tr>
+</tbody></table>
+<h3><strong>Step 3: Define Relationships Between Entities</strong></h3>
+<ul>
+<li>An <strong>employee</strong> can participate in multiple <strong>production orders</strong>, but only one <strong>employee</strong> is responsible for each order (many-to-one).</li>
+<li>A production order can contain multiple products, and a product can also appear in multiple production orders (many-to-many).</li>
+</ul>
+<h3><strong>Step 4: Build the Data Model in NocoBase</strong></h3>
+<p>Now we start using NocoBase to build this data model.</p>
+<ol>
+<li><strong>Create Employee Table</strong>:<ul>
+<li>In NocoBase’s management interface, create a new table named Employee.</li>
+<li>Add fields: Name, Position, Department.</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/a3eebce411a2c0751f7ea0d5633c2f13.png" alt="Employee Table.png"></p>
+<ol start="2">
+<li><strong>Create Product Table</strong>:<ul>
+<li>Create another table named Product.</li>
+<li>Add fields: Name, Specifications, Production Costs.</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/6042fbf7475cad92f88b4bada269baa3.png" alt="Product Table.png"></p>
+<ol start="3">
+<li><strong>Create Production Order Table</strong>:<ul>
+<li>Create a table named Production Order.</li>
+<li>Add fields: Production Quantity, Start Time, End Time.</li>
+<li>Add relationship fields: Select the Relation field type and link to the Employee and Product tables to represent the relationships between employees and products.</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/8e626e70aaffebf7380282f643ec1be5.png" alt="Production Order Table.png"></p>
+<p><strong>After creation, you can view the data model relationships in NocoBase:</strong></p>
+<p><img src="https://static-docs.nocobase.com/afc97bedaba01764d2a67fe92c5a1aab.png" alt="data model relationships.png"></p>
+<p><strong>Data Management Interface:</strong></p>
+<p><img src="https://static-docs.nocobase.com/dcfce7142fb78480d557df4a8d75abf9.png" alt="Data Management Interface.png"></p>
+<h3><strong>Step 5: Test and Optimize</strong></h3>
+<ol>
+<li><strong>Enter Test Data</strong>:</li>
+</ol>
+<p>Input some test data into each table, such as a few employees, products, and production orders.</p>
+<p><strong>Input data：</strong></p>
+<p><img src="https://static-docs.nocobase.com/5b7e13035c6fe2d7be811976230277d7.gif" alt="Input data.gif"></p>
+<ol start="2">
+<li><strong>Simulate Operations</strong>:</li>
+</ol>
+<p>Try performing common operations in the system, such as creating production orders or viewing all production orders an employee is involved in.</p>
+<p><strong>Creating production orders</strong>：</p>
+<p><img src="https://static-docs.nocobase.com/03303fbd4067fd70a3fa6b653e71014c.gif" alt="Creating production orders.gif"></p>
+<p><strong>Viewing all production orders an employee is involved in:</strong></p>
+<p><img src="https://static-docs.nocobase.com/13490f23e9f2e0d6ddfc66b77ed55690.gif" alt="Viewing all production orders an employee is involved in.gif"></p>
+<ol start="3">
+<li><strong>Adjust the Model</strong>: Optimize field settings or relationship structures based on feedback from testing. For example, add extra fields to better describe the order status if needed.</li>
+</ol>
+<h3><strong>Step 6: Use Workflow</strong></h3>
+<p>If your factory management system requires more complex business logic, you can leverage the workflow feature in NocoBase to automate certain operations.</p>
+<p>For example, you could set up a workflow that automatically updates inventory information once an order is completed. This helps streamline your processes and reduces manual effort.</p>
+<p><img src="https://static-docs.nocobase.com/2f080ec66f3aecee8dd34247af175986.png" alt="Workflow.png"></p>
+<p>💡 Tutorial: <a href="https://www.nocobase.com/en/tutorials/task-tutorial-workflow">Chapter 7: Workflow</a></p>
+<h2 id="en-5">Conclusion</h2>
+<p>Creating an effective data model is crucial for the success of any system, particularly in environments where data is complex and voluminous. By following the steps outlined in this guide, you can build a robust data model that not only meets your current business needs but also scales with future growth.</p>
+<p>Using NocoBase, you can quickly establish a well-structured data model, ensuring that your data is managed efficiently and consistently.</p>
+<p>Remember, a well-designed data model will save you time and effort in the long run by minimizing data redundancy, improving query performance, and simplifying data maintenance.</p>
+<p>As you continue to refine your data modeling skills, you’ll find that these techniques can be applied across a wide range of projects, from simple applications to complex systems.</p>
+<p>💡 <a href="https://www.nocobase.com/">Start using NocoBase</a> today to experience the power of efficient data modeling and elevate your data management capabilities to the next level.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/top-5-success-cases-of-low-code-open-source-platforms.html">Top 5 Success Cases of Low-Code Open-Source Platforms</a></li>
+<li><a href="../blog/5-challenges-of-developing-with-a-no-code-platform.html">5 Challenges of Developing with a No-Code Platform</a></li>
+<li><a href="../blog/the-top-12-open-source-no-code-tools-with-the-most-github-stars.html">The Top 12 Open-Source No-Code Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know</a></li>
+<li><a href="../blog/business-process-management.html">What is BPM and How to Build a BPM App?</a></li>
+<li><a href="../blog/rapid-application-development-best-application-cases.html">Exploring RAD: 5 Best Application Cases</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">什么是数据模型？</a><a href="#zh-2">良好数据模型的重要性</a><a href="#zh-3">如何建立一个良好的数据模型？</a><a href="#zh-4">用 NocoBase 10 分钟快速建立一个良好的数据模型</a><a href="#zh-5">结语</a></div><div class="en-only"><a href="#en-1">What is a Data Model?</a><a href="#en-2">The Importance of a Good Data Model</a><a href="#en-3">How to Build a Good Data Model?</a><a href="#en-4">Quickly Build a Data Model with NocoBase in 10 Minutes</a><a href="#en-5">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="6个适合做 PoC 的开源无代码/低代码工具推荐  — NocoBase" data-en="6 Open-Source No/Low-Code Tools for Building PoCs — NocoBase">6个适合做 PoC 的开源无代码/低代码工具推荐  — NocoBase</title>
+<meta name="description" content="汇总了 6 个适合快速构建 PoC 的开源低代码/无代码工具，为你提供在不同验证场景下的选择指南。" data-zh="汇总了 6 个适合快速构建 PoC 的开源低代码/无代码工具，为你提供在不同验证场景下的选择指南。" data-en="This summary covers six open source low code and no code tools for quickly building PoCs and offers guidance on choosing the right option for different validation needs.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>6个适合做 PoC 的开源无代码/低代码工具推荐 </t-zh><t-en>6 Open-Source No/Low-Code Tools for Building PoCs</t-en></h1>
+    <p class="lede"><t-zh>汇总了 6 个适合快速构建 PoC 的开源低代码/无代码工具，为你提供在不同验证场景下的选择指南。</t-zh><t-en>This summary covers six open source low code and no code tools for quickly building PoCs and offers guidance on choosing the right option for different validation needs.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年11月23日</t-zh><t-en>Nov 23, 2025</t-en></span><span><t-zh>Yuan tianqi</t-zh><t-en>Yuan tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Group%2018-c49h9x.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>如果在几年前你问一位产品经理或技术负责人：“最快完成一个 PoC 的方式是什么？”，大多数人都会给出类似的答案——选择一个合适的低代码或无代码平台，把业务流程、界面和基础逻辑快速搭建起来，使想法尽快进入可运行的状态。</p>
+<p>但在过去两年里，AI 的快速发展也让这种判断开始发生变化。如今，模型能够根据自然语言生成前端代码、组件结构，甚至能根据草图生成完整页面。界面的生成速度显著提升，一部分前端工作已经可以由 AI 自动完成。近期推出的 <a href="https://gemini.google.com/">Gemini 3</a> 在代码生成、布局理解和交互逻辑补全方面进一步增强，整个前端设计的过程也变得更直接、更可控。</p>
+<blockquote>
+<p>既然 AI 已经能够提供可用且美观的界面，我们为什么仍然需要低代码或无代码平台来完成 PoC？</p>
+</blockquote>
+<p>两者解决的问题并不相同。</p>
+<p>AI 主要负责生成界面和结构，但 PoC 的关键不在界面本身，而在于支撑它运行的基础能力，例如数据持久化、业务规则、权限管理、跨系统集成等。这些能力决定了一个 PoC 是否能够准确模拟业务流程，而不仅仅是展示画面的组合。</p>
+<p>低代码／无代码平台的作用就是帮助团队快速连接数据、执行业务逻辑、配置角色与流程，并在需要时将 PoC 扩展为正式系统。</p>
+<p>在实际的验证阶段，这些功能都是 AI 目前无法单独承担的。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>基于这些观察，我们整理了 <strong>6 个适合做 PoC 的开源无代码／低代码工具</strong>，介绍了它们适用的场景、亮点与使用建议，希望能帮助你在项目探索阶段快速找到合适的起步工具。</p>
+<h2 id="zh-1">NocoBase</h2>
+<p><img src="https://static-docs.nocobase.com/nocobase-bxfncf.png" alt="nocobase.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>20k</td>
+</tr>
+<tr>
+<td>官网</td>
+<td><a href="https://www.nocobase.com/cn/">https://www.nocobase.com/cn/</a></td>
+</tr>
+<tr>
+<td>文档</td>
+<td><a href="https://v2.docs.nocobase.com/cn/">https://v2.docs.nocobase.com/cn/</a></td>
+</tr>
+</tbody></table>
+<p>NocoBase 是一个开源、自部署、AI 驱动且插件化的低代码／无代码平台，专为构建业务系统和内部工具设计。</p>
+<p>在官方发布的案例中，ED 团队使用 NocoBase 在短时间内完成多个内部系统的 PoC，并在验证成功后快速扩展为正式产品，包括 CRM、运营后台和项目管理等模块。ED 工程师们认为，NocoBase 改变了他们的开发方式。可视化建模、自动 CRUD、灵活工作流与自动生成 API，让开发者摆脱了重复劳动，高效直达业务目标。QA 与用户的反馈周期大幅缩短，项目能更快进入生产。</p>
+<p>💡阅读更多：<a href="../customers/ed.html">NocoBase 如何成为 ED 的技术底座，支撑内部系统到商业化产品？</a></p>
+<p><strong>适合的使用场景</strong></p>
+<ul>
+<li>当你需要快速搭建一个包含数据模型、操作界面、流程逻辑的内部系统，例如员工管理、订单处理、或客户服务后台。</li>
+<li>有多个用户角色、复杂权限控制需求，以及需要接口整合外部系统或数据源的应用场合。</li>
+<li>NocoBase 支持自部署，并提供可扩展的插件机制，适合需要在内部环境中运行系统、并保持架构灵活度的团队。</li>
+</ul>
+<p><strong>亮点与使用建议</strong></p>
+<ul>
+<li><strong>数据模型驱动</strong>：与传统从表单／表格开始不同，NocoBase 采用 “数据模型先于界面” 的方式，你可以先定义业务对象、关系、字段，再搭建页面和流程，这种方式更适合后续的扩展。</li>
+<li><strong>细粒度权限与流程支持</strong>：它提供从系统、数据到字段的权限控制。在 PoC 阶段可以为不同角色快速设定访问界面与数据权限。</li>
+<li><strong>插件化架构与扩展能力</strong>：功能基于插件体系构建，数据源、动作、字段类型、界面组件等都可以通过插件扩展。PoC 阶段可以先使用内置插件快速搭建应用，再根据需求逐步替换或扩展。</li>
+<li>**<a href="https://v2.docs.nocobase.com/ai-employees/">AI 员工</a>**：AI 员工嵌入系统界面，可以自动读取当前页面的数据模型与结构，并在对应位置直接协助完成建模、数据处理或 JavaScript 编写等任务。 在 PoC 阶段，你可以先搭建核心数据模型与页面框架，然后用 AI 员工辅助生成字段和初步布局，从而节省初次搭建的时间，把团队精力更多集中在验证业务流程与用户场景上。</li>
+</ul>
+<h2 id="zh-2">Budibase</h2>
+<p><img src="https://static-docs.nocobase.com/Budibase-wc4tr7.png" alt="Budibase.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>27.3k</td>
+</tr>
+<tr>
+<td>官网</td>
+<td><a href="https://budibase.com/">https://budibase.com/</a></td>
+</tr>
+<tr>
+<td>文档</td>
+<td><a href="https://docs.budibase.com/docs/">https://docs.budibase.com/docs/</a></td>
+</tr>
+</tbody></table>
+<p>Budibase 是一个开源低代码平台，提供可自托管、可扩展的内部系统基础能力，包括数据连接、业务逻辑执行、权限配置与自动化工作流。</p>
+<p><strong>适合的使用场景</strong></p>
+<ul>
+<li>构建需要数据持久化、表单处理、审批链路或后台管理能力的企业内部应用，如资产管理、员工流程、客户门户等。</li>
+<li>当 PoC 需要整合多个数据源（PostgreSQL、MySQL、MongoDB、REST API 等），并希望在同一平台内完成数据层、逻辑层与自动化，而不是依赖纯前端代码生成。</li>
+</ul>
+<p><strong>亮点与使用建议</strong></p>
+<ul>
+<li><strong>多数据源与可自托管能力</strong>：支持 PostgreSQL、MySQL、MongoDB、REST API 等连接方式，并可通过 Docker 或 Kubernetes 进行部署，适合需要真实模拟业务数据结构的 PoC。</li>
+<li><strong>业务逻辑与自动化流程</strong>：自带 Automations 工作流，可在数据变更、触发事件或外部 API 调用时执行逻辑，这部分是 PoC 验证业务规则的关键能力。</li>
+<li><strong>权限与角色体系</strong>：支持用户、角色、资源级权限管理，在 PoC 阶段即可验证真实的访问控制与分工模型。</li>
+</ul>
+<p>💡阅读更多：<a href="../blog/6-no-code-tools-supporting-postgresql.html">PostgreSQL 用户必看：6 款强大的无代码平台推荐 </a></p>
+<h2 id="zh-3">Appsmith</h2>
+<p><img src="https://static-docs.nocobase.com/Appsmith-za6ch6.png" alt="Appsmith.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>38.5k</td>
+</tr>
+<tr>
+<td>官网</td>
+<td><a href="https://www.appsmith.com/">https://www.appsmith.com/</a></td>
+</tr>
+<tr>
+<td>文档</td>
+<td><a href="https://docs.appsmith.com/">https://docs.appsmith.com/</a></td>
+</tr>
+</tbody></table>
+<p>Appsmith 是一个开源低代码平台，适合构建需要真实数据交互、业务逻辑验证与内部操作流程的应用，支持多种数据源连接与自部署。</p>
+<p><strong>适合的使用场景</strong></p>
+<ul>
+<li>构建包含表单操作、数据查询、接口调用等功能的内部管理系统，如客户管理、财务操作台或运维面板。</li>
+<li>需要将 PostgreSQL、MySQL、REST API、GraphQL、Snowflake 等多类数据源整合在同一应用中，并对数据进行读写、转换与校验。</li>
+<li>适合需要快速验证交互逻辑、接口流转和用户操作路径的团队。</li>
+</ul>
+<p>💡阅读更多：<a href="../blog/rapid-development-platform.html">国内外十大开源快速开发平台推荐</a></p>
+<p><strong>亮点与使用建议</strong></p>
+<ul>
+<li><strong>脚本与事件逻辑灵活</strong>：可在组件事件中编写 JavaScript，用于处理数据转换、条件判断、验证规则或 API 调用，适合在 PoC 中模拟真实业务流。</li>
+<li><strong>数据源整合能力成熟</strong>：提供统一的 Query 面板管理数据库查询和 API 调用，能清晰展示数据流向，便于调试和版本化管理。</li>
+<li><strong>权限与部署能力完善</strong>：支持用户角色、资源级权限、自托管部署和环境变量配置，方便在 PoC 阶段验证安全模型与部署方式。</li>
+<li><strong>AI Copilot</strong>：平台内置 Appsmith Copilot，可协助生成查询、数据转换逻辑以及部分组件配置，在原型阶段能减少重复编辑脚本的时间。</li>
+</ul>
+<h2 id="zh-4">ToolJet</h2>
+<p><img src="https://static-docs.nocobase.com/ToolJet-249bqi.png" alt="ToolJet.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/ToolJet/ToolJet">https://github.com/ToolJet/ToolJet</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>36.9k</td>
+</tr>
+<tr>
+<td>官网</td>
+<td><a href="https://www.tooljet.com/">https://www.tooljet.com/</a></td>
+</tr>
+<tr>
+<td>文档</td>
+<td><a href="https://docs.tooljet.com/docs/">https://docs.tooljet.com/docs/</a></td>
+</tr>
+</tbody></table>
+<p>ToolJet 是一个开源低代码平台，适合构建内部管理工具，支持多数据源整合、自托管部署和脚本化的业务逻辑配置。</p>
+<p><strong>适合的使用场景</strong></p>
+<ul>
+<li>构建包含表单处理、数据展示、接口调用和业务操作的内部系统，如库存管理、客服后台或运营控制台。</li>
+<li>PoC 需要整合数据库、REST API、GraphQL、Google Sheets 或第三方服务，并对数据进行读取、写入与校验。</li>
+<li>适用于自托管环境，尤其是涉及敏感数据或需要本地化部署的场景。</li>
+</ul>
+<p><strong>亮点与使用建议</strong></p>
+<ul>
+<li><strong>灵活的事件与动作逻辑</strong>：支持在组件事件中配置条件判断、数据刷新、接口调用和页面间跳转，适合验证业务流程的流转方式。</li>
+<li><strong>多数据源集成能力</strong>：支持 PostgreSQL、MySQL、MongoDB、Snowflake、REST、GraphQL 等常见数据源，能快速建立完整的数据交互链路。</li>
+<li><strong>自部署与环境管理</strong>：提供 Docker、Kubernetes 等部署方案，可在企业内部环境稳定运行，适用于需要本地化 PoC 的团队。</li>
+</ul>
+<h2 id="zh-5">Directus</h2>
+<p><img src="https://static-docs.nocobase.com/Directus-b0idpv.png" alt="Directus-b0idpv.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/directus/directus">https://github.com/directus/directus</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>33.5k</td>
+</tr>
+<tr>
+<td>官网</td>
+<td><a href="https://directus.io/">https://directus.io/</a></td>
+</tr>
+<tr>
+<td>文档</td>
+<td><a href="https://docs.directus.io/">https://docs.directus.io/</a></td>
+</tr>
+</tbody></table>
+<p>Directus 是一个开源的后端数据平台，可将任何数据库即时转换为 API 和可管理的内容界面，适合构建数据驱动的应用原型与内部系统。</p>
+<p><strong>适合的使用场景</strong></p>
+<ul>
+<li>当你的 PoC 主要围绕数据结构、内容管理或数据服务展开，希望快速搭建一个能管理数据、定义关系并提供标准化 API 的后端。</li>
+<li>适合需要灵活读取、编辑、展示数据库内容的场景，例如内容后台、配置中心、数据管理系统或需要为前端快速提供 API 的原型项目。</li>
+<li>数据库已存在，或 PoC 阶段希望以可控方式定义数据模型，并为前端、移动端或其他服务提供统一接口时。</li>
+</ul>
+<p><strong>亮点与使用建议</strong></p>
+<ul>
+<li><strong>数据库直连与即开即用 API</strong>：Directus 能直接连接现有数据库（PostgreSQL、MySQL、SQLite 等），无需迁移即可生成 REST 与 GraphQL API。PoC 阶段可以直接借用已有表结构，大幅减少后端开发时间。</li>
+<li><strong>可视化内容管理界面</strong>：自动生成的管理后台可用于数据录入、关联配置和内容运营，适合快速验证数据结构是否合理。建议在 PoC 时使用 Collections 和 Fields 去构建最小的数据骨架，再逐步细化。</li>
+<li><strong>权限与工作流机制</strong>：内置角色与权限管理，对于需要多角色参与的 PoC，可以用最小配置跑通权限模型。</li>
+</ul>
+<h2 id="zh-6">Refine</h2>
+<p><img src="https://static-docs.nocobase.com/Refine-5ugtpp.png" alt="Refine.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/refinedev/refine">https://github.com/refinedev/refine</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>33.3k</td>
+</tr>
+<tr>
+<td>官网</td>
+<td><a href="https://refine.dev/">https://refine.dev/</a></td>
+</tr>
+<tr>
+<td>文档</td>
+<td><a href="https://refine.dev/docs/">https://refine.dev/docs/</a></td>
+</tr>
+</tbody></table>
+<p>Refine 是一个开源的 React 应用框架，用于快速构建数据密集型的后台系统、管理面板与内部工具，提供可扩展的前端架构与丰富的集成能力。</p>
+<p><strong>适合的使用场景</strong></p>
+<ul>
+<li>当你希望在保持 React 技术栈的前提下，快速搭建一个带界面、路由、数据操作和权限结构的管理后台，例如订单管理、内容管理、CRM 或运营控制台。</li>
+<li>适合想在 PoC 阶段快速产出可运行界面，同时保留代码灵活度的团队；特别是已经有有前端开发者的场景。</li>
+<li>当系统需要连接 REST、GraphQL、NestJS、Supabase、Firebase 或现有的内部 API，并在一个通用框架下管理列表、表单、详情页等常见模式。</li>
+</ul>
+<p><strong>亮点与使用建议</strong></p>
+<ul>
+<li><strong>React 元框架与自动化模式</strong>：Refine 提供列表、表单、编辑、详情等典型后台页面的预设逻辑，减少重复性代码。PoC 阶段可直接使用其内置的 CRUD 模式与资源（Resource）机制，用极少代码跑通主要业务流。</li>
+<li><strong>灵活的数据与权限集成</strong>：支持多种数据源与认证方式，无需强制绑定特定技术栈。建议在 PoC 中先定义核心资源（如 customers、orders），再通过 hooks 完成最小可用的读写操作。</li>
+<li><strong>Refine AI</strong>：可以在编辑界面或逻辑中提供代码建议、生成状态处理函数或页面模板，适合在 PoC 阶段减少前端的搭建时间。</li>
+</ul>
+<h2 id="zh-7"><strong>结语</strong></h2>
+<p>这六个开源工具在 PoC 场景中侧重点不同，可以根据需求快速做出判断：</p>
+<ul>
+<li>需要完整的业务系统能力（模型、界面、工作流）：NocoBase / Budibase</li>
+<li>需要数据交互、脚本逻辑与真实业务流验证：Appsmith / ToolJet</li>
+<li>需要标准化 API、内容管理或数据服务：Directus</li>
+<li>需要在 React 技术栈下兼具速度与灵活性：Refine</li>
+</ul>
+<p>随着 AI 在界面生成和部分开发环节中提供了更高的效率，许多无代码和低代码工具也开始加入适度的 AI 辅助能力。PoC 的核心仍然在于快速验证思路而非构建完备系统，选择与验证点贴近的工具，并在需要时利用这些辅助能力，就能以更低成本、更短周期跑通关键流程，让团队将精力集中在真正影响判断的部分。</p>
+<p>希望这篇文章对你有所帮助，也欢迎分享给有 Poc 需求的朋友。</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">给开发者的无代码/低代码技术决策指南（2026）</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 大企业级无代码低代码平台 RBAC 权限体系深度对比</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">GitHub 上最值得关注的 14 个开源 AI 低代码工具 </a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">11 个在 GitHub 上最受欢迎的开源无代码 AI 工具 </a></li>
+<li><a href="../blog/github-open-source-ai-agent-projects.html">GitHub 上 Star 数量前 18 的开源 AI Agent 项目</a></li>
+<li><a href="../blog/github-open-source-ai-projects.html">GitHub 上 Star 数量前 20 的开源 AI 项目</a></li>
+<li><a href="../blog/github-open-source-mcp-projects.html">GitHub 上 Star 数量前 8 的开源 MCP 项目</a></li>
+</ul></div><div class="prose en-only"><p>If you had asked a product manager or technical lead a few years ago, “What’s the fastest way to build a PoC?”, most would have given a similar answer — pick a low-code or no-code platform and quickly assemble the business flow, interface, and core logic so the idea can reach a working state as fast as possible.</p>
+<p>But over the past two years, rapid advances in AI have started to shift that view. Models can now produce front-end code and component structures from natural-language prompts, and even generate full pages from rough sketches. Interface creation has become dramatically faster, with parts of front-end work already automated. The newly released <a href="https://gemini.google.com/">Gemini 3</a> pushes this further with stronger code generation, layout understanding, and interaction-logic completion, making front-end design more direct and controllable.</p>
+<blockquote>
+<p>So if AI can already generate usable, polished interfaces, why do we still need low-code or no-code platforms for PoC work?</p>
+</blockquote>
+<p>Because they solve different problems.</p>
+<p>AI focuses on generating interfaces and structures, but a PoC depends on the underlying capabilities that make the interface actually work — data persistence, business rules, permissions, and cross-system integrations. These are what determine whether a PoC can accurately model real business processes rather than simply present a collection of screens.</p>
+<p>Low-code and no-code platforms help teams connect data sources, execute business logic, define roles and workflows, and scale a PoC into a real system when needed.</p>
+<p>In practice, AI alone still can’t shoulder these responsibilities during validation.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>With this in mind, we’ve put together six open-source no-code/low-code tools well-suited for PoC development, along with their ideal use cases, strengths, and tips to help you quickly find the right starting point for your project.</p>
+<h2 id="en-1">NocoBase</h2>
+<p><img src="https://static-docs.nocobase.com/nocobase-bxfncf.png" alt="nocobase.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>20k</td>
+</tr>
+<tr>
+<td>Website</td>
+<td><a href="https://www.nocobase.com/">https://www.nocobase.com/</a></td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><a href="https://v2.docs.nocobase.com">https://v2.docs.nocobase.com</a></td>
+</tr>
+</tbody></table>
+<p>NocoBase is an open-source, self-hosted, AI-driven, and plugin-based low-code/no-code platform designed for building business systems and internal tools.</p>
+<p>In an official case study, the ED team used NocoBase to quickly build several internal system PoCs, then evolved them into production-ready products — including CRM, operations consoles, and project management modules. According to ED engineers, NocoBase has significantly reshaped their development workflow. With visual data modeling, automatic CRUD generation, flexible workflows, and auto-generated APIs, developers can focus on business goals instead of repetitive setup work. It also shortens QA and feedback loops, enabling projects to reach production faster..</p>
+<p>💡<strong>Read more</strong>: <a href="../customers/ed.html">NocoBase as ED’s Technology Foundation: From Internal Systems to Commercial Products</a></p>
+<p><strong>Ideal Use Cases</strong></p>
+<ul>
+<li>When you need to rapidly build an internal system with data models, interfaces, and workflow logic — such as employee management, order processing, or customer support consoles.</li>
+<li>Applications involving multiple user roles, complex permission structures, or integrations with external systems and data sources.</li>
+<li>Teams that require self-hosting and need a flexible, extensible architecture through plugins.</li>
+</ul>
+<p><strong>Key Strengths &amp; Tips</strong></p>
+<ul>
+<li><strong>Data-model-first approach:</strong> Instead of starting from forms or tables, NocoBase encourages defining business objects, relationships, and fields first, then building pages and workflows. This makes future expansion easier.</li>
+<li><strong>Fine-grained permissions and workflow control:</strong> Permissions can be defined at the system, data, and even field level. During PoC development, you can quickly assign interface and data access rules for different roles.</li>
+<li><strong>Plugin-based architecture:</strong> Every feature is built as a plugin. Data sources, actions, field types, and UI components can all be extended. For PoC work, start with built-in plugins for fast assembly, then replace or extend them as requirements grow.</li>
+<li><strong>AI employees:</strong> AI employees appear directly inside the interface, automatically understanding the current data model and screen structure. They can assist with modeling, data tasks, and JavaScript when needed. During PoC, you can set up core data models and page frameworks first, then let AI employees help generate fields and initial layouts, saving setup time and letting the team focus on validating business logic and user flows.</li>
+</ul>
+<h2 id="en-2">Budibase</h2>
+<p><img src="https://static-docs.nocobase.com/Budibase-wc4tr7.png" alt="Budibase.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>27.3k</td>
+</tr>
+<tr>
+<td>Website</td>
+<td><a href="https://budibase.com/">https://budibase.com/</a></td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><a href="https://docs.budibase.com/docs/">https://docs.budibase.com/docs/</a></td>
+</tr>
+</tbody></table>
+<p>Budibase is an open-source low-code platform that provides self-hosted, extensible building blocks for internal systems, including data connections, business logic execution, permission settings, and automated workflows.</p>
+<p><strong>Ideal Use Cases</strong></p>
+<p>• Building internal applications that require data persistence, form handling, approval flows, or administrative capabilities, such as asset management, employee processes, or customer portals.</p>
+<p>• PoCs that need to combine multiple data sources such as PostgreSQL, MySQL, MongoDB, or REST APIs, and want to manage the data layer, logic layer, and automation within a single platform rather than relying on front-end code generation.</p>
+<p><strong>Key Strengths &amp; Tips</strong></p>
+<p>• Support for multiple data sources and self-hosting through PostgreSQL, MySQL, MongoDB, and REST API connections. Deployment is possible through Docker or Kubernetes, which suits PoCs that need to reflect real business data structures.</p>
+<p>• Built-in Automations workflows that execute logic in response to data changes, trigger events, or external API calls. This is essential for validating business rules during PoC development.</p>
+<p>• A full permission and role system with user, role, and resource-level controls that allows PoCs to test real access models and team responsibilities.</p>
+<p>💡<strong>Read more</strong>: <a href="../blog/6-no-code-tools-supporting-postgresql.html">6 Best No-Code Tools for PostgreSQL</a></p>
+<h2 id="en-3">Appsmith</h2>
+<p><img src="https://static-docs.nocobase.com/Appsmith-za6ch6.png" alt="Appsmith.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>38.5k</td>
+</tr>
+<tr>
+<td>Website</td>
+<td><a href="https://www.appsmith.com/">https://www.appsmith.com/</a></td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><a href="https://docs.appsmith.com/">https://docs.appsmith.com/</a></td>
+</tr>
+</tbody></table>
+<p>Appsmith is an open-source low-code platform designed for applications that require real data interaction, business logic verification, and internal operation flows, with support for multiple data sources and self-hosting.</p>
+<p><strong>Ideal Use Cases</strong></p>
+<p>• Internal systems that involve form actions, data queries, and API calls, such as customer management, finance consoles, or operations panels.</p>
+<p>• Projects that need to combine data sources like PostgreSQL, MySQL, REST APIs, GraphQL, or Snowflake, and perform reading, writing, transformation, and validation.</p>
+<p>• Teams that need to quickly validate interaction logic, API processing, and user paths.</p>
+<p>💡<strong>Read more</strong>: <a href="../blog/rapid-development-platform.html">Top 7 Open Source Rapid Development Platform</a></p>
+<p><strong>Key Strengths &amp; Tips</strong></p>
+<p>• Flexible scripting and event logic that allow JavaScript in component events for data transformation, condition checks, validations, or API requests, which helps simulate real business flows in PoC work.  • Mature data integration capabilities through a unified Query panel that manages database queries and API requests, making data flow clear and easier to debug or version.  • A complete permission and deployment setup with role-based access, resource-level permissions, self-hosting, and environment configuration so teams can validate security and deployment models early.  • Appsmith Copilot, an AI assistant that helps generate queries, transformation logic, and some component configurations, reducing repetitive scripting during early prototyping.</p>
+<h2 id="en-4">ToolJet</h2>
+<p><img src="https://static-docs.nocobase.com/ToolJet-249bqi.png" alt="ToolJet.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/ToolJet/ToolJet">https://github.com/ToolJet/ToolJet</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>36.9k</td>
+</tr>
+<tr>
+<td>Website</td>
+<td><a href="https://www.tooljet.com/">https://www.tooljet.com/</a></td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><a href="https://docs.tooljet.com/docs/">https://docs.tooljet.com/docs/</a></td>
+</tr>
+</tbody></table>
+<p>ToolJet is an open source low code platform designed for building internal tools. It supports multiple data sources, self hosted deployment and scripted business logic.</p>
+<p><strong>Ideal Use Cases</strong></p>
+<ul>
+<li>Building internal systems that handle forms, display data, call APIs and perform business operations, such as inventory systems, customer support dashboards or operations consoles.</li>
+<li>PoCs that need to work with databases, REST APIs, GraphQL, Google Sheets or third party services to read, write and validate data.</li>
+<li>Self hosted setups, especially when sensitive data or on premises deployment is required.</li>
+</ul>
+<p><strong>Key Strengths &amp; Tips</strong></p>
+<ul>
+<li>Flexible event and action logic. You can set up conditions, refresh data, call APIs or jump between pages inside component events, which helps validate business flows.</li>
+<li>Strong data integration. It supports PostgreSQL, MySQL, MongoDB, Snowflake, REST, GraphQL and more, allowing you to quickly build end to end data interactions.</li>
+<li>Easy to deploy and manage. ToolJet offers Docker and Kubernetes options and runs reliably in on premises environments, making it suitable for localized PoCs.</li>
+</ul>
+<h2 id="en-5">Directus</h2>
+<p><img src="https://static-docs.nocobase.com/Directus-b0idpv.png" alt="Directus-b0idpv.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/directus/directus">https://github.com/directus/directus</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>33.5k</td>
+</tr>
+<tr>
+<td>Website</td>
+<td><a href="https://directus.io/">https://directus.io/</a></td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><a href="https://docs.directus.io/">https://docs.directus.io/</a></td>
+</tr>
+</tbody></table>
+<p>Directus is an open source backend data platform that turns any database into APIs and a manageable content interface, ideal for building data driven prototypes and internal systems.</p>
+<p><strong>Ideal Use Cases</strong></p>
+<ul>
+<li>PoCs focused on data models, content management or data services, where you need a backend that manages data, defines relationships and exposes standard APIs.</li>
+<li>Scenarios requiring flexible read, edit and display of database content, such as content backends, configuration centers or data management tools.</li>
+<li>Cases where a database already exists or you need a controlled way to design data models during the PoC stage and expose a unified interface for front end or mobile apps.</li>
+</ul>
+<p><strong>Key Strengths &amp; Tips</strong></p>
+<ul>
+<li>Direct database connection with ready to use APIs. Directus links to existing databases like PostgreSQL, MySQL and SQLite and generates REST or GraphQL APIs without migration, reducing backend work during PoCs.</li>
+<li>A visual admin dashboard for data entry, relationship setup and content operations, useful for quickly checking whether your data structure works. Using Collections and Fields is a simple way to build a minimal data model and refine it later.</li>
+<li>Built in roles and permissions. If your PoC involves multiple roles, Directus lets you test your permission model with minimal setup.</li>
+</ul>
+<h2 id="en-6">Refine</h2>
+<p><img src="https://static-docs.nocobase.com/Refine-5ugtpp.png" alt="Refine.png"></p>
+<table>
+<thead>
+<tr>
+<th>GitHub</th>
+<th><a href="https://github.com/refinedev/refine">https://github.com/refinedev/refine</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub Stars</td>
+<td>33.3k</td>
+</tr>
+<tr>
+<td>Website</td>
+<td><a href="https://refine.dev/">https://refine.dev/</a></td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><a href="https://refine.dev/docs/">https://refine.dev/docs/</a></td>
+</tr>
+</tbody></table>
+<p>Refine is an open source React framework for quickly building data heavy admin panels, back office systems and internal tools. It offers extensible front end architecture and strong integration support.</p>
+<p><strong>Ideal Use Cases</strong></p>
+<ul>
+<li>When you want to build an admin interface with routing, data handling and permissions while keeping the React tech stack, such as order management, content management, CRM or operations dashboards.</li>
+<li>Teams that need a working interface fast during the PoC stage but still want code level flexibility, especially when front end developers are already on the team.</li>
+<li>Projects that must connect to REST, GraphQL, NestJS, Supabase, Firebase or internal APIs and manage lists, forms and detail pages within a unified framework.</li>
+</ul>
+<p><strong>Key Strengths &amp; Tips</strong></p>
+<ul>
+<li>A React meta framework with built-in patterns. Refine includes ready-made logic for lists, forms, edits and detail pages, which cuts down repetitive code. In a PoC, you can rely on its CRUD patterns and Resource system to get key flows running with minimal code.</li>
+<li>Flexible data and permission integration. It supports various data sources and authentication options without locking you into a specific stack. For a PoC, start by defining core resources like customers or orders and use hooks to set up basic read and write actions.</li>
+<li>Refine AI. It can suggest code, generate state handlers or build page templates in your editor, helping speed up front end work during a PoC.</li>
+</ul>
+<h2 id="en-7">Conclusion</h2>
+<p>Each of these six open source tools serves a different PoC need.</p>
+<ul>
+<li>For full business system capabilities including models, UI and workflows: NocoBase or Budibase</li>
+<li>For data operations, scripted logic and real workflow testing: Appsmith or ToolJet</li>
+<li>For standardized APIs, content management or data services: Directus</li>
+<li>For speed and flexibility within the React ecosystem: Refine</li>
+</ul>
+<p>As AI makes UI generation and parts of development more efficient, many no code and low code tools now offer light AI support. The core purpose of a PoC is still to validate ideas quickly. Choosing tools that match what you need to test and using AI assistance where helpful lets you run key steps faster and at lower cost, so the team can focus on what truly drives decisions.</p>
+<p>Hope this article helps and feel free to share it with anyone working on a PoC.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">A Developer’s Technical Decision Guide to No-Code and Low-Code (2026) </a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 In-Depth Comparison of RBAC in Enterprise-Grade No-Code/Low-Code Platforms</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">14 AI-Powered Low-Code Platforms on GitHub Worth Watching</a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">Top 11 Open Source No-Code AI Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-ai-agent-projects.html">Top 18 Open Source AI Agent Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-ai-projects.html">Top 20 Open Source AI Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-mcp-projects.html">Top 8 Open Source MCP Projects with the Most GitHub Stars</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">NocoBase</a><a href="#zh-2">Budibase</a><a href="#zh-3">Appsmith</a><a href="#zh-4">ToolJet</a><a href="#zh-5">Directus</a><a href="#zh-6">Refine</a><a href="#zh-7">结语</a></div><div class="en-only"><a href="#en-1">NocoBase</a><a href="#en-2">Budibase</a><a href="#en-3">Appsmith</a><a href="#en-4">ToolJet</a><a href="#en-5">Directus</a><a href="#en-6">Refine</a><a href="#en-7">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

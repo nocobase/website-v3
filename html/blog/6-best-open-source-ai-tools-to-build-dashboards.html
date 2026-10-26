@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="6 个最佳开源 AI 仪表盘工具 — NocoBase" data-en="6 Best Open-Source AI Tools to Build Dashboards  — NocoBase">6 个最佳开源 AI 仪表盘工具 — NocoBase</title>
+<meta name="description" content="盘点六款开源 AI 仪表盘工具，聚焦核心功能与使用场景，轻松创建数据驱动的仪表盘。" data-zh="盘点六款开源 AI 仪表盘工具，聚焦核心功能与使用场景，轻松创建数据驱动的仪表盘。" data-en="A review of six open source AI powered dashboard tools, highlighting their core features and use cases to help you create data driven dashboards with ease.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>6 个最佳开源 AI 仪表盘工具</t-zh><t-en>6 Best Open-Source AI Tools to Build Dashboards </t-en></h1>
+    <p class="lede"><t-zh>盘点六款开源 AI 仪表盘工具，聚焦核心功能与使用场景，轻松创建数据驱动的仪表盘。</t-zh><t-en>A review of six open source AI powered dashboard tools, highlighting their core features and use cases to help you create data driven dashboards with ease.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年12月12日</t-zh><t-en>Dec 12, 2025</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/20251212-011359-a172ub.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">引言</h2>
+<p>去年我们写过一篇<a href="../blog/core-app-dashboard-building-tools.html">核心应用仪表盘工具盘点，</a>聊到不少团队在做数据可视化时遇到的一些共性问题。当时我们提到的，大多是已经比较成熟的商业化产品，体验不错，但在授权方式、部署模式和扩展能力上，都有相对固定的边界。后来和一些读者交流时也发现，很多团队其实更希望找到一种成本更低、可定制度更高、还能支持<a href="../blog/7-self-hosted-ai-tools-build-business-app.html">自托管</a>的开源替代方案。</p>
+<p><img src="https://static-docs.nocobase.com/1-zy9fzj.PNG" alt="dashboards.PNG"></p>
+<p>💡推荐阅读：<a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">给开发者的无代码/低代码技术决策指南（2026）</a></p>
+<p>这一年里，开源社区里的相关工具发展得非常快。越来越多的仪表盘和数据看板工具开始把 AI 融入基础能力，比如自然语言查询、自动生成图表、指标解释，以及基于语义的报表构建等等。很多团队在搭建仪表盘时，也更希望让工具多承担一些操作层面的工作，把有限的时间留给真正需要业务判断的部分。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>基于这样的背景，我们重新整理了一批社区里活跃度较高、并且已经引入 AI 能力的开源核心应用仪表盘项目。这一次，我们主要从三个维度来介绍它们：各自的核心定位、典型用法，以及 AI 能力的成熟度和覆盖范围。希望这些信息能帮助你更快判断哪个开源工具适合你的搭建需求。</p>
+<p>你可以先快速浏览一下本文会提及6个工具！</p>
+<table>
+<thead>
+<tr>
+<th>工具名称</th>
+<th>平台类型</th>
+<th>AI 能力成熟度</th>
+<th>AI 能力方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>开源 AI 无代码开发平台，可构建业务系统与可视化看板</td>
+<td>★★★★☆</td>
+<td>原生 AI 员工体系（建模、填数、可视化分析，可扩展自定义员工）</td>
+</tr>
+<tr>
+<td>Wren AI</td>
+<td>开源生成式 BI，支持自然语言查询与自动可视化</td>
+<td>★★★★☆</td>
+<td>原生生成式分析（Text to SQL、Text to Chart、语义层）</td>
+</tr>
+<tr>
+<td>Redash</td>
+<td>SQL 查询与可视化工具，用于轻量 BI 看板</td>
+<td>★★★☆☆</td>
+<td>无原生 AI，可外接模型做 Text to SQL 与分析扩展</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>可视化应用构建平台，可搭建内部工具与业务面板</td>
+<td>★★★★☆</td>
+<td>原生 AI Assistant，支持生成界面、数据逻辑与文案</td>
+</tr>
+<tr>
+<td>Metabase</td>
+<td>企业级开源 BI 平台，适用于数据探索与分析仪表盘</td>
+<td>★★★★☆</td>
+<td>原生 Metabot，支持自然语言查询和指标解释</td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td>可观测性与时序数据面板平台，也用于业务可视化</td>
+<td>★★★☆☆</td>
+<td>无原生 AI，可通过插件或外部模型实现异常检测和分析</td>
+</tr>
+</tbody></table>
+<h2 id="zh-2">工具推荐</h2>
+<h3><strong>NocoBase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/2-1gg8bi.PNG" alt="nocobase1.PNG"></p>
+<p>官网：<a href="https://www.nocobase.com/cn/">https://www.nocobase.com/cn/</a></p>
+<p>文档：<a href="https://v2.docs.nocobase.com/cn/">https://v2.docs.nocobase.com/cn/</a></p>
+<p>GitHub：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Stars：20.7k</p>
+<p><strong>定位</strong></p>
+<p>NocoBase 是一个开源且可自托管的 AI 无代码开发平台，以统一的数据模型和可扩展的插件架构为基础。平台支持在同一数据结构下完成业务记录、数据管理和可视化构建，适合搭建内部应用，并基于业务系统的数据创建仪表盘和 BI 看板。</p>
+<p><strong>核心用途</strong></p>
+<ul>
+<li><strong>基于统一数据模型构建可视化看板</strong>：NocoBase 的可视化能力建立在统一的数据模型之上。业务表、流程记录与其他结构化数据在建模后即可作为可视化的数据源。可视化构建方式主要包括三类：<ul>
+<li>通过图表区块直接配置折线图、柱状图、统计卡等常见组件；</li>
+<li>在 JS 区块中实现更灵活的定制化呈现；</li>
+<li>借助 AI 员工根据自然语言指令自动生成可视化布局与图表配置。
+整体能力既支持快速搭建常规仪表盘，也覆盖更复杂的分析与自定义场景。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/3-deeat7.PNG" alt="NocoBase2.PNG"></p>
+<ul>
+<li><strong>插件化扩展与系统集成能力</strong>：采用微内核架构，可按需扩展页面组件、动作能力和数据源。可以连接主数据库、外部数据库与第三方接口，适合需要整合多类数据来源或构建自定义逻辑的团队。</li>
+</ul>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li>**系统内置 <a href="https://v2.docs.nocobase.com/cn/ai-employees">AI 员工</a>**：NocoBase 提供原生的 AI 员工能力，AI 员工可以在系统中承担具体的可视化生成任务。它能能分析指定的数据集，根据自然语言指令自动生成图表、指标卡和基础分析布局，减少手动配置工作量，提高可视化搭建效率。企业可以根据自身流程需求定义更多 AI 员工，使其在可视化和分析任务中发挥扩展作用。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/4-mrbehf.png" alt="NocoBase3.png"></p>
+<ul>
+<li><strong>结合知识库与向量数据库的扩展能力</strong>：AI 员工能够引用知识库内容，并通过向量数据库执行检索与匹配，用于补充说明、文档理解或结构化输出，适合需要结合业务文档或规则进行分析的场景。<img src="https://static-docs.nocobase.com/5-me76ou.png" alt="NocoBase4.png"></li>
+<li><strong>多模型选择与灵活部署方式</strong>：平台支持配置多种模型服务，包括本地模型和云端模型，当前可使用的模型包含 OpenAI、Gemini、Anthropic 等。团队可以根据安全性、成本与使用环境选择适合的模型方案。</li>
+</ul>
+<h3><strong>Wren AI</strong></h3>
+<p><img src="https://static-docs.nocobase.com/6-8v20j4.png" alt="WrenAI.png"></p>
+<p>官网：<a href="https://www.getwren.ai/">https://www.getwren.ai/</a></p>
+<p>文档：<a href="https://docs.getwren.ai/cp/overview">https://docs.getwren.ai/cp/overview</a></p>
+<p>GitHub：<a href="https://github.com/Canner/WrenAI">https://github.com/Canner/WrenAI</a></p>
+<p>GitHub Stars：13.2k</p>
+<p><strong>定位</strong></p>
+<p>Wren AI 是一个开源的生成式 BI 工具，可以通过自然语言生成查询、图表和可视化分析结果。</p>
+<p><strong>核心用途</strong></p>
+<ul>
+<li><strong>支持快速构建可视化内容</strong>：根据数据源自动生成图表与基础仪表盘，适合搭建运营看板与日常指标页面。</li>
+<li><strong>支持作为分析能力嵌入现有系统</strong>：通过接口整合到业务应用中，在系统内部提供数据查询与展示能力。</li>
+</ul>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li><strong>具备生成式分析能力</strong>：根据自然语言输入生成查询语句，并基于查询结果生成图表和基础报表，覆盖从 Text to SQL 到 Text to Chart 的完整链路。</li>
+<li><strong>提供语义层能力</strong>：通过语义引擎理解业务模型和数据结构，以建模定义的方式提升自然语言查询与可视化生成的准确性。</li>
+<li><strong>支持多模型与自托管部署</strong>：可连接 OpenAI、Gemini、Google AI、Anthropic 等模型，同时提供开源版本用于本地部署，适合对数据安全性或模型成本有要求的团队。</li>
+</ul>
+<h3><strong>Redash</strong></h3>
+<p><img src="https://static-docs.nocobase.com/7-f9csk8.png" alt="redash.png"></p>
+<p>官网：<a href="https://redash.io">https://redash.io</a></p>
+<p>文档：<a href="https://redash.io/help">https://redash.io/help</a></p>
+<p>GitHub：<a href="https://github.com/getredash/redash">https://github.com/getredash/redash</a></p>
+<p>GitHub Stars：28.1k</p>
+<p><strong>定位</strong></p>
+<p>Redash 是一个开源的 SQL 查询与可视化分析平台，用于构建图表、查询面板和轻量级 BI 仪表盘，是数据团队中最常使用的自助分析工具之一。</p>
+<p><strong>核心用途</strong></p>
+<ul>
+<li><strong>通过 SQL 构建图表与仪表盘</strong>：Redash 允许用户通过 SQL 查询连接数据库，从查询结果创建图表、表格和指标卡，并组合成仪表盘。适合已经具备 SQL 能力的团队快速构建自助分析界面。</li>
+<li><strong>提供多数据源整合能力</strong>：支持多种数据库与 API 作为数据源，包括 PostgreSQL、MySQL、BigQuery、Athena 等，使其适合整合企业内部多类数据以构建轻量分析体系。</li>
+</ul>
+<p><strong>AI 相关功能</strong></p>
+<p>Redash 本身不内置 AI 功能，但由于 Redash 完全基于 SQL 查询和 API 结果渲染，其架构非常容易与外部 AI 工具结合。</p>
+<ul>
+<li><strong>外接 AI 进行 Text to SQL</strong>：通过与 OpenAI、Anthropic 或自建 LLM 服务连接，AI 可以根据描述生成 SQL，再将 SQL 直接提交给 Redash 查询编辑器。社区用户普遍通过浏览器插件、内部工具或 API 代理方式实现。</li>
+<li><strong>将 AI 模型输出作为数据源</strong>：AI 的生成结果（包括 JSON、表格类结构、聚合数据）可以作为“API 数据源”直接接入 Redash，从而渲染成图表或指标卡。</li>
+</ul>
+<h3><strong>Appsmith</strong></h3>
+<p><img src="https://static-docs.nocobase.com/8-oritl2.png" alt="appsmith.png"></p>
+<p>官网：<a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p>文档：<a href="https://www.appsmith.com/ai/low-code">https://www.appsmith.com/ai/low-code</a></p>
+<p>GitHub：<a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>GitHub Stars：38.6k</p>
+<p><strong>定位</strong></p>
+<p>Appsmith 是一个开源的可视化应用构建平台，可以用于搭建业务分析看板和基础仪表盘。依托组件库、数据源连接以及灵活的前端配置方式，适合在内部系统中构建以数据展示、业务监控和操作面板为主的应用界面。</p>
+<p><strong>核心用途</strong></p>
+<ul>
+<li><strong>构建业务看板与基础仪表盘</strong>：通过表格、图表、列表等组件，将数据库或接口数据以可视化方式呈现，可用于构建运营监控面板、业务数据看板和简易指标展示页面。适合需要自定义交互与布局的团队。</li>
+<li><strong>构建内部工具和管理后台</strong>：借助界面组件、权限规则和动作逻辑，可以在同一应用中完成数据展示、数据录入和流程管理，适合以业务操作与数据管理为核心的场景。</li>
+</ul>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li><strong>面向应用构建的 AI Assistant</strong>：AI Assistant 可根据自然语言描述生成界面布局、页面组件、接口调用和基本逻辑，加速业务工具和数据展示面板的搭建过程。它主要帮助减少前端与配置工作量。</li>
+<li><strong>辅助生成数据处理逻辑与内容文案</strong>：对于数据查询或格式化逻辑，AI 可以根据说明生成脚本片段或表达式；在文案类内容中，也可用于自动生成说明文字或解释性文本。</li>
+</ul>
+<p>💡推荐阅读：<a href="../blog/business-application-development.html">完全指南：如何高效进行业务应用开发？</a></p>
+<h3><strong>Metabase</strong></h3>
+<p><img src="https://static-docs.nocobase.com/9-bigavl.png" alt="metabase.png"></p>
+<p>官网：<a href="https://www.metabase.com/">https://www.metabase.com/</a></p>
+<p>文档：<a href="https://www.metabase.com/docs/latest/">https://www.metabase.com/docs/latest/</a></p>
+<p>GitHub：<a href="https://github.com/metabase/metabase">https://github.com/metabase/metabase</a></p>
+<p>GitHub Stars：44.9k</p>
+<p><strong>定位</strong></p>
+<p>Metabase 是一个成熟的开源 BI 平台，适用于构建企业级的业务分析仪表盘与自助数据查询系统。</p>
+<p><strong>核心用途</strong></p>
+<ul>
+<li><strong>图形化数据探索与报表构建</strong>：用户可以以 “问题 → 可视化 → 仪表盘” 的流程进行数据探索，无需手写复杂 SQL。支持图表、表格、过滤与共享仪表盘，适合分析 KPI、业务趋势、用户行为、销售数据等。</li>
+<li><strong>团队协作与共享仪表盘</strong>：仪表盘与报表可以被团队共享，不同成员可以查看、编辑、订阅结果，适合企业内跨部门协作分析、统一监控关键指标、共享数据洞察。</li>
+<li><strong>多数据源支持与灵活连接能力</strong>：支持连接多种数据库类型（PostgreSQL、MySQL、MariaDB、SQL Server等），方便企业将散落在不同系统的数据整合到同一个分析平台进行统一查询和展示。</li>
+</ul>
+<p><strong>AI 功能亮点</strong></p>
+<ul>
+<li><strong>AI 助手</strong> Metabase 提供名为 “Metabot” 的 AI Data Assistant 模块用于增强数据分析体验。根据官网，该助手可以协助解释指标、生成洞察与回答与数据相关的问题。</li>
+<li><strong>自然语言查询与智能解释</strong>：Metabot 支持通过自然语言提出问题，平台将尝试理解问题并返回相应数据结果或图表，降低非技术用户的数据访问门槛。</li>
+<li><strong>自动洞察与指标解读</strong>：当数据发生变化或查询结果生成后，Metabot 能自动提供对关键指标的解释与洞察建议，帮助用户快速理解数据背后的含义，而不仅仅是提供原始数字或图表。</li>
+</ul>
+<h3><strong>Grafana</strong></h3>
+<p><img src="https://static-docs.nocobase.com/10-9sv6rf.png" alt="grafana.png"></p>
+<p>官网：<a href="https://grafana.com">https://grafana.com</a></p>
+<p>文档：<a href="https://grafana.com/docs">https://grafana.com/docs</a></p>
+<p>GitHub：<a href="https://github.com/grafana/grafana">https://github.com/grafana/grafana</a></p>
+<p>GitHub Stars：71.2k</p>
+<p><strong>定位</strong></p>
+<p>Grafana 是一个开源的可视化与监控仪表盘平台，以时序数据和可观测性场景为核心，同时被广泛用于业务指标展示与仪表盘搭建。</p>
+<p><strong>核心用途</strong></p>
+<ul>
+<li><strong>构建实时监控面板与指标可视化</strong>：Grafana 能连接多种时序数据库、日志系统与监控工具，将数据以图表、趋势线、指标卡等形式展示。适用于系统监控、服务运行指标、业务实时分析等场景。</li>
+<li><strong>统一展示来自多数据源的业务信息</strong>：平台支持连接 Prometheus、Elasticsearch、MySQL、PostgreSQL、BigQuery 等多类数据源，可以在同一个仪表盘组合不同来源的数据，构建统一监控大盘或业务运营面板。</li>
+</ul>
+<p><strong>AI 相关功能</strong></p>
+<p>Grafana 不直接提供 AI 功能，不过由于其支持插件与 API 数据源，团队可以将外部模型的分析结果接入，从而实现 AI 在监控与分析场景的应用：</p>
+<ul>
+<li><strong>基于 AI 的异常检测与趋势分析</strong>：通过外部 AIOps 工具或 AI 服务插件，将模型分析后的异常点、趋势变化等信息回写到 Grafana 仪表盘中，用于辅助监控与诊断。</li>
+<li><strong>将 AI 输出作为数据源使用</strong>： AI 模型生成的指标、分析结果或结构化数据可以通过 API 数据源方式导入 Grafana，并以图表呈现。</li>
+</ul>
+<h2 id="zh-3">写在最后</h2>
+<p>在企业的数据分析体系中，商业化 BI 工具仍然是较为成熟稳定的选择，但授权成本、部署限制以及扩展能力的边界，也确实让不少团队在落地阶段面临取舍。如果预算有限，或希望在系统中保留更大的自定义空间，开源方案往往提供更灵活的路径，更适合逐步构建、持续迭代的数据分析体系。</p>
+<p>基于本文提到的六款工具，可以从不同的落地场景出发做一个简单判断：</p>
+<ul>
+<li>如果只是希望完成一个相对轻量的 Dashboard，关注降低维护成本，那么以查询和可视化为中心的工具会更合适，例如 Redash、Grafana 或 Wren AI。</li>
+<li>如果希望在同一平台中处理业务应用、数据管理和可视化分析，则可以考虑具备更完整系统能力的平台，例如 NocoBase、Appsmith 或 Metabase。</li>
+</ul>
+<p>👉<a href="https://www.nocobase.com/cn/blog/core-app-dashboard-building-tools#%E7%94%A8-nocobase-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA-core-app-dashboard">快速上手：用 NocoBase 快速搭建一个核心应用仪表盘</a></p>
+<p>这些工具背后的社区生态和功能能力仍在持续完善，也意味着团队可以根据自身阶段逐步调整技术栈。如果你在使用其中任何一个工具，或正在评估新的方案，也欢迎向我们分享经验与思考！</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">8 个最佳 Google Sheets 替代方案（附成本与能力分析）</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6个适合做 PoC 的开源无代码/低代码工具推荐</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">给开发者的无代码/低代码技术决策指南（2026）</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 大企业级无代码低代码平台 RBAC 权限体系深度对比</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">GitHub 上最值得关注的 14 个开源 AI 低代码工具</a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">11 个在 GitHub 上最受欢迎的开源无代码 AI 工具</a></li>
+<li><a href="../blog/github-open-source-ai-agent-projects.html">GitHub 上 Star 数量前 18 的开源 AI Agent 项目</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p>Last year we published <a href="../blog/core-app-dashboard-building-tools.html">a review of core dashboard tools</a>, highlighting several common challenges teams encounter when building data visualizations. Most of the tools we discussed were mature commercial products with good user experience, yet they offered limited flexibility in licensing, deployment, and extensibility. In conversations with readers afterward, we learned that many teams were actually seeking lower cost, more customizable, and <a href="../blog/7-self-hosted-ai-tools-build-business-app.html">self hosted</a> open source alternatives.</p>
+<p><img src="https://static-docs.nocobase.com/1-zy9fzj.PNG" alt="dashboards.PNG"></p>
+<p>💡Recommended reading: <a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">A Developer’s Technical Decision Guide to No-Code and Low-Code (2026)</a></p>
+<p>Over the past year, the open source ecosystem in this space has evolved quickly. Increasingly, dashboard and analytics tools are incorporating AI into their core features, including natural language querying, automated chart creation, metric explanations, and semantic report generation. Many teams also hope these tools can handle more of the operational workload so they can focus their time on decisions that require real business judgment.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>With this context in mind, we curated a new list of active open source dashboard projects that have already introduced AI capabilities. In this article, we look at each tool through three lenses: its core positioning, common use cases, and the maturity and scope of its AI features. We hope this helps you quickly identify which open source tool best fits your needs.</p>
+<p>Here is a quick overview of the six tools we will cover.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Platform type</th>
+<th>AI maturity</th>
+<th>How AI is implemented</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Open source AI powered no code platform for building business systems and dashboards</td>
+<td>★★★★☆</td>
+<td>Native AI employee framework for modeling, data entry, visual analysis, and extendable custom agents</td>
+</tr>
+<tr>
+<td>Wren AI</td>
+<td>Open source generative BI with natural language querying and auto visualization</td>
+<td>★★★★☆</td>
+<td>Native generative analytics including Text to SQL, Text to Chart, and semantic layer</td>
+</tr>
+<tr>
+<td>Redash</td>
+<td>SQL based query and visualization tool for lightweight BI dashboards</td>
+<td>★★★☆☆</td>
+<td>No native AI, can connect external models to enable Text to SQL and analysis features</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>Visual application builder for internal tools and business panels</td>
+<td>★★★★☆</td>
+<td>Native AI Assistant that generates UI, data logic, and copy</td>
+</tr>
+<tr>
+<td>Metabase</td>
+<td>Enterprise ready open source BI platform for data exploration and dashboards</td>
+<td>★★★★☆</td>
+<td>Native Metabot for natural language querying and metric explanations</td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td>Observability and time series dashboard platform also used for business visualization</td>
+<td>★★★☆☆</td>
+<td>No native AI, plugins or external models can enable anomaly detection and analysis</td>
+</tr>
+</tbody></table>
+<h2 id="en-2">Tool recommendation</h2>
+<h3>NocoBase</h3>
+<p><img src="https://static-docs.nocobase.com/2-ukigr5.PNG" alt="nocobase1.PNG">Official site: <a href="https://www.nocobase.com">https://www.nocobase.com</a></p>
+<p>Documentation: <a href="https://v2.docs.nocobase.com/">https://v2.docs.nocobase.com/</a></p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Stars: 20.7k</p>
+<p><strong>Overview</strong></p>
+<p>NocoBase is an open source and self hostable AI no code development platform built on a unified data model and an extensible plugin architecture. The platform supports business records, data management, and visualization building under one data structure. It is suitable for building internal applications and creating dashboards and BI boards based on business system data.</p>
+<p><strong>Core uses</strong></p>
+<ul>
+<li><strong>Building visual dashboards on a unified data model</strong>:  NocoBase’s visualization capabilities are built on a unified data model. After modeling, business tables, workflow records, and other structured data can be used directly as visualization data sources. Visualization building mainly includes three modes.<ul>
+<li>Configure common components such as line charts, bar charts, and statistic cards through chart blocks.</li>
+<li>Implement more flexible custom rendering in JS blocks.</li>
+<li>Use AI employees to automatically generate visual layouts and chart configurations from natural language instructions.  Overall, these capabilities support building both standard dashboards and more complex analytical or customized scenarios.</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/3-deeat7.PNG" alt="NocoBase2.PNG"></p>
+<ul>
+<li><strong>Plug-based extensibility and system integration</strong>:  Built on a microkernel architecture, the platform allows on demand extension of page components, action capabilities, and data sources. It can connect to the primary database, external databases, and third party APIs, making it suitable for teams that need to integrate multiple data sources or create custom logic.</li>
+</ul>
+<p><strong>AI highlights</strong></p>
+<ul>
+<li><strong>Built in <a href="https://v2.docs.nocobase.com/ai-employees">AI Employees</a></strong>:  NocoBase provides native AI employee capabilities, where AI employees take on specific visualization generation tasks inside the system. They can analyze designated datasets and automatically build charts, KPI cards, and basic analytical layouts from natural language instructions, reducing manual configuration and improving visualization efficiency. Enterprises can define additional AI employees according to workflow needs, allowing them to extend their role in visualization and analytical tasks.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/4-mrbehf.png" alt="NocoBase3.png"></p>
+<ul>
+<li><strong>Integration with knowledge bases and vector databases</strong>:  AI employees can reference knowledge base content and perform retrieval and matching through vector databases to support explanations, document understanding, or structured outputs. This is useful in scenarios requiring business document or rule based analysis.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/5-me76ou.png" alt="NocoBase4.png"></p>
+<ul>
+<li><strong>Support for multiple models and flexible deployment</strong>:  The platform supports configuring multiple model services, including local and cloud models. Available model options include OpenAI, Gemini, Anthropic, and others. Teams can choose model setups based on security, cost, and runtime environment.</li>
+</ul>
+<h3>Wren AI</h3>
+<p><img src="https://static-docs.nocobase.com/6-8v20j4.png" alt="WrenAI.png"></p>
+<p>Official site: <a href="https://www.getwren.ai/">https://www.getwren.ai/</a></p>
+<p>Documentation: <a href="https://docs.getwren.ai/cp/overview">https://docs.getwren.ai/cp/overview</a></p>
+<p>GitHub: <a href="https://github.com/Canner/WrenAI">https://github.com/Canner/WrenAI</a></p>
+<p>GitHub Stars: 13.2k</p>
+<p><strong>Overview</strong></p>
+<p>Wren AI is an open source generative BI tool that produces queries, charts, and analytical visuals directly from natural language.</p>
+<p><strong>Core uses</strong></p>
+<ul>
+<li><strong>Fast visualization building</strong>: It can automatically create charts and starter dashboards from connected data sources, making it suitable for operations dashboards and routine metric views.</li>
+<li><strong>Embedding analytics into other systems</strong>: Its API based architecture allows teams to integrate generative analytics into existing business applications.</li>
+</ul>
+<p><strong>AI highlights</strong></p>
+<ul>
+<li><strong>End to end generative analytics</strong>: Wren AI converts natural language into SQL and then into charts or reports, covering the full workflow from Text to SQL to visualization.</li>
+<li><strong>Semantic layer</strong>: A built in semantic engine interprets business models and data structures, improving the accuracy of natural language queries and generated charts.</li>
+<li><strong>Model flexibility and self hosting</strong>: Supports multiple models such as OpenAI, Gemini, Google AI, and Anthropic, and provides an open source self hosted edition for environments requiring data security or cost control.</li>
+</ul>
+<hr>
+<h3>Redash</h3>
+<p><img src="https://static-docs.nocobase.com/7-f9csk8.png" alt="redash.png"></p>
+<p>Official site: <a href="https://redash.io">https://redash.io</a></p>
+<p>Documentation: <a href="https://redash.io/help">https://redash.io/help</a></p>
+<p>GitHub: <a href="https://github.com/getredash/redash">https://github.com/getredash/redash</a></p>
+<p>GitHub Stars: 28.1k</p>
+<p><strong>Overview</strong></p>
+<p>Redash is an open source SQL based visualization and analytics tool for building charts, query panels, and lightweight BI dashboards. It is widely used by data teams for self service analytics.</p>
+<p><strong>Core uses</strong></p>
+<ul>
+<li><strong>SQL driven dashboards</strong>: Users write SQL to query data and build charts, tables, and metric cards from the results, then combine them into dashboards. Ideal for teams comfortable with SQL.</li>
+<li><strong>Integrating multiple data sources</strong>: It supports PostgreSQL, MySQL, BigQuery, Athena, and many other databases or APIs, making it easy to unify enterprise data into a simple analysis layer.</li>
+</ul>
+<p><strong>AI-related features</strong></p>
+<p>Although Redash does not include native AI features, its SQL and API centric design integrates well with external AI tools.</p>
+<ul>
+<li><strong>Text to SQL using external LLMs</strong>: By connecting services such as OpenAI or Anthropic, AI can generate SQL from user descriptions and feed it directly into Redash.</li>
+<li><strong>AI outputs as data sources</strong>: AI generated JSON, tabular results, or aggregated metrics can be treated as API data sources and visualized within Redash.</li>
+</ul>
+<h3>Appsmith</h3>
+<p><img src="https://static-docs.nocobase.com/8-oritl2.png" alt="appsmith.png"></p>
+<p>Official site: <a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p>Documentation: <a href="https://www.appsmith.com/ai/low-code">https://www.appsmith.com/ai/low-code</a></p>
+<p>GitHub: <a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>GitHub Stars: 38.6k</p>
+<p><strong>Overview</strong></p>
+<p>Appsmith is an open source platform for visually building applications. It can be used to create business dashboards and lightweight visual panels, supported by a component library, data connections, and flexible UI configuration. It is well suited for internal systems focused on data display, business monitoring, and operational workflows.</p>
+<p><strong>Core uses</strong></p>
+<ul>
+<li><strong>Building dashboards and visual panels</strong>: Teams can present data from databases or APIs using charts, tables, and list components. This supports operations monitoring, business reporting, and simple metric displays, with the flexibility to customize interactions and layout.</li>
+<li><strong>Building internal tools and admin applications</strong>: With its UI components, permission controls, and action logic, Appsmith supports data display, entry, and workflow handling within a single application. It is ideal for operation-heavy or data-centric internal processes.</li>
+</ul>
+<p><strong>AI highlights</strong></p>
+<ul>
+<li><strong>AI Assistant for faster application creation</strong>: The assistant generates layouts, components, API requests, and basic logic from natural language prompts, helping reduce manual UI configuration and speeding up development.</li>
+<li><strong>Logic and content generation support</strong>: AI can produce script snippets for queries or formatting logic and generate explanatory text when needed, improving content creation efficiency.</li>
+</ul>
+<hr>
+<h3>Metabase</h3>
+<p><img src="https://static-docs.nocobase.com/9-bigavl.png" alt="metabase.png"></p>
+<p>Official site: <a href="https://www.metabase.com/">https://www.metabase.com/</a></p>
+<p>Documentation: <a href="https://www.metabase.com/docs/latest/">https://www.metabase.com/docs/latest/</a></p>
+<p>GitHub: <a href="https://github.com/metabase/metabase">https://github.com/metabase/metabase</a></p>
+<p>GitHub Stars: 44.9k</p>
+<p><strong>Overview</strong></p>
+<p>Metabase is a widely adopted open source BI platform designed for enterprise analytics dashboards and self service data exploration.</p>
+<p><strong>Core uses</strong></p>
+<ul>
+<li><strong>Visual exploration and reporting</strong>: Users explore data by forming questions, visualizing results, and assembling dashboards, often without writing SQL. It supports charts, tables, filters, and shared dashboards for KPI tracking, trend analysis, user behavior studies, and sales insights.</li>
+<li><strong>Teamwide sharing and collaboration</strong>: Reports and dashboards can be shared, edited, or subscribed to across teams, enabling coordinated analysis and centralized tracking of key metrics.</li>
+<li><strong>Broad data connectivity</strong>: Metabase connects to many popular databases, making it easy to bring dispersed enterprise data into a unified analysis layer.</li>
+</ul>
+<p><strong>AI highlights</strong></p>
+<ul>
+<li><strong>Metabot AI assistant</strong>: The built-in Metabot helps interpret metrics, generate insights, and respond to data questions.</li>
+<li><strong>Natural language queries</strong>: Users can ask questions in plain language, and Metabase will attempt to return relevant data or visualizations.</li>
+<li><strong>Automated insights</strong>: Metabot provides explanations and context when data changes or when results are generated, helping users understand the meaning behind metrics.</li>
+</ul>
+<h3>Grafana</h3>
+<p><img src="https://static-docs.nocobase.com/10-9sv6rf.png" alt="grafana.png"></p>
+<p>Official site: <a href="https://grafana.com">https://grafana.com</a></p>
+<p>Documentation: <a href="https://grafana.com/docs">https://grafana.com/docs</a></p>
+<p>GitHub: <a href="https://github.com/grafana/grafana">https://github.com/grafana/grafana</a></p>
+<p>GitHub Stars: 71.2k</p>
+<p><strong>Overview</strong></p>
+<p>Grafana is an open source platform for visualization and monitoring. It is built around time series and observability data, and is also widely used for business metrics and dashboard creation.</p>
+<p><strong>Core uses</strong></p>
+<ul>
+<li><strong>Real time monitoring and metric visualization</strong>: Grafana connects to time series databases, log services, and monitoring tools to display data as charts, trends, and metric cards. It supports system monitoring, service performance tracking, and real time business analysis.</li>
+<li><strong>Unified views across multiple data sources</strong>: With support for sources such as Prometheus, Elasticsearch, MySQL, PostgreSQL and BigQuery, Grafana lets teams combine heterogeneous data into a single dashboard for consolidated monitoring and operations views.</li>
+</ul>
+<p><strong>AI-related features</strong></p>
+<p>Grafana does not include native AI features, but its plugin system and API based data sources make AI integration straightforward:</p>
+<ul>
+<li><strong>Anomaly detection and trend analysis with external AI</strong>: Outputs from AIOps tools or AI services can be brought into Grafana to highlight anomalies or shifts in trends and assist with diagnostics.</li>
+<li><strong>Using AI generated data as a source</strong>: Insights or structured outputs from AI models can be fed into Grafana through an API source and visualized like any other dataset.</li>
+</ul>
+<h2 id="en-3">Closing notes</h2>
+<p>Commercial BI tools remain reliable choices for enterprise analytics, but considerations such as licensing, deployment constraints, and extensibility lead many teams to explore open source alternatives. When budgets are limited or customization is important, open source tools often provide more flexibility and support gradual, iterative adoption.</p>
+<p>From the six tools discussed:</p>
+<ul>
+<li>For lightweight dashboards with minimal upkeep, Redash, Grafana, or Wren AI are strong candidates.</li>
+<li>For platforms that combine business applications, data management, and analytics, NocoBase, Appsmith, or Metabase are better aligned.</li>
+</ul>
+<p>👉Quick start guide: <a href="https://www.nocobase.com/en/blog/core-app-dashboard-building-tools#quickly-build-a-core-app-dashboard-with-nocobase">Quickly Build a Core App Dashboard with NocoBase</a></p>
+<p>These ecosystems continue to evolve, allowing teams to refine their stack over time. If you are using or evaluating any of these tools, we welcome your insights and experience.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">The 8 Best Google Sheets Alternatives (Specs &amp; Pricing)</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6 Open-Source No/Low-Code Tools for Building PoCs</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">A Developer’s Technical Decision Guide to No-Code and Low-Code (2026)</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 In-Depth Comparison of RBAC in Enterprise-Grade No-Code/Low-Code Platforms</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">14 AI-Powered Low-Code Platforms on GitHub Worth Watching</a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">Top 11 Open Source No-Code AI Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-ai-agent-projects.html">Top 18 Open Source AI Agent Projects with the Most GitHub Stars</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">引言</a><a href="#zh-2">工具推荐</a><a href="#zh-3">写在最后</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">Tool recommendation</a><a href="#en-3">Closing notes</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

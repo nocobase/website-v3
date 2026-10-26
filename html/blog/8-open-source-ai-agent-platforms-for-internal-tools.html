@@ -1,0 +1,1749 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="企业内部工具必备：8大开源 AI Agent 平台对比 — NocoBase" data-en="8 Open-Source AI Agent Platforms for Building Internal Tools — NocoBase">企业内部工具必备：8大开源 AI Agent 平台对比 — NocoBase</title>
+<meta name="description" content="本文对比 8 大开源 AI Agent 平台，分析各平台优劣势、落地能力与适用场景，给出企业内部工具选型建议，帮助业务与技术团队高效匹配方案。" data-zh="本文对比 8 大开源 AI Agent 平台，分析各平台优劣势、落地能力与适用场景，给出企业内部工具选型建议，帮助业务与技术团队高效匹配方案。" data-en="Compare 8 open-source AI agent platforms for internal tools by self-hosting, permissions, workflows, business data, extensibility, and maintenance needs.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>企业内部工具必备：8大开源 AI Agent 平台对比</t-zh><t-en>8 Open-Source AI Agent Platforms for Building Internal Tools</t-en></h1>
+    <p class="lede"><t-zh>本文对比 8 大开源 AI Agent 平台，分析各平台优劣势、落地能力与适用场景，给出企业内部工具选型建议，帮助业务与技术团队高效匹配方案。</t-zh><t-en>Compare 8 open-source AI agent platforms for internal tools by self-hosting, permissions, workflows, business data, extensibility, and maintenance needs.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年4月30日</t-zh><t-en>Apr 30, 2026</t-en></span><span><t-zh>Yuan Tianqi，Deng Lijia</t-zh><t-en>Yuan Tianqi，Deng Lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Group%2031-hwrpdi-m8c15f.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">TL;DR</h2>
+<p><strong>NocoBase 适合把 AI 嵌入审批、数据录入、报表等内部业务流程，并围绕这些流程统一管理数据、权限、页面和工作流。</strong></p>
+<p>LangChain、CrewAI、Haystack 这类框架适合有技术团队的企业。它们提供更高的定制空间，但也需要开发、部署、权限、监控和长期维护能力。</p>
+<p>n8n、Flowise 更适合快速自动化或原型验证。</p>
+<p>最近，<a href="https://news.ycombinator.com/item?id=47896389">Hacker News 上有一个关于 AI 与内部工具的讨论很</a>有意思。评论中有人提到：现在 AI 赋予了人们去构建各种东西的能力。但 AI 并没有同时教会他们理解——这件东西是否真的有必要构建，应该如何维护，如何迭代，如何与其他工具集成。</p>
+<p><img src="https://static-docs.nocobase.com/reddit-ekdb8j.png" alt="reddit.png"></p>
+<p>AI 正在极大降低工具开发门槛，但同时带来了新的问题：</p>
+<ul>
+<li>大量重复建设的工具</li>
+<li>缺乏权限控制、数据治理和系统整合能力</li>
+<li>维护成本被严重低估</li>
+<li>团队沟通渠道被无数“新工具发布”淹没</li>
+<li>真正高价值的解决方案，反而被淹没在噪音之中</li>
+</ul>
+<p>企业开始进入一种新的困境：工具越来越容易被创造，但真正可靠、可维护、可扩展的业务系统依然稀缺。</p>
+<p>究竟哪个平台能让 AI 和 Agent 稳定进入业务流程，并在数据、权限、审计和人工确认机制下持续发挥作用？为了帮你做出更清晰的选型判断，本文对比 8 个主流开源 AI Agent 相关平台，分析它们在企业内部工具场景中的优劣势、落地能力和适用场景。</p>
+<h3>#1 NocoBase | 开源无代码 AI 开发平台</h3>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-rfac5e.PNG" alt="NocoBase1.PNG"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/nocobase/nocobase">github.com/nocobase/nocobase</a>(22k+ stars)</td>
+</tr>
+<tr>
+<td><strong>官网</strong></td>
+<td><a href="https://nocobase.com/">nocobase.com</a></td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>Apache-2.0（完全允许商业使用）</td>
+</tr>
+<tr>
+<td><strong>自托管</strong></td>
+<td>⭐⭐⭐⭐⭐（100% 自托管，数据完全掌控）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>⭐⭐⭐⭐⭐（15+ 数据库 + REST API + 工作流）</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>⭐⭐⭐⭐⭐（字段级 RBAC、审计日志、多租户）</td>
+</tr>
+<tr>
+<td><strong>非技术友好</strong></td>
+<td>⭐⭐⭐⭐⭐（可视化配置，业务人员可用）</td>
+</tr>
+</tbody></table>
+<p><strong>核心特点与优势</strong>：</p>
+<ul>
+<li><strong>AI 员工嵌入业务系统</strong>：NocoBase 的AI 员工能自动获取页面数据和结构作为上下文，理解业务场景并直接执行任务，比如总结邮件、分析数据、整理非结构化内容并自动填表、设计数据模型，甚至编写 JavaScript 代码。每个 AI 员工都拥有独立的技能、工具和知识库，企业可以创建任意数量的 AI 员工，组成自己的 AI 团队。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-89lxwm.PNG" alt="NocoBase2.PNG"></p>
+<p>💡 如何用 AI 快速搭建内部工具？ NocoBase 官方指南：<a href="https://github.com/nocobase/skills">https://github.com/nocobase/skills</a></p>
+<ul>
+<li><strong>Skills + MCP，外部 Agent 也能搭建 NocoBase</strong>：除了内置 AI 员工，NocoBase 还提供官方 Skills 仓库，配合 NocoBase MCP Server，可以让 Codex、Claude Code、OpenCode 等编码 Agent CLI 直接完成 NocoBase 的安装部署、数据建模、界面搭建、工作流配置等工作。无论是平台内的 AI 员工，还是平台外的编码 Agent，都能参与系统搭建。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-6fd33z.png" alt="NocoBase3.png"></p>
+<p>💡 想让 AI Agent 更好地理解和搭建 NocoBase？查看官方 Skills 仓库：<a href="https://github.com/nocobase/skills">https://github.com/nocobase/skills</a></p>
+<ul>
+<li><strong>更贴近企业内部工具要求</strong>：NocoBase 可以把 AI 与数据、权限、页面、工作流和审计放在同一套系统里管理，更适合需要自托管、权限控制和流程约束的企业场景。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-f3pxw5.png" alt="NocoBase4.png"></p>
+<p>💡 如何将 AI Agent 接入 NocoBase？阅读官方指南：<a href="https://docs.nocobase.com/cn/ai-builder">https://docs.nocobase.com/cn/ai-builder</a></p>
+<p><strong>NocoBase AI 典型场景</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>AI Agent 如何工作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>智能审批</strong></td>
+<td>Agent 阅读申请单→查询历史数据→根据规则批准/驳回→记录决策</td>
+</tr>
+<tr>
+<td><strong>客户服务</strong></td>
+<td>Agent 查看 CRM→分析问题→起草回复→人工确认→发送</td>
+</tr>
+<tr>
+<td><strong>数据录入</strong></td>
+<td>从邮件/文档提取信息→自动填充表单→验证数据→保存到数据库</td>
+</tr>
+<tr>
+<td><strong>报告生成</strong></td>
+<td>收集多源数据→分析趋势→生成图表→发送给管理层</td>
+</tr>
+</tbody></table>
+<p><strong>落地能力</strong></p>
+<p>NocoBase 在数据模型、页面、角色和权限、工作流四个层面均提供原生支持。数据建模采用模型驱动架构，原生对接 15+ 主流数据库；页面通过区块（Block）系统进行可视化编排；权限体系覆盖到字段级 RBAC 与数据范围控制；工作流支持审批、定时触发、数据联动以及人工确认等业务节点。</p>
+<p>相较于人工从零开发或 vibe coding 式的端到端 AI 生成，想要在系统中长期沉淀一套可审计、可回溯、边界清晰的权限模型与审批流程，依然需要 NocoBase 这类平台级的抽象与约束机制。</p>
+<p><strong>最适合</strong>：</p>
+<ul>
+<li>需要业务团队直接使用 AI 的企业</li>
+<li>有数据合规要求的行业（金融、医疗、政务）</li>
+<li>从零构建符合企业业务流程内部工具的团队</li>
+<li>已经有数据库、ERP、CRM，需要 AI 增强的企业</li>
+</ul>
+<h3>#2 n8n | 工作流自动化 + AI 节点</h3>
+<p><img src="https://static-docs.nocobase.com/n8n-y5a6bl.png" alt="n8n.png"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/n8n-io/n8n">github.com/n8n-io/n8n</a>(50k+ stars)</td>
+</tr>
+<tr>
+<td><strong>官网</strong></td>
+<td><a href="https://n8n.io/">n8n.io</a></td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>Fair-Code（商业使用有限制）</td>
+</tr>
+<tr>
+<td><strong>自托管</strong></td>
+<td>⭐⭐⭐⭐（支持自托管）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>⭐⭐⭐⭐（200+ 应用集成）</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>⭐⭐⭐（基础权限管理）</td>
+</tr>
+<tr>
+<td><strong>非技术友好</strong></td>
+<td>⭐⭐⭐⭐（可视化工作流编辑器）</td>
+</tr>
+</tbody></table>
+<p><strong>核心特点与优势</strong>：</p>
+<ul>
+<li><strong>SaaS 集成能力强</strong>：n8n 提供了大量现成应用节点，适合连接 CRM、表单、邮件、Slack、数据库和各类 SaaS 工具，快速搭建跨系统自动化流程。</li>
+<li><strong>可视化工作流上手快</strong>：通过拖拽节点和配置流程，团队可以较快搭建自动化任务，适合从简单通知、数据同步、内容处理等场景切入。</li>
+<li><strong>AI 节点适合轻量智能处理</strong>：n8n 支持接入 OpenAI、Anthropic 等模型，适合在自动化流程中加入总结、分类、翻译、文本生成等 AI 能力。</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>更擅长 SaaS 应用之间的自动化，不是完整的内部业务系统平台。</li>
+<li>数据库建模、页面搭建、复杂权限控制能力相对有限。</li>
+<li>AI 能力更偏“调用 LLM API”，不是深度嵌入业务对象和权限体系的 Agent。</li>
+</ul>
+<p><strong>典型场景</strong>：</p>
+<ul>
+<li>SaaS 应用之间的数据同步和通知自动化。</li>
+<li>总结、分类、翻译等轻量级 AI 文本处理。</li>
+<li>快速搭建自动化原型。</li>
+</ul>
+<p><strong>落地能力</strong>：</p>
+<p>工作流是 n8n 的核心强项；但其数据模型要靠外部数据库或 SaaS 承载，没有面向终端用户的业务页面，权限只到工作流和凭据级别（Project Admin/Editor/Viewer），不具备字段级或行级业务权限。更适合做&quot;流程粘合层&quot;，不适合作为完整的内部业务系统。</p>
+<h3>#3 Flowise | 可视化 LangChain 构建器</h3>
+<p><img src="https://static-docs.nocobase.com/Flowise-klahhz.png" alt="Flowise.png"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/FlowiseAI/Flowise">github.com/FlowiseAI/Flowise</a>(28k+ stars)</td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>Apache 2.0</td>
+</tr>
+<tr>
+<td><strong>自托管</strong></td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>⭐⭐⭐⭐（基于 LangChain 生态）</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>⭐⭐（基础认证）</td>
+</tr>
+<tr>
+<td><strong>非技术友好</strong></td>
+<td>⭐⭐⭐（拖拽式，但仍需技术概念）</td>
+</tr>
+</tbody></table>
+<p><strong>核心特点与优势</strong>：</p>
+<ul>
+<li><strong>用可视化方式构建 LLM 应用</strong>：Flowise 将 LangChain 的常见能力做成可拖拽节点，适合快速搭建 Chatbot、RAG、Agent 和工具调用流程。</li>
+<li><strong>适合快速原型验证</strong>：技术团队可以用较短时间验证 AI 应用思路，例如知识库问答、文档检索、客服助手或内部查询工具。</li>
+<li><strong>兼容 LangChain 生态</strong>：Flowise 基于 LangChain 生态，能够复用部分模型、向量数据库和工具链能力，适合作为低门槛的 LLM 应用搭建入口。</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>生产环境部署、权限管理、安全审计仍需额外配置。</li>
+<li>复杂业务逻辑和系统集成可能仍需要开发介入。</li>
+<li>不适合承担完整的企业业务流程管理。</li>
+</ul>
+<p><strong>典型场景</strong>：</p>
+<ul>
+<li>快速构建 LLM 应用原型。</li>
+<li>技术团队轻量级搭建 Agent 流程。</li>
+</ul>
+<p><strong>落地能力</strong>：</p>
+<p>Flowise 聚焦 LLM 应用的可视化构建（Chatflow、Agentflow、RAG），没有业务数据建模、业务页面和企业级权限体系，工作流也仅限 AI 推理链路而非业务流程，仅适合做 AI 模块的原型。</p>
+<h3>#4 LangChain | 生态最完整的 LLM 框架</h3>
+<p><img src="https://static-docs.nocobase.com/LangChain-gr5uyo.png" alt="LangChain.png"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/langchain-ai/langchain">github.com/langchain-ai/langchain</a>(90k+ stars)</td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>MIT（允许商业使用）</td>
+</tr>
+<tr>
+<td><strong>自托管</strong></td>
+<td>⭐⭐⭐⭐⭐（完全自托管）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>⭐⭐⭐（通过扩展库集成，需要开发）</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>⭐⭐（框架本身不提供企业级安全，需自行实现）</td>
+</tr>
+<tr>
+<td><strong>非技术友好</strong></td>
+<td>⭐（必须写代码）</td>
+</tr>
+</tbody></table>
+<p><strong>核心特点与优势</strong>：</p>
+<ul>
+<li><strong>LLM 生态覆盖完整</strong>：LangChain 提供了丰富的组件和扩展能力，覆盖主流大模型、向量数据库、工具调用、RAG、Agent 和记忆机制等常见场景。</li>
+<li><strong>模块化程度高</strong>：Chains、Agents、Memory、Tools 等模块划分清晰，开发者可以根据业务需求自由组合，适合构建高度定制化的 AI 应用。</li>
+<li><strong>社区成熟、资料丰富</strong>：作为最早被广泛采用的 LLM 开发框架之一，LangChain 拥有活跃社区、丰富教程和大量示例，遇到问题时更容易找到参考方案。</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>必须写代码，业务团队无法直接使用。</li>
+<li>学习曲线较陡，抽象概念比较多。</li>
+<li>需要自行搭建和维护基础设施。</li>
+<li>框架本身不提供完整的企业级安全能力，如 RBAC、审计日志等。</li>
+</ul>
+<p><strong>典型场景</strong>：</p>
+<ul>
+<li>开发团队构建定制化 AI 应用。</li>
+<li>需要深度控制 Agent 行为的复杂场景。</li>
+<li>有 AI 工程师或后端开发资源的企业。</li>
+</ul>
+<p><strong>落地能力</strong>：</p>
+<p>作为代码框架，数据模型需靠开发者自定义，页面要自己写前端，权限要自己接 IAM 或写鉴权逻辑，工作流通过 Chains/Agents 在代码里编排。灵活度最高，但企业级落地的工程量也最大。</p>
+<h3>#5 CrewAI | 多 Agent 协作框架</h3>
+<p><img src="https://static-docs.nocobase.com/CrewAI-m0uyoh.png" alt="CrewAI.png"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/joaomdmoura/crewAI">github.com/joaomdmoura/crewAI</a>(15k+ stars)</td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>AGPL-3.0（商业使用需注意）</td>
+</tr>
+<tr>
+<td><strong>自托管</strong></td>
+<td>⭐⭐⭐⭐⭐（完全自托管）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>⭐⭐⭐（通过 LangChain 和自定义工具）</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>⭐⭐（需自行实现）</td>
+</tr>
+<tr>
+<td><strong>非技术友好</strong></td>
+<td>⭐（必须写代码）</td>
+</tr>
+</tbody></table>
+<p><strong>核心特点与优势</strong>：</p>
+<ul>
+<li><strong>原生支持多 Agent 协作</strong>：CrewAI 以“角色”和“任务”为核心，每个 Agent 都可以被设定为不同角色，适合将复杂任务拆解给多个 Agent 协同完成。</li>
+<li><strong>任务流程表达清晰</strong>：通过角色、目标、背景设定和任务编排，CrewAI 能够较自然地模拟“研究、起草、审核、执行”等多步骤工作流。</li>
+<li><strong>适合复杂内容和流程自动化</strong>：相比单一 Agent，CrewAI 更适合需要多个智能体分工协作的场景，例如内容生产、研究分析、流程拆解和多步骤业务处理。</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>仍然需要写 Python 代码。</li>
+<li>项目相对年轻，生态成熟度不如 LangChain。</li>
+<li>生产环境部署、权限、安全和监控能力仍需企业自行补齐。</li>
+</ul>
+<p><strong>典型场景</strong>：</p>
+<ul>
+<li>内容生产流水线，如研究、写作、编辑、发布。</li>
+<li>多步骤、多角色参与的业务流程自动化。</li>
+<li>需要多个 AI Agent 分工协作的复杂任务。</li>
+</ul>
+<p><strong>落地能力</strong>：</p>
+<p>CrewAI 聚焦多 Agent 协作的&quot;角色—任务&quot;编排。工作流层面能表达 Agent 之间的分工和依赖，但属于 Agent 内部协作流，不是承载审批、表单提交等业务的工作流引擎。</p>
+<h3>#6 AutoGPT | 自主 Agent 先驱</h3>
+<p><img src="https://static-docs.nocobase.com/AutoGPT-pi0ow1.png" alt="AutoGPT.png"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/Significant-Gravitas/AutoGPT">github.com/Significant-Gravitas/AutoGPT</a>(160k+ stars)</td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>MIT（允许商业使用）</td>
+</tr>
+<tr>
+<td><strong>自托管</strong></td>
+<td>⭐⭐⭐⭐⭐（完全自托管）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>⭐⭐（有限，主要是文件和浏览器操作）</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>⭐（实验性项目，无企业级安全）</td>
+</tr>
+<tr>
+<td><strong>非技术友好</strong></td>
+<td>⭐（命令行工具）</td>
+</tr>
+</tbody></table>
+<p><strong>核心特点与优势</strong>：</p>
+<ul>
+<li><strong>自主任务拆解能力突出</strong>：AutoGPT 的核心思路是给定一个目标后，由 Agent 自动进行任务分解、计划、执行和调整。</li>
+<li><strong>概念影响力强</strong>：AutoGPT 推动了大众对 AI Agent 的关注，也让“目标驱动型 Agent”成为许多后续项目的重要参考。</li>
+<li><strong>适合实验和概念验证</strong>：它更适合用于学习 Agent 原理、验证自主执行链路，或者观察 AI 在开放任务中的行为边界。</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>稳定性不足，容易陷入循环或产生无效操作。</li>
+<li>LLM 调用成本不可控。</li>
+<li>缺少企业级权限管理、审计日志和安全机制。</li>
+</ul>
+<p><strong>典型场景</strong>：</p>
+<ul>
+<li>Agent 原理学习。</li>
+<li>实验性项目和概念验证。</li>
+<li>个人开发者探索自主 Agent 行为模式。</li>
+</ul>
+<p><strong>落地能力</strong>：</p>
+<p>AutoGPT 是单 Agent 自主任务执行的实验项目，没有数据建模、没有业务页面、没有企业权限，业务流程靠 LLM 自己即兴拆解，不可控也不可审计，不建议直接用于生产系统</p>
+<h3>#7 Microsoft Semantic Kernel</h3>
+<p><img src="https://static-docs.nocobase.com/Semantic%20Kernel-q5kwiw.png" alt="Semantic Kernel.png"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/microsoft/semantic-kernel">github.com/microsoft/semantic-kernel</a>(20k+ stars)</td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>MIT</td>
+</tr>
+<tr>
+<td><strong>自托管</strong></td>
+<td>⭐⭐⭐（与 Azure 深度绑定）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>⭐⭐⭐⭐⭐（Microsoft 365、Azure 生态）</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>⭐⭐⭐⭐⭐（企业级 Azure AD、权限管理）</td>
+</tr>
+<tr>
+<td><strong>非技术友好</strong></td>
+<td>⭐⭐（开发者工具）</td>
+</tr>
+</tbody></table>
+<p><strong>核心特点与优势</strong>：</p>
+<ul>
+<li><strong>深度适配 Microsoft 生态</strong>：Semantic Kernel 与 Azure、Azure OpenAI、Microsoft 365、Teams、SharePoint 等生态结合紧密，适合已经使用微软技术栈的企业。</li>
+<li><strong>面向企业级 AI 编排</strong>：它提供插件、规划器、记忆和函数调用等能力，适合开发团队将 AI 能力嵌入现有企业应用和服务中。</li>
+<li><strong>安全与合规基础较强</strong>：依托 Azure AD、权限体系和微软云服务，Semantic Kernel 更容易融入已有的企业身份认证、安全和合规框架。</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>对 Microsoft 和 Azure 生态依赖较强，多云或自建环境下灵活性有限。</li>
+<li>仍然是开发者工具，业务人员无法直接配置使用。</li>
+<li>学习曲线较高，需要理解微软生态、云服务和 AI 编排方式。</li>
+<li>对非微软技术栈企业来说，上手成本可能偏高。</li>
+</ul>
+<p><strong>典型场景</strong>：</p>
+<ul>
+<li>已经深度使用 Microsoft 365 和 Azure 的企业。</li>
+<li>需要把 AI 嵌入 Teams、Office、SharePoint 或内部微软应用的场景。</li>
+</ul>
+<p><strong>落地能力</strong>：</p>
+<p>Semantic Kernel 更适合已有微软技术基础的企业。其本身不提供业务数据模型和页面。权限可以借助 Azure AD 体系，但需要在企业自己的应用层实现；工作流通过 Planner 和函数调用编排 AI 步骤，更偏 AI 流程。</p>
+<h3>#8 Haystack | deepset 出品的企业 AI 框架</h3>
+<p><img src="https://static-docs.nocobase.com/Haystack-g9npjs.png" alt="Haystack.png"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/deepset-ai/haystack">github.com/deepset-ai/haystack</a>(15k+ stars)</td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>Apache 2.0</td>
+</tr>
+<tr>
+<td><strong>自托管</strong></td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>⭐⭐⭐⭐（专注于搜索和 RAG）</td>
+</tr>
+<tr>
+<td><strong>安全性</strong></td>
+<td>⭐⭐⭐（需自行实现企业级安全）</td>
+</tr>
+<tr>
+<td><strong>非技术友好</strong></td>
+<td>⭐⭐（开发者工具）</td>
+</tr>
+</tbody></table>
+<p><strong>核心特点与优势</strong>：</p>
+<ul>
+<li><strong>专注 RAG 和企业搜索</strong>：Haystack 主要面向检索增强生成、文档问答、语义搜索和知识库场景，适合处理大量非结构化文档。</li>
+<li><strong>搜索与向量数据库集成能力强</strong>：它支持与 Elasticsearch、OpenSearch、向量数据库和多种模型组合使用，适合构建较复杂的企业级检索系统。</li>
+<li><strong>更接近生产级 AI 框架</strong>：相比一些实验性 Agent 项目，Haystack 在企业搜索、问答系统和 RAG 流程方面更成熟，也有 deepset 提供商业支持。</li>
+</ul>
+<p><strong>劣势</strong>：</p>
+<ul>
+<li>更适合知识库和搜索场景，不是通用内部工具平台。</li>
+<li>需要开发团队进行系统设计、部署和维护。</li>
+<li>权限控制、审计日志、业务流程集成等企业能力需要额外实现。</li>
+<li>对非技术团队不够友好。</li>
+</ul>
+<p><strong>典型场景</strong>：</p>
+<ul>
+<li>企业知识库和文档问答系统。</li>
+<li>大量非结构化文档的 AI 检索和分析。</li>
+<li>需要生产级 RAG 能力的企业项目。</li>
+</ul>
+<p><strong>落地能力</strong>：</p>
+<p>Haystack 专注 RAG 和企业搜索 Pipeline，数据模型仅服务于文档/向量检索，没有业务页面和角色权限，工作流是检索增强生成的处理流，不是承载业务的工作流引擎。最适合作为知识库/搜索的子系统，与真正的内部工具平台搭配使用。</p>
+<h2 id="zh-2">快速决策框架</h2>
+<table>
+<thead>
+<tr>
+<th>你的场景</th>
+<th>推荐工具</th>
+<th>为什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>业务团队直接使用 AI</strong></td>
+<td><strong>NocoBase</strong></td>
+<td>无需编码，可视化配置，企业级安全</td>
+</tr>
+<tr>
+<td><strong>SaaS 应用自动化</strong></td>
+<td><strong>n8n</strong></td>
+<td>200+ 集成，上手快</td>
+</tr>
+<tr>
+<td><strong>深度定制 Agent</strong></td>
+<td><strong>LangChain, CrewAI</strong></td>
+<td>完全编程控制，最灵活</td>
+</tr>
+<tr>
+<td><strong>快速原型验证</strong></td>
+<td><strong>Flowise, n8n</strong></td>
+<td>拖拽式，几分钟搭建</td>
+</tr>
+<tr>
+<td><strong>Microsoft 365 深度用户</strong></td>
+<td><strong>Semantic Kernel</strong></td>
+<td>与 Azure、M365 天然集成</td>
+</tr>
+<tr>
+<td><strong>企业知识库 + RAG</strong></td>
+<td><strong>Haystack</strong></td>
+<td>专注搜索增强，生产就绪</td>
+</tr>
+<tr>
+<td><strong>已有数据库/ERP 需 AI 增强</strong></td>
+<td><strong>NocoBase</strong></td>
+<td>数据库级集成，工作流原生</td>
+</tr>
+<tr>
+<td><strong>实验性项目</strong></td>
+<td><strong>Flowise, AutoGPT</strong></td>
+<td>快速尝试概念</td>
+</tr>
+</tbody></table>
+<h2 id="zh-3">FAQ</h2>
+<h3>Q1: 非技术团队如何开始使用 AI Agent？</h3>
+<p>**A:**建议从一个明确、可验证的业务场景开始，例如审批辅助、客服回复草稿、文档信息提取或周报生成。</p>
+<table>
+<thead>
+<tr>
+<th>团队类型</th>
+<th>推荐工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>完全不懂技术</strong></td>
+<td>NocoBase + 官方 AI Skills，让 AI 帮你搭建系统</td>
+</tr>
+<tr>
+<td><strong>有一点技术背景</strong></td>
+<td>n8n，从简单自动化开始</td>
+</tr>
+<tr>
+<td><strong>有开发资源</strong></td>
+<td>LangChain + NocoBase，深度定制</td>
+</tr>
+</tbody></table>
+<p>**NocoBase **提供官方 Skills（Codex、Claude Code、OpenCode），AI Agent 可以帮你：安装和部署 NocoBase、设计数据模型、配置 UI 和工作流和设置其他 AI Agent。</p>
+<h3>Q2: 开源 Agent 框架允许商业使用吗？</h3>
+<p><strong>A:</strong> 大部分允许，但需注意协议差异：</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>协议</th>
+<th>商业使用限制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>NocoBase</strong></td>
+<td>Apache 2.0</td>
+<td>✅ 完全允许，无限制</td>
+</tr>
+<tr>
+<td><strong>LangChain</strong></td>
+<td>MIT</td>
+<td>✅ 完全允许</td>
+</tr>
+<tr>
+<td><strong>AutoGPT</strong></td>
+<td>MIT</td>
+<td>✅ 完全允许</td>
+</tr>
+<tr>
+<td><strong>n8n</strong></td>
+<td>Fair-Code</td>
+<td>⚠️ 允许，但有一定限制</td>
+</tr>
+<tr>
+<td><strong>CrewAI</strong></td>
+<td>AGPL-3.0</td>
+<td>⚠️ 如作为 SaaS 提供需开源修改</td>
+</tr>
+<tr>
+<td><strong>Flowise</strong></td>
+<td>Apache 2.0</td>
+<td>✅ 完全允许</td>
+</tr>
+<tr>
+<td><strong>Semantic Kernel</strong></td>
+<td>MIT</td>
+<td>✅ 完全允许</td>
+</tr>
+<tr>
+<td><strong>Haystack</strong></td>
+<td>Apache 2.0</td>
+<td>✅ 完全允许</td>
+</tr>
+</tbody></table>
+<p>推荐选择 Apache 2.0 或 MIT 协议的工具，如 NocoBase、LangChain、Flowise。</p>
+<h3>Q3: 如何处理数据隐私和安全？</h3>
+<p><strong>A</strong>：先明确数据是否能出境、是否需要审计留痕、是否需要字段级权限，以及模型调用是否会接触敏感数据。</p>
+<table>
+<thead>
+<tr>
+<th>要求</th>
+<th>推荐方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>数据不能出境</strong></td>
+<td>NocoBase（100% 自托管）、LangChain</td>
+</tr>
+<tr>
+<td><strong>需要审计日志</strong></td>
+<td>NocoBase（内置）、Semantic Kernel</td>
+</tr>
+<tr>
+<td><strong>字段级权限</strong></td>
+<td>NocoBase（字段级 RBAC）</td>
+</tr>
+<tr>
+<td><strong>SOC 2 / HIPAA</strong></td>
+<td>NocoBase、Semantic Kernel</td>
+</tr>
+</tbody></table>
+<h3>Q4: NocoBase vs LangChain 的核心区别是什么？</h3>
+<p><strong>A</strong>：它们服务于不同的场景：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>NocoBase</th>
+<th>LangChain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>定位</strong></td>
+<td>内部工具平台</td>
+<td>LLM 开发框架</td>
+</tr>
+<tr>
+<td><strong>目标用户</strong></td>
+<td>业务团队 + 技术团队</td>
+<td>开发者</td>
+</tr>
+<tr>
+<td><strong>核心能力</strong></td>
+<td>构建完整的业务系统</td>
+<td>构建 AI/LLM 应用</td>
+</tr>
+<tr>
+<td><strong>AI 集成</strong></td>
+<td>AI 嵌入工作流</td>
+<td>AI 是核心功能</td>
+</tr>
+<tr>
+<td><strong>学习曲线</strong></td>
+<td>低（可视化配置）</td>
+<td>高（需写代码）</td>
+</tr>
+<tr>
+<td><strong>企业功能</strong></td>
+<td>内置 RBAC、审计日志</td>
+<td>需自行实现</td>
+</tr>
+<tr>
+<td><strong>数据库支持</strong></td>
+<td>15+ 数据库原生支持</td>
+<td>需通过扩展</td>
+</tr>
+</tbody></table>
+<p>简单来说，LangChain 更像 AI 开发组件库，NocoBase 更像承载数据、页面、权限和流程的业务系统平台。两者不是同一层工具，可以组合使用，比如：用 LangChain 构建定制化 AI 模块，然后通过 API 集成到 NocoBase 工作流中。</p>
+<h3>Q5: 可以混合使用多个工具吗？</h3>
+<p><strong>A</strong>：可以，很多企业会把不同工具放在不同层级使用，但要避免为了工具组合而增加维护复杂度。</p>
+<p>推荐的组合方式：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>组合方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SaaS 集成 + 数据库操作</strong></td>
+<td>n8n（SaaS） + NocoBase（数据库）</td>
+</tr>
+<tr>
+<td><strong>定制 AI + 业务系统</strong></td>
+<td>LangChain（AI 逻辑） + NocoBase（UI 和工作流）</td>
+</tr>
+<tr>
+<td><strong>快速原型 + 生产部署</strong></td>
+<td>Flowise（原型） → NocoBase（生产）</td>
+</tr>
+</tbody></table>
+<h3>Q6: AI Agent 的稳定性如何保证？</h3>
+<p><strong>A</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>稳定性问题</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>LLM 输出不稳定</strong></td>
+<td>1. 结构化输出（JSON mode）2. 验证和重试机制3. 人工确认关键操作</td>
+</tr>
+<tr>
+<td><strong>成本不可控</strong></td>
+<td>1. 设置 LLM 调用次数限制2. 使用缓存3. 监控和告警</td>
+</tr>
+<tr>
+<td><strong>Agent 陷入循环</strong></td>
+<td>1. 设置最大迭代次数2. 超时机制3. 人工介入点</td>
+</tr>
+</tbody></table>
+<p>在 NocoBase 这类工作流平台中，可以通过以下方式降低 Agent 不稳定带来的业务风险：</p>
+<ul>
+<li>✅ AI Agent 与工作流集成，可设置人工确认点</li>
+<li>✅ 审计日志记录所有 Agent 操作，便于回溯</li>
+<li>✅ 可配置触发条件（如：仅当金额 &gt; ¥10K 时触发 AI 审核）</li>
+</ul>
+<p>注意：Agent 的稳定性仍取决于模型能力、提示词设计、输入数据质量，以及关键节点的人工确认。</p>
+<h2 id="zh-4">结语</h2>
+<p>对企业内部工具来说，Agent 本身不是唯一重点。重点是验证 Agent 能否真正进入业务流程，并在权限、审计和人工确认机制约束下，稳定减少重复操作、提升处理效率。</p>
+<p>你可以先从一个高频、边界清晰的业务场景开始，例如智能审批、AI 客服或文档信息提取，等单个场景跑通后，再逐步扩展到更多核心流程。</p>
+<p><strong>如果这篇文章对你有帮助的话，分享给正在评估 AI Agent 平台的同事和朋友吧。</strong></p>
+<p><strong>相关阅读</strong>：</p>
+<ul>
+<li><strong><a href="../blog/the-best-self-hosted-crm-for-enterprise-teams.html">企业级自托管 CRM 推荐（支持 RBAC、AI 和 API）</a></strong></li>
+<li><strong><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">告别自研中间件：6个开源系统集成工具推荐</a></strong></li>
+<li><strong><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Airtable 与 NocoBase：从Excel迁移的真实成本对比</a></strong></li>
+<li><strong><a href="../blog/excel-to-web-app-4-methods.html">为 Excel 数据快速构建 Web 应用：4 种方法对比</a></strong></li>
+<li><strong><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">不只 PostgreSQL：5 个支持外部数据库的无代码/低代码平台对比</a></strong></li>
+<li><strong><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">开源项目管理工具选型指南（2026年最新）</a></strong></li>
+<li><strong><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">如何用 PostgreSQL 构建一个自定义 CRM</a></strong></li>
+<li><strong><a href="../blog/best-open-source-ai-projects-github-2026.html">2026 年值得关注的 20 个 GitHub AI 项目：不只有 OpenClaw</a></strong></li>
+<li><strong><a href="../blog/best-ai-crm-open-source-nocobase-twenty-krayin.html">GitHub 上开源 CRM AI 能力深度拆解：NocoBase vs Twenty vs Krayin CRM</a></strong></li>
+<li><strong><a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">GitHub 上 3 款开源 AI ERP 对比：NocoBase、Odoo 与 ERPNext</a></strong></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">TL;DR</h2>
+<p>If you are looking for <strong>open-source AI agent platforms for internal tools</strong>, the first thing to clarify is what kind of product you actually need. Search results often put frameworks, visual agent builders, workflow automation tools, and business application platforms in the same list, but they solve different parts of the problem.</p>
+<ul>
+<li><strong>Agent frameworks</strong> such as LangChain, CrewAI, Semantic Kernel, and Haystack give developers control over agent logic, tools, retrieval, and orchestration. They are a good fit when your team is prepared to build the surrounding application layer itself.</li>
+<li><strong>Visual agent and automation builders</strong> such as Flowise, n8n, and AutoGPT reduce the amount of code needed to assemble agent workflows. They are useful for automation, prototypes, and agent-centric applications, but they do not automatically provide the data model, permissions, pages, and approval logic of an internal business system.</li>
+<li><strong>Business application platforms</strong> such as NocoBase start from the application layer: relational data, pages, roles and permissions, workflows, and auditability. AI is added inside that structure rather than becoming the structure itself.</li>
+</ul>
+<p>For an internal knowledge assistant or a standalone agent service, a framework or visual builder may be enough. For an internal tool that also needs business records, role-based access, approval steps, editable pages, and long-term maintenance, the application layer matters just as much as the Agent itself.</p>
+<p>If your main goal is to compare repositories and community activity rather than internal-tool architecture, see our separate guide to <a href="../blog/github-open-source-ai-agent-projects.html">open-source AI agent projects on GitHub</a>.</p>
+<p>Recently, there was an interesting discussion on <a href="https://news.ycombinator.com/item?id=47896389">Hacker News</a> about AI and internal tools. In the comments, someone mentioned that AI now gives people the ability to build various things. But AI hasn&#39;t taught them to understand — whether this thing really needs to be built, how to maintain it, how to iterate, and how to integrate it with other tools.</p>
+<p><img src="https://static-docs.nocobase.com/reddit-ekdb8j.png" alt="reddit.png"></p>
+<p>AI is greatly lowering the barrier to tool development, but it&#39;s also bringing new problems:</p>
+<ul>
+<li>A large number of redundantly built tools</li>
+<li>Lack of permission control, data governance, and system integration capabilities</li>
+<li>Maintenance costs are severely underestimated</li>
+<li>Team communication channels are flooded with countless &quot;new tool releases&quot;</li>
+<li>Truly high-value solutions are buried in the noise</li>
+</ul>
+<p>Enterprises are entering a new dilemma: tools are becoming easier to create, but truly reliable, maintainable, and scalable business systems remain scarce.</p>
+<p>Which platform can enable AI and Agents to stably enter business processes and continuously play a role under data, permissions, auditing, and manual confirmation mechanisms? To help you make a clearer selection decision, this article compares 8 mainstream open-source AI Agent-related platforms, analyzing their advantages and disadvantages, implementation capabilities, and applicable scenarios in enterprise internal tool scenarios.</p>
+<blockquote>
+<p><strong>Verification note:</strong> GitHub star counts and repository licenses in this article were checked against the projects&#39; official GitHub repositories on September 10, 2026. Star counts are rounded and will change over time. Some products use different licenses for open-source, enterprise, cloud, or platform components, so always review the current license before deployment or redistribution.</p>
+</blockquote>
+<h3>Comparison: Which Layer Does Each Tool Actually Provide?</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Product type</th>
+<th>Repository license</th>
+<th>Self-hosting</th>
+<th>Development required</th>
+<th>Relational business data</th>
+<th>Permissions</th>
+<th>Workflow</th>
+<th>Human approval</th>
+<th>Audit / execution trace</th>
+<th>RAG</th>
+<th>Best fit</th>
+<th>Not ideal for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>NocoBase</strong></td>
+<td>Business application platform with AI Employees</td>
+<td>Apache-2.0</td>
+<td>Yes</td>
+<td>Low to medium; code is optional for many internal-tool tasks</td>
+<td>Built in</td>
+<td>Built-in role and data permissions</td>
+<td>Built-in business workflows</td>
+<td>Built into approval/workflow patterns; AI tools can also require confirmation</td>
+<td>Audit and request logging available</td>
+<td>Built-in AI Knowledge Base / RAG</td>
+<td>Internal tools where AI must work inside business data, permissions, pages, and processes</td>
+<td>Teams that only need a lightweight standalone agent runtime</td>
+</tr>
+<tr>
+<td><strong>n8n</strong></td>
+<td>Workflow automation and AI agent platform</td>
+<td>Sustainable Use License + Enterprise License</td>
+<td>Yes</td>
+<td>Low to medium</td>
+<td>Usually external systems or databases rather than an application data model</td>
+<td>Project, credential, and enterprise controls; not a native row/field business-permission layer</td>
+<td>Core strength</td>
+<td>Can be designed into workflows</td>
+<td>Workflow execution history and operational logging</td>
+<td>Via AI nodes and integrations</td>
+<td>Cross-system automation and agent workflows</td>
+<td>Building a full internal CRUD/business application without another application layer</td>
+</tr>
+<tr>
+<td><strong>Flowise</strong></td>
+<td>Visual AI agent builder</td>
+<td>Apache-2.0 for the open-source repository; commercial terms apply to enterprise/cloud components</td>
+<td>Yes</td>
+<td>Low to medium</td>
+<td>Not a native business application data model</td>
+<td>App/flow access controls; business data permissions require surrounding systems or custom design</td>
+<td>Agentflow / AI workflow</td>
+<td>Possible through flow design or external systems</td>
+<td>Execution and observability features; not a business audit trail by itself</td>
+<td>Strong</td>
+<td>Visual RAG, chatbots, and agent prototypes</td>
+<td>Internal systems that need rich relational data, business pages, and granular business permissions</td>
+</tr>
+<tr>
+<td><strong>LangChain</strong></td>
+<td>Agent / LLM development framework</td>
+<td>MIT</td>
+<td>Yes</td>
+<td>High</td>
+<td>Developer-built</td>
+<td>Developer-built or connected to IAM/application permissions</td>
+<td>Developer-defined orchestration</td>
+<td>Developer-built</td>
+<td>Application logging or external observability</td>
+<td>Strong</td>
+<td>Highly customized agent applications</td>
+<td>Teams looking for an out-of-the-box internal application platform</td>
+</tr>
+<tr>
+<td><strong>CrewAI</strong></td>
+<td>Multi-agent automation framework</td>
+<td>MIT</td>
+<td>Yes</td>
+<td>High</td>
+<td>Developer-built</td>
+<td>Developer-built in the application layer; commercial control-plane options are separate</td>
+<td>Crews and Flows</td>
+<td>Developer-built</td>
+<td>External or commercial observability/control-plane options</td>
+<td>Supported through tools and integrations</td>
+<td>Multi-agent task orchestration</td>
+<td>Business teams that need data models, forms, permissions, and approvals without engineering work</td>
+</tr>
+<tr>
+<td><strong>AutoGPT</strong></td>
+<td>Agent platform with visual building and self-hosting</td>
+<td><code>autogpt_platform/</code>: Polyform Shield; AutoGPT Classic and other repository components: MIT</td>
+<td>Yes</td>
+<td>Low to medium for builder use; higher for custom integration</td>
+<td>Usually through integrations rather than a native internal-app data model</td>
+<td>Platform/integration controls rather than a general business RBAC layer</td>
+<td>Core agent workflow capability</td>
+<td>Depends on workflow and integration design</td>
+<td>Agent run history / operational trace rather than a complete business audit layer</td>
+<td>Via blocks, tools, and integrations</td>
+<td>Building and running autonomous agent workflows</td>
+<td>Replacing a full internal business application layer by itself</td>
+</tr>
+<tr>
+<td><strong>Semantic Kernel</strong></td>
+<td>AI orchestration SDK/framework</td>
+<td>MIT</td>
+<td>Yes</td>
+<td>High</td>
+<td>Developer-built</td>
+<td>Integrated through the host application and identity stack</td>
+<td>Developer-defined orchestration</td>
+<td>Developer-built</td>
+<td>Application / infrastructure logging</td>
+<td>Supported through connectors and retrieval components</td>
+<td>Development teams embedding AI into existing applications, especially Microsoft-heavy stacks</td>
+<td>Non-technical teams that need a ready-made internal tool builder</td>
+</tr>
+<tr>
+<td><strong>Haystack</strong></td>
+<td>AI orchestration and RAG framework</td>
+<td>Apache-2.0</td>
+<td>Yes</td>
+<td>High</td>
+<td>Not a business application data model</td>
+<td>Developer-built in the host application</td>
+<td>Pipelines and agent workflows</td>
+<td>Developer-built</td>
+<td>Application / external observability</td>
+<td>Core strength</td>
+<td>RAG, search, knowledge assistants, and retrieval-heavy agent systems</td>
+<td>Complete internal business apps with forms, permissions, approvals, and transactional workflows</td>
+</tr>
+</tbody></table>
+<p>This table deliberately separates <strong>agent orchestration</strong> from <strong>business workflow</strong>. A tool can have powerful agent workflows and still leave business permissions, approvals, transactional records, and end-user application pages to another system.</p>
+<h3>#1 NocoBase | Open-source no-code AI development platform</h3>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-rfac5e.PNG" alt="NocoBase1.PNG"></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/nocobase/nocobase">github.com/nocobase/nocobase</a>(22k+ stars)</td>
+</tr>
+<tr>
+<td><strong>Website</strong></td>
+<td><a href="https://nocobase.com/">nocobase.com</a></td>
+</tr>
+<tr>
+<td><strong>Open Source License</strong></td>
+<td>Apache-2.0 (Fully permitted for commercial use)</td>
+</tr>
+<tr>
+<td><strong>Self-hosting</strong></td>
+<td>⭐⭐⭐⭐⭐ (100% self-hosted, full data control)</td>
+</tr>
+<tr>
+<td><strong>Integration capability</strong></td>
+<td>⭐⭐⭐⭐⭐ (15+ databases + REST API + workflows)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>⭐⭐⭐⭐⭐ (field-level RBAC, audit logs, multi-tenancy)</td>
+</tr>
+<tr>
+<td><strong>Non-technical friendly</strong></td>
+<td>⭐⭐⭐⭐⭐ (visual configuration, usable by business personnel)</td>
+</tr>
+</tbody></table>
+<p><strong>Core features and advantages</strong>:</p>
+<ul>
+<li><strong>AI employees embedded in business systems</strong>: NocoBase&#39;s AI employees can automatically acquire page data and structure as context, understand business scenarios and directly execute tasks, such as summarizing emails, analyzing data, organizing unstructured content and automatically filling forms, designing data models, and even writing JavaScript code. Each AI employee has independent skills, tools, and knowledge bases, and enterprises can create any number of AI employees to form their own AI team.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-89lxwm.PNG" alt="NocoBase2.PNG"></p>
+<p>💡 How to quickly build internal tools with AI? NocoBase official guide: <a href="https://github.com/nocobase/skills">https://github.com/nocobase/skills</a></p>
+<ul>
+<li><strong>Skills + MCP, external Agents can also build NocoBase</strong>: In addition to built-in AI employees, NocoBase also provides an official Skills repository, which, combined with NocoBase MCP Server, allows coding Agent CLIs like Codex, Claude Code, and OpenCode to directly complete NocoBase installation and deployment, data modeling, interface building, workflow configuration, and other work. Both in-platform AI employees and out-of-platform coding Agents can participate in system building.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-6fd33z.png" alt="NocoBase3.png"></p>
+<p>💡 Want to let AI Agents better understand and build NocoBase? Check the official Skills repository: <a href="https://github.com/nocobase/skills">https://github.com/nocobase/skills</a></p>
+<ul>
+<li><strong>More aligned with enterprise internal tool requirements</strong>: NocoBase can manage AI, data, permissions, pages, workflows, and auditing in the same system, making it more suitable for enterprise scenarios that require self-hosting, permission control, and process constraints.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-f3pxw5.png" alt="NocoBase4.png"></p>
+<p>💡 How to connect AI Agents to NocoBase? Read the official guide: <a href="https://docs.nocobase.com/en/ai-builder">https://docs.nocobase.com/en/ai-builder</a></p>
+<p><strong>NocoBase AI typical scenarios</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>How AI Agent works</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Smart approval</strong></td>
+<td>Agent reads application → queries historical data → approves/rejects based on rules → records decision</td>
+</tr>
+<tr>
+<td><strong>Customer service</strong></td>
+<td>Agent views CRM → analyzes problem → drafts response → manual confirmation → sends</td>
+</tr>
+<tr>
+<td><strong>Data entry</strong></td>
+<td>Extracts information from email/document → auto-fills form → validates data → saves to database</td>
+</tr>
+<tr>
+<td><strong>Report generation</strong></td>
+<td>Collects multi-source data → analyzes trends → generates charts → sends to management</td>
+</tr>
+</tbody></table>
+<p><strong>Implementation capability</strong></p>
+<p>NocoBase provides native support at four levels: data model, page, roles and permissions, and workflow. Data modeling adopts a model-driven architecture with native support for 15+ mainstream databases; pages are visually arranged through a block system; the permission system covers field-level RBAC and data scope control; workflows support approval, timing triggers, data linkage, and manual confirmation business nodes.</p>
+<p>Compared with developing from scratch or end-to-end AI generation in a vibe coding style, building a long-term sustainable, auditable, traceable, and clearly bounded permission model and approval process in a system still requires platform-level abstraction and constraint mechanisms like NocoBase.</p>
+<h4>A Reproducible Internal-Tool Example: AI-Assisted Purchase Review</h4>
+<p>A simple implementation can look like this:</p>
+<pre><code class="language-text">Purchase request submitted
+        ↓
+AI Employee reads the request and permitted related records
+        ↓
+AI summarizes supplier history, amount, and risk signals
+        ↓
+AI fills structured review fields
+        ↓
+NocoBase Workflow applies business rules
+        ↓
+High-value or exceptional request → human approval
+Normal request → continue to the next workflow step
+        ↓
+Relevant changes and workflow actions remain traceable
+</code></pre>
+<p>The important part is not the prompt. It is the boundary around the prompt.</p>
+<ol>
+<li>Create collections for purchase requests, suppliers, and review records, then define their relationships.</li>
+<li>Create a role for the users or AI Employee involved in the process and restrict which records and fields they can read or change. NocoBase documents separate controls for <a href="https://docs.nocobase.com/ai-employees/permission">AI Employee access and data access permissions</a>.</li>
+<li>Configure an AI Employee with the business context and tools it needs. For data-changing tools, NocoBase supports an <strong>Ask</strong> permission so the system can require confirmation before the tool is called. See <a href="https://docs.nocobase.com/ai-employees/features/tools">AI Employee Tools</a>.</li>
+<li>Create a workflow that starts when a purchase request reaches the review stage. The AI step can prepare a summary or structured recommendation, while deterministic rules handle routing.</li>
+<li>Add an approval or human review step for high-value, incomplete, or exceptional requests instead of letting the model make an irreversible decision on its own.</li>
+<li>Use request/audit logging where traceability is required, and test the workflow with a non-admin role before production use.</li>
+</ol>
+<p>This pattern also works for lead qualification, service requests, document intake, CRM follow-up, and other processes where an AI Agent has to operate on real business records without bypassing the application&#39;s permission boundaries.</p>
+<p><strong>Most suitable for</strong>:</p>
+<ul>
+<li>Enterprises that need business teams to directly use AI</li>
+<li>Industries with data compliance requirements (finance, healthcare, government)</li>
+<li>Teams building internal tools that conform to enterprise business processes from scratch</li>
+<li>Enterprises that already have databases, ERP, CRM, and need AI enhancement</li>
+</ul>
+<h3>#2 n8n | Workflow automation + AI nodes</h3>
+<p><img src="https://static-docs.nocobase.com/n8n-y5a6bl.png" alt="n8n.png"></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/n8n-io/n8n">github.com/n8n-io/n8n</a>(50k+ stars)</td>
+</tr>
+<tr>
+<td><strong>Website</strong></td>
+<td><a href="https://n8n.io/">n8n.io</a></td>
+</tr>
+<tr>
+<td><strong>Open Source License</strong></td>
+<td>Fair-Code (commercial use has limitations)</td>
+</tr>
+<tr>
+<td><strong>Self-hosting</strong></td>
+<td>⭐⭐⭐⭐ (supports self-hosting)</td>
+</tr>
+<tr>
+<td><strong>Integration capability</strong></td>
+<td>⭐⭐⭐⭐ (200+ app integrations)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>⭐⭐⭐ (basic permission management)</td>
+</tr>
+<tr>
+<td><strong>Non-technical friendly</strong></td>
+<td>⭐⭐⭐⭐ (visual workflow editor)</td>
+</tr>
+</tbody></table>
+<p><strong>Core features and advantages</strong>:</p>
+<ul>
+<li><strong>Strong SaaS integration capability</strong>: n8n provides a large number of ready-made app nodes, suitable for connecting CRM, forms, email, Slack, databases, and various SaaS tools to quickly build cross-system automation workflows.</li>
+<li><strong>Visual workflow is quick to get started</strong>: By dragging nodes and configuring workflows, teams can quickly build automation tasks, suitable for scenarios like simple notifications, data synchronization, and content processing.</li>
+<li><strong>AI nodes are suitable for lightweight intelligent processing</strong>: n8n supports integration with models like OpenAI and Anthropic, suitable for adding AI capabilities like summarization, classification, translation, and text generation in automation workflows.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>More adept at SaaS application integration, not a complete internal business system platform.</li>
+<li>Database modeling, page building, and complex permission control capabilities are relatively limited.</li>
+<li>AI capabilities are more like &quot;calling LLM API&quot;, not Agents deeply embedded in business objects and permission systems.</li>
+</ul>
+<p><strong>Typical scenarios</strong>:</p>
+<ul>
+<li>Data synchronization and notification automation between SaaS applications.</li>
+<li>Lightweight AI text processing like summarization, classification, and translation.</li>
+<li>Quickly building automation prototypes.</li>
+</ul>
+<p><strong>Implementation capability</strong>:</p>
+<p>Workflow is n8n&#39;s core strength; however, its data model relies on external databases or SaaS, it has no end-user business pages, and permissions only go to workflow and credential levels (Project Admin/Editor/Viewer), lacking field-level or row-level business permissions. More suitable as a &quot;process bonding layer&quot;, not a complete internal business system.</p>
+<h3>#3 Flowise | Visual LangChain builder</h3>
+<p><img src="https://static-docs.nocobase.com/Flowise-klahhz.png" alt="Flowise.png"></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/FlowiseAI/Flowise">github.com/FlowiseAI/Flowise</a>(28k+ stars)</td>
+</tr>
+<tr>
+<td><strong>Open Source License</strong></td>
+<td>Apache 2.0</td>
+</tr>
+<tr>
+<td><strong>Self-hosting</strong></td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Integration capability</strong></td>
+<td>⭐⭐⭐⭐ (based on LangChain ecosystem)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>⭐⭐ (basic authentication)</td>
+</tr>
+<tr>
+<td><strong>Non-technical friendly</strong></td>
+<td>⭐⭐⭐ (drag-and-drop, but still requires technical concepts)</td>
+</tr>
+</tbody></table>
+<p><strong>Core features and advantages</strong>:</p>
+<ul>
+<li><strong>Build LLM applications visually</strong>: Flowise turns common LangChain capabilities into draggable nodes, suitable for quickly building Chatbot, RAG, Agent, and tool-calling workflows.</li>
+<li><strong>Suitable for quick prototype validation</strong>: Technical teams can verify AI application ideas in a relatively short time, such as knowledge base Q&amp;A, document retrieval, customer service assistant, or internal query tools.</li>
+<li><strong>Compatible with LangChain ecosystem</strong>: Flowise is based on the LangChain ecosystem, can reuse some model, vector database, and toolchain capabilities, and is suitable as a low-barrier entry point for building LLM applications.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>Production environment deployment, permission management, and security auditing still require additional configuration.</li>
+<li>Complex business logic and system integration may still require developer involvement.</li>
+<li>Not suitable for undertaking complete enterprise business process management.</li>
+</ul>
+<p><strong>Typical scenarios</strong>:</p>
+<ul>
+<li>Quickly building LLM application prototypes.</li>
+<li>Technical teams lightly building Agent workflows.</li>
+</ul>
+<p><strong>Implementation capability</strong>:</p>
+<p>Flowise focuses on visual construction of LLM applications (Chatflow, Agentflow, RAG). It has no business data modeling, business pages, or enterprise-level permission system. Workflows are limited to AI inference chains, not business processes, making it only suitable for prototyping AI modules.</p>
+<h3>#4 LangChain | LLM framework with the most complete ecosystem</h3>
+<p><img src="https://static-docs.nocobase.com/LangChain-gr5uyo.png" alt="LangChain.png"></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/langchain-ai/langchain">github.com/langchain-ai/langchain</a>(90k+ stars)</td>
+</tr>
+<tr>
+<td><strong>Open Source License</strong></td>
+<td>MIT (allows commercial use)</td>
+</tr>
+<tr>
+<td><strong>Self-hosting</strong></td>
+<td>⭐⭐⭐⭐⭐ (fully self-hosted)</td>
+</tr>
+<tr>
+<td><strong>Integration capability</strong></td>
+<td>⭐⭐⭐ (through extension libraries, requires development)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>⭐⭐ (the framework itself does not provide enterprise-level security, needs self-implementation)</td>
+</tr>
+<tr>
+<td><strong>Non-technical friendly</strong></td>
+<td>⭐ (must write code)</td>
+</tr>
+</tbody></table>
+<p><strong>Core features and advantages</strong>:</p>
+<ul>
+<li><strong>Complete LLM ecosystem coverage</strong>: LangChain provides rich components and extension capabilities, covering common scenarios like mainstream large models, vector databases, tool calling, RAG, Agent, and memory mechanisms.</li>
+<li><strong>High modularity</strong>: Modules like Chains, Agents, Memory, and Tools are clearly divided, allowing developers to freely combine according to business needs, suitable for building highly customized AI applications.</li>
+<li><strong>Mature community, rich resources</strong>: As one of the earliest widely adopted LLM development frameworks, LangChain has an active community, rich tutorials, and numerous examples, making it easier to find reference solutions when encountering problems.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>Must write code, business teams cannot directly use it.</li>
+<li>Steeper learning curve, relatively many abstract concepts.</li>
+<li>Need to build and maintain infrastructure by yourself.</li>
+<li>The framework itself does not provide complete enterprise-level security capabilities like RBAC and audit logs.</li>
+</ul>
+<p><strong>Typical scenarios</strong>:</p>
+<ul>
+<li>Development teams building customized AI applications.</li>
+<li>Complex scenarios requiring deep control of Agent behavior.</li>
+<li>Enterprises with AI engineers or backend development resources.</li>
+</ul>
+<p><strong>Implementation capability</strong>:</p>
+<p>As a code framework, data models depend on developer customization, pages require front-end development by themselves, permissions need to connect to IAM or write authentication logic, and workflows are arranged in code through Chains/Agents. Maximum flexibility, but also the largest engineering effort for enterprise-level implementation.</p>
+<h3>#5 CrewAI | Multi-Agent collaboration framework</h3>
+<p><img src="https://static-docs.nocobase.com/CrewAI-m0uyoh.png" alt="CrewAI.png"></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/joaomdmoura/crewAI">github.com/joaomdmoura/crewAI</a>(15k+ stars)</td>
+</tr>
+<tr>
+<td><strong>Open Source License</strong></td>
+<td>AGPL-3.0 (commercial use requires attention)</td>
+</tr>
+<tr>
+<td><strong>Self-hosting</strong></td>
+<td>⭐⭐⭐⭐⭐ (fully self-hosted)</td>
+</tr>
+<tr>
+<td><strong>Integration capability</strong></td>
+<td>⭐⭐⭐ (through LangChain and custom tools)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>⭐⭐ (needs self-implementation)</td>
+</tr>
+<tr>
+<td><strong>Non-technical friendly</strong></td>
+<td>⭐ (must write code)</td>
+</tr>
+</tbody></table>
+<p><strong>Core features and advantages</strong>:</p>
+<ul>
+<li><strong>Native support for multi-Agent collaboration</strong>: CrewAI takes &quot;roles&quot; and &quot;tasks&quot; as core, each Agent can be set to different roles, suitable for decomposing complex tasks to multiple Agents for collaborative completion.</li>
+<li><strong>Clear task flow expression</strong>: Through role, goal, background settings, and task orchestration, CrewAI can naturally simulate multi-step workflows like &quot;research, draft, review, execute&quot;.</li>
+<li><strong>Suitable for complex content and process automation</strong>: Compared with single Agent, CrewAI is more suitable for scenarios requiring multiple intelligent agents to collaborate, such as content production, research analysis, process decomposition, and multi-step business processing.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>Still requires writing Python code.</li>
+<li>Project is relatively young, ecosystem maturity is not as good as LangChain.</li>
+<li>Production environment deployment, permissions, security, and monitoring capabilities still need to be filled by the enterprise.</li>
+</ul>
+<p><strong>Typical scenarios</strong>:</p>
+<ul>
+<li>Content production pipeline, such as research, writing, editing, and publishing.</li>
+<li>Multi-step, multi-role business process automation.</li>
+<li>Complex tasks requiring multiple AI Agents to collaborate.</li>
+</ul>
+<p><strong>Implementation capability</strong>:</p>
+<p>CrewAI focuses on &quot;role-task&quot; orchestration for multi-Agent collaboration. At the workflow level, it can express division of labor and dependencies between Agents, but it belongs to Agent internal collaboration flow, not a workflow engine carrying business like approval and form submission.</p>
+<h3>#6 AutoGPT | Pioneer of autonomous Agents</h3>
+<p><img src="https://static-docs.nocobase.com/AutoGPT-pi0ow1.png" alt="AutoGPT.png"></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/Significant-Gravitas/AutoGPT">github.com/Significant-Gravitas/AutoGPT</a>(160k+ stars)</td>
+</tr>
+<tr>
+<td><strong>Open Source License</strong></td>
+<td>MIT (allows commercial use)</td>
+</tr>
+<tr>
+<td><strong>Self-hosting</strong></td>
+<td>⭐⭐⭐⭐⭐ (fully self-hosted)</td>
+</tr>
+<tr>
+<td><strong>Integration capability</strong></td>
+<td>⭐⭐ (limited, mainly file and browser operations)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>⭐ (experimental project, no enterprise-level security)</td>
+</tr>
+<tr>
+<td><strong>Non-technical friendly</strong></td>
+<td>⭐ (command-line tool)</td>
+</tr>
+</tbody></table>
+<p><strong>Core features and advantages</strong>:</p>
+<ul>
+<li><strong>Outstanding autonomous task decomposition capability</strong>: AutoGPT&#39;s core idea is that after giving a goal, the Agent automatically performs task decomposition, planning, execution, and adjustment.</li>
+<li><strong>Strong concept influence</strong>: AutoGPT promoted public attention to AI Agents, and also made &quot;goal-driven Agent&quot; an important reference for many subsequent projects.</li>
+<li><strong>Suitable for experimentation and concept verification</strong>: It&#39;s more suitable for learning Agent principles, verifying autonomous execution chains, or observing AI&#39;s behavioral boundaries in open tasks.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>Insufficient stability, prone to loops or invalid operations.</li>
+<li>Uncontrollable LLM call costs.</li>
+<li>Lacks enterprise-level permission management, audit logs, and security mechanisms.</li>
+</ul>
+<p><strong>Typical scenarios</strong>:</p>
+<ul>
+<li>Agent principle learning.</li>
+<li>Experimental projects and concept verification.</li>
+<li>Individual developers exploring autonomous Agent behavior patterns.</li>
+</ul>
+<p><strong>Implementation capability</strong>:</p>
+<p>AutoGPT is an experimental project for single Agent autonomous task execution. It has no data modeling, no business pages, no enterprise permissions, business processes are improvises by LLM itself, uncontrollable and non-auditable, not recommended for direct use in production systems.</p>
+<h3>#7 Microsoft Semantic Kernel</h3>
+<p><img src="https://static-docs.nocobase.com/Semantic%20Kernel-q5kwiw.png" alt="Semantic Kernel.png"></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/microsoft/semantic-kernel">github.com/microsoft/semantic-kernel</a>(20k+ stars)</td>
+</tr>
+<tr>
+<td><strong>Open Source License</strong></td>
+<td>MIT</td>
+</tr>
+<tr>
+<td><strong>Self-hosting</strong></td>
+<td>⭐⭐⭐ (deeply bound with Azure)</td>
+</tr>
+<tr>
+<td><strong>Integration capability</strong></td>
+<td>⭐⭐⭐⭐⭐ (Microsoft 365, Azure ecosystem)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>⭐⭐⭐⭐⭐ (enterprise-level Azure AD, permission management)</td>
+</tr>
+<tr>
+<td><strong>Non-technical friendly</strong></td>
+<td>⭐⭐ (developer tool)</td>
+</tr>
+</tbody></table>
+<p><strong>Core features and advantages</strong>:</p>
+<ul>
+<li><strong>Deep adaptation to Microsoft ecosystem</strong>: Semantic Kernel is closely integrated with Azure, Azure OpenAI, Microsoft 365, Teams, SharePoint, etc., suitable for enterprises already using Microsoft technology stack.</li>
+<li><strong>Oriented toward enterprise-level AI orchestration</strong>: It provides capabilities like plugins, planners, memory, and function calling, suitable for development teams to embed AI capabilities into existing enterprise applications and services.</li>
+<li><strong>Strong security and compliance foundation</strong>: Relying on Azure AD, permission system, and Microsoft cloud services, Semantic Kernel can more easily integrate into existing enterprise identity authentication, security, and compliance frameworks.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>Strong dependence on Microsoft and Azure ecosystems, limited flexibility in multi-cloud or self-built environments.</li>
+<li>Still a developer tool, business personnel cannot directly configure and use it.</li>
+<li>Higher learning curve, need to understand Microsoft ecosystem, cloud services, and AI orchestration methods.</li>
+<li>For enterprises with non-Microsoft technology stack, the onboarding cost may be relatively high.</li>
+</ul>
+<p><strong>Typical scenarios</strong>:</p>
+<ul>
+<li>Enterprises deeply using Microsoft 365 and Azure.</li>
+<li>Scenarios needing to embed AI into Teams, Office, SharePoint, or internal Microsoft applications.</li>
+</ul>
+<p><strong>Implementation capability</strong>:</p>
+<p>Semantic Kernel is more suitable for enterprises with existing Microsoft technology foundation. It does not provide business data models and pages by itself. Permissions can be leveraged through Azure AD system, but need to be implemented in the enterprise&#39;s own application layer; workflows orchestrate AI steps through Planner and function calling, more oriented toward AI flow.</p>
+<h3>#8 Haystack | Enterprise AI framework from deepset</h3>
+<p><img src="https://static-docs.nocobase.com/Haystack-g9npjs.png" alt="Haystack.png"></p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td><a href="https://github.com/deepset-ai/haystack">github.com/deepset-ai/haystack</a>(15k+ stars)</td>
+</tr>
+<tr>
+<td><strong>Open Source License</strong></td>
+<td>Apache 2.0</td>
+</tr>
+<tr>
+<td><strong>Self-hosting</strong></td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Integration capability</strong></td>
+<td>⭐⭐⭐⭐ (focused on search and RAG)</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>⭐⭐⭐ (needs self-implementation for enterprise-level security)</td>
+</tr>
+<tr>
+<td><strong>Non-technical friendly</strong></td>
+<td>⭐⭐ (developer tool)</td>
+</tr>
+</tbody></table>
+<p><strong>Core features and advantages</strong>:</p>
+<ul>
+<li><strong>Focused on RAG and enterprise search</strong>: Haystack is mainly oriented toward retrieval-augmented generation, document Q&amp;A, semantic search, and knowledge base scenarios, suitable for processing large amounts of unstructured documents.</li>
+<li><strong>Strong integration capability with search and vector databases</strong>: It supports combination with Elasticsearch, OpenSearch, vector databases, and multiple models, suitable for building more complex enterprise-level retrieval systems.</li>
+<li><strong>Closer to production-level AI framework</strong>: Compared with some experimental Agent projects, Haystack is more mature in enterprise search, Q&amp;A systems, and RAG flows, and also has commercial support from deepset.</li>
+</ul>
+<p><strong>Disadvantages</strong>:</p>
+<ul>
+<li>More suitable for knowledge base and search scenarios, not a general-purpose internal tool platform.</li>
+<li>Needs development team for system design, deployment, and maintenance.</li>
+<li>Enterprise capabilities like permission control, audit logs, and business process integration need additional implementation.</li>
+<li>Not friendly to non-technical teams.</li>
+</ul>
+<p><strong>Typical scenarios</strong>:</p>
+<ul>
+<li>Enterprise knowledge base and document Q&amp;A system.</li>
+<li>AI retrieval and analysis of large amounts of unstructured documents.</li>
+<li>Enterprise projects needing production-level RAG capabilities.</li>
+</ul>
+<p><strong>Implementation capability</strong>:</p>
+<p>Haystack focuses on RAG and enterprise search Pipeline. Data models only serve document/vector retrieval, no business pages and role permissions, workflows are retrieval-augmented generation processing flows, not business workflow engines. Most suitable as a knowledge base/search subsystem, used in combination with a real internal tool platform.</p>
+<h2 id="en-2">Quick decision framework</h2>
+<table>
+<thead>
+<tr>
+<th>Your scenario</th>
+<th>Recommended tool</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Business teams directly using AI</strong></td>
+<td><strong>NocoBase</strong></td>
+<td>No coding, visual configuration, enterprise-level security</td>
+</tr>
+<tr>
+<td><strong>SaaS application automation</strong></td>
+<td><strong>n8n</strong></td>
+<td>200+ integrations, quick to get started</td>
+</tr>
+<tr>
+<td><strong>Deeply customized Agents</strong></td>
+<td><strong>LangChain, CrewAI</strong></td>
+<td>Full programming control, most flexible</td>
+</tr>
+<tr>
+<td><strong>Quick prototype validation</strong></td>
+<td><strong>Flowise, n8n</strong></td>
+<td>Drag-and-drop, build in minutes</td>
+</tr>
+<tr>
+<td><strong>Microsoft 365 deep users</strong></td>
+<td><strong>Semantic Kernel</strong></td>
+<td>Natural integration with Azure, M365</td>
+</tr>
+<tr>
+<td><strong>Enterprise knowledge base + RAG</strong></td>
+<td><strong>Haystack</strong></td>
+<td>Focused on search augmentation, production-ready</td>
+</tr>
+<tr>
+<td><strong>Existing database/ERP needing AI enhancement</strong></td>
+<td><strong>NocoBase</strong></td>
+<td>Database-level integration, native workflow</td>
+</tr>
+<tr>
+<td><strong>Experimental projects</strong></td>
+<td><strong>Flowise, AutoGPT</strong></td>
+<td>Quickly try concepts</td>
+</tr>
+</tbody></table>
+<h2 id="en-3">FAQ</h2>
+<h3>Q1: How can non-technical teams start using AI Agents?</h3>
+<p><strong>A:</strong> It is recommended to start from a clear, verifiable business scenario, such as approval assistance, customer service response drafting, document information extraction, or weekly report generation.</p>
+<table>
+<thead>
+<tr>
+<th>Team type</th>
+<th>Recommended tool</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Completely non-technical</strong></td>
+<td>NocoBase + official AI Skills, let AI help you build the system</td>
+</tr>
+<tr>
+<td><strong>Some technical background</strong></td>
+<td>n8n, start with simple automation</td>
+</tr>
+<tr>
+<td><strong>Has development resources</strong></td>
+<td>LangChain + NocoBase, deep customization</td>
+</tr>
+</tbody></table>
+<p><strong>NocoBase</strong> provides official Skills (Codex, Claude Code, OpenCode), AI Agents can help you: install and deploy NocoBase, design data models, configure UI and workflows, and set up other AI Agents.</p>
+<h3>Q2: Are open-source Agent frameworks allowed for commercial use?</h3>
+<p><strong>A:</strong> Most allow it, but need to pay attention to license differences:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>License</th>
+<th>Commercial use restrictions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>NocoBase</strong></td>
+<td>Apache 2.0</td>
+<td>✅ Fully allowed, no restrictions</td>
+</tr>
+<tr>
+<td><strong>LangChain</strong></td>
+<td>MIT</td>
+<td>✅ Fully allowed</td>
+</tr>
+<tr>
+<td><strong>AutoGPT</strong></td>
+<td>MIT</td>
+<td>✅ Fully allowed</td>
+</tr>
+<tr>
+<td><strong>n8n</strong></td>
+<td>Fair-Code</td>
+<td>⚠️ Allowed, but has some restrictions</td>
+</tr>
+<tr>
+<td><strong>CrewAI</strong></td>
+<td>AGPL-3.0</td>
+<td>⚠️ Need to open source modifications if providing as SaaS</td>
+</tr>
+<tr>
+<td><strong>Flowise</strong></td>
+<td>Apache 2.0</td>
+<td>✅ Fully allowed</td>
+</tr>
+<tr>
+<td><strong>Semantic Kernel</strong></td>
+<td>MIT</td>
+<td>✅ Fully allowed</td>
+</tr>
+<tr>
+<td><strong>Haystack</strong></td>
+<td>Apache 2.0</td>
+<td>✅ Fully allowed</td>
+</tr>
+</tbody></table>
+<p>It is recommended to choose tools with Apache 2.0 or MIT licenses, such as NocoBase, LangChain, and Flowise.</p>
+<h3>Q3: How to handle data privacy and security?</h3>
+<p><strong>A</strong>: First clarify whether data can leave the country, whether audit trails are needed, whether field-level permissions are needed, and whether model calls will touch sensitive data.</p>
+<table>
+<thead>
+<tr>
+<th>Requirements</th>
+<th>Recommended solution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Data cannot leave the country</strong></td>
+<td>NocoBase (100% self-hosted), LangChain</td>
+</tr>
+<tr>
+<td><strong>Need audit logs</strong></td>
+<td>NocoBase (built-in), Semantic Kernel</td>
+</tr>
+<tr>
+<td><strong>Field-level permissions</strong></td>
+<td>NocoBase (field-level RBAC)</td>
+</tr>
+<tr>
+<td><strong>SOC 2 / HIPAA</strong></td>
+<td>NocoBase, Semantic Kernel</td>
+</tr>
+</tbody></table>
+<h3>Q4: What is the core difference between NocoBase vs LangChain?</h3>
+<p><strong>A</strong>: They serve different scenarios:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>NocoBase</th>
+<th>LangChain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Positioning</strong></td>
+<td>Internal tool platform</td>
+<td>LLM development framework</td>
+</tr>
+<tr>
+<td><strong>Target users</strong></td>
+<td>Business teams + technical teams</td>
+<td>Developers</td>
+</tr>
+<tr>
+<td><strong>Core capabilities</strong></td>
+<td>Building complete business systems</td>
+<td>Building AI/LLM applications</td>
+</tr>
+<tr>
+<td><strong>AI integration</strong></td>
+<td>AI embedded in workflows</td>
+<td>AI is the core function</td>
+</tr>
+<tr>
+<td><strong>Learning curve</strong></td>
+<td>Low (visual configuration)</td>
+<td>High (needs to write code)</td>
+</tr>
+<tr>
+<td><strong>Enterprise features</strong></td>
+<td>Built-in RBAC, audit logs</td>
+<td>Needs self-implementation</td>
+</tr>
+<tr>
+<td><strong>Database support</strong></td>
+<td>15+ databases natively supported</td>
+<td>Needs through extensions</td>
+</tr>
+</tbody></table>
+<p>Simply put, LangChain is more like an AI development component library, while NocoBase is more like a business system platform that carries data, pages, permissions, and processes. They are not tools at the same level and can be used in combination, for example: use LangChain to build customized AI modules, then integrate into NocoBase workflows through API.</p>
+<h3>Q5: Can multiple tools be used in combination?</h3>
+<p><strong>A</strong>: Yes, many enterprises use different tools at different levels, but avoid increasing maintenance complexity for the sake of tool combinations.</p>
+<p>Recommended combination methods:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Combination</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SaaS integration + database operations</strong></td>
+<td>n8n (SaaS) + NocoBase (database)</td>
+</tr>
+<tr>
+<td><strong>Custom AI + business system</strong></td>
+<td>LangChain (AI logic) + NocoBase (UI and workflows)</td>
+</tr>
+<tr>
+<td><strong>Quick prototype + production deployment</strong></td>
+<td>Flowise (prototype) → NocoBase (production)</td>
+</tr>
+</tbody></table>
+<h3>Q6: How to ensure the stability of AI Agents?</h3>
+<p><strong>A</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Stability issues</th>
+<th>Solutions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Unstable LLM output</strong></td>
+<td>1. Structured output (JSON mode) 2. Validation and retry mechanism 3. Manual confirmation for critical operations</td>
+</tr>
+<tr>
+<td><strong>Uncontrollable costs</strong></td>
+<td>1. Set LLM call frequency limits 2. Use caching 3. Monitoring and alerts</td>
+</tr>
+<tr>
+<td><strong>Agent falling into loops</strong></td>
+<td>1. Set maximum iteration count 2. Timeout mechanism 3. Manual intervention points</td>
+</tr>
+</tbody></table>
+<p>In workflow platforms like NocoBase, the following methods can reduce business risks caused by Agent instability:</p>
+<ul>
+<li>✅ AI Agent integrated with workflows, can set manual confirmation points</li>
+<li>✅ Audit logs record all Agent operations for traceability</li>
+<li>✅ Configurable trigger conditions (e.g., only trigger AI review when amount &gt; ¥10K)</li>
+</ul>
+<p>Note: Agent stability still depends on model capability, prompt design, input data quality, and manual confirmation at critical nodes.</p>
+<h3>Q6: What Is the Difference Between an AI Agent Framework and an AI Agent Platform?</h3>
+<p>An <strong>AI Agent framework</strong> gives developers building blocks for agent logic: model calls, tools, state, retrieval, routing, and orchestration. LangChain, CrewAI, Semantic Kernel, and Haystack fit this category.</p>
+<p>An <strong>AI Agent platform</strong> usually provides more of the runtime and operational environment around those building blocks, such as a visual builder, deployment, triggers, integrations, or run management. n8n, Flowise, and AutoGPT provide more of this platform layer, although they differ significantly in scope.</p>
+<p>A <strong>business application platform</strong> starts from a different layer. It manages business data, pages, permissions, workflows, and user interactions, then lets AI operate inside those boundaries. NocoBase is the example in this comparison.</p>
+<p>The terms overlap in product marketing, so the label matters less than the missing layer. Before choosing a tool, ask what you would still need to build after the Agent itself works.</p>
+<h2 id="en-4">Conclusion</h2>
+<p>For internal enterprise tools, the Agent itself is not the only focus. The focus is on verifying whether the Agent can truly enter the business process and stably reduce repetitive operations and improve processing efficiency under the constraints of permissions, auditing, and manual confirmation mechanisms.</p>
+<p>You can start from a high-frequency, clearly bounded business scenario, such as smart approval, AI customer service, or document information extraction, and after a single scenario runs through, gradually expand to more core processes.</p>
+<p>If this article is helpful to you, please share it with colleagues and friends who are evaluating AI Agent platforms.</p>
+<p><strong>Related reading</strong></p>
+<ul>
+<li><a href="../blog/the-best-self-hosted-crm-for-enterprise-teams.html">The Best Enterprise-Grade Self-Hosted CRMs with RBAC, AI, and Open API Support </a></li>
+<li><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">6 Best Open-Source Tools to Replace Custom Integration Middleware</a></li>
+<li><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Replace Excel with NocoBase or Airtable? A Cost-by-Cost Comparison</a></li>
+<li><a href="../blog/excel-to-web-app-4-methods.html">4 Ways to Quickly Build Web Apps from Excel Data</a></li>
+<li><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">Not Just PostgreSQL: Comparing 5 No-Code/Low-Code Platforms with External Database Support</a></li>
+<li><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">Open Source Project Management Tool Selection Guide, 2026 Edition</a></li>
+<li><a href="../blog/how-to-build-a-custom-crm-with-postgresql.html">How to Build a Custom CRM with PostgreSQL</a></li>
+<li><a href="../blog/best-open-source-ai-projects-github-2026.html">Top 20 AI Projects on GitHub to Watch in 2026: Not Just OpenClaw</a></li>
+<li><a href="../blog/best-ai-crm-open-source-nocobase-twenty-krayin.html">Best Open Source AI CRM: NocoBase vs Twenty vs Krayin</a></li>
+<li><a href="../blog/top-3-open-source-erp-with-ai-on-github-nocobase-vs-odoo-vs-erpnext.html">Top 3 Open Source ERP with AI on GitHub: NocoBase vs Odoo vs ERPNext</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">TL;DR</a><a href="#zh-2">快速决策框架</a><a href="#zh-3">FAQ</a><a href="#zh-4">结语</a></div><div class="en-only"><a href="#en-1">TL;DR</a><a href="#en-2">Quick decision framework</a><a href="#en-3">FAQ</a><a href="#en-4">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

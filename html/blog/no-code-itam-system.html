@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="6 个最佳无代码 IT 资产管理工具推荐 — NocoBase" data-en="6 No-Code Tools to Build a Flexible ITAM System — NocoBase">6 个最佳无代码 IT 资产管理工具推荐 — NocoBase</title>
+<meta name="description" content="这篇文章深入解析 IT资产管理（ITAM） 场景下的无代码与低代码工具，比较 Airtable、Glide、Appsmith、Budibase、Retool 的核心功能、适用场景与优势，帮助企业快速选择最合适的 IT资产管理系统。" data-zh="这篇文章深入解析 IT资产管理（ITAM） 场景下的无代码与低代码工具，比较 Airtable、Glide、Appsmith、Budibase、Retool 的核心功能、适用场景与优势，帮助企业快速选择最合适的 IT资产管理系统。" data-en="This article explores IT Asset Management (ITAM) tools, comparing Airtable, Glide, Appsmith, Budibase, and Retool, highlighting their key features, benefits, and use cases to help businesses choose the best IT asset management system.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>6 个最佳无代码 IT 资产管理工具推荐</t-zh><t-en>6 No-Code Tools to Build a Flexible ITAM System</t-en></h1>
+    <p class="lede"><t-zh>这篇文章深入解析 IT资产管理（ITAM） 场景下的无代码与低代码工具，比较 Airtable、Glide、Appsmith、Budibase、Retool 的核心功能、适用场景与优势，帮助企业快速选择最合适的 IT资产管理系统。</t-zh><t-en>This article explores IT Asset Management (ITAM) tools, comparing Airtable, Glide, Appsmith, Budibase, and Retool, highlighting their key features, benefits, and use cases to help businesses choose the best IT asset management system.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年9月9日</t-zh><t-en>Sep 9, 2025</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2094-11c6sb.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">写在开头</h2>
+<p>专业 IT 资产管理（ITAM）工具（如 Lansweeper、AssetSonar、Bluetally）已经非常成熟，为什么还要考虑用无代码工具来搭建 IT 资产管理系统？</p>
+<p><img src="https://static-docs.nocobase.com/ITAM-84hmx5.PNG" alt="ITAM.PNG"></p>
+<p>在资产规模庞大、合规要求严格、并且希望尽量减少人工维护的环境中，这类专业 ITAM 工具无疑是最佳选择。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>但在现实中并不是所有企业都适合直接采用它们。尤其是中小企业，或那些有独特业务流程的团队，更需要一种<strong>灵活、低成本、快速落地</strong>的方案。</p>
+<p>这正是用<strong>无代码工具搭建 ITAM 系统</strong>的价值所在：它们虽然缺少部分专业 ITAM 产品的自动化功能，但胜在简单和高度可定制，能根据业务需要灵活调整，让资产管理真正融入日常业务。</p>
+<p>💡 阅读更多：<a href="../blog/it-asset-management-software.html">2025年8款顶级的开源IT资产管理软件</a></p>
+<h2 id="zh-2">无代码搭建 ITAM 系统的核心功能</h2>
+<p>在理解了无代码 ITAM 的定位之后，下一个问题是：它能覆盖哪些核心功能？虽然无代码方案无法像专业 ITAM 产品那样直接提供自动化扫描（部分无代码工具可以自行扩展），但在日常管理和业务结合方面，已经足以满足大多数企业的需求。以下是一个典型的功能清单：</p>
+<ul>
+<li><strong>资产台账</strong>：集中管理所有 IT 资产，包括硬件设备、软件应用、许可证和合同等，让信息不再分散在多个表格和系统里。</li>
+<li><strong>生命周期管理</strong>：从资产采购、领用、日常维护到最终报废，整个生命周期都能被清晰记录，帮助企业追踪每一台设备的使用情况。</li>
+<li><strong>用户与权限管理</strong>：明确资产的责任人和使用人，通过权限控制确保不同角色只访问与其相关的数据。</li>
+<li><strong>软件许可与合同跟踪</strong>：避免遗漏许可证续费或合同到期，减少合规风险和额外支出。</li>
+<li><strong>报表与分析</strong>：通过自定义报表快速查看资产利用率、使用成本、折旧情况等关键指标，为管理决策提供数据支持。</li>
+<li><strong>自动化</strong>：借助工作流功能自动触发提醒与审批，例如在许可证即将到期时推送通知，或在提交报修后自动生成审批工单。</li>
+</ul>
+<p>如果你的团队之前采用的是传统的 Excel 管理模式，那么无代码是一个不错的过渡方案。</p>
+<p>你还可以根据不同无代码平台的特点，拓展出个性化功能，例如与第三方工具集成实现<strong>网络扫描</strong>、与财务系统对接完成<strong>成本核算</strong>、甚至在移动端实现<strong>资产登记与扫码入库</strong>。</p>
+<h2 id="zh-3">无代码工具推荐</h2>
+<p>如果你打算尝试用无代码平台搭建 IT 资产管理系统，这里有 6 个值得关注的工具。它们各自有不同的优势和定位，适合不同规模和需求的团队：</p>
+<h3>NocoBase</h3>
+<p>官网：<a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub 地址：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase-5v9ar7.PNG" alt="NocoBase.PNG"></p>
+<p><strong>NocoBase</strong> 是一个数据模型驱动的开源 AI 无代码平台，采用插件化架构，所有功能都可以通过插件扩展。它不仅支持细粒度的权限控制（RBAC）、字段级 / 行级数据隔离以及工作流自动化，还可以通过 API 和插件接入不同的数据源（数据库、API、第三方服务），使资产数据的集中管理更加灵活。由于完全开源，企业还可以根据需要自主拓展功能，在保持低成本的同时实现高度定制。</p>
+<p><strong>在 ITAM 中的优势</strong>：</p>
+<ul>
+<li><strong>资产建模灵活</strong>：自定义资产表结构（硬件、软件、合同、许可证等），避免被固定字段束缚。</li>
+<li><strong>多角色支持</strong>：不同部门（IT、财务、行政）可拥有各自界面和权限范围，实现跨部门协作。</li>
+<li><strong>流程自动化</strong>：通过工作流实现合同到期提醒、报修工单自动生成、资产审批流转等。</li>
+<li><strong>系统集成</strong>：可与现有 MDM、财务、人力系统对接，打通资产管理与业务流程。</li>
+<li><strong>成本优势</strong>：相比一些 ITAM 工具每月高达 <strong>300+ 欧元</strong> 的订阅费用，NocoBase 的开源版本可免费上手，大幅降低试点和部署成本。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<p>特别适合需要搭建<strong>中高复杂度 IT 资产管理系统</strong>的团队。例如：希望替代 Excel 管理方式、对<strong>数据安全、灵活建模、私有化部署</strong>有要求的中小企业；或者想在低成本的前提下，将 IT 资产管理与工单、财务、人力等系统深度集成的组织。</p>
+<p>💡如果想看这些能力如何用于实际业务，立即查看 NocoBase 资产管理解决方案。 <a href="https://www.nocobase.com/cn/solutions/all-in-one/asset">https://www.nocobase.com/cn/solutions/all-in-one/asset</a></p>
+<h3>Airtable</h3>
+<p>官网：<a href="https://airtable.com/">https://airtable.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Airtable-8cvj1b.png" alt="Airtable.png"></p>
+<p>Airtable 大家应该都很熟悉。为什么在 IT 资产管理（ITAM）场景里我还会推荐它？理由很简单：作为一款表格式无代码平台，Airtable 的界面与 Excel 非常相似，如果你的团队此前依赖 Excel 做资产管理，可以在短时间内无缝迁移到 Airtable。它的学习成本极低，几乎不需要额外培训，同时还提供了资产追踪等现成模板，可直接作为基础 ITAM 系统的起点。</p>
+<p>💡 阅读更多：<a href="../blog/open-source-airtable-alternatives.html">GitHub上 Star 数量最多的 Airtable 开源替代者</a></p>
+<p><strong>在 ITAM 中的优势</strong>：</p>
+<ul>
+<li><strong>快速替代 Excel</strong>：适合原本依赖电子表格做资产台账的团队。</li>
+<li><strong>模板支持</strong>：内置资产追踪模板，几乎无需定制即可上线。</li>
+<li><strong>多人协作</strong>：支持多人实时编辑和权限分配，让资产信息透明化。</li>
+<li><strong>自动提醒</strong>：可配置合同到期、借用到期等简单通知。</li>
+<li><strong>云端访问</strong>：无需本地部署，通过浏览器和移动端随时使用，适合分布式团队。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<p>Airtable 更适合轻量化的 ITAM 管理。它缺乏深度权限控制（如字段级/行级）、大规模自动发现功能，也难以与 MDM 或财务系统等企业级 IT 基础设施深度集成，因此无法完全替代专业 ITAM 工具。它最适合小型团队或初创企业，快速搭建一个资产台账系统。如果你更倾向于开源替代，可以尝试 NocoDB，更多开源替代产品欢迎阅读：<a href="../blog/open-source-airtable-alternatives.html">GitHub上 Star 数量最多的 Airtable 开源替代者</a></p>
+<h3>Glide</h3>
+<p>官网：<a href="https://www.glideapps.com/">https://www.glideapps.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Glide-trry7k.png" alt="Glide.png"></p>
+<p>如果你的 IT 资产管理场景需要随时随地登记或查询资产，Glide 是一个值得考虑的选择。它最大的优势是能把表格数据快速转化为移动应用，无需编写代码，非常适合 IT 人员或运维工程师在现场使用。</p>
+<p><strong>在 ITAM 中的优势</strong>：</p>
+<ul>
+<li><strong>移动端友好</strong>：生成的应用可直接在手机上使用，支持 iOS 和 Android。</li>
+<li><strong>扫码登记</strong>：通过摄像头扫码快速录入或调用资产信息，方便现场资产盘点。</li>
+<li><strong>表格驱动</strong>：以 Google Sheets 或 Excel 为数据源，结构清晰，易于维护。</li>
+<li><strong>简单自动化</strong>：可设置通知、提醒等轻量化流程，例如资产借出提醒。</li>
+<li><strong>即开即用</strong>：上手门槛低，不需要专业开发团队即可构建应用。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<p>Glide 非常适合<strong>需要现场操作的 ITAM 场景</strong>，例如：设备入库登记、办公资产借还、定期盘点等。它在快速构建移动端工具方面有独特优势，但在<strong>权限管理、复杂工作流、大规模集成</strong>等方面较弱，不适合高复杂度的 ITAM 系统。通常更适合作为<strong>轻量级资产管理的补充工具</strong>。</p>
+<h3>Appsmith</h3>
+<p>官网：<a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Appsmith-2zmzdo.png" alt="Appsmith.png"></p>
+<p>Appsmith 是一款面向开发者的<strong>开源低代码平台</strong>，相比 Airtable 或 Glide，它更强调与数据库和 API 的对接能力。如果你的 ITAM 系统需要与现有 IT 系统（如 CMDB、工单系统、财务数据库）整合，或者需要定制复杂的数据面板，Appsmith 会是一个很合适的选择。</p>
+<p>💡 阅读更多：<a href="../blog/nocobase-vs-appsmith.html">NocoBase 与 Appsmith：哪个开源低代码平台更适合你</a></p>
+<p><strong>在 ITAM 中的优势</strong>：</p>
+<ul>
+<li><strong>数据集成强大</strong>：可直接连接 MySQL、PostgreSQL、MongoDB 等数据库，以及 REST API、GraphQL 等接口，把资产数据统一到一个平台。</li>
+<li><strong>自定义面板</strong>：拖拽组件即可构建资产列表、统计图表、仪表盘，便于管理层和运维团队查看资产情况。</li>
+<li><strong>交互性更强</strong>：支持复杂查询、筛选和自定义操作，适合需要更深度交互的 ITAM 系统。</li>
+<li><strong>开源可扩展</strong>：完全开源，允许二次开发和功能扩展，灵活度高。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<p>Appsmith 更适合<strong>技术背景较强的团队</strong>，尤其是那些需要将 IT 资产管理与其他系统（如工单、财务、CMDB）紧密集成的组织。它非常适合构建<strong>自定义资产面板、实时监控报表</strong>，但不适合完全没有技术人员的团队。如果你希望 ITAM 系统既能做资产台账，又能深度结合已有 IT 基础设施，Appsmith 会是一个不错的选择。</p>
+<h3>Budibase</h3>
+<p>官网：<a href="https://budibase.com/">https://budibase.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Budibase-5eetoz.png" alt="Budibase.png"></p>
+<p>Budibase 是一款<strong>开源无代码/低代码内部工具构建平台</strong>，主打快速搭建企业内部系统。相比 Airtable 和 Glide 更偏向轻量级应用，Budibase 更强调<strong>数据源接入</strong> 和 <strong>权限管理</strong>，因此在 ITAM 场景中能够承担起中小企业的内部资产管理需求。</p>
+<p><strong>在 ITAM 中的优势</strong>：</p>
+<ul>
+<li><strong>多数据源支持</strong>：可以直接连接 PostgreSQL、MySQL、MongoDB 等数据库，也支持 REST API，对已有资产数据的接入非常方便。</li>
+<li><strong>内置表单和流程</strong>：资产录入、领用申请、报修申请都可以用表单快速实现。</li>
+<li><strong>权限与角色控制</strong>：内置用户和角色权限管理，支持将资产信息分配给不同部门或角色查看。</li>
+<li><strong>快速构建内部工具</strong>：无需开发团队，业务人员就能搭建符合团队需求的资产管理应用。</li>
+<li><strong>开源与自部署</strong>：支持私有化部署，数据可控，适合对安全性有要求的企业。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<p>Budibase 特别适合<strong>中小型团队</strong>，需要快速搭建一个内部使用的资产管理系统，同时希望和现有数据库或系统进行简单对接。它在复杂工作流、深度集成方面略弱，但对于日常资产台账、申请审批、权限分配已经足够，是构建 ITAM 内部工具的一个实用选择。</p>
+<h3>Retool</h3>
+<p>官网：<a href="https://retool.com/">https://retool.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Retool-toi9i0.png" alt="Retool.png"></p>
+<p>Retool 是一款广受开发者欢迎的<strong>低代码内部工具构建平台</strong>。与 Airtable、Glide 等强调易用性的无代码工具不同，Retool 更强调<strong>与外部系统和 API 的深度集成</strong>，适合需要高定制化和复杂逻辑的 ITAM 系统。</p>
+<p><strong>在 ITAM 中的优势</strong>：</p>
+<ul>
+<li><strong>强大的集成能力</strong>：原生支持连接上百种数据库和第三方服务（如 PostgreSQL、MySQL、MongoDB、Salesforce、Slack 等），可轻松获取并管理资产数据。</li>
+<li><strong>灵活界面构建</strong>：拖拽组件即可搭建资产清单、仪表盘和统计报表，同时可通过自定义代码实现更复杂的交互。</li>
+<li><strong>开发者友好</strong>：支持 JavaScript 脚本，可以灵活处理资产数据逻辑和交互场景。</li>
+<li><strong>快速迭代</strong>：能在短时间内构建出功能丰富的资产管理应用，并随着需求变化不断扩展。</li>
+<li><strong>SaaS 与自托管并存</strong>：提供云端托管和自托管两种模式，满足不同团队的数据安全需求。</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<p>Retool 特别适合<strong>有开发资源的中大型团队</strong>，希望在 ITAM 中实现与现有 IT 系统（如 MDM、工单系统、财务软件）深度集成，或者需要复杂的资产可视化管理与交互逻辑。不过需要注意的是，Retool 的费用可能相对较高，对于预算有限的团队，可以考虑使用<strong>开源替代方案</strong>，在降低成本的同时依然保持较高的灵活性和扩展性。</p>
+<p>💡扩展阅读：<a href="../blog/retool-open-source-alternatives.html">2025 年最佳的 Retool 开源替代方案</a></p>
+<h2 id="zh-4">总结</h2>
+<p>专业 ITAM 工具擅长<strong>自动发现与合规管理</strong>，适合规模庞大、合规要求严格的组织；无代码平台则提供<strong>灵活建模、低成本和业务流程集成</strong>，让更多团队能够快速构建适合自己的资产管理系统。</p>
+<p>在实际应用中，两者并不是对立的。最佳实践往往是<strong>结合使用</strong>：用专业工具完成网络扫描和自动化发现，再将数据接入无代码系统，进行权限管理、业务流转和报表分析。这样既能保持自动化能力，又能获得灵活定制的好处。</p>
+<p>IT 资产管理的未来，不再是“选一个万能产品”，而是<strong>根据企业的规模、预算与业务特点，组合出最合适的方案</strong>。对于正在探索 ITAM 的团队来说，无代码工具的出现，意味着不必再被昂贵的订阅和复杂的定制绑住手脚，而是可以真正把资产管理融入业务流程，让 IT 不只是成本中心，而是驱动组织效率与价值的关键引擎。</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/it-asset-management-software.html">2025年8款顶级的开源IT资产管理软件 </a></li>
+<li><a href="../blog/open-source-data-apps.html">10 个开源工具，快速构建数据应用 </a></li>
+<li><a href="../blog/4-no-code-tools-to-build-ticketing-system.html">4 款最适合打造灵活工单系统的开源零代码/低代码平台 </a></li>
+<li><a href="../blog/6-open-source-no-code-database-tools.html">6 个替代飞书多维表格的开源无代码数据库工具 </a></li>
+<li><a href="../blog/6-developer-tools-with-rbac-support.html">6 款支持角色权限控制（RBAC）的开发工具对比与应用场景解析 </a></li>
+<li><a href="../blog/6-no-code-tools-supporting-postgresql.html">PostgreSQL 用户必看：6 款强大的无代码平台推荐 </a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p>Professional IT Asset Management (ITAM) tools such as Lansweeper, AssetSonar, and Bluetally are already highly mature. So, why should we still consider using no-code tools to build an IT asset management system?</p>
+<p><img src="https://static-docs.nocobase.com/ITAM-84hmx5.PNG" alt="ITAM.PNG"></p>
+<p>In environments with large-scale assets, strict compliance requirements, and a need to minimize manual maintenance, these dedicated ITAM tools are undoubtedly the best choice.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>However, in reality, not every company is suited to adopt these platforms directly. For small to mid-sized businesses or teams with unique business workflows, a <strong>flexible</strong>, <strong>low-cost</strong>, and <strong>fast-to-deploy</strong> solution can be more practical.</p>
+<p>This is where <strong>no-code platforms</strong> offer real value: although they may lack some of the advanced automation features of professional ITAM tools, they excel in <strong>simplicity</strong> and <strong>high customizability</strong>. They allow you to <strong>adapt asset management to your specific workflows</strong> and integrate it seamlessly into daily business operations.</p>
+<p>💡 Read More: <a href="../blog/it-asset-management-software.html">Top 8 Open Source IT Asset Management Software for 2025</a></p>
+<h2 id="en-2">Core Features of a No-Code ITAM System</h2>
+<p>After understanding the role of no-code platforms in ITAM, the next question is: What core features can they cover?</p>
+<p>Although most no-code solutions cannot provide built-in automated asset discovery like professional ITAM products (some allow third-party integrations), they are powerful enough to handle everyday asset management for most organizations.</p>
+<p>Here’s a typical feature checklist:</p>
+<ul>
+<li><strong>Asset Registry</strong> – Centralized management of all IT assets, including hardware, software, licenses, and contracts, reducing data silos across spreadsheets and systems.</li>
+<li><strong>Lifecycle Management</strong> – Track every stage from procurement to allocation, maintenance, and retirement, ensuring full visibility into asset usage.</li>
+<li><strong>User &amp; Access Control</strong> – Assign asset owners and users clearly, while restricting access based on roles and responsibilities.</li>
+<li><strong>License &amp; Contract Tracking</strong> – Avoid missed renewals or expirations, reduce compliance risks, and control extra costs.</li>
+<li><strong>Reporting &amp; Analytics</strong> – Create customized dashboards and reports to monitor utilization, costs, and depreciation, supporting better decision-making.</li>
+<li><strong>Automation</strong> – Use workflows to trigger actions automatically, such as sending renewal reminders, generating work orders, or approving requests.</li>
+</ul>
+<p>If your team currently manages IT assets using Excel or Google Sheets, switching to a no-code platform can be an ideal transitional step.</p>
+<p>Moreover, many platforms support extended customization, such as:</p>
+<ul>
+<li>Integrating with third-party tools for <strong>network scanning</strong></li>
+<li>Connecting with finance systems for <strong>cost tracking</strong></li>
+<li>Enabling <strong>mobile asset registration</strong> with barcode scanning</li>
+</ul>
+<h2 id="en-3">Recommended No-Code Tools for ITAM</h2>
+<p>If you’re considering building an IT asset management system on a no-code platform, here are six tools worth exploring. Each has unique strengths and is suitable for different business sizes and requirements.</p>
+<h3>NocoBase</h3>
+<p><strong>Website:</strong> <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p><strong>GitHub:</strong> <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><img src="https://static-docs.nocobase.com/NocoBase-5v9ar7.PNG" alt="NocoBase.PNG"></p>
+<p><strong>NocoBase</strong> is a data model–driven, open-source AI no-code platform built on a plugin-based architecture, where all functionality can be extended through plugins. It supports fine-grained access control (RBAC), field-level and row-level data isolation, and workflow automation, and can connect to multiple data sources (databases, APIs, and third-party services) via APIs and plugins, enabling more flexible centralized asset data management.
+As a fully open-source platform, it allows enterprises to extend functionality as needed while maintaining low costs and achieving a high level of customization.</p>
+<p><strong>ITAM Advantages:</strong></p>
+<ul>
+<li><strong>Flexible Asset Modeling</strong> – Customize asset tables (hardware, software, licenses, contracts) without being limited by fixed fields.</li>
+<li><strong>Multi-Role Collaboration</strong> – Provide different views and permissions for IT, finance, and admin teams to enable cross-department workflows.</li>
+<li><strong>Workflow Automation</strong> – Automate contract renewals, service ticket generation, and asset approval processes.</li>
+<li><strong>System Integrations</strong> – Seamlessly connect with MDM, finance, and HR systems to unify business processes.</li>
+<li><strong>Cost Efficiency</strong> – Unlike ITAM tools costing <strong>€300+ per month</strong> , the open-source edition is free to start, reducing pilot and deployment costs.</li>
+</ul>
+<p><strong>Best Use Cases:</strong></p>
+<p>Ideal for small and mid-sized companies that:</p>
+<ul>
+<li>Need to replace spreadsheet-based asset management</li>
+<li>Require flexible data modeling</li>
+<li>Prefer self-hosted deployment for data security</li>
+<li>Want to integrate ITAM deeply with finance, HR, and ticketing systems</li>
+</ul>
+<p>💡To see how these capabilities can be applied to real‑world business scenarios, check out the NocoBase Asset Management Solution right away:<a href="https://www.nocobase.com/cn/solutions/all-in-one/asset">https://www.nocobase.com/cn/solutions/all-in-one/asset</a></p>
+<h3>Airtable</h3>
+<p><strong>Website:</strong> <a href="https://airtable.com/">https://airtable.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Airtable-8cvj1b.png" alt="Airtable.png"></p>
+<p>Airtable is well-known as a <strong>spreadsheet-style no-code platform</strong>. Its interface is similar to Excel, making it easy for teams transitioning from spreadsheets. It also offers <strong>built-in IT asset tracking templates</strong>, so you can start quickly without custom development.</p>
+<p>💡 Read More: <a href="../blog/open-source-airtable-alternatives.html">Top 7 OSS Airtable Alternatives Ranked by GitHub Stars</a></p>
+<p><strong>ITAM Advantages:</strong></p>
+<ul>
+<li><strong>Seamless Excel Replacement</strong> – Perfect for teams currently using spreadsheets for asset management.</li>
+<li><strong>Prebuilt Templates</strong> – Get started instantly with ready-to-use ITAM templates.</li>
+<li><strong>Real-Time Collaboration</strong> – Multiple users can edit and manage assets simultaneously.</li>
+<li><strong>Simple Notifications</strong> – Set up reminders for contract renewals or return deadlines.</li>
+<li><strong>Cloud-Based Access</strong> – Manage assets from anywhere via web or mobile apps.</li>
+</ul>
+<p><strong>Best Use Cases:</strong></p>
+<p>Airtable is better suited for lightweight ITAM systems. However:</p>
+<ul>
+<li>It lacks field-level permissions</li>
+<li>It doesn’t support automated discovery</li>
+<li>It has limited integration with enterprise IT infrastructure</li>
+</ul>
+<p>For open-source alternatives, consider <strong>NocoDB</strong>:</p>
+<p><a href="../blog/open-source-airtable-alternatives.html">Top 7 OSS Airtable Alternatives Ranked by GitHub Stars</a></p>
+<h3>Glide</h3>
+<p><strong>Website:</strong> <a href="https://www.glideapps.com/">https://www.glideapps.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Glide-trry7k.png" alt="Glide.png"></p>
+<p>Glide lets you turn spreadsheets into mobile apps instantly, making it ideal for on-the-go IT asset management. IT teams and field engineers can register, scan, and track assets directly from their phones.</p>
+<p><strong>ITAM Advantages:</strong></p>
+<ul>
+<li><strong>Mobile-First</strong> – Apps work seamlessly on both iOS and Android devices.</li>
+<li><strong>Barcode &amp; QR Scanning</strong> – Quickly register or locate assets during audits.</li>
+<li><strong>Spreadsheet-Powered</strong> – Uses Google Sheets or Excel as the data source.</li>
+<li><strong>Lightweight Automation</strong> – Set up simple alerts and reminders.</li>
+<li><strong>Fast Deployment</strong> – Build apps without a dedicated development team.</li>
+</ul>
+<p><strong>Best Use Cases:</strong></p>
+<p>Perfect for teams needing <strong>mobile ITAM solutions</strong>, such as:</p>
+<ul>
+<li>On-site equipment registration</li>
+<li>Office asset check-in/out</li>
+<li>Regular physical inventory audits</li>
+</ul>
+<h3>Appsmith</h3>
+<p><strong>Website:</strong> <a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Appsmith-2zmzdo.png" alt="Appsmith.png"></p>
+<p>Appsmith is an open-source low-code platform designed for developers who need deep data integrations and custom dashboards. It’s particularly useful if your ITAM system needs to connect with existing tools like CMDBs, ticketing systems, or financial databases.</p>
+<p>💡 Read More: <a href="../blog/nocobase-vs-appsmith.html">NocoBase vs. Appsmith: Which Open Source Low-Code Platform is Right for You?</a></p>
+<p><strong>ITAM Advantages:</strong></p>
+<ul>
+<li><strong>Powerful Data Integrations</strong> – Connect directly to databases (MySQL, PostgreSQL, MongoDB) and APIs (REST, GraphQL).</li>
+<li><strong>Custom Dashboards</strong> – Build asset tables, reports, and visualizations with drag-and-drop components.</li>
+<li><strong>High Interactivity</strong> – Execute complex queries and advanced filtering easily.</li>
+<li><strong>Fully Open-Source</strong> – Extend functionality with custom development.</li>
+</ul>
+<p><strong>Best Use Cases:</strong></p>
+<p>Best suited for tech-savvy teams who need custom asset dashboards and tight integrations with internal systems. Not recommended for teams without technical expertise.</p>
+<h3>Budibase</h3>
+<p><strong>Website:</strong> <a href="https://budibase.com/">https://budibase.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Budibase-5eetoz.png" alt="Budibase.png"></p>
+<p>Budibase is an open-source no-code/low-code platform focused on building internal business tools quickly. Compared to Airtable and Glide, Budibase offers better database integration and role-based permissions, making it suitable for small to mid-sized organizations.</p>
+<p><strong>ITAM Advantages:</strong></p>
+<ul>
+<li><strong>Multiple Data Sources</strong> – Connects to PostgreSQL, MySQL, MongoDB, REST APIs, and more.</li>
+<li><strong>Built-In Forms &amp; Workflows</strong> – Streamline asset entry, allocation, and repair requests.</li>
+<li><strong>Role-Based Permissions</strong> – Control who can access or edit different asset data.</li>
+<li><strong>Self-Hosting Support</strong> – Keep sensitive asset data under full control.</li>
+</ul>
+<p><strong>Best Use Cases:</strong></p>
+<p>Great for companies that need a secure internal ITAM system integrated with existing databases but don’t require complex workflows or large-scale automation.</p>
+<h3>Retool</h3>
+<p><strong>Website:</strong> <a href="https://retool.com/">https://retool.com/</a></p>
+<p><img src="https://static-docs.nocobase.com/Retool-toi9i0.png" alt="Retool.png"></p>
+<p>Retool is a low-code platform popular among developers for building custom internal tools. Unlike Airtable and Glide, Retool focuses on <strong>deep integrations</strong> and <strong>advanced customization</strong>.</p>
+<p><strong>ITAM Advantages:</strong></p>
+<ul>
+<li><strong>Extensive Integrations</strong> – Natively supports hundreds of databases and services (PostgreSQL, MongoDB, Salesforce, Slack, etc.).</li>
+<li><strong>Flexible UI Builder</strong> – Drag-and-drop interface combined with custom JavaScript logic.</li>
+<li><strong>Developer-Friendly</strong> – Ideal for building complex ITAM dashboards and interactive tools.</li>
+<li><strong>Cloud &amp; Self-Hosting Options</strong> – Choose between SaaS or on-premise deployment.</li>
+</ul>
+<p><strong>Best Use Cases:</strong></p>
+<p>Best for mid-sized to large enterprises that want to integrate ITAM deeply with MDM, financial systems, and ticketing platforms. However, Retool can be costly for smaller teams; consider open-source alternatives for cost-sensitive projects.</p>
+<p>💡 Read More: <a href="../blog/retool-open-source-alternatives.html">The Best Open-Source Alternatives to Retool In 2025</a></p>
+<h2 id="en-4">Conclusion</h2>
+<ul>
+<li><strong>Professional ITAM tools</strong> excel at automated discovery and compliance management, making them ideal for large enterprises.</li>
+<li><strong>No-code platforms</strong> provide flexibility, affordability, and workflow integration, enabling businesses to build customized ITAM systems quickly.</li>
+</ul>
+<p>In practice, the <strong>best approach often combines both</strong>:</p>
+<ol>
+<li>Use professional ITAM tools for network scanning and asset discovery</li>
+<li>Integrate the data into a no-code platform for permission control, workflow management, and reporting</li>
+</ol>
+<p>The future of IT asset management isn’t about finding a one-size-fits-all product but rather assembling the right mix of tools based on your business size, budget, and integration needs.</p>
+<p>With no-code solutions, teams can finally escape expensive subscriptions and rigid customizations—turning ITAM from a cost center into a strategic driver of operational efficiency and business value.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/it-asset-management-software.html">Top 8 Open Source IT Asset Management Software for 2025 </a></li>
+<li><a href="../blog/open-source-data-apps.html">10 Best Open-Source Tools to Build Internal Data Apps </a></li>
+<li><a href="../blog/4-no-code-tools-to-build-ticketing-system.html">4 Best Open Source No-Code/Low-Code Platforms to Build Ticketing System </a></li>
+<li><a href="../blog/6-open-source-no-code-database-tools.html">6 Open-Source no-code Database Tools Like Airtable and Notion </a></li>
+<li><a href="../blog/6-developer-tools-with-rbac-support.html">Top 6 Developer Tools with RBAC Support </a></li>
+<li><a href="../blog/6-no-code-tools-supporting-postgresql.html">6 Best No-Code Tools for PostgreSQL </a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">写在开头</a><a href="#zh-2">无代码搭建 ITAM 系统的核心功能</a><a href="#zh-3">无代码工具推荐</a><a href="#zh-4">总结</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">Core Features of a No-Code ITAM System</a><a href="#en-3">Recommended No-Code Tools for ITAM</a><a href="#en-4">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

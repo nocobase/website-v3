@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="开发者收藏！10 个减少重复 CRUD 的开源工具 — NocoBase" data-en="10 Open Source Tools Developers Use to Reduce Repetitive CRUD — NocoBase">开发者收藏！10 个减少重复 CRUD 的开源工具 — NocoBase</title>
+<meta name="description" content="从开发者视角梳理减少重复 CRUD 的多种路径，涵盖脚手架、后台生成、配置化平台与系统级复用的开源实践。" data-zh="从开发者视角梳理减少重复 CRUD 的多种路径，涵盖脚手架、后台生成、配置化平台与系统级复用的开源实践。" data-en="A developer-focused overview of open-source tools and approaches to reduce repetitive CRUD, from code generators to configurable platforms and long-term system reuse.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>开发者收藏！10 个减少重复 CRUD 的开源工具</t-zh><t-en>10 Open Source Tools Developers Use to Reduce Repetitive CRUD</t-en></h1>
+    <p class="lede"><t-zh>从开发者视角梳理减少重复 CRUD 的多种路径，涵盖脚手架、后台生成、配置化平台与系统级复用的开源实践。</t-zh><t-en>A developer-focused overview of open-source tools and approaches to reduce repetitive CRUD, from code generators to configurable platforms and long-term system reuse.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年1月5日</t-zh><t-en>Jan 5, 2026</t-en></span><span><t-zh>Deng Lijia</t-zh><t-en>Deng Lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/20260105-203200%20(1)-znjfdk.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">写在开头</h2>
+<p>所有业务系统，都离不开 CRUD。</p>
+<p>如果你做过 CRM、内部管理系统、审批流程、后台管理界面这类项目，大概会有一种很熟悉的感觉。每一次都要从头开始，把整套 CRUD 再实现一遍。</p>
+<p>在企业内部系统中：不同部门、不同项目、不同阶段，各自维护着结构高度相似的系统，却彼此割裂。系统越多，重复的 CRUD 也越多，维护成本随之累积。</p>
+<p>在外包和集成场景里，这个问题尤其明显。项目之间看起来相似，却无法真正复用；客户觉得改动不大，交付方却需要付出成倍的维护成本。每一个新客户，几乎都意味着一套新的 CRUD 生命周期。</p>
+<p>今天这篇文章，我会按照不同思路给开发者推荐可以有效减少重复 CRUD 的开源工具。</p>
+<p>💡 推荐阅读：<a href="../blog/crud-projects.html">GitHub 上 Stars 数量最多的 8 个开源 CRUD 项目</a></p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2">减少 CRUD 重复的思路</h2>
+<p>减少重复 CRUD，可以从不同层面入手。</p>
+<p><strong>第一种方式：更快地把 CRUD 写完</strong></p>
+<p>这是最常见的做法。用脚手架、代码生成、模板工程，把基础的增删改查尽快搭出来，减少手写样板代码的时间。</p>
+<p><strong>第二种方式：减少后台和管理界面的重复</strong></p>
+<p>把常见的后台能力抽出来复用，比如通用的列表、表单、权限、基础配置界面。这种方式的核心在于<strong>减少界面和管理功能的重复开发</strong>，但数据结构和业务规则仍然由代码定义。每个项目依然有自己的一套模型，只是后台实现方式更加统一。</p>
+<p><strong>第三种方式：降低项目之间的差异成本</strong></p>
+<p>当重复开始出现在需求结构层面时，单纯复用后台代码已经不够了。于是有些方案选择把字段、关系、权限、流程从代码中抽离出来，用配置或数据模型来描述。在这种模式下，不同项目之间的差异，更多体现在<strong>模型配置的不同</strong>，而不是代码结构的不同。</p>
+<p><strong>第四种方式：避免反复交付相似系统</strong></p>
+<p>数据模型、权限和扩展机制围绕同一套核心结构。新增需求更像是扩展系统，而不是重新交付系统。这种方式成本更高，但解决的也是最根本的问题：为什么相似的系统，总是要从头再来。</p>
+<h2 id="zh-3">工具推荐</h2>
+<p>下面我从四种方式分别推荐能解决对应问题的产品和工具。你可以根据自己的项目的实际情况，选择最适合的工具。让我们从第四种方式先开始。</p>
+<h2 id="zh-4">把 CRUD 当成长期系统能力</h2>
+<h3>NocoBase</h3>
+<p>官网：<a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Star 数：21k</p>
+<p><strong>NocoBase</strong> 是一款开源的 AI 无代码 / 低代码开发平台，可以帮助将企业的 CRUD 能力从一次性开发转变为系统能力。它通过数据模型驱动的方式，让业务人员和技术人员能够协同构建复杂的业务系统，而无需每次都从零开始编写增删改查代码。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-w8gcmp.PNG" alt="NocoBase1.PNG"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>数据模型驱动的 CRUD</strong>：通过可视化界面定义数据表、字段和关联关系，系统自动生成完整的创建、读取、更新、删除界面和 API，无需手写任何代码。NocoBase 支持直接连接 PostgreSQL、MySQL、MariaDB 等主流数据库，在不迁移、不改造原有数据结构的前提下，将已有数据快速接入并构建业务系统。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-qica0c.PNG" alt="NocoBase2.PNG"></p>
+<ul>
+<li><strong>灵活的前端配置</strong>：支持各种字段类型、表单验证、动态显隐、联动规则，可以配置出符合业务逻辑的数据录入界面，减少前端开发工作。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-f78boi.png" alt="NocoBase3.png"></p>
+<ul>
+<li><strong>强大的查询和列表能力</strong>：内置不同类型的区块，支持筛选、排序、分页、导出等功能，可以通过配置实现复杂的数据展示需求。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-uznhdh.png" alt="NocoBase4.png"></p>
+<ul>
+<li><strong>细粒度权限控制</strong>：不仅支持角色和用户权限，还可以控制到字段级别（谁能查看/编辑哪些字段）和数据级别（谁能操作哪些数据行），在 CRUD 层面保证数据安全。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-qegojj.png" alt="NocoBase5.png"></p>
+<ul>
+<li><strong>可扩展的工作流</strong>：通过工作流引擎配置业务流程，比如数据提交后的审批、状态变更、自动通知等，让 CRUD 操作融入业务流程而非孤立的数据操作。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/NocoBase6-w400bs.png" alt="NocoBase6.png"></p>
+<ul>
+<li><strong>插件化架构</strong>：对于复杂的 CRUD 逻辑，可以通过插件扩展系统功能，一次开发、多次复用，不同项目可以共享自定义插件。</li>
+</ul>
+<p><strong>适用场景</strong>：需要长期维护的企业内部系统、多个相似项目、同时希望将业务配置权交给非技术人员的团队。</p>
+<h3>Odoo</h3>
+<p>官网：<a href="https://www.odoo.com/">https://www.odoo.com/</a></p>
+<p>GitHub：<a href="https://github.com/odoo/odoo">https://github.com/odoo/odoo</a></p>
+<p>GitHub Star 数：48.1k</p>
+<p>Odoo 是高度模块化的企业资源规划（ERP）和业务管理平台，通过统一的数据库模型和应用框架，将各类业务场景的 CRUD 操作标准化、模块化。从 CRM 到库存管理，从会计到人力资源，所有模块都基于同一套数据模型和权限体系，避免了不同系统之间的重复开发和数据割裂。</p>
+<p><img src="https://static-docs.nocobase.com/Odoo-haoe9b.png" alt="Odoo.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>统一的 CRUD 框架</strong>：所有 Odoo 模块都基于同一套 ORM 框架和视图系统，定义一个数据模型后，列表视图、表单视图、搜索视图自动生成，大幅减少重复的界面开发。</li>
+<li><strong>模块化的业务逻辑复用</strong>：每个业务模块都是独立的 CRUD 应用，可以单独安装或组合使用，新增业务需求时往往只需安装或配置模块，而不是重新开发。</li>
+<li><strong>关联数据自动打通</strong>：由于所有模块共享同一数据库，一个模块的 CRUD 操作可以自动关联到其他模块，比如创建销售订单时自动扣减库存、更新客户信息，避免了跨系统集成的 CRUD 开发。</li>
+<li><strong>自动化和规则引擎</strong>：通过自动化动作（Automation）和业务规则，可以在数据的创建、更新、删除时触发自定义逻辑，比如状态流转、自动计算字段、发送通知等，无需编写代码即可扩展 CRUD 行为。</li>
+</ul>
+<p><strong>适用场景</strong>：中小企业的一体化业务管理、需要标准业务流程的行业、希望开箱即用的团队</p>
+<h2 id="zh-5">把 CRUD 从代码变成配置</h2>
+<h3>Directus</h3>
+<p>官网：<a href="https://directus.io/">https://directus.io/</a></p>
+<p>GitHub：<a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p>GitHub Star 数：33.8k</p>
+<p>Directus 是一个将现有数据库转化为完整的后端平台和 CRUD 应用的工具。它连接到你已有的 SQL 数据库，自动生成 RESTful 和 GraphQL API，同时提供可视化的管理界面和数据模型配置能力，让你无需编写任何后端代码，就能为任意数据库提供完整的增删改查能力。</p>
+<p><img src="https://static-docs.nocobase.com/Directus-1k9u7k.png" alt="Directus.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>自动生成 CRUD API</strong>：连接到数据库后，Directus 自动扫描表结构，为每张表生成标准的增删改查 API（Create、Read、Update、Delete），同时支持 RESTful 和 GraphQL 两种查询方式，前端可以直接调用而无需开发后端。</li>
+<li><strong>可视化的数据模型管理</strong>：通过界面管理表结构、字段类型、关联关系，所有修改都会同步到数据库，无需手写 SQL 迁移脚本，数据模型的变化直接反映在 API 和管理界面。</li>
+<li><strong>声明式权限控制</strong>：通过配置界面定义不同角色的 CRUD 权限，可以精确到字段级别（哪些角色能读取/编辑哪些字段）和数据级别（行级权限，基于动态规则过滤数据），权限配置自动应用到 API 和管理界面。</li>
+<li><strong>即时可用的管理后台</strong>：为每张表自动生成列表和表单界面，支持搜索、筛选、排序、分页，可以直接用于内部管理或作为快速原型，大幅减少后台开发时间。</li>
+</ul>
+<p><strong>适用场景</strong>：已有数据库需要快速构建管理后台、需要统一的 API 和权限层、希望将业务配置从代码中解耦。</p>
+<h3>Hasura</h3>
+<p>官网：<a href="https://hasura.io/">https://hasura.io/</a></p>
+<p>GitHub：<a href="https://github.com/hasura/graphql-engine">https://github.com/hasura/graphql-engine</a></p>
+<p>GitHub Star 数：31.9k</p>
+<p><strong>定位</strong>：一个即时的 GraphQL 引擎，连接到现有数据库后，在几秒钟内为你生成高性能的 CRUD GraphQL API。它通过配置化的方式控制权限、验证和业务逻辑，让你无需编写后端代码，就能为任何应用提供完整的数据查询和变更能力。</p>
+<p><img src="https://static-docs.nocobase.com/Hasura-f48vc6.png" alt="Hasura.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>秒级生成 GraphQL CRUD API</strong>：连接数据库后，Hasura 自动为每张表生成查询、插入、更新、删除的 GraphQL 操作，所有 CRUD 操作通过统一的 GraphQL 端点完成，无需手写 REST API。</li>
+<li><strong>强大的查询能力</strong>：支持过滤、分页、排序、聚合、嵌套关联查询，一次请求可以完成多个 CRUD 操作，减少网络往返，前端可以灵活获取所需数据。</li>
+<li><strong>实时订阅</strong>：基于数据库的变更数据捕获（CDC）功能，可以对任何 CRUD 操作建立实时订阅，当数据发生变化时自动推送给客户端，无需手动实现 WebSocket。</li>
+<li><strong>远程 Schema 联合</strong>：可以将 Hasura 生成的 CRUD API 与其他 GraphQL 服务联合起来，形成统一的 API 网关，在一个 GraphQL 查询中同时操作多个数据源。</li>
+<li><strong>事件触发器</strong>：当数据库发生 CRUD 操作时，可以触发 Webhook 调用外部服务，实现数据变更后的通知、同步、清理等业务逻辑。</li>
+</ul>
+<p><strong>适用场景</strong>：需要高性能 GraphQL API 的项目、前端团队希望直接控制数据获取逻辑、微服务架构中的 BFF 层。</p>
+<h3>Supabase</h3>
+<p>官网：<a href="https://supabase.com/">https://supabase.com/</a></p>
+<p>GitHub：<a href="https://github.com/supabase/supabase">https://github.com/supabase/supabase</a></p>
+<p>GitHub Star 数：95.4k</p>
+<p>作为开源的 Firebase 替代方案，Supabase 提供 PostgreSQL 数据库、即时 CRUD API、身份验证、实时订阅、文件存储等完整后端功能。你只需要定义数据库结构，Supabase 会自动生成相应的增删改查能力，让你在几分钟内启动一个完整的全栈应用，无需编写任何后端代码。</p>
+<p><img src="https://static-docs.nocobase.com/Supabase-93lygj.png" alt="Supabase.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>自动生成 CRUD API</strong>：创建表后，Supabase 自动生成 RESTful API，支持所有标准的增删改查操作，并提供多语言 SDK（JavaScript、TypeScript、Python 等），几行代码即可完成数据操作</li>
+<li><strong>行级安全策略（RLS）</strong>：在 PostgreSQL 原生的行级安全策略基础上，通过 SQL 规则定义谁能对哪些数据执行 CRUD 操作，权限逻辑直接在数据库层执行，无法绕过，安全性高</li>
+<li><strong>实时数据同步</strong>：基于 PostgreSQL 的逻辑复制功能，可以为任何表的 CRUD 操作建立实时订阅，当数据被插入、更新或删除时，自动推送给所有订阅的客户端，无需额外开发</li>
+<li><strong>内置身份认证</strong>：提供完整的用户认证系统（邮箱、密码、OAuth、手机号等），并且与 RLS 集成，用户只能 CRUD 自己的数据，开箱即用的多租户能力</li>
+<li><strong>可视化的表管理</strong>：提供在线的表编辑器，可以创建表、定义字段、设置关联关系、插入和修改数据，无需 SQL 也能管理数据库结构</li>
+</ul>
+<p><strong>适用场景</strong>：需要快速启动的 SaaS 产品、希望减少后端搭建时间的初创团队、需要实时功能的应用</p>
+<h2 id="zh-6">减少后台和管理界面的重复</h2>
+<h3>Appsmith</h3>
+<p>官网：<a href="https://appsmith.com/">https://appsmith.com/</a></p>
+<p>GitHub：<a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>GitHub Star 数：38.8k</p>
+<p>Appsmith可以让开发者能够通过可视化方式快速构建 CRUD 界面。与 Retool 类似，但完全开源且可自托管，你可以将它部署在自己的服务器上，数据无需经过第三方服务，非常适合对数据安全有要求的场景。</p>
+<p><img src="https://static-docs.nocobase.com/Appsmith-6js1ku.png" alt="Appsmith.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>可视化构建 CRUD 应用</strong>：提供表格、表单、按钮、图表等组件，拖拽即可搭建完整的数据管理界面，表格支持内联编辑、批量操作，表单支持多步提交、文件上传等复杂场景。</li>
+<li><strong>连接多种数据源</strong>：支持连接 SQL/NoSQL 数据库、REST API、GraphQL、SaaS 服务等多种数据源，可以在一个应用中整合多个数据来源的 CRUD 操作。</li>
+<li><strong>JS 代码增强</strong>：每个组件的动作可以编写 JavaScript 代码，比如提交前校验、成功后的跳转、错误处理等，灵活处理各种 CRUD 业务逻辑。</li>
+<li><strong>响应式布局和主题定制</strong>：支持响应式设计，界面可以适配不同屏幕尺寸，提供主题编辑器，可以自定义品牌色、字体、间距等，让 CRUD 界面符合企业 VI 规范。</li>
+<li><strong>API 支持</strong>：构建的应用可以暴露为 REST API，将手动操作的 CRUD 界面转化为可调用的服务。</li>
+</ul>
+<p><strong>适用场景</strong>：需要构建定制化后台的团队、希望代码可控的开源优先项目、需要频繁调整内部工具的业务、对数据安全有高要求的行业</p>
+<h3>AdminJS</h3>
+<p>官网：<a href="https://adminjs.co/">https://adminjs.co/</a></p>
+<p>GitHub：<a href="https://github.com/softwarebrothers/adminjs">https://github.com/softwarebrothers/adminjs</a></p>
+<p>GitHub Star 数：8.9k</p>
+<p><strong>定位</strong>：一个基于 Node.js 的自动管理后台生成工具，它能够连接到现有的后端应用，根据数据模型自动生成完整的 CRUD 管理界面。你只需要提供数据模型定义（比如 TypeORM 实体、Prisma schema），AdminJS 会自动生成列表页、表单页、筛选器等所有标准功能。</p>
+<p><img src="https://static-docs.nocobase.com/AdminJS-csg1n8.png" alt="AdminJS.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>完整 CRUD 功能开箱即用</strong>：自动生成的界面包含列表展示、搜索、筛选、排序、分页、创建表单、编辑表单、删除确认等功能，无需任何前端开发即可使用。</li>
+<li><strong>灵活的界面定制</strong>：可以通过配置自定义每个模型的显示字段、表单布局、验证规则、操作按钮，也可以编写自定义组件实现特殊的 CRUD 交互。</li>
+<li><strong>权限控制集成</strong>：支持基于角色的访问控制，可以限制不同用户对哪些模型有 CRUD 权限，也可以在配置中通过函数动态决定权限逻辑。</li>
+<li><strong>易于集成</strong>：只需几行代码就能将 AdminJS 集成到现有 Express、Hapi、NestJS 应用中，不会改变现有的代码结构，可以作为管理后台的快速方案。</li>
+</ul>
+<p><strong>适用场景</strong>：已有 Node.js 后端的项目、需要快速添加管理界面的场景、希望自动生成而非从零开发</p>
+<h2 id="zh-7">更快地把 CRUD 写完</h2>
+<h3>Rails Generators</h3>
+<p>官网：<a href="https://rubyonrails.org/">https://rubyonrails.org/</a></p>
+<p>GitHub：<a href="https://github.com/rails/rails">https://github.com/rails/rails</a></p>
+<p>GitHub Star 数：58k</p>
+<p><strong>定位</strong>：Ruby on Rails 框架内置的代码生成工具，通过约定优于配置的理念和脚手架机制，能够快速生成完整的 CRUD 代码。你只需要定义数据模型，一条命令就能生成模型类、数据库迁移、控制器、视图、路由、测试等所有必要的代码，大幅减少重复的样板代码编写。</p>
+<p><img src="https://static-docs.nocobase.com/Rails%20Generators-cz4prn.png" alt="Rails Generators.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>Scaffold 脚手架</strong>：一条命令（如 <code>rails generate scaffold Post title:string body:text</code>）即可生成完整的 CRUD 功能，包括模型、迁移文件、控制器（包含 index、show、new、edit、create、update、destroy 七个标准动作）、视图文件（列表、详情、新建、编辑表单）和路由配置。</li>
+<li><strong>资源路由</strong>：声明 <code>resources :posts</code> 后，自动生成所有标准的 CRUD 路由（GET /posts、GET /posts/:id、POST /posts、PATCH/PUT /posts/:id、DELETE /posts/:id），无需逐个定义</li>
+<li><strong>Strong Parameters</strong>：通过参数白名单机制自动过滤表单提交的数据，只有允许的字段才会被赋值给模型，防止批量赋值漏洞，同时减少手动参数处理代码。</li>
+<li><strong>测试框架集成</strong>：生成 CRUD 代码时，同时生成对应的测试文件（单元测试和功能测试），包含基本的 CRUD 操作测试用例，鼓励测试驱动开发。</li>
+</ul>
+<p><strong>适用场景</strong>：使用 Ruby 技术栈的团队、需要快速启动的 CRUD 项目、重视开发体验和代码规范的团队。</p>
+<h3>JHipster</h3>
+<p>官网：<a href="https://www.jhipster.tech/">https://www.jhipster.tech/</a></p>
+<p>GitHub：<a href="https://github.com/jhipster/generator-jhipster">https://github.com/jhipster/generator-jhipster</a></p>
+<p>GitHub Star 数：22.3k</p>
+<p><strong>定位</strong>：一个为 Java / Spring Boot 生态打造的应用脚手架，能够快速生成包含实体、CRUD API、前端界面、安全配置等完整功能的企业级应用。它生成符合行业标准、可维护性高的代码，让 Java 开发者从繁琐的配置和样板代码中解放出来，专注于业务逻辑。</p>
+<p><img src="https://static-docs.nocobase.com/JHipster-3ruve9.png" alt="JHipster.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>实体驱动的 CRUD 生成</strong>：通过定义实体（Entity）和字段（Field），JHipster 自动生成后端的 JPA 实体类、Repository、Service、REST Controller（包含 CRUD 端点），以及前端的列表页、表单页、详情页。</li>
+<li><strong>完整的技术栈集成</strong>：后端使用 Spring Boot、Spring Security、Spring Data JPA，前端支持 Angular、React、Vue 三种选择，生成的代码包含数据库连接、事务管理、异常处理、日志记录等所有企业级配置。</li>
+<li><strong>权限和安全</strong>：集成了 Spring Security，生成的 CRUD 端点默认需要认证，可以通过注解配置角色权限（@PreAuthorize），前端自动处理登录、登出、权限检查。</li>
+<li><strong>微服务支持</strong>：可以选择生成单体应用或微服务架构，微服务模式下包含服务注册、配置中心、网关等组件，生成的 CRUD 服务可以直接注册到集群。</li>
+</ul>
+<p><strong>适用场景</strong>：Java 企业级应用开发、需要标准化项目结构的团队、希望前后端一体化生成的项目。</p>
+<h3>Yeoman</h3>
+<p>官网：<a href="https://yeoman.io/">https://yeoman.io/</a></p>
+<p>GitHub：<a href="https://github.com/yeoman/yeoman">https://github.com/yeoman/yeoman</a></p>
+<p>GitHub Star 数：10.1k</p>
+<p><strong>定位</strong>：一个通用的项目脚手架工具，通过 Generator（生成器）生态系统，为各种技术栈和项目类型提供快速初始化 CRUD 项目的能力。它本身不生成代码，而是提供一个运行 Generator 的框架，开发者可以创建或复用社区 Generator，快速搭建项目基础结构。</p>
+<p><img src="https://static-docs.nocobase.com/Yeoman-n8kalu.png" alt="Yeoman.png"></p>
+<p><strong>核心能力</strong>：</p>
+<ul>
+<li><strong>交互式项目初始化</strong>：运行 Generator 时，通过问答形式收集项目配置（技术栈、包管理器、构建工具、是否需要认证、数据库类型等），根据选择生成定制化的项目结构。</li>
+<li><strong>丰富的 Generator 生态</strong>：社区提供了数千个 Generator，涵盖各种 CRUD 应用场景，比如 <code>generator-node-express-mongo</code>（生成 Node + Express + MongoDB 的 CRUD 后端）、<code>generator-gulp-webapp</code>（生成前端应用）、<code>generator-jhipster</code>（JHipster 也基于 Yeoman）。</li>
+<li><strong>自定义团队 Generator</strong>：可以将团队常用的 CRUD 项目结构、代码规范、依赖版本固化为自定义 Generator，新项目通过一条命令即可生成统一结构的代码，避免不同开发者&quot;各自发挥&quot;。</li>
+<li><strong>模块化和组合</strong>：Generator 可以继承和组合其他 Generator，比如一个业务系统的 Generator 可以复用基础的 CRUD Generator，再添加业务特定的配置和代码。</li>
+<li><strong>与构建工具集成</strong>：生成的项目通常包含完整的构建配置（Webpack、Vite、Gradle 等），npm install 后即可运行，无需额外配置。</li>
+<li><strong>更新和版本管理</strong>：Generator 本身可以独立升级，团队可以使用最新版本的 Generator 生成新项目，而不需要手动复制和修改旧项目。</li>
+</ul>
+<p><strong>适用场景</strong>：需要自定义项目脚手架的团队、多种技术栈共存的组织、希望统一团队项目结构</p>
+<h2 id="zh-8">写在最后</h2>
+<p>减少重复 CRUD，本质上是在不同层面建立复用能力。</p>
+<p>从脚手架、代码生成，到配置平台和系统架构，每种方式都有它适合解决的问题，也都有它的边界。</p>
+<p>所以在选工具之前，值得认真想清楚三件事：</p>
+<ol>
+<li>这个问题，会不会在下一个项目里再次出现？</li>
+<li>是现在多花一点时间，还是以后一遍遍重写？</li>
+<li>当系统从 10 个表变成 100 个表时，这个工具还能不能撑住？</li>
+</ol>
+<p>工具只是起点。能否建立一套不会被需求变化轻易推翻的系统能力，才是长期效率的分水岭。</p>
+<p>如果你觉得这篇文章有帮助，欢迎分享给更多的朋友！❤️</p>
+<p>声明：本文由 AI 协助撰写，真人添加观点、数据与图片。</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/top-12-ai-workflows-projects-with-the-most-github-stars.html">GitHub Star 数量前 12 的 AI 工作流项目</a></li>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">最适合外包交付的 6 个开源无代码与低代码</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">GitHub 上星星数量前 10 的 AI CRM 开源项目 </a></li>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">如何快速搭建一个替换 Excel 的系统？（完整指南）</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">GitHub Star 数量前 5 的开源 AI 内部工具</a></li>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">8 个最佳 Google Sheets 替代方案（附成本与能力分析）</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6个适合做 PoC 的开源无代码/低代码工具推荐</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">给开发者的无代码/低代码技术决策指南（2026）</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p>All business systems inevitably involve CRUD.</p>
+<p>If you’ve worked on CRM systems, internal management systems, approval workflows, or admin dashboards, you’re probably familiar with this experience: every project starts from scratch, and the same set of CRUD logic gets implemented all over again.</p>
+<p>In enterprise internal environments, different departments, projects, and stages often maintain highly similar systems that remain isolated from one another. The more systems a company has, the more repetitive CRUD accumulates, along with rising maintenance costs.</p>
+<p>This problem becomes even more apparent in outsourcing and system integration scenarios. Projects may look similar on the surface but are rarely reusable in practice. Clients often perceive changes as minor, while delivery teams end up paying a much higher price in implementation and maintenance. In many cases, every new client effectively triggers a brand-new CRUD lifecycle.</p>
+<p>In this article, we’ll look at different approaches developers use to reduce repetitive CRUD, and introduce open source tools that fit each approach.</p>
+<p>💡 Dive deep: <a href="../blog/crud-projects.html">Top 8 Open-Source CRUD Projects with the Most GitHub Stars</a></p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-2">Ways to Reduce Repetitive CRUD</h2>
+<p>Repetitive CRUD can be addressed at different levels of abstraction.</p>
+<p><strong>1. Write CRUD Faster</strong></p>
+<p>This is the most common approach. Teams use scaffolding, code generation, or template projects to quickly build basic create, read, update, and delete functionality, reducing the time spent writing boilerplate code by hand.</p>
+<p><strong>2. Reduce Repetition in Backend and Admin Interfaces</strong></p>
+<p>Some teams go a step further by extracting common backend capabilities for reuse, such as generic lists, forms, permission management, and basic configuration interfaces. This approach focuses on reducing repetitive work in interfaces and management features, while data structures and business rules are still defined in code. Each project maintains its own models, but the backend implementation becomes more standardized.</p>
+<p><strong>3. Reduce the Cost of Differences Between Projects</strong></p>
+<p>When repetition starts to appear at the level of requirement structure, simply reusing backend code is no longer enough. At this point, some solutions choose to extract fields, relationships, permissions, and workflows out of code, and describe them using configuration or data models. In this model, differences between projects are primarily reflected in model configuration, rather than code structure.</p>
+<p><strong>4. Avoid Repeatedly Delivering Similar Systems</strong></p>
+<p>At this level, data models, permissions, and extension mechanisms evolve around a shared core structure. New requirements feel more like extending an existing system than delivering a new one from scratch. This approach requires higher upfront investment, but it addresses the most fundamental question: why do similar systems always need to be rebuilt again and again?</p>
+<h2 id="en-3">Tools by Approach</h2>
+<p>Below are tools that exemplify each of the four approaches to reducing repetitive CRUD. Rather than a ranked list, they represent different trade-offs at different levels. The right choice depends on your project’s scope, constraints, and long-term goals.</p>
+<p>Let’s begin.</p>
+<h2 id="en-4">Treating CRUD as a Long-Term System Capability</h2>
+<h4>NocoBase</h4>
+<p>Website: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Stars: 21k</p>
+<p><strong>NocoBase</strong> is an open-source AI no-code / low-code development platform that helps transform enterprise CRUD capabilities from one-off implementations into reusable system capabilities.</p>
+<p>Through a data model–driven approach, it enables business users and developers to collaboratively build complex business systems without repeatedly writing CRUD code from scratch.</p>
+<p><strong>Core capabilities in this approach include:</strong></p>
+<ul>
+<li><strong>Data model–driven CRUD</strong></li>
+</ul>
+<p>Define tables, fields, and relationships through a visual interface, and the system automatically generates create, read, update, and delete interfaces and APIs. NocoBase supports direct connections to PostgreSQL, MySQL, and MariaDB, allowing teams to work with existing databases without migrating or reshaping their data.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-qica0c.PNG" alt="NocoBase2.PNG"></p>
+<ul>
+<li><strong>Configurable frontend interfaces</strong></li>
+</ul>
+<p>Forms, validations, dynamic visibility, and field linkage rules can be configured instead of hard-coded, reducing repeated frontend work when business logic changes.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-f78boi.png" alt="NocoBase3.png"></p>
+<ul>
+<li><strong>Advanced querying and list views</strong></li>
+</ul>
+<p>Built-in block types support filtering, sorting, pagination, exports, and other common data operations, making complex data views configurable rather than custom-built.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-uznhdh.png" alt="NocoBase4.png"></p>
+<ul>
+<li><strong>Fine-grained permission control</strong></li>
+</ul>
+<p>Permissions can be defined at the role, field, and row level, ensuring that CRUD access rules evolve together with the data model.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase5-qegojj.png" alt="NocoBase5.png"></p>
+<ul>
+<li><strong>Workflow integration</strong></li>
+</ul>
+<p>CRUD operations can be embedded into business processes such as approvals, state transitions, and notifications, instead of remaining isolated data actions.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase6-w400bs.png" alt="NocoBase6.png"></p>
+<ul>
+<li><strong>Plugin-based extensibility</strong></li>
+</ul>
+<p>When custom logic is required, it can be implemented once as a plugin and reused across multiple systems, avoiding project-specific forks.</p>
+<p><strong>Typical use cases:</strong> Enterprise internal systems that require long-term maintenance, multiple similar projects with ongoing changes, and teams that want non-technical users to participate in system configuration.</p>
+<h4>Odoo</h4>
+<p>Website: <a href="https://www.odoo.com/">https://www.odoo.com/</a></p>
+<p>GitHub: <a href="https://github.com/odoo/odoo">https://github.com/odoo/odoo</a></p>
+<p>GitHub Stars: 48.1k</p>
+<p>Odoo addresses repetitive CRUD from a different angle: <strong>standardization through a unified business platform</strong>. Instead of building systems project by project, Odoo provides a comprehensive ERP framework where all applications share the same data model, permission system, and interaction patterns.</p>
+<p>From CRM and inventory to accounting and HR, CRUD operations are predefined within a consistent structure, reducing duplication across business domains.</p>
+<p><img src="https://static-docs.nocobase.com/Odoo-haoe9b.png" alt="Odoo.png"></p>
+<p><strong>Key characteristics of this approach include:</strong></p>
+<ul>
+<li><strong>Unified CRUD framework</strong></li>
+</ul>
+<p>All modules are built on the same ORM and view system. Once a data model is defined, list, form, and search views are generated automatically.</p>
+<ul>
+<li><strong>Modular reuse of business logic</strong></li>
+</ul>
+<p>Each module represents a complete CRUD application that can be installed, combined, or extended, minimizing redevelopment when new requirements arise.</p>
+<ul>
+<li><strong>Built-in data integration</strong></li>
+</ul>
+<p>Since all modules share the same database, CRUD operations naturally link related data across domains, reducing the need for custom integration logic.</p>
+<ul>
+<li><strong>Automation and rule-based behavior</strong></li>
+</ul>
+<p>Business rules and automation actions can be triggered on data creation or updates, extending CRUD behavior without rewriting core logic.</p>
+<p><strong>Typical use cases:</strong> Small and medium enterprises seeking integrated, standardized business management systems, and teams that prefer out-of-the-box workflows over deep customization.</p>
+<h2 id="en-5">Turning CRUD from Code into Configuration</h2>
+<p>This category focuses on a common idea: instead of writing and maintaining CRUD logic in application code, teams <strong>define data structure, permissions, and behavior declaratively</strong>, and let the platform generate and enforce CRUD consistently.</p>
+<h3>Directus</h3>
+<p>Website: <a href="https://directus.io/">https://directus.io/</a></p>
+<p>GitHub: <a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p>GitHub Stars: 33.8k</p>
+<p>Directus turns existing SQL databases into configurable backend systems. Rather than generating application code, it layers a <strong>configuration-driven CRUD and permission system</strong> on top of your database, exposing APIs and admin interfaces that stay in sync with the underlying schema.</p>
+<p>In this model, CRUD behavior is no longer scattered across services and controllers. It is defined once, declaratively, and applied consistently.</p>
+<p><img src="https://static-docs.nocobase.com/Directus-1k9u7k.png" alt="Directus.png"></p>
+<p><strong>Key capabilities in this approach:</strong></p>
+<ul>
+<li><strong>Automatic CRUD API generation</strong></li>
+</ul>
+<p>After connecting to a database, Directus introspects table structures and generates standard CRUD APIs for each table, supporting both REST and GraphQL. Frontend applications can consume these APIs directly without implementing backend logic.</p>
+<ul>
+<li><strong>Visual data model management</strong></li>
+</ul>
+<p>Tables, fields, and relationships can be managed through a visual interface. Schema changes are applied directly to the database and immediately reflected in APIs and admin views, without manual migration scripts.</p>
+<ul>
+<li><strong>Declarative permission control</strong></li>
+</ul>
+<p>CRUD permissions are defined through configuration, down to field-level and row-level rules. The same permission model is enforced across APIs and management interfaces.</p>
+<ul>
+<li><strong>Instantly usable admin backend</strong></li>
+</ul>
+<p>List and form views are generated automatically for each table, with built-in filtering, sorting, and pagination. This makes Directus suitable for internal tools, admin panels, and rapid prototypes.</p>
+<p><strong>Typical use cases:</strong> Existing databases that need a unified API and permission layer, teams aiming to separate business configuration from application code, and projects that require quick admin interfaces without building a backend from scratch.</p>
+<h3>Hasura</h3>
+<p>Website: <a href="https://hasura.io/">https://hasura.io/</a></p>
+<p>GitHub: <a href="https://github.com/hasura/graphql-engine">https://github.com/hasura/graphql-engine</a></p>
+<p>GitHub Stars: 31.9k</p>
+<p>Hasura approaches the same problem from a <strong>GraphQL-first perspective</strong>. Instead of building REST endpoints or backend services, teams connect Hasura to an existing database and expose CRUD operations through a single, high-performance GraphQL API.</p>
+<p>Here, CRUD logic is expressed as <strong>query structure and permission rules</strong>, not application code.</p>
+<p><img src="https://static-docs.nocobase.com/Hasura-f48vc6.png" alt="Hasura.png"></p>
+<p><strong>Key characteristics of this approach:</strong></p>
+<ul>
+<li><strong>Instant GraphQL CRUD APIs</strong></li>
+</ul>
+<p>Once connected to a database, Hasura automatically generates GraphQL queries and mutations for create, read, update, and delete operations on every table.</p>
+<ul>
+<li><strong>Powerful query composition</strong></li>
+</ul>
+<p>Filtering, pagination, aggregation, and nested relationship queries can be composed in a single GraphQL request, reducing the need for custom endpoints and backend orchestration.</p>
+<ul>
+<li><strong>Real-time subscriptions</strong></li>
+</ul>
+<p>Based on database change capture, Hasura can push updates to clients in real time when CRUD operations occur, without manually implementing WebSocket infrastructure.</p>
+<ul>
+<li><strong>Remote schema federation</strong></li>
+</ul>
+<p>CRUD APIs generated by Hasura can be combined with other GraphQL services into a unified API layer, making it suitable as a BFF or API gateway in microservice architectures.</p>
+<ul>
+<li><strong>Event triggers</strong></li>
+</ul>
+<p>Database-level CRUD events can trigger webhooks, enabling asynchronous business logic such as notifications, synchronization, or post-processing.</p>
+<p><strong>Typical use cases:</strong></p>
+<p>Applications that rely heavily on GraphQL, frontend-driven data access patterns, and teams building BFF layers or data-centric services without maintaining custom backend code.</p>
+<h3>Supabase</h3>
+<p>Website: <a href="https://supabase.com/">https://supabase.com/</a></p>
+<p>GitHub: <a href="https://github.com/supabase/supabase">https://github.com/supabase/supabase</a></p>
+<p>GitHub Stars: 95.4k</p>
+<p>Supabase packages configuration-driven CRUD into a <strong>full backend platform</strong>. Built on PostgreSQL, it combines database, APIs, authentication, real-time features, and storage into a single system where CRUD capabilities emerge automatically from schema and policy definitions.</p>
+<p>In this approach, CRUD behavior is pushed as close to the database as possible.</p>
+<p><img src="https://static-docs.nocobase.com/Supabase-93lygj.png" alt="Supabase.png"></p>
+<p><strong>Key characteristics include:</strong></p>
+<ul>
+<li><strong>Automatically generated CRUD APIs</strong></li>
+</ul>
+<p>Once tables are defined, Supabase exposes RESTful CRUD APIs and client SDKs for multiple languages, allowing applications to interact with data using minimal code.</p>
+<ul>
+<li><strong>Row-level security (RLS)</strong></li>
+</ul>
+<p>CRUD permissions are enforced at the database level using PostgreSQL’s native RLS policies. Authorization logic runs inside the database and cannot be bypassed by the application layer.</p>
+<ul>
+<li><strong>Real-time data synchronization</strong></li>
+</ul>
+<p>Using PostgreSQL logical replication, Supabase can broadcast insert, update, and delete events to subscribed clients automatically.</p>
+<ul>
+<li><strong>Built-in authentication</strong></li>
+</ul>
+<p>User authentication is integrated with RLS policies, making it straightforward to implement per-user or multi-tenant CRUD access patterns.</p>
+<ul>
+<li><strong>Visual table management</strong></li>
+</ul>
+<p>Tables, relationships, and data can be managed through a web interface, lowering the barrier for teams that want database-driven development without heavy SQL usage.</p>
+<p><strong>Typical use cases:</strong> SaaS products that need fast iteration, startups aiming to minimize backend setup, and applications that benefit from real-time data and integrated authentication.</p>
+<h2 id="en-6">Reducing Repetition in Backend and Admin Interfaces</h2>
+<p>This category focuses on <strong>reducing repetitive work in backend and admin interfaces</strong>, rather than redefining how data models or business logic are structured.</p>
+<p>CRUD logic still lives in code, but the cost of building and maintaining management UIs is significantly reduced.</p>
+<h3>Appsmith</h3>
+<p>Website: <a href="https://appsmith.com/">https://appsmith.com/</a></p>
+<p>GitHub: <a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>GitHub Stars: 38.8k</p>
+<p>Appsmith helps developers build CRUD interfaces quickly through a visual, component-based approach. It sits on top of existing data sources and backend logic, focusing on <strong>speeding up admin and internal tool development</strong> rather than changing how systems are modeled.</p>
+<p>Compared to tools like Retool, Appsmith is fully open-source and self-hostable, making it suitable for teams with strict data security or deployment requirements.</p>
+<p><img src="https://static-docs.nocobase.com/Appsmith-6js1ku.png" alt="Appsmith.png"></p>
+<p><strong>Key characteristics of this approach:</strong></p>
+<ul>
+<li><strong>Visual construction of CRUD interfaces</strong></li>
+</ul>
+<p>Tables, forms, buttons, and charts can be assembled through drag-and-drop. Common CRUD interactions such as inline editing, batch operations, multi-step forms, and file uploads are supported out of the box.</p>
+<ul>
+<li><strong>Multiple data source integration</strong></li>
+</ul>
+<p>Appsmith can connect to SQL and NoSQL databases, REST and GraphQL APIs, and various SaaS services, allowing a single interface to orchestrate CRUD operations across different systems.</p>
+<ul>
+<li><strong>JavaScript-based logic extension</strong></li>
+</ul>
+<p>Custom JavaScript can be added to component actions for validation, conditional logic, error handling, and navigation, enabling flexible CRUD behavior without building a full backend UI layer.</p>
+<ul>
+<li><strong>Layout and theming customization</strong></li>
+</ul>
+<p>Interfaces support responsive layouts and theme customization, making it easier to align internal tools with company branding and usability standards.</p>
+<ul>
+<li><strong>API exposure</strong></li>
+</ul>
+<p>Built applications can expose actions as APIs, turning manually operated CRUD workflows into callable services when needed.</p>
+<p><strong>Typical use cases:</strong></p>
+<p>Teams building customized internal backends, open-source–first projects that require full control over deployment, organizations with frequently changing internal tools, and environments with high data security requirements.</p>
+<h3>AdminJS</h3>
+<p>Website: <a href="https://adminjs.co/">https://adminjs.co/</a></p>
+<p>GitHub: <a href="https://github.com/softwarebrothers/adminjs">https://github.com/softwarebrothers/adminjs</a></p>
+<p>GitHub Stars: 8.9k</p>
+<p>AdminJS takes a more <strong>code-centric but automation-focused</strong> approach. Instead of visually assembling interfaces, it generates complete admin backends directly from existing backend models in Node.js applications.</p>
+<p>Here, the goal is not to redesign CRUD flows, but to <strong>avoid writing admin interfaces altogether</strong>.</p>
+<p><img src="https://static-docs.nocobase.com/AdminJS-csg1n8.png" alt="AdminJS.png"></p>
+<p><strong>Key characteristics of this approach:</strong></p>
+<ul>
+<li><strong>Automatic CRUD interface generation</strong></li>
+</ul>
+<p>Given data model definitions such as TypeORM entities or Prisma schemas, AdminJS generates list views, forms, filters, pagination, and delete actions automatically, without frontend development.</p>
+<ul>
+<li><strong>Configurable customization layer</strong></li>
+</ul>
+<p>Developers can adjust field visibility, form layouts, validation rules, and actions through configuration, and introduce custom components when necessary.</p>
+<ul>
+<li><strong>Integrated permission control</strong></li>
+</ul>
+<p>Role-based access control can be defined per resource, with permission logic expressed as functions, allowing dynamic decisions at runtime.</p>
+<ul>
+<li><strong>Minimal integration cost</strong></li>
+</ul>
+<p>AdminJS can be added to existing Express, Hapi, or NestJS applications with minimal code changes, making it a practical choice for retrofitting admin panels onto mature systems.</p>
+<p><strong>Typical use cases:</strong> Node.js projects with existing backends, teams needing to add management interfaces quickly, and scenarios where automatic generation is preferred over building custom admin UIs.</p>
+<h2 id="en-7">Writing CRUD Faster</h2>
+<p>This category focuses on <strong>accelerating CRUD implementation through code generation</strong>.</p>
+<p>CRUD logic is still written and maintained as application code, but scaffolding tools significantly reduce the amount of boilerplate developers need to write by hand.</p>
+<h3>Ruby on Rails — Rails Generators</h3>
+<p>Website: <a href="https://rubyonrails.org/">https://rubyonrails.org/</a></p>
+<p>GitHub: <a href="https://github.com/rails/rails">https://github.com/rails/rails</a></p>
+<p>GitHub Stars: 58k</p>
+<p>Rails generators are built-in code generation tools that embody Rails’ “convention over configuration” philosophy. By defining data models, developers can generate a complete set of CRUD code with a single command, covering backend logic, database schema, routing, and views.</p>
+<p>In this approach, CRUD is still implemented as code, but <strong>the initial setup cost is dramatically reduced</strong>.</p>
+<p><img src="https://static-docs.nocobase.com/Rails%20Generators-cz4prn.png" alt="Rails Generators.png"></p>
+<p><strong>Key characteristics of this approach:</strong></p>
+<ul>
+<li><strong>Scaffold-based CRUD generation</strong></li>
+</ul>
+<p>A single command such as <code>rails generate scaffold Post title:string body:text</code> generates models, database migrations, controllers with standard CRUD actions, views for listing and editing data, and route definitions.</p>
+<ul>
+<li><strong>Resource-based routing</strong></li>
+</ul>
+<p>Declaring <code>resources :posts</code> automatically creates all standard CRUD routes without manual configuration.</p>
+<ul>
+<li><strong>Built-in parameter handling</strong></li>
+</ul>
+<p>Strong Parameters enforce explicit field whitelisting for create and update operations, reducing repetitive validation code while improving security.</p>
+<ul>
+<li><strong>Test integration by default</strong></li>
+</ul>
+<p>Generated scaffolds include basic test files for CRUD operations, encouraging consistent testing practices from the start.</p>
+<p><strong>Typical use cases:</strong></p>
+<p>Teams using the Ruby on Rails stack, projects that need to launch CRUD features quickly, and developers who value convention-driven development and consistent code structure.</p>
+<h3>JHipster</h3>
+<p>Website: <a href="https://www.jhipster.tech/">https://www.jhipster.tech/</a></p>
+<p>GitHub: <a href="https://github.com/jhipster/generator-jhipster">https://github.com/jhipster/generator-jhipster</a></p>
+<p>GitHub Stars: 22.3k</p>
+<p>JHipster brings the same idea of scaffolding-driven CRUD acceleration to the Java and Spring Boot ecosystem. It generates production-ready applications that include entities, CRUD APIs, security configuration, and frontend interfaces based on predefined standards.</p>
+<p>Here, CRUD is accelerated not just by code generation, but by <strong>pre-assembling a full enterprise-grade technology stack</strong>.</p>
+<p><img src="https://static-docs.nocobase.com/JHipster-3ruve9.png" alt="JHipster.png"></p>
+<p><strong>Key characteristics of this approach:</strong></p>
+<ul>
+<li><strong>Entity-driven CRUD generation</strong></li>
+</ul>
+<p>Defining entities and fields results in generated JPA entities, repositories, services, REST controllers, and corresponding frontend pages.</p>
+<ul>
+<li><strong>End-to-end stack integration</strong></li>
+</ul>
+<p>Backend components are built on Spring Boot, Spring Data, and Spring Security, while frontend options include Angular, React, or Vue, all wired together by default.</p>
+<ul>
+<li><strong>Built-in security model</strong></li>
+</ul>
+<p>Generated CRUD endpoints require authentication by default, with role-based access control configurable through annotations and reflected automatically in frontend behavior.</p>
+<ul>
+<li><strong>Microservices-ready scaffolding</strong></li>
+</ul>
+<p>Applications can be generated as monoliths or microservices, with infrastructure components such as gateways, service discovery, and configuration services included.</p>
+<p><strong>Typical use cases:</strong> Enterprise Java projects, teams that need standardized project structures, and organizations that want frontend and backend CRUD generation aligned from day one.</p>
+<h3>Yeoman</h3>
+<p>Website: <a href="https://yeoman.io/">https://yeoman.io/</a></p>
+<p>GitHub: <a href="https://github.com/yeoman/yeoman">https://github.com/yeoman/yeoman</a></p>
+<p>GitHub Stars: 10.1k</p>
+<p>Yeoman is a more general scaffolding framework rather than a CRUD generator itself. It provides the foundation for running and composing Generators, allowing teams to codify how new CRUD projects are initialized across different stacks.</p>
+<p>Its value lies in <strong>standardizing project setup</strong>, not in redefining CRUD behavior.</p>
+<p><img src="https://static-docs.nocobase.com/Yeoman-n8kalu.png" alt="Yeoman.png"></p>
+<p><strong>Key characteristics of this approach:</strong></p>
+<ul>
+<li><strong>Interactive project scaffolding</strong></li>
+</ul>
+<p>Generators collect configuration through prompts and generate project structures accordingly, covering stack choices, tooling, and dependencies.</p>
+<ul>
+<li><strong>Extensive generator ecosystem</strong></li>
+</ul>
+<p>Community generators exist for a wide range of CRUD scenarios, including Node.js backends, frontend applications, and full-stack setups. JHipster itself is built on Yeoman.</p>
+<ul>
+<li><strong>Custom generator support</strong></li>
+</ul>
+<p>Teams can encapsulate their preferred project structure, dependencies, and conventions into custom generators, ensuring consistency across projects.</p>
+<ul>
+<li><strong>Composable and modular design</strong></li>
+</ul>
+<p>Generators can build on top of one another, enabling reuse of common CRUD scaffolds with business-specific extensions.</p>
+<p><strong>Typical use cases:</strong> Organizations managing multiple technology stacks, teams aiming to unify project initialization, and environments where consistent CRUD project structure matters more than runtime flexibility.</p>
+<h2 id="en-8">A Final Note</h2>
+<p>Reducing repetitive CRUD is ultimately about building reuse at different levels.</p>
+<p>From scaffolding and code generation, to configuration-driven platforms and system-level architecture, each approach is effective for certain problems—and limited outside its scope.</p>
+<p>Before choosing a tool, it’s worth asking yourself three practical questions:</p>
+<ol>
+<li>Will this problem show up again in future projects?</li>
+<li>Is it better to invest more effort upfront, or keep rewriting the same logic later?</li>
+<li>When the system grows from 10 tables to 100 tables, will this approach still hold up?</li>
+</ol>
+<p>Tools are only the entry point. The real dividing line for long-term efficiency is whether you’re building a system capability that can evolve with changing requirements, instead of being rebuilt each time they change.</p>
+<p>❤️If you found this article useful, feel free to share it with others who may be facing similar challenges.</p>
+<p>Note: This article was written with AI assistance, with human review and additions for viewpoints, data, and examples.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/top-12-ai-workflows-projects-with-the-most-github-stars.html">Top 12 Open-source AI Workflows Projects with the Most GitHub Stars </a></li>
+<li><a href="../blog/6-open-source-no-code-low-code-tools-for-software-agencies.html">6 Open-Source No-Code &amp; Low-Code Tools for Software Agencies</a></li>
+<li><a href="../blog/top-10-open-source-ai-crm-projects-with-the-most-github-stars.html">Top 10 Open-source AI CRM Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/how-to-quickly-build-a-real-system-to-replace-excel.html">How to Quickly Build a Real System to Replace Excel: A Complete Guide</a></li>
+<li><a href="../blog/top-5-open-source-ai-internal-tools-on-github.html">Top 5 Open-Source AI Internal Tools on GitHub</a></li>
+<li><a href="../blog/the-8-best-google-sheets-alternatives-with-full-cost-and-capability-analysis.html">The 8 Best Google Sheets Alternatives (Specs &amp; Pricing)</a></li>
+<li><a href="../blog/6-open-source-no-low-code-tools-for-building-pocs.html">6 Open-Source No/Low-Code Tools for Building PoCs</a></li>
+<li><a href="../blog/a-developers-technical-decision-guide-to-no-code-and-low-code.html">A Developer’s Technical Decision Guide to No-Code and Low-Code (2026)</a></li>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 In-Depth Comparison of RBAC in Enterprise-Grade No-Code/Low-Code Platforms</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">14 AI-Powered Low-Code Platforms on GitHub Worth Watching</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">写在开头</a><a href="#zh-2">减少 CRUD 重复的思路</a><a href="#zh-3">工具推荐</a><a href="#zh-4">把 CRUD 当成长期系统能力</a><a href="#zh-5">把 CRUD 从代码变成配置</a><a href="#zh-6">减少后台和管理界面的重复</a><a href="#zh-7">更快地把 CRUD 写完</a><a href="#zh-8">写在最后</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">Ways to Reduce Repetitive CRUD</a><a href="#en-3">Tools by Approach</a><a href="#en-4">Treating CRUD as a Long-Term System Capability</a><a href="#en-5">Turning CRUD from Code into Configuration</a><a href="#en-6">Reducing Repetition in Backend and Admin Interfaces</a><a href="#en-7">Writing CRUD Faster</a><a href="#en-8">A Final Note</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

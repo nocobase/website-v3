@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="构建工作流自动化的  5  个最佳工具 — NocoBase" data-en="5 Workflow Automation Tools Compared: Uses and Trade-offs — NocoBase">构建工作流自动化的  5  个最佳工具 — NocoBase</title>
+<meta name="description" content="探索 NocoBase、Appy Pie 和 Zapier 等最佳开源可视化工作流引擎，了解它们如何助你的团队提高效率、降低成本。" data-zh="探索 NocoBase、Appy Pie 和 Zapier 等最佳开源可视化工作流引擎，了解它们如何助你的团队提高效率、降低成本。" data-en="Compare five workflow automation tools by use case, integrations, hosting, and maintenance. See practical examples and choose software for your business process.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>构建工作流自动化的  5  个最佳工具</t-zh><t-en>5 Workflow Automation Tools Compared: Uses and Trade-offs</t-en></h1>
+    <p class="lede"><t-zh>探索 NocoBase、Appy Pie 和 Zapier 等最佳开源可视化工作流引擎，了解它们如何助你的团队提高效率、降低成本。</t-zh><t-en>Compare five workflow automation tools by use case, integrations, hosting, and maintenance. See practical examples and choose software for your business process.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2024年10月18日</t-zh><t-en>Oct 18, 2024</t-en></span><span><t-zh>Zhang Lu</t-zh><t-en>Zhang Lu</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/646c347e6af4fff808a568afa9600a30.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">什么是工作流自动化？</h2>
+<p>工作流自动化是指利用技术手段自动执行业务流程中的一系列任务，旨在减少人工干预，提升效率和准确性。</p>
+<p>它涵盖了从信息传递到任务分配的一系列操作，能够将手动流程转变为自动化系统。</p>
+<p>这种自动化可以应用于各种行业和业务场景，从简单的数据输入和处理到复杂的跨部门协作流程。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-2">为什么要自动化工作流？</h2>
+<ol>
+<li><strong>提高生产力</strong>
+工作流自动化通过自动化执行重复性任务，让员工从繁琐的手动任务中解放出来，使其能将精力集中在更具创造性的工作上，从而提高整体工作效率和产出。</li>
+<li><strong>降低成本</strong>
+通过减少对人工操作的依赖，自动化工作流有助于降低劳动力成本，尤其是在处理大量重复性任务时。</li>
+<li><strong>实时监控与反馈</strong>
+自动化系统能够提供实时的流程监控，使管理层能够及时了解业务流程的运行状况，并根据收集的数据做出基于数据的决策。</li>
+</ol>
+<p>💡 阅读更多：<a href="../blog/top-10-open-source-workflows-projects-with-the-most-github-stars.html">⭐️ GitHub Star 数量前十的工作流项目</a></p>
+<h2 id="zh-3">工作流自动化的应用场景</h2>
+<p>每个行业都拥有独特的工作流程和挑战，因此工作流自动化在各行各业都具有广泛的应用前景。</p>
+<ul>
+<li><strong>财务行业</strong>：工作流自动化通常集中于简化审批流程，如发票处理、费用报销和账目核对。自动化工具可以自动填充数据字段，减少人为错误，并确保准确性和合规性。</li>
+<li><strong>人力资源管理</strong>：工作流自动化涉及招聘、入职、离职流程的自动化。它可以自动执行新员工的个人资料创建、发送欢迎邮件、以及跟踪新员工的入职任务。</li>
+<li><strong>IT和客户支持</strong>：工作流自动化可以用于资产管理、变更管理和服务台，自动化从问题识别到解决的整个流程。对于客户支持团队，自动化可以帮助快速识别和响应客户问题，提高服务效率。</li>
+<li><strong>销售和市场营销</strong>：销售团队可能会使用工作流自动化来处理潜在客户路由、报价审批和销售漏斗管理。市场营销团队可能会利用自动化工具来管理电子邮件活动、社交媒体发布和客户关系管理。</li>
+<li><strong>制造业和供应链管理</strong>：工作流自动化可以用于生产计划的自动排程、生产任务的自动分配以及生产数据的实时监控，以提高生产效率和产品质量。</li>
+<li><strong>软件开发</strong>：工作流自动化可以实现代码的自动编译、测试和部署，提高开发效率和质量。同时，通过与其他系统的集成，可以实现需求管理、缺陷跟踪以及版本控制等功能。</li>
+</ul>
+<h2 id="zh-4">实施工作流自动化的步骤</h2>
+<ol>
+<li><strong>评估当前工作流</strong>：在自动化之前，需要对现有的工作流进行彻底的评估，以确定哪些流程可以自动化，以及自动化的潜在收益。</li>
+<li><strong>定义目标和期望</strong>：明确自动化的目标，包括预期的成本节约、效率提升和错误减少等。</li>
+<li><strong>选择合适的自动化工具</strong>：市场上有许多自动化工具，选择合适的工具对于成功实施自动化至关重要。</li>
+<li><strong>设计自动化流程</strong>：设计自动化流程图，明确每个步骤的自动化逻辑和规则。</li>
+<li><strong>实施自动化</strong>：在设计完成后，开始实施自动化流程，这可能包括软件开发、系统集成和测试。</li>
+<li><strong>培训员工</strong>：自动化实施后，需要对员工进行培训，以确保他们能够有效地使用新的自动化系统。</li>
+<li><strong>监控和优化</strong>：自动化实施后，需要持续监控其性能，并根据反馈进行优化</li>
+</ol>
+<p>工作流自动化的应用因行业而异，在推进自动化工作流时，选择恰当的工具极为关键。</p>
+<h2 id="zh-5">工作流构建工具类型</h2>
+<p>目前有多种类型的工作流自动化工具可供选择，每种工具都有其独特的特点和优势，包括但不限于：</p>
+<ul>
+<li>无代码（零代码）/低代码平台：如 NocoBase、Appy Pie 等，允许用户通过拖放界面设计工作流程，无需编写代码。</li>
+<li>集成与自动化工具：如 Zapier、Make 等，专注于连接不同的应用程序和服务，实现数据传输和自动化操作。</li>
+<li>开源自托管工具：如 n8n，提供自托管的工作流自动化解决方案，用户可以在自己的服务器上部署和管理工作流程。</li>
+</ul>
+<p>接下来，我们将介绍具体介绍这些最佳工作流引擎的特点、搭建工作流步骤和实践案例，助力你的团队高效实现工作流程自动化。</p>
+<p>💡 阅读更多：<a href="../blog/the-ultimate-guide-to-awesome-self-hosted-solutions.html">终极自托管解决方案指南</a></p>
+<h2 id="zh-6">最佳工作流自动化工具</h2>
+<h3>NocoBase</h3>
+<p><a href="https://www.nocobase.com/">NocoBase</a> 是一个开源、可扩展的 AI 无代码（零代码）/低代码开发平台，允许用户快速构建内部工具和工作流自动化系统。</p>
+<p><img src="https://static-docs.nocobase.com/372c811a70f87789ca571ca0b6090179.PNG" alt="NocoBase.PNG"></p>
+<ul>
+<li><strong>无代码（零代码）编排</strong>：NocoBase 的工作流插件专为无代码（零代码）场景设计，用户可以在UI界面上通过拖放的方式完成大部分常见业务的编排与数据处理，动态实现系统中业务流程的变更，无需编程知识即可快速适应业务变化。</li>
+<li><strong>高度集成能力</strong>：NocoBase 作为一个数据模型驱动的无代码（零代码）/低代码开发平台，支持外部数据库作为数据源，确保工作流信息流畅，提升跨平台协作效率。</li>
+<li><strong>灵活的插件系统</strong>：用户可轻松安装、启用插件，快速集成所需功能和第三方服务，同时根据需求自由选择、配置功能，打造个性化开源可视化工作流引擎。</li>
+</ul>
+<p>🙌 上手实践：<a href="https://www.nocobase.com/cn/tutorials/task-tutorial-introduction">NocoBase 实战教程 —— 任务管理系统</a></p>
+<h4>利用 NocoBase 快速配置一个工作流</h4>
+<p>下方是一个简单的工作流自动化步骤：当新文章被创建时，系统会自动执行拼接计算，将标题字段与 ID 字段相结合，使得文章标题自动更新为“文章标题 + 文章 ID”的格式。</p>
+<ol>
+<li><strong>进入管理页面</strong>：从顶部菜单栏的插件配置菜单进入工作流插件管理页面。</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/72d4bd646ed147e71ecf85a9e5f43064.png" alt="Access the Management Page.png"></p>
+<ol start="2">
+<li><strong>新建工作流</strong>：点击“新建”按钮，选择数据表事件。</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/bf18902ffdadca52633b2dda1f081dee.png" alt="Create a New Workflow.png"></p>
+<ol start="3">
+<li><strong>配置触发器</strong>：点击“配置”链接，选择触发器卡片。选择已创建的数据表（如“文章”表），设置触发时机为“新增数据后”，点击“保存”。</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/a15a6d1be695eb2a397614ac5f3a6c21.png" alt="Configure the Trigger.png"></p>
+<ol start="4">
+<li><strong>添加节点</strong>：点击加号按钮增加一个节点，选择运算节点。配置节点，使用 Formula.js 提供的运算函数 <code>CONCATENATE</code> 函数拼接“标题”与“ID”字段。</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/222fdff7ae65ea77abd995706fa48dfe.png" alt="Add a Node.png"></p>
+<ol start="5">
+<li><strong>创建更新节点</strong>：增加一个更新数据节点，选择“文章”表。配置更新数据项为“标题”，更新值为运算节点的结果。</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/201648bd3b3a65866e25d00cd55c2b77.png" alt="Create an Update Node.png"></p>
+<ol start="6">
+<li><strong>启用工作流</strong>：点击右上角的“启用”开关，将工作流切换至启用状态，使其可被触发执行。</li>
+</ol>
+<h3>Appy Pie</h3>
+<p><a href="https://www.appypie.com/">Appy Pie</a> 是一个无需编码的平台，允许用户通过拖放界面创建自动化工作流。</p>
+<p><img src="https://static-docs.nocobase.com/9bbdf64d64eaa718d0f7f9b92c383491.png" alt="Appy Pie.png"></p>
+<ul>
+<li><strong>无代码平台</strong>：提供可视化工作流引擎，让用户无需编程知识即可轻松创建自动化工作流，降低了使用门槛。</li>
+<li><strong>多平台集成</strong>：支持与多种第三方应用集成，确保信息流动顺畅，提升跨平台协作的效率。</li>
+<li><strong>安全与合规</strong>：商业应用集成服务平台符合多项相关数据保护法规，如 GDPR 和 CCPA，并提供双因素认证和加密功能。</li>
+</ul>
+<p>💡 阅读更多：<a href="../blog/low-code-no-code-integration.html">无代码（零代码）/低代码平台集成能力深度分析</a></p>
+<h4>利用 Appy Pie 快速配置一个工作流</h4>
+<p><img src="https://static-docs.nocobase.com/013756f513b7c15b65d218c739d5420b.png" alt="Quickly Configuring a Workflow with Appy Pie.png"></p>
+<ol>
+<li><strong>选择 Trigger 应用程序</strong>：该触发器是工作流引擎的基础。Trigger 应用程序是将启动自动化的应用程序。</li>
+<li><strong>选择 Action 应用程序</strong>：Action 应用程序将根据触发器事件执行操作。</li>
+<li><strong>测试并激活</strong>：测试已建立的工作流程自动化，在最终激活 AI 代理之前预览它。对结果满意后，将其激活以启动工作流。</li>
+</ol>
+<h3>Zapier</h3>
+<p><a href="https://zapier.com/">Zapier</a> 是一个流行的工作流引擎，它允许用户连接不同的应用程序和工具，以自动化工作流程。</p>
+<p><img src="https://static-docs.nocobase.com/d218a0550ee9a05ab913fa6abf8b4976.png" alt="Zapier.png"></p>
+<ul>
+<li><strong>强大的自动化功能</strong>：通过设置 “Zaps”，用户可以轻松实现跨应用的自动化任务，无需编程知识。</li>
+<li><strong>广泛的应用集成</strong>：支持与上千种应用和服务集成，使得不同工具之间的信息流动顺畅，提升工作效率。</li>
+<li><strong>用户友好的界面</strong>：直观的界面设计使得用户能够快速创建和管理工作流，轻松上手，适合各类用户。</li>
+</ul>
+<p>案例：<a href="https://zapier.com/customer-stories/smart-charge-america">How Smart Charge America uses automation to scale operations and fight climate change | Zapier</a></p>
+<h3>Make</h3>
+<p><a href="https://www.make.com/en">Make</a> 是一个强大的工作流自动化工具，它提供了广泛的功能，包括数据转换、API 调用和条件逻辑。</p>
+<p><img src="https://static-docs.nocobase.com/47dff3450b97ce57fb542c0fd2c1153b.png" alt="Make.png"></p>
+<ul>
+<li><strong>可视化工作流设计</strong>：提供直观的拖放式界面，用户可以轻松创建复杂的自动化流程，降低了操作难度。</li>
+<li><strong>强大的集成能力</strong>：支持与众多应用和服务的连接，允许用户在不同平台间无缝传输数据，增强了灵活性。</li>
+<li><strong>多步骤操作和条件逻辑</strong>：允许用户设置多步骤流程和条件逻辑，实现更复杂的自动化场景，满足各种业务需求。</li>
+</ul>
+<p>案例：<a href="https://www.make.com/en/blog/brevo-automates-hundred-workflows-to-supercharge-lead-gen">Brevo automates 100+ workflows to supercharge lead gen and gain 16 days a month</a></p>
+<h3>n8n</h3>
+<p><a href="https://n8n.io/">n8n</a> 是一款开源可视化工作流引擎，旨在帮助用户实现数据的自动化处理和工作流的管理。</p>
+<p><img src="https://static-docs.nocobase.com/fce44339758aae7f1b77b827d0ef03b7.png" alt="n8n.png"></p>
+<ul>
+<li><strong>开源和自托管</strong>：用户可以选择自托管，确保数据隐私和控制，同时享受灵活的配置选项。</li>
+<li><strong>丰富的集成选项</strong>：支持与众多应用和服务的连接，帮助用户创建跨平台的自动化工作流，提高工作效率。</li>
+<li><strong>灵活的条件和逻辑控制</strong>：允许用户设置条件逻辑和多步骤操作，满足复杂业务需求，实现智能化的流程管理。</li>
+</ul>
+<p>案例：<a href="https://n8n.io/case-studies/delivery-hero/">Delivery Hero saved 200 hours/month with a single IT ops workflow</a></p>
+<h2 id="zh-7">总结</h2>
+<p>本文介绍了多个优秀的开源可视化工作流引擎：NocoBase 的无代码（零代码）编排、Appy Pie 的简化流程搭建、Zapier 的应用连接实现、Make 的设计与集成能力提升、n8n 的开源自托管和逻辑控制灵活。</p>
+<p>希望这些开源可视化工作流引擎能够助力您的团队高效实现流程自动化，提升工作效率，释放创新潜力。</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/business-application-development.html">完全指南：如何高效进行业务应用开发？</a></li>
+<li><a href="../blog/core-app-dashboard-building-tools.html">6 个最佳核心应用仪表盘构建工具</a></li>
+<li><a href="../blog/low-code-no-code-integration.html">无代码/低代码平台集成能力深度分析</a></li>
+<li><a href="../blog/open-source-tools-for-bpm.html">BPM（业务流程管理）的最佳开源工具</a></li>
+<li><a href="../blog/project-management-tools.html">5 个最佳开源无代码项目管理工具</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">在数小时内构建 CRM：你需要了解的顶级无代码/低代码工具</a></li>
+</ul></div><div class="prose en-only"><p>Workflow automation tools connect a trigger, such as a new record or submitted form, to actions such as updating data, assigning a task, or requesting approval. This guide compares five options by their role in your business: NocoBase, Appy Pie Automate, Zapier, Make, and n8n.</p>
+<p>Start with where the work happens. Connecting existing apps calls for different software than building a business system with its own records, permissions, and approval rules. The comparison below helps you shortlist tools, then test one real workflow before committing.</p>
+<h2 id="en-1">Workflow Automation Tools at a Glance</h2>
+<p>These are starting points for evaluation, not a scored ranking or a hands-on benchmark.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>When to evaluate it</th>
+<th>What to check before choosing</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>Building and continuously improving a business system with shared data, permissions, and workflows</td>
+<td>Required capabilities, deployment ownership, and how changes will be tested and approved</td>
+</tr>
+<tr>
+<td>Appy Pie Automate</td>
+<td>Connecting applications through guided automation setup</td>
+<td>The current product offering, supported triggers and actions, and migration needs; its website now redirects to Flozic</td>
+</tr>
+<tr>
+<td>Zapier</td>
+<td>Automating handoffs between existing applications with Zaps</td>
+<td>Coverage of your exact app actions and usage at your expected volume</td>
+</tr>
+<tr>
+<td>Make</td>
+<td>Designing visual workflows that transform data and branch across applications</td>
+<td>Data mapping, error handling, and the cost of running each scenario</td>
+</tr>
+<tr>
+<td>n8n</td>
+<td>Building workflows with a self-hosting option</td>
+<td>Hosting and maintenance responsibilities, required integrations, and license terms</td>
+</tr>
+</tbody></table>
+<p>Product capabilities and commercial terms change. Check the exact actions and limits you need with each vendor. The sections below link to official sources and retain practical examples from this guide.</p>
+<h2 id="en-2">What is Workflow Automation?</h2>
+<p>Workflow automation uses defined rules to execute tasks in a business process. A trigger starts the workflow, conditions determine which path it follows, and actions update records or move work to the next person or system.</p>
+<p>For example, an expense request can route to a manager, wait for approval, and then notify finance. Automating the routing still leaves the approval decision with the responsible person.</p>
+<p>💬 You&#39;re reading the NocoBase blog. NocoBase is an open-source platform for enterprises to use AI to build and continuously improve business systems. Agents write the business-specific parts, NocoBase provides the foundation and workflow, and people set goals and make decisions. It supports private deployment, so the enterprise controls its code, data, and runtime environment. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
+<h2 id="en-3">Why Automate Workflows?</h2>
+<ol>
+<li><strong>Increase Productivity</strong> Workflow automation frees employees from tedious manual tasks, allowing them to focus on more creative work, thereby enhancing overall efficiency and output.</li>
+<li><strong>Reduce Costs</strong> By minimizing reliance on manual operations, automated workflows help lower labor costs, especially when handling large volumes of repetitive tasks.</li>
+<li><strong>Real-Time Monitoring and Feedback</strong> Automated systems provide real-time process monitoring, enabling management to stay informed about business process performance and make data-driven decisions based on collected data.</li>
+</ol>
+<p>💡 Read More: <a href="../blog/top-10-open-source-workflows-projects-with-the-most-github-stars.html">⭐️ Top 10 Open-source Workflows Projects with the Most GitHub Stars</a></p>
+<h2 id="en-4">Applications of Workflow Automation</h2>
+<p>Every industry has unique workflows and challenges, making workflow automation widely applicable across sectors.</p>
+<ul>
+<li><strong>Finance:</strong> Automation often focuses on simplifying approval processes like invoice handling, expense reimbursements, and account reconciliations. Automated tools can fill in data fields automatically, reducing manual entry errors. Approval and compliance requirements still need explicit rules and review.</li>
+<li><strong>Human Resources Management:</strong> Workflow automation involves automating hiring, onboarding, and offboarding processes. It can automatically create new employee profiles, send welcome emails, and track onboarding tasks.</li>
+<li><strong>IT and Customer Support:</strong> Workflow automation can manage asset management, change management, and service desks, automating the entire process from issue identification to resolution. For customer support teams, automation helps quickly identify and respond to customer issues, improving service efficiency.</li>
+<li><strong>Sales and Marketing:</strong> Sales teams may use workflow automation to handle lead routing, quote approvals, and sales funnel management. Marketing teams may utilize automation tools to manage email campaigns, social media posts, and customer relationship management.</li>
+<li><strong>Manufacturing and Supply Chain Management:</strong> Workflow automation can be used for automatic scheduling of production plans, automatic assignment of production tasks, and real-time monitoring of production data to enhance efficiency and product quality.</li>
+<li><strong>Software Development:</strong> Workflow automation can enable automatic compilation, testing, and deployment of code, improving development efficiency and quality. Integration with other systems allows for features like requirement management, defect tracking, and version control. By integrating <a href="https://www.functionize.com/automated-testing">key automation testing concepts</a>, teams can detect and address issues earlier in the development cycle, leading to faster release times and more reliable software.</li>
+</ul>
+<h2 id="en-5">Steps to Implement Workflow Automation</h2>
+<ol>
+<li><strong>Assess Current Workflows:</strong> Before automating, conduct a thorough evaluation of existing workflows to identify which processes can be automated and the potential benefits of automation.</li>
+<li><strong>Define Goals and Expectations:</strong> Clarify the objectives of automation, including expected cost savings, efficiency improvements, and error reductions.</li>
+<li><strong>Choose Appropriate Automation Tools:</strong> With numerous automation tools available, selecting the right tool is crucial for successful implementation.</li>
+<li><strong>Design Automation Processes:</strong> Create flowcharts for automation processes, detailing the automation logic and rules for each step.</li>
+<li><strong>Implement Automation:</strong> Once the design is complete, begin implementing the automation processes, which may include software development, system integration, and testing.</li>
+<li><strong>Train Employees:</strong> After automation implementation, train employees to ensure they can effectively use the new automated system.</li>
+<li><strong>Monitor and Optimize:</strong> After implementation, continuously monitor performance and optimize based on feedback.</li>
+</ol>
+<p>The application of workflow automation varies by industry, making it crucial to choose the right tools when advancing automated workflows.</p>
+<h2 id="en-6">How to Choose Workflow Automation Software</h2>
+<p>Use one real process to compare tools. Write down its trigger, data, conditions, actions, and the person responsible for exceptions.</p>
+<ul>
+<li><strong>Data and integrations:</strong> Check whether the tool supports the exact trigger and action you need. An app appearing in an integration directory does not guarantee access to every field or operation.</li>
+<li><strong>Permissions and approvals:</strong> Identify who may read or change each record, which actions require approval, and where decisions are recorded.</li>
+<li><strong>Deployment and maintenance:</strong> Decide who will operate the system, update it, back it up, and restore it after a failure. Self-hosting gives your team control and operational responsibilities.</li>
+<li><strong>Failures and retries:</strong> Test missing fields, expired connections, rejected approvals, and repeated events. A retry should not create a second invoice or send the same customer message twice.</li>
+<li><strong>Cost at your volume:</strong> Estimate runs, steps, users, paid capabilities, and hosting. Compare the total cost of the workflow you expect to run, including maintenance.</li>
+<li><strong>Future changes:</strong> Ask how a colleague will understand and safely change the workflow six months later. Keep its rules, tests, and owner documented.</li>
+</ul>
+<p>For more on connecting business systems, read <a href="../blog/low-code-no-code-integration.html">Deep Dive: Low Code/No Code Integration Capabilities</a>. If managing your own environment is a priority, see the <a href="../blog/the-ultimate-guide-to-awesome-self-hosted-solutions.html">self-hosted solutions guide</a>.</p>
+<h2 id="en-7">Five Workflow Automation Tools Compared</h2>
+<h3>NocoBase</h3>
+<p><a href="https://www.nocobase.com/">NocoBase</a> is an open-source platform for building and continuously improving business systems with AI. Evaluate it when workflow automation needs to live alongside your business data, permissions, and approval rules.</p>
+<p><img src="https://static-docs.nocobase.com/372c811a70f87789ca571ca0b6090179.PNG" alt="NocoBase workflow interface"></p>
+<ul>
+<li><strong>A reusable foundation:</strong> NocoBase Core provides data, permissions, workflows, approvals, and operation records. Teams can focus changes on the business-specific parts of the system.</li>
+<li><strong>Controlled changes:</strong> NocoBase Studio supports collaboration with your chosen development agents. Development and testing lead to checks, human acceptance and approval, and backup before release.</li>
+<li><strong>Enterprise ownership:</strong> Open source and private deployment give the enterprise control of its code, data, and runtime environment. Plan who will manage deployment, upgrades, and recovery.</li>
+</ul>
+<p>Start by confirming which capabilities your workflow needs and which edition provides them. Complex approvals and other commercial enhancements should be checked against the current offering.</p>
+<p>🙌 Have a try: <a href="https://www.nocobase.com/en/tutorials/task-tutorial-introduction">NocoBase Tutorial – Task Management System</a></p>
+<h4>Example: Update a Record with NocoBase</h4>
+<p>This existing tutorial illustrates a trigger, calculation, and update. Screenshots and menu labels may differ by version; check them against your installed version before following the steps.</p>
+<p>Here’s the workflow: when a new article is created, the system will automatically execute a concatenation calculation, combining the title field with the ID field, thus automatically updating the article title to the format “Article Title + Article ID.”</p>
+<ol>
+<li><strong>Access the Management Page</strong>: Go to the management page of the Workflow plugin by accessing the plugin configuration menu in the top navigation bar.</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/72d4bd646ed147e71ecf85a9e5f43064.png" alt="Access the Management Page.png"></p>
+<ol start="2">
+<li><strong>Create a New Workflow</strong>: Click the &quot;Add new&quot; button to create a new workflow and select a collection event.</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/bf18902ffdadca52633b2dda1f081dee.png" alt="Create a New Workflow.png"></p>
+<ol start="3">
+<li><strong>Configure the Trigger</strong>: Click the “Configure” link, select the trigger card, select a previously created collection (e.g., &quot;Posts&quot;) and choose the trigger condition &quot;After record added&quot;, click the &quot;Save&quot; button to complete the trigger configuration.</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/a15a6d1be695eb2a397614ac5f3a6c21.png" alt="Configure the Trigger.png"></p>
+<ol start="4">
+<li><strong>Add a Node</strong>: Click the plus button to add a node and select a calculation node. Configure the node using the <code>CONCATENATE</code> function provided by Formula.js to concatenate the &quot;Title&quot; and &quot;ID&quot; fields.</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/222fdff7ae65ea77abd995706fa48dfe.png" alt="Add a Node.png"></p>
+<ol start="5">
+<li><strong>Create an Update Node</strong>: Add an &quot;Update record&quot; node and select the &quot;Posts&quot; collection. Limit the update to the record that triggered the workflow. Configure the update data item as “Title,” with the update value being the result of the calculation node.</li>
+</ol>
+<p><img src="https://static-docs.nocobase.com/201648bd3b3a65866e25d00cd55c2b77.png" alt="Create an Update Node.png"></p>
+<ol start="6">
+<li><strong>Enable the Workflow</strong>:  Click the &quot;On/Off&quot; switch in the top-right toolbar to switch the workflow to the enabled state, allowing it to be triggered.</li>
+</ol>
+<h3>Appy Pie Automate</h3>
+<p>This guide originally covered Appy Pie&#39;s app automation service. As of October 22, 2026, the <a href="https://www.appypieautomate.ai/">Appy Pie Automate website</a> redirects to <a href="https://www.flozic.ai/">Flozic</a>, which presents app integrations and AI agents. Review the current offering before using older Appy Pie tutorials or choosing a plan.</p>
+<p>The original trigger-and-action example remains a useful way to define your requirements:</p>
+<ol>
+<li><strong>Choose the trigger:</strong> Identify the application and event that start the workflow, such as a new form submission.</li>
+<li><strong>Choose the action:</strong> Specify the destination application and the fields to create or update.</li>
+<li><strong>Test before activation:</strong> Use sample data to check the mapping, permissions, and result. Confirm where failed runs can be reviewed.</li>
+</ol>
+<p>If you already use Appy Pie Automate, verify how your connections and workflows are supported in the current product. This guide does not establish migration compatibility.</p>
+<h3>Zapier</h3>
+<p><a href="https://zapier.com/">Zapier</a> is a popular automation platform that allows users to connect different applications and tools to automate workflows.</p>
+<p><img src="https://static-docs.nocobase.com/d218a0550ee9a05ab913fa6abf8b4976.png" alt="Zapier.png"></p>
+<ul>
+<li><strong>Powerful Automation Features:</strong> Users can easily achieve cross-application automation tasks by setting up “Zaps,” without needing programming knowledge.</li>
+<li><strong>Wide Application Integration:</strong> Supports integration with thousands of applications and services, ensuring smooth information flow between different tools and improving work efficiency.</li>
+<li><strong>User-Friendly Interface:</strong> An intuitive interface design allows users to quickly create and manage workflows, making it easy for all types of users.</li>
+</ul>
+<p>Case Study: <a href="https://zapier.com/customer-stories/smart-charge-america">How Smart Charge America uses automation to scale operations and fight climate change | Zapier</a></p>
+<h3>Make</h3>
+<p><a href="https://www.make.com/en">Make</a> is a powerful workflow automation tool that offers a wide range of features, including data transformation, API calls, and conditional logic.</p>
+<p><img src="https://static-docs.nocobase.com/47dff3450b97ce57fb542c0fd2c1153b.png" alt="Make.png"></p>
+<ul>
+<li><strong>Visual Workflow Design:</strong> Provides an intuitive drag-and-drop interface, allowing users to easily create complex automation processes, lowering the operational difficulty.</li>
+<li><strong>Strong Integration Capabilities:</strong> Supports connections with numerous applications and services, allowing seamless data transfer across different platforms, enhancing flexibility.</li>
+<li><strong>Multi-Step Operations and Conditional Logic:</strong> Allows users to set up multi-step processes and conditional logic, achieving more complex automation scenarios to meet various business needs.</li>
+</ul>
+<p>Case Study: <a href="https://www.make.com/en/blog/brevo-automates-hundred-workflows-to-supercharge-lead-gen">Brevo automates 100+ workflows to supercharge lead gen and gain 16 days a month</a></p>
+<h3>n8n</h3>
+<p><a href="https://n8n.io/">n8n</a> supports workflow automation and offers self-hosting. Its official materials describe its license as fair-code (Sustainable Use License), so it should not be grouped with unrestricted open-source software. See the <a href="https://n8n.io/press/">official license overview</a> and <a href="https://support.n8n.io/article/can-i-use-your-license-for-my-use-case">licensing guidance</a>.</p>
+<p><img src="https://static-docs.nocobase.com/fce44339758aae7f1b77b827d0ef03b7.png" alt="n8n.png"></p>
+<ul>
+<li><strong>Self-Hosting:</strong> Your team can manage the deployment environment. You also need to manage access, updates, backups, and recovery; hosting alone does not guarantee privacy or security.</li>
+<li><strong>Rich Integration Options:</strong> Supports connections with numerous applications and services, helping users create cross-platform automated workflows to improve work efficiency.</li>
+<li><strong>Flexible Conditions and Logic Control:</strong> Allows users to set conditional logic and multi-step operations to meet complex business needs and achieve intelligent process management.</li>
+</ul>
+<p>Case Study: <a href="https://n8n.io/case-studies/delivery-hero/">Delivery Hero saved 200 hours/month with a single IT ops workflow</a></p>
+<h2 id="en-8">Example: Test an Expense Approval Workflow</h2>
+<p>Use this illustrative scenario to evaluate your shortlist. It is a test design, not a claim that every tool includes the same approval features.</p>
+<ol>
+<li><strong>Trigger:</strong> An employee submits an expense record with an amount, receipt, and department.</li>
+<li><strong>Validation:</strong> If a required field is missing, return the request to the employee without routing it for approval.</li>
+<li><strong>Decision:</strong> Send the request to the authorized approver. Only that person&#39;s approval may move it to finance.</li>
+<li><strong>Action:</strong> After approval, create the finance task and notify the employee. Rejected requests follow a separate path.</li>
+<li><strong>Recovery:</strong> Simulate a failed notification and a repeated submission. Check that retrying does not create duplicate finance tasks.</li>
+</ol>
+<p>Measure time to approval, manual corrections, and failed runs during a small pilot. Then change one rule, such as the approval threshold, and verify that the team can test and release the update safely.</p>
+<h2 id="en-9">Conclusion</h2>
+<p>Choose workflow automation software around the process you need to operate and maintain. Zapier and Make are starting points for app-to-app automation; n8n adds a self-hosting option with its own license terms. For Appy Pie Automate, review the current Flozic offering before relying on older setup guides.</p>
+<p>Evaluate NocoBase when the workflow is part of a business system that needs shared records, permissions, and continued improvement. The first working automation is a starting point. Your team also needs a reliable way to change its rules after it goes live.</p>
+<p>🙌 Start with the <a href="https://www.nocobase.com/en/tutorials/task-tutorial-introduction">NocoBase task management tutorial</a>, then map one process from your team onto its records and workflow. Define the owner, approval rules, and acceptance checks before expanding it.</p>
+<p>Related reading:</p>
+<ul>
+<li><a href="../blog/business-application-development.html">Complete Guide to Efficient Business Application Development</a></li>
+<li><a href="../blog/core-app-dashboard-building-tools.html">Top 6 Core App Dashboard Building Tools</a></li>
+<li><a href="../blog/low-code-no-code-integration.html">Deep Dive: Low Code/No Code Integration Capabilities</a></li>
+<li><a href="../blog/open-source-tools-for-bpm.html">Best Open-Source Tools for BPM - NocoBase</a></li>
+<li><a href="../blog/project-management-tools.html">5 Best Open-Source No-Code Tools for Project Management</a></li>
+<li><a href="../blog/low-code-no-code-crm-builder.html">Build CRM in Hours: Top No-Code/Low-Code Tools You Need to Know</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">什么是工作流自动化？</a><a href="#zh-2">为什么要自动化工作流？</a><a href="#zh-3">工作流自动化的应用场景</a><a href="#zh-4">实施工作流自动化的步骤</a><a href="#zh-5">工作流构建工具类型</a><a href="#zh-6">最佳工作流自动化工具</a><a href="#zh-7">总结</a></div><div class="en-only"><a href="#en-1">Workflow Automation Tools at a Glance</a><a href="#en-2">What is Workflow Automation?</a><a href="#en-3">Why Automate Workflows?</a><a href="#en-4">Applications of Workflow Automation</a><a href="#en-5">Steps to Implement Workflow Automation</a><a href="#en-6">How to Choose Workflow Automation Software</a><a href="#en-7">Five Workflow Automation Tools Compared</a><a href="#en-8">Example: Test an Expense Approval Workflow</a><a href="#en-9">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

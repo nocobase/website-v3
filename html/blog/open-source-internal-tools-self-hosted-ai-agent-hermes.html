@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="用 Hermes 提升内部工具效率：5 个开源项目推荐  — NocoBase" data-en="5 Open-Source Internal Tools to Use with Hermes Agent — NocoBase">用 Hermes 提升内部工具效率：5 个开源项目推荐  — NocoBase</title>
+<meta name="description" content="介绍 NocoBase、Appsmith、Budibase、Directus、Baserow 如何结合 Hermes Agent，提升内部工具搭建、配置与维护效率。" data-zh="介绍 NocoBase、Appsmith、Budibase、Directus、Baserow 如何结合 Hermes Agent，提升内部工具搭建、配置与维护效率。" data-en="Learn how NocoBase, Appsmith, Budibase, Directus, and Baserow can work with Hermes Agent to improve internal tool building, configuration, and maintenance.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>资讯</t-zh><t-en>News</t-en></p>
+    <h1><t-zh>用 Hermes 提升内部工具效率：5 个开源项目推荐 </t-zh><t-en>5 Open-Source Internal Tools to Use with Hermes Agent</t-en></h1>
+    <p class="lede"><t-zh>介绍 NocoBase、Appsmith、Budibase、Directus、Baserow 如何结合 Hermes Agent，提升内部工具搭建、配置与维护效率。</t-zh><t-en>Learn how NocoBase, Appsmith, Budibase, Directus, and Baserow can work with Hermes Agent to improve internal tool building, configuration, and maintenance.
+</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年5月30日</t-zh><t-en>May 30, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%20107-p9dg99.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>AI Agent 的热度已经不只停留在开发场景。</p>
+<p>除了 Claude Code、OpenClaw 这类工具，最近 Hermes Agent 也开始被更多人讨论。</p>
+<p><img src="https://static-docs.nocobase.com/reddit-px26au.png" alt="reddit.png"></p>
+<p><a href="https://www.reddit.com/r/LocalLLaMA/comments/1ro9lph/comment/obgsyod/">在 Reddit 上</a>，有用户提到自己试过 OpenClaw、Nanobot、Nanoclaw 等多个 Agent 工具后，最后仍然更喜欢 Hermes Agent。因为它保留了自己真正需要的能力，同时没有太多额外负担；在本地模型、自托管服务器、SSH 访问和 Telegram 操作等场景下，也更符合轻量、可控的使用方式。</p>
+<blockquote>
+<p>💡阅读更多：</p>
+<p><a href="../blog/openclaw-open-source-enterprise-tools.html">OpenClaw 如何用于真实业务？推荐 5 个开源工具 </a></p>
+<p><a href="../blog/open-source-tools-after-claude-code.html">在用 Claude Code 之后，你需要这 6 个开源工具</a></p>
+</blockquote>
+<p>对于已经计划搭建自托管的业务系统或内部工具的团队来说，如果 AI Agent 要进入真实业务系统，参与数据查询、系统配置、流程维护和任务执行，Hermes Agent 就非常合适。</p>
+<p>内部工具搭建平台负责承载业务系统，Hermes 则作为自托管 Agent，帮助团队用自然语言查询、配置和维护系统，并把高频操作沉淀成可复用的 Skill。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>本文会围绕 NocoBase、Appsmith、Budibase、Directus、Baserow 这类内部工具搭建平台，介绍它们与 Hermes Agent 结合后，分别适合哪些使用方式和场景。</p>
+<p>我们先把本文提到的工具、常见业务系统类型，以及 Hermes Agent 可以补充的能力整理成一张表，方便你快速查看。</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>推荐搭建的业务系统 / 内部工具</th>
+<th>Hermes Agent 可以补充的能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>CRM、ERP、审批系统、工单系统、项目管理、供应商管理、资产管理、运营后台等业务系统</td>
+<td>用自然语言规划数据模型、配置页面和权限、维护工作流，并把高频业务模块沉淀成可复用 Skill</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>管理后台、数据看板、客服后台、审核面板、运营操作工具、数据库管理界面</td>
+<td>梳理页面结构、整理查询和筛选逻辑、解释组件与数据源关系，复用常见后台页面模板</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>表单系统、审批流程、员工请求、IT 服务台、运营流程应用、内部工作流工具</td>
+<td>梳理表单字段、审批节点和状态流转，生成流程模板，沉淀请求处理 Skill</td>
+</tr>
+<tr>
+<td>Directus</td>
+<td>数据库后台、API 管理、内容管理系统、结构化数据管理平台、数据运营后台</td>
+<td>解释数据结构、整理字段关系、辅助自然语言查询，沉淀数据管理和内容维护流程</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>表格型数据库、轻量 CRM、供应商清单、内容计划、项目进度表、库存清单</td>
+<td>规划表结构和视图、整理筛选规则、生成分类和状态字段，复用轻量应用模板</td>
+</tr>
+</tbody></table>
+<h2 id="zh-1">1. NocoBase</h2>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-orh9iv.png" alt="NocoBase1.png"></p>
+<p>官网：<a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Star：22.6k</p>
+<h3>简介</h3>
+<p>NocoBase 是一个开源 AI 无代码 / 低代码平台，面向企业内部业务系统和管理后台搭建。</p>
+<p>它的核心是围绕数据模型、页面配置、权限管理、工作流和插件扩展，帮助团队搭建可以长期运行的业务系统。这类系统通常会持续变化：字段要调整，页面要优化，权限要重新划分，审批和通知流程也会随着业务变化不断补充。</p>
+<p>NocoBase 适合承载这类长期维护型系统，Hermes Agent 则可以进一步参与系统的搭建、配置和维护。</p>
+<p>在 AI 能力上，NocoBase 已经提供了 AI 员工、AI Skills、CLI 和 MCP 等相关支持。AI 员工可以作为系统内的智能助手，参与数据查询、内容生成、任务处理等工作；AI Skills 用于帮助外部 Agent 理解 NocoBase 的配置方式和操作边界；CLI 可以让 Agent 通过命令执行安装、创建、修改等操作；MCP 则为外部 AI 工具连接 NocoBase 提供更标准的入口。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-civede.png" alt="NocoBase2.png"></p>
+<h3>和 Hermes 结合后可以做什么？</h3>
+<p>Hermes 接入 NocoBase 后，可以通过 NocoBase Skills 理解配置体系，并通过 NocoBase CLI 执行创建、修改、部署等操作。</p>
+<p><strong>1. 用自然语言创建业务模块</strong></p>
+<p>比如创建客户续约管理模块时，可以让 Hermes 先梳理客户、合同、续约记录、跟进任务等数据结构，再规划列表页、详情页、看板和基础权限。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-auh66t.png" alt="NocoBase3.png"></p>
+<p><strong>2. 辅助维护权限和流程</strong></p>
+<p>例如“销售只能查看自己负责的客户，主管可以查看团队客户，财务可以查看合同金额”，Hermes 可以把这类业务描述整理成更具体的权限和流程配置思路。</p>
+<p><strong>3. 沉淀高频操作 Skill</strong></p>
+<p>第一次完成 CRM、审批流或供应商管理模块后，Hermes 可以把字段命名、页面结构、权限规则等操作经验沉淀下来，后续搭建类似模块时直接复用。</p>
+<h3>任务说明示例</h3>
+<pre><code class="language-text">帮我在 NocoBase 中创建一个客户续约管理模块。
+
+需要包含客户信息、合同到期时间、续约状态、负责人、跟进记录和审批流程。
+
+权限方面：
+销售只能查看自己负责的客户；
+销售主管可以查看团队客户；
+财务可以查看合同金额和付款状态；
+管理员可以查看和编辑全部内容。
+
+流程方面：
+合同到期前 30 天自动生成续约提醒；
+续约金额超过 10 万元时，需要主管和财务审批；
+审批通过后更新续约状态，并生成下一次跟进任务。
+
+完成后，请把这次模块搭建过程整理成一个可复用的 Skill，方便后续创建供应商管理、合同管理或项目管理模块。
+</code></pre>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-yks1wd.png" alt="NocoBase4-yks1wd.png"></p>
+<h3>相关资源</h3>
+<p>文档：<a href="https://docs.nocobase.com/">https://docs.nocobase.com/</a></p>
+<p>AI 文档：<a href="https://docs.nocobase.com/cn/ai/">https://docs.nocobase.com/cn/ai/</a></p>
+<p>CLI：<a href="https://docs.nocobase.com/cn/api/cli/">https://docs.nocobase.com/cn/api/cli/</a></p>
+<p>Skills：<a href="https://docs.nocobase.com/cn/ai-builder#nocobase-skills">https://docs.nocobase.com/cn/ai-builder#nocobase-skills</a></p>
+<p>MCP：<a href="https://docs.nocobase.com/cn/ai/mcp/">https://docs.nocobase.com/cn/ai/mcp/</a></p>
+<p>Hermes Agent：<a href="https://docs.nocobase.com/cn/ai/hermes-agent">https://docs.nocobase.com/cn/ai/hermes-agent</a></p>
+<h2 id="zh-2">2. Appsmith</h2>
+<p><img src="https://static-docs.nocobase.com/Appsmith1-ixuhwg.png" alt="Appsmith1.png"></p>
+<p>官网：<a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p>GitHub：<a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>GitHub Star：39.9k</p>
+<h3>简介</h3>
+<p>Appsmith 是一个开源低代码平台，主要用于构建管理后台、数据看板、客服后台、审核工具、IT 工具等内部应用。它可以连接数据库、API 和第三方服务，通过拖拽组件、查询配置和 JavaScript 扩展，快速搭建面向内部团队的操作界面。</p>
+<p>Appsmith 提供 Appsmith AI，可以在应用中加入 AI 查询、文本生成、分类、摘要等能力，也可以围绕内部数据构建 AI 交互。Appsmith 也在推进 Appsmith Agents，用于把 AI 能力放进团队日常使用的工具和系统中。</p>
+<p><img src="https://static-docs.nocobase.com/Appsmith2-64xce0.png" alt="Appsmith2.png"></p>
+<h3>和 Hermes 结合后可以做什么？</h3>
+<p>Appsmith 负责搭建具体页面和数据操作界面，Hermes 可以帮助团队把自然语言需求整理成更清晰的页面结构、查询逻辑和操作规则。</p>
+<ol>
+<li>规划内部管理界面</li>
+</ol>
+<p>比如要搭建订单异常处理面板时，可以先让 Hermes 梳理需要展示哪些字段、需要哪些筛选项、哪些操作按钮，以及页面应该如何分区。Appsmith 再承接具体的界面搭建和数据连接。</p>
+<ol start="2">
+<li>整理查询和筛选逻辑</li>
+</ol>
+<p>内部工具常见的问题不是“有没有页面”，而是页面背后的数据逻辑是否清楚。Hermes 可以帮助团队把“我要看哪些订单”“怎么判断异常”“哪些记录需要优先处理”这类描述整理成查询条件和操作规则。</p>
+<ol start="3">
+<li>沉淀后台页面模板</li>
+</ol>
+<p>客服后台、审核面板、运营看板、财务查询页这类工具经常反复出现。Hermes 可以把常见字段、组件布局、筛选项和操作逻辑沉淀成 Skill，后续搭建类似页面时直接复用。</p>
+<h3>任务说明示例</h3>
+<pre><code class="language-text">帮我规划一个订单异常处理面板，后续在 Appsmith 中搭建。
+
+页面需要展示异常订单、客户名称、订单金额、负责人、异常原因、处理状态和最近一次沟通记录。
+
+筛选条件包括：
+地区；
+订单金额；
+处理状态；
+负责人；
+异常类型。
+
+操作方面：
+运营人员可以更新处理状态；
+主管可以批量分配负责人；
+财务只能查看订单金额和付款状态。
+
+请把页面结构、数据查询逻辑和组件布局整理出来，并沉淀成一个可复用的内部工具页面模板。
+</code></pre>
+<h3>相关资源</h3>
+<p>文档：<a href="https://docs.appsmith.com/">https://docs.appsmith.com/</a></p>
+<p>Appsmith AI：<a href="https://docs.appsmith.com/connect-data/reference/appsmith-ai">https://docs.appsmith.com/connect-data/reference/appsmith-ai</a></p>
+<h2 id="zh-3">3. Budibase</h2>
+<p><img src="https://static-docs.nocobase.com/Budibase1-py408w.png" alt="Budibase1.png"></p>
+<p>官网：<a href="https://budibase.com/">https://budibase.com/</a></p>
+<p>GitHub：<a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></p>
+<p>GitHub Star：28k</p>
+<h3>简介</h3>
+<p>Budibase 是一个开源运营平台，主要用于构建内部应用、自动化流程和 AI Agent。它更偏向流程型业务场景，比如员工请求、审批处理、IT 服务台、表单流转、数据更新和运营自动化。</p>
+<p>Budibase 支持生成代码、生成数据库表，以及创建由大模型驱动的自动化流程。Budibase Agents 也在推进中，可以让团队通过自然语言定义 Agent 行为，并连接内部数据和 API。</p>
+<h3>和 Hermes 结合后可以做什么？</h3>
+<p>Budibase 更适合承载表单、审批和流程类应用。Hermes 可以帮助团队在流程设计前期梳理规则，在后期把高频请求处理方式沉淀下来。</p>
+<ol>
+<li>梳理表单和审批流程</li>
+</ol>
+<p>比如设备申请、费用报销、客户支持、合同审批这类流程，Hermes 可以先帮团队拆解字段、审批节点、触发条件和通知规则，再交给 Budibase 承接具体应用。</p>
+<ol start="2">
+<li>生成流程处理模板</li>
+</ol>
+<p>很多内部请求都有固定处理方式。Hermes 可以把“员工提交申请—主管审批—相关部门处理—状态更新—通知申请人”这类流程整理成模板，后续快速复用。</p>
+<ol start="3">
+<li>沉淀运营规则</li>
+</ol>
+<p>流程型应用往往会随着组织规则变化不断调整。Hermes 可以记录审批顺序、异常处理方式、角色分工和通知规则，形成可复用的 Skill。</p>
+<p><img src="https://static-docs.nocobase.com/Budibase2-b8427g.png" alt="Budibase2.png"></p>
+<h3>任务说明示例</h3>
+<pre><code class="language-text">帮我设计一个员工设备申请流程，后续在 Budibase 中搭建。
+
+流程包括：
+员工提交设备申请；
+主管审批；
+IT 确认库存；
+审批通过后更新设备状态；
+系统通知申请人领取设备。
+
+表单字段包括：
+申请人；
+部门；
+设备类型；
+用途说明；
+期望领取时间；
+审批状态；
+处理人。
+
+请整理表单字段、审批节点、状态流转和通知规则，并把这套设备申请流程沉淀成可复用的 Skill。
+</code></pre>
+<h3>相关资源</h3>
+<p>文档：<a href="https://docs.budibase.com/">https://docs.budibase.com/</a></p>
+<p>Budibase AI：<a href="https://docs.budibase.com/docs/quickstart-budibase-ai">https://docs.budibase.com/docs/quickstart-budibase-ai</a></p>
+<h2 id="zh-4">4. Directus</h2>
+<p><img src="https://static-docs.nocobase.com/Directus1-tqzvl0.png" alt="Directus1.png"></p>
+<p>官网：<a href="https://directus.io/">https://directus.io/</a></p>
+<p>GitHub：<a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p>GitHub Star：35.9k</p>
+<h3>简介</h3>
+<p>Directus 是一个用于管理 SQL 数据库内容的实时 API 和应用后台，可以在现有数据库之上生成 REST / GraphQL API 和管理界面。它支持 PostgreSQL、MySQL、SQLite、OracleDB、MariaDB、MS SQL 等数据库，也支持本地部署、私有化部署和云服务。</p>
+<p>在 AI 能力上，Directus 提供 Directus MCP，可以让 Claude、ChatGPT 等 AI 工具读取、创建和管理 Directus 数据。Directus MCP 会遵循现有权限体系，AI 的访问和修改行为需要经过同样的认证与授权层。</p>
+<p><img src="https://static-docs.nocobase.com/Directus2-92qier.png" alt="Directus2.png"></p>
+<h3>和 Hermes 结合后可以做什么？</h3>
+<p>Directus 更偏数据后台和 API 管理。Hermes 与 Directus 结合时，重点不是生成页面，而是帮助团队理解数据结构、查询业务数据，并把常见数据管理动作沉淀下来。</p>
+<ol>
+<li>解释数据结构</li>
+</ol>
+<p>对于已有数据库，业务人员往往不清楚字段之间的关系。Hermes 可以帮助整理 collection、字段、关联关系和权限边界，让数据结构更容易被理解。</p>
+<ol start="2">
+<li>辅助数据查询和整理</li>
+</ol>
+<p>例如查询供应商、合同、付款、内容状态、客户记录等信息时，Hermes 可以把自然语言需求转成更具体的数据查询思路。</p>
+<ol start="3">
+<li>沉淀数据管理动作</li>
+</ol>
+<p>内容审核、供应商资料维护、客户数据整理、合同状态检查等动作经常重复出现。Hermes 可以把这些数据操作流程整理成 Skill，后续按同样规则执行。</p>
+<h3>任务说明示例</h3>
+<pre><code class="language-text">帮我整理 Directus 中的供应商数据结构。
+
+需要区分：
+供应商基础信息；
+联系人；
+合同记录；
+付款状态；
+合作状态；
+最近一次沟通记录。
+
+请说明这些 collection 之间应该如何关联，并整理一个供应商状态检查流程。
+
+后续我希望可以用自然语言查询：
+哪些供应商合同即将到期；
+哪些供应商付款状态异常；
+哪些供应商超过 30 天没有更新沟通记录。
+
+请把这套数据整理和查询方式沉淀成可复用的 Skill。
+</code></pre>
+<h3>相关资源</h3>
+<p>文档：<a href="https://directus.io/docs">https://directus.io/docs</a></p>
+<p>Directus MCP：<a href="https://directus.io/mcp">https://directus.io/mcp</a></p>
+<p>MCP 文档：<a href="https://directus.io/docs/guides/ai/mcp">https://directus.io/docs/guides/ai/mcp</a></p>
+<h2 id="zh-5">5. Baserow</h2>
+<p><img src="https://static-docs.nocobase.com/Baserow1-23hy4e.png" alt="Baserow1.png"></p>
+<p>官网：<a href="https://baserow.io/">https://baserow.io/</a></p>
+<p>GitHub：<a href="https://github.com/baserow/baserow">https://github.com/baserow/baserow</a></p>
+<p>GitHub Star：4.9k</p>
+<h3>简介</h3>
+<p>Baserow 是一个开源无代码平台，可以用于构建数据库、应用、自动化和 AI Agent。它常被看作 Airtable 的开源替代方案，支持云端和自托管部署，适合管理结构化数据和轻量业务应用。</p>
+<p>Baserow 2.0 引入了 Kuma AI assistant，可以用自然语言创建数据库、编写公式、构建自动化；同时也提供 AI 字段、自动化构建器和工作区搜索等能力。</p>
+<p><img src="https://static-docs.nocobase.com/Baserow2-1684s9.png" alt="Baserow2.png"></p>
+<h3>和 Hermes 结合后可以做什么？</h3>
+<p>Baserow 更适合从表格型数据开始搭建轻量应用。Hermes 与 Baserow 结合时，可以帮助团队从“整理表格”进一步走向“沉淀数据管理习惯”。</p>
+<ol>
+<li>创建表结构和视图</li>
+</ol>
+<p>比如客户清单、供应商名单、内容计划、项目进度、库存记录等，Hermes 可以先根据业务描述规划表结构、字段和视图，再交给 Baserow 承接数据管理。</p>
+<ol start="2">
+<li>整理筛选和分类规则</li>
+</ol>
+<p>轻量应用常常依赖不同视图。Hermes 可以把“待审核”“合作中”“即将到期”“高优先级”等业务规则整理成筛选条件和视图设置。</p>
+<ol start="3">
+<li>沉淀轻量应用模板</li>
+</ol>
+<p>如果团队经常用 Baserow 管理类似业务数据，Hermes 可以把字段结构、视图规则和状态分类沉淀成 Skill，后续创建新表时复用。</p>
+<h3>任务说明示例</h3>
+<pre><code class="language-text">帮我规划一个供应商管理表，后续在 Baserow 中创建。
+
+字段包括：
+供应商名称；
+联系人；
+联系方式；
+合作状态；
+合同到期时间；
+付款状态；
+负责人；
+最近一次沟通时间；
+备注。
+
+需要创建三个视图：
+待审核供应商；
+合作中供应商；
+合同即将到期供应商。
+
+请为每个视图设计筛选条件，并把这套供应商表结构和视图规则沉淀成可复用的 Skill，方便后续创建客户表、渠道表或合作伙伴表。
+</code></pre>
+<h3>相关资源</h3>
+<p>文档：<a href="https://baserow.io/user-docs">https://baserow.io/user-docs</a></p>
+<p>Baserow AI：<a href="https://baserow.io/product/baserow-ai">https://baserow.io/product/baserow-ai</a></p>
+<h2 id="zh-6">FAQ</h2>
+<h3>1. 如果这些平台已经有 AI 能力，为什么还需要 Hermes？</h3>
+<p>平台内置 AI 通常更擅长完成局部任务，比如生成页面、SQL、表单逻辑或组件配置。</p>
+<p>Hermes 的价值在于自托管、长期记忆和 Skill 沉淀。它更适合跨任务、跨会话地记住业务规则、权限习惯和系统配置方式。</p>
+<h3>2. 哪些内部工具平台最适合和 Hermes 结合？</h3>
+<p>更适合的是长期运行、需要持续维护的业务系统平台，例如 NocoBase、Budibase、Appsmith、Directus、Baserow 等。</p>
+<p>其中，NocoBase 更适合完整业务系统维护，Appsmith 更适合内部界面和数据面板，Budibase 更适合表单和流程，Directus 和 Baserow 更适合数据管理场景。</p>
+<h3>3. Hermes Agent 适合什么团队？</h3>
+<p>Hermes 更适合已经有自托管工具、重视数据安全、需要长期维护业务系统，并且希望 AI 能记住配置习惯和沉淀操作经验的团队。</p>
+<h3>4. 自托管 AI Agent 为什么对企业内部工具重要？</h3>
+<p>因为内部工具通常包含客户、订单、合同、审批、员工、财务等敏感业务数据。</p>
+<p>当 AI Agent 需要访问这些数据并参与系统操作时，团队会更关注数据存放位置、权限控制、操作审查和长期记忆管理。自托管 Agent 更适合对控制权有要求的团队。</p>
+<p>AI Agent 产品很多，但如果你的团队已经在使用开源内部工具平台，并希望以更安全、可控的方式把 AI Agent 用到企业内部系统中，Hermes Agent 会是一个值得尝试的选择！如果这篇内容对你有帮助，也欢迎分享给正在关注自托管 AI Agent 和内部工具建设的朋友。</p>
+<p><strong>相关阅读</strong>：</p>
+<ul>
+<li><strong><a href="../blog/openclaw-open-source-enterprise-tools.html">OpenClaw 如何用于真实业务？推荐 5 个开源工具 </a></strong></li>
+<li><strong><a href="../blog/opencode-open-source-tools-ai-agents.html">OpenCode 可以搭配哪些开源工具？5 个适合 AI Agent 的开源项目 </a></strong></li>
+<li><strong><a href="../blog/building-internal-tools-with-codex.html">别让 Codex 从零生成应用：6 个可组合的开源项目</a></strong></li>
+<li><strong><a href="../blog/open-source-tools-after-claude-code.html">在用 Claude Code 之后，你需要这 6 个开源工具</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-enterprise-software-development.html">10 个适合企业软件开发的开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/8-open-source-ai-agent-platforms-for-internal-tools.html">企业内部工具必备：8大开源 AI Agent 平台对比</a></strong></li>
+<li><strong><a href="../blog/the-best-self-hosted-crm-for-enterprise-teams.html">企业级自托管 CRM 推荐（支持 RBAC、AI 和 API）</a></strong></li>
+<li><strong><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">告别自研中间件：6个开源系统集成工具推荐</a></strong></li>
+<li><strong><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Airtable 与 NocoBase：从Excel迁移的真实成本对比</a></strong></li>
+<li><strong><a href="../blog/excel-to-web-app-4-methods.html">为 Excel 数据快速构建 Web 应用：4 种方法对比</a></strong></li>
+<li><strong><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">不只 PostgreSQL：5 个支持外部数据库的无代码/低代码平台对比</a></strong></li>
+<li><strong><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">开源项目管理工具选型指南（2026年最新）</a></strong></li>
+</ul></div><div class="prose en-only"><p>AI Agents are no longer only popular in development scenarios.</p>
+<p>Besides tools like Claude Code and OpenClaw, Hermes Agent has also started getting more attention recently.</p>
+<p><img src="https://static-docs.nocobase.com/reddit-px26au.png" alt="reddit.png"></p>
+<p><a href="https://www.reddit.com/r/LocalLLaMA/comments/1ro9lph/comment/obgsyod/">On Reddit</a>, one user mentioned that after trying several Agent tools, including OpenClaw, Nanobot, and Nanoclaw, they still preferred Hermes Agent in the end. It keeps the capabilities they actually need without unnecessary overhead. For scenarios such as local models, self-hosted servers, SSH access, and Telegram-based operations, it also fits a lighter and more controllable setup.</p>
+<blockquote>
+<p>💡Read more:</p>
+<p><a href="../blog/openclaw-open-source-enterprise-tools.html">How can OpenClaw be used in real business? 5 recommended open source tools</a></p>
+<p><a href="../blog/open-source-tools-after-claude-code.html">After using Claude Code, you need these 6 open source tools</a></p>
+</blockquote>
+<p>For teams that are already planning to build self-hosted business systems or internal tools, Hermes Agent is a strong fit if the AI Agent needs to be used inside real business systems to handle data queries, system configuration, workflow maintenance, and task execution.</p>
+<p>The internal tool platform provides the foundation for the business system, while Hermes works as a self-hosted Agent that helps teams query, configure, and maintain systems with natural language, and capture repeatable operations as reusable Skills.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>This article focuses on internal tool platforms such as NocoBase, Appsmith, Budibase, Directus, and Baserow, and explains how they can be used with Hermes Agent in different scenarios.</p>
+<p>First, here is a table of the tools covered in this article, the common business systems they are suited for, and the capabilities Hermes Agent can add.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Recommended business systems / internal tools</th>
+<th>What Hermes Agent can add</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NocoBase</td>
+<td>CRM, ERP, approval systems, ticketing systems, project management, supplier management, asset management, operations backends, and other business systems</td>
+<td>Use natural language to plan data models, configure pages and permissions, maintain workflows, and capture high-frequency business modules as reusable Skills</td>
+</tr>
+<tr>
+<td>Appsmith</td>
+<td>Admin panels, data dashboards, customer service backends, review panels, operations tools, database management interfaces</td>
+<td>Clarify page structures, organize query and filter logic, explain relationships between components and data sources, and reuse common admin page templates</td>
+</tr>
+<tr>
+<td>Budibase</td>
+<td>Form systems, approval workflows, employee requests, IT service desks, operations workflow apps, internal workflow tools</td>
+<td>Clarify form fields, approval nodes, and status transitions, generate workflow templates, and capture request handling Skills</td>
+</tr>
+<tr>
+<td>Directus</td>
+<td>Database backends, API management, content management systems, structured data management platforms, data operations backends</td>
+<td>Explain data structures, organize field relationships, support natural language queries, and capture data management and content maintenance workflows</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>Table-based databases, lightweight CRM, supplier lists, content plans, project progress tables, inventory lists</td>
+<td>Plan table structures and views, organize filter rules, generate category and status fields, and reuse lightweight app templates</td>
+</tr>
+</tbody></table>
+<h2 id="en-1">1. NocoBase</h2>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-orh9iv.png" alt="NocoBase1.png"></p>
+<p>Official website: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Star: 22.6k</p>
+<h3>Introduction</h3>
+<p>NocoBase is an open source AI no-code / low-code platform for building enterprise internal business systems and admin backends.</p>
+<p>At its core, NocoBase helps teams build long-running business systems through data models, page configuration, permission management, workflows, and plugin extensions. These systems usually change over time: fields need to be adjusted, pages need to be optimized, permissions need to be redefined, and approval and notification workflows need to be updated as the business changes.</p>
+<p>NocoBase is well suited for these long-term systems, while Hermes Agent can further participate in system building, configuration, and maintenance.</p>
+<p>In terms of AI capabilities, NocoBase already provides AI Employees, AI Skills, CLI, MCP, and related support. AI Employees can act as intelligent assistants inside the system and help with data queries, content generation, task handling, and more. AI Skills help external Agents understand how NocoBase is configured and what they can and cannot operate on. The CLI lets Agents execute installation, creation, modification, and other operations through commands. MCP provides a more standard entry point for external AI tools to connect to NocoBase.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-civede.png" alt="NocoBase2.png"></p>
+<h3>What can it do with Hermes?</h3>
+<p>After Hermes is connected to NocoBase, it can understand the NocoBase configuration system through NocoBase Skills and execute creation, modification, deployment, and other operations through the NocoBase CLI.</p>
+<p><strong>1. Create business modules with natural language</strong></p>
+<p>For example, when creating a customer renewal management module, you can first let Hermes organize the data structures for customers, contracts, renewal records, follow-up tasks, and more. Then it can plan the list pages, detail pages, dashboards, and basic permissions.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-auh66t.png" alt="NocoBase3.png"></p>
+<p><strong>2. Help maintain permissions and workflows</strong></p>
+<p>For example, if the rule is “sales can only view the customers they own, supervisors can view their team’s customers, and finance can view contract amounts,” Hermes can turn this business description into more specific permission and workflow configuration logic.</p>
+<p><strong>3. Capture high-frequency operations as Skills</strong></p>
+<p>After completing a CRM, approval workflow, or supplier management module for the first time, Hermes can capture practices such as field naming, page structure, and permission rules. These can then be reused when building similar modules later.</p>
+<h3>Task instruction example</h3>
+<pre><code class="language-text">Help me create a customer renewal management module in NocoBase.
+
+It needs to include customer information, contract expiration date, renewal status, owner, follow-up records, and an approval workflow.
+
+For permissions:
+Sales can only view customers they own.
+Sales supervisors can view team customers.
+Finance can view contract amounts and payment status.
+Administrators can view and edit all content.
+
+For workflows:
+Automatically generate a renewal reminder 30 days before the contract expires.
+When the renewal amount exceeds 100,000 yuan, supervisor and finance approval is required.
+After approval, update the renewal status and generate the next follow-up task.
+
+After completion, please organize this module building process into a reusable Skill, so it can be used later to create supplier management, contract management, or project management modules.
+</code></pre>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-yks1wd.png" alt="NocoBase4-yks1wd.png"></p>
+<h3>Related resources</h3>
+<p>Documentation: <a href="https://docs.nocobase.com/">https://docs.nocobase.com/</a></p>
+<p>AI documentation: <a href="https://docs.nocobase.com/en/ai/">https://docs.nocobase.com/en/ai/</a></p>
+<p>CLI: <a href="https://docs.nocobase.com/en/api/cli/">https://docs.nocobase.com/en/api/cli/</a></p>
+<p>Skills: <a href="https://docs.nocobase.com/en/ai-builder#nocobase-skills">https://docs.nocobase.com/en/ai-builder#nocobase-skills</a></p>
+<p>MCP: <a href="https://docs.nocobase.com/en/ai/mcp/">https://docs.nocobase.com/en/ai/mcp/</a></p>
+<p>Hermes Agent: <a href="https://docs.nocobase.com/en/ai/hermes-agent">https://docs.nocobase.com/en/ai/hermes-agent</a></p>
+<h2 id="en-2">2. Appsmith</h2>
+<p><img src="https://static-docs.nocobase.com/Appsmith1-ixuhwg.png" alt="Appsmith1.png"></p>
+<p>Official website: <a href="https://www.appsmith.com/">https://www.appsmith.com/</a></p>
+<p>GitHub: <a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>GitHub Star: 39.9k</p>
+<h3>Introduction</h3>
+<p>Appsmith is an open source low-code platform mainly used to build internal apps such as admin panels, data dashboards, customer support backends, review tools, and IT tools. It can connect to databases, APIs, and third-party services, and quickly build interfaces for internal teams through drag-and-drop components, query configuration, and JavaScript extensions.</p>
+<p>Appsmith provides Appsmith AI, which can add AI queries, text generation, classification, summarization, and other capabilities to applications. It can also build AI interactions around internal data. Appsmith is also developing Appsmith Agents to bring AI capabilities into the tools and systems teams use every day.</p>
+<p><img src="https://static-docs.nocobase.com/Appsmith2-64xce0.png" alt="Appsmith2.png"></p>
+<h3>What can it do with Hermes?</h3>
+<p>Appsmith builds specific pages and data operation interfaces, while Hermes helps teams turn natural language requirements into clearer page structures, query logic, and operation rules.</p>
+<ol>
+<li>Plan internal admin interfaces</li>
+</ol>
+<p>For example, when building an order exception handling panel, you can first ask Hermes to clarify which fields should be displayed, which filters are needed, which action buttons are required, and how the page should be divided into sections. Appsmith can then handle the specific interface building and data connection.</p>
+<ol start="2">
+<li>Organize query and filter logic</li>
+</ol>
+<p>A common issue with internal tools is not whether a page exists, but whether the data logic behind the page is clear. Hermes can help teams turn descriptions such as “which orders do I want to see,” “how should exceptions be identified,” and “which records should be prioritized” into query conditions and operation rules.</p>
+<ol start="3">
+<li>Capture admin page templates</li>
+</ol>
+<p>Customer support backends, review panels, operations dashboards, and finance query pages often appear repeatedly. Hermes can capture common fields, component layouts, filters, and operation logic as Skills, so similar pages can be reused later.</p>
+<h3>Task instruction example</h3>
+<pre><code class="language-text">Help me plan an order exception handling panel, which will later be built in Appsmith.
+
+The page needs to display abnormal orders, customer names, order amounts, owners, exception reasons, processing status, and the most recent communication record.
+
+Filters include:
+Region.
+Order amount.
+Processing status.
+Owner.
+Exception type.
+
+For operations:
+Operations staff can update the processing status.
+Supervisors can assign owners in batches.
+Finance can only view order amounts and payment status.
+
+Please organize the page structure, data query logic, and component layout, and capture them as a reusable internal tool page template.
+</code></pre>
+<h3>Related resources</h3>
+<p>Documentation: <a href="https://docs.appsmith.com/">https://docs.appsmith.com/</a></p>
+<p>Appsmith AI: <a href="https://docs.appsmith.com/connect-data/reference/appsmith-ai">https://docs.appsmith.com/connect-data/reference/appsmith-ai</a></p>
+<h2 id="en-3">3. Budibase</h2>
+<p><img src="https://static-docs.nocobase.com/Budibase1-py408w.png" alt="Budibase1.png"></p>
+<p>Official website: <a href="https://budibase.com/">https://budibase.com/</a></p>
+<p>GitHub: <a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></p>
+<p>GitHub Star: 28k</p>
+<h3>Introduction</h3>
+<p>Budibase is an open source operations platform mainly used to build internal apps, automation workflows, and AI Agents. It is more focused on process-based business scenarios, such as employee requests, approval handling, IT service desks, form routing, data updates, and operations automation.</p>
+<p>Budibase supports generating code, generating database tables, and creating automation workflows powered by large language models. Budibase Agents are also being developed, allowing teams to define Agent behavior through natural language and connect it to internal data and APIs.</p>
+<h3>What can it do with Hermes?</h3>
+<p>Budibase is better suited for forms, approvals, and workflow-based applications. Hermes can help teams clarify rules in the early stage of workflow design and capture high-frequency request handling methods later.</p>
+<ol>
+<li>Clarify forms and approval workflows</li>
+</ol>
+<p>For processes such as equipment requests, expense reimbursement, customer support, and contract approval, Hermes can first help teams break down fields, approval nodes, trigger conditions, and notification rules. Budibase can then handle the actual application building.</p>
+<ol start="2">
+<li>Generate workflow handling templates</li>
+</ol>
+<p>Many internal requests follow fixed handling patterns. Hermes can organize workflows such as “employee submits a request, supervisor approves it, the relevant department handles it, status is updated, and the applicant is notified” into templates for quick reuse later.</p>
+<ol start="3">
+<li>Capture operations rules</li>
+</ol>
+<p>Workflow-based applications often need to change as organizational rules change. Hermes can record approval sequences, exception handling methods, role responsibilities, and notification rules, turning them into reusable Skills.</p>
+<p><img src="https://static-docs.nocobase.com/Budibase2-b8427g.png" alt="Budibase2.png"></p>
+<h3>Task instruction example</h3>
+<pre><code class="language-text">Help me design an employee equipment request process, which will later be built in Budibase.
+
+The process includes:
+The employee submits an equipment request.
+The supervisor approves it.
+IT confirms inventory.
+After approval, the equipment status is updated.
+The system notifies the applicant to collect the equipment.
+
+The form fields include:
+Applicant.
+Department.
+Equipment type.
+Purpose description.
+Expected collection time.
+Approval status.
+Handler.
+
+Please organize the form fields, approval nodes, status transitions, and notification rules, and capture this equipment request process as a reusable Skill.
+</code></pre>
+<h3>Related resources</h3>
+<p>Documentation: <a href="https://docs.budibase.com/">https://docs.budibase.com/</a></p>
+<p>Budibase AI: <a href="https://docs.budibase.com/docs/quickstart-budibase-ai">https://docs.budibase.com/docs/quickstart-budibase-ai</a></p>
+<h2 id="en-4">4. Directus</h2>
+<p><img src="https://static-docs.nocobase.com/Directus1-tqzvl0.png" alt="Directus1.png"></p>
+<p>Official website: <a href="https://directus.io/">https://directus.io/</a></p>
+<p>GitHub: <a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p>GitHub Star: 35.9k</p>
+<h3>Introduction</h3>
+<p>Directus is a real-time API and app backend for managing SQL database content. It can generate REST / GraphQL APIs and an admin interface on top of existing databases. It supports PostgreSQL, MySQL, SQLite, OracleDB, MariaDB, MS SQL, and other databases, as well as local deployment, private deployment, and cloud services.</p>
+<p>In terms of AI capabilities, Directus provides Directus MCP, which allows AI tools such as Claude and ChatGPT to read, create, and manage Directus data. Directus MCP follows the existing permission system, so AI access and modification actions need to go through the same authentication and authorization layer.</p>
+<p><img src="https://static-docs.nocobase.com/Directus2-92qier.png" alt="Directus2.png"></p>
+<h3>What can it do with Hermes?</h3>
+<p>Directus is more focused on data backends and API management. When Hermes is used with Directus, the focus is not generating pages, but helping teams understand data structures, query business data, and capture common data management actions.</p>
+<ol>
+<li>Explain data structures</li>
+</ol>
+<p>For existing databases, business users often do not understand how fields relate to each other. Hermes can help organize collections, fields, relationships, and permission boundaries, making the data structure easier to understand.</p>
+<ol start="2">
+<li>Assist with data queries and organization</li>
+</ol>
+<p>For example, when querying suppliers, contracts, payments, content status, customer records, and similar information, Hermes can turn natural language requirements into more specific data query logic.</p>
+<ol start="3">
+<li>Capture data management actions</li>
+</ol>
+<p>Actions such as content review, supplier profile maintenance, customer data organization, and contract status checks often repeat. Hermes can organize these data operation processes into Skills, so they can be executed by the same rules later.</p>
+<h3>Task instruction example</h3>
+<pre><code class="language-text">Help me organize the supplier data structure in Directus.
+
+It needs to distinguish:
+Supplier basic information.
+Contacts.
+Contract records.
+Payment status.
+Cooperation status.
+Most recent communication record.
+
+Please explain how these collections should be related and organize a supplier status checking process.
+
+Later, I hope to use natural language to query:
+Which supplier contracts are about to expire.
+Which suppliers have abnormal payment status.
+Which suppliers have not updated communication records for more than 30 days.
+
+Please capture this data organization and query method as a reusable Skill.
+</code></pre>
+<h3>Related resources</h3>
+<p>Documentation: <a href="https://directus.io/docs">https://directus.io/docs</a></p>
+<p>Directus MCP: <a href="https://directus.io/mcp">https://directus.io/mcp</a></p>
+<p>MCP documentation: <a href="https://directus.io/docs/guides/ai/mcp">https://directus.io/docs/guides/ai/mcp</a></p>
+<h2 id="en-5">5. Baserow</h2>
+<p><img src="https://static-docs.nocobase.com/Baserow1-23hy4e.png" alt="Baserow1.png"></p>
+<p>Official website: <a href="https://baserow.io/">https://baserow.io/</a></p>
+<p>GitHub: <a href="https://github.com/baserow/baserow">https://github.com/baserow/baserow</a></p>
+<p>GitHub Star: 4.9k</p>
+<h3>Introduction</h3>
+<p>Baserow is an open source no-code platform that can be used to build databases, applications, automations, and AI Agents. It is often seen as an open source alternative to Airtable. It supports both cloud and self-hosted deployment, and is suitable for managing structured data and lightweight business applications.</p>
+<p>Baserow 2.0 introduced Kuma AI assistant, which can create databases, write formulas, and build automations with natural language. It also provides AI fields, an automation builder, workspace search, and other capabilities.</p>
+<p><img src="https://static-docs.nocobase.com/Baserow2-1684s9.png" alt="Baserow2.png"></p>
+<h3>What can it do with Hermes?</h3>
+<p>Baserow is better suited for building lightweight apps starting from table-based data. When used with Baserow, Hermes can help teams move from “organizing tables” to “capturing data management habits.”</p>
+<ol>
+<li>Create table structures and views</li>
+</ol>
+<p>For customer lists, supplier lists, content plans, project progress, inventory records, and similar use cases, Hermes can first plan table structures, fields, and views based on business descriptions. Baserow then handles data management.</p>
+<ol start="2">
+<li>Organize filters and classification rules</li>
+</ol>
+<p>Lightweight apps often rely on different views. Hermes can turn business rules such as “pending review,” “in cooperation,” “about to expire,” and “high priority” into filter conditions and view settings.</p>
+<ol start="3">
+<li>Capture lightweight app templates</li>
+</ol>
+<p>If a team often uses Baserow to manage similar business data, Hermes can capture field structures, view rules, and status categories as Skills, then reuse them when creating new tables later.</p>
+<h3>Task instruction example</h3>
+<pre><code class="language-text">Help me plan a supplier management table, which will later be created in Baserow.
+
+The fields include:
+Supplier name.
+Contact person.
+Contact information.
+Cooperation status.
+Contract expiration date.
+Payment status.
+Owner.
+Most recent communication time.
+Notes.
+
+Three views need to be created:
+Suppliers pending review.
+Suppliers in cooperation.
+Suppliers with contracts about to expire.
+
+Please design filter conditions for each view and capture this supplier table structure and view rules as a reusable Skill, so it will be easier to create customer tables, channel tables, or partner tables later.
+</code></pre>
+<h3>Related resources</h3>
+<p>Documentation: <a href="https://baserow.io/user-docs">https://baserow.io/user-docs</a></p>
+<p>Baserow AI: <a href="https://baserow.io/product/baserow-ai">https://baserow.io/product/baserow-ai</a></p>
+<h2 id="en-6">FAQ</h2>
+<h3>1. If these platforms already have AI capabilities, why is Hermes still needed?</h3>
+<p>Built-in AI in these platforms is usually better at completing specific in-product tasks, such as generating pages, SQL, form logic, or component configurations.</p>
+<p>The value of Hermes lies in self-hosting, long-term memory, and Skill accumulation. It is better suited for remembering business rules, permission habits, and system configuration methods across tasks and conversations.</p>
+<h3>2. Which internal tool platforms work best with Hermes?</h3>
+<p>Platforms that are better suited for Hermes are long-running business system platforms that require continuous maintenance, such as NocoBase, Budibase, Appsmith, Directus, and Baserow.</p>
+<p>Among them, NocoBase is better suited for maintaining complete business systems. Appsmith is better suited for internal interfaces and data panels. Budibase is better suited for forms and workflows. Directus and Baserow are better suited for data management scenarios.</p>
+<h3>3. What kind of teams is Hermes Agent suitable for?</h3>
+<p>Hermes is better suited for teams that already use self-hosted tools, value data security, need to maintain business systems over the long term, and want AI to remember configuration habits and capture operational experience.</p>
+<h3>4. Why are self-hosted AI Agents important for enterprise internal tools?</h3>
+<p>Because internal tools usually contain sensitive business data, such as customers, orders, contracts, approvals, employees, and finance.</p>
+<p>When an AI Agent needs to access this data and participate in system operations, teams will pay more attention to where data is stored, how permissions are controlled, how operations are reviewed, and how long-term memory is managed. Self-hosted Agents are better suited for teams that require stronger control.</p>
+<p>There are many AI Agent products, but if your team is already using open source internal tool platforms and wants to bring AI Agents into enterprise internal systems in a safer and more controllable way, Hermes Agent is worth trying. If this article is helpful, feel free to share it with friends who are following self-hosted AI Agents and internal tool building.</p>
+<p><strong>Related reading</strong></p>
+<ul>
+<li><a href="../blog/openclaw-open-source-enterprise-tools.html">OpenClaw and 5 Open-Source Tools for Monitoring Business Workflows</a></li>
+<li><a href="../blog/opencode-open-source-tools-ai-agents.html">What Open-Source Tools Work Well with OpenCode? 5 Projects to Try</a></li>
+<li><a href="../blog/building-internal-tools-with-codex.html">Building Internal Tools with Codex: 6 Open-Source Projects for Developers</a></li>
+<li><a href="../blog/open-source-tools-after-claude-code.html">After Claude Code: 6 Open-Source Tools You Should Know</a></li>
+<li><a href="../blog/open-source-ai-no-code-tools-enterprise-software-development.html">Top 10 Open-Source AI And No-Code Tools for Enterprise Software Development</a></li>
+<li><a href="../blog/8-open-source-ai-agent-platforms-for-internal-tools.html">8 Open-Source AI Agent Platforms for Building Internal Tools</a></li>
+<li><a href="../blog/the-best-self-hosted-crm-for-enterprise-teams.html">The Best Enterprise-Grade Self-Hosted CRMs with RBAC, AI, and Open API Support</a></li>
+<li><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">6 Best Open-Source Tools to Replace Custom Integration Middleware</a></li>
+<li><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Replace Excel with NocoBase or Airtable? A Cost-by-Cost Comparison</a></li>
+<li><a href="../blog/excel-to-web-app-4-methods.html">4 Ways to Quickly Build Web Apps from Excel Data</a></li>
+<li><a href="../blog/5-no-code-low-code-platforms-supporting-external-databases-mysql-mongodb-api.html">Not Just PostgreSQL: Comparing 5 No-Code/Low-Code Platforms with External Database Support</a></li>
+<li><a href="../blog/open-source-project-management-tool-selection-guide-2026-edition.html">Open Source Project Management Tool Selection Guide, 2026 Edition</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">1. NocoBase</a><a href="#zh-2">2. Appsmith</a><a href="#zh-3">3. Budibase</a><a href="#zh-4">4. Directus</a><a href="#zh-5">5. Baserow</a><a href="#zh-6">FAQ</a></div><div class="en-only"><a href="#en-1">1. NocoBase</a><a href="#en-2">2. Appsmith</a><a href="#en-3">3. Budibase</a><a href="#en-4">4. Directus</a><a href="#en-5">5. Baserow</a><a href="#en-6">FAQ</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/best-smartsheet-alternatives.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20114-fps2v0.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月23日</t-zh><t-en>Jul 23, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</t-zh><t-en>How to Choose a Smartsheet Alternative: 7 Tools Compared</t-en></h3><p><t-zh>本文对比 7 款 Smartsheet 替代品，介绍各产品的定位、核心差异、适用团队及三年使用成本，帮助团队评估更合适的项目管理与业务系统工具。</t-zh><t-en>Compare 7 Smartsheet alternatives by positioning, key differences, ideal teams, and estimated three-year costs.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-complex-relational-models.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20113%20(1)-e3gf7a.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月15日</t-zh><t-en>Jul 15, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>5 个适合复杂关系模型的开源 AI 无代码工具</t-zh><t-en>5 Open-Source AI No-Code Tools for Complex Relational Data Models</t-en></h3><p><t-zh>本文对比 5 款开源 AI 无代码工具，分析复杂关系模型、AI 搭建能力和企业业务系统适用场景。
+</t-zh><t-en>Compare 5 open-source AI no-code tools for complex relational models, AI capabilities, and business system use cases.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-github-9.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20110-xkd2sy.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年6月29日</t-zh><t-en>Jun 29, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>GitHub 上值得关注的 9 个开源 AI 无代码工具</t-zh><t-en>9 Open-Source AI No-Code Tools on GitHub Worth Watching</t-en></h3><p><t-zh>盘点 GitHub 上 9 个开源 AI 无代码工具，覆盖工作流自动化、知识库、智能体编排与企业业务系统搭建。
+</t-zh><t-en>Explore 9 open-source AI no-code tools on GitHub for workflows, agents, knowledge bases, design, and business systems.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="Airtable 太贵了？5 个自托管替代方案成本&amp;功能对比 — NocoBase" data-en="Is Airtable Too Expensive? 5 Self-Hosted Alternatives Compared by Cost &amp; Features — NocoBase">Airtable 太贵了？5 个自托管替代方案成本&amp;功能对比 — NocoBase</title>
+<meta name="description" content="Airtable 太贵用不起？5 款自托管替代方案来了！一文对比成本与功能，帮你找到更省钱灵活的选择。" data-zh="Airtable 太贵用不起？5 款自托管替代方案来了！一文对比成本与功能，帮你找到更省钱灵活的选择。" data-en="Is Airtable too pricey? Here come 5 self-hosted alternatives! This article compares costs and functions to help you find a more cost-saving and flexible option.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>Airtable 太贵了？5 个自托管替代方案成本&amp;功能对比</t-zh><t-en>Is Airtable Too Expensive? 5 Self-Hosted Alternatives Compared by Cost &amp; Features</t-en></h1>
+    <p class="lede"><t-zh>Airtable 太贵用不起？5 款自托管替代方案来了！一文对比成本与功能，帮你找到更省钱灵活的选择。</t-zh><t-en>Is Airtable too pricey? Here come 5 self-hosted alternatives! This article compares costs and functions to help you find a more cost-saving and flexible option.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年6月27日</t-zh><t-en>Jun 27, 2025</t-en></span><span><t-zh>Zhang Lu</t-zh><t-en>Zhang Lu</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2077%20(1)-2mja2k.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">为什么越来越多人开始寻找 Airtable 替代品？</h2>
+<p>在过去几年，Airtable 一直是最受欢迎的协作型数据库平台之一，它将表格、关系型数据库与协作视图整合在一起，广泛应用于项目管理、CRM、流程跟踪等场景。但如今，越来越多团队开始重新评估 Airtable 的长期使用成本和灵活性，<strong>一个核心原因就是：它越来越贵了。</strong></p>
+<p>根据 <a href="https://support.airtable.com/docs/changes-to-airtable-plans">Airtable 官方公告</a>，其曾对 Airtable 对产品套餐体系进行了重大调整，从原有的 Free / Plus / Pro / Enterprise 四档，转向新的四档结构：</p>
+<ul>
+<li><strong>Free</strong>（免费版）：保留基本功能</li>
+<li><strong>Team</strong>：$20/月/人（年付）—— 接近原 Pro，但功能缩水</li>
+<li><strong>Business</strong>：$45/月/人（年付）或 $54/月/人（月付）——全面解锁高级功能</li>
+<li><strong>Enterprise Scale</strong>：定制化，支持 SSO、权限管理、扩展性 API 等企业级需求</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/1-zbubpg.PNG" alt="Airtable pricing"></p>
+<p>变化的关键不只是定价，而是<strong>功能分层重构</strong>：很多原本 Pro 用户依赖的功能，<strong>被挪入更高价的 Business 方案中</strong>。</p>
+<p>这意味着：如果你是一个 10 人团队，并希望保留和过去 Pro 版一样的使用体验，你可能不得不从每年 <strong>$2,400</strong> 升级到 <strong>$5,400</strong>。<strong>上涨幅度高达 125%。</strong></p>
+<p>而这还不包括每年因用户数增长、功能膨胀和升级计划带来的“隐性开销”。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>不少中小型团队逐渐意识到，他们真正高频使用的其实只是表格、链接字段、简单权限等基础功能，很多高级模块（如仪表盘、自动化、嵌入视图）要么用不上，要么受限于套餐设置。更多技术型公司、SaaS 初创团队和系统集成商也更倾向于掌控数据权限、部署方式和成本结构，而不是持续依赖一个封闭的 SaaS 工具。</p>
+<p>正因如此，<strong>自托管型 Airtable 替代方案逐渐成为趋势</strong>。它们不仅具备 Airtable 的基础协作体验，还能提供：</p>
+<ul>
+<li>更低的长期使用成本：一次部署，多人使用，不再人头计费</li>
+<li>更强的定制能力：插件、权限、流程灵活可控，满足复杂业务需求</li>
+<li>更高的数据安全性：支持私有部署、权限隔离、合规合审</li>
+</ul>
+<p>👉 此外，当你的团队遇到「Airtable 数据量达到上限」的瓶颈时，可以参考这篇：<a href="../blog/airtable-data-limit-reached-3-common-solutions.html">Airtable 的数据超出上限，3 种常见应对方式</a></p>
+<p><strong>接下来，本文将为你带来 5 个值得关注的 Airtable 自托管替代产品</strong>，并围绕以下维度进行深入对比：</p>
+<ul>
+<li>按团队规模（10人 / 50人 / 100人）核算的年度预估成本</li>
+<li>各工具亮点功能对比</li>
+<li>各工具的最佳适用场景</li>
+</ul>
+<p>❤ 你可以点击目录跳转至感兴趣的内容。</p>
+<h2 id="zh-2">Airtable 自托管替代方案</h2>
+<h3>价格对比表格</h3>
+<table>
+<thead>
+<tr>
+<th>产品名称</th>
+<th>版本</th>
+<th>预估10人团队每年成本</th>
+<th>预估50人团队每年成本</th>
+<th>预估100人团队每年成本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Airtable</td>
+<td>Team</td>
+<td>$2,400</td>
+<td>$12,000</td>
+<td>$24,000</td>
+</tr>
+<tr>
+<td>Airtable</td>
+<td>Business</td>
+<td>🔴$5,400</td>
+<td>🔴$27,000</td>
+<td>🔴$54,000</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>Standard</td>
+<td>✅$800</td>
+<td>✅$800</td>
+<td>✅$800</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>Professional</td>
+<td>$8,000</td>
+<td>$8,000</td>
+<td>$8,000</td>
+</tr>
+<tr>
+<td>Teable</td>
+<td>Professional</td>
+<td>$1,200</td>
+<td>$6,000</td>
+<td>$12,000</td>
+</tr>
+<tr>
+<td>NocoDB</td>
+<td>Team</td>
+<td>✅$228</td>
+<td>✅$1,140</td>
+<td>✅$2,280</td>
+</tr>
+<tr>
+<td>NocoDB</td>
+<td>Business</td>
+<td>$1,188</td>
+<td>$5,940</td>
+<td>$11,880</td>
+</tr>
+<tr>
+<td>Rowy</td>
+<td>Pro</td>
+<td>$1,440</td>
+<td>$7,200</td>
+<td>$14,400</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>Premium</td>
+<td>$1,200</td>
+<td>$6,000</td>
+<td>$12,000</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>Advanced</td>
+<td>$2,160</td>
+<td>$9,000</td>
+<td>$18,000</td>
+</tr>
+</tbody></table>
+<p>💡 从上表可以看出几个重要趋势：</p>
+<ul>
+<li><strong>Airtable 的 Business 版本成本最高</strong>，100 人团队每年支出高达 $54,000，属于典型“人头计费 + 功能解锁”型 SaaS 模式，团队越大成本越不可控。</li>
+<li><strong>NocoBase 是表中唯一不是按人头计费的工具</strong>，无论是 10 人还是 100 人团队，Standard 版年费始终为 $800，Professional 版为 $8,000，极具规模优势。尤其适合中大型组织一次部署、长期使用。</li>
+<li><strong>NocoDB 的 Team 版价格极低</strong>，仅 $228 起，但功能有限，需评估是否满足业务复杂性。其 Business 版则提供更多高级功能，仍远低于 Airtable 同类版本。</li>
+<li><strong>Teable、Rowy 和 Baserow 则为中间路线</strong>：UI 更像 Airtable，定价按人头但相对平稳，适合中小团队日常使用。</li>
+<li>总体来看，自托管平台越在用户数上“拉平价格”，越适合团队扩张后的长期使用。</li>
+</ul>
+<h3>功能对比表格</h3>
+<table>
+<thead>
+<tr>
+<th>产品名称</th>
+<th>亮点功能</th>
+<th>替代Airtable能力</th>
+<th>部署难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Airtable</td>
+<td>视图丰富 / 自动化 / AI 集成 / 生态成熟</td>
+<td>/</td>
+<td>SaaS，无需部署</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>插件式架构 / 工作流自动化 / 细粒度权限 / 多表关系建模</td>
+<td>✅ 可完整替代视图、字段、协作、权限与自动化</td>
+<td>🟢 易部署（Docker，一键安装）</td>
+</tr>
+<tr>
+<td>Teable</td>
+<td>类 Airtable UI / AI 字段 / 自动提醒 / 多字段类型</td>
+<td>✅ 可替代核心表格、字段与视图能力，覆盖协作和公式</td>
+<td>🟡 中等（支持自托管，提供私有部署文档）</td>
+</tr>
+<tr>
+<td>NocoDB</td>
+<td>支持百万行 / Airtable 数据导入 / 移动端访问</td>
+<td>✅ 可替代表格视图、字段与 API</td>
+<td>🟢 易部署（自托管安装简便，文档完善）</td>
+</tr>
+<tr>
+<td>Rowy</td>
+<td>Firebase 原生集成 / 字段函数触发 / 云函数自动化</td>
+<td>✅ 可替代表格协作、字段管理</td>
+<td>🔴 较高（依赖 Firebase）</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>多视图支持 / 自动化集成 / 嵌入式 AI / 企业级安全机制</td>
+<td>✅ 可替代表格、视图、协作、多视图支持</td>
+<td>🟡 中等（提供自托管）</td>
+</tr>
+</tbody></table>
+<h3>Airtable 自托管替代方案功能详情</h3>
+<h3><a href="https://www.nocobase.com/">NocoBase</a>：数据模型驱动的 AI 开源低代码平台</h3>
+<p><img src="https://static-docs.nocobase.com/2-dndbj1.PNG" alt="NocoBase"></p>
+<p>GitHub：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Star：15.9k</p>
+<p>License：<a href="https://github.com/nocobase/nocobase?tab=AGPL-3.0-2-ov-file#">AGPL-3.0</a></p>
+<p><strong>亮点功能</strong></p>
+<ul>
+<li><strong>插件式架构</strong>：所有功能如视图、权限、流程都以插件形式加载，支持灵活扩展和自定义。</li>
+<li><strong>工作流自动化</strong>：支持节点式流程设计，替代 Airtable Automation 的同时可实现更复杂审批和状态流转。</li>
+<li><strong>细粒度权限系统</strong>：内建 RBAC 模型，支持字段级权限、视图权限、操作权限等多层控制。</li>
+<li><strong>复杂关系支持</strong>：可建模一对多、多对多等复杂关系，更贴近真实业务系统搭建场景。</li>
+<li><strong>融入系统的 AI 员工</strong>：将 AI 能力无缝集成到交互界面、业务流程和数据上下文中，让 AI 真正落地于企业场景。</li>
+</ul>
+<p><strong>适用场景</strong>：各种规模的团队在 CRM、ERP、审批平台等业务系统开发中，需灵活自定义扩展、强化数据管控、精细权限管理及高效流程协作的场景。</p>
+<h3><a href="https://teable.io/">Teable</a>：AI 无代码数据库</h3>
+<p><img src="https://static-docs.nocobase.com/3-0by6u2.png" alt="teable"></p>
+<p>GitHub：<a href="https://github.com/teableio/teable">https://github.com/teableio/teable</a></p>
+<p>GitHub Star：18.7k</p>
+<p>License：<a href="https://github.com/teableio/teable/blob/develop/AGPL_LICENSE">AGPL-3.0</a></p>
+<p><strong>亮点功能</strong></p>
+<ul>
+<li><strong>类 Airtable UI 体验</strong>：高度还原 Airtable 的表格界面和交互，几乎无学习成本迁移。</li>
+<li><strong>AI 字段与公式支持</strong>：支持 AI 生成、智能填充等增强字段类型，适合轻智能协作。</li>
+<li><strong>自动化与聊天协作功能</strong>：内建机器人、字段提醒等，支持 Slack 类协作体验。</li>
+<li><strong>字段类型覆盖全面</strong>：支持链接字段、附件、选择列表、公式等常用类型。</li>
+</ul>
+<p><strong>适用场景</strong>：中小型团队在追求轻便协作与 UI 友好体验时，适配类 Airtable 使用习惯的场景。</p>
+<h3><a href="https://www.nocodb.com/">NocoDB</a>：电子表格形式的数据库</h3>
+<p><img src="https://static-docs.nocobase.com/4-iohjfz.png" alt="NocoDB"></p>
+<p>GitHub：<a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></p>
+<p>GitHub Star：55.3k</p>
+<p>License：<a href="https://github.com/nocodb/nocodb?tab=AGPL-3.0-1-ov-file#">AGPL-3.0</a></p>
+<p><strong>亮点功能</strong></p>
+<ul>
+<li><strong>Airtable 数据无缝迁移</strong>：支持快速将 Airtable 基地数据导入至平台或自有 Postgres 数据库，全程操作简单流畅。</li>
+<li><strong>百万行级数据规模</strong>：NocoDB 突破传统无代码平台的数据量限制，支持轻松处理数百万行级别的数据库表，且无需升级企业版或对接销售团队。</li>
+<li><strong>移动访问能力</strong>：支持通过智能手机随时随地便捷查看与编辑数据。</li>
+</ul>
+<p><strong>适用场景</strong>：已有数据库系统，需要快速为业务部门提供可视化数据界面的技术型团队。</p>
+<h3><a href="https://www.rowy.io/">Rowy</a>：Firebase 开发者的 Airtable 替代方案</h3>
+<p><img src="https://static-docs.nocobase.com/5-ftyzbh.png" alt="Rowy"></p>
+<p>GitHub：<a href="https://github.com/rowyio/rowy">https://github.com/rowyio/rowy</a></p>
+<p>GitHub Star：6.7k</p>
+<p>License：<a href="https://github.com/rowyio/rowy?tab=License-1-ov-file#">Apache</a></p>
+<p><strong>亮点功能</strong></p>
+<ul>
+<li><strong>Firebase 原生集成</strong>：与 Firestore、Cloud Functions 深度绑定，天然适合 serverless 应用开发。</li>
+<li><strong>字段级逻辑触发器</strong>：支持在字段变更后执行函数逻辑，类似触发器/后端函数。</li>
+<li><strong>后端逻辑嵌入</strong>：云函数即为后端逻辑，自动执行异步任务，如写入其他服务或 API 调用。</li>
+</ul>
+<p><strong>适用场景</strong>：Firebase 平台上构建 admin 界面或数据平台，或需要后端逻辑的 serverless Web 应用开发者团队。</p>
+<h3><a href="https://baserow.io/">Baserow</a>：无代码开源数据库</h3>
+<p><img src="https://static-docs.nocobase.com/6-6pkwo5.png" alt="Baserow"></p>
+<p>GitHub：<a href="https://github.com/bram2w/baserow">https://github.com/bram2w/baserow</a></p>
+<p>GitHub Star：2.7k</p>
+<p>License：<a href="https://github.com/bram2w/baserow?tab=License-1-ov-file#">MIT</a></p>
+<p><strong>亮点功能</strong></p>
+<ul>
+<li><strong>全场景自动化集成</strong>：Baserow 支持通过 API、Zapier、n8n、Make 等工具实现无缝集成，助力企业打通全链路工作流自动化。</li>
+<li><strong>嵌入式 AI</strong>：Baserow 通过内置 AI 能力实现数据智能化处理。</li>
+<li><strong>企业级数据安全</strong>：使用加密、基于角色的访问控制和自托管选项保护数据。</li>
+</ul>
+<p><strong>适用场景</strong>：Baserow 适用于中小企业快速搭建 CRM、ERP、项目管理等定制化无代码应用。</p>
+<h2 id="zh-3">总结：自托管，不只是省钱</h2>
+<p>Airtable 无疑是一款优秀的产品，但当它的成本与复杂性不断上升，尤其对于成长型团队而言，已经不再是唯一选项。 从 NocoBase 的模块化插件系统，到 Teable 的极简替代体验，再到 NocoDB、Rowy、Baserow 等各具特色的开源平台，<strong>自托管正在成为一条更可控、更灵活、更经济的路线</strong>。</p>
+<p>这些工具不仅能大幅降低团队的年支出，还让你真正拥有对功能、流程和数据的主导权。</p>
+<p>👉 如果你正在寻找一个更自由的 Airtable 替代方案，不妨从文中推荐的这 5 个平台开始评估试用。</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/airtable-data-limit-reached-3-common-solutions.html">Airtable 的数据超出上限，3 种常见应对方式</a></li>
+<li><a href="../blog/appsheet-alternative.html">替代 Airtable / 飞书表格？用零代码构建多对多关系的任务管理系统</a></li>
+<li><a href="../blog/open-source-airtable-alternatives.html">GitHub上 Star 数量最多的 Airtable 开源替代者</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">2025 年 AppSheet 最佳开源替代品</a></li>
+<li><a href="../blog/data-integration-platforms.html">7 款最佳数据集成平台推荐</a></li>
+<li><a href="../blog/open-source-firebase-alternatives.html">开发者推荐：6 款更灵活的 Firebase 开源替代品</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Why Are More People Seeking Airtable Alternatives?</h2>
+<p>In the past few years, Airtable has been one of the most popular collaborative database platforms, integrating spreadsheets, relational databases, and collaborative views for scenarios like project management, CRM, and process tracking. However, more teams are now reassessing Airtable’s long-term costs and flexibility—primarily because <strong>it’s getting increasingly expensive.</strong></p>
+<p>According to <a href="https://support.airtable.com/docs/changes-to-airtable-plans">Airtable’s official announcement</a>, the platform overhauled its pricing tiers from the original Free/Plus/Pro/Enterprise to a new structure:</p>
+<ul>
+<li><strong>Free</strong>: Basic features retained</li>
+<li><strong>Team</strong>: $20/month/person (annual billing) — similar to the original Pro but with scaled-back features</li>
+<li><strong>Business</strong>: $45/month/person (annual) or $54/month/person (monthly) — full access to advanced features</li>
+<li><strong>Enterprise Scale</strong>: Customized, supporting enterprise needs like SSO, permission management, and scalable APIs</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/1-zbubpg.PNG" alt="Airtable pricing"></p>
+<p>The key change isn’t just pricing but <strong>a restructuring of feature tiers</strong>: many functions that Pro users relied on <strong>were moved to the pricier Business plan</strong>.</p>
+<p>For a 10-person team aiming to maintain the same experience as the old Pro plan, this means annual costs could jump <strong>from $2,400 to $5,400—a 125% increase</strong>.</p>
+<p>This doesn’t include “hidden costs” from growing user counts, feature expansions, or upgrade plans.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>Many small-to-medium teams realize they only use basic features like tables, linked fields, and simple permissions. Advanced modules (e.g., dashboards, automation, embedded views) are either unused or restricted by pricing tiers. Tech companies, SaaS startups, and system integrators also prefer to control data permissions, deployment, and cost structures over relying on a closed SaaS tool.</p>
+<p><strong>This has made self-hosted Airtable alternatives a trend.</strong> They offer Airtable’s core collaborative experience plus:</p>
+<ul>
+<li>Lower long-term costs: One-time deployment for multiple users, no per-seat billing</li>
+<li>Stronger customization: Flexible plugins, permissions, and workflows for complex needs</li>
+<li>Higher data security: Support for private deployment, permission isolation, and compliance audits</li>
+</ul>
+<p>👉 If your team hits Airtable’s data limit, check out: <a href="../blog/airtable-data-limit-reached-3-common-solutions.html">Airtable Data Limit Reached: 3 Common Solutions</a></p>
+<p><strong>Next, this article will introduce 5 noteworthy self-hosted alternatives to Airtable</strong>, with an in-depth comparison across the following dimensions:</p>
+<ul>
+<li>Annual estimated costs calculated by team size (10/50/100 members)</li>
+<li>Comparison of key features for each tool</li>
+<li>Optimal use cases for each tool</li>
+</ul>
+<p>❤ You can click the table of contents to jump to the sections that interest you.</p>
+<h2 id="en-2">5 Notable Self-Hosted Airtable Alternatives</h2>
+<h3>Cost Comparison (Annual Estimates by Team Size)</h3>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Version</th>
+<th>Estimated Annual Cost for 10-Person Team</th>
+<th>Estimated Annual Cost for 50-Person Team</th>
+<th>Estimated Annual Cost for 100-Person Team</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Airtable</td>
+<td>Team</td>
+<td>$2,400</td>
+<td>$12,000</td>
+<td>$24,000</td>
+</tr>
+<tr>
+<td>Airtable</td>
+<td>Business</td>
+<td>🔴$5,400</td>
+<td>🔴$27,000</td>
+<td>🔴$54,000</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>Standard</td>
+<td>✅$800</td>
+<td>✅$800</td>
+<td>✅$800</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>Professional</td>
+<td>$8,000</td>
+<td>$8,000</td>
+<td>$8,000</td>
+</tr>
+<tr>
+<td>Teable</td>
+<td>Professional</td>
+<td>$1,200</td>
+<td>$6,000</td>
+<td>$12,000</td>
+</tr>
+<tr>
+<td>NocoDB</td>
+<td>Team</td>
+<td>✅$228</td>
+<td>✅$1,140</td>
+<td>✅$2,280</td>
+</tr>
+<tr>
+<td>NocoDB</td>
+<td>Business</td>
+<td>$1,188</td>
+<td>$5,940</td>
+<td>$11,880</td>
+</tr>
+<tr>
+<td>Rowy</td>
+<td>Pro</td>
+<td>$1,440</td>
+<td>$7,200</td>
+<td>$14,400</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>Premium</td>
+<td>$1,200</td>
+<td>$6,000</td>
+<td>$12,000</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>Advanced</td>
+<td>$2,160</td>
+<td>$9,000</td>
+<td>$18,000</td>
+</tr>
+</tbody></table>
+<p>💡 <strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Airtable’s Business plan is costliest</strong>, with 100-person teams spending $54,000/year— typical “per-seat + feature-locked” SaaS model, where costs skyrocket as teams grow.</li>
+<li><strong>NocoBase is the only tool not charging per user.</strong> Its Standard plan costs $800/year for 10–100 people, and Professional costs $8,000—ideal for mid-to-large organizations.</li>
+<li><strong>NocoDB’s Team plan starts at just $228</strong> but has limited features; the Business plan offers advanced functions at far lower costs than Airtable.</li>
+<li><strong>Teable, Rowy, and Baserow take a middle ground</strong>: Airtable-like UIs with per-seat pricing, suitable for small-to-medium teams.</li>
+<li>Generally, self-hosted platforms that “flatten pricing” across user counts are better for long-term team growth.</li>
+</ul>
+<h3>Feature Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Key Features</th>
+<th>Airtable Replacement Capabilities</th>
+<th>Deployment Difficulty</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Airtable</td>
+<td>Rich Views / Automation / AI Integration / Mature Ecosystem</td>
+<td>/</td>
+<td>SaaS, no deployment</td>
+</tr>
+<tr>
+<td>NocoBase</td>
+<td>Plugin Architecture / Workflow Automation / Fine-grained Permissions / Multi-table Relationship Modeling</td>
+<td>✅ Fully replaces views, fields, collaboration, permissions, and automation</td>
+<td>🟢 Easy (Docker, one-click installation)</td>
+</tr>
+<tr>
+<td>Teable</td>
+<td>Airtable-like UI / AI Fields / Auto-reminders / Multiple Field Types</td>
+<td>✅ Replaces core table, field, and view capabilities, covers collaboration and formulas</td>
+<td>🟡 Medium (self-hosted support, private deployment documentation available)</td>
+</tr>
+<tr>
+<td>NocoDB</td>
+<td>Supports millions of rows / Airtable data import / Mobile access</td>
+<td>✅ Replaces table views, fields, and API</td>
+<td>🟢 Easy (simple self-hosted installation, comprehensive documentation)</td>
+</tr>
+<tr>
+<td>Rowy</td>
+<td>Firebase native integration / Field function triggers / Cloud function automation</td>
+<td>✅ Replaces table collaboration, field management</td>
+<td>🔴 High (depends on Firebase)</td>
+</tr>
+<tr>
+<td>Baserow</td>
+<td>Multi-view support / Automation integration / Embedded AI / Enterprise-grade security mechanisms</td>
+<td>✅ Replaces tables, views, collaboration, multi-view support</td>
+<td>🟡 Medium (self-hosted available)</td>
+</tr>
+</tbody></table>
+<h3>Feature Details of Self-Hosted Alternatives</h3>
+<h3><a href="https://www.nocobase.com/">NocoBase</a>: A Data Model-Driven AI Open-Source Low-Code Platform</h3>
+<p><img src="https://static-docs.nocobase.com/2-dndbj1.PNG" alt="NocoBase"></p>
+<p>GitHub: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Star: 15.9k</p>
+<p>License: <a href="https://github.com/nocobase/nocobase?tab=AGPL-3.0-2-ov-file#">AGPL-3.0</a></p>
+<p><strong>Highlight Features:</strong></p>
+<ul>
+<li><strong>Plugin-based architecture</strong>: All functions (views, permissions, workflows) load as plugins for flexible extension.</li>
+<li><strong>Workflow automation</strong>: Node-based process design for complex approvals and state transitions, surpassing Airtable Automation.</li>
+<li><strong>Fine-grained permissions</strong>: Built-in RBAC model with field-level, view-level, and action-level controls.</li>
+<li><strong>Complex relationship support</strong>: Models one-to-many and many-to-many relationships for real-world business systems.</li>
+<li><strong>AI employees embedded in the system</strong>: Seamlessly integrate AI capabilities into user interfaces, business workflows, and data contexts, enabling AI to be practically applied in real enterprise scenarios.</li>
+</ul>
+<p><strong>Ideal for</strong>: Teams of all sizes building CRM, ERP, or approval platforms that require custom extensions, strict data control, detailed permissions, and efficient workflow collaboration.</p>
+<h3><a href="https://teable.io/">Teable</a>: AI-Powered No-Code Database</h3>
+<p><img src="https://static-docs.nocobase.com/3-0by6u2.png" alt="teable"></p>
+<p>GitHub: <a href="https://github.com/teableio/teable">https://github.com/teableio/teable</a></p>
+<p>GitHub Star: 18.7k</p>
+<p>License: <a href="https://github.com/teableio/teable/blob/develop/AGPL_LICENSE">AGPL-3.0</a></p>
+<p><strong>Highlight Features:</strong></p>
+<ul>
+<li><strong>Airtable-like UI</strong>: Highly replicated table interface and interactions for near-zero migration learning curve.</li>
+<li><strong>AI fields &amp; formulas</strong>: Supports AI-generated content, smart filling, and other enhanced field types for lightweight intelligent collaboration.</li>
+<li><strong>Automation &amp; chat collaboration</strong>: Built-in bots, field reminders, and Slack-like collaboration.</li>
+<li><strong>Comprehensive field types</strong>: Supports linked fields, attachments, select lists, formulas, and more.</li>
+</ul>
+<p><strong>Ideal for</strong>: Small-to-medium teams seeking lightweight collaboration, UI-friendly experiences, and Airtable-like workflows.</p>
+<h3><a href="https://www.nocodb.com/">NocoDB</a>: Database in Spreadsheet Form</h3>
+<p><img src="https://static-docs.nocobase.com/4-iohjfz.png" alt="NocoDB"></p>
+<p>GitHub: <a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></p>
+<p>GitHub Star: 55.3k</p>
+<p>License: <a href="https://github.com/nocodb/nocodb?tab=AGPL-3.0-1-ov-file#">AGPL-3.0</a></p>
+<p><strong>Highlight Features:</strong></p>
+<ul>
+<li><strong>Seamless Airtable migration</strong>: Quickly imports Airtable base data to the platform or your own Postgres database.</li>
+<li><strong>Million-row scalability</strong>: Handles millions of rows without upgrading to enterprise plans, breaking free from traditional no-code limits.</li>
+<li><strong>Mobile access</strong>: Edit data on smartphones anytime, anywhere.</li>
+</ul>
+<p><strong>Ideal for</strong>: Technical teams with existing databases needing to quickly provide visual data interfaces for business departments.</p>
+<h3><a href="https://www.rowy.io/">Rowy</a>: Airtable Alternative for Firebase Developers</h3>
+<p><img src="https://static-docs.nocobase.com/5-ftyzbh.png" alt="Rowy"></p>
+<p>GitHub: <a href="https://github.com/rowyio/rowy">https://github.com/rowyio/rowy</a></p>
+<p>GitHub Star: 6.7k</p>
+<p>License: <a href="https://github.com/rowyio/rowy?tab=License-1-ov-file#">Apache</a></p>
+<p><strong>Highlight Features:</strong></p>
+<ul>
+<li><strong>Native Firebase integration</strong>: Deeply bound to Firestore and Cloud Functions, perfect for serverless app development.</li>
+<li><strong>Field-level logic triggers</strong>: Executes function logic on field changes, similar to database triggers.</li>
+<li><strong>Backend logic embedding</strong>: Cloud functions act as backend logic for async tasks like writing to other services or API calls.</li>
+</ul>
+<p><strong>Ideal for</strong>: Developers building admin interfaces or data platforms on Firebase, or serverless web apps needing backend logic.</p>
+<h3><a href="https://baserow.io/">Baserow</a>: Open-Source No-Code Database</h3>
+<p><img src="https://static-docs.nocobase.com/6-6pkwo5.png" alt="Baserow"></p>
+<p>GitHub: <a href="https://github.com/bram2w/baserow">https://github.com/bram2w/baserow</a></p>
+<p>GitHub Star: 2.7k</p>
+<p>License: <a href="https://github.com/bram2w/baserow?tab=License-1-ov-file#">MIT</a></p>
+<p><strong>Highlight Features:</strong></p>
+<ul>
+<li><strong>End-to-End Automation Integration</strong>: Baserow enables seamless integration with tools like API, Zapier, n8n, and Make, empowering enterprises to automate full-chain workflows.</li>
+<li><strong>Embedded AI</strong>: Baserow leverages built-in AI capabilities to process data intelligently.</li>
+<li><strong>Enterprise-Grade Data Security</strong>: Protect data with encryption, role-based access control, and self-hosted options.</li>
+</ul>
+<p><strong>Ideal for</strong>: Small-to-medium businesses quickly building custom no-code apps like CRM, ERP, or project management tools.</p>
+<h2 id="en-3">Conclusion: Self-Hosting Is More Than Just Cost-Saving</h2>
+<p>Airtable is undoubtedly excellent, but as its costs and complexity rise—especially for growing teams—it’s no longer the only choice.</p>
+<p>From NocoBase’s modular plugins to Teable’s minimalist experience, and open-source platforms like NocoDB, Rowy, and Baserow, <strong>self-hosting offers a more controllable, flexible, and economical path.</strong></p>
+<p>These tools not only slash annual costs but also give you full ownership of features, workflows, and data.</p>
+<p>👉 If you’re seeking a freer Airtable alternative, start evaluating the 5 platforms recommended here.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/airtable-data-limit-reached-3-common-solutions.html">Airtable Data Limit Reached: 3 Common Solutions</a></li>
+<li><a href="../blog/appsheet-alternative.html">AppSheet Alternative: Build a Many-to-Many Task System No-Code</a></li>
+<li><a href="../blog/open-source-airtable-alternatives.html">Top 7 OSS Airtable Alternatives Ranked by GitHub Stars</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">The Best Open-Source Alternatives to AppSheet in 2025</a></li>
+<li><a href="../blog/data-integration-platforms.html">7 Best Data Integration Platforms: Reviews &amp; Top Picks</a></li>
+<li><a href="../blog/open-source-firebase-alternatives.html">6 Open-Source Firebase Alternatives for Self-Hosting and Data Control</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">为什么越来越多人开始寻找 Airtable 替代品？</a><a href="#zh-2">Airtable 自托管替代方案</a><a href="#zh-3">总结：自托管，不只是省钱</a></div><div class="en-only"><a href="#en-1">Why Are More People Seeking Airtable Alternatives?</a><a href="#en-2">5 Notable Self-Hosted Airtable Alternatives</a><a href="#en-3">Conclusion: Self-Hosting Is More Than Just Cost-Saving</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

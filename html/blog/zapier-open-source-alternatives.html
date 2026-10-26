@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="7 款替代 Zapier 的开源工作流工具推荐 — NocoBase" data-en="7 Powerful Open Source Alternatives to Zapier — NocoBase">7 款替代 Zapier 的开源工作流工具推荐 — NocoBase</title>
+<meta name="description" content="7 款最佳 Zapier 开源替代品推荐，支持自托管、AI 集成和可视化工作流，助你实现高效自动化，降低成本并掌控数据安全。" data-zh="7 款最佳 Zapier 开源替代品推荐，支持自托管、AI 集成和可视化工作流，助你实现高效自动化，降低成本并掌控数据安全。" data-en="Discover 7 best open-source Zapier alternatives with self-hosting, AI integration, and visual workflows to boost automation, cut costs, and secure data.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>7 款替代 Zapier 的开源工作流工具推荐</t-zh><t-en>7 Powerful Open Source Alternatives to Zapier</t-en></h1>
+    <p class="lede"><t-zh>7 款最佳 Zapier 开源替代品推荐，支持自托管、AI 集成和可视化工作流，助你实现高效自动化，降低成本并掌控数据安全。</t-zh><t-en>Discover 7 best open-source Zapier alternatives with self-hosting, AI integration, and visual workflows to boost automation, cut costs, and secure data.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年9月2日</t-zh><t-en>Sep 2, 2025</t-en></span><span><t-zh>Zhang Lu</t-zh><t-en>Zhang Lu</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2092%20(1)-gyqds3.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>在工作流自动化工具领域，**<a href="https://zapier.com/">Zapier</a> 一直是最受欢迎、最成熟的解决方案之一**。该项目由 Wade Foster、Bryan Helmig 和 Mike Knoop 于 2011 年创立，最初是为了帮助中小企业在不同 SaaS 平台之间实现数据自动同步。</p>
+<p>经过十余年的发展，Zapier 已经支持超过 7,000 款应用集成，涵盖 Gmail、Slack、Notion、Salesforce、Google Sheets 等主流工具，并在全球积累了数百万用户。</p>
+<p><img src="https://static-docs.nocobase.com/1-djn1cf.PNG" alt="zapier.PNG"></p>
+<p>凭借其低代码的可视化工作流、海量预置模板和高度稳定的云端托管服务，Zapier 成为了许多企业自动化流程的首选平台。</p>
+<p>不过，随着企业业务场景的多样化，企业对自动化、数据安全和 AI 集成的要求不断提升，<strong>越来越多用户开始寻找更灵活、可自托管的开源替代方案</strong>。因为在真实的业务场景中，它出现了一些难以忽视的<a href="https://www.reddit.com/r/zapier/comments/1lhi7zk/so_long_zapier/">局限</a>，主要体现在以下三个方面：</p>
+<p><strong>1. 功能受限，灵活性不足</strong></p>
+<p>对于一些看似基础的自动化任务——例如从 Google Docs 读取文档内容——在 Zapier 上也需要借助 Beta API 或编写自定义代码。</p>
+<p><img src="https://static-docs.nocobase.com/2-kxyoos.PNG" alt="Limited Flexibility.PNG"></p>
+<p><strong>2. 高成本但用户体验不佳</strong></p>
+<p>Zapier 的订阅费用相对较高，但用户依然需要花费大量时间来排查错误、配置流程和阅读文档，且官方支持响应缓慢。用户抱怨“明明在付费，却感觉像在做二次开发”。</p>
+<p><img src="https://static-docs.nocobase.com/3-ivuemc.PNG" alt="High Cost, Yet a Frustrating User Experience.PNG"></p>
+<p><img src="https://static-docs.nocobase.com/4-bxonkv.PNG" alt="High Cost, Yet a Frustrating User Experience.PNG"></p>
+<p><img src="https://static-docs.nocobase.com/5-hhaqis.PNG" alt="High Cost, Yet a Frustrating User Experience.PNG"></p>
+<p><strong>3.“无代码”承诺落空</strong></p>
+<p>虽然 Zapier 宣称是“无代码自动化平台”，但当自动化流程稍微复杂时，用户依然需要编写 Python 或 JavaScript 代码。</p>
+<p><img src="https://static-docs.nocobase.com/6-cc9kq0.PNG" alt="The “No-Code” Promise Often Falls Short.PNG"></p>
+<p>无论是出于<strong>更高的灵活性</strong>、<strong>更低的成本</strong>，还是<strong>更强的可控性</strong>，越来越多的团队正在将目光投向 Zapier 的开源替代品。</p>
+<p>接下来，我们将为你推荐 7 款最受开发者和企业欢迎的开源自动化工具，可以根据功能侧重点分为三大类：</p>
+<ul>
+<li>通用型自动化引擎 ：n8n、Activepieces、Automatisch</li>
+<li>数据驱动型自动化平台：NocoBase、Flowable</li>
+<li>开发者友好型自动化工具： Node-RED、Windmill</li>
+</ul>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>⭐ 除了 Zapier，如果你也在寻找 Airtable、OutSystems、Salesforce 的开源替代品，欢迎点击阅读～</p>
+<ul>
+<li><a href="../blog/open-source-airtable-alternatives.html">GitHub上 Star 数量最多的 Airtable 开源替代者</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">2025 年开源替代方案为何正在取代 OutSystems？</a></li>
+<li><a href="../blog/salesforce-open-source-crmalternative.html">四个强大的 Salesforce 开源替代方案（附成本对比）</a></li>
+</ul>
+<h2 id="zh-1">n8n — 最受欢迎的 Zapier 开源替代品</h2>
+<p><img src="https://static-docs.nocobase.com/7-f97yr1.PNG" alt="n8n.PNG"></p>
+<p><strong>项目概览</strong></p>
+<p><strong><a href="https://n8n.io/">n8n</a></strong> 是一款功能强大的开源工作流自动化工具，被广泛认为是 <strong>Zapier 最受欢迎的开源替代品</strong>。它由 Jan Oberhauser 于 2019 年发起，项目名称取自 “<em>nodemation</em>” 的缩写，意为“基于节点的自动化”。n8n 拥有活跃的开源社区和完善的生态系统，目前在 <a href="https://github.com/n8n-io/n8n">GitHub</a> 上已收获数 133k Star。</p>
+<p>与 Zapier 相比，<strong>n8n 提供更高的灵活性和可控性</strong>：既可以选择在官方云端托管，也可以通过 Docker 在本地或私有云自托管，甚至能够运行自己的 AI 模型，确保数据隐私与安全。这使得 n8n 特别适合对自动化、数据保护和成本控制有高要求的企业。</p>
+<p><strong>核心亮点</strong></p>
+<ul>
+<li><strong>AI 驱动的多步骤自动化</strong>：n8n 支持将大型语言模型（LLM）与工作流无缝集成，帮助用户快速构建多步骤 AI Agent。无论是调用 OpenAI、Claude 还是自建模型，都可以像拖拽节点一样轻松实现。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/8-m51yi7.png" alt="n8n.png"></p>
+<ul>
+<li><strong>自托管与数据可控</strong>：用户可通过 Docker 或源码自托管 n8n，实现对数据和 AI 模型的完全控制，同时满足企业隐私与合规要求。此外，也可以选择官方托管版，获得更便捷的部署体验。</li>
+<li><strong>低代码与可扩展性</strong>：n8n 提供可视化工作流设计界面，同时支持在任意节点中编写 JavaScript 或 Python，甚至可以直接引入 npm 或 Python 库，灵活性远超 Zapier，适合对接复杂系统与自定义需求。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>AI Agent 构建</strong>：快速搭建多步骤 AI Agent，实现文档总结、客服自动回复、报告生成等智能应用。</li>
+<li><strong>跨系统数据自动化</strong>：在 Slack、Teams、Notion、Google Sheets、MySQL 等工具间实现多向同步与数据处理。</li>
+<li><strong>企业内部流程优化</strong>：将 CRM、工单、项目管理、通知系统整合在一起，自动触发任务和消息，提高团队协作效率。</li>
+</ul>
+<h2 id="zh-2">NocoBase — 开源低代码/零代码平台</h2>
+<p><img src="https://static-docs.nocobase.com/9-79qh2i.png" alt="NocoBase.png"></p>
+<p><strong>项目概览</strong></p>
+<p><strong><a href="https://www.nocobase.com/">NocoBase</a></strong> 是一款开源、自托管的 AI 低代码 / 无代码开发平台，旨在简化企业内部系统的开发。它采用数据模型驱动与插件化架构，可快速构建复杂业务系统，兼顾高度的可扩展性与灵活性。目前项目在<a href="../%5BGitHub%5D(https://github.com/nocobase/nocobase)"> GitHub </a> 上获得了 21.3k Star。</p>
+<p>与 Zapier 相比，<strong>NocoBase 提供了更高的灵活性和可扩展性</strong>。 用户可以通过插件系统自定义功能，满足特定业务需求。 此外，NocoBase 支持自托管部署，确保数据安全和隐私保护。</p>
+<p><strong>核心亮点</strong></p>
+<ul>
+<li><strong>工作流自动化</strong>：NocoBase 提供强大的工作流工具，支持触发器、条件判断、循环处理和自定义操作。工作流不仅能直接绑定底层数据，还支持复杂的多表关联和条件控制，使流程设计更加灵活高效。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/10-m8zt5h.png" alt="Workflow Automation.png"></p>
+<ul>
+<li><strong>数据模型驱动</strong>：NocoBase 采用数据模型驱动的设计，通过定义数据结构和字段关系自动生成操作界面和流程节点。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/11-35s7a9.png" alt="Data Model-Driven Design.png"></p>
+<ul>
+<li><strong>插件化扩展</strong>：NocoBase 采用微内核架构，内置丰富的工作流与自动化插件，支持触发器、条件判断、循环处理和自定义操作。同时可无缝对接第三方应用与服务，轻松实现跨系统的复杂自动化任务。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/12-pyxapy.png" alt="Plugin-Based Extensibility.png"></p>
+<ul>
+<li><strong>可视化构建界面</strong>：NocoBase 提供直观的可视化界面，用户无需编程即可配置触发条件、数据流转和执行逻辑，降低自动化应用的使用门槛。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/13-agz77c.png" alt="Visual Builder Interface.png"></p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>AI 驱动的业务流程</strong>：在 CRM、客服、BI 系统中集成 LLM，实现自动分析、预测和生成报告。<img src="https://static-docs.nocobase.com/Viz-demgin.gif" alt="Viz.gif"></li>
+<li><strong>多系统数据同步</strong>：将 ERP、CRM、项目管理、数据仓库等系统无缝打通，保持数据一致性。</li>
+<li><strong>企业内部流程自动化</strong>：审批流、任务分发、消息通知等自动触发，提高团队协作效率。</li>
+</ul>
+<h2 id="zh-3">Activepieces — AI 驱动的自动化工具</h2>
+<p><img src="https://static-docs.nocobase.com/14-ncg51l.png" alt="Activepieces.png"></p>
+<p><strong>项目概览</strong></p>
+<p><strong><a href="https://www.activepieces.com/">Activepieces</a></strong> 是一款 AI 驱动的自动化工具，旨在通过可视化界面和 AI 技术简化工作流的创建和管理。目前项目在 <a href="https://github.com/activepieces/activepieces">GitHub</a> 上获得了 16.5k Star。</p>
+<p>与 Zapier 相比，Activepieces 提供了更强大的 AI 集成功能。 用户可以通过 AI 技术自动生成工作流，简化复杂任务的处理。 此外，Activepieces 提供了更灵活的自定义功能，支持与各种应用和服务的连接。</p>
+<p><strong>核心亮点</strong></p>
+<ul>
+<li><strong>AI 驱动的自动化</strong>：Activepieces 支持创建智能 AI Agents，可直接调用 300+ 内置工具，与人类协作处理任务，显著降低多应用场景下的自动化门槛。</li>
+<li><strong>可视化工作流</strong>：提供最简单的可视化画布（Flows），无需编程即可拖拽配置自动化流程。支持条件、循环、Webhook、HTTP 请求及自定义代码，兼顾非技术用户和高级定制需求。</li>
+<li><strong>企业级可控性</strong>：提供版本控制、自动重试、模板定制和白标化等功能，确保企业数据安全与灵活扩展。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>AI 驱动自动化流程</strong>：适用于客服自动回复、业务协作等 AI agent 场景。</li>
+<li><strong>内部团队协作自动化</strong>：如审批流、任务通知、数据同步等。</li>
+<li><strong>安全与隐私敏感组织</strong>：可自托管，完全控制数据与访问权限。</li>
+</ul>
+<h2 id="zh-4">Node-RED — 可视化低代码工作流工具</h2>
+<p><img src="https://static-docs.nocobase.com/15-bufaay.png" alt="Node-RED.png"></p>
+<p><strong>项目概览</strong></p>
+<p><a href="http://nodered.org/">Node-RED</a> 提供基于浏览器的图形化“流”编辑器，用于编排硬件设备、API 和在线服务等流程。目前项目在 <a href="https://github.com/node-red/node-red/">GitHub</a> 上获得了 21.8k Star。</p>
+<p>与 Zapier 相比，Node-RED 专注于“流式编程”与 IoT 应用，更强调可视化编排与自托管。此外相比 Zapier 的 SaaS 自动化，它提供了更底层的控制能力和丰富的社区节点库。</p>
+<p><strong>核心亮点</strong></p>
+<ul>
+<li><strong>无限扩展的节点生态</strong>：拥有数千个社区贡献的连接节点，可以轻松集成 MQTT、HTTP、数据库、设备等资产，实现复杂自动化。</li>
+<li><strong>真正的低代码拖拽方式</strong>：流程通过图形拖拽构建，非技术用户也能快速上手；同时支持 JavaScript 函数节点实现定制化逻辑。</li>
+<li><strong>自托管与边缘部署能力</strong>：可部署在本地、私有云或边缘设备（如树莓派），满足 IoT 场景与隐私敏感业务需求。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>IoT 与边缘自动化</strong>：监控设备数据，触发通知或联动多系统响应。</li>
+<li><strong>跨平台集成流程</strong>：将 API、消息队列、数据库、Webhook 等服务集成至统一流程中。</li>
+<li><strong>快速原型与内部工具</strong>：为团队构建内部仪表板或自动化演示工具。</li>
+</ul>
+<h2 id="zh-5">Windmill — 多语言脚本驱动的工作流平台</h2>
+<p><img src="https://static-docs.nocobase.com/16-ivnu6n.png" alt="Windmill.png"></p>
+<p><strong>项目概览</strong></p>
+<p><a href="https://windmill.dev/">Windmill</a> 是一个新兴的开源开发平台，支持脚本、Webhooks、UI 和工作流自动化，目标是替代诸如 Retool 与 Temporal 的商业产品。目前项目在 <a href="https://github.com/windmill-labs/windmill">GitHub</a> 上获得了 14.5k Star。</p>
+<p>与 Zapier 相比，Windmill 更强调脚本能力与基础设施自动化，支持多语言（TypeScript、Python、Go、Shell）脚本编写，在灵活性和可扩展性上超越 Zapier 的拖拽式模型。</p>
+<p><strong>核心亮点</strong></p>
+<ul>
+<li><strong>多语言脚本与 UI 混合支持</strong>：支持 TypeScript、Python、Go、Bash 等语言，也可以在视觉化 UI 中编排工作流，兼顾开发效率与灵活性。</li>
+<li><strong>高性能工作流引擎</strong>：基于 Rust 架构，自托管环境下性能优异，对轻型与长任务都具备高效执行能力。</li>
+<li><strong>企业级安全与多租户支持</strong>：支持 nsjail 沙箱隔离执行、工作区加密存储 secrets、多租户资源隔离等，适合大规模部署场景。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>基础设施自动化</strong>：通过脚本自动管理部署流程、API 调度、定时任务等操作。</li>
+<li><strong>数据 ETL 与后台任务</strong>：支持高性能执行的脚本组合，适合整合数据库、API、脚本任务。</li>
+<li><strong>开发者与团队协作流程</strong>：结合 Git 管理脚本与流程，在团队中实现 CI/CD 风格自动化。</li>
+</ul>
+<h2 id="zh-6">Automatisch — 简洁高效的自动化工具</h2>
+<p><img src="https://static-docs.nocobase.com/17-7awlpo.png" alt="Automatisch.png"></p>
+<p><strong>项目概览</strong></p>
+<p><strong><a href="https://automatisch.io/">Automatisch</a></strong> 是一款开源的业务自动化工具，旨在通过简化的界面和功能帮助用户创建和管理工作流。目前项目在 <a href="https://github.com/automatisch/automatisch">GitHub</a> 上获得了 13k Star。</p>
+<p>与 Zapier 相比，Automatisch 提供了更简化的界面和功能，适合初学者和非技术用户。 用户可以通过简单的操作创建和管理工作流，降低了使用门槛。 此外，Automatisch 提供了自托管部署选项，确保数据安全和隐私保护。</p>
+<p><strong>核心亮点</strong></p>
+<ul>
+<li><strong>开源与可自托管</strong>：Automatisch 完全开源，用户可选择官方云托管或在自有服务器上部署，避免对第三方云平台的依赖。相比 Zapier 的纯 SaaS 模式，Automatisch 提供了更高的数据可控性和部署灵活性。</li>
+<li><strong>数据隐私与合规保障</strong>：用户可以将所有敏感数据保存在本地，避免被外部云端服务收集或存储，特别适合对数据安全要求严格的企业和机构。</li>
+<li><strong>避免供应商锁定</strong>：Automatisch 的开源特性让用户完全掌握技术栈选择权，不必受限于单一厂商的定价、功能或数据策略。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>合规场景下的自动化</strong>：适用于处理 GDPR、HIPAA 等严格隐私要求的数据。</li>
+<li><strong>企业内部系统整合</strong>：安全地连接 CRM、ERP、BI 等企业核心系统，实现低成本自动化。</li>
+<li><strong>行业专属应用</strong>：适合医疗、金融、教育等数据敏感行业，构建高安全等级的工作流。</li>
+</ul>
+<h2 id="zh-7">Flowable — 企业级 BPM+流程管理</h2>
+<p><img src="https://static-docs.nocobase.com/18-4cq0f4.png" alt="Flowable.png"></p>
+<p><strong>项目概览</strong></p>
+<p><a href="https://www.flowable.org/">Flowable</a> 是一个基于 Java 的开源业务流程管理（BPM）与工作流自动化平台，最早源自 Activiti 项目，并在 2016 年由核心开发团队独立发展而来。Flowable 遵循 BPMN 2.0、CMMN 和 DMN 等国际标准，能够帮助企业在系统中快速构建、管理和优化业务流程。目前项目在 <a href="https://github.com/flowable/flowable-engine">GitHub</a> 上获得了 8.7k Star。</p>
+<p>与 Zapier 相比，Flowable 更专注于企业级的复杂流程自动化，适用于银行、保险、制造、医疗等对审批流、规则决策和数据安全有严格要求的行业。</p>
+<p><strong>核心亮点</strong></p>
+<ul>
+<li><strong>BPMN 2.0 标准支持</strong>：Flowable 完全支持 BPMN 2.0 流程规范，提供可视化流程建模工具，能够实现复杂任务的分支、并行、回退等业务逻辑，适合需要高度定制的企业场景。</li>
+<li><strong>多模型融合</strong>：除了 BPMN 工作流，Flowable 同时支持 CMMN（Case Management）和 DMN（Decision Model），可在同一平台内管理结构化、非结构化流程及规则决策，满足不同类型的业务需求。</li>
+<li><strong>企业级可扩展性</strong>：Flowable 提供丰富的 REST API、Spring Boot 集成和事件驱动架构，支持与现有 ERP、CRM、财务等系统无缝衔接。可自托管部署，确保数据安全与隐私。</li>
+</ul>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>企业审批流程自动化</strong>：如合同审批、费用报销、请假管理、项目立项等。</li>
+<li><strong>规则驱动的决策系统</strong>：通过 DMN 集成业务规则引擎，自动执行贷款审批、风险评估、报价策略等。</li>
+<li><strong>跨系统业务编排</strong>：与 ERP、CRM、HR 系统集成，统一管理多系统交互和任务执行。</li>
+</ul>
+<h2 id="zh-8">写在最后</h2>
+<p>在工作流自动化的领域，Zapier 依然是功能最丰富、生态最完善的解决方案之一。但对于那些希望<strong>降低成本、掌控数据隐私、深度集成 AI 或实现高度自定义</strong>的团队来说，探索开源替代品正变得越来越有价值。</p>
+<p>本文介绍的 7 款 Zapier 开源替代品：NocoBase、n8n、Activepieces、Node-RED、Windmill、Automatisch、Flowable 各自拥有不同的优势和适用场景：</p>
+<ul>
+<li><strong>NocoBase</strong>：数据模型驱动 + 插件化架构，适合需要高度灵活和自定义自动化的团队。</li>
+<li><strong>n8n</strong>：支持多步 AI Agent 和可视化/代码混合开发，适合开发者和技术团队。</li>
+<li><strong>Activepieces</strong>：AI Agent、无代码自动化与团队协作一体化，尤其适合需要统一管理流程与数据的企业。</li>
+<li><strong>Automatisch</strong>：支持完全自托管，强调数据隐私与合规，适合医疗、金融等高安全性行业。</li>
+<li><strong>Node-RED</strong>：基于可视化节点的低代码平台，适合物联网、硬件控制及事件驱动型自动化场景。</li>
+<li><strong>Windmill</strong>：融合工作流自动化与内部开发平台，适合需要将 API、脚本、数据库操作统一在一个平台的工程团队。</li>
+<li><strong>Flowable</strong>：企业级 BPMN 工作流平台，适合需要高度定制审批流、规则决策和跨系统业务编排的大型企业。</li>
+</ul>
+<p>如果你正在寻找 <strong>Zapier 的开源替代品</strong>，不妨从这几款工具开始尝试，根据自己的业务场景选择合适的解决方案。</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/servicenow-open-source-alternatives.html">5 个最佳 ServiceNow 开源替代品（含价格对比）</a></li>
+<li><a href="../blog/open-source-firebase-alternatives.html">开发者推荐：6 款更灵活的 Firebase 开源替代品</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">2025 年 AppSheet 最佳开源替代品</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">2025 年开源替代方案为何正在取代 OutSystems？技术自由度与成本优势深度解析</a></li>
+<li><a href="../blog/salesforce-open-source-crmalternative.html">四个强大的 Salesforce 开源替代方案（附成本对比）</a></li>
+<li><a href="../blog/retool-open-source-alternatives.html">2025 年最佳的 Retool 开源替代方案</a></li>
+</ul></div><div class="prose en-only"><p>In the world of workflow automation, <strong><a href="https://zapier.com/">Zapier</a></strong> has long been one of the most popular and mature solutions. Founded in 2011 by Wade Foster, Bryan Helmig, and Mike Knoop, Zapier was originally designed to help small and medium-sized businesses automatically synchronize data across different SaaS platforms.</p>
+<p>Over more than a decade of development, Zapier has grown into a powerful ecosystem supporting 7,000+ app integrations, including Gmail, Slack, Notion, Salesforce, Google Sheets, and many other widely used tools. Today, it has amassed millions of users worldwide.</p>
+<p><img src="https://static-docs.nocobase.com/1-djn1cf.PNG" alt="zapier.PNG"></p>
+<p>Thanks to its low-code visual workflows, extensive pre-built templates, and reliable cloud hosting, Zapier has become the go-to platform for many businesses looking to automate repetitive processes.</p>
+<p>However, as business requirements become increasingly complex — especially around data security, AI integration, and flexible automation — <strong>more teams are turning to open-source alternatives that are self-hosted, customizable, and cost-efficient</strong>.</p>
+<p>This shift is driven by some notable <a href="https://www.reddit.com/r/zapier/comments/1lhi7zk/so_long_zapier/">limitations</a> of Zapier that many users have encountered:</p>
+<p><strong>1. Limited Flexibility</strong></p>
+<p>Even for seemingly simple automation tasks — for example, reading document content from Google Docs — Zapier often requires using Beta APIs or writing code to achieve the desired result.</p>
+<p><img src="https://static-docs.nocobase.com/2-kxyoos.PNG" alt="Limited Flexibility.PNG"></p>
+<p><strong>2. High Cost, Yet a Frustrating User Experience</strong></p>
+<p>Zapier’s subscription pricing is relatively high, yet users frequently spend significant time troubleshooting errors, configuring workflows, and reading lengthy documentation. In addition, official support tends to be slow, leading to frustration.</p>
+<p><img src="https://static-docs.nocobase.com/3-ivuemc.PNG" alt="High Cost, Yet a Frustrating User Experience.PNG"></p>
+<p><img src="https://static-docs.nocobase.com/4-bxonkv.PNG" alt="High Cost, Yet a Frustrating User Experience.PNG"></p>
+<p><img src="https://static-docs.nocobase.com/5-hhaqis.PNG" alt="High Cost, Yet a Frustrating User Experience.PNG"></p>
+<p><strong>3. The “No-Code” Promise Often Falls Short</strong></p>
+<p>Although Zapier markets itself as a “no-code automation platform”, once workflows become slightly more complex, users often still need to write Python or JavaScript code.</p>
+<p><img src="https://static-docs.nocobase.com/6-cc9kq0.PNG" alt="The “No-Code” Promise Often Falls Short.PNG"></p>
+<p>Whether your goal is to achieve <strong>greater flexibility</strong>, <strong>reduce costs</strong>, or <strong>gain full control over your data</strong>, more and more teams are considering open-source alternatives to Zapier.</p>
+<p>In this article, we’ve selected 7 of the most popular open-source workflow automation tools among developers and enterprises. We’ve grouped them into three categories based on their strengths:</p>
+<ul>
+<li>General-purpose automation engines: n8n, Activepieces, Automatisch</li>
+<li>Data-driven automation platforms: NocoBase, Flowable</li>
+<li>Developer-friendly automation tools: Node-RED, Windmill</li>
+</ul>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>⭐ Looking for <strong>open-source alternatives</strong> to more SaaS platforms? Check out these articles:</p>
+<ul>
+<li><a href="../blog/open-source-airtable-alternatives.html">Top 7 OSS Airtable Alternatives Ranked by GitHub Stars</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">Why Open-Source Alternatives Are Replacing OutSystems in 2025?</a></li>
+<li><a href="../blog/salesforce-open-source-crmalternative.html">4 Powerful Open Source Alternatives to Salesforce (With Cost Comparison You’ll Love) </a></li>
+</ul>
+<h2 id="en-1">n8n — The Most Popular Open-Source Alternative to Zapier</h2>
+<p><img src="https://static-docs.nocobase.com/7-f97yr1.PNG" alt="n8n.PNG"></p>
+<p><strong>Overview</strong></p>
+<p><strong><a href="https://n8n.io/">n8n</a></strong> is a powerful open-source workflow automation tool and is widely regarded as <strong>the most popular open-source alternative to Zapier</strong>. It was launched by Jan Oberhauser in 2019, with the name “n8n” derived from “nodemation,” meaning node-based automation. n8n has an active open-source community and a rich ecosystem, currently boasting 133k stars on  <a href="https://github.com/n8n-io/n8n">GitHub</a>.</p>
+<p>Compared to Zapier, n8n offers <strong>greater flexibility and control</strong>. Users can choose to use the official cloud-hosted version, or self-host via Docker on-premises or in a private cloud. It even allows running custom AI models, ensuring data privacy and security. This makes n8n particularly suitable for enterprises with high demands for automation, data protection, and cost management.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>AI-Powered Multi-Step Automation</strong>: Integrate large language models (LLMs) seamlessly into workflows to quickly build multi-step AI agents. Whether calling OpenAI, Claude, or self-hosted models, it’s as easy as dragging and dropping nodes.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/8-m51yi7.png" alt="n8n.png"></p>
+<ul>
+<li><strong>Self-Hosting &amp; Data Control</strong>: Users can fully control their data and AI models via Docker or source-based self-hosting, meeting enterprise privacy and compliance requirements. The official hosted version is also available for simpler deployment.</li>
+<li><strong>Low-Code &amp; Extensible</strong>: n8n offers a visual workflow designer and supports writing JavaScript or Python in any node. You can also import npm or Python libraries, providing far greater flexibility than Zapier for integrating complex systems and custom requirements.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>AI Agent Development</strong>: Quickly build multi-step AI agents for document summarization, automated customer support, report generation, and other intelligent applications.</li>
+<li><strong>Cross-System Data Automation</strong>: Sync and process data across Slack, Teams, Notion, Google Sheets, MySQL, and more.</li>
+<li><strong>Enterprise Workflow Optimization</strong>: Integrate CRM, ticketing, project management, and notification systems to automatically trigger tasks and messages, improving team collaboration efficiency.</li>
+</ul>
+<h2 id="en-2">NocoBase — Open-Source Low-Code/No-Code Platform</h2>
+<p><img src="https://static-docs.nocobase.com/9-79qh2i.png" alt="NocoBase.png"></p>
+<p><strong>Overview</strong></p>
+<p><strong><a href="https://www.nocobase.com/">NocoBase</a></strong> is an open-source, self-hosted AI low-code / no-code development platform designed to simplify the development of internal enterprise systems. Built on a data model–driven and plugin-based architecture, it enables rapid construction of complex business systems while maintaining a high level of extensibility and flexibility. The project currently has 16.5k stars on <a href="https://github.com/nocobase/nocobase">GitHub</a>.</p>
+<p>Compared to Zapier, NocoBase provides <strong>higher flexibility and extensibility</strong>. Users can customize functionality through the plugin system to meet specific business needs. It also supports self-hosted deployment, ensuring data security and privacy.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Workflow Automation</strong>: NocoBase provides a robust workflow engine supporting triggers, conditional logic, loops, and custom actions. Workflows can be directly linked to underlying data and support complex multi-table relationships and conditional controls for more flexible and efficient process design.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/10-m8zt5h.png" alt="Workflow Automation.png"></p>
+<ul>
+<li><strong>Data Model-Driven Design</strong>: NocoBase generates operation interfaces and workflow nodes based on defined data structures and field relationships, enabling more intuitive and data-centric automation.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/11-35s7a9.png" alt="Data Model-Driven Design.png"></p>
+<ul>
+<li><strong>Plugin-Based Extensibility</strong>: Built on a microkernel architecture, NocoBase offers a rich set of workflow and automation plugins, enabling seamless integration with third-party apps and services for complex cross-system automation tasks.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/12-pyxapy.png" alt="Plugin-Based Extensibility.png"></p>
+<ul>
+<li><strong>Visual Builder Interface</strong>: Provides an intuitive visual interface, allowing users to configure triggers, data flows, and execution logic without coding, lowering the barrier to workflow automation.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/13-agz77c.png" alt="Visual Builder Interface.png"></p>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>AI-Powered Business Processes</strong>: Integrate LLMs in CRM, customer support, or BI systems for automated analysis, prediction, and report generation.<img src="https://static-docs.nocobase.com/Viz-demgin.gif" alt="Viz.gif"></li>
+<li><strong>Multi-System Data Sync</strong>: Seamlessly connect ERP, CRM, project management, and data warehouse systems to maintain consistent data.</li>
+<li><strong>Internal Process Automation</strong>: Automate approval flows, task assignment, and notifications to improve team collaboration efficiency.</li>
+</ul>
+<h2 id="en-3">Activepieces — AI-Powered Automation Tool</h2>
+<p><img src="https://static-docs.nocobase.com/14-ncg51l.png" alt="Activepieces.png"></p>
+<p><strong>Overview</strong></p>
+<p><strong><a href="https://www.activepieces.com/">Activepieces</a></strong> is an AI-powered automation platform designed to simplify workflow creation and management through a visual interface and AI integration. The project currently has 16.5k stars on <a href="https://github.com/activepieces/activepieces">GitHub</a>.</p>
+<p>Compared to Zapier, Activepieces offers advanced AI integration, allowing users to automatically generate workflows and simplify complex tasks. It also provides flexible customization, supporting connections with various applications and services.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>AI-Powered Automation</strong>: Create intelligent AI Agents that can access 300+ built-in tools and collaborate with humans, significantly lowering the automation barrier across multiple applications.</li>
+<li><strong>Visual Workflow Designer</strong>: The simplest drag-and-drop canvas (Flows) allows workflow creation without coding, supporting conditions, loops, webhooks, HTTP requests, and custom scripts.</li>
+<li><strong>Enterprise-Grade Control</strong>: Provides versioning, automatic retries, custom templates, and white-labeling, ensuring data security and scalable enterprise deployment.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>AI-Driven Automation</strong>: Customer support automation, business collaboration, and other AI agent use cases.</li>
+<li><strong>Internal Team Automation</strong>: Approval flows, task notifications, and data synchronization.</li>
+<li><strong>Sensitive Data &amp; Privacy</strong>: Self-hosted deployment to fully control data and access permissions.</li>
+</ul>
+<h2 id="en-4">Node-RED — Visual Low-Code Workflow Tool</h2>
+<p><img src="https://static-docs.nocobase.com/15-bufaay.png" alt="Node-RED.png"></p>
+<p><strong>Overview</strong></p>
+<p><a href="http://nodered.org/">Node-RED</a> offers a browser-based graphical flow editor for orchestrating hardware devices, APIs, and online services. The project currently has 21.8k stars on <a href="https://github.com/node-red/node-red/">GitHub</a>.</p>
+<p>Compared to Zapier, Node-RED focuses on flow-based programming and IoT applications, emphasizing visual orchestration and self-hosting. It also provides lower-level control and a rich community node library beyond typical SaaS automation.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Extensible Node Ecosystem</strong>: Thousands of community-contributed nodes integrate MQTT, HTTP, databases, devices, and more for complex automation.</li>
+<li><strong>True Low-Code Drag-and-Drop</strong>: Build flows visually; non-technical users can quickly get started while advanced users can add JavaScript function nodes for customization.</li>
+<li><strong>Self-Hosting &amp; Edge Deployment</strong>: Deploy locally, on private cloud, or on edge devices (e.g., Raspberry Pi) to meet IoT and privacy-sensitive requirements.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>IoT &amp; Edge Automation</strong>: Monitor device data and trigger notifications or multi-system responses.</li>
+<li><strong>Cross-Platform Integration</strong>: Combine APIs, message queues, databases, and webhooks into unified workflows.</li>
+<li><strong>Rapid Prototyping &amp; Internal Tools</strong>: Build internal dashboards or automation demos for teams.</li>
+</ul>
+<h2 id="en-5">Windmill — Multi-Language Script-Driven Workflow Platform</h2>
+<p><img src="https://static-docs.nocobase.com/16-ivnu6n.png" alt="Windmill.png"></p>
+<p><strong>Overview</strong></p>
+<p><a href="https://windmill.dev/">Windmill</a> is an emerging open-source development platform supporting scripts, webhooks, UI, and workflow automation, aiming to replace commercial tools like Retool and Temporal. The project currently has 14.5k stars on <a href="https://github.com/windmill-labs/windmill">GitHub</a>.</p>
+<p>Compared to Zapier, Windmill emphasizes scripting capabilities and infrastructure automation, supporting TypeScript, Python, Go, and Shell for more flexibility and extensibility than Zapier’s drag-and-drop model.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Multi-Language Script &amp; UI Support</strong>: Combine scripts (TypeScript, Python, Go, Bash) with visual workflow design, balancing efficiency and flexibility.</li>
+<li><strong>High-Performance Workflow Engine</strong>: Rust-based engine ensures efficient execution of both short and long-running tasks in self-hosted environments.</li>
+<li><strong>Enterprise Security &amp; Multi-Tenancy</strong>: Features nsjail sandboxing, encrypted secret storage, and tenant isolation for large-scale deployments.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>Infrastructure Automation</strong>: Scripted deployment, API scheduling, and cron tasks.</li>
+<li><strong>Data ETL &amp; Backend Jobs</strong>: High-performance scripting for database, API, and batch tasks.</li>
+<li><strong>Developer &amp; Team Workflows</strong>: CI/CD-style automation with Git-based workflow management.</li>
+</ul>
+<h2 id="en-6">Automatisch — Simple &amp; Efficient Automation Tool</h2>
+<p><img src="https://static-docs.nocobase.com/17-7awlpo.png" alt="Automatisch.png"></p>
+<p><strong>Overview</strong></p>
+<p><strong><a href="https://automatisch.io/">Automatisch</a></strong> is an open-source business automation tool designed to help users create and manage workflows with a simplified interface. The project currently has 13k stars on <a href="https://github.com/automatisch/automatisch">GitHub</a>.</p>
+<p>Compared to Zapier, Automatisch offers a simplified UI and is ideal for beginners and non-technical users. It also supports self-hosted <strong>deployment</strong>, ensuring data security and privacy.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>Open Source &amp; Self-Hosting</strong>: Fully open-source, with options for official cloud hosting or self-hosting, avoiding reliance on third-party SaaS platforms.</li>
+<li><strong>Data Privacy &amp; Compliance</strong>: Keep sensitive data locally to comply with GDPR, HIPAA, or other regulations.</li>
+<li><strong>Avoid Vendor Lock-In</strong>: Open-source nature gives full control over technology stack choices without being constrained by a single vendor’s pricing, features, or data policies.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>Compliance-Oriented Automation</strong>: GDPR, HIPAA, and other privacy-sensitive workflows.</li>
+<li><strong>Enterprise System Integration</strong>: Safely connect CRM, ERP, BI, and other core systems for low-cost automation.</li>
+<li><strong>Industry-Specific Applications</strong>: Healthcare, finance, education, and other data-sensitive sectors requiring high-security workflows.</li>
+</ul>
+<h2 id="en-7">Flowable — Enterprise-Grade BPM &amp; Workflow Management</h2>
+<p><img src="https://static-docs.nocobase.com/18-4cq0f4.png" alt="Flowable.png"></p>
+<p><strong>Overview</strong></p>
+<p><a href="https://www.flowable.org/">Flowable</a> is a Java-based open-source business process management (BPM) and workflow automation platform, originally derived from the Activiti project and independently developed by the core team in 2016. Flowable adheres to BPMN 2.0, CMMN, and DMN standards, helping enterprises design, manage, and optimize business processes. The project currently has 8.7k stars on <a href="https://github.com/flowable/flowable-engine">GitHub</a>.</p>
+<p>Compared to Zapier, Flowable focuses on enterprise-level complex workflow automation, ideal for industries like banking, insurance, manufacturing, and healthcare, which require strict approval flows, decision rules, and data security.</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li><strong>BPMN 2.0 Support</strong>: Fully compliant with BPMN 2.0, offering visual process modeling and support for branching, parallel tasks, and rollbacks, suitable for highly customized enterprise scenarios.</li>
+<li><strong>Multi-Model Integration</strong>: Supports BPMN workflows, CMMN (case management), and DMN (decision modeling) on a single platform.</li>
+<li><strong>Enterprise Scalability</strong>: Rich REST API, Spring Boot integration, and event-driven architecture for seamless integration with ERP, CRM, and finance systems. Supports self-hosting for data security.</li>
+</ul>
+<p><strong>Use Cases</strong></p>
+<ul>
+<li><strong>Enterprise Approval Processes</strong>: Contract approvals, expense claims, leave management, project initiation.</li>
+<li><strong>Rules-Based Decision Systems</strong>: Automate loan approval, risk assessment, pricing strategies using DMN business rules engine.</li>
+<li><strong>Cross-System Orchestration</strong>: Integrate ERP, CRM, HR systems for unified management of multi-system workflows.</li>
+</ul>
+<h2 id="en-8"><strong>Conclusion</strong></h2>
+<p>In the workflow automation space, Zapier remains one of the most feature-rich and mature platforms. However, for teams seeking <strong>lower costs, full data control, deeper AI integration, or highly customized automation</strong>, exploring open-source alternatives is increasingly valuable.</p>
+<p>The seven open-source Zapier alternatives covered in this article — NocoBase, n8n, Activepieces, Node-RED, Windmill, Automatisch, Flowable — each offer unique strengths:</p>
+<ul>
+<li><strong>NocoBase</strong>: Data model-driven + plugin architecture for highly flexible, customizable automation.</li>
+<li><strong>n8n</strong>: Multi-step AI agent support with visual/code hybrid development, ideal for developers.</li>
+<li><strong>Activepieces</strong>: AI agents, no-code automation, and team collaboration integration, perfect for enterprises managing workflows and data.</li>
+<li><strong>Automatisch</strong>: Fully self-hosted, prioritizing data privacy and compliance for high-security industries.</li>
+<li><strong>Node-RED</strong>: Visual node-based low-code platform for IoT, hardware control, and event-driven automation.</li>
+<li><strong>Windmill</strong>: Combines workflow automation with a developer platform, suitable for unifying APIs, scripts, and database operations.</li>
+<li><strong>Flowable</strong>: Enterprise-grade BPMN workflow platform for complex approval flows, rule-based decisions, and cross-system orchestration.</li>
+</ul>
+<p>If you are looking for <strong>open-source alternatives to Zapier</strong>, these seven tools are a great starting point to explore and choose the solution that fits your business needs.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/servicenow-open-source-alternatives.html">5 Best Open-Source Alternatives to ServiceNow (with Pricing Comparison)</a></li>
+<li><a href="../blog/open-source-firebase-alternatives.html">6 Open-Source Firebase Alternatives for Self-Hosting and Data Control</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">The Best Open-Source Alternatives to AppSheet in 2025</a></li>
+<li><a href="../blog/outsystems-open-source-alternatives.html">Why Open-Source Alternatives Are Replacing OutSystems in 2025?</a></li>
+<li><a href="../blog/salesforce-open-source-crmalternative.html">4 Powerful Open Source Alternatives to Salesforce (With Cost Comparison You’ll Love)</a></li>
+<li><a href="../blog/retool-open-source-alternatives.html">The Best Open-Source Alternatives to Retool In 2025</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">n8n — 最受欢迎的 Zapier 开源替代品</a><a href="#zh-2">NocoBase — 开源低代码/零代码平台</a><a href="#zh-3">Activepieces — AI 驱动的自动化工具</a><a href="#zh-4">Node-RED — 可视化低代码工作流工具</a><a href="#zh-5">Windmill — 多语言脚本驱动的工作流平台</a><a href="#zh-6">Automatisch — 简洁高效的自动化工具</a><a href="#zh-7">Flowable — 企业级 BPM+流程管理</a><a href="#zh-8">写在最后</a></div><div class="en-only"><a href="#en-1">n8n — The Most Popular Open-Source Alternative to Zapier</a><a href="#en-2">NocoBase — Open-Source Low-Code/No-Code Platform</a><a href="#en-3">Activepieces — AI-Powered Automation Tool</a><a href="#en-4">Node-RED — Visual Low-Code Workflow Tool</a><a href="#en-5">Windmill — Multi-Language Script-Driven Workflow Platform</a><a href="#en-6">Automatisch — Simple &amp;amp; Efficient Automation Tool</a><a href="#en-7">Flowable — Enterprise-Grade BPM &amp;amp; Workflow Management</a><a href="#en-8">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="7 款最佳自托管 AI 工具，快速构建业务应用 — NocoBase" data-en="7 Best Self-Hosted AI Tools for Building Business Apps — NocoBase">7 款最佳自托管 AI 工具，快速构建业务应用 — NocoBase</title>
+<meta name="description" content="7 款值得关注的自托管 AI 工具，助你在安全可控的环境中快速搭建具备智能能力的业务系统。" data-zh="7 款值得关注的自托管 AI 工具，助你在安全可控的环境中快速搭建具备智能能力的业务系统。" data-en="Seven self-hosted AI tools that enable secure, flexible, and intelligent business application development.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>7 款最佳自托管 AI 工具，快速构建业务应用</t-zh><t-en>7 Best Self-Hosted AI Tools for Building Business Apps</t-en></h1>
+    <p class="lede"><t-zh>7 款值得关注的自托管 AI 工具，助你在安全可控的环境中快速搭建具备智能能力的业务系统。</t-zh><t-en>Seven self-hosted AI tools that enable secure, flexible, and intelligent business application development.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年11月14日</t-zh><t-en>Nov 14, 2025</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Group%2015-crxl63.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><p>过去一年，我们一直在持续关注自托管生态。</p>
+<p>从最初的<a href="../blog/the-ultimate-guide-to-awesome-self-hosted-solutions.html">系统搭建指南</a>，再到后来的<a href="../blog/data-transformation-tools.html">数据管理与工具推荐</a>，为了帮助开发者快速了解行业趋势，我们还整理了<a href="../blog/self-hsosted-projects-list.html">《GitHub Star 数量前 13 的自托管项目》</a>，盘点了包括工作流、Git 管理、低代码、日志分析等的热门项目。</p>
+<p>随着 AI 的加入，自托管生态正在进入一个更实用的阶段。</p>
+<p>越来越多的平台开始将 AI 融入系统，它不仅能在本地读取数据、生成内容、执行任务，还能直接参与业务流程，以更灵活、更安全的方式为团队赋能。</p>
+<p>这篇文章我们从一个新的角度切入：</p>
+<blockquote>
+<p>当人工智能与自托管结合，哪些工具真正能加速商业应用开发？</p>
+</blockquote>
+<p>我们挑选了7 款值得关注的项目。</p>
+<p>它们都支持自主部署（Self-Hosted），并能在确保数据隐私与灵活扩展的前提下，帮助团队快速构建出具备 AI 能力的商业系统。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<h2 id="zh-1">快速浏览</h2>
+<ol>
+<li><strong>NocoBase</strong> —— 无代码 / 低代码开发平台（AI 员工协同完成业务流程与智能分析）</li>
+<li><strong>Flowise AI</strong> —— 可视化 AI 工作流构建器（基于 LangChain）</li>
+<li><strong>AnythingLLM</strong> —— 私有知识库与企业问答系统（支持 RAG）</li>
+<li><strong>SuperAGI</strong> —— 多智能体协作框架（AI Agents 自主执行任务）</li>
+<li><strong>n8n</strong>—— 自动化工作流平台（触发式 AI 集成）</li>
+<li><strong>LibreChat</strong> —— ChatGPT 风格企业内部聊天界面（连接本地模型）</li>
+<li><strong>DocsGPT</strong> —— 文档与知识自动化助手（生成 API 文档与 FAQ）</li>
+</ol>
+<h2 id="zh-2">NocoBase</h2>
+<p><img src="https://static-docs.nocobase.com/NocoBase-z80ogp.png" alt="NocoBase.png"></p>
+<p><strong>官网</strong>：<a href="https://www.nocobase.com/cn/">https://www.nocobase.com/cn/</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>⭐<strong>GitHub Stars</strong>：19.5k</p>
+<p><strong>功能方向：</strong></p>
+<p>自托管的、AI 驱动的无代码 / 低代码开发平台。</p>
+<p><strong>核心亮点：</strong></p>
+<ul>
+<li><strong>AI 员工</strong>：系统可在内部直接调用语言模型，定义具备上下文记忆的 AI 角色，让 AI 参与数据录入、流程执行和内容生成。</li>
+<li><strong>数据模型驱动架构</strong>：基于 data-model-driven 设计，不依赖传统表单结构，能灵活定义业务实体及关系，适合复杂企业级应用。</li>
+<li><strong>插件化与私有部署</strong>：功能均以插件形式扩展，可对接外部数据库、API 或 LLM 服务；支持 Docker 与源码部署，确保系统完全自托管、数据可控。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>快速构建 CRM、ERP、审批流、知识管理等内部系统。</li>
+<li>在现有业务中引入 AI 协作或自动化的企业团队。</li>
+<li>对数据安全、系统可控性和私有部署要求高的行业（如金融、医疗、教育）。</li>
+<li>需要通过插件和模型持续扩展功能的中大型组织。</li>
+</ul>
+<p><strong>自托管支持：</strong>  ✅ Docker 镜像 / 源码部署（支持私有化环境、本地数据库与外部 LLM 连接）</p>
+<h2 id="zh-3">Flowise AI</h2>
+<p><img src="https://static-docs.nocobase.com/Flowise%20AI-k4e1er.png" alt="Flowise AI.png"></p>
+<p><strong>官网</strong>：<a href="https://flowiseai.com">https://flowiseai.com</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/FlowiseAI/Flowise">https://github.com/FlowiseAI/Flowise</a></p>
+<p>⭐<strong>GitHub Stars</strong>：46.5k</p>
+<p><strong>功能方向：</strong>  可视化的 AI 工作流与智能体（Agent）构建平台。</p>
+<p><strong>核心亮点：</strong></p>
+<ul>
+<li><strong>可视化流程设计</strong>：拖拽式节点界面，让模型、数据库、API 之间的逻辑搭建更直观，大幅降低了构建 AI 工作流的门槛。</li>
+<li><strong>多模型与智能协作</strong>：基于 LangChain 架构，兼容 OpenAI、Claude、Ollama 等模型，支持多智能体协作与人机混合流程。</li>
+<li><strong>流程监控与系统集成</strong>：提供执行日志与追踪功能，支持将流程导出为 REST API 或嵌入现有系统。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>希望快速搭建基于 LLM 的问答、报告或内容生成流程的团队。</li>
+<li>需要在企业内部构建 AI 自动化系统（客服、审批、数据处理）的组织。</li>
+<li>想验证不同模型组合或插件逻辑的开发者与产品团队。</li>
+<li>对数据安全、流程可控性有要求的企业。</li>
+</ul>
+<p><strong>自托管支持：</strong>  ✅ Docker 镜像 / 源码部署（支持本地模型、私有知识库与外部工具集成）</p>
+<h2 id="zh-4">AnythingLLM</h2>
+<p><img src="https://static-docs.nocobase.com/AnythingLLM-jwjutk.png" alt="AnythingLLM.png"></p>
+<p><strong>官网</strong>：<a href="https://anythingllm.com">https://anythingllm.com</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/Mintplex-Labs/anything-llm">https://github.com/Mintplex-Labs/anything-llm</a></p>
+<p>⭐<strong>GitHub Stars</strong>：51k</p>
+<p><strong>功能方向：</strong>  私有知识库与企业级问答系统。</p>
+<p><strong>核心亮点：</strong></p>
+<ul>
+<li><strong>文档解析与知识检索</strong>：自动读取 PDF、Word、TXT 等文件，通过语义索引实现内容摘要与问答。</li>
+<li><strong>多模型兼容与本地运行</strong>：支持 OpenAI、Anthropic、Ollama 等主流模型，可在本地完成知识问答与内容生成。</li>
+<li><strong>数据隐私与本地优先</strong>：默认在本地存储与执行，不上传文档或对话数据；提供桌面端与服务器自托管版本。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>在企业内部构建统一的知识问答系统，实现跨部门信息检索。</li>
+<li>部署私有 AI 客服或知识助手，用于提升文档利用率和响应效率。</li>
+<li>将知识检索功能嵌入现有 CRM、项目管理或门户系统。</li>
+<li>在金融、医疗或政企等对数据安全和合规性要求较高的环境中使用。</li>
+</ul>
+<p><strong>自托管支持：</strong>  ✅ Docker 镜像 / 源码部署 + 桌面端运行（支持本地模型、向量数据库与插件扩展）</p>
+<h2 id="zh-5">SuperAGI</h2>
+<p><img src="https://static-docs.nocobase.com/SuperAGI-y1q0nh.png" alt="SuperAGI.png"></p>
+<p><strong>官网</strong>：<a href="https://superagi.com">https://superagi.com</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/TransformerOptimus/SuperAGI">https://github.com/TransformerOptimus/SuperAGI</a></p>
+<p>⭐<strong>GitHub Stars</strong>：16.9k</p>
+<p><strong>功能方向：</strong> 自托管的自治 AI Agent 框架。</p>
+<p><strong>核心亮点：</strong></p>
+<ul>
+<li><strong>多智能体管理</strong>：支持创建、运行和协作多个自治 Agent，可用于任务执行、流程自动化或工具集成。</li>
+<li><strong>可扩展工具生态</strong>：通过 Toolkits 机制扩展 Agent 能力，支持调用数据库、记录执行日志、保存上下文记忆或自定义模型。</li>
+<li><strong>并行执行与可监控性</strong>：框架可同时运行多个 Agent，内置性能与成本监控，支持多模型适配和 Token 管理。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>希望在企业内部部署可控的 AI 自动化系统，用于邮件处理、报告生成或任务分配的团队。</li>
+<li>需要构建多 Agent 协作平台，用于数据分析、客服运营等跨系统流程的企业。</li>
+<li>想设计具备记忆、工具调用和任务协作特性的智能体流程，提高业务自动化与智能化水平的组织。</li>
+<li>对数据隐私、执行透明度和系统可控性要求较高的公司。</li>
+</ul>
+<p><strong>自托管支持：</strong>  ✅ Docker 镜像 / 源码部署（支持本地数据库、工具集成与自定义 Agent）</p>
+<h2 id="zh-6">n8n</h2>
+<p><img src="https://static-docs.nocobase.com/n8n-4jxkfx.png" alt="n8n.png"></p>
+<p><strong>官网</strong>：<a href="https://n8n.io">https://n8n.io</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/n8n-io/n8n">https://github.com/n8n-io/n8n</a></p>
+<p>⭐<strong>GitHub Stars</strong>：156k</p>
+<p><strong>功能方向：</strong> 自托管的工作流自动化平台，具备原生 AI 集成能力。</p>
+<p><strong>核心亮点：</strong></p>
+<ul>
+<li><strong>可视化与代码混合构建</strong>：拖拽式节点结合 JS/Python 支持，兼顾灵活性与低代码效率。</li>
+<li><strong>原生 AI 与丰富集成</strong>：内置 AI 工作流功能，可接入任意 LLM，支持 400+ 平台与服务集成，适合构建基于数据与模型的自动化系统。</li>
+<li><strong>私有化与完全控制</strong>：支持完整自托管，包括 AI 模型部署，满足对数据安全与环境自由度要求高的使用场景。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>构建跨系统自动化流程，如数据库同步、邮件触发或报告生成。</li>
+<li>在现有业务逻辑中嵌入 AI 模型，实现智能化的流程编排与任务触发。</li>
+<li>在企业内部搭建统一自动化平台，连接 CRM、ERP、客服与消息渠道。</li>
+<li>适合希望自主部署、掌握数据并持续扩展自动化能力的用户。</li>
+</ul>
+<p><strong>自托管支持：</strong>  ✅ Docker 镜像 / 源码部署（支持私有模型、自定义节点与完全自控部署环境）</p>
+<h2 id="zh-7">LibreChat</h2>
+<p><img src="https://static-docs.nocobase.com/LibreChat-wubkd9.png" alt="LibreChat.png"></p>
+<p><strong>官网</strong>： <a href="https://www.librechat.ai">https://www.librechat.ai</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/danny-avila/LibreChat">https://github.com/danny-avila/LibreChat</a></p>
+<p>⭐<strong>GitHub Stars</strong>：31.6k</p>
+<p><strong>功能方向：</strong>  自托管的多模型聊天与知识交互平台。</p>
+<p><strong>核心亮点：</strong></p>
+<ul>
+<li><strong>统一聊天界面</strong>：提供类似 ChatGPT 的使用体验，可连接 OpenAI、Azure OpenAI、ElevenLabs 等云端或本地模型。</li>
+<li><strong>多用户与安全管理</strong>：支持 OAuth2、LDAP、邮件登录及多用户会话管理，适合企业级使用。</li>
+<li><strong>灵活部署与本地优先</strong>：可通过 Docker 或本地环境运行，满足数据可控与部署灵活的需求。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>构建企业内部聊天或知识交互平台，用于员工问答、内容生成或辅助决策。</li>
+<li>为客服、产品或运营团队提供统一对话入口，连接插件与 API 执行任务。</li>
+<li>在私有环境中部署多模型对话系统，实现本地数据存储与定制扩展。</li>
+<li>满足对数据隐私、模型切换与多用户协作要求较高的使用场景。</li>
+</ul>
+<p><strong>自托管支持：</strong>  ✅ Docker 镜像 / 源码部署（支持多模型切换、自定义插件与多用户管理）</p>
+<h2 id="zh-8">DocsGPT</h2>
+<p><img src="https://static-docs.nocobase.com/DocsGPT-51z60x.png" alt="DocsGPT.png"></p>
+<p><strong>官网</strong>：<a href="https://www.docsgpt.cloud">https://www.docsgpt.cloud</a></p>
+<p><strong>GitHub</strong>：<a href="https://github.com/arc53/DocsGPT">https://github.com/arc53/DocsGPT</a></p>
+<p>⭐<strong>GitHub Stars</strong>：17.4k</p>
+<p><strong>功能方向：</strong> 自托管的文档与知识自动化助手平台。</p>
+<p><strong>核心亮点：</strong></p>
+<ul>
+<li><strong>文档分析与智能问答</strong>：支持 PDF、Office 文档和网页内容解析，自动构建语义索引与问答系统。</li>
+<li><strong>多模型与工具集成</strong>：可选择不同语言模型或在本地运行模型，支持 Agent 构建、API 和 Webhook 集成。</li>
+<li><strong>私有部署与数据主权</strong>：强调“在任何环境下部署”，从本地到私有云均可运行，确保对知识库和数据源的完全控制。</li>
+</ul>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>自动生成 API 文档、SDK 指南、FAQ 与使用说明，并与代码或知识库保持同步。</li>
+<li>构建企业内部知识检索系统，将分散的文档与数据整合为统一的问答入口。</li>
+<li>在私有环境中部署知识平台，保障敏感文档与数据完全受控。</li>
+<li>适合需要持续维护技术文档或知识内容的产品团队、客服支持部门与开发者。</li>
+</ul>
+<p><strong>自托管支持：</strong>  ✅ Docker 镜像 / 源码部署（支持本地模型、向量数据库与知识源集成）</p>
+<h2 id="zh-9">结语</h2>
+<p>希望这些工具能帮助你看到 <strong>AI 与自托管结合的更多可能性</strong>。 无论是构建业务系统、自动化流程，还是打造企业知识平台，相信你都能从中找到适合的方向和解决方案。</p>
+<p>想了解更多 <strong>AI × 开源 × 无代码</strong> 的内容？欢迎访问我们的博客，也请分享给同样热爱探索的朋友</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 大企业级无代码低代码平台 RBAC 权限体系深度对比</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">GitHub 上最值得关注的 14 个开源 AI 低代码工具 </a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">11 个在 GitHub 上最受欢迎的开源无代码 AI 工具 </a></li>
+<li><a href="../blog/github-open-source-ai-agent-projects.html">GitHub 上 Star 数量前 18 的开源 AI Agent 项目</a></li>
+<li><a href="../blog/github-open-source-ai-projects.html">GitHub 上 Star 数量前 20 的开源 AI 项目</a></li>
+<li><a href="../blog/github-open-source-mcp-projects.html">GitHub 上 Star 数量前 8 的开源 MCP 项目</a></li>
+<li><a href="../blog/github-open-source-web-applications.html">GitHub 上 Star 数量前 8 的开源 Web 应用项目</a></li>
+</ul></div><div class="prose en-only"><p>Over the past year, we have kept a close eye on the self-hosting ecosystem.</p>
+<p>What started with <a href="../blog/the-ultimate-guide-to-awesome-self-hosted-solutions.html">system setup guides</a> soon expanded into deep dives on <a href="../blog/data-transformation-tools.html">data management and tool recommendations</a>. We even compiled <a href="../blog/self-hsosted-projects-list.html">The Top 13 Self-Hosted Projects with the Most GitHub Stars</a>.</p>
+<p>As AI becomes part of the picture, self-hosting is entering a more practical and capable phase.</p>
+<p>More platforms now integrate AI into their systems so that AI can access local data, produce content, execute tasks, and even take part directly in business workflows. This brings teams greater flexibility and enhanced security.</p>
+<p>In this article, we focus on self-hosting from a fresh angle.</p>
+<blockquote>
+<p>When AI meets self-hosting, which tools can truly speed up business application development?</p>
+</blockquote>
+<p>Here are seven projects that stand out.</p>
+<p>Each supports self-hosted deployment and helps teams build AI-enabled business systems quickly while maintaining data privacy and flexible expansion.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<h2 id="en-1">Quick Look</h2>
+<ol>
+<li><strong>NocoBase</strong>: A no-code and low-code development platform where AI assistants help drive processes and deliver intelligent analytics.</li>
+<li><strong>Flowise AI</strong>: A visual workflow builder for AI, built in the LangChain library.</li>
+<li><strong>AnythingLLM</strong>: A private knowledge base and enterprise Q&amp;A system that supports RAG (retrieval-augmented generation).</li>
+<li><strong>SuperAGI</strong>: A multi-agent collaboration framework in which AI agents autonomously carry out tasks.</li>
+<li><strong>n8n</strong>: An automation workflow platform with built-in AI triggers for self-hosted integration.</li>
+<li><strong>LibreChat</strong>: A ChatGPT-style internal chat interface designed for enterprise use and linking local models.</li>
+<li><strong>DocsGPT</strong>: A document and knowledge automation assistant that generates API documentation and FAQs.</li>
+</ol>
+<h2 id="en-2"><strong>NocoBase</strong></h2>
+<p><img src="https://static-docs.nocobase.com/NocoBase-z80ogp.png" alt="NocoBase.png"></p>
+<p><strong>Website:</strong><a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>⭐ <strong>GitHub Stars:</strong> 19.5k</p>
+<p><strong>Focus:</strong> A self-hosted, AI-driven no-code / low-code development platform.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><strong>AI workers:</strong> The system can directly call language models internally and define AI roles with contextual memory so that AI can participate in data entry, workflow execution, and content generation.</li>
+<li><strong>Data-model-driven architecture:</strong> Based on a data-model-driven design rather than traditional form structures. It supports flexible definition of business entities and relationships, suitable for complex enterprise applications.</li>
+<li><strong>Plugin-based and private deployment:</strong> All features are extended through plugins. It can connect to external databases, APIs, or LLM services. It supports Docker and source deployment to ensure full self-hosting and data control.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Quickly building internal systems such as CRM, ERP, approval workflows, and knowledge management.</li>
+<li>Enterprise teams introducing AI collaboration or automation into existing business operations.</li>
+<li>Industries with high requirements for data security, system control, and private deployment such as finance, healthcare, and education.</li>
+<li>Medium and large organizations that need continuous expansion through plugins and models.</li>
+</ul>
+<p><strong>Self-Hosting:</strong> ✅ Supports Docker and source deployment</p>
+<h2 id="en-3"><strong>Flowise AI</strong></h2>
+<p><img src="https://static-docs.nocobase.com/Flowise%20AI-k4e1er.png" alt="Flowise AI.png"></p>
+<p><strong>Website:</strong><a href="https://flowiseai.com">https://flowiseai.com</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/FlowiseAI/Flowise">https://github.com/FlowiseAI/Flowise</a></p>
+<p>⭐ <strong>GitHub Stars:</strong> 46.5k</p>
+<p><strong>Focus:</strong>  A visual builder for AI workflows and agent-based applications.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><strong>Drag-and-drop workflow design:</strong> A node-based interface that makes it intuitive to link models, databases, and APIs, helping teams build AI workflows with much lower effort.</li>
+<li><strong>Multi-model and agent collaboration:</strong> Powered by the LangChain framework and compatible with OpenAI, Claude, Ollama, and many other models. Supports multi-agent setups and human-in-the-loop processes.</li>
+<li><strong>Monitoring and integrations:</strong> Includes run logs and trace tools and allows workflows to be exported as REST APIs or embedded in existing systems.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Teams building LLM-driven Q&amp;A, reporting, or content-generation flows.</li>
+<li>Companies setting up internal AI automation systems for support, approvals, or data processing.</li>
+<li>Developers testing different model combinations or plugin extensions.</li>
+<li>Businesses requiring high data security and controllable automation processes.</li>
+</ul>
+<p><strong>Self-Hosting Support:</strong>  ✅ Supports Docker and source deployment</p>
+<h2 id="en-4"><strong>AnythingLLM</strong></h2>
+<p><img src="https://static-docs.nocobase.com/AnythingLLM-jwjutk.png" alt="AnythingLLM.png"></p>
+<p><strong>Website:</strong><a href="https://anythingllm.com">https://anythingllm.com</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/Mintplex-Labs/anything-llm">https://github.com/Mintplex-Labs/anything-llm</a></p>
+<p>⭐ <strong>GitHub Stars:</strong> 51k</p>
+<p><strong>Focus:</strong>  A self-hosted knowledge base and AI-powered Q&amp;A platform for teams.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><strong>Smart document processing:</strong> Imports PDFs, Word files, text documents, and more, then builds semantic indexes for summaries and question answering.</li>
+<li><strong>Works with many models and runs locally:</strong> Compatible with OpenAI, Anthropic, Ollama, and others, and supports fully local knowledge queries and content generation.</li>
+<li><strong>Local-first privacy:</strong> All data stays on your machine or server. No document or chat data is uploaded. Available as both a desktop app and a server version.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Creating an internal knowledge assistant that helps teams search information across departments.</li>
+<li>Running a private AI helpdesk or document assistant to boost response speed and information reuse.</li>
+<li>Adding semantic search and Q&amp;A features to CRM, project management, or portal systems.</li>
+<li>Operating in highly regulated industries such as finance, healthcare, and government.</li>
+</ul>
+<p><strong>Self-Hosting Support:</strong>  ✅ Supports Docker and source deployment and includes a desktop version</p>
+<h2 id="en-5"><strong>SuperAGI</strong></h2>
+<p><img src="https://static-docs.nocobase.com/SuperAGI-y1q0nh.png" alt="SuperAGI.png"></p>
+<p><strong>Website:</strong><a href="https://superagi.com">https://superagi.com</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/TransformerOptimus/SuperAGI">https://github.com/TransformerOptimus/SuperAGI</a></p>
+<p>⭐ <strong>GitHub Stars:</strong> 16.9k</p>
+<p><strong>Focus:</strong>  A self-hosted framework for building and running autonomous AI agents.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><strong>Multi-agent orchestration:</strong> Lets you create and manage multiple autonomous agents that can work together on tasks, automation flows, or tool integrations.</li>
+<li><strong>Flexible tool ecosystem:</strong> Uses a toolkit system to extend agent abilities, including database access, execution logs, long-term memory, and custom model support.</li>
+<li><strong>Parallel execution with monitoring:</strong> Runs several agents in parallel and provides built-in monitoring for performance and cost. Supports different AI models and token controls.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Building an internal AI automation system for handling email, generating reports, or distributing tasks.</li>
+<li>Creating a multi-agent collaboration platform for analytics, customer operations, or complex workflows across systems.</li>
+<li>Designing intelligent agent flows that use memory, tools, and coordinated tasks to improve automation levels.</li>
+<li>Deploying in environments that demand strong data security, transparency, and control.</li>
+</ul>
+<p><strong>Self-Hosting Support:</strong>  ✅ Supports Docker and source deployment</p>
+<h2 id="en-6"><strong>n8n</strong></h2>
+<p><img src="https://static-docs.nocobase.com/n8n-4jxkfx.png" alt="n8n.png"></p>
+<p><strong>Website:</strong><a href="https://n8n.io">https://n8n.io</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/n8n-io/n8n">https://github.com/n8n-io/n8n</a></p>
+<p>⭐ <strong>GitHub Stars:</strong> 156k</p>
+<p><strong>Focus:</strong>  A self-hosted workflow automation platform that includes built-in AI capabilities.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><strong>Visual plus code workflows:</strong> Combines drag-and-drop nodes with optional JS or Python for added flexibility.</li>
+<li><strong>Native AI and broad integrations:</strong> Comes with AI workflow features, connects to any LLM, and integrates with more than 400 services, making it ideal for data-driven and model-driven automation.</li>
+<li><strong>Full control through self-hosting:</strong> Supports complete self-hosting, including deploying your own AI models, suitable for teams that need strong data protection and a customizable environment.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Automating cross-system workflows such as database syncing, email triggers, or report generation.</li>
+<li>Adding AI models to existing business logic to create smarter workflows and automated tasks.</li>
+<li>Building a central automation hub inside the company that links CRM, ERP, support systems, and communication channels.</li>
+<li>Ideal for users who want to self-host, maintain data ownership, and scale automation over time.</li>
+</ul>
+<p><strong>Self-Hosting Support:</strong>  ✅ Supports Docker or source deployment</p>
+<h2 id="en-7"><strong>LibreChat</strong></h2>
+<p><img src="https://static-docs.nocobase.com/LibreChat-wubkd9.png" alt="LibreChat.png"></p>
+<p><strong>Website:</strong><a href="https://www.librechat.ai">https://www.librechat.ai</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/danny-avila/LibreChat">https://github.com/danny-avila/LibreChat</a></p>
+<p>⭐ <strong>GitHub Stars:</strong> 31.6k</p>
+<p><strong>Focus:</strong>  A self-hosted platform for multi-model chat and knowledge-based interactions.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><strong>Unified chat experience:</strong> Offers a familiar ChatGPT-style interface and works with OpenAI, Azure OpenAI, ElevenLabs, and both cloud and local models.</li>
+<li><strong>Enterprise-ready user management:</strong> Supports OAuth2, LDAP, email login, and multi-user sessions.</li>
+<li><strong>Flexible, local-first deployment:</strong> Runs through Docker or a local environment, allowing full data control and customizable deployment.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Creating internal chat or knowledge systems for employee Q&amp;A, content generation, or decision support.</li>
+<li>Offering a central chat entry point for support, product, or operations teams with plugin and API integrations.</li>
+<li>Deploying multi-model chat systems in private environments with local storage and extensibility.</li>
+<li>Meeting requirements for strong data privacy, model flexibility, and multi-user collaboration.</li>
+</ul>
+<p><strong>Self-Hosting Support:</strong>  ✅ Supports Docker or source deployment</p>
+<h2 id="en-8"><strong>DocsGPT</strong></h2>
+<p><img src="https://static-docs.nocobase.com/DocsGPT-51z60x.png" alt="DocsGPT.png"></p>
+<p><strong>Website:</strong><a href="https://www.docsgpt.cloud">https://www.docsgpt.cloud</a></p>
+<p><strong>GitHub:</strong><a href="https://github.com/arc53/DocsGPT">https://github.com/arc53/DocsGPT</a></p>
+<p>⭐ <strong>GitHub Stars:</strong> 17.4k</p>
+<p><strong>Focus:</strong>  A self-hosted automated assistant for documents and knowledge management.</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li><strong>Document analysis with intelligent Q&amp;A:</strong> Parses PDF, Office files, and web pages, and builds semantic indexes and Q&amp;A systems automatically.</li>
+<li><strong>Flexible model and tool integration:</strong> Works with multiple language models or local models, and supports Agent workflows, APIs, and Webhooks.</li>
+<li><strong>Private deployment with full data control:</strong> Designed to run in any environment, from local setups to private clouds, ensuring complete ownership of data and knowledge sources.</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Generating API docs, SDK guides, FAQs, and user manuals automatically, and keeping them updated alongside code and knowledge bases.</li>
+<li>Creating an internal knowledge search system that unifies scattered documents and data into one Q&amp;A interface.</li>
+<li>Running knowledge platforms in private environments to protect sensitive documents and internal data.</li>
+<li>Ideal for product teams, support teams, and developers who maintain technical documentation or knowledge content.</li>
+</ul>
+<p><strong>Self-Hosting Support:</strong>  ✅ Supports Docker or source deployment</p>
+<p>I hope these tools help you explore more possibilities at the intersection of AI and self-hosting.</p>
+<p>Whether you are building business systems, automating workflows, or creating an enterprise knowledge platform, you will be able to find approaches and solutions that fit your needs.</p>
+<p>If you want to dive deeper into AI, open source, and no-code topics, feel free to visit our blog and share it with friends who enjoy exploring these ideas.</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/6-in-depth-comparison-rbac-no-code-low-code-platforms.html">6 In-Depth Comparison of RBAC in Enterprise-Grade No-Code/Low-Code Platforms</a></li>
+<li><a href="../blog/14-ai-low-code-platforms-github.html">14 AI-Powered Low-Code Platforms on GitHub Worth Watching</a></li>
+<li><a href="../blog/top-11-github-open-source-no-code-ai-tools.html">Top 11 Open Source No-Code AI Tools with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-ai-agent-projects.html">Top 18 Open Source AI Agent Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-ai-projects.html">Top 20 Open Source AI Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-mcp-projects.html">Top 8 Open Source MCP Projects with the Most GitHub Stars</a></li>
+<li><a href="../blog/github-open-source-web-applications.html">Top 7 Open Source Web Applications with the Most GitHub Stars</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">快速浏览</a><a href="#zh-2">NocoBase</a><a href="#zh-3">Flowise AI</a><a href="#zh-4">AnythingLLM</a><a href="#zh-5">SuperAGI</a><a href="#zh-6">n8n</a><a href="#zh-7">LibreChat</a><a href="#zh-8">DocsGPT</a><a href="#zh-9">结语</a></div><div class="en-only"><a href="#en-1">Quick Look</a><a href="#en-2">NocoBase</a><a href="#en-3">Flowise AI</a><a href="#en-4">AnythingLLM</a><a href="#en-5">SuperAGI</a><a href="#en-6">n8n</a><a href="#en-7">LibreChat</a><a href="#en-8">DocsGPT</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

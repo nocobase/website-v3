@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="6 个适合搭配 WorkBuddy 使用的开源工具 — NocoBase" data-en="6 Open Source Tools to Use with WorkBuddy — NocoBase">6 个适合搭配 WorkBuddy 使用的开源工具 — NocoBase</title>
+<meta name="description" content="介绍 NocoBase、Activepieces、Twenty 等 6 个开源工具，说明如何搭配 WorkBuddy 连接业务系统、自动化流程和数据分析。 " data-zh="介绍 NocoBase、Activepieces、Twenty 等 6 个开源工具，说明如何搭配 WorkBuddy 连接业务系统、自动化流程和数据分析。 " data-en="Explore six open source tools, including NocoBase, Activepieces, and Twenty, and learn how they work with WorkBuddy to connect business systems, automation workflows, CRM, project management, data APIs, and BI analytics.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>资讯</t-zh><t-en>News</t-en></p>
+    <h1><t-zh>6 个适合搭配 WorkBuddy 使用的开源工具</t-zh><t-en>6 Open Source Tools to Use with WorkBuddy</t-en></h1>
+    <p class="lede"><t-zh>介绍 NocoBase、Activepieces、Twenty 等 6 个开源工具，说明如何搭配 WorkBuddy 连接业务系统、自动化流程和数据分析。
+</t-zh><t-en>Explore six open source tools, including NocoBase, Activepieces, and Twenty, and learn how they work with WorkBuddy to connect business systems, automation workflows, CRM, project management, data APIs, and BI analytics.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年6月5日</t-zh><t-en>Jun 5, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%20109-imyzqc.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">WorkBuddy 是什么？</h2>
+<p>WorkBuddy 是腾讯推出的全场景职场 AI 智能体桌面工作台，主要面向企业日常办公、文件处理、数据分析和多步骤任务处理等场景。<img src="https://static-docs.nocobase.com/WorkBuddy-8xxz2q.png" alt="WorkBuddy-8xxz2q.png"></p>
+<p>和 OpenClaw、Claude Code、Codex 这类工具相比，WorkBuddy 的侧重点不太一样。OpenClaw 更强调开放 Agent 能力和跨平台技能生态，Claude Code、Codex 更适合代码生成、开发协作和工程任务处理；WorkBuddy 则更偏向职场办公场景，可以连接微信、QQ、企业微信、飞书、钉钉等常用办公软件，让用户在熟悉的沟通入口中发起任务。</p>
+<p>如果想更深度地连接企业业务系统和内部场景，WorkBuddy 同样适合承担 Agent 入口和任务调度的角色。WorkBuddy 负责接收指令、拆解任务和返回结果；开源工具负责提供具体的业务系统、自动化流程、CRM、项目管理、数据 API 和 BI 分析能力。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p>所以这篇文章会介绍几款适合搭配 WorkBuddy 使用的开源工具，看看它们分别能为企业提供哪些能力，以及在和 WorkBuddy 组合时可以覆盖哪些典型场景。</p>
+<h2 id="zh-2">1. NocoBase：适合搭建可被 WorkBuddy 调用的自定义业务系统</h2>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-vpe2x5.png" alt="NocoBase1-vpe2x5.png"></p>
+<p><strong>官网</strong>： <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><strong>GitHub Stars</strong>：22.3k</p>
+<p><strong>文档</strong>： <a href="https://docs.nocobase.com/">https://docs.nocobase.com/</a></p>
+<p><strong>相关资源</strong>：</p>
+<p>CLI：<a href="https://docs.nocobase.com/cn/api/cli/">https://docs.nocobase.com/cn/api/cli/</a></p>
+<p>Skills：<a href="https://docs.nocobase.com/cn/ai-builder#nocobase-skills">https://docs.nocobase.com/cn/ai-builder#nocobase-skills</a></p>
+<p>MCP：<a href="https://docs.nocobase.com/cn/ai/mcp/">https://docs.nocobase.com/cn/ai/mcp/</a></p>
+<p>WorkBuddy + NocoBase：<a href="https://docs.nocobase.com/cn/ai/workbuddy">https://docs.nocobase.com/cn/ai/workbuddy</a></p>
+<h3>产品简介</h3>
+<p>NocoBase 是一个 AI 驱动的开源无代码 / 低代码开发平台，可以快速构建企业级应用、内部工具和各种业务系统。它支持私有化部署，基于插件架构设计，适合企业根据自身业务搭建 CRM、ERP、审批、工单、库存、项目管理、运营后台等系统。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-t4x1fo.png" alt="NocoBase2-t4x1fo.png"></p>
+<p>对于希望将 WorkBuddy 接入内部工具的团队来说，NocoBase 更适合作为业务系统层，承载稳定的数据结构、权限边界、流程规则和可调用能力。</p>
+<p>NocoBase 也在 AI 能力上做了更贴近业务系统的设计。它支持  AI 员工、AI Skills、CLI 和 MCP 等。AI 员工可以作为系统内的智能助手，参与数据查询、内容生成、任务处理等工作；AI Skills 用于帮助外部 Agent 理解 NocoBase 的配置方式和操作边界；CLI 可以让 Agent 通过命令执行安装、创建、修改等操作；MCP 则为外部 AI 工具连接 NocoBase 提供更标准的入口。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-ejtyuu.png" alt="NocoBase3-ejtyuu.png"></p>
+<h3>核心优势</h3>
+<ul>
+<li><strong>数据模型驱动</strong>：NocoBase 支持先定义数据表、字段和关联关系，再构建页面和交互，更适合复杂业务系统，而不是只做简单表单收集。</li>
+<li><strong>适合私有化部署</strong>：企业可以将系统部署在自己的服务器中，更适合对数据安全、权限控制和长期维护有要求的内部系统。</li>
+<li><strong>权限和流程能力完整</strong>：支持角色权限、字段权限、数据权限、操作权限，也可以通过工作流处理审批、通知、数据更新、Webhook、HTTP 请求等流程。</li>
+<li><strong>插件架构灵活</strong>：NocoBase 采用插件微内核架构，功能可以通过插件扩展，适合企业在标准能力之外继续定制业务逻辑。</li>
+<li><strong>AI 能力更贴近业务系统</strong>：NocoBase 支持 AI 员工、AI Skills、知识库等能力，可以围绕页面、数据表、选中记录和业务规则展开操作。</li>
+</ul>
+<h3>和 WorkBuddy 搭配的典型使用场景</h3>
+<p>在很多场景中，WorkBuddy 可以负责接收指令、拆解任务并返回结果，NocoBase 则负责承载具体的业务对象和系统能力，例如客户、订单、审批、工单、库存和项目等数据。</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-ono1dm.png" alt="NocoBase4-ono1dm.png"></p>
+<p>下面以 3 个常见场景为例：</p>
+<p><strong>CRM</strong> 企业可以用 NocoBase 搭建客户管理系统，统一维护客户资料、跟进状态、客户等级、负责人、合同金额等信息。销售负责人可以直接在企业微信或飞书中发起指令，让 WorkBuddy 查询近期新增客户、长期未跟进线索和重点客户。NocoBase 提供客户数据、权限和筛选逻辑，AI 员工或相关 Skills 可以进一步辅助整理跟进优先级、生成客户摘要或输出销售待办清单。</p>
+<p><strong>工单管理</strong> 在售后或运维团队中，NocoBase 可以记录工单状态、问题类型、优先级、处理人和截止时间。遇到每日排查或周度复盘时，团队可以让 WorkBuddy 汇总逾期工单、高优先级问题和待处理事项，再按负责人、紧急程度或问题类型分类，方便快速确认处理顺序。</p>
+<p><strong>项目管理</strong> 对管理者来说，审批和项目进度往往分散在多个节点中。NocoBase 可以承载审批流程、项目节点、负责人、风险事项和进度状态；WorkBuddy 则可以根据指令提取待审批事项、延期任务和项目风险，并生成按部门、负责人或优先级分类的摘要。</p>
+<h2 id="zh-3">2. Activepieces：适合把 WorkBuddy 连接到更多自动化流程</h2>
+<p><img src="https://static-docs.nocobase.com/Activepieces1-xrlqbe.png" alt="Activepieces1-xrlqbe.png"></p>
+<p><strong>官网</strong>： <a href="https://www.activepieces.com/">https://www.activepieces.com/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/activepieces/activepieces">https://github.com/activepieces/activepieces</a></p>
+<p><strong>GitHub Stars</strong>：约 23k</p>
+<p><strong>文档</strong>： <a href="https://www.activepieces.com/docs">https://www.activepieces.com/docs</a></p>
+<h3>产品简介</h3>
+<p>Activepieces 是一个开源 AI 自动化平台，适合搭建跨工具、跨系统的自动化流程。它可以连接 API、Webhook、数据库、表格、邮件、CRM、项目管理工具和其他第三方服务，把分散在不同工具里的操作组合成可复用的 workflow。</p>
+<p>Activepieces 和 WorkBuddy 的组合，更适合处理“指令从办公入口发起，动作在多个系统里完成”的场景。WorkBuddy 可以接收用户在企业微信、飞书、钉钉等入口发出的需求，Activepieces 则负责执行背后的流程，比如读取数据、调用接口、同步记录、发送通知或触发后续任务。</p>
+<h3>核心优势</h3>
+<ul>
+<li><strong>跨工具连接能力强</strong>：适合把 API、Webhook、数据库和第三方应用连接起来，减少重复手动操作。</li>
+<li><strong>适合自动化流程沉淀</strong>：线索同步、通知推送、表格更新、任务分派、数据整理等流程，都可以沉淀成固定 workflow。</li>
+<li><strong>支持自托管</strong>：企业可以在自己的环境中部署，更容易管理密钥、数据和执行日志。</li>
+<li><strong>贴近 AI Agent 调用方式</strong>：Activepieces 的 pieces 可以作为 MCP servers 使用，更适合和 Agent 工具形成组合。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Activepieces2-6x447z.png" alt="Activepieces2-6x447z.png"></p>
+<h3>和 WorkBuddy 搭配的典型使用场景</h3>
+<p>Activepieces 适合处理跨系统自动化。比如官网表单、客服反馈、GitHub Issue、销售线索分散在不同工具里，团队可以先用 Activepieces 配好数据读取、去重、分类和同步流程。之后通过 WorkBuddy 发起一句指令，例如“整理今天新增线索，并按来源和优先级分组”，结果就可以返回到群聊、文档或表格中。</p>
+<h2 id="zh-4">3. Twenty：适合搭建可自托管的 CRM 数据层</h2>
+<p><img src="https://static-docs.nocobase.com/Twenty-tqe8g2.png" alt="Twenty-tqe8g2.png"></p>
+<p><strong>官网</strong>： <a href="https://twenty.com/">https://twenty.com/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/twentyhq/twenty">https://github.com/twentyhq/twenty</a></p>
+<p><strong>GitHub Stars</strong>：49k</p>
+<p><strong>文档</strong>： <a href="https://twenty.com/developers">https://twenty.com/developers</a></p>
+<h3>产品简介</h3>
+<p>Twenty 是一个开源 CRM，官方将其定位为 Salesforce 的开源替代方案。它适合管理公司、联系人、客户关系、商机、任务、备注和销售流程，也适合技术团队根据自身业务流程进行定制。</p>
+<p>如果企业希望保留客户数据的可控性，又不想完全依赖封闭式 CRM，Twenty 可以作为 WorkBuddy 背后的客户数据层。客户、商机和销售跟进记录沉淀在 Twenty 中，WorkBuddy 则负责在办公入口中接收查询、整理和提醒类需求。</p>
+<h3>核心优势</h3>
+<ul>
+<li><strong>专注 CRM 场景</strong>：更适合客户管理、商机跟进、销售任务和客户资料整理。</li>
+<li><strong>开源可自托管</strong>：企业可以更好地控制客户数据、系统环境和后续定制空间。</li>
+<li><strong>适合技术团队定制</strong>：可以围绕企业自己的销售流程调整对象、字段和业务结构。</li>
+<li><strong>业务对象更集中</strong>：相比通用型内部工具，Twenty 的数据结构更贴近销售团队的日常工作。</li>
+</ul>
+<h3>和 WorkBuddy 搭配的典型使用场景</h3>
+<p>销售团队可以在 Twenty 中维护客户资料、公司信息、商机阶段、跟进记录和下一步动作。销售负责人需要查看重点客户时，不一定要进入 CRM 后台逐项筛选，可以通过 WorkBuddy 发起查询，比如“找出 7 天没有跟进的高价值客户”“整理本周新增商机”“列出金额较高但没有下一步动作的 Deal”。</p>
+<p>Twenty 负责保存和管理销售数据，WorkBuddy 负责把查询结果整理成跟进清单、提醒摘要或周报。这样，团队可以更快发现需要优先处理的客户和商机，也能减少销售数据沉在 CRM 后台却无人及时查看的问题。</p>
+<h2 id="zh-5">4. Plane：适合让 WorkBuddy 读取项目状态和任务进展</h2>
+<p><img src="https://static-docs.nocobase.com/Plane1-a68yj9.png" alt="Plane1-a68yj9.png"></p>
+<p><strong>官网</strong>： <a href="https://plane.so/">https://plane.so/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/makeplane/plane">https://github.com/makeplane/plane</a></p>
+<p><strong>GitHub Stars</strong>：49.8k</p>
+<p><strong>文档</strong>： <a href="https://docs.plane.so/">https://docs.plane.so/</a></p>
+<h3>产品简介</h3>
+<p>Plane 是一个开源项目管理工具，适合追踪 Issues、管理 Cycles、维护 Roadmap，并沉淀项目文档和团队任务。它更适合产品、研发、项目管理等团队，用来管理版本计划、任务状态、项目风险和协作节奏。</p>
+<p>Plane 官方也强调了 teams and agents 的协作方向。放在 WorkBuddy 的场景里，Plane 可以作为项目协作层：项目、任务、负责人、状态、优先级和版本计划沉淀在 Plane 中，WorkBuddy 则把这些状态带到团队日常办公入口中。</p>
+<p><img src="https://static-docs.nocobase.com/Plane2-ojwlpm.png" alt="Plane2-ojwlpm.png"></p>
+<h3>核心优势</h3>
+<ul>
+<li><strong>适合项目和研发协作</strong>：可以管理 Issues、Cycles、Roadmap、文档和团队任务。</li>
+<li><strong>任务状态更清晰</strong>：适合追踪优先级、负责人、版本计划和延期风险。</li>
+<li><strong>支持自托管</strong>：对需要掌握项目数据和研发信息的团队更友好。</li>
+<li><strong>适合和 Agent 组合</strong>：Plane 本身已经强调 teams and agents 的协作空间，适合围绕任务推进、项目状态和知识沉淀形成组合。</li>
+</ul>
+<h3>和 WorkBuddy 搭配的典型使用场景</h3>
+<p>产品经理可以在飞书中让 WorkBuddy 查询“这个版本还有哪些 P0 问题没有关闭”；项目负责人可以查询“本周延期的任务有哪些，分别卡在哪个负责人”；研发负责人也可以让 WorkBuddy 按模块整理高优先级 Issue。</p>
+<p>在这个场景里，Plane 负责记录项目、Issue、Roadmap 和负责人信息；WorkBuddy 负责从办公入口发起查询，并将结果整理成摘要或提醒。对于任务多、版本节奏快、需要频繁同步状态的团队，这种组合可以减少来回打开项目后台查状态的成本。</p>
+<h2 id="zh-6">5. Directus：适合把现有数据库变成可调用的数据接口</h2>
+<p><img src="https://static-docs.nocobase.com/Directus1-x5gl6h.png" alt="Directus1-x5gl6h.png"></p>
+<p><strong>官网</strong>： <a href="https://directus.io/">https://directus.io/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p><strong>GitHub Stars</strong>：34.2k</p>
+<p><strong>文档</strong>： <a href="https://directus.io/docs">https://directus.io/docs</a></p>
+<h3>产品简介</h3>
+<p>Directus 是一个开源数据平台，可以在 SQL 数据库之上生成管理界面、REST API 和 GraphQL API。它适合那些已经有数据库，但缺少友好后台、标准接口或统一数据访问层的团队。</p>
+<p>很多企业并不是没有数据，而是数据分散在旧系统、数据库表或多个内部应用里。直接让 Agent 访问数据库风险较高，让业务人员写 SQL 也不现实。Directus 可以在数据库和 WorkBuddy 之间增加一层 API 与权限管理，让已有数据更容易被查询、整理和调用。</p>
+<h3>核心优势</h3>
+<ul>
+<li><strong>连接现有 SQL 数据库</strong>：适合把已有数据库包装成更易用的数据服务。</li>
+<li><strong>自动生成 API</strong>：可以通过 REST、GraphQL 或 SDK 访问数据。</li>
+<li><strong>提供数据管理界面</strong>：不仅是 API 层，也可以作为数据后台使用。</li>
+<li><strong>适合渐进式改造</strong>：企业不一定要重做整个系统，可以先把关键数据表通过 Directus 暴露出来。</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Directus2-9ia8ca.png" alt="Directus2-9ia8ca.png"></p>
+<h3>和 WorkBuddy 搭配的典型使用场景</h3>
+<p>比如企业已经有客户数据库、订单数据库、库存表或内容素材库，但这些数据分散在旧系统里，业务人员很难快速查询。企业可以先用 Directus 接入关键数据表，配置权限和 API，再让 WorkBuddy 通过接口查询数据。</p>
+<p>员工可以在办公入口中发起指令，例如“查一下今天新增订单”“找出库存低于安全线的商品”“整理某个客户最近 3 次交易记录”。Directus 负责提供 API 和权限边界，WorkBuddy 负责把自然语言需求转成查询任务，并将结果整理成更容易阅读的摘要。</p>
+<h2 id="zh-7">6. Metabase：适合让 WorkBuddy 读取报表和业务指标</h2>
+<p><img src="https://static-docs.nocobase.com/Metabase-uupms9.png" alt="Metabase-uupms9.png"></p>
+<p><strong>官网</strong>： <a href="https://www.metabase.com/">https://www.metabase.com/</a></p>
+<p><strong>GitHub</strong>： <a href="https://github.com/metabase/metabase">https://github.com/metabase/metabase</a></p>
+<p><strong>GitHub Stars</strong>：47k</p>
+<p><strong>文档</strong>： <a href="https://www.metabase.com/docs">https://www.metabase.com/docs</a></p>
+<h3>产品简介</h3>
+<p>Metabase 是一个开源 BI 工具，适合搭建数据看板、业务报表和自助分析。它可以连接数据库，让团队围绕销售、运营、产品、财务、客服等数据建立指标体系和 Dashboard。</p>
+<p>如果说 Directus 更适合把数据库变成 API，Metabase 更适合把数据变成业务问题和指标看板。和 WorkBuddy 搭配时，Metabase 可以承担数据分析层，让管理者通过办公入口获取关键指标和业务摘要。</p>
+<h3>核心优势</h3>
+<ul>
+<li><strong>适合业务数据分析</strong>：可以连接数据库，搭建 Dashboard、图表和报表。</li>
+<li><strong>降低数据查询门槛</strong>：业务人员可以通过可视化界面查看指标，不一定要写 SQL。</li>
+<li><strong>适合管理层和运营团队</strong>：常见场景包括销售看板、渠道分析、用户增长、工单趋势和库存分析。</li>
+<li><strong>具备 API 能力</strong>：Metabase 提供 API，可用于自动化部分后台任务和数据查询场景。</li>
+</ul>
+<h3>和 WorkBuddy 搭配的典型使用场景</h3>
+<p>管理者不一定每天打开 BI 系统翻看多个 Dashboard，但通常需要快速了解关键变化。比如“本周销售额和上周相比有什么变化”“今天新增注册用户来自哪些渠道”“哪个产品线的工单量上升最快”“转化率下降最明显的页面是哪几个”。所以 Metabase 和 WorkBuddy 的组合，很适合做经营数据摘要</p>
+<p>Metabase 负责连接数据库、沉淀指标和看板；WorkBuddy 负责把这些指标带到企业微信、飞书或钉钉中。用户可以直接在办公入口发起问题，由 WorkBuddy 调用相关报表或数据接口，再返回结构化摘要。</p>
+<h2 id="zh-8">FAQ</h2>
+<h3>1. WorkBuddy 可以直接对接传统 SaaS、ERP 或 CRM 吗？</h3>
+<p>可以，但取决于系统本身是否开放 API、Webhook、插件、MCP 或其他可调用能力。</p>
+<p>很多传统 SaaS、ERP、CRM 的数据结构和流程规则相对固定。系统本身可以使用，但字段关系、接口能力、权限边界和审计记录不一定适合直接开放给 Agent 调用。</p>
+<p>如果只是做简单查询、通知或数据同步，传统系统也可以通过 API 或集成平台完成部分对接。但如果企业希望围绕客户、订单、审批、工单、库存、项目等对象灵活配置数据、权限和流程，开源工具或可自托管平台通常更适合作为能力承载层。</p>
+<h3>2. 为什么适合选择开源工具搭配 WorkBuddy？</h3>
+<p>开源工具通常更适合需要自托管、数据可控、接口开放和长期扩展的团队。</p>
+<p>企业可以更清楚地掌握数据存放位置、系统权限、接口调用方式和操作日志，也可以根据自身需求做二次开发或系统集成。对于涉及客户信息、项目数据、订单记录、经营指标和内部流程的场景，这种可控性会更重要。</p>
+<p>WorkBuddy 负责办公入口和任务调度，开源工具负责承载业务系统、自动化流程、CRM、项目管理、数据 API、BI 分析等能力。两者配合后，企业可以把日常办公入口和具体业务系统连接起来。</p>
+<h3>3. 如果要搭建系统级内部工具，优先看哪个？</h3>
+<p><strong>NocoBase</strong>。</p>
+<p>如果企业要搭建 CRM、ERP、工单系统、审批系统、库存管理、项目管理或运营后台，NocoBase 更适合作为系统级内部工具平台。它采用数据模型驱动架构，适合先定义客户、订单、工单、审批、库存、项目等业务对象，再配置页面、权限、工作流和插件能力。</p>
+<p>同时，NocoBase 已经公开提供 WorkBuddy 接入文档，和本文主题更直接。对于需要承载复杂业务数据、权限边界和流程规则的团队来说，NocoBase 比单一 CRM、单一自动化工具或单一 BI 工具覆盖面更广。</p>
+<h3>4. 如果主要想做看板监测和经营数据分析，应该选哪个？</h3>
+<p><strong>Metabase</strong>。</p>
+<p>Metabase 更适合连接数据库、搭建 Dashboard、维护业务指标和生成数据报表。销售看板、渠道分析、用户增长、工单趋势、库存变化、转化率变化等场景，都比较适合放在 Metabase 中管理。</p>
+<p>搭配 WorkBuddy 后，管理者可以在办公入口中查询关键指标，例如“本周销售额和上周相比有什么变化”“今天新增用户主要来自哪些渠道”“哪个产品线的工单量上升最快”。Metabase 负责沉淀指标和看板，WorkBuddy 负责发起查询并返回结构化摘要。</p>
+<h3>5. 如果企业已有数据库，但缺少统一查询入口，应该怎么做？</h3>
+<p>很多企业已经有客户数据库、订单数据库、库存表或内容素材库，但数据分散在旧系统或内部数据库里。业务人员想查数据，往往需要进入多个后台，或者让技术同事临时导出。</p>
+<p>Directus 可以在 SQL 数据库之上生成管理界面、REST API 和 GraphQL API，相当于为已有数据库增加一层更清晰的数据访问入口。搭配 WorkBuddy 后，员工可以通过办公入口查询“今天新增订单”“库存低于安全线的商品”“某个客户最近 3 次交易记录”等信息。</p>
+<h3>6. 使用 WorkBuddy 搭配开源工具，需要技术团队参与吗？</h3>
+<p>需要看使用深度。</p>
+<p>如果只是做简单查询、提醒、信息整理或报表摘要，业务团队可以先从现有工具能力开始尝试。但如果要让 WorkBuddy 与内部系统形成稳定配合，例如调用接口、配置权限、设计工作流、管理密钥、保留操作日志，就需要 IT 或开发团队参与。</p>
+<p>比较稳妥的方式是先从低风险、高频场景开始，比如客户跟进清单、项目进度摘要、逾期工单提醒、经营数据看板、库存异常查询。流程稳定后，再逐步扩展到更复杂的系统操作和跨工具自动化。</p>
+<h3>7. 什么情况下适合选择 WorkBuddy？</h3>
+<p>如果团队主要在微信、QQ、企业微信、飞书、钉钉等入口中协作，并且希望用 AI Agent 处理文件整理、表格分析、PPT 生成、会议总结、任务分发等日常办公任务，WorkBuddy 会是比较合适的选择。</p>
+<p>如果企业还希望进一步连接内部工具、CRM、项目管理、数据看板、自动化流程等系统，就可以考虑用 WorkBuddy 作为任务入口，再搭配 NocoBase、Activepieces、Twenty这类开源工具，补充具体的业务系统和数据能力。</p>
+<p>如果这篇内容对你有帮助，也欢迎分享给正在关注 AI Agent 的朋友。</p>
+<p><strong>相关阅读</strong>：</p>
+<ul>
+<li><strong><a href="../blog/6-github-top-open-source-ai-tools-for-ai-agents.html">GitHub 上 Stars 最多的 6 个开源 AI 工具：让 AI Agent 更强大</a></strong></li>
+<li><strong><a href="../blog/open-source-internal-tools-self-hosted-ai-agent-hermes.html">用 Hermes 提升内部工具效率：5 个开源项目推荐</a></strong></li>
+<li><strong><a href="../blog/openclaw-open-source-enterprise-tools.html">OpenClaw 如何用于真实业务？推荐 5 个开源工具</a></strong></li>
+<li><strong><a href="../blog/opencode-open-source-tools-ai-agents.html">OpenCode 可以搭配哪些开源工具？5 个适合 AI Agent 的开源项目</a></strong></li>
+<li><strong><a href="../blog/building-internal-tools-with-codex.html">别让 Codex 从零生成应用：6 个可组合的开源项目</a></strong></li>
+<li><strong><a href="../blog/open-source-tools-after-claude-code.html">在用 Claude Code 之后，你需要这 6 个开源工具</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-enterprise-software-development.html">10 个适合企业软件开发的开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/8-open-source-ai-agent-platforms-for-internal-tools.html">企业内部工具必备：8大开源 AI Agent 平台对比</a></strong></li>
+<li><strong><a href="../blog/the-best-self-hosted-crm-for-enterprise-teams.html">企业级自托管 CRM 推荐（支持 RBAC、AI 和 API）</a></strong></li>
+<li><strong><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">告别自研中间件：6个开源系统集成工具推荐</a></strong></li>
+<li><strong><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Airtable 与 NocoBase：从Excel迁移的真实成本对比</a></strong></li>
+<li><strong><a href="../blog/excel-to-web-app-4-methods.html">为 Excel 数据快速构建 Web 应用：4 种方法对比</a></strong></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">What is WorkBuddy?</h2>
+<p>WorkBuddy is an AI workspace for workplace tasks launched by Tencent. It is mainly designed for enterprise office work, file processing, data analysis, and multi-step task handling.<img src="https://static-docs.nocobase.com/WorkBuddy-8xxz2q.png" alt="WorkBuddy-8xxz2q.png"></p>
+<p>Compared with tools like OpenClaw, Claude Code, and Codex, WorkBuddy has a different focus. OpenClaw emphasizes open Agent capabilities and a cross-platform skill ecosystem. Claude Code and Codex are better suited for code generation, development collaboration, and engineering tasks. WorkBuddy is more focused on workplace scenarios. It can connect to common communication and collaboration tools such as WeChat, QQ, WeCom, Feishu, and DingTalk, allowing users to start tasks from familiar work entry points.</p>
+<p>If a team wants to connect more deeply with enterprise business systems and internal workflows, WorkBuddy can also serve as the AI task entry point and orchestration layer. WorkBuddy receives instructions, breaks down tasks, and returns results. Open source tools provide the underlying business systems, automation workflows, CRM, project management, data APIs, and BI analytics capabilities.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p>This article introduces several open source tools that work well with WorkBuddy. We will look at what capabilities they can provide for enterprises and what typical scenarios they can cover when combined with WorkBuddy.</p>
+<h2 id="en-2">1. NocoBase: suitable for building custom business systems that WorkBuddy can call</h2>
+<p><img src="https://static-docs.nocobase.com/NocoBase1-vpe2x5.png" alt="NocoBase1-vpe2x5.png"></p>
+<p><strong>Official website</strong>: <a href="https://www.nocobase.com/">https://www.nocobase.com/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><strong>GitHub Stars</strong>: 22.3k</p>
+<p><strong>Documentation</strong>: <a href="https://docs.nocobase.com/">https://docs.nocobase.com/</a></p>
+<p><strong>Related resources</strong>:</p>
+<p>CLI: <a href="https://docs.nocobase.com/en/api/cli/">https://docs.nocobase.com/en/api/cli/</a></p>
+<p>Skills: <a href="https://docs.nocobase.com/en/ai-builder#nocobase-skills">https://docs.nocobase.com/en/ai-builder#nocobase-skills</a></p>
+<p>MCP: <a href="https://docs.nocobase.com/en/ai/mcp/">https://docs.nocobase.com/en/ai/mcp/</a></p>
+<p>WorkBuddy + NocoBase: <a href="https://docs.nocobase.com/en/ai/workbuddy">https://docs.nocobase.com/en/ai/workbuddy</a></p>
+<h3>Product introduction</h3>
+<p>NocoBase is an AI-powered open source no-code / low-code development platform for quickly building enterprise applications, internal tools, and various business systems. It supports private deployment and is built on a plugin-based architecture, making it suitable for enterprises to build CRM, ERP, approval systems, ticketing systems, inventory systems, project management systems, operations backends, and other systems based on their own business needs.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase2-t4x1fo.png" alt="NocoBase2-t4x1fo.png"></p>
+<p>For teams that want to connect WorkBuddy to internal tools, NocoBase is better suited as the business application layer. It provides stable data structures, permission boundaries, process rules, and callable system capabilities.</p>
+<p>NocoBase also designs its AI capabilities around real business systems. It supports AI Employees, AI Skills, CLI, MCP, and more. AI Employees can act as intelligent assistants inside the system and help with data queries, content generation, task handling, and other work. AI Skills help external Agents understand how NocoBase is configured and what they can and cannot operate on. The CLI lets Agents execute installation, creation, modification, and other operations through commands. MCP provides a more standard entry point for external AI tools to connect to NocoBase.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase3-ejtyuu.png" alt="NocoBase3-ejtyuu.png"></p>
+<h3>Core advantages</h3>
+<ul>
+<li><strong>Data model driven</strong>: NocoBase supports defining data tables, fields, and relationships first, then building pages and interactions. This makes it more suitable for complex business systems than simple form collection.</li>
+<li><strong>Suitable for private deployment</strong>: Enterprises can deploy the system on their own servers, making it better suited for internal systems with requirements for data security, permission control, and long-term maintenance.</li>
+<li><strong>Complete permission and workflow capabilities</strong>: It supports role permissions, field permissions, data permissions, and operation permissions. Workflows can also handle approvals, notifications, data updates, Webhooks, HTTP requests, and other processes.</li>
+<li><strong>Flexible plugin architecture</strong>: NocoBase uses a plugin-based microkernel architecture. Features can be extended through plugins, making it suitable for enterprises that need to customize business logic beyond standard capabilities.</li>
+<li><strong>AI capabilities closer to business systems</strong>: NocoBase supports AI Employees, AI Skills, knowledge bases, and other capabilities. These can work around pages, data tables, selected records, and business rules.</li>
+</ul>
+<h3>Typical use cases with WorkBuddy</h3>
+<p>In many scenarios, WorkBuddy receives instructions, breaks down tasks, and returns results, while NocoBase provides specific business objects and system capabilities, such as customers, orders, approvals, tickets, inventory, and projects.</p>
+<p><img src="https://static-docs.nocobase.com/NocoBase4-ono1dm.png" alt="NocoBase4-ono1dm.png"></p>
+<p>Here are 3 common scenarios:</p>
+<p><strong>CRM</strong> Enterprises can use NocoBase to build a customer management system and centrally maintain customer profiles, follow-up status, customer tiers, owners, contract amounts, and other information. Sales managers can send instructions directly from WeCom or Feishu and ask WorkBuddy to query recently added customers, leads that have not been followed up for a long time, and key customers. NocoBase provides customer data, permissions, and filtering logic. AI Employees or related Skills can further help organize follow-up priorities, generate customer summaries, or create sales to-do lists.</p>
+<p><strong>Ticket management</strong> In after-sales or operations teams, NocoBase can record ticket status, issue type, priority, handler, and deadline. During daily checks or weekly reviews, teams can ask WorkBuddy to summarize overdue tickets, high-priority issues, and pending items, then classify them by owner, urgency, or issue type, making it easier to confirm the handling order.</p>
+<p><strong>Project management</strong> For managers, approvals and project progress are often scattered across multiple nodes. NocoBase can manage approval workflows, project milestones, owners, risks, and progress status. WorkBuddy can extract pending approvals, delayed tasks, and project risks based on instructions, then generate summaries by department, owner, or priority.</p>
+<h2 id="en-3">2. Activepieces: suitable for connecting WorkBuddy to more automation workflows</h2>
+<p><img src="https://static-docs.nocobase.com/Activepieces1-xrlqbe.png" alt="Activepieces1-xrlqbe.png"></p>
+<p><strong>Official website</strong>: <a href="https://www.activepieces.com/">https://www.activepieces.com/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/activepieces/activepieces">https://github.com/activepieces/activepieces</a></p>
+<p><strong>GitHub Stars</strong>: about 23k</p>
+<p><strong>Documentation</strong>: <a href="https://www.activepieces.com/docs">https://www.activepieces.com/docs</a></p>
+<h3>Product introduction</h3>
+<p>Activepieces is an open source AI automation platform for building automation workflows across tools and systems. It can connect APIs, Webhooks, databases, spreadsheets, email, CRM, project management tools, and other third-party services, turning operations scattered across different tools into reusable workflows.</p>
+<p>Activepieces works well with WorkBuddy in scenarios where instructions start from an office entry point and actions happen across multiple systems. WorkBuddy can receive requests from WeCom, Feishu, DingTalk, and other work entry points. Activepieces then executes the underlying workflow, such as reading data, calling APIs, syncing records, sending notifications, or triggering follow-up tasks.</p>
+<h3>Core advantages</h3>
+<ul>
+<li><strong>Strong cross-tool connectivity</strong>: Suitable for connecting APIs, Webhooks, databases, and third-party applications, reducing repetitive manual work.</li>
+<li><strong>Suitable for turning automation into reusable workflows</strong>: Processes such as lead syncing, notification pushing, spreadsheet updates, task assignment, and data organization can be turned into fixed workflows.</li>
+<li><strong>Supports self-hosting</strong>: Enterprises can deploy it in their own environment, making it easier to manage keys, data, and execution logs.</li>
+<li><strong>Close to how AI Agents call tools</strong>: Activepieces pieces can be used as MCP servers, making it easier to combine with Agent tools.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Activepieces2-6x447z.png" alt="Activepieces2-6x447z.png"></p>
+<h3>Typical use cases with WorkBuddy</h3>
+<p>Activepieces is suitable for cross-system automation. For example, website forms, customer support feedback, GitHub Issues, and sales leads may be scattered across different tools. Teams can first use Activepieces to configure workflows for data reading, deduplication, classification, and syncing. Then, with a simple WorkBuddy instruction such as “organize today’s new leads and group them by source and priority,” the result can be returned to a group chat, document, or spreadsheet.</p>
+<h2 id="en-4">3. Twenty: suitable for building a self-hosted CRM data layer</h2>
+<p><img src="https://static-docs.nocobase.com/Twenty-tqe8g2.png" alt="Twenty-tqe8g2.png"></p>
+<p><strong>Official website</strong>: <a href="https://twenty.com/">https://twenty.com/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/twentyhq/twenty">https://github.com/twentyhq/twenty</a></p>
+<p><strong>GitHub Stars</strong>: 49k</p>
+<p><strong>Documentation</strong>: <a href="https://twenty.com/developers">https://twenty.com/developers</a></p>
+<h3>Product introduction</h3>
+<p>Twenty is an open source CRM, officially positioned as an open source alternative to Salesforce. It is suitable for managing companies, contacts, customer relationships, opportunities, tasks, notes, and sales processes. Technical teams can also customize it based on their own business processes.</p>
+<p>If an enterprise wants to keep customer data under control and avoid relying completely on a closed CRM, Twenty can serve as the customer data layer behind WorkBuddy. Customer records, opportunities, and sales follow-up records are stored in Twenty, while WorkBuddy receives query, organization, and reminder requests from workplace entry points.</p>
+<h3>Core advantages</h3>
+<ul>
+<li><strong>Focused on CRM scenarios</strong>: Better suited for customer management, opportunity follow-up, sales tasks, and customer data organization.</li>
+<li><strong>Open source and self-hostable</strong>: Enterprises can better control customer data, system environments, and future customization.</li>
+<li><strong>Suitable for technical teams to customize</strong>: Objects, fields, and business structures can be adjusted around the enterprise’s own sales process.</li>
+<li><strong>More focused business objects</strong>: Compared with general-purpose internal tools, Twenty’s data structure is closer to the daily work of sales teams.</li>
+</ul>
+<h3>Typical use cases with WorkBuddy</h3>
+<p>Sales teams can maintain customer profiles, company information, opportunity stages, follow-up records, and next actions in Twenty. When sales managers need to view key customers, they do not necessarily need to enter the CRM backend and filter records one by one. They can initiate queries through WorkBuddy, such as “find high-value customers who have not been followed up for 7 days,” “organize new opportunities this week,” or “list high-value deals with no next action.”</p>
+<p>Twenty stores and manages sales data. WorkBuddy organizes query results into follow-up lists, reminder summaries, or weekly reports. This helps teams quickly identify customers and opportunities that need priority handling, and reduces the risk that sales data stays buried in the CRM backend without timely review.</p>
+<h2 id="en-5">4. Plane: suitable for letting WorkBuddy read project status and task progress</h2>
+<p><img src="https://static-docs.nocobase.com/Plane1-a68yj9.png" alt="Plane1-a68yj9.png"></p>
+<p><strong>Official website</strong>: <a href="https://plane.so/">https://plane.so/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/makeplane/plane">https://github.com/makeplane/plane</a></p>
+<p><strong>GitHub Stars</strong>: 49.8k</p>
+<p><strong>Documentation</strong>: <a href="https://docs.plane.so/">https://docs.plane.so/</a></p>
+<h3>Product introduction</h3>
+<p>Plane is an open source project management tool for tracking Issues, managing Cycles, maintaining Roadmaps, and storing project documents and team tasks. It is better suited for product, engineering, and project management teams to manage release plans, task status, project risks, and collaboration rhythm.</p>
+<p>Plane also officially emphasizes collaboration between teams and agents. In the WorkBuddy scenario, Plane can serve as the project collaboration layer: projects, tasks, owners, status, priority, and release plans are stored in Plane, while WorkBuddy brings these statuses into the team’s daily work entry points.</p>
+<p><img src="https://static-docs.nocobase.com/Plane2-ojwlpm.png" alt="Plane2-ojwlpm.png"></p>
+<h3>Core advantages</h3>
+<ul>
+<li><strong>Suitable for product and engineering collaboration</strong>: It can manage Issues, Cycles, Roadmaps, documents, and team tasks.</li>
+<li><strong>Clearer task status</strong>: Suitable for tracking priority, owner, release plans, and delay risks.</li>
+<li><strong>Supports self-hosting</strong>: More suitable for teams that need control over project data and engineering information.</li>
+<li><strong>Suitable for use with Agents</strong>: Plane already emphasizes the collaboration space for teams and agents, making it suitable for combinations around task progress, project status, and knowledge accumulation.</li>
+</ul>
+<h3>Typical use cases with WorkBuddy</h3>
+<p>Product managers can ask WorkBuddy in Feishu, “Which P0 issues in this release are still open?” Project owners can ask, “Which tasks are delayed this week, and who are they blocked on?” Engineering leads can also ask WorkBuddy to organize high-priority Issues by module.</p>
+<p>In this scenario, Plane records projects, Issues, Roadmaps, and owner information. WorkBuddy initiates queries from the workplace entry point and organizes the results into summaries or reminders. For teams with many tasks, fast release cycles, and frequent status synchronization needs, this combination can reduce the cost of repeatedly opening the project backend to check status.</p>
+<h2 id="en-6">5. Directus: suitable for turning existing databases into callable data interfaces</h2>
+<p><img src="https://static-docs.nocobase.com/Directus1-x5gl6h.png" alt="Directus1-x5gl6h.png"></p>
+<p><strong>Official website</strong>: <a href="https://directus.io/">https://directus.io/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p><strong>GitHub Stars</strong>: 34.2k</p>
+<p><strong>Documentation</strong>: <a href="https://directus.io/docs">https://directus.io/docs</a></p>
+<h3>Product introduction</h3>
+<p>Directus is an open source data platform that can generate a management interface, REST API, and GraphQL API on top of SQL databases. It is suitable for teams that already have databases but lack a user-friendly backend, standard interfaces, or a unified data access layer.</p>
+<p>Many enterprises do not lack data. The problem is that data is scattered across legacy systems, database tables, or multiple internal applications. Letting an Agent access a database directly is relatively risky, and asking business users to write SQL is unrealistic. Directus can add an API and permission management layer between the database and WorkBuddy, making existing data easier to query, organize, and call.</p>
+<h3>Core advantages</h3>
+<ul>
+<li><strong>Connects to existing SQL databases</strong>: Suitable for wrapping existing databases into easier-to-use data services.</li>
+<li><strong>Automatically generates APIs</strong>: Data can be accessed through REST, GraphQL, or SDKs.</li>
+<li><strong>Provides a data management interface</strong>: It is not only an API layer, but can also be used as a data backend.</li>
+<li><strong>Suitable for progressive modernization</strong>: Enterprises do not need to rebuild the whole system. They can first expose key data tables through Directus.</li>
+</ul>
+<p><img src="https://static-docs.nocobase.com/Directus2-9ia8ca.png" alt="Directus2-9ia8ca.png"></p>
+<h3>Typical use cases with WorkBuddy</h3>
+<p>For example, an enterprise may already have customer databases, order databases, inventory tables, or content asset libraries, but the data is scattered across legacy systems, making it difficult for business users to query quickly. The enterprise can first use Directus to connect key data tables, configure permissions and APIs, and then let WorkBuddy query the data through interfaces.</p>
+<p>Employees can initiate requests from workplace entry points, such as “check today’s new orders,” “find products whose inventory is below the safety stock level,” or “summarize the last 3 transactions of a customer.” Directus provides APIs and permission boundaries. WorkBuddy turns natural language requests into query tasks and organizes the results into easier-to-read summaries.</p>
+<h2 id="en-7">6. Metabase: suitable for letting WorkBuddy read reports and business metrics</h2>
+<p><img src="https://static-docs.nocobase.com/Metabase-uupms9.png" alt="Metabase-uupms9.png"></p>
+<p><strong>Official website</strong>: <a href="https://www.metabase.com/">https://www.metabase.com/</a></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/metabase/metabase">https://github.com/metabase/metabase</a></p>
+<p><strong>GitHub Stars</strong>: 47k</p>
+<p><strong>Documentation</strong>: <a href="https://www.metabase.com/docs">https://www.metabase.com/docs</a></p>
+<h3>Product introduction</h3>
+<p>Metabase is an open source BI tool for building data dashboards, business reports, and self-service analytics. It can connect to databases, allowing teams to build metric systems and dashboards around sales, operations, product, finance, customer support, and other data.</p>
+<p>If Directus is better suited for turning databases into APIs, Metabase is better suited for turning data into business questions and metric dashboards. When used with WorkBuddy, Metabase can serve as the data analytics layer, allowing managers to get key metrics and business summaries through workplace entry points.</p>
+<h3>Core advantages</h3>
+<ul>
+<li><strong>Suitable for business data analysis</strong>: It can connect to databases and build dashboards, charts, and reports.</li>
+<li><strong>Lowers the barrier to data queries</strong>: Business users can view metrics through visual interfaces and do not necessarily need to write SQL.</li>
+<li><strong>Suitable for management and operations teams</strong>: Common scenarios include sales dashboards, channel analysis, user growth, ticket trends, and inventory analysis.</li>
+<li><strong>Provides API capabilities</strong>: Metabase provides APIs that can be used to automate some backend tasks and data query scenarios.</li>
+</ul>
+<h3>Typical use cases with WorkBuddy</h3>
+<p>Managers do not necessarily open BI systems every day to browse multiple dashboards, but they usually need to quickly understand key changes. For example, “How did this week’s sales revenue change compared with last week?” “Which channels did today’s new registered users come from?” “Which product line had the fastest increase in ticket volume?” “Which pages had the most obvious drop in conversion rate?” This makes the combination of Metabase and WorkBuddy well suited for business data summaries.</p>
+<p>Metabase connects databases and stores metrics and dashboards. WorkBuddy brings these metrics into WeCom, Feishu, or DingTalk. Users can ask questions directly from workplace entry points, and WorkBuddy can call the relevant reports or data interfaces, then return structured summaries.</p>
+<h2 id="en-8">FAQ</h2>
+<h3>1. Can WorkBuddy directly connect to traditional SaaS, ERP, or CRM?</h3>
+<p>Yes, but it depends on whether the system itself provides APIs, Webhooks, plugins, MCP, or other callable capabilities.</p>
+<p>Many traditional SaaS, ERP, and CRM systems have relatively fixed data structures and process rules. The systems can be used, but their field relationships, interface capabilities, permission boundaries, and audit records may not be suitable for direct Agent access.</p>
+<p>For simple queries, notifications, or data synchronization, traditional systems can also be connected through APIs or integration platforms. But if an enterprise wants to flexibly configure data, permissions, and workflows around objects such as customers, orders, approvals, tickets, inventory, and projects, open source tools or self-hostable platforms are usually better suited as the layer that hosts these capabilities.</p>
+<h3>2. Why choose open source tools to use with WorkBuddy?</h3>
+<p>Open source tools are usually better suited for teams that need self-hosting, data control, open interfaces, and long-term extensibility.</p>
+<p>Enterprises can better understand where data is stored, how system permissions are configured, how interfaces are called, and how operation logs are kept. They can also carry out secondary development or system integration based on their own needs. For scenarios involving customer information, project data, order records, business metrics, and internal workflows, this level of control is especially important.</p>
+<p>WorkBuddy handles the workplace entry point and task orchestration. Open source tools host capabilities such as business systems, automation workflows, CRM, project management, data APIs, and BI analytics. Together, they connect everyday workplace entry points with specific business systems.</p>
+<h3>3. If we want to build system-level internal tools, which one should we look at first?</h3>
+<p><strong>NocoBase</strong>.</p>
+<p>If an enterprise wants to build CRM, ERP, ticketing systems, approval systems, inventory management, project management, or operations backends, NocoBase is better suited as a system-level internal tool platform. It uses a data model driven architecture, making it suitable for defining business objects such as customers, orders, tickets, approvals, inventory, and projects first, and then configuring pages, permissions, workflows, and plugins.</p>
+<p>At the same time, NocoBase has already published WorkBuddy integration documentation, making it directly relevant to this topic. For teams that need to manage complex business data, permission boundaries, and workflow rules, NocoBase offers broader coverage than a single CRM, a single automation tool, or a single BI tool.</p>
+<h3>4. If the main goal is dashboard monitoring and business data analysis, which one should we choose?</h3>
+<p><strong>Metabase</strong>.</p>
+<p>Metabase is better suited for connecting databases, building dashboards, maintaining business metrics, and generating data reports. Scenarios such as sales dashboards, channel analysis, user growth, ticket trends, inventory changes, and conversion rate changes are all suitable for Metabase.</p>
+<p>When paired with WorkBuddy, managers can query key metrics from workplace entry points, such as “How did this week’s sales revenue change compared with last week?” “Which channels did today’s new users mainly come from?” and “Which product line had the fastest increase in ticket volume?” Metabase stores the metrics and dashboards, while WorkBuddy initiates queries and returns structured summaries.</p>
+<h3>5. What should an enterprise do if it already has databases but lacks a unified query entry point?</h3>
+<p>Many enterprises already have customer databases, order databases, inventory tables, or content asset libraries, but the data is scattered across legacy systems or internal databases. When business users want to query data, they often need to enter multiple backends or ask technical colleagues to export data temporarily.</p>
+<p>Directus can generate a management interface, REST API, and GraphQL API on top of SQL databases, which is equivalent to adding a clearer data access entry point for existing databases. When paired with WorkBuddy, employees can query information such as “today’s new orders,” “products whose inventory is below the safety stock level,” and “the last 3 transactions of a customer” from workplace entry points.</p>
+<h3>6. Does using WorkBuddy with open source tools require technical teams?</h3>
+<p>It depends on how deeply it is used.</p>
+<p>For simple queries, reminders, information organization, or report summaries, business teams can start with the capabilities of existing tools. But if WorkBuddy needs reliable integration with internal systems, such as calling APIs, configuring permissions, designing workflows, managing keys, and keeping operation logs, IT or development teams need to be involved.</p>
+<p>A safer approach is to start with low-risk, high-frequency scenarios, such as customer follow-up lists, project progress summaries, overdue ticket reminders, business data dashboards, and inventory exception queries. After the workflow becomes stable, it can gradually expand to more complex system operations and cross-tool automation.</p>
+<h3>7. When is WorkBuddy a good choice?</h3>
+<p>WorkBuddy is a good fit if a team mainly collaborates through WeChat, QQ, WeCom, Feishu, DingTalk, and similar entry points, and wants to use AI Agents to handle daily office tasks such as file organization, spreadsheet analysis, PPT generation, meeting summaries, and task assignment.</p>
+<p>If the enterprise also wants to further connect internal tools, CRM, project management, data dashboards, automation workflows, and other systems, it can use WorkBuddy as the task entry point, and pair it with open source tools such as NocoBase, Activepieces, and Twenty to add specific business systems and data capabilities.</p>
+<p>If this article is helpful, feel free to share it with friends who are following AI Agents.</p>
+<p><strong>Related reading</strong></p>
+<ul>
+<li><a href="../blog/6-github-top-open-source-ai-tools-for-ai-agents.html">Top 6 Open Source AI Tools by GitHub Stars for Stronger AI Agents</a></li>
+<li><a href="../blog/open-source-internal-tools-self-hosted-ai-agent-hermes.html">5 Open-Source Internal Tools to Use with Hermes Agent</a></li>
+<li><a href="../blog/openclaw-open-source-enterprise-tools.html">OpenClaw and 5 Open-Source Tools for Monitoring Business Workflows</a></li>
+<li><a href="../blog/opencode-open-source-tools-ai-agents.html">What Open-Source Tools Work Well with OpenCode? 5 Projects to Try</a></li>
+<li><a href="../blog/building-internal-tools-with-codex.html">Building Internal Tools with Codex: 6 Open-Source Projects for Developers</a></li>
+<li><a href="../blog/open-source-tools-after-claude-code.html">After Claude Code: 6 Open-Source Tools You Should Know</a></li>
+<li><a href="../blog/open-source-ai-no-code-tools-enterprise-software-development.html">Top 10 Open-Source AI And No-Code Tools for Enterprise Software Development</a></li>
+<li><a href="../blog/8-open-source-ai-agent-platforms-for-internal-tools.html">8 Open-Source AI Agent Platforms for Building Internal Tools</a></li>
+<li><a href="../blog/the-best-self-hosted-crm-for-enterprise-teams.html">The Best Enterprise-Grade Self-Hosted CRMs with RBAC, AI, and Open API Support</a></li>
+<li><a href="../blog/6-open-source-integration-tools-to-replace-custom-middleware.html">6 Best Open-Source Tools to Replace Custom Integration Middleware</a></li>
+<li><a href="../blog/airtable-vs-nocobase-migration-cost-comparison.html">Replace Excel with NocoBase or Airtable? A Cost-by-Cost Comparison</a></li>
+<li><a href="../blog/excel-to-web-app-4-methods.html">4 Ways to Quickly Build Web Apps from Excel Data</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">WorkBuddy 是什么？</a><a href="#zh-2">1. NocoBase：适合搭建可被 WorkBuddy 调用的自定义业务系统</a><a href="#zh-3">2. Activepieces：适合把 WorkBuddy 连接到更多自动化流程</a><a href="#zh-4">3. Twenty：适合搭建可自托管的 CRM 数据层</a><a href="#zh-5">4. Plane：适合让 WorkBuddy 读取项目状态和任务进展</a><a href="#zh-6">5. Directus：适合把现有数据库变成可调用的数据接口</a><a href="#zh-7">6. Metabase：适合让 WorkBuddy 读取报表和业务指标</a><a href="#zh-8">FAQ</a></div><div class="en-only"><a href="#en-1">What is WorkBuddy?</a><a href="#en-2">1. NocoBase: suitable for building custom business systems that WorkBuddy can call</a><a href="#en-3">2. Activepieces: suitable for connecting WorkBuddy to more automation workflows</a><a href="#en-4">3. Twenty: suitable for building a self-hosted CRM data layer</a><a href="#en-5">4. Plane: suitable for letting WorkBuddy read project status and task progress</a><a href="#en-6">5. Directus: suitable for turning existing databases into callable data interfaces</a><a href="#en-7">6. Metabase: suitable for letting WorkBuddy read reports and business metrics</a><a href="#en-8">FAQ</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/best-smartsheet-alternatives.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20114-fps2v0.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月23日</t-zh><t-en>Jul 23, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</t-zh><t-en>How to Choose a Smartsheet Alternative: 7 Tools Compared</t-en></h3><p><t-zh>本文对比 7 款 Smartsheet 替代品，介绍各产品的定位、核心差异、适用团队及三年使用成本，帮助团队评估更合适的项目管理与业务系统工具。</t-zh><t-en>Compare 7 Smartsheet alternatives by positioning, key differences, ideal teams, and estimated three-year costs.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-complex-relational-models.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20113%20(1)-e3gf7a.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年7月15日</t-zh><t-en>Jul 15, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>5 个适合复杂关系模型的开源 AI 无代码工具</t-zh><t-en>5 Open-Source AI No-Code Tools for Complex Relational Data Models</t-en></h3><p><t-zh>本文对比 5 款开源 AI 无代码工具，分析复杂关系模型、AI 搭建能力和企业业务系统适用场景。
+</t-zh><t-en>Compare 5 open-source AI no-code tools for complex relational models, AI capabilities, and business system use cases.
+</t-en></p></a><a class="bcard" href="../blog/open-source-ai-no-code-tools-github-9.html" data-tags="News"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%20110-xkd2sy.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>资讯</t-zh><t-en>News</t-en></span><span><t-zh>2026年6月29日</t-zh><t-en>Jun 29, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>GitHub 上值得关注的 9 个开源 AI 无代码工具</t-zh><t-en>9 Open-Source AI No-Code Tools on GitHub Worth Watching</t-en></h3><p><t-zh>盘点 GitHub 上 9 个开源 AI 无代码工具，覆盖工作流自动化、知识库、智能体编排与企业业务系统搭建。
+</t-zh><t-en>Explore 9 open-source AI no-code tools on GitHub for workflows, agents, knowledge bases, design, and business systems.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

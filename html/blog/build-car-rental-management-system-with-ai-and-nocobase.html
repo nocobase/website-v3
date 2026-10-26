@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-zh="如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例 — NocoBase" data-en="How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example — NocoBase">如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例 — NocoBase</title>
-<meta name="description" content="以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。" data-zh="以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。" data-en="See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.">
+<meta name="description" content="以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。 " data-zh="以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。 " data-en="See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.">
 <script>
 (function () {
   try {
@@ -32,7 +32,9 @@
   <header class="post-hero">
     <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
     <h1><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h1>
-    <p class="lede"><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.</t-en></p>
+    <p class="lede"><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p>
     <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div>
   </header>
   <div class="post-cover"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></div>
@@ -47,10 +49,10 @@
 <p>类似的企业业务系统均需要长期维护稳定的数据关系、权限和业务规则。如果完全从零让 Coding Agent 构建，这些通用能力同样需要逐项实现和维护。相比之下，有一套现成的应用底座，Coding Agent 就可以把更多工作集中在具体业务的建模、实现和验证上。</p>
 <p>NocoBase 正是以 <strong>App Foundation</strong> 为核心，提供数据模型、权限、工作流、界面、API 和运行机制。Coding Agent 基于这些能力完成开发和交付，人负责确认业务目标、拍板方案、验收结果并授权发布。</p>
 <p>接下来，我们就以汽车租赁系统为例，从业务建模开始，看看 Coding Agent 如何在 NocoBase 上把一组真实、相互关联的业务需求逐步变成可以持续运行和迭代的应用。</p>
-<p>💡 延伸阅读：<a href="https://www.nocobase.com/cn/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></p>
+<p>💡 延伸阅读：<a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></p>
 <h2 id="zh-1">1. 让 Coding Agent 建立完整的业务模型</h2>
 <p>开始构建前，可以先把汽车租赁的核心需求交给 Coding Agent，让它整理数据模型、业务流程、角色权限和验收标准。</p>
-<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-builder/data-modeling">数据建模 - NocoBase 文档</a></p>
+<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-builder/data-modeling">数据建模 - NocoBase 文档</a></p>
 <p>例如：</p>
 <blockquote>
 <p>我们需要管理车辆、客户、门店、员工和租赁订单。车辆涉及保险、维修和违章，订单关联客户、车辆、租赁时间和付款信息。租赁过程包括排期、交车、使用、还车、检查和结算，同时需要处理取消、逾期、维修、违章和欠款等情况。请整理核心数据关系、业务流程、角色权限和关键验收标准。</p>
@@ -62,7 +64,7 @@
 <li>异常情况对应明确的处理规则，并进一步生成可验证的条件，例如车辆不能在同一时间重复分配、维修车辆不能进入新排期、订单完成后需要正确生成应收。</li>
 </ul>
 <p>方案确认后，Coding Agent 就可以基于 NocoBase App Foundation，将这些已经确认的业务规则搭建为可运行的应用。</p>
-<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai/quick-start">如何让 Claude Code、Codex、Cursor 等 Coding Agent 接入 NocoBase</a></p>
+<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai/quick-start">如何让 Claude Code、Codex、Cursor 等 Coding Agent 接入 NocoBase</a></p>
 <h2 id="zh-2">2. Coding Agent 在 NocoBase 上完成系统构建</h2>
 <h3>2.1 将业务模型转化为实际工作页面</h3>
 <p>这些业务模型会进一步形成不同的工作页面，在这套汽车租赁系统中，主要包括：</p>
@@ -75,7 +77,7 @@
 <li><strong>运营看板</strong>：查看订单、车辆、异常和经营数据。</li>
 </ul>
 <p>这些页面使用同一套业务数据和关联关系。订单变化后，车辆状态、排期、付款和经营数据也会同步更新。</p>
-<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-builder/ui-builder">界面配置 - NocoBase 文档</a></p>
+<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-builder/ui-builder">界面配置 - NocoBase 文档</a></p>
 <h3>2.2 沿着一笔订单检查完整业务流程</h3>
 <p>应用搭建完成后，可以先用一笔订单检查主流程，重点确认订单状态变化后，车辆排期、车辆状态和付款记录是否同步更新。</p>
 <p>订单确认车辆和租赁时间后，对应时段需要进入<strong>车辆排期</strong>。已经被订单占用的车辆，不能在重叠时间段再次分配。</p>
@@ -91,7 +93,7 @@
 <p><strong>订单 → 排期 → 交车 → 租赁 → 还车 → 结算</strong></p>
 <h3>2.3 用工作流处理自动规则和跨模块联动</h3>
 <p>一些规则不需要人工反复处理，可以在满足条件时由工作流自动执行。</p>
-<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-builder/workflow">工作流管理 - NocoBase 文档</a></p>
+<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-builder/workflow">工作流管理 - NocoBase 文档</a></p>
 <p>这套系统中已经配置了逾期归还、保险和驾驶证到期、车辆维护、订单完成后生成应收，以及预约时间到达后进入提车流程等工作流。</p>
 <p><img src="https://static-docs.nocobase.com/2-3-workflow-management-m1m1uv.jpg" alt="2-3-workflow-management-m1m1uv.jpg"></p>
 <p>以违章处理为例。新增违章记录后，系统会根据车辆和违章发生时间查询当时对应的租赁订单，匹配成功后自动建立关联，方便后续确认实际用车客户和责任归属。</p>
@@ -113,7 +115,7 @@
 <h3>2.5 按照验收标准完成测试、验收和发布</h3>
 <p>系统完成后，可以按照前面确认的验收标准进行测试，检查车辆排期、状态变化、应收生成和异常处理等关键规则是否符合预期。</p>
 <p>Coding Agent 执行测试并处理发现的问题，修改后重新验证受影响的流程。关键规则通过后，由人完成验收并授权发布，再由 Coding Agent 执行发布和运行检查。</p>
-<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-builder/version-control">版本控制 - NocoBase 文档</a></p>
+<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-builder/version-control">版本控制 - NocoBase 文档</a></p>
 <p><strong>Coding Agent 实现与测试 → 人验收并授权发布 → Coding Agent 发布并检查运行结果</strong></p>
 <p>这套验收标准也可以继续保留下来。后续系统发生修改时，可以重新运行相同的检查，确认新功能是否影响已有业务规则。</p>
 <h2 id="zh-3">3. 系统上线后的使用与迭代</h2>
@@ -133,7 +135,7 @@
 <p><img src="https://static-docs.nocobase.com/3-1-dispatch-assistant-9qg1yy.png" alt="3-1-dispatch-assistant-9qg1yy.png"></p>
 <p><img src="https://static-docs.nocobase.com/3-1-dispatch-available-vehicles-0jnoz4.png" alt="3-1-dispatch-available-vehicles-0jnoz4.png"></p>
 <p>AI 员工能够读取哪些数据、调用哪些工具，以及是否允许执行具体操作，都由对应的业务权限和工具配置决定。</p>
-<p>📃 相关文档：<a href="https://nocode.docs.nocobase.com/cn/ai-employees/permission">AI 员工如何控制使用权限和数据访问权限</a></p>
+<p>📃 相关文档：<a href="https://docs.nocobase.com/cn/ai-employees/permission">AI 员工如何控制使用权限和数据访问权限</a></p>
 <h3>3.2 在现有系统上继续迭代</h3>
 <p>系统投入使用后，业务规则仍会变化，例如增加门店、调整价格、修改保险检查方式、接入新的付款方式或增加经营指标。</p>
 <p>这些需求可以重新交给 Coding Agent，并直接基于现有的数据模型、页面、权限和工作流进行修改。</p>
@@ -143,37 +145,37 @@
 <p>AI + NocoBase 的适用范围并不局限于大型企业系统。对于个人、小团队或业务部门，如果只是想快速做一个内部工具、审批应用、资产台账或简单的运营系统，也可以直接从较小的需求开始，让 Coding Agent 基于现有应用底座完成数据模型、页面和流程。</p>
 <p>如果这篇文章对你有帮助，也欢迎分享给正在关注 AI Coding、企业应用或业务系统搭建的朋友。</p>
 <p>如果你也想用 AI 和 NocoBase 搭建类似的企业应用，可以参考这些完整案例：</p>
-<p>👉 <a href="https://www.nocobase.com/cn/blog/build-production-ready-crm-with-ai-and-nocobase">AI + NocoBase 搭建 CRM</a></p>
-<p>👉 <a href="https://www.nocobase.com/cn/blog/build-it-operations-system-with-ai-nocobase">AI + NocoBase 搭建企业 IT 运维系统</a></p>
+<p>👉 <a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">AI + NocoBase 搭建 CRM</a></p>
+<p>👉 <a href="../blog/build-it-operations-system-with-ai-nocobase.html">AI + NocoBase 搭建企业 IT 运维系统</a></p>
 <p><strong>相关阅读</strong>：</p>
 <ul>
 <li><strong><a href="../blog/open-source-ai-agent-platforms-for-business.html">10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用</a></strong></li>
 <li><strong><a href="../blog/build-production-ready-ticketing-system-with-ai.html">如何用 AI 构建可投入生产的工单系统？</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/build-it-operations-system-with-ai-nocobase">如何用 AI 和 NocoBase 在 2 小时内搭建一套企业 IT 运维系统</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/nocobase-vs-baserow">NocoBase vs Baserow：灵活数据库与企业级系统</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/build-production-ready-crm-with-ai-and-nocobase">如何用 AI 和 NocoBase 搭建一套可投入生产的 CRM</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/enterprise-it-asset-management-system-guide">企业 IT 资产管理系统搭建指南：从需求梳理到落地</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/best-smartsheet-alternatives">7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/open-source-ai-no-code-tools-complex-relational-models">5 个适合复杂关系模型的开源 AI 无代码工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/what-is-ai-no-code">什么是 AI 无代码？AI 时代无代码平台的实用指南</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/open-source-ai-no-code-tools-github-9">GitHub 上值得关注的 9 个开源 AI 无代码工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/github-open-source-ai-agent-tools-16">GitHub 上值得关注的 14 个开源 AI Agent 工具</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/cn/blog/top-open-source-ai-assistant-tools-github-stars">GitHub 上 Stars 最多的 8 个开源 AI Assistant 工具</a></strong></li>
-</ul></div><div class="prose en-only"><p>Recently, an iceberg chart titled <strong>“Vibe Coding vs. Production Reality”</strong> sparked discussion on X and <a href="https://www.reddit.com/r/ClaudeAI/comments/1t3bk3x/vibe_coding_vs_production_reality/">Reddit</a>. Above the waterline are today’s AI Coding tools. Below it are permissions, payments, data consistency, logs, rollbacks, monitoring, and all the issues that only surface once a system goes live. The original poster noted that a PoC that once took a week can now be built in an afternoon, but a working demo is not the same as a system that can be delivered and maintained continuously.</p>
+<li><strong><a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">库存管理系统搭建对比：纯 AI 搭建 vs AI 基于 NocoBase 搭建</a></strong></li>
+<li><strong><a href="../blog/build-it-operations-system-with-ai-nocobase.html">如何用 AI 和 NocoBase 在 2 小时内搭建一套企业 IT 运维系统</a></strong></li>
+<li><strong><a href="../blog/nocobase-vs-baserow.html">NocoBase vs Baserow：灵活数据库与企业级系统</a></strong></li>
+<li><strong><a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">如何用 AI 和 NocoBase 搭建一套可投入生产的 CRM</a></strong></li>
+<li><strong><a href="../blog/enterprise-it-asset-management-system-guide.html">企业 IT 资产管理系统搭建指南：从需求梳理到落地</a></strong></li>
+<li><strong><a href="../blog/best-smartsheet-alternatives.html">7 款 Smartsheet 替代品：适合项目管理与业务流程的工具</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-complex-relational-models.html">5 个适合复杂关系模型的开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/what-is-ai-no-code.html">什么是 AI 无代码？AI 时代无代码平台的实用指南</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-github-9.html">GitHub 上值得关注的 9 个开源 AI 无代码工具</a></strong></li>
+<li><strong><a href="../blog/github-open-source-ai-agent-tools-16.html">GitHub 上值得关注的 14 个开源 AI Agent 工具</a></strong></li>
+<li><strong><a href="../blog/top-open-source-ai-assistant-tools-github-stars.html">GitHub 上 Stars 最多的 8 个开源 AI Assistant 工具</a></strong></li>
+</ul></div><div class="prose en-only"><p>Recently, an iceberg chart titled <strong>“Vibe Coding vs. Production Reality”</strong> sparked discussion on X and <a href="https://www.reddit.com/r/ClaudeAI/comments/1t3bk3x/vibe_coding_vs_production_reality/">Reddit</a>. Above the waterline are today&#39;s AI Coding tools. Below it are permissions, payments, data consistency, logs, rollbacks, monitoring, and all the issues that only surface once a system goes live. The original poster noted that a PoC that once took a week can now be built in an afternoon, but a working demo is not the same as a system that can be delivered and maintained continuously.</p>
 <p><img src="https://static-docs.nocobase.com/0-intro-vibe-coding-vs-production-reality-zbxzta.png" alt="0-intro-vibe-coding-vs-production-reality-zbxzta.png"></p>
 <p>Business processes and management rules vary significantly from company to company. Even when two businesses are both managing resources, the underlying logic for orders, scheduling, maintenance, settlement, and exceptions can be completely different. AI Coding lowers the cost of implementing these custom requirements, but it does not make the business itself simpler.</p>
 <p>Take car rental as an example. An order does not simply get created and wait to be completed. It occupies vehicle availability, goes through handover, use, and return, and if the customer returns the vehicle late, it can affect later bookings and fleet scheduling.</p>
 <hr>
-<p>💬 Hey, you’re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. → <a href="https://github.com/nocobase/nocobase">Explore NocoBase on GitHub</a></p>
 <hr>
 <p>Enterprise business systems like this need to maintain stable data relationships, permissions, and business rules over the long term. If a Coding Agent builds everything completely from scratch, these common capabilities also need to be implemented and maintained one by one. With an existing application foundation, the Coding Agent can focus more of its effort on modeling, implementing, and validating the specific business.</p>
 <p>NocoBase is built around <strong>App Foundation</strong>, providing data models, permissions, workflows, UI, APIs, and runtime mechanisms. Coding Agents build and deliver applications on top of these capabilities, while people confirm business goals, make decisions on proposed solutions, accept results, and authorize releases.</p>
 <p>Next, we will use a car rental system as an example. Starting from business modeling, we will see how a Coding Agent can turn a set of realistic, interconnected business requirements into an application that can keep running and evolving on NocoBase.</p>
-<p>💡 Further reading: <a href="https://www.nocobase.com/en/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></p>
+<p>💡 Further reading: <a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></p>
 <h2 id="en-1">1. Let the Coding Agent Build a Complete Business Model</h2>
 <p>Before development begins, you can give the core car-rental requirements to the Coding Agent and ask it to organize the data model, business processes, role permissions, and acceptance criteria.</p>
-<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-builder/data-modeling">Data Modeling - NocoBase Documentation</a></p>
+<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-builder/data-modeling">Data Modeling - NocoBase Documentation</a></p>
 <p>For example:</p>
 <blockquote>
 <p>We need to manage vehicles, customers, locations, employees, and rental orders. Vehicles involve insurance, maintenance, and traffic violations, while orders are linked to customers, vehicles, rental periods, and payment information. The rental process includes scheduling, vehicle handover, use, return, inspection, and settlement, while also handling cancellations, late returns, maintenance, violations, and outstanding payments. Please organize the core data relationships, business processes, role permissions, and key acceptance criteria.</p>
@@ -185,7 +187,7 @@
 <li>Define explicit handling rules for exceptions and turn them into verifiable conditions, such as preventing the same vehicle from being assigned to overlapping periods, preventing vehicles under maintenance from entering new schedules, and correctly generating receivables after an order is completed.</li>
 </ul>
 <p>Once the plan is confirmed, the Coding Agent can use NocoBase App Foundation to turn these agreed business rules into a working application.</p>
-<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai/quick-start">How to Connect Claude Code, Codex, Cursor, and Other Coding Agents to NocoBase</a></p>
+<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai/quick-start">How to Connect Claude Code, Codex, Cursor, and Other Coding Agents to NocoBase</a></p>
 <h2 id="en-2">2. Let the Coding Agent Build the System on NocoBase</h2>
 <h3>2.1 Turn the Business Model into Working Pages</h3>
 <p>These business models are then turned into different working pages. In this car rental system, the main pages include:</p>
@@ -198,7 +200,7 @@
 <li><strong>Operations dashboard</strong>: view orders, vehicles, exceptions, and business metrics.</li>
 </ul>
 <p>These pages all use the same business data and relationships. When an order changes, vehicle status, schedules, payments, and business metrics update accordingly.</p>
-<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-builder/ui-builder">UI Builder - NocoBase Documentation</a></p>
+<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-builder/ui-builder">UI Builder - NocoBase Documentation</a></p>
 <h3>2.2 Follow One Order Through the Full Business Process</h3>
 <p>Once the application is built, you can use a single order to verify the main process, focusing on whether the vehicle schedule, vehicle status, and payment records update correctly as the order status changes.</p>
 <p>After an order confirms the vehicle and rental period, the corresponding time slot needs to be added to the <strong>fleet schedule</strong>. A vehicle already occupied by an order cannot be assigned again during an overlapping period.</p>
@@ -214,8 +216,8 @@
 <p><strong>Order → Scheduling → Handover → Rental → Return → Settlement</strong></p>
 <h3>2.3 Use Workflows for Automated Rules and Cross-Module Coordination</h3>
 <p>Some rules do not need to be handled manually each time. They can be executed automatically by workflows when the relevant conditions are met.</p>
-<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-builder/workflow">Workflow Management - NocoBase Documentation</a></p>
-<p>This system already includes workflows for late returns, insurance and driver’s-license expiry, vehicle maintenance, receivable generation after order completion, and moving an order into the pickup process when the scheduled time arrives.</p>
+<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-builder/workflow">Workflow Management - NocoBase Documentation</a></p>
+<p>This system already includes workflows for late returns, insurance and driver&#39;s-license expiry, vehicle maintenance, receivable generation after order completion, and moving an order into the pickup process when the scheduled time arrives.</p>
 <p><img src="https://static-docs.nocobase.com/2-3-workflow-management-m1m1uv.jpg" alt="2-3-workflow-management-m1m1uv.jpg"></p>
 <p>Take traffic violations as an example. After a violation record is created, the system looks up the rental order that corresponds to the vehicle and the time of the violation. If a match is found, the order is linked automatically, making it easier to identify the actual driver and determine responsibility later.</p>
 <p>This rule can be expressed as:</p>
@@ -224,7 +226,7 @@
 <p>Similar reminders, status updates, and cross-module operations can all be configured in workflows using a “trigger condition → business decision → action” structure, so agreed business rules continue to run consistently.</p>
 <h3>2.4 Handle Exceptions, Compliance, and Business Analysis</h3>
 <p>Once orders can move through the normal process, issues that require human attention also need clear handling paths.</p>
-<p>For example, a late vehicle return can create a pending task; insurance, driver’s-license, or maintenance deadlines can enter <strong>expiry and compliance management</strong>; and unpaid balances or overdue receivables can enter <strong>cash-flow and aging analysis</strong>.</p>
+<p>For example, a late vehicle return can create a pending task; insurance, driver&#39;s-license, or maintenance deadlines can enter <strong>expiry and compliance management</strong>; and unpaid balances or overdue receivables can enter <strong>cash-flow and aging analysis</strong>.</p>
 <p><img src="https://static-docs.nocobase.com/2-4-expiry-compliance-9gwqd1.jpg" alt="2-4-expiry-compliance-9gwqd1.jpg"></p>
 <p><img src="https://static-docs.nocobase.com/2-4-overdue-return-details-qss45x.jpg" alt="2-4-overdue-return-details-qss45x.jpg"></p>
 <p><img src="https://static-docs.nocobase.com/2-4-cash-flow-aging-ic9xwt.jpg" alt="2-4-cash-flow-aging-ic9xwt.jpg"></p>
@@ -236,7 +238,7 @@
 <h3>2.5 Test, Accept, and Release Against the Acceptance Criteria</h3>
 <p>Once the system is complete, it can be tested against the acceptance criteria confirmed earlier, checking whether key rules such as vehicle scheduling, status changes, receivable generation, and exception handling behave as expected.</p>
 <p>The Coding Agent runs the tests and fixes the issues it finds, then revalidates the affected processes after each change. Once the key rules pass, people complete acceptance and authorize the release. The Coding Agent then performs the deployment and checks the runtime result.</p>
-<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-builder/version-control">Version Control - NocoBase Documentation</a></p>
+<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-builder/version-control">Version Control - NocoBase Documentation</a></p>
 <p><strong>Coding Agent implementation and testing → Human acceptance and release authorization → Coding Agent release and runtime verification</strong></p>
 <p>These acceptance criteria can also be retained. When the system changes later, the same checks can be rerun to confirm whether new functionality affects existing business rules.</p>
 <h2 id="en-3">3. Using and Iterating the System After Launch</h2>
@@ -256,7 +258,7 @@
 <p><img src="https://static-docs.nocobase.com/3-1-dispatch-assistant-9qg1yy.png" alt="3-1-dispatch-assistant-9qg1yy.png"></p>
 <p><img src="https://static-docs.nocobase.com/3-1-dispatch-available-vehicles-0jnoz4.png" alt="3-1-dispatch-available-vehicles-0jnoz4.png"></p>
 <p>Which data an AI Employee can read, which tools it can call, and whether it can perform a specific action are all determined by the corresponding business permissions and tool configuration.</p>
-<p>📃 Related documentation: <a href="https://nocode.docs.nocobase.com/ai-employees/permission">How AI Employees Control Usage and Data Access Permissions</a></p>
+<p>📃 Related documentation: <a href="https://docs.nocobase.com/ai-employees/permission">How AI Employees Control Usage and Data Access Permissions</a></p>
 <h3>3.2 Keep Iterating on the Existing System</h3>
 <p>Business rules continue to change after a system goes live. A company may add new locations, adjust pricing, change insurance inspection methods, connect new payment methods, or add new business metrics.</p>
 <p>These requirements can be handed back to the Coding Agent, which can modify the existing data models, pages, permissions, and workflows directly.</p>
@@ -266,29 +268,29 @@
 <p>The use cases for AI + NocoBase are not limited to large enterprise systems. Individuals, small teams, and business departments can also start with smaller requirements, such as an internal tool, approval application, asset register, or simple operations system, and let the Coding Agent build the data model, pages, and workflows on top of the existing application foundation.</p>
 <p>If this article was helpful, feel free to share it with others who are interested in AI Coding, enterprise applications, or business-system development.</p>
 <p>If you also want to build similar enterprise applications with AI and NocoBase, these complete examples may be useful:</p>
-<p>👉 <a href="https://www.nocobase.com/en/blog/build-production-ready-crm-with-ai-and-nocobase">Build a CRM with AI + NocoBase</a></p>
-<p>👉 <a href="https://www.nocobase.com/en/blog/build-it-operations-system-with-ai-nocobase">Build an Enterprise IT Operations System with AI + NocoBase</a></p>
+<p>👉 <a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">Build a CRM with AI + NocoBase</a></p>
+<p>👉 <a href="../blog/build-it-operations-system-with-ai-nocobase.html">Build an Enterprise IT Operations System with AI + NocoBase</a></p>
 <p><strong>Related reading</strong>:</p>
 <ul>
 <li><strong><a href="../blog/open-source-ai-agent-platforms-for-business.html">10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps </a></strong></li>
 <li><strong><a href="../blog/build-production-ready-ticketing-system-with-ai.html">How to Build a Production-Ready Ticketing System with AI</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/build-it-operations-system-with-ai-nocobase">How to Build a Production-Ready IT Operations System with AI and NocoBase</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/nocobase-vs-baserow">NocoBase vs Baserow: Flexible Databases vs Enterprise Systems</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/build-production-ready-crm-with-ai-and-nocobase">How to Build a Production-Ready CRM with AI and NocoBase</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/enterprise-it-asset-management-system-guide">How to Design an IT Asset Management System: Data Model, Lifecycle, and Workflows</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/best-smartsheet-alternatives">How to Choose a Smartsheet Alternative: 7 Tools Compared</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/open-source-ai-no-code-tools-complex-relational-models">5 Open-Source AI No-Code Tools for Complex Relational Data Models</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/what-is-ai-no-code">What Is AI No-Code? A Practical Guide to No-Code Platforms in the AI Era</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/open-source-ai-no-code-tools-github-9">9 Open-Source AI No-Code Tools on GitHub Worth Watching</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/github-open-source-ai-agent-tools-16">14 Open Source AI Agent Tools with the Most GitHub Stars</a></strong></li>
-<li><strong><a href="https://www.nocobase.com/en/blog/top-open-source-ai-assistant-tools-github-stars">Top 8 Open Source AI Assistant Tools by GitHub Stars</a></strong></li>
+<li><strong><a href="../blog/building-inventory-management-system-vibe-coding-vs-nocobase-ai.html">Building an Inventory Management System: Vibe Coding vs NocoBase + AI</a></strong></li>
+<li><strong><a href="../blog/build-it-operations-system-with-ai-nocobase.html">How to Build a Production-Ready IT Operations System with AI and NocoBase</a></strong></li>
+<li><strong><a href="../blog/nocobase-vs-baserow.html">NocoBase vs Baserow: Flexible Databases vs Enterprise Systems</a></strong></li>
+<li><strong><a href="../blog/build-production-ready-crm-with-ai-and-nocobase.html">How to Build a Production-Ready CRM with AI and NocoBase</a></strong></li>
+<li><strong><a href="../blog/enterprise-it-asset-management-system-guide.html">How to Design an IT Asset Management System: Data Model, Lifecycle, and Workflows</a></strong></li>
+<li><strong><a href="../blog/best-smartsheet-alternatives.html">How to Choose a Smartsheet Alternative: 7 Tools Compared</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-complex-relational-models.html">5 Open-Source AI No-Code Tools for Complex Relational Data Models</a></strong></li>
+<li><strong><a href="../blog/what-is-ai-no-code.html">What Is AI No-Code? A Practical Guide to No-Code Platforms in the AI Era</a></strong></li>
+<li><strong><a href="../blog/open-source-ai-no-code-tools-github-9.html">9 Open-Source AI No-Code Tools on GitHub Worth Watching</a></strong></li>
+<li><strong><a href="../blog/github-open-source-ai-agent-tools-16.html">14 Open Source AI Agent Tools with the Most GitHub Stars</a></strong></li>
+<li><strong><a href="../blog/top-open-source-ai-assistant-tools-github-stars.html">Top 8 Open Source AI Assistant Tools by GitHub Stars</a></strong></li>
 </ul></div></article>
     <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">1. 让 Coding Agent 建立完整的业务模型</a><a href="#zh-2">2. Coding Agent 在 NocoBase 上完成系统构建</a><a href="#zh-3">3. 系统上线后的使用与迭代</a><a href="#zh-4">结语</a></div><div class="en-only"><a href="#en-1">1. Let the Coding Agent Build a Complete Business Model</a><a href="#en-2">2. Let the Coding Agent Build the System on NocoBase</a><a href="#en-3">3. Using and Iterating the System After Launch</a><a href="#en-4">Conclusion</a></div></nav>
   </div>
   <section class="post-more">
     <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
-    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/open-source-ai-agent-platforms-for-business.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2039-8n094r.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月4日</t-zh><t-en>Sep 4, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用</t-zh><t-en>10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps</t-en></h3><p><t-zh>整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。</t-zh><t-en>Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.</t-en></p></a></div>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/open-source-ai-agent-platforms-for-business.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2039-8n094r.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月4日</t-zh><t-en>Sep 4, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>10 个适合企业使用的开源 AI Agent 平台：从自动化到内部应用  </t-zh><t-en>10 Open-Source AI Agent Platforms for Business: From Automation to Internal Apps  </t-en></h3><p><t-zh>整理 10 个企业开源 AI Agent 平台，对比自动化、内部应用、Agent 构建、知识库与 RAG 等主要方向。</t-zh><t-en>Compare 10 open-source AI Agent platforms for business across automation, internal apps, visual Agents, knowledge bases, and RAG.</t-en></p></a></div>
   </section>
   <div class="band">
     <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>

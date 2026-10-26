@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="如何备份和还原 NocoBase — NocoBase" data-en="How to Backup and Restore NocoBase — NocoBase">如何备份和还原 NocoBase — NocoBase</title>
+<meta name="description" content="新版本中，如何进行应用备份和还原呢？本文将为你详细介绍新的备份方案。" data-zh="新版本中，如何进行应用备份和还原呢？本文将为你详细介绍新的备份方案。" data-en="How should backup and restoration be handled in the new version? This article will provide a detailed introduction to the new backup solution.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></p>
+    <h1><t-zh>如何备份和还原 NocoBase</t-zh><t-en>How to Backup and Restore NocoBase</t-en></h1>
+    <p class="lede"><t-zh>新版本中，如何进行应用备份和还原呢？本文将为你详细介绍新的备份方案。</t-zh><t-en>How should backup and restoration be handled in the new version? This article will provide a detailed introduction to the new backup solution.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2024年12月4日</t-zh><t-en>Dec 4, 2024</t-en></span><span><t-zh>Chen lin</t-zh><t-en>Chen lin</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/adbf7bab1c8081d7757160daa0081d58.jpg" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">背景</h2>
+<p>自 NocoBase v0.19 起，我们推出了 <code>@nocobase/plugin-backup-restore</code> 插件，用于应用备份和还原。但在实际使用中，体验并不理想，主要存在以下问题：</p>
+<ol>
+<li>无法备份和还原数据库字段的默认值、唯一索引等数据库层面的元数据；</li>
+<li>数据库的视图、存储过程、函数、触发器等无法进行备份或还原；</li>
+<li>每个插件表单需要单独配置 <code>dumpRules</code>，并可能需要插件开发者自定义逻辑，否则备份和还原容易失败；</li>
+<li>备份分组设计复杂，理解成本较高，选择不当可能导致备份失败或数据丢失；</li>
+<li>备份和还原过程发生在应用层，一旦应用无法启动，备份或还原也会失败。</li>
+</ol>
+<p>经过慎重考虑，从 v1.4 版本起，我们决定废弃该插件。那么在新版本中，如何进行应用备份和还原呢？本文将为你详细介绍新的备份方案。</p>
+<h2 id="zh-2">应该备份哪些数据？</h2>
+<p>在 NocoBase 的备份和还原过程中，主要涉及以下几类数据：</p>
+<ul>
+<li><strong>主数据库数据</strong>：支持的主数据库类型包括 PostgreSQL、MySQL、MariaDB 和 KingbaseES；</li>
+<li><strong>外部数据库数据</strong>：支持的外部数据库类型包括 PostgreSQL、MySQL、MariaDB、MSSQL、Oracle 和 KingbaseES；</li>
+<li><strong>子应用数据库数据</strong>：每个子应用都是独立的数据库，若使用 PostgreSQL 也支持通过 schema 区分不同子应用；</li>
+<li><strong>storage 目录的数据</strong>：可以整个文件夹全部备份，也可以只备份一些重要的数据，如：<ul>
+<li><strong>附件数据</strong>：<code>./storage/uploads</code> 目录的文件，文件管理器本地存储的文件；</li>
+<li><strong>插件代码</strong>：<code>./storage/plugins</code> 目录的插件，包括商业插件和第三方插件。</li>
+</ul>
+</li>
+</ul>
+<h2 id="zh-3">备份和还原的流程</h2>
+<h3>1. 备份数据库数据</h3>
+<p>各数据库的备份命令如下：</p>
+<h4>PostgreSQL</h4>
+<pre><code class="language-bash">pg_dump -U [用户名] -h [主机地址] -p [端口] -F c -b --quote-all-identifiers -f [备份文件路径] [数据库名]
+</code></pre>
+<h4>MySQL/MariaDB</h4>
+<pre><code class="language-bash">mysqldump -u [用户名] -p -h [主机地址] -P [端口] --databases [数据库名] --replace --single-transaction --column-statistics=0 --skip-lock-tables --routines --triggers &gt; [备份文件路径].sql
+</code></pre>
+<h3>2. 将备份还原到目标应用的数据库里</h3>
+<p>各数据库的还原命令如下：</p>
+<h4>PostgreSQL</h4>
+<pre><code class="language-bash">pg_restore -U [用户名] -h [主机地址] -p [端口] -d [数据库名] --clean --if-exists --no-owner [备份文件路径]
+</code></pre>
+<h4>MySQL/MariaDB</h4>
+<pre><code class="language-bash">mysql -u [用户名] -p -h [主机地址] -P [端口] [数据库名] &lt; [备份文件路径].sql
+</code></pre>
+<h3>3. 用备份的 storage 覆盖掉目标应用的 storage</h3>
+<pre><code class="language-bash"># 1. 将 /app2/storage/ 目录备份到 /app2/storage-bak/
+mv /app2/storage /app2/storage-bak
+
+# 2. 复制 /app1/storage/ 的所有内容到 /app2/storage/
+cp -r /app1/storage/. /app2/storage/
+</code></pre>
+<h3>4. 执行升级命令并启动应用</h3>
+<pre><code class="language-bash"># 升级应用
+yarn nocobase upgrade
+
+# 生产环境启动应用
+yarn start
+
+# 本地环境启动应用
+yarn dev
+</code></pre>
+<p>备注：</p>
+<ul>
+<li>如果是 Docker 环境，直接重启容器即可</li>
+</ul>
+<h2 id="zh-4">备份管理器插件</h2>
+<p>从 NocoBase v1.4 起，专业版或企业版用户也可以直接使用全新的「<a href="https://docs-cn.nocobase.com/handbook/backups">备份管理器</a>」插件，轻松实现应用的备份与还原。</p></div><div class="prose en-only"><h2 id="en-1">Background</h2>
+<p>Starting from NocoBase v0.19, we introduced the <code>@nocobase/plugin-backup-restore</code> plugin for application backup and restoration. However, the actual user experience has not been ideal, with the following key issues:</p>
+<ol>
+<li>The plugin does not support backing up and restoring database-level metadata such as default values, unique indexes, etc.</li>
+<li>Database views, stored procedures, functions, triggers, and other components cannot be backed up or restored.</li>
+<li>Each plugin form requires separate configuration of <code>dumpRules</code>, and plugin developers may need to implement custom logic. Without this, backup and restoration can easily fail.</li>
+<li>The backup grouping design is complex and has a high learning curve. Improper selection could lead to backup failure or data loss.</li>
+<li>The backup and restoration process occurs at the application layer. If the application fails to start, the backup or restoration will also fail.</li>
+</ol>
+<p>After careful consideration, starting from version v1.4, we have decided to deprecate this plugin. So, how should backup and restoration be handled in the new version? This article will provide a detailed introduction to the new backup solution.</p>
+<h2 id="en-2">What Data Should Be Backed Up?</h2>
+<p>In the NocoBase backup and restoration process, the following types of data are primarily involved:</p>
+<ul>
+<li><strong>Main Database Data</strong>: Supported main database types include PostgreSQL, MySQL, MariaDB, and KingbaseES.</li>
+<li><strong>External Database Data</strong>: Supported external database types include PostgreSQL, MySQL, MariaDB, MSSQL, Oracle, and KingbaseES.</li>
+<li><strong>Sub-application Database Data</strong>: Each sub-application is an independent database. If using PostgreSQL, different sub-applications can also be differentiated by schemas.</li>
+<li><strong>Storage Directory Data</strong>: You can back up the entire folder or only specific important data, such as:<ul>
+<li><strong>Attachment Data</strong>: Files in the <code>./storage/uploads</code> directory, which is the local storage for the file manager.</li>
+<li><strong>Plugin Code</strong>: Plugins in the <code>./storage/plugins</code> directory, including commercial plugins and third-party plugins.</li>
+</ul>
+</li>
+</ul>
+<h2 id="en-3">Backup and Restoration Process</h2>
+<h3>1. Backing Up Database Data</h3>
+<p>The backup commands for different databases are as follows:</p>
+<h4>PostgreSQL</h4>
+<pre><code class="language-bash">pg_dump -U [username] -h [host] -p [port] -F c -b --quote-all-identifiers -f [backup-file-path] [database-name]
+</code></pre>
+<h4>MySQL/MariaDB</h4>
+<pre><code class="language-bash">mysqldump -u [username] -p -h [host] -P [port] --databases [database-name] --replace --single-transaction --column-statistics=0 --skip-lock-tables --routines --triggers &gt; [backup-file-path].sql
+</code></pre>
+<h3>2. Restoring Backup to the Target Application&#39;s Database</h3>
+<p>The restoration commands for different databases are as follows:</p>
+<h4>PostgreSQL</h4>
+<pre><code class="language-bash">pg_restore -U [username] -h [host] -p [port] -d [database-name] --clean --if-exists --no-owner [backup-file-path]
+</code></pre>
+<h4>MySQL/MariaDB</h4>
+<pre><code class="language-bash">mysql -u [username] -p -h [host] -P [port] [database-name] &lt; [backup-file-path].sql
+</code></pre>
+<h3>3. Overwriting the Target Application&#39;s Storage with the Backup Storage</h3>
+<pre><code class="language-bash"># 1. Backup the /app2/storage/ directory to /app2/storage-bak/
+mv /app2/storage /app2/storage-bak
+
+# 2. Copy all contents from /app1/storage/ to /app2/storage/
+cp -r /app1/storage/. /app2/storage/
+</code></pre>
+<h3>4. Execute the Upgrade Command and Start the Application</h3>
+<pre><code class="language-bash"># Upgrade the application
+yarn nocobase upgrade
+
+# Start the application in production environment
+yarn start
+
+# Start the application in local development environment
+yarn dev
+</code></pre>
+<p>Note:</p>
+<ul>
+<li>If you are using Docker, simply restart the container.</li>
+</ul>
+<h2 id="en-4">Backups Manager Plugin</h2>
+<p>Starting from NocoBase v1.4, Professional or Enterprise edition users can directly use the brand-new <a href="https://docs.nocobase.com/handbook/backups">Backups Manager</a> plugin to easily manage application data backup and restoration.</p></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">背景</a><a href="#zh-2">应该备份哪些数据？</a><a href="#zh-3">备份和还原的流程</a><a href="#zh-4">备份管理器插件</a></div><div class="en-only"><a href="#en-1">Background</a><a href="#en-2">What Data Should Be Backed Up?</a><a href="#en-3">Backup and Restoration Process</a><a href="#en-4">Backups Manager Plugin</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/awesome-nocobase-community-plugins.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/Frame%2094-77hcu6.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月26日</t-zh><t-en>Jul 26, 2026</t-en></span><span><t-zh>NocoBase Team</t-zh><t-en>NocoBase Team</t-en></span></div><h3><t-zh>Awesome NocoBase：发现和分享社区插件</t-zh><t-en>Awesome NocoBase: Discover and Share Plugins Built by the Community</t-en></h3><p><t-zh>通过 Awesome NocoBase 发现社区开发的插件，分享自己的扩展，共同建设更开放的 NocoBase 插件生态。</t-zh><t-en>Discover community-built NocoBase plugins and learn how to share your own extensions through Awesome NocoBase.</t-en></p></a><a class="bcard" href="../blog/automate-company-background-research-with-workflows-and-ai-employees.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/20260713-172604-dpzovb.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月13日</t-zh><t-en>Jul 13, 2026</t-en></span><span><t-zh>Chen Gengyang  </t-zh><t-en>Chen Gengyang  </t-en></span></div><h3><t-zh>使用内置工作流与 AI 员工完成公司背景调研自动化</t-zh><t-en>Automating Company Background Research with Workflows and AI Employees</t-en></h3><p><t-zh>介绍如何用 NocoBase 工作流和 AI 员工自动完成公司背景调研，并保留任务状态、报告历史和可复核记录。</t-zh><t-en>Learn how NocoBase workflows and AI employees automate company background research with traceable tasks and report history.
+</t-en></p></a><a class="bcard" href="../blog/build-interactive-operations-dashboard-with-nocobase.html" data-tags="Tech_&_Tutorials"><span class="cv"><img src="https://static-docs.nocobase.com/%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2%20(3)-m9si79.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>技术 &amp; 教程</t-zh><t-en>Tech &amp; Tutorials</t-en></span><span><t-zh>2026年7月9日</t-zh><t-en>Jul 9, 2026</t-en></span><span><t-zh>Yang Qia</t-zh><t-en>Yang Qia</t-en></span></div><h3><t-zh>用 NocoBase 搭建可联动的运营仪表盘</t-zh><t-en>Build an Interactive Operations Dashboard with NocoBase</t-en></h3><p><t-zh>了解如何组合 NocoBase 图表、筛选和 JS 区块，搭建支持筛选联动、图表下钻和自定义样式的运营仪表盘。
+</t-zh><t-en>Learn how to combine NocoBase chart, filter, and JS blocks to build an operations dashboard with linked filters and drilldowns.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

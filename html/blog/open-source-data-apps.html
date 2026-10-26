@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="10 个开源工具，快速构建数据应用 — NocoBase" data-en="10 Best Open-Source Tools to Build Internal Data Apps — NocoBase">10 个开源工具，快速构建数据应用 — NocoBase</title>
+<meta name="description" content="推荐 10 款最受欢迎的开源数据应用工具，涵盖可视化、实时监控、API 管理等场景，助你快速搭建高效、灵活的数据应用。" data-zh="推荐 10 款最受欢迎的开源数据应用工具，涵盖可视化、实时监控、API 管理等场景，助你快速搭建高效、灵活的数据应用。" data-en="Discover 10 popular open-source data application tools covering visualization, real-time monitoring, and API management to help you build efficient, flexible data apps faster.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<script src="../assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="blog" data-root="../">
+<div id="site-header"></div>
+<main>
+<div class="container">
+  <header class="post-hero">
+    <p class="crumb"><a href="../blog.html"><t-zh>博客</t-zh><t-en>Blog</t-en></a><span>/</span><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></p>
+    <h1><t-zh>10 个开源工具，快速构建数据应用</t-zh><t-en>10 Best Open-Source Tools to Build Internal Data Apps</t-en></h1>
+    <p class="lede"><t-zh>推荐 10 款最受欢迎的开源数据应用工具，涵盖可视化、实时监控、API 管理等场景，助你快速搭建高效、灵活的数据应用。</t-zh><t-en>Discover 10 popular open-source data application tools covering visualization, real-time monitoring, and API management to help you build efficient, flexible data apps faster.</t-en></p>
+    <div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2025年8月21日</t-zh><t-en>Aug 21, 2025</t-en></span><span><t-zh>Deng lijia</t-zh><t-en>Deng lijia</t-en></span></div>
+  </header>
+  <div class="post-cover"><img src="https://static-docs.nocobase.com/Frame%2090-s9uxmf.png" alt=""></div>
+  <div class="post-body">
+    <article><div class="prose zh-only"><h2 id="zh-1">写在开头</h2>
+<p>对开发者来说，工作中最常见的需求之一就是：<strong>临时需要快速搭建一个数据应用</strong>。</p>
+<p>可能是一个运营看板、一个内部查询工具，或者一个简单的客户数据门户。</p>
+<p>传统的做法需要写后端、接数据库、再做前端。</p>
+<p>好在现在已经有不少<strong>优秀的开源工具</strong>，能帮你在几小时内就构建出一个可用的数据应用。</p>
+<hr>
+<p>💬 嗨！你正在阅读 NocoBase 博客。NocoBase 是一个极易扩展的 AI 无代码/低代码开发平台，用于构建企业应用、内部工具和各类系统。它完全支持自托管，基于插件架构设计，开发者友好。→ <a href="https://github.com/nocobase/nocobase">欢迎在 GitHub 上了解我们</a></p>
+<hr>
+<p><img src="https://static-docs.nocobase.com/0-ggnmxf.png" alt="data applications"></p>
+<p>下面让我为你推荐 10 个优秀的开源项目，并告诉你它们最适合的<strong>数据应用类型</strong>。</p>
+<h2 id="zh-2">快速分类</h2>
+<p><strong>内部工具构建</strong></p>
+<ul>
+<li><strong><a href="https://www.nocobase.com/">NocoBase</a></strong></li>
+<li><strong><a href="https://www.appsmith.com/">Appsmith</a></strong></li>
+<li><strong><a href="https://budibase.com/">Budibase</a></strong></li>
+</ul>
+<p><strong>数据可视化</strong></p>
+<ul>
+<li><strong><a href="https://www.metabase.com/">Metabase</a></strong></li>
+<li><strong><a href="https://redash.io/">Redash</a></strong></li>
+<li><strong><a href="https://grafana.com/">Grafana</a></strong></li>
+</ul>
+<p><strong>后端与数据服务层</strong></p>
+<ul>
+<li><strong><a href="https://supabase.com/">Supabase</a></strong></li>
+<li><strong><a href="https://directus.io/">Directus</a></strong></li>
+</ul>
+<p><strong>轻量表格数据库</strong></p>
+<ul>
+<li><strong><a href="https://baserow.io/">Baserow</a></strong></li>
+<li><strong><a href="https://nocodb.com/">NocoDB</a></strong></li>
+</ul>
+<p>接下来我们从四个类别依次展开，看看每个工具的特点和适合的数据应用场景。</p>
+<h2 id="zh-3"><strong>NocoBase</strong></h2>
+<p>数据模型驱动的开源、AI 驱动的无代码平台，所有功能都以插件形式提供，支持可视化搭建和灵活扩展。</p>
+<p><img src="https://static-docs.nocobase.com/1-0o45ri.png" alt="NocoBase"></p>
+<p>GitHub 链接：<a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p>GitHub Star 数：21.3k</p>
+<p><strong>亮点功能</strong>：</p>
+<ul>
+<li>复杂数据建模</li>
+<li>精细化权限控制</li>
+<li>自动化工作流</li>
+<li>插件扩展机制</li>
+<li>融入系统的 AI 员工</li>
+</ul>
+<p><strong>最适合的数据应用类型</strong>：</p>
+<ul>
+<li><strong>CRM</strong>：集中管理客户档案、销售流程、合同与售后信息。</li>
+<li><strong>BPM</strong>：搭建跨部门的审批流与流程编排。</li>
+<li><strong>工单管理</strong>：处理客户请求与内部支持任务，支持分配。</li>
+<li><strong>项目管理</strong>：适合跟踪任务、资源分配、进度与成果。</li>
+<li><strong>内部运营平台</strong>：如库存管理、人事系统或行政平台。</li>
+</ul>
+<p><strong>差异化优势：</strong></p>
+<p>与大多数以表格视图为核心的工具不同（比如：Budibase、Baserow、NocoDB），NocoBase 的最大亮点是——前后端分离并且以<strong>数据模型驱动</strong>，能更好地支持复杂关系型数据结构和企业级权限控制，非常适合搭建中高复杂度的业务应用。</p>
+<h2 id="zh-4"><strong>Appsmith</strong></h2>
+<p>专注于快速构建内部工具，提供拖拽式 UI 和丰富的数据源集成。</p>
+<p><img src="https://static-docs.nocobase.com/2-n6u6j0.png" alt="Appsmith"></p>
+<p>GitHub 链接：<a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p>GitHub Star 数：37.7k</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>拖拽式前端界面构建</li>
+<li>支持 REST、GraphQL、SQL 等多种数据源</li>
+<li>内置 JS 逻辑扩展与自定义代码块</li>
+<li>部署灵活，支持自托管与云端</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>内部查询工具</strong>：快速搭建数据库查询和可视化界面。</li>
+<li><strong>审批与录入系统</strong>：表单驱动，支持权限与数据验证。</li>
+<li><strong>客户支持后台</strong>：集成多数据源，统一客户数据管理。</li>
+<li><strong>库存与运营面板</strong>：适合数据汇总与日常管理操作。</li>
+</ul>
+<p><strong>差异化优势：</strong></p>
+<p>作为一个低代码开发平台，Appsmith 更偏向<strong>开发者友好</strong>，既能拖拽搭建 UI，也能通过 JavaScript 灵活扩展逻辑，非常适合需要一定定制化、但又想快速交付的内部应用场景。</p>
+<p>💡 阅读更多：<a href="../blog/nocobase-vs-appsmith.html">NocoBase 与 Appsmith：哪个开源低代码平台更适合你？</a></p>
+<h2 id="zh-5"><strong>Budibase</strong></h2>
+<p>开源低代码平台，支持自建数据库，也能连接外部数据源，适合快速交付数据应用。</p>
+<p><img src="https://static-docs.nocobase.com/3-5kxshe.png" alt="Budibase"></p>
+<p>GitHub 链接：<a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></p>
+<p>GitHub Star 数：25.4k</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>内置数据库，也可连接 REST / SQL 等外部数据源</li>
+<li>拖拽式表单和页面构建器</li>
+<li>自动化工作流（邮件、Webhook、任务触发）</li>
+<li>一键部署，支持 Docker 与云端</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>员工门户</strong>：集中展示内部通知、文档与流程，提升员工体验。</li>
+<li><strong>表单驱动的管理系统</strong>：如报销、请假、采购申请，支持审批与流转。</li>
+<li><strong>库存与资产管理</strong>：跟踪物品进出库、设备使用情况。</li>
+<li><strong>轻量型 CRM</strong>：适合小团队管理客户信息和简单销售流程。</li>
+<li><strong>数据录入与自动化工具</strong>：用于采集、校验数据，并触发后续自动化任务。</li>
+</ul>
+<p><strong>差异化优势：</strong></p>
+<p>Budibase 最适合的场景是用于搭建<strong>表单驱动的内部工具</strong>，结合自动化能力，可以帮助团队快速实现从数据采集到流程执行的一体化应用。</p>
+<h2 id="zh-6"><strong>Metabase</strong></h2>
+<p>开源 BI 与数据可视化工具，界面简洁，既适合开发者也适合业务人员使用，帮助团队快速把数据转化为洞察。</p>
+<p><img src="https://static-docs.nocobase.com/4-w6dgfq.png" alt="Metabase"></p>
+<p>GitHub 链接：<a href="https://github.com/metabase/metabase">https://github.com/metabase/metabase</a></p>
+<p>GitHub Star 数：43.3k</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>可视化查询编辑器（无需 SQL）</li>
+<li>支持 SQL 高级查询</li>
+<li>多种图表和仪表盘展示</li>
+<li>权限控制与共享机制</li>
+<li>支持多种数据源（PostgreSQL、MySQL、BigQuery 等）</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>运营分析看板</strong>：实时监控核心业务指标，如销售额、转化率、活跃用户数。</li>
+<li><strong>管理层报表</strong>：为高管和团队提供定期的数据可视化报表。</li>
+<li><strong>交互式数据探索工具</strong>：帮助非技术人员通过筛选和图表探索数据。</li>
+<li><strong>财务与市场分析</strong>：适合汇总和展示财务报表、营销活动成效。</li>
+</ul>
+<p><strong>差异化优势：</strong></p>
+<p>Metabase 专注于<strong>数据分析与可视化</strong>，以“开箱即用”的体验著称，几乎不需要编写代码即可快速生成仪表盘，是团队搭建数据看板的首选工具。</p>
+<h2 id="zh-7"><strong>Redash</strong></h2>
+<p>开源的数据可视化与查询分析工具，以 SQL 查询为核心，支持连接多种数据源，帮助团队快速把数据转化为报表和图表。</p>
+<p><img src="https://static-docs.nocobase.com/5-s3r366.png" alt="Redash"></p>
+<p>GitHub 链接：<a href="https://github.com/getredash/redash">https://github.com/getredash/redash</a></p>
+<p>GitHub Star 数：27.7k</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>内置 SQL 编辑器，支持多种数据源（PostgreSQL、MySQL、BigQuery、Elasticsearch 等）</li>
+<li>查询结果可视化为多种图表类型</li>
+<li>仪表盘支持拼接多个查询与图表</li>
+<li>团队共享与协作功能</li>
+<li>提供 API 接口，支持自动化</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>业务分析报表</strong>：定期生成销售、财务、市场等核心指标报表。</li>
+<li><strong>团队共享查询工具</strong>：让非技术人员也能查看数据结果和可视化。</li>
+<li><strong>运营与产品监控</strong>：适合追踪用户行为、产品指标。</li>
+<li><strong>数据驱动的决策支持系统</strong>：为管理层和业务部门提供可视化决策依据。</li>
+</ul>
+<p><strong>差异化优势：</strong> Redash <strong>轻量且开发者友好</strong>。它以 SQL 查询为核心，既能满足技术人员的灵活需求，又能通过直观的可视化和仪表盘让业务人员快速理解数据，非常适合小团队或需要快速分析的场景。</p>
+<h2 id="zh-8"><strong>Grafana</strong></h2>
+<p>一款广泛应用于数据可视化和系统监控的开源平台，支持连接数百种数据源，擅长构建实时监控大屏和告警系统。</p>
+<p><img src="https://static-docs.nocobase.com/6-wm9jgq.png" alt="Grafana"></p>
+<p>GitHub 链接：<a href="https://github.com/grafana/grafana">https://github.com/grafana/grafana</a></p>
+<p>GitHub Star 数：69.5k</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>丰富的数据源插件（Prometheus、InfluxDB、Elasticsearch、PostgreSQL 等）</li>
+<li>灵活的可视化图表与大屏展示</li>
+<li>实时监控与多维度指标跟踪</li>
+<li>内置告警机制，支持邮件、Slack、Webhook 通知</li>
+<li>强大的插件生态和可扩展性</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>运维与系统监控</strong>：实时监控服务器、数据库、网络等关键指标。</li>
+<li><strong>IoT 数据可视化</strong>：展示设备状态、传感器数据、地理分布等。</li>
+<li><strong>业务监控大屏</strong>：适合展示企业运营、订单、转化率等核心指标。</li>
+<li><strong>数据观测与告警系统</strong>：在数据异常时自动触发告警，保障系统稳定性。</li>
+</ul>
+<p><strong>差异化优势：</strong> Grafana 的优势在于<strong>实时监控与告警</strong>。它不仅能做漂亮的大屏展示，更能结合多数据源进行多维度观测，是 DevOps、IoT、以及需要实时数据可视化场景的首选。</p>
+<h2 id="zh-9"><strong>Supabase</strong></h2>
+<p>开源的后端即服务（BaaS）平台，被称为“开源版 Firebase”，基于 PostgreSQL 构建，提供数据库、认证、存储和实时 API 等全套服务。</p>
+<p><img src="https://static-docs.nocobase.com/7-5oa5go.png" alt="Supabase"></p>
+<p>GitHub 链接：<a href="https://github.com/supabase/supabase">https://github.com/supabase/supabase</a></p>
+<p>GitHub Star 数：72.0k</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>基于 PostgreSQL 的托管数据库</li>
+<li>实时 API 与订阅</li>
+<li>用户认证与权限控制</li>
+<li>文件存储服务</li>
+<li>边缘函数（Edge Functions）</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>实时协作工具</strong>：如聊天应用、协作文档，依赖实时数据同步。</li>
+<li><strong>移动与 Web 应用后端</strong>：快速搭建带认证和数据库的 SaaS 应用。</li>
+<li><strong>客户数据门户</strong>：统一提供安全的用户访问接口。</li>
+<li><strong>数据收集与分析系统</strong>：适合需要快速存储、查询和展示数据的轻量应用。</li>
+</ul>
+<p><strong>差异化优势：</strong></p>
+<p>与大多数需要单独搭建数据库和后端的方案不同，Supabase 提供了<strong>一体化的后端服务</strong>，让开发者几乎不用写后端代码，就能快速拥有数据库、认证和实时 API，非常适合想要快速上线数据应用的团队。</p>
+<h2 id="zh-10"><strong>Directus</strong></h2>
+<p>开源数据平台和 Headless CMS，可以为任意 SQL 数据库提供即插即用的 API 和可视化管理后台，非常适合构建数据服务层。</p>
+<p><img src="https://static-docs.nocobase.com/8-lkl8w0.png" alt="Directus"></p>
+<p>GitHub 链接：<a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p>GitHub Star 数：32.1k</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>自动为数据库生成 REST 与 GraphQL API</li>
+<li>提供可视化的后台管理界面</li>
+<li>灵活的用户与权限控制</li>
+<li>可作为 Headless CMS 管理内容</li>
+<li>支持插件与扩展</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>内容管理系统（CMS）</strong>：管理文章、媒体、产品目录等内容，前后端分离开发。</li>
+<li><strong>数据驱动的前端应用</strong>：通过 API 为 Web 或移动应用提供结构化数据。</li>
+<li><strong>数据中台 / API 层</strong>：统一管理企业数据库，向不同系统提供标准化接口。</li>
+<li><strong>客户或合作伙伴门户</strong>：通过权限配置安全地共享部分数据库内容。</li>
+</ul>
+<p><strong>差异化优势：</strong> Directus 的优势在于<strong>为现有数据库快速生成 API 和后台管理</strong>，能在不改变数据库结构的情况下，立即拥有一套可视化管理和接口服务，非常适合做数据中台或作为前端应用的后端支持。</p>
+<h2 id="zh-11"><strong>Baserow</strong></h2>
+<p>开源的 Airtable 替代方案，以表格为核心界面，支持多人协作和 API 访问，适合团队以低门槛的方式管理结构化数据。</p>
+<p><img src="https://static-docs.nocobase.com/9-79qagw.png" alt="Baserow"></p>
+<p>GitLab 链接：<a href="https://gitlab.com/baserow/baserow">https://gitlab.com/baserow/baserow</a></p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>表格视图管理数据，界面直观</li>
+<li>支持自托管与云端版本</li>
+<li>API 接口开放，可与其他系统集成</li>
+<li>支持用户权限与团队协作</li>
+<li>插件与扩展机制逐步完善</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>轻量型 CRM</strong>：集中管理客户资料与沟通记录。</li>
+<li><strong>任务与项目管理</strong>：以表格或看板方式跟踪任务和进度。</li>
+<li><strong>数据采集与录入系统</strong>：适合构建在线数据收集与表单录入应用。</li>
+<li><strong>内容目录与清单</strong>：如产品目录、资源清单、内部文档管理。</li>
+</ul>
+<p><strong>差异化优势：</strong> Baserow 保持了<strong>表格驱动的轻量体验</strong>，让非技术用户也能轻松上手，同时又具备自托管和开放 API 的灵活性，适合希望在开源环境下替代 Airtable 的团队。</p>
+<h2 id="zh-12"><strong>NocoDB</strong></h2>
+<p>将传统数据库转换为类似 Airtable 界面的开源工具，可以把 MySQL、PostgreSQL 等数据库快速变成一个可视化的在线表格应用。</p>
+<p><img src="https://static-docs.nocobase.com/10-he0wqh.png" alt="NocoDB"></p>
+<p>GitHub 链接：<a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></p>
+<p>GitHub Star 数：56.5k</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>将关系型数据库转换为表格视图</li>
+<li>自动生成 API，方便与其他系统集成</li>
+<li>支持角色与权限管理</li>
+<li>支持多种视图（表格、画廊、看板）</li>
+<li>可自托管，支持团队协作</li>
+</ul>
+<p><strong>最适合的数据应用类型：</strong></p>
+<ul>
+<li><strong>数据库可视化管理工具</strong>：直接用表格界面管理数据库中的数据。</li>
+<li><strong>快速 CRUD 应用</strong>：零开发即可实现数据的创建、读取、更新和删除。</li>
+<li><strong>简单的内部工具原型</strong>：适合快速验证想法，搭建轻量数据应用。</li>
+<li><strong>项目与任务追踪</strong>：用看板和表格视图管理进度与任务分配。</li>
+</ul>
+<p><strong>差异化优势：</strong></p>
+<p>与 Baserow 基于自建存储不同，NocoDB 的优势在于<strong>直接把现有数据库转成 Airtable 风格的 UI</strong>，对已经有数据库的团队尤其友好，可以快速获得可视化管理和协作能力，而无需迁移数据。</p>
+<p>💡 阅读更多：<a href="../blog/nocobase-vs-nocodb.html">NocoBase 与 NocoDB：开源无代码（零代码）工具深度对比</a></p>
+<h2 id="zh-13">总结</h2>
+<p>无论是构建业务系统、做数据分析，还是需要一个轻量级的内部工具，这 10 个开源项目几乎覆盖了常见的数据应用场景。</p>
+<p>对开发者来说，它们的价值不仅在于“少写代码就能更快上线”，更在于提供了灵活的选择：你既可以用表格驱动的方式快速起步，也可以选择数据模型驱动或 API 驱动的工具，支撑起复杂度更高的应用。</p>
+<p>如果这篇文章让你对数据应用的构建思路更清晰，或者帮你找到合适的工具，不妨分享给身边的开发者朋友，让更多人受益。 🚀</p>
+<p><strong>相关阅读：</strong></p>
+<ul>
+<li><a href="../blog/6-open-source-no-code-database-tools.html">6 个替代飞书多维表格的开源无代码数据库工具</a></li>
+<li><a href="../blog/airtable-data-limit-reached-3-common-solutions.html">Airtable 的数据超出上限，3 种常见应对方式</a></li>
+<li><a href="../blog/appsheet-alternative.html">替代 Airtable / 飞书表格？用零代码构建多对多关系的任务管理系统</a></li>
+<li><a href="../blog/open-source-airtable-alternatives.html">GitHub上 Star 数量最多的 Airtable 开源替代者</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">2025 年 AppSheet 最佳开源替代品</a></li>
+<li><a href="../blog/data-integration-platforms.html">7 款最佳数据集成平台推荐</a></li>
+</ul></div><div class="prose en-only"><h2 id="en-1">Introduction</h2>
+<p>For developers, one of the most common needs at work is to quickly build a data application.</p>
+<p>It could be an operations dashboard, an internal query tool, or a simple customer data portal.</p>
+<p>Traditionally, you&#39;d have to write a backend, connect to a database, and then build the frontend.</p>
+<p>Fortunately, today we have <strong>excellent open-source tools</strong> that allow you to build production-ready data applications within hours.</p>
+<hr>
+<p>💬 Hey, you&#39;re reading the NocoBase blog. NocoBase is the most extensible AI-powered no-code/low-code development platform for building enterprise applications, internal tools, and all kinds of systems. It’s fully self-hosted, plugin-based, and developer-friendly. →<a href="https://github.com/nocobase/nocobase"> Explore NocoBase on GitHub</a></p>
+<hr>
+<p><img src="https://static-docs.nocobase.com/0-ggnmxf.png" alt="data applications"></p>
+<p>In this article, I’ll introduce 10 powerful open-source projects and explain what types of <strong>data applications</strong> they’re best suited for.</p>
+<h2 id="en-2">Quick Categories</h2>
+<ul>
+<li><strong>Internal Tools</strong><ul>
+<li><strong><a href="https://www.nocobase.com/">NocoBase</a></strong></li>
+<li><strong><a href="https://www.appsmith.com/">Appsmith</a></strong></li>
+<li><strong><a href="https://budibase.com/">Budibase</a></strong></li>
+</ul>
+</li>
+<li><strong>Data Visualization</strong><ul>
+<li><strong><a href="https://www.metabase.com/">Metabase</a></strong></li>
+<li><strong><a href="https://redash.io/">Redash</a></strong></li>
+<li><strong><a href="https://grafana.com/">Grafana</a></strong></li>
+</ul>
+</li>
+<li><strong>Backend &amp; Data Services</strong><ul>
+<li><strong><a href="https://supabase.com/">Supabase</a></strong></li>
+<li><strong><a href="https://directus.io/">Directus</a></strong></li>
+</ul>
+</li>
+<li><strong>Lightweight Spreadsheet Databases</strong><ul>
+<li><strong><a href="https://baserow.io/">Baserow</a></strong></li>
+<li><strong><a href="https://nocodb.com/">NocoDB</a></strong></li>
+</ul>
+</li>
+</ul>
+<p>Let&#39;s go through each category to explore the key features and ideal use cases of these tools.</p>
+<h2 id="en-3">NocoBase</h2>
+<p>A data model–driven, open-source, AI-driven no-code platform where all functionality is delivered through plugins, supporting visual building and flexible extensibility.</p>
+<p><img src="https://static-docs.nocobase.com/1-0o45ri.png" alt="NocoBase"></p>
+<p><strong>GitHub:</strong> <a href="https://github.com/nocobase/nocobase">https://github.com/nocobase/nocobase</a></p>
+<p><strong>GitHub Stars:</strong> 21.3k</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li>Complex data modeling</li>
+<li>Granular permission control</li>
+<li>Automated workflows</li>
+<li>Plugin-based architecture</li>
+<li>AI employees embedded in the system</li>
+</ul>
+<p><strong>Best for:</strong></p>
+<ul>
+<li><strong>CRM</strong>: Manage customer records, sales processes, contracts, and after-sales info.</li>
+<li><strong>BPM</strong>: Build cross-department approval workflows.</li>
+<li><strong>Ticketing systems</strong>: Handle customer requests and internal support tasks.</li>
+<li><strong>Project management</strong>: Track tasks, resource allocation, and progress.</li>
+<li><strong>Internal platforms</strong>: Inventory, HR, or administrative tools.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>While tools like Budibase, Baserow, and NocoDB focus on tables, NocoBase takes a <strong>data-model-driven</strong> approach with a fully separated front-end and back-end, making it a stronger fit for more complex business applications.</p>
+<h2 id="en-4">Appsmith</h2>
+<p>A low-code platform focused on quickly building internal tools, offering drag-and-drop UI components and rich data integrations.</p>
+<p><img src="https://static-docs.nocobase.com/2-n6u6j0.png" alt="Appsmith"></p>
+<p><strong>GitHub:</strong> <a href="https://github.com/appsmithorg/appsmith">https://github.com/appsmithorg/appsmith</a></p>
+<p><strong>GitHub Stars:</strong> 37.7k</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li>Drag-and-drop UI builder</li>
+<li>Supports REST, GraphQL, SQL, and more</li>
+<li>Built-in JavaScript extensions and custom logic blocks</li>
+<li>Flexible deployment: self-hosted or cloud</li>
+</ul>
+<p><strong>Best for:</strong></p>
+<ul>
+<li><strong>Internal query tools</strong>: Build dashboards and data views quickly.</li>
+<li><strong>Approval &amp; input systems</strong>: Form-driven workflows with permissions.</li>
+<li><strong>Customer support portals</strong>: Integrate multiple data sources.</li>
+<li><strong>Inventory dashboards</strong>: Consolidate data for daily operations.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Appsmith is developer-friendly: you can visually design UIs and extend them using JavaScript for greater flexibility—ideal for teams seeking fast delivery with customization.</p>
+<p>💡 Read More: <a href="../blog/nocobase-vs-appsmith.html">NocoBase vs. Appsmith: Which Open Source Low-Code Platform is Right for You?</a></p>
+<h2 id="en-5">Budibase</h2>
+<p>An open-source low-code platform supporting both built-in and external data sources. Perfect for delivering data applications rapidly.</p>
+<p><img src="https://static-docs.nocobase.com/3-5kxshe.png" alt="Budibase"></p>
+<p><strong>GitHub:</strong> <a href="https://github.com/Budibase/budibase">https://github.com/Budibase/budibase</a></p>
+<p><strong>GitHub Stars:</strong> 25.4k</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li>Built-in database with REST/SQL integrations</li>
+<li>Drag-and-drop form/page builder</li>
+<li>Automated workflows (emails, webhooks, task triggers)</li>
+<li>One-click deployment (Docker &amp; cloud)</li>
+</ul>
+<p><strong>Best for:</strong></p>
+<ul>
+<li><strong>Employee portals</strong>: Centralized notifications, documents, and processes.</li>
+<li><strong>Form-driven systems</strong>: Reimbursement, leave requests, procurement approvals.</li>
+<li><strong>Inventory &amp; asset management</strong>: Track items and usage.</li>
+<li><strong>Lightweight CRM</strong>: Manage client data and sales pipelines.</li>
+<li><strong>Data collection automation</strong>: Gather, validate, and process data.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Budibase excels in <strong>form-driven internal tools</strong>, combining automation capabilities with rapid deployment for end-to-end workflow management.</p>
+<h2 id="en-6">Metabase</h2>
+<p>An open-source BI and data visualization tool designed for both developers and business users.</p>
+<p><img src="https://static-docs.nocobase.com/4-w6dgfq.png" alt="Metabase"></p>
+<p><strong>GitHub:</strong> <a href="https://github.com/metabase/metabase">https://github.com/metabase/metabase</a></p>
+<p><strong>GitHub Stars:</strong> 43.3k</p>
+<p><strong>Highlights:</strong></p>
+<ul>
+<li>No-SQL query editor</li>
+<li>Advanced SQL support</li>
+<li>Wide variety of dashboards and charts</li>
+<li>Fine-grained permissions</li>
+<li>Multiple data source support</li>
+</ul>
+<p><strong>Best for:</strong></p>
+<ul>
+<li><strong>Operations dashboards</strong>: Monitor KPIs like sales, conversion, and engagement.</li>
+<li><strong>Executive reports</strong>: Automated visualization for decision-makers.</li>
+<li><strong>Interactive exploration</strong>: Filter and drill down into data visually.</li>
+<li><strong>Financial &amp; marketing analysis</strong>: Aggregate complex reports easily.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Metabase offers <strong>out-of-the-box usability</strong> for quick dashboard setup, making it ideal for teams seeking immediate insights without heavy coding.</p>
+<h2 id="en-7"><strong>Redash</strong></h2>
+<p>An open-source data visualization and query analysis tool built around SQL queries, Redash supports connecting to multiple data sources and helps teams quickly transform data into reports and dashboards.</p>
+<p><img src="https://static-docs.nocobase.com/5-s3r366.png" alt="Redash"></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/getredash/redash">https://github.com/getredash/redash</a></p>
+<p><strong>GitHub Stars</strong>: 27.7k</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li>Built-in SQL editor with support for multiple data sources (PostgreSQL, MySQL, BigQuery, Elasticsearch, etc.)</li>
+<li>Visualize query results with various chart types</li>
+<li>Dashboards combining multiple queries and visualizations</li>
+<li>Team sharing and collaboration features</li>
+<li>API support for automation</li>
+</ul>
+<p><strong>Best Use Cases</strong></p>
+<ul>
+<li><strong>Business analytics reports</strong>: Generate recurring reports for sales, finance, and marketing KPIs.</li>
+<li><strong>Team-wide query sharing</strong>: Enable non-technical users to access data results and visualizations.</li>
+<li><strong>Operations &amp; product monitoring</strong>: Track user behavior and product performance metrics.</li>
+<li><strong>Decision support systems</strong>: Provide executives and business teams with data-driven insights.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Redash is <strong>lightweight and developer-friendly</strong>. With SQL at its core, it offers technical users flexibility while providing intuitive dashboards and visualizations for business users — ideal for small teams or quick analysis needs.</p>
+<h2 id="en-8"><strong>Grafana</strong></h2>
+<p>A widely adopted open-source platform for data visualization and system monitoring, Grafana connects to hundreds of data sources and excels at building real-time dashboards and alerting systems.</p>
+<p><img src="https://static-docs.nocobase.com/6-wm9jgq.png" alt="Grafana"></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/grafana/grafana">https://github.com/grafana/grafana</a></p>
+<p><strong>GitHub Stars</strong>: 69.5k</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li>Extensive data source plugins (Prometheus, InfluxDB, Elasticsearch, PostgreSQL, etc.)</li>
+<li>Flexible visualizations and dashboard layouts</li>
+<li>Real-time monitoring and multi-dimensional metrics tracking</li>
+<li>Built-in alerting with email, Slack, and Webhook integrations</li>
+<li>Robust plugin ecosystem and high extensibility</li>
+</ul>
+<p><strong>Best Use Cases</strong></p>
+<ul>
+<li><strong>IT operations &amp; system monitoring</strong>: Track server, database, and network performance in real time.</li>
+<li><strong>IoT data visualization</strong>: Display device status, sensor metrics, and geolocation data.</li>
+<li><strong>Business performance dashboards</strong>: Showcase operational KPIs such as orders, conversions, and revenue.</li>
+<li><strong>Observability &amp; alerting systems</strong>: Automatically trigger alerts on anomalies to maintain system stability.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Grafana excels in <strong>real-time monitoring and alerting</strong>. Beyond creating beautiful dashboards, it enables multi-source data observation, making it the go-to choice for DevOps, IoT, and any scenario requiring real-time visualization.</p>
+<h2 id="en-9"><strong>Supabase</strong></h2>
+<p>An open-source Backend-as-a-Service (BaaS) platform, often called the “open-source Firebase,” Supabase is built on PostgreSQL and offers a full suite of backend services, including database hosting, authentication, storage, and real-time APIs.</p>
+<p><img src="https://static-docs.nocobase.com/7-5oa5go.png" alt="Supabase"></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/supabase/supabase">https://github.com/supabase/supabase</a></p>
+<p><strong>GitHub Stars</strong>: 72.0k</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li>Managed PostgreSQL database hosting</li>
+<li>Real-time APIs and subscriptions</li>
+<li>Built-in authentication and role-based access control</li>
+<li>File storage service</li>
+<li>Edge Functions for serverless computing</li>
+</ul>
+<p><strong>Best Use Cases</strong></p>
+<ul>
+<li><strong>Real-time collaboration tools</strong>: Build chat apps, collaborative documents, or any app requiring live updates.</li>
+<li><strong>Mobile &amp; web app backends</strong>: Quickly spin up SaaS applications with authentication and database support.</li>
+<li><strong>Customer data portals</strong>: Provide secure, unified access to user-specific data.</li>
+<li><strong>Data collection &amp; analytics systems</strong>: Ideal for lightweight apps requiring fast data storage and retrieval.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Unlike traditional setups requiring separate backend and database configurations, Supabase delivers an <strong>integrated backend solution</strong>. Developers can launch databases, authentication, and real-time APIs with minimal coding, making it perfect for teams that need to launch data apps quickly.</p>
+<h2 id="en-10"><strong>Directus</strong></h2>
+<p>An open-source data platform and headless CMS, Directus offers plug-and-play APIs and an intuitive admin dashboard for any SQL database, making it ideal for building a centralized data service layer.</p>
+<p><img src="https://static-docs.nocobase.com/8-lkl8w0.png" alt="Directus"></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/directus/directus">https://github.com/directus/directus</a></p>
+<p><strong>GitHub Stars</strong>: 32.1k</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li>Auto-generates REST and GraphQL APIs for any database</li>
+<li>Visual, no-code admin dashboard</li>
+<li>Flexible user and role management</li>
+<li>Functions as a headless CMS for content</li>
+<li>Plugin and extension support</li>
+</ul>
+<p><strong>Best Use Cases</strong></p>
+<ul>
+<li><strong>Content management systems (CMS)</strong>: Manage articles, media, and product catalogs in a decoupled architecture.</li>
+<li><strong>Data-driven frontend apps</strong>: Provide structured data via APIs to web and mobile applications.</li>
+<li><strong>Data service layer / API hub</strong>: Centralize database management and standardize data access across systems.</li>
+<li><strong>Customer &amp; partner portals</strong>: Share controlled data securely through role-based permissions.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Directus specializes in <strong>instantly generating APIs and admin dashboards</strong> for existing databases. Without altering database schemas, teams gain powerful visualization and management capabilities, making it an excellent choice for building data hubs or backend layers for frontend apps.</p>
+<h2 id="en-11"><strong>Baserow</strong></h2>
+<p>An open-source Airtable alternative with a spreadsheet-based interface, Baserow supports multi-user collaboration and API integration, enabling teams to manage structured data with minimal technical overhead.</p>
+<p><img src="https://static-docs.nocobase.com/9-79qagw.png" alt="Baserow"></p>
+<p><strong>GitLab</strong>: <a href="https://gitlab.com/baserow/baserow">https://gitlab.com/baserow/baserow</a></p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li>Spreadsheet-style data management with a clean UI</li>
+<li>Self-hosted and cloud deployment options</li>
+<li>Open API for integration with other systems</li>
+<li>User permissions and team collaboration support</li>
+<li>Evolving plugin and extension ecosystem</li>
+</ul>
+<p><strong>Best Use Cases</strong></p>
+<ul>
+<li><strong>Lightweight CRM</strong>: Centralize customer data and communication history.</li>
+<li><strong>Task &amp; project management</strong>: Track tasks and progress using table or Kanban views.</li>
+<li><strong>Data collection &amp; entry systems</strong>: Build forms and workflows for online data input.</li>
+<li><strong>Content directories &amp; catalogs</strong>: Manage product lists, resource libraries, and internal documents.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Baserow delivers a <strong>spreadsheet-first experience</strong> designed for non-technical users while maintaining flexibility through self-hosting and open APIs — a compelling choice for teams seeking an open-source Airtable replacement.</p>
+<h2 id="en-12"><strong>NocoDB</strong></h2>
+<p>An open-source platform that transforms traditional databases into Airtable-like interfaces, NocoDB allows you to quickly build spreadsheet-style web apps on top of MySQL, PostgreSQL, and other databases.</p>
+<p><img src="https://static-docs.nocobase.com/10-he0wqh.png" alt="NocoDB"></p>
+<p><strong>GitHub</strong>: <a href="https://github.com/nocodb/nocodb">https://github.com/nocodb/nocodb</a></p>
+<p><strong>GitHub Stars</strong>: 56.5k</p>
+<p><strong>Key Features</strong></p>
+<ul>
+<li>Converts relational databases into spreadsheet views</li>
+<li>Auto-generates APIs for seamless integrations</li>
+<li>Role-based access control and permissions</li>
+<li>Multiple view types (table, gallery, Kanban)</li>
+<li>Self-hosted with built-in team collaboration</li>
+</ul>
+<p><strong>Best Use Cases</strong></p>
+<ul>
+<li><strong>Database visualization &amp; management</strong>: Manage structured data through an intuitive table interface.</li>
+<li><strong>Rapid CRUD apps</strong>: Build create-read-update-delete apps without coding.</li>
+<li><strong>Internal tool prototyping</strong>: Quickly validate ideas and create lightweight data-driven apps.</li>
+<li><strong>Project &amp; task tracking</strong>: Use Kanban and spreadsheet views to manage workflows and assignments.</li>
+</ul>
+<p><strong>Unique Advantage</strong></p>
+<p>Unlike Baserow, which focuses on custom storage, NocoDB <strong>turns your existing databases into Airtable-style UIs</strong>. It’s especially beneficial for teams with existing data infrastructure, providing instant visualization and collaboration capabilities without migrating data.</p>
+<p>💡 Read More: <a href="../blog/nocobase-vs-nocodb.html">NocoBase vs NocoDB: An In-Depth Comparison of Open Source No-Code Tools</a></p>
+<h2 id="en-13"><strong>Conclusion</strong></h2>
+<p>Whether you&#39;re building business systems, performing data analytics, or creating lightweight internal tools, these open-source projects cover almost every major data application scenario.</p>
+<p>For developers, the true value lies not just in <strong>writing less code</strong> but in <strong>gaining flexibility</strong>: you can start quickly with spreadsheet-driven solutions or opt for API-driven and model-based approaches to power more complex applications.</p>
+<p>If this article helped you better understand data application development or discover the right tools, consider sharing it with your developer friends so more people can benefit. 🚀</p>
+<p><strong>Related reading:</strong></p>
+<ul>
+<li><a href="../blog/6-open-source-no-code-database-tools.html">6 Open-Source no-code Database Tools Like Airtable and Notion</a></li>
+<li><a href="../blog/airtable-data-limit-reached-3-common-solutions.html">Airtable Data Limit Reached: 3 Common Solutions</a></li>
+<li><a href="../blog/appsheet-alternative.html">AppSheet Alternative: Build a Many-to-Many Task System No-Code</a></li>
+<li><a href="../blog/open-source-airtable-alternatives.html">Top 7 OSS Airtable Alternatives Ranked by GitHub Stars</a></li>
+<li><a href="../blog/appsheet-open-source-alternatives.html">The Best Open-Source Alternatives to AppSheet in 2025</a></li>
+<li><a href="../blog/data-integration-platforms.html">7 Best Data Integration Platforms: Reviews &amp; Top Picks</a></li>
+</ul></div></article>
+    <nav class="toc" aria-label="Contents"><b><t-zh>本文目录</t-zh><t-en>On this page</t-en></b><div class="zh-only"><a href="#zh-1">写在开头</a><a href="#zh-2">快速分类</a><a href="#zh-3">NocoBase</a><a href="#zh-4">Appsmith</a><a href="#zh-5">Budibase</a><a href="#zh-6">Metabase</a><a href="#zh-7">Redash</a><a href="#zh-8">Grafana</a><a href="#zh-9">Supabase</a><a href="#zh-10">Directus</a><a href="#zh-11">Baserow</a><a href="#zh-12">NocoDB</a><a href="#zh-13">总结</a></div><div class="en-only"><a href="#en-1">Introduction</a><a href="#en-2">Quick Categories</a><a href="#en-3">NocoBase</a><a href="#en-4">Appsmith</a><a href="#en-5">Budibase</a><a href="#en-6">Metabase</a><a href="#en-7">Redash</a><a href="#en-8">Grafana</a><a href="#en-9">Supabase</a><a href="#en-10">Directus</a><a href="#en-11">Baserow</a><a href="#en-12">NocoDB</a><a href="#en-13">Conclusion</a></div></nav>
+  </div>
+  <section class="post-more">
+    <h2><t-zh>继续阅读</t-zh><t-en>Keep reading</t-en></h2>
+    <div class="bgrid"><a class="bcard" href="../blog/ai-business-analysis-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Group%2042%20(1)(1)-cehdfe.png" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月13日</t-zh><t-en>Oct 13, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何把 AI 用到经营中？从销售、库存到利润分析</t-zh><t-en>How to Use AI for Business Analysis: Sales, Inventory, and Profit Analysis</t-en></h3><p><t-zh>以销售、库存、采购和财务数据为例，展示企业如何用 NocoBase 与 AI 做经营分析，并辅助采购、回款与资金决策。</t-zh><t-en>See how AI and NocoBase combine sales, inventory, procurement, and finance data to support business analysis and operating decisions.</t-en></p></a><a class="bcard" href="../blog/add-ai-to-existing-enterprise-systems-with-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/Existing%20Business%20Systems-ul6jnl.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年10月7日</t-zh><t-en>Oct 7, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>企业如何在现有系统中引入 AI？</t-zh><t-en>How to Start Using AI Without Replacing Existing Business Systems</t-en></h3><p><t-zh>介绍企业如何用 AI 与 NocoBase 复用现有系统数据，先搭建独立内部应用，再逐步扩展 AI 分析与自动化能力。</t-zh><t-en>Learn how to add AI to existing enterprise systems with NocoBase by reusing current data, piloting internal apps, and expanding automation.</t-en></p></a><a class="bcard" href="../blog/build-car-rental-management-system-with-ai-and-nocobase.html" data-tags="AI_&_No-Code"><span class="cv"><img src="https://static-docs.nocobase.com/demo%20%E7%B3%BB%E5%88%97%E5%B0%81%E9%9D%A2-tvfo6b.jpg" alt=""></span><div class="bmeta"><span class="pill"><t-zh>AI 与无代码</t-zh><t-en>AI &amp; No-Code</t-en></span><span><t-zh>2026年9月18日</t-zh><t-en>Sep 18, 2026</t-en></span><span><t-zh>Yuan Tianqi</t-zh><t-en>Yuan Tianqi</t-en></span></div><h3><t-zh>如何用 AI 和 NocoBase 构建真实业务系统：以汽车租赁管理为例</t-zh><t-en>How to Build a Real-World Business System with AI and NocoBase: A Car Rental Management Example</t-en></h3><p><t-zh>以汽车租赁系统为例，讲解 Coding Agent 如何基于 NocoBase 完成业务建模、流程实现、测试与持续迭代。
+</t-zh><t-en>See how a Coding Agent builds a real-world car rental system on NocoBase with data models, workflows, testing, release, and AI Employees.
+</t-en></p></a></div>
+  </section>
+  <div class="band">
+    <div><h2><t-zh>用 AI 构建可靠的业务系统。</t-zh><t-en>Build reliable business systems with AI.</t-en></h2><p><t-zh>从开源的 NocoBase Core 开始，或带一个真实需求和我们一起实践。</t-zh><t-en>Start with open-source NocoBase Core, or bring a real requirement and work with us.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="../core.html"><t-zh>了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="../launch.html#book"><t-zh>预约实战验证</t-zh><t-en>Book a Pilot</t-en></a></div>
+  </div>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

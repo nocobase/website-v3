@@ -5,6 +5,14 @@ figdir = os.path.join(os.path.dirname(__file__), '..', 'sol', 'figs')
 text = open(src, encoding='utf-8').read()
 meta, body = text.split('\n---\n', 1)
 m = dict(l.split(': ', 1) for l in meta.strip().split('\n'))
+# 正文开头的 <style> 放进 head（排在 site.css 之后）；<!-- AFTER-MAIN --> 之后的内容（页面自己的脚本）放在 site.js 和 scripts: 之后
+style = ''
+if body.startswith('<style>'):
+    style, body = body.split('</style>\n', 1)
+    style += '</style>\n'
+after = ''
+if '\n<!-- AFTER-MAIN -->\n' in body:
+    body, after = body.split('\n<!-- AFTER-MAIN -->\n', 1)
 # 放在子目录里的页面（blog/、customers/）写 root: ../，资源与导航链接都从这里往上找
 root = m.get('root', '')
 def fig(mo):
@@ -81,7 +89,7 @@ page = f'''<!doctype html>
 <link rel="stylesheet" href="{root}assets/fonts/fonts.css">
 <script src="{root}assets/vendor/lucide-0.460.0/lucide.min.js"></script>
 <link rel="stylesheet" href="{root}assets/site.css">
-</head>
+{style}</head>
 <body data-page="{m['page']}" data-root="{root}">
 <div id="site-header"></div>
 <main>
@@ -89,7 +97,7 @@ page = f'''<!doctype html>
 </main>
 <div id="site-footer"></div>
 <script src="{root}assets/site.js"></script>
-{extra}</body>
+{extra}{after}</body>
 </html>
 '''
 open(out, 'w', encoding='utf-8').write(page)

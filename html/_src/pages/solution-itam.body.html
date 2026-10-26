@@ -3,29 +3,160 @@ title_zh: NocoITAM — Agent 主动跟进，IT 资产井井有条
 title_en: NocoITAM — Agents on It. IT Assets in Order.
 desc_zh: NocoITAM 是基于 NocoBase 的开源 IT 资产管理。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。
 desc_en: NocoITAM is open-source IT asset management on NocoBase. Agents reconcile MDM with the register, prepare joiner and leaver lists, check stock and idle assets before every purchase, and reclaim idle seats before renewal. IT just decides.
+i18n: itam
 ---
+<style>
+/* NocoITAM's AI is green, the app's primary (#047857), where the site draws agents in purple: the drawn figures on this page take the product's colour. */
+main { --agent: #047857; --agent-ink: #065f46; --agent-tint: #ecfdf5; }
+main .sg.on { border-color: #a7f3d0; }
+/* An AI action in NocoITAM is green words with the sparkles before them, no frame or ground (AiShortcut). */
+main .b.ai { border-color: transparent; background: transparent; padding-inline: 2px; color: var(--agent-ink); }
+main .fit { --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
+/* The onboarding and offboarding figures drawn after the product's own 入职配备 and 离职交接 (2026-10-24): solid type tags, actions as words on the row, the steward's pick, the online-after-leaving warning and the snapshot tables. */
+.ob { gap: 10px; font-size: 12.5px; }
+.ob .mu { color: var(--muted); }
+.ob .red { color: #dc2626; }
+.ob-head { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.ob-head svg.lucide { width: 15px; height: 15px; color: var(--muted); flex: none; }
+.ob-head b { font-size: 14px; font-weight: 600; }
+.ob-head .r { margin-left: auto; }
+.ob-ai { background: var(--paper-2); border-radius: 8px; padding: 7px 10px; color: var(--ink-2); }
+.ob-ai b { color: var(--ink); font-weight: 600; margin-right: 6px; }
+.ob-prog { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+.ob-prog .bar { width: 64px; height: 4px; border-radius: 4px; background: var(--paper-2); overflow: hidden; }
+.ob-prog .bar i { display: block; height: 100%; width: var(--w); background: #047857; }
+.ob-list { display: grid; }
+.ob-row { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid var(--rule); white-space: nowrap; }
+.ob-row b { font-weight: 500; }
+.ob-row small { color: var(--muted); font-size: 12px; }
+.ob-row .r { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.tp { display: inline-flex; align-items: center; gap: 3px; padding: 1px 6px; border-radius: 5px; background: #047857; color: #fff; font-size: 11px; font-weight: 500; line-height: 18px; flex: none; }
+.tp svg.lucide { width: 11px; height: 11px; }
+.tp.o { background: var(--card); color: #047857; box-shadow: inset 0 0 0 1px #a7f3d0; }
+.ob .lk { color: #047857; font-weight: 500; }
+.ob .lk.k { color: var(--ink); }
+.ob .lk.m { color: var(--muted); font-weight: 400; }
+.okp { display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px; border-radius: 6px; background: var(--paper-2); }
+.okp svg.lucide { width: 12px; height: 12px; }
+.ob-note { display: flex; gap: 6px; margin: 0 0 6px; padding: 6px 10px; border-radius: 8px; background: var(--paper-2); color: var(--ink-2); white-space: normal; }
+.ob-note svg.lucide { width: 13px; height: 13px; color: #047857; flex: none; margin-top: 2px; }
+.ob-warn { display: flex; gap: 8px; padding: 9px 12px; border: 1px solid #fcd34d; border-radius: 8px; background: #fef3c7; color: #92400e; }
+.ob-warn svg.lucide { width: 15px; height: 15px; flex: none; margin-top: 2px; }
+.ob-warn b { font-weight: 600; }
+.ob-warn p { margin: 2px 0 0; color: #78350f; }
+.ob-ok { display: flex; align-items: center; gap: 4px; margin: 0; color: var(--muted); }
+.ob-ok svg.lucide { width: 13px; height: 13px; }
+.ob-lead { margin: 0; color: var(--ink-2); }
+.ob-tbl { border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.ob-tbl .th, .ob-tbl .tr { display: grid; grid-template-columns: 14px minmax(0, 1fr) 78px 58px; gap: 8px; align-items: center; padding: 7px 10px; border-top: 1px solid var(--rule); }
+.ob-tbl .th { border-top: 0; background: var(--paper-2); font-weight: 600; }
+.ob-tbl .it { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; white-space: nowrap; }
+.ob-tbl .it b { font-weight: 500; }
+.ob-tbl .it small { flex-basis: 100%; color: var(--muted); font-size: 11.5px; }
+.ob-tbl .sub { display: flex; align-items: center; gap: 6px; padding: 5px 10px 6px 32px; border-top: 1px solid var(--rule); background: var(--paper); color: var(--muted); font-size: 12px; white-space: nowrap; }
+.ob-tbl .sub svg.lucide { width: 12px; height: 12px; }
+.cbx { width: 12px; height: 12px; border: 1px solid var(--rule-2); border-radius: 3px; background: var(--card); }
+.obb { display: inline-flex; align-items: center; justify-content: center; gap: 3px; padding: 2px 8px; border: 1px solid var(--rule-2); border-radius: 6px; background: var(--card); font-size: 11.5px; white-space: nowrap; }
+.obb svg.lucide { width: 11px; height: 11px; }
+.obb.dis { color: var(--muted); border-color: var(--rule); }
+.ob .st { padding: 0 6px; border-radius: 5px; font-size: 11px; line-height: 18px; }
+.ob .st.amber { background: #fef3c7; color: #b45309; }
+.ob .st.green { background: #d1fae5; color: #047857; }
+/* The hero split in two on this page: the words at the left, the intro video at the right; one column on narrow screens. */
+.phero-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; }
+.phero-split h1 { font-size: 48px; }
+.phero-video { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid var(--rule-2); background: var(--paper-2); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
+.phero-video video, .pv-cover { display: block; width: 100%; height: 100%; border: 0; padding: 0; background: var(--paper-2); }
+.phero-video video { object-fit: cover; }
+.pv-cover { position: relative; cursor: pointer; background: var(--paper-2); }
+.pv-cover t-zh, .pv-cover t-en { display: block; height: 100%; }
+.pv-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pv-btn { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border-radius: 999px; background: oklch(1 0 0 / 0.86); color: var(--ink); backdrop-filter: blur(6px); font-size: 14.5px; font-weight: 500; white-space: nowrap; box-shadow: 0 10px 30px -8px var(--shadow); transition: transform 0.2s ease, background 0.2s ease; }
+.pv-btn t-zh, .pv-btn t-en { display: inline; height: auto; }
+.pv-btn svg.lucide { width: 16px; height: 16px; fill: currentColor; }
+.pv-btn small { font-size: 13px; opacity: 0.8; }
+/* The play button reads as part of the cover, translucent white, so the hero has one primary button, Try It Online (2026-10-25). */
+.pv-cover:hover .pv-btn { transform: translateY(-1px); background: oklch(1 0 0 / 0.96); }
+/* Live demo styles: the demo site itself under the hero, or nothing when the site cannot be reached or on a phone; the link under it opens the site in a new tab. */
+.ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); box-shadow: 0 24px 60px -28px var(--shadow); }
+.ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+/* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
+#tryDemo { padding-top: 72px; }
+/* A cue at the foot of the full-screen hero, no words: a mouse whose wheel rolls down and a line running on down to the demo, which a click scrolls to; wide screens only, where the hero fills the screen (2026-10-25). */
+.phero { position: relative; }
+.scroll-cue { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; gap: 10px; padding: 6px 6px 0; color: var(--muted); }
+.scroll-cue .ln { position: relative; width: 1px; height: 56px; overflow: hidden; background: linear-gradient(to bottom, var(--rule-2), transparent); }
+.scroll-cue .ln::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--brand); animation: cue-run 1.8s ease-in-out infinite; }
+@keyframes cue-run { to { top: 100%; } }
+.scroll-cue[hidden] { display: none !important; }
+.scroll-cue .mouse { position: relative; display: block; width: 24px; height: 38px; border: 1.5px solid currentColor; border-radius: 12px; opacity: 0.7; transition: color 0.2s ease, opacity 0.2s ease; }
+.scroll-cue .wheel { position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: currentColor; animation: cue-wheel 1.8s ease-in-out infinite; }
+.scroll-cue:hover { color: var(--brand); }
+.scroll-cue:hover .mouse { opacity: 1; }
+@keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue .wheel, .scroll-cue .ln::after { animation: none; } .scroll-cue .ln::after { top: 0; } }
+@media (min-width: 961px) { .scroll-cue { display: flex; } }
+/* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
+@media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 14vh; } .phero > .container { width: 100%; } }
+.ld-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.ld-open a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 15px; white-space: nowrap; }
+.ld-open a:hover { color: var(--brand-hover); }
+.ld-open svg.lucide { width: 16px; height: 16px; }
+#tryDemo .sec-body { margin-top: 0; }
+.ld-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.ld-head p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+#tryDemo[hidden] { display: none; }
+#tryDemo .ld-head { scroll-margin-top: 16px; } /* Try It Online scrolls to the title: 16px below the 80px the site keeps for its sticky header (html scroll-padding-top) */ /* its section's heading stays in view above it, under the sticky header */
+@media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
+@media (max-width: 960px) { .phero-split { grid-template-columns: minmax(0, 1fr); gap: 36px; } .phero-split h1 { font-size: 40px; } }
+</style>
 <section class="phero">
   <div class="container">
-    <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoITAM · <t-zh>IT 资产台账与管理</t-zh><t-en>IT asset management</t-en></span><span class="pill pass">Alpha</span></p>
+    <div class="phero-split">
+    <div class="phero-text">
+    <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoITAM · <t-zh>IT 资产台账与管理</t-zh><t-en>IT asset management</t-en></span><span class="pill pass">Beta</span></p>
     <h1><t-zh>Agent 主动跟进，<br><span class="m">IT 资产井井有条。</span></t-zh><t-en>Agents on it. <span class="m">IT assets in order.</span></t-en></h1>
-    <p class="lede"><t-zh>传统资产系统是一本需要人去维护的账。NocoITAM 里，Agent 每天替 IT 干苦活：MDM 一同步就把差异整理成方案，新人入职前把设备和席位配齐，每一笔采购先查库存和闲置，订阅续费前把没人用的席位收回来。每台设备、每个席位、每一笔钱，都有人管、有据可查。</t-zh><t-en>Traditional asset tools are a ledger someone has to keep. In NocoITAM, agents do IT’s grunt work every day: they turn every MDM sync into a plan, kit out new hires before day one, check stock and idle assets before every purchase, and reclaim unused seats before renewals. Every device, seat, and dollar has an owner and a record.</t-en></p>
+    <p class="lede"><t-zh>传统资产系统靠人维护台账。在 NocoITAM 里，Agent 整理 MDM 差异、为新人配齐设备、采购前先查库存和闲置。每台设备、每个席位、每笔开支都有据可查。</t-zh><t-en>Traditional ITAM tools are ledgers kept by hand. In NocoITAM, agents sort out MDM differences, kit out new hires, and check stock and idle assets before every purchase. Every device, seat, and dollar is on record.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a>
-      <a class="btn btn-sec" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>立即安装</t-zh><t-en>Install Now</t-en></a>
+      <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
+      <a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoITAM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a>
     </div>
-    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>专业版</t-zh><t-en>Professional</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0-alpha.23</b></div><div><t-zh>MDM 对接</t-zh><t-en>MDM</t-en><b>Intune · Jamf Pro</b></div></div>
-    <div class="sheet">{{SNIP:itamTodo:1120}}</div>
+    </div>
+    <div class="phero-video" id="introVideo">
+      <button class="pv-cover" type="button" id="introPlay">
+        <t-zh><img src="https://static-docs.nocobase.com/nocoitam-intro-zh.jpg" alt="NocoITAM 介绍视频"></t-zh><t-en><img src="https://static-docs.nocobase.com/nocoitam-intro-en.jpg" alt="NocoITAM intro video"></t-en>
+        <span class="pv-btn"><i data-lucide="play"></i><t-zh>观看介绍</t-zh><t-en>Watch the intro</t-en><small>2:52</small></span>
+      </button>
+    </div>
+    </div>
+    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0</b></div><div><t-zh>内置 Agent</t-zh><t-en>Built-in agents</t-en><b>3</b></div><div><t-zh>MDM 对接</t-zh><t-en>MDM</t-en><b>Intune · Jamf Pro</b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
+  </div>
+  <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="mouse" aria-hidden="true"><span class="wheel"></span></span><span class="ln" aria-hidden="true"></span></a>
+</section>
+
+<section class="sec" id="tryDemo" hidden>
+  <div class="container">
+    <div class="ld-head">
+      <div>
+        <h2><t-zh>在线体验 NocoITAM</t-zh><t-en>Try NocoITAM online</t-en></h2>
+        <p><t-zh>已用演示账号自动登录，数据都是虚构的，可以随意操作。</t-zh><t-en>You're signed in to a demo account. All the data is made up, so try anything.</t-en></p>
+      </div>
+      <span class="ld-open" id="liveDemoBar"><a href="https://solutions-cn.nocobase.com/itam/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span>
+    </div>
+    <div class="sec-body">
+    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoITAM" allow="clipboard-write"></iframe></div></div>
+    </div>
   </div>
 </section>
 
-<section class="sec wow">
+<section class="sec wow tint">
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>看得见的价值</t-zh><t-en>Visible Value</t-en></b></p>
-      <h2 class="h2"><t-zh>少花的每一笔钱，</t-zh><t-en>Every dollar not spent, </t-en><span class="m"><t-zh>都说得清是怎么省下的。</t-zh><t-en>and exactly how.</t-en></span></h2>
-      <p class="lead"><t-zh>Agent 不会自作主张：每一项都是它提出、负责人确认后才执行。所以你不但知道省了多少，还知道是哪张采购单、哪个席位、为什么。</t-zh><t-en>Agents never act on their own: each item is proposed by an agent and carried out only after its owner confirms. So you know not just how much was saved, but which request, which seat, and why.</t-en></p>
+      <h2 class="h2"><t-zh>省下的每一笔钱，</t-zh><t-en>Every dollar saved, </t-en><span class="m"><t-zh>都说得清来龙去脉。</t-zh><t-en>with a clear paper trail.</t-en></span></h2>
+      <p class="lead"><t-zh>Agent 绝不擅自改账：每项建议都经负责人确认后才执行。省了多少钱、省在哪张采购单或哪个软件席位上，全都清清楚楚。</t-zh><t-en>Agents never change records on their own. Every action is proposed by an agent and confirmed by its owner. You see not only how much was saved, but which purchase request or license seat it came from.</t-en></p>
     </div>
-    <div class="sec-body"><div class="sheet">{{SNIP:itamValue:1120}}</div></div>
+    <div class="sec-body"><div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>本季度，Agent 替 IT 做了什么</t-zh><t-en>What agents did for IT this quarter</t-en></h5><p><t-zh>每一项都由负责人确认后执行</t-zh><t-en>Every item was confirmed by its owner</t-en></p></div></div><div class="stat" style="--n:4"><div class="bigstat"><small><t-zh>少花的钱</t-zh><t-en>Spend avoided</t-en></small><b class="ok-c"><t-zh>¥ 3.9 万</t-zh><t-en>¥39k</t-en></b><span><t-zh>先用库存和闲置，再采购</t-zh><t-en>Stock and idle seats first</t-en></span></div><div class="bigstat"><small><t-zh>回收的闲置席位</t-zh><t-en>Idle seats reclaimed</t-en></small><b class="ag-c">11</b><span><t-zh>续订前提醒，不再白付</t-zh><t-en>Flagged before renewal</t-en></span></div><div class="bigstat"><small><t-zh>自动整理的 MDM 差异</t-zh><t-en>MDM differences sorted</t-en></small><b>41</b><span><t-zh>拿不准的 3 处留给人</t-zh><t-en>3 uncertain left for people</t-en></span></div><div class="bigstat"><small><t-zh>新人入职准备</t-zh><t-en>New-hire prep</t-en></small><b><t-zh>6 分钟</t-zh><t-en>6 min</t-en></b><span><t-zh>从 2 天缩短到 6 分钟确认</t-zh><t-en>From 2 days to a 6-minute review</t-en></span></div></div><div class="tblw"><table class="tbl"><thead><tr><th><t-zh>来源</t-zh><t-en>Source</t-en></th><th><t-zh>发生了什么</t-zh><t-en>What happened</t-en></th><th><t-zh>Agent 的建议</t-zh><t-en>Agent’s suggestion</t-en></th><th style="text-align:right"><t-zh>少花</t-zh><t-en>Saved</t-en></th></tr></thead><tbody><tr><td class="id">PO-000037</td><td class="w"><t-zh>销售部显示器 5 台</t-zh><t-en>5 monitors for Sales</t-en></td><td class="w"><t-zh>库存有 3 台同型号，只买 2 台</t-zh><t-en>3 in stock, bought only 2</t-en></td><td style="font-family:var(--f-mono);color:var(--pass-ink);text-align:right">¥ 9,597</td></tr><tr><td class="id">PO-000045</td><td class="w"><t-zh>研发新员工 MacBook Air</t-zh><t-en>MacBook Air for new engineers</t-en></td><td class="w"><t-zh>改用在库 MacBook Pro 14</t-zh><t-en>Used an in-stock MacBook Pro 14</t-en></td><td style="font-family:var(--f-mono);color:var(--pass-ink);text-align:right">¥ 17,998</td></tr><tr><td class="id">Figma</td><td class="w"><t-zh>12 个席位里 4 个 60 天未使用</t-zh><t-en>4 of 12 seats idle for 60 days</t-en></td><td class="w"><t-zh>回收后续订减少 4 个</t-zh><t-en>Reclaimed before renewal</t-en></td><td style="font-family:var(--f-mono);color:var(--pass-ink);text-align:right"><t-zh>¥ 7,680/年</t-zh><t-en>¥7,680/yr</t-en></td></tr><tr><td class="id">Zoom Pro</td><td class="w"><t-zh>已结束的旧订阅仍占 2 个席位</t-zh><t-en>Ended plan still holding 2 seats</t-en></td><td class="w"><t-zh>取消旧订阅，席位并入年付</t-zh><t-en>Cancelled, merged into annual plan</t-en></td><td style="font-family:var(--f-mono);color:var(--pass-ink);text-align:right"><t-zh>¥ 2,160/年</t-zh><t-en>¥2,160/yr</t-en></td></tr><tr><td class="id">DP-000003</td><td class="w"><t-zh>打印机申请报废</t-zh><t-en>Printer disposal request</t-en></td><td class="w"><t-zh>才用 20 个月，建议先报修</t-zh><t-en>Only 20 months old, repair first</t-en></td><td style="font-family:var(--f-mono);color:var(--pass-ink);text-align:right">¥ 1,776</td></tr></tbody></table></div></div></div></div></div></div></div></div>
   </div>
 </section>
 
@@ -33,21 +164,21 @@ desc_en: NocoITAM is open-source IT asset management on NocoBase. Agents reconci
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>采购</t-zh><t-en>Purchasing</t-en></b></p>
-      <h2 class="h2"><t-zh>每一笔采购，</t-zh><t-en>Before every purchase, </t-en><span class="m"><t-zh>先看库存、闲置和历史。</t-zh><t-en>stock, idle assets, and history come first.</t-en></span></h2>
-      <p class="lead"><t-zh>采购单一提交，审批助手就替审批人算一笔账：库存或闲置能不能顶上、同型号以前多少钱、同类申请以前怎么批的、申请人哪里没说清。建议同意、有条件同意、驳回或补充材料，并起草审批意见。</t-zh><t-en>The moment a request is submitted, the approval assistant does the math for the approver: can stock or idle assets cover it, what did the same model cost before, how were similar requests decided, what did the requester leave out. It recommends and drafts the comment.</t-en></p>
+      <h2 class="h2"><t-zh>每一笔采购前，</t-zh><t-en>Before every purchase, </t-en><span class="m"><t-zh>先查库存、闲置与历史价格。</t-zh><t-en>check stock, idle assets, and past prices.</t-en></span></h2>
+      <p class="lead"><t-zh>采购单一提交，审批助手自动算好细账：是否有库存或闲置可用、历史单价多少、同类申请往常怎么批、申请说明是否完整，并直接给出审批建议与批注草稿。</t-zh><t-en>As soon as a request is submitted, the approval assistant checks whether stock or idle assets can cover it, compares past unit prices and similar requests, flags missing details, and drafts a recommendation and comment.</t-en></p>
     </div>
     <div class="sec-body">
-      <div class="sheet">{{SNIP:itamJourney:1120}}</div>
+      <div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>一张采购单的旅程</t-zh><t-en>The life of a purchase request</t-en></h5><p><t-zh>每一笔采购，先看库存、闲置和历史</t-zh><t-en>Every purchase checks stock, idle assets, and history first</t-en></p></div></div><div class="flow" style="--n:5"><div><span class="st"><span class="bal">1</span><t-zh>提交申请</t-zh><t-en>Request</t-en></span><div class="pnl"><b style="font-size:13px">PO-000037</b><p><t-zh>销售部要 5 台 27 寸显示器</t-zh><t-en>Sales needs 5 × 27″ monitors</t-en></p><p style="font-family:var(--f-mono);font-size:12px">CNY 16,495</p></div></div><div><span class="st ag-s"><span class="bal">2</span><t-zh>审批助手核对</t-zh><t-en>Assistant checks</t-en></span><div class="rvw"><ul><li><t-zh>库存同型号 3 台</t-zh><t-en>3 identical in stock</t-en></li><li><t-zh>单价比上次高 3%</t-zh><t-en>Price 3% above last</t-en></li><li><t-zh>同类申请 4 次都先用库存</t-zh><t-en>4 similar requests: stock first</t-en></li></ul></div></div><div><span class="st hu-s"><span class="bal">3</span><t-zh>你来批</t-zh><t-en>You approve</t-en></span><div class="sg on"><div class="t"><span class="aisg"><i data-lucide="sparkles"></i><t-zh>有条件同意</t-zh><t-en>Approve with conditions</t-en></span></div><p><t-zh>只买 2 台，按上次单价</t-zh><t-en>Buy 2, at last price</t-en></p><div class="acts"><span class="b p sm"><t-zh>同意</t-zh><t-en>Approve</t-en></span></div></div></div><div><span class="st"><span class="bal">4</span><t-zh>下单与到货</t-zh><t-en>Order &amp; receive</t-en></span><div class="pnl"><p><t-zh>2 台到货自动入库，生成资产编号</t-zh><t-en>2 arrive, auto-registered with tags</t-en></p><div class="mini-chips"><span>SG-MON-021</span><span>SG-MON-022</span></div></div></div><div><span class="st ok-s"><span class="bal">5</span><t-zh>领用到人</t-zh><t-en>Assigned</t-en></span><div class="pnl"><p><t-zh>3 台库存 + 2 台新到，5 人当天领用</t-zh><t-en>3 from stock + 2 new, 5 people same day</t-en></p><b style="color:var(--pass-ink);font-size:13px"><t-zh>少花 ¥ 9,597</t-zh><t-en>¥9,597 saved</t-en></b></div></div></div></div></div></div></div></div></div>
       <div class="feat" style="margin-top:88px">
         <div>
-          <h3><t-zh>审批助手给出的，不只是“同意”或“驳回”。</t-zh><t-en>More than “approve” or “reject.”</t-en></h3>
+          <h3><t-zh>审批助手给出的，远不止“同意”或“驳回”。</t-zh><t-en>The approval assistant offers far more than “approve” or “reject.”</t-en></h3>
           <ul class="bul" style="margin-top:16px">
-            <li><t-zh>“建议有条件同意：库存里有 3 台同型号显示器可以先用，只买差的 2 台。”</t-zh><t-en>“Approve on conditions: 3 matching monitors are in stock—buy only the 2 still needed.”</t-en></li>
-            <li><t-zh>“建议驳回：这台打印机才用了 20 个月，也没有维修记录，先报修，不要直接销毁。”</t-zh><t-en>“Reject: this printer is only 20 months old with no repair history—repair before disposing.”</t-en></li>
-            <li><t-zh>“建议有条件同意：同型号没有库存，但在库还有 3 台可用的替代机型；先确认本季度预算和新人名单再买。”</t-zh><t-en>“Approve on conditions: no stock of that model, but 3 alternatives are available—confirm budget and the new-hire list first.”</t-en></li>
+            <li><t-zh>“建议有条件同意：库存已有 3 台同型号显示器可领用，只需采购差额 2 台。”</t-zh><t-en>“Approve with conditions: 3 matching monitors are in stock, so buy only the remaining 2.”</t-en></li>
+            <li><t-zh>“建议驳回：该打印机仅使用 20 个月且无维修记录，建议先报修而非直接报废。”</t-zh><t-en>“Reject: this printer is only 20 months old with no repair history. Repair before disposing.”</t-en></li>
+            <li><t-zh>“建议有条件同意：同型号无库存，但在库有 3 台替代机型可用；请先确认本季预算与入职名单。”</t-zh><t-en>“Approve with conditions: none of this model in stock, but 3 alternatives are available. Confirm the budget and new-hire headcount first.”</t-en></li>
           </ul>
         </div>
-        <div class="sheet sm">{{SNIP:itamApproval:640}}</div>
+        <div class="sheet sm"><div class="fit" data-w="640"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5>PO-000037 · <t-zh>销售部显示器扩容</t-zh><t-en>Monitors for Sales</t-en></h5><p><t-zh>北桥 IT 供应 · 申请人 吴静 · 5 台 Dell U2724D</t-zh><t-en>Northbridge IT · by Emily Carter · 5 × Dell U2724D</t-en></p></div><span class="r"><span class="tag amber"><t-zh>等你审批</t-zh><t-en>Waiting for you</t-en></span></span></div><div class="kv"><div><small><t-zh>金额</t-zh><t-en>Amount</t-en></small><b>CNY 16,495</b></div><div><small><t-zh>同型号库存</t-zh><t-en>Same model in stock</t-en></small><b>3</b></div><div><small><t-zh>历史单价</t-zh><t-en>Past unit price</t-en></small><b>CNY 3,199</b></div><div><small><t-zh>本季度预算剩余</t-zh><t-en>Budget left</t-en></small><b>CNY 42,000</b></div></div><div class="rvw"><div class="h"><i data-lucide="sparkles"></i><t-zh>审批助手</t-zh><t-en>Approval assistant</t-en></div><div class="q"><t-zh>建议有条件同意：只买差的 2 台</t-zh><t-en>Recommend: approve only the 2 still needed</t-en></div><ul><li><t-zh>库存里有 3 台同型号显示器，可以先领用</t-zh><t-en>3 matching monitors are in stock and can be issued now</t-en></li><li><t-zh>本次单价比上次高 3%，可以请供应商按上次价格报价</t-zh><t-en>Unit price is 3% above last time; ask for last price</t-en></li><li><t-zh>近一年同类扩容申请 4 次，都按「先用库存」批准</t-zh><t-en>4 similar requests in a year, all approved stock-first</t-en></li></ul><div class="draft"><small><t-zh>起草的审批意见</t-zh><t-en>Drafted comment</t-en></small><t-zh>同意采购 2 台，其余 3 台从库存领用；请按上次单价确认报价。</t-zh><t-en>Approve buying 2 and issue the other 3 from stock. Please confirm at the last unit price.</t-en></div></div><div class="acts" style="margin-top:0"><span class="b p sm"><t-zh>有条件同意</t-zh><t-en>Approve with conditions</t-en></span><span class="b sm"><t-zh>同意</t-zh><t-en>Approve</t-en></span><span class="b sm"><t-zh>驳回</t-zh><t-en>Reject</t-en></span><span class="b sm"><t-zh>要求补充</t-zh><t-en>Ask for more</t-en></span></div></div></div></div></div></div></div>
       </div>
     </div>
   </div>
@@ -57,13 +188,13 @@ desc_en: NocoITAM is open-source IT asset management on NocoBase. Agents reconci
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>入职与离职</t-zh><t-en>Joiners &amp; Leavers</t-en></b></p>
-      <h2 class="h2"><t-zh>新人第一天就能开工，</t-zh><t-en>New hires work on day one. </t-en><span class="m"><t-zh>离职的人一件不落地收回。</t-zh><t-en>Leavers return everything.</t-en></span></h2>
-      <p class="lead"><t-zh>入职前，系统按入职配置算好该给什么、库存里哪台能补、哪个席位可以分配、还缺什么；资产管家整批提出，你确认一次就好，缺口直接起草采购单。离职时反过来，设备、配件、席位，再加上停用账号、更换密钥这些系统外的事，一项不漏。</t-zh><t-en>Before a start date, NocoITAM works out what the hire needs, which device in stock and which seat can cover it, and what’s missing. The asset steward proposes it all as one batch—confirm once, and gaps get a drafted PO. Leavers work in reverse: devices, accessories, seats, plus off-system steps like disabling accounts and rotating keys, nothing missed.</t-en></p>
+      <h2 class="h2"><t-zh>新人首日即可开工，</t-zh><t-en>New hires are ready on day one. </t-en><span class="m"><t-zh>离职资产一件不落收回。</t-zh><t-en>Leavers return every item.</t-en></span></h2>
+      <p class="lead"><t-zh>入职前，按岗位标准算好所需设备与软件席位，自动匹配库存与闲置，打包生成配置方案；你只需确认，缺口一键起草采购单。离职时反向核销，设备、配件、席位以及停用账号、轮换密钥等系统外事项逐一追踪，不漏一项。</t-zh><t-en>Before day one, NocoITAM matches the new hire’s standard kit against stock and idle seats in a single batch. Confirm it, and draft a PO for any gaps in one click. When someone leaves, it tracks devices, accessories, seats, and off-system tasks like revoking accounts and rotating keys until everything is cleared.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="grid2">
-        <div class="sheet sm">{{SNIP:itamOnboard:640}}</div>
-        <div class="sheet sm">{{SNIP:itamOffboard:640}}</div>
+        <div class="sheet sm"><div class="fit" data-w="600"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body ob"><div class="ob-head"><i data-lucide="package"></i><b><t-zh>入职配备</t-zh><t-en>Onboarding kit</t-en></b><span class="mu"><t-zh>孙浩 · 前端工程师</t-zh><t-en>Noah Harris · Front-end engineer</t-en></span><span class="mu"><t-zh>10-28 入职</t-zh><t-en>Joins Oct 28</t-en></span><span class="r"><span class="b p sm"><t-zh>全部执行 (6)</t-zh><t-en>Run all (6)</t-en></span></span></div><div class="ob-ai"><b><t-zh>资产管家已挑选（10-23）</t-zh><t-en>Picked by the asset steward (Oct 23)</t-en></b><t-zh>为孙浩挑了 1 样，都在库可用。避开了 SH-MON-006（屏幕右下角有一个坏点）。</t-zh><t-en>Picked 1 item for Noah Harris, all in stock. Passed over SH-MON-006 (a dead pixel in the bottom-right corner).</t-en></div><div class="ob-prog"><span><t-zh>已配备 1 / 8</t-zh><t-en>1 of 8 prepared</t-en></span><span class="bar"><i style="--w:13%"></i></span><span class="red"><t-zh>缺 1 项需采购</t-zh><t-en>1 item to buy</t-en></span></div><div class="ob-list"><div class="ob-row"><span class="tp"><i data-lucide="monitor-smartphone"></i><t-zh>设备</t-zh><t-en>Device</t-en></span><b>MacBook Pro 14 M3</b><small>×1</small><span class="r"><span class="okp"><i data-lucide="check"></i>DE-000016 / SH-LT-051 · <t-zh>已预留</t-zh><t-en>Reserved</t-en></span></span></div><div class="ob-row"><span class="tp"><i data-lucide="monitor-smartphone"></i><t-zh>设备</t-zh><t-en>Device</t-en></span><b>U2723QE</b><small>×1</small><span class="r"><span>DE-000020 / SH-MON-007</span><span class="lk"><t-zh>预留</t-zh><t-en>Reserve</t-en></span><span class="lk k"><t-zh>更换</t-zh><t-en>Change</t-en></span><span class="lk m"><t-zh>不需要</t-zh><t-en>Not needed</t-en></span></span></div><div class="ob-note"><i data-lucide="sparkles"></i><span><t-zh>和新人同在 3 楼、保修到 2029-03、没有维修记录；没选 SH-MON-006（屏幕右下角有一个坏点）。</t-zh><t-en>Same floor as the new hire, warranty to 2029-03, no repairs; not SH-MON-006 (a dead pixel in the bottom-right corner).</t-en></span></div><div class="ob-row"><span class="tp"><i data-lucide="mouse"></i><t-zh>配件</t-zh><t-en>Accessory</t-en></span><b>WD22TB4</b><small>×1</small><span class="r"><span>Dell WD22TB4 dock</span><span class="lk"><t-zh>领用</t-zh><t-en>Issue</t-en></span><span class="lk m"><t-zh>不需要</t-zh><t-en>Not needed</t-en></span></span></div><div class="ob-row"><span class="tp"><i data-lucide="mouse"></i><t-zh>配件</t-zh><t-en>Accessory</t-en></span><b>MX Keys</b><small>×1</small><span class="r"><span>Logitech MX Keys</span><span class="lk"><t-zh>领用</t-zh><t-en>Issue</t-en></span><span class="lk m"><t-zh>不需要</t-zh><t-en>Not needed</t-en></span></span></div><div class="ob-row"><span class="tp"><i data-lucide="mouse"></i><t-zh>配件</t-zh><t-en>Accessory</t-en></span><b>MX Master 3S</b><small>×1</small><span class="r"><span>Logitech MX Master 3S</span><span class="lk"><t-zh>领用</t-zh><t-en>Issue</t-en></span><span class="lk m"><t-zh>不需要</t-zh><t-en>Not needed</t-en></span></span></div><div class="ob-row"><span class="tp"><i data-lucide="key-round"></i><t-zh>授权</t-zh><t-en>Entitlement</t-en></span><b>IntelliJ IDEA Ultimate</b><small>×1</small><span class="r"><span class="red"><t-zh>缺 1 · 应尽快下单</t-zh><t-en>1 short · order now</t-en></span><span class="lk m"><t-zh>不需要</t-zh><t-en>Not needed</t-en></span></span></div><div class="ob-row"><span class="tp"><i data-lucide="key-round"></i><t-zh>授权</t-zh><t-en>Entitlement</t-en></span><b>Microsoft 365</b><small>×1</small><span class="r"><span><t-zh>Microsoft 365 商业标准版</t-zh><t-en>Microsoft 365 Business Standard</t-en></span><span class="lk"><t-zh>分配席位</t-zh><t-en>Assign seat</t-en></span><span class="lk m"><t-zh>不需要</t-zh><t-en>Not needed</t-en></span></span></div><div class="ob-row"><span class="tp"><i data-lucide="key-round"></i><t-zh>授权</t-zh><t-en>Entitlement</t-en></span><b>Zoom Workplace</b><small>×1</small><span class="r"><span><t-zh>Zoom Workplace Pro（年付）</t-zh><t-en>Zoom Workplace Pro (annual)</t-en></span><span class="lk"><t-zh>分配席位</t-zh><t-en>Assign seat</t-en></span><span class="lk m"><t-zh>不需要</t-zh><t-en>Not needed</t-en></span></span></div></div></div></div></div></div></div></div>
+        <div class="sheet sm"><div class="fit" data-w="600"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body ob"><div class="ob-head"><i data-lucide="user-minus"></i><b><t-zh>离职交接</t-zh><t-en>Offboarding</t-en></b><span class="mu"><t-zh>陈杰 · IT 支持工程师</t-zh><t-en>Mark Taylor · IT support engineer</t-en></span><span class="mu"><t-zh>10-21 离职</t-zh><t-en>Left Oct 21</t-en></span></div><div class="ob-warn"><i data-lucide="wifi"></i><div><b><t-zh>1 台设备离职后仍在线</t-zh><t-en>1 device still online after leaving</t-en></b><p><u>SH-LT-011</u> <t-zh>10-23 06:10 仍在 Intune 同步</t-zh><t-en>still syncing with Intune as of Oct 23 06:10</t-en></p></div></div><p class="ob-ok"><i data-lucide="check"></i><t-zh>登录账号 chenjie 已随离职自动停用</t-zh><t-en>Sign-in markt disabled when they left</t-en></p><p class="ob-lead"><t-zh>离职时持有的资产快照，其中未处理的 1 项由你负责：</t-zh><t-en>What they held when they left; 1 open item is yours:</t-en></p><div class="ob-tbl"><div class="th"><span class="cbx"></span><span><t-zh>持有资产</t-zh><t-en>Held</t-en></span><span><t-zh>负责人</t-zh><t-en>Owner</t-en></span><span><t-zh>操作</t-zh><t-en>Action</t-en></span></div><div class="tr"><span class="cbx"></span><span class="it"><span class="tp"><i data-lucide="monitor-smartphone"></i><t-zh>设备</t-zh><t-en>Device</t-en></span><b>DE-000006 / SH-LT-006</b><span class="st amber"><t-zh>维修中</t-zh><t-en>In repair</t-en></span></span><span class="mu"><t-zh>周宇</t-zh><t-en>Ryan Mitchell</t-en></span><span class="obb dis"><i data-lucide="undo-2"></i><t-zh>归还</t-zh><t-en>Return</t-en></span></div><div class="sub"><i data-lucide="corner-down-right"></i><t-zh>内含</t-zh><t-en>Contains</t-en><span class="tp"><i data-lucide="cpu"></i><t-zh>组件</t-zh><t-en>Component</t-en></span><span>32 GB DDR5 SO-DIMM</span></div><div class="tr"><span class="cbx"></span><span class="it"><span class="tp"><i data-lucide="monitor-smartphone"></i><t-zh>设备</t-zh><t-en>Device</t-en></span><b>DE-000009 / SH-LT-011</b><span class="st green"><t-zh>使用中</t-zh><t-en>In use</t-en></span></span><span class="mu">Super Admin</span><span class="obb"><i data-lucide="undo-2"></i><t-zh>归还</t-zh><t-en>Return</t-en></span></div><div class="tr"><span class="cbx"></span><span class="it"><span class="tp"><i data-lucide="mouse"></i><t-zh>配件</t-zh><t-en>Accessory</t-en></span><b>Dell WD22TB4 dock</b></span><span class="mu"><t-zh>吴静</t-zh><t-en>Emily Carter</t-en></span><span class="obb"><i data-lucide="undo-2"></i><t-zh>归还</t-zh><t-en>Return</t-en></span></div><div class="tr"><span class="cbx"></span><span class="it"><span class="tp"><i data-lucide="key-round"></i><t-zh>授权</t-zh><t-en>Entitlement</t-en></span><b>Figma Organization</b><small><t-zh>chen.jie@northbridge.example</t-zh><t-en>mark.taylor@northbridge.example</t-en></small></span><span class="mu"><t-zh>你</t-zh><t-en>You</t-en></span><span class="obb"><i data-lucide="undo-2"></i><t-zh>回收</t-zh><t-en>Reclaim</t-en></span></div></div><p class="ob-lead"><t-zh>离职时负责的记录快照：</t-zh><t-en>Records they were responsible for:</t-en></p><div class="ob-list"><div class="ob-row"><span class="tp o"><i data-lucide="clipboard-check"></i><t-zh>盘点</t-zh><t-en>Audit</t-en></span><b><t-zh>三季度盘点 · 仓库</t-zh><t-en>Q3 stocktake · Warehouse</t-en></b><small><t-zh>负责人 · 陈杰</t-zh><t-en>Owner · Mark Taylor</t-en></small><span class="r"><span class="obb"><i data-lucide="arrow-left-right"></i><t-zh>移交</t-zh><t-en>Hand over</t-en></span></span></div><div class="ob-row"><span class="tp"><i data-lucide="monitor-smartphone"></i><t-zh>设备</t-zh><t-en>Device</t-en></span><b>DE-000004 / SH-LT-004</b><small><t-zh>负责人 · 陈杰</t-zh><t-en>Owner · Mark Taylor</t-en></small><span class="r"><span class="obb"><i data-lucide="arrow-left-right"></i><t-zh>移交</t-zh><t-en>Hand over</t-en></span></span></div></div></div></div></div></div></div></div>
       </div>
     </div>
   </div>
@@ -73,19 +204,19 @@ desc_en: NocoITAM is open-source IT asset management on NocoBase. Agents reconci
   <div class="container">
     <div class="sec-head">
       <p class="label"><b>MDM</b></p>
-      <h2 class="h2"><t-zh>MDM 每次同步后，</t-zh><t-en>After every MDM sync, </t-en><span class="m"><t-zh>差异自己整理成一份方案。</t-zh><t-en>differences sort themselves into a plan.</t-en></span></h2>
+      <h2 class="h2"><t-zh>MDM 每次同步后，</t-zh><t-en>After every MDM sync, </t-en><span class="m"><t-zh>差异自动整理成处理方案。</t-zh><t-en>discrepancies turn into an action plan.</t-en></span></h2>
     </div>
     <div class="sec-body">
       <div class="feat">
         <div>
-          <p><t-zh>和 Intune、Jamf Pro 同步后，MDM 跟进 Agent 把需要判断的差异整理好：使用人不一致的交给设备负责人，台账没登记的交给资产管理员，每项附上理由；拿不准的，比如失联 41 天的笔记本，留给人看。在收件箱里勾选，确认后执行。</t-zh><t-en>After syncing with Intune or Jamf Pro, the MDM follow-up agent sorts what needs a decision: assignee mismatches go to the device owner, unregistered devices to the asset admin, each with a reason—and anything uncertain, like a laptop silent for 41 days, is left for a person. Tick what you agree with in the inbox and it runs.</t-en></p>
+          <p><t-zh>与 Intune、Jamf Pro 同步后，Agent 自动归类差异并附上原因：使用人不符的派给设备负责人，未入账的新设备派给资产管理员；失联设备等疑难情况留给人判断。在收件箱勾选确认即可批量执行。</t-zh><t-en>After syncing with Intune or Jamf Pro, the agent sorts discrepancies with context: assignee mismatches go to device owners, unregistered devices go to asset admins, and edge cases like long-offline laptops are flagged for human review. Check and apply in one batch.</t-en></p>
           <ul class="bul">
-            <li><t-zh>不再每周导出两张表手工对</t-zh><t-en>No more weekly spreadsheet comparisons</t-en></li>
-            <li><t-zh>每一处差异都有处理人和理由</t-zh><t-en>Every difference has an owner and a reason</t-en></li>
-            <li><t-zh>执行记录留在设备的历史里</t-zh><t-en>What was done stays in the device’s history</t-en></li>
+            <li><t-zh>告别每周导出表格手工比对</t-zh><t-en>No more weekly spreadsheet VLOOKUPs</t-en></li>
+            <li><t-zh>每处差异都有明确责任人与处理依据</t-zh><t-en>Every discrepancy has a clear owner and reason</t-en></li>
+            <li><t-zh>变更记录自动留存在设备时间线中</t-zh><t-en>Every reconciliation is logged in the device history</t-en></li>
           </ul>
         </div>
-        <div class="sheet sm">{{SNIP:itamMdm:640}}</div>
+        <div class="sheet sm"><div class="fit" data-w="640"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>MDM 核对方案</t-zh><t-en>MDM reconciliation plan</t-en></h5><p><t-zh>Intune 10-16 02:00 同步 · 发现 5 处差异</t-zh><t-en>Intune sync Oct 16 02:00 · 5 differences</t-en></p></div><span class="r"><span class="aisg"><i data-lucide="sparkles"></i><t-zh>MDM 跟进</t-zh><t-en>MDM follow-up</t-en></span></span></div><div class="ck2"><div><span class="bx on"></span><b><t-zh>SG-LT-011 使用人不一致</t-zh><t-en>SG-LT-011 assignee mismatch</t-en></b><small><t-zh>MDM：李娜 · 台账：张伟 → 交给设备负责人，按 MDM 更新</t-zh><t-en>MDM: Olivia Bennett · Register: Ethan Brown → device owner, update from MDM</t-en></small><span class="tag grey"><t-zh>设备负责人</t-zh><t-en>Owner</t-en></span></div><div><span class="bx on"></span><b><t-zh>3 台设备台账未登记</t-zh><t-en>3 devices not in register</t-en></b><small><t-zh>Intune 新增 · 序列号已匹配型号 → 交给资产管理员登记</t-zh><t-en>New in Intune, models matched → asset admin to register</t-en></small><span class="tag grey"><t-zh>资产管理员</t-zh><t-en>Asset admin</t-en></span></div><div><span class="bx"></span><b><t-zh>SG-LT-019 失联 41 天</t-zh><t-en>SG-LT-019 silent for 41 days</t-en></b><small><t-zh>拿不准是否已离职交还，留给人判断</t-zh><t-en>Unclear whether it was returned; left for a person to decide</t-en></small><span class="tag amber"><t-zh>需要你判断</t-zh><t-en>Needs you</t-en></span></div></div><div class="acts" style="margin-top:0"><span class="b p sm"><i data-lucide="check"></i><t-zh>执行勾选的 2 项</t-zh><t-en>Run 2 selected</t-en></span><span class="b sm"><t-zh>查看全部差异</t-zh><t-en>All differences</t-en></span></div></div></div></div></div></div></div>
       </div>
     </div>
   </div>
@@ -95,18 +226,19 @@ desc_en: NocoITAM is open-source IT asset management on NocoBase. Agents reconci
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>资产台账</t-zh><t-en>Asset Register</t-en></b></p>
-      <h2 class="h2"><t-zh>硬件、软件和消耗品，</t-zh><t-en>Hardware, software, and supplies </t-en><span class="m"><t-zh>一本账管清楚。</t-zh><t-en>in one register.</t-en></span></h2>
+      <h2 class="h2"><t-zh>硬件、软件与耗材，</t-zh><t-en>Hardware, software, and supplies, </t-en><span class="m"><t-zh>一本台账管清楚。</t-zh><t-en>all in one register.</t-en></span></h2>
     </div>
     <div class="sec-body">
-      <div class="sheet">{{SNIP:itamDevices:1120}}</div>
-      <div class="grid3" style="margin-top:40px">
-        <div class="card"><span class="ic"><i data-lucide="laptop"></i></span><h3><t-zh>设备</t-zh><t-en>Devices</t-en></h3><p><t-zh>使用中、库存中、维修中、借出中、待报废、已报废，领用与归还都有记录；与 Intune、Jamf Pro 同步核对。</t-zh><t-en>In use, in stock, in repair, on loan, pending disposal, disposed—with check-out history, reconciled with Intune and Jamf Pro.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="key"></i></span><h3><t-zh>软件授权</t-zh><t-en>Licenses</t-en></h3><p><t-zh>订阅与永久授权，总席位与已分配，合规、闲置、超量和到期一目了然；自动续订前提醒。</t-zh><t-en>Subscriptions and perpetual licenses with seats, compliance (compliant, idle, over), and expiry—with alerts before auto-renewal.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="clipboard-check"></i></span><h3><t-zh>采购、维修、报废与盘点</t-zh><t-en>Purchasing, repairs, disposal, audits</t-en></h3><p><t-zh>每一步按流程走：到货逾期会标出，维修记录费用，盘点列出差异待处理。</t-zh><t-en>Every step follows a process: late deliveries flagged, repair costs recorded, audit discrepancies listed.</t-en></p></div>
+      <div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-top"><span class="sx-brand" style="padding:0"><img class="crm-logo" src="https://static-docs.nocobase.com/nocoitam-logo.svg" alt="NocoITAM"></span><span>/</span><b><t-zh>设备</t-zh><t-en>Devices</t-en></b><span class="r"><span class="ai"><i data-lucide="sparkles"></i></span><span class="av"><t-zh>吴</t-zh><t-en>A</t-en></span></span></div><div class="sx-body"><div class="sx-h"><h5><t-zh>设备</t-zh><t-en>Devices</t-en></h5><span class="n">86</span><span class="r"><span class="b sm"><i data-lucide="refresh-cw"></i><t-zh>MDM 核对</t-zh><t-en>MDM review</t-en></span><span class="b dk sm"><i data-lucide="plus"></i><t-zh>创建设备</t-zh><t-en>New device</t-en></span></span></div><div class="chips"><span class="chip"><t-zh>全部 86</t-zh><t-en>All 86</t-en></span><span class="chip"><t-zh>使用中 69</t-zh><t-en>In use 69</t-en></span><span class="chip"><t-zh>库存中 11</t-zh><t-en>In stock 11</t-en></span><span class="chip"><t-zh>维修中 3</t-zh><t-en>In repair 3</t-en></span><span class="chip"><t-zh>借出中 1</t-zh><t-en>On loan 1</t-en></span><span class="chip"><t-zh>保修 30 天内到期 4</t-zh><t-en>Warranty ≤30d 4</t-en></span></div><div class="tblw"><table class="tbl"><thead><tr><th><t-zh>编号</t-zh><t-en>Tag</t-en></th><th><t-zh>型号</t-zh><t-en>Model</t-en></th><th><t-zh>状态</t-zh><t-en>Status</t-en></th><th><t-zh>去向</t-zh><t-en>Assignee</t-en></th><th><t-zh>部门</t-zh><t-en>Department</t-en></th><th><t-zh>位置</t-zh><t-en>Location</t-en></th><th><t-zh>MDM 最后同步</t-zh><t-en>Last MDM sync</t-en></th></tr></thead><tbody><tr><td class="id">SG-LT-001</td><td>MacBook Pro 14 M3</td><td><span class="tag green"><t-zh>使用中</t-zh><t-en>In use</t-en></span></td><td><t-zh>李娜</t-zh><t-en>Olivia Bennett</t-en></td><td><t-zh>技术部</t-zh><t-en>Engineering</t-en></td><td><t-zh>3 楼</t-zh><t-en>Floor 3</t-en></td><td class="id" style="color:var(--muted)">10-15 23:10</td></tr><tr><td class="id">SG-LT-004</td><td>MacBook Pro 14 M3</td><td><span class="tag orange"><t-zh>维修中</t-zh><t-en>In repair</t-en></span></td><td><t-zh>王芳</t-zh><t-en>Sophia Turner</t-en></td><td><t-zh>销售部</t-zh><t-en>Sales</t-en></td><td><t-zh>3 楼</t-zh><t-en>Floor 3</t-en></td><td class="id" style="color:var(--muted)">08-20 22:10</td></tr><tr><td class="id">SG-LT-005</td><td>MacBook Pro 14 M3</td><td><span class="tag blue"><t-zh>借出中</t-zh><t-en>On loan</t-en></span></td><td><t-zh>赵敏</t-zh><t-en>Chloe Adams</t-en></td><td><t-zh>销售部</t-zh><t-en>Sales</t-en></td><td><t-zh>3 楼</t-zh><t-en>Floor 3</t-en></td><td class="id" style="color:var(--muted)">—</td></tr><tr><td class="id">SG-LT-007</td><td>Latitude 5440</td><td><span class="tag grey"><t-zh>库存中</t-zh><t-en>In stock</t-en></span></td><td><t-zh>—</t-zh><t-en>—</t-en></td><td><t-zh>—</t-zh><t-en>—</t-en></td><td><t-zh>仓库</t-zh><t-en>Warehouse</t-en></td><td class="id" style="color:var(--muted)">10-15 22:10</td></tr><tr><td class="id">SG-LT-010</td><td>MacBook Air 13 M3</td><td><span class="tag green"><t-zh>使用中</t-zh><t-en>In use</t-en></span></td><td><t-zh>赵敏</t-zh><t-en>Chloe Adams</t-en></td><td><t-zh>销售部</t-zh><t-en>Sales</t-en></td><td><t-zh>3 楼</t-zh><t-en>Floor 3</t-en></td><td class="id" style="color:var(--muted)">10-15 23:10</td></tr><tr><td class="id">SG-MON-002</td><td>Dell U2724D</td><td><span class="tag green"><t-zh>使用中</t-zh><t-en>In use</t-en></span></td><td><t-zh>刘洋</t-zh><t-en>Lucas Martin</t-en></td><td><t-zh>技术部</t-zh><t-en>Engineering</t-en></td><td><t-zh>3 楼</t-zh><t-en>Floor 3</t-en></td><td class="id" style="color:var(--muted)">—</td></tr><tr><td class="id">SG-PR-003</td><td>HP LaserJet M428</td><td><span class="tag red"><t-zh>待报废</t-zh><t-en>Pending disposal</t-en></span></td><td><t-zh>—</t-zh><t-en>—</t-en></td><td><t-zh>行政</t-zh><t-en>Admin</t-en></td><td><t-zh>2 楼</t-zh><t-en>Floor 2</t-en></td><td class="id" style="color:var(--muted)">—</td></tr></tbody></table></div></div></div></div></div></div></div>
+      <div class="grid2" style="margin-top:40px">
+        <div class="card"><span class="ic"><i data-lucide="laptop"></i></span><h3><t-zh>设备</t-zh><t-en>Devices</t-en></h3><p><t-zh>在用、库存、维修、借出、报废全周期流转留痕，并与 Intune、Jamf Pro 持续对账。</t-zh><t-en>Full lifecycle tracking from stock to disposal, continuously reconciled with Intune and Jamf Pro.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="package"></i></span><h3><t-zh>配件、耗材与组件</t-zh><t-en>Accessories, consumables &amp; components</t-en></h3><p><t-zh>按数量管理领用、归还与库存，低于水位自动提醒；组件可装进设备，随设备一起流转。</t-zh><t-en>Track quantities issued, returned, and in stock, with alerts below minimum; components go into devices and move with them.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="key"></i></span><h3><t-zh>软件授权</t-zh><t-en>Software entitlements</t-en></h3><p><t-zh>清晰掌握订阅与永久授权的总席位、已分配、闲置与超量情况，自动续费前提前预警。</t-zh><t-en>Track subscription and perpetual seats (compliant, idle, or over-allocated), with alerts before auto-renewal.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="clipboard-check"></i></span><h3><t-zh>采购、维修、报废与盘点</t-zh><t-en>Procurement, repairs, disposal &amp; audits</t-en></h3><p><t-zh>全流程闭环：到货逾期自动提醒，维修费用归集到设备，盘点差异逐项跟进。</t-zh><t-en>Flags late deliveries, logs repair costs per device, and tracks audit discrepancies to resolution.</t-en></p></div>
       </div>
       <div class="grid2" style="margin-top:40px">
-        <div><div class="sheet sm">{{SNIP:itamCatalog:640}}</div></div>
-        <div><div class="sheet sm">{{SNIP:itamReports:640}}</div></div>
+        <div><div class="sheet sm"><div class="fit" data-w="640"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>创建型号</t-zh><t-en>New model</t-en></h5><p><t-zh>输入制造商和型号，AI 查资料填好表单，你核对后保存</t-zh><t-en>Enter maker and model; AI looks it up and fills the form for you to check</t-en></p></div></div><div class="kv" style="--n:2"><div><small><t-zh>制造商</t-zh><t-en>Manufacturer</t-en></small><b>Dell</b></div><div><small><t-zh>型号</t-zh><t-en>Model</t-en></small><b>U2724D</b></div></div><div class="rvw"><div class="h"><i data-lucide="sparkles"></i><t-zh>AI 整理 · 3 个来源</t-zh><t-en>AI filled · 3 sources</t-en></div><div class="kv" style="--n:3"><div><small><t-zh>分类</t-zh><t-en>Category</t-en></small><b><t-zh>显示器</t-zh><t-en>Monitor</t-en></b></div><div><small><t-zh>尺寸 / 分辨率</t-zh><t-en>Size / resolution</t-en></small><b>27″ · 2560×1440</b></div><div><small><t-zh>接口</t-zh><t-en>Ports</t-en></small><b>USB-C 90W · HDMI · DP</b></div><div><small><t-zh>保修</t-zh><t-en>Warranty</t-en></small><b><t-zh>3 年</t-zh><t-en>3 years</t-en></b></div><div><small><t-zh>参考价</t-zh><t-en>Ref. price</t-en></small><b>CNY 3,199</b></div><div><small><t-zh>折旧年限</t-zh><t-en>Depreciation</t-en></small><b><t-zh>5 年</t-zh><t-en>5 years</t-en></b></div></div></div><div class="acts" style="margin:0"><span class="b p sm"><t-zh>核对无误，保存</t-zh><t-en>Looks right, save</t-en></span><span class="b sm"><t-zh>查看来源</t-zh><t-en>Sources</t-en></span></div></div></div></div></div></div></div></div>
+        <div><div class="sheet sm"><div class="fit" data-w="640"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><h5><t-zh>报表 · 概览</t-zh><t-en>Reports · Overview</t-en></h5><span class="r"><span class="b sm ai"><i data-lucide="sparkles"></i><t-zh>AI 报表解读</t-zh><t-en>Explain with AI</t-en></span><span class="b sm"><i data-lucide="download"></i>CSV</span></span></div><div class="stat"><div><small><t-zh>设备</t-zh><t-en>Devices</t-en></small><b>85</b></div><div><small><t-zh>账面价值</t-zh><t-en>Book value</t-en></small><b><t-zh>¥ 38.2万</t-zh><t-en>¥382k</t-en></b></div><div><small><t-zh>在用率</t-zh><t-en>Utilization</t-en></small><b class="ok">82%</b></div><div><small><t-zh>授权超量</t-zh><t-en>Over-allocated</t-en></small><b class="bad">1</b></div></div><div class="duo2"><div class="pnl"><div class="h"><t-zh>按状态</t-zh><t-en>By status</t-en></div><div class="bars"><div><span><t-zh>使用中</t-zh><t-en>In use</t-en></span><i style="--w:100%"></i><span>69</span></div><div><span><t-zh>库存中</t-zh><t-en>In stock</t-en></span><i style="--w:16%"></i><span>11</span></div><div><span><t-zh>维修中</t-zh><t-en>In repair</t-en></span><i style="--w:5%"></i><span>3</span></div><div><span><t-zh>借出中</t-zh><t-en>On loan</t-en></span><i style="--w:2%"></i><span>1</span></div><div><span><t-zh>待报废</t-zh><t-en>Pending disposal</t-en></span><i style="--w:2%"></i><span>1</span></div></div></div><div class="pnl"><div class="h"><t-zh>授权合规</t-zh><t-en>License compliance</t-en></div><div class="bars"><div><span><t-zh>合规</t-zh><t-en>Compliant</t-en></span><i style="--w:100%;--c:var(--pass)"></i><span>6</span></div><div><span><t-zh>闲置</t-zh><t-en>Idle</t-en></span><i style="--w:50%;--c:var(--human)"></i><span>3</span></div><div><span><t-zh>超量</t-zh><t-en>Over</t-en></span><i style="--w:17%;--c:var(--risk-ink)"></i><span>1</span></div></div></div></div></div></div></div></div></div></div></div>
       </div>
     </div>
   </div>
@@ -116,13 +248,13 @@ desc_en: NocoITAM is open-source IT asset management on NocoBase. Agents reconci
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>按你的方式</t-zh><t-en>Your Way</t-en></b></p>
-      <h2 class="h2"><t-zh>写下你们的标准配置和审批规则，</t-zh><t-en>Write down your standard kit and approval rules, </t-en><span class="m"><t-zh>Agent 就按它工作。</t-zh><t-en>and agents work by them.</t-en></span></h2>
+      <h2 class="h2"><t-zh>写下你们的配置标准与审批规则，</t-zh><t-en>Write down your kit standards and approval rules. </t-en><span class="m"><t-zh>Agent 照章执行。</t-zh><t-en>Agents work by them.</t-en></span></h2>
     </div>
     <div class="sec-body">
       <div class="grid3">
-        <div class="card"><span class="ic"><i data-lucide="notebook-pen"></i></span><h3><t-zh>业务指导</t-zh><t-en>Business guidance</t-en></h3><p><t-zh>你们是谁、标准配置、预算、什么情况要审批。资产管家每次对话、每个 Agent 每次运行都会读它。</t-zh><t-en>Who you are, standard kit, budget, and when approval is needed. The asset steward and every agent run read it.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="sparkles"></i></span><h3><t-zh>技能</t-zh><t-en>Skills</t-en></h3><p><t-zh>approval-review、catalog、device-sync、onboarding、offboarding 等技能可阅读、可修改，按你们的做法调整。</t-zh><t-en>Skills like approval-review, catalog, device-sync, onboarding, and offboarding are readable and editable to match how you work.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="code"></i></span><h3><t-zh>模型与代码</t-zh><t-en>Models &amp; code</t-en></h3><p><t-zh>为每个 Agent 选择模型，查看用量。字段、流程和报表要变，就在 Studio 里让 Coding Agent 改代码——随专业版提供，私有部署，代码归你。</t-zh><t-en>Pick a model per agent and track usage. For new fields, processes, or reports, have a coding agent change the code in Studio—included in Professional, self-hosted, yours.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="notebook-pen"></i></span><h3><t-zh>业务指导</t-zh><t-en>Business guidance</t-en></h3><p><t-zh>用自然语言写明公司概况、岗位标准配置、预算与审批红线，所有 Agent 每次运行都会读取遵循。</t-zh><t-en>Define your standard kits, budgets, and approval thresholds in plain text, read by every agent on every run.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="sparkles"></i></span><h3><t-zh>技能</t-zh><t-en>Skills</t-en></h3><p><t-zh>内置采购审阅、型号建档、MDM 对账、入转离等技能，随时查看或按内部流程修改。</t-zh><t-en>Built-in skills for approval review, catalog, device sync, and onboarding/offboarding are fully readable and customizable.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="code"></i></span><h3><t-zh>模型与源码</t-zh><t-en>Models &amp; code</t-en></h3><p><t-zh>按 Agent 指定模型并监控用量。需要改字段、流程或报表？在 Studio 里让 Coding Agent 直接改源码。开源、私有部署，代码归你。</t-zh><t-en>Assign models per agent and track usage. Need custom fields, workflows, or reports? Have a coding agent modify the source in Studio: open-source, self-hosted, and yours.</t-en></p></div>
       </div>
     </div>
   </div>
@@ -130,7 +262,83 @@ desc_en: NocoITAM is open-source IT asset management on NocoBase. Agents reconci
 
 <div class="container">
   <div class="band">
-    <div><h2><t-zh>让 IT 少做核对，多做判断。</t-zh><t-en>Less reconciling, more deciding for IT.</t-en></h2><p><t-zh>在线体验 NocoITAM，或直接安装；连上 MDM、导入资产清单，资产 Agent 就开始核对。</t-zh><t-en>Try NocoITAM online or install it now. Connect your MDM, import your asset list, and the asset agents start reconciling.</t-en></p></div>
-    <div class="cta"><a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>立即安装</t-zh><t-en>Install Now</t-en></a></div>
+    <div><h2><t-zh>IT 少对账，资产始终清楚。</t-zh><t-en>Less reconciling for IT, a clear view of every asset.</t-en></h2><p><t-zh>在线体验 NocoITAM，或到 GitHub 获取源码自行部署。连上 MDM、导入资产表，Agent 即刻开始对账。</t-zh><t-en>Try NocoITAM online, or get the source on GitHub and run it yourself. Connect your MDM, import your assets, and let agents start reconciling.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoITAM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
   </div>
 </div>
+<!-- AFTER-MAIN -->
+<script>
+/* Live demo script: the Chinese site on a Simplified Chinese page and the international one in every other language (Traditional Chinese included), kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
+(function () {
+  var SITES = { zh: 'https://solutions-cn.nocobase.com/itam/', en: 'https://solutions.nocobase.com/itam/' };
+  var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
+  var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
+  var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
+  var status = {}, shown = false, scrolling = false;
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
+  function narrow() { return window.innerWidth < 768; }
+  function up() { return !forced && status[SITES[lang()]] === 'up'; }
+  function probe(url) {
+    if (status[url]) return;
+    status[url] = 'checking';
+    var img = new Image(), settled = false;
+    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); check(); }
+    var timer = setTimeout(function () { end(false); }, 8000);
+    img.onload = function () { end(true); };
+    img.onerror = function () { end(false); };
+    img.src = url + 'assets/favicon.ico?check=' + Date.now();
+  }
+  function apply() {
+    var url = SITES[lang()], down = forced || status[url] === 'down';
+    open.href = url;
+    tries.forEach(function (a) { a.hidden = down; });
+    section.hidden = !up() || narrow();
+    if (section.hidden) { frame.removeAttribute('src'); return; }
+    if (shown && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
+  }
+  function check() {
+    if (shown || scrolling || section.hidden) return;
+    var r = box.getBoundingClientRect(), seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+    if (seen < r.height * 0.3) return;
+    shown = true;
+    apply();
+    window.removeEventListener('scroll', check);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', function () { apply(); check(); });
+  tries.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      a.blur(); // no focus ring left on the button once the page has scrolled away and back
+      if (narrow() || !up()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
+      // Scroll first and load the demo once there: loading starts its sign-in, which puts the cursor in a field and would stop the scroll short.
+      scrolling = true;
+      section.querySelector('.ld-head').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var done = function () { if (!scrolling) return; scrolling = false; shown = true; apply(); };
+      if ('onscrollend' in window) window.addEventListener('scrollend', done, { once: true });
+      setTimeout(done, 1200);
+    });
+  });
+  function start() { if (!forced) probe(SITES[lang()]); apply(); }
+  start();
+  check();
+  new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>
+<script>
+/* NocoITAM intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Simplified Chinese page and the English one in every other language, until each has its own; switching the language puts the cover back. */
+(function () {
+  var box = document.getElementById('introVideo'), cover = box.innerHTML;
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
+  box.addEventListener('click', function (e) {
+    if (!e.target.closest('#introPlay')) return;
+    var l = lang();
+    box.innerHTML = '<video src="https://static-docs.nocobase.com/nocoitam-intro-' + l + '.mp4" poster="https://static-docs.nocobase.com/nocoitam-intro-' + l + '.jpg" controls controlslist="nodownload" autoplay playsinline></video>';
+  });
+  new MutationObserver(function () {
+    if (!box.querySelector('video')) return;
+    box.innerHTML = cover;
+    if (window.lucide) window.lucide.createIcons();
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>

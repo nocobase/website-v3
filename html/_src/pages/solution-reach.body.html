@@ -1,31 +1,124 @@
 page: reach
-title_zh: NocoReach — 在数据里找到机会，NocoReach 把它做完
-title_en: NocoReach — Find the Opportunities in Your Data. NocoReach Gets Them Done.
-desc_zh: NocoReach 是基于 NocoBase 的开源 AI 增长团队：每天分析网站、搜索、社区和 GitHub 数据，找出值得做的机会；交给 Agent 按剧本完成，你看过结果才发布，上线后自动衡量效果。
-desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes your site, search, community, and GitHub data daily, finds what’s worth doing, has agents get it done by playbook, publishes only after you’ve seen the result, and measures the outcome.
+title_zh: NocoReach — AI 找出增长机会，交给 Agent 执行
+title_en: NocoReach — AI Finds Growth Opportunities, Agents Put Them into Action
+desc_zh: NocoReach 是基于 NocoBase Core 的开源 AI 增长运营平台，数据采集、每日分析和 Agent 执行在同一个平台完成：网站分析、搜索、AI 搜索、社区、社交媒体、竞品等 20 多个来源的数据每天自动分析，找出值得做的事并写明依据；确认后交给 Agent 执行，改动由你审核，上线后自动对比效果。
+desc_en: NocoReach is an open-source AI growth operations platform built on NocoBase Core, with data collection, daily analysis, and agent execution in one place. Data from more than 20 sources, from web analytics, search and AI search to community, social media and competitors, is analyzed every day to find what is worth doing, with the evidence. Once you confirm, an agent does the work, you review the changes, and the impact is compared automatically after launch.
 ---
+<style>
+/* The hero split in two on this page: the words at the left, the intro video at the right; one column on narrow screens. */
+.phero-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center; }
+.phero-split h1 { font-size: 48px; }
+.phero-video { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid var(--rule-2); background: var(--paper-2); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
+.phero-video video, .pv-cover { display: block; width: 100%; height: 100%; border: 0; padding: 0; background: var(--paper-2); }
+.phero-video video { object-fit: cover; }
+.pv-cover { position: relative; cursor: pointer; background: var(--paper-2); }
+.pv-cover t-zh, .pv-cover t-en { display: block; height: 100%; }
+.pv-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pv-btn { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border-radius: 999px; background: oklch(1 0 0 / 0.86); color: var(--ink); backdrop-filter: blur(6px); font-size: 14.5px; font-weight: 500; white-space: nowrap; box-shadow: 0 10px 30px -8px var(--shadow); transition: transform 0.2s ease, background 0.2s ease; }
+.pv-btn t-zh, .pv-btn t-en { display: inline; height: auto; }
+.pv-btn svg.lucide { width: 16px; height: 16px; fill: currentColor; }
+.pv-btn small { font-size: 13px; opacity: 0.8; }
+/* The play button reads as part of the cover, translucent white, so the hero has one primary button, Try It Online (2026-10-25). */
+.pv-cover:hover .pv-btn { transform: translateY(-1px); background: oklch(1 0 0 / 0.96); }
+/* A cue at the foot of the full-screen hero, no words: a mouse whose wheel rolls down and a line running on down to the demo, which a click scrolls to; wide screens only, where the hero fills the screen (2026-10-25). */
+.phero { position: relative; }
+.scroll-cue { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; gap: 10px; padding: 6px 6px 0; color: var(--muted); }
+.scroll-cue .ln { position: relative; width: 1px; height: 56px; overflow: hidden; background: linear-gradient(to bottom, var(--rule-2), transparent); }
+.scroll-cue .ln::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--brand); animation: cue-run 1.8s ease-in-out infinite; }
+@keyframes cue-run { to { top: 100%; } }
+.scroll-cue[hidden] { display: none !important; }
+.scroll-cue .mouse { position: relative; display: block; width: 24px; height: 38px; border: 1.5px solid currentColor; border-radius: 12px; opacity: 0.7; transition: color 0.2s ease, opacity 0.2s ease; }
+.scroll-cue .wheel { position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: currentColor; animation: cue-wheel 1.8s ease-in-out infinite; }
+.scroll-cue:hover { color: var(--brand); }
+.scroll-cue:hover .mouse { opacity: 1; }
+@keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue .wheel, .scroll-cue .ln::after { animation: none; } .scroll-cue .ln::after { top: 0; } }
+@media (min-width: 961px) { .scroll-cue { display: flex; } }
+/* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
+@media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 14vh; } .phero > .container { width: 100%; } }
+@media (max-width: 960px) { .phero-split { grid-template-columns: minmax(0, 1fr); gap: 36px; } .phero-split h1 { font-size: 40px; } }
+/* Live demo styles: the demo site itself under the hero, or nothing when the site cannot be reached or on a phone; the link under it opens the site in a new tab. */
+.ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
+.ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+/* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
+#tryDemo { padding-top: 72px; }
+.ld-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.ld-open a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 15px; white-space: nowrap; }
+.ld-open a:hover { color: var(--brand-hover); }
+.ld-open svg.lucide { width: 16px; height: 16px; }
+#tryDemo .sec-body { margin-top: 0; }
+.ld-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.ld-head p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+#tryDemo[hidden] { display: none; }
+#tryDemo .ld-head { scroll-margin-top: 16px; } /* Try It Online scrolls to the title: 16px below the 80px the site keeps for its sticky header (html scroll-padding-top) */ /* its section's heading stays in view above it, under the sticky header */
+@media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
+/* The day at Acme: five steps of one size, a line of what happens and its number */
+.loop5 > div { grid-template-rows: auto 1fr; }
+.loop5 .pnl { align-content: space-between; gap: 14px; }
+.loop5 .pnl p { font-size: 13px; line-height: 1.6; }
+.loop5 .pnl b { font-size: 20px; font-weight: 600; line-height: 1.2; color: var(--ink); }
+/* No line ends on a lone character or two */
+.lead, .lede, .feat > div > p, .card p, .steps p, .bul li, .duo li { text-wrap: pretty; }
+/* The hero's lede breaks between phrases rather than inside a word */
+html[lang="zh"] .phero .lede { word-break: keep-all; overflow-wrap: anywhere; }
+/* What each of the two smaller figures shows, above it */
+.shot-cap { margin: 0 0 14px; font-size: 14.5px; line-height: 1.7; color: var(--ink-2); text-wrap: pretty; }
+.shot-cap b { display: block; margin-bottom: 4px; font-size: 17px; font-weight: 600; color: var(--ink); }
+</style>
 <section class="phero">
   <div class="container">
-    <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoReach · <t-zh>增长</t-zh><t-en>Growth</t-en></span><span class="pill pass">Alpha</span></p>
-    <h1><t-zh>在数据里找到机会，<span class="m">NocoReach 把它做完。</span></t-zh><t-en>Find the opportunities in your data. <span class="m">NocoReach gets them done.</span></t-en></h1>
-    <p class="lede"><t-zh>NocoReach 是一支 AI 增长团队。它连接网站分析、搜索引擎、AI 搜索、社区、社交平台、GitHub 和 CRM 等数据，每天分析一次，找出值得做的事并附上依据；你点一下，Agent 按剧本把它做完——改页面、写文档、回复社区、修技术问题。你看过结果才会发布，上线后第 7 天和第 28 天自动对比效果。</t-zh><t-en>NocoReach is your AI growth team. It connects your web analytics, search engines, AI answers, community, social, GitHub, and CRM data, analyzes it every day, and finds what’s worth doing—with the evidence. One click and an agent gets it done by playbook: improving pages, writing docs, replying to the community, fixing technical issues. Nothing ships until you’ve seen the result, and outcomes are compared on day 7 and day 28 after going live.</t-en></p>
+    <div class="phero-split">
+    <div class="phero-text">
+    <p class="label"><a href="solutions.html"><b>NocoBase Solutions</b></a><i></i><span>NocoReach · <t-zh>增长</t-zh><t-en>Growth</t-en></span><span class="pill pass">Beta</span></p>
+    <h1><t-zh>AI 找出增长机会，<span class="m">交给 Agent 执行。</span></t-zh><t-en>AI finds growth opportunities. <span class="m">Agents put them into action.</span></t-en></h1>
+    <p class="lede"><t-zh>NocoReach 是 AI 增长运营平台，接入网站、搜索、AI 搜索、社区、社交媒体和竞品等 20&nbsp;多个数据源：每天找出值得做的事，交给 Agent 执行，改动由你审核，上线后自动对比效果。</t-zh><t-en>NocoReach is an AI growth operations platform. It connects 20+ data sources, from search and AI search to community and competitors, finds what’s worth doing every day, and hands it to agents. You review every change.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a>
-      <a class="btn btn-sec" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>立即安装</t-zh><t-en>Install Now</t-en></a>
+      <a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
+      <a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoReach" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a>
     </div>
-    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0-alpha.68</b></div><div><t-zh>可接入平台</t-zh><t-en>Platforms</t-en><b><t-zh>50+，支持 MCP</t-zh><t-en>50+, plus MCP</t-en></b></div><div><t-zh>内置剧本</t-zh><t-en>Built-in playbooks</t-en><b>12</b></div></div>
-    <div class="sheet">{{SNIP:reachInsights:1120}}</div>
+    </div>
+    <div class="phero-video" id="introVideo">
+      <button class="pv-cover" type="button" id="introPlay">
+        <t-zh><img src="https://static-docs.nocobase.com/nocoreach-intro-zh.jpg" alt="NocoReach 介绍视频"></t-zh><t-en><img src="https://static-docs.nocobase.com/nocoreach-intro-en.jpg" alt="NocoReach intro video"></t-en>
+        <span class="pv-btn"><i data-lucide="play"></i><t-zh>观看介绍</t-zh><t-en>Watch the intro</t-en><small>3:08</small></span>
+      </button>
+    </div>
+    </div>
+    <div class="specs"><div><t-zh>授权</t-zh><t-en>License</t-en><b><t-zh>开源</t-zh><t-en>Open source</t-en></b></div><div><t-zh>基于</t-zh><t-en>Built on</t-en><b>NocoBase Core</b></div><div><t-zh>当前版本</t-zh><t-en>Version</t-en><b>v1.0.0-beta.71</b></div><div><t-zh>数据来源</t-zh><t-en>Data sources</t-en><b>20+</b></div><div><t-zh>内置做法</t-zh><t-en>Built-in playbooks</t-en><b>12</b></div><div><t-zh>AI 模型</t-zh><t-en>AI models</t-en><b><t-zh>自选</t-zh><t-en>Your choice</t-en></b></div></div>
+  </div>
+  <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="mouse" aria-hidden="true"><span class="wheel"></span></span><span class="ln" aria-hidden="true"></span></a>
+</section>
+
+<section class="sec" id="tryDemo" hidden>
+  <div class="container">
+    <div class="ld-head">
+      <div>
+        <h2><t-zh>在线体验 NocoReach</t-zh><t-en>Try NocoReach online</t-en></h2>
+        <p><t-zh>已用演示账号自动登录，数据都是虚构的，可以随意操作。</t-zh><t-en>You're signed in to a demo account. All the data is made up, so try anything.</t-en></p>
+      </div>
+      <span class="ld-open" id="liveDemoBar"><a href="https://solutions-cn.nocobase.com/reach/" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span>
+    </div>
+    <div class="sec-body">
+    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoReach" allow="clipboard-write"></iframe></div></div>
+    </div>
   </div>
 </section>
 
-<section class="sec wow">
+<section class="sec wow tint">
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>闭环</t-zh><t-en>The Loop</t-en></b></p>
-      <h2 class="h2"><t-zh>别的工具告诉你该做什么，</t-zh><t-en>Other tools tell you what to do. </t-en><span class="m"><t-zh>NocoReach 把它做完，再告诉你有没有用。</t-zh><t-en>NocoReach does it, then tells you if it worked.</t-en></span></h2>
-      <p class="lead"><t-zh>分析工具停在仪表盘，SEO 工具停在建议清单，写作工具不知道你的数据。NocoReach 把这几段连成一条线：数据里发现变化，AI 判断值不值得做，Agent 在你的仓库里改好，你看过再发布，上线后自动对比效果——结果再回到下一次分析里。</t-zh><t-en>Analytics stops at dashboards, SEO tools stop at to-do lists, and writing tools don’t know your data. NocoReach connects them: a change in the data, AI judging whether it matters, an agent making the change in your repository, you publishing after review, and results compared automatically—feeding the next analysis.</t-en></p>
+      <h2 class="h2"><t-zh>数据里有很多机会，</t-zh><t-en>Your data holds many opportunities. </t-en><span class="m"><t-zh>以前大多没被发现，也没人去做。</t-zh><t-en>Most were never found, and fewer got done.</t-en></span></h2>
+      <p class="lead"><t-zh>以前，市场团队每天导出数据做表，放进 BI 看结果，再由人一项项安排执行，能顾上的只是少数。现在，NocoReach 每天分析全部数据，找出值得做的事并写明依据；你确认后，多项任务同时交给 Agent 执行，上线后自动对比效果。</t-zh><t-en>Until now, marketing teams exported data to spreadsheets every day, loaded it into BI to see the numbers, and assigned the work one item at a time, so only a few opportunities ever got attention. NocoReach analyzes all of your data every day, finds what is worth doing and shows the evidence. Once you confirm, many tasks go to agents at once, and the impact is compared automatically after launch.</t-en></p>
     </div>
-    <div class="sec-body"><div class="sheet">{{SNIP:reachLoop:1120}}</div></div>
+    <div class="sec-body"><div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>从数据到效果，每天自动推进</t-zh><t-en>From data to impact, every day</t-en></h5><p><t-zh>从数据，到上线，再回到数据</t-zh><t-en>From data, to live, and back to data</t-en></p></div></div>
+      <div class="flow loop5" style="--n:5">
+        <div><span class="st"><span class="bal">1</span><t-zh>数据汇在一处</t-zh><t-en>All data in one place</t-en></span><div class="pnl"><p><t-zh>网站、搜索、AI 搜索、社区和竞品，每天同步</t-zh><t-en>Site, search, AI search, community and competitors, synced daily</t-en></p><b><t-zh>22 个数据源</t-zh><t-en>22 sources</t-en></b></div></div>
+        <div><span class="st"><span class="bal">2</span><t-zh>每日分析</t-zh><t-en>Daily analysis</t-en></span><div class="pnl"><p><t-zh>AI 逐条判断今天的 1,286 条变化</t-zh><t-en>AI weighs each of today’s 1,286 changes</t-en></p><b><t-zh>12 个机会</t-zh><t-en>12 opportunities</t-en></b></div></div>
+        <div><span class="st"><span class="bal">3</span><t-zh>交给 Agent</t-zh><t-en>Handed to agents</t-en></span><div class="pnl"><p><t-zh>你确认后，多项任务同时推进</t-zh><t-en>Once you confirm, many tasks move at once</t-en></p><b><t-zh>11 项任务</t-zh><t-en>11 tasks</t-en></b></div></div>
+        <div><span class="st"><span class="bal">4</span><t-zh>由你审核</t-zh><t-en>Your review</t-en></span><div class="pnl"><p><t-zh>文章和页面改动，通过后才发布</t-zh><t-en>Articles and page changes go live only once you approve</t-en></p><b><t-zh>2 项等你</t-zh><t-en>2 waiting for you</t-en></b></div></div>
+        <div><span class="st"><span class="bal">5</span><t-zh>效果对比</t-zh><t-en>Impact</t-en></span><div class="pnl"><p><t-zh>上线后第 7、28 天自动对比</t-zh><t-en>Compared automatically on days 7 and 28</t-en></p><b><t-zh>6 项上升</t-zh><t-en>6 went up</t-en></b></div></div>
+      </div></div></div></div></div></div></div></div>
   </div>
 </section>
 
@@ -33,15 +126,16 @@ desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes you
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>每日分析</t-zh><t-en>Daily Analysis</t-en></b></p>
-      <h2 class="h2"><t-zh>规则发现变化，</t-zh><t-en>Rules catch the changes. </t-en><span class="m"><t-zh>AI 判断哪些值得做。</t-zh><t-en>AI decides which are worth doing.</t-en></span></h2>
-      <p class="lead"><t-zh>不用等周报，也不用自己翻十几个后台。NocoReach 每天跑一次分析，把数据里的变化变成一份可以直接处理的机会清单。</t-zh><t-en>No waiting for the weekly report, no digging through a dozen dashboards. NocoReach runs one analysis a day and turns what changed into a list of opportunities you can act on.</t-en></p>
+      <h2 class="h2"><t-zh>每天，</t-zh><t-en>Every day, </t-en><span class="m"><t-zh>自动找出值得做的事。</t-zh><t-en>NocoReach finds what’s worth doing.</t-en></span></h2>
+      <p class="lead"><t-zh>不用等周报，也不用翻十几个后台。每天 09:00，NocoReach 按分析规则检查所有数据的变化，由 AI 逐条判断是否值得做，并写明依据。</t-zh><t-en>No waiting for the weekly report, no tour of a dozen dashboards. Every day at 09:00, NocoReach checks your data for changes against your analysis rules, and AI decides change by change whether it is worth acting on, with the evidence.</t-en></p>
     </div>
     <div class="sec-body">
       <ol class="steps" style="--n:3">
-        <li><span class="bal">01</span><h4><t-zh>规则检测变化</t-zh><t-en>Rules detect changes</t-en></h4><p><t-zh>44 条分析规则覆盖搜索表现、流量与转化、内容表现、社区讨论、产品关注与使用、竞品动态。可以用一句话让 AI 调整规则，例如“只标出点击下降超过 50% 的页面”。</t-zh><t-en>44 analysis rules cover search, traffic and conversion, content, community, product interest and usage, and competitors. Adjust them in plain words, like “only flag pages whose clicks drop over 50%.”</t-en></p></li>
-        <li><span class="bal">02</span><h4><t-zh>AI 评估相关性</t-zh><t-en>AI weighs relevance</t-en></h4><p><t-zh>在线 AI 结合项目知识判断每个变化和你的业务有没有关系，写出发生了什么、建议怎么做，以及这份判断的局限。</t-zh><t-en>Online AI uses your project knowledge to judge whether each change matters to your business, and writes what happened, what to do, and the limits of its judgment.</t-en></p></li>
-        <li><span class="bal">03</span><h4><t-zh>进入机会清单</t-zh><t-en>Opportunities appear</t-en></h4><p><t-zh>值得做的进入待办，还看不清的放进观察中，过几天再看。处理过的都留下记录。</t-zh><t-en>What’s worth doing goes to To do; what’s unclear goes to Watching and is checked again in a few days. Everything handled stays on record.</t-en></p></li>
+        <li><span class="bal">01</span><h4><t-zh>规则找出变化</t-zh><t-en>Rules find the changes</t-en></h4><p><t-zh>内置 44 条分析规则，覆盖搜索、访问与转化、内容、社区、产品关注与使用和竞品。规则可以用一句话调整，比如“搜索点击下降超过 20% 就提醒我”。</t-zh><t-en>44 built-in rules cover search, traffic and conversions, content, community, product interest and usage, and competitors. Adjust them in a sentence, such as “Tell me when search clicks drop more than 20%.”</t-en></p></li>
+        <li><span class="bal">02</span><h4><t-zh>AI 判断值不值得做</t-zh><t-en>AI weighs each change</t-en></h4><p><t-zh>结合项目知识逐条判断，结论分三种：建议处理、建议观察、无需处理，并写明理由和依据。</t-zh><t-en>With your project knowledge in mind, AI gives each change one of three verdicts (act on it, watch it, or no action needed) with its reasons and evidence.</t-en></p></li>
+        <li><span class="bal">03</span><h4><t-zh>写成机会</t-zh><t-en>Opportunities, written up</t-en></h4><p><t-zh>建议处理的写成机会，等你交给 Agent 或忽略；建议观察的写明判断条件和截止日期，到期再判断。没有新发现时，不凑数。</t-zh><t-en>Changes worth acting on become opportunities for you to hand off or dismiss. Changes to watch get a condition and a deadline and are judged again then. A day with nothing new adds nothing.</t-en></p></li>
       </ol>
+      <div class="sheet app-shot" style="margin-top:48px"><t-zh><img src="https://static-docs.nocobase.com/insights-zh.webp" alt="NocoReach 洞察页：今天的每日分析和要你决定的机会" width="1280" height="720" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/insights-en.webp" alt="NocoReach Insights: today’s daily analysis and the decisions it asks of you" width="1280" height="720" loading="lazy"></t-en></div>
     </div>
   </div>
 </section>
@@ -50,14 +144,14 @@ desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes you
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>机会</t-zh><t-en>Opportunities</t-en></b></p>
-      <h2 class="h2"><t-zh>每个机会都写清依据，</t-zh><t-en>Every opportunity shows its evidence. </t-en><span class="m"><t-zh>点一下交给 Agent。</t-zh><t-en>One click hands it to an agent.</t-en></span></h2>
+      <h2 class="h2"><t-zh>每个机会，</t-zh><t-en>Every opportunity </t-en><span class="m"><t-zh>都写明依据。</t-zh><t-en>comes with its evidence.</t-en></span></h2>
     </div>
     <div class="sec-body">
-      <div class="sheet">{{SNIP:reachOpp:1120}}</div>
+      <div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/opportunities-zh.webp" alt="NocoReach 机会页：待处理的机会和其中一个的依据" width="1280" height="760" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/opportunities-en.webp" alt="NocoReach Opportunities: the opportunities to decide on, one of them in full" width="1280" height="760" loading="lazy"></t-en></div>
       <div class="grid3" style="margin-top:40px">
-        <div class="card"><span class="ic"><i data-lucide="search-check"></i></span><h3><t-zh>发生了什么</t-zh><t-en>What changed</t-en></h3><p><t-zh>具体到页面和数字：哪一页、哪个指标、变了多少，来自哪个数据源。</t-zh><t-en>Down to the page and the number: which page, which metric, how much, and from which source.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="sparkles"></i></span><h3><t-zh>AI 建议与局限</t-zh><t-en>Suggestion and limits</t-en></h3><p><t-zh>建议怎么改，同时说明这份判断缺了哪些数据，方便你决定要不要做。</t-zh><t-en>What to change, and what data the judgment is missing, so you can decide whether to act.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="user-check"></i></span><h3><t-zh>负责人和剧本</t-zh><t-en>Owner and playbook</t-en></h3><p><t-zh>负责人审方案和发布，Agent 执行；选一个剧本，步骤和审阅点一目了然。</t-zh><t-en>The owner reviews the plan and the release; the agent executes. Pick a playbook and the steps and review points are clear.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="search-check"></i></span><h3><t-zh>发生了什么</t-zh><t-en>What happened</t-en></h3><p><t-zh>具体到页面、指标、变化幅度和数据来源。</t-zh><t-en>The page, the metric, how far it moved, and where the data came from.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="target"></i></span><h3><t-zh>为什么值得做</t-zh><t-en>Why it matters</t-en></h3><p><t-zh>结合项目知识说明影响，标出优先级和投入。</t-zh><t-en>What it means for your product, with its priority and the effort it takes.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="eye"></i></span><h3><t-zh>拿不准的，先观察</t-zh><t-en>Not sure yet? Watch it</t-en></h3><p><t-zh>写明判断条件和截止日期，到期给出结论：变成机会，或者无需处理。</t-zh><t-en>A condition and a deadline. When it comes, the change becomes an opportunity or needs no action.</t-en></p></div>
       </div>
     </div>
   </div>
@@ -66,15 +160,15 @@ desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes you
 <section class="sec">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>Agent 交出来的东西</t-zh><t-en>What the Agent Delivers</t-en></b></p>
-      <h2 class="h2"><t-zh>不是一条建议，</t-zh><t-en>Not a suggestion. </t-en><span class="m"><t-zh>是改好的页面，等你点发布。</t-zh><t-en>A finished change, waiting for you to publish.</t-en></span></h2>
-      <p class="lead"><t-zh>Agent 读查询词、页面和项目知识，在你的仓库里改标题、补内容、同步多语言版本，并说明为什么这样改。你对比改动、打开预览，满意就发布，不满意就退回。</t-zh><t-en>The agent reads the queries, the page, and your project knowledge, then edits titles, adds content, and syncs language versions in your repository—explaining why. Compare the changes, open the preview, publish or send it back.</t-en></p>
+      <p class="label"><b><t-zh>审核与发布</t-zh><t-en>Review &amp; Publish</t-en></b></p>
+      <h2 class="h2"><t-zh>每项改动，</t-zh><t-en>Every change </t-en><span class="m"><t-zh>由你审核。</t-zh><t-en>waits for your review.</t-en></span></h2>
+      <p class="lead"><t-zh>Agent 按做法完成后停下来等你：文章按读者看到的样子预览，页面修改显示改动前后。满意就通过并发布；不满意就提修改意见，Agent 按意见调整，也可以直接编辑。</t-zh><t-en>When the agent is done, it stops for you. Articles are previewed as readers will see them, and page changes show before and after. Approve and publish, request changes for the agent to make, or edit it yourself.</t-en></p>
     </div>
     <div class="sec-body">
-      <div class="sheet">{{SNIP:reachDiff:1120}}</div>
+      <div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/review-zh.webp" alt="NocoReach 任务页：一篇等你审核的文章" width="1280" height="800" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/review-en.webp" alt="NocoReach task page: an article waiting for your review" width="1280" height="800" loading="lazy"></t-en></div>
       <div class="grid2" style="margin-top:20px">
-        <div><div class="sheet sm">{{SNIP:reachReply:640}}</div></div>
-        <div><div class="sheet sm">{{SNIP:reachCompetitors:640}}</div></div>
+        <div><p class="shot-cap"><b><t-zh>社区回复：Agent 起草，你来发</t-zh><t-en>Community replies: drafted by the agent, posted by you</t-en></b><t-zh>Agent 读过文档，给没人回复的帖子逐条起草回复；你复制到原帖发出，NocoReach 不会替你发帖。</t-zh><t-en>The agent reads your docs and drafts a reply to each unanswered post. You copy it into the thread; NocoReach never posts for you.</t-en></p><div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/replies-zh.webp" alt="社区回复草稿：逐条复制，去原帖回复" width="680" height="500" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/replies-en.webp" alt="Community reply drafts, copied into each thread by you" width="680" height="500" loading="lazy"></t-en></div></div>
+        <div><p class="shot-cap"><b><t-zh>提出修改意见，Agent 按意见调整</t-zh><t-en>Request changes, and the agent makes them</t-en></b><t-zh>不满意就写下要改什么，Agent 按意见改出新的一版，再交给你审核。</t-zh><t-en>Not happy yet? Write what should change, and the agent comes back with a new version for your review.</t-en></p><div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/revise-zh.webp" alt="提修改意见：Agent 按意见调整" width="680" height="500" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/revise-en.webp" alt="Requesting changes for the agent to make" width="680" height="500" loading="lazy"></t-en></div></div>
       </div>
     </div>
   </div>
@@ -84,23 +178,23 @@ desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes you
   <div class="container">
     <div class="feat">
       <div>
-        <p class="label"><b><t-zh>剧本与任务</t-zh><t-en>Playbooks &amp; Tasks</t-en></b></p>
-        <h3><t-zh>Agent 按剧本做事，需要你时停下来。</t-zh><t-en>Agents work by playbook and stop when they need you.</t-en></h3>
-        <p><t-zh>剧本写清每类工作怎么做：Agent 走哪些步骤，你在哪一步审阅。内置 12 个剧本，覆盖调研分析、内容创作、内容优化和网站技术，也可以新建自己的。</t-zh><t-en>Playbooks spell out how each kind of work is done: the agent’s steps and where you review. Twelve are built in across research, content creation, optimization, and technical work—and you can write your own.</t-en></p>
+        <p class="label"><b><t-zh>做法与任务</t-zh><t-en>Playbooks &amp; Tasks</t-en></b></p>
+        <h3><t-zh>做法，固定了 Agent<br>每类工作的执行流程。</t-zh><t-en>Playbooks set how the agent does each kind of work.</t-en></h3>
+        <p><t-zh>每类工作都有对应的做法，写明 Agent 分几步做、你在哪一步把关。内置 12 种做法，覆盖调研分析、内容创作、内容优化和网站技术；内置做法可以直接调整，也可以用一句话让 AI 起草新的做法。</t-zh><t-en>Each kind of work has a playbook: the steps the agent takes and where you review. 12 are built in, across research, content creation, content optimization and technical fixes. Change the built-in ones, or describe a new one in a sentence and AI drafts it.</t-en></p>
         <ul class="bul">
-          <li><t-zh>Agent 在你的仓库里修改，你看过结果之前不会发布任何内容</t-zh><t-en>Agents change your repository; nothing is published until you’ve seen it</t-en></li>
-          <li><t-zh>任务停在“等你审核”或“等你发布”，集中在“等我处理”里</t-zh><t-en>Tasks pause at review or publish, collected under “Waiting for me”</t-en></li>
-          <li><t-zh>技能保存做事的方法，项目知识让 Agent 了解你的品牌和产品</t-zh><t-en>Skills hold the methods; project knowledge tells agents about your brand and product</t-en></li>
+          <li><t-zh>改动经你审核后才会发布</t-zh><t-en>Nothing is published until you approve it</t-en></li>
+          <li><t-zh>需要你处理的任务集中在「待我处理」</t-zh><t-en>Everything that needs you is under Waiting for me</t-en></li>
+          <li><t-zh>用 Skills 写清做事的方法，用项目知识交代品牌和产品背景</t-zh><t-en>Skills say how the work is done; project knowledge carries your brand and product</t-en></li>
         </ul>
       </div>
-      <div class="sheet sm">{{SNIP:reachPlaybooks:640}}</div>
+      <div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/playbook-zh.webp" alt="NocoReach 做法页：内置的 12 种做法" width="760" height="600" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/playbook-en.webp" alt="NocoReach Playbooks: the 12 built-in playbooks" width="760" height="600" loading="lazy"></t-en></div>
     </div>
     <div class="feat rev">
       <div>
-        <h3><t-zh>任务进度一张表看完。</t-zh><t-en>Every task’s progress in one table.</t-en></h3>
-        <p><t-zh>每个任务写明当前步骤、负责人和执行者。Agent 运行失败会标出来，可以重试或接手；负责人和剧本都能筛选。</t-zh><t-en>Each task shows its current step, owner, and executor. Failed agent runs are flagged so you can retry or take over; filter by owner or playbook.</t-en></p>
+        <h3><t-zh>多项任务，同时推进。</t-zh><t-en>Many tasks, moving at once.</t-en></h3>
+        <p><t-zh>按 Agent 看任务：每个 Agent 正在做什么、接下来做什么、哪些在等你，一眼看清。任务来自每日分析（Found by AI），也可以由你新建。</t-zh><t-en>See tasks agent by agent: what each is working on, what comes next and what waits for you. Tasks come from the daily analysis (Found by AI) or from you.</t-en></p>
       </div>
-      <div class="sheet sm">{{SNIP:reachTasks:640}}</div>
+      <div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/tasks-zh.webp" alt="NocoReach 任务页：按 Agent 查看正在推进的任务" width="600" height="663" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/tasks-en.webp" alt="NocoReach Tasks by agent: the work each agent has in hand" width="600" height="682" loading="lazy"></t-en></div>
     </div>
   </div>
 </section>
@@ -109,11 +203,11 @@ desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes you
   <div class="container">
     <div class="feat">
       <div>
-        <p class="label"><b><t-zh>成效</t-zh><t-en>Results</t-en></b></p>
-        <h3><t-zh>改了之后有没有用，自动对比。</t-zh><t-en>Did it work? Compared automatically.</t-en></h3>
-        <p><t-zh>任务上线后，NocoReach 在第 7 天和第 28 天，用上线前后同样天数的数据对比改过的页面：搜索点击、浏览量有没有上升。下降的和等你处理的排在最前。</t-zh><t-en>After a task goes live, NocoReach compares the changed pages on day 7 and day 28, using the same number of days before and after: did clicks and views go up? Anything that dropped or waits for you comes first.</t-en></p>
+        <p class="label"><b><t-zh>成果</t-zh><t-en>Results</t-en></b></p>
+        <h3><t-zh>上线之后，效果自动对比。</t-zh><t-en>After launch, the impact is compared for you.</t-en></h3>
+        <p><t-zh>改动上线后第 7 天和第 28 天，自动对比改过的页面在上线前后同样天数的搜索点击和浏览量。结论分为上升、下降、无明显变化和数据不足，只描述数据变化，不推断因果。</t-zh><t-en>On days 7 and 28 after launch, NocoReach compares each changed page’s search clicks and views with the same number of days before. Each result reads up, down, no clear change, or not enough data. It describes the data and does not claim causes.</t-en></p>
       </div>
-      <div><div class="sheet sm">{{SNIP:reachResults:640}}</div></div>
+      <div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/results-zh.webp" alt="NocoReach 成果页：上线的改动和改过页面的变化" width="780" height="672" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/results-en.webp" alt="NocoReach Results: what went live and how the changed pages moved" width="780" height="672" loading="lazy"></t-en></div>
     </div>
   </div>
 </section>
@@ -122,38 +216,43 @@ desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes you
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>数据</t-zh><t-en>Data</t-en></b></p>
-      <h2 class="h2"><t-zh>常用的平台都能接，</t-zh><t-en>Connect the platforms you already use. </t-en><span class="m"><t-zh>AI 读懂每一份数据。</t-zh><t-en>AI makes sense of every one.</t-en></span></h2>
-      <p class="lead"><t-zh>网站分析、搜索引擎、AI 搜索、文档、GitHub 与下载量、社区、社交平台、竞品，以及 CRM 里的线索和收入。连上之后，数据不只是躺在报表里：Agent 每天读一遍，判断哪里变了、为什么变、值不值得做，再交给对应的剧本。</t-zh><t-en>Web analytics, search engines, AI answers, docs, GitHub and downloads, community, social, competitors, and the leads and revenue in your CRM. Once connected, the data doesn’t just sit in a report: agents read it daily, work out what changed and why, judge whether it’s worth doing, and hand it to the right playbook.</t-en></p>
+      <h2 class="h2"><t-zh>所有数据，</t-zh><t-en>All your data, </t-en><span class="m"><t-zh>汇在一处。</t-zh><t-en>in one place.</t-en></span></h2>
+      <p class="lead"><t-zh>已支持 20 多个来源：网站、搜索、AI 搜索、GitHub、下载量、社区和竞品，统一存储，每日分析放在一起看。每类数据也有详细页面，看到值得做的，可以直接交给 Agent。</t-zh><t-en>More than 20 sources are supported: site, search, AI search, GitHub, downloads, community and competitors, stored together and analyzed together every day. Each kind of data also has its own pages, and anything worth doing there goes straight to an agent.</t-en></p>
     </div>
     <div class="sec-body">
-      <div class="sheet">{{SNIP:reachCatalog:1120}}</div>
-      <div class="sheet" style="margin-top:20px">{{SNIP:reachSignalMap:1120}}</div>
+      <div class="sheet"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>可以接入的数据</t-zh><t-en>Data you can connect</t-en></h5><p><t-zh>接入之后，每日分析每天读一遍，找出值得做的事。</t-zh><t-en>Once connected, the daily analysis reads it every day and finds what is worth doing.</t-en></p></div><span class="r"><span class="mini-chips"><span><t-zh>已支持 22 个</t-zh><t-en>22 supported</t-en></span></span></span></div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px"><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="chart-line"></i><t-zh>网站分析</t-zh><t-en>Web analytics</t-en></div><div class="mini-chips"><span>GA4</span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>AI 在这里看什么</t-zh><t-en>What AI looks for</t-en></div><p style="font-size:12.5px"><t-zh>访问、关键事件明显涨跌的页面和来源</t-zh><t-en>Pages and sources whose visits or key events moved</t-en></p></div></div><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="search"></i><t-zh>搜索</t-zh><t-en>Search</t-en></div><div class="mini-chips"><span>Search Console</span><span><t-zh>关键词与排名</t-zh><t-en>Keywords &amp; rankings</t-en></span><span>Google Trends</span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>AI 在这里看什么</t-zh><t-en>What AI looks for</t-en></div><p style="font-size:12.5px"><t-zh>曝光多、点击少，或排名接近首页的页面</t-zh><t-en>Pages with many impressions and few clicks, or close to page one</t-en></p></div></div><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="message-square-text"></i><t-zh>AI 搜索</t-zh><t-en>AI search</t-en></div><div class="mini-chips"><span>ChatGPT</span><span><t-zh>Google AI 概览</t-zh><t-en>Google AI Overviews</t-en></span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>AI 在这里看什么</t-zh><t-en>What AI looks for</t-en></div><p style="font-size:12.5px"><t-zh>AI 回答里提到竞品、没有提到你的问题</t-zh><t-en>Questions where AI mentions competitors but not you</t-en></p></div></div><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="file-text"></i><t-zh>网站与文档</t-zh><t-en>Site &amp; docs</t-en></div><div class="mini-chips"><span><t-zh>网站内容</t-zh><t-en>Website content</t-en></span><span><t-zh>网站审计</t-zh><t-en>Site audit</t-en></span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>AI 在这里看什么</t-zh><t-en>What AI looks for</t-en></div><p style="font-size:12.5px"><t-zh>有流量但很久没更新或内容很短的页面</t-zh><t-en>Pages with traffic that are stale or thin</t-en></p></div></div><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="package"></i><t-zh>开源项目与下载</t-zh><t-en>Open source &amp; downloads</t-en></div><div class="mini-chips"><span><t-zh>GitHub 仓库</t-zh><t-en>GitHub repository</t-en></span><span>GitHub Traffic</span><span>npm</span><span>PyPI</span><span>Docker Hub</span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>AI 在这里看什么</t-zh><t-en>What AI looks for</t-en></div><p style="font-size:12.5px"><t-zh>Star 激增、新版本发布、下载量涨跌</t-zh><t-en>Star spikes, new releases and download swings</t-en></p></div></div><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="messages-square"></i><t-zh>社区</t-zh><t-en>Community</t-en></div><div class="mini-chips"><span>Discourse</span><span>Discord</span><span>Slack</span><span>GitHub Discussions</span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>AI 在这里看什么</t-zh><t-en>What AI looks for</t-en></div><p style="font-size:12.5px"><t-zh>反复问到的主题、没人回复的提问</t-zh><t-en>Questions people keep asking, and those nobody answered</t-en></p></div></div><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="at-sign"></i><t-zh>社交与内容平台</t-zh><t-en>Social &amp; video</t-en></div><div class="mini-chips"><span>X</span><span>Reddit</span><span>Hacker News</span><span>YouTube</span><span><t-zh>B 站</t-zh><t-en>Bilibili</t-en></span><span><t-zh>小红书</t-zh><t-en>Xiaohongshu</t-en></span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>AI 在这里看什么</t-zh><t-en>What AI looks for</t-en></div><p style="font-size:12.5px"><t-zh>提到产品的帖子增加、互动多的内容</t-zh><t-en>More posts mentioning you, and content drawing attention</t-en></p></div></div><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="binoculars"></i><t-zh>竞品</t-zh><t-en>Competitors</t-en></div><div class="mini-chips"><span><t-zh>竞品官网</t-zh><t-en>Competitor sites</t-en></span><span><t-zh>竞品 GitHub</t-zh><t-en>Competitor GitHub</t-en></span><span><t-zh>竞品排名关键词</t-zh><t-en>Competitor keywords</t-en></span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>AI 在这里看什么</t-zh><t-en>What AI looks for</t-en></div><p style="font-size:12.5px"><t-zh>竞品官网新增页面、发布新版本</t-zh><t-en>New pages and new releases from competitors</t-en></p></div></div><div class="pnl" style="gap:9px;align-content:start"><div class="h"><i data-lucide="git-pull-request-arrow"></i><t-zh>修改与发布</t-zh><t-en>Changes &amp; publishing</t-en></div><div class="mini-chips"><span><t-zh>网站源码（Git 仓库）</t-zh><t-en>Website source (Git)</t-en></span><span><t-zh>博客 CMS</t-zh><t-en>Blog CMS</t-en></span></div><div class="rvw" style="padding:8px 10px;gap:4px;border-left-width:2px"><div class="h" style="font-size:11.5px"><i data-lucide="sparkles"></i><t-zh>Agent 在这里做什么</t-zh><t-en>What the agent does here</t-en></div><p style="font-size:12.5px"><t-zh>修改网站和文档；文章审核后发布到 CMS</t-zh><t-en>Changes your site and docs; publishes approved articles to your CMS</t-en></p></div></div></div>
+        <div class="sg" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center"><span style="color:var(--agent)"><i data-lucide="plug"></i></span><p><t-zh>需要的来源还没有？NocoReach 开源，可以让 Coding Agent 按你的需求开发新的数据源，接入后同样进入每日分析。</t-zh><t-en>Missing a source you need? NocoReach is open source: have a coding agent build it to your needs, and the daily analysis reads it like the rest.</t-en></p></div>
+      </div></div></div></div></div></div>
+      <div class="sheet" style="margin-top:20px"><div class="fit" data-w="1120"><div class="fit-in"><div class="sx solo"><div class="sx-main"><div class="sx-body"><div class="sx-h"><div><h5><t-zh>数据怎么变成工作</t-zh><t-en>How data becomes work</t-en></h5><p><t-zh>每个信号都写清：来自哪里、AI 怎么判断、交给哪种做法、上线后对比什么。</t-zh><t-en>Every signal says where it came from, how AI read it, which playbook takes it, and what is compared after launch.</t-en></p></div></div>
+        <div class="tblw"><table class="tbl"><thead><tr><th><t-zh>来源</t-zh><t-en>Source</t-en></th><th><t-zh>发现了什么</t-zh><t-en>What changed</t-en></th><th><t-zh>AI 的判断</t-zh><t-en>AI’s read</t-en></th><th><t-zh>做法</t-zh><t-en>Playbook</t-en></th><th><t-zh>上线后对比</t-zh><t-en>Compared after launch</t-en></th></tr></thead><tbody><tr><td><b style="font-weight:600">Search Console</b></td><td class="w"><t-zh>「项目管理软件」平均排名 11 → 6，点击率 1.2%</t-zh><t-en>“Project management software” average position 11 → 6, 1.2% click rate</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>排名接近首页，标题和摘要没写清用途</t-zh><t-en>Close to page one, but the title and description don’t say what it is for</t-en></span></td><td><span class="tag violet"><t-zh>优化现有页面</t-zh><t-en>Improve existing page</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600">GA4</b></td><td class="w"><t-zh>定价页访问 4,820，比前 28 天多 35%</t-zh><t-en>Pricing page: 4,820 visits, up 35%</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>来的人多了，页面缺少能帮人下决定的客户案例</t-zh><t-en>More people arrive, and the page lacks customer stories to help them decide</t-en></span></td><td><span class="tag violet"><t-zh>优化现有页面</t-zh><t-en>Improve existing page</t-en></span></td><td style="color:var(--muted)"><t-zh>浏览量</t-zh><t-en>Views</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>论坛</t-zh><t-en>Forum</t-en></b></td><td class="w"><t-zh>近 14 天 5 个主题问怎么导入 Excel</t-zh><t-en>5 topics in 14 days ask how to import from Excel</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>有真实需求，网站上还没有教程</t-zh><t-en>A real need, and no tutorial on the site</t-en></span></td><td><span class="tag violet"><t-zh>写博客文章</t-zh><t-en>Write blog post</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>AI 搜索</t-zh><t-en>AI search</t-en></b></td><td class="w"><t-zh>AI 回答「最好用的项目管理软件有哪些？」时提到 2 个竞品，没有提到你</t-zh><t-en>AI answers “best project management software?” name two competitors, not you</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>缺一页 AI 能引用的推荐和对比内容</t-zh><t-en>No page AI could cite for a recommendation</t-en></span></td><td><span class="tag violet"><t-zh>内容选题与大纲</t-zh><t-en>Content topic and outline</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600">Reddit</b></td><td class="w"><t-zh>有人在比较你和一个竞品，2 天 46 条评论</t-zh><t-en>A thread compares you with a competitor: 46 comments in 2 days</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>还没有官方回复，值得说明差别</t-zh><t-en>No official reply yet; worth explaining the difference</t-en></span></td><td><span class="tag violet"><t-zh>起草社区回复</t-zh><t-en>Draft community replies</t-en></span></td><td style="color:var(--muted)"><t-zh>不做数据对比</t-zh><t-en>Not compared</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>网站审计</t-zh><t-en>Site audit</t-en></b></td><td class="w"><t-zh>38 个页面缺少描述</t-zh><t-en>38 pages without a description</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>来自同一个模板，一次就能修好</t-zh><t-en>One template causes them all; one fix covers them</t-en></span></td><td><span class="tag violet"><t-zh>技术修复</t-zh><t-en>Technical fix</t-en></span></td><td style="color:var(--muted)"><t-zh>搜索点击</t-zh><t-en>Search clicks</t-en></td></tr><tr><td><b style="font-weight:600"><t-zh>竞品动态</t-zh><t-en>Competitors</t-en></b></td><td class="w"><t-zh>一个竞品近 7 天新增 3 个对比页</t-zh><t-en>A competitor added 3 comparison pages in 7 days</t-en></td><td class="w"><span style="color:var(--agent-ink)"><t-zh>先观察：看这些页面是否排到我们的关键词</t-zh><t-en>Watch first: see whether they rank for our keywords</t-en></span></td><td><span class="tag grey"><t-zh>观察中 · 10-30 到期</t-zh><t-en>Watching · due 10-30</t-en></span></td><td style="color:var(--muted)"><t-zh>—</t-zh><t-en>—</t-en></td></tr></tbody></table></div>
+      </div></div></div></div></div></div>
       <div class="feat">
         <div>
-          <h3><t-zh>人们开始问 AI 了。你在 AI 的回答里吗？</t-zh><t-en>People ask AI now. Are you in the answers?</t-en></h3>
-          <p><t-zh>NocoReach 查看 ChatGPT 和 Google AI 概览对你所在领域问题的回答：哪些提到了你，哪些只提到竞品，AI 引用了哪些网站。别人出现、你没有的问题，就是下一批机会。</t-zh><t-en>NocoReach checks how ChatGPT and Google AI Overviews answer questions in your space: which mention you, which mention only competitors, and which sites AI cites. Questions where others appear and you don’t become your next opportunities.</t-en></p>
+          <h3><t-zh>看到值得做的，也能直接交给 Agent。</t-zh><t-en>See something worth doing? Hand it off right there.</t-en></h3>
+          <p><t-zh>比如 AI 搜索：追踪 ChatGPT 和 Google AI 概览怎么回答你所在领域的问题，提到了谁、引用了哪些网站。勾选别人出现、你没有的问题，直接交给 Agent。</t-zh><t-en>Take AI search: it tracks how ChatGPT and Google AI Overviews answer questions in your field, which brands they mention and which sites they cite. Tick the questions where others appear and you don’t, and hand them to an agent.</t-en></p>
         </div>
-        <div class="sheet sm">{{SNIP:reachAiSearch:640}}</div>
+        <div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/aisearch-zh.webp" alt="NocoReach AI 搜索页：勾选的问题交给 Agent" width="840" height="761" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/aisearch-en.webp" alt="NocoReach AI search: questions ticked and handed to an agent" width="840" height="761" loading="lazy"></t-en></div>
       </div>
       <div class="feat rev">
         <div>
-          <h3><t-zh>输入网址，AI 帮你找到能连的数据。</t-zh><t-en>Enter your URL; AI finds the data to connect.</t-en></h3>
-          <p><t-zh>AI 读你的首页和链接，找出文档站、GitHub 仓库、社区论坛、社交账号等可以连接的数据源，并说明每个能带来什么；你确认之前不会导入或产生费用。</t-zh><t-en>AI reads your homepage and links to find your docs site, GitHub repository, forum, social accounts, and more—and says what each would add. Nothing is imported or charged until you confirm.</t-en></p>
+          <h3><t-zh>交给 Agent，一次接好。</t-zh><t-en>Let an agent connect them all at once.</t-en></h3>
+          <p><t-zh>不用一个个接入。把指引复制给你电脑上的 Claude Code 或 Codex，它会调研你的网站和仓库，列出接入计划，你确认后一次接好。授权和 token 仍由你在浏览器里填写。</t-zh><t-en>No need to connect sources one by one. Copy the instructions to Claude Code or Codex on your computer: it researches your site and repositories, proposes a plan, and connects everything once you confirm. Authorizations and tokens stay in your browser.</t-en></p>
         </div>
-        <div class="sheet sm">{{SNIP:reachSources:640}}</div>
+        <div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/connect-zh.webp" alt="交给电脑上的 Agent：终端里的接入计划和接好的数据源" width="620" height="790" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/connect-en.webp" alt="An agent on your computer connects the data sources from its plan" width="620" height="790" loading="lazy"></t-en></div>
       </div>
       <div class="feat">
         <div>
-          <h3><t-zh>先检查数据，再相信结论。</t-zh><t-en>Check the data before trusting the conclusion.</t-en></h3>
-          <p><t-zh>每天分析之前，Agent 先看数据本身：有没有延迟、授权是否过期、某个事件是不是突然不上报了。能自己处理的直接处理，需要你的写清楚要你做什么。</t-zh><t-en>Before each daily analysis, agents check the data itself: is it late, has an authorization expired, did an event suddenly stop reporting? They fix what they can and tell you exactly what they need from you.</t-en></p>
+          <h3><t-zh>先看数据，再看结论。</t-zh><t-en>Check the data before trusting the conclusions.</t-en></h3>
+          <p><t-zh>数据健康列出同步失败、数据过期和需要重新授权的来源，每个都给出对应操作：重试，或修改设置。同步失败时，每日分析会注明结论缺少哪些数据。</t-zh><t-en>Data health lists the sources that failed to sync, fell behind or need authorizing again, each with its fix: retry, or change its settings. When a sync fails, the daily analysis says which data its conclusions are missing.</t-en></p>
           <ul class="bul">
-            <li><t-zh>埋点丢失、数据断档，会被当成问题处理，而不是当成“流量下降”</t-zh><t-en>Missing tags and data gaps are treated as problems, not as “traffic drops”</t-en></li>
-            <li><t-zh>授权过期提醒你重新连接，缺的数据自动补齐</t-zh><t-en>Expired authorizations prompt a reconnect, and missing data backfills</t-en></li>
-            <li><t-zh>付费数据源盯住用量，建议去掉长期没用的关键词</t-zh><t-en>Paid sources are watched for quota, with suggestions to drop unused keywords</t-en></li>
-            <li><t-zh>开源、私有部署，数据留在你自己的服务器上</t-zh><t-en>Open source and self-hosted—the data stays on your servers</t-en></li>
+            <li><t-zh>同步失败会自动重试，超过一天标为需要留意</t-zh><t-en>Failed syncs retry on their own; after a day they are flagged</t-en></li>
+            <li><t-zh>Google 授权失效时，提示重新授权</t-zh><t-en>An expired Google authorization asks you to authorize again</t-en></li>
+            <li><t-zh>DataForSEO 等按量计费的查询可以设每月预算，达到即停止</t-zh><t-en>Pay-per-query sources such as DataForSEO take a monthly budget and stop at it</t-en></li>
+            <li><t-zh>自托管，数据存放在你自己的服务器上</t-zh><t-en>Self-hosted, so your data stays on your own servers</t-en></li>
           </ul>
         </div>
-        <div class="sheet sm">{{SNIP:reachHealth:640}}</div>
+        <div class="sheet app-shot"><t-zh><img src="https://static-docs.nocobase.com/health-zh.webp" alt="NocoReach 数据健康：需要留意的来源和各来源的同步状态" width="780" height="591" loading="lazy"></t-zh><t-en><img src="https://static-docs.nocobase.com/health-en.webp" alt="NocoReach data health: what needs attention and every source’s sync state" width="780" height="591" loading="lazy"></t-en></div>
       </div>
     </div>
   </div>
@@ -163,17 +262,18 @@ desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes you
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>AI 团队</t-zh><t-en>AI Team</t-en></b></p>
-      <h2 class="h2"><t-zh>你的增长团队，</t-zh><t-en>Your growth team, </t-en><span class="m"><t-zh>按你的方式工作。</t-zh><t-en>working your way.</t-en></span></h2>
+      <h2 class="h2"><t-zh>NocoReach，</t-zh><t-en>NocoReach works </t-en><span class="m"><t-zh>按你的方式工作。</t-zh><t-en>the way you do.</t-en></span></h2>
+      <p class="lead"><t-zh>NocoReach 基于 NocoBase Core 构建，开源免费。需要新功能，可以让 Coding Agent 按自己的业务需求定制；定制只改业务部分，底座由 NocoBase 持续维护和升级。</t-zh><t-en>NocoReach is built on NocoBase Core, open source and free. When you need something new, have a coding agent customize it to your needs: customization changes only the business part, and NocoBase keeps maintaining and upgrading the foundation.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="grid3">
-        <div class="card"><span class="ic"><i data-lucide="bot"></i></span><h3><t-zh>Agent 与运行环境</t-zh><t-en>Agents &amp; runtimes</t-en></h3><p><t-zh>Codex、Claude Code 等编码工具在你的服务器或电脑上执行任务，写明各自擅长什么后启用。</t-zh><t-en>Codex, Claude Code, and other coding tools run tasks on your servers or machines—enabled once you note what each is good at.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="brain"></i></span><h3><t-zh>项目知识</t-zh><t-en>Project knowledge</t-en></h3><p><t-zh>品牌、产品和受众写进记忆，每次分析和任务都会读；长资料放知识库，需要时检索。每周根据任务反馈建议更新。</t-zh><t-en>Brand, product, and audience live in memory that every analysis and task reads; longer material goes to the knowledge base. Updates are suggested weekly from task feedback.</t-en></p></div>
-        <div class="card"><span class="ic"><i data-lucide="gauge"></i></span><h3><t-zh>模型与用量</t-zh><t-en>Models &amp; usage</t-en></h3><p><t-zh>选择在线 Agent 调用的模型，按 Agent 查看每次运行的 Token 和费用；每日分析按计划自动运行。</t-zh><t-en>Choose the models online agents call and see tokens and cost per run by agent. The daily analysis runs on a schedule.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="notebook-pen"></i></span><h3><t-zh>项目知识</t-zh><t-en>Project knowledge</t-en></h3><p><t-zh>品牌、产品、受众、语气和禁区写进记忆，每次执行都会读取；长篇资料放进知识库，需要时检索。你审核时提的修改意见，会变成更新建议，确认后写进记忆。</t-zh><t-en>Brand, product, audience, voice and no-go areas live in memory, read on every task; long documents go in the knowledge base, searched when needed. The feedback you give in reviews becomes suggested updates, written into memory once you confirm.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="wand-sparkles"></i></span><h3><t-zh>Skills</t-zh><t-en>Skills</t-en></h3><p><t-zh>Skill 写清某类事情怎么做，格式是通用的 SKILL.md，Claude Code 等工具都能用。需要的市场技能，贴一个 GitHub 链接就能导入。</t-zh><t-en>A Skill spells out how one kind of work is done, in the common SKILL.md format that Claude Code and other tools read. Import the marketing skills you need from a GitHub link.</t-en></p></div>
+        <div class="card"><span class="ic"><i data-lucide="bot"></i></span><h3><t-zh>模型与 Agent</t-zh><t-en>Models &amp; agents</t-en></h3><p><t-zh>每日分析用你配置的云端模型；执行任务的 Claude Code、Codex 运行在你的电脑或服务器上。模型和 Agent 自由选择，用量随时可查。</t-zh><t-en>The daily analysis runs on the cloud model you configure; Claude Code or Codex work on tasks on your computer or servers. Choose any models and agents, and see the usage any time.</t-en></p></div>
       </div>
       <div class="duo" style="margin-top:40px">
-        <div><h4><t-zh>Agent 做</t-zh><t-en>Agents do</t-en></h4><ul class="bul c-ag"><li><t-zh>每天读数据，找出机会并附上依据</t-zh><t-en>Read the data daily and surface opportunities with evidence</t-en></li><li><t-zh>调研关键词、竞品和社区问题</t-zh><t-en>Research keywords, competitors, and community questions</t-en></li><li><t-zh>改进页面、写文档和博客、起草社区回复、修技术问题</t-zh><t-en>Improve pages, write docs and posts, draft community replies, fix technical issues</t-en></li><li><t-zh>上线后对比效果</t-zh><t-en>Compare results after release</t-en></li></ul></div>
-        <div><h4><t-zh>你决定</t-zh><t-en>You decide</t-en></h4><ul class="bul c-hu"><li><t-zh>做哪些机会，交给谁</t-zh><t-en>Which opportunities to pursue, and who owns them</t-en></li><li><t-zh>增长策略与品牌表达</t-zh><t-en>Growth strategy and brand voice</t-en></li><li><t-zh>审阅结果，决定是否发布</t-zh><t-en>Review the result and decide what ships</t-en></li></ul></div>
+        <div><h4><t-zh>NocoReach 负责</t-zh><t-en>NocoReach handles</t-en></h4><ul class="bul c-ag"><li><t-zh>每天分析数据，提出有依据的机会</t-zh><t-en>Analyzing the data every day and proposing opportunities with evidence</t-en></li><li><t-zh>调研关键词、竞品和社区高频问题</t-zh><t-en>Researching keywords, competitors and recurring community questions</t-en></li><li><t-zh>修改页面、撰写文档和文章、起草社区回复、修复技术问题</t-zh><t-en>Changing pages, writing docs and articles, drafting community replies, fixing technical issues</t-en></li><li><t-zh>上线后第 7、28 天对比效果</t-zh><t-en>Comparing the impact on days 7 and 28 after launch</t-en></li></ul></div>
+        <div><h4><t-zh>你来决定</t-zh><t-en>You decide</t-en></h4><ul class="bul c-hu"><li><t-zh>做哪些机会、由谁负责</t-zh><t-en>Which opportunities to take on, and who owns them</t-en></li><li><t-zh>品牌、语气和不能改的内容</t-zh><t-en>Your brand, voice and what must not change</t-en></li><li><t-zh>审核改动，决定是否发布</t-zh><t-en>Reviewing changes and deciding what gets published</t-en></li></ul></div>
       </div>
     </div>
   </div>
@@ -181,7 +281,87 @@ desc_en: NocoReach is an open-source AI growth team on NocoBase: it analyzes you
 
 <div class="container">
   <div class="band">
-    <div><h2><t-zh>每天都知道下一步该做什么。</t-zh><t-en>Know what to do next, every day.</t-en></h2><p><t-zh>输入你的网站地址，NocoReach 找出可以连接的数据，第二天就有第一份机会清单。</t-zh><t-en>Enter your website and NocoReach finds the data to connect—your first list of opportunities arrives the next day.</t-en></p></div>
-    <div class="cta"><a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="{{DOCS}}" target="_blank" rel="noopener"><t-zh>立即安装</t-zh><t-en>Install Now</t-en></a></div>
+    <div><h2><t-zh>发现机会，执行落地，跟踪效果。</t-zh><t-en>Find opportunities. Put them into action. Track the impact.</t-en></h2><p><t-zh>在线体验 NocoReach，或到 GitHub 获取源码自行部署。开源免费、私有部署，模型与 Agent 自由选择。</t-zh><t-en>Try NocoReach online, or get the source on GitHub and run it yourself. Open source and free, self-hosted, with the models and agents of your choice.</t-en></p></div>
+    <div class="cta"><a class="btn btn-pri" href="#liveDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-up"></i></a><a class="btn btn-sec gh-btn" href="https://github.com/nocobase/NocoReach" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>GitHub</a></div>
   </div>
 </div>
+<!-- AFTER-MAIN -->
+<script>
+/* Live demo script: the Chinese site on a Simplified Chinese page and the international one in every other language (Traditional Chinese included), kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
+(function () {
+  var SITES = { zh: 'https://solutions-cn.nocobase.com/reach/', en: 'https://solutions.nocobase.com/reach/' };
+  var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
+  var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
+  var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
+  // The demo signs in inside the frame once its session cookies are SameSite=None, Secure and Partitioned (a frame on
+  // another site does not keep SameSite=Lax ones; nocobase/NocoReach#282); ?demo=tab opens it in a new tab instead, as
+  // a phone does.
+  var FRAME = !/[?&]demo=tab\b/.test(location.search);
+  var status = {}, shown = false, scrolling = false;
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
+  function narrow() { return window.innerWidth < 768; }
+  function up() { return !forced && status[SITES[lang()]] === 'up'; }
+  function probe(url) {
+    if (status[url]) return;
+    status[url] = 'checking';
+    var img = new Image(), settled = false;
+    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); check(); }
+    var timer = setTimeout(function () { end(false); }, 8000);
+    img.onload = function () { end(true); };
+    img.onerror = function () { end(false); };
+    img.src = url + 'assets/favicon.ico?check=' + Date.now();
+  }
+  function apply() {
+    var url = SITES[lang()], down = forced || status[url] === 'down';
+    open.href = url;
+    tries.forEach(function (a) { a.hidden = down; });
+    section.hidden = !FRAME || !up() || narrow();
+    if (section.hidden) { frame.removeAttribute('src'); return; }
+    if (shown && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
+  }
+  function check() {
+    if (shown || scrolling || section.hidden) return;
+    var r = box.getBoundingClientRect(), seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+    if (seen < r.height * 0.3) return;
+    shown = true;
+    apply();
+    window.removeEventListener('scroll', check);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', function () { apply(); check(); });
+  tries.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      a.blur(); // no focus ring left on the button once the page has scrolled away and back
+      if (!FRAME || narrow() || !up()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
+      // Scroll first and load the demo once there: loading starts its sign-in, which puts the cursor in a field and would stop the scroll short.
+      scrolling = true;
+      section.querySelector('.ld-head').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var done = function () { if (!scrolling) return; scrolling = false; shown = true; apply(); };
+      if ('onscrollend' in window) window.addEventListener('scrollend', done, { once: true });
+      setTimeout(done, 1200);
+    });
+  });
+  function start() { if (!forced) probe(SITES[lang()]); apply(); }
+  start();
+  check();
+  new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>
+<script>
+/* NocoReach intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Simplified Chinese page and the English one in every other language, until each has its own; switching the language puts the cover back. */
+(function () {
+  var box = document.getElementById('introVideo'), cover = box.innerHTML;
+  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
+  box.addEventListener('click', function (e) {
+    if (!e.target.closest('#introPlay')) return;
+    var l = lang();
+    box.innerHTML = '<video src="https://static-docs.nocobase.com/nocoreach-intro-' + l + '.mp4" poster="https://static-docs.nocobase.com/nocoreach-intro-' + l + '.jpg" controls controlslist="nodownload" autoplay playsinline></video>';
+  });
+  new MutationObserver(function () {
+    if (!box.querySelector('video')) return;
+    box.innerHTML = cover;
+    if (window.lucide) window.lucide.createIcons();
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+})();
+</script>

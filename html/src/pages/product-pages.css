@@ -1,4 +1,4 @@
-/* Core、Studio、Solution 三个产品页共用的样式（由 _src/pages/gen_product_figs.py 从 _src/pages/product-pages.css 写入，改样式请改源文件）。
+/* Core、Studio、Solution 三个产品页共用的样式（由 html/scripts/figs/product-figs.mjs 从 html/src/pages/product-pages.css 写入，改样式请改源文件）。
    前半部分是首页已有的组件（首页的样式写在 index.html 里），这里给子页面用；和其他页面同名的类（.cmp、.apptab）限定在容器里，免得互相影响。 */
 
 /* ---- 首页同款组件 ---- */

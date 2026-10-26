@@ -1,0 +1,125 @@
+notes: |-
+  Deutsch（Sie）
+  术语：foundation = Fundament；building blocks = Bausteine；governance = Governance；agent team = Agenten-Team；
+  coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
+  vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
+  页面用语：agent = Agent（复数 Agenten）；lead = Lead；opportunity / deal = Deal；account = Kunde；company = Firma；approval = Freigabe（approve = freigeben，
+  approve with conditions = unter Auflagen freigeben，reject = ablehnen）；approval agent = Freigabe-Agent；approval assistant = Freigabe-Assistent；
+  timeline = Zeitleiste；business guidance = Geschäftsleitfaden；inbox = Posteingang；record = Datensatz；follow up = nachfassen；
+  asset register = Inventar；entitlement = Softwarelizenz；seat = Lizenzplatz；stocktake / audit = Inventur；stock = Lagerbestand；
+  idle = ungenutzt；disposal = Aussonderung；discrepancy = Abweichung；reconcile = abgleichen；standard kit = Standardausstattung；
+  purchase request = Bestellanforderung；PO = Bestellung；joiner = neue Mitarbeitende；leaver = ausscheidende Mitarbeitende；
+  joiners & leavers = Ein- und Austritte；skills = Skills
+  界面名称照英文界面原样写（德语读者看到英文界面）：Inbox、Approvals、Leads、Opportunities、Companies、Contacts、Tasks、Reports、
+  Business guidance、Skills、Approval Agent、Research Agent；一般描述仍用上面的德语用语（Deal、Freigabe、Posteingang 等）
+title: NocoCRM — Ein 24/7-Agenten-Team für Ihren Vertrieb
+description: "NocoCRM ist ein Open-Source-CRM auf NocoBase mit eingebautem Team aus Vertriebs-Agenten: Jeder Lead, jede Nachricht und jeder Deal wird proaktiv nachverfolgt, und Freigaben, Meeting-Vorbereitung und Kundeninfos liegen für Sie bereit. Die Entscheidungen treffen Sie."
+strings:
+  "000": Vertriebs-CRM
+  "001": Ihr Vertrieb bekommt <span class="m">ein 24/7-Agenten-Team.</span>
+  "002": "NocoCRM bringt 6 Vertriebs-Agenten mit und bindet Ihre E-Mail und WhatsApp ein: Die Agenten fassen bei Leads und Deals nach, beantworten Nachrichten sofort und prüfen Freigaben gemeinsam mit Ihnen. Agenten schlagen vor, Sie entscheiden."
+  "003": Online testen
+  "004": Intro ansehen
+  "005": Lizenz
+  "006": Open Source
+  "007": Basis
+  "008": Version
+  "009": Agenten an Bord
+  "010": Integrationen
+  "011": E-Mail · WhatsApp
+  "012": KI-Modelle
+  "013": Ihre Wahl
+  "014": NocoCRM online testen
+  "015": Sie sind mit einem Demo-Konto angemeldet. Alle Daten sind erfunden, probieren Sie also ruhig alles aus.
+  "016": Vollständig in neuem Tab öffnen
+  "017": Ein Tag im Vertrieb
+  "018": "Agenten haben heute 37 Routineaufgaben erledigt. "
+  "019": Nur 6 brauchten Ihre Entscheidung.
+  "020": "Agenten erledigen die zeitraubende Arbeit im Hintergrund: Kunden recherchieren, bei Leads nachfassen, Meeting-Briefings vorbereiten, Antworten entwerfen und Rabatte prüfen. Ist eine Einschätzung gefragt, landet sie mit Begründung bei Ihnen, und Sie entscheiden."
+  "021": Proaktives Nachfassen
+  "022": "Nichts geht mehr unter. "
+  "023": Agenten fassen bei jedem Ereignis automatisch nach.
+  "024": "Ob neuer Lead, neuer Deal, Kundenantwort, verstummter WhatsApp-Chat, erledigte Aufgabe oder der morgendliche Check: Agenten starten automatisch, lesen den gesamten Kontext und legen den nächsten Schritt in Ihre Inbox. Kein Lead bleibt liegen."
+  "025": Jeder Vorschlag nennt Empfehlung, Sicherheit und Begründung.
+  "026": Vorantreiben, nachfassen, pausieren oder als verloren schließen; Leads nach A/B/C bewerten; freigeben, unter Auflagen freigeben oder ablehnen. Datensätze ändern sich erst, wenn Sie zustimmen. Verworfene Vorschläge werden protokolliert, um die Treffsicherheit der Agenten zu messen.
+  "027": Alle Kanäle
+  "028": "E-Mail, WhatsApp, Anrufe und Meetings: "
+  "029": jeder Kontaktpunkt erfasst und verknüpft.
+  "030": "Wo auch immer sich ein Kunde meldet, fasst ein Agent automatisch nach: Er erkennt den Kontakt, hält die wichtigsten Fakten fest, entwirft eine Antwort und plant den nächsten Schritt. Nach Ihrer Bestätigung geht die Nachricht von Ihrem eigenen Konto aus, und jede Interaktion von der ersten Anfrage bis zum unterschriebenen Vertrag steht auf einer einzigen Zeitleiste."
+  "031": E-Mail
+  "032": Kommt eine E-Mail an, ist der Datensatz aktualisiert und eine Antwort entworfen.
+  "033": Verbinden Sie Ihr persönliches Gmail, Microsoft 365 oder ein beliebiges IMAP/SMTP-Postfach, oder teilen Sie Team-Adressen wie sales@. Lesen und beantworten Sie E-Mails direkt auf Kunden- und Deal-Seiten, mit Ihrer eigenen Signatur und Ihren Vorlagen.
+  "034": Ordnet Kontakte und Firmen über E-Mail-Adresse und Domain zu und schlägt vor, neue anzulegen
+  "035": Erfasst Budget, Bedarf, Wettbewerber und Zeitpläne mit Originalzitaten und legt Ihnen Widersprüche zur Entscheidung vor
+  "036": Legt Antwortentwürfe direkt im Entwurfsordner Ihres Postfachs ab, bereit zum schnellen Überarbeiten
+  "037": Erinnert Sie mit einem Nachfass-Entwurf, wenn ein Gespräch tagelang ruht
+  "038": Was auf WhatsApp passiert, bleibt mit Ihrem CRM synchron.
+  "039": Verknüpfen Sie Ihre WhatsApp-Business-Nummer, und Chats werden automatisch Leads und Deals zugeordnet. Nach 30 Minuten Funkstille fasst ein Agent das Gespräch auf der Zeitleiste zusammen und empfiehlt den nächsten Schritt.
+  "040": Transkribiert Sprachnachrichten und macht aus Visitenkarten oder Screenshots nach Bestätigung Kontakte
+  "041": Ordnet unbekannte Nummern bestehenden Leads zu oder schlägt vor, neue anzulegen
+  "042": Wählt außerhalb des 24-Stunden-Fensters automatisch genehmigte Vorlagen aus und füllt sie aus
+  "043": Macht aus Besuchen und Zahlungsbedingungen, die im Chat erwähnt werden, Aufgaben und Freigabeanfragen
+  "044": Weitere Kanäle
+  "045": Jeder eingehende Kontakt wird gleich behandelt
+  "046": Kalender &amp; Meetings
+  "047": Verbinden Sie Google Kalender oder Outlook. Vor Meetings entstehen Briefings, und hochgeladene Aufzeichnungen oder Transkripte werden zu Notizen, Deal-Updates und nächsten Schritten.
+  "048": Webformulare &amp; Webhooks
+  "049": Anfragen, Testanmeldungen und Event-Leads kommen direkt herein und werden automatisch recherchiert, bewertet und zugewiesen.
+  "050": Import &amp; Migration
+  "051": Importieren Sie Excel, CSV oder Exporte aus Salesforce und HubSpot. KI ordnet Felder zu, erkennt Duplikate und schlägt Zusammenführungen vor, die Sie bestätigen.
+  "052": Einfügen &amp; Screenshots
+  "053": Fügen Sie Messelisten, Chat-Screenshots oder lose Notizen ein, um Formulare vorauszufüllen. Unsichere Felder bleiben leer und werden hervorgehoben.
+  "054": Hinweise, wo Sie arbeiten
+  "055": Sobald eine Entscheidung ansteht, erfahren Sie es in der Inbox der App, in der täglichen E-Mail-Zusammenfassung oder über Feishu, DingTalk, WeCom und Slack.
+  "056": Eigene Kanäle
+  "057": Sie brauchen WeCom-Chats, Anrufaufzeichnungen oder Live-Chat? Lassen Sie einen Coding-Agenten in Studio sie direkt im Quellcode des CRM anbinden.
+  "058": Agenten übernehmen
+  "059": E-Mails, Chats und Formulare Kontakten, Firmen und Deals zuordnen
+  "060": Zusammenfassungen, Fakten und Originalzitate auf der Zeitleiste festhalten
+  "061": Antworten entwerfen, Aufgaben anlegen und Freigabeanfragen vorbereiten
+  "062": Funkstille, unbeantwortete Nachrichten und nahende Fristen im Blick behalten
+  "063": Sie behalten die Kontrolle
+  "064": Jede ausgehende Nachricht prüfen Sie selbst, und sie geht von Ihrem eigenen Konto aus
+  "065": Nur E-Mails mit CRM-Kontakten werden synchronisiert, Privates bleibt privat
+  "066": "Sichtbarkeit im Team steuern: Volltext, Zusammenfassung oder nur Zeitstempel teilen"
+  "067": Agenten-Team für den Vertrieb
+  "068": "Jeder Agent hat eine klare Rolle, "
+  "069": und Kennzahlen belegen seine Wirkung.
+  "070": Wie menschliche Kollegen hat jeder Agent festgelegte Aufgaben, Auslöser, Skills und Berechtigungen, dazu Live-Statistiken zu Ausführungen und Annahmequoten. So sehen Sie, welche Agenten liefern und welche nachjustiert werden müssen.
+  "071": Recherche &amp; Vorbereitung
+  "072": "Wissen, was bei Ihren Kunden los ist. "
+  "073": Gut vorbereitet in jedes Gespräch.
+  "074": Approvals
+  "075": "Freigaben stocken nicht mehr: Die Zahlen sind gerechnet, der Kommentar ist entworfen."
+  "076": Wird ein Rabatt, ein Zahlungsziel, eine Sonderklausel oder eine Lieferzusage eingereicht, prüft der Approval Agent sie gegen Richtlinien, Margen, frühere Fälle und Risiken und entwirft für die freigebende Person eine vertrauliche Empfehlung samt Kommentar. Die letzte Entscheidung treffen Sie.
+  "077": Agenten erledigen
+  "078": Kunden- und Gesprächshistorie aufbereiten
+  "079": Leads recherchieren, Nachfassen und Angebote vorbereiten
+  "080": Freigaben an Standards messen
+  "081": Sie entscheiden
+  "082": Beziehungen und Vertriebsstrategie
+  "083": Rabatte und finale Angebote
+  "084": Wichtige Vertragsbedingungen und Zusagen
+  "085": Auf Ihre Art
+  "086": "Bringen Sie Agenten Ihre Regeln im Klartext bei. "
+  "087": Bauen Sie das ganze CRM per Prompt um.
+  "088": Halten Sie Preise, Rabattgrenzen und Nachfass-Rhythmus in einfacher Sprache unter Business guidance fest, und jeder Agent befolgt sie beim nächsten Lauf. Neue Felder, Workflows oder Seiten nötig? Bitten Sie einen Coding-Agenten, den Quellcode des CRM direkt anzupassen. Open Source, selbst gehostet und zu 100 % in Ihrer Hand.
+  "089": Der gesamte Vertriebszyklus
+  "090": "Vom Lead zum Abschluss: "
+  "091": jeder Schritt dokumentiert.
+  "092": Leads
+  "093": Verfolgen Sie Leads von neu bis konvertiert. Fügen Sie Rohtext ein, und KI macht daraus Leads, mit automatischen Vorschlägen zum Zusammenführen von Duplikaten.
+  "094": Opportunities
+  "095": Verwalten Sie Deal-Werte, Abschlussdaten und Verantwortliche in Board- oder Listenansicht, und erfassen Sie Verlustgründe für die Win/Loss-Analyse.
+  "096": Companies &amp; Contacts
+  "097": Erfassen Sie Status, Branche, Größe und Quelle. Öffentliche Firmenprofile ergänzt der Research Agent automatisch.
+  "098": Tasks
+  "099": Gruppiert nach überfällig, morgen und demnächst, in Team- oder persönlicher Ansicht. Von KI vorgeschlagene Aufgaben sind klar gekennzeichnet.
+  "100": Bearbeiten Sie Rabatte, Zahlungsziele, Klauseln und Zusagen an einem Ort. Jede Entscheidung wird am Deal protokolliert.
+  "101": Reports
+  "102": Live-Pipeline, gewichtete Prognose, Konversion, Abschlussquoten und Verlustgründe, dazu KI-Berichte in Textform per Klick.
+  "103": Kennzahlen jederzeit live. Berichte schreibt die KI.
+  "104": Pipeline, gewichtete Prognosen, Abschlussquoten und Funnels aktualisieren sich in Echtzeit. Sie brauchen ein Wochen-Update oder einen Quartalsrückblick? Die KI liest die zugrunde liegenden Deal-Zeitleisten und erklärt, was hinter den Zahlen steckt.
+  "105": Weniger Kleinkram, mehr Zeit für Abschlüsse.
+  "106": Testen Sie NocoCRM online, oder holen Sie sich den Quellcode auf GitHub und betreiben Sie ihn selbst. Legen Sie Ihre Business guidance fest, wählen Sie Ihre Modelle, und schicken Sie Ihre Vertriebs-Agenten an die Arbeit.
+  "107": Freigaben

@@ -50,16 +50,16 @@
 html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.75 var(--f-sans); -webkit-font-smoothing: antialiased; }
 t-zh, t-en { display: inline; }
-html[lang="zh"] t-en, html:not([lang="zh"]) t-zh { display: none !important; }
-html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) body { line-height: 1.65; }
+html[lang="zh-CN"] t-en, html:not([lang="zh-CN"]) t-zh { display: none !important; }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) body { line-height: 1.65; }
 /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载（和首页一致） */
-html[lang="ru"] { --f-sans: "Inter", "Archivo", ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
-html[lang="ja"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; }
-html[lang="ko"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+html[lang="ru-RU"] { --f-sans: "Inter", "Archivo", ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+html[lang="ja-JP"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; }
+html[lang="ko-KR"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
 html[lang="zh-TW"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif; }
 /* 日文标题按词组断行；韩文和中文一样只在空格、标点处断 */
-html[lang="ja"] :is(h1, h2, h3, .h2, .phero .lede, .lead) { word-break: auto-phrase; }
-html[lang="ko"] body { word-break: keep-all; overflow-wrap: break-word; }
+html[lang="ja-JP"] :is(h1, h2, h3, .h2, .phero .lede, .lead) { word-break: auto-phrase; }
+html[lang="ko-KR"] body { word-break: keep-all; overflow-wrap: break-word; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; }
 button { font: inherit; color: inherit; }
@@ -633,7 +633,7 @@ button.b { cursor: pointer; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 .hero .cta { justify-content: center; margin-top: 30px; }
 .hero .sheet { margin-top: 64px; }
-html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .hero .lede { max-width: 680px; }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .hero .lede { max-width: 680px; }
 @media (max-width: 1080px) { .hero h1 { font-size: clamp(34px, 7.6vw, 62px); } }
 @media (max-width: 600px) { .hero { padding-top: 48px; } .hero .lede { font-size: 16px; } .hero .sheet { margin-top: 44px; } }
 @media (max-width: 400px) { .hero h1 span { white-space: normal; } }
@@ -810,23 +810,23 @@ footer { margin-top: 160px; border-top: 1px solid var(--rule); padding-block: 56
 .fbot span:first-child { margin-right: auto; }
 @media (max-width: 900px) { .fgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fgrid > div:first-child { grid-column: 1 / -1; } footer { margin-top: 104px; } }
 
-html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .hero h1 { font-size: 62px; line-height: 1.06; letter-spacing: -0.025em; }
-html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .h2 { font-size: 38px; line-height: 1.22; letter-spacing: -0.018em; }
-html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .lead, html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .hero .lede { line-height: 1.7; }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .hero h1 { font-size: 62px; line-height: 1.06; letter-spacing: -0.025em; }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .h2 { font-size: 38px; line-height: 1.22; letter-spacing: -0.018em; }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .lead, html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .hero .lede { line-height: 1.7; }
 @media (max-width: 1080px) {
-  html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .hero h1 { font-size: clamp(30px, 6.6vw, 62px); }
+  html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .hero h1 { font-size: clamp(30px, 6.6vw, 62px); }
 }
 /* 英文第二行比中文长：字号随屏宽缩小，保持一行；手机上放不下时均衡折成两行 */
-@media (max-width: 480px) { html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .hero h1 span { white-space: normal; text-wrap: balance; } }
-@media (max-width: 900px) { html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .h2 { font-size: 29px; } }
-@media (max-width: 600px) { html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .h2 { font-size: 24px; } }
+@media (max-width: 480px) { html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .hero h1 span { white-space: normal; text-wrap: balance; } }
+@media (max-width: 900px) { html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .h2 { font-size: 29px; } }
+@media (max-width: 600px) { html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .h2 { font-size: 24px; } }
 .nav .right button.plain { border: 0; background: none; cursor: pointer; }
 .mnav .lang-switch-m { display: flex; align-items: center; gap: 8px; width: 100%; padding: 12px 0 4px; border: 0; background: none; font-size: 15px; color: var(--brand); font-weight: 500; cursor: pointer; text-align: left; }
 .mnav .lang-switch-m svg { width: 16px; height: 16px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
 
 /* ======================= 子页面 ======================= */
-html[lang="zh"] .en-only, html:not([lang="zh"]) .zh-only { display: none !important; }
+html[lang="zh-CN"] .en-only, html:not([lang="zh-CN"]) .zh-only { display: none !important; }
 .dd a.on, .mnav a.on { color: var(--brand); }
 .mi > a.on { color: var(--ink); background: var(--paper-2); }
 
@@ -841,8 +841,8 @@ html[lang="zh"] .en-only, html:not([lang="zh"]) .zh-only { display: none !import
 .phero .facts span { display: inline-flex; align-items: center; gap: 6px; }
 .phero .facts svg.lucide { width: 15px; height: 15px; color: var(--pass); }
 .phero .sheet { margin-top: 64px; }
-html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .phero h1 { font-size: 54px; line-height: 1.1; letter-spacing: -0.025em; }
-@media (max-width: 900px) { .phero { padding-top: 56px; } .phero h1, html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .phero h1 { font-size: clamp(32px, 7.4vw, 48px); } .phero .lede { font-size: 16.5px; } .phero .sheet { margin-top: 40px; } }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .phero h1 { font-size: 54px; line-height: 1.1; letter-spacing: -0.025em; }
+@media (max-width: 900px) { .phero { padding-top: 56px; } .phero h1, html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .phero h1 { font-size: clamp(32px, 7.4vw, 48px); } .phero .lede { font-size: 16.5px; } .phero .sheet { margin-top: 40px; } }
 
 .pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--rule-2); background: var(--card); font-size: 12.5px; font-weight: 500; color: var(--ink-2); white-space: nowrap; }
 .pill.brand { border-color: transparent; background: var(--brand-tint); color: var(--brand); }
@@ -1361,8 +1361,8 @@ section.sec.tint { margin-top: 160px; padding-block: 128px 136px; background: ok
 @media (max-width: 960px) { .pillars { grid-template-columns: minmax(0, 1fr) !important; } .pillars > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule-2); } }
 .wow { padding-top: 120px; }
 .wow .h2 { font-size: 44px; }
-html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .wow .h2 { font-size: 42px; }
-@media (max-width: 900px) { .wow .h2, html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .wow .h2 { font-size: 30px; } }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .wow .h2 { font-size: 42px; }
+@media (max-width: 900px) { .wow .h2, html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .wow .h2 { font-size: 30px; } }
 .cmp tr.sub td { padding: 16px 18px 6px; border-top: 1px solid var(--rule); font-size: 12.5px; font-weight: 600; color: var(--brand); background: var(--card); }
 .cmp tr.sub td span { margin-left: 8px; font-weight: 400; color: var(--muted); }
 .cmp tr.sub + tr td { border-top-color: transparent; }
@@ -1468,8 +1468,8 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
 .nav .lang .dd a { display: flex; align-items: center; gap: 8px; padding: 7px 10px; font-size: 14px; color: var(--ink-2); }
 .nav .lang .dd a:hover { color: var(--ink); }
 .nav .lang .dd a svg.lucide { grid-row: auto; width: 14px; height: 14px; margin: 0; color: var(--brand); visibility: hidden; }
-html[lang="zh"] .nav .lang a[data-lang="zh"], html[lang="en"] .nav .lang a[data-lang="en"] { color: var(--ink); font-weight: 600; }
-html[lang="zh"] .nav .lang a[data-lang="zh"] svg.lucide, html[lang="en"] .nav .lang a[data-lang="en"] svg.lucide { visibility: visible; }
+html[lang="zh-CN"] .nav .lang a[data-lang="zh"], html[lang="en"] .nav .lang a[data-lang="en"] { color: var(--ink); font-weight: 600; }
+html[lang="zh-CN"] .nav .lang a[data-lang="zh"] svg.lucide, html[lang="en"] .nav .lang a[data-lang="en"] svg.lucide { visibility: visible; }
 /* 12 种语言的页面：当前语言加粗并打勾；手机菜单里是下拉框 */
 .nav .lang .dd a.cur { color: var(--ink); font-weight: 600; }
 .nav .lang .dd a.cur svg.lucide { visibility: visible; }
@@ -1602,7 +1602,7 @@ html[lang="zh"] .nav .lang a[data-lang="zh"] svg.lucide, html[lang="en"] .nav .l
 .cinfo a { color: var(--deep-accent); }
 .cinfo ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; font-size: 14.5px; line-height: 1.7; color: var(--on-deep-2); }
 .cinfo .qr { display: block; width: 104px; height: 104px; margin-top: 12px; padding: 6px; border-radius: 8px; background: #fff; }
-html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],[lang="id"],[lang="vi"]) .bookf .em { grid-column: 1 / -1; }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) .bookf .em { grid-column: 1 / -1; }
 .bookf fieldset.opts label { font-size: 14px; }
 @media (max-width: 900px) { .band.book { grid-template-columns: minmax(0, 1fr); } }
 /* 伙伴等级表：等宽三列，最高一级轻微强调，对勾用图标 */
@@ -1798,7 +1798,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
 .st-dec b { font-weight: 500; min-width: 0; }
 /* /STUDIO-UI */
 /* HOME-STUDIO */
-/* 首页 Studio 段：左侧四条特色，右侧换图（由 _src/pages/gen_home_studio.py 写入，改样式请改脚本） */
+/* 首页 Studio 段：左侧四条特色，右侧换图（由 html/scripts/figs/home-studio.mjs 写入，改样式请改脚本） */
 .stv { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 48px; align-items: start; }
 .stv-tabs { display: grid; gap: 4px; }
 .stv-tab { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 4px 10px; padding: 14px 16px 15px; border: 0; border-left: 2px solid var(--rule-2); background: none; text-align: left; cursor: pointer; color: var(--ink-2); font: inherit; }
@@ -1930,7 +1930,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
 .b.ai svg.lucide { width: 14px; height: 14px; color: var(--agent); }
 .gh-btn svg { width: 17px; height: 17px; flex: none; }
 /* PRODUCT-PAGES */
-/* Core、Studio、Solution 三个产品页共用的样式（由 _src/pages/gen_product_figs.py 从 _src/pages/product-pages.css 写入，改样式请改源文件）。
+/* Core、Studio、Solution 三个产品页共用的样式（由 html/scripts/figs/product-figs.mjs 从 html/src/pages/product-pages.css 写入，改样式请改源文件）。
    前半部分是首页已有的组件（首页的样式写在 index.html 里），这里给子页面用；和其他页面同名的类（.cmp、.apptab）限定在容器里，免得互相影响。 */
 
 /* ---- 首页同款组件 ---- */

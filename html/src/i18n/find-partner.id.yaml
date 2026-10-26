@@ -1,0 +1,88 @@
+notes: |-
+  Bahasa Indonesia（Anda）
+  术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+  coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+  self-hosted = self-hosted；at a glance = terlihat sekilas
+  页面用语：partner = mitra；Skills = skill
+title: Temukan Mitra NocoBase — Bangun dan jalankan sistem Anda
+description: Mitra NocoBase memahami NocoBase 3, Studio, dan industri Anda. Bersama tim agen mereka, mitra merumuskan kebutuhan, membangun, menguji, merilis, dan memelihara sistem bersama Anda, dan kodenya milik Anda.
+strings:
+  "001": Temukan mitra yang tepat <span class="m">untuk membangun dan menjalankan sistem Anda.</span>
+  "002": Mitra NocoBase memahami NocoBase 3, Studio, dan industri Anda secara mendalam. Memimpin tim agen, mereka bekerja bersama Anda untuk merumuskan, membangun, memverifikasi, merilis, dan memelihara sistem. Setiap langkah terlihat di Studio, dan kode sumber, skill, serta basis pengetahuan yang dihasilkan 100% milik Anda.
+  "003": Kirim kebutuhan Anda
+  "005": Kapan butuh mitra
+  "006": "Siap membangun dengan AI, "
+  "007": tetapi butuh pemandu berpengalaman.
+  "008": Kekurangan engineer
+  "009": Kapasitas engineering internal terbatas, dan Anda butuh mitra berpengalaman yang memimpin tim agen hingga proyek selesai.
+  "010": Waktu mendesak
+  "011": Saat bisnis tak bisa menunggu, mulai dari Solution siap pakai atau templat industri dan go-live dalam hitungan minggu.
+  "012": Integrasi dan migrasi yang kompleks
+  "013": Hubungkan ERP, OA, SSO, atau database lama, atau migrasi mulus dari NocoBase 2 maupun sistem lama.
+  "014": Siapkan tim Anda sendiri
+  "015": Bangun rilis pertama bersama agar tim Anda belajar mengarahkan agen, memverifikasi pratinjau, dan merilis sendiri.
+  "016": Apa yang dikerjakan mitra
+  "017": "Dari percakapan pertama "
+  "018": hingga setiap perbaikan setelah go-live.
+  "019": Analisis kebutuhan dan arsitektur
+  "020": Memetakan proses Anda, memilih titik awal yang tepat di Solution atau Core, dan membagi pengiriman menjadi tahapan.
+  "021": Pengembangan khusus
+  "022": Mengarahkan agen di Studio dengan tes dan review di setiap perubahan, siap Anda terima di pratinjau.
+  "023": Integrasi sistem
+  "024": Menghubungkan ERP, CRM, OA, SSO, chat tim, dan database eksternal, dengan izin akses yang ditegakkan di server.
+  "025": Migrasi data
+  "026": Migrasi dari spreadsheet, aplikasi lama, atau NocoBase 2, dengan skrip migrasi diuji dulu pada data nyata di pratinjau.
+  "027": Layanan di lokasi
+  "028": Bantuan langsung di lokasi untuk deploy, pemecahan masalah, dan membahas kebutuhan bersama tim bisnis Anda.
+  "029": Operasional dan pengembangan berkelanjutan
+  "030": Menangani deploy self-hosted, cadangan, upgrade, dan pemecahan masalah, dengan agen di Studio yang terus mendorong perbaikan.
+  "031": Cara kerjanya
+  "032": "Mitra memimpin agen. "
+  "033": Anda yang memutuskan urusan bisnis.
+  "034": Jalankan proyek di Studio Anda sendiri, atau biarkan mitra membangun di Studio mereka dan mengirim ke repo Anda, dengan visibilitas penuh atas progres, hambatan, dan rilis.
+  "035": Jelaskan bisnisnya
+  "036": Anda menjelaskan proses dan masalahnya; mitra mengubahnya menjadi kebutuhan dan rencana bertahap.
+  "037": Sepakati rencana
+  "038": Anda mengonfirmasi aturan bisnis, cakupan, dan kriteria penerimaan.
+  "039": Bangun dan periksa
+  "040": Tim agen membangun dan menguji; mitra menjamin kualitas.
+  "041": Terima di pratinjau
+  "042": Anda mencobanya di pratinjau dan menyetujui rilis.
+  "043": Serah terima dan pemeliharaan
+  "044": Kode, skill, dan pengetahuan ada di repo Anda; ubah sendiri atau tetap bekerja dengan mitra.
+  "045": Mitra dan agen menangani
+  "046": Desain, pengembangan, pengujian, dan review kode
+  "047": Lingkungan, integrasi, migrasi, dan persiapan rilis
+  "048": Menuliskan aturan bisnis ke dalam skill dan pengetahuan
+  "049": Anda yang memutuskan
+  "050": Aturan bisnis, cakupan, dan prioritas
+  "051": Apakah setiap fitur diterima
+  "052": Kapan go-live
+  "053": Memilih mitra
+  "054": Kirim kebutuhan Anda, kami rekomendasikan mitra yang cocok.
+  "055": "Kami akan mempertemukan Anda dengan 1–3 mitra yang memenuhi syarat sesuai wilayah, industri, dan cakupan. Saat berdiskusi, sebaiknya pastikan:"
+  "056": "Pengalaman: "
+  "057": proyek yang sudah berjalan di industri Anda dan apakah mereka bisa mendemokannya
+  "058": "Pengiriman: "
+  "059": di Studio siapa proyek dibangun, dan bagaimana kode, skill, dan pengetahuan diserahkan
+  "060": "Setelah go-live: "
+  "061": bagaimana operasional, upgrade, dan SLA respons diatur
+  "062": FAQ
+  "063": Apa bedanya bekerja dengan mitra dibanding langsung dengan NocoBase?
+  "064": NocoBase menyediakan platform, lisensi komersial, dan pilot langsung. Mitra menyediakan implementasi menyeluruh di wilayah dan industri Anda, termasuk pengembangan khusus, integrasi, migrasi, dan pemeliharaan jangka panjang. Keduanya bisa bekerja sama bila diperlukan.
+  "065": Bagaimana soal biaya?
+  "066": Mitra memberi penawaran implementasi dan pemeliharaan per proyek, per modul, atau kontrak tahunan. Lisensi komersial NocoBase mengikuti harga resmi dan bisa dibeli melalui mitra Anda.
+  "067": Siapa pemilik kode yang diserahkan?
+  "068": Milik Anda. Logika bisnis Anda berupa kode sumber bersih di repo Anda, ditopang plugin NocoBase Core, dengan kode, skill, pengetahuan, dan ketentuan dukungan yang jelas.
+  "069": Bisakah kami berganti mitra atau mengambil alih pemeliharaan secara internal nanti?
+  "070": Kapan saja. Karena sistem dibangun di atas NocoBase Core standar, dengan praktik di skill dan konteks di basis pengetahuan, tim Anda atau mitra lain bisa mengambil alih dengan mulus.
+  "071": Kirim kebutuhan Anda
+  "072": Ceritakan sistem yang Anda inginkan, dan kami akan merekomendasikan mitra sesuai wilayah, industri, dan layanan yang Anda butuhkan.
+  "073": Nama perusahaan
+  "074": Nama kontak
+  "075": Email kontak
+  "076": Kebutuhan Anda
+  "077": Kirim
+  "078": "Misalnya: industri Anda, sistem atau kasus penggunaan, masalah yang ingin diselesaikan, layanan yang dibutuhkan, anggaran atau skala, dan target go-live"
+  "079": Negara / wilayah
+  "080": Pilih negara atau wilayah Anda

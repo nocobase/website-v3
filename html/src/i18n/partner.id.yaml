@@ -1,0 +1,149 @@
+notes: |-
+  Bahasa Indonesia（Anda）
+  术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+  coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+  self-hosted = self-hosted；at a glance = terlihat sekilas
+  页面用语：partner = mitra；consultant = konsultan；channel distribution = distribusi；My issues 等产品界面名称照英文
+title: Program Mitra NocoBase — Kerjakan lebih banyak proyek klien dengan tim agen
+description: "Jadilah mitra NocoBase: komisi kanal 15%–40% dan 100% pendapatan layanan untuk Anda. Dengan Core, Studio, dan Solution, konsultan Anda fokus pada kebutuhan klien sementara tim agen membangun, sehingga banyak proyek berjalan bersamaan."
+strings:
+  "001": AI mengubah cara perangkat lunak dikirimkan. <span class="m">Jadikan itu bisnis Anda.</span>
+  "002": Dulu, jumlah proyek dibatasi jumlah developer. Kini, konsultan Anda cukup fokus menganalisis kebutuhan klien, mengambil keputusan penting, dan menerima hasil, sementara tim agen menangani coding, pengujian, dan deploy, sehingga banyak proyek klien berjalan paralel. NocoBase 3 menyediakan Core sebagai fondasi, Studio, dan aplikasi bisnis Solution. Keahlian industri dan hubungan klien Anda adalah pembeda utama.
+  "005": Komisi kanal
+  "006": Akumulasi
+  "007": Seumur hidup, tak pernah turun
+  "008": Pendapatan layanan
+  "009": 100% milik Anda
+  "010": Kode yang diserahkan
+  "011": Milik klien, mudah dipelihara
+  "012": Pengiriman di era AI
+  "013": "Skala tak lagi bergantung pada jumlah orang. "
+  "014": Tapi pada penilaian bisnis Anda.
+  "015": AI membuat penulisan kode jadi murah. Yang kini dibayar klien adalah orang yang memahami bisnis mereka, serta sistem kelas produksi yang bisa terus berkembang bertahun-tahun. Itulah nilai inti yang dibawa mitra.
+  "016": Pengiriman tradisional
+  "017": Tumbuh dengan menambah orang
+  "018": Dengan NocoBase 3
+  "019": Tumbuh dengan penilaian bisnis
+  "020": Kapasitas
+  "021": Jumlah proyek dibatasi jumlah developer
+  "022": Satu tim agen menggerakkan semua proyek klien, sepanjang waktu
+  "024": Ditagih per hari-orang; margin terkunci pada jam kerja
+  "025": "Harga per modul dan hasil: pengiriman lebih cepat, margin lebih tinggi"
+  "026": Yang diserahkan
+  "027": Konfigurasi tertutup atau kode khusus yang sulit diserahterimakan
+  "028": "Kode sumber bersih di atas fondasi standar: bisa diaudit, di-upgrade, dan terus dikembangkan dengan AI"
+  "030": Pengetahuan hanya ada di kepala segelintir orang
+  "031": Tersimpan dalam skill dan basis pengetahuan, siap dipakai ulang untuk klien berikutnya
+  "032": Setelah go-live
+  "033": Sibuk memadamkan masalah setelah rilis, sulit ditagihkan
+  "034": Tim agen menangani upgrade dan perbaikan rutin, menjadi layanan pemeliharaan tahunan berulang
+  "035": Satu konsultan, empat proyek klien berjalan paralel.
+  "036": Di NocoBase Studio, setiap klien punya proyek dan repo terisolasi. Konsultan hanya turun tangan untuk keputusan penting di My issues (memverifikasi pratinjau, menjawab pertanyaan bisnis, dan menyetujui rilis), sementara agen membangun, menguji, dan menyiapkan deploy di latar belakang.
+  "037": Pemangku kepentingan klien bisa memberi masukan dan menerima fitur langsung di pratinjau
+  "038": Setiap perubahan lolos pemeriksaan otomatis dan persetujuan manusia, kualitas terjaga tanpa lembur
+  "039": Serahkan kode sumber lengkap, skill, dan basis pengetahuan saat serah terima
+  "040": Model kemitraan
+  "041": "Jual kembali, kerjakan proyek, atau bangun solusi industri. "
+  "042": Pilih salah satu atau gabungkan.
+  "043": Distribusi
+  "044": Rekomendasikan dan jual kembali lisensi komersial NocoBase dengan komisi bertingkat.
+  "045": Komisi 15%–40% berdasarkan total penjualan kumulatif
+  "046": Akumulasi seumur hidup, tingkat Anda tak pernah direset atau turun
+  "047": Lisensi permanen sekali bayar tanpa batas pengguna memudahkan persetujuan klien
+  "048": Didukung materi penjualan, lingkungan demo, dan battlecard
+  "049": Layanan implementasi
+  "050": Berikan layanan deploy, kustomisasi, integrasi, dan pelatihan di Studio bersama tim agen Anda.
+  "051": 100% pendapatan layanan untuk Anda, NocoBase tidak mengambil bagian
+  "052": "Tentukan harga sendiri: per proyek, per modul, atau kontrak tahunan"
+  "053": Naik tingkat seiring proyek yang go-live dan dapatkan prioritas rujukan prospek
+  "054": Solusi industri
+  "055": Bangun solusi vertikal di atas Core dengan agen domain bawaan, seperti NocoCRM.
+  "056": Bangun sekali, lalu deploy dan pelihara untuk semua klien di industri Anda
+  "057": Kemas aturan domain ke dalam skill dan panduan agar agen paham industri sejak hari pertama
+  "058": Masuk katalog NocoBase Solution dengan peluncuran dan pemasaran bersama
+  "059": Ekosistem teknologi
+  "060": Bawa model, perangkat agen, infrastruktur cloud, atau konektor ke deployment NocoBase 3.
+  "061": Terbitkan skill, konektor, dan komponen UI untuk developer dan agen
+  "062": Terbitkan bersama solusi, dokumentasi teknis, dan studi kasus pelanggan
+  "063": Akses lebih awal ke rilis Core untuk validasi kompatibilitas
+  "065": "Pengiriman lebih cepat dan stabil. "
+  "066": Klien lebih yakin.
+  "067": 100% kode sumber
+  "068": Hasil kerja lolos uji tuntas teknis tanpa vendor lock-in, membangun kepercayaan yang mempercepat kesepakatan.
+  "069": Kemampuan enterprise sudah tersedia
+  "070": Autentikasi, izin akses, alur kerja, persetujuan, dan karyawan AI sudah tersedia, sehingga agen hanya menulis logika khusus klien.
+  "071": Pengiriman yang bisa diskalakan di Studio
+  "072": Kelola banyak klien dan repo dalam satu ruang kerja dengan tes dan review, pratinjau terisolasi, dan rilis terkendali.
+  "073": Mulai dari Solution siap pakai
+  "075": Self-hosted, kedaulatan data penuh
+  "076": Deploy on-premise dengan model apa pun, memenuhi persyaratan kepatuhan ketat sektor keuangan, pemerintahan, dan manufaktur.
+  "077": Terbukti dipakai secara global
+  "078": Dengan 24,6K bintang GitHub, NocoBase dipakai perusahaan, pemerintah, dan universitas di seluruh dunia, yang kini naik kelas ke era AI.
+  "079": Cara kami mendukung Anda
+  "080": "Sejak klien pertama Anda, "
+  "081": kami mendampingi Anda.
+  "082": Pelatihan dan sertifikasi
+  "083": Bawa kebutuhan nyata dan pelajari cara mengarahkan agen, memverifikasi pratinjau, dan merilis dengan aman di Studio.
+  "084": Dukungan penjualan
+  "085": Akses pitch deck, studi kasus, battlecard, dan lingkungan demo, plus dukungan bersama untuk peluang penting.
+  "086": Dukungan teknis
+  "087": Kanal dukungan khusus dengan respons prioritas untuk tingkat lebih tinggi, plus akses awal ke rilis Core dan skill.
+  "088": Rujukan prospek
+  "089": Terima prospek klien berkualitas sesuai wilayah, industri, bahasa, dan layanan, lalu bangun sistem bisnis berbasis NocoBase untuk mereka.
+  "090": Merek dan pemasaran bersama
+  "091": Lencana mitra resmi, tercantum di direktori, acara pemasaran bersama, dan kisah pelanggan bersama.
+  "092": Persyaratan
+  "093": "Mulai gratis. "
+  "094": Makin besar komitmen, makin besar dukungan.
+  "095": Mitra kanal
+  "096": Mitra resmi
+  "097": Daftar gratis dan tanda tangani perjanjian kanal
+  "098": Memiliki lisensi Professional dan menandatangani perjanjian kemitraan
+  "099": Terutama dokumentasi publik
+  "100": Program pelatihan dan sertifikasi khusus
+  "101": Komisi
+  "102": Aktif setelah penjualan lisensi pertama
+  "103": Bertingkat menurut penjualan kumulatif, dari 15% hingga 40%, tak pernah turun
+  "104": Sertifikat mitra
+  "105": Tercantum di direktori
+  "106": Dukungan komunitas
+  "107": Kanal khusus
+  "108": Pemasaran bersama dan studi kasus
+  "109": Cara bergabung
+  "110": "Empat langkah "
+  "111": menuju proyek NocoBase 3 pertama Anda.
+  "112": Ajukan
+  "113": Ceritakan tim, wilayah, industri, dan model kemitraan yang Anda inginkan.
+  "114": Diskusi dan tanda tangan
+  "115": Sepakati model kemitraan, target klien, dan rencana tahun pertama, lalu tanda tangan.
+  "116": Pelatihan dan sertifikasi
+  "117": Bawa satu kebutuhan nyata dan selesaikan di Studio (dibangun, diterima, dirilis) untuk menuntaskan pelatihan dan sertifikasi.
+  "118": Jual dan kerjakan
+  "119": Bergabung dengan ekosistem mitra, terima rujukan, jual kembali lisensi NocoBase, dan kerjakan proyek untuk klien.
+  "120": FAQ
+  "121": Apakah kami perlu tim developer besar terlebih dahulu?
+  "122": Tidak perlu menambah tim developer. Konsultan memimpin penggalian kebutuhan dan penerimaan di Studio. Kami sarankan ada setidaknya satu tech lead untuk mengawasi lingkungan, integrasi, dan persetujuan rilis.
+  "123": Bisakah kami menggabungkan beberapa model kemitraan?
+  "124": Bisa. Banyak mitra menjual lisensi sekaligus menangani implementasi dan pemeliharaan tahunan, dan spesialis industri sering mengemas solusi industri mereka sendiri.
+  "125": Apakah pendapatan layanan dibagi dengan NocoBase?
+  "126": Tidak. 100% pendapatan dari deploy, kustomisasi, integrasi, pelatihan, dan pemeliharaan menjadi milik Anda, dengan harga yang Anda tentukan.
+  "127": Bagaimana biaya model dan alat agen ditagihkan?
+  "128": Anda atau klien membayar langsung ke penyedia tanpa markup dari NocoBase. Gunakan Claude Code, Codex, OpenCode, dan model cloud atau lokal apa pun.
+  "129": Apakah kami masih bisa mengerjakan proyek dengan NocoBase 2?
+  "130": Bisa. NocoBase 2 dipelihara berdampingan dengan NocoBase 3. Gunakan 2.x untuk aplikasi yang dikonfigurasi visual dan 3.x untuk sistem kompleks yang dibangun dengan AI.
+  "131": Siapa pemilik solusi industri yang kami bangun?
+  "132": Milik Anda. Jadikan open source atau berlisensi komersial sesuai ketentuan Anda; pencantuman di katalog dan pemasaran bersama diatur bersama.
+  "133": Daftar menjadi mitra NocoBase
+  "134": Ceritakan tim dan rencana Anda, kami akan segera menghubungi Anda. Atau kirim email ke partner@nocobase.com.
+  "135": Nama kontak
+  "136": Email kontak
+  "137": Nama perusahaan
+  "138": Tentang perusahaan Anda
+  "139": Bagaimana Anda ingin bekerja sama dengan kami
+  "140": Kirim pendaftaran
+  "141": Terima kasih! Kami sudah menerima pendaftaran Anda dan akan segera menghubungi Anda.
+  "142": Ukuran tim, industri yang Anda layani, dan klien saat ini
+  "143": Model kemitraan yang Anda minati (distribusi, layanan, solusi industri, teknologi), serta target klien dan wilayah
+  "144": Negara / wilayah
+  "145": Pilih negara atau wilayah Anda
+  "146": Kustomisasi NocoCRM, NocoITAM, atau NocoReach yang open source untuk klien Anda, alih-alih membangun dari nol.

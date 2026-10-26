@@ -1,0 +1,69 @@
+notes: |-
+  Bahasa Indonesia（Anda）
+  术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+  coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+  self-hosted = self-hosted；at a glance = terlihat sekilas
+  页面用语：issue = tugas；coordinator agent = agen koordinator；My sessions 等产品界面名称照英文
+title: NocoBase Studio — Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.
+description: NocoBase Studio adalah platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama.
+strings:
+  "000": Agen menggerakkan pekerjaan secara mandiri. <span class="m">Tim Anda tetap memegang kendali.</span>
+  "002": Coba online
+  "004": Berjalan di server Anda sendiri
+  "005": Bekerja dengan Claude Code, Codex, dan puluhan alat coding lainnya
+  "006": Tersedia di edisi komersial
+  "007": Tim agen
+  "008": Tim agen yang <span class="m">terus menggerakkan pekerjaan.</span>
+  "009": Studio menghubungkan agen di banyak mesin dan menjadwalkannya secara terpusat. Mereka menggerakkan banyak proyek dan tugas secara paralel, sepanjang waktu.
+  "010": Agen di banyak mesin
+  "011": Hubungkan Claude Code, Codex, dan agen lain di komputer dan server tim Anda, lalu Studio mengenali alat coding dan model yang sudah login di sana. Tulis keahlian setiap agen, aktifkan, dan agen itu bergabung ke tim agen.
+  "012": Koordinator membagi pekerjaan
+  "013": Agen koordinator membagi desain, pengembangan, pengujian, dan review sesuai keahlian setiap agen. Ia tidak menulis kode dan tidak melakukan merge; penerimaan hasil selalu dilakukan oleh manusia.
+  "014": Banyak tugas sekaligus
+  "015": Setiap tugas punya branch sendiri, dan setiap eksekusi berjalan di worktree terpisah, sehingga banyak tugas bergerak bersamaan tanpa saling bentrok. Tambah mesin untuk menjalankan lebih banyak secara paralel.
+  "016": My sessions
+  "017": Di Studio, mengobrol dengan agen di komputer Anda sendiri untuk mendiskusikan dan memperjelas kebutuhan, mencatat tugas, dan memantau progresnya. Begitu tugas dimulai, agen koordinator menugaskan tim agen.
+  "018": Progres
+  "019": Progres <span class="m">terlihat sekilas.</span>
+  "020": Progres proyek, aktivitas tugas, beban kerja agen, dan pemakaian model terlihat jelas. Sekilas saja Anda tahu posisi setiap tugas dan langkah berikutnya.
+  "021": Progres proyek
+  "022": Progres setiap proyek, ditambah tugas selesai, waktu siklus, porsi yang diselesaikan agen, dan biaya per tugas, dibandingkan dengan periode sebelumnya.
+  "023": Aktivitas tugas
+  "024": Di bagian atas setiap tugas terlihat langkah saat ini, agen yang mengerjakannya, dan langkah berikutnya.
+  "025": Beban kerja agen dan pemakaian model
+  "026": Lihat tugas apa saja yang sedang dikerjakan agen di setiap mesin, serta berapa token yang dipakai setiap model dan biayanya.
+  "027": Keputusan
+  "028": Keputusan <span class="m">berdasarkan bukti.</span>
+  "030": Laporan dan checklist
+  "031": Setiap serah terima menjelaskan apa yang berubah dan bagaimana diverifikasi, dengan checklist penerimaan poin demi poin.
+  "032": Tangkapan layar dan pratinjau
+  "033": Setiap skenario disertai tangkapan layar, dan jika ingin mencoba sendiri, lingkungan pratinjau terpisah sudah siap.
+  "034": Terima atau kembalikan
+  "035": Dengan bukti di tangan, terima hasilnya atau kembalikan. Tulis alasannya, dan agen melanjutkan dari situ.
+  "036": Pakar bisnis
+  "037": Pakar bisnis yang tidak menulis kode pun bisa memutuskan.
+  "038": Pakar bisnis menjelaskan kebutuhannya dengan bahasa sehari-hari, menjawab pertanyaan agen, dan memeriksa hasilnya di pratinjau dengan data nyata. Lingkungan, branch, pengujian, dan rilis ditangani oleh agen dan Studio.
+  "039": Tech lead menetapkan aturan dan menyetujui rilis. Pakar bisnis memegang kebutuhan dan penerimaan hasil.
+  "040": Sebelum pekerjaan sampai ke manusia, Studio mengatur pemeriksaan dan review.
+  "041": "Setiap perubahan menempuh jalur yang sama: baru sampai ke manusia setelah lolos tes dan review kode, dan baru masuk produksi setelah disetujui manusia. Jika ada masalah, lakukan rollback."
+  "042": Branch dan worktree
+  "043": Setiap tugas punya branch sendiri, dan setiap eksekusi berjalan di worktree terpisah. Pull request dari branch itu terhubung ke tugasnya.
+  "044": Tes dan review
+  "045": CI menjalankan pemeriksaan dan tes, lalu model lain me-review kodenya, dari vendor lain jika tersedia.
+  "046": Pratinjau
+  "047": Bila perlu, sebuah pull request mendapat lingkungan pratinjau sendiri untuk dicoba dan disetujui oleh manusia.
+  "048": Merge dan rilis
+  "049": Di-merge setelah disetujui, dan tugas selesai begitu semua pull request-nya di-merge. Rilis ke produksi memerlukan persetujuan manusia.
+  "050": Rollback
+  "051": Jika ada yang rusak, kembali ke rilis sebelumnya.
+  "053": Pengetahuan <span class="m">tetap di dalam tim.</span>
+  "054": Konteks kebutuhan, dokumen bisnis, dan pelajaran proyek tersebar di berbagai percakapan di komputer yang berbeda. Saat orang atau agen berganti, semuanya sulit ditemukan. Studio menyimpan metode dan pengalaman dalam skill, basis pengetahuan, dan memori proyek, sehingga orang atau agen baru bisa melanjutkan tepat dari titik terakhir.
+  "055": Skill
+  "056": Skill menyimpan cara kerja. Tuliskan cara Anda memperjelas kebutuhan, membangun, me-review, dan merilis, di tingkat global, proyek, atau direktori kerja, dan setiap eksekusi akan membawanya.
+  "057": Basis pengetahuan
+  "058": Basis pengetahuan menyimpan dokumen bisnis. Kebutuhan, aturan bisnis, templat kontrak, dan materi lain ditulis atau diunggah oleh manusia, dan agen membacanya saat bekerja.
+  "059": Memori proyek
+  "060": Memori proyek menyimpan apa yang dipelajari agen secara mandiri. Memori ini ada di repositori proyek, di-review dan di-merge bersama pull request setiap tugas, dan dibaca sebelum tugas berikutnya dimulai.
+  "061": Open source dan self-hosting
+  "062": Self-hosted. <span class="m">Kode dan data Anda adalah milik Anda.</span>
+  "070": Kode yang ditulis agen dibangun di atas NocoBase Core

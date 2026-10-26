@@ -1,0 +1,23 @@
+{
+  "name": "nocobase-website",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node --test \"scripts/**/*.test.mjs\"",
+    "i18n:extract": "node scripts/i18n.mjs extract",
+    "i18n:check": "node scripts/i18n.mjs check",
+    "figs": "node scripts/figs/product-figs.mjs && node scripts/figs/studio-figs.mjs && node scripts/figs/home-studio.mjs && node scripts/figs/home-sol.mjs",
+    "cms:import": "node scripts/cms-import.mjs",
+    "fonts": "node scripts/fonts.mjs"
+  },
+  "dependencies": {
+    "marked": "4.3.0",
+    "yaml": "2.8.1"
+  }
+}

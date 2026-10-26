@@ -5,17 +5,15 @@
    两种语言字段名不同时，在字段上写 data-name-zh / data-name-en。
    选项来自 NocoBase 2 的字段：<select data-options="enum" data-field="字段名"> 生成下拉选项，<fieldset class="opts" data-options="enum" data-field="字段名"> 生成多选；
    多选的 fieldset 加 data-required 表示至少选一项。
-   其他语言（西、法、德……繁中、日、韩）提交到英文表单，页面上的英文按 window.NB_I18N[语言].strings 换成译文（tx）：
-   这里 T(中文, 英文) 里的提示语、表单上 data-ph-en / data-text-en / data-ok-en 的英文、下拉和多选的选项，由 _src/i18n/pages.py 抽取和生成。国家列表保持英文。 */
+   每种语言是一个单独生成的页面，window.__lang 是本页语言（zh、en、de……）。简体中文页提交到中文表单，其他语言（含繁体中文）提交到英文表单。
+   中文、英文以外的语言：表单上 data-ph-en / data-text-en / data-ok-en 的英文在构建时已经换成译文；这里 T(中文, 英文) 里的提示语和下拉、多选的选项（来自英文表单），
+   按构建（scripts/build.mjs）内联在页面里的 window.NB_STRINGS（以英文原文为键）换成译文（tx），缺的显示英文。条目由 pnpm i18n:extract 抽取。国家列表保持英文。 */
 (function () {
   var forms = Array.prototype.slice.call(document.querySelectorAll('form[data-public-form-zh][data-public-form-en]'));
   if (!forms.length) return;
 
-  var lang = function () { return document.documentElement.lang === 'zh' ? 'zh' : 'en'; };
-  var tx = function (en) {
-    var d = window.NB_I18N && window.NB_I18N[document.documentElement.lang];
-    return (d && d.strings && d.strings[en]) || en;
-  };
+  var lang = function () { return window.__lang === 'zh' ? 'zh' : 'en'; };
+  var tx = function (en) { return (window.NB_STRINGS && window.NB_STRINGS[en]) || en; };
   var T = function (zh, en) { return [zh, en]; };
   var pick = function (zhEn) { return lang() === 'zh' ? zhEn[0] : tx(zhEn[1]); };
   var target = function (form) {
@@ -36,7 +34,7 @@
     var fill = function (s) { return s.replace('{mail}', mail || ''); };
     box.hidden = false;
     box.dataset.state = state;
-    box.innerHTML = '<t-zh>' + fill(msg[0]) + '</t-zh><t-en>' + fill(tx(msg[1])) + '</t-en>';
+    box.textContent = lang() === 'zh' ? fill(msg[0]) : fill(tx(msg[1]));
   };
 
   /* 国家列表取自英文表单关联的 countries_and_regions，与 NocoBase 2 后台保持一致 */
@@ -171,6 +169,4 @@
     });
   });
 
-  new MutationObserver(function () { forms.forEach(sync); })
-    .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 })();

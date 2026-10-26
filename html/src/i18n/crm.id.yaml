@@ -1,0 +1,122 @@
+notes: |-
+  Bahasa Indonesia（Anda）
+  术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+  coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+  self-hosted = self-hosted；at a glance = terlihat sekilas
+  本页用语：sales = penjualan；lead = prospek；opportunity / deal = peluang；close (deal) = closing；close lost = kalah；
+  account (customer) = pelanggan；approval = persetujuan；timeline = linimasa；business guidance (concept) = panduan bisnis；
+  inbox = kotak masuk；mailbox = kotak surat；channel = saluran；follow up = menindaklanjuti；owner = penanggung jawab；
+  run (of an agent) = eksekusi；skill = skill；permissions = izin akses；field = field；pipeline = pipeline
+  界面名称保留英文（产品界面显示英文）：Inbox、Approvals、Leads、Opportunities、Companies、Contacts、Tasks、Reports、
+  Business guidance、Research Agent、Approval Agent
+title: NocoCRM — Tim agen 24/7 untuk tim penjualan Anda
+description: "NocoCRM adalah CRM open source di atas NocoBase dengan tim agen penjualan bawaan: setiap prospek, pesan, dan peluang ditindaklanjuti secara proaktif, dengan persetujuan, persiapan rapat, dan informasi pelanggan yang sudah siap untuk Anda. Anda yang memutuskan."
+strings:
+  "000": CRM penjualan
+  "001": Tim penjualan Anda kini punya <span class="m">tim agen 24/7.</span>
+  "002": "NocoCRM dilengkapi 6 agen penjualan dan terhubung dengan email serta WhatsApp Anda: menindaklanjuti prospek dan peluang, langsung membalas pesan, dan meninjau persetujuan bersama Anda. Agen memberi saran, Anda yang memutuskan."
+  "003": Coba online
+  "004": Tonton pengantar
+  "005": Lisensi
+  "006": Open source
+  "007": Berbasis
+  "008": Versi
+  "009": Agen bawaan
+  "010": Integrasi
+  "011": Email · WhatsApp
+  "012": Model AI
+  "013": Bebas pilih
+  "014": Coba NocoCRM online
+  "015": Anda sudah masuk dengan akun demo. Semua datanya fiktif, jadi silakan coba apa saja.
+  "016": Buka penuh di tab baru
+  "017": Sehari di tim penjualan
+  "018": "Agen menyelesaikan 37 tugas rutin hari ini. "
+  "019": Hanya 6 yang perlu keputusan Anda.
+  "020": "Pekerjaan yang menyita waktu dikerjakan agen di latar belakang: meriset pelanggan, menindaklanjuti prospek, menyiapkan ringkasan rapat, menyusun draf balasan, dan memeriksa diskon. Saat ada hal yang perlu dipertimbangkan, agen meneruskannya kepada Anda beserta alasannya, dan Anda yang memutuskan."
+  "021": Tindak lanjut agen
+  "022": "Tak ada yang terlewat. "
+  "023": Agen otomatis menindaklanjuti setiap perkembangan.
+  "024": Baik itu prospek baru, peluang baru, balasan pelanggan, percakapan WhatsApp yang mendadak sepi, tugas yang selesai, maupun pemeriksaan pagi, agen terpicu otomatis, membaca seluruh konteks, lalu menaruh langkah berikutnya di Inbox Anda. Tak ada lagi prospek yang terlupakan.
+  "025": Setiap saran memuat kesimpulan, tingkat keyakinan, dan alasannya.
+  "026": Lanjutkan, tindak lanjuti, tunda, atau tutup sebagai kalah; nilai prospek A/B/C; setujui, setujui dengan syarat, atau tolak. Data baru berubah setelah Anda menerima sarannya, sementara saran yang diabaikan dicatat untuk mengukur akurasi agen.
+  "027": Semua saluran
+  "028": "Email, WhatsApp, telepon, dan rapat, "
+  "029": setiap interaksi tercatat dan terhubung.
+  "030": "Dari mana pun pelanggan menghubungi, agen otomatis menindaklanjuti: mengenali kontak, mencatat fakta penting, menyusun draf balasan, dan menjadwalkan langkah berikutnya. Setelah Anda konfirmasi, pesan dikirim dari akun Anda sendiri, sehingga setiap interaksi, dari pertanyaan pertama hingga kontrak ditandatangani, ada di satu linimasa."
+  "031": Email
+  "032": Begitu email masuk, data diperbarui dan draf balasan sudah siap.
+  "033": Hubungkan Gmail pribadi, Microsoft 365, atau kotak surat IMAP/SMTP apa pun, atau bagikan alamat tim seperti sales@. Baca dan balas langsung dari halaman pelanggan dan peluang, dengan tanda tangan dan template Anda sendiri.
+  "034": Mencocokkan kontak dan perusahaan berdasarkan email dan domain, serta menyarankan pembuatan kontak baru bila belum ada
+  "035": Mengekstrak anggaran, kebutuhan, pesaing, dan target waktu beserta kutipan aslinya, serta menandai konflik untuk Anda putuskan
+  "036": Menyimpan draf balasan langsung ke folder draf di kotak surat Anda, siap disunting sebentar
+  "037": Mengingatkan Anda dengan draf tindak lanjut jika percakapan sepi selama beberapa hari
+  "038": Apa yang terjadi di WhatsApp tetap sinkron dengan CRM Anda.
+  "039": Hubungkan nomor WhatsApp Business Anda agar obrolan otomatis tertaut ke prospek dan peluang. Setelah 30 menit tanpa balasan, agen merangkum percakapan ke linimasa dan merekomendasikan langkah berikutnya.
+  "040": Mentranskripsikan pesan suara serta mengubah kartu nama atau tangkapan layar menjadi kontak setelah dikonfirmasi
+  "041": Mencocokkan nomor tak dikenal dengan prospek yang ada, atau menyarankan membuat prospek baru
+  "042": Otomatis memilih dan mengisi template yang sudah disetujui di luar jendela pesan 24 jam
+  "043": Mengubah rencana kunjungan dan syarat pembayaran yang disebut dalam obrolan menjadi tugas dan permintaan persetujuan
+  "044": Saluran lainnya
+  "045": Setiap interaksi yang masuk ditangani dengan cara yang sama
+  "046": Kalender &amp; rapat
+  "047": Hubungkan Google Calendar atau Outlook. Agen menyiapkan ringkasan sebelum rapat, lalu mengubah rekaman atau transkrip yang diunggah menjadi notulen, pembaruan peluang, dan langkah berikutnya.
+  "048": Formulir web &amp; webhook
+  "049": Pertanyaan, pendaftaran uji coba, dan prospek dari acara langsung masuk, lalu otomatis diriset, dinilai, dan diteruskan ke penanggung jawabnya.
+  "050": Impor &amp; migrasi
+  "051": Impor Excel, CSV, atau ekspor dari Salesforce dan HubSpot. AI memetakan field, menandai duplikat, dan mengusulkan penggabungan untuk Anda konfirmasi.
+  "052": Tempel &amp; tangkapan layar
+  "053": Tempel daftar peserta pameran, tangkapan layar obrolan, atau catatan mentah untuk mengisi formulir lebih dulu; field yang belum pasti dibiarkan kosong dan disorot.
+  "054": Notifikasi di tempat Anda bekerja
+  "055": Dapatkan notifikasi lewat Inbox di aplikasi, email ringkasan harian, atau Feishu, DingTalk, WeCom, dan Slack setiap kali ada keputusan yang diperlukan.
+  "056": Saluran kustom
+  "057": Butuh obrolan WeCom, rekaman panggilan, atau live chat? Minta agen coding di Studio menghubungkannya langsung ke kode sumber CRM.
+  "058": Yang dikerjakan agen
+  "059": Mencocokkan email, obrolan, dan formulir dengan kontak, perusahaan, dan peluang
+  "060": Mencatat ringkasan, fakta, dan kutipan langsung ke linimasa
+  "061": Menyusun draf balasan, membuat tugas, dan menyiapkan permintaan persetujuan
+  "062": Memantau pelanggan yang diam, pesan yang belum dibalas, dan tenggat yang mendekat
+  "063": Kendali di tangan Anda
+  "064": Setiap pesan keluar Anda tinjau dulu dan dikirim dari akun Anda sendiri
+  "065": Hanya email dengan kontak CRM yang disinkronkan; percakapan pribadi tetap pribadi
+  "066": "Atur visibilitas tim: bagikan teks lengkap, ringkasan, atau hanya waktunya"
+  "067": Tim agen penjualan
+  "068": "Setiap agen punya peran yang jelas, "
+  "069": dengan metrik yang membuktikan hasilnya.
+  "070": Sama seperti rekan kerja manusia, setiap agen punya tugas, pemicu, skill, dan izin akses yang jelas, ditambah statistik langsung jumlah eksekusi dan tingkat penerimaan saran, sehingga Anda tahu mana yang memberi hasil dan mana yang perlu disetel.
+  "071": Informasi &amp; persiapan
+  "072": "Ketahui perkembangan pelanggan Anda. "
+  "073": Hadapi setiap percakapan dengan persiapan matang.
+  "074": Approvals
+  "075": "Persetujuan tak lagi tertahan: hitungannya sudah beres, komentarnya sudah disiapkan."
+  "076": Saat diskon, syarat pembayaran, klausul khusus, atau komitmen pengiriman diajukan, Approval Agent memeriksanya terhadap kebijakan, margin, preseden sebelumnya, dan risiko, lalu menyusun rekomendasi dan komentar yang hanya terlihat oleh pemberi persetujuan. Keputusan akhir tetap di tangan Anda.
+  "077": Agen mengerjakan
+  "078": Merapikan riwayat pelanggan dan percakapan
+  "079": Meriset prospek, menyiapkan tindak lanjut dan penawaran harga
+  "080": Memeriksa persetujuan terhadap standar
+  "081": Anda memutuskan
+  "082": Hubungan pelanggan dan strategi penjualan
+  "083": Diskon dan harga penawaran akhir
+  "084": Ketentuan kontrak dan komitmen utama
+  "085": Sesuai cara Anda
+  "086": "Ajari agen aturan Anda dengan teks biasa. "
+  "087": Ubah seluruh CRM dengan satu prompt.
+  "088": Tulis harga, batas diskon, dan ritme tindak lanjut Anda dengan bahasa sehari-hari di Business guidance, dan setiap agen langsung mengikutinya pada eksekusi berikutnya. Butuh field, alur kerja, atau halaman baru? Minta agen coding mengubah kode sumber CRM secara langsung. Open source, self-hosted, dan 100% milik Anda.
+  "089": Siklus penjualan lengkap
+  "090": "Dari prospek sampai closing, "
+  "091": setiap langkah tercatat.
+  "092": Leads
+  "093": Lacak prospek dari baru hingga terkonversi. Tempel teks mentah agar AI mengekstrak prospek, dengan usulan penggabungan otomatis untuk duplikat.
+  "094": Opportunities
+  "095": Kelola nilai peluang, tanggal closing, dan penanggung jawabnya dalam tampilan papan atau daftar, serta catat alasan kalah untuk analisis menang/kalah.
+  "096": Companies &amp; Contacts
+  "097": Lacak status, industri, ukuran, dan sumber, dengan profil publik perusahaan yang dilengkapi otomatis oleh Research Agent.
+  "098": Tasks
+  "099": Dikelompokkan menjadi terlambat, besok, dan mendatang dalam tampilan tim atau pribadi, dengan tugas usulan AI yang diberi tanda jelas.
+  "100": Tangani diskon, syarat pembayaran, klausul, dan komitmen di satu tempat, dengan setiap keputusan tercatat pada peluangnya.
+  "101": Reports
+  "102": Pipeline real-time, prakiraan berbobot, konversi, tingkat kemenangan, dan alasan kalah, plus laporan naratif AI sekali klik.
+  "103": Metrik real-time kapan saja. Laporan naratif ditulis AI.
+  "104": Pipeline, prakiraan berbobot, tingkat kemenangan, dan funnel diperbarui secara real-time. Butuh laporan mingguan atau tinjauan kuartalan? AI membaca linimasa peluang di baliknya untuk menjelaskan apa yang menggerakkan angka-angka itu.
+  "105": Lebih sedikit pekerjaan remeh, lebih fokus pada closing.
+  "106": Coba NocoCRM online, atau ambil kode sumbernya di GitHub dan jalankan sendiri. Atur panduan bisnis, pilih model Anda, dan biarkan agen penjualan mulai bekerja.
+  "107": Persetujuan

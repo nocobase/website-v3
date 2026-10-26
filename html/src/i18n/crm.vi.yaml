@@ -1,0 +1,123 @@
+notes: |-
+  Tiếng Việt（bạn）
+  术语：platform = nền tảng；foundation = nền móng（与 nền tảng 区分）；building blocks = khối chức năng；governance = quản trị；
+  agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
+  business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
+  本页术语：lead = khách hàng tiềm năng；opportunity / deal（商机）= cơ hội；account（客户）= khách hàng；contact = liên hệ；
+  approval = phê duyệt；timeline = dòng thời gian；
+  suggestion = đề xuất；follow up = theo dõi；
+  close lost / loss reasons = thất bại / lý do thất bại；win rate = tỷ lệ thắng；pipeline = pipeline；touchpoint = điểm chạm；
+  draft = bản nháp / soạn；task = tác vụ；model = model；Try It Online = Dùng thử trực tuyến
+  界面名称照英文界面原样（见 ui-terms.md）：Inbox、Leads、Opportunities、Companies、Contacts、Tasks、Approvals、Reports、
+  Business guidance、Research Agent、Approval Agent
+title: NocoCRM — Đội agent 24/7 cho đội bán hàng của bạn
+description: "NocoCRM là CRM mã nguồn mở xây dựng trên NocoBase, tích hợp sẵn một đội agent bán hàng: mọi khách hàng tiềm năng, tin nhắn và cơ hội đều được chủ động theo dõi; phê duyệt, chuẩn bị cuộc họp và thông tin khách hàng luôn sẵn sàng cho bạn. Quyết định là của bạn."
+strings:
+  "000": CRM bán hàng
+  "001": Đội bán hàng của bạn <span class="m">vừa có thêm đội agent 24/7.</span>
+  "002": "NocoCRM có sẵn 6 agent bán hàng và kết nối email, WhatsApp của bạn: theo dõi khách hàng tiềm năng và cơ hội, trả lời tin nhắn ngay lập tức, cùng bạn xem xét phê duyệt. Agent đề xuất, bạn quyết định."
+  "003": Dùng thử trực tuyến
+  "004": Xem giới thiệu
+  "005": Giấy phép
+  "006": Mã nguồn mở
+  "007": Xây dựng trên
+  "008": Phiên bản
+  "009": Agent có sẵn
+  "010": Tích hợp
+  "011": Email · WhatsApp
+  "012": Model AI
+  "013": Tùy bạn chọn
+  "014": Dùng thử NocoCRM trực tuyến
+  "015": Bạn đã được đăng nhập bằng tài khoản demo. Toàn bộ dữ liệu đều là giả lập, cứ thoải mái thử mọi thứ.
+  "016": Mở toàn trang trong tab mới
+  "017": Một ngày bán hàng
+  "018": "Hôm nay agent xử lý 37 việc thường ngày. "
+  "019": Chỉ 6 việc cần bạn quyết định.
+  "020": "Agent đảm nhận những việc tốn thời gian ở phía sau: tìm hiểu khách hàng, theo dõi khách hàng tiềm năng, chuẩn bị tóm tắt trước cuộc họp, soạn thư trả lời và kiểm tra chiết khấu. Khi cần đến phán đoán, việc đó được chuyển đến bạn kèm lý do, và bạn quyết định."
+  "021": Agent chủ động theo dõi
+  "022": "Không bỏ sót việc nào. "
+  "023": Agent tự động theo dõi mọi sự kiện.
+  "024": Dù là khách hàng tiềm năng mới, cơ hội mới, khách hàng trả lời, cuộc trò chuyện WhatsApp im lặng, tác vụ vừa hoàn thành hay đợt kiểm tra buổi sáng, agent đều tự động kích hoạt, đọc toàn bộ bối cảnh và đưa bước tiếp theo vào Inbox của bạn. Không khách hàng tiềm năng nào bị lãng quên.
+  "025": Mỗi đề xuất đều nêu rõ kết luận, mức độ chắc chắn và lý do.
+  "026": Đẩy tiếp, theo dõi, tạm dừng hay đóng thất bại; xếp hạng khách hàng tiềm năng A/B/C; duyệt, duyệt có điều kiện hay từ chối. Bản ghi chỉ được cập nhật khi bạn chấp nhận, còn đề xuất bị bỏ qua được lưu lại để đo độ chính xác của agent.
+  "027": Mọi kênh
+  "028": "Email, WhatsApp, cuộc gọi và cuộc họp, "
+  "029": mọi điểm chạm đều được ghi lại và kết nối.
+  "030": "Khách hàng liên hệ qua đâu, agent cũng tự động theo dõi: nhận diện liên hệ, ghi lại thông tin quan trọng, soạn thư trả lời và lên lịch bước tiếp theo. Sau khi bạn xác nhận, tin nhắn được gửi từ chính tài khoản của bạn, và mọi tương tác từ lần hỏi đầu tiên đến khi ký hợp đồng đều nằm trên cùng một dòng thời gian."
+  "031": Email
+  "032": Email vừa đến, bản ghi đã cập nhật, thư trả lời đã soạn sẵn.
+  "033": Kết nối Gmail, Microsoft 365 cá nhân hoặc bất kỳ hộp thư IMAP/SMTP nào, hoặc dùng chung địa chỉ nhóm như sales@. Đọc và trả lời ngay trên trang khách hàng và trang cơ hội, với chữ ký và mẫu thư của riêng bạn.
+  "034": Khớp liên hệ và công ty theo email và tên miền, gợi ý tạo mới khi chưa có
+  "035": Trích xuất ngân sách, nhu cầu, đối thủ và mốc thời gian kèm trích dẫn, đánh dấu chỗ mâu thuẫn để bạn quyết định
+  "036": Lưu bản nháp trả lời thẳng vào thư mục nháp trong hộp thư của bạn, chỉ cần sửa nhanh là gửi được
+  "037": Nhắc bạn kèm bản nháp theo dõi khi cuộc trao đổi im lặng nhiều ngày
+  "038": Mọi diễn biến trên WhatsApp đều đồng bộ với CRM.
+  "039": Liên kết số WhatsApp Business để tự động gắn cuộc trò chuyện với khách hàng tiềm năng và cơ hội. Sau 30 phút im lặng, agent tóm tắt cuộc trò chuyện lên dòng thời gian và đề xuất bước tiếp theo.
+  "040": Chuyển tin nhắn thoại thành văn bản, nhận dạng danh thiếp hoặc ảnh chụp màn hình thành liên hệ sau khi bạn xác nhận
+  "041": Đối chiếu số lạ với khách hàng tiềm năng hiện có hoặc gợi ý tạo mới
+  "042": Tự động chọn và điền mẫu tin nhắn đã được duyệt khi ngoài khung 24 giờ
+  "043": Biến lịch gặp khách hàng và điều khoản thanh toán nhắc đến trong cuộc trò chuyện thành tác vụ và yêu cầu phê duyệt
+  "044": Thêm kênh
+  "045": Mọi điểm chạm đều được xử lý theo cùng một cách
+  "046": Lịch &amp; cuộc họp
+  "047": Kết nối Google Calendar hoặc Outlook. Chuẩn bị tóm tắt trước cuộc họp, và biến bản ghi âm hoặc bản chép lời được tải lên thành biên bản, cập nhật cơ hội và bước tiếp theo.
+  "048": Biểu mẫu web &amp; webhook
+  "049": Yêu cầu tư vấn, đăng ký dùng thử và khách hàng tiềm năng từ sự kiện được đưa thẳng vào hệ thống, tự động tìm hiểu, xếp hạng và phân công.
+  "050": Nhập &amp; chuyển dữ liệu
+  "051": Nhập Excel, CSV hoặc dữ liệu xuất từ Salesforce và HubSpot. AI ánh xạ trường, đánh dấu bản trùng và đề xuất gộp để bạn xác nhận.
+  "052": Dán &amp; ảnh chụp màn hình
+  "053": Dán danh sách từ hội chợ, ảnh chụp cuộc trò chuyện hoặc ghi chú thô để điền sẵn biểu mẫu; trường nào chưa chắc chắn sẽ để trống và được làm nổi bật.
+  "054": Thông báo ngay nơi bạn làm việc
+  "055": Nhận thông báo qua Inbox trong ứng dụng, email tổng hợp hằng ngày, hoặc Feishu, DingTalk, WeCom và Slack mỗi khi cần bạn quyết định.
+  "056": Kênh tùy chỉnh
+  "057": Cần cuộc trò chuyện WeCom, ghi âm cuộc gọi hay live chat? Hãy để coding agent trong Studio tích hợp thẳng vào mã nguồn CRM.
+  "058": Agent đảm nhận
+  "059": Khớp email, cuộc trò chuyện và biểu mẫu với liên hệ, công ty và cơ hội
+  "060": Ghi tóm tắt, thông tin chính và trích dẫn nguyên văn lên dòng thời gian
+  "061": Soạn thư trả lời, tạo tác vụ và chuẩn bị yêu cầu phê duyệt
+  "062": Để ý khách hàng im lặng, tin nhắn chưa trả lời và hạn sắp đến
+  "063": Bạn kiểm soát
+  "064": Mọi tin nhắn gửi đi đều do bạn duyệt và được gửi từ chính tài khoản của bạn
+  "065": Chỉ đồng bộ email với liên hệ trong CRM; thư riêng vẫn là chuyện riêng
+  "066": "Kiểm soát phạm vi hiển thị trong đội: chia sẻ toàn văn, tóm tắt hoặc chỉ thời gian"
+  "067": Đội agent bán hàng
+  "068": "Mỗi agent một vai trò rõ ràng, "
+  "069": hiệu quả chứng minh bằng số liệu.
+  "070": Giống như đồng nghiệp thật, mỗi agent có nhiệm vụ, điều kiện kích hoạt, kỹ năng và quyền hạn rõ ràng, cùng số liệu trực tiếp về số lần chạy và tỷ lệ chấp nhận, để bạn biết agent nào đang làm tốt và agent nào cần tinh chỉnh.
+  "071": Thông tin &amp; chuẩn bị
+  "072": "Nắm rõ động thái của khách hàng. "
+  "073": Cuộc trao đổi nào cũng chuẩn bị chu đáo.
+  "074": Approvals
+  "075": "Phê duyệt hết ách tắc: số liệu đã tính xong, ý kiến đã soạn sẵn."
+  "076": Khi chiết khấu, điều khoản thanh toán, điều khoản riêng hay cam kết giao hàng được gửi lên, Approval Agent đối chiếu với chính sách, biên lợi nhuận, tiền lệ và rủi ro, rồi soạn đề xuất cùng ý kiến chỉ người duyệt mới thấy. Quyết định cuối cùng là của bạn.
+  "077": Agent làm
+  "078": Sắp xếp hồ sơ khách hàng và lịch sử trao đổi
+  "079": Tìm hiểu khách hàng tiềm năng, chuẩn bị kế hoạch theo dõi và báo giá
+  "080": Đối chiếu phê duyệt với tiêu chuẩn
+  "081": Bạn quyết định
+  "082": Quan hệ khách hàng và chiến lược bán hàng
+  "083": Chiết khấu và báo giá cuối cùng
+  "084": Điều khoản và cam kết then chốt trong hợp đồng
+  "085": Theo cách của bạn
+  "086": "Dạy agent quy tắc của bạn bằng lời thường. "
+  "087": Định hình lại cả CRM bằng một câu lệnh.
+  "088": Viết giá sản phẩm, hạn mức chiết khấu và nhịp độ theo dõi bằng ngôn ngữ tự nhiên trong Business guidance, mọi agent sẽ làm theo ngay từ lần chạy tiếp theo. Cần thêm trường, workflow hay trang mới? Hãy yêu cầu coding agent sửa thẳng mã nguồn CRM. Mã nguồn mở, tự triển khai và hoàn toàn thuộc về bạn.
+  "089": Trọn vẹn quy trình bán hàng
+  "090": "Từ khách hàng tiềm năng đến chốt đơn, "
+  "091": mọi bước đều được ghi lại.
+  "092": Leads
+  "093": Theo dõi khách hàng tiềm năng từ lúc mới đến khi chuyển đổi. Dán văn bản thô để AI trích xuất khách hàng tiềm năng, kèm đề xuất gộp tự động cho bản trùng.
+  "094": Opportunities
+  "095": Quản lý giá trị cơ hội, ngày dự kiến chốt và người phụ trách trên bảng Kanban hoặc danh sách, ghi lại lý do thất bại để phân tích thắng/thua.
+  "096": Companies &amp; Contacts
+  "097": Theo dõi trạng thái, ngành, quy mô và nguồn, với hồ sơ công khai của công ty được Research Agent tự động bổ sung.
+  "098": Tasks
+  "099": Nhóm theo quá hạn, ngày mai và sắp tới trên chế độ xem của đội hoặc cá nhân, tác vụ do AI gợi ý được gắn nhãn rõ ràng.
+  "100": Xử lý chiết khấu, điều khoản thanh toán, điều khoản hợp đồng và cam kết ở một nơi, mọi quyết định đều được lưu trên cơ hội.
+  "101": Reports
+  "102": Pipeline, dự báo có trọng số, tỷ lệ chuyển đổi, tỷ lệ thắng và lý do thất bại theo thời gian thực, cùng báo cáo phân tích do AI viết chỉ với một cú nhấp.
+  "103": Số liệu trực tiếp mọi lúc. Báo cáo phân tích do AI viết.
+  "104": Pipeline, dự báo có trọng số, tỷ lệ thắng và phễu bán hàng cập nhật theo thời gian thực. Cần bản cập nhật hằng tuần hay đánh giá quý? AI đọc dòng thời gian của từng cơ hội để giải thích điều gì đang tác động đến các con số.
+  "105": Bớt việc vặt, tập trung chốt đơn.
+  "106": Dùng thử NocoCRM trực tuyến, hoặc lấy mã nguồn trên GitHub và tự triển khai. Thiết lập Business guidance, chọn model và để các agent bán hàng bắt tay vào việc.
+  "107": Phê duyệt

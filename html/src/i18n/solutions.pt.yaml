@@ -1,0 +1,79 @@
+notes: |-
+  Português（巴西，você）
+  术语：foundation = base；building blocks = componentes básicos；governance = governança；agent team = equipe de agentes；
+  coding agent = agente de código；business logic = lógica de negócio；business systems = sistemas de negócio；
+  vibe coding = vibe coding；self-hosted = auto-hospedado；make the call = dar a palavra final / decidir；at a glance = à vista
+title: NocoBase Solution — Apps de negócio open source, movidos por IA e prontos para usar
+description: O NocoBase Solution é uma linha de apps de negócio movidos por agentes e construídos sobre o Core.
+strings:
+  "000": Apps de negócio open source. <span class="m">Movidos por IA, prontos para usar.</span>
+  "003": Roda nos seus próprios servidores
+  "004": Funciona com o modelo que você escolher
+  "005": CRM de vendas · Beta
+  "007": Conheça o NocoCRM
+  "008": Gestão de ativos de TI · Beta
+  "010": Conheça o NocoITAM
+  "011": Crescimento · Alpha
+  "013": Conheça o NocoReach
+  "014": Suporte · Em breve
+  "016": Projetos · Em breve
+  "018": RH · Em breve
+  "020": Agentes de negócio
+  "021": Os agentes <span class="m">tomam a iniciativa.</span>
+  "022": Softwares de negócio tradicionais dependem de pessoas para registrar dados, encaminhar o trabalho e fazer cada etapa à mão. No NocoBase Solution, cada app vem com agentes de negócio integrados que seguem suas regras e assumem por conta própria a maior parte do trabalho, como conferir reembolsos e atender tickets.
+  "023": Cada agente deixa claro qual é o seu trabalho, quando ele atua e como.
+  "024": "Começa quando algo acontece: "
+  "025": um novo lead, um e-mail de cliente ou uma tarefa concluída coloca o agente certo para trabalhar, e os agentes também podem rodar em horários programados.
+  "026": "Segue suas regras: "
+  "027": as regras de negócio definem seu contexto e seus critérios, as skills definem o método, e qualquer mudança que você fizer já vale na próxima execução.
+  "028": "Mantém um registro: "
+  "029": fica tudo registrado, quantas vezes cada agente rodou e o que foi aceito ou ignorado.
+  "030": Quem faz o quê
+  "031": As pessoas tomam <span class="m">as decisões-chave.</span>
+  "033": App
+  "034": Os agentes de negócio cuidam de
+  "035": As pessoas decidem
+  "036": Mantêm em dia os registros e as conversas com clientes, pesquisam leads e empresas, sugerem próximos passos e pré-conferem propostas
+  "037": Descontos, propostas e termos do contrato
+  "038": Conciliam o cadastro de ativos com o MDM, preparam os kits de admissão e desligamento e pré-analisam solicitações de compra e descarte
+  "039": Compras, descartes e mudanças importantes em ativos
+  "040": Analisam os dados todos os dias, encontram oportunidades de crescimento com evidências e abrem pull requests com as mudanças
+  "041": Quais oportunidades seguir, revisão de marca e lançamento
+  "043": Fazem a triagem e o encaminhamento de tickets, pesquisam a base de conhecimento e redigem respostas
+  "044": Reembolsos, escalonamentos e exceções
+  "045": Executam tarefas de pesquisa e redação, acompanham o andamento e sinalizam riscos
+  "046": Metas, prioridades e aprovação final
+  "047": Preparam o onboarding, mantêm os registros dos colaboradores e respondem dúvidas sobre políticas
+  "048": Contratações, salários e exceções de RH
+  "049": Evidências anexadas
+  "050": "Tudo o que um agente entrega diz de onde veio: qual e-mail, qual registro, qual documento."
+  "051": Uma pessoa decide
+  "052": Em decisões como descontos, compras e reembolsos, o agente prepara as opções e os motivos, e o responsável dá a palavra final.
+  "053": As permissões do responsável
+  "054": Um agente só pode ver e alterar o que a pessoa que ele atende pode, nunca mais que isso.
+  "055": Personalização
+  "056": Fácil <span class="m">de personalizar.</span>
+  "058": Implante e use
+  "059": Cada app é implantado de forma independente. Adicione suas regras de negócio, conecte um modelo, e os agentes de negócio começam a trabalhar.
+  "060": Altere skills, regras e código
+  "061": Quando o método muda, edite uma skill. Quando workflows ou campos mudam, peça a um agente de código para alterar o código-fonte.
+  "062": Receba as atualizações oficiais quando quiser
+  "063": O código-fonte personalizado é seu. Mescle no seu próprio repositório as atualizações oficiais que você quiser, depois de conferi-las.
+  "064": Os apps do Solution são construídos sobre o NocoBase Core
+  "065": "Personalize com uma equipe de pessoas e agentes: NocoBase Studio"
+  "066": Open source e auto-hospedagem
+  "067": Gratuitos, open source, <span class="m">prontos para usar.</span>
+  "074": Primeiros passos
+  "079": Ver os apps
+  "082": Conheça o Core
+  "086": Conheça o Studio
+  "087": NocoCRM e outros, gratuitos e open source
+  "088": CRM de vendas · Open source · Beta
+  "089": Gestão de ativos de TI · Professional · Beta
+  "090": Crescimento · Open source · Alpha
+  "091": Suporte · Professional · Em breve
+  "092": Projetos · Open source · Em breve
+  "093": RH · Professional · Em breve
+  "094": Comece com open source, <span class="m">pronto para usar.</span>
+  "098": Crescimento · Beta
+  "100": Analisam os dados todos os dias, encontram o que vale a pena fazer com evidências, alteram páginas, escrevem artigos e redigem respostas para a comunidade

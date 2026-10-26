@@ -287,7 +287,7 @@ html[lang="zh"] .phero .lede { word-break: keep-all; overflow-wrap: anywhere; }
 </div>
 <!-- AFTER-MAIN -->
 <script>
-/* Live demo script: the Chinese site on a Simplified Chinese page and the international one in every other language (Traditional Chinese included), kept in step with the language. As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
+/* Live demo script: the Chinese site on a Simplified Chinese page and the international one in every other language (Traditional Chinese included). As the page opens, the site's favicon is fetched as a check, since an iframe tells the page nothing of what it shows. Only once it answers does the Try It Online section show (and the frame load, when a third of it is on screen: the site's sign-in puts the cursor in a field, and loaded earlier the browser would scroll the page down to it). When the check fails or takes over 8 seconds (the site down, gone, unreachable), the section and the Try It Online buttons go, since they would lead nowhere; ?demo=off in the address shows that state. A phone shows no frame and no section: Try It Online opens the site in a new tab. On a wider screen it scrolls to the demo. (2026-10-25: a screenshot stood in for the demo until then.) */
 (function () {
   var SITES = { zh: 'https://solutions-cn.nocobase.com/reach/', en: 'https://solutions.nocobase.com/reach/' };
   var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
@@ -298,7 +298,7 @@ html[lang="zh"] .phero .lede { word-break: keep-all; overflow-wrap: anywhere; }
   // a phone does.
   var FRAME = !/[?&]demo=tab\b/.test(location.search);
   var status = {}, shown = false, scrolling = false;
-  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
+  function lang() { return window.__lang === 'zh' ? 'zh' : 'en'; }
   function narrow() { return window.innerWidth < 768; }
   function up() { return !forced && status[SITES[lang()]] === 'up'; }
   function probe(url) {
@@ -345,23 +345,17 @@ html[lang="zh"] .phero .lede { word-break: keep-all; overflow-wrap: anywhere; }
   function start() { if (!forced) probe(SITES[lang()]); apply(); }
   start();
   check();
-  new MutationObserver(start).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 })();
 </script>
 <script>
-/* NocoReach intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Simplified Chinese page and the English one in every other language, until each has its own; switching the language puts the cover back. */
+/* NocoReach intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Simplified Chinese page and the English one in every other language, until each has its own. */
 (function () {
-  var box = document.getElementById('introVideo'), cover = box.innerHTML;
-  function lang() { return String(document.documentElement.lang || window.__lang || 'en') === 'zh' ? 'zh' : 'en'; }
+  var box = document.getElementById('introVideo');
+  function lang() { return window.__lang === 'zh' ? 'zh' : 'en'; }
   box.addEventListener('click', function (e) {
     if (!e.target.closest('#introPlay')) return;
     var l = lang();
     box.innerHTML = '<video src="https://static-docs.nocobase.com/nocoreach-intro-' + l + '.mp4" poster="https://static-docs.nocobase.com/nocoreach-intro-' + l + '.jpg" controls controlslist="nodownload" autoplay playsinline></video>';
   });
-  new MutationObserver(function () {
-    if (!box.querySelector('video')) return;
-    box.innerHTML = cover;
-    if (window.lucide) window.lucide.createIcons();
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 })();
 </script>

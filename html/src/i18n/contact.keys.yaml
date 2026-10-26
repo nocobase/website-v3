@@ -1,0 +1,184 @@
+meta:
+  title:
+    zh: 联系我们 — NocoBase
+    en: Contact Us — NocoBase
+  description:
+    zh: 需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。
+    en: Reach NocoBase by email or through the form for sales, and commercial services.
+items:
+  "000":
+    en: Contact Us
+    zh: 联系我们
+    where: phero
+  "001":
+    en: Contact us. <span class="m">Tell us what you want to build.</span>
+    zh: 联系我们，<span class="m">聊聊你想做的系统。</span>
+    where: phero
+  "002":
+    en: For sales, and commercial services, reach us here. For technical questions, the <a href="https://forum.nocobase.com/" target="_blank" rel="noopener">community forum</a> is the best place to ask.
+    zh: 需要产品咨询和商业服务咨询，都可以与我们联系。使用中遇到的技术问题，欢迎到<a href="https://forum.nocobase.com/" target="_blank" rel="noopener">社区论坛</a>交流。
+    where: phero
+  "003":
+    en: Get in touch
+    zh: 和我们聊聊
+    where: contact
+  "004":
+    en: Fill in the form and we’ll get back to you soon, or write to us directly.
+    zh: 填写右侧表单，我们会尽快联系你；也可以直接写信或加微信。
+    where: contact
+  "005":
+    en: Email
+    zh: 通过邮箱联系
+    where: contact
+  "006":
+    en: Where we are
+    zh: 我们在哪里
+    where: contact
+  "007":
+    en: Your name
+    zh: 姓名
+    where: contact
+  "008":
+    en: Your job title
+    zh: 职位
+    where: contact
+  "009":
+    en: Company name
+    zh: 公司名称
+    where: contact
+  "010":
+    en: How did you find out about NocoBase
+    zh: 你是通过什么渠道了解到 NocoBase 的
+    where: contact
+  "011":
+    en: What do you want to do with NocoBase (choose all that apply)
+    zh: 你希望用 NocoBase 做什么（可多选）
+    where: contact
+  "012":
+    en: Tell us about your team and your use cases for NocoBase
+    zh: 请介绍一下你的团队，以及使用 NocoBase 的具体场景
+    where: contact
+  "013":
+    en: What kind of help are you hoping to receive
+    zh: 你希望获得哪些帮助
+    where: contact
+  "014":
+    en: Submit
+    zh: 提交
+    where: contact
+  "015":
+    en: Thanks! We’ve received your message and will be in touch soon.
+    zh: 已收到你的信息，我们会尽快与你联系。
+    where: form
+  "016":
+    en: Select one
+    zh: 请选择
+    where: form
+  "017":
+    en: Search Engine
+    zh: ""
+    where: form-options
+  "018":
+    en: GitHub
+    zh: ""
+    where: form-options
+  "019":
+    en: LinkedIn
+    zh: ""
+    where: form-options
+  "020":
+    en: Facebook
+    zh: ""
+    where: form-options
+  "021":
+    en: Instagram
+    zh: ""
+    where: form-options
+  "022":
+    en: TikTok
+    zh: ""
+    where: form-options
+  "023":
+    en: YouTube
+    zh: ""
+    where: form-options
+  "024":
+    en: X
+    zh: ""
+    where: form-options
+  "025":
+    en: Business Partner or Third-Party Recommendation
+    zh: ""
+    where: form-options
+  "026":
+    en: Friends/Colleagues
+    zh: ""
+    where: form-options
+  "027":
+    en: Reddit
+    zh: ""
+    where: form-options
+  "028":
+    en: Online Community
+    zh: ""
+    where: form-options
+  "029":
+    en: AI Chat
+    zh: ""
+    where: form-options
+  "030":
+    en: Article/Blog post
+    zh: ""
+    where: form-options
+  "031":
+    en: Hacker News
+    zh: ""
+    where: form-options
+  "032":
+    en: Product Hunt
+    zh: ""
+    where: form-options
+  "033":
+    en: Review Site
+    zh: ""
+    where: form-options
+  "034":
+    en: Others
+    zh: ""
+    where: form-options
+  "035":
+    en: Internal use for developing business systems or tools
+    zh: ""
+    where: form-options
+  "036":
+    en: Provide outsourcing services based on NocoBase
+    zh: ""
+    where: form-options
+  "037":
+    en: Develop commercial products based on NocoBase
+    zh: ""
+    where: form-options
+  "038":
+    en: Study or research
+    zh: ""
+    where: form-options
+  "039":
+    en: Your email
+    zh: ""
+    where: contact
+  "040":
+    en: Where is your company located
+    zh: ""
+    where: contact
+  "041":
+    en: Select your country or region
+    zh: ""
+    where: form
+  "042":
+    en: "We are a remote team across several countries, with offices in:"
+    zh: ""
+    where: contact
+  "043":
+    en: 501, 1-55-8 Akabane, Kita-ku, Tokyo, Japan
+    zh: ""
+    where: contact

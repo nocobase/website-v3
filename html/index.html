@@ -1,21 +1,21 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NocoBase 3 — AI + NocoBase，构建可靠的业务系统</title>
-<meta name="description" content="NocoBase 是用 AI 持续开发和运行业务系统的开源平台。Agent 写代码、做执行，NocoBase 提供底座和治理能力，人来做决策。">
+<title>NocoBase 3 — Open-Source Platform for AI-Built Business Systems</title>
+<meta name="description" content="NocoBase is the open-source platform for building, running, and evolving business systems with AI.">
 <script>
 /* 语言：中文、英文写在页面里；其他语言的译文在 assets/i18n/home.<语言>.js（由 _src/i18n 生成），按需加载。
    界面示意图：中文、繁体中文显示本文字的界面（繁体中文的界面文字在 home.zh-TW.js 的 ui），其他语言显示英文界面 */
 (function () {
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
   var FONTS = { ru: 'inter' };
-  var lang = 'zh';
+  var lang = 'en';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'en');
   } catch (e) {}
   window.__lang = lang;
   document.documentElement.lang = lang;
@@ -1395,7 +1395,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
       <div class="mi"><a href="pricing.html"><t-zh>定价</t-zh><t-en>Pricing</t-en></a></div>
     </nav>
     <div class="right">
-      <div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-label="Language"><i data-lucide="globe"></i><span id="langName">简体中文</span><i data-lucide="chevron-down"></i></button><div class="dd"><a href="#" data-lang="en" lang="en"><i data-lucide="check"></i>English</a><a href="#" data-lang="es" lang="es"><i data-lucide="check"></i>Español</a><a href="#" data-lang="fr" lang="fr"><i data-lucide="check"></i>Français</a><a href="#" data-lang="de" lang="de"><i data-lucide="check"></i>Deutsch</a><a href="#" data-lang="pt" lang="pt"><i data-lucide="check"></i>Português</a><a href="#" data-lang="ru" lang="ru"><i data-lucide="check"></i>Русский</a><a href="#" data-lang="id" lang="id"><i data-lucide="check"></i>Bahasa Indonesia</a><a href="#" data-lang="vi" lang="vi"><i data-lucide="check"></i>Tiếng Việt</a><a href="#" data-lang="zh" lang="zh"><i data-lucide="check"></i>简体中文</a><a href="#" data-lang="zh-TW" lang="zh-TW"><i data-lucide="check"></i>繁體中文</a><a href="#" data-lang="ja" lang="ja"><i data-lucide="check"></i>日本語</a><a href="#" data-lang="ko" lang="ko"><i data-lucide="check"></i>한국어</a></div></div>
+      <div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-label="Language"><i data-lucide="globe"></i><span id="langName">English</span><i data-lucide="chevron-down"></i></button><div class="dd"><a href="#" data-lang="en" lang="en"><i data-lucide="check"></i>English</a><a href="#" data-lang="es" lang="es"><i data-lucide="check"></i>Español</a><a href="#" data-lang="fr" lang="fr"><i data-lucide="check"></i>Français</a><a href="#" data-lang="de" lang="de"><i data-lucide="check"></i>Deutsch</a><a href="#" data-lang="pt" lang="pt"><i data-lucide="check"></i>Português</a><a href="#" data-lang="ru" lang="ru"><i data-lucide="check"></i>Русский</a><a href="#" data-lang="id" lang="id"><i data-lucide="check"></i>Bahasa Indonesia</a><a href="#" data-lang="vi" lang="vi"><i data-lucide="check"></i>Tiếng Việt</a><a href="#" data-lang="zh" lang="zh"><i data-lucide="check"></i>简体中文</a><a href="#" data-lang="zh-TW" lang="zh-TW"><i data-lucide="check"></i>繁體中文</a><a href="#" data-lang="ja" lang="ja"><i data-lucide="check"></i>日本語</a><a href="#" data-lang="ko" lang="ko"><i data-lucide="check"></i>한국어</a></div></div>
       <a class="plain" href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>24.6K</a>
       <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" id="menuBtn"><i data-lucide="menu"></i></button>
     </div>
@@ -2266,7 +2266,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
 
   /* ---------- 演示视频：打开时才加载，关闭时停止播放。VIDEO 按当前语言给出视频地址（mp4，或 YouTube / Bilibili 的嵌入地址）。
      品牌片每种语言一版，在 static-docs 上：nocobase-3-<语言>.mp4（zh、en、de、es、fr、pt、ru、id、vi、zh-TW、ja、ko） ---------- */
-  var VIDEO = function () { return 'https://static-docs.nocobase.com/nocobase-3-' + (window.__lang || 'zh') + '.mp4'; };
+  var VIDEO = function () { return 'https://static-docs.nocobase.com/nocobase-3-' + (window.__lang || 'en') + '.mp4'; };
   var modal = $('videoModal'), frame = $('videoFrame');
   function videoHTML() {
     var v = VIDEO();

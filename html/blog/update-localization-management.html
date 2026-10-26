@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="更新（多语言管理）：按照模块划分翻译文本的命名空间 — NocoBase" data-en="Update（localization-management）：Organize text namespaces by modules — NocoBase">更新（多语言管理）：按照模块划分翻译文本的命名空间 — NocoBase</title>
-<meta name="description" content="使用 NocoBase 的模块化文本命名空间优化本地化管理。本文详细介绍了通过模块组织翻译文本的新方法，消除了重复问题并增强了自定义功能。了解变更内容、迁移步骤及其对开发流程的影响。" data-zh="使用 NocoBase 的模块化文本命名空间优化本地化管理。本文详细介绍了通过模块组织翻译文本的新方法，消除了重复问题并增强了自定义功能。了解变更内容、迁移步骤及其对开发流程的影响。" data-en="Optimize your localization management with NocoBase&#x27;s module-based text namespaces. This guide details the new approach to organizing translation texts by modules, eliminating deduplication issues and enhancing customization. Learn about the changes, migration steps, and impact on your development process.">
+<title data-zh="更新（多语言管理）：按照模块划分翻译文本的命名空间 — NocoBase" data-en="Update（localization-management）：Organize text namespaces by modules — NocoBase">Update（localization-management）：Organize text namespaces by modules — NocoBase</title>
+<meta name="description" content="Optimize your localization management with NocoBase&#x27;s module-based text namespaces. This guide details the new approach to organizing translation texts by modules, eliminating deduplication issues and enhancing customization. Learn about the changes, migration steps, and impact on your development process." data-zh="使用 NocoBase 的模块化文本命名空间优化本地化管理。本文详细介绍了通过模块组织翻译文本的新方法，消除了重复问题并增强了自定义功能。了解变更内容、迁移步骤及其对开发流程的影响。" data-en="Optimize your localization management with NocoBase&#x27;s module-based text namespaces. This guide details the new approach to organizing translation texts by modules, eliminating deduplication issues and enhancing customization. Learn about the changes, migration steps, and impact on your development process.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

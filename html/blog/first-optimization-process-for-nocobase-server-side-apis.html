@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase 服务端接口初步优化的过程 — NocoBase" data-en="First Optimization Process for NocoBase Server-Side APIs — NocoBase">NocoBase 服务端接口初步优化的过程 — NocoBase</title>
-<meta name="description" content="深入了解 NocoBase 服务器端API的全面优化过程。本文详细介绍了性能测试、代码分析和战略改进，以提升API效率。了解各种中间件和缓存策略对性能的影响，并探索取得的重要增强成果。适合希望在复杂场景中优化API性能的开发者。" data-zh="深入了解 NocoBase 服务器端API的全面优化过程。本文详细介绍了性能测试、代码分析和战略改进，以提升API效率。了解各种中间件和缓存策略对性能的影响，并探索取得的重要增强成果。适合希望在复杂场景中优化API性能的开发者。" data-en="Discover the comprehensive optimization process for NocoBase&#x27;s server-side APIs. This detailed guide covers performance testing, code analysis, and strategic improvements to enhance API efficiency. Learn about the impact of various middleware and caching strategies on performance, and explore the significant enhancements achieved. Ideal for developers looking to optimize API performance in complex scenarios.">
+<title data-zh="NocoBase 服务端接口初步优化的过程 — NocoBase" data-en="First Optimization Process for NocoBase Server-Side APIs — NocoBase">First Optimization Process for NocoBase Server-Side APIs — NocoBase</title>
+<meta name="description" content="Discover the comprehensive optimization process for NocoBase&#x27;s server-side APIs. This detailed guide covers performance testing, code analysis, and strategic improvements to enhance API efficiency. Learn about the impact of various middleware and caching strategies on performance, and explore the significant enhancements achieved. Ideal for developers looking to optimize API performance in complex scenarios." data-zh="深入了解 NocoBase 服务器端API的全面优化过程。本文详细介绍了性能测试、代码分析和战略改进，以提升API效率。了解各种中间件和缓存策略对性能的影响，并探索取得的重要增强成果。适合希望在复杂场景中优化API性能的开发者。" data-en="Discover the comprehensive optimization process for NocoBase&#x27;s server-side APIs. This detailed guide covers performance testing, code analysis, and strategic improvements to enhance API efficiency. Learn about the impact of various middleware and caching strategies on performance, and explore the significant enhancements achieved. Ideal for developers looking to optimize API performance in complex scenarios.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

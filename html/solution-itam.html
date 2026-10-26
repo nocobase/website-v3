@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoITAM — Agent 主动跟进，IT 资产井井有条" data-en="NocoITAM — Agents on It. IT Assets in Order.">NocoITAM — Agent 主动跟进，IT 资产井井有条</title>
-<meta name="description" content="NocoITAM 是基于 NocoBase 的开源 IT 资产管理。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-zh="NocoITAM 是基于 NocoBase 的开源 IT 资产管理。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-en="NocoITAM is open-source IT asset management on NocoBase. Agents reconcile MDM with the register, prepare joiner and leaver lists, check stock and idle assets before every purchase, and reclaim idle seats before renewal. IT just decides.">
+<title data-zh="NocoITAM — Agent 主动跟进，IT 资产井井有条" data-en="NocoITAM — Agents on It. IT Assets in Order.">NocoITAM — Agents on It. IT Assets in Order.</title>
+<meta name="description" content="NocoITAM is open-source IT asset management on NocoBase. Agents reconcile MDM with the register, prepare joiner and leaver lists, check stock and idle assets before every purchase, and reclaim idle seats before renewal. IT just decides." data-zh="NocoITAM 是基于 NocoBase 的开源 IT 资产管理。Agent 替 IT 核对 MDM 与台账、为入职离职备好清单、每笔采购先看库存和闲置、续订前回收闲置席位；IT 只做判断。" data-en="NocoITAM is open-source IT asset management on NocoBase. Agents reconcile MDM with the register, prepare joiner and leaver lists, check stock and idle assets before every purchase, and reclaim idle seats before renewal. IT just decides.">
 <script>
 /* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 itam.<语言>.js，
    由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
@@ -12,11 +12,11 @@
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
   /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
   var FONTS = { ru: 'inter' };
-  var lang = 'zh';
+  var lang = 'en';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'en');
   } catch (e) {}
   window.__i18nPage = 'itam';
   window.__lang = lang;

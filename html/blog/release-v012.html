@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase 0.12：全新的插件构建工具 — NocoBase" data-en="NocoBase 0.12: New plugin build tool — NocoBase">NocoBase 0.12：全新的插件构建工具 — NocoBase</title>
-<meta name="description" content="NocoBase 0.12 版本引入了全新的插件构建工具以便直接在生产环境中使用，更新了安装方法，并合并了 @nocobase/app-client 和 @nocobase/app-server 为 @nocobase-app。" data-zh="NocoBase 0.12 版本引入了全新的插件构建工具以便直接在生产环境中使用，更新了安装方法，并合并了 @nocobase/app-client 和 @nocobase/app-server 为 @nocobase-app。" data-en="NocoBase 0.12 introduces a new plugin build tool for seamless production use, updates installation methods, and merges @nocobase/app-client and @nocobase/app-server into @nocobase-app.">
+<title data-zh="NocoBase 0.12：全新的插件构建工具 — NocoBase" data-en="NocoBase 0.12: New plugin build tool — NocoBase">NocoBase 0.12: New plugin build tool — NocoBase</title>
+<meta name="description" content="NocoBase 0.12 introduces a new plugin build tool for seamless production use, updates installation methods, and merges @nocobase/app-client and @nocobase/app-server into @nocobase-app." data-zh="NocoBase 0.12 版本引入了全新的插件构建工具以便直接在生产环境中使用，更新了安装方法，并合并了 @nocobase/app-client 和 @nocobase/app-server 为 @nocobase-app。" data-en="NocoBase 0.12 introduces a new plugin build tool for seamless production use, updates installation methods, and merges @nocobase/app-client and @nocobase/app-server into @nocobase-app.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

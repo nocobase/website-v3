@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoCRM — 给你的销售，配一支 7×24 的 Agent 团队" data-en="NocoCRM — A 24/7 Agent Team for Your Sales Team">NocoCRM — 给你的销售，配一支 7×24 的 Agent 团队</title>
-<meta name="description" content="NocoCRM 是基于 NocoBase 的开源 CRM，内置一支销售 Agent 团队：每条线索、每封来信、每个商机都有 Agent 主动跟进；审批、会前准备和客户情报都替你备好。关键决定由你来做。" data-zh="NocoCRM 是基于 NocoBase 的开源 CRM，内置一支销售 Agent 团队：每条线索、每封来信、每个商机都有 Agent 主动跟进；审批、会前准备和客户情报都替你备好。关键决定由你来做。" data-en="NocoCRM is an open-source CRM on NocoBase with a built-in sales agent team: every lead, message, and deal is followed up proactively, with approvals, meeting prep, and account intel ready for you. You make the calls.">
+<title data-zh="NocoCRM — 给你的销售，配一支 7×24 的 Agent 团队" data-en="NocoCRM — A 24/7 Agent Team for Your Sales Team">NocoCRM — A 24/7 Agent Team for Your Sales Team</title>
+<meta name="description" content="NocoCRM is an open-source CRM on NocoBase with a built-in sales agent team: every lead, message, and deal is followed up proactively, with approvals, meeting prep, and account intel ready for you. You make the calls." data-zh="NocoCRM 是基于 NocoBase 的开源 CRM，内置一支销售 Agent 团队：每条线索、每封来信、每个商机都有 Agent 主动跟进；审批、会前准备和客户情报都替你备好。关键决定由你来做。" data-en="NocoCRM is an open-source CRM on NocoBase with a built-in sales agent team: every lead, message, and deal is followed up proactively, with approvals, meeting prep, and account intel ready for you. You make the calls.">
 <script>
 /* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 crm.<语言>.js，
    由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
@@ -12,11 +12,11 @@
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
   /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
   var FONTS = { ru: 'inter' };
-  var lang = 'zh';
+  var lang = 'en';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'en');
   } catch (e) {}
   window.__i18nPage = 'crm';
   window.__lang = lang;

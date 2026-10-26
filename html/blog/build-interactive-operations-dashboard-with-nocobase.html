@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="用 NocoBase 搭建可联动的运营仪表盘 — NocoBase" data-en="Build an Interactive Operations Dashboard with NocoBase — NocoBase">用 NocoBase 搭建可联动的运营仪表盘 — NocoBase</title>
-<meta name="description" content="了解如何组合 NocoBase 图表、筛选和 JS 区块，搭建支持筛选联动、图表下钻和自定义样式的运营仪表盘。 " data-zh="了解如何组合 NocoBase 图表、筛选和 JS 区块，搭建支持筛选联动、图表下钻和自定义样式的运营仪表盘。 " data-en="Learn how to combine NocoBase chart, filter, and JS blocks to build an operations dashboard with linked filters and drilldowns.">
+<title data-zh="用 NocoBase 搭建可联动的运营仪表盘 — NocoBase" data-en="Build an Interactive Operations Dashboard with NocoBase — NocoBase">Build an Interactive Operations Dashboard with NocoBase — NocoBase</title>
+<meta name="description" content="Learn how to combine NocoBase chart, filter, and JS blocks to build an operations dashboard with linked filters and drilldowns." data-zh="了解如何组合 NocoBase 图表、筛选和 JS 区块，搭建支持筛选联动、图表下钻和自定义样式的运营仪表盘。 " data-en="Learn how to combine NocoBase chart, filter, and JS blocks to build an operations dashboard with linked filters and drilldowns.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

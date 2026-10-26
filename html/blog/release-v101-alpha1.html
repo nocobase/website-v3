@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase 1.0.1-alpha.1: 区块支持高度设置 — NocoBase" data-en="NocoBase v1.0.1-alpha.1: Blocks support height settings — NocoBase">NocoBase 1.0.1-alpha.1: 区块支持高度设置 — NocoBase</title>
-<meta name="description" content="NocoBase 1.0.1-alpha.1 版本新增区块高度设置、URL 链接操作、变量支持及多项改进和修复，提升平台功能与性能。" data-zh="NocoBase 1.0.1-alpha.1 版本新增区块高度设置、URL 链接操作、变量支持及多项改进和修复，提升平台功能与性能。" data-en="NocoBase v1.0.1-alpha.1 introduces new features like block height settings, URL link actions, and variable support for iframes, along with various improvements and bug fixes to enhance platform functionality and performance.">
+<title data-zh="NocoBase 1.0.1-alpha.1: 区块支持高度设置 — NocoBase" data-en="NocoBase v1.0.1-alpha.1: Blocks support height settings — NocoBase">NocoBase v1.0.1-alpha.1: Blocks support height settings — NocoBase</title>
+<meta name="description" content="NocoBase v1.0.1-alpha.1 introduces new features like block height settings, URL link actions, and variable support for iframes, along with various improvements and bug fixes to enhance platform functionality and performance." data-zh="NocoBase 1.0.1-alpha.1 版本新增区块高度设置、URL 链接操作、变量支持及多项改进和修复，提升平台功能与性能。" data-en="NocoBase v1.0.1-alpha.1 introduces new features like block height settings, URL link actions, and variable support for iframes, along with various improvements and bug fixes to enhance platform functionality and performance.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

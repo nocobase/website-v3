@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="博客 — NocoBase" data-en="Blog — NocoBase">博客 — NocoBase</title>
-<meta name="description" content="NocoBase 博客：用 AI 构建业务系统的方法、版本更新与客户故事。" data-zh="NocoBase 博客：用 AI 构建业务系统的方法、版本更新与客户故事。" data-en="The NocoBase blog: building business systems with AI, release notes, and customer stories.">
+<title data-zh="博客 — NocoBase" data-en="Blog — NocoBase">Blog — NocoBase</title>
+<meta name="description" content="The NocoBase blog: building business systems with AI, release notes, and customer stories." data-zh="NocoBase 博客：用 AI 构建业务系统的方法、版本更新与客户故事。" data-en="The NocoBase blog: building business systems with AI, release notes, and customer stories.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

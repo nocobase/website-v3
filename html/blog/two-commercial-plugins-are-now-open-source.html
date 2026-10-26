@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="两个商业插件改为开源插件 — NocoBase" data-en="Two Commercial Plugins Are Now Open Source — NocoBase">两个商业插件改为开源插件 — NocoBase</title>
-<meta name="description" content="说明开源原因、插件功能，以及对已购买用户的调整。" data-zh="说明开源原因、插件功能，以及对已购买用户的调整。" data-en="Covers the reasons behind the open-sourcing, the plugin capabilities, and the adjustments for existing customers.">
+<title data-zh="两个商业插件改为开源插件 — NocoBase" data-en="Two Commercial Plugins Are Now Open Source — NocoBase">Two Commercial Plugins Are Now Open Source — NocoBase</title>
+<meta name="description" content="Covers the reasons behind the open-sourcing, the plugin capabilities, and the adjustments for existing customers." data-zh="说明开源原因、插件功能，以及对已购买用户的调整。" data-en="Covers the reasons behind the open-sourcing, the plugin capabilities, and the adjustments for existing customers.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

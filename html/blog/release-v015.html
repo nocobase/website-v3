@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase 0.15：全新的插件设置中心 — NocoBase" data-en="NocoBase 0.15：New plugin settings manager — NocoBase">NocoBase 0.15：全新的插件设置中心 — NocoBase</title>
-<meta name="description" content="NocoBase 0.15 版本推出全新的插件设置管理器，改进插件配置流程，简化注册过程，并带来多项更新以提升用户体验。" data-zh="NocoBase 0.15 版本推出全新的插件设置管理器，改进插件配置流程，简化注册过程，并带来多项更新以提升用户体验。" data-en="NocoBase 0.15 introduces a new plugin settings manager with improved plugin configuration, streamlined registration processes, and several updates to enhance user experience.">
+<title data-zh="NocoBase 0.15：全新的插件设置中心 — NocoBase" data-en="NocoBase 0.15：New plugin settings manager — NocoBase">NocoBase 0.15：New plugin settings manager — NocoBase</title>
+<meta name="description" content="NocoBase 0.15 introduces a new plugin settings manager with improved plugin configuration, streamlined registration processes, and several updates to enhance user experience." data-zh="NocoBase 0.15 版本推出全新的插件设置管理器，改进插件配置流程，简化注册过程，并带来多项更新以提升用户体验。" data-en="NocoBase 0.15 introduces a new plugin settings manager with improved plugin configuration, streamlined registration processes, and several updates to enhance user experience.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase 0.20：支持多数据源 — NocoBase" data-en="NocoBase 0.20：Support for Multiple Data Sources — NocoBase">NocoBase 0.20：支持多数据源 — NocoBase</title>
-<meta name="description" content="NocoBase 0.20 版本支持多数据源，调整集合管理，新增非 ID 主键，优化用户和权限界面，并引入新工作流节点，提升灵活性和性能。" data-zh="NocoBase 0.20 版本支持多数据源，调整集合管理，新增非 ID 主键，优化用户和权限界面，并引入新工作流节点，提升灵活性和性能。" data-en="NocoBase 0.20 introduces support for multiple data sources, adjustments to collection management, non-ID primary keys, improved user and permission interfaces, and new workflow nodes for enhanced flexibility and performance.">
+<title data-zh="NocoBase 0.20：支持多数据源 — NocoBase" data-en="NocoBase 0.20：Support for Multiple Data Sources — NocoBase">NocoBase 0.20：Support for Multiple Data Sources — NocoBase</title>
+<meta name="description" content="NocoBase 0.20 introduces support for multiple data sources, adjustments to collection management, non-ID primary keys, improved user and permission interfaces, and new workflow nodes for enhanced flexibility and performance." data-zh="NocoBase 0.20 版本支持多数据源，调整集合管理，新增非 ID 主键，优化用户和权限界面，并引入新工作流节点，提升灵活性和性能。" data-en="NocoBase 0.20 introduces support for multiple data sources, adjustments to collection management, non-ID primary keys, improved user and permission interfaces, and new workflow nodes for enhanced flexibility and performance.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

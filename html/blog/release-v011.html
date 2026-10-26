@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase 0.11：全新的客户端 Application、Plugin 和 Router — NocoBase" data-en="NocoBase 0.11: New client application, plugin and router — NocoBase">NocoBase 0.11：全新的客户端 Application、Plugin 和 Router — NocoBase</title>
-<meta name="description" content="NocoBase 0.11 版本引入全新的客户端应用、插件和路由器，升级 antd 到 v5，并新增数据可视化、API 密钥和 Google 地图插件。" data-zh="NocoBase 0.11 版本引入全新的客户端应用、插件和路由器，升级 antd 到 v5，并新增数据可视化、API 密钥和 Google 地图插件。" data-en="NocoBase 0.11 introduces a new client application, plugin, and router, with an update to antd v5 and new plugins for data visualization, API keys, and Google Maps integration.">
+<title data-zh="NocoBase 0.11：全新的客户端 Application、Plugin 和 Router — NocoBase" data-en="NocoBase 0.11: New client application, plugin and router — NocoBase">NocoBase 0.11: New client application, plugin and router — NocoBase</title>
+<meta name="description" content="NocoBase 0.11 introduces a new client application, plugin, and router, with an update to antd v5 and new plugins for data visualization, API keys, and Google Maps integration." data-zh="NocoBase 0.11 版本引入全新的客户端应用、插件和路由器，升级 antd 到 v5，并新增数据可视化、API 密钥和 Google 地图插件。" data-en="NocoBase 0.11 introduces a new client application, plugin, and router, with an update to antd v5 and new plugins for data visualization, API keys, and Google Maps integration.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

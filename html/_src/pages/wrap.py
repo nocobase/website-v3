@@ -25,11 +25,11 @@ ZH_EN = """<script>
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>
@@ -43,11 +43,11 @@ I18N = """<script>
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
   /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
   var FONTS = { ru: 'inter' };
-  var lang = 'zh';
+  var lang = 'en';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'en');
   } catch (e) {}
   window.__i18nPage = '%(group)s';
   window.__lang = lang;
@@ -69,12 +69,12 @@ lang_script = I18N % {'group': m['i18n'], 'root': root} if m.get('i18n') else ZH
 # scripts: 页面另外要加载的脚本（如表单的 assets/public-form.js），空格分隔
 extra = ''.join(f'<script src="{root}{x}"></script>\n' for x in m.get('scripts', '').split())
 page = f'''<!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="{q(m['title_zh'])}" data-en="{q(m['title_en'])}">{html.escape(m['title_zh'])}</title>
-<meta name="description" content="{q(m['desc_zh'])}" data-zh="{q(m['desc_zh'])}" data-en="{q(m['desc_en'])}">
+<title data-zh="{q(m['title_zh'])}" data-en="{q(m['title_en'])}">{html.escape(m['title_en'])}</title>
+<meta name="description" content="{q(m['desc_en'])}" data-zh="{q(m['desc_zh'])}" data-en="{q(m['desc_en'])}">
 {lang_script}<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">

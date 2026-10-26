@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="版本与价格 — NocoBase 3" data-en="Editions &amp; Pricing — NocoBase 3">版本与价格 — NocoBase 3</title>
-<meta name="description" content="Core 和所有 Solution 应用开源免费。Professional 5 万元一次买断，含 Studio、1 年升级与技术支持和一次部署服务；Enterprise 按需报价。" data-zh="Core 和所有 Solution 应用开源免费。Professional 5 万元一次买断，含 Studio、1 年升级与技术支持和一次部署服务；Enterprise 按需报价。" data-en="Core and every Solution app are free and open source. Professional is $8,000 one-time, with Studio, 1 year of upgrades and support, and one deployment. Enterprise is quoted to your needs.">
+<title data-zh="版本与价格 — NocoBase 3" data-en="Editions &amp; Pricing — NocoBase 3">Editions &amp; Pricing — NocoBase 3</title>
+<meta name="description" content="Core and every Solution app are free and open source. Professional is $8,000 one-time, with Studio, 1 year of upgrades and support, and one deployment. Enterprise is quoted to your needs." data-zh="Core 和所有 Solution 应用开源免费。Professional 5 万元一次买断，含 Studio、1 年升级与技术支持和一次部署服务；Enterprise 按需报价。" data-en="Core and every Solution app are free and open source. Professional is $8,000 one-time, with Studio, 1 year of upgrades and support, and one deployment. Enterprise is quoted to your needs.">
 <script>
 /* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 pricing.<语言>.js，
    由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
@@ -12,11 +12,11 @@
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
   /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
   var FONTS = { ru: 'inter' };
-  var lang = 'zh';
+  var lang = 'en';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'en');
   } catch (e) {}
   window.__i18nPage = 'pricing';
   window.__lang = lang;

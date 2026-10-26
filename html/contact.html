@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="联系我们 — NocoBase" data-en="Contact Us — NocoBase">联系我们 — NocoBase</title>
-<meta name="description" content="需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。" data-zh="需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。" data-en="Reach NocoBase by email or through the form for sales, and commercial services.">
+<title data-zh="联系我们 — NocoBase" data-en="Contact Us — NocoBase">Contact Us — NocoBase</title>
+<meta name="description" content="Reach NocoBase by email or through the form for sales, and commercial services." data-zh="需要产品咨询和商业服务咨询，都可以通过邮箱、微信或表单联系 NocoBase。" data-en="Reach NocoBase by email or through the form for sales, and commercial services.">
 <script>
 /* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 contact.<语言>.js，
    由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
@@ -12,11 +12,11 @@
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
   /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
   var FONTS = { ru: 'inter' };
-  var lang = 'zh';
+  var lang = 'en';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'en');
   } catch (e) {}
   window.__i18nPage = 'contact';
   window.__lang = lang;

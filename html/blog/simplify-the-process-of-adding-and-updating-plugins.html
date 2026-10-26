@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="简化插件的添加和更新流程 — NocoBase" data-en="Simplify the process of adding and updating plugins — NocoBase">简化插件的添加和更新流程 — NocoBase</title>
-<meta name="description" content="了解 NocoBase 最新版本如何简化插件管理，轻松实现安装与更新。" data-zh="了解 NocoBase 最新版本如何简化插件管理，轻松实现安装与更新。" data-en="Learn how NocoBase’s latest update simplifies plugin management, enabling easier installation and updates.">
+<title data-zh="简化插件的添加和更新流程 — NocoBase" data-en="Simplify the process of adding and updating plugins — NocoBase">Simplify the process of adding and updating plugins — NocoBase</title>
+<meta name="description" content="Learn how NocoBase’s latest update simplifies plugin management, enabling easier installation and updates." data-zh="了解 NocoBase 最新版本如何简化插件管理，轻松实现安装与更新。" data-en="Learn how NocoBase’s latest update simplifies plugin management, enabling easier installation and updates.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

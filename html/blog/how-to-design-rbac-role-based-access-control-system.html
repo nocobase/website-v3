@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="如何设计 RBAC（基于角色的访问控制）系统 — NocoBase" data-en="How to Design an RBAC (Role-Based Access Control) System — NocoBase">如何设计 RBAC（基于角色的访问控制）系统 — NocoBase</title>
-<meta name="description" content="详解 RBAC 系统的核心概念、设计模式、实现方法，附 NocoBase 实操案例，助你构建安全高效权限体系。" data-zh="详解 RBAC 系统的核心概念、设计模式、实现方法，附 NocoBase 实操案例，助你构建安全高效权限体系。" data-en="Detailed explanation of RBAC system&#x27;s core concepts, design patterns, and implementation methods, with NocoBase practical cases to help you build a secure and efficient permission system.">
+<title data-zh="如何设计 RBAC（基于角色的访问控制）系统 — NocoBase" data-en="How to Design an RBAC (Role-Based Access Control) System — NocoBase">How to Design an RBAC (Role-Based Access Control) System — NocoBase</title>
+<meta name="description" content="Detailed explanation of RBAC system&#x27;s core concepts, design patterns, and implementation methods, with NocoBase practical cases to help you build a secure and efficient permission system." data-zh="详解 RBAC 系统的核心概念、设计模式、实现方法，附 NocoBase 实操案例，助你构建安全高效权限体系。" data-en="Detailed explanation of RBAC system&#x27;s core concepts, design patterns, and implementation methods, with NocoBase practical cases to help you build a secure and efficient permission system.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

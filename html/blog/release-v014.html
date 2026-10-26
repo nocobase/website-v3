@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase 0.14：全新的插件管理器，支持通过界面添加插件 Posted on: — NocoBase" data-en="NocoBase 0.14: New plugin manager, supports adding plugins through UI — NocoBase">NocoBase 0.14：全新的插件管理器，支持通过界面添加插件 Posted on: — NocoBase</title>
-<meta name="description" content="NocoBase 0.14 版本引入了全新的插件管理器，支持通过界面添加插件、从 npm registry 下载、本地上传和 URL 下载，提升了插件管理的灵活性。" data-zh="NocoBase 0.14 版本引入了全新的插件管理器，支持通过界面添加插件、从 npm registry 下载、本地上传和 URL 下载，提升了插件管理的灵活性。" data-en="NocoBase 0.14 introduces a new plugin manager that allows adding plugins through the UI, supports downloads from npm registry, local uploads, and URL downloads, enhancing plugin management flexibility.">
+<title data-zh="NocoBase 0.14：全新的插件管理器，支持通过界面添加插件 Posted on: — NocoBase" data-en="NocoBase 0.14: New plugin manager, supports adding plugins through UI — NocoBase">NocoBase 0.14: New plugin manager, supports adding plugins through UI — NocoBase</title>
+<meta name="description" content="NocoBase 0.14 introduces a new plugin manager that allows adding plugins through the UI, supports downloads from npm registry, local uploads, and URL downloads, enhancing plugin management flexibility." data-zh="NocoBase 0.14 版本引入了全新的插件管理器，支持通过界面添加插件、从 npm registry 下载、本地上传和 URL 下载，提升了插件管理的灵活性。" data-en="NocoBase 0.14 introduces a new plugin manager that allows adding plugins through the UI, supports downloads from npm registry, local uploads, and URL downloads, enhancing plugin management flexibility.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

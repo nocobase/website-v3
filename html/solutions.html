@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase Solution — 开源业务应用，AI 驱动，开箱即用" data-en="NocoBase Solution — Open-source business apps, AI-driven and ready out of the box">NocoBase Solution — 开源业务应用，AI 驱动，开箱即用</title>
-<meta name="description" content="NocoBase Solution 是由 Agent 驱动的、基于 Core 构建的一系列企业业务应用，Agent 做大部分执行工作，人只做关键决策。" data-zh="NocoBase Solution 是由 Agent 驱动的、基于 Core 构建的一系列企业业务应用，Agent 做大部分执行工作，人只做关键决策。" data-en="NocoBase Solution is a line of agent-driven business apps built on Core.">
+<title data-zh="NocoBase Solution — 开源业务应用，AI 驱动，开箱即用" data-en="NocoBase Solution — Open-source business apps, AI-driven and ready out of the box">NocoBase Solution — Open-source business apps, AI-driven and ready out of the box</title>
+<meta name="description" content="NocoBase Solution is a line of agent-driven business apps built on Core." data-zh="NocoBase Solution 是由 Agent 驱动的、基于 Core 构建的一系列企业业务应用，Agent 做大部分执行工作，人只做关键决策。" data-en="NocoBase Solution is a line of agent-driven business apps built on Core.">
 <script>
 /* 语言：中文、英文写在页面里；其他语言（西、法、德、葡、俄、印尼、越南、繁中、日、韩）的译文在 assets/i18n/site.<语言>.js 和 solutions.<语言>.js，
    由 _src/i18n/pages.py 生成，这里按需加载，assets/site.js 换上译文。界面示意图：繁体中文显示繁体中文界面，其他语言显示英文界面 */
@@ -12,11 +12,11 @@
   var LANGS = ['zh', 'en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh-TW', 'ja', 'ko'];
   /* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载 */
   var FONTS = { ru: 'inter' };
-  var lang = 'zh';
+  var lang = 'en';
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'zh');
+    lang = LANGS.indexOf(u) >= 0 ? u : (LANGS.indexOf(s) >= 0 ? s : 'en');
   } catch (e) {}
   window.__i18nPage = 'solutions';
   window.__lang = lang;

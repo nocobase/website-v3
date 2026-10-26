@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="NocoBase 定价调整 — NocoBase" data-en="NocoBase Pricing adjustment — NocoBase">NocoBase 定价调整 — NocoBase</title>
-<meta name="description" content="对商业插件、商业插件包及商业版本权益进行定价调整，并为已购用户提供免费调整服务。" data-zh="对商业插件、商业插件包及商业版本权益进行定价调整，并为已购用户提供免费调整服务。" data-en="We have adjusted the pricing for commercial plugins, commercial plugin bundles, and commercial editions benefits. Additionally, we offer free adjustments for users who have already made purchases.">
+<title data-zh="NocoBase 定价调整 — NocoBase" data-en="NocoBase Pricing adjustment — NocoBase">NocoBase Pricing adjustment — NocoBase</title>
+<meta name="description" content="We have adjusted the pricing for commercial plugins, commercial plugin bundles, and commercial editions benefits. Additionally, we offer free adjustments for users who have already made purchases." data-zh="对商业插件、商业插件包及商业版本权益进行定价调整，并为已购用户提供免费调整服务。" data-en="We have adjusted the pricing for commercial plugins, commercial plugin bundles, and commercial editions benefits. Additionally, we offer free adjustments for users who have already made purchases.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

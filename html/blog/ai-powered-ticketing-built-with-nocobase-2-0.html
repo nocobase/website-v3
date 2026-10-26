@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-zh="基于 NocoBase 2.0 构建的智能工单系统 — NocoBase" data-en="AI-Powered Ticketing Built with NocoBase 2.0 — NocoBase">基于 NocoBase 2.0 构建的智能工单系统 — NocoBase</title>
-<meta name="description" content="当现成工单系统无法满足变化，这是一种更可扩展的 AI 工单方案。" data-zh="当现成工单系统无法满足变化，这是一种更可扩展的 AI 工单方案。" data-en="A more extensible AI ticketing solution when off-the-shelf systems fall short.">
+<title data-zh="基于 NocoBase 2.0 构建的智能工单系统 — NocoBase" data-en="AI-Powered Ticketing Built with NocoBase 2.0 — NocoBase">AI-Powered Ticketing Built with NocoBase 2.0 — NocoBase</title>
+<meta name="description" content="A more extensible AI ticketing solution when off-the-shelf systems fall short." data-zh="当现成工单系统无法满足变化，这是一种更可扩展的 AI 工单方案。" data-en="A more extensible AI ticketing solution when off-the-shelf systems fall short.">
 <script>
 (function () {
   try {
     var u = new URLSearchParams(window.location.search).get('lang');
     var s = localStorage.getItem('nb3_lang');
-    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'en'), lang = v === 'zh' ? 'zh' : 'en';
     window.__lang = lang;
     document.documentElement.lang = lang;
   } catch (e) {
-    window.__lang = 'zh';
+    window.__lang = 'en';
   }
 })();
 </script>

@@ -3,7 +3,10 @@ title: Core 文档的问题
 description: 以目标读者的视角，逐项看现在的 NocoBase 3 Core 文档缺了什么、哪里会让读者走错。
 ---
 
-评审对象是 [v3.docs.nocobase.com/zh-CN](https://v3.docs.nocobase.com/zh-CN/) 的 Core 部分：首页、“能力”一章（14 组、56 页）、部署指南、NocoBase 2 与 3 的区别。源文件在 NocoBase 仓库 `v3-develop` 分支的 `docs/docs/cn/`，对照的是同一提交（`4d61361`，2026-10-23）的包代码、应用模板、技能和 UI 组件库，以及 `nocobase3-pro` 仓库 `develop` 分支的商业插件。
+> 历史分析记录。Core 当前内容和结构已按用户决定全部替换为现有 app-docs，以 [Core 文档结构与写作原则](08-Core文档结构与写作原则.md) 为准。
+
+
+评审对象是 [v3.docs.nocobase.com/zh-CN](https://v3.docs.nocobase.com/zh-CN/) 的 Core 部分：首页、“能力”一章（14 组、56 页）、部署指南、NocoBase 2 与 3 的区别。源文件在 NocoBase 仓库 `v3-develop` 分支的 `docs/docs/cn/`，对照的是同一提交（`4d61361`，2026-10-23）的包代码、应用模板、技能和 UI 组件库，以及商业插件源码。
 
 ## 总体判断
 

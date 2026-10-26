@@ -13,6 +13,7 @@ import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, write
 import { dirname, join, posix, relative, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
+import hljs from 'highlight.js';
 import { assertNoV2RedirectConflicts } from './scripts/check-v2-redirect-prefixes.mjs';
 
 const dir = dirname(fileURLToPath(import.meta.url));
@@ -88,51 +89,89 @@ const SECTIONS = [
     key: 'core',
     title: ['Core', 'Core'],
     dir: 'core/',
-    /* 顺序：先入门和开发应用，这是开发者都会读的；能力按「应用底座」页的 13 类排列；插件目录按能力分类排列；
-       然后是部署与运维、扩展开发；最后是参考。 */
+    // Core follows app-docs; planned entries do not create placeholder pages.
     nav: [
       { items: ['index'] },
-      { title: ['Get started', '入门'], items: ['intro/what-is-core', 'intro/how-an-app-gets-built', 'intro/concepts', 'intro/how-plugins-work', 'quickstart'] },
       {
-        title: ['Build apps', '开发应用'],
+        title: ['Getting started', '开始使用'],
         items: [
-          'develop/working-with-agents', 'develop/app-structure', 'develop/plugins', 'develop/pages-and-ui-library',
-          'develop/data-and-migrations', 'develop/api', 'develop/system-settings', 'develop/testing-and-acceptance', 'develop/upgrade',
+          'getting-started/what-is-core',
+          'getting-started/create-app',
+          'getting-started/project-structure',
+          'tutorials/build-your-first-feature',
+        ],
+      },
+      {
+        title: ['Developing apps', '开发应用'],
+        items: [
+          'developing-apps/overview',
+          'developing-apps/develop-with-an-agent',
+          'developing-apps/data-models-and-migrations',
+          'developing-apps/querying-data',
+          'developing-apps/apis-and-services',
+          'developing-apps/pages-routes-and-navigation',
+          'developing-apps/pages-and-interactions',
+          'developing-apps/configuration-and-settings',
+          'developing-apps/localization-and-themes',
+          'developing-apps/manage-plugins',
+          'developing-apps/testing-and-acceptance',
+        ],
+      },
+      {
+        title: ['Extension development', '扩展开发'],
+        items: [
+          { planned: ['When to write a plugin', '什么时候写插件'] },
+          { planned: ['Create a plugin', '创建插件'] },
+          { planned: ['Plugin structure', '插件的结构'] },
+          { planned: ['Publish a plugin', '发布插件'] },
+          { planned: ['Write plugin skills', '给插件写技能'] },
+          { planned: ['Contribute to the UI library', '向 UI 组件库贡献'] },
         ],
       },
       {
         title: ['Capabilities', '能力'],
         items: [
-          'capabilities/index', 'capabilities/data', 'capabilities/files', 'capabilities/users', 'capabilities/permissions',
-          'capabilities/workflows', 'capabilities/ai-agents', 'capabilities/knowledge', 'capabilities/mail', 'capabilities/notifications',
-          'capabilities/integrations', 'capabilities/interface', 'capabilities/audit', 'capabilities/operations',
-        ],
-      },
-      {
-        title: ['Plugin directory', '插件目录'],
-        items: [
-          'plugins/index',
-          { heading: ['Users and permissions', '用户与权限'] }, 'plugins/authentication', 'plugins/users', 'plugins/api-keys', 'plugins/authorization',
-          'plugins/authz-default-access', 'plugins/authz-sharing-rules', 'plugins/authz-restriction-rules',
-          { heading: ['Data and files', '数据与文件'] }, 'plugins/db', 'plugins/database-explorer', 'plugins/file', 'plugins/template-print',
-          { heading: ['Processes', '流程'] }, 'plugins/lifecycle', 'plugins/scheduler', 'plugins/approval', 'plugins/task-center',
-          { heading: ['Messages', '消息'] }, 'plugins/notification', 'plugins/notification-in-app', 'plugins/notification-providers',
-          'plugins/notification-web-push', 'plugins/mail',
-          { heading: ['AI and agents', 'AI 与 Agent'] }, 'plugins/agents', 'plugins/agent-sessions', 'plugins/knowledge',
-          { heading: ['Interface and operations', '界面与运维'] }, 'plugins/i18n', 'plugins/foundation',
-          { heading: ['Development collaboration', '研发协作'] }, 'plugins/projects', 'plugins/releases',
-          { heading: ['Libraries and tools', '基础库与工具'] }, 'plugins/libraries', 'plugins/ui-library', 'plugins/tools',
+          { planned: ['Capabilities overview', '能力总览'] },
+          { planned: ['Database', '数据库'] },
+          { planned: ['Authentication and users', '认证与用户'] },
+          { planned: ['Access control', '权限控制'] },
+          { planned: ['File management', '文件管理'] },
+          { planned: ['Workflows', '工作流'] },
+          { planned: ['Approvals', '审批'] },
+          { planned: ['Scheduled tasks', '定时任务'] },
+          { planned: ['Notifications', '消息通知'] },
+          { planned: ['Email', '邮件'] },
+          { planned: ['Agents', 'Agents'] },
+          { planned: ['Knowledge base', '知识库'] },
+          { planned: ['Template printing', '模板打印'] },
+          { planned: ['External integrations', '外部集成'] },
+          { planned: ['Localization', '多语言'] },
+          { planned: ['Theme customization', '主题定制'] },
         ],
       },
       {
         title: ['Deployment and operations', '部署与运维'],
         items: [
-          'operations/deployment', 'operations/config', 'operations/database', 'operations/storage', 'operations/jobs-and-scaling',
-          'operations/upgrade-and-rollback', 'operations/backup', 'operations/logs-and-health', 'operations/security',
+          'deployment/choose-a-deployment-method',
+          'tutorials/deploy-with-docker',
+          'tutorials/deploy-with-app-installer',
+          'tutorials/deploy-to-studio',
+          'deployment/publish-app-release',
+          { planned: ['Runtime configuration', '运行配置'] },
+          'developing-apps/upgrade-nocobase-core',
+          { planned: ['Backup and restore', '备份与恢复'] },
+          { planned: ['Logs and troubleshooting', '日志与故障排查'] },
         ],
       },
-      { title: ['Extend', '扩展开发'], items: ['extend/when-to-write-a-plugin', 'extend/create-plugin', 'extend/plugin-structure', 'extend/publish', 'extend/skills', 'extend/ui-library'] },
-      { title: ['Reference', '参考'], items: ['reference/cli', 'reference/config', 'reference/http-api', 'reference/packages', 'reference/faq'] },
+      {
+        title: ['Reference', '参考'],
+        items: [
+          'reference/plugins',
+          { planned: ['Command line', '命令行'] },
+          { planned: ['Configuration options', '配置项'] },
+          { planned: ['FAQ', '常见问题'] },
+        ],
+      },
     ],
   },
   {
@@ -225,13 +264,19 @@ function render(markdown, { lang, ui, resolveLink = (href) => href }) {
       const n = used.get(id) ?? 0;
       used.set(id, n + 1);
       if (n) id = `${id}-${n + 1}`;
-      if (level === 2) headings.push({ id, text: text.replace(/<[^>]+>/g, '') });
+      if (level >= 2 && level <= 4) headings.push({ id, level, text: text.replace(/<[^>]+>/g, '') });
       return `<h${level} id="${escape(id)}">${text}</h${level}>\n`;
     },
     code(code, info) {
-      const lang = (info || '').trim().split(/\s+/)[0];
+      const lang = (info || '').trim().split(/\s+/)[0].toLowerCase();
       const wrap = ['text', 'prompt'].includes(lang) ? ' wrap' : '';
-      return `<div class="code-block${wrap}"><button type="button" class="copy-button" data-copied="${escape(ui.copied)}" data-failed="${escape(ui.copyFailed)}">${escape(ui.copy)}</button><pre><code>${escape(code)}</code></pre></div>\n`;
+      const language = lang === 'tsx' ? 'typescript' : lang;
+      const grammar = hljs.getLanguage(language);
+      const highlighted = grammar && !wrap
+        ? hljs.highlight(code, { language, ignoreIllegals: true }).value
+        : escape(code);
+      const label = lang === 'tsx' ? 'TSX' : grammar?.name || lang || 'text';
+      return `<div class="code-block${wrap}"><div class="code-toolbar"><span class="code-language">${escape(label)}</span><button type="button" class="copy-button" data-copied="${escape(ui.copied)}" data-failed="${escape(ui.copyFailed)}" aria-live="polite">${escape(ui.copy)}</button></div><pre tabindex="0"><code>${highlighted}</code></pre></div>\n`;
     },
     blockquote(quote) {
       const m = /^<p>\[!(TIP|NOTE|WARNING|PENDING)\][ \t]*([^\n<]*)\n?/.exec(quote);
@@ -308,11 +353,12 @@ ${pager}
 
 const menuOf = (groups, current) => groups.map((group) => `<div class="menu-group">${group.title ? `<p class="menu-title">${escape(group.title)}</p>` : ''}<ul>${group.items.map((x) => x.heading
   ? `<li class="menu-sub">${escape(x.heading)}</li>`
+  : x.planned ? `<li><span class="menu-planned">${escape(x.planned)} <small>${escape(x.plannedLabel)}</small></span></li>`
   : `<li><a href="${x.href}"${x.todo ? ' class="todo"' : ''}${x.key === current ? ' aria-current="page"' : ''}>${escape(x.label)}</a></li>`).join('')}</ul></div>`).join('');
 
-// 右侧的本页目录：列出二级标题
+// On-page navigation includes headings from h2 through h4.
 const tocOf = (headings, ui) => headings.length < 2 ? '' :
-  `<p class="toc-title">${escape(ui.toc)}</p><ul>${headings.map((h) => `<li><a href="#${encodeURIComponent(h.id)}">${escape(h.text)}</a></li>`).join('')}</ul>`;
+  `<p class="toc-title">${escape(ui.toc)}</p><ul>${headings.map((h) => `<li class="toc-level-${h.level}"><a href="#${encodeURIComponent(h.id)}">${escape(h.text)}</a></li>`).join('')}</ul>`;
 
 const pagerOf = (prev, next, ui) => `<nav class="pager" aria-label="${escape(ui.pager)}">${prev ? `<a class="prev" href="${prev.href}"><small>${escape(ui.prev)}</small>${escape(prev.title)}</a>` : '<span></span>'}${next ? `<a class="next" href="${next.href}"><small>${escape(ui.next)}</small>${escape(next.title)}</a>` : ''}</nav>`;
 
@@ -407,7 +453,9 @@ for (const lang of LANGS) {
     const menu = menuOf(section.nav.map((group) => ({
       title: textOf(group.title, lang),
       items: group.items.map((item) => {
-        if (typeof item !== 'string') return { heading: textOf(item.heading, lang) };
+        if (typeof item !== 'string') return item.planned
+          ? { planned: textOf(item.planned, lang), plannedLabel: lang.code === 'zh-CN' ? '待编写' : 'Planned' }
+          : { heading: textOf(item.heading, lang) };
         const p = `${section.dir}${item}`;
         const m = langPages.get(p).meta;
         return { key: p, href: urlOf(lang, p), label: m.nav || m.title, todo: Boolean(m.status) };

@@ -86,6 +86,8 @@ h1 { margin: 0; font-size: 32px; line-height: 1.3; font-weight: 650; letter-spac
 .toc-title { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--ink); }
 .toc ul { margin: 0; padding: 0; list-style: none; border-left: 1px solid var(--rule); }
 .toc a { display: block; margin-left: -1px; padding: 4px 0 4px 12px; border-left: 2px solid transparent; line-height: 1.5; color: var(--muted); }
+.toc .toc-level-3 a { padding-left: 24px; }
+.toc .toc-level-4 a { padding-left: 36px; }
 .toc a:hover { color: var(--ink); text-decoration: none; }
 .toc a.active { border-left-color: var(--brand); color: var(--brand); }
 
@@ -108,13 +110,23 @@ h1 { margin: 0; font-size: 32px; line-height: 1.3; font-weight: 650; letter-spac
 
 /* 代码块 */
 .code-block { position: relative; margin: 16px 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); }
-.code-block pre { margin: 0; padding: 14px 16px; overflow-x: auto; }
-.code-block pre code { font: 13px/1.8 var(--f-mono); color: var(--ink); white-space: pre; }
+.code-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 12px; border-bottom: 1px solid var(--rule); }
+.code-language { font: 12px/1.5 var(--f-mono); color: var(--muted); }
+.code-block pre { margin: 0; padding: 14px 16px; overflow-x: auto; font: 13px/1.6 var(--f-mono); tab-size: 2; }
+.prose .code-block pre code { display: block; min-width: max-content; font: inherit; color: var(--ink); white-space: pre; overflow-wrap: normal; }
 .prose .code-block pre code { padding: 0; border-radius: 0; background: none; }
-.code-block.wrap pre code { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--f-sans); font-size: 14px; }
-.copy-button { position: absolute; top: 8px; right: 8px; padding: 2px 10px; border: 1px solid var(--rule); border-radius: 5px; background: #fff; font-size: 12px; color: var(--ink-2); opacity: 0; transition: opacity 0.15s; }
-.code-block:hover .copy-button, .copy-button:focus-visible { opacity: 1; }
-@media (hover: none) { .copy-button { opacity: 1; } }
+.code-block.wrap pre { font: 14px/1.7 var(--f-sans); }
+.prose .code-block.wrap pre code { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.copy-button { padding: 2px 10px; border: 1px solid var(--rule); border-radius: 5px; background: #fff; font-size: 12px; color: var(--ink-2); cursor: pointer; }
+.copy-button:hover { background: var(--paper-2); }
+.code-block .hljs-comment, .code-block .hljs-quote { color: #57606a; }
+.code-block .hljs-keyword, .code-block .hljs-selector-tag, .code-block .hljs-deletion { color: #cf222e; }
+.code-block .hljs-string, .code-block .hljs-regexp, .code-block .hljs-addition { color: #0a3069; }
+.code-block .hljs-number, .code-block .hljs-literal, .code-block .hljs-attr, .code-block .hljs-built_in { color: #0550ae; }
+.code-block .hljs-title, .code-block .hljs-type, .code-block .hljs-section { color: #8250df; }
+.code-block .hljs-variable, .code-block .hljs-template-variable { color: #953800; }
+.code-block .hljs-tag, .code-block .hljs-name { color: #116329; }
+.code-block .hljs-meta { color: #57606a; }
 
 /* 表格 */
 .table-wrap { margin: 16px 0; overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; }
@@ -575,3 +587,7 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .capdetail dd { margin: 0; }
 .capdetail code { font-size: 11px; }
 @media (max-width: 600px) { .capgrid { grid-template-columns: 1fr 1fr; } }
+
+/* Planned Core chapters have no destination until their content is written. */
+.menu-planned { display: block; padding: 5px 10px; color: var(--muted); font-size: 13px; }
+.menu-planned small { margin-left: 4px; font-size: 11px; }

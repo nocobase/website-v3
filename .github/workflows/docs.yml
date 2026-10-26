@@ -1,0 +1,212 @@
+name: Docs
+
+# Builds the documentation site (`doc/`) on every pull request and push to `main` that touches it, and publishes a push
+# to `main` to the documentation CDN (docs.nocobase.com).
+#
+# This repository is public, so the jobs are split by trust:
+#
+# - `build` runs the site's own code (`npm ci`, `node doc/build.mjs`) on any pull request, including one from a fork.
+#   It is triggered by `pull_request`, never `pull_request_target`, references no secret, and its token can only read.
+# - `publish` runs only for `main` in the `production` environment. It downloads the built site as an artifact and runs
+#   no code from the repository except `scripts/deploy-cdn`. The Aliyun keys appear only in the `env` of its `Publish`
+#   step.
+#
+# Publishing is atomic and reversible: the build is uploaded to its own timestamp directory in the bucket, then the
+# back-to-origin rewrite rules of every domain in `DOCS_CDN_DOMAINS` are pointed at it, the CDN cache is refreshed and
+# all but the newest two versions are removed (see `scripts/deploy-cdn/deploy-cdn.mjs`). `404.html` is also uploaded to
+# the bucket root, where the bucket's static-website error document is read from.
+#
+# To roll back, point every back-to-origin rewrite rule of each domain at the older version directory in the CDN console.
+#
+# Configuration: every value is a secret of the `production` environment, so only the publish job can read it:
+# `ALI_ACCESS_KEY_ID`, `ALI_ACCESS_KEY_SECRET`, `ALI_OSS_REGION` (e.g. `cn-beijing`), `DOCS_OSS_BUCKET` and
+# `DOCS_CDN_DOMAINS` (whitespace- or comma-separated; required).
+#
+# `site.yml` publishes the website the same way; keep the two in step when changing how either publishes.
+
+on:
+  pull_request:
+    paths:
+      - 'doc/**'
+      - '.github/workflows/docs.yml'
+      - 'scripts/deploy-cdn/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'doc/**'
+      - '.github/workflows/docs.yml'
+      - 'scripts/deploy-cdn/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Docs build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci --prefix doc --ignore-scripts
+
+      - name: Build the site
+        run: node doc/build.mjs
+
+      # Only that the files the CDN and crawlers depend on exist; the build itself checks the content.
+      - name: Check the build
+        run: |
+          missing=0
+          for file in doc/dist/index.html doc/dist/zh-CN/index.html doc/dist/404.html doc/dist/sitemap.xml; do
+            if [ ! -s "$file" ]; then
+              echo "::error::The build did not produce $file."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      # Pure logic of the publishing script (argument parsing, which versions a cleanup removes); needs no dependency.
+      - name: Test the publishing script
+        run: node --test scripts/deploy-cdn/versions.test.mjs
+
+      - name: Upload the site
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-site
+          path: doc/dist
+          if-no-files-found: error
+          retention-days: 7
+
+  # Two publishes never overlap, since each rewrites the same CDN rules, and a publish is never cancelled midway: a rule
+  # pointing at a directory another run's cleanup deleted would take the site down.
+  publish:
+    name: Docs publish
+    needs: build
+    if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: production
+    concurrency:
+      group: docs-publish
+      cancel-in-progress: false
+    steps:
+      # An older build must never switch the rules back over a newer one. A run whose commit is no longer the head of
+      # `main` still publishes when nothing after it changes what this workflow publishes: such commits trigger no run,
+      # so no other run would publish this one's documentation. When a newer commit does change it, that push publishes
+      # instead and this run skips every step below; so does a run whose commit is no longer in `main`, or whose
+      # comparison GitHub cuts short at 300 files.
+      - name: Compare with the head of the branch
+        id: head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          head=$(gh api "repos/${REPOSITORY}/commits/main" --jq .sha)
+          if [ "$head" = "$HEAD_SHA" ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          read -r status files relevant < <(gh api "repos/${REPOSITORY}/compare/${HEAD_SHA}...${head}" --jq '
+            def watched: startswith("doc/") or startswith("scripts/deploy-cdn/") or . == ".github/workflows/docs.yml";
+            [.status, (.files | length), ([.files[] | select((.filename | watched) or ((.previous_filename // "") | watched))] | length)] | @tsv')
+          if [ "$status" = "ahead" ] && [ "$files" -lt 300 ] && [ "$relevant" -eq 0 ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::main has moved on to ${head}, but nothing after this commit changes the documentation, so this run publishes."
+          else
+            echo "current=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::main has moved on to ${head} (${status}, ${relevant} of ${files} changed files affect the documentation), so a newer push publishes instead of this one."
+          fi
+
+      # Only the publishing script, from the commit that was built.
+      - name: Check out the publishing script
+        if: ${{ steps.head.outputs.current == 'true' }}
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: scripts/deploy-cdn
+
+      - name: Download the site
+        if: ${{ steps.head.outputs.current == 'true' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-site
+          path: dist
+
+      - name: Set up Node.js
+        if: ${{ steps.head.outputs.current == 'true' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install the publishing tools
+        if: ${{ steps.head.outputs.current == 'true' }}
+        run: |
+          set -euo pipefail
+          curl -fsSL -o "$RUNNER_TEMP/ossutil.zip" \
+            https://gosspublic.alicdn.com/ossutil/v2/2.2.2/ossutil-2.2.2-linux-amd64.zip
+          unzip -o -q "$RUNNER_TEMP/ossutil.zip" -d "$RUNNER_TEMP/ossutil"
+          sudo mv "$RUNNER_TEMP/ossutil/ossutil-2.2.2-linux-amd64/ossutil" /usr/local/bin/ossutil
+          sudo chmod 755 /usr/local/bin/ossutil
+          npm ci --ignore-scripts --prefix scripts/deploy-cdn
+
+      - name: Publish
+        if: ${{ steps.head.outputs.current == 'true' }}
+        env:
+          ALI_ACCESS_KEY_ID: ${{ secrets.ALI_ACCESS_KEY_ID }}
+          ALI_ACCESS_KEY_SECRET: ${{ secrets.ALI_ACCESS_KEY_SECRET }}
+          ALI_OSS_REGION: ${{ secrets.ALI_OSS_REGION }}
+          ALI_OSS_BUCKET: ${{ secrets.DOCS_OSS_BUCKET }}
+          ALI_CDN_DOMAINS: ${{ secrets.DOCS_CDN_DOMAINS }}
+          # ossutil reads the credentials from these names.
+          OSS_ACCESS_KEY_ID: ${{ secrets.ALI_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.ALI_ACCESS_KEY_SECRET }}
+        run: |
+          set -euo pipefail
+
+          for name in ALI_ACCESS_KEY_ID ALI_ACCESS_KEY_SECRET ALI_OSS_REGION ALI_OSS_BUCKET; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is not set. Configure it in the production environment before publishing."
+              exit 1
+            fi
+          done
+          if [ -z "${ALI_CDN_DOMAINS//[[:space:],]/}" ]; then
+            echo "::error::DOCS_CDN_DOMAINS is not set. Configure it in the production environment before publishing."
+            exit 1
+          fi
+
+          # ossutil takes the bare region id, `cn-beijing`, and derives the endpoint from it; the SDK the publish script
+          # uses takes the `oss-` prefixed form. The secret holds whichever one was pasted from the console, and each
+          # side normalizes it — `--region oss-cn-beijing` is rejected outright.
+          REGION="${ALI_OSS_REGION#oss-}"
+
+          # Asia/Shanghai so the directory name reads as the local time of the people who deploy it.
+          TIMESTAMP="$(TZ=Asia/Shanghai date +%Y%m%d%H%M%S)"
+          echo "Uploading to version directory $TIMESTAMP/"
+
+          ossutil cp -r dist/ "oss://$ALI_OSS_BUCKET/$TIMESTAMP/" \
+            -f -j 64 --region "$REGION"
+
+          # The bucket's static-website error document is read from the root, not from inside a version directory.
+          ossutil cp dist/404.html "oss://$ALI_OSS_BUCKET/404.html" \
+            -f --region "$REGION"
+
+          node scripts/deploy-cdn/deploy-cdn.mjs --timestamp "$TIMESTAMP"
+
+          {
+            echo "### Documentation published"
+            echo
+            echo "Version \`$TIMESTAMP\` is live on every domain in \`DOCS_CDN_DOMAINS\`."
+          } >> "$GITHUB_STEP_SUMMARY"

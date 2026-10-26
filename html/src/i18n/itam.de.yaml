@@ -1,0 +1,79 @@
+notes: |-
+  Deutsch（Sie）
+  术语：foundation = Fundament；building blocks = Bausteine；governance = Governance；agent team = Agenten-Team；
+  coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
+  vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
+  页面用语：agent = Agent（复数 Agenten）；lead = Lead；opportunity / deal = Deal；account = Kunde；company = Firma；approval = Freigabe（approve = freigeben，
+  approve with conditions = unter Auflagen freigeben，reject = ablehnen）；approval agent = Freigabe-Agent；approval assistant = Freigabe-Assistent；
+  timeline = Zeitleiste；business guidance = Geschäftsleitfaden；inbox = Posteingang；record = Datensatz；follow up = nachfassen；
+  asset register = Inventar；entitlement = Softwarelizenz；seat = Lizenzplatz；stocktake / audit = Inventur；stock = Lagerbestand；
+  idle = ungenutzt；disposal = Aussonderung；discrepancy = Abweichung；reconcile = abgleichen；standard kit = Standardausstattung；
+  purchase request = Bestellanforderung；PO = Bestellung；joiner = neue Mitarbeitende；leaver = ausscheidende Mitarbeitende；
+  joiners & leavers = Ein- und Austritte；skills = Skills
+  界面名称照英文界面原样写（德语读者看到英文界面）：Approval assistant、Devices、Accessories、Consumables、Components、
+  Entitlements、Procurement、Repairs、Disposals、Audits、Business guidance、Skills、Models；一般描述仍用上面的德语用语
+title: NocoITAM — Agenten bleiben dran. IT-Assets in Ordnung.
+description: NocoITAM ist Open-Source-IT-Asset-Management auf NocoBase. Agenten gleichen MDM mit dem Inventar ab, bereiten Listen für Ein- und Austritte vor, prüfen vor jedem Kauf Lagerbestand und ungenutzte Assets und holen ungenutzte Lizenzplätze vor der Verlängerung zurück. Die IT entscheidet nur noch.
+strings:
+  "000": IT-Asset-Management
+  "001": Agenten bleiben dran. <span class="m">IT-Assets in Ordnung.</span>
+  "002": Klassische ITAM-Tools sind Listen, die von Hand gepflegt werden. In NocoITAM klären Agenten MDM-Abweichungen, statten neue Mitarbeitende aus und prüfen vor jedem Kauf Lagerbestand und ungenutzte Assets. Jedes Gerät, jeder Lizenzplatz und jede Ausgabe ist belegt.
+  "003": Online testen
+  "004": Intro ansehen
+  "005": Lizenz
+  "006": Open Source
+  "007": Basis
+  "008": Version
+  "009": Agenten an Bord
+  "010": MDM
+  "011": KI-Modelle
+  "012": Ihre Wahl
+  "013": NocoITAM online testen
+  "014": Sie sind mit einem Demo-Konto angemeldet. Alle Daten sind erfunden, probieren Sie also ruhig alles aus.
+  "015": Vollständig in neuem Tab öffnen
+  "016": Sichtbarer Nutzen
+  "017": "Jede Einsparung "
+  "018": lückenlos belegt.
+  "019": Agenten ändern Datensätze nie eigenmächtig. Jede Aktion schlägt ein Agent vor, und die verantwortliche Person bestätigt sie. Sie sehen nicht nur, wie viel gespart wurde, sondern auch, aus welcher Bestellanforderung oder welchem Lizenzplatz die Einsparung stammt.
+  "020": Einkauf
+  "021": "Vor jedem Kauf: "
+  "022": Lagerbestand, ungenutzte Assets und frühere Preise prüfen.
+  "023": Sobald eine Anforderung eingereicht ist, prüft der Approval assistant, ob Lagerbestand oder ungenutzte Assets sie decken, vergleicht frühere Stückpreise und ähnliche Anforderungen, weist auf fehlende Angaben hin und entwirft Empfehlung und Kommentar.
+  "024": Der Approval assistant kann weit mehr als „freigeben“ oder „ablehnen“.
+  "025": "„Unter Auflagen freigeben: 3 passende Monitore sind auf Lager, also nur die übrigen 2 kaufen.“"
+  "026": "„Ablehnen: Dieser Drucker ist erst 20 Monate alt und wurde nie repariert. Erst reparieren, dann aussondern.“"
+  "027": "„Unter Auflagen freigeben: Dieses Modell ist nicht auf Lager, aber 3 Alternativen sind verfügbar. Bitte zuerst Budget und Zahl der Neueinstellungen bestätigen.“"
+  "028": Ein- &amp; Austritte
+  "029": "Neue Mitarbeitende sind ab Tag eins startklar. "
+  "030": Ausscheidende geben alles zurück.
+  "031": Vor dem ersten Arbeitstag gleicht NocoITAM die Standardausstattung der neuen Person in einem Durchgang mit Lagerbestand und ungenutzten Lizenzplätzen ab. Sie bestätigen, und für Lücken entsteht per Klick ein Bestellentwurf. Verlässt jemand das Unternehmen, verfolgt NocoITAM Geräte, Zubehör, Lizenzplätze und Aufgaben außerhalb des Systems, etwa Konten sperren und Schlüssel rotieren, bis alles erledigt ist.
+  "032": "Nach jedem MDM-Sync "
+  "033": werden Abweichungen zum Aktionsplan.
+  "034": "Nach dem Sync mit Intune oder Jamf Pro sortiert der Agent die Abweichungen samt Kontext: Falsche Zuordnungen gehen an die Geräteverantwortlichen, nicht inventarisierte Geräte an die Asset-Admins, und Sonderfälle wie lange offline gebliebene Laptops werden für eine Prüfung durch Menschen markiert. Sie prüfen und übernehmen alles in einem Durchgang."
+  "035": Schluss mit wöchentlichen VLOOKUPs in Tabellen
+  "036": Für jede Abweichung gibt es eine zuständige Person und einen Grund
+  "037": Jeder Abgleich wird in der Gerätehistorie protokolliert
+  "038": Inventar
+  "039": "Hardware, Software und Verbrauchsmaterial: "
+  "040": alles in einem Inventar.
+  "041": Devices
+  "042": Der gesamte Lebenszyklus vom Lager bis zur Aussonderung, laufend mit Intune und Jamf Pro abgeglichen.
+  "043": Accessories, Consumables &amp; Components
+  "044": Erfassen Sie ausgegebene, zurückgegebene und vorrätige Mengen, mit Hinweis beim Unterschreiten des Mindestbestands. Komponenten werden in Geräte eingebaut und wandern mit ihnen.
+  "045": Entitlements
+  "046": Behalten Sie Lizenzplätze aus Abos und Kauflizenzen im Blick (konform, ungenutzt oder überbelegt), mit Hinweis vor der automatischen Verlängerung.
+  "047": Procurement, Repairs, Disposals &amp; Audits
+  "048": Meldet verspätete Lieferungen, erfasst Reparaturkosten je Gerät und verfolgt Inventurdifferenzen bis zur Klärung.
+  "049": Auf Ihre Art
+  "050": "Schreiben Sie Ausstattungsstandards und Freigaberegeln auf. "
+  "051": Die Agenten halten sich daran.
+  "052": Business guidance
+  "053": Legen Sie Standardausstattung, Budgets und Freigabegrenzen im Klartext fest. Jeder Agent liest sie bei jedem Lauf.
+  "054": Skills
+  "055": Eingebaute Skills für Freigabeprüfung, Katalog, Geräte-Sync und Onboarding/Offboarding sind vollständig einsehbar und anpassbar.
+  "056": Models &amp; Code
+  "057": "Weisen Sie jedem Agenten ein Modell zu, und behalten Sie die Nutzung im Blick. Eigene Felder, Workflows oder Berichte nötig? Lassen Sie einen Coding-Agenten in Studio den Quellcode anpassen: Open Source, selbst gehostet und Ihr Eigentum."
+  "058": Weniger Abgleich für die IT, klarer Überblick über jedes Asset.
+  "059": Testen Sie NocoITAM online, oder holen Sie sich den Quellcode auf GitHub und betreiben Sie ihn selbst. Verbinden Sie Ihr MDM, importieren Sie Ihre Assets, und lassen Sie die Agenten mit dem Abgleich beginnen.
+  "061": Professional
+  "062": "Weisen Sie jedem Agenten ein Modell zu, und behalten Sie die Nutzung im Blick. Eigene Felder, Workflows oder Berichte nötig? Lassen Sie einen Coding-Agenten in Studio den Quellcode anpassen: in Professional enthalten, selbst gehostet und Ihr Eigentum."

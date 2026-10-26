@@ -1,0 +1,80 @@
+notes: |-
+  Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+  术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+  coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+  self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+  正文用语：business guidance（泛指）= consignes métier；skills = skills；business agents = agents métier
+title: NocoBase Solution — Des applications métier open source, pilotées par l’IA et prêtes à l’emploi
+description: NocoBase Solution est une gamme d’applications métier pilotées par des agents et construites sur Core.
+strings:
+  "000": Des applications métier open source. <span class="m">Pilotées par l’IA, prêtes à l’emploi.</span>
+  "003": Sur vos propres serveurs
+  "004": Le modèle de votre choix
+  "005": CRM commercial · Beta
+  "007": Découvrir NocoCRM
+  "008": Gestion du parc informatique · Beta
+  "010": Découvrir NocoITAM
+  "011": Croissance · Alpha
+  "013": Découvrir NocoReach
+  "014": Support · Bientôt
+  "016": Projets · Bientôt
+  "018": RH · Bientôt
+  "020": Agents métier
+  "021": Les agents <span class="m">prennent les devants.</span>
+  "022": Les logiciels métier traditionnels comptent sur les humains pour saisir les données, faire circuler le travail et traiter chaque étape à la main. Dans NocoBase Solution, chaque application intègre des agents métier qui suivent vos règles et prennent en charge d’eux-mêmes l’essentiel du travail, comme vérifier des remboursements ou traiter des tickets.
+  "023": Pour chaque agent, sa mission, ses moments d’intervention et sa méthode sont écrits noir sur blanc.
+  "024": "Se déclenche à chaque événement : "
+  "025": un nouveau lead, l’e-mail d’un client ou une tâche terminée met le bon agent au travail, et les agents peuvent aussi s’exécuter selon un calendrier.
+  "026": "Suit vos règles : "
+  "027": les consignes métier posent votre contexte et vos standards, les skills définissent la méthode, et chaque modification s’applique dès l’exécution suivante.
+  "028": "Garde une trace : "
+  "029": "le nombre d’exécutions de chaque agent, ce qui a été accepté ou ignoré : tout est consigné."
+  "030": Qui fait quoi
+  "031": Les humains gardent <span class="m">les décisions clés.</span>
+  "033": Application
+  "034": Les agents métier s’occupent de
+  "035": Les humains décident
+  "036": Tenir à jour les fiches clients et les échanges, étudier les leads et les entreprises, suggérer les prochaines étapes et pré-vérifier les devis
+  "037": Remises, devis et conditions contractuelles
+  "038": Rapprocher le registre des actifs et le MDM, préparer les dotations d’arrivée et de départ, et pré-examiner les demandes d’achat et de mise au rebut
+  "039": Achats, mises au rebut et changements majeurs sur les actifs
+  "040": Analyser les données chaque jour, trouver des opportunités de croissance preuves à l’appui, et ouvrir des pull requests avec les modifications
+  "041": Opportunités à retenir, validation de la marque et mise en ligne
+  "043": Trier et router les tickets, chercher dans la base de connaissances et rédiger les réponses
+  "044": Remboursements, escalades et cas particuliers
+  "045": Mener les tâches de recherche et de rédaction, suivre l’avancement et signaler les risques
+  "046": Objectifs, priorités et validation finale
+  "047": Préparer les arrivées, tenir les dossiers des collaborateurs et répondre aux questions sur les règles internes
+  "048": Recrutement, rémunération et exceptions RH
+  "049": Preuves à l’appui
+  "050": "Tout ce qu’un agent remet indique sa source : quel e-mail, quelle fiche, quel document."
+  "051": Une personne décide
+  "052": Pour les décisions comme les remises, les achats ou les remboursements, l’agent prépare les options et leurs raisons, et c’est le responsable qui tranche.
+  "053": Les permissions du responsable
+  "054": Un agent ne peut voir et modifier que ce que peut la personne pour qui il travaille, jamais plus.
+  "055": Personnaliser
+  "056": Faciles <span class="m">à personnaliser.</span>
+  "058": Déployer et lancer
+  "059": Chaque application se déploie indépendamment. Rédigez vos consignes métier, connectez un modèle, et les agents métier se mettent au travail.
+  "060": Modifier skills, règles et code
+  "061": Quand la méthode change, modifiez un skill. Quand les workflows ou les champs changent, demandez à un agent de code de modifier le code source.
+  "062": Les mises à jour officielles, quand vous le décidez
+  "063": Le code source personnalisé vous appartient. Fusionnez dans votre propre dépôt les mises à jour officielles que vous voulez, après les avoir vérifiées.
+  "064": Les applications Solution sont construites sur NocoBase Core
+  "065": "Personnalisez en équipe, humains et agents ensemble : NocoBase Studio"
+  "066": Open source et auto-hébergement
+  "067": Gratuites, open source, <span class="m">prêtes à l’emploi.</span>
+  "074": Commencer
+  "079": Voir les applications
+  "082": Découvrir Core
+  "086": Découvrir Studio
+  "087": NocoCRM et d’autres, gratuites et open source
+  "088": CRM commercial · Open source · Beta
+  "089": Gestion du parc informatique · Professional · Beta
+  "090": Croissance · Open source · Alpha
+  "091": Support · Professional · Bientôt
+  "092": Projets · Open source · Bientôt
+  "093": RH · Professional · Bientôt
+  "094": L’open source pour démarrer, <span class="m">prêt à l’emploi.</span>
+  "098": Croissance · Beta
+  "100": Analyser les données chaque jour, trouver ce qui mérite d’être fait preuves à l’appui, puis modifier des pages, rédiger des articles et préparer des réponses pour la communauté

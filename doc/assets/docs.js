@@ -18,14 +18,34 @@
     targets.forEach((t) => observer.observe(t));
   }
 
-  // 按钮文字随页面语言，由构建写在按钮上：原文、data-copied、data-failed
+  // Local HTTP previews also support copying, without the secure Clipboard API.
+  async function copyText(text) {
+    if (navigator.clipboard?.writeText) {
+      try { await navigator.clipboard.writeText(text); return; } catch { /* Try the selection-based fallback. */ }
+    }
+    const previous = document.activeElement;
+    const field = document.createElement('textarea');
+    field.value = text;
+    field.readOnly = true;
+    field.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+    document.body.append(field);
+    try {
+      field.select();
+      if (!document.execCommand('copy')) throw new Error('Copy failed');
+    } finally {
+      field.remove();
+      previous?.focus({ preventScroll: true });
+    }
+  }
+
+  // Button labels are localized by the build.
   for (const button of document.querySelectorAll('.copy-button')) {
     const label = button.textContent;
     button.addEventListener('click', async () => {
       const code = button.closest('.code-block')?.querySelector('pre code');
       if (!code) return;
       try {
-        await navigator.clipboard.writeText(code.innerText);
+        await copyText(code.textContent);
         button.textContent = button.dataset.copied || '已复制';
       } catch {
         button.textContent = button.dataset.failed || '复制失败';

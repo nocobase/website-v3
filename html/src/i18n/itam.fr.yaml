@@ -1,0 +1,76 @@
+notes: |-
+  Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+  术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+  coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+  self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+  页面用语（界面名称照英文界面写）：Devices；Accessories；Consumables；Components；Entitlements；Procurement；Repairs；
+  Disposals；Audits；Business guidance；Skills；Models；Approval assistant
+  正文用语：asset register = registre des actifs；entitlement / seat = licence；stock = stock；idle = inutilisé；
+  disposal = mise au rebut；discrepancy = écart；reconcile = rapprocher；standard kit = dotation standard；stocktake / audit = audit；
+  purchase request = demande d’achat；PO = bon de commande；joiner = nouveau collaborateur；leaver = collaborateur sortant；
+  joiners & leavers = arrivées & départs；approval = validation（approve = valider，approve with conditions = valider sous conditions，reject = refuser）
+title: NocoITAM — Les agents s’en chargent. Votre parc informatique en ordre.
+description: NocoITAM est une solution open source de gestion du parc informatique basée sur NocoBase. Les agents rapprochent le MDM et le registre des actifs, préparent les listes d’arrivées et de départs, vérifient le stock et les actifs inutilisés avant chaque achat, et récupèrent les licences inutilisées avant les renouvellements. L’IT n’a plus qu’à décider.
+strings:
+  "000": Gestion du parc informatique
+  "001": Les agents s’en chargent. <span class="m">Votre parc IT en ordre.</span>
+  "002": Les outils ITAM traditionnels sont des registres tenus à la main. Dans NocoITAM, les agents démêlent les écarts MDM, équipent les nouveaux collaborateurs, et vérifient le stock et les actifs inutilisés avant chaque achat. Chaque appareil, chaque licence et chaque dépense est tracé.
+  "003": Essayer en ligne
+  "004": Voir la présentation
+  "005": Licence
+  "006": Open source
+  "007": Basé sur
+  "008": Version
+  "009": Agents intégrés
+  "010": MDM
+  "011": Modèles d’IA
+  "012": Au choix
+  "013": Essayer NocoITAM en ligne
+  "014": "Vous êtes connecté à un compte de démo. Toutes les données sont fictives : essayez tout ce que vous voulez."
+  "015": Ouvrir en plein écran dans un nouvel onglet
+  "016": Une valeur visible
+  "017": "Chaque économie, "
+  "018": traçable de bout en bout.
+  "019": Les agents ne modifient jamais les fiches d’eux-mêmes. Chaque action est proposée par un agent et confirmée par son responsable. Vous voyez non seulement combien vous avez économisé, mais aussi de quelle demande d’achat ou de quelle licence vient l’économie.
+  "020": Achats
+  "021": "Avant chaque achat, "
+  "022": stock, actifs inutilisés et prix passés sont vérifiés.
+  "023": Dès qu’une demande est soumise, l’Approval assistant vérifie si le stock ou des actifs inutilisés peuvent la couvrir, compare les prix unitaires passés et les demandes similaires, signale les informations manquantes, et rédige une recommandation et un avis.
+  "024": L’Approval assistant va bien au-delà de « valider » ou « refuser ».
+  "025": "« Valider sous conditions : 3 écrans correspondants sont en stock, n’acheter que les 2 restants. »"
+  "026": "« Refuser : cette imprimante n’a que 20 mois et aucun historique de réparation. La faire réparer avant de la mettre au rebut. »"
+  "027": "« Valider sous conditions : aucun exemplaire de ce modèle en stock, mais 3 alternatives sont disponibles. Confirmer d’abord le budget et le nombre de recrues. »"
+  "028": Arrivées &amp; départs
+  "029": "Les nouveaux collaborateurs sont prêts dès le premier jour. "
+  "030": Les collaborateurs sortants rendent tout.
+  "031": Avant le premier jour, NocoITAM rapproche en une seule fois la dotation standard du nouveau collaborateur du stock et des licences inutilisées. Confirmez, et préparez en un clic un bon de commande pour ce qui manque. Quand quelqu’un part, il suit appareils, accessoires, licences et tâches hors système, comme la révocation des comptes et la rotation des clés, jusqu’à ce que tout soit soldé.
+  "032": "Après chaque synchronisation MDM, "
+  "033": les écarts deviennent un plan d’action.
+  "034": "Après la synchronisation avec Intune ou Jamf Pro, l’agent trie les écarts en les replaçant dans leur contexte : les écarts d’attribution vont aux responsables des appareils, les appareils non enregistrés aux gestionnaires d’actifs, et les cas particuliers, comme les portables hors ligne depuis longtemps, sont signalés pour un examen humain. Vérifiez et appliquez le tout en une fois."
+  "035": Fini les VLOOKUP hebdomadaires dans un tableur
+  "036": Chaque écart a un responsable désigné et un motif clair
+  "037": Chaque rapprochement est consigné dans l’historique de l’appareil
+  "038": Registre des actifs
+  "039": "Matériel, logiciels et fournitures, "
+  "040": tout dans un seul registre.
+  "041": Devices
+  "042": Suivi complet du cycle de vie, du stock à la mise au rebut, rapproché en continu avec Intune et Jamf Pro.
+  "043": Accessories, Consumables &amp; Components
+  "044": Suivez les quantités attribuées, restituées et en stock, avec une alerte sous le seuil minimum ; les composants sont montés dans les appareils et les suivent.
+  "045": Entitlements
+  "046": Suivez les licences par abonnement et perpétuelles (conformes, inutilisées ou surallouées), avec une alerte avant le renouvellement automatique.
+  "047": Procurement, Repairs, Disposals &amp; Audits
+  "048": Signale les livraisons en retard, impute les coûts de réparation à chaque appareil et suit les écarts d’audit jusqu’à leur résolution.
+  "049": À votre façon
+  "050": "Écrivez vos dotations standard et vos règles de validation. "
+  "051": Les agents s’y conforment.
+  "052": Business guidance
+  "053": "Définissez vos dotations standard, vos budgets et vos seuils de validation en texte libre : chaque agent les lit à chaque exécution."
+  "054": Skills
+  "055": Les skills intégrés de revue des validations, de catalogue, de synchronisation des appareils et d’arrivées et départs sont entièrement lisibles et personnalisables.
+  "056": Models &amp; code
+  "057": "Choisissez un modèle par agent et suivez la consommation. Besoin de champs, workflows ou rapports sur mesure ? Demandez à un agent de code de modifier le code source dans Studio : open source, auto-hébergé, et à vous."
+  "058": Moins de rapprochements pour l’IT, une vision claire de chaque actif.
+  "059": Essayez NocoITAM en ligne, ou récupérez le code source sur GitHub et faites-le tourner vous-même. Connectez votre MDM, importez vos actifs et laissez les agents commencer les rapprochements.
+  "061": Professional
+  "062": "Choisissez un modèle par agent et suivez la consommation. Besoin de champs, workflows ou rapports sur mesure ? Demandez à un agent de code de modifier le code source dans Studio : inclus dans Professional, auto-hébergé, et à vous."

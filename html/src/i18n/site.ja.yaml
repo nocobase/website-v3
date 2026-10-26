@@ -1,0 +1,19 @@
+notes: |-
+  日本語（見出しは常体、本文は敬体）
+  用語：foundation = 基盤；building blocks = 共通機能；governance = ガバナンス；agent team = エージェントチーム；
+  coding agent = コーディングエージェント；business logic = 業務ロジック；business systems = 業務システム；
+  vibe coding = バイブコーディング；self-hosted = セルフホスト；at a glance = ひと目でわかる；make the call = 判断する
+  用語（Solution ページ）：lead = リード；opportunity / deal = 商談；close lost = 失注；win rate = 受注率；account / customer = 顧客；
+  company = 会社；contact = 連絡先；approval = 承認；approval assistant = 承認アシスタント；timeline = タイムライン；
+  inbox = 受信トレイ；follow up = フォロー；business guidance = 業務ガイダンス（機能名は「」で囲む）；skill = スキル；
+  asset register = 資産台帳；device = デバイス；entitlement = ライセンス；seat = シート；idle asset = 遊休資産；idle seat = 未使用のシート；
+  stock = 在庫；purchase request = 購買申請；PO = 発注書；procurement = 調達；stocktake / audit = 棚卸し；discrepancy = 差異；
+  reconcile = 照合；standard kit = 標準構成；joiner / leaver = 入社者 / 退職者（新入社員）；onboarding / offboarding = 入社・退職手続き
+strings:
+  "033": エージェントチームで、より多くのクライアント案件を
+  "036": すべてのソリューション
+  "046": 業務提携、製品のご相談、技術サポート
+  "047": 1 つ以上選択してください
+  "048": 送信しています…
+  "049": ありがとうございます。ご依頼を受け付けました。追ってご連絡いたします。
+  "050": 送信できませんでした。時間をおいて再度お試しいただくか、{mail} までメールでご連絡ください。

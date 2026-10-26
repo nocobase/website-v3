@@ -1,0 +1,172 @@
+notes: |-
+  Deutsch（Sie）
+  术语：foundation = Fundament；building blocks = Bausteine；governance = Governance；agent team = Agenten-Team；
+  coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
+  vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
+  页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（8.000 USD）；信创数据库只在中文版列出
+title: Editionen und Preise — NocoBase 3
+description: Core und alle Solution-Apps sind kostenlos und Open Source. Professional kostet einmalig 8.000 USD, mit Studio, 1 Jahr Upgrades und Support sowie einem Deployment. Enterprise auf Anfrage.
+strings:
+  "001": Kostenlos starten. <span class="m">Einmal kaufen, für immer nutzen.</span>
+  "002": Open Source
+  "003": Geschäftssysteme mit Ihren eigenen Coding-Agenten entwickeln und betreiben.
+  "004": Kostenlos
+  "006": "Alle Bausteine von Core: Berechtigungen, Workflows, Dateien, Benachrichtigungen und mehr"
+  "007": Projektgerüst, Entwicklungsstandards und Skills für jeden Coding-Agenten
+  "008": NocoCRM, NocoReach und NocoProject mit ihren Fach-Agenten
+  "009": Kostenlos für den Produktivbetrieb und Kundenprojekte
+  "010": Dokumentation und Community-Support
+  "011": Mit Studio
+  "012": Für ein Team, das mit einem Agenten-Team in Studio entwickelt und ausliefert.
+  "013": 8.000 USD
+  "014": einmalig
+  "015": Dauerlizenz · 1 Jahr Upgrades und Support
+  "016": Kontakt für den Kauf
+  "017": "Alles aus Community, dazu:"
+  "018": NocoBase Studio mit einem Agenten-Team, das für Sie entwickelt
+  "019": Tests, Review und menschliche Abnahme vor jedem Release
+  "021": NocoITAM, NocoSupport und NocoHR
+  "022": Core-Upgrade-Agent, Quality Gates und Kostenkontrolle
+  "023": Ein Deployment durch das NocoBase-Team
+  "024": Mehrere Teams
+  "025": Für mehrere Teams und Umgebungen, die unternehmensweite Governance und Hochverfügbarkeit brauchen.
+  "026": Auf Anfrage
+  "027": Individuelles Angebot · ebenfalls einmalige Dauerlizenz
+  "028": "Alles aus Professional, dazu:"
+  "029": Releases über mehrere Umgebungen, Änderungsfenster und Freeze-Zeiten
+  "030": "Teamübergreifende Governance: gemeinsame Skills, gemeinsames Wissen und eine Modellrichtlinie"
+  "031": Audit-Logs und Agenten-Isolation
+  "032": Cluster und Hochverfügbarkeit, Multi-Tenant-Architektur und Air-Gap-Bereitstellung
+  "033": Priorisierter Support, erste Antwort innerhalb von 4&nbsp;Stunden
+  "034": 3 Tage Deployment, Schulung und Implementierung
+  "035": Server, Modelle und Coding-Agenten wählen Sie selbst und bezahlen die Anbieter direkt.
+  "036": Details
+  "037": Was jede Edition enthält
+  "038": Das Open-Source-Anwendungsfundament
+  "039": Anmeldung und SSO
+  "040": Passwort, Social Accounts, OIDC
+  "041": Benutzer und Organisation
+  "042": Benutzer, Abteilungen und Berichtslinien
+  "044": Rollenbasierter Zugriff auf Seiten, Aktionen und Daten, mit denselben Regeln für Menschen und Agenten
+  "045": Datenbanken
+  "046": Externe Datenquellen
+  "047": Bestehende Datenbanken anbinden
+  "048": Dateispeicher
+  "049": Lokal oder S3-kompatibel
+  "050": Workflows und geplante Jobs
+  "051": Einfache Freigaben
+  "052": Ein Genehmigender, mit Verlauf
+  "054": In-App, E-Mail, Feishu, DingTalk
+  "056": E-Mails direkt aus Datensätzen senden und empfangen
+  "057": Modelle
+  "058": Cloud oder lokal
+  "059": Fach-Agenten
+  "060": Fragen Daten im Rahmen der Benutzerrechte ab und handeln nach Bestätigung
+  "061": KI-Wissensdatenbank
+  "062": Rechtebewusst und versioniert, mit Quellenangaben in den Antworten
+  "063": Entwicklung am Quellcode
+  "064": Eine Projektstruktur, Entwicklungsstandards und Skills für jeden Coding-Agenten
+  "065": Oberfläche
+  "066": Sprachen, Themes, Fachkomponenten
+  "067": Vorlagendruck
+  "068": Einfacher Aktivitätsverlauf
+  "069": Aktionen von Workflows, Freigaben und Agenten werden protokolliert
+  "070": Deployment und Upgrades
+  "071": Deployment, Upgrade und Rollback
+  "072": Enterprise-SSO
+  "073": SAML 2.0, LDAP, WeCom, Feishu, DingTalk
+  "074": Erweiterte Freigaben
+  "075": Bedingte Weiterleitung, gemeinsame Freigabe, Genehmigende hinzufügen, delegieren, zurückweisen
+  "078": Cluster und Hochverfügbarkeit
+  "079": Multi-Tenant-Architektur
+  "080": Audit-Logs
+  "081": Lückenlose Aufzeichnung jeder Aktion
+  "082": Air-Gap-Bereitstellung
+  "083": Für Netzwerke ohne Internetzugang
+  "085": Arbeitsbereich
+  "086": My issues, My sessions, Dashboard
+  "087": Agenten-Team
+  "088": Ein Koordinations-Agent verteilt die Arbeit an Agenten, die von beliebigen Rechnern verbunden sind
+  "089": Runtimes
+  "090": Wo Agenten laufen und Aufgaben parallel bearbeiten
+  "091": Skills, Wissensdatenbank und Projektgedächtnis
+  "092": Tests und Abnahme
+  "093": Automatische Tests, Review durch ein anderes Modell, Vorschauen, menschliche Abnahme
+  "094": Deployment und Rollback
+  "095": Deployment in Staging und andere Umgebungen, Rollback auf die vorherige Version, wenn etwas schiefgeht
+  "096": Ausführungsverlauf und Nutzung
+  "097": Jeder Lauf protokolliert, Nutzung und Kosten auf einen Blick
+  "098": Freigabe für Produktions-Releases
+  "099": Jedes Deployment in eine geschützte Umgebung braucht eine Freigabe
+  "100": Eigene Rollen
+  "101": Legen Sie fest, was Mitglieder auf Seiten, in Einstellungen und bei Aktionen dürfen
+  "102": Quality Gates
+  "103": Pflichtprüfungen sowie eigene Prüfungen für Datenmigrationen, Rechteänderungen und Core-Kompatibilität
+  "104": Kostenkontrolle
+  "105": Budgets pro Projekt, Mitglied oder Agent; ist eines aufgebraucht, wird pausiert und Sie werden benachrichtigt
+  "106": Core-Upgrade-Agent
+  "107": Erscheint eine neue Core-Version, öffnet er einen Upgrade-PR, führt Kompatibilitätsprüfungen aus und erklärt die Änderungen
+  "108": Entscheidungen in Feishu, DingTalk oder WeCom
+  "109": Fragen beantworten, abnehmen und Releases freigeben, ohne Studio zu öffnen
+  "110": Feedback-Schleife aus der Produktion
+  "111": Fehler aus der Produktion und Nutzerfeedback werden automatisch zu Aufgaben, und Agenten finden die Ursache und reichen einen Fix ein
+  "112": Lieferkennzahlen
+  "113": Bestehensquote, Nacharbeitsquote, Kosten pro Aufgabe und Annahmequote, mit Wochenbericht
+  "114": Releases über mehrere Umgebungen
+  "115": Genau das in die Produktion bringen, was in Staging bestanden hat
+  "116": Änderungsfenster und Freeze-Zeiten
+  "117": Festlegen, wann Releases erlaubt sind
+  "118": Teamübergreifende Governance
+  "119": Arbeitsbereiche für viele Teams, Skills und Wissen für jedes Team bereitgestellt und eine Richtlinie für erlaubte Modelle und Anbieter
+  "120": Unternehmensweite Qualitätsrichtlinie
+  "121": Ein einheitlicher Satz von Pflichtprüfungen inklusive Sicherheitsscans für alle Projekte
+  "122": Audit-Trail der Entwicklung
+  "123": "Wer welchen Agenten womit beauftragt hat, was er geändert hat, wer gemergt und wer freigegeben hat: alles protokolliert und exportierbar"
+  "124": Agenten-Isolation
+  "125": Eine isolierte Wegwerf-Laufzeitumgebung pro Aufgabe, eingeschränkter Netzwerkzugriff und Secrets, die Agenten nutzen, aber nie sehen
+  "126": Flotten-Upgrades
+  "127": Die Core-Version jeder App sehen und Dutzende Apps auf einmal aktualisieren
+  "128": Kostenumlage
+  "129": Nutzung und Kosten nach Abteilung und Kostenstelle aufteilen
+  "131": Vertrieb
+  "134": IT-Asset-Management
+  "136": HR
+  "137": In Studio anpassen und veröffentlichen
+  "138": Offizielle Updates, für Sie gemergt
+  "139": "Angepasste Apps halten mit offiziellen Releases Schritt: Agenten mergen, lösen Konflikte und prüfen"
+  "140": Services und Support
+  "141": Dokumentation und Community
+  "142": Upgrades
+  "143": Neue Versionen nach dem Kauf
+  "144": 1 Jahr
+  "145": Technischer Support
+  "146": 1 Jahr, priorisiert
+  "147": Erste Reaktionszeit
+  "148": Innerhalb von 12 Stunden
+  "149": Innerhalb von 4 Stunden
+  "150": Onboarding
+  "151": Durch das NocoBase-Team
+  "152": Ein Deployment
+  "153": "3 Tage: Deployment, Schulung und Implementierung"
+  "154": FAQ
+  "155": Wie wähle ich zwischen Professional und Enterprise?
+  "156": Wählen Sie Professional, wenn ein Team mit Studio entwickelt. Enthalten sind ein Deployment durch das NocoBase-Team und eine erste Antwort auf Supportanfragen innerhalb von 12&nbsp;Stunden.
+  "157": Wählen Sie Enterprise für mehrere Teams oder wenn Sie Releases über mehrere Umgebungen, Hochverfügbarkeit, Audit-Logs oder Air-Gap-Bereitstellung brauchen. Enthalten sind 3 Tage Deployment, Schulung und Implementierung sowie eine erste Antwort innerhalb von 4&nbsp;Stunden.
+  "158": Kann ich Community produktiv einsetzen?
+  "159": Ja. Community enthält den gesamten Core sowie NocoCRM, NocoReach und NocoProject, kostenlos für den Produktivbetrieb und Kundenprojekte. Statten Sie Ihren Coding-Agenten mit den Entwicklungs-Skills von NocoBase aus und legen Sie los. Tests, Releases und Betrieb übernimmt Ihr Team.
+  "160": Wie lange gilt eine kommerzielle Lizenz?
+  "161": Sie läuft nie ab. Kommerzielle Editionen werden einmalig gekauft, ohne Jahresgebühren.
+  "162": Was passiert, wenn das erste Jahr mit Upgrades und Support endet?
+  "163": Alles läuft weiter. Für neue Versionen und Support können Sie Upgrades und Support separat kaufen, ohne jedes Jahr verlängern zu müssen.
+  "164": Werden die kommerziellen Editionen selbst gehostet?
+  "165": Ja. Studio, Ihre Agenten und Ihre Apps laufen alle auf Ihren eigenen Servern. Einmal veröffentlicht, laufen Ihre Apps eigenständig, und alltägliche Geschäftsanfragen gehen nie über Studio.
+  "166": Kann ich Studio einzeln kaufen?
+  "167": Nein. Studio ist in Professional und Enterprise enthalten.
+  "168": Müssen Inhaber einer kommerziellen NocoBase-2-Lizenz neu kaufen?
+  "169": Solange Ihre kommerzielle NocoBase-2-Lizenz noch im Upgrade-Zeitraum ist, können Sie NocoBase 3 ohne erneuten Kauf nutzen. 2.x und 3.x werden parallel gepflegt.
+  "170": Nicht sicher, welche Edition passt?
+  "171": Erzählen Sie uns von Ihrem Team und davon, was Sie bauen möchten. Wir helfen Ihnen, es zu durchdenken und das passende Setup zu entwerfen.
+  "173": Kostenlos starten
+  "174": Erweiterte Freigaben und Enterprise-SSO
+  "175": Alle Solution-Apps wie NocoCRM, NocoITAM und NocoReach mit ihren Fach-Agenten
+  "176": Ja. Community enthält den gesamten Core sowie alle Solution-Apps, kostenlos für den Produktivbetrieb und Kundenprojekte. Statten Sie Ihren Coding-Agenten mit den Entwicklungs-Skills von NocoBase aus und legen Sie los. Tests, Releases und Betrieb übernimmt Ihr Team.

@@ -1,0 +1,50 @@
+notes: |-
+  Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+  术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+  coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+  self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+title: Nous contacter — NocoBase
+description: Contactez NocoBase par e-mail ou via le formulaire pour vos questions commerciales et nos services.
+strings:
+  "001": Contactez-nous. <span class="m">Parlez-nous de ce que vous voulez construire.</span>
+  "002": Pour les questions commerciales et nos services, écrivez-nous ici. Pour les questions techniques, le <a href="https://forum.nocobase.com/" target="_blank" rel="noopener">forum de la communauté</a> est le meilleur endroit.
+  "003": Parlons-en
+  "004": Remplissez le formulaire et nous reviendrons vers vous rapidement, ou écrivez-nous directement.
+  "006": Où nous trouver
+  "007": Votre nom
+  "008": Votre fonction
+  "009": Nom de l’entreprise
+  "010": Comment avez-vous connu NocoBase ?
+  "011": Que voulez-vous faire avec NocoBase ? (plusieurs choix possibles)
+  "012": Présentez votre équipe et vos cas d’usage pour NocoBase
+  "013": Quel type d’aide espérez-vous ?
+  "014": Envoyer
+  "015": Merci ! Nous avons bien reçu votre message et revenons vers vous rapidement.
+  "016": Choisir
+  "017": Moteur de recherche
+  "018": GitHub
+  "019": LinkedIn
+  "020": Facebook
+  "021": Instagram
+  "022": TikTok
+  "023": YouTube
+  "024": X
+  "025": Recommandation d’un partenaire ou d’un tiers
+  "026": Amis ou collègues
+  "027": Reddit
+  "028": Communauté en ligne
+  "029": Assistant IA
+  "030": Article ou blog
+  "031": Hacker News
+  "032": Product Hunt
+  "033": Site d’avis
+  "034": Autre
+  "035": Usage interne pour développer des systèmes ou outils métier
+  "036": Proposer des prestations de développement basées sur NocoBase
+  "037": Développer des produits commerciaux basés sur NocoBase
+  "038": Études ou recherche
+  "039": Votre e-mail
+  "040": Où se trouve votre entreprise ?
+  "041": Sélectionnez votre pays ou région
+  "042": "Nous sommes une équipe à distance répartie dans plusieurs pays, avec des bureaux à :"
+  "043": 501, 1-55-8 Akabane, Kita-ku, Tokyo, Japon

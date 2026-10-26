@@ -1,40 +1,38 @@
 ---
-title: NocoBase Core 文档
-nav: Core 首页
-description: Core 是开发和运行业务系统的开源底座。权限、审批、文件、通知这些每个系统都需要的能力已经就绪，Agent 直接使用，把开发集中在你自己的业务上。
+title: NocoBase Core
+description: 创建应用，认识项目结构，并通过一个任务应用逐步学习开发。
 ---
 
-在 NocoBase 3 里，应用是一份代码，由 Agent 基于 Core 编写。你说清要什么、做出判断、验收结果；Agent 读 Core 随包提供的技能，用 Core 的插件和组件写出应用；应用上线后，管理员在应用的「系统设置」里维护用户、权限和流程参数。
+从一个可运行的项目开始，用 NocoBase Core 开发自己的业务应用。你可以和 Coding Agent 一起完成，也可以按步骤手动编写。
 
-> [!TIP] 第一次来
-> 先读 [Core 是什么](intro/what-is-core.md) 和 [插件怎样工作](intro/how-plugins-work.md)，再按 [快速开始](quickstart.md) 创建一个应用。
+## 开始使用
 
-## 按角色阅读
+1. [Core 是什么](getting-started/what-is-core.md)：了解 Core、模板、插件和应用的关系。
+2. [创建应用](getting-started/create-app.md)：创建应用，启动并登录。
+3. [项目结构](getting-started/project-structure.md)：找到页面、接口、数据库和测试的位置。
+4. [搭建第一个应用](tutorials/build-your-first-feature.md)：使用 Agent 或手动实现完整的团队任务应用，完成测试后选择部署方式。
 
-| 你是 | 先读 | 再读 |
-| --- | --- | --- |
-| 正在评估 NocoBase 3 | [Core 是什么](intro/what-is-core.md) → [一个应用怎样做出来](intro/how-an-app-gets-built.md) | [能力总览](capabilities/index.md) → [插件目录](plugins/index.md) |
-| 开发者、技术负责人 | 入门五篇，含 [快速开始](quickstart.md) | 开发应用 → 按需查能力和插件 |
-| 业务负责人、业务专家 | [Core 是什么](intro/what-is-core.md) → [一个应用怎样做出来](intro/how-an-app-gets-built.md) | [能力总览](capabilities/index.md)，以及相关能力的“怎样提需求” |
-| 应用管理员 | [核心概念](intro/concepts.md) | 系统设置 → 用户与组织 → 权限控制 |
-| 运维 | [快速开始](quickstart.md) | 部署与运维 → 配置参考 |
-| 用过 NocoBase 2 | [从 NocoBase 2 来](../start/from-v2.md) → [插件怎样工作](intro/how-plugins-work.md) | [插件目录](plugins/index.md) → [工作流与审批](capabilities/workflows.md) |
-| 插件开发者 | [核心概念](intro/concepts.md) → [插件怎样工作](intro/how-plugins-work.md) | 扩展开发 |
+## 开发应用
 
-## 文档包括什么
+按主题查阅应用开发的约定和用法；需要运行示例时，再准备对应的数据与接口。
 
-| 部分 | 内容 |
-| --- | --- |
-| [入门](intro/what-is-core.md) | Core 是什么、一个应用怎样做出来、核心概念、插件怎样工作、快速开始 |
-| [开发应用](develop/working-with-agents.md) | 和 Agent 一起开发的通用方法：提需求、应用的结构、管理插件、页面、数据、接口、系统设置、验收、升级 |
-| [能力](capabilities/index.md) | 按「应用底座」的 13 类，逐项说明开箱即有什么、Agent 要做什么、管理员能调整什么 |
-| [插件目录](plugins/index.md) | 每个插件一页：它提供什么、在应用里是什么样子、怎样让 Agent 使用 |
-| [部署与运维](operations/deployment.md) | 部署、配置、数据库、存储、后台任务、升级与回滚、备份、日志 |
-| [扩展开发](extend/when-to-write-a-plugin.md) | 什么时候写插件，怎样创建、发布插件，给插件写技能 |
-| [参考](reference/cli.md) | 命令行、配置项、HTTP 接口、包与版本、常见问题 |
+- [应用开发概览](developing-apps/overview.md)：理解应用、模板与插件，以及页面到数据库的完整路径。
+- [和 Agent 一起开发](developing-apps/develop-with-an-agent.md)：描述需求、使用项目指引并验证结果。
+- [数据模型与迁移](developing-apps/data-models-and-migrations.md)：设计字段、关系与约束，保留旧数据。
+- [查询与操作数据](developing-apps/querying-data.md)：使用 Repository、分页、关联、事务与 Query。
+- [业务服务与 HTTP 接口](developing-apps/apis-and-services.md)：组织服务、校验输入、接入权限并声明 API。
+- [页面、路由与导航](developing-apps/pages-routes-and-navigation.md)：注册页面与菜单，组织子路由和访问条件。
+- [UI 组件与交互](developing-apps/pages-and-interactions.md)：处理列表、表单、弹窗和操作反馈。
+- [应用配置与系统设置](developing-apps/configuration-and-settings.md)：区分运行配置和业务设置，接入管理页面。
+- [多语言与主题](developing-apps/localization-and-themes.md)：组织文案、语言资源和统一的主题样式。
+- [管理插件](developing-apps/manage-plugins.md)：使用已有能力，管理注册、更新、移除与扩展。
+- [测试与验收](developing-apps/testing-and-acceptance.md)：选择测试层次，验证真实数据、权限和用户流程。
 
-## 关于这份文档
+## 部署与运维
 
-- 行为描述对照 NocoBase 仓库 `v3-develop` 分支（2026-10-23）的代码、默认模板和技能。各个包目前都是 beta 版本，以产品为准。
-- 例子是一家企业的采购应用：供应商、采购订单、审批、到货。
-- 模板和插件自带的界面名称写在「」里，例如「系统设置 › 应用底座」。Agent 按需求做出的页面每个应用不同，文档用描述的方式写，例如“采购订单详情里的附件区”。
+- [选择部署方式](deployment/choose-a-deployment-method.md)：比较运行方式，准备配置、数据和恢复方案。
+- [使用 Docker 部署](tutorials/deploy-with-docker.md)：构建镜像，用容器和持久化挂载运行应用。
+- [使用 app-installer 部署](tutorials/deploy-with-app-installer.md)：管理服务器安装、进程和应用更新。
+- [部署到 Studio](tutorials/deploy-to-studio.md)：通过 Studio 管理应用、环境和发布。
+- [升级 NocoBase Core](developing-apps/upgrade-nocobase-core.md)：使用 Agent 或手动合并新模板，验证兼容性并发布升级后的应用。
+- [发布应用新版本](deployment/publish-app-release.md)：重新构建并部署，了解三种部署方式更新时的差别。

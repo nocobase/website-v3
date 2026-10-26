@@ -1,0 +1,137 @@
+汇总一周产品更新日志，最新发布可以[前往我们的博客查看](https://www.nocobase.com/cn/blog/timeline)。
+
+**NocoBase 目前更新包括的版本更新包括三个分支：`main` ，`next`和 `develop`。**
+
+![version.png](https://static-docs.nocobase.com/ba5f04e27e99c625cb3822da5df07860.png)
+
+`main` ：截止目前最稳定的版本，推荐安装此版本。
+
+`next`：包含即将发布的新功能，经过初步测试的版本，可能存在部分已知或未知问题。主要面向测试用户，用于收集反馈和进一步优化功能。适合愿意提前体验新功能并提供反馈的测试用户。
+
+`develop`：开发中的版本，包含最新的功能代码，可能尚未完成或存在较多不稳定因素，主要用于内部开发和快速迭代。适合对产品功能前沿发展感兴趣的技术用户，但可能存在较多问题或不完整功能，不建议在生产环境中使用。
+
+## main
+
+![main.png](https://static-docs.nocobase.com/47a3c71734c1d0f908b51f9ebd53c0ac.png)
+
+### [v1.9.8](https://www.nocobase.com/cn/blog/v1.9.8)
+
+*发布时间：2025-11-19*
+
+### 🐛 修复
+
+- **[工作流：自定义操作事件]** 修复监听不存在的外部数据源事件产生的报错 by @mytharcher
+- **[模板打印]** 解析filter中变量 by @jiannx
+- **[工作流：审批]** 修复由于多个审批人并发处理审批时的竞态导致的节点重复执行的问题 by @mytharcher
+
+### [v1.9.7](https://www.nocobase.com/cn/blog/v1.9.7)
+
+*发布时间：2025-11-18*
+
+### 🐛 修复
+
+- **[client]** 修复审批表单的联动规则不生效的问题 ([#7858](https://github.com/nocobase/nocobase/pull/7858)) by @zhangzhonghe
+- **[server]** 修复服务拆分模式下未订阅无法发布队列消息的问题 ([#7875](https://github.com/nocobase/nocobase/pull/7875)) by @mytharcher
+- **[工作流]**
+
+  - 修复监听不存在的外部数据源事件产生的报错 ([#7855](https://github.com/nocobase/nocobase/pull/7855)) by @mytharcher
+  - 使用底层事件队列代替共享后台任务队列，以避免共享队列在服务拆分模式下会被错误消费的问题 ([#7871](https://github.com/nocobase/nocobase/pull/7871)) by @mytharcher
+- **[工作流：人工处理节点]** 修复翻译语言指向的命名空间，以正确的翻译内容 ([#7877](https://github.com/nocobase/nocobase/pull/7877)) by @mytharcher
+- **[权限控制]** 关系字段关联操作 snippets 不生效的问题 ([#7876](https://github.com/nocobase/nocobase/pull/7876)) by @2013xile
+- **[工作流：审批]**
+
+  - 修复通知渠道分页数量太小加载不全的问题 by @mytharcher
+  - 修复审批表单的联动规则不生效的问题 by @zhangzhonghe
+  - 修复待办中心审批列表卡片上的日期格式，展示完整的日期和时间 by @mytharcher
+  - 修复提交审批处理时查询审批记录列表的性能问题 by @mytharcher
+
+## develop
+
+![develop.png](https://static-docs.nocobase.com/7fcdd9456a17286d8a439eee52bcb8d2.png)
+
+### [v2.0.0-alpha.42](https://www.nocobase.com/cn/blog/v2.0.0-alpha.42)
+
+*发布时间：2025-11-19*
+
+### 🐛 修复
+
+- **[client]** 修复 JS block 区块中的标题和描述不显示的问题。 ([#7913](https://github.com/nocobase/nocobase/pull/7913)) by @gchust
+
+### [v2.0.0-alpha.41](https://www.nocobase.com/cn/blog/v2.0.0-alpha.41)
+
+*发布时间：2025-11-19*
+
+### 🎉 新特性
+
+- **[数据可视化]** 新增图表配置的 AI 员工 ([#7815](https://github.com/nocobase/nocobase/pull/7815)) by @heziqiang
+
+### 🚀 优化
+
+- **[flow-engine]**
+
+  - 支持 flow engine 层监听 models 树变更。 ([#7905](https://github.com/nocobase/nocobase/pull/7905)) by @gchust
+  - 优化当前记录的变量解析，提高弹窗打开的速度 ([#7895](https://github.com/nocobase/nocobase/pull/7895)) by @gchust
+  - 优化 runjs 的上下文中第三方库的 api 结构，并支持 Antd 图标库。 ([#7896](https://github.com/nocobase/nocobase/pull/7896)) by @gchust
+- **[database]** 重构字段加密插件，提升安全性，支持应用密钥生成与更换、字段独立密钥。 ([#7769](https://github.com/nocobase/nocobase/pull/7769)) by @cgyrock
+- **[数据表字段：加密]** 优化字段加密插件，支持独立 IV 下的数据检索 by @cgyrock
+
+### 🐛 修复
+
+- **[client]**
+
+  - 修复区块被隐藏后依然占用页面空间的问题。 ([#7906](https://github.com/nocobase/nocobase/pull/7906)) by @gchust
+  - 修复筛选按钮中，重置按钮清空默认条件的问题 ([#7903](https://github.com/nocobase/nocobase/pull/7903)) by @zhangzhonghe
+  - 修复新增表单子表单字段权限判断错误的问题 ([#7902](https://github.com/nocobase/nocobase/pull/7902)) by @katherinehhh
+- **[server]** 修复服务拆分模式下未订阅无法发布队列消息的问题 ([#7875](https://github.com/nocobase/nocobase/pull/7875)) by @mytharcher
+- **[工作流]**
+
+  - 修复监听不存在的外部数据源事件产生的报错 ([#7855](https://github.com/nocobase/nocobase/pull/7855)) by @mytharcher
+  - 使用底层事件队列代替共享后台任务队列，以避免共享队列在服务拆分模式下会被错误消费的问题 ([#7871](https://github.com/nocobase/nocobase/pull/7871)) by @mytharcher
+- **[工作流：人工处理节点]** 修复翻译语言指向的命名空间，以正确的翻译内容 ([#7877](https://github.com/nocobase/nocobase/pull/7877)) by @mytharcher
+- **[权限控制]** 关系字段关联操作 snippets 不生效的问题 ([#7876](https://github.com/nocobase/nocobase/pull/7876)) by @2013xile
+- **[工作流：自定义操作事件]** 修复监听不存在的外部数据源事件产生的报错 by @mytharcher
+- **[评论]** 修复评论区块引用评论失效问题 by @katherinehhh
+- **[模板打印]** 解析 ilter 中变量 by @jiannx
+- **[工作流：审批]** 修复由于多个审批人并发处理审批时的竞态导致的节点重复执行的问题 by @mytharcher
+
+### [v2.0.0-alpha.40](https://www.nocobase.com/cn/blog/v2.0.0-alpha.40)
+
+*发布时间：2025-11-18*
+
+### 🚀 优化
+
+- **[flow-engine]** 优化工具栏样式，防止图标被遮挡 ([#7883](https://github.com/nocobase/nocobase/pull/7883)) by @zhangzhonghe
+
+### 🐛 修复
+
+- **[flow-engine]** 修复用户重登陆了 acl 权限数据未重新加载的问题。 ([#7874](https://github.com/nocobase/nocobase/pull/7874)) by @gchust
+- **[client]** 修复表单字段配置项缺陷 ([#7867](https://github.com/nocobase/nocobase/pull/7867)) by @katherinehhh
+- **[数据可视化]** 仅在图表预览时使用 sql 数据查询的 debug 模式 ([#7893](https://github.com/nocobase/nocobase/pull/7893)) by @heziqiang
+- **[多空间]** 修复多空间关联用户 by @jiannx
+- **[工作流：审批]**
+
+  - 修复通知渠道分页数量太小加载不全的问题 by @mytharcher
+  - 修复提交审批处理时查询审批记录列表的性能问题 by @mytharcher
+  - 修复待办中心审批列表卡片上的日期格式，展示完整的日期和时间 by @mytharcher
+
+### [v2.0.0-alpha.39](https://www.nocobase.com/cn/blog/v2.0.0-alpha.39)
+
+*发布时间：2025-11-17*
+
+### 🚀 优化
+
+- **[client]** 适配移动端组件 ([#7870](https://github.com/nocobase/nocobase/pull/7870)) by @zhangzhonghe
+
+### 🐛 修复
+
+- **[client]**
+
+  - 修复默认的 js field 配置未使用显示模式配置。 ([#7862](https://github.com/nocobase/nocobase/pull/7862)) by @gchust
+  - 修复拖拽引用模板后再删除引用模板而导致的复制模板不显示的问题 ([#7847](https://github.com/nocobase/nocobase/pull/7847)) by @zhangzhonghe
+  - 修复无法正确设置筛选表单日期字段默认值的问题。 ([#7853](https://github.com/nocobase/nocobase/pull/7853)) by @gchust
+  - 修复审批表单的联动规则不生效的问题 ([#7858](https://github.com/nocobase/nocobase/pull/7858)) by @zhangzhonghe
+  - 修复表格区块的快捷编辑操作无法正确更新数据的问题。 ([#7845](https://github.com/nocobase/nocobase/pull/7845)) by @gchust
+  - 修复富文本字段无法输入默认值及多选字段默认值无法选择多个选项的问题。 ([#7864](https://github.com/nocobase/nocobase/pull/7864)) by @gchust
+- **[多应用管理器（已废弃）]** 子应用停止后发布同步信号，通知其他节点停止对应子应用 ([#7849](https://github.com/nocobase/nocobase/pull/7849)) by @2013xile
+- **[工作流：审批]** 修复审批表单的联动规则不生效的问题 by @zhangzhonghe
+- **[邮件管理]** ShadowHtml 刷新报错 by @jiannx

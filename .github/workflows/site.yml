@@ -1,0 +1,259 @@
+name: Site
+
+# Builds the website (`html/`) on every pull request and push to `main` that touches it, and publishes a push to `main`
+# to the website's bucket and, once its domains are configured, its CDN.
+#
+# This repository is public, so the jobs are split by trust:
+#
+# - `build` generates the site from `html/src` with `html/scripts/build.mjs` (one static page per language, see
+#   `html/README.md`) on any pull request, including one from a fork. It is triggered by `pull_request`, never
+#   `pull_request_target`, references no secret, and its token can only read.
+# - `publish` runs only for `main` in the `production` environment. It downloads the built site as an artifact and runs
+#   no code from the repository except `scripts/deploy-cdn`. The Aliyun keys appear only in the `env` of its `Publish`
+#   step.
+#
+# Publishing works like the documentation's: the build is uploaded to its own timestamp directory in the bucket, then the
+# back-to-origin rewrite rules of every domain in `SITE_CDN_DOMAINS` are pointed at it, the CDN cache is refreshed and
+# all but the newest three versions are removed (see `scripts/deploy-cdn/deploy-cdn.mjs`). While `SITE_CDN_DOMAINS` is
+# empty, a run switches no CDN and refreshes no cache, but still removes all but the newest three versions.
+#
+# To roll back, point every back-to-origin rewrite rule of each domain at an older version directory in the CDN console.
+#
+# Configuration: every value is a secret of the `production` environment, so only the publish job can read it:
+# `ALI_ACCESS_KEY_ID`, `ALI_ACCESS_KEY_SECRET`, `ALI_OSS_REGION` (e.g. `cn-beijing`), `SITE_OSS_BUCKET` and,
+# optionally, `SITE_CDN_DOMAINS` (whitespace- or comma-separated; a secret that does not exist reads as empty).
+#
+# `docs.yml` publishes the documentation the same way; keep the two in step when changing how either publishes.
+
+on:
+  pull_request:
+    paths:
+      - 'html/**'
+      - '.github/workflows/site.yml'
+      - 'scripts/deploy-cdn/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'html/**'
+      - '.github/workflows/site.yml'
+      - 'scripts/deploy-cdn/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Site build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      # pnpm's version comes from the `packageManager` field of html/package.json.
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: html/package.json
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: html/pnpm-lock.yaml
+
+      - name: Install the build dependencies
+        working-directory: html
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Test the build scripts
+        working-directory: html
+        run: pnpm test
+
+      # The figure fragments in html/src/pages/snips/ and the blocks the figure scripts write into home.html and
+      # site.css are committed. Regenerating them must change nothing, so an edit made to the output instead of the
+      # script fails here.
+      - name: Check the generated figures
+        working-directory: html
+        run: |
+          set -euo pipefail
+          pnpm figs
+          if ! git diff --exit-code -- src; then
+            echo "::error::The committed figures differ from what html/scripts/figs/ generates. Change the scripts, run pnpm figs in html/ and commit the result."
+            exit 1
+          fi
+
+      # Fails on a broken internal link, a translation error, a language with a different number of pages, or a
+      # top-level name the CDN rules would map elsewhere.
+      - name: Build the site
+        working-directory: html
+        run: pnpm build
+
+      # Only that the files the bucket's index document and the pages depend on exist.
+      - name: Check the build
+        run: |
+          missing=0
+          for f in index.html zh-CN/index.html 404.html sitemap.xml robots.txt; do
+            if [ ! -s "html/dist/$f" ]; then
+              echo "::error::The build did not produce html/dist/$f."
+              missing=1
+            fi
+          done
+          if [ ! -d html/dist/assets ]; then
+            echo "::error::The build did not produce html/dist/assets/."
+            missing=1
+          fi
+          exit "$missing"
+
+      # Pure logic of the publishing script (argument parsing, which versions a cleanup removes); needs no dependency.
+      - name: Test the publishing script
+        run: node --test scripts/deploy-cdn/versions.test.mjs
+
+      - name: Upload the site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: html/dist
+          if-no-files-found: error
+          retention-days: 7
+
+  # Two publishes never overlap, since each rewrites the same CDN rules, and a publish is never cancelled midway: a rule
+  # pointing at a directory another run's cleanup deleted would take the site down.
+  publish:
+    name: Site publish
+    needs: build
+    if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: production
+    concurrency:
+      group: site-publish
+      cancel-in-progress: false
+    steps:
+      # An older build must never switch the rules back over a newer one. A run whose commit is no longer the head of
+      # `main` still publishes when nothing after it changes what this workflow publishes: such commits trigger no run,
+      # so no other run would publish this one's site. When a newer commit does change it, that push publishes
+      # instead and this run skips every step below; so does a run whose commit is no longer in `main`, or whose
+      # comparison GitHub cuts short at 300 files.
+      - name: Compare with the head of the branch
+        id: head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          head=$(gh api "repos/${REPOSITORY}/commits/main" --jq .sha)
+          if [ "$head" = "$HEAD_SHA" ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          read -r status files relevant < <(gh api "repos/${REPOSITORY}/compare/${HEAD_SHA}...${head}" --jq '
+            def watched: startswith("html/") or startswith("scripts/deploy-cdn/") or . == ".github/workflows/site.yml";
+            [.status, (.files | length), ([.files[] | select((.filename | watched) or ((.previous_filename // "") | watched))] | length)] | @tsv')
+          if [ "$status" = "ahead" ] && [ "$files" -lt 300 ] && [ "$relevant" -eq 0 ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::main has moved on to ${head}, but nothing after this commit changes the site, so this run publishes."
+          else
+            echo "current=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::main has moved on to ${head} (${status}, ${relevant} of ${files} changed files affect the site), so a newer push publishes instead of this one."
+          fi
+
+      # Only the publishing script, from the commit that was built.
+      - name: Check out the publishing script
+        if: ${{ steps.head.outputs.current == 'true' }}
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: scripts/deploy-cdn
+
+      - name: Download the site
+        if: ${{ steps.head.outputs.current == 'true' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist
+
+      - name: Set up Node.js
+        if: ${{ steps.head.outputs.current == 'true' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install the publishing tools
+        if: ${{ steps.head.outputs.current == 'true' }}
+        run: |
+          set -euo pipefail
+          curl -fsSL -o "$RUNNER_TEMP/ossutil.zip" \
+            https://gosspublic.alicdn.com/ossutil/v2/2.2.2/ossutil-2.2.2-linux-amd64.zip
+          unzip -o -q "$RUNNER_TEMP/ossutil.zip" -d "$RUNNER_TEMP/ossutil"
+          sudo mv "$RUNNER_TEMP/ossutil/ossutil-2.2.2-linux-amd64/ossutil" /usr/local/bin/ossutil
+          sudo chmod 755 /usr/local/bin/ossutil
+          npm ci --ignore-scripts --prefix scripts/deploy-cdn
+
+      - name: Publish
+        if: ${{ steps.head.outputs.current == 'true' }}
+        env:
+          ALI_ACCESS_KEY_ID: ${{ secrets.ALI_ACCESS_KEY_ID }}
+          ALI_ACCESS_KEY_SECRET: ${{ secrets.ALI_ACCESS_KEY_SECRET }}
+          ALI_OSS_REGION: ${{ secrets.ALI_OSS_REGION }}
+          ALI_OSS_BUCKET: ${{ secrets.SITE_OSS_BUCKET }}
+          ALI_CDN_DOMAINS: ${{ secrets.SITE_CDN_DOMAINS }}
+          # ossutil reads the credentials from these names.
+          OSS_ACCESS_KEY_ID: ${{ secrets.ALI_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.ALI_ACCESS_KEY_SECRET }}
+        run: |
+          set -euo pipefail
+
+          for name in ALI_ACCESS_KEY_ID ALI_ACCESS_KEY_SECRET ALI_OSS_REGION ALI_OSS_BUCKET; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is not set. Configure it in the production environment before publishing."
+              exit 1
+            fi
+          done
+
+          # ossutil takes the bare region id, `cn-beijing`, and derives the endpoint from it; the SDK the publish script
+          # uses takes the `oss-` prefixed form. The secret holds whichever one was pasted from the console, and each
+          # side normalizes it — `--region oss-cn-beijing` is rejected outright.
+          REGION="${ALI_OSS_REGION#oss-}"
+
+          # Asia/Shanghai so the directory name reads as the local time of the people who deploy it.
+          TIMESTAMP="$(TZ=Asia/Shanghai date +%Y%m%d%H%M%S)"
+          echo "Uploading to version directory $TIMESTAMP/"
+
+          ossutil cp -r dist/ "oss://$ALI_OSS_BUCKET/$TIMESTAMP/" \
+            -f -j 64 --region "$REGION"
+
+          # The bucket's static-website error document is read from the root, not from inside a version directory, so
+          # `404.html` is uploaded there as well. It is served for a missing path at any depth and uses root paths only.
+          if [ -f dist/404.html ]; then
+            ossutil cp dist/404.html "oss://$ALI_OSS_BUCKET/404.html" \
+              -f --region "$REGION"
+          fi
+
+          # The CDN domains are optional. Without them nothing serves the bucket yet, so there is nothing to switch or
+          # refresh, but old versions are still removed so the bucket keeps the same history it will keep once served.
+          if [ -z "${ALI_CDN_DOMAINS//[[:space:],]/}" ]; then
+            ALI_CDN_DOMAINS='' node scripts/deploy-cdn/deploy-cdn.mjs --timestamp "$TIMESTAMP" --keep 2 --cleanup-only
+            echo "::notice::SITE_CDN_DOMAINS is not set, so no CDN was switched to version $TIMESTAMP and no cache was refreshed. Old versions were removed: the bucket keeps the newest 3 version directories."
+            {
+              echo "### Site uploaded"
+              echo
+              echo "Version \`$TIMESTAMP\` is in the bucket (\`SITE_OSS_BUCKET\`). No CDN domain is configured (\`SITE_CDN_DOMAINS\`), so nothing was switched to it and no cache was refreshed. Old versions were removed; the newest 3 version directories are kept."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # Keeps two older versions besides this one to roll back to.
+          node scripts/deploy-cdn/deploy-cdn.mjs --timestamp "$TIMESTAMP" --keep 2
+
+          {
+            echo "### Site published"
+            echo
+            echo "Version \`$TIMESTAMP\` is live on every domain in \`SITE_CDN_DOMAINS\`. The newest 3 version directories are kept."
+          } >> "$GITHUB_STEP_SUMMARY"

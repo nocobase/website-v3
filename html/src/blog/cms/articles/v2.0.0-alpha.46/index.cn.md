@@ -1,0 +1,17 @@
+### 🚀 优化
+
+- **[flow-engine]** 支持动态切换 flow model 类型 ([#7952](https://github.com/nocobase/nocobase/pull/7952)) by @gchust
+- **[AI 员工]** AI 员工插件添加 upgrade 钩子函数 ([#7951](https://github.com/nocobase/nocobase/pull/7951)) by @heziqiang
+- **[异步任务管理器]** 优化异步任务的错误信息，任务失败时将明确提示具体的错误原因 ([#7796](https://github.com/nocobase/nocobase/pull/7796)) by @mytharcher
+- **[工作流：审批]**
+
+  - 在手动执行（或子流程调用）时，同时支持传入整行数据或仅主键，避免触发器数据中的数据一致性问题 by @mytharcher
+  - 减少打开审批弹窗时加载的关联数据，以提供更好的性能表现 by @mytharcher
+  - 修复审批人选择组件，仅允许用户表的主外键可选 by @mytharcher
+
+### 🐛 修复
+
+- **[client]** 文本字段在详情区块中超出内容宽度时应默认换行 ([#7955](https://github.com/nocobase/nocobase/pull/7955)) by @katherinehhh
+- **[异步任务管理器]** 为 `asyncTasks` 数据表增加迁移规则，避免异步任务记录被迁移 ([#7950](https://github.com/nocobase/nocobase/pull/7950)) by @mytharcher
+- **[文件管理器]** 修复表单附件字段上传未按设置使用指定文件存储器的问题 ([#7947](https://github.com/nocobase/nocobase/pull/7947)) by @katherinehhh
+- **[工作流：审批]** 修复语言文件 by @mytharcher

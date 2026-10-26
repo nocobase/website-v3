@@ -1,0 +1,50 @@
+notes: |-
+  Deutsch（Sie）
+  术语：foundation = Fundament；building blocks = Bausteine；governance = Governance；agent team = Agenten-Team；
+  coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
+  vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
+title: Kontakt — NocoBase
+description: Erreichen Sie NocoBase per E-Mail oder über das Formular für Vertriebsfragen und kommerzielle Services.
+strings:
+  "001": Kontakt. <span class="m">Erzählen Sie uns, was Sie bauen möchten.</span>
+  "002": Für Vertriebsfragen und kommerzielle Services erreichen Sie uns hier. Technische Fragen stellen Sie am besten im <a href="https://forum.nocobase.com/" target="_blank" rel="noopener">Community-Forum</a>.
+  "003": Sprechen Sie uns an
+  "004": Füllen Sie das Formular aus, und wir melden uns bald, oder schreiben Sie uns direkt.
+  "006": Wo wir sind
+  "007": Ihr Name
+  "008": Ihre Position
+  "009": Firmenname
+  "010": Wie haben Sie von NocoBase erfahren?
+  "011": Was möchten Sie mit NocoBase machen? (Mehrfachauswahl möglich)
+  "012": Erzählen Sie uns von Ihrem Team und Ihren Anwendungsfällen für NocoBase
+  "013": Welche Unterstützung wünschen Sie sich?
+  "014": Absenden
+  "015": Vielen Dank! Wir haben Ihre Nachricht erhalten und melden uns in Kürze.
+  "016": Bitte wählen
+  "017": Suchmaschine
+  "018": GitHub
+  "019": LinkedIn
+  "020": Facebook
+  "021": Instagram
+  "022": TikTok
+  "023": YouTube
+  "024": X
+  "025": Empfehlung durch Partner oder Dritte
+  "026": Freunde oder Kollegen
+  "027": Reddit
+  "028": Online-Community
+  "029": KI-Chat
+  "030": Artikel oder Blogbeitrag
+  "031": Hacker News
+  "032": Product Hunt
+  "033": Bewertungsportal
+  "034": Sonstiges
+  "035": Interne Nutzung zur Entwicklung von Geschäftssystemen oder Tools
+  "036": Entwicklungsdienstleistungen auf Basis von NocoBase anbieten
+  "037": Kommerzielle Produkte auf Basis von NocoBase entwickeln
+  "038": Studium oder Forschung
+  "039": Ihre E-Mail
+  "040": Wo befindet sich Ihr Unternehmen?
+  "041": Land oder Region auswählen
+  "042": "Wir sind ein Remote-Team in mehreren Ländern mit Büros in:"
+  "043": 501, 1-55-8 Akabane, Kita-ku, Tokio, Japan

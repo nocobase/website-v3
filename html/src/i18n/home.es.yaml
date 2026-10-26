@@ -1,0 +1,255 @@
+notes: |-
+  Español（中性拉美/西班牙通用，tú）
+  术语：foundation = base；building blocks = componentes base；governance = gobernanza；agent team = equipo de agentes；
+  coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
+  vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
+title: NocoBase 3 — Plataforma de código abierto para sistemas empresariales creados con IA
+description: NocoBase es la plataforma de código abierto para crear, ejecutar y hacer evolucionar sistemas empresariales con IA.
+strings:
+  "000": Actual
+  "001": La plataforma de desarrollo para agentes
+  "002": Plataforma de desarrollo con IA y no-code
+  "003": Productos
+  "004": La base de código abierto para sistemas empresariales creados con IA
+  "005": La plataforma de gobernanza para personas y agentes que desarrollan software juntos
+  "006": Aplicaciones empresariales impulsadas por agentes
+  "007": No-code
+  "008": Plataforma de configuración visual, mantenida junto a la v3
+  "009": Soluciones
+  "010": Ventas · Agentes de ventas y renovaciones
+  "011": Activos de TI · Agente de activos y auditoría
+  "012": Crecimiento · Agente de contenido
+  "013": Soporte · Agentes de clasificación y respuesta
+  "014": Proyectos · Agentes de investigación y documentación
+  "015": RR. HH. · Agente de incorporación
+  "016": Recursos
+  "017": Documentación
+  "018": Guías, funciones clave y referencia de la API
+  "019": Clientes
+  "020": Cómo los equipos operan sus sistemas clave en NocoBase
+  "021": Blog
+  "022": Visión de producto y prácticas de ingeniería
+  "023": Registro de cambios
+  "024": Qué trae cada versión
+  "025": Comunidad
+  "026": Haz preguntas y comparte buenas prácticas
+  "027": Contacto
+  "028": Ventas, alianzas y soporte
+  "029": Partners
+  "030": Encuentra un partner
+  "031": Construye y pon en marcha tu sistema con un experto
+  "032": Hazte partner
+  "033": Un consultor, un equipo de agentes, más proyectos
+  "034": Precios
+  "035": Solicitar demo
+  "036": Base de aplicaciones
+  "037": Personas + agentes
+  "038": Apps empresariales
+  "039": No-code ↗
+  "040": Crea sistemas empresariales confiables
+  "041": <span class="ln">NocoBase es la plataforma de código abierto para crear, ejecutar y hacer evolucionar sistemas empresariales con IA.</span><span class="ln">Los agentes escriben el código y hacen el trabajo, NocoBase aporta la base y la gobernanza, y las personas toman las decisiones.</span>
+  "042": Ver la demo
+  "043": Empezar
+  "044": Equipos de todos los sectores construyen sus sistemas clave sobre NocoBase
+  "045": Caso de cliente · Sungrow
+  "046": Operaciones globales sobre una única base NocoBase
+  "047": Cómo un líder mundial en energías limpias crea y hace evolucionar decenas de sistemas clave sobre una única plataforma compartida.
+  "048": Leer el caso
+  "049": Por qué NocoBase
+  "050": La IA escribe código rápido.<br>
+  "051": Crear sistemas empresariales confiables sigue siendo difícil.
+  "052": Tu equipo ya desarrolla con IA o hace vibe coding. El código sale rápido, pero también surgen nuevos problemas.
+  "054": Aunque la IA escriba el código, los permisos, los motores de flujos de trabajo y las aprobaciones siguen siendo difíciles de diseñar desde cero. Están llenos de casos límite y exigen mucho mantenimiento.
+  "055": La arquitectura se desvía sin control
+  "056": Cambia de desarrollador, de modelo o incluso de sesión, y la IA puede improvisar de forma distinta cada vez. El sistema es cada vez más difícil de mantener.
+  "057": Más trabajo en paralelo del que se puede revisar
+  "058": Llevas varios proyectos y tareas a la vez, saltando entre terminales y chats, mientras los agentes entregan cada vez más cambios. Hay más de lo que nadie puede revisar, pero soltar el control parece demasiado arriesgado.
+  "059": El conocimiento es difícil de capturar y compartir
+  "060": El contexto de los requisitos, los documentos de negocio y las lecciones aprendidas quedan dispersos en chats de distintos dispositivos. Cuando cambian las personas o los agentes, cuesta encontrarlos.
+  "061": Deja que los agentes se centren en tu lógica de negocio.<br>
+  "062": La base ya está lista.
+  "063": NocoBase Core es la base de aplicaciones de código abierto para sistemas empresariales creados y operados con IA. Permisos, flujos de trabajo, archivos y otros componentes base vienen listos para usar, así que los agentes solo desarrollan lo específico de tu negocio, todo sobre una arquitectura coherente.
+  "064": Componentes probados, listos para usar
+  "065": Core ofrece más de 20 componentes base, como permisos, flujos de trabajo, archivos y notificaciones, para que los agentes se centren en la lógica de negocio.
+  "066": Una arquitectura, unos mismos estándares
+  "067": Core aporta la estructura inicial del proyecto, estándares de arquitectura y skills de desarrollo, para que la arquitectura siga siendo coherente y esté bajo control aunque cambien las personas y los modelos.
+  "068": Tus apps y tus datos son tuyos
+  "069": Core es gratuito y de código abierto. Tu código de negocio y tus datos se quedan en tus propios repositorios y servidores, y tú eliges los modelos y los agentes.
+  "070": Descubre NocoBase Core
+  "071": Deja que tu equipo se centre en decidir.<br>
+  "072": La ejecución, déjala a los agentes.
+  "073": NocoBase Studio es la plataforma de gobernanza para personas y agentes que desarrollan software juntos. Reúne el Claude Code y el Codex de tu equipo en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave.
+  "074": Un equipo de agentes que mantiene el trabajo en marcha
+  "075": Conecta agentes de muchas máquinas y coordínalos desde un solo lugar. Hacen avanzar muchos proyectos y tareas en paralelo, las 24 horas.
+  "076": El progreso, de un vistazo
+  "077": El avance de los proyectos, la actividad de cada tarea, la carga de los agentes y el uso de modelos quedan siempre a la vista.
+  "078": Decisiones basadas en evidencias
+  "079": Cuando una decisión requiere a una persona, los agentes adjuntan informes, listas de verificación, capturas y recomendaciones detalladas, para que incluso los expertos de negocio que no programan puedan decidir.
+  "080": El conocimiento se queda en el equipo
+  "081": Las skills guardan cómo se hace el trabajo, la base de conocimiento guarda los documentos de negocio y la memoria del proyecto guarda lo que los agentes aprenden por sí mismos. Si cambian las personas o los agentes, el siguiente retoma el trabajo donde lo dejó el anterior.
+  "082": Descubre NocoBase Studio
+  "083": Apps empresariales de código abierto.<br>
+  "084": <span class="ph">Impulsadas por IA,</span> listas para usar.
+  "085": NocoBase Solution es una línea de apps empresariales impulsadas por agentes y construidas sobre Core. Los agentes hacen la mayor parte del trabajo y las personas solo toman las decisiones clave.
+  "086": Agentes con iniciativa
+  "087": Cada app incluye agentes de negocio que siguen tus reglas y asumen por iniciativa propia la mayor parte del trabajo, como revisar reembolsos o atender tickets.
+  "088": Las decisiones clave son de las personas
+  "089": Los agentes muestran en qué se basa su trabajo, y las decisiones clave siempre las toma una persona. Cada agente hereda los permisos de la persona para la que trabaja, así que los datos están protegidos.
+  "090": Fáciles de personalizar
+  "091": Todas las apps están construidas sobre NocoBase Core, con su arquitectura coherente y su base fiable, así que puedes pedirle a un agente de programación que las adapte.
+  "092": Gratuitas, de código abierto y listas para usar
+  "093": Todas las apps de NocoBase Solution son gratuitas y de código abierto, se ejecutan en tus propios servidores y funcionan con el modelo que elijas.
+  "094": Ver todas las apps
+  "095": ¿En qué se diferencia NocoBase del vibe coding?
+  "096": En ambos casos, la IA escribe el código. El vibe coding funciona bien para prototipos rápidos y herramientas pequeñas. NocoBase es para sistemas empresariales que deben funcionar de forma fiable durante años y seguir evolucionando.
+  "097": Base
+  "098": Vibe coding
+  "099": La IA genera desde cero permisos, flujos de trabajo, aprobaciones y otros módulos base en cada proyecto. Es costoso y difícil de hacer fiable.
+  "100": Core ofrece componentes base listos para usar, y los agentes solo desarrollan la lógica de negocio.
+  "101": Arquitectura
+  "102": Cambia de modelo o de sesión y la IA puede improvisar. La arquitectura se va desviando.
+  "103": Core aporta una estructura de proyecto y unos estándares de desarrollo comunes, para que el sistema evolucione de forma estable durante años sobre una arquitectura coherente.
+  "104": Evolución continua
+  "105": Los cambios de la IA a menudo se aceptan sin que nadie los lea, y los problemas se acumulan.
+  "106": Studio organiza las comprobaciones y revisiones. Cuando hace falta decidir, los agentes adjuntan informes, listas de verificación y capturas, y decide una persona.
+  "107": Conocimiento y experiencia
+  "108": El contexto de los requisitos, los documentos del proyecto y las lecciones aprendidas quedan dispersos en chats individuales.
+  "109": Studio guarda los métodos y la experiencia en skills, la base de conocimiento y la memoria del proyecto, para que una nueva persona o agente retome el trabajo donde lo dejó el anterior.
+  "110": Código abierto y autoalojamiento
+  "111": Gratuito, de código abierto y autoalojado.<br>
+  "112": Tu código y tus datos te pertenecen.
+  "113": Core y Solution son gratuitos y de código abierto. Studio está disponible en las ediciones comerciales.
+  "114": Colaboradores
+  "115": Descargas
+  "116": 3 M+
+  "117": Ver en GitHub
+  "118": Gratuito y de código abierto
+  "119": Core y todas las apps de Solution son gratuitos, de código abierto y están listos para producción.
+  "120": Autoalojado
+  "121": Core, Solution y Studio se ejecutan en tus propios servidores. Tu código y tus datos te pertenecen.
+  "122": Elige tus modelos y agentes
+  "123": Sin dependencia de proveedores. Funciona con Claude Code, Codex y otras herramientas de programación, y con una amplia variedad de modelos.
+  "124": Las apps funcionan de forma independiente
+  "125": Una vez publicadas, tus apps empresariales funcionan por sí solas. Las solicitudes del día a día nunca pasan por Studio.
+  "126": Elige por dónde empezar.
+  "127": Gratis y open source
+  "128": Crea tu propio sistema con Core
+  "129": Los agentes usan los componentes listos de Core y solo desarrollan lo específico de tu negocio.
+  "130": Ver guía de despliegue
+  "131": Instala una app empresarial lista para usar
+  "132": Úsala tal cual o pide a un agente de programación que la adapte a tu negocio.
+  "133": Ver apps de Solution
+  "134": Comercial
+  "135": Dirige un equipo de agentes
+  "136": Deja que tu equipo se centre en decidir. La ejecución, déjala a los agentes.
+  "137": Ver ediciones y precios
+  "138": AI + NocoBase. Crea sistemas empresariales confiables.
+  "139": NocoBase 2 No-code ↗
+  "140": Precios y licencia
+  "141": Ediciones y precios
+  "142": Licencia
+  "143": Programa de partners
+  "144": Contacto
+  "145": Foro
+  "146": Estándares
+  "147": Tu lógica de negocio · escrita por agentes
+  "148": Listo
+  "149": Una estructura de proyecto y unos estándares comunes
+  "150": Aunque cambien las personas o los modelos, la arquitectura sigue coherente y bajo control
+  "151": Plantilla de proyecto
+  "152": Reglas de arquitectura
+  "153": Skills de desarrollo
+  "154": 20+ componentes
+  "155": Mantenidos y actualizados por NocoBase
+  "156": CRM de ventas
+  "157": Los agentes resolvieron 37 tareas hoy. Tú solo tomaste 6 decisiones.
+  "158": Activos de TI
+  "159": Cada ahorro, con su rastro documentado.
+  "160": Crecimiento
+  "161": Los agentes encuentran oportunidades, actúan y miden el crecimiento. Tú decides.
+  "162": Soporte
+  "163": Los tickets de la noche quedan resueltos por la mañana. Solo 3 te necesitan.
+  "164": Proyectos
+  "165": Los agentes impulsan el plan y avisan de los retrasos antes de que lleguen.
+  "166": RR. HH.
+  "167": Todo está listo el día antes de que llegue la nueva incorporación.
+  "168": Descubre {app}
+  "169": Próximamente
+  "170": La v1.8.0 ya está en producción
+  "171": La segmentación de clientes ya está en producción · reversible en cualquier momento
+  "172": La demo en video llegará pronto
+  "173": Los agentes escriben el código y hacen el trabajo
+  "174": 3 tareas · 35 pruebas · 3 revisiones de código
+  "175": NocoBase aporta la base y la gobernanza
+  "176": "{n} componentes base · estándares de desarrollo comunes · pruebas, revisión y aprobación"
+  "177": Las personas toman las decisiones
+  "178": Tomaste 2 decisiones
+  "179": Datos
+  "180": Tablas, campos, relaciones y migraciones
+  "181": Archivos
+  "182": Almacenamiento, vista previa y permisos
+  "183": Usuarios
+  "184": Cuentas, departamentos y roles
+  "185": Permisos
+  "186": Páginas, acciones y registros, para personas y agentes
+  "187": Flujos
+  "188": Etapas, condiciones y aprobaciones
+  "189": IA y agentes
+  "190": Modelos, herramientas y ejecución de agentes
+  "191": Conocimiento
+  "192": Documentos del negocio y búsqueda acotada
+  "193": Correo
+  "194": Sincronización bidireccional con los registros
+  "195": Avisos
+  "196": En la app, por correo y en chats de grupo
+  "197": Integración
+  "198": APIs, claves de API y bases de datos externas
+  "199": Interfaz
+  "200": Páginas, bloques, navegación e idiomas
+  "201": Historial
+  "202": Historial de flujos, aprobaciones y agentes
+  "203": Despliegue
+  "204": Despliegues, actualizaciones y reversión
+  "205": Segmentación de clientes
+  "206": A/B/C por volumen de contrato, cada mes
+  "207": Aprobación de descuentos
+  "208": Más del 15 % requiere a un gerente
+  "209": Avisos de renovación
+  "210": Prepara renovaciones con 60 días de margen
+  "211": Puntuación de proveedores
+  "212": Puntúa entregas y controles de calidad
+  "213": Cada proyecto reconstruye la base
+  "214": Próximamente
+  "215": Ventas · 6 agentes de ventas
+  "216": Gestión de activos de TI · 3 agentes de TI
+  "217": Los agentes resolvieron hoy 37 tareas rutinarias. Solo 6 necesitaron tu decisión.
+  "218": Gestión de activos de TI
+  "219": Los agentes hacen avanzar el trabajo.<br>
+  "220": Tu equipo mantiene el control.
+  "221": NocoBase Studio es la plataforma de gobernanza para personas y agentes que desarrollan software juntos. Reúne Claude Code y Codex en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave.
+  "222": "El vibe coding hace que desarrollar software sea mucho más rápido. Pero cuando un proyecto implica lógica de negocio compleja, mucha gente y años de evolución, el código generado por IA no basta. También necesitas una base de aplicación fiable, estándares de desarrollo coherentes y una buena gobernanza. NocoBase no sustituye al vibe coding: se apoya en él y añade la base y la gobernanza."
+  "223": Componentes base
+  "224": Sin NocoBase
+  "225": Estándares de arquitectura
+  "226": Cambia de desarrollador, de modelo o de sesión y la IA puede improvisar. La arquitectura se va desviando.
+  "227": Core aporta una estructura de proyecto, estándares de desarrollo y skills de desarrollo comunes, para que el sistema evolucione de forma estable durante años sobre una arquitectura coherente.
+  "228": Gobernanza
+  "229": Los agentes entregan cada vez más cambios, más de los que nadie puede revisar, así que a menudo se aceptan tal cual. Los problemas se acumulan.
+  "230": Studio coordina a varios agentes en el diseño, el desarrollo, las pruebas y la revisión. Las decisiones clave las toma una persona, con informes y capturas como respaldo.
+  "231": Conocimiento acumulado
+  "232": Los agentes hacen avanzar el trabajo. Tu equipo mantiene el control.
+  "233": NocoBase Studio es la plataforma de gobernanza para personas y agentes que desarrollan software juntos. Reúne Claude Code, Codex y OpenCode en un solo equipo de agentes que hace avanzar las tareas por sí mismo. El progreso se ve de un vistazo y las personas toman las decisiones clave.
+  "234": Entrega más proyectos a clientes con un equipo de agentes
+  "235": Código abierto para empezar, listas para usar
+  "236": NocoCRM, NocoReach y NocoProject son gratuitas y de código abierto. NocoITAM, NocoSupport y NocoHR vienen con las ediciones comerciales. Todas las apps se ejecutan en tus propios servidores y funcionan con el modelo que elijas.
+  "237": Core, Studio y apps de Solution como NocoCRM son gratuitos, de código abierto y están listos para producción. Las ediciones comerciales añaden gobernanza a nivel de equipo y de organización, integración empresarial, más apps de Solution y soporte oficial.
+  "238": Core, Studio, NocoCRM, NocoReach y NocoProject son gratuitos, de código abierto y están listos para producción y para entregar a clientes. Sin comprar una licencia, tu equipo puede dirigir un equipo de agentes desde la solicitud hasta el lanzamiento.
+  "239": Ediciones comerciales
+  "240": Core, Studio y Solution suman cada uno funciones comerciales, todas con una sola licencia. Professional añade aprobación de despliegues a producción, SSO empresarial, más apps como NocoITAM y soporte oficial. Enterprise añade gobernanza para toda la organización, entre equipos y entornos, además de alta disponibilidad.
+  "241": Autoalojado y de ejecución independiente
+  "242": Core, Solution y Studio se ejecutan en tus propios servidores. Tu código y tus datos te pertenecen. Una vez publicadas, tus apps empresariales funcionan por sí solas, y las solicitudes del día a día nunca pasan por Studio.
+  "243": Código abierto para empezar
+  "244": Core y apps de Solution como NocoCRM son gratuitos y de código abierto. Studio y apps de Solution como NocoITAM están disponibles en las ediciones comerciales.
+  "245": Core, NocoCRM, NocoReach y NocoProject son gratuitos, de código abierto y están listos para producción.
+  "246": La IA encuentra oportunidades de crecimiento. Los agentes las ponen en práctica.
+  "247": Empezar con Core

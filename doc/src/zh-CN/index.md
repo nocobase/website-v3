@@ -9,12 +9,10 @@ description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源
 | 你想 | 从这里开始 |
 | --- | --- |
 | 了解 NocoBase 3 | [NocoBase 3 是什么](start/what-is-nocobase.md) |
-| 用自己的 Agent 基于 Core 开发一个应用 | [Core 是什么](core/intro/what-is-core.md) → [快速开始](core/quickstart.md) |
+| 用自己的 Agent 基于 Core 开发一个应用 | [Core 是什么](core/getting-started/what-is-core.md) → [创建应用](core/getting-started/create-app.md) |
 | 带领 Agent 团队开发，同时推进多个项目 | [Studio 是什么](studio/intro/what-is-studio.md) |
-| 查一项能力或一个插件 | [能力总览](core/capabilities/index.md) · [插件目录](core/plugins/index.md) |
-| 部署和运维应用 | [部署与运维](core/operations/deployment.md) |
-| 从 NocoBase 2 来 | [从 NocoBase 2 来](start/from-v2.md) · [插件怎样工作](core/intro/how-plugins-work.md) |
-| 开发可复用的插件 | [扩展开发](core/extend/when-to-write-a-plugin.md) |
+| 部署和运维应用 | [部署与运维](core/deployment/choose-a-deployment-method.md) |
+| 从 NocoBase 2 来 | [从 NocoBase 2 来](start/from-v2.md) · [管理插件](core/developing-apps/manage-plugins.md) |
 
 ## 整体架构
 
@@ -35,7 +33,7 @@ description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源
 ## 关于这份文档
 
 - 文档分三部分，在顶栏切换：**开始**（全站共用的介绍和术语）、**Core**、**Studio**。
-- 例子都来自同一个场景：一家企业的采购团队用 NocoBase 做采购应用。Core 讲这个应用怎样做出来，Studio 讲团队怎样带领 Agent 团队继续改进它。
+- Core 通过团队任务应用讲解开发、测试和部署；Studio 通过采购团队的场景讲解怎样带领 Agent 团队推进工作。
 - 文档按中文界面编写。产品自带的界面名称写在「」里，路径写成「A › B」，例如「系统设置 › 用户管理」。
 - NocoBase 3 的各个包目前都是 beta 版本，接口和界面可能还会调整，以产品为准。
 - 左侧菜单里颜色较浅的是还没写好的页面。

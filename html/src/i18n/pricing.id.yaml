@@ -1,0 +1,172 @@
+notes: |-
+  Bahasa Indonesia（Anda）
+  术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+  coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+  self-hosted = self-hosted；at a glance = terlihat sekilas
+  页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（US$8.000）；信创数据库只在中文版列出
+title: Edisi dan harga — NocoBase 3
+description: Core dan semua aplikasi Solution gratis dan open source. Professional seharga US$8.000 sekali bayar, dengan Studio, 1 tahun upgrade dan dukungan, serta satu kali deploy. Enterprise sesuai penawaran.
+strings:
+  "001": Mulai gratis. <span class="m">Beli sekali, pakai selamanya.</span>
+  "002": Open source
+  "003": Bangun dan jalankan sistem bisnis dengan agen coding Anda sendiri.
+  "004": Gratis
+  "006": "Semua komponen dasar Core: izin akses, alur kerja, file, notifikasi, dan lainnya"
+  "007": Kerangka proyek, standar pengembangan, dan skill untuk agen coding apa pun
+  "008": NocoCRM, NocoReach, dan NocoProject, beserta agen bisnisnya
+  "009": Gratis untuk produksi dan pengerjaan proyek klien
+  "010": Dokumentasi dan dukungan komunitas
+  "011": Termasuk Studio
+  "012": Untuk satu tim yang membangun dan mengirimkan hasil bersama tim agen di Studio.
+  "013": US$8.000
+  "014": sekali bayar
+  "015": Lisensi permanen · 1 tahun upgrade dan dukungan
+  "016": Hubungi kami untuk membeli
+  "017": "Semua di Community, ditambah:"
+  "018": NocoBase Studio, dengan tim agen yang membangun untuk Anda
+  "019": Tes, review, dan persetujuan manusia sebelum setiap rilis
+  "021": NocoITAM, NocoSupport, dan NocoHR
+  "022": Agen upgrade Core, gerbang kualitas, dan kontrol biaya
+  "023": Satu kali deploy, dikerjakan oleh tim NocoBase
+  "024": Multi-tim
+  "025": Untuk banyak tim dan lingkungan yang butuh tata kelola tingkat organisasi dan ketersediaan tinggi.
+  "026": Hubungi kami
+  "027": Penawaran khusus · juga lisensi permanen sekali bayar
+  "028": "Semua di Professional, ditambah:"
+  "029": Rilis multi-lingkungan, jendela perubahan, dan masa pembekuan
+  "030": "Tata kelola lintas tim: skill, pengetahuan, dan kebijakan model bersama"
+  "031": Log audit dan isolasi agen
+  "032": Klaster dan ketersediaan tinggi, arsitektur multi-tenant, dan pengiriman air-gapped
+  "033": Dukungan prioritas, dengan respons pertama dalam 4&nbsp;jam
+  "034": 3 hari deploy, pelatihan, dan implementasi
+  "035": Anda memilih sendiri server, model, dan agen coding, dan membayar langsung ke penyedianya.
+  "036": Rincian
+  "037": Isi setiap edisi
+  "038": Fondasi aplikasi open source
+  "039": Masuk dan SSO
+  "040": Kata sandi, akun sosial, OIDC
+  "041": Pengguna dan organisasi
+  "042": Pengguna, departemen, dan atasan langsung
+  "044": Akses berbasis peran ke halaman, aksi, dan data, dengan aturan yang sama untuk manusia dan agen
+  "045": Database
+  "046": Sumber data eksternal
+  "047": Hubungkan database yang sudah ada
+  "048": Penyimpanan file
+  "049": Lokal atau kompatibel S3
+  "050": Alur kerja dan tugas terjadwal
+  "051": Persetujuan dasar
+  "052": Satu penyetuju, dengan riwayat
+  "054": Dalam aplikasi, email, Feishu, DingTalk
+  "056": Kirim dan terima email dari catatan
+  "057": Model
+  "058": Cloud atau lokal
+  "059": Agen bisnis
+  "060": Mengakses data sesuai izin pengguna, bertindak setelah dikonfirmasi
+  "061": Basis pengetahuan AI
+  "062": Sesuai izin, berversi, dengan jawaban yang menyebutkan sumber
+  "063": Pengembangan kode sumber
+  "064": Satu struktur proyek, standar pengembangan, dan skill untuk agen coding apa pun
+  "065": Antarmuka
+  "066": Bahasa, tema, komponen bisnis
+  "067": Cetak dari templat
+  "068": Riwayat aktivitas dasar
+  "069": Aksi alur kerja, persetujuan, dan agen tercatat
+  "070": Deploy dan upgrade
+  "071": Deploy, upgrade, dan rollback
+  "072": SSO perusahaan
+  "073": SAML 2.0, LDAP, WeCom, Feishu, DingTalk
+  "074": Persetujuan lanjutan
+  "075": Perutean bersyarat, persetujuan bersama, tambah penyetuju, delegasi, kembalikan
+  "078": Klaster dan ketersediaan tinggi
+  "079": Arsitektur multi-tenant
+  "080": Log audit
+  "081": Catatan lengkap setiap aksi
+  "082": Pengiriman air-gapped
+  "083": Untuk jaringan tanpa akses internet
+  "085": Ruang kerja
+  "086": My issues, My sessions, dasbor
+  "087": Tim agen
+  "088": Agen koordinator membagi pekerjaan ke agen yang terhubung dari mesin mana pun
+  "089": Runtimes
+  "090": Tempat agen berjalan, mengerjakan tugas secara paralel
+  "091": Skill, basis pengetahuan, dan memori proyek
+  "092": Pengujian dan persetujuan
+  "093": Tes otomatis, review lintas model, pratinjau, persetujuan manusia
+  "094": Deploy dan rollback
+  "095": Deploy ke staging dan lingkungan lain, lalu rollback ke versi sebelumnya bila ada masalah
+  "096": Riwayat eksekusi dan pemakaian
+  "097": Setiap eksekusi tercatat, pemakaian dan biaya terlihat sekilas
+  "098": Persetujuan rilis produksi
+  "099": Setiap deploy ke lingkungan terlindungi memerlukan penyetuju
+  "100": Peran khusus
+  "101": Tentukan apa yang boleh dilakukan anggota di halaman, pengaturan, dan aksi
+  "102": Gerbang kualitas
+  "103": Pemeriksaan wajib, ditambah pemeriksaan khusus untuk migrasi data, perubahan izin, dan kompatibilitas Core
+  "104": Kontrol biaya
+  "105": Anggaran per proyek, anggota, atau agen; jika habis, pekerjaan dijeda dan Anda diberi tahu
+  "106": Agen upgrade Core
+  "107": Saat Core merilis versi baru, agen ini membuka PR upgrade, menjalankan pemeriksaan kompatibilitas, dan menjelaskan perubahannya
+  "108": Putuskan dari Feishu, DingTalk, atau WeCom
+  "109": Jawab pertanyaan, terima hasil, dan setujui rilis tanpa membuka Studio
+  "110": Umpan balik dari produksi
+  "111": Error produksi dan masukan pengguna otomatis menjadi tugas, lalu agen mencari penyebabnya dan mengirim perbaikan
+  "112": Metrik pengiriman
+  "113": Tingkat lolos, tingkat pengerjaan ulang, biaya per tugas, dan tingkat penerimaan, dengan laporan mingguan
+  "114": Rilis multi-lingkungan
+  "115": Promosikan ke produksi persis apa yang lolos di staging
+  "116": Jendela perubahan dan pembekuan
+  "117": Atur kapan rilis boleh dilakukan
+  "118": Tata kelola lintas tim
+  "119": Ruang kerja untuk banyak tim, skill dan pengetahuan dibagikan ke tiap tim, dan satu kebijakan untuk model serta vendor yang diizinkan
+  "120": Kebijakan kualitas tingkat organisasi
+  "121": Satu set pemeriksaan wajib, termasuk pemindaian keamanan, untuk semua proyek
+  "122": Jejak audit pengembangan
+  "123": Siapa meminta agen melakukan apa, apa yang diubahnya, siapa yang melakukan merge dan menyetujui, semuanya tercatat dan bisa diekspor
+  "124": Isolasi agen
+  "125": Runtime terisolasi sekali pakai per tugas, akses jaringan dibatasi, dan rahasia yang bisa dipakai agen tetapi tidak pernah terlihat
+  "126": Upgrade massal
+  "127": Lihat versi Core setiap aplikasi dan upgrade puluhan aplikasi sekaligus
+  "128": Alokasi biaya
+  "129": Bagi pemakaian dan biaya per departemen dan pusat biaya
+  "131": Penjualan
+  "134": Manajemen aset TI
+  "136": SDM
+  "137": Kustomisasi dan rilis di Studio
+  "138": Pembaruan resmi, di-merge untuk Anda
+  "139": Aplikasi yang sudah dikustomisasi tetap mengikuti rilis resmi, dengan agen yang melakukan merge, menyelesaikan konflik, dan memverifikasi
+  "140": Layanan dan dukungan
+  "141": Dokumentasi dan komunitas
+  "142": Upgrade
+  "143": Rilis baru setelah pembelian
+  "144": 1 tahun
+  "145": Dukungan teknis
+  "146": 1 tahun, prioritas
+  "147": Waktu respons pertama
+  "148": Dalam 12 jam
+  "149": Dalam 4 jam
+  "150": Onboarding
+  "151": Oleh tim NocoBase
+  "152": Satu kali deploy
+  "153": "3 hari: deploy, pelatihan, dan implementasi"
+  "154": FAQ
+  "155": Bagaimana memilih antara Professional dan Enterprise?
+  "156": Pilih Professional jika satu tim membangun dengan Studio. Termasuk satu kali deploy oleh tim NocoBase dan respons pertama atas permintaan dukungan dalam 12&nbsp;jam.
+  "157": Pilih Enterprise untuk banyak tim, atau jika Anda butuh rilis multi-lingkungan, ketersediaan tinggi, log audit, atau pengiriman air-gapped. Termasuk 3 hari deploy, pelatihan, dan implementasi, serta respons pertama dalam 4&nbsp;jam.
+  "158": Bisakah Community dipakai di produksi?
+  "159": Bisa. Community mencakup seluruh Core serta NocoCRM, NocoReach, dan NocoProject, gratis untuk produksi dan pengerjaan proyek klien. Tambahkan skill pengembangan NocoBase ke agen coding Anda dan mulai membangun. Tim Anda menangani pengujian, rilis, dan operasional.
+  "160": Berapa lama lisensi komersial berlaku?
+  "161": Tidak pernah kedaluwarsa. Edisi komersial dibeli sekali, tanpa biaya tahunan.
+  "162": Apa yang terjadi setelah tahun pertama upgrade dan dukungan berakhir?
+  "163": Semuanya tetap berjalan. Untuk rilis baru dan dukungan, Anda bisa membeli upgrade dan dukungan secara terpisah, dan tidak wajib memperpanjang setiap tahun.
+  "164": Apakah edisi komersial self-hosted?
+  "165": Ya. Studio, agen, dan aplikasi Anda semuanya berjalan di server Anda sendiri. Setelah dirilis, aplikasi berjalan mandiri, dan permintaan bisnis sehari-hari tidak pernah melewati Studio.
+  "166": Bisakah Studio dibeli terpisah?
+  "167": Tidak. Studio sudah termasuk dalam Professional dan Enterprise.
+  "168": Apakah pemegang lisensi komersial NocoBase 2 perlu membeli lagi?
+  "169": Selama lisensi komersial NocoBase 2 Anda masih dalam masa upgrade, Anda bisa memakai NocoBase 3 tanpa membeli lagi. Versi 2.x dan 3.x dipelihara secara paralel.
+  "170": Belum yakin edisi mana yang cocok?
+  "171": Ceritakan tentang tim Anda dan apa yang ingin Anda bangun. Kami bantu menganalisis dan merancang pengaturan yang tepat.
+  "173": Mulai gratis
+  "174": Persetujuan lanjutan dan SSO perusahaan
+  "175": Semua aplikasi Solution, seperti NocoCRM, NocoITAM, dan NocoReach, beserta agen bisnisnya
+  "176": Bisa. Community mencakup seluruh Core serta semua aplikasi Solution, gratis untuk produksi dan pengerjaan proyek klien. Tambahkan skill pengembangan NocoBase ke agen coding Anda dan mulai membangun. Tim Anda menangani pengujian, rilis, dan operasional.

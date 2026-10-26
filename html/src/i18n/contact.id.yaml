@@ -1,0 +1,50 @@
+notes: |-
+  Bahasa Indonesia（Anda）
+  术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+  coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+  self-hosted = self-hosted；at a glance = terlihat sekilas
+title: Hubungi kami — NocoBase
+description: Hubungi NocoBase lewat email atau formulir untuk pertanyaan penjualan dan layanan komersial.
+strings:
+  "001": Hubungi kami. <span class="m">Ceritakan sistem yang ingin Anda bangun.</span>
+  "002": Untuk penjualan dan layanan komersial, hubungi kami di sini. Untuk pertanyaan teknis, <a href="https://forum.nocobase.com/" target="_blank" rel="noopener">forum komunitas</a> adalah tempat terbaik.
+  "003": Hubungi kami
+  "004": Isi formulir dan kami akan segera menghubungi Anda, atau kirim email langsung.
+  "006": Lokasi kami
+  "007": Nama Anda
+  "008": Jabatan Anda
+  "009": Nama perusahaan
+  "010": Dari mana Anda mengetahui NocoBase?
+  "011": Apa yang ingin Anda lakukan dengan NocoBase? (boleh pilih lebih dari satu)
+  "012": Ceritakan tentang tim Anda dan kasus penggunaan NocoBase
+  "013": Bantuan apa yang Anda harapkan?
+  "014": Kirim
+  "015": Terima kasih! Kami sudah menerima pesan Anda dan akan segera menghubungi Anda.
+  "016": Pilih salah satu
+  "017": Mesin pencari
+  "018": GitHub
+  "019": LinkedIn
+  "020": Facebook
+  "021": Instagram
+  "022": TikTok
+  "023": YouTube
+  "024": X
+  "025": Rekomendasi mitra atau pihak ketiga
+  "026": Teman atau rekan kerja
+  "027": Reddit
+  "028": Komunitas online
+  "029": Chat AI
+  "030": Artikel atau blog
+  "031": Hacker News
+  "032": Product Hunt
+  "033": Situs ulasan
+  "034": Lainnya
+  "035": Penggunaan internal untuk membangun sistem atau alat bisnis
+  "036": Menyediakan layanan pengembangan berbasis NocoBase
+  "037": Mengembangkan produk komersial berbasis NocoBase
+  "038": Studi atau riset
+  "039": Email Anda
+  "040": Di mana lokasi perusahaan Anda?
+  "041": Pilih negara atau wilayah Anda
+  "042": "Kami tim jarak jauh yang tersebar di beberapa negara, dengan kantor di:"
+  "043": 501, 1-55-8 Akabane, Kita-ku, Tokyo, Jepang

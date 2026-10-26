@@ -94,7 +94,19 @@ export function langMenus(cur, urls) {
   return [desk, mobile];
 }
 
-// canonical、hreflang、本页语言和要内联的数据、俄语字体。alternates：[[hreflang, 地址]]，含 x-default
+// 访问统计：Google Analytics 4、百度统计、Microsoft Clarity，编号和旧官网 nocode.nocobase.com 的相同，数据进同一个账号，报表里按「主机名」区分新旧官网。
+// 每一页（含 404 页）都加载；三段都是异步加载外部脚本，不阻塞渲染。
+const GA4 = 'G-237XXSVYHE';
+const BAIDU = 'acfb678ac7bbc9df89e1aa4327e47907';
+const CLARITY = 'y0qzc9z3xg';
+const ANALYTICS = [
+  `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA4}"></script>`,
+  `<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GA4}');</script>`,
+  `<script>var _hmt = _hmt || []; (function(){var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?${BAIDU}'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s);})();</script>`,
+  `<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','${CLARITY}');</script>`,
+];
+
+// canonical、hreflang、本页语言和要内联的数据、俄语字体、访问统计。alternates：[[hreflang, 地址]]，含 x-default
 export function headExtra(lang, url, alternates, noindex, inline) {
   const out = [];
   if (noindex) out.push('<meta name="robots" content="noindex">');
@@ -104,6 +116,7 @@ export function headExtra(lang, url, alternates, noindex, inline) {
   }
   out.push('<script>' + inline + '</script>');
   if (FONTS[lang.code]) out.push(`<link rel="stylesheet" href="/assets/fonts/${FONTS[lang.code]}.css">`);
+  out.push(...ANALYTICS);
   return out.join('\n') + '\n';
 }
 

@@ -233,7 +233,7 @@
 <li><strong>语言布局。</strong> 英文在站点根路径，源文件在 <code>doc/src/</code>；简体中文在 <code>/zh-CN/</code>，源文件在 <code>doc/src/zh-CN/</code>。两种语言目录结构相同，页面一一对应。中文是基准，Core 已有完整对应英文文章；其他未译页面可用 front matter 的 <code>status: placeholder</code> 标记。</li>
 <li><strong>产物沿用 CDN 回源约定。</strong> <code>node doc/build.mjs</code> 生成到 <code>doc/dist/</code>：每页输出成 <code>&lt;路径&gt;/index.html</code>，地址不带扩展名、以 / 结尾，站内链接和资源都用根路径；根目录有 <code>404.html</code>、<code>sitemap.xml</code>、<code>robots.txt</code>、<code>llms.txt</code>，每页另有去掉 front matter 的 <code>.md</code> 副本。canonical、hreflang、sitemap 用的站点域名读环境变量 <code>DOCS_SITE_ORIGIN</code>，默认 <code>https://docs.nocobase.com</code>。本地用 <code>node doc/serve.mjs</code> 预览。</li>
 <li><strong>构建检查。</strong> 菜单和源文件必须一一对应，正文里的站内链接必须写成相对的 <code>.md</code> 路径并指向存在的页面，否则构建失败。</li>
-<li><strong>CI 和发布。</strong> 本仓库是私有仓库，由 <code>nocobase-bot</code> 把 PR 和 <code>main</code> 的推送转发到 <code>2013xile/nocobase-ci</code> 构建；发布步骤上传到 OSS 的时间戳目录，再切换 CDN 回源规则（逻辑取自 NocoBase 仓库的 <code>deploy-cdn.mjs</code>）。发布目前暂停，启用后先发到 <code>v3.docs.nocobase.com</code>，再切 <code>docs.nocobase.com</code>。</li>
+<li><strong>CI 和发布。</strong> 本仓库已改为公开仓库，由自己的 GitHub Actions（<code>.github/workflows/docs.yml</code>）构建 PR 和 <code>main</code> 的推送；<code>main</code> 上的发布步骤上传到 OSS 的时间戳目录，再切换 <code>docs.nocobase.com</code> 的 CDN 回源规则（脚本在 <code>scripts/deploy-cdn/</code>，逻辑取自 NocoBase 仓库的 <code>deploy-cdn.mjs</code>）。之前由 <code>nocobase-bot</code> 转发到 <code>2013xile/nocobase-ci</code> 构建，已停用。</li>
 <li><strong>未编写菜单。</strong> Core 的能力和参考等计划项只显示不可点击的待编写文字，不创建占位页面。原插件档案生成方案不属于当前范围。</li>
 </ol>
 <h2 id="和产品保持同步">和产品保持同步</h2>

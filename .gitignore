@@ -12,3 +12,6 @@ html/_src/blog/out/
 # 文档站的依赖和构建产物（node doc/build.mjs 生成，CI 构建后发布）
 doc/node_modules/
 doc/dist/
+
+# CDN 发布脚本的依赖（CI 发布时安装）
+scripts/deploy-cdn/node_modules/

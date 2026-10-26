@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-zh="更新日志 — NocoBase" data-en="Changelog — NocoBase">更新日志 — NocoBase</title>
+<meta name="description" content="NocoBase 3 每个版本的新功能、改进和问题修复。" data-zh="NocoBase 3 每个版本的新功能、改进和问题修复。" data-en="New features, improvements, and fixes in every NocoBase 3 release.">
+<script>
+(function () {
+  try {
+    var u = new URLSearchParams(window.location.search).get('lang');
+    var s = localStorage.getItem('nb3_lang');
+    var ok = /^(zh|en|es|fr|de|pt|ru|id|vi|zh-TW|ja|ko)$/, v = ok.test(u) ? u : (ok.test(s) ? s : 'zh'), lang = v === 'zh' ? 'zh' : 'en';
+    window.__lang = lang;
+    document.documentElement.lang = lang;
+  } catch (e) {
+    window.__lang = 'zh';
+  }
+})();
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<script src="assets/vendor/lucide-0.460.0/lucide.min.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="changelog" data-root="">
+<div id="site-header"></div>
+<main>
+<style>
+.cl-list { margin-top: 32px; border-top: 1px solid var(--rule); }
+.cl-year { margin: 40px 0 4px; font-size: 15px; font-weight: 600; color: var(--muted); }
+.cl-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 24px; padding: 18px 0; border-bottom: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.cl-row:hover b { color: var(--brand); }
+.cl-row time { font-size: 14px; color: var(--muted); padding-top: 3px; }
+.cl-row .hd { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.cl-row b { font-size: 17px; font-weight: 600; }
+.cl-row p { margin: 6px 0 0; font-size: 14.5px; line-height: 1.7; color: var(--ink-2); }
+.cl-row.milestone b { font-size: 19px; }
+.cl-v2 { margin-top: 14px; font-size: 15px; color: var(--muted); }
+.cl-v2 a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); }
+.cl-v2 svg.lucide { width: 14px; height: 14px; }
+.cl-empty { padding: 48px 0; color: var(--muted); font-size: 16px; }
+@media (max-width: 640px) { .cl-row { grid-template-columns: 1fr; } }
+</style>
+<section class="phero">
+  <div class="container">
+    <p class="label"><b><t-zh>更新日志</t-zh><t-en>Changelog</t-en></b></p>
+    <h1><t-zh>每次版本迭代的<span class="m">新能力与改进。</span></t-zh><t-en>What shipped <span class="m">in every release.</span></t-en></h1>
+    <p class="lede"><t-zh>NocoBase 3 每个版本的新功能、改进和问题修复。</t-zh><t-en>New features, improvements, and fixes in every NocoBase 3 release.</t-en></p>
+    <p class="cl-v2"><t-zh>NocoBase 2 及更早版本的更新日志：<a href="https://nocode.nocobase.com/cn/blog/timeline" target="_blank" rel="noopener">查看 NocoBase 2 更新日志<i data-lucide="arrow-up-right"></i></a></t-zh><t-en>Changelog for NocoBase 2 and earlier: <a href="https://nocode.nocobase.com/en/blog/timeline" target="_blank" rel="noopener">see the NocoBase 2 changelog<i data-lucide="arrow-up-right"></i></a></t-en></p>
+  </div>
+</section>
+<section class="sec tight" style="padding-top:56px">
+  <div class="container">
+    
+    <div class="cl-list" id="cl"><p class="cl-empty"><t-zh>NocoBase 3 的版本发布后会列在这里。</t-zh><t-en>NocoBase 3 releases will be listed here.</t-en></p></div>
+  </div>
+</section>
+<script>
+(function () {
+  var chips = document.querySelectorAll('.bfilter button'), list = document.getElementById('cl');
+  chips.forEach(function (b) { b.addEventListener('click', function () {
+    chips.forEach(function (x) { x.classList.toggle('on', x === b); });
+    var f = b.getAttribute('data-f'), shown = {};
+    list.querySelectorAll('.cl-row').forEach(function (r) { r.hidden = !!f && r.getAttribute('data-k') !== f; });
+    // 筛选后没有条目的年份标题一起隐藏
+    var head = null, any = false;
+    Array.prototype.forEach.call(list.children, function (el) {
+      if (el.tagName === 'H2') { if (head) head.hidden = !any; head = el; any = false; }
+      else if (!el.hidden) any = true;
+    });
+    if (head) head.hidden = !any;
+  }); });
+})();
+</script>
+</main>
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

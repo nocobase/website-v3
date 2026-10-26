@@ -66,6 +66,17 @@ This task prepares and verifies the upgraded project; confirm production deploym
 
 When reviewing the plan, check that your features are preserved, removed plugins are no longer needed, and the database can be recovered. Review the actual changes and verification results before deployment.
 
+## Migrate the old global plugin development Skill
+
+If you previously installed `nocobase-app-plugin-development` globally, include its migration in the upgrade plan. The target release must provide both the project Skill and a compatible synchronization command. Do not assume that a same-named project Skill overrides a global copy.
+
+1. Upgrade dependencies according to the target template and run `pnpm nocobase skills sync`.
+2. Verify that the App’s `.agents/skills/nocobase-app-plugin-development/` contains the full guide and referenced resources.
+3. Inspect the active Agent’s global locations and remove this exact old installation and its discovery links. Back up custom content outside Skill discovery directories first. Unlink a global entry without deleting a project or source checkout it points to.
+4. Start a new Agent session and confirm that it uses the project file.
+
+Keep an existing full global installation if the project replacement is unavailable or synchronization fails, and resolve those prerequisites first. Global files are outside the App’s Git rollback: record their backup and recovery separately. Dependency installation and synchronization do not delete them automatically. An already-upgraded App can complete missed cleanup without changing its version again.
+
 ## Without an agent
 
 ### 1. Identify the baseline and target

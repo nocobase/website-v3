@@ -3,7 +3,7 @@ title: Plugin overview
 description: NocoBase 3 plugins, their purposes and whether they are built in.
 ---
 
-This inventory covers all application plugins in the reviewed source: 24 in the main repository, 2 in the commercial repository, and 19 example plugins. Entries are alphabetical by package name, with links where source is public.
+This inventory covers all application plugins in the reviewed source: 24 in the main repository, 2 in the commercial repository, and 18 example plugins. Entries are alphabetical by package name, with links where source is public.
 
 “Built-in plugin” indicates whether the default template includes the plugin when creating an application. Included plugins are marked “Yes”; plugins that require separate installation are marked “No”. Check the application’s plugin registration files to determine whether a plugin is enabled. See [Manage plugins](../developing-apps/manage-plugins.md) for registration, removal and updates.
 
@@ -21,7 +21,7 @@ This inventory covers all application plugins in the reviewed source: 24 in the 
 | [`@nocobase/app-plugin-authz-sharing-rules`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-sharing-rules) | Extend record sharing through rules. | Yes |
 | [`@nocobase/app-plugin-database-explorer`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-database-explorer) | Inspect database connections, collections and fields in a read-only browser. | Yes |
 | [`@nocobase/app-plugin-demo-mode`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-demo-mode) | Provide repeatable demo datasets, visitor accounts and write protection. | No |
-| [`@nocobase/app-plugin-file`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-file) | Provide file repositories, upload and content APIs, and application-owned file components. | Yes |
+| [`@nocobase/app-plugin-file`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4/packages/plugins/app-plugin-file) | Provide file repositories, upload and content APIs; editable file UI comes from the UI Library. | Yes |
 | [`@nocobase/app-plugin-foundation`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-foundation) | Show the Core capabilities used by an application and their runtime evidence. | Yes |
 | [`@nocobase/app-plugin-i18n`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-i18n) | Integrate localization and application language switching. | Yes |
 | [`@nocobase/app-plugin-knowledge`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-knowledge) | Manage Markdown spaces, versions, search, proposals and review. | Yes |
@@ -66,7 +66,6 @@ Example plugins demonstrate integration and extension patterns under each reposi
 | `@nocobase/app-plugin-pro-example` (commercial repository) | Exercise the commercial plugin build, packaging and release pipeline. |
 | [`@nocobase/app-plugin-queue-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-queue-example) | Publish and consume queue messages. |
 | [`@nocobase/app-plugin-realtime-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-realtime-example) | Realtime updates for collaborative tasks, personal notifications and background exports. |
-| [`@nocobase/app-plugin-registry-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-registry-example) | Plugin runtime UI and application-owned UI components. |
 | [`@nocobase/app-plugin-repository-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-repository-example) | Relational Repository APIs for CRM and orders. |
 | [`@nocobase/app-plugin-routes-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-routes-example) | Server APIs and lazy client routes. |
 | [`@nocobase/app-plugin-service-provider-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-service-provider-example) | Register services and manage their lifecycle. |
@@ -93,3 +92,5 @@ Commercial dialect packages are distributed through the Pro registry; source acc
 ## Source baseline
 
 Reviewed on 2026-10-25 against [nocobase `db419f1d4`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins) and the commercial plugin source. Default-template status comes from the same main-repository revision. Plugin availability and registration may differ in a released version.
+
+File UI ownership and the example plugin inventory were also checked against source commit [`d9a625d93b40`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4). The rest of the inventory and default-template status retain the baseline above.

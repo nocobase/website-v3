@@ -7,6 +7,10 @@ description: 查看应用实际注册的插件，使用已有能力，并管理�
 
 本篇说明应用如何管理插件，不是插件开发教程，也不是所有可用插件的产品目录。命令以示例应用已安装的 CLI 为准，执行前可用 `--help` 确认当前版本支持的选项。
 
+需要开发自己的插件时，先阅读[什么时候写插件](../extension-development/when-to-write-a-plugin.md)，再按[创建插件](../extension-development/create-plugin.md)在当前 App 中生成骨架；完整实践见[编写第一个插件](../extension-development/write-your-first-plugin.md)。
+
+使用团队发布的插件时，先配置私有源与读取权限，再安装和注册，见[发布插件](../extension-development/publish-plugin.md)。
+
 ## 使用 Agent
 
 ```text
@@ -94,7 +98,8 @@ pnpm nocobase plugin unregister '@nocobase/app-plugin-<name>'
 | 需求 | 优先使用 |
 | --- | --- |
 | 插件已有配置选项 | 注册时传入公开 options |
-| 插件提供可组合组件或源码扩展点 | 使用组件，或按约定在 `client/extensions/` 接入 |
+| 插件公开可组合组件 | 从公开导出引用，由应用组合 |
+| 需要自由修改界面源码 | 从 [UI Library](../extension-development/plugin-structure.md#ui-组件与源码归属) 安装组件或区块，由应用维护副本 |
 | 替换插件某个页面的呈现 | 已支持的 `client/route-overrides.ts` 或插件提供的覆盖方式 |
 | 完全属于应用的业务页面 | 在 `client/routes.ts` 注册自己的页面 |
 

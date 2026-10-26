@@ -28,6 +28,22 @@ Look up application conventions by topic; prepare the corresponding data and end
 - [Manage plugins](developing-apps/manage-plugins.md): existing capabilities, registration, updates, removal and extension.
 - [Testing and acceptance](developing-apps/testing-and-acceptance.md): test boundaries, real data, permissions and user flows.
 
+## Developing plugins
+
+- [When to write a plugin](extension-development/when-to-write-a-plugin.md): decide what needs reuse and divide application and plugin responsibilities.
+- [Create a plugin](extension-development/create-plugin.md): generate a scaffold in an existing App, select capabilities and connect the workspace.
+- [Plugin structure](extension-development/plugin-structure.md): optional directories, runtime entries, public exports and resource ownership.
+- [Write your first plugin](extension-development/write-your-first-plugin.md): implement an announcements API and page, then test, register and verify them in an App.
+- [Pages and menus](extension-development/pages-and-menus.md): declare menus and child pages, with default navigation and access rules.
+- [Server APIs](extension-development/server-apis.md): Input validation, access, responses and API docs.
+- [ServiceProvider](extension-development/service-provider.md): Client and Server contracts, registration and lifecycle.
+- [Database and migrations](extension-development/database-and-migrations.md): Plugin schema, task history and upgrades.
+- [Localization](extension-development/localization.md): Resource ownership, namespaces and translation checks.
+- [Extend the command line](extension-development/extend-command-line.md): Command registration, output and deployment checks.
+- [Testing and verification](extension-development/testing-and-verification.md): Plugin tests, App integration and delivery checks.
+- [Write plugin skills](extension-development/write-plugin-skills.md): Document and verify public capabilities for App Agents.
+- [Publish a plugin](extension-development/publish-plugin.md): ship local plugins with the App, or publish to a private npm registry for sharing.
+
 ## Deployment and operations
 
 - [Choose a deployment method](deployment/choose-a-deployment-method.md): compare runtime options and prepare configuration, data, and recovery.

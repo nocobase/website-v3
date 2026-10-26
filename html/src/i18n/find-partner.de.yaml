@@ -1,0 +1,88 @@
+notes: |-
+  Deutsch（Sie）
+  术语：foundation = Fundament；building blocks = Bausteine；governance = Governance；agent team = Agenten-Team；
+  coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
+  vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
+  页面用语：partner = Partner；Skills = Skills
+title: NocoBase-Partner finden — Ihr System gebaut und in Betrieb
+description: NocoBase-Partner kennen NocoBase 3, Studio und Ihre Branche. Mit ihren Agenten-Teams klären, entwickeln, nehmen ab, veröffentlichen und pflegen sie gemeinsam mit Ihnen, und der Code gehört Ihnen.
+strings:
+  "001": Finden Sie den richtigen Partner, <span class="m">der Ihr System baut und in Betrieb bringt.</span>
+  "002": NocoBase-Partner kennen NocoBase 3, Studio und Ihre Branche genau. Mit einem Agenten-Team klären, entwickeln, prüfen, veröffentlichen und pflegen sie Ihr System gemeinsam mit Ihnen. Jeder Schritt ist in Studio sichtbar, und Quellcode, Skills und Wissensdatenbank gehören zu 100 % Ihnen.
+  "003": Anforderungen senden
+  "005": Wann ein Partner hilft
+  "006": "Sie wollen mit KI bauen, "
+  "007": aber mit erfahrener Führung.
+  "008": Zu wenige Entwickler
+  "009": Ihnen fehlt interne Entwicklungskapazität, und Sie suchen einen erfahrenen Partner, der ein Agenten-Team bis zur Lieferung führt.
+  "010": Knapper Zeitplan
+  "011": Wenn das Geschäft nicht warten kann, starten Sie mit einer fertigen Solution oder Branchenvorlage und gehen in wenigen Wochen live.
+  "012": Komplexe Integration und Migration
+  "013": ERP, OA, SSO oder Altdatenbanken anbinden oder reibungslos von NocoBase 2 und Altsystemen migrieren.
+  "014": Das eigene Team befähigen
+  "015": Bauen Sie das erste Release gemeinsam, damit Ihr Team lernt, Agenten zu steuern, Vorschauen zu prüfen und selbst zu releasen.
+  "016": Was Partner tun
+  "017": "Vom ersten Gespräch "
+  "018": bis zu jeder Verbesserung nach dem Go-live.
+  "019": Anforderungen und Architektur
+  "020": Prozesse erfassen, den passenden Einstieg über Solution oder Core wählen und die Lieferung in Etappen aufteilen.
+  "021": Individuelle Entwicklung
+  "022": Agenten in Studio steuern, mit Tests und Review bei jeder Änderung, bereit für Ihre Abnahme in Live-Vorschauen.
+  "023": Systemintegration
+  "024": ERP, CRM, OA, SSO, Team-Chat und externe Datenbanken anbinden, mit serverseitig durchgesetzten Berechtigungen.
+  "025": Datenmigration
+  "026": Aus Tabellen, Altanwendungen oder NocoBase 2 migrieren und Migrationsskripte zuerst mit echten Daten in einer Vorschau testen.
+  "027": Vor-Ort-Service
+  "028": Lokale Unterstützung vor Ort bei Deployment, Fehlersuche und Anforderungsklärung mit Ihren Fachabteilungen.
+  "029": Betrieb und Weiterentwicklung
+  "030": Selbst gehostetes Deployment, Backups, Upgrades und Fehlersuche übernehmen, während Agenten in Studio laufend Verbesserungen umsetzen.
+  "031": So funktioniert es
+  "032": "Partner führen die Agenten. "
+  "033": Sie treffen die fachlichen Entscheidungen.
+  "034": Führen Sie das Projekt in Ihrem eigenen Studio, oder lassen Sie den Partner in seinem entwickeln und in Ihr Repository liefern, mit vollem Einblick in Fortschritt, Blocker und Releases.
+  "035": Das Geschäft beschreiben
+  "036": Sie erklären Prozess und Schwachstellen; der Partner macht daraus Anforderungen und einen Stufenplan.
+  "037": Den Plan festlegen
+  "038": Sie bestätigen Geschäftsregeln, Umfang und Abnahmekriterien.
+  "039": Entwickeln und prüfen
+  "040": Das Agenten-Team entwickelt und testet; der Partner verantwortet die Qualität.
+  "041": In der Vorschau abnehmen
+  "042": Sie gehen es in einer Vorschau durch und geben das Release frei.
+  "043": Übergabe und Betreuung
+  "044": Code, Skills und Wissen liegen in Ihrem Repository; ändern Sie selbst oder behalten Sie den Partner.
+  "045": Partner und Agenten übernehmen
+  "046": Design, Entwicklung, Tests und Code-Review
+  "047": Umgebungen, Integrationen, Migrationen und Release-Vorbereitung
+  "048": Geschäftsregeln in Skills und Wissen festhalten
+  "049": Sie entscheiden
+  "050": Geschäftsregeln, Umfang und Prioritäten
+  "051": Ob jede Funktion abgenommen wird
+  "052": Wann es live geht
+  "053": Einen Partner wählen
+  "054": Senden Sie Ihren Bedarf, wir empfehlen passende Partner.
+  "055": "Wir vermitteln Ihnen 1 bis 3 qualifizierte Partner nach Region, Branche und Umfang. Im Gespräch sollten Sie Folgendes klären:"
+  "056": "Erfahrung: "
+  "057": Live-Projekte in Ihrer Branche und ob eines vorgeführt werden kann
+  "058": "Lieferung: "
+  "059": in wessen Studio entwickelt wird und wie Code, Skills und Wissen übergeben werden
+  "060": "Nach dem Go-live: "
+  "061": wie Betrieb, Upgrades und Reaktions-SLAs geregelt sind
+  "062": FAQ
+  "063": Was ist der Unterschied zwischen einem Partner und NocoBase direkt?
+  "064": NocoBase liefert die Plattform, kommerzielle Lizenzen und praxisnahe Pilotprojekte. Partner bieten durchgängige Umsetzung in Ihrer Region und Branche, mit individueller Entwicklung, Integrationen, Migrationen und langfristiger Betreuung. Bei Bedarf arbeiten beide zusammen.
+  "065": Wie funktioniert die Preisgestaltung?
+  "066": Partner kalkulieren Umsetzung und Betreuung pro Projekt, Modul oder als Jahresvertrag. Kommerzielle NocoBase-Lizenzen folgen der offiziellen Preisliste und können über Ihren Partner bezogen werden.
+  "067": Wem gehört der gelieferte Code?
+  "068": Ihnen. Ihre Geschäftslogik liegt als sauberer Quellcode in Ihrem Repository, gestützt auf NocoBase-Core-Plugins; Code, Skills, Wissen und Supportbedingungen sind klar geregelt.
+  "069": Können wir später den Partner wechseln oder die Betreuung intern übernehmen?
+  "070": Jederzeit. Da das System auf dem Standard-Core von NocoBase basiert, mit Praktiken in Skills und Kontext in der Wissensdatenbank, können Ihr Team oder ein anderer Partner reibungslos übernehmen.
+  "071": Senden Sie Ihre Anforderungen
+  "072": Beschreiben Sie das gewünschte System, und wir empfehlen Partner nach Region, Branche und benötigten Leistungen.
+  "073": Firmenname
+  "074": Name der Kontaktperson
+  "075": E-Mail der Kontaktperson
+  "076": Ihre Anforderungen
+  "077": Absenden
+  "078": "Zum Beispiel: Ihre Branche, das System oder der Anwendungsfall, das zu lösende Problem, benötigte Leistungen, Budget oder Umfang und gewünschter Go-live"
+  "079": Land / Region
+  "080": Land oder Region auswählen

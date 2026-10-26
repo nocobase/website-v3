@@ -1,0 +1,468 @@
+meta:
+  title:
+    zh: NocoBase Core — 让 Agent 专心写业务，底座已经就绪
+    en: NocoBase Core — Let agents focus on your business logic
+  description:
+    zh: NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。
+    en: NocoBase Core is the open-source application foundation for business systems built and run with AI.
+items:
+  "000":
+    en: Let agents focus on your business logic. <span class="m">The foundation is ready.</span>
+    zh: 让 Agent 专心写业务，<span class="m">底座已经就绪。</span>
+    where: phero
+  "001":
+    en: NocoBase Core is the open-source application foundation for business systems built and run with AI. Permissions, workflows, files, and other building blocks come ready to use, so agents build only what is specific to your business, all on one consistent architecture.
+    zh: NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。
+    where: phero
+  "002":
+    en: Quick Start
+    zh: 快速开始
+    where: phero
+  "003":
+    en: See the Building Blocks
+    zh: 查看基础能力
+    where: phero
+  "004":
+    en: Free, open source, and ready for production
+    zh: 开源免费，可以直接用于生产
+    where: phero
+  "005":
+    en: Your code and data belong to you
+    zh: 代码和数据归企业所有
+    where: phero
+  "006":
+    en: Works with Claude Code, Codex, and dozens of other coding tools
+    zh: 支持 Claude Code、Codex 等数十种编码工具
+    where: phero
+  "007":
+    en: Building blocks
+    zh: 基础能力
+    where: blocks
+  "008":
+    en: Proven building blocks, <span class="m">ready to use.</span>
+    zh: 基础能力<span class="m">不用从头开发和验证。</span>
+    where: blocks
+  "009":
+    en: Even with AI writing the code, permissions, workflow engines, and approvals are hard to design from scratch. They are full of edge cases and take a lot of work to maintain. Core provides ready-made building blocks, and NocoBase keeps maintaining and upgrading them. Agents build only the business logic, so there is far less code to write and verify.
+    zh: 即使交给 AI，权限、工作流引擎、审批等底层模块从零开发，设计难度依然很高，边界情况多，维护工作量大。Core 提供现成的基础能力，由 NocoBase 持续维护和升级。Agent 只开发业务部分，需要开发和验证的代码大幅减少。
+    where: blocks
+  "010":
+    en: Users and permissions
+    zh: 用户与权限
+    where: blocks
+  "011":
+    en: Sign-in and sessions
+    zh: 登录与会话
+    where: blocks
+  "012":
+    en: Passwords, resets, and sessions; OIDC single sign-on, social login, and two-factor authentication
+    zh: 密码登录、找回密码、会话；OIDC 统一身份、社交登录、双因素认证
+    where: blocks
+  "013":
+    en: User management
+    zh: 用户管理
+    where: blocks
+  "014":
+    en: Activate and deactivate accounts, invite links, and role assignment
+    zh: 账号启用与停用、邀请链接、分配角色
+    where: blocks
+  "015":
+    en: Permissions
+    zh: 权限
+    where: blocks
+  "016":
+    en: Access to pages, actions, and data, the same for people and agents
+    zh: 页面、操作和数据范围的授权，人与 Agent 用同一套
+    where: blocks
+  "017":
+    en: Data access rules
+    zh: 数据范围规则
+    where: blocks
+  "018":
+    en: Default data scope, sharing rules, and restriction rules
+    zh: 默认数据范围、共享规则、限制规则
+    where: blocks
+  "019":
+    en: For scripts, other systems, and the command line
+    zh: 供脚本、外部系统和命令行访问应用
+    where: blocks
+  "020":
+    en: Data and files
+    zh: 数据与文件
+    where: blocks
+  "021":
+    en: Data models and migrations
+    zh: 数据模型与迁移
+    where: blocks
+  "022":
+    en: Tables, fields, relations, and migrations on SQLite, PostgreSQL, MySQL, SQL Server, and Oracle
+    zh: 数据表、字段、关联和迁移；SQLite、PostgreSQL、MySQL、SQL Server、Oracle
+    where: blocks
+  "023":
+    en: More databases
+    zh: 国产数据库
+    where: blocks
+    unused: true
+  "024":
+    en: Dameng, KingbaseES, and OceanBase
+    zh: 达梦、人大金仓、OceanBase
+    where: blocks
+    unused: true
+  "025":
+    en: Database explorer
+    zh: 数据库浏览
+    where: blocks
+  "026":
+    en: Browse existing connections, tables, and fields
+    zh: 浏览已有数据库的连接、数据表和字段
+    where: blocks
+  "027":
+    en: Files
+    zh: 文件
+    where: blocks
+  "028":
+    en: Upload, store, preview, and download, linked to business records
+    zh: 上传、存储、预览和下载，文件与业务记录关联
+    where: blocks
+  "029":
+    en: Template printing
+    zh: 模板打印
+    where: blocks
+  "030":
+    en: Contracts, quotes, and other documents from Office templates
+    zh: 按 Office 模板生成合同、报价单等文档
+    where: blocks
+  "031":
+    en: Workflows
+    zh: 流程
+    where: blocks
+  "032":
+    en: Record lifecycle
+    zh: 记录生命周期
+    where: blocks
+  "033":
+    en: States and transitions declared in code, with full handling history
+    zh: 状态和流转在代码里声明，保留完整的处理历史
+    where: blocks
+  "034":
+    en: Workflow management
+    zh: 流程管理
+    where: blocks
+  "035":
+    en: Flow diagrams and run history; admins adjust approvers and thresholds
+    zh: 流程图和执行记录，管理员可以调整审批人、金额阈值
+    where: blocks
+  "036":
+    en: Scheduled jobs
+    zh: 定时任务
+    where: blocks
+  "037":
+    en: Run on a schedule, with every run recorded
+    zh: 按时间规则执行，记录每次执行
+    where: blocks
+  "038":
+    en: Approvals
+    zh: 审批
+    where: blocks
+  "039":
+    en: Multi-level, all-sign, any-sign, add a signer, transfer, and send back
+    zh: 多级、会签、或签、加签、转交、退回
+    where: blocks
+  "040":
+    en: Task center
+    zh: 任务中心
+    where: blocks
+  "041":
+    en: One to-do list across every business source
+    zh: 汇总各业务来源的个人待办
+    where: blocks
+  "042":
+    en: Messaging
+    zh: 消息
+    where: blocks
+  "043":
+    en: Notifications
+    zh: 通知
+    where: blocks
+  "044":
+    en: Sending, delivery, and logs
+    zh: 通知的发送、投递和日志
+    where: blocks
+  "045":
+    en: In-app messages
+    zh: 站内信
+    where: blocks
+  "046":
+    en: The in-app channel and inbox
+    zh: 站内信渠道和收件箱
+    where: blocks
+  "047":
+    en: Channels
+    zh: 通知渠道
+    where: blocks
+  "048":
+    en: SMTP and Resend email, Feishu and DingTalk group bots
+    zh: SMTP、Resend 邮件，飞书、钉钉群机器人
+    where: blocks
+  "049":
+    en: Browser push notifications
+    zh: 浏览器推送通知
+    where: blocks
+  "050":
+    en: Email
+    zh: 邮件互通
+    where: blocks
+  "051":
+    en: Connect mailboxes to sync, reply, and send, with threads linked to records
+    zh: 关联个人邮箱，同步、回复和发送，往来邮件与业务记录关联
+    where: blocks
+  "052":
+    en: AI and agents
+    zh: AI 与 Agent
+    where: blocks
+  "053":
+    en: Business agents
+    zh: 业务 Agent
+    where: blocks
+  "054":
+    en: Agent definitions, model services, runs, and conversations
+    zh: Agent 定义、模型服务、运行和对话
+    where: blocks
+  "055":
+    en: Agent sessions
+    zh: Agent 会话
+    where: blocks
+  "056":
+    en: Chat in the browser with the coding tools on members’ computers
+    zh: 在浏览器里和成员电脑上的编码工具对话
+    where: blocks
+  "057":
+    en: Knowledge base
+    zh: 知识库
+    where: blocks
+  "058":
+    en: Versioned documents and files with full-text search, for people and agents
+    zh: 带版本的文档和文件、全文检索，供人和 Agent 使用
+    where: blocks
+  "059":
+    en: Interface and operations
+    zh: 界面与运维
+    where: blocks
+  "060":
+    en: Pages and UI library
+    zh: 页面与组件库
+    where: blocks
+  "061":
+    en: "The page framework and UI library: tables, boards, flow diagrams, and more"
+    zh: 页面框架和 UI 组件库，表格、看板、流程图等
+    where: blocks
+  "062":
+    en: Languages and themes
+    zh: 多语言与主题
+    where: blocks
+  "063":
+    en: Language switching, plus light, dark, and compact modes
+    zh: 界面语言切换，浅色、深色和紧凑模式
+    where: blocks
+  "064":
+    en: Background jobs
+    zh: 后台任务与队列
+    where: blocks
+  "065":
+    en: Jobs, queues, and caching
+    zh: 后台任务、队列和缓存
+    where: blocks
+  "066":
+    en: Secrets
+    zh: 密钥管理
+    where: blocks
+  "067":
+    en: Encrypted secrets with rotation
+    zh: 密钥加密存储与轮换
+    where: blocks
+  "068":
+    en: Deploy and upgrade
+    zh: 部署与升级
+    where: blocks
+  "069":
+    en: Command-line deploys, upgrades, and rollback
+    zh: 命令行部署、升级与回滚
+    where: blocks
+  "070":
+    en: Foundation page
+    zh: 应用底座
+    where: blocks
+  "071":
+    en: See which Core building blocks an app uses
+    zh: 查看应用用到了哪些 Core 能力
+    where: blocks
+  "072":
+    en: <b>20+ building blocks</b>, maintained and upgraded by NocoBase.
+    zh: <b>20 多项基础能力</b>，由 NocoBase 持续维护和升级。
+    where: blocks
+  "073":
+    en: Read the Docs for Each One
+    zh: 查看每项能力的文档
+    where: blocks
+    unused: true
+  "074":
+    en: Architecture and standards
+    zh: 架构和规范
+    where: standards
+  "075":
+    en: One architecture, <span class="m">one set of standards.</span>
+    zh: 为 Agent 提供<span class="m">统一的架构和规范。</span>
+    where: standards
+  "076":
+    en: Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain. Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.
+    zh: 换人、换模型甚至换会话，AI 都可能随机发挥，系统越来越难维护。Core 提供统一的项目结构和开发规范，系统在统一架构下长期稳定迭代。
+    where: standards
+  "077":
+    en: Project scaffolding
+    zh: 项目脚手架
+    where: standards
+  "078":
+    en: Every new app starts with the same layout. Pages, endpoints, schema changes, and tests each have a fixed place, and Core’s building blocks come in as packages.
+    zh: 新建的应用自带统一的目录：页面、接口、表结构变更、测试各有固定位置，Core 的基础能力以包的形式引入。
+    where: standards
+  "079":
+    en: Architecture standards
+    zh: 架构规范
+    where: standards
+  "080":
+    en: AGENTS.md and the skills spell out where business code goes, what to take from Core, and how to write migrations and permission checks.
+    zh: AGENTS.md 和技能写明业务代码放在哪里、哪些直接用现成能力、迁移和权限怎么写。
+    where: standards
+  "081":
+    en: Development skills
+    zh: 开发技能
+    where: standards
+  "082":
+    en: Skills ship with Core’s packages and sync into the app on install. Claude Code, Codex, and other coding tools read the same playbook, so the approach holds as people and models change.
+    zh: 技能随 Core 的包发布，安装依赖时同步到应用里。Claude Code、Codex 等编码工具读到的是同一套写法，换人、换模型也不变。
+    where: standards
+  "083":
+    en: "Building with a team of people and agents: NocoBase Studio"
+    zh: 多人、多个 Agent 一起开发：NocoBase Studio
+    where: standards
+  "084":
+    en: Open source and self-hosting
+    zh: 开源与私有部署
+    where: open
+  "085":
+    en: You own <span class="m">your apps and data.</span>
+    zh: 应用和数据<span class="m">归企业私有。</span>
+    where: open
+  "086":
+    en: Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.
+    zh: Core 开源免费，业务代码和数据都在企业自己的仓库和服务器上，模型和 Agent 也由企业自由选择。
+    where: open
+  "087":
+    en: Contributors
+    zh: 代码贡献者
+    where: open
+  "088":
+    en: Downloads
+    zh: 累计下载
+    where: open
+  "089":
+    en: 3M+
+    zh: 300 万+
+    where: open
+  "090":
+    en: View on GitHub
+    zh: 在 GitHub 上查看源码
+    where: open
+  "091":
+    en: Free and open source
+    zh: 开源免费
+    where: open
+  "092":
+    en: Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.
+    zh: Core 以及 NocoCRM、NocoReach、NocoProject 开源免费，可以直接用于生产。
+    where: open
+    unused: true
+  "093":
+    en: Self-hosted
+    zh: 私有部署
+    where: open
+  "094":
+    en: Core, Solution, and Studio all run on your own servers. Your code and data belong to you.
+    zh: Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。
+    where: open
+  "095":
+    en: Your choice of models and agents
+    zh: 模型与 Agent 自由选择
+    where: open
+  "096":
+    en: No vendor lock-in. Works with Claude Code, Codex, and other coding tools, and with a wide range of models.
+    zh: 不绑定厂商，支持 Claude Code、Codex 等编码工具和各类大模型。
+    where: open
+  "097":
+    en: Apps run independently
+    zh: 应用独立运行
+    where: open
+  "098":
+    en: Once released, your business apps run on their own. Day-to-day business requests never go through Studio.
+    zh: 业务应用发布后独立运行，日常业务请求不经过 Studio。
+    where: open
+  "099":
+    en: Get started
+    zh: 开始使用
+    where: start
+  "100":
+    en: Choose your starting point.
+    zh: 选择适合你们团队的起点。
+    where: start
+  "101":
+    en: Free &amp; Open Source
+    zh: 开源免费
+    where: start
+  "102":
+    en: Build your own system on Core
+    zh: 用 Core 开发自己的系统
+    where: start
+  "103":
+    en: Agents use Core’s ready-made building blocks and build only what is specific to your business.
+    zh: Agent 使用 Core 的现成能力，只开发企业自己的业务部分。
+    where: start
+  "104":
+    en: Start Open Source
+    zh: 开源起步
+    where: start
+  "105":
+    en: Install a ready-made business app
+    zh: 安装现成的业务应用
+    where: start
+  "106":
+    en: Use it as it is, or have a coding agent tailor it to your business.
+    zh: 可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。
+    where: start
+  "107":
+    en: View Solution Apps
+    zh: 查看 Solution
+    where: start
+  "108":
+    en: Commercial
+    zh: 商业版
+    where: start
+  "109":
+    en: Lead an agent team
+    zh: 带领 Agent 团队开发
+    where: start
+  "110":
+    en: Agents keep the work moving. Your team stays in control.
+    zh: Agent 自主推进，团队掌控全局。
+    where: start
+  "111":
+    en: Explore Studio
+    zh: 了解 Studio
+    where: start
+  "112":
+    en: Core and every Solution app are free, open source, and ready for production.
+    zh: Core 和所有 Solution 开源免费，可以直接用于生产。
+    where: open
+  "113":
+    en: Read the Core Docs
+    zh: 查看 Core 文档
+    where: blocks

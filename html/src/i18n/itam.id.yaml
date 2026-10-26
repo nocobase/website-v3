@@ -1,0 +1,77 @@
+notes: |-
+  Bahasa Indonesia（Anda）
+  术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+  coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+  self-hosted = self-hosted；at a glance = terlihat sekilas
+  本页用语：IT = TI；asset register = daftar aset；device = perangkat；software entitlement = lisensi software；seat = seat；
+  idle = tak terpakai；stock = stok；stocktake / audit = stock opname；disposal = penghapusan；repair = perbaikan；
+  joiners & leavers = karyawan masuk & keluar；new hire = karyawan baru；leaver = karyawan yang keluar；kit = perlengkapan；
+  reconcile = rekonsiliasi；discrepancy = selisih；purchase request = permintaan pembelian；PO = PO；approval = persetujuan；
+  owner = penanggung jawab；run = eksekusi
+  界面名称保留英文（产品界面显示英文）：Approval assistant、Devices、Accessories、Consumables、Components、Entitlements、
+  Procurement、Repairs、Disposals、Audits、Business guidance、Skills、Models
+title: NocoITAM — Agen yang urus. Aset TI tetap rapi.
+description: NocoITAM adalah manajemen aset TI open source di atas NocoBase. Agen merekonsiliasi MDM dengan daftar aset, menyiapkan daftar untuk karyawan masuk dan keluar, memeriksa stok dan aset tak terpakai sebelum setiap pembelian, dan menarik kembali seat tak terpakai sebelum perpanjangan. Tim TI tinggal memutuskan.
+strings:
+  "000": Manajemen aset TI
+  "001": Agen yang urus. <span class="m">Aset TI tetap rapi.</span>
+  "002": Alat ITAM tradisional hanyalah catatan yang diisi manual. Di NocoITAM, agen merapikan selisih MDM, menyiapkan perlengkapan karyawan baru, dan memeriksa stok serta aset tak terpakai sebelum setiap pembelian. Setiap perangkat, seat, dan pengeluaran tercatat.
+  "003": Coba online
+  "004": Tonton pengantar
+  "005": Lisensi
+  "006": Open source
+  "007": Berbasis
+  "008": Versi
+  "009": Agen bawaan
+  "010": MDM
+  "011": Model AI
+  "012": Bebas pilih
+  "013": Coba NocoITAM online
+  "014": Anda sudah masuk dengan akun demo. Semua datanya fiktif, jadi silakan coba apa saja.
+  "015": Buka penuh di tab baru
+  "016": Nilai yang terlihat
+  "017": "Setiap penghematan "
+  "018": tercatat jejaknya dengan jelas.
+  "019": Agen tidak pernah mengubah data sendiri. Setiap tindakan diusulkan agen dan dikonfirmasi oleh penanggung jawabnya. Anda tidak hanya melihat berapa yang dihemat, tetapi juga dari permintaan pembelian atau seat lisensi mana penghematan itu berasal.
+  "020": Pembelian
+  "021": "Sebelum setiap pembelian, "
+  "022": periksa stok, aset tak terpakai, dan harga sebelumnya.
+  "023": Begitu permintaan diajukan, Approval assistant memeriksa apakah stok atau aset tak terpakai bisa memenuhinya, membandingkan harga satuan sebelumnya dan permintaan serupa, menandai detail yang kurang, lalu menyusun rekomendasi dan komentar.
+  "024": Approval assistant memberi jauh lebih dari sekadar “setujui” atau “tolak.”
+  "025": "“Setujui dengan syarat: ada 3 monitor yang sama di stok, jadi cukup beli 2 sisanya.”"
+  "026": "“Tolak: printer ini baru berumur 20 bulan tanpa riwayat perbaikan. Perbaiki dulu sebelum dihapus.”"
+  "027": "“Setujui dengan syarat: model ini tidak ada di stok, tetapi ada 3 alternatif. Pastikan dulu anggaran dan jumlah karyawan baru.”"
+  "028": Karyawan masuk &amp; keluar
+  "029": "Karyawan baru siap bekerja di hari pertama. "
+  "030": Karyawan yang keluar mengembalikan semuanya.
+  "031": Sebelum hari pertama, NocoITAM mencocokkan perlengkapan standar karyawan baru dengan stok dan seat tak terpakai sekaligus. Konfirmasi, lalu buat draf PO untuk kekurangannya dengan sekali klik. Saat ada yang keluar, NocoITAM melacak perangkat, aksesori, seat, dan tugas di luar sistem seperti menonaktifkan akun dan merotasi kunci, hingga semuanya beres.
+  "032": "Setelah setiap sinkronisasi MDM, "
+  "033": selisih langsung menjadi rencana tindakan.
+  "034": "Setelah sinkronisasi dengan Intune atau Jamf Pro, agen memilah selisih beserta konteksnya: pengguna yang tidak cocok diteruskan ke penanggung jawab perangkat, perangkat yang belum terdaftar ke admin aset, dan kasus khusus seperti laptop yang lama offline ditandai untuk ditinjau manusia. Periksa dan terapkan sekaligus."
+  "035": Tak perlu lagi VLOOKUP spreadsheet setiap minggu
+  "036": Setiap selisih punya penanggung jawab dan alasan yang jelas
+  "037": Setiap rekonsiliasi tercatat di riwayat perangkat
+  "038": Daftar aset
+  "039": "Hardware, software, dan barang habis pakai, "
+  "040": semua dalam satu daftar.
+  "041": Devices
+  "042": Siklus hidup lengkap dari stok hingga penghapusan, terus direkonsiliasi dengan Intune dan Jamf Pro.
+  "043": Accessories, Consumables &amp; Components
+  "044": Lacak jumlah yang dikeluarkan, dikembalikan, dan tersedia di stok, dengan peringatan saat di bawah batas minimum; komponen dipasang ke perangkat dan ikut berpindah bersamanya.
+  "045": Entitlements
+  "046": Lacak seat langganan dan permanen (sesuai, tak terpakai, atau kelebihan alokasi), dengan peringatan sebelum perpanjangan otomatis.
+  "047": Procurement, Repairs, Disposals &amp; Audits
+  "048": Menandai pengiriman yang terlambat, mencatat biaya perbaikan per perangkat, dan melacak selisih stock opname hingga tuntas.
+  "049": Sesuai cara Anda
+  "050": "Tuliskan standar perlengkapan dan aturan persetujuan Anda. "
+  "051": Agen bekerja sesuai aturan itu.
+  "052": Business guidance
+  "053": Tetapkan paket perlengkapan standar, anggaran, dan ambang persetujuan dalam teks biasa, yang dibaca setiap agen di setiap eksekusi.
+  "054": Skills
+  "055": Skill bawaan untuk tinjauan persetujuan, katalog, sinkronisasi perangkat, serta onboarding/offboarding bisa dibaca dan disesuaikan sepenuhnya.
+  "056": Models &amp; kode
+  "057": "Tetapkan model per agen dan pantau pemakaiannya. Butuh field, alur kerja, atau laporan khusus? Minta agen coding mengubah kode sumbernya di Studio: open source, self-hosted, dan milik Anda."
+  "058": Lebih sedikit rekonsiliasi untuk TI, setiap aset terlihat jelas.
+  "059": Coba NocoITAM online, atau ambil kode sumbernya di GitHub dan jalankan sendiri. Hubungkan MDM Anda, impor aset Anda, dan biarkan agen mulai merekonsiliasi.
+  "061": Professional
+  "062": "Tetapkan model per agen dan pantau pemakaiannya. Butuh field, alur kerja, atau laporan khusus? Minta agen coding mengubah kode sumbernya di Studio: termasuk dalam Professional, self-hosted, dan milik Anda."

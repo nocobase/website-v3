@@ -1,0 +1,69 @@
+notes: |-
+  Tiếng Việt（bạn）
+  术语：platform = nền tảng；foundation = nền móng（与 nền tảng 区分）；building blocks = khối chức năng；governance = quản trị；
+  agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
+  business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
+  页面用语：issue = nhiệm vụ；coordinator agent = agent điều phối；sign-off = nghiệm thu；My sessions 等产品界面名称照英文
+title: NocoBase Studio — Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.
+description: NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm.
+strings:
+  "000": Agent tự thúc đẩy công việc. <span class="m">Đội ngũ làm chủ toàn cục.</span>
+  "002": Dùng thử trực tuyến
+  "004": Triển khai trên máy chủ của bạn
+  "005": Hỗ trợ Claude Code, Codex và hàng chục công cụ lập trình khác
+  "006": Có trong các phiên bản thương mại
+  "007": Đội agent
+  "008": Một đội agent <span class="m">liên tục thúc đẩy công việc.</span>
+  "009": Studio kết nối agent trên nhiều máy và điều phối tập trung, thúc đẩy song song nhiều dự án và nhiệm vụ suốt 24 giờ.
+  "010": Agent trên nhiều máy
+  "011": Kết nối Claude Code, Codex và các agent khác trên máy tính cá nhân và máy chủ của đội, Studio tự nhận diện công cụ lập trình và model đã đăng nhập. Ghi rõ thế mạnh của từng agent rồi bật lên, agent sẽ gia nhập đội agent.
+  "012": Agent điều phối phân công
+  "013": Agent điều phối phân công thiết kế, phát triển, kiểm thử và review theo thế mạnh của từng agent. Nó không viết code, không merge code, việc nghiệm thu luôn do con người thực hiện.
+  "014": Nhiều nhiệm vụ cùng lúc
+  "015": Mỗi nhiệm vụ phát triển trên nhánh riêng, mỗi lần chạy dùng một worktree độc lập, nên nhiều nhiệm vụ cùng tiến triển mà không ảnh hưởng nhau. Càng nhiều máy, càng nhiều nhiệm vụ chạy song song.
+  "016": My sessions
+  "017": Trong Studio, trò chuyện với agent trên máy của bạn để thảo luận và làm rõ yêu cầu, ghi nhận nhiệm vụ và theo dõi tiến độ. Khi nhiệm vụ bắt đầu, agent điều phối sẽ giao cho đội agent phát triển.
+  "018": Tiến độ
+  "019": Tiến độ <span class="m">rõ ràng trong nháy mắt.</span>
+  "020": Tiến độ dự án, diễn biến nhiệm vụ, khối lượng việc của agent và mức dùng model đều hiển thị rõ ràng. Mỗi nhiệm vụ đang ở đâu, bước tiếp theo là gì, đều rõ trong nháy mắt.
+  "021": Tiến độ dự án
+  "022": Tiến độ từng dự án, cùng số nhiệm vụ hoàn thành, thời gian chu kỳ, tỷ lệ do agent hoàn thành và chi phí mỗi nhiệm vụ, so sánh với kỳ trước.
+  "023": Diễn biến nhiệm vụ
+  "024": Ngay đầu mỗi nhiệm vụ hiển thị đang ở bước nào, agent nào đang làm, bước tiếp theo là gì.
+  "025": Khối lượng việc của agent và mức dùng model
+  "026": Agent trên mỗi máy đang làm những nhiệm vụ nào, mỗi model đã dùng bao nhiêu token, tốn bao nhiêu tiền, đều tra được bất cứ lúc nào.
+  "027": Quyết định
+  "028": Quyết định <span class="m">có căn cứ rõ ràng.</span>
+  "030": Báo cáo và danh sách kiểm tra
+  "031": Mỗi lần bàn giao đều ghi rõ đã làm gì, kiểm chứng ra sao, kèm danh sách nghiệm thu từng mục.
+  "032": Ảnh chụp màn hình và bản xem trước
+  "033": Mỗi kịch bản kèm ảnh chụp màn hình; khi cần, mở môi trường xem trước riêng để tự mình thử.
+  "034": Duyệt hoặc trả lại
+  "035": Xem xong căn cứ thì duyệt hoặc trả lại. Khi trả lại, ghi rõ lý do để agent tiếp tục sửa.
+  "036": Chuyên gia nghiệp vụ
+  "037": Chuyên gia nghiệp vụ không biết code cũng có thể quyết định.
+  "038": Chuyên gia nghiệp vụ nêu yêu cầu bằng ngôn ngữ nghiệp vụ, trả lời câu hỏi của agent và nghiệm thu trong bản xem trước với dữ liệu thật. Môi trường, nhánh, kiểm thử và phát hành do agent và Studio đảm nhận.
+  "039": Trưởng nhóm kỹ thuật đặt quy tắc, phê duyệt phát hành; chuyên gia nghiệp vụ đặt yêu cầu, chịu trách nhiệm nghiệm thu.
+  "040": Trước khi đến tay con người, Studio tổ chức kiểm tra và review.
+  "041": "Mọi thay đổi đi theo cùng một quy trình: kiểm thử và review code đều đạt mới giao cho người nghiệm thu; được người phê duyệt mới phát hành lên production, có sự cố thì rollback."
+  "042": Nhánh và worktree
+  "043": Mỗi nhiệm vụ có nhánh riêng, mỗi lần chạy diễn ra trong một worktree độc lập; PR trên nhánh tự động gắn với nhiệm vụ.
+  "044": Kiểm thử và review
+  "045": CI chạy kiểm tra và test, sau đó đổi sang model khác review code, ưu tiên model của nhà cung cấp khác.
+  "046": Xem trước
+  "047": Khi cần, mỗi PR có môi trường xem trước riêng để con người dùng thử và nghiệm thu.
+  "048": Merge và phát hành
+  "049": Nghiệm thu xong thì merge, nhiệm vụ tự động hoàn thành khi mọi PR đã merge; phát hành lên production do con người phê duyệt.
+  "050": Rollback
+  "051": Có sự cố thì quay về phiên bản trước.
+  "053": Phương pháp, kinh nghiệm, tri thức <span class="m">ở lại với đội ngũ.</span>
+  "054": Bối cảnh yêu cầu, tài liệu nghiệp vụ và kinh nghiệm dự án nằm rải rác trong các phiên trò chuyện trên nhiều máy khác nhau, đổi người hay đổi agent là khó tìm lại. Studio lưu phương pháp và kinh nghiệm vào kỹ năng, kho tri thức và bộ nhớ dự án, đổi người hay đổi agent vẫn bàn giao trơn tru.
+  "055": Kỹ năng
+  "056": "Kỹ năng lưu cách làm việc. Cách làm rõ yêu cầu, phát triển, review, phát hành được viết thành kỹ năng ở ba cấp: toàn cục, dự án, thư mục làm việc, mỗi lần chạy tự động mang theo."
+  "057": Kho tri thức
+  "058": Kho tri thức lưu tài liệu nghiệp vụ. Tài liệu yêu cầu, quy tắc nghiệp vụ, mẫu hợp đồng… do con người soạn hoặc tải lên, agent tra cứu trực tiếp khi làm việc.
+  "059": Bộ nhớ dự án
+  "060": Bộ nhớ dự án lưu kinh nghiệm agent tự học được, nằm trong repository của dự án, được review và merge cùng PR của nhiệm vụ, và được đọc trước khi bắt đầu nhiệm vụ tiếp theo.
+  "061": Mã nguồn mở và tự triển khai
+  "062": Tự triển khai. <span class="m">Code và dữ liệu thuộc về bạn.</span>
+  "070": Code do agent viết được xây trên NocoBase Core

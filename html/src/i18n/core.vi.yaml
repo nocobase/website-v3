@@ -1,0 +1,89 @@
+notes: |-
+  Tiếng Việt（bạn）
+  术语：platform = nền tảng；foundation = nền móng（与 nền tảng 区分）；building blocks = khối chức năng；governance = quản trị；
+  agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
+  business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
+title: NocoBase Core — Để agent tập trung vào logic nghiệp vụ
+description: NocoBase Core là nền móng ứng dụng mã nguồn mở để phát triển và vận hành hệ thống nghiệp vụ bằng AI.
+strings:
+  "000": Để agent tập trung vào logic nghiệp vụ. <span class="m">Nền móng đã sẵn sàng.</span>
+  "002": Bắt đầu nhanh
+  "003": Xem các khối chức năng
+  "004": Miễn phí, mã nguồn mở, dùng được ngay cho production
+  "005": Code và dữ liệu thuộc về bạn
+  "006": Hỗ trợ Claude Code, Codex và hàng chục công cụ lập trình khác
+  "008": Khối chức năng đã kiểm chứng, <span class="m">dùng được ngay.</span>
+  "009": "Dù AI viết code, phân quyền, workflow engine và phê duyệt vẫn khó thiết kế từ đầu: nhiều trường hợp biên, khối lượng bảo trì lớn. Core cung cấp sẵn các khối chức năng, được NocoBase liên tục bảo trì và nâng cấp. Agent chỉ phát triển phần logic nghiệp vụ, lượng code cần viết và kiểm chứng giảm đáng kể."
+  "010": Người dùng và phân quyền
+  "011": Đăng nhập và phiên
+  "012": Mật khẩu, khôi phục mật khẩu và phiên; đăng nhập một lần OIDC, đăng nhập mạng xã hội và xác thực hai yếu tố
+  "013": Quản lý người dùng
+  "014": Kích hoạt và vô hiệu hóa tài khoản, liên kết mời, phân vai trò
+  "016": Phân quyền trang, thao tác và phạm vi dữ liệu, dùng chung cho người và agent
+  "017": Quy tắc phạm vi dữ liệu
+  "018": Phạm vi dữ liệu mặc định, quy tắc chia sẻ và quy tắc giới hạn
+  "019": Cho script, hệ thống bên ngoài và dòng lệnh truy cập ứng dụng
+  "020": Dữ liệu và tệp
+  "021": Mô hình dữ liệu và migration
+  "022": Bảng, trường, quan hệ và migration trên SQLite, PostgreSQL, MySQL, SQL Server, Oracle
+  "023": Cơ sở dữ liệu khác
+  "024": Dameng, KingbaseES và OceanBase
+  "025": Duyệt cơ sở dữ liệu
+  "026": Xem kết nối, bảng và trường của cơ sở dữ liệu hiện có
+  "028": Tải lên, lưu trữ, xem trước và tải xuống, tệp gắn với bản ghi nghiệp vụ
+  "029": In theo mẫu
+  "030": Tạo hợp đồng, báo giá và tài liệu khác từ mẫu Office
+  "032": Vòng đời bản ghi
+  "033": Trạng thái và luồng chuyển khai báo trong code, lưu đầy đủ lịch sử xử lý
+  "034": Quản lý quy trình
+  "035": Sơ đồ quy trình và lịch sử chạy; quản trị viên điều chỉnh người phê duyệt, ngưỡng số tiền
+  "036": Tác vụ định kỳ
+  "037": Chạy theo lịch, ghi lại mỗi lần chạy
+  "038": Phê duyệt
+  "039": Nhiều cấp, tất cả cùng duyệt hoặc một người duyệt, thêm người duyệt, chuyển giao và trả lại
+  "040": Trung tâm công việc
+  "041": Gom việc cần làm cá nhân từ mọi nguồn nghiệp vụ
+  "042": Tin nhắn
+  "044": Gửi, phân phối và nhật ký thông báo
+  "045": Tin nhắn trong ứng dụng
+  "046": Kênh tin nhắn trong ứng dụng và hộp thư đến
+  "047": Kênh thông báo
+  "048": Email qua SMTP và Resend, bot nhóm Feishu và DingTalk
+  "049": Thông báo đẩy trên trình duyệt
+  "051": Kết nối hộp thư cá nhân để đồng bộ, trả lời và gửi, thư từ gắn với bản ghi nghiệp vụ
+  "052": AI và agent
+  "053": Agent nghiệp vụ
+  "054": Định nghĩa agent, dịch vụ model, lần chạy và hội thoại
+  "055": Phiên agent
+  "056": Trò chuyện trên trình duyệt với công cụ lập trình trên máy của thành viên
+  "057": Kho tri thức
+  "058": Tài liệu và tệp có phiên bản, tìm kiếm toàn văn, cho cả người và agent
+  "059": Giao diện và vận hành
+  "060": Trang và thư viện UI
+  "061": "Khung trang và thư viện UI: bảng, bảng kanban, sơ đồ quy trình và hơn thế"
+  "062": Đa ngôn ngữ và giao diện
+  "063": Chuyển ngôn ngữ giao diện, chế độ sáng, tối và thu gọn
+  "064": Tác vụ nền
+  "065": Tác vụ nền, hàng đợi và bộ nhớ đệm
+  "066": Quản lý khóa bí mật
+  "067": Lưu trữ mã hóa và xoay vòng khóa
+  "068": Triển khai và nâng cấp
+  "069": Triển khai, nâng cấp và rollback bằng dòng lệnh
+  "070": Trang nền móng
+  "071": Xem ứng dụng dùng những khối chức năng nào của Core
+  "072": <b>Hơn 20 khối chức năng</b>, được NocoBase bảo trì và nâng cấp.
+  "073": Xem tài liệu từng khối chức năng
+  "074": Kiến trúc và chuẩn
+  "075": Một kiến trúc, <span class="m">một bộ chuẩn.</span>
+  "076": Đổi người, đổi model hay thậm chí đổi phiên, AI đều có thể tùy hứng mỗi lần một kiểu, hệ thống ngày càng khó bảo trì. Core cung cấp cấu trúc dự án và chuẩn phát triển thống nhất, để hệ thống phát triển ổn định lâu dài trên một kiến trúc nhất quán.
+  "077": Khung dự án
+  "078": "Mỗi ứng dụng mới đều có sẵn cấu trúc thư mục thống nhất: trang, endpoint, thay đổi schema và test đều có vị trí cố định, các khối chức năng của Core được đưa vào dưới dạng package."
+  "080": AGENTS.md và các kỹ năng ghi rõ code nghiệp vụ đặt ở đâu, phần nào dùng sẵn từ Core, migration và kiểm tra quyền viết thế nào.
+  "081": Kỹ năng phát triển
+  "082": Kỹ năng được phát hành cùng package của Core và đồng bộ vào ứng dụng khi cài đặt. Claude Code, Codex và các công cụ lập trình khác đọc cùng một bộ cách làm, đổi người hay đổi model cũng không đổi.
+  "083": "Nhiều người, nhiều agent cùng phát triển: NocoBase Studio"
+  "084": Mã nguồn mở và tự triển khai
+  "085": Ứng dụng và dữ liệu <span class="m">thuộc về bạn.</span>
+  "099": Bắt đầu
+  "111": Tìm hiểu Studio
+  "113": Xem tài liệu Core

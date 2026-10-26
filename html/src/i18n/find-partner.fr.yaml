@@ -1,0 +1,88 @@
+notes: |-
+  Français（vouvoiement）。? ! : ; 前的不换行空格由 build.py 自动加
+  术语：foundation = socle（applicatif）；building blocks = briques；governance = gouvernance；agent team = équipe d’agents；
+  coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
+  self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
+  页面用语：partner = partenaire；Skills = skills
+title: Trouver un partenaire NocoBase — Faites construire et tourner votre système
+description: Les partenaires NocoBase connaissent NocoBase 3, Studio et votre secteur. Avec leurs équipes d’agents, ils cadrent, développent, valident, livrent et maintiennent avec vous, et le code vous appartient.
+strings:
+  "001": Trouvez le bon partenaire <span class="m">pour construire et faire tourner votre système.</span>
+  "002": Les partenaires NocoBase connaissent parfaitement NocoBase 3, Studio et votre secteur. À la tête d’une équipe d’agents, ils travaillent avec vous pour cadrer, développer, vérifier, livrer et maintenir votre système. Chaque étape est visible dans Studio, et le code source, les skills et la base de connaissances produits vous appartiennent à 100 %.
+  "003": Envoyer votre besoin
+  "005": Quand faire appel à un partenaire
+  "006": "Vous voulez bâtir avec l’IA, "
+  "007": mais avec quelqu’un d’expérimenté aux commandes.
+  "008": Manque d’ingénieurs
+  "009": Vous manquez de ressources techniques internes et cherchez un partenaire expérimenté pour mener une équipe d’agents jusqu’à la livraison.
+  "010": Délais serrés
+  "011": Quand le métier ne peut pas attendre, partez d’une Solution prête à l’emploi ou d’un modèle sectoriel et passez en production en quelques semaines.
+  "012": Intégrations et migrations complexes
+  "013": Connectez ERP, OA, SSO ou bases de données existantes, ou migrez en douceur depuis NocoBase 2 ou d’anciens systèmes.
+  "014": Faire monter votre équipe en compétences
+  "015": Construisez ensemble la première version pour que votre équipe apprenne à diriger des agents, vérifier les aperçus et livrer en autonomie.
+  "016": Ce que font les partenaires
+  "017": "De la première conversation "
+  "018": à chaque amélioration après la mise en production.
+  "019": Cadrage et architecture
+  "020": Cartographier vos processus, choisir le bon point de départ, Solution ou Core, et découper la livraison en jalons.
+  "021": Développement sur mesure
+  "022": Piloter les agents dans Studio, avec tests et revue à chaque modification, prêts pour votre validation dans des aperçus.
+  "023": Intégration des systèmes
+  "024": Connecter ERP, CRM, OA, SSO, messagerie d’équipe et bases externes, avec des permissions contrôlées côté serveur.
+  "025": Migration des données
+  "026": Migrer depuis des tableurs, d’anciennes applications ou NocoBase 2, en testant d’abord les scripts de migration sur des données réelles dans un aperçu.
+  "027": Intervention sur site
+  "028": Une aide locale, en personne, pour le déploiement, le dépannage et le travail sur les besoins avec vos équipes métier.
+  "029": Exploitation et évolution
+  "030": Gérer le déploiement auto-hébergé, les sauvegardes, les mises à jour et le dépannage, avec des agents dans Studio qui font évoluer le système en continu.
+  "031": Comment ça marche
+  "032": "Les partenaires pilotent les agents. "
+  "033": Vous prenez les décisions métier.
+  "034": Menez le projet dans votre propre Studio, ou laissez le partenaire développer dans le sien et livrer dans votre dépôt, avec une visibilité totale sur l’avancement, les blocages et les mises en production.
+  "035": Décrire le métier
+  "036": Vous expliquez le processus et les points de friction ; le partenaire en tire des besoins et un plan par étapes.
+  "037": Valider le plan
+  "038": Vous confirmez les règles métier, le périmètre et les critères de validation.
+  "039": Développement et contrôle
+  "040": L’équipe d’agents développe et teste ; le partenaire garantit la qualité.
+  "041": Valider dans l’aperçu
+  "042": Vous le parcourez dans un aperçu et approuvez la mise en production.
+  "043": Transfert et maintenance
+  "044": Code, skills et connaissances sont dans votre dépôt ; modifiez-les vous-même ou gardez le partenaire.
+  "045": Le partenaire et les agents s’occupent de
+  "046": Conception, développement, tests et revue de code
+  "047": Environnements, intégrations, migrations et préparation des mises en production
+  "048": Transcrire les règles métier dans les skills et les connaissances
+  "049": Vous décidez
+  "050": Règles métier, périmètre et priorités
+  "051": La validation de chaque fonctionnalité
+  "052": La date de mise en production
+  "053": Choisir un partenaire
+  "054": Envoyez votre besoin, nous vous proposons un partenaire.
+  "055": "Nous vous mettons en relation avec 1 à 3 partenaires qualifiés selon votre région, votre secteur et votre besoin. Lors des échanges, vérifiez notamment :"
+  "056": "Expérience : "
+  "057": des projets en production dans votre secteur, et s’ils peuvent en présenter un
+  "058": "Livraison : "
+  "059": dans quel Studio le projet est développé, et comment code, skills et connaissances sont transmis
+  "060": "Après la mise en production : "
+  "061": comment sont organisés l’exploitation, les mises à jour et les SLA de réponse
+  "062": FAQ
+  "063": Quelle différence entre passer par un partenaire et travailler directement avec NocoBase ?
+  "064": "NocoBase fournit la plateforme, les licences commerciales et des pilotes concrets. Les partenaires assurent une mise en œuvre de bout en bout dans votre région et votre secteur : développements sur mesure, intégrations, migrations et maintenance à long terme. Les deux peuvent s’associer si besoin."
+  "065": Comment fonctionnent les tarifs ?
+  "066": Les partenaires chiffrent la mise en œuvre et la maintenance au projet, au module ou en contrat annuel. Les licences commerciales NocoBase suivent la grille officielle et peuvent être achetées via votre partenaire.
+  "067": À qui appartient le code livré ?
+  "068": À vous. Votre logique métier est du code source propre dans votre dépôt, s’appuyant sur les plugins de NocoBase Core, avec code, skills, connaissances et conditions de support clairement définis.
+  "069": Peut-on changer de partenaire ou reprendre la maintenance en interne plus tard ?
+  "070": "À tout moment. Le système repose sur NocoBase Core standard, avec les pratiques dans les skills et le contexte dans la base de connaissances : votre équipe ou un autre partenaire peut reprendre sans difficulté."
+  "071": Envoyez votre besoin
+  "072": Décrivez le système que vous voulez ; nous vous recommanderons des partenaires selon votre région, votre secteur et les services dont vous avez besoin.
+  "073": Nom de l’entreprise
+  "074": Nom du contact
+  "075": E-mail du contact
+  "076": Votre besoin
+  "077": Envoyer
+  "078": "Par exemple : votre secteur, le système ou cas d’usage, le problème à résoudre, les services nécessaires, le budget ou l’échelle, et la date de mise en production visée"
+  "079": Pays ou région
+  "080": Sélectionnez votre pays ou région

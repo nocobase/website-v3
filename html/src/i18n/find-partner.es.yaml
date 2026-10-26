@@ -1,0 +1,88 @@
+notes: |-
+  Español（中性拉美/西班牙通用，tú）
+  术语：foundation = base；building blocks = componentes base；governance = gobernanza；agent team = equipo de agentes；
+  coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
+  vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
+  页面用语：partner = partner；Skills = skills
+title: Encuentra un partner de NocoBase — Pon tu sistema en marcha
+description: Los partners de NocoBase conocen NocoBase 3, Studio y tu sector. Con sus equipos de agentes definen, desarrollan, validan, publican y mantienen contigo, y el código es tuyo.
+strings:
+  "001": Encuentra el partner adecuado <span class="m">para poner tu sistema en marcha.</span>
+  "002": Los partners de NocoBase conocen a fondo NocoBase 3, Studio y tu sector. Al frente de un equipo de agentes, trabajan contigo para definir, desarrollar, verificar, lanzar y mantener tu sistema. Cada paso es visible en Studio, y el código fuente, las skills y la base de conocimiento resultantes son 100 % tuyos.
+  "003": Envía tus requisitos
+  "005": Cuándo ayuda un partner
+  "006": "Quieres construir con IA, "
+  "007": pero con alguien experimentado al frente.
+  "008": Faltan ingenieros
+  "009": No tienes capacidad de ingeniería interna y buscas un partner experimentado que lleve un equipo de agentes hasta la entrega.
+  "010": Plazos ajustados
+  "011": Cuando el negocio no puede esperar, parte de una Solution lista o de una plantilla sectorial y ponla en marcha en semanas.
+  "012": Integraciones y migraciones complejas
+  "013": Conecta ERP, OA, SSO o bases de datos heredadas, o migra sin fricciones desde NocoBase 2 o sistemas antiguos.
+  "014": Capacita a tu propio equipo
+  "015": Construyan juntos la primera versión para que tu equipo aprenda a dirigir agentes, verificar vistas previas y publicar por su cuenta.
+  "016": Qué hacen los partners
+  "017": "Desde la primera conversación "
+  "018": hasta cada mejora tras la puesta en marcha.
+  "019": Análisis y arquitectura
+  "020": Mapea tus procesos, elige el punto de partida adecuado en Solution o Core y divide la entrega en hitos por fases.
+  "021": Desarrollo a medida
+  "022": Dirigir agentes en Studio con pruebas y revisión en cada cambio, listos para tu aceptación en vistas previas.
+  "023": Integración de sistemas
+  "024": Conectar ERP, CRM, OA, SSO, chat de equipo y bases de datos externas, con permisos aplicados en el servidor.
+  "025": Migración de datos
+  "026": Migrar desde hojas de cálculo, aplicaciones heredadas o NocoBase 2, probando antes los scripts de migración con datos reales en una vista previa.
+  "027": Servicio presencial
+  "028": Ayuda local y presencial con el despliegue, la resolución de problemas y el trabajo de requisitos con tus equipos de negocio.
+  "029": Operación y evolución
+  "030": Encargarse del despliegue autoalojado, las copias de seguridad, las actualizaciones y la resolución de problemas, con agentes en Studio impulsando mejoras continuas.
+  "031": Cómo funciona
+  "032": "Los partners dirigen a los agentes. "
+  "033": Tú tomas las decisiones de negocio.
+  "034": Lleva el proyecto en tu propio Studio o deja que el partner desarrolle en el suyo y entregue en tu repositorio, con plena visibilidad del avance, los bloqueos y las publicaciones.
+  "035": Describe el negocio
+  "036": Explicas el proceso y los puntos de dolor; el partner los convierte en requisitos y un plan por fases.
+  "037": Acuerda el plan
+  "038": Confirmas las reglas de negocio, el alcance y los criterios de aceptación.
+  "039": Desarrollo y control
+  "040": El equipo de agentes desarrolla y prueba; el partner responde por la calidad.
+  "041": Acepta en la vista previa
+  "042": Lo recorres en una vista previa y apruebas la publicación.
+  "043": Traspaso y mantenimiento
+  "044": El código, las skills y el conocimiento quedan en tu repositorio; cámbialo tú mismo o mantén al partner.
+  "045": El partner y los agentes se encargan de
+  "046": Diseño, desarrollo, pruebas y revisión de código
+  "047": Entornos, integraciones, migraciones y preparación de publicaciones
+  "048": Plasmar las reglas de negocio en skills y conocimiento
+  "049": Tú decides
+  "050": Reglas de negocio, alcance y prioridades
+  "051": Si cada función se acepta
+  "052": Cuándo se pone en marcha
+  "053": Elegir un partner
+  "054": Envía tus necesidades y te recomendaremos un partner.
+  "055": "Te pondremos en contacto con 1 a 3 partners cualificados según tu región, sector y alcance. Cuando hables con ellos, te sugerimos comprobar:"
+  "056": "Experiencia: "
+  "057": proyectos en producción en tu sector y si pueden mostrar uno
+  "058": "Entrega: "
+  "059": en qué Studio se desarrolla y cómo se traspasan el código, las skills y el conocimiento
+  "060": "Tras la puesta en marcha: "
+  "061": cómo se organizan la operación, las actualizaciones y los SLA de respuesta
+  "062": Preguntas frecuentes
+  "063": ¿Qué diferencia hay entre trabajar con un partner o directamente con NocoBase?
+  "064": NocoBase ofrece la plataforma, las licencias comerciales y pilotos prácticos. Los partners ofrecen implementación integral en tu región y sector, con desarrollos a medida, integraciones, migraciones y mantenimiento a largo plazo. Ambos pueden colaborar cuando haga falta.
+  "065": ¿Cómo funcionan los precios?
+  "066": Los partners cotizan la implementación y el mantenimiento por proyecto, por módulo o como servicio anual. Las licencias comerciales de NocoBase siguen los precios oficiales y se pueden comprar a través de tu partner.
+  "067": ¿De quién es el código entregado?
+  "068": Tuyo. Tu lógica de negocio vive como código fuente limpio en tu repositorio, apoyada en los plugins de NocoBase Core, con el código, las skills, el conocimiento y las condiciones de soporte claramente definidos.
+  "069": ¿Podemos cambiar de partner o llevar el mantenimiento a nuestro equipo más adelante?
+  "070": Cuando quieras. Como el sistema se basa en NocoBase Core estándar, con las prácticas en skills y el contexto en la base de conocimiento, tu propio equipo u otro partner pueden tomar el relevo sin problemas.
+  "071": Envía tus requisitos
+  "072": Cuéntanos qué sistema quieres y te recomendaremos partners según tu región, tu sector y los servicios que necesitas.
+  "073": Nombre de la empresa
+  "074": Nombre de contacto
+  "075": Correo de contacto
+  "076": Tus requisitos
+  "077": Enviar
+  "078": "Por ejemplo: tu sector, el sistema o caso de uso, el problema que quieres resolver, los servicios que necesitas, el presupuesto o la escala y la fecha objetivo"
+  "079": País o región
+  "080": Selecciona tu país o región

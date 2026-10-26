@@ -1,0 +1,1036 @@
+meta:
+  title:
+    zh: NocoBase 3 — AI + NocoBase，构建可靠的业务系统
+    en: NocoBase 3 — Open-Source Platform for AI-Built Business Systems
+  description:
+    zh: NocoBase 是用 AI 持续开发和运行业务系统的开源平台。Agent 写代码、做执行，NocoBase 提供底座和治理能力，人来做决策。
+    en: NocoBase is the open-source platform for building, running, and evolving business systems with AI.
+items:
+  "000":
+    en: Current
+    zh: 当前
+    where: nav
+  "001":
+    en: The development platform for agents
+    zh: 面向 Agent 的开发平台
+    where: nav
+  "002":
+    en: AI + no-code development platform
+    zh: AI + 无代码开发平台
+    where: nav
+  "003":
+    en: Products
+    zh: 产品
+    where: menu
+  "004":
+    en: The open-source foundation for AI-built business systems
+    zh: AI 开发和运行业务系统的开源应用底座
+    where: menu
+  "005":
+    en: The governance platform for people and agents building software together
+    zh: 人与 Agent 协同开发的治理平台
+    where: menu
+  "006":
+    en: Agent-driven business apps
+    zh: 由 Agent 驱动的企业业务应用
+    where: menu
+  "007":
+    en: No-code
+    zh: 无代码
+    where: menu
+  "008":
+    en: Visual configuration platform, maintained alongside v3
+    zh: 可视化配置搭建，与 NocoBase 3 并行维护
+    where: menu
+  "009":
+    en: Solutions
+    zh: 解决方案
+    where: menu
+  "010":
+    en: Sales · Sales &amp; Renewal Agents
+    zh: 销售管理 · 配备销售与续约 Agent
+    where: menu
+    unused: true
+  "011":
+    en: IT Assets · Asset &amp; Audit Agent
+    zh: IT 资产 · 配备资产巡检 Agent
+    where: menu
+    unused: true
+  "012":
+    en: Growth · Content Agent
+    zh: 内容与增长 · 配备内容运营 Agent
+    where: menu
+  "013":
+    en: Support · Triage &amp; Reply Agents
+    zh: 客户服务 · 配备工单与客服 Agent
+    where: menu
+  "014":
+    en: Projects · Research &amp; Doc Agents
+    zh: 项目协作 · 配备调研与文书 Agent
+    where: menu
+  "015":
+    en: HR · Onboarding Agent
+    zh: 人事管理 · 配备入职与人事 Agent
+    where: menu
+  "016":
+    en: Resources
+    zh: 资源
+    where: menu
+  "017":
+    en: Docs
+    zh: 文档
+    where: menu
+  "018":
+    en: Guides, core capabilities, and API reference
+    zh: 上手指南、核心能力与扩展开发参考
+    where: menu
+  "019":
+    en: Customers
+    zh: 客户案例
+    where: menu
+  "020":
+    en: How teams run core systems on NocoBase
+    zh: 看看各行业团队如何用 NocoBase 搭建核心系统
+    where: menu
+  "021":
+    en: Blog
+    zh: 博客
+    where: menu
+  "022":
+    en: Product thinking and engineering practices
+    zh: 产品思考、工程实践与方法论
+    where: menu
+  "023":
+    en: Changelog
+    zh: 更新日志
+    where: menu
+  "024":
+    en: What shipped in every release
+    zh: 每次版本迭代的新能力与改进
+    where: menu
+  "025":
+    en: Community
+    zh: 社区
+    where: menu
+  "026":
+    en: Ask questions and share patterns
+    zh: 在论坛提问、交流经验与反馈建议
+    where: menu
+  "027":
+    en: Contact Us
+    zh: 联系我们
+    where: menu
+  "028":
+    en: Sales, partnerships, and support
+    zh: 商务合作、产品咨询与技术支持
+    where: menu
+  "029":
+    en: Partners
+    zh: 伙伴
+    where: menu
+  "030":
+    en: Find a Partner
+    zh: 寻找 NocoBase 伙伴
+    where: menu
+  "031":
+    en: Get your system built and running with an expert
+    zh: 和懂行的伙伴一起，把系统做出来、用起来
+    where: menu
+  "032":
+    en: Become a Partner
+    zh: 成为合作伙伴
+    where: menu
+  "033":
+    en: One consultant, an agent team, more projects
+    zh: 一位顾问带一支 Agent 团队，交付更多项目
+    where: menu
+    unused: true
+  "034":
+    en: Pricing
+    zh: 定价
+    where: menu
+  "035":
+    en: Book a Demo
+    zh: 预约演示
+    where: nav
+    unused: true
+  "036":
+    en: App Foundation
+    zh: 应用底座
+    where: nav
+  "037":
+    en: People + Agents
+    zh: 人与 Agent 协同
+    where: nav
+  "038":
+    en: Business Apps
+    zh: 企业业务应用
+    where: nav
+  "039":
+    en: No-code ↗
+    zh: 无代码 ↗
+    where: nav
+  "040":
+    en: Build reliable business systems
+    zh: 构建可靠的业务系统
+    where: hero
+  "041":
+    en: <span class="ln">NocoBase is the open-source platform for building, running, and evolving business systems with AI.</span><span class="ln">Agents write the code and do the work, NocoBase provides the foundation and governance, and people make the decisions.</span>
+    zh: <span class="ln">NocoBase 是用 AI 持续开发和运行业务系统的开源平台。</span><span class="ln"><span class="ph">Agent 写代码、做执行，</span><span class="ph">NocoBase 提供底座和治理能力，</span><span class="ph">人来做决策。</span></span>
+    where: hero
+  "042":
+    en: Watch the Demo
+    zh: 观看演示
+    where: hero
+  "043":
+    en: Get Started
+    zh: 开始使用
+    where: hero
+  "044":
+    en: Teams across industries build core business systems on NocoBase
+    zh: 全球各行业用 NocoBase 构建核心业务系统
+    where: customers
+  "045":
+    en: Customer Story · Sungrow
+    zh: 客户故事 · 阳光电源
+    where: customers
+  "046":
+    en: Running global operations on one NocoBase foundation
+    zh: 基于 NocoBase 构建支撑全球业务的数字化管理系统
+    where: customers
+  "047":
+    en: How a global clean-energy leader builds and evolves dozens of core systems on a single shared platform.
+    zh: 作为全球新能源领军企业，阳光电源以一套统一底座支撑多个核心业务系统的快速交付与长期演进。
+    where: customers
+  "048":
+    en: Read story
+    zh: 阅读完整故事
+    where: customers
+    unused: true
+  "049":
+    en: Why NocoBase
+    zh: 为什么需要 NocoBase
+    where: why
+  "050":
+    en: AI writes code fast.<br>
+    zh: AI 写代码很快，
+    where: why
+  "051":
+    en: Building reliable business systems is still hard.
+    zh: 但构建可靠的业务系统依然不简单。
+    where: why
+  "052":
+    en: Your team is already developing with AI or vibe coding. Code gets written fast, but new problems come with it.
+    zh: 你的企业已经在用 AI 开发或者 Vibe Coding，代码写得很快，但新的问题随之出现。
+    where: why
+  "053":
+    en: Building the foundation from scratch
+    zh: 底层能力要从零建设
+    where: why
+    unused: true
+  "054":
+    en: Even with AI writing the code, permissions, workflow engines, and approvals are hard to design from scratch. They are full of edge cases and take a lot of work to maintain.
+    zh: 即使交给 AI，权限、工作流引擎、审批等底层模块从零开发，设计难度依然很高，边界情况多，维护工作量大。
+    where: why
+  "055":
+    en: Architecture drifts out of control
+    zh: 架构随机漂移，逐渐失控
+    where: why
+  "056":
+    en: Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.
+    zh: 换人、换模型甚至换会话，AI 都可能随机发挥，系统越来越难维护。
+    where: why
+  "057":
+    en: Parallel work outpaces human review
+    zh: 并行任务很多，人确认不过来
+    where: why
+  "058":
+    en: You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.
+    zh: 同时处理多个项目和任务，在多个终端和对话之间切换，Agent 交过来的改动也越来越多，人看不过来，又不敢放手。
+    where: why
+  "059":
+    en: Know-how is hard to capture and share
+    zh: 知识和经验难以沉淀和共享
+    where: why
+  "060":
+    en: Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.
+    zh: 需求背景、业务资料、项目经验散落在不同电脑的不同会话里，换人、换 Agent 就很难找到。
+    where: why
+  "061":
+    en: Let agents focus on your business logic.<br>
+    zh: 让 Agent 专心写业务，
+    where: core
+  "062":
+    en: The foundation is ready.
+    zh: 底座已经就绪。
+    where: core
+  "063":
+    en: NocoBase Core is the open-source application foundation for business systems built and run with AI. Permissions, workflows, files, and other building blocks come ready to use, so agents build only what is specific to your business, all on one consistent architecture.
+    zh: NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。
+    where: core
+  "064":
+    en: Proven building blocks, ready to use
+    zh: 基础能力不用从头开发和验证
+    where: core
+  "065":
+    en: Core provides 20+ building blocks, including permissions, workflows, files, and notifications, so agents can focus on business logic.
+    zh: Core 提供权限、流程、文件、通知等 20 多项基础能力，Agent 只专注于业务开发。
+    where: core
+  "066":
+    en: One architecture, one set of standards
+    zh: 为 Agent 提供统一的架构和规范
+    where: core
+  "067":
+    en: Core provides project scaffolding, architecture standards, and development skills, so the architecture stays consistent and under control as people and models change.
+    zh: Core 提供项目脚手架、架构规范和开发技能，换人、换模型，项目架构都能保持统一、受控。
+    where: core
+  "068":
+    en: You own your apps and data
+    zh: 应用和数据归企业私有
+    where: core
+  "069":
+    en: Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.
+    zh: Core 开源免费，业务代码和数据都在企业自己的仓库和服务器上，模型和 Agent 也由企业自由选择。
+    where: core
+  "070":
+    en: Explore NocoBase Core
+    zh: 深入了解 NocoBase Core
+    where: core
+  "071":
+    en: Let your team focus on decisions.<br>
+    zh: 让团队专心做决策，
+    where: studio
+    unused: true
+  "072":
+    en: Leave the execution to agents.
+    zh: 执行交给 Agent。
+    where: studio
+    unused: true
+  "073":
+    en: NocoBase Studio is the governance platform for people and agents building software together. It brings your team’s Claude Code and Codex together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
+    zh: NocoBase Studio 是人与 Agent 协同开发的治理平台。把团队的 Claude Code、Codex 组成一支 Agent 团队自动推进任务，进展一目了然，关键处由人做决策。
+    where: studio
+    unused: true
+  "074":
+    en: An agent team that keeps work moving
+    zh: 一支持续推进的 Agent 团队
+    where: studio
+  "075":
+    en: Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.
+    zh: 接入多台机器上的 Agent 统一调度，24 小时同步推进多个项目和大量任务。
+    where: studio
+  "076":
+    en: Progress at a glance
+    zh: 各项进展一目了然
+    where: studio
+  "077":
+    en: Project progress, issue activity, agent workload, and model usage are all clearly visible.
+    zh: 项目进展、任务推进过程、Agent 工作负荷和模型用量都清晰可见。
+    where: studio
+  "078":
+    en: Decisions backed by evidence
+    zh: 有理有据做决策
+    where: studio
+  "079":
+    en: When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.
+    zh: 需要人做决策时，Agent 会附上详细的报告、清单、截图和建议，不懂代码的业务专家也可以直接拍板。
+    where: studio
+  "080":
+    en: Know-how stays with the team
+    zh: 方法、经验、知识沉淀在团队里
+    where: studio
+  "081":
+    en: Skills hold how work gets done, the knowledge base holds business documents, and project memory holds what agents learn on their own. When people or agents change, the next one picks up where the last one left off.
+    zh: 技能保存做事的方法，知识库保存业务资料，项目记忆保存 Agent 自主学到的经验。换人、换 Agent 都能无障碍交接。
+    where: studio
+  "082":
+    en: Explore NocoBase Studio
+    zh: 深入了解 NocoBase Studio
+    where: studio
+  "083":
+    en: Open-source business apps.<br>
+    zh: 开源业务应用，
+    where: solutions
+  "084":
+    en: <span class="ph">AI-driven,</span> ready out of the box.
+    zh: AI 驱动，开箱即用。
+    where: solutions
+  "085":
+    en: NocoBase Solution is a line of agent-driven business apps built on Core. Agents do most of the work, and people make only the key decisions.
+    zh: NocoBase Solution 是由 Agent 驱动的、基于 Core 构建的一系列企业业务应用，Agent 做大部分执行工作，人只做关键决策。
+    where: solutions
+  "086":
+    en: Agents take the initiative
+    zh: Agent 主动工作
+    where: solutions
+  "087":
+    en: Each app comes with built-in business agents that follow your rules and proactively take on most of the work, such as checking refunds and handling tickets.
+    zh: 每个应用中内置很多业务 Agent，它们会按照规则主动承担大部分执行工作，比如核查退款、处理工单。
+    where: solutions
+  "088":
+    en: People own the key decisions
+    zh: 人负责关键决策
+    where: solutions
+  "089":
+    en: Agents show the evidence behind their work, and key decisions are always made by a person. Each agent inherits the permissions of the person it works for, so data stays secure.
+    zh: Agent 的工作成果会附上依据，关键决策必须由人来做。Agent 继承负责人的权限，保证数据安全。
+    where: solutions
+  "090":
+    en: Easy to customize
+    zh: 方便定制开发
+    where: solutions
+  "091":
+    en: Every app is built on NocoBase Core, with its consistent architecture and reliable foundation, so you can have a coding agent customize it.
+    zh: 基于 NocoBase Core 开发，具备统一的架构和可靠的底座，可以让 Coding Agent 对它们进行定制开发。
+    where: solutions
+  "092":
+    en: Free, open source, ready to use
+    zh: 开源免费，开箱即用
+    where: solutions
+  "093":
+    en: Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.
+    zh: 所有 Solution 均开源免费，部署在企业自己的服务器上，模型自由选择。
+    where: solutions
+  "094":
+    en: View All Solution Apps
+    zh: 查看全部 Solution
+    where: solutions
+  "095":
+    en: How is NocoBase different from vibe coding?
+    zh: NocoBase 和 Vibe Coding 有什么区别？
+    where: faq
+  "096":
+    en: In both, AI writes the code. Vibe coding works well for quick prototypes and small tools. NocoBase is for business systems that have to run reliably for years and keep evolving.
+    zh: 二者都是由 AI 写代码。Vibe Coding 适合快速做出原型和开发小型工具，NocoBase 用来构建需要长期可靠运行、持续迭代的业务系统。
+    where: faq
+    unused: true
+  "097":
+    en: Foundation
+    zh: 底层能力
+    where: faq
+    unused: true
+  "098":
+    en: Vibe coding
+    zh: Vibe Coding
+    where: faq
+    unused: true
+  "099":
+    en: AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.
+    zh: 权限、工作流、审批等底层模块，每个项目都由 AI 从零生成，成本高且很难保证可靠。
+    where: faq
+  "100":
+    en: Core provides ready-made building blocks, and agents build only the business logic.
+    zh: Core 提供现成的基础能力，Agent 只开发业务部分。
+    where: faq
+  "101":
+    en: Architecture
+    zh: 架构
+    where: faq
+    unused: true
+  "102":
+    en: Switch models or sessions, and the AI may improvise. The architecture gradually drifts.
+    zh: 换模型、换会话，AI 都可能随机发挥，架构逐渐漂移。
+    where: faq
+    unused: true
+  "103":
+    en: Core provides one project structure and one set of development standards, so the system evolves steadily for years on a consistent architecture.
+    zh: Core 提供统一的项目结构和开发规范，系统在统一架构下长期稳定迭代。
+    where: faq
+    unused: true
+  "104":
+    en: Ongoing iteration
+    zh: 持续迭代
+    where: faq
+    unused: true
+  "105":
+    en: AI changes often get accepted without anyone reading them, and problems pile up.
+    zh: AI 做了哪些修改，往往不看就接受，问题会越积越多。
+    where: faq
+    unused: true
+  "106":
+    en: Studio coordinates checks and reviews. When a decision is needed, agents attach reports, checklists, and screenshots, and a person decides.
+    zh: Studio 组织检查和评审；需要决策时，Agent 附上报告、清单、截图，由人来做决策。
+    where: faq
+    unused: true
+  "107":
+    en: Knowledge and know-how
+    zh: 知识和经验
+    where: faq
+    unused: true
+  "108":
+    en: Requirement context, project documents, and lessons learned are scattered across individual chat sessions.
+    zh: 需求背景、项目资料和经验散落在各自的会话里。
+    where: faq
+  "109":
+    en: Studio captures methods and experience in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off.
+    zh: Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 Agent 都能无障碍交接。
+    where: faq
+  "110":
+    en: Open Source &amp; Self-Hosting
+    zh: 开源与私有部署
+    where: open
+  "111":
+    en: Free, open source, self-hosted.<br>
+    zh: 开源免费，私有部署，
+    where: open
+  "112":
+    en: Your code and data belong to you.
+    zh: 代码和数据归企业所有。
+    where: open
+  "113":
+    en: Core and Solution are free and open source. Studio is available in the commercial editions.
+    zh: Core 和 Solution 开源免费；Studio 在商业版中提供。
+    where: open
+  "114":
+    en: Contributors
+    zh: 代码贡献者
+    where: open
+  "115":
+    en: Downloads
+    zh: 累计下载
+    where: open
+  "116":
+    en: 3M+
+    zh: 300 万+
+    where: open
+  "117":
+    en: View on GitHub
+    zh: 在 GitHub 上查看源码
+    where: open
+  "118":
+    en: Free and open source
+    zh: 开源免费
+    where: open
+  "119":
+    en: Core and every Solution app are free, open source, and ready for production.
+    zh: Core 和所有 Solution 开源免费，可以直接用于生产。
+    where: open
+  "120":
+    en: Self-hosted
+    zh: 私有部署
+    where: open
+  "121":
+    en: Core, Solution, and Studio all run on your own servers. Your code and data belong to you.
+    zh: Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。
+    where: open
+  "122":
+    en: Your choice of models and agents
+    zh: 模型与 Agent 自由选择
+    where: open
+  "123":
+    en: No vendor lock-in. Works with Claude Code, Codex, and other coding tools, and with a wide range of models.
+    zh: 不绑定厂商，支持 Claude Code、Codex 等编码工具和各类大模型。
+    where: open
+  "124":
+    en: Apps run independently
+    zh: 应用独立运行
+    where: open
+  "125":
+    en: Once released, your business apps run on their own. Day-to-day business requests never go through Studio.
+    zh: 业务应用发布后独立运行，日常业务请求不经过 Studio。
+    where: open
+  "126":
+    en: Choose your starting point.
+    zh: 选择适合你们团队的起点。
+    where: start
+  "127":
+    en: Free &amp; Open Source
+    zh: 开源免费
+    where: start
+  "128":
+    en: Build your own system on Core
+    zh: 用 Core 开发自己的系统
+    where: start
+  "129":
+    en: Agents use Core’s ready-made building blocks and build only what is specific to your business.
+    zh: Agent 使用 Core 的现成能力，只开发企业自己的业务部分。
+    where: start
+  "130":
+    en: View Deployment Guide
+    zh: 查看部署指南
+    where: start
+    unused: true
+  "131":
+    en: Install a ready-made business app
+    zh: 安装现成的业务应用
+    where: start
+  "132":
+    en: Use it as it is, or have a coding agent tailor it to your business.
+    zh: 可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。
+    where: start
+  "133":
+    en: View Solution Apps
+    zh: 查看 Solution
+    where: start
+  "134":
+    en: Commercial
+    zh: 商业版
+    where: start
+  "135":
+    en: Lead an agent team
+    zh: 带领 Agent 团队开发
+    where: start
+  "136":
+    en: Let your team focus on decisions. Leave the execution to agents.
+    zh: 让团队专心做决策，执行交给 Agent。
+    where: start
+    unused: true
+  "137":
+    en: View Editions &amp; Pricing
+    zh: 查看版本与价格
+    where: start
+  "138":
+    en: AI + NocoBase. Build reliable business systems.
+    zh: AI + NocoBase，构建可靠的业务系统。
+    where: footer
+  "139":
+    en: NocoBase 2 No-code ↗
+    zh: NocoBase 2 无代码 ↗
+    where: footer
+  "140":
+    en: Pricing &amp; License
+    zh: 定价与许可
+    where: footer
+  "141":
+    en: Editions &amp; Pricing
+    zh: 版本与价格
+    where: footer
+  "142":
+    en: License
+    zh: 许可协议
+    where: footer
+  "143":
+    en: Partner Program
+    zh: 合作伙伴计划
+    where: footer
+  "144":
+    en: Connect
+    zh: 联系
+    where: footer
+  "145":
+    en: Forum
+    zh: 社区论坛
+    where: footer
+  "146":
+    en: Standards
+    zh: 开发规范
+    where: figure
+  "147":
+    en: Your business logic · written by agents
+    zh: 你的业务 · Agent 编写
+    where: figure
+  "148":
+    en: Ready
+    zh: 已就绪
+    where: figure
+  "149":
+    en: One project structure and one set of standards
+    zh: 统一的项目结构和开发规范
+    where: figure
+  "150":
+    en: New people or new models, the architecture stays consistent and under control
+    zh: 换人、换模型，项目架构都能保持统一、受控
+    where: figure
+  "151":
+    en: Project scaffold
+    zh: 项目脚手架
+    where: figure
+  "152":
+    en: Architecture rules
+    zh: 架构规范
+    where: figure
+  "153":
+    en: Dev skills
+    zh: 开发技能
+    where: figure
+  "154":
+    en: 20+ capabilities
+    zh: 20 多项基础能力
+    where: figure
+  "155":
+    en: Maintained and upgraded by NocoBase
+    zh: 由 NocoBase 持续维护和升级
+    where: figure
+  "156":
+    en: Sales CRM
+    zh: 销售管理
+    where: figure
+  "157":
+    en: Agents handled 37 tasks today. You made just 6 calls.
+    zh: Agent 处理了 37 项日常工作，需要你拍板的只有 6 件。
+    where: figure
+    unused: true
+  "158":
+    en: IT Assets
+    zh: IT 资产
+    where: figure
+    unused: true
+  "159":
+    en: Every saving comes with a paper trail.
+    zh: 省下的每一笔钱，都说得清来龙去脉。
+    where: figure
+  "160":
+    en: Growth
+    zh: 内容与增长
+    where: figure
+  "161":
+    en: Agents find, ship, and measure growth. You make the calls.
+    zh: Agent 找机会、做增长、看效果，你只管拍板。
+    where: figure
+    unused: true
+  "162":
+    en: Support
+    zh: 客户服务
+    where: figure
+  "163":
+    en: Overnight tickets are handled by morning. Only 3 need you.
+    zh: 夜里进来的工单，早上已经处理完，只有 3 件等你拍板。
+    where: figure
+  "164":
+    en: Projects
+    zh: 项目协作
+    where: figure
+  "165":
+    en: Agents drive the plan and flag delays before they land.
+    zh: 目标交给 Agent 拆解推进，延期风险提前冒出来。
+    where: figure
+  "166":
+    en: HR Ops
+    zh: 人事管理
+    where: figure
+  "167":
+    en: Everything is ready the day before a new hire starts.
+    zh: 新人入职前一天，一切已经就绪。
+    where: figure
+  "168":
+    en: Explore {app}
+    zh: 了解 {app}
+    where: figure
+  "169":
+    en: Soon
+    zh: 即将推出
+    where: figure
+  "170":
+    en: v1.8.0 is live
+    zh: v1.8.0 已上线
+    where: figure
+  "171":
+    en: Customer tiering is in production · roll back anytime
+    zh: 客户分级已进入生产 · 可回滚到上一版本
+    where: figure
+  "172":
+    en: Demo video coming soon
+    zh: 演示视频即将上线
+    where: figure
+  "173":
+    en: Agents write the code and do the work
+    zh: Agent 写代码、做执行
+    where: hero-finale
+  "174":
+    en: 3 issues · 35 tests · 3 code reviews
+    zh: 3 个任务 · 35 项测试 · 3 轮代码评审
+    where: hero-finale
+  "175":
+    en: NocoBase provides the foundation and governance
+    zh: NocoBase 提供底座和治理能力
+    where: hero-finale
+  "176":
+    en: "{n} building blocks · one set of dev standards · tests, review, and sign-off"
+    zh: 用到 {n} 项底座能力 · 统一开发规范 · 测试、评审、验收三道检查
+    where: hero-finale
+  "177":
+    en: People make the decisions
+    zh: 人来做决策
+    where: hero-finale
+  "178":
+    en: You made 2 decisions
+    zh: 你做了 2 次决定
+    where: hero-finale
+  "179":
+    en: Data Model
+    zh: 数据建模
+    where: core-caps
+  "180":
+    en: Tables, fields, relations & migrations
+    zh: 数据表、字段、关联关系与迁移
+    where: core-caps
+  "181":
+    en: Files
+    zh: 文件管理
+    where: core-caps
+  "182":
+    en: Storage providers, preview & ACL
+    zh: 上传、多端存储、在线预览与权限
+    where: core-caps
+  "183":
+    en: Users & Org
+    zh: 用户与组织
+    where: core-caps
+  "184":
+    en: Accounts, departments & roles
+    zh: 账号体系、部门架构与成员管理
+    where: core-caps
+  "185":
+    en: Permissions
+    zh: 权限控制
+    where: core-caps
+  "186":
+    en: Pages, actions & records, for people and agents
+    zh: 页面、操作与数据范围，人与 Agent 同一套
+    where: core-caps
+  "187":
+    en: Workflows
+    zh: 工作流与审批
+    where: core-caps
+  "188":
+    en: Stages, branching & approvals
+    zh: 多阶段流转、条件分支与审批
+    where: core-caps
+  "189":
+    en: AI & Agents
+    zh: AI 与 Agent
+    where: core-caps
+  "190":
+    en: Models, tools & agent runtime
+    zh: 模型接入、工具调用与 Agent 接口
+    where: core-caps
+  "191":
+    en: Knowledge
+    zh: 知识库
+    where: core-caps
+  "192":
+    en: Domain docs & scoped retrieval
+    zh: 业务文档沉淀与受控检索
+    where: core-caps
+  "193":
+    en: Email
+    zh: 邮件互通
+    where: core-caps
+  "194":
+    en: Two-way sync tied to records
+    zh: 收发邮件并自动关联业务记录
+    where: core-caps
+  "195":
+    en: Notifications
+    zh: 消息通知
+    where: core-caps
+  "196":
+    en: In-app, email & group chats
+    zh: 站内信、邮件与群消息
+    where: core-caps
+  "197":
+    en: Integrations
+    zh: 外部集成
+    where: core-caps
+  "198":
+    en: APIs, API keys & external DBs
+    zh: API、API Key 与外部数据库
+    where: core-caps
+  "199":
+    en: UI & Views
+    zh: 界面与配置
+    where: core-caps
+  "200":
+    en: Pages, blocks, nav & i18n
+    zh: 页面布局、导航菜单与多语言
+    where: core-caps
+  "201":
+    en: Records
+    zh: 处理记录
+    where: core-caps
+  "202":
+    en: Workflow, approval & agent-run history
+    zh: 流程、审批与 Agent 运行都有记录
+    where: core-caps
+  "203":
+    en: Deployment
+    zh: 部署与升级
+    where: core-caps
+  "204":
+    en: Deploys, upgrades & rollback
+    zh: 部署、升级与回滚
+    where: core-caps
+  "205":
+    en: Customer tiers
+    zh: 客户分级
+    where: core-mods
+  "206":
+    en: A/B/C by contract value, monthly
+    zh: 按合同额分 A/B/C，每月重算
+    where: core-mods
+  "207":
+    en: Discount approval
+    zh: 折扣审批
+    where: core-mods
+  "208":
+    en: Over 15% needs a manager
+    zh: 折扣超 15% 须经理审批
+    where: core-mods
+  "209":
+    en: Renewal reminders
+    zh: 续约提醒
+    where: core-mods
+  "210":
+    en: Drafts renewals 60 days out
+    zh: 到期前 60 天起草续约方案
+    where: core-mods
+  "211":
+    en: Supplier scoring
+    zh: 供应商评分
+    where: core-mods
+  "212":
+    en: Scores delivery and QA records
+    zh: 汇总交期与质检记录打分
+    where: core-mods
+  "213":
+    en: Every project rebuilds the foundation
+    zh: 底层能力要从零建设
+    where: why
+  "214":
+    en: Coming soon
+    zh: 即将发布
+    where: customers
+  "215":
+    en: Sales · 6 Sales Agents
+    zh: 销售管理 · 配备 6 个销售 Agent
+    where: menu
+  "216":
+    en: IT Asset Management · 3 IT Agents
+    zh: IT 资产台账与管理 · 配备 3 个资产 Agent
+    where: menu
+  "217":
+    en: Agents handled 37 routine tasks today. Only 6 needed your decision.
+    zh: Agent 处理了 37 项日常工作，需要你拍板的只有 6 件。
+    where: figure
+  "218":
+    en: IT Asset Management
+    zh: IT 资产台账与管理
+    where: figure
+  "219":
+    en: Agents keep the work moving.<br>
+    zh: Agent 自主推进，
+    where: studio
+  "220":
+    en: Your team stays in control.
+    zh: 团队掌控全局。
+    where: studio
+  "221":
+    en: NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code and Codex together into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
+    zh: NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
+    where: studio
+    unused: true
+  "222":
+    en: Vibe coding makes building software much faster. But once a project involves complex business logic, many people, and years of iteration, AI-generated code alone isn’t enough. You also need a reliable application foundation, consistent development standards, and sound governance. NocoBase doesn’t replace vibe coding. It builds on it, adding the foundation and governance.
+    zh: Vibe Coding 让软件开发更加高效，但当项目涉及复杂业务、多人协作和长期迭代时，仅靠 AI 生成代码还不够，还需要可靠的应用底座、统一的开发规范和完善的治理。NocoBase 并不是 Vibe Coding 的替代品，而是在它之上补齐底座和治理能力。
+    where: faq
+  "223":
+    en: Building blocks
+    zh: 基础能力
+    where: faq
+  "224":
+    en: Without NocoBase
+    zh: 没有 NocoBase
+    where: faq
+  "225":
+    en: Architecture standards
+    zh: 架构规范
+    where: faq
+  "226":
+    en: Switch developers, models, or sessions, and the AI may improvise. The architecture gradually drifts.
+    zh: 换人、换模型、换会话，AI 都可能随机发挥，架构逐渐漂移。
+    where: faq
+  "227":
+    en: Core provides one project structure, development standards, and development skills, so the system evolves steadily for years on a consistent architecture.
+    zh: Core 提供统一的项目结构、开发规范和开发技能，系统在统一架构下长期稳定迭代。
+    where: faq
+  "228":
+    en: Governance
+    zh: 开发治理
+    where: faq
+  "229":
+    en: Agents hand back more and more changes, more than anyone can review, so they often get accepted as they are. Problems pile up.
+    zh: Agent 交来的改动越来越多，人审不过来，往往直接接受，问题越积越多。
+    where: faq
+  "230":
+    en: Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.
+    zh: Studio 组织多个 Agent 协同完成设计、开发、测试和评审，关键决策交给人把关，并附上报告和截图作为依据。
+    where: faq
+  "231":
+    en: Know-how
+    zh: 知识沉淀
+    where: faq
+  "232":
+    en: Agents keep the work moving. Your team stays in control.
+    zh: Agent 自主推进，团队掌控全局。
+    where: start
+  "233":
+    en: NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
+    zh: NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
+    where: studio
+  "234":
+    en: Deliver more client projects with an agent team
+    zh: 用 Agent 团队交付更多客户项目
+    where: menu
+  "235":
+    en: Start with open source, ready to use
+    zh: 开源起步，开箱即用
+    where: solutions
+    unused: true
+  "236":
+    en: NocoCRM, NocoReach, and NocoProject are free and open source. NocoITAM, NocoSupport, and NocoHR come with the commercial editions. Every app runs on your own servers and works with the model of your choice.
+    zh: NocoCRM、NocoReach 和 NocoProject 开源免费，NocoITAM、NocoSupport 和 NocoHR 在商业版中提供。所有应用都部署在企业自己的服务器上，模型自由选择。
+    where: solutions
+    unused: true
+  "237":
+    en: Core, Studio, and Solution apps such as NocoCRM are free, open source, and ready for production. The commercial editions add team- and organization-level governance, enterprise integration, more Solution apps, and official support.
+    zh: Core、Studio 和 NocoCRM 等 Solution 应用开源免费，可以直接用于生产；商业版增加团队和组织级的治理、企业集成、更多 Solution 应用与官方支持。
+    where: open
+    unused: true
+  "238":
+    en: Core, Studio, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production and client delivery. Without buying a license, your team can lead an agent team from request to release.
+    zh: Core、Studio，以及 NocoCRM、NocoReach、NocoProject 开源免费，可以直接用于生产和商业交付。不用购买授权，团队就能带领 Agent 团队从需求做到上线。
+    where: open
+    unused: true
+  "239":
+    en: Commercial editions
+    zh: 商业版
+    where: open
+    unused: true
+  "240":
+    en: Core, Studio, and Solution each get commercial additions, all under one license. Professional adds production release approval, enterprise SSO, more apps such as NocoITAM, and official support. Enterprise adds org-wide governance across teams and environments, plus high availability.
+    zh: Core、Studio 和 Solution 每一层都有商业增强，一份授权同时生效。Professional 增加生产环境上线审批、企业 SSO、NocoITAM 等更多应用和官方支持；Enterprise 增加跨团队、跨环境的组织级治理和高可用。
+    where: open
+    unused: true
+  "241":
+    en: Self-hosted, runs independently
+    zh: 私有部署，独立运行
+    where: open
+    unused: true
+  "242":
+    en: Core, Solution, and Studio all run on your own servers. Your code and data belong to you. Once released, your business apps run on their own, and day-to-day business requests never go through Studio.
+    zh: Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。业务应用发布后独立运行，日常业务请求不经过 Studio。
+    where: open
+    unused: true
+  "243":
+    en: Start Open Source
+    zh: 开源起步
+    where: start
+    unused: true
+  "244":
+    en: Core and Solution apps such as NocoCRM are free and open source. Studio and Solution apps such as NocoITAM are available in the commercial editions.
+    zh: Core 和 NocoCRM 等 Solution 应用开源免费；Studio 和 NocoITAM 等 Solution 应用在商业版中提供。
+    where: open
+    unused: true
+  "245":
+    en: Core, NocoCRM, NocoReach, and NocoProject are free, open source, and ready for production.
+    zh: Core 以及 NocoCRM、NocoReach、NocoProject 开源免费，可以直接用于生产。
+    where: open
+    unused: true
+  "246":
+    en: AI finds growth opportunities. Agents put them into action.
+    zh: AI 找出增长机会，交给 Agent 执行。
+    where: figure
+  "247":
+    en: Get Started with Core
+    zh: 开始使用 Core
+    where: start

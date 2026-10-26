@@ -1,0 +1,14 @@
+notes: |-
+  Bahasa Indonesia（Anda）
+  术语：foundation = fondasi；building blocks = komponen dasar；governance = tata kelola；agent team = tim agen；
+  coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
+  self-hosted = self-hosted；at a glance = terlihat sekilas
+  站点用语：Solutions = Solusi；client project = proyek klien
+strings:
+  "033": Selesaikan lebih banyak proyek klien bersama tim agen
+  "036": Semua solusi
+  "046": Kemitraan, pertanyaan produk, dan dukungan
+  "047": Pilih setidaknya satu opsi
+  "048": Mengirim…
+  "049": Terima kasih! Kami sudah menerima permintaan Anda dan akan segera menghubungi Anda.
+  "050": Terjadi kesalahan. Coba lagi, atau kirim email ke {mail}.

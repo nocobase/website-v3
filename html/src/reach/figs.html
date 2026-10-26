@@ -1,0 +1,51 @@
+<!doctype html>
+<!-- The NocoReach page's product figures, drawn with the product's own markup and stylesheet (product.css, the compiled
+     CSS of NocoReach main) and the Acme example of the NocoReach film. figs.html?fig=<name>&lang=<zh|en> shows one;
+     scripts/reach-shoot.mjs captures them all into src/assets/reach/. -->
+<html class="light" data-theme="compact" style="color-scheme: light" lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>NocoReach figures</title>
+<link rel="stylesheet" href="product.css">
+<style>
+  html, body { margin: 0; background: #fff; }
+  body { padding: 0; }
+  #shot { position: relative; overflow: hidden; background: var(--background); color: var(--foreground); }
+  #shot .app { display: flex; width: 100%; height: 100%; }
+  /* the sidebar sits in the flow here, not fixed to the viewport as in the app */
+  #shot [data-slot="sidebar-container"] { position: relative !important; display: flex !important; height: 100% !important; }
+  #shot [data-slot="sidebar-gap"] { display: none; }
+  #shot [data-slot="sidebar"] { display: block !important; height: 100%; flex: none; width: var(--sidebar-width); }
+  #shot .term { border-radius: 12px; overflow: hidden; background: #111114; color: #e4e4e7; font: 11.5px/1.65 ui-monospace, "SF Mono", Menlo, monospace; box-shadow: 0 18px 40px -18px rgba(15, 23, 42, .45); }
+  #shot .term-bar { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; background: #1c1c21; color: #a1a1aa; font-size: 11.5px; }
+  #shot .term-bar i { width: 10px; height: 10px; border-radius: 50%; background: #3f3f46; }
+  #shot .term-bar span { margin-left: 8px; }
+  #shot .term-body { padding: 12px 16px 14px; }
+  #shot .term .t-p { color: #a78bfa; margin-right: 6px; }
+  #shot .term .t-cmd { color: #93c5fd; }
+  #shot .term .t-dim { color: #8b8b94; }
+  #shot .term .t-ok { color: #4ade80; }
+  #shot .term .t-q { color: #fbbf24; margin-right: 6px; }
+  #shot .term .tprompt { color: #fafafa; }
+  /* layouts the product writes as utilities it does not ship in this exact form */
+  #shot .fx-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #shot .fx-g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #shot .fx-cols { grid-auto-flow: column; grid-auto-columns: 16rem; }
+  #shot .fx-g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #shot .fx-ins { grid-template-columns: minmax(0, 1fr) 15rem; }
+  #shot .fx-task { grid-template-columns: minmax(0, 1fr) 19rem; }
+  #shot .fx-half { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  #shot .fx-opp { grid-template-columns: minmax(240px, 320px) minmax(0, 1fr); }
+  #shot .fx-chg { grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); }
+  #shot .fx-mt-n2 { margin-top: -2px; }
+  #shot .fx-mx6 > *:not(:first-child) { margin-left: 24px; margin-right: 24px; }
+  #shot .fx-focus { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent); }
+</style>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script src="logos.js"></script>
+</head>
+<body>
+<div id="shot"></div>
+<script src="figs.js"></script>
+</body>
+</html>

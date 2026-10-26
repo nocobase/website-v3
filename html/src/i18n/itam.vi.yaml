@@ -1,0 +1,78 @@
+notes: |-
+  Tiếng Việt（bạn）
+  术语：platform = nền tảng；foundation = nền móng（与 nền tảng 区分）；building blocks = khối chức năng；governance = quản trị；
+  agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
+  business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
+  本页术语：IT = CNTT（IT asset = tài sản CNTT；IT team = đội CNTT）；asset register = sổ tài sản；entitlement = bản quyền phần mềm；
+  seat = suất bản quyền；idle = nhàn rỗi；stock = tồn kho；reconcile = đối soát；discrepancy = chênh lệch；
+  stocktake / audit = kiểm kê；joiner = nhân viên mới；leaver = người nghỉ việc；Joiners &amp; Leavers = Nhận việc &amp; nghỉ việc；
+  standard kit = bộ thiết bị tiêu chuẩn；purchase request = yêu cầu mua hàng；PO = đơn mua hàng；purchasing / procurement = mua sắm；
+  disposal = thanh lý；approval = phê duyệt；
+  owner = người phụ trách；model = model；Try It Online = Dùng thử trực tuyến
+  界面名称照英文界面原样（见 ui-terms.md）：Devices、Accessories、Consumables、Components、Entitlements、Procurement、
+  Repairs、Disposals、Audits、Business guidance、Skills、Models、Approval assistant
+title: NocoITAM — Agent chủ động lo liệu. Tài sản CNTT ngăn nắp.
+description: NocoITAM là phần mềm quản lý tài sản CNTT mã nguồn mở trên NocoBase. Agent đối soát MDM với sổ tài sản, chuẩn bị danh sách cho nhân viên mới và người nghỉ việc, kiểm tra tồn kho và tài sản nhàn rỗi trước mỗi lần mua, thu hồi suất bản quyền nhàn rỗi trước khi gia hạn. Đội CNTT chỉ cần quyết định.
+strings:
+  "000": Quản lý tài sản CNTT
+  "001": Agent chủ động lo liệu. <span class="m">Tài sản CNTT ngăn nắp.</span>
+  "002": Công cụ ITAM truyền thống là những cuốn sổ ghi chép bằng tay. Trong NocoITAM, agent xử lý chênh lệch MDM, chuẩn bị đủ thiết bị cho nhân viên mới, kiểm tra tồn kho và tài sản nhàn rỗi trước mỗi lần mua. Mọi thiết bị, mọi suất bản quyền, mọi khoản chi đều có hồ sơ.
+  "003": Dùng thử trực tuyến
+  "004": Xem giới thiệu
+  "005": Giấy phép
+  "006": Mã nguồn mở
+  "007": Xây dựng trên
+  "008": Phiên bản
+  "009": Agent có sẵn
+  "010": MDM
+  "011": Model AI
+  "012": Tùy bạn chọn
+  "013": Dùng thử NocoITAM trực tuyến
+  "014": Bạn đã được đăng nhập bằng tài khoản demo. Toàn bộ dữ liệu đều là giả lập, cứ thoải mái thử mọi thứ.
+  "015": Mở toàn trang trong tab mới
+  "016": Giá trị nhìn thấy được
+  "017": "Mỗi khoản tiết kiệm, "
+  "018": đều rõ nguồn gốc.
+  "019": Agent không bao giờ tự ý thay đổi bản ghi. Mọi thao tác đều do agent đề xuất và người phụ trách xác nhận. Bạn không chỉ thấy tiết kiệm được bao nhiêu, mà còn biết khoản đó đến từ yêu cầu mua hàng hay suất bản quyền nào.
+  "020": Mua sắm
+  "021": "Trước mỗi lần mua, "
+  "022": kiểm tra tồn kho, tài sản nhàn rỗi và giá từng mua.
+  "023": Ngay khi yêu cầu được gửi, Approval assistant kiểm tra xem tồn kho hoặc tài sản nhàn rỗi có đáp ứng được không, so sánh đơn giá trước đây và các yêu cầu tương tự, chỉ ra thông tin còn thiếu, rồi soạn đề xuất và ý kiến.
+  "024": Approval assistant đưa ra nhiều hơn hẳn một câu “duyệt” hay “từ chối”.
+  "025": "“Duyệt có điều kiện: kho còn 3 màn hình cùng mẫu, nên chỉ cần mua 2 chiếc còn lại.”"
+  "026": "“Từ chối: máy in này mới dùng 20 tháng và chưa từng sửa chữa. Hãy sửa trước khi thanh lý.”"
+  "027": "“Duyệt có điều kiện: mẫu này hết hàng trong kho, nhưng có sẵn 3 mẫu thay thế. Hãy xác nhận ngân sách và số nhân viên mới trước.”"
+  "028": Nhận việc &amp; nghỉ việc
+  "029": "Nhân viên mới sẵn sàng từ ngày đầu. "
+  "030": Người nghỉ việc trả lại đủ từng món.
+  "031": Trước ngày đầu tiên, NocoITAM đối chiếu bộ thiết bị tiêu chuẩn của nhân viên mới với tồn kho và suất bản quyền nhàn rỗi trong một lượt. Bạn chỉ cần xác nhận, phần còn thiếu thì soạn đơn mua hàng bằng một cú nhấp. Khi có người nghỉ việc, hệ thống theo dõi thiết bị, phụ kiện, suất bản quyền và các việc ngoài hệ thống như thu hồi tài khoản, đổi khóa cho đến khi mọi thứ được hoàn tất.
+  "032": "Sau mỗi lần đồng bộ MDM, "
+  "033": mọi chênh lệch thành kế hoạch xử lý.
+  "034": "Sau khi đồng bộ với Intune hoặc Jamf Pro, agent phân loại chênh lệch kèm bối cảnh: sai người dùng thì chuyển cho người phụ trách thiết bị, thiết bị chưa vào sổ thì chuyển cho quản trị viên tài sản, còn các trường hợp đặc biệt như laptop mất kết nối lâu ngày được đánh dấu để người xem xét. Kiểm tra và áp dụng trong một lượt."
+  "035": Không còn VLOOKUP trên bảng tính mỗi tuần
+  "036": Mỗi chênh lệch đều có người phụ trách và lý do rõ ràng
+  "037": Mỗi lần đối soát đều được ghi vào lịch sử thiết bị
+  "038": Sổ tài sản
+  "039": "Phần cứng, phần mềm và vật tư, "
+  "040": gọn trong một sổ tài sản.
+  "041": Devices
+  "042": Theo dõi trọn vòng đời từ nhập kho đến thanh lý, liên tục đối soát với Intune và Jamf Pro.
+  "043": Accessories, Consumables &amp; Components
+  "044": Theo dõi số lượng cấp phát, thu hồi và tồn kho, cảnh báo khi xuống dưới mức tối thiểu; linh kiện được lắp vào thiết bị và đi cùng thiết bị.
+  "045": Entitlements
+  "046": Theo dõi suất bản quyền thuê bao và vĩnh viễn (đúng hạn mức, nhàn rỗi hay vượt mức), cảnh báo trước khi tự động gia hạn.
+  "047": Procurement, Repairs, Disposals &amp; Audits
+  "048": Cảnh báo giao hàng trễ, ghi chi phí sửa chữa theo từng thiết bị và theo dõi chênh lệch kiểm kê đến khi xử lý xong.
+  "049": Theo cách của bạn
+  "050": "Viết ra tiêu chuẩn thiết bị và quy tắc phê duyệt. "
+  "051": Agent làm đúng như vậy.
+  "052": Business guidance
+  "053": Xác định bộ thiết bị tiêu chuẩn, ngân sách và ngưỡng phê duyệt bằng ngôn ngữ tự nhiên; mọi agent đều đọc trong mỗi lần chạy.
+  "054": Skills
+  "055": Các kỹ năng có sẵn cho xem xét phê duyệt, danh mục, đồng bộ thiết bị và onboarding/offboarding đều có thể đọc toàn bộ và tùy chỉnh.
+  "056": Models &amp; mã nguồn
+  "057": "Chỉ định model cho từng agent và theo dõi mức sử dụng. Cần trường, workflow hay báo cáo riêng? Hãy để coding agent sửa mã nguồn trong Studio: mã nguồn mở, tự triển khai và thuộc về bạn."
+  "058": Đội CNTT bớt đối soát, mọi tài sản luôn rõ ràng.
+  "059": Dùng thử NocoITAM trực tuyến, hoặc lấy mã nguồn trên GitHub và tự triển khai. Kết nối MDM, nhập dữ liệu tài sản và để agent bắt đầu đối soát.
+  "061": Professional
+  "062": "Chỉ định model cho từng agent và theo dõi mức sử dụng. Cần trường, workflow hay báo cáo riêng? Hãy để coding agent sửa mã nguồn trong Studio: có trong bản Professional, tự triển khai và thuộc về bạn."

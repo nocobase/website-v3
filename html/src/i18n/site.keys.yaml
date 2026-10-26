@@ -1,0 +1,207 @@
+items:
+  "000":
+    en: The open-source foundation for AI-built business systems
+    zh: AI 开发和运行业务系统的开源应用底座
+    where: site
+  "001":
+    en: The governance platform for teams building with agents
+    zh: 团队与 Agent 协同开发的治理平台
+    where: site
+    unused: true
+  "002":
+    en: Agent-driven business apps
+    zh: 由 Agent 驱动的企业业务应用
+    where: site
+  "003":
+    en: Sales · 6 Sales Agents
+    zh: 销售管理 · 配备 6 个销售 Agent
+    where: site
+  "004":
+    en: IT Asset Management · 3 IT Agents
+    zh: IT 资产台账与管理 · 配备 3 个资产 Agent
+    where: site
+  "005":
+    en: Growth · Content Agent
+    zh: 内容与增长 · 配备内容运营 Agent
+    where: site
+  "006":
+    en: Support · Triage &amp; Reply Agents
+    zh: 客户服务 · 配备工单与客服 Agent
+    where: site
+  "007":
+    en: Projects · Research &amp; Doc Agents
+    zh: 项目协作 · 配备调研与文书 Agent
+    where: site
+  "008":
+    en: HR · Onboarding Agent
+    zh: 人事管理 · 配备入职与人事 Agent
+    where: site
+  "009":
+    en: No-code
+    zh: 无代码
+    where: site
+  "010":
+    en: Visual configuration platform, maintained alongside v3
+    zh: 可视化配置搭建，与 NocoBase 3 并行维护
+    where: site
+  "011":
+    en: Current
+    zh: 当前
+    where: site
+  "012":
+    en: The development platform for agents
+    zh: 面向 Agent 的开发平台
+    where: site
+  "013":
+    en: AI + no-code development platform
+    zh: AI + 无代码开发平台
+    where: site
+  "014":
+    en: Products
+    zh: 产品
+    where: site
+  "015":
+    en: Solutions
+    zh: 解决方案
+    where: site
+  "016":
+    en: Resources
+    zh: 资源
+    where: site
+  "017":
+    en: Docs
+    zh: 文档
+    where: site
+  "018":
+    en: Guides, core capabilities, and API reference
+    zh: 上手指南、核心能力与扩展开发参考
+    where: site
+  "019":
+    en: Customers
+    zh: 客户案例
+    where: site
+  "020":
+    en: How teams run core systems on NocoBase
+    zh: 看看各行业团队如何用 NocoBase 搭建核心系统
+    where: site
+  "021":
+    en: Blog
+    zh: 博客
+    where: site
+  "022":
+    en: Product thinking and engineering practices
+    zh: 产品思考、工程实践与方法论
+    where: site
+  "023":
+    en: Changelog
+    zh: 更新日志
+    where: site
+  "024":
+    en: What shipped in every release
+    zh: 每次版本迭代的新能力与改进
+    where: site
+  "025":
+    en: Community
+    zh: 社区
+    where: site
+  "026":
+    en: Ask questions and share patterns
+    zh: 在论坛提问、交流经验与反馈建议
+    where: site
+  "027":
+    en: Contact Us
+    zh: 联系我们
+    where: site
+  "028":
+    en: Sales, partnerships, and support
+    zh: 商务合作、产品咨询与技术支持
+    where: site
+    unused: true
+  "029":
+    en: Partners
+    zh: 伙伴
+    where: site
+  "030":
+    en: Find a Partner
+    zh: 寻找 NocoBase 伙伴
+    where: site
+  "031":
+    en: Get your system built and running with an expert
+    zh: 和懂行的伙伴一起，把系统做出来、用起来
+    where: site
+  "032":
+    en: Become a Partner
+    zh: 成为合作伙伴
+    where: site
+  "033":
+    en: Deliver more client projects with an agent team
+    zh: 用 Agent 团队交付更多客户项目
+    where: site
+  "034":
+    en: Pricing
+    zh: 定价
+    where: site
+  "035":
+    en: No-code ↗
+    zh: 无代码 ↗
+    where: site
+  "036":
+    en: All Solutions
+    zh: 全部解决方案
+    where: site
+  "037":
+    en: AI + NocoBase. Build reliable business systems.
+    zh: AI + NocoBase，构建可靠的业务系统。
+    where: site
+  "038":
+    en: NocoBase 2 No-code ↗
+    zh: NocoBase 2 无代码 ↗
+    where: site
+  "039":
+    en: Pricing &amp; License
+    zh: 定价与许可
+    where: site
+  "040":
+    en: Editions &amp; Pricing
+    zh: 版本与价格
+    where: site
+  "041":
+    en: License
+    zh: 许可协议
+    where: site
+  "042":
+    en: Partner Program
+    zh: 合作伙伴计划
+    where: site
+  "043":
+    en: Connect
+    zh: 联系
+    where: site
+  "044":
+    en: Forum
+    zh: 社区论坛
+    where: site
+  "045":
+    en: The governance platform for people and agents building software together
+    zh: 人与 Agent 协同开发的治理平台
+    where: site
+  "046":
+    en: Partnerships, product questions, and support
+    zh: 商务合作、产品咨询与技术支持
+    where: site
+  "047":
+    en: Please choose at least one option
+    zh: 请至少选择一项
+    where: form
+  "048":
+    en: Submitting…
+    zh: 正在提交…
+    where: form
+  "049":
+    en: Thanks! We’ve received your request and will be in touch soon.
+    zh: 已收到你的需求，我们会尽快与你联系。
+    where: form
+  "050":
+    en: Something went wrong. Please try again, or email {mail}.
+    zh: 提交没有成功，请稍后再试，或写信到 {mail}。
+    where: form

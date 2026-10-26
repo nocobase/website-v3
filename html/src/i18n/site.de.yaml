@@ -1,0 +1,20 @@
+notes: |-
+  Deutsch（Sie）
+  术语：foundation = Fundament；building blocks = Bausteine；governance = Governance；agent team = Agenten-Team；
+  coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
+  vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
+  页面用语：agent = Agent（复数 Agenten）；lead = Lead；opportunity / deal = Deal；account = Kunde；company = Firma；approval = Freigabe（approve = freigeben，
+  approve with conditions = unter Auflagen freigeben，reject = ablehnen）；approval agent = Freigabe-Agent；approval assistant = Freigabe-Assistent；
+  timeline = Zeitleiste；business guidance = Geschäftsleitfaden；inbox = Posteingang；record = Datensatz；follow up = nachfassen；
+  asset register = Inventar；entitlement = Softwarelizenz；seat = Lizenzplatz；stocktake / audit = Inventur；stock = Lagerbestand；
+  idle = ungenutzt；disposal = Aussonderung；discrepancy = Abweichung；reconcile = abgleichen；standard kit = Standardausstattung；
+  purchase request = Bestellanforderung；PO = Bestellung；joiner = neue Mitarbeitende；leaver = ausscheidende Mitarbeitende；
+  joiners & leavers = Ein- und Austritte；skills = Skills
+strings:
+  "033": Mit einem Agenten-Team mehr Kundenprojekte umsetzen
+  "036": Alle Lösungen
+  "046": Partnerschaften, Produktfragen und Support
+  "047": Bitte wählen Sie mindestens eine Option
+  "048": Wird gesendet…
+  "049": Vielen Dank! Wir haben Ihre Anfrage erhalten und melden uns in Kürze.
+  "050": Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut, oder schreiben Sie an {mail}.

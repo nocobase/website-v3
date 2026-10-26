@@ -250,3 +250,4 @@ description: NocoBase는 AI로 비즈니스 시스템을 지속적으로 개발�
 244: Core와 NocoCRM 등 Solution 앱은 무료 오픈소스이며, Studio와 NocoITAM 등 Solution 앱은 상용 에디션에서 제공합니다.
 245: Core, NocoCRM, NocoReach, NocoProject는 무료 오픈소스이며, 그대로 프로덕션에 사용할 수 있습니다.
 246: AI가 성장 기회를 찾고, 에이전트가 실행합니다.
+247: Core 시작하기

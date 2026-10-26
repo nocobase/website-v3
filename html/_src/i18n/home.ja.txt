@@ -250,3 +250,4 @@ description: NocoBase は、AI で業務システムを継続的に開発・運�
 244: Core と NocoCRM などの Solution アプリは無料のオープンソースです。Studio と NocoITAM などの Solution アプリは商用版で提供しています。
 245: Core、NocoCRM、NocoReach、NocoProject は無料のオープンソースで、そのまま本番環境で使えます。
 246: AI が成長の機会を見つけ、エージェントが実行します。
+247: Core を使い始める

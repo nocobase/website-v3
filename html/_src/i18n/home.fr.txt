@@ -250,3 +250,4 @@ description: NocoBase est la plateforme open source pour créer, exploiter et fa
 244: Core et les applications Solution comme NocoCRM sont gratuits et open source. Studio et les applications Solution comme NocoITAM sont inclus dans les éditions commerciales.
 245: Core, NocoCRM, NocoReach et NocoProject sont gratuits, open source et prêts pour la production.
 246: L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre.
+247: Commencer avec Core

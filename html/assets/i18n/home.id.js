@@ -116,7 +116,6 @@
 "Free &amp; Open Source": "Gratis &amp; Open Source",
 "Build your own system on Core": "Bangun sistem sendiri dengan Core",
 "Agents use Core’s ready-made building blocks and build only what is specific to your business.": "Agen memakai komponen dasar siap pakai dari Core dan hanya membangun hal yang khas bagi bisnis Anda.",
-"View Deployment Guide": "Lihat panduan deployment",
 "Install a ready-made business app": "Pasang aplikasi bisnis siap pakai",
 "Use it as it is, or have a coding agent tailor it to your business.": "Gunakan apa adanya, atau minta agen coding menyesuaikannya dengan bisnis Anda.",
 "View Solution Apps": "Lihat aplikasi Solution",
@@ -216,6 +215,7 @@
 "Agents keep the work moving. Your team stays in control.": "Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio adalah platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama. Studio menyatukan Claude Code, Codex, dan OpenCode menjadi satu tim agen yang menggerakkan tugas secara mandiri. Progres terlihat sekilas, dan keputusan penting tetap di tangan manusia.",
 "Deliver more client projects with an agent team": "Selesaikan lebih banyak proyek klien bersama tim agen",
-"AI finds growth opportunities. Agents put them into action.": "AI menemukan peluang pertumbuhan. Agen mewujudkannya."
+"AI finds growth opportunities. Agents put them into action.": "AI menemukan peluang pertumbuhan. Agen mewujudkannya.",
+"Get Started with Core": "Mulai dengan Core"
 }
 };

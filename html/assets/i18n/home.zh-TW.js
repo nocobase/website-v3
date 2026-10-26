@@ -116,7 +116,6 @@
 "Free &amp; Open Source": "開源免費",
 "Build your own system on Core": "用 Core 開發自己的系統",
 "Agents use Core’s ready-made building blocks and build only what is specific to your business.": "Agent 使用 Core 的現成能力，只開發企業自己的業務部分。",
-"View Deployment Guide": "查看部署指南",
 "Install a ready-made business app": "安裝現成的業務應用",
 "Use it as it is, or have a coding agent tailor it to your business.": "可以直接安裝使用，也可以讓 Coding Agent 依自己的業務需求客製。",
 "View Solution Apps": "查看 Solution",
@@ -216,7 +215,8 @@
 "Agents keep the work moving. Your team stays in control.": "Agent 自主推進，團隊掌控全局。",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio 是人與 Agent 協同開發的治理平台。把 Claude Code、Codex、OpenCode 組成一支 Agent 團隊自主推進任務，進度一目了然，關鍵處由人做決策。",
 "Deliver more client projects with an agent team": "用 Agent 團隊交付更多客戶專案",
-"AI finds growth opportunities. Agents put them into action.": "AI 找出成長機會，交給 Agent 執行。"
+"AI finds growth opportunities. Agents put them into action.": "AI 找出成長機會，交給 Agent 執行。",
+"Get Started with Core": "開始使用 Core"
 },
 "ui": {
 "我的任务": "我的任務",

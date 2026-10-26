@@ -249,3 +249,4 @@ description: NocoBase 是以 AI 持續開發與運行業務系統的開源平台
 244: Core 和 NocoCRM 等 Solution 應用開源免費；Studio 和 NocoITAM 等 Solution 應用於商業版中提供。
 245: Core 以及 NocoCRM、NocoReach、NocoProject 開源免費，可直接用於正式環境。
 246: AI 找出成長機會，交給 Agent 執行。
+247: 開始使用 Core

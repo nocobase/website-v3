@@ -671,7 +671,8 @@
  {
   "en": "View Deployment Guide",
   "zh": "查看部署指南",
-  "where": "start"
+  "where": "start",
+  "unused": true
  },
  {
   "en": "Install a ready-made business app",
@@ -1268,5 +1269,10 @@
   "en": "AI finds growth opportunities. Agents put them into action.",
   "zh": "AI 找出增长机会，交给 Agent 执行。",
   "where": "figure"
+ },
+ {
+  "en": "Get Started with Core",
+  "zh": "开始使用 Core",
+  "where": "start"
  }
 ]

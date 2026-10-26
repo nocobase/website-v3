@@ -116,7 +116,6 @@
 "Free &amp; Open Source": "무료 오픈소스",
 "Build your own system on Core": "Core로 자체 시스템 개발",
 "Agents use Core’s ready-made building blocks and build only what is specific to your business.": "에이전트가 Core의 기본 기능을 활용해 기업 고유의 비즈니스만 개발합니다.",
-"View Deployment Guide": "배포 가이드 보기",
 "Install a ready-made business app": "바로 쓰는 비즈니스 앱 설치",
 "Use it as it is, or have a coding agent tailor it to your business.": "그대로 사용할 수도 있고, 코딩 에이전트에게 비즈니스에 맞춘 커스터마이징을 맡길 수도 있습니다.",
 "View Solution Apps": "Solution 보기",
@@ -216,6 +215,7 @@
 "Agents keep the work moving. Your team stays in control.": "에이전트는 스스로 추진하고, 팀은 전체를 장악한다.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio는 사람과 에이전트가 함께 개발하는 거버넌스 플랫폼입니다. Claude Code, Codex, OpenCode를 하나의 에이전트 팀으로 묶어 작업을 스스로 진행합니다. 진행 상황은 한눈에 보이고, 중요한 결정은 사람이 내립니다.",
 "Deliver more client projects with an agent team": "에이전트 팀과 함께 더 많은 고객 프로젝트를 수행하세요",
-"AI finds growth opportunities. Agents put them into action.": "AI가 성장 기회를 찾고, 에이전트가 실행합니다."
+"AI finds growth opportunities. Agents put them into action.": "AI가 성장 기회를 찾고, 에이전트가 실행합니다.",
+"Get Started with Core": "Core 시작하기"
 }
 };

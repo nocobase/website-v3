@@ -116,7 +116,6 @@
 "Free &amp; Open Source": "Gratuit et open source",
 "Build your own system on Core": "Développez votre système sur Core",
 "Agents use Core’s ready-made building blocks and build only what is specific to your business.": "Les agents utilisent les briques prêtes à l’emploi de Core et ne développent que ce qui est propre à votre métier.",
-"View Deployment Guide": "Voir le guide de déploiement",
 "Install a ready-made business app": "Installez une application métier prête à l’emploi",
 "Use it as it is, or have a coding agent tailor it to your business.": "Utilisez-la telle quelle, ou faites-la adapter à votre métier par un agent de code.",
 "View Solution Apps": "Voir les applications",
@@ -216,6 +215,7 @@
 "Agents keep the work moving. Your team stays in control.": "Les agents font avancer le travail. Votre équipe garde la maîtrise.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio est la plateforme de gouvernance pour les humains et les agents qui développent des logiciels ensemble. Il réunit Claude Code, Codex et OpenCode en une seule équipe d’agents qui fait avancer les tâches en autonomie. L’avancement se lit en un coup d’œil, et les décisions clés reviennent aux humains.",
 "Deliver more client projects with an agent team": "Livrez plus de projets clients avec une équipe d’agents",
-"AI finds growth opportunities. Agents put them into action.": "L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre."
+"AI finds growth opportunities. Agents put them into action.": "L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre.",
+"Get Started with Core": "Commencer avec Core"
 }
 };

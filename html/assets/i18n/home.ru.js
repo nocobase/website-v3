@@ -116,7 +116,6 @@
 "Free &amp; Open Source": "Бесплатно, открытый код",
 "Build your own system on Core": "Разрабатывайте свою систему на Core",
 "Agents use Core’s ready-made building blocks and build only what is specific to your business.": "Агенты используют готовые базовые модули Core и разрабатывают только то, что относится к вашему бизнесу.",
-"View Deployment Guide": "Руководство по развёртыванию",
 "Install a ready-made business app": "Установите готовое бизнес-приложение",
 "Use it as it is, or have a coding agent tailor it to your business.": "Используйте как есть или поручите кодинг-агенту адаптировать его под ваш бизнес.",
 "View Solution Apps": "Приложения Solution",
@@ -216,6 +215,7 @@
 "Agents keep the work moving. Your team stays in control.": "Агенты сами двигают работу вперёд. Команда держит всё под контролем.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio — платформа управляемой разработки для совместной работы людей и агентов. Она объединяет Claude Code, Codex и OpenCode в одну команду агентов, которая сама продвигает задачи. Весь прогресс как на ладони, а ключевые решения принимают люди.",
 "Deliver more client projects with an agent team": "Выполняйте больше клиентских проектов с командой агентов",
-"AI finds growth opportunities. Agents put them into action.": "ИИ находит возможности для роста. Агенты воплощают их в жизнь."
+"AI finds growth opportunities. Agents put them into action.": "ИИ находит возможности для роста. Агенты воплощают их в жизнь.",
+"Get Started with Core": "Начать работу с Core"
 }
 };

@@ -116,7 +116,6 @@
 "Free &amp; Open Source": "Miễn phí &amp; mã nguồn mở",
 "Build your own system on Core": "Phát triển hệ thống riêng với Core",
 "Agents use Core’s ready-made building blocks and build only what is specific to your business.": "Agent dùng các khối chức năng có sẵn của Core, chỉ phát triển phần nghiệp vụ riêng của bạn.",
-"View Deployment Guide": "Xem hướng dẫn triển khai",
 "Install a ready-made business app": "Cài ứng dụng nghiệp vụ có sẵn",
 "Use it as it is, or have a coding agent tailor it to your business.": "Dùng ngay, hoặc để coding agent tùy biến theo nhu cầu nghiệp vụ của bạn.",
 "View Solution Apps": "Xem ứng dụng Solution",
@@ -216,6 +215,7 @@
 "Agents keep the work moving. Your team stays in control.": "Agent tự thúc đẩy công việc. Đội ngũ làm chủ toàn cục.",
 "NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.": "NocoBase Studio là nền tảng quản trị cho con người và agent cùng phát triển phần mềm. Studio kết nối Claude Code, Codex, OpenCode thành một đội agent tự thúc đẩy công việc. Tiến độ rõ ràng trong nháy mắt, còn quyết định then chốt do con người đưa ra.",
 "Deliver more client projects with an agent team": "Bàn giao nhiều dự án khách hàng hơn cùng một đội agent",
-"AI finds growth opportunities. Agents put them into action.": "AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động."
+"AI finds growth opportunities. Agents put them into action.": "AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động.",
+"Get Started with Core": "Bắt đầu với Core"
 }
 };

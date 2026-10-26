@@ -28,7 +28,7 @@ node serve.mjs     # 在 http://localhost:4321/ 预览
 
 ## 编写
 
-- Studio 文档的结构和措辞见 `方案/11-Studio文档重构方案.md`，写法约定见 `方案/04-写作规范与术语.md`。所有措辞以《NocoBase 产品定义与标准表述》为准。
+- Studio 文档的结构和措辞见 `方案/11-Studio文档重构方案.md`，写法约定见 `方案/04-写作规范与术语.md`。所有措辞以《NocoBase 产品定义与标准表述》（在 [nocobase/nocobase-v3-standard](https://github.com/nocobase/nocobase-v3-standard) 仓库）为准。
 - 新增页面：在 `src/zh-CN/` 下新建 Markdown，在 `src/` 的同一路径下放英文页（还没翻译就只写 front matter 和 `status: placeholder`），再在 `build.mjs` 的 `SECTIONS` 里登记。菜单和源文件不一致时构建会失败。
 - front matter 写了 `status` 的是占位页（中文页写待编写、待改写）：菜单里颜色较浅，不参与上一页 / 下一页。英文占位页正文留空时，会自动提示读者看中文版。
 - 站内链接写成相对的 `.md` 路径（例如 `[我的任务](../use/my-tasks.md#视图)`），构建时换成最终地址；指向不存在的页面会让构建失败。

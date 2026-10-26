@@ -1,5 +1,0 @@
-/* 繁体中文（film-zh-TW.html / preview-zh-TW.html）：接在 film.css 后面加载（繁体中文版是繁体中文界面，不叠 film-en.css），
-   只放这一版需要的字体和尺寸。时间表和画面结构和中文版相同。 */
-
-/* 文案和界面字体：西文、数字用 Inter，中文用苹方繁体（其他系统用 Noto Sans TC，src/load.js 加载） */
-:root { --copy: 'Inter', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; --sans: 'Inter', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', system-ui, sans-serif; --mono: 'JetBrains Mono', 'PingFang TC', 'Noto Sans TC', ui-monospace, monospace; }

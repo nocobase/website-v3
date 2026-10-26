@@ -187,6 +187,21 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .map .box.brand b { color: var(--brand); }
 .map .down { padding: 2px 0; text-align: center; font-size: 12px; color: var(--muted); }
 .map .down::before { content: "↓ "; }
+/* 首页的架构图：左边一根窄脊柱（三个块，箭头在轴线上），右边对着每个块写两行文字 */
+.layers { --ly-deep: oklch(0.25 0.06 266); margin: 20px 0; padding: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); display: grid; grid-template-columns: 220px minmax(0, 1fr); column-gap: 24px; align-items: center; }
+.layers .ly-b { align-self: stretch; min-height: 76px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 14px; text-align: center; border: 1px solid var(--rule); border-radius: 8px; background: #fff; }
+.layers .ly-b b { font-size: 16px; font-weight: 600; line-height: 1.4; }
+.layers .ly-b span { margin-top: 3px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+.layers .ly-b.st { background: var(--brand-tint); border-color: transparent; }
+.layers .ly-b.st b { color: var(--brand); }
+.layers .ly-b.co { background: var(--ly-deep); border-color: var(--ly-deep); }
+.layers .ly-b.co b { color: #fff; }
+.layers .ly-b.co span { color: oklch(0.8 0.03 266); }
+.layers .ly-t b { display: block; font-size: 15px; font-weight: 600; line-height: 1.6; }
+.layers .ly-t span { display: block; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.layers .ly-k { padding: 6px 0; text-align: center; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.layers .ly-k.down::before { content: "↓ "; color: var(--muted); }
+.layers .ly-k.up::before { content: "↑ "; color: var(--muted); }
 
 /* 任务状态 */
 .states { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0; font-size: 13px; }
@@ -249,6 +264,9 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .topbar .doc-label { padding-left: 10px; font-size: 13px; }
   .topbar .toplinks { gap: 12px; font-size: 13px; }
   .pager { grid-template-columns: 1fr; }
+  .layers { grid-template-columns: 1fr; }
+  .layers .ly-t { margin: 10px 0 2px; }
+  .layers .ly-gap { display: none; }
   .pager .next { grid-column: 1; }
   .page-foot { flex-direction: column; gap: 4px; }
 }

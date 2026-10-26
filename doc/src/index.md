@@ -16,16 +16,17 @@ description: NocoBase is the open-source platform for building, running, and evo
 | Coming from NocoBase 2 | [Coming from NocoBase 2](start/from-v2.md) · [How plugins work](core/intro/how-plugins-work.md) |
 | Build reusable plugins | [Extend](core/extend/when-to-write-a-plugin.md) |
 
-## What NocoBase 3 is made of
+## Architecture
 
-<figure class="map" aria-label="Your team leads agents to build business apps on Core; Studio organizes the agent team; Solution apps are ready-made apps">
-<div class="row"><div class="box human"><b>Your team</b><span>Sets goals, answers questions, and accepts the results. After launch, manages users and permissions</span></div></div>
-<div class="down">Hand over the request</div>
-<div class="row c2"><div class="box agent"><b>Agents</b><span>Coding tools such as Claude Code and Codex, writing the app's code by following skills</span></div><div class="box brand"><b>Studio <span class="tag pro">Commercial</span></b><span>Organizes agents into an agent team and manages issues, workflows, and records</span></div></div>
-<div class="down">Build on Core</div>
-<div class="row"><div class="box"><b>Your business app · built on Core</b><span>Core provides the building blocks: data, permissions, workflows and approvals, files, notifications, and more. You own the app, and it runs on its own after launch</span></div></div>
-<div class="down">Or start from a ready-made app</div>
-<div class="row"><div class="box"><b>Solution apps</b><span>Business apps built on NocoBase, such as the open-source NocoCRM. Use them as they are, or keep customizing them</span></div></div>
+<figure class="layers" aria-label="Studio is where people and agents build business apps together; the apps are built on Core">
+<div class="ly-b st"><b>NocoBase Studio</b><span>The governance platform for people and agents building software together</span></div>
+<div class="ly-t"><b>People make the decisions. Agents write the code and do the work</b><span>Claude Code, Codex, and OpenCode form one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.</span></div>
+<div class="ly-k down">Build · Deliver · Govern · Evolve</div><div class="ly-gap"></div>
+<div class="ly-b"><b>Business apps</b><span>Your organization's business systems</span></div>
+<div class="ly-t"><b>Agents build the apps. You own them, and they run on their own after launch</b><span>You can also start from a ready-made Solution app, such as the open-source NocoCRM, and use it as is or keep customizing it.</span></div>
+<div class="ly-k up">Building blocks · Standards</div><div class="ly-gap"></div>
+<div class="ly-b co"><b>NocoBase Core</b><span>The open-source application foundation</span></div>
+<div class="ly-t"><b>20+ building blocks, one consistent project structure and development standards</b><span>Data, permissions, workflows and approvals, files, notifications, AI integration, and more come ready to use, so agents build only the business logic.</span></div>
 </figure>
 
 - **[Core](core/index.md)** is the open-source foundation for building and running business systems. With Core alone, you can have your own agent build apps directly.

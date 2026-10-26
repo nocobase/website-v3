@@ -13,7 +13,7 @@
 - `pages/gen_more.py`：第二批界面示意（NocoReach 数据源与数据健康、NocoCRM 客户时间线 / 邮箱 / WhatsApp、Studio 会话联动与发布、伙伴页）。它会顺带运行 gen_wow.py 和 gen_sol.py，所以改任何图之后运行它一次即可，再运行 wrap.py。
 - 伙伴页：`pages/partner.body.html`（成为伙伴）、`pages/find-partner.body.html`（寻找伙伴）；导航与页脚链接在 `assets/site.js`，首页的静态导航在 `homepage.html` 里单独改。
 - 顶部「资源」菜单里的客户案例、博客、更新日志暂时置灰、不可点击（`.soon`，手机菜单里是 `.off`），`assets/site.js` 和 `homepage.html` 两处都要改；页脚的链接没有动。开放时改回 `<a>`。
-- 定价页（`pages/pricing.body.html`）的开源与商业划分以《NocoBase 产品定义与标准表述》的「开源与私有部署」一节为准。
+- 定价页（`pages/pricing.body.html`）的开源与商业划分以《NocoBase 产品定义与标准表述》（在 [nocobase/nocobase-v3-standard](https://github.com/nocobase/nocobase-v3-standard) 仓库）的「开源与私有部署」一节为准。
 - 首页的其他 10 种语言：译文在 `i18n/home.<语言>.txt`，运行 `python3 i18n/build.py ..` 生成 `assets/i18n/`，做法和写作标准见 `i18n/README.md`。首页改了中英文文案，要同步更新 `i18n/keys.json` 和各语言译文。Core、Studio、Solution 总览、NocoCRM、NocoITAM、定价、成为伙伴、寻找伙伴、联系我们也有这 12 种语言（`i18n/pages.py`）；博客、客户案例和 NocoReach 只有中英文，选了别的语言时显示英文。
 - `pages/inject_home.py`：首页不走 wrap.py。首页 Studio 段的图（大图 studioHero，小图 homeMyAgent、homeFleet、homeSkills）放在 `<!-- SNIP:名称 -->` 标记之间，改完 gen_more.py 后运行它填进 `homepage.html`。首页 Hero 的「我的 Agent」演示写在 homepage.html 的脚本里（heroFig / start / approve），样式在页面内联样式和 `assets/site.css` 末尾各有一份。
 - 子目录里的页面：正文头部写 `root: ../`，wrap.py 会把样式和脚本路径往上找一级，`assets/site.js` 按 `<body data-root>` 给导航和页脚链接补前缀。gen_blog.py 写 `blog/`、`customers/` 下的页面时会自动加上，并把正文里的站内相对链接改成 `../`。

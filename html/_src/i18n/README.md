@@ -18,7 +18,7 @@
 
 ## 写作标准
 
-和英文版《NocoBase Product Definition and Messaging》同一个标准：
+和英文版《NocoBase Product Definition and Messaging》（在 [nocobase/nocobase-v3-standard](https://github.com/nocobase/nocobase-v3-standard) 仓库）同一个标准：
 
 - 按这门语言里同类产品的习惯来写，不逐字翻译，也不改原意。繁体中文从简体中文原文改写成台湾用语，不从英文转译。
 - 一个概念在全页只用一种说法，见各文件开头的用语表。比如 foundation（底座）：法语 socle、德语 Fundament、越南语 nền móng（与表示"平台"的 nền tảng 区分）、日语 基盤。

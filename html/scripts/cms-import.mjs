@@ -39,6 +39,11 @@ const kindOf = (subs, slug) => {
   for (const k of ['milestone', 'latest', 'beta', 'alpha']) if (names.some(n => n.startsWith(k))) return k;
   return /-alpha/.test(slug) ? 'alpha' : /-beta/.test(slug) ? 'beta' : 'latest';
 };
+// 标签以 cms/article-tags.json（CMS 推到旧官网 content/tags/article-tags.json 的标签表）为准：文章 metadata 里的标签是
+// 文章上次同步时的快照，标签改过名（如 AI & No-Code 曾叫 News、No-Code News）或改过 displayOnBlog 的，快照还是旧的。
+const tagsPath = join(here, 'cms', 'article-tags.json');
+const TAGS = new Map((existsSync(tagsPath) ? JSON.parse(readFileSync(tagsPath, 'utf8')) : []).map(t => [t.id, t]));
+const current = t => TAGS.get(t.id) || t;
 const releases = {};
 let pages = 0, listed = 0;
 for (const slug of existsSync(root) ? readdirSync(root).sort() : []) {
@@ -58,7 +63,7 @@ for (const slug of existsSync(root) ? readdirSync(root).sort() : []) {
   }
   if (m.hideDetailPage) continue;
   // 只留旧官网博客上显示的标签（displayOnBlog），其余是 SEO 关键词
-  const tags = (m.tags || []).filter(t => t.displayOnBlog);
+  const tags = (m.tags || []).map(current).filter(t => t.displayOnBlog);
   const image = (m.cover && m.cover.url) || '';
   const author = m.author || 'NocoBase';
   posts[m.slug || slug] = {

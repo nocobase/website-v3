@@ -56,6 +56,20 @@ svg.lucide { width: 16px; height: 16px; stroke-width: 1.8; flex: none; }
 .topbar .doc-label { margin-left: 4px; padding-left: 14px; border-left: 1px solid var(--rule-2); font-size: 14px; color: var(--ink-2); }
 .topbar .toplinks { display: flex; align-items: center; gap: 20px; font-size: 14px; color: var(--ink-2); white-space: nowrap; }
 .topbar .toplinks a:hover { color: var(--brand); }
+/* 语言菜单：和官网顶栏一样，悬停或键盘聚焦时展开 */
+.lang-menu { position: relative; }
+.lang-menu > button { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 10px; border: 0; border-radius: 7px; background: none; font: inherit; color: var(--ink-2); cursor: pointer; }
+.lang-menu > button:hover, .lang-menu:focus-within > button { color: var(--ink); background: var(--paper-2); }
+.lang-menu svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.lang-menu .lang-icon { width: 16px; height: 16px; }
+.lang-menu .lang-chevron { width: 14px; height: 14px; opacity: 0.6; margin-left: -2px; }
+.lang-dd { position: absolute; top: calc(100% + 8px); right: 0; min-width: 180px; max-height: calc(100vh - var(--top) - 24px); overflow-y: auto; padding: 6px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 0.15s, transform 0.15s, visibility 0.15s; z-index: 60; }
+.lang-dd::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+.lang-menu:hover .lang-dd, .lang-menu:focus-within .lang-dd { opacity: 1; visibility: visible; transform: none; }
+.topbar .lang-dd a { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; font-size: 14px; color: var(--ink-2); }
+.topbar .lang-dd a:hover { color: var(--ink); background: var(--paper-2); }
+.topbar .lang-dd a.on { color: var(--brand); font-weight: 500; }
+.lang-dd .lang-check { flex: none; width: 16px; height: 16px; }
 .topbar { justify-content: flex-start; }
 .topbar .toplinks { margin-left: auto; }
 .topbar .sections { display: flex; align-self: stretch; gap: 2px; margin-left: 16px; }
@@ -266,7 +280,7 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .pillars, .roles, .fig.pair, .map .row.c2, .map .row.c3 { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
-  .topbar .doc-label, .topbar .toplinks { display: none; }
+  .topbar .doc-label, .topbar .toplinks > a { display: none; }
   .topbar .sections { margin-left: 8px; }
   .topbar .sections a { padding: 0 9px; font-size: 14px; }
 }

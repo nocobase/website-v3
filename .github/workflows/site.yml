@@ -199,8 +199,8 @@ jobs:
           ossutil cp -r dist/ "oss://$ALI_OSS_BUCKET/$TIMESTAMP/" \
             -f -j 64 --region "$REGION"
 
-          # The bucket's static-website error document is read from the root, not from inside a version directory. The
-          # site has no 404 page yet, so it is uploaded only once the build has one.
+          # The bucket's static-website error document is read from the root, not from inside a version directory, so
+          # `404.html` is uploaded there as well. It is served for a missing path at any depth and uses root paths only.
           if [ -f dist/404.html ]; then
             ossutil cp dist/404.html "oss://$ALI_OSS_BUCKET/404.html" \
               -f --region "$REGION"

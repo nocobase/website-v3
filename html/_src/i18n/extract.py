@@ -10,7 +10,7 @@ from playwright.async_api import async_playwright
 
 here = Path(__file__).resolve().parent
 site = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else here.parent.parent
-page = site / 'homepage.html'
+page = site / 'index.html'
 
 async def static_strings():
     async with async_playwright() as p:

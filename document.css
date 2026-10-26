@@ -1,4 +1,4 @@
-/* 标准文稿阅读版。颜色、字体与官网 html/homepage.html 一致，只做浅色。 */
+/* 标准文稿阅读版。颜色、字体与官网 html/index.html 一致，只做浅色。 */
 :root {
   --paper: oklch(0.984 0.003 255);
   --paper-2: oklch(0.963 0.005 258);

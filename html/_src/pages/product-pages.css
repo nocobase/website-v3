@@ -1,5 +1,5 @@
 /* Core、Studio、Solution 三个产品页共用的样式（由 _src/pages/gen_product_figs.py 从 _src/pages/product-pages.css 写入，改样式请改源文件）。
-   前半部分是首页已有的组件（首页的样式写在 homepage.html 里），这里给子页面用；和其他页面同名的类（.cmp、.apptab）限定在容器里，免得互相影响。 */
+   前半部分是首页已有的组件（首页的样式写在 index.html 里），这里给子页面用；和其他页面同名的类（.cmp、.apptab）限定在容器里，免得互相影响。 */
 
 /* ---- 首页同款组件 ---- */
 .cols3 h3 svg.lucide, .cols4 h3 svg.lucide { width: 18px; height: 18px; margin-right: 8px; vertical-align: -3px; color: var(--brand); }
@@ -164,6 +164,6 @@
 .phero .vtabs { margin-top: 64px; }
 .phero .vtabs .sheet { margin-top: 0; }
 @media (max-width: 900px) { .phero .vtabs { margin-top: 40px; } }
-/* NocoITAM 的图用它自己的绿色（与首页 homepage.html 里的 .itam-theme 一致） */
+/* NocoITAM 的图用它自己的绿色（与首页 index.html 里的 .itam-theme 一致） */
 .itam-theme { --agent: #047857; --agent-ink: #065f46; --agent-tint: #ecfdf5; --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 .itam-theme .sg.on { border-color: #a7f3d0; }

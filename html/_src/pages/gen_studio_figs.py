@@ -4,7 +4,7 @@
 #   homeFleet   运行环境：首页「接入多路 Agent」
 #   homeExpert  业务专家主导的一个任务：首页「不懂代码的业务专家」
 #   homeGovern  一次改动要过的每一道关：首页「不是 Vibe Coding」
-# 同时把 studio-ui.css 同步到 assets/site.css 末尾和 homepage.html 内联样式末尾（<!-- 或 /* STUDIO-UI */ 标记之间）。
+# 同时把 studio-ui.css 同步到 assets/site.css 末尾和 index.html 内联样式末尾（<!-- 或 /* STUDIO-UI */ 标记之间）。
 # 用法（在 _src 目录下）：python3 pages/gen_studio_figs.py ..
 import os, re, sys
 root = sys.argv[1]
@@ -160,7 +160,7 @@ def put_css(s):
     return s2 if n else None
 
 # 首页
-p = os.path.join(root, 'homepage.html')
+p = os.path.join(root, 'index.html')
 s = open(p, encoding='utf-8').read()
 x = put_css(s)
 s = x if x else s.replace('</style>\n</head>', '/* STUDIO-UI */\n' + css + '/* /STUDIO-UI */\n</style>\n</head>', 1)

@@ -1633,7 +1633,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
 /* STUDIO-UI */
 /* ======================= Studio 界面（对照真实 Studio 截图） =======================
    首页 Studio 段与 Studio 页共用。颜色克制：正文用墨色，Agent 名称不再整段标紫；
-   颜色只出现在状态图标、状态胶囊和 Agent 标识这些小处。本段同时写在 assets/site.css 末尾和 homepage.html 内联样式末尾，改时两处一起改。 */
+   颜色只出现在状态图标、状态胶囊和 Agent 标识这些小处。本段同时写在 assets/site.css 末尾和 index.html 内联样式末尾，改时两处一起改。 */
 .si.review { --c: var(--agent); padding: 3px; background: radial-gradient(circle, var(--c) 0 45%, transparent 50%) content-box; }
 .si.done { border-color: var(--pass); background: var(--pass); padding: 0; position: relative; }
 .si.done::after { content: ""; position: absolute; left: 3.6px; top: 1.6px; width: 3px; height: 6px; border: solid oklch(1 0 0); border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
@@ -1931,7 +1931,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
 .gh-btn svg { width: 17px; height: 17px; flex: none; }
 /* PRODUCT-PAGES */
 /* Core、Studio、Solution 三个产品页共用的样式（由 _src/pages/gen_product_figs.py 从 _src/pages/product-pages.css 写入，改样式请改源文件）。
-   前半部分是首页已有的组件（首页的样式写在 homepage.html 里），这里给子页面用；和其他页面同名的类（.cmp、.apptab）限定在容器里，免得互相影响。 */
+   前半部分是首页已有的组件（首页的样式写在 index.html 里），这里给子页面用；和其他页面同名的类（.cmp、.apptab）限定在容器里，免得互相影响。 */
 
 /* ---- 首页同款组件 ---- */
 .cols3 h3 svg.lucide, .cols4 h3 svg.lucide { width: 18px; height: 18px; margin-right: 8px; vertical-align: -3px; color: var(--brand); }
@@ -2096,7 +2096,7 @@ html:is([lang="en"],[lang="es"],[lang="fr"],[lang="de"],[lang="pt"],[lang="ru"],
 .phero .vtabs { margin-top: 64px; }
 .phero .vtabs .sheet { margin-top: 0; }
 @media (max-width: 900px) { .phero .vtabs { margin-top: 40px; } }
-/* NocoITAM 的图用它自己的绿色（与首页 homepage.html 里的 .itam-theme 一致） */
+/* NocoITAM 的图用它自己的绿色（与首页 index.html 里的 .itam-theme 一致） */
 .itam-theme { --agent: #047857; --agent-ink: #065f46; --agent-tint: #ecfdf5; --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 .itam-theme .sg.on { border-color: #a7f3d0; }
 /* /PRODUCT-PAGES */

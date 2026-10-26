@@ -1,6 +1,6 @@
 # Core、Studio 产品页的几张图，以及产品页共用的样式。
 #   coreStack   Core 首屏：上面是 Agent 写的业务，下面是就绪的 Core（统一的项目结构和开发规范 + 基础能力）。
-#               和首页 Core 段的图是同一张（首页由 homepage.html 里的 coreFig() 现场渲染），两处的数据要一起改。
+#               和首页 Core 段的图是同一张（首页由 index.html 里的 coreFig() 现场渲染），两处的数据要一起改。
 #   coreRepo    Core「为 Agent 提供统一的架构和规范」：新建应用的目录（谁提供、谁编写）和 nocobase-app-development 技能。
 #               目录、技能名和规则对照 NocoBase 3 应用模板的 AGENTS.md 与 .agents/skills/（nocobase-studio 仓库里就是一份）。
 #   studioDash  Studio「各项进展一目了然」：仪表盘（交付的四个数字和模型用量）与一个任务的推进详情（现在、接下来、执行计划）。

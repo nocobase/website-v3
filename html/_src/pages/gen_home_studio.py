@@ -4,7 +4,7 @@
 #   decide    有理有据做决策：一个等业务专家验收的任务，附报告、清单、截图和建议
 #   memory    方法、经验、知识沉淀在团队里：技能、知识库（人写和上传的资料，Agent 只读）、项目记忆，以及换人接手时自动带上
 # 界面字段对照 nocobase-studio 仓库（运行环境、我的任务、技能、知识库、项目记忆的中文文案）。
-# 写进 homepage.html 的 <!-- STUDIOTPL --> 标记之间（<template id="stv-…">），样式写在 /* HOME-STUDIO */ 标记之间。
+# 写进 index.html 的 <!-- STUDIOTPL --> 标记之间（<template id="stv-…">），样式写在 /* HOME-STUDIO */ 标记之间。
 # 用法（在 _src 目录下）：python3 pages/gen_home_studio.py ..
 import os, re, sys
 root = sys.argv[1]
@@ -305,10 +305,10 @@ CSS = r'''/* HOME-STUDIO */
 '''
 
 tpls = ''.join('<template id="stv-%s">%s</template>' % (k, v) for k, v in FIGS)
-p = os.path.join(root, 'homepage.html')
+p = os.path.join(root, 'index.html')
 s = open(p, encoding='utf-8').read()
 s, n = re.subn(r'<!-- STUDIOTPL -->.*?<!-- /STUDIOTPL -->', lambda m: '<!-- STUDIOTPL -->' + tpls + '<!-- /STUDIOTPL -->', s, flags=re.S)
-assert n == 1, 'homepage.html 里没有 <!-- STUDIOTPL --> 标记'
+assert n == 1, 'index.html 里没有 <!-- STUDIOTPL --> 标记'
 s, n = re.subn(r'/\* HOME-STUDIO \*/\n.*?/\* /HOME-STUDIO \*/\n', lambda m: CSS, s, flags=re.S)
 if not n:
     # 放在 STUDIO-UI 之后，同等优先级的规则才能覆盖它

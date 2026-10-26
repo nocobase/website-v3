@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Markdown 是正文的唯一来源。运行 node build.mjs 生成本目录文档的独立 HTML 阅读版。
-// 版式与官网（html/homepage.html）一致：同一套颜色、字体和图标；Core 一节用深靛蓝，Studio 一节用浅底。
+// 版式与官网（html/index.html）一致：同一套颜色、字体和图标；Core 一节用深靛蓝，Studio 一节用浅底。
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';

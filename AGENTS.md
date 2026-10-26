@@ -23,7 +23,7 @@
 本仓库是公开仓库，构建和发布都由本仓库自己的 GitHub Actions 完成，不再经外部仓库转发：
 
 - `.github/workflows/docs.yml`：文档站。改到 `doc/`、这个 workflow 或 `scripts/deploy-cdn/` 的 PR 和推送到 `main` 会触发，也可以手动运行。`Docs build` 运行 `npm ci --prefix doc --ignore-scripts` 和 `node doc/build.mjs`，检查 `index.html`、`zh-CN/index.html`、`404.html`、`sitemap.xml` 都生成了，把 `doc/dist/` 上传为 artifact；只有 `main` 上的运行才会接着跑 `Docs publish`。
-- `.github/workflows/site.yml`：官网。触发条件相同，路径换成 `html/`、这个 workflow 和 `scripts/deploy-cdn/`。`Site build` 目前是过渡版本：把 `html/` 复制到 `dist/`（排除顶层 `_src/` 和 `.DS_Store`），再把 `homepage.html` 复制成 `index.html`；以后换成按语言生成静态页的构建脚本。只有 `main` 上的运行才会接着跑 `Site publish`。
+- `.github/workflows/site.yml`：官网。触发条件相同，路径换成 `html/`、这个 workflow 和 `scripts/deploy-cdn/`。`Site build` 目前是过渡版本：把 `html/` 复制到 `dist/`（排除顶层 `_src/` 和 `.DS_Store`），首页就是 `html/index.html`；以后换成按语言生成静态页的构建脚本。只有 `main` 上的运行才会接着跑 `Site publish`。
 - 发布：每次部署都上传到 OSS 里一个新的时间戳目录（上海时间），再由 `scripts/deploy-cdn/deploy-cdn.mjs` 把 CDN 回源改写规则指过去，等规则生效后刷新缓存，最后清理旧版本；`404.html` 另外上传到 bucket 根目录（官网有 404 页之后才上传）。同一时间只有一个发布在跑，运行中的发布不会被取消；如果 `main` 已经前进，且之后的提交也改了这个 workflow 负责的目录，旧提交就跳过发布，由新提交发布。
 - 版本保留与回滚：文档保留最新 2 个时间戳目录（脚本默认 `--keep 1`），官网保留最新 3 个（`site.yml` 传 `--keep 2`）。官网的 `SITE_CDN_DOMAINS` 为空时用 `--cleanup-only`：不切换 CDN、不刷新缓存，但照样清理旧版本。清理前会确认刚上传的目录在 bucket 里，不在就报错、什么都不删。回滚时在阿里云 CDN 控制台把该域名的每条回源改写规则（`back_to_origin_url_rewrite`）里的时间戳改回保留着的旧目录，再刷新缓存；workflow 只发布 `main` 的最新提交，不能用它重新发布旧提交。
 - 配置：发布 job 运行在 Environment `production` 里，用到的值全部是这个 Environment 的 secrets：`ALI_ACCESS_KEY_ID`、`ALI_ACCESS_KEY_SECRET`、`ALI_OSS_REGION`（如 `cn-beijing`）、`DOCS_OSS_BUCKET`、`DOCS_CDN_DOMAINS`（必须配置，缺了发布失败）、`SITE_OSS_BUCKET`、`SITE_CDN_DOMAINS`（可以不配）。域名之间用空白或逗号分隔。

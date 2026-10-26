@@ -15,7 +15,7 @@ from tw import convert, leftover
 
 here = Path(__file__).resolve().parent
 site = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else here.parent.parent
-page = (site / 'homepage.html').read_text(encoding='utf8')
+page = (site / 'index.html').read_text(encoding='utf8')
 i = page.index('var L = function'); body = page[i:page.index('</script>', i)]
 
 

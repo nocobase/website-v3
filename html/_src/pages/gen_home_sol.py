@@ -44,7 +44,7 @@ def top(icon, app, crumb_zh, crumb_en, right=''):
             '<span class="r">%s<span class="ai"><i data-lucide="sparkles"></i></span><span class="av">%s</span></span></div>') % (brand, T(crumb_zh, crumb_en), right, T('陈', 'A'))
 
 def win(icon, app, czh, cen, body, right=''):
-    # NocoITAM's figure takes its own green (`.itam-theme` in homepage.html).
+    # NocoITAM's figure takes its own green (`.itam-theme` in index.html).
     return '<div class="sx solo%s">' % (' itam-theme' if app == 'ITAM' else '') + '<div class="sx-main">' + top(icon, app, czh, cen, right) + '<div class="sx-body">' + body + '</div></div></div>'
 
 # NocoCRM：一支 7×24 小时的销售 Agent 团队——「Agent 做了 37 件事，你只拍板 6 件」
@@ -173,7 +173,7 @@ hr_body = (
 hr = win('users', 'HR', '入职', 'Onboarding', hr_body, '<span class="tag violet">' + SPIN + T('入职与制度问答 Agent', 'Onboarding & policy agents') + '</span>')
 
 tpls = ''.join('<template id="tpl-%s">%s</template>' % (k, v) for k, v in (('crm', crm), ('itam', itam), ('reach', reach), ('support', support), ('project', project), ('hr', hr)))
-p = os.path.join(root, 'homepage.html')
+p = os.path.join(root, 'index.html')
 s = open(p, encoding='utf-8').read()
 s, n = re.subn(r'<!-- SOLTPL -->.*?<!-- /SOLTPL -->', lambda m: '<!-- SOLTPL -->' + tpls + '<!-- /SOLTPL -->', s, flags=re.S)
 if not n:

@@ -59,9 +59,8 @@ jobs:
         run: |
           set -euo pipefail
           # `_src/` holds the sources and the CMS mirror and is not published.
+          # The home page is `html/index.html` itself, so it is copied along with the rest.
           rsync -a --exclude '/_src/' --exclude '.DS_Store' html/ dist/
-          # `homepage.html` stays as well: existing links still point at it.
-          cp dist/homepage.html dist/index.html
 
       # Only that the files the bucket's index document and the pages depend on exist.
       - name: Check the build

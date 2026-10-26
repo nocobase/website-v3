@@ -6,7 +6,7 @@
 import sys, os, re, urllib.request
 site = sys.argv[1]
 out = os.path.join(site, 'assets', 'fonts')
-# 所有页面共用 fonts.css；首页切到俄语时再加载 inter.css（Archivo 没有西里尔字母，见 homepage.html 的 FONTS）。
+# 所有页面共用 fonts.css；首页切到俄语时再加载 inter.css（Archivo 没有西里尔字母，见 index.html 的 FONTS）。
 # Archivo 只要字重轴：页面没用到宽度轴（font-stretch），带上它文件大一倍多
 SETS = {
     'fonts': 'family=Archivo:wght@100..900&family=IBM+Plex+Mono:wght@400;500&display=swap',

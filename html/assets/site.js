@@ -36,8 +36,8 @@
   }).join(''); };
 
   var header = '<header class="nav" id="nav"><div class="container in">' +
-    '<a class="logo" href="homepage.html" aria-label="NocoBase"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase" width="150" height="22"></a>' +
-    '<div class="mi ver"><button type="button" aria-haspopup="true" aria-label="NocoBase 3">3<i data-lucide="chevron-down"></i></button><div class="dd"><a class="cur" href="homepage.html"><i data-lucide="check"></i><b>NocoBase 3<em class="kind-tag">' + T('当前', 'Current') + '</em></b><span>' + T('面向 Agent 的开发平台', 'The development platform for agents') + '</span></a><a class="ext" href="' + NOCODE + '" target="_blank" rel="noopener"><i data-lucide="mouse-pointer-click"></i><b>NocoBase 2<i data-lucide="arrow-up-right"></i></b><span>' + T('AI + 无代码开发平台', 'AI + no-code development platform') + '</span></a></div></div>' +
+    '<a class="logo" href="index.html" aria-label="NocoBase"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase" width="150" height="22"></a>' +
+    '<div class="mi ver"><button type="button" aria-haspopup="true" aria-label="NocoBase 3">3<i data-lucide="chevron-down"></i></button><div class="dd"><a class="cur" href="index.html"><i data-lucide="check"></i><b>NocoBase 3<em class="kind-tag">' + T('当前', 'Current') + '</em></b><span>' + T('面向 Agent 的开发平台', 'The development platform for agents') + '</span></a><a class="ext" href="' + NOCODE + '" target="_blank" rel="noopener"><i data-lucide="mouse-pointer-click"></i><b>NocoBase 2<i data-lucide="arrow-up-right"></i></b><span>' + T('AI + 无代码开发平台', 'AI + no-code development platform') + '</span></a></div></div>' +
     '<nav class="menu" aria-label="Primary">' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('产品', 'Products') + '<i data-lucide="chevron-down"></i></button><div class="dd">' + dd(products) + v2 + '</div></div>' +
       '<div class="mi"><button type="button" aria-haspopup="true">' + T('解决方案', 'Solutions') + '<i data-lucide="chevron-down"></i></button><div class="dd two">' + dd(apps) + '</div></div>' +

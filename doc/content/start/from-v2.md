@@ -1,6 +1,6 @@
 ---
 title: Coming from NocoBase 2
-description: What people who have used NocoBase 2 most want to know: what changed in the approach, where the plugin manager and the configuration screens went, and what each NocoBase 2 feature maps to in 3.
+description: "What people who have used NocoBase 2 most want to know: what changed in the approach, where the plugin manager and the configuration screens went, and what each NocoBase 2 feature maps to in 3."
 ---
 
 ## The difference in one sentence

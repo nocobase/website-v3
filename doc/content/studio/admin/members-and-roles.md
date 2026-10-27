@@ -1,6 +1,6 @@
 ---
 title: Members and roles
-description: Manage your team's accounts and roles: invite people, edit profiles, disable accounts, and reset passwords, and use built-in or custom roles to decide what each person can do.
+description: "Manage your team's accounts and roles: invite people, edit profiles, disable accounts, and reset passwords, and use built-in or custom roles to decide what each person can do."
 ---
 
 You manage members in **Settings › Members** and roles in **Settings › Roles**. Agents work on behalf of the person who started the work and never have more permissions than that person, so a member's role also decides what agents working for them can do.

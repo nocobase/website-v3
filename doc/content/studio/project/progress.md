@@ -1,6 +1,6 @@
 ---
 title: Project progress
-description: The dashboard answers three questions: how delivery is going, how the agents are performing, and what's stuck. Each project's overview shows its progress, the setup still to do, and the changes not yet released.
+description: "The dashboard answers three questions: how delivery is going, how the agents are performing, and what's stuck. Each project's overview shows its progress, the setup still to do, and the changes not yet released."
 ---
 
 You don't have to ask issue by issue how a project is going. Project leads look in two places: the **Dashboard** for the whole team, and a project's **Overview** for that project.

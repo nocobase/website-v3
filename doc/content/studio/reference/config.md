@@ -1,6 +1,6 @@
 ---
 title: Configuration options
-description: Studio's config.yml and environment variables: the public address, encryption key, first administrator, database, language and sign-in, email and push, multiple instances, release management, and logging.
+description: "Studio's config.yml and environment variables: the public address, encryption key, first administrator, database, language and sign-in, email and push, multiple instances, release management, and logging."
 ---
 
 Studio's configuration lives in `config.yml` in the deployment directory, mounted at `/app/config.yml` in the container. Copy the template out of the image:

@@ -153,7 +153,6 @@ const SECTIONS = [
           { planned: ['Knowledge base', '知识库'] },
           { planned: ['Template printing', '模板打印'] },
           { planned: ['External integrations', '外部集成'] },
-          'extension-development/localization',
           { planned: ['Theme customization', '主题定制'] },
         ],
       },
@@ -402,8 +401,13 @@ function pageKeysIn(root) {
 // pages：语言代码 → 页面键 → { meta, body, group, section }
 const pages = new Map(LANGS.map((lang) => [lang.code, new Map()]));
 const problems = [];
+const menuKeys = new Set();
 for (const section of SECTIONS) {
   section.keys = section.nav.flatMap((group) => group.items.filter((item) => typeof item === 'string').map((item) => `${section.dir}${item}`));
+  for (const key of section.keys) {
+    if (menuKeys.has(key)) problems.push(`Duplicate menu page: ${key}`);
+    menuKeys.add(key);
+  }
 }
 for (const lang of LANGS) {
   const langPages = pages.get(lang.code);

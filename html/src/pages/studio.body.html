@@ -8,18 +8,63 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
 <!-- 文案取自《NocoBase 产品定义与标准表述》的 NocoBase Studio 一节：品牌表达做 H1，定义做导语，四条核心特色各一节。
      第一节的导语用「问题与方案」里的「并行任务很多，人确认不过来」，最后一节用「知识和经验难以沉淀和共享」。
      四节的主图和首页 Studio 段同一批（scripts/figs/home-studio.mjs），第二节的仪表盘图在 scripts/figs/product-figs.mjs。 -->
+<style>
+.ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
+.ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+/* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
+#tryDemo { padding-top: 72px; }
+/* A cue at the foot of the full-screen hero, no words: a mouse whose wheel rolls down and a line running on down to the demo, which a click scrolls to; wide screens only, where the hero fills the screen (2026-10-25). */
+.phero { position: relative; }
+.scroll-cue { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; gap: 10px; padding: 6px 6px 0; color: var(--muted); }
+.scroll-cue .ln { position: relative; width: 1px; height: 56px; overflow: hidden; background: linear-gradient(to bottom, var(--rule-2), transparent); }
+.scroll-cue .ln::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--brand); animation: cue-run 1.8s ease-in-out infinite; }
+@keyframes cue-run { to { top: 100%; } }
+.scroll-cue[hidden] { display: none !important; }
+.scroll-cue .mouse { position: relative; display: block; width: 24px; height: 38px; border: 1.5px solid currentColor; border-radius: 12px; opacity: 0.7; transition: color 0.2s ease, opacity 0.2s ease; }
+.scroll-cue .wheel { position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: currentColor; animation: cue-wheel 1.8s ease-in-out infinite; }
+.scroll-cue:hover { color: var(--brand); }
+.scroll-cue:hover .mouse { opacity: 1; }
+@keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue .wheel, .scroll-cue .ln::after { animation: none; } .scroll-cue .ln::after { top: 0; } }
+@media (min-width: 961px) { .scroll-cue { display: flex; } }
+/* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
+@media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 14vh; } .phero > .container { width: 100%; } }
+.ld-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.ld-open a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 15px; white-space: nowrap; }
+.ld-open a:hover { color: var(--brand-hover); }
+.ld-open svg.lucide { width: 16px; height: 16px; }
+#tryDemo .sec-body { margin-top: 0; }
+.ld-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.ld-head p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+#tryDemo[hidden] { display: none; }
+#tryDemo .ld-head { scroll-margin-top: 16px; } /* Try It Online scrolls to the title: 16px below the 80px the site keeps for its sticky header (html scroll-padding-top) */ /* its section's heading stays in view above it, under the sticky header */
+@media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
+</style>
 <section class="phero">
   <div class="container">
     <p class="label prod"><b><i data-lucide="users-round"></i>NocoBase Studio</b></p>
     <h1><t-zh>Agent 自主推进，<span class="m">团队掌控全局。</span></t-zh><t-en>Agents keep the work moving. <span class="m">Your team stays in control.</span></t-en></h1>
     <p class="lede"><t-zh>NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。</t-zh><t-en>NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#"><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-pri" href="#tryDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
       <a class="btn btn-sec" href="pricing.html"><t-zh>查看版本与价格</t-zh><t-en>View Editions &amp; Pricing</t-en></a>
     </div>
     <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>私有部署在企业自己的服务器上</t-zh><t-en>Runs on your own servers</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex 等数十种编码工具</t-zh><t-en>Works with Claude Code, Codex, and dozens of other coding tools</t-en></span><span><i data-lucide="circle-check"></i><t-zh>在商业版中提供</t-zh><t-en>Available in the commercial editions</t-en></span></p>
-    <div class="sheet">
-      {{SNIP:studioHero:1120}}
+  </div>
+  <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="mouse" aria-hidden="true"><span class="wheel"></span></span><span class="ln" aria-hidden="true"></span></a>
+</section>
+
+<section class="sec" id="tryDemo" hidden>
+  <div class="container">
+    <div class="ld-head">
+      <div>
+        <h2><t-zh>在线体验 NocoBase Studio</t-zh><t-en>Try NocoBase Studio online</t-en></h2>
+        <p><t-zh>已用演示账号自动登录，数据都是虚构的，可以随意操作。</t-zh><t-en>You're signed in to a demo account. All the data is made up, so try anything.</t-en></p>
+      </div>
+      <span class="ld-open" id="liveDemoBar"><a href="https://studio.demo-cn.nocobase.com/main" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span>
+    </div>
+    <div class="sec-body">
+    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoBase Studio" allow="clipboard-write"></iframe></div></div>
     </div>
   </div>
 </section>
@@ -149,3 +194,62 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
     </div>
   </div>
 </section>
+
+<!-- AFTER-MAIN -->
+<script>
+// Match the solution pages: probe availability, lazy-load on desktop, and open a new tab on mobile.
+(function () {
+  var SITES = { zh: 'https://studio.demo-cn.nocobase.com/main', en: 'https://studio.demo.nocobase.com/main' };
+  var section = document.getElementById('tryDemo'), box = document.getElementById('liveDemo'), frame = box.querySelector('iframe');
+  var open = document.querySelector('#liveDemoBar [data-ld="open"]'), tries = document.querySelectorAll('[data-try]');
+  var forced = /[?&]demo=(off|screenshot)\b/.test(location.search);
+  var status = {}, shown = false, scrolling = false;
+  function lang() { return window.__lang === 'zh' ? 'zh' : 'en'; }
+  function narrow() { return window.innerWidth < 768; }
+  function up() { return !forced && status[SITES[lang()]] === 'up'; }
+  function probe(url) {
+    if (status[url]) return;
+    status[url] = 'checking';
+    var img = new Image(), settled = false;
+    function end(ok) { if (settled) return; settled = true; clearTimeout(timer); img.onload = img.onerror = null; status[url] = ok ? 'up' : 'down'; apply(); check(); }
+    var timer = setTimeout(function () { end(false); }, 8000);
+    img.onload = function () { end(true); };
+    img.onerror = function () { end(false); };
+    img.src = url + '/assets/favicon.ico?check=' + Date.now();
+  }
+  function apply() {
+    var url = SITES[lang()], down = forced || status[url] === 'down';
+    open.href = url;
+    tries.forEach(function (a) { a.hidden = down; });
+    section.hidden = !up() || narrow();
+    if (section.hidden) { frame.removeAttribute('src'); return; }
+    if (shown && frame.getAttribute('src') !== url) frame.setAttribute('src', url);
+  }
+  function check() {
+    if (shown || scrolling || section.hidden) return;
+    var r = box.getBoundingClientRect(), seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+    if (seen < r.height * 0.3) return;
+    shown = true;
+    apply();
+    window.removeEventListener('scroll', check);
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', function () { apply(); check(); });
+  tries.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      a.blur(); // no focus ring left on the button once the page has scrolled away and back
+      if (narrow() || !up()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
+      // Scroll first and load the demo once there: loading starts its sign-in, which puts the cursor in a field and would stop the scroll short.
+      scrolling = true;
+      section.querySelector('.ld-head').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var done = function () { if (!scrolling) return; scrolling = false; shown = true; apply(); };
+      if ('onscrollend' in window) window.addEventListener('scrollend', done, { once: true });
+      setTimeout(done, 1200);
+    });
+  });
+  function start() { if (!forced) probe(SITES[lang()]); apply(); }
+  start();
+  check();
+})();
+</script>

@@ -24,6 +24,18 @@ const DATE = '2026-10-24';
 const LUCIDE = 'https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js';
 // 样式表和脚本的地址带上内容的版本号，改了样式后浏览器不会继续用缓存里的旧文件
 const VERSION = createHash('sha1').update(readFileSync(join(dir, 'assets/docs.css'))).update(readFileSync(join(dir, 'assets/docs.js'))).digest('hex').slice(0, 8);
+// 访问统计：Google Analytics 4、百度统计、Microsoft Clarity，每页的 <head> 里都有（含 404）。编号和官网（homepage/src/lib/nav.mjs 的
+// ANALYTICS）、旧官网 nocode.nocobase.com 的相同，数据进同一个账号，报表里按「主机名」区分。脚本和官网用的
+// packages/shared/src/Analytics.astro 输出的逐字相同，改一边要同时改另一边；文档站换成 Astro 后直接用那个组件。
+const GA4 = 'G-237XXSVYHE';
+const BAIDU = 'acfb678ac7bbc9df89e1aa4327e47907';
+const CLARITY = 'y0qzc9z3xg';
+const ANALYTICS = [
+  `<script async src="https://www.googletagmanager.com/gtag/js?id=${GA4}"></script>`,
+  `<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GA4}');</script>`,
+  `<script>var _hmt = _hmt || []; (function(){var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?${BAIDU}'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s);})();</script>`,
+  `<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','${CLARITY}');</script>`,
+].join('\n') + '\n';
 const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
 // 站点域名只能是 origin：带路径、查询串或片段都报错，避免 canonical、sitemap 拼出错误的地址
@@ -337,7 +349,7 @@ function shell({ lang, title, description, crumb, body, toc, menu, pager, base, 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(title)} - ${escape(ui.site)}</title>
 <meta name="description" content="${escape(description || title)}">
-${robots ? `<meta name="robots" content="${robots}">\n` : ''}${head}<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+${robots ? `<meta name="robots" content="${robots}">\n` : ''}${head}${ANALYTICS}<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">

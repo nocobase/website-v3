@@ -10,5 +10,14 @@ function setOpen(open) {
 
 if (nav && btn) btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
 if (nav && mnav) mnav.addEventListener('click', e => { if (e.target.closest('a')) setOpen(false); });
+// 导航里指向当前页面的链接（logo、版本菜单里的当前版本、当前所在的产品页）不重新加载，而是回到页面顶部；不传 behavior 时跟随 CSS 的 scroll-behavior，减少动效时就直接跳转
+if (nav) nav.addEventListener('click', e => {
+  const a = e.target.closest('a[href]');
+  if (!a || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+  const url = new URL(a.href, location.href);
+  if (url.origin !== location.origin || url.pathname !== location.pathname || url.hash) return;
+  e.preventDefault();
+  window.scrollTo({ top: 0 });
+});
 // 选中后打开该语言的地址（桌面的语言菜单是普通链接）
 if (lang) lang.addEventListener('change', () => { window.location.href = lang.value; });

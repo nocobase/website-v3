@@ -1,0 +1,52 @@
+---
+// Every docs page, in every language: content/<language>/<path>.md at <language dir>/<path>/ (English at the site root).
+import { getEntry, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Toc from '../components/Toc.astro';
+import { getSite } from '../lib/site.mjs';
+
+export function getStaticPaths() {
+  return getSite().pages.map(p => ({ params: { slug: p.url.replace(/^\/|\/$/g, '') || undefined }, props: { lang: p.lang, key: p.key } }));
+}
+
+const { lang, key } = Astro.props as { lang: string; key: string };
+const site = getSite();
+const { config } = site;
+const ui = config.byCode[lang].ui;
+const page = site.page(lang, key)!;
+const entry = await getEntry('docs', page.relPath.replace(/\.md$/, ''));
+if (!entry) throw new Error(`The content collection has no entry ${page.relPath}`);
+const { Content, headings } = await render(entry);
+const section = site.sections(lang).find(s => s.id === page.section)!;
+const empty = !page.body.trim();
+
+// A placeholder page with no body points to the version in another language when there is one
+let hint = '';
+if (page.placeholder && empty) {
+  const other = config.languages.find(l => l.code !== lang && site.page(l.code, key) && !site.page(l.code, key)!.placeholder);
+  const name = (code: string) => ui.languageNames?.[code] ?? config.byCode[code].label;
+  hint = other ? ui.untranslated.replace('{href}', site.urlOf(other.code, key)).replace('{current}', name(lang)).replace('{language}', name(other.code)) : ui.unwritten;
+}
+
+// Previous / next: only inside the section, and only between pages that are written
+const order = section.order.filter(k => !site.page(lang, k)!.placeholder);
+const i = order.indexOf(key);
+const link = (k?: string) => (k ? { href: site.urlOf(lang, k), title: site.page(lang, k)!.title } : undefined);
+const prev = i > 0 ? link(order[i - 1]) : undefined;
+const next = i >= 0 ? link(order[i + 1]) : undefined;
+const crumb = [section.id === config.sections[0].id ? '' : section.title, ...page.trail].filter(Boolean).join(' · ');
+---
+<Layout lang={lang} title={page.title} description={page.description} sectionId={page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
+{!page.placeholder && <div hidden data-pagefind-filter="section[data-value]" data-value={section.title}></div>}
+{crumb && <p class="doc-crumb">{crumb}</p>}
+<h1>{page.title}</h1>
+{page.description && <p class="doc-lead">{page.description}</p>}
+<article class="prose">
+{hint ? <p set:html={hint}></p> : <Content />}
+</article>
+{(prev || next) && <nav class="doc-pager" aria-label={ui.pager}>
+{prev ? <a class="prev" href={prev.href}><small>{ui.prev}</small>{prev.title}</a> : <span></span>}
+{next && <a class="next" href={next.href}><small>{ui.next}</small>{next.title}</a>}
+</nav>}
+<Toc slot="toc" headings={headings} title={ui.toc} />
+</Layout>

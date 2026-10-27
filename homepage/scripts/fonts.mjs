@@ -2,11 +2,12 @@
 // 中日韩文不用网络字体，用系统字体（苹方、微软雅黑、Hiragino 等，见 site.css 和首页的 --f-sans）：中文字体动辄几 MB，系统字体不用下载。
 // 在 homepage/ 下运行：pnpm fonts   已下载的字体文件不会重复下载；改了字体或字重，改 SETS 后重新运行。
 // 每组字体生成一个 CSS（packages/shared/src/fonts/<名称>.css），字体文件按 Google 的路径放在 packages/shared/src/fonts/<字体>/<版本>/ 下，保留 Google 按 unicode-range 切好的分片（latin、latin-ext、vietnamese 等），浏览器只下载页面用到的那几片。
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { SHARED } from '../src/lib/paths.mjs';
+import { HOMEPAGE, SHARED } from '../src/lib/paths.mjs';
 
 const out = join(SHARED, 'src', 'fonts');
+const PUBLIC = join(HOMEPAGE, 'public');
 // 所有页面共用 fonts.css；俄语页面另外加载 inter.css（Archivo 没有西里尔字母，见 packages/shared/src/styles/tokens.css）。
 // Archivo 只要字重轴：页面没用到宽度轴（font-stretch），带上它文件大一倍多
 const SETS = {
@@ -45,5 +46,7 @@ for (const [name, query] of Object.entries(SETS)) {
 for (const f of [...families].sort()) {
   const path = join(out, f, 'OFL.txt');
   if (!existsSync(path)) save(path, await get(`https://raw.githubusercontent.com/google/fonts/main/ofl/${f}/OFL.txt`));
+  // 许可也随站点发布：homepage/public/fonts/<字体>/OFL.txt 原样复制到产物的 /fonts/<字体>/OFL.txt
+  save(join(PUBLIC, 'fonts', f, 'OFL.txt'), readFileSync(path));
 }
 console.log('fonts:', [...families].sort().join(', '));

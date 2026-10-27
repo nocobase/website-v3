@@ -99,7 +99,7 @@ pnpm nocobase plugin unregister '@nocobase/app-plugin-<name>'
 | --- | --- |
 | 插件已有配置选项 | 注册时传入公开 options |
 | 插件公开可组合组件 | 从公开导出引用，由应用组合 |
-| 需要自由修改界面源码 | 从 [UI Library](../extension-development/plugin-structure.md#ui-组件与源码归属) 安装组件或区块，由应用维护副本 |
+| 需要自由修改界面源码 | 从 [NocoBase UI Library](https://ui.nocobase.com/) 安装组件或区块，由应用维护副本 |
 | 替换插件某个页面的呈现 | 已支持的 `client/route-overrides.ts` 或插件提供的覆盖方式 |
 | 完全属于应用的业务页面 | 在 `client/routes.ts` 注册自己的页面 |
 

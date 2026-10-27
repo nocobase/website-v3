@@ -126,6 +126,7 @@ const SECTIONS = [
           'extension-development/plugin-structure',
           'extension-development/write-your-first-plugin',
           'extension-development/pages-and-menus',
+          'extension-development/frontend-components',
           'extension-development/server-apis',
           'extension-development/service-provider',
           'extension-development/database-and-migrations',

@@ -234,9 +234,13 @@ App 分别使用 `@nocobase/app-plugin-announcements/client` 和 `@nocobase/app-
 
 `client/components/` 存放插件维护的组件，`client/pages/` 可以按需新增以组织业务页面。页面通过 `client/routes.ts` 接入，公开组件则通过包导出供 App 使用。
 
-带客户端代码的插件包含 `components.json` 和 `client/styles.css`，用于配置 shadcn 的文件位置、包内别名和样式入口。应用与插件都可以从 UI Library 安装组件或区块：安装到 App 的源码由 App 维护，安装到插件的源码由插件维护。消费者通过插件的公开导出使用组件时，实现仍由插件维护。
+带客户端代码的插件包含 `components.json` 和 `client/styles.css`，用于配置 shadcn 的文件位置、包内别名和样式入口。应用与插件都可以从 NocoBase UI Library 安装组件或区块：安装到 App 的源码由 App 维护，安装到插件的源码由插件维护。消费者通过插件的公开导出使用组件时，实现仍由插件维护。
 
 插件内部的 `#components/*` 等别名由插件自己的 `package.json` 定义，不依赖 App 的私有别名。新增或安装组件后，保持文件位置、导入路径和构建配置一致。
+
+应用和插件都可以自由编写和组织前端组件，基础组件使用 shadcn；构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。NocoBase UI Library 基于 shadcn UI Registry 分发源码资产；自行发布资产时也采用这一机制。组件编写、页面接入和源码资产发布的完整示例见[前端组件](frontend-components.md)。
+
+源码资产在 `packages/` 中与插件并列的独立 Registry 包内维护，通过公开包入口或使用方传入的参数接入插件能力，不能相对导入插件的内部文件。安装资产后，目标 App 或插件维护自己的源码副本。
 
 ### AGENTS.md 与 skills/：两类 Agent 指引
 

@@ -99,7 +99,7 @@ Unregistration does not decide how to handle historical business data and is not
 | --- | --- |
 | Existing plugin configuration | Public registration options |
 | Public composable plugin components | Import public exports and compose them in the application |
-| Editable UI source | Install components or blocks from the [UI Library](../extension-development/plugin-structure.md#ui-components-and-source-ownership); the application maintains its copies |
+| Editable UI source | Install components or blocks from the [NocoBase UI Library](https://ui.nocobase.com/); the application maintains its copies |
 | Replace a plugin page's presentation | Supported `client/route-overrides.ts` or plugin-provided overrides |
 | Application-owned business pages | New entries in `client/routes.ts` |
 

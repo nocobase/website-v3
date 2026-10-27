@@ -13,22 +13,6 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 /* The Try It Online section: a quiet title and what the visitor can do there, not a section heading's weight; closer to the hero than other sections (2026-10-25). */
 #tryDemo { padding-top: 72px; }
-/* A cue at the foot of the full-screen hero, no words: a mouse whose wheel rolls down and a line running on down to the demo, which a click scrolls to; wide screens only, where the hero fills the screen (2026-10-25). */
-.phero { position: relative; }
-.scroll-cue { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; gap: 10px; padding: 6px 6px 0; color: var(--muted); }
-.scroll-cue .ln { position: relative; width: 1px; height: 56px; overflow: hidden; background: linear-gradient(to bottom, var(--rule-2), transparent); }
-.scroll-cue .ln::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--brand); animation: cue-run 1.8s ease-in-out infinite; }
-@keyframes cue-run { to { top: 100%; } }
-.scroll-cue[hidden] { display: none !important; }
-.scroll-cue .mouse { position: relative; display: block; width: 24px; height: 38px; border: 1.5px solid currentColor; border-radius: 12px; opacity: 0.7; transition: color 0.2s ease, opacity 0.2s ease; }
-.scroll-cue .wheel { position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: currentColor; animation: cue-wheel 1.8s ease-in-out infinite; }
-.scroll-cue:hover { color: var(--brand); }
-.scroll-cue:hover .mouse { opacity: 1; }
-@keyframes cue-wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .scroll-cue .wheel, .scroll-cue .ln::after { animation: none; } .scroll-cue .ln::after { top: 0; } }
-@media (min-width: 961px) { .scroll-cue { display: flex; } }
-/* The hero takes the first screen on a wide one, so the Try It Online title starts below the fold (2026-10-25). */
-@media (min-width: 961px) { .phero { min-height: calc(100vh - 65px); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 14vh; } .phero > .container { width: 100%; } }
 .ld-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 20px; }
 .ld-open a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-size: 15px; white-space: nowrap; }
 .ld-open a:hover { color: var(--brand-hover); }
@@ -51,7 +35,6 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
     </div>
     <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>私有部署在企业自己的服务器上</t-zh><t-en>Runs on your own servers</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex 等数十种编码工具</t-zh><t-en>Works with Claude Code, Codex, and dozens of other coding tools</t-en></span><span><i data-lucide="circle-check"></i><t-zh>在商业版中提供</t-zh><t-en>Available in the commercial editions</t-en></span></p>
   </div>
-  <a class="scroll-cue" href="#tryDemo" data-try aria-label="Try it online"><span class="mouse" aria-hidden="true"><span class="wheel"></span></span><span class="ln" aria-hidden="true"></span></a>
 </section>
 
 <section class="sec" id="tryDemo" hidden>

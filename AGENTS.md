@@ -41,3 +41,22 @@ This is a public repository. Building and publishing are done by this repository
 - Configuration: the publish jobs run in the Environment `production`, and every value they use is a secret of that Environment: `ALI_ACCESS_KEY_ID`, `ALI_ACCESS_KEY_SECRET`, `ALI_OSS_REGION` (such as `cn-beijing`), `DOCS_OSS_BUCKET`, `DOCS_CDN_DOMAINS` (required; publishing fails without it), `SITE_OSS_BUCKET` and `SITE_CDN_DOMAINS` (optional). Separate domains with whitespace or commas.
 - Security: trigger only on `pull_request`; never switch to `pull_request_target`. The top-level permissions are only `contents: read`. Build jobs run the pull request's code and must not reference any secret; secrets appear only in the `env` of the publish step in the publish jobs, which only download the artifact and run no code from the repository other than `scripts/deploy-cdn/`.
 - When you change the publishing flow, change the publish parts of `docs.yml` and `site.yml` together. If you change the environment variables or dependencies that `deploy-cdn.mjs` reads, update the `Publish` steps of both workflows and `scripts/deploy-cdn/package.json` and `package-lock.json`. If you add or remove a secret or change the triggers, update this section and the description in `doc/README.md`. Before changing the docs site's output directory conventions, read the notes above `REWRITE_RULES` in `deploy-cdn.mjs`. If you change version cleanup or argument parsing (`scripts/deploy-cdn/versions.mjs`), run `node --test scripts/deploy-cdn/versions.test.mjs`; both build jobs run it too.
+
+## Commits and pull requests
+
+Write commit messages and pull request titles in the [Conventional Commits](https://www.conventionalcommits.org/) format: `type(scope): subject`. Pull requests are squash-merged, so the pull request title becomes the commit message on `main` and must follow the same format.
+
+- Types: `feat` (new feature or content), `fix` (bug fix), `docs` (documentation such as READMEs and `AGENTS.md`), `style` (formatting only), `refactor`, `perf`, `test`, `build` (build setup and dependencies), `ci` (workflows), `chore` (maintenance), `revert`.
+- Scopes: `homepage` (website), `doc` (docs site and its content), `shared` (`packages/shared/`), `ci` (workflows), `deploy` (`scripts/deploy-cdn/`). Omit the scope when a change spans several of them.
+- Subject: English, imperative mood ("add", not "added"), lowercase first letter, no trailing period, at most 72 characters including the prefix.
+- Breaking changes: add `!` after the type or scope (`feat(doc)!: …`) and explain them in a `BREAKING CHANGE:` footer. Use the body, after a blank line, to explain why when the subject is not enough.
+- Do not add AI attribution (such as `Co-Authored-By` lines or "Generated with" notes) to commits or pull requests.
+
+Examples:
+
+```
+feat(doc): migrate the docs site to Astro
+fix(homepage): scroll back to the top when the logo is clicked on the home page
+ci(doc): install from the workspace root and run vitest
+docs: adopt Conventional Commits for commits and pull request titles
+```

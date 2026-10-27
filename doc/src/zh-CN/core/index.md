@@ -28,6 +28,22 @@ description: 创建应用，认识项目结构，并通过一个任务应用逐�
 - [管理插件](developing-apps/manage-plugins.md)：使用已有能力，管理注册、更新、移除与扩展。
 - [测试与验收](developing-apps/testing-and-acceptance.md)：选择测试层次，验证真实数据、权限和用户流程。
 
+## 开发插件
+
+- [什么时候写插件](extension-development/when-to-write-a-plugin.md)：判断复用需求，划分应用与插件的职责。
+- [创建插件](extension-development/create-plugin.md)：在已有 App 中使用创建工具生成插件骨架，选择能力并接入工作区。
+- [插件的结构](extension-development/plugin-structure.md)：认识可选目录、运行时入口、公开导出和资源归属。
+- [编写第一个插件](extension-development/write-your-first-plugin.md)：实现公告接口与页面，完成测试、注册和应用验证。
+- [页面和菜单](extension-development/pages-and-menus.md)：声明菜单与子页面，处理默认入口、导航和访问权限。
+- [服务端接口](extension-development/server-apis.md)：输入校验、访问边界、响应与 API 文档。
+- [ServiceProvider](extension-development/service-provider.md)：前后端服务的契约、注册与生命周期。
+- [数据库与迁移](extension-development/database-and-migrations.md)：插件的数据结构、任务历史与升级。
+- [多语言](extension-development/localization.md)：资源归属、命名空间和翻译验证。
+- [扩展命令行](extension-development/extend-command-line.md)：命令注册、统一输出与部署验证。
+- [测试与验证](extension-development/testing-and-verification.md)：插件测试、App 集成与交付检查。
+- [给插件写技能](extension-development/write-plugin-skills.md)：向 App Agent 说明并验证公开能力。
+- [发布插件](extension-development/publish-plugin.md)：本地插件随 App 交付，需要共享时再发布到私有 npm 源。
+
 ## 部署与运维
 
 - [选择部署方式](deployment/choose-a-deployment-method.md)：比较运行方式，准备配置、数据和恢复方案。

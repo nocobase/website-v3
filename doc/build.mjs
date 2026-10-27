@@ -49,6 +49,7 @@ const LANGS = [
       site: 'NocoBase 3 Docs', docs: 'Docs', skip: 'Skip to content', sections: 'Documentation sections', links: 'Site links', menu: 'Contents',
       menuLabel: 'Documentation menu', toc: 'On this page', pager: 'Pages', prev: 'Previous', next: 'Next', draft: 'Draft', website: 'Website',
       websiteUrl: 'https://www.nocobase.com/', copy: 'Copy', copied: 'Copied', copyFailed: 'Copy failed', switchTo: 'Language',
+      codeLabels: { text: 'Plain text', tree: 'Directory tree', prompt: 'Prompt' },
       callouts: { TIP: 'Tip', NOTE: 'Note', WARNING: 'Warning', PENDING: 'To be written' },
       notFound: ['Page not found', 'The page you are looking for does not exist or has moved.', 'Back to the documentation home'],
       untranslated: (href) => `This page has not been written in English yet. Read the <a href="${href}">Simplified Chinese version</a>.`,
@@ -64,6 +65,7 @@ const LANGS = [
       site: 'NocoBase 3 文档', docs: '文档', skip: '跳到正文', sections: '文档分区', links: '站点链接', menu: '目录', menuLabel: '文档目录',
       toc: '本页内容', pager: '翻页', prev: '上一页', next: '下一页', draft: '草稿', website: '官网', websiteUrl: 'https://www.nocobase.com/zh-CN/',
       copy: '复制', copied: '已复制', copyFailed: '复制失败', switchTo: '语言',
+      codeLabels: { text: '纯文本', tree: '目录结构', prompt: '提示词' },
       callouts: { TIP: '提示', NOTE: '说明', WARNING: '注意', PENDING: '待补充' },
       notFound: ['页面不存在', '你要找的页面不存在，或者已经移动到别的地址。', '回到文档首页'],
     },
@@ -117,14 +119,21 @@ const SECTIONS = [
         ],
       },
       {
-        title: ['Extension development', '扩展开发'],
+        title: ['Developing plugins', '开发插件'],
         items: [
-          { planned: ['When to write a plugin', '什么时候写插件'] },
-          { planned: ['Create a plugin', '创建插件'] },
-          { planned: ['Plugin structure', '插件的结构'] },
-          { planned: ['Publish a plugin', '发布插件'] },
-          { planned: ['Write plugin skills', '给插件写技能'] },
-          { planned: ['Contribute to the UI library', '向 UI 组件库贡献'] },
+          'extension-development/when-to-write-a-plugin',
+          'extension-development/create-plugin',
+          'extension-development/plugin-structure',
+          'extension-development/write-your-first-plugin',
+          'extension-development/pages-and-menus',
+          'extension-development/server-apis',
+          'extension-development/service-provider',
+          'extension-development/database-and-migrations',
+          'extension-development/localization',
+          'extension-development/extend-command-line',
+          'extension-development/testing-and-verification',
+          'extension-development/write-plugin-skills',
+          'extension-development/publish-plugin',
         ],
       },
       {
@@ -144,7 +153,6 @@ const SECTIONS = [
           { planned: ['Knowledge base', '知识库'] },
           { planned: ['Template printing', '模板打印'] },
           { planned: ['External integrations', '外部集成'] },
-          { planned: ['Localization', '多语言'] },
           { planned: ['Theme customization', '主题定制'] },
         ],
       },
@@ -246,6 +254,21 @@ function withFigures(markdown, lang) {
   return { source, figures };
 }
 
+// Only annotate directory-tree tokens; preserve every source character for alignment and copying.
+function highlightTree(code) {
+  return code.split('\n').map((line) => {
+    const branch = /^([ \t│]*[├└]─{2,}[ \t]+)(.*)$/.exec(line);
+    const content = branch ? branch[2] : line;
+    const [, name, comment = ''] = /^(.*?)([ \t]{2,}#.*)?$/.exec(content);
+    if (!branch && !name.trimEnd().endsWith('/')) {
+      return /^[ \t│]+$/.test(line) ? `<span class="tree-guide">${escape(line)}</span>` : escape(line);
+    }
+    const guide = branch ? `<span class="tree-guide">${escape(branch[1])}</span>` : '';
+    const kind = name.trimEnd().endsWith('/') ? 'directory' : 'file';
+    return `${guide}<span class="tree-${kind}">${escape(name)}</span>${comment ? `<span class="tree-comment">${escape(comment)}</span>` : ''}`;
+  }).join('\n');
+}
+
 // resolveLink 把正文里的相对链接换成最终地址；解析不到的站内链接让构建失败，免得发布出死链
 function render(markdown, { lang, ui, resolveLink = (href) => href }) {
   const { source, figures } = withFigures(markdown, lang);
@@ -262,14 +285,17 @@ function render(markdown, { lang, ui, resolveLink = (href) => href }) {
     },
     code(code, info) {
       const lang = (info || '').trim().split(/\s+/)[0].toLowerCase();
-      const wrap = ['text', 'prompt'].includes(lang) ? ' wrap' : '';
+      const plain = ['', 'text', 'plaintext', 'txt'].includes(lang);
+      const tree = lang === 'tree' || (plain && /^[ \t│]*[├└]─{2,}[ \t]+/m.test(code));
+      const prompt = lang === 'prompt';
+      const classes = tree ? ' plain-text code-tree' : prompt ? ' wrap code-prompt' : plain ? ' wrap plain-text' : '';
       const language = lang === 'tsx' ? 'typescript' : lang;
       const grammar = hljs.getLanguage(language);
-      const highlighted = grammar && !wrap
+      const highlighted = tree ? highlightTree(code) : grammar && !plain && !prompt
         ? hljs.highlight(code, { language, ignoreIllegals: true }).value
         : escape(code);
-      const label = lang === 'tsx' ? 'TSX' : grammar?.name || lang || 'text';
-      return `<div class="code-block${wrap}"><div class="code-toolbar"><span class="code-language">${escape(label)}</span><button type="button" class="copy-button" data-copied="${escape(ui.copied)}" data-failed="${escape(ui.copyFailed)}" aria-live="polite">${escape(ui.copy)}</button></div><pre tabindex="0"><code>${highlighted}</code></pre></div>\n`;
+      const label = tree ? ui.codeLabels.tree : prompt ? ui.codeLabels.prompt : plain ? ui.codeLabels.text : lang === 'tsx' ? 'TSX' : grammar?.name || lang;
+      return `<div class="code-block${classes}"><div class="code-toolbar"><span class="code-language">${escape(label)}</span><button type="button" class="copy-button" data-copied="${escape(ui.copied)}" data-failed="${escape(ui.copyFailed)}" aria-live="polite">${escape(ui.copy)}</button></div><pre tabindex="0"><code>${highlighted}</code></pre></div>\n`;
     },
     blockquote(quote) {
       const m = /^<p>\[!(TIP|NOTE|WARNING|PENDING)\][ \t]*([^\n<]*)\n?/.exec(quote);
@@ -375,8 +401,13 @@ function pageKeysIn(root) {
 // pages：语言代码 → 页面键 → { meta, body, group, section }
 const pages = new Map(LANGS.map((lang) => [lang.code, new Map()]));
 const problems = [];
+const menuKeys = new Set();
 for (const section of SECTIONS) {
   section.keys = section.nav.flatMap((group) => group.items.filter((item) => typeof item === 'string').map((item) => `${section.dir}${item}`));
+  for (const key of section.keys) {
+    if (menuKeys.has(key)) problems.push(`Duplicate menu page: ${key}`);
+    menuKeys.add(key);
+  }
 }
 for (const lang of LANGS) {
   const langPages = pages.get(lang.code);

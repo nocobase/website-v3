@@ -7,6 +7,10 @@ The default template already includes several plugins. Application development n
 
 This guide covers plugin management in an application, not plugin development or a complete product catalog. Commands were checked against the example application's installed CLI; use `--help` to confirm options in your version.
 
+To develop your own plugin, start with [When to write a plugin](../extension-development/when-to-write-a-plugin.md), then use [Create a plugin](../extension-development/create-plugin.md) to generate a scaffold in the current App. For the complete workflow, see [Write your first plugin](../extension-development/write-your-first-plugin.md).
+
+For plugins published by your team, configure the private registry and read access before installation and registration; see [Publish a plugin](../extension-development/publish-plugin.md).
+
 ## With an agent
 
 ```text
@@ -94,7 +98,8 @@ Unregistration does not decide how to handle historical business data and is not
 | Need | Prefer |
 | --- | --- |
 | Existing plugin configuration | Public registration options |
-| Composable components or source extension points | Components or documented `client/extensions/` contributions |
+| Public composable plugin components | Import public exports and compose them in the application |
+| Editable UI source | Install components or blocks from the [UI Library](../extension-development/plugin-structure.md#ui-components-and-source-ownership); the application maintains its copies |
 | Replace a plugin page's presentation | Supported `client/route-overrides.ts` or plugin-provided overrides |
 | Application-owned business pages | New entries in `client/routes.ts` |
 

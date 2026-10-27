@@ -3,7 +3,7 @@ title: 插件总览
 description: NocoBase 3 插件清单、主要用途及是否内置。
 ---
 
-本页列出已核对源码中的全部应用插件：主仓库 24 个、商业仓库 2 个，另列出 19 个示例插件。清单按包名字母顺序排列，公开源码通过包名链接提供。
+本页列出已核对源码中的全部应用插件：主仓库 24 个、商业仓库 2 个，另列出 18 个示例插件。清单按包名字母顺序排列，公开源码通过包名链接提供。
 
 “内置插件”表示创建应用时是否已随默认模板包含该插件。已包含标记为“是”，需要另外安装标记为“否”；是否启用以应用的插件注册文件为准。注册、移除和更新方法见[管理插件](../developing-apps/manage-plugins.md)。
 
@@ -21,7 +21,7 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | [`@nocobase/app-plugin-authz-sharing-rules`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-sharing-rules) | 共享规则：按规则扩展记录的共享访问范围。 | 是 |
 | [`@nocobase/app-plugin-database-explorer`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-database-explorer) | 数据库浏览：只读查看数据库连接、数据表和字段。 | 是 |
 | [`@nocobase/app-plugin-demo-mode`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-demo-mode) | 演示模式：为演示环境提供可重置数据、访客账号和写入保护。 | 否 |
-| [`@nocobase/app-plugin-file`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-file) | 文件：提供文件仓库、上传与内容访问接口，以及可复制到应用的文件组件。 | 是 |
+| [`@nocobase/app-plugin-file`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4/packages/plugins/app-plugin-file) | 文件：提供文件仓库、上传与内容访问接口；可编辑文件界面由 UI Library 提供。 | 是 |
 | [`@nocobase/app-plugin-foundation`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-foundation) | 应用底座：展示应用实际使用的 Core 能力及其运行信息。 | 是 |
 | [`@nocobase/app-plugin-i18n`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-i18n) | 多语言：接入多语言基础库，提供应用语言切换。 | 是 |
 | [`@nocobase/app-plugin-knowledge`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-knowledge) | 知识库：管理 Markdown 文档空间、版本、搜索、变更提案与审阅。 | 是 |
@@ -66,7 +66,6 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | `@nocobase/app-plugin-pro-example`（商业仓库） | 验证商业插件的构建、打包和发布流程。 |
 | [`@nocobase/app-plugin-queue-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-queue-example) | 发布和消费队列消息。 |
 | [`@nocobase/app-plugin-realtime-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-realtime-example) | 协作任务、个人通知和后台导出的实时更新。 |
-| [`@nocobase/app-plugin-registry-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-registry-example) | 插件运行时 UI 与复制到应用的 UI 组件。 |
 | [`@nocobase/app-plugin-repository-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-repository-example) | CRM 与订单的关联数据接口。 |
 | [`@nocobase/app-plugin-routes-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-routes-example) | 服务端接口和前端懒加载路由。 |
 | [`@nocobase/app-plugin-service-provider-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-service-provider-example) | 注册服务及管理服务生命周期。 |
@@ -93,3 +92,5 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 ## 核对范围
 
 清单于 2026-10-25 按 [nocobase `db419f1d4`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins) 及商业插件源码核对，默认模板状态取自同一主仓库修订。具体发行版本的插件和注册状态可能不同。
+
+文件界面的归属与示例插件清单另按源码提交 [`d9a625d93b40`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4) 核对；其余清单与默认模板状态以上述基线为准。

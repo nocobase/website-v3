@@ -58,7 +58,7 @@ The preview environment is created automatically when Studio is installed. It ru
 - When a PR is merged or closed, its preview is deleted automatically.
 - When a preview is missing a variable, the preview area on the issue page lists what's missing. Anyone who can manage environments can set it for the whole preview environment, and every preview uses it from then on.
 
-To let the team try a local build, [upload and preview an application](../project/deploy-app.md). For automatic PR previews, see [Connect CI](../setup/ci.md).
+For automatic PR previews, see [Connect CI](../setup/ci.md).
 
 For real use, give previews their own domain rather than sharing Studio's address, and run previews as a different system user that can't read Studio's configuration. See [Configuration options](../reference/config.md).
 

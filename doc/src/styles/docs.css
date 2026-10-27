@@ -10,9 +10,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 .nav .in > .nav-label { margin-left: 16px; padding-left: 14px; font-size: 14px; line-height: 20px; color: var(--ink-2); white-space: nowrap; }
 .nav .in > .nav-label::before { content: ""; position: absolute; left: 269px; top: 50%; width: 1px; height: 20px; margin-top: -10px; background: var(--rule-2); }
 .nav .container { max-width: 1440px; }
-.nav .menu { margin-left: 12px; align-self: stretch; }
-.nav .menu .mi { display: flex; }
-.nav .menu .mi > a { height: auto; align-self: center; }
+.nav .menu { margin-left: 12px; }
 .search-btn { display: flex; align-items: center; gap: 8px; height: 36px; min-width: 190px; padding: 0 8px 0 10px; border: 1px solid var(--rule-2); border-radius: 8px; background: var(--card); font-size: 14px; color: var(--muted); cursor: pointer; }
 .search-btn:hover { border-color: var(--rule-2); color: var(--ink); background: var(--paper-2); }
 .search-btn .search-text { flex: 1; text-align: left; }

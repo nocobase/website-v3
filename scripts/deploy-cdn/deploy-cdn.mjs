@@ -16,7 +16,7 @@
  * `--keep` does not keep. Without it, an empty `ALI_CDN_DOMAINS` is an error.
  *
  * It serves both sites in this repository: `.github/workflows/docs.yml` (the documentation, `doc/`) and
- * `.github/workflows/site.yml` (the website, `html/`). Each passes its own bucket and domains through the environment:
+ * `.github/workflows/site.yml` (the website, `homepage/`). Each passes its own bucket and domains through the environment:
  *
  * - `ALI_ACCESS_KEY_ID`, `ALI_ACCESS_KEY_SECRET`: an Aliyun key allowed to manage the bucket and the CDN domains.
  * - `ALI_OSS_REGION`: the bucket's region as the OSS console shows it, `cn-beijing`; the `oss-` form is accepted too.

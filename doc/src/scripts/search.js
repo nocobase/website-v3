@@ -1,8 +1,15 @@
 // The search dialog: opens from the header button or Cmd/Ctrl+K, queries the Pagefind index of the page's language, shows results with the matching headings, and is keyboard navigable (arrows, Enter, Escape).
+import { cjkQueries, hasCjk, unspaceCjk } from '../lib/cjk.mjs';
+
 const dialog = document.getElementById('docSearch');
 const input = document.getElementById('docSearchInput');
 const box = document.getElementById('docSearchResults');
 if (dialog && input && box) {
+  // Chinese and Japanese pages are indexed character by character (lib/cjk.mjs)
+  const cjk = /^(zh|ja)\b/i.test(document.documentElement.lang);
+  const clean = cjk ? unspaceCjk : text => text;
+  // Headings get a full stop at the end in the CJK index (lib/cjk.mjs), which titles do not show
+  const cleanTitle = cjk ? text => unspaceCjk(text).replace(/。$/, '') : text => text;
   let pagefind;
   let token = 0;
   let selected = -1;
@@ -33,8 +40,18 @@ if (dialog && input && box) {
   const render = async (query, mine) => {
     let pf;
     try { pf = await load(); } catch { message(dialog.dataset.error); return; }
-    const search = await pf.search(query);
-    const results = await Promise.all(search.results.slice(0, 8).map(r => r.data()));
+    // In Chinese and Japanese, pages containing the query as written come first, then pages that contain all its characters anywhere
+    const queries = cjk && hasCjk(query) ? cjkQueries(query) : [query];
+    const found = [];
+    for (const q of queries) {
+      for (const r of (await pf.search(q)).results) if (found.length < 20 && !found.some(f => f.id === r.id)) found.push(r);
+      if (found.length >= 20) break;
+    }
+    // Among the best 20, a page whose title is the query comes first, then pages whose title contains it; otherwise Pagefind's order is kept
+    const plain = t => cleanTitle(t).toLowerCase().replace(/\s+/g, ' ').trim();
+    const wanted = plain(query.replace(/["“”]/g, ''));
+    const rank = r => { const t = plain(r.meta.title || ''); return t === wanted ? 0 : t.includes(wanted) ? 1 : 2; };
+    const results = (await Promise.all(found.map(r => r.data()))).map((r, i) => ({ r, i, k: rank(r) })).sort((a, b) => a.k - b.k || a.i - b.i).slice(0, 8).map(x => x.r);
     if (mine !== token) return;
     if (!results.length) { message(dialog.dataset.empty.replace('{query}', query)); return; }
     box.innerHTML = '';
@@ -45,11 +62,11 @@ if (dialog && input && box) {
       main.href = r.url;
       main.setAttribute('role', 'option');
       const title = document.createElement('b');
-      title.append(r.meta.title || r.url);
+      title.append(cleanTitle(r.meta.title || r.url));
       const section = r.filters?.section?.[0];
       if (section) { const tag = document.createElement('em'); tag.textContent = section; title.append(tag); }
       const excerpt = document.createElement('p');
-      excerpt.innerHTML = r.excerpt;
+      excerpt.innerHTML = clean(r.excerpt);
       main.append(title, excerpt);
       card.append(main);
       const subs = (r.sub_results || []).filter(s => s.url !== r.url && s.anchor).slice(0, 2);
@@ -62,9 +79,9 @@ if (dialog && input && box) {
           a.href = s.url;
           a.setAttribute('role', 'option');
           const b = document.createElement('b');
-          b.append(s.title);
+          b.append(cleanTitle(s.title));
           const p = document.createElement('p');
-          p.innerHTML = s.excerpt;
+          p.innerHTML = clean(s.excerpt);
           a.append(b, p);
           wrap.append(a);
         }

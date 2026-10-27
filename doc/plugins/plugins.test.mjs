@@ -79,12 +79,12 @@ describe('links', () => {
 describe('code blocks, tables, images', () => {
   test('a highlighted block gets a toolbar with the language name and a copy button', async () => {
     const html = await render('```ts\nconst a = 1;\n```');
-    expect(html).toContain('<div class="code-block"><div class="code-toolbar"><span class="code-language">TypeScript</span><button type="button" class="copy-button" data-copied="Copied" data-failed="Failed" aria-live="polite">Copy</button></div><pre class="astro-code');
+    expect(html).toContain('<div class="code-block"><div class="code-toolbar" data-pagefind-ignore=""><span class="code-language">TypeScript</span><button type="button" class="copy-button" data-copied="Copied" data-failed="Failed" aria-live="polite">Copy</button></div><pre class="astro-code');
     expect(html).toContain('var(--astro-code-token-keyword)');
     expect(html).not.toMatch(/<pre[^>]* style="[^"]*background-color/);
   });
   test('plain, prompt and tree blocks are left unhighlighted with their own look', async () => {
-    expect(await render('```text\na < b\n```')).toContain('code-block wrap plain-text"><div class="code-toolbar"><span class="code-language">Plain text');
+    expect(await render('```text\na < b\n```')).toContain('code-block wrap plain-text"><div class="code-toolbar" data-pagefind-ignore=""><span class="code-language">Plain text');
     expect(await render('```\nnothing\n```')).toContain('wrap plain-text');
     expect(await render('```prompt\nDo it\n```')).toContain('code-block wrap code-prompt');
     const tree = await render('```tree\nmy-app/\n├── src/   # code\n└── a.ts\n```');

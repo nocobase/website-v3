@@ -1,9 +1,10 @@
 // Docs-specific build steps: a fresh content cache for production builds, the checks on the output, and the Pagefind search index.
-import { rmSync } from 'node:fs';
+import { readFileSync, readdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as pagefind from 'pagefind';
 import { checkLayout, findDeadLinks } from '../lib/checks.mjs';
+import { spaceCjkHtml } from '../lib/cjk.mjs';
 import { DOC_ROOT } from '../lib/paths.mjs';
 import { getSite } from '../lib/site.mjs';
 
@@ -23,14 +24,20 @@ export default function docs() {
           for (const e of errors.slice(0, 100)) logger.error(e);
           throw new Error(`The output has ${errors.length} problem${errors.length === 1 ? '' : 's'} (listed above)`);
         }
-        // Pagefind indexes the built pages: one index per <html lang>, only what is inside data-pagefind-body
+        // Pagefind indexes the built pages: one index per <html lang>, only what is inside data-pagefind-body. Chinese and Japanese pages are indexed character by character (lib/cjk.mjs); the files on disk are not changed.
         const { index } = await pagefind.createIndex({});
-        const added = await index.addDirectory({ path: root });
-        if (added.errors.length) throw new Error(`Pagefind: ${added.errors.join('; ')}`);
+        let pages = 0;
+        for (const file of readdirSync(root, { recursive: true }).filter(f => f.endsWith('.html')).sort()) {
+          const html = readFileSync(join(root, file), 'utf8');
+          const lang = html.match(/<html[^>]*\slang="([^"]+)"/)?.[1] ?? '';
+          const added = await index.addHTMLFile({ sourcePath: file, content: /^(zh|ja)\b/i.test(lang) ? spaceCjkHtml(html) : html });
+          if (added.errors.length) throw new Error(`Pagefind (${file}): ${added.errors.join('; ')}`);
+          if (added.file) pages++;
+        }
         const written = await index.writeFiles({ outputPath: join(root, 'pagefind') });
         if (written.errors.length) throw new Error(`Pagefind: ${written.errors.join('; ')}`);
         await pagefind.close();
-        logger.info(`search index: ${added.page_count} pages`);
+        logger.info(`search index: ${pages} pages`);
       },
     },
   };

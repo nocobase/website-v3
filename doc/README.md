@@ -121,7 +121,7 @@ Rules, all checked by the build (the error names the file and the entry):
 
 ## Search
 
-`pnpm doc:build` indexes the generated pages with [Pagefind](https://pagefind.app/) (one index per `<html lang>`, only what is inside `data-pagefind-body`, placeholder pages excluded, the section as a filter). The header's search box and Cmd/Ctrl+K (or `/`) open the dialog in `src/scripts/search.js`; the index does not exist in the dev server.
+`pnpm doc:build` indexes the generated pages with [Pagefind](https://pagefind.app/) (one index per `<html lang>`, only what is inside `data-pagefind-body`, placeholder pages excluded, the section as a filter). The header's search box and Cmd/Ctrl+K (or `/`) open the dialog in `src/scripts/search.js`; the index does not exist in the dev server. Chinese and Japanese pages are indexed character by character (`src/lib/cjk.mjs`): Pagefind segments these languages with a dictionary when indexing but with the browser's `Intl.Segmenter` when searching, and the two disagree, so a page containing 创建插件 would not be found by searching it. The build hands Pagefind a copy of each such page with its characters spaced apart (the files in `dist/` are unchanged), the dialog spaces the query the same way, searches it as an exact phrase first and then as all of its characters, puts pages whose title matches first, and removes the spaces again before showing titles and excerpts. Code block toolbars and the breadcrumb are left out of the index.
 
 ## How to add things
 

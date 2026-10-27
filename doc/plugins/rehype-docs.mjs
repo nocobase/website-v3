@@ -65,7 +65,7 @@ export default function rehypeDocs({ site, contentDir } = {}) {
         node.properties = { ...node.properties, tabIndex: 0 };
         delete node.properties.style;
         const wrapper = el('div', { className: ['code-block', ...kind] }, [
-          el('div', { className: ['code-toolbar'] }, [
+          el('div', { className: ['code-toolbar'], dataPagefindIgnore: '' }, [
             el('span', { className: ['code-language'] }, [text(label)]),
             el('button', { type: 'button', className: ['copy-button'], dataCopied: ui.copied, dataFailed: ui.copyFailed, ariaLive: 'polite' }, [text(ui.copy)]),
           ]),

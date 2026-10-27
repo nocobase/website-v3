@@ -1,19 +1,10 @@
-// Small interactions of a docs page: icons, the table of contents highlight, code copy buttons, the sidebar position and the search shortcut label. The header's mobile menu and language select are in the shared shell.js.
+// Small interactions of a docs page: icons, the table of contents highlight, code copy buttons, and the search shortcut label (the sidebar position is set by an inline script in Layout.astro, before the first paint). The header's mobile menu and language select are in the shared shell.js.
 import { ArrowUpRight, Check, ChevronDown, Globe, Menu, MousePointerClick, Search, createIcons } from 'lucide';
 
 createIcons({ icons: { ArrowUpRight, Check, ChevronDown, Globe, Menu, MousePointerClick, Search }, attrs: { 'aria-hidden': 'true' } });
 
 // The shortcut shown on the search button: ⌘K on Apple devices, Ctrl K elsewhere
 if (/Mac|iPhone|iPad/.test(navigator.platform)) for (const kbd of document.querySelectorAll('.search-btn kbd')) kbd.textContent = '⌘ K';
-
-// Bring the current page's link into view in the left menu
-const current = document.querySelector('.doc-side [aria-current="page"]');
-const side = document.querySelector('.doc-side');
-if (current && side) {
-  const box = side.getBoundingClientRect();
-  const rect = current.getBoundingClientRect();
-  if (rect.top < box.top || rect.bottom > box.bottom) side.scrollTop += rect.top - box.top - box.height / 3;
-}
 
 // Table of contents: highlight the section being read
 const links = [...document.querySelectorAll('.doc-toc a')];

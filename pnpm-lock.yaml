@@ -73,7 +73,11 @@ importers:
         specifier: 5.0.5
         version: 5.0.5(@types/node@24.19.2)(vite@8.3.5(@types/node@24.19.2)(yaml@2.8.1))
 
-  packages/shared: {}
+  packages/shared:
+    dependencies:
+      lucide:
+        specifier: 0.460.0
+        version: 0.460.0
 
 packages:
 

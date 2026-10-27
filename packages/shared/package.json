@@ -14,6 +14,10 @@
     "./styles/*": "./src/styles/*",
     "./fonts/*": "./src/fonts/*",
     "./v2-redirect-prefixes.txt": "./v2-redirect-prefixes.txt",
-    "./shell.js": "./src/shell.js"
+    "./shell.js": "./src/shell.js",
+    "./Icon.astro": "./src/Icon.astro"
+  },
+  "dependencies": {
+    "lucide": "0.460.0"
   }
 }

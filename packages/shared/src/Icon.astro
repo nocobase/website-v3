@@ -1,0 +1,18 @@
+---
+// Lucide 图标在构建时直接输出成 <svg>，和页面脚本 createIcons() 生成的一样（同样的 class、data-lucide、aria-hidden），不用等脚本把 <i data-lucide> 换掉；否则每次打开页面，图标出现时顶栏的元素会跟着横向位移
+import * as lucide from 'lucide';
+
+interface Props { name: string }
+type Node = [string, Record<string, string | number>, Node[]?];
+
+const { name } = Astro.props;
+const icon = (lucide as unknown as Record<string, Node>)[name.replace(/(^|-)([a-z0-9])/g, (_, _sep, c: string) => c.toUpperCase())];
+if (!icon) throw new Error(`Unknown Lucide icon: ${name}`);
+
+const esc = (v: string | number) => String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+const attrs = (a: Record<string, string | number>) => Object.entries(a).map(([k, v]) => ` ${k}="${esc(v)}"`).join('');
+const render = ([tag, a, children = []]: Node): string => `<${tag}${attrs(a)}>${children.map(render).join('')}</${tag}>`;
+const [, svgAttrs, children = []] = icon;
+const svg = `<svg${attrs({ ...svgAttrs, class: `lucide lucide-${name}`, 'data-lucide': name, 'aria-hidden': 'true' })}>${children.map(render).join('')}</svg>`;
+---
+<Fragment set:html={svg} />

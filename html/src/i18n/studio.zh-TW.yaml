@@ -66,6 +66,8 @@ strings:
   "061": 開源與地端部署
   "062": 地端部署，<span class="m">程式碼和資料歸企業所有。</span>
   "070": Agent 寫的程式碼建在 NocoBase Core 上
+  "072": 線上體驗 NocoBase Studio
+  "073": 在新分頁完整開啟
 ui:
   我的任务: 我的任務
   我的会话: 我的對話

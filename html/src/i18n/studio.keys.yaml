@@ -295,3 +295,11 @@ items:
     en: Core and Solution are free and open source. Studio is available in the commercial editions.
     zh: Core 和 Solution 开源免费；Studio 在商业版中提供。
     where: open
+  "072":
+    en: Try NocoBase Studio online
+    zh: 在线体验 NocoBase Studio
+    where: tryDemo
+  "073":
+    en: Open it in full in a new tab
+    zh: 在新页面完整打开
+    where: tryDemo

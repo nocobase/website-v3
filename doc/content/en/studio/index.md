@@ -1,6 +1,5 @@
 ---
 title: NocoBase Studio
-nav: Home
 description: NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
 ---
 

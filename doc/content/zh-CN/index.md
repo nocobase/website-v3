@@ -1,6 +1,5 @@
 ---
 title: NocoBase 3 文档
-nav: 首页
 description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源平台。Agent 写业务部分，NocoBase 提供底座和工作流程，人确定目标、作出决定。
 ---
 

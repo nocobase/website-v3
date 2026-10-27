@@ -1,6 +1,5 @@
 ---
 title: NocoBase 3 documentation
-nav: Home
 description: NocoBase is the open-source platform for building, running, and evolving business systems with AI. Agents write the business code, NocoBase provides the foundation and governance, and people set goals and make the decisions.
 ---
 

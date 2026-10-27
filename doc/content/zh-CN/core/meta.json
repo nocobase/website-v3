@@ -1,0 +1,96 @@
+{
+  "pages": [
+    { "type": "page", "path": "index" },
+    {
+      "type": "group",
+      "title": "开始使用",
+      "pages": [
+        { "type": "page", "path": "getting-started/what-is-core" },
+        { "type": "page", "path": "getting-started/create-app" },
+        { "type": "page", "path": "getting-started/project-structure" },
+        { "type": "page", "path": "tutorials/build-your-first-feature" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "开发应用",
+      "pages": [
+        { "type": "page", "path": "developing-apps/overview" },
+        { "type": "page", "path": "developing-apps/develop-with-an-agent" },
+        { "type": "page", "path": "developing-apps/data-models-and-migrations" },
+        { "type": "page", "path": "developing-apps/querying-data" },
+        { "type": "page", "path": "developing-apps/apis-and-services" },
+        { "type": "page", "path": "developing-apps/pages-routes-and-navigation" },
+        { "type": "page", "path": "developing-apps/pages-and-interactions" },
+        { "type": "page", "path": "developing-apps/configuration-and-settings" },
+        { "type": "page", "path": "developing-apps/localization-and-themes" },
+        { "type": "page", "path": "developing-apps/manage-plugins" },
+        { "type": "page", "path": "developing-apps/testing-and-acceptance" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "开发插件",
+      "pages": [
+        { "type": "page", "path": "extension-development/when-to-write-a-plugin" },
+        { "type": "page", "path": "extension-development/create-plugin" },
+        { "type": "page", "path": "extension-development/plugin-structure" },
+        { "type": "page", "path": "extension-development/write-your-first-plugin" },
+        { "type": "page", "path": "extension-development/pages-and-menus" },
+        { "type": "page", "path": "extension-development/server-apis" },
+        { "type": "page", "path": "extension-development/service-provider" },
+        { "type": "page", "path": "extension-development/database-and-migrations" },
+        { "type": "page", "path": "extension-development/localization" },
+        { "type": "page", "path": "extension-development/extend-command-line" },
+        { "type": "page", "path": "extension-development/testing-and-verification" },
+        { "type": "page", "path": "extension-development/write-plugin-skills" },
+        { "type": "page", "path": "extension-development/publish-plugin" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "能力",
+      "pages": [
+        { "type": "planned", "title": "能力总览" },
+        { "type": "planned", "title": "数据库" },
+        { "type": "planned", "title": "认证与用户" },
+        { "type": "planned", "title": "权限控制" },
+        { "type": "planned", "title": "文件管理" },
+        { "type": "planned", "title": "工作流" },
+        { "type": "planned", "title": "审批" },
+        { "type": "planned", "title": "定时任务" },
+        { "type": "planned", "title": "消息通知" },
+        { "type": "planned", "title": "邮件" },
+        { "type": "planned", "title": "Agents" },
+        { "type": "planned", "title": "知识库" },
+        { "type": "planned", "title": "模板打印" },
+        { "type": "planned", "title": "外部集成" },
+        { "type": "planned", "title": "主题定制" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "部署与运维",
+      "pages": [
+        { "type": "page", "path": "deployment/choose-a-deployment-method" },
+        { "type": "page", "path": "tutorials/deploy-with-docker" },
+        { "type": "page", "path": "tutorials/deploy-with-app-installer" },
+        { "type": "page", "path": "deployment/publish-app-release" },
+        { "type": "planned", "title": "运行配置" },
+        { "type": "page", "path": "developing-apps/upgrade-nocobase-core" },
+        { "type": "planned", "title": "备份与恢复" },
+        { "type": "planned", "title": "日志与故障排查" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "参考",
+      "pages": [
+        { "type": "page", "path": "reference/plugins" },
+        { "type": "planned", "title": "命令行" },
+        { "type": "planned", "title": "配置项" },
+        { "type": "planned", "title": "常见问题" }
+      ]
+    }
+  ]
+}

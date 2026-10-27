@@ -1,6 +1,5 @@
 ---
 title: 在本地 Coding Agent 里使用 Studio
-nav: 在本地 Coding Agent 里使用
 status: 待改写
 description: 安装 nb-studio 命令行，让你终端里的 Claude Code、Codex 帮你查询项目、创建任务、分析问题。
 ---

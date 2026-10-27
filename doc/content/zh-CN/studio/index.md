@@ -1,6 +1,5 @@
 ---
 title: NocoBase Studio
-nav: 首页
 description: NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
 ---
 

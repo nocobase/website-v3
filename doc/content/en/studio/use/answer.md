@@ -1,6 +1,5 @@
 ---
 title: Answer the agents’ questions
-nav: Answer questions
 description: When a decision needs a person, the coordinator agent spells out what you need to decide. You answer questions, deal with failed runs, and take over issues handed to you, all on the issue page.
 ---
 

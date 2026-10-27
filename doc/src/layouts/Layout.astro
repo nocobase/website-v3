@@ -2,6 +2,8 @@
 // The shell of every docs page: head (title, canonical, hreflang, analytics), the shared header and footer, the sidebar and table of contents columns, and the search dialog. Styles: tokens and shell of the shared package, then the docs' own.
 import '@nocobase/site-shared/styles/tokens.css';
 import '@nocobase/site-shared/fonts/fonts.css';
+// The Latin subset of Archivo is used by every page; preloading it lets the first paint use it instead of swapping from the fallback font
+import archivoLatin from '@nocobase/site-shared/fonts/archivo/v25/k3kPo8UDI-1M0wlSV9XAw6lQkqWY8Q82sLydOxKsv4Rn.woff2?url';
 import '@nocobase/site-shared/styles/shell.css';
 import '../styles/docs.css';
 import '../styles/figures.css';
@@ -44,6 +46,7 @@ const search = ui.search;
 <html lang={config.byCode[lang].hreflang}>
 <head>
 <meta charset="utf-8">
+<link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} - {siteTitle}</title>
 <meta name="description" content={description || title}>

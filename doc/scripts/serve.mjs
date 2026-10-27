@@ -8,12 +8,15 @@ import { DIST } from '../src/lib/paths.mjs';
 const port = Number(process.env.PORT || 4321);
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.woff2': 'font/woff2', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.md': 'text/plain; charset=utf-8', '.zip': 'application/zip' };
 
+// Like the CDN, let the browser cache the bundled assets (files under /_astro/ have content hashes; the CDN caches them for 30 days). Without it every page switch downloads the fonts again, and the text first shows in the fallback font and then shifts. Pages themselves are not cached, so a rebuild shows up on reload.
+const cacheOf = (path) => (path.startsWith('/_astro/') ? 'public, max-age=31536000, immutable' : 'no-cache');
+
 createServer((req, res) => {
   const path = normalize(decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
   const last = path.slice(path.lastIndexOf('/') + 1);
   const file = join(DIST, path.endsWith('/') ? `${path}index.html` : last.includes('.') ? path : `${path}/index.html`);
   if (file.startsWith(DIST) && existsSync(file) && statSync(file).isFile()) {
-    res.writeHead(200, { 'content-type': TYPES[extname(file)] || 'application/octet-stream' });
+    res.writeHead(200, { 'content-type': TYPES[extname(file)] || 'application/octet-stream', 'cache-control': cacheOf(path) });
     return res.end(readFileSync(file));
   }
   const notFound = join(DIST, '404.html');

@@ -1,0 +1,138 @@
+/* 首页专用的样式：和 site.css 的差异。首页的导航、页脚、颜色变量和共用组件都在 site.css 和 packages/shared/src/styles/ 里，这里只放首页才有的。 */
+/* 日文标题按词组断行；韩文和中文一样只在空格、标点处断 */
+html[lang="ja-JP"] :is(h1, h2, h3, .h2, .hero .lede, .lead) { word-break: auto-phrase; }
+/* ---------- 台面：不要底色、外框和留白，界面和图直接放在页面上 ---------- */
+/* assets/site.css 已同步为同样的台面；这里另外去掉 .sheet.blue 的深色底（首页 Core 段本身就是深色） */
+.sheet, .sheet.sm, .sheet.blue { position: relative; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.sb .it.on { background: var(--brand-tint); color: var(--ink); font-weight: 500; }
+.tag { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 7px; border-radius: 5px; font-size: 11.5px; font-weight: 500; white-space: nowrap; }
+.seg { display: flex; gap: 4px; background: var(--paper-2); padding: 3px; border-radius: 7px; font-size: 12.5px; }
+.seg span { flex: 1; text-align: center; padding: 4px 8px; border-radius: 5px; color: var(--muted); white-space: nowrap; }
+.seg .on { background: var(--card); color: var(--ink); font-weight: 500; box-shadow: 0 1px 2px var(--shadow); }
+.rules { margin-top: 10px; border: 1px solid var(--rule); border-radius: 8px; padding: 4px 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+/* 首屏：在 Agent 页面里说一句需求，到上线 */
+/* 首屏窗口按 1120 设计宽度绘制，桌面上正好等于图纸宽度，其他宽度等比缩放 */
+.hwin { height: 570px; grid-template-columns: 184px 244px minmax(0, 1fr) 256px; grid-template-rows: minmax(0, 1fr); }
+.hm .tx ul { margin: 6px 0 0; padding-left: 18px; list-style: disc; }
+.hm .mem { display: flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 7px; background: var(--paper-2); font-size: 12px; color: var(--ink-2); justify-self: start; }
+.hm .mem svg.lucide { width: 13px; height: 13px; color: var(--human-ink); }
+.base-c { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); flex: 1; min-width: 0; }
+@media (max-width: 1220px) {
+  .base { flex-direction: column; }
+  .base-h { width: auto; border-right: 0; border-bottom: 1px solid var(--rule-2); }
+  .base-c { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .base-c span { border-left: 0; border-top: 1px solid var(--rule); }
+}
+@media (max-width: 600px) { .base-c { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.hs-m { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 11.5px; color: var(--muted); }
+.hs-m .need { margin-left: auto; padding: 0 7px; border-radius: 9px; background: var(--human-tint); color: var(--human-ink); font-size: 11px; font-weight: 600; line-height: 18px; }
+.hp-b { display: grid; gap: 16px; align-content: start; padding: 14px; overflow: hidden; }
+.si.review { --c: var(--pass); --p: 75%; }
+/* 全文发布前卡片不可点击，「即将发布」用灰字，不做成链接的样子 */
+.case-soon { font-size: 15px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.core .label.prod b { color: var(--on-deep); }
+.core .label.prod b svg.lucide { background: var(--deep-accent); color: var(--deep); }
+.plate { margin-top: 24px; border: 1.5px solid oklch(0.92 0.03 262 / 0.75); background: var(--deep); }
+/* 左侧应用列表，样式和 Studio 段的特色列表一致：选中的应用展开一句说明和链接；右侧是图，和 Studio 段的图同一字号（880 宽） */
+.appwrap { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 48px; align-items: start; }
+/* assets/site.css 里还有旧的横排标签样式（6 列、带框），这里逐项覆盖 */
+.apptabs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; margin: 0; }
+.appit { border-left: 2px solid var(--rule-2); }
+.appit.on { border-left-color: var(--brand); background: var(--card); }
+.apptab, .apptab[aria-selected="true"] { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: center; width: 100%; padding: 13px 16px; border: 0; border-radius: 0; box-shadow: none; background: none; text-align: left; cursor: pointer; color: var(--ink-2); font: inherit; }
+.apptab:hover { color: var(--ink); }
+.apptab:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.apptab svg.lucide { width: 18px; height: 18px; color: var(--muted); }
+.apptab .nm { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 10px; min-width: 0; }
+.apptab b { font-size: 17px; line-height: 1.5; font-weight: 600; }
+.apptab .u { font-size: 14px; color: var(--muted); }
+.appit.on .apptab { color: var(--ink); padding-bottom: 4px; }
+.appit.on .apptab svg.lucide { color: var(--brand); }
+.appd { display: none; padding: 0 16px 15px 48px; }
+.appit.on .appd { display: block; }
+.appd p { font-size: 15px; line-height: 1.75; color: var(--ink-2); text-wrap: pretty; }
+.appd .link { margin-top: 6px; }
+@media (max-width: 1000px) {
+  .appwrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+}
+@media (max-width: 600px) { .split { grid-template-columns: 1fr; } .split > div + div { border-left: 0; border-top: 1px solid var(--rule-2); } }
+/* 开源与掌控 */
+.open-grid { display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 56px; align-items: start; }
+.ghcard { display: block; border: 1px solid var(--rule-2); border-radius: 12px; overflow: hidden; background: var(--card); }
+@media (max-width: 900px) { .band-studio { padding-block: 96px 104px; } }
+/* 发送按钮：持续的光环、扫光和上跳的箭头，提示可以点 */
+.b.p.hot { position: relative; overflow: hidden; animation: ring 1.8s ease-out 0.8s infinite; }
+.b.p.hot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, oklch(1 0 0 / 0.45) 50%, transparent 70%); transform: translateX(-120%); animation: sheen 2.6s ease-in-out 1.2s infinite; }
+.b.p.hot svg.lucide { animation: nudge 1.8s ease-in-out 0.8s infinite; }
+.b.p.hot:hover { animation-play-state: paused; }
+@keyframes sheen { 0% { transform: translateX(-120%); } 45%, 100% { transform: translateX(120%); } }
+@keyframes nudge { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .b.p.hot, .b.p.hot::after, .b.p.hot svg.lucide { animation: none; } }
+/* 上线庆祝 */
+/* 验收清单：每项附截图 */
+.hrep .cb { gap: 0; padding: 4px 12px 10px; }
+.hrep .rk { display: grid; grid-template-columns: 15px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--rule); font-size: 12.5px; }
+.hrep .rk > svg.lucide { width: 15px; height: 15px; color: var(--pass); }
+.hrep .rk em { display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; border-radius: 5px; background: var(--paper-2); font-style: normal; font-size: 11px; line-height: 20px; color: var(--ink-2); }
+.hrep .rk em svg.lucide { width: 11px; height: 11px; }
+.hrep .mo { padding-top: 7px; font-size: 11.5px; color: var(--muted); }
+/* 收尾总结：三行对回定义 */
+.hfin { border: 1px solid oklch(0.84 0.08 155); border-radius: 12px; background: var(--card); box-shadow: 0 10px 24px -14px oklch(0.6 0.15 155 / 0.6); overflow: hidden; animation: rise 0.35s ease both; }
+.hfin .hd { display: flex; align-items: center; gap: 12px; padding: 11px 14px; background: var(--pass-tint); }
+.hfin .hd .ic { display: grid; place-items: center; width: 34px; height: 34px; flex: none; border-radius: 10px; background: var(--pass); color: var(--on-brand); }
+.hfin .hd .ic svg.lucide { width: 18px; height: 18px; }
+.hfin .hd b { display: block; font-size: 15px; font-weight: 650; color: var(--pass-ink); }
+.hfin .hd div span { display: block; font-size: 12px; color: var(--ink-2); }
+.hfin .hd time { align-self: flex-start; margin-left: auto; font: 11px var(--f-mono); color: var(--muted); }
+.hfin ul { display: grid; padding: 4px 14px 8px; }
+.hfin li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 1px 9px; padding: 7px 0; border-top: 1px solid var(--rule); }
+.hfin li:first-child { border-top: 0; }
+.hfin li > svg.lucide { grid-row: span 2; width: 22px; height: 22px; padding: 4px; box-sizing: border-box; border-radius: 6px; }
+.hfin li.r-ag > svg.lucide { background: var(--agent-tint); color: var(--agent-ink); }
+.hfin li.r-nb > svg.lucide { background: var(--brand-tint); color: var(--brand); }
+.hfin li.r-hu > svg.lucide { background: var(--human-tint); color: var(--human-ink); }
+.hfin li b { font-size: 13px; font-weight: 600; }
+.hfin li span { font-size: 11.5px; color: var(--muted); }
+/* 手机上首屏只留对话栏 */
+.hwin.solo { grid-template-columns: minmax(0, 1fr); }
+.hwin.solo > .sb, .hwin.solo > .hs, .hwin.solo > .hp { display: none; }
+.hcele { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid oklch(0.84 0.08 155); border-radius: 12px; background: var(--pass-tint); box-shadow: 0 10px 24px -14px oklch(0.6 0.15 155 / 0.6); animation: pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
+.hcele .ic { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 10px; background: var(--pass); color: var(--on-brand); }
+.hcele .ic svg.lucide { width: 19px; height: 19px; }
+.hcele b { display: block; font-size: 15.5px; font-weight: 650; color: var(--pass-ink); }
+.hcele div span { display: block; font-size: 12.5px; color: var(--ink-2); }
+.hcele time { align-self: flex-start; margin-left: auto; font: 11px var(--f-mono); color: var(--muted); }
+@keyframes pop { from { opacity: 0; transform: scale(0.92) translateY(8px); } to { opacity: 1; transform: none; } }
+.confetti { position: absolute; inset: 0; z-index: 5; overflow: hidden; pointer-events: none; border-radius: inherit; }
+.confetti i { position: absolute; width: 7px; height: 11px; margin: -5px 0 0 -3px; border-radius: 2px; background: var(--c); animation: conf 1.9s cubic-bezier(0.12, 0.75, 0.35, 1) forwards; }
+@keyframes conf { 0% { transform: translate(0, 0) rotate(0); opacity: 1; } 80% { opacity: 1; } 100% { transform: translate(var(--x), calc(var(--y) + 60px)) rotate(var(--r)); opacity: 0; } }
+/* 业务专家图：琥珀竖条和深琥珀标签在浅卡片上发棕，改成和右栏“背后交给 Agent”对称的小圆点标题 */
+.xp-c { box-shadow: none; }
+.xp-k { color: var(--muted); font-weight: 500; }
+.xp-l > .xp-h { padding-top: 10px; margin-bottom: 2px; }
+/* 首屏“我的 Agent”会话列表：第二行很窄，状态标签始终完整，空间不够时截断项目名 */
+.hs-m .pj { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.hs-m .st-n:empty { display: none; }
+.hs-m .st-n::before { content: "· "; }
+.hs-m .lb, .hs-m .st-s { flex: none; }
+/* ---------- 新首页（按标准表述重写） ---------- */
+/* 为什么需要 NocoBase：沿用要点的四列，标题在上、说明在下；怎么解决由下面的板块讲 */
+.why-cols { margin-top: 0; }
+.why-cols .no { display: block; margin-bottom: 10px; font: 500 13px/1 var(--f-mono); color: var(--muted); }
+.core .cols3 h3 svg.lucide { color: var(--deep-accent); }
+/* FAQ：四个维度并排，每个维度先写没有 NocoBase 时（灰），再写 NocoBase（白底卡片）；用 subgrid 让四张卡片的上沿对齐 */
+.cmp4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: 0 28px; }
+.cmp { display: grid; grid-row: span 3; grid-template-rows: subgrid; grid-template-columns: minmax(0, 1fr); row-gap: 0; min-width: 0; align-content: start; border-top: 1px solid var(--rule-2); padding-top: 16px; }
+.cmp h3 { font-size: 18px; font-weight: 600; }
+.cmp small { display: flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600; }
+.cmp p { margin-top: 4px; font-size: 15px; line-height: 1.75; }
+.cmp .vc { margin-top: 10px; }
+.cmp .vc small { color: var(--muted); }
+.cmp .vc p { color: var(--muted); }
+.cmp .nbx { margin-top: 14px; padding: 12px 14px 14px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); }
+.cmp .nbx small { color: var(--brand); }
+.cmp .nbx small svg.lucide { width: 14px; height: 14px; color: var(--pass-ink); }
+.cmp .nbx p { color: var(--ink); }
+@media (max-width: 1080px) { .cmp4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 28px; } }
+@media (max-width: 600px) { .cmp4 { grid-template-columns: minmax(0, 1fr); } }

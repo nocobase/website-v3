@@ -1,0 +1,17 @@
+{
+  "name": "nocobase-site",
+  "private": true,
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "homepage:dev": "pnpm --filter homepage dev",
+    "homepage:build": "pnpm --filter homepage build",
+    "homepage:preview": "pnpm --filter homepage preview",
+    "homepage:test": "pnpm --filter homepage test",
+    "homepage:figs": "pnpm --filter homepage figs",
+    "homepage:i18n:extract": "pnpm --filter homepage i18n:extract",
+    "homepage:i18n:check": "pnpm --filter homepage i18n:check"
+  }
+}

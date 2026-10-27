@@ -1,0 +1,10 @@
+---
+// 英文首页（根目录 /）。其他语言的首页在 [lang]/index.astro。首页有自己的样式（home.css）和脚本（content/pages/home.html 里），不加载 site.js。
+import Base from '../layouts/Base.astro';
+import { getSite, renderPage } from '../lib/site.mjs';
+// home.css 要排在 Base 引入的 site.css 之后，所以放在 import Base 后面
+import '../styles/home.css';
+
+const page = renderPage(getSite().byId.get(''), 'en');
+---
+<Base page={page} />

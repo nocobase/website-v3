@@ -1,0 +1,8 @@
+---
+// 404 页（只有英文，noindex）：线上任意深度的地址找不到时都返回它，所以资源和链接一律用根路径。
+import Base from '../layouts/Base.astro';
+import { getSite, renderPage } from '../lib/site.mjs';
+
+const page = renderPage(getSite().byId.get('404'), 'en');
+---
+<Base page={page} />

@@ -1,0 +1,19 @@
+---
+// 子页面、博客、客户案例、更新日志：每个页面按它有的语言各生成一份。英文在根目录，其他语言在 /<目录>/ 下。首页和 404 在各自的文件里。
+import Base from '../layouts/Base.astro';
+import { BY_CODE } from '../lib/config.mjs';
+import { getSite, pageLangs, renderPage } from '../lib/site.mjs';
+
+export function getStaticPaths() {
+  return pageLangs()
+    .filter(({ page }) => page.id && page.id !== '404')
+    .map(({ page, lang }) => ({ params: { path: (BY_CODE[lang].dir ? BY_CODE[lang].dir + '/' : '') + page.id }, props: { id: page.id, lang } }));
+}
+const { id, lang } = Astro.props;
+const page = renderPage(getSite().byId.get(id), lang);
+---
+<Base page={page}>
+  <script>
+    import '../scripts/site.js';
+  </script>
+</Base>

@@ -13,10 +13,8 @@ i18n: crm
 .phero-video video, .pv-cover { display: block; width: 100%; height: 100%; border: 0; padding: 0; background: var(--paper-2); }
 .phero-video video { object-fit: cover; }
 .pv-cover { position: relative; cursor: pointer; background: var(--paper-2); }
-.pv-cover t-zh, .pv-cover t-en { display: block; height: 100%; }
 .pv-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .pv-btn { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px 9px 12px; border-radius: 999px; background: oklch(1 0 0 / 0.86); color: var(--ink); backdrop-filter: blur(6px); font-size: 14.5px; font-weight: 500; white-space: nowrap; box-shadow: 0 10px 30px -8px var(--shadow); transition: transform 0.2s ease, background 0.2s ease; }
-.pv-btn t-zh, .pv-btn t-en { display: inline; height: auto; }
 .pv-btn svg.lucide { width: 16px; height: 16px; fill: currentColor; }
 .pv-btn small { font-size: 13px; opacity: 0.8; }
 /* The play button reads as part of the cover, translucent white, so the hero has one primary button, Try It Online (2026-10-25). */
@@ -68,8 +66,8 @@ i18n: crm
     </div>
     <div class="phero-video" id="introVideo">
       <button class="pv-cover" type="button" id="introPlay">
-        <t-zh><img src="https://static-docs.nocobase.com/nococrm-intro-zh.jpg" alt="NocoCRM 介绍视频"></t-zh><t-en><img src="https://static-docs.nocobase.com/nococrm-intro-en.jpg" alt="NocoCRM intro video"></t-en>
-        <span class="pv-btn"><i data-lucide="play"></i><t-zh>观看介绍</t-zh><t-en>Watch the intro</t-en><small>2:36</small></span>
+        <img id="introCover" alt="">
+        <span class="pv-btn"><i data-lucide="play"></i><t-zh>观看介绍</t-zh><t-en>Watch the intro</t-en><small>2:34</small></span>
       </button>
     </div>
     </div>
@@ -354,10 +352,12 @@ First contact within 24h; follow up within 7 days of a quote.</t-en></div><p cla
 })();
 </script>
 <script>
-/* NocoCRM intro video, at the hero's right: its cover until clicked, then it plays in place, the Chinese cut on a Simplified Chinese page and the English one in every other language, until each has its own. */
+/* NocoCRM intro video, at the hero's right: its cover until clicked, then it plays in place, in the page's language; each of the site's languages has its own cut and cover, named by the language's code. */
 (function () {
   var box = document.getElementById('introVideo');
-  function lang() { return window.__lang === 'zh' ? 'zh' : 'en'; }
+  var cuts = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'id', 'vi', 'zh', 'zh-TW', 'ja', 'ko'];
+  function lang() { return cuts.indexOf(window.__lang) >= 0 ? window.__lang : 'en'; }
+  document.getElementById('introCover').src = 'https://static-docs.nocobase.com/nococrm-intro-' + lang() + '.jpg';
   box.addEventListener('click', function (e) {
     if (!e.target.closest('#introPlay')) return;
     var l = lang();

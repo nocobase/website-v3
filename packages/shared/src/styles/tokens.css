@@ -1,0 +1,75 @@
+/* 官网和文档站共用的基础：颜色和字体变量、重置、按语言的字体与断行。西文字体见 ../fonts/（fonts.css、inter.css）。 */
+/* 官网共用样式：首页样式原样 + 子页面组件（见文件末尾） */
+:root {
+  /* Layout: 受控变更。1200 内容宽，板块头左对齐；每个板块一张“图纸”（坐标纸台面 + 内框线 + 标题栏）；Core 一段是深靛蓝蓝图。只做浅色。 */
+  --paper: oklch(0.984 0.003 255);
+  --paper-2: oklch(0.963 0.005 258);
+  --card: oklch(1 0 0);
+  --ink: oklch(0.21 0.02 262);
+  --ink-2: oklch(0.38 0.02 262);
+  --muted: oklch(0.53 0.018 262);
+  --rule: oklch(0.9 0.007 262);
+  --rule-2: oklch(0.8 0.012 262);
+  --grid: oklch(0.52 0.09 262 / 0.075);
+  --grid-2: oklch(0.52 0.09 262 / 0.13);
+  --brand: oklch(0.52 0.2 266);
+  --brand-hover: oklch(0.46 0.2 266);
+  --on-brand: oklch(0.99 0.003 266);
+  --brand-tint: oklch(0.95 0.03 266);
+  --deep: oklch(0.25 0.06 266);
+  --deep-2: oklch(0.285 0.065 266);
+  --deep-line: oklch(0.88 0.05 262 / 0.22);
+  --deep-grid: oklch(0.88 0.05 262 / 0.06);
+  --deep-grid-2: oklch(0.88 0.05 262 / 0.11);
+  --on-deep: oklch(0.97 0.008 266);
+  --on-deep-2: oklch(0.8 0.03 266);
+  --deep-accent: oklch(0.82 0.1 266);
+  --agent: oklch(0.55 0.2 295);
+  --agent-ink: oklch(0.5 0.17 295);
+  --agent-tint: oklch(0.95 0.035 295);
+  --human: oklch(0.72 0.15 70);
+  --on-human: oklch(0.28 0.07 60);
+  --human-ink: oklch(0.5 0.12 62);
+  --human-tint: oklch(0.965 0.05 85);
+  --pass: oklch(0.6 0.15 155);
+  --pass-ink: oklch(0.47 0.12 155);
+  --pass-tint: oklch(0.955 0.04 155);
+  --risk-ink: oklch(0.53 0.18 27);
+  --risk-tint: oklch(0.955 0.03 25);
+  --info-ink: oklch(0.5 0.15 250);
+  --info-tint: oklch(0.95 0.035 245);
+  --orange-ink: oklch(0.55 0.15 50);
+  --orange-tint: oklch(0.955 0.045 60);
+  --shadow: oklch(0.25 0.05 266 / 0.2);
+  /* 中文用系统字体（苹方、微软雅黑），不加载网络字体；西文字体在 assets/fonts/ */
+  --f-sans: "Archivo", ui-sans-serif, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.75 var(--f-sans); -webkit-font-smoothing: antialiased; }
+t-zh, t-en { display: inline; }
+html[lang="zh-CN"] t-en, html:not([lang="zh-CN"]) t-zh { display: none !important; }
+html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],[lang="ru-RU"],[lang="id-ID"],[lang="vi-VN"]) body { line-height: 1.65; }
+/* 日文、韩文、繁体中文用系统字体；俄语用 Inter（Archivo 没有西里尔字母），切到俄语时才加载（和首页一致） */
+html[lang="ru-RU"] { --f-sans: "Inter", "Archivo", ui-sans-serif, -apple-system, "Segoe UI", sans-serif; }
+html[lang="ja-JP"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; }
+html[lang="ko-KR"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+html[lang="zh-TW"] { --f-sans: "Archivo", ui-sans-serif, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif; }
+/* 日文标题按词组断行；韩文和中文一样只在空格、标点处断 */
+html[lang="ja-JP"] :is(h1, h2, h3, .h2, .phero .lede, .lead) { word-break: auto-phrase; }
+html[lang="ko-KR"] body { word-break: keep-all; overflow-wrap: break-word; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+.container { max-width: 1248px; margin: 0 auto; padding-inline: 24px; }
+.mono, .id { font-family: var(--f-mono); }
+svg.lucide { width: 16px; height: 16px; stroke-width: 1.8; flex: none; }
+[hidden] { display: none !important; }
+@media (max-width: 600px) { .container { padding-inline: 16px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+html[lang="zh-CN"] .en-only, html:not([lang="zh-CN"]) .zh-only { display: none !important; }

@@ -1,0 +1,15 @@
+---
+// 页脚：官网和文档站共用。样式在 styles/shell.css。文字是调用方已经按页面语言处理好的 HTML 片段，地址也已经是最终地址。
+export interface FooterLink { href: string; label: string; external?: boolean }
+export interface FooterColumn { title: string; links: FooterLink[] }
+export interface Props {
+  logo: { src: string; alt: string; width: number; height: number };
+  tagline: string;
+  columns: FooterColumn[];
+  /** 底部版权行（HTML） */
+  copyright: string;
+}
+const { logo, tagline, columns, copyright } = Astro.props as Props;
+---
+<footer><div class="container"><div class="fgrid"><div><img src={logo.src} alt={logo.alt} width={logo.width} height={logo.height}><p class="tag-line" set:html={tagline}></p></div>{columns.map(c => (
+<div><h4 set:html={c.title}></h4><ul>{c.links.map(l => (<li><a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined} set:html={l.label}></a></li>))}</ul></div>))}</div><div class="fbot"><span set:html={copyright}></span></div></div></footer>

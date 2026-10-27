@@ -35,6 +35,7 @@ Look up application conventions by topic; prepare the corresponding data and end
 - [Plugin structure](extension-development/plugin-structure.md): optional directories, runtime entries, public exports and resource ownership.
 - [Write your first plugin](extension-development/write-your-first-plugin.md): implement an announcements API and page, then test, register and verify them in an App.
 - [Pages and menus](extension-development/pages-and-menus.md): declare menus and child pages, with default navigation and access rules.
+- [Frontend components](extension-development/frontend-components.md): compose components with shadcn and the NocoBase UI Library, and optionally publish editable source assets for Agents.
 - [Server APIs](extension-development/server-apis.md): Input validation, access, responses and API docs.
 - [ServiceProvider](extension-development/service-provider.md): Client and Server contracts, registration and lifecycle.
 - [Database and migrations](extension-development/database-and-migrations.md): Plugin schema, task history and upgrades.

@@ -32,7 +32,7 @@ pnpm create @nocobase/plugin@beta announcements \
 
 If the plugin already exists, continue editing it instead of creating it again. It lives in `packages/app-plugin-announcements/`, referenced by the App through `workspace:*`. The scaffold already connects routes and translations to the plugin definitions. Keep its `client/plugin.ts`, `server/plugin.ts` and both `index.ts` files.
 
-Install the UI Library page container and header into the plugin, which owns their source:
+Install the NocoBase UI Library page container and header into the plugin, which owns their source:
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements exec shadcn add \

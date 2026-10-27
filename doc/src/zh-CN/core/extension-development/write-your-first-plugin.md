@@ -32,7 +32,7 @@ pnpm create @nocobase/plugin@beta announcements \
 
 如果已有同名插件，继续修改它，不要重复创建。生成位置为 `packages/app-plugin-announcements/`，App 通过 `workspace:*` 依赖它。脚手架已将路由与语言资源接入插件定义，保留生成的 `client/plugin.ts`、`server/plugin.ts` 及两个 `index.ts`。
 
-为页面安装 UI Library 的容器和标题组件，组件源码归插件维护：
+为页面安装 NocoBase UI Library 的容器和标题组件，组件源码归插件维护：
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements exec shadcn add \

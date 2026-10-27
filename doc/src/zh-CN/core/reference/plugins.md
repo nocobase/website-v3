@@ -21,7 +21,7 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | [`@nocobase/app-plugin-authz-sharing-rules`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-sharing-rules) | 共享规则：按规则扩展记录的共享访问范围。 | 是 |
 | [`@nocobase/app-plugin-database-explorer`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-database-explorer) | 数据库浏览：只读查看数据库连接、数据表和字段。 | 是 |
 | [`@nocobase/app-plugin-demo-mode`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-demo-mode) | 演示模式：为演示环境提供可重置数据、访客账号和写入保护。 | 否 |
-| [`@nocobase/app-plugin-file`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4/packages/plugins/app-plugin-file) | 文件：提供文件仓库、上传与内容访问接口；可编辑文件界面由 UI Library 提供。 | 是 |
+| [`@nocobase/app-plugin-file`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4/packages/plugins/app-plugin-file) | 文件：提供文件仓库、上传与内容访问接口；可编辑文件界面由 NocoBase UI Library 提供。 | 是 |
 | [`@nocobase/app-plugin-foundation`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-foundation) | 应用底座：展示应用实际使用的 Core 能力及其运行信息。 | 是 |
 | [`@nocobase/app-plugin-i18n`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-i18n) | 多语言：接入多语言基础库，提供应用语言切换。 | 是 |
 | [`@nocobase/app-plugin-knowledge`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-knowledge) | 知识库：管理 Markdown 文档空间、版本、搜索、变更提案与审阅。 | 是 |

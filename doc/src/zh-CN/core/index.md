@@ -35,6 +35,7 @@ description: 创建应用，认识项目结构，并通过一个任务应用逐�
 - [插件的结构](extension-development/plugin-structure.md)：认识可选目录、运行时入口、公开导出和资源归属。
 - [编写第一个插件](extension-development/write-your-first-plugin.md)：实现公告接口与页面，完成测试、注册和应用验证。
 - [页面和菜单](extension-development/pages-and-menus.md)：声明菜单与子页面，处理默认入口、导航和访问权限。
+- [前端组件](extension-development/frontend-components.md)：使用 shadcn 和 NocoBase UI Library 编写、组合组件，按需发布供 Agent 使用的源码资产。
 - [服务端接口](extension-development/server-apis.md)：输入校验、访问边界、响应与 API 文档。
 - [ServiceProvider](extension-development/service-provider.md)：前后端服务的契约、注册与生命周期。
 - [数据库与迁移](extension-development/database-and-migrations.md)：插件的数据结构、任务历史与升级。

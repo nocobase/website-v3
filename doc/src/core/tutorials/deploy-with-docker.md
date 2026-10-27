@@ -1,11 +1,11 @@
 ---
 title: Deploy with Docker
-description: Build the application image and preserve configuration and data with Docker Compose.
+description: Build an image to deploy a production application independently, preserving configuration and data with Docker Compose.
 ---
 
 This guide uses the task application as a worked example and also applies to your own NocoBase Core apps. Confirm the target environment with [Choose a deployment method](../deployment/choose-a-deployment-method.md). For your own project, replace example application names, paths, and business acceptance checks.
 
-Use the application's own `Dockerfile`, with separate persistent directories for configuration, SQLite and uploaded files. Verify your application has passed its tests; see [Build your first app](build-your-first-feature.md) for the task example. This guide uses Linux x64, a single SQLite instance and the template's Node.js 24 Debian runtime.
+Use the application's own `Dockerfile` to build an image and run it with Docker Compose on your production server, with separate persistent directories for configuration, SQLite and uploaded files. Verify your application has passed its tests; see [Build your first app](build-your-first-feature.md) for the task example. This guide uses Linux x64, a single SQLite instance and the template's Node.js 24 Debian runtime.
 
 ## Prerequisites
 
@@ -54,7 +54,7 @@ docker build --platform linux/amd64 \
   -t tasks-app:1 .
 ```
 
-Docker reads `dist/`, not `dist.tar.gz`. Add `--tar` to the application build if you also need an archive for another deployment method. `linux-x64` corresponds to Docker `linux/amd64`, using glibc. An ARM64 target needs both `linux-arm64` and `linux/arm64`. The Node major must match the Dockerfile.
+Docker reads `dist/`, not `dist.tar.gz`. Add `--tar` to the application build if you also need an archive for app-installer. `linux-x64` corresponds to Docker `linux/amd64`, using glibc. An ARM64 target needs both `linux-arm64` and `linux/arm64`. The Node major must match the Dockerfile.
 
 Keep `Dockerfile.dockerignore`: it excludes local configuration, databases and development dependencies. The prebuilt stage verifies platform, Node major and relocatability. Fix mismatched build parameters rather than bypassing those checks.
 

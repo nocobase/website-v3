@@ -9,7 +9,7 @@ Studio doesn't build code itself. Your repository's CI does the building and dep
 - Pushing to a branch or creating a tag deploys to staging or production, and protected environments need an approver's sign-off.
 - Issues show which environments their changes have reached.
 
-Without CI, the agent team still builds and opens PRs. You just don't get previews or deployments.
+Without CI, the agent team still builds and opens PRs, but there are no automatic PR previews or deployments. If you have a local archive, you can [upload and preview an application manually](../project/deploy-app.md).
 
 ## Check two things first
 

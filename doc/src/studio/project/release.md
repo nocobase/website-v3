@@ -3,7 +3,7 @@ title: Approve releases and roll back
 description: Approving a release is one of the key decisions people make. After a merge, CI deploys the code to staging, and every deployment to a protected environment such as production needs an approver's sign-off. If something goes wrong, you can roll back to the previous version.
 ---
 
-Admins set up the deploy environments and decide who approves in [Deploy environments](../admin/environments.md). To connect CI, see [Connect CI](../setup/ci.md).
+This page covers release approvals and version rollback managed by Studio. Admins set up the deploy environments and decide who approves in [Deploy environments](../admin/environments.md). To connect CI, see [Connect CI](../setup/ci.md). To upload a local archive for your team to try, see [Upload and preview an application](deploy-app.md).
 
 ## How a release goes
 

@@ -1,11 +1,11 @@
 ---
-title: 使用 app-installer 部署
-description: 使用 app-installer 安装应用，由 pm2 托管，并保留独立的运行配置和数据。
+title: 使用 PM2 部署（app-installer）
+description: 通过 app-installer 安装和更新生产应用，由 PM2 托管进程，并保留独立的运行配置和数据。
 ---
 
 本文以任务应用为例说明部署流程，也适用于自己的 NocoBase Core 应用。先按[选择部署方式](../deployment/choose-a-deployment-method.md)确认目标环境；部署自己的项目时，替换示例中的应用名称、路径和业务验收项。
 
-这一篇把任务应用部署到自己的服务器。`@nocobase/app-installer` 负责解压发布包、生成配置、应用迁移、启动 pm2 进程和检查健康状态，之后也通过它升级应用。
+这一篇把任务应用独立部署到自己的生产服务器，由 PM2 托管应用进程。`@nocobase/app-installer` 负责解压发布包、生成配置、应用迁移、启动 PM2 进程和检查健康状态，之后也通过它升级应用。
 
 部署前确认应用已通过测试；任务示例的测试步骤见[搭建第一个应用](build-your-first-feature.md)。以下使用单实例、SQLite、Linux x64/glibc、Node.js 24，应用路径为 `/tasks`。其他数据库需要在源码项目中安装相应驱动，再重新构建。
 

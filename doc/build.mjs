@@ -162,7 +162,6 @@ const SECTIONS = [
           'deployment/choose-a-deployment-method',
           'tutorials/deploy-with-docker',
           'tutorials/deploy-with-app-installer',
-          'tutorials/deploy-to-studio',
           'deployment/publish-app-release',
           { planned: ['Runtime configuration', '运行配置'] },
           'developing-apps/upgrade-nocobase-core',
@@ -202,7 +201,7 @@ const SECTIONS = [
       { title: ['Daily use', '日常使用'], items: ['use/raise-a-request', 'use/sessions', 'use/my-tasks', 'use/follow-progress', 'use/answer', 'use/accept', 'use/inbox'] },
       {
         title: ['Manage projects', '管理项目'],
-        items: ['project/settings', 'project/skills', 'project/knowledge-base', 'project/checks-and-review', 'project/project-memory', 'project/release', 'project/progress', 'project/usage'],
+        items: ['project/settings', 'project/skills', 'project/knowledge-base', 'project/checks-and-review', 'project/project-memory', 'project/deploy-app', 'project/release', 'project/progress', 'project/usage'],
       },
       { title: ['Administration', '系统管理'], items: ['admin/environments', 'admin/members-and-roles', 'admin/api-keys', 'admin/notifications', 'admin/upgrade-and-backup'] },
       { title: ['Reference', '参考'], items: ['reference/statuses-and-permissions', 'reference/cli', 'reference/config', 'reference/faq'] },

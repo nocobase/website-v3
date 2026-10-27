@@ -1,26 +1,25 @@
 ---
 title: 选择部署方式
-description: 根据运行环境选择 Docker、app-installer 或 NocoBase Studio，了解首次部署、新版本发布和数据恢复的共同要求。
+description: 选择 Docker 或 PM2（app-installer）独立部署生产应用，准备运行配置、持久化数据和后续更新。
 ---
 
-应用开发并通过测试后，可以使用 Docker、app-installer 或 NocoBase Studio 部署。本栏目适用于自己的 NocoBase Core 应用；三篇指南使用任务应用作为操作示例，每篇都提供**使用 Agent**和**不使用 Agent**两条路径。
+应用开发并通过测试后，可以在自己的服务器上使用 Docker 或 PM2 独立部署到生产环境。Docker 通过容器运行应用；PM2 托管 Node.js 进程，由 app-installer 完成安装和更新。
 
-如果你刚完成[搭建第一个应用](../tutorials/build-your-first-feature.md)，选择下面一种方式上线即可，不需要依次部署三遍。
+本栏目适用于自己的 NocoBase Core 应用。两篇指南使用[搭建第一个应用](../tutorials/build-your-first-feature.md)中的任务应用作为示例，均提供**使用 Agent**和**不使用 Agent**两条路径。
 
 ## 如何选择
 
 | 方式 | 适用场景 | 继续阅读 |
 | --- | --- | --- |
 | Docker | 使用容器运行应用，通过镜像和持久化挂载管理部署 | [使用 Docker 部署](../tutorials/deploy-with-docker.md) |
-| app-installer | 有自己的服务器，希望工具管理安装、pm2 进程和应用更新 | [使用 app-installer 部署](../tutorials/deploy-with-app-installer.md) |
-| NocoBase Studio | 已有 Studio，通过应用、环境和发布记录管理部署 | [部署到 Studio](../tutorials/deploy-to-studio.md) |
+| PM2（app-installer） | 在 Linux 服务器上运行 Node.js 进程，通过 app-installer 安装部署包、管理配置和更新 | [使用 PM2 部署（app-installer）](../tutorials/deploy-with-app-installer.md) |
 
-已有 Studio 时，可以沿用它的环境和发布流程；由自己管理服务器时，根据现有运维方式选择 Docker 或 app-installer。目标平台、数据库和存储方案应在构建前确定，具体准备步骤见对应指南。
+已有容器运维流程时选择 Docker；希望直接在服务器上托管 Node.js 进程时选择 PM2（app-installer）。两种方式都使用独立的生产配置、数据库和文件存储。目标平台、数据库和存储方案应在构建前确定，具体准备步骤见对应指南。
 
 ## 部署前准备什么
 
 - **可构建的源码**：应用已通过测试，依赖和锁文件确定，构建平台与运行环境匹配。
-- **明确的运行环境**：服务器或 Studio 环境、应用目录、端口、访问地址及所需权限已确定；域名、HTTPS 和反向代理按实际环境配置。
+- **明确的运行环境**：服务器、应用目录、端口、访问地址及所需权限已确定；域名、HTTPS 和反向代理按实际环境配置。
 - **独立的运行配置**：准备数据库、管理员和应用所需服务配置，保存生成的密钥，不把含密钥的配置提交到仓库。
 - **持久化的数据**：确认数据库和文件存储位置，建立备份与恢复方式。
 
@@ -32,11 +31,11 @@ description: 根据运行环境选择 Docker、app-installer 或 NocoBase Studio
 
 | 首次部署 | 发布新版本 |
 | --- | --- |
-| 创建应用或安装目录，准备运行配置 | 使用已有应用和部署目录，保留稳定密钥 |
+| 准备部署目录和生产运行配置 | 使用已有应用和部署目录，保留稳定密钥 |
 | 在新数据库中执行迁移及必要初始化，或按计划迁入已有数据 | 备份已有数据，检查并执行新增迁移 |
 | 验证登录、业务功能、权限与数据持久化 | 同时验证新功能、旧数据和原有权限 |
 
-后续发布业务版本时，修改源码、通过测试、重新构建，再按原部署方式更新。每篇指南都有“部署新版本”章节；[发布应用新版本](publish-app-release.md)汇总了三种方式更新时的差别。
+后续发布业务版本时，修改源码、通过测试、重新构建，再按原部署方式更新。每篇指南都有“部署新版本”章节；[发布应用新版本](publish-app-release.md)汇总了两种方式更新时的差别。
 
 如果要更新框架及相关依赖，先完成[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)，验证兼容性后再部署。
 

@@ -1,13 +1,13 @@
 ---
-title: Deploy to Studio
-description: Upload an application archive to an existing Studio and verify the deployed application.
+title: Upload and preview an application
+description: Upload an application archive to an existing Studio, configure its variables, and start a preview for your team to try and accept.
 ---
 
-This guide uses the task application as a worked example and also applies to your own NocoBase Core apps. Confirm the target environment with [Choose a deployment method](../deployment/choose-a-deployment-method.md). For your own project, replace example application names, paths, and business acceptance checks.
+If you have a local application and want your team to try it in Studio, build and upload an archive manually. This guide uses Core's [task application](../../core/tutorials/build-your-first-feature.md) as an example and also applies to your own apps. Replace the example application names, paths, and business acceptance checks.
 
-An existing NocoBase Studio manages application releases, environments, configuration and processes. The development machine builds the artifact. Verify your application has passed its tests and obtain permissions to create, upload, configure and deploy an application in your target Studio.
+This guide assumes you have [installed Studio](../setup/install.md). The development machine builds the artifact, and Studio manages uploaded releases, the preview environment, configuration, and application processes. For automatic PR previews, see [Connect CI](../setup/ci.md). For acceptance after trying the app, see [Accept the result](../use/accept.md).
 
-This guide uses an environment accepting Linux x64, Node.js 24 archives, with an independent tutorial application and new database.
+Verify your application has passed its tests and obtain permissions to create, upload, configure, and deploy an application in the target Studio. Check that the preview environment accepts archives in [Deploy environments](../admin/environments.md). This guide uses Linux x64, Node.js 24, an independent tutorial application, and a new database.
 
 ## With an agent
 
@@ -44,7 +44,7 @@ Confirm the device code in your browser and reuse an existing correct session. L
 
 ### 1. Select an environment and create the app
 
-In Studio's release management, inspect deployment environments. Confirm archive support, platform, URL rules and approval policy. Create an independent application with a unique ID such as `tasks-tutorial`. The rehearsal used an existing preview environment; choose an appropriate environment for your actual deployment.
+In Studio's release management, select a preview environment for the team to try the app. Confirm archive support, platform, URL rules and approval policy. Create an independent application with a unique ID such as `tasks-tutorial`. The rehearsal used an existing preview environment; use its actual name in your Studio.
 
 This creates a deployment target. You do not run create-app again on the Studio server.
 
@@ -103,7 +103,7 @@ Use the uploaded release ID, not its version string. If waiting times out, inspe
 
 Use the app overview's actual access URL. Studio's management page and the deployed app have separate entry paths, for example `/main/` and `/tasks-tutorial/`. Sign in with the new app's own administrator. An empty task list is expected with a new database. The current getting-started example initializes task roles through required seeds; development team users and role assignments are not copied with the release.
 
-Create, complete and reopen a task; refresh. Configure a normal read-only member and test rejected writes. Restart only this application in Studio, then verify the same record survives. The CLI equivalent is `nb-studio --profile tutorial app restart tasks-tutorial`.
+Create, complete and reopen a task; refresh. Configure a normal read-only member as described in [Build your first app](../../core/tutorials/build-your-first-feature.md) and test rejected writes. Restart only this application in Studio, then verify the same record survives. The CLI equivalent is `nb-studio --profile tutorial app restart tasks-tutorial`.
 
 ## When the repository is linked
 
@@ -112,17 +112,17 @@ If Studio can verify the repository and full source commit, an Agent or CI can u
 ```bash
 nb-studio --profile tutorial deploy \
   --app tasks-tutorial \
-  --repository nocobase/app-tutorials \
+  --repository owner/repo \
   --sha <full-source-commit> \
   --file storage/exports/dist.tar.gz \
   --json
 ```
 
-The repository is private: Studio's integration needs access. Creating this GitHub repository does not automatically link or authorize it in Studio. The documented rehearsal used page upload; do not invent a commit for uncommitted code.
+This command is for repository build workflows. The documented rehearsal used page upload followed by deployment of the uploaded release; do not invent a commit for uncommitted code.
 
 ## Publish a new release
 
-Test and build the new feature, upload to the **same application**, then deploy to the existing environment. Preserve database, files and stable secrets. Review backups, migration compatibility and recovery before publishing; see [Publish an application release](../deployment/publish-app-release.md) for an overview. Check old task data, roles and new behavior afterward.
+Test and build the new feature, upload to the **same application**, then deploy to the existing environment. Preserve database, files and stable secrets. For protected-environment approvals and version rollback, see [Approve releases and roll back](release.md). Review backups, migration compatibility and recovery before updating. Check old task data, roles and new behavior afterward.
 
 With an Agent, provide the original App ID, environment and new archive path, and require those same checks. Switching a release does not reverse business writes or replace data recovery.
 

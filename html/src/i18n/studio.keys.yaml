@@ -303,3 +303,7 @@ items:
     en: Open it in full in a new tab
     zh: 在新页面完整打开
     where: tryDemo
+  "074":
+    en: You're signed in to a demo account. All the data is made up, so try anything.
+    zh: 已用演示账号自动登录，数据都是虚构的，可以随意操作。
+    where: tryDemo

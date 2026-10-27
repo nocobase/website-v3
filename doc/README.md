@@ -14,6 +14,8 @@ doc/
 
 ## Build and preview
 
+The repository root is a pnpm workspace (`homepage/` and `packages/*`), but `doc/` is not part of it yet: install and build it with npm as below. It will move to Astro and the shared package `packages/shared/` in a later change.
+
 ```bash
 cd doc && npm ci
 node build.mjs     # writes doc/dist/
@@ -24,7 +26,7 @@ node serve.mjs     # preview at http://localhost:4321/
 
 This repository's GitHub Actions workflow (`.github/workflows/docs.yml`) builds the docs site on every pull request and push that changes `doc/`; a failed build shows up as a failed `Docs build` check on the pull request or commit. After a change lands on `main`, `Docs publish` runs in the `production` Environment: it uploads `dist/` to a timestamped directory in OSS, switches the CDN back-to-origin rules of `docs.nocobase.com` to it, refreshes the cache, and keeps only the newest two versions (the script is in `scripts/deploy-cdn/` at the repository root). The Alibaba Cloud keys, bucket, region and CDN domains used for publishing are secrets of that Environment; see "CI and publishing" in the root `AGENTS.md`.
 
-Old addresses of the v2 documentation on `docs.nocobase.com` (top-level paths and language prefixes such as `/guide/`, `/api/` and `/cn/`) are redirected with a 301 to the same address on `nocode.docs.nocobase.com`, so the docs site must not have a top-level directory with any of those names. The list is in `scripts/v2-redirect-prefixes.txt` and is kept in sync with the CDN EdgeScript rule `v2_paths_to_nocode_301`; after generating the site, `build.mjs` checks it with `scripts/check-v2-redirect-prefixes.mjs`, and a name clash fails the build, so CI does not publish. If you really need one of the listed names, remove it from both the list and the EdgeScript rule.
+Old addresses of the v2 documentation on `docs.nocobase.com` (top-level paths and language prefixes such as `/guide/`, `/api/` and `/cn/`) are redirected with a 301 to the same address on `nocode.docs.nocobase.com`, so the docs site must not have a top-level directory with any of those names. The list is in `packages/shared/v2-redirect-prefixes.txt` (shared with the website's workspace package; a change to it also runs the docs workflow) and is kept in sync with the CDN EdgeScript rule `v2_paths_to_nocode_301`; after generating the site, `build.mjs` checks it with `scripts/check-v2-redirect-prefixes.mjs`, and a name clash fails the build, so CI does not publish. If you really need one of the listed names, remove it from both the list and the EdgeScript rule.
 
 ## Writing
 

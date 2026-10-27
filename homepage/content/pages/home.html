@@ -1,0 +1,840 @@
+<title data-zh="NocoBase 3 — AI + NocoBase，构建可靠的业务系统" data-en="NocoBase 3 — Open-Source Platform for AI-Built Business Systems">NocoBase 3 — Open-Source Platform for AI-Built Business Systems</title>
+<meta name="description" content="NocoBase is the open-source platform for building, running, and evolving business systems with AI." data-zh="NocoBase 是用 AI 持续开发和运行业务系统的开源平台。Agent 写代码、做执行，NocoBase 提供底座和治理能力，人来做决策。" data-en="NocoBase is the open-source platform for building, running, and evolving business systems with AI.">
+<main id="top">
+
+<!-- ================= 首屏 ================= -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div>
+        <h1><span>AI + NocoBase</span><span><t-zh>构建可靠的业务系统</t-zh><t-en>Build reliable business systems</t-en></span></h1>
+      </div>
+      <div>
+        <p class="lede"><t-zh><span class="ln">NocoBase 是用 AI 持续开发和运行业务系统的开源平台。</span><span class="ln"><span class="ph">Agent 写代码、做执行，</span><span class="ph">NocoBase 提供底座和治理能力，</span><span class="ph">人来做决策。</span></span></t-zh><t-en><span class="ln">NocoBase is the open-source platform for building, running, and evolving business systems with AI.</span><span class="ln">Agents write the code and do the work, NocoBase provides the foundation and governance, and people make the decisions.</span></t-en></p>
+        <div class="cta">
+          <button class="btn btn-pri" type="button" id="videoBtn"><i data-lucide="circle-play"></i><t-zh>观看演示</t-zh><t-en>Watch the Demo</t-en></button>
+          <a class="btn btn-sec" href="#start"><t-zh>开始使用</t-zh><t-en>Get Started</t-en><i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="sheet" id="heroSheet">
+      <div class="fit" data-w="1120" data-up data-focus="424"><div class="fit-in" id="heroFig"></div></div>
+      <div class="hfoot" id="heroFoot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 客户 ================= -->
+<section class="customers" id="customers">
+  <div class="container">
+    <p class="logos-cap"><t-zh>全球各行业用 NocoBase 构建核心业务系统</t-zh><t-en>Teams across industries build core business systems on NocoBase</t-en></p>
+    <div class="logos">
+      <img src="https://static-docs.nocobase.com/nxp.png" alt="NXP" loading="lazy">
+      <img src="https://static-docs.nocobase.com/lenovo.png" alt="Lenovo" loading="lazy">
+      <img src="https://static-docs.nocobase.com/sony.png" alt="Sony" loading="lazy">
+      <img src="https://static-docs.nocobase.com/ntt-data.png" alt="NTT DATA" loading="lazy">
+      <img src="https://static-docs.nocobase.com/american-express.png" alt="American Express" loading="lazy">
+      <img src="https://static-docs.nocobase.com/smfl.png" alt="SMFL" loading="lazy">
+      <img src="https://static-docs.nocobase.com/vinfast.png" alt="VinFast" loading="lazy">
+    </div>
+    <div class="case">
+      <div>
+        <p class="k"><t-zh>客户故事 · 阳光电源</t-zh><t-en>Customer Story · Sungrow</t-en></p>
+        <p class="t"><t-zh>基于 NocoBase 构建支撑全球业务的数字化管理系统</t-zh><t-en>Running global operations on one NocoBase foundation</t-en></p>
+        <p class="d"><t-zh>作为全球新能源领军企业，阳光电源以一套统一底座支撑多个核心业务系统的快速交付与长期演进。</t-zh><t-en>How a global clean-energy leader builds and evolves dozens of core systems on a single shared platform.</t-en></p>
+      </div>
+      <span class="case-soon"><t-zh>即将发布</t-zh><t-en>Coming soon</t-en></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 为什么 ================= -->
+<section class="sec" id="why">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b><t-zh>为什么需要 NocoBase</t-zh><t-en>Why NocoBase</t-en></b></p>
+      <h2 class="h2"><t-zh>AI 写代码很快，</t-zh><t-en>AI writes code fast.<br></t-en><span class="m"><t-zh>但构建可靠的业务系统依然不简单。</t-zh><t-en>Building reliable business systems is still hard.</t-en></span></h2>
+      <p class="lead"><t-zh>你的企业已经在用 AI 开发或者 Vibe Coding，代码写得很快，但新的问题随之出现。</t-zh><t-en>Your team is already developing with AI or vibe coding. Code gets written fast, but new problems come with it.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <div class="cols4 why-cols">
+        <div><span class="no">01</span><h3><t-zh>底层能力要从零建设</t-zh><t-en>Every project rebuilds the foundation</t-en></h3><p><t-zh>即使交给 AI，权限、工作流引擎、审批等底层模块从零开发，设计难度依然很高，边界情况多，维护工作量大。</t-zh><t-en>Even with AI writing the code, permissions, workflow engines, and approvals are hard to design from scratch. They are full of edge cases and take a lot of work to maintain.</t-en></p></div>
+        <div><span class="no">02</span><h3><t-zh>架构随机漂移，逐渐失控</t-zh><t-en>Architecture drifts out of control</t-en></h3><p><t-zh>换人、换模型甚至换会话，AI 都可能随机发挥，系统越来越难维护。</t-zh><t-en>Switch developers, models, or even sessions, and the AI may improvise differently each time. The system gets harder and harder to maintain.</t-en></p></div>
+        <div><span class="no">03</span><h3><t-zh>并行任务很多，人确认不过来</t-zh><t-en>Parallel work outpaces human review</t-en></h3><p><t-zh>同时处理多个项目和任务，在多个终端和对话之间切换，Agent 交过来的改动也越来越多，人看不过来，又不敢放手。</t-zh><t-en>You juggle several projects and issues, switching between terminals and chats, while agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky.</t-en></p></div>
+        <div><span class="no">04</span><h3><t-zh>知识和经验难以沉淀和共享</t-zh><t-en>Know-how is hard to capture and share</t-en></h3><p><t-zh>需求背景、业务资料、项目经验散落在不同电脑的不同会话里，换人、换 Agent 就很难找到。</t-zh><t-en>Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find.</t-en></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NocoBase Core ================= -->
+<section class="core" id="core">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label prod"><b><i data-lucide="blocks"></i>NocoBase Core</b></p>
+      <h2 class="h2"><t-zh>让 Agent 专心写业务，</t-zh><t-en>Let agents focus on your business logic.<br></t-en><span class="m"><t-zh>底座已经就绪。</t-zh><t-en>The foundation is ready.</t-en></span></h2>
+      <p class="lead"><t-zh>NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。</t-zh><t-en>NocoBase Core is the open-source application foundation for business systems built and run with AI. Permissions, workflows, files, and other building blocks come ready to use, so agents build only what is specific to your business, all on one consistent architecture.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <div class="sheet blue">
+        <div class="fit" data-w="1270" data-up><div class="fit-in" id="coreFig"></div></div>
+      </div>
+      <div class="cols3">
+        <div><h3><i data-lucide="blocks"></i><t-zh>基础能力不用从头开发和验证</t-zh><t-en>Proven building blocks, ready to use</t-en></h3><p><t-zh>Core 提供权限、流程、文件、通知等 20 多项基础能力，Agent 只专注于业务开发。</t-zh><t-en>Core provides 20+ building blocks, including permissions, workflows, files, and notifications, so agents can focus on business logic.</t-en></p></div>
+        <div><h3><i data-lucide="layout-template"></i><t-zh>为 Agent 提供统一的架构和规范</t-zh><t-en>One architecture, one set of standards</t-en></h3><p><t-zh>Core 提供项目脚手架、架构规范和开发技能，换人、换模型，项目架构都能保持统一、受控。</t-zh><t-en>Core provides project scaffolding, architecture standards, and development skills, so the architecture stays consistent and under control as people and models change.</t-en></p></div>
+        <div><h3><i data-lucide="lock-keyhole"></i><t-zh>应用和数据归企业私有</t-zh><t-en>You own your apps and data</t-en></h3><p><t-zh>Core 开源免费，业务代码和数据都在企业自己的仓库和服务器上，模型和 Agent 也由企业自由选择。</t-zh><t-en>Core is free and open source. Your business code and data stay in your own repositories and on your own servers, and you choose your own models and agents.</t-en></p></div>
+      </div>
+      <div class="links"><a class="link" href="core.html"><t-zh>深入了解 NocoBase Core</t-zh><t-en>Explore NocoBase Core</t-en><i data-lucide="arrow-right"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NocoBase Studio ================= -->
+<section class="sec band-studio" id="studio">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label prod"><b><i data-lucide="users-round"></i>NocoBase Studio</b></p>
+      <h2 class="h2"><t-zh>Agent 自主推进，</t-zh><t-en>Agents keep the work moving.<br></t-en><span class="m"><t-zh>团队掌控全局。</t-zh><t-en>Your team stays in control.</t-en></span></h2>
+      <p class="lead"><t-zh>NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。</t-zh><t-en>NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <!-- STUDIOTPL --><template id="stv-team"><div class="sv-win"><div class="sv-top"><span class="sv-brand"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase"><span>Studio</span></span><i class="sep"></i><b><t-zh>运行环境</t-zh><t-en>Runtimes</t-en></b><span class="r"><span class="st-av"><t-zh>王</t-zh><t-en>L</t-en></span></span></div><div class="sv-body"><div class="st-ph"><div><h4><t-zh>运行环境</t-zh><t-en>Runtimes</t-en></h4><p><t-zh>23:40 · 同事们都下班了，9 台运行环境上的 Agent 仍在推进 4 个项目的 24 个任务</t-zh><t-en>23:40 · The team is offline. Agents on 9 runtimes are still moving 24 issues across 4 projects</t-en></p></div><span class="r"><span class="sv-night"><i data-lucide="moon"></i><t-zh>24 小时在线</t-zh><t-en>On around the clock</t-en></span></span></div><div class="sv-team"><div class="st-card"><table class="st-tbl"><thead><tr><th><t-zh>名称</t-zh><t-en>Name</t-en></th><th><t-zh>状态</t-zh><t-en>Status</t-en></th><th><t-zh>编码工具 · 当前 / 上限</t-zh><t-en>Tools · running / limit</t-en></th></tr></thead><tbody><tr><td><b><i data-lucide="server"></i><t-zh>Server 01</t-zh><t-en>Server 01</t-en></b><small><t-zh>团队</t-zh><t-en>Team</t-en> · linux</small></td><td><span class="st-tag on"><t-zh>在线</t-zh><t-en>Online</t-en> 4/4</span></td><td><div class="st-tags"><span class="st-tag nd"><span class="st-spin"></span>Codex <b>2/2</b></span><span class="st-tag nd"><span class="st-spin"></span>Claude Code <b>2/2</b></span></div></td></tr><tr><td><b><i data-lucide="server"></i><t-zh>Server 02</t-zh><t-en>Server 02</t-en></b><small><t-zh>团队</t-zh><t-en>Team</t-en> · linux</small></td><td><span class="st-tag on"><t-zh>在线</t-zh><t-en>Online</t-en> 4/4</span></td><td><div class="st-tags"><span class="st-tag nd"><span class="st-spin"></span>Claude Code <b>2/2</b></span><span class="st-tag nd"><span class="st-spin"></span>OpenCode <b>2/2</b></span></div></td></tr><tr><td><b><i data-lucide="server"></i><t-zh>Server 03</t-zh><t-en>Server 03</t-en></b><small><t-zh>团队</t-zh><t-en>Team</t-en> · linux</small></td><td><span class="st-tag on"><t-zh>在线</t-zh><t-en>Online</t-en> 3/4</span></td><td><div class="st-tags"><span class="st-tag nd"><span class="st-spin"></span>Codex <b>2/2</b></span><span class="st-tag nd"><span class="st-spin"></span>Claude Code <b>1/2</b></span></div></td></tr><tr><td><b><i data-lucide="laptop"></i><t-zh>王磊的 Mac</t-zh><t-en>Leo’s Mac</t-en></b><small><t-zh>个人</t-zh><t-en>Personal</t-en> · macOS</small></td><td><span class="st-tag on"><t-zh>在线</t-zh><t-en>Online</t-en> 2/2</span></td><td><div class="st-tags"><span class="st-tag nd"><span class="st-spin"></span>Claude Code <b>1/1</b></span><span class="st-tag nd"><span class="st-spin"></span>Codex <b>1/1</b></span></div></td></tr><tr><td><b><i data-lucide="laptop"></i><t-zh>林悦的工作站</t-zh><t-en>Maya’s workstation</t-en></b><small><t-zh>个人</t-zh><t-en>Personal</t-en> · linux</small></td><td><span class="st-tag"><t-zh>离线 · 3 小时前</t-zh><t-en>Offline · 3h ago</t-en></span></td><td><div class="st-tags"><span class="st-tag nd">Claude Code <b>0/1</b></span></div></td></tr></tbody></table><div class="st-more"><i data-lucide="chevron-right"></i><t-zh>另有 4 台运行环境 · 11 个任务在跑</t-zh><t-en>4 more runtimes · 11 issues running</t-en></div></div><div class="st-card sv-dps"><div class="sv-ch"><span class="st-a pm"><t-zh>调</t-zh><t-en>C</t-en></span><b><t-zh>调度 Agent</t-zh><t-en>Coordinator</t-en></b><span><t-zh>统一分派</t-zh><t-en>Assigns the work</t-en></span></div><div class="sv-dp"><time>23:38</time><div><b><span class="id">CRM-144</span><t-zh>第 4 步：写测试</t-zh><t-en>Step 4: write tests</t-en></b><p><span class="st-a cc">CC</span><t-zh>Server 02 上的 Claude Code</t-zh><t-en>Claude Code on Server 02</t-en></p></div></div><div class="sv-dp"><time>23:36</time><div><b><span class="id">SUP-91</span><t-zh>修复评审意见</t-zh><t-en>Fix review comments</t-en></b><p><span class="st-a cx">CX</span><t-zh>Server 01 上的 Codex</t-zh><t-en>Codex on Server 01</t-en></p></div></div><div class="sv-dp"><time>23:31</time><div><b><span class="id">HR-45</span><t-zh>代码评审（换一家模型）</t-zh><t-en>Code review by another model</t-en></b><p><span class="st-a cc">CC</span><t-zh>Server 04 上的 Claude Code</t-zh><t-en>Claude Code on Server 04</t-en></p></div></div><div class="sv-dp"><time>23:20</time><div><b><span class="id">ITAM-12</span><t-zh>资产盘点导入</t-zh><t-en>Asset audit import</t-en></b><p><span class="st-a cx">CX</span><t-zh>Server 03 上的 Codex</t-zh><t-en>Codex on Server 03</t-en></p></div></div><div class="sv-dp"><time>23:12</time><div><b><span class="id">CRM-147</span><t-zh>方案设计</t-zh><t-en>Solution design</t-en></b><p><span class="st-a oc">OC</span><t-zh>Server 02 上的 OpenCode</t-zh><t-en>OpenCode on Server 02</t-en></p></div></div></div></div></div></div></template><template id="stv-progress"><div class="sv-win"><div class="sv-top"><span class="sv-brand"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase"><span>Studio</span></span><i class="sep"></i><b><t-zh>我的任务</t-zh><t-en>My issues</t-en></b><span class="r"><span class="st-av"><t-zh>王</t-zh><t-en>L</t-en></span></span></div><div class="sv-body"><div class="st-flt"><h4><t-zh>我的任务</t-zh><t-en>My issues</t-en></h4><span class="q"><i data-lucide="search"></i><t-zh>搜索任务…</t-zh><t-en>Search issues…</t-en></span><span><t-zh>全部项目</t-zh><t-en>All projects</t-en><i data-lucide="chevron-down"></i></span><span><t-zh>任意执行者</t-zh><t-en>Any executor</t-en><i data-lucide="chevron-down"></i></span><span class="st-btn p"><i data-lucide="plus"></i><t-zh>新建任务</t-zh><t-en>New issue</t-en></span></div><div class="sv-tasks"><div class="st-list"><div class="st-card st-grp"><div class="st-gh"><i data-lucide="hand" class="hand"></i><t-zh>等你处理</t-zh><t-en>Needs you</t-en><span class="st-cnt">2</span><i data-lucide="chevron-down"></i></div><div class="st-li"><span class="si review"></span><b><t-zh>客户分级与负责人变更审批</t-zh><t-en>Customer tiers &amp; owner-change approval</t-en></b><time><t-zh>10月20日</t-zh><t-en>Oct 20</t-en></time><div class="s2"><span class="id">CRM-135</span>·<span class="w"><t-zh>等你验收</t-zh><t-en>Waiting for your sign-off</t-en></span></div></div><div class="st-li"><span class="si blocked"></span><b><t-zh>夜间工单自动分派</t-zh><t-en>Overnight ticket routing</t-en></b><time><t-zh>10月20日</t-zh><t-en>Oct 20</t-en></time><div class="s2"><span class="id">SUP-88</span>·<span class="w"><t-zh>等你回答：交给哪个班组？</t-zh><t-en>Question: which shift gets them?</t-en></span></div></div></div><div class="st-card st-grp"><div class="st-gh"><span class="si progress"></span><t-zh>进行中</t-zh><t-en>In progress</t-en><span class="st-cnt">14</span><i data-lucide="chevron-down"></i></div><div class="st-li on"><span class="si progress"></span><b><t-zh>商机阶段看板</t-zh><t-en>Deal stage board</t-en></b><time><t-zh>10月21日</t-zh><t-en>Oct 21</t-en></time><div class="s2"><span class="id">CRM-144</span>·<span class="st-spin"></span><span class="run"><t-zh>Codex 开发中</t-zh><t-en>Codex building</t-en></span></div></div><div class="st-li"><span class="si progress"></span><b><t-zh>退款工单 SLA 提醒</t-zh><t-en>Refund ticket SLA alerts</t-en></b><time><t-zh>10月21日</t-zh><t-en>Oct 21</t-en></time><div class="s2"><span class="id">SUP-91</span>·<span class="st-spin"></span><span class="run"><t-zh>Claude Code 测试中</t-zh><t-en>Claude Code testing</t-en></span></div></div><div class="st-li"><span class="si progress"></span><b><t-zh>报价单审批流</t-zh><t-en>Quote approval flow</t-en></b><time><t-zh>10月22日</t-zh><t-en>Oct 22</t-en></time><div class="s2"><span class="id">CRM-147</span>·<span class="st-spin"></span><span class="run"><t-zh>OpenCode 设计方案中</t-zh><t-en>OpenCode designing</t-en></span></div></div></div><div class="st-card st-grp"><div class="st-gh"><span class="si done"></span><t-zh>已完成</t-zh><t-en>Done</t-en><span class="st-cnt">41</span><i data-lucide="chevron-right"></i></div></div></div><div class="st-card st-det"><div class="st-dh"><i data-lucide="chevron-up"></i><i data-lucide="chevron-down"></i><span>3 / 16</span><span class="id">CRM-144</span>·<span>NocoCRM</span><span class="r"><span class="st-pill"><span class="si progress"></span><t-zh>进行中</t-zh><t-en>In progress</t-en><i data-lucide="chevron-down"></i></span><span><i data-lucide="star"></i><t-zh>关注</t-zh><t-en>Star</t-en></span><span><i data-lucide="messages-square"></i><t-zh>问 Agent</t-zh><t-en>Ask agent</t-en></span></span></div><div class="st-db"><h5><t-zh>商机阶段看板</t-zh><t-en>Deal stage board</t-en></h5><div class="st-meta"><span><span class="k"><t-zh>负责人</t-zh><t-en>Owner</t-en></span><span class="st-av"><t-zh>王</t-zh><t-en>L</t-en></span><t-zh>王磊</t-zh><t-en>Leo Walker</t-en></span><span><span class="k"><t-zh>执行者</t-zh><t-en>Executor</t-en></span><span class="st-a pm"><t-zh>调</t-zh><t-en>C</t-en></span><t-zh>调度 Agent</t-zh><t-en>Coordinator</t-en></span><span><span class="k"><t-zh>预计</t-zh><t-en>ETA</t-en></span><t-zh>今晚 23:40</t-zh><t-en>Tonight 23:40</t-en></span></div><div class="st-box"><div class="h"><i data-lucide="list-checks"></i><t-zh>执行计划</t-zh><t-en>Plan</t-en><span class="r"><t-zh>第 3 / 5 步 · 2 个 Agent 并行</t-zh><t-en>Step 3 of 5 · 2 agents in parallel</t-en></span></div><div class="st-step"><span class="si done"></span><span><t-zh>梳理阶段规则与 6 个验收场景</t-zh><t-en>Stage rules and 6 acceptance scenarios</t-en></span><span class="who"><span class="st-a cc">CC</span>Claude Code</span></div><div class="st-step"><span class="si done"></span><span><t-zh>阶段字段与数据迁移</t-zh><t-en>Stage field and data migration</t-en></span><span class="who"><span class="st-a cx">CX</span>Codex</span></div><div class="st-step"><span class="st-spin"></span><span><t-zh>看板拖拽与阶段变更权限</t-zh><t-en>Drag-and-drop and stage permissions</t-en><small><t-zh>已改 7 个文件</t-zh><t-en>7 files changed</t-en></small></span><span class="who"><span class="st-a cx">CX</span>Codex</span></div><div class="st-step"><span class="st-spin"></span><span><t-zh>为 6 个验收场景写测试</t-zh><t-en>Tests for the 6 scenarios</t-en><small><t-zh>31 / 38 通过</t-zh><t-en>31 / 38 passing</t-en></small></span><span class="who"><span class="st-a cc">CC</span>Claude Code</span></div><div class="st-step off"><span class="si backlog"></span><span><t-zh>代码评审（换一家模型）</t-zh><t-en>Code review by another model</t-en></span><span class="who"><span class="st-a cc">CC</span>Claude Code</span></div></div><div class="st-log"><div class="st-le"><span class="st-a pm"><t-zh>调</t-zh><t-en>C</t-en></span><div><t-zh><b>调度 Agent</b> 把第 2、3 步交给 Codex，第 4 步并行交给 Claude Code</t-zh><t-en><b>Coordinator</b> gave steps 2–3 to Codex and step 4 to Claude Code in parallel</t-en></div><time>18:36</time></div><div class="st-le"><span class="st-a cx">CX</span><div><t-zh><b>Codex</b> 正在开发看板拖拽，已改 7 个文件<span class="st-spin"></span></t-zh><t-en><b>Codex</b> is building drag-and-drop; 7 files changed<span class="st-spin"></span></t-en></div><time><t-zh>现在</t-zh><t-en>now</t-en></time></div></div></div></div></div></div></div></template><template id="stv-decide"><div class="sv-win"><div class="sv-top"><span class="sv-brand"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase"><span>Studio</span></span><i class="sep"></i><span><t-zh>我的任务</t-zh><t-en>My issues</t-en></span><i data-lucide="chevron-right"></i><b><t-zh>CRM-135</t-zh><t-en>CRM-135</t-en></b><span class="r"><span class="st-av"><t-zh>王</t-zh><t-en>L</t-en></span></span></div><div class="sv-body"><div class="sv-dh"><div><h4><t-zh>客户分级与负责人变更审批</t-zh><t-en>Customer tiers &amp; owner-change approval</t-en></h4><div class="st-meta"><span><span class="k"><t-zh>负责人</t-zh><t-en>Owner</t-en></span><span class="st-av"><t-zh>王</t-zh><t-en>L</t-en></span><t-zh>王磊 · 销售总监</t-zh><t-en>Leo Walker · Sales director</t-en></span><span><span class="k"><t-zh>执行者</t-zh><t-en>Executor</t-en></span><span class="st-a pm"><t-zh>调</t-zh><t-en>C</t-en></span><t-zh>调度 Agent</t-zh><t-en>Coordinator</t-en></span></div></div><span class="st-pill sv-wait"><span class="si review"></span><t-zh>等你验收</t-zh><t-en>Waiting for your sign-off</t-en></span></div><div class="sv-dec"><div class="sv-main"><div class="st-box"><div class="h"><i data-lucide="file-text"></i><t-zh>交付报告</t-zh><t-en>Delivery report</t-en><span class="r"><t-zh>测试 35/35 通过 · 代码评审已通过</t-zh><t-en>Tests 35/35 · code review passed</t-en></span></div><p class="sv-p"><t-zh>按近 12 个月的合同额把客户分为 A、B、C 三级：满 100 万为 A 级，20 万到 100 万为 B 级，每月 1 日自动重算。更换 A 级客户的负责人，需要销售经理审批。</t-zh><t-en>Customers are tiered by the last 12 months of contract value: A from $1M, B from $200k, recalculated on the 1st. Changing a Tier A owner needs the sales manager’s approval.</t-en></p></div><div class="st-box"><div class="h"><i data-lucide="list-checks"></i><t-zh>验收清单</t-zh><t-en>Acceptance checklist</t-en><span class="r"><t-zh>6 / 6 通过</t-zh><t-en>6 / 6 passed</t-en></span></div><div class="sv-ck"><span class="si done"></span><span><t-zh>合同额 100 万分到 A 级</t-zh><t-en>$1M lands in Tier A</t-en></span><span class="st-chip"><i data-lucide="image"></i><t-zh>截图</t-zh><t-en>Screenshot</t-en></span></div><div class="sv-ck"><span class="si done"></span><span><t-zh>99.9 万分到 B 级</t-zh><t-en>$999k lands in Tier B</t-en></span><span class="st-chip"><i data-lucide="image"></i><t-zh>截图</t-zh><t-en>Screenshot</t-en></span></div><div class="sv-ck"><span class="si done"></span><span><t-zh>每月 1 日自动重算等级</t-zh><t-en>Tiers recalculate on the 1st</t-en></span></div><div class="sv-ck"><span class="si done"></span><span><t-zh>更换 A 级客户负责人时提交审批</t-zh><t-en>Changing a Tier A owner asks for approval</t-en></span><span class="st-chip"><i data-lucide="image"></i><t-zh>截图</t-zh><t-en>Screenshot</t-en></span></div><div class="sv-ck"><span class="si done"></span><span><t-zh>审批通过后通知新负责人</t-zh><t-en>The new owner is told once approved</t-en></span></div><div class="sv-ck"><span class="si done"></span><span><t-zh>没有权限的销售看不到审批按钮</t-zh><t-en>Reps without access never see the button</t-en></span><span class="st-chip"><i data-lucide="image"></i><t-zh>截图</t-zh><t-en>Screenshot</t-en></span></div></div></div><div class="sv-side"><div class="st-box sv-gal"><div class="h"><i data-lucide="images"></i><t-zh>截图</t-zh><t-en>Screenshots</t-en><span class="r"><t-zh>4 张</t-zh><t-en>4 images</t-en></span></div><div class="sv-ths"><figure class="sv-th"><div class="sv-img"><div class="bar"><i></i><i></i><i></i></div><div class="pg"><div class="sv-sh"><t-zh>客户</t-zh><t-en>Customers</t-en></div><div class="sv-sr"><span><t-zh>华东能源</t-zh><t-en>East Energy</t-en></span><em>¥ 1,050,000</em><i class="a">A</i></div><div class="sv-sr"><span><t-zh>启明医疗</t-zh><t-en>Qiming Health</t-en></span><em>¥ 999,000</em><i class="b">B</i></div><div class="sv-sr"><span><t-zh>远航物流</t-zh><t-en>Voyage Logistics</t-en></span><em>¥ 386,000</em><i class="b">B</i></div></div></div><figcaption><t-zh>场景 1、2 · 100 万的边界</t-zh><t-en>Scenarios 1–2 · the ¥1M line</t-en></figcaption></figure><figure class="sv-th"><div class="sv-img dim"><div class="bar"><i></i><i></i><i></i></div><div class="pg"><div class="sv-dlg"><b><t-zh>更换负责人需要审批</t-zh><t-en>Owner change needs approval</t-en></b><span><t-zh>A 级客户 · 华东能源</t-zh><t-en>Tier A · East Energy</t-en></span><div class="sv-bt"><i><t-zh>取消</t-zh><t-en>Cancel</t-en></i><i class="p"><t-zh>提交审批</t-zh><t-en>Submit</t-en></i></div></div></div></div><figcaption><t-zh>场景 4 · 触发审批</t-zh><t-en>Scenario 4 · approval asked</t-en></figcaption></figure></div></div><div class="st-box sv-adv"><div class="h"><span class="st-a pm"><t-zh>调</t-zh><t-en>C</t-en></span><t-zh>Agent 的建议</t-zh><t-en>Agent’s recommendation</t-en></div><p><t-zh>建议通过。重算后 A 级客户从 212 家变为 236 家，名单已附上。</t-zh><t-en>Approve. After recalculation Tier A grows from 212 to 236 customers; the list is attached.</t-en></p><div class="sv-act"><span class="st-btn p"><i data-lucide="check"></i><t-zh>验收通过</t-zh><t-en>Approve</t-en></span><span class="st-btn"><i data-lucide="undo-2"></i><t-zh>退回修改</t-zh><t-en>Send back</t-en></span></div></div></div></div></div></div></template><template id="stv-memory"><div class="sv-win"><div class="sv-top"><span class="sv-brand"><img src="https://static-docs.nocobase.com/logo-nocobase.png" alt="NocoBase"><span>Studio</span></span><i class="sep"></i><span><t-zh>项目</t-zh><t-en>Projects</t-en></span><i data-lucide="chevron-right"></i><b><t-zh>NocoCRM 定制</t-zh><t-en>NocoCRM custom</t-en></b><span class="r"><span class="st-av"><t-zh>王</t-zh><t-en>L</t-en></span></span></div><div class="sv-body"><div class="sv-know"><div class="st-card sv-kc"><div class="sv-kh"><i data-lucide="sparkles"></i><div><b><t-zh>技能</t-zh><t-en>Skills</t-en></b><span><t-zh>做事的方法</t-zh><t-en>How the work is done</t-en></span></div></div><div class="sv-it"><span class="st-chip mono">studio-development</span><span><t-zh>开发规范</t-zh><t-en>Development rules</t-en></span><em>v12 · <t-zh>全局</t-zh><t-en>Global</t-en></em></div><div class="sv-it"><span class="st-chip mono">studio-review</span><span><t-zh>评审规范</t-zh><t-en>Review rules</t-en></span><em>v7 · <t-zh>全局</t-zh><t-en>Global</t-en></em></div><div class="sv-it"><span class="st-chip mono">studio-testing</span><span><t-zh>测试规范</t-zh><t-en>Testing rules</t-en></span><em>v5 · <t-zh>全局</t-zh><t-en>Global</t-en></em></div><div class="sv-it"><span class="st-chip mono">crm-fields</span><span><t-zh>CRM 字段与命名</t-zh><t-en>CRM fields &amp; naming</t-en></span><em>v3 · <t-zh>本项目</t-zh><t-en>This project</t-en></em></div><p class="sv-note"><t-zh>每次运行自动带上：全局 → 项目 → 工作目录</t-zh><t-en>Every run carries them: global → project → workdir</t-en></p></div><div class="st-card sv-kc"><div class="sv-kh"><i data-lucide="book-open"></i><div><b><t-zh>知识库</t-zh><t-en>Knowledge base</t-en></b><span><t-zh>业务资料</t-zh><t-en>Business material</t-en></span></div></div><div class="sv-it"><i data-lucide="file-text"></i><span><t-zh>折扣审批规则</t-zh><t-en>Discount approval rules</t-en></span><em><i data-lucide="badge-check"></i><t-zh>已核实</t-zh><t-en>Verified</t-en></em></div><div class="sv-it"><i data-lucide="file-text"></i><span><t-zh>客户分级口径</t-zh><t-en>Customer tier definitions</t-en></span><em><t-zh>v4</t-zh><t-en>v4</t-en></em></div><div class="sv-it"><i data-lucide="file-text"></i><span><t-zh>销售流程说明</t-zh><t-en>Sales process</t-en></span><em><t-zh>v2</t-zh><t-en>v2</t-en></em></div><div class="sv-it"><i data-lucide="file"></i><span><t-zh>合同模板.pdf</t-zh><t-en>Contract template.pdf</t-en></span><em><t-zh>文件</t-zh><t-en>File</t-en></em></div><div class="sv-prop"><span class="st-av"><t-zh>王</t-zh><t-en>L</t-en></span><p><t-zh>王磊上传了《2026 年价格政策.pdf》</t-zh><t-en>Leo uploaded 2026 pricing policy.pdf</t-en><span class="up"><t-zh>已提取文字，Agent 工作时可以查阅</t-zh><t-en>Text extracted, ready for agents to read</t-en></span></p></div></div><div class="st-card sv-kc"><div class="sv-kh"><i data-lucide="lightbulb"></i><div><b><t-zh>项目记忆</t-zh><t-en>Project memory</t-en></b><span><t-zh>Agent 学到的经验</t-zh><t-en>What agents learned</t-en></span></div></div><div class="sv-mem"><p><t-zh>测试前先跑数据迁移，否则阶段字段为空，6 个场景会有 2 个失败。</t-zh><t-en>Run the migration before tests, or the stage field is empty and 2 of 6 scenarios fail.</t-en></p><span><span class="st-a cx">CX</span>Codex · CRM-144<em><t-zh>项目</t-zh><t-en>Project</t-en></em></span></div><div class="sv-mem"><p><t-zh>客户手机号导入前去掉 +86 前缀，否则查重会漏掉。</t-zh><t-en>Strip +86 from phone numbers before import, or dedupe misses them.</t-en></p><span><span class="st-a cc">CC</span>Claude Code · CRM-152<em><t-zh>项目</t-zh><t-en>Project</t-en></em></span></div><div class="sv-mem"><p><t-zh>评审时一并检查暗色模式，客户反馈过两次对比度问题。</t-zh><t-en>Check dark mode in every review; the customer has flagged contrast twice.</t-en></p><span><span class="st-a cc">CC</span>Claude Code · CRM-139<em><t-zh>反馈</t-zh><t-en>Feedback</t-en></em></span></div><p class="sv-note"><t-zh>写在仓库的 .nb-studio/memory，下次开工前先读</t-zh><t-en>Kept in the repo’s .nb-studio/memory and read before each issue</t-en></p></div></div><div class="sv-hand"><i data-lucide="repeat"></i><b><t-zh>CRM-160 换人接手</t-zh><t-en>CRM-160 changes hands</t-en></b><span><span class="st-av"><t-zh>林</t-zh><t-en>M</t-en></span><t-zh>林悦</t-zh><t-en>Maya</t-en><i data-lucide="arrow-right"></i><span class="st-a cx">CX</span>Codex</span><span class="r"><t-zh>自动带上 4 个技能、14 篇资料、9 条项目记忆，不用从头交代</t-zh><t-en>Arrives with 4 skills, 14 documents and 9 memories. Nothing to re-explain</t-en></span></div></div></div></template><!-- /STUDIOTPL -->
+      <div class="stv">
+        <div class="stv-tabs" role="tablist" aria-label="NocoBase Studio" aria-orientation="vertical">
+          <button type="button" class="stv-tab" role="tab" id="stvTab-team" aria-controls="stvPanel" aria-selected="true" tabindex="0" data-k="team"><i data-lucide="bot"></i><b><t-zh>一支持续推进的 Agent 团队</t-zh><t-en>An agent team that keeps work moving</t-en></b><p><t-zh>接入多台机器上的 Agent 统一调度，24 小时同步推进多个项目和大量任务。</t-zh><t-en>Connect agents across many machines and schedule them centrally. They move many projects and issues forward in parallel, around the clock.</t-en></p></button>
+          <button type="button" class="stv-tab" role="tab" id="stvTab-progress" aria-controls="stvPanel" aria-selected="false" tabindex="-1" data-k="progress"><i data-lucide="layout-dashboard"></i><b><t-zh>各项进展一目了然</t-zh><t-en>Progress at a glance</t-en></b><p><t-zh>项目进展、任务推进过程、Agent 工作负荷和模型用量都清晰可见。</t-zh><t-en>Project progress, issue activity, agent workload, and model usage are all clearly visible.</t-en></p></button>
+          <button type="button" class="stv-tab" role="tab" id="stvTab-decide" aria-controls="stvPanel" aria-selected="false" tabindex="-1" data-k="decide"><i data-lucide="user-check"></i><b><t-zh>有理有据做决策</t-zh><t-en>Decisions backed by evidence</t-en></b><p><t-zh>需要人做决策时，Agent 会附上详细的报告、清单、截图和建议，不懂代码的业务专家也可以直接拍板。</t-zh><t-en>When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.</t-en></p></button>
+          <button type="button" class="stv-tab" role="tab" id="stvTab-memory" aria-controls="stvPanel" aria-selected="false" tabindex="-1" data-k="memory"><i data-lucide="library"></i><b><t-zh>方法、经验、知识沉淀在团队里</t-zh><t-en>Know-how stays with the team</t-en></b><p><t-zh>技能保存做事的方法，知识库保存业务资料，项目记忆保存 Agent 自主学到的经验。换人、换 Agent 都能无障碍交接。</t-zh><t-en>Skills hold how work gets done, the knowledge base holds business documents, and project memory holds what agents learn on their own. When people or agents change, the next one picks up where the last one left off.</t-en></p></button>
+        </div>
+        <div class="sheet" id="stvPanel" role="tabpanel" aria-labelledby="stvTab-team">
+          <div class="fit" data-w="880" data-up><div class="fit-in" id="stvFig"></div></div>
+        </div>
+      </div>
+      <div class="links"><a class="link" href="studio.html"><t-zh>深入了解 NocoBase Studio</t-zh><t-en>Explore NocoBase Studio</t-en><i data-lucide="arrow-right"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NocoBase Solution ================= -->
+<section class="sec" id="solutions">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label prod"><b><i data-lucide="layout-grid"></i>NocoBase Solution</b></p>
+      <h2 class="h2"><t-zh>开源业务应用，</t-zh><t-en>Open-source business apps.<br></t-en><span class="m"><t-zh>AI 驱动，开箱即用。</t-zh><t-en><span class="ph">AI-driven,</span> ready out of the box.</t-en></span></h2>
+      <p class="lead"><t-zh>NocoBase Solution 是由 Agent 驱动的、基于 Core 构建的一系列企业业务应用，Agent 做大部分执行工作，人只做关键决策。</t-zh><t-en>NocoBase Solution is a line of agent-driven business apps built on Core. Agents do most of the work, and people make only the key decisions.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <div class="appwrap">
+        <div class="apptabs" role="tablist" aria-label="Solutions" aria-orientation="vertical" id="apptabs"></div>
+        <div class="appmain">
+          <!-- SOLTPL --><template id="tpl-crm"><div class="sx solo"><div class="sx-main"><div class="sx-top"><span class="sx-brand" style="padding:0"><img class="crm-logo" src="https://static-docs.nocobase.com/nococrm-logo.svg" alt="NocoCRM"></span><span>/</span><b><t-zh>Agent 工作</t-zh><t-en>Agent work</t-en></b><span class="r"><span class="tag violet"><span class="spin" style="width:10px;height:10px;border-width:1.5px"></span><t-zh>6 个 Agent 在岗</t-zh><t-en>6 agents on duty</t-en></span><span class="ai"><i data-lucide="sparkles"></i></span><span class="av"><t-zh>陈</t-zh><t-en>A</t-en></span></span></div><div class="sx-body"><div class="sx-h"><div><h5><t-zh>周二 · 陈思的一天</t-zh><t-en>Tuesday · a day for Ava</t-en></h5><p><t-zh>Agent 做了什么、你定了什么，按时间排列</t-zh><t-en>What the agents did and what you decided, in order</t-en></p></div><span class="r tl-lg"><span><span class="dot d-ag"></span>Agent</span><span><span class="dot d-hu"></span><t-zh>你</t-zh><t-en>You</t-en></span></span></div><div class="duo2" style="grid-template-columns:minmax(0,1fr) 260px;align-items:start"><div class="tl"><div class=""><time>07:30</time><span class="ag"><i data-lucide="zap"></i></span><div class="tx"><t-zh><b class="agn">公司情报 Agent</b> 发现北辰能源完成 C 轮融资 8 亿元，附 2 个来源</t-zh><t-en><b class="agn">Research Agent</b> found Beichen Energy closed an ¥800M Series C, with 2 sources</t-en><small><t-zh>建议本周约对方 CFO 谈企业版扩容</t-zh><t-en>Suggests meeting their CFO this week about expansion</t-en></small></div><div class="r"><span class="aisg"><i data-lucide="sparkles"></i><t-zh>建议</t-zh><t-en>Suggestion</t-en></span></div></div><div class=""><time>08:00</time><span class="ag"><i data-lucide="zap"></i></span><div class="tx"><t-zh><b class="agn">线索跟进 Agent</b> 完成每日检查：20 条线索，3 条该跟进、1 条转培育</t-zh><t-en><b class="agn">Lead Agent</b> ran the daily check: 20 leads, 3 to follow up, 1 to nurture</t-en><small><t-zh>每条附等级、理由和下一步</t-zh><t-en>Each with a grade, reasons, and next step</t-en></small></div><div class="r"><span class="aisg"><i data-lucide="sparkles"></i><t-zh>4 条建议</t-zh><t-en>4 suggestions</t-en></span></div></div><div class="me"><time>09:05</time><span class="av"><t-zh>陈</t-zh><t-en>A</t-en></span><div class="tx"><t-zh><b>你</b> 采纳 3 条线索建议，忽略 1 条</t-zh><t-en><b>You</b> accepted 3 lead suggestions, ignored 1</t-en></div><div class="r"><span class="tag grey dur"><t-zh>1 分钟</t-zh><t-en>1 min</t-en></span></div></div><div class=""><time>10:42</time><span class="ag"><i data-lucide="zap"></i></span><div class="tx"><t-zh><b class="agn">线索跟进 Agent</b> 读到客户 WhatsApp：想下周三看方案</t-zh><t-en><b class="agn">Lead Agent</b> read a WhatsApp message: wants a demo next Wednesday</t-en><small><t-zh>等级 B → A，建好拜访任务，起草回复</t-zh><t-en>Grade B → A, visit task created, reply drafted</t-en></small></div><div class="r"><span class="aisg"><i data-lucide="sparkles"></i><t-zh>等你确认</t-zh><t-en>Needs you</t-en></span></div></div><div class=""><time>14:10</time><span class="ag"><i data-lucide="zap"></i></span><div class="tx"><t-zh><b class="agn">审批助手 Agent</b> 审阅 18% 折扣申请：对照标准、历史同类与毛利</t-zh><t-en><b class="agn">Approval Agent</b> checked an 18% discount against standards, history, and margin</t-en><small><t-zh>建议以 15% 为上限批准，已起草审批意见</t-zh><t-en>Recommends a 15% cap, comment drafted</t-en></small></div><div class="r"><span class="aisg"><i data-lucide="sparkles"></i><t-zh>有条件同意</t-zh><t-en>Approve on conditions</t-en></span></div></div><div class="me"><time>14:15</time><span class="av"><t-zh>陈</t-zh><t-en>A</t-en></span><div class="tx"><t-zh><b>你</b> 按建议有条件同意</t-zh><t-en><b>You</b> approved on conditions</t-en></div><div class="r"><span class="tag grey dur"><t-zh>2 分钟</t-zh><t-en>2 min</t-en></span></div></div></div><div style="display:grid;gap:10px"><div class="bigstat"><small><t-zh>Agent 完成的工作</t-zh><t-en>Work done by agents</t-en></small><b class="ag-c">37</b><span><t-zh>调研、检查、准备、起草、审阅</t-zh><t-en>Research, checks, prep, drafts, reviews</t-en></span></div><div class="bigstat"><small><t-zh>需要你拍板的事</t-zh><t-en>Decisions you made</t-en></small><b class="hu-c">6</b><span><t-zh>每件都附好依据，看一眼就能定</t-zh><t-en>Full context attached, decided at a glance</t-en></span></div><div class="bigstat"><small><t-zh>被遗漏的线索</t-zh><t-en>Leads that slipped</t-en></small><b class="ok-c">0</b><span><t-zh>新线索、来信和到期任务都有人跟</t-zh><t-en>Every new lead, message, and due task covered</t-en></span></div></div></div></div></div></div></template><template id="tpl-itam"><div class="sx solo itam-theme"><div class="sx-main"><div class="sx-top"><span class="sx-brand" style="padding:0"><img class="crm-logo" src="https://static-docs.nocobase.com/nocoitam-logo.svg" alt="NocoITAM"></span><span>/</span><b><t-zh>价值</t-zh><t-en>Value</t-en></b><span class="r"><span class="tag grey"><t-zh>本季度</t-zh><t-en>This quarter</t-en></span><span class="ai"><i data-lucide="sparkles"></i></span><span class="av"><t-zh>陈</t-zh><t-en>A</t-en></span></span></div><div class="sx-body"><div class="sx-h"><div><h5><t-zh>本季度，Agent 替 IT 做了什么</t-zh><t-en>What agents did for IT this quarter</t-en></h5><p><t-zh>每一项都由负责人确认后执行</t-zh><t-en>Every item was confirmed by its owner</t-en></p></div></div><div class="stat" style="--n:4"><div class="bigstat"><small><t-zh>少花的钱</t-zh><t-en>Spend avoided</t-en></small><b class="ok-c"><t-zh>¥ 3.9 万</t-zh><t-en>¥39k</t-en></b><span><t-zh>先用库存和闲置，再采购</t-zh><t-en>Stock and idle seats first</t-en></span></div><div class="bigstat"><small><t-zh>回收的闲置席位</t-zh><t-en>Idle seats reclaimed</t-en></small><b class="ag-c">11</b><span><t-zh>续订前提醒，不再白付</t-zh><t-en>Flagged before renewal</t-en></span></div><div class="bigstat"><small><t-zh>自动整理的 MDM 差异</t-zh><t-en>MDM differences sorted</t-en></small><b>41</b><span><t-zh>拿不准的 3 处留给人</t-zh><t-en>3 uncertain left for people</t-en></span></div><div class="bigstat"><small><t-zh>新人入职准备</t-zh><t-en>New-hire prep</t-en></small><b><t-zh>6 分钟</t-zh><t-en>6 min</t-en></b><span><t-zh>从 2 天缩短到 6 分钟确认</t-zh><t-en>From 2 days to a 6-minute review</t-en></span></div></div><div class="tblw"><table class="tbl"><thead><tr><th><t-zh>来源</t-zh><t-en>Source</t-en></th><th><t-zh>发生了什么</t-zh><t-en>What happened</t-en></th><th><t-zh>Agent 的建议</t-zh><t-en>Agent’s suggestion</t-en></th><th style="text-align:right"><t-zh>少花</t-zh><t-en>Saved</t-en></th></tr></thead><tbody><tr><td class="id">PO-000037</td><td class="w"><t-zh>销售部显示器 5 台</t-zh><t-en>5 monitors for Sales</t-en></td><td class="w"><t-zh>库存有 3 台同型号，只买 2 台</t-zh><t-en>3 in stock, bought only 2</t-en></td><td style="font-family:var(--f-mono);color:var(--pass-ink);text-align:right">¥ 9,597</td></tr><tr><td class="id">Figma</td><td class="w"><t-zh>12 个席位里 4 个 60 天未使用</t-zh><t-en>4 of 12 seats idle for 60 days</t-en></td><td class="w"><t-zh>回收后续订减少 4 个</t-zh><t-en>Reclaimed before renewal</t-en></td><td style="font-family:var(--f-mono);color:var(--pass-ink);text-align:right"><t-zh>¥ 7,680/年</t-zh><t-en>¥7,680/yr</t-en></td></tr></tbody></table></div><div class="sx-sec"><i data-lucide="user-check"></i><t-zh>等你确认</t-zh><t-en>Waiting on you</t-en><span class="r"><t-zh>确认后才会执行</t-zh><t-en>Nothing runs until you confirm</t-en></span></div><div class="duo2" style="gap:12px"><div class="sg on" style="grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:10px 12px"><div style="display:grid;gap:2px;min-width:0"><b><span class="id" style="color:var(--muted);font-weight:400;font-size:12px">PO-000052</span> <t-zh>设计部申请 3 台显示器</t-zh><t-en>3 monitors for Design</t-en></b><p><t-zh>库存有 2 台同型号，建议只买 1 台</t-zh><t-en>2 same-model units in stock; buy just 1</t-en><span style="margin-left:8px;font-family:var(--f-mono);color:var(--pass-ink);white-space:nowrap"><t-zh>少花 ¥ 3,198</t-zh><t-en>Saves ¥3,198</t-en></span></p></div><div class="acts" style="margin:0;flex-wrap:nowrap"><span class="b p sm"><t-zh>同意</t-zh><t-en>Approve</t-en></span><span class="b sm"><t-zh>修改</t-zh><t-en>Edit</t-en></span></div></div><div class="sg on" style="grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:10px 12px"><div style="display:grid;gap:2px;min-width:0"><b><span class="id" style="color:var(--muted);font-weight:400;font-size:12px">Adobe CC</span> <t-zh>5 个席位 90 天未登录</t-zh><t-en>5 seats unused for 90 days</t-en></b><p><t-zh>下月续订前回收，续订减少 5 个</t-zh><t-en>Reclaim before next month’s renewal</t-en><span style="margin-left:8px;font-family:var(--f-mono);color:var(--pass-ink);white-space:nowrap"><t-zh>少花 ¥ 6,450/年</t-zh><t-en>Saves ¥6,450/yr</t-en></span></p></div><div class="acts" style="margin:0;flex-wrap:nowrap"><span class="b p sm"><t-zh>同意</t-zh><t-en>Approve</t-en></span><span class="b sm"><t-zh>修改</t-zh><t-en>Edit</t-en></span></div></div></div></div></div></div></template><template id="tpl-reach"><div class="sx solo" style="padding:0;overflow:hidden"><t-zh><img src="https://static-docs.nocobase.com/insights-zh.webp" alt="NocoReach 洞察页" width="1280" height="720" style="display:block;width:100%;height:auto"></t-zh><t-en><img src="https://static-docs.nocobase.com/insights-en.webp" alt="NocoReach Insights" width="1280" height="720" style="display:block;width:100%;height:auto"></t-en></div></template><template id="tpl-support"><div class="sx solo"><div class="sx-main"><div class="sx-top"><span class="sx-brand" style="padding:0"><span class="mk"><i data-lucide="headset"></i></span>Noco<span>Support</span></span><span>/</span><b><t-zh>值班交接</t-zh><t-en>Handoff</t-en></b><span class="r"><span class="tag violet"><span class="spin" style="width:10px;height:10px;border-width:1.5px"></span><t-zh>客服 Agent 值班中</t-zh><t-en>Support agents on duty</t-en></span><span class="ai"><i data-lucide="sparkles"></i></span><span class="av"><t-zh>陈</t-zh><t-en>A</t-en></span></span></div><div class="sx-body"><div class="sx-h"><div><h5><t-zh>早上好，周航</t-zh><t-en>Morning, Ethan</t-en></h5><p><t-zh>客服 Agent 夜间值班交接 · 23:00 – 08:00</t-zh><t-en>Overnight handoff from the support agents · 11 pm – 8 am</t-en></p></div></div><div class="stat" style="--n:4"><div><small><t-zh>夜里收到</t-zh><t-en>Received overnight</t-en></small><b>47</b><span class="d"><t-zh>邮件、表单与在线客服</t-zh><t-en>Email, forms, and live chat</t-en></span></div><div><small><t-zh>Agent 已解决</t-zh><t-en>Resolved by agents</t-en></small><b class="ok">35</b><span class="d"><t-zh>常规咨询直接闭环</t-zh><t-en>Routine requests closed</t-en></span></div><div><small><t-zh>回复草稿待发</t-zh><t-en>Drafts ready</t-en></small><b style="color:var(--agent-ink)">9</b><span class="d"><t-zh>上班后由你的团队发出</t-zh><t-en>Your team sends them at 9 am</t-en></span></div><div><small><t-zh>升级给你</t-zh><t-en>Escalated to you</t-en></small><b class="warn">3</b><span class="d"><t-zh>超出授权的才找你</t-zh><t-en>Only what’s beyond policy</t-en></span></div></div><div class="duo2" style="grid-template-columns:minmax(0,1fr) 420px;gap:14px;align-items:start"><div style="display:grid;gap:8px"><div class="sx-sec" style="color:var(--agent-ink)"><i data-lucide="bot" style="color:var(--agent)"></i><t-zh>客服 Agent 夜里处理的工单（节选）</t-zh><t-en>Handled overnight by the support agents (excerpt)</t-en></div><div class="tblw"><table class="tbl"><thead><tr><th><t-zh>工单</t-zh><t-en>Ticket</t-en></th><th><t-zh>客户问题</t-zh><t-en>Issue</t-en></th><th><t-zh>Agent 怎么处理</t-zh><t-en>What the agent did</t-en></th><th><t-zh>结果</t-zh><t-en>Result</t-en></th></tr></thead><tbody><tr><td class="id">#2412</td><td class="w"><t-zh>月度报表导出超时</t-zh><t-en>Monthly export times out</t-en></td><td class="w"><t-zh>检索知识库，发去分批导出步骤，客户已确认</t-zh><t-en>Found the KB fix, sent batch-export steps; confirmed</t-en></td><td><span class="tag green"><t-zh>已解决</t-zh><t-en>Resolved</t-en></span></td></tr><tr><td class="id">#2409</td><td class="w"><t-zh>SSO 登录账号被锁定</t-zh><t-en>Locked out of SSO</t-en></td><td class="w"><t-zh>核验身份后按授权流程解锁</t-zh><t-en>Verified identity, unlocked per policy</t-en></td><td><span class="tag green"><t-zh>已解决</t-zh><t-en>Resolved</t-en></span></td></tr><tr><td class="id">#2403</td><td class="w"><t-zh>报表统计时区偏差</t-zh><t-en>Report time zone is off</t-en></td><td class="w"><t-zh>定位到账号时区设置，起草回复</t-zh><t-en>Traced to account time zone; reply drafted</t-en></td><td><span class="tag violet"><t-zh>草稿待发</t-zh><t-en>Draft ready</t-en></span></td></tr></tbody></table></div></div><div class="pnl" style="gap:8px;align-content:start;background:var(--paper)"><div class="h"><i data-lucide="user-check" style="color:var(--human-ink)"></i><t-zh>升级给你的 3 件</t-zh><t-en>3 escalated to you</t-en><span class="r"><t-zh>都附好了依据</t-zh><t-en>Context attached</t-en></span></div><div class="sg on" style="grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:9px 12px"><div style="display:grid;gap:2px;min-width:0"><b><span class="id" style="color:var(--muted);font-weight:400;font-size:12px">#2381</span> <t-zh>重复扣款退款 ¥3,200</t-zh><t-en>Refund a ¥3,200 double charge</t-en></b><p><t-zh>超过自动退款额度 ¥1,000；Agent 已核对支付流水，确认重复扣款。</t-zh><t-en>Above the ¥1,000 auto-refund limit; the agent matched the payment logs.</t-en></p></div><div style="display:grid;gap:5px"><span class="b sm p" style="justify-content:center"><t-zh>批准退款</t-zh><t-en>Approve refund</t-en></span><span class="b sm" style="justify-content:center"><t-zh>驳回</t-zh><t-en>Decline</t-en></span></div></div><div class="sg on" style="grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:9px 12px"><div style="display:grid;gap:2px;min-width:0"><b><span class="id" style="color:var(--muted);font-weight:400;font-size:12px">#2396</span> <t-zh>投诉：两次延误交付</t-zh><t-en>Complaint: two late deliveries</t-en></b><p><t-zh>客户要求补偿；Agent 起草了致歉信和延长 1 个月服务的方案。</t-zh><t-en>Customer wants compensation; the agent drafted an apology and a 1-month extension.</t-en></p></div><div style="display:grid;gap:5px"><span class="b sm p" style="justify-content:center"><t-zh>查看草稿</t-zh><t-en>Review draft</t-en></span><span class="b sm" style="justify-content:center"><t-zh>修改</t-zh><t-en>Edit</t-en></span></div></div><p style="padding:2px 4px 0;font-size:12px;color:var(--muted)"><t-zh>另有 1 件：#2399 要求周末现场支持</t-zh><t-en>1 more: #2399 weekend on-site request</t-en></p></div></div></div></div></div></template><template id="tpl-project"><div class="sx solo"><div class="sx-main"><div class="sx-top"><span class="sx-brand" style="padding:0"><span class="mk"><i data-lucide="folder-kanban"></i></span>Noco<span>Project</span></span><span>/</span><b><t-zh>东南亚出海</t-zh><t-en>SEA Expansion</t-en></b><span class="r"><span class="tag violet"><span class="spin" style="width:10px;height:10px;border-width:1.5px"></span><t-zh>2 个 Agent 推进中</t-zh><t-en>2 agents working</t-en></span><span class="ai"><i data-lucide="sparkles"></i></span><span class="av"><t-zh>陈</t-zh><t-en>A</t-en></span></span></div><div class="sx-body"><div class="sx-h"><div><h5><t-zh>东南亚出海 · 第 3 周</t-zh><t-en>SEA Expansion · Week 3</t-en></h5><p><t-zh>目标：10 月底前签下 3 家渠道伙伴 · 负责人 王磊</t-zh><t-en>Goal: sign 3 channel partners by end of October · Owner Leo Walker</t-en></p></div><span class="r"><span class="tag grey"><t-zh>里程碑 2 / 5</t-zh><t-en>Milestone 2 of 5</t-en></span></span></div><div class="tblw"><table class="tbl"><thead><tr><th><t-zh>任务</t-zh><t-en>Task</t-en></th><th><t-zh>执行</t-zh><t-en>Owner</t-en></th><th><t-zh>进度</t-zh><t-en>Progress</t-en></th><th><t-zh>截止</t-zh><t-en>Due</t-en></th><th><t-zh>状态</t-zh><t-en>Status</t-en></th></tr></thead><tbody><tr><td class="w"><t-zh>潜在代理商名单（20 家）</t-zh><t-en>Distributor shortlist (20)</t-en></td><td><span class="cell"><span class="ag"><i data-lucide="bot"></i></span><span style="color:var(--agent-ink);font-weight:500"><t-zh>调研 Agent</t-zh><t-en>Research Agent</t-en></span></span></td><td><span class="usage"><i style="--w:60%"></i><span>60%</span></span></td><td class="id">10/12 → 10/14</td><td><span class="tag red"><t-zh>晚 2 天</t-zh><t-en>2 days late</t-en></span></td></tr><tr><td class="w"><t-zh>分销合作协议初稿</t-zh><t-en>Distribution agreement draft</t-en></td><td><span class="cell"><span class="ag"><i data-lucide="bot"></i></span><span style="color:var(--agent-ink);font-weight:500"><t-zh>文书 Agent</t-zh><t-en>Docs Agent</t-en></span></span></td><td><span class="usage"><i style="--w:100%"></i><span>100%</span></span></td><td class="id">10/15</td><td><span class="tag amber"><t-zh>待你验收</t-zh><t-en>Needs sign-off</t-en></span></td></tr><tr><td class="w"><t-zh>渠道政策与返点方案</t-zh><t-en>Channel policy and rebates</t-en></td><td><span class="cell"><span class="av"><t-zh>王</t-zh><t-en>L</t-en></span><t-zh>王磊</t-zh><t-en>Leo Walker</t-en></span></td><td><span class="usage"><i style="--w:30%"></i><span>30%</span></span></td><td class="id">10/18</td><td><span class="tag blue"><t-zh>进行中</t-zh><t-en>In progress</t-en></span></td></tr><tr><td class="w"><t-zh>首轮伙伴接洽邮件</t-zh><t-en>First outreach emails</t-en></td><td><span class="cell"><span class="ag"><i data-lucide="bot"></i></span><span style="color:var(--agent-ink);font-weight:500"><t-zh>文书 Agent</t-zh><t-en>Docs Agent</t-en></span></span></td><td><span class="usage"><i style="--w:0%"></i><span>0%</span></span></td><td class="id">10/20</td><td><span class="tag grey"><t-zh>等名单</t-zh><t-en>Blocked</t-en></span></td></tr></tbody></table></div><div class="duo2" style="gap:14px;align-items:start"><div class="rvw"><div class="h"><i data-lucide="triangle-alert"></i><t-zh>调研 Agent 提前发现风险</t-zh><t-en>Research Agent flagged a risk</t-en></div><div class="q" style="font-size:14px"><t-zh>代理商名单晚 2 天，会推迟 10/20 的首轮接洽</t-zh><t-en>The shortlist is 2 days late and will push back outreach on 10/20</t-en></div><ul><li><t-zh>已确认 4 家，另外 16 家还在核实联系人</t-zh><t-en>4 confirmed; 16 still verifying contacts</t-en></li><li><t-zh>建议：先给已确认的 4 家发接洽邮件，其余并行补齐</t-zh><t-en>Suggestion: email the 4 confirmed now, fill in the rest in parallel</t-en></li></ul><div class="acts" style="margin-top:2px"><span class="b p sm"><t-zh>采纳调整</t-zh><t-en>Apply change</t-en></span><span class="b sm"><t-zh>查看影响</t-zh><t-en>See impact</t-en></span></div></div><div class="sg on" style="grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 12px;padding:9px 12px"><div style="display:grid;gap:2px;min-width:0"><b><span class="id" style="color:var(--muted);font-weight:400;font-size:12px">MKT-58</span> <t-zh>待你验收：分销合作协议初稿</t-zh><t-en>For your sign-off: agreement draft</t-en></b><p><t-zh>文书 Agent 标出 3 处需要你拍板的条款：独家区域、首年最低提货额、争议仲裁地。</t-zh><t-en>Docs Agent flagged 3 clauses for you: exclusivity, first-year minimum, and governing law.</t-en></p></div><div style="display:grid;gap:5px"><span class="b sm p" style="justify-content:center"><t-zh>打开文档</t-zh><t-en>Open draft</t-en></span><span class="b sm" style="justify-content:center"><t-zh>退回修改</t-zh><t-en>Request changes</t-en></span></div></div></div></div></div></div></template><template id="tpl-hr"><div class="sx solo"><div class="sx-main"><div class="sx-top"><span class="sx-brand" style="padding:0"><span class="mk"><i data-lucide="users"></i></span>Noco<span>HR</span></span><span>/</span><b><t-zh>入职</t-zh><t-en>Onboarding</t-en></b><span class="r"><span class="tag violet"><span class="spin" style="width:10px;height:10px;border-width:1.5px"></span><t-zh>入职与制度问答 Agent</t-zh><t-en>Onboarding & policy agents</t-en></span><span class="ai"><i data-lucide="sparkles"></i></span><span class="av"><t-zh>陈</t-zh><t-en>A</t-en></span></span></div><div class="sx-body"><div class="sx-h"><div><h5><t-zh>赵一鸣 · 明天入职</t-zh><t-en>Liam Hayes · starts tomorrow</t-en></h5><p><t-zh>研发部 · 高级后端工程师 · 导师 周航</t-zh><t-en>Engineering · Senior Backend Engineer · Buddy Ethan Cole</t-en></p></div><span class="r"><span class="tag green"><t-zh>5 项已就绪</t-zh><t-en>5 ready</t-en></span><span class="tag amber"><t-zh>1 项等你</t-zh><t-en>1 needs you</t-en></span></span></div><div class="duo2" style="grid-template-columns:minmax(0,1fr) 400px;gap:14px;align-items:start"><div class="pnl" style="gap:0;align-content:start"><div class="h" style="padding-bottom:8px"><span class="ag"><i data-lucide="bot"></i></span><span style="color:var(--agent-ink)"><t-zh>入职 Agent</t-zh><t-en>Onboarding Agent</t-en></span><span style="font-weight:400;color:var(--muted)"><t-zh>已办好</t-zh><t-en>has handled</t-en></span></div><div style="display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:10px;align-items:start;padding:9px 0;border-top:1px solid var(--rule)"><i data-lucide="circle-check" style="width:16px;height:16px;margin-top:2px;color:var(--pass)"></i><div><b style="font-size:13px;font-weight:600"><t-zh>合同与入职资料核对完成</t-zh><t-en>Contract and paperwork checked</t-en></b><small style="display:block;font-size:11.5px;color:var(--muted)"><t-zh>身份证、学历、离职证明逐项核对</t-zh><t-en>ID, degree, and release letter verified</t-en></small></div><span class="id">10-07</span></div><div style="display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:10px;align-items:start;padding:9px 0;border-top:1px solid var(--rule)"><i data-lucide="circle-check" style="width:16px;height:16px;margin-top:2px;color:var(--pass)"></i><div><b style="font-size:13px;font-weight:600"><t-zh>企业邮箱、Git、VPN 账号已开通</t-zh><t-en>Email, Git, and VPN accounts ready</t-en></b><small style="display:block;font-size:11.5px;color:var(--muted)"><t-zh>按研发岗位模板开通，权限与组内一致</t-zh><t-en>Provisioned from the engineering template</t-en></small></div><span class="id">10-07</span></div><div style="display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:10px;align-items:start;padding:9px 0;border-top:1px solid var(--rule)"><i data-lucide="circle-check" style="width:16px;height:16px;margin-top:2px;color:var(--pass)"></i><div><b style="font-size:13px;font-weight:600"><t-zh>导师与首周日程已确认</t-zh><t-en>Buddy and first-week plan confirmed</t-en></b><small style="display:block;font-size:11.5px;color:var(--muted)"><t-zh>周航确认带教；周一 9:30 欢迎会已发日历</t-zh><t-en>Ethan confirmed; Monday 9:30 welcome sent</t-en></small></div><span class="id">10-09</span></div><div class="sg on" style="margin-top:10px;gap:4px;padding:10px 12px"><b><t-zh>开发机：标准 16G 内存不够用</t-zh><t-en>Laptop: the standard 16 GB isn’t enough</t-en></b><p><t-zh>他要在本地跑多容器联调，需要高配开发机 ¥18,000；库房有 1 台现货，批准后今天就能配好。</t-zh><t-en>He runs multi-container setups locally; a ¥18,000 high-spec laptop is in stock and can be set up today.</t-en></p><div class="acts" style="margin-top:4px"><span class="b p sm"><t-zh>批准调配</t-zh><t-en>Approve</t-en></span><span class="b sm"><t-zh>维持标准配置</t-zh><t-en>Keep standard</t-en></span></div></div></div><div class="pnl" style="gap:10px;align-content:start;background:var(--paper)"><div class="h"><i data-lucide="messages-square"></i><t-zh>制度问答 · 7×24</t-zh><t-en>Policy Q&amp;A · 24/7</t-en><span class="r"><t-zh>本月 214 问 · 转人工 9</t-zh><t-en>214 this month · 9 to HR</t-en></span></div><div style="display:flex;justify-content:flex-end;gap:8px;align-items:flex-start"><span style="max-width:84%;padding:7px 11px;border-radius:10px 10px 3px 10px;background:var(--paper-2);border:1px solid var(--rule);font-size:12.5px"><t-zh>年假还剩几天？能和调休连着用吗？</t-zh><t-en>How much leave do I have left? Can I combine it with comp days?</t-en></span><span class="av"><t-zh>梅</t-zh><t-en>M</t-en></span></div><div style="display:flex;gap:8px;align-items:flex-start"><span class="ag"><i data-lucide="bot"></i></span><div style="display:grid;gap:5px;max-width:88%"><span style="padding:7px 11px;border-radius:3px 10px 10px 10px;background:var(--agent-tint);font-size:12.5px"><t-zh>你今年还剩 6 天年假、2 天调休，可以连着用。连休 5 天以上需提前 2 周提交申请。</t-zh><t-en>You have 6 days of leave and 2 comp days left, and yes, you can combine them. Breaks over 5 days need 2 weeks’ notice.</t-en></span><div class="mini-chips"><span><t-zh>来源：《休假管理制度》第 4 条</t-zh><t-en>Source: Leave Policy §4</t-en></span></div></div></div><div style="display:flex;justify-content:flex-end;gap:8px;align-items:flex-start"><span style="max-width:84%;padding:7px 11px;border-radius:10px 10px 3px 10px;background:var(--paper-2);border:1px solid var(--rule);font-size:12.5px"><t-zh>想了解一下明年的调薪规则</t-zh><t-en>How do raises work next year?</t-en></span><span class="av"><t-zh>李</t-zh><t-en>R</t-en></span></div><div style="display:flex;gap:8px;align-items:flex-start"><span class="ag"><i data-lucide="bot"></i></span><div style="display:grid;gap:5px;max-width:88%"><span style="padding:7px 11px;border-radius:3px 10px 10px 10px;background:var(--agent-tint);font-size:12.5px"><t-zh>薪酬问题涉及个人信息，已转给 HR 何晴，她今天内回复你。</t-zh><t-en>Pay questions involve personal data, so I’ve passed this to Claire in HR. She’ll reply today.</t-en></span><div><span class="tag amber"><t-zh>已转人工</t-zh><t-en>Handed to HR</t-en></span></div></div></div></div></div></div></div></div></template><!-- /SOLTPL -->
+          <div class="sheet" id="appPanel" role="tabpanel" aria-labelledby="appTab0">
+            <div class="fit" data-w="880" data-up><div class="fit-in" id="appFig"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cols4">
+        <div><h3><i data-lucide="zap"></i><t-zh>Agent 主动工作</t-zh><t-en>Agents take the initiative</t-en></h3><p><t-zh>每个应用中内置很多业务 Agent，它们会按照规则主动承担大部分执行工作，比如核查退款、处理工单。</t-zh><t-en>Each app comes with built-in business agents that follow your rules and proactively take on most of the work, such as checking refunds and handling tickets.</t-en></p></div>
+        <div><h3><i data-lucide="user-check"></i><t-zh>人负责关键决策</t-zh><t-en>People own the key decisions</t-en></h3><p><t-zh>Agent 的工作成果会附上依据，关键决策必须由人来做。Agent 继承负责人的权限，保证数据安全。</t-zh><t-en>Agents show the evidence behind their work, and key decisions are always made by a person. Each agent inherits the permissions of the person it works for, so data stays secure.</t-en></p></div>
+        <div><h3><i data-lucide="wrench"></i><t-zh>方便定制开发</t-zh><t-en>Easy to customize</t-en></h3><p><t-zh>基于 NocoBase Core 开发，具备统一的架构和可靠的底座，可以让 Coding Agent 对它们进行定制开发。</t-zh><t-en>Every app is built on NocoBase Core, with its consistent architecture and reliable foundation, so you can have a coding agent customize it.</t-en></p></div>
+        <div><h3><i data-lucide="package-open"></i><t-zh>开源免费，开箱即用</t-zh><t-en>Free, open source, ready to use</t-en></h3><p><t-zh>所有 Solution 均开源免费，部署在企业自己的服务器上，模型自由选择。</t-zh><t-en>Every Solution app is free and open source, runs on your own servers, and works with the model of your choice.</t-en></p></div>
+      </div>
+      <div class="links"><a class="link" href="solutions.html"><t-zh>查看全部 Solution</t-zh><t-en>View All Solution Apps</t-en><i data-lucide="arrow-right"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" id="faq">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b>FAQ</b></p>
+      <h2 class="h2"><t-zh>NocoBase 和 Vibe Coding 有什么区别？</t-zh><t-en>How is NocoBase different from vibe coding?</t-en></h2>
+      <p class="lead"><t-zh>Vibe Coding 让软件开发更加高效，但当项目涉及复杂业务、多人协作和长期迭代时，仅靠 AI 生成代码还不够，还需要可靠的应用底座、统一的开发规范和完善的治理。NocoBase 并不是 Vibe Coding 的替代品，而是在它之上补齐底座和治理能力。</t-zh><t-en>Vibe coding makes building software much faster. But once a project involves complex business logic, many people, and years of iteration, AI-generated code alone isn’t enough. You also need a reliable application foundation, consistent development standards, and sound governance. NocoBase doesn’t replace vibe coding. It builds on it, adding the foundation and governance.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <div class="cmp4">
+        <div class="cmp"><h3><t-zh>基础能力</t-zh><t-en>Building blocks</t-en></h3><div class="vc"><small><t-zh>没有 NocoBase</t-zh><t-en>Without NocoBase</t-en></small><p><t-zh>权限、工作流、审批等底层模块，每个项目都由 AI 从零生成，成本高且很难保证可靠。</t-zh><t-en>AI generates permissions, workflows, approvals, and other foundational modules from scratch for every project. That is costly, and hard to make reliable.</t-en></p></div><div class="nbx"><small><i data-lucide="check"></i>NocoBase</small><p><t-zh>Core 提供现成的基础能力，Agent 只开发业务部分。</t-zh><t-en>Core provides ready-made building blocks, and agents build only the business logic.</t-en></p></div></div>
+        <div class="cmp"><h3><t-zh>架构规范</t-zh><t-en>Architecture standards</t-en></h3><div class="vc"><small><t-zh>没有 NocoBase</t-zh><t-en>Without NocoBase</t-en></small><p><t-zh>换人、换模型、换会话，AI 都可能随机发挥，架构逐渐漂移。</t-zh><t-en>Switch developers, models, or sessions, and the AI may improvise. The architecture gradually drifts.</t-en></p></div><div class="nbx"><small><i data-lucide="check"></i>NocoBase</small><p><t-zh>Core 提供统一的项目结构、开发规范和开发技能，系统在统一架构下长期稳定迭代。</t-zh><t-en>Core provides one project structure, development standards, and development skills, so the system evolves steadily for years on a consistent architecture.</t-en></p></div></div>
+        <div class="cmp"><h3><t-zh>开发治理</t-zh><t-en>Governance</t-en></h3><div class="vc"><small><t-zh>没有 NocoBase</t-zh><t-en>Without NocoBase</t-en></small><p><t-zh>Agent 交来的改动越来越多，人审不过来，往往直接接受，问题越积越多。</t-zh><t-en>Agents hand back more and more changes, more than anyone can review, so they often get accepted as they are. Problems pile up.</t-en></p></div><div class="nbx"><small><i data-lucide="check"></i>NocoBase</small><p><t-zh>Studio 组织多个 Agent 协同完成设计、开发、测试和评审，关键决策交给人把关，并附上报告和截图作为依据。</t-zh><t-en>Studio coordinates multiple agents through design, development, testing, and review. Key decisions go to a person, with reports and screenshots as evidence.</t-en></p></div></div>
+        <div class="cmp"><h3><t-zh>知识沉淀</t-zh><t-en>Know-how</t-en></h3><div class="vc"><small><t-zh>没有 NocoBase</t-zh><t-en>Without NocoBase</t-en></small><p><t-zh>需求背景、项目资料和经验散落在各自的会话里。</t-zh><t-en>Requirement context, project documents, and lessons learned are scattered across individual chat sessions.</t-en></p></div><div class="nbx"><small><i data-lucide="check"></i>NocoBase</small><p><t-zh>Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 Agent 都能无障碍交接。</t-zh><t-en>Studio captures methods and experience in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off.</t-en></p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 开源与私有部署 ================= -->
+<section class="sec" id="open">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b><t-zh>开源与私有部署</t-zh><t-en>Open Source &amp; Self-Hosting</t-en></b></p>
+      <h2 class="h2"><t-zh>开源免费，私有部署，</t-zh><t-en>Free, open source, self-hosted.<br></t-en><span class="m"><t-zh>代码和数据归企业所有。</t-zh><t-en>Your code and data belong to you.</t-en></span></h2>
+      <p class="lead"><t-zh>Core 和 Solution 开源免费；Studio 在商业版中提供。</t-zh><t-en>Core and Solution are free and open source. Studio is available in the commercial editions.</t-en></p>
+    </div>
+    <div class="sec-body open-grid">
+      <a class="ghcard" href="https://github.com/nocobase/nocobase" target="_blank" rel="noopener">
+        <div class="h"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg><span>nocobase / <b>nocobase</b></span></div>
+        <div class="stats">
+          <div><small>GitHub Stars</small><b>24.6K</b></div>
+          <div><small>Forks</small><b>2.9k</b></div>
+          <div><small><t-zh>代码贡献者</t-zh><t-en>Contributors</t-en></small><b>122</b></div>
+          <div><small><t-zh>累计下载</t-zh><t-en>Downloads</t-en></small><b><t-zh>300 万+</t-zh><t-en>3M+</t-en></b></div>
+        </div>
+        <div class="f"><span class="link"><t-zh>在 GitHub 上查看源码</t-zh><t-en>View on GitHub</t-en><i data-lucide="arrow-right"></i></span></div>
+      </a>
+      <ul class="olist">
+        <li><h3><i data-lucide="code-xml"></i><t-zh>开源免费</t-zh><t-en>Free and open source</t-en></h3><p><t-zh>Core 和所有 Solution 开源免费，可以直接用于生产。</t-zh><t-en>Core and every Solution app are free, open source, and ready for production.</t-en></p></li>
+        <li><h3><i data-lucide="server"></i><t-zh>私有部署</t-zh><t-en>Self-hosted</t-en></h3><p><t-zh>Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。</t-zh><t-en>Core, Solution, and Studio all run on your own servers. Your code and data belong to you.</t-en></p></li>
+        <li><h3><i data-lucide="shuffle"></i><t-zh>模型与 Agent 自由选择</t-zh><t-en>Your choice of models and agents</t-en></h3><p><t-zh>不绑定厂商，支持 Claude Code、Codex 等编码工具和各类大模型。</t-zh><t-en>No vendor lock-in. Works with Claude Code, Codex, and other coding tools, and with a wide range of models.</t-en></p></li>
+        <li><h3><i data-lucide="box"></i><t-zh>应用独立运行</t-zh><t-en>Apps run independently</t-en></h3><p><t-zh>业务应用发布后独立运行，日常业务请求不经过 Studio。</t-zh><t-en>Once released, your business apps run on their own. Day-to-day business requests never go through Studio.</t-en></p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 开始使用 ================= -->
+<section class="sec" id="start">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b><t-zh>开始使用</t-zh><t-en>Get Started</t-en></b></p>
+      <h2 class="h2"><t-zh>选择适合你们团队的起点。</t-zh><t-en>Choose your starting point.</t-en></h2>
+    </div>
+    <div class="sec-body">
+      <div class="start3">
+        <div class="scard"><div class="hd"><i data-lucide="blocks"></i><b>NocoBase Core</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>用 Core 开发自己的系统</t-zh><t-en>Build your own system on Core</t-en></h3><p><t-zh>Agent 使用 Core 的现成能力，只开发企业自己的业务部分。</t-zh><t-en>Agents use Core’s ready-made building blocks and build only what is specific to your business.</t-en></p><a class="btn btn-sec" href="https://docs.nocobase.com/core/" target="_blank" rel="noopener"><t-zh>开始使用 Core</t-zh><t-en>Get Started with Core</t-en><i data-lucide="arrow-right"></i></a></div>
+        <div class="scard"><div class="hd"><i data-lucide="layout-grid"></i><b>NocoBase Solution</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div><h3><t-zh>安装现成的业务应用</t-zh><t-en>Install a ready-made business app</t-en></h3><p><t-zh>可以直接安装使用，也可以让 Coding Agent 根据自己的业务需求定制。</t-zh><t-en>Use it as it is, or have a coding agent tailor it to your business.</t-en></p><a class="btn btn-sec" href="solutions.html"><t-zh>查看 Solution</t-zh><t-en>View Solution Apps</t-en><i data-lucide="arrow-right"></i></a></div>
+        <div class="scard pro"><div class="hd"><i data-lucide="users-round"></i><b>NocoBase Studio</b><span><t-zh>商业版</t-zh><t-en>Commercial</t-en></span></div><h3><t-zh>带领 Agent 团队开发</t-zh><t-en>Lead an agent team</t-en></h3><p><t-zh>Agent 自主推进，团队掌控全局。</t-zh><t-en>Agents keep the work moving. Your team stays in control.</t-en></p><a class="btn btn-pri" href="pricing.html"><t-zh>查看版本与价格</t-zh><t-en>View Editions &amp; Pricing</t-en><i data-lucide="arrow-right"></i></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<dialog class="vmodal" id="videoModal" aria-label="NocoBase">
+  <div class="vbox">
+    <button class="vclose" type="button" aria-label="Close"><i data-lucide="x"></i></button>
+    <div class="vframe" id="videoFrame"></div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  /* 每种语言是一个单独生成的页面：scripts/build.mjs 写好 window.__lang（zh、en、de……），其他语言另外内联 window.NB_I18N[语言]（脚本里 M() 要用的译文，
+     繁体中文还有界面文字 ui，来自 content/i18n/home.zh-TW.yaml 的 ui）。页面上写死的文字（<t-zh>/<t-en>）和模板里的界面示意在构建时已经换成本页语言。
+     界面示意图（L，以及模板里成对的 <t-zh>/<t-en>）：中文显示中文界面，繁体中文显示繁体中文界面，其他语言显示英文界面。营销文案和结构图换成该语言（M），译文以英文原文为键，缺的显示英文 */
+  var isEn = function () { return window.__lang !== 'zh'; };
+  var isTW = function () { return window.__lang === 'zh-TW'; };
+  var ui = function (zh) { var d = window.NB_I18N && window.NB_I18N['zh-TW']; return (d && d.ui && d.ui[zh]) || zh; };
+  var L = function (zh, en) { return isTW() ? ui(zh) : isEn() ? en : zh; };
+  var tr = function (en) { var d = window.NB_I18N && window.NB_I18N[window.__lang]; return (d && d.strings[en]) || en; };
+  var M = function (zh, en) { return isEn() ? tr(en) : zh; };
+  var trCaps = function (c) { return c.map(function (x) { return [x[0], tr(x[1]), tr(x[2])]; }); };
+  var NAMES_ZH = { WL: '王磊', CS: '陈思', LY: '林悦', ZH: '周航' };
+  var NAMES_EN = { WL: 'Leo Walker', CS: 'Ava Clarke', LY: 'Maya Collins', ZH: 'ethan Zhou' };
+  NAMES_EN.ZH = 'Ethan Cole';
+  var NAME = function (c) { return isTW() ? ui(NAMES_ZH[c]) : isEn() ? NAMES_EN[c] : NAMES_ZH[c]; };
+  var AV = function (c) { return '<span class="av">' + NAME(c).charAt(0) + '</span>'; };
+  var BOT = '<span class="ag"><i data-lucide="bot"></i></span>';
+  var WF = '<span class="ag wf"><i data-lucide="workflow"></i></span>';
+  var LOGO = 'https://static-docs.nocobase.com/logo-nocobase.png';
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- Studio 侧栏（与产品菜单一致：我的任务、我的 Agent 在最上面） ---------- */
+  function studioSide(active, count) {
+    var it = function (k, ic, t, extra) { return '<a class="it' + (k === active ? ' on' : '') + '"><i data-lucide="' + ic + '"></i>' + t + (extra || '') + '</a>'; };
+    return '<aside class="sb"><div class="brand"><img src="' + LOGO + '" alt=""><span>Studio</span></div>' +
+      it('mine', 'circle-user-round', L('我的任务', 'My issues'), '<em data-k="count">' + count + '</em>') + it('agent', 'messages-square', L('我的会话', 'My sessions')) + it('dash', 'layout-dashboard', L('仪表盘', 'Dashboard')) +
+      '<div class="grp">' + L('开发', 'Build') + '</div>' + it('tasks', 'list-todo', L('任务', 'Issues')) + it('projects', 'folder-kanban', L('项目', 'Projects')) + it('kb', 'book-open', L('知识库', 'Knowledge')) +
+      '<div class="grp">' + L('质量', 'Quality') + '</div>' + it('plans', 'clipboard-list', L('质量报告', 'Quality reports')) + it('cases', 'flask-conical', L('功能与用例', 'Features & cases')) +
+      '<div class="grp">' + L('发布', 'Release') + '</div>' + it('apps', 'boxes', L('应用', 'Apps')) + it('envs', 'server', L('部署环境', 'Environments')) +
+      '<div class="grp">' + L('Agent 团队', 'Agent Team') + '</div>' + it('agents', 'bot', L('Agent', 'Agents')) + it('rt', 'monitor-cog', L('运行环境', 'Runtimes')) + it('skills', 'sparkles', L('技能', 'Skills')) + '</aside>';
+  }
+
+  /* ---------- 首屏：在「我的 Agent」里说一句需求，Agent 团队并行做完，人验收一次 ---------- */
+  function getREQ() {
+    return L(
+      '按最近 12 个月的合同额把客户分成 A、B、C 三级；如果要更换 A 级客户的负责人，必须经销售经理审批。',
+      'Tier customers into A, B, and C by 12-month contract value; changing a Tier A owner requires Sales Manager approval.'
+    );
+  }
+  /* 会话列表里的任务条：每个任务一段，颜色是任务状态（与线上一致：完成、待验收、进行中、阻塞、待规划） */
+  var SEG = { d: 'done', r: 'review', s: 'started', k: 'blocked', b: 'backlog' };
+  function segs(list) { return list.map(function (k) { return '<i class="' + SEG[k] + '"></i>'; }).join(''); }
+  /* 会话列表第二行很窄：任务数由进度条的格数表示，只在没有任务时写“暂无任务” */
+  function noTasks(n) { return n ? '' : L('暂无任务', 'No issues'); }
+  function sstat(k, n) {
+    if (k === 'need') return '<span class="need">' + L('待你处理 ', 'Needs you ') + (n || 1) + '</span>';
+    if (k === 'run') return '<span class="sst run">' + L('进行中', 'Active') + '</span>';
+    if (k === 'done') return '<span class="sst done">' + L('已完成', 'Done') + '</span>';
+    return '';
+  }
+  function getSESS() {
+    return [
+      { id: 'cur', t: L('新会话', 'New session'), time: '', pj: 'NocoCRM', bar: [], st: '', cur: 1 },
+      { id: 'quote', t: L('报价单导出模板', 'Quote export template'), time: '17:05', pj: 'NocoCRM', bar: ['d', 'r'], st: 'need' },
+      { id: 'board', t: L('商机阶段看板', 'Deal stage board'), time: '16:30', pj: 'NocoCRM', bar: ['s'], st: 'run' },
+      { id: 'q4', t: L('拆分 Q4 权限需求', 'Split Q4 permission scope'), time: '14:12', pj: 'Studio', bar: ['d', 'd', 's', 's', 'b'], st: 'run' },
+      { id: 'night', t: L('夜间工单分派规则', 'Night ticket routing'), time: '11:20', pj: 'NocoSupport', bar: ['s', 'b'], st: 'run' },
+      { id: 'renew', t: L('到期续约提醒', 'Renewal reminders'), time: L('昨天', 'Yesterday'), pj: 'NocoCRM', bar: ['d', 'd', 'd'], st: 'done', y: 1 }
+    ];
+  }
+  function getHTASKS() {
+    return [['CRM-136', L('客户等级字段与数据迁移', 'Tier field and migration')], ['CRM-137', L('每月自动重算等级', 'Monthly re-tiering')], ['CRM-138', L('更换负责人的审批与通知', 'Owner-change approval')]];
+  }
+  function heroFig() {
+    var sess = getSESS();
+    var row = function (x, i) {
+      return (i === 0 ? '<div class="hs-g">' + L('今天', 'Today') + '</div>' : x.y && !sess[i - 1].y ? '<div class="hs-g">' + L('更早', 'Earlier') + '</div>' : '') +
+        '<div class="hs-it' + (x.cur ? ' on' : '') + '" data-s="' + x.id + '"><div class="hs-t"><b class="st-t">' + x.t + '</b><time class="st-time">' + x.time + '</time></div>' +
+        '<div class="hs-m"><span class="pj">' + x.pj + '</span><span class="st-n">' + noTasks(x.bar.length) + '</span><span class="lb"' + (x.bar.length ? '' : ' hidden') + '>' + segs(x.bar) + '</span><span class="st-s">' + sstat(x.st) + '</span></div></div>';
+    };
+    return '<div class="win hwin">' + studioSide('agent', 2) +
+      '<section class="hs"><div class="hs-h">' + L('我的会话', 'My sessions') + '<span class="b"><i data-lucide="plus"></i>' + L('新会话', 'New') + '</span></div><div class="hs-q"><i data-lucide="search"></i>' + L('搜索会话', 'Search sessions') + '</div>' +
+        '<div class="hs-f"><span class="on">' + L('全部', 'All') + '</span><span>' + L('待你确认 1', 'Needs you 1') + '</span><span>' + L('进行中 3', 'Active 3') + '</span></div>' + sess.map(row).join('') +
+        '<div class="hs-arch"><i data-lucide="laptop"></i>' + L('我的电脑', 'My computer') + '<i data-lucide="archive" style="margin-left:14px"></i>' + L('已归档', 'Archived') + '</div></section>' +
+      '<div class="hc"><div class="wtop"><b data-k="title">' + L('新会话', 'New session') + '</b><span class="m">Claude Code · Opus 5.5 · NocoCRM · ' + L('王磊的 Mac', 'Leo’s Mac') + ' <i class="on-dot"></i></span><span class="r"><button type="button" class="replay" data-k="replay" hidden><i data-lucide="rotate-ccw"></i>' + L('重播', 'Replay') + '</button></span></div>' +
+        '<div class="hmsgs" data-k="msgs" aria-live="polite"><div class="hhello" data-k="hello"><span class="ag"><i data-lucide="bot"></i></span><b>' + L('今天想做点什么？', 'What should we build next?') + '</b><span>' + L('用一句话描述需求，你的 Agent 会先帮你理清规则、拆好任务，再交给 Agent 团队并行推进，进展实时同步回当前会话。', 'Describe what you need. Your agent clarifies the rules, breaks the work into issues, and hands them to the agent team, with live progress flowing right back here.') + '</span></div></div>' +
+        '<div class="hcomp" data-k="comp">' +
+          '<div class="hbox"><div class="t" data-k="draft"><span class="caret"></span></div>' +
+          '<div class="f"><span class="c"><i data-lucide="cpu"></i>Opus 5.5</span><span class="c"><i data-lucide="brain"></i>High</span><span class="c"><i data-lucide="shield"></i>' + L('完整权限', 'Full access') + '</span>' +
+          '<button type="button" class="b p lg" data-k="send"><i data-lucide="arrow-up"></i><span>' + L('发送', 'Send') + '</span></button></div></div></div>' +
+      '</div>' +
+      '<aside class="hp"><div class="wtop"><b>' + L('任务', 'Issues') + ' <span data-k="tcount" class="n">0</span></b><span class="r hsum" data-k="tsum"></span></div><div class="hp-b">' +
+        '<div data-k="tasks"><div class="hempty">' + L('当前会话还没有关联任务。', 'No issues linked to this session yet.') + '</div></div>' +
+        '<div class="hp-sec"><p class="hd">' + L('会话上下文', 'Session') + '</p><dl class="hkv2"><dt>' + L('运行设备', 'Machine') + '</dt><dd>' + L('王磊的 Mac', 'Leo’s Mac') + ' <i class="on-dot"></i></dd><dt>Agent</dt><dd>Claude Code 0.89</dd><dt>' + L('所属项目', 'Project') + '</dt><dd>NocoCRM</dd><dt>' + L('工作目录', 'Folder') + '</dt><dd class="mono">~/code/crm</dd></dl></div>' +
+        '<div class="hp-sec"><p class="hd">' + L('Agent 团队实时状态', 'Agent team status') + '</p><p class="hteam"><span class="spin"></span><span data-k="team">' + L('9 台运行环境 · 21 个任务推进中', '9 runtimes · 21 issues in flight') + '</span></p></div>' +
+      '</div></aside></div>';
+  }
+  function heroTaskRows() {
+    return getHTASKS().map(function (t, i) {
+      return '<div class="ht" data-t="' + i + '"><div class="ht1"><span class="si backlog"></span><b>' + t[1] + '</b><span class="hst">' + L('待规划', 'To plan') + '</span></div><div class="ht2"><span class="id">' + t[0] + '</span><span class="w"></span></div></div>';
+    }).join('');
+  }
+  var CAPK = ['data', 'file', 'org', 'acl', 'wf', 'ai', 'kb', 'mail', 'notify', 'ext', 'ui', 'audit', 'ops'];
+  function getCAPS() {
+    return isEn() ? trCaps([
+      ['database', 'Data Model', 'Tables, fields, relations & migrations'],
+      ['file', 'Files', 'Storage providers, preview & ACL'],
+      ['users', 'Users & Org', 'Accounts, departments & roles'],
+      ['key-round', 'Permissions', 'Pages, actions & records, for people and agents'],
+      ['workflow', 'Workflows', 'Stages, branching & approvals'],
+      ['bot', 'AI & Agents', 'Models, tools & agent runtime'],
+      ['book-open', 'Knowledge', 'Domain docs & scoped retrieval'],
+      ['mail', 'Email', 'Two-way sync tied to records'],
+      ['bell', 'Notifications', 'In-app, email & group chats'],
+      ['plug', 'Integrations', 'APIs, API keys & external DBs'],
+      ['layout-dashboard', 'UI & Views', 'Pages, blocks, nav & i18n'],
+      ['history', 'Records', 'Workflow, approval & agent-run history'],
+      ['wrench', 'Deployment', 'Deploys, upgrades & rollback']
+    ]) : [
+      ['database', '数据建模', '数据表、字段、关联关系与迁移'],
+      ['file', '文件管理', '上传、多端存储、在线预览与权限'],
+      ['users', '用户与组织', '账号体系、部门架构与成员管理'],
+      ['key-round', '权限控制', '页面、操作与数据范围，人与 Agent 同一套'],
+      ['workflow', '工作流与审批', '多阶段流转、条件分支与审批'],
+      ['bot', 'AI 与 Agent', '模型接入、工具调用与 Agent 接口'],
+      ['book-open', '知识库', '业务文档沉淀与受控检索'],
+      ['mail', '邮件互通', '收发邮件并自动关联业务记录'],
+      ['bell', '消息通知', '站内信、邮件与群消息'],
+      ['plug', '外部集成', 'API、API Key 与外部数据库'],
+      ['layout-dashboard', '界面与配置', '页面布局、导航菜单与多语言'],
+      ['history', '处理记录', '流程、审批与 Agent 运行都有记录'],
+      ['wrench', '部署与升级', '部署、升级与回滚']
+    ];
+  }
+  function heroFootHTML() {
+    var caps = getCAPS();
+    return '<div class="base"><div class="base-h"><b><i data-lucide="layers"></i>NocoBase Core</b></div><div class="base-c">' +
+      '<span data-cap="std"><i data-lucide="ruler"></i>' + M('开发规范', 'Standards') + '</span>' +
+      caps.map(function (c, i) { return '<span data-cap="' + CAPK[i] + '"><i data-lucide="' + c[0] + '"></i>' + c[1] + '</span>'; }).join('') + '</div></div>';
+  }
+
+  /* 业务专家：他看到的都是业务问题；技术细节由 Agent 与 Studio 在背后处理 */
+  /* ---------- Core：上面薄薄一层是 Agent 写的业务插件，下面是已经就绪的 Core ---------- */
+  var MODS = [
+    ['客户分级', 'Customer tiers', '按合同额分 A/B/C，每月重算', 'A/B/C by contract value, monthly', ['data', 'wf', 'acl']],
+    ['折扣审批', 'Discount approval', '折扣超 15% 须经理审批', 'Over 15% needs a manager', ['wf', 'acl', 'notify']],
+    ['续约提醒', 'Renewal reminders', '到期前 60 天起草续约方案', 'Drafts renewals 60 days out', ['ai', 'kb', 'mail']],
+    ['供应商评分', 'Supplier scoring', '汇总交期与质检记录打分', 'Scores delivery and QA records', ['data', 'file', 'ext']]
+  ];
+  function coreFig() {
+    var caps = getCAPS();
+    var name = function (k) { return caps[CAPK.indexOf(k)][1]; };
+    return '<div class="cx">' +
+      '<div class="cx-h"><b><i data-lucide="bot"></i>' + M('你的业务 · Agent 编写', 'Your business logic · written by agents') + '</b></div>' +
+      '<div class="cx-mods">' + MODS.map(function (m, i) {
+        return '<div class="cx-mod" tabindex="0" data-m="' + i + '" data-caps="' + m[4].join(' ') + '"><div class="t"><b>' + M(m[0], m[1]) + '</b></div><p>' + M(m[2], m[3]) + '</p>' +
+          '<div class="u">' + m[4].map(function (k) { return '<span>' + name(k) + '</span>'; }).join('') + '</div></div>';
+      }).join('') + '</div>' +
+      '<div class="plate cx-plate"><div class="plate-h"><b><i data-lucide="layers"></i>NocoBase Core<em>' + M('已就绪', 'Ready') + '</em></b></div>' +
+        /* 第一行：统一的项目结构和开发规范（对应核心特色「为 Agent 提供统一的架构和规范」） */
+        '<div class="cx-std"><div class="l"><b><i data-lucide="ruler"></i>' + M('统一的项目结构和开发规范', 'One project structure and one set of standards') + '</b><span>' + M('换人、换模型，项目架构都能保持统一、受控', 'New people or new models, the architecture stays consistent and under control') + '</span></div>' +
+          '<div class="its"><span><i data-lucide="folder-tree"></i>' + M('项目脚手架', 'Project scaffold') + '</span><span><i data-lucide="file-check-2"></i>' + M('架构规范', 'Architecture rules') + '</span><span><i data-lucide="sparkles"></i>' + M('开发技能', 'Dev skills') + '</span></div></div>' +
+        /* 下面：基础能力（对应核心特色「基础能力不用从头开发和验证」），最后一格说明一共 20 多项 */
+        '<div class="caps">' +
+        caps.map(function (c, i) { return '<div data-cap="' + CAPK[i] + '"><b><i data-lucide="' + c[0] + '"></i>' + c[1] + '</b><span>' + c[2] + '</span></div>'; }).join('') +
+        '<div class="more"><b><i data-lucide="plus"></i>' + M('20 多项基础能力', '20+ capabilities') + '</b><span>' + M('由 NocoBase 持续维护和升级', 'Maintained and upgraded by NocoBase') + '</span></div></div>' +
+        '</div>' +
+    '</div>';
+  }
+  /* 悬停或聚焦业务插件时，点亮它用到的 Core 能力 */
+  function coreHot(i) {
+    var fig = $('coreFig'), keys = i == null ? [] : MODS[i][4];
+    fig.classList.toggle('hot', i != null);
+    fig.querySelectorAll('.cx-mod').forEach(function (n) { n.classList.toggle('on', +n.dataset.m === i); });
+    fig.querySelectorAll('.caps [data-cap]').forEach(function (n) { n.classList.toggle('on', keys.indexOf(n.dataset.cap) >= 0); });
+  }
+  $('coreFig').addEventListener('mouseover', function (e) { var m = e.target.closest('.cx-mod'); if (m) coreHot(+m.dataset.m); });
+  $('coreFig').addEventListener('mouseleave', function () { coreHot(null); });
+  $('coreFig').addEventListener('focusin', function (e) { var m = e.target.closest('.cx-mod'); if (m) coreHot(+m.dataset.m); });
+  $('coreFig').addEventListener('focusout', function () { coreHot(null); });
+
+  /* ---------- Solutions：六个应用 ---------- */
+  /* 每个应用一张专属图，突出它最核心的特点；模板在 Solutions 段的 <template id="tpl-…"> 里，由 homepage/scripts/figs/home-sol.mjs 生成。
+     选中应用时，左侧展开 head 这句话（这张图讲的事）：已上线的再加「了解 →」链到内页，另外三款名称后标「即将推出」 */
+  function getAPPS() {
+    return [
+      { name: 'NocoCRM', use: M('销售管理', 'Sales CRM'), icon: 'handshake', tpl: 'crm', href: 'solution-crm.html',
+        head: M('Agent 处理了 37 项日常工作，需要你拍板的只有 6 件。', 'Agents handled 37 routine tasks today. Only 6 needed your decision.') },
+      { name: 'NocoITAM', use: M('IT 资产台账与管理', 'IT Asset Management'), icon: 'monitor-smartphone', tpl: 'itam', href: 'solution-itam.html',
+        head: M('省下的每一笔钱，都说得清来龙去脉。', 'Every saving comes with a paper trail.') },
+      { name: 'NocoReach', use: M('内容与增长', 'Growth'), icon: 'megaphone', tpl: 'reach', href: 'solution-reach.html',
+        head: M('AI 找出增长机会，交给 Agent 执行。', 'AI finds growth opportunities. Agents put them into action.') },
+      { name: 'NocoSupport', use: M('客户服务', 'Support'), icon: 'headset', tpl: 'support', soon: 1,
+        head: M('夜里进来的工单，早上已经处理完，只有 3 件等你拍板。', 'Overnight tickets are handled by morning. Only 3 need you.') },
+      { name: 'NocoProject', use: M('项目协作', 'Projects'), icon: 'folder-kanban', tpl: 'project', soon: 1,
+        head: M('目标交给 Agent 拆解推进，延期风险提前冒出来。', 'Agents drive the plan and flag delays before they land.') },
+      { name: 'NocoHR', use: M('人事管理', 'HR Ops'), icon: 'users', tpl: 'hr', soon: 1,
+        head: M('新人入职前一天，一切已经就绪。', 'Everything is ready the day before a new hire starts.') }
+    ];
+  }
+  function appFig(a) { return $('tpl-' + a.tpl).innerHTML; }
+
+  /* ---------- 渲染 ---------- */
+  var tabs = $('apptabs');
+  var cur = 0;
+  var appH = 0;
+
+  function renderTabs() {
+    var apps = getAPPS();
+    /* 每个应用：名称和用途一行；选中时下面展开图上讲的那件事和「了解 →」（链接不能放在按钮里，所以和按钮并列） */
+    tabs.innerHTML = apps.map(function (a, i) {
+      var more = a.soon ? '' : '<a class="link" href="' + a.href + '">' + M('了解 {app}', 'Explore {app}').replace('{app}', a.name) + '<i data-lucide="arrow-right"></i></a>';
+      return '<div class="appit' + (i === cur ? ' on' : '') + '" role="presentation"><button type="button" class="apptab" role="tab" id="appTab' + i + '" aria-controls="appPanel" aria-selected="' + (i === cur) + '" tabindex="' + (i === cur ? 0 : -1) + '" data-i="' + i + '">' +
+        '<i data-lucide="' + a.icon + '"></i><span class="nm"><b>' + a.name + '</b><span class="u">' + a.use + (a.soon ? ' · ' + M('即将推出', 'Soon') : '') + '</span></span></button>' +
+        '<div class="appd"><p>' + a.head + '</p>' + more + '</div></div>';
+    }).join('');
+  }
+  function showApp(i, focus) {
+    var apps = getAPPS();
+    cur = i;
+    tabs.querySelectorAll('.appit').forEach(function (it, j) {
+      var b = it.querySelector('.apptab'), on = j === i;
+      it.classList.toggle('on', on);
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+      if (on && focus) b.focus();
+    });
+    $('appPanel').setAttribute('aria-labelledby', 'appTab' + i);
+    $('appFig').innerHTML = appFig(apps[i]);
+    icons();
+    sizeApp();
+    fit();
+  }
+  tabs.addEventListener('click', function (e) { var b = e.target.closest('.apptab'); if (b) showApp(+b.dataset.i); });
+  tabs.addEventListener('keydown', function (e) {
+    var d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+    if (!d || !e.target.closest('.apptab')) return;
+    e.preventDefault();
+    var n = getAPPS().length;
+    showApp((cur + d + n) % n, true);
+  });
+
+  /* ---------- Studio：四条核心特色，各一张图；图在 <template id="stv-…"> 里，由 homepage/scripts/figs/home-studio.mjs 生成 ---------- */
+  var stvTabs = [].slice.call(document.querySelectorAll('.stv-tab'));
+  var stvCur = 'team', stvH = 0;
+  function stvShow(k, focus) {
+    stvCur = k;
+    stvTabs.forEach(function (b) {
+      var on = b.dataset.k === k;
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+      if (on && focus) b.focus();
+    });
+    $('stvPanel').setAttribute('aria-labelledby', 'stvTab-' + k);
+    $('stvFig').innerHTML = $('stv-' + k).innerHTML;
+    /* 四张图高度不同，统一按最高的一张撑开，切换时页面不跳动 */
+    var el = $('stvFig').firstElementChild;
+    if (el && stvH) el.style.minHeight = stvH + 'px';
+    icons();
+    fit();
+  }
+  function measureStv() {
+    var box = $('stvFig'), max = 0;
+    box.style.width = box.closest('.fit').dataset.w + 'px';
+    stvTabs.forEach(function (b) { box.innerHTML = $('stv-' + b.dataset.k).innerHTML; icons(); max = Math.max(max, box.firstElementChild.offsetHeight); });
+    stvH = max;
+    stvShow(stvCur);
+  }
+  document.querySelector('.stv-tabs').addEventListener('click', function (e) { var b = e.target.closest('.stv-tab'); if (b) stvShow(b.dataset.k); });
+  document.querySelector('.stv-tabs').addEventListener('keydown', function (e) {
+    var d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+    if (!d) return;
+    e.preventDefault();
+    var i = stvTabs.findIndex(function (b) { return b.dataset.k === stvCur; });
+    stvShow(stvTabs[(i + d + stvTabs.length) % stvTabs.length].dataset.k, true);
+  });
+
+  function sizeApp() {
+    /* 各应用的图高度不同，统一按最高的一张撑开，切换时页面不跳动 */
+    var el = $('appFig').firstElementChild;
+    if (el && appH) el.style.minHeight = appH + 'px';
+  }
+  function measureApps() {
+    var apps = getAPPS();
+    var box = $('appFig'), max = 0;
+    box.style.width = box.closest('.fit').dataset.w + 'px';
+    apps.forEach(function (a) { box.innerHTML = appFig(a); icons(); max = Math.max(max, box.firstElementChild.offsetHeight); });
+    appH = max;
+    showApp(cur);
+  }
+  function renderStaticFigs() {
+    $('heroFig').innerHTML = heroFig();
+    $('heroFoot').innerHTML = heroFootHTML();
+    $('coreFig').innerHTML = coreFig();
+    renderTabs();
+  }
+  renderStaticFigs();
+
+  /* ---------- 首屏演示：在会话里说一句 → Agent 分析、开发、测试 → 人批准上线 ---------- */
+  var hero = $('heroSheet');
+  var hq = function (k) { return hero.querySelector('[data-k="' + k + '"]'); };
+  var SPEED = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0.08 : 1;
+  var S = {};
+  var timers = [];
+  var typer, testTimer;
+  function at(ms, fn) { timers.push(setTimeout(fn, ms * SPEED)); }
+  function clearTimers() {
+    while (timers.length) clearTimeout(timers.pop());
+    clearInterval(typer);
+    clearInterval(testTimer);
+  }
+  /* 任务状态同时更新：右栏任务、对话里的任务卡、左栏这条会话的任务条 */
+  var TST = {
+    backlog: { si: 'backlog', zh: '待规划', en: 'To plan', seg: 'b' },
+    progress: { si: 'progress', zh: '进行中', en: 'In progress', seg: 's' },
+    review: { si: 'review', zh: '待验收', en: 'To accept', seg: 'r' },
+    done: { si: 'review', zh: '已完成', en: 'Done', seg: 'd' }
+  };
+  S.ts = [];
+  function sessRow(id) { return hero.querySelector('[data-s="' + id + '"]'); }
+  function setSess(id, o) {
+    var r = sessRow(id);
+    if (!r) return;
+    if (o.t) r.querySelector('.st-t').textContent = o.t;
+    if (o.time) r.querySelector('.st-time').textContent = o.time;
+    if (o.bar) { var lb = r.querySelector('.lb'); lb.hidden = !o.bar.length; lb.innerHTML = segs(o.bar); r.querySelector('.st-n').textContent = noTasks(o.bar.length); }
+    if (o.st !== undefined) r.querySelector('.st-s').innerHTML = sstat(o.st, o.n);
+  }
+  function setTask(i, st, who) {
+    S.ts[i] = st;
+    var d = TST[st], row = hero.querySelector('[data-t="' + i + '"]');
+    row.querySelector('.si').className = 'si ' + d.si;
+    row.querySelector('.hst').textContent = L(d.zh, d.en);
+    row.querySelector('.hst').className = 'hst ' + st;
+    if (who !== undefined) row.querySelector('.w').innerHTML = who;
+    var c = hq('cs' + i);
+    if (c) { c.textContent = L(d.zh, d.en); c.className = 'hst ' + st; }
+    setSess('cur', { bar: S.ts.map(function (s) { return TST[s].seg; }) });
+    var n = { progress: 0, review: 0, done: 0, backlog: 0 };
+    S.ts.forEach(function (s) { n[s]++; });
+    hq('tsum').textContent = [n.done && n.done + ' ' + L('完成', 'done'), n.review && n.review + ' ' + L('待验收', 'to accept'), n.progress && n.progress + ' ' + L('进行中', 'active'), n.backlog && n.backlog + ' ' + L('待规划', 'to plan')].filter(Boolean).join(' · ');
+    icons();
+  }
+  var RUN = function (text) { return '<span class="spin"></span><span>' + text + '</span>'; };
+  function setInbox(n) { hq('count').textContent = n; }
+  function show(k) { hero.querySelectorAll('[data-k="' + k + '"]').forEach(function (n) { n.hidden = false; }); }
+  /* 会话消息：新内容出现时滚到底 */
+  function down() { var m = hq('msgs'); m.scrollTop = m.scrollHeight; }
+  function node(cls, html) { var el = document.createElement('div'); el.className = cls; el.innerHTML = html; return el; }
+  function put(el) { hq('msgs').appendChild(el); icons(); down(); return el; }
+  function day(t) { put(node('day', t)); }
+  function me(text, time) { put(node('hm me', '<div class="hb">' + esc(text) + '</div><span class="hw">' + time + '</span>')); }
+  function say(av, who, time) { return put(node('hm', av + '<div class="body"><div class="who"><b>' + who + '</b>' + time + '</div></div>')); }
+  function part(msg, cls, html) { var el = node(cls, html); msg.querySelector('.body').appendChild(el); icons(); down(); return el; }
+  /* 任务进展回到会话：一行，不加装饰 */
+  function note(icon, text, time) { return put(node('hnote', '<i data-lucide="' + icon + '"></i><span>' + text + '</span><time>' + time + '</time>')); }
+  /* 底座上亮起正在使用的能力；用过的保持浅色 */
+  function useCap(key) {
+    hero.querySelectorAll('.base-c .on').forEach(function (n) { n.classList.remove('on'); n.classList.add('used'); });
+    if (key) { var c = hero.querySelector('[data-cap="' + key + '"]'); c.classList.remove('used'); c.classList.add('on'); }
+  }
+
+  /* 页面打开后把需求一个字一个字打进输入框，打完停 5 秒，删掉再打，一直循环到访客点「发送」；
+     整句都在输入框里时「发送」才亮。减少动态效果时直接显示整句，不循环 */
+  function typeReq() {
+    var d = hq('draft'), send = hq('send'), txt = getREQ(), i = 0, dir = 1, hold = 0;
+    if (!d || S.started) return;
+    clearInterval(typer);
+    var draw = function () { d.innerHTML = esc(txt.slice(0, i)) + '<span class="caret"></span>'; send.classList.toggle('hot', i === txt.length); };
+    if (SPEED < 1) { i = txt.length; draw(); return; }
+    typer = setInterval(function () {
+      if (hold > 0) { hold--; return; }
+      if (dir > 0) {
+        i++;
+        if (i >= txt.length) { dir = -1; hold = 120; }
+      } else {
+        i = Math.max(0, i - 3);
+        if (i === 0) { dir = 1; hold = 15; }
+      }
+      draw();
+    }, 42);
+  }
+  function start() {
+    if (S.started) return;
+    S.started = true;
+    clearInterval(typer);
+    var send = hq('send');
+    send.disabled = true;
+    send.classList.remove('hot');
+    hq('comp').classList.add('sent');
+    hq('draft').className = 't ph';
+    hq('draft').textContent = L('回复，或说下一件事… 用 # 提到任务', 'Reply, or start the next thing… # to mention an issue');
+    hq('hello').remove();
+    day(L('周二', 'Tuesday'));
+    me(getREQ(), '18:20');
+    hq('title').textContent = L('客户分级', 'Customer tiering');
+    setSess('cur', { t: L('客户分级', 'Customer tiering'), time: '18:20' });
+
+    /* 1 我的 Agent 读代码和知识库，说清规则，建任务 */
+    at(800, function () {
+      S.cc = say(BOT, 'Claude Code', '18:21');
+      S.tool = part(S.cc, 'tool', '<i data-lucide="chevron-right"></i><span>' + L('读了 5 个文件 · 知识库 1 篇 · 项目记忆 2 条', 'Read 5 files · 1 knowledge doc · 2 project memories') + '</span><span class="d"><span class="spin"></span></span>');
+      useCap('kb');
+    });
+    at(2100, function () {
+      S.tool.querySelector('.d').innerHTML = '';
+      useCap();
+      part(S.cc, 'tx', L('规则这样定：', 'The rules:') +
+        '<ul><li>' + L('近 12 个月合同额满 100 万为 A 级，20–100 万为 B 级，其余为 C 级，每月 1 日重算', 'A: ≥ $1M in 12 months; B: $200k–$1M; C: the rest. Recalculated on the 1st') + '</li><li>' + L('更换 A 级客户的负责人要销售经理审批，用现成的审批工作流', 'Changing a Tier A owner needs the sales manager’s approval, on the existing approval workflow') + '</li></ul>');
+      part(S.cc, 'mem', '<i data-lucide="lightbulb"></i><span>' + L('按项目记忆，改等级字段前先跑数据迁移', 'Per project memory: migrate data before changing the tier field') + '</span>');
+      part(S.cc, 'tx', L('拆成 3 个任务，你确认后交给 Agent 团队执行：', 'Here’s the plan as 3 issues. Confirm and the agent team takes over:'));
+    });
+    at(3300, function () {
+      var t = getHTASKS();
+      part(S.cc, 'hcard', '<div class="ch"><i data-lucide="list-checks"></i>' + L('已创建 3 个任务', 'Created 3 issues') + '<span class="r">NocoCRM</span></div>' +
+        t.map(function (x, i) { return '<div class="trow2"><i data-lucide="square-check"></i><span class="id">' + x[0] + '</span><b>' + x[1] + '</b><span class="hst" data-k="cs' + i + '">' + L('待规划', 'To plan') + '</span></div>'; }).join('') +
+        '<div class="cf"><button type="button" class="b p invite long" data-k="go"><i data-lucide="play"></i><span>' + L('方案确认，开始执行', 'Confirm plan & start') + '</span></button><span class="b">' + L('先不开始', 'Not yet') + '</span></div>');
+      hq('tasks').innerHTML = heroTaskRows();
+      hq('tcount').textContent = '3';
+      S.ts = ['backlog', 'backlog', 'backlog'];
+      setTask(0, 'backlog');
+      setSess('cur', { st: 'need' });
+    });
+  }
+
+  /* 人确认方案后，Agent 团队才开始执行 */
+  function go() {
+    var b = hq('go');
+    if (!b || b.disabled || S.going) return;
+    S.going = true;
+    b.disabled = true;
+    b.className = 'b done';
+    if (b.nextElementSibling) b.nextElementSibling.remove();
+    b.innerHTML = '<i data-lucide="check"></i><span>' + L('已确认，交给 Agent 团队', 'Confirmed · handed to the agent team') + '</span>';
+    icons();
+    /* 2 Agent 团队按统一的开发规范并行开发、测试，再换一家模型做代码评审，进展回到会话。固定节拍推进，每次只亮起一项底座能力，看得清 */
+    var BEAT = 1700;
+    var dev = function (who, srv, zh, en) { return RUN(who + ' · ' + srv + ' ' + L(zh, en)); };
+    [
+      function () { note('play', L('调度 Agent 开始执行：3 个任务交给 3 个 Agent 并行', 'Coordinator started: 3 issues to 3 agents in parallel'), '18:23'); setSess('cur', { st: 'run' }); useCap('std'); },
+      function () { setTask(0, 'progress', dev('Codex · GPT-5.5', 'Server 02', '正在开发', 'building')); useCap('data'); },
+      function () { setTask(1, 'progress', dev('OpenCode · DeepSeek V4', 'Server 03', '正在开发', 'building')); useCap('wf'); },
+      function () { setTask(2, 'progress', dev('Codex · GPT-5.5', 'Server 05', '正在开发', 'building')); useCap('acl'); },
+      function () { setTask(0, 'progress', dev('Claude · Sonnet 5.5', 'Server 02', '正在测试 14 项', 'running 14 tests')); useCap('ui'); setSess('board', { bar: ['r'], st: 'need' }); setInbox(3); },
+      function () { setTask(0, 'progress', dev('Claude · Opus 5.5', 'Server 02', '代码评审（换一家模型）', 'code review by another model')); useCap('std'); },
+      function () {
+        setTask(0, 'review', L('测试 14/14 · 评审通过', 'Tests 14/14 · review passed'));
+        note('circle-check', L('CRM-136 字段与迁移完成：测试 14/14，评审通过', 'CRM-136 field and migration: tests 14/14, review passed'), '19:40');
+        useCap();
+      },
+      function () { setTask(2, 'progress', dev('Codex · GPT-5.5', 'Server 05', '正在接入审批通知', 'wiring approval alerts')); useCap('notify'); setSess('q4', { bar: ['d', 'd', 'd', 's', 'b'] }); },
+      function () { setTask(1, 'progress', dev('Claude · Sonnet 5.5', 'Server 03', '正在测试 12 项', 'running 12 tests')); useCap('org'); },
+      function () {
+        setTask(1, 'review', L('测试 12/12 · 评审通过', 'Tests 12/12 · review passed'));
+        note('circle-check', L('CRM-137 每月重算完成：测试 12/12，评审通过', 'CRM-137 monthly re-tiering: tests 12/12, review passed'), '21:05');
+        useCap();
+      },
+      function () { setTask(2, 'progress', dev('Claude · Sonnet 5.5', 'Server 05', '正在测试 9 项', 'running 9 tests')); useCap('audit'); setSess('night', { bar: ['r', 's'], st: 'need' }); setInbox(4); },
+      function () {
+        setTask(2, 'review', L('测试 9/9 · 评审通过', 'Tests 9/9 · review passed'));
+        note('circle-check', L('CRM-138 审批与通知完成：测试 9/9，评审通过', 'CRM-138 approval and alerts: tests 9/9, review passed'), '22:10');
+        useCap();
+      },
+      /* 3 第二天早上：Agent 附上验收清单和截图，只有验收轮到人 */
+      function () {
+        day(L('周三', 'Wednesday'));
+        S.ask = say(BOT, 'Claude Code', '09:02');
+        part(S.ask, 'tx', L('3 个任务都已完成，测试 35/35 通过，代码评审通过。我在预览环境里走了一遍验收场景，截图都附上了，建议验收。', 'All 3 issues are done: 35/35 tests pass and code review passed. I walked through the acceptance scenarios in preview and attached screenshots. I recommend accepting.'));
+        /* 和 Studio 段「有理有据做决策」那张图是同一份清单（6 项，4 项附截图），这里节选 3 项 */
+        var rows = [[L('合同额 100 万分到 A 级', '$1M lands in Tier A'), 1], [L('更换 A 级客户负责人时提交审批', 'Changing a Tier A owner asks for approval'), 1], [L('每月 1 日自动重算等级', 'Tiers recalculate on the 1st'), 0]];
+        part(S.ask, 'hcard hrep', '<div class="ch"><i data-lucide="list-checks"></i>' + L('验收清单', 'Acceptance checklist') + '<span class="r">' + L('6 / 6 通过', '6 / 6 passed') + '</span></div>' +
+          '<div class="cb">' + rows.map(function (r) { return '<div class="rk"><i data-lucide="circle-check"></i><span>' + r[0] + '</span>' + (r[1] ? '<em><i data-lucide="image"></i>' + L('截图', 'Shot') + '</em>' : '') + '</div>'; }).join('') +
+          '<div class="mo">' + L('另有 3 项 · 测试 35/35 · 代码评审通过（换一家模型）', '3 more · tests 35/35 · reviewed by another model') + '</div></div>' +
+          '<div class="cf"><button type="button" class="b p invite long" data-k="approve"><i data-lucide="check"></i><span>' + L('验收通过', 'Accept & Ship') + '</span></button><span class="b">' + L('退回修改', 'Request Changes') + '</span></div>');
+        setSess('cur', { st: 'need', time: '09:02' });
+        setInbox(5);
+      }
+    ].forEach(function (f, i) { at(400 + i * BEAT, f); });
+  }
+
+  /* 4 人验收，调度 Agent 发布，上线后庆祝一下 */
+  function approve() {
+    var b = hq('approve');
+    if (!b || b.disabled) return;
+    b.disabled = true;
+    b.classList.remove('invite');
+    b.innerHTML = '<span class="spin"></span><span>' + L('处理中…', 'Working…') + '</span>';
+    setInbox(4);
+    [0, 1, 2].forEach(function (i) { at(500 + i * 400, function () { setTask(i, 'done', L('已合并', 'Merged')); }); });
+    at(1900, function () {
+      note('rocket', L('已合并 · v1.8.0 按你的批准发布到生产', 'Merged · v1.8.0 is deploying to production with your approval'), '09:06');
+      setSess('cur', { st: 'run', time: '09:06' });
+      useCap('ops');
+    });
+    at(4400, function () {
+      [0, 1, 2].forEach(function (i) { setTask(i, 'done', L('生产 ✓ 1.8.0', 'Production ✓ 1.8.0')); });
+      setSess('cur', { st: 'done' });
+      note('lightbulb', L('Claude Code 记下 1 条项目记忆：重算等级前先排除已作废的合同', 'Claude Code saved a project memory: drop voided contracts before re-tiering'), '09:07');
+      useCap('audit');
+      at(1500, function () { useCap(); });
+      b.className = 'b done';
+      b.innerHTML = '<i data-lucide="check"></i>' + L('已验收', 'Accepted');
+      if (b.nextElementSibling) b.nextElementSibling.remove();
+      celebrate();
+      hq('replay').hidden = false;
+    });
+  }
+  /* 收尾：三行对回定义「Agent 写代码、做执行，NocoBase 提供底座和治理能力，人来做决策」，配上这一次的数字 */
+  function celebrate() {
+    var used = [].filter.call(hero.querySelectorAll('.base-c [data-cap]'), function (n) { return n.dataset.cap !== 'std' && (n.classList.contains('used') || n.classList.contains('on')); }).length;
+    var row = function (cls, ic, zh, en, dzh, den) { return '<li class="' + cls + '"><i data-lucide="' + ic + '"></i><b>' + M(zh, en) + '</b><span>' + M(dzh, den).replace('{n}', used) + '</span></li>'; };
+    var card = put(node('hfin',
+      '<div class="hd"><span class="ic"><i data-lucide="party-popper"></i></span><div><b>' + M('v1.8.0 已上线', 'v1.8.0 is live') + '</b><span>' + M('客户分级已进入生产 · 可回滚到上一版本', 'Customer tiering is in production · roll back anytime') + '</span></div><time>09:08</time></div>' +
+      '<ul>' +
+        row('r-ag', 'bot', 'Agent 写代码、做执行', 'Agents write the code and do the work', '3 个任务 · 35 项测试 · 3 轮代码评审', '3 issues · 35 tests · 3 code reviews') +
+        row('r-nb', 'layers', 'NocoBase 提供底座和治理能力', 'NocoBase provides the foundation and governance', '用到 {n} 项底座能力 · 统一开发规范 · 测试、评审、验收三道检查', '{n} building blocks · one set of dev standards · tests, review, and sign-off') +
+        row('r-hu', 'user-check', '人来做决策', 'People make the decisions', '你做了 2 次决定', 'You made 2 decisions') +
+      '</ul>'));
+    if (SPEED < 1) return;
+    var box = hero.getBoundingClientRect(), r = card.getBoundingClientRect();
+    var cx = r.left - box.left + r.width / 2, cy = r.top - box.top + r.height / 2;
+    var colors = ['var(--pass)', 'var(--brand)', 'var(--human)', 'var(--agent)', 'oklch(0.7 0.16 25)'];
+    var html = '';
+    for (var i = 0; i < 44; i++) {
+      var ang = Math.random() * Math.PI * 2, dist = 90 + Math.random() * 190;
+      html += '<i style="left:' + cx + 'px;top:' + cy + 'px;--c:' + colors[i % colors.length] + ';--x:' + Math.round(Math.cos(ang) * dist) + 'px;--y:' + Math.round(Math.sin(ang) * dist * 0.75 - 40) + 'px;--r:' + Math.round(Math.random() * 720 - 360) + 'deg;animation-delay:' + Math.round(Math.random() * 120) + 'ms"></i>';
+    }
+    var fx = document.createElement('div');
+    fx.className = 'confetti';
+    fx.innerHTML = html;
+    hero.appendChild(fx);
+    setTimeout(function () { fx.remove(); }, 2600);
+  }
+  function replay() {
+    clearTimers();
+    $('heroFig').innerHTML = heroFig();
+    $('heroFoot').innerHTML = heroFootHTML();
+    S = {};
+    icons();
+    fit();
+    typeReq();
+  }
+  hero.addEventListener('click', function (e) {
+    if (e.target.closest('[data-k="send"]')) start();
+    else if (e.target.closest('[data-k="go"]')) go();
+    else if (e.target.closest('[data-k="approve"]')) approve();
+    else if (e.target.closest('[data-k="replay"]')) replay();
+  });
+
+  /* ---------- 演示视频：打开时才加载，关闭时停止播放。VIDEO 按当前语言给出视频地址（mp4，或 YouTube / Bilibili 的嵌入地址）。
+     品牌片每种语言一版，在 static-docs 上：nocobase-3-<语言>.mp4（zh、en、de、es、fr、pt、ru、id、vi、zh-TW、ja、ko） ---------- */
+  var VIDEO = function () { return 'https://static-docs.nocobase.com/nocobase-3-' + (window.__lang || 'en') + '.mp4'; };
+  var modal = $('videoModal'), frame = $('videoFrame');
+  function videoHTML() {
+    var v = VIDEO();
+    if (!v) return '<div class="vempty"><i data-lucide="circle-play"></i><span>' + M('演示视频即将上线', 'Demo video coming soon') + '</span></div>';
+    if (/\.(mp4|webm)(\?|$)/.test(v)) return '<video src="' + v + '" controls controlslist="nodownload" autoplay playsinline></video>';
+    return '<iframe src="' + v + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+  }
+  $('videoBtn').addEventListener('click', function () { frame.innerHTML = videoHTML(); icons(); modal.showModal(); });
+  modal.addEventListener('close', function () { frame.innerHTML = ''; });
+  modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('.vclose')) modal.close(); });
+
+  /* ---------- 图纸等比缩放 ---------- */
+  /* 手机上（视口窄于 640px）界面图最小按 PAN_MIN 倍显示，字不会小到看不清；超出屏幕的部分左右滑动查看。
+     初始位置停在界面主体：有 data-focus（设计稿横坐标）就用它，否则跳过最左侧的导航栏 */
+  var PAN_MIN = 0.72;
+  function panHint(box, on) {
+    var h = box.nextElementSibling;
+    if (!h || !h.classList.contains('pan-hint')) {
+      if (!on) return;
+      h = document.createElement('p');
+      h.className = 'pan-hint';
+      h.innerHTML = '<i data-lucide="move-horizontal"></i><t-zh>左右滑动查看完整界面</t-zh><t-en>Swipe to see the full screen</t-en>';
+      box.after(h);
+      if (window.lucide) lucide.createIcons({ attrs: { 'aria-hidden': 'true' } });
+    }
+    h.hidden = !on;
+  }
+  function fit() {
+    var narrow = window.innerWidth < 640;
+    /* 手机上首屏演示只留中间的对话栏，按 460 宽排，不用左右滑 */
+    var hf = $('heroSheet').querySelector('.fit'), hw = hf.querySelector('.hwin');
+    hf.dataset.w = narrow ? 460 : 1120;
+    if (hw) hw.classList.toggle('solo', narrow);
+    var capH = Math.max(480, Math.min(640, window.innerHeight - 150));
+    document.querySelectorAll('.fit').forEach(function (box) {
+      var inner = box.querySelector('.fit-in'), w = +box.dataset.w;
+      var clip = inner.parentNode !== box ? inner.parentNode : null;
+      inner.style.width = w + 'px';
+      /* 可滑动时容器向两侧多出的宽度正好是内边距，减掉后就是版心宽度 */
+      var cs = getComputedStyle(box);
+      var s = (box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)) / w;
+      if (!box.hasAttribute('data-up') && !box.closest('.sheet')) s = Math.min(1, s);
+      var pan = narrow && s < PAN_MIN;
+      if (pan) s = PAN_MIN;
+      /* 桌面上图纸里的大图不超过一屏：高度超过 640px 或「窗口高度 − 导航与留白」时等比缩小，水平居中 */
+      var ih = inner.offsetHeight, capped = false;
+      if (!narrow && box.closest('.sheet') && ih * s > capH) { s = capH / ih; capped = true; }
+      inner.style.marginLeft = capped ? Math.floor((box.clientWidth - w * s) / 2) + 'px' : '';
+      box.classList.toggle('pan', pan);
+      if (pan && !clip) { clip = document.createElement('div'); clip.className = 'fit-clip'; box.insertBefore(clip, inner); clip.appendChild(inner); }
+      if (!pan && clip) { box.insertBefore(inner, clip); clip.remove(); clip = null; }
+      inner.style.transform = s !== 1 ? 'scale(' + s + ')' : '';
+      var h = Math.ceil(inner.offsetHeight * s);
+      if (clip) { clip.style.width = Math.ceil(w * s) + 'px'; clip.style.height = h + 24 + 'px'; }
+      box.style.height = h + (pan ? 24 : 0) + 'px';
+      if (pan && !box.dataset.panned) {
+        var side = inner.querySelector('.sb, .sx-side');
+        var f = box.dataset.focus ? +box.dataset.focus : (side && side.getBoundingClientRect().left - inner.getBoundingClientRect().left < 4 ? side.offsetWidth : 0);
+        box.scrollLeft = f * s;
+        box.dataset.panned = '1';
+      }
+      panHint(box, pan);
+    });
+  }
+  function icons() { if (window.lucide) lucide.createIcons({ attrs: { 'aria-hidden': 'true' } }); }
+
+  icons();
+  measureApps();
+  measureStv();
+  fit();
+  setTimeout(typeReq, 700);
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { measureApps(); measureStv(); fit(); });
+  window.addEventListener('load', fit);
+})();
+</script>

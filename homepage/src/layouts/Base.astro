@@ -1,0 +1,44 @@
+---
+// 官网所有页面的外壳：head（标题、canonical、hreflang、统计）、共用的导航和页脚、页面正文和页面自己的脚本。内容由 src/lib/site.mjs 的 renderPage() 给出。
+// 页面自己的 <style>（正文开头写的，要盖过 site.css）放在 body 开头：Astro 把打包的样式表放在 head 的最后，写在 head 里会排在它前面。
+// 样式的顺序：颜色字体变量 → 字体 → 导航页脚 → 官网共用样式，首页再加 home.css（在 pages/index.astro 里引入）。
+import '@nocobase/site-shared/styles/tokens.css';
+import '@nocobase/site-shared/fonts/fonts.css';
+import '@nocobase/site-shared/fonts/inter.css';
+import '@nocobase/site-shared/styles/shell.css';
+import '../styles/site.css';
+import Analytics from '@nocobase/site-shared/Analytics.astro';
+import Footer from '@nocobase/site-shared/Footer.astro';
+import Header from '@nocobase/site-shared/Header.astro';
+import { ANALYTICS } from '../lib/nav.mjs';
+
+const { page } = Astro.props;
+---
+<!doctype html>
+<html lang={page.htmlLang}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{page.title}</title>
+<meta name="description" content={page.description}>
+{page.noindex ? <meta name="robots" content="noindex"> : <link rel="canonical" href={page.canonical}>}
+{page.alternates.map(([h, u]) => <link rel="alternate" hreflang={h} href={u}>)}
+<script is:inline set:html={page.inline}></script>
+<Analytics {...ANALYTICS} />
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+</head>
+<body data-page={page.pageId || undefined} class={page.band ? 'has-band' : undefined}>
+<Fragment set:html={page.style} />
+<Header {...page.header} />
+<main id={page.mainId}><Fragment set:html={page.main} /></main>
+<Footer {...page.footer} />
+<Fragment set:html={page.after} />
+<slot />
+<script>
+  import '@nocobase/site-shared/shell.js';
+  import '../scripts/lucide.js';
+</script>
+</body>
+</html>

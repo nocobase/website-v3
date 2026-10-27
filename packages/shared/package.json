@@ -1,0 +1,19 @@
+{
+  "name": "@nocobase/site-shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./Header.astro": "./src/Header.astro",
+    "./Footer.astro": "./src/Footer.astro",
+    "./Analytics.astro": "./src/Analytics.astro",
+    "./languages": "./src/languages.mjs",
+    "./config": "./src/config.mjs",
+    "./integration": "./src/integration.mjs",
+    "./sitemap": "./src/sitemap.mjs",
+    "./styles/*": "./src/styles/*",
+    "./fonts/*": "./src/fonts/*",
+    "./v2-redirect-prefixes.txt": "./v2-redirect-prefixes.txt",
+    "./shell.js": "./src/shell.js"
+  }
+}

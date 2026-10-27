@@ -1,0 +1,14 @@
+---
+// 非英文语言的首页（/zh-CN/、/ja-JP/……），和 ../index.astro 一样。
+import Base from '../../layouts/Base.astro';
+import { BY_CODE, ALL } from '../../lib/config.mjs';
+import { getSite, renderPage } from '../../lib/site.mjs';
+// home.css 要排在 Base 引入的 site.css 之后，所以放在 import Base 后面
+import '../../styles/home.css';
+
+export function getStaticPaths() {
+  return ALL.filter(c => c !== 'en').map(c => ({ params: { lang: BY_CODE[c].dir }, props: { code: c } }));
+}
+const page = renderPage(getSite().byId.get(''), Astro.props.code);
+---
+<Base page={page} />

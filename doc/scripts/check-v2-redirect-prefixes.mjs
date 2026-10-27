@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 const dir = dirname(fileURLToPath(import.meta.url));
 
-export function readPrefixes(file = join(dir, 'v2-redirect-prefixes.txt')) {
+export function readPrefixes(file = join(dir, '../../packages/shared/v2-redirect-prefixes.txt')) {
   const prefixes = readFileSync(file, 'utf8').split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith('#'));
   const invalid = prefixes.filter((prefix) => !/^[A-Za-z0-9._-]+$/.test(prefix));
   if (invalid.length) throw new Error(`v2-redirect-prefixes.txt 里每行只能是一个路径段：${invalid.join('、')}`);
@@ -29,7 +29,7 @@ export function findV2RedirectConflicts(outDir, prefixes = readPrefixes()) {
 export function assertNoV2RedirectConflicts(outDir) {
   const conflicts = findV2RedirectConflicts(outDir);
   if (conflicts.length) {
-    throw new Error(`产物根目录有 ${conflicts.length} 个条目和 v2 旧地址同名，docs.nocobase.com 会把它们 301 到 nocode.docs.nocobase.com：${conflicts.join('、')}。换一个名字；确实要用的话，从 doc/scripts/v2-redirect-prefixes.txt 和 CDN 的 EdgeScript 规则 v2_paths_to_nocode_301 里同时去掉它。`);
+    throw new Error(`产物根目录有 ${conflicts.length} 个条目和 v2 旧地址同名，docs.nocobase.com 会把它们 301 到 nocode.docs.nocobase.com：${conflicts.join('、')}。换一个名字；确实要用的话，从 packages/shared/v2-redirect-prefixes.txt 和 CDN 的 EdgeScript 规则 v2_paths_to_nocode_301 里同时去掉它。`);
   }
 }
 

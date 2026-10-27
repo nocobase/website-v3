@@ -28,6 +28,7 @@ on:
   pull_request:
     paths:
       - 'doc/**'
+      - 'packages/shared/v2-redirect-prefixes.txt'
       - '.github/workflows/docs.yml'
       - 'scripts/deploy-cdn/**'
   push:
@@ -35,6 +36,7 @@ on:
       - main
     paths:
       - 'doc/**'
+      - 'packages/shared/v2-redirect-prefixes.txt'
       - '.github/workflows/docs.yml'
       - 'scripts/deploy-cdn/**'
   workflow_dispatch:
@@ -120,7 +122,7 @@ jobs:
             exit 0
           fi
           read -r status files relevant < <(gh api "repos/${REPOSITORY}/compare/${HEAD_SHA}...${head}" --jq '
-            def watched: startswith("doc/") or startswith("scripts/deploy-cdn/") or . == ".github/workflows/docs.yml";
+            def watched: startswith("doc/") or startswith("scripts/deploy-cdn/") or . == "packages/shared/v2-redirect-prefixes.txt" or . == ".github/workflows/docs.yml";
             [.status, (.files | length), ([.files[] | select((.filename | watched) or ((.previous_filename // "") | watched))] | length)] | @tsv')
           if [ "$status" = "ahead" ] && [ "$files" -lt 300 ] && [ "$relevant" -eq 0 ]; then
             echo "current=true" >> "$GITHUB_OUTPUT"

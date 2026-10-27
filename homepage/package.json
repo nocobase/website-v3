@@ -1,0 +1,27 @@
+{
+  "name": "homepage",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "node scripts/serve.mjs",
+    "test": "vitest run",
+    "figs": "node scripts/figs/product-figs.mjs && node scripts/figs/studio-figs.mjs && node scripts/figs/home-studio.mjs && node scripts/figs/home-sol.mjs",
+    "i18n:extract": "node scripts/i18n.mjs extract",
+    "i18n:check": "node scripts/i18n.mjs check",
+    "cms:import": "node scripts/cms-import.mjs",
+    "fonts": "node scripts/fonts.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "@nocobase/site-shared": "workspace:*",
+    "astro": "7.4.2",
+    "lucide": "0.460.0",
+    "marked": "4.3.0",
+    "yaml": "2.8.1"
+  },
+  "devDependencies": {
+    "vitest": "5.0.5"
+  }
+}

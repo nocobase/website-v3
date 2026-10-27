@@ -3,7 +3,7 @@ title: 发布应用新版本
 description: 修改代码后重新构建，按原来的部署方式更新已有应用。
 ---
 
-发布应用新版本，就是把修改后的代码重新构建，再部署到原来的应用。沿用已有数据库、运行配置和文件存储，应用地址通常也不需要改变。
+发布应用新版本，就是把验证通过的代码重新构建，再通过 Docker 或 PM2（app-installer）更新已有的生产应用。沿用生产环境的数据库、运行配置和文件存储，应用地址通常也不需要改变。
 
 ## 使用 Agent
 
@@ -14,17 +14,16 @@ description: 修改代码后重新构建，按原来的部署方式更新已有�
 部署目录是 /srv/nocobase/tasks。保留已有数据和配置，更新前做好备份，更新后检查应用是否正常。
 ```
 
-使用 app-installer 时提供服务器和安装目录；使用 Studio 时提供应用和目标环境。
+使用 PM2（app-installer）时，提供服务器和已有安装目录，由 app-installer 更新应用。
 
 ## 不使用 Agent
 
-先完成代码修改和测试，再按照原部署方式重新构建、发布。三种方式主要有以下差别：
+先完成代码修改和测试，确认要发布的提交或版本，再按照原部署方式重新构建、发布。两种方式主要有以下差别：
 
 | 部署方式 | 更新时怎么做 |
 | --- | --- |
 | [Docker](../tutorials/deploy-with-docker.md#部署新版本) | 构建新标签的镜像，修改 Compose 中的镜像版本并重新创建容器，保留原配置和存储挂载。 |
-| [app-installer](../tutorials/deploy-with-app-installer.md#部署新版本) | 构建新的部署包，使用 `upgrade` 更新原安装目录；从开发机远程发布时继续使用 `deploy --ssh`。 |
-| [Studio](../tutorials/deploy-to-studio.md#部署新版本) | 在原应用中上传或构建新版本，再部署到原运行环境。 |
+| [PM2（app-installer）](../tutorials/deploy-with-app-installer.md#部署新版本) | 构建新的部署包，使用 app-installer 的 `upgrade` 更新原安装目录；从开发机远程发布时继续使用 `deploy --ssh`。 |
 
 具体命令见各部署指南的“部署新版本”章节。
 

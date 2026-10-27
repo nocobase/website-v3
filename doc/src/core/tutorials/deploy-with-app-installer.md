@@ -1,11 +1,11 @@
 ---
-title: Deploy with app-installer
-description: Install an archive on your server with pm2 supervision and persistent configuration and data.
+title: Deploy with PM2 (app-installer)
+description: Install and update a production application with app-installer, using PM2 process supervision and persistent configuration and data.
 ---
 
 This guide uses the task application as a worked example and also applies to your own NocoBase Core apps. Confirm the target environment with [Choose a deployment method](../deployment/choose-a-deployment-method.md). For your own project, replace example application names, paths, and business acceptance checks.
 
-`@nocobase/app-installer` extracts a release archive, prepares configuration, applies migrations, starts pm2 and checks health. It also manages subsequent application updates.
+Deploy the task application independently to your production server, with PM2 supervising the application process. `@nocobase/app-installer` extracts a release archive, prepares configuration, applies migrations, starts PM2 and checks health. It also manages subsequent application updates.
 
 Verify your application has passed its tests; see [Build your first app](build-your-first-feature.md) for the task example. This guide uses a single instance, SQLite, Linux x64/glibc, Node.js 24 and base path `/tasks`. Other database dialects require the appropriate driver in the source application and a new build.
 

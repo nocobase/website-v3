@@ -54,9 +54,11 @@ Any one approver's approval is enough, and nobody can approve their own request.
 
 The preview environment is created automatically when Studio is installed. It runs in process and isn't protected. By default it runs at most 20 previews at a time, and a preview stops after 10 minutes without visitors and goes dormant after 24 hours.
 
-- A preview loads sample data and generates a first administrator on its first deployment. It never contains your company's real data.
+- A PR preview created through CI loads sample data and generates a first administrator on its first deployment. It never contains your company's real data.
 - When a PR is merged or closed, its preview is deleted automatically.
 - When a preview is missing a variable, the preview area on the issue page lists what's missing. Anyone who can manage environments can set it for the whole preview environment, and every preview uses it from then on.
+
+For automatic PR previews, see [Connect CI](../setup/ci.md).
 
 For real use, give previews their own domain rather than sharing Studio's address, and run previews as a different system user that can't read Studio's configuration. See [Configuration options](../reference/config.md).
 

@@ -3,7 +3,7 @@ title: 插件总览
 description: NocoBase 3 插件清单、主要用途及是否内置。
 ---
 
-本页列出已核对源码中的全部应用插件：主仓库 24 个、商业仓库 2 个，另列出 18 个示例插件。清单按包名字母顺序排列，公开源码通过包名链接提供。
+本页列出已核对源码中的应用插件：主仓库 24 个、商业仓库 2 个。清单按包名字母顺序排列，公开源码通过包名链接提供。
 
 “内置插件”表示创建应用时是否已随默认模板包含该插件。已包含标记为“是”，需要另外安装标记为“否”；是否启用以应用的插件注册文件为准。注册、移除和更新方法见[管理插件](../developing-apps/manage-plugins.md)。
 
@@ -47,31 +47,6 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | `@nocobase/app-plugin-approval` | 审批：将人工审批与记录生命周期关联，处理审批策略和结果。 |
 | `@nocobase/app-plugin-task-center` | 任务中心：聚合不同业务来源的个人待办，提供查询接口和可复用界面。 |
 
-## 示例插件
-
-示例插件用于阅读源码和学习扩展方式，位于各仓库的 `packages/examples/`；默认模板不包含它们。示例中的业务流程可作为实现参考。
-
-| 示例插件 | 演示内容 |
-| --- | --- |
-| `@nocobase/app-plugin-approval-example`（商业仓库） | 审批中心和审批场景验证。 |
-| [`@nocobase/app-plugin-authorization-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-authorization-example) | 业务资源、角色、数据范围、共享和限制规则。 |
-| [`@nocobase/app-plugin-cli-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-cli-example) | 扩展应用命令行。 |
-| [`@nocobase/app-plugin-database-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-database-example) | 编写数据库迁移和种子数据。 |
-| [`@nocobase/app-plugin-file-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-file-example) | 附件表、上传接口和文件页面。 |
-| [`@nocobase/app-plugin-jobs-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-jobs-example) | 周期任务和一次性后台任务。 |
-| [`@nocobase/app-plugin-lifecycle-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-lifecycle-example) | 工单流转和费用单的记录生命周期。 |
-| [`@nocobase/app-plugin-mail-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-mail-example) | 使用模拟邮件服务演示邮箱同步和发送。 |
-| [`@nocobase/app-plugin-notification-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-notification-example) | 任务分配和站内通知。 |
-| [`@nocobase/app-plugin-office-flows-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-office-flows-example) | 数据使用申请和多级公文分发。 |
-| `@nocobase/app-plugin-pro-example`（商业仓库） | 验证商业插件的构建、打包和发布流程。 |
-| [`@nocobase/app-plugin-queue-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-queue-example) | 发布和消费队列消息。 |
-| [`@nocobase/app-plugin-realtime-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-realtime-example) | 协作任务、个人通知和后台导出的实时更新。 |
-| [`@nocobase/app-plugin-repository-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-repository-example) | CRM 与订单的关联数据接口。 |
-| [`@nocobase/app-plugin-routes-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-routes-example) | 服务端接口和前端懒加载路由。 |
-| [`@nocobase/app-plugin-service-provider-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-service-provider-example) | 注册服务及管理服务生命周期。 |
-| [`@nocobase/app-plugin-skills-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-skills-example) | 为插件提供 Agent Skills。 |
-| [`@nocobase/app-plugin-template-print-example`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/examples/app-plugin-template-print-example) | 通过授权后的发票数据打印 DOCX 和 PDF。 |
-
 ## 数据库方言
 
 `@nocobase/db` 通过以下 8 个方言包适配数据库，其中主仓库 5 个、商业仓库 3 个。公开源码通过包名链接提供。
@@ -93,4 +68,4 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 
 清单于 2026-10-25 按 [nocobase `db419f1d4`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins) 及商业插件源码核对，默认模板状态取自同一主仓库修订。具体发行版本的插件和注册状态可能不同。
 
-文件界面的归属与示例插件清单另按源码提交 [`d9a625d93b40`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4) 核对；其余清单与默认模板状态以上述基线为准。
+文件界面的归属另按源码提交 [`d9a625d93b40`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4) 核对；其余清单与默认模板状态以上述基线为准。

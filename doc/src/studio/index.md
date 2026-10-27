@@ -13,5 +13,6 @@ description: NocoBase Studio is the governance platform for people and agents bu
 | Use Studio for the first time | [Join the team](join/sign-in.md): accept your invitation, sign in, connect your own Git account, and connect your own agent. |
 | Raise requests, follow progress, and make decisions | [Daily use](use/raise-a-request.md): talk a request through with an agent, follow your issues, answer the agents' questions, and accept the results. |
 | Look after a project | [Manage projects](project/settings.md): skills, the knowledge base, checks and review, project memory, release approvals, progress, and usage. |
+| Let your team try an application | [Connect CI](setup/ci.md) for PR previews, then open the preview on the issue page to try and accept the change. |
 | Administer Studio | [Administration](admin/environments.md): deploy environments, members and roles, API keys, notifications, upgrades, and backups. |
 | Look up details | [Reference](reference/statuses-and-permissions.md): issue statuses and permissions, `nb-studio` commands, configuration, and troubleshooting. |

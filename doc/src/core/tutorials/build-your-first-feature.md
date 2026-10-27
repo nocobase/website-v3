@@ -537,6 +537,6 @@ Open the `Local:` application entry printed in the terminal. Sign in with the in
 
 ## Deploy the application
 
-Once the application is built and its tests pass, deploy it for your team. Continue to [Choose a deployment method](../deployment/choose-a-deployment-method.md) to select Docker, app-installer, or NocoBase Studio for your environment. Each guide includes instructions with and without an agent.
+Once the application is built and its tests pass, deploy it independently to production. Continue to [Choose a deployment method](../deployment/choose-a-deployment-method.md) to select Docker or PM2 (app-installer) for your server's operations setup. Each guide includes instructions with and without an agent.
 
 After deployment, check sign-in, task operations, and role permissions, and confirm that data persists after a restart.

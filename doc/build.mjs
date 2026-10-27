@@ -162,7 +162,6 @@ const SECTIONS = [
           'deployment/choose-a-deployment-method',
           'tutorials/deploy-with-docker',
           'tutorials/deploy-with-app-installer',
-          'tutorials/deploy-to-studio',
           'deployment/publish-app-release',
           { planned: ['Runtime configuration', '运行配置'] },
           'developing-apps/upgrade-nocobase-core',

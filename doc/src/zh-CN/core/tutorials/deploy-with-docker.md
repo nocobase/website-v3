@@ -1,11 +1,11 @@
 ---
 title: 使用 Docker 部署
-description: 使用应用自带的 Dockerfile 构建镜像，通过 Compose 持久化配置和应用数据。
+description: 使用应用自带的 Dockerfile 构建镜像，独立部署生产应用，通过 Compose 持久化配置和应用数据。
 ---
 
 本文以任务应用为例说明部署流程，也适用于自己的 NocoBase Core 应用。先按[选择部署方式](../deployment/choose-a-deployment-method.md)确认目标环境；部署自己的项目时，替换示例中的应用名称、路径和业务验收项。
 
-这一篇使用应用自带的 `Dockerfile` 构建任务应用镜像，再用 Docker Compose 启动。镜像保存代码和生产依赖，服务器上的独立目录保存配置、数据库和上传文件。
+这一篇使用应用自带的 `Dockerfile` 构建任务应用镜像，再用 Docker Compose 在自己的生产服务器上启动。镜像保存代码和生产依赖，服务器上的独立目录保存配置、数据库和上传文件。
 
 部署前确认应用已通过测试；任务示例的测试步骤见[搭建第一个应用](build-your-first-feature.md)。以下以 Linux x64、单实例 SQLite 为例，使用模板的 Node.js 24 Debian 镜像。服务器需要 Docker 和 Compose 插件。
 
@@ -52,7 +52,7 @@ Agent 应先核对目标服务器、目录和已有数据，再执行。域名�
 
 ### 1. 在开发机构建镜像
 
-本篇先构建 `dist`，再装入镜像，这样可以复用 app-installer 或 Studio 使用的同一份构建结果。在应用根目录执行：
+本篇先构建 `dist`，再装入镜像。在应用根目录执行：
 
 ```bash
 pnpm build --target linux-x64 --node-version 24
@@ -62,7 +62,7 @@ docker build --platform linux/amd64 \
   -t tasks-app:1 .
 ```
 
-Docker 使用项目中的 `dist/`，不读取 `dist.tar.gz`。如果还要把同一构建交给 app-installer 或 Studio，可以给上面的构建命令加 `--tar`。
+Docker 使用项目中的 `dist/`，不读取 `dist.tar.gz`。如果还需要供 app-installer 使用的部署包，可以给上面的构建命令加 `--tar`。
 
 这里的 `linux-x64` 与镜像平台 `linux/amd64` 相对应，且都使用 glibc；ARM64 服务器需要同时改为 `linux-arm64` 和 `linux/arm64`。Node 主版本也必须与 Dockerfile 一致。
 

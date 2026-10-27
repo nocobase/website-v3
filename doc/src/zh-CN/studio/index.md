@@ -13,5 +13,6 @@ description: NocoBase Studio 是人与 Agent 协同开发的治理平台。把 C
 | 第一次使用 Studio | [加入团队](join/sign-in.md)：接受邀请、登录，连接自己的 Git 账号，接入自己的 Agent。 |
 | 提出需求，跟进进展，做决策 | [日常使用](use/raise-a-request.md)：在会话里和 Agent 讨论需求，跟进任务进展，回答 Agent 的提问，验收。 |
 | 负责一个项目 | [管理项目](project/settings.md)：技能、知识库、检查与评审、项目记忆，批准上线，掌握项目进展和用量。 |
+| 让团队试用应用 | [连接 CI](setup/ci.md)生成 PR 预览，在任务页打开预览并验收。 |
 | 管理 Studio | [系统管理](admin/environments.md)：部署环境、成员与角色、API 密钥、通知、升级与备份。 |
 | 查询细节 | [参考](reference/statuses-and-permissions.md)：任务状态与权限、nb-studio 命令、配置项、常见问题与排错。 |

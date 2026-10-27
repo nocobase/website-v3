@@ -5,7 +5,10 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 .skip-link:focus { top: 12px; }
 
 /* Header additions: the "Docs" label next to the version switch, the search button */
-.nav .in > .nav-label { margin-left: -8px; padding-left: 14px; border-left: 1px solid var(--rule-2); font-size: 14px; line-height: 20px; color: var(--ink-2); white-space: nowrap; }
+.nav .in { position: relative; }
+/* 「文档」前的竖线和下方侧栏的右边线对齐：按侧栏宽度（.doc-layout 第一列 270px，边线在最后 1px）定位，不随 logo、版本按钮的宽度变化 */
+.nav .in > .nav-label { margin-left: 16px; padding-left: 14px; font-size: 14px; line-height: 20px; color: var(--ink-2); white-space: nowrap; }
+.nav .in > .nav-label::before { content: ""; position: absolute; left: 269px; top: 50%; width: 1px; height: 20px; margin-top: -10px; background: var(--rule-2); }
 .nav .container { max-width: 1440px; }
 .nav .menu { margin-left: 12px; align-self: stretch; }
 .nav .menu .mi { display: flex; }

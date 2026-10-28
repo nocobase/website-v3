@@ -1,0 +1,74 @@
+{
+  "title": "Using plugins",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "page",
+      "path": "../developing-apps/manage-plugins",
+      "title": "Install, register and configure"
+    },
+    {
+      "type": "planned",
+      "title": "Use plugin Skills and examples"
+    },
+    {
+      "type": "planned",
+      "title": "Upgrade and remove plugins"
+    },
+    {
+      "type": "folder",
+      "path": "authentication"
+    },
+    {
+      "type": "folder",
+      "path": "authorization"
+    },
+    {
+      "type": "planned",
+      "title": "Database explorer"
+    },
+    {
+      "type": "planned",
+      "title": "File management"
+    },
+    {
+      "type": "planned",
+      "title": "Scheduled tasks"
+    },
+    {
+      "type": "folder",
+      "path": "notifications"
+    },
+    {
+      "type": "planned",
+      "title": "Email"
+    },
+    {
+      "type": "planned",
+      "title": "Agents"
+    },
+    {
+      "type": "planned",
+      "title": "Knowledge base"
+    },
+    {
+      "type": "planned",
+      "title": "Approvals"
+    },
+    {
+      "type": "planned",
+      "title": "Task center"
+    },
+    {
+      "type": "planned",
+      "title": "Template printing"
+    },
+    {
+      "type": "planned",
+      "title": "More plugins"
+    }
+  ]
+}

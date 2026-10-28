@@ -9,7 +9,7 @@ description: 本地插件可以随 App 构建和部署；需要跨应用共享�
 
 发布后，插件源码仍可以留在原 App 的工作区中维护；原 App 继续使用本地源码，其他 App 使用发布的版本。
 
-本篇介绍插件包的发布。如果还需要把前端组件或区块作为源码资产发布，供 Agent 按需取用、修改和组合，可以同时通过 shadcn UI Registry 分发，见[前端组件](frontend-components.md#按需分发-ui-源码资产)。插件包与源码资产可以独立发布；组件复用本身不要求发布 Registry。
+本篇介绍插件包的发布。如果还需要把前端组件或区块作为源码资产发布，供 Agent 按需取用、修改和组合，可以同时通过 shadcn UI Registry 分发，见[发布 UI 源码资产](frontend-components.md#按需分发-ui-源码资产)。插件包与源码资产可以独立发布；组件复用本身不要求发布 Registry。
 
 ## 使用 Agent
 

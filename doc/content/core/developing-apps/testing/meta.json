@@ -1,0 +1,22 @@
+{
+  "title": "Testing and acceptance",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../testing-and-acceptance",
+      "title": "Test organization and environments"
+    },
+    {
+      "type": "planned",
+      "title": "Client and server tests"
+    },
+    {
+      "type": "planned",
+      "title": "Database and command-line tests"
+    },
+    {
+      "type": "planned",
+      "title": "Browser tests and functional acceptance"
+    }
+  ]
+}

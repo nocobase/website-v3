@@ -1,0 +1,17 @@
+{
+  "title": "消息通知",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "通知与渠道接入"
+    },
+    {
+      "type": "planned",
+      "title": "站内信"
+    },
+    {
+      "type": "planned",
+      "title": "浏览器推送"
+    }
+  ]
+}

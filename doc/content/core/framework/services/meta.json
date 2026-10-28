@@ -1,0 +1,26 @@
+{
+  "title": "Business services and dependency injection",
+  "pages": [
+    {
+      "type": "page",
+      "path": "container"
+    },
+    {
+      "type": "page",
+      "path": "tokens"
+    },
+    {
+      "type": "page",
+      "path": "../../extension-development/service-provider",
+      "title": "ServiceProviders and service lifecycle"
+    },
+    {
+      "type": "page",
+      "path": "client-services"
+    },
+    {
+      "type": "page",
+      "path": "server-services"
+    }
+  ]
+}

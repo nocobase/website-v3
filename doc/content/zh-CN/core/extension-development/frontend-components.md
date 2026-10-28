@@ -1,6 +1,6 @@
 ---
 title: 前端组件
-description: 使用 shadcn 和 NocoBase UI Library 编写、组合插件前端组件，并按需发布供 Agent 使用的源码资产。
+description: 使用 shadcn 和 NocoBase UI Library 编写插件前端组件，接入页面，并按需通过 UI Registry 分发源码资产。
 ---
 
 开发应用和插件时，前端组件可以自由编写和组织，唯一约束是**基础组件使用 shadcn**。构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。
@@ -9,7 +9,7 @@ NocoBase UI Library 是 NocoBase 提供的 UI 源码资产库，基于 shadcn UI
 
 后续扩展的前端组件或区块，如果需要**作为源码资产发布，供 Agent 按需取用、修改和组合**，则通过 shadcn UI Registry 分发。是否发布取决于源码资产的交付需求；在插件内部复用组件，或通过插件的公开入口导出组件，都不要求发布 Registry。
 
-本篇沿用[编写第一个插件](write-your-first-plugin.md)的公告栏：先把公告列表整理成组件，再演示如何按需把它发布为源码资产。
+本篇沿用[编写第一个插件](write-your-first-plugin.md)的公告栏，先编写列表组件并接入页面，再按需将它整理为独立的源码资产，通过本地路径安装到其他应用或插件。需要跨机器分发时，再使用已有静态站点。
 
 ## 使用 Agent
 
@@ -22,18 +22,7 @@ NocoBase UI Library 是 NocoBase 提供的 UI 源码资产库，基于 shadcn UI
 保留现有路由、菜单和多语言，验证列表、空状态及插件构建。
 ```
 
-如果还需要分发源码资产，再追加：
-
-```prompt
-请将公告列表整理为可通过 shadcn UI Registry 分发的源码资产。
-在 packages/announcements-ui/ 独立包中维护资产，与插件包并列。
-资产不能通过相对路径或私有别名引用插件源码；插件能力通过公开入口或参数接入。
-声明组件文件和依赖，说明如何传入数据、修改布局和接入公告接口。
-先在另一个应用或插件中通过本地路径 Add 构建结果并验证。
-无需搭建 Registry 网站；需要通过 URL 分发时，再发布到已有静态站点。
-```
-
-下面说明手动实现的过程。**命令均在 App 根目录执行。插件开发部分的文件路径相对于 `packages/app-plugin-announcements/`；源码资产发布部分在 `packages/announcements-ui/` 独立包中进行。**
+下面说明手动实现的过程。**除特别注明外，命令在 App 根目录执行。“编写和组织组件”一节的文件路径相对于 `packages/app-plugin-announcements/`；源码资产部分会写明独立 Registry 包的路径。**
 
 ## 编写和组织组件
 
@@ -177,6 +166,17 @@ return (
 
 **Registry 资产是独立的源码模块。** 本例在 App 的 `packages/` 下新增 `announcements-ui/`，与 `app-plugin-announcements/` 并列，使用自己的清单和构建配置。构建结果可以直接通过本地路径 Add，需要 URL 分发时再部署到静态站点。应用和插件通过安装资产获得源码，并在自己的项目中接入。一个 Registry 包可以提供多个插件或业务场景使用的资产。
 
+### 使用 Agent 准备源码资产
+
+```prompt
+请将公告列表整理为可通过 shadcn UI Registry 分发的源码资产。
+在 packages/announcements-ui/ 独立包中维护资产，与插件包并列。
+资产不能通过相对路径或私有别名引用插件源码；插件能力通过公开入口或参数接入。
+声明组件文件和依赖，说明如何传入数据、修改布局和接入公告接口。
+先在另一个应用或插件中通过本地路径 Add 构建结果并验证。
+无需搭建 Registry 网站；需要通过 URL 分发时，再发布到已有静态站点。
+```
+
 ### 组织资产源码
 
 在 App 根目录创建 Registry 包的源码目录：
@@ -185,7 +185,7 @@ return (
 mkdir -p packages/announcements-ui/registry/components
 ```
 
-将上文 `AnnouncementList` 的完整实现保存为 `packages/announcements-ui/registry/components/announcement-list.tsx`。它接收数据和文案，已经具备独立分发的条件。相关目录如下：
+将上面的[公告列表实现](#实现公告列表)保存为 `packages/announcements-ui/registry/components/announcement-list.tsx`。它接收数据和文案，已经具备独立分发的条件。相关目录如下：
 
 ```tree
 my-app/
@@ -325,7 +325,7 @@ Agent 可以直接修改目标项目里的列表源码，例如把单列改为�
 pnpm exec shadcn add https://example.com/r/announcement-list.json
 ```
 
-## 给 Agent 写使用说明
+### 给 Agent 写使用说明
 
 将资产接入方法写入插件维护的 Skill，具体位置和同步方式见[给插件写技能](write-plugin-skills.md)。说明应包含资产的本地构建与路径获取方式，或已发布的 URL，以及适用场景、输入、接入前提、可修改的位置及验证方法。无需先发布网站，例如为公告栏 Skill 增加以下本地安装说明：
 
@@ -369,6 +369,6 @@ pnpm --filter @nocobase/app-plugin-announcements build
 pnpm build
 ```
 
-如果发布源码资产，还要在目标项目中实际安装、渲染并构建：确认没有引用发布方的私有文件，所需组件与依赖齐全，Agent 可以根据说明完成修改。支持安装到插件的资产，也要验证插件的类型声明构建；Registry JSON 生成成功，只说明分发文件已生成。
+如果分发了源码资产，还要在目标项目中实际安装、渲染并构建：确认没有引用发布方的私有文件，所需组件与依赖齐全，Agent 可以根据说明完成修改。支持安装到插件的资产，也要验证插件的类型声明构建；Registry JSON 生成成功，只说明分发文件已生成。
 
 插件包的发布流程见[发布插件](publish-plugin.md)。源码资产的分发可以独立安排，也可以与插件版本配套发布，并在说明中记录兼容关系。

@@ -1,0 +1,17 @@
+{
+  "title": "Identity and security",
+  "pages": [
+    {
+      "type": "page",
+      "path": "sessions"
+    },
+    {
+      "type": "page",
+      "path": "authorization"
+    },
+    {
+      "type": "page",
+      "path": "secrets"
+    }
+  ]
+}

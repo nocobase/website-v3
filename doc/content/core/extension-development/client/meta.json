@@ -1,0 +1,22 @@
+{
+  "title": "Client extensions",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../pages-and-menus"
+    },
+    {
+      "type": "page",
+      "path": "../frontend-components",
+      "title": "Frontend components and UI Registry"
+    },
+    {
+      "type": "planned",
+      "title": "Shared state and React Providers"
+    },
+    {
+      "type": "planned",
+      "title": "Client services and ServiceProviders"
+    }
+  ]
+}

@@ -5,6 +5,8 @@ description: 为插件添加接口，说明输入校验、响应格式、访问�
 
 插件的服务端接口负责接收请求、检查输入和访问权限，再调用业务逻辑。本篇实现一个公告文本预览接口：接收文本，去掉两端空白，返回文本和字符数，不保存数据。
 
+如果插件需要开放 Collection 的标准查询或简单写入，可使用 [`defineRepositoryApiRoutes()`](../framework/http/repository-routes.md)，将声明加入插件的 `routes`。应用和插件共用这套机制；本篇继续演示自定义业务接口。
+
 ## 使用 Agent
 
 ```text

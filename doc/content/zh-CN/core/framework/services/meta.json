@@ -1,0 +1,26 @@
+{
+  "title": "业务服务与依赖注入",
+  "pages": [
+    {
+      "type": "page",
+      "path": "container"
+    },
+    {
+      "type": "page",
+      "path": "tokens"
+    },
+    {
+      "type": "page",
+      "path": "../../extension-development/service-provider",
+      "title": "ServiceProvider 与服务生命周期"
+    },
+    {
+      "type": "page",
+      "path": "client-services"
+    },
+    {
+      "type": "page",
+      "path": "server-services"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "title": "使用插件",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "page",
+      "path": "../developing-apps/manage-plugins",
+      "title": "安装、注册与配置"
+    },
+    {
+      "type": "planned",
+      "title": "使用插件提供的 Skills 与示例"
+    },
+    {
+      "type": "planned",
+      "title": "升级与移除插件"
+    },
+    {
+      "type": "folder",
+      "path": "authentication"
+    },
+    {
+      "type": "folder",
+      "path": "authorization"
+    },
+    {
+      "type": "planned",
+      "title": "数据库浏览"
+    },
+    {
+      "type": "planned",
+      "title": "文件管理"
+    },
+    {
+      "type": "planned",
+      "title": "定时任务"
+    },
+    {
+      "type": "folder",
+      "path": "notifications"
+    },
+    {
+      "type": "planned",
+      "title": "邮件"
+    },
+    {
+      "type": "planned",
+      "title": "Agents"
+    },
+    {
+      "type": "planned",
+      "title": "知识库"
+    },
+    {
+      "type": "planned",
+      "title": "审批"
+    },
+    {
+      "type": "planned",
+      "title": "任务中心"
+    },
+    {
+      "type": "planned",
+      "title": "模板打印"
+    },
+    {
+      "type": "planned",
+      "title": "更多插件"
+    }
+  ]
+}

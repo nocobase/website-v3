@@ -1,0 +1,19 @@
+{
+  "title": "Database",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../data-models-and-migrations",
+      "title": "Design business data models"
+    },
+    {
+      "type": "planned",
+      "title": "Write migrations and seed data"
+    },
+    {
+      "type": "page",
+      "path": "../querying-data",
+      "title": "Query and manipulate business data"
+    }
+  ]
+}

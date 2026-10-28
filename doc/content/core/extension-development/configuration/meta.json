@@ -1,0 +1,13 @@
+{
+  "title": "Plugin configuration and localization",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Plugin configuration"
+    },
+    {
+      "type": "page",
+      "path": "../localization"
+    }
+  ]
+}

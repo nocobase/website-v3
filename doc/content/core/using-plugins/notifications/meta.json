@@ -1,0 +1,17 @@
+{
+  "title": "Notifications",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Notifications and delivery channels"
+    },
+    {
+      "type": "planned",
+      "title": "In-app notifications"
+    },
+    {
+      "type": "planned",
+      "title": "Web push"
+    }
+  ]
+}

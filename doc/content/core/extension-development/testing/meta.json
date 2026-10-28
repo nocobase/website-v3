@@ -1,0 +1,14 @@
+{
+  "title": "Testing and verification",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../testing-and-verification",
+      "title": "Test the plugin"
+    },
+    {
+      "type": "planned",
+      "title": "Verify integration in an app"
+    }
+  ]
+}

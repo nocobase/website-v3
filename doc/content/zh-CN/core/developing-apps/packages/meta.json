@@ -1,0 +1,17 @@
+{
+  "title": "本地包与应用组装",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "本地插件与共享包"
+    },
+    {
+      "type": "planned",
+      "title": "工作区与包依赖"
+    },
+    {
+      "type": "planned",
+      "title": "应用组装与插件接入"
+    }
+  ]
+}

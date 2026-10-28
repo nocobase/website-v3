@@ -1,0 +1,25 @@
+{
+  "title": "Configuration and runtime support",
+  "pages": [
+    {
+      "type": "page",
+      "path": "configuration"
+    },
+    {
+      "type": "page",
+      "path": "localization"
+    },
+    {
+      "type": "page",
+      "path": "caching"
+    },
+    {
+      "type": "page",
+      "path": "logging"
+    },
+    {
+      "type": "page",
+      "path": "ids"
+    }
+  ]
+}

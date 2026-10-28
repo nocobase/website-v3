@@ -1,0 +1,50 @@
+{
+  "title": "Deployment and operations",
+  "pages": [
+    {
+      "type": "page",
+      "path": "choose-a-deployment-method"
+    },
+    {
+      "type": "page",
+      "path": "publish-app-release",
+      "title": "Build and release an app"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/deploy-with-docker"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/deploy-with-app-installer"
+    },
+    {
+      "type": "planned",
+      "title": "Runtime configuration and secrets"
+    },
+    {
+      "type": "planned",
+      "title": "Data directories and persistence"
+    },
+    {
+      "type": "page",
+      "path": "../developing-apps/upgrade-nocobase-core"
+    },
+    {
+      "type": "planned",
+      "title": "Upgrade and rollback"
+    },
+    {
+      "type": "planned",
+      "title": "Backup and restore"
+    },
+    {
+      "type": "planned",
+      "title": "Logs and troubleshooting"
+    },
+    {
+      "type": "planned",
+      "title": "Monitoring and health checks"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "title": "Local packages and app assembly",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Local plugins and shared packages"
+    },
+    {
+      "type": "planned",
+      "title": "Workspaces and package dependencies"
+    },
+    {
+      "type": "planned",
+      "title": "App assembly and plugin integration"
+    }
+  ]
+}

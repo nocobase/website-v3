@@ -1,0 +1,22 @@
+{
+  "title": "客户端扩展",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../pages-and-menus"
+    },
+    {
+      "type": "page",
+      "path": "../frontend-components",
+      "title": "前端组件与 UI Registry"
+    },
+    {
+      "type": "planned",
+      "title": "共享状态与 React Provider"
+    },
+    {
+      "type": "planned",
+      "title": "客户端服务与 ServiceProvider"
+    }
+  ]
+}

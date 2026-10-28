@@ -1,0 +1,13 @@
+{
+  "title": "插件配置与多语言",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "插件配置"
+    },
+    {
+      "type": "page",
+      "path": "../localization"
+    }
+  ]
+}

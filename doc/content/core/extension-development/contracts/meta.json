@@ -1,0 +1,21 @@
+{
+  "title": "Plugin declarations and public contracts",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Client, Server and CLI entry points"
+    },
+    {
+      "type": "planned",
+      "title": "Extension declarations and resources"
+    },
+    {
+      "type": "planned",
+      "title": "Public exports and service contracts"
+    },
+    {
+      "type": "planned",
+      "title": "Plugin dependencies and collaboration"
+    }
+  ]
+}

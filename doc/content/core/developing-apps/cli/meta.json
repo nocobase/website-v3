@@ -1,0 +1,13 @@
+{
+  "title": "Command line",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Write business commands"
+    },
+    {
+      "type": "planned",
+      "title": "Local execution and remote calls"
+    }
+  ]
+}

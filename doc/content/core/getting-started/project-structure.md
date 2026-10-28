@@ -17,6 +17,7 @@ my-app/
 ├── database/            # Migrations and seeds
 ├── dist/                # Build output (generated)
 ├── node_modules/        # Installed dependencies (generated)
+├── packages/            # Local plugins, shared packages and UI assets (optional)
 ├── public/              # Static assets
 ├── server/              # APIs and services
 ├── storage/             # Runtime data (generated)
@@ -24,7 +25,8 @@ my-app/
 ├── AGENTS.md            # Agent guidance entry
 ├── config.example.yml   # Configuration example
 ├── config.yml           # Local configuration
-└── package.json         # Scripts and dependencies
+├── package.json         # Scripts and dependencies
+└── pnpm-workspace.yaml  # Workspace package directories
 ```
 
 ## Where business code belongs
@@ -35,13 +37,26 @@ my-app/
 | `client/components/`, `client/hooks/` | Reusable components and hooks |
 | `client/locales/` | Application text in English and Chinese |
 | `server/routes/` | API endpoints, registered through `index.ts` |
-| `server/providers/` | Business services |
+| `server/providers/` | Service registration and lifecycle; business implementations can be extracted into `server/services/` as needed |
 | `server/config/` | Application configuration definitions |
 | `database/main/migrations/` | Schema changes for the default database connection |
 | `database/main/seeds/` | Required initial data |
 | `cli/commands/` | Application-specific commands, when needed |
 
 Add a new migration when changing a schema. The generated `database/main/collections/` directory is a schema snapshot; do not edit it. Layouts and themes live in `client/layouts/` and `client/theme/`.
+
+## Local packages and source assets
+
+Use `packages/` for local plugins, shared packages or independent UI Registry packages as needed, and configure workspace package directories in `pnpm-workspace.yaml`. An application does not need all three:
+
+```tree
+packages/
+├── app-plugin-<name>/   # Runtime plugin
+├── <name>-ui/           # UI Registry source assets (optional)
+└── <shared-package>/    # Shared package (optional)
+```
+
+Connect a plugin's Client, Server and CLI entries to the application. UI Registry packages build source assets that consumers add as needed. See [Plugin structure](../extension-development/plugin-structure.md) and [Publish UI source assets](../extension-development/frontend-components.md#optionally-distribute-ui-source-assets) for these delivery workflows.
 
 ## Preinstalled plugins
 

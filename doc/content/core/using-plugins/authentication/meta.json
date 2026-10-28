@@ -1,0 +1,17 @@
+{
+  "title": "Authentication and users",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Sign-in and authentication"
+    },
+    {
+      "type": "planned",
+      "title": "User management"
+    },
+    {
+      "type": "planned",
+      "title": "API keys"
+    }
+  ]
+}

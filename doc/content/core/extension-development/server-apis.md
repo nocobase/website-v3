@@ -5,6 +5,8 @@ description: Add plugin endpoints with validation, response contracts, access co
 
 A plugin API receives requests, validates input and access, then calls business logic. This example previews notice text: it trims surrounding whitespace and returns the text and its character count without saving anything.
 
+For standard Collection queries or simple writes, use [`defineRepositoryApiRoutes()`](../framework/http/repository-routes.md) and add its contribution to the plugin's `routes`. Applications and plugins share that mechanism; this guide demonstrates a custom business endpoint.
+
 ## Use an Agent
 
 ```text

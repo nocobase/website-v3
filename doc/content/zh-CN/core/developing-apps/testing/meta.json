@@ -1,0 +1,22 @@
+{
+  "title": "测试与验收",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../testing-and-acceptance",
+      "title": "测试组织与环境"
+    },
+    {
+      "type": "planned",
+      "title": "客户端与服务端测试"
+    },
+    {
+      "type": "planned",
+      "title": "数据库与命令行测试"
+    },
+    {
+      "type": "planned",
+      "title": "浏览器测试与功能验收"
+    }
+  ]
+}

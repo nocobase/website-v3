@@ -1,0 +1,13 @@
+{
+  "title": "Content processing",
+  "pages": [
+    {
+      "type": "page",
+      "path": "document-extraction"
+    },
+    {
+      "type": "page",
+      "path": "markdown-mermaid"
+    }
+  ]
+}

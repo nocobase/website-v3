@@ -1,0 +1,19 @@
+{
+  "title": "数据库",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../data-models-and-migrations",
+      "title": "设计业务数据模型"
+    },
+    {
+      "type": "planned",
+      "title": "编写迁移与初始数据"
+    },
+    {
+      "type": "page",
+      "path": "../querying-data",
+      "title": "在业务中查询与操作数据"
+    }
+  ]
+}

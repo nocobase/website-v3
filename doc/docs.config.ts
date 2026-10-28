@@ -17,7 +17,6 @@ export default defineDocsConfig({
       label: 'English',
       website: 'https://www.nocobase.com/',
       ui: {
-        docs: 'Docs',
         skip: 'Skip to content',
         sections: 'Documentation sections',
         menu: 'Menu',
@@ -70,7 +69,6 @@ export default defineDocsConfig({
       label: '简体中文',
       website: 'https://www.nocobase.com/zh-CN/',
       ui: {
-        docs: '文档',
         skip: '跳到正文',
         sections: '文档分区',
         menu: '菜单',

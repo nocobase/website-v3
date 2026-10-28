@@ -23,7 +23,6 @@ export function headerProps(site, { lang, sectionId, pageKey, stars = githubStar
         { href: config.nav.versionSwitch, icon: 'mouse-pointer-click', title: 'NocoBase 2', arrow: true, external: true, kind: 'ext', desc: escapeHtml(ui.version.v2Desc) },
       ],
     },
-    label: escapeHtml(ui.docs),
     menu: tabs.map(t => ({ label: escapeHtml(t.title), href: t.href, active: t.active })),
     mobile: [
       ...tabs.map(t => ({ label: escapeHtml(t.title), href: t.href, active: t.active })),

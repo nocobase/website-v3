@@ -6,11 +6,12 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 
 /* Header additions: the "Docs" label next to the version switch, the search button */
 .nav .in { position: relative; }
-/* 「文档」前的竖线和下方侧栏的右边线对齐：按侧栏宽度（.doc-layout 第一列 270px，边线在最后 1px）定位，不随 logo、版本按钮的宽度变化 */
-.nav .in > .nav-label { margin-left: 16px; padding-left: 14px; font-size: 14px; line-height: 20px; color: var(--ink-2); white-space: nowrap; }
-.nav .in > .nav-label::before { content: ""; position: absolute; left: 269px; top: 50%; width: 1px; height: 20px; margin-top: -10px; background: var(--rule-2); }
+/* Wide screens: a divider where the sidebar border is (the first column of .doc-layout is 270px wide, its border is the last pixel), and the section tabs starting with the content column (48px padding, minus the 12px padding of a tab), whatever the width of the logo and the version switch */
+@media (min-width: 1001px) {
+  .nav .in::after { content: ""; position: absolute; left: 269px; top: 22px; width: 1px; height: 20px; background: var(--rule-2); }
+  .nav .in > .menu { position: absolute; left: 306px; top: 0; bottom: 0; }
+}
 .nav .container { max-width: 1440px; }
-.nav .menu { margin-left: 12px; }
 .search-btn { display: flex; align-items: center; gap: 8px; height: 36px; min-width: 190px; padding: 0 8px 0 10px; border: 1px solid var(--rule-2); border-radius: 8px; background: var(--card); font-size: 14px; color: var(--muted); cursor: pointer; }
 .search-btn:hover { border-color: var(--rule-2); color: var(--ink); background: var(--paper-2); }
 .search-btn .search-text { flex: 1; text-align: left; }
@@ -20,7 +21,6 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 @media (max-width: 1000px) {
   .search-btn { min-width: 0; width: 40px; height: 40px; padding: 0; justify-content: center; margin-right: 0; }
   .search-btn .search-text, .search-btn kbd { display: none; }
-  .nav .in > .nav-label { display: none; }
   .nav.open .mnav { max-height: calc(100dvh - var(--nav-h)); overflow-y: auto; overscroll-behavior: contain; }
   .nav .mnav a.on { font-weight: 600; }
 }

@@ -85,6 +85,12 @@ This capability does not store, publish or send notices. Those actions need a se
 
 公开组件被导入，不代表 Client 插件工厂已注册；Server Token 必须从公开入口导入原始对象。这类容易出错的接入条件应放在相应 Skill，而不是让每个 App 猜测。
 
+## 说明 UI 源码资产的用法
+
+插件通过 shadcn UI Registry 提供源码资产时，Skill 应说明本地构建与资产路径，或已发布的 URL，以及安装到 App 或插件的方式、输入与依赖、如何接入插件的公开能力。本地资产可以直接 Add，无需先搭建 Registry 网站。还应给出可修改的布局或交互示例和验证方法，让 Agent 能在目标项目中完成组合。
+
+组件文件安装成功，不代表服务端插件、语言资源或路由已经注册。把这些前提写清楚，并说明安装后的源码由目标项目维护，升级插件包不会自动更新它。完整示例见[前端组件](frontend-components.md#给-agent-写使用说明)。
+
 ## 同步到 App
 
 在 App 根目录执行：

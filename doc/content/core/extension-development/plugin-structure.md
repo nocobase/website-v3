@@ -234,9 +234,13 @@ Keep the generated path calculation and database build script. A plugin with dat
 
 `client/components/` contains plugin-maintained components. Add `client/pages/` as needed for business pages and connect them through `client/routes.ts`. Public components are exposed through package exports.
 
-Plugins with Client code include `components.json` and `client/styles.css` to configure shadcn file locations, package-local aliases and the style entry. Both Apps and plugins can install components or blocks from the UI Library. The App maintains source installed into the App; the plugin maintains source installed into the plugin. When consumers use a component through a plugin's public export, the plugin continues to maintain its implementation.
+Plugins with Client code include `components.json` and `client/styles.css` to configure shadcn file locations, package-local aliases and the style entry. Both Apps and plugins can install components or blocks from the NocoBase UI Library. The App maintains source installed into the App; the plugin maintains source installed into the plugin. When consumers use a component through a plugin's public export, the plugin continues to maintain its implementation.
 
 Aliases such as `#components/*` are defined by the plugin's own `package.json`, independently of private App aliases. When adding or installing components, keep file locations, imports and build configuration aligned.
+
+Apps and plugins can freely write and organize frontend components, using shadcn primitives. When composing modular interfaces, first consult components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/). The library distributes source assets through shadcn UI Registry; use the same mechanism when publishing your own assets. See [Frontend components](frontend-components.md) for a complete component, page integration and source distribution example.
+
+Maintain source assets in an independent Registry package alongside plugins under `packages/`. Integrate plugin capabilities through public package entries or inputs supplied by the consumer, without relative imports into plugin internals. After installation, the receiving App or plugin maintains its own source copy.
 
 ### AGENTS.md and skills/: two kinds of agent guidance
 

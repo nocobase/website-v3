@@ -37,6 +37,7 @@
         { "type": "page", "path": "extension-development/plugin-structure" },
         { "type": "page", "path": "extension-development/write-your-first-plugin" },
         { "type": "page", "path": "extension-development/pages-and-menus" },
+        { "type": "page", "path": "extension-development/frontend-components" },
         { "type": "page", "path": "extension-development/server-apis" },
         { "type": "page", "path": "extension-development/service-provider" },
         { "type": "page", "path": "extension-development/database-and-migrations" },

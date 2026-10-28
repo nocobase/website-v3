@@ -13,7 +13,7 @@ Create app generates an independent application project. Core provides capabilit
 
 - **Application templates and runtime:** start with a runnable project containing client code, server code and runtime configuration.
 - **Shared capabilities:** compose plugins and libraries for authentication, users, authorization, data access, file storage and notifications.
-- **UI Library:** reuse tables, forms, dialogs and business blocks. Components installed into your source can be adapted to the application.
+- **NocoBase UI Library:** reuse tables, forms, dialogs and business blocks. Components installed into your source can be adapted to the application.
 - **Development tools and Skills:** CLI commands handle configuration, migrations, plugins and builds. Skills give agents guidance matched to the installed dependencies.
 
 The template defines the starting point. Plugins and libraries provide capabilities. Your application combines them into business functionality. The exact capabilities available depend on which packages are installed and registered.

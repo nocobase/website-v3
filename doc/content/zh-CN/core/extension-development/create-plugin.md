@@ -209,6 +209,7 @@ pnpm create @nocobase/plugin@beta @my-company/app-plugin-audit-tools --with cli
 | 现象 | 处理方式 |
 | --- | --- |
 | 找不到 App | 在 create-app 生成的应用根目录执行，或用 `--dir` 指向该应用；确认已安装依赖且工具版本支持 App 工作区 |
+| 报错寻找 `packages/plugins` | 可能解析到了仅支持源码仓库的旧版创建工具。用 `pnpm create @nocobase/plugin@beta --version` 核对实际版本，检查包管理器缓存与发布时间限制，选择支持 App 工作区的版本后重新 dry-run；不要在 App 中补建 `packages/plugins` 绕过错误。本教程已验证 `@nocobase/create-plugin@0.1.0-beta.26` |
 | 缺少依赖，或依赖版本不兼容 | 先完成 App 的依赖安装，按报错修复所需版本，再重新预览 |
 | 目标目录、包名或应用依赖已存在 | 检查已有实现，或换用不冲突的名称，不要覆盖已有插件 |
 | 工作区规则排除了插件目录 | 检查 `pnpm-workspace.yaml` 的排除规则，按项目需要调整后再预览 |

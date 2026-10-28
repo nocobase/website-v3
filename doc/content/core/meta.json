@@ -1,36 +1,97 @@
 {
   "pages": [
+    { "type": "page", "path": "index" },
     {
-      "type": "page",
-      "path": "index"
+      "type": "group",
+      "title": "Getting started",
+      "pages": [
+        { "type": "page", "path": "getting-started/what-is-core" },
+        { "type": "page", "path": "getting-started/create-app" },
+        { "type": "page", "path": "getting-started/project-structure" },
+        { "type": "page", "path": "tutorials/build-your-first-feature" }
+      ]
     },
     {
-      "type": "folder",
-      "path": "getting-started"
+      "type": "group",
+      "title": "Developing apps",
+      "pages": [
+        { "type": "page", "path": "developing-apps/overview" },
+        { "type": "page", "path": "developing-apps/develop-with-an-agent" },
+        { "type": "page", "path": "developing-apps/data-models-and-migrations" },
+        { "type": "page", "path": "developing-apps/querying-data" },
+        { "type": "page", "path": "developing-apps/apis-and-services" },
+        { "type": "page", "path": "developing-apps/pages-routes-and-navigation" },
+        { "type": "page", "path": "developing-apps/pages-and-interactions" },
+        { "type": "page", "path": "developing-apps/configuration-and-settings" },
+        { "type": "page", "path": "developing-apps/localization-and-themes" },
+        { "type": "page", "path": "developing-apps/manage-plugins" },
+        { "type": "page", "path": "developing-apps/testing-and-acceptance" }
+      ]
     },
     {
-      "type": "folder",
-      "path": "developing-apps"
+      "type": "group",
+      "title": "Developing plugins",
+      "pages": [
+        { "type": "page", "path": "extension-development/when-to-write-a-plugin" },
+        { "type": "page", "path": "extension-development/create-plugin" },
+        { "type": "page", "path": "extension-development/plugin-structure" },
+        { "type": "page", "path": "extension-development/write-your-first-plugin" },
+        { "type": "page", "path": "extension-development/pages-and-menus" },
+        { "type": "page", "path": "extension-development/frontend-components" },
+        { "type": "page", "path": "extension-development/server-apis" },
+        { "type": "page", "path": "extension-development/service-provider" },
+        { "type": "page", "path": "extension-development/database-and-migrations" },
+        { "type": "page", "path": "extension-development/localization" },
+        { "type": "page", "path": "extension-development/extend-command-line" },
+        { "type": "page", "path": "extension-development/testing-and-verification" },
+        { "type": "page", "path": "extension-development/write-plugin-skills" },
+        { "type": "page", "path": "extension-development/publish-plugin" }
+      ]
     },
     {
-      "type": "folder",
-      "path": "using-plugins"
+      "type": "group",
+      "title": "Capabilities",
+      "pages": [
+        { "type": "planned", "title": "Capabilities overview" },
+        { "type": "planned", "title": "Database" },
+        { "type": "planned", "title": "Authentication and users" },
+        { "type": "planned", "title": "Access control" },
+        { "type": "planned", "title": "File management" },
+        { "type": "planned", "title": "Workflows" },
+        { "type": "planned", "title": "Approvals" },
+        { "type": "planned", "title": "Scheduled tasks" },
+        { "type": "planned", "title": "Notifications" },
+        { "type": "planned", "title": "Email" },
+        { "type": "planned", "title": "Agents" },
+        { "type": "planned", "title": "Knowledge base" },
+        { "type": "planned", "title": "Template printing" },
+        { "type": "planned", "title": "External integrations" },
+        { "type": "planned", "title": "Theme customization" }
+      ]
     },
     {
-      "type": "folder",
-      "path": "extension-development"
+      "type": "group",
+      "title": "Deployment and operations",
+      "pages": [
+        { "type": "page", "path": "deployment/choose-a-deployment-method" },
+        { "type": "page", "path": "tutorials/deploy-with-docker" },
+        { "type": "page", "path": "tutorials/deploy-with-app-installer" },
+        { "type": "page", "path": "deployment/publish-app-release" },
+        { "type": "planned", "title": "Runtime configuration" },
+        { "type": "page", "path": "developing-apps/upgrade-nocobase-core" },
+        { "type": "planned", "title": "Backup and restore" },
+        { "type": "planned", "title": "Logs and troubleshooting" }
+      ]
     },
     {
-      "type": "folder",
-      "path": "framework"
-    },
-    {
-      "type": "folder",
-      "path": "deployment"
-    },
-    {
-      "type": "folder",
-      "path": "reference"
+      "type": "group",
+      "title": "Reference",
+      "pages": [
+        { "type": "page", "path": "reference/plugins" },
+        { "type": "planned", "title": "Command line" },
+        { "type": "planned", "title": "Configuration options" },
+        { "type": "planned", "title": "FAQ" }
+      ]
     }
   ]
 }

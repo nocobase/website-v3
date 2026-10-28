@@ -74,18 +74,6 @@ const search = ui.search;
 {section && <script is:inline>
 // 侧栏在第一次绘制前就定好滚动位置，切换页面时不跳：先恢复同一侧栏上次的位置（按侧栏第一个链接区分板块和语言），当前页不在可视范围内再把它滚到上方三分之一处
 (() => {
-  // Restore expanded subjects before measuring the sidebar; always reveal the current page.
-  for (const branch of document.querySelectorAll('[data-doc-folder]')) {
-    const key = `docs:menu:${document.documentElement.lang}:${branch.dataset.docFolder}`;
-    try {
-      const saved = sessionStorage.getItem(key);
-      if (saved !== null) branch.open = saved === 'open';
-    } catch { /* Navigation still works without storage. */ }
-    if (branch.querySelector('[aria-current="page"]')) branch.open = true;
-    branch.addEventListener('toggle', () => {
-      try { sessionStorage.setItem(key, branch.open ? 'open' : 'closed'); } catch { /* Optional persistence. */ }
-    });
-  }
   const side = document.querySelector('.doc-side');
   const key = 'doc-side:' + (side.querySelector('a[href]')?.getAttribute('href') ?? '');
   try { const y = sessionStorage.getItem(key); if (y !== null) side.scrollTop = Number(y); } catch {}

@@ -238,7 +238,7 @@ App 分别使用 `@nocobase/app-plugin-announcements/client` 和 `@nocobase/app-
 
 插件内部的 `#components/*` 等别名由插件自己的 `package.json` 定义，不依赖 App 的私有别名。新增或安装组件后，保持文件位置、导入路径和构建配置一致。
 
-应用和插件都可以自由编写和组织前端组件，基础组件使用 shadcn；构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。NocoBase UI Library 基于 shadcn UI Registry 分发源码资产；自行发布资产时也采用这一机制。组件编写和页面接入见[前端组件](frontend-components.md)，独立 Registry 包的组织、构建和本地添加见[发布 UI 源码资产](frontend-components.md#按需分发-ui-源码资产)。
+应用和插件都可以自由编写和组织前端组件，基础组件使用 shadcn；构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。NocoBase UI Library 基于 shadcn UI Registry 分发源码资产；自行发布资产时也采用这一机制。组件编写、页面接入和源码资产发布的完整示例见[前端组件](frontend-components.md)。
 
 源码资产在 `packages/` 中与插件并列的独立 Registry 包内维护，通过公开包入口或使用方传入的参数接入插件能力，不能相对导入插件的内部文件。安装资产后，目标 App 或插件维护自己的源码副本。
 

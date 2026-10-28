@@ -238,7 +238,7 @@ Plugins with Client code include `components.json` and `client/styles.css` to co
 
 Aliases such as `#components/*` are defined by the plugin's own `package.json`, independently of private App aliases. When adding or installing components, keep file locations, imports and build configuration aligned.
 
-Apps and plugins can freely write and organize frontend components, using shadcn primitives. When composing modular interfaces, first consult components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/). The library distributes source assets through shadcn UI Registry; use the same mechanism when publishing your own assets. See [Frontend components](frontend-components.md) for component authoring and page integration, and [Publish UI source assets](frontend-components.md#optionally-distribute-ui-source-assets) for an independent Registry package, its build and local installation.
+Apps and plugins can freely write and organize frontend components, using shadcn primitives. When composing modular interfaces, first consult components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/). The library distributes source assets through shadcn UI Registry; use the same mechanism when publishing your own assets. See [Frontend components](frontend-components.md) for a complete component, page integration and source distribution example.
 
 Maintain source assets in an independent Registry package alongside plugins under `packages/`. Integrate plugin capabilities through public package entries or inputs supplied by the consumer, without relative imports into plugin internals. After installation, the receiving App or plugin maintains its own source copy.
 

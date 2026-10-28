@@ -1,6 +1,6 @@
 ---
 title: Frontend components
-description: Compose plugin frontend components with shadcn and the NocoBase UI Library, integrate them into pages, and optionally distribute source assets through UI Registry.
+description: Compose plugin frontend components with shadcn and the NocoBase UI Library, and optionally publish editable source assets for Agents.
 ---
 
 When developing applications and plugins, you can write and organize frontend components freely. The one constraint is to **use shadcn for UI primitives**. When composing modular interfaces, first consult the components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/).
@@ -9,7 +9,7 @@ The NocoBase UI Library is NocoBase's UI source asset library. It uses shadcn UI
 
 For additional components or blocks that you want to **publish as source assets for Agents to obtain, modify and compose**, distribute them through shadcn UI Registry. Publication depends on how you want to deliver the source. Reusing a component inside a plugin, or exposing it through a public package entry, does not require a Registry.
 
-This article continues the announcements example from [Write your first plugin](write-your-first-plugin.md). Build a list component and connect it to the page, then optionally package it as an independent source asset and install it in another app or plugin by local path. Use existing static hosting when distribution across machines is needed.
+This article continues the announcements example from [Write your first plugin](write-your-first-plugin.md): extract its list into a component, then optionally publish that component as a source asset.
 
 ## Use an Agent
 
@@ -23,7 +23,19 @@ and error handling in the page. Preserve routes, navigation and translations,
 and verify populated and empty lists and the plugin build.
 ```
 
-The manual steps follow. **Unless noted otherwise, run commands from the App root. Paths in “Write and organize components” are relative to `packages/app-plugin-announcements/`; the source distribution section specifies paths in the independent Registry package.**
+If you also need source distribution, add:
+
+```prompt
+Prepare the announcement list as a source asset distributed through shadcn UI Registry.
+Maintain it in an independent packages/announcements-ui/ package alongside the plugin package.
+Do not import plugin source through relative paths or private aliases; use public entries or supplied inputs.
+Declare its files and dependencies. Explain how to supply data, change the layout
+and connect the announcements API. Add the local build by file path in another
+App or plugin and verify it. No Registry website is required; publish to an
+existing static site only when URL distribution is needed.
+```
+
+The manual steps follow. **Run all commands from the App root. Plugin development file paths are relative to `packages/app-plugin-announcements/`; source distribution uses the independent `packages/announcements-ui/` package.**
 
 ## Write and organize components
 
@@ -167,18 +179,6 @@ To let Agents bring the list into a target project, reshape its layout, add acti
 
 **A Registry asset is an independent source module.** This example adds `announcements-ui/` under the App's `packages/`, alongside `app-plugin-announcements/`, with its own manifests and build configuration. Add its output directly by local path; deploy it to a static site only when URL distribution is needed. Apps and plugins install the assets and integrate the source in their own projects. One Registry package can provide assets for several plugins or business scenarios.
 
-### Prepare source assets with an Agent
-
-```prompt
-Prepare the announcement list as a source asset distributed through shadcn UI Registry.
-Maintain it in an independent packages/announcements-ui/ package alongside the plugin package.
-Do not import plugin source through relative paths or private aliases; use public entries or supplied inputs.
-Declare its files and dependencies. Explain how to supply data, change the layout
-and connect the announcements API. Add the local build by file path in another
-App or plugin and verify it. No Registry website is required; publish to an
-existing static site only when URL distribution is needed.
-```
-
 ### Organize asset source
 
 Create the Registry package's source directory from the App root:
@@ -187,7 +187,7 @@ Create the Registry package's source directory from the App root:
 mkdir -p packages/announcements-ui/registry/components
 ```
 
-Save the [announcement list implementation above](#implement-the-announcement-list) as `packages/announcements-ui/registry/components/announcement-list.tsx`. It accepts data and text, so it can be distributed independently. The relevant directories are:
+Save the complete `AnnouncementList` implementation above as `packages/announcements-ui/registry/components/announcement-list.tsx`. It accepts data and text, so it can be distributed independently. The relevant directories are:
 
 ```tree
 my-app/
@@ -327,7 +327,7 @@ This step is optional. If an asset URL is already available, the receiving App c
 pnpm exec shadcn add https://example.com/r/announcement-list.json
 ```
 
-### Write Agent usage instructions
+## Write Agent usage instructions
 
 Describe asset integration in the plugin's maintained Skill; see [Write plugin skills](write-plugin-skills.md) for its location and synchronization. Explain how to build and locate the local asset, or provide its published URL, along with use cases, inputs, prerequisites, customization points and verification. Publishing a website is not a prerequisite. For example, add these local-installation instructions to the announcements Skill:
 
@@ -371,6 +371,6 @@ pnpm --filter @nocobase/app-plugin-announcements build
 pnpm build
 ```
 
-If you distribute a source asset, also install, render and build it in a target project. Confirm it imports no private publisher files, has all required components and dependencies, and lets an Agent complete the documented customization. Assets intended for plugins must also pass a plugin declaration build. Generating Registry JSON only verifies that distribution files were produced.
+For a published source asset, also install, render and build it in a target project. Confirm it imports no private publisher files, has all required components and dependencies, and lets an Agent complete the documented customization. Assets intended for plugins must also pass a plugin declaration build. Generating Registry JSON only verifies that distribution files were produced.
 
 For package publication, see [Publish a plugin](publish-plugin.md). Source asset releases can be independent or accompany plugin versions; document the compatibility between them.

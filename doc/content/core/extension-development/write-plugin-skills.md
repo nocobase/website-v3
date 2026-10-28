@@ -89,7 +89,7 @@ Importing a public component does not register a Client factory. Server consumer
 
 When a plugin offers source assets through shadcn UI Registry, its Skill should describe the local build and asset path, or a published URL, together with installation into an App or plugin, inputs, dependencies and integration with public plugin capabilities. Local assets can be added directly without first setting up a Registry website. Include examples of layout or interaction changes and verification steps so an Agent can compose the result in the target project.
 
-Installing component files does not register backend plugins, translations or routes. State these prerequisites and explain that the target project maintains the installed source; upgrading a plugin package does not update it. See [Publish UI source assets](frontend-components.md#write-agent-usage-instructions) for a complete example.
+Installing component files does not register backend plugins, translations or routes. State these prerequisites and explain that the target project maintains the installed source; upgrading a plugin package does not update it. See [Frontend components](frontend-components.md#write-agent-usage-instructions) for a complete example.
 
 ## Synchronize into the App
 

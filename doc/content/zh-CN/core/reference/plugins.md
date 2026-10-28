@@ -1,5 +1,5 @@
 ---
-title: 插件索引
+title: 插件总览
 description: NocoBase 3 插件清单、主要用途及是否内置。
 ---
 
@@ -48,8 +48,6 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | `@nocobase/app-plugin-task-center` | 任务中心：聚合不同业务来源的个人待办，提供查询接口和可复用界面。 |
 
 ## 数据库方言
-
-方言是数据库适配包，使用方式与应用插件不同。具体连接模式、测试版本和配置差异见[数据库支持与版本兼容](compatibility.md)；其他框架库与工具见[核心包与工具包索引](packages.md)。
 
 `@nocobase/db` 通过以下 8 个方言包适配数据库，其中主仓库 5 个、商业仓库 3 个。公开源码通过包名链接提供。
 

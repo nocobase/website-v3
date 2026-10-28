@@ -15,7 +15,7 @@ const has = (list: any[]): boolean => list.some(n => (n.type === 'page' && n.key
 ) : n.type === 'planned' ? (
 <li><span class="doc-planned">{n.title} <small>{planned}</small></span></li>
 ) : n.type === 'folder' ? (
-<li><details class="doc-folder" data-doc-folder={n.dir} open={n.defaultOpen || has([n])}><summary>{n.link ? <a href={urlOf(n.link.key)} class="doc-folder-link" aria-current={n.link.key === current ? 'page' : undefined}>{n.title}</a> : <span class="doc-folder-link">{n.title}</span>}<i class="doc-chevron" aria-hidden="true"></i></summary><Self nodes={n.children} {current} {urlOf} {planned} root={false} /></details></li>
+<li><details class="doc-folder" open={n.defaultOpen || has([n])}><summary>{n.link ? <a href={urlOf(n.link.key)} class="doc-folder-link" aria-current={n.link.key === current ? 'page' : undefined}>{n.title}</a> : <span class="doc-folder-link">{n.title}</span>}<i class="doc-chevron" aria-hidden="true"></i></summary><Self nodes={n.children} {current} {urlOf} {planned} root={false} /></details></li>
 ) : (
 <li><div class="doc-group"><p class="doc-group-title">{n.title}</p><Self nodes={n.children} {current} {urlOf} {planned} root={false} /></div></li>
 ))}</ul>

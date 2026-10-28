@@ -11,7 +11,7 @@ This guide uses project listing, creation and task assignment to explain these c
 
 | Situation | Approach |
 | --- | --- |
-| A simple operation on one collection | Use [Repository data APIs](../framework/http/repository-routes.md), configuring operations, policies, authentication and business input validation |
+| A simple operation on one collection | Consider the framework's Repository route capabilities; still configure authentication, authorization, input and documentation |
 | An operation involves multiple record types or explicit business rules | Write a business service and let the route handle the HTTP boundary |
 | Multiple entry points need the same rules | Reuse the service and define the identity, policies and validated input each caller supplies |
 | A service needs dependencies such as the database | Register it in a Provider and resolve it through a token |

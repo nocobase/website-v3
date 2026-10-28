@@ -65,12 +65,3 @@ The beta template emitted a React script-tag warning on the login page before th
 Ran `npm ci` and `node build.mjs` in `doc/`: **164 pages generated, 82 per language**. Confirmed matching executable examples across languages and checked the rendered Chinese page, including the local-path commands and removal of the Python server step. `git diff --check` passed.
 
 No npm package or UI asset was published externally, and production distributions were not deployed to a production server. Test Apps and logs remain outside the repository. Generated `doc/dist/` output is not committed.
-
-
-## Combined article check
-
-The component and optional UI source-distribution guides were consolidated at `core/extension-development/frontend-components.md` in both languages. The page now proceeds from authoring and page integration to optional Registry distribution, Agent instructions and combined verification. Independent Registry package boundaries and local JSON installation remain unchanged.
-
-Compared the merged article with both pre-merge sources: all 16 code/example blocks excluding prompts and directory trees were preserved in each language, and the English and Chinese executable examples still match. No application behavior or example commands changed, so the full App workflow above was not repeated for this structural edit.
-
-Updated menu ownership, incoming section links and README. The documentation build generated 270 pages (135 per language), with 89 Core pages per language. Checked incoming fragment links and confirmed the removed standalone route is absent from generated pages, sitemap and llms.txt. Inspected the combined Chinese article and its Registry section in the collaborative browser.

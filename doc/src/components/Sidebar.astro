@@ -1,0 +1,22 @@
+---
+// The menu tree of a section: groups (headings), folders (collapsible, the levels that contain the current page are open) and pages. Rendered twice per page: in the left column and in the mobile menu panel.
+import Self from './Sidebar.astro';
+export interface Props { nodes: any[]; current?: string; urlOf: (key: string) => string; planned: string; root?: boolean }
+const { nodes, current, urlOf, planned, root = true } = Astro.props as Props;
+const has = (list: any[]): boolean => list.some(n => (n.type === 'page' && n.key === current) || (n.type === 'folder' && ((n.link && n.link.key === current) || has(n.children))) || (n.type === 'group' && has(n.children)));
+---
+{root ? nodes.map(n => n.type === 'group' ? (
+<div class="doc-group"><p class="doc-group-title">{n.title}</p><Self nodes={n.children} {current} {urlOf} {planned} root={false} /></div>
+) : (
+<Self nodes={[n]} {current} {urlOf} {planned} root={false} />
+)) : (
+<ul>{nodes.map(n => n.type === 'page' ? (
+<li><a href={urlOf(n.key)} class:list={[{ todo: n.placeholder }]} aria-current={n.key === current ? 'page' : undefined}>{n.title}</a></li>
+) : n.type === 'planned' ? (
+<li><span class="doc-planned">{n.title} <small>{planned}</small></span></li>
+) : n.type === 'folder' ? (
+<li><details class="doc-folder" open={n.defaultOpen || has([n])}><summary>{n.link ? <a href={urlOf(n.link.key)} class="doc-folder-link" aria-current={n.link.key === current ? 'page' : undefined}>{n.title}</a> : <span class="doc-folder-link">{n.title}</span>}<i class="doc-chevron" aria-hidden="true"></i></summary><Self nodes={n.children} {current} {urlOf} {planned} root={false} /></details></li>
+) : (
+<li><div class="doc-group"><p class="doc-group-title">{n.title}</p><Self nodes={n.children} {current} {urlOf} {planned} root={false} /></div></li>
+))}</ul>
+)}

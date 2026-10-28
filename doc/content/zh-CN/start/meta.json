@@ -1,0 +1,14 @@
+{
+  "pages": [
+    { "type": "page", "path": "../index", "title": "首页" },
+    {
+      "type": "group",
+      "title": "开始",
+      "pages": [
+        { "type": "page", "path": "what-is-nocobase" },
+        { "type": "page", "path": "from-v2" },
+        { "type": "page", "path": "glossary" }
+      ]
+    }
+  ]
+}

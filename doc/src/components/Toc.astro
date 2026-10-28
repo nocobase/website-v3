@@ -1,0 +1,7 @@
+---
+// On-page navigation: headings h2 to h4 of the page
+export interface Props { headings: { depth: number; slug: string; text: string }[]; title: string }
+const { headings, title } = Astro.props as Props;
+const items = headings.filter(h => h.depth >= 2 && h.depth <= 4);
+---
+{items.length >= 2 && <Fragment><p class="doc-toc-title">{title}</p><ul>{items.map(h => <li class={`toc-level-${h.depth}`}><a href={`#${encodeURIComponent(h.slug)}`}>{h.text}</a></li>)}</ul></Fragment>}

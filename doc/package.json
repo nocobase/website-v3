@@ -1,13 +1,27 @@
 {
-  "name": "nocobase-3-docs",
+  "name": "doc",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node build.mjs",
-    "serve": "node serve.mjs"
+    "dev": "astro dev --port 4321",
+    "build": "astro build",
+    "preview": "node scripts/serve.mjs",
+    "test": "vitest run"
   },
   "dependencies": {
-    "highlight.js": "11.11.1",
-    "marked": "4.3.0"
+    "@astrojs/markdown-remark": "7.3.4",
+    "@astrojs/sitemap": "3.7.4",
+    "@nocobase/site-shared": "workspace:*",
+    "astro": "7.4.2",
+    "lucide": "0.460.0",
+    "pagefind": "1.5.2",
+    "remark-parse": "11.0.0",
+    "shiki": "4.5.0",
+    "unified": "11.0.5",
+    "unist-util-visit": "5.2.0",
+    "yaml": "2.8.1"
+  },
+  "devDependencies": {
+    "vitest": "5.0.5"
   }
 }

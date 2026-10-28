@@ -1,7 +1,7 @@
 ---
 // 顶部导航：官网和文档站共用的外壳。样式在 styles/shell.css，交互（手机菜单、语言下拉框）在各站自己的脚本里，靠下面的 id：nav、menuBtn、mnav、langSelM。
 // 所有文字都是调用方已经按页面语言处理好的 HTML 片段（set:html），组件不做翻译；站内地址也由调用方换成最终地址。
-// 官网传产品、解决方案、资源菜单，文档站以后传各板块的标签页。
+// 官网传产品、解决方案、资源菜单，文档站传各板块的标签页（menu 里的普通链接）、label（「文档」字样）、search（搜索按钮）和手机菜单里的侧栏（slot mobile）。
 export interface Item {
   /** 菜单项的链接，没有 href 且 soon 为真时是置灰的未上线项 */
   href?: string;
@@ -48,25 +48,30 @@ export interface Props {
   languages: Language[];
   /** 右侧的链接，如 GitHub 和星标数 */
   links?: SideLink[];
-  labels?: { menu?: string; language?: string };
+  labels?: { menu?: string; language?: string; primary?: string };
+  /** 版本切换后面的小字（如「文档」），官网不传 */
+  label?: string;
+  /** 右侧的搜索按钮：点击和快捷键由调用方的脚本处理（按钮带 data-search-open）；官网不传 */
+  search?: { label: string; placeholder: string; shortcut?: string };
 }
-const { logo, version, menu, mobile, languages, links = [], labels = {} } = Astro.props as Props;
+const { logo, version, menu, mobile, languages, links = [], labels = {}, label, search } = Astro.props as Props;
 import HeaderItem from './HeaderItem.astro';
+import Icon from './Icon.astro';
 const GH = 'M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z';
 const current = languages.find(l => l.current) ?? languages[0];
 ---
 <header class="nav" id="nav"><div class="container in"><a class="logo" href={logo.href} aria-label={logo.alt}><img src={logo.src} alt={logo.alt} width={logo.width} height={logo.height}></a>{version && (
-<div class="mi ver"><button type="button" aria-haspopup="true" aria-label={version.ariaLabel}>{version.label}<i data-lucide="chevron-down"></i></button><div class="dd">{version.items.map(it => (
-<HeaderItem item={it} />))}</div></div>)}
-<nav class="menu" aria-label="Primary">{menu.map(m => m.items ? (
-<div class="mi"><button type="button" aria-haspopup="true"><Fragment set:html={m.label} /><i data-lucide="chevron-down"></i></button><div class:list={['dd', { two: m.two }]}>{m.items.map(it => (
+<div class="mi ver"><button type="button" aria-haspopup="true" aria-label={version.ariaLabel}>{version.label}<Icon name="chevron-down" /></button><div class="dd">{version.items.map(it => (
+<HeaderItem item={it} />))}</div></div>)}{label && <span class="nav-label" set:html={label}></span>}
+<nav class="menu" aria-label={labels.primary ?? 'Primary'}>{menu.map(m => m.items ? (
+<div class="mi"><button type="button" aria-haspopup="true"><Fragment set:html={m.label} /><Icon name="chevron-down" /></button><div class:list={['dd', { two: m.two }]}>{m.items.map(it => (
 <HeaderItem item={it} />))}</div></div>
 ) : (
 <div class="mi"><a class:list={{ on: m.active }} href={m.href} set:html={m.label}></a></div>
 ))}</nav>
-<div class="right"><div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-label={labels.language ?? 'Language'}><i data-lucide="globe"></i><span id="langName">{current.name}</span><i data-lucide="chevron-down"></i></button><div class="dd">{languages.map(l => (
-<a class:list={{ cur: l.current }} href={l.url} hreflang={l.html} lang={l.html}><i data-lucide="check"></i>{l.name}</a>))}</div></div>{links.map(l => (
-<a class="plain" href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.icon === 'github' && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={GH}></path></svg>}{l.label}</a>))}<button class="menu-btn" type="button" aria-label={labels.menu ?? 'Menu'} aria-expanded="false" id="menuBtn"><i data-lucide="menu"></i></button></div></div>
+<div class="right">{search && <button class="search-btn" type="button" data-search-open aria-label={search.label}><Icon name="search" /><span class="search-text">{search.placeholder}</span>{search.shortcut && <kbd>{search.shortcut}</kbd>}</button>}<div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-label={labels.language ?? 'Language'}><Icon name="globe" /><span id="langName">{current.name}</span><Icon name="chevron-down" /></button><div class="dd">{languages.map(l => (
+<a class:list={{ cur: l.current }} href={l.url} hreflang={l.html} lang={l.html}><Icon name="check" />{l.name}</a>))}</div></div>{links.map(l => (
+<a class="plain" href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.icon === 'github' && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={GH}></path></svg>}{l.label}</a>))}<button class="menu-btn" type="button" aria-label={labels.menu ?? 'Menu'} aria-expanded="false" id="menuBtn"><Icon name="menu" /></button></div></div>
 <div class="container mnav" id="mnav">{mobile.map(l => (
-<a class:list={{ on: l.active }} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}><Fragment set:html={l.label} />{l.small && <small set:html={l.small}></small>}</a>))}<label class="lang-switch-m"><i data-lucide="globe"></i><select id="langSelM" aria-label={labels.language ?? 'Language'}>{languages.map(l => (
+<a class:list={{ on: l.active }} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}><Fragment set:html={l.label} />{l.small && <small set:html={l.small}></small>}</a>))}<slot name="mobile" /><label class="lang-switch-m"><Icon name="globe" /><select id="langSelM" aria-label={labels.language ?? 'Language'}>{languages.map(l => (
 <option value={l.url} lang={l.html} selected={l.current}>{l.name}</option>))}</select></label></div></header>

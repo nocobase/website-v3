@@ -10,13 +10,16 @@ import { DIST } from '../src/lib/paths.mjs';
 const port = Number(process.env.PORT || 4322);
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.woff2': 'font/woff2', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8' };
 
+// 和线上一样让浏览器缓存打包出来的资源（/_astro/ 下的文件名带内容哈希，线上 CDN 缓存 30 天）：不缓存的话每次切换页面都重新下载字体，文字会先用备用字体显示再换掉，看起来像抖了一下。页面本身不缓存，重新构建后刷新就能看到
+const cacheOf = (path) => (path.startsWith('/_astro/') ? 'public, max-age=31536000, immutable' : 'no-cache');
+
 createServer((req, res) => {
   let path = normalize(decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
   path = path.replace(/^\/en(\/|$)/, '/');
   const last = path.slice(path.lastIndexOf('/') + 1);
   const file = join(DIST, path.endsWith('/') ? path + 'index.html' : last.includes('.') ? path : path + '/index.html');
   if (file.startsWith(DIST) && existsSync(file) && statSync(file).isFile()) {
-    res.writeHead(200, { 'content-type': TYPES[extname(file)] || 'application/octet-stream' });
+    res.writeHead(200, { 'content-type': TYPES[extname(file)] || 'application/octet-stream', 'cache-control': cacheOf(path) });
     return res.end(readFileSync(file));
   }
   const notFound = join(DIST, '404.html');

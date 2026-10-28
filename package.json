@@ -12,6 +12,10 @@
     "homepage:test": "pnpm --filter homepage test",
     "homepage:figs": "pnpm --filter homepage figs",
     "homepage:i18n:extract": "pnpm --filter homepage i18n:extract",
-    "homepage:i18n:check": "pnpm --filter homepage i18n:check"
+    "homepage:i18n:check": "pnpm --filter homepage i18n:check",
+    "doc:dev": "pnpm --filter doc dev",
+    "doc:build": "pnpm --filter doc build",
+    "doc:preview": "pnpm --filter doc preview",
+    "doc:test": "pnpm --filter doc test"
   }
 }

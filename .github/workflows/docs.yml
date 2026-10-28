@@ -5,7 +5,7 @@ name: Docs
 #
 # This repository is public, so the jobs are split by trust:
 #
-# - `build` runs the site's own code (`npm ci`, `node doc/build.mjs`) on any pull request, including one from a fork.
+# - `build` runs the site's own code (`pnpm install`, `pnpm doc:test`, `pnpm doc:build`) on any pull request, including one from a fork.
 #   It is triggered by `pull_request`, never `pull_request_target`, references no secret, and its token can only read.
 # - `publish` runs only for `main` in the `production` environment. It downloads the built site as an artifact and runs
 #   no code from the repository except `scripts/deploy-cdn`. The Aliyun keys appear only in the `env` of its `Publish`
@@ -28,7 +28,10 @@ on:
   pull_request:
     paths:
       - 'doc/**'
-      - 'packages/shared/v2-redirect-prefixes.txt'
+      - 'packages/shared/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
       - '.github/workflows/docs.yml'
       - 'scripts/deploy-cdn/**'
   push:
@@ -36,7 +39,10 @@ on:
       - main
     paths:
       - 'doc/**'
-      - 'packages/shared/v2-redirect-prefixes.txt'
+      - 'packages/shared/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
       - '.github/workflows/docs.yml'
       - 'scripts/deploy-cdn/**'
   workflow_dispatch:
@@ -49,33 +55,63 @@ jobs:
     name: Docs build
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      ASTRO_TELEMETRY_DISABLED: 1
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
         with:
           persist-credentials: false
 
+      # pnpm's version comes from the `packageManager` field of the root package.json.
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
-      - name: Install dependencies
-        run: npm ci --prefix doc --ignore-scripts
+      - name: Install the build dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
+      - name: Test the build scripts
+        run: pnpm doc:test
+
+      # The header shows the repository's star count, read here at build time with a plain unauthenticated request (a build
+      # job must not reference any secret, not even GITHUB_TOKEN) and passed to the build as GITHUB_STARS. When the request
+      # fails or the answer is not a number, the build uses the static default in packages/shared/src/config.mjs.
+      - name: Read the GitHub star count
+        run: |
+          stars=$(curl -fsS --max-time 20 https://api.github.com/repos/nocobase/nocobase | jq -r '.stargazers_count // empty' || true)
+          if [[ "$stars" =~ ^[0-9]+$ ]]; then
+            echo "GITHUB_STARS=$stars" >> "$GITHUB_ENV"
+            echo "GitHub stars: $stars"
+          else
+            echo "::warning::Could not read the GitHub star count; the build uses the default in packages/shared/src/config.mjs."
+          fi
+
+      # Fails on a page missing from the menus, menus that differ between languages, a broken link or anchor, or a top-level
+      # name the CDN rules would map elsewhere (`en`, `api`, the v2 prefixes). Builds the search index at the end.
       - name: Build the site
-        run: node doc/build.mjs
+        run: pnpm doc:build
 
-      # Only that the files the CDN and crawlers depend on exist; the build itself checks the content.
+      # Only that the files the CDN, crawlers and search depend on exist; the build itself checks the content.
       - name: Check the build
         run: |
           missing=0
-          for file in doc/dist/index.html doc/dist/zh-CN/index.html doc/dist/404.html doc/dist/sitemap.xml; do
-            if [ ! -s "$file" ]; then
-              echo "::error::The build did not produce $file."
+          for file in index.html zh-CN/index.html 404.html sitemap-index.xml robots.txt llms.txt zh-CN/llms.txt; do
+            if [ ! -s "doc/dist/$file" ]; then
+              echo "::error::The build did not produce doc/dist/$file."
               missing=1
             fi
           done
+          if [ ! -d doc/dist/pagefind ]; then
+            echo "::error::The build did not produce the search index doc/dist/pagefind/."
+            missing=1
+          fi
           exit "$missing"
 
       # Pure logic of the publishing script (argument parsing, which versions a cleanup removes); needs no dependency.
@@ -122,7 +158,7 @@ jobs:
             exit 0
           fi
           read -r status files relevant < <(gh api "repos/${REPOSITORY}/compare/${HEAD_SHA}...${head}" --jq '
-            def watched: startswith("doc/") or startswith("scripts/deploy-cdn/") or . == "packages/shared/v2-redirect-prefixes.txt" or . == ".github/workflows/docs.yml";
+            def watched: startswith("doc/") or startswith("scripts/deploy-cdn/") or startswith("packages/shared/") or . == "package.json" or . == "pnpm-lock.yaml" or . == "pnpm-workspace.yaml" or . == ".github/workflows/docs.yml";
             [.status, (.files | length), ([.files[] | select((.filename | watched) or ((.previous_filename // "") | watched))] | length)] | @tsv')
           if [ "$status" = "ahead" ] && [ "$files" -lt 300 ] && [ "$relevant" -eq 0 ]; then
             echo "current=true" >> "$GITHUB_OUTPUT"

@@ -1,0 +1,21 @@
+{
+  "title": "搭建 Studio",
+  "defaultOpen": true,
+  "pages": [
+    { "type": "page", "path": "with-agent" },
+    {
+      "type": "group",
+      "title": "分步说明",
+      "pages": [
+        { "type": "page", "path": "install" },
+        { "type": "page", "path": "git" },
+        { "type": "page", "path": "shared-runtimes" },
+        { "type": "page", "path": "agents" },
+        { "type": "page", "path": "new-project" },
+        { "type": "page", "path": "ci" },
+        { "type": "page", "path": "first-request" },
+        { "type": "page", "path": "invite" }
+      ]
+    }
+  ]
+}

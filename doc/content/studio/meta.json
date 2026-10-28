@@ -1,0 +1,74 @@
+{
+  "pages": [
+    { "type": "page", "path": "index", "title": "Home" },
+    {
+      "type": "group",
+      "title": "Get started",
+      "pages": [
+        { "type": "page", "path": "intro/what-is-studio" },
+        { "type": "page", "path": "intro/how-a-request-gets-done" },
+        { "type": "page", "path": "intro/agent-team" },
+        { "type": "page", "path": "intro/concepts" }
+      ]
+    },
+    { "type": "folder", "path": "setup" },
+    {
+      "type": "group",
+      "title": "Join the team",
+      "pages": [
+        { "type": "page", "path": "join/sign-in" },
+        { "type": "page", "path": "join/connect-computer" },
+        { "type": "page", "path": "join/local-agent", "title": "From your local coding agent" },
+        { "type": "page", "path": "join/personal-runtime" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Daily use",
+      "pages": [
+        { "type": "page", "path": "use/raise-a-request" },
+        { "type": "page", "path": "use/sessions" },
+        { "type": "page", "path": "use/my-tasks" },
+        { "type": "page", "path": "use/follow-progress" },
+        { "type": "page", "path": "use/answer", "title": "Answer questions" },
+        { "type": "page", "path": "use/accept" },
+        { "type": "page", "path": "use/inbox" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Manage projects",
+      "pages": [
+        { "type": "page", "path": "project/settings" },
+        { "type": "page", "path": "project/skills" },
+        { "type": "page", "path": "project/knowledge-base" },
+        { "type": "page", "path": "project/checks-and-review" },
+        { "type": "page", "path": "project/project-memory" },
+        { "type": "page", "path": "project/release" },
+        { "type": "page", "path": "project/progress" },
+        { "type": "page", "path": "project/usage" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Administration",
+      "pages": [
+        { "type": "page", "path": "admin/environments" },
+        { "type": "page", "path": "admin/members-and-roles" },
+        { "type": "page", "path": "admin/api-keys" },
+        { "type": "page", "path": "admin/notifications" },
+        { "type": "page", "path": "admin/upgrade-and-backup" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Reference",
+      "pages": [
+        { "type": "page", "path": "reference/statuses-and-permissions" },
+        { "type": "page", "path": "reference/cli" },
+        { "type": "page", "path": "reference/config" },
+        { "type": "page", "path": "reference/faq" }
+      ]
+    }
+  ]
+}

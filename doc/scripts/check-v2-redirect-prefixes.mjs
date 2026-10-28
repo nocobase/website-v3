@@ -2,7 +2,7 @@
 // 检查产物根目录有没有和 v2 旧地址同名的条目。docs.nocobase.com 的 CDN 会把 v2-redirect-prefixes.txt 里的一级路径
 // 301 到 nocode.docs.nocobase.com，产物里如果有同名的目录（或不带扩展名的文件），它下面的页面线上永远打不开。
 // CDN 按整个路径段匹配：目录 guide/ 和文件 guide 算冲突，guide.html 不算。
-// build.mjs 生成完文档站后会调用它，冲突时构建失败，CI 也就不会发布；也可以单独运行：
+// 文档站构建结束后（doc/src/lib/checks.mjs）会调用它，冲突时构建失败，CI 也就不会发布；也可以单独运行：
 //   node doc/scripts/check-v2-redirect-prefixes.mjs [产物目录，默认 doc/dist]
 import { readdirSync, readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';

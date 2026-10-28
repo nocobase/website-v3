@@ -11,9 +11,9 @@ homepage/.astro/
 # NocoReach 产品界面截图上传到 static-docs 之前的暂存目录（homepage/scripts/reach-shoot.mjs）
 homepage/.reach-shots/
 
-# 文档站的依赖和构建产物（node doc/build.mjs 生成，CI 构建后发布）
-doc/node_modules/
+# 文档站的构建产物（pnpm doc:build 生成，CI 构建后发布）和 Astro 的缓存
 doc/dist/
+doc/.astro/
 
 # CDN 发布脚本的依赖（CI 发布时安装）
 scripts/deploy-cdn/node_modules/

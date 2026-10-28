@@ -1,0 +1,14 @@
+---
+// The 404 page (English only, noindex): the CDN returns it for any address it cannot find, at any depth, so all links and assets are root-relative.
+import Layout from '../layouts/Layout.astro';
+import { getSite } from '../lib/site.mjs';
+
+const site = getSite();
+const lang = site.config.defaultLanguage.code;
+const { notFound } = site.config.byCode[lang].ui;
+---
+<Layout lang={lang} title={notFound.title} description={notFound.lead} noindex>
+<h1>{notFound.title}</h1>
+<p class="doc-lead">{notFound.lead}</p>
+<p class="prose"><a href={site.urlOf(lang, 'index')}>{notFound.back}</a></p>
+</Layout>

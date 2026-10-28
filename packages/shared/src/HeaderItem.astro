@@ -1,10 +1,11 @@
 ---
 // 下拉菜单里的一项（Header.astro 用）：普通链接、版本下拉里的当前版本和外链、置灰的未上线项、分隔线。
 import type { Item } from './Header.astro';
+import Icon from './Icon.astro';
 const { item: it } = Astro.props as { item: Item };
 ---
 {it.sep ? <div class="dd-sep"></div> : it.soon !== undefined ? (
-<div class="soon" aria-disabled="true"><i data-lucide={it.icon}></i><b><Fragment set:html={it.title} />{it.soon && <em class="soon-tag">{it.soon}</em>}</b><span set:html={it.desc}></span></div>
+<div class="soon" aria-disabled="true">{it.icon && <Icon name={it.icon} />}<b><Fragment set:html={it.title} />{it.soon && <em class="soon-tag">{it.soon}</em>}</b><span set:html={it.desc}></span></div>
 ) : (
-<a class:list={[it.kind, { on: it.active }]} href={it.href} target={it.external ? '_blank' : undefined} rel={it.external ? 'noopener' : undefined}><i data-lucide={it.icon}></i><b><Fragment set:html={it.title} />{it.tag && <em class="kind-tag" set:html={it.tag}></em>}{it.arrow && <i data-lucide="arrow-up-right"></i>}</b><span set:html={it.desc}></span></a>
+<a class:list={[it.kind, { on: it.active }]} href={it.href} target={it.external ? '_blank' : undefined} rel={it.external ? 'noopener' : undefined}>{it.icon && <Icon name={it.icon} />}<b><Fragment set:html={it.title} />{it.tag && <em class="kind-tag" set:html={it.tag}></em>}{it.arrow && <Icon name="arrow-up-right" />}</b><span set:html={it.desc}></span></a>
 )}

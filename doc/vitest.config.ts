@@ -1,0 +1,5 @@
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: { include: ['src/**/*.test.{mjs,ts}', 'plugins/**/*.test.{mjs,ts}', 'scripts/**/*.test.{mjs,ts}'] },
+});

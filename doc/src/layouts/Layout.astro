@@ -1,0 +1,104 @@
+---
+// The shell of every docs page: head (title, canonical, hreflang, analytics), the shared header and footer, the sidebar and table of contents columns, and the search dialog. Styles: tokens and shell of the shared package, then the docs' own.
+import '@nocobase/site-shared/styles/tokens.css';
+import '@nocobase/site-shared/fonts/fonts.css';
+// The Latin subset of Archivo is used by every page; preloading it lets the first paint use it instead of swapping from the fallback font
+import archivoLatin from '@nocobase/site-shared/fonts/archivo/v25/k3kPo8UDI-1M0wlSV9XAw6lQkqWY8Q82sLydOxKsv4Rn.woff2?url';
+import '@nocobase/site-shared/styles/shell.css';
+import '../styles/docs.css';
+import '../styles/figures.css';
+import Analytics from '@nocobase/site-shared/Analytics.astro';
+import Footer from '@nocobase/site-shared/Footer.astro';
+import Icon from '@nocobase/site-shared/Icon.astro';
+import Header from '@nocobase/site-shared/Header.astro';
+import { footerProps, headerProps } from '../lib/chrome.mjs';
+import { getSite } from '../lib/site.mjs';
+import Sidebar from '../components/Sidebar.astro';
+
+export interface Props {
+  lang: string;
+  title: string;
+  description?: string;
+  /** Section of the page (the active tab and the sidebar); omitted on the 404 page */
+  sectionId?: string;
+  /** The page key; the language menu and the alternates follow it */
+  pageKey?: string;
+  noindex?: boolean;
+  /** Index the page in search (Pagefind) */
+  searchable?: boolean;
+  /** Section title shown as a filter in search */
+  sectionTitle?: string;
+}
+const { lang, title, description, sectionId, pageKey, noindex = false, searchable = false, sectionTitle } = Astro.props as Props;
+const site = getSite();
+const { config } = site;
+const ui = config.byCode[lang].ui;
+const header = headerProps(site, { lang, sectionId, pageKey });
+const footer = footerProps(site, { lang });
+const abs = (path: string) => site.absolute(path);
+const alternates = pageKey ? config.languages.filter(l => site.page(l.code, pageKey)) : [];
+const siteTitle = config.siteTitle(lang);
+const section = sectionId ? site.sections(lang).find(s => s.id === sectionId) : undefined;
+const hasToc = Astro.slots.has('toc');
+const search = ui.search;
+---
+<!doctype html>
+<html lang={config.byCode[lang].hreflang}>
+<head>
+<meta charset="utf-8">
+<link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title} - {siteTitle}</title>
+<meta name="description" content={description || title}>
+{noindex && <meta name="robots" content="noindex">}
+{pageKey && !noindex && <link rel="canonical" href={abs(site.urlOf(lang, pageKey))}>}
+{alternates.map(l => <link rel="alternate" hreflang={l.hreflang} href={abs(site.urlOf(l.code, pageKey!))}>)}
+{pageKey && <link rel="alternate" hreflang="x-default" href={abs(site.urlOf(config.defaultLanguage.code, pageKey))}>}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content={siteTitle}>
+<meta property="og:title" content={title}>
+{pageKey && <meta property="og:url" content={abs(site.urlOf(lang, pageKey))}>}
+<meta property="og:locale" content={config.byCode[lang].hreflang.replace('-', '_')}>
+<Analytics {...config.analytics} />
+<link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
+</head>
+<body>
+<a class="skip-link" href="#content">{ui.skip}</a>
+<Header {...header}>
+{section && <nav slot="mobile" class="doc-nav doc-nav-m" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav>}
+</Header>
+<div class:list={['doc-layout', { 'no-side': !section }]}>
+{section && <aside class="doc-side"><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav></aside>}
+{section && <script is:inline>
+// 侧栏在第一次绘制前就定好滚动位置，切换页面时不跳：先恢复同一侧栏上次的位置（按侧栏第一个链接区分板块和语言），当前页不在可视范围内再把它滚到上方三分之一处
+(() => {
+  const side = document.querySelector('.doc-side');
+  const key = 'doc-side:' + (side.querySelector('a[href]')?.getAttribute('href') ?? '');
+  try { const y = sessionStorage.getItem(key); if (y !== null) side.scrollTop = Number(y); } catch {}
+  const current = side.querySelector('[aria-current="page"]');
+  if (current) {
+    const box = side.getBoundingClientRect(), rect = current.getBoundingClientRect();
+    if (rect.top < box.top || rect.bottom > box.bottom) side.scrollTop += rect.top - box.top - box.height / 3;
+  }
+  addEventListener('pagehide', () => { try { sessionStorage.setItem(key, String(side.scrollTop)); } catch {} });
+})();
+</script>}
+<main id="content" class="doc-main" data-pagefind-body={searchable ? '' : undefined}>
+<slot />
+</main>
+{hasToc && <aside class="doc-toc" aria-label={ui.toc}><slot name="toc" /></aside>}
+</div>
+<Footer {...footer} />
+<dialog id="docSearch" class="doc-search" aria-label={search.label} data-empty={search.empty} data-error={search.error} data-loading={search.loading} data-hint={search.hint}>
+<form method="dialog" class="doc-search-box"><Icon name="search" /><input id="docSearchInput" type="search" placeholder={search.placeholder} aria-label={search.label} autocomplete="off" spellcheck="false" aria-controls="docSearchResults"><button type="submit" class="doc-search-close" aria-label={search.close}>Esc</button></form>
+<div id="docSearchResults" class="doc-search-results" role="listbox" aria-label={search.results}></div>
+</dialog>
+<script>
+  import '@nocobase/site-shared/shell.js';
+  import '../scripts/docs.js';
+  import '../scripts/search.js';
+</script>
+</body>
+</html>

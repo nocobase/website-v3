@@ -1,0 +1,14 @@
+{
+  "pages": [
+    { "type": "page", "path": "../index", "title": "Home" },
+    {
+      "type": "group",
+      "title": "Start",
+      "pages": [
+        { "type": "page", "path": "what-is-nocobase" },
+        { "type": "page", "path": "from-v2" },
+        { "type": "page", "path": "glossary" }
+      ]
+    }
+  ]
+}

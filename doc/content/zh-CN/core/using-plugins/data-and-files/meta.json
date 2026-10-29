@@ -2,12 +2,12 @@
   "title": "数据与文件",
   "pages": [
     {
-      "type": "planned",
-      "title": "数据库浏览"
+      "type": "page",
+      "path": "database-explorer"
     },
     {
-      "type": "planned",
-      "title": "文件管理"
+      "type": "page",
+      "path": "file-management"
     }
   ]
 }

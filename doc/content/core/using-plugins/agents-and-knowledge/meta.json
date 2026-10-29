@@ -2,16 +2,16 @@
   "title": "Agents and knowledge",
   "pages": [
     {
-      "type": "planned",
-      "title": "Agents"
+      "type": "page",
+      "path": "agents"
     },
     {
-      "type": "planned",
-      "title": "Agent sessions"
+      "type": "page",
+      "path": "agent-sessions"
     },
     {
-      "type": "planned",
-      "title": "Knowledge base"
+      "type": "page",
+      "path": "knowledge"
     }
   ]
 }

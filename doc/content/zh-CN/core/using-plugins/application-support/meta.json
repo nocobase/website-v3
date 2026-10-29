@@ -2,20 +2,20 @@
   "title": "应用支持",
   "pages": [
     {
-      "type": "planned",
-      "title": "多语言"
+      "type": "page",
+      "path": "i18n"
     },
     {
-      "type": "planned",
-      "title": "应用底座"
+      "type": "page",
+      "path": "foundation"
     },
     {
-      "type": "planned",
-      "title": "发布管理"
+      "type": "page",
+      "path": "releases"
     },
     {
-      "type": "planned",
-      "title": "演示模式"
+      "type": "page",
+      "path": "demo-mode"
     }
   ]
 }

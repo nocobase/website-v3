@@ -2,12 +2,12 @@
   "title": "Automation and output",
   "pages": [
     {
-      "type": "planned",
-      "title": "Scheduled tasks"
+      "type": "page",
+      "path": "scheduler"
     },
     {
-      "type": "planned",
-      "title": "Template printing"
+      "type": "page",
+      "path": "template-print"
     }
   ]
 }

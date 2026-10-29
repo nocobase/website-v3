@@ -2,16 +2,16 @@
   "title": "用户与认证",
   "pages": [
     {
-      "type": "planned",
-      "title": "用户管理"
+      "type": "page",
+      "path": "users"
     },
     {
-      "type": "planned",
-      "title": "身份认证"
+      "type": "page",
+      "path": "sign-in"
     },
     {
-      "type": "planned",
-      "title": "API 密钥"
+      "type": "page",
+      "path": "api-keys"
     }
   ]
 }

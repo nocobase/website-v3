@@ -2,16 +2,16 @@
   "title": "Agents 与知识",
   "pages": [
     {
-      "type": "planned",
-      "title": "Agents"
+      "type": "page",
+      "path": "agents"
     },
     {
-      "type": "planned",
-      "title": "Agent 会话"
+      "type": "page",
+      "path": "agent-sessions"
     },
     {
-      "type": "planned",
-      "title": "知识库"
+      "type": "page",
+      "path": "knowledge"
     }
   ]
 }

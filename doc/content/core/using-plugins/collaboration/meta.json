@@ -2,16 +2,16 @@
   "title": "Business collaboration",
   "pages": [
     {
-      "type": "planned",
-      "title": "Project management"
+      "type": "page",
+      "path": "projects"
     },
     {
-      "type": "planned",
-      "title": "Approvals (commercial)"
+      "type": "page",
+      "path": "approval"
     },
     {
-      "type": "planned",
-      "title": "Task center (commercial)"
+      "type": "page",
+      "path": "task-center"
     }
   ]
 }

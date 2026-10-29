@@ -2,20 +2,20 @@
   "title": "Application support",
   "pages": [
     {
-      "type": "planned",
-      "title": "Localization"
+      "type": "page",
+      "path": "i18n"
     },
     {
-      "type": "planned",
-      "title": "Application foundation"
+      "type": "page",
+      "path": "foundation"
     },
     {
-      "type": "planned",
-      "title": "Release management"
+      "type": "page",
+      "path": "releases"
     },
     {
-      "type": "planned",
-      "title": "Demo mode"
+      "type": "page",
+      "path": "demo-mode"
     }
   ]
 }

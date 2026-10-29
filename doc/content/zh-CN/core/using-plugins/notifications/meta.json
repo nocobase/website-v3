@@ -2,24 +2,24 @@
   "title": "消息与通知",
   "pages": [
     {
-      "type": "planned",
-      "title": "通知"
+      "type": "page",
+      "path": "notification"
     },
     {
-      "type": "planned",
-      "title": "通知渠道"
+      "type": "page",
+      "path": "providers"
     },
     {
-      "type": "planned",
-      "title": "站内信"
+      "type": "page",
+      "path": "in-app"
     },
     {
-      "type": "planned",
-      "title": "浏览器推送"
+      "type": "page",
+      "path": "web-push"
     },
     {
-      "type": "planned",
-      "title": "邮件"
+      "type": "page",
+      "path": "mail"
     }
   ]
 }

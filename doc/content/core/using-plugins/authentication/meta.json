@@ -2,16 +2,16 @@
   "title": "Users and authentication",
   "pages": [
     {
-      "type": "planned",
-      "title": "User management"
+      "type": "page",
+      "path": "users"
     },
     {
-      "type": "planned",
-      "title": "Authentication"
+      "type": "page",
+      "path": "sign-in"
     },
     {
-      "type": "planned",
-      "title": "API keys"
+      "type": "page",
+      "path": "api-keys"
     }
   ]
 }

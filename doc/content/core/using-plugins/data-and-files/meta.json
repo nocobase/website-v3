@@ -2,12 +2,12 @@
   "title": "Data and files",
   "pages": [
     {
-      "type": "planned",
-      "title": "Database explorer"
+      "type": "page",
+      "path": "database-explorer"
     },
     {
-      "type": "planned",
-      "title": "File management"
+      "type": "page",
+      "path": "file-management"
     }
   ]
 }

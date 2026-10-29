@@ -2,20 +2,20 @@
   "title": "Permissions and data access",
   "pages": [
     {
-      "type": "planned",
-      "title": "Permission management"
+      "type": "page",
+      "path": "permissions"
     },
     {
-      "type": "planned",
-      "title": "Default data access"
+      "type": "page",
+      "path": "default-access"
     },
     {
-      "type": "planned",
-      "title": "Sharing rules"
+      "type": "page",
+      "path": "sharing-rules"
     },
     {
-      "type": "planned",
-      "title": "Restriction rules"
+      "type": "page",
+      "path": "restriction-rules"
     }
   ]
 }

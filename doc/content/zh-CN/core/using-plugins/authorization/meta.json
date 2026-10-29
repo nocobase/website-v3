@@ -2,20 +2,20 @@
   "title": "权限与数据访问",
   "pages": [
     {
-      "type": "planned",
-      "title": "权限管理"
+      "type": "page",
+      "path": "permissions"
     },
     {
-      "type": "planned",
-      "title": "默认数据范围"
+      "type": "page",
+      "path": "default-access"
     },
     {
-      "type": "planned",
-      "title": "共享规则"
+      "type": "page",
+      "path": "sharing-rules"
     },
     {
-      "type": "planned",
-      "title": "限制规则"
+      "type": "page",
+      "path": "restriction-rules"
     }
   ]
 }

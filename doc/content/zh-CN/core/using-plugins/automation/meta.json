@@ -2,12 +2,12 @@
   "title": "自动化与输出",
   "pages": [
     {
-      "type": "planned",
-      "title": "定时任务"
+      "type": "page",
+      "path": "scheduler"
     },
     {
-      "type": "planned",
-      "title": "模板打印"
+      "type": "page",
+      "path": "template-print"
     }
   ]
 }

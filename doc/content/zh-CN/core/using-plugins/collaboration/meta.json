@@ -2,16 +2,16 @@
   "title": "业务协作",
   "pages": [
     {
-      "type": "planned",
-      "title": "项目管理"
+      "type": "page",
+      "path": "projects"
     },
     {
-      "type": "planned",
-      "title": "审批（商业）"
+      "type": "page",
+      "path": "approval"
     },
     {
-      "type": "planned",
-      "title": "任务中心（商业）"
+      "type": "page",
+      "path": "task-center"
     }
   ]
 }

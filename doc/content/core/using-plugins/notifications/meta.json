@@ -2,24 +2,24 @@
   "title": "Messages and notifications",
   "pages": [
     {
-      "type": "planned",
-      "title": "Notifications"
+      "type": "page",
+      "path": "notification"
     },
     {
-      "type": "planned",
-      "title": "Notification providers"
+      "type": "page",
+      "path": "providers"
     },
     {
-      "type": "planned",
-      "title": "In-app notifications"
+      "type": "page",
+      "path": "in-app"
     },
     {
-      "type": "planned",
-      "title": "Web push"
+      "type": "page",
+      "path": "web-push"
     },
     {
-      "type": "planned",
-      "title": "Email"
+      "type": "page",
+      "path": "mail"
     }
   ]
 }

@@ -9,7 +9,7 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 
 ## 按功能查找插件
 
-本章介绍 22 个插件，相关功能按主题分组，其余插件提供独立入口。点击插件名称可进入对应的使用文档；尚未完成的页面会显示待编写提示。
+本章介绍 21 个插件，相关功能按主题分组，其余插件提供独立入口。点击插件名称可进入对应的使用文档；尚未完成的页面会显示待编写提示。
 
 | 功能 | 使用文档 | 主要用途 |
 | --- | --- | --- |
@@ -19,7 +19,8 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 | 文件 | [文件](data-and-files/file-management.md) | 上传、存储和访问文件 |
 | 通知 | [通知](notifications/notification.md)、[通知渠道](notifications/providers.md)、[站内信](notifications/in-app.md)、[浏览器推送](notifications/web-push.md) | 配置通知渠道、投递通知并接入收件箱与浏览器推送 |
 | 邮件 | [邮件](notifications/mail.md) | 发送邮件、同步邮箱及扩展邮件服务 |
-| Agents 与知识 | [Agents](agents-and-knowledge/agents.md)、[Agent 会话](agents-and-knowledge/agent-sessions.md)、[知识库](agents-and-knowledge/knowledge.md) | 使用 Agent、管理编码会话和维护知识文档 |
+| Agents | [Agents](agents-and-knowledge/agents.md) | 管理 Agent、模型服务、对话与执行记录 |
+| 知识库 | [知识库](agents-and-knowledge/knowledge.md) | 管理文档空间、版本、搜索与变更审阅 |
 | 审批（商业） | [审批（商业）](collaboration/approval.md) | 配置审批策略并处理审批结果 |
 | 定时任务 | [定时任务](automation/scheduler.md) | 声明计划任务，查看执行记录和管理启停 |
 | 模板打印 | [模板打印](automation/template-print.md) | 使用 Skills 实现 DOCX、PDF 模板打印 |

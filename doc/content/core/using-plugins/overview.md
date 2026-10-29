@@ -9,7 +9,7 @@ Use the topics below to find the plugins you need. For shared installation, regi
 
 ## Find plugins by function
 
-This section covers 22 plugins. Related features are grouped by topic, while other plugins have individual entries. Select a plugin name to open its usage guide. Pages that are not yet written display a placeholder notice.
+This section covers 21 plugins. Related features are grouped by topic, while other plugins have individual entries. Select a plugin name to open its usage guide. Pages that are not yet written display a placeholder notice.
 
 | Feature | Usage guides | Main uses |
 | --- | --- | --- |
@@ -19,7 +19,8 @@ This section covers 22 plugins. Related features are grouped by topic, while oth
 | Files | [Files](data-and-files/file-management.md) | Upload, store and access files |
 | Notifications | [Notifications](notifications/notification.md), [Notification providers](notifications/providers.md), [In-app notifications](notifications/in-app.md), [Web push](notifications/web-push.md) | Configure notification channels, deliver notifications and integrate inboxes and browser push |
 | Email | [Email](notifications/mail.md) | Send email, synchronize mailboxes and extend mail services |
-| Agents and knowledge | [Agents](agents-and-knowledge/agents.md), [Agent sessions](agents-and-knowledge/agent-sessions.md), [Knowledge base](agents-and-knowledge/knowledge.md) | Use Agents, manage coding sessions and maintain knowledge documents |
+| Agents | [Agents](agents-and-knowledge/agents.md) | Manage Agents, model services, conversations and execution records |
+| Knowledge base | [Knowledge base](agents-and-knowledge/knowledge.md) | Manage document spaces, versions, search and change reviews |
 | Approvals (commercial) | [Approvals (commercial)](collaboration/approval.md) | Configure approval policies and handle outcomes |
 | Scheduled tasks | [Scheduled tasks](automation/scheduler.md) | Declare schedules, inspect execution records and enable or disable tasks |
 | Template printing | [Template printing](automation/template-print.md) | Use Skills to implement DOCX and PDF template printing |

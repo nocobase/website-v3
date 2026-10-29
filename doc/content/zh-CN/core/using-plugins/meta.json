@@ -34,8 +34,12 @@
       "path": "notifications/mail"
     },
     {
-      "type": "folder",
-      "path": "agents-and-knowledge"
+      "type": "page",
+      "path": "agents-and-knowledge/agents"
+    },
+    {
+      "type": "page",
+      "path": "agents-and-knowledge/knowledge"
     },
     {
       "type": "page",

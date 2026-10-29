@@ -36,7 +36,7 @@ description: "了解 app-plugin-agents 提供的能力，通过场景和提示�
 
 ## 使用场景与示例
 
-示例 `agents-doc-demo` 使用 SQLite、DeepSeek 和英文界面。文中的截图来自实际运行的应用。[下载示例源码](/assets/core/downloads/agents-doc-demo.zip)，按其中的 `examples/README.md` 启动；压缩包不包含数据库、模型密钥、登录会话或依赖目录。尚无应用时，先按[创建应用](../../getting-started/create-app.md)准备项目。
+示例 `agents-guide` 使用 SQLite、DeepSeek 和英文界面。文中的截图来自实际运行的应用。[下载示例源码](/assets/core/downloads/agents-doc-demo.zip)，按其中的 `README.md` 启动；压缩包不包含数据库、模型密钥、登录会话或依赖目录。尚无应用时，先按[创建应用](../../getting-started/create-app.md)准备项目。
 
 这里的**开发提示词**交给在项目目录工作的 Coding Agent，用来把插件接入应用；**对话提示词**则在接入后的应用聊天界面中使用。
 
@@ -44,7 +44,7 @@ description: "了解 app-plugin-agents 提供的能力，通过场景和提示�
 
 希望用户在业务页面旁打开聊天面板，选择模型、发送消息，并在下次打开时继续对话。可以把下面的需求交给开发 Agent：
 
-```text
+```prompt
 请在当前 NocoBase 3 应用中使用 @nocobase/app-plugin-agents，增加 AI 对话。
 先阅读项目 AGENTS.md、应用开发 Skill 和 Agents 插件随包提供的 Skill。
 
@@ -85,14 +85,15 @@ description: "了解 app-plugin-agents 提供的能力，通过场景和提示�
 接入后，点击页头的 **Agent chat**，选择已配置的模型。本例在界面中实际发送了以下对话提示词：
 
 ```text
-Summarize this demo in exactly three short bullets: it uses SQLite,
-connects to DeepSeek through a model API, and provides a chat panel.
-Do not claim any machine Agent is connected.
+Rewrite only these supplied facts as three short English bullets: the demo uses
+SQLite, connects to DeepSeek through a model API, and provides a chat panel.
+This is a writing exercise: do not use page context, call tools, or infer configuration.
+Output only the bullets.
 ```
 
 ![业务页面旁的聊天面板与真实模型回复](/assets/core/agents/chat.png)
 
-**完成标志**：消息收到真实回复，重新打开会话后仍能读取历史。模型列表中出现一个名称，只能说明配置已保存，还需要验证实际调用。
+**完成的标志**：消息收到真实回复，通过 **Conversations** 重新打开会话后仍能读取历史。模型列表中出现一个名称，只能说明配置已保存，还需要验证实际调用。聊天会附带页面上下文，模型可能作出错误推断；这条提示词只验证事实整理和调用链路，不能用回复判断应用是否配置正确。
 
 ### 场景二：让 Agent 按业务规范生成发布说明
 
@@ -100,7 +101,7 @@ Do not claim any machine Agent is connected.
 
 **开发提示词：**
 
-```text
+```prompt
 请用 @nocobase/app-plugin-agents 增加“生成发布说明”的能力。
 
 创建 release-notes 业务 Skill，包含 SKILL.md 和 references/style.md，
@@ -110,7 +111,9 @@ Summary、Changes、Verification，只使用用户提供的事实。
 该 Skill 只生成草稿，不修改项目文件，也不发布内容。
 
 在服务端注册 release-notes 会话 scope，只选择这个 Skill 和读取它所需的工具。
-创建使用该 scope 的会话，在聊天面板中验证，并检查实际工具执行记录。
+增加页头 Draft release notes 入口，创建使用该 scope 的会话并在聊天面板打开。
+处理未配置模型、缺少 Skill、创建失败和重复点击，并保留账号隔离与权限检查。
+验证回复，并检查实际工具执行记录。
 请说明普通对话与这个业务会话的配置区别。
 ```
 
@@ -118,22 +121,24 @@ Summary、Changes、Verification，只使用用户提供的事实。
 
 ![Skills 页面中的发布说明指引和支持文件](/assets/core/agents/skill.png)
 
-导入后还需要让会话选择这个 Skill。本例通过已认证 API 创建带 `release-notes` scope 的会话，再从聊天历史打开；普通聊天入口不会自动选择它。相关代码见下文“业务 Skill 如何进入会话”，下载源码还提供了创建并打开该会话的组件接入片段。
+导入后，点击页头文件图标 **Draft release notes**，即可创建并打开业务会话。按钮选择已启用服务中的第一个 `chat` 模型，通过已认证 API 提交 `release-notes` scope；需要使用其他模型时，可在发送前切换。每次点击都会新建会话，继续已有草稿请从 **Conversations** 打开。普通 **Agent chat** 入口不会自动选择这个 Skill。
+
+若无法打开，先确认模型服务可用、Skill 的 slug 为 `release-notes`，再检查服务端 Provider 是否注册。按钮在请求中禁用，失败显示提示；实现见 `client/components/release-notes-button.tsx`。
 
 在这个业务会话中，本例实际发送的**对话提示词**为：
 
 ```text
 Read the release-notes Skill and its style guide, then draft concise release notes
 in English. Supplied changes: Added model service configuration. Added a chat panel.
-Fixed the missing Skills navigation entry. Verification supplied: 10 route and
-locale tests passed. Do not claim any other tests ran.
+Fixed the missing Skills navigation entry. Verification supplied: 17 route, locale, and
+permission-label tests passed. Do not claim any other tests ran.
 ```
 
 ![读取 Skill 后生成的发布说明](/assets/core/agents/skill-chat.png)
 
 这里的变更和测试数是用户提供的写作素材，模型负责整理，并没有运行测试。用于自己的项目时，应替换成实际变更和检查结果。
 
-**完成标志**：输出符合指定格式，工具记录能证明读取了 Skill 与支持文件，未提供的事实没有被补写。本次实测确认了 `skill` 调用和对 `references/style.md` 的读取。
+**完成的标志**：输出符合指定格式，工具记录能证明读取了 Skill 与支持文件，未提供的事实没有被补写。本次实测确认了 `skill` 调用和对 `references/style.md` 的读取。
 
 ### 场景三：从应用调用机器上的 Coding Agent
 
@@ -141,7 +146,7 @@ locale tests passed. Do not claim any other tests ran.
 
 **开发提示词：**
 
-```text
+```prompt
 请使用 @nocobase/app-plugin-agents，为当前应用接入机器上的 Coding Agent。
 
 复用插件的 Runtimes 和 Machine agents 页面，保留原有权限。
@@ -154,19 +159,40 @@ locale tests passed. Do not claim any other tests ran.
 请报告实际执行结果；如果机器尚未连接，明确说明还不能验证代码执行。
 ```
 
+**先准备应用 CLI 和 Runner 分发包。** 默认模板没有应用自己的 CLI，也没有可下载的 Runner。只注册插件就按连接页安装，会返回 404；即使机器已在线，缺少应用 CLI 的任务仍会以 `cliUnavailable` 失败。下载示例已经声明所需依赖和配置；在其根目录执行：
+
+```bash
+pnpm nocobase cli build --universal
+pnpm nocobase cli build --runner --universal
+```
+
+这两个命令只构建 CLI 和 Runner 分发包，不是生产应用构建。运行它们需要 npm 网络，目标机器需要 Node.js 24。首次使用后重启应用，确认分发目录仍为 `storage/runners/dist`。手动接入时，还需要：
+
+- 在 `package.json` 声明 `nocobase.cli.bin`（本例为 `agents-guide`），并安装匹配版本的 `@nocobase/app-cli-client` 和 `@nocobase/agent-runner`。
+- 在 `server/config/agents.ts` 定义 `cli.name: 'agents-guide'`、`cli.package: { kind: 'served' }`，并在 `server/config/index.ts` 注册该节。CLI 名称必须与打包名称一致；本例未注册配置节时，`config set agents.cli.name=...` 会报 `UNKNOWN_KEY`。
+
 **连接与操作：** 页面接入后，在目标机器和应用中完成以下配置。
 
 1. 在目标电脑或服务器安装并登录支持的编码工具，确认工具本身可以运行。
 2. 打开 **Runtimes**，创建个人或共享连接，选择允许使用的编码工具。
 3. 按页面指引安装并注册 Runner，等待机器上报工具、登录状态和模型。
-4. 在 **Machine agents** 检查推荐的工具与模型组合，按需要添加并启用其他可用组合。
-5. 在应用中选择机器 Agent，由业务入口提供经过授权的工作目录和上下文，再发送任务。
+4. 在 **Machine agents** 从可用模型列表添加并启用工具与模型组合。没有配置推荐组合时，即使机器在线，这个列表也可能仍为空。
+5. 打开 **Agent chat**，点击 **Switch to runner agents**，选择可用 Agent，先在会话自己的工作目录执行只读检查。接入业务项目后，再由业务入口提供授权的项目上下文。
 
 ![创建机器连接时选择用途和编码工具](/assets/core/agents/runner-connection.png)
 
 Runner 负责连接、领取工作和报告状态，实际任务由编码工具执行。**机器在线**还需要配合工具已登录、模型可用、Agent 已启用、执行槽位和本地策略允许，才能开始任务。机器 Agent 使用编码工具自己的模型凭据，与 **Models** 中的密钥分别管理。
 
-连接和项目上下文就绪后，可以使用这样的**对话提示词**：
+先用下面的**对话提示词**检查执行环境：
+
+```text
+Perform a read-only smoke test in this conversation's assigned workspace.
+Run pwd and list its top-level files. Report the actual working directory and output
+in English. Do not read credentials, access other directories, edit files, install
+packages, or claim that the application source is present unless you see it.
+```
+
+普通 Runner 会话使用自己的工作目录，不会自动进入应用源码目录。连接成功后仍需开发项目上下文接入；不要让用户在聊天里输入任意宿主路径来代替授权。项目上下文就绪后，可以进一步使用这样的提示词：
 
 ```text
 请检查当前已授权项目中聊天入口的实现，先阅读 AGENTS.md 和相关 Skills。
@@ -175,7 +201,11 @@ Runner 负责连接、领取工作和报告状态，实际任务由编码工具�
 运行受影响的检查，完成后列出改动文件、检查结果和未验证项。
 ```
 
-**完成标志**：能确认任务在哪台机器、哪个目录执行，拿到实际代码差异和检查结果。本例已查看机器连接界面，尚未连接真实 Coding Agent，因此这一场景是接入指引，不是已完成的运行演示。
+**完成的标志**：只读检查有实际命令结果、执行机器和工作目录，运行记录为 `completed`；项目代码任务还应有实际差异和检查结果。本次已连接 Runner `0.1.0-beta.20` 与 Codex `0.165.0`，在会话工作目录执行 `pwd` 和 `ls -A1`，确认目录为空且运行完成。应用源码没有自动附加，因此上面的项目改码提示词仍是后续接入指引，未实测改码或构建。
+
+![已连接并识别 Codex 的个人 Runner](/assets/core/agents/runner-online.png)
+
+![机器 Agent 的真实只读命令与执行结果](/assets/core/agents/runner-chat.png)
 
 ## 重要原理与实现
 
@@ -190,10 +220,13 @@ Runner 负责连接、领取工作和报告状态，实际任务由编码工具�
 | `client/extensions/nocobase-agent-chat/` | 安装 Registry 提供的聊天 UI 源码及依赖组件 | 获得聊天面板、消息展示、模型选择和历史界面 |
 | `client/components/agents-provider.tsx` | 新建应用自己的 `AgentsProvider`，管理当前账号的聊天状态 | 面板共享会话状态，账号变化时重新初始化 |
 | `client/layouts/app-layout.tsx` | 挂载 Provider、主内容旁的聊天面板和移动端入口 | 桌面端可以一边使用业务页面，一边对话 |
-| `client/layouts/components/header-actions.tsx` | 加入 `ChatHeaderButton` | 页头出现 Agent chat 按钮 |
+| `client/layouts/components/header-actions.tsx`、`client/components/release-notes-button.tsx` | 加入普通聊天和发布说明入口 | 页头可以打开普通会话或指定 scope 的业务会话 |
 | `client/locales/en-US.ts`、`zh-CN.ts` | 合入组件语言资源，增加 `agentDemo` 导航文案 | 新入口和聊天组件具有中英文文案 |
+| `package.json`、`server/config/agents.ts`、`server/config/index.ts` | 声明并匹配应用 CLI 名称和分发方式 | Runner 可以下载应用 CLI，避免在线却无法执行 |
 | `server/providers/agents.ts`、`index.ts` | 新建并注册发布说明 Provider | 服务启动后可以解析 `release-notes` 会话 scope |
 | `examples/release-notes/` | 保存 Skill 正文和支持文件的源码 | 导入后可在 Skills 页面查看和维护 |
+| `client/pages/settings/page-permission-titles.ts` | 为 Skills 子页面和 Runner 连接页补充双语权限名称 | 权限管理显示可读名称，授权 ID 保持不变 |
+| `tests/client/release-notes-button.test.tsx` | 验证创建、重复点击、失败重试、权限和身份结束 | 业务入口的成功与失败路径均有检查 |
 | `tests/client/client-routes.test.ts` | 补充路由唯一性、页面加载和授权定义检查 | 检查新增页面是否正确接入、是否改变原有页面约定 |
 
 `package.json` 和锁文件记录依赖变化。模型服务、业务 Skill 及对话历史则是应用运行数据：仅复制源码不会同时复制这些记录，启动下载示例后仍需配置自己的模型服务并导入 Skill。
@@ -248,6 +281,15 @@ const modelsPage = {
 pnpm exec shadcn add @nocobase/agent-chat
 ```
 
+> [!NOTE]
+> 安装后立即检查 `package.json` 和锁文件。本次 Registry 命令把 Agents 降到 `0.1.0-beta.14`；恢复模板匹配的版本后才能继续。下面是本例的修复命令，其他模板应先核对兼容版本：
+
+```bash
+pnpm add @nocobase/app-plugin-agents@1.0.0-beta.29 --save-exact
+pnpm nocobase skills sync --dry-run --json
+pnpm nocobase skills sync --json
+```
+
 `@nocobase/app-plugin-agents/client/chat` 提供会话状态和 hooks；安装到应用的 Registry 组件负责展示。布局关系可以简化为：
 
 ```tsx
@@ -264,7 +306,7 @@ pnpm exec shadcn add @nocobase/agent-chat
 </AgentsProvider>
 ```
 
-`ChatPanel` 与 `main` 同级，所以聊天面板可以停靠在业务页面旁；页头按钮和移动端按钮共用同一个聊天状态。原有导航、面包屑、主题切换和用户菜单继续保留。移动端入口已接入代码，本例截图与运行验收使用桌面界面。
+`ChatPanel` 与 `main` 同级，所以聊天面板可以停靠在业务页面旁；页头按钮和移动端按钮共用同一个聊天状态。原有导航、面包屑、主题切换和用户菜单继续保留。文档截图使用桌面英文界面；另检查了 390 px 窄屏面板和深色页面，完整移动端矩阵尚未验收。
 
 `AgentsProvider` 是示例新建的组件，内部使用插件的 `ChatProvider`。它读取登录用户 ID，用 React `key` 在身份变化时重建控制器，将 ID 传入 `memoryScope`，并在挂载和清理时清除未按账号隔离的查询缓存与面板状态。这样把聊天状态的生命周期绑定到当前账号；服务端仍负责检查会话访问权限。
 
@@ -308,12 +350,12 @@ agents.onlineAgent.configurator.registerOnlineAgentScope(
 
 这段代码通过公开的 `agentsToken` 获取服务，由服务端按明确的 slug 选择一个 Skill。`skill` 工具读取指引，`bash` 读取虚拟文件系统中的支持文件，`systemPromptTemplate` 补充任务约定。scope 只选择能力，不授予业务权限。
 
-创建会话时，当前用户的已认证客户端提交如下请求体给 `POST /api/agents/conversations`：
+页头 `ReleaseNotesButton` 使用应用 API client 创建会话，成功后调用 `panel.openChat({ conversationId })`。当前用户的已认证客户端提交如下请求体给 `POST /api/agents/conversations`：
 
 ```json
 {
   "agentId": "online",
-  "title": "Release notes with a Skill",
+  "title": "Draft release notes",
   "config": { "scope": ["release-notes"] },
   "selectedModel": { "modelService": "deepseek", "model": "deepseek-flash" }
 }
@@ -382,15 +424,16 @@ Skills 页面的 **Global attachment** 用于 Runner 后续任务的全局 Skill
 | 检查 | 实际结果与能说明的问题 |
 | --- | --- |
 | 客户端与服务端类型、修改范围内的 ESLint 和格式检查 | 通过，检查了接入代码与当前类型和规范的兼容性 |
-| 路由和语言资源测试 | 2 个测试文件、10 个用例通过；覆盖页面加载、路由注册、授权定义和语言资源 |
+| 路由、语言、权限名称与业务入口测试 | 4 个测试文件、23 个用例通过；覆盖页面加载、路由授权、双语文案、创建、失败重试、重复点击和身份结束 |
 | 模型连接与浏览器对话 | DeepSeek 真实返回回复；保存的历史与完成状态可读取 |
 | Skill 使用 | 原始工具记录确认读取了 Skill 和 `references/style.md`，不是仅凭模型自述 |
+| Runner 只读执行 | 补齐应用 CLI 后，真实执行 `pwd` 和 `ls -A1`，运行记录为 `completed`；首次失败原因及修复已记录 |
 | 匿名 API 访问 | 模型服务和 Skills 接口返回 401；这不等于已验证完整角色权限矩阵 |
 
 下载示例可以重跑相关测试：
 
 ```bash
-pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts
+pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts tests/client/release-notes-button.test.tsx
 ```
 
 扩大改动或准备交付时，按项目要求运行完整检查和构建。默认模板的 `pnpm check` 包含包检查、lint、格式、类型、测试和构建；**本次示例没有运行完整的 `pnpm check` 或生产应用构建**。检查报告要看实际用例和退出结果，不能把没有找到测试也正常退出理解成验收通过。测试方法见[测试与验收](../../developing-apps/testing-and-acceptance.md)。
@@ -399,7 +442,7 @@ pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-
 
 完成开发后，可以再给 Agent 一段验收提示词：
 
-```text
+```prompt
 请检查这次 @nocobase/app-plugin-agents 的接入改动：
 1. 列出改动文件和对应界面，确认复用公开路由、聊天组件与服务。
 2. 检查新增页面是否保留授权，切换账号时是否清理聊天状态。
@@ -411,4 +454,4 @@ pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-
 环境或账号不具备时，说明对应项目尚未验证，不把计划执行写成已通过。
 ```
 
-本文实测基线为 2026-10-29 的默认模板 `1.0.0-beta.84`、Agents `1.0.0-beta.29`、SQLite 与 DeepSeek `deepseek-flash`。机器 Agent 执行、完整角色矩阵、业务写入、附件解析、移动端和生产部署尚未验收。后续扩展时，应针对新增能力补充验证。
+本文实测基线为 2026-10-29 的默认模板 `1.0.0-beta.84`、Agents `1.0.0-beta.29`、SQLite 与 DeepSeek `deepseek-flash`。机器 Agent 的项目改码与构建、完整角色矩阵、业务写入、附件解析、完整移动端矩阵和生产部署尚未验收。后续扩展时，应针对新增能力补充验证。

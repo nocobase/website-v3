@@ -1,123 +1,179 @@
-# Agents plugin guide: live verification
+# Agents plugin guide: fresh application verification
 
-Date: 2026-10-29. The public bilingual page is
-`core/using-plugins/agents-and-knowledge/agents.md`.
+Date: 2026-10-29. Bilingual page: `core/using-plugins/agents-and-knowledge/agents.md`.
+This record supersedes the earlier `agents-doc-demo` run and screenshots. The old
+application was not modified or used as the test database.
 
-## Scope and environment
+## Environment and source
 
-An independent application was created with the public create-app CLI in
-`/home/dev/NocoBase/agents-doc-demo`, using SQLite in `storage/database.sqlite`.
-No NocoBase source-workspace application or existing database was reused.
-The App runs at port 13120, with its `/main/` base path and a matching LAN
-`app.publicOrigin`. The documentation repository contains source downloads and
-screenshots, not the running database or private configuration.
+Created `/home/dev/NocoBase/docs-examples-v3/apps/agents-guide` through the public
+create-app CLI, initialized fresh SQLite, registered Agents on all three sides,
+previewed and applied migrations. App: `http://192.168.50.82:13130/main/`, matching
+public origin, listening on `0.0.0.0`, default locale `en-US`.
 
-- Node.js 24.21.0, pnpm 11.7.0.
-- `@nocobase/create-app`: 0.1.0-beta.34.
-- Default template: 1.0.0-beta.84.
-- `@nocobase/app-plugin-agents`: 1.0.0-beta.29 after the Registry correction below.
-- DeepSeek provider, `https://api.deepseek.com/v1`, `deepseek-flash`.
-- Model discovery returned `deepseek-flash` and `deepseek-v4-pro`; only Flash was enabled.
+- Node 24.21.0; pnpm 11.7.0; create-app 0.1.0-beta.34.
+- Default template 1.0.0-beta.84; Agents 1.0.0-beta.29.
+- DeepSeek `https://api.deepseek.com/v1`; live discovery returned `deepseek-flash`
+  and `deepseek-v4-pro`, with only Flash enabled.
+- Application CLI client 0.1.0-beta.17; Runner 0.1.0-beta.20;
+  Codex 0.165.0, actual Runner model `gpt-6-astra`.
 
-The guide has four chapters: capabilities, scenarios and examples, key principles
-and implementation, and AI development constraints and verification. The
-capability overview includes both connection methods; model configuration and
-machine connection steps sit with the corresponding scenarios. Implementation
-maps source changes to UI behavior. The final chapter focuses on Agents-specific
-boundaries and checks, linking to the general Agent development workflow.
-Development prompts and in-application conversation prompts are labeled separately. The machine-coding scenario is
-integration guidance, not a claim of executed Runner work. Implementation follows
-the source download, and reliability guidance distinguishes code-level boundaries
-from checks actually performed; no automatic code review or sandbox guarantee is
-attributed to the plugin.
+Source is prepared under the example repository's `apps/agents-guide` directory.
+No published example commit is claimed. Until it is published, the existing
+`public/assets/core/downloads/agents-doc-demo.zip` URL remains the source download;
+its root directory and README now describe `agents-guide`. Do not invent a commit
+link or replace deprecated repository URLs in unrelated guides.
 
-## Executed
+## Actual walkthrough
 
-1. Created the default App, initialized SQLite configuration, checked configuration,
-   registered Agents in Client/Server/CLI, previewed and applied migrations.
-2. Composed the five exported pages, enabled prepared user/permission management,
-   installed the public `agent-chat` Registry block, and mounted the identity-keyed
-   provider, panel, launchers, and English/Chinese translations.
-3. Signed in to the new example account with the user's explicit authorization.
-   Retrieved the running authenticated OpenAPI document before using APIs.
-4. Read the DeepSeek model list with the privately submitted credential. Created
-   the encrypted model service through the authenticated API. Both API and UI
-   connection checks returned success; the UI displayed
-   `Connected: deepseek-flash answered.`
-5. Sent the short demonstration prompt through the browser's actual composer.
-   Received a real response and inspected saved history and completed execution.
-6. Created `release-notes` with `SKILL.md` and `references/style.md` through the
-   public Skill API. Registered the named `release-notes` native scope in the
-   application's Provider, selecting only that slug through the public Skill service.
-7. Created a conversation explicitly selecting that scope through the authenticated
-   API, sent the supplied release-note facts, then reopened the real conversation
-   in the browser. The service reported `idle` / `completed` and retained messages.
-8. Inspected the stored original assistant tool parts with a read-only SQLite
-   connection to verify execution, rather than trusting the model's assertion:
-   `skill({ name: 'release-notes' })`, `ls -la /skills/release-notes/`, and
-   `cat /skills/release-notes/references/style.md` all completed successfully.
-   No plugin table was written directly. Raw default tool parts are omitted from
-   public history by the current projection rules; screenshots show the public answer.
-9. Inspected the Runner connection form without generating a registration token
-   or connecting a machine.
+1. Created and configured the independent app, retained original home/authentication
+   and registered prepared user/permission administration. Composed five public
+   Agents routes, Registry chat UI, translations, and account-keyed ChatProvider.
+2. Signed into the fresh test account. Read the live authenticated OpenAPI before
+   using its APIs. Model key was received privately and used through the model API;
+   the database stores it encrypted. UI Fetch models and Test connection succeeded:
+   `Connected: deepseek-flash answered.` Key field stayed empty in screenshots.
+3. Sent the documented writing request through the real composer, received DeepSeek
+   output, reloaded the application, and reopened saved history. Saved execution
+   was idle/completed. The first prompt produced an incorrect configuration claim
+   from page context; the revised supplied-facts prompt produced the three requested
+   bullets. This is model behavior, not evidence of missing model configuration.
+4. Used **Skills → Import** with the provided ZIP. Verified slug `release-notes`,
+   `SKILL.md`, `references/style.md`, and version 1. Global attachment remained off.
+5. Used the new **Draft release notes** header button to create a native conversation
+   with scope `release-notes`. It selected the configured chat model and opened the
+   composer. Sent the supplied release-note facts and 17-test writing material;
+   output used Summary, Changes, and Verification without additional test claims.
+6. Read original assistant parts with a read-only SQLite connection; no table writes.
+   In conversation `394798229880832`, assistant `394798280212481` contains successful
+   `tool-skill` with `{ name: 'release-notes' }`, `tool-bash` with
+   `ls -R /skills/release-notes/`, and
+   `cat /skills/release-notes/references/style.md`. All are output-available/ok true.
+   Default public history omits these native raw tool parts, so an answer screenshot
+   alone is not used as proof of Skill execution.
+7. Connected a real personal Runner with an isolated local registration directory
+   under ignored `storage/runner`, one slot and Codex selected. It reported online,
+   authenticated, and eight available model choices. No recommended agent was
+   automatically enabled; explicitly added an available combination.
+8. Switched the real chat UI to Runner agents and sent a read-only workspace request.
+   Initial run `394798607368194` failed preparation with `cliUnavailable`: the
+   default CLI name `main` was not installed or served. Used UI Stop to cancel the
+   retrying run and confirmed idle state. This tests queued Runner cancellation,
+   not native model streaming Stop.
+9. Added the application's own CLI declaration and matching server config section,
+   built both universal distributions, restarted, and verified that both products
+   resolve through the live distribution endpoint. Retried in the same conversation.
+   Run `394799878242305` completed with actual model `gpt-6-astra`. Saved tool output
+   confirms `pwd` and `ls -A1` in the conversation's `chat-394798607368192.task`
+   directory. The directory was empty. No source project was attached, no source
+   files were changed, and no project build/test was executed by the machine Agent.
 
-The release-note prompt supplied a test count as sample input. The model did not
-run the tests; the application route and locale checks were run separately.
+## Problems found and changes
 
-## Artifacts
+| Finding | Change or boundary |
+| --- | --- |
+| Registry installation downgraded Agents to 0.1.0-beta.14, incompatible with current chat integration | Restored 1.0.0-beta.29; put version/lockfile inspection and correction beside the install command |
+| Imported Skill did not imply selection in ordinary chat; guide required an authenticated API detour | Added translated Draft release notes entry; documented separate scope, fresh conversation behavior, prerequisites and error handling |
+| Plugin child pages lacked readable permission labels | Added labels for skills-new, skills-detail, runtimes-connect without changing authorization IDs |
+| Template route test assumed a bare app | Updated exact expected grants and unique registration checks for the integrated app |
+| Model inferred incorrect configuration from empty page context | Rewrote the writing prompt to use supplied facts; document that model assertions do not verify configuration |
+| New app served no Runner distribution (404) | Added compatible dependencies and documented both universal distribution builds |
+| Online Runner could not prepare work because application CLI was absent | Declared nocobase.cli.bin and matching agents.cli.name with served package; tested real retry |
+| config set rejected agents.cli.name with UNKNOWN_KEY | Added server/config/agents.ts and registered it in index; documented that this section is required |
+| Runner conversation starts in its own workspace, not app source | Added a read-only workspace check and clearly separated later project-context integration and code edits |
+| A pending business-entry request could outlive account teardown | Abort and ignore async requests after unmount; component regression test |
 
-Six unmodified screenshots were saved from the live browser at 1440 × 1000:
+The original React script-tag diagnostic on the default login page is baseline.
+Published packages also emit missing sourcemap warnings during tests. During the
+CLI dependency install, the running development watcher briefly failed to resolve
+a moved package; it was restarted after installation. This is not reported as a
+model or Skill failure. Two preview Full width ref-click attempts timed out;
+a DOM click in the same preview tab opened it. No alternate browser was used.
 
-- `public/assets/core/agents/models.png`: saved, enabled DeepSeek service.
-- `public/assets/core/agents/model-configuration.png`: write-only credential field
-  and successful connection test; no credential is visible.
-- `public/assets/core/agents/chat.png`: actual browser-submitted chat and reply.
-- `public/assets/core/agents/skill.png`: Skill body, file tree, and version.
-- `public/assets/core/agents/skill-chat.png`: live model output after Skill reads.
-- `public/assets/core/agents/runner-connection.png`: actual connection form before
-  generating installation credentials.
+## Screenshots and archives
 
-Downloads are assembled from an allowlist of source directories and root files.
-Exclude `config.yml`, `.env*`, `storage/`, dependency directories, generated
-collections, build output, synchronized Skills, and sign-in cookies. The Skill
-archive contains the same instructions and supporting file as the example.
-Rebuild both archives when the corresponding source changes.
+All six original screenshots were retaken from the fresh English application.
+Two additional screenshots show the real Runner connection and task. Captured
+viewport was 1440 × 1000; the preview tool saved PNGs at 1280 × 889. Images are
+unmodified captures, not generated UI or edited model results.
 
-## Compatibility findings
+- `public/assets/core/agents/models.png`: enabled model service.
+- `model-configuration.png`: write-only key field and successful live test.
+- `chat.png`: revised prompt and actual three-bullet response.
+- `skill.png`: imported instructions, support file tree and version.
+- `skill-chat.png`: actual business conversation in expanded chat.
+- `runner-connection.png`: setup form before generating a one-time token.
+- `runner-online.png`: personal runtime with signed-in Codex.
+- `runner-chat.png`: real command output and final response after retry.
 
-The public Registry installation replaced the template-compatible Agents dependency
-with 0.1.0-beta.14. Restoring the explicit 1.0.0-beta.29 dependency and synchronizing
-Skills produced the verified setup. The public guide records this observed caveat;
-it does not recommend an indefinite version pin.
+A 390 px light chat panel and a dark Runtimes page were additionally inspected;
+these are local acceptance evidence, not a full mobile/theme matrix. English
+screenshots are shared by both language pages.
 
-The installed Registry block already had a narrow `react-hooks/static-components`
-exception for selecting pre-registered tool renderers. The template also enables
-`@eslint-react/static-components`, which flagged the same selection. The App copy
-names both rules in that existing exception after confirming `useAIToolRenderer`
-only looks up a component in context; it creates no component during render.
-No runtime rendering behavior was changed.
-
-Installed guidance contains older statements: its main Skill says native bash and
-Skills are opt-in, while the installed native-sandbox guide and implementation enable
-them by default; model-services.md still says Agents do not use model services.
-The page follows the installed runtime and verified named-scope behavior.
-
-A React script-tag diagnostic was present on the template login screen before any
-Agents page loaded. It was not produced by a model operation. Startup also reports
-single-process memory-job warnings and a deprecated plugin `queue.jobs` contribution;
-this walkthrough is not production or multi-instance acceptance.
+Source ZIP uses an allowlist of source directories and root files. Excluded:
+`config.yml`, `.env*`, `storage/`, databases, dependency directories, generated
+collection caches, built output, synchronized Skills, private scripts, tokens and
+sessions. `config.example.yml` is the template, not the local config. The separate
+Skill ZIP contains the same two files imported during verification. Source README
+covers versions, setup, model configuration, Skill import, Runner builds, code map,
+checks and limitations. Template notes are `TEMPLATE.md` to avoid two README names
+that differ only by case.
 
 ## Checks and limits
 
-Passed client and server TypeScript checks, scoped ESLint, formatting, and the
-client route and locale suites: 2 files, 10 tests. No authorization seeds were
-changed or wildcard business grants added. Existing plugin route authorization
-was retained. Documentation checks passed: `pnpm doc:test` (7 files, 41 tests),
-`pnpm doc:build` (339 pages), and `git diff --check`. The live API denied
-anonymous access to model services and Skills with HTTP 401.
+Passed:
 
-Not verified: real Runner tasks, complete role/permission matrix, arbitrary business
-writes, attachment parsing, every provider, production App build/deployment,
-multi-instance behavior, mobile/dark-mode acceptance. No mock model responses or
-invented tool execution results were used. No private model key, session cookie,
-database, or private configuration is part of the public download.
+- Client TypeScript, server TypeScript, tooling TypeScript; scoped ESLint and
+  formatting. Tooling tsconfig does not include Vitest test sources.
+- Four client test files, 23 tests: route loading, registration and exact grants;
+  locale coverage; permission names; six business-entry tests (correct scope/model,
+  pending duplicate prevention, no model, failed creation/retry, denied permission,
+  no stale creation after unmount). Tests use real app/i18n/authorization/chat
+  providers and deterministic API fixtures, not a mocked external-model transcript.
+- Configuration check, migration preview/apply, actual model/Skill and Runner
+  operations above. Both CLI/Runner universal builds and live product resolution.
+- Anonymous model-service and Skill requests: HTTP 401.
+
+Not verified: full `pnpm check`, production application build/deployment, complete
+role matrix, browser multi-account switching/cross-owner conversation access,
+Chinese IME/middle editing, full language/mobile/theme matrix, native streaming
+Stop, business writes, attachment parsing, source-project editing/builds, other
+model providers and multi-instance behavior. Scope/button permissions do not
+replace server authorization. Prompts and Skills are not a sandbox or correctness
+guarantee.
+
+The configured model service, imported Skill, demonstration conversations, personal
+runtime and enabled Agent remain as local test data. Their secrets and database
+are excluded from the public example and download. Runner shutdown and any
+remaining review findings are recorded with the final handover.
+
+## Review and final documentation checks
+
+Independent acceptance review inspected all ten local screenshots, the changed
+integration code, the design/run record and 22 guideline checklist items; it also
+ran two client suites independently (11 tests passed). The review requested visible
+pending feedback and a recheck of focus from a covering Skill detail. Added the
+shared Spinner, retained the accessible button name, and added its deferred-request
+assertion. Six button tests passed again; scoped lint passed after correction.
+The covering-detail recheck confirmed a focused TEXTAREA once the created
+conversation loaded; the earlier header-focus observation was intermediate.
+Application-owned shell rules now describe the shared identity-bound chat lifetime.
+
+The broader acceptance matrix listed above remains unverified. This is a completed
+documentation walkthrough with explicitly bounded evidence, not full application
+security or production acceptance.
+
+Documentation checks: `pnpm doc:test` passed (7 files, 41 tests), `pnpm doc:build`
+passed (339 pages at that run), and `git diff --check` passed. Archive allowlist and
+exact credential-content scan passed; the separate Skill archive matches its
+imported source. Build page count can change with concurrent documentation work.
+
+Handover: the application remains running on port 13130. The temporary verification
+Runner was stopped after its completed task; no system service was installed or
+existing Runner registration changed. Its saved entry will become offline after
+heartbeat expiry. To resume only this example's Runner, from the example directory
+run `NOCOBASE_RUNNER_HOME="$PWD/storage/runner" nocobase-runner start`.
+Local review working files were removed after the findings were incorporated here;
+local acceptance screenshots remain under `storage/ui-workflow/agents-guide/`.
+They can be removed with `rm -r storage/ui-workflow/agents-guide` from the example
+application. Public documentation screenshots are separate and remain available.

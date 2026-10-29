@@ -36,7 +36,7 @@ Both methods can be used in one application. The conversation and release-note e
 
 ## Scenarios and examples
 
-The `agents-doc-demo` example uses SQLite, DeepSeek, and an English interface. Screenshots come from the running application. [Download the example source](/assets/core/downloads/agents-doc-demo.zip) and follow its `examples/README.md` to start it. The archive excludes the database, model credentials, sign-in sessions, and installed dependencies. If you do not have a project yet, start with [Create an application](../../getting-started/create-app.md).
+The `agents-guide` example uses SQLite, DeepSeek, and an English interface. Screenshots come from the running application. [Download the example source](/assets/core/downloads/agents-doc-demo.zip) and follow its `README.md` to start it. The archive excludes the database, model credentials, sign-in sessions, and installed dependencies. If you do not have a project yet, start with [Create an application](../../getting-started/create-app.md).
 
 A **development prompt** goes to the Coding Agent working in your project directory to integrate the plugin. A **conversation prompt** goes into the resulting application's chat interface.
 
@@ -44,7 +44,7 @@ A **development prompt** goes to the Coding Agent working in your project direct
 
 Let users open chat beside a business page, select a model, send messages, and return to the conversation later. Give your development Agent this request:
 
-```text
+```prompt
 Use @nocobase/app-plugin-agents to add AI conversations to this NocoBase 3 application.
 First read the project's AGENTS.md, application development Skill, and the Skill
 shipped with the Agents plugin.
@@ -89,14 +89,15 @@ You can now select the model in chat. No corresponding entry is needed in **Mach
 After integration, click **Agent chat** in the header and select the configured model. The example sent this conversation prompt through the actual interface:
 
 ```text
-Summarize this demo in exactly three short bullets: it uses SQLite,
-connects to DeepSeek through a model API, and provides a chat panel.
-Do not claim any machine Agent is connected.
+Rewrite only these supplied facts as three short English bullets: the demo uses
+SQLite, connects to DeepSeek through a model API, and provides a chat panel.
+This is a writing exercise: do not use page context, call tools, or infer configuration.
+Output only the bullets.
 ```
 
 ![Chat beside an application page, showing a real model reply](/assets/core/agents/chat.png)
 
-**Done when**: a real reply arrives and the history remains available when you reopen the conversation. A name in the model list establishes that configuration was saved; verify an actual call as well.
+**Done when**: a real reply arrives and the history remains available when you reopen it through **Conversations**. A name in the model list establishes that configuration was saved; verify an actual call as well. Chat includes page context and the model can misinterpret it. This prompt checks fact rewriting and the call path; do not use the reply to diagnose application configuration.
 
 ### Scenario 2: generate release notes using a business Skill
 
@@ -104,7 +105,7 @@ A team wants release notes to follow a consistent format and include only suppli
 
 **Development prompt:**
 
-```text
+```prompt
 Use @nocobase/app-plugin-agents to add release-note drafting.
 
 Create a release-notes business Skill with SKILL.md and references/style.md,
@@ -114,8 +115,10 @@ Use only supplied facts. Write "Verification not provided" when no test results
 are supplied. The Skill drafts text only; it does not modify project files or publish.
 
 Register a release-notes conversation scope on the server that selects only this
-Skill and the tools needed to read it. Create a conversation with that scope,
-verify it in the chat panel, and inspect actual tool execution records.
+Skill and the tools needed to read it. Add a Draft release notes header button
+that creates and opens a conversation with this scope. Handle missing models or
+Skills, creation failures, and duplicate clicks; preserve account isolation and
+authorization. Verify the reply and inspect actual tool execution records.
 Explain how this business conversation differs from an ordinary conversation.
 ```
 
@@ -123,15 +126,17 @@ Alternatively, [download the example release-notes Skill](/assets/core/downloads
 
 ![Release-note instructions and supporting files in the Skills page](/assets/core/agents/skill.png)
 
-The conversation must select the Skill after import. This example creates a conversation with the `release-notes` scope through the authenticated API, then opens it from chat history. The ordinary chat launcher does not automatically select this scope. See “How the business Skill enters a conversation” below; the source download also includes a component integration snippet for creating and opening it.
+After import, click the file icon **Draft release notes** in the header to create and open the business conversation. The button selects the first `chat` model from enabled services and submits the `release-notes` scope through the authenticated API; switch models before sending if needed. Each click creates a conversation. Open **Conversations** to continue an existing draft. The ordinary **Agent chat** launcher does not select this Skill automatically.
+
+If opening fails, check the model service, the `release-notes` Skill slug, and server Provider registration. The button is disabled while pending and shows an error on failure. See `client/components/release-notes-button.tsx`.
 
 The example sent this **conversation prompt** in that scoped conversation:
 
 ```text
 Read the release-notes Skill and its style guide, then draft concise release notes
 in English. Supplied changes: Added model service configuration. Added a chat panel.
-Fixed the missing Skills navigation entry. Verification supplied: 10 route and
-locale tests passed. Do not claim any other tests ran.
+Fixed the missing Skills navigation entry. Verification supplied: 17 route, locale, and
+permission-label tests passed. Do not claim any other tests ran.
 ```
 
 ![Release notes generated after reading the Skill](/assets/core/agents/skill-chat.png)
@@ -146,7 +151,7 @@ To read project source, modify files, and run builds and tests, connect a Coding
 
 **Development prompt:**
 
-```text
+```prompt
 Use @nocobase/app-plugin-agents to connect a Coding Agent on a machine to this app.
 
 Reuse the plugin's Runtimes and Machine agents pages with their original
@@ -162,19 +167,40 @@ try a narrowly scoped code change. Report actual execution results.
 If no machine is connected, state that code execution cannot yet be verified.
 ```
 
+**Prepare the application CLI and Runner distributions first.** The Default template declares neither its own CLI nor a downloadable Runner. Installing from the connection page before preparing them returns 404; an online machine can still fail tasks with `cliUnavailable` when the application CLI is missing. The source download declares the dependencies and configuration. Run from its root:
+
+```bash
+pnpm nocobase cli build --universal
+pnpm nocobase cli build --runner --universal
+```
+
+These build CLI and Runner distributions, not the production application. They require npm network access; target machines need Node.js 24. Restart the application after initial setup and retain the `storage/runners/dist` distribution directory. For manual integration, also:
+
+- Declare `nocobase.cli.bin` in `package.json` (`agents-guide` here) and install compatible `@nocobase/app-cli-client` and `@nocobase/agent-runner` versions.
+- Define `cli.name: 'agents-guide'` and `cli.package: { kind: 'served' }` in `server/config/agents.ts`, then register that section in `server/config/index.ts`. The CLI name must match the packaged product. Without the configuration section, `config set agents.cli.name=...` returned `UNKNOWN_KEY` in this reproduction.
+
 **Connection and operation:** after integrating the pages, complete these steps on the target machine and in the application.
 
 1. Install and sign in to a supported coding tool on the target computer or server. Confirm that it works independently.
 2. Open **Runtimes**, create a personal or shared connection, and select allowed coding tools.
 3. Follow the page instructions to install and register the Runner. Wait for tool, sign-in, and model reports.
-4. In **Machine agents**, inspect recommended tool/model combinations and add or enable other available combinations as needed.
-5. Select the machine Agent in the application. Have the business entry point provide an authorized working directory and context, then send a task.
+4. In **Machine agents**, add and enable a tool/model combination from the available model list. Without configured recommendations, this list may remain empty even while a machine is online.
+5. Open **Agent chat**, click **Switch to runner agents**, select an available Agent, and first run a read-only check in the conversation workspace. Supply authorized project context through a business entry point when integrating a project.
 
 ![Selecting a connection's purpose and coding tools](/assets/core/agents/runner-connection.png)
 
 The Runner connects, claims work, and reports status; the coding tool executes the task. An **online machine** also needs valid tool authentication, an available model, an enabled Agent, execution capacity, and permission under local policy before work can start. Its model credentials are separate from those stored in **Models**.
 
-Once the connection and project context are ready, use a **conversation prompt** such as:
+First check the execution environment with this **conversation prompt**:
+
+```text
+Perform a read-only smoke test in this conversation's assigned workspace.
+Run pwd and list its top-level files. Report the actual working directory and output
+in English. Do not read credentials, access other directories, edit files, install
+packages, or claim that the application source is present unless you see it.
+```
+
+Ordinary Runner conversations use their own workspace; they do not automatically enter the application source directory. Project-context integration is still needed. A user-supplied host path in chat does not replace authorization. Once that integration is ready, extend verification with a prompt such as:
 
 ```text
 Inspect the chat launcher in the currently authorized project.
@@ -185,7 +211,11 @@ Preserve button behavior, authorization, and layout. Change only necessary files
 Run affected checks, then list changed files, check results, and unverified items.
 ```
 
-**Done when**: you can identify the execution machine and directory and inspect actual code changes and check results. This example inspected the connection interface but did not connect a real Coding Agent. This scenario is integration guidance, not a completed execution demonstration.
+**Done when**: the read-only check has actual command results, an identified machine and workspace, and a `completed` run. Project coding also requires actual diffs and check results. This reproduction connected Runner `0.1.0-beta.20` and Codex `0.165.0`, executed `pwd` and `ls -A1` in the conversation workspace, and confirmed that the empty workspace run completed. Application source was not attached automatically. The project-edit prompt above remains guidance for further integration; source changes and builds were not tested.
+
+![Personal Runner connected with Codex detected](/assets/core/agents/runner-online.png)
+
+![Actual read-only commands and results from the machine Agent](/assets/core/agents/runner-chat.png)
 
 ## Key principles and implementation
 
@@ -200,10 +230,13 @@ This section follows the example source used in the scenarios. It maps file chan
 | `client/extensions/nocobase-agent-chat/` | Install Registry chat UI source and supporting components | Provide the panel, messages, model selection, and history interface |
 | `client/components/agents-provider.tsx` | Add the application's own `AgentsProvider` for the current account | Share conversation state and reinitialize it when identity changes |
 | `client/layouts/app-layout.tsx` | Mount the Provider, panel beside main content, and mobile launcher | Support desktop conversations alongside business pages |
-| `client/layouts/components/header-actions.tsx` | Add `ChatHeaderButton` | Show Agent chat in the header |
+| `client/layouts/components/header-actions.tsx`, `client/components/release-notes-button.tsx` | Add ordinary chat and release-note launchers | Open ordinary conversations or business conversations with a selected scope |
 | `client/locales/en-US.ts`, `zh-CN.ts` | Merge component resources and add `agentDemo` navigation text | Supply English and Chinese text for new navigation and chat |
+| `package.json`, `server/config/agents.ts`, `server/config/index.ts` | Declare matching application CLI and distribution settings | Let Runner download the application CLI before executing tasks |
 | `server/providers/agents.ts`, `index.ts` | Add and register the release-note Provider | Resolve the `release-notes` conversation scope after server startup |
 | `examples/release-notes/` | Keep source for Skill instructions and supporting files | Make them available for import and maintenance in Skills |
+| `client/pages/settings/page-permission-titles.ts` | Name Skill child pages and runtime connection permissions in both languages | Show readable permission labels without changing authorization IDs |
+| `tests/client/release-notes-button.test.tsx` | Cover creation, duplicate clicks, failures, permissions, and identity teardown | Verify successful and failed business-entry behavior |
 | `tests/client/client-routes.test.ts` | Check route uniqueness, page loading, and authorization definitions | Verify integration and detect changes to existing page contracts |
 
 `package.json` and the lockfile record dependency changes. Model services, business Skills, and conversation history are runtime application data. Copying source does not copy those records; configure your own model service and import the Skill after starting the downloaded example.
@@ -256,6 +289,15 @@ The example installs chat UI through the Registry:
 
 ```bash
 pnpm exec shadcn add @nocobase/agent-chat
+```
+
+> [!NOTE]
+> Inspect `package.json` and the lockfile immediately after installation. This Registry command downgraded Agents to `0.1.0-beta.14` during verification. Restore a template-compatible version before continuing. These are the correction commands for this example; check compatibility for other templates:
+
+```bash
+pnpm add @nocobase/app-plugin-agents@1.0.0-beta.29 --save-exact
+pnpm nocobase skills sync --dry-run --json
+pnpm nocobase skills sync --json
 ```
 
 `@nocobase/app-plugin-agents/client/chat` provides conversation state and hooks. The installed Registry components provide presentation. The layout simplifies to:
@@ -323,7 +365,7 @@ When creating a conversation, the current user's authenticated client submits th
 ```json
 {
   "agentId": "online",
-  "title": "Release notes with a Skill",
+  "title": "Draft release notes",
   "config": { "scope": ["release-notes"] },
   "selectedModel": { "modelService": "deepseek", "model": "deepseek-flash" }
 }
@@ -392,15 +434,16 @@ Static checks, automated tests, and live operations answer different questions. 
 | Check | Actual result and what it establishes |
 | --- | --- |
 | Client/server types, scoped ESLint, and formatting | Passed; checked integration against current types and conventions |
-| Route and localization suites | 2 files, 10 passing tests covering page loading, registration, authorization definitions, and language resources |
+| Route, localization, permission-label, and business-entry suites | 4 files, 23 passing tests covering pages, authorization, bilingual text, creation, retry, duplicate clicks, and identity teardown |
 | Model connection and browser conversation | Real DeepSeek replies, readable saved history, and completed execution state |
 | Skill use | Original tool records confirm reading the Skill and `references/style.md`, beyond the model's own assertion |
+| Runner read-only execution | After preparing the application CLI, real `pwd` and `ls -A1` commands completed; the first failure and its correction are recorded |
 | Anonymous API access | Model service and Skill APIs returned 401; this does not verify the complete role matrix |
 
 Rerun the related tests in the downloaded example:
 
 ```bash
-pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts
+pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts tests/client/release-notes-button.test.tsx
 ```
 
 For broader changes or delivery, run the project's required full checks and build. The default template's `pnpm check` includes package checks, lint, formatting, types, tests, and build. **This example did not run the full `pnpm check` or a production application build.** Inspect actual test cases and results; a successful command with no discovered tests is not acceptance. See [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
@@ -409,7 +452,7 @@ For broader changes or delivery, run the project's required full checks and buil
 
 After development, give the Agent an acceptance prompt:
 
-```text
+```prompt
 Review this @nocobase/app-plugin-agents integration:
 1. List changed files and UI effects. Confirm use of public routes, chat components,
    and services.
@@ -425,4 +468,4 @@ If the required environment or accounts are unavailable, identify those items
 as unverified. Do not report planned checks as passed.
 ```
 
-The live baseline on 2026-10-29 was default template `1.0.0-beta.84`, Agents `1.0.0-beta.29`, SQLite, and DeepSeek `deepseek-flash`. Machine Agent execution, the full role matrix, business writes, attachment parsing, mobile behavior, and production deployment remain unverified. Add verification for each capability you extend.
+The live baseline on 2026-10-29 was default template `1.0.0-beta.84`, Agents `1.0.0-beta.29`, SQLite, and DeepSeek `deepseek-flash`. Machine Agent project editing and builds, the full role matrix, business writes, attachment parsing, the full mobile matrix, and production deployment remain unverified. Add verification for each capability you extend.

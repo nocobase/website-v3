@@ -1,9 +1,9 @@
 ---
 title: Command-line extensions
-description: Register plugin commands with arguments, JSON output, errors and build hooks.
+description: Register plugin commands with the App, handling arguments, JSON output, errors and build hooks.
 ---
 
-Plugins can contribute App commands for diagnostics, artifact generation and one-off maintenance. This example adds `notice-cli preview`, which validates text and returns a preview without starting the application or writing database records.
+A plugin can add its own commands to the App for diagnostics, generating files or one-off maintenance. This guide adds a `notice-cli preview` command that checks text in the terminal and outputs a preview; it neither starts application services nor writes to the database.
 
 ## Use an Agent
 
@@ -16,17 +16,17 @@ test success and failure, and register the plugin in this App.
 
 ## Create the CLI capability
 
-Run from the App root. Paths are relative to `packages/app-plugin-notice-cli/`:
+Commands run in the App root, and file paths are relative to `packages/app-plugin-notice-cli/`:
 
 ```bash
 pnpm create @nocobase/plugin@beta notice-cli --with cli
 ```
 
-The scaffold supplies `cli/index.ts`, an `info` command, the `./cli` export and development/build configuration. A CLI plugin does not require Client or Server entries.
+The scaffold generates `cli/index.ts`, an example `info` command, the `./cli` export, and development and build configuration. A CLI does not require a Client or Server entry alongside it.
 
 ## Write the command
 
-Create `cli/preview.ts`:
+Add `cli/preview.ts`:
 
 ```ts
 import { AppCommand, CommandError } from '@nocobase/app-cli';
@@ -55,21 +55,21 @@ export default class PreviewNotice extends AppCommand {
 }
 ```
 
-`AppCommand` supplies the parsing environment and output contract. It already provides `--json`; do not declare it again. Return plain data on success and throw `CommandError` on failure. Do not call `process.exit()`, `this.exit()` or print custom JSON.
+`AppCommand` provides the argument parsing environment and uniform output. It already provides `--json`, so do not define it again. Return plain data on success and throw `CommandError` on failure; do not call `process.exit()` or `this.exit()`, and do not print JSON by hand.
 
-The input bound uses JavaScript string length; the reported count uses Unicode code points. Pure text processing needs no `withApp()`. Create the App only when the command needs its configuration or services.
+In this example, the input limit uses JavaScript string length, while the displayed character count uses Unicode code points. Pure text processing does not need `withApp()`; create the App only when you really need to access configuration or services.
 
-| Need | Use |
+| Capability needed | How |
 | --- | --- |
-| Locate App files | `this.rootDir` |
-| Read configuration or use services | `this.withApp(async ({ app }) => ...)`; register Providers before resolving services |
-| Run the complete lifecycle | Call `await app.start()` inside `withApp()` |
+| Locate files in the application | `this.rootDir` |
+| Read configuration or use services | `this.withApp(async ({ app }) => ...)`; register Providers before using services |
+| Need the full startup lifecycle | Call `await app.start()` inside the `withApp()` callback |
 
-`withApp()` cleans up after success or failure. Full startup can start background work, so do not start every Provider just to read a configuration value.
+`withApp()` cleans up the application after the callback finishes or fails. Starting every Provider may start background jobs, so do not call `app.start()` just to read one configuration value.
 
 ## Declare the commands
 
-Keep `info` and add `preview` in `cli/index.ts`:
+In `cli/index.ts`, keep `info` and add `preview`:
 
 ```ts
 import { defineCliPlugin, type AppCliPlugin } from '@nocobase/app-cli';
@@ -83,19 +83,19 @@ const cliPlugin: AppCliPlugin = defineCliPlugin({
 export default cliPlugin;
 ```
 
-`@nocobase/app-plugin-notice-cli` derives topic `notice-cli`, giving `pnpm nocobase notice-cli preview`. Packages with the same short name under different npm scopes derive the same topic and cannot coexist in that command namespace. Built-in names such as `build` are reserved too.
+The package name `@nocobase/app-plugin-notice-cli` maps to the topic `notice-cli`, so the command is `pnpm nocobase notice-cli preview`. Plugins with the same name under different npm scopes get the same topic and cannot both be used; names of built-in commands such as `build` cannot be used either.
 
-| Output | Write | Under `--json` |
+| Output | How to write it | With `--json` |
 | --- | --- | --- |
-| Human result | `this.log(...)` | Suppressed |
-| Program result | `return result` | Included as `result` in one document |
-| Progress | `this.logToStderr(...)` | Still stderr |
-| Warning | `this.warn(...)` | Included in warnings |
-| Failure | Throw `CommandError` | `ok: false`, stable `error.code`, nonzero exit |
+| Result for people | `this.log(...)` | This text is not printed |
+| Result for programs | `return result` | Appears in `result` of the uniform document |
+| Progress | `this.logToStderr(...)` | Still written to stderr |
+| Warning | `this.warn(...)` | Goes into the warnings |
+| Failure | Throw `CommandError` | Outputs `ok: false` with `error.code`, and exits with a nonzero status |
 
 ## Test the command
 
-Create `tests/cli/preview.test.ts`:
+Add `tests/cli/preview.test.ts`:
 
 ```ts
 import { bindAppCommand, runAppCommand } from '@nocobase/app-testing/cli';
@@ -128,7 +128,7 @@ describe('preview command', () => {
 });
 ```
 
-If the generated `tests/cli/info.test.ts` asserts the whole command map contains only `info`, change it to `expect(cliPlugin.commands.info).toBe(PluginInfo)`. Keep the existing output tests rather than deleting them.
+If the generated `tests/cli/info.test.ts` asserts that the whole command table contains only `info`, change it to `expect(cliPlugin.commands.info).toBe(PluginInfo)` and keep the existing tests of the info output. This is a normal update of expectations after adding a feature; do not simply delete the test.
 
 ```bash
 pnpm --filter @nocobase/app-plugin-notice-cli format
@@ -146,12 +146,12 @@ pnpm nocobase notice-cli preview --text " Hello " --json
 pnpm nocobase notice-cli preview --text " " --json
 ```
 
-The first two return `Hello` and length 5. The final command returns `INVALID_TEXT` and exits with status 2. After the App’s `pnpm build`, run `node dist/cli/index.js notice-cli preview --text Hello --json` to check the deployment command too.
+The first two commands return `Hello` with length 5; the last returns `INVALID_TEXT` and exits with status 2. After running the App's `pnpm build`, run `node dist/cli/index.js notice-cli preview --text Hello --json` to verify the command also works in the deployment output.
 
 ## Development commands and hooks
 
-Put commands needed after deployment in `commands`. Put source-only compilation or generation commands in `devCommands`, which are omitted from the deployment command set.
+Commands still needed after deployment go in `commands`; commands used only to compile source or generate files locally go in `devCommands`, which do not enter the deployed command set.
 
-Use `buildHooks` or `devHooks` only when the App genuinely needs a generation step. Build stages are `beforeBuild`, `afterClientBuild`, `afterServerBuild` and `afterBuild`; development has `beforeDev`. A hook’s `command` is an executable-and-arguments array, not a shell string: no `&&`, pipes or redirects. Failure stops the pipeline, making hooks appropriate for required artifacts.
+When there really is a generation task, `buildHooks` or `devHooks` can have the App call commands. The build stages are, in order, `beforeBuild`, `afterClientBuild`, `afterServerBuild` and `afterBuild`; development only has `beforeDev`. A hook's `command` is an array of an executable and its arguments that does not go through a shell, so `&&`, pipes and redirection cannot be used in it. A failing hook stops the whole flow, which makes hooks suitable for verifying artifacts that must exist.
 
-See [Integrate plugin commands](../developing-apps/plugin-commands.md) for application-side setup and verification. Commands owned by one application can live directly in `cli/commands/`; see [Write application commands](../developing-apps/application-commands.md).
+For how the application side connects and verifies existing plugin commands, see [Integrate plugin commands](../developing-apps/plugin-commands.md). Commands that belong to a single application can be written directly in `cli/commands/`; see [Write application commands](../developing-apps/application-commands.md).

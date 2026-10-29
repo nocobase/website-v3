@@ -1,11 +1,11 @@
 ---
 title: Database resources and migrations
-description: Declare plugin migration and Seed resources, let the App execute them, and verify builds, installation and upgrades.
+description: Declare a plugin's migration and Seed resources, have the application run them centrally, and verify the plugin's build, installation and upgrades.
 ---
 
-Plugins and Apps share `defineMigration()`, `defineSeed()`, Repository and transaction mechanisms. A plugin owns resources in a separate package, contributes them through its Server declaration and delivers them with its versioned build. A plugin does not imply a separate database.
+Plugins and applications share `defineMigration()`, `defineSeed()`, Repository and the transaction mechanism. What differs for a plugin is that its resources are maintained in a separate package, handed to the application through its Server declaration, and built and delivered with the plugin's versions; a plugin does not imply a database of its own.
 
-This article focuses on plugin integration. See [Create tables and initialize data](../developing-apps/data-models-and-migrations.md) for a complete implementation, and [Migrations](../framework/database/migrations.md) and [Seed data](../framework/database/seeds.md) for shared APIs and execution rules.
+This guide focuses on how a plugin connects its database resources. For the complete practice of creating tables and initializing data, see [Create tables and initialize data](../developing-apps/data-models-and-migrations.md); for the shared APIs and execution rules, see [Database migrations](../framework/database/migrations.md) and [Seed data](../framework/database/seeds.md).
 
 ## Use an Agent
 
@@ -20,13 +20,13 @@ upgrades from the previous version and loading of compiled resources.
 
 ## Create the database capability
 
-For a new plugin, select `database` from the App root:
+When creating a new plugin, choose the `database` capability in the App root:
 
 ```bash
 pnpm create @nocobase/plugin@beta notice-data --with database
 ```
 
-For an existing plugin, preserve its implementation and add resource directories and declarations without recreating it. Paths below are relative to `packages/app-plugin-notice-data/`:
+An existing plugin keeps its implementation and only adds the database directories and declarations, without being recreated. The paths below are relative to `packages/app-plugin-notice-data/`:
 
 ```text
 server/
@@ -37,9 +37,9 @@ database/
 └── seeds/
 ```
 
-Generated `.ts.example` files are inactive drafts. Write actual `.ts` files for required changes; the Seed directory can remain empty when no initial records are needed.
+The `.ts.example` files the generator creates are only drafts and are never executed. Write the `.ts` files your requirements need; when no initial records are needed, the Seed directory can stay empty.
 
-`server/plugin.ts` declares plugin-owned resources and `server/index.ts` exposes the Server entry. This declaration contains only the database capability; preserve other contributions in an existing plugin:
+`server/plugin.ts` declares the resources the plugin owns, and `server/index.ts` exports the Server entry. Below is the declaration with only the database capability; an existing plugin should keep its other contributions:
 
 ```ts
 import path from 'node:path';
@@ -53,27 +53,27 @@ const plugin: AppServerPlugin = defineServerPlugin({
 export default plugin;
 ```
 
-`baseDir` must be absolute; resource paths resolve against it. Source execution points to the plugin root. Compiled `dist/server/plugin.js` resolves to migrations and Seeds inside `dist/`. Do not hard-code a development-machine path. Creating directories, declaring resources and executing tasks are separate steps.
+`baseDir` must be an absolute path, and resource paths are relative to it. When running source, it points to the plugin root; after compilation, starting from `dist/server/plugin.js`, it points to the migrations and Seeds in `dist/`. Do not hard-code paths from a development machine. Creating directories, declaring resources and running tasks are three separate steps.
 
 ## Write migrations
 
-Keep migrations in `database/migrations/` and use the same `defineMigration()` as applications. Follow the shared [migration mechanism](../framework/database/migrations.md) for tables, fields, indexes and upgrade-related data changes; there is no separate plugin database API.
+Migrations go in `database/migrations/` and use the same `defineMigration()` as applications. Write tables, fields, indexes and data changes during upgrades following [Database migrations](../framework/database/migrations.md); there is no plugin-specific database API.
 
-Match filenames and declaration names and include a plugin identifier, such as `202610260001_notice_data_create_entries`. The App merges task sources and sorts by name. Names must be unique across the App and all plugins, and one plugin's migrations do not run as an isolated block. State prerequisite versions and migration order when depending on another plugin's schema.
+Keep the file name and the declared `name` consistent and include the plugin's identifier, for example `202610260001_notice_data_create_entries`. The application merges tasks from every source and sorts them by name, so names must be unique across the application and all plugins, and a plugin's migrations are not an independently executed group. If you depend on another plugin's data structures, state the prerequisite version and migration order explicitly.
 
-Migrations must be self-contained and delivered files remain immutable. Add migrations for later changes instead of modifying old files to upgrade installed Apps. Rollback may delete data and needs separate assessment. Do not create tables during Provider startup.
+Migrations must be self-contained, and files already delivered stay unchanged. Later changes are made by adding new migrations, not by editing old files to upgrade existing applications. Rolling back may delete data and needs separate assessment; never run table creation logic when a Provider starts.
 
 ## Initial data
 
-Put fixed records required for plugin operation in `database/seeds/`, default-exporting a `defineSeed()` declaration. Match names to filenames and include the plugin identifier. The earlier `database.seeds` field already declares the resource path; no additional registration mechanism is needed. See [Defining a seed](../framework/database/seeds.md#defining-a-seed).
+Fixed records the plugin needs to run go in `database/seeds/`, default-exporting a `defineSeed()` declaration. Their names likewise include the plugin identifier and match the file names. The resource path is already declared by `database.seeds` above, so no other registration mechanism is needed. For how to write them, see [Defining a seed](../framework/database/seeds.md#defining-a-seed).
 
-Migrations establish prerequisite schema first. Use stable business keys and database uniqueness, and decide whether existing records are skipped, rejected or updated only in plugin-owned fields. Do not unconditionally overwrite administrator edits. Successful tasks are skipped according to history; delivered Seeds remain immutable, with new files for subsequent changes.
+The structures a Seed depends on are created by migrations first. Identify records by stable business keys and database unique constraints, and decide explicitly whether existing data is skipped, reported as an error, or updated only in fields the plugin owns; never overwrite administrators' changes unconditionally. Tasks that succeeded are skipped according to their history, delivered Seeds stay unchanged, and later changes come as new files.
 
-Seeds have no migration-style `down()`. Business services write user-created records, fixtures own demonstration data, and upgrade backfills use migrations as appropriate. Do not put all these operations into published Seeds.
+Seeds have no equivalent of a migration's `down()`. Records users create should be written through business services, demonstration data belongs in test fixtures, and data backfills during upgrades should be designed as migrations for their business purpose. Do not put all of these into published Seeds.
 
 ## Register and apply in the App
 
-Register the Server entry, then inspect the whole App execution plan. Run from the App root:
+Connect the plugin's Server entry first, then look at the current application's overall execution plan. Run the following commands in the App root:
 
 ```bash
 pnpm nocobase plugin register @nocobase/app-plugin-notice-data --no-install --dry-run
@@ -82,27 +82,27 @@ pnpm nocobase db apply --dry-run
 pnpm nocobase db apply
 ```
 
-`--no-install` requires the local plugin to be a resolvable workspace dependency already. `db apply` runs migrations before Seeds. Its plan includes pending tasks from the App and all registered plugins, not just the current plugin. Review the output before applying; do not use `db reset` for routine upgrades.
+`--no-install` requires the local plugin to already be a workspace dependency the application can resolve. `db apply` runs migrations first and Seeds second; the plan includes pending tasks of the application and every registered plugin, not just the current plugin. Review the output before running it, and do not use `db reset` in place of routine upgrades.
 
-Declaring resources does not expose CRUD endpoints or add menus. Runtime reads and writes still use the App's database capabilities from Server business services; see [Query and manipulate data](../developing-apps/querying-data.md) and [Transactions and data consistency](../developing-apps/transactions-and-consistency.md).
+Resource declarations do not expose CRUD APIs or add menus automatically. Runtime reads and writes still use the application's database capabilities through server business services; for the methods, see [Querying and manipulating data](../developing-apps/querying-data.md) and [Transactions and data consistency](../developing-apps/transactions-and-consistency.md).
 
 ## Test against a real database
 
-Keep database tests in `tests/database/` and reuse `@nocobase/app-testing/server`. When using `describeMigration()`, supply the plugin migration directory and package name as a source. Include prerequisite sources when depending on another plugin's collections. Verify real structure after application, rollback and reapplication rather than only checking imports.
+The plugin's database tests go in `tests/database/` and reuse `@nocobase/app-testing/server`. With `describeMigration()`, use the plugin's migration directory and package name as the source; if you depend on another plugin's collections, also provide the prerequisite migration sources. Verify the real database structure after applying, rolling back and reapplying, rather than only checking that files can be imported.
 
-For Seeds, cover first installation, existing records, repeated execution, failure recovery and preservation of user edits on upgrade. Use an isolated database and production implementations. See [Database and CLI tests](../developing-apps/testing-and-acceptance.md#database-and-cli-tests) for tools and examples.
+For Seeds, verify first installation, existing records, repeated runs, recovery from failure, and whether users' changes are kept during upgrades. Use an isolated test database and the real implementation; for test tools and examples, see [Database and CLI tests](../developing-apps/testing-and-acceptance.md#database-and-cli-tests).
 
 ## Check builds and upgrades
 
-Preserve the scaffold's build steps: run `nocobase-db-manifests` after TypeScript compilation so source and compiled tasks use corresponding checksum manifests. Do not edit manifests manually or omit this step.
+Keep the scaffold's plugin build steps: run `nocobase-db-manifests` after TypeScript compilation, so source and compiled tasks use matching checksum manifests. Do not edit the manifests by hand or skip this step.
 
-Run plugin checks and the App build from the App root:
+In the App root, run the plugin's checks and the application's build:
 
 ```bash
 pnpm --filter @nocobase/app-plugin-notice-data check
 pnpm build
 ```
 
-Inspect `dist/database/migrations/`, any used `dist/database/seeds/` and their manifests in plugin output and the published package. Confirm the compiled Server entry can locate these resources. Verify both a fresh database and an upgrade from the previous version before delivery; working against workspace source does not prove the installed package works.
+Check `dist/database/migrations/`, any `dist/database/seeds/` actually used, and the manifests in the plugin's output and published package, and confirm the compiled Server entry can locate these resources. Before delivery, verify both paths: installing on an empty database and upgrading from an older version; passing only against workspace source does not mean the installed package works.
 
-Unregistering a plugin does not delete existing schema or data. Retention, cleanup and migration rollback are separate decisions. See [Testing and verification](testing-and-verification.md) and [Build and publish](publish-plugin.md) for further delivery checks.
+Removing the plugin's registration does not delete existing structures and data automatically; keeping, cleaning up data and rolling back migrations need separate decisions. For more delivery checks, see [Testing and verification](testing-and-verification.md) and [Build and publish](publish-plugin.md).

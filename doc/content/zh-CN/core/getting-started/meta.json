@@ -16,10 +16,6 @@
     {
       "type": "page",
       "path": "../tutorials/build-your-first-app"
-    },
-    {
-      "type": "page",
-      "path": "../tutorials/build-your-first-app-agent-first"
     }
   ]
 }

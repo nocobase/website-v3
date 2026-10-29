@@ -1,9 +1,9 @@
 ---
 title: Server localization
-description: Declare plugin Server resources and use the correct namespace and language in requests and background jobs.
+description: Declare a plugin's server language resources, and use the right namespace and language in requests and background jobs.
 ---
 
-Plugins maintain Server copy in `server/locales/` and contribute it through `locales` in `server/plugin.ts`. Client pages use separate [Client resources](localization.md); registering the Client plugin does not register Server resources.
+A plugin maintains its server text in `server/locales/` and connects it to the application through `locales` in `server/plugin.ts`. Client pages use separate [client language resources](localization.md); registering the Client plugin cannot replace registering the Server resources.
 
 ## Use an Agent
 
@@ -17,7 +17,7 @@ languages and messages for recipients with different preferences in the target A
 
 ## Declare Server resources
 
-Select `server.locales` when creating a plugin. For an existing plugin, preserve its implementation and add resources, loaders and the Server declaration. Paths below are relative to the plugin root:
+You can choose `server.locales` when creating the plugin. An existing plugin keeps its implementation and only adds the resources, loaders and Server declaration. The paths below are relative to the plugin root:
 
 ```text
 server/
@@ -29,17 +29,17 @@ server/
 └── plugin.ts
 ```
 
-English defines the key structure; other languages use the complete resource type. Loaders dynamically import each language. Reuse the conventions in [Define keys in English](localization.md#define-keys-in-english), placing files in `server/locales/` with a Server-owned resource type. Do not import Client resources.
+English defines the resource key structure, and other languages use the complete resource type; loaders import each language dynamically. The way of writing them and the conventions for complete translations are the same as in [Define keys in English](localization.md#define-keys-in-english): put the files in `server/locales/`, maintain the server's own resource type, and never import resources from the client.
 
-Preserve `packageName`, `baseDir` and existing contributions in `server/plugin.ts`. Assign the loader collection exported by `server/locales/index.ts` to `locales`. Adding files alone does not register them: the App must also register the Server entry. See [Plugin declarations and public exports](plugin-declarations.md#server).
+In the generated `server/plugin.ts`, keep `packageName`, `baseDir` and the other contributions, and assign the loader collection exported by `server/locales/index.ts` to `locales`. Adding translation files alone does not register the resources; the application must also connect the plugin's Server entry, as described in [Plugin declarations and public exports](plugin-declarations.md#server).
 
 <span id="server-copy-has-separate-resources"></span>
 
 ## Translate request copy
 
-The following assumes the Server entry and resources are registered. See [Routes and HTTP APIs](server-apis.md) for request integration and [Background jobs and executors](background-jobs.md) for background entry points.
+The examples below assume the Server entry and language resources are registered. For connecting APIs, see [Routes and HTTP APIs](server-apis.md); for the execution entry of background messages, see [Background jobs and executors](background-jobs.md).
 
-For example, add `messages.ready` to every Server language, then use it inside an App-mounted request handler:
+For example, add `messages.ready` to the server resources, fill it in for every language, then use it in a request handler mounted by the App:
 
 ```ts
 import { getRequestTranslator } from '@nocobase/i18n/server';
@@ -49,16 +49,16 @@ const t = getRequestTranslator(context, '@nocobase/app-plugin-notice-i18n');
 return context.json({ data: { message: t('messages.ready') } });
 ```
 
-The App resolves request language from session preferences, `Accept-Language` and its default. Hono does not infer a plugin namespace from source ownership, so specify the package name.
+The request language is decided by the App's session preference, `Accept-Language` and the default language rules together. Hono does not infer the plugin's namespace from where the source file lives, so the server must name the package explicitly.
 
-Keep a stable `ApiError.reason` for programmatic decisions and supply translated user copy through `localizedMessage`. Translated sentences are not error codes.
+Keep a stable `ApiError.reason` in errors for programs to act on; translated text meant for users can be provided through `localizedMessage`. Never use a translated sentence as a business error code.
 
-Jobs, mail and notifications have no current request. Choose the recipient’s locale, call `i18n.ensureLocaleLoaded(locale)`, then `i18n.getFixedT(namespace, locale)`. Do not reuse the initiating user’s language for every recipient.
+Background jobs, mail and notifications have no current request, so they must choose the recipient's language: call `i18n.ensureLocaleLoaded(locale)` first, then `i18n.getFixedT(namespace, locale)`. Do not apply the language of the user who triggered the job to every recipient.
 
 ## Verify integration
 
-Use a test App with the real Server plugin registered. Request the same endpoint in different supported languages and assert translated copy while error codes and response structure remain stable. For application integration and request-language examples, see [Server localization](../developing-apps/server-localization.md).
+Using a test application with the real Server plugin registered, verify translation through requests: the same API returns the matching text in different supported languages, while error codes and the data structure stay the same. For examples of integration and request language in applications, see [Server localization](../developing-apps/server-localization.md).
 
-Run background jobs for recipients with different language preferences and verify that resources load before messages are generated. Avoid sharing a mutable “current language” field between requests or jobs.
+Background jobs must use each recipient's own language, and you should verify that text is generated only after the language resources load. Requests and jobs must never share state through a mutable "current language" field.
 
-Run plugin type checks, relevant Server tests and the App build. Resource types verify key completeness only; check Server registration, real requests, error feedback and background messages in the target App. Application language configuration and module overrides are covered in [Application Server localization](../developing-apps/server-localization.md).
+Run the plugin's type checks, the relevant server tests and the application build. Type checks on resources only prove the key structure is complete; you still need to check the Server registration, real requests, error messages and background messages in the target application. For how applications set languages and override module text, see [Server localization in application development](../developing-apps/server-localization.md).

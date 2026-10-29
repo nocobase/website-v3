@@ -1,17 +1,17 @@
 ---
 title: Background jobs and executors
-description: Define a plugin announcement-summary job, obtain an executor from the App and register, enqueue and release owned resources.
+description: Declare an announcement summary job in a plugin, get an executor through the application's Jobs service, and register, submit and clean up job resources.
 ---
 
-This article generates announcement summaries asynchronously, connecting `server/jobs/`, a Provider and the App's Jobs service. The example takes the first 80 Unicode code points and logs them. It uses no AI or database and provides no task-management page. Replace the logging callback with a business service when durable results are needed.
+This guide has the announcements plugin generate text summaries asynchronously, showing how `server/jobs/` works with a Provider and the application's Jobs service. The example only takes the first 80 Unicode code points of the text and writes them to the log; it uses no AI, writes no database and provides no job management page. When you need durable business results, replace the logging callback with your own business service.
 
-Shared contracts and backends are covered in [Background jobs and executors](../framework/background/jobs.md), and periodic rules in [Scheduling](../framework/background/scheduling.md). A plugin directory does not register jobs automatically; the App chooses the backend.
+For job contracts and backend mechanisms, see [Background jobs and executors](../framework/background/jobs.md); for recurring rules, see [Periodic scheduling](../framework/background/scheduling.md). The plugin's directories do not register jobs automatically, and the job backend is configured by the application.
 
 ## Prerequisites and files
 
-Use the existing Server entry of `@nocobase/app-plugin-announcements`. The App must provide `jobExecutorServiceToken` and `loggingToken`, as the default template does. Client code, databases and the preceding preview service are not prerequisites.
+The guide continues with the Server entry of the existing `@nocobase/app-plugin-announcements`. The application must provide `jobExecutorServiceToken` and `loggingToken`, which the default application template already has. This guide depends on no client code, database or the preview service from the previous guide.
 
-A new plugin can select `server.jobs`. Add these files and declarations to an existing plugin, preserving Server contributions. Check dependencies on `@nocobase/jobs`, `@nocobase/app-server` and `@nocobase/service-provider`, retaining scaffold classifications and compatible versions. Paths are relative to the plugin root.
+When creating a new plugin you can choose `server.jobs`. An existing plugin only needs the files and declarations below, keeping its existing Server contributions. Check the dependencies on `@nocobase/jobs`, `@nocobase/app-server` and `@nocobase/service-provider`, keeping the categories and compatible versions the generator chose. Paths are relative to the plugin root.
 
 ## Use an Agent
 
@@ -47,9 +47,9 @@ export function createSummaryJob(writeSummary: WriteSummary): JobClass<SummaryPa
 }
 ```
 
-The job constructor accepts only persistable JSON payloads. Bind business dependencies through the factory closure, not the payload. Keep the task-type name stable across file or class renames so every consumer recognizes queued work.
+A job's constructor only receives a JSON payload that can be persisted; business dependencies are bound through the factory closure, not put into the payload. The job type name must stay the same even when the file or class is renamed, so every consuming process can recognize work that is already queued.
 
-This example carries short text. For business records, usually carry an ID and have the execution service re-read data and check authorization and version. Pass cancellation to slow operations. Retries may repeat an operation, so business writes must remain idempotent.
+This example uses a short piece of text as the payload. When processing real business records, you usually pass only the record ID and let the executing service read the data again and check permissions and versions. The cancellation signal must be passed all the way to slow business operations; executor retries may cause the same operation to happen again, so business writes must still be idempotent.
 
 ## Register the executor and submission service
 
@@ -108,42 +108,42 @@ export class AnnouncementJobsProvider extends ServiceProvider<AnnouncementJobsAp
 }
 ```
 
-The Provider exposes submission in `register()` and resolves host services, registers the job class and starts its executor in `start()`. Register all classes this consumer needs before `setup()`. Store the executor reference before startup so cleanup can find it even if startup fails; accept submissions only after setup succeeds.
+The Provider exposes the submission service in `register()`, and in `start()` it resolves the host's services, registers the job class and starts the executor. Every job class the current consuming process needs must be registered before calling `setup()`. The executor reference is stored before startup, so cleanup can find it even if startup fails, and submissions are accepted only after startup succeeds.
 
-Shutdown first stops new submissions, then awaits the owned executor's `shutdown()`. Do not close the host's entire Jobs or Logging service from a plugin. The callback only logs; replace it with business behavior supporting retries, cancellation and idempotency for production use.
+On shutdown, first stop accepting new jobs, then wait for the owned executor's `shutdown()` to finish. Do not shut down the host's whole Jobs or Logging service from the plugin. The example's callback only writes logs; real business work should be replaced with an implementation that handles retries, cancellation and idempotency.
 
 ## Contribute the Server Provider
 
-Import `AnnouncementJobsProvider` in the existing `server/plugin.ts` and add it to `serviceProviders`. With an existing business-Provider array, use this field while preserving routes, locales, database resources and other fields:
+Import `AnnouncementJobsProvider` in the existing `server/plugin.ts` and add it to `serviceProviders`. Below is the form when a business Provider array already exists; keep the other fields such as routes, languages and database:
 
 ```ts
 serviceProviders: [...serviceProviders, AnnouncementJobsProvider],
 ```
 
-If `server/providers/index.ts` already aggregates the Jobs Provider, do not append it again here. `jobs/` only organizes source; the legacy `queue.jobs` declaration does not discover these tasks.
+If this Jobs Provider is already aggregated through `server/providers/index.ts`, do not append it here again. `jobs/` is only a source organization directory, and jobs are not discovered through the old `queue.jobs` declaration either.
 
-To let Apps or other plugins submit work, preserve the default export in `server/index.ts` and add:
+If applications or other plugins need to submit jobs, keep the default export in `server/index.ts` and add:
 
 ```ts
 export { announcementSummaryJobsToken } from './jobs/provider.js';
 export type { AnnouncementSummaryJobs } from './jobs/provider.js';
 ```
 
-After the App registers the Server entry, a business entry that has checked identity, authorization and input calls `app.container.resolve(announcementSummaryJobsToken).enqueue(text)`. Submit after App startup, not during route-factory creation. A CLI must start the App inside `withApp()` before submitting and await the work it requires.
+Once the application registers the plugin in `server/plugins.ts`, business entries that have finished identity, permission and input checks can call `app.container.resolve(announcementSummaryJobsToken).enqueue(text)`. Submit only after the application has started, never early while the route factory is being created; from the CLI, start the application inside `withApp()` before submitting, and wait for the required work to finish.
 
-A receipt means backend acceptance, not summary completion. HTTP may return a receipt but must not treat it as a finished business result. Persist task records separately for queryable status. Example errors are service exceptions; HTTP and CLI entries translate them to their own error contracts rather than returning stack traces.
+A receipt only means the backend accepted the job; it does not mean the summary was generated successfully. An HTTP API may return the job receipt, but must not treat it as the business being complete; when a queryable status is needed, maintain a separate durable job record. The errors in the example are service-layer exceptions; HTTP and CLI entries should convert them according to their own contracts, never returning stack traces directly.
 
 ## Backends, retries and delivery
 
-The host owns `jobs` configuration. Default memory execution suits single-process development; orderly-shutdown persistence does not guarantee crash recovery. Multi-process deployments need a shared backend and the same job implementation registered in every consumer. A plugin should not replace global application configuration for its own task.
+The `jobs` configuration is decided by the host. The default memory backend suits single-process development; the state it saves on a normal shutdown does not guarantee recovery after a crash. Multi-process deployments need a shared backend, with an implementation of the same name registered in every consuming process. Do not let a plugin replace the application's global configuration for the sake of its own jobs.
 
-Retries do not make external effects idempotent. Repeated logs are acceptable here; durable summaries need business IDs, versions or uniqueness constraints to prevent duplicate results. Database commit and enqueue are not one transaction. See [Background jobs and scheduled execution](../developing-apps/background-tasks.md) for reliable delivery considerations. Periodic triggering is optional; use [Scheduling](../framework/background/scheduling.md) instead of adding another timer in this tutorial.
+Retries do not make external side effects idempotent automatically. Writing the log twice is acceptable in this example; when saving summaries for real, use business IDs, versions or unique constraints to control duplicate results. The database commit and the job submission are not in the same transaction either; for reliable delivery, see [Background jobs and scheduled execution](../developing-apps/background-tasks.md). Periodic triggering is an optional extension; connect it following [Periodic scheduling](../framework/background/scheduling.md), with no need to configure another timer in this guide.
 
-Job code enters the plugin artifact with the Server build. Preserve `jobName` and executor scope while queued work still depends on them, and define compatibility for older payloads. Do not rename these identities merely because a file or display name changes.
+Job code goes into the plugin's build output with the Server build. When upgrading, keep the `jobName` and executor scope that queued jobs still use, and define how old payloads remain compatible; never rename them just because the display name of a file or package changed.
 
 ## Verify execution and cleanup
 
-Keep the scaffold's Node test environment and use a real memory executor. This `tests/server/jobs.test.ts` stores state in a temporary directory and observes the logging callback. Declare the directly imported `@nocobase/logging` as a compatible development dependency:
+Keep the scaffold's Node test environment and use a real memory executor. The `tests/server/jobs.test.ts` below keeps its state in a temporary directory and observes the logging callback; `@nocobase/logging`, which the test imports directly, must be declared as a compatible development dependency:
 
 ```ts
 import { mkdtemp, rm } from 'node:fs/promises';
@@ -189,7 +189,7 @@ it('runs accepted jobs and stops accepting after shutdown', async () => {
 });
 ```
 
-Also cover invalid input, retries after business failures, aborted signals, setup failures and whole-App shutdown order. After replacing logging with a business service, verify repeated business IDs do not create duplicate results. Memory tests do not establish Redis, multi-process or deployment recovery behavior.
+Also cover invalid input, retries after the business function throws, an already-cancelled signal, executor startup failure, and the shutdown order of the whole application. After replacing the logging with a real business service, also verify that running the same business ID again produces no duplicate results. Tests on the memory backend cannot prove recovery behavior with Redis, multiple processes or a real deployment.
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements check
@@ -198,4 +198,4 @@ pnpm nocobase plugin register @nocobase/app-plugin-announcements --no-install
 pnpm build
 ```
 
-Finally submit text from an authorized entry in the target App, check its receipt and log, and verify shutdown leaves no tasks accessing released resources.
+Finally, submit a test text through an authorized entry in the target App, check the receipt and the log, and confirm that on shutdown no leftover jobs keep accessing resources that were already released.

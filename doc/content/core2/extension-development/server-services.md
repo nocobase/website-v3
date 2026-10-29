@@ -1,15 +1,15 @@
 ---
 title: Business services and ServiceProvider
-description: Organize plugin service implementations, Tokens and Providers and expose contracts to APIs, commands and other plugins.
+description: Organize service implementations, Tokens and Providers in a plugin, and offer them to APIs, commands and other plugins through a public contract.
 ---
 
-This article gives the announcements plugin a text-preview service shared by HTTP, CLI and other plugins. `services/` owns implementation, `tokens.ts` defines public contracts, and `providers/` registers them in the App container. No database or Client code is required.
+This guide gives the announcements plugin a text preview service, so that HTTP APIs, the CLI or other plugins all reuse the same implementation. `services/` holds the business implementation, `tokens.ts` defines the public contract, and `providers/` registers the implementation in the application container. No database access and no client code are involved.
 
-See [ServiceProvider](service-provider.md) for dependency injection and lifecycle, and [Server business services](../developing-apps/server-business-services.md) for transactions and request state. This article focuses on plugin registration and public consumption.
+For general dependency injection and lifecycle, see [ServiceProviders and service lifecycle](service-provider.md); for handling transactions and request state, see [Server business services](../developing-apps/server-business-services.md). This guide focuses on registration in the plugin and the boundaries of public use.
 
 ## Prerequisites and files
 
-Add these files to the existing `@nocobase/app-plugin-announcements`. Paths are relative to its root; merge existing content and preserve services and APIs. New plugins can select `server.service-providers`. Keep `@nocobase/service-provider` as a compatible peer so the App and plugin share runtime identity.
+Add the following files to the existing `@nocobase/app-plugin-announcements`. Paths are relative to the plugin root; if content with the same names exists, merge it and keep the existing services and APIs. When creating a new plugin you can choose `server.service-providers`. `@nocobase/service-provider` uses a compatible peer dependency so the application and the plugin share one runtime identity.
 
 ## Use an Agent
 
@@ -39,7 +39,7 @@ export const announcementPreviewToken: ServiceToken<AnnouncementPreviewService> 
   createServiceToken<AnnouncementPreviewService>('@nocobase/app-plugin-announcements/preview');
 ```
 
-Each entry validates its input type, length and permissions; reusable business constraints still belong in the service. This example counts Unicode code points, which differ from JavaScript string length and user-perceived graphemes.
+The type, length and permissions of API input are validated by the respective entries, while reusable business constraints are still maintained by the service. This example measures length in Unicode code points, which equals neither the JavaScript string length nor the number of graphemes a user perceives.
 
 ## Implement the service
 
@@ -56,7 +56,7 @@ export class DefaultAnnouncementPreviewService implements AnnouncementPreviewSer
 }
 ```
 
-The implementation does not depend on HTTP Context and can be used by commands or jobs. When adding database or external-service dependencies, resolve existing App services in the Provider and inject them through constructor arguments. Pass per-call user identity, authorization policies and transactions through method parameters. Do not create another global container or bypass the App's data policies.
+This implementation does not depend on the HTTP Context, so the CLI and background jobs can use it too. When it later needs the database or external services, the Provider resolves the application's existing services and injects them through constructor arguments, while per-call state such as the requesting user, authorization policy and transaction connection is passed as method arguments. Do not build another global container, and do not bypass the application's existing data access policies.
 
 ## Register with the plugin
 
@@ -78,30 +78,30 @@ export class AnnouncementPreviewProvider extends ServiceProvider<AnnouncementPre
 }
 ```
 
-Append `AnnouncementPreviewProvider` to the constructor array in `server/providers/index.ts` and confirm `server/plugin.ts` contributes it through `serviceProviders`. An implementation file alone does not register a service. Preserve existing Providers and do not put `new AnnouncementPreviewProvider(...)` in the array.
+Add `AnnouncementPreviewProvider` to the constructor array in `server/providers/index.ts`, then confirm that `serviceProviders` in `server/plugin.ts` references that array. An implementation file in the directory does not mean it is registered; keep the other Providers, and do not write `new AnnouncementPreviewProvider(...)` in the array.
 
-This pure calculation needs no startup or shutdown resources. Use lifecycle methods for asynchronous initialization. Release only subscriptions or connections the plugin creates, accounting for startup failure. See [Application startup and lifecycle](../framework/runtime/lifecycle.md) for stages and dependency ordering.
+This example is pure computation and needs no extra startup or shutdown of resources. When asynchronous initialization is needed, use the corresponding lifecycle; when subscriptions or connections must be closed, release only the resources you created and handle startup failure properly. For the phases and dependency order, see [Application startup and lifecycle](../framework/runtime/lifecycle.md).
 
 ## Expose and consume the service
 
-Preserve the default plugin export in `server/index.ts` and add the public Token and types:
+In `server/index.ts`, keep the plugin's default export and add the public Token and interface type:
 
 ```ts
 export { announcementPreviewToken } from './tokens.js';
 export type { AnnouncementPreview, AnnouncementPreviewService } from './tokens.js';
 ```
 
-After registration in the App's `server/plugins.ts`, APIs or other plugins import the original Token from `@nocobase/app-plugin-announcements/server` and call through the current App container. Do not recreate the Token with the same string or import the private `server/services/preview.ts` across packages.
+Once the application connects the plugin in `server/plugins.ts`, APIs or other plugins can import the original Token from `@nocobase/app-plugin-announcements/server` and call the service through the current application's container. Do not recreate the Token from the same string, and do not import `server/services/preview.ts` across packages.
 
-After validating route input, call `app.container.resolve(announcementPreviewToken).preview(text)` and return the result through the HTTP response contract. See [Routes and HTTP APIs](server-apis.md) for declaration and protection.
+In route handling logic that has already validated its input, call `app.container.resolve(announcementPreviewToken).preview(text)`, then return the result according to the HTTP response contract. For declaring and protecting routes, see [Routes and HTTP APIs](server-apis.md).
 
-A CLI resolves the same Token within `this.withApp(async ({ app }) => ...)` and returns its result. The App must register the Server entry; registering the CLI entry alone does not register this service. Pure preview needs no extra `app.start()` call, while services depending on started resources require startup according to their contract. See [Command-line extensions](extend-command-line.md) for arguments and errors.
+The CLI resolves the same Token inside `this.withApp(async ({ app }) => ...)` and returns the result as the command's return value. The application must have registered the plugin's Server entry; registering only the CLI entry does not register this service. A pure preview does not need an extra `app.start()` just to call it; services that depend on resources from the startup phase must start the application according to their contract. For CLI arguments and error handling, see [Command-line extensions](extend-command-line.md).
 
-Consumers obtain interfaces from public entries; implementation and Provider classes may remain private. Package dependencies, runtime registration and call ordering are explained in [Plugin declarations and public exports](plugin-declarations.md).
+Callers obtain the interface type through the public entry, while the concrete implementation and Provider can remain internal details of the plugin. For the differences between package dependencies, runtime registration and call order, see [Plugin declarations and public exports](plugin-declarations.md).
 
 ## Verify the public contract and integration
 
-Put this in `tests/server/service-provider.test.ts`, merging or replacing relevant existing assertions:
+Put the following test in `tests/server/service-provider.test.ts`, merging or replacing the existing related assertions:
 
 ```ts
 import { ServiceContainer } from '@nocobase/service-provider';
@@ -120,7 +120,7 @@ it('registers one lazy service behind the public Token', () => {
 });
 ```
 
-This verifies the public Token, lazy creation and shared identity. Also check that the actual Server declaration includes the Provider and call a real HTTP or CLI entry in the target App. Database, authorization and transaction integration require real application tests; a container test does not establish those behaviors.
+This test proves the public Token, lazy creation and instance sharing; you also need to check that the real Server declaration contains this Provider, and call the actual HTTP or CLI entry in the target App. Services involving the database, permissions or transactions need real application tests; one container test cannot stand for the whole integration.
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements check
@@ -129,4 +129,4 @@ pnpm nocobase plugin register @nocobase/app-plugin-announcements --no-install
 pnpm build
 ```
 
-Client and Server services run in separate containers. Browsers call this service through an API rather than importing its Server implementation.
+Server services and client services run in different containers. The browser must call this service through an API and cannot import the Server implementation directly.

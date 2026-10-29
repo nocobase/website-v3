@@ -1,11 +1,11 @@
 ---
 title: Routes and HTTP APIs
-description: Add plugin endpoints with validation, response contracts, access control and tests.
+description: Add APIs to a plugin, covering input validation, response format, access control and testing.
 ---
 
-A plugin API receives requests, validates input and access, then calls business logic. This example previews notice text: it trims surrounding whitespace and returns the text and its character count without saving anything.
+A plugin's server API receives requests, checks input and access permissions, then calls business logic. This guide implements an announcement text preview API: it receives a piece of text, trims whitespace from both ends, and returns the processed text and its character count, without saving any data.
 
-For standard Collection queries or simple writes, use [`defineRepositoryApiRoutes()`](../framework/http/repository-routes.md) and add its contribution to the plugin's `routes`. Applications and plugins share that mechanism; this guide demonstrates a custom business endpoint.
+If the plugin needs to expose standard queries or simple writes on a Collection, use [`defineRepositoryApiRoutes()`](../framework/http/repository-routes.md) and add the declaration to the plugin's `routes`. Applications and plugins share this mechanism; this guide continues with a custom business API.
 
 ## Use an Agent
 
@@ -17,17 +17,17 @@ Validate length, use standard responses and errors, document and test the API, t
 
 ## Prepare the plugin
 
-Run commands from the existing App root. File paths are relative to `packages/app-plugin-notice-api/`. Inspect an existing plugin with that name instead of generating it again.
+Run the following commands in the root of an existing App; file paths are relative to `packages/app-plugin-notice-api/`. If a plugin with the same name already exists, check its implementation first instead of creating it again.
 
 ```bash
 pnpm create @nocobase/plugin@beta notice-api --with server.routes --with server.service-providers
 ```
 
-Add `zod` to the plugin’s `dependencies`, using a compatible version already installed in the App, then run `pnpm install` from the App root. The scaffold configures `hono` and runtime contracts. Keep its Provider aggregation, Server declaration and public entry.
+Add `zod` to `dependencies` in the plugin's `package.json`, keeping its version consistent with the compatible version already installed in the App, then run `pnpm install` in the App root. `hono` and the required runtimes are configured by the scaffold; keep the generated Provider aggregation file, Server declaration and public entry.
 
 ## Provide the preview service
 
-Replace `server/tokens.ts` with the contract and Token:
+Replace `server/tokens.ts` to define the service contract and Token:
 
 ```ts
 import {
@@ -61,11 +61,11 @@ export class DefaultNoticeApiService implements NoticeApiService {
 }
 ```
 
-The generated Provider already binds `noticeApiServiceToken` to this implementation. Do not create another container in the route. The service processes text independently of HTTP; see [ServiceProvider](service-provider.md). The count measures Unicode code points, not user-perceived graphemes.
+The generated Provider already binds `noticeApiServiceToken` to this implementation, so there is no need to create a second container in the API. The service only processes text and does not depend on the HTTP request; for what the Provider does, see [ServiceProviders and service lifecycle](service-provider.md). The character count uses Unicode code points, which is not the same as the number of graphemes a user perceives.
 
 ## Declare input, output and routes
 
-Create `server/routes/schemas.ts`:
+Add `server/routes/schemas.ts`:
 
 ```ts
 import { z } from 'zod';
@@ -80,7 +80,7 @@ export const PreviewSchema: z.ZodType<NoticePreview> = z.object({
 });
 ```
 
-Input is trimmed before validation. The 200 limit uses JavaScript string length; define a separate rule if the product counts graphemes. Exported schemas need explicit types for the plugin’s `isolatedDeclarations` build.
+Input is trimmed at both ends before its length is checked. The limit of 200 here is a JavaScript string length; if the business counts graphemes, define a separate rule. Exported schemas need explicit types, so generating the plugin's declaration files does not trigger `isolatedDeclarations` errors.
 
 Replace `server/routes/index.ts`:
 
@@ -134,37 +134,35 @@ const routes: readonly AppApiRouteContribution<NoticeRoutesApplication>[] = [
 export default routes;
 ```
 
-`NoticeRoutesApplication` declares only the container capability the route uses. The real App satisfies it, and tests can provide a small, complete fixture.
+`NoticeRoutesApplication` declares only the container capability the routes actually use; the real App satisfies this interface too, so tests can provide a small but complete object.
 
 | Part | Purpose |
 | --- | --- |
-| `defineApiRoutes()` | Lets the App mount routes under its API prefix |
-| `describeRoute()` | Adds an OpenAPI declaration, including this example’s public access |
-| `apiValidator()` | Validates input and returns a standard 400 on failure; handlers read `req.valid()` |
-| `dataResponse()` | Describes `{ data }`; it does not produce the response |
-| `apiErrorHandler` | Uses standard errors even when testing the router on its own |
+| `defineApiRoutes()` | Hands the routes to the App, which mounts them under the API prefix |
+| `describeRoute()` | Generates the API's OpenAPI description; this example declares it publicly accessible |
+| `apiValidator()` | Validates input and returns a standard 400 error on failure; the handler reads only `req.valid()` |
+| `dataResponse()` | Describes a response of the form `{ data }`; it does not replace the actual return value |
+| `apiErrorHandler` | Makes the routes use the App's standard error format even when tested on their own |
 
-The declared path is `/noticeApi/preview`. With the default `/main` deployment prefix, open `/main/api/noticeApi/preview?text=Hello`. A Client using `useApiClient()` requests `path: 'noticeApi/preview'` without hard-coding a server URL.
+The declared path is `/noticeApi/preview`. With the default deployment prefix `/main`, visit `/main/api/noticeApi/preview?text=Hello` in the browser. A client obtained through `useApiClient()` requests it with `path: 'noticeApi/preview'`; do not hard-code a server address.
 
 ## Aggregate contributions and integrate the App
 
-The array exported by `server/routes/index.ts` reaches the App through `routes` in `server/plugin.ts`; `serviceProviders` registers the plugin's services. The App imports the public Server entry and supplies the API prefix and request environment. Preserve existing contributions when adding routes; a file alone is not an aggregate declaration.
+The array exported by `server/routes/index.ts` reaches the application through `routes` in `server/plugin.ts`, and the service is registered through the same plugin's `serviceProviders`. Once the application connects the public exports of `server/index.ts`, it mounts the API prefix and provides the request environment. When adding routes, keep the existing contributions; do not skip the aggregating declaration just because the file already exists.
 
-This example keeps its complete preview service so it runs independently. See [Business services and ServiceProvider](server-services.md) for public Tokens and multi-entry reuse, and [Request validation and errors](../developing-apps/request-validation-and-errors.md) for shared rules. For asynchronous work, the handler calls the [background-job submission service](background-jobs.md) after App startup, not during route-factory creation.
+So that it can run on its own, this example keeps the complete preview service. For extracting the service, public Tokens and reuse across entries, see [Business services and ServiceProvider](server-services.md); for shared input and error rules, see [Request validation and error handling](../developing-apps/request-validation-and-errors.md). For asynchronous work, have the handler call the submission service of [Background jobs and executors](background-jobs.md) after the application starts; never submit jobs while the route factory is being created.
 
 ## Define the access boundary
 
-For integration with existing authentication, roles and data policies, see [Authentication, permissions and data scopes](../developing-apps/authentication-and-permissions.md).
+This example neither reads users or business records nor writes any state, so anonymous text preview is allowed. `security: []` only declares the authentication requirement in the documentation and does not protect the API by itself; real protection comes from server middleware.
 
-This example reads no user or business records and changes no state, so anonymous text preview is intentional. `security: []` describes authentication in the API document; it does not enforce access. Server middleware does that.
+For internal APIs, import the original `authenticationToken` from `@nocobase/app-plugin-authentication`, install the authentication middleware on the relevant paths with `app.container.resolve(authenticationToken).required()`, and remove `security: []`. Identity-sensitive runtimes you add (such as the authentication plugin) should be declared as compatible peer dependencies. Sensitive operations also need the authorization service to check an explicit resource and action. The order of checks is authentication, authorization, input validation, then business processing; a page requiring sign-in cannot replace these checks.
 
-For an internal endpoint, import the original `authenticationToken` from `@nocobase/app-plugin-authentication`, install `app.container.resolve(authenticationToken).required()` on the relevant paths, and remove `security: []`. Declare added identity-sensitive runtimes, such as the authentication plugin, as compatible peer dependencies. Sensitive actions also need explicit resource/action authorization. Run authentication, authorization, input validation and business logic in that order. Page authentication cannot protect an API.
-
-Throw `ApiError` for business failures, with a status such as `NOT_FOUND`, a stable `reason`, and the plugin’s `domain`. Do not construct error JSON by hand or expose stacks and credentials. Test anonymous, denied and allowed callers for protected operations.
+For business failures, use `ApiError`, for example setting `status: 'NOT_FOUND'`, a stable `reason` and the plugin's own `domain` when a resource does not exist. Do not hand-build error JSON, and never return stack traces or credentials to callers. APIs that need authentication should verify at least three cases: anonymous, without permission and with permission. For how the application connects existing authentication, roles and data policies, see [Authentication, permissions and data scopes](../developing-apps/authentication-and-permissions.md).
 
 ## Test and register
 
-Replace the empty-route assertion in `tests/server/routes.test.ts`:
+Replace the scaffold's `tests/server/routes.test.ts`, which asserts that there are no routes:
 
 ```ts
 import {
@@ -211,7 +209,7 @@ describe('notice preview API', () => {
 });
 ```
 
-Also replace the generated `tests/server/service-provider.test.ts` to check the preview behavior. Keep other generated tests that still match the plugin:
+Also replace the generated `tests/server/service-provider.test.ts` to verify the new preview behavior, keeping the other tests that still match the actual capabilities:
 
 ```ts
 import { ServiceContainer } from '@nocobase/service-provider';
@@ -244,6 +242,6 @@ pnpm nocobase plugin register @nocobase/app-plugin-notice-api --no-install --dry
 pnpm nocobase plugin register @nocobase/app-plugin-notice-api --no-install
 ```
 
-Start or restart the App. The URL above should return `{"data":{"text":"Hello","length":5}}`. Missing, blank or oversized input returns 400. After signing in, check `/main/api/swagger/docs` for the declaration, adjusting the deployment prefix as needed.
+Start or restart the App and visit the address above; you should get `{"data":{"text":"Hello","length":5}}`. When `text` is missing, entirely blank or over the length limit, the API should return 400. After signing in, check `/main/api/swagger/docs` to confirm the API declaration exists; the actual address follows the App's deployment prefix.
 
-Run the App’s `pnpm build`. Router tests do not verify deployment prefixes, App-wide middleware or real sign-in; check those in the App. See [Testing and verification](testing-and-verification.md).
+Finally, run the App's `pnpm build`. Standalone route tests verify neither the deployment prefix, the App's global middleware nor the real sign-in flow; check those in the App. For more verification methods, see [Testing and verification](testing-and-verification.md).

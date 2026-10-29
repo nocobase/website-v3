@@ -1,89 +1,97 @@
 ---
 title: Testing and acceptance
-description: Choose tests for databases, APIs and pages, then verify business outcomes with real permissions and browser flows.
+description: Organize client, server, database, CLI and browser tests around the application, then complete build checks and functional acceptance.
 ---
 
-Tests should establish business behavior: data persists, invalid input does not write, permissions cannot be bypassed, and users can recover after failure. Types and builds prove only part of that; they do not replace real database and interaction checks.
+Organize tests around the behavior you change: component tests cover interactions, server tests cover APIs and permissions, database tests cover schema and records, command tests cover CLI behavior, and browser tests cover complete user flows. Choose the test layer that can verify the behavior, then add application integration and manual checks where needed.
 
-This guide uses the published-npm example from [Build your first app](../tutorials/build-your-first-feature.md): default template `1.0.0-beta.81`, the `tasks` API, and its test layout. The historical project chapters use different tables and test configuration; follow their documented baseline when running those examples.
+This guide uses the default application template's test configuration. Keep an existing project's configuration, aliases and setup files. Create the business files referenced by an example using the linked guide first.
 
-## With an agent
+## Test directories and commands
 
-```text
-Check task persistence, role permissions, and page interactions, and add any missing automated tests.
-Use separate test data, preserve existing business data, fix issues you find, and report what passed and what remains unverified.
+Keep tests under the application's root `tests/` directory, organized by the responsibility of the source code. Create directories as needed and name tests `*.test.ts` or `*.test.tsx`:
+
+```tree
+my-app/
+├── tests/
+│   ├── client/          # Pages, components, Hooks and client services
+│   ├── server/          # HTTP APIs, business services and permissions
+│   ├── database/        # Migrations, Seeds, queries and transactions
+│   ├── cli/             # Application commands
+│   ├── project/         # Project configuration and build artifacts
+│   ├── fixtures/        # Test data and fixture applications
+│   ├── helpers/         # Shared test helpers
+│   ├── setup/           # Test environment setup
+│   └── playwright/      # Browser tests (optional)
+├── vitest.config.ts
+└── playwright.config.ts
 ```
 
-## Without an agent
+The default template's Vitest configuration has two projects: `client` uses a jsdom-based application environment and discovers tests in `tests/client/`; `node` discovers tests in `tests/server/`, `tests/database/`, `tests/cli/` and `tests/project/`. Playwright runs browser tests separately.
 
-### Choose a layer by behavior
-
-| Behavior to prove | Appropriate test | Insufficient substitute |
-| --- | --- | --- |
-| Pure calculation or transformation | Unit test | Starting the whole app without checking edge cases |
-| Fields, constraints, relations, transactions | Real test database | Mocking Repository return values |
-| Migration preservation and intended rollback | `describeMigration()` | Importing the file or testing only an empty database |
-| Authentication, authorization, validation, persistence | Real application endpoint test | Calling a function that bypasses middleware |
-| Forms, loading, errors, retries | Actual component in an application test environment | Replacing API, translation and permission hooks wholesale |
-| History, focus, cross-page flows | Browser test | Asserting layout positions in jsdom |
-
-Use the smallest layer that proves the behavior. Authorization and persistence need real services. Controlled network failures can use a transport fixture in component tests, but those tests do not prove server authorization.
-
-### Organize files and environments
-
-Place business tests under `tests/`, organized by the code they verify:
-
-```text
-tests/
-├── cli/          # Application commands (when needed)
-├── client/       # Pages, components and client behavior
-├── database/     # Repositories and migrations
-├── fixtures/     # Test data and fixture resources
-├── helpers/      # Shared test helpers
-├── playwright/   # Browser flows against a running app
-├── project/      # Configuration, source rules and builds
-├── server/       # APIs, services and permissions
-└── setup/        # Test environment setup
-```
-
-The current template defines two projects in `vitest.config.ts`: `node` discovers tests under `tests/{server,database,cli,project}/`, and `client` discovers `tests/client/` with its React/jsdom environment. `tests/playwright/` uses a separate Playwright configuration. Preserve aliases, setup, and database isolation; creating a directory alone does not configure test discovery.
-
-Run from the application directory:
+Run from the application root:
 
 ```bash
 pnpm test
+pnpm test --project client
+pnpm test --project node tests/database/app-statuses.test.ts
+pnpm test:watch
+pnpm test:coverage
 ```
 
-This runs the Vitest projects, not browser tests. Older applications may use `tests/logic/`, `tests/components/`, or `vitest.tutorial.config.ts`; follow their version-specific configuration and reconcile discovery rules when upgrading the template.
+The third command targets the database test created below. Select other files by their actual paths; each category does not need its own configuration file.
 
-### Choose real database and application fixtures
+`@nocobase/app-testing` provides these public entries:
 
-Common `@nocobase/app-testing` entries are `/server`, `/client` and `/cli`; there are no separate `/database` or `/playwright` exports.
-
-| Tool | Use | Considerations |
+| Entry | Main helpers | Purpose |
 | --- | --- | --- |
-| `createDatabaseTest()` | Repositories and transactions without application startup | Supply migrations; plugin Providers are not automatically composed |
-| `describeMigration()` | Apply, roll back and reapply | Verify old data; do not edit merged migrations |
-| `createAppTest()` | Actual routes, plugins, sign-in and authorization | Isolated storage; normally one app per test file |
-| `createTestApp()` | Manually controlled application lifecycle | Close in `finally` |
-| `renderWithApp()` | Components using real application client services | Keep hooks, routing and translations real; control necessary transport boundaries |
+| `/client` | `renderWithApp()`, `answerApi()` | Render components that use application services and control HTTP responses |
+| `/server` | `createAppTest()`, `createTestApp()` | Start an application on isolated databases and test real APIs and plugin integration |
+| `/server` | `createDatabaseTest()`, `describeMigration()` | Test database behavior and migrations without starting the full application |
+| `/cli` | `bindAppCommand()`, `runAppCommand()`, `createTestAppConfig()`, `bindTestAppCommand()` | Run commands, capture output and supply isolated application configuration when needed |
 
-Database fixtures select the dialect through `NOCOBASE_TEST_DB_DIALECT`, defaulting to SQLite. Do not hard-code `:memory:` or a driver to bypass fixtures. Use `expectCollection()` for schema assertions instead of dialect-specific internal tables.
+There is no `/database` or `/playwright` entry. Browser tests use `@playwright/test` directly.
 
-For production database constraints, queries or performance, test the target database with representative data volumes. Small SQLite cases do not establish execution plans or performance on another database.
+> [!NOTE]
+> The default template lets Vitest exit successfully when it finds no tests, and `test:e2e` includes `--pass-with-no-tests`. A successful exit does not establish acceptance: check the report's file names, test count and skipped cases. CI that requires tests to run can disable the corresponding options.
 
-### Verify persistence through the real API
+## Client tests
 
-This minimal example can go in `tests/server/tasks-persistence.test.ts` once task endpoints exist. It starts the application, signs in through the real route, creates a task and rereads it instead of mocking database results:
+Put tests in `tests/client/` and import the real page, component, Hook or service. For components that use application services, `renderWithApp()` supplies the client runtime, router, API Client and translation environment; `answerApi()` controls API responses.
+
+Choose assertions that match the page's behavior:
+
+| Scenario | What to verify |
+| --- | --- |
+| Loading and empty data | Loading is visible; an empty result has a clear message and does not display stale data |
+| Successful submission | Request method, path and payload are correct; confirmation and list updates are correct |
+| Failure and retry | The error is understandable; retry clears the old error and restores interaction after success |
+| Pending submission | The button is disabled or duplicate requests are prevented; success is not shown early |
+| Routes and filters | URL parameters, pagination and back navigation remain consistent |
+| Permissions and sessions | Unavailable actions are handled correctly; an expired session prompts sign-in |
+| Localization | Real language resources work in at least the application's main supported languages |
+
+Keep `useApiClient()`, translations and routing real, and supply responses at the HTTP boundary. `answerApi()` receives paths below `/api/`, such as `tasks`; return a `Response` when selecting a status code. Fail unexpected requests explicitly so a wrong path cannot accidentally receive a successful response.
+
+Call `renderWithApp()` inside a test; it shuts down the client application when the case ends. Keep the template's React environment and DOM cleanup, avoid wrapping the component in another Router, and keep strict translation checks enabled. Perform clicks outside `waitFor()` and use its callback only for assertions.
+
+For a client business service, first construct an instance to test its methods, then use the real container to check registration, subscriptions and resource cleanup. Import the real React component when testing a React Provider. That integration differs from a ServiceProvider in the service container; see [Client business services](client-business-services.md) and [UI components and interactions](pages-and-interactions.md).
+
+The [client testing example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/client/page.md) includes complete request, retry and duplicate-submission checks. The template's `tests/client/page-harness.test.tsx` also demonstrates permissions, date formatting and route dialogs. Controlled-response component tests do not establish server authorization or database persistence; use real application tests for those boundaries.
+
+## Server tests
+
+Test service calculations and branches directly. When behavior depends on plugin registration, sign-in, authorization, migrations or HTTP middleware, start the real application with `createAppTest()`.
+
+This example demonstrates the fixture using the default template's users API. It assumes the authentication, authorization and users plugins and the default administrator policy remain in place. Create `tests/server/users.test.ts`:
 
 ```ts
-import { randomUUID } from 'node:crypto';
-import { expect } from 'vitest';
-import { createAppTest } from '@nocobase/app-testing/server';
 import {
   DEFAULT_ADMIN_CREDENTIALS,
   signIn,
 } from '@nocobase/app-plugin-authentication/testing';
+import { createAppTest } from '@nocobase/app-testing/server';
+import { expect } from 'vitest';
 import { createStandaloneServer } from '../../server/standalone.js';
 
 const test = createAppTest({
@@ -92,93 +100,207 @@ const test = createAppTest({
   config: {
     app: { publicOrigin: 'http://localhost' },
     auth: {
-      secret: 'tutorial-test-secret-at-least-32-characters',
-      advanced: { disableOriginCheck: false, disableCSRFCheck: false },
+      secret: 'test-auth-secret-at-least-32-characters',
+      trustedOrigins: ['http://localhost'],
     },
     users: { initialAdmin: DEFAULT_ADMIN_CREDENTIALS },
-    logging: { enabled: false },
   },
 });
 
-test('persists a task through the real API', async ({ testApp }) => {
-  expect((await testApp.request('/tasks')).status).toBe(401);
-  const admin = await signIn(testApp, DEFAULT_ADMIN_CREDENTIALS);
-  const title = `Persistence ${randomUUID()}`;
-  const created = await admin.fetch('/tasks', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', origin: 'http://localhost' },
-    body: JSON.stringify({ title }),
-  });
-  expect(created.status).toBe(201);
-  const { data: task } = (await created.json()) as { data: { id: string } };
+test('rejects an anonymous request', async ({ request }) => {
+  expect((await request('/users')).status).toBe(401);
+});
 
-  const list = await admin.fetch(`/tasks?q=${encodeURIComponent(title)}`);
-  expect(list.status).toBe(200);
-  expect(await list.json()).toMatchObject({
+test('reads the administrator after sign-in', async ({ testApp }) => {
+  const admin = await signIn(testApp, DEFAULT_ADMIN_CREDENTIALS);
+  const response = await admin.fetch(
+    `/users?q=${encodeURIComponent(admin.user.email)}`,
+  );
+
+  expect(response.status).toBe(200);
+  await expect(response.json()).resolves.toMatchObject({
     data: expect.arrayContaining([
-      expect.objectContaining({ id: task.id, title }),
+      expect.objectContaining({ id: admin.user.id }),
     ]),
   });
 });
 ```
 
-The fixed secret and administrator credentials belong only to this isolated test configuration. The fixture handles requests in process without opening a browser-accessible port. If `tests/server/tasks.test.ts` already covers this behavior, extend it instead of duplicating the example.
+```bash
+pnpm test --project node tests/server/users.test.ts
+```
 
-This establishes signed-out denial and administrator persistence, not ordinary-user data scopes. Create separate users and explicit roles, sign in through the real service, exercise allowed and denied requests and inspect database state after failure.
+The secret and administrator configuration are for isolated tests only. The fixture installs application and plugin migrations and Seeds, provides temporary storage, and closes the application automatically. Requests run in process without a listening HTTP port; `request('/users')` reaches the application's API routes.
 
-### Verify migrations and transactions
+By default, `createAppTest()` shares one application and database within a file. Set `scope: 'test'` to install a separate application for every case. With shared state, use records owned by each case and avoid depending on test order. List every application-owned connection in `connections`, such as `['main', 'analytics']`; unlisted connections retain the application's configuration.
 
-Apply historical migrations and insert an old task before testing the new migration. Check preserved fields, defaults and constraints, then roll back and reapply as designed. See [Data models and migrations](data-models-and-migrations.md) for complete code. Data dropped by `down()` is not restored automatically; explicitly verify the intended loss.
+These two cases demonstrate the sign-in boundary only. For a business API, substitute its real routes and cover:
 
-For transactions, write first, trigger a subsequent failure, then reread outside the transaction to prove earlier writes rolled back. An exception assertion alone does not establish that no partial data was saved.
+- Anonymous, authenticated-but-unpermitted and permitted callers; evaluate public routes against their own access policy.
+- Invalid arguments, missing records and disallowed states, including the actual error response structure.
+- A fresh read after a write to confirm persistence of records and related data; no partial writes after failure.
+- Data scopes across lists, details and statistics; ordinary users cannot access other users' data.
 
-### Verify components and interactions
+Hiding a page entry does not verify API authorization. When changing initial roles or authorization Seeds, also run the template's `tests/server/authorization-assignment-safety.test.ts`. See the [server testing example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/server/routes.md) for complete identity and permission cases.
 
-Import real pages or components and provide client services with `renderWithApp()`. Preserve translations, the API client, routing, and permission hooks. In the current example, `tests/client/tasks.test.tsx` uses `tests/helpers/authenticated-client.tsx` to connect to a real test application, database, and login session. The template's `tests/client/page-harness.test.tsx` demonstrates general page-testing helpers.
+## Database and CLI tests
 
-Use `answerApi()` when pending requests, network failures or retries require controlled HTTP responses. Supply missing jsdom capabilities such as `ResizeObserver` at that boundary, but verify layout in a real browser. Do not replace the business behavior under test.
+### Database
 
-Assert user-visible behavior: field errors and focus, retained input, duplicate-submit prevention, retries and list updates after success. Internal call counts and whole-page snapshots alone are poor acceptance criteria.
+Put database tests in `tests/database/`. Use `describeMigration()` for migrations and `createDatabaseTest()` for queries, constraints, Seed results and transactions. Import both from `@nocobase/app-testing/server`.
 
-### Verify browser flows and permissions
+After completing the `appStatuses` example in [Create tables and initialize data](data-models-and-migrations.md), create `tests/database/app-statuses.test.ts`:
 
-Start a separate test application and use its own test administrator account:
+```ts
+import { fileURLToPath } from 'node:url';
+import {
+  createDatabaseTest,
+  describeMigration,
+} from '@nocobase/app-testing/server';
+import { expect } from 'vitest';
+import packageMetadata from '../../package.json' with { type: 'json' };
+
+const migrations = [{
+  packageName: packageMetadata.name,
+  directory: fileURLToPath(
+    new URL('../../database/main/migrations/', import.meta.url),
+  ),
+}];
+const seeds = [{
+  packageName: packageMetadata.name,
+  directory: fileURLToPath(
+    new URL('../../database/main/seeds/', import.meta.url),
+  ),
+}];
+
+describeMigration('202611040001_create_app_statuses', {
+  sources: migrations,
+  up: async ({ expectCollection }) => {
+    await expectCollection('appStatuses').toHaveField('code', {
+      type: 'string',
+      nullable: false,
+    });
+    await expectCollection('appStatuses').toHaveField('title', {
+      type: 'string',
+      nullable: false,
+    });
+  },
+  down: async ({ expectCollection }) => {
+    await expectCollection('appStatuses').not.toExist();
+  },
+});
+
+const test = createDatabaseTest({ migrations, seeds });
+
+test('installs the default statuses', async ({ connection }) => {
+  const statuses = connection.repository('appStatuses');
+  for (const record of [
+    { code: 'draft', title: 'Draft' },
+    { code: 'published', title: 'Published' },
+  ]) {
+    await expect(
+      statuses.findOne({ filter: { code: record.code } }),
+    ).resolves.toMatchObject(record);
+  }
+});
+```
+
+`describeMigration()` applies the migration, rolls it back and applies it again on a real database; its `up` assertions run twice. By default, `createDatabaseTest()` resets the schema and runs the supplied migrations and Seeds before each case, then cleans up its databases. It does not load application plugins automatically. Supply prerequisite resource sources when they depend on plugin tables, or use a full application fixture.
+
+This example verifies schema rollback and initial installation. Also test Seeds against existing records and on repeated execution, such as preserving an administrator's edited title. For transactions, trigger a failure and read again to confirm every write rolled back. For a data migration, prepare old records before checking the upgrade result.
+
+`NOCOBASE_TEST_DB_DIALECT` selects the test dialect and defaults to SQLite. To verify another database, install its matching driver, configure the test server the driver requires, and run the same cases. For example:
+
+```bash
+NOCOBASE_TEST_DB_DIALECT=postgres pnpm test --project node tests/database/app-statuses.test.ts
+```
+
+The test server must allow isolated databases or schemas to be created and cleaned up. Passing on SQLite does not verify PostgreSQL or other dialects. See the [database testing example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/database/repository.md) for connection settings and [Transactions and data consistency](transactions-and-consistency.md) for transaction assertions.
+
+### CLI
+
+Put command tests in `tests/cli/` and import the actual command class from `cli/commands/`. Choose the fixture according to what the command needs:
+
+| Command behavior | Test setup |
+| --- | --- |
+| Parses arguments or works with files without opening an application | Bind a temporary application root and command ID with `bindAppCommand()`, then execute with `runAppCommand()` |
+| Uses real application services or a database | Prepare isolated configuration with `createTestAppConfig()`, bind with `bindTestAppCommand()`, execute, and call `config.dispose()` in `finally` |
+
+Check the returned `error`, `result`, `stdout`, `stderr` and `json()` from `runAppCommand()`. A successful `exitCode` can be `undefined`; normalize it with `exitCode ?? 0`. Failure cases should assert a nonzero exit and the documented error code.
+
+For the status export in [Write application commands](application-commands.md), verify normal export and file contents, a dry run without writes, an empty dictionary, preservation of an existing file, and resource cleanup after failure. Command discovery or help output alone does not prove the export works.
+
+Run command cases sequentially because output capture uses process-wide state. Database commands also need their actual migration and Seed sources. See the complete [file command tests](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/files.md) and [database command tests](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/command.md).
+
+## Browser tests and functional acceptance
+
+Put browser tests in `tests/playwright/`. The default template provides Playwright configuration and commands; add cases for the application's actual features. Start a dedicated test application first and use the complete `Local:` URL printed by `pnpm dev`, including any base path such as `/main/`. An in-process server fixture does not provide a browser-accessible URL.
+
+This sign-in check assumes the default English login page and a level-one heading on the signed-in home page. Create `tests/playwright/sign-in.test.ts` and adapt locators if the UI differs:
+
+```ts
+import { expect, test } from '@playwright/test';
+
+test.use({ locale: 'en-US' });
+
+test('signs in and keeps the session after reload', async ({ page }) => {
+  const entry = process.env.APP_URL;
+  const username = process.env.E2E_USERNAME;
+  const password = process.env.E2E_PASSWORD;
+  if (!entry || !username || !password) {
+    throw new Error('Set APP_URL, E2E_USERNAME and E2E_PASSWORD.');
+  }
+  const appUrl = new URL(`${entry.replace(/\/+$/, '')}/`);
+  const pageErrors: string[] = [];
+  page.on('pageerror', (error) => pageErrors.push(error.message));
+
+  await page.goto(new URL('login', appUrl).href);
+  await page.getByLabel('Username or email').fill(username);
+  await page.getByLabel('Password', { exact: true }).fill(password);
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await page.waitForURL(
+    (url) => !url.pathname.replace(/\/$/, '').endsWith('/login'),
+  );
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+
+  const session = await page.request.get(
+    new URL('api/auth/get-session', appUrl).href,
+  );
+  expect(session.status()).toBe(200);
+  await expect(session.json()).resolves.toMatchObject({
+    user: { id: expect.any(String) },
+  });
+  expect(pageErrors).toEqual([]);
+});
+```
+
+Set `APP_URL`, `E2E_USERNAME` and `E2E_PASSWORD` for the test application in the shell or CI environment, then run:
 
 ```bash
 pnpm exec playwright install chromium
-TUTORIAL_ORIGIN=http://127.0.0.1:13000 \
-TUTORIAL_USERNAME='your-test-admin' TUTORIAL_PASSWORD='your-test-password' \
-pnpm test:e2e
+pnpm test:e2e tests/playwright/sign-in.test.ts
 ```
 
-The current `tests/playwright/tasks.test.ts` uses English UI. `TUTORIAL_ORIGIN` contains only the scheme, host, and actual port; the script appends `/main`. It differs from the historical project example's `APP_URL`. If you change the application base path, update the test script as well. Install Chromium only before the first run.
+Install Chromium on first use. An `APP_URL` might be `http://127.0.0.1:13000/main/`; use the application's actual address. The code resolves the relative path `login` to preserve the deployment prefix. Use a dedicated test account and data, passing credentials through the environment. To reuse sign-in across cases, see the [session storage example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/playwright/login.md).
 
-Tests create users and tasks, and some accounts remain. Do not target production or put credentials in source, screenshots, or reports.
+Sign-in is only the starting point. Business acceptance should cover a complete operation: navigate to the page, fill in and submit data, confirm success, reload and read it again, then check rejection with an unpermitted account. Add back navigation, network failure, mobile layout, keyboard focus and dialog scrolling checks according to the change. Automated assertions cover behavior; manual acceptance checks layout, readability and interaction quality.
 
-Acceptance includes:
+## Build checks and delivery criteria
 
-- Authorized operations still have correct results after refresh or rereading.
-- Page-only access does not authorize business API calls.
-- Business-action-only access does not grant page entry; direct API results follow business permissions.
-- Out-of-scope tasks and projects are not disclosed, including through list totals.
-- Direct and inherited grants of the ordinary account are inspected so another role does not conceal a denial defect.
-- Pending submission, network failure, deleted records, revoked permissions and browser Back receive appropriate behavior.
-
-For permission initialization changes, also run `tests/server/authorization-assignment-safety.test.ts` against the isolated application's actual initialized grants. It does not replace per-operation authorization tests.
-
-## Scope checks to the change
-
-For task endpoint changes, start with server tests. For page interaction changes, add client and browser tests:
+During development, run affected files first and expand to related test groups after resolving failures. Before delivering application code, perform checks appropriate to the change and the project's requirements:
 
 ```bash
-pnpm test --project node tests/server/tasks.test.ts
-pnpm test --project client tests/client/tasks.test.tsx
+pnpm lint
+pnpm format:check
+pnpm typecheck
+pnpm test
+pnpm build
 ```
 
-Format and lint changed files and select the owning TypeScript project. Check build output and runtime paths when bundling, migrations or deployment change. Do not mechanically run full-application `pnpm check` after every small edit, or report zero tests, skipped tests or missing environments as passing.
+The default template's `pnpm check` combines package checks, lint, formatting, types, Vitest and the build; run browser tests separately. For documentation-only changes, check the documentation's links and build without repeating every application test.
 
-## Record acceptance evidence
+Record the commands actually run, test files and results, database dialect, user roles and key flows. State skipped and unverified work explicitly, such as testing only SQLite, not running browser tests, or not checking deployment artifacts. Do not report those checks as passing.
 
-Record scope, commands and results, roles and workflows actually exercised, and unverified cases with reasons. Screenshots explain interfaces; assertions establish behavior. Routine tests should not merely save screenshots without judging outcomes.
-
-Documentation edits normally need formatting, links and the documentation site's build. When application code is unchanged, repeating every business test adds no evidence. Expand verification for new changes, failures or concrete uncovered concerns.
+**Done when**: changed behavior, data and permission boundaries have corresponding verification; required type and build checks pass; flows that need a browser have been accepted, with remaining limitations recorded.

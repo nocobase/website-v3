@@ -57,5 +57,5 @@ The two are structured differently: in 2 the business definitions are configurat
 
 ## Next
 
-- [What is Core](../core/getting-started/what-is-core.md): build an overall picture of NocoBase 3
+- [Meet NocoBase Core](../core/getting-started/what-is-core.md): build an overall picture of NocoBase 3
 - [Manage plugins](../core/developing-apps/manage-plugins.md): what plugins bring to an app, and where the admin entry points are

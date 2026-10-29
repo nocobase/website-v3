@@ -17,6 +17,7 @@ my-app/
 ├── database/            # Migrations and seeds
 ├── dist/                # Build output (generated)
 ├── node_modules/        # Installed dependencies (generated)
+├── packages/            # Local plugins, shared packages and UI assets (optional)
 ├── public/              # Static assets
 ├── server/              # APIs and services
 ├── storage/             # Runtime data (generated)
@@ -24,7 +25,8 @@ my-app/
 ├── AGENTS.md            # Agent guidance entry
 ├── config.example.yml   # Configuration example
 ├── config.yml           # Local configuration
-└── package.json         # Scripts and dependencies
+├── package.json         # Scripts and dependencies
+└── pnpm-workspace.yaml  # Workspace package directories
 ```
 
 ## 业务代码放在哪里
@@ -37,7 +39,7 @@ my-app/
 
 ### server：接口和服务
 
-应用接口写在 `server/routes/`，通过其中的 `index.ts` 注册。业务服务放在 `server/providers/`，配置定义放在 `server/config/`。
+应用接口写在 `server/routes/`，通过其中的 `index.ts` 注册。服务注册与生命周期放在 `server/providers/`，业务实现可以按需提取到 `server/services/`；配置定义放在 `server/config/`。
 
 ### database：数据结构和初始数据
 
@@ -53,6 +55,19 @@ my-app/
 `cli/plugins.ts` 注册命令行插件。需要编写自己的命令时，再创建 `cli/commands/`。
 
 客户端和服务端的插件分别在 `client/plugins.ts`、`server/plugins.ts` 中注册。
+
+### packages：本地插件与源码资产
+
+按需在 `packages/` 中维护本地插件、共享包或独立 UI Registry 包，并在 `pnpm-workspace.yaml` 中配置工作区包目录。它们不要求同时存在：
+
+```tree
+packages/
+├── app-plugin-<name>/   # Runtime plugin
+├── <name>-ui/           # UI Registry source assets (optional)
+└── <shared-package>/    # Shared package (optional)
+```
+
+插件的 Client、Server 和 CLI 入口需要接入应用；UI Registry 包构建源码资产，由使用方按需添加。两种交付方式分别见[插件结构](../extension-development/plugin-structure.md)和[发布 UI 源码资产](../extension-development/frontend-components.md#按需分发-ui-源码资产)。
 
 ## package.json：预装的插件
 

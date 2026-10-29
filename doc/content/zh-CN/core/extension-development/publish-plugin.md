@@ -1,5 +1,5 @@
 ---
-title: 发布插件
+title: 构建与发布
 description: 本地插件可以随 App 构建和部署；需要跨应用共享时，再发布到私有 npm 源。
 ---
 
@@ -9,7 +9,20 @@ description: 本地插件可以随 App 构建和部署；需要跨应用共享�
 
 发布后，插件源码仍可以留在原 App 的工作区中维护；原 App 继续使用本地源码，其他 App 使用发布的版本。
 
-本篇介绍插件包的发布。如果还需要把前端组件或区块作为源码资产发布，供 Agent 按需取用、修改和组合，可以同时通过 shadcn UI Registry 分发，见[前端组件](frontend-components.md#按需分发-ui-源码资产)。插件包与源码资产可以独立发布；组件复用本身不要求发布 Registry。
+本篇介绍插件包的发布。如果还需要把前端组件或区块作为源码资产发布，供 Agent 按需取用、修改和组合，可以同时通过 shadcn UI Registry 分发，见[发布 UI 源码资产](frontend-components.md#按需分发-ui-源码资产)。插件包与源码资产可以独立发布；组件复用本身不要求发布 Registry。
+
+## 本地构建与随应用交付
+
+先在应用根目录检查并构建插件，再构建整个应用：
+
+```bash
+pnpm --filter @nocobase/app-plugin-announcements check
+pnpm build
+```
+
+核对插件 `dist/` 中的公开入口、类型声明和实际资源，再检查应用产物中的本地依赖。按插件提供的能力验证页面、接口或命令；涉及迁移和 Seed 时，确认编译资源与校验清单完整。组件的样式由宿主构建处理，检查事项见[组件与样式](frontend-components.md#样式与主题适配)。
+
+插件只用于当前 App 时，完成应用验证后即可按[部署方式选择](../deployment/choose-a-deployment-method.md)交付。下面的私有源流程用于需要独立分发插件包的情况。
 
 ## 使用 Agent
 
@@ -116,7 +129,7 @@ npm whoami --registry http://localhost:4873/
 | `files` | 包含 `dist/`；有 Skills 或其他运行资源时，也要包含对应目录 |
 | 依赖声明 | 服务端依赖、共享运行时与客户端 peer 依赖完整，版本与使用方兼容 |
 
-**在现有 `publishConfig` 中补充源地址，不要用只包含 `registry` 的对象替换它。** 本地开发入口和发布入口的关系见[插件的结构](plugin-structure.md#packagejson包信息依赖与公开导出)。
+**在现有 `publishConfig` 中补充源地址，不要用只包含 `registry` 的对象替换它。** 本地开发入口和发布入口的关系见[插件结构](plugin-structure.md#packagejson包信息依赖与公开导出)。
 
 如果插件依赖另一个工作区包，那个包也需要能被使用方安装。`workspace:*` 在打包时会转换为版本要求，并不会自动把另一个包的实现一起打进去；应先发布所依赖的共享包。
 

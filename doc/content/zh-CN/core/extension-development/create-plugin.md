@@ -174,7 +174,7 @@ pnpm create @nocobase/plugin@beta demo-tools --with cli
 pnpm --filter @nocobase/app-plugin-demo-tools check
 ```
 
-检查通过后，插件骨架已经生成并成为 App 的本地依赖。各文件的职责见[插件的结构](plugin-structure.md)。
+检查通过后，插件骨架已经生成并成为 App 的本地依赖。各文件的职责见[插件结构](plugin-structure.md)。
 
 安装依赖让应用能够解析这个包，运行时注册则决定应用加载哪些能力。创建工具不会自动注册运行时入口；后续通过 `pnpm nocobase plugin register <完整包名> --no-install` 注册实际提供的 Client、Server 或 CLI 入口。完整的实现、注册和验收流程见[编写第一个插件](write-your-first-plugin.md)。
 
@@ -214,8 +214,8 @@ pnpm create @nocobase/plugin@beta @my-company/app-plugin-audit-tools --with cli
 | 目标目录、包名或应用依赖已存在 | 检查已有实现，或换用不冲突的名称，不要覆盖已有插件 |
 | 工作区规则排除了插件目录 | 检查 `pnpm-workspace.yaml` 的排除规则，按项目需要调整后再预览 |
 | 文件已生成，但安装失败 | 保留生成结果，解决安装错误后在 App 根目录重新运行 `pnpm install`，无需再次创建 |
-| 想给已有插件增加一种能力 | 创建工具用于新建包，不会增量修改已有插件；按[插件的结构](plugin-structure.md)补充实现、声明、导出、依赖和测试，再检查 App 注册 |
+| 想给已有插件增加一种能力 | 创建工具用于新建包，不会增量修改已有插件；按[插件结构](plugin-structure.md)补充实现、声明、导出、依赖和测试，再检查 App 注册 |
 | 选择路由或数据库能力后没有业务功能 | 生成的是声明骨架或草稿，还需实现页面、接口或迁移，并完成接入与验证 |
 | 包已安装，但命令不存在 | 检查 `./cli` 导出和应用 `cli/plugins.ts` 注册，并从 App 根目录调用 |
 
-下一篇[插件的结构](plugin-structure.md)介绍生成文件的职责；然后跟随[编写第一个插件](write-your-first-plugin.md)完成实现与接入。日常安装、更新和移除见[管理插件](../developing-apps/manage-plugins.md)。
+下一篇[插件结构](plugin-structure.md)介绍生成文件的职责；然后跟随[编写第一个插件](write-your-first-plugin.md)完成实现与接入。日常安装、更新和移除见[管理插件](../developing-apps/manage-plugins.md)。

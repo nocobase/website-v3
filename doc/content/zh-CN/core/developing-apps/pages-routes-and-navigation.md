@@ -5,7 +5,11 @@ description: 注册页面和菜单，组织子路由与面包屑，并明确登�
 
 页面组件负责展示内容，路由声明负责把组件接入应用，并描述地址、菜单、面包屑和访问条件。侧边栏从路由生成，一般不需要直接修改布局来添加业务入口。
 
-本篇沿用任务应用的项目页面，重点说明路由组织。表格、表单和请求状态见[UI 组件与交互](pages-and-interactions.md)。代码摘自默认模板 `1.0.0-beta.78` 的示例应用，接入时保留项目已有路由。本文的 `tutorialTasks`／`tutorialProjects` 属于独立的历史项目示例，不是当前入门示例的 `tasks`；运行前按[数据模型与迁移](data-models-and-migrations.md)确认基线。
+业务页面主要放在 `client/pages/`，通过 `client/routes.ts` 接入。`client/layouts/` 负责页面外层布局；通常只有调整应用框架、导航区域或内容区域时才需要修改。路由渲染与启动装配机制见[客户端运行时](../framework/runtime/client.md)。
+
+页面容器、两栏排布与应用外框的调整见[页面布局](page-layouts.md)；URL 查询参数、读取与返回后的刷新见[数据请求与状态管理](data-requests-and-state.md)。
+
+本篇沿用任务应用的项目页面，重点说明路由组织。表格、表单和请求状态见[UI 组件与交互](pages-and-interactions.md)。代码摘自默认模板 `1.0.0-beta.78` 的示例应用，接入时保留项目已有路由。本文的 `tutorialTasks`／`tutorialProjects` 属于独立的历史项目示例，不是当前入门示例的 `tasks`；运行前按[建表与数据初始化](data-models-and-migrations.md)确认基线。
 
 ## 使用 Agent
 
@@ -141,7 +145,7 @@ export default function ProjectsPage() {
 
 页面权限的资源 ID 会被保存到角色授权中，改名需要迁移已有授权，不能只为调整显示文字而修改 ID。标题来自翻译；没有导航或面包屑的页面可通过 `client/pages/settings/page-permission-titles.ts` 补充权限显示名。
 
-上述检查都发生在浏览器。API 仍需独立认证、业务授权和数据范围检查，详见[业务服务与 HTTP 接口](apis-and-services.md)。
+上述检查都发生在浏览器。API 仍需独立认证、业务授权和数据范围检查，详见[路由与 HTTP 接口](apis-and-services.md)。
 
 ## 验证结果
 

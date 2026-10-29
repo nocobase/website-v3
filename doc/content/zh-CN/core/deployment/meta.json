@@ -1,0 +1,49 @@
+{
+  "title": "部署与运维",
+  "pages": [
+    {
+      "type": "page",
+      "path": "choose-a-deployment-method"
+    },
+    {
+      "type": "page",
+      "path": "publish-app-release"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/deploy-with-docker"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/deploy-with-app-installer"
+    },
+    {
+      "type": "planned",
+      "title": "运行配置与敏感信息"
+    },
+    {
+      "type": "planned",
+      "title": "数据目录与持久化"
+    },
+    {
+      "type": "page",
+      "path": "../developing-apps/upgrade-nocobase-core"
+    },
+    {
+      "type": "planned",
+      "title": "升级与回滚"
+    },
+    {
+      "type": "planned",
+      "title": "备份与恢复"
+    },
+    {
+      "type": "planned",
+      "title": "日志与故障排查"
+    },
+    {
+      "type": "planned",
+      "title": "监控与健康检查"
+    }
+  ]
+}

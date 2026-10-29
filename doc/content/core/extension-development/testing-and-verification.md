@@ -30,7 +30,7 @@ Declare `@nocobase/app-testing` in `devDependencies`. Check the generated depend
 
 ## Exercise production implementations
 
-[Server APIs](server-apis.md) calls the real contribution’s `createRouter()` to check success, invalid input and API documentation. [Database and migrations](database-and-migrations.md) uses the real Migrator to apply, roll back and reapply. [Extend the command line](extend-command-line.md) uses `bindAppCommand()` and `runAppCommand()` to verify command output.
+[Routes and HTTP APIs](server-apis.md) calls the real contribution’s `createRouter()` to check success, invalid input and API documentation. [Database resources and migrations](database-and-migrations.md) uses the real Migrator to apply, roll back and reapply. [Command-line extensions](extend-command-line.md) uses `bindAppCommand()` and `runAppCommand()` to verify command output.
 
 Do not reimplement routes, services or models inside tests and then test that duplicate implementation.
 
@@ -38,7 +38,7 @@ A Provider using only a container can accept a complete narrow interface `{ cont
 
 ## Client test boundaries
 
-`renderWithApp()` registers real Client plugins and supplies services, the API client, routing and localization. Do not add another `MemoryRouter`. To exercise a route tree, still render the components from its actual declarations; see [Pages and menus](pages-and-menus.md#5-test-navigation).
+`renderWithApp()` registers real Client plugins and supplies services, the API client, routing and localization. Do not add another `MemoryRouter`. To exercise a route tree, still render the components from its actual declarations; see [Pages, routes and menus](pages-and-menus.md#5-test-navigation).
 
 Use `answerApi()` to replace responses at the network boundary. Match both method and API-relative path; returning success for every request hides misspelled paths and unexpected calls.
 

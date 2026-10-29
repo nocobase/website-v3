@@ -1,0 +1,17 @@
+{
+  "title": "用户与认证",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "用户管理"
+    },
+    {
+      "type": "planned",
+      "title": "身份认证"
+    },
+    {
+      "type": "planned",
+      "title": "API 密钥"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "应用支持",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "多语言"
+    },
+    {
+      "type": "planned",
+      "title": "应用底座"
+    },
+    {
+      "type": "planned",
+      "title": "发布管理"
+    },
+    {
+      "type": "planned",
+      "title": "演示模式"
+    }
+  ]
+}

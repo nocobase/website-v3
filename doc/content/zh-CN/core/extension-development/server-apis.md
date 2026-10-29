@@ -1,9 +1,11 @@
 ---
-title: 服务端接口
+title: 路由与 HTTP 接口
 description: 为插件添加接口，说明输入校验、响应格式、访问控制和测试。
 ---
 
 插件的服务端接口负责接收请求、检查输入和访问权限，再调用业务逻辑。本篇实现一个公告文本预览接口：接收文本，去掉两端空白，返回文本和字符数，不保存数据。
+
+如果插件需要开放 Collection 的标准查询或简单写入，可使用 [`defineRepositoryApiRoutes()`](../framework/http/repository-routes.md)，将声明加入插件的 `routes`。应用和插件共用这套机制；本篇继续演示自定义业务接口。
 
 ## 使用 Agent
 
@@ -144,13 +146,19 @@ export default routes;
 
 声明路径为 `/noticeApi/preview`。默认部署前缀为 `/main` 时，浏览器访问 `/main/api/noticeApi/preview?text=Hello`。Client 通过 `useApiClient()` 得到的客户端请求 `path: 'noticeApi/preview'`，不要写死服务器地址。
 
+## 汇总声明与应用接入
+
+`server/routes/index.ts` 导出的数组通过 `server/plugin.ts` 的 `routes` 交给应用；服务通过同一插件的 `serviceProviders` 注册。应用接入 `server/index.ts` 的公开导出后，统一挂载 API 前缀并提供请求环境。新增路由时保留原有贡献，不因为文件已存在就省略聚合声明。
+
+本例保留完整的预览服务以便独立运行。服务抽取、公开 Token 与多入口复用见[业务服务与 ServiceProvider](server-services.md)，共用的输入和错误规则见[请求校验与错误处理](../developing-apps/request-validation-and-errors.md)。需要异步工作时，由处理器在应用启动后调用[后台任务](background-jobs.md)的投递服务；不要在路由工厂创建时提交任务。
+
 ## 明确接口的访问边界
 
 本例不读取用户或业务记录，也不写入状态，因此允许匿名文本预览。`security: []` 只声明文档中的认证要求，本身不会保护接口；实际保护来自服务端中间件。
 
 内部接口应从 `@nocobase/app-plugin-authentication` 导入原始 `authenticationToken`，通过 `app.container.resolve(authenticationToken).required()` 为对应路径安装认证中间件，并移除 `security: []`。新增的身份敏感运行时（如认证插件）应声明为兼容的 peer 依赖。敏感操作还要用授权服务检查明确的资源和操作。顺序是认证、授权、输入校验、业务处理；页面要求登录不能代替这些检查。
 
-业务失败使用 `ApiError`，例如资源不存在时设置 `status: 'NOT_FOUND'`、稳定的 `reason` 和插件自己的 `domain`。不要手工拼错误 JSON，也不要把异常栈或凭证返回给调用方。认证接口至少验证匿名、无权和有权三种情况。
+业务失败使用 `ApiError`，例如资源不存在时设置 `status: 'NOT_FOUND'`、稳定的 `reason` 和插件自己的 `domain`。不要手工拼错误 JSON，也不要把异常栈或凭证返回给调用方。认证接口至少验证匿名、无权和有权三种情况。应用如何接入已有认证、角色和数据策略，见[认证、权限与数据范围](../developing-apps/authentication-and-permissions.md)。
 
 ## 测试并接入 App
 

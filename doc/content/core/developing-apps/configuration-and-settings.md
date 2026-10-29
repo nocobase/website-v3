@@ -1,71 +1,160 @@
 ---
-title: Application configuration and system settings
-description: Declare, validate and read configuration, distinguish runtime parameters from business settings, and deliver working administration pages.
+title: Application configuration (config.yml)
+description: Modify config.yml, understand client and server code configuration, and add a configuration section with overrides, validation and public fields.
 ---
 
-Application configuration describes how an instance runs. Business settings describe rules administrators can adjust. They may affect the same feature, but have different storage, owners and update behavior. Not every configuration value needs a form, and everyday business settings should not be fixed in deployment files.
+`config.yml` contains configuration for the current application environment, such as the application title, database connections, default locale and logging level. `client/config/` and `server/config/` define code defaults and configuration that must be constructed in code.
 
-This guide uses the example application's configuration entries and prepared settings pages. For server deployment procedures, see [Choose a deployment method](../deployment/choose-a-deployment-method.md).
+This guide first changes an existing setting, then adds `reports.pageSize` to connect declarations, overrides, business consumers and client access. Examples follow the Examples template and do not require the project-and-task tutorial. Administration pages and business settings managed by administrators belong to their business modules.
 
-## Decide who owns the value
+## Where configuration lives
 
-| Kind | Examples | Appropriate location |
-| --- | --- | --- |
-| Runtime parameters | Listening port, database connection, public origin | `config.yml` or declared environment variables |
-| Code defaults | Default list page size | Configuration factory, optionally overridden at deployment |
-| Business settings | Reporting time zone, work calendar, numbering rules | Application or plugin data, changed through authorized APIs |
-| Personal preferences | Language, color mode, theme | Existing preference mechanisms |
-| Business master data | Projects, customers, products | Business modules, usually outside system settings |
+| Location | Responsibility |
+| --- | --- |
+| `config.example.yml` | A committed example that helps new environments identify values to supply |
+| `config.yml` | Overrides for the current environment; may contain credentials and is not committed |
+| `client/config/` | Client defaults and code configuration such as authentication client plugins |
+| `server/config/` | Server section defaults, environment mappings, validation and published fields |
+| Each side's `config/index.ts` | Combines its sections with `defaultAppConfigs()` for the runtime |
+| `server/config.ts` | Creates the configuration service and selects and loads its file |
 
-Decide who can change a value, when it takes effect and whether it affects old records. A reporting time zone might change presentation or aggregation boundaries; pages and background jobs should not invent separate interpretations.
+`server/config.ts` is the loader; `server/config/` contains section definitions. The template's `server/runtime.ts` and `client/runtime.ts` already connect their configuration entries. Usually, maintain the sections and their `index.ts` rather than changing the runtime.
 
-## With an agent
+`config.example.yml` shows selected common settings, not every available field. The application and integrated modules define configuration together. Consult [Configuration reference](../reference/configuration.md) and module documentation for complete options. For a new application, `pnpm nocobase config init --dialect sqlite` initializes local configuration and keys. For an existing application, edit its current configuration as needed; see [Create an app](../getting-started/create-app.md).
 
-```text
-Please review this application's configuration and administration entries so operators and business administrators can manage what they need.
+## Change existing configuration
 
-List the configuration actually used by existing features, its owner, storage and when changes take effect.
-Keep database connections and server secrets in deployment configuration, outside ordinary pages and browser configuration.
-Reuse user and role administration without duplicate entries or automatic permission expansion.
+In an initialized application, merge these values into `config.yml`, retaining database, key and other settings. Update existing sections rather than duplicating top-level keys:
 
-Where administrators need to change business rules, use real read and save APIs and ensure subsequent operations consume saved values.
-Read-only administrators may view settings; only authorized administrators may save. Reject invalid values and preserve input on failure.
-Do not add empty settings pages for unused capabilities.
-Report the scope of each setting and results after refresh, sign-in or restart as appropriate.
+```yaml
+client:
+  app:
+    title: My Reports
+
+i18n:
+  defaultLocale: zh-CN
+
+logging:
+  level: info
 ```
 
-## Without an agent
+Examples defaults the title to `NocoBase` in `client/config/app.ts`, then overrides it to `NocoBase Examples` in the configuration file. Changing it to `My Reports` makes the template's client ServiceProvider set that browser-tab title at startup. The sidebar's application name and version come from separate public information; changing one title does not replace all application wording.
 
-### Locate configuration entries
+`i18n.defaultLocale` selects the default language; available languages still depend on locale resources. Existing user or browser preferences may take precedence; see [Localization](localization.md). `logging.level` selects the logging level; see [Logging](../framework/support/logging.md) for complete behavior.
 
-Server defaults live in `server/config/`, assembled through `defaultAppConfigs()` in `server/config/index.ts`. Client defaults live in `client/config/`. Startup loads configuration files and declared environment variables, then exposes resolved configuration to services.
+### Override precedence
 
-For server sections with environment mappings, precedence is code defaults, then `config.yml`, then environment variables. A plausible variable name does nothing without a mapping. `${NAME}` in `config.yml` is not expanded.
+Server precedence, from lowest to highest, is code defaults, configuration files, then explicitly mapped environment variables. The client configuration sent to the browser overrides client code defaults. Host-managed values such as the application base path and API URL are also computed by the runtime.
 
-### Declare and validate configuration
+Plain objects merge recursively; arrays and scalars are replaced. Environment variables need declared mappings and are parsed according to them. Arbitrary variable names do not become configuration paths. `${NAME}` in YAML is not interpolated: use a declared variable or add a mapping for your field.
 
-For a default project page size that operators may override, create `server/config/project-defaults.ts`:
+For example, `APP_SERVER_PORT` maps to `server.port`. When set, it overrides that value in the file. Inspect the application's startup environment when checking effective values.
+
+## Client configuration
+
+Examples has three sections under `client/config/`:
+
+| File | Contents |
+| --- | --- |
+| `app.ts` | Client defaults such as the application title |
+| `api.ts` | The API Client's default URL, resolved with the application base path |
+| `auth.ts` | Authentication client plugins for usernames, API keys and device authorization |
+
+The application title default can be declared as:
 
 ```ts
+// client/config/app.ts
+import { defineAppConfig, type AppConfigFactory } from '@nocobase/app-client';
+
+const app: AppConfigFactory<{ title: string }> = defineAppConfig(() => ({
+  title: 'NocoBase',
+}));
+
+export default app;
+```
+
+`client/config/index.ts` already passes `app`, `api` and `auth` to `defaultAppConfigs({ ... })`. Import and register additional sections there, also updating an explicitly declared return type when present.
+
+Client `defineAppConfig()` takes a factory function. Keep constructed plugin instances and callbacks in TypeScript. Serializable values that may vary by environment can be overridden through the `client` section of `config.yml`.
+
+Read the title inside a client ServiceProvider:
+
+```ts
+// Inside a client ServiceProvider:
+const title = this.app.config.get<string>('app.title', 'NocoBase');
+```
+
+Pages and Hooks obtain the same service through `useClientApplication().config`. The lookup path is `app.title`, without the file's `client.` prefix. The host controls the API URL for its mount path; do not treat `client.api.baseURL` as an arbitrary external-service override. Configure independent external API access separately.
+
+## Server configuration
+
+`server/config/` organizes both framework and plugin configuration. For example, `server.ts`, `api.ts`, `database.ts` and `logging.ts` configure runtime facilities, while `auth.ts`, `users.ts`, `notification.ts` and `knowledge.ts` configure integrated modules. Their individual options belong in module documentation; this guide covers common integration.
+
+Prefer a module's dedicated factory when available, such as `defineApiConfig()`, `defineAppDatabaseConfig()` or `defineAuthConfig()`, to preserve its defaults, mappings and validators. Use `defineAppConfig()` from `@nocobase/app-server/config` for application-owned sections.
+
+Server `defineAppConfig()` supports these declarations:
+
+| Field | Purpose |
+| --- | --- |
+| `defaults` | Default values, or a function that computes them from runtime information such as paths |
+| `env` | Environment mappings to section-relative fields, with types and descriptions |
+| `validate` | Validation of final merged values, reporting field errors through `context.error()` |
+| `public` | Leaf paths that may be sent to the browser |
+
+The client and server factories share a name but have different interfaces. The server's `env`, `validate` and `public` object form does not apply to the client factory.
+
+Register new sections in `server/config/index.ts` and read them with `app.config.get()`. Registration keys determine section names. Adding a file does not register it, and adding a YAML key does not implement business behavior. See [Configuration reference](../reference/configuration.md) for built-in options.
+
+## Publish configuration to the client
+
+The browser reads two separate kinds of configuration:
+
+| Source | Client accessor |
+| --- | --- |
+| Client code defaults and the file's `client` section | `config.get('app.title')` and similar paths |
+| Fields published by server `public` declarations, plus runtime-published information | `config.public.get(...)` |
+
+The runtime publishes the default locale and the application package's display name and version. With the client's `config` object:
+
+```ts
+// config is the client application's configuration service.
+const title = config.get<string>('app.title', 'NocoBase');
+const defaultLocale = config.public.get('i18n.defaultLocale');
+```
+
+Application-owned server sections declare public leaf paths explicitly. In the example below, `public: ['pageSize']` publishes only `reports.pageSize`, not the entire `reports` object. Published configuration keeps its server path and is not read through `config.get()`.
+
+Both the `client` section and published fields reach the browser. Keep database passwords, session secrets and mail credentials in server-only configuration. Type declarations check paths in TypeScript; they do not publish fields.
+
+## Add your own configuration
+
+Add a default report page size between `1` and `100`. This is an independent configuration example; business behavior changes only after an existing report uses the value for pagination.
+
+### Define and register
+
+Add `server/config/reports.ts`:
+
+```ts
+// server/config/reports.ts
 import {
   defineAppConfig,
   envInteger,
   type AppConfigFactory,
 } from '@nocobase/app-server/config';
 
-export interface ProjectDefaults {
+export interface ReportsConfig {
   pageSize: number;
 }
 
-const projectDefaults: AppConfigFactory<ProjectDefaults> = defineAppConfig({
+const reports: AppConfigFactory<ReportsConfig> = defineAppConfig({
   defaults: { pageSize: 20 },
   env: {
-    PROJECT_PAGE_SIZE: envInteger('pageSize', {
-      description: 'The default project page size, from 1 to 100.',
+    REPORTS_PAGE_SIZE: envInteger('pageSize', {
+      description: 'Default report page size, from 1 to 100.',
     }),
   },
   public: ['pageSize'],
-  validate(value, ctx) {
+  validate(value, context) {
     const size = value.pageSize;
     if (
       typeof size !== 'number' ||
@@ -73,83 +162,115 @@ const projectDefaults: AppConfigFactory<ProjectDefaults> = defineAppConfig({
       size < 1 ||
       size > 100
     ) {
-      ctx.error('pageSize', 'Must be an integer from 1 to 100.');
+      context.error('pageSize', 'Must be an integer from 1 to 100.');
     }
   },
 });
 
-export default projectDefaults;
+export default reports;
 ```
 
-Import it in `server/config/index.ts` and add `projectDefaults` to the existing `defaultAppConfigs({ ... })`. If that file declares the result type explicitly, also add `projectDefaults: ReturnType<typeof projectDefaults>`. Preserve existing sections rather than replacing the entire file with this excerpt.
+Make three changes to the existing `server/config/index.ts`, retaining every other section:
 
-Describe the deployment option in `config.example.yml`; an instance overrides it in `config.yml`:
+1. Import `import reports from './reports.js';`.
+2. Add `reports: ReturnType<typeof reports>` to its explicit return type.
+3. Add `reports` to the object passed to `defaultAppConfigs({ ... })`.
+
+The registration key is `reports`, so the configuration key is `reports.pageSize` and the environment variable is `REPORTS_PAGE_SIZE`. Validation checks the final value from either source. Validators must not write data or make network requests.
+
+Document the section and default `20` in `config.example.yml`. The current environment can override it in `config.yml`:
 
 ```yaml
-projectDefaults:
-  pageSize: 20
+reports:
+  pageSize: 30
 ```
 
-Validation receives the final merged value at startup, reload and configuration checking. Report invalid values without writing to databases, sending requests or changing external state. `public: ['pageSize']` exposes only that leaf field; a page needing configuration is not a reason to publish other server values.
+### Connect a business consumer
 
-### Read and consume values
-
-Server code reads through the configuration service:
+Add this helper to prefer an explicitly requested page size and otherwise read the application default:
 
 ```ts
-const defaults = app.config.get<ProjectDefaults>('projectDefaults');
+// server/services/report-options.ts
+import type { AppConfigAccessor } from '@nocobase/app-server/config';
+
+export function resolveReportPageSize(
+  config: AppConfigAccessor,
+  requested?: number,
+): number {
+  const size = requested ?? config.get<number>('reports.pageSize');
+  if (
+    typeof size !== 'number' ||
+    !Number.isInteger(size) ||
+    size < 1 ||
+    size > 100
+  ) {
+    throw new Error('Report page size must be an integer from 1 to 100.');
+  }
+  return size;
+}
 ```
 
-Import `ProjectDefaults` from the file above. Use `defaults.pageSize` when supplying the missing pagination input; explicit values still require the `1–100` limit. **Declaring configuration does not change the list automatically.** The current example endpoint and frontend have their own defaults, so update both consumers when adopting this example.
+In the report's business service, use `resolveReportPageSize(app.config, requestedPageSize)` to obtain the query `limit`. The helper's ordinary error reports invalid input or integration. The HTTP boundary still validates request parameters and converts failures to the project's response contract; see [Request validation and error handling](request-validation-and-errors.md). Configuration validation cannot replace request validation.
 
-The browser reads published values through `config.public.get('projectDefaults.pageSize')` on its configuration service. Declare the client type:
+### Read the published value on the client
+
+Augment public configuration in a declaration file included by the client TypeScript project:
 
 ```ts
+// client/types/public-config.d.ts
+import '@nocobase/app-client';
+
 declare module '@nocobase/app-client' {
   interface PublicAppConfig {
-    projectDefaults: { pageSize?: number };
+    reports: { pageSize?: number };
   }
 }
-
-export {};
 ```
 
-Place the declaration in a `.d.ts` file included by the client TypeScript project. Prefer a plugin's configuration factory and hooks for plugin-owned sections so their validation remains active. Runtime configuration under `client` is sent to the browser and must not contain secrets.
+Pages can obtain the published default through a Hook:
 
-### Check configuration and update behavior
+```ts
+// client/hooks/use-report-page-size.ts
+import { useClientApplication } from '@nocobase/app-client';
+
+export function useReportPageSize(): number | undefined {
+  return useClientApplication().config.public.get('reports.pageSize');
+}
+```
+
+Use this value to initialize pagination state; later user choices belong to page state. If it returns `undefined`, check server section registration, its `public` declaration and whether the current page has been refreshed. Do not duplicate that server setting under `client`.
+
+## Check configuration and apply changes
+
+Inspect declarations and check the current application configuration after editing:
 
 ```bash
 pnpm nocobase config env
-pnpm nocobase config variables
-pnpm nocobase config check
+pnpm nocobase config variables --json
+pnpm nocobase config check --no-connect
 ```
 
-The first two commands show environment mappings and descriptions; the last checks the current instance. Do not publish local configuration or environment details as documentation examples.
+`config env` lists environment mappings, `config variables` reports environment-variable types, descriptions and other metadata and `config check --no-connect` validates offline. Plain `config check` also attempts non-SQLite database connections by default. Passing configuration validation does not verify database or external-service availability.
 
-Configuration reload support does not mean every existing service is reinitialized. Services that read once at startup need a restart; services supporting dynamic updates should subscribe according to their contract. Refresh after changing client defaults, and verify a new session without saved preferences rather than observing only an existing browser choice.
+After registering `reports` and ensuring the application's existing configuration is valid, verify overrides and rejection in development. The temporary environment syntax below is for POSIX shells:
 
-### Connect existing system settings
+```bash
+pnpm nocobase config set reports.pageSize=30
+REPORTS_PAGE_SIZE=40 pnpm nocobase config check --no-connect --json
+REPORTS_PAGE_SIZE=0 pnpm nocobase config check --no-connect --json
+```
 
-The default template includes reusable user and permission administration pages. As business features are developed, add `systemSettingsRoutes` from `./pages/settings/routes.js` once to the existing contribution array in `client/routes.ts`. The task example already registers it; do not duplicate it.
+The first command writes `30` to the file. The second should pass with effective value `40` for that process, leaving the file at `30`. The third should exit nonzero and identify the invalid `reports.pageSize`. `config set` edits the file; it does not reload a separate running application process.
 
-A navigation group organizes pages but grants no access. Preserve existing permission declarations, real APIs and role assignment behavior. Check administration needed by actual business features rather than adding empty pages because a dependency is installed.
+Also verify default `20` without overrides, matching published values on the client, exclusion of unpublished fields and validation of explicit request page sizes. Check these with isolated configuration tests before verifying actual pages and queries in the development application.
 
-### Add application-owned business settings
+How a change takes effect depends on its consumer:
 
-“Administrators can change the reporting time zone” should be a real business feature, not a web Save button over `config.yml`:
+- **Editing `config.yml` or the startup environment:** check the configuration, restart the application and refresh client pages. Use partial reloads only as supported by the module.
+- **Editing TypeScript in `client/config/` or `server/config/`:** reload through the project's development workflow; rebuild and release code in production.
+- **Initialization-only values:** `users.initialAdmin`, for example, is read when initializing an empty user table. Changing it does not reset an existing account.
+- **Defaults with saved user preferences:** a saved theme choice may take precedence. Verify with a session that has no saved preference.
 
-1. Choose persistence and initial values. Prefer the owning plugin's public settings service; use a migration for application-owned storage.
-2. Declare server settings resources and actions such as `read` and `update`, with authenticated, authorized and validated read/write APIs.
-3. Add the management page to the existing settings group. Gate entry on the settings read permission and saving on update permission.
-4. Let read-only users inspect values, preserve drafts on failure and display actual saved values after success. Authorize every server write independently.
-5. Make reports and background jobs consume the setting, with explicit cache, reload and historical-record behavior.
+Runtime reload support does not automatically recreate database connections, consumers or every service. See [CLI reference](../reference/cli.md) and [Configuration reference](../reference/configuration.md) for operations and complete options.
 
-Settings pages normally check a `settings` resource rather than ordinary `page/access`. Register the resource ID and actions on the server, not only in frontend declarations. Follow the installed authorization plugin's Skill for exact declarations.
-
-This describes how to implement application-owned settings; it does not imply that the template includes reporting-time-zone tables or APIs. Database connections, storage credentials, backups and similar operations remain with deployment tooling. A page may show authorized status and existing operations links, but should not offer a Save control that cannot take effect.
-
-## Verify results
-
-Check defaults, file overrides, environment overrides and invalid-value rejection. Published configuration must contain only browser-safe fields. For business settings, verify persistence after restart, read versus update permissions and actual consumer behavior after a change.
-
-Continue with [Pages, routes and navigation](pages-routes-and-navigation.md), [Localization and themes](localization-and-themes.md) and [Testing and acceptance](testing-and-acceptance.md).
+Template sources checked for this guide: [configuration example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/config.example.yml), [client configuration entry](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/client/config/index.ts) and [server configuration entry](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/server/config/index.ts).

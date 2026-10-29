@@ -1,5 +1,5 @@
 ---
-title: 扩展命令行
+title: 命令行扩展
 description: 为 App 注册插件命令，处理参数、JSON 输出、错误和构建钩子。
 ---
 
@@ -152,3 +152,5 @@ pnpm nocobase notice-cli preview --text " " --json
 部署后仍需要的命令放在 `commands`；仅用于编译源码或本地生成的命令放在 `devCommands`，后者不会进入部署命令集。
 
 确有生成任务时，可以通过 `buildHooks` 或 `devHooks` 让 App 调用命令。构建阶段依次为 `beforeBuild`、`afterClientBuild`、`afterServerBuild`、`afterBuild`；开发只有 `beforeDev`。钩子的 `command` 是可执行文件及参数的数组，不经过 shell，不能在里面放 `&&`、管道或重定向。钩子失败会停止流程，适合验证必须存在的产物。
+
+应用侧如何接入和验证已有插件，见[接入插件命令](../developing-apps/plugin-commands.md)。仅属于单个应用的命令可直接写入 `cli/commands/`，见[编写应用命令](../developing-apps/application-commands.md)。

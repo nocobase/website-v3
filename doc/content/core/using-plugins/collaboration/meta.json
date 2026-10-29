@@ -1,0 +1,17 @@
+{
+  "title": "Business collaboration",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Project management"
+    },
+    {
+      "type": "planned",
+      "title": "Approvals (commercial)"
+    },
+    {
+      "type": "planned",
+      "title": "Task center (commercial)"
+    }
+  ]
+}

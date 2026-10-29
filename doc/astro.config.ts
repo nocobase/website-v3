@@ -22,6 +22,18 @@ export default defineConfig({
   site: config.site.origin,
   outDir: DIST,
   trailingSlash: 'always',
+  redirects: {
+    '/core/framework/services/client-services/': '/core/framework/services/integration/',
+    '/core/framework/services/server-services/': '/core/framework/services/integration/',
+    '/zh-CN/core/framework/services/client-services/': '/zh-CN/core/framework/services/integration/',
+    '/zh-CN/core/framework/services/server-services/': '/zh-CN/core/framework/services/integration/',
+    '/core/extension-development/initial-data/': '/core/extension-development/database-and-migrations/',
+    '/zh-CN/core/extension-development/initial-data/': '/zh-CN/core/extension-development/database-and-migrations/',
+    '/core/developing-apps/initial-data/': '/core/developing-apps/data-models-and-migrations/',
+    '/zh-CN/core/developing-apps/initial-data/': '/zh-CN/core/developing-apps/data-models-and-migrations/',
+    '/core/developing-apps/localization-and-themes/': '/core/developing-apps/localization/',
+    '/zh-CN/core/developing-apps/localization-and-themes/': '/zh-CN/core/developing-apps/localization/',
+  },
   build: { format: 'directory', assets: '_astro', inlineStylesheets: 'never' },
   vite: { build: { assetsInlineLimit: 0 } },
   markdown: {

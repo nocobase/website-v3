@@ -1,0 +1,21 @@
+{
+  "title": "权限与数据访问",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "权限管理"
+    },
+    {
+      "type": "planned",
+      "title": "默认数据范围"
+    },
+    {
+      "type": "planned",
+      "title": "共享规则"
+    },
+    {
+      "type": "planned",
+      "title": "限制规则"
+    }
+  ]
+}

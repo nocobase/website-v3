@@ -1,9 +1,9 @@
 ---
-title: Localization
-description: Organize Client and Server resources, namespaces, public components and translation checks.
+title: Client localization
+description: Organize Client resources, namespaces and public components, and verify rendering and language changes.
 ---
 
-Plugins own their copy. The App chooses which languages it offers and which language the user selects. Client and Server declare resources separately, using the full plugin package name as their namespace.
+Plugins own their copy. The App chooses which languages it offers and which language the user selects. This article maintains `client/locales/`; see [Server localization](server-localization.md) for request and background-message copy. Client and Server declare resources separately, using the full plugin package name as their namespace.
 
 ## Use an Agent
 
@@ -86,25 +86,9 @@ Pages and React Provider trees contributed by the plugin inherit its namespace, 
 
 Binding a namespace does not register its resources. The App still registers the Client factory in `client/plugins.ts`; importing a component alone does not do so. This example retains the generated `./client/components/plugin-component` public export, from which the App can import `NoticeLabel`. For other public components, maintain paired source and `publishConfig.exports` entries as explained in [Plugin structure](plugin-structure.md).
 
-## Server copy has separate resources
+<span id="server-copy-has-separate-resources"></span>
 
-Select `server.locales` when creating a plugin that needs Server translations. For an existing Server plugin, add its own `server/locales/` resources and loaders and contribute `locales` in its Server declaration. Client code must not import Server locale files.
-
-For example, add `messages.ready` to every Server language, then use it inside an App-mounted request handler:
-
-```ts
-import { getRequestTranslator } from '@nocobase/i18n/server';
-
-// Inside a handler mounted by the App, with the plugin's Server locales registered:
-const t = getRequestTranslator(context, '@nocobase/app-plugin-notice-i18n');
-return context.json({ data: { message: t('messages.ready') } });
-```
-
-The App resolves request language from session preferences, `Accept-Language` and its default. Hono does not infer a plugin namespace from source ownership, so specify the package name.
-
-Keep a stable `ApiError.reason` for programmatic decisions and supply translated user copy through `localizedMessage`. Translated sentences are not error codes.
-
-Jobs, mail and notifications have no current request. Choose the recipient’s locale, call `i18n.ensureLocaleLoaded(locale)`, then `i18n.getFixedT(namespace, locale)`. Do not reuse the initiating user’s language for every recipient.
+Server resources, request translation and background messages are covered in [Server localization](server-localization.md).
 
 ## Verify structure and rendering
 
@@ -157,7 +141,7 @@ pnpm nocobase plugin register @nocobase/app-plugin-notice-i18n --no-install --dr
 pnpm nocobase plugin register @nocobase/app-plugin-notice-i18n --no-install
 ```
 
-The test deliberately omits a default rendering `namespace`, exposing components that accidentally depend on their host’s namespace. Also switch language in the running App and check mounted components, menus, date formatting and errors. Verify Server translations through real requests and outbound messages against recipient preferences.
+The test deliberately omits a default rendering `namespace`, exposing components that accidentally depend on their host’s namespace. Also switch language in the running App and check mounted components, menus, date formatting and errors. See [Server localization](server-localization.md#verify-integration) for request and background-message checks.
 
 NocoBase’s own plugins provide ten languages; an App may offer a subset. Plugin resources do not automatically add languages to the App selector. An App can override product wording in its locale overrides, while missing general translations belong in plugin source.
 

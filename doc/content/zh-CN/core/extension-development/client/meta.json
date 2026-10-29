@@ -1,0 +1,25 @@
+{
+  "title": "客户端",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../pages-and-menus"
+    },
+    {
+      "type": "page",
+      "path": "../frontend-components"
+    },
+    {
+      "type": "page",
+      "path": "../react-context-and-providers"
+    },
+    {
+      "type": "page",
+      "path": "../client-services"
+    },
+    {
+      "type": "page",
+      "path": "../localization"
+    }
+  ]
+}

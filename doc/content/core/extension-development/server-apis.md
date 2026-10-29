@@ -1,9 +1,11 @@
 ---
-title: Server APIs
+title: Routes and HTTP APIs
 description: Add plugin endpoints with validation, response contracts, access control and tests.
 ---
 
 A plugin API receives requests, validates input and access, then calls business logic. This example previews notice text: it trims surrounding whitespace and returns the text and its character count without saving anything.
+
+For standard Collection queries or simple writes, use [`defineRepositoryApiRoutes()`](../framework/http/repository-routes.md) and add its contribution to the plugin's `routes`. Applications and plugins share that mechanism; this guide demonstrates a custom business endpoint.
 
 ## Use an Agent
 
@@ -144,7 +146,15 @@ export default routes;
 
 The declared path is `/noticeApi/preview`. With the default `/main` deployment prefix, open `/main/api/noticeApi/preview?text=Hello`. A Client using `useApiClient()` requests `path: 'noticeApi/preview'` without hard-coding a server URL.
 
+## Aggregate contributions and integrate the App
+
+The array exported by `server/routes/index.ts` reaches the App through `routes` in `server/plugin.ts`; `serviceProviders` registers the plugin's services. The App imports the public Server entry and supplies the API prefix and request environment. Preserve existing contributions when adding routes; a file alone is not an aggregate declaration.
+
+This example keeps its complete preview service so it runs independently. See [Business services and ServiceProvider](server-services.md) for public Tokens and multi-entry reuse, and [Request validation and errors](../developing-apps/request-validation-and-errors.md) for shared rules. For asynchronous work, the handler calls the [background-job submission service](background-jobs.md) after App startup, not during route-factory creation.
+
 ## Define the access boundary
+
+For integration with existing authentication, roles and data policies, see [Authentication, permissions and data scopes](../developing-apps/authentication-and-permissions.md).
 
 This example reads no user or business records and changes no state, so anonymous text preview is intentional. `security: []` describes authentication in the API document; it does not enforce access. Server middleware does that.
 

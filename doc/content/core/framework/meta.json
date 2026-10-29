@@ -1,0 +1,53 @@
+{
+  "title": "Framework",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "folder",
+      "path": "runtime"
+    },
+    {
+      "type": "folder",
+      "path": "services"
+    },
+    {
+      "type": "folder",
+      "path": "http"
+    },
+    {
+      "type": "folder",
+      "path": "database"
+    },
+    {
+      "type": "page",
+      "path": "support/caching"
+    },
+    {
+      "type": "page",
+      "path": "file-storage"
+    },
+    {
+      "type": "folder",
+      "path": "background"
+    },
+    {
+      "type": "page",
+      "path": "background/queues"
+    },
+    {
+      "type": "folder",
+      "path": "realtime"
+    },
+    {
+      "type": "page",
+      "path": "support/logging"
+    },
+    {
+      "type": "page",
+      "path": "support/ids"
+    }
+  ]
+}

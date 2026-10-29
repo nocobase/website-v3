@@ -5,7 +5,7 @@ description: 使用 Repository 查询和修改业务记录，处理关联、分�
 
 数据访问通常从 Repository 开始：它理解 Collection 的字段和关系，适合读取、创建和修改业务记录。Query 面向表和结果集，适合 Repository 不能表达的报表与聚合。两者都需要调用方先确定身份与权限。
 
-本篇代码用于应用服务端，沿用[数据模型与迁移](data-models-and-migrations.md)中的 `tutorialProjects` 和 `tutorialTasks`。示例以默认模板 `1.0.0-beta.78` 的应用为基础；代码片段说明数据访问方法，完整的路由、授权和服务注册见[业务服务与 HTTP 接口](apis-and-services.md)。本文的 `tutorialTasks`／`tutorialProjects` 属于独立的历史项目示例，不是当前入门示例的 `tasks`；运行前按[数据模型与迁移](data-models-and-migrations.md)确认基线。
+本篇代码用于应用服务端，沿用[建表与数据初始化](data-models-and-migrations.md)中的 `tutorialProjects` 和 `tutorialTasks`。示例以默认模板 `1.0.0-beta.78` 的应用为基础；代码片段说明数据访问方法，完整的路由、授权和服务注册见[服务端业务服务](server-business-services.md)。本文的 `tutorialTasks`／`tutorialProjects` 属于独立的历史项目示例，不是当前入门示例的 `tasks`；运行前按[建表与数据初始化](data-models-and-migrations.md)确认基线。
 
 ## 使用 Agent
 
@@ -120,32 +120,9 @@ const savedTask = result.record;
 
 接口应使用字段白名单组装 `values`，不要把整个请求体直接传入。批量操作同样需要校验输入、绑定策略、限制数量，并明确业务语义是“全部成功”还是“允许部分成功”；不能因为方法名带 `Many` 就省略这些决定。
 
-### 在事务中完成多步操作
+### 多步写入与事务
 
-需要一起成功或失败的读写放进同一事务，且所有操作都使用回调收到的 `connection`：
-
-```ts
-await database.transaction(async (connection) => {
-  const tasks = connection.repository('tutorialTasks').withPolicy(taskPolicy);
-  const projects = connection
-    .repository('tutorialProjects')
-    .withPolicy(projectPolicy);
-
-  const task = await tasks.findOne({ filter: { id: taskId } });
-  if (!task) throw new Error('Task unavailable.');
-  const project = await projects.findOne({ filter: { id: projectId } });
-  if (!project) throw new Error('Project unavailable.');
-
-  await tasks.updateOne({
-    filter: { id: taskId },
-    values: { projectId, updatedAt: new Date() },
-  });
-});
-```
-
-这是事务结构示意；正式服务使用可区分的业务错误，再由路由转换为 API 错误，见[业务服务与 HTTP 接口](apis-and-services.md)。事务中调用外层的 `database.repository()` 会离开本次事务；捕获错误后正常返回则可能提交部分工作。
-
-事务不自动解决并发覆盖。同一任务被两个人修改时，如果业务不接受“最后一次成功写入生效”，还需要版本条件等并发控制。通知等外部副作用放到提交之后处理；`connection.afterCommit()` 适合提交后触发工作，但其失败不能撤销已经提交的数据，也不保证外部消息可靠送达。
+需要一起成功或失败的操作，交给业务服务在同一连接事务中完成；具体写法、失败回滚和外部投递边界见[事务与数据一致性](transactions-and-consistency.md)。读取记录、写入记录都必须使用该事务连接，不能把外层 Repository 混进回调。
 
 ## 什么时候使用 Query
 
@@ -164,4 +141,4 @@ Query 的条件形式为 `where(field, operator, value)`，值由查询构造器
 
 用真实测试数据库检查筛选、稳定排序、空结果、关联与批量范围；用真实应用和普通用户检查权限。构造一次事务内失败，重新读取数据库，确认之前的写入也已撤销。不要通过 mock Repository 来证明 Repository 的行为。
 
-现有项目服务的完整例子见[业务服务与 HTTP 接口](apis-and-services.md)，测试工具的选择见[测试与验收](testing-and-acceptance.md)。
+现有项目服务的完整例子见[服务端业务服务](server-business-services.md)，测试工具的选择见[测试与验收](testing-and-acceptance.md)。

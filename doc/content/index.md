@@ -8,7 +8,7 @@ description: NocoBase is the open-source platform for building, running, and evo
 | You want to | Start here |
 | --- | --- |
 | Learn about NocoBase 3 | [What is NocoBase 3](start/what-is-nocobase.md) |
-| Build an app on Core with your own agent | [What is Core](core/getting-started/what-is-core.md) → [Create an app](core/getting-started/create-app.md) |
+| Build an app on Core with your own agent | [Meet NocoBase Core](core/getting-started/what-is-core.md) → [Create an app](core/getting-started/create-app.md) |
 | Lead an agent team and move several projects forward at once | [What is Studio](studio/intro/what-is-studio.md) |
 | Deploy and operate an app | [Deployment](core/deployment/choose-a-deployment-method.md) |
 | Coming from NocoBase 2 | [Coming from NocoBase 2](start/from-v2.md) · [Manage plugins](core/developing-apps/manage-plugins.md) |

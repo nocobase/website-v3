@@ -1,0 +1,21 @@
+{
+  "title": "Permissions and data access",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Permission management"
+    },
+    {
+      "type": "planned",
+      "title": "Default data access"
+    },
+    {
+      "type": "planned",
+      "title": "Sharing rules"
+    },
+    {
+      "type": "planned",
+      "title": "Restriction rules"
+    }
+  ]
+}

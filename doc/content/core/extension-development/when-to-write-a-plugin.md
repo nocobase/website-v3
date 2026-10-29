@@ -51,4 +51,4 @@ Plugins are one way to organize features. Simple pages or business logic can liv
 
 Continue with [Create a plugin](create-plugin.md) to generate a scaffold using `@nocobase/create-plugin`. After understanding [Plugin structure](plugin-structure.md), follow [Write your first plugin](write-your-first-plugin.md) to implement, register and verify it.
 
-For sharing across Apps with independently managed versions, continue with [Publish a plugin](publish-plugin.md). Publication is unnecessary when using the plugin only in the current App.
+For sharing across Apps with independently managed versions, continue with [Build and publish](publish-plugin.md). Publication is unnecessary when using the plugin only in the current App.

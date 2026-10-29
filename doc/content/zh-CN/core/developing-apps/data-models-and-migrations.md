@@ -1,13 +1,163 @@
 ---
-title: 数据模型与迁移
-description: 用迁移管理字段、关系与约束，区分结构变更、初始化数据和生成的 Collection 文件。
+title: 建表与数据初始化
+description: 使用 defineMigration、defineSeed 及各自的 Context 建表、初始化记录，并维护后续结构与数据变更。
 ---
 
-数据模型决定应用保存什么，以及数据库必须保证哪些规则。在 NocoBase 应用中，用迁移记录结构变化，用 Repository 访问数据；`database/main/collections/` 是生成的模型快照，不是手写模型的入口。
+应用通过 `defineMigration()` 描述建表和后续结构变更，通过 `defineSeed()` 安装初始记录。两个函数都只是定义任务；执行时，框架将当前任务的 Context 传给回调，提供建表、查询和记录操作所需的能力。
 
-本篇以“任务可以属于一个项目”为例，说明如何设计字段、关系与约束，并在已有数据上演进模型。可以直接查阅各部分约定；要运行示例，再按下方说明准备应用。
+本篇先用独立的 `appStatuses` 状态表串起“建表 → 初始化数据 → 执行与验证”，无需历史教程。后面的项目与任务案例保留原有准备条件，说明怎样修改已有结构。
 
-## 结构、初始数据与业务记录
+## 目录与文件约定
+
+```text
+database/
+└── main/
+    ├── migrations/
+    │   └── 202611040001_create_app_statuses.ts
+    ├── seeds/
+    │   └── 202611040002_default_app_statuses.ts
+    └── collections/  # Generated; do not edit
+```
+
+`main` 是连接名称。迁移和 Seed 文件默认导出任务定义，`name` 与文件名去掉扩展名后的部分一致，并在对应任务的所有来源中保持唯一。加入已有项目时，使用排在现有任务之后的新名称。`collections/` 是生成的模型缓存，不是手写模型的入口。
+
+| 要做的事 | 使用方式 |
+| --- | --- |
+| 建表、修改字段、关系、索引和约束 | Migration |
+| 随版本转换或补齐历史记录 | Migration 中的数据操作 |
+| 安装默认状态、分类等初始记录 | Seed |
+| 用户日常创建和修改业务记录 | 服务端业务服务与接口 |
+
+迁移也能修改数据，不能简单理解成“迁移只建表，Seed 负责所有写入”。
+
+## 使用 defineMigration 建表
+
+创建 `database/main/migrations/202611040001_create_app_statuses.ts`：
+
+```ts
+import { defineMigration } from '@nocobase/db';
+
+export default defineMigration({
+  name: '202611040001_create_app_statuses',
+  async up({ builder }) {
+    await builder.createCollection('appStatuses', (collection) => {
+      collection.string('code', { length: 32 }).primary().notNull();
+      collection.string('title', { length: 100 }).notNull();
+    });
+  },
+  async down({ builder }) {
+    await builder.dropCollection('appStatuses');
+  },
+});
+```
+
+`up()` 执行本次变更，`down()` 描述对应回退。`builder.createCollection()` 声明逻辑集合及其结构，框架按连接方言创建物理表。`code` 是稳定业务键，主键约束防止重复；`title` 保存可修改的显示名称。
+
+本例的 `down()` 删除整张表和记录，因此只在隔离数据库中验证回退。已发布迁移保持不变，后续修改新增文件。`transaction`、`irreversible` 和 `shouldRun()` 等选项见[迁移机制](../framework/database/migrations.md)，简单建表无需先配置全部选项。
+
+## 使用 Migration Context
+
+`up(context)` 与 `down(context)` 接收 `MigrationContext`。上例的 `{ builder }` 是从 Context 中解构所需成员；需要处理历史数据时，再使用同一个 Context 中的 `query`。
+
+| 成员 | 用途与边界 |
+| --- | --- |
+| `builder` | 创建和调整集合、字段、索引及约束 |
+| `query` | 迁移中的数据读取、更新和批量回填，通常是数据操作的首选 |
+| `repository(name)` | 需要 Collection 字段编码、命名覆盖或关联写入时使用；依赖执行时的模型形状 |
+| `connection` | 当前连接的名称、方言、能力与底层客户端入口，是受限接口 |
+| `config` | 任务执行方提供的只读配置，通过 `get()` 读取 |
+| `container` | 任务执行方提供的服务解析器，不代表完整应用容器或所有业务服务已经启动 |
+| `configuration`、`parameters` | 来源提供的可选适用性配置与目标参数；普通应用迁移通常不需要 |
+
+例如在一个后续迁移的 `up({ query })` 中，可以对已存在的 `appStatuses` 做明确的数据修正：
+
+```ts
+await query.updateTable('appStatuses')
+  .set({ title: 'Draft' })
+  .where('code', '=', 'draft')
+  .where('title', '=', 'DRAFT')
+  .execute();
+```
+
+这是回调内部的片段，前提是目标表已经存在。它只修正约定的旧值，不覆盖所有用户自定义名称。迁移中的数据操作使用明确的历史结构，不导入随业务代码变化的服务实现。
+
+Migration Context 的 `connection` 不是完整的 `DatabaseConnection`：不能写 `connection.repository()`、`connection.builder` 或自行调用 `connection.transaction()`。直接使用 Context 顶层的 `builder`、`query`、`repository()`，让执行器负责事务。`client()` 是低层逃生入口，通常不需要，也不能用于绕过结构管理限制。
+
+只有 Query 无法正确表达的场景再用迁移中的 `repository()`，并说明原因；不要让回退逻辑依赖已经变化的 Collection 模型。事务是否启用还受任务选项和方言能力约束，不应假设所有数据库的 DDL 都能回滚。
+
+## 使用 defineSeed 初始化数据
+
+创建 `database/main/seeds/202611040002_default_app_statuses.ts`：
+
+```ts
+import { defineSeed } from '@nocobase/db';
+
+export default defineSeed({
+  name: '202611040002_default_app_statuses',
+  async run({ repository }) {
+    const statuses = repository('appStatuses');
+    for (const record of [
+      { code: 'draft', title: 'Draft' },
+      { code: 'published', title: 'Published' },
+    ]) {
+      const existing = await statuses.findOne({
+        filter: { code: record.code },
+        select: (s) => s.fields('code'),
+      });
+      if (existing) continue;
+      await statuses.createOne({ values: record });
+    }
+  },
+});
+```
+
+`run()` 执行安装数据逻辑。本例只补充缺失记录，保留管理员已有的名称修改。先查询再插入本身不能消除并发竞争，主键约束提供最终保护；冲突时让任务失败并回滚，检查后重试。需要存在即更新时，可以使用 `upsertOne()`，但必须明确允许覆盖的字段。
+
+Seed 没有与 Migration `down()` 对应的回退函数，也不是每次启动都覆盖配置的同步脚本。
+
+## 使用 Seed Context
+
+`run(context)` 接收 `SeedContext`。安装记录按 Collection 语义描述，通常优先使用 `repository()`：
+
+| 成员 | 用途与边界 |
+| --- | --- |
+| `repository(name)` | 读写初始记录，使用逻辑字段、字段编码及关联写入能力 |
+| `query` | Repository 不适合表达的数据操作，例如访问没有对应 Collection 的表 |
+| `connection` | 与 Migration 相同的受限连接接口，不是完整的运行时连接 |
+| `config` | 读取任务执行方提供的配置 |
+| `container` | 解析执行方允许提供的服务；独立执行器未提供时为空 |
+
+Seed Context 没有 `builder`，需要新表或字段时先写迁移。`repository()` 和 `query` 已绑定当前任务连接；启用事务时，它们也使用当前事务。不要从外部管理器取得另一个 Repository 来写入，否则可能离开任务事务。
+
+两种 Context 提供的 Repository 写入都不触发运行时 Repository 变更事件。安装或升级不能依赖尚未启动的业务监听器来补全数据。
+
+## 执行与验证
+
+确认配置指向本地示例数据库后，在应用根目录执行：
+
+```bash
+pnpm nocobase db apply --connection main --dry-run
+pnpm nocobase db apply --connection main
+pnpm nocobase collections generate --connection main --check
+```
+
+`db apply` 先运行待执行的迁移，再运行 Seed，也可能包含其他应用或插件资源；`--dry-run` 只预览计划。成功任务按历史跳过，修改已执行文件不是重新执行的方式。默认 Seed 事务模式为 `auto`，失败时本次写入和成功历史一起回滚，修复问题后继续。
+
+验证首次建表与两条默认记录、重复执行不重复写入、首次初始化前已有自定义记录时保持其名称，以及 Seed 写入后抛错能回滚并重试。迁移回退在隔离数据库中验证；目标数据库的 DDL、隔离与锁行为需使用对应方言测试。
+
+## 修改已有结构与数据
+
+已发布任务保持不可变，新增迁移表达字段、约束和历史数据变化。先补齐旧数据再收紧非空约束；需要永久保存的用户选择不能由 Seed 反复覆盖。新增安装默认项时，再添加更晚的 Seed。
+
+演示数据与必需数据分开。普通 Seed 不会因为内容是演示记录就自动跳过；需要可选示例时，显式使用 `sample: true`，并按应用的 sample-data 配置和执行入口加载，详见[初始数据机制](../framework/database/seeds.md)。测试 fixtures、日常导入和环境重置不混入普通初始化流程。
+
+新增连接见[多数据库连接](multiple-databases.md)，外部系统维护的结构见[接入已有数据库](existing-databases.md)，业务事务见[事务与数据一致性](transactions-and-consistency.md)。完整迁移选项见[迁移机制](../framework/database/migrations.md)。
+
+## 进阶示例：为任务增加项目
+
+下面保留原有项目专题案例，演示字段、关联、约束和旧数据保留。它是独立的历史应用，与前面的 `appStatuses` 示例无依赖关系。
+
+### 结构、初始数据与业务记录
 
 | 要做的事 | 放在哪里 | 处理原则 |
 | --- | --- | --- |
@@ -20,13 +170,13 @@ description: 用迁移管理字段、关系与约束，区分结构变更、初�
 
 项目名称是用户填写的业务数据，因此本例不添加项目种子。业务角色也不能为了让示例可用而自动分配给所有已登录用户。
 
-## 设计字段和关系时先回答什么
+### 设计字段和关系时先回答什么
 
 先明确必填和唯一是否是业务规则、历史记录是否能满足新规则、关联对象删除时如何处理，再选择字段和约束。不要仅根据表单当前长什么样来决定数据库结构。
 
 例如，“项目名称必填”不意味着名称必须唯一；“任务可以归入项目”也不意味着旧任务必须立即有项目。数据库外键保证引用有效，接口校验负责名称内容等输入规则，权限检查负责当前用户是否可以使用这个项目。这些检查不能互相替代。
 
-## 准备示例应用
+### 准备示例应用
 
 项目专题沿用独立的历史示例：`tutorialTasks` 保存任务，`tutorialProjects` 保存项目，任务使用 `completed` 表示完成状态。当前[入门示例](../tutorials/build-your-first-feature.md)则使用 `tasks` 和三阶段 `status`，两者不是同一套代码。运行本专题时使用下方指定的旧标签和配套配置；不要直接把这些迁移应用到入门示例的数据库。
 
@@ -48,7 +198,7 @@ pnpm nocobase config check
 
 </details>
 
-## 示例：项目与任务的关系
+### 示例：项目与任务的关系
 
 本次只引入最小的项目模型：
 
@@ -61,7 +211,7 @@ pnpm nocobase config check
 
 旧任务没有可靠的项目归属，因此新字段先允许为空，表示“尚未归入项目”。迁移不猜测归属，也不创建一个默认项目接收所有历史任务。对于已经被任务引用的项目，本例拒绝删除；业务上可以先转移或解除关联，再删除项目。
 
-## 使用 Agent
+### 使用 Agent
 
 在应用目录中把本篇作为参考交给 Agent，再描述下面的需求。字段、接口和组件的具体约定见手动步骤，由 Agent 结合项目指引处理。
 
@@ -84,9 +234,9 @@ pnpm nocobase config check
 
 检查 Agent 的结果时，除了看新增表和字段，还要看已有数据是否保留、约束是否真正生效，以及测试是否使用了真实数据库。可以对照下面的实现。
 
-## 不使用 Agent
+### 不使用 Agent
 
-### 编写自包含的迁移
+#### 编写自包含的迁移
 
 新建 `database/main/migrations/202610240004_add_task_projects.ts`：
 
@@ -137,7 +287,7 @@ export default defineMigration({
 
 `up()` 先创建项目表，再扩展任务表。`down()` 按依赖关系反向移除，保留任务原有字段和记录，但会删除项目数据及任务的项目归属。它是结构上的逆操作，不是恢复业务数据的备份。
 
-### 区分字段、关联和约束
+#### 区分字段、关联和约束
 
 这份迁移为同一个业务关系定义了三个部分：
 
@@ -151,7 +301,7 @@ export default defineMigration({
 
 字段声明也不替代接口的输入校验。例如，`nullable: false` 不会拒绝空白名称，各数据库对字符串长度的处理也可能不同；接口仍需要检查去除首尾空格后的名称和长度。
 
-### 应用迁移与生成 Collection
+#### 应用迁移与生成 Collection
 
 先检查当前应用配置指向的数据库，再运行：
 
@@ -184,7 +334,7 @@ database/main/collections/
 pnpm nocobase collections generate --check
 ```
 
-## 用真实数据库验证
+### 用真实数据库验证
 
 新增 `tests/database/tutorial-tasks-projects.test.ts`。下面的测试先应用较早的迁移并插入一条旧任务，再应用本次迁移，检查模型与数据，最后回滚并重新应用。`describeMigration()` 管理隔离数据库和清理，不操作你的开发数据库。
 
@@ -320,14 +470,16 @@ pnpm exec vitest run --config vitest.tutorial.config.ts
 
 测试中的 `repository()` 直接用于隔离数据库验证。正式接口必须检查调用者权限，再使用带有相应策略的 Repository；外键只能证明项目存在，不能证明当前用户可以访问或选择该项目。
 
-## 模型继续演进时
+### 模型继续演进时
 
 **已经合并或发布的迁移保持不变。** 新增字段、修改约束或修复历史迁移时，再添加一份迁移。修改已执行文件不会让 `db apply` 自动重跑它，也不能靠重置数据库验证真实升级是否保留了数据。
 
 如果以后要求每条任务必须有项目，先确定旧任务的归属，完成数据补齐并验证没有空值，再用后续迁移改为非空。补齐现有数据属于迁移；不要用种子反复覆盖用户已修改的任务。
 
-种子用于应用运行所必需的初始数据。本章的项目是用户创建的业务记录，因此不添加种子。若需要演示内容，应明确使用可选的 sample seed，让新安装是否载入示例数据成为显式选择。
+种子用于应用运行所必需的初始数据。本章的项目是用户创建的业务记录，因此不添加种子。初始数据的文件组织、执行历史及演示数据的边界见[建表与数据初始化](data-models-and-migrations.md)，不要假设普通 Seed 会按环境自动跳过。
 
-## 继续阅读
+### 继续阅读
 
-[业务服务与 HTTP 接口](apis-and-services.md)说明怎样把数据操作开放给页面：校验输入、检查项目与任务的权限，并把业务错误转换为一致的 API 错误。[应用开发概览](overview.md)介绍这些部分如何连起来。
+[路由与 HTTP 接口](apis-and-services.md)说明怎样把数据操作开放给页面：校验输入、检查项目与任务的权限，并把业务错误转换为一致的 API 错误。[应用开发概览](overview.md)介绍这些部分如何连起来。
+
+迁移与初始数据按连接维护；新增连接见[多数据库连接](multiple-databases.md)。已有结构由其他系统管理时，使用[接入已有数据库](existing-databases.md)的流程，手写 `metadata/` 与生成的 `collections/` 分开维护。

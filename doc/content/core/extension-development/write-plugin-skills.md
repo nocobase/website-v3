@@ -1,11 +1,13 @@
 ---
-title: Write plugin skills
+title: Plugin Skills
 description: Describe public capabilities for App Agents and maintain, synchronize and verify plugin Skills.
 ---
 
 A plugin Skill tells an App Agent which implemented capabilities exist, which public entries to call, who owns the data and how to verify success. It neither implements the feature nor registers the plugin automatically.
 
 This article authors a plugin’s own usage instructions. The development guide `nocobase-app-plugin-development` belongs to `@nocobase/app-skills`; do not copy it into a business plugin or claim that reserved name.
+
+For `AGENTS.md` instructions used when modifying and maintaining plugin source, see [Plugin development guidance (AGENTS.md)](plugin-development-guidance.md). This article focuses on application Agents consuming plugin capabilities, with invocation examples, distribution, synchronization and verification.
 
 ## Use an Agent
 
@@ -19,7 +21,7 @@ Maintain it in plugin source and verify synchronization and invocation, without 
 
 A Skill helps when Agents frequently call APIs, compose public components, use services or diagnose configuration. A plugin with one ordinary page and no special integration workflow need not add a Skill just to fill a directory.
 
-This example documents `notice-cli` from [Extend the command line](extend-command-line.md). Add `skills/` to that existing plugin without rerunning creation. For a new plugin, `--with skills` generates a draft that must be replaced with implemented behavior.
+This example documents `notice-cli` from [Command-line extensions](extend-command-line.md). Add `skills/` to that existing plugin without rerunning creation. For a new plugin, `--with skills` generates a draft that must be replaced with implemented behavior.
 
 ## Maintain plugin-owned source
 
@@ -89,7 +91,7 @@ Importing a public component does not register a Client factory. Server consumer
 
 When a plugin offers source assets through shadcn UI Registry, its Skill should describe the local build and asset path, or a published URL, together with installation into an App or plugin, inputs, dependencies and integration with public plugin capabilities. Local assets can be added directly without first setting up a Registry website. Include examples of layout or interaction changes and verification steps so an Agent can compose the result in the target project.
 
-Installing component files does not register backend plugins, translations or routes. State these prerequisites and explain that the target project maintains the installed source; upgrading a plugin package does not update it. See [Frontend components](frontend-components.md#write-agent-usage-instructions) for a complete example.
+Installing component files does not register backend plugins, translations or routes. State these prerequisites and explain that the target project maintains the installed source; upgrading a plugin package does not update it. See [Publish UI source assets](frontend-components.md#write-agent-usage-instructions) for a complete example.
 
 ## Synchronize into the App
 
@@ -105,6 +107,6 @@ Plugin registration also synchronizes shipped Skills by default. The App’s `.a
 
 First check the synchronized copy exists. Then have an Agent follow it and run `preview --text Hello --json`, expecting `Hello` and length 5. Check that blank text produces the documented error and that the Agent does not claim previewing saved or sent a notice.
 
-Synchronization proves delivery, not correctness. Before publishing, inspect `pnpm --filter @nocobase/app-plugin-notice-cli pack` output for `skills/` and the public runtime entries. See [Publish a plugin](publish-plugin.md) for another App’s installation.
+Synchronization proves delivery, not correctness. Before publishing, inspect `pnpm --filter @nocobase/app-plugin-notice-cli pack` output for `skills/` and the public runtime entries. See [Build and publish](publish-plugin.md) for another App’s installation.
 
 Update source, tests and Plugin Skills together when public commands, arguments, permissions or responses change. Apps receive updated guidance by upgrading the package and synchronizing, rather than patching generated copies individually.

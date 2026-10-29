@@ -5,9 +5,9 @@ description: Use the application's AGENTS.md and Skills to describe requirements
 
 When developing with an agent, explain what users should accomplish, the business constraints and how you will judge completion. The agent uses the project's conventions to locate code, implement changes and verify the result. You do not need to know an internal API before you can describe the requirement.
 
-This guide assumes you already have an application. Otherwise, start with [Create app](../getting-started/create-app.md). Here, an agent means a coding agent that helps develop the application; Agents used by business users inside an application are a separate capability.
+This guide assumes you already have an application. Otherwise, start with [Create an app](../getting-started/create-app.md). Here, an agent means a coding agent that helps develop the application; Agents used by business users inside an application are a separate capability.
 
-## Work in the right project
+## Start in your application project
 
 Start the agent in the application root so it can read the source, `package.json`, `AGENTS.md` and `.agents/`. For an existing project, identify the working directory and current features so it does not create another application.
 
@@ -21,7 +21,7 @@ Prefer existing plugins and components when they meet the requirement.
 
 This establishes context; you do not need to repeat the entire request for every small edit. For deployment, database changes or account operations, also identify the target environment and permitted scope.
 
-## What AGENTS.md and Skills provide
+## Project guidance and development rules
 
 The application carries its development conventions. An agent should read the guidance for the installed version rather than applying rules from another project or version.
 
@@ -31,17 +31,31 @@ The application carries its development conventions. An agent should read the gu
 | `.agents/rules/` | Application-specific structure, business conventions and customization notes | Update when conventions change and link from `AGENTS.md` |
 | `.agents/skills/` | Development, upgrade, deployment and capability guidance supplied by packages and plugins | Synchronize from installed dependencies; do not edit generated copies |
 
-The current template synchronizes Skills in `postinstall`. If installation scripts were skipped or the directory is missing, run this from the application root:
+Record conventions that apply across tasks in `.agents/rules/` and link them from `AGENTS.md`. For example, once the team has agreed on business-date time zones, state transitions or permission boundaries, document them in `.agents/rules/business.md` and add this to the entry file:
+
+```markdown
+## Project rules
+
+- [Business rules](.agents/rules/business.md): business dates, state transitions and permission conventions.
+```
+
+**Application rules belong in the application; shared rules are maintained with their packages.** Save agreed conventions with the code so another session or developer can follow them. Maintain dependency-provided guidance in its source package, then synchronize it into the application.
+
+## Use and synchronize Skills
+
+For feature development, start with `.agents/skills/nocobase-app-development/SKILL.md` and read the references relevant to the task. Read a plugin's Skill when using its capabilities. Core upgrades and deployment have separate guidance; choose the Skills for the current task.
+
+Skills come from currently installed dependencies. After installing or upgrading a relevant package, confirm that its guidance has been synchronized so the agent reads instructions matching the installed version. The current template synchronizes Skills in `postinstall`. If installation scripts were skipped or the directory is missing, run this from the application root:
 
 ```bash
 pnpm nocobase skills sync
 ```
 
-For feature development, start with `nocobase-app-development` and read the references relevant to the task. Read a plugin's Skill when using its capabilities. Core upgrades and deployment have separate guidance; starting a development environment is not a production deployment procedure.
+To inspect the synchronization plan first, run `pnpm nocobase skills sync --dry-run`. For more options, see [Plugins and Skills in the command-line reference](../reference/cli.md#plugins-and-skills).
 
-**Application rules belong in the application; shared rules are maintained with their packages.** For example, record an agreed business time zone in `.agents/rules/`. Do not leave that convention only in a conversation, or edit `.agents/skills/` files that the next synchronization will replace.
+After synchronization, check the command output and the relevant `SKILL.md`, and ask the agent to reread the guidance for the task. If a plugin's Skill is still missing, confirm that the plugin is installed, registered as required, and actually provides a Skill. Synchronized copies follow their source packages; keep application-specific additions in `.agents/rules/`.
 
-## Describe requirements in business terms
+## Describe and break down requirements
 
 An actionable request usually answers five questions:
 
@@ -77,7 +91,7 @@ Report what changed, what you verified and what remains unverified.
 
 This describes behavior a user can understand. Let the agent follow the application's conventions for fields, relations, permission policies and selectors. If a fixed API contract or existing design matters, provide that document as context rather than copying every implementation detail into the prompt.
 
-## Split larger requests into verifiable changes
+### Split larger requests into verifiable changes
 
 “Build a complete project management system” leaves too many business questions unanswered. Deliver a small, complete outcome before extending the next capability.
 
@@ -89,7 +103,7 @@ For project assignments on tasks, one possible sequence is:
 
 State the scope and completion criteria at each step. If only the data layer is ready, say that the UI cannot use it yet. Passing a migration test does not mean users can manage projects. A small feature can also deliver all these parts together; you do not need a separate request for every file.
 
-## Review the implementation
+## Review the implementation and verify results
 
 Check observable behavior first, then conformity with project conventions. Ask for a short change description with relevant file references, covering:
 
@@ -101,7 +115,7 @@ Check observable behavior first, then conformity with project conventions. Ask f
 
 A successful screenshot is not enough. A hidden button does not prove that the endpoint rejects unauthorized calls; a success message does not prove that the database saved the change.
 
-## Verify real outcomes
+### Verify real outcomes
 
 Ask the agent to distinguish automated checks from actual application interaction. Cover the change and affected existing behavior without treating unrelated full-suite checks as a mandatory step after every edit.
 
@@ -126,9 +140,11 @@ Please check server authorization, fix it, and verify using that same ordinary a
 
 If the agent lacks an environment or account to verify a step, it should state what is missing and what has been checked. Code inspection is not a substitute for reporting actual verification results.
 
-## What to leave behind
+## Deliver and iterate
 
 A completed change should leave reviewable code and verification evidence. Ask for a concise report of changes, passing checks, unverified cases and how to run or view the result. Record new application conventions in `.agents/rules/`, and maintain tests alongside the business code.
+
+For the next iteration, explain what already works and what you want to add or change. Carry forward the agreed business rules and acceptance results, and verify the behavior affected by the new change. When reporting a problem, give the agent reproduction steps and the expected behavior.
 
 Committing code, publishing a version and deploying to an environment are different actions. Follow the scope agreed for the task; passing local tests does not mean the application has been deployed. For production delivery, continue with [Choose a deployment method](../deployment/choose-a-deployment-method.md).
 

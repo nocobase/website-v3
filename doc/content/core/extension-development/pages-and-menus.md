@@ -1,11 +1,13 @@
 ---
-title: Pages and menus
+title: Pages, routes and menus
 description: Add plugin pages, navigation and nested views in an App, with default routes and access rules.
 ---
 
 A plugin contributes pages through route declarations, which also supply the App's menus. This article builds a help center with one sidebar entry and two views: Guide and FAQ. Refreshing or sharing a link preserves the selected view.
 
 [Write your first plugin](write-your-first-plugin.md) connects a single page to an API. Here the focus is organizing pages and navigation. This example needs only Client capabilities.
+
+This article focuses on plugin contributions: `routes.ts` references page components, `client/plugin.ts` aggregates routes, and the App loads them by registering the Client factory. See [Components and styles](frontend-components.md) for component implementation, and reuse [application UI interactions](../developing-apps/pages-and-interactions.md) and [data requests and state management](../developing-apps/data-requests-and-state.md) for forms and URL state.
 
 ## Use an Agent
 

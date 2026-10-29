@@ -7,7 +7,7 @@ description: 认识应用代码、模板和插件的关系，理解一个业务�
 
 以下用“把任务归入项目”说明各部分职责，阅读本篇不需要运行示例。
 
-> **运行专题示例前：** 项目与任务专题沿用默认模板 `1.0.0-beta.78` 的历史示例，准备步骤需要访问私有仓库 `nocobase/app-tutorials` 的 `04-task-due-date` 标签。它使用 `tutorialTasks` 和 `tutorialProjects`，与当前入门教程的 `tasks` 表、接口和测试配置不同，不能直接接着入门教程运行。具备仓库访问权限后，按[数据模型与迁移](data-models-and-migrations.md#准备示例应用)准备独立的示例应用；没有访问权限也可以阅读各篇的职责说明和代码。
+> **运行专题示例前：** 项目与任务专题沿用默认模板 `1.0.0-beta.78` 的历史示例，准备步骤需要访问私有仓库 `nocobase/app-tutorials` 的 `04-task-due-date` 标签。它使用 `tutorialTasks` 和 `tutorialProjects`，与当前入门教程的 `tasks` 表、接口和测试配置不同，不能直接接着入门教程运行。具备仓库访问权限后，按[建表与数据初始化](data-models-and-migrations.md#准备示例应用)准备独立的示例应用；没有访问权限也可以阅读各篇的职责说明和代码。
 
 ## 应用代码、模板和插件
 
@@ -55,7 +55,7 @@ description: 认识应用代码、模板和插件的关系，理解一个业务�
 4. **数据库保存结果。** 迁移已经建立字段和外键，数据库拒绝指向不存在项目的关联。迁移负责事先改变结构，不会在每次保存时重新运行。
 5. **结果返回页面。** 接口返回保存结果，页面更新任务列表并给出反馈。失败时保留用户输入，把字段错误放回选择框；任务已经不存在时停止编辑。
 
-接口负责接收和校验请求，服务集中处理可复用的业务规则。服务如何注册、接口如何调用，以及事务怎样保证这一组操作共同成功或回退，见[业务服务与 HTTP 接口](apis-and-services.md)。页面请求与错误反馈见[UI 组件与交互](pages-and-interactions.md)，字段和外键的建立方式见[数据模型与迁移](data-models-and-migrations.md)。
+接口负责接收和校验请求，服务集中处理可复用的业务规则。服务如何注册、接口如何调用，以及事务怎样保证这一组操作共同成功或回退，见[路由与 HTTP 接口](apis-and-services.md)。页面请求与错误反馈见[UI 组件与交互](pages-and-interactions.md)，字段和外键的建立方式见[建表与数据初始化](data-models-and-migrations.md)。
 
 ### 权限贯穿整条路径
 
@@ -69,21 +69,58 @@ description: 认识应用代码、模板和插件的关系，理解一个业务�
 
 - **页面：** 在 `client/pages/` 编写组件，通过 `client/routes.ts` 声明路由及导航。
 - **接口：** 在 `server/routes/` 编写路由，通过其中的 `index.ts` 接入应用。
-- **服务：** 用 Provider 注册业务服务，并通过 `server/providers/index.ts` 接入应用。
+- **客户端服务：** 通过 `client/service-provider.ts` 注册业务服务；面向组件树的上下文通过 `client/react-providers.ts` 接入。
+- **服务端服务：** 用 Provider 注册业务服务，并通过 `server/providers/index.ts` 接入应用。
 
 `client/runtime.ts` 和 `server/runtime.ts` 负责组合应用的路由、插件、配置和服务。模板已经接入上述注册入口时，新增业务功能通常无需修改这两个 runtime 文件。
+
+## 客户端章节怎么读
+
+客户端章节从页面开发展开：[页面、路由与导航](pages-routes-and-navigation.md)说明入口与访问条件，[UI 组件与交互](pages-and-interactions.md)说明组件组织、UI Library 源码资产、React Context 与 Provider，以及列表和表单交互。[多语言](localization.md)与[主题与样式](themes-and-styles.md)分别处理文案和外观。
+
+[数据请求与状态管理](data-requests-and-state.md)说明远程数据、URL 状态、表单草稿和共享状态；[页面布局](page-layouts.md)说明 `client/layouts/` 与页面容器的组合；[客户端业务服务](client-business-services.md)说明服务实现、`client/service-provider.ts` 注册与 React 订阅。运行时装配、Provider 层级与依赖注入机制统一见[客户端运行时](../framework/runtime/client.md)、[React Providers](../framework/runtime/react-providers.md)和[客户端服务](../framework/services/integration.md#客户端服务)。
+
+## 服务端章节怎么读
+
+[路由与 HTTP 接口](apis-and-services.md)说明接口声明、注册、Repository 数据接口与 API 文档；[服务端业务服务](server-business-services.md)说明业务类、依赖注册和事务边界；[请求校验与错误处理](request-validation-and-errors.md)说明输入、响应和失败合同；[认证、权限与数据范围](authentication-and-permissions.md)说明身份、操作授权与记录范围。
+
+需要异步或周期执行时阅读[后台任务与定时执行](background-tasks.md)，生成邮件、通知等服务端文案时阅读[服务端多语言](server-localization.md)。项目与任务示例保留前述历史基线；后台任务和服务端多语言以默认模板 `1.0.0-beta.84` 为参照，可独立阅读。
+
+`server/services/`、`server/jobs/` 是按需创建的组织目录，不会自动注册。应用配置继续见[应用配置（config.yml）](configuration-and-settings.md)，启动装配与公共机制见[服务端运行时](../framework/runtime/server.md)，插件的安装与接入见[管理插件](manage-plugins.md)。
+
+## 数据库章节怎么读
+
+[建表与数据初始化](data-models-and-migrations.md)围绕 `defineMigration()`、`defineSeed()` 和各自的 Context，介绍建表、默认记录与后续变更；[查询与操作数据](querying-data.md)处理业务运行时的数据访问；[事务与数据一致性](transactions-and-consistency.md)处理多步写入、失败回滚和并发约束。
+
+需要第二个连接时阅读[多数据库连接](multiple-databases.md)；结构由其他系统维护时阅读[接入已有数据库](existing-databases.md)。`database/` 保存结构、初始化资源与元数据，运行时查询通常写在服务端业务服务中。具体 API 与共享机制继续查阅[框架数据库](../framework/database/overview.md)。
+
+## 命令行章节怎么读
+
+[编写应用命令](application-commands.md)从 `cli/commands/` 开始，介绍参数、服务访问、输出与测试；[接入插件命令](plugin-commands.md)说明 `cli/plugins.ts` 的注册、命名空间和开发钩子；[为应用提供 CLI 客户端](cli-client.md)说明如何让用户与 Agent 登录已运行的应用，通过 HTTP 调用业务接口。
+
+前两篇的命令在应用环境中执行，第三篇的客户端可以在使用者的电脑上运行。共用运行机制和完整内置命令继续见框架与参考章节。
 
 ## 按当前问题继续阅读
 
 | 当前要处理的问题 | 文档 |
 | --- | --- |
-| 给现有数据增加字段、关系或约束 | [数据模型与迁移](data-models-and-migrations.md) |
-| 校验请求、复用业务规则、检查权限并声明 API | [业务服务与 HTTP 接口](apis-and-services.md) |
+| 建表、初始化默认记录或调整已有结构 | [建表与数据初始化](data-models-and-migrations.md) |
+| 声明与注册 API，选择 Repository 数据接口 | [路由与 HTTP 接口](apis-and-services.md) |
+| 复用业务规则与组织服务依赖 | [服务端业务服务](server-business-services.md) |
+| 校验输入、定义响应与处理错误 | [请求校验与错误处理](request-validation-and-errors.md) |
+| 接入认证、操作权限与记录范围 | [认证、权限与数据范围](authentication-and-permissions.md) |
+| 投递后台任务与声明周期规则 | [后台任务与定时执行](background-tasks.md) |
+| 按请求或接收人语言生成文案 | [服务端多语言](server-localization.md) |
 | 实现列表、表单、弹窗及加载和错误反馈 | [UI 组件与交互](pages-and-interactions.md) |
-| 编写数据查询、批量操作与事务 | [查询与操作数据](querying-data.md) |
+| 编写查询、关联读取与批量操作 | [查询与操作数据](querying-data.md) |
+| 保证多步写入一致，处理失败和并发 | [事务与数据一致性](transactions-and-consistency.md) |
+| 增加连接或读取外部系统的数据 | [多数据库连接](multiple-databases.md)、[接入已有数据库](existing-databases.md) |
 | 组织页面、菜单与访问条件 | [页面、路由与导航](pages-routes-and-navigation.md) |
-| 配置运行参数与业务管理入口 | [应用配置与系统设置](configuration-and-settings.md) |
-| 调整语言和应用外观 | [多语言与主题](localization-and-themes.md) |
+| 定义、覆盖和读取应用配置 | [应用配置（config.yml）](configuration-and-settings.md) |
+| 组织文案、添加语言和设置默认语言 | [多语言](localization.md) |
+| 调整样式、主题预设和默认外观 | [主题与样式](themes-and-styles.md) |
 | 查看、更新或扩展已注册能力 | [管理插件](manage-plugins.md) |
+| 编写应用维护命令或接入插件命令 | [编写应用命令](application-commands.md)、[接入插件命令](plugin-commands.md) |
+| 让用户或 Agent 从终端调用业务 API | [为应用提供 CLI 客户端](cli-client.md) |
 | 选择验证方式并完成验收 | [测试与验收](testing-and-acceptance.md) |
 | 想先跑通一个完整功能 | [搭建第一个应用](../tutorials/build-your-first-feature.md) |

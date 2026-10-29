@@ -1,9 +1,9 @@
 ---
-title: 多语言
-description: 组织插件的前后端语言资源，处理命名空间、对外组件与翻译验证。
+title: 客户端多语言
+description: 组织插件的客户端语言资源、命名空间和公共组件，验证显示与语言切换。
 ---
 
-插件管理自己的文案，App 决定界面提供哪些语言以及用户当前选择的语言。前端与服务端分别声明资源，使用相同的插件包名作为命名空间。
+插件管理自己的文案，App 决定界面提供哪些语言以及用户当前选择的语言。本篇维护 `client/locales/`；请求和后台消息的文案见[服务端多语言](server-localization.md)。两端分别声明资源，使用相同的插件包名作为命名空间。
 
 ## 使用 Agent
 
@@ -83,27 +83,11 @@ export function NoticeLabel(): ReactElement {
 
 插件自己的页面或 React Provider 树下可以用不带参数的 `useTranslation()`，默认命名空间来自插件贡献。但这个组件可能由 App 或其他插件直接渲染，所以明确绑定包名。
 
-绑定命名空间不等于注册资源。App 仍需在 `client/plugins.ts` 注册插件的 Client 工厂；单独导入组件不会自动执行注册。本例沿用生成的 `./client/components/plugin-component` 公开导出，App 可从该包路径导入 `NoticeLabel`。新增其他公开组件时，成对维护源码及 `publishConfig.exports`，规则见[插件的结构](plugin-structure.md)。
+绑定命名空间不等于注册资源。App 仍需在 `client/plugins.ts` 注册插件的 Client 工厂；单独导入组件不会自动执行注册。本例沿用生成的 `./client/components/plugin-component` 公开导出，App 可从该包路径导入 `NoticeLabel`。新增其他公开组件时，成对维护源码及 `publishConfig.exports`，规则见[插件结构](plugin-structure.md)。
 
-## 服务端文案属于另一份资源
+<span id="服务端文案属于另一份资源"></span>
 
-需要服务端翻译时，创建插件可选择 `server.locales`。已有 Server 插件则在 `server/locales/` 建立自己的资源和加载器，并在 Server 声明中加入 `locales`。不要让 Client 导入 Server 语言文件。
-
-例如在服务端资源里添加 `messages.ready`，各语种补齐后，在由 App 挂载的请求处理器中使用：
-
-```ts
-import { getRequestTranslator } from '@nocobase/i18n/server';
-
-// Inside a handler mounted by the App, with the plugin's Server locales registered:
-const t = getRequestTranslator(context, '@nocobase/app-plugin-notice-i18n');
-return context.json({ data: { message: t('messages.ready') } });
-```
-
-请求语言由 App 的会话偏好、`Accept-Language` 和默认语言规则确定。Hono 不会根据源文件位置推断插件命名空间，所以服务端需要明确指定包名。
-
-错误保留稳定的 `ApiError.reason`，供程序判断；给用户显示的译文可以通过 `localizedMessage` 提供。不要用翻译后的句子作为业务错误码。
-
-后台任务、邮件和通知没有当前请求，必须选择接收人的语言，先调用 `i18n.ensureLocaleLoaded(locale)`，再调用 `i18n.getFixedT(namespace, locale)`。不要把触发任务的用户语言套给所有接收人。
+服务端资源、请求翻译与后台消息已单独整理到[服务端多语言](server-localization.md)。
 
 ## 验证资源和实际显示
 
@@ -156,7 +140,7 @@ pnpm nocobase plugin register @nocobase/app-plugin-notice-i18n --no-install --dr
 pnpm nocobase plugin register @nocobase/app-plugin-notice-i18n --no-install
 ```
 
-测试故意不指定渲染器的默认 `namespace`，这样能发现对外组件错误依赖宿主命名空间的问题。还应在实际 App 中切换语言，验证已挂载组件、菜单、日期格式和错误提示一起变化；服务端翻译通过真实请求验证，后台消息则检查接收人的语言。
+测试故意不指定渲染器的默认 `namespace`，这样能发现对外组件错误依赖宿主命名空间的问题。还应在实际 App 中切换语言，验证已挂载组件、菜单、日期格式和错误提示一起变化。服务端与后台消息的验证见[服务端多语言](server-localization.md#验证接入结果)。
 
 NocoBase 自身插件约定提供十种语言，App 可以只显示其中一部分。插件新增一种资源不会自动增加 App 的语言选项。App 特定的产品措辞可以通过自己的 locale overrides 覆盖插件键，而通用缺失翻译应修正插件源文件。
 

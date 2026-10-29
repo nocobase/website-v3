@@ -1,5 +1,5 @@
 ---
-title: 插件的结构
+title: 插件结构
 description: 了解插件在 App 中的位置、目录与入口的连接方式，以及源码和构建产物的关系。
 ---
 
@@ -132,6 +132,8 @@ packages/app-plugin-demo-full/
 
 ## 入口如何连接
 
+具体声明方式、公开服务导出及跨插件调用见[插件声明与公开入口](plugin-declarations.md)。
+
 插件中的实现、插件对外的入口，以及 App 的注册文件各有职责：
 
 | 位置 | 职责 |
@@ -238,7 +240,7 @@ App 分别使用 `@nocobase/app-plugin-announcements/client` 和 `@nocobase/app-
 
 插件内部的 `#components/*` 等别名由插件自己的 `package.json` 定义，不依赖 App 的私有别名。新增或安装组件后，保持文件位置、导入路径和构建配置一致。
 
-应用和插件都可以自由编写和组织前端组件，基础组件使用 shadcn；构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。NocoBase UI Library 基于 shadcn UI Registry 分发源码资产；自行发布资产时也采用这一机制。组件编写、页面接入和源码资产发布的完整示例见[前端组件](frontend-components.md)。
+应用和插件都可以自由编写和组织前端组件，基础组件使用 shadcn；构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。NocoBase UI Library 基于 shadcn UI Registry 分发源码资产；自行发布资产时也采用这一机制。组件编写和页面接入见[组件与样式](frontend-components.md)，独立 Registry 包的组织、构建和本地添加见[发布 UI 源码资产](frontend-components.md#按需分发-ui-源码资产)。
 
 源码资产在 `packages/` 中与插件并列的独立 Registry 包内维护，通过公开包入口或使用方传入的参数接入插件能力，不能相对导入插件的内部文件。安装资产后，目标 App 或插件维护自己的源码副本。
 
@@ -252,6 +254,8 @@ App 分别使用 `@nocobase/app-plugin-announcements/client` 和 `@nocobase/app-
 | App 的 `.agents/skills/` | 应用开发时使用的 Agent | 保存同步后的指引副本 |
 
 插件根目录的开发指引属于基础文件；`skills/` 则按所选能力生成。完善插件内的 Skill 源文件后再同步，不要直接维护 App 中自动生成的副本。
+
+编写插件特有的维护约定，见[插件开发指引（AGENTS.md）](plugin-development-guidance.md)；为应用 Agent 提供能力说明和使用示例，见[插件 Skill](write-plugin-skills.md)。
 
 ### 测试与开发配置
 
@@ -287,4 +291,4 @@ App 构建会按依赖关系构建本地包，并将需要交付的工作区包�
 
 跟随[编写第一个插件](write-your-first-plugin.md)，实现公告接口与页面，完成测试、注册和 App 验证。能力选项与组合见[创建插件](create-plugin.md)，已有插件的安装、更新和移除见[管理插件](../developing-apps/manage-plugins.md)。
 
-需要跨 App 共享并独立管理版本时，继续阅读[发布插件](publish-plugin.md)。仅在当前 App 中使用时，无需发布。
+需要跨 App 共享并独立管理版本时，继续阅读[构建与发布](publish-plugin.md)。仅在当前 App 中使用时，无需发布。

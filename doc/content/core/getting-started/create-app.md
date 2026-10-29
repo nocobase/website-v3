@@ -1,5 +1,5 @@
 ---
-title: Create app
+title: Create an app
 description: Create, configure and start a NocoBase 3 application with a coding agent or manual commands.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Core 是什么
+title: 认识 NocoBase Core
 description: 了解 NocoBase Core 如何提供通用能力，让你和 Agent 专注于业务应用的开发。
 ---
 

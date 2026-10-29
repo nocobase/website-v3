@@ -1,0 +1,45 @@
+{
+  "title": "Using plugins",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "page",
+      "path": "../developing-apps/manage-plugins"
+    },
+    {
+      "type": "folder",
+      "path": "authentication"
+    },
+    {
+      "type": "folder",
+      "path": "authorization"
+    },
+    {
+      "type": "folder",
+      "path": "data-and-files"
+    },
+    {
+      "type": "folder",
+      "path": "notifications"
+    },
+    {
+      "type": "folder",
+      "path": "agents-and-knowledge"
+    },
+    {
+      "type": "folder",
+      "path": "collaboration"
+    },
+    {
+      "type": "folder",
+      "path": "automation"
+    },
+    {
+      "type": "folder",
+      "path": "application-support"
+    }
+  ]
+}

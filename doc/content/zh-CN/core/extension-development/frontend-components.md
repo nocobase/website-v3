@@ -1,6 +1,6 @@
 ---
-title: 前端组件
-description: 使用 shadcn 和 NocoBase UI Library 编写、组合插件前端组件，并按需发布供 Agent 使用的源码资产。
+title: 组件与样式
+description: 组织插件组件、接入宿主样式与主题、公开组件，并按需通过 UI Registry 分发源码资产。
 ---
 
 开发应用和插件时，前端组件可以自由编写和组织，唯一约束是**基础组件使用 shadcn**。构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。
@@ -9,7 +9,7 @@ NocoBase UI Library 是 NocoBase 提供的 UI 源码资产库，基于 shadcn UI
 
 后续扩展的前端组件或区块，如果需要**作为源码资产发布，供 Agent 按需取用、修改和组合**，则通过 shadcn UI Registry 分发。是否发布取决于源码资产的交付需求；在插件内部复用组件，或通过插件的公开入口导出组件，都不要求发布 Registry。
 
-本篇沿用[编写第一个插件](write-your-first-plugin.md)的公告栏：先把公告列表整理成组件，再演示如何按需把它发布为源码资产。
+本篇沿用[编写第一个插件](write-your-first-plugin.md)的公告栏，先编写列表组件并接入页面，再按需将它整理为独立的源码资产，通过本地路径安装到其他应用或插件。需要跨机器分发时，再使用已有静态站点。
 
 ## 使用 Agent
 
@@ -22,22 +22,9 @@ NocoBase UI Library 是 NocoBase 提供的 UI 源码资产库，基于 shadcn UI
 保留现有路由、菜单和多语言，验证列表、空状态及插件构建。
 ```
 
-如果还需要分发源码资产，再追加：
+下面说明手动实现的过程。**除特别注明外，命令在 App 根目录执行。组件开发部分的文件路径相对于 `packages/app-plugin-announcements/`；源码资产部分会写明独立 Registry 包的路径。**
 
-```prompt
-请将公告列表整理为可通过 shadcn UI Registry 分发的源码资产。
-在 packages/announcements-ui/ 独立包中维护资产，与插件包并列。
-资产不能通过相对路径或私有别名引用插件源码；插件能力通过公开入口或参数接入。
-声明组件文件和依赖，说明如何传入数据、修改布局和接入公告接口。
-先在另一个应用或插件中通过本地路径 Add 构建结果并验证。
-无需搭建 Registry 网站；需要通过 URL 分发时，再发布到已有静态站点。
-```
-
-下面说明手动实现的过程。**命令均在 App 根目录执行。插件开发部分的文件路径相对于 `packages/app-plugin-announcements/`；源码资产发布部分在 `packages/announcements-ui/` 独立包中进行。**
-
-## 编写和组织组件
-
-### 准备目录与基础组件
+## 组件的组织方式
 
 前提是已有可以运行的公告栏插件。其页面、接口、语言资源和注册方式见[编写第一个插件](write-your-first-plugin.md)。本篇新增 `client/components/announcement-list.tsx`：
 
@@ -56,6 +43,8 @@ packages/app-plugin-announcements/
 ```
 
 这是一种示例组织方式。可以按业务增加目录、提取 Hooks 或调整组件拆分粒度，保持导入路径和构建配置一致即可。
+
+## 使用 shadcn 与 NocoBase UI Library
 
 安装本例使用的 shadcn Card：
 
@@ -82,7 +71,9 @@ pnpm --filter @nocobase/app-plugin-announcements exec shadcn add \
 }
 ```
 
-安装后检查 `package.json`：客户端运行时依赖应按插件约定声明为 `peerDependencies`，保留合适的版本范围，再运行 `pnpm install`。不要把服务端仍需直接使用的依赖一起移走。包内别名与发布映射见[插件的结构](plugin-structure.md#ui-组件与源码归属)。
+安装后检查 `package.json`：客户端运行时依赖应按插件约定声明为 `peerDependencies`，保留合适的版本范围，再运行 `pnpm install`。不要把服务端仍需直接使用的依赖一起移走。包内别名与发布映射见[插件结构](plugin-structure.md#ui-组件与源码归属)。
+
+## 编写和使用组件
 
 ### 实现公告列表
 
@@ -167,15 +158,56 @@ return (
 );
 ```
 
-本例由页面负责请求、状态和翻译，列表负责展示。其他组件也可以根据业务直接使用客户端服务或 Hooks；前后端服务的注册与依赖注入见 [ServiceProvider](service-provider.md)。
+本例由页面负责请求、状态和翻译，列表负责展示。其他组件也可以根据业务直接使用客户端服务或 Hooks；插件服务接入见[客户端服务](client-services.md)，共用容器机制见 [ServiceProvider](service-provider.md)。
 
-组件在插件内部使用时，不必新增包导出。需要让 App 通过包导入时，再为组件添加公开入口，并同步源码导出与 `publishConfig.exports` 的构建映射，见[插件的结构](plugin-structure.md#packagejson包信息依赖与公开导出)。仅导入组件不会自动注册插件的路由、语言资源或服务。
+## 样式与主题适配
+
+### 区分组件生成配置与运行时样式
+
+`components.json` 的 `tailwind.css` 指向插件的 `client/styles.css`。脚手架中的这个文件用于 shadcn 生成组件，包含 Tailwind、动画和 shadcn 样式的导入，并注明主题变量由宿主应用提供。生成的 `client/index.ts` 只导出插件工厂，不会自动导入这个 CSS 文件。
+
+默认应用在 `client/index.tsx` 导入应用自己的 `client/styles.css`，由它加载主题和生成工具类。插件组件使用 `bg-card`、`text-muted-foreground` 等语义类，最终样式由应用的客户端构建产生。插件的 TypeScript 构建负责 JavaScript 和类型声明，不会单独生成一套完整的应用 CSS。
+
+因此，在插件的生成用 `styles.css` 中添加规则，并不代表页面已经加载这些规则。不要为了让一条规则生效，就把包含 Tailwind 入口的整份生成样式再次导入应用。
+
+### 让宿主构建扫描插件组件
+
+默认模板通过应用样式中的 `@config "../tailwind.config.mjs"` 引用扫描配置。本文核对的 Core 基线 `7fb8311` 会解析 `@nocobase/app-plugin-*` 包的真实路径，同时扫描源码 `client/` 和发布产物 `dist/client/` 等目录，以适配 pnpm 软链接和已编译插件。
+
+如果插件使用自定义 scope（例如 `@my-company`），需要在目标应用的扫描配置中显式纳入相应包，保留原有扫描项，并覆盖本地源码与安装包的编译目录。不能假定修改包名后仍被默认的 `@nocobase` 扫描规则覆盖，也不能只用跨软链接的通配路径判断扫描已经生效。
+
+组件中的工具类写成完整的静态字符串；需要不同状态时，使用包含完整类名的映射，避免拼接 `bg-${color}` 之类构建器无法直接发现的值。源码开发环境显示正常后，还要检查安装发布包的应用构建。
+
+### 使用宿主主题并限制样式范围
+
+沿用 `bg-background`、`bg-card`、`text-foreground`、`text-muted-foreground`、`border-border` 等语义类，颜色、圆角和字体从宿主主题取得。公告列表已使用 `text-muted-foreground`，无需为它再定义一套颜色。主题预设与明暗模式由应用管理，具体约定见[主题与样式](../developing-apps/themes-and-styles.md)。
+
+需要自定义 CSS 时，用插件专属类名或属性限定组件范围，不对全局 `body`、所有 `button` 或 `:root` 写覆盖规则。弹窗等 Portal 内容可能不在页面根节点下面，需要给实际内容节点设置对应的限定类。不要通过重新初始化 shadcn 或增加第二套主题 Provider 来改变宿主外观。
+
+自定义运行时样式应维护为单独的资源，并明确由插件客户端模块还是应用样式入口导入。对外分发时，需要同时处理 CSS 资源复制、公开导出、包文件清单和构建工具的加载方式；`tsc` 不会自动复制 CSS。接入说明要写清消费者需要导入什么，避免源码环境能找到文件、发布包却缺少样式。仅使用本篇公告列表示例时，无需新增这类资源。
+
+## 对外提供组件
+
+组件在插件内部使用时，不必新增包导出。需要让 App 通过包导入时，再为组件添加公开入口，并同步源码导出与 `publishConfig.exports` 的构建映射，见[插件声明与公开入口](plugin-declarations.md#公开导出)。仅导入组件不会自动注册插件的路由、语言资源或服务。
+
+在组件的使用说明中列出 Props、公开类型、所需样式和运行环境。如果组件依赖插件服务或语言资源，说明消费者必须注册哪个入口；对外组件的翻译应显式绑定插件命名空间，见[客户端多语言](localization.md)。上下文的插件接入示例见[React Context 与 Provider](react-context-and-providers.md)，挂载机制见[React Provider 与组件树](../framework/runtime/react-providers.md)。
 
 ## 按需分发 UI 源码资产
 
 如果希望 Agent 把这个列表取到目标项目中，调整布局、增加操作或与其他区块组合，可以通过 shadcn UI Registry 分发它。插件包和 Registry 资产可以同时提供：前者维护公开运行时能力，后者交付可编辑源码。
 
 **Registry 资产是独立的源码模块。** 本例在 App 的 `packages/` 下新增 `announcements-ui/`，与 `app-plugin-announcements/` 并列，使用自己的清单和构建配置。构建结果可以直接通过本地路径 Add，需要 URL 分发时再部署到静态站点。应用和插件通过安装资产获得源码，并在自己的项目中接入。一个 Registry 包可以提供多个插件或业务场景使用的资产。
+
+### 使用 Agent 准备源码资产
+
+```prompt
+请将公告列表整理为可通过 shadcn UI Registry 分发的源码资产。
+在 packages/announcements-ui/ 独立包中维护资产，与插件包并列。
+资产不能通过相对路径或私有别名引用插件源码；插件能力通过公开入口或参数接入。
+声明组件文件和依赖，说明如何传入数据、修改布局和接入公告接口。
+先在另一个应用或插件中通过本地路径 Add 构建结果并验证。
+无需搭建 Registry 网站；需要通过 URL 分发时，再发布到已有静态站点。
+```
 
 ### 组织资产源码
 
@@ -185,7 +217,7 @@ return (
 mkdir -p packages/announcements-ui/registry/components
 ```
 
-将上文 `AnnouncementList` 的完整实现保存为 `packages/announcements-ui/registry/components/announcement-list.tsx`。它接收数据和文案，已经具备独立分发的条件。相关目录如下：
+将上面的[公告列表实现](#实现公告列表)保存为 `packages/announcements-ui/registry/components/announcement-list.tsx`。它接收数据和文案，已经具备独立分发的条件。相关目录如下：
 
 ```tree
 my-app/
@@ -325,9 +357,9 @@ Agent 可以直接修改目标项目里的列表源码，例如把单列改为�
 pnpm exec shadcn add https://example.com/r/announcement-list.json
 ```
 
-## 给 Agent 写使用说明
+### 给 Agent 写使用说明
 
-将资产接入方法写入插件维护的 Skill，具体位置和同步方式见[给插件写技能](write-plugin-skills.md)。说明应包含资产的本地构建与路径获取方式，或已发布的 URL，以及适用场景、输入、接入前提、可修改的位置及验证方法。无需先发布网站，例如为公告栏 Skill 增加以下本地安装说明：
+将资产接入方法写入插件维护的 Skill，具体位置和同步方式见[插件 Skill](write-plugin-skills.md)。说明应包含资产的本地构建与路径获取方式，或已发布的 URL，以及适用场景、输入、接入前提、可修改的位置及验证方法。无需先发布网站，例如为公告栏 Skill 增加以下本地安装说明：
 
 ```markdown
 ## Compose an announcement list
@@ -360,6 +392,8 @@ Skill 描述实际可获取的本地资产或已发布资产，以及已实现�
 
 先在原插件中验证组件：公告标题和内容正确，空列表使用传入文案；页面仍能处理加载、失败和语言切换。沿用现有测试，并根据组件拆分调整测试位置，见[测试与验证](testing-and-verification.md)。
 
+在实际应用中检查浅色、深色模式、不同主题、窄屏、键盘焦点和 Portal 内容。确认插件没有改变其他页面的样式。使用自定义 scope 或安装包时，核对宿主扫描配置和构建后的 CSS；组件测试与类型检查不能证明样式已加载。
+
 在 App 根目录运行插件检查与应用构建：
 
 ```bash
@@ -369,6 +403,6 @@ pnpm --filter @nocobase/app-plugin-announcements build
 pnpm build
 ```
 
-如果发布源码资产，还要在目标项目中实际安装、渲染并构建：确认没有引用发布方的私有文件，所需组件与依赖齐全，Agent 可以根据说明完成修改。支持安装到插件的资产，也要验证插件的类型声明构建；Registry JSON 生成成功，只说明分发文件已生成。
+如果分发了源码资产，还要在目标项目中实际安装、渲染并构建：确认没有引用发布方的私有文件，所需组件、依赖与样式齐全，Agent 可以根据说明完成修改。支持安装到插件的资产，也要验证插件的类型声明构建；Registry JSON 生成成功，只说明分发文件已生成。
 
-插件包的发布流程见[发布插件](publish-plugin.md)。源码资产的分发可以独立安排，也可以与插件版本配套发布，并在说明中记录兼容关系。
+插件包的发布流程见[构建与发布](publish-plugin.md)。源码资产的分发可以独立安排，也可以与插件版本配套发布，并在说明中记录兼容关系。

@@ -75,6 +75,6 @@ Vibe Coding 让软件开发更加高效。项目涉及复杂业务、多人协�
 
 ## 接下来
 
-- 自己动手开发一个应用：[Core 是什么](../core/getting-started/what-is-core.md) → [创建应用](../core/getting-started/create-app.md)
+- 自己动手开发一个应用：[认识 NocoBase Core](../core/getting-started/what-is-core.md) → [创建应用](../core/getting-started/create-app.md)
 - 了解团队怎样和 Agent 团队协同开发：[Studio 是什么](../studio/intro/what-is-studio.md)
 - 用过 NocoBase 2：[从 NocoBase 2 来](from-v2.md)

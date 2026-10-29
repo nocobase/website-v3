@@ -1,0 +1,21 @@
+{
+  "title": "Application support",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "Localization"
+    },
+    {
+      "type": "planned",
+      "title": "Application foundation"
+    },
+    {
+      "type": "planned",
+      "title": "Release management"
+    },
+    {
+      "type": "planned",
+      "title": "Demo mode"
+    }
+  ]
+}

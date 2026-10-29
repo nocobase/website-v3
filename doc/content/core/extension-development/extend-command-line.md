@@ -1,5 +1,5 @@
 ---
-title: Extend the command line
+title: Command-line extensions
 description: Register plugin commands with arguments, JSON output, errors and build hooks.
 ---
 
@@ -153,3 +153,5 @@ The first two return `Hello` and length 5. The final command returns `INVALID_TE
 Put commands needed after deployment in `commands`. Put source-only compilation or generation commands in `devCommands`, which are omitted from the deployment command set.
 
 Use `buildHooks` or `devHooks` only when the App genuinely needs a generation step. Build stages are `beforeBuild`, `afterClientBuild`, `afterServerBuild` and `afterBuild`; development has `beforeDev`. A hook’s `command` is an executable-and-arguments array, not a shell string: no `&&`, pipes or redirects. Failure stops the pipeline, making hooks appropriate for required artifacts.
+
+See [Integrate plugin commands](../developing-apps/plugin-commands.md) for application-side setup and verification. Commands owned by one application can live directly in `cli/commands/`; see [Write application commands](../developing-apps/application-commands.md).

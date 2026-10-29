@@ -75,6 +75,6 @@ Vibe coding makes building software faster. But when a project involves complex 
 
 ## Next steps
 
-- Build an app yourself: [What is Core](../core/getting-started/what-is-core.md), then the [create-app guide](../core/getting-started/create-app.md)
+- Build an app yourself: [Meet NocoBase Core](../core/getting-started/what-is-core.md), then the [create-app guide](../core/getting-started/create-app.md)
 - See how your team and the agent team build together: [What is Studio](../studio/intro/what-is-studio.md)
 - Used NocoBase 2 before: [Coming from NocoBase 2](from-v2.md)

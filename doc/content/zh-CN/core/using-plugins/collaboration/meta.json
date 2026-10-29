@@ -1,0 +1,17 @@
+{
+  "title": "业务协作",
+  "pages": [
+    {
+      "type": "planned",
+      "title": "项目管理"
+    },
+    {
+      "type": "planned",
+      "title": "审批（商业）"
+    },
+    {
+      "type": "planned",
+      "title": "任务中心（商业）"
+    }
+  ]
+}

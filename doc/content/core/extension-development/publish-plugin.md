@@ -1,5 +1,5 @@
 ---
-title: Publish a plugin
+title: Build and publish
 description: Local plugins build and deploy with the App. Publish to a private npm registry when other applications need to share them.
 ---
 
@@ -9,7 +9,7 @@ Consider publishing when several Apps or teams need the same plugin and want to 
 
 The source can remain in the original App's workspace after publication. That App can continue using local source while other Apps use published versions.
 
-This article covers package publication. To also publish frontend components or blocks as source assets for Agents to obtain, modify and compose, distribute them through shadcn UI Registry; see [Frontend components](frontend-components.md#optionally-distribute-ui-source-assets). Packages and source assets can be released independently. Component reuse alone does not require a Registry.
+This article covers package publication. To also publish frontend components or blocks as source assets for Agents to obtain, modify and compose, distribute them through shadcn UI Registry; see [Publish UI source assets](frontend-components.md#optionally-distribute-ui-source-assets). Packages and source assets can be released independently. Component reuse alone does not require a Registry.
 
 ## Use an agent
 

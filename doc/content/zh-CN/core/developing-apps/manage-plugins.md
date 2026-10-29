@@ -9,7 +9,7 @@ description: 查看应用实际注册的插件，使用已有能力，并管理�
 
 需要开发自己的插件时，先阅读[什么时候写插件](../extension-development/when-to-write-a-plugin.md)，再按[创建插件](../extension-development/create-plugin.md)在当前 App 中生成骨架；完整实践见[编写第一个插件](../extension-development/write-your-first-plugin.md)。
 
-使用团队发布的插件时，先配置私有源与读取权限，再安装和注册，见[发布插件](../extension-development/publish-plugin.md)。
+使用团队发布的插件时，先配置私有源与读取权限，再安装和注册，见[构建与发布](../extension-development/publish-plugin.md)。
 
 ## 使用 Agent
 

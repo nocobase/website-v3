@@ -9,7 +9,7 @@ This guide covers plugin management in an application, not plugin development or
 
 To develop your own plugin, start with [When to write a plugin](../extension-development/when-to-write-a-plugin.md), then use [Create a plugin](../extension-development/create-plugin.md) to generate a scaffold in the current App. For the complete workflow, see [Write your first plugin](../extension-development/write-your-first-plugin.md).
 
-For plugins published by your team, configure the private registry and read access before installation and registration; see [Publish a plugin](../extension-development/publish-plugin.md).
+For plugins published by your team, configure the private registry and read access before installation and registration; see [Build and publish](../extension-development/publish-plugin.md).
 
 ## With an agent
 

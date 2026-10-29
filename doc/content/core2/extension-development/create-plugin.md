@@ -1,45 +1,45 @@
 ---
 title: Create a plugin
-description: Use @nocobase/create-plugin inside an existing App to generate a local plugin scaffold, select capabilities and connect the workspace, with or without an agent.
+description: Use @nocobase/create-plugin in an existing App to create a local plugin, generating the scaffold, choosing capabilities and connecting the workspace with an Agent or by hand.
 ---
 
-First [create an application](../getting-started/create-app.md) and install its dependencies. Plugins are generated under this App's `packages/` directory and developed and built with the application.
+First prepare an App with [Create an app](../getting-started/create-app.md) and install its dependencies. The plugin is generated under this App's `packages/` directory and is developed and built together with the application.
 
-Ask an agent to create the plugin, or run `pnpm create @nocobase/plugin@beta` yourself. Both approaches use `@nocobase/create-plugin`.
+You can have an Agent create the plugin for you, or run `pnpm create @nocobase/plugin@beta` yourself. Both use `@nocobase/create-plugin`.
 
-## With Agent
+## With an Agent
 
-Plugin development guidance ships with the App’s `@nocobase/app-skills` and synchronizes to `.agents/skills/nocobase-app-plugin-development/SKILL.md`; no global installation is needed. If missing, check whether the installed package contains the Skill. If it does, run `pnpm nocobase skills sync`; otherwise follow [Upgrade NocoBase Core](../developing-apps/upgrade-nocobase-core.md) to a compatible release instead of updating one framework package in isolation.
+Plugin development guidance is provided by the App's `@nocobase/app-skills` dependency and synchronized to `.agents/skills/nocobase-app-plugin-development/SKILL.md`; no global installation is needed. If the file is missing, first check whether the installed packages include the Skill: if they do, run `pnpm nocobase skills sync`; if not, update to a compatible version following [Upgrade NocoBase Core](../developing-apps/upgrade-nocobase-core.md), rather than updating one framework package on its own.
 
-Open your agent in the application directory and describe the plugin's name and purpose. For example:
+Open the Agent in the application directory and just tell it the plugin's name and purpose, for example:
 
 ```text
 Create a plugin called demo-tools to extend this application's command-line tools.
 Start with the basic structure and check that it builds successfully.
 ```
 
-The agent uses `@nocobase/create-plugin` to generate the plugin, select capabilities for its purpose, handle dependencies and check the result. Replace the example name and purpose with your own requirements; you do not need to specify every command option or file change.
+The Agent generates the plugin with `@nocobase/create-plugin`, choosing capabilities for its purpose, handling dependencies and checking the result. Replace the name and purpose in the example with your own needs; there is no need to describe each command option and file change.
 
-## Without Agent
+## Without an Agent
 
-Run the following commands from the App root, using the Node.js and pnpm versions required by the application. The generator and App CLI must support application workspaces; `@beta` selects the generator's beta release channel. This guide uses `demo-tools` with only the `cli` capability and needs no running database or Web server.
+Run all the commands below in the App root, with the Node.js and pnpm versions the application requires. Both the generator and the App CLI must support App workspaces; `@beta` selects the generator's beta release channel. This guide uses `demo-tools` with only the `cli` capability as the example, so no database or web server needs to be running.
 
 ### What the generator does
 
-`@nocobase/create-plugin` generates a plugin package for further development from the selected capabilities and connects it to the current App's workspace.
+Based on the chosen capabilities, `@nocobase/create-plugin` generates a plugin package you can keep developing and connects it to the current App's workspace.
 
-| Task | Generated or updated content |
+| Work | What is done automatically |
 | --- | --- |
-| Package foundation | Manifest, development guidance, TypeScript, lint and build configuration |
-| Capability code | Directories, declarations, examples or drafts, and relevant tests selected by `--with` |
-| Public entries | Client, Server, CLI or component exports as needed, with mappings for source and compiled artifacts |
-| Dependencies | Dependency categories for the selected capabilities and versions resolved from packages installed in this App |
-| Workspace integration | A package under the App's `packages/`, necessary workspace settings and the App's local dependency |
-| Installation | Dependency installation and lockfile updates by default; defer with `--no-install` |
+| Plugin scaffold | Generates the package declaration, development guidance, TypeScript, lint and build configuration |
+| Capability code | Generates the directories, declarations, examples or drafts chosen with `--with`, plus related tests |
+| Public entries | Generates Client, Server, CLI or component exports for the capabilities, and configures export mappings for source and build output |
+| Dependencies | Decides dependency categories for the chosen capabilities and resolves versions from the packages already installed in the App |
+| Workspace connection | Puts the plugin under the App's `packages/`, and adds the necessary workspace configuration and the App's local dependency on it |
+| Installation | Installs dependencies and updates the lockfile by default; `--no-install` defers this step |
 
-After generation, implement the feature, complete its tests and register any runtime entries in the App. The tool does not implement business pages, endpoints or permission rules, publish the plugin, or run database migrations.
+After creation, you still implement the business logic, complete the tests, and register the plugin with the App according to the runtime entries it provides. The generator does not create business pages, APIs or permission rules automatically, nor does it publish the plugin or run database migrations.
 
-### Select plugin capabilities
+### Choose plugin capabilities
 
 Basic usage:
 
@@ -47,66 +47,66 @@ Basic usage:
 pnpm create @nocobase/plugin@beta <name> --with <capability>
 ```
 
-`--with` selects **code capabilities to generate**. It does not install an existing plugin or enable a finished feature. Select at least one capability, or use `--empty` for the package foundation alone. Repeat `--with` to combine capabilities; do not join their names with commas.
+`--with` chooses **which code capabilities to generate**; it neither installs an existing plugin nor enables a business feature. Choose at least one capability, or use `--empty` to generate only the package's basic structure. Combine several capabilities by repeating `--with`; do not join them with commas.
 
 #### Client capabilities
 
-| `--with` value | Generated content | What you still implement |
+| `--with` value | What is generated | What you still implement |
 | --- | --- | --- |
-| `client.routes` | Route declaration scaffold in `client/routes.ts` and tests | Page components, paths, navigation and access conditions; business pages are not generated |
-| `client.components` | Example `client/components/plugin-component.tsx`, public export and tests | The reusable component's UI, props and interactions |
-| `client.service-providers` | ServiceProvider scaffold under `client/providers/` and tests | Browser-side service registration and lifecycle handling |
-| `client.react-providers` | `client/contexts.ts`, a Provider component, `client/react-providers/` declarations and tests | React context data, state and component-tree composition |
-| `client.locales` | Language files and an aggregation entry under `client/locales/` | Actual translations and their use in components |
+| `client.routes` | A route declaration scaffold in `client/routes.ts`, with tests | Page components, route paths, navigation and access conditions; business pages are not generated |
+| `client.components` | An example component `client/components/plugin-component.tsx`, its public export and tests | The reusable component's actual interface, props and interactions |
+| `client.service-providers` | A ServiceProvider scaffold in `client/providers/`, with tests | Browser-side service registration and lifecycle handling |
+| `client.react-providers` | `client/contexts.ts`, a Provider component, declarations in `client/react-providers/`, and tests | The data and state in the React context, and how the component tree is composed |
+| `client.locales` | Language files and an aggregating entry in `client/locales/` | The actual translations and their use in components |
 
-A ServiceProvider handles application services and lifecycle; a React Provider supplies context to the component tree. Select each as needed. Client code also brings `components.json` and `client/styles.css` for shadcn configuration and styles. Install or implement the UI components your feature needs.
+A ServiceProvider is for application services and lifecycle, while a React Provider is for context in the component tree; choose each as needed. With client code, the generator also creates `components.json` and `client/styles.css` to prepare the shadcn configuration and style entry; the UI components you need must still be installed or written for your business.
 
 #### Server capabilities
 
-| `--with` value | Generated content | What you still implement |
+| `--with` value | What is generated | What you still implement |
 | --- | --- | --- |
-| `server.service-providers` | `server/services/`, `server/providers/`, `server/tokens.ts` and tests | Service contracts, business logic and service registration |
-| `server.routes` | Route declaration scaffold in `server/routes/index.ts` and tests | API or Root Route methods, paths, validation, authentication, authorization and responses |
-| `server.jobs` | An example Job, an executor-owning Provider under `server/jobs/` and tests | Job logic, submission points, retry and idempotency requirements |
-| `server.locales` | Language files and an aggregation entry under `server/locales/` | Actual translations used on the server |
+| `server.service-providers` | `server/services/`, `server/providers/`, `server/tokens.ts` and tests | Service interfaces, business logic and service registration |
+| `server.routes` | A route declaration scaffold in `server/routes/index.ts`, with tests | Methods, paths, input validation, authentication and authorization, and responses of API or Root Routes |
+| `server.jobs` | An example Job in `server/jobs/`, a Provider that manages the executor, and tests | Job logic, where jobs are submitted, and retry and idempotency requirements |
+| `server.locales` | Language files and an aggregating entry in `server/locales/` | The actual translations used on the server |
 
-`server.routes` does not generate CRUD endpoints or require `server.service-providers`; combine them when the feature needs a separate business service. `server.jobs` already includes the Provider managing its executor. The App configures the job backend; you implement when jobs are submitted.
+`server.routes` does not generate CRUD APIs automatically, and does not require choosing `server.service-providers` at the same time; combine them when you need a separate business service. `server.jobs` already includes the Provider that manages the job executor; the job backend is configured by the App, and when to submit jobs is up to you.
 
 #### Database, CLI and Skills
 
-| `--with` value | Generated content | What you still implement |
+| `--with` value | What is generated | What you still implement |
 | --- | --- | --- |
-| `database` | `.ts.example` drafts under `database/migrations/` and `database/seeds/`, Server resource declarations and tests; database task manifests produced during build | Schema, migrations and seeds; complete the drafts and rename them to `.ts` before they become database tasks |
-| `cli` | `cli/index.ts`, an example `info` command, the `./cli` export and tests | Actual commands, options, results and error handling |
-| `skills` | A draft `skills/<plugin-skill-name>/SKILL.md`, included in package distribution | Guidance for agents consuming the plugin: triggers, public capabilities, prerequisites and verification |
+| `database` | `.ts.example` drafts in `database/migrations/` and `database/seeds/`, server resource declarations and tests; a database task manifest is generated at build time | The actual table structures and migration and seed logic; drafts become database tasks only after you complete them and rename them to `.ts` |
+| `cli` | `cli/index.ts`, an example `info` command, the `./cli` export and tests | The actual commands, arguments, results and error handling |
+| `skills` | A draft `skills/<plugin-skill-name>/SKILL.md`, included in the package's distributed files | Explaining to Agents that use the plugin when to trigger it, its public capabilities, prerequisites and how to verify |
 
-`skills` targets the application agent consuming the plugin. The plugin root's `AGENTS.md` targets developers and agents maintaining its source; it is a foundation file and does not require selecting `skills`. Complete Skill drafts against the actual implementation before synchronizing them into the application.
+`skills` is for application Agents that use the plugin. The `AGENTS.md` at the plugin root is for developers and Agents maintaining the plugin's source; it is a basic file and needs no extra `skills` choice. Complete the Skill draft from the real implementation before synchronizing it to applications.
 
-#### How runtime entries are derived
+#### How runtime entries are generated
 
-The tool derives entries from capabilities. There is no additional `--with client` or `--with server` selection:
+The generator derives the entries from the capabilities, so there is no need to specify `--with client` or `--with server`:
 
-| Selected capabilities | Generated runtime entry |
+| Chosen capabilities | Runtime entries generated automatically |
 | --- | --- |
 | Any of `client.routes`, `client.service-providers`, `client.react-providers`, `client.locales` | `client/index.ts`, `client/plugin.ts` and the `./client` export |
 | Any `server.*` capability, or `database` | `server/index.ts`, `server/plugin.ts` and the `./server` export |
 | `cli` | `cli/index.ts` and the `./cli` export |
-| Only `client.components` | Public component exports, without a Client plugin registration entry |
-| Only `skills`, or `--empty` | No runtime entry |
+| Only `client.components` | The components' public exports, without a client plugin registration entry |
+| Only `skills`, or `--empty` | No runtime entries |
 
-**Generating** these entries and **registering** them in the App are separate steps. Consume public components through package imports. Register the corresponding entries when the plugin provides Client, Server or CLI contributions.
+**Generating** these entries and **registering** them in the App are two separate steps. When you only reference public components, importing from the package is enough; when the plugin provides Client, Server or CLI contributions, register the corresponding entries.
 
 #### Common combinations
 
-These are independent examples. Select the capabilities your feature needs.
+The examples below are independent of each other; pick by feature.
 
-Reusable components only:
+Only reusable components:
 
 ```bash
 pnpm create @nocobase/plugin@beta feature-card --with client.components
 ```
 
-A business module with pages, services, endpoints and plugin-owned data:
+A business module that needs pages, services, APIs and data of its own:
 
 ```bash
 pnpm create @nocobase/plugin@beta orders \
@@ -116,19 +116,19 @@ pnpm create @nocobase/plugin@beta orders \
   --with database
 ```
 
-Tool commands with agent integration guidance:
+Utility commands with usage guidance for Agents:
 
 ```bash
 pnpm create @nocobase/plugin@beta audit-tools --with cli --with skills
 ```
 
-Package foundation only:
+Only the package's basic structure:
 
 ```bash
 pnpm create @nocobase/plugin@beta shared-tools --empty
 ```
 
-`--empty` generates no feature directories and cannot be combined with `--with`. `--with all` selects every capability supported by that tool version and is useful for exploring the complete scaffold. For development, explicitly select the capabilities you need.
+`--empty` generates no business capability directories and cannot be combined with `--with`. `--with all` chooses every capability the current generator version supports, which is useful for viewing the full scaffold; for real development, you usually choose the capabilities you need explicitly.
 
 ### 1. Preview the generation plan
 
@@ -136,86 +136,86 @@ pnpm create @nocobase/plugin@beta shared-tools --empty
 pnpm create @nocobase/plugin@beta demo-tools --with cli --dry-run --json
 ```
 
-A dry run generates no plugin files, changes no App files and installs no App dependencies. `pnpm create` itself may still download and cache the generator. The JSON response should have `ok: true` and `status: "success-noop"`. Check these fields:
+A dry run generates no plugin files, does not change the App and does not install the App's dependencies, although `pnpm create` itself may still download and cache the generator. In the returned JSON, `ok` should be `true` and `status` should be `success-noop`. Check these fields in particular:
 
-| Field | Expected result |
+| Field | What you should see |
 | --- | --- |
-| `result.project` | `kind` is `application` and `root` is this App's root directory |
-| `result.plugin` | Package name is `@nocobase/app-plugin-demo-tools`; destination is `packages/app-plugin-demo-tools/` inside the App |
-| `result.requestedCapabilities`, `result.capabilities` | Requested capabilities and normalized selections |
-| `result.derivedStructure` | Whether Client or Server plugin entries are generated; both are `false` for this example |
-| `result.files` | Paths and generation reasons, including `cli/index.ts`, `cli/info.ts` and corresponding tests |
-| `result.projectEdits` | Planned application edits, such as `package.json` and, when needed, `pnpm-workspace.yaml` |
-| `result.dependencies` | Plugin dependencies resolved from packages installed in this application |
-| `result.nextSteps` | Suggested installation, checks and registration; apply as appropriate for the actual capabilities |
+| `result.project` | `kind` is `application`, and `root` is the current App root |
+| `result.plugin` | The package name `@nocobase/app-plugin-demo-tools`, with the target directory `packages/app-plugin-demo-tools/` under the App |
+| `result.requestedCapabilities`, `result.capabilities` | The requested capabilities and the normalized selection |
+| `result.derivedStructure` | Whether client or server plugin entries are generated; both are `false` in this example |
+| `result.files` | File paths and why each is generated, including `cli/index.ts`, `cli/info.ts` and their tests |
+| `result.projectEdits` | The application files to be changed, such as `package.json`, and `pnpm-workspace.yaml` when needed |
+| `result.dependencies` | The plugin dependencies resolved from the packages installed in the current application |
+| `result.nextSteps` | Suggestions for installing, checking and registering next; follow them according to the capabilities you actually chose |
 
-The generator identifies an App through `nocobase.templateKind: "app"` in its `package.json`. It reads workspace settings and installed dependencies, checking paths, names and versions before writing files. Complete the application's dependency installation first.
+The generator recognizes the App by `nocobase.templateKind: "app"` in the application's `package.json`. It reads the existing workspace and installed dependencies, and checks paths, names and versions before generating files, which is why the application's dependencies must be installed first.
 
-### 2. Generate the plugin and connect the workspace
+### 2. Create the plugin and connect the workspace
 
-Create the plugin with the same name and capability:
+Run the creation for real with the same name and capabilities:
 
 ```bash
 pnpm create @nocobase/plugin@beta demo-tools --with cli
 ```
 
-The generator:
+The generator does the following:
 
-- Creates `packages/app-plugin-demo-tools/` with a package manifest, CLI implementation, tests and development configuration. Local plugins default to `private: true`.
-- Ensures the pnpm workspace includes the plugin directory while preserving existing settings, adding `packages/*` only when necessary.
-- Adds `"@nocobase/app-plugin-demo-tools": "workspace:*"` to the application's `dependencies`.
-- Resolves external dependency versions from the installed application, keeps workspace references for actual local packages, installs dependencies and updates the lockfile.
+- Generates `packages/app-plugin-demo-tools/`, including the package declaration, CLI implementation, tests and development configuration; local plugins default to `private: true`.
+- Makes sure the application's pnpm workspace includes the plugin directory, keeping existing settings and adding `packages/*` only when needed.
+- Adds `"@nocobase/app-plugin-demo-tools": "workspace:*"` to `dependencies` in the application's `package.json`.
+- Decides external dependency versions from the packages installed in the application, keeps workspace references for local workspace packages that actually exist, then installs dependencies and updates the lockfile.
 
-`workspace:*` makes the application use the local plugin package. The generator does not assign that protocol to every external dependency or arbitrarily pick the latest versions. It uses versions installed in the application to avoid unresolved packages and incompatible dependencies.
+`workspace:*` makes the application use the local plugin package. The generator does not write all of the plugin's external dependencies as `workspace:*`, nor does it pick the latest versions at random; it bases them on the versions the application actually installs, so the generated plugin does not end up with missing packages or incompatible versions.
 
-### 3. Check the generated scaffold
+### 3. Check the result
 
 ```bash
 pnpm --filter @nocobase/app-plugin-demo-tools check
 ```
 
-After checks pass, the scaffold exists and is a local App dependency. See [Plugin structure](plugin-structure.md) for each file's role.
+Once the check passes, the plugin scaffold has been generated and is a local dependency of the App. For what each file does, see [Plugin structure](plugin-structure.md).
 
-Dependency installation makes the package resolvable; runtime registration determines which capabilities the application loads. The generator does not register runtime entries automatically. Later, use `pnpm nocobase plugin register <full-package-name> --no-install` to register the Client, Server or CLI entries the package actually provides. Follow [Write your first plugin](write-your-first-plugin.md) for implementation, registration and verification.
+Installing dependencies lets the application resolve the package, while runtime registration decides which capabilities the application loads. The generator does not register runtime entries automatically; later, register the Client, Server or CLI entries the plugin actually provides with `pnpm nocobase plugin register <full package name> --no-install`. For the full implementation, registration and acceptance process, see [Write your first plugin](write-your-first-plugin.md).
 
 ### Names and common options
 
-The short name `demo-tools` generates `@nocobase/app-plugin-demo-tools` by default. Use a full package name to preserve your organization's scope:
+The short name `demo-tools` generates the package name `@nocobase/app-plugin-demo-tools` by default. Your own plugin can use a full package name to keep your organization's scope, for example:
 
 ```bash
 pnpm create @nocobase/plugin@beta @my-company/app-plugin-audit-tools --with cli
 ```
 
-The directory remains `packages/app-plugin-audit-tools/`; register using the full package name. The capability portion of the name starts with a lowercase letter and uses lowercase letters, digits and single hyphens. Existing directories and conflicting package names are rejected. Local plugins do not need publication. Before publishing later, review `private`, the package name, exports, compatibility and package contents.
+The directory is still `packages/app-plugin-audit-tools/`, and registration uses the full package name. The feature part of the name starts with a lowercase letter and uses only lowercase letters, digits and single hyphens. The generator refuses existing directories and conflicting package names. Local plugins need not be published; when publishing, check `private`, the package name, exports, compatibility and the published contents.
 
 | Option | Purpose |
 | --- | --- |
-| `--dir <directory>` | Select an existing App explicitly, such as `--dir ./my-app` from its parent directory |
-| `--dry-run --json` | Preview generated files, application edits and dependency versions without writing, for human or agent review |
-| `--json` | Return structured output; installation logs go to stderr |
-| `--no-install` | Generate files without installing; run `pnpm install` from the App root before registration |
-| `--display-name <name>`, `--description <text>` | Set the display name and description; quote values containing spaces |
-| `--help`, `-h` | List capabilities and options supported by this version |
-| `--version` | Show the generator version |
+| `--dir <directory>` | Explicitly chooses an existing App, for example passing `--dir ./my-app` from the parent directory |
+| `--dry-run --json` | Previews generated files, application changes and dependency versions read-only, for people or Agents to check |
+| `--json` | Outputs structured results; installation logs go to stderr |
+| `--no-install` | Generates files without installing; run `pnpm install` in the App root before registering |
+| `--display-name <name>`, `--description <text>` | Sets the plugin's display name and description; quote values that contain spaces |
+| `--help`, `-h` | Shows the capabilities and options the current version supports |
+| `--version` | Shows the generator's version |
 
 #### JSON output
 
-Combine `--json` with generation or `--dry-run` for agents and scripts. Success returns `ok: true` and `result`. Failure returns a non-zero exit code with `error.code`, `error.message` and `error.suggestions`. Installation logs go to stderr so the generator’s stdout remains a single JSON result document.
+`--json` can be combined with a real creation or with `--dry-run`, so Agents and scripts can read it. On success, check `ok: true` and `result`; on failure, the command exits with a nonzero code and explains the cause and suggestions in `error.code`, `error.message` and `error.suggestions`. Installation logs go to stderr, and the generator's stdout always contains a single JSON result document.
 
-`--dry-run` previews changes. `--no-install` writes plugin and App files but defers dependency installation; these options serve different purposes.
+`--dry-run` is only a preview, while `--no-install` really writes the plugin and App files and only defers dependency installation; the two do different things.
 
-### Common problems
+### Common issues
 
 | Symptom | What to do |
 | --- | --- |
-| The App cannot be found | Run from an application generated by create-app, or select it with `--dir`; confirm installed dependencies and a generator version supporting App workspaces |
-| An error looks for `packages/plugins` | An older generator supporting only the source repository may have been resolved. Check the actual version with `pnpm create @nocobase/plugin@beta --version`, review package-manager caching and release-age settings, select a version supporting App workspaces and repeat the dry run. Do not create `packages/plugins` in the App to bypass the error. This tutorial was verified with `@nocobase/create-plugin@0.1.0-beta.26` |
-| Dependencies are missing or incompatible | Finish installing App dependencies, resolve the reported versions and preview again |
-| The directory, package name or application dependency already exists | Inspect the existing implementation or choose a non-conflicting name; preserve existing plugins |
-| Workspace rules exclude the destination | Review exclusions in `pnpm-workspace.yaml`, adjust them for your project and preview again |
-| Files were generated but installation failed | Keep the generated result, resolve the installation error and rerun `pnpm install` from the App root; do not generate the plugin again |
-| You want to add a capability to an existing plugin | The generator creates new packages rather than modifying existing ones; follow [Plugin structure](plugin-structure.md) to extend implementation, declarations, exports, dependencies and tests, then check App registration |
-| Selecting routes or database capabilities did not produce a working feature | These options generate declarations or drafts; implement the pages, endpoints or migrations, then integrate and verify them |
-| The package is installed but its command is missing | Check the `./cli` export and application `cli/plugins.ts` registration, and invoke it from the App root |
+| The App cannot be found | Run in the application root generated by create-app, or point to it with `--dir`; confirm dependencies are installed and the generator version supports App workspaces |
+| The error says it is looking for `packages/plugins` | An old generator that only supports the source repository may have been resolved. Check the actual version with `pnpm create @nocobase/plugin@beta --version`, check the package manager's cache and release-age limits, pick a version that supports App workspaces and dry-run again; do not create `packages/plugins` in the App to get around the error. This tutorial was verified with `@nocobase/create-plugin@0.1.0-beta.26` |
+| Missing dependencies, or incompatible dependency versions | Install the App's dependencies first, fix the required versions as the error says, then preview again |
+| The target directory, package name or application dependency already exists | Check the existing implementation or use a non-conflicting name; do not overwrite an existing plugin |
+| Workspace rules exclude the plugin directory | Check the exclusion rules in `pnpm-workspace.yaml`, adjust them as the project needs, then preview again |
+| Files were generated but installation failed | Keep the generated result, fix the installation error, then rerun `pnpm install` in the App root; there is no need to create again |
+| You want to add a capability to an existing plugin | The generator only creates new packages and does not modify existing plugins incrementally; add the implementation, declarations, exports, dependencies and tests as described in [Plugin structure](plugin-structure.md), then check the App's registration |
+| Route or database capabilities were chosen, but there is no business feature | What is generated is only a declaration scaffold or draft; you still implement pages, APIs or migrations, then connect and verify them |
+| The package is installed but the command does not exist | Check the `./cli` export and the registration in the application's `cli/plugins.ts`, and call it from the App root |
 
-Continue with [Plugin structure](plugin-structure.md) for file responsibilities, then [Write your first plugin](write-your-first-plugin.md) for implementation and integration. For installation, updates and removal, see [Manage plugins](../developing-apps/manage-plugins.md).
+The next guide, [Plugin structure](plugin-structure.md), explains what the generated files do; then follow [Write your first plugin](write-your-first-plugin.md) to implement and connect it. For everyday installation, updates and removal, see [Manage plugins](../developing-apps/manage-plugins.md).

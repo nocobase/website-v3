@@ -1,25 +1,25 @@
 ---
 title: When to write a plugin
-description: Use plugins to reuse code or organize features into modules that are easier to install and maintain.
+description: Organize a feature as a plugin to reuse code, or to make it easier to install and maintain through modularity.
 ---
 
-In NocoBase, a plugin packages a feature independently so an App can integrate it as needed. There are two main reasons to write one: **code reuse** and **modular code organization**. Either can be a reason to choose a plugin.
+In NocoBase, a plugin packages a feature as an independent package that an App connects as needed. There are two main reasons to write a plugin: **code reuse** and **modular code organization**. Either one alone is reason enough to consider a plugin.
 
 ## 1. Code reuse
 
-When several applications need the same functionality, package the shared part as a plugin instead of implementing or copying it into each application.
+When several applications need the same feature, package the shared part as a plugin rather than developing and copying the code in each application.
 
-For example, several business applications may use the same SMS provider. A plugin can handle message delivery, provider configuration and errors, while each App installs and uses it. An order application decides when to send an order notification; an approval application decides when to send a reminder. Both share the underlying SMS implementation.
+For example, several business applications all need to connect to the same SMS service. You can package SMS sending, provider configuration and error handling into a plugin that each App installs and uses. The order application decides when to send order notifications and the approval application decides when to send approval reminders, while the underlying SMS capability shares one implementation.
 
-Fixes and improvements can then be maintained in one place, with each application upgrading when appropriate. The plugin provides stable public interfaces; the App handles its own business composition and configuration.
+Fixes and new features can then be maintained in the plugin in one place, with each application upgrading as needed. The plugin provides stable public interfaces, and the App handles its own business composition and configuration.
 
-Before implementing shared functionality, check whether an existing plugin meets the requirement. See [Manage plugins](../developing-apps/manage-plugins.md). Develop your own implementation when the available capabilities do not fit.
+Before reusing an existing capability, check whether a suitable plugin already exists; see [Manage plugins](../developing-apps/manage-plugins.md). Develop your own implementation only when the existing capabilities do not meet the need.
 
 ## 2. Modular code organization
 
-Plugins can also organize code within a single App. Keeping related pages, endpoints, services and data logic in one module makes feature boundaries clearer and simplifies installation, configuration, maintenance and upgrades.
+Even with only one App, plugins can organize the code. Putting related pages, APIs, services and data logic into one module makes feature boundaries clearer and makes installation, configuration, maintenance and upgrades easier.
 
-For example, an App may contain order, inventory and reporting features. As they grow, you can organize them into separate plugins:
+For example, a business App has orders, inventory and reports. As these features grow, you can organize each as a plugin:
 
 ```text
 my-app/
@@ -33,22 +33,22 @@ my-app/
 └── pnpm-workspace.yaml
 ```
 
-Each plugin can maintain its own implementation, public entries, configuration and tests. The App decides which plugins to integrate and how to compose them. Team members can also work by module, reducing their reliance on the internal implementation of other features.
+Each plugin maintains its own implementation, public entries, configuration and tests, and the App decides which plugins to connect and how to combine them. Team members can also divide work by module, depending less on the internals of other features.
 
-Modules may still depend on one another. For example, a reporting plugin should obtain order data through explicit public interfaces instead of importing private source files from the order plugin. Organizing these features as plugins makes their relationships clearer and easier to maintain.
+Modules may still depend on each other. For example, when the reports plugin needs order data, it should get it through an explicit public interface rather than importing private source from the orders plugin. Splitting into plugins is precisely what makes these dependencies clearer and easier to maintain later.
 
 ## Develop plugins inside an App
 
-First [create an application with create-app](../getting-started/create-app.md), then develop plugins inside it. An App supports a monorepo: local plugins live under `packages/`, are connected through pnpm workspace dependencies, and are developed and built with the application.
+First [create an application with create-app](../getting-started/create-app.md), then develop plugins inside that App. The App supports a monorepo: local plugins live under `packages/`, connect through pnpm workspace dependencies, and are developed and built together with the application.
 
-**A plugin can serve only the current App without being published to npm.** Consider distribution, versioning and compatibility when other applications need it. Reuse and modular organization can develop together: start by organizing a feature in the current App as a plugin, then share it with other applications as it matures.
+**A plugin can serve only the current App and does not need to be published to npm first.** Consider distribution, versioning and compatibility once other applications need it. Code reuse and modularity can also come together step by step: first organize one feature of the current application as a plugin, then offer it to other applications once it matures.
 
-The feature determines the plugin's size. It may provide a single CLI command or include Client pages, Server endpoints and database logic. It does not need every capability. See [Plugin structure](plugin-structure.md) for directories and entries.
+A plugin's size is decided by its feature. It can provide just one CLI command, or combine client pages, server APIs and database logic; it does not need every capability. For directories and entries, see [Plugin structure](plugin-structure.md).
 
-## Choose an appropriate organization
+## Choose a suitable organization
 
-Plugins are one way to organize features. Simple pages or business logic can live directly in the App. Functions, types and utilities reused only through imports can use ordinary modules or shared packages. Consider a plugin when you want to integrate and maintain a feature as a unit, or make it available to several applications.
+Plugins are just one way to organize features. Simple pages or business logic can live directly in the App, and functions, types and utilities reused only through `import` can use ordinary modules or shared packages. Consider a plugin when you want a feature to be a whole that can be connected and maintained, or to be used by several applications.
 
-Continue with [Create a plugin](create-plugin.md) to generate a scaffold using `@nocobase/create-plugin`. After understanding [Plugin structure](plugin-structure.md), follow [Write your first plugin](write-your-first-plugin.md) to implement, register and verify it.
+Next, read [Create a plugin](create-plugin.md) to generate a scaffold with `@nocobase/create-plugin`; after understanding [Plugin structure](plugin-structure.md), follow [Write your first plugin](write-your-first-plugin.md) to implement, register and verify it.
 
-For sharing across Apps with independently managed versions, continue with [Build and publish](publish-plugin.md). Publication is unnecessary when using the plugin only in the current App.
+If you need to share a plugin across several Apps and manage its versions independently, continue with [Build and publish](publish-plugin.md). When it is used only in the current App, there is no need to publish it.

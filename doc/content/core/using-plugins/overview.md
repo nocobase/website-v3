@@ -9,7 +9,7 @@ Use the topics below to find the plugins you need. For shared installation, regi
 
 ## Find plugins by function
 
-This section covers 21 plugins. Related features are grouped by topic, while other plugins have individual entries. Select a plugin name to open its usage guide. Pages that are not yet written display a placeholder notice.
+This section covers 21 plugins. Related features are grouped by topic, while other plugins have individual entries. Each guide covers purpose, configuration, integration, a business example and capability boundaries.
 
 | Feature | Usage guides | Main uses |
 | --- | --- | --- |
@@ -27,6 +27,12 @@ This section covers 21 plugins. Related features are grouped by topic, while oth
 | Localization | [Localization](application-support/i18n.md) | Integrate localization and application language switching |
 | Application foundation | [Application foundation](application-support/foundation.md) | Inspect the Core capabilities used by an application and their runtime information |
 
+## Before integration
+
+Check the application's actual registrations and installed versions. Installation does not enable a plugin. Some plugins also require configuration factories or application-owned data, pages and permissions.
+
+Paths such as `/client` and `/server` in each guide refer to that package's public exports. Page and HTTP paths are relative to the application mount: an application at `/main` serves `/api/users` at `/main/api/users`. Consult the running application's `/api/swagger/docs` or `/api/swagger` for complete request, response and access contracts.
+
 ## Read a plugin's usage guide
 
 When using a plugin, focus on these topics:
@@ -37,7 +43,9 @@ When using a plugin, focus on these topics:
 - **Examples**: how to apply the plugin to a specific business need.
 - **Extensions and common questions**: supported customization and solutions to common issues.
 
-Plugins provide different kinds of capabilities. For example, Template printing primarily supplies Skills for implementing DOCX and PDF template printing in an application, while plugins such as User management provide APIs and pages to integrate.
+Plugins provide different kinds of capabilities. Template printing supplies implementation guidance. User management supplies administration APIs and an invitation page, while the application owns its administration UI. Knowledge base and Application foundation provide registrable pages. Each guide explains ownership of pages, data and business logic.
+
+These guides were checked against source on 2026-10-28, using main-repository revision [`015404ecd`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins) and the commercial approval plugin's public contracts. Installed versions may differ. Verification steps describe checks for the consuming application; they do not claim that every plugin integration was executed while writing these guides.
 
 ## Related documentation
 

@@ -1,4 +1,48 @@
 ---
 title: "知识库"
-status: placeholder
+description: "接入知识空间、文档版本、搜索、权限和变更审阅。"
 ---
+
+`@nocobase/app-plugin-knowledge` 提供知识空间、目录、Markdown 文档、文件、版本、搜索及修改建议。基础知识库可以独立使用，不要求启用 Agents 或语义检索。
+
+## 接入与空间权限
+
+注册 Client、Server 插件并执行迁移。应用必须通过 `/server/tokens` 的 `knowledgeAccessToken` 提供 `KnowledgeAccessResolver`，定义空间是否存在、继承关系及当前读者的权限。未绑定访问解析器时，没有可用空间。
+
+空间由 `scope` 和 `scopeId` 标识，例如系统空间或某个业务项目的空间。应用决定空间候选列表与权限，不能把数据库中的所有空间直接交给用户选择。
+
+| 权限 | 可进行的工作 |
+| --- | --- |
+| `read` | 读取允许的文档和文件 |
+| `propose` | 提交修改建议 |
+| `edit` | 编辑内容及审阅可处理的建议 |
+| `manage` | 管理空间与节点的权限设置 |
+
+目录、文档和文件还可配置继承或自定义权限。页面访问权限与内容权限分开，进入页面不表示可以读取所有空间。
+
+## 页面与内容使用
+
+`knowledge()` 默认注册 `/knowledge` 页面，也可传入 `path`、`space`。需要把知识库嵌入业务页时，使用 `knowledge({ routes: false })`，自行组合 `/client/pages` 的 `KnowledgePage` 或 `KnowledgeView`。
+
+使用者可以创建目录与文章、编辑 Markdown、查阅版本差异及恢复内容。编辑提交包含预期版本；发生版本冲突时应读取最新版本再处理，避免覆盖别人的修改。
+
+上传文件还需要文件插件和 Drive。文件会保留原始内容，并尝试提取支持格式的文本；解析状态会显示处理中、成功、失败或不支持。当前没有 OCR，图片或扫描件不能假定会得到可搜索文本。
+
+## 示例：团队知识变更审阅
+
+1. 应用为团队配置空间及读取、建议、编辑权限。
+2. 成员提交文章修改建议，编辑者检查差异和基础版本。
+3. 编辑者接受或拒绝，接受后形成新的文档版本。
+4. 检查搜索结果与历史记录，并验证其他空间的成员看不到无权内容。
+
+`knowledge.proposals: false` 可关闭建议流程，改为直接编辑；历史建议数据保留，直接编辑仍需要原有权限。代表用户工作的 actor 不能直接编辑或决定建议。
+
+## 搜索与语义索引
+
+基础搜索使用当前文档与已提取文本的匹配。语义索引需要另外配置；Knowledge 可以维护自己的全局索引，Agents 只作为可选 Embedding 网关，不复用 Agents 的向量集合。
+
+需要索引时，组合 `/config` 的 `defineKnowledgeConfig()`，配置索引实例、模型来源和宿主 Jobs，并接入公开的索引管理组件。索引管理使用独立的 `settings:kb.indexing` 权限，不由空间管理权限自动授予。索引不可用或重建期间，普通文本搜索仍可使用。
+
+验证空间隔离、版本冲突、文件解析失败、建议审阅和搜索范围。相关文档：[Agents](agents.md)、[文件](../data-and-files/file-management.md)、[管理插件](../../developing-apps/manage-plugins.md)。
+
+源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-knowledge)。

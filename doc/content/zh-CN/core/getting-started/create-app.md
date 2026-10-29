@@ -9,7 +9,7 @@ description: 通过 Coding Agent 或手动命令创建 NocoBase 3 应用，启�
 
 ## 准备环境
 
-在终端确认已经安装 Node.js 24 或更高版本，以及 pnpm 11：
+开发环境需要 Node.js 24 或更高版本，以及 pnpm 11。使用 Agent 时，可以让它检查环境并说明需要补充的准备；手动创建时，先在终端检查：
 
 ```bash
 node --version
@@ -22,40 +22,23 @@ Windows 用户请在 WSL 中操作。下面的命令适用于 Bash 等 POSIX she
 
 ## 使用 Agent
 
-### 1. 安装创建应用的 Skill
-
-在终端执行：
-
-```bash
-npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
-```
-
-按提示选择你使用的 Agent。安装完成后开启新的 Agent 会话，让它加载这个 Skill。`nocobase/skills-v3` 提供 NocoBase 3 的 Skills。
-
-### 2. 在空目录中打开 Agent
-
-例如，先创建一个名为 `my-app` 的目录：
-
-```bash
-mkdir my-app
-cd my-app
-```
-
-在这个目录中打开 Coding Agent，发送：
+准备一个空目录，例如 `my-app`，在该目录中开启 Coding Agent 会话。将下面的内容直接发送给 Agent，让它先安装创建应用的 Skill，再完成应用创建：
 
 ```text
+npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
+
 请在当前空目录中创建一个供本地开发使用的 NocoBase 3 应用。
 使用默认模板和 SQLite，按创建应用的指引完成准备和检查。
 启动后告诉我打开哪个地址，以及如何完成首次登录。
 ```
 
-Agent 会调用创建工具，安装依赖，初始化配置并启动应用。完成后，它会提供应用地址和登录信息。
+安装 Skill 时，按提示选择当前使用的 Agent。如果安装后当前会话没有识别到 Skill，在同一目录重新开启会话，再发送上面的创建需求。
 
-### 3. 进入应用
+Agent 会按指引检查环境、调用创建工具、安装依赖、初始化并检查配置，然后启动应用。如果缺少环境依赖，它会说明需要完成的准备。
 
-打开 Agent 提供的应用地址，并按照本文的[打开应用并登录](#打开应用并登录)完成首次登录。
+完成后，打开 Agent 提供的应用地址，按照它给出的登录信息，或参阅本文的[打开应用并登录](#打开应用并登录)，完成首次登录。
 
-创建完成后，应用目录里会出现 `AGENTS.md` 和 `.agents/skills/`。继续开发时，在这个应用目录中开启新的 Agent 会话，让它读取项目自己的规则和 Skills。
+创建完成后，应用目录里会出现 `AGENTS.md` 和 `.agents/skills/`。继续开发时，让 Agent 读取项目自己的规则和 Skills；如果当前会话尚未加载它们，再在应用目录中开启新会话。
 
 ## 不使用 Agent
 
@@ -115,7 +98,7 @@ pnpm dev
 
 ### Agent 没有找到创建应用的 Skill
 
-确认安装时选中了当前使用的 Agent，并在安装后开启了新会话。创建之前使用的是全局 `nocobase-create-app`；创建之后的开发指引位于应用目录中。
+确认安装时选中了当前使用的 Agent；如果当前会话尚未加载新 Skill，在同一目录重新开启会话，再发送创建需求。创建之前使用的是全局 `nocobase-create-app`；创建之后的开发指引位于应用目录中。
 
 ### 应用已经创建，但项目 Skills 缺失
 

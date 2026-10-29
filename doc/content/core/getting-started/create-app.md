@@ -9,7 +9,7 @@ This guide uses the default template and SQLite. SQLite requires no separate dat
 
 ## Prerequisites
 
-Check that Node.js 24 or later and pnpm 11 are installed:
+Development requires Node.js 24 or later and pnpm 11. An agent can check the environment and explain any missing prerequisites. For manual creation, check them in your terminal:
 
 ```bash
 node --version
@@ -20,36 +20,23 @@ On Windows, use WSL. Commands below assume a POSIX shell such as Bash. Choose on
 
 ## With an agent
 
-### 1. Install the creation Skill
-
-```bash
-npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
-```
-
-Select your agent when prompted, then start a new session so it loads the Skill. `nocobase/skills-v3` supplies NocoBase 3 Skills.
-
-### 2. Open the agent in an empty directory
-
-```bash
-mkdir my-app
-cd my-app
-```
-
-Open your coding agent in that directory and send:
+Prepare an empty directory, such as `my-app`, and start a coding agent session there. Send the following directly to the agent so it installs the creation Skill and then creates the application:
 
 ```text
+npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
+
 Please create a NocoBase 3 application for local development in this empty directory.
 Use the default template and SQLite, following the application creation guidance.
 Complete the setup and checks, start the app, and tell me which URL to open and how to sign in for the first time.
 ```
 
-The agent invokes the creation tool, installs dependencies, initializes configuration and starts the application. It then provides the entry URL and sign-in information.
+Select the current agent when prompted during Skill installation. If the session does not recognize the newly installed Skill, start a new session in the same directory and send the creation request again.
 
-### 3. Open the application
+The agent checks the environment, invokes the creation tool, installs dependencies, initializes and checks configuration, and starts the application. If prerequisites are missing, it explains the required preparation.
 
-Follow [Open the application and sign in](#open-the-application-and-sign-in) below using the URL supplied by the agent.
+Open the URL supplied by the agent and use its sign-in instructions, or follow [Open the application and sign in](#open-the-application-and-sign-in) below.
 
-The created project contains `AGENTS.md` and `.agents/skills/`. For further development, start an agent session in this application directory so it loads the project's own guidance and version-matched Skills.
+The created project contains `AGENTS.md` and `.agents/skills/`. For further development, have the agent read the project's own guidance and Skills. Start a new session in the application directory only if they have not been loaded into the current session.
 
 ## Without an agent
 
@@ -111,7 +98,7 @@ These screenshots show the historical [00-create-app](https://github.com/nocobas
 
 ### The agent cannot find the creation Skill
 
-Check that you selected the correct agent during installation and started a new session afterward. Creation uses the global `nocobase-create-app` Skill; subsequent development follows the application's own guidance.
+Check that you selected the correct agent during installation. If the current session has not loaded the new Skill, start another in the same directory and resend the creation request. Creation uses the global `nocobase-create-app` Skill; subsequent development follows the application's own guidance.
 
 ### The application exists but its Skills are missing
 

@@ -1,15 +1,15 @@
 ---
 title: Plugin development guidance (AGENTS.md)
-description: Maintain plugin responsibilities, change conventions, compatibility requirements and verification steps in AGENTS.md for Agents working on plugin source.
+description: Maintain responsibilities, change conventions, compatibility requirements and verification methods in a plugin's AGENTS.md, so Agents can keep maintaining the plugin's source.
 ---
 
-A plugin's `AGENTS.md` guides Agents maintaining its source: what the plugin owns, which files a feature change affects, and how to verify the result. Keep conventions that remain useful across tasks alongside the plugin's code.
+A plugin's `AGENTS.md` is for Agents maintaining its source: it tells them what the plugin is responsible for, which files to check when changing a capability, and how to verify the result. The guidance should record conventions that hold across tasks and be maintained together with the plugin's source.
 
-This article explains how to write those maintenance instructions. For Skills that help application Agents call, integrate and compose plugin capabilities, see [Plugin Skills](write-plugin-skills.md). Both can describe the same capability, while answering different questions.
+This guide explains how to write those maintenance requirements. For Skills that let application Agents call, connect and combine the plugin's capabilities, see [Plugin Skills](write-plugin-skills.md). Both kinds of guidance may describe the same capability, but they answer different questions.
 
-## Where guidance lives
+## Where the guidance lives
 
-In an application workspace, development guidance lives at the plugin root:
+In an application workspace, a plugin's development guidance lives at the plugin root:
 
 ```tree
 my-app/
@@ -25,40 +25,40 @@ my-app/
         └── skills/                # Consumer-facing Skills (optional)
 ```
 
-The creation tool already generates `AGENTS.md` and `CLAUDE.md`; do not recreate a plugin to add guidance. The current template's `CLAUDE.md` contains:
+The generator already creates `AGENTS.md` and `CLAUDE.md`, so there is no need to recreate the plugin to add guidance. In the current template, `CLAUDE.md` contains:
 
 ```text
 @AGENTS.md
 ```
 
-Preserve this reference so development conventions have one maintained source in `AGENTS.md`. Before modifying a plugin, have the Agent read the application and plugin root guidance, then inspect the source relevant to the task.
+Keep this reference so the development conventions are maintained in one place, `AGENTS.md`. When starting to change a plugin, have the Agent read the guidance at the application root and the plugin root first, then the source relevant to the task.
 
-The template also points to `.agents/skills/nocobase-app-plugin-development/SKILL.md` from the application's installed packages. That general development Skill comes from `@nocobase/app-skills`. The plugin's `AGENTS.md` adds its specific conventions without copying the entire shared development guide.
+The template also points to `.agents/skills/nocobase-app-plugin-development/SKILL.md` from the application's installed version. This general development Skill comes from `@nocobase/app-skills`; the plugin's `AGENTS.md` only needs to add the plugin's actual conventions, not copy the whole general development guide.
 
-`pnpm nocobase skills sync` synchronizes package-provided Skills; it does not copy a plugin root's `AGENTS.md` into an application Skill. Keep source maintenance requirements in the plugin and consumer instructions in its `skills/` directory.
+`pnpm nocobase skills sync` synchronizes Skills provided by packages; it does not copy the plugin root's `AGENTS.md` into an application Skill. Source maintenance requirements stay inside the plugin, while explanations for users go in the plugin's `skills/`.
 
-## What maintenance conventions to record
+## Which maintenance conventions to record
 
-Prioritize information an Agent cannot infer from file names but needs when changing the implementation:
+Record first the information an Agent cannot tell from file names alone but must know when changing code:
 
-| Topic | What to explain |
+| Topic | What to state clearly |
 | --- | --- |
-| Responsibility and boundaries | Implemented capabilities; data, permissions and business rules owned by the application or other plugins |
-| Key entries | Files implementing features and files declaring, registering or exposing them |
-| Related changes | Declarations, dependencies, tests and documentation that must change with a capability |
-| Compatibility | Public paths, arguments, response shapes, error codes and service Tokens used by consumers |
-| Verification | Working directory, commands, expected results and whether a target application is required |
-| Special conventions | Plugin-specific state rules, migration constraints, resource ownership or external service prerequisites |
+| Responsibilities and boundaries | The capabilities implemented; which data, permissions and business rules belong to the application or other plugins |
+| Key entries | Which files implement features, and which declare, register and expose them |
+| Related changes | Which declarations, dependencies, tests and documents must be updated together when adding or changing a capability |
+| Compatibility requirements | Which public paths, arguments, response structures, error codes and service Tokens are already used externally |
+| Verification | Which commands to run in which directory, the expected results, and whether a target application is needed |
+| Special conventions | State rules, migration constraints, resource ownership or external service prerequisites unique to this plugin |
 
-Use concrete files and behavior. For example, “when changing `preview` response fields, check the CLI tests and plugin Skill” gives the Agent more direction than “ensure code quality.”
+Use concrete file names and behavior requirements. For example, "when changing the fields `preview` returns, also check the CLI tests and the plugin Skill" helps an Agent far more than "ensure code quality".
 
-See [Plugin structure](plugin-structure.md) for the directory reference and [Plugin declarations and public exports](plugin-declarations.md) for entry points and contracts. Link existing explanations and add what is specific to the current plugin. For UI work, retain the convention of using shadcn primitives and consulting NocoBase UI Library first; source asset organization is covered in [Components and styles](frontend-components.md).
+For the full directory reference, see [Plugin structure](plugin-structure.md); for entries and public contracts, see [Plugin declarations and public exports](plugin-declarations.md). The guidance can link to these existing explanations and add only what is different about the current plugin. For UI work, keep the convention "primitives use shadcn; consult the NocoBase UI Library first", and see [Components and styles](frontend-components.md) for how source assets are organized.
 
-## Example: maintenance guidance for notice-cli
+## Example: add maintenance requirements for notice-cli
 
-This example uses the completed `notice-cli` plugin from [Command-line extensions](extend-command-line.md): `preview` normalizes notice text and returns its character count. Its consumer Skill is described in [Plugin Skills](write-plugin-skills.md).
+The example continues with the `notice-cli` plugin completed in [Command-line extensions](extend-command-line.md): the `preview` command tidies announcement text and returns its character count, and its companion Skill is in [Plugin Skills](write-plugin-skills.md).
 
-Append the section below to the plugin's existing `AGENTS.md`, preserving the template's shared Skill entry and applicable development rules. File paths are relative to the plugin root; commands run from the application root:
+Add the section below to the plugin's existing `AGENTS.md`, keeping the template's entry pointing to the general development Skill and the development rules that still apply. File paths are relative to the plugin root, while commands run from the application root:
 
 ````markdown
 ## notice-cli maintenance
@@ -104,13 +104,13 @@ For changes to exports, dependencies or CLI integration, also build the owning
 application and verify the command through its built CLI entry.
 ````
 
-The example records two easily confused rules: the input limit counts UTF-16 code units, while the result length counts Unicode code points. It also names the files affected by behavior changes and distinguishes the plugin build from invocation in its application.
+This example records two rules that are easy to confuse: the input limit counts UTF-16 code units, while the result length counts Unicode code points. It also names the files that must change together with the behavior, and what the plugin's own build and the application's actual call each verify.
 
-The test file and Skill come from the linked tutorials. If your plugin does not have them, implement them first or use the actual paths. Add maintenance requirements when introducing Client, Server or database capabilities; remove references to entries that do not exist.
+The test file and Skill in the example come from the corresponding tutorials; if your plugin does not have them yet, implement them first or change to the actual paths. After adding Client, Server or database capabilities, add the matching maintenance requirements, and never keep entries in the guidance that do not exist.
 
-## Have an Agent follow the guidance
+## Have the Agent change code following the guidance
 
-The task request describes the current work, while `AGENTS.md` supplies persistent maintenance conventions. Use them together, for example:
+The task description says what to do this time, and `AGENTS.md` provides the long-lived maintenance conventions; use them together, for example:
 
 ```prompt
 Check the preview boundary tests in packages/app-plugin-notice-cli in this application.
@@ -126,26 +126,26 @@ Check the README and plugin Skill against the implementation and correct stale g
 Run affected tests and necessary checks, then report results and unverified scope.
 ```
 
-Maintainers need implementation files, registration points and compatibility requirements. Consumers need prerequisites, public commands and outcomes. Put the former in `AGENTS.md` and the latter in the plugin Skill to keep each document focused on its task.
+Maintainers need to know the implementation files, registration points and compatibility requirements, while users only need the prerequisites, public commands and results. Putting the former in `AGENTS.md` and the latter in the plugin Skill keeps the two from gradually merging into one long document.
 
-## Verify that guidance works
+## Verify that the guidance works
 
-Use a real maintenance task to assess the guidance, beyond checking that the file exists:
+Check the guidance with a real maintenance task, not just by checking that the file exists:
 
-- Referenced paths exist and still have their documented responsibilities.
-- Commands match current `package.json` scripts and identify their working directory.
-- Named tests are discovered and executed, with results matching expectations.
-- Feature changes prompt checks of related declarations, exports, dependencies and usage examples.
-- Plugin tests and target application verification are distinguished, with unverified work recorded.
+- Every path in it can be found, and the file still has the responsibility described.
+- The commands match the scripts in the current `package.json`, and the working directory is clear.
+- The named tests are really discovered and run, with the expected results.
+- After changing a feature, the related declarations, exports, dependencies and usage examples are checked together.
+- Tests inside the plugin are distinguished from verification in the target application, and unverified parts are recorded.
 
-Use commands available in the current plugin and application. Do not copy NocoBase source-repository-only checks into guidance for an ordinary application's plugin. See [Testing and verification](testing-and-verification.md) for plugin tests and [Testing and acceptance](../developing-apps/testing-and-acceptance.md) for application acceptance.
+The check commands follow the current plugin and application. Check scripts specific to the NocoBase source repository should not be copied into the plugin guidance of an ordinary application. For testing methods, see [Testing and verification](testing-and-verification.md); for application acceptance, see [Testing and acceptance](../developing-apps/testing-and-acceptance.md).
 
-For guidance-only edits, check paths, commands and descriptions. Run code checks when functionality or integration needs verification; do not repeat every unchanged business test just to verify a paragraph.
+If only the development guidance changed, checking the paths, commands and descriptions is enough; run the corresponding code checks only when you need to verify a change to functionality or integration. Do not rerun every unchanged business test just to verify a piece of documentation.
 
-## Maintain guidance with the feature
+## Maintain it together with the features
 
-When public commands, APIs, services or resource layouts change, check development guidance, the README, tests and plugin Skills together. Development guidance explains organization and maintenance constraints; the README and Skills describe current usage. Record compatibility changes according to the project's versioning and release conventions; see [Build and publish](publish-plugin.md).
+When public commands, APIs, services or resource layouts change, check the development guidance, README, tests and plugin Skill together. The development guidance records "why things are organized this way and what to follow when changing them", while the README and the Skill record current usage. For compatibility changes, record them according to the project's versioning and release conventions; see [Build and publish](publish-plugin.md).
 
-Keep durable business decisions and maintenance conventions in the guidance. Remove temporary troubleshooting history, individual task logs and obsolete steps. Link longer explanations maintained within the plugin so `AGENTS.md` remains a clear reading entry.
+Keep stable business decisions and maintenance conventions in the guidance; clean up temporary troubleshooting, logs from a single task and outdated steps promptly. When an explanation grows long, link to reference documents maintained in the plugin, so `AGENTS.md` stays a clear entry point for reading.
 
-**Done when**: an Agent taking over the plugin can locate the change, respect its public contracts, perform the relevant verification and identify the instructions that need updating.
+**Done when**: an Agent taking over the plugin can locate this change, follow the public contracts, complete the matching verification, and knows which explanations need updating together.

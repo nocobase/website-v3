@@ -1,15 +1,15 @@
 ---
 title: Write your first plugin
-description: Build an announcements plugin in an App, covering its API, page, navigation, tests and registration.
+description: Implement an announcements plugin in an App, going through the complete process of API, page, menu, tests and registration.
 ---
 
-Build an announcements plugin: open Announcements from the App menu, request the plugin's API and display the results. This example uses both Client and Server to show how a plugin adds a feature to an application.
+This guide implements an "announcements plugin": you open Announcements from the App's menu, and the page requests an API the plugin provides and shows the list of announcements. The example uses both Client and Server, so you can see clearly how a plugin adds a feature to an application.
 
-Start with one fixed announcement, without a database table or editing features. Once the flow works, extend it with storage and management pages as needed.
+We first get the whole flow working with one fixed announcement, without a database table or announcement editing. Once it works, extend data storage and management pages as the business needs.
 
-## Use an agent
+## With an Agent
 
-Open your existing App project in an agent and describe the feature:
+Open an Agent in the project directory of an existing App and describe the request like this:
 
 ```text
 Use @nocobase/create-plugin to create an announcements plugin in this App.
@@ -17,33 +17,33 @@ Add a public announcements API and a page in the signed-in navigation.
 Start with one fixed announcement, support English and Chinese UI, test it and register it in the App.
 ```
 
-The steps below explain the manual implementation and help you review an agent's work.
+The steps below explain the manual implementation, and can also be used to understand and check what the Agent produced.
 
-## 1. Prepare the scaffold
+## 1. Prepare the plugin scaffold
 
-Start with an App created by create-app, with dependencies installed and a working development server. See [Create a plugin](create-plugin.md) for generator options and [Plugin structure](plugin-structure.md) for file responsibilities. **Run every command from the App root; file paths are relative to that root.**
+You need an App created with create-app, with dependencies installed and able to start normally. For the generator's options, see [Create a plugin](create-plugin.md); for what each file does, see [Plugin structure](plugin-structure.md). **Run every command below in the App root; all file paths are relative to the App root as well.**
 
-Select page routes, Client translations and Server routes:
+Create the plugin, choosing three capabilities: page routes, client language resources and server routes:
 
 ```bash
 pnpm create @nocobase/plugin@beta announcements \
   --with client.routes --with client.locales --with server.routes
 ```
 
-If the plugin already exists, continue editing it instead of creating it again. It lives in `packages/app-plugin-announcements/`, referenced by the App through `workspace:*`. The scaffold already connects routes and translations to the plugin definitions. Keep its `client/plugin.ts`, `server/plugin.ts` and both `index.ts` files.
+If a plugin with the same name already exists, keep editing it instead of creating it again. The plugin is generated in `packages/app-plugin-announcements/`, and the App depends on it through `workspace:*`. The scaffold has already connected the routes and language resources to the plugin definitions; keep the generated `client/plugin.ts`, `server/plugin.ts` and both `index.ts` files.
 
-Install the NocoBase UI Library page container and header into the plugin, which owns their source:
+Install the page container and header components from the NocoBase UI Library for the page; the plugin maintains their source:
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements exec shadcn add \
   @nocobase/page-container @nocobase/page-header
 ```
 
-Review the plugin's `package.json`. The page uses `react` at runtime: move it from `devDependencies` to `peerDependencies`, keeping the generated version. Move Client dependencies added by the component installer (`cn` in this example) to `peerDependencies` too. Keep the Server's `hono` in `dependencies`, then run `pnpm install` to synchronize dependencies and the lockfile.
+Then check the plugin's `package.json`: the page uses `react` at runtime, so move it from `devDependencies` to `peerDependencies`, keeping the version the scaffold chose; move the client dependencies added by the component installer (`cn` in this example) to `peerDependencies` as well. `hono`, used on the server, stays in `dependencies`. Finally run `pnpm install` to synchronize the dependencies and the lockfile.
 
 ## 2. Provide the announcements API
 
-Add `packages/app-plugin-announcements/shared/announcement.ts` for the type shared by the page and API:
+Add `packages/app-plugin-announcements/shared/announcement.ts`, so the page and the API share the same data type:
 
 ```ts
 export interface Announcement {
@@ -53,7 +53,7 @@ export interface Announcement {
 }
 ```
 
-Add `packages/app-plugin-announcements/server/routes/schemas.ts` to describe an announcement in the API document:
+Add `packages/app-plugin-announcements/server/routes/schemas.ts`, describing the announcement structure the API returns:
 
 ```ts
 import type { ApiSchema } from '@nocobase/app-server/router';
@@ -69,7 +69,7 @@ export const announcementSchema: ApiSchema = {
 };
 ```
 
-Replace the empty routes in `packages/app-plugin-announcements/server/routes/index.ts`:
+Replace the empty route list in `packages/app-plugin-announcements/server/routes/index.ts` with:
 
 ```ts
 import {
@@ -113,11 +113,11 @@ const routes: readonly AppApiRouteContribution<unknown>[] = [apiRoutes];
 export default routes;
 ```
 
-`defineApiRoutes()` contributes routes to the App's API. Write only `/announcements`; the App supplies the API prefix. `describeRoute()` declares the endpoint documentation, and `listResponse()` describes its `{ data, meta }` response.
+`defineApiRoutes()` connects the routes to the App's API; the path only needs `/announcements`, and the App adds the API prefix. `describeRoute()` declares the API documentation, and `listResponse()` describes a list response of the form `{ data, meta }`.
 
-This endpoint deliberately serves fixed, publicly readable sample announcements and declares `security: []`. It requires no credentials. If you later serve internal announcements, add Server authentication and authorization; a page's sign-in requirement does not protect its API. Announcement content comes from the Server rather than being built into the page.
+This example returns one fixed sample announcement that anyone may read, so it explicitly declares `security: []` and requires no sign-in. When you later switch to internal announcements, add authentication and permission checks on the server; the page's sign-in requirement does not protect the API. The data comes from the server, and the page does not depend on the specific content of this announcement.
 
-## 3. Build the page
+## 3. Write the announcements page
 
 Add `packages/app-plugin-announcements/client/pages/announcements.tsx`:
 
@@ -177,13 +177,13 @@ export default function AnnouncementsPage(): ReactElement {
 }
 ```
 
-`useApiClient()` uses the current App's API configuration. Its `path` is relative to the API root; do not hard-code a server address or `/main/api`. The page handles loading, failures, empty results and a populated list, and ignores pending request results after unmounting.
+`useApiClient()` uses the current App's API configuration, and `path` is relative to the API root, so do not hard-code a server address or `/main/api`. The page handles four cases separately: loading, request failed, empty list and a normal list; after leaving the page, it ignores the results of requests that have not finished.
 
-`PageContainer` and `PageHeader` are the components installed into the plugin. Its own `package.json` resolves `#components/*`; these imports do not reach into private App files.
+`PageContainer` and `PageHeader` are the components installed into the plugin in the previous step. `#components/*` here is resolved by the plugin's own `package.json` and does not point to private files of the App.
 
-## 4. Add navigation and translations
+## 4. Add the menu and language resources
 
-Replace `packages/app-plugin-announcements/client/routes.ts`:
+Replace `packages/app-plugin-announcements/client/routes.ts` with:
 
 ```ts
 import {
@@ -206,11 +206,11 @@ const routes: readonly AppClientRouteContribution[] = [
 export default routes;
 ```
 
-`navigation` adds the menu entry, while `componentLoader` loads the page lazily. The route omits the deployment prefix: with the default `/main` base path, the browser URL is `/main/announcements`.
+`navigation` adds the menu entry, and `componentLoader` loads the page lazily. Routes do not include the App's deployment prefix: with the default deployment at `/main`, the address in the browser is `/main/announcements`.
 
-`auth: 'required'` requires sign-in for the page, and `authz: 'skip'` means this example needs no separate page permission. The Server implementation above determines whether the announcements API is public.
+`auth: 'required'` means the page can only be visited after signing in, and `authz: 'skip'` means this example requires no separate page permission. Whether the announcements API is public is decided by the server implementation in the previous section.
 
-Menu and page text come from the plugin's translations. Update `packages/app-plugin-announcements/client/locales/en-US.ts`:
+The menu title and page messages come from the plugin's own language resources. Change `packages/app-plugin-announcements/client/locales/en-US.ts`:
 
 ```ts
 import type { LocaleResource } from '@nocobase/i18n';
@@ -225,7 +225,7 @@ export type AnnouncementsResource = LocaleResource<typeof enUS>;
 export default enUS;
 ```
 
-Update `packages/app-plugin-announcements/client/locales/zh-CN.ts`:
+Change `packages/app-plugin-announcements/client/locales/zh-CN.ts`:
 
 ```ts
 import type { AnnouncementsResource } from './en-US.js';
@@ -239,7 +239,7 @@ const zhCN: AnnouncementsResource = {
 export default zhCN;
 ```
 
-This example supports English and Chinese. Replace `packages/app-plugin-announcements/client/locales/index.ts` below and remove the other untranslated locale files from that directory. Add complete translations and their loaders when supporting more languages.
+This example provides only English and Chinese. Change `packages/app-plugin-announcements/client/locales/index.ts` to the content below, and delete the other untranslated language files in the same directory; when adding a language later, add its text and loader.
 
 ```ts
 import type { LocaleLoaders } from '@nocobase/i18n';
@@ -251,11 +251,11 @@ const locales: LocaleLoaders = {
 export default locales;
 ```
 
-## 5. Test the API and page
+## 5. Verify the API and page
 
-Generated route tests expect no routes. Replace those initial assertions with tests for the implemented behavior.
+The route tests generated by the scaffold assert "no routes" by default. After implementing the feature, replace these assertions with tests of the actual behavior.
 
-Replace `packages/app-plugin-announcements/tests/server/routes.test.ts` to check public reads, response content, API documentation and the absence of a write endpoint:
+Replace `packages/app-plugin-announcements/tests/server/routes.test.ts` to check public reading, the response content, the API documentation, and that the API offers no write operations:
 
 ```ts
 import {
@@ -294,7 +294,7 @@ describe('announcements API', () => {
 });
 ```
 
-Replace `packages/app-plugin-announcements/tests/client/routes.test.ts` to check page and navigation declarations:
+Replace `packages/app-plugin-announcements/tests/client/routes.test.ts` to check the menu and page declarations:
 
 ```ts
 import { describe, expect, it } from 'vitest';
@@ -321,7 +321,7 @@ describe('announcements navigation', () => {
 });
 ```
 
-Add `packages/app-plugin-announcements/tests/client/page.test.tsx` to check requests from the real API client, displayed content, empty results and failures:
+Add `packages/app-plugin-announcements/tests/client/page.test.tsx` to check the request, displayed content, the empty list and the failure message with the real API client:
 
 ```tsx
 import { answerApi, renderWithApp } from '@nocobase/app-testing/client';
@@ -371,23 +371,23 @@ describe('announcements page', () => {
 });
 ```
 
-Keep the other generated tests, format the changes and run the plugin checks:
+Keep the other generated tests, then format and run the plugin's checks:
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements format
 pnpm --filter @nocobase/app-plugin-announcements check
 ```
 
-## 6. Register in the App and view the result
+## 6. Connect it to the App and see the result
 
-Installing dependencies and registering runtime entries are separate steps. Preview the registration plan, then register the plugin:
+Installing dependencies and runtime registration are two different things. Preview the registration plan first, then register the plugin:
 
 ```bash
 pnpm nocobase plugin register @nocobase/app-plugin-announcements --no-install --dry-run
 pnpm nocobase plugin register @nocobase/app-plugin-announcements --no-install
 ```
 
-The plugin is already an installed workspace dependency, so `--no-install` avoids installing it again. The command adds registrations to the App's `client/plugins.ts` and `server/plugins.ts`, preserving existing plugins.
+The plugin is already a local workspace dependency, so `--no-install` skips installing it again. The command adds the corresponding registrations to the App's `client/plugins.ts` and `server/plugins.ts`, keeping the existing plugins.
 
 Start or restart the development server:
 
@@ -395,24 +395,24 @@ Start or restart the development server:
 pnpm dev
 ```
 
-Open the App URL printed by the development server, sign in and choose Announcements. With the default `/main` base path:
+Open the App address shown in the terminal, sign in and click **Announcements**. With the default deployment prefix `/main`:
 
-| Location | Expected result |
+| Location | What you should see |
 | --- | --- |
-| `/main/announcements` | Shows `Welcome` and `Your first plugin is ready.` |
-| `/main/api/announcements` | Returns JSON with `data` and `meta.total`, without signing in |
-| Switch between English and Chinese | Menu and page text change; announcement content remains the data returned by the Server |
+| `/main/announcements` | The page shows `Welcome` and `Your first plugin is ready.` |
+| `/main/api/announcements` | Returns JSON with `data` and `meta.total`, without sign-in |
+| Switching between English and Chinese | The menu and page messages switch, while the announcement text is still the data returned by the server |
 
-Finally, verify the complete App build in another terminal:
+Finally, verify the whole App's build in another terminal:
 
 ```bash
 pnpm build
 ```
 
-The plugin now owns its page, API and translations, and the App loads them through public entries. The local plugin builds and ships with the App without npm publication. Extend it with database migrations, announcement management and permissions as needed; see [Plugin structure](plugin-structure.md) for the relevant directories and entries.
+The page, API and language resources are now all maintained by the plugin, and the App loads them through public entries. Local plugins are built and delivered together with the App, with no need to publish to npm first. Later you can add database migrations, an announcement management page and the matching permissions; for the related directories and entries, see [Plugin structure](plugin-structure.md).
 
-For sharing across Apps with independently managed versions, continue with [Build and publish](publish-plugin.md). Publication is unnecessary when using the plugin only in the current App.
+If you need to share the plugin across several Apps and manage its versions independently, continue with [Build and publish](publish-plugin.md); when it is used only in the current App, there is no need to publish it.
 
-For multiple pages and navigation, continue with [Pages, routes and menus](pages-and-menus.md).
+To organize several pages and navigation, read [Pages, routes and menus](pages-and-menus.md).
 
-Continue with [Plugin declarations and public exports](plugin-declarations.md) to connect runtime declarations, package exports and service calls between plugins.
+Next, you can read [Plugin declarations and public exports](plugin-declarations.md) to understand how the declarations on the three sides, package exports and cross-plugin service calls fit together.

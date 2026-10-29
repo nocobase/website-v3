@@ -1,151 +1,193 @@
 ---
 title: Develop with an agent
-description: Use the application's AGENTS.md and Skills to describe requirements, review implementation and verify real outcomes.
+description: Describe requirements in business terms, let an agent implement and test them using project guidance, and accept the work based on real results.
 ---
 
-When developing with an agent, explain what users should accomplish, the business constraints and how you will judge completion. The agent uses the project's conventions to locate code, implement changes and verify the result. You do not need to know an internal API before you can describe the requirement.
+When developing with an agent, the responsibilities are clear: **you** explain what is needed, the business rules and completion criteria, and make business decisions; **the agent** follows project guidance to find relevant code, implement and test the changes, and report results accurately. You do not need to identify internal APIs before describing a requirement.
 
-This guide assumes you already have an application. Otherwise, start with [Create an app](../getting-started/create-app.md). Here, an agent means a coding agent that helps develop the application; Agents used by business users inside an application are a separate capability.
+This guide assumes you already have an application. Otherwise, start with [Create an app](../getting-started/create-app.md). Here, “agent” means a coding agent that helps develop the application. Business agents that act within application permissions are a separate capability; see [Agents](../using-plugins/agents-and-knowledge/agents.md).
 
-## Start in your application project
+## A development cycle
 
-Start the agent in the application root so it can read the source, `package.json`, `AGENTS.md` and `.agents/`. For an existing project, identify the working directory and current features so it does not create another application.
+1. Commit the current code so you can inspect this cycle's changes separately.
+2. [Describe the requirement](#describe-the-requirement): the outcome, rules, boundaries and completion criteria.
+3. The agent implements and tests it, then reports what changed and what was verified.
+4. [Check the result](#check-the-result): try it in a browser and review the code changes.
+5. If something is wrong, provide reproduction steps and ask the agent to fix it. Otherwise, commit.
+6. [Record new conventions in project rules](#keep-project-conventions) so later sessions can follow them.
 
-You can start with:
+## Start a session
+
+Start the agent in the application root. Coding tools read `AGENTS.md` at session startup and use it to find project rules and skills. The template's `CLAUDE.md` references the same file for Claude Code.
+
+> [!NOTE]
+> If you just created the application in the same session, some coding tools need a new session to load its skills. If the agent cannot find `nocobase-app-development`, start a new session in the application directory.
+
+When working in a project for the first time or taking over someone else's project, you can start with:
 
 ```text
-Please continue development in the current application. Read its AGENTS.md and the Skills relevant to this task first.
-Understand the existing implementation and uncommitted changes. Preserve existing features and my changes.
-Prefer existing plugins and components when they meet the requirement.
+Continue development in the current application. Read AGENTS.md first and consult the skills relevant to this task.
+Inspect the existing implementation and uncommitted changes, preserving existing features and my edits.
+Use existing plugins or components when they meet the requirement.
 ```
 
-This establishes context; you do not need to repeat the entire request for every small edit. For deployment, database changes or account operations, also identify the target environment and permitted scope.
+You do not need to repeat this for every small change.
 
-## Project guidance and development rules
+**State what is authorized.** Code changes and local development database work can usually be delegated freely. For deployment, changes to secrets in `config.yml`, database resets or rollbacks, and real accounts, specify what is allowed and in which environment. Commands such as `db reset` and `db rollback` refuse to run in a non-interactive terminal without `--force`. In that situation, the agent should ask you rather than add `--force` itself.
 
-The application carries its development conventions. An agent should read the guidance for the installed version rather than applying rules from another project or version.
+**Decide where the application runs.** Run `pnpm dev` in your own terminal or ask the agent to start it. Processes started by the agent stop when the session ends. Open the full `Local:` URL printed by `pnpm dev`, including a trailing path such as `/main/`.
 
-| Location | Content | Maintenance |
+## Describe the requirement
+
+A requirement that an agent can act on usually answers five questions:
+
+| What to explain | Example |
+| --- | --- |
+| Who uses it, and where | Team members view and edit tasks in the task list |
+| Desired outcome | A new task can be assigned to one active user or left unassigned |
+| Rules and boundaries | Only active existing users are eligible; preserve old tasks and existing permissions |
+| Failure behavior | If the assignee has been disabled, preserve the title and ask for another selection |
+| Completion criteria | The assignee persists after refresh; both the page and API reject unauthorized operations |
+
+State unresolved business decisions explicitly, such as “We have not decided whether old tasks should receive an assignee.” Do not make the agent guess a default. Let it use project guidance to choose file locations, components and internal APIs.
+
+### Example: add task assignees
+
+This request applies to an application that already lists and creates tasks but does not yet support assignees:
+
+```text
+Add assignees to the existing task application.
+
+When creating a task, let users select one active existing user or leave it unassigned.
+Show the assignee in the task list, or “Unassigned” when there is none.
+Keep old tasks, do not assign them automatically, and do not change anyone's roles or permissions.
+
+If the selected user is disabled before saving, preserve the title and ask me to choose again.
+After a successful save, refreshing the page must still show the correct assignee.
+Follow the current application's interface style and provide English and Chinese copy.
+
+Follow project guidance and use isolated test data to verify creation, unassigned tasks, disabled users and denied access.
+Do not add reassignment, notifications or “My tasks” in this cycle.
+Tell me what changed, what was verified and what remains unverified.
+```
+
+The request describes behavior a user understands. Let the agent follow application conventions for fields, relationships, permission policies and selectors. Supply existing API contracts or designs when available; you do not need to copy implementation details into the request.
+
+### Break down larger requirements
+
+“Build a complete project management system” leaves many business decisions unresolved. Complete a small, usable and verifiable result first, then extend it.
+
+For a change spanning several areas, you can ask for a plan before implementation:
+
+```text
+Do not change code yet. Read the relevant implementation and list what needs to change, which business decisions I need to make, and how you will verify the result.
+```
+
+For example, adding projects to tasks can proceed in three steps:
+
+1. **Data:** define the project/task relationship, preserve old tasks and add relationship constraints, verified by database tests.
+2. **API:** query and create projects and change a task's project, checking input and permissions on both sides.
+3. **Pages:** add a project list, creation dialog and task project selector; verify loading, saving, failure feedback and keyboard use.
+
+State the scope and completion criteria for each step. Completing the data step does not let users manage projects through the UI; passing migration tests is not the same as delivering that feature. Small features can be completed in one cycle without a separate request for each file.
+
+## Check the result
+
+### Try it first
+
+Act as a user in the browser: create, edit, refresh and check again, then use an ordinary account to verify permissions. A successful screenshot is insufficient: hiding a button does not prove the API rejects unauthorized requests, and a success message does not prove data was saved.
+
+### Review the changes
+
+Use `git status` and `git diff`, or ask the agent to list changed files and explain why. Focus on:
+
+- **Old data and existing features:** are they preserved? Are schema changes new migrations rather than edits to merged migrations?
+- **Permissions:** are page access, business actions and data access handled separately? Were permissions granted to all users just to make the feature work?
+- **Reuse:** are existing plugins and components used instead of rebuilding permissions or notifications? Did unrelated layouts, themes or features change?
+- **Interaction details:** are field errors next to their inputs? Does failed saving preserve entered values?
+- **APIs and copy:** do new APIs appear in the API document under the application base path, such as `/main/api/swagger`? Is English and Chinese copy complete?
+
+### Separate verification results
+
+Ask the agent to report automated checks and actual usage separately, with the scope each check covers:
+
+| Layer | Checks | Common commands |
 | --- | --- | --- |
-| `AGENTS.md` | Entry rules and an index of further guidance | Maintain it with the application and keep it short |
-| `.agents/rules/` | Application-specific structure, business conventions and customization notes | Update when conventions change and link from `AGENTS.md` |
-| `.agents/skills/` | Development, upgrade, deployment and capability guidance supplied by packages and plugins | Synchronize from installed dependencies; do not edit generated copies |
+| Static checks | Formatting, types and project conventions | `pnpm lint`, `pnpm typecheck` |
+| Database and API tests | Persistence, migrations, validation, authorization and data state after failures, using isolated data | `pnpm test --project node` |
+| Page and component tests | Forms, loading states, feedback and user input | `pnpm test --project client` |
+| Browser use | Complete operations in the running app, refresh to confirm, and verify permissions with ordinary accounts | `pnpm test:e2e`, or manual use |
 
-Record conventions that apply across tasks in `.agents/rules/` and link them from `AGENTS.md`. For example, once the team has agreed on business-date time zones, state transitions or permission boundaries, document them in `.agents/rules/business.md` and add this to the entry file:
+Checks need to cover the change and affected behavior. `pnpm check` runs all checks and the build; it is unnecessary for every small edit. A successful exit is not proof that verification ran: the default template also exits successfully when no tests are found. Read the report for actual files, case counts and skipped tests.
+
+Use the real application, database and permission services whenever they can verify a rule. Use mocks only for boundaries that cannot be exercised directly, such as external services or browser-dependent behavior in an environment without a browser, and explain what was mocked. Do not mock the business behavior under test. Use isolated data; never clear application business data just to pass tests. See [Testing and acceptance](testing-and-acceptance.md) for techniques and [Build your first app](../tutorials/build-your-first-app.md) for a complete task example.
+
+If the agent lacks an environment or account to verify a step, it should explain what is missing and how far it got. “The code looks correct” cannot replace an actual result.
+
+### Report problems clearly
+
+Give reproduction steps and expected behavior instead of just saying something is wrong:
+
+```text
+When signed in as a read-only member, the task list hides the New task button, but a direct create request still succeeds.
+The member should be unable to create tasks through either the page or the API.
+Check server authorization, fix it, verify with the same ordinary account, and confirm administrators can still create tasks.
+```
+
+## Keep project conventions
+
+A new session starts from what is written in the repository; agreements made only in conversation do not persist into the next session. Record lasting conventions in the project:
+
+| Location | Contents | Maintenance |
+| --- | --- | --- |
+| `AGENTS.md` | Rules for all tasks and an index of other rule files | Keep it concise: the entire file loads each session. Template tests enforce a 32 KB limit and check its links |
+| `.agents/rules/` | Application-specific conventions. The template includes workspace, component, page-shell, build and deployment rules | Update rules as conventions change and register them in the `AGENTS.md` index |
+| `.agents/skills/` | Skills supplied by dependencies | Automatically synchronized during dependency installation; do not edit directly |
+
+Write rules when a previously corrected problem recurs, or when the team makes a decision that applies across tasks, such as a business-date timezone, state transition order or permission boundary. Ask the agent to record it:
+
+```text
+Record this convention in .agents/rules/business.md: business dates use Asia/Shanghai,
+and tasks can only move from To do → In progress → Done.
+Add the file to the AGENTS.md index and explain when it should be read.
+```
+
+The index gains an entry such as:
 
 ```markdown
-## Project rules
-
-- [Business rules](.agents/rules/business.md): business dates, state transitions and permission conventions.
+| [.agents/rules/business.md](.agents/rules/business.md) | When working on business dates, task states or permission boundaries |
 ```
 
-**Application rules belong in the application; shared rules are maintained with their packages.** Save agreed conventions with the code so another session or developer can follow them. Maintain dependency-provided guidance in its source package, then synchronize it into the application.
+Commit rule files alongside code so later sessions and teammates can follow them.
 
-## Use and synchronize Skills
+## Where skills come from
 
-For feature development, start with `.agents/skills/nocobase-app-development/SKILL.md` and read the references relevant to the task. Read a plugin's Skill when using its capabilities. Core upgrades and deployment have separate guidance; choose the Skills for the current task.
+Skills are development instructions shipped with packages, explaining how to work with the installed version. Common application skills include:
 
-Skills come from currently installed dependencies. After installing or upgrading a relevant package, confirm that its guidance has been synchronized so the agent reads instructions matching the installed version. The current template synchronizes Skills in `postinstall`. If installation scripts were skipped or the directory is missing, run this from the application root:
+| Skill | Purpose |
+| --- | --- |
+| `nocobase-app-development` | Entry point for everyday development, linking to pages, APIs, migrations, testing and other references by task |
+| `nocobase-app-plugin-development` | Develop plugins inside an application |
+| `nocobase-app-upgrade` | Upgrade NocoBase and reconcile template changes; see [Upgrade NocoBase Core](upgrade-nocobase-core.md) |
+| `nocobase-deployment` | Build a deployment archive and deploy to a server |
+| Plugin-provided skills | For example, `nocobase-app-plugin-mail`. Read a plugin's skill before using its capabilities to avoid rebuilding what it already provides |
+
+`pnpm install` synchronizes skills automatically, keeping them aligned with installed packages. If scripts were skipped or `.agents/skills/` is missing or stale, synchronize manually from the application root:
 
 ```bash
 pnpm nocobase skills sync
 ```
 
-To inspect the synchronization plan first, run `pnpm nocobase skills sync --dry-run`. For more options, see [Plugins and Skills in the command-line reference](../reference/cli.md#plugins-and-skills).
+Add `--dry-run` to preview the synchronization plan. See [CLI reference](../reference/cli.md#plugins-and-skills) for more options. If a plugin's skill is still missing, confirm the plugin is installed, registered and actually supplies one.
 
-After synchronization, check the command output and the relevant `SKILL.md`, and ask the agent to reread the guidance for the task. If a plugin's Skill is still missing, confirm that the plugin is installed, registered as required, and actually provides a Skill. Synchronized copies follow their source packages; keep application-specific additions in `.agents/rules/`.
+Files in `.agents/skills/` are generated and overwritten on the next synchronization. Put application-specific additions in `.agents/rules/`.
 
-## Describe and break down requirements
+## Deliver and continue
 
-An actionable request usually answers five questions:
+Before finishing a cycle, ask the agent to summarize changes, checks and their coverage, unverified items, and how to try the result. Once accepted, commit the code and any new rule files.
 
-| What to explain | Example |
-| --- | --- |
-| Who uses it and where | Team members view and change tasks in the task list |
-| Desired outcome | A new task can have one assignee or remain unassigned |
-| Rules and boundaries | Choose only active existing users; preserve old tasks and permissions |
-| Failure behavior | If the user becomes inactive, preserve the task title and ask for another selection |
-| Acceptance result | The assignee remains after refresh; denied users cannot act through either the page or API |
+You can start a new session for the next cycle. The code and rules are in the repository; explain what is complete and what to add or adjust next.
 
-State unresolved business decisions explicitly. “We have not decided whether to assign old tasks” is better than leaving the agent to invent a default user. File locations, component names and internal methods can come from the project guidance.
+Committing code, releasing a version and deploying to an environment are separate actions. Passing local tests does not mean the feature is live. For deployment, see [Choose a deployment method](../deployment/choose-a-deployment-method.md).
 
-### A request you can use
-
-This request applies to an application with a task list and creation form, before assignee support has been added:
-
-```text
-Please add assignees to the existing task application.
-
-When creating a task, I can choose one active existing user or leave it unassigned.
-Show the assignee in the task list, or “Unassigned” when there is none.
-Preserve old tasks without assigning them automatically, and do not change anyone's roles or permissions.
-
-If the selected user becomes inactive before saving, retain my task title and ask me to choose again.
-After saving and refreshing, the correct assignee should remain visible.
-Follow the application's current visual style and provide English and Chinese text.
-
-Implement this using the project's guidance. Use isolated test data to verify creation, unassigned tasks, inactive users and denied access.
-Do not add reassignment, notifications or “My tasks” in this step.
-Report what changed, what you verified and what remains unverified.
-```
-
-This describes behavior a user can understand. Let the agent follow the application's conventions for fields, relations, permission policies and selectors. If a fixed API contract or existing design matters, provide that document as context rather than copying every implementation detail into the prompt.
-
-### Split larger requests into verifiable changes
-
-“Build a complete project management system” leaves too many business questions unanswered. Deliver a small, complete outcome before extending the next capability.
-
-For project assignments on tasks, one possible sequence is:
-
-1. **Data:** define the project relationship, old-task preservation and constraints; verify them with database tests.
-2. **Business APIs:** query and create projects and change task assignments; verify input and data permissions on both sides.
-3. **Interactions:** add the project list, creation dialog and task project selector; verify loading, saving, failures and keyboard use.
-
-State the scope and completion criteria at each step. If only the data layer is ready, say that the UI cannot use it yet. Passing a migration test does not mean users can manage projects. A small feature can also deliver all these parts together; you do not need a separate request for every file.
-
-## Review the implementation and verify results
-
-Check observable behavior first, then conformity with project conventions. Ask for a short change description with relevant file references, covering:
-
-- Whether old data and existing behavior remain intact, with new migrations for schema changes.
-- Whether page access, business actions and data scopes are handled separately, without unintended grants.
-- Whether existing plugins and components are used, and whether unrelated layouts, themes or features changed.
-- Whether field errors appear beside the correct inputs and failed saves preserve input.
-- Whether new endpoints appear in the application API document and both languages are covered.
-
-A successful screenshot is not enough. A hidden button does not prove that the endpoint rejects unauthorized calls; a success message does not prove that the database saved the change.
-
-### Verify real outcomes
-
-Ask the agent to distinguish automated checks from actual application interaction. Cover the change and affected existing behavior without treating unrelated full-suite checks as a mandatory step after every edit.
-
-| Verification layer | What it establishes |
-| --- | --- |
-| Static checks | Changed code follows formatting, types and project conventions |
-| Database and endpoint tests | Isolated data verifies persistence, migrations, validation, authorization and state after failure |
-| Page and component tests | Forms, loading, feedback and user input behave as expected |
-| Browser interaction | Operations work in the running application, survive refresh, and enforce ordinary-user permissions |
-
-Use the real application, database and authorization services for business rules when possible. Use substitutes only at necessary boundaries such as external transport or missing browser capabilities in the test environment, and explain what was replaced. Do not mock the business behavior being verified.
-
-Browser verification should use the application's actual printed entry URL and dedicated test accounts. Database tests should use isolated data; they must not clear current business data just to pass. See [Build your first app](../tutorials/build-your-first-app-agent-first.md) for a concrete example.
-
-When reporting a problem, provide the reproduction path and expected result:
-
-```text
-After signing in as a read-only member, the task list hides New task, but a direct creation request still succeeds.
-A read-only member should be unable to create tasks through either the page or the API.
-Please check server authorization, fix it, and verify using that same ordinary account. Confirm that an administrator can still create tasks.
-```
-
-If the agent lacks an environment or account to verify a step, it should state what is missing and what has been checked. Code inspection is not a substitute for reporting actual verification results.
-
-## Deliver and iterate
-
-A completed change should leave reviewable code and verification evidence. Ask for a concise report of changes, passing checks, unverified cases and how to run or view the result. Record new application conventions in `.agents/rules/`, and maintain tests alongside the business code.
-
-For the next iteration, explain what already works and what you want to add or change. Carry forward the agreed business rules and acceptance results, and verify the behavior affected by the new change. When reporting a problem, give the agent reproduction steps and the expected behavior.
-
-Committing code, publishing a version and deploying to an environment are different actions. Follow the scope agreed for the task; passing local tests does not mean the application has been deployed. For production delivery, continue with [Choose a deployment method](../deployment/choose-a-deployment-method.md).
-
-The same data, API, UI and acceptance conventions apply when developing manually. Each topic's Without an agent section supplies the corresponding code and steps.
+The same requirements, review and acceptance methods apply when writing code yourself. Individual topics provide code and steps under “Without an agent”.

@@ -1,5 +1,5 @@
 ---
-title: Build your first app
+title: Build your first app (V2)
 description: Build a team task app with an AI agent, create and assign tasks, set due dates, and try different member permissions.
 ---
 

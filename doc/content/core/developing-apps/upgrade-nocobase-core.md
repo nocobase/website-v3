@@ -187,7 +187,7 @@ Production migrations belong to the deployment procedure. Do not point a develop
 
 ## Verify the upgrade
 
-Core upgrades can affect the entire application. For this example, review the existing project scripts and include the task suite described in [Build your first app](../tutorials/build-your-first-feature-agent-first.md):
+Core upgrades can affect the entire application. For this example, review the existing project scripts and include the task suite described in [Build your first app](../tutorials/build-your-first-app-agent-first.md):
 
 ```bash
 pnpm typecheck
@@ -206,7 +206,7 @@ After database preparation, run `pnpm dev` and use its printed `Local:` URL to v
 - Ordinary users can access only permitted pages and records. Read-only users still cannot write, including through direct API calls.
 - Data survives refreshes and restarts. Affected plugin features, background jobs, and integrations pass their corresponding checks.
 
-Verify the features your application actually implements. Configure a separate test application and credentials, then run `pnpm test:e2e` for browser tests; see [Build your first app](../tutorials/build-your-first-feature-agent-first.md) for setup. `pnpm test` does not include browser tests.
+Verify the features your application actually implements. Configure a separate test application and credentials, then run `pnpm test:e2e` for browser tests; see [Build your first app](../tutorials/build-your-first-app-agent-first.md) for setup. `pnpm test` does not include browser tests.
 
 ## Deploy and recover
 

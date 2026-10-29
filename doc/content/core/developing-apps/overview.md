@@ -3,7 +3,7 @@ title: Application development overview
 description: Understand application code, templates and plugins, and follow a feature from its page through an API and service to the database.
 ---
 
-Developing a NocoBase application means implementing business rules on top of its existing structure and capabilities: how data is stored, who can act on it, and how the interface presents the result. This section explains those topics for use during development. To build a feature from start to finish first, follow the [tutorial](../tutorials/build-your-first-feature-agent-first.md).
+Developing a NocoBase application means implementing business rules on top of its existing structure and capabilities: how data is stored, who can act on it, and how the interface presents the result. This section explains those topics for use during development. To build a feature from start to finish first, follow the [tutorial](../tutorials/build-your-first-app-agent-first.md).
 
 The following sections use “assign a task to a project” to explain each responsibility. You do not need to run the example to read this overview.
 
@@ -123,4 +123,4 @@ The first two guides run commands in the application environment; the third prov
 | Write maintenance commands or register plugin commands | [Write application commands](application-commands.md), [Integrate plugin commands](plugin-commands.md) |
 | Let users or agents call business APIs from a terminal | [Provide an application CLI client](cli-client.md) |
 | Choose verification methods and complete acceptance | [Testing and acceptance](testing-and-acceptance.md) |
-| Complete a working feature first | [Build your first app](../tutorials/build-your-first-feature-agent-first.md) |
+| Complete a working feature first | [Build your first app](../tutorials/build-your-first-app-agent-first.md) |

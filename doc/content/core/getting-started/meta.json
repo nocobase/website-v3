@@ -15,7 +15,11 @@
     },
     {
       "type": "page",
-      "path": "../tutorials/build-your-first-feature-agent-first"
+      "path": "../tutorials/build-your-first-app"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/build-your-first-app-agent-first"
     }
   ]
 }

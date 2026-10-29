@@ -3,7 +3,7 @@ title: Upload and preview an application
 description: Upload an application archive to an existing Studio, configure its variables, and start a preview for your team to try and accept.
 ---
 
-If you have a local application and want your team to try it in Studio, build and upload an archive manually. This guide uses Core's [task application](../../core/tutorials/build-your-first-feature.md) as an example and also applies to your own apps. Replace the example application names, paths, and business acceptance checks.
+If you have a local application and want your team to try it in Studio, build and upload an archive manually. This guide uses Core's [task application](../../core/tutorials/build-your-first-app.md) as an example and also applies to your own apps. Replace the example application names, paths, and business acceptance checks.
 
 This guide assumes you have [installed Studio](../setup/install.md). The development machine builds the artifact, and Studio manages uploaded releases, the preview environment, configuration, and application processes. For automatic PR previews, see [Connect CI](../setup/ci.md). For acceptance after trying the app, see [Accept the result](../use/accept.md).
 
@@ -103,7 +103,7 @@ Use the uploaded release ID, not its version string. If waiting times out, inspe
 
 Use the app overview's actual access URL. Studio's management page and the deployed app have separate entry paths, for example `/main/` and `/tasks-tutorial/`. Sign in with the new app's own administrator. An empty task list is expected with a new database. The current getting-started example initializes task roles through required seeds; development team users and role assignments are not copied with the release.
 
-Create, complete and reopen a task; refresh. Configure a normal read-only member as described in [Build your first app](../../core/tutorials/build-your-first-feature.md) and test rejected writes. Restart only this application in Studio, then verify the same record survives. The CLI equivalent is `nb-studio --profile tutorial app restart tasks-tutorial`.
+Create, complete and reopen a task; refresh. Configure a normal read-only member as described in [Build your first app](../../core/tutorials/build-your-first-app.md) and test rejected writes. Restart only this application in Studio, then verify the same record survives. The CLI equivalent is `nb-studio --profile tutorial app restart tasks-tutorial`.
 
 ## When the repository is linked
 

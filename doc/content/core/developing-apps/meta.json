@@ -7,7 +7,17 @@
     },
     {
       "type": "page",
+      "path": "overview-2",
+      "title": "Application development overview (rewrite)"
+    },
+    {
+      "type": "page",
       "path": "develop-with-an-agent"
+    },
+    {
+      "type": "page",
+      "path": "develop-with-an-agent-2",
+      "title": "Develop with an agent (rewrite)"
     },
     {
       "type": "folder",

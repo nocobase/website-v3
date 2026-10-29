@@ -7,7 +7,17 @@
     },
     {
       "type": "page",
+      "path": "what-is-core-2",
+      "title": "Meet NocoBase Core (rewrite)"
+    },
+    {
+      "type": "page",
       "path": "create-app"
+    },
+    {
+      "type": "page",
+      "path": "create-app-2",
+      "title": "Create an app (rewrite)"
     },
     {
       "type": "page",
@@ -20,6 +30,11 @@
     {
       "type": "page",
       "path": "../tutorials/build-your-first-app-agent-first"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/build-your-first-app-3",
+      "title": "Build your first app (rewrite)"
     }
   ]
 }

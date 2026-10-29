@@ -7,7 +7,17 @@
     },
     {
       "type": "page",
+      "path": "overview-2",
+      "title": "应用开发概览（重写稿）"
+    },
+    {
+      "type": "page",
       "path": "develop-with-an-agent"
+    },
+    {
+      "type": "page",
+      "path": "develop-with-an-agent-2",
+      "title": "和 Agent 一起开发（重写稿）"
     },
     {
       "type": "folder",

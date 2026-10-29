@@ -18,11 +18,7 @@ public origin, listening on `0.0.0.0`, default locale `en-US`.
 - Application CLI client 0.1.0-beta.17; Runner 0.1.0-beta.20;
   Codex 0.165.0, actual Runner model `gpt-6-astra`.
 
-Source is prepared under the example repository's `apps/agents-guide` directory.
-No published example commit is claimed. Until it is published, the existing
-`public/assets/core/downloads/agents-doc-demo.zip` URL remains the source download;
-its root directory and README now describe `agents-guide`. Do not invent a commit
-link or replace deprecated repository URLs in unrelated guides.
+Source is published at [apps/agents-guide](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide) in commit `b91adc8bcd89a238c84f9e62026f250b4833615a`. Both guides link to this fixed version and include a source section at the end. The existing `public/assets/core/downloads/agents-doc-demo.zip` download is retained; all 429 application files match the published commit. The publication updates the README only; application runtime checks remain those recorded below. No credentials, runtime storage, dependencies, or build output were published.
 
 ## Actual walkthrough
 

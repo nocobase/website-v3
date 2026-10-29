@@ -1,12 +1,13 @@
 ---
 title: Tables and fields
+description: Declare tables and fields with CollectionBuilder in migrations, choose field types by business meaning, and plan later schema evolution and naming.
 ---
 
-Declare Collections and fields with CollectionBuilder, placing persistent schema changes in migrations. Business semantics determine types, nullability, uniqueness and indexes; verify them on target databases.
+Tables and fields are declared with CollectionBuilder, and persistent schema changes go into migrations. Field types, nullability, uniqueness and indexes should follow business meaning and be verified on the target database.
 
 ## Creating the order model
 
-Save this as `database/main/migrations/202610270001_create_orders.ts`:
+Save the following migration as `database/main/migrations/202610270001_create_orders.ts`:
 
 ```ts
 import { defineMigration } from '@nocobase/db';
@@ -30,30 +31,30 @@ export default defineMigration({
 });
 ```
 
-Inspect `pnpm nocobase db apply --dry-run` before applying. `down()` deletes the order table and its data; execute it only when that data loss is acceptable for the rollback.
+Review the plan with `pnpm nocobase db apply --dry-run` first, then run `db apply` once you have confirmed it. `down()` drops the whole order table along with its data; run it only in rollback scenarios where losing that data is acceptable.
 
 ## Choosing field types
 
-| Data | Type and consideration |
+| Data | Type and notes |
 | --- | --- |
-| Incrementing integer | `increments()` with an explicit name |
-| Exact money | `decimal()` with precision/scale and precision-preserving values |
-| Large identifiers | `bigInt()`, commonly decimal strings across JSON |
-| Text and status | `string()` / `text()` plus allowed-state validation |
-| Boolean | `boolean()` with explicit nullability/defaults |
-| Calendar values | `date()` / `time()` / `datetime()` |
-| Instants | `datetimeTz()` with UTC semantics |
-| Supplemental structured values | `json()`, not a replacement for relationships |
+| Auto-incrementing integer | `increments()`, with the field name given explicitly |
+| Exact amounts | `decimal()`, with precision and scale; precision is preserved on read and write |
+| Large integer identifiers | `bigInt()`, usually passed as decimal strings in JSON |
+| Text and statuses | `string()` / `text()`; validate the allowed status values separately |
+| Booleans | `boolean()`, with explicit nullability and default value |
+| Calendar dates and times | `date()` / `time()` / `datetime()` |
+| Points in time | `datetimeTz()`, handled with UTC time semantics |
+| Supplemental structured data | `json()`; not a replacement for relationships and foreign keys |
 
-No automatic id or timestamp fields are added. Declare them explicitly; do not assume methods such as `timestamps()` or `jsonb()` exist.
+The framework does not add `id` or timestamp fields automatically; declare the ones you need. There are currently no shorthands such as `timestamps()` or `jsonb()`, so do not assume they exist.
 
 ## Evolution and naming
 
-Add fields and indexes through new `alterCollection()` migrations. Adding non-null fields to populated tables needs a plan for defaults, backfills and constraints, beyond successful creation on an empty database.
+To add fields or indexes later, write a new `alterCollection()` migration. When adding a non-null field to an existing large table, plan the default value, the backfill and the order in which constraints take effect first; succeeding on an empty database is not enough.
 
-Builder and Repository use logical names; connection naming handles physical prefixes and casing. Native dialect types narrow portability and need an explicit support scope.
+Builder and Repository both use logical names. Physical naming rules such as table prefixes and underscores are handled by the connection's naming configuration. Native dialect types reduce portability and need an explicit range of supported databases.
 
-Metadata and physical structure form the model together. Editing generated snapshots does not change schema. Continue with [Relationships](relations.md) and [Migrations](migrations.md).
+The metadata produced by migrations and the physical structure together form the model; do not edit generated snapshots to simulate schema changes. For relations, see [Relationships and associations](relations.md); for managing change history, see [Database migrations](migrations.md).
 
 ## Interfaces and implementation
 

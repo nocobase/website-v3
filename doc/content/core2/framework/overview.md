@@ -34,7 +34,7 @@ The menu is organized by functionality. Each guide explains a package's mechanis
 | `@nocobase/logging` | Structured logs, outputs and rotation | [Logging](support/logging.md) |
 | `@nocobase/snowflake` | IDs based on time, workers and sequences | [ID generation](support/ids.md) |
 
-The database has a chapter of its own, which you can read in order: connections and dialects, modeling, reads and writes, relations, transactions, migrations and seeds. For creating tables and initial data in an application, see [Tables and initial data](../developing-apps/data-models-and-migrations.md); for declaring database resources in a plugin, see [Database resources and migrations](../extension-development/database-and-migrations.md).
+The database has a chapter of its own, which you can read in order: connections and dialects, modeling, reads and writes, relations, transactions, migrations and seeds. For creating tables and initial data in an application, see [Create tables and initialize data](../developing-apps/data-models-and-migrations.md); for declaring database resources in a plugin, see [Database resources and migrations](../extension-development/database-and-migrations.md).
 
 ## Using packages in applications and plugins
 

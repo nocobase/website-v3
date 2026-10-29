@@ -1,10 +1,11 @@
 ---
 title: Connections and database dialects
+description: Learn how to create a database connection on its own, configure multiple connections in an application, tell managed from external databases, and diagnose dialect issues.
 ---
 
-Connections bind logical database capabilities to a database and namespace. A manager can own multiple connections with independent dialects, transactions and model resolution.
+A connection binds logical database capabilities to a specific database and namespace. One manager can hold several connections, each with its own dialect, transactions and model resolution.
 
-## Independent connection
+## Creating a connection on its own
 
 ```ts
 import { createDatabaseManager } from '@nocobase/db';
@@ -23,27 +24,27 @@ try {
 }
 ```
 
-In-memory SQLite suits isolated tests and disappears on close. Production applications resolve their existing manager instead of creating pools per request.
+In-memory SQLite suits isolated tests; its data disappears when it is closed. Production applications should get the manager from the existing container rather than creating a connection pool for each request.
 
-The core manager does not scan dialect packages. Independent consumers supply factories or a `drivers` registry. The application runtime asynchronously loads configured installed official dialects before creating its manager.
+The core manager does not scan for dialect packages. Standalone code supplies dialect factories explicitly, or registers factories in `drivers` first and then uses declarative configuration. The application runtime asynchronously loads the installed official dialects named in its configuration before creating the manager.
 
-## App configuration and multiple connections
+## Application configuration and multiple connections
 
-Use `database.default` and `database.connections.<name>`, with resources under `database/<name>/`. `db.connection('analytics')` and `db.repository('events', 'analytics')` select named connections; omission uses the default.
+Applications configure connections with `database.default` and `database.connections.<name>`, and organize database resources under `database/<name>/`. `db.connection('analytics')` and `db.repository('events', 'analytics')` select a named connection; when the name is omitted, the default connection is used.
 
-A connection is not a distributed transaction coordinator. Its transaction does not atomically commit work on another connection.
+A connection is not a coordinator for cross-database transactions. A transaction only covers the connection in its callback and does not also commit work on another connection.
 
 ## Managed and external databases
 
-`schemaManagement: managed` permits framework schema management. `external` restricts framework DDL and migrations and requires supplemental metadata; applications can maintain `database/<connection>/metadata/`. It does not make data operations read-only: database credentials and business policies still govern access.
+`schemaManagement: managed` lets the framework manage the database structure. For an external database, `external` prevents the framework from running DDL and migrations, and supplemental metadata is maintained separately; applications can use the `database/<connection>/metadata/` directory. This does not make reads and writes read-only; they remain subject to the database account and business policies.
 
 ## Dialect differences and diagnosis
 
-Configure SQLite filenames, network addresses, Oracle serviceName, TLS and native dependencies for the chosen dialect. Check installed drivers, fields and environment precedence before connectivity. Changing dialects does not repair or migrate existing data.
+SQLite files, the host and port of network databases, Oracle's serviceName, TLS parameters and native dependencies are all configured per dialect. When diagnosing, check the installed packages, the connection fields and environment variable overrides first, then whether the database is reachable; do not try to "fix" existing data by switching dialects.
 
-`config check --no-connect` checks configuration only; connection checks do not run migrations. See [Configuration](../../reference/configuration.md) and [Database support](../../reference/compatibility.md).
+`config check --no-connect` checks configuration only, and connection checks do not run migrations. See the [Configuration reference](../../reference/configuration.md) and [Database support and version compatibility](../../reference/compatibility.md).
 
-See [Multiple database connections](../../developing-apps/multiple-databases.md) for adding an application connection, and [Connect an existing database](../../developing-apps/existing-databases.md) for external configuration, metadata files and refresh steps.
+To add a second connection to an application, see [Multiple database connections](../../developing-apps/multiple-databases.md); for configuring an external database, its metadata files and refresh steps, see [Connect an existing database](../../developing-apps/existing-databases.md).
 
 ## Interfaces and implementation
 

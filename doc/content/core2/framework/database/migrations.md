@@ -1,8 +1,9 @@
 ---
 title: Database migrations
+description: Record schema evolution and upgrade backfills with defineMigration(), and learn the entries of the migration context and how to maintain and release migration history.
 ---
 
-Migrations record fixed database version changes, including schema evolution and upgrade backfills. App resources live in `database/<connection>/migrations/`; plugins declare their database resources.
+A migration records a fixed change between database versions, including schema evolution and data backfills during upgrades. Application migrations live in `database/<connection>/migrations/`; plugin migrations are connected through database resource declarations.
 
 ## Defining a change
 
@@ -20,28 +21,28 @@ export default defineMigration({
 });
 ```
 
-Save it as `202610270003_add_order_note.ts`, matching name. Dropping note also deletes its contents, so assess data preservation before production rollback.
+Save it as `202610270003_add_order_note.ts`, matching its name. In the example, rolling back by dropping the note field also deletes the existing notes; rollbacks in production must take data retention into account.
 
-Default-export `defineMigration()` with a name unique across all sources. Transaction mode defaults to `auto`. Declare `irreversible: true` when no reliable reversal exists rather than providing an empty successful down.
+The file default-exports the result of `defineMigration()`. Migration names must be unique across all sources, and `transaction` defaults to `auto`. For a migration that cannot be reversed reliably, declare `irreversible: true` instead of providing a down that appears to succeed but does nothing.
 
-## Migration context
+## Using the migration context
 
 | Entry | Purpose |
 | --- | --- |
 | `builder` | Schema and metadata changes |
-| `query` | Set-based backfills and corrections |
-| `repository` | Collection codecs, relationship writes and similar semantics |
-| `connection` | Current dialect and capabilities |
+| `query` | Set-based data backfills and corrections |
+| `repository` | Operations that need Collection codecs, relation writes and similar semantics |
+| `connection` | The current dialect and its capabilities |
 
-Do not return to an outer DatabaseManager, which could bypass the transaction. Prefer Query for normal backfills; use Repository when JSON/time codecs or relations require it, explaining why.
+Do not reach back to the outer DatabaseManager from a migration, or you may bypass the current transaction. Prefer Query for ordinary backfills; choose Repository only when you need JSON or time codecs or relation semantics, and explain why.
 
-## History and releases
+## Migration history and releases
 
-Keep migrations self-contained instead of importing evolving business definitions. Preserve shared/applied history and add new files for changes. Investigate checksum mismatches rather than hard-coding old checksums.
+Migrations should be self-contained and must not import business model definitions that will keep changing. Once a migration has been released or merged into shared history, keep its content unchanged and write later corrections as new files. When a checksum changes, first investigate whether history was modified; do not bypass the check by hard-coding the old checksum.
 
-Inspect `db apply --dry-run`, then verify physical schema, metadata and history. Rolling back the latest batch does not restore all lost data; schema reversal and backup recovery differ.
+Before applying, review the plan with `db apply --dry-run`; afterwards, check the physical structure, metadata and migration history. `db rollback` reverts the latest batch but does not restore all deleted data; reverting the schema and restoring from a backup are different operations.
 
-Test empty installation and upgrades with existing data on supported dialects. See [Create tables and initialize data](../../developing-apps/data-models-and-migrations.md) and [Seeds](seeds.md).
+Test the upgrade path on both an empty database and one with existing data, and verify DDL capabilities on the target dialects. For worked examples, see [Create tables and initialize data](../../developing-apps/data-models-and-migrations.md); for initial data, see [Seed data](seeds.md).
 
 ## Interfaces and implementation
 

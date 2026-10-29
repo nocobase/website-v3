@@ -1,14 +1,15 @@
 ---
 title: Repositories and data operations
+description: Read and write data on the server with Repositories, and learn the behavior of each method, field selection and permission policies, and when to use Query instead.
 ---
 
-Repository reads and writes logical Collection fields and relations, applying codecs, query contracts and bound policies. Obtaining one neither creates tables nor authenticates callers.
+A Repository reads and writes data by a Collection's logical fields and relations, and handles field codecs, query input and bound policies. Getting a Repository does not create tables, and does not authenticate the caller.
 
-This page covers direct server-side database access. To call it from a client, declare [Repository data APIs](../http/repository-routes.md) with `defineRepositoryApiRoutes()` and use `api.repository(name)`. Database operations do not automatically become HTTP endpoints.
+This page covers direct database access on the server. When the frontend needs to call it, declare [Repository data APIs](../http/repository-routes.md) with `defineRepositoryApiRoutes()` and access them through `api.repository(name)`; database operations do not become HTTP endpoints automatically.
 
-## Single-record writes
+## Writing a single record
 
-This uses the [order model](schema.md) and requires `SO-001` to be absent. User-facing callers must first bind authorization-derived policies:
+The following snippet uses the [order model](schema.md) and requires that `SO-001` does not exist yet. User-facing endpoints must bind an authorization policy first:
 
 ```ts
 import type { DatabaseManager } from '@nocobase/db';
@@ -22,30 +23,30 @@ export async function createOrder(database: DatabaseManager) {
 }
 ```
 
-`createOne()`, `updateOne()` and `upsertOne()` return mutation results; read `.record` rather than treating the result as a row. Exact decimal strings avoid floating-point money errors.
+`createOne()`, `updateOne()` and `upsertOne()` return mutation results; get the record from `.record` instead of treating the whole result as a business row. Amounts use exact strings to avoid floating-point errors.
 
-## Read/write contracts
+## Read and write conventions
 
 | Method | Behavior |
 | --- | --- |
-| `findMany()` | Lazy query; await an array or iterate asynchronously |
-| `findOne()` | A record or `undefined`, without asserting uniqueness |
-| `count()` / `exists()` | Count or existence |
-| `updateOne()` / `deleteOne()` | Require exactly one target |
-| `upsertOne()` | Unique selector with separate create/update inputs |
-| Bulk create/update/delete | Counts and optionally selected records |
+| `findMany()` | Lazy query; await it for an array, or iterate it asynchronously |
+| `findOne()` | Returns one record or `undefined`; does not prove the filter is unique |
+| `count()` / `exists()` | Count records or check whether any exist |
+| `updateOne()` / `deleteOne()` | Must target exactly one record, or fail |
+| `upsertOne()` | Takes a unique filter and separate create and update values |
+| Bulk create, update and delete | Return the number affected, and records according to select |
 
-Do not mix awaiting and iteration, or repeatedly iterate one query. Bulk update/delete requires a filter or explicit `all: true`. Bulk values do not support all single-record nested relation operations.
+Do not mix awaiting and asynchronous iteration on the same `findMany()` object, and do not iterate it more than once. Bulk updates and deletes require a filter or an explicit `all: true`; bulk write values do not support every nested relation operation available for single-record writes.
 
-## Selection and authorization
+## Field selection and permissions
 
-Select only required fields. Omitting selection normally reads all scalars and must not expose sensitive fields. Apply server-derived row, field and relation policies with `withPolicy()`; mutation return reads are also governed by policy.
+Use `select` to return only the fields the caller needs. Without select, all scalar fields are usually read, so make sure that does not leak passwords or internal fields. Bind the row, field and relation policies produced by server authorization with `withPolicy()`; data returned after a write is also subject to the read policy.
 
-Caller-provided filters do not grant access. Validate fields, limits and complexity for external query input.
+A Repository does not grant permissions based on filters submitted by the client. Query conditions from outside still need validation of fields, limits and query complexity.
 
 ## When to use Query
 
-Use Query for set-based backfills or table queries Repository cannot express. It does not carry every Repository mapping or policy semantic, so handle naming and authorization explicitly. See [Transactions](transactions.md) and [Association queries](association-queries.md).
+Use Query for complex set-based backfills or table queries that a Repository cannot express. Query does not carry all of a Repository's model mappings and policy semantics, so handle naming and authorization boundaries explicitly. For multi-step writes, use [Transactions](transactions.md); for reading related data, see [Association queries](association-queries.md).
 
 ## Interfaces and implementation
 

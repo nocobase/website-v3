@@ -1,10 +1,11 @@
 ---
 title: Transactions
+description: Commit or roll back a group of operations together on one database connection, and learn how the transaction connection is passed, how commit and rollback callbacks work, and the limits around concurrency and dialects.
 ---
 
-A transaction commits or rolls back operations on one connection together. Business services define its scope; Repository, Query and Builder work must use the callback connection.
+A transaction makes a group of operations on one database connection commit together or roll back together. Business services decide the scope of the transaction, and Repository, Query and Builder calls must all use the transaction connection provided by the callback.
 
-## Propagating the connection
+## Passing the transaction connection
 
 ```ts
 import type { DatabaseManager } from '@nocobase/db';
@@ -21,27 +22,27 @@ export async function markPaid(db: DatabaseManager, orderNo: string,
 }
 ```
 
-This demonstrates post-commit notification, not complete order authorization or state checks. Add policies and concurrency constraints inside the real business boundary.
+The snippet demonstrates sending a notification after commit and does not include order state or permission checks; a real service should add the necessary policies and concurrency constraints within the transaction boundary.
 
-Do not use outer-manager Repositories or previously obtained handles inside the callback. They do not automatically join the transaction. The callback connection also cannot be passed to work continuing after completion.
+Inside the callback, do not keep using the outer `db.repository()` or a Repository obtained earlier; they do not join the transaction automatically. Once the callback returns, the transaction connection is finished and cannot be handed to background work that runs later.
 
-## Commit and rollback callbacks
+## After commit and after rollback
 
-Use `afterCommit()` for invalidations or scheduling; rollback discards these callbacks. Successful nested transactions merge callbacks into the outer transaction, while nested rollback discards its own commit callbacks.
+`afterCommit()` suits publishing invalidation notices or scheduling follow-up jobs; when the transaction rolls back, these callbacks are discarded. When a nested transaction succeeds, its callbacks are merged into the outer transaction and run only after the outermost transaction commits; when a nested transaction rolls back, only its own commit callbacks are discarded.
 
-The transaction promise waits for post-commit callbacks, but their failures neither reverse the commit nor reject that transaction. Errors go to the connection’s `onTransactionCallbackError`, or a warning when unconfigured. Reliable delivery needs separately persisted pending work; in-process callbacks alone are insufficient.
+The transaction's Promise waits for the post-commit callbacks to finish, but an error thrown by a callback does not change the committed result and does not make the transaction reject. Such errors go to `onTransactionCallbackError` in the connection configuration, or produce a warning when it is not configured. When delivery must be reliable, persist the pending records separately; do not rely only on in-process callbacks.
 
-`afterRollback()` records or cleans up after rollback. Outside a transaction, afterCommit starts immediately without awaiting completion, so its waiting semantics differ.
+`afterRollback()` is for recording and cleaning up after a rollback. An afterCommit registered outside a transaction starts immediately, and the caller does not wait for it, so do not assume the same waiting semantics in every situation.
 
 ## Concurrency and dialects
 
-Transactions do not eliminate all business races. Use unique constraints, conditional updates, versions or locks as appropriate. Verify savepoints, transactional DDL and isolation on each dialect.
+Transactions do not automatically prevent every business race. Use unique constraints, conditional updates, version checks or locks as the business requires. Savepoints for nested transactions, transactional DDL and isolation levels all need verification on each dialect.
 
-`builder.transaction()` currently does not start a database transaction; use the manager or connection. A connection transaction also excludes other connections and external mail/HTTP systems.
+`builder.transaction()` currently does not open a real database transaction; use the transaction of the manager or the connection. A transaction on one connection also does not cover other connections or external systems such as mail and HTTP.
 
-Test successful commits, failures after earlier writes, callback failures and concurrent changes. An exception alone does not prove rollback.
+Verify a successful commit, a failure in the second step, a failing post-commit callback and concurrent writes. Asserting only that a function throws is not enough to prove the data was rolled back.
 
-See [Transactions and data consistency](../../developing-apps/transactions-and-consistency.md) for application usage and verification.
+For application-level usage and verification, see [Transactions and data consistency](../../developing-apps/transactions-and-consistency.md).
 
 ## Interfaces and implementation
 

@@ -1,10 +1,11 @@
 ---
 title: Aggregation and statistics
+description: Compute counts, sums, averages and extrema in the database with aggregate() and groupBy(), and learn about numeric precision, empty-set results, grouping constraints and relation statistics.
 ---
 
-Aggregation computes counts, sums, averages and extrema in the database. Statistics can reveal information too, so apply the same access scope as detail records.
+Aggregation computes counts, sums, averages and extrema in the database, which suits overviews and reports. Statistics reveal information too, so apply the same permission scope as for the detail records.
 
-## Root and grouped aggregates
+## Root-level and grouped statistics
 
 ```ts
 const totals = await db.repository('orders').aggregate({
@@ -20,31 +21,31 @@ const byStatus = await db.repository('orders').groupBy({
 });
 ```
 
-`aggregate()` returns an alias-to-value object without a record envelope. `groupBy()` returns grouped fields and aliases. Filter source records first, group them, then apply having to grouped results.
+`aggregate()` returns an object mapping aliases to values, without a record wrapper. `groupBy()` returns an array whose items contain the grouping fields and the aggregate aliases. The order is: filter selects the source records first, then they are grouped, and finally having filters the grouped results.
 
 ## Numbers and empty sets
 
-| Operation | Semantics |
+| Operation | Meaning of the result |
 | --- | --- |
-| `count()` | Row count; numeric zero for an empty set |
-| `count(field)` | Ignores SQL NULL values |
-| `sum()` / `avg()` | Precision-preserving strings for integer/DECIMAL fields; numbers for floats |
-| `min()` / `max()` | Preserve the field's logical result type |
-| Empty sum/avg/min/max | `null` |
+| `count()` | Counts rows; the number 0 for an empty set |
+| `count(field)` | Ignores rows where the field is SQL NULL |
+| `sum()` / `avg()` | Strings for integer and DECIMAL fields to preserve precision; numbers for floating-point fields |
+| `min()` / `max()` | Keep the field's logical type |
+| sum, avg, min and max on an empty set | `null` |
 
-Do not universally convert money or large integers with `Number()`. Separate display formatting from calculation and define where rounding belongs.
+Do not apply `Number()` across the board to amounts or large integers, or you may lose precision. Keep display formatting separate from calculation semantics, and let the business decide at which step averages are rounded.
 
 ## Grouping constraints
 
-`by` must be nonempty and unique; aggregate aliases cannot shadow grouped fields. Having and sort operate on group fields or aliases, not arbitrary ungrouped fields.
+`by` must be non-empty and free of duplicates, and aggregate aliases cannot share a name with grouping fields. having and sort can only refer to grouping fields or aggregate aliases, not to arbitrary ungrouped fields.
 
-Repository groupBy currently has no select, limit, offset or cursor. For complex reporting, consider Query or dedicated summary tables while preserving authorization.
+The current Repository groupBy offers no select, limit, offset or cursor. Do not copy pagination syntax from other ORMs; for complex reports, consider Query or a dedicated summary table, while keeping the authorization scope.
 
-## Related statistics and tests
+## Relation statistics and verification
 
-To-many Select branches support count, sum and combine. Record pages and total branches can use different local options, so define the counted scope explicitly.
+To-many relations can return count, sum or combine branches through Select. Record pages and totals can use different options inside the relation, so make clear exactly which scope a total counts.
 
-Test empty sets, NULL, exact decimals, status groups and inaccessible records. See [Association queries](association-queries.md) and [Query inputs](query-inputs.md).
+Tests should cover empty sets, NULL, exact amounts, different statuses and records the user may not access. For relation statistics, see [Association queries](association-queries.md); for building input, see [Query inputs and builders](query-inputs.md).
 
 ## Interfaces and implementation
 

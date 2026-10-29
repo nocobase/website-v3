@@ -1,8 +1,9 @@
 ---
 title: Filtering, sorting and pagination
+description: Build bounded list queries with filter, sort and pagination, and learn the forms of filter input, the rules of cursor pagination, and consistency and query cost.
 ---
 
-Repository filters records, sorts them and then paginates. Lists, counts and exports should share authorization scope to avoid leaking totals or producing invalid pages.
+A Repository selects records with `filter`, orders them with `sort`, and then applies pagination. Lists, counts and exports should share the same authorization scope, so that you do not show counts the user is not allowed to see or produce invalid page numbers.
 
 ## Bounded list queries
 
@@ -28,25 +29,25 @@ export async function searchOrders(db: DatabaseManager, policy: RepositoryPolicy
 }
 ```
 
-This reuses the authorized Repository and filter. Also bound search length and evaluate large-offset costs. List and count are separate queries, not automatically one snapshot.
+The example reuses an authorized Repository and filter. Business endpoints also need to limit the length of search terms, and pagination with large offsets needs a cost assessment. The list and the total are two separate queries and do not inherently come from the same data snapshot.
 
 ## Input forms
 
-Use `{ status: 'draft' }` for scalar equality and Filter Builder or JSON AST for complex conditions. Nested operator objects such as `{ amount: { gte: 100 } }` are not equality shorthand. Omit an unused filter instead of passing an empty object.
+Simple scalar equality can be written as `{ status: 'draft' }`; complex conditions use the Filter Builder or a JSON AST. `{ amount: { gte: 100 } }` is not part of the current equality shorthand. When there is no filter, omit it instead of passing an empty object.
 
-Combine nodes with `f.and([...])` and `f.or([...])`. Strings, numbers, dates and JSON have distinct operators; string comparison does not model time-zone-aware date semantics.
+Combine conditions with `f.and([...])` / `f.or([...])`. Strings, numbers, dates and JSON each have their own operators; do not compare date strings as ordinary strings to simulate time-zone semantics.
 
 ## Cursor pagination
 
-A cursor is an exclusive sorting-value boundary; its record need not still exist. Provide explicit scalar sorting with non-nullable metadata and a complete primary/unique key as a tie-breaker. Cursor keys must exactly match the final sort axes, and cannot be combined with offset.
+`cursor` is an exclusive boundary on the sort values, and the boundary record does not need to still exist. Cursor pagination requires an explicit sort: the sort axes must be direct scalar fields, declared non-null in the metadata, and include a complete primary key or unique constraint as the tie-breaker. The cursor keys must match the final sort axes exactly, and a cursor cannot be combined with offset.
 
-`direction: 'backward'` selects the nearest page before the boundary while preserving original sort order. Omit direction on the initial page; explicit direction requires a cursor. Results have no automatic pageInfo or nextCursor envelope.
+`direction: 'backward'` fetches the nearest page before the boundary, and the results are still ordered by the original sort. Do not specify direction for the first page; specify it only when there is a cursor. Results have no automatic pageInfo or nextCursor wrapper.
 
 ## Consistency and cost
 
-Pagination does not provide a snapshot across requests, and changing sort values can move records. Use appropriate isolation or business snapshots when required. Keep ordering stable and design indexes for filters and ordering.
+Pagination does not guarantee the same snapshot across requests, and when sort fields change, records can still move between pages. When necessary, use a suitable transaction isolation level or a business snapshot. Keep the query order stable, and design indexes around the filter and sort conditions.
 
-See [Association queries](association-queries.md) for relation-local pages and [Query inputs](query-inputs.md) for serialization.
+Handle local pagination of related data separately from pagination of the root list; see [Association queries](association-queries.md). For the serializable input produced by builders, see [Query inputs and builders](query-inputs.md).
 
 ## Interfaces and implementation
 

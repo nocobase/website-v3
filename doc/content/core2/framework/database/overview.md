@@ -1,23 +1,24 @@
 ---
 title: Database overview
+description: Learn the main entries of @nocobase/db, how to get the database in an application, the integration boundaries for applications and plugins, and how logical models relate to physical structure.
 ---
 
-`@nocobase/db` provides logical models, data access, schema evolution and transactions. Dialect packages connect specific databases; the application runtime owns configuration, resource discovery and lifecycle.
+`@nocobase/db` provides logical data models, data access, schema evolution and transactions. Dialect packages connect to specific databases, and the application runtime is responsible for configuration, resource discovery and lifecycle.
 
-## Choosing an entry
+## Where to start
 
-| Entry | Responsibility |
+| Entry | Problems it solves |
 | --- | --- |
-| DatabaseManager / Connection | Named/default connections, disposal and transactions |
+| DatabaseManager / Connection | Default and named connections, resource release and transactions |
 | CollectionBuilder | Tables, fields, relationship metadata, indexes and schema changes |
-| Repository | Logical-model access, relations, codecs and policies |
+| Repository | Reading and writing data by logical model, relations, field codecs and policies |
 | Query | Table-oriented queries, set-based backfills and specialized reports |
-| Collections / SchemaInspector | Logical resolution and physical inspection |
-| Migrator / Seeder | Tracked schema history and initial data |
+| Collections / SchemaInspector | Resolving logical models and inspecting physical structure |
+| Migrator / Seeder | Traceable schema change history and initial data |
 
-Business code normally begins with Repository. Migrations use Builder for schema and Query for set-based backfills. Driver-specific capabilities are not automatically portable public APIs.
+Business code usually starts with Repository. In migrations, use Builder to evolve the schema and Query for set-based backfills. Capabilities offered by an underlying driver do not automatically become public capabilities supported by every dialect.
 
-## Using the application database
+## Getting the database in an application
 
 ```ts
 import { databaseManagerToken } from '@nocobase/db';
@@ -27,31 +28,31 @@ const database = app.container.resolve(databaseManagerToken);
 const orders = database.repository('orders');
 ```
 
-Reuse the configured service. Independent scripts and tests may create managers that they must destroy afterwards; see [Connections and dialects](connections.md).
+When the application already has a database configured, reuse the existing service. Standalone scripts and tests can create their own manager, but must destroy it when they finish; see [Connections and database dialects](connections.md).
 
-## Application and plugin integration boundaries
+## Integration boundaries for applications and plugins
 
-The application configures connections and keeps its resources in `database/<connection>/migrations/` and `seeds/`. Plugins typically provide `database/migrations/` and `seeds/`, declaring resource paths through `server/plugin.ts` for the host to discover and execute. Both use `defineMigration()`, `defineSeed()` and their contexts; the resource location does not change database semantics.
+The application provides the connection configuration and maintains its own resources in `database/<connection>/migrations/` and `seeds/`. Plugins usually provide resources in `database/migrations/` and `seeds/`, declare the resource paths in `server/plugin.ts`, and let the host discover and run them. Both use `defineMigration()`, `defineSeed()` and their contexts; which directory a resource lives in does not change the semantics of database operations.
 
-Business services reuse the host `DatabaseManager` and select named connections explicitly when needed. Plugins must not create connections per request or destroy the shared manager during their own shutdown. Design queries and transaction boundaries across connections explicitly; a transaction does not automatically span all databases. Database operations run on the server; clients use APIs.
+Business services reuse the host's `DatabaseManager` and select named connections explicitly when needed. Plugins must not create connections in requests or destroy the shared manager in their own shutdown logic. Query and transaction boundaries across connections need explicit design; never assume one transaction covers every database. Database operations run on the server, and clients access data through APIs.
 
-For implementation steps, see [Tables and initial data](../../developing-apps/data-models-and-migrations.md), [Multiple database connections](../../developing-apps/multiple-databases.md) and [Plugin database resources](../../extension-development/database-and-migrations.md). This chapter explains models, operations, transactions and resource execution mechanisms.
+For step-by-step instructions, see [Create tables and initialize data](../../developing-apps/data-models-and-migrations.md), [Multiple database connections](../../developing-apps/multiple-databases.md) and [Database resources and migrations](../../extension-development/database-and-migrations.md). The rest of this chapter explains models, data operations, transactions and how resources are executed.
 
-## Logical and physical models
+## Logical models and physical structure
 
-Collections combine physical schema with supplemental metadata. Logical names may differ from physical names. Repository understands logical mappings. Query works with physical table and column names without reading Collection field mappings or table prefixes, so backfills must name their targets explicitly.
+A Collection is resolved from the database's physical structure together with supplemental metadata. Logical names may differ from physical table and column names: Repository uses logical names, while Query works with physical table and column names and does not read the Collection's field mappings or table prefixes, so backfills must name their targets explicitly.
 
-Relationship metadata and titles do not replace physical constraints. Generated `database/<connection>/collections/` files are snapshots; schema changes remain migrations.
+Relationship, title and other metadata cannot replace physical constraints. The generated `database/<connection>/collections/` files are model snapshots; schema changes are still written as migrations.
 
 ## Examples in this chapter
 
-Examples use `orders` with `id`, `orderNo`, `title`, `status`, `amount` and `customerId`. [Tables and fields](schema.md) creates the base model; [Relationships](relations.md) adds customers and both directions. Queries assume existing models and server-side code whose caller has completed authorization.
+The following guides use orders as the example: `orders` has the fields `id`, `orderNo`, `title`, `status`, `amount` and `customerId`. [Tables and fields](schema.md) creates the base model, and [Relationships and associations](relations.md) adds a `customers` table and relations in both directions. The query snippets assume the models already exist and that the calls happen in server code that has already completed authorization.
 
 ## Permissions and evolution
 
-Database services do not infer HTTP identity. Bind authorization-derived policies to Repositories; user filters cannot replace access control.
+Database services do not infer the user of an HTTP request. Data policies are produced by authorization and then bound to Repositories; filter conditions in a query can only narrow the request's scope and cannot replace access control.
 
-Follow schema, data access, relations, transactions and migrations. See the [database API index](../../reference/api.md) for signatures and [Compatibility](../../reference/compatibility.md) for dialect conditions.
+We recommend reading schema, data access, relations, transactions and migrations in order. For exact signatures, see the [API reference](../../reference/api.md); for supported database versions and dialect conditions, see [Database support and version compatibility](../../reference/compatibility.md).
 
 ## Interfaces and implementation
 

@@ -1,10 +1,11 @@
 ---
 title: 聚合与统计
+description: 用 aggregate() 和 groupBy() 在数据库端计算计数、求和、平均值和极值，了解数值精度、空集结果、分组约束和关系统计。
 ---
 
-聚合在数据库端计算计数、求和、平均值和极值，适合总览和报表。统计也会暴露信息，应使用与明细相同的权限范围。
+聚合在数据库端计算计数、求和、平均值和极值，适合总览和报表。统计结果同样会暴露信息，应使用与明细数据相同的权限范围。
 
-## 根级与分组统计
+## 根级统计与分组统计
 
 ```ts
 const totals = await db.repository('orders').aggregate({
@@ -20,31 +21,31 @@ const byStatus = await db.repository('orders').groupBy({
 });
 ```
 
-`aggregate()` 返回别名到数值的对象，不带 record 包装。`groupBy()` 返回包含分组字段和聚合别名的数组。先由 filter 选源记录，再分组，再由 having 过滤分组结果。
+`aggregate()` 返回一个从别名到数值的对象，没有 record 包装。`groupBy()` 返回一个数组，每项包含分组字段和聚合别名。执行顺序是：先由 filter 选出源记录，再分组，最后由 having 过滤分组的结果。
 
 ## 数值与空集
 
-| 运算 | 结果语义 |
+| 运算 | 结果的含义 |
 | --- | --- |
-| `count()` | 统计行，空集为数字 0 |
-| `count(field)` | 忽略该字段的 SQL NULL |
-| `sum()` / `avg()` | 整数与 DECIMAL 保留精度字符串；浮点字段返回 number |
-| `min()` / `max()` | 保留字段对应逻辑类型 |
-| 空集的 sum/avg/min/max | `null` |
+| `count()` | 统计行数，空集时为数字 0 |
+| `count(field)` | 忽略该字段为 SQL NULL 的行 |
+| `sum()` / `avg()` | 整数和 DECIMAL 以字符串返回以保留精度；浮点字段返回 number |
+| `min()` / `max()` | 保持字段对应的逻辑类型 |
+| 空集的 sum、avg、min、max | `null` |
 
-不要对金额或大整数结果统一使用 `Number()`，否则可能丢精度。展示格式和计算语义应分开；平均值的舍入位置由业务明确决定。
+不要对金额或大整数的结果统一使用 `Number()`，否则可能丢失精度。展示格式和计算语义应该分开处理；平均值在哪一步舍入，由业务明确决定。
 
 ## 分组约束
 
-`by` 必须非空且不重复；聚合别名不能覆盖分组字段。having 和 sort 面向分组字段或聚合别名，不能引用任意未分组字段。
+`by` 必须非空且不能重复；聚合别名不能与分组字段重名。having 和 sort 只能引用分组字段或聚合别名，不能引用任意未分组的字段。
 
-当前 Repository groupBy 不提供 select、limit、offset 或 cursor。不要把其他 ORM 的分页语法直接搬来；需要复杂报表时评估 Query 或独立汇总表，并保留授权范围。
+当前 Repository 的 groupBy 不提供 select、limit、offset 或 cursor。不要直接照搬其他 ORM 的分页写法；需要复杂报表时，可以评估使用 Query 或独立的汇总表，同时保留授权范围。
 
 ## 关系统计与验证
 
-to-many 关系可通过 Select 返回 count、sum 或 combine 分支。记录页和总量统计可以使用不同局部选项，需明确总量究竟统计哪一范围。
+to-many 关系可以通过 Select 返回 count、sum 或 combine 分支。记录分页和总量统计可以使用不同的关系内选项，因此需要明确总量统计的到底是哪个范围。
 
-测试空集、NULL、精确金额、不同状态和越权记录。关联统计见[关联查询](association-queries.md)，输入构造见[查询输入](query-inputs.md)。
+测试应覆盖空集、NULL、精确金额、不同的状态以及越权的记录。关联统计见 [关联查询](association-queries.md)，输入的构造见 [查询输入与构造器](query-inputs.md)。
 
 ## 接口与实现
 

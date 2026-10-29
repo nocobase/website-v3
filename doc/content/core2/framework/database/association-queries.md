@@ -1,12 +1,13 @@
 ---
 title: Association queries
+description: Read related records through declared relations, and learn the result shapes, filtering and statistics inside relations, and performance and security considerations.
 ---
 
-Association queries read related records through declared metadata instead of manually assembling physical table names. Each relation needs metadata and permission to read the selected data.
+Association queries read related records through declared relations, so callers do not have to assemble physical table names by hand. Every level of association needs its metadata, and the data policy must also allow reading the related records.
 
-## Root and relation selection
+## Selecting root fields and relations
 
-This uses the [customer/order relationships](relations.md):
+The example continues the customer and order relations from [Relationships and associations](relations.md):
 
 ```ts
 const customers = await db.repository('customers').findMany({
@@ -20,28 +21,28 @@ const customers = await db.repository('customers').findMany({
 });
 ```
 
-The root returns at most 20 customers, each with at most 10 draft orders. A local relation filter changes orders, not the root customer set. Filtering customers by relationships requires a root relation condition.
+The root list returns at most 20 customers, each with at most 10 draft orders. The `filter` inside the relation only affects the orders and does not remove customers without matching orders; to filter the customers themselves, use a root-level relation condition.
 
 ## Result shape
 
-| Relation | No match | Match |
+| Relation | No matching record | Matching records |
 | --- | --- | --- |
 | belongsTo / hasOne | `null` | Object |
 | hasMany / belongsToMany | `[]` | Array |
 
-Without select, scalar fields are read but relations are not expanded. Empty `fields()` explicitly selects no root scalars; omitting fields retains default scalars. Duplicate includes of one relation fail.
+Without select, scalar fields are read by default and relations are not expanded. Calling `fields()` with no arguments explicitly selects no root fields, while omitting fields still selects the default scalar fields. Including the same relation twice is rejected.
 
-## Local conditions and statistics
+## Filtering and statistics inside relations
 
-To-many relations support local ordering, limits and cursors; to-one does not support pagination or aggregation. Relation builders are immutable: return the chained result instead of discarding it.
+To-many relations support sorting, limits and cursors inside the relation; to-one relations do not support these pagination or aggregation options. Relation builders are immutable, so use the result returned by each chained call instead of calling a method and discarding its return value.
 
-`combine()` returns independent record, count and sum branches. A record branch's limit does not automatically limit a separate statistics branch.
+With `combine()`, one relation can return records, a count and a sum as separate branches, each with its own conditions and pagination. Do not assume that the limit of the records branch also limits another statistics branch.
 
-## Cost and access
+## Performance and security
 
-Relations load in batches by branch, but local limits do not guarantee the database reads only that many rows per parent. Evaluate query count, memory and payload size for deep or large relations.
+Relations are loaded in batches per branch, but a limit inside a relation does not guarantee that the database reads only that many rows for each parent record. For deep relations and large collections, evaluate the number of queries, memory usage and response size.
 
-Select fields and bind policies explicitly. Relations do not bypass target access rules, and multiple branches do not automatically share a snapshot. See [Transactions](transactions.md) and [Aggregation](aggregation.md).
+Select fields explicitly and bind policies. Association queries are not a way around the permissions on target records, and several query branches do not inherently share one snapshot. When you need consistent results, use [Transactions](transactions.md); for the values returned by statistics, see [Aggregation and statistics](aggregation.md).
 
 ## Interfaces and implementation
 

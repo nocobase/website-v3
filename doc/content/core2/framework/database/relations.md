@@ -1,12 +1,13 @@
 ---
 title: Relationships and associations
+description: Declare belongsTo, hasOne, hasMany and belongsToMany relations on an existing model, make the required keys explicit, and choose foreign-key constraints and deletion behavior to fit the business.
 ---
 
-Relationships describe connections between logical Collections for related reads and writes. Metadata, foreign-key columns, indexes and database constraints are distinct layers.
+Relationships describe the connections between logical Collections and are used for association queries and relation writes. Relationship metadata, foreign-key columns, indexes and database constraints are separate layers and must be declared separately.
 
-## Adding customers to the order model
+## Adding a customer relation to the order model
 
-Apply this after the [order schema migration](schema.md), with existing customerId values either null or valid:
+The following migration runs after the [order table migration](schema.md) and assumes that existing `customerId` values are either empty or valid:
 
 ```ts
 import { defineMigration } from '@nocobase/db';
@@ -30,25 +31,25 @@ export default defineMigration({
 });
 ```
 
-The example explicitly provides no automatic rollback. Backfill and validate legacy customer identifiers before adding a constraint rather than silently skipping a failed constraint.
+The example deliberately provides no automatic rollback. If legacy customer numbers already exist, backfill and validate them before creating the foreign key; never silently skip a failed constraint.
 
-## Types and keys
+## Relation types and keys
 
-| Relation | Required keys/resources | Default behavior |
+| Relation | Required keys and resources | Default behavior |
 | --- | --- | --- |
-| `belongsTo` | Local foreignKey and target targetKey | Can create a local column and index; physical constraint is explicit |
-| `hasOne` / `hasMany` | Local sourceKey and target foreignKey | Inverse relationship metadata |
-| `belongsToMany` | sourceKey, targetKey, through, foreignKey, otherKey | Uses an explicitly created join Collection |
+| `belongsTo` | A local foreignKey and the target's targetKey | Can create the local column with an index by default; the foreign-key constraint must be enabled explicitly |
+| `hasOne` / `hasMany` | A local sourceKey and the target's foreignKey | Stores inverse relationship metadata |
+| `belongsToMany` | sourceKey, targetKey, through, foreignKey, otherKey | Uses an explicit join Collection |
 
-Keys are logical field names. Required keys are not inferred from `id` or relationship names. Prefer declaring scalar foreign-key fields first; relation-created columns require `foreignKeyType`. Match integer attributes such as unsigned to the target key where required.
+Every key refers to a logical field name. The framework does not infer required keys from `id` or from relation names. Prefer declaring the scalar foreign-key field first; when a relation creates the column, you must provide `foreignKeyType`. Integer foreign keys also need to match dialect attributes such as unsigned on the target's auto-incrementing key.
 
 ## Constraints and deletion
 
-`belongsTo` metadata does not automatically create physical foreign keys. Enable `constraints(true)` and choose update/delete behavior deliberately. Cascading deletion is a business choice, not a universal default.
+`belongsTo` metadata does not create a database foreign key automatically. After enabling `constraints(true)`, choose the delete and update behavior the business needs. Cascading deletes can affect related data and must not be treated as a universal default.
 
-Join tables need defined keys, uniqueness and business fields. Metadata neither creates them automatically nor grants access to related records.
+A many-to-many join table should have explicit keys, unique constraints and any business fields it needs. Relationship metadata does not create that table for you, and does not grant access to related records.
 
-See [Association queries](association-queries.md). Verify missing relations, constraint failures, upgrades with existing data and deletion behavior.
+For usage, see [Association queries](association-queries.md). Besides confirming that the tables can be created, verify empty relations, foreign-key conflicts, upgrades with existing data and deletion behavior.
 
 ## Interfaces and implementation
 

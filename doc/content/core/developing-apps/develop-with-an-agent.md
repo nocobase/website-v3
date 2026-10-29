@@ -128,7 +128,7 @@ Ask the agent to distinguish automated checks from actual application interactio
 
 Use the real application, database and authorization services for business rules when possible. Use substitutes only at necessary boundaries such as external transport or missing browser capabilities in the test environment, and explain what was replaced. Do not mock the business behavior being verified.
 
-Browser verification should use the application's actual printed entry URL and dedicated test accounts. Database tests should use isolated data; they must not clear current business data just to pass. See [Build your first app](../tutorials/build-your-first-feature.md) for a concrete example.
+Browser verification should use the application's actual printed entry URL and dedicated test accounts. Database tests should use isolated data; they must not clear current business data just to pass. See [Build your first app](../tutorials/build-your-first-feature-agent-first.md) for a concrete example.
 
 When reporting a problem, provide the reproduction path and expected result:
 

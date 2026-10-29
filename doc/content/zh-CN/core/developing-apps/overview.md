@@ -3,7 +3,7 @@ title: 应用开发概览
 description: 认识应用代码、模板和插件的关系，理解一个业务功能如何连接页面、接口、服务与数据库。
 ---
 
-开发一个 NocoBase 应用，就是在已有的应用结构和能力上实现业务规则：数据怎样保存，谁可以执行操作，页面怎样把结果呈现给用户。本节按主题介绍这些工作，供你开发时查阅；如果想先从头完成一个功能，可以阅读[搭建第一个应用](../tutorials/build-your-first-feature.md)。
+开发一个 NocoBase 应用，就是在已有的应用结构和能力上实现业务规则：数据怎样保存，谁可以执行操作，页面怎样把结果呈现给用户。本节按主题介绍这些工作，供你开发时查阅；如果想先从头完成一个功能，可以阅读[搭建第一个应用](../tutorials/build-your-first-feature-agent-first.md)。
 
 以下用“把任务归入项目”说明各部分职责，阅读本篇不需要运行示例。
 
@@ -123,4 +123,4 @@ description: 认识应用代码、模板和插件的关系，理解一个业务�
 | 编写应用维护命令或接入插件命令 | [编写应用命令](application-commands.md)、[接入插件命令](plugin-commands.md) |
 | 让用户或 Agent 从终端调用业务 API | [为应用提供 CLI 客户端](cli-client.md) |
 | 选择验证方式并完成验收 | [测试与验收](testing-and-acceptance.md) |
-| 想先跑通一个完整功能 | [搭建第一个应用](../tutorials/build-your-first-feature.md) |
+| 想先跑通一个完整功能 | [搭建第一个应用](../tutorials/build-your-first-feature-agent-first.md) |

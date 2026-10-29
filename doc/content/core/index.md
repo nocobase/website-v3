@@ -10,7 +10,7 @@ NocoBase Core provides application framework capabilities. Plugins provide featu
 1. [Meet NocoBase Core](getting-started/what-is-core.md): understand Core, templates, plugins and applications.
 2. [Create an app](getting-started/create-app.md): create a project, start it and sign in.
 3. [Project structure](getting-started/project-structure.md): locate pages, APIs, databases, local packages and tests.
-4. [Build your first app](tutorials/build-your-first-feature.md): implement a task application with an Agent or manually, and verify a complete business flow.
+4. [Build your first app](tutorials/build-your-first-feature-agent-first.md): build a task application with an Agent, and verify a complete business flow.
 
 ## Developing apps
 

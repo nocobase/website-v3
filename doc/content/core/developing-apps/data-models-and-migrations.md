@@ -178,7 +178,7 @@ A required project name need not be unique. Allowing tasks to belong to projects
 
 ### Prepare the example application
 
-The project chapters use a separate historical example: `tutorialTasks` stores tasks, `tutorialProjects` stores projects, and `completed` represents task completion. The current [getting-started example](../tutorials/build-your-first-feature.md) uses `tasks` and a three-stage `status`. Use the historical tag and matching configuration below for this exercise; do not apply these migrations directly to the getting-started database.
+The project chapters use a separate historical example: `tutorialTasks` stores tasks, `tutorialProjects` stores projects, and `completed` represents task completion. The current [getting-started example](../tutorials/build-your-first-feature-agent-first.md) uses `tasks` and a three-stage `status`. Use the historical tag and matching configuration below for this exercise; do not apply these migrations directly to the getting-started database.
 
 <details>
 <summary>Obtain and configure the example application</summary>

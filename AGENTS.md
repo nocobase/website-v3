@@ -15,6 +15,13 @@
 - After any change, run `pnpm doc:test` and `pnpm doc:build` from the repository root and make sure both succeed; if you changed the page shell, styles or search, also look at it with `pnpm doc:preview` (port 4321). `doc/dist/` and `doc/.astro/` are build output; do not commit them.
 - When you change the docs structure, update `doc/README.md` as well.
 
+## Documentation example projects
+
+- Store documentation example projects in [nocobase/docs-examples-v3](https://github.com/nocobase/docs-examples-v3). Follow that repository's own `AGENTS.md` for implementation, directory layout and validation. Keep documentation content, menus and site assets in this repository.
+- `nocobase/app-tutorials` is deprecated. Do not add new examples or new documentation references to it. Existing references may remain during gradual migration; replace them when the corresponding example is available and verified in `docs-examples-v3`. Do not bulk-replace the repository name or assume old paths and commit SHAs exist in the new repository.
+- Link example source to its directory or file at a fixed commit in `docs-examples-v3`. When migrating or updating an example, update the affected Chinese and English documentation together, including source links, code excerpts, setup and run commands, version requirements, screenshots when behavior changes, and verification notes. Distinguish checks actually run from checks the reader still needs to perform.
+- Each example should include a README with its purpose, corresponding documentation, prerequisites, setup, run and test commands. Verify those instructions before presenting the example as runnable; record any validation that could not be completed.
+
 ## Workspace and website (`homepage/`, `packages/shared/`)
 
 The repository is a pnpm workspace (root `package.json` and `pnpm-workspace.yaml`, one `pnpm-lock.yaml`, Node 24, pnpm 11 from `packageManager`): `homepage` (the website), `doc` (the docs site) and `packages/*`. Dependencies are pinned to exact versions. Run `pnpm install` at the root.

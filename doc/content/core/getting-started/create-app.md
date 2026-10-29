@@ -96,7 +96,7 @@ The account comes from `users.initialAdmin` in `config.yml`. Use your actual con
 
 The homepage introduces available capabilities and includes example requirements you can give an agent. You now have both application source and a running application.
 
-These screenshots show the historical [00-create-app](https://github.com/nocobase/app-tutorials/tree/00-create-app) example generated from default template `1.0.0-beta.78`; your installed version may look different. [Build your first app](../tutorials/build-your-first-feature.md) uses the npmjs.org-published `1.0.0-beta.81` template baseline and does not require checking out this old tag.
+These screenshots show the historical [00-create-app](https://github.com/nocobase/app-tutorials/tree/00-create-app) example generated from default template `1.0.0-beta.78`; your installed version may look different. [Build your first app](../tutorials/build-your-first-feature-agent-first.md) uses the npmjs.org-published `1.0.0-beta.84` template baseline and does not require checking out this old tag.
 
 ## Troubleshooting
 

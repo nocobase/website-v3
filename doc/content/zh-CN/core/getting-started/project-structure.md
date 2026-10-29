@@ -141,4 +141,4 @@ tests/
 
 ## 下一步
 
-阅读 [搭建第一个应用](../tutorials/build-your-first-feature.md)，在应用中完成带负责人、截止日期和进度的团队任务功能。
+阅读 [搭建第一个应用](../tutorials/build-your-first-feature-agent-first.md)，在应用中完成带负责人、截止日期和进度的团队任务功能。

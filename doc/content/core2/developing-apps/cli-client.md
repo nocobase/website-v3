@@ -1,37 +1,37 @@
 ---
 title: Provide an application CLI client
-description: Give an application a standalone CLI using app-cli-client, connect to server business APIs, and test and package it for distribution.
+description: Use app-cli-client to give an application its own command-line entry, connect it to server business APIs, and debug it locally and package it for distribution.
 ---
 
-An application can have a standalone CLI such as `nocobase-examples`. Users sign in from their own computers and perform server-side business operations without application source code or database configuration. Agents can use the same interface.
+An application can have its own CLI, such as `nocobase-examples`. Users sign in to the application from their own computers and then perform server-side business operations through commands, with no need for the application's source code or database configuration. The same CLI can also serve as the entry through which Agents call business features.
 
-`@nocobase/app-cli-client` provides sign-in, command discovery and HTTP calls. The server's command manifest determines the business commands; their business logic executes on the server.
+`@nocobase/app-cli-client` handles sign-in, command discovery and HTTP calls, while the server's command manifest decides which business commands exist. When a command runs, the business logic is still carried out on the server.
 
-## When to provide one
+## When you need one
 
-| Scenario | Entry point |
+| Scenario | Entry |
 | --- | --- |
-| Export data or run maintenance in the application environment | [Application commands](application-commands.md), such as `pnpm nocobase app statuses export` |
-| Use local maintenance or development commands from a plugin | [Plugin commands](plugin-commands.md), such as `pnpm nocobase notice-cli preview` |
-| Let users, automation or agents access a running application over the network | A standalone CLI, such as `nocobase-examples user options` |
+| Export data or run maintenance tasks inside the application environment | [Application commands](application-commands.md), such as `pnpm nocobase app statuses export` |
+| Use local maintenance or development commands provided by a plugin | [Plugin commands](plugin-commands.md), such as `pnpm nocobase notice-cli preview` |
+| Users, automation or Agents use an already running application over the network | A standalone CLI, such as `nocobase-examples user options` |
 
-The standalone CLI derives commands from business API descriptions. Adding a file under `cli/commands/` does not expose it as a remote business command.
+The standalone CLI generates its commands from the business API descriptions. Putting a file into `cli/commands/` does not turn it into a remote business command.
 
-## Prepare the server
+## Prepare the server first
 
-This guide uses the existing Examples template configuration and its `user options` command. You need a running Examples application with its database initialized, and an account allowed to read user-management options.
+This guide reuses the Examples template's existing configuration and its `user options` command. You need a working Examples application with its database initialized, and a sign-in account allowed to read the user management options.
 
-The server needs these integrations in addition to a name in `package.json`:
+The server needs the following integrations; adding a name to `package.json` is not enough:
 
-- **API documentation and a command manifest.** Public route declarations such as `describeRoute()` describe inputs, responses and identity requirements. The CLI reads the application's manifest, at `/api/cli/manifest` by default.
-- **Caller identity.** Examples currently uses the Agents plugin to connect caller resolution to the CLI service, alongside authentication, users and authorization. A custom application needs the corresponding integration; do not assume the default template includes it all.
-- **Browser sign-in.** Examples configures device authorization, bearer sessions and a `/device` confirmation page, allowing the `nocobase-cli` client ID. When changing the ID, update both the client and the server allowlist.
+- **API documentation and a command manifest.** Routes describe their parameters, responses and identity requirements through public mechanisms such as `describeRoute()`, and the CLI reads them from the application's command manifest, by default at `/api/cli/manifest`.
+- **Caller identity.** The current Examples connects caller resolution to the CLI service through the Agents plugin, working with the authentication, users and authorization plugins to handle identity and permissions. Your own application must provide the equivalent integration; the default template is not guaranteed to include all of it out of the box.
+- **Browser sign-in.** The Examples authentication configuration includes device authorization, bearer sessions and a `/device` confirmation page, and allows the client ID `nocobase-cli`. If you use your own ID, adjust the allowlists on the client and the server together.
 
-See [Examples authentication configuration](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/server/config/auth.ts) and [Agents CLI identity integration](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/plugins/app-plugin-agents/server/cli/surface.ts). Manifest visibility and endpoint authorization serve different purposes. Business APIs must still check permissions and data scopes for every request.
+See the [Examples authentication configuration](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/server/config/auth.ts) and the [Agents CLI identity integration](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/plugins/app-plugin-agents/server/cli/surface.ts). Whether a command is visible in the manifest and how the API actually authorizes it are two different layers; business APIs must still verify permissions and data scope on every request.
 
 ## Configure the client name
 
-Examples already has this configuration in `package.json`. For your own application, merge `cli` into the existing `nocobase` object, preserve its other fields and add a compatible `@nocobase/app-cli-client` version to `devDependencies`.
+The Examples `package.json` already contains the configuration below. For your own application, merge `cli` into the existing `nocobase` object, keep the other fields, and add a version of `@nocobase/app-cli-client` that matches the application to `devDependencies`.
 
 ```json
 {
@@ -47,22 +47,22 @@ Examples already has this configuration in `package.json`. For your own applicat
 }
 ```
 
-`bin` is the command users type; `displayName` appears in help and messages. `auth.clientId` must be accepted by the server's device authorization. Choose your own application's name without taking the reserved `nocobase` or `nocobase-runner` names.
+`bin` is the command name users type, `displayName` is used in help and messages, and `auth.clientId` corresponds to a device sign-in client the server allows. A new application can use its own names, but must not take the framework's `nocobase` or the Runner's `nocobase-runner`.
 
-Options such as `envPrefix`, `stateDir` and `skills` are optional. See the [CLI configuration reference](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-cli/README.md#the-applications-own-cli-cli-build-and-cli-link) for all fields. Start by verifying connection and business calls.
+Options such as `envPrefix`, `stateDir` and `skills` are used as needed; for all fields, see the [CLI configuration reference](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-cli/README.md#the-applications-own-cli-cli-build-and-cli-link). Here, the goal is just to get connection and business calls working.
 
-## Link and use the client locally
+## Connect and call locally
 
-From the Examples application root, run:
+In the root of the Examples application, run:
 
 ```bash
 pnpm nocobase cli link
 pnpm exec nocobase-examples --help
 ```
 
-`cli link` creates an entry in the project's `node_modules/.bin` for local development. It does not start the server or configure server sign-in and the command manifest.
+`cli link` creates a command entry in the project's `node_modules/.bin` for local debugging. It neither starts the server nor configures the server's sign-in and command manifest.
 
-With the server running, replace the example URL below with its actual address, including any deployment base path:
+Make sure the application server is running, and replace the example address below with the real one; if the application is deployed under a subpath, include that path as well:
 
 ```bash
 pnpm exec nocobase-examples login --server https://your-app.example.com
@@ -72,15 +72,15 @@ pnpm exec nocobase-examples user options --help
 pnpm exec nocobase-examples user options --json
 ```
 
-`login` shows an authorization code and opens browser confirmation, then saves the server's login profile. Use `whoami` to check the active identity, `docs` to discover business commands and command-specific `--help` to inspect arguments.
+`login` shows an authorization code and guides you to confirm in the browser; on success it saves the sign-in profile for the current server. `whoami` checks the current identity, `docs` lists the available business commands, and a specific command's `--help` shows its parameters.
 
-`user options` is an existing read-only users-plugin endpoint that returns the role scopes and roles assignable in user management. Available commands depend on the server version and caller's manifest. A command name alone does not grant access. Use `--profile` to separate environments; consult `login --help` for automation and other login options.
+`user options` is an existing read-only API of the users plugin that returns the role scopes and role options that can be assigned in user management. Which commands are actually available depends on the server version and the manifest for the current identity; a command name alone does not tell you whether you have access. Use `--profile` to keep configurations for different environments apart; for automated sign-in and other parameters, check `login --help` first.
 
-## Expose your own business commands
+## Provide your own business commands
 
-First implement, register and verify the HTTP API as described in [Routes and HTTP APIs](apis-and-services.md). The CLI uses that same API description without a duplicate implementation under `cli/commands/`.
+First write, register and verify the business HTTP API, as described in [Routes and HTTP APIs](apis-and-services.md). The CLI uses the same API description, so there is no need to write a duplicate implementation in `cli/commands/`.
 
-The users plugin spreads `cliRoute({ command: 'user options' })` into its `/options` route's `describeRoute()` metadata. Equivalently, obtain the metadata below and spread `...cliMetadata` into the existing declaration:
+The users plugin's `/options` API spreads `cliRoute({ command: 'user options' })` into its `describeRoute()` metadata. You can obtain equivalent CLI metadata as below and merge it into an existing declaration with `...cliMetadata`:
 
 ```ts
 import { cliRoute } from '@nocobase/app-server/router';
@@ -89,35 +89,35 @@ import { cliRoute } from '@nocobase/app-server/router';
 const cliMetadata = cliRoute({ command: 'user options' });
 ```
 
-This is metadata, not a complete endpoint. Keep validation, response declarations, authentication and business handling in the route. See the complete [users-plugin route](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/plugins/app-plugin-users/server/routes/index.ts).
+This is only a fragment of route metadata, not a complete endpoint; parameter validation, response declarations, authentication and business handling stay in the original route. For the full example, see the [users plugin routes](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/plugins/app-plugin-users/server/routes/index.ts).
 
-`cliRoute()` can customize names, positional arguments, flags and examples. Without customization, names can be derived from the API description. `cliRoute(false)` excludes a route from the CLI manifest; it does not disable the HTTP endpoint. See the [CLI route contract](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-server/src/router/cli/types.ts) for all options.
+`cliRoute()` can set the command name, positional arguments, options and examples; without customization, the command name can be derived from the API description. To exclude an API, use `cliRoute(false)`, which only affects the CLI manifest and does not disable the HTTP endpoint. For all options, see the [CLI route contract](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-server/src/router/cli/types.ts).
 
-After changing an API, verify its CLI help, arguments, result and failure behavior, and test server authorization with accounts having different permissions.
+When an API changes, check the CLI's help, parameters, results and failure semantics again, and verify server-side authorization with accounts that have different permissions.
 
 ## Build and distribute
 
-Once local calls work, build from the application root:
+Once local calls are verified, build the standalone CLI in the application root:
 
 ```bash
 pnpm nocobase cli build --help
 pnpm nocobase cli build --universal --json
 ```
 
-`--universal` produces an archive without bundled Node.js; users need Node.js 24 or later. Without `--targets`, only that universal archive is built. For archives with a runtime, choose supported targets from `--help`.
+`--universal` produces an archive without a bundled Node.js, so users need Node.js 24 or later; without `--targets` as well, only this universal archive is built. When you need to bundle a runtime, choose supported target platforms as described by `--help`.
 
-Outputs default to the application's `storage/runners/dist/`, organized by channel, product and version, with archives and manifests. Read exact paths from the build result. `cli build` packages the client; it does not upload artifacts or deploy the application. Distribute through a download site or your existing release process.
+By default the output goes under the application's `storage/runners/dist/`, organized by channel, product and version, and contains the archives and a manifest; the exact paths are reported by the build. `cli build` only packages; it does not upload archives or deploy the application. Distribute them through a download site or an existing release process, as your product needs.
 
-Before delivery, unpack into a separate directory and use its `bin/nocobase-examples` to verify help, sign-in, `whoami` and an authorized business command against the target application. Verify the CLI archive separately from the application deployment produced by `pnpm build`.
+Before delivery, unpack the archive in a separate directory and use its `bin/nocobase-examples` to verify help, sign-in, `whoami` and one business command you are allowed to run, to confirm the client can connect to the target application. The client archive and the application deployment directory produced by `pnpm build` serve different purposes and must be verified separately.
 
-## Troubleshooting
+## Troubleshoot common problems
 
-| Symptom | Check |
+| Symptom | What to check |
 | --- | --- |
-| `pnpm exec` cannot find the command | `nocobase.cli.bin`, installed dependencies and successful `cli link` |
-| Sign-in cannot complete | Server address, device authorization, client ID and confirmation page |
-| No command manifest after sign-in | `/api/cli/manifest` and caller-identity integration |
-| A business command is missing | Server version, API documentation, CLI exclusion and identity filtering |
-| A listed command is rejected | Account permissions, data scopes and endpoint validation |
+| `pnpm exec` cannot find the command | Whether `nocobase.cli.bin` is right, and whether dependency installation and `cli link` succeeded |
+| Sign-in cannot complete | The real server address, device sign-in configuration, client ID and confirmation page |
+| The command manifest is unavailable after sign-in | Whether `/api/cli/manifest` and the caller identity integration work |
+| A business command is missing | The current server version, whether the route made it into the API documentation, CLI exclusions and identity-based filtering |
+| The command exists but the request is rejected | The current account's action permissions, data scope and the API's validation |
 
-See [CLI reference](../reference/cli.md) for the shared overview of these local and remote entry points.
+For the shared overview of these local and remote entries, see [Command-line reference](../reference/cli.md).

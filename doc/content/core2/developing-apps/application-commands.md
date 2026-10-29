@@ -1,11 +1,11 @@
 ---
 title: Write application commands
-description: Write AppCommand classes in cli/commands, access application services, handle paths and JSON output, and verify commands in a deployment.
+description: Write AppCommand classes in cli/commands, access application services, handle arguments, paths, JSON output and failures, and verify the commands after deployment.
 ---
 
-Application-owned commands live in `cli/commands/`. Use them for data exports, diagnostics or one-off maintenance. For example, `pnpm nocobase app statuses export` reads a status dictionary and saves it to a file.
+An application's own commands live in `cli/commands/` and suit data exports, diagnostics and one-off maintenance. For example, running `pnpm nocobase app statuses export` in the application directory reads the status dictionary and saves it to a file.
 
-This guide is for developers and operators with access to the application directory and configuration. To let users or agents perform business operations over the network, see [Provide an application CLI client](cli-client.md). For commands shared by multiple applications, see [Integrate plugin commands](plugin-commands.md).
+This guide is for developers and operators who can access the application directory and configuration. For an entry that lets users or Agents operate the business over the network, see [Provide an application CLI client](cli-client.md); for commands shared across several applications, see [Integrate plugin commands](plugin-commands.md).
 
 ## Directories and command names
 
@@ -18,13 +18,13 @@ cli/
 └── plugins.ts              # Plugin command registration
 ```
 
-Each command file default-exports an `AppCommand` subclass. Its path determines its name under `app`, with no index registration. Files and directories starting with `_`, and directories named `lib`, are skipped. Avoid `dist`, `build`, `coverage` and `generated` as command directories: project version-control, formatting or checking rules ignore those names.
+Each command file default-exports an `AppCommand` subclass, and the file path decides its command name under `app`; no index file registration is needed. Files and directories starting with `_`, and directories named `lib`, are skipped. Do not put commands in directories such as `dist`, `build`, `coverage` or `generated`, which the project's version control, formatting or checking rules ignore.
 
-Application commands are included in deployment builds, so their runtime packages must be in `dependencies`. Keep source-only generators in project scripts or a plugin's `devCommands`. Application commands have no separate development-only declaration.
+Application commands go into the deployment build, so the packages they need at runtime must be in `dependencies`. Generation scripts that only work in the source environment can stay as project scripts or be provided by a plugin's `devCommands`; application commands have no separate "register only during development" declaration.
 
 ## Example: export the status dictionary
 
-First complete the independent `appStatuses` example at the start of [Create tables and initialize data](data-models-and-migrations.md). Apply its migration and Seed to create the `code` and `title` fields and default records. This example does not depend on the historical project-and-task walkthrough later in that guide.
+First complete the `appStatuses` example at the start of [Create tables and initialize data](data-models-and-migrations.md) and run its migration and Seed, which give you the `code` and `title` fields and the default records. This example uses that independent example and does not depend on the historical projects-and-tasks tutorial later in that guide.
 
 Add `cli/commands/statuses/export.ts`:
 
@@ -118,9 +118,9 @@ export default class ExportStatuses extends AppCommand {
 }
 ```
 
-The command reads the dictionary without changing the database. This example exports at most 100 records and explicitly fails above that limit. Larger exports need pagination and a suitable file-writing strategy. A dry run or empty dictionary creates no output file, and existing files are never overwritten.
+The command only reads the dictionary and does not change the database. The example exports at most 100 records and fails explicitly beyond that; exporting large amounts of data needs its own pagination and file-writing design, so not every record is loaded into memory. Neither `--dry-run` nor an empty dictionary creates an output file, and an existing file is never overwritten.
 
-Run from the application root:
+In the application root, run:
 
 ```bash
 pnpm nocobase app statuses export --help
@@ -128,7 +128,7 @@ pnpm nocobase app statuses export --dry-run --json
 pnpm nocobase app statuses export --output ./statuses.json --json
 ```
 
-With the two default records, a dry run has this shape; the path depends on the application and storage configuration:
+With the two default records, the preview returns the structure below; the file path depends on the application and its storage configuration:
 
 ```json
 {
@@ -145,56 +145,56 @@ With the two default records, a dry run has this shape; the path depends on the 
 }
 ```
 
-The last command creates `statuses.json`. Running it again with the same output path returns `OUTPUT_EXISTS` with exit code `2`. Choose another filename to continue.
+The last command creates `statuses.json`. Using the same output path again returns `OUTPUT_EXISTS` with exit code `2`; pick another file name to continue verifying.
 
-## Choose the application facilities you need
+## Choose the application capabilities you need
 
-| Need | Entry point |
+| Need | Entry |
 | --- | --- |
-| Locate application files | `this.rootDir`, without creating an application |
-| Read configuration, paths or the environment | `this.withApp(async ({ app, env }) => ...)` |
-| Resolve the database or business services | Call `app.registerProviders()` inside the callback, then use `app.container` |
-| Use the full startup lifecycle | Call `await app.start()` inside the callback |
+| Locate files in the application directory | `this.rootDir`, without creating the application |
+| Read configuration, storage paths or the environment | `this.withApp(async ({ app, env }) => ...)` |
+| Get the database or business services | In the callback, call `app.registerProviders()` first, then get them from `app.container` |
+| Depend on the full startup lifecycle | In the callback, `await app.start()` |
 
-`withApp()` creates the application, runs the callback, then shuts it down and destroys the runtime, including when the callback fails. It does not register or start providers automatically. `app.config` and `app.paths` need no registration. Start the full lifecycle only when needed: doing so may also start consumers and schedules. See [Server business services](server-business-services.md) for service organization.
+`withApp()` creates the application, runs the callback, then shuts down the application and destroys the runtime; cleanup happens even if the callback fails. It does not register or start Providers automatically. `app.config` and `app.paths` are available without registration; start the full lifecycle only when you need running services, because starting may also start consumers and scheduled jobs. For how to organize services, see [Server business services](server-business-services.md).
 
-Use the application object only inside the callback and return plain result data. Cleanup failures become warnings so that completed work is not reported as failed and inadvertently repeated.
+Use the application object only inside the callback, and return plain result data from it. A cleanup failure is reported as a warning, so that business work already done is not misjudged as failed and then run again.
 
-A local command uses application configuration to access services. It does not inherit a browser user's session or data scope. Explicitly validate identity and scope for user-bound operations, or expose them through a protected HTTP API; see [Authentication, permissions and data scopes](authentication-and-permissions.md).
+Local commands access services through the application configuration and do not inherit a browser user's sign-in or data scope. Business operations that need a user identity should validate the caller's identity and scope explicitly, or be offered through a protected HTTP API; see [Authentication, permissions and data scopes](authentication-and-permissions.md).
 
 ## Arguments, paths and module loading
 
-`AppCommand` is based on oclif. Declare positional arguments with `Args` and options with `Flags`. Describe each argument and use `summary` and `examples` to explain the command. `pnpm nocobase commands --json` makes this information discoverable to people and agents.
+`AppCommand` is based on oclif. Declare positional arguments with `Args` and options with `Flags`, and describe what each one is for; describe the command's result and usage with `summary` and `examples`. `pnpm nocobase commands --json` lists this information for people and Agents to discover.
 
-Use `appPath()` for path options. User-supplied relative paths resolve from the current working directory; declared defaults resolve from the application root. The command receives an absolute path. The example computes its default with `app.paths.storage()` because deployment storage may be outside the code directory.
+Use `appPath()` for path options: a relative path the user passes is resolved from the current working directory, a declared default is resolved from the application root, and the command always receives an absolute path that needs no further resolution. This example takes its default location from `app.paths.storage()`, because in deployments the storage directory may live outside the code directory.
 
-Help also imports command modules. Keep top-level imports to `@nocobase/app-cli`, `@oclif/core` and Node built-ins. Dynamically import heavier dependencies inside `run()`; never connect to a database or start work at module scope.
+Showing help also imports the command module. So keep only `@nocobase/app-cli`, `@oclif/core` and Node built-in modules at the top level, and import heavier dependencies such as the database dynamically inside `run()`; never connect to a database or run work at the top of the module.
 
 ## Output, errors and logs
 
-`AppCommand` already provides `--json`. Return typed plain data on success and throw `CommandError` on failure.
+`AppCommand` already provides `--json`, so do not declare it again. Return typed plain data on success and throw `CommandError` on failure.
 
-| Purpose | API | With `--json` |
+| Purpose | How | Behavior with `--json` |
 | --- | --- | --- |
-| Human-readable result | `this.log(text)` | Suppressed |
-| Program-readable result | `return result` | Included in `result` |
+| Result for people | `this.log(text)` | The text is not printed |
+| Result for programs | `return result` | Goes into `result` |
 | Progress | `this.logToStderr(text)` | Still written to stderr |
-| Warning | `this.warn(text)` | Included in `warnings` |
-| Failure | `throw new CommandError(...)` | `ok: false`, `error.code` and a nonzero exit |
+| Warning | `this.warn(text)` | Goes into `warnings` |
+| Failure | `throw new CommandError(...)` | `ok: false` and `error.code`, with a nonzero exit code |
 
-Use stable uppercase error codes, actionable `suggestions` and plain `details`. Errors default to exit code `1`; use `2` for invalid usage. When suggesting another framework command, `this.cliCommand(['db', 'apply'])` produces the correct invocation for the source or deployment environment.
+Use stable uppercase names for `code`, tell the caller what to do in `suggestions`, and keep necessary plain data in `details`. The exit code for errors defaults to `1`; use `2` for invalid usage. To suggest running another framework command, `this.cliCommand(['db', 'apply'])` produces an invocation that matches the source or deployment environment.
 
-The default status is `success`. Set `success-noop` for a preview or nothing to do, or `partial-success` when some work remains, explaining what was not completed. Keep credentials and entire exports out of the result.
+The default status is `success`; set `success-noop` for a preview or when there is nothing to do, and `partial-success` when only part of the work was done, explaining what remains. Never put credentials or a whole export into the result.
 
-Avoid `console.log()`, manual JSON output, `process.exit()`, `this.exit()`, `this.logJson()` and `this.error()`: they disrupt the output contract or exit semantics. A `CommandError` does not print its `cause`. Set `NOCOBASE_CLI_DEBUG=1` to inspect redacted error chains on stderr. Use the application logging service for persistent operational records; see [Logging](../framework/support/logging.md).
+Avoid `console.log()`, hand-written JSON output, `process.exit()`, `this.exit()`, `this.logJson()` and `this.error()`, which break the output contract or the exit semantics. A `CommandError`'s `cause` is not printed directly; when troubleshooting, set `NOCOBASE_CLI_DEBUG=1` to see the redacted error chain on stderr. For operational logs that must be kept, use the application's logging service; see [Logging](../framework/support/logging.md).
 
 ## Testing and delivery
 
-Put command tests in `tests/cli/`. `@nocobase/app-testing/cli` exports `bindAppCommand()` and `runAppCommand()`. Bind the command to an isolated fixture root and an ID such as `app:statuses:export`; run it to inspect its result, JSON, stdout, stderr and exit code. Inject `loadRuntime` and `createApp` to substitute services.
+Command tests go in `tests/cli/`. `@nocobase/app-testing/cli` provides `bindAppCommand()` and `runAppCommand()`: the former binds an isolated test application directory and a command ID such as `app:statuses:export`, and the latter returns the result, JSON, stdout, stderr and exit code. You can inject `loadRuntime` and `createApp` to isolate services.
 
-For a real application and database, use `createTestAppConfig()` and `bindTestAppCommand()` from the same entry. Follow the [database command test example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/command.md) to prepare migrations and Seeds, and call `config.dispose()` afterwards. Custom runtime loaders must wire in test configuration and storage isolation themselves.
+When you need a real application and database, use `createTestAppConfig()` and `bindTestAppCommand()` from the same entry, prepare migrations and Seeds following the [database command test example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/command.md), and call `config.dispose()` when done. A custom runtime loader must wire in test configuration and storage isolation itself and must never point at the development database.
 
-Cover successful export and file contents, dry runs without files, empty dictionaries returning `success-noop`, existing files preserved with `OUTPUT_EXISTS`, and resource cleanup after read or write failures. Run tests that capture process output sequentially.
+At minimum, verify: a normal export and the file contents; a preview that writes no file; `success-noop` for an empty dictionary; an existing file left untouched with `OUTPUT_EXISTS`; and an error plus released resources when reading or writing fails. Command tests that capture process output should run sequentially.
 
 ```bash
 pnpm lint
@@ -205,6 +205,6 @@ node dist/cli/index.js app statuses export --help
 node dist/cli/index.js app statuses export --dry-run --json
 ```
 
-Run the project's CLI tests before these checks. A deployment dry run still reads the database selected by deployment configuration, so use a prepared verification environment. Help alone does not verify database access.
+Run the project's configured CLI tests first, then the checks above. A preview through the deployment entry still reads the database selected by the deployment configuration, so run it in a prepared verification environment; checking the help output alone does not prove data access works.
 
-This guide follows the [application command authoring reference](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/commands.md). See [CLI runtime](../framework/runtime/cli.md) for shared mechanisms and [CLI reference](../reference/cli.md) for built-in commands.
+This guide follows the [application command authoring reference](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/commands.md). For the shared runtime mechanisms, see [Command-line runtime](../framework/runtime/cli.md); for built-in command options, see [Command-line reference](../reference/cli.md).

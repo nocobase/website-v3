@@ -1,30 +1,30 @@
 ---
 title: Integrate plugin commands
-description: Register existing plugin commands through cli/plugins.ts and verify namespaces, development commands, build hooks and deployment behavior.
+description: Connect commands provided by existing plugins through cli/plugins.ts, and understand namespaces, development commands, build hooks and deployment verification.
 ---
 
-Plugins expose commands through their `./cli` entry. The application chooses contributions in `cli/plugins.ts`. This guide covers application-side registration and use; see [Extend the CLI](../extension-development/extend-command-line.md) for implementing and exporting plugin commands.
+Plugins provide commands through their `./cli` entry, and the application chooses which contributions to connect in `cli/plugins.ts`. This guide covers installation, registration and use on the application side; for implementing commands and the plugin publishing contract, see [Command-line extensions](../extension-development/extend-command-line.md).
 
-## Check what the plugin provides
+## First check what the plugin provides
 
-Read its documentation, `package.json` exports and `cli/index.ts`. Confirm the `./cli` entry and any services or configuration the commands require. A client or server plugin does not necessarily provide commands.
+Read the plugin's usage guide, the exports in its `package.json` and its `cli/index.ts` to confirm whether it provides a `./cli` entry and which services and configuration its commands need. A plugin that only provides client or server capabilities does not necessarily come with a CLI.
 
-The default template registers Foundation and Scheduler in `cli/plugins.ts`. Examples also registers CLI Example, Agents and other contributions. Preserve the application's existing entries and connect the runtime parts required by each plugin.
+The default template's `cli/plugins.ts` already registers Foundation and Scheduler; the Examples template also registers CLI Example, Agents and other contributions. Keep the application's existing entries, then connect the runtime parts each plugin needs according to its guide.
 
-CLI, server and client registration serve different purposes. Registering a CLI contribution does not automatically register a service that its commands need: check `server/plugins.ts` too. See [Manage plugins](manage-plugins.md) for installation and registration.
+CLI, server and client registration each serve their own purpose. For example, when a command needs a plugin's service, connecting only the CLI does not register that service automatically; check `server/plugins.ts` as well. For the full installation and registration process, see [Manage plugins](manage-plugins.md).
 
 ## Register with the application
 
-This example uses the local `@nocobase/app-plugin-notice-cli` created in [Extend the CLI](../extension-development/extend-command-line.md). Complete that guide first and install workspace dependencies so the package resolves. This is a tutorial package, not a claim that the name is available on npm.
+The steps below use the local plugin `@nocobase/app-plugin-notice-cli` created in [Command-line extensions](../extension-development/extend-command-line.md). First finish creating that plugin and implementing its command, and make sure the workspace dependencies are installed and the package resolves. The package name is just a local tutorial example and does not mean a package with that name can be installed from npm.
 
-Preview registration, then apply it:
+Preview the registration first, then run it:
 
 ```bash
 pnpm nocobase plugin register @nocobase/app-plugin-notice-cli --no-install --dry-run
 pnpm nocobase plugin register @nocobase/app-plugin-notice-cli --no-install
 ```
 
-`--no-install` skips dependency installation; install the workspace first and keep `package.json` and the lockfile maintained. Inspect the generated `cli/plugins.ts`. Extending the default template produces a list like this; preserve any additional entries in your application.
+`--no-install` skips dependency installation, so the workspace must be installed beforehand; it also does not relieve you of maintaining `package.json` and the lockfile. After registering, check the generated `cli/plugins.ts`; the result should look like the example below, which extends the default template. If the application already has other plugins, keep them, and do not overwrite the existing list with this whole snippet.
 
 ```ts
 // cli/plugins.ts
@@ -42,11 +42,11 @@ const cliPlugins: AppCliPlugins = defineCliPlugins([
 export default cliPlugins;
 ```
 
-`defineCliPlugins()` combines contributions in array order. Do not add an entry again after automatic registration. When editing manually, maintain both its import and array entry.
+`defineCliPlugins()` combines the plugin contributions, and the array order is the registration order. Entries added by automatic registration do not need to be added again by hand; when maintaining the list manually, keep both the import and the array entry.
 
 ## Find and run commands
 
-The topic of `@nocobase/app-plugin-notice-cli` is `notice-cli`. Its declared `preview` command is invoked as:
+The topic of the plugin package `@nocobase/app-plugin-notice-cli` is `notice-cli`, so the `preview` command it declares is run as:
 
 ```bash
 pnpm nocobase notice-cli preview --help
@@ -54,34 +54,34 @@ pnpm nocobase notice-cli preview --text " Hello " --json
 pnpm nocobase notice-cli preview --text " " --json
 ```
 
-The second command returns `result: { text: "Hello", length: 5 }`. The third returns `INVALID_TEXT` with exit code `2`. Use `pnpm nocobase commands --json` to discover commands and a command's `--help` for its arguments. See [Write application commands](application-commands.md) for the shared output and error contract.
+The second command returns `result: { text: "Hello", length: 5 }`; the third returns `INVALID_TEXT` with exit code `2`. You can run `pnpm nocobase commands --json` first to find commands, then check a specific command's `--help`. For the shared output and error handling, see [Write application commands](application-commands.md).
 
-Examples already includes another runnable command:
+If you are running the Examples application, it comes with another working example:
 
 ```bash
 pnpm nocobase cli-example greet world --json
 ```
 
-It comes from `@nocobase/app-plugin-cli-example` and returns a greeting and target name. The default template does not register this example plugin, so do not assume the command exists there.
+This command is provided by `@nocobase/app-plugin-cli-example` and returns a greeting and the target name. The ordinary default template does not register this example plugin, so do not assume the command exists there.
 
-A topic normally comes from the package name without its npm scope and `app-plugin-` prefix. Duplicate topics conflict; registration order cannot override them. Resolve the plugin naming conflict instead of removing unrelated application commands.
+A topic is usually the package name without its npm scope and `app-plugin-` prefix. Topics with the same name conflict, and registration order cannot override one with another. When a conflict occurs, adjust the plugins' naming rather than deleting unrelated existing commands from the application.
 
 ## Development commands and build hooks
 
-| Contribution | Application use | In a deployment |
+| Plugin contribution | Use in the application | After deployment |
 | --- | --- | --- |
-| `commands` | Runtime diagnostics and maintenance | Included |
-| `devCommands` | Source inspection and generation | Not registered |
-| `buildHooks` | Tasks during application builds | Build-time execution, not deployment commands |
-| `devHooks` | Tasks before development startup | Development-time execution |
+| `commands` | Runtime commands such as diagnostics and maintenance | Kept |
+| `devCommands` | Development tasks such as reading source and generating files | Not registered |
+| `buildHooks` | Plugin tasks run during the application build | Run during the build; not deployment commands |
+| `devHooks` | Tasks run before the application starts in development | Run during development |
 
-Build stages are `beforeBuild`, `afterClientBuild`, `afterServerBuild` and `afterBuild`; the development stage is `beforeDev`. The application CLI collects registered hooks. Use the project's `pnpm build` and `pnpm dev`; do not copy every hook into application scripts.
+Build hook stages are `beforeBuild`, `afterClientBuild`, `afterServerBuild` and `afterBuild`, and the development hook stage is `beforeDev`. The application CLI collects the hooks plugins declare, so the project's `pnpm build` and `pnpm dev` run them in the matching flow; there is no need to copy each hook into the application's scripts.
 
-A hook's `command` is an executable and argument array, not a shell expression. See [Extend the CLI](../extension-development/extend-command-line.md#development-commands-and-hooks) for authoring details. The `preview-acceptance.ts` helper in Examples supports that application's acceptance checks; it is not required for general plugin registration.
+The `command` in a hook declaration is an array of an executable and its arguments and does not go through a shell. For writing hooks, see [Command-line extensions](../extension-development/extend-command-line.md#development-commands-and-hooks). The `preview-acceptance.ts` in Examples is acceptance-helper logic specific to that example application, not a file that plugin registration generally needs.
 
 ## Verify and remove
 
-Confirm that help includes the topic, valid input returns the expected result and invalid input returns a stable error code. After building, verify the deployment entry:
+After connecting a plugin, confirm that the help output shows the expected topic, that valid input returns a result, and that invalid input returns a stable error code. After building, verify again through the deployment entry:
 
 ```bash
 pnpm build
@@ -89,8 +89,8 @@ node dist/cli/index.js notice-cli preview --text Hello --json
 node dist/cli/index.js commands --json
 ```
 
-The deployment command set should include `commands` and exclude `devCommands`. For commands that use services or a database, also verify real service access with isolated configuration. A text preview verifies only registration and output.
+The deployed command set should include `commands` and exclude `devCommands`. If a command needs business services or a database, also check real service calls with a separate verification configuration; a plain text preview only verifies CLI registration and output.
 
-To stop exposing just the CLI contribution, remove its import and array entry from `cli/plugins.ts`, then rebuild. Before uninstalling the entire plugin, check other runtimes, dependencies and database resources as described in [Manage plugins](manage-plugins.md).
+To stop exposing a plugin's CLI only, remove its import and array entry from `cli/plugins.ts` and rebuild. Before uninstalling the whole plugin, also check its other runtime parts, dependencies and data resources, following [Manage plugins](manage-plugins.md).
 
-Sources: [Examples CLI registration](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/cli/plugins.ts) and [CLI Example declaration](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/examples/app-plugin-cli-example/cli/index.ts).
+References: [Examples CLI registration](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/cli/plugins.ts), [CLI Example declaration](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/examples/app-plugin-cli-example/cli/index.ts).

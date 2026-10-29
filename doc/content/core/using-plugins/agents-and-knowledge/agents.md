@@ -36,7 +36,7 @@ Both methods can be used in one application. The conversation and release-note e
 
 ## Scenarios and examples
 
-The `agents-guide` example uses SQLite, DeepSeek, and an English interface. Screenshots come from the running application. [Download the example source](/assets/core/downloads/agents-doc-demo.zip) and follow its `README.md` to start it. The archive excludes the database, model credentials, sign-in sessions, and installed dependencies. If you do not have a project yet, start with [Create an application](../../getting-started/create-app.md).
+The `agents-guide` example uses SQLite, DeepSeek, and an English interface. Screenshots come from the running application. [View the example source](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide) and follow its `README.md` to start it. Run commands from `apps/agents-guide` in the repository. The source excludes the database, model credentials, sign-in sessions, and installed dependencies. If you do not have a project yet, start with [Create an application](../../getting-started/create-app.md).
 
 A **development prompt** goes to the Coding Agent working in your project directory to integrate the plugin. A **conversation prompt** goes into the resulting application's chat interface.
 
@@ -167,7 +167,7 @@ try a narrowly scoped code change. Report actual execution results.
 If no machine is connected, state that code execution cannot yet be verified.
 ```
 
-**Prepare the application CLI and Runner distributions first.** The Default template declares neither its own CLI nor a downloadable Runner. Installing from the connection page before preparing them returns 404; an online machine can still fail tasks with `cliUnavailable` when the application CLI is missing. The source download declares the dependencies and configuration. Run from its root:
+**Prepare the application CLI and Runner distributions first.** The Default template declares neither its own CLI nor a downloadable Runner. Installing from the connection page before preparing them returns 404; an online machine can still fail tasks with `cliUnavailable` when the application CLI is missing. The example declares the dependencies and configuration. Run from its root:
 
 ```bash
 pnpm nocobase cli build --universal
@@ -239,7 +239,7 @@ This section follows the example source used in the scenarios. It maps file chan
 | `tests/client/release-notes-button.test.tsx` | Cover creation, duplicate clicks, failures, permissions, and identity teardown | Verify successful and failed business-entry behavior |
 | `tests/client/client-routes.test.ts` | Check route uniqueness, page loading, and authorization definitions | Verify integration and detect changes to existing page contracts |
 
-`package.json` and the lockfile record dependency changes. Model services, business Skills, and conversation history are runtime application data. Copying source does not copy those records; configure your own model service and import the Skill after starting the downloaded example.
+`package.json` and the lockfile record dependency changes. Model services, business Skills, and conversation history are runtime application data. Copying source does not copy those records; configure your own model service and import the Skill after starting the example.
 
 ### What plugin registration changes
 
@@ -335,7 +335,7 @@ release-notes/
 
 `SKILL.md` requires reading `references/style.md`, producing Summary, Changes, and Verification, and using only supplied facts without inventing versions, dates, or test results. After the Skill is saved to the library, `server/providers/agents.ts` registers a named scope at boot. `server/providers/index.ts` loads that Provider.
 
-This is its key implementation; the download contains the complete Provider:
+This is its key implementation; the example source contains the complete Provider:
 
 ```ts
 const agents = this.app.container.resolve(agentsToken);
@@ -440,7 +440,7 @@ Static checks, automated tests, and live operations answer different questions. 
 | Runner read-only execution | After preparing the application CLI, real `pwd` and `ls -A1` commands completed; the first failure and its correction are recorded |
 | Anonymous API access | Model service and Skill APIs returned 401; this does not verify the complete role matrix |
 
-Rerun the related tests in the downloaded example:
+Rerun the related tests in the example:
 
 ```bash
 pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts tests/client/release-notes-button.test.tsx
@@ -469,3 +469,9 @@ as unverified. Do not report planned checks as passed.
 ```
 
 The live baseline on 2026-10-29 was default template `1.0.0-beta.84`, Agents `1.0.0-beta.29`, SQLite, and DeepSeek `deepseek-flash`. Machine Agent project editing and builds, the full role matrix, business writes, attachment parsing, the full mobile matrix, and production deployment remain unverified. Add verification for each capability you extend.
+
+### Example source
+
+- [Complete example project](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide): model conversations, business Skills, and Runner integration, pinned to commit `b91adc8`.
+- [Setup and verification](https://github.com/nocobase/docs-examples-v3/blob/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide/README.md): required versions, configuration, startup, and test commands.
+- [Download the example source ZIP](/assets/core/downloads/agents-doc-demo.zip): application source matching the commit above, without runtime data or installed dependencies.

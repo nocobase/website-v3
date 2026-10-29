@@ -39,10 +39,12 @@ const crumb = [section.id === config.sections[0].id ? '' : section.title, ...pag
 ---
 <Layout lang={lang} title={page.title} description={page.metaDescription} sectionId={page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
 {!page.placeholder && <div hidden data-pagefind-filter="section[data-value]" data-value={section.title}></div>}
-{crumb && <p class="doc-crumb" data-pagefind-ignore>{crumb}</p>}
+{(crumb || !page.placeholder) && <div class="doc-head" data-pagefind-ignore>
+{crumb ? <p class="doc-crumb">{crumb}</p> : <span></span>}
+{!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
+</div>}
 <h1>{page.title}</h1>
 {page.description && <p class="doc-lead">{page.description}</p>}
-{!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
 <article class="prose">
 {hint ? <p set:html={hint}></p> : <Content />}
 </article>

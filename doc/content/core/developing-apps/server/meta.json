@@ -1,0 +1,29 @@
+{
+  "title": "Server",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../apis-and-services"
+    },
+    {
+      "type": "page",
+      "path": "../server-business-services"
+    },
+    {
+      "type": "page",
+      "path": "../request-validation-and-errors"
+    },
+    {
+      "type": "page",
+      "path": "../authentication-and-permissions"
+    },
+    {
+      "type": "page",
+      "path": "../background-tasks"
+    },
+    {
+      "type": "page",
+      "path": "../server-localization"
+    }
+  ]
+}

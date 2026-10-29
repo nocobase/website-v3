@@ -9,7 +9,7 @@ description: 通过 Coding Agent 或手动命令创建 NocoBase 3 应用，启�
 
 ## 准备环境
 
-在终端确认已经安装 Node.js 24 或更高版本，以及 pnpm 11：
+开发环境需要 Node.js 24 或更高版本，以及 pnpm 11。使用 Agent 时，可以让它检查环境并说明需要补充的准备；手动创建时，先在终端检查：
 
 ```bash
 node --version
@@ -22,26 +22,15 @@ Windows 用户请在 WSL 中操作。下面的命令适用于 Bash 等 POSIX she
 
 ## 使用 Agent
 
-### 1. 安装创建应用的 Skill
+准备一个空目录，例如 `my-app`，在该目录中开启 Coding Agent 会话。
 
-在终端执行：
+先将下面的命令发送给 Agent，安装创建应用的 Skill：
 
 ```bash
 npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 ```
 
-按提示选择你使用的 Agent。安装完成后开启新的 Agent 会话，让它加载这个 Skill。`nocobase/skills-v3` 提供 NocoBase 3 的 Skills。
-
-### 2. 在空目录中打开 Agent
-
-例如，先创建一个名为 `my-app` 的目录：
-
-```bash
-mkdir my-app
-cd my-app
-```
-
-在这个目录中打开 Coding Agent，发送：
+安装时按提示选择当前使用的 Agent。如果当前会话没有识别到新 Skill，在同一目录重新开启会话。确认 Skill 已加载后，发送创建需求：
 
 ```text
 请在当前空目录中创建一个供本地开发使用的 NocoBase 3 应用。
@@ -49,13 +38,11 @@ cd my-app
 启动后告诉我打开哪个地址，以及如何完成首次登录。
 ```
 
-Agent 会调用创建工具，安装依赖，初始化配置并启动应用。完成后，它会提供应用地址和登录信息。
+Agent 会按指引检查环境、调用创建工具、安装依赖、初始化并检查配置，然后启动应用。如果缺少环境依赖，它会说明需要完成的准备。
 
-### 3. 进入应用
+完成后，打开 Agent 提供的应用地址，按照它给出的登录信息，或参阅本文的[打开应用并登录](#打开应用并登录)，完成首次登录。
 
-打开 Agent 提供的应用地址，并按照本文的[打开应用并登录](#打开应用并登录)完成首次登录。
-
-创建完成后，应用目录里会出现 `AGENTS.md` 和 `.agents/skills/`。继续开发时，在这个应用目录中开启新的 Agent 会话，让它读取项目自己的规则和 Skills。
+创建完成后，应用目录里会出现 `AGENTS.md` 和 `.agents/skills/`。继续开发时，让 Agent 读取项目自己的规则和 Skills；如果当前会话尚未加载它们，再在应用目录中开启新会话。
 
 ## 不使用 Agent
 
@@ -115,7 +102,7 @@ pnpm dev
 
 ### Agent 没有找到创建应用的 Skill
 
-确认安装时选中了当前使用的 Agent，并在安装后开启了新会话。创建之前使用的是全局 `nocobase-create-app`；创建之后的开发指引位于应用目录中。
+确认安装时选中了当前使用的 Agent；如果当前会话尚未加载新 Skill，在同一目录重新开启会话，再发送创建需求。创建之前使用的是全局 `nocobase-create-app`；创建之后的开发指引位于应用目录中。
 
 ### 应用已经创建，但项目 Skills 缺失
 
@@ -137,7 +124,7 @@ pnpm nocobase skills sync
 
 ## 本地示例界面
 
-下方截图来自默认模板 `1.0.0-beta.78` 的历史示例 [00-create-app](https://github.com/nocobase/app-tutorials/tree/00-create-app)，用于展示登录和首页，实际界面以创建时的模板为准。[搭建第一个应用](../tutorials/build-your-first-feature.md)使用 npmjs.org 已发布的 `1.0.0-beta.81` 模板基线，不需要先检出这个旧标签。截图使用英文，两种语言的文档共用。
+下方截图来自默认模板 `1.0.0-beta.78` 的历史示例 [00-create-app](https://github.com/nocobase/app-tutorials/tree/00-create-app)，用于展示登录和首页，实际界面以创建时的模板为准。[搭建第一个应用](../tutorials/build-your-first-feature-agent-first.md)使用 npmjs.org 已发布的 `1.0.0-beta.84` 模板基线，不需要先检出这个旧标签。截图使用英文，两种语言的文档共用。
 
 ![初次打开应用的英文登录页。](/assets/core/tutorials/getting-started/login.png)
 

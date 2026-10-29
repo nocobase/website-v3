@@ -1,11 +1,13 @@
 ---
-title: 页面和菜单
+title: 页面、路由与菜单
 description: 在 App 的本地插件中添加页面、菜单和子页面，处理导航、默认入口与访问权限。
 ---
 
 插件通过路由声明把页面接入 App，菜单也来自这些声明。本篇实现一个“帮助中心”：侧边栏只有一个入口，页面内可切换“使用指南”和“常见问题”，刷新或分享链接都能保留当前内容。
 
 [编写第一个插件](write-your-first-plugin.md) 已介绍单个页面与接口的连接。本篇重点说明页面与菜单如何组织，示例只需要 Client，不需要服务端接口。
+
+本篇重点是插件如何贡献页面与菜单：页面组件由 `routes.ts` 引用，路由通过 `client/plugin.ts` 的 `routes` 汇总，App 注册 Client 工厂后加载这些贡献。组件实现与样式见[组件与样式](frontend-components.md)，表单交互和 URL 状态处理复用[应用页面开发](../developing-apps/pages-and-interactions.md)与[数据请求与状态管理](../developing-apps/data-requests-and-state.md)。
 
 ## 使用 Agent
 

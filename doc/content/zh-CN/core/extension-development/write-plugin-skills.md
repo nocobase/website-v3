@@ -1,11 +1,13 @@
 ---
-title: 给插件写技能
+title: 插件 Skill
 description: 为 App Agent 描述插件的公开能力，维护、同步并验证插件 Skill。
 ---
 
 插件 Skill 是给使用插件的 Agent 的说明：有哪些已经实现的能力、从哪个公开入口调用、由谁维护数据，以及如何判断操作成功。它不负责实现功能，也不会自动注册插件。
 
 本文编写的是插件自身的使用说明。开发插件时使用的 `nocobase-app-plugin-development` 由 `@nocobase/app-skills` 提供；不要把它复制进业务插件，也不要占用这个保留名称。
+
+修改和维护插件源码时使用的 `AGENTS.md`，见[插件开发指引（AGENTS.md）](plugin-development-guidance.md)。本篇继续面向使用插件能力的应用 Agent，介绍调用示例、分发同步和实际验证。
 
 ## 使用 Agent
 
@@ -19,7 +21,7 @@ description: 为 App Agent 描述插件的公开能力，维护、同步并验�
 
 需要 Agent 经常调用接口、拼装公开组件、使用服务或诊断配置时，Skill 很有帮助。只有一个普通页面、没有额外接入步骤的插件，不必为了目录齐全而写 Skill。
 
-下面为[扩展命令行](extend-command-line.md)中的 `notice-cli` 添加说明。已有插件直接增加 `skills/`，不需要重新运行创建工具。新建时可以选择 `--with skills`，但生成内容只是草稿，必须替换成真实能力。
+下面为[命令行扩展](extend-command-line.md)中的 `notice-cli` 添加说明。已有插件直接增加 `skills/`，不需要重新运行创建工具。新建时可以选择 `--with skills`，但生成内容只是草稿，必须替换成真实能力。
 
 ## 维护在插件源码里
 
@@ -89,7 +91,7 @@ This capability does not store, publish or send notices. Those actions need a se
 
 插件通过 shadcn UI Registry 提供源码资产时，Skill 应说明本地构建与资产路径，或已发布的 URL，以及安装到 App 或插件的方式、输入与依赖、如何接入插件的公开能力。本地资产可以直接 Add，无需先搭建 Registry 网站。还应给出可修改的布局或交互示例和验证方法，让 Agent 能在目标项目中完成组合。
 
-组件文件安装成功，不代表服务端插件、语言资源或路由已经注册。把这些前提写清楚，并说明安装后的源码由目标项目维护，升级插件包不会自动更新它。完整示例见[前端组件](frontend-components.md#给-agent-写使用说明)。
+组件文件安装成功，不代表服务端插件、语言资源或路由已经注册。把这些前提写清楚，并说明安装后的源码由目标项目维护，升级插件包不会自动更新它。完整示例见[发布 UI 源码资产](frontend-components.md#给-agent-写使用说明)。
 
 ## 同步到 App
 
@@ -105,6 +107,6 @@ pnpm nocobase skills sync --package @nocobase/app-plugin-notice-cli
 
 先确认同步副本存在，再让 Agent 依据 Skill 执行 `preview --text Hello --json`，检查实际结果为 `Hello` 和长度 5。还要检查空文本返回明确错误，并且 Agent 不把“预览”说成已经保存或发送公告。
 
-文件同步成功只证明说明送达，不证明指令正确。发布时用 `pnpm --filter @nocobase/app-plugin-notice-cli pack` 检查 tarball 中的 `skills/` 和公开运行时入口；跨 App 安装见[发布插件](publish-plugin.md)。
+文件同步成功只证明说明送达，不证明指令正确。发布时用 `pnpm --filter @nocobase/app-plugin-notice-cli pack` 检查 tarball 中的 `skills/` 和公开运行时入口；跨 App 安装见[构建与发布](publish-plugin.md)。
 
 以后公开命令、参数、权限或返回值变化时，源代码、测试和插件 Skill 一起更新。应用通过升级包并同步获得新版说明，不要逐个修补生成副本。

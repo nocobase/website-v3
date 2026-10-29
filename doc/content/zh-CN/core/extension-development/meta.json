@@ -1,0 +1,57 @@
+{
+  "title": "开发插件",
+  "pages": [
+    {
+      "type": "page",
+      "path": "when-to-write-a-plugin"
+    },
+    {
+      "type": "page",
+      "path": "create-plugin"
+    },
+    {
+      "type": "page",
+      "path": "plugin-structure"
+    },
+    {
+      "type": "page",
+      "path": "plugin-development-guidance"
+    },
+    {
+      "type": "page",
+      "path": "write-your-first-plugin"
+    },
+    {
+      "type": "page",
+      "path": "plugin-declarations"
+    },
+    {
+      "type": "folder",
+      "path": "client"
+    },
+    {
+      "type": "folder",
+      "path": "server"
+    },
+    {
+      "type": "page",
+      "path": "database-and-migrations"
+    },
+    {
+      "type": "page",
+      "path": "extend-command-line"
+    },
+    {
+      "type": "page",
+      "path": "write-plugin-skills"
+    },
+    {
+      "type": "page",
+      "path": "testing-and-verification"
+    },
+    {
+      "type": "page",
+      "path": "publish-plugin"
+    }
+  ]
+}

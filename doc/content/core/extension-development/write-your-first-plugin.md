@@ -411,6 +411,8 @@ pnpm build
 
 The plugin now owns its page, API and translations, and the App loads them through public entries. The local plugin builds and ships with the App without npm publication. Extend it with database migrations, announcement management and permissions as needed; see [Plugin structure](plugin-structure.md) for the relevant directories and entries.
 
-For sharing across Apps with independently managed versions, continue with [Publish a plugin](publish-plugin.md). Publication is unnecessary when using the plugin only in the current App.
+For sharing across Apps with independently managed versions, continue with [Build and publish](publish-plugin.md). Publication is unnecessary when using the plugin only in the current App.
 
-For multiple pages and navigation, continue with [Pages and menus](pages-and-menus.md).
+For multiple pages and navigation, continue with [Pages, routes and menus](pages-and-menus.md).
+
+Continue with [Plugin declarations and public exports](plugin-declarations.md) to connect runtime declarations, package exports and service calls between plugins.

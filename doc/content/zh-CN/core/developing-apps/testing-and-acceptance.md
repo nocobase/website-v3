@@ -1,89 +1,97 @@
 ---
 title: 测试与验收
-description: 为数据库、接口和页面选择合适的测试方式，用真实权限与浏览器流程验证业务结果。
+description: 按应用目录组织客户端、服务端、数据库、命令行与浏览器测试，并完成构建检查和功能验收。
 ---
 
-测试要证明业务行为：数据确实保存、非法输入没有写入、权限不能绕过、失败后用户可以继续操作。类型检查和构建通过只能证明其中一部分，不能替代真实数据库与用户操作的验证。
+应用测试围绕实际改动组织：组件测试验证交互，服务端测试验证接口与权限，数据库测试验证结构与记录，命令行测试验证命令行为，浏览器测试验证完整操作。选择能覆盖问题的测试层，再补充必要的应用集成和人工验收。
 
-本篇以[搭建第一个应用](../tutorials/build-your-first-feature.md)中的 npm 示例为参照，使用默认模板 `1.0.0-beta.81`、`tasks` 接口和对应测试目录。项目专题中的历史示例使用另一套表名与测试配置，运行时按对应章节的基线操作。
+本文以默认应用模板的测试配置为基础。已有项目保留自己的配置、别名和初始化文件；示例中的业务文件需要先按对应章节创建。
 
-## 使用 Agent
+## 测试目录与运行命令
 
-```text
-请检查任务应用的数据保存、角色权限和页面操作是否正确，补齐必要的自动化测试。
-用独立测试数据验证，保留现有业务数据；发现问题就修好，最后说明通过和未验证的部分。
+测试集中放在应用根目录的 `tests/`，与源代码的职责对应。按需创建目录，用例命名为 `*.test.ts` 或 `*.test.tsx`：
+
+```tree
+my-app/
+├── tests/
+│   ├── client/          # 页面、组件、Hook 与客户端服务
+│   ├── server/          # HTTP 接口、业务服务与权限
+│   ├── database/        # 迁移、Seed、查询与事务
+│   ├── cli/             # 应用命令
+│   ├── project/         # 项目配置与构建产物
+│   ├── fixtures/        # 测试数据与示例应用
+│   ├── helpers/         # 共享测试辅助函数
+│   ├── setup/           # 测试环境初始化
+│   └── playwright/      # 浏览器测试（按需）
+├── vitest.config.ts
+└── playwright.config.ts
 ```
 
-## 不使用 Agent
+默认模板的 Vitest 配置包含两个 project：`client` 使用基于 jsdom 的应用测试环境，发现 `tests/client/` 下的用例；`node` 发现 `tests/server/`、`tests/database/`、`tests/cli/` 和 `tests/project/` 下的用例。浏览器测试由 Playwright 单独执行。
 
-### 按行为选择测试层次
-
-| 要证明的行为 | 推荐方式 | 不足以证明它的方式 |
-| --- | --- | --- |
-| 纯函数的计算或转换 | 单元测试 | 启动整个应用但不检查边界值 |
-| 字段、约束、关联、事务 | 真实测试数据库 | mock Repository 后断言返回值 |
-| 迁移保留旧数据并可按设计回滚 | `describeMigration()` | 只导入迁移文件或只测空库 |
-| 登录、授权、参数和持久化 | 启动真实应用的接口测试 | 直接调用绕过中间件的业务函数 |
-| 表单、加载、错误与重试 | 实际组件加应用测试环境 | 把 `useApiClient`、翻译和权限 hooks 全部替换 |
-| 历史导航、焦点、真实跨页面流程 | 浏览器测试 | jsdom 中断言没有布局的元素位置 |
-
-使用能够证明行为的最小层次。权限与持久化需要真实服务；可控的网络失败可以在组件测试中替换传输边界，但这类测试不证明服务端权限正确。
-
-### 组织测试文件与运行环境
-
-新业务测试按被测代码放在 `tests/` 下，不放在被测源码旁边：
-
-```text
-tests/
-├── cli/          # Application commands (when needed)
-├── client/       # Pages, components and client behavior
-├── database/     # Repositories and migrations
-├── fixtures/     # Test data and fixture resources
-├── helpers/      # Shared test helpers
-├── playwright/   # Browser flows against a running app
-├── project/      # Configuration, source rules and builds
-├── server/       # APIs, services and permissions
-└── setup/        # Test environment setup
-```
-
-当前模板在 `vitest.config.ts` 中配置两个测试项目：`node` 发现 `tests/{server,database,cli,project}/` 中的测试，`client` 发现 `tests/client/`，并提供 React／jsdom 环境。`tests/playwright/` 使用单独的 Playwright 配置。保留已有别名、setup 与数据库隔离约定；不要只新建目录却漏配发现规则。
-
-在应用目录运行：
+在应用根目录运行：
 
 ```bash
 pnpm test
+pnpm test --project client
+pnpm test --project node tests/database/app-statuses.test.ts
+pnpm test:watch
+pnpm test:coverage
 ```
 
-它运行上述 Vitest 测试，不包含浏览器测试。旧项目仍使用 `tests/logic/`、`tests/components/` 或 `vitest.tutorial.config.ts` 时，应按那个版本的配置执行；升级模板时再同步目录与发现规则，避免漏跑或重复执行。
+第三条命令用于下文创建的数据库测试。其他文件也可以按实际路径筛选；无需为每一类测试再创建一份配置。
 
-### 选择真实数据库和应用 fixture
+`@nocobase/app-testing` 提供以下公开入口：
 
-`@nocobase/app-testing` 的常用入口是 `/server`、`/client` 和 `/cli`。没有独立的 `/database` 或 `/playwright` 导出。
-
-| 工具 | 使用场景 | 注意事项 |
+| 入口 | 主要工具 | 用途 |
 | --- | --- | --- |
-| `createDatabaseTest()` | 不启动应用的 Repository 与事务测试 | 提供所需迁移；插件 Provider 不会自动接入 |
-| `describeMigration()` | 升级、回滚、重新应用迁移 | 用旧数据验证，不修改已合并迁移 |
-| `createAppTest()` | 真实路由、插件、登录和授权 | 使用隔离测试存储；通常一个文件共享应用 |
-| `createTestApp()` | 需要自己控制应用生命周期 | 在 `finally` 中关闭应用 |
-| `renderWithApp()` | 使用实际应用客户端服务的组件 | 保留真实 hooks、路由与翻译，控制必要传输边界 |
+| `/client` | `renderWithApp()`、`answerApi()` | 渲染依赖应用服务的组件，控制 HTTP 响应 |
+| `/server` | `createAppTest()`、`createTestApp()` | 在隔离数据库上启动应用，验证真实接口与插件集成 |
+| `/server` | `createDatabaseTest()`、`describeMigration()` | 不启动完整应用，验证数据库行为和迁移 |
+| `/cli` | `bindAppCommand()`、`runAppCommand()`、`createTestAppConfig()`、`bindTestAppCommand()` | 执行命令、捕获输出，按需提供隔离应用配置 |
 
-数据库 fixture 根据 `NOCOBASE_TEST_DB_DIALECT` 选择方言，未指定时默认 SQLite。测试不要自己硬编码 `:memory:` 或某个驱动来绕开 fixture；模型断言使用 `expectCollection()`，避免用某一方言的内部表证明通用模型。
+没有 `/database` 或 `/playwright` 入口。浏览器测试直接使用 `@playwright/test`。
 
-需要验证生产数据库的约束、查询或性能时，再在对应数据库和有代表性的数据量上运行。SQLite 中的小样本通过，不等于其他数据库的执行计划和性能已验证。
+> [!NOTE]
+> 默认模板允许 Vitest 没有找到测试时正常退出，`test:e2e` 也带有 `--pass-with-no-tests`。命令退出成功不等于功能已通过验收：检查测试报告中的文件名、用例数和跳过项。要求必须运行测试的 CI 可以关闭相应选项。
 
-### 通过真实接口验证持久化
+## 客户端测试
 
-下面是可以放入 `tests/server/tasks-persistence.test.ts` 的最小例子，前提是应用已经实现任务接口。它启动应用、通过真实登录取得会话、创建任务，再重新查询，而不是 mock 数据库返回值：
+将测试放在 `tests/client/`，导入真正的页面、组件、Hook 或服务。测试组件依赖应用服务时，使用 `renderWithApp()` 提供客户端运行时、路由、API Client 和多语言环境；用 `answerApi()` 控制接口响应。
+
+按页面的实际行为准备断言：
+
+| 场景 | 验证内容 |
+| --- | --- |
+| 加载与空数据 | 加载状态可见；空数据有明确提示，不显示上一次结果 |
+| 提交成功 | 请求方法、路径和数据正确；成功反馈与列表更新正确 |
+| 请求失败与重试 | 错误提示可理解；重试时清除旧错误，成功后恢复操作 |
+| 提交尚未完成 | 按钮禁用或防止重复请求，不提前显示成功 |
+| 路由与筛选 | URL 参数、分页与返回操作保持一致 |
+| 权限与会话 | 无权限时入口正确处理；会话失效时提示重新登录 |
+| 多语言 | 使用真实语言资源，至少检查应用支持的主要语言 |
+
+保留真实的 `useApiClient()`、翻译和路由逻辑，在 HTTP 边界提供响应。`answerApi()` 接收 `/api/` 以下的路径，例如 `tasks`；需要指定状态码时返回 `Response`。未知请求应明确失败，避免所有请求都返回成功而掩盖路径错误。
+
+在测试内部调用 `renderWithApp()`，它会在用例结束时关闭客户端应用。沿用模板的 React 测试环境与 DOM 清理，不重复包裹另一套 Router，也不关闭严格翻译检查来绕过缺失文案。点击等操作放在 `waitFor()` 外，等待时只做断言。
+
+客户端业务服务可以先直接构造实例验证方法，再用真实容器检查注册、订阅和资源释放。需要验证 React Provider 时导入实际组件；这与服务容器里的 ServiceProvider 是两层不同的集成，见[客户端业务服务](client-business-services.md)和 [UI 组件与交互](pages-and-interactions.md)。
+
+完整的请求、重试和防重复提交示例见[客户端测试示例](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/client/page.md)。默认模板的 `tests/client/page-harness.test.tsx` 还展示了权限、日期格式和路由弹窗。使用受控响应的组件测试不证明服务端授权或数据库持久化正确，这两部分继续用下面的真实应用测试验证。
+
+## 服务端测试
+
+服务方法的计算和分支可以直接测试；涉及插件注册、登录、权限、迁移或接口中间件时，使用 `createAppTest()` 启动真实应用。
+
+下面以默认模板已有的用户接口演示测试夹具。前提是应用保留认证、授权、用户插件及默认管理员策略。创建 `tests/server/users.test.ts`：
 
 ```ts
-import { randomUUID } from 'node:crypto';
-import { expect } from 'vitest';
-import { createAppTest } from '@nocobase/app-testing/server';
 import {
   DEFAULT_ADMIN_CREDENTIALS,
   signIn,
 } from '@nocobase/app-plugin-authentication/testing';
+import { createAppTest } from '@nocobase/app-testing/server';
+import { expect } from 'vitest';
 import { createStandaloneServer } from '../../server/standalone.js';
 
 const test = createAppTest({
@@ -92,93 +100,207 @@ const test = createAppTest({
   config: {
     app: { publicOrigin: 'http://localhost' },
     auth: {
-      secret: 'tutorial-test-secret-at-least-32-characters',
-      advanced: { disableOriginCheck: false, disableCSRFCheck: false },
+      secret: 'test-auth-secret-at-least-32-characters',
+      trustedOrigins: ['http://localhost'],
     },
     users: { initialAdmin: DEFAULT_ADMIN_CREDENTIALS },
-    logging: { enabled: false },
   },
 });
 
-test('persists a task through the real API', async ({ testApp }) => {
-  expect((await testApp.request('/tasks')).status).toBe(401);
-  const admin = await signIn(testApp, DEFAULT_ADMIN_CREDENTIALS);
-  const title = `Persistence ${randomUUID()}`;
-  const created = await admin.fetch('/tasks', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', origin: 'http://localhost' },
-    body: JSON.stringify({ title }),
-  });
-  expect(created.status).toBe(201);
-  const { data: task } = (await created.json()) as { data: { id: string } };
+test('rejects an anonymous request', async ({ request }) => {
+  expect((await request('/users')).status).toBe(401);
+});
 
-  const list = await admin.fetch(`/tasks?q=${encodeURIComponent(title)}`);
-  expect(list.status).toBe(200);
-  expect(await list.json()).toMatchObject({
+test('reads the administrator after sign-in', async ({ testApp }) => {
+  const admin = await signIn(testApp, DEFAULT_ADMIN_CREDENTIALS);
+  const response = await admin.fetch(
+    `/users?q=${encodeURIComponent(admin.user.email)}`,
+  );
+
+  expect(response.status).toBe(200);
+  await expect(response.json()).resolves.toMatchObject({
     data: expect.arrayContaining([
-      expect.objectContaining({ id: task.id, title }),
+      expect.objectContaining({ id: admin.user.id }),
     ]),
   });
 });
 ```
 
-固定密钥与管理员凭据仅属于这个隔离测试配置。fixture 在进程内提供请求接口，不会启动可供浏览器访问的服务端端口。已有 `tests/server/tasks.test.ts` 已覆盖类似行为时，直接扩展现有测试，不再复制一份。
+```bash
+pnpm test --project node tests/server/users.test.ts
+```
 
-这个例子证明未登录拒绝和管理员创建后可读取，尚未证明普通用户的数据范围。权限测试还需创建独立用户和明确角色，通过真实登录执行允许与拒绝请求，并检查失败后的数据库状态。
+测试配置中的密钥与管理员仅供隔离测试使用。夹具安装应用及插件的迁移和 Seed，提供临时存储，并自动关闭应用。请求在进程内执行，不监听 HTTP 端口；`request('/users')` 会交给应用 API 路由。
 
-### 验证迁移和事务
+`createAppTest()` 默认在同一文件内共享应用和数据库。需要每个用例独立安装时设置 `scope: 'test'`；共享模式下使用各用例自己的记录，不依赖执行顺序。应用有多个自有连接时，在 `connections` 中全部列出，例如 `['main', 'analytics']`，未列出的连接仍沿用应用配置。
 
-迁移测试先应用历史迁移并写入一条旧任务，再应用新迁移，检查原字段、新字段默认值和约束；然后按设计回滚并重新应用。完整代码见[数据模型与迁移](data-models-and-migrations.md)。`down()` 删除的新字段数据不会被自动恢复，应作为预期的数据损失明确验证。
+这两个用例只演示登录边界。测试自己的业务接口时，换成真实路由，并覆盖：
 
-事务测试要在一次事务中先写入，再制造后续失败，最后在事务外重新读取，证明早先写入也被回滚。只断言抛出了异常，不能证明数据库没有部分变更。
+- 未登录、已登录但未授权、已授权三种身份；公开接口按自己的访问策略判断。
+- 参数非法、对象不存在、状态不允许等分支，以及实际返回的错误结构。
+- 写入后重新查询，确认记录与关联数据已保存；失败时检查没有部分写入。
+- 列表、详情和统计都遵守数据范围；普通用户无法访问其他用户的数据。
 
-### 验证组件和交互
+页面入口隐藏不能替代接口权限验证。修改默认角色或授权 Seed 时，也运行模板的 `tests/server/authorization-assignment-safety.test.ts`。完整身份与权限例子见[服务端测试示例](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/server/routes.md)。
 
-导入真正的页面或组件，使用 `renderWithApp()` 提供客户端环境。保留实际翻译、API client、路由与权限 hooks。当前示例的 `tests/client/tasks.test.tsx` 通过 `tests/helpers/authenticated-client.tsx` 连接真实测试应用、数据库和登录会话；模板中的 `tests/client/page-harness.test.tsx` 展示通用页面测试工具。
+## 数据库与命令行测试
 
-需要稳定复现提交中、网络失败或重试时，可用 `answerApi()` 控制 HTTP 响应。jsdom 缺失的 `ResizeObserver` 等能力也可在该边界补足，但应在真实浏览器验证布局；不要借此替换正在验证的业务逻辑。
+### 数据库
 
-优先断言用户看见和操作的行为：字段错误及焦点、输入保留、重复提交阻止、失败后重试、成功后更新列表。不要只检查内部函数调用次数或把整页快照当作验收。
+数据库用例放在 `tests/database/`。使用 `describeMigration()` 检查迁移，用 `createDatabaseTest()` 检查查询、约束、Seed 结果和事务；二者均从 `@nocobase/app-testing/server` 导入。
 
-### 验证浏览器流程与权限
+例如，完成[建表与数据初始化](data-models-and-migrations.md)中的 `appStatuses` 示例后，创建 `tests/database/app-statuses.test.ts`：
 
-先启动独立的测试应用，并使用它自己的测试管理员账号：
+```ts
+import { fileURLToPath } from 'node:url';
+import {
+  createDatabaseTest,
+  describeMigration,
+} from '@nocobase/app-testing/server';
+import { expect } from 'vitest';
+import packageMetadata from '../../package.json' with { type: 'json' };
+
+const migrations = [{
+  packageName: packageMetadata.name,
+  directory: fileURLToPath(
+    new URL('../../database/main/migrations/', import.meta.url),
+  ),
+}];
+const seeds = [{
+  packageName: packageMetadata.name,
+  directory: fileURLToPath(
+    new URL('../../database/main/seeds/', import.meta.url),
+  ),
+}];
+
+describeMigration('202611040001_create_app_statuses', {
+  sources: migrations,
+  up: async ({ expectCollection }) => {
+    await expectCollection('appStatuses').toHaveField('code', {
+      type: 'string',
+      nullable: false,
+    });
+    await expectCollection('appStatuses').toHaveField('title', {
+      type: 'string',
+      nullable: false,
+    });
+  },
+  down: async ({ expectCollection }) => {
+    await expectCollection('appStatuses').not.toExist();
+  },
+});
+
+const test = createDatabaseTest({ migrations, seeds });
+
+test('installs the default statuses', async ({ connection }) => {
+  const statuses = connection.repository('appStatuses');
+  for (const record of [
+    { code: 'draft', title: 'Draft' },
+    { code: 'published', title: 'Published' },
+  ]) {
+    await expect(
+      statuses.findOne({ filter: { code: record.code } }),
+    ).resolves.toMatchObject(record);
+  }
+});
+```
+
+`describeMigration()` 在真实数据库中应用迁移、回退、再次应用，`up` 断言会执行两次。`createDatabaseTest()` 默认每个用例重置结构并重新运行传入的迁移和 Seed，结束后清理数据库。它不会自动加载应用插件；如果资源依赖插件表，补齐所需资源来源，或使用完整应用夹具。
+
+上例验证建表回退和首次初始化。Seed 还应验证已有记录与重复执行时的行为，例如保留管理员改过的名称；事务要在主动触发失败后重新读取，确认写入全部回滚。已有迁移包含数据转换时，先准备旧数据，再检查升级结果。
+
+`NOCOBASE_TEST_DB_DIALECT` 选择测试方言，默认 SQLite。验证目标数据库时，安装匹配驱动并配置该驱动需要的测试服务，再运行相同用例。例如：
+
+```bash
+NOCOBASE_TEST_DB_DIALECT=postgres pnpm test --project node tests/database/app-statuses.test.ts
+```
+
+测试服务需允许创建和清理隔离数据库或 schema；SQLite 通过不代表 PostgreSQL 等其他方言已验证。连接设置见[数据库测试示例](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/database/repository.md)，事务断言思路见[事务与数据一致性](transactions-and-consistency.md)。
+
+### 命令行
+
+命令测试放在 `tests/cli/`，导入 `cli/commands/` 中实际的命令类。根据命令需要的能力选择夹具：
+
+| 命令行为 | 测试方式 |
+| --- | --- |
+| 解析参数、操作文件，不启动应用 | `bindAppCommand()` 绑定临时应用根目录与命令 ID，再用 `runAppCommand()` 执行 |
+| 需要真实应用服务或数据库 | `createTestAppConfig()` 准备隔离配置，`bindTestAppCommand()` 绑定命令，再执行并在 `finally` 中调用 `config.dispose()` |
+
+检查 `runAppCommand()` 返回的 `error`、`result`、`stdout`、`stderr` 和 `json()`；成功时 `exitCode` 可以是 `undefined`，用 `exitCode ?? 0` 归一化。失败用例还要断言非零退出码及约定的错误代码。
+
+以[编写应用命令](application-commands.md)的状态字典导出为例，验证正常导出和文件内容、预览不写文件、空字典、已有文件不被覆盖，以及失败后的资源释放。只检查帮助输出或命令被发现，不能证明导出正常。
+
+命令输出捕获涉及进程级状态，应顺序执行；数据库命令还要提供实际需要的迁移和 Seed。完整例子见[文件命令测试](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/files.md)和[数据库命令测试](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/command.md)。
+
+## 浏览器测试与功能验收
+
+浏览器测试放在 `tests/playwright/`。默认模板提供 Playwright 配置和命令，但需要按应用功能添加用例。先启动独立测试应用，使用 `pnpm dev` 输出的完整 `Local:` 地址，包括 `/main/` 等基础路径。进程内服务端夹具不能直接作为浏览器访问地址。
+
+下面的登录检查假设应用保留默认英文登录页，登录后首页有一级标题。创建 `tests/playwright/sign-in.test.ts`，界面不同则调整定位条件：
+
+```ts
+import { expect, test } from '@playwright/test';
+
+test.use({ locale: 'en-US' });
+
+test('signs in and keeps the session after reload', async ({ page }) => {
+  const entry = process.env.APP_URL;
+  const username = process.env.E2E_USERNAME;
+  const password = process.env.E2E_PASSWORD;
+  if (!entry || !username || !password) {
+    throw new Error('Set APP_URL, E2E_USERNAME and E2E_PASSWORD.');
+  }
+  const appUrl = new URL(`${entry.replace(/\/+$/, '')}/`);
+  const pageErrors: string[] = [];
+  page.on('pageerror', (error) => pageErrors.push(error.message));
+
+  await page.goto(new URL('login', appUrl).href);
+  await page.getByLabel('Username or email').fill(username);
+  await page.getByLabel('Password', { exact: true }).fill(password);
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await page.waitForURL(
+    (url) => !url.pathname.replace(/\/$/, '').endsWith('/login'),
+  );
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+
+  const session = await page.request.get(
+    new URL('api/auth/get-session', appUrl).href,
+  );
+  expect(session.status()).toBe(200);
+  await expect(session.json()).resolves.toMatchObject({
+    user: { id: expect.any(String) },
+  });
+  expect(pageErrors).toEqual([]);
+});
+```
+
+在终端或 CI 环境中设置测试应用的 `APP_URL`、`E2E_USERNAME` 和 `E2E_PASSWORD` 后运行：
 
 ```bash
 pnpm exec playwright install chromium
-TUTORIAL_ORIGIN=http://127.0.0.1:13000 \
-TUTORIAL_USERNAME='your-test-admin' TUTORIAL_PASSWORD='your-test-password' \
-pnpm test:e2e
+pnpm test:e2e tests/playwright/sign-in.test.ts
 ```
 
-当前示例的 `tests/playwright/tasks.test.ts` 使用英文界面，`TUTORIAL_ORIGIN` 只填协议、主机和实际端口，脚本会拼接 `/main`。它不同于历史项目示例的 `APP_URL`；若改变应用基础路径，需要同时调整测试脚本。安装 Chromium 只需在首次运行时执行。
+Chromium 首次使用时安装即可。`APP_URL` 例如 `http://127.0.0.1:13000/main/`，以实际应用地址为准；代码使用相对路径 `login`，避免丢失部署基础路径。使用专门的测试账号和数据，凭据通过环境传入。多个用例需要复用登录时，可参考[保存与复用会话的示例](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/playwright/login.md)。
 
-测试会创建测试用户和任务，部分账号会保留；不要指向生产应用，也不要把凭据写入源码、截图或报告。
+登录检查只是起点。业务验收还应验证一次完整操作：从页面进入、填写并提交、确认成功、刷新后重新读取，再用无权限账号检查拒绝行为。按改动补充浏览器后退、网络失败、移动布局、键盘焦点和弹窗滚动检查。自动化断言覆盖行为，人工验收检查排版、可读性和操作体验。
 
-验收至少包括：
+## 构建检查与交付标准
 
-- 正常用户完成操作，刷新或重新读取后结果仍正确。
-- 只给页面访问权限时，接口仍因缺少业务权限被拒绝。
-- 只有业务操作权限但没有页面权限时，不能进入页面；直接 API 的结果按业务权限判定。
-- 数据范围外的任务和项目不泄露，列表总数也遵守范围。
-- 检查普通账号全部直接与继承授权，避免因另一个角色放行而误判。
-- 提交中、网络失败、对象已删除、权限撤销和浏览器后退等状态得到相应反馈。
-
-初始化权限变更还应运行 `tests/server/authorization-assignment-safety.test.ts`，检查隔离应用里实际产生的默认授权。它不能替代逐个业务操作的权限测试。
-
-## 按影响范围执行检查
-
-例如只修改任务接口时，先运行服务端测试；修改页面交互时，再运行组件及浏览器测试：
+开发时先运行受影响的测试文件，修复失败后再扩大到相关测试组。交付应用代码前，结合改动和项目要求检查：
 
 ```bash
-pnpm test --project node tests/server/tasks.test.ts
-pnpm test --project client tests/client/tasks.test.tsx
+pnpm lint
+pnpm format:check
+pnpm typecheck
+pnpm test
+pnpm build
 ```
 
-同时对改动文件运行格式和 lint，选覆盖改动的 TypeScript 项目检查类型。构建、迁移和部署相关变更再检查相应产物与运行路径。不要每次小改动都机械执行整应用 `pnpm check`，也不要把零测试、跳过测试或缺失环境写成通过。
+默认模板的 `pnpm check` 聚合包检查、lint、格式、类型、Vitest 和构建；浏览器测试仍需单独执行。只改文档时检查文档自身的链接与构建即可，无需重复执行全部业务测试。
 
-## 交付验收记录
+提交验收结果时记录实际执行的命令、测试文件与结果、数据库方言、用户角色和关键流程。明确跳过项和未验证项，例如只测 SQLite、未运行浏览器测试或未检查部署产物，不把它们记为通过。
 
-记录改动范围、执行的命令与结果、实际验证的用户角色和流程、未验证项及原因。截图帮助读者理解界面，断言证明行为；例行测试不应只保存截图却没有结果判断。
-
-文档修改通常检查格式、链接和文档站构建即可；应用代码未改动时，不需要为了更新文字重复运行全部业务测试。需要再次验证时，依据新改动、失败或尚未覆盖的风险扩大范围。
+**完成的标志**：改动涉及的行为、数据和权限都有相应验证；类型检查与构建按项目要求通过；需要浏览器确认的流程已完成验收，剩余限制有明确记录。

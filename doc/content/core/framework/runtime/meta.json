@@ -1,0 +1,29 @@
+{
+  "title": "Runtimes and extension mechanisms",
+  "pages": [
+    {
+      "type": "page",
+      "path": "client"
+    },
+    {
+      "type": "page",
+      "path": "server"
+    },
+    {
+      "type": "page",
+      "path": "cli"
+    },
+    {
+      "type": "page",
+      "path": "lifecycle"
+    },
+    {
+      "type": "page",
+      "path": "plugins"
+    },
+    {
+      "type": "page",
+      "path": "react-providers"
+    }
+  ]
+}

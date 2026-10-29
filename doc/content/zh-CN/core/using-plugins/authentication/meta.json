@@ -1,0 +1,17 @@
+{
+  "title": "用户与认证",
+  "pages": [
+    {
+      "type": "page",
+      "path": "users"
+    },
+    {
+      "type": "page",
+      "path": "sign-in"
+    },
+    {
+      "type": "page",
+      "path": "api-keys"
+    }
+  ]
+}

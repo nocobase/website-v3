@@ -1,0 +1,21 @@
+{
+  "title": "开始使用",
+  "pages": [
+    {
+      "type": "page",
+      "path": "what-is-core"
+    },
+    {
+      "type": "page",
+      "path": "create-app"
+    },
+    {
+      "type": "page",
+      "path": "project-structure"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/build-your-first-feature-agent-first"
+    }
+  ]
+}

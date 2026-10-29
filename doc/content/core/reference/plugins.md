@@ -1,5 +1,5 @@
 ---
-title: Plugin overview
+title: Plugin index
 description: NocoBase 3 plugins, their purposes and whether they are built in.
 ---
 
@@ -12,7 +12,7 @@ This inventory covers application plugins in the reviewed source: 24 in the main
 | Package | Purpose | Built-in plugin |
 | --- | --- | --- |
 | [`@nocobase/app-plugin-agent-sessions`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-agent-sessions) | Connect local coding agents and manage browser conversations, transcripts and work artifacts. | No |
-| [`@nocobase/app-plugin-agents`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-agents) | Manage agents, model services, runs, conversations and runners. | Yes |
+| [`@nocobase/app-plugin-agents`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-agents) | Configure model APIs or connect Agents on machines for conversations, tool calls and task execution. | Yes |
 | [`@nocobase/app-plugin-api-keys`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-api-keys) | Authenticate API requests with API keys. | Yes |
 | [`@nocobase/app-plugin-authentication`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authentication) | Provide sign-in, sessions and authentication integration. | Yes |
 | [`@nocobase/app-plugin-authorization`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authorization) | Declare business permissions, enforce access decisions and provide permission management UI. | Yes |
@@ -48,6 +48,8 @@ These commercial plugins are not included in the default template. Use is subjec
 | `@nocobase/app-plugin-task-center` | Index personal tasks from multiple business sources, with query APIs and reusable UI. |
 
 ## Database dialects
+
+Dialects are database adapters and integrate differently from application plugins. See [Database support and version compatibility](compatibility.md) for connection modes, test versions and configuration differences, and the [Core and tool package index](packages.md) for other framework libraries and tools.
 
 `@nocobase/db` supports database integrations through the following eight dialect packages: five in the main repository and three in the commercial repository. Package names link to source where it is public.
 

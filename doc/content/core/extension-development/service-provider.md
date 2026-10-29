@@ -1,11 +1,13 @@
 ---
-title: ServiceProvider
+title: ServiceProviders and service lifecycle
 description: Understand service contracts, Tokens, registration and lifecycle on both Client and Server.
 ---
 
 A ServiceProvider connects plugin services to the App container and owns their startup and cleanup. Client and Server use the same basic mechanism, but run in separate environments with separate containers and instances.
 
 Put business behavior in a Service and registration/resource lifecycle in a Provider. A pure function with one caller usually needs no container. Use a ServiceProvider when multiple entry points share behavior, implementations need replacement, or resources need lifecycle management.
+
+For plugin integration by runtime, see [Client services](client-services.md) and [Business services and ServiceProvider](server-services.md); [Background jobs and executors](background-jobs.md) covers task resources. This article explains shared container and lifecycle concepts. React component context is covered separately in [React Context and Providers](react-context-and-providers.md).
 
 ## Use an Agent
 

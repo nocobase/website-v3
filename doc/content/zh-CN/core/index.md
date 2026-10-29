@@ -1,54 +1,72 @@
 ---
 title: NocoBase Core
-description: 创建应用，认识项目结构，并通过一个任务应用逐步学习开发。
+description: 从创建应用开始，按开发任务查阅应用、插件、框架与部署文档。
 ---
 
-从一个可运行的项目开始，用 NocoBase Core 开发自己的业务应用。你可以和 Coding Agent 一起完成，也可以按步骤手动编写。
+NocoBase Core 提供应用开发的框架能力，插件提供可组合、可扩展的功能。你可以直接编写业务代码，也可以和 Coding Agent 一起，结合 Skills 与示例完成应用。
 
 ## 开始使用
 
-1. [Core 是什么](getting-started/what-is-core.md)：了解 Core、模板、插件和应用的关系。
-2. [创建应用](getting-started/create-app.md)：创建应用，启动并登录。
-3. [项目结构](getting-started/project-structure.md)：找到页面、接口、数据库和测试的位置。
-4. [搭建第一个应用](tutorials/build-your-first-feature.md)：使用 Agent 或手动实现完整的团队任务应用，完成测试后选择部署方式。
+1. [认识 NocoBase Core](getting-started/what-is-core.md)：了解 Core、模板、插件和应用的关系。
+2. [创建应用](getting-started/create-app.md)：创建项目，启动并登录。
+3. [项目结构](getting-started/project-structure.md)：找到页面、接口、数据库、本地包和测试的位置。
+4. [搭建第一个应用](tutorials/build-your-first-feature-agent-first.md)：用 Agent 搭建任务应用，验证完整业务流程。
 
 ## 开发应用
 
-按主题查阅应用开发的约定和用法；需要运行示例时，再准备对应的数据与接口。
+围绕项目中的 `client/`、`server/`、`database/`、`cli/`、`packages/` 和 `tests/` 组织业务实现。
 
-- [应用开发概览](developing-apps/overview.md)：理解应用、模板与插件，以及页面到数据库的完整路径。
-- [和 Agent 一起开发](developing-apps/develop-with-an-agent.md)：描述需求、使用项目指引并验证结果。
-- [数据模型与迁移](developing-apps/data-models-and-migrations.md)：设计字段、关系与约束，保留旧数据。
-- [查询与操作数据](developing-apps/querying-data.md)：使用 Repository、分页、关联、事务与 Query。
-- [业务服务与 HTTP 接口](developing-apps/apis-and-services.md)：组织服务、校验输入、接入权限并声明 API。
-- [页面、路由与导航](developing-apps/pages-routes-and-navigation.md)：注册页面与菜单，组织子路由和访问条件。
-- [UI 组件与交互](developing-apps/pages-and-interactions.md)：处理列表、表单、弹窗和操作反馈。
-- [应用配置与系统设置](developing-apps/configuration-and-settings.md)：区分运行配置和业务设置，接入管理页面。
-- [多语言与主题](developing-apps/localization-and-themes.md)：组织文案、语言资源和统一的主题样式。
-- [管理插件](developing-apps/manage-plugins.md)：使用已有能力，管理注册、更新、移除与扩展。
-- [测试与验收](developing-apps/testing-and-acceptance.md)：选择测试层次，验证真实数据、权限和用户流程。
+- [应用开发概览](developing-apps/overview.md)：理解页面、接口、服务与数据库如何配合。
+- [和 Agent 一起开发](developing-apps/develop-with-an-agent.md)：使用项目规则与 Skills，拆分需求并验证结果。
+- [客户端页面与导航](developing-apps/pages-routes-and-navigation.md)、[组件与交互](developing-apps/pages-and-interactions.md)：实现页面和用户操作。
+- [服务端接口与业务服务](developing-apps/apis-and-services.md)：组织业务逻辑、校验输入并接入权限。
+- [建表与数据初始化](developing-apps/data-models-and-migrations.md)、[查询与操作数据](developing-apps/querying-data.md)：实现业务数据的保存和访问。
+- [应用配置（config.yml）](developing-apps/configuration-and-settings.md)、[多语言](developing-apps/localization.md)、[主题与样式](developing-apps/themes-and-styles.md)、[测试与验收](developing-apps/testing-and-acceptance.md)：完成应用配置和交付检查。
+
+## 使用插件
+
+从已有能力开始，按插件说明完成安装、注册、配置和业务接入。插件提供的接口、服务、组件与 Skills，可以按业务需要组合使用。
+
+- [插件使用概览](using-plugins/overview.md)：了解如何选择、接入和验证已有插件。
+- [管理插件](developing-apps/manage-plugins.md)：管理客户端、服务端和 CLI 的插件入口。
+- [插件索引](reference/plugins.md)：查询认证、用户、权限、文件、通知、Agents 等插件的用途和包名。
 
 ## 开发插件
 
-- [什么时候写插件](extension-development/when-to-write-a-plugin.md)：判断复用需求，划分应用与插件的职责。
-- [创建插件](extension-development/create-plugin.md)：在已有 App 中使用创建工具生成插件骨架，选择能力并接入工作区。
-- [插件的结构](extension-development/plugin-structure.md)：认识可选目录、运行时入口、公开导出和资源归属。
-- [编写第一个插件](extension-development/write-your-first-plugin.md)：实现公告接口与页面，完成测试、注册和应用验证。
-- [页面和菜单](extension-development/pages-and-menus.md)：声明菜单与子页面，处理默认入口、导航和访问权限。
-- [前端组件](extension-development/frontend-components.md)：使用 shadcn 和 NocoBase UI Library 编写、组合组件，按需发布供 Agent 使用的源码资产。
-- [服务端接口](extension-development/server-apis.md)：输入校验、访问边界、响应与 API 文档。
-- [ServiceProvider](extension-development/service-provider.md)：前后端服务的契约、注册与生命周期。
-- [数据库与迁移](extension-development/database-and-migrations.md)：插件的数据结构、任务历史与升级。
-- [多语言](extension-development/localization.md)：资源归属、命名空间和翻译验证。
-- [扩展命令行](extension-development/extend-command-line.md)：命令注册、统一输出与部署验证。
-- [测试与验证](extension-development/testing-and-verification.md)：插件测试、App 集成与交付检查。
-- [给插件写技能](extension-development/write-plugin-skills.md)：向 App Agent 说明并验证公开能力。
-- [发布插件](extension-development/publish-plugin.md)：本地插件随 App 交付，需要共享时再发布到私有 npm 源。
+将独立扩展组织成插件，定义公开入口与服务契约，接入应用并完成测试与交付。
+
+- [什么时候写插件](extension-development/when-to-write-a-plugin.md)、[创建插件](extension-development/create-plugin.md)、[插件结构](extension-development/plugin-structure.md)：确定边界并准备工作区。
+- [编写第一个插件](extension-development/write-your-first-plugin.md)：实现公告接口与页面，完成注册和应用验证。
+- [页面与菜单](extension-development/pages-and-menus.md)、[路由与 HTTP 接口](extension-development/server-apis.md)：实现前后端扩展。
+- [组件与样式](extension-development/frontend-components.md)：编写并接入 shadcn 组件，按需通过独立 UI Registry 包分发可编辑源码。
+- [数据库资源与迁移](extension-development/database-and-migrations.md)、[命令行扩展](extension-development/extend-command-line.md)、[客户端多语言](extension-development/localization.md)：提供插件资源与命令。
+- [测试与验证](extension-development/testing-and-verification.md)、[提供 Skills](extension-development/write-plugin-skills.md)、[构建与发布](extension-development/publish-plugin.md)：验证接入方式并交付公开能力。
+
+## 框架
+
+介绍应用与插件共同使用的运行机制和核心包。先通过业务示例完成接入，再按需查阅底层机制。
+
+- [框架概览](framework/overview.md)：了解运行时、核心包与插件功能的关系。
+- [运行时](framework/runtime/client.md)、[服务容器](framework/services/container.md)、[ServiceProvider](extension-development/service-provider.md)、[HTTP 与 API](framework/http/routes.md)：理解组装、扩展与调用机制。
+- [数据库](framework/database/overview.md)：连接、建模、查询、事务与结构演进。
+- [缓存](framework/support/caching.md)、[文件存储](framework/file-storage.md)、[日志](framework/support/logging.md)、[ID 生成](framework/support/ids.md)：复用宿主服务。
+- [后台任务](framework/background/jobs.md)、[周期调度](framework/background/scheduling.md)、[消息队列](framework/background/queues.md)、[实时通信](framework/realtime/topics.md)：处理异步工作与页面更新。
 
 ## 部署与运维
 
-- [选择部署方式](deployment/choose-a-deployment-method.md)：选择 Docker 或 PM2 独立部署生产应用，准备配置、数据和恢复方案。
-- [使用 Docker 部署](tutorials/deploy-with-docker.md)：构建镜像，用容器和持久化挂载运行应用。
-- [使用 PM2 部署（app-installer）](tutorials/deploy-with-app-installer.md)：由 PM2 托管进程，通过 app-installer 安装和更新应用。
-- [升级 NocoBase Core](developing-apps/upgrade-nocobase-core.md)：使用 Agent 或手动合并新模板，验证兼容性并发布升级后的应用。
-- [发布应用新版本](deployment/publish-app-release.md)：重新构建并部署，了解两种部署方式更新时的差别。
+Core 的部署文档面向独立运行的生产应用。Studio 的开发环境、预览与托管流程见 [Studio 文档](../studio/index.md)。
+
+- [选择部署方式](deployment/choose-a-deployment-method.md)：准备配置、持久化数据和恢复方案。
+- [发布应用新版本](deployment/publish-app-release.md)：验证、构建并更新应用版本。
+- [使用 Docker 部署](tutorials/deploy-with-docker.md)、[使用 PM2 部署](tutorials/deploy-with-app-installer.md)：选择应用的运行方式，PM2 部署使用 app-installer 安装和更新。
+- [升级 NocoBase Core](developing-apps/upgrade-nocobase-core.md)：合并模板变化并验证业务兼容性。
+
+## 参考
+
+按需查询接口、参数、目录与兼容性：
+
+- [API 参考](reference/api.md)：常用公开入口、返回值与数据库专题声明。
+- [命令行参考](reference/cli.md)、[配置项参考](reference/configuration.md)：开发与部署命令、配置覆盖顺序和环境变量。
+- [项目目录与文件约定](reference/project-conventions.md)：应用、插件、UI 资产与生成文件的维护位置。
+- [核心包与工具包索引](reference/packages.md)、[插件索引](reference/plugins.md)：按职责查找包名和默认模板包含情况。
+- [数据库支持与版本兼容](reference/compatibility.md)、[常见问题](reference/faq.md)：核对运行环境、数据库差异与常见问题。

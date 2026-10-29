@@ -29,7 +29,7 @@ description: 区分插件测试、App 集成与交付检查，验证真正会影
 
 ## 复用生产实现
 
-[服务端接口](server-apis.md) 的测试从真实 `apiRoutes` 调用 `createRouter()`，验证 200 响应、非法输入的 400 以及 API 文档；[数据库与迁移](database-and-migrations.md) 通过真实 Migrator 应用、回滚、重新应用迁移；[扩展命令行](extend-command-line.md) 使用 `bindAppCommand()` 和 `runAppCommand()` 验证统一输出。
+[路由与 HTTP 接口](server-apis.md) 的测试从真实 `apiRoutes` 调用 `createRouter()`，验证 200 响应、非法输入的 400 以及 API 文档；[数据库资源与迁移](database-and-migrations.md) 通过真实 Migrator 应用、回滚、重新应用迁移；[命令行扩展](extend-command-line.md) 使用 `bindAppCommand()` 和 `runAppCommand()` 验证统一输出。
 
 这些示例都使用插件自己的实现。不要在测试里重写一套路由、服务或数据模型，再把那套代码测绿。
 
@@ -37,7 +37,7 @@ description: 区分插件测试、App 集成与交付检查，验证真正会影
 
 ## Client 测试的边界
 
-`renderWithApp()` 注册真实 Client 插件，提供服务、API 客户端、路由和语言环境。不要另外包一层 `MemoryRouter`。需要验证路由树时，仍要把实际路由声明对应的组件渲染出来，见[页面和菜单](pages-and-menus.md#5-验证导航行为)。
+`renderWithApp()` 注册真实 Client 插件，提供服务、API 客户端、路由和语言环境。不要另外包一层 `MemoryRouter`。需要验证路由树时，仍要把实际路由声明对应的组件渲染出来，见[页面、路由与菜单](pages-and-menus.md#5-验证导航行为)。
 
 网络请求可通过 `answerApi()` 在边界处替换响应，但必须匹配方法和 API 相对路径。不要无论请求什么都返回成功，这会隐藏拼错路径和多发请求的问题。
 

@@ -132,6 +132,8 @@ The tree contains three kinds of files: generated scaffold files, source added d
 
 ## How entries connect
 
+See [Plugin declarations and public exports](plugin-declarations.md) for contribution declarations, public services and calls between plugins.
+
 Implementation files, public plugin entries and App registration files serve different purposes:
 
 | Location | Responsibility |
@@ -238,7 +240,7 @@ Plugins with Client code include `components.json` and `client/styles.css` to co
 
 Aliases such as `#components/*` are defined by the plugin's own `package.json`, independently of private App aliases. When adding or installing components, keep file locations, imports and build configuration aligned.
 
-Apps and plugins can freely write and organize frontend components, using shadcn primitives. When composing modular interfaces, first consult components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/). The library distributes source assets through shadcn UI Registry; use the same mechanism when publishing your own assets. See [Frontend components](frontend-components.md) for a complete component, page integration and source distribution example.
+Apps and plugins can freely write and organize frontend components, using shadcn primitives. When composing modular interfaces, first consult components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/). The library distributes source assets through shadcn UI Registry; use the same mechanism when publishing your own assets. See [Components and styles](frontend-components.md) for component authoring and page integration, and [Publish UI source assets](frontend-components.md#optionally-distribute-ui-source-assets) for an independent Registry package, its build and local installation.
 
 Maintain source assets in an independent Registry package alongside plugins under `packages/`. Integrate plugin capabilities through public package entries or inputs supplied by the consumer, without relative imports into plugin internals. After installation, the receiving App or plugin maintains its own source copy.
 
@@ -252,6 +254,8 @@ Maintain source assets in an independent Registry package alongside plugins unde
 | App `.agents/skills/` | Agents developing the application | Hold synchronized guidance copies |
 
 Plugin development guidance is part of the foundation; `skills/` is generated when selected. Complete the Skill source in the plugin before synchronizing it, rather than maintaining generated App copies directly.
+
+See [Plugin development guidance (AGENTS.md)](plugin-development-guidance.md) for plugin-specific maintenance conventions, and [Plugin Skills](write-plugin-skills.md) for capability instructions and usage examples for application Agents.
 
 ### Tests and development configuration
 
@@ -287,4 +291,4 @@ These artifacts are generated. Change source files and rebuild rather than editi
 
 Follow [Write your first plugin](write-your-first-plugin.md) to implement the announcements API and page, then test, register and verify them in the App. For capability options and combinations, see [Create a plugin](create-plugin.md). For installation, updates and removal, see [Manage plugins](../developing-apps/manage-plugins.md).
 
-For sharing across Apps with independently managed versions, continue with [Publish a plugin](publish-plugin.md). Publication is unnecessary when using the plugin only in the current App.
+For sharing across Apps with independently managed versions, continue with [Build and publish](publish-plugin.md). Publication is unnecessary when using the plugin only in the current App.

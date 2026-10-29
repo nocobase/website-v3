@@ -1,7 +1,7 @@
 // Docs-specific build steps: a fresh content cache for production builds, the checks on the output, and the Pagefind search index. In the dev server it also serves the pages' .md copies, which the build writes.
 import { readFileSync, readdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as pagefind from 'pagefind';
 import { markdownCopy } from '@nocobase/site-shared/integration';
 import { checkLayout, findDeadLinks } from '../lib/checks.mjs';
@@ -14,9 +14,14 @@ export default function docs() {
   return {
     name: 'doc/build',
     hooks: {
-      'astro:config:setup': ({ command }) => {
-        // The content cache is keyed by the Markdown text only; figures, menus and plugins are not part of it, so a production build always starts clean.
-        if (command === 'build') rmSync(join(DOC_ROOT, '.astro'), { recursive: true, force: true });
+      'astro:config:setup': ({ command, updateConfig }) => {
+        // Figures, menus and plugins are not part of the Markdown cache key, so builds need a fresh cache.
+        // Keep it separate: .astro contains the running dev server's content store.
+        if (command === 'build') {
+          const cacheDir = pathToFileURL(join(DOC_ROOT, 'node_modules', '.astro-build') + '/');
+          rmSync(cacheDir, { recursive: true, force: true });
+          updateConfig({ cacheDir });
+        }
       },
       // The Copy Markdown button fetches <page>.md. The content is read again on every request, so an edited page is copied as it is now.
       'astro:server:setup': ({ server }) => {

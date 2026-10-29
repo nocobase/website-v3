@@ -5,7 +5,7 @@ description: Use Repositories for business records, relations, pagination, trans
 
 Start data access with a Repository. It understands Collection fields and relations and supports reading, creating and changing business records. Query operates on tables and result sets, for reports and aggregations that Repository cannot express. Both require callers to establish identity and permissions first.
 
-The snippets run on the application server and use `tutorialProjects` and `tutorialTasks` from [Data models and migrations](data-models-and-migrations.md). The example application uses default template `1.0.0-beta.78`. This is a separate historical project example, not the current getting-started application with its `tasks` table. These are data-access excerpts; complete routing, authorization and service registration are in [Business services and HTTP APIs](apis-and-services.md).
+The snippets run on the application server and use `tutorialProjects` and `tutorialTasks` from [Create tables and initialize data](data-models-and-migrations.md). The example application uses default template `1.0.0-beta.78`. This is a separate historical project example, not the current getting-started application with its `tasks` table. These are data-access excerpts; complete routing, authorization and service registration are in [Server business services](server-business-services.md).
 
 ## With an agent
 
@@ -120,32 +120,9 @@ const savedTask = result.record;
 
 Build `values` from an explicit field allowlist rather than passing the entire request body. Bulk operations still need validated input, policies, bounded sizes and a decision about all-or-nothing versus partial success. A method ending in `Many` does not make those decisions for you.
 
-### Group operations in a transaction
+### Multi-step writes and transactions
 
-Use a transaction for operations that must succeed or fail together, taking every operation from the callback's `connection`:
-
-```ts
-await database.transaction(async (connection) => {
-  const tasks = connection.repository('tutorialTasks').withPolicy(taskPolicy);
-  const projects = connection
-    .repository('tutorialProjects')
-    .withPolicy(projectPolicy);
-
-  const task = await tasks.findOne({ filter: { id: taskId } });
-  if (!task) throw new Error('Task unavailable.');
-  const project = await projects.findOne({ filter: { id: projectId } });
-  if (!project) throw new Error('Project unavailable.');
-
-  await tasks.updateOne({
-    filter: { id: taskId },
-    values: { projectId, updatedAt: new Date() },
-  });
-});
-```
-
-This illustrates transaction structure. Production services use distinguishable business errors, translated into API errors by routes; see [Business services and HTTP APIs](apis-and-services.md). Calling the outer `database.repository()` runs outside this transaction. Catching an error and returning normally may commit partial work.
-
-Transactions do not automatically prevent concurrent overwrites. If last successful write wins is unacceptable, add concurrency controls such as version conditions. Trigger external effects such as notifications after commit. `connection.afterCommit()` is useful for that boundary, but failure cannot undo committed data and does not guarantee external message delivery.
+Let a business service group operations that must succeed or fail together in one connection transaction. See [Transactions and data consistency](transactions-and-consistency.md) for implementation, rollback and external-delivery boundaries. Reads and writes must use the transaction connection rather than outside Repositories.
 
 ## When to use Query
 
@@ -164,4 +141,4 @@ Query conditions take `where(field, operator, value)` and parameterize values. T
 
 Use real test databases for filters, stable ordering, empty results, relations and bulk scopes; use the real application and ordinary users for authorization. Trigger a failure within a transaction and reread the database to confirm earlier writes were also rolled back. Mocking a Repository cannot establish its behavior.
 
-See [Business services and HTTP APIs](apis-and-services.md) for the complete project service and [Testing and acceptance](testing-and-acceptance.md) for fixture selection.
+See [Server business services](server-business-services.md) for the complete project service and [Testing and acceptance](testing-and-acceptance.md) for fixture selection.

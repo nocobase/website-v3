@@ -1,0 +1,17 @@
+{
+  "title": "命令行",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../application-commands"
+    },
+    {
+      "type": "page",
+      "path": "../plugin-commands"
+    },
+    {
+      "type": "page",
+      "path": "../cli-client"
+    }
+  ]
+}

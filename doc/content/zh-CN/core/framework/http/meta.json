@@ -1,0 +1,25 @@
+{
+  "title": "HTTP 与 API",
+  "pages": [
+    {
+      "type": "page",
+      "path": "routes"
+    },
+    {
+      "type": "page",
+      "path": "middleware"
+    },
+    {
+      "type": "page",
+      "path": "validation"
+    },
+    {
+      "type": "page",
+      "path": "repository-routes"
+    },
+    {
+      "type": "page",
+      "path": "api-client"
+    }
+  ]
+}

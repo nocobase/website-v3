@@ -62,10 +62,11 @@ body > footer .container { max-width: 1440px; }
 .doc-nav a.todo { color: var(--muted); }
 .doc-nav a.todo[aria-current="page"] { color: var(--brand); }
 .doc-planned { display: block; padding: 5px 10px; font-size: 14px; line-height: 1.55; color: var(--muted); opacity: 0.75; cursor: default; }
-.doc-planned small { margin-left: 4px; font-size: 11px; }
+.doc-planned small { display: inline-block; margin-left: 4px; font-size: 11px; white-space: nowrap; }
 .doc-folder > summary { display: flex; align-items: center; justify-content: space-between; list-style: none; cursor: pointer; border-radius: 6px; }
 .doc-folder > summary::-webkit-details-marker { display: none; }
 .doc-folder > summary:hover { background: var(--paper-2); }
+.doc-folder > summary:focus-visible, .doc-nav a:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
 .doc-folder-link { flex: 1; padding: 5px 10px; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
 span.doc-folder-link { font-weight: 400; }
 .doc-folder > summary a.doc-folder-link:hover { background: none; }

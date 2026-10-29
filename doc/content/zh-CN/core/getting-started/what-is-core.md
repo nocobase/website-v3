@@ -1,5 +1,5 @@
 ---
-title: Core 是什么
+title: 认识 NocoBase Core
 description: 了解 NocoBase Core 如何提供通用能力，让你和 Agent 专注于业务应用的开发。
 ---
 
@@ -49,4 +49,4 @@ Core 可以独立使用。Studio 用来组织团队的开发、评审和发布�
 
 先通过 [创建应用](create-app.md) 创建并运行项目，再用 [项目结构](project-structure.md) 了解代码的位置。
 
-随后从 [搭建第一个应用](../tutorials/build-your-first-feature.md) 开始，搭建完整的团队任务应用，再验证权限并部署。
+随后从 [搭建第一个应用](../tutorials/build-your-first-feature-agent-first.md) 开始，搭建完整的团队任务应用，再验证权限并部署。

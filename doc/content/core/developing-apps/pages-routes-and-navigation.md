@@ -5,7 +5,11 @@ description: Register pages and menus, organize nested routes and breadcrumbs, a
 
 Page components render content. Route declarations connect them to the application and describe addresses, menus, breadcrumbs and access conditions. The sidebar is generated from routes, so adding a business entry usually does not require editing layouts.
 
-This guide uses the task application's project pages to explain routing. Tables, forms and request state are covered in [UI components and interactions](pages-and-interactions.md). The excerpts use an application generated from default template `1.0.0-beta.78`; preserve existing routes when integrating them. The `tutorialTasks`/`tutorialProjects` model belongs to the separate historical project example, not the current getting-started `tasks` model. Confirm the baseline in [Data models and migrations](data-models-and-migrations.md) before running it.
+Business pages usually live in `client/pages/` and connect through `client/routes.ts`. `client/layouts/` owns the surrounding layout; edit it when changing the application shell, navigation area or content area. For route rendering and startup composition, see [Client runtime](../framework/runtime/client.md).
+
+See [Page layouts](page-layouts.md) for containers, columns and application shells, and [Data requests and state management](data-requests-and-state.md) for URL parameters, reading data and refreshing after returning.
+
+This guide uses the task application's project pages to explain routing. Tables, forms and request state are covered in [UI components and interactions](pages-and-interactions.md). The excerpts use an application generated from default template `1.0.0-beta.78`; preserve existing routes when integrating them. The `tutorialTasks`/`tutorialProjects` model belongs to the separate historical project example, not the current getting-started `tasks` model. Confirm the baseline in [Create tables and initialize data](data-models-and-migrations.md) before running it.
 
 ## With an agent
 
@@ -141,7 +145,7 @@ Explicitly declare `authz` on the first page of each path. Children without it i
 
 Page resource IDs are stored in role grants. Renaming them requires migrating grants; do not change IDs just to edit display text. Titles use translations. Pages without navigation or breadcrumbs can supply permission labels through `client/pages/settings/page-permission-titles.ts`.
 
-These checks run in the browser. APIs still require independent authentication, business authorization and record scopes; see [Business services and HTTP APIs](apis-and-services.md).
+These checks run in the browser. APIs still require independent authentication, business authorization and record scopes; see [Routes and HTTP APIs](apis-and-services.md).
 
 ## Verify results
 

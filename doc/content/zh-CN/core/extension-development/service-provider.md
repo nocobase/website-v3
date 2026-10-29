@@ -1,11 +1,13 @@
 ---
-title: ServiceProvider
+title: ServiceProvider 与服务生命周期
 description: 一起理解前后端的服务契约、Token、容器注册与生命周期。
 ---
 
 ServiceProvider 把插件提供的服务接入 App 的容器，并管理服务需要的启动与清理工作。前端和后端使用相同的基本机制，但运行在不同环境，容器和实例互不共享。
 
 业务行为写在 Service，注册和资源生命周期写在 Provider。只有一个调用方的纯函数通常不需要容器；当多个入口共享能力、需要替换实现或管理资源时，再使用 ServiceProvider。
+
+按运行端接入插件时，可以直接阅读[客户端服务](client-services.md)和[业务服务与 ServiceProvider](server-services.md)；任务资源的启动和关闭见[后台任务与执行器](background-jobs.md)。本篇继续解释两端共用的容器与生命周期概念，React 组件上下文另见[React Context 与 Provider](react-context-and-providers.md)。
 
 ## 使用 Agent
 

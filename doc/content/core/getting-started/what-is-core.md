@@ -1,5 +1,5 @@
 ---
-title: What is Core
+title: Meet NocoBase Core
 description: Learn how NocoBase Core provides shared capabilities so you and your agent can focus on your business application.
 ---
 
@@ -47,6 +47,6 @@ Core can run independently. Studio organizes team development, review and releas
 
 ## Create your application
 
-Start with [Create app](create-app.md), then use [Project structure](project-structure.md) to find your way around the code.
+Start with [Create an app](create-app.md), then use [Project structure](project-structure.md) to find your way around the code.
 
-Continue with [Build your first app](../tutorials/build-your-first-feature.md) to build a complete team task app, verify it and deploy it.
+Continue with [Build your first app](../tutorials/build-your-first-feature-agent-first.md) to build a complete team task app, verify it and deploy it.

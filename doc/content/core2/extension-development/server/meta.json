@@ -1,0 +1,21 @@
+{
+  "title": "Server",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../server-apis"
+    },
+    {
+      "type": "page",
+      "path": "../server-services"
+    },
+    {
+      "type": "page",
+      "path": "../background-jobs"
+    },
+    {
+      "type": "page",
+      "path": "../server-localization"
+    }
+  ]
+}

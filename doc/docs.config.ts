@@ -121,6 +121,7 @@ export default defineDocsConfig({
   sections: [
     { id: 'start', dir: 'start', extra: ['index'], home: 'index', title: { en: 'Start', 'zh-CN': '开始' } },
     { id: 'core', dir: 'core', home: 'core/index', title: { en: 'Core', 'zh-CN': 'Core' } },
+    { id: 'core2', dir: 'core2', home: 'core2/index', title: { en: 'Core 2', 'zh-CN': 'Core 2' } },
     { id: 'studio', dir: 'studio', home: 'studio/index', title: { en: 'Studio', 'zh-CN': 'Studio' } },
     { id: 'guides', dir: 'guides', home: 'guides/build-sustainable-enterprise-apps', title: { en: 'Tutorials', 'zh-CN': '教程' } },
   ],

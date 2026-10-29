@@ -1,0 +1,13 @@
+{
+  "title": "Realtime communication",
+  "pages": [
+    {
+      "type": "page",
+      "path": "topics"
+    },
+    {
+      "type": "page",
+      "path": "websocket"
+    }
+  ]
+}

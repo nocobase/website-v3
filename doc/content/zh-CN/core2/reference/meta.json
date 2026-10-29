@@ -1,0 +1,37 @@
+{
+  "title": "参考",
+  "pages": [
+    {
+      "type": "page",
+      "path": "api"
+    },
+    {
+      "type": "page",
+      "path": "cli"
+    },
+    {
+      "type": "page",
+      "path": "configuration"
+    },
+    {
+      "type": "page",
+      "path": "project-conventions"
+    },
+    {
+      "type": "page",
+      "path": "packages"
+    },
+    {
+      "type": "page",
+      "path": "plugins"
+    },
+    {
+      "type": "page",
+      "path": "compatibility"
+    },
+    {
+      "type": "page",
+      "path": "faq"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "title": "客户端",
+  "pages": [
+    {
+      "type": "page",
+      "path": "../pages-routes-and-navigation"
+    },
+    {
+      "type": "page",
+      "path": "../pages-and-interactions"
+    },
+    {
+      "type": "page",
+      "path": "../data-requests-and-state"
+    },
+    {
+      "type": "page",
+      "path": "../page-layouts"
+    },
+    {
+      "type": "page",
+      "path": "../localization"
+    },
+    {
+      "type": "page",
+      "path": "../themes-and-styles"
+    },
+    {
+      "type": "page",
+      "path": "../client-business-services"
+    }
+  ]
+}

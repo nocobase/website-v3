@@ -1,0 +1,25 @@
+{
+  "title": "Getting started",
+  "pages": [
+    {
+      "type": "page",
+      "path": "what-is-core"
+    },
+    {
+      "type": "page",
+      "path": "create-app"
+    },
+    {
+      "type": "page",
+      "path": "project-structure"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/build-your-first-app"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/build-your-first-app-agent-first"
+    }
+  ]
+}

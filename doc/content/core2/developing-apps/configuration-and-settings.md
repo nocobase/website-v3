@@ -1,30 +1,30 @@
 ---
 title: Application configuration (config.yml)
-description: Modify config.yml, understand client and server code configuration, and add a configuration section with overrides, validation and public fields.
+description: Change existing settings through config.yml, understand client and server code configuration, add your own configuration section, and verify overrides, validation and public fields.
 ---
 
-`config.yml` contains configuration for the current application environment, such as the application title, database connections, default locale and logging level. `client/config/` and `server/config/` define code defaults and configuration that must be constructed in code.
+`config.yml` holds the configuration of the current application environment, such as the application title, database connections, default language and logging level. `client/config/` and `server/config/` define the defaults in code, along with configuration that has to be constructed in code.
 
-This guide first changes an existing setting, then adds `reports.pageSize` to connect declarations, overrides, business consumers and client access. Examples follow the Examples template and do not require the project-and-task tutorial. Administration pages and business settings managed by administrators belong to their business modules.
+This guide first changes an existing setting, then adds `reports.pageSize` to walk through declaring, overriding, reading in business code and using configuration on the client. The examples follow the Examples template and do not depend on the projects-and-tasks tutorial. Administration pages, and business settings that administrators maintain day to day, belong to their business modules and are outside the scope of this guide.
 
 ## Where configuration lives
 
 | Location | Responsibility |
 | --- | --- |
-| `config.example.yml` | A committed example that helps new environments identify values to supply |
-| `config.yml` | Overrides for the current environment; may contain credentials and is not committed |
+| `config.example.yml` | A configuration example you can commit, showing a new environment which values to fill in |
+| `config.yml` | The actual overrides for the current environment; the local file may contain credentials, so do not commit it to Git |
 | `client/config/` | Client defaults and code configuration such as authentication client plugins |
-| `server/config/` | Server section defaults, environment mappings, validation and published fields |
-| Each side's `config/index.ts` | Combines its sections with `defaultAppConfigs()` for the runtime |
-| `server/config.ts` | Creates the configuration service and selects and loads its file |
+| `server/config/` | Defaults, environment variable mappings, validation and public fields for each server configuration section |
+| `config/index.ts` on each side | Collects that side's configuration with `defaultAppConfigs()` and hands it to the runtime |
+| `server/config.ts` | Creates the configuration service and selects and loads the configuration file |
 
-`server/config.ts` is the loader; `server/config/` contains section definitions. The template's `server/runtime.ts` and `client/runtime.ts` already connect their configuration entries. Usually, maintain the sections and their `index.ts` rather than changing the runtime.
+Note the difference: `server/config.ts` is the loading entry, while `server/config/` is the directory that holds the configuration sections. The template's `server/runtime.ts` and `client/runtime.ts` already connect their configuration entries, so you usually only maintain the sections and their `index.ts`.
 
-`config.example.yml` shows selected common settings, not every available field. The application and integrated modules define configuration together. Consult [Configuration reference](../reference/configuration.md) and module documentation for complete options. For a new application, `pnpm nocobase config init --dialect sqlite` initializes local configuration and keys. For an existing application, edit its current configuration as needed; see [Create an app](../getting-started/create-app.md).
+`config.example.yml` only shows some common settings, not every available field. Configuration declarations come from the application and the modules it integrates; for the complete fields, see [Configuration reference](../reference/configuration.md) and each module's documentation. When creating an application for the first time, initialize the local configuration and secrets with `pnpm nocobase config init --dialect sqlite`; for an existing application, change its current configuration as needed. See [Create an app](../getting-started/create-app.md).
 
-## Change existing configuration
+## Change existing settings
 
-In an initialized application, merge these values into `config.yml`, retaining database, key and other settings. Update existing sections rather than duplicating top-level keys:
+In an initialized application, merge the values below into `config.yml`, keeping the existing database, secrets and other settings. If a section with the same name already exists, change its fields instead of declaring the top-level key twice:
 
 ```yaml
 client:
@@ -38,29 +38,29 @@ logging:
   level: info
 ```
 
-Examples defaults the title to `NocoBase` in `client/config/app.ts`, then overrides it to `NocoBase Examples` in the configuration file. Changing it to `My Reports` makes the template's client ServiceProvider set that browser-tab title at startup. The sidebar's application name and version come from separate public information; changing one title does not replace all application wording.
+In Examples, `client/config/app.ts` sets the default title to `NocoBase`, and the configuration file originally overrides it to `NocoBase Examples`. After changing it to `My Reports` here, the template's client ServiceProvider uses it at startup as the browser tab title. The application name and version in the sidebar come from separate public information, so do not expect changing one title to replace the text everywhere.
 
-`i18n.defaultLocale` selects the default language; available languages still depend on locale resources. Existing user or browser preferences may take precedence; see [Localization](localization.md). `logging.level` selects the logging level; see [Logging](../framework/support/logging.md) for complete behavior.
+`i18n.defaultLocale` sets the default language, while the selectable languages are still decided by the language resources; a user's existing choice or browser preference may take precedence over the default. See [Localization](localization.md). `logging.level` sets the logging level; for the full logging behavior, see [Logging](../framework/support/logging.md).
 
-### Override precedence
+### Override order
 
-Server precedence, from lowest to highest, is code defaults, configuration files, then explicitly mapped environment variables. The client configuration sent to the browser overrides client code defaults. Host-managed values such as the application base path and API URL are also computed by the runtime.
+Server configuration takes precedence from low to high: code defaults, the configuration file, then environment variables with declared mappings. The client's own defaults are overridden by the `client` configuration sent to the browser; values managed by the host, such as the application base path and the API address, are also computed separately by the runtime.
 
-Plain objects merge recursively; arrays and scalars are replaced. Environment variables need declared mappings and are parsed according to them. Arbitrary variable names do not become configuration paths. `${NAME}` in YAML is not interpolated: use a declared variable or add a mapping for your field.
+Plain objects are merged recursively, while arrays and scalars are replaced entirely by the later value. Environment variables must have a mapping declared in the corresponding configuration section and are converted by their declared types; an arbitrary variable name has no effect. `${NAME}` in YAML is not expanded; use a declared environment variable, or add a mapping for your own field.
 
-For example, `APP_SERVER_PORT` maps to `server.port`. When set, it overrides that value in the file. Inspect the application's startup environment when checking effective values.
+For example, `APP_SERVER_PORT` maps to `server.port`. As long as that environment variable is set, it still overrides any `server.port` you change in the file. When checking final values, check the application's startup environment as well.
 
 ## Client configuration
 
-Examples has three sections under `client/config/`:
+`client/config/` in Examples contains three sections:
 
 | File | Contents |
 | --- | --- |
 | `app.ts` | Client defaults such as the application title |
-| `api.ts` | The API Client's default URL, resolved with the application base path |
-| `auth.ts` | Authentication client plugins for usernames, API keys and device authorization |
+| `api.ts` | The API Client's default address, generated from the application base path |
+| `auth.ts` | Authentication client plugins such as username sign-in, API keys and device authorization |
 
-The application title default can be declared as:
+For example, the code default for the application title can be written like this:
 
 ```ts
 // client/config/app.ts
@@ -73,48 +73,48 @@ const app: AppConfigFactory<{ title: string }> = defineAppConfig(() => ({
 export default app;
 ```
 
-`client/config/index.ts` already passes `app`, `api` and `auth` to `defaultAppConfigs({ ... })`. Import and register additional sections there, also updating an explicitly declared return type when present.
+`client/config/index.ts` already passes `app`, `api` and `auth` to `defaultAppConfigs({ ... })`. When adding client configuration, import it here and add its section; if the aggregation entry declares its return type explicitly, update the type too.
 
-Client `defineAppConfig()` takes a factory function. Keep constructed plugin instances and callbacks in TypeScript. Serializable values that may vary by environment can be overridden through the `client` section of `config.yml`.
+The client `defineAppConfig()` takes a configuration factory function. Things that must be constructed in code, such as authentication plugin instances and callbacks, stay in TypeScript; values that can be serialized and may vary by environment can be overridden through the `client` section of `config.yml`.
 
-Read the title inside a client ServiceProvider:
+Read the title in a client ServiceProvider:
 
 ```ts
 // Inside a client ServiceProvider:
 const title = this.app.config.get<string>('app.title', 'NocoBase');
 ```
 
-Pages and Hooks obtain the same service through `useClientApplication().config`. The lookup path is `app.title`, without the file's `client.` prefix. The host controls the API URL for its mount path; do not treat `client.api.baseURL` as an arbitrary external-service override. Configure independent external API access separately.
+Pages or Hooks can get the same configuration service through `useClientApplication().config`. The path to read is `app.title`, without the `client.` prefix used in the file. The API address is governed by the host's mount path, so do not treat `client.api.baseURL` as an external service address you can override freely; organize separate access configuration for independent external APIs.
 
 ## Server configuration
 
-`server/config/` organizes both framework and plugin configuration. For example, `server.ts`, `api.ts`, `database.ts` and `logging.ts` configure runtime facilities, while `auth.ts`, `users.ts`, `notification.ts` and `knowledge.ts` configure integrated modules. Their individual options belong in module documentation; this guide covers common integration.
+`server/config/` organizes both framework and plugin configuration. For example, `server.ts`, `api.ts`, `database.ts` and `logging.ts` handle basic runtime capabilities, while `auth.ts`, `users.ts`, `notification.ts`, `knowledge.ts` and others configure the integrated modules. Each module's options are covered by its own documentation; this guide focuses on the common way to integrate them.
 
-Prefer a module's dedicated factory when available, such as `defineApiConfig()`, `defineAppDatabaseConfig()` or `defineAuthConfig()`, to preserve its defaults, mappings and validators. Use `defineAppConfig()` from `@nocobase/app-server/config` for application-owned sections.
+When a module provides a dedicated factory, prefer it, for example `defineApiConfig()`, `defineAppDatabaseConfig()` or `defineAuthConfig()`; these factories keep the module's own defaults, mappings and validation rules. Application-owned sections use `defineAppConfig()` from `@nocobase/app-server/config`.
 
-Server `defineAppConfig()` supports these declarations:
+The server `defineAppConfig()` supports these declarations:
 
 | Field | Purpose |
 | --- | --- |
-| `defaults` | Default values, or a function that computes them from runtime information such as paths |
-| `env` | Environment mappings to section-relative fields, with types and descriptions |
-| `validate` | Validation of final merged values, reporting field errors through `context.error()` |
-| `public` | Leaf paths that may be sent to the browser |
+| `defaults` | A default value object, or a function that generates defaults from runtime information such as paths |
+| `env` | Mappings from environment variables to fields in the section, with types and descriptions |
+| `validate` | Validates the final merged value, reporting field problems through `context.error()` |
+| `public` | Leaf field paths that may be sent to the browser |
 
-The client and server factories share a name but have different interfaces. The server's `env`, `validate` and `public` object form does not apply to the client factory.
+The client and server factories share a name but have different interfaces; do not apply the server's object form with `env`, `validate` and `public` to the client.
 
-Register new sections in `server/config/index.ts` and read them with `app.config.get()`. Registration keys determine section names. Adding a file does not register it, and adding a YAML key does not implement business behavior. See [Configuration reference](../reference/configuration.md) for built-in options.
+After adding a section, register it through `server/config/index.ts`, then read it on the server with `app.config.get()`. The key in the registration object decides the section name; creating a file alone does not connect it, and adding a key to YAML does not create business features out of thin air. For built-in options, see [Configuration reference](../reference/configuration.md).
 
-## Publish configuration to the client
+## Expose configuration to the client
 
-The browser reads two separate kinds of configuration:
+The browser can read two kinds of configuration, through different entries:
 
-| Source | Client accessor |
+| Source | How the client reads it |
 | --- | --- |
-| Client code defaults and the file's `client` section | `config.get('app.title')` and similar paths |
-| Fields published by server `public` declarations, plus runtime-published information | `config.public.get(...)` |
+| Client code defaults and the `client` section of `config.yml` | `config.get('app.title')` and similar |
+| Fields the server declares through `public`, and public information published by the runtime | `config.public.get(...)` |
 
-The runtime publishes the default locale and the application package's display name and version. With the client's `config` object:
+The runtime publishes the default language and the application package's display name and version. For example, once the client has a `config` object:
 
 ```ts
 // config is the client application's configuration service.
@@ -122,13 +122,13 @@ const title = config.get<string>('app.title', 'NocoBase');
 const defaultLocale = config.public.get('i18n.defaultLocale');
 ```
 
-Application-owned server sections declare public leaf paths explicitly. In the example below, `public: ['pageSize']` publishes only `reports.pageSize`, not the entire `reports` object. Published configuration keeps its server path and is not read through `config.get()`.
+Application-owned server sections declare the leaf fields that may be public with `public`, as needed. In the example below, `public: ['pageSize']` exposes only `reports.pageSize`, not the whole `reports` object. Public configuration keeps its server path and cannot be read through `config.get()` instead.
 
-Both the `client` section and published fields reach the browser. Keep database passwords, session secrets and mail credentials in server-only configuration. Type declarations check paths in TypeScript; they do not publish fields.
+Both the `client` section and public fields are sent to the browser, so database passwords, session secrets and mail credentials belong in server configuration. Type declarations only help TypeScript check paths; they do not make fields public.
 
 ## Add your own configuration
 
-Add a default report page size between `1` and `100`. This is an independent configuration example; business behavior changes only after an existing report uses the value for pagination.
+The following adds a default page size for reports, with values from `1–100`. It is a standalone example of integrating configuration; business behavior changes only once the value is used in an existing report's pagination logic.
 
 ### Define and register
 
@@ -170,24 +170,24 @@ const reports: AppConfigFactory<ReportsConfig> = defineAppConfig({
 export default reports;
 ```
 
-Make three changes to the existing `server/config/index.ts`, retaining every other section:
+Make three changes in the existing `server/config/index.ts`, keeping the other sections:
 
-1. Import `import reports from './reports.js';`.
-2. Add `reports: ReturnType<typeof reports>` to its explicit return type.
-3. Add `reports` to the object passed to `defaultAppConfigs({ ... })`.
+1. Import it: `import reports from './reports.js';`.
+2. Add `reports: ReturnType<typeof reports>` to the explicitly declared return type.
+3. Add `reports` to the argument object of `defaultAppConfigs({ ... })`.
 
-The registration key is `reports`, so the configuration key is `reports.pageSize` and the environment variable is `REPORTS_PAGE_SIZE`. Validation checks the final value from either source. Validators must not write data or make network requests.
+The key registered here is `reports`, so the configuration path is `reports.pageSize` and the matching environment variable is `REPORTS_PAGE_SIZE`. Validation runs against the final value, checking both the file and environment overrides; the validation function must not write data or make network requests.
 
-Document the section and default `20` in `config.example.yml`. The current environment can override it in `config.yml`:
+Document this section and its default `20` in `config.example.yml`. The current environment can override it in `config.yml` as:
 
 ```yaml
 reports:
   pageSize: 30
 ```
 
-### Connect a business consumer
+### Read it in business code
 
-Add this helper to prefer an explicitly requested page size and otherwise read the application default:
+Add the helper below: an explicitly requested page size wins, and the application configuration is used when none is given:
 
 ```ts
 // server/services/report-options.ts
@@ -210,11 +210,11 @@ export function resolveReportPageSize(
 }
 ```
 
-In the report's business service, use `resolveReportPageSize(app.config, requestedPageSize)` to obtain the query `limit`. The helper's ordinary error reports invalid input or integration. The HTTP boundary still validates request parameters and converts failures to the project's response contract; see [Request validation and error handling](request-validation-and-errors.md). Configuration validation cannot replace request validation.
+In the report's business service, obtain the query's `limit` with `resolveReportPageSize(app.config, requestedPageSize)`. An ordinary error thrown by the function means there is a problem with the input or the integration; the HTTP boundary must still validate request parameters and convert them into the project's agreed response, as described in [Request validation and error handling](request-validation-and-errors.md). Configuration validation only guarantees that the default is valid and cannot replace request validation.
 
-### Read the published value on the client
+### Use the public value on the client
 
-Augment public configuration in a declaration file included by the client TypeScript project:
+Extend the public configuration type in a declaration file included by the client TypeScript project:
 
 ```ts
 // client/types/public-config.d.ts
@@ -227,7 +227,7 @@ declare module '@nocobase/app-client' {
 }
 ```
 
-Pages can obtain the published default through a Hook:
+A page can get the published default through a Hook:
 
 ```ts
 // client/hooks/use-report-page-size.ts
@@ -238,11 +238,11 @@ export function useReportPageSize(): number | undefined {
 }
 ```
 
-Use this value to initialize pagination state; later user choices belong to page state. If it returns `undefined`, check server section registration, its `public` declaration and whether the current page has been refreshed. Do not duplicate that server setting under `client`.
+Use this value to initialize the pagination state; any page size the user chooses later is still managed by page state. If it returns `undefined`, check that the server section is registered, that `public` is declared and that the current page has been refreshed, instead of creating a second server setting with the same name under `client`.
 
-## Check configuration and apply changes
+## Check configuration and how changes take effect
 
-Inspect declarations and check the current application configuration after editing:
+After making changes, first check the current application's declarations and final configuration:
 
 ```bash
 pnpm nocobase config env
@@ -250,9 +250,9 @@ pnpm nocobase config variables --json
 pnpm nocobase config check --no-connect
 ```
 
-`config env` lists environment mappings, `config variables` reports environment-variable types, descriptions and other metadata and `config check --no-connect` validates offline. Plain `config check` also attempts non-SQLite database connections by default. Passing configuration validation does not verify database or external-service availability.
+`config env` lists the environment variable mappings, `config variables` outputs environment variable metadata such as types and descriptions, and `config check --no-connect` checks the configuration offline. A plain `config check` also tries to connect to non-SQLite databases by default; passing configuration validation does not mean the database or external services have been verified as available.
 
-After registering `reports` and ensuring the application's existing configuration is valid, verify overrides and rejection in development. The temporary environment syntax below is for POSIX shells:
+Once `reports` is registered and the application's existing configuration is valid, you can verify overrides and rejections in a development environment. The temporary environment variable syntax below is for POSIX shells:
 
 ```bash
 pnpm nocobase config set reports.pageSize=30
@@ -260,17 +260,17 @@ REPORTS_PAGE_SIZE=40 pnpm nocobase config check --no-connect --json
 REPORTS_PAGE_SIZE=0 pnpm nocobase config check --no-connect --json
 ```
 
-The first command writes `30` to the file. The second should pass with effective value `40` for that process, leaving the file at `30`. The third should exit nonzero and identify the invalid `reports.pageSize`. `config set` edits the file; it does not reload a separate running application process.
+The first command writes `30` to the file; the second should pass validation, with an effective value of `40` for that process while the file stays at `30`; the third should exit with a nonzero status and report that `reports.pageSize` is out of range. `config set` only edits the configuration file and does not reload a running application process.
 
-Also verify default `20` without overrides, matching published values on the client, exclusion of unpublished fields and validation of explicit request page sizes. Check these with isolated configuration tests before verifying actual pages and queries in the development application.
+Verification should also cover: `20` when there is no override; the client receiving the same public value as the server; fields that are not public never reaching the browser; and explicitly requested page sizes still going through business validation. You can verify these behaviors first with isolated configuration tests, then check the actual pages and query results in the development application.
 
-How a change takes effect depends on its consumer:
+How a configuration change takes effect depends on what uses it:
 
-- **Editing `config.yml` or the startup environment:** check the configuration, restart the application and refresh client pages. Use partial reloads only as supported by the module.
-- **Editing TypeScript in `client/config/` or `server/config/`:** reload through the project's development workflow; rebuild and release code in production.
-- **Initialization-only values:** `users.initialAdmin`, for example, is read when initializing an empty user table. Changing it does not reset an existing account.
-- **Defaults with saved user preferences:** a saved theme choice may take precedence. Verify with a session that has no saved preference.
+- **Changing `config.yml` or the startup environment:** after the check passes, restart the application and refresh client pages. Whether an existing instance supports partial reloading follows the convention of the relevant module.
+- **Changing TypeScript in `client/config/` or `server/config/`:** reload through the project's development workflow during development; in production, rebuild and release the code.
+- **Configuration read only at initialization:** for example `users.initialAdmin`, used only when initializing an empty user table; changing it does not reset existing accounts.
+- **Defaults that users can override with preferences:** for example the default theme, where a user's existing choice may take precedence; verify with a session that has no such saved preference.
 
-Runtime reload support does not automatically recreate database connections, consumers or every service. See [CLI reference](../reference/cli.md) and [Configuration reference](../reference/configuration.md) for operations and complete options.
+Runtime support for configuration reloading does not mean existing database connections, consumers and all services are rebuilt automatically. For the related operations and full parameters, see [Command-line reference](../reference/cli.md) and [Configuration reference](../reference/configuration.md).
 
-Template sources checked for this guide: [configuration example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/config.example.yml), [client configuration entry](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/client/config/index.ts) and [server configuration entry](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/server/config/index.ts).
+Template sources checked for this guide: [configuration example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/config.example.yml), [client configuration entry](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/client/config/index.ts), [server configuration entry](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/templates/app-template-examples/server/config/index.ts).

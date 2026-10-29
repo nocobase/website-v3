@@ -1,11 +1,11 @@
 ---
 title: Request validation and error handling
-description: Declare input and response contracts, translate domain errors into stable API errors and verify failure behavior.
+description: Declare the input and response contracts of an API, turn business errors into stable API errors, and verify data behavior on failure.
 ---
 
-Validation converts external input into values business code can use. Authorization decides whether the operation is permitted; the service checks whether the current business state permits the change. These checks have different responsibilities.
+A request passes three kinds of check: validation turns external input into values the business can accept; permission checks decide whether the operation is allowed; and the service then decides whether the current business state permits the change. Each has its own responsibility, and none can replace another.
 
-The following excerpts come from the [project API example](apis-and-services.md). Running them requires its historical app, data model and services. This guide explains that example's input and error contracts rather than creating another endpoint set.
+The excerpts below come from the [project API example](apis-and-services.md); running them requires the historical application, data model and services listed on that page. This guide only explains the input and error conventions in one place and does not build another set of endpoints.
 
 ## Declare input schemas
 
@@ -24,35 +24,35 @@ export const assignInput = z.strictObject({
 });
 ```
 
-Query strings become bounded integers with defaults. Names are trimmed before checking length. `strictObject()` rejects extra fields so the entire form cannot silently become writable input. `null` removes the association; omitting `projectId` violates this example's contract.
+Query parameters are converted from strings to integers, with defaults and a bounded page size; names are trimmed before their length is checked. `strictObject()` rejects extra fields, so a whole form object cannot be submitted as writable fields. `null` clears the project association, while a missing `projectId` violates this example's contract.
 
-The example uses `z.uuid()` because its project and task IDs are UUIDs. Do not apply that assumption to other identifiers such as user IDs. Schemas do not establish database existence or permission to select a record.
+`z.uuid()` is used here because this example's contract makes project and task IDs UUIDs; do not copy that restriction to other identifiers such as the application's user IDs. Note also that an input schema does not check whether a database record exists, or whether the user may choose it.
 
-## Use validated values
+## Use the validated values
 
-Pass schemas to `apiValidator('query' | 'param' | 'json', schema)` and read matching values through `c.req.valid(...)`. See [Routes and HTTP APIs](apis-and-services.md) for complete handlers. This also declares API document inputs; calling `zod.parse()` inside a handler alone does not provide that integration.
+Pass the schema to `apiValidator('query' | 'param' | 'json', schema)`, and have the handler read only the matching `c.req.valid(...)`. For the complete form, see [Routes and HTTP APIs](apis-and-services.md). This validation also declares the input in the API documentation; calling `zod.parse()` inside the handler alone does not provide that integration.
 
-Send JSON requests with `Content-Type: application/json`. Complete authentication, operation authorization and validation before business writes; validation afterward cannot undo an earlier write.
+JSON requests must send `Content-Type: application/json`. Identity, action permissions, middleware order and input validation must all be settled before any business write; validating input after a write has happened cannot undo it.
 
-## Response and error contracts
+## Response and error conventions
 
-Validate input with `apiValidator()` and let business code read only validated values. Clients must not freely set server-generated IDs, creation times or fields outside the action. Select response fields explicitly; use the same permission policy and filters for list rows and totals.
+Input passes through `apiValidator()` first, and business code reads only the validated values. Clients must not freely set IDs or creation times that the server generates, or fields that do not belong to the operation. Select output fields explicitly, and use the same permission policy and filters for a paginated list and its total.
 
-| Outcome | Behavior in this example |
+| Situation | Handling in this example |
 | --- | --- |
-| Successful query | `200` with `{ data, meta }`; `meta` contains pagination details |
+| Successful query | `200` with `{ data, meta }`, where `meta` contains the pagination |
 | Successful creation | `201` with `{ data }` |
-| Successful update | `200` with `{ data }`, containing only this operation's result fields |
-| Invalid input | `400` with a standard API error and field details where applicable |
-| Unauthenticated or denied action | `401` or `403`, respectively, without business writes |
-| Task missing or outside the operation's scope | `404`, without disclosing out-of-scope record details |
-| Target project missing or ineligible | `400` with a consistent project field error; the old association remains |
+| Successful change | `200` with `{ data }`, containing only the fields this operation produces |
+| Invalid input | `400` with a standard API error; errors that can be pinned to a field include field details |
+| Not signed in, or action denied | `401` or `403` respectively, with no business write |
+| Task does not exist or is outside the operation's scope | `404`, revealing nothing about records outside the scope |
+| Target project does not exist or may not be chosen | `400` with one consistent project field error; the existing association stays unchanged |
 
-Use `ApiError` and the shared handler rather than a custom error JSON format or a `200` response for failures. Translate known business failures into specific API errors; leave unknown exceptions to the standard handler instead of treating them all as invalid input.
+Express errors through `ApiError` and the standard handler: do not hand-write another error JSON format, and do not wrap failures in a `200`. Known business errors can become specific API errors, while unknown exceptions go to standard error handling; never disguise them all as "invalid input".
 
-## Translate domain errors into API errors
+## Turn business errors into API errors
 
-The project route already declares or imports `router`, `ApiError`, `apiErrorHandler` and both domain error classes. This is its error-handling excerpt:
+The project route file already declares or imports `router`, `ApiError`, `apiErrorHandler` and both business error classes. This is the error-handling excerpt from that file:
 
 ```ts
 router.onError((error, c) =>
@@ -83,16 +83,16 @@ router.onError((error, c) =>
   );
 ```
 
-`reason` and `domain` are stable identifiers for client decisions. `message` and field `description` are developer-facing, not localized UI copy. Clients map identifiers to wording and use `fieldViolations` to locate fields; see [Data requests and state management](data-requests-and-state.md).
+`reason` and `domain` are stable identifiers the client uses to tell error types apart; `message` and the field `description` are for developers and must not be shown directly as localized messages on a page. The client maps the stable identifiers to text and uses `fieldViolations` to place errors on fields; see [Data requests and state management](data-requests-and-state.md).
 
-Translate only recognized domain failures. `apiErrorHandler()` handles known API/Repository errors and rethrows unknown exceptions so the outer application can produce an opaque `500`. Do not convert every exception into `400`. Use the response's `requestId` to correlate server logs.
+Convert only the errors this business recognizes. `apiErrorHandler()` handles known API and Repository errors and passes unknown exceptions on to the application's outer handling, which returns a `500` that reveals no internal details. Do not wrap every exception as a `400`. When troubleshooting, match the `requestId` in the response against the server logs.
 
-## Response declarations do not filter output
+## Declaring a response does not filter it
 
-`dataResponse()`, `listResponse()` and `apiErrorResponse()` inside `describeRoute()` describe contracts. They do not select fields or automatically remove sensitive data at runtime. Services must explicitly select permitted fields and convert dates or other values to the agreed format. Update schemas, responses and tests together.
+`dataResponse()`, `listResponse()` and `apiErrorResponse()` inside `describeRoute()` describe the API contract. They neither replace selecting output fields nor remove sensitive fields automatically at runtime. Services must select the permitted output fields explicitly and convert values such as dates to the agreed format. When an endpoint changes, update the schema, the actual response and the tests together.
 
-## Verify failures
+## Verify failure paths
 
-Check missing fields, empty strings, extra fields, invalid IDs and out-of-range pagination, followed by missing and inaccessible records. Read the database after refusals to confirm no unintended writes. Valid syntax with an invalid business state still needs a meaningful failure. Unknown exceptions must remain server failures rather than successful saves.
+At minimum, check missing fields, empty strings, extra fields, invalid IDs, and negative or excessively large page numbers; then check records that do not exist and records outside the scope. After every rejection, read the database to confirm nothing was written by accident. When the input is valid but a business rule is not met, a meaningful error should still be returned. Unknown exceptions must stay server failures and never appear as a successful save.
 
-See [Routes and HTTP APIs](apis-and-services.md) for complete tests and [Validation and response handling](../framework/http/validation.md) for standard input and error contracts.
+For the complete tests, see [Routes and HTTP APIs](apis-and-services.md); for the standard error and input protocol, see [Request validation and responses](../framework/http/validation.md).

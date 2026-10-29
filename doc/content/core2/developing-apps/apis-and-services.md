@@ -1,37 +1,37 @@
 ---
 title: Routes and HTTP APIs
-description: Write and register application routes, choose Repository data APIs or business endpoints, and verify API contracts.
+description: Write and register application APIs, choose between Repository data endpoints and business routes, and maintain API documentation and endpoint verification.
 ---
 
-Write endpoints in `server/routes/` and register them in `server/routes/index.ts`. The application runtime mounts these contributions under its API root; creating a file alone does not expose an endpoint.
+Application APIs are written in `server/routes/` and registered through `server/routes/index.ts`. The application runtime mounts these declarations under the API root; having a file in the directory does not mean the endpoint is live.
 
-This guide starts with route registration and Repository data APIs, then retains the complete HTTP implementation of the project example. See [Server business services](server-business-services.md), [Request validation and error handling](request-validation-and-errors.md) and [Authentication, permissions and data scopes](authentication-and-permissions.md) for the other parts.
+This guide first explains how routes connect to the application and how Repository data endpoints work, then gives the project example's complete HTTP implementation. Business logic, input validation and permission configuration are covered in [Server business services](server-business-services.md), [Request validation and error handling](request-validation-and-errors.md) and [Authentication, permissions and data scopes](authentication-and-permissions.md).
 
 ## Where endpoints belong
 
 | Location | Purpose |
 | --- | --- |
-| `server/routes/<feature>.ts` | Declare custom Hono endpoints with `defineApiRoutes()`, or Repository operations with `defineRepositoryApiRoutes()` |
-| `server/routes/index.ts` | Aggregate application routes, appending to existing contributions |
-| `server/runtime.ts` | The template already connects the route entry; adding endpoints normally needs no runtime change |
-| `server/app.ts` | Application middleware and assembly; see [Server runtime](../framework/runtime/server.md) |
+| `server/routes/<feature>.ts` | Declare custom Hono routes with `defineApiRoutes()`, or Repository operations with `defineRepositoryApiRoutes()` |
+| `server/routes/index.ts` | Collects the application's APIs; keep the existing declarations and append new ones |
+| `server/runtime.ts` | The template already connects the route entry to the runtime, so adding endpoints usually needs no change here |
+| `server/app.ts` | Application-level middleware and runtime assembly; see [Server runtime](../framework/runtime/server.md) for the mechanism |
 
-Business API declarations omit `/api` and the deployment base path: `/projects` becomes `<APP_BASE_PATH>/api/projects`. For protocols such as webhooks that need root routes, see [Routes and request context](../framework/http/routes.md).
+Business API declarations omit `/api` and the deployment base path: `/projects`, for example, is mounted as `<APP_BASE_PATH>/api/projects`. For entries such as webhooks that really need a root-path protocol, see [Routes and request context](../framework/http/routes.md); do not change how the whole API is mounted just to shorten a path.
 
-## Choosing endpoint and service boundaries
+## Decide the boundary between endpoint and service
 
 | Situation | Approach |
 | --- | --- |
-| A simple operation on one collection | Use [Repository data APIs](../framework/http/repository-routes.md), configuring operations, policies, authentication and business input validation |
-| An operation involves multiple record types or explicit business rules | Write a business service and let the route handle the HTTP boundary |
-| Multiple entry points need the same rules | Reuse the service and define the identity, policies and validated input each caller supplies |
-| A service needs dependencies such as the database | Register it in a Provider and resolve it through a token |
+| A simple operation on a single collection | Use [Repository data APIs](../framework/http/repository-routes.md), configuring the exposed operations, policies, authentication and business input validation |
+| One operation involves several kinds of record, or explicit business rules | Write a business service and let the route handle only the HTTP boundary |
+| Several entry points need the same business rules | Reuse one service, and make explicit the identity, policies and validated input each entry point provides |
+| The service depends on resources such as the database | Register the service in a Provider and obtain it from the container through a Token |
 
-Changing a task's project checks both the task and the target project, so this example uses custom routes and a business service. A service is not an internal bypass around authorization: its caller must supply policies appropriate to the operation.
+Changing a task's project in this example requires checking both the task and the target project, so it uses a custom route plus a business service. A service is not an internal channel that bypasses permissions: every entry point that calls it must still supply the permission policy that applies to the operation.
 
 ## Use Repository data APIs
 
-`defineRepositoryApiRoutes()` exposes standard operations on one Collection. This independent example assumes a migration has created `categories` with public `id` and `title` fields. It does not depend on the historical project example below. Save it as `server/routes/public-categories.ts`:
+`defineRepositoryApiRoutes()` suits standard queries or changes on a single Collection. The independent example below assumes a migration has created a `categories` table with `id` and `title` fields that may be read publicly; it does not depend on the historical project example later on. Save it as `server/routes/public-categories.ts`:
 
 ```ts
 import { defineRepositoryApiRoutes } from '@nocobase/app-server/router';
@@ -51,7 +51,7 @@ export default defineRepositoryApiRoutes({
 });
 ```
 
-Add the contribution to `server/routes/index.ts`:
+Then add the declaration to `server/routes/index.ts`:
 
 ```ts
 import type { Application } from '@nocobase/app-server/application';
@@ -65,29 +65,29 @@ const routes: readonly AppRouteContribution<Application>[] = [
 export default routes;
 ```
 
-Clients can call `api.repository('publicCategories')`. Raw HTTP operations use paths such as `POST <APP_BASE_PATH>/api/publicCategories/findMany`, including reads. This declaration creates neither database tables nor management pages.
+Clients can call it through `api.repository('publicCategories')`; over plain HTTP the paths look like `POST <APP_BASE_PATH>/api/publicCategories/findMany`, and queries use POST too. The declaration creates no database table and generates no management page.
 
-The example explicitly allows anonymous reads and denies every write. Protected business data requires identity and authorization-derived policies. `actions` selects exposed operations; `policy` controls records, fields and writes. See [Repository data APIs](../framework/http/repository-routes.md) for dynamic policies, write idempotency and full input contracts.
+This example explicitly allows anonymous reads and forbids every write. When real business data needs authentication, connect policies derived from identity and authorization. `actions` decides which operations are exposed, and `policy` decides which records and fields may be accessed and whether writes are allowed; you need both. For dynamic policies, idempotent Repository writes and the complete input format, see [Repository data APIs](../framework/http/repository-routes.md).
 
 ## Prepare the project example
 
-The project/task example retains default template `1.0.0-beta.78` and its `tutorialTasks`/`tutorialProjects` collections. Follow [Create tables and initialize data](data-models-and-migrations.md#prepare-the-example-application) to prepare a separate app, including access to the private `nocobase/app-tutorials` repository. It does not continue the current getting-started `tasks` example. You can still read the code and responsibility boundaries without repository access.
+The projects-and-tasks example stays on default template `1.0.0-beta.78` and uses the `tutorialTasks` and `tutorialProjects` tables. Before running it, follow [Create tables and initialize data](data-models-and-migrations.md#prepare-the-example-application) to prepare a separate application, which includes access to the private `nocobase/app-tutorials` repository; it cannot be run directly after the current getting-started `tasks` example. Without access to that repository, you can still read the code and the explanation of responsibilities.
 
-Implement `TutorialProjectService` from [Server business services](server-business-services.md), then register the complete Provider, permissions and roles from [Authentication, permissions and data scopes](authentication-and-permissions.md). The routes below import those files.
+First complete `TutorialProjectService` from [Server business services](server-business-services.md), then register the complete Provider, permission capabilities and roles as described in [Authentication, permissions and data scopes](authentication-and-permissions.md). The routes below use those files.
 
-## Example API contract
+## The example's API contract
 
-These paths are relative to the application's API root. For an application at `/main/`, that root is `/main/api`:
+All paths below are relative to the application's API root. For an application at `/main/`, for example, the full API root is `/main/api`:
 
-- `GET /tutorialProjects`: list projects within the operation's authorized scope, with pagination.
+- `GET /tutorialProjects`: list, page by page, the projects the current action is allowed to see.
 - `POST /tutorialProjects`: create a project and return `201` with `{ data }`.
-- `PATCH /tutorialTasks/{id}/project`: change the task's project association; `projectId: null` removes the association.
+- `PATCH /tutorialTasks/{id}/project`: change which project a task belongs to; `projectId: null` clears the association.
 
-The project association has its own subresource endpoint and permission. The existing `PATCH /tutorialTasks/{id}` still only completes or reopens a task and does not accept `projectId`. Task list responses gain `projectId`, without automatically returning project names or exposing project details.
+The project association has its own subresource endpoint and its own permission. The existing `PATCH /tutorialTasks/{id}` still only completes or reopens a task and does not accept `projectId`. Task list responses gain a `projectId` field, but they do not return project names automatically or expose project details.
 
-## With an agent
+## With an Agent
 
-Give the agent this chapter as context from the application directory, then describe the request below. Field, API and component details are in the manual steps; the agent should follow them alongside the project's guidance.
+In the application directory, give this guide to the Agent as context, then describe the request below. The specific conventions for fields, APIs and components are in the manual steps that follow, and the Agent applies them together with the project guidance.
 
 ```text
 Using the existing project data model, please provide APIs to list and create projects and change a task's project for later pages to use.
@@ -105,7 +105,7 @@ Use real test accounts and data to verify allowed and denied actions, and report
 Do not add project pages, approvals, notifications or background jobs yet.
 ```
 
-## Declare and register business routes
+## Declare and register the business routes
 
 Create `server/routes/tutorial-projects.ts`:
 
@@ -288,11 +288,11 @@ export default defineApiRoutes<Application>((app) => {
 
 </details>
 
-Do not put `/api` or the deployment base path into route definitions; `defineApiRoutes()` and the runtime add them. Authentication middleware covers only the paths owned by this file. An endpoint must not rely on another route contribution happening to register authentication first.
+The paths omit `/api` and the deployment base path, which `defineApiRoutes()` and the application runtime add. The authentication middleware only covers the paths owned by this file; an endpoint must not rely on another route file happening to register authentication first.
 
-Each endpoint authenticates and authorizes before `apiValidator()` runs. `describeRoute()` declares the operation, responses and errors; input schemas also appear in the API document. Pagination is bounded, names are trimmed and length-checked, and `strictObject()` rejects extra fields. The association endpoint cannot also modify the task title or completion state.
+Every endpoint authenticates first, then authorizes, and only then runs `apiValidator()`. `describeRoute()` declares the operation, responses and errors, and the input schemas also go into the API documentation. Pagination parameters are bounded, names are trimmed and length-limited, and `strictObject()` rejects extra fields, so the association endpoint cannot be used to change a task's title or completion status on the side.
 
-All project IDs in this example are generated by `randomUUID()`, so they are validated with `z.uuid()`. User IDs elsewhere in the application are not necessarily UUIDs; do not apply this rule to the existing assignee field.
+All project IDs in this example are generated with `randomUUID()`, so they are validated with `z.uuid()`. User IDs in the application are not necessarily UUIDs, so do not apply this rule to the existing assignee field.
 
 Update `server/routes/index.ts`:
 
@@ -310,52 +310,51 @@ const routes: readonly AppRouteContribution<Application>[] = [
 export default routes;
 ```
 
-Make two small changes so the existing task list can return the saved association:
+Two small changes let the existing task list API read the new association:
 
-- Add `projectId` to `taskData`'s `.read([...])` fields in `server/providers/tutorial-tasks.ts`. Do not add it to the original create or complete action's writable fields.
-- Add `projectId: z.uuid().nullable()` to `taskSchema` in `server/routes/tutorial-tasks.ts`, keeping the documented response aligned with the data. Leave `createInput` and `updateInput` unchanged.
+- In `server/providers/tutorial-tasks.ts`, add `projectId` to the `.read([...])` field list of `taskData`. Do not add it to the writable fields of the existing create or complete actions.
+- In `taskSchema` in `server/routes/tutorial-tasks.ts`, add `projectId: z.uuid().nullable()`, so the documented response matches the actual data. Leave the existing `createInput` and `updateInput` unchanged.
 
-## Include endpoints in the API document
+## Put endpoints into the API documentation
 
-Every `/api` route should declare `describeRoute()` with a stable `operationId`, group, purpose, success responses and error responses. `apiValidator()` supplies the input schema. Update response schemas alongside endpoint changes so documentation matches actual responses.
+Every `/api` route should declare `describeRoute()` with a stable `operationId`, a group, a description of its purpose, and its success and error responses. The input definitions come from the schemas used by `apiValidator()`. When you change an endpoint, update its response schema at the same time so the documentation and the actual responses stay consistent.
 
-The running application serves its API description at `<APP_BASE_PATH>/api/swagger` and its interactive page at `<APP_BASE_PATH>/api/swagger/docs`. Register routes in `server/routes/index.ts`; a declaration in an unregistered file does not become a callable endpoint.
+A running application serves the API description at `<APP_BASE_PATH>/api/swagger` and an interactive page at `<APP_BASE_PATH>/api/swagger/docs`. The route must also be added to `server/routes/index.ts`: a declaration in a file that is never registered does not become a callable endpoint.
 
 ## Verify endpoint behavior
 
-Run `pnpm dev` in the local example and sign in at the complete application URL printed in the terminal. Open `<APP_BASE_PATH>/api/swagger/docs` on the same application, for example `/main/api/swagger/docs`. The API documentation uses the signed-in session, so no administrator password needs to be stored in the article or code.
+Run `pnpm dev` in the local example and sign in through the complete application entry printed in the terminal. Then open `<APP_BASE_PATH>/api/swagger/docs` on the same application, such as `/main/api/swagger/docs`. The API documentation reuses the current sign-in session, so no administrator password needs to be stored in articles or code.
 
-Find `Tutorial projects` to see the three endpoints added in this chapter. Expand an endpoint, select **Try it out**, enter its parameters, then select **Execute** to send the request.
+Find the `Tutorial projects` group in the documentation to see the three endpoints added in this guide. Expand an endpoint, click **Try it out** to fill in the parameters, then click **Execute** to send the request.
 
-![The Tutorial projects API group lists project queries, project creation and task-project assignment](/assets/core/developing-apps/apis-and-services/api-overview.png)
+![The Tutorial projects group in the API documentation: list projects, create a project and change a task's project](/assets/core/developing-apps/apis-and-services/api-overview.png)
 
-Verify the following sequence:
+Verify in this order:
 
-1. Call `POST /tutorialProjects` with `{ "name": "Product launch" }`. Expect `201` and record `data.id`.
-2. Call `GET /tutorialProjects?page=1&pageSize=20`. Check the project and `meta.page`, `meta.pageSize` and `meta.total`.
-3. Take a task ID from the existing task list and call the association endpoint with the new project ID as `projectId`.
-4. Query the task list again and confirm that `projectId` persists. Send null to remove the association.
-5. Use a valid UUID that does not identify a project. Expect `400`, `error.reason: PROJECT_UNAVAILABLE` and a field violation for `projectId`, with the previous association unchanged.
-6. Sign in as an ordinary user with only task-completion permission. They can complete a task, but the association endpoint returns `403`.
+1. Call `POST /tutorialProjects` with `{ "name": "Product launch" }`; it should return `201`. Note the `data.id`.
+2. Call `GET /tutorialProjects?page=1&pageSize=20` and check the projects along with `meta.page`, `meta.pageSize` and `meta.total`.
+3. Take a task ID from the existing task list, call the association endpoint, and put the new project's ID in `projectId`.
+4. Query the task list again to confirm the task's `projectId` was saved; sending `null` should clear the association.
+5. Use a well-formed UUID that matches no project as the project ID; you should get `400` with `error.reason` set to `PROJECT_UNAVAILABLE` and `fieldViolations` pointing to `projectId`, while the existing association stays unchanged.
+6. Switch to an ordinary user who only has the permission to complete tasks, and confirm they can complete a task while the association endpoint returns `403`.
 
-![A successful task-project request returns 200 with the task id, projectId and updatedAt in data](/assets/core/developing-apps/apis-and-services/assign-project-success.png)
+![Changing a task's project succeeds: the real request returns 200, and the response data contains the task id, projectId and updatedAt](/assets/core/developing-apps/apis-and-services/assign-project-success.png)
 
-After assignment, check the `200` status under **Server response** and the returned `projectId`, then query the task list to confirm persistence. The screenshot uses local example IDs; use IDs from your own records when following along.
+After a successful change, check the `200` status and the `projectId` under **Server response**, then confirm through the task list API that the result was saved. The IDs in the screenshot come from the local example; when following along, use the IDs of the records you created.
 
-![An unavailable project returns 400 with PROJECT_UNAVAILABLE and a field violation for projectId](/assets/core/developing-apps/apis-and-services/project-unavailable.png)
+![Pointing to a project that does not exist: the real request returns 400 with reason PROJECT_UNAVAILABLE, and fieldViolations points to projectId](/assets/core/developing-apps/apis-and-services/project-unavailable.png)
 
-A missing project returns `PROJECT_UNAVAILABLE` with `fieldViolations` identifying `projectId`. Read the task again to confirm that its previous project association is unchanged.
+When the project does not exist, the response returns `PROJECT_UNAVAILABLE` and marks `projectId` through `fieldViolations`; reading the task again should show that its original project association is unchanged.
 
-The error cases are distinct: anonymous requests return `401`; missing operation grants return `403`; an authorized operation with a missing or out-of-scope task returns `404`; a missing or unselectable project referenced in the body returns the same `400` field error. Identical responses for missing and out-of-scope records avoid revealing hidden record existence.
+Each error case is distinct: a request without sign-in returns `401`; a request without the action grant returns `403`; with the action grant, a task that does not exist or is outside the action's scope returns `404`; a project in the request body that does not exist or may not be chosen returns the same `400` field error. Giving "out of scope" and "does not exist" the same response prevents the API from being used to probe for hidden records.
 
 ## Add real endpoint tests
 
+Create `tests/server/tutorial-tasks-project-api.test.ts`. It uses the application's existing test configuration, real sign-in, real permissions and an isolated database, without replacing the authentication or database services.
 
-Create `tests/server/tutorial-tasks-project-api.test.ts`. It uses the existing test configuration, real sign-in and permissions, and an isolated database. Authentication and database services are not replaced.
+[Download the complete endpoint test](/assets/core/downloads/tutorial-tasks-project-api.test.ts) and save it at that path. The file contains this example's complete checks for successful, rejected and data-scope cases, for you to read or copy.
 
-[Download the complete endpoint tests](/assets/core/downloads/tutorial-tasks-project-api.test.ts) and save them at that path. The file preserves this example's success, denial and data-scope checks for inspection or reuse.
-
-Run the new tests and the existing task regression suite:
+Run the new tests together with the regression tests of the existing task feature:
 
 ```bash
 pnpm exec vitest run --config vitest.tutorial.config.ts tests/server/tutorial-tasks-project-api.test.ts
@@ -364,9 +363,8 @@ pnpm exec vitest run tests/logic/authorization-assignment-safety.test.ts
 pnpm typecheck
 ```
 
-The tests check more than `200`: invalid inputs do not write data, unavailable projects preserve the previous association, task and project scopes are enforced independently, revocation blocks subsequent requests, and the API document contains the new operations and input definitions. This example was verified with SQLite.
-
+These tests check more than `200`: invalid input writes no data; an unavailable project leaves the existing association unchanged; the task scope and the project scope each take effect; requests are rejected after a permission is revoked; and the API documentation contains the new routes and input definitions. This example was verified on SQLite.
 
 ## Continue reading
 
-See [Server business services](server-business-services.md) for transaction and concurrency boundaries, and [Authentication, permissions and data scopes](authentication-and-permissions.md) for the access test matrix. Continue with [UI components and interactions](pages-and-interactions.md) to connect the endpoints to pages.
+For transaction and concurrency boundaries, see [Server business services](server-business-services.md); for the matrix of allowed and rejected cases, see [Authentication, permissions and data scopes](authentication-and-permissions.md). Next, follow [UI components and interactions](pages-and-interactions.md) to connect these endpoints to pages.

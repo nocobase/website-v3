@@ -1,24 +1,24 @@
 ---
 title: Background jobs and scheduled execution
-description: Register application jobs and schedules, reuse business services and manage executor startup, submission and shutdown.
+description: Register background jobs and recurring rules in an application, reuse business services, and manage how executors start, accept work and shut down.
 ---
 
-Move slow work into background jobs and declare recurring cleanup or summaries as schedules. This runnable example follows default template `1.0.0-beta.84` and does not depend on the historical project tutorial.
+Slow operations can be handed to background jobs, and recurring cleanup or summaries can be declared in code as scheduled execution. This guide builds a runnable job example on the server entries of default template `1.0.0-beta.84`; it does not depend on the historical project tutorial.
 
-## Choose an execution model
+## Choose how the work runs
 
 | Need | Approach |
 | --- | --- |
-| The current request needs the business result immediately | Call the service directly |
-| The request can submit work for later completion | `JobExecutor` and `Job` |
-| Application code defines daily or interval execution | `ScheduleExecutor` |
-| Administrators need rule management and execution history | Integrate the scheduler plugin |
+| The current request needs the business result right away | Call the service directly |
+| The request only submits work, which may finish later | `JobExecutor` and `Job` |
+| Application code declares daily or fixed-interval runs | `ScheduleExecutor` |
+| Administrators need to create, enable and disable rules and view execution records | Integrate the scheduled tasks plugin |
 
-Resolve executors through `jobExecutorServiceToken` from `@nocobase/app-server/jobs`. `@nocobase/jobs` supplies the contracts. Lower-level messaging is separate; see [Queues](../framework/background/queues.md).
+Executors are provided by `jobExecutorServiceToken` from `@nocobase/app-server/jobs`, and `@nocobase/jobs` provides the job contracts. Lower-level message queues are a separate capability; see [Message queues](../framework/background/queues.md).
 
 ## Define the job
 
-Create `server/jobs/report-job.ts`. The optional `jobs/` directory organizes application code; the template does not automatically scan it:
+Create `server/jobs/report-job.ts` as needed. `jobs/` is the application's own organizational directory, not an entry the default template scans automatically:
 
 ```ts
 import { Job, type JobExecutionContext } from '@nocobase/jobs';
@@ -41,9 +41,9 @@ export function createReportJob(generateReport: GenerateReport) {
 }
 ```
 
-Job constructors accept only persistable JSON payloads. Bind dependencies through the factory rather than putting connections, containers, functions or request objects into payloads. `jobName` is a stable type name; every consumer process must register its implementation before consumption starts.
+A job's constructor only receives a JSON payload that can be persisted. Dependencies are bound through the factory function; never put database connections, the service container, functions or request objects into the payload. `jobName` is a stable job type name, and every consuming process must register an implementation under the same name before it starts consuming.
 
-`generateReport` provides business behavior using a report ID and cancellation signal; it can call a [Server business service](server-business-services.md). The Provider below binds logging to demonstrate execution. It does not generate report files.
+`generateReport` is the actual business implementation; it receives the business ID and a cancellation signal and can call a [server business service](server-business-services.md). Below, it is first bound to a log line to verify the execution path; it does not actually generate a report file.
 
 ## Start and stop in a Provider
 
@@ -118,7 +118,7 @@ export default class ReportsProvider extends ServiceProvider<Application> {
 }
 ```
 
-Add the Provider to `server/providers/index.ts`, preserving existing registrations:
+Add the Provider to `server/providers/index.ts`, keeping the existing registrations:
 
 ```ts
 import type { ApplicationServiceProviderConstructor } from '@nocobase/app-server/application';
@@ -133,30 +133,30 @@ const serviceProviders: readonly ApplicationServiceProviderConstructor[] = [
 export default serviceProviders;
 ```
 
-The default `SubmissionProvider` already configures Repository write idempotency and an hourly expired-receipt cleanup schedule. Keep it; do not register a second copy of that cleanup rule.
+The default template's `SubmissionProvider` already configures idempotency for Repository writes and registers an hourly recurring job that cleans up expired receipts. Adding business jobs does not mean replacing it, and do not register a second copy of the same cleanup rule.
 
-## Submit from a business entry point
+## Submit work from a business entry
 
-After application startup and entry-point authentication/authorization, resolve the token from the same container and call `await app.container.resolve(reportJobsToken).enqueue(reportId)`. Validate `reportId` first. An endpoint may return `202` and the job ID, but the receipt means accepted, not completed. Persist history or completion state separately; local events are not shared state across instances.
+Once the application has started and the entry point has finished its identity and permission checks, resolve `reportJobsToken` from the same container and call `await app.container.resolve(reportJobsToken).enqueue(reportId)`. Validate `reportId` first. The API may return `202` with the job ID, but that receipt only means the job was accepted, not that the business work succeeded; the job's history or completion state must be persisted separately, and local events cannot serve as state shared across instances.
 
-The example submits a job at 02:00 in Shanghai each day. Schedule success means submission succeeded; report generation can fail later. Correlate the firing, job ID and business result when displaying status. Short periodic work can call a service directly from `execute()` without another queued job.
+The recurring rule in this example submits one job every day at 02:00 Shanghai time. A successful run of the rule only means the submission succeeded; generating the report may still fail later. If you need to show results, link the scheduled firing, the job ID and the business outcome together. If the recurring work itself is short, you can also call the business service directly in `execute()` instead of submitting another job.
 
-## Scheduling, retries and consistency
+## Schedules, retries and data consistency
 
-- Choose either `cron` or `every`; `every` uses milliseconds. Specify `tz` for Cron.
-- Keep scopes, job types and rule names stable. Update existing names; renaming does not remove old rules. Use `shutdown()` when stopping and `removeJob()` for intentional rule deletion.
-- Retries can repeat execution. The report ID can support business deduplication, but executors do not automatically deduplicate by it. The actual report service must implement idempotency.
-- Database changes and submission are not one transaction. Persist pending deliveries and provide recovery when reliability requires it; see [Server business services](server-business-services.md).
-- Background work has no browser identity. Define system or user task scopes explicitly rather than trusting client-supplied policies in payloads.
+- Use either `cron` or `every`, not both; `every` is in milliseconds. With Cron, always state `tz` explicitly.
+- Keep scopes, job types and rule names stable. When changing a rule, keep its name; renaming does not delete the old rule automatically. Call `shutdown()` when the application stops, and `removeJob()` only when the business really means to delete a rule.
+- Retries can cause repeated execution. The report ID in the example can serve as the basis for business deduplication, but the executor does not deduplicate by that ID automatically; the real generation service must be idempotent itself.
+- Writing data and submitting a job are not one transaction. When delivery must be reliable, persist pending-delivery records and provide recovery logic; see [Server business services](server-business-services.md).
+- Background jobs have no browser request identity. Decide explicitly whether a job is a system job or a user job and what permission scope it has; never treat a permission policy supplied by the client as a trusted payload.
 
-Without `jobs.default`, the template uses a single-process memory executor and writes state under `storage/jobs/` on normal shutdown. This does not guarantee crash recovery or distribute work across instances. Configure a shared backend for multiple instances. See [Background jobs and executors](../framework/background/jobs.md) and [Scheduled execution](../framework/background/scheduling.md) for configuration and retries. `jobs` and the lower-level `queue` have separate configuration.
+Without `jobs.default` configured, the template uses a single-process memory executor that writes its state to `storage/jobs/` on a normal shutdown. It cannot guarantee recovery after a crash, and it does not distribute work across instances. Multi-instance deployments should configure a shared execution backend; for configuration and retry parameters, see [Background jobs and executors](../framework/background/jobs.md) and [Periodic scheduling](../framework/background/scheduling.md). Note that the `jobs` configuration here is separate from the lower-level `queue` configuration.
 
 ## Verify
 
-1. Start the app with existing Providers preserved and no duplicate job registration.
-2. Submit a test ID from an authorized entry point. Check the receipt and matching `Report job executed` log.
-3. In an isolated test environment, temporarily replace Cron and timezone with `every: 1000` to verify scheduled submission, then restore the daily rule.
-4. Make the business function fail or honor cancellation. Verify failures, retries and shutdown; repeated business IDs must not produce duplicate results.
-5. Verify multi-process consumption and recovery against the deployment backend; memory tests cannot establish that behavior.
+1. Start the application and confirm that all existing Providers are kept and the new job is not registered twice.
+2. Submit a test ID from an authorized entry point, and confirm you get a receipt and a `Report job executed` log line with the same ID.
+3. In an isolated test environment, temporarily replace Cron and the time zone with `every: 1000` to confirm recurring submission works; after verifying, restore the daily schedule.
+4. Make the business function throw or honor cancellation, and verify failure, retry and shutdown behavior; running the same business ID again must not produce duplicate business results.
+5. Verify multi-process consumption and recovery on the real target backend; tests with the memory executor cannot replace deployment verification.
 
-Test business rules by invoking `ReportJob.execute()` directly, and use real executors for submission, consumption, schedules and shutdown.
+Tests of the business rules can call `ReportJob.execute()` directly, while submission, consumption, recurring rules and shutdown need tests with a real executor.

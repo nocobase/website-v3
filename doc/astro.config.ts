@@ -23,8 +23,6 @@ export default defineConfig({
   outDir: DIST,
   trailingSlash: 'always',
   redirects: {
-    '/core/tutorials/build-your-first-feature/': '/core/tutorials/build-your-first-feature-agent-first/',
-    '/zh-CN/core/tutorials/build-your-first-feature/': '/zh-CN/core/tutorials/build-your-first-feature-agent-first/',
     '/core/framework/services/client-services/': '/core/framework/services/integration/',
     '/core/framework/services/server-services/': '/core/framework/services/integration/',
     '/zh-CN/core/framework/services/client-services/': '/zh-CN/core/framework/services/integration/',

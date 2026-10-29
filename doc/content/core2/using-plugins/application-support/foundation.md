@@ -1,33 +1,33 @@
 ---
 title: "Application foundation"
-description: "Inspect integrated Core capabilities, usage evidence and business-module associations."
+description: "Inspect the Core capabilities the application has connected, the evidence of their use, and how business modules relate to them."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-foundation` shows which Core capabilities an application integrates, evidence of their use and associations with business modules.
+`@nocobase/app-plugin-foundation` provides an overview of the application's capabilities, helping administrators see which Core capabilities the application has connected, what evidence of use exists, and how each business module relates to those capabilities.
 
-Foundation observes existing integrations; it neither installs plugins nor replaces live acceptance.
+The application foundation is for observing existing integration; it does not install plugins and cannot replace actual business acceptance.
 
-### Inspect capabilities
+### View application capabilities
 
-Select capabilities such as accounts, permissions, files, notifications or AI to inspect configuration, identified usage and related packages. On request, the plugin reads configuration, registered services, the default connection and migration information. Results are briefly cached; Refresh collects again.
+After opening the application foundation, choose a capability such as accounts, permissions, files, notifications or AI to see its current configuration, the usage that can be detected and the related packages. On each request, the plugin reads the application configuration, registered services, the default database connection and migration information; results are cached briefly, and a refresh collects them again.
 
-Installed, registered, configured and used are distinct evidence. A dependency alone does not prove business use. Unrecognized custom or commercial extensions can appear independently with usage still undetermined.
+"Installed", "registered", "configured" and "used" are different levels of evidence. A package appearing in the dependencies does not prove the business uses it. Custom or commercial extensions that cannot be recognized may appear as a separate item, whose usage may still need confirming.
 
 ## Scenarios and examples
 
-### Example: check Mail integration
+### Example: confirm whether the email capability is connected
 
-1. Inspect the recognized Mail runtime and connected accounts.
-2. Open the business module to confirm its [Email](../notifications/mail.md) account and workspace pages are integrated.
-3. Perform a controlled send/receive check and inspect available usage evidence.
+1. In the application foundation, check whether the email capability detects the runtime and connected mailboxes.
+2. Open the relevant business module and confirm the [Email](../notifications/mail.md) accounts page and workspace are really connected.
+3. Do one controlled send-and-receive check, then check usage against the statistics in the foundation.
 
-Foundation does not replace actual delivery, model calls or acceptance tests. Record counts run only on explicit request; failed collection is not zero.
+The foundation shows the evidence it reads; it cannot replace actually sending and receiving mail, calling models or business acceptance. Record totals are queried only when statistics are explicitly chosen, and a collection failure should not be read as a count of zero.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use Foundation to expose Core capability evidence to administrators. Reuse an
 existing page where present, retain unrestricted-only access, and place it in
 settings. Add the CLI contribution if deployment needs module associations.
@@ -36,51 +36,51 @@ collection failure as zero or unused. Verify denial for ordinary-user API calls
 and run separate controlled acceptance for capabilities such as email.
 ```
 
-**Done when**: Administrators see evidence, ordinary users are denied, and unidentified or failed observations are not presented as business conclusions.
+**Done when**: administrators can see the capabilities and their evidence, ordinary users are refused, and unrecognized or failed collection states are never reported as business conclusions.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Client and Server plugin options | Configure page and navigation | Show capability overview in settings |
-| Optional CLI contribution and build | Generate foundation-modules.json | Retain static module associations after deployment |
-| Business verification records | Correlate observations with live acceptance | Dependency presence is not mistaken for working integration |
+| Client and Server plugin configuration | Configure the page path and navigation options | The capability overview appears in system settings |
+| Optional CLI contribution and build | Generate `foundation-modules.json` | Static module associations can be read after deployment |
+| Business verification records | Match the foundation's observations with actual business acceptance | "The dependency exists" is never mistaken for "the business works" |
 
-### Integration and entry point
+### Integration and entry points
 
-Register Client and Server after dependencies such as Authentication and Authorization. `foundation()` adds `/foundation` and navigation. The default template uses `foundation({ settingsGroup: true })`.
+Register the Client and Server plugins after their dependencies such as Authentication and Permission management. `foundation()` provides a `/foundation` page and menu by default; the default template uses `foundation({ settingsGroup: true })` to put it in the system settings group.
 
 | Client option | Purpose |
 | --- | --- |
 | `path` | Change the page path |
-| `navigation: false` | Keep the page without a menu entry |
-| `routes: false` | Mount the public `FoundationPage` yourself |
-| `settingsGroup: true` | Place the entry in settings |
+| `navigation: false` | Keep the page without showing a menu entry automatically |
+| `routes: false` | Let the application mount the public `FoundationPage` itself |
+| `settingsGroup: true` | Put the entry in the settings group |
 
-The page and `GET /api/foundation/overview` require an unrestricted identity, such as a root permission-set holder. This is not an ordinary page permission assignable to any role.
+The page and the `GET /api/foundation/overview` API only allow unrestricted identities, such as administrators holding the root permission set. This is not a page permission that can be assigned freely to ordinary roles.
 
-### Modules and deployment
+### Business modules and deployment
 
-Modules come from navigation; associations come from recognized pages, APIs and backend dependencies. An empty matrix cell means unidentified, not unused.
+Business modules are taken from the current navigation tree, and associations come from pages, APIs and backend dependencies that can be recognized. A blank in the matrix means nothing was recognized; it cannot be taken to mean the module definitely does not use that capability.
 
-Register the `/cli` contribution to preserve static associations in deployment builds. It generates `dist/server/foundation-modules.json`; existing applications must rebuild. Analysis does not execute scanned business source.
+To keep static module associations in the deployment build, register the contribution exported from `/cli`. The application build then generates `dist/server/foundation-modules.json`; existing applications need to be rebuilt to get this information. The plugin never executes the scanned business source to determine associations.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Retain unrestricted-only access on pages and APIs instead of widening it to any signed-in user.
-- Do not interpret blank associations or failed collection as unused; retain observation timestamps.
-- Check deployment artifacts and separately verify email, model or database behavior; overview counts do not replace business tests.
+- Keep the unrestricted requirement on the page and API; do not relax it to "any signed-in user" just to make the entry appear.
+- Do not interpret blank associations or collection failures as "not used"; when showing retained evidence, show its original check time with it.
+- Check the build output when deploying; specific mail, model or database operations still need their own acceptance, and the foundation's statistics cannot replace business tests.
 
-### Limits and verification
+### Verification and limits
 
-Verify administrator access, ordinary-user denial, refresh and collection-failure presentation. Other connections, opaque wiring and unsupported extensions may be outside coverage. Retained reliable observations show their original time.
+Check administrator access, refusal for ordinary users, refreshing, and how failures to read information are shown. Data outside the default connection, service combinations that cannot be recognized statically, and extensions not yet supported may fall outside the statistics; historically reliable data is labeled with its original check time.
 
-Foundation does not install, enable or upgrade plugins and does not prove that migrations or business tests passed. Related: [Manage plugins](../../developing-apps/manage-plugins.md), [Database explorer](../data-and-files/database-explorer.md).
+This plugin does not install, enable or upgrade other plugins, and cannot prove that upgrade checks, migration validation or business tests have passed. Related documentation: [Manage plugins](../../developing-apps/manage-plugins.md), [Database explorer](../data-and-files/database-explorer.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-foundation).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-foundation).

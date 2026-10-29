@@ -1,31 +1,31 @@
 ---
 title: "Template printing"
-description: "Use plugin Skills to implement DOCX templates and PDF output in an application."
+description: "Use the Skills the plugin provides to implement DOCX template filling and PDF output in an application."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-template-print` supplies Agent Skills and references for generating documents from Office templates and business data, with optional images, QR codes and PDF conversion.
+`@nocobase/app-plugin-template-print` provides Agent Skills and a reference implementation for template printing, helping an application generate documents from Office templates and business data, and handle images, QR codes and PDF conversion as needed.
 
-### What installation provides
+### What you get after installing
 
-The package contains guidance only: no Client, Server or CLI runtime, template tables, rendering engine, print endpoints or UI. The application implements the resulting feature.
+The current package only distributes development guidance. It has no Client, Server or CLI runtime entry, and provides no template table, print route, rendering engine or ready-made print page. After installing it, the application still implements its own printing feature.
 
-Install a compatible version as a direct development dependency, then synchronize from the application root:
+Install a compatible version as a direct development dependency of the application, then synchronize in the application root:
 
 ```bash
 pnpm nocobase skills sync
 ```
 
-Confirm the Agent can read `nocobase-app-plugin-template-print`. Do not add nonexistent runtime entries to Client or Server registration.
+Confirm that the application can read the `nocobase-app-plugin-template-print` Skill. There is no need to add this package to the Client or Server plugin registration arrays, and do not invent a runtime entry just to install the Skill.
 
 ## Scenarios and examples
 
-### Example: print an order
+### Example: generate a printable document for orders
 
-Give the application Agent a concrete request:
+Give the application's Agent the following request:
 
-```text
+```prompt
 Use the template-print Skill to add Download order to our order detail page.
 Fill the supplied DOCX template with order details, line items and totals.
 Reuse the current user's record and field permissions.
@@ -33,40 +33,40 @@ Implement DOCX first; explain and integrate deployment dependencies if PDF is ne
 Verify empty line items, long text, missing images, denied access and valid output files.
 ```
 
-The application or business plugin owns templates, queries, rendering dependencies, downloads and UI. Start with one fixed template before adding upload, version management or preview features.
+The implementation should be owned by the application or a business plugin: the template assets, data queries, rendering dependencies, download API and button. You can first get one business flow working with a fixed template, then decide whether template upload, versioning and preview are needed.
 
-**Done when**: Authorized users download correctly populated DOCX files; optional PDF works and opens in the target environment.
+**Done when**: authorized users can download a DOCX with correct fields and layout; when PDF is needed, a file that opens can also be produced in the target environment.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Development dependency and synchronized Skills | Install guidance and synchronize it | Coding Agents receive instructions without a runtime plugin |
-| Templates, business queries and download API | Implement authorized data assembly and DOCX rendering | Return an actual usable document |
-| Order detail and optional PDF environment | Add download UI, conversion dependencies and errors | Users download output and receive meaningful failures |
+| Development dependency and Skills synchronization | Install the guidance package and synchronize it into the application | The coding Agent can read the current version's guidance; no runtime plugin is added |
+| Template assets, business queries and the download API | Implement authorized data assembly and DOCX rendering | A real document that opens is returned |
+| Order details and the optional PDF environment | Connect the download button, conversion dependencies and failure feedback | Users can download, and conversion failures can be explained |
 
-### Prepare output
+### Organizing and using content
 
-Map fields and repeating regions to authorized data. Inspect images, QR codes, fonts and pagination in actual generated files. PDF conversion needs a separately configured tool and deployment environment; installing this package does not supply one.
+First settle the fields in the template and the detail areas that repeat, then prepare authorized data. Images, QR codes, fonts and page breaks must be checked in the generated document itself. PDF is only an optional output; the conversion tool, runtime environment and deployment dependencies must be arranged separately, and installing this package does not mean the server can convert.
 
-`app-plugin-template-print-example` is a separate runnable example with invoice data, authorization, a fixed DOCX and download UI. It is not a generic renderer built into this Skill package.
+`app-plugin-template-print-example` in the plugin source is a separate example with its own invoice data, authorization, fixed DOCX and download interface; it is not a general rendering service built into this Skill package.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- The package contains guidance only; do not invent runtime imports or a built-in universal renderer.
-- Populate templates only with authorized data and recheck record and field access in downloads.
-- Open actual output to inspect rows, totals, pagination and images. Verify PDF with deployment dependencies, beyond an HTTP 200 response.
+- This package only provides development guidance; do not import runtime entries that do not exist, and do not claim a general print service exists.
+- Template fields may only use data the current user is allowed to access, and the download API must recheck record and field permissions.
+- Actually open the output file to check details, totals, page breaks and images; verify PDF conversion with the real deployment dependencies, not just that the API returns 200.
 
-### Verify
+### Verify results
 
-Open generated files and check values, totals, repeating regions and pagination. Verify denied records and fields cannot be printed. For PDF, test conversion, fonts and failure handling in the deployment environment.
+Check that the generated document opens, that field values and totals are correct, that repeated areas and page breaks are reasonable, and that the current user cannot print records or fields they are not allowed to view. When PDF is needed, also verify conversion, fonts and error handling in the deployment environment.
 
-Related: [Develop with an agent](../../developing-apps/develop-with-an-agent.md), [Files](../data-and-files/file-management.md), [Permission management](../authorization/permissions.md).
+Related documentation: [Develop with an Agent](../../developing-apps/develop-with-an-agent.md), [Files](../data-and-files/file-management.md), [Permission management](../authorization/permissions.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-template-print).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-template-print).

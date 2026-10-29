@@ -1,27 +1,27 @@
 ---
 title: "Approvals (commercial)"
-description: "Connect human approval to record lifecycles, participants, policies and outcomes."
+description: "Bring human approval into the lifecycle of business records, and configure participants, approval policies and outcomes."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-approval` integrates human decisions with record lifecycles, maintaining participants, tasks, evidence and content snapshots. Use it for leave, purchasing or contracts. It is commercial; confirm package access and licensing before installation.
+`@nocobase/app-plugin-approval` brings human approval into the lifecycle of business records, managing approval participants, tasks, action records and content snapshots. It suits business that needs human confirmation, such as leave, purchasing and contracts. It is a commercial plugin; before installing, confirm you have the corresponding package access and license.
 
-The plugin supplies approval orchestration and read models; the application composes pages, APIs, authorization and timers.
+The plugin provides approval orchestration and read models; business pages, APIs, authorization and scheduled execution are composed by the application.
 
 ## Scenarios and examples
 
-### Example: purchasing request
+### Example: purchase requests
 
-A draft moves to manager review on submission. The manager approves, rejects or returns it to draft. Final decisions and business transitions share a transaction. Returned content is edited through guarded business operations before resubmission.
+The applicant fills in the purchase in a draft, and submitting it sends it to the manager for approval. The manager can approve, reject or return it to draft. When approved, the approval decision and the purchase record's status advance in the same transaction; after being returned, the applicant edits it through an entry the business allows and submits again.
 
-Use `runViewsFor`, `upcomingStagesFor` and `previewRoute` for progress and eligible actions. The UI Library's `approval-ui` source can render mapped progress, timelines, previews and action controls.
+The handling page should show progress and available actions with public read models such as `runViewsFor`, `upcomingStagesFor` and `previewRoute`. The application can install the source of the `approval-ui` component from the UI Library to map the read models into a progress bar, timeline, preview and action bar.
 
-The API rechecks identity, business access, task eligibility and content version. A visible button is insufficient authorization; changed content can require renewed review.
+The API must recheck the current user, record permissions, task eligibility and content version; showing an "Approve" button in the browser is never enough to allow the submission. After the approval content changes, an earlier approval may need to be reviewed again.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use the licensed Approval plugin for manager review of purchase requests. Keep
 the business record lifecycle and define draft, review, return and final states
 with eligible reviewers. Use public read models and approval UI for progress and
@@ -30,59 +30,59 @@ and business state together, and integrate host Jobs sweeps. Test empty assignme
 duplicates, returns, conflicts and transaction failure.
 ```
 
-**Done when**: Purchases can be submitted, approved or returned; ineligible actions are denied and transaction failures leave no inconsistent final state.
+**Done when**: purchase requests can be submitted, approved or returned; ineligible actions are rejected, and a failed transaction leaves no inconsistent final state.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Business lifecycle, approval config and transactional storage | Compose stages, reviewers and outcomes | Keep purchase state consistent with decisions |
-| Business APIs and detail page | Integrate read models, progress and guarded actions | Applicants and reviewers see appropriate operations |
-| Jobs and follow-up execution | Integrate sweeps, pruning and execution states | Handle scheduled work and business failures explicitly |
+| Business lifecycle, approval configuration and transactional storage | Combine approval stages, participants and the mapping of decisions | The purchase record's status stays consistent with the approval result |
+| Business APIs and the details page | Connect read models, progress and authorized actions | Applicants and approvers each see the actions they may perform |
+| Jobs and follow-up business processing | Connect sweep, prune and the status of external execution | Scheduled work and business failures both have clear handling |
 
-### Prerequisites
+### Prepare before integrating
 
-The Server entry provides migrations and orchestration APIs. Client provides locales and read-model helpers. It does not generate an approval center, business endpoints or a workflow designer.
+The plugin's Server entry provides migrations for approval data and the public orchestration API, and the Client entry provides language resources and read model tools; the plugin does not generate an approval center, business APIs or a workflow designer.
 
-The application supplies:
+The application needs to provide:
 
-- Business Collections, lifecycles and transactional storage.
-- Authentication, business permissions and a people directory.
-- Approval definitions, APIs and pages.
-- Scheduled checks, notifications and business side effects.
+- Business Collections, record lifecycles and their transactional storage.
+- Authentication, business permissions, and queries of organizations and people.
+- Approval configuration, action APIs and business pages.
+- Scheduled checks, and integrations such as notifications and business execution after submission.
 
-Define stages through public APIs such as `defineApproval`, `stagesFor` and `approvalState`. Register the lifecycle with the host LifecycleRuntime and its approval configuration with `ApprovalService`. One business record identifies the process.
+Declare the approval flow with `defineApproval`, `stagesFor`, `approvalState` and similar exports from `/server`, then hand the lifecycle to the host's LifecycleRuntime and the approval configuration to `ApprovalService`. One business record corresponds to one flow; do not create a separate "flow status" for approval that is detached from the business status.
 
-### Configure decisions
+### Configure approvals
 
-Define draft, review, correction and final states, then participants, decision policies and allowed actions. Policies include single, all, any, sequential, threshold and custom aggregation. Transfers and added signers require eligible recipient scopes.
+First settle the draft, in-approval, returned-for-changes and final states, then set the participants, decision rules and allowed actions for each approval stage. The public policies cover single approver, all must approve, any one approves, sequential, threshold-based and custom aggregation; transfers and added approvers also need a configured range of recipients to choose from.
 
-| Question | Configuration |
+| Business question | What to configure |
 | --- | --- |
-| Who reviews? | Participant resolution, qualification and empty-stage behavior |
-| When does it pass? | Decision policy and outcome transitions |
-| Can it return or transfer? | Explicit actions, return targets and recipient scopes |
-| Can content change? | Frozen fields, content hashes and version checks |
-| What follows approval? | Business states and side effects |
+| Who approves | How participants are resolved, whether people are valid, and what to do with no approver |
+| When it counts as approved | The stage's decision rule, and how approval results map to business status |
+| Whether it can be returned or transferred | Explicitly declared actions, return targets and recipient range |
+| Whether data can change during approval | Frozen fields, a content hash and version checks |
+| What happens after approval | The business lifecycle's next status and side effects |
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Use the business record as process identity instead of a disconnected second state.
-- A visible action does not authorize approval; recheck user, record, task eligibility and content version.
-- Test duplicates, concurrency and final transaction failure with isolated data. Recover external execution through business retry states, not repeated human decisions.
+- Reuse the business record as the flow's identifier; never maintain a second status detached from the business status.
+- A visible button does not mean permission to approve; the server must check the user, record, task eligibility and content version together.
+- Verify repeated actions, concurrent actions and a failed final transaction on isolated data; when external execution fails, use a business retry status rather than having people approve again.
 
 ### Scheduled work and verification
 
-The plugin starts no timer. Integrate host Jobs through `createLifecycleJobs`, calling `ApprovalService.sweep()` and `runtime.prune()` from its sweep callback.
+The plugin runs no timers of its own. The application connects the host's Jobs through `createLifecycleJobs` and calls `ApprovalService.sweep()` and `runtime.prune()` in the sweep callback to handle task timing and lifecycle triggers.
 
-Verify empty assignments, decision rules, duplicate actions, returns, content conflicts and transaction failure. Model external execution failures and retries in business state so recovery does not repeat human approval.
+Verify cases such as no approver, different decision rules, repeated actions, returning for changes, content conflicts and a failed final transaction. Later failures of external execution should be carried by failure and retry statuses visible on the business record, so people do not have to approve again.
 
-Related: [Permission management](../authorization/permissions.md), [Background jobs](../../framework/background/jobs.md), [Transactions](../../framework/database/transactions.md), [Manage plugins](../../developing-apps/manage-plugins.md).
+Related documentation: [Permission management](../authorization/permissions.md), [Background jobs and executors](../../framework/background/jobs.md), [Transactions](../../framework/database/transactions.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-This guide follows the commercial plugin’s public exports and example. Package access and use depend on your license.
+This guide was checked against the commercial plugin's public exports and example; obtaining and using the package depend on your license.
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).

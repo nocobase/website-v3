@@ -1,26 +1,26 @@
 ---
 title: Client and server service integration
-description: Integrate shared service contracts with client and server containers and clarify application, plugin, request and component ownership.
+description: Connect shared service contracts to the client and server containers, and make clear which resources belong to the application, plugins, requests and components.
 ---
 
-`@nocobase/service-provider` supplies the same containers, Tokens and lifecycle mechanisms to applications and plugins. Browsers and servers own separate containers; a shared contract does not share an instance across the network.
+`@nocobase/service-provider` gives applications and plugins the same containers, Tokens and lifecycle mechanisms. The browser and the server each own their own containers; a "shared contract" does not mean an instance is shared across the network.
 
-## Choose registration and consumption points
+## Choose where to register and consume services
 
-| Location | Registration | Consumption |
+| Location | How to register | How to consume |
 | --- | --- | --- |
-| Application client | Application client ServiceProvider, wired through its runtime | `useService()` in React; constructor arguments in ordinary services |
-| Plugin client | `serviceProviders` in `client/plugin.ts` | Import the public Token and use the current client container |
-| Application server | Application Provider collection, wired through its runtime | Resolve with `app.container.resolve()` and pass dependencies to business code |
-| Plugin server | `serviceProviders` in `server/plugin.ts` | Use the host container and application-managed lifecycle |
+| Application client | The application's client ServiceProvider, wired in by the runtime | `useService()` in React; ordinary services receive dependencies through constructor arguments |
+| Plugin client | `serviceProviders` in `client/plugin.ts` | Import the Token from the plugin's public entry and use the current client container |
+| Application server | The application's Provider aggregation entry, wired in by the runtime | Resolve with `app.container.resolve()` and pass the result to business code |
+| Plugin server | `serviceProviders` in `server/plugin.ts` | Use the host container, with the lifecycle scheduled by the application |
 
-Application Providers are commonly collected in `client/service-provider.ts` and `server/providers/index.ts`; follow the files referenced by the current runtime. A file's existence does not register it. See [Client business services](../../developing-apps/client-business-services.md), [Server business services](../../developing-apps/server-business-services.md) and [Plugin declarations](../../extension-development/plugin-declarations.md) for integration steps.
+The application's Providers are usually aggregated in `client/service-provider.ts` and `server/providers/index.ts`; follow the files the current runtime actually references. A file existing does not mean it is registered. For the integration steps, see [Client business services](../../developing-apps/client-business-services.md), [Server business services](../../developing-apps/server-business-services.md) and [Plugin declarations](../../extension-development/plugin-declarations.md).
 
 ## Client services
 
-Client services hold cross-page business behavior, request wrappers or shared state. Components present it; services expose independently callable behavior. Temporary form input usually stays in components or React Context.
+Client services suit business logic shared across pages, request wrappers and shared state. Components handle presentation, and services provide behavior that can be called on its own; temporary form input usually stays in components or React Context.
 
-### Making state subscribable
+### Make service state subscribable
 
 ```ts
 import type { ClientApplication } from '@nocobase/app-client';
@@ -58,21 +58,21 @@ export function useCompact() {
 }
 ```
 
-Add `CompactServiceProvider` to the application's client `serviceProviders` or the plugin's contribution array. Components call `useCompact()` to read and update the preference.
+Add `CompactServiceProvider` to the application's client `serviceProviders`, or to the array of the same name in a plugin's contributions. Components can then call `useCompact()` to read and update the preference.
 
-`useService()` resolves a service without subscribing. `useSyncExternalStore` connects updates to React and removes listeners on unmount. Snapshots must remain stable while values are unchanged; allocating a new snapshot object on every read can cause unnecessary updates.
+`useService()` only resolves a service; it does not subscribe to changes. The example connects the service state to React through `useSyncExternalStore` and removes the listener on unmount. The snapshot must stay stable while the value is unchanged; returning a new object as the snapshot every time causes pointless updates.
 
-### Calling the server
+### Communicate with the server
 
-Use the configured HTTP client through `useApiClient()`, `apiClientToken` or constructor injection. Forward cancellation signals to requests and let the UI handle loading, failures and retries.
+Use the configured HTTP client through `useApiClient()`, `apiClientToken` or constructor arguments. When a service receives a cancellation signal, pass it on to the request, and let the UI handle loading, failures and retries based on the request state.
 
-Cached browser permissions and user objects are not server authorization. Clear identity-specific state and request caches when identities change.
+Do not use permissions or the current user object cached in the browser as the basis for server authorization. When the signed-in identity changes, clear state and request caches tied to the old identity.
 
-### Ownership and tests
+### Resources and tests
 
-This example stores only in-memory state. Providers own connections and global listeners; components own their local subscriptions. Test singleton sharing, rerendering after updates and listener cleanup.
+The example only keeps state in memory and does not persist it. Connections and global listeners are created and closed by the Provider lifecycle; subscriptions inside a component are cleaned up when the component unmounts. In tests, verify that the singleton is shared, that updates trigger a rerender, and how many listeners remain after unmounting.
 
-Related: [API Client](../http/api-client.md) and [React Providers](../runtime/react-providers.md).
+Related topics: [API Client](../http/api-client.md) and [React Provider registration and mounting](../runtime/react-providers.md).
 
 ### Interfaces and implementation
 
@@ -81,11 +81,11 @@ Related: [API Client](../http/api-client.md) and [React Providers](../runtime/re
 
 ## Server services
 
-Server services centralize business rules so HTTP, CLI and background work can share behavior. Entry points validate input and establish identity; data policies and business constraints travel explicitly through the call chain.
+Server services centralize business rules so that HTTP endpoints, CLI commands and background jobs reuse the same behavior. Input validation and identity extraction happen at the entry point, while data scopes and business constraints are passed explicitly along the call chain.
 
-### Inject framework resources
+### Inject framework resources into business classes
 
-This assumes an `orders` Collection with `id` and `title` fields:
+The following snippet assumes an existing `orders` Collection with `id` and `title` fields:
 
 ```ts
 import type { DatabaseManager, RepositoryPolicy } from '@nocobase/db';
@@ -103,23 +103,23 @@ export class OrdersService {
 }
 ```
 
-A ServiceProvider resolves `databaseManagerToken`, injects it into `OrdersService`, and registers a business token. Routes resolve the service and pass policies derived from authorization, never policies trusted directly from request input.
+The ServiceProvider resolves the application database through `databaseManagerToken`, injects it into `OrdersService`, and registers the service under a business Token. The route gets the service from the application container and passes in the policy produced by authorization; never trust a policy object carried by the request.
 
-### Keep request state out of singletons
+### Request state does not belong in singletons
 
-Do not store current users, transactions or request input in service fields: concurrent calls could overwrite each other. Pass them as arguments. Convert HTTP Context into a small business context at the route boundary instead of coupling services to a Web framework.
+Do not store the current user, the current transaction or this request's input in service fields, or concurrent requests may overwrite each other. Pass these values as method arguments. The route layer can turn the HTTP Context into a small context with only what the business needs, so that services are not tied to a particular Web framework.
 
-### Transactions and external effects
+### Transactions and external side effects
 
-For atomic multi-step writes, create a transaction and obtain Repositories from its callback connection. Do not use that connection after the callback finishes. Mail, HTTP calls and queue submissions do not normally roll back with the database. Arrange them after commit, with retries and idempotency identifiers appropriate to the business.
+When several writes must be atomic, create a transaction in the service method and get Repositories from the connection provided in the callback. Do not use that transaction connection after the method returns. Sending mail, calling external HTTP services and submitting queue messages usually do not roll back with the database; schedule them after the commit, and record retry information and idempotency keys as the business requires.
 
-Database commit and notification delivery are separate outcomes. Durable delivery requirements need explicit persisted pending work and recovery.
+Do not merge "the database committed" and "the notification was delivered" into a single state that cannot be recovered. If delivery must be strongly consistent, explicitly design persisted pending-delivery records and a recovery process.
 
-### Multiple entry points and tests
+### Reuse across entry points and tests
 
-CLI and background tasks lack browser identity. Define their execution principal and allowed data scope rather than assuming administrative access.
+CLI commands and background jobs have no browser request identity. Define the system principal they act as and the data scope they may access; reusing the same service does not grant administrator permissions by default.
 
-Unit-test rules and use real database tests for policies, transactions and concurrency. See [Server business services](../../developing-apps/server-business-services.md) and [Transactions](../database/transactions.md).
+Verify business rules with unit tests, and policies, transactions and concurrency with tests against a real database. For the complete integration, see [Server business services](../../developing-apps/server-business-services.md) and [Transactions](../database/transactions.md).
 
 ### Interfaces and implementation
 

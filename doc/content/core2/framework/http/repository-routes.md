@@ -1,26 +1,27 @@
 ---
 title: Repository data APIs
+description: Use defineRepositoryApiRoutes() to declare HTTP endpoints for the Repository operations of selected Collections, and configure enabled operations, access policies, identity and business authorization.
 ---
 
-`defineRepositoryApiRoutes()` declares HTTP endpoints for selected Collection Repository operations. Clients call `api.repository(name)`; the server parses query input, applies policies, calls the Repository and returns a standard result. Applications and plugins use the same declaration.
+`defineRepositoryApiRoutes()` declares the Repository operations of selected Collections as HTTP endpoints. Clients call them through `api.repository(name)`; the server parses the query input, applies the policies, calls the Repository and returns a result in a standard format. Applications and plugins use the same declaration.
 
-The public entry is `@nocobase/app-server/router`, and the current export is named `defineRepositoryApiRoutes`. See [Repositories and data operations](../database/repositories.md) for database-side semantics.
+The public entry is `@nocobase/app-server/router`, and the current export is named `defineRepositoryApiRoutes`. For the semantics of the operations on the database side, see [Repositories and data operations](../database/repositories.md).
 
 ## When to use it
 
 | Requirement | Choice |
 | --- | --- |
-| A list, detail or field edit completed by one Repository operation | Repository endpoints with an explicit access policy |
-| An operation checks persisted business state, spans permission scopes or has side effects | A custom route and business service |
-| Server-internal data access | Call the database Repository directly |
+| A list, a detail view or a field edit that one Repository operation can complete | Repository data APIs with an access policy |
+| A query or change that involves stored business state, several permission scopes or extra side effects | A custom route and business service |
+| Data access only inside the server | Call the database Repository directly |
 
-Editing a personal note title fits this adapter. Submitting an order with state checks, inventory updates and follow-up jobs needs a business endpoint. One resource can use both approaches, chosen per operation. See [Routes and HTTP APIs](../../developing-apps/apis-and-services.md).
+For example, editing the title of a personal note suits this kind of endpoint, while submitting an order needs to check the order state and inventory and trigger follow-up jobs, so it calls for a business endpoint. The same resource can use both approaches, chosen per operation. See also [Routes and HTTP APIs](../../developing-apps/apis-and-services.md).
 
 ## Declare and register endpoints
 
-This example deliberately exposes a public category catalog to anonymous readers, returning only `id` and `title`. It assumes an existing `categories` Collection with an auto-incrementing numeric `id` and string `title`; prepare it through [Schema and fields](../database/schema.md) and [Migrations](../database/migrations.md).
+The following example provides a public category catalog that anonymous users can read, returning only `id` and `title`. It assumes an existing `categories` Collection with an auto-incrementing numeric `id` and a string `title`; prepare the structure first with [Tables and fields](../database/schema.md) and [Database migrations](../database/migrations.md).
 
-Save the declaration as `server/routes/public-categories.ts` in an application, or an equivalent route module in a plugin:
+Save the declaration as `server/routes/public-categories.ts` in an application, or as an equivalent route module in a plugin:
 
 ```ts
 import { defineRepositoryApiRoutes } from '@nocobase/app-server/router';
@@ -46,36 +47,36 @@ export default defineRepositoryApiRoutes({
 });
 ```
 
-In an application, add its default export to the existing route array in `server/routes/index.ts`. In a plugin, add it to the `routes` array of `defineServerPlugin()`, then register the plugin in the target application. Preserve other routes. Declaration does not execute queries; at runtime, the contribution resolves `databaseManagerToken` from the host container.
+In an application, add the module's default export to the existing route array in `server/routes/index.ts`; in a plugin, add it to the `routes` array of `defineServerPlugin()` and then register the plugin with the target application. Keep the other existing routes. Declaring does not run any queries; at runtime the database is obtained through `databaseManagerToken` in the host container.
 
-This example intentionally publishes category data. Endpoints for users, orders and other business data need authentication and business authorization. The helper does not install authentication middleware, create tables or expose undeclared Collections.
+This example exposes the category catalog on purpose. For business data such as users or orders, connect authentication and business authorization first. The function does not install authentication middleware, create tables or expose Collections that are not declared.
 
 | Option | Meaning |
 | --- | --- |
-| `name` | HTTP exposure name, also passed to `api.repository(name)` |
-| `collection` | Logical database Collection; defaults to `name` |
-| `connection` | Configured connection name; defaults to the default connection |
-| `actions` | Explicit operations, each with an options object; `{}` uses that operation's defaults |
-| `policy` | Required complete Repository policy, or a function deriving one from the request principal |
+| `name` | The HTTP exposure name, also used in `api.repository(name)` |
+| `collection` | The logical Collection name in the database; defaults to `name` |
+| `connection` | A configured connection name; defaults to the default connection |
+| `actions` | Explicitly enabled operations, each with an options object; `{}` uses that operation's defaults |
+| `policy` | Required: a complete Repository policy, or a function that derives one from the request identity |
 
-Use camelCase names starting with a lowercase letter, such as `salesOrders`. Avoid duplicate names, plugin namespace collisions and reserved names including `auth`, `healthz` and `swagger`. `collection` names a logical Collection, not a physical table.
+Use camelCase names that start with a lowercase letter, such as `salesOrders`. Avoid duplicate names, collisions with plugin namespaces and reserved names such as `auth`, `healthz` and `swagger`. `collection` is a logical Collection name, not a physical table name.
 
-## Enable operations
+## Which operations to enable
 
-| Operations | Purpose |
+| Operation | Purpose |
 | --- | --- |
-| `findMany`, `findOne` | Lists and individual records |
-| `count`, `exists` | Count and existence |
-| `createOne`, `updateOne`, `deleteOne` | Single-record mutations |
+| `findMany`, `findOne` | Lists and single records |
+| `count`, `exists` | Counts and existence checks |
+| `createOne`, `updateOne`, `deleteOne` | Creating, updating and deleting one record |
 | `aggregate`, `groupBy` | Aggregation and grouping |
 
-Only operations listed in `actions` have routes. The example has no create, update or delete routes. `createMany`, `updateMany`, `deleteMany` and `upsertOne` are currently outside this HTTP adapter even though the database Repository supports them.
+Only the operations that appear in `actions` get routes. The example above has no create, update or delete routes. `createMany`, `updateMany`, `deleteMany` and `upsertOne` are currently not operations of this HTTP adapter; even though the database Repository supports them, they are not exposed automatically.
 
-`findMany.maxLimit` sets both the default and maximum count, defaulting to `100`. Exceeding the cap returns `400` rather than silently clamping the limit. A request with `limit: 0` returns an empty array, not an unlimited result. This limit applies only to `findMany`; bound aggregation input and computational scope separately.
+`findMany.maxLimit` sets both the default number of records returned and the maximum allowed, and defaults to `100`. A request above the limit returns `400` instead of being truncated silently. A request with `limit: 0` returns an empty array and cannot be used to mean "no limit". This limit applies only to `findMany`; for aggregation and grouping, bound the input and the scope of computation separately.
 
 ## Client and HTTP calls
 
-A React page obtains the configured client through `useApiClient()` and passes it to an ordinary function or service:
+A React page gets the configured API Client through `useApiClient()` and passes it to an ordinary function or service:
 
 ```ts
 import type { ApiClient } from '@nocobase/app-client';
@@ -90,7 +91,7 @@ export async function loadCategories(api: ApiClient) {
 }
 ```
 
-`publicCategories` is the exposure name; the database Collection remains `categories`. This call sends the following request, with any application base path added when deployed under one:
+`publicCategories` here is the exposure name, while the Collection in the database is still called `categories`. The call sends the request below; when the application is deployed under a base path, the request address also includes that path:
 
 ```http
 POST /api/publicCategories/findMany
@@ -106,22 +107,22 @@ Content-Type: application/json
 }
 ```
 
-Every operation uses `POST /api/{name}/{action}`, including reads. Successful responses use `{ data: result }`:
+Every operation uses `POST /api/{name}/{action}`, including queries. A successful response is `{ data: result }`:
 
-- `await findMany()` returns the record array because the remote Repository unwraps `data`; ordinary `api.request()` returns the whole response body.
-- A missing `findOne()` result is `{ data: null }` over HTTP and becomes `undefined` in the remote client.
-- `createOne()` and `updateOne()` return mutation results; use `.record` for the record.
-- `deleteOne()` returns a JSON deletion result rather than an empty `204` response.
+- `await findMany()` returns the record array directly, because the remote Repository has already unwrapped `data`; an ordinary `api.request()` returns the whole response body.
+- When `findOne()` finds no record, HTTP returns `{ data: null }`, which the remote client turns into `undefined`.
+- `createOne()` and `updateOne()` return mutation results; get the record from `.record`.
+- `deleteOne()` returns a JSON deletion result, not an empty `204` response.
 
-Remote queries also support query input builders, serialized by the client before transport. HTTP JSON cannot contain functions. Asynchronous iteration of `findMany()` reads an NDJSON stream; consume each query once and do not mix awaiting with iteration. See [API Client](api-client.md) and [Query inputs and builders](../database/query-inputs.md).
+Remote queries also support query input builders, which the client converts into transferable JSON first; functions cannot be sent directly in HTTP JSON. `findMany()` can read an NDJSON stream through asynchronous iteration; consume each query object only once, and do not mix `await` with iteration. See [API Client](api-client.md) and [Query inputs and builders](../database/query-inputs.md).
 
 ## Policies, identity and business authorization
 
-`policy` must declare all four entries: `read`, `create`, `update` and `delete`. `false` denies that operation category, `true` permits its full capabilities, and rule objects constrain scope, fields and relations. `actions` determines whether a route exists; `policy` determines what an existing route may do.
+`policy` must declare all four entries, `read`, `create`, `update` and `delete`: `false` denies that category of operations, `true` allows all of its capabilities, and a rule object restricts the data scope, fields and relations. `actions` determines whether a route exists; `policy` determines what an existing route may do.
 
-A rule's `fields` is an allowlist; omission does not mean all fields. Relations require explicit rules too. Read policies also govern records returned after mutations. Caller-provided `filter` cannot expand the server's `scope`, and request bodies cannot supply `policy` or `scope`.
+`fields` in a rule is an allowlist; omitting it does not mean all fields are allowed. Relation operations also need explicit rules. The read policy also applies to records returned after a write. A `filter` submitted by the client cannot widen the server's `scope`, and the request body cannot submit `policy` or `scope`.
 
-Personal notes can use a principal-derived policy. This example assumes an existing `notes` Collection with `id`, `title` and a string `ownerId` user identifier:
+Personal notes can use a policy derived from identity. The example below assumes `notes` already has `id`, `title` and `ownerId` fields, where `ownerId` is a string user identifier:
 
 ```ts
 import {
@@ -158,19 +159,19 @@ export function createNoteRoutes(resolvePrincipal: ResolvePrincipal) {
 }
 ```
 
-Call `createNoteRoutes(resolvePrincipal)` and register the returned contribution. The application's authentication integration supplies `resolvePrincipal`, obtaining `userId` from a verified session or identity context, never the body or an unverified header. This function does not perform login verification itself.
+To connect it, call `createNoteRoutes(resolvePrincipal)` and register the route declaration it returns. `resolvePrincipal` is provided by the application's authentication integration and gets `userId` from a verified session or identity context; never read it from the request body or an unverified header. The function itself does not verify sign-in.
 
-A dynamic policy requires a `principal` resolver. Returning `null` or `undefined` refuses the request with `403`. This example limits reads and writes to the current user's notes, supplies `ownerId` on creation from the server and accepts only `title` from callers.
+A dynamic policy requires a `principal` resolver; when it resolves to `null` or `undefined`, the request is rejected with `403`. The example above only allows reading and writing the current user's own notes; on creation the server fills in `ownerId`, and callers can only provide `title`.
 
-For administrator-configured roles, business actions and data scopes, integrate the authorization plugin's `authz.database.authorizeRepository()`. It maps exposure operations to business actions and adds request policies that intersect the route policy; it cannot expand existing field or scope access. Run authentication first and cover every protected operation. See the complete plugin integration example linked below.
+When administrators need to configure roles, business actions and data scopes, also connect the authorization plugin's `authz.database.authorizeRepository()`. It maps exposure names and operations to business actions and adds request policies that are intersected with the policy here; it never relaxes existing field or scope restrictions. Authentication must run first and cover every operation that needs protection. For how to connect the plugin, see the authorization plugin integration under "Interfaces and implementation" at the end of this page.
 
 ## Validation, errors and API documentation
 
-The adapter requires JSON, caps request bodies at 1 MiB and validates the allowed options for each operation. Repository validates fields, query ASTs and mutation structures. Implement business-specific text limits, state checks and cross-record constraints explicitly; complex operations need custom handlers.
+The adapter requires a JSON request body of at most 1 MiB and validates the allowed input options for each operation; fields, query ASTs and mutation structures are validated by the Repository. Business-specific text lengths, state checks and cross-record constraints still have to be implemented explicitly, and complex operations should use custom handlers.
 
-Errors use the standard `{ error: ... }` envelope: invalid input normally returns `400`, policy denial `403`, missing records `404`, and version or single-record cardinality conflicts `409`. Non-JSON content returns `415` and oversized bodies `413`. Inspect `status` and `reason` for handling; see [Validation and responses](validation.md).
+Errors use the standard `{ error: ... }` structure: invalid input usually returns `400`, a policy denial `403`, a missing record `404`, and a version conflict or a single-record cardinality conflict `409`; content that is not JSON returns `415`, and an oversized body `413`. Base business handling on `status` and `reason`; see [Request validation and responses](validation.md).
 
-Enabled Repository endpoints generate OpenAPI descriptions from their Collection and operation. Optional `computedFields` only documents additional read-only response fields; it neither computes fields nor changes responses. API documentation does not replace per-request authorization.
+Enabled Repository endpoints generate OpenAPI descriptions from their Collection and operation. The optional `computedFields` only documents extra read-only fields in the response; it neither computes fields nor changes the response. API documentation does not replace the permission checks on every request.
 
 ## Interfaces and implementation
 

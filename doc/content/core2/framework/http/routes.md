@@ -1,10 +1,11 @@
 ---
 title: Routes and request context
+description: Learn how HTTP routes mount under the API prefix or the application root, what the request context provides, and where authorization and endpoint exposure boundaries lie.
 ---
 
-HTTP endpoints enter the application as route contributions. Factories resolve services during startup; handlers read input and identity for each request.
+HTTP endpoints join the application as route contributions: route factories obtain services during application startup, and handlers read input and identity each time a request arrives.
 
-## API and root scopes
+## API prefix and root path
 
 ```ts
 import { Hono } from 'hono';
@@ -17,23 +18,23 @@ export default defineApiRoutes(() => {
 });
 ```
 
-Add this declaration to the application's `server/routes/index.ts` array or a plugin's `routes`. Without an extra base path, it answers at `/api/example/ping`. This public example reads no business data.
+Add this declaration to the route array in the application's `server/routes/index.ts`, or to a plugin's `routes`. Without an extra base path, the example endpoint answers at `/api/example/ping`. It is a public probe that reads no business data.
 
-`defineApiRoutes()` mounts under the API prefix. `defineRootRoutes()` mounts at the application root for other protocol boundaries. Subpath deployments add their application base path; do not hard-code hosts and deployment prefixes in plugins.
+`defineApiRoutes()` mounts under the API prefix; `defineRootRoutes()` mounts at the application root and suits entries that need their own protocol boundary. When the application is deployed under a subpath, its base path is added as well; do not hard-code hosts and deployment prefixes in each plugin.
 
-## Per-request context
+## The context of each request
 
-Hono Context provides `req.param()`, `req.query()`, body access and response methods. Path and query values begin as strings; declared types do not validate external input.
+The Hono Context provides `req.param()`, `req.query()`, access to the request body and response methods. Path and query parameters start out as strings; declaring a type does not mean external input has been validated.
 
-Resolve services from the factory's `app` container. Authentication integrations populate request identity according to their own contracts; do not assume every Hono request has a `user` field.
+Resolve application services from the container of the route factory's `app` parameter. The authentication integration puts the user's identity into the request context, and the field name and how to read it follow that integration; do not assume every Hono request has a `user`.
 
-## Authorization and exposure
+## Authorization and endpoint exposure
 
-Integrate authentication and data policies explicitly. Hidden frontend menus do not protect endpoints. [`defineRepositoryApiRoutes()`](repository-routes.md) can expose named Collections with explicit actions and complete policies; it neither exposes every table nor creates schema. See [Repository data APIs](repository-routes.md) for declaration, registration, policies and client calls.
+Identity checks and data policies for routes must be connected explicitly. Hiding a menu in the frontend does not protect an endpoint. For Repository-style endpoints, [`defineRepositoryApiRoutes()`](repository-routes.md) lets you list Collections, actions and complete policies explicitly; it does not expose every table automatically, and it does not create database structure. For declaration, registration, permission policies and client calls, see [Repository data APIs](repository-routes.md).
 
-Duplicate API methods and paths fail startup checks. Register OpenAPI descriptions through helpers such as `describeRoute` from `@nocobase/app-server/router` to avoid mixing metadata registries from separate dependency copies.
+Duplicate API paths and methods fail the startup checks. Register OpenAPI documentation with description helpers from `@nocobase/app-server/router`, such as `describeRoute`, so that metadata from different copies of a dependency is not mixed.
 
-See [Validation and responses](validation.md), [API Client](api-client.md) and [Plugin server APIs](../../extension-development/server-apis.md).
+See also [Request validation and responses](validation.md), [API Client](api-client.md) and, for plugins, [Routes and HTTP APIs](../../extension-development/server-apis.md).
 
 ## Interfaces and implementation
 

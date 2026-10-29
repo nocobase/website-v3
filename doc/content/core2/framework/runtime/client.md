@@ -1,8 +1,9 @@
 ---
 title: Client runtime
+description: Learn how the client runtime composes configuration, services, plugins, routes and React extensions into a browser application.
 ---
 
-The client runtime composes configuration, services, plugins, routes and React extensions into a browser application. Apps and plugins contribute to the same runtime; the application decides the final layout and components.
+The client runtime composes configuration, services, plugins, routes and React extensions into a browser application. Applications and plugins contribute declarations to the same runtime, and the application decides the final layout and components.
 
 ## Assembly and rendering
 
@@ -15,34 +16,34 @@ client/runtime.ts
   → React Providers + routes
 ```
 
-`client/runtime.ts` collects application contributions and plugins from `client/plugins.ts`. `resolveAppRuntime()` resolves declarations and public HTML configuration. `ClientApplication` owns configuration, its service container and lifecycle. The host renders `AppClientRoot` after `app.start()` succeeds.
+`client/runtime.ts` collects the application's own contributions and the plugins from `client/plugins.ts`. `resolveAppRuntime()` resolves those declarations together with the public configuration in the page. `ClientApplication` owns the configuration, the service container and the lifecycle. The host renders `AppClientRoot` only after `app.start()` succeeds.
 
-Statically import declarations required at startup. Lazily load page components, large SDKs and locale messages. Declaration modules should not open connections or access the DOM at import time.
+Import the declarations needed at startup statically. Page components, large SDKs and locale messages can sit behind lazy-loading boundaries. Declaration modules should not open connections or access the DOM at the top level.
 
-## Application resources
+## Resources owned by the application
 
 | Resource | Responsibility |
 | --- | --- |
 | `app.config` | Merged public browser configuration |
-| `app.services` / `app.container` | Application service resolution and registration |
+| `app.services` / `app.container` | Resolution and registration of application services |
 | `apiClientToken` | HTTP client |
 | `realtimeClientToken` | Realtime connection and topic subscriptions |
-| Route declarations | Paths, loaders, authentication and access constraints |
-| `reactProviders` | Context wrappers around the page tree |
+| Route declarations | Page paths, loaders, authentication and access constraints |
+| `reactProviders` | React contexts that wrap the page tree |
 
-These resources belong to one browser application instance. Other windows, servers and applications have independent containers.
+These resources belong to the application instance in the current browser. Other browser windows, the server and other applications do not share this container.
 
-## Extension points
+## Where to make changes
 
-Add pages through `client/routes.ts`, services through client ServiceProviders, and tree context through React Provider declarations. When the template already wires these aggregation files into the runtime, update the relevant file rather than rebuilding startup.
+Add pages through `client/routes.ts`, reusable services through client ServiceProviders, and context for the component tree through React Provider declarations. As long as the template has already wired the runtime, you usually only need to change the relevant aggregation file.
 
-`AppClientRoot` supplies a browser router. Tests needing their own router can wrap `AppClientProviders` or use the rendering tools in `@nocobase/app-testing/client`; avoid nested BrowserRouters.
+`AppClientRoot` comes with its own browser router. When a test needs to choose its own router, use `AppClientProviders` under that Router, or the application rendering tools in `@nocobase/app-testing/client`, so that you do not nest two BrowserRouters.
 
 ## State and disposal
 
-Changing a service value does not automatically rerender React. Use state, Context or a subscription. On disposal the host unmounts its React root and calls `app.shutdown()` to release Provider-owned resources.
+Changing a value in a service does not make React rerender. The UI reads the latest value through state, Context or a subscription. When the application is left, the host unmounts the React root and calls `app.shutdown()` to release the resources owned by Providers.
 
-Continue with [Client services](../services/integration.md#client-services), [React Providers](react-providers.md) and [Pages, routes and navigation](../../developing-apps/pages-routes-and-navigation.md).
+Continue with [Client services](../services/integration.md#client-services), [React Provider registration and mounting](react-providers.md) and [Pages, routes and navigation](../../developing-apps/pages-routes-and-navigation.md).
 
 ## Interfaces and implementation
 

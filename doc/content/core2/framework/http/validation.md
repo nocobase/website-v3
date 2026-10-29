@@ -1,10 +1,11 @@
 ---
 title: Request validation and responses
+description: Learn how to validate API input at runtime, define the structure of success and error responses, and handle streaming responses and interrupted requests.
 ---
 
-Validate external input before business logic and report outcomes through stable responses. TypeScript constrains development code, not runtime input.
+An endpoint validates external input before running business logic, and reports the outcome through a stable response structure. TypeScript types only constrain code at development time and cannot replace runtime validation.
 
-## Input validation
+## Validate input
 
 ```ts
 import { Hono } from 'hono';
@@ -22,13 +23,13 @@ export default defineApiRoutes(() => {
 });
 ```
 
-This example normalizes text without storing it. `apiValidator()` accepts Standard Schema-compatible validators; `context.req.valid()` returns validated input. Use the appropriate targets for route parameters, query strings and forms.
+The example only normalizes text and stores nothing. `apiValidator()` accepts Standard Schema-compatible validators, and `context.req.valid()` returns the validated value. For input in other places, use the corresponding path parameter, query or form validation.
 
-Define ranges, lengths, permitted fields and business-state constraints. Valid syntax does not establish identity, permissions or consistency; a caller-supplied ownerId is not the current user.
+Make ranges, lengths, allowed fields and business states explicit. After format validation passes, identity, permissions and business consistency still need checking; never treat an ownerId submitted by the user as the current user.
 
-## Success and errors
+## Success and failure
 
-Custom APIs can consistently return `{ data, meta }` with documented pagination semantics. `ApiClient.request()` preserves the entire body rather than unwrapping `data`.
+Custom endpoints can consistently return `{ data, meta }` and establish stable conventions for meanings such as pagination. `ApiClient.request()` keeps the whole response body and does not unwrap `data` automatically.
 
 ```ts
 import { ApiError } from '@nocobase/app-server/router';
@@ -41,13 +42,13 @@ throw new ApiError({
 });
 ```
 
-The framework converts `ApiError` into a standard response with `error`. `status` determines the HTTP category, while `domain` and `reason` provide stable machine identifiers. Do not branch on developer-facing `message`. Supply translated user text and report field problems through `fieldViolations` where needed.
+The framework turns an `ApiError` into a standard failure response containing `error`. `status` maps to the HTTP status category, while `domain` and `reason` are stable machine identifiers; the developer-facing `message` must not be used for branching on the client. Use translated text for messages shown to users, and report field-level problems through `fieldViolations`.
 
-## Streams and interruption
+## Streaming responses and interruption
 
-Once streaming starts, the response cannot become a normal JSON error. Define stream completion/error semantics and release resources on cancellation. A timeout response also does not undo committed database work or external requests.
+Once a stream has started sending, it cannot be turned into an ordinary JSON error response. A streaming protocol needs its own conventions for completion and errors, and must release resources after cancellation. A timeout response also does not automatically undo database commits or external requests that have already happened.
 
-Test valid input, empty values, length boundaries, wrong types, unauthorized access and missing records. See [Request validation and error handling](../../developing-apps/request-validation-and-errors.md) for a complete business example.
+Tests should cover valid input, empty values, boundary lengths, wrong types, unauthorized access and missing records. Tests of only the success path cannot prove that the endpoint's boundaries are complete. For a complete business example, see [Request validation and error handling](../../developing-apps/request-validation-and-errors.md).
 
 ## Interfaces and implementation
 

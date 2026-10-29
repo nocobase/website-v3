@@ -1,8 +1,9 @@
 ---
 title: Service containers
+description: Learn how a service container registers and resolves services, how dependencies are supplied, and how singleton scope and failures behave.
 ---
 
-A service container separates consumers from construction. Consumers depend on interfaces and tokens; application composition selects implementations. Both client and server use this mechanism with independent instances.
+A service container separates the consumers of a service from how it is created: consumers depend on interfaces and Tokens, and the application decides which implementation to use when it is assembled. Both the client and the server use this mechanism, each with its own instances.
 
 ## Registration and resolution
 
@@ -18,29 +19,29 @@ const titles = container.resolve(titlesToken);
 console.log(titles.normalize('  Order  ')); // Order
 ```
 
-This standalone example creates its own container. Application code should use the existing `app.container` instead of creating global containers per page, request or plugin.
+This is a standalone container example. Application code should use the existing `app.container` instead of creating a global container for every page, request or plugin.
 
 | Method | Behavior |
 | --- | --- |
-| `instance(token, value)` | Bind an existing value |
-| `singleton(token, factory)` | Create synchronously on first resolution and reuse the instance |
-| `resolve(token)` | Resolve, throwing for missing or circular dependencies |
-| `has(token)` | Check binding without creating it |
-| `resolveIfCreated(token)` | Return an existing instance or `undefined` |
+| `instance(token, value)` | Register a value that has already been created |
+| `singleton(token, factory)` | Create synchronously on first resolution and return the same instance afterwards |
+| `resolve(token)` | Resolve a service; throws when it is missing or a dependency is circular |
+| `has(token)` | Check whether a binding exists without creating it |
+| `resolveIfCreated(token)` | Return the value only if it was already created; otherwise `undefined` |
 
-## Supplying dependencies
+## How dependencies are supplied
 
-A singleton factory receives a resolver. Resolve dependencies there and pass them to business constructors, allowing tests to supply substitutes without an application object.
+A `singleton` factory receives a resolver, which it can use to resolve other registered services and pass them to the business implementation through its constructor. Business classes can then receive substitutes directly in tests without knowing about the application object.
 
-Factories are synchronous. Establish connections and other asynchronous resources through ServiceProvider lifecycle hooks rather than binding a Promise as a service.
+Factories are synchronous. Put asynchronous preparation, such as database connections or SDK sign-in, in ServiceProvider lifecycle hooks, so that a Promise is not mistaken for a service instance.
 
 ## Scope and failure
 
-Singleton means one container, not one deployment or all browser windows. There is no automatic request scope; pass identities, transactions and cancellation signals explicitly.
+A singleton here is unique within one container, not across processes or browser windows. The container does not create request scopes automatically; pass user identity, transactions and cancellation signals as method arguments.
 
-Duplicate bindings and circular dependencies fail. Failed factories retain their failure state rather than retrying automatically. Recoverable connections need an explicit recovery strategy inside the service.
+Binding the same Token twice throws, and circular dependencies are detected. When a factory fails, the binding keeps that failed state; do not treat the first resolution as an automatic retry loop. When a connection needs to be recoverable, the service implements an explicit recovery strategy.
 
-See [ServiceProvider](../../extension-development/service-provider.md) for registration and [Service contracts and tokens](tokens.md) for cross-package identity.
+For where to register services and in which startup order, see [ServiceProviders and service lifecycle](../../extension-development/service-provider.md); for service identity shared across packages, see [Service contracts and tokens](tokens.md).
 
 ## Interfaces and implementation
 

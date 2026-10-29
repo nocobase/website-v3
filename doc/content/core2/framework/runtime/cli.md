@@ -1,14 +1,15 @@
 ---
 title: Command-line runtime
+description: Learn how the command-line runtime locates the application, organizes framework, application and plugin commands, and starts only the services a command needs.
 ---
 
-`@nocobase/app-cli` combines framework commands, application business commands and plugin commands into one tree. Application metadata determines whether it loads source or deployment entries.
+`@nocobase/app-cli` organizes framework commands, the application's business commands and plugin commands into one command tree. It uses the application manifest to tell a source workspace from deployment output, and loads the matching entry.
 
 ## Locating the application
 
-The source entry searches upward from the working directory for application `package.json`. `nocobase.templateKind` identifies source; `nocobase.buildTarget` identifies deployment output. `NOCOBASE_APP_ROOT` selects an application without changing the working directory.
+When run from source, the CLI searches upward from the working directory for the application's `package.json`. `nocobase.templateKind` marks a source application, and `nocobase.buildTarget` in build output marks deployment output. You can also select the target application with `NOCOBASE_APP_ROOT`; this does not change the current working directory.
 
-A deployment's `dist/cli/index.js` supplies its own location and needs neither a global CLI nor pnpm. Use the entry from the actual release to avoid resolving another project's command version.
+The deployment's `dist/cli/index.js` passes its own location, so it needs neither a globally installed CLI nor pnpm. Use the entry from the actual build output, so that commands of a different version from another project do not take part in resolution.
 
 ```bash
 pnpm nocobase commands --json
@@ -17,25 +18,25 @@ node dist/cli/index.js commands --json
 
 ## Business command namespaces
 
-| Source | Declaration | Example |
+| Source | Where it is declared | Example |
 | --- | --- | --- |
 | Application | `cli/commands/orders/sync.ts` | `nocobase app orders sync` |
-| Plugin | CLI contributions in `cli/plugins.ts` | `nocobase orders info` |
-| Development tooling | Plugin `devCommands` and hooks | Retained only in source environments |
+| Plugin | CLI contributions registered in `cli/plugins.ts` | `nocobase orders info` |
+| Development tooling | A plugin's `devCommands` and development hooks | Kept only in source environments |
 
-A plugin topic normally strips the scope and `app-plugin-` prefix. Packages producing the same topic conflict; registration order is not an override mechanism.
+A plugin's command topic usually comes from its package name with the scope and the `app-plugin-` prefix removed. Two packages that produce the same topic conflict; registration order does not let one override the other.
 
-## Starting only needed services
+## Starting only the services you need
 
-Commands extending `AppCommand` can use `withApp()` to create, use and dispose an application. Configuration reads and migrations usually do not need all background consumers. Call `app.start()` only when business behavior requires the complete lifecycle.
+Commands that extend `AppCommand` can use `withApp()` to create, use and clean up the application. Reading configuration or running database migrations usually does not need every background consumer; call `app.start()` only when the business logic depends on the complete lifecycle.
 
-Importing a module should only declare commands. Top-level database connections would make help and discovery commands perform work. Development hooks are collected through the registered CLI; do not invoke internal build scripts around it.
+Importing a module should only declare commands. Do not connect to the database at the top level of a module, or even showing help or listing commands would have side effects. Development build hooks are collected through the registered CLI runtime; do not bypass the entry to call internal build scripts directly.
 
 ## Output and delivery
 
-Returned command data becomes the JSON envelope's `result`; progress belongs on stderr. Callers check exit codes, `ok`, `status` and warnings. Rebuild after adding commands to include them in deployment output.
+Data meant for programs is returned from the command and becomes the `result` of the unified JSON output; progress goes to stderr. Callers should also check the exit code, `ok`, `status` and warnings. After adding a command in source, rebuild so that it is included in the deployment output.
 
-For application-side authoring and registration, see [Write application commands](../../developing-apps/application-commands.md) and [Integrate plugin commands](../../developing-apps/plugin-commands.md). Plugin declarations are covered in [Extend the CLI](../../extension-development/extend-command-line.md), and built-in options in [CLI reference](../../reference/cli.md). For a standalone HTTP client, see [Provide an application CLI client](../../developing-apps/cli-client.md).
+For implementing and connecting commands in an application, see [Write application commands](../../developing-apps/application-commands.md) and [Integrate plugin commands](../../developing-apps/plugin-commands.md). For declaring plugin commands, see [Command-line extensions](../../extension-development/extend-command-line.md); for all built-in options, see the [Command-line reference](../../reference/cli.md). For a standalone entry that calls business APIs over HTTP, see [Provide an application CLI client](../../developing-apps/cli-client.md).
 
 ## Interfaces and implementation
 

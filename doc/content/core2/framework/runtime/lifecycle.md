@@ -1,8 +1,9 @@
 ---
 title: Application startup and lifecycle
+description: Learn the stages of the Provider lifecycle and their order, who owns which resources, and how to handle startup failures and shutdown.
 ---
 
-Lifecycle stages separate service declarations, asynchronous initialization, consumer startup and cleanup. Apps and plugins share this order, making dependency readiness explicit.
+The lifecycle separates service declarations, asynchronous initialization, consumer startup and cleanup into clear stages. Applications and plugins follow the same order, so before using a dependency you know which stage it has completed.
 
 ## Stage order
 
@@ -12,29 +13,29 @@ Client: register → boot → render configuration → validation → start → 
 Shutdown: reverse Provider order
 ```
 
-Each stage visits all Providers before the next stage starts. The server also handles template sample-data behavior after readiness; this is separate from a business request's transaction.
+Each stage visits every Provider before the next stage begins; a Provider does not run all of its hooks at once. After the ready stage, the server also handles the template's sample-data logic, which is not part of any business request's transaction.
 
-| Hook | Appropriate work |
+| Hook | Suitable work |
 | --- | --- |
-| `register()` | Bind instances or lazy synchronous factories |
+| `register()` | Synchronously bind instances or lazy factories |
 | `boot()` | Resolve dependencies, prepare asynchronously, register handlers |
-| `start()` | Begin listeners, subscriptions or consumers |
-| `ready()` | Finish internal preparation after all Providers start |
-| `shutdown()` | Stop and await owned resources |
+| `start()` | Begin listening, subscribing or consuming background work |
+| `ready()` | Finish internal preparation once every Provider has started |
+| `shutdown()` | Stop and await the resources it owns |
 
-Server route factories run after `boot()` and before `start()`. They can resolve services but cannot assume consumers are running. The browser host renders React only after successful application startup.
+Server route factories run after `boot()` and before `start()`. They can resolve services, but cannot assume consumers are already working. On the client, the host renders the React tree only after the application has started successfully.
 
-## Dependencies and ownership
+## Dependencies and resource ownership
 
-Register factories first and resolve dependencies at the appropriate stage. Express required startup ordering in the aggregation entry rather than relying on incidental filenames.
+When a service needs another Provider's service, only declare a factory during registration and resolve the dependency at the appropriate stage. When one Provider depends on another resource being started first, arrange that order explicitly in the aggregation entry instead of relying on the incidental order of file names.
 
-Use `resolveIfCreated()` during cleanup so shutdown does not create a service for the first time. Owners close shared resources such as databases; consumers release only their own subscriptions, handlers and handles.
+During shutdown, use `resolveIfCreated()` to check whether an instance was created, so that you do not create a service for the first time just to close it. Shared resources such as the database are closed by their owners; consumers release only their own subscriptions, job handlers or connection handles.
 
-## Failure and verification
+## Startup failure and verification
 
-Cleanup must tolerate partial initialization and repeated calls. Report cleanup failures instead of swallowing them, so the host can determine whether shutdown completed. Verify normal startup, missing dependencies, initialization failure and shutdown while work is active.
+Cleanup must handle partial initialization and be safe to run more than once. Do not hide shutdown failures with an empty `catch`; record the cause so the host can decide whether the process can exit cleanly. Business code should verify these paths: normal startup, a missing dependency, an initialization failure, and shutdown while work is in progress.
 
-`ready()` describes internal readiness. Listener, proxy and database availability still need their respective health checks. See the complete [ServiceProvider example](../../extension-development/service-provider.md).
+`ready()` only means the application's internal stages are complete. Whether the external port, the reverse proxy and the database are available still needs the corresponding health checks. For a complete Provider example, see [ServiceProviders and service lifecycle](../../extension-development/service-provider.md).
 
 ## Interfaces and implementation
 

@@ -1,36 +1,37 @@
 ---
 title: Plugin loading and extensions
+description: Learn how plugins register separately with the client, server and CLI runtimes, how their declarations reach the application, and where dependency and extension boundaries lie.
 ---
 
-Plugins declare contributions through public entries and are explicitly assembled by the target application. Dependency installation, runtime registration and business integration are separate steps.
+Plugins declare their contributions through public entries, and the target application assembles them explicitly. Installing the dependency, registering it with each runtime and connecting it to the business are three steps to confirm separately.
 
-## Independent runtime registration
+## Each runtime registers separately
 
-| Runtime | Plugin entry | App entry |
+| Runtime | Plugin entry | Application entry |
 | --- | --- | --- |
 | Client | `package/client` | `client/plugins.ts` |
 | Server | `package/server` | `server/plugins.ts` |
 | CLI | `package/cli` | `cli/plugins.ts` |
 
-Entries are optional. A Skills-only package may have none. Client registration does not enable a server entry, and server registration does not install page components.
+A plugin provides only the entries it needs; a package that only distributes Skills may have no runtime entry at all. Registering on the client does not enable the server part, and registering on the server does not install components on pages.
 
-## Resolving declarations
+## How declarations reach the application
 
-`defineClientPlugin()`, `defineServerPlugin()` and `defineCliPlugin()` describe contributions. The application imports factories and adds their results to each runtime's declarations. Runtime resolution then registers services, constructs routes, loads resources or mounts React Providers at the appropriate stage.
+`defineClientPlugin()`, `defineServerPlugin()` and `defineCliPlugin()` describe a plugin's contributions. The target application imports the plugin factories and adds the results to each runtime's aggregated declarations. The runtime resolves these contributions and, at the appropriate stage, registers services, constructs routes, loads resources or mounts React Providers.
 
-Imports should not query business data, start tasks or open connections. Plugin options describe stable assembly settings. Deployment credentials belong in server configuration, never client plugin options.
+Importing a declaration should not read business data, start tasks or open connections. Declaration options carry stable assembly parameters; deployment credentials belong in server configuration, never in client plugin options.
 
 ## Dependencies and extension boundaries
 
-Export service interfaces and tokens for other plugins to consume through public entries. Missing dependencies should fail clearly during composition or startup rather than require relative imports into another package's private files.
+A plugin exposes service interfaces and Tokens to other plugins, which consume them from public exports. A missing dependency should produce a clear error during assembly or startup, rather than being worked around with deep relative imports of another package's private files.
 
-Client route component overrides replace page loaders while retaining plugin-owned paths and identity/access metadata. Independently distributed Registry assets provide editable UI source; they do not register runtime plugins.
+You can replace a page by overriding a client route component: replace the page loader while keeping the path, identity and permission metadata the plugin defined. UI assets meant for free composition at the source level are distributed through a separate Registry, which does not register runtime plugins.
 
 ## Verifying integration
 
-Check actual runtime registration, database resource execution, route access and the built application's behavior. `plugin inspect` reads static declarations and does not establish business functionality. Registration snapshots identify declared plugins, not every capability actually used.
+Check what is actually registered with each runtime, whether the database resources ran, whether routes are reachable, and how the built application behaves. `plugin inspect` reads the static integration surface and cannot prove that the business works; a registration snapshot likewise only shows which plugins are declared, not that all of their capabilities are used.
 
-See [Manage plugins](../../developing-apps/manage-plugins.md) and [Publish UI source assets](../../extension-development/frontend-components.md#optionally-distribute-ui-source-assets).
+For the workflow, see [Manage plugins](../../developing-apps/manage-plugins.md); for source assets, see [Optionally distribute UI source assets](../../extension-development/frontend-components.md#optionally-distribute-ui-source-assets).
 
 ## Interfaces and implementation
 

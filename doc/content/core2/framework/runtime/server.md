@@ -1,8 +1,9 @@
 ---
 title: Server runtime
+description: Learn how the server runtime manages configuration, resource paths, service lifecycle, and HTTP and WebSocket integration.
 ---
 
-The server runtime owns configuration, resource paths, service lifecycle and HTTP/WebSocket integration. Separating the business application from the listening host allows the same application to run in standalone servers, commands and tests.
+The server runtime is responsible for configuration, resource paths, service lifecycle, and HTTP and WebSocket integration. It separates the business application from the host that listens on a port, so the same application can run as a standalone server, in commands or in tests.
 
 ## Runtime and application
 
@@ -15,33 +16,33 @@ server/runtime.ts + server/config/
   → HTTP / WebSocket host
 ```
 
-`server/runtime.ts` declares configuration loading, plugins, ServiceProviders, routes and locales. `createApp(runtime)` in `server/app.ts` assembles the application and framework services. `Application` owns `config`, `paths`, `container` and request handling.
+`server/runtime.ts` declares configuration loading, plugins, ServiceProviders, routes and locales. `createApp(runtime)` in `server/app.ts` assembles the application and the framework services. `Application` owns `config`, `paths`, `container` and the request-handling entry.
 
-`app.start()` completes internal startup. The host opens the network listener, so a Provider's `ready()` does not mean the port is reachable. Tests can send requests through the application's `fetch` boundary without a listener.
+`app.start()` completes the application's internal startup, while the host opens the network listener, so a Provider's `ready()` does not mean the port is reachable. Tests can send requests through the application's `fetch` boundary without listening on a port.
 
 ## Registering business capabilities
 
-| Contribution | Entry |
+| Contribution | Where to connect it |
 | --- | --- |
 | Configuration sections | `server/config/` and its aggregation entry |
-| Business services | `server/providers/` or plugin `serviceProviders` |
-| HTTP endpoints | Application route arrays or plugin `routes` |
-| Database resources | `database/<connection>/` or plugin declarations |
+| Business services | `server/providers/`, or a plugin's `serviceProviders` |
+| HTTP endpoints | The application's route arrays, or a plugin's `routes` |
+| Database resources | `database/<connection>/`, or a plugin's database declarations |
 | Plugins | `server/plugins.ts` |
 
-Resolve existing database, logging and job services from the host container. A plugin should not create another application container or duplicate host services, which would split connections, state and disposal ownership.
+Resolve framework services such as the database, logging and jobs from the existing container. A plugin should not create another application container or duplicate host services; that would split connections, state and shutdown order.
 
 ## Requests and shared state
 
-The container normally lives for the process; identity and input belong to each request. Never store a current user in a singleton field. Validate identity at the route boundary, pass necessary inputs to services, and pass transaction connections explicitly.
+The application container usually lives as long as the process, while the user's identity and input belong to a single request. Never store the "current user" in a singleton field. After the route verifies identity, it passes the necessary arguments to business services; when a transaction is needed, pass the transaction connection explicitly.
 
-Use `app.paths` instead of assuming a working directory. Uploaded files and SQLite databases need persistent locations outside replaceable build output.
+Resolve paths with `app.paths` instead of depending on the working directory the command was started from. Runtime data such as uploaded files and SQLite databases must live in persistent locations, not in build output that may be replaced.
 
 ## Failure and shutdown
 
-Create, check and release resources in asynchronous lifecycle hooks. Cleanup must tolerate partial initialization and close only owned resources. Host startup policy, health checks and process supervision should account for internal readiness as well.
+Create, check and release resources in asynchronous lifecycle hooks. Cleanup must handle partial initialization and close only the resources it owns. Strict startup policies, health checks and process supervision belong to the host integration and should be checked together with the application's internal readiness.
 
-Continue with [Lifecycle](lifecycle.md), [Server services](../services/integration.md#server-services) and [Deployment methods](../../deployment/choose-a-deployment-method.md).
+Continue with [Startup and lifecycle](lifecycle.md), [Server services](../services/integration.md#server-services) and [Choose a deployment method](../../deployment/choose-a-deployment-method.md).
 
 ## Interfaces and implementation
 

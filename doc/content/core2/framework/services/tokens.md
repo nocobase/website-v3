@@ -1,10 +1,11 @@
 ---
 title: Service contracts and tokens
+description: Learn how service contracts and Tokens define stable service entries, and how Token identity, contract design, evolution and test substitutes work.
 ---
 
-A service contract defines what consumers can do; a token locates its implementation in the container. Exporting both from a public module lets apps, plugins and tests share a contract without importing private classes.
+A service contract describes what consumers can do, and a Token locates its implementation in the container. Putting the interface and the Token in a public module lets applications, plugins and tests share one contract without referencing internal classes.
 
-## A stable entry
+## Define a stable entry
 
 ```ts
 import { createServiceToken } from '@nocobase/service-provider';
@@ -17,25 +18,25 @@ export const titleServiceToken =
   createServiceToken<TitleService>('@example/orders/title-service');
 ```
 
-Implementations can change while consumers depend on `TitleService`. Re-export the contract and token from the provider's public client or server entry, and declare that package as a consumer dependency.
+The implementation class can change while consumers keep depending on `TitleService`. To use it across plugins, re-export the interface and Token from the provider's public `client` or `server` entry, and declare that package in the consumer's dependencies.
 
-## Names are not identities
+## A name is not an identity
 
-Every `createServiceToken()` call creates a new object. Equal strings do not make equal tokens. Import the original exported token instead of recreating it.
+Each call to `createServiceToken()` creates a new object. Even with the same string, two Tokens are not the same identifier. Consumers must import the Token exported by the provider instead of creating their own.
 
-Duplicate installations, private deep imports and bundling can create multiple runtime copies. Align shared dependencies with peer ranges and inspect duplicates and package exports.
+Duplicate package installations, imports from private deep paths and incorrect bundling can all give the same source two module instances at runtime. Align shared runtime dependencies with the peer ranges declared by the public package, and use the package manager to check for duplicate versions and export boundaries.
 
-## Contract design
+## Designing a contract
 
-Return business data and specify asynchronous behavior, errors and resource ownership. Requiring an entire Application, Hono Context or component instance in every method couples the service to its host.
+A contract should return business data first and make asynchronous results, errors and resource ownership explicit. Avoid requiring the whole Application, a Hono Context or a component instance in every method, which would tightly couple the service to a specific host.
 
-Client and server can share data types, but tokens do not resolve over the network. Browser services implement remote operations through API clients. Shared interfaces must not pull private server dependencies into browser bundles.
+The client and the server can share data types, but service Tokens are not resolved across the network. When a browser service needs a server capability, it implements the contract through an API client. Private server dependencies must not end up in browser bundles just because an interface is shared.
 
-## Evolution and substitutes
+## Evolution and test substitutes
 
-Required new methods and changed return semantics affect consumers and need coordinated versions and tests. Containers reject duplicate bindings; choose test substitutes during composition instead of overwriting live registrations.
+Adding a required method or changing what a return value means affects every consumer, and needs to be updated together with versions and tests. The container rejects duplicate bindings; choose test substitutes when assembling the test, instead of quietly overwriting the original binding after the application has started.
 
-Continue with [Containers](container.md), [Client services](integration.md#client-services) and [Server services](integration.md#server-services).
+Continue with [Service containers](container.md), [Client services](integration.md#client-services) and [Server services](integration.md#server-services).
 
 ## Interfaces and implementation
 

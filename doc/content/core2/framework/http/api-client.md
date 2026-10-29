@@ -1,12 +1,13 @@
 ---
 title: API Client
+description: Learn how to obtain and call the configured API Client, the request and response conventions, remote Repositories, and how to handle request state and retries.
 ---
 
-API Client centralizes application HTTP addresses, credentials and request formatting. Components should use the configured runtime client instead of assembling server URLs individually.
+The API Client handles the application's HTTP address, credentials and request format in one place. Components in the application should use the client that the runtime has already configured, instead of assembling the server address again on every page.
 
 ## Obtaining and calling the client
 
-Use `useApiClient()` in React components or hooks. Inject it into ordinary services or resolve `apiClientToken`. This assumes a server `/orders` endpoint returning `{ data: [...] }`:
+Use `useApiClient()` in React components or hooks; ordinary services receive it as an injected argument or resolve it from `apiClientToken`. The example assumes the server provides an `/orders` endpoint that returns `{ data: [...] }`:
 
 ```ts
 import type { ApiClient } from '@nocobase/app-client';
@@ -23,33 +24,33 @@ export async function loadOrders(api: ApiClient, signal?: AbortSignal) {
 }
 ```
 
-`path` is relative to the configured API address. Defaults are GET and `credentials: include`; cross-origin cookies and CORS still follow browser policy.
+`path` is relative to the API address configured for the client. The default method is GET, and `credentials` defaults to `include`; cross-origin requests are still subject to the browser's cookie and CORS policies.
 
-## Request and response contracts
+## Request and response conventions
 
-| Need | Interface |
+| Need | Usage |
 | --- | --- |
-| Query parameters | `query`, using supported scalar/array values |
-| JSON body | `json` |
-| FormData and other bodies | `body`, mutually exclusive with `json` |
-| Cancellation | `signal` |
-| Complete parsed response | `request<T>()` |
-| Byte stream | `stream()` |
+| Query parameters | `query`, with scalar or supported array values |
+| JSON request body | `json` |
+| FormData and other bodies | `body`; cannot be combined with `json` |
+| Cancel a request | `signal` |
+| Get the complete response body | `request<T>()` |
+| Read a byte stream | `stream()` |
 | Repository protocol | `repository(name)` |
 
-Generics describe expected responses without validating runtime data. Handle `ApiClientError` and distinguish refusal, permission failures, cancellation and retryable errors.
+Generics only describe the expected response type and do not validate data at runtime. Handle errors returned by the server through `ApiClientError`; pages should distinguish rejected requests, missing permissions, cancellation and retryable failures, rather than showing "network error" for all of them.
 
 ## Remote Repositories
 
-Remote Repositories offer query builders but require explicitly exposed server resources and actions. They run separately from database Repositories, and authorization stays on the server. Never import database services, credentials or private connection modules into browser code.
+Remote Repositories provide builders for query input, but the server must explicitly expose the corresponding resources and actions. They run in a different place from Repositories that operate on the database directly, and authorization is enforced on the server. Never import database services, credentials or private connection modules into the client.
 
-The server declares endpoints with `defineRepositoryApiRoutes()`, and clients use `api.repository(name)`. This name identifies the exposure and may differ from the Collection name. Reads also use POST, and the remote Repository unwraps the response's `data`. See [Repository data APIs](repository-routes.md) for a complete example.
+The server declares the endpoints with `defineRepositoryApiRoutes()`, and the client calls them with `api.repository(name)`; `name` is the exposed name and may differ from the Collection name. Queries also use POST, and the remote Repository unwraps the `data` in the response automatically. For a complete example, see [Repository data APIs](repository-routes.md).
 
-## State and retries
+## Request state and retries
 
-API Client does not manage page request state. Prevent older results from replacing newer searches with cancellation, request identities or a request-state library. Retry mutations only with known idempotency semantics; timeout does not prove nonexecution.
+The API Client does not replace request state management on the page. To keep an earlier request from overwriting newer search results, use cancellation, request identifiers or a suitable data-fetching state library. Retry requests that modify data only once you know they are idempotent; a timeout does not prove that the server did not execute the request.
 
-Independent scripts can directly depend on `@nocobase/api-client` and call `createApiClient({ baseURL })`. Application types and entries are also re-exported by `@nocobase/app-client`. See the [API reference](../../reference/api.md).
+Standalone scripts can depend on `@nocobase/api-client` directly and create a client with `createApiClient({ baseURL })`. `@nocobase/app-client` also re-exports the types and entries used in applications. For the related contracts, see the [API reference](../../reference/api.md).
 
 ## Interfaces and implementation
 

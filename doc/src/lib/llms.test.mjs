@@ -3,9 +3,9 @@ import { stripFigures, parseFigureLine } from './figures.mjs';
 import { llmsGroups } from './llms.mjs';
 
 const pages = new Map(Object.entries({
-  home: { title: 'Home', description: 'd', mdUrl: '/index.md' },
-  a: { title: 'A', description: '', mdUrl: '/a.md' },
-  b: { title: 'B', description: 'bd', mdUrl: '/b.md' },
+  home: { title: 'Home', metaDescription: 'd', mdUrl: '/index.md' },
+  a: { title: 'A', metaDescription: '', mdUrl: '/a.md' },
+  b: { title: 'B', metaDescription: 'bd', mdUrl: '/b.md' },
   p: { title: 'P', placeholder: true, mdUrl: '/p.md' },
 }));
 const pageOf = key => pages.get(key);

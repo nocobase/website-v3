@@ -3,9 +3,9 @@ title: Plugin index
 description: NocoBase 3 plugins, their purposes and whether they are built in.
 ---
 
-This inventory covers application plugins in the reviewed source: 24 in the main repository and 2 in the commercial repository. Entries are alphabetical by package name, with links where source is public.
+This page lists the application plugins in the reviewed source: 24 in the main repository and 2 in the commercial repository. Entries are sorted alphabetically by package name, and package names link to the source where it is public.
 
-“Built-in plugin” indicates whether the default template includes the plugin when creating an application. Included plugins are marked “Yes”; plugins that require separate installation are marked “No”. Check the application’s plugin registration files to determine whether a plugin is enabled. See [Manage plugins](../developing-apps/manage-plugins.md) for registration, removal and updates.
+“Built-in plugin” indicates whether the default template includes the plugin when creating an application. Included plugins are marked “Yes”; plugins that require separate installation are marked “No”. Whether a plugin is enabled is determined by the application's plugin registration files. See [Manage plugins](../developing-apps/manage-plugins.md) for registration, removal and updates.
 
 ## Main repository plugins
 

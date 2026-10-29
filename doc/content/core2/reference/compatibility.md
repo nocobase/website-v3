@@ -3,7 +3,7 @@ title: Database support and version compatibility
 description: Look up database dialects, connection differences, runtime requirements and versions to check together during upgrades.
 ---
 
-This page distinguishes available dialect packages, integration environments configured in source, and combinations actually verified for an application. Test targets are not a complete minimum-version or support-lifetime policy.
+This page distinguishes three kinds of information: the available dialect packages, the integration test environments configured in source, and the combinations actually verified for an application. Test environment versions are neither a complete statement of minimum versions nor a support-lifetime commitment.
 
 ## Runtime and package versions
 
@@ -16,7 +16,7 @@ This page distinguishes available dialect packages, integration environments con
 | Database dialect | Check compatibility with `@nocobase/db`, Node and the target platform |
 | Plugins | Check Client, Server and CLI exports, dependency ranges and migrations |
 
-Packages have independent versions. The verified application uses `app-client` `4.0.0-beta.3`, `app-server` `3.0.0-beta.3` and `app-cli` `1.0.0-beta.29` together in NocoBase 3. Package major versions do not identify product generations.
+Each package is versioned independently. For example, the application verified here uses `app-client` `4.0.0-beta.3`, `app-server` `3.0.0-beta.3` and `app-cli` `1.0.0-beta.29` together in NocoBase 3. Package major versions do not identify product generations.
 
 ```bash
 node --version
@@ -51,9 +51,9 @@ Obtain commercial packages from the Pro registry under the applicable license. C
 
 ## Application connection configuration
 
-The default application database configuration loads installed official dialects as needed. Add the selected dialect to production dependencies before configuring the connection. Standalone `@nocobase/db` usage explicitly supplies driver factories or a driver registry.
+The default application database configuration loads installed official dialects as needed. Add the selected dialect to production dependencies before configuring the connection. When you use `@nocobase/db` on its own, supply driver factories or a driver registry explicitly through its API.
 
-For a new, unconfigured PostgreSQL application:
+For a new PostgreSQL application that has not been configured yet, proceed in this order:
 
 ```bash
 pnpm add @nocobase/db-postgres@beta

@@ -1,17 +1,17 @@
 ---
 title: Pages, routes and menus
-description: Add plugin pages, navigation and nested views in an App, with default routes and access rules.
+description: Add pages, menus and child pages in an App's local plugin, and handle navigation, default entries and access permissions.
 ---
 
-A plugin contributes pages through route declarations, which also supply the App's menus. This article builds a help center with one sidebar entry and two views: Guide and FAQ. Refreshing or sharing a link preserves the selected view.
+A plugin connects pages to the App through route declarations, and the menu comes from the same declarations. This guide builds a "help center": the sidebar has a single entry, the page switches between a Guide and an FAQ, and refreshing or sharing a link keeps the current content.
 
-[Write your first plugin](write-your-first-plugin.md) connects a single page to an API. Here the focus is organizing pages and navigation. This example needs only Client capabilities.
+[Write your first plugin](write-your-first-plugin.md) already showed how a single page connects to an API. This guide focuses on how pages and menus are organized; the example needs only the Client and no server API.
 
-This article focuses on plugin contributions: `routes.ts` references page components, `client/plugin.ts` aggregates routes, and the App loads them by registering the Client factory. See [Components and styles](frontend-components.md) for component implementation, and reuse [application UI interactions](../developing-apps/pages-and-interactions.md) and [data requests and state management](../developing-apps/data-requests-and-state.md) for forms and URL state.
+The way a plugin contributes pages and menus: `routes.ts` references page components, `routes` in `client/plugin.ts` gathers the routes, and the App loads these contributions once it registers the Client factory. For implementing components and styles, see [Components and styles](frontend-components.md); for form interactions and URL state, reuse the approaches in [UI components and interactions](../developing-apps/pages-and-interactions.md) and [Data requests and state management](../developing-apps/data-requests-and-state.md).
 
 ## Use an Agent
 
-In an existing App, describe the feature:
+In an existing App, describe the request like this:
 
 ```text
 Create a help-center plugin with a Help center entry in the signed-in menu.
@@ -20,11 +20,11 @@ Keep the selected view when switching pages, refreshing, or using browser histor
 Support English and Chinese. Use @nocobase/create-plugin, test it, and register it in the App.
 ```
 
-The following steps explain the manual implementation.
+The steps below show the manual implementation.
 
 ## 1. Prepare the plugin and page components
 
-Start with a working App. **Run every command from the App root; file paths below are relative to `packages/app-plugin-help-center/`.** You do not need a checkout of NocoBase source.
+You need an App that starts normally. **Run every command in the App root; file paths below are relative to `packages/app-plugin-help-center/`.** There is no need to download the NocoBase source.
 
 ```bash
 pnpm create @nocobase/plugin@beta help-center \
@@ -34,13 +34,13 @@ pnpm --filter @nocobase/app-plugin-help-center exec shadcn add \
   @nocobase/page-container @nocobase/page-header
 ```
 
-The generator adds the plugin to the App's `packages/` workspace and declares a `workspace:*` dependency. The component installer copies `PageContainer` and `PageHeader` into the plugin's `client/components/`. If the plugin already exists, edit it instead of generating it again.
+The generator adds the plugin to the App's `packages/` workspace with a `workspace:*` dependency, and the component installer puts the source of `PageContainer` and `PageHeader` into the plugin's `client/components/`. If a plugin with the same name already exists, edit it directly instead of creating it again.
 
-In the plugin's `package.json`, move the runtime imports `react` and `react-router` from `devDependencies` to `peerDependencies`, preserving the generated versions. Move the component installer's new `cn` dependency to `peerDependencies` too, then run `pnpm install` from the App root.
+Check the plugin's `package.json`: move `react` and `react-router`, used at runtime, from `devDependencies` to `peerDependencies`, keeping the generated versions; move `cn`, added by the component installer, to `peerDependencies` as well, then run `pnpm install` in the App root.
 
-Keep the generated `client/plugin.ts` and `client/index.ts`. The former already connects routes and locales; the latter exposes the registration entry. See [Create a plugin](create-plugin.md) for generator options.
+Keep the scaffold's `client/plugin.ts` and `client/index.ts`. The former already connects `routes` and `locales`, and the latter provides the App's registration entry. For creation options, see [Create a plugin](create-plugin.md).
 
-## 2. Declare pages and navigation
+## 2. Declare pages and menus
 
 Replace `client/routes.ts`:
 
@@ -78,24 +78,24 @@ const routes: readonly AppClientRouteContribution[] = [
 export default routes;
 ```
 
-Each field serves a different purpose:
+Each field solves a different problem:
 
 | Field | Purpose |
 | --- | --- |
-| `name` | A stable, unique route name within the plugin, distinct from its display title |
-| `path` | The page URL; children use relative paths such as `guide` |
-| `componentLoader` | Loads a module whose default export is a React component on demand |
-| `navigation` | Adds a sidebar entry; `title` is a plugin translation key and lower `order` values come first |
-| `breadcrumb` | Adds this level to the App's breadcrumb trail, independently of `navigation` |
-| `children` | Child pages rendered at the parent's `<Outlet />` |
+| `name` | A stable, unique route name within the plugin, not a display title |
+| `path` | The page address; child pages use relative paths such as `guide` |
+| `componentLoader` | Loads the page on demand; the target module must default-export a React component |
+| `navigation` | Shows an entry in the App's sidebar; `title` is a plugin translation key, and lower `order` comes first |
+| `breadcrumb` | Shows this level in the App's breadcrumb, independently of `navigation` |
+| `children` | Child pages, rendered by the parent page's `<Outlet />` |
 
-The declared `/help` path excludes the App's deployment prefix. With the default `/main` prefix, its browser URL is `/main/help`. The children have no `navigation`, so they do not add sidebar entries. They are views within the help center and do not add breadcrumb levels either.
+`/help` is the path the plugin declares, without the App's deployment prefix. With the default prefix `/main`, the address in the browser is `/main/help`. The child pages have no `navigation`, so they do not appear separately in the sidebar; they are views inside the help center and add no breadcrumb levels either.
 
-`auth: 'required'` requires sign-in. `authz: 'skip'` means that these help pages need no additional page permission; children inherit that policy. For business pages, declare the resource and action, such as `authz: { resource: { type: 'page', id: 'orders' }, action: 'access' }`, and configure authorization in the App. Parent checks must still pass: a child cannot bypass them. Client route checks do not replace server API authorization.
+`auth: 'required'` requires sign-in, and `authz: 'skip'` means the help content needs no additional page permission; child pages inherit this policy. Pages involving business permissions should declare the resource and action, such as `authz: { resource: { type: 'page', id: 'orders' }, action: 'access' }`, and have authorization configured in the App. The parent page's check must still pass, and a child page cannot bypass it. Client-side route permission checks cannot replace authorization of server APIs either.
 
-## 3. Implement the parent and child pages
+## 3. Write the parent and child pages
 
-Create `client/pages/help/index.tsx`:
+Add `client/pages/help/index.tsx`:
 
 ```tsx
 import { useTranslation } from '@nocobase/i18n/client';
@@ -150,13 +150,13 @@ export default function HelpPage(): ReactElement {
 }
 ```
 
-The parent provides the shared container, heading and navigation. `Outlet` determines where child content appears. `NavLink` derives its active state from the URL, so there is no separate `activeTab` state. These are ordinary navigation links with normal keyboard behavior.
+The parent page provides the shared container, heading and navigation, and `Outlet` decides where the child page appears. `NavLink` marks the selected item from the current URL, so there is no need to maintain an `activeTab` state. These are ordinary page navigation links and work with the keyboard directly.
 
-Only the exact parent URL `/help` redirects to `guide`. `replace` prevents Back from revisiting the default entry, while `search` preserves query parameters. Direct navigation to `/help/faq` does not redirect. The route declaration API has no `index` field; do not invent a child route for the default entry.
+Only visiting the parent address `/help` jumps to the default child page `guide`. `replace` prevents going back through the default entry again, and `search` keeps the query parameters. Opening `/help/faq` directly is not redirected. Route declarations have no `index` field, so there is no need to invent a child route for the default entry.
 
-Both children in this example have the same access policy. If children require different permissions, wait for permission loading before selecting the first accessible default. Show a message when none are accessible instead of repeatedly redirecting.
+The two child pages in this example share the same access policy. If different child pages need different permissions, choose the first accessible page as the default once permissions have loaded, and show a message when none is accessible, to avoid redirecting back and forth.
 
-Create `client/pages/help/guide.tsx`:
+Add `client/pages/help/guide.tsx`:
 
 ```tsx
 import { useTranslation } from '@nocobase/i18n/client';
@@ -173,7 +173,7 @@ export default function GuidePage(): ReactElement {
 }
 ```
 
-Create `client/pages/help/faq.tsx`:
+Add `client/pages/help/faq.tsx`:
 
 ```tsx
 import { useTranslation } from '@nocobase/i18n/client';
@@ -190,9 +190,9 @@ export default function FaqPage(): ReactElement {
 }
 ```
 
-Child content is already inside the parent's container, so it adds neither another `PageContainer` nor a second page heading. The directory mirrors the route hierarchy.
+Child pages are already inside the parent's container, so do not add another `PageContainer` or a second page heading. The directories follow the route hierarchy, which also makes it easy to add more child pages.
 
-## 4. Add English and Chinese copy
+## 4. Add English and Chinese text
 
 Replace `client/locales/en-US.ts`:
 
@@ -229,7 +229,7 @@ const zhCN: HelpCenterResource = {
 export default zhCN;
 ```
 
-This example supports English and Chinese only. Replace `client/locales/index.ts`:
+This example provides only English and Chinese, so change `client/locales/index.ts` to:
 
 ```ts
 import type { LocaleLoaders } from '@nocobase/i18n';
@@ -241,13 +241,13 @@ const locales: LocaleLoaders = {
 export default locales;
 ```
 
-Remove the other untranslated language files in this directory. Add their translations and loaders when supporting those languages. They share the resource type, so leaving empty objects in place causes type errors.
+Then delete the other untranslated language files in the same directory, and add text and loaders when you add those languages later. These language files share one resource type, so leaving empty objects causes type checks to fail.
 
-Pages loaded through plugin routes inherit the plugin namespace for `useTranslation()`. Menu and breadcrumb titles use the same resources; the App's locale files need no changes.
+When a page is loaded through a plugin route, `useTranslation()` uses the plugin's language namespace automatically. The menu and breadcrumb read their titles from the same resources, so the App's language files need no change.
 
 ## 5. Test navigation
 
-The generated `tests/client/routes.test.ts` asserts that routes are empty. Delete it and create `tests/client/routes.test.tsx`:
+The scaffold's `tests/client/routes.test.ts` asserts that there are no routes, so it must be replaced once pages are added. Delete that file and create `tests/client/routes.test.tsx`:
 
 ```tsx
 import { renderWithApp } from '@nocobase/app-testing/client';
@@ -365,7 +365,7 @@ describe('help center navigation', () => {
 });
 ```
 
-These tests load components from the actual route declarations and check default navigation, query parameters, child selection, history and English copy. `renderWithApp` already provides routing and localization; do not wrap it in another `MemoryRouter`. These tests exercise page navigation. Check App menu generation and authentication guards after registration as well.
+The tests load components from the real route declarations and check the default entry, query parameters, switching child pages, browser history and the English display. `renderWithApp` already provides routing and the language environment, so do not wrap it in another `MemoryRouter`. What is verified here is the page's navigation behavior; the App's menu generation and sign-in guard still need checking after connecting the plugin.
 
 ```bash
 pnpm --filter @nocobase/app-plugin-help-center format
@@ -374,7 +374,7 @@ pnpm --filter @nocobase/app-plugin-help-center check
 
 ## 6. Register in the App
 
-From the App root, preview and apply registration, then start or restart the development server:
+In the App root, preview and run the registration, then start or restart the development server:
 
 ```bash
 pnpm nocobase plugin register @nocobase/app-plugin-help-center --no-install --dry-run
@@ -382,29 +382,29 @@ pnpm nocobase plugin register @nocobase/app-plugin-help-center --no-install
 pnpm dev
 ```
 
-The plugin is already a local workspace dependency, so `--no-install` skips installation. This example has only a Client entry; registration updates the App's `client/plugins.ts`.
+The plugin is already a local workspace dependency, so `--no-install` skips installing it again. This example has only a Client entry, so the registration command updates the App's `client/plugins.ts`.
 
-After signing in, check the following. Paths use the default `/main` deployment prefix; adjust them for your deployment.
+After signing in, check the following behavior. Paths in the table use the default deployment prefix `/main`; adjust them when deployed elsewhere.
 
 | Action | Expected result |
 | --- | --- |
-| Click Help center in the sidebar | Opens `/main/help/guide` and displays Guide |
-| Open `/main/help?from=menu` | Redirects to `/main/help/guide?from=menu` |
-| Click FAQ | Opens `/main/help/faq` and highlights the current link |
-| Open or refresh `/main/help/faq` directly | Keeps FAQ instead of resetting to Guide |
-| Use browser Back and Forward | Content matches the current URL |
-| Switch between English and Chinese | Menu, breadcrumb, headings and body copy change together |
-| Visit a help page while signed out | Starts the App's sign-in flow |
+| Click the **Help center** menu | Opens `/main/help/guide` and shows the guide |
+| Open `/main/help?from=menu` | Jumps to `/main/help/guide?from=menu` |
+| Click **FAQ** | The address becomes `/main/help/faq`, and the current navigation item is highlighted |
+| Open or refresh `/main/help/faq` directly | Stays on the FAQ instead of jumping back to the guide |
+| Browser Back and Forward | The content matches the current URL |
+| Switch between English and Chinese | The menu, breadcrumb, headings and body switch together |
+| Visit the help page while signed out | Goes into the App's sign-in flow |
 
-Finally, run `pnpm build` from the App root to verify that the plugin builds with the application.
+Finally, run `pnpm build` in the App root to confirm the plugin builds together with the App.
 
 ## Organize more pages
 
-**Content reached from another page**, such as a detail view or an internal child view, can omit `navigation`. Having a URL does not require a menu entry. A parameterized detail path can use `:id`, but cannot serve as a fixed menu target.
+**Content opened only from within a page**, such as a details page or an internal child page, should not set `navigation`; having a URL does not mean it must appear in the menu. A details path with parameters can be written as `:id`, and cannot serve as a fixed menu entry.
 
-**A parent page with its own content** can declare `componentLoader`, `navigation` and `children` together. Its component must render `Outlet`. Add `navigation` to children when they should also appear in the sidebar.
+**A parent page with its own content** can declare `componentLoader`, `navigation` and `children` together, but its component must contain an `Outlet`. When child pages should also appear in the sidebar, add `navigation` to them.
 
-**A menu group** declares `navigation` and `children` without a `componentLoader`. For example, move the complete `help` route into this group's `children`:
+**A menu group used only for grouping** declares just `navigation` and `children`, without `componentLoader`. For example, move the complete `help` route into the `children` of the group below:
 
 ```ts
 {
@@ -416,6 +416,6 @@ Finally, run `pnpm build` from the App root to verify that the plugin builds wit
 }
 ```
 
-Add `support` to both language resources, with `Support` and “支持” respectively. Without a `path`, the group leaves `/help` unchanged. If a group has a `path`, it prefixes its child routes.
+Also add `support` to the English and Chinese language resources, as `Support` and “支持” respectively. Without a `path`, the group does not change the `/help` address; with a `path`, it becomes the path prefix of its child routes.
 
-Add menus through route declarations. No App sidebar edits or ServiceProvider are required.
+All new menus are added through these route declarations, without changing the App's sidebar component or adding a ServiceProvider.

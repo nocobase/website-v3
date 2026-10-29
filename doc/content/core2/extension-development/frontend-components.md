@@ -1,19 +1,19 @@
 ---
 title: Components and styles
-description: Organize plugin components, integrate host styles and themes, expose components and optionally distribute UI source assets.
+description: Organize plugin components, integrate with the host's styles and themes, expose components, and optionally distribute source assets through a UI Registry.
 ---
 
-When developing applications and plugins, you can write and organize frontend components freely. The one constraint is to **use shadcn for UI primitives**. When composing modular interfaces, first consult the components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/).
+When developing applications and plugins, you can write and organize frontend components freely; the only constraint is that **primitives use shadcn**. When building modular interfaces, first consult the components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/).
 
-The NocoBase UI Library is NocoBase's UI source asset library. It uses shadcn UI Registry to distribute components and blocks for Agents to obtain, modify and compose. Its website provides component examples and installation instructions.
+The NocoBase UI Library is NocoBase's library of UI source assets. It distributes components and blocks through shadcn UI Registry for Agents to take, change and combine as needed; its website shows component examples and installation instructions.
 
-For additional components or blocks that you want to **publish as source assets for Agents to obtain, modify and compose**, distribute them through shadcn UI Registry. Publication depends on how you want to deliver the source. Reusing a component inside a plugin, or exposing it through a public package entry, does not require a Registry.
+When frontend components or blocks you build later need to be **published as source assets for Agents to take, change and combine as needed**, distribute them through shadcn UI Registry as well. Whether to publish depends on how the source assets must be delivered: reusing components inside a plugin, or exporting components through the plugin's public entries, requires no Registry.
 
-This article continues the announcements example from [Write your first plugin](write-your-first-plugin.md). Build a list component and connect it to the page, then optionally package it as an independent source asset and install it in another app or plugin by local path. Use existing static hosting when distribution across machines is needed.
+This guide continues with the announcements board from [Write your first plugin](write-your-first-plugin.md): first write a list component and connect it to the page, then, as needed, turn it into a standalone source asset and install it into other applications or plugins through a local path. Use an existing static site only when distribution across machines is needed.
 
 ## Use an Agent
 
-For an existing announcements plugin, describe the task like this:
+With the announcements plugin in place, describe the request like this:
 
 ```prompt
 Extract the announcements plugin's list into a standalone component.
@@ -23,11 +23,11 @@ and error handling in the page. Preserve routes, navigation and translations,
 and verify populated and empty lists and the plugin build.
 ```
 
-The manual steps follow. **Unless noted otherwise, run commands from the App root. Paths in the component development sections are relative to `packages/app-plugin-announcements/`; the source distribution section specifies paths in the independent Registry package.**
+The steps below show the manual implementation. **Unless noted otherwise, commands run in the App root. File paths in the component development part are relative to `packages/app-plugin-announcements/`; the source asset part states the paths of the separate Registry package.**
 
 ## Organize components
 
-Start with a working announcements plugin. Its page, API, translations and registration are covered in [Write your first plugin](write-your-first-plugin.md). Add `client/components/announcement-list.tsx`:
+You need a working announcements plugin; its page, API, language resources and registration are described in [Write your first plugin](write-your-first-plugin.md). This guide adds `client/components/announcement-list.tsx`:
 
 ```tree
 packages/app-plugin-announcements/
@@ -43,7 +43,7 @@ packages/app-plugin-announcements/
 └── package.json                     # Dependencies, aliases and public entries
 ```
 
-This is one possible organization. Add domain directories, extract Hooks or change component boundaries as needed, keeping imports and build configuration aligned.
+This is only an example organization. You can add directories, extract Hooks or change how finely components are split according to the business, as long as import paths and build configuration stay consistent.
 
 ## Use shadcn and the NocoBase UI Library
 
@@ -53,16 +53,16 @@ Install the shadcn Card used in this example:
 pnpm --filter @nocobase/app-plugin-announcements exec shadcn add card
 ```
 
-The creation tool generates `components.json`, a stylesheet entry and package-local aliases for plugins with Client code. The command runs in the selected plugin, so it writes to that plugin's `client/components/ui/`. Review differences when files already exist and preserve your changes.
+The generator has already created `components.json`, a style entry and in-package aliases for plugins with client code. The command runs in the selected plugin, so the component is written into the plugin's own `client/components/ui/`. If the component already exists, review the differences first and keep your business changes.
 
-For page containers, headers and other business components, first consult the [NocoBase UI Library](https://ui.nocobase.com/). For example, the first-plugin tutorial installs:
+When you need a page container, a heading or other business components, check the [NocoBase UI Library](https://ui.nocobase.com/) first. For example, the first plugin tutorial already installed:
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements exec shadcn add \
   @nocobase/page-container @nocobase/page-header
 ```
 
-Do not repeat this installation if the files already exist. The `@nocobase` entry in `components.json` points to the NocoBase UI Library's source distribution endpoint. For an older plugin missing the entry, merge this into its existing `registries` configuration:
+If these files already exist, there is no need to install them again. `@nocobase` in `components.json` points to the NocoBase UI Library's source distribution address; when an older plugin lacks it, merge the following configuration into the existing `registries`:
 
 ```json
 {
@@ -72,7 +72,7 @@ Do not repeat this installation if the files already exist. The `@nocobase` entr
 }
 ```
 
-Review `package.json` after installation: declare client runtime dependencies as `peerDependencies`, following plugin conventions, preserve suitable version ranges, and run `pnpm install`. Keep dependencies the server still imports directly in their appropriate section. Package aliases and published mappings are covered in [Plugin structure](plugin-structure.md#ui-components-and-source-ownership).
+After installing, check `package.json`: client runtime dependencies should be declared as `peerDependencies` according to the plugin's conventions, with suitable version ranges kept, then run `pnpm install`. Do not move dependencies the server still uses directly along with them. For in-package aliases and publishing mappings, see [Plugin structure](plugin-structure.md#ui-components-and-source-ownership).
 
 ## Write and use components
 
@@ -130,19 +130,19 @@ export function AnnouncementList({
 }
 ```
 
-The component accepts data and text, making it easy to compose in a page or install independently as a source asset. Its data interface describes only what it needs, avoiding a dependency on the plugin's private `shared/` files. The page can still pass its existing `Announcement[]`.
+This component only receives data and text, which makes it easy for pages to compose and easy to install separately as a source asset later. It declares the data shape it needs itself instead of depending on the plugin's private `shared/` file; the page can still pass in the existing `Announcement[]`.
 
-Plugin builds emit type declarations, so the example explicitly types its Props and return value. After installing Card, also check `client/components/ui/card.tsx`: add `: React.ReactElement` to any missing return types on `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent` and `CardFooter`, preserving their parameters and implementations. Without these annotations, the plugin's `isolatedDeclarations` check reports `TS9007`. Other newly installed primitives must also satisfy the plugin's declaration-generation requirements.
+The plugin build must generate type declarations, so the example declares Props and the return type explicitly. After installing Card, also check `client/components/ui/card.tsx`: add `: React.ReactElement` to the `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardAction`, `CardContent` and `CardFooter` functions that lack a return type, keeping their parameters and implementation; otherwise the plugin's `isolatedDeclarations` check reports `TS9007`. Other newly installed primitives must meet the plugin's declaration generation requirements too.
 
 ### Connect the page
 
-Add this import to `client/pages/announcements.tsx`:
+Add the following to `client/pages/announcements.tsx`:
 
 ```tsx
 import { AnnouncementList } from '#components/announcement-list';
 ```
 
-Keep the page's `useApiClient()`, `useTranslation()` and request logic. Replace its `return` with:
+Keep the page's existing `useApiClient()`, `useTranslation()` and request logic, and replace the page's `return` with:
 
 ```tsx
 return (
@@ -159,45 +159,45 @@ return (
 );
 ```
 
-Here the page handles requests, state and translations while the list handles presentation. Other components can use client services or Hooks directly when appropriate. See [Client services](client-services.md) for plugin integration and [ServiceProvider](service-provider.md) for shared container mechanisms.
+In this example, the page handles requests, state and translation, and the list handles presentation. Other components can also use client services or Hooks directly as the business needs; for connecting plugin services, see [Client services](client-services.md), and for the shared container mechanism, see [ServiceProviders and service lifecycle](service-provider.md).
 
 ## Styles and theme integration
 
 ### Separate generation configuration from runtime styles
 
-The plugin's `components.json` points `tailwind.css` at `client/styles.css`. The scaffold uses this file for shadcn component generation. It imports Tailwind, animation and shadcn styles and explicitly leaves theme tokens to the host App. The generated `client/index.ts` only exports the plugin factory; it does not import this CSS file.
+`tailwind.css` in `components.json` points to the plugin's `client/styles.css`. In the scaffold, this file is for shadcn to generate components; it imports Tailwind, animations and shadcn styles and notes that theme variables come from the host application. The generated `client/index.ts` only exports the plugin factory and does not import this CSS file automatically.
 
-The default App imports its own `client/styles.css` from `client/index.tsx`. That stylesheet loads themes and generates utilities. Plugin components use semantic classes such as `bg-card` and `text-muted-foreground`, with the final CSS produced by the App's client build. The plugin's TypeScript build emits JavaScript and declarations, not a complete application stylesheet.
+The default application imports its own `client/styles.css` in `client/index.tsx`, which loads the theme and generates utility classes. Plugin components use semantic classes such as `bg-card` and `text-muted-foreground`, and the final styles are produced by the application's client build. The plugin's TypeScript build only handles JavaScript and type declarations, and does not generate a complete set of application CSS on its own.
 
-Adding a rule to the plugin's generation stylesheet therefore does not make it appear in the page. Do not import the entire generation stylesheet, including its Tailwind entry, into the App again just to load one rule.
+So adding rules to the plugin's generation-only `styles.css` does not mean the page has loaded them. Nor should you import the whole generated stylesheet, Tailwind entry included, into the application a second time just to make one rule take effect.
 
 ### Include plugin components in the host build scan
 
-The default template loads its scan configuration through `@config "../tailwind.config.mjs"` in the App stylesheet. At the Core baseline checked for this article, `7fb8311`, that configuration resolves real paths for `@nocobase/app-plugin-*` packages and scans directories including source `client/` and published `dist/client/`, accounting for pnpm symlinks and compiled plugins.
+The default template references its scan configuration through `@config "../tailwind.config.mjs"` in the application's styles. The Core baseline `7fb8311` checked for this guide resolves the real paths of `@nocobase/app-plugin-*` packages and scans both source `client/` and published `dist/client/` directories, accommodating pnpm symlinks and compiled plugins.
 
-For a custom scope such as `@my-company`, explicitly include the package in the receiving App's scan configuration, preserve existing entries and cover both local source and installed compiled directories. A renamed package is not automatically covered by the default `@nocobase` rule; wildcard paths across symlinks alone do not prove that scanning works.
+If a plugin uses a custom scope (such as `@my-company`), the target application's scan configuration must include the corresponding packages explicitly, keeping the existing scan entries and covering the compiled directories of both local source and installed packages. Do not assume that, after renaming the package, it is still covered by the default `@nocobase` scan rule, and do not judge that scanning works from one wildcard path that crosses a symlink.
 
-Write complete static utility strings. For variants, use mappings containing full class names rather than assembling values such as `bg-${color}` that the build cannot discover directly. After checking workspace development, also verify an App built with the published package installed.
+Write utility classes in components as complete static strings; for different states, use a mapping that contains complete class names, avoiding concatenated values such as `bg-${color}` that the builder cannot discover. Once it looks right in the source development environment, also check an application build that installs the published package.
 
 ### Use host theme tokens and scope custom rules
 
-Use semantic classes such as `bg-background`, `bg-card`, `text-foreground`, `text-muted-foreground` and `border-border`; colors, radii and fonts come from the host theme. The announcement list already uses `text-muted-foreground` and needs no separate palette. The App owns theme presets and color-scheme selection; see [Themes and styles](../developing-apps/themes-and-styles.md).
+Keep using semantic classes such as `bg-background`, `bg-card`, `text-foreground`, `text-muted-foreground` and `border-border`, so colors, corner radii and fonts come from the host theme. The announcement list already uses `text-muted-foreground` and needs no color scheme of its own. Theme presets and color modes are managed by the application; for the conventions, see [Themes and styles](../developing-apps/themes-and-styles.md).
 
-Scope custom CSS with plugin-specific classes or attributes instead of overriding global `body`, every `button` or `:root`. Portal content may render outside the page root, so apply the scope class to the actual overlay content when needed. Do not reinitialize shadcn or mount a second theme Provider to change the host appearance.
+When you need custom CSS, scope it to the component with a plugin-specific class name or attribute, and do not write overrides for global `body`, every `button` or `:root`. Portal content such as dialogs may not be under the page's root node, so set the scoping class on the actual content node. Do not change the host's appearance by reinitializing shadcn or adding a second theme Provider.
 
-Maintain custom runtime CSS as a separate resource and document whether a plugin client module or the App stylesheet imports it. Distribution must account for resource copying, public exports, package file inclusion and the consuming bundler's loader; `tsc` does not automatically copy CSS. Explain any required consumer import so workspace-only files do not disappear from the published package. The announcement-list example in this article needs no additional CSS resource.
+Custom runtime styles should be maintained as a separate resource, with a clear decision on whether the plugin's client module or the application's style entry imports it. For external distribution, handle copying the CSS resource, public exports, the package's file list and how build tools load it, all together; `tsc` does not copy CSS automatically. The integration notes must state what consumers need to import, so that the files are not found in the source environment yet missing from the published package. If you only use this guide's announcement list example, no such resource is needed.
 
 ## Expose components
 
-Internal components need no new package export. To let Apps import a component from the package, add a public entry and keep source exports and compiled `publishConfig.exports` mappings aligned; see [Plugin declarations and public exports](plugin-declarations.md#public-exports). Importing a component does not automatically register plugin routes, translations or services.
+When a component is used only inside the plugin, no package export is needed. When the App should import it through the package, add a public entry for the component and keep the source exports and the build mappings in `publishConfig.exports` in sync; see [Plugin declarations and public exports](plugin-declarations.md#public-exports). Importing a component alone does not register the plugin's routes, language resources or services automatically.
 
-Document Props, public types, required styles and runtime prerequisites. If a component depends on plugin services or translations, identify which entry the consumer must register. Exported components should explicitly bind their plugin translation namespace; see [Client localization](localization.md). See [React Context and Providers](react-context-and-providers.md) for plugin integration and [React Providers and the component tree](../framework/runtime/react-providers.md) for mounting mechanisms.
+In the component's usage notes, list its Props, public types, required styles and runtime environment. If the component depends on the plugin's services or language resources, state which entry consumers must register; translations of exposed components should be bound explicitly to the plugin's namespace, as described in [Client localization](localization.md). For an example of connecting context in a plugin, see [React Context and Providers](react-context-and-providers.md); for the mounting mechanism, see [React Provider registration and mounting](../framework/runtime/react-providers.md).
 
 ## Optionally distribute UI source assets
 
-To let Agents bring the list into a target project, reshape its layout, add actions or combine it with other blocks, distribute it through shadcn UI Registry. A plugin can provide both a package with maintained public runtime capabilities and Registry assets with editable source.
+If you want Agents to take this list into a target project to adjust the layout, add actions or combine it with other blocks, distribute it through shadcn UI Registry. A plugin package and Registry assets can be offered side by side: the former maintains public runtime capabilities, and the latter delivers editable source.
 
-**A Registry asset is an independent source module.** This example adds `announcements-ui/` under the App's `packages/`, alongside `app-plugin-announcements/`, with its own manifests and build configuration. Add its output directly by local path; deploy it to a static site only when URL distribution is needed. Apps and plugins install the assets and integrate the source in their own projects. One Registry package can provide assets for several plugins or business scenarios.
+**A Registry asset is a standalone source module.** This example adds `announcements-ui/` under the App's `packages/`, next to `app-plugin-announcements/`, with its own manifest and build configuration. The build output can be added directly through a local path; when distribution by URL is needed, deploy it to a static site. Applications and plugins get the source by installing the asset and connect it in their own projects. One Registry package can provide assets used by several plugins or business scenarios.
 
 ### Prepare source assets with an Agent
 
@@ -213,13 +213,13 @@ existing static site only when URL distribution is needed.
 
 ### Organize asset source
 
-Create the Registry package's source directory from the App root:
+In the App root, create the Registry package's source directory:
 
 ```bash
 mkdir -p packages/announcements-ui/registry/components
 ```
 
-Save the [announcement list implementation above](#implement-the-announcement-list) as `packages/announcements-ui/registry/components/announcement-list.tsx`. It accepts data and text, so it can be distributed independently. The relevant directories are:
+Save the [announcement list implementation](#implement-the-announcement-list) above as `packages/announcements-ui/registry/components/announcement-list.tsx`. It only receives data and text, so it is already ready for standalone distribution. The related directories are:
 
 ```tree
 my-app/
@@ -239,7 +239,7 @@ my-app/
 └── pnpm-workspace.yaml             # Workspace package configuration
 ```
 
-Confirm the App's `pnpm-workspace.yaml` includes `packages/*`, preserving its existing configuration. The packages share a workspace, but Registry assets must still avoid relative imports into the neighboring plugin's internals.
+Confirm that `pnpm-workspace.yaml` in the App root includes `packages/*`, keeping the existing configuration. The two packages share one workspace, but the Registry asset still must not import the internal files of the plugin package next to it by relative path.
 
 Add `packages/announcements-ui/package.json`:
 
@@ -258,9 +258,9 @@ Add `packages/announcements-ui/package.json`:
 }
 ```
 
-This example pins the verified build tool version. The `check` script validates the manifest and source files through a build and lets this package participate in App workspace checks; component types and rendering still need validation in a consumer. This `package.json` manages Registry package tooling. Declare npm packages and other Registry items needed by consumers separately in the asset manifest below. The Registry package needs no registration in the App's Client, Server or CLI plugin lists.
+This example pins the verified version of the build tool. `check` verifies the manifest and source files by building, and also makes this package take part in the App's workspace checks; the component's types and rendering still need verifying on the consumer side. This `package.json` manages the Registry package's own tools; the npm packages and other Registry items needed when installing the asset are declared separately in the asset manifest below. The Registry package does not need to be registered in the App's Client, Server or CLI plugin lists.
 
-Maintain source intended for publication in this independent package. The original plugin's `client/` component and installed copies in other projects can be customized independently. To adopt asset updates, compare and merge changes, or review the differences before reinstalling.
+The source to be published is maintained in this standalone package. The plugin's own component in `client/`, and copies installed into other projects, can each be changed independently; to adopt an update of the asset, compare and merge the changes, or reinstall after reviewing the differences.
 
 ### Declare the asset and its dependencies
 
@@ -291,69 +291,69 @@ Add `packages/announcements-ui/registry.json`:
 }
 ```
 
-The example `homepage` is a placeholder for a project homepage; use an existing project or repository URL. The current build tool requires this root-manifest metadata, but it does not determine the installation address or require a Registry service at that URL. Local Add reads the built JSON file directly. See the [shadcn Registry manifest](https://ui.shadcn.com/docs/registry/registry-json#homepage) for the field. The two file paths have different roles:
+`homepage` in this example is a placeholder project homepage and can be replaced with an existing project homepage or repository address. The current build tool requires this metadata in the root manifest, but it does not decide where the asset is installed from, and you do not need to run a Registry service at that address; local installation reads the built JSON directly. For the field, see the [shadcn Registry manifest](https://ui.shadcn.com/docs/registry/registry-json#homepage). The two file paths in the manifest mean:
 
-- `path` identifies the publisher's asset source, relative to the Registry package root. This example reads `packages/announcements-ui/registry/components/announcement-list.tsx`.
-- `target` identifies where to write the file in the receiving App or plugin. This example installs it at `client/components/announcement-list.tsx` in that project.
+- `path`: the publisher's asset source file, relative to the Registry package root. This example reads `packages/announcements-ui/registry/components/announcement-list.tsx`.
+- `target`: where the file goes once installed into the target App or plugin. This example writes it to `client/components/announcement-list.tsx` in the target project.
 
-The publisher's `registry/` layout can therefore differ from the consumer's `client/` layout. The `target` describes the installation destination; it does not make the asset source part of a plugin's `client/` module.
+So the publisher's `registry/` structure and the consumer's `client/` structure can differ. `target` describes the installation location; it does not mean the asset source belongs to some plugin's `client/` module.
 
-`registryDependencies` declares other Registry items to install, such as `card`. Put directly imported npm packages in `dependencies` with compatible version ranges. This component directly imports only React, which is already present in the target NocoBase App. A multi-file block can use `registry:block` and list every file and target. See [shadcn Registry Item](https://ui.shadcn.com/docs/registry/registry-item-json) for the fields.
+`registryDependencies` declares other Registry items to install, such as `card` here; npm packages the component imports directly go into `dependencies` with compatible versions. Apart from React, which the target NocoBase App already has, this example uses no other npm packages directly. Multi-file blocks can use `registry:block` and list every file with its target location. For the fields, see the [shadcn Registry Item](https://ui.shadcn.com/docs/registry/registry-item-json).
 
 ### Define module dependency boundaries
 
-An asset will be installed in another App or plugin, so every import must work in the receiving project:
+Once installed, the asset lives in another App or plugin, so every import in it must hold on the consumer side:
 
-- **Do not import plugin internals through relative paths**, or bypass this boundary with private aliases available only to the publisher. This applies to components, Hooks, services, types and translations.
-- Access plugin capabilities through declared public package entries, specifying compatible dependencies and registration prerequisites. Alternatively, let the consuming page supply Props, callbacks or adapters.
-- Declare shadcn primitives in `registryDependencies` and use aliases the receiving project can resolve, such as `#components/ui/card` in this example.
-- Files distributed together within one asset may use relative imports, provided every file is listed in the manifest and their relative positions remain valid after installation.
+- **Never access the plugin's internal files by relative path**, and never get around this boundary with private aliases that exist only on the publisher's side; this applies to components, Hooks, services, types and language resources alike.
+- To use plugin capabilities, import through the public package entries the plugin declares, and declare compatible dependencies and registration prerequisites in the asset; alternatively, the consumer's page can pass them in through Props, callbacks or adapters.
+- To use shadcn primitives, declare them through `registryDependencies` and use component aliases the recipient can resolve, such as `#components/ui/card` in this example.
+- Files distributed together within one asset may use relative imports between them, but all of them must be listed in the manifest, and their relative positions must still be valid after installation.
 
-This list receives data and text through Props and imports no announcements plugin internals. Installing the asset does not require the announcements backend; a page fetching actual announcements still needs the corresponding Server plugin.
+This example receives data and text through Props and imports no internal files of the announcements plugin. Installing this list asset does not need the announcements backend; a page that connects the real announcements API still needs the corresponding server plugin.
 
 ### Build the source asset
 
-From the **App root**, install workspace dependencies and build only the Registry package:
+In the **App root**, install the workspace dependencies and build the Registry package on its own:
 
 ```bash
 pnpm install
 pnpm --filter announcements-ui build
 ```
 
-The filter selects `announcements-ui` by its `package.json` name and runs the build script in that package, embedding component source in `packages/announcements-ui/public/r/announcement-list.json`. It builds and publishes independently, without running a plugin build. See [shadcn CLI](https://ui.shadcn.com/docs/cli#build) for build options.
+The filter selects the `announcements-ui` package by the name in its `package.json` and runs the build script in that package, writing the component source into `packages/announcements-ui/public/r/announcement-list.json`. It can be built and published independently, without building the plugin. For build options, see the [shadcn CLI](https://ui.shadcn.com/docs/cli#build).
 
-For local development, pass the generated JSON file directly to `shadcn add`, with no static server to start. Install the individual asset file containing `files[].content`, rather than the source directory or the `registry.json` build manifest.
+During local development, hand the built JSON file directly to `shadcn add`; no static server is needed. What gets installed is a single asset file containing `files[].content`, not the source directory and not the `registry.json` used for building.
 
 ### Install and modify it in the target project
 
-From the current **App root**, install the asset from the same workspace into the App:
+In the current **App root**, you can install the asset from the same workspace into the App directly:
 
 ```bash
 pnpm exec shadcn add ./packages/announcements-ui/public/r/announcement-list.json
 ```
 
-To install into **another App on the same machine**, run from the receiving App root with a path relative to that directory. For example, with sibling App directories and a publisher named `my-app`:
+To install into **another App on the same machine**, run in the target App's root with a path relative to that directory. For example, with the two App directories side by side and the publisher's directory named `my-app`:
 
 ```bash
 pnpm exec shadcn add ../my-app/packages/announcements-ui/public/r/announcement-list.json
 ```
 
-To place the source in a plugin of the target App, use its package filter and an **absolute path** to the asset. This avoids changing the meaning of a relative path when the filter changes the working directory. Replace the package name and path:
+To put the source into a plugin of the target App, use the plugin filter and give the **absolute path** of the asset file, so the relative path does not break when the filter changes the working directory. Replace with the actual package name and path:
 
 ```bash
 pnpm --filter @my-company/app-plugin-dashboard exec shadcn add \
   /absolute/path/to/my-app/packages/announcements-ui/public/r/announcement-list.json
 ```
 
-Choose the installation location according to source ownership. Local-path installation still processes `registryDependencies`; missing primitives and npm dependencies may require network access. Review differences and preserve project customizations when files already exist. Inspect installed files, dependencies and declaration types, then import `AnnouncementList` in the target page and pass data and empty-state text. See [shadcn CLI](https://ui.shadcn.com/docs/cli#add) for local-path support.
+Choose the installation location by who owns the source. Installation by path still processes `registryDependencies`; missing primitives and npm dependencies may need network access. When an existing component is found, review the differences first and keep the project's customizations. After installing, check the actual files, dependencies and type declarations, then import `AnnouncementList` in the target page, passing data and the empty-state text. For the command's support for local paths, see the [shadcn CLI](https://ui.shadcn.com/docs/cli#add).
 
-An Agent can modify the installed source directly, for example changing a single column to a responsive grid or adding business actions. The App maintains source installed into the App; the plugin maintains source installed into the plugin. Upgrading a plugin package does not update this copy. When adopting a newer Registry asset, compare changes and preserve the project's customizations.
+Agents can change the list source in the target project directly, for example turning the single column into a responsive grid or adding business actions. Source installed into the App is maintained by the App, and source installed into a plugin is maintained by that plugin. Upgrading the plugin package does not update this source automatically; when adopting a new version from the Registry, compare the differences and keep the project's customizations.
 
 ### Publish through an existing site when needed
 
-When other machines need to fetch the asset by URL, deploy the generated `packages/announcements-ui/public/r/` contents under `/r/` on an existing static site, or reuse an existing service's static-file hosting. A Registry does not need a dedicated service: confirm that the asset URL returns JSON containing `files[].content`. See [shadcn Registry getting started](https://ui.shadcn.com/docs/registry/getting-started).
+When other machines need to get the asset by URL, deploy the contents of the generated `packages/announcements-ui/public/r/` under the `/r/` path of an existing static site, or reuse an existing service's static hosting. There is no need to develop a separate service for the Registry; just confirm that the asset URL returns JSON containing `files[].content`. See [Getting started with shadcn Registry](https://ui.shadcn.com/docs/registry/getting-started).
 
-This step is optional. If an asset URL is already available, the receiving App can use it in place of the local file path, for example:
+This step is optional. If a reachable asset URL already exists, the target App can use that URL instead of the local file path, for example:
 
 ```bash
 pnpm exec shadcn add https://example.com/r/announcement-list.json
@@ -361,7 +361,7 @@ pnpm exec shadcn add https://example.com/r/announcement-list.json
 
 ### Write Agent usage instructions
 
-Describe asset integration in the plugin's maintained Skill; see [Plugin Skills](write-plugin-skills.md) for its location and synchronization. Explain how to build and locate the local asset, or provide its published URL, along with use cases, inputs, prerequisites, customization points and verification. Publishing a website is not a prerequisite. For example, add these local-installation instructions to the announcements Skill:
+Write how to connect the asset into the Skill the plugin maintains; for its location and synchronization, see [Plugin Skills](write-plugin-skills.md). The instructions should cover how to build the asset locally and obtain its path, or the published URL, plus the scenarios it fits, its inputs, connection prerequisites, where it may be changed, and how to verify it. No website needs to be published first; for example, add the following local installation notes to the announcements Skill:
 
 ```markdown
 ## Compose an announcement list
@@ -388,15 +388,15 @@ Verify populated and empty lists, loading and request failures, translations,
 and the receiving project's type checks and build.
 ```
 
-Skills describe locally available or published assets and APIs that exist. The Registry's `docs` field is suitable for brief installation notes. Put full business integration steps and composition examples in the Skill or its referenced documentation.
+The Skill should describe local or published assets that can actually be obtained, and APIs that are actually implemented. The Registry `docs` field suits short installation hints; the complete business integration process and combination examples belong in the Skill or the documents it references.
 
 ## Test and verify
 
-First verify the component in the original plugin: titles and content render correctly and an empty list uses the supplied text. The page must still handle loading, failures and language switching. Keep existing tests and adjust their locations for the extracted component; see [Testing and verification](testing-and-verification.md).
+First verify the component in the original plugin: announcement titles and content are correct, and the empty list uses the text passed in; the page still handles loading, failures and language switching. Reuse the existing tests and adjust where they live according to how the components are split; see [Testing and verification](testing-and-verification.md).
 
-Check light and dark modes, theme presets, narrow screens, keyboard focus and Portal content in the actual App. Verify the plugin does not change other pages. For custom scopes and installed packages, inspect host scanning and built CSS; component tests and type checks do not prove styles loaded.
+In the real application, check light and dark modes, different themes, narrow screens, keyboard focus and Portal content, and confirm the plugin did not change styles on other pages. When using a custom scope or an installed package, check the host's scan configuration and the built CSS; component tests and type checks cannot prove the styles are loaded.
 
-Run the plugin checks and App build from the App root:
+Run the plugin's checks and the application's build in the App root:
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements typecheck
@@ -405,6 +405,6 @@ pnpm --filter @nocobase/app-plugin-announcements build
 pnpm build
 ```
 
-If you distribute a source asset, also install, render and build it in a target project. Confirm it imports no private publisher files, has all required components, dependencies and styles, and lets an Agent complete the documented customization. Assets intended for plugins must also pass a plugin declaration build. Generating Registry JSON only verifies that distribution files were produced.
+If you distributed source assets, also install, render and build them in a target project for real: confirm nothing references the publisher's private files, that the required components, dependencies and styles are all present, and that an Agent can make changes following the instructions. For assets meant to be installable into plugins, also verify the plugin's type declaration build; a successfully generated Registry JSON only shows that the distribution file exists.
 
-For package publication, see [Build and publish](publish-plugin.md). Source asset releases can be independent or accompany plugin versions; document the compatibility between them.
+For publishing the plugin package, see [Build and publish](publish-plugin.md). Source assets can be distributed on their own schedule or released alongside plugin versions, with their compatibility recorded in the notes.

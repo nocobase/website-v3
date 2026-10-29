@@ -3,15 +3,15 @@ title: 页面、路由与菜单
 description: 在 App 的本地插件中添加页面、菜单和子页面，处理导航、默认入口与访问权限。
 ---
 
-插件通过路由声明把页面接入 App，菜单也来自这些声明。本篇实现一个“帮助中心”：侧边栏只有一个入口，页面内可切换“使用指南”和“常见问题”，刷新或分享链接都能保留当前内容。
+插件通过路由声明把页面接入 App，菜单也来自这些声明。本篇实现一个“帮助中心”：侧边栏中只有一个入口，页面内可以在“使用指南”和“常见问题”之间切换，刷新或分享链接时都能保留当前的内容。
 
-[编写第一个插件](write-your-first-plugin.md) 已介绍单个页面与接口的连接。本篇重点说明页面与菜单如何组织，示例只需要 Client，不需要服务端接口。
+[编写第一个插件](write-your-first-plugin.md) 已经介绍了单个页面与接口如何连接。本篇重点说明页面和菜单的组织方式，示例只需要 Client，不需要服务端接口。
 
-本篇重点是插件如何贡献页面与菜单：页面组件由 `routes.ts` 引用，路由通过 `client/plugin.ts` 的 `routes` 汇总，App 注册 Client 工厂后加载这些贡献。组件实现与样式见[组件与样式](frontend-components.md)，表单交互和 URL 状态处理复用[应用页面开发](../developing-apps/pages-and-interactions.md)与[数据请求与状态管理](../developing-apps/data-requests-and-state.md)。
+插件贡献页面和菜单的方式是：`routes.ts` 引用页面组件，`client/plugin.ts` 的 `routes` 汇总路由，App 注册 Client 工厂后加载这些贡献。组件的实现和样式见 [组件与样式](frontend-components.md)；表单交互和 URL 状态的处理，可以复用 [UI 组件与交互](../developing-apps/pages-and-interactions.md) 和 [数据请求与状态管理](../developing-apps/data-requests-and-state.md) 中的做法。
 
 ## 使用 Agent
 
-在已有 App 中，可以这样描述需求：
+在已有的 App 中，可以这样描述需求：
 
 ```text
 请创建 help-center 插件，在登录后的菜单中加入“帮助中心”。
@@ -24,7 +24,7 @@ description: 在 App 的本地插件中添加页面、菜单和子页面，处�
 
 ## 1. 准备插件和页面组件
 
-前提是已有一个可以正常启动的 App。**所有命令在 App 根目录执行；后文文件路径相对于 `packages/app-plugin-help-center/`。** 不需要下载 NocoBase 源码。
+前提是已有一个可以正常启动的 App。**所有命令都在 App 根目录执行；后文的文件路径相对于 `packages/app-plugin-help-center/`。** 不需要下载 NocoBase 的源码。
 
 ```bash
 pnpm create @nocobase/plugin@beta help-center \
@@ -34,11 +34,11 @@ pnpm --filter @nocobase/app-plugin-help-center exec shadcn add \
   @nocobase/page-container @nocobase/page-header
 ```
 
-创建工具把插件加入 App 的 `packages/` 工作区，并添加 `workspace:*` 依赖；组件安装器把 `PageContainer` 和 `PageHeader` 的源码放进插件的 `client/components/`。已有同名插件时直接修改，不要重复创建。
+创建工具会把插件加入 App 的 `packages/` 工作区，并添加 `workspace:*` 依赖；组件安装器会把 `PageContainer` 和 `PageHeader` 的源码放进插件的 `client/components/`。如果已经有同名的插件，直接修改它，不要重复创建。
 
-检查插件的 `package.json`，将运行时使用的 `react`、`react-router` 从 `devDependencies` 移到 `peerDependencies`，保留生成的版本；把组件安装器新增的 `cn` 也移到 `peerDependencies`，然后在 App 根目录运行 `pnpm install`。
+检查插件的 `package.json`：把运行时用到的 `react` 和 `react-router` 从 `devDependencies` 移到 `peerDependencies`，保留生成的版本；把组件安装器新增的 `cn` 也移到 `peerDependencies`，然后在 App 根目录运行 `pnpm install`。
 
-保留脚手架的 `client/plugin.ts` 与 `client/index.ts`。前者已经连接 `routes` 和 `locales`，后者提供 App 注册入口。创建选项见[创建插件](create-plugin.md)。
+保留脚手架生成的 `client/plugin.ts` 和 `client/index.ts`。前者已经连接了 `routes` 和 `locales`，后者提供 App 的注册入口。创建时的选项见 [创建插件](create-plugin.md)。
 
 ## 2. 声明页面与菜单
 
@@ -78,20 +78,20 @@ const routes: readonly AppClientRouteContribution[] = [
 export default routes;
 ```
 
-几个字段分别解决不同问题：
+这几个字段分别解决不同的问题：
 
 | 字段 | 作用 |
 | --- | --- |
-| `name` | 插件内稳定、唯一的路由名称，不是显示标题 |
+| `name` | 插件内稳定、唯一的路由名称，不是显示用的标题 |
 | `path` | 页面地址；子页面使用相对路径，例如 `guide` |
-| `componentLoader` | 按需加载页面，目标模块默认导出 React 组件 |
-| `navigation` | 在 App 侧边栏显示入口；`title` 是插件的翻译键，`order` 越小越靠前 |
-| `breadcrumb` | 在 App 的面包屑中显示这一层，独立于 `navigation` 配置 |
-| `children` | 子页面，由父页面的 `<Outlet />` 显示 |
+| `componentLoader` | 按需加载页面，目标模块需默认导出 React 组件 |
+| `navigation` | 在 App 侧边栏中显示入口；`title` 是插件的翻译 key，`order` 越小越靠前 |
+| `breadcrumb` | 在 App 的面包屑中显示这一层，与 `navigation` 的配置相互独立 |
+| `children` | 子页面，由父页面中的 `<Outlet />` 渲染 |
 
-`/help` 是插件声明的路径，不包含 App 的部署前缀。默认前缀为 `/main` 时，浏览器地址为 `/main/help`。子页面没有 `navigation`，所以不会另外出现在侧边栏；它们是帮助中心内部的视图，也不单独增加面包屑。
+`/help` 是插件声明的路径，不包含 App 的部署前缀。默认前缀为 `/main` 时，浏览器中的地址是 `/main/help`。子页面没有 `navigation`，因此不会另外出现在侧边栏中；它们是帮助中心内部的视图，也不单独增加面包屑。
 
-这里用 `auth: 'required'` 要求登录，`authz: 'skip'` 表示帮助内容不要求额外的页面权限，子页面继承这一策略。涉及业务权限的页面应声明对应的资源与操作，例如 `authz: { resource: { type: 'page', id: 'orders' }, action: 'access' }`，并在 App 中配置授权。父页面的检查仍须通过，子页面不能绕过它。前端路由权限不替代服务端接口授权。
+这里用 `auth: 'required'` 要求登录，用 `authz: 'skip'` 表示帮助内容不需要额外的页面权限，子页面会继承这一策略。涉及业务权限的页面，应声明对应的资源和操作，例如 `authz: { resource: { type: 'page', id: 'orders' }, action: 'access' }`，并在 App 中配置授权。父页面的检查仍然必须通过，子页面无法绕过它。前端路由的权限检查，也不能代替服务端接口的授权。
 
 ## 3. 编写父页面和子页面
 
@@ -150,11 +150,11 @@ export default function HelpPage(): ReactElement {
 }
 ```
 
-父页面提供统一的容器、标题和导航，`Outlet` 决定子页面显示在哪里。`NavLink` 根据当前 URL 标记选中项，无需再维护一个 `activeTab` 状态。这里是普通页面导航链接，直接使用键盘即可操作。
+父页面提供统一的容器、标题和导航，`Outlet` 决定子页面显示在哪里。`NavLink` 会根据当前的 URL 标记选中项，因此不需要再维护一个 `activeTab` 状态。这些都是普通的页面导航链接，直接用键盘就可以操作。
 
-只有访问父地址 `/help` 时，才跳转到默认子页面 `guide`。`replace` 避免后退时再次经过默认入口，`search` 保留查询参数。直接打开 `/help/faq` 不会被重定向。路由声明没有 `index` 字段，不需要为默认入口虚构一个子路由。
+只有访问父地址 `/help` 时，才会跳转到默认的子页面 `guide`。`replace` 避免后退时再次经过默认入口，`search` 保留查询参数。直接打开 `/help/faq` 时不会被重定向。路由声明中没有 `index` 字段，不需要为默认入口虚构一个子路由。
 
-本例两个子页面具有相同的访问策略。若不同子页面需要不同权限，应在权限加载完成后选择第一个可访问的默认页面；没有可访问页面时显示提示，避免反复跳转。
+本例的两个子页面访问策略相同。如果不同的子页面需要不同的权限，应在权限加载完成后，选择第一个可以访问的页面作为默认页面；没有可以访问的页面时显示提示，避免反复跳转。
 
 新增 `client/pages/help/guide.tsx`：
 
@@ -190,7 +190,7 @@ export default function FaqPage(): ReactElement {
 }
 ```
 
-子页面已在父页面的容器内，不再增加 `PageContainer` 或第二个页面标题。目录按路由层次组织，也方便继续增加子页面。
+子页面已经位于父页面的容器之内，不要再增加 `PageContainer` 或第二个页面标题。目录按照路由的层次组织，也方便以后继续增加子页面。
 
 ## 4. 添加中英文文案
 
@@ -229,7 +229,7 @@ const zhCN: HelpCenterResource = {
 export default zhCN;
 ```
 
-本例只提供中英文，将 `client/locales/index.ts` 改为：
+本例只提供中英文两种语言，请把 `client/locales/index.ts` 改为：
 
 ```ts
 import type { LocaleLoaders } from '@nocobase/i18n';
@@ -241,13 +241,13 @@ const locales: LocaleLoaders = {
 export default locales;
 ```
 
-删除同目录中其他尚未翻译的语言文件，新增语种时再补齐文案和加载器。其他语言文件使用同一资源类型，保留空对象会导致类型检查失败。
+然后删除同目录中其他尚未翻译的语言文件，以后新增语种时再补齐文案和加载器。这些语言文件使用同一个资源类型，保留空对象会导致类型检查失败。
 
-页面由插件路由加载时，`useTranslation()` 自动使用插件的语言命名空间。菜单和面包屑也从同一份资源读取标题，不需要修改 App 的语言文件。
+页面通过插件路由加载时，`useTranslation()` 会自动使用插件的语言命名空间。菜单和面包屑也从同一份资源中读取标题，不需要修改 App 的语言文件。
 
 ## 5. 验证导航行为
 
-脚手架生成的 `tests/client/routes.test.ts` 断言路由为空，添加页面后需要替换。删除该文件，新建 `tests/client/routes.test.tsx`：
+脚手架生成的 `tests/client/routes.test.ts` 断言路由为空，添加页面之后需要替换它。删除这个文件，新建 `tests/client/routes.test.tsx`：
 
 ```tsx
 import { renderWithApp } from '@nocobase/app-testing/client';
@@ -365,7 +365,7 @@ describe('help center navigation', () => {
 });
 ```
 
-测试从真实的路由声明加载组件，检查默认入口、查询参数、子页面切换、历史记录和英文显示。`renderWithApp` 已提供路由与语言环境，不要再套一层 `MemoryRouter`。这里验证的是页面导航行为，App 的菜单生成和登录守卫还需要在接入后检查。
+测试从真实的路由声明中加载组件，检查默认入口、查询参数、子页面切换、浏览历史和英文显示。`renderWithApp` 已经提供了路由和语言环境，不要再套一层 `MemoryRouter`。这里验证的是页面的导航行为；App 的菜单生成和登录守卫，还需要在接入之后另行检查。
 
 ```bash
 pnpm --filter @nocobase/app-plugin-help-center format
@@ -374,7 +374,7 @@ pnpm --filter @nocobase/app-plugin-help-center check
 
 ## 6. 接入 App
 
-在 App 根目录预览并执行注册，再启动或重启开发服务：
+在 App 根目录预览并执行注册，然后启动或重启开发服务：
 
 ```bash
 pnpm nocobase plugin register @nocobase/app-plugin-help-center --no-install --dry-run
@@ -382,29 +382,29 @@ pnpm nocobase plugin register @nocobase/app-plugin-help-center --no-install
 pnpm dev
 ```
 
-插件已是本地工作区依赖，使用 `--no-install` 跳过重复安装。本例仅有 Client，注册命令会更新 App 的 `client/plugins.ts`。
+插件已经是本地的工作区依赖，所以使用 `--no-install` 跳过重复的安装。本例只有 Client 入口，注册命令会更新 App 的 `client/plugins.ts`。
 
-登录后检查以下行为。表中路径使用默认部署前缀 `/main`，部署在其他路径时相应调整。
+登录后检查以下行为。表中的路径使用默认的部署前缀 `/main`，部署在其他路径时请相应调整。
 
 | 操作 | 预期结果 |
 | --- | --- |
 | 点击“帮助中心”菜单 | 打开 `/main/help/guide`，显示使用指南 |
 | 打开 `/main/help?from=menu` | 跳转到 `/main/help/guide?from=menu` |
-| 点击“常见问题” | 地址变为 `/main/help/faq`，当前导航高亮 |
-| 直接打开或刷新 `/main/help/faq` | 保持常见问题，不跳回使用指南 |
-| 浏览器后退、前进 | 内容与当前 URL 一致 |
+| 点击“常见问题” | 地址变为 `/main/help/faq`，当前导航项高亮 |
+| 直接打开或刷新 `/main/help/faq` | 保持在常见问题，不会跳回使用指南 |
+| 浏览器后退、前进 | 显示的内容与当前 URL 一致 |
 | 切换中英文 | 菜单、面包屑、标题和正文一起切换 |
-| 未登录访问帮助页面 | 进入 App 的登录流程 |
+| 未登录时访问帮助页面 | 进入 App 的登录流程 |
 
-最后在 App 根目录运行 `pnpm build`，确认插件能随 App 一起构建。
+最后，在 App 根目录运行 `pnpm build`，确认插件能随 App 一起构建。
 
 ## 更多页面如何组织
 
-**只在页面内打开的内容**，例如详情页或内部子页面，不设置 `navigation`；有 URL 也不意味着必须在菜单里显示。带参数的详情路径可以写成 `:id`，不能作为固定菜单入口。
+**只在页面内部打开的内容**，例如详情页或内部的子页面，不要设置 `navigation`；有 URL 并不意味着必须在菜单中显示。带参数的详情路径可以写成 `:id`，它不能作为固定的菜单入口。
 
-**有自己内容的父页面**，可以同时声明 `componentLoader`、`navigation` 和 `children`，但必须在组件中放置 `Outlet`。需要子页面也进入侧边栏时，再为这些子页面增加 `navigation`。
+**本身有内容的父页面**，可以同时声明 `componentLoader`、`navigation` 和 `children`，但必须在组件中放置 `Outlet`。需要子页面也出现在侧边栏中时，再为这些子页面增加 `navigation`。
 
-**只用于归类的菜单分组**，声明 `navigation` 和 `children`，不声明 `componentLoader`。例如，将完整的 `help` 路由移到下面分组的 `children` 中：
+**只用于归类的菜单分组**，只声明 `navigation` 和 `children`，不声明 `componentLoader`。例如，把完整的 `help` 路由移到下面这个分组的 `children` 中：
 
 ```ts
 {
@@ -416,6 +416,6 @@ pnpm dev
 }
 ```
 
-同时在中英文语言资源里增加 `support`，分别为 `Support` 和“支持”。分组没有 `path` 时不会改变 `/help` 地址；设置了 `path` 时，它会成为子路由的路径前缀。
+同时在中英文语言资源中增加 `support`，分别为 `Support` 和“支持”。分组没有 `path` 时，不会改变 `/help` 的地址；设置了 `path` 时，它会成为子路由的路径前缀。
 
-新增菜单通过这些路由声明完成，无需修改 App 的侧边栏组件，也无需增加 ServiceProvider。
+新增菜单都通过这些路由声明完成，不需要修改 App 的侧边栏组件，也不需要增加 ServiceProvider。

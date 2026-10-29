@@ -1,25 +1,25 @@
 ---
 title: "Files"
-description: "Integrate file uploads, metadata, content access and previews."
+description: "Integrate file uploads, metadata, content access and file previews."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-file` provides file Repositories, upload route helpers and client services backed by the application's database and Drive. Use it for avatars, attachments or document libraries.
+`@nocobase/app-plugin-file` provides file Repositories, builders for upload APIs and client services, reusing the application's database and Drive storage. Applications can build avatars, attachments or document libraries on top of it.
 
-The application supplies file tables, business associations, disks and UI; the plugin supplies reusable file operations.
+File tables, business associations, storage disks and pages are provided by the application; the plugin provides the common capabilities for file operations.
 
 ## Scenarios and examples
 
 ### Example: order attachments
 
-Create an attachment Collection, expose upload and query operations, connect them to order details and preserve the business association. Install the UI Library's `component-ui` source for editable upload, list, thumbnail and preview components.
+The application creates an order attachment Collection, declares upload and query operations, uploads through the file client in the order details, saves the business association with the order, and shows the returned file records. The upload, list, thumbnail and preview interfaces can be installed as source from the `component-ui` component in the NocoBase UI Library and then maintained by the application.
 
-DOCX, XLSX and PPTX can render locally in the browser. Legacy Office and OpenDocument preview fallbacks need an internet-accessible URL and cannot use an application session to open private files.
+DOCX, XLSX and PPTX previews can render locally in the browser. The online preview fallback for legacy Office formats and OpenDocument depends on a file URL reachable from the internet, so do not assume it can read private files that require an application session.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use Files to add private order attachments: upload, list and preview. Create the
 Collection through a migration, configure a Drive disk, and declare actions and
 policy. Protect both metadata and bytes with order access checks; the default
@@ -27,59 +27,59 @@ public content route is not private download. Define metadata/object cleanup
 separately and test denied uploads, unauthorized downloads and failed previews.
 ```
 
-**Done when**: Authorized users can upload and read order attachments; denied users cannot query metadata or download bytes.
+**Done when**: users with permission can upload and read order attachments, while users without permission can neither query the metadata nor download the file content directly.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Database migrations and Drive config | Define attachment fields and storage | Persist metadata and storage ownership |
-| File routes and order associations | Declare actions, policies and protected private content | Apply business access to lists and downloads |
-| Order detail UI | Integrate upload, list, preview and errors | Add attachments with operation feedback |
+| Database migrations and Drive configuration | Declare the attachment fields and storage location | Uploaded files have persistent metadata and a clear storage owner |
+| Server file routes and the order association | Declare operations, policies and protected access to private content | Lists and downloads follow business permissions |
+| Order details and UI components | Connect upload, list and preview, and handle failures | An attachments area with clear action feedback appears on the page |
 
-### Prerequisites
+### Prepare before integrating
 
-After registering both runtimes, the application must:
+After registering the Client and Server plugins, the application still needs three pieces of configuration:
 
-1. Configure a Drive disk; see [File storage](../../framework/file-storage.md).
-2. Create a business file Collection through migrations.
-3. Declare resource name, Collection, disk, content path, operations and `policy` using `defineFileRepositoryApiRoutes()` from `/server`.
+1. Configure the Drive disk used for uploads; see [File storage and drivers](../../framework/file-storage.md).
+2. Create the business file Collection with a migration.
+3. Declare the resource name, Collection, disk, content path, allowed operations and `policy` with `defineFileRepositoryApiRoutes()` exported from `/server`.
 
-The plugin creates no file table or management page. Required fields are `id`, `disk`, `key`, `filename`, `ext`, `mimeType`, `size`, `createdAt` and `updatedAt`. `contentUrl` is derived in responses.
+The plugin itself creates no file tables, registers no business pages and provides no unified "file management center". The file Collection must contain the fields `id`, `disk`, `key`, `filename`, `ext`, `mimeType`, `size`, `createdAt` and `updatedAt`; `contentUrl` is generated in responses and needs no database column.
 
 ### Upload and access
 
-For an application-declared `attachments` resource:
+Taking an `attachments` resource declared by the application as the example:
 
-| Capability | Declared endpoint |
+| Capability | Entry available after declaration |
 | --- | --- |
-| Upload one | `POST /api/attachments/uploadOne` |
-| Upload several | `POST /api/attachments/uploadMany` |
-| Query metadata | Declared Repository actions such as `POST /api/attachments/findMany` |
-| Read content | Configured `accessPath`, such as `/uploads/attachments/<uuid>.<ext>` |
+| Single-file upload | `POST /api/attachments/uploadOne` |
+| Multi-file upload | `POST /api/attachments/uploadMany` |
+| Metadata queries | Declared Repository operations such as `POST /api/attachments/findMany` |
+| File content | The configured `accessPath`, such as `/uploads/attachments/<uuid>.<ext>` |
 
-Only listed `actions` are exposed. Uploads obey `policy.create`; `create: false` denies them. Upload requests do not accept arbitrary business fields; provide required values through server-side policy defaults or equivalent application handling.
+Only operations explicitly declared in `actions` are exposed. Uploads are also limited by `policy.create`: `create: false` forbids uploading. Upload requests do not accept arbitrary extra business fields; required business fields should be supplied through means such as server-side policy defaults.
 
-Resolve `clientFileRepositoryManagerToken` from `/client`, then call `manager.repository('attachments')`. The server counterpart is `serverFileRepositoryManagerToken` from `/server`.
+On the client, use `clientFileRepositoryManagerToken` exported from `/client` and get a file operation object with `manager.repository('attachments')`; the server-side counterpart is `serverFileRepositoryManagerToken` exported from `/server`.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Check content-route and metadata authorization separately; default accessPath is outside Repository policy.
-- Accept only declared upload fields and resolve business ownership on the server, not from an arbitrary client order ID.
-- Verify size limits, metadata/object state after failures, private downloads and deletion policy; deleteOne is not object cleanup.
+- Check authorization for the content route and the metadata API separately; the default `accessPath` is not protected by the Repository `policy`.
+- Uploads accept only the agreed fields, and the business owner is decided on the server; do not trust an order ID the client submits freely.
+- Verify size limits, the state of metadata and stored objects after failures, private downloads and the deletion policy; `deleteOne` must not be treated as physical cleanup.
 
-### Content and deletion boundaries
+### Limits of content access and deletion
 
-The helper's generated `accessPath` content route has no authentication and is outside Repository `policy`. Private attachments require an application-owned protected content path; restricting metadata queries alone does not protect file bytes.
+The `accessPath` content entry generated by the current route tool performs no authentication and is not protected by the Repository `policy`. If you need private attachments, the application must design a separate, protected way to access content; configuring list permissions does not mean the file content is isolated.
 
-`stream` returns content; `redirect` needs storage support for public or signed URLs. Changing the default disk does not move existing files. `deleteOne` removes metadata without deleting the physical object.
+`stream` returns the file stream directly; `redirect` jumps to the storage URL and requires the disk to support generating public or signed URLs. Changing the default disk does not move historical files. `deleteOne` deletes only the metadata and does not delete the physical file automatically; business cleanup must be handled separately.
 
-Verify upload limits, denied writes, metadata/object consistency, content access and preview fallback. Related: [Repository data APIs](../../framework/http/repository-routes.md), [Manage plugins](../../developing-apps/manage-plugins.md).
+Verify upload size limits, rejected writes, consistency between metadata and physical files, content access and the preview fallback. Related documentation: [Repository data APIs](../../framework/http/repository-routes.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-file).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-file).

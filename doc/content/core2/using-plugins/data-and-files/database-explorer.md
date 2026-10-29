@@ -1,79 +1,79 @@
 ---
 title: "Database explorer"
-description: "Inspect application connections, Collection definitions and physical schemas."
+description: "Inspect the application's database connections, Collection definitions and physical structures."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-database-explorer` inspects configured connections, Collections, fields and physical schemas. It is useful for development and diagnosis and exposes no table-editing or business-record editing operation.
+`@nocobase/app-plugin-database-explorer` lets you inspect the application's configured database connections, Collections, fields and physical table structures, which helps during development and when troubleshooting data model problems. It offers no operations for creating or altering tables or editing business records.
 
-The plugin supplies query APIs and a client; the application composes the explorer UI.
+The plugin provides query APIs and a client; the structure browsing page is composed by the application.
 
 ## Scenarios and examples
 
-### Example: inspect an orders table
+### Example: check the fields of the orders table
 
-1. Select the connection used by orders.
-2. Inspect the Collection fields, relations and warnings.
-3. Open its physical schema to inspect columns and indexes.
-4. Make required changes through [migrations](../../framework/database/migrations.md).
+1. On the database explorer page the application connects, choose the connection that holds the orders.
+2. Find the orders Collection and check its fields, relations and any warnings in the definition.
+3. View the physical structure to confirm the database columns and indexes are as expected.
+4. If something needs to change, go back to the application's [database migrations](../../framework/database/migrations.md); do not treat the explorer page as a migration editor.
 
-Follow `pageToken` for paginated lists. `DatabaseExplorerClient.allCollections()` walks pages for application-side search and reports `truncated` if its traversal limit is reached.
+Lists page through `pageToken`. When implementing search yourself, be explicit about whether it searches the current page or the full list; `DatabaseExplorerClient.allCollections()` can walk all pages and returns a `truncated` flag when it reaches the traversal limit.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use Database Explorer to add an administrator schema-viewing page. Reuse
 DatabaseExplorerClient and DATABASE_EXPLORER_ACCESS for connections, Collections
 and on-demand physical schemas. Support pagination and show truncation. Add no
 schema or record editing. Test denied access, unavailable connections and missing Collections.
 ```
 
-**Done when**: Authorized administrators can inspect logical and physical schemas; denied users cannot query the API.
+**Done when**: authorized administrators can view both the logical and physical structures, and users without permission cannot call the query APIs directly.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Client routes and explorer page | Compose connections, Collections and physical-schema requests | Add on-demand schema browsing |
-| Page authorization | Reuse DATABASE_EXPLORER_ACCESS | Align navigation and API access |
-| Pagination and error states | Handle pageToken, truncated and failures | Do not present partial or failed results as complete |
+| `client/routes.ts` and the explorer page | Combine the queries for connections, Collections and physical structures | A structure browsing entry that expands on demand is added |
+| The page's authorization declaration | Reuse `DATABASE_EXPLORER_ACCESS` | The menu and the API use the same access condition |
+| Pagination and error states | Handle `pageToken`, `truncated` and query failures | Incomplete lists or failures are never shown as complete results |
 
-### Integration
+### Integration and entry points
 
-Register both runtimes after Authentication and Authorization. The application builds a page using `DatabaseExplorerClient`; the plugin contributes APIs, with no page or business-table migration.
+Register the Client and Server plugins after Authentication and Permission management. The plugin provides `DatabaseExplorerClient` and the query APIs but no explorer page of its own; the application connects a page using these capabilities. The plugin has no business tables of its own and needs no migration.
 
-The page and API share `page:database-explorer/access`. Reuse the exported `DATABASE_EXPLORER_ACCESS` on the client.
+The page and the API use the same permission, `page:database-explorer/access`. The client can reuse the public `DATABASE_EXPLORER_ACCESS`, which avoids a menu that is visible while its API cannot be called.
 
-### Browse structure
+### Browse the database structure
 
-| Query | Endpoint |
+| What to query | API |
 | --- | --- |
-| Connections | `GET /api/databaseExplorer/connections` |
-| Collections | `GET /api/databaseExplorer/connections/:connection/collections` |
-| Definition and fields | `GET /api/databaseExplorer/connections/:connection/collections/:collection` |
-| Physical columns, indexes and constraints | Append `/physicalSchema` to the Collection endpoint |
+| Configured connections | `GET /api/databaseExplorer/connections` |
+| Collections in a connection | `GET /api/databaseExplorer/connections/:connection/collections` |
+| A Collection's definition and fields | `GET /api/databaseExplorer/connections/:connection/collections/:collection` |
+| Physical columns, indexes and constraints | Append `/physicalSchema` to the Collection address above |
 
-Connection summaries include names, dialects and management modes, without passwords, hosts or database file paths. Definitions and physical schemas are separate requests.
+The connection list shows structural information such as names, dialects, whether a connection is the default, and its management mode, but never returns connection passwords, hosts or database file paths. Logical definitions and physical structures are queried separately, so open the physical details only when needed.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Keep schema browsing read-only; schema changes still use migrations.
-- Do not add host, password or database-path disclosure to connection summaries.
-- Test cross-page search, traversal limits and denied access instead of treating the first page as all Collections.
+- Keep the capability boundary of "read-only structure"; changing table structures still goes through migrations.
+- When showing connection summaries, do not additionally read and expose hosts, passwords or database file paths.
+- Add verification for searching across pages, the traversal limit and denied access; do not treat the first page as all Collections.
 
-### Boundaries
+### Limits of use
 
-Although the plugin has no write endpoint, the database framework may initialize internal metadata and cache-version tables on the first managed-connection Collection read. Business tables and rows are unchanged. External connections use directory-backed metadata.
+The plugin itself has no write APIs; however, the first time a Collection in a managed connection is read, the database framework may initialize internal metadata and cache version tables, without changing any business tables or records. External connections use the metadata in their directory.
 
-Verify authorized and denied access, unavailable connections, missing Collections and pagination. See the running application's API document for error contracts.
+Check access for administrators and accounts without permission, as well as unreachable connections, invalid Collections and pagination behavior. The exact error fields are defined by the running application's API documentation.
 
-Related: [Database connections](../../framework/database/connections.md), [Permission management](../authorization/permissions.md), [Manage plugins](../../developing-apps/manage-plugins.md).
+Related documentation: [Connections and database dialects](../../framework/database/connections.md), [Permission management](../authorization/permissions.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-database-explorer).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-database-explorer).

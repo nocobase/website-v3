@@ -1,19 +1,19 @@
 ---
 title: "Web push"
-description: "Configure browser subscriptions, device preferences and Web Push delivery."
+description: "Configure browser subscriptions, device management and Web Push notifications."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-notification-web-push` adds browser-device delivery, VAPID configuration, subscriptions, a Service Worker and reusable preferences. [Notifications](notification.md) owns delivery and retries.
+`@nocobase/app-plugin-notification-web-push` sends notifications to subscribed browser devices, providing VAPID configuration, device subscriptions, a Service Worker and a reusable device settings component. Delivery and retries are handled by the [Notifications](notification.md) runtime.
 
-The plugin provides device and push capabilities; the application supplies settings, an installation manifest and business triggers.
+The plugin provides device management and push capabilities; the application also needs to provide a settings entry, an installation manifest and the logic that triggers business notifications.
 
 ## Scenarios and examples
 
-### Example: an order reminder
+### Example: order reminders
 
-Resolve devices with `webPushServiceToken.subscriptions.forUser(userId)` and send a notification message:
+The server gets the recipient's devices through `webPushServiceToken.subscriptions.forUser(userId)`, then delivers through the notification service:
 
 ```ts
 messages: {
@@ -27,11 +27,11 @@ messages: {
 }
 ```
 
-This is a fragment of `notification.send()`, using real device and user IDs. Unlike an inbox route target, the push `url` includes the public application prefix and must stay inside it.
+This is a fragment of a `notification.send()` message, with the device ID and user ID coming from the actual query. Unlike an in-app route target, the Web Push `url` must include the application's public mount prefix, and may only point to paths inside the application.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use Web Push to add signed-in device preferences and order reminders. Reuse
 PushPreferences, persist VAPID and encryption keys, and serve the worker under
 the app prefix. Resolve devices per user, include the mount prefix in targets,
@@ -39,50 +39,50 @@ and handle unsubscribe failures on sign-out. Test subscription, pause, expiry,
 denial and actual receipt on a test device; report unavailable environments.
 ```
 
-**Done when**: A subscribed test device displays the reminder and opens the correct order; paused devices stop receiving it.
+**Done when**: a subscribed user's test device really receives the reminder and opens the correct order when clicked, and paused devices no longer receive pushes.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Push config and notification channel | Compose pushConfig, persistent keys and the web-push channel | Enable browser subscriptions |
-| Personal settings and sign-out | Integrate PushPreferences and unsubscribeDevice | Manage devices and handle account binding |
-| Order messages | Use device summaries and prefixed internal URLs | System notifications open application orders |
+| `push` configuration and notification channel | Combine `pushConfig`, persistent keys and the `web-push` channel | Browsers can get the public key and create subscriptions |
+| Personal settings and the sign-out flow | Connect `PushPreferences` and `unsubscribeDevice` | Users can manage devices, and device binding is handled at sign-out |
+| Building order messages | Use device summaries and a target URL that includes the mount prefix | System notifications can open orders in the application |
 
-### Integration
+### Integration and configuration
 
-1. Register the Server plugin after Authentication, Authorization and Notifications, register Client and apply migrations.
-2. Compose `pushConfig` from `/server` under the application's `push` configuration.
-3. Set persistent `push.privateKey` / `WEB_PUSH_PRIVATE_KEY`, `push.contact` / `WEB_PUSH_CONTACT`, and subscription-encryption `SECRETS_KEYS`.
+1. Register the Server plugin after Authentication, Permission management and Notifications, register the Client plugin too, and run the migrations.
+2. Combine `pushConfig` exported from `/server` under `push` in the application configuration.
+3. Configure a persistent `push.privateKey` / `WEB_PUSH_PRIVATE_KEY` and a contact address `push.contact` / `WEB_PUSH_CONTACT`, and keep the `SECRETS_KEYS` used to encrypt subscriptions.
 4. Configure `notification.channels.webPush: { type: 'web-push' }`.
-5. Mount `PushPreferences` from `/client` inside an authenticated page with host API, locale, toast and query contexts.
+5. Mount `PushPreferences` exported from `/client` on a page that requires sign-in, providing it with the host API, language, toast and query context.
 
-Use HTTPS in production; localhost supports development. Regenerating the VAPID key requires browsers to resubscribe. The worker is served at `/push-worker.js` below the application mount.
+Production needs HTTPS, while localhost works for development. The VAPID private key must not be regenerated on every start; after changing the key, browsers must subscribe again. The worker is at `/push-worker.js` under the application's mount path.
 
-### Device preferences
+### Use device subscriptions
 
-Users subscribe, pause, resume, test and remove devices. The application supplies its installation manifest; iOS/iPadOS requires home-screen installation.
+Users subscribe the current device in the settings component, and can later pause, resume, test or delete the subscription. The application must provide its own installation manifest; on iOS/iPadOS, the application must first be added to the home screen.
 
-`/api/webPush` exposes `/key`, `/subscriptions` and `/subscriptions/:id/test`. Responses contain owned device summaries without subscription endpoints or keys. Integrate `unsubscribeDevice(api, base, userId)` into sign-out and handle failure before completing sign-out.
+The device APIs are at `/api/webPush`, including `/key`, `/subscriptions` and `/subscriptions/:id/test`. They return summaries of the current user's devices and never expose a subscription's endpoint or encryption keys. At sign-out, the application should call the public `unsubscribeDevice(api, base, userId)`; if that fails, deal with the unbinding problem first.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Do not regenerate VAPID keys on startup or expose subscription endpoints and encryption keys through device APIs.
-- Use internal, mount-prefixed URLs. dedupeKey replaces visible notifications, not event idempotency.
-- Test denied permission, paused and expired devices, and actual display. Queue success is not proof of browser receipt.
+- Never generate a new VAPID key on each start, and never expose endpoints or encryption keys through the device APIs.
+- URLs may only point inside the application and must include the mount prefix; `dedupeKey` only replaces visible notifications and cannot replace event idempotency.
+- Test denied permissions, paused and expired devices, and confirm display on real devices; successful queuing does not mean the push was shown.
 
-### Verification and boundaries
+### Verification and limits
 
-Test missing permissions, absent or paused subscriptions, expired devices and actual browser receipt. A queued test is not proof of display. HTTP 404/410 removes invalid subscriptions; other outcomes follow notification retry rules.
+Check these cases: unauthorized, no subscription, a paused device, an expired subscription, and a real device receiving a push. The test API returns a queuing result, which does not mean the browser displayed the notification. Expired subscriptions that return 404/410 are removed; other delivery errors follow the notification runtime's rules.
 
-`dedupeKey` replaces visible notifications with the same tag; it does not replace business idempotency. Oversized payloads are rejected. The plugin supplies no offline cache or application-specific foreground reminder coordination.
+`dedupeKey` replaces visible notifications with the same tag and cannot replace business idempotency. The final payload has a size limit; payloads over the limit are rejected rather than truncated. The plugin provides no offline cache and does not coordinate foreground reminders with system pushes.
 
-Related: [Notifications](notification.md), [In-app notifications](in-app.md), [Manage plugins](../../developing-apps/manage-plugins.md).
+Related documentation: [Notifications](notification.md), [In-app notifications](in-app.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification-web-push).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification-web-push).

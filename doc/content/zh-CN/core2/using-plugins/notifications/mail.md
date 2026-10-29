@@ -1,28 +1,28 @@
 ---
 title: "邮件"
-description: "连接用户邮箱，收发邮件、同步历史并组合邮件工作台。"
+description: "连接用户邮箱，收发邮件、同步历史，并组合邮件工作台。"
 ---
 
 ## 提供的能力
 
-`@nocobase/app-plugin-mail` 面向用户连接的邮箱，提供账户授权、邮件同步、阅读、撰写、发送、草稿、附件及发送记录。系统验证码和业务通知的邮件投递使用[通知渠道](providers.md)；需要读取用户邮箱或以用户连接的账户发信时使用本插件。
+`@nocobase/app-plugin-mail` 面向用户自己连接的邮箱，提供账户授权、邮件同步、阅读、撰写、发送、草稿、附件和发送记录等能力。系统验证码和业务通知的邮件投递，请使用 [通知渠道](providers.md)；需要读取用户的邮箱，或以用户连接的账户发信时，才使用本插件。
 
-个人邮箱连接和工作台由应用挂载；系统通知邮件通过通知渠道处理。
+个人邮箱的连接页和邮件工作台由应用挂载；系统通知邮件则由通知渠道处理。
 
 ## 使用场景与示例
 
 ### 示例：在客户详情中查看往来邮件
 
-1. 用户连接邮箱并选择首次同步的日期边界。
+1. 用户连接邮箱，并选择首次同步的起始日期。
 2. 等待同步完成，确认目标邮件已经进入本地数据。
-3. 应用通过 `MailClient.listMessages({ participant: 'alice@example.com' })` 查询往来邮件，或用 `participant: '@example.com'` 匹配一个精确域名。
-4. 使用邮件组件展示记录；需要发信时让用户选择可发送的身份，核对真实发送结果。
+3. 应用通过 `MailClient.listMessages({ participant: 'alice@example.com' })` 查询往来邮件，或者用 `participant: '@example.com'` 匹配一个确切的域名。
+4. 使用邮件组件展示记录；需要发信时，让用户选择一个可以发送的身份，并核对真实的发送结果。
 
-`participant` 精确匹配 From、To、Cc 的实际地址，域名不包含子域名，不会扩展用户的邮箱权限，也不会临时查询尚未同步的远端历史。关键字模糊搜索使用独立的 `q`。
+`participant` 精确匹配 From、To、Cc 中的实际地址；按域名匹配时不包含子域名。它不会扩大用户的邮箱权限，也不会临时去查询尚未同步的远端历史。按关键字模糊搜索请使用单独的 `q`。
 
 **开发提示词**（交给当前应用目录中的 Coding Agent）：
 
-```text
+```prompt
 请使用邮件插件，在客户详情中展示当前用户与客户的往来邮件。
 组合 Mail 配置并接入个人邮箱连接页、邮件工作台，保留原有认证与权限。
 按客户真实邮箱使用 participant 查询已同步邮件，支持加载与失败状态。
@@ -30,21 +30,21 @@ description: "连接用户邮箱，收发邮件、同步历史并组合邮件工
 用测试邮箱验证同步、收发及无权邮箱隔离，不将结果未知的发送自动重复提交。
 ```
 
-**完成标志**：客户详情展示该用户已同步的对应邮件，发送结果能关联到准确记录，其他用户邮箱不可访问。
+**完成的标志**：客户详情中展示了该用户已同步的相应邮件，发送结果能关联到准确的记录，其他用户的邮箱无法访问。
 
 ## 重要原理与实现
 
-以下是实现本例时的接入位置与预期界面变化；它们是开发说明，具体文件名沿用当前应用结构。
+下表列出实现本例时的接入位置和预期的界面变化。这些是开发说明，具体的文件名沿用当前应用的结构。
 
-| 接入位置 | 代码或配置变化 | 界面与行为变化 |
+| 接入位置 | 代码或配置的变化 | 界面与行为的变化 |
 | --- | --- | --- |
-| server/config/mail.ts 与应用配置组合 | 接入 mailConfig 和具名提供方 | 邮箱授权与同步使用真实配置 |
-| 客户端路由与邮箱页面 | 组合 MailAccountsPage、MailWorkspacePage | 用户能连接自己的邮箱并查看工作台 |
-| 客户详情与发信回调 | 查询 participant，记录 submission ID | 只展示已同步且有权读取的邮件，发送结果可追踪 |
+| `server/config/mail.ts` 与应用配置的组合 | 接入 `mailConfig` 和命名的提供方 | 邮箱授权和同步使用真实的配置 |
+| 客户端路由与邮箱页面 | 组合 `MailAccountsPage` 和 `MailWorkspacePage` | 用户能连接自己的邮箱并打开工作台 |
+| 客户详情与发信回调 | 按 `participant` 查询，记录 submission ID | 只展示已同步且有权读取的邮件，发送结果可以追踪 |
 
 ### 接入与配置
 
-注册 Client、Server 插件并执行迁移。还要显式组合 Mail 配置，插件注册命令不会替应用修改配置组合：
+注册 Client 和 Server 插件，并执行迁移。此外还要显式组合 Mail 配置，插件的注册命令不会替应用修改配置组合：
 
 ```ts
 // server/config/mail.ts
@@ -52,37 +52,37 @@ import { mailConfig } from '@nocobase/app-plugin-mail/server';
 export default mailConfig;
 ```
 
-在应用 `defaultAppConfigs()` 中以 `mail` 键接入上述工厂，并更新相应配置类型。然后在 `mail.providers` 中配置具名实例；内置 Gmail、Microsoft 365 和 IMAP/SMTP 实现不意味着这些外部服务已配置好。
+在应用的 `defaultAppConfigs()` 中，以 `mail` 为键接入上面的工厂，并更新相应的配置类型。然后在 `mail.providers` 中配置命名的实例。插件内置了 Gmail、Microsoft 365 和 IMAP/SMTP 的实现，但这并不意味着这些外部服务已经配置好了。
 
-OAuth、SMTP 等凭据保存在服务端私有配置。使用 OAuth 时配置对应提供方的回调，并将 `mail.oauthReturnUrl` 指向应用自己的个人邮箱连接页；默认值是应用根路径。
+OAuth、SMTP 等凭据保存在服务端的私有配置中。使用 OAuth 时，请配置对应提供方的回调地址，并把 `mail.oauthReturnUrl` 指向应用自己的个人邮箱连接页；它的默认值是应用的根路径。
 
 ### 接入邮件页面
 
-插件不自动注册邮件页面。应用从 `/client` 使用：
+插件不会自动注册邮件页面。应用可以从 `/client` 使用：
 
-- `MailAccountsPage`：个人邮箱连接与管理。
-- `MailWorkspacePage`：邮件工作台；通过 `accountsHref` 指向账户页。
+- `MailAccountsPage`：连接和管理个人邮箱。
+- `MailWorkspacePage`：邮件工作台，通过 `accountsHref` 指向账户页。
 - `MailClient`、`mailClientToken`：供自定义页面调用 `/api/mail`。
-- `/client/components`：组合器、邮件列表、会话、标签、签名等可复用界面。
+- `/client/components`：撰写器、邮件列表、会话、标签、签名等可复用的界面。
 
-个人账户页需要身份认证和 `page:mail.workspace/access`。管理员查看全用户邮箱信息的页面不能代替用户自己的账户连接流程。
+个人账户页需要身份认证和 `page:mail.workspace/access` 权限。管理员查看所有用户邮箱信息的页面，不能代替用户自己连接账户的流程。
 
 ## AI 开发的约束与验证
 
 ### 本插件的开发约束
 
-- 管理员邮箱概览不代替用户授权连接；查询保留邮箱权限，participant 不扩大访问范围。
-- 精确地址与域名匹配和模糊 q 分开，不将未同步邮件描述成查询不到的远端数据。
-- 检查 OAuth 返回路径、同步范围与发送状态，结果未知时先核实具体 submission，避免重复发信。
+- 管理员的邮箱概览不能代替用户授权连接；查询时保留邮箱权限检查，`participant` 不会扩大访问范围。
+- 把按地址和域名的精确匹配与按 `q` 的模糊搜索区分开；不要把尚未同步的邮件说成“远端查询不到的数据”。
+- 检查 OAuth 的返回路径、同步范围和发送状态；发送结果未知时，先核实具体的 submission，避免重复发信。
 
 ### 验证与扩展
 
-检查授权回调、首次同步、收发、草稿和附件，并区分已提交、失败与结果未知。若需把发送结果关联到业务记录，应使用组合器返回的具体 submission ID，避免取“最新一条历史记录”。
+请检查授权回调、首次同步、收发、草稿和附件，并区分“已提交”“失败”和“结果未知”三种发送状态。如果需要把发送结果关联到业务记录，应使用撰写器返回的具体 submission ID，而不要取“最新的一条历史记录”。
 
-服务端使用 `/server` 的 `mailServiceToken`；自定义提供方通过 `mailProviderRegistryToken` 注册。不同提供方能力不同，界面应按能力展示。已有邮件数据升级时，检查相应版本的迁移要求，参与人索引或 IMAP 位置迁移可能需要停写维护窗口。
+服务端使用 `/server` 导出的 `mailServiceToken`；自定义的提供方通过 `mailProviderRegistryToken` 注册。不同提供方的能力各不相同，界面应按实际能力展示。升级已有邮件数据时，请检查对应版本的迁移要求：参与人索引或 IMAP 位置的迁移，可能需要一个停止写入的维护窗口。
 
 相关文档：[通知渠道](providers.md)、[身份认证](../authentication/sign-in.md)、[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+以上检查是接入后的验收要求，并不表示本文已经完成了运行验证。请让 Agent 报告实际的改动、执行过的检查和未验证的部分；项目指引、Skills 和通用的检查流程见 [和 Agent 一起开发](../../developing-apps/develop-with-an-agent.md) 与 [测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
-源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-mail)。
+源码依据：[插件的公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-mail)。

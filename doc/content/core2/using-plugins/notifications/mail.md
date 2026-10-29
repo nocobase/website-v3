@@ -1,28 +1,28 @@
 ---
 title: "Email"
-description: "Connect personal mailboxes, synchronize messages and compose email workflows."
+description: "Connect users' mailboxes, send and receive mail, synchronize history and compose a mail workspace."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-mail` manages user-connected mailboxes: authorization, synchronization, reading, composing, sending, drafts, attachments and delivery history. Use [Notification providers](providers.md) for system emails; use Mail to read a person's mailbox or send through their connected account.
+`@nocobase/app-plugin-mail` works with mailboxes users connect themselves, providing account authorization, mail synchronization, reading, composing, sending, drafts, attachments and send history. For delivering system verification codes and business notification emails, use [Notification providers](providers.md); use this plugin only when you need to read a user's mailbox or send through an account the user connected.
 
-The application mounts personal account and workspace pages. System notification emails use notification channels.
+The personal mailbox connection page and the mail workspace are mounted by the application, while system notification emails are handled by notification channels.
 
 ## Scenarios and examples
 
-### Example: customer correspondence
+### Example: view correspondence on a customer's details
 
-1. Connect an account and choose an initial synchronization date.
-2. Wait for the relevant messages to synchronize.
-3. Use `MailClient.listMessages({ participant: 'alice@example.com' })`, or `participant: '@example.com'` for an exact domain.
-4. Render the results and let users select a sendable identity when composing.
+1. The user connects a mailbox and chooses the start date of the first synchronization.
+2. Wait for synchronization to finish, and confirm the target messages are in local data.
+3. The application queries the correspondence with `MailClient.listMessages({ participant: 'alice@example.com' })`, or matches an exact domain with `participant: '@example.com'`.
+4. Show the records with the mail components; when sending, let the user choose an identity that can send, and check the real sending result.
 
-`participant` matches actual From, To and Cc addresses. Domain matching excludes subdomains. It neither widens mailbox access nor searches unsynchronized remote history. Use `q` separately for fuzzy keyword search.
+`participant` exactly matches the actual addresses in From, To and Cc; domain matching excludes subdomains. It neither widens the user's mailbox permissions nor queries remote history that has not been synchronized yet. For fuzzy keyword search, use the separate `q`.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use Mail to show the current user's customer correspondence. Compose Mail config
 and integrate personal account connection and workspace pages with existing access
 checks. Query synchronized messages by the customer's exact participant address
@@ -31,21 +31,21 @@ records with exact submission IDs. Verify synchronization, sending, receiving an
 mailbox isolation using a test mailbox; do not blindly resubmit unknown outcomes.
 ```
 
-**Done when**: Customer detail shows the user's synchronized correspondence, sends have exact record associations, and other mailboxes remain inaccessible.
+**Done when**: the customer's details show the user's synchronized messages with that customer, sending results link to the exact records, and other users' mailboxes cannot be accessed.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Mail config and app composition | Integrate mailConfig and named providers | Authorization and synchronization use configured services |
-| Client routes and mailbox pages | Compose MailAccountsPage and MailWorkspacePage | Users connect personal mailboxes and open the workspace |
-| Customer detail and send callback | Query participant and retain submission IDs | Show authorized synchronized mail and trace send outcomes |
+| `server/config/mail.ts` and the application's configuration composition | Connect `mailConfig` and named providers | Mailbox authorization and synchronization use real configuration |
+| Client routes and mailbox pages | Compose `MailAccountsPage` and `MailWorkspacePage` | Users can connect their own mailboxes and open the workspace |
+| Customer details and the send callback | Query by `participant` and record the submission ID | Only synchronized mail the user may read is shown, and sending results are traceable |
 
-### Configuration
+### Integration and configuration
 
-Register both runtimes and apply migrations. Explicitly compose Mail configuration; registration does not modify application configuration composition:
+Register the Client and Server plugins and run the migrations. In addition, compose the Mail configuration explicitly; the plugin's registration command does not change the application's configuration composition for you:
 
 ```ts
 // server/config/mail.ts
@@ -53,37 +53,37 @@ import { mailConfig } from '@nocobase/app-plugin-mail/server';
 export default mailConfig;
 ```
 
-Add this factory under `mail` in `defaultAppConfigs()` and update its configuration type. Configure named instances in `mail.providers`. Built-in Gmail, Microsoft 365 and IMAP/SMTP implementations still require external-service configuration.
+In the application's `defaultAppConfigs()`, connect the factory above under the `mail` key and update the corresponding configuration type. Then configure named instances in `mail.providers`. The plugin has built-in Gmail, Microsoft 365 and IMAP/SMTP implementations, but that does not mean those external services are already configured.
 
-Keep credentials in private server settings. Configure provider OAuth callbacks and set `mail.oauthReturnUrl` to the application's personal account page; its default is the application root.
+Credentials such as OAuth and SMTP are kept in the server's private configuration. When using OAuth, configure the callback for the corresponding provider, and point `mail.oauthReturnUrl` to the application's own personal mailbox connection page; it defaults to the application root.
 
-### Compose the UI
+### Connect the mail pages
 
-No Mail pages are registered automatically. `/client` provides:
+The plugin does not register mail pages automatically. The application can use these from `/client`:
 
-- `MailAccountsPage` for personal connections.
-- `MailWorkspacePage`, with `accountsHref` pointing to account management.
-- `MailClient` and `mailClientToken` for `/api/mail` access.
-- `/client/components` for composers, lists, conversations, labels and signatures.
+- `MailAccountsPage`: connect and manage personal mailboxes.
+- `MailWorkspacePage`: the mail workspace, pointing to the accounts page through `accountsHref`.
+- `MailClient`, `mailClientToken`: for custom pages to call `/api/mail`.
+- `/client/components`: reusable interfaces such as the composer, message list, conversations, labels and signatures.
 
-The personal account page needs authentication and `page:mail.workspace/access`. An administrator overview cannot replace personal account connection.
+The personal accounts page requires authentication and the `page:mail.workspace/access` permission. A page where administrators see mailbox information for all users cannot replace the flow in which users connect their own accounts.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- An administrator overview does not replace personal authorization. Retain mailbox access checks; participant does not widen access.
-- Keep exact address/domain matching separate from fuzzy q. Do not imply queries inspect unsynchronized remote mail.
-- Check OAuth return paths, sync boundaries and send states. Investigate the specific submission before retrying an unknown outcome.
+- An administrator's mailbox overview cannot replace users authorizing their own connections; keep the mailbox permission checks in queries, and remember that `participant` does not widen access.
+- Keep exact matching by address and domain separate from fuzzy search with `q`; do not describe unsynchronized mail as "remote data the query cannot find".
+- Check the OAuth return path, the synchronization range and the sending status; when a sending result is unknown, verify the specific submission first to avoid sending twice.
 
 ### Verification and extension
 
-Verify callbacks, synchronization, reading, sending, drafts and attachments. Distinguish submission, failure and unknown outcomes. Associate business records with the composer's exact submission IDs rather than the newest history row.
+Check the authorization callback, first synchronization, sending and receiving, drafts and attachments, and distinguish the three sending states "submitted", "failed" and "result unknown". When a sending result must be linked to a business record, use the specific submission ID the composer returns, never "the latest history record".
 
-Server integrations use `mailServiceToken`; custom providers register through `mailProviderRegistryToken`. Render capabilities actually supported by the provider. Review migration requirements for upgrades with existing data: participant indexes and IMAP-location migrations can require an offline maintenance window.
+On the server, use `mailServiceToken` exported from `/server`; custom providers are registered through `mailProviderRegistryToken`. Providers differ in capabilities, so the interface should show what each actually supports. When upgrading existing mail data, check the migration requirements of the version: migrating participant indexes or IMAP locations may need a maintenance window with writes stopped.
 
-Related: [Notification providers](providers.md), [Authentication](../authentication/sign-in.md), [Manage plugins](../../developing-apps/manage-plugins.md).
+Related documentation: [Notification providers](providers.md), [Authentication](../authentication/sign-in.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-mail).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-mail).

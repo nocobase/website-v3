@@ -18,22 +18,20 @@ description: "配置应用登录、会话、注册与密码找回。"
 3. 使用[用户管理](users.md)发送邀请，让新成员通过邀请页创建账号。
 4. 分别检查访客、已登录成员、被停用用户的页面和接口行为。
 
-若使用内置密码找回邮件，启用 `auth.passwordReset.enabled`，配置应用公开地址和可投递的系统邮件渠道，再结合 `usePasswordResetCapability()` 展示入口；仅有邮箱密码登录，不代表找回邮件已经可用。应用也可以提供自己的 `sendResetPassword` 实现。跨域部署还需要正确配置可信来源，不能通过绕过请求来源检查解决登录问题。
+在本文固定源码基线中，使用内置密码找回邮件时，启用 `auth.passwordReset.enabled`，配置应用公开地址和可投递的系统邮件渠道，再结合 `usePasswordResetCapability()` 展示入口；仅有邮箱密码登录，不代表找回邮件已经可用。应用也可以提供自己的 `sendResetPassword` 实现。跨域部署还需要正确配置可信来源，不能通过绕过请求来源检查解决登录问题。
 
 **开发提示词**（交给当前应用目录中的 Coding Agent）：
 
-```text
-请用身份认证插件将应用设为仅受邀成员加入。
-沿用已有登录、会话和扩展配置，同时关闭服务端自行注册与对应页面入口。
-如启用密码找回，先检查公开地址和通知邮件配置，再展示可用入口。
-验证访客、受邀成员、停用用户及退出登录后的页面和接口行为。
+```prompt
+请把当前应用改为只有受邀成员才能加入。
+保留现有成员的登录方式和权限，关闭自行注册入口，并确保直接请求注册也会被拒绝。
+如果要保留密码找回，请先确认邮件能送达、链接能打开，再展示入口。
+检查访客、受邀成员、停用账号和退出登录后的访问，告诉我实际结果。
 ```
 
-**完成标志**：直接自行注册请求被拒绝，受邀用户仍可登录并按原有权限访问。
+**完成的标志**：直接自行注册请求被拒绝，受邀用户仍可登录并按原有权限访问。
 
 ## 重要原理与实现
-
-以下是实现本例时的接入位置与预期界面变化；它们是开发说明，具体文件名沿用当前应用结构。
 
 | 接入位置 | 代码或配置变化 | 界面与行为变化 |
 | --- | --- | --- |
@@ -42,6 +40,9 @@ description: "配置应用登录、会话、注册与密码找回。"
 | 受保护路由与接口 | 接入登录检查，再执行业务授权 | 访客被正确引导，直接 API 调用也受保护 |
 
 ### 接入与配置
+
+> [!NOTE]
+> [较新的开发源码](https://github.com/nocobase/nocobase/blob/a0b45681ee0a6940068abdff4c61b57ae888dd6d/packages/plugins/app-plugin-authentication/server/config.ts)增加了独立的 `auth.email` 和 `AUTH_EMAIL_*` 配置，同时保留旧的 `auth.passwordReset.emailChannel`。配置密码找回前，先检查已安装包的配置声明与随包指引，不要把开发分支字段直接写进较早的发布版本。
 
 默认模板已在 Client 和 Server 注册认证插件，并在 `client/config/auth.ts`、`server/config/auth.ts` 组合认证配置。修改现有配置时保留应用需要的扩展，避免用一个示例覆盖整个 `plugins` 数组。
 
@@ -79,6 +80,6 @@ description: "配置应用登录、会话、注册与密码找回。"
 
 通用安装与迁移操作见[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+以上是接入后的验收步骤；示例基线和实测范围见[版本与验证说明](../overview.md#示例版本与验证范围)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authentication)。

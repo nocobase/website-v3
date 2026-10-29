@@ -22,19 +22,16 @@ Effective permissions are the intersection of the owner's current permissions an
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use API Keys to give a reporting script an expiring read-only key. Preserve auth
-configuration, declare reporting actions and record scopes, and integrate personal
-creation, rotation and revocation. Show the secret only when issued or rotated;
-never store it in source or logs. Test allowed reads, out-of-scope reads, writes,
-old secrets and revoked keys.
+```prompt
+Let the reporting script read reports using an API key with an expiry date.
+Users should be able to create, rotate and revoke their own keys in personal settings. The script may only read reports the owner can access and must not change data.
+Show the secret only after creation or rotation, and keep it out of source code and logs.
+Use test data to check allowed reads, out-of-scope records and writes, plus access after expiry, rotation and revocation.
 ```
 
 **Done when**: The script reads only allowed report records; writes and invalidated-key requests are denied.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -82,6 +79,6 @@ Unscoped keys inherit owner permissions; they are not read-only by default. Losi
 
 Related: [Authentication](sign-in.md), [Permission management](../authorization/permissions.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-api-keys).

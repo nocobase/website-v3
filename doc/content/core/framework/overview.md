@@ -45,6 +45,6 @@ Standalone scripts and tests may create their own instances and then own configu
 
 ## Relationship to plugin features
 
-The storage package provides disks and file operations; the file plugin adds records, uploads and authorized access. Jobs provides execution and scheduling; the scheduler plugin adds management pages and execution records. Realtime delivers changes; notification plugins can provide persistent notifications and personal inboxes.
+The storage package provides disks and file operations; the file plugin adds records and uploads, while the application protects private content access. Jobs provides execution and scheduling; the scheduler plugin adds execution records and enable/disable APIs, with management pages composed by the application. Realtime delivers changes; notification plugins can provide persistent notifications and personal inboxes.
 
 For integrating existing features, read [Using plugins](../using-plugins/overview.md). For implementing lower-level behavior, use this chapter. Public entries and parameter indexes are in [API reference](../reference/api.md).

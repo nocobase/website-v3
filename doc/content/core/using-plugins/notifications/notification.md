@@ -19,19 +19,16 @@ Recipients have independent deliveries. One failure does not imply all failed, a
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Notifications to send inbox and email messages after order approval succeeds.
-Use named configured channels with complete messages; resolve user IDs and email
-addresses separately. Use a business-event idempotency key, retain per-recipient
-outcomes, and integrate protected logs. Test duplicate events, partial failure and
-denied log access. Do not present queue acceptance as receipt.
+```prompt
+After an order is approved, send an in-app message and an email to the intended recipients using the configured channels.
+Processing the same approval event again should not duplicate notifications. A failure on one channel must not be reported as complete success.
+Authorized managers should see each recipient's delivery result, distinguishing queued, submitted and failed messages. Queued does not mean received.
+Use test recipients to check duplicate events, partial delivery failures and access to delivery logs.
 ```
 
 **Done when**: Deliveries are traceable to an event, failures are identified per channel and recipient, and duplicate submissions do not cause unintended repeated notices.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -82,6 +79,6 @@ Use `sendTransient({ channel, message })` for one-time credentials. It attempts 
 
 Verify recipient outcomes, duplicate events, channel failures and log access. Related: [Notification providers](providers.md), [In-app notifications](in-app.md), [Web push](web-push.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification).

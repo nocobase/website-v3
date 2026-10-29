@@ -9,7 +9,7 @@ For standard Collection queries or simple writes, use [`defineRepositoryApiRoute
 
 ## Use an Agent
 
-```text
+```prompt
 Create a notice-api plugin in this App with a notice text preview endpoint.
 It processes only text supplied in this request, reads no business data, and saves nothing, so it can be public.
 Validate length, use standard responses and errors, document and test the API, then register it.

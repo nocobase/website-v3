@@ -3,7 +3,7 @@ title: Meet NocoBase Core
 description: Core is an open-source foundation for AI to develop and run business applications. It supplies common capabilities and consistent project conventions so agents can focus on your business.
 ---
 
-An application created with Core can start and accept sign-ins immediately, with users, roles and permissions ready to use. Describe your business to an agent: for example, “Track suppliers and purchase orders, notify the purchasing manager when an order is submitted, and let only the purchasing department edit supplier details.” The agent writes the supplier and order tables, their pages and those two rules. Sign-in, roles, data access, and notification delivery use Core's existing capabilities.
+An application created from Core's default template can start and accept sign-ins after configuration and initialization. Describe your business to a coding agent: for example, “Track suppliers and purchase orders, notify the purchasing manager when an order is submitted, and let only the purchasing department edit supplier details.” The agent can reuse Core's authentication, authorization and notification capabilities while implementing tables, APIs, pages and business rules. Record access, management pages and delivery channels still need to be connected and verified for your application.
 
 ## Common capabilities are ready to use
 
@@ -18,7 +18,7 @@ Permissions, data access, files, notifications and background jobs involve many 
 | AI and agents | Business agents that act within application permissions; knowledge bases for people and agents | [Agents](../using-plugins/agents-and-knowledge/agents.md), [Knowledge](../using-plugins/agents-and-knowledge/knowledge.md) |
 | Interface and runtime | UI components, localization, caching, logging and real-time communication | [Components and interactions](../developing-apps/pages-and-interactions.md), [Localization](../using-plugins/application-support/i18n.md) |
 
-These capabilities take two forms. **Plugins** (`@nocobase/app-plugin-*`) take effect when registered in the application and may provide pages, components, skills or commands. **Libraries**, such as the database library `@nocobase/db` and record lifecycle library `@nocobase/lifecycle`, are imported directly. The default template includes commonly used plugins; register others with `pnpm nocobase plugin register`. Once the application is running, open **System settings → App foundation** to see which capabilities it uses. See the [plugin index](../reference/plugins.md) and [package index](../reference/packages.md) for the full list.
+These capabilities take two forms. **Plugins** (`@nocobase/app-plugin-*`) take effect when registered in the application and may provide pages, components, skills or commands. **Libraries**, such as the database library `@nocobase/db` and record lifecycle library `@nocobase/lifecycle`, are imported directly. The default template includes commonly used plugins. Register additional runtime plugins with `pnpm nocobase plugin register`; packages that only supply skills need no runtime registration. Once the application is running, open **System settings → App foundation** to see which capabilities it uses. See the [plugin index](../reference/plugins.md) and [package index](../reference/packages.md) for the full list.
 
 ## Consistent project structure and conventions
 
@@ -37,7 +37,7 @@ my-app/
 └── package.json   # Core package and plugin dependencies
 ```
 
-`AGENTS.md` and the skills explain where business code belongs, which existing capabilities to use, and how to write migrations and permissions. Skills ship with Core packages and are synchronized to `.agents/skills/` when dependencies are installed, matching the installed version. Coding tools such as Claude Code and Codex read the same conventions across developers and models. See [Project structure](project-structure.md) for each directory's details.
+`AGENTS.md` and the skills explain where business code belongs, which existing capabilities to use, and how to write migrations and permissions. Skills ship with Core packages and are synchronized to `.agents/skills/` when dependencies are installed, matching the installed version. These files give coding tools and collaborators a shared reference; code review and tests still need to confirm the implementation. See [Project structure](project-structure.md) for each directory's details.
 
 ## How development works
 

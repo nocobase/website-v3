@@ -148,7 +148,7 @@ Repository chapter tags remain the reference for published examples. This chapte
 
 Give the agent this chapter as context from the application directory, then describe the request below. Field, API and component details are in the manual steps; the agent should follow them alongside the project's guidance.
 
-```text
+```prompt
 Please make the existing project features usable through pages, following the application's visual style with English and Chinese text.
 Use shadcn primitives and consult the components and blocks in the NocoBase UI Library first.
 Inspect existing components, add source assets as needed, and adapt and compose them while preserving current customizations.

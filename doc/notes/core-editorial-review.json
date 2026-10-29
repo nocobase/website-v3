@@ -1,0 +1,1267 @@
+{
+  "reviewed_on": "2026-10-29",
+  "scope": "全部 Core 文档的编辑审阅、版本和中英文一致性检查；revised 表示有修改，reviewed_retained 表示审阅后保留原文。",
+  "website_base_commit": "6e5328d79987dd48e1bc3ac056c09228f86b212f",
+  "includes_pr": 29,
+  "counts": {
+    "page_pairs": 123,
+    "language_files": 246,
+    "revised_pairs": 69,
+    "retained_pairs": 54,
+    "revised_language_files": 137,
+    "prompt_blocks_per_language": 71,
+    "sections": {
+      "deployment": 2,
+      "developing-apps": 27,
+      "extension-development": 21,
+      "framework": 36,
+      "getting-started": 3,
+      "index": 1,
+      "reference": 8,
+      "tutorials": 3,
+      "using-plugins": 22
+    }
+  },
+  "source_baselines": [
+    {
+      "repository": "nocobase/nocobase",
+      "commit": "015404ecd0dbed33cc46831f73907329c577d375",
+      "purpose": "多数框架和插件指南的固定源码依据；逐页保留原链接及适用范围。"
+    },
+    {
+      "repository": "nocobase/nocobase",
+      "commit": "a0b45681ee0a6940068abdff4c61b57ae888dd6d",
+      "purpose": "对照 2026-10-29 开发分支，标注新认证邮件配置与 Redis 扩展拆分，未当作已发布包通用行为。"
+    },
+    {
+      "repository": "nocobase/docs-examples-v3",
+      "commit": "0185e4bfa9d7ef05dd180245005a6c1024fe41de",
+      "purpose": "PR #29 入门任务应用，默认模板 1.0.0-beta.84。"
+    },
+    {
+      "repository": "nocobase/docs-examples-v3",
+      "commit": "b91adc8bcd89a238c84f9e62026f250b4833615a",
+      "purpose": "Agents 示例的既有验证记录和源码，保留原文中明确的实测与未实测边界。"
+    }
+  ],
+  "validation": [
+    {
+      "command": "pnpm doc:test",
+      "result": "passed",
+      "test_files": 7,
+      "tests": 42
+    },
+    {
+      "command": "pnpm doc:build",
+      "result": "passed",
+      "generated_pages": 341
+    },
+    {
+      "check": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "check": "Core 双语文件集合与插件指南章节结构",
+      "result": "passed",
+      "files_per_language": 146,
+      "individual_plugin_guides_per_language": 21
+    },
+    {
+      "check": "代码围栏类型与正文改动检查",
+      "result": "passed",
+      "details": "两种语言各 71 段 prompt；非提示词代码仅补齐英文发布插件及 PM2 升级步骤，目录树和日志保留原类型。"
+    }
+  ],
+  "not_executed_in_this_review": [
+    "未重新运行所有示例应用的业务测试或端到端测试；文档已有历史验证记录不算本轮执行结果。",
+    "未重新部署 beta.84 入门应用，也未演练 beta.81 到 beta.84 的已有数据升级、跨主机发布或失败回滚。",
+    "未重新验证邮件投递、真实设备推送、模型调用、商业审批和 Redis 扩展；相应指南保留环境前提与验收要求。",
+    "历史 app-tutorials 示例按其原版本保留；未假定 docs-examples-v3 存在同路径或同提交，不作批量仓库名替换。"
+  ],
+  "pages": [
+    {
+      "path": "deployment/choose-a-deployment-method.md",
+      "title": "选择部署方式",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "部署方式的选择、构建产物边界、初始化与业务数据迁移的区别。",
+      "changes": []
+    },
+    {
+      "path": "deployment/publish-app-release.md",
+      "title": "发布应用新版本",
+      "zh": "revised",
+      "en": "revised",
+      "review": "发布目标、备份、迁移影响、原有数据与权限、新功能的验收。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。"
+      ]
+    },
+    {
+      "path": "developing-apps/apis-and-services.md",
+      "title": "路由与 HTTP 接口",
+      "zh": "revised",
+      "en": "revised",
+      "review": "删除历史示例仓库必须私有授权的错误前提；保留 beta.78 独立项目基线，不将 tutorialTasks/tutorialProjects 与当前 tasks 混用。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/application-commands.md",
+      "title": "编写应用命令",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "CLI 入口注册、参数与输出、应用生命周期和退出清理。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/authentication-and-permissions.md",
+      "title": "认证、权限与数据范围",
+      "zh": "revised",
+      "en": "revised",
+      "review": "删除历史示例仓库必须私有授权的错误前提；保留 beta.78 独立项目基线，不将 tutorialTasks/tutorialProjects 与当前 tasks 混用。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。"
+      ]
+    },
+    {
+      "path": "developing-apps/background-tasks.md",
+      "title": "后台任务与定时执行",
+      "zh": "revised",
+      "en": "reviewed_retained",
+      "review": "调度定义由代码提供；管理员页面用于查看、启停和历史检查。",
+      "changes": [
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。"
+      ]
+    },
+    {
+      "path": "developing-apps/cli-client.md",
+      "title": "为应用提供 CLI 客户端",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "CLI HTTP Client 的认证、请求地址、错误处理与服务端授权。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/client-business-services.md",
+      "title": "客户端业务服务",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“客户端业务服务”的示例前提、用户行为、状态与权限边界及验证步骤。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。"
+      ]
+    },
+    {
+      "path": "developing-apps/configuration-and-settings.md",
+      "title": "应用配置（config.yml）",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "配置来源、加载顺序、环境变量与运行时设置的区别。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/data-models-and-migrations.md",
+      "title": "建表与数据初始化",
+      "zh": "revised",
+      "en": "revised",
+      "review": "删除历史示例仓库必须私有授权的错误前提；保留 beta.78 独立项目基线，不将 tutorialTasks/tutorialProjects 与当前 tasks 混用。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/data-requests-and-state.md",
+      "title": "数据请求与状态管理",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“数据请求与状态管理”的示例前提、用户行为、状态与权限边界及验证步骤。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。"
+      ]
+    },
+    {
+      "path": "developing-apps/develop-with-an-agent.md",
+      "title": "和 Agent 一起开发",
+      "zh": "revised",
+      "en": "revised",
+      "review": "增加按任务查找提示词的入口；校正规则加载、会话记忆、进程管理和 Skills 同步的保证。",
+      "changes": [
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/existing-databases.md",
+      "title": "接入已有数据库",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "external 结构管理边界、数据库账号权限与实际写入授权。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/localization.md",
+      "title": "多语言",
+      "zh": "revised",
+      "en": "revised",
+      "review": "保留 beta.81 配置示例，删除它与当前入门应用版本相同的错误描述。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/manage-plugins.md",
+      "title": "管理插件",
+      "zh": "revised",
+      "en": "revised",
+      "review": "routeComponentOverrides 需要显式传入；route-overrides.ts 只是可选文件组织方式。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/multiple-databases.md",
+      "title": "多数据库连接",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "数据源注册、目录、连接选择与跨库事务限制。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/overview.md",
+      "title": "应用开发概览",
+      "zh": "revised",
+      "en": "revised",
+      "review": "服务目录用于组织实现，Provider 聚合入口负责注册，二者不能混用。",
+      "changes": [
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。"
+      ]
+    },
+    {
+      "path": "developing-apps/page-layouts.md",
+      "title": "页面布局",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“页面布局”的示例前提、用户行为、状态与权限边界及验证步骤。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。"
+      ]
+    },
+    {
+      "path": "developing-apps/pages-and-interactions.md",
+      "title": "UI 组件与交互",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“UI 组件与交互”的示例前提、用户行为、状态与权限边界及验证步骤。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/pages-routes-and-navigation.md",
+      "title": "页面、路由与导航",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“页面、路由与导航”的示例前提、用户行为、状态与权限边界及验证步骤。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/plugin-commands.md",
+      "title": "接入插件命令",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "插件 CLI 注册、帮助、参数以及安装与运行时注册的区别。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/querying-data.md",
+      "title": "查询与操作数据",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“查询与操作数据”的示例前提、用户行为、状态与权限边界及验证步骤。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/request-validation-and-errors.md",
+      "title": "请求校验与错误处理",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "输入校验、稳定错误标识、响应协议与授权边界。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/server-business-services.md",
+      "title": "服务端业务服务",
+      "zh": "revised",
+      "en": "revised",
+      "review": "删除历史示例仓库必须私有授权的错误前提；保留 beta.78 独立项目基线，不将 tutorialTasks/tutorialProjects 与当前 tasks 混用。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。"
+      ]
+    },
+    {
+      "path": "developing-apps/server-localization.md",
+      "title": "服务端多语言",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "服务端资源加载、会话语言、后台接收人语言与并发翻译。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/testing-and-acceptance.md",
+      "title": "测试与验收",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "类型检查、业务测试和真实用户验收各自能证明什么。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/themes-and-styles.md",
+      "title": "主题与样式",
+      "zh": "revised",
+      "en": "revised",
+      "review": "保留 beta.81 配置示例，要求新项目核对已安装模板；不改动用户主题偏好语义。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "developing-apps/transactions-and-consistency.md",
+      "title": "事务与数据一致性",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "事务传播、提交后副作用、重试与幂等性。",
+      "changes": []
+    },
+    {
+      "path": "developing-apps/upgrade-nocobase-core.md",
+      "title": "升级 NocoBase Core",
+      "zh": "revised",
+      "en": "revised",
+      "review": "明确 beta.84 新应用验证不代表 beta.81 到 beta.84 的已有数据升级验证。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/background-jobs.md",
+      "title": "后台任务与执行器",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“后台任务与执行器”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/client-services.md",
+      "title": "客户端服务",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“客户端服务”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。"
+      ]
+    },
+    {
+      "path": "extension-development/create-plugin.md",
+      "title": "创建插件",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“创建插件”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/database-and-migrations.md",
+      "title": "数据库资源与迁移",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“数据库资源与迁移”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。"
+      ]
+    },
+    {
+      "path": "extension-development/extend-command-line.md",
+      "title": "命令行扩展",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“命令行扩展”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/frontend-components.md",
+      "title": "组件与样式",
+      "zh": "revised",
+      "en": "revised",
+      "review": "保留 shadcn 和 UI Library 原则，明确宿主主题及样式仍是接入约束。",
+      "changes": [
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "将组件说明与宿主样式和主题要求同步。"
+      ]
+    },
+    {
+      "path": "extension-development/localization.md",
+      "title": "客户端多语言",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“客户端多语言”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/pages-and-menus.md",
+      "title": "页面、路由与菜单",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“页面、路由与菜单”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/plugin-declarations.md",
+      "title": "插件声明与公开入口",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "公开导出、运行时声明、数据库资源路径与构建映射。",
+      "changes": []
+    },
+    {
+      "path": "extension-development/plugin-development-guidance.md",
+      "title": "插件开发指引（AGENTS.md）",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "插件开发规则的入口、任务提示词与项目 Skills 的职责。",
+      "changes": []
+    },
+    {
+      "path": "extension-development/plugin-structure.md",
+      "title": "插件结构",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "脚手架目录、源码与发布入口、可选功能的接入方式。",
+      "changes": []
+    },
+    {
+      "path": "extension-development/publish-plugin.md",
+      "title": "构建与发布",
+      "zh": "revised",
+      "en": "revised",
+      "review": "补齐英文的本地构建和随应用交付步骤、资源与类型声明检查。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。",
+        "修正过时版本、能力描述或中英文不一致。",
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。"
+      ]
+    },
+    {
+      "path": "extension-development/react-context-and-providers.md",
+      "title": "React Context 与 Provider",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“React Context 与 Provider”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/server-apis.md",
+      "title": "路由与 HTTP 接口",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“路由与 HTTP 接口”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/server-localization.md",
+      "title": "服务端多语言",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“服务端多语言”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/server-services.md",
+      "title": "业务服务与 ServiceProvider",
+      "zh": "revised",
+      "en": "revised",
+      "review": "withApp 不会自动注册服务；在纯服务解析前调用 registerProviders，依赖启动资源时遵守启动契约。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。"
+      ]
+    },
+    {
+      "path": "extension-development/service-provider.md",
+      "title": "ServiceProvider 与服务生命周期",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“ServiceProvider 与服务生命周期”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/testing-and-verification.md",
+      "title": "测试与验证",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“测试与验证”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/when-to-write-a-plugin.md",
+      "title": "什么时候写插件",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "应用内实现、独立库和插件的适用范围，避免过早拆分。",
+      "changes": []
+    },
+    {
+      "path": "extension-development/write-plugin-skills.md",
+      "title": "插件 Skill",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“插件 Skill”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "extension-development/write-your-first-plugin.md",
+      "title": "编写第一个插件",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“编写第一个插件”的公开入口、注册与构建要求；保留开发任务必须的技术约束。",
+      "changes": [
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "framework/background/jobs.md",
+      "title": "后台任务与执行器",
+      "zh": "revised",
+      "en": "revised",
+      "review": "保留固定源码基线，补充新开发分支 Redis 扩展拆包与注册前提。",
+      "changes": [
+        "补充开发分支变更及适用版本，不将其视为所有已发布包的行为。"
+      ]
+    },
+    {
+      "path": "framework/background/queues.md",
+      "title": "消息队列",
+      "zh": "revised",
+      "en": "revised",
+      "review": "保留固定源码基线，补充新开发分支 Redis 扩展拆包与注册前提。",
+      "changes": [
+        "补充开发分支变更及适用版本，不将其视为所有已发布包的行为。"
+      ]
+    },
+    {
+      "path": "framework/background/scheduling.md",
+      "title": "周期调度",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "周期规则、时区、任务执行与调度管理的职责划分。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/aggregation.md",
+      "title": "聚合与统计",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "聚合参数、分组、结果以及授权策略的作用范围。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/association-queries.md",
+      "title": "关联查询",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "关联查询、投影、加载方式与行字段策略。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/connections.md",
+      "title": "连接与数据库方言",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "连接创建、数据源选择、关闭和外部数据库配置。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/filtering-pagination.md",
+      "title": "过滤、排序与分页",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "筛选语法、排序与分页边界，用户筛选不能代替授权。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/migrations.md",
+      "title": "数据库迁移",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "迁移顺序、历史校验、执行与回退对数据的影响。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/overview.md",
+      "title": "数据库概览",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "数据层入口、结构管理与 Repository 数据策略。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/query-inputs.md",
+      "title": "查询输入与构造器",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "查询输入的结构、允许字段和服务端校验。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/relations.md",
+      "title": "关系与关联",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "关联定义、外键和关联操作的语义。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/repositories.md",
+      "title": "Repository 与数据操作",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "Repository 入口、读写操作、策略绑定与事务传递。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/schema.md",
+      "title": "数据表与字段",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "Collection 和字段声明、结构同步以及 external 模式边界。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/seeds.md",
+      "title": "初始数据",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "必需种子、sample 数据、执行记录与重置的区别。",
+      "changes": []
+    },
+    {
+      "path": "framework/database/transactions.md",
+      "title": "事务",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "事务作用域、传播、提交和失败回滚。",
+      "changes": []
+    },
+    {
+      "path": "framework/file-storage.md",
+      "title": "文件存储与驱动",
+      "zh": "revised",
+      "en": "revised",
+      "review": "默认文件内容路由不能视为已受业务权限保护；私有文件需显式保护。",
+      "changes": [
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。"
+      ]
+    },
+    {
+      "path": "framework/http/api-client.md",
+      "title": "API Client",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "地址解析、泛型与实际响应、取消和错误的契约。",
+      "changes": []
+    },
+    {
+      "path": "framework/http/middleware.md",
+      "title": "中间件",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "中间件顺序、身份上下文和认证授权边界。",
+      "changes": []
+    },
+    {
+      "path": "framework/http/repository-routes.md",
+      "title": "Repository 数据接口",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "Repository 路由协议、输入校验与权限策略接入。",
+      "changes": []
+    },
+    {
+      "path": "framework/http/routes.md",
+      "title": "路由与请求上下文",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "接口声明、路由装配、部署路径与显式授权。",
+      "changes": []
+    },
+    {
+      "path": "framework/http/validation.md",
+      "title": "请求校验与响应处理",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "校验器的入口、错误结构与稳定标识。",
+      "changes": []
+    },
+    {
+      "path": "framework/overview.md",
+      "title": "框架概览",
+      "zh": "revised",
+      "en": "revised",
+      "review": "纠正文件授权与调度管理页面的能力描述。",
+      "changes": [
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。"
+      ]
+    },
+    {
+      "path": "framework/realtime/topics.md",
+      "title": "实时消息与主题订阅",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "主题订阅、授权、事件发送与退出清理。",
+      "changes": []
+    },
+    {
+      "path": "framework/realtime/websocket.md",
+      "title": "WebSocket 协议与适配",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "连接生命周期、认证、重连与资源所有权。",
+      "changes": []
+    },
+    {
+      "path": "framework/runtime/cli.md",
+      "title": "命令行运行时",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "CLI 启动、命令注册、应用上下文与清理。",
+      "changes": []
+    },
+    {
+      "path": "framework/runtime/client.md",
+      "title": "客户端运行时",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "客户端装配顺序、插件贡献与 React 渲染入口。",
+      "changes": []
+    },
+    {
+      "path": "framework/runtime/lifecycle.md",
+      "title": "应用启动与生命周期",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "客户端和服务端生命周期顺序以及关闭阶段。",
+      "changes": []
+    },
+    {
+      "path": "framework/runtime/plugins.md",
+      "title": "插件加载与扩展",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "插件声明、实际注册、依赖与能力装配。",
+      "changes": []
+    },
+    {
+      "path": "framework/runtime/react-providers.md",
+      "title": "React Provider 的注册与挂载",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "Provider 的装配、顺序与服务容器 Provider 的区别。",
+      "changes": []
+    },
+    {
+      "path": "framework/runtime/server.md",
+      "title": "服务端运行时",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "服务端运行时、配置、插件与 HTTP 应用装配。",
+      "changes": []
+    },
+    {
+      "path": "framework/services/container.md",
+      "title": "服务容器",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "Token 身份、惰性实例、作用域与资源释放。",
+      "changes": []
+    },
+    {
+      "path": "framework/services/integration.md",
+      "title": "前后端服务接入",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "服务注册、依赖注入、解析顺序与业务接入。",
+      "changes": []
+    },
+    {
+      "path": "framework/services/tokens.md",
+      "title": "服务契约与 Token",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "Token 公共入口、类型与标识，不能按名称重新创建同一 Token。",
+      "changes": []
+    },
+    {
+      "path": "framework/support/caching.md",
+      "title": "缓存",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "缓存契约、后端选择、失效与身份隔离。",
+      "changes": []
+    },
+    {
+      "path": "framework/support/ids.md",
+      "title": "ID 生成",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "ID 的生成与使用边界，ID 不提供访问权限。",
+      "changes": []
+    },
+    {
+      "path": "framework/support/logging.md",
+      "title": "日志",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "日志入口、上下文、级别和敏感信息处理。",
+      "changes": []
+    },
+    {
+      "path": "getting-started/create-app.md",
+      "title": "创建应用",
+      "zh": "revised",
+      "en": "revised",
+      "review": "区分预期交付与实际执行结果；后台进程寿命取决于编码工具。",
+      "changes": [
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "getting-started/project-structure.md",
+      "title": "项目结构",
+      "zh": "revised",
+      "en": "revised",
+      "review": "测试示例与 beta.84 基线同步；纠正用户管理、权限插件自带页面的描述。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。"
+      ]
+    },
+    {
+      "path": "getting-started/what-is-core.md",
+      "title": "认识 NocoBase Core",
+      "zh": "revised",
+      "en": "revised",
+      "review": "区分模板现有能力与应用仍需接入和验证的工作；纠正技能包必须运行时注册的说法。",
+      "changes": [
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。"
+      ]
+    },
+    {
+      "path": "index.md",
+      "title": "NocoBase Core",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "Core 阅读入口和章节职责，与现有菜单和后续指南一致。",
+      "changes": []
+    },
+    {
+      "path": "reference/api.md",
+      "title": "API 参考",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "公开 API 索引、查询和服务接口、授权与框架细分章节的衔接。",
+      "changes": []
+    },
+    {
+      "path": "reference/cli.md",
+      "title": "命令行参考",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "命令名称、参数、输出与破坏性命令的非交互行为。",
+      "changes": []
+    },
+    {
+      "path": "reference/compatibility.md",
+      "title": "数据库支持与版本兼容",
+      "zh": "revised",
+      "en": "revised",
+      "review": "区分示例模板版本、源码提交和实际安装包；新应用、源码审阅、数据升级属于不同验证。",
+      "changes": [
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。"
+      ]
+    },
+    {
+      "path": "reference/configuration.md",
+      "title": "配置项参考",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "配置项、优先级、环境变量、默认值与实例边界。",
+      "changes": []
+    },
+    {
+      "path": "reference/faq.md",
+      "title": "常见问题",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "故障排查入口、常见误解与对应章节链接。",
+      "changes": []
+    },
+    {
+      "path": "reference/packages.md",
+      "title": "核心包与工具包索引",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "包清单的源码快照、包职责与公开入口。",
+      "changes": []
+    },
+    {
+      "path": "reference/plugins.md",
+      "title": "插件索引",
+      "zh": "revised",
+      "en": "revised",
+      "review": "插件数量保持为有日期的快照；明确用户和权限管理界面责任，并补充 Redis 扩展变化。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "补充开发分支变更及适用版本，不将其视为所有已发布包的行为。"
+      ]
+    },
+    {
+      "path": "reference/project-conventions.md",
+      "title": "项目目录与文件约定",
+      "zh": "reviewed_retained",
+      "en": "reviewed_retained",
+      "review": "项目规则、生成资源、目录注册与维护约定。",
+      "changes": []
+    },
+    {
+      "path": "tutorials/build-your-first-app.md",
+      "title": "搭建第一个应用",
+      "zh": "revised",
+      "en": "revised",
+      "review": "保留 PR #29 的 beta.84 团队任务应用与固定示例源码；提示词不能替代普通用户和直接 API 权限验证。",
+      "changes": [
+        "明确预期结果和接入责任，删除未经支持的保证及跨页矛盾。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "tutorials/deploy-with-app-installer.md",
+      "title": "使用 PM2 部署（app-installer）",
+      "zh": "revised",
+      "en": "revised",
+      "review": "部署记录明确属于历史 beta.77 演练，当前 beta.84 未重新部署；已有字段和实际迁移计划不再套用旧截止日期示例。 补齐英文新包构建、校验、传输和升级预检步骤。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "tutorials/deploy-with-docker.md",
+      "title": "使用 Docker 部署",
+      "zh": "revised",
+      "en": "revised",
+      "review": "部署记录明确属于历史演练，当前 beta.84 未重新部署；检查新镜像、实际迁移计划、已有数据与权限的验证说明。",
+      "changes": [
+        "修正过时版本、能力描述或中英文不一致。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "using-plugins/agents-and-knowledge/agents.md",
+      "title": "Agents",
+      "zh": "revised",
+      "en": "revised",
+      "review": "开发提示词与应用内业务提示词分开；保留已有真实模型和 Runner 验证记录及未验证边界。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "using-plugins/agents-and-knowledge/knowledge.md",
+      "title": "知识库",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“知识库”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/application-support/foundation.md",
+      "title": "应用底座",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“应用底座”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/application-support/i18n.md",
+      "title": "多语言",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“多语言”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/authentication/api-keys.md",
+      "title": "API 密钥",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“API 密钥”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/authentication/sign-in.md",
+      "title": "身份认证",
+      "zh": "revised",
+      "en": "revised",
+      "review": "原邮件配置标注适用基线；补充开发分支 auth.email 与 AUTH_EMAIL_*，避免套用到未支持的已发布包。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。",
+        "补充开发分支变更及适用版本，不将其视为所有已发布包的行为。",
+        "修正英文找回密码配置说明的语法。"
+      ]
+    },
+    {
+      "path": "using-plugins/authentication/users.md",
+      "title": "用户管理",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“用户管理”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/authorization/default-access.md",
+      "title": "默认数据范围",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“默认数据范围”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/authorization/permissions.md",
+      "title": "权限管理",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“权限管理”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/authorization/restriction-rules.md",
+      "title": "限制规则",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“限制规则”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/authorization/sharing-rules.md",
+      "title": "共享规则",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“共享规则”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/automation/scheduler.md",
+      "title": "定时任务",
+      "zh": "revised",
+      "en": "revised",
+      "review": "明确 Jobs 的存储和执行前提，提示词聚焦提醒需求和重复执行验证。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。",
+        "补充开发分支变更及适用版本，不将其视为所有已发布包的行为。"
+      ]
+    },
+    {
+      "path": "using-plugins/automation/template-print.md",
+      "title": "模板打印",
+      "zh": "revised",
+      "en": "revised",
+      "review": "保留插件仅提供实现指导的能力边界，统一提示词格式与验收说明。",
+      "changes": [
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。",
+        "将实际任务输入统一标为 prompt，保留目录树、日志和代码的类型。"
+      ]
+    },
+    {
+      "path": "using-plugins/collaboration/approval.md",
+      "title": "审批（商业）",
+      "zh": "revised",
+      "en": "revised",
+      "review": "保留审批公开契约和事务约束；提示词明确角色、状态与权限，未声称重新验证商业实现。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/data-and-files/database-explorer.md",
+      "title": "数据库浏览",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“数据库浏览”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/data-and-files/file-management.md",
+      "title": "文件",
+      "zh": "revised",
+      "en": "revised",
+      "review": "修正 UI Library 资产包名为 @nocobase/file-component-ui，保留私有文件授权约束。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "修正过时版本、能力描述或中英文不一致。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/notifications/in-app.md",
+      "title": "站内信",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“站内信”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/notifications/mail.md",
+      "title": "邮件",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“邮件”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/notifications/notification.md",
+      "title": "通知",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“通知”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/notifications/providers.md",
+      "title": "通知渠道",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“通知渠道”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/notifications/web-push.md",
+      "title": "浏览器推送",
+      "zh": "revised",
+      "en": "revised",
+      "review": "检查“浏览器推送”的能力边界、接入前提、业务提示词及插件特有的验收条件；保留固定源码依据。",
+      "changes": [
+        "围绕用户行为、任务范围和验收条件改写提示词，保留正文中的实现约束。",
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。",
+        "统一验收说明的措辞。"
+      ]
+    },
+    {
+      "path": "using-plugins/overview.md",
+      "title": "插件使用概览",
+      "zh": "revised",
+      "en": "revised",
+      "review": "集中说明示例基线、提示词含义和实际验证范围，供各插件指南引用。",
+      "changes": [
+        "集中说明共用开发约定，区分源码快照、已发布包和实际验证范围。"
+      ]
+    }
+  ]
+}

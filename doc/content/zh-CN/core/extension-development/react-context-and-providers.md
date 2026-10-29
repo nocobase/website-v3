@@ -13,7 +13,7 @@ description: 在插件中定义显示偏好上下文，通过 reactProviders 接
 
 ## 使用 Agent
 
-```text
+```prompt
 给公告插件增加紧凑显示偏好，用 React Context 在页面组件间共享。
 将 Provider 接入插件的 reactProviders，保留已有路由和语言资源。
 本例不持久化偏好，刷新后恢复默认值。验证多个消费者同步更新，

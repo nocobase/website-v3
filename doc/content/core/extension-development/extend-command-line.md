@@ -7,7 +7,7 @@ Plugins can contribute App commands for diagnostics, artifact generation and one
 
 ## Use an Agent
 
-```text
+```prompt
 Create a notice-cli plugin with a preview command accepting --text.
 Validate nonempty text and length, return normalized text and its character count,
 and support --json and stable error codes. Keep the generated info command,

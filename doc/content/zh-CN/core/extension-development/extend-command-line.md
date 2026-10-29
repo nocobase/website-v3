@@ -7,7 +7,7 @@ description: 为 App 注册插件命令，处理参数、JSON 输出、错误和
 
 ## 使用 Agent
 
-```text
+```prompt
 请创建 notice-cli 插件，添加 preview 命令，通过 --text 接收公告文本。
 检查非空和长度，返回处理后的文本及字符数，支持 --json 和明确的错误码。
 保留生成的 info 命令，测试成功与失败，再注册到当前 App。

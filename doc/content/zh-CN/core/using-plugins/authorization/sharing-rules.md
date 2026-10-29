@@ -19,18 +19,16 @@ description: "配置共享规则，明确记录范围与操作授权的边界。
 
 **开发提示词**（交给当前应用目录中的 Coding Agent）：
 
-```text
-请使用 @nocobase/app-plugin-authz-sharing-rules，将客户 A 只读共享给销售乙，其他客户和修改权限保持不变。
-保留已有授权扩展，接入规则管理页面及相应设置权限。
-先检查主体是否拥有读取操作，再配置记录范围，不通过新增管理员权限绕过限制。
-用普通用户验证允许记录、范围外记录和直接 API 请求。
+```prompt
+请让销售甲可以将客户 A 只读共享给已有客户查看权限的销售乙。
+销售乙能查看客户 A，但不能因此修改它，也不能看到其他未授权客户或关联数据。
+保留原来的权限，规则由有相应管理权限的人维护。
+检查共享前、共享后和撤销后的访问，包括直接调用接口。
 ```
 
-**完成标志**：乙能读取客户 A，不能因此修改客户或读取其他未授权客户。
+**完成的标志**：乙能读取客户 A，不能因此修改客户或读取其他未授权客户。
 
 ## 重要原理与实现
-
-以下是实现本例时的接入位置与预期界面变化；它们是开发说明，具体文件名沿用当前应用结构。
 
 | 接入位置 | 代码或配置变化 | 界面与行为变化 |
 | --- | --- | --- |
@@ -73,6 +71,6 @@ plugins: [sharingRules()]
 
 相关文档：[权限管理](permissions.md)、[默认数据范围](default-access.md)、[共享规则](sharing-rules.md)、[限制规则](restriction-rules.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+以上是接入后的验收步骤；示例基线和实测范围见[版本与验证说明](../overview.md#示例版本与验证范围)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-sharing-rules)。

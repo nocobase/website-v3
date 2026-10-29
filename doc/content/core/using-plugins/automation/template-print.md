@@ -25,7 +25,7 @@ Confirm the Agent can read `nocobase-app-plugin-template-print`. Do not add none
 
 Give the application Agent a concrete request:
 
-```text
+```prompt
 Use the template-print Skill to add Download order to our order detail page.
 Fill the supplied DOCX template with order details, line items and totals.
 Reuse the current user's record and field permissions.
@@ -38,8 +38,6 @@ The application or business plugin owns templates, queries, rendering dependenci
 **Done when**: Authorized users download correctly populated DOCX files; optional PDF works and opens in the target environment.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -67,6 +65,6 @@ Open generated files and check values, totals, repeating regions and pagination.
 
 Related: [Develop with an agent](../../developing-apps/develop-with-an-agent.md), [Files](../data-and-files/file-management.md), [Permission management](../authorization/permissions.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-template-print).

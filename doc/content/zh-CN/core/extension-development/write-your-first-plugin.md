@@ -11,7 +11,7 @@ description: 在 App 中实现公告栏插件，走通接口、页面、菜单�
 
 在已有 App 的项目目录中打开 Agent，可以这样描述需求：
 
-```text
+```prompt
 请在当前 App 中用 @nocobase/create-plugin 创建 announcements 公告栏插件，
 提供公开的公告查询接口，并在登录后的菜单中加入公告页面。
 先显示一条固定公告，支持中英文界面，完成测试并接入应用。

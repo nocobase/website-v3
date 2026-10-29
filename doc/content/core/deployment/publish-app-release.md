@@ -9,9 +9,13 @@ Publishing a new application release means rebuilding verified code and updating
 
 Tell the Agent where the application runs and how it is deployed. For example:
 
-```text
-Please deploy the current application's new version to the existing server using Docker.
-The deployment directory is /srv/nocobase/tasks. Keep the existing data and configuration, back up before updating, and check the app afterward.
+```prompt
+Please release the task application's new version to its existing Docker environment at /srv/nocobase/tasks.
+
+First check the commit to release, target server and current deployment method. Keep the existing database, file storage and runtime configuration.
+Back up the database and files, and retain the previous image. If data needs migrating, explain the impact and recovery steps first.
+Build and deploy with a new version tag, then check sign-in, existing tasks, role permissions and the feature included in this release.
+Record the checks you actually ran and their results, and identify anything that still needs manual verification.
 ```
 
 For PM2 (app-installer), provide the server and existing installation directory so app-installer can update the application.

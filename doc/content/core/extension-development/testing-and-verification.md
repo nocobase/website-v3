@@ -7,7 +7,7 @@ Plugin checks, App registration and a working user flow are different results. V
 
 ## Use an Agent
 
-```text
+```prompt
 Add behavior tests for this plugin, covering success, invalid input and access boundaries.
 Use production implementations and real plugin declarations.
 Distinguish component, API and App checks, run plugin checks and the App build,

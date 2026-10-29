@@ -11,7 +11,7 @@ By the end of this guide, you will have a usable team task application:
 
 ![Team task list with progress, assignees, due dates and pagination.](/assets/core/tutorials/team-tasks/task-list.png)
 
-Choose either approach below: ask an agent to build it or write the code yourself. Both produce the same application. Then follow [Try the application](#try-the-application) to check the result.
+Choose either approach below: ask an agent to build it or write the code yourself. Both target the same features and permission requirements. Then follow [Try the application](#try-the-application) to check the result.
 
 ## Prepare
 
@@ -27,7 +27,7 @@ Start an agent session in the application directory. Its `AGENTS.md` and `.agent
 
 Send the agent this request:
 
-```text
+```prompt
 Build a team task application with a title, description, assignee, due date and three progress states: To do, In progress and Done.
 Support creation, details, editing, deletion, search, status filtering and pagination, with English and Chinese copy.
 Managers can manage all tasks; members can only view tasks assigned to them and update their progress; readers can only view all tasks.
@@ -36,7 +36,7 @@ Follow the project's AGENTS.md and Skills for implementation and tests, preservi
 Start the application when ready. Tell me the URL, how to prepare test accounts and roles, what you checked and what remains unverified.
 ```
 
-This request states three things: task data and operations, who may do what, and what to deliver. Include permissions so the agent checks each request on the server instead of only hiding buttons.
+This request states three things: task data and operations, who may do what, and what to deliver. State permissions in the request, then verify that the server enforces them on every request using ordinary accounts. Hiding buttons alone does not protect an API.
 
 ### 2. Check the delivery
 
@@ -726,7 +726,7 @@ To check read-only access, add another account, keep `Member` and add only `Task
 
 If behavior differs from expectations, tell the agent the account and roles used, your actions and what you saw. For example:
 
-```text
+```prompt
 An account with only the task member role can still see tasks assigned to other people.
 Check its roles and the server-side data access policy. Fix it and verify with the same account, confirming that only its assigned tasks are visible.
 ```

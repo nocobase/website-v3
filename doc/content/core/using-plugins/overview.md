@@ -46,6 +46,10 @@ Development prompts target a Coding Agent working in the current application dir
 
 Plugins provide different kinds of capabilities. Template printing supplies implementation guidance. User management supplies administration APIs and an invitation page, while the application owns its administration UI. Knowledge base and Application foundation provide registrable pages. Each guide explains ownership of pages, data and business logic.
 
+## Example versions and verification scope
+
+Prompts describe intended behavior; installing a plugin alone does not implement it. Report actual changes, executed checks and unverified items at handover. Email delivery, real-device push and model calls require their respective environments to verify.
+
 These guides were checked against source on 2026-10-28, using main-repository revision [`015404ecd`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins) and the commercial approval plugin's public contracts. [Agents](agents-and-knowledge/agents.md) has a separately verified application baseline, screenshots and source download. Installed versions may differ. Verification steps describe checks for the consuming application; they do not claim that every plugin integration was executed while writing these guides.
 
 ## Related documentation

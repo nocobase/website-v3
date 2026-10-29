@@ -11,7 +11,7 @@ ServiceProvider 把插件提供的服务接入 App 的容器，并管理服务�
 
 ## 使用 Agent
 
-```text
+```prompt
 请为公告功能整理 ServiceProvider：服务端提供可复用的文本预览服务，
 客户端提供页面间共享的布局偏好服务。分别注册到各自的容器，
 明确 Token 和公开入口，验证延迟创建及实例复用。

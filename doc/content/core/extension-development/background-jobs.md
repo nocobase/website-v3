@@ -15,7 +15,7 @@ A new plugin can select `server.jobs`. Add these files and declarations to an ex
 
 ## Use an Agent
 
-```text
+```prompt
 Add an asynchronous announcement-summary job that logs the first 80 Unicode code points.
 Obtain a package-scoped executor from the host Jobs service and register the job
 class before starting consumption. Expose enqueue, rejecting submissions before

@@ -183,7 +183,7 @@ The project chapters use a separate historical example: `tutorialTasks` stores t
 <details>
 <summary>Obtain and configure the example application</summary>
 
-Continue from [the `04-task-due-date` stage of app-tutorials](https://github.com/nocobase/app-tutorials/tree/04-task-due-date), based on default template `1.0.0-beta.78`. The repository is private and requires access. If you already completed that stage, continue in your existing project. Otherwise, obtain it in a new directory:
+Continue from [the `04-task-due-date` stage of app-tutorials](https://github.com/nocobase/app-tutorials/tree/04-task-due-date), based on default template `1.0.0-beta.78`. This is a retained historical example; the repository is no longer used for new documentation examples. Do not copy its models or incremental changes over the current getting-started application. If you already completed that stage, continue in your existing project. Otherwise, obtain it in a new directory:
 
 ```bash
 git clone --branch 04-task-due-date https://github.com/nocobase/app-tutorials.git team-tasks
@@ -215,7 +215,7 @@ Existing tasks have no reliable project assignment. Allow the new field to be nu
 
 Give the agent this chapter as context from the application directory, then describe the request below. Field, API and component details are in the manual steps; the agent should follow them alongside the project's guidance.
 
-```text
+```prompt
 Please add projects to the existing task application. For this step, implement data storage only, without pages or APIs.
 
 Each project needs a required name and a creation time.

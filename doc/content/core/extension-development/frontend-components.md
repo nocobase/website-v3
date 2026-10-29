@@ -3,7 +3,7 @@ title: Components and styles
 description: Organize plugin components, integrate host styles and themes, expose components and optionally distribute UI source assets.
 ---
 
-When developing applications and plugins, you can write and organize frontend components freely. The one constraint is to **use shadcn for UI primitives**. When composing modular interfaces, first consult the components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/).
+When developing applications and plugins, organize frontend components around the interface you need. **Use shadcn for UI primitives**, and follow the host application’s conventions for styles and themes. When composing modular interfaces, first consult the components and blocks in the [NocoBase UI Library](https://ui.nocobase.com/).
 
 The NocoBase UI Library is NocoBase's UI source asset library. It uses shadcn UI Registry to distribute components and blocks for Agents to obtain, modify and compose. Its website provides component examples and installation instructions.
 

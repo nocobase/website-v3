@@ -1,9 +1,9 @@
 ---
 title: 认识 NocoBase Core
-description: Core 是 AI 开发和运行业务系统的开源应用底座。基础能力现成可用，项目结构和写法统一，Agent 只开发你自己的业务。
+description: Core 是开发和运行业务系统的开源应用底座，提供通用能力与项目约定，帮助你和 Agent 专注于业务开发。
 ---
 
-用 Core 创建的应用，一开始就能启动和登录，用户、角色和权限都已就绪。接下来你向 Agent 描述业务，例如“记录供应商和采购订单，订单提交后通知采购经理，供应商资料只有采购部能改”。Agent 只写供应商表、订单表、相关页面和这两条规则；登录、角色与数据范围、通知的发送和投递，直接用 Core 现成的。
+用 Core 的默认模板创建应用，完成配置和初始化后，就可以启动并登录。接下来向编码 Agent 描述业务，例如“记录供应商和采购订单，订单提交后通知采购经理，供应商资料只有采购部能改”。Agent 可以复用 Core 的认证、授权和通知能力，编写数据表、接口、页面和业务规则。具体的数据范围、管理入口与投递渠道仍需按业务接入并验证。
 
 ## 基础能力现成可用
 
@@ -18,7 +18,7 @@ description: Core 是 AI 开发和运行业务系统的开源应用底座。基�
 | AI 与 Agent | 在应用里按权限处理业务的业务 Agent；供人和 Agent 使用的知识库 | [Agents](../using-plugins/agents-and-knowledge/agents.md)、[知识库](../using-plugins/agents-and-knowledge/knowledge.md) |
 | 界面与运行 | UI 组件库、多语言、缓存、日志、实时通信 | [组件与交互](../developing-apps/pages-and-interactions.md)、[多语言](../using-plugins/application-support/i18n.md) |
 
-这些能力有两种形式。**插件**（`@nocobase/app-plugin-*`）注册进应用后生效，可能带来页面、组件、技能或命令；**基础库**（例如数据库 `@nocobase/db`、记录生命周期 `@nocobase/lifecycle`）由应用直接引用。默认模板已经装好常用插件，其余的用 `pnpm nocobase plugin register` 注册。应用运行后，打开「系统设置 › 应用底座」可以看到它实际用到了哪些能力。完整清单见[插件索引](../reference/plugins.md)和[核心包与工具包索引](../reference/packages.md)。
+这些能力有两种形式。**插件**（`@nocobase/app-plugin-*`）注册进应用后生效，可能带来页面、组件、技能或命令；**基础库**（例如数据库 `@nocobase/db`、记录生命周期 `@nocobase/lifecycle`）由应用直接引用。默认模板已经包含常用插件；需要其他运行时插件时，用 `pnpm nocobase plugin register` 注册。仅提供技能的包不需要运行时注册。应用运行后，打开「系统设置 › 应用底座」可以看到它实际用到了哪些能力。完整清单见[插件索引](../reference/plugins.md)和[核心包与工具包索引](../reference/packages.md)。
 
 ## 统一的项目结构和写法
 
@@ -37,7 +37,7 @@ my-app/
 └── package.json   # Core 的包和插件依赖
 ```
 
-`AGENTS.md` 和技能写明业务代码放在哪里、哪些直接用现成能力、迁移和权限怎么写。技能随 Core 的包发布，安装依赖时同步到 `.agents/skills/`，内容和已安装的版本配套。Claude Code、Codex 等编码工具读到的是同一套写法，换人、换模型也不变。各目录的详细说明见[项目结构](project-structure.md)。
+`AGENTS.md` 和技能写明业务代码放在哪里、哪些直接用现成能力、迁移和权限怎么写。技能随 Core 的包发布，安装依赖时同步到 `.agents/skills/`，内容和已安装的版本配套。这些文件为不同编码工具和协作者提供共同依据；具体实现仍需通过代码评审和测试确认。各目录的详细说明见[项目结构](project-structure.md)。
 
 ## 怎样开发
 

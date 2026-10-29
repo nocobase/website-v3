@@ -22,19 +22,16 @@ Email delivery needs a configured mail channel. A delivery failure does not nece
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use the Users plugin to add member management and invitations to the existing app.
-Reuse UsersClient and existing authentication and authorization. Add a user list,
-invitations and assignable-role selection, showing each invitation outcome.
-Preserve existing accounts and grants. Verify management denial as an ordinary
-member and invitation acceptance as the invited account.
+```prompt
+Add member management and invitations to the existing application.
+Authorized managers should be able to view members, enter invitation emails and choose only roles they are allowed to assign.
+Show a result for each invitation. If email delivery fails, explain whether the invitation was created and how to proceed.
+Preserve existing users and permissions. Check that ordinary members cannot perform management actions, then join with an invited account and confirm its roles.
 ```
 
 **Done when**: An invitee joins with the intended roles, while ordinary members cannot call management APIs.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -78,6 +75,6 @@ Disabling, revoking sessions and deleting are distinct operations. Deletion need
 
 Related: [Authentication](sign-in.md), [API keys](api-keys.md), [Permission management](../authorization/permissions.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-users).

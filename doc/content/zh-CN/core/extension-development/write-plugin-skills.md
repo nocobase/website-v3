@@ -11,7 +11,7 @@ description: 为 App Agent 描述插件的公开能力，维护、同步并验�
 
 ## 使用 Agent
 
-```text
+```prompt
 请为 notice-cli 插件编写 Skill，让 App 中的 Agent 能预览公告文本。
 只描述已经实现的 preview 命令，写清输入、输出、错误和注册前提。
 把 Skill 放在插件源码中，验证同步和实际调用，不要修改 App 里生成的副本。

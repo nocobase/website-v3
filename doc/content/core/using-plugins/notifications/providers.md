@@ -28,19 +28,15 @@ Email accepts an address or address array. Webhooks reject `to`, since configura
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Notification Providers to separate business email from operational Feishu alerts.
-Configure system-email and ops-feishu using private server credentials and explicit
-environment mappings. Supply email recipients; let the webhook configuration choose
-the bot destination without to. Verify delivery and failures with controlled
-recipients and a test group. Do not add a personal mailbox UI.
+```prompt
+Separate business email from operational alerts: send business messages to the intended email addresses and alerts to the designated Feishu group.
+Use the application's notification capability with separate channels, keeping credentials in private server configuration.
+Do not add personal mailbox pages in this change. Use a test mailbox and test group to verify delivery, then check feedback for configuration errors and sending failures.
 ```
 
 **Done when**: Test email and alerts reach their separate destinations, and credential failures are visible in logs.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -78,6 +74,6 @@ Send through a business flow or trusted server call and inspect [notification lo
 
 Additional implementations use `ChannelInstance` and `registry.registerChannelType()`. [In-app notifications](in-app.md) and [Web push](web-push.md) come from separate plugins. Use [Email](mail.md) to connect personal mailboxes.
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification-providers).

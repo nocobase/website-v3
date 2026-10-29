@@ -13,7 +13,7 @@ A new plugin can select `client.react-providers`. An existing plugin can add the
 
 ## Use an Agent
 
-```text
+```prompt
 Add a compact-display preference shared through React Context in the announcements plugin.
 Contribute its Provider through reactProviders and preserve existing routes and locales.
 Do not persist this example's preference; refresh restores its default.

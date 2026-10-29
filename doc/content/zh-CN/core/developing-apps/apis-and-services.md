@@ -71,7 +71,7 @@ export default routes;
 
 ## 项目示例的准备
 
-项目与任务示例沿用默认模板 `1.0.0-beta.78`，使用 `tutorialTasks` 和 `tutorialProjects`。运行需要先按[建表与数据初始化](data-models-and-migrations.md#准备示例应用)准备独立应用，包括有访问权限的 `nocobase/app-tutorials` 私有仓库；它不能直接接在当前入门教程的 `tasks` 示例之后。没有该仓库权限也可以阅读代码与职责说明。
+项目与任务示例沿用默认模板 `1.0.0-beta.78`，使用 `tutorialTasks` 和 `tutorialProjects`。运行需要先按[建表与数据初始化](data-models-and-migrations.md#准备示例应用)准备独立应用，使用该页保留的历史示例。`nocobase/app-tutorials` 已停止用于新增文档示例；本篇不能直接接在当前入门教程的 `tasks` 示例之后。只阅读代码与职责说明时，无需运行旧项目。
 
 先完成[业务服务](server-business-services.md)中的 `TutorialProjectService`，再按[认证、权限与数据范围](authentication-and-permissions.md)注册完整 Provider、权限能力及角色。下面的路由会使用这些文件。
 
@@ -89,7 +89,7 @@ export default routes;
 
 在应用目录中把本篇作为参考交给 Agent，再描述下面的需求。字段、接口和组件的具体约定见手动步骤，由 Agent 结合项目指引处理。
 
-```text
+```prompt
 请在现有项目数据模型的基础上，提供查询项目、新建项目和修改任务所属项目的接口，供后续页面使用。
 
 项目列表需要分页，列表和总数都只能包含当前用户有权查看的项目。

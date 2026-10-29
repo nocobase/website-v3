@@ -11,7 +11,7 @@ Start with one fixed announcement, without a database table or editing features.
 
 Open your existing App project in an agent and describe the feature:
 
-```text
+```prompt
 Use @nocobase/create-plugin to create an announcements plugin in this App.
 Add a public announcements API and a page in the signed-in navigation.
 Start with one fixed announcement, support English and Chinese UI, test it and register it in the App.

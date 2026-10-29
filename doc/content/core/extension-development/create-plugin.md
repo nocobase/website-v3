@@ -13,7 +13,7 @@ Plugin development guidance ships with the App’s `@nocobase/app-skills` and sy
 
 Open your agent in the application directory and describe the plugin's name and purpose. For example:
 
-```text
+```prompt
 Create a plugin called demo-tools to extend this application's command-line tools.
 Start with the basic structure and check that it builds successfully.
 ```

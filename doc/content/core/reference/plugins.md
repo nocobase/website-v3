@@ -3,7 +3,7 @@ title: Plugin index
 description: NocoBase 3 plugins, their purposes and whether they are built in.
 ---
 
-This inventory covers application plugins in the reviewed source: 24 in the main repository and 2 in the commercial repository. Entries are alphabetical by package name, with links where source is public.
+This inventory covers the source baseline listed below: 24 application plugins in the main repository and 2 in the commercial repository. It is not a live inventory of the development branch. Entries are alphabetical by package name, with links where source is public.
 
 “Built-in plugin” indicates whether the default template includes the plugin when creating an application. Included plugins are marked “Yes”; plugins that require separate installation are marked “No”. Check the application’s plugin registration files to determine whether a plugin is enabled. See [Manage plugins](../developing-apps/manage-plugins.md) for registration, removal and updates.
 
@@ -15,7 +15,7 @@ This inventory covers application plugins in the reviewed source: 24 in the main
 | [`@nocobase/app-plugin-agents`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-agents) | Configure model APIs or connect Agents on machines for conversations, tool calls and task execution. | Yes |
 | [`@nocobase/app-plugin-api-keys`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-api-keys) | Authenticate API requests with API keys. | Yes |
 | [`@nocobase/app-plugin-authentication`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authentication) | Provide sign-in, sessions and authentication integration. | Yes |
-| [`@nocobase/app-plugin-authorization`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authorization) | Declare business permissions, enforce access decisions and provide permission management UI. | Yes |
+| [`@nocobase/app-plugin-authorization`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authorization) | Declare business permissions, enforce access decisions and provide management APIs; applications supply management pages. | Yes |
 | [`@nocobase/app-plugin-authz-default-access`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-default-access) | Configure default data access scopes for business resources. | Yes |
 | [`@nocobase/app-plugin-authz-restriction-rules`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-restriction-rules) | Apply rules that further restrict data access. | Yes |
 | [`@nocobase/app-plugin-authz-sharing-rules`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-sharing-rules) | Extend record sharing through rules. | Yes |
@@ -34,13 +34,13 @@ This inventory covers application plugins in the reviewed source: 24 in the main
 | [`@nocobase/app-plugin-releases`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-releases) | Manage applications, releases, environments and pluggable deployment drivers. | No |
 | [`@nocobase/app-plugin-scheduler`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-scheduler) | Declare schedules in code and provide execution records and enable/disable APIs. | Yes |
 | [`@nocobase/app-plugin-template-print`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-template-print) | Provide Agent Skills for implementing DOCX and PDF template printing. | Yes |
-| [`@nocobase/app-plugin-users`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-users) | Provide user administration APIs and pages. | Yes |
+| [`@nocobase/app-plugin-users`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-users) | Provide user administration APIs and an invitation acceptance page; applications supply user lists. | Yes |
 
 `app-plugin-template-print` currently ships Skills without Client, Server or CLI runtime entry points, so it does not belong in plugin registration arrays. `agents` and `knowledge` are dependencies of the default template but are not registered by default.
 
 ## Commercial repository plugins
 
-These commercial plugins are not included in the default template. Use is subject to your applicable license.
+The following commercial plugins are not included in that baseline's default template. Use is subject to the applicable license. For Redis adapter plugins split out in newer development source, see the version notes in [Jobs](../framework/background/jobs.md) and [Queues](../framework/background/queues.md), and check the actual release before installing.
 
 | Package | Purpose |
 | --- | --- |

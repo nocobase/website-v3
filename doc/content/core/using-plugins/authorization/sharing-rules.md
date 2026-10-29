@@ -19,18 +19,16 @@ Confirm the operation grant first, configure the range, then verify permitted re
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use @nocobase/app-plugin-authz-sharing-rules. Share customer A read-only with salesperson B, preserving access to other customers and all edit permissions.
-Preserve authorization extensions and integrate rule management with its settings
-permissions. Check the read action before configuring records. Do not add admin
-grants to bypass restrictions. Verify allowed and excluded records through direct APIs.
+```prompt
+Allow customer A to be shared read-only from salesperson A to salesperson B, who already has customer read permission.
+The recipient may view that customer, but must not gain edit access or access to other unauthorized customers or related data.
+Preserve existing permissions and restrict rule management to authorized managers.
+Check access before sharing, after sharing and after revocation, including direct API requests.
 ```
 
 **Done when**: B can read customer A without gaining edit access or other unauthorized customers.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -73,6 +71,6 @@ Rules grant no page, operation or field permission and do not automatically expo
 
 Related: [Permission management](permissions.md), [Default data access](default-access.md), [Sharing rules](sharing-rules.md), [Restriction rules](restriction-rules.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-sharing-rules).

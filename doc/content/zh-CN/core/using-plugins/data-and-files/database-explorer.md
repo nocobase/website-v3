@@ -22,18 +22,16 @@ description: "查看应用数据库连接、Collection 定义和物理结构。"
 
 **开发提示词**（交给当前应用目录中的 Coding Agent）：
 
-```text
-请使用数据库浏览插件，为管理员增加数据库结构查看页。
-复用 DatabaseExplorerClient 和 DATABASE_EXPLORER_ACCESS，展示连接、Collection 和按需加载的物理结构。
-支持分页并提示遍历截断，不增加建表、改表或记录编辑功能。
-验证无权用户、不可达连接、缺失 Collection，以及页面和 API 的一致授权。
+```prompt
+请为有权限的管理员增加数据库结构查看页，方便排查订单字段和关联问题。
+可以选择连接，查看应用定义的表、字段、关联和实际数据库结构，只提供查看功能。
+列表要能翻页；如果只读取了部分结果、连接失败或找不到表，要明确说明。
+请确认无权限用户既不能打开页面，也不能直接调用查询接口，页面不暴露连接密码等私密配置。
 ```
 
-**完成标志**：授权管理员能查看逻辑与物理结构，无权用户不能直接调用查询接口。
+**完成的标志**：授权管理员能查看逻辑与物理结构，无权用户不能直接调用查询接口。
 
 ## 重要原理与实现
-
-以下是实现本例时的接入位置与预期界面变化；它们是开发说明，具体文件名沿用当前应用结构。
 
 | 接入位置 | 代码或配置变化 | 界面与行为变化 |
 | --- | --- | --- |
@@ -74,6 +72,6 @@ description: "查看应用数据库连接、Collection 定义和物理结构。"
 
 相关文档：[数据库连接](../../framework/database/connections.md)、[权限管理](../authorization/permissions.md)、[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+以上是接入后的验收步骤；示例基线和实测范围见[版本与验证说明](../overview.md#示例版本与验证范围)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-database-explorer)。

@@ -13,7 +13,7 @@ This article focuses on plugin contributions: `routes.ts` references page compon
 
 In an existing App, describe the feature:
 
-```text
+```prompt
 Create a help-center plugin with a Help center entry in the signed-in menu.
 Add Guide and FAQ child pages, with Guide as the default.
 Keep the selected view when switching pages, refreshing, or using browser history.

@@ -5,11 +5,11 @@ description: Use semantic styles, customize theme presets, and configure color m
 
 Use `client/styles.css` and `client/theme/` to maintain application appearance. Business components use shadcn components and semantic theme tokens so pages remain consistent across light and dark modes. Translate theme names using [Localization](localization.md).
 
-This guide follows default template `1.0.0-beta.81`, used by the getting-started example. Color mode and theme preset are separate settings; distinguish their defaults from saved user choices.
+The configuration examples follow default template `1.0.0-beta.81`; for a new project, check the corresponding configuration in its installed template. Color mode and theme preset are separate settings; distinguish their defaults from saved user choices.
 
 ## With an agent
 
-```text
+```prompt
 Please review theme consistency for the project feature.
 
 Use the existing shadcn components and semantic theme tokens.

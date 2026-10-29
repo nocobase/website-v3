@@ -9,13 +9,11 @@ This article focuses on plugin integration. See [Create tables and initialize da
 
 ## Use an Agent
 
-```text
-Check this plugin's database resource integration.
-Separate migrations from Seeds and verify the Server declaration, baseDir,
-and resource paths in source and compiled output. Avoid task-name collisions
-with the App and other plugins. Do not create tables or insert initial records
-from Provider startup. Inspect the whole App plan and verify fresh installation,
-upgrades from the previous version and loading of compiled resources.
+```prompt
+Check that the plugin's schema and initial data install and upgrade correctly with the application.
+Preserve published migrations and existing business data. Confirm that resource declarations point to real files and that the build includes them.
+Use the project's migration and seed mechanisms instead of creating tables or inserting initial records during service startup.
+Use an isolated database to check first installation, upgrade with existing data and compiled resource loading. Explain changes to the application's full execution plan.
 ```
 
 ## Create the database capability

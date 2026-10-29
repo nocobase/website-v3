@@ -17,20 +17,16 @@ Generate a report at 02:00 UTC. Implement the target, declare its schedule, and 
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Scheduler to generate a daily business report at 02:00 UTC. Implement and
-register app.daily-report first, then declare a stable schedule key and integrate
-host Jobs. Add protected list, occurrence and enable/disable controls, not an
-arbitrary-code editor. Test timezone, business results, failures and disabling
-with isolated data and a short interval. For async work, add status inspection.
-Do not finalize an incomplete manifest.
+```prompt
+Generate a business summary every day at 02:00 UTC. Give authorized managers a schedule list, execution history and enable/disable controls.
+Show whether a run was triggered, whether the summary finished and why it failed, rather than only reporting that it was scheduled.
+Disabling the schedule must prevent new scheduled runs without changing other schedules.
+Use isolated test data and a short interval to check timing, actual output, failures and disabling, then restore the intended schedule.
 ```
 
 **Done when**: The schedule produces a real report in its declared timezone and stops creating new scheduled work after disabling.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -42,7 +38,7 @@ These are the integration areas and expected interface changes for this example.
 
 Register Server, Client and the required CLI entry, apply migrations and compose `JobExecutorServiceProvider`. The application builds management pages on `/api/scheduler`.
 
-Schedules use `jobs.default`, or the configuration named by `scheduler.jobs` / `SCHEDULER_JOBS`. Memory serves one process; Redis coordinates multiple instances. Keep the selected configuration's `attempts` at `1`; business targets own failure recovery.
+Schedules use `jobs.default`, or the configuration named by `scheduler.jobs` / `SCHEDULER_JOBS`. Memory serves one process; Redis coordinates multiple instances. Redis integration varies by version; check the [Jobs version note](../../framework/background/jobs.md#storage-failure-and-shutdown). Keep the selected configuration's `attempts` at `1`; business targets own failure recovery.
 
 ### Declare a schedule
 
@@ -92,6 +88,6 @@ Test timezone, next execution, occurrences and business results with a short tes
 
 Keep dependencies alive until Scheduler `drain()` settles during shutdown. It does not wait for all external or human work. Related: [Background jobs](../../framework/background/jobs.md), [Scheduling](../../framework/background/scheduling.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-scheduler).

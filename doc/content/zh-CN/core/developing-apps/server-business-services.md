@@ -13,7 +13,7 @@ description: 组织应用业务规则，通过 ServiceProvider 注册依赖，�
 
 ## 示例前提
 
-项目与任务示例沿用默认模板 `1.0.0-beta.78`，使用 `tutorialTasks` 和 `tutorialProjects`。运行需要先按[建表与数据初始化](data-models-and-migrations.md#准备示例应用)准备独立应用，包括有访问权限的 `nocobase/app-tutorials` 私有仓库；它不能直接接在当前入门教程的 `tasks` 示例之后。没有该仓库权限也可以阅读代码与职责说明。
+项目与任务示例沿用默认模板 `1.0.0-beta.78`，使用 `tutorialTasks` 和 `tutorialProjects`。运行需要先按[建表与数据初始化](data-models-and-migrations.md#准备示例应用)准备独立应用，使用该页保留的历史示例。`nocobase/app-tutorials` 已停止用于新增文档示例；本篇不能直接接在当前入门教程的 `tasks` 示例之后。只阅读代码与职责说明时，无需运行旧项目。
 
 ## 编写业务服务
 

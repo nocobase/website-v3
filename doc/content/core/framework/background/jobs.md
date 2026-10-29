@@ -67,6 +67,9 @@ Retries can repeat business operations, so make external calls and database writ
 
 See [Scheduling](scheduling.md) for recurring work and [Queues](queues.md) for channels and lower-level producer/consumer control.
 
+> [!NOTE]
+> The examples retain the pinned source baseline listed below. [Newer development source](https://github.com/nocobase/nocobase/blob/a0b45681ee0a6940068abdff4c61b57ae888dd6d/packages/libs/jobs/README.md) moves Redis support into the commercial `@nocobase/app-plugin-jobs-redis` plugin. That implementation requires a compatible package and Server registration before selecting `redis`. Older npm installations may use the earlier integration; check the [installed version](../../reference/compatibility.md#documentation-baselines-and-installed-versions) and its bundled guidance first.
+
 ## Interfaces and implementation
 
 - [Job contracts and execution](https://github.com/nocobase/nocobase/blob/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/jobs/README.md)

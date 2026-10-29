@@ -7,7 +7,7 @@ Plugins own their copy. The App chooses which languages it offers and which lang
 
 ## Use an Agent
 
-```text
+```prompt
 Add plugin-owned translations for menus, page feedback and errors.
 Bind the plugin namespace explicitly in exported components.
 Complete the generated language files and test English, Chinese and language switching.

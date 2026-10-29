@@ -45,21 +45,14 @@ A **development prompt** goes to the Coding Agent working in your project direct
 Let users open chat beside a business page, select a model, send messages, and return to the conversation later. Give your development Agent this request:
 
 ```prompt
-Use @nocobase/app-plugin-agents to add AI conversations to this NocoBase 3 application.
-First read the project's AGENTS.md, application development Skill, and the Skill
-shipped with the Agents plugin.
+Add AI chat to the current NocoBase 3 application using the installed Agents plugin and chat components. Preserve existing pages and plugins.
 
-Preserve existing pages and plugins. Add model service management, a header chat
-button, and a chat panel beside the main content. Use the plugin's public
-conversation capabilities and agent-chat components for model selection,
-sending messages, stopping generation, and restoring history.
-Isolate chat state by signed-in account and provide English and Chinese text.
+Administrators should manage model services. Users should open a right-side chat panel from the header, select a model, send messages, stop generation and reopen conversation history.
+Switching accounts must not expose the previous account's chat. Support English and Chinese.
 
-Use DeepSeek at https://api.deepseek.com/v1. Receive the key privately and select
-an available chat model from the service's model list.
-Test the connection, send a message through the UI, and reopen the conversation
-to check history. Explain which files changed, what appeared in the interface,
-and which checks actually passed.
+For this example, use DeepSeek at https://api.deepseek.com/v1, with the key supplied privately.
+Choose an available chat model from the service's model list, test the connection, send a real message and reopen the conversation to check history.
+Report the new entry points, actual check results and any configuration still needed.
 ```
 
 **Configuration and operation:** once the development Agent has integrated the pages, inspect the settings in the UI. Use the same steps for manual integration.
@@ -88,7 +81,7 @@ You can now select the model in chat. No corresponding entry is needed in **Mach
 
 After integration, click **Agent chat** in the header and select the configured model. The example sent this conversation prompt through the actual interface:
 
-```text
+```prompt
 Rewrite only these supplied facts as three short English bullets: the demo uses
 SQLite, connects to DeepSeek through a model API, and provides a chat panel.
 This is a writing exercise: do not use page context, call tools, or infer configuration.
@@ -132,7 +125,7 @@ If opening fails, check the model service, the `release-notes` Skill slug, and s
 
 The example sent this **conversation prompt** in that scoped conversation:
 
-```text
+```prompt
 Read the release-notes Skill and its style guide, then draft concise release notes
 in English. Supplied changes: Added model service configuration. Added a chat panel.
 Fixed the missing Skills navigation entry. Verification supplied: 17 route, locale, and
@@ -193,7 +186,7 @@ The Runner connects, claims work, and reports status; the coding tool executes t
 
 First check the execution environment with this **conversation prompt**:
 
-```text
+```prompt
 Perform a read-only smoke test in this conversation's assigned workspace.
 Run pwd and list its top-level files. Report the actual working directory and output
 in English. Do not read credentials, access other directories, edit files, install
@@ -202,7 +195,7 @@ packages, or claim that the application source is present unless you see it.
 
 Ordinary Runner conversations use their own workspace; they do not automatically enter the application source directory. Project-context integration is still needed. A user-supplied host path in chat does not replace authorization. Once that integration is ready, extend verification with a prompt such as:
 
-```text
+```prompt
 Inspect the chat launcher in the currently authorized project.
 First read AGENTS.md and the relevant Skills.
 Add missing English and Chinese tooltip text to the existing chat button,

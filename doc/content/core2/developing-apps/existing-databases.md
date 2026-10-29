@@ -1,24 +1,24 @@
 ---
 title: Connect an existing database
-description: Connect to an externally managed schema, supply metadata and relations, and verify naming and access permissions.
+description: Read an existing schema through an external connection, add metadata and relations, and verify name mapping and access permissions.
 ---
 
-When another system such as a CRM or ERP owns the schema, connect with `schemaManagement: 'external'`. The framework reads existing structure and overlays application-maintained metadata. It does not run migrations, Seeds or Builder DDL on this connection.
+When the database schema is maintained by another system such as a CRM or ERP, the application can connect to it with `schemaManagement: 'external'`. The framework reads the existing structure and overlays the metadata the application maintains; no migrations, Seeds or Builder DDL run on this connection.
 
-`external` defines schema ownership, not read-only permissions. Record access still depends on database credentials and application authorization. This guide follows the Examples template's `externalCrm` structure.
+`external` marks a boundary of schema management; it is not a read-only switch. Whether records can actually be read or written still depends on the database account and application authorization. This guide organizes the configuration and files the same way as `externalCrm` in the Examples template.
 
 ## Confirm the existing schema
 
-Confirm tables, columns, primary keys and business meaning with the database owner. This example assumes these physical objects already exist:
+First ask the database's maintainers to confirm the target tables, fields, primary keys and their business meaning. This example assumes these physical objects already exist:
 
 - `crm_customers`: `id`, `display_name`, `email`.
-- `crm_orders`: `id`, `order_no`, `customer_id`, with `customer_id` referring to the customer ID.
+- `crm_orders`: `id`, `order_no`, `customer_id`, where `customer_id` refers to the customer's `id`.
 
-Metadata files cannot create those tables. The Examples template's `ExternalCrmProvider` prepares a local SQLite demonstration database only; it is not the normal schema creation process for a real external system.
+These tables must already exist; metadata files cannot create them. The Examples template's `ExternalCrmProvider` only prepares a local SQLite demonstration database; when connecting a real system, do not treat that preparation step as the standard way to create tables.
 
 ## Configure the external connection
 
-Merge this connection entry into `connections` in the `server/config/database.ts` factory, preserving existing connections:
+Merge the following connection entry into `connections` in the `server/config/database.ts` factory, keeping the existing connections:
 
 ```ts
 externalCrm: {
@@ -29,13 +29,13 @@ externalCrm: {
 },
 ```
 
-`paths` comes from the existing configuration factory. SQLite is the local example; install the appropriate dialect and use the actual connection parameters for your system. Keep credentials in application environment configuration rather than source control.
+`paths` comes from the existing configuration factory. The local example uses a SQLite file; for a real system, install the dialect package for the target database and use the correct connection parameters. Do not commit credentials to the repository; reuse the application's existing environment configuration.
 
-`tablePrefix: 'crm_'` and `underscored: true` map `crm_orders` to Collection `orders` and `customer_id` to field `customerId`. Metadata and Repositories use those logical names. Check mappings before writing queries.
+`tablePrefix: 'crm_'` and `underscored: true` map `crm_orders` to the logical collection `orders` and `customer_id` to the logical field `customerId`. Metadata and Repositories both use these logical names, so check the mapping before writing queries.
 
 ## Add metadata
 
-The application runtime defaults external connections to `database/<connection>/metadata/`, so this example needs no explicit metadata store. Standalone `@nocobase/db` scripts must configure one explicitly; see [Connections, configuration and dialects](../framework/database/connections.md).
+At runtime, the application reads `database/<connection>/metadata/` for external connections by default, so this example does not need to declare a metadata store. Scripts that use `@nocobase/db` on its own must configure one explicitly; see [Connections and database dialects](../framework/database/connections.md) for the difference.
 
 Create `database/externalCrm/metadata/customers.json`:
 
@@ -55,7 +55,7 @@ Create `database/externalCrm/metadata/customers.json`:
 }
 ```
 
-Create `database/externalCrm/metadata/orders.json`:
+Then create `database/externalCrm/metadata/orders.json`:
 
 ```json
 {
@@ -79,9 +79,9 @@ Create `database/externalCrm/metadata/orders.json`:
 }
 ```
 
-Titles and descriptions add information absent from the schema. The `customer` relation describes existing fields; it creates no columns or foreign keys and repairs no historical records. Match `foreignKey` and `targetKey` to the schema's logical names.
+Titles and field descriptions add information the database schema cannot express. The `customer` relation describes how existing fields connect to the customer collection; it creates no columns or foreign keys and does not repair historical data. `foreignKey` and `targetKey` must match the real schema and the name mapping.
 
-These handwritten JSON files are source assets to commit. Do not use generated `collections/<collection>/metadata.json` artifacts as their input or edit generated files to preserve configuration.
+These handwritten JSON files are source code and should be committed. Do not use the generated `collections/<collection>/metadata.json` as input for this directory, and do not save configuration by editing generated files.
 
 ## Refresh Collection information
 
@@ -90,13 +90,13 @@ pnpm nocobase collections generate --connection externalCrm
 pnpm nocobase collections generate --connection externalCrm --check
 ```
 
-Generated artifacts under `database/externalCrm/collections/` combine physical schema and metadata. Regenerate after changes and inspect logical names, fields and relations. Reload running applications too; editing JSON does not imply every cache updates automatically.
+The generated result in `database/externalCrm/collections/` reflects the model combined from the physical schema and the added metadata. Regenerate after changing metadata, and check the logical collection names, fields and relations. Running processes also need to reload the application; changing the JSON does not refresh every cache automatically.
 
-Recheck after schema changes by the external owner. Missing fields must be resolved with that owner, not by adding application migrations to the external connection.
+After the external system changes its schema, check and verify again. A missing field is for the schema's maintainers to resolve; it cannot be "fixed" by adding application migrations to the external connection.
 
 ## Query from a business service
 
-This function requires an authorization-derived policy allowing the selected order fields and customer relation fields:
+The function below uses an authorized policy, which must allow reading the order fields and the customer fields selected through the `customer` relation:
 
 ```ts
 import type { DatabaseManager, RepositoryPolicy } from '@nocobase/db';
@@ -116,12 +116,12 @@ export async function listCrmOrders(
 }
 ```
 
-For read-only access, restrict both database credentials and exposed application operations. `include()` does not grant relation access. If orders and customers need separate business scopes, query with separate policies; see [Querying and manipulating data](querying-data.md).
+To offer read-only access, restrict both the database account and the operations the application exposes. `include()` does not grant read access to the relation; if orders and customers must use the scopes of different business actions, bind and query each policy separately, as described in [Querying and manipulating data](querying-data.md).
 
-To expose HTTP, follow [Routes and HTTP APIs](apis-and-services.md) and explicitly configure `connection: 'externalCrm'`, operations and policies in Repository API declarations. A connection or metadata file does not automatically expose endpoints.
+If you need an HTTP API, declare Repository data endpoints as described in [Routes and HTTP APIs](apis-and-services.md), stating `connection: 'externalCrm'`, the allowed operations and the permission policy explicitly. Adding a connection or metadata does not expose an API by itself.
 
 ## Verify
 
-Confirm physical/logical name mappings and query actual fields and relations. Test missing relations and externally deleted records, and verify intended write restrictions with real credentials. Check that Builder DDL is refused and no application migrations or Seeds run on this connection. Do not bypass schema ownership through a low-level client.
+Confirm that logical and physical names map correctly and that fields and relations can actually be queried; test the results when a relation is empty and after an external record is deleted; and verify with a real account that writes are rejected as intended. Also confirm that the framework refuses Builder DDL and that the application runs no migrations or Seeds on this connection. Do not get around schema management through a low-level client.
 
-SQLite demonstrates the flow only. Validate types, primary keys, access and schema changes on the target database before deployment. See [Multiple database connections](multiple-databases.md) for transaction scope.
+The SQLite demonstration only illustrates the process; before going live, verify types, primary keys, permissions and schema changes on the target database. For transaction scope across connections, see [Multiple database connections](multiple-databases.md).

@@ -1,16 +1,15 @@
 ---
 title: Transactions and data consistency
-description: Define service transaction boundaries and verify rollback, concurrency and cross-connection or external effects.
+description: Draw transaction boundaries in business services, and verify rollback on failure, concurrency constraints, and the limits of cross-connection and external effects.
 ---
 
-A transaction commits or rolls back a group of operations on one database connection. Organize it around a business result, such as checking that a task and target project are eligible before saving an assignment.
+A transaction makes a group of operations on one database connection commit or roll back together. Organize a transaction around one clear business outcome, for example: confirm that both the task and the target project may be acted on, then save the task's assignment.
 
-This guide retains the historical `tutorialTasks`/`tutorialProjects` model and prerequisites from [Create tables and initialize data](data-models-and-migrations.md), not the current getting-started `tasks` model. See [Server business services](server-business-services.md) for the complete service.
+This guide reuses the historical `tutorialTasks`/`tutorialProjects` example and its prerequisites from [Create tables and initialize data](data-models-and-migrations.md); it is not the `tasks` model of the current getting-started tutorial. The complete service is in [Server business services](server-business-services.md).
 
 ## Use the transaction connection in a service
 
-
-Use a transaction for operations that must succeed or fail together, taking every operation from the callback's `connection`:
+Reads and writes that must succeed or fail together go into one transaction, and every operation uses the `connection` the callback receives:
 
 ```ts
 await database.transaction(async (connection) => {
@@ -31,35 +30,35 @@ await database.transaction(async (connection) => {
 });
 ```
 
-This illustrates transaction structure. Production services use distinguishable business errors, translated into API errors by routes; see [Routes and HTTP APIs](apis-and-services.md). Calling the outer `database.repository()` runs outside this transaction. Catching an error and returning normally may commit partial work.
+This only sketches the structure of the transaction; a real service uses distinguishable business errors that the route then turns into API errors, as shown in [Routes and HTTP APIs](apis-and-services.md). Calling the outer `database.repository()` inside the transaction takes the operation out of this transaction, and catching an error and then returning normally may commit part of the work.
 
-Transactions do not automatically prevent concurrent overwrites. If last successful write wins is unacceptable, add concurrency controls such as version conditions. Trigger external effects such as notifications after commit. `connection.afterCommit()` is useful for that boundary, but failure cannot undo committed data and does not guarantee external message delivery.
+A transaction does not solve concurrent overwrites by itself. When two people change the same task and the business cannot accept "the last successful write wins", you also need concurrency control such as a version condition. External side effects such as notifications belong after the commit. `connection.afterCommit()` suits triggering work after a commit, but its failure cannot undo committed data, and it does not guarantee that an external message arrives.
 
-## Propagate the connection to collaborating methods
+## Pass the transaction connection to collaborating methods
 
-Pass the transaction connection into helper methods rather than letting them return to a global manager. Never store it on a singleton or pass it to background work after the transaction ends.
+When a service is split into several methods, the caller passes the transaction connection down. Do not let inner methods go back to the global database manager, and do not store the connection in a singleton's fields. Once the transaction ends, the connection must not be handed to background work.
 
-For a named connection, use `database.connection('analytics').transaction(...)`. A default-connection transaction does not cover analytics writes. Multiple connections are not a distributed transaction; see [Multiple database connections](multiple-databases.md).
+To work only on a specific connection, use `database.connection('analytics').transaction(...)`; a transaction on the default connection does not cover writes to `analytics`. Several connections do not form a distributed transaction; see [Multiple database connections](multiple-databases.md).
 
 ## Transactions do not replace business constraints
 
-| Requirement | Additional mechanism |
+| Requirement | What else is needed |
 | --- | --- |
-| A business key must be unique | A database unique constraint and conflict handling |
-| References must point to existing records | Appropriate foreign keys and deletion rules |
-| Do not overwrite another user's recent changes | Version preconditions or other concurrency controls |
-| Modify only authorized records | Authorization policies bound to transactional Repositories |
+| A business key must not repeat | A database unique constraint, plus conflict handling |
+| References must point to existing records | Foreign keys and deletion rules that fit the business |
+| Changes someone just saved must not be overwritten | A version precondition or other concurrency control |
+| Only authorized records may be changed | Authorization policies bound to the Repositories inside the transaction |
 
-Reading before updating does not automatically prevent lost updates. The project example does not promise optimistic locking. Define version fields and conditions when needed and test concurrent behavior on the target database.
+"Query first, then update" does not prevent concurrent overwrites automatically. The project example provides no optimistic locking; when you need version control, define the model's version field and update condition explicitly and test concurrent behavior on the target database. A successful single-user run does not prove the implementation is right.
 
-## After-commit work is not reliable delivery
+## Running after commit is not reliable delivery
 
-`connection.afterCommit()` callbacks run after commit and are discarded on rollback. Callback failures neither undo committed data nor reject the transaction Promise; `onTransactionCallbackError` handles them, with a warning by default. See [Transaction mechanisms](../framework/database/transactions.md) for waiting and nesting semantics.
+`connection.afterCommit()` callbacks run only after the commit and are discarded when the transaction rolls back. A failing callback neither undoes committed data nor makes the transaction's Promise fail; the error is handled by `onTransactionCallbackError`, and produces a warning when that is not configured. For the waiting and nesting semantics, see [Transactions](../framework/database/transactions.md).
 
-Mail, HTTP calls and job submission do not roll back with the database. For eventual delivery after commit, persist pending-delivery records in the same transaction, then use a recoverable background process with business idempotency keys. See [Background jobs and scheduled execution](background-tasks.md).
+Mail, HTTP calls and job submissions do not roll back with the database. If "once the data is committed, the message must eventually be sent" is a requirement, write a pending-delivery record in the same transaction as the business change, then deliver it from a recoverable background process with a business idempotency key. For connecting jobs, see [Background jobs and scheduled execution](background-tasks.md).
 
-## Verify persisted results
+## Verify the data results
 
-In isolated databases, cover successful commit, failure after the first write, and after-commit callback failure. Read data again after failures to establish whether it rolled back; asserting an exception alone is insufficient.
+In an isolated database, cover at least three cases: a successful commit, a second step that fails after the first write, and a callback that fails after the commit. After a failure, always read the data again to confirm whether it rolled back; asserting only that an error was thrown does not prove the original record is unchanged.
 
-Also test unique-key races, version conflicts, authorization scopes and connection isolation. SQLite can verify basic rules, but not another database's isolation, locking or DDL behavior. The project endpoint tests are linked from [Routes and HTTP APIs](apis-and-services.md); see [Testing and acceptance](testing-and-acceptance.md) for test organization.
+Then verify unique-key races, version conflicts, permission scopes and connection isolation. Tests on SQLite can verify the basic rules, but cannot replace verifying the isolation level, locking and DDL behavior of the target database. The project example's real API tests are in [Routes and HTTP APIs](apis-and-services.md), and general test organization is in [Testing and acceptance](testing-and-acceptance.md).

@@ -1,15 +1,15 @@
 ---
 title: Multiple database connections
-description: Configure named connections, organize their migrations and Seeds, and select connections explicitly at runtime.
+description: Configure named connections, maintain migrations and initial data per connection, and make runtime access and transaction scope explicit.
 ---
 
-An application can use several database connections. The Examples template stores application data in `main` and demonstrates separate analytics data in `analytics`; the app manages both schemas. Connection names correspond to `database/<connection>/`, not automatic module or tenant isolation.
+An application can use several database connections. The Examples template keeps application data in `main` and demonstrates separate analytics data in `analytics`, with the application managing both schemas. A connection name corresponds to a `database/<connection>/` directory; it is neither a business module name nor an automatic tenant isolation rule.
 
-This guide adds a managed connection to an existing app. For databases owned by another system, see [Connect an existing database](existing-databases.md).
+This guide shows how to add a second managed connection to an existing application. To connect a database maintained by another system, see [Connect an existing database](existing-databases.md) instead.
 
-## Add connection configuration
+## Add the connection configuration
 
-Preserve existing settings in `server/config/database.ts` and add `analytics`. This minimal complete example contains two SQLite connections:
+Keep the existing configuration in `server/config/database.ts` and add `analytics`. Below is a minimal complete example with just two SQLite connections:
 
 ```ts
 import {
@@ -37,11 +37,11 @@ export default defineAppDatabaseConfig(
 );
 ```
 
-Use different files so the two names do not accidentally point to the same database. These are defaults; deployment configuration may override them. Check resolved targets before running commands. Merge changes when existing connections, drivers or environment mappings differ.
+Two different files are used here, so the two connections cannot accidentally point to the same database. The configuration file only defines defaults, and deployment environments can still override it; check the final connection targets before running commands. If other connections, dialects or environment variable mappings already exist, merge the change instead of replacing the whole file.
 
-`connectionEnvironment('main')` binds standard environment variables only to the main connection. Declare mappings explicitly for another connection; `DB_HOST` and similar variables do not automatically configure all connections. See [Connections, configuration and dialects](../framework/database/connections.md) and [Application configuration (config.yml)](configuration-and-settings.md).
+`connectionEnvironment('main')` binds the standard environment variables only to the main connection. If the second connection also needs environment variables, configure its mapping explicitly; do not assume variables such as `DB_HOST` apply to every connection. For configuration loading and dialect parameters, see [Connections and database dialects](../framework/database/connections.md) and [Application configuration (config.yml)](configuration-and-settings.md).
 
-## Organize resources by connection
+## Maintain resources per connection
 
 ```text
 database/
@@ -53,7 +53,7 @@ database/
     └── seeds/
 ```
 
-A directory does not create a connection: its name must match configuration. Each connection has its own schema, records and execution history. Do not change `database.default` merely to access analytics, since existing calls without an explicit connection would change targets too.
+Adding a directory does not create a connection; the connection configuration and the resource directory must share the same name. Each connection maintains its own schema, records and execution history. Do not change `database.default` to `analytics` just to use the second connection, or every piece of existing code that does not name a connection will switch to the new target.
 
 Create `database/analytics/migrations/202611040003_create_analytics_events.ts`:
 
@@ -76,7 +76,7 @@ export default defineMigration({
 });
 ```
 
-This small `events` model is independent of the Examples template's full analytics features. If it needs initial records, put Seeds under the same connection; see [Create tables and initialize data](data-models-and-migrations.md).
+The `events` here is a small, independent model; you do not need to copy all of the Examples template's analytics features. If you need initial events, put a Seed in the same connection's `seeds/` directory; see [Create tables and initialize data](data-models-and-migrations.md).
 
 ## Apply changes to an explicit connection
 
@@ -86,11 +86,11 @@ pnpm nocobase db apply --connection analytics
 pnpm nocobase collections generate --connection analytics --check
 ```
 
-The Examples template configures `migrations.autoRun` and `seeds.autoRun` for analytics. This guide uses explicit commands to make scope clear, without relying on automatic execution. Check actual startup settings first. `--all` and `--connection` are mutually exclusive; understand every connection's management mode before bulk operations. See [Command-line reference](../reference/cli.md).
+The Examples template configures `migrations.autoRun` and `seeds.autoRun` for `analytics`; this guide uses explicit commands instead, to make the scope of each change clear rather than relying on automatic execution. Check the application's actual startup configuration before running them. `--all` and `--connection` cannot be used together; before bulk operations, confirm each connection's management mode. For the full options, see [Command-line reference](../reference/cli.md).
 
-## Select the connection in business services
+## Choose the connection explicitly in business services
 
-Pass the application's container-resolved `DatabaseManager` into this function, together with a policy from the operation's authorization result:
+Pass the `DatabaseManager` obtained from the application container to the function below; `policy` must come from the authorization result of this business action:
 
 ```ts
 import type { DatabaseManager, RepositoryPolicy } from '@nocobase/db';
@@ -109,14 +109,14 @@ export async function listAnalyticsEvents(
 }
 ```
 
-`database.repository('events', 'analytics')` also selects the connection explicitly. Omitting it uses the default, which is especially easy to miss when tables share names. Do not create a manager or connection pool for every request.
+`database.repository('events', 'analytics')` is another way to choose the connection explicitly. Leaving the connection out uses the default one; when business tables with the same name exist in different connections, it is especially easy to read the wrong database. Do not create a new database manager or connection pool on every request.
 
-## Cross-connection boundaries
+## Limits across connections
 
-A transaction covers only its connection. Updating both application and analytics databases requires an explicit compensation or asynchronous synchronization design; wrapping both writes in a main transaction does not make them atomic. Do not treat cross-connection composition as an ordinary Collection relation query. Query each connection and combine results according to business rules.
+A transaction only covers its own connection. When the business needs to update both the main database and the analytics database, design an explicit compensation or asynchronous synchronization process; wrapping both writes in the main database's transaction does not make them atomic. Nor should you treat combining data across connections as an ordinary Collection relation query: query each connection separately, then combine the results according to business rules.
 
-Another connection still needs business authorization. Analytics data does not bypass permissions. See [Transactions and data consistency](transactions-and-consistency.md).
+A new connection also needs business permissions; data coming from the analytics database does not skip authorization. For designing transactions and external synchronization, see [Transactions and data consistency](transactions-and-consistency.md).
 
 ## Verify
 
-Ensure analytics migrations leave main unchanged, explicit queries select the right records even with matching table names, and denied access, empty databases and connection failures behave as intended. Test migrations and types with your deployment dialect; two SQLite files do not establish compatibility with every database.
+Confirm that: running only the analytics migrations leaves main unchanged; when both connections have a table with the same name, a query that names its connection still gets the right records; and denied permissions, an empty database and connection failures are all handled as expected. Before deploying, test migrations and data types on the dialect you actually use; passing on two SQLite files does not mean every database is compatible.

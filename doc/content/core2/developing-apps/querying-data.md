@@ -1,13 +1,13 @@
 ---
 title: Querying and manipulating data
-description: Use Repositories for business records, relations, pagination, transactions and bulk operations, and decide when to use Query.
+description: Use Repositories to query and change business records, handle relations, pagination, transactions and bulk operations, and decide when to switch to Query.
 ---
 
-Start data access with a Repository. It understands Collection fields and relations and supports reading, creating and changing business records. Query operates on tables and result sets, for reports and aggregations that Repository cannot express. Both require callers to establish identity and permissions first.
+Data access usually starts with a Repository: it understands a Collection's fields and relations and suits reading, creating and changing business records. Query works on tables and result sets and suits reports and aggregations that a Repository cannot express. Whichever you use, the caller must establish identity and permissions first.
 
-The snippets run on the application server and use `tutorialProjects` and `tutorialTasks` from [Create tables and initialize data](data-models-and-migrations.md). The example application uses default template `1.0.0-beta.78`. This is a separate historical project example, not the current getting-started application with its `tasks` table. These are data-access excerpts; complete routing, authorization and service registration are in [Server business services](server-business-services.md).
+The code in this guide runs on the application server and reuses `tutorialProjects` and `tutorialTasks` from [Create tables and initialize data](data-models-and-migrations.md). The example is based on an application on default template `1.0.0-beta.78`; the snippets only illustrate data access, and the complete routing, authorization and service registration are in [Server business services](server-business-services.md). The `tutorialTasks`/`tutorialProjects` here belong to the separate historical project example, not to the current getting-started `tasks`; confirm the baseline in [Create tables and initialize data](data-models-and-migrations.md) before running it.
 
-## With an agent
+## With an Agent
 
 ```text
 Please improve the existing project list queries so search, sorting and pagination stay consistent.
@@ -21,11 +21,11 @@ If any step fails, preserve the old assignment without partial saves.
 Use a real database to verify search, pagination, permission scopes and data after failure. Do not change existing user grants.
 ```
 
-## Without an agent
+## Without an Agent
 
 ### Obtain a Repository
 
-Resolve the database once in the route factory, or inject it into a business service through its constructor:
+Resolve the database service once in the route factory, or pass it to a business service through its constructor:
 
 ```ts
 import { databaseManagerToken } from '@nocobase/db';
@@ -33,13 +33,13 @@ import { databaseManagerToken } from '@nocobase/db';
 const database = app.container.resolve(databaseManagerToken);
 ```
 
-`database.repository('tutorialProjects')` uses the default connection and the Collection's logical name. Do not guess physical table names or expose the database service to the browser.
+`database.repository('tutorialProjects')` uses the default connection and the Collection's logical name. Do not guess physical table names in the database, and never expose the database service to the browser.
 
-A Repository does not infer the current request's user. For external requests, obtain a `RepositoryPolicy` from authorization and bind record scopes and field permissions with `withPolicy()`. User-supplied filters may narrow that scope but are not evidence of authorization.
+A Repository does not infer who the current request's user is. When handling external requests, first obtain a `RepositoryPolicy` from the authorization result, then bind the record scope and field permissions with `withPolicy()`. Filters submitted by the user can only narrow that scope further; they are never a basis for authorization.
 
 ### Filter, sort and paginate
 
-This function accepts validated pagination parameters and the current read policy. Place it in a business service; the endpoint first validates `page >= 1`, `1 <= pageSize <= 100` and search length:
+The function below receives already-validated pagination parameters and the permission policy for this view action. It belongs in a business service, with the API validating `page >= 1`, `1 <= pageSize <= 100` and the search text's length beforehand:
 
 ```ts
 import type {
@@ -69,13 +69,13 @@ export async function listProjects(
 }
 ```
 
-Rows and totals use the same Repository and filter. Filtering only rows leaks counts outside the allowed scope and creates invalid pages. The second sort field, `id`, makes equal timestamps deterministic; it does not mean UUIDs increase chronologically.
+The list and the total use the same Repository and the same filters. Filtering the list but not the total leaks the number of records outside the scope and produces invalid page numbers. Using `id` as the second sort field gives records with the same creation time a deterministic order; it does not mean UUIDs increase over time.
 
-The two pagination queries are not guaranteed to share one database snapshot. Concurrent changes can briefly affect the total and current page. Design snapshot consistency or cursor pagination separately when needed; downloading all data and slicing it in the browser is not a replacement for server pagination.
+The two pagination queries are not guaranteed to come from the same database snapshot, so with concurrent inserts and deletes the total and the current page may briefly disagree. If you need a consistent snapshot or cursor pagination, design it separately around the database's isolation level and the actual queries; slicing a full download in the browser is no substitute for server-side pagination.
 
 ### Read relations
 
-After a migration declares `tutorialTasks.project`, read the relation through the selector:
+Once a migration has declared `tutorialTasks.project`, the project can be read through the relation:
 
 ```ts
 const task = await database
@@ -90,21 +90,21 @@ const task = await database
   });
 ```
 
-`taskPolicy` must allow the corresponding fields and relation read; `include()` is not authorization. If tasks and projects require separate operation scopes, bind and query each policy separately, as in project assignment. Reading a task does not imply access to every project.
+The `taskPolicy` here must allow reading the corresponding fields and relation; `include()` alone does not grant access. If the business requires tasks and projects to use the data scopes of different actions, bind and query each policy separately as the project assignment example does; "can read the task" must not be treated as "can read any project".
 
-Select response fields explicitly. Prefer declared relations over handwritten joins that duplicate field mappings and relationship rules.
+Use `select` to choose exactly the fields the response needs. When a relation is defined, prefer reading through it over a handwritten join that would duplicate field mappings and relationship rules.
 
 ### Create, update and delete
 
-| Need | Repository method | Behavior to account for |
+| Need | Repository method | Behavior to note |
 | --- | --- | --- |
-| Read one | `findOne()` | Returns the first match, possibly no record |
-| Create one | `createOne()` | Returns a mutation result; the record is `result.record` |
-| Update or delete one | `updateOne()`, `deleteOne()` | Requires exactly one record in scope |
+| Read one | `findOne()` | Returns the first matching record, possibly none |
+| Create one | `createOne()` | Returns a change result object, with the record in `result.record` |
+| Update or delete one | `updateOne()`, `deleteOne()` | Requires exactly one matching record within the scope |
 | Create several | `createMany()` | Does not support nested relation writes |
-| Bulk update or delete | `updateMany()`, `deleteMany()` | Requires an explicit scope; do not use `all: true` to bypass an empty-scope error |
+| Bulk update or delete | `updateMany()`, `deleteMany()` | The scope must be explicit; do not use `all: true` to get around the empty-scope safeguard |
 
-This service excerpt updates completion. `taskId` is validated and `updatePolicy` comes from authorization for that action:
+For example, here is a fragment from a business service that changes the completion state. `taskId` has been validated, and `updatePolicy` comes from the authorization result of the complete action:
 
 ```ts
 const result = await database
@@ -118,27 +118,27 @@ const result = await database
 const savedTask = result.record;
 ```
 
-Build `values` from an explicit field allowlist rather than passing the entire request body. Bulk operations still need validated input, policies, bounded sizes and a decision about all-or-nothing versus partial success. A method ending in `Many` does not make those decisions for you.
+The API should build `values` from an allowlist of fields rather than passing the whole request body through. Bulk operations likewise need validated input, a bound policy, a size limit, and an explicit decision on whether the business means "all succeed" or "partial success is acceptable"; a method name ending in `Many` does not settle any of that for you.
 
 ### Multi-step writes and transactions
 
-Let a business service group operations that must succeed or fail together in one connection transaction. See [Transactions and data consistency](transactions-and-consistency.md) for implementation, rollback and external-delivery boundaries. Reads and writes must use the transaction connection rather than outside Repositories.
+Operations that must succeed or fail together belong in a business service, in one transaction on one connection; for how to write it, rollback on failure and the limits around external delivery, see [Transactions and data consistency](transactions-and-consistency.md). Both reads and writes must use that transaction connection, and Repositories from outside must not be mixed into the callback.
 
 ## When to use Query
 
-| Situation | Start with |
+| Scenario | First choice |
 | --- | --- |
-| Collection records and declared relations | Repository |
-| Policies, field encoding or relation writes | Repository |
-| Report joins without relations, complex subqueries, paging grouped results | Query |
-| Set-based historical data transformations in migrations | Usually the migration context's Query, keeping the migration self-contained |
+| Records in a Collection and their declared relations | Repository |
+| Needs `withPolicy()`, field encoding or relation writes | Repository |
+| Report joins without relation definitions, complex subqueries, paginating grouped results | Query |
+| Set-based historical data transformation in a migration | Usually the Query from the migration Context, keeping the migration self-contained |
 
-Runtime code uses `database.query()`; transaction callbacks use the `connection.query` property. Query does not read Collection relations or naming overrides and applies no automatic permission policy, optimistic locking or relation writes. It still uses connection-level naming conversion, so do not assume manually concatenated physical names always work.
+At runtime, obtain Query with `database.query()`; inside a transaction callback, use the `connection.query` property. Query does not read a Collection's relations or naming overrides, and it does not apply permissions, optimistic locking or relation write rules automatically. It does still use the connection layer's naming conversion, so do not assume that concatenating physical table names yourself is always correct.
 
-Query conditions take `where(field, operator, value)` and parameterize values. This is not Knex's API: do not copy `where(field, value)` or `whereIn()`. Updates and deletes require `where`; use `allowAllRows()` only for an explicitly intended whole-table operation.
+Query conditions take the form `where(field, operator, value)`, with values parameterized by the query builder. It is not the Knex API, so do not copy `where(field, value)` or `whereIn()`. Updates and deletes require a `where`; use `allowAllRows()` explicitly only when the business really requires an operation on the whole table.
 
 ## Verify results
 
-Use real test databases for filters, stable ordering, empty results, relations and bulk scopes; use the real application and ordinary users for authorization. Trigger a failure within a transaction and reread the database to confirm earlier writes were also rolled back. Mocking a Repository cannot establish its behavior.
+Use a real test database to check filtering, stable sorting, empty results, relations and the scope of bulk operations; use the real application and ordinary users to check permissions. Deliberately cause a failure inside a transaction, read the database again, and confirm that earlier writes were undone as well. Do not try to prove Repository behavior by mocking the Repository.
 
-See [Server business services](server-business-services.md) for the complete project service and [Testing and acceptance](testing-and-acceptance.md) for fixture selection.
+For a complete example of the project service, see [Server business services](server-business-services.md); for choosing test tools, see [Testing and acceptance](testing-and-acceptance.md).

@@ -1,11 +1,11 @@
 ---
 title: Create tables and initialize data
-description: Use defineMigration, defineSeed and their Contexts to create tables, initialize records and evolve existing data.
+description: Use defineMigration, defineSeed and their Contexts to create tables, initialize records, and maintain later schema and data changes.
 ---
 
-Use `defineMigration()` to describe table creation and later schema changes, and `defineSeed()` to install initial records. Both functions define tasks; at execution time, the framework passes a Context into each callback with the capabilities needed for schema and data work.
+An application describes table creation and later schema changes with `defineMigration()`, and installs initial records with `defineSeed()`. Both functions only define tasks; when a task runs, the framework passes its Context to the callback, providing what is needed to create tables, query data and work with records.
 
-This guide first creates an independent `appStatuses` table, initializes records and verifies execution, without requiring the historical tutorial. The project/task example later in the article retains its prerequisites and shows how to change an existing schema.
+This guide first walks through "create a table → initialize data → run and verify" with an independent `appStatuses` table, without needing the historical tutorial. The projects-and-tasks case in the second half keeps its original prerequisites and shows how to change an existing schema.
 
 ## Directory and file conventions
 
@@ -19,18 +19,18 @@ database/
     └── collections/  # Generated; do not edit
 ```
 
-`main` is the connection name. Each migration or Seed file default-exports its definition. Its `name` matches the filename without the extension and is unique across the task's sources. Use later names when extending an existing project. `collections/` contains generated model artifacts, not handwritten model definitions.
+`main` is the connection name. Migration and Seed files each default-export a task definition whose `name` matches the file name without its extension and is unique across all sources of the same kind of task. When adding tasks to an existing project, use new names that sort after the existing ones. `collections/` is a generated model cache, not the place to write models by hand.
 
-| Task | Tool |
+| What you need to do | Use |
 | --- | --- |
-| Create tables or change fields, relations, indexes and constraints | Migration |
-| Transform or backfill existing records during an upgrade | Data operations in a Migration |
-| Install default statuses, categories and similar records | Seed |
-| Create and edit ordinary business records | Server business services and APIs |
+| Create tables; change fields, relations, indexes and constraints | Migration |
+| Transform or backfill historical records with a release | Data operations in a Migration |
+| Install initial records such as default statuses or categories | Seed |
+| Everyday creation and editing of business records by users | Server business services and APIs |
 
-Migrations can change data too; Seeds are not the entry point for all writes.
+Note that migrations can change data too; do not think of it as "migrations only create tables and Seeds do all the writing".
 
-## Create tables with defineMigration
+## Create a table with defineMigration
 
 Create `database/main/migrations/202611040001_create_app_statuses.ts`:
 
@@ -51,25 +51,25 @@ export default defineMigration({
 });
 ```
 
-`up()` applies the change, and `down()` describes its reversal. `builder.createCollection()` declares the logical Collection and schema; the framework creates the physical table using the connection's dialect. `code` is a stable primary key, while `title` stores an editable label.
+`up()` applies this change, and `down()` describes how to reverse it. `builder.createCollection()` declares the logical collection and its structure, and the framework creates the physical table using the connection's dialect. `code` is a stable business key whose primary key constraint prevents duplicates; `title` holds a display name that can be changed.
 
-This example's `down()` deletes the entire table and its records, so verify rollback only in an isolated database. Keep published migrations unchanged and add new files for later changes. See [Migration mechanisms](../framework/database/migrations.md) for `transaction`, `irreversible` and `shouldRun()`; a simple table does not require configuring every option.
+This example's `down()` drops the whole table with its records, so only verify the rollback in an isolated database. Published migrations stay unchanged, and later changes are made by adding new files. For options such as `transaction`, `irreversible` and `shouldRun()`, see [Database migrations](../framework/database/migrations.md); a simple table needs none of them up front.
 
-## Use Migration Context
+## Use the Migration Context
 
-`up(context)` and `down(context)` receive a `MigrationContext`. The example destructures `{ builder }` from that object. For historical data work, use `query` from the same Context.
+`up(context)` and `down(context)` receive a `MigrationContext`. The `{ builder }` above simply destructures the member that is needed; when historical data has to be processed, use `query` from the same Context.
 
-| Member | Purpose and boundary |
+| Member | Purpose and limits |
 | --- | --- |
-| `builder` | Create and modify Collections, fields, indexes and constraints |
-| `query` | Read, update and backfill data; normally the first choice for migration data work |
-| `repository(name)` | Use when Collection encoding, naming overrides or relation writes are needed; depends on the model at execution time |
-| `connection` | Restricted access to connection name, dialect, capabilities and the low-level client |
-| `config` | Read-only configuration supplied by the task owner, accessed with `get()` |
-| `container` | The task owner's service resolver, not a promise that the full application container or business services are ready |
-| `configuration`, `parameters` | Optional source-provided applicability configuration and target parameters; ordinary application migrations rarely need them |
+| `builder` | Create and adjust collections, fields, indexes and constraints |
+| `query` | Read, update and backfill data in a migration; usually the first choice for data operations |
+| `repository(name)` | For when Collection field encoding, naming overrides or relation writes are needed; depends on the model shape at execution time |
+| `connection` | The current connection's name, dialect, capabilities and low-level client entry; a restricted interface |
+| `config` | Read-only configuration provided by whoever runs the task, read with `get()` |
+| `container` | A service resolver provided by whoever runs the task; it is not the full application container and does not mean all business services have started |
+| `configuration`, `parameters` | Optional applicability configuration and target parameters provided by the source; ordinary application migrations rarely need them |
 
-For example, `up({ query })` in a later migration can make a deliberate correction to existing `appStatuses` records:
+For example, in the `up({ query })` of a later migration, you can make an explicit data correction to the existing `appStatuses`:
 
 ```ts
 await query.updateTable('appStatuses')
@@ -79,11 +79,11 @@ await query.updateTable('appStatuses')
   .execute();
 ```
 
-This is a callback-body excerpt and requires the table to exist. It corrects only the specified old value instead of replacing every customized label. Keep migrations self-contained against explicit historical structures rather than importing evolving business services.
+This is a fragment from inside the callback and assumes the target table exists. It only corrects the agreed old value and does not overwrite names users have customized. Data operations in a migration should rely on an explicit historical structure; do not import service implementations that change along with the business code.
 
-The Context's `connection` is not a complete `DatabaseConnection`: do not call `connection.repository()`, `connection.builder` or `connection.transaction()`. Use the top-level `builder`, `query` and `repository()` and let the runner manage transactions. `client()` is a low-level escape hatch, normally unnecessary, and must not bypass schema-management restrictions.
+The `connection` in the Migration Context is not a full `DatabaseConnection`: you cannot call `connection.repository()` or `connection.builder`, and you cannot call `connection.transaction()` yourself. Use the Context's top-level `builder`, `query` and `repository()` directly and let the runner handle transactions. `client()` is a low-level escape hatch that is rarely needed and must not be used to get around schema management restrictions.
 
-Use a migration Repository only when Query cannot express the operation correctly, and explain why. Avoid relying on an evolving Collection model in rollback logic. Task options and dialect capabilities affect transaction behavior; not every database can roll back DDL.
+Use `repository()` in a migration only when Query cannot express the operation correctly, and note why; do not make rollback logic depend on a Collection model that has since changed. Whether a transaction is used also depends on the task options and the dialect's capabilities, so do not assume DDL can be rolled back on every database.
 
 ## Initialize data with defineSeed
 
@@ -111,29 +111,29 @@ export default defineSeed({
 });
 ```
 
-`run()` performs installation data work. This example inserts missing records while preserving administrator-edited labels. Checking before insertion does not eliminate concurrency races; the primary key is the final safeguard. Let conflicts fail and roll back, investigate and retry. For update-on-existence behavior, use `upsertOne()` with an explicit overwrite policy.
+`run()` contains the logic that installs the data. This example only adds missing records and keeps names that administrators have already changed. Querying before inserting does not eliminate concurrency races on its own; the primary key constraint is the final safeguard. On a conflict, let the task fail and roll back, then check and retry. If you need "update when it exists", you can use `upsertOne()`, but you must state explicitly which fields may be overwritten.
 
-Seeds have no rollback function corresponding to Migration `down()` and are not startup synchronization scripts that repeatedly overwrite configuration.
+A Seed has no rollback function corresponding to a Migration's `down()`, and it is not a synchronization script that overwrites configuration on every startup.
 
-## Use Seed Context
+## Use the Seed Context
 
-`run(context)` receives a `SeedContext`. Installation records are expressed in Collection terms, so `repository()` is normally the first choice:
+`run(context)` receives a `SeedContext`. The records being installed are described in Collection terms, so `repository()` is usually the first choice:
 
-| Member | Purpose and boundary |
+| Member | Purpose and limits |
 | --- | --- |
-| `repository(name)` | Read and write initial records using logical fields, encoding and relation-write support |
-| `query` | Work unsuitable for Repository, such as accessing a table without a Collection |
-| `connection` | The same restricted connection interface as migrations, not the full runtime connection |
-| `config` | Read configuration supplied by the task owner |
-| `container` | Resolve services supplied by the owner; empty for standalone runners unless provided |
+| `repository(name)` | Read and write initial records, with logical fields, field encoding and relation writes |
+| `query` | Data operations that Repository does not express well, such as accessing a table without a Collection |
+| `connection` | The same restricted connection interface as in a Migration, not the full runtime connection |
+| `config` | Reads configuration provided by whoever runs the task |
+| `container` | Resolves the services the runner chooses to provide; empty when a standalone runner provides none |
 
-Seed Context has no `builder`; create tables and fields in migrations first. Its Repository and Query already use the task connection and, when enabled, its transaction. Writing through an outside manager can leave that transaction.
+The Seed Context has no `builder`; when you need a new table or field, write a migration first. `repository()` and `query` are already bound to the task's connection, and use the current transaction when one is enabled. Do not obtain another Repository from an outside manager to write data, or the writes may escape the task's transaction.
 
-Repository writes through either Context do not emit runtime Repository mutation events. Installation and upgrades cannot depend on business listeners that may not have started.
+Repository writes through either Context do not emit runtime Repository change events. Installation and upgrades must not rely on business listeners that have not started yet to complete data.
 
-## Execute and verify
+## Run and verify
 
-Confirm configuration points to the local example database, then run from the application root:
+After confirming that the configuration points to the local example database, run in the application root:
 
 ```bash
 pnpm nocobase db apply --connection main --dry-run
@@ -141,49 +141,49 @@ pnpm nocobase db apply --connection main
 pnpm nocobase collections generate --connection main --check
 ```
 
-`db apply` runs pending migrations before Seeds and may include other application or plugin resources; `--dry-run` only previews the plan. Successful tasks are skipped by history. Editing an executed file does not rerun it. Seeds default to `auto` transactions; failed writes and completion history roll back together before retry.
+`db apply` runs pending migrations first and then Seeds, which may include resources from other applications or plugins; `--dry-run` only previews the plan. Tasks that already succeeded are skipped according to their history, and changing a file that already ran does not make it run again. The default transaction mode for Seeds is `auto`: on failure, this run's writes and its success records roll back together, and you can continue after fixing the problem.
 
-Verify table creation and both default records, repeated execution without duplicates, preservation of preexisting custom labels, and rollback/retry after a Seed writes then fails. Test migration rollback in isolation, and validate DDL, isolation and locking against the target dialect.
+Verify the following: the first run creates the table and writes the two default records; running again writes no duplicates; custom records that existed before initialization keep their names; and a Seed that throws after writing rolls back and can be retried. Verify migration rollback in an isolated database; DDL, isolation and locking behavior on the target database need tests on the matching dialect.
 
-## Change existing schema and data
+## Change existing schemas and data
 
-Keep published tasks immutable. Add migrations for field, constraint and historical-data changes. Backfill before tightening nullability; Seeds must not repeatedly overwrite user choices. Add later Seeds for new installation defaults.
+Published tasks stay immutable, and changes to fields, constraints and historical data are expressed through new migrations. Backfill old data before tightening a non-null constraint; user choices that must persist must not be overwritten repeatedly by a Seed. When new installation defaults are needed, add a later Seed.
 
-Separate demo records from required data. Ordinary Seeds are not automatically skipped because their contents are examples. For optional examples, explicitly use `sample: true` with the application's sample-data configuration and execution entry points; see [Seed mechanisms](../framework/database/seeds.md). Keep test fixtures, routine imports and environment resets out of ordinary initialization.
+Keep demonstration data separate from required data. An ordinary Seed is not skipped automatically just because its records are demonstrations; for optional sample data, declare `sample: true` explicitly and load it through the application's sample-data configuration and runner, as described in [Seed data](../framework/database/seeds.md). Test fixtures, routine imports and environment resets do not belong in the ordinary initialization flow.
 
-See [Multiple database connections](multiple-databases.md), [Connect an existing database](existing-databases.md) and [Transactions and data consistency](transactions-and-consistency.md) for their respective workflows. Full migration options remain in [Migration mechanisms](../framework/database/migrations.md).
+For adding database connections, see [Multiple database connections](multiple-databases.md); for schemas maintained by an external system, see [Connect an existing database](existing-databases.md); for business transactions, see [Transactions and data consistency](transactions-and-consistency.md); and for the full migration options, see [Database migrations](../framework/database/migrations.md).
 
-## Extended example: add projects to tasks
+## Advanced example: add projects to tasks
 
-The original project example below covers fields, relations, constraints and preserving existing records. It uses a separate historical application and does not depend on the `appStatuses` example above.
+The original project case below demonstrates fields, relations, constraints and preserving old data. It is a separate historical application and has no dependency on the `appStatuses` example above.
 
 ### Structure, initial data and business records
 
-| Task | Location | Principle |
+| What you need to do | Where it goes | Principle |
 | --- | --- | --- |
-| Add fields, relations, indexes or constraints | `database/main/migrations/` | Add a migration and describe its effect on old data |
-| Backfill historical data with a release | A migration | Define the transformation rather than guessing business assignments |
-| Supply initial data required by the application | `database/main/seeds/` | Separate it from everyday records and do not repeatedly overwrite user changes |
-| Supply optional demonstration data | A seed marked as sample | Let the operator explicitly choose whether to load it |
-| Create or change everyday business records | Business services and endpoints | Validate input and permissions, then use a Repository |
-| Inspect resolved Collections | `database/main/collections/` | Generate and check them with tooling; do not edit by hand |
+| Add fields, relations, indexes or constraints | `database/main/migrations/` | Add a migration and state its effect on old data |
+| Backfill historical data with a release | A migration | Define the transformation explicitly instead of guessing business assignments |
+| Write initial data the application needs to run | `database/main/seeds/` | Keep it apart from records users create every day, and do not overwrite user changes repeatedly |
+| Provide optional demonstration data | A Seed marked as sample | Let whoever runs it choose explicitly whether to load it |
+| Create or change everyday business records | Business services and APIs | Validate input and permissions first, then read and write through a Repository |
+| Inspect the resolved Collections | `database/main/collections/` | Generated and checked by tooling; do not edit by hand |
 
-Project names are user-created business data, so this example adds no project seed. Do not automatically assign business roles to every signed-in user just to make an example usable.
+Project names are business data entered by users, so this example adds no project Seed. Likewise, business roles must not be assigned automatically to every signed-in user just to make the example usable.
 
-### Questions to answer before defining fields
+### Questions to answer before designing fields and relations
 
-Decide whether required and unique values are business rules, whether historical records can satisfy new rules, and what should happen when a related record is deleted. The current form layout alone does not determine the database structure.
+First work out: are "required" and "unique" really business rules? Can historical records satisfy the new rules? What should happen when a related record is deleted? Only then choose fields and constraints. Do not decide the database structure just from what the form currently looks like.
 
-A required project name need not be unique. Allowing tasks to belong to projects does not require assigning every old task immediately. Foreign keys enforce valid references, endpoint validation checks input such as name content, and authorization determines whether this user may use the project. These checks cannot replace one another.
+For example, "a project name is required" does not mean names must be unique, and "tasks can belong to a project" does not mean old tasks must have a project right away. A database foreign key keeps references valid, API validation enforces input rules such as the name's content, and permission checks decide whether the current user may use the project. None of these checks can replace another.
 
 ### Prepare the example application
 
-The project chapters use a separate historical example: `tutorialTasks` stores tasks, `tutorialProjects` stores projects, and `completed` represents task completion. The current [getting-started example](../tutorials/build-your-first-app-agent-first.md) uses `tasks` and a three-stage `status`. Use the historical tag and matching configuration below for this exercise; do not apply these migrations directly to the getting-started database.
+The project guides reuse a separate historical example: `tutorialTasks` stores tasks, `tutorialProjects` stores projects, and tasks use `completed` for their completion state. The current [getting-started example](../tutorials/build-your-first-app-agent-first.md) uses a `tasks` table with a three-stage `status`; the two are not the same code. When running this guide, use the old tag and matching configuration given below, and do not apply these migrations to the getting-started example's database.
 
 <details>
-<summary>Obtain and configure the example application</summary>
+<summary>Get and configure this guide's example application</summary>
 
-Continue from [the `04-task-due-date` stage of app-tutorials](https://github.com/nocobase/app-tutorials/tree/04-task-due-date), based on default template `1.0.0-beta.78`. The repository is private and requires access. If you already completed that stage, continue in your existing project. Otherwise, obtain it in a new directory:
+This guide continues from [the `04-task-due-date` stage of app-tutorials](https://github.com/nocobase/app-tutorials/tree/04-task-due-date), based on default template `1.0.0-beta.78`. The repository is private and requires access. Readers who have finished that stage can continue in their existing project; to start from scratch, get that stage's code in a new directory:
 
 ```bash
 git clone --branch 04-task-due-date https://github.com/nocobase/app-tutorials.git team-tasks
@@ -194,26 +194,26 @@ pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check
 ```
 
-Use Node.js 24 and pnpm 11. An existing project does not need its configuration initialized again; do not connect an existing database to older application code. Run the commands and create the files below from the application root. This chapter was verified with SQLite.
+Use Node.js 24 and pnpm 11. An existing project does not need its configuration initialized again, and an existing database must not be connected to older code. All code and commands below are used in the application root; the database verified in this guide is SQLite.
 
 </details>
 
-### Example: projects and tasks
+### Example: the relation between projects and tasks
 
-Start with a small project model:
+This change introduces only a minimal project model:
 
-- `tutorialProjects.id`: a string primary key, consistent with the existing task ID type.
-- `tutorialProjects.name`: a required name of up to 120 characters. Different projects may share a name.
-- `tutorialProjects.createdAt`: the creation time, supplied by the code that creates the project.
-- `tutorialTasks.projectId`: a nullable project ID. A project can have many tasks; a task belongs to at most one project.
+- `tutorialProjects.id`: the project ID, a string primary key consistent with the existing task ID type.
+- `tutorialProjects.name`: the project name, required, at most 120 characters; different projects may share a name.
+- `tutorialProjects.createdAt`: the creation time, supplied by the business code that creates the project.
+- `tutorialTasks.projectId`: a nullable project ID. A project can have many tasks, and a task belongs to at most one project.
 
-Tasks store a project ID and retrieve its name when reading the relation. Renaming a project does not require updating every task, and identical project names do not confuse their identities.
+Tasks store the project ID and obtain the project name when reading. That way, renaming a project does not require updating tasks one by one, and projects with the same name never confuse assignments.
 
-Existing tasks have no reliable project assignment. Allow the new field to be null, meaning “not assigned to a project.” The migration does not guess assignments or create a default project for all historical tasks. This example rejects deletion of a project that still has tasks; an application can first move or unlink those tasks before deleting it.
+Old tasks have no reliable project assignment, so the new field starts out nullable, meaning "not assigned to a project yet". The migration does not guess assignments, nor does it create a default project to receive all historical tasks. This example refuses to delete a project that tasks still reference; in business terms, tasks can be moved or unlinked first, and then the project deleted.
 
-### With an agent
+### With an Agent
 
-Give the agent this chapter as context from the application directory, then describe the request below. Field, API and component details are in the manual steps; the agent should follow them alongside the project's guidance.
+In the application directory, give this guide to the Agent as context, then describe the request below. The specific conventions for fields, APIs and components are in the manual steps that follow, and the Agent applies them together with the project guidance.
 
 ```text
 Please add projects to the existing task application. For this step, implement data storage only, without pages or APIs.
@@ -232,9 +232,9 @@ Do not add sample projects or change user permissions in this step.
 Tell me what changed and what you verified.
 ```
 
-Review preservation of existing data, enforcement of constraints and use of a real database, as well as the new table and field. Compare the result with the implementation below.
+When checking the Agent's result, look beyond the new table and field: check that existing data was preserved, that the constraints really take effect, and that the tests use a real database. You can compare the result with the implementation below.
 
-### Without an agent
+### Without an Agent
 
 #### Write a self-contained migration
 
@@ -283,38 +283,38 @@ export default defineMigration({
 });
 ```
 
-The filename without `.ts` matches `name` and sorts after the existing task migrations. Declare tables, fields and constraints directly in the migration rather than importing evolving definitions from business services or model files.
+The file name without `.ts` matches `name` and sorts after the existing task migrations. The tables, fields and constraints are written directly in the migration, not imported from business services or model files that keep evolving.
 
-`up()` creates the project table before extending tasks. `down()` removes dependencies in reverse order, retaining the original task fields and records but deleting project records and task associations. It reverses the schema change; it is not a backup that restores business data.
+`up()` creates the project table first, then extends the task table. `down()` removes things in reverse dependency order: the tasks' original fields and records stay, but project data and the tasks' project assignments are deleted. It is only the structural inverse, not a backup for restoring business data.
 
-#### Distinguish fields, relations and constraints
+#### Tell fields, relations and constraints apart
 
-The migration describes three parts of the same business relationship:
+This migration defines three parts for one business relationship:
 
-- **The `projectId` field** stores a project ID in the task table. `nullable: true` keeps existing tasks and new unassigned tasks valid.
-- **The `project` relation** tells Repository how to retrieve the project for a task. `foreignKey` names the existing field, and `targetKey` names the project's primary key. The relation does not store a second copy of the project name.
-- **The foreign key constraint** ensures that a non-null `projectId` references an existing project. `onDelete: 'restrict'` prevents deleting a project while tasks reference it.
+- **The `projectId` field**: the project ID actually stored in the task table. `nullable: true` keeps old tasks and new tasks not yet assigned to a project valid.
+- **The `project` relation**: tells Repository how to read the project from a task. `foreignKey` points to the existing field above, and `targetKey` points to the project's primary key. It does not store another copy of the project name.
+- **The foreign key constraint**: the database guarantees that a non-null `projectId` points to an existing project, and `onDelete: 'restrict'` refuses to delete a project that is still referenced.
 
-The migration explicitly creates and names the foreign key, so the relation uses `constraints: false` to avoid creating another constraint. This does not disable the database foreign key. An explicit name also lets `down()` remove that constraint precisely.
+Because the foreign key is created and named explicitly here, the relation declaration uses `constraints: false` to avoid creating the constraint twice; it does not mean the database has no foreign key. The explicit name also lets `down()` remove exactly this constraint.
 
-The ordinary index on `projectId` supports future filtering by project. It is not unique because many tasks can belong to one project. The index supports queries; the foreign key enforces valid references.
+The plain index on `projectId` serves later filtering of tasks by project. There is no unique index, because one project can have many tasks. The index serves queries and the foreign key keeps references valid; each has its own job.
 
-Field declarations do not replace endpoint validation. For example, `nullable: false` does not reject a blank name, and databases can handle string lengths differently. Endpoints must still validate the trimmed name and its length.
+Field declarations do not replace API input validation either. For example, `nullable: false` does not reject a blank name, and databases may handle string lengths differently; the API must still check the trimmed name and its length.
 
-#### Apply migrations and generate Collections
+#### Apply the migration and generate Collections
 
-Check which database the application configuration targets, then run:
+First confirm which database the current application configuration points to, then run:
 
 ```bash
 pnpm nocobase db apply --dry-run
 pnpm nocobase db apply
 ```
 
-For a database already at the previous stage, the plan should include this new migration. A new database also needs earlier application and plugin migrations and seeds. `db apply` runs pending migrations followed by pending seeds, rather than only the file just added.
+For a database that has run the previous stage, the plan should contain this new migration; for a new database, the plan also contains application migrations, plugin migrations and Seeds that have not run yet. `db apply` runs pending migrations first and pending Seeds second, and does not handle only the file you just added.
 
-Running the command again does not re-execute successful migrations. Existing tasks retain their titles, completion states, assignees and due dates, with `projectId` set to null.
+Running the same commands again does not re-run migrations that already succeeded. Tasks in an existing database keep their titles, completion states, assignees and due dates, and the new `projectId` is `null`.
 
-The command refreshes the model snapshots under `database/main/collections/`. Inspect:
+The commands refresh the model snapshots under `database/main/collections/`, which you can inspect:
 
 ```text
 database/main/collections/
@@ -328,15 +328,15 @@ database/main/collections/
     └── schema.json
 ```
 
-These files show the model resolved from the database. They are regenerable caches: do not edit them manually or import them into a migration. Check that the cache matches the database:
+These files show the model the database actually resolves and are a cache that can be regenerated. Do not edit them by hand, and do not import them in migrations. Check that the cache matches the database:
 
 ```bash
 pnpm nocobase collections generate --check
 ```
 
-### Verify against a real database
+### Verify with a real database
 
-Create `tests/database/tutorial-tasks-projects.test.ts`. The test applies earlier migrations and inserts an existing task, applies this migration, checks schema and data, then rolls back and reapplies it. `describeMigration()` owns the isolated database and its cleanup; it does not use your development database.
+Add `tests/database/tutorial-tasks-projects.test.ts`. The test below first applies the earlier migrations and inserts an old task, then applies this migration, checks the model and data, and finally rolls back and applies again. `describeMigration()` manages an isolated database and its cleanup, and never touches your development database.
 
 <details>
 <summary>Complete migration test</summary>
@@ -454,32 +454,32 @@ describeMigration('202610240004_add_task_projects', {
 
 </details>
 
-Run this chapter's test, then the existing task database and endpoint tests:
+Run this guide's test, then the existing task database and API tests:
 
 ```bash
 pnpm exec vitest run --config vitest.tutorial.config.ts tests/database/tutorial-tasks-projects.test.ts
 pnpm exec vitest run --config vitest.tutorial.config.ts
 ```
 
-Confirm that the test appears in the results. “No tests found” is not a successful verification. The test checks:
+This guide's test must appear in the results; "no tests found" does not count as passing. The tests verify that:
 
-- Existing task fields survive the upgrade, with a null `projectId`.
-- The index and foreign key exist, and Repository can read a task's associated project name.
-- Missing project IDs and deletion of referenced projects are rejected, with the original association preserved after failure.
-- Rollback removes the new model while preserving the task, and the migration can be applied again.
+- After the upgrade, old tasks keep their business fields and `projectId` is empty.
+- The index and foreign key really exist, and a task can be linked to a project and read the project name through Repository.
+- A project ID that does not exist is rejected, a project still referenced by tasks cannot be deleted, and the original association survives the failures.
+- Rolling back removes the new model while keeping the original tasks, after which the migration can be applied again.
 
-The test calls `repository()` directly to verify an isolated database. Production endpoints must check the caller's permissions and use the corresponding Repository policy. A foreign key proves that a project exists, not that the caller may access or select it.
+`repository()` is used directly in the test to verify against an isolated database. Real APIs must check the caller's permissions first and then use a Repository with the corresponding policy; a foreign key only proves the project exists, not that the current user may access or choose it.
 
-### Evolve the model further
+### When the model keeps evolving
 
-**Keep merged or released migrations unchanged.** Add a migration when introducing a field, changing a constraint or correcting an earlier migration. Editing an executed file does not make `db apply` run it again. Resetting the database cannot prove that a real upgrade preserves data.
+**Migrations that have been merged or published stay unchanged.** To add a field, change a constraint or fix a historical migration, add another migration. Editing a file that already ran does not make `db apply` run it again, and resetting the database cannot verify whether a real upgrade preserves data.
 
-If every task must eventually have a project, first determine the assignments for existing tasks, backfill the data and verify that no nulls remain. Then make the field required in a subsequent migration. Backfilling existing data belongs in a migration; a seed should not repeatedly overwrite tasks users have edited.
+If every task must later have a project, first decide the assignment for old tasks, backfill the data and verify there are no empty values, then make the field non-null in a later migration. Backfilling existing data is a migration's job; do not use a Seed to overwrite tasks users have changed again and again.
 
-Seeds provide the initial records an application needs to operate. Projects in this chapter are user-created business records, so no seed is needed. See [Create tables and initialize data](data-models-and-migrations.md) for Seed organization, history and demonstration-data boundaries. Ordinary Seeds are not automatically skipped based on environment.
+Seeds are for initial data the application needs to run. The projects in this guide are business records created by users, so no Seed is added. For organizing initial data and its execution history, see [Initialize data with defineSeed](#initialize-data-with-defineseed) above; for the limits of demonstration data, see [Seed data](../framework/database/seeds.md). Do not assume ordinary Seeds are skipped automatically by environment.
 
-### Further reading
+### Continue reading
 
-[Routes and HTTP APIs](apis-and-services.md) explains how to expose data operations to pages: validate input, check project and task permissions, and translate business failures into consistent API errors. [Application development overview](overview.md) shows how the parts fit together.
+[Routes and HTTP APIs](apis-and-services.md) explains how to expose data operations to pages: validate input, check permissions on both projects and tasks, and turn business errors into consistent API errors. [Application development overview](overview.md) shows how these parts fit together.
 
-Migrations and Seeds belong to individual connections; see [Multiple database connections](multiple-databases.md). For schemas owned by another system, follow [Connect an existing database](existing-databases.md) and keep handwritten `metadata/` separate from generated `collections/`.
+Migrations and initial data are maintained per connection; for adding connections, see [Multiple database connections](multiple-databases.md). When an existing schema is managed by another system, follow the process in [Connect an existing database](existing-databases.md) and keep the handwritten `metadata/` separate from the generated `collections/`.

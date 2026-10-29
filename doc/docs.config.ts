@@ -31,6 +31,7 @@ export default defineDocsConfig({
         copy: 'Copy',
         copied: 'Copied',
         copyFailed: 'Copy failed',
+        pageActions: { copy: 'Copy Markdown', copyLink: 'Copy Markdown link', chatgpt: 'Open in ChatGPT', claude: 'Open in Claude', more: 'More actions', prompt: 'Read {url}, I want to ask questions about it.' },
         planned: 'Planned',
         codeLabels: { text: 'Plain text', tree: 'Directory tree', prompt: 'Prompt' },
         callouts: { TIP: 'Tip', NOTE: 'Note', WARNING: 'Warning', PENDING: 'To be written' },
@@ -83,6 +84,7 @@ export default defineDocsConfig({
         copy: '复制',
         copied: '已复制',
         copyFailed: '复制失败',
+        pageActions: { copy: '复制 Markdown', copyLink: '复制 Markdown 链接', chatgpt: '在 ChatGPT 中打开', claude: '在 Claude 中打开', more: '更多操作', prompt: '阅读 {url}，我想就这篇文档提问。' },
         planned: '待编写',
         codeLabels: { text: '纯文本', tree: '目录结构', prompt: '提示词' },
         callouts: { TIP: '提示', NOTE: '说明', WARNING: '注意', PENDING: '待补充' },
@@ -120,6 +122,7 @@ export default defineDocsConfig({
     { id: 'start', dir: 'start', extra: ['index'], home: 'index', title: { en: 'Start', 'zh-CN': '开始' } },
     { id: 'core', dir: 'core', home: 'core/index', title: { en: 'Core', 'zh-CN': 'Core' } },
     { id: 'studio', dir: 'studio', home: 'studio/index', title: { en: 'Studio', 'zh-CN': 'Studio' } },
+    { id: 'guides', dir: 'guides', home: 'guides/build-sustainable-enterprise-apps', title: { en: 'Tutorials', 'zh-CN': '教程' } },
   ],
   nav: {
     github: 'https://github.com/nocobase/nocobase',

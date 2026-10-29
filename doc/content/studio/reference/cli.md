@@ -42,7 +42,7 @@ When you use several Studios, each server is a profile: `nb-studio profile list`
 | --- | --- |
 | `issue`, `comment`, `attachment` | Issues: search, view, create, update status, comment, attachments |
 | `project`, `label` | Projects, their initialization and members, and labels |
-| `project-manager` | The coordinator agent's settings, and handing an issue to the coordinator agent to start |
+| `project-manager` | The lead agent's settings, and handing an issue to the lead agent to start |
 | `agent`, `runtime`, `skill`, `variable` | Agents, runtimes and registration credentials, skills, and variables and secrets |
 | `run`, `report` | Runs, dashboard figures, and usage |
 | `kb`, `memory` | The knowledge base and project memory |

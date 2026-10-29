@@ -7,14 +7,14 @@ import { ContentError, diffSkeleton, listPageKeys, loadContent } from './content
 const SECTIONS = [{ id: 'start', dir: 'start', extra: ['index'] }, { id: 'core', dir: 'core' }];
 const LANGS = [{ code: 'en', dir: '' }, { code: 'zh', dir: 'zh' }];
 
-/** files: { 'core/a.md': 'Title' | { status }, 'zh/core/meta.json': object } → a temp content dir (English at the root, the others in their directory) */
+/** files: { 'core/a.md': 'Title' | { title, status, front }, 'zh/core/meta.json': object } (front: extra front matter lines) → a temp content dir (English at the root, the others in their directory) */
 function fixture(files) {
   const root = mkdtempSync(join(tmpdir(), 'docs-content-'));
   for (const [path, value] of Object.entries(files)) {
     const file = join(root, path);
     mkdirSync(dirname(file), { recursive: true });
     if (path.endsWith('.json')) writeFileSync(file, JSON.stringify(value));
-    else writeFileSync(file, `---\ntitle: ${typeof value === 'string' ? value : value.title}\n${value.status ? `status: ${value.status}\n` : ''}---\nBody\n`);
+    else writeFileSync(file, `---\ntitle: ${typeof value === 'string' ? value : value.title}\n${value.status ? `status: ${value.status}\n` : ''}${value.front ? `${value.front}\n` : ''}---\nBody\n`);
   }
   return root;
 }
@@ -177,6 +177,16 @@ test('a language directory cannot have the name of a content directory, and the 
   const { languages } = load(files);
   expect([...languages.get('en').pages.keys()].sort()).toEqual(['core/index', 'index']);
   expect([...languages.get('zh').pages.keys()].sort()).toEqual(['core/index', 'index']);
+});
+
+test('metaDescription replaces the description only in the meta description, and both must be strings', () => {
+  const { languages } = load(both({ ...BASE, 'index.md': { title: 'Home', front: 'description: Shown\nmetaDescription: For search' }, 'core/index.md': { title: 'Core', front: 'description: Both' } }));
+  const pages = languages.get('en').pages;
+  expect(pages.get('index')).toMatchObject({ description: 'Shown', metaDescription: 'For search' });
+  expect(pages.get('core/index')).toMatchObject({ description: 'Both', metaDescription: 'Both' });
+  const text = problemsOf(() => load(both({ ...BASE, 'index.md': { title: 'Home', front: 'description: 1\nmetaDescription: [a]' } })));
+  expect(text).toContain('description must be a string');
+  expect(text).toContain('metaDescription must be a string');
 });
 
 test('diffSkeleton and listPageKeys', () => {

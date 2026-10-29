@@ -42,15 +42,15 @@ description: The terms used across the whole site. Documentation, the website, t
 | --- | --- |
 | Issue | The basic unit of delivered work in Studio. Not "ticket" or "request form" |
 | Issue owner | The person responsible for an issue's outcome. Always a person |
-| Coordinator agent | The single system agent that splits work into steps, assigns them, asks questions, and hands over for acceptance. It does not write code. |
-| Worker agent | An agent on the agent team that carries out the steps the coordinator agent assigns |
+| Lead agent | The single system agent that splits work into steps, assigns them, asks questions, and hands over for acceptance. It does not write code. |
+| Executing agent | An agent on the agent team that carries out the steps the lead agent assigns |
 | My agent | Your own coding tool, such as Claude Code or Codex. Once connected to Studio, it talks requests through with you in My sessions |
 | Agent team | All the agents the team has enabled |
 | Runtime | A machine that runs `nocobase-runner`, either a shared runtime or a personal one |
 | My issues, My sessions | The two ways to follow work: by issue, and by session |
 | Project memory | What agents note down while working. It is stored in the code repository, and agents read and write it themselves |
 | Knowledge base | Material that people write and upload. Agents can only read it |
-| Delivery report | What the coordinator agent submits when an issue moves to In review |
+| Delivery report | What the lead agent submits when an issue moves to In review |
 | Backlog / In progress / Blocked / In review / Done / Cancelled | The six fixed issue statuses. In review means delivered and waiting for the issue owner to accept |
 
 For the full Studio vocabulary, see Studio's [Core concepts](../studio/intro/concepts.md).

@@ -40,7 +40,7 @@ Initializing with the NocoBase app needs an online runtime with Node.js 24 and p
 
 ## The initialization issue
 
-When the repository needs initializing, Studio creates an "Initialize project" issue and hands it to the coordinator agent. The coordinator agent gives the step to a suitable agent and says what to do and when it counts as done. Any issue created in the project afterwards waits until this one is done.
+When the repository needs initializing, Studio creates an "Initialize project" issue and hands it to the lead agent. The lead agent gives the step to a suitable agent and says what to do and when it counts as done. Any issue created in the project afterwards waits until this one is done.
 
 Initializing with the NocoBase app installs dependencies and usually takes ten to twenty minutes. Meanwhile, the issue page shows which agent is on it, for how long, and on which runtime.
 

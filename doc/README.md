@@ -6,7 +6,7 @@ The source of the NocoBase 3 docs site (`docs.nocobase.com`): an Astro static si
 doc/
 ├── docs.config.ts   Site config: origin, languages (and their interface strings), sections, links, analytics
 ├── content/         The pages, one Markdown file per page; menus in meta.json files
-│   ├── index.md, start/, core/, studio/   English, mirroring the URLs (served at the site root)
+│   ├── index.md, start/, core/, studio/, guides/   English, mirroring the URLs (served at the site root)
 │   └── zh-CN/       Simplified Chinese, the same structure as the English tree (served under /zh-CN/)
 ├── figures/         Figure fragments (HTML), referenced from content with ::figure name | caption; figures/en/ has the English versions
 ├── plugins/         remark and rehype plugins (figures, callouts, links, code blocks, tables, images)
@@ -115,7 +115,7 @@ Rules, all checked by the build (the error names the file and the entry):
 
 - Individual plugin usage guides follow the repository Skill [write-plugin-usage-docs](../.agents/skills/write-plugin-usage-docs/SKILL.md): Capabilities, Scenarios and examples, Key principles and implementation, and AI development constraints and verification. The Skill owns the detailed writing standard, including companion-code mapping and verification evidence; the section overview and general plugin-management guide keep their own structure.
 - All wording follows the NocoBase Product Definition and Standard Wording (in the [nocobase/nocobase-v3-standard](https://github.com/nocobase/nocobase-v3-standard) repository).
-- Pages are `.md` (not `.mdx`; some contain handwritten HTML) with YAML front matter: `title`, `description`, and `status` for a placeholder. The front matter must be valid YAML, so quote a value that contains a colon. The title becomes the `<h1>`; write the body from `##`.
+- Pages are `.md` (not `.mdx`; some contain handwritten HTML) with YAML front matter: `title`, `description`, optionally `metaDescription`, and `status` for a placeholder. `description` is shown as the lead under the title and is also the page's meta description and its summary in `llms.txt` and the `.md` copy; when `metaDescription` is set, it takes that second role instead and is not shown on the page, so a page with only `metaDescription` has no lead. The front matter must be valid YAML, so quote a value that contains a colon. The title becomes the `<h1>`; write the body from `##`.
 - Write internal links as relative `.md` paths (`[My tasks](../use/my-tasks.md#views)`); the build turns them into final addresses, and a link to a page that does not exist fails the build. Heading anchors are the default Astro (GitHub-style) slugs; the build checks every in-site link and anchor on the generated pages.
 - `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]` and `> [!PENDING]` blockquotes become callouts (`> [!NOTE] Own title` replaces the default title), and a paragraph starting with `**Done when**:` (`**完成的标志**：` in Chinese) is highlighted.
 - `::figure name | caption` on a line of its own inlines `figures/name.html` (or `figures/en/name.html` on English pages when it exists; `a+b` joins two figures, extra words after the names become classes).
@@ -132,6 +132,10 @@ Rules, all checked by the build (the error names the file and the entry):
 - **A collapsible level**: create a directory with a `meta.json` in both languages and add a `folder` entry above it.
 - **A language**: add an entry to `languages` in `docs.config.ts` (with its `ui` strings and `website` URL) and a directory `content/<dir>/` with the same structure; its name must not clash with a content directory (`core`, `studio`, ...) or the v2 redirect prefixes. If it has its own figures, put them in `figures/<code>/`. Add `@nocobase/site-shared`'s `inter.css` import in `src/layouts/Layout.astro` for languages that need Inter (Russian).
 - **A section**: add it to `sections` with a `dir`, create `content/<dir>/meta.json` (and the same for every other language) and the section's pages. Sections are tabs in the header, so keep their number small. Check that `dir` is not one of the v2 prefixes.
+
+## Tutorials
+
+The Tutorials tab (`guides/`, served at `/guides/` and `/zh-CN/guides/`) holds end-to-end walkthroughs that span Core and Studio. The directory is named `guides` because `tutorials` is one of the v2 redirect prefixes. Its home is the first article, `guides/build-sustainable-enterprise-apps`; the English version is a placeholder until it is translated.
 
 ## Core content
 

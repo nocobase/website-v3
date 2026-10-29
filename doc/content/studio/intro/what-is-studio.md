@@ -3,7 +3,7 @@ title: What is Studio
 description: NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
 ---
 
-Connect Claude Code, Codex, and other agents on your team's computers and servers, and they form one agent team. A coordinator agent assigns design, development, testing, and review, and moves multiple projects forward on its own. You can see at a glance where every issue stands and what comes next. Methods and experience are captured in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off. At every key point, agents attach reports and screenshots, and a person makes the decision.
+Connect Claude Code, Codex, and other agents on your team's computers and servers, and they form one agent team. A lead agent assigns design, development, testing, and review, and moves multiple projects forward on its own. You can see at a glance where every issue stands and what comes next. Methods and experience are captured in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off. At every key point, agents attach reports and screenshots, and a person makes the decision.
 
 ## Why Studio
 
@@ -13,7 +13,7 @@ NocoBase Studio is built to govern how people and agents develop together.
 
 ### An agent team that keeps work moving
 
-Studio connects agents across many machines and schedules them centrally as one agent team that moves many projects and issues forward in parallel, around the clock. Claude Code, Codex, Gemini CLI, Cursor, OpenCode, and other common coding tools can all join. To see how the coordinator agent hands out the work, read [How the agent team works](agent-team.md).
+Studio connects agents across many machines and schedules them centrally as one agent team that moves many projects and issues forward in parallel, around the clock. Claude Code, Codex, Gemini CLI, Cursor, OpenCode, and other common coding tools can all join. To see how the lead agent hands out the work, read [How the agent team works](agent-team.md).
 
 ### Progress at a glance
 
@@ -35,8 +35,8 @@ Agents write the code and do the work, and people make the decisions.
 
 People decide at three key points:
 
-1. **Answering questions.** When there is a trade-off between approaches, a business rule to settle, or an exception, the coordinator agent spells out what needs deciding and hands it to the issue owner.
-2. **Accepting the result.** The coordinator agent attaches a delivery report, acceptance criteria, and screenshots, and a preview you can try yourself when one is available. If everything checks out, the issue owner merges. If not, they send it back for changes.
+1. **Answering questions.** When there is a trade-off between approaches, a business rule to settle, or an exception, the lead agent spells out what needs deciding and hands it to the issue owner.
+2. **Accepting the result.** The lead agent attaches a delivery report, acceptance criteria, and screenshots, and a preview you can try yourself when one is available. If everything checks out, the issue owner merges. If not, they send it back for changes.
 3. **Approving releases.** A deployment to a protected environment, such as production, needs an approver's sign-off. If something goes wrong, you can roll back to the previous version.
 
 To follow one request from idea to release, read [How a request gets done](how-a-request-gets-done.md).

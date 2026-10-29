@@ -54,7 +54,7 @@ Studio captures methods and experience in skills, the knowledge base, and projec
 
 | | Core only | With Studio |
 | --- | --- | --- |
-| Who builds | You open Claude Code, Codex, or another coding tool in the app directory and build with the agent | Your team's agents form an agent team, and the coordinator agent assigns design, development, testing, and review |
+| Who builds | You open Claude Code, Codex, or another coding tool in the app directory and build with the agent | Your team's agents form an agent team, and the lead agent assigns design, development, testing, and review |
 | Good for | One person or a small team working on one or a few apps | A team moving many projects and issues forward at once, where business experts raise requests and make decisions directly |
 | Checks and releases | Your team organizes testing, review, and deployment itself, with deployment tools and development guides from Core | Work reaches a person for acceptance after it passes checks and review, and deployments to protected environments need an approver's sign-off |
 | Get started | [Create a Core app](../core/getting-started/create-app.md) | [What is Studio](../studio/intro/what-is-studio.md) |

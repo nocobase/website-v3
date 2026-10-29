@@ -36,7 +36,7 @@ description: "了解 app-plugin-agents 提供的能力，通过场景和提示�
 
 ## 使用场景与示例
 
-示例 `agents-guide` 使用 SQLite、DeepSeek 和英文界面。文中的截图来自实际运行的应用。[下载示例源码](/assets/core/downloads/agents-doc-demo.zip)，按其中的 `README.md` 启动；压缩包不包含数据库、模型密钥、登录会话或依赖目录。尚无应用时，先按[创建应用](../../getting-started/create-app.md)准备项目。
+示例 `agents-guide` 使用 SQLite、DeepSeek 和英文界面。文中的截图来自实际运行的应用。[查看示例源码](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide)，按其中的 `README.md` 启动；进入仓库的 `apps/agents-guide` 目录运行命令。源码不包含数据库、模型密钥、登录会话或依赖目录。尚无应用时，先按[创建应用](../../getting-started/create-app.md)准备项目。
 
 这里的**开发提示词**交给在项目目录工作的 Coding Agent，用来把插件接入应用；**对话提示词**则在接入后的应用聊天界面中使用。
 
@@ -159,7 +159,7 @@ permission-label tests passed. Do not claim any other tests ran.
 请报告实际执行结果；如果机器尚未连接，明确说明还不能验证代码执行。
 ```
 
-**先准备应用 CLI 和 Runner 分发包。** 默认模板没有应用自己的 CLI，也没有可下载的 Runner。只注册插件就按连接页安装，会返回 404；即使机器已在线，缺少应用 CLI 的任务仍会以 `cliUnavailable` 失败。下载示例已经声明所需依赖和配置；在其根目录执行：
+**先准备应用 CLI 和 Runner 分发包。** 默认模板没有应用自己的 CLI，也没有可下载的 Runner。只注册插件就按连接页安装，会返回 404；即使机器已在线，缺少应用 CLI 的任务仍会以 `cliUnavailable` 失败。示例项目已经声明所需依赖和配置；在其根目录执行：
 
 ```bash
 pnpm nocobase cli build --universal
@@ -229,7 +229,7 @@ packages, or claim that the application source is present unless you see it.
 | `tests/client/release-notes-button.test.tsx` | 验证创建、重复点击、失败重试、权限和身份结束 | 业务入口的成功与失败路径均有检查 |
 | `tests/client/client-routes.test.ts` | 补充路由唯一性、页面加载和授权定义检查 | 检查新增页面是否正确接入、是否改变原有页面约定 |
 
-`package.json` 和锁文件记录依赖变化。模型服务、业务 Skill 及对话历史则是应用运行数据：仅复制源码不会同时复制这些记录，启动下载示例后仍需配置自己的模型服务并导入 Skill。
+`package.json` 和锁文件记录依赖变化。模型服务、业务 Skill 及对话历史则是应用运行数据：仅复制源码不会同时复制这些记录，启动示例后仍需配置自己的模型服务并导入 Skill。
 
 ### 插件注册做了什么
 
@@ -325,7 +325,7 @@ release-notes/
 
 `SKILL.md` 要求先读 `references/style.md`，按 Summary、Changes、Verification 输出，仅使用用户提供的事实，不补写版本、日期或测试结果。规范保存到库后，`server/providers/agents.ts` 在启动时注册命名 scope，并由 `server/providers/index.ts` 加载。
 
-下面是该 Provider 的关键代码，完整实现见下载源码：
+下面是该 Provider 的关键代码，完整实现见示例源码：
 
 ```ts
 const agents = this.app.container.resolve(agentsToken);
@@ -430,7 +430,7 @@ Skills 页面的 **Global attachment** 用于 Runner 后续任务的全局 Skill
 | Runner 只读执行 | 补齐应用 CLI 后，真实执行 `pwd` 和 `ls -A1`，运行记录为 `completed`；首次失败原因及修复已记录 |
 | 匿名 API 访问 | 模型服务和 Skills 接口返回 401；这不等于已验证完整角色权限矩阵 |
 
-下载示例可以重跑相关测试：
+在示例目录中可以重跑相关测试：
 
 ```bash
 pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts tests/client/release-notes-button.test.tsx
@@ -455,3 +455,9 @@ pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-
 ```
 
 本文实测基线为 2026-10-29 的默认模板 `1.0.0-beta.84`、Agents `1.0.0-beta.29`、SQLite 与 DeepSeek `deepseek-flash`。机器 Agent 的项目改码与构建、完整角色矩阵、业务写入、附件解析、完整移动端矩阵和生产部署尚未验收。后续扩展时，应针对新增能力补充验证。
+
+### 示例源码
+
+- [完整示例项目](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide)：模型对话、业务 Skill 和 Runner 接入，固定于提交 `b91adc8`。
+- [运行与验证说明](https://github.com/nocobase/docs-examples-v3/blob/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide/README.md)：版本要求、安装配置、启动和测试命令。
+- [下载示例源码 ZIP](/assets/core/downloads/agents-doc-demo.zip)：与上述提交对应的应用源码，不含运行数据和依赖。

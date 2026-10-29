@@ -1,28 +1,28 @@
 ---
 title: "API keys"
-description: "Issue and revoke API keys and constrain integration permissions."
+description: "Issue and revoke API keys, and restrict the permission scope of external calls."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-api-keys` authenticates scripts and integrations through `x-api-key`. Requests act as the key owner; scoped keys are additionally constrained by their scope.
+`@nocobase/app-plugin-api-keys` provides API key authentication for scripts and external systems. Requests carry the key in `x-api-key` and run as the user who owns the key; scoped keys are additionally limited by their own scope.
 
-The plugin supplies authentication and key APIs; the application owns personal management UI and business scope enforcement.
+The plugin provides key authentication and the management APIs; the personal key management page, and connecting business APIs to key scopes, are implemented by the application.
 
 ## Scenarios and examples
 
-### Example: a read-only reporting script
+### Example: give a reporting script read-only access
 
-1. The application declares reporting permission groups and record scopes.
-2. A signed-in user selects available read permissions and an expiry, then saves the returned secret.
-3. The script sends it through `x-api-key`.
-4. Verify permitted reads, denied writes and out-of-scope records, and rejection after revocation.
+1. The application declares the key permission groups and record scopes for the reporting business.
+2. After signing in, a user opens the key management page, chooses read-only capabilities they already hold and an expiry, and saves the secret returned on creation.
+3. The script calls the reporting API with `x-api-key`.
+4. Verify that permitted queries succeed, while writes, access to records outside the scope and requests after revocation are rejected.
 
-Effective permissions are the intersection of the owner's current permissions and the key's scope. Scoped keys require endpoints to opt in through authentication and enforce authorization or the relevant scope checks. Unintegrated endpoints reject them.
+A scoped key's effective permission is the intersection of the user's current permissions and the key's scope; a key scope never grants permissions the user does not have. Business APIs that use `auth.required()` must explicitly allow scoped keys and perform operations through the authorization system or the corresponding scope checks; APIs that have not been connected reject such keys.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use API Keys to give a reporting script an expiring read-only key. Preserve auth
 configuration, declare reporting actions and record scopes, and integrate personal
 creation, rotation and revocation. Show the secret only when issued or rotated;
@@ -30,58 +30,58 @@ never store it in source or logs. Test allowed reads, out-of-scope reads, writes
 old secrets and revoked keys.
 ```
 
-**Done when**: The script reads only allowed report records; writes and invalidated-key requests are denied.
+**Done when**: the script can only read the permitted report records, and both writes and requests with invalidated keys are rejected.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Auth configuration and plugin arrays | Compose apiKey(), apiKeyClient() and migrations | Enable key authentication and management endpoints |
-| Personal settings page | Integrate scope, expiry, rotation and revocation | Users manage their own keys and see secrets only on issuance |
-| Reporting APIs | Opt into scoped keys and apply data policies | Script access is the intersection of user grants and key scope |
+| Authentication configuration and plugin arrays | Combine `apiKey()` and `apiKeyClient()`, and run the migrations | Key authentication and management endpoints are available |
+| Personal settings page | Connect key scope, expiry, rotation and revocation | Users manage their own keys, and the secret is shown only once when returned |
+| Reporting APIs | Explicitly support scoped keys and apply data policies | The script can only access the intersection of user permissions and key scope |
 
-### Integration
+### Integration and configuration
 
-Register both runtimes and apply migrations. Also add `apiKey()` from `/server` to server authentication configuration and `apiKeyClient()` from `/client` to client authentication configuration. Check the default template's existing setup first.
+Besides registering the plugin on the Client and the Server and running the database migrations, add `apiKey()` exported from `/server` to the server authentication configuration, and `apiKeyClient()` exported from `/client` to the client authentication configuration. The default template already combines these, so check first and add only what is missing.
 
-Server registration alone creates the table but does not enable Better Auth key endpoints; `apiKey()` without migrations has no table to use. The application owns its key management page, using the authentication client or `/api/apiKeys`.
+Registering only the server plugin creates the key tables but does not enable Better Auth's key endpoints; adding only `apiKey()` without running the plugin migrations leaves the tables missing. The plugin does not register a key management page; the application can build a personal key management page with the authentication client or `/api/apiKeys`.
 
-### Issue and use keys
+### Create and use keys
 
-A signed-in session is required to manage personal keys. A key cannot manage other keys.
+Users must manage their own keys through a session from an interactive sign-in; a key itself cannot create, change or delete other keys. Scoped keys are managed through these APIs:
 
-| Endpoint | Purpose |
+| API | Purpose |
 | --- | --- |
-| `GET /api/apiKeys/scopeOptions` | Available groups, presets and expiry settings |
-| `POST /api/apiKeys` | Create a key and return its secret once |
-| `GET /api/apiKeys` | List owned keys and scopes without secrets |
-| `POST /api/apiKeys/:keyId/rotate` | Rotate the secret and immediately invalidate the old one |
-| `DELETE /api/apiKeys/:keyId` | Revoke a key |
+| `GET /api/apiKeys/scopeOptions` | Gets the available permission groups, presets and expiry information |
+| `POST /api/apiKeys` | Creates a key and returns its plain-text secret once |
+| `GET /api/apiKeys` | Lists your own keys and their scopes, without secrets |
+| `POST /api/apiKeys/:keyId/rotate` | Rotates the secret; the old value stops working immediately |
+| `DELETE /api/apiKeys/:keyId` | Revokes a key |
 
-For an application mounted at `/main`:
+For example, with the application mounted at `/main`, a key can read its API documentation:
 
 ```bash
 curl -H 'x-api-key: <your-key>' https://app.example.com/main/api/swagger
 ```
 
-Replace the key and application address. Access to the API document does not grant access to every endpoint it describes.
+Replace `<your-key>` with the actual key and adjust the address to where the application is deployed. Being able to read the API documentation does not mean you are allowed to call every API in it.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Use a signed-in session for key management; keys cannot manage other keys.
-- Unscoped keys are not read-only. Reporting endpoints must enforce actions and records, beyond validating the key.
-- Verify immediate old-secret invalidation after rotation and calls after owner permission loss, expiry and revocation.
+- Key management must use a signed-in session; never let one API key manage other keys.
+- A key without a scope is not read-only; reporting APIs must enforce action and record scopes rather than just checking that the key is valid.
+- Test that the old secret stops working immediately after rotation, and calls after the user loses permissions, the key expires and the key is revoked.
 
-### Boundaries
+### Limits of use
 
-Unscoped keys inherit owner permissions; they are not read-only by default. Losing permissions or disabling the owner affects their keys. `apiKeys.maxScopedKeyDays` limits scoped-key lifetime. Update integration secrets after rotation.
+A key without a scope inherits all of its owner's permissions, so do not describe it as read-only by default. When the user loses permissions or is disabled, their keys are affected too. `apiKeys.maxScopedKeyDays` limits the maximum lifetime of scoped keys; after rotation, update the secret stored by the caller.
 
-Related: [Authentication](sign-in.md), [Permission management](../authorization/permissions.md), [Manage plugins](../../developing-apps/manage-plugins.md).
+Related documentation: [Authentication](sign-in.md), [Permission management](../authorization/permissions.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-api-keys).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-api-keys).

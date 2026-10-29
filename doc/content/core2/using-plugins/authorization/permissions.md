@@ -1,83 +1,85 @@
 ---
 title: "Permission management"
-description: "Configure permission sets, page and business access, and server-side data policies."
+description: "Configure permission sets, page and business action permissions, and enforce data access on the server."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-authorization` provides permission sets, page and settings access, business actions, and database field, record and relation policies.
+`@nocobase/app-plugin-authorization` provides the application's authorization service, permission sets, page and settings permissions, and access policies for database fields, records and relations. It suits controlling "who can open a page, perform a business action and access which data".
 
-The application declares resources and management UI; the plugin supplies authorization decisions and data policies.
+The division of work: the application declares business resources and the management interface, while the plugin provides authorization decisions and data policies that can be enforced in queries.
 
-### Configure access
+### What can be configured
 
-| Object | Controls |
+| Object | What it controls |
 | --- | --- |
-| Permission set | Grants assigned to users or other subjects |
-| `page` | Opening a page |
-| `settings` | Reading or changing an administration surface |
-| `composite` | A business action and its underlying data operations |
-| `database.collection` | Policies for a Collection registered with authorization |
+| Permission set | Assigns a group of grants to subjects such as users |
+| `page` | Page access, such as opening the orders page |
+| `settings` | Administration actions such as reading, creating and changing settings |
+| `composite` | A business action and the data, fields and operations it depends on |
+| `database.collection` | Collections connected to the permission model, and their data policies |
 
-Resources and actions must be declared. A table's existence does not register its Collection with the permission model.
+Resources and actions must be declared by the application or a plugin before they can be authorized correctly. Business Collections must be registered through the authorization service; merely existing in the database does not connect them to the permission model.
 
-The configured `root` permission set is unrestricted and should be distinct from ordinary business roles. Current account creation assigns Member explicitly; it is not an unavoidable implicit permission for every signed-in user.
+The `root` permission set in the default configuration has unrestricted permissions and should be kept separate from ordinary business roles. The current implementation assigns Member explicitly to newly created ordinary accounts; do not read it as a permission every signed-in user always holds implicitly.
 
 ## Scenarios and examples
 
-### Example: viewing and editing orders
+### Example: viewing and changing orders
 
-1. Declare view and edit capabilities, including fields and record selections.
-2. Grant support staff view access and responsible users the required edit access.
-3. Use route `authz` and `useCan` for navigation and buttons; check the operation again in the API.
-4. Apply record and field policies through public methods such as `authz.database.policyFor(...)` or `authorizeRepository(...)`.
-5. Verify lists, details, relations and direct API calls with different roles.
+1. The application declares two business capabilities, "view orders" and "change orders", stating the fields and record scope each needs.
+2. Grant the view capability to the support role, and the matching change capability to order owners.
+3. Pages present entries and buttons through the route's `authz` and `useCan`; the API checks the action permission again on the server.
+4. Queries enforce record and field policies through public APIs such as `authz.database.policyFor(...)` or `authorizeRepository(...)`.
+5. Check lists, details, related data and direct API requests with different roles.
 
-An operation check followed by an unrestricted query loses record and field restrictions. Hiding navigation is not server authorization.
+If you only check "has permission to view orders" and then run an unrestricted database query, the record and field restrictions are lost. Hiding menus or disabling buttons cannot replace server-side authorization either.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use Authorization to add order view and edit access. Declare pages and business
 actions, reuse existing roles, and do not add root or unrestricted grants.
 Control UI actions and enforce server-side operation, record and field policies.
 Test lists, details, relations and direct API calls as read-only, editing and denied users.
 ```
 
-**Done when**: Read-only users can read allowed orders but cannot edit; other records and restricted fields stay inaccessible.
+**Done when**: read-only users can read the permitted orders but cannot change them, and no other records or restricted fields leak through the API.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Authorization config and resource declarations | Register Collections, actions and field dependencies | Management choices reflect business capabilities |
-| Business services and Repository queries | Apply returned authorization policies | Lists, details and writes enforce the same boundaries |
-| Page routes and controls | Use authz and useCan, retaining API enforcement | UI access reflects the role |
+| `server/config/authorization.ts` and resource declarations | Register business Collections, actions and field dependencies | The management page can choose real business capabilities |
+| Business services and Repository queries | Apply the data policy returned by authorization | Lists, details and writes follow the same scope |
+| Page routes and action buttons | Use `authz` and `useCan`, while keeping API checks | Page entries and action visibility match the role |
 
 ### Integration and entry points
 
-Register Client and Server plugins after Authentication, then apply migrations and seeds. Compose configuration in `server/config/authorization.ts`; resolve `authorizationToken` from `/server` for trusted server integration.
+Register the Client and Server plugins after Authentication, then run the migrations and seed data. The application combines the configuration in `server/config/authorization.ts` and uses the authorization service through `authorizationToken` exported from `/server`.
 
-The plugin exposes `/api/authorization`, `AuthorizationClient` and hooks such as `useCan`. The application builds its permission management pages and declares grantable business capabilities.
+The plugin provides the `/api/authorization` API and client capabilities such as `AuthorizationClient` and `useCan`, but does not register a permission management page itself. The application connects its own management page and declares the business capabilities that can be assigned.
 
-### Record-access extensions
+### Extend data scopes
 
-- [Default data access](default-access.md) adds a shared record baseline to an already granted action.
-- [Sharing rules](sharing-rules.md) adds selected records for named subjects.
-- [Restriction rules](restriction-rules.md) narrows the records those subjects may still access.
+When record scopes need to be unified or refined, configure them separately as the business requires:
 
-None grants an action. Management UI grouping also has no authorization effect. See [Manage plugins](../../developing-apps/manage-plugins.md) for installation.
+- [Default data access](default-access.md): adds a shared record scope for subjects that already have an action permission.
+- [Sharing rules](sharing-rules.md): adds specific record scopes for named subjects.
+- [Restriction rules](restriction-rules.md): narrows the records named subjects can still access.
+
+None of these rules creates action permissions. Grouping in the management interface is only presentation and does not change authorization results either. For installation, see [Manage plugins](../../developing-apps/manage-plugins.md).
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Declare capabilities before granting them; database queries outside the permission model are not protected by those grants.
-- Check pages, actions, fields, records and relations, not just a boolean can result followed by unrestricted queries.
-- Use ordinary roles and direct API requests; review role seed changes for unintended expansion of existing access.
+- Declare business capabilities first, then authorize; database queries that are not connected to the permission model must not be treated as protected.
+- Check page, action, field, record and relation access, and avoid running an unrestricted query after a single boolean `can` check.
+- Accept the work with ordinary roles and direct API requests; when role Seeds are involved, check whether existing users' permissions were widened by accident.
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authorization).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authorization).

@@ -1,46 +1,46 @@
 ---
 title: "Sharing rules"
-description: "Configure sharing rules while preserving operation permissions."
+description: "Configure sharing rules, and keep the boundary between record scopes and action authorization clear."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-authz-sharing-rules` provides this extension. Sharing rules add records for named subjects such as users or teams. Use them for handovers and cross-team collaboration; recipients still need the relevant operation permission.
+`@nocobase/app-plugin-authz-sharing-rules` adds record scopes for named subjects such as users or teams, which suits handing over work, collaborating across teams or temporarily sharing specific records. Recipients still need the relevant business action permission.
 
-The application owns rule management. Authorization factories are required in addition to runtime registration.
+The rule management page is the application's responsibility; besides registering the plugin at runtime, the authorization factory must also be combined before rules take part in business access decisions.
 
 ## Scenarios and examples
 
-### Example
+### Business example
 
-To share customer A with another salesperson, first grant that person customer read access, then add a sharing rule selecting A for the read action. This does not grant editing or unrestricted access to related records.
+Suppose salesperson A needs to hand customer A over to salesperson B for follow-up. First make sure B has the "read customers" action permission, then create a sharing rule for B that selects customer A for the read action. B then gains read access to that customer, but does not gain permission to change it, nor access to all of the customer's related data.
 
-Confirm the operation grant first, configure the range, then verify permitted records, excluded records and direct API calls. Business queries must apply authorization policies for rules to affect actual access.
+Confirm that the subject holds the target action first, then configure the scope; finally check permitted records, records outside the scope and direct API calls separately. Business queries must enforce the data policy returned by the authorization service for rules to actually affect query results.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use @nocobase/app-plugin-authz-sharing-rules. Share customer A read-only with salesperson B, preserving access to other customers and all edit permissions.
 Preserve authorization extensions and integrate rule management with its settings
 permissions. Check the read action before configuring records. Do not add admin
 grants to bypass restrictions. Verify allowed and excluded records through direct APIs.
 ```
 
-**Done when**: B can read customer A without gaining edit access or other unauthorized customers.
+**Done when**: B can read customer A, but this neither lets B change customers nor read other customers B is not authorized for.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Plugin arrays and server/config/authorization.ts | Register runtimes and compose sharingRules() | Enable endpoints and rule evaluation |
-| Application rule-management page | Integrate options, selections and protected writes | Administrators maintain the intended rules |
-| Business queries and tests | Apply policies and test different subjects | Rules affect returned data |
+| Plugin arrays and `server/config/authorization.ts` | Register the runtime parts and combine `sharingRules()` | The rule API and the decision extension both take effect |
+| The application's rule management page | Connect options, record selection and the protected save API | Administrators can maintain the target rules |
+| Business queries and tests | Keep the data policy returned by authorization, and add cases for different subjects | Rules actually affect data results |
 
-### Integration
+### Integration and configuration
 
-Register its Client and Server entries alongside [Permission management](permissions.md), apply migrations, and add the factory to `server/config/authorization.ts`:
+On top of [Permission management](permissions.md), register this plugin's Client and Server entries and run the migrations; in addition, add the factory to the application's `server/config/authorization.ts`:
 
 ```ts
 import { sharingRules } from '@nocobase/app-plugin-authz-sharing-rules/server';
@@ -49,30 +49,30 @@ import { sharingRules } from '@nocobase/app-plugin-authz-sharing-rules/server';
 plugins: [sharingRules()]
 ```
 
-Runtime registration contributes locales and migrations. The configuration factory installs rule behavior and HTTP endpoints; installing the package alone does not enable them.
+Runtime registration handles language resources and database migrations, while the configuration factory is what installs the rule capability and HTTP API. Without the factory, rules do not take effect even though the package is installed.
 
 ### Configure and use rules
 
-Specify subjects, a resource, actions and record selections. Selections allow explicit IDs or registered `recordAccess`, but reject `all`. Use default data access for a shared baseline available to everyone who already holds an action.
+A rule specifies a subject, a target resource, an action and a record selection. The record selection can only be specific record IDs or a registered `recordAccess`; `all` is not supported. To open a shared set of records to everyone who already holds the action, use default data access instead.
 
-`/api/authorization/sharingRules` provides listing, creation, updates, deletion and supporting selection endpoints. The application owns its management page. Operations require the corresponding `read`, `create`, `update` or `delete` action on `settings:authorization.sharing-rules`.
+The rule management API is at `/api/authorization/sharingRules`, providing list, create, update and delete, plus the endpoints needed for options and subject or record selection. The management page belongs to the application, and the plugin does not register one automatically. Accessing these APIs requires the corresponding `read`, `create`, `update` or `delete` permission on `settings:authorization.sharing-rules`.
 
-Save rules through protected endpoints. Trusted server code can use the authorization service's `sharingRules` API; custom HTTP wrappers must retain authorization and input validation.
+The application saves rules through the protected API. Trusted server code can also use the `sharingRules` API on the authorization service directly; when wrapping your own HTTP API, keep the permission checks and input validation.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Save sharing for explicit subjects and record selections. Do not use all or expose every related record.
-- Rules change records, not page, operation or field grants. Verify server queries apply their policies.
-- Use non-unrestricted identities to check combined rules, removal and direct access, not only a root account.
+- Sharing is stored per named subject and record; the record selection does not support `all`, and must not open all related records along the way.
+- Rules change record scopes and grant no page, action or field permissions; check that server-side queries really apply the policy.
+- Verify stacking, revoking and direct access with identities that are not unrestricted; do not test only with a super administrator.
 
-### Boundaries
+### Limits of use
 
-Rules grant no page, operation or field permission and do not automatically expose related records. Restrictions still narrow the combined default and shared ranges. Unrestricted identities bypass these rules, so test with ordinary users too.
+Rules grant no page, action or field permissions and do not open related records automatically. After the default scope and sharing scopes are merged, restriction rules still apply. Unrestricted identities skip these scope rules, so the results ordinary users see cannot be verified with a super administrator alone.
 
-Related: [Permission management](permissions.md), [Default data access](default-access.md), [Sharing rules](sharing-rules.md), [Restriction rules](restriction-rules.md).
+Related documentation: [Permission management](permissions.md), [Default data access](default-access.md), [Restriction rules](restriction-rules.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-sharing-rules).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-sharing-rules).

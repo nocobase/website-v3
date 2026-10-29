@@ -1,46 +1,46 @@
 ---
 title: "Default data access"
-description: "Configure default data access while preserving operation permissions."
+description: "Configure default data access, and keep the boundary between record scopes and action authorization clear."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-authz-default-access` provides this extension. Default data access adds a shared record baseline for identities that already hold an action. It combines with permission-set selections, rather than applying only when a grant has no selection.
+`@nocobase/app-plugin-authz-default-access` adds a shared record scope for subjects that already hold a given action permission. This default scope is merged with the permission set's own scope; it is not a fallback that applies only when no scope is set.
 
-The application owns rule management. Authorization factories are required in addition to runtime registration.
+The rule management page is the application's responsibility; besides registering the plugin at runtime, the authorization factory must also be combined before rules take part in business access decisions.
 
 ## Scenarios and examples
 
-### Example
+### Business example
 
-For example, support staff may initially read only customers they own. Add a public-customer selection as the default for customer reads, allowing owned and public customers. People without the read action still cannot read customers.
+Suppose support staff can initially view only the customers they own. The application can define "public customers" as a record selection and configure it as the default scope for the "read customers" action; support staff can then read their own customers and the public ones. People without the "read customers" permission still cannot read any.
 
-Confirm the operation grant first, configure the range, then verify permitted records, excluded records and direct API calls. Business queries must apply authorization policies for rules to affect actual access.
+Confirm that the subject holds the target action first, then configure the scope; finally check permitted records, records outside the scope and direct API calls separately. Business queries must enforce the data policy returned by the authorization service for rules to actually affect query results.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use @nocobase/app-plugin-authz-default-access. Add public customers to the default range for support staff who already have customer-read access, retaining their existing range.
 Preserve authorization extensions and integrate rule management with its settings
 permissions. Check the read action before configuring records. Do not add admin
 grants to bypass restrictions. Verify allowed and excluded records through direct APIs.
 ```
 
-**Done when**: Staff can read owned and public customers; users without the read action remain denied.
+**Done when**: support staff can read the customers they own and the public customers, while users without the read action are still rejected.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| Plugin arrays and server/config/authorization.ts | Register runtimes and compose defaultAccess() | Enable endpoints and rule evaluation |
-| Application rule-management page | Integrate options, selections and protected writes | Administrators maintain the intended rules |
-| Business queries and tests | Apply policies and test different subjects | Rules affect returned data |
+| Plugin arrays and `server/config/authorization.ts` | Register the runtime parts and combine `defaultAccess()` | The rule API and the decision extension both take effect |
+| The application's rule management page | Connect options, record selection and the protected save API | Administrators can maintain the target rules |
+| Business queries and tests | Keep the data policy returned by authorization, and add cases for different subjects | Rules actually affect data results |
 
-### Integration
+### Integration and configuration
 
-Register its Client and Server entries alongside [Permission management](permissions.md), apply migrations, and add the factory to `server/config/authorization.ts`:
+On top of [Permission management](permissions.md), register this plugin's Client and Server entries and run the migrations; in addition, add the factory to the application's `server/config/authorization.ts`:
 
 ```ts
 import { defaultAccess } from '@nocobase/app-plugin-authz-default-access/server';
@@ -49,30 +49,30 @@ import { defaultAccess } from '@nocobase/app-plugin-authz-default-access/server'
 plugins: [defaultAccess()]
 ```
 
-Runtime registration contributes locales and migrations. The configuration factory installs rule behavior and HTTP endpoints; installing the package alone does not enable them.
+Runtime registration handles language resources and database migrations, while the configuration factory is what installs the rule capability and HTTP API. Without the factory, rules do not take effect even though the package is installed.
 
 ### Configure and use rules
 
-A resource has at most one default-access rule, with selections for its actions. Selections support all records, explicit IDs or a registered `recordAccess`. Composite actions identify a data scope through `scopeKey`.
+Each resource has at most one default scope rule, in which scopes can be configured per action. The available scopes are all records, specific record IDs, or a `recordAccess` the application has registered. For composite business actions, use `scopeKey` to name the data scope the action uses.
 
-`/api/authorization/defaultAccess` provides listing, creation, updates, deletion and supporting selection endpoints. The application owns its management page. Operations require the corresponding `read`, `create`, `update` or `delete` action on `settings:authorization.default-access`.
+The rule management API is at `/api/authorization/defaultAccess`, providing list, create, update and delete, plus the endpoints needed for options and subject or record selection. The management page belongs to the application, and the plugin does not register one automatically. Accessing these APIs requires the corresponding `read`, `create`, `update` or `delete` permission on `settings:authorization.default-access`.
 
-Save rules through protected endpoints. Trusted server code can use the authorization service's `defaultAccess` API; custom HTTP wrappers must retain authorization and input validation.
+The application saves rules through the protected API. Trusted server code can also use the `defaultAccess` API on the authorization service directly; when wrapping your own HTTP API, keep the permission checks and input validation.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Maintain one default rule per resource. Its selection adds records, rather than applying only when another range is absent.
-- Rules change records, not page, operation or field grants. Verify server queries apply their policies.
-- Use non-unrestricted identities to check combined rules, removal and direct access, not only a root account.
+- Maintain only one default rule per resource; a default scope is an additional scope, not a fallback that applies only when no scope exists.
+- Rules change record scopes and grant no page, action or field permissions; check that server-side queries really apply the policy.
+- Verify stacking, revoking and direct access with identities that are not unrestricted; do not test only with a super administrator.
 
-### Boundaries
+### Limits of use
 
-Rules grant no page, operation or field permission and do not automatically expose related records. Restrictions still narrow the combined default and shared ranges. Unrestricted identities bypass these rules, so test with ordinary users too.
+Rules grant no page, action or field permissions and do not open related records automatically. After the default scope and sharing scopes are merged, restriction rules still apply. Unrestricted identities skip these scope rules, so the results ordinary users see cannot be verified with a super administrator alone.
 
-Related: [Permission management](permissions.md), [Default data access](default-access.md), [Sharing rules](sharing-rules.md), [Restriction rules](restriction-rules.md).
+Related documentation: [Permission management](permissions.md), [Sharing rules](sharing-rules.md), [Restriction rules](restriction-rules.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-default-access).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-default-access).

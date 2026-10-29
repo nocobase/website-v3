@@ -1,84 +1,84 @@
 ---
 title: "Authentication"
-description: "Configure application sign-in, sessions, registration and password recovery."
+description: "Configure the application's sign-in, sessions, registration and password recovery."
 ---
 
 ## Capabilities
 
-`@nocobase/app-plugin-authentication` integrates Better Auth with the application: identities, sessions, a browser client and server middleware. It establishes who is calling; [Permission management](../authorization/permissions.md) determines what that caller may do.
+`@nocobase/app-plugin-authentication` connects Better Auth to the application and provides sign-in identities, sessions, an authentication client and server authentication middleware. It answers "who is the current user"; what that user may do is decided by [Permission management](../authorization/permissions.md).
 
-Authentication supplies identity and sessions. The application owns sign-in UI; Authorization determines business access.
+The division of work: the authentication plugin provides identity and session mechanisms, the application maintains the sign-in pages, and the authorization plugin decides permissions for business actions.
 
 ## Scenarios and examples
 
-### Example: invitation-only membership
+### Example: only invited members may join
 
-1. Disable self-registration while retaining the required sign-in methods.
-2. Keep the application registration UI consistent with that setting.
-3. Invite members through [User management](users.md).
-4. Verify pages and APIs as a guest, a member and a disabled user.
+1. Turn off self-registration in the application configuration, keeping the sign-in methods you need.
+2. Keep the application's registration entry in sync with that configuration, rather than just hiding a button.
+3. Send invitations through [User management](users.md), so new members create accounts through the invitation page.
+4. Check page and API behavior for a guest, a signed-in member and a disabled user.
 
-For built-in recovery email, enable `auth.passwordReset.enabled`, configure the public application address and an available system email channel, and use `usePasswordResetCapability()` for its entry point. Email/password sign-in alone does not enable recovery. Applications can instead supply `sendResetPassword`. Configure trusted origins for cross-origin deployments rather than bypassing origin checks.
+To use the built-in password recovery email, enable `auth.passwordReset.enabled`, configure the application's public address and a system mail channel that can deliver, then show the entry with `usePasswordResetCapability()`. Enabling email and password sign-in alone does not mean recovery email works. The application can also provide its own `sendResetPassword` implementation. Cross-origin deployments also need trusted origins configured correctly; never fix sign-in problems by bypassing the request origin check.
 
-**Development prompt** (for a Coding Agent working in the application directory):
+**Development prompt** (for a coding Agent in the current application directory):
 
-```text
+```prompt
 Use Authentication to make this application invitation-only. Preserve existing
 sign-in, session and extension configuration. Disable self-registration on the
 server and align the UI. If recovery is enabled, check the public URL and email
 channel before exposing it. Verify guest, invited, disabled and signed-out access.
 ```
 
-**Done when**: Direct self-registration is denied; invited users can still sign in with their intended access.
+**Done when**: direct self-registration requests are rejected, while invited users can still sign in and access the application with their existing permissions.
 
 ## Key principles and implementation
 
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
+The table lists where this example connects and how the interface is expected to change. These are development notes; specific file names follow your application's current structure.
 
-| Integration area | Code or configuration change | UI and behavior change |
+| Integration point | Code or configuration change | Interface and behavior change |
 | --- | --- | --- |
-| client/config/auth.ts and server/config/auth.ts | Preserve matching extensions and configure registration/recovery | Enabled methods match visible entry points |
-| Application auth pages | Reuse template pages and capability-aware controls | Unavailable registration or recovery actions are not offered |
-| Protected routes and APIs | Authenticate, then authorize business operations | Guests are handled correctly, including direct API calls |
+| `client/config/auth.ts`, `server/config/auth.ts` | Keep and combine matching authentication extensions; adjust registration and recovery settings | Sign-in methods match the available entries |
+| The application's sign-in, registration and recovery pages | Reuse the template pages, showing actions according to actual capabilities | Unavailable registration or recovery entries no longer appear |
+| Protected routes and APIs | Connect the sign-in check first, then business authorization | Guests are guided correctly, and direct API calls are protected too |
 
 ### Integration and configuration
 
-The default template registers both runtimes and composes authentication in `client/config/auth.ts` and `server/config/auth.ts`. Preserve existing extensions when editing configuration instead of replacing the whole `plugins` array with an example.
+The default template already registers the authentication plugin on both the Client and the Server, and combines the authentication configuration in `client/config/auth.ts` and `server/config/auth.ts`. When changing the existing configuration, keep the extensions the application needs, and do not overwrite the whole `plugins` array with an example.
 
 | Setting or file | Purpose |
 | --- | --- |
-| `server/config/auth.ts` | Compose sign-in methods and extensions with `defineAuthConfig` |
-| `client/config/auth.ts` | Register matching client extensions |
-| `auth.emailAndPassword.enabled` | Enable email/password sign-in |
-| `auth.emailAndPassword.disableSignUp` | Disable self-registration |
-| `secrets.keys` / `SECRETS_KEYS` | Persistent keys from which authentication keys are derived |
-| `auth.passwordReset` | Configure password recovery and its email channel |
+| `server/config/auth.ts` | Combines sign-in methods and server extensions with `defineAuthConfig` |
+| `client/config/auth.ts` | Registers the client extensions that match the server |
+| `auth.emailAndPassword.enabled` | Whether email and password sign-in is enabled |
+| `auth.emailAndPassword.disableSignUp` | Whether self-registration is turned off |
+| `secrets.keys` / `SECRETS_KEYS` | Persistent keys from which the authentication plugin derives signing and encryption keys |
+| `auth.passwordReset` | Configures password recovery and its mail channel |
 
-Plugin migrations maintain authentication tables. Sign-in, sign-up and recovery pages belong to the application. Check its routes and enabled methods before adding another page.
+The tables authentication needs are maintained by the plugin's migrations. Sign-in, registration and password recovery pages are application source, and the plugin does not register another set of the same pages. When using the existing template pages, check their routes and the sign-in methods actually enabled first.
 
-### Use authentication
+### Use it in pages and APIs
 
-From `/client`, `useAuthentication()` provides session and loading state, and `useAuthenticationClient()` provides the authentication client. Protected routes declare `auth: 'required'`.
+On the client, use `useAuthentication()` from `/client` to read the session and loading state, and `useAuthenticationClient()` to call the authentication client. Pages that require sign-in declare `auth: 'required'`, and guest pages follow the application's routing conventions.
 
-On the server, resolve `authenticationToken` from `/server` and protect APIs with the service's `required()` middleware. Check business permissions afterward. Hiding navigation does not protect an API.
+On the server, get `authenticationToken` from `/server` and protect APIs with the authentication service's `required()` middleware; business permissions are checked after authentication. Hiding menus that appear after sign-in does not protect the API.
 
 ## AI development constraints and verification
 
-### Plugin-specific development constraints
+### Development constraints for this plugin
 
-- Change client and server extensions together and preserve persistent keys and trusted origins.
-- Test direct registration requests when disabling sign-up and actual email/link behavior for recovery.
-- Check session restoration, sign-out and disabled identities; keep authorization after authentication.
+- Change client and server extensions as a pair; keep persistent keys and trusted origins from the deployment configuration.
+- After turning off registration, check direct registration requests; after enabling password recovery, check actual email delivery and the link, not just the button.
+- Test session restoration, sign-out and disabled identities; business APIs must continue to authorize after authentication.
 
 ### Common issues
 
-- **No sign-in page:** inspect the application's routes and template pages.
-- **Sessions fail after a restart:** check persistent keys across instances and session storage.
-- **Sign-in works but access is denied:** inspect business permissions.
-- **Scripts need API access:** use [API keys](api-keys.md).
+- **No sign-in page after installation**: the sign-in page belongs to the application; check the application's own routes and template pages.
+- **Sessions misbehave after a restart**: check that every instance uses the same persistent authentication keys, and check the session storage configuration.
+- **Signed in but still not allowed**: check business authorization; signing in does not grant administration permissions by itself.
+- **Scripts need to call the API**: see [API keys](api-keys.md) instead of building another authentication mechanism modeled on browser sessions.
 
-For installation and migrations, see [Manage plugins](../../developing-apps/manage-plugins.md).
+For the common installation and migration steps, see [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+The checks above are acceptance requirements after integration; they do not mean this guide has completed runtime verification. Ask the Agent to report the actual changes, the checks it ran and what remains unverified; for project guidance, Skills and the general checking process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authentication).
+Source: [the plugin's public entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authentication).

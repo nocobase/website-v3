@@ -178,7 +178,7 @@ pnpm nocobase collections generate --connection main --check
 
 ### 准备示例应用
 
-项目专题沿用一个独立的历史示例：`tutorialTasks` 保存任务，`tutorialProjects` 保存项目，任务用 `completed` 表示完成状态。当前的 [入门示例](../tutorials/build-your-first-app-agent-first.md) 则使用 `tasks` 表和三阶段的 `status`，两者不是同一套代码。运行本专题时，请使用下文指定的旧标签和配套配置，不要把这些迁移直接应用到入门示例的数据库上。
+项目专题沿用一个独立的历史示例：`tutorialTasks` 保存任务，`tutorialProjects` 保存项目，任务用 `completed` 表示完成状态。当前的 [入门示例](../tutorials/build-your-first-app.md) 则使用 `tasks` 表和三阶段的 `status`，两者不是同一套代码。运行本专题时，请使用下文指定的旧标签和配套配置，不要把这些迁移直接应用到入门示例的数据库上。
 
 <details>
 <summary>获取并配置本文的示例应用</summary>

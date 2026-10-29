@@ -7,7 +7,7 @@ This guide uses the task application to walk through deployment, and it applies 
 
 The guide deploys the task application independently to your own production server, with PM2 supervising the application process. `@nocobase/app-installer` extracts the release archive, generates configuration, runs migrations, starts the PM2 process and checks health, and later application upgrades also go through it.
 
-Before deploying, make sure the application has passed its tests; for the task example's test steps, see [Build your first app](build-your-first-app-agent-first.md). The rest of this guide uses a single instance, SQLite, Linux x64/glibc and Node.js 24, with the application path `/tasks`. For other databases, install the corresponding driver in the source project first and rebuild.
+Before deploying, make sure the application has passed its tests; for the task example's test steps, see [Build your first app](build-your-first-app.md). The rest of this guide uses a single instance, SQLite, Linux x64/glibc and Node.js 24, with the application path `/tasks`. For other databases, install the corresponding driver in the source project first and rebuild.
 
 ## Prerequisites
 
@@ -181,7 +181,7 @@ Configuration and data live outside the release directories and are shared by ev
 ### 4. Verify supervision and persistence
 
 1. On the task page, create a task, mark it complete and refresh, and confirm the state is kept.
-2. Configure an ordinary read-only member following the permission notes in [Build your first app](build-your-first-app-agent-first.md), and verify that this member can view but not change tasks.
+2. Configure an ordinary read-only member following the permission notes in [Build your first app](build-your-first-app.md), and verify that this member can view but not change tasks.
 3. On the server, run `pm2 restart nocobase-tasks` as the same service account. If you set `--name` during installation, use the actual process name.
 4. Open the application again and confirm that the task and its state are still there.
 5. Configure recovery at boot following `nextCommands` in the installation result. The installer has already saved the pm2 process list; run `pm2 startup` as the same service account, then run the system command it prints. With SSH deployment, these commands also run on the server.

@@ -7,7 +7,7 @@ description: 用应用自带的 Dockerfile 构建镜像，把应用独立部署�
 
 本篇用应用自带的 `Dockerfile` 构建任务应用的镜像，再在自己的生产服务器上用 Docker Compose 启动。镜像中保存代码和生产依赖，服务器上的独立目录保存配置、数据库和上传的文件。
 
-部署前请确认应用已经通过测试；任务示例的测试步骤见 [搭建第一个应用](build-your-first-app-agent-first.md)。下文以 Linux x64、单实例 SQLite 为例，使用模板提供的 Node.js 24 Debian 镜像。服务器上需要安装 Docker 和 Compose 插件。
+部署前请确认应用已经通过测试；任务示例的测试步骤见 [搭建第一个应用](build-your-first-app.md)。下文以 Linux x64、单实例 SQLite 为例，使用模板提供的 Node.js 24 Debian 镜像。服务器上需要安装 Docker 和 Compose 插件。
 
 ## 部署前准备
 
@@ -186,7 +186,7 @@ curl --fail http://127.0.0.1:13000/tasks/api/healthz
 docker compose -p tasks-app up -d --force-recreate --wait --wait-timeout 180
 ```
 
-命令成功后，重新打开任务页面，确认同一条任务及其完成状态仍然存在，管理员仍可以用原来的密码登录。再按 [搭建第一个应用](build-your-first-app-agent-first.md) 中的权限说明配置一个普通的只读用户，确认这个用户能查看任务，但不能新建或完成任务。
+命令成功后，重新打开任务页面，确认同一条任务及其完成状态仍然存在，管理员仍可以用原来的密码登录。再按 [搭建第一个应用](build-your-first-app.md) 中的权限说明配置一个普通的只读用户，确认这个用户能查看任务，但不能新建或完成任务。
 
 需要停止演练环境时，在同一个部署目录中执行 `docker compose -p tasks-app down`，并保留宿主机上的 `config` 和 `storage` 目录。再次执行上面的 `up` 命令，就会继续使用原有的数据；不要重新运行 `config init`。
 

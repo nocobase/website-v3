@@ -7,7 +7,7 @@ This guide uses the task application to walk through deployment, and it applies 
 
 The guide builds an image of the task application with the application's own `Dockerfile`, then starts it with Docker Compose on your own production server. The image holds the code and production dependencies, while separate directories on the server hold configuration, the database and uploaded files.
 
-Before deploying, make sure the application has passed its tests; for the task example's test steps, see [Build your first app](build-your-first-app-agent-first.md). The rest of this guide uses Linux x64 with a single SQLite instance and the template's Node.js 24 Debian image. The server needs Docker and the Compose plugin.
+Before deploying, make sure the application has passed its tests; for the task example's test steps, see [Build your first app](build-your-first-app.md). The rest of this guide uses Linux x64 with a single SQLite instance and the template's Node.js 24 Debian image. The server needs Docker and the Compose plugin.
 
 ## Prerequisites
 
@@ -186,7 +186,7 @@ First create a task, mark it complete and refresh the page. Then recreate the co
 docker compose -p tasks-app up -d --force-recreate --wait --wait-timeout 180
 ```
 
-Once the command succeeds, reopen the task page and confirm that the same task and its completed state are still there, and that the administrator can still sign in with the original password. Then configure an ordinary read-only user following the permission notes in [Build your first app](build-your-first-app-agent-first.md), and confirm that this user can view tasks but cannot create or complete them.
+Once the command succeeds, reopen the task page and confirm that the same task and its completed state are still there, and that the administrator can still sign in with the original password. Then configure an ordinary read-only user following the permission notes in [Build your first app](build-your-first-app.md), and confirm that this user can view tasks but cannot create or complete them.
 
 To stop the rehearsal environment, run `docker compose -p tasks-app down` in the same deployment directory, keeping the `config` and `storage` directories on the host. Running the `up` command above again continues with the existing data; do not run `config init` again.
 

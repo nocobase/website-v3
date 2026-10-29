@@ -1,52 +1,76 @@
 ---
 title: Meet NocoBase Core
-description: Learn which shared capabilities NocoBase Core provides, so you and your Agent can focus on the business application itself.
+description: Core is an open-source foundation for AI to develop and run business applications. It supplies common capabilities and consistent project conventions so Agents can focus on your business.
 ---
 
-NocoBase Core is the foundation for developing and running business applications. It provides an application framework and shared capabilities such as sign-in, users, permissions, files and notifications that your application can use directly.
+An application created with Core can start and accept sign-ins immediately, with users, roles and permissions ready to use. Describe your business to an Agent: for example, “Track suppliers and purchase orders, notify the purchasing manager when an order is submitted, and let only the purchasing department edit supplier details.” The Agent writes the supplier and order tables, their pages and those two rules. Sign-in, roles, data access, and notification delivery use Core's existing capabilities.
 
-Task management, purchasing and customer management all deal with accounts, data, permissions and user interfaces. Core prepares these shared foundations, so you and your coding Agent can focus on the business itself: what data to store, who can act on it, and what should happen after each action.
+## Common capabilities are ready to use
 
-Creating an app gives you an independent application project. Core provides its capabilities as project dependencies; your pages, APIs, data structures and business rules live in your own application.
+Permissions, data access, files, notifications and background jobs involve many edge cases, even when AI writes them from scratch, and they need ongoing maintenance. Core provides implementations maintained and upgraded by NocoBase. The Agent writes the business-specific parts, leaving less code for you to review.
 
-## What Core provides
-
-- **Application templates and runtime**: start from a project that runs out of the box, with client code, server code and runtime configuration in place, and add your own features.
-- **Shared capabilities**: use authentication, users, permissions, data access, file storage and notifications through plugins and libraries, combined as the application needs.
-- **NocoBase UI Library**: reuse tables, forms, dialogs and business blocks. Once installed into your source code, components can be changed as needed.
-- **Development tools and Skills**: CLI commands handle configuration, migrations, plugin management and builds; Skills give Agents guidance that matches the installed dependency versions.
-
-The division of work: the template sets the project's starting point, plugins and libraries provide capabilities, and the application turns them into business features. Which capabilities an application can actually use depends on which packages it installs and registers.
-
-## What you develop
-
-The getting-started tutorial builds a task application step by step. Core provides the mechanisms; the application defines the tasks and their rules:
-
-| Scenario | Core provides | Your application implements |
+| Category | Includes | Documentation |
 | --- | --- | --- |
-| Signing in | Accounts, sign-in and sessions | Who may use the task application |
-| Storing tasks | Data access and migrations | Task titles, completion status, assignees and the related APIs |
-| Displaying tasks | Tables, forms, dialogs and other UI components | The task list, the creation dialog, filters and pagination |
-| Controlling access | A permission model and server-side checks | Who may view, create or complete tasks, and which records they may act on |
+| Users and permissions | Sign-in and sessions, user management, API keys; page and action authorization, default data access, sharing rules and restriction rules | [Authentication](../using-plugins/authentication/sign-in.md), [Permissions](../using-plugins/authorization/permissions.md) |
+| Data and files | Tables, fields, relationships and migrations; SQLite, PostgreSQL, MySQL and other databases; database browsing; file upload, storage and access | [Database](../framework/database/overview.md), [Files](../using-plugins/data-and-files/file-management.md) |
+| Processes and tasks | Record lifecycles with states and transitions declared in code, scheduled tasks, background jobs and queues; approvals (commercial edition) | [Scheduler](../using-plugins/automation/scheduler.md), [Jobs](../framework/background/jobs.md), [Approvals](../using-plugins/collaboration/approval.md) |
+| Messaging | Notifications and delivery logs, in-app messages, email and group bot channels, web push; email sending, receiving and synchronization | [Notifications](../using-plugins/notifications/notification.md), [Mail](../using-plugins/notifications/mail.md) |
+| AI and Agents | Business Agents that act within application permissions; knowledge bases for people and Agents | [Agents](../using-plugins/agents-and-knowledge/agents.md), [Knowledge](../using-plugins/agents-and-knowledge/knowledge.md) |
+| Interface and runtime | UI components, localization, caching, logging and real-time communication | [Components and interactions](../developing-apps/pages-and-interactions.md), [Localization](../using-plugins/application-support/i18n.md) |
 
-Take completing a task as an example: when a user clicks **Complete**, the application first uses Core's authentication and permission capabilities to check the request, then updates the task according to its own business rules, and finally shows the result on the page.
+These capabilities take two forms. **Plugins** (`@nocobase/app-plugin-*`) take effect when registered in the application and may provide pages, components, Skills or commands. **Libraries**, such as the database library `@nocobase/db` and record lifecycle library `@nocobase/lifecycle`, are imported directly. The default template includes commonly used plugins; register others with `pnpm nocobase plugin register`. Once the application is running, open **System settings → App foundation** to see which capabilities it uses. See the [plugin index](../reference/plugins.md) and [package index](../reference/packages.md) for the full list.
 
-You usually build these features directly in the application project. Turn a capability into a plugin only when it needs to be published separately and reused across several applications.
+## Consistent project structure and conventions
 
-## How to develop and maintain it
+A different developer, model or even a new conversation can lead AI to choose another implementation style. Over time, one system can accumulate several competing approaches. Core applications start from the same template, with a defined place for each kind of code:
 
-**With an Agent.** You describe the business requirement, its users and the acceptance criteria; the Agent reads the project guidance and Skills, then writes the data model, APIs, pages and tests. You try the result and refine the requirement.
+```text
+my-app/
+├── AGENTS.md      # Entry point for agent development guidance
+├── .agents/       # Project rules and skills
+├── client/        # Pages and interactions
+├── server/        # APIs and business services
+├── database/      # Migrations and initial data
+├── tests/         # Tests
+├── packages/      # Local plugins and shared packages (optional)
+├── config.yml     # Environment configuration, excluded from Git
+└── package.json   # Core package and plugin dependencies
+```
 
-**Without an Agent.** You can also write the code yourself with the same framework, components, APIs and CLI. Both approaches can be mixed in one project, and later tutorials provide separate "With an Agent" and "Without an Agent" steps.
+`AGENTS.md` and the Skills explain where business code belongs, which existing capabilities to use, and how to write migrations and permissions. Skills ship with Core packages and are synchronized to `.agents/skills/` when dependencies are installed, matching the installed version. Coding tools such as Claude Code and Codex read the same conventions across developers and models. See [Project structure](project-structure.md) for each directory's details.
 
-**You manage the code.** The application's source lives in your own repository, where you can review it, test it, publish versioned releases and deploy it to your own servers. To upgrade NocoBase, merge the changes from the newer template, keep your business customizations, and verify compatibility with tests.
+## How development works
 
-Once the application is live, administrators can adjust users, roles and record access in the management pages the application enables. Changes to pages, data structures or business logic are delivered by changing code, verifying it and redeploying.
+Open a coding tool such as Claude Code or Codex in the application directory and work with an Agent:
 
-Core can be used on its own. Studio organizes a team's development, review and releases; Solutions are ready-made business applications built on Core. You do not need to set up Studio to follow the getting-started tutorial.
+1. Explain the business need, who will use the feature and what counts as complete.
+2. The Agent follows project guidance and Skills to write migrations, APIs, pages, permissions and tests, then runs the tests.
+3. Try the application in a browser. Describe any changes you need until it behaves as intended.
+4. Commit the code, review it through your team's process and deploy it.
 
-## Create your application
+See [Develop with an Agent](../developing-apps/develop-with-an-agent.md) for methods and checks. You can also write the code yourself: both approaches use the same framework, components and commands, and can be mixed within one project. [Create an app](create-app.md) and [Build your first app](../tutorials/build-your-first-app.md) describe both approaches.
 
-Start with [Create an app](create-app.md) to create and run a project, then use [Project structure](project-structure.md) to learn where the code lives.
+After deployment, administrators adjust users, roles and data access in **System settings**. Changes to pages, tables and business rules are made in code, tested and redeployed. When NocoBase releases a new version, reconcile changes from the new template; see [Upgrade NocoBase Core](../developing-apps/upgrade-nocobase-core.md).
 
-Continue with [Build your first app](../tutorials/build-your-first-app-agent-first.md) to build a complete team task application, verify its permissions and deploy it.
+## Open source and yours to own
+
+- **Free and open source.** Core can be used in production.
+- **Self-hosted.** Keep code in your repository and applications and data on your servers. Deploy with Docker or PM2; see [Choose a deployment method](../deployment/choose-a-deployment-method.md).
+- **Choice of tools.** Choose your coding tool and model, including Claude Code or Codex.
+
+## Core, Studio and Solution
+
+Core alone is enough to develop and deploy a complete business application. You only need Core to follow this documentation.
+
+- For teams handling multiple projects and many tasks, **NocoBase Studio** (commercial edition) coordinates Agent teams, reviews and acceptance. See [What is Studio](../../studio/intro/what-is-studio.md).
+- To start from an existing business application, use a **NocoBase Solution**, such as NocoCRM or NocoITAM. These are built on Core and can be used directly or customized further.
+
+See [Core alone or Studio](../../start/what-is-nocobase.md#core-only-or-core-with-studio) for help choosing.
+
+## Get started
+
+You need Node.js 24 or later and pnpm 11. On Windows, use WSL. To develop with an Agent, also choose a coding tool that supports Skills.
+
+1. [Create an app](create-app.md): create the project, start it and sign in.
+2. [Project structure](project-structure.md): find where each kind of code belongs.
+3. [Build your first app](../tutorials/build-your-first-app.md): build a team task application with an Agent and try its role-based permissions.

@@ -1,80 +1,87 @@
 ---
 title: Create an app
-description: Create, start and sign in to a NocoBase 3 application with a coding Agent or by running the commands yourself.
+description: Create a local NocoBase 3 application, start it and sign in as an administrator.
 ---
 
-Creating a NocoBase application gives you a project you can keep developing. You can ask a coding Agent to create it or run the commands in a terminal yourself; both approaches use the same creation tool.
+By the end of this guide, you will have:
 
-This guide uses the default template and SQLite. SQLite needs no separate database service, which makes it convenient for a first local run.
+- A `my-app/` project directory containing application source, `AGENTS.md` and package-provided Skills, ready to commit to Git.
+- A locally running application you can sign in to as an administrator.
 
-## Prerequisites
+SQLite is the default, so no separate database installation is needed. Choose either approach below: let an Agent do the work or run the commands yourself. Both use the same creation tool and produce the same result.
 
-Development requires Node.js 24 or later and pnpm 11. If you use an Agent, it can check the environment and tell you what is missing. For manual creation, check the versions in your terminal first:
+## Prepare
 
-```bash
-node --version
-pnpm --version
-```
+| Requirement | Details |
+| --- | --- |
+| Node.js 24 or later | Check with `node --version`. Install with `nvm install 24` or `fnm install 24` |
+| pnpm 11 | Check with `pnpm --version`. Install with `corepack enable && corepack prepare pnpm@11 --activate` or `npm install -g pnpm@11` |
+| Unix-like terminal | Use macOS or Linux directly, or WSL on Windows. The commands below do not work in PowerShell or cmd |
+| Coding tool (for the Agent approach) | A coding tool that supports Skills, such as Claude Code or Codex |
 
-On Windows, work in WSL. The commands below assume a POSIX shell such as Bash.
-
-Choose one of the two creation paths below. The Agent path also needs a coding Agent that supports Skills.
+After installing or upgrading Node.js or pnpm, open a new terminal to ensure the new versions take effect.
 
 ## With an Agent
 
-Prepare an empty directory, such as `my-app`, and start a coding Agent session in it.
-
-First, send this command to the Agent to install the Skill that creates applications:
+**1. Install the app creation Skill.** Run this in a terminal and select your coding tool when prompted:
 
 ```bash
 npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 ```
 
-When prompted during installation, select the Agent you are using. If the current session does not recognize the new Skill, start another session in the same directory. Once the Skill is loaded, send the creation request:
+`-g` installs the Skill globally so it is available from any directory.
+
+**2. Start an Agent session in an empty directory.** Create a directory such as `my-app`; its name becomes the application name. Start a new Agent session there so it loads the newly installed Skill.
+
+**3. Describe what you want:**
 
 ```text
-Please create a NocoBase 3 application for local development in this empty directory.
-Use the default template and SQLite, following the application creation guidance.
-Complete the setup and checks, start the app, and tell me which URL to open and how to sign in for the first time.
+Create a NocoBase 3 application in the current directory for local development, using SQLite.
+Start it when ready and tell me the URL and the initial sign-in account.
 ```
 
-Following the guidance, the Agent checks the environment, runs the creation tool, installs dependencies, initializes and checks the configuration, and finally starts the application. If something is missing from the environment, it explains what to prepare first.
+The Agent checks Node.js and pnpm versions, creates the project, generates and checks configuration, starts the application and confirms the URL opens. It should then tell you:
 
-When it is done, open the URL the Agent gives you and sign in with the details it provides, or follow [Open the application and sign in](#open-the-application-and-sign-in) below.
+- The application URL and initial sign-in account.
+- How to start the application again later.
+- Whether you can continue development in the current session.
 
-The new application directory contains `AGENTS.md` and `.agents/skills/`. For further development, have the Agent read the project's own guidance and Skills; if the current session has not loaded them, start a new session in the application directory.
+If Node.js or pnpm is missing, the Agent explains what is missing and how to install it; it does not install them itself. Name another database, such as PostgreSQL, in your request if needed. Do not send database passwords in the conversation: put them in environment variables and tell the Agent the variable names.
+
+An application started by an Agent session stops when that session ends. Run `pnpm dev` in the application directory to start it again.
+
+For further development, start an Agent session in the application directory. Its `AGENTS.md` and `.agents/skills/` match the installed version and take over from the app creation Skill.
 
 ## Without an Agent
 
-Manual creation needs no Agent Skill. In the parent directory where you keep projects, run the following command; the creation tool creates the `my-app` directory and installs dependencies:
+### 1. Create the project
+
+Run this from the directory where you want to keep the project:
 
 ```bash
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
 ```
 
-`@beta` selects the beta channel of the NocoBase 3 creation tool, and `--template-tag=beta` selects the beta channel of the template. The environment variable in front lets pnpm install newly published versions, for this command only.
+The tool creates `my-app/`, downloads the application template, installs dependencies and synchronizes their Skills to `.agents/skills/`.
 
-> [!TIP]
-> The project directory must not exist yet or must be empty. Its name may contain only lowercase letters, digits, dots, hyphens and underscores, and must start with a letter or digit. The command does not accept `.` as the project name; if you are already inside an empty `my-app` directory, go back to its parent before running the command.
+- `my-app` is both the directory name and application name. The directory must be new or empty. Its name must start with a lowercase letter or digit and contain only lowercase letters, digits, dots, dashes and underscores. You cannot use `.` for the current directory.
+- `@beta` selects the latest beta creation tool, and `--template-tag=beta` selects the latest beta application template. Both are required.
+- `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows pnpm to install newly published versions for this command only, without changing your pnpm configuration.
 
-### 1. Initialize configuration
-
-Enter the application directory and generate the local configuration:
+### 2. Generate configuration
 
 ```bash
 cd my-app
 pnpm nocobase config init --dialect sqlite
-```
-
-This generates `config.yml` from `config.example.yml` and initializes the required secrets. `config.yml` holds the configuration of the current environment and is ignored by Git.
-
-### 2. Check configuration
-
-```bash
 pnpm nocobase config check
 ```
 
-If the check fails, fix what it reports and check again. Start the application only after the check passes.
+`config init` generates `config.yml` from `config.example.yml`, including encryption keys. This machine-specific file contains secrets and is already ignored by Git. Do not commit or share it. Running the command again on a configured application leaves the existing file unchanged.
+
+`config check` loads configuration as startup would and reports missing keys, unknown settings and other problems. Follow its guidance until the check passes.
+
+> [!NOTE]
+> The initial administrator account comes from `users.initialAdmin` in `config.yml`. To choose your own username and password, change them before the first startup. Changing this setting later does not update an existing account.
 
 ### 3. Start the application
 
@@ -82,45 +89,80 @@ If the check fails, fix what it reports and check again. Start the application o
 pnpm dev
 ```
 
-Keep this terminal running. When the development server is ready, it prints a `Local:` URL; open it to access the application.
+On first startup, the application creates tables and initial data, including the administrator account. Wait for the terminal to print a line beginning with `Local:`, which means the application is ready.
 
-## Open the application and sign in
+Open the complete URL from that line, keeping the trailing `/main/` or other application path. If the default port is occupied, another is selected automatically, so use the printed URL rather than constructing one yourself.
 
-Use the complete `Local:` URL printed by `pnpm dev`, including the application path (such as `/main/`). The port may move up when it is already in use, so do not build the address from a default port, and do not treat the frontend Vite port as the full application entry.
+Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the application. Next time, run `pnpm dev` from its directory to restart it.
 
-![The application's English sign-in page on first open.](/assets/core/tutorials/getting-started/login.png)
+## Sign in
 
-Unless you changed the initial administrator configuration, the default sign-in details are:
+If you have not changed `users.initialAdmin`, use the default administrator:
 
-- Username: `nocobase`
-- Password: `admin123`
+| Username | Email | Password |
+| --- | --- | --- |
+| `nocobase` | `admin@nocobase.com` | `admin123` |
 
-The initial administrator is configured by `users.initialAdmin` in `config.yml`. If you changed it during creation, use the account you configured. Change the default password after you first sign in.
+You can sign in with either the username or email. Change the default password promptly, especially if others can access the application.
 
-![The homepage of a newly created application, before any task features are added.](/assets/core/tutorials/getting-started/home.png)
+**Done when**: You can sign in as an administrator and see the application home page.
 
-After signing in you see the application's homepage, which introduces the built-in capabilities and offers example requirements you can give an Agent. You now have application source code and a running application, and can start building business features.
+## Commit the first version
 
-These screenshots come from the historical [00-create-app](https://github.com/nocobase/app-tutorials/tree/00-create-app) example on default template `1.0.0-beta.78`; your interface depends on the template version you create. [Build your first app](../tutorials/build-your-first-app-agent-first.md) uses the `1.0.0-beta.84` template published on npmjs.org as its baseline and does not require checking out this old tag.
+Commit the new project to Git now so you can see exactly what each subsequent Agent change modifies:
+
+```bash
+git init
+git add -A
+git commit -m "chore: create app"
+```
+
+The template's `.gitignore` excludes `config.yml`, SQLite database files, `storage/`, `node_modules/` and synchronized `.agents/skills/`. Commit `.agents/rules/`, which contains application-owned rules.
+
+## Use another database
+
+SQLite suits local development and evaluation. To use the same database locally as in production, complete the following before first startup, replacing the commands in step 2. For PostgreSQL:
+
+```bash
+pnpm add @nocobase/db-postgres@beta
+pnpm nocobase config init --dialect postgres
+pnpm nocobase config check
+```
+
+When run in a terminal, `config init` prompts for the host, database name, username and password without echoing the password. It tests the connection before writing configuration. If the driver is missing, it writes no files and provides the required `pnpm add` command.
+
+| Database | Driver package | `--dialect` |
+| --- | --- | --- |
+| PostgreSQL | `@nocobase/db-postgres` | `postgres` |
+| MySQL, MariaDB | `@nocobase/db-mysql` | `mysql` |
+| SQL Server | `@nocobase/db-mssql` | `mssql` |
+| Oracle | `@nocobase/db-oracle` | `oracle` |
+
+If `config.yml` already exists, `config init` will not overwrite it. Use `pnpm nocobase config set` to update fields under `database.connections.main`. Read passwords from environment variables with `--from-env` to keep them out of command history:
+
+```bash
+pnpm nocobase config set --from-env database.connections.main.password=MY_APP_DB_PASSWORD
+```
+
+Changing databases does not migrate existing data. See [Database support and compatibility](../reference/compatibility.md) for supported versions and [Configuration reference](../reference/configuration.md) for all settings.
 
 ## Troubleshooting
 
-### The Agent cannot find the creation Skill
+| Symptom | Action |
+| --- | --- |
+| Node.js is older than 24, or creation reports `NODE_UNSUPPORTED` | Upgrade Node.js, open a new terminal and retry |
+| No matching version is found, or the newest version is not installed | Confirm the command starts with `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` |
+| Template download fails | Check the network and npm registry. The project has not been created, so retry directly |
+| Dependency installation fails | The project directory exists. Run `pnpm install` there instead of recreating it |
+| `Could not locate the bindings file` | No prebuilt `better-sqlite3` binary matches the platform. Install a C++ toolchain, add `better-sqlite3: true` under `allowBuilds` in `pnpm-workspace.yaml`, then run `rm -rf node_modules && pnpm install` |
+| Skill synchronization fails | The application can still run. Retry with `pnpm nocobase skills sync` in its directory |
+| `pnpm dev` reports the application is not configured | Run `config init` and `config check` from step 2 |
+| The browser cannot find the page | Use the complete `Local:` URL printed by `pnpm dev`, including the port and trailing `/main/` |
+| Changing `users.initialAdmin` does not change the sign-in password | This setting only creates the initial administrator; it does not reset an existing account. See [FAQ](../reference/faq.md#why-did-changing-the-initial-administrator-password-not-update-an-account) |
 
-Check that you selected the Agent you are using during installation. If the current session has not loaded the new Skill, start another session in the same directory and send the creation request again. Note the two kinds of guidance: creation uses the globally installed `nocobase-create-app`, while development guidance after creation lives in the application directory.
+## Next steps
 
-### The application exists but its project Skills are missing
-
-Run this in the application directory, then start a new Agent session there:
-
-```bash
-pnpm nocobase skills sync
-```
-
-### Startup reports that there is no configuration
-
-Make sure the terminal is in the application directory, then run `pnpm nocobase config init --dialect sqlite` followed by `pnpm nocobase config check`. If a configuration already exists, investigate the specific error instead of deleting the configuration or database to retry.
-
-## Next step
-
-Read [Project structure](project-structure.md) to see where application code, configuration and Agent guidance live.
+- [Project structure](project-structure.md): find pages, APIs, tables and tests.
+- [Build your first app](../tutorials/build-your-first-app.md): build a team task application with an Agent.
+- [Develop with an Agent](../developing-apps/develop-with-an-agent.md): describe requirements and check results.
+- When you are ready to deploy, see [Choose a deployment method](../deployment/choose-a-deployment-method.md).

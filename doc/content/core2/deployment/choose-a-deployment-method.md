@@ -5,7 +5,7 @@ description: Choose Docker or PM2 (app-installer) to deploy a production applica
 
 Once your application is developed and tested, you can deploy it independently to production on your own server with Docker or PM2. Docker runs the application in a container; PM2 supervises the Node.js process, while app-installer handles installation and updates.
 
-This section applies to your own NocoBase Core applications. Both guides use the task application from [Build your first app](../tutorials/build-your-first-app-agent-first.md) as the example, and each provides a **With an Agent** path and a **Without an Agent** path.
+This section applies to your own NocoBase Core applications. Both guides use the task application from [Build your first app](../tutorials/build-your-first-app.md) as the example, and each provides a **With an Agent** path and a **Without an Agent** path.
 
 ## How to choose
 

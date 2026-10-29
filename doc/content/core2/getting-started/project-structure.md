@@ -149,4 +149,4 @@ To add order management, for example, you would change these places in turn:
 
 ## Next step
 
-Follow [Build your first app](../tutorials/build-your-first-app-agent-first.md) to build a team task feature with assignees, due dates and progress.
+Follow [Build your first app](../tutorials/build-your-first-app.md) to build a team task feature with assignees, due dates and progress.

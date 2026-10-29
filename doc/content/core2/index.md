@@ -14,7 +14,7 @@ Read these four pages in order to go from nothing to an application you can run 
 1. [Meet NocoBase Core](getting-started/what-is-core.md): how Core, app templates, plugins and applications relate to each other.
 2. [Create an app](getting-started/create-app.md): create a project, start the app and sign in.
 3. [Project structure](getting-started/project-structure.md): where pages, APIs, the database, local packages and tests live.
-4. [Build your first app](tutorials/build-your-first-app-agent-first.md): build a task application with an Agent and verify a complete business flow.
+4. [Build your first app](tutorials/build-your-first-app.md): build a task application with an Agent and verify a complete business flow.
 
 ## Developing apps
 

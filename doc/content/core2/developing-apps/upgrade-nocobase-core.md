@@ -187,7 +187,7 @@ Migrations in production are arranged by the deployment process; do not connect 
 
 ## Verify the upgrade
 
-A Core upgrade can affect the whole application. For this guide's example, check the project's existing scripts, and add the separate tests for the task feature as described in [Build your first app](../tutorials/build-your-first-app-agent-first.md):
+A Core upgrade can affect the whole application. For this guide's example, check the project's existing scripts, and add the separate tests for the task feature as described in [Build your first app](../tutorials/build-your-first-app.md):
 
 ```bash
 pnpm typecheck
@@ -206,7 +206,7 @@ Once the database is prepared, run `pnpm dev` and verify with the printed `Local
 - Ordinary users can only reach authorized pages and data; read-only users still cannot write, and calling the API directly cannot bypass permissions.
 - Data survives refreshes and restarts; the plugin features, background jobs or external integrations involved in this upgrade pass their checks.
 
-Accept the upgrade against the features your application actually has. After configuring a test address and account for a separate application, run the browser tests with `pnpm test:e2e`; for the preparation, see [Build your first app](../tutorials/build-your-first-app-agent-first.md). Note that `pnpm test` does not include browser tests.
+Accept the upgrade against the features your application actually has. After configuring a test address and account for a separate application, run the browser tests with `pnpm test:e2e`; for the preparation, see [Build your first app](../tutorials/build-your-first-app.md). Note that `pnpm test` does not include browser tests.
 
 ## Deploy and roll back
 

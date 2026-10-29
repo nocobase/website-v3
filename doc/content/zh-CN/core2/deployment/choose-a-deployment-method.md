@@ -5,7 +5,7 @@ description: 选择用 Docker 或 PM2（app-installer）独立部署生产应用
 
 应用开发完成并通过测试后，可以在自己的服务器上，用 Docker 或 PM2 把它独立部署到生产环境。Docker 在容器中运行应用；PM2 托管 Node.js 进程，安装和更新则由 app-installer 完成。
 
-本栏目适用于你自己的 NocoBase Core 应用。两篇指南都以 [搭建第一个应用](../tutorials/build-your-first-app-agent-first.md) 中的任务应用为例，并分别提供 **使用 Agent** 和 **不使用 Agent** 两条路径。
+本栏目适用于你自己的 NocoBase Core 应用。两篇指南都以 [搭建第一个应用](../tutorials/build-your-first-app.md) 中的任务应用为例，并分别提供 **使用 Agent** 和 **不使用 Agent** 两条路径。
 
 ## 如何选择
 

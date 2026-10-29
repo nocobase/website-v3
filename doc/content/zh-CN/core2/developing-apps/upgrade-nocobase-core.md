@@ -187,7 +187,7 @@ pnpm nocobase db apply --json
 
 ## 验证升级结果
 
-Core 升级可能影响整个应用。对于本文的示例，检查项目已有的脚本，并按 [搭建第一个应用](../tutorials/build-your-first-app-agent-first.md) 补齐任务功能的独立测试：
+Core 升级可能影响整个应用。对于本文的示例，检查项目已有的脚本，并按 [搭建第一个应用](../tutorials/build-your-first-app.md) 补齐任务功能的独立测试：
 
 ```bash
 pnpm typecheck
@@ -206,7 +206,7 @@ pnpm build
 - 普通用户只能访问已授权的页面和数据；只读用户仍然不能写入，直接请求接口也无法绕过权限。
 - 刷新和重启后数据仍然保留；本次涉及的插件功能、后台任务或外部集成都通过了相应的检查。
 
-请按应用实际已有的功能进行验收。在独立的应用中配置好测试地址和账号后，用 `pnpm test:e2e` 运行浏览器测试；具体准备见 [搭建第一个应用](../tutorials/build-your-first-app-agent-first.md)。注意，`pnpm test` 不包含浏览器测试。
+请按应用实际已有的功能进行验收。在独立的应用中配置好测试地址和账号后，用 `pnpm test:e2e` 运行浏览器测试；具体准备见 [搭建第一个应用](../tutorials/build-your-first-app.md)。注意，`pnpm test` 不包含浏览器测试。
 
 ## 部署与回退
 

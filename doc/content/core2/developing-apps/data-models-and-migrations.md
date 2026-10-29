@@ -178,7 +178,7 @@ For example, "a project name is required" does not mean names must be unique, an
 
 ### Prepare the example application
 
-The project guides reuse a separate historical example: `tutorialTasks` stores tasks, `tutorialProjects` stores projects, and tasks use `completed` for their completion state. The current [getting-started example](../tutorials/build-your-first-app-agent-first.md) uses a `tasks` table with a three-stage `status`; the two are not the same code. When running this guide, use the old tag and matching configuration given below, and do not apply these migrations to the getting-started example's database.
+The project guides reuse a separate historical example: `tutorialTasks` stores tasks, `tutorialProjects` stores projects, and tasks use `completed` for their completion state. The current [getting-started example](../tutorials/build-your-first-app.md) uses a `tasks` table with a three-stage `status`; the two are not the same code. When running this guide, use the old tag and matching configuration given below, and do not apply these migrations to the getting-started example's database.
 
 <details>
 <summary>Get and configure this guide's example application</summary>

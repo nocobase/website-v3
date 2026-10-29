@@ -7,7 +7,7 @@ description: 用 app-installer 安装和更新生产应用，由 PM2 托管进�
 
 本篇把任务应用独立部署到自己的生产服务器上，由 PM2 托管应用进程。`@nocobase/app-installer` 负责解压发布包、生成配置、执行迁移、启动 PM2 进程并检查健康状态，之后的应用升级也通过它完成。
 
-部署前请确认应用已经通过测试；任务示例的测试步骤见 [搭建第一个应用](build-your-first-app-agent-first.md)。下文以单实例、SQLite、Linux x64/glibc、Node.js 24 为例，应用路径为 `/tasks`。使用其他数据库时，需要先在源码项目中安装相应的驱动，再重新构建。
+部署前请确认应用已经通过测试；任务示例的测试步骤见 [搭建第一个应用](build-your-first-app.md)。下文以单实例、SQLite、Linux x64/glibc、Node.js 24 为例，应用路径为 `/tasks`。使用其他数据库时，需要先在源码项目中安装相应的驱动，再重新构建。
 
 ## 部署前准备
 
@@ -181,7 +181,7 @@ curl --fail https://tasks.example.com/tasks/api/healthz
 ### 4. 验证进程托管与数据持久化
 
 1. 在任务页面新建一条任务，把它标记为完成并刷新页面，确认状态得到保留。
-2. 按 [搭建第一个应用](build-your-first-app-agent-first.md) 中的权限说明配置一个普通的只读成员，验证这个成员可以查看、但不能修改。
+2. 按 [搭建第一个应用](build-your-first-app.md) 中的权限说明配置一个普通的只读成员，验证这个成员可以查看、但不能修改。
 3. 在服务器上以同一个服务账号执行 `pm2 restart nocobase-tasks`。如果安装时设置了 `--name`，请使用实际的进程名。
 4. 再次打开应用，确认任务及其状态仍然保留。
 5. 按照安装结果中的 `nextCommands` 配置开机自动恢复。安装器已经保存了 pm2 的进程列表；以同一个服务账号运行 `pm2 startup`，再执行它打印出的系统命令。使用 SSH 方式部署时，这些命令同样在服务器上执行。

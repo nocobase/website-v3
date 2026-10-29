@@ -1,9 +1,9 @@
 ---
 title: Testing and verification
-description: Separate plugin tests, App integration and delivery checks around observable behavior.
+description: Distinguish plugin tests, App integration and delivery checks, and verify the behavior that actually affects users.
 ---
 
-Plugin checks, App registration and a working user flow are different results. Verify the boundaries affected by the change: the plugin first, then behavior in the App, and package contents when publishing.
+Passing plugin checks, registering successfully in the App and users actually being able to use the feature are three different results. Verification should follow the boundaries of the change: check the plugin itself first, then the behavior after it is connected to the App, and, when publishing, the contents of the package.
 
 ## Use an Agent
 
@@ -16,33 +16,33 @@ and report which user workflows were and were not verified.
 
 ## Test locations
 
-The generator supplies tests and Vitest configuration for the selected capabilities. Preserve Node and jsdom boundaries instead of moving every test to a browser environment to fix one case.
+The generator creates tests and Vitest configuration according to the capabilities. Keep the split between the Node and jsdom environments; do not switch every test to a browser environment just to make one test pass.
 
-| Directory | Environment and tools | Coverage |
+| Directory | Environment and tools | What it verifies |
 | --- | --- | --- |
-| `tests/server/` | Node, `@nocobase/app-testing/server` | APIs, services and Server integration |
-| `tests/database/` | Node, the same Server testing entry | Migrations, metadata and real database operations |
+| `tests/server/` | Node, `@nocobase/app-testing/server` | APIs, services and server integration |
+| `tests/database/` | Node, the same Server testing entry | Migrations, metadata, and reads and writes on a real database |
 | `tests/client/` | jsdom, `@nocobase/app-testing/client` | Components, translations, interactions and request contracts |
 | `tests/cli/` | Node, `@nocobase/app-testing/cli` | Arguments, output, errors and command behavior |
-| App browser tests | The App’s existing browser configuration | Sign-in, navigation, reloads and real API interaction |
+| The App's browser tests | The App's existing browser test configuration | Sign-in, navigation, refresh and interaction with the real API |
 
-Declare `@nocobase/app-testing` in `devDependencies`. Check the generated dependencies and installed public exports: it has no `/database` or `/playwright` entry.
+`@nocobase/app-testing` goes in `devDependencies`. Check the generated test dependencies and the current version's public entries; it has no `/database` or `/playwright` export.
 
 ## Exercise production implementations
 
-[Routes and HTTP APIs](server-apis.md) calls the real contribution’s `createRouter()` to check success, invalid input and API documentation. [Database resources and migrations](database-and-migrations.md) uses the real Migrator to apply, roll back and reapply. [Command-line extensions](extend-command-line.md) uses `bindAppCommand()` and `runAppCommand()` to verify command output.
+The tests in [Routes and HTTP APIs](server-apis.md) call `createRouter()` from the real `apiRoutes` to verify the 200 response, the 400 for invalid input and the API documentation; [Database resources and migrations](database-and-migrations.md) applies, rolls back and reapplies migrations through the real Migrator; [Command-line extensions](extend-command-line.md) uses `bindAppCommand()` and `runAppCommand()` to verify the uniform output.
 
-Do not reimplement routes, services or models inside tests and then test that duplicate implementation.
+All of these examples use the plugin's own implementation. Do not write another set of routes, services or data models inside the tests and then make that code's tests pass.
 
-A Provider using only a container can accept a complete narrow interface `{ container: ServiceContainer }`, allowing a real container fixture without casting an incomplete object to the whole App. For authentication, databases or lifecycle, use an App fixture and register the production plugins.
+A Provider that only uses the container can accept a complete narrow interface, `{ container: ServiceContainer }`. Tests can then provide a real container instead of forcibly asserting an incomplete object to be the whole App. When authentication, the database or the lifecycle is needed, use the App's test fixture and register the real plugins.
 
 ## Client test boundaries
 
-`renderWithApp()` registers real Client plugins and supplies services, the API client, routing and localization. Do not add another `MemoryRouter`. To exercise a route tree, still render the components from its actual declarations; see [Pages, routes and menus](pages-and-menus.md#5-test-navigation).
+`renderWithApp()` registers the real Client plugin and provides services, the API client, routing and the language environment; do not wrap another `MemoryRouter` around it. When verifying a route tree, still render the components that correspond to the real route declarations; see [Pages, routes and menus](pages-and-menus.md#5-test-navigation).
 
-Use `answerApi()` to replace responses at the network boundary. Match both method and API-relative path; returning success for every request hides misspelled paths and unexpected calls.
+Network requests can have their responses replaced at the boundary with `answerApi()`, but the request method and API-relative path must match. Do not return success no matter what is requested, which hides problems such as misspelled paths or extra requests.
 
-This is a test pattern for an existing page; replace `Page` and the plugin factory with the actual modules:
+Below is the structure of a request test for an existing page; replace `Page` and the plugin entry with the actual modules under test:
 
 ```tsx
 const calls: { method: string; path: string }[] = [];
@@ -61,17 +61,17 @@ expect(await screen.findByText('暂无公告。')).toBeInTheDocument();
 expect(calls).toEqual([{ method: 'GET', path: 'announcements' }]);
 ```
 
-`answerApi()` turns handler exceptions into HTTP 500 responses. Keep assertions outside the handler so the page’s error UI cannot swallow an assertion failure. Wait for asynchronous UI with `findBy...` or `waitFor()`, but keep interactions outside retrying `waitFor()` callbacks. Control response completion to test loading instead of using fixed sleeps.
+`answerApi()` turns exceptions thrown in the handler into HTTP 500, so put assertions about the request outside the handler, where a failed assertion cannot be swallowed by the page's error handling. Wait for asynchronously displayed content with `findBy...` or `waitFor()`; do not put interactions inside a `waitFor()` that may run repeatedly. To test loading states, control when the response completes rather than relying on fixed-length sleeps.
 
 ## Access and cleanup
 
-Test anonymous, signed-in but denied, and authorized callers separately. Tenant- or record-scoped features also need cross-user and cross-record cases. Hiding a Client button does not protect a Server write.
+Protected APIs must be tested separately in three cases: anonymous, signed in without permission, and with permission. Multi-tenant or per-record authorization features also need tests across users and records. Hiding a button on the Client does not mean the Server has protected the write.
 
-Fixtures should clean up owned databases, temporary directories, subscriptions and App instances. Use `finally` for directly created resources. Do not point tests at the ordinary development database or disable error checks to make a suite pass.
+Databases, temporary directories, subscriptions and application instances a test creates must be cleaned up by fixtures, and resources created directly are cleaned up with `finally`. Do not let tests connect to the everyday development database by default, and do not turn off error checks for the sake of "stable tests".
 
 ## Run the relevant scope
 
-For `notice-api`, run from the App root:
+Taking `notice-api` as the example, run these commands in the App root:
 
 ```bash
 pnpm --filter @nocobase/app-plugin-notice-api exec vitest run tests/server/routes.test.ts
@@ -79,18 +79,18 @@ pnpm --filter @nocobase/app-plugin-notice-api check
 pnpm build
 ```
 
-Run focused tests first, then the plugin’s `check` and affected App checks. Run database integration suites sequentially when migrations change. A copy-only edit does not need the whole repository’s test suite.
+Run the related tests first to locate problems, then the plugin's `check` and the affected App checks. If migrations changed, run the needed database tests sequentially to keep integration suites from competing for resources; a pure text change does not need the whole repository's tests rerun.
 
-If creation used `--no-install`, install first. A successful `--passWithNoTests` run is not coverage: inspect the actual files and cases executed.
+If the plugin was created with `--no-install`, run `pnpm install` first. Do not count a success under `--passWithNoTests` as existing test coverage; check which files and cases actually ran in the output.
 
 ## Before delivery
 
-| Change | Additional verification |
+| Change | Also confirm |
 | --- | --- |
-| Client pages | Signed-in access, direct URLs, reload and browser history |
-| Server APIs | App mount prefixes, authentication, authorization, errors and API docs |
-| Migrations | Fresh installs, old-data upgrades and compiled checksums |
-| CLI | Registered App commands and deployment commands |
-| Public exports or publication | Consumption through public entries; dist, resources and Skills in the tarball |
+| Client pages | They open after sign-in, and direct links, refresh and back and forward all work |
+| Server APIs | The real prefix under the App, authentication and authorization, the error format and the API documentation |
+| Data migrations | Installation on an empty database, upgrading old data, and checksums of the build output |
+| CLI | The commands after App registration, and the commands in the deployment output |
+| Public exports or publishing | They can be used from the public entries; the tarball contains dist, resources and Skills |
 
-Report exact commands and outcomes, including remaining boundaries. For example: component and router tests passed and the App built, but the signed-in browser workflow has not run. `plugin inspect` checks static registration only and cannot replace behavioral verification.
+When reporting, state the exact commands and results and the boundaries not covered, for example "component and route unit tests passed and the App build passed; the browser flow after a real sign-in has not run". `plugin inspect` only checks static registration information and cannot replace tests of these behaviors.

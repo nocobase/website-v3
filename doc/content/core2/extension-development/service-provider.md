@@ -1,13 +1,13 @@
 ---
 title: ServiceProviders and service lifecycle
-description: Understand service contracts, Tokens, registration and lifecycle on both Client and Server.
+description: Understand service contracts, Tokens, container registration and lifecycle on the client and server together.
 ---
 
-A ServiceProvider connects plugin services to the App container and owns their startup and cleanup. Client and Server use the same basic mechanism, but run in separate environments with separate containers and instances.
+A ServiceProvider connects the services a plugin provides to the App's container and manages the startup and cleanup those services need. The client and server use the same basic mechanism, but run in different environments, and their containers and instances are never shared.
 
-Put business behavior in a Service and registration/resource lifecycle in a Provider. A pure function with one caller usually needs no container. Use a ServiceProvider when multiple entry points share behavior, implementations need replacement, or resources need lifecycle management.
+Business behavior goes in the Service, while registration and the lifecycle of resources go in the Provider. A pure function with only one caller usually needs no container; use a ServiceProvider only when several entries share a capability, an implementation must be replaceable, or resources must be managed.
 
-For plugin integration by runtime, see [Client services](client-services.md) and [Business services and ServiceProvider](server-services.md); [Background jobs and executors](background-jobs.md) covers task resources. This article explains shared container and lifecycle concepts. React component context is covered separately in [React Context and Providers](react-context-and-providers.md).
+When connecting a plugin per runtime, you can go straight to [Client services](client-services.md) and [Business services and ServiceProvider](server-services.md); for starting and shutting down job resources, see [Background jobs and executors](background-jobs.md). This guide explains the container and lifecycle concepts both sides share; for React component context, see [React Context and Providers](react-context-and-providers.md).
 
 ## Use an Agent
 
@@ -19,13 +19,13 @@ make Tokens and public entries clear, and test lazy creation and instance reuse.
 
 ## Prepare the plugin
 
-This example is named `notice-services`. Run commands from the App root; file paths are relative to `packages/app-plugin-notice-services/`.
+The example plugin below is named `notice-services`. Commands run in the App root, and file paths are relative to `packages/app-plugin-notice-services/`.
 
 ```bash
 pnpm create @nocobase/plugin@beta notice-services --with server.service-providers --with client.service-providers
 ```
 
-The scaffold connects Providers, aggregation files and declarations on both sides. Keep those connections while implementing the services.
+The scaffold has already generated the Providers, aggregation files and plugin declarations on both sides. Keep these connections and only change the implementations.
 
 ## Server: contract, Token, implementation and registration
 
@@ -63,7 +63,7 @@ export class DefaultNoticeServicesService implements NoticeServicesService {
 }
 ```
 
-Keep the generated registration pattern in `server/providers/notice-services.ts`:
+`server/providers/notice-services.ts` uses the generated registration:
 
 ```ts
 import {
@@ -90,22 +90,22 @@ export class NoticeServicesProvider extends ServiceProvider<NoticeServicesProvid
 }
 ```
 
-`singleton` creates the value on first resolution and returns that same instance within one App container. `instance(token, value)` registers an existing value. Factories are synchronous; asynchronous preparation belongs in lifecycle methods.
+`singleton` creates the instance on first resolution, and every later resolution in the same App container returns the same instance. `instance(token, value)` registers a value that has already been created. Factory functions are synchronous; put asynchronous preparation into lifecycle methods.
 
-`server/providers/index.ts` exports Provider constructors, and `server/plugin.ts` contributes them as `serviceProviders`. Do not instantiate Providers in that array or start connections and timers while importing a module.
+`server/providers/index.ts` exports an array of Provider constructors, and `server/plugin.ts` contributes it to the App as `serviceProviders`. Do not write `new NoticeServicesProvider(...)` in the array, and do not start connections or timers when the module is imported.
 
-Routes and other Providers resolve `app.container.resolve(noticeServicesServiceToken)`. To expose the capability to another plugin, keep the default export in `server/index.ts` and add:
+Routes or other Providers can use the service through `app.container.resolve(noticeServicesServiceToken)`. If other plugins also need it, keep the default export in `server/index.ts` and add:
 
 ```ts
 export { noticeServicesServiceToken } from './tokens.js';
 export type { NoticeServicesService, NoticePreview } from './tokens.js';
 ```
 
-Consumers import the original Token from `@nocobase/app-plugin-notice-services/server`. Recreating a Token with the same string creates another identity. Declare the shared `@nocobase/service-provider` runtime as a peer to avoid duplicate identities.
+Callers import the original Token from `@nocobase/app-plugin-notice-services/server`; they must not recreate one from the same string. The shared runtime `@nocobase/service-provider` must be declared as a peer dependency, so two installed copies do not produce different identities.
 
 ## Client: its own services and container
 
-Create `client/services/preferences.ts`:
+Add `client/services/preferences.ts`:
 
 ```ts
 import {
@@ -154,23 +154,23 @@ export class NoticeServicesServiceProvider extends ServiceProvider<ClientApplica
 }
 ```
 
-Keep registration in `client/providers/index.ts` and `client/plugin.ts`. In an existing React component, call `useService(noticePreferencesToken)` from `@nocobase/app-client`. Ordinary functions can receive the service as an argument; avoid a global container variable.
+Keep the registrations in `client/providers/index.ts` and `client/plugin.ts`. In existing React components, use `useService(noticePreferencesToken)` from `@nocobase/app-client`; ordinary functions can receive the service as an argument, rather than relying on a global container variable.
 
-These preferences belong only to the current browser App instance and reset on refresh. `setCompact()` does not trigger a React render: use state, subscriptions or a React Provider for reactive UI. A ServiceProvider manages services; a React Provider supplies component-tree context. For persistent preferences, use an API rather than assuming the Client and Server share state.
+This preference is shared only within the current App instance in the browser and returns to the default after a refresh. Calling `setCompact()` does not trigger a React update automatically: interface state must still be driven by state, a subscription mechanism or a React Provider. A ServiceProvider manages services, while a React Provider manages component tree context; they are not the same concept. When the value must persist on the server, save it through an API, rather than assuming the client and server containers share state.
 
 ## Lifecycle responsibilities
 
-| Phase | Appropriate work |
+| Phase | Suitable work |
 | --- | --- |
-| `register()` | Synchronously bind instances and lazy factories; no network or database work |
-| `boot()` | Check dependencies and perform asynchronous preparation |
-| `start()` | Start owned subscriptions, connections, consumers or timers |
-| `ready()` | Complete internal readiness after every Provider has started |
-| `shutdown()` | Stop and await cleanup of owned resources |
+| `register()` | Register instances or lazy factories synchronously, with no network or database operations |
+| `boot()` | Check dependencies and complete asynchronous preparation |
+| `start()` | Start the subscriptions, connections, consumers or timers the Provider owns |
+| `ready()` | Complete the internal switch to ready after all Providers have started |
+| `shutdown()` | Stop the resources the Provider created and wait for them to be released |
 
-Every Provider completes one phase before the next begins; shutdown runs in reverse order. Server route factories run after `boot()` and before `start()`: they can resolve services but cannot assume background work has started. `ready()` does not imply the external HTTP listener is open.
+Each phase runs for every Provider before the next phase begins, and cleanup runs in reverse order. On the Server, route factories run after `boot()` and before `start()`, so they can resolve services but cannot assume background jobs have started. `ready()` does not mean the external HTTP port is listening either.
 
-Cleanup must tolerate partial startup and uncreated services. Use `resolveIfCreated()` to avoid creating a lazy value just to close it. Release only owned resources, not the App’s shared database or logger. This example owns no external resources, so it needs no empty lifecycle methods.
+Cleanup must tolerate startup failures and instances that were never created. Use `resolveIfCreated()` to check for an existing instance, so shutdown does not create it just to close it. Release only the resources you own, and never destroy shared database or logging services obtained from the App. This example has no external resources, so it adds no empty lifecycle methods.
 
 ## Test service registration
 
@@ -207,4 +207,4 @@ pnpm nocobase plugin register @nocobase/app-plugin-notice-services --no-install 
 pnpm nocobase plugin register @nocobase/app-plugin-notice-services --no-install
 ```
 
-Exercise a Server consumer and a Client page in the App, then run the App’s `pnpm build`. Container tests do not replace integration checks. Client tests can register the real plugin with `renderWithApp()`; see [Testing and verification](testing-and-verification.md).
+After registration, actually call the server entry and the pages that use the client service in the App, and run the App's `pnpm build`. Unit tests prove container behavior, but cannot replace verifying the connection on both sides. Client service tests can use `renderWithApp()` to register the real Client plugin, as described in [Testing and verification](testing-and-verification.md).

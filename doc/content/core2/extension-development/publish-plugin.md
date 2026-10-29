@@ -1,19 +1,32 @@
 ---
 title: Build and publish
-description: Local plugins build and deploy with the App. Publish to a private npm registry when other applications need to share them.
+description: Local plugins can be built and deployed together with the App; publish to a private npm registry only when several applications need to share them.
 ---
 
-**A plugin can stay in an App without ever being published.** Local plugins live under `packages/` and connect through workspace dependencies and runtime registration. The App build builds its local dependencies, collects the plugin artifacts needed for delivery under `dist/vendor/`, and prepares deployment dependencies. Build and deploy the App normally; setting up an npm registry is unnecessary for this workflow.
+**A plugin can be used in the App indefinitely without ever being published.** Local plugins live under `packages/` and connect to the application through workspace dependencies and runtime registration. The App build builds the local packages it depends on, collects the plugin output to deliver into `dist/vendor/`, and handles the dependencies deployment needs. Just build and deploy the App through the normal process; there is no need to set up an npm registry first.
 
-Consider publishing when several Apps or teams need the same plugin and want to choose versions and schedule upgrades independently. This guide continues the announcements example from [Write your first plugin](write-your-first-plugin.md): publish it to a team's private npm registry, then install it in another App.
+Consider publishing when several Apps or teams need to share a plugin and want to choose versions and schedule upgrades independently. This guide continues with the announcements example from [Write your first plugin](write-your-first-plugin.md), publishing it to a team's private npm registry and then installing it in another App.
 
-The source can remain in the original App's workspace after publication. That App can continue using local source while other Apps use published versions.
+After publishing, the plugin's source can still be maintained in the original App's workspace: the original App keeps using the local source, while other Apps use the published versions.
 
-This article covers package publication. To also publish frontend components or blocks as source assets for Agents to obtain, modify and compose, distribute them through shadcn UI Registry; see [Publish UI source assets](frontend-components.md#optionally-distribute-ui-source-assets). Packages and source assets can be released independently. Component reuse alone does not require a Registry.
+This guide covers publishing plugin packages. If you also need to publish frontend components or blocks as source assets for Agents to take, change and combine as needed, distribute them through shadcn UI Registry as well; see [Optionally distribute UI source assets](frontend-components.md#optionally-distribute-ui-source-assets). Plugin packages and source assets can be published independently; reusing components does not require publishing a Registry.
 
-## Use an agent
+## Build locally and deliver with the App
 
-If your team already has a registry, replace the address below with its actual URL:
+First check and build the plugin in the application root, then build the whole application:
+
+```bash
+pnpm --filter @nocobase/app-plugin-announcements check
+pnpm build
+```
+
+Check the public entries, type declarations and actual resources in the plugin's `dist/`, then the local dependencies in the application output. Verify the pages, APIs or commands according to what the plugin provides; when migrations and Seeds are involved, confirm the compiled resources and checksum manifests are complete. Component styles are handled by the host build; for what to check, see [Components and styles](frontend-components.md#styles-and-theme-integration).
+
+When the plugin is used only in the current App, it can be delivered following [Choose a deployment method](../deployment/choose-a-deployment-method.md) once the application is verified. The private registry flow below is for cases that need to distribute the plugin package independently.
+
+## Use an Agent
+
+When a private registry already exists, describe the request like this, replacing the address with the one your team actually uses:
 
 ```text
 Prepare this App's announcements plugin as @my-company/app-plugin-announcements.
@@ -21,13 +34,13 @@ Check and build it, then publish version 0.1.0 to https://npm.example.com/.
 Install, register and verify that version in another App.
 ```
 
-If there is no registry yet, have the agent help set one up first. Supply credentials through package-manager login or CI credential settings, not in the request or plugin source. The manual steps follow.
+If there is no private registry yet, have the Agent help set one up first. Sign-in details are provided through the package manager's login or CI credential configuration, never written into the request or the plugin source. The manual steps follow.
 
-## Without an agent
+## Without an Agent
 
 ### 1. Prepare a private npm registry
 
-If your team has a private npm registry, use its address and account and proceed to the next step. Otherwise, [Verdaccio](https://www.verdaccio.org/docs/docker/) provides a way to host one. This example runs the complete workflow locally at `http://localhost:4873/`.
+If your team already has a private npm registry, use the address and account it provides and skip to the next step. If not, you can set one up with [Verdaccio](https://www.verdaccio.org/docs/docker/). The following demonstrates the complete flow with `http://localhost:4873/` on the local machine.
 
 Create `config.yaml` in a separate directory:
 
@@ -46,9 +59,9 @@ packages:
     unpublish: publisher
 ```
 
-This configuration hosts only `@my-company/*`. Authenticated users can read packages; the user named `publisher` can publish them. It does not proxy other npm packages, which the App continues to obtain from their configured registries.
+This configuration hosts only packages under `@my-company/*`: signed-in users can read them, and the user named `publisher` can publish them. It proxies no other npm packages, so the App's existing dependencies are still fetched from their own configured registries.
 
-Run the service from that directory, keeping packages and accounts in a Docker volume:
+Start the service in that directory, keeping package and account data in a Docker volume:
 
 ```bash
 docker run -d --name team-npm --restart unless-stopped \
@@ -58,73 +71,73 @@ docker run -d --name team-npm --restart unless-stopped \
   verdaccio/verdaccio:6
 ```
 
-Create the publishing account, entering `publisher` as the username, followed by a password and email when prompted:
+Create the publishing account, entering the username `publisher`, a password and an email when prompted:
 
 ```bash
 npm adduser --registry http://localhost:4873/ --auth-type=legacy
 ```
 
-Create accounts for consumers as needed. Once the accounts are ready, set `max_users` to `-1` and run `docker restart team-npm` to close self-registration. Existing accounts can still sign in. See [Verdaccio authentication](https://www.verdaccio.org/docs/authentication/) for account configuration.
+Create accounts for consumers as needed. Once the accounts are ready, change `max_users` to `-1` and run `docker restart team-npm` to close self-registration; existing accounts can still sign in. For configuring accounts and package permissions, see [Verdaccio authentication](https://www.verdaccio.org/docs/authentication/).
 
-This setup is accessible only from the local machine. For team use, provide an HTTPS endpoint and replace every `http://localhost:4873/` in this guide with that address; `localhost` on another machine will not reach this server. Keep backups of the configuration and volume, and retain them when replacing the container.
+This way of starting the service only allows access from the local machine. To share it within the team, serve it through an HTTPS entry and replace every `http://localhost:4873/` in this guide with the real address; on other machines, `localhost` does not point to this server. Keep and back up the configuration and the volume; deleting the container must not delete this data.
 
 ### 2. Configure the registry and sign in
 
-Append this line to `.npmrc` at the **root of the App maintaining the plugin**:
+Append the following to `.npmrc` in the **root of the App that maintains the plugin**:
 
 ```ini
 @my-company:registry=http://localhost:4873/
 ```
 
-Keep existing settings, particularly the `@nocobase` registry. Your own organization scope lets team plugins and NocoBase dependencies resolve to their respective registries.
+Keep the existing configuration, especially the registry setting for `@nocobase`. Using your own organization's scope lets the team's plugins and NocoBase dependencies resolve to their correct registries.
 
-Creating an account also signs in that machine. On another development machine, run:
+The machine that created the account is already signed in; on other development machines, run:
 
 ```bash
 npm login --registry http://localhost:4873/ --auth-type=legacy
 npm whoami --registry http://localhost:4873/
 ```
 
-Publish with an account that has publishing permission: `publisher` in this example. Login credentials belong in user configuration, not project commits.
+Publish with an account that has publishing permission, `publisher` in this example. Sign-in credentials are stored in user-level configuration and must not go into project commits.
 
 ### 3. Prepare the package
 
-Continue in the App maintaining the plugin. Keep the directory `packages/app-plugin-announcements/` and change the package name to `@my-company/app-plugin-announcements`.
+The following steps still take place in the App that maintains the plugin. The announcements plugin's directory can stay `packages/app-plugin-announcements/`, with only the package name changed to `@my-company/app-plugin-announcements`.
 
-If continuing from the previous guide's `@nocobase/app-plugin-announcements`, update these locations together:
+If you kept `@nocobase/app-plugin-announcements` from the previous guide, change these places together:
 
 | Location | Change |
 | --- | --- |
-| Plugin `package.json` | Set `name` to the new package name, `version` to `0.1.0`, and remove `private: true` |
-| Client and Server plugin definitions | Set `packageName` to the same new name |
-| Plugin tests and documentation | Update package names and the translation namespace used in tests |
-| App `package.json` | Rename the local dependency key, keeping `workspace:*` |
-| App plugin registration files | Update the imports to the new package name, retaining registration |
+| The plugin's `package.json` | Change `name` to the new package name, set `version` to `0.1.0`, and delete `private: true` |
+| The plugin's Client and Server definitions | Change `packageName` to the same new package name |
+| The plugin's tests and documentation | Update the package name, and the language resource namespace in tests |
+| The App's `package.json` | Change the local dependency key to the new package name, still using `workspace:*` |
+| The App's plugin registration files | Change the corresponding imports to the new package name and keep the registrations |
 
-Run `pnpm install` to synchronize workspace links and the lockfile. For a new plugin intended for sharing, use the full package name at creation time; see [Create a plugin](create-plugin.md#names-and-common-options).
+When done, run `pnpm install` to synchronize the workspace links and the lockfile. When creating a new plugin intended for sharing, you can use the full package name from the start; see [Create a plugin](create-plugin.md#names-and-common-options).
 
-`private: true` prevents publishing to any npm registry, including a private one. Removing it does not make a package publicly accessible; the registry's permission rules determine who can read or publish. See [npm's private field](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#private).
+`private: true` means the package may not be published to any npm registry, private ones included. Removing it does not make the package public; who can read or publish is decided by the private registry's permission configuration. See [npm's private field](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/#private).
 
-Review the remaining plugin `package.json` fields:
+Continue checking the plugin's `package.json`:
 
-| Field | What to check |
+| Field | What to confirm before publishing |
 | --- | --- |
-| `publishConfig.registry` | Add `http://localhost:4873/` as the explicit publication target |
-| `publishConfig.access` | Remove the scaffold's `public` value for this example; Verdaccio manages access through its configuration |
-| `exports`, `imports` | Preserve local development entries and package-local aliases |
-| `publishConfig.exports`, `publishConfig.imports` | Preserve the scaffold's mappings to `dist/`; pnpm applies them when packing |
-| `files` | Include `dist/`, plus Skills or other runtime resources when provided |
-| Dependency declarations | Declare Server dependencies, shared runtimes and Client peers with versions compatible with consumers |
+| `publishConfig.registry` | Add it and set it to `http://localhost:4873/` to make the publishing target explicit |
+| `publishConfig.access` | This example deletes the scaffold's `public` value, leaving access to the Verdaccio configuration |
+| `exports`, `imports` | Keep the entries and in-package aliases used for local development |
+| `publishConfig.exports`, `publishConfig.imports` | Keep the scaffold's mappings to `dist/`, which pnpm applies when packing |
+| `files` | Include `dist/`; with Skills or other runtime resources, include their directories too |
+| Dependency declarations | Server dependencies, shared runtimes and client peer dependencies are complete, with versions compatible with consumers |
 
-**Add the registry to the existing `publishConfig`; do not replace it with an object containing only `registry`.** See [Plugin structure](plugin-structure.md#packagejson-metadata-dependencies-and-public-exports) for development and published entry mappings.
+**Add the registry address to the existing `publishConfig`; do not replace the whole thing with an object containing only `registry`.** For how local development entries relate to publishing entries, see [Plugin structure](plugin-structure.md#packagejson-metadata-dependencies-and-public-exports).
 
-If the plugin depends on another workspace package, consumers must also be able to install that package. Packing converts `workspace:*` to a version requirement; it does not bundle the other package's implementation. Publish shared dependencies first.
+If the plugin depends on another workspace package, that package must also be installable by consumers. `workspace:*` is converted to a version requirement when packing, and does not bundle the other package's implementation; publish the shared packages it depends on first.
 
-Complete the README and changelog with the plugin's capabilities, entries to register, compatible versions and required configuration. The published package must work outside its original App, without importing that App's private source or depending on its file paths.
+Complete the plugin's README and changelog, explaining its features, the entries to register, compatible versions and required configuration. The published package must work on its own outside the original App, without depending on the original App's private source or file paths.
 
 ### 4. Check and pack
 
-Run from the **App root**:
+Run in the **App root**:
 
 ```bash
 pnpm --filter @my-company/app-plugin-announcements check
@@ -132,74 +145,74 @@ pnpm --filter @my-company/app-plugin-announcements pack \
   --pack-destination ./artifacts
 ```
 
-`check` runs linting, formatting checks, type checking, tests and the plugin build. `pack` creates the publication archive without uploading it. These commands write the `.tgz` under the App's `artifacts/` directory; use the actual path printed by the command. See [pnpm pack](https://pnpm.io/cli/pack) for packing rules.
+`check` checks code, formatting, types and tests and builds the plugin; `pack` produces the publishing package without uploading it. These commands generate a `.tgz` file in `artifacts/` under the App root; the exact path is shown in the terminal output. For packing rules, see [pnpm pack](https://pnpm.io/cli/pack).
 
-Inspect the contents and the packaged manifest:
+View the file list and the declarations in the package:
 
 ```bash
 tar -tzf artifacts/my-company-app-plugin-announcements-0.1.0.tgz
 tar -xOf artifacts/my-company-app-plugin-announcements-0.1.0.tgz package/package.json
 ```
 
-Check that:
+Confirm in particular that:
 
-- Public entries such as `./client` and `./server` point to compiled files included in the archive.
-- Client package-local aliases resolve, and translations and other runtime resources are included.
-- The archive contains no App configuration, credentials or local data. Keep generated archives out of source control.
+- Public entries such as `./client` and `./server` point to compiled files that actually exist in the package.
+- Client in-package aliases resolve, and language resources and other runtime files are complete.
+- The package contains no App configuration, account credentials or local data; packing output must not be committed to the source repository.
 
-The announcements package should include `dist/client/`, `dist/server/` and `dist/shared/`. Working in the original App is not sufficient verification: test the published package in another App too.
+For the announcements plugin, the package should contain `dist/client/`, `dist/server/` and `dist/shared/`. Checking that it runs in the original App is not enough; finally, verify the published package in another App.
 
 ### 5. Publish to the private registry
 
-Commit the reviewed changes and use your team's release branch. From the App root, preview publication, then publish:
+Confirm all changes are committed, and run this on the release branch your team agreed on. Still in the App root, preview first, then publish:
 
 ```bash
 pnpm --filter @my-company/app-plugin-announcements publish --dry-run
 pnpm --filter @my-company/app-plugin-announcements publish
 ```
 
-This publishes only the selected plugin to its `publishConfig.registry`. pnpm checks the Git state and release branch; address its messages when those conditions are not met. `--dry-run` uploads nothing, and publication uses the `latest` tag by default. See [pnpm publish](https://pnpm.io/cli/publish).
+Only the selected plugin is published, and the target is decided by the plugin's `publishConfig.registry`. pnpm checks the Git state and the release branch; when a condition is not met, follow its prompts first. `--dry-run` uploads nothing; a real publish uses the `latest` tag by default. See [pnpm publish](https://pnpm.io/cli/publish).
 
-Query the exact version after publication:
+After publishing, query the specific version:
 
 ```bash
 npm view @my-company/app-plugin-announcements@0.1.0 version \
   --registry http://localhost:4873/
 ```
 
-The result should be `0.1.0`. Publication makes that version available for other Apps to install; it does not change deployed applications.
+It should return `0.1.0`. Publishing lets other Apps install this version, but does not change applications that are already deployed.
 
 ### 6. Install in another App
 
-Enter the **root of another App created with create-app**. It has no local announcements plugin source and does not need a copy of the original App's `packages/`.
+Go to the **root of another App created with create-app**. It contains no local source of the announcements plugin and does not need a copy of the original App's `packages/`.
 
-First edit **`.npmrc` at this App's root**, creating it if necessary, and append the registry for your team's scope:
+First edit **`.npmrc` in this App's root** (create it if it does not exist), appending the registry configuration for the team's plugins:
 
 ```ini
 @my-company:registry=http://localhost:4873/
 ```
 
-Replace the address with the private registry URL reachable by the consumer. Preserve existing default registry and `@nocobase` settings. Neither the publishing App's `.npmrc` nor the plugin's `publishConfig.registry` automatically configures this App's installation registry.
+Replace the address with a private registry address the consumer can reach, and keep the existing default registry and settings such as `@nocobase` in the file. The publishing App's `.npmrc` and the plugin's `publishConfig.registry` do not configure the installation registry for this App automatically.
 
-Sign in on the current machine with an account that can read packages. Skip this if already signed in to the same registry:
+On the current machine, sign in with an account that has read permission; if you are already signed in to the same registry, skip this step:
 
 ```bash
 npm login --registry http://localhost:4873/ --auth-type=legacy
 npm whoami --registry http://localhost:4873/
 ```
 
-`plugin register` invokes the package manager from the App root, where pnpm reads this `.npmrc`. The registration command therefore needs no `--registry` argument; it currently does not provide that option.
+`plugin register` calls the package manager in the App root to install the plugin, and pnpm reads the `.npmrc` above, so the registration command needs no `--registry` argument, and the current command does not provide one.
 
-If pnpm's release-age policy blocks the newly published package, add your own scope to the existing list in `pnpm-workspace.yaml`:
+If the release-age waiting policy in newer pnpm versions blocks installing a just-published package, append your own scope to the existing list in `pnpm-workspace.yaml`:
 
 ```yaml
 minimumReleaseAgeExclude:
   - '@my-company/*'
 ```
 
-Preserve all other settings and existing entries. This exception applies only to packages your team controls; see [Verdaccio's pnpm guide](https://www.verdaccio.org/docs/setup-pnpm/).
+Keep the other settings and existing entries in the file. This exception applies only to packages your team controls; see [Verdaccio's pnpm guide](https://www.verdaccio.org/docs/setup-pnpm/).
 
-Preview the installation plan, then install and register the exact version:
+Preview the installation plan first, then install and register the specific version:
 
 ```bash
 pnpm nocobase plugin register @my-company/app-plugin-announcements \
@@ -208,9 +221,9 @@ pnpm nocobase plugin register @my-company/app-plugin-announcements \
   --version 0.1.0
 ```
 
-Before installation, the preview primarily describes the installation plan. Once installed, the command reads public entries, writes Client and Server registrations, and synchronizes Skills. Do not use `--no-install` here: the consumer needs to fetch the package from the registry.
+Before installation, the preview mainly shows the installation plan; after a real installation, the command reads the public entries, writes the Client and Server registrations, and synchronizes Skills. `--no-install` is not used here, because the consumer needs to fetch the plugin from the private registry.
 
-Start the App, verify its announcement page and API, then build:
+Start the application, verify the announcements page and API, then build:
 
 ```bash
 pnpm dev
@@ -218,12 +231,12 @@ pnpm dev
 pnpm build
 ```
 
-Follow [Write your first plugin](write-your-first-plugin.md#6-register-in-the-app-and-view-the-result) to check navigation, announcement content, language switching and the API. Then deploy the App through its usual process; see [Choose a deployment method](../deployment/choose-a-deployment-method.md).
+Check the menu, announcement content, language switching and API following [Write your first plugin](write-your-first-plugin.md#6-register-in-the-app-and-view-the-result). Then deploy in the App's usual way; see [Choose a deployment method](../deployment/choose-a-deployment-method.md).
 
-Development and CI build environments need registry read access. The App build retains registry addresses but does not copy authentication tokens from the project's configuration into deployment artifacts. Supply CI authentication through user-level npm configuration or protected credential settings. If the deployment process installs dependencies again, that installation step also needs read access.
+Development machines and CI build environments both need read access to the private registry. The App build keeps registry addresses but does not copy authentication tokens from the project into the deployment output; CI provides authentication through user-level npm configuration or protected credential configuration. If the deployment process installs dependencies again, that installation step also needs read access.
 
 ### 7. Publish subsequent versions
 
-After changing and verifying the plugin, increment its version, update the changelog, and repeat the check and publication steps. Do not overwrite published versions.
+After changing and verifying the plugin, increment the version and update the changelog, then repeat the check and publish flow; never overwrite a version that is already published.
 
-Consumers upgrade and verify the plugin when needed; see [Manage plugins](../developing-apps/manage-plugins.md#update-plugins). They still need to rebuild and deploy their Apps: deployed applications do not switch versions automatically. The App maintaining the plugin can continue using local source through `workspace:*`.
+Consumers upgrade the dependency and verify the features as needed; see [Manage plugins](../developing-apps/manage-plugins.md#update-plugins). After upgrading a plugin, the App must still be rebuilt and redeployed; deployed applications do not switch versions automatically. The App that originally maintains the plugin can keep using its local source through `workspace:*`.

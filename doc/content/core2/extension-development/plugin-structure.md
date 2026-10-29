@@ -171,7 +171,7 @@ The generator creates the entries, and `pnpm nocobase plugin register` connects 
 
 ## Key files
 
-### package.json: package information, dependencies and public exports
+### package.json: metadata, dependencies and public exports
 
 The plugin has its own `package.json`, maintained separately from the one in the App root:
 

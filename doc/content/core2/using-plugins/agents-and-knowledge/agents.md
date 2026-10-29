@@ -1,9 +1,9 @@
 ---
 title: "Agents"
-description: "Explore app-plugin-agents capabilities, integrate it through scenarios and prompts, understand code and UI changes, and verify AI-assisted development."
+description: "Learn what app-plugin-agents provides, integrate it through scenarios and prompts, map the code to the interface to understand the implementation, and verify the results of AI-assisted development."
 ---
 
-`@nocobase/app-plugin-agents` adds AI conversations, model services, Skills, Agents on machines, and usage management to an application. This guide covers its capabilities, usage scenarios, key implementation details, and verification for AI-assisted development.
+`@nocobase/app-plugin-agents` adds AI conversations, model services, Skills, Agents on machines and usage management to an application. This guide covers, in order, the plugin's capabilities, usage scenarios, key implementation details, and how to verify the results of AI-assisted development.
 
 ## Capabilities
 
@@ -11,38 +11,38 @@ description: "Explore app-plugin-agents capabilities, integrate it through scena
 
 | Capability | What the plugin provides | How the application uses it |
 | --- | --- | --- |
-| Model services | Service configuration, available models, and connection tests | Compose the Models page and configure a provider, key, and model |
-| AI conversations | Conversations, messages, streaming replies, stopping generation, and history recovery | Compose business UI with public chat hooks and agent-chat components |
-| Business Skills | Instructions, supporting files, import, and version management | Maintain guidance in Skills and select it for conversations or machine tasks |
-| Tools and business operations | Tool registration, conversation capability selection, and execution | Integrate business tools or allowed CLI commands with authorization |
-| Machine Agents | Runner connections, coding tool/model combinations, and task execution state | Compose Runtimes and Machine agents pages and supply authorized project context |
-| Usage management | Usage views and pricing settings | Add the Usage page to application navigation |
+| Model services | Service configuration, the list of available models and connection tests | Connect the Models page and configure a provider, key and model |
+| AI conversations | Conversations, messages, streaming replies, stopping generation and history recovery | Compose business interfaces with the public chat Hooks and agent-chat components |
+| Business Skills | Instructions, supporting files, import and version management | Maintain guidance on the Skills page, then select it for conversations or machine tasks |
+| Tools and business calls | Tool registration, per-conversation capability selection and the execution mechanism for calls | Connect business tools or allowed CLI commands, and implement their authorization |
+| Machine Agents | Runner connections, combinations of coding tools and models, and task execution status | Connect the Runtimes and Machine agents pages, and provide authorized project context |
+| Usage management | Pages for viewing usage and setting prices | Add the Usage page to the application's navigation |
 
-The plugin provides composable pages, components, and services. The application chooses where navigation and chat entry points appear, how business tasks start, and which data they may operate on. Plugin registration does not automatically implement those interfaces or workflows.
+The plugin provides pages, components and services you can compose. Where the menu and chat entries go, how business tasks start and which data may be operated on are all decided by the application; registering the plugin does not complete these interfaces and business flows automatically.
 
 ### Two ways to connect an Agent
 
-Both methods allow work to start from the application. They differ in who manages model calls, where tools execute, and which resources are available.
+Both ways let you start tasks from the application. They differ in who coordinates model calls, where tools run and which resources can be reached.
 
 | Aspect | Configure a model API | Connect an Agent on a machine |
 | --- | --- | --- |
-| Prerequisites | Service endpoint, key, and model | Installed and authenticated Coding Agent, plus a Runner connection |
-| Execution coordinator | NocoBase calls the model and dispatches selected conversation tools | The machine's Coding Agent executes with its own tools |
-| Model credentials | Managed in the application's Models page | Managed by the coding tool on the machine |
-| Available resources | Selected Skills, a virtual Shell, and integrated business tools or CLI commands | Projects, files, and commands allowed by the coding tool and local policy |
-| Typical uses | Conversations, content drafting, and business operations through tools | Reading and changing code, running actual builds and tests |
+| What to prepare | A model service address, key and model | A Coding Agent installed and signed in on the machine, plus a Runner connection |
+| Who coordinates execution | NocoBase calls the model and dispatches the tools selected for the conversation | The machine's Coding Agent runs the task with its own tools |
+| Model credentials | Managed in the application's Models | Managed by the coding tool on the machine |
+| Available resources | Selected Skills, a virtual Shell, and business tools or CLI commands the application connects | The projects, files and commands the coding tool and local policy allow |
+| Typical uses | Conversations, organizing content, querying or processing data through business tools | Reading and changing project code, running real builds and tests |
 
-Both methods can be used in one application. The conversation and release-note examples below use a model API; project coding tasks use an Agent on a machine. A model API conversation has no host project execution environment. Connect a machine Agent to read or change real source files or run tests.
+One application can use both. The conversation and release-note examples below use a model API, while the project code task uses a Coding Agent on a machine. A model API conversation has no host project execution environment; to read or change real source code or run tests, connect a machine Agent.
 
 ## Scenarios and examples
 
-The `agents-guide` example uses SQLite, DeepSeek, and an English interface. Screenshots come from the running application. [View the example source](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide) and follow its `README.md` to start it. Run commands from `apps/agents-guide` in the repository. The source excludes the database, model credentials, sign-in sessions, and installed dependencies. If you do not have a project yet, start with [Create an application](../../getting-started/create-app.md).
+The `agents-guide` example uses SQLite, DeepSeek and an English interface, and all screenshots come from the running application. [View the example source](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide) and start it as described in its `README.md`; run the commands in the repository's `apps/agents-guide` directory. The source contains no database, model keys, sign-in sessions or dependency directories. If you have no application yet, prepare a project with [Create an app](../../getting-started/create-app.md) first.
 
-A **development prompt** goes to the Coding Agent working in your project directory to integrate the plugin. A **conversation prompt** goes into the resulting application's chat interface.
+This guide distinguishes two kinds of prompt: a **development prompt** goes to the Coding Agent working in your project directory, to integrate the plugin into the application; a **conversation prompt** is used in the application's chat interface after integration.
 
-### Scenario 1: add AI conversations to an application
+### Scenario 1: add AI conversations to the application
 
-Let users open chat beside a business page, select a model, send messages, and return to the conversation later. Give your development Agent this request:
+The goal is to let users open a chat panel next to a business page, choose a model, send messages, and pick up the conversation the next time they open it. Give the development Agent this request:
 
 ```prompt
 Use @nocobase/app-plugin-agents to add AI conversations to this NocoBase 3 application.
@@ -62,31 +62,31 @@ to check history. Explain which files changed, what appeared in the interface,
 and which checks actually passed.
 ```
 
-**Configuration and operation:** once the development Agent has integrated the pages, inspect the settings in the UI. Use the same steps for manual integration.
+**Configuration and operation:** after the development Agent has connected the pages, you can check the configuration in the interface; for manual integration, follow the same steps.
 
-Open **Models → Add service**, select a provider, enter service settings, fetch its models, and select a model. The live example used:
+In **Models → Add service**, choose a provider, fill in the service details, fetch the model list and choose a model. The values this example actually used:
 
-| Field | Example value |
+| Field | Value in this example |
 | --- | --- |
 | Provider type | `DeepSeek` |
 | Name | `DeepSeek` |
 | Base URL | `https://api.deepseek.com/v1` |
-| API key | Your service credential, entered only in the credential field |
-| Model ID | `deepseek-flash`, obtained from the service during verification |
+| API key | Your own service key, entered only in the key field |
+| Model ID | `deepseek-flash`, fetched from the service this time |
 | Model kind | `chat` |
 | Enabled | On |
 
-Use a model returned by **Fetch models** for your current account. See the [DeepSeek API documentation](https://api-docs.deepseek.com/en/) for service details. Conversations require a `chat` model; `embedding` and `rerank` do not substitute for it.
+Use the model names returned by **Fetch models** for your current account; for the service API, see the [DeepSeek documentation](https://api-docs.deepseek.com/en/). Conversations need a `chat` model; `embedding` and `rerank` models cannot stand in for it.
 
-Run **Test connection** or the model's test action, then save after it succeeds. When reopening an existing service, leave its key field empty to retain the saved credential.
+Click **Test connection** or the test button next to a model, and save after the test succeeds. When reopening an existing service, leaving the key field empty keeps the saved key.
 
 ![DeepSeek configuration with a successful live connection test](/assets/core/agents/model-configuration.png)
 
-![Saved and enabled model service](/assets/core/agents/models.png)
+![The saved and enabled model service](/assets/core/agents/models.png)
 
-You can now select the model in chat. No corresponding entry is needed in **Machine agents**. Querying orders or processing approvals requires the application's business tools and authorization; configuring a model alone does not expose business data.
+Once configured, the model can be chosen in chat; there is no need to add an entry for it in the **Machine agents** list. To query orders or process approvals, the application must also connect the corresponding tools and business authorization; configuring a model alone does not expose business data.
 
-After integration, click **Agent chat** in the header and select the configured model. The example sent this conversation prompt through the actual interface:
+After integration, click **Agent chat** in the header and choose the configured model. This example actually sent the following conversation prompt through the interface:
 
 ```text
 Rewrite only these supplied facts as three short English bullets: the demo uses
@@ -95,13 +95,13 @@ This is a writing exercise: do not use page context, call tools, or infer config
 Output only the bullets.
 ```
 
-![Chat beside an application page, showing a real model reply](/assets/core/agents/chat.png)
+![The chat panel next to a business page, with a real model reply](/assets/core/agents/chat.png)
 
-**Done when**: a real reply arrives and the history remains available when you reopen it through **Conversations**. A name in the model list establishes that configuration was saved; verify an actual call as well. Chat includes page context and the model can misinterpret it. This prompt checks fact rewriting and the call path; do not use the reply to diagnose application configuration.
+**Done when**: the message receives a real reply, and the history can still be read after reopening the conversation from **Conversations**. A name appearing in the model list only means the configuration was saved; the actual call still needs verifying. Chat includes the current page's context, and the model may draw wrong conclusions from it; this prompt only verifies fact organization and the call path, so do not judge whether the application is configured correctly from the reply.
 
-### Scenario 2: generate release notes using a business Skill
+### Scenario 2: have the Agent write release notes to a business standard
 
-A team wants release notes to follow a consistent format and include only supplied changes and test results. Save those rules as a business Skill and select it for a dedicated conversation.
+The team wants every release note to follow the same format and to cite only the changes and test results that were actually provided. To do that, save the standard as a business Skill and have a dedicated conversation select it.
 
 **Development prompt:**
 
@@ -122,15 +122,15 @@ authorization. Verify the reply and inspect actual tool execution records.
 Explain how this business conversation differs from an ordinary conversation.
 ```
 
-Alternatively, [download the example release-notes Skill](/assets/core/downloads/release-notes-skill.zip) and import it through **Skills → Import**. The page displays its instructions, supporting files, and versions.
+You can also [download this example's release-notes Skill](/assets/core/downloads/release-notes-skill.zip) and import it in **Skills → Import**. The page shows the instruction text, supporting files and versions.
 
-![Release-note instructions and supporting files in the Skills page](/assets/core/agents/skill.png)
+![Release-note instructions and supporting files on the Skills page](/assets/core/agents/skill.png)
 
-After import, click the file icon **Draft release notes** in the header to create and open the business conversation. The button selects the first `chat` model from enabled services and submits the `release-notes` scope through the authenticated API; switch models before sending if needed. Each click creates a conversation. Open **Conversations** to continue an existing draft. The ordinary **Agent chat** launcher does not select this Skill automatically.
+After importing, click the file icon **Draft release notes** in the header to create and open a business conversation. The button picks the first `chat` model among the enabled services and submits the `release-notes` scope through the authenticated API; to use another model, switch before sending. Each click creates a new conversation; to continue an existing draft, open it from **Conversations**. The ordinary **Agent chat** entry does not select this Skill automatically.
 
-If opening fails, check the model service, the `release-notes` Skill slug, and server Provider registration. The button is disabled while pending and shows an error on failure. See `client/components/release-notes-button.tsx`.
+If it fails to open, first confirm that the model service is available and the Skill's slug is `release-notes`, then check that the server Provider is registered. The button is disabled while the request is pending and shows a message on failure; the implementation is in `client/components/release-notes-button.tsx`.
 
-The example sent this **conversation prompt** in that scoped conversation:
+In this business conversation, the example actually sent this **conversation prompt**:
 
 ```text
 Read the release-notes Skill and its style guide, then draft concise release notes
@@ -141,13 +141,13 @@ permission-label tests passed. Do not claim any other tests ran.
 
 ![Release notes generated after reading the Skill](/assets/core/agents/skill-chat.png)
 
-The changes and test count are supplied writing material. The model organizes them; it does not run the tests. Replace them with your actual changes and check results.
+The changes and the test count here are writing material supplied by the user; the model only organizes them and did not run any tests. For your own project, replace them with the actual changes and check results.
 
-**Done when**: the output follows the requested format, tool records confirm that the Skill and supporting file were read, and no unsupported facts were added. Live verification confirmed the `skill` call and the read of `references/style.md`.
+**Done when**: the output follows the required format, the tool call records prove that the Skill and its supporting file were read, and no facts the user did not supply were added. This live run confirmed the `skill` call and the read of `references/style.md`.
 
-### Scenario 3: invoke a Coding Agent on a machine from the application
+### Scenario 3: call a Coding Agent on a machine from the application
 
-To read project source, modify files, and run builds and tests, connect a Coding Agent installed on a computer or server. The application provides the task entry point and working-directory context; the coding tool on the machine executes the work.
+When an Agent needs to read project source, change files, and run builds and tests, connect a Coding Agent already installed on a computer or server. The application provides the task entry and the working directory context, and the coding tool on the machine runs the task.
 
 **Development prompt:**
 
@@ -167,31 +167,31 @@ try a narrowly scoped code change. Report actual execution results.
 If no machine is connected, state that code execution cannot yet be verified.
 ```
 
-**Prepare the application CLI and Runner distributions first.** The Default template declares neither its own CLI nor a downloadable Runner. Installing from the connection page before preparing them returns 404; an online machine can still fail tasks with `cliUnavailable` when the application CLI is missing. The example declares the dependencies and configuration. Run from its root:
+**First prepare the application CLI and Runner distributions.** The default template has neither an application CLI of its own nor a downloadable Runner. If you install from the connection page after only registering the plugin, you get a 404; even with the machine online, tasks without an application CLI fail with `cliUnavailable`. The example project already declares the required dependencies and configuration; in its root, run:
 
 ```bash
 pnpm nocobase cli build --universal
 pnpm nocobase cli build --runner --universal
 ```
 
-These build CLI and Runner distributions, not the production application. They require npm network access; target machines need Node.js 24. Restart the application after initial setup and retain the `storage/runners/dist` distribution directory. For manual integration, also:
+These two commands only build the CLI and Runner distributions; they are not a production application build. Running them needs npm network access, and target machines need Node.js 24. After first use, restart the application and confirm the distribution directory is still `storage/runners/dist`. For manual integration you also need to:
 
-- Declare `nocobase.cli.bin` in `package.json` (`agents-guide` here) and install compatible `@nocobase/app-cli-client` and `@nocobase/agent-runner` versions.
-- Define `cli.name: 'agents-guide'` and `cli.package: { kind: 'served' }` in `server/config/agents.ts`, then register that section in `server/config/index.ts`. The CLI name must match the packaged product. Without the configuration section, `config set agents.cli.name=...` returned `UNKNOWN_KEY` in this reproduction.
+- Declare `nocobase.cli.bin` in `package.json` (`agents-guide` in this example), and install matching versions of `@nocobase/app-cli-client` and `@nocobase/agent-runner`.
+- Define `cli.name: 'agents-guide'` and `cli.package: { kind: 'served' }` in `server/config/agents.ts`, and register that configuration section in `server/config/index.ts`. The CLI name must match the packaged name; in this example, running `config set agents.cli.name=...` without the section registered reports `UNKNOWN_KEY`.
 
-**Connection and operation:** after integrating the pages, complete these steps on the target machine and in the application.
+**Connection and operation:** after the pages are connected, complete this configuration on the target machine and in the application.
 
-1. Install and sign in to a supported coding tool on the target computer or server. Confirm that it works independently.
-2. Open **Runtimes**, create a personal or shared connection, and select allowed coding tools.
-3. Follow the page instructions to install and register the Runner. Wait for tool, sign-in, and model reports.
-4. In **Machine agents**, add and enable a tool/model combination from the available model list. Without configured recommendations, this list may remain empty even while a machine is online.
-5. Open **Agent chat**, click **Switch to runner agents**, select an available Agent, and first run a read-only check in the conversation workspace. Supply authorized project context through a business entry point when integrating a project.
+1. Install and sign in to a supported coding tool on the target computer or server, and confirm the tool itself runs.
+2. Open **Runtimes**, create a personal or shared connection, and choose the coding tools it may use.
+3. Install and register the Runner as the page instructs, and wait for the machine to report its tools, sign-in status and models.
+4. In **Machine agents**, add and enable a tool-and-model combination from the available model list. Without recommended combinations configured, this list may stay empty even while the machine is online.
+5. Open **Agent chat**, click **Switch to runner agents**, choose an available Agent, and first run a read-only check in the conversation's own working directory. Once a business project is connected, the business entry provides authorized project context.
 
-![Selecting a connection's purpose and coding tools](/assets/core/agents/runner-connection.png)
+![Choosing the purpose and coding tools when creating a machine connection](/assets/core/agents/runner-connection.png)
 
-The Runner connects, claims work, and reports status; the coding tool executes the task. An **online machine** also needs valid tool authentication, an available model, an enabled Agent, execution capacity, and permission under local policy before work can start. Its model credentials are separate from those stored in **Models**.
+The Runner establishes the connection, claims work and reports status, while the actual task is run by the coding tool. Besides the **machine being online**, the tool must be signed in, a model available, the Agent enabled, and an execution slot and local policy must allow it before a task can start. Machine Agents use the coding tool's own model credentials, managed separately from the keys in **Models**.
 
-First check the execution environment with this **conversation prompt**:
+Check the execution environment first with this **conversation prompt**:
 
 ```text
 Perform a read-only smoke test in this conversation's assigned workspace.
@@ -200,7 +200,7 @@ in English. Do not read credentials, access other directories, edit files, insta
 packages, or claim that the application source is present unless you see it.
 ```
 
-Ordinary Runner conversations use their own workspace; they do not automatically enter the application source directory. Project-context integration is still needed. A user-supplied host path in chat does not replace authorization. Once that integration is ready, extend verification with a prompt such as:
+An ordinary Runner conversation uses its own working directory and does not enter the application's source directory automatically. Even after a successful connection, project context integration still has to be developed; never let users type an arbitrary host path into the chat in place of authorization. Once the project context is ready, you can go further with a prompt like this:
 
 ```text
 Inspect the chat launcher in the currently authorized project.
@@ -211,39 +211,39 @@ Preserve button behavior, authorization, and layout. Change only necessary files
 Run affected checks, then list changed files, check results, and unverified items.
 ```
 
-**Done when**: the read-only check has actual command results, an identified machine and workspace, and a `completed` run. Project coding also requires actual diffs and check results. This reproduction connected Runner `0.1.0-beta.20` and Codex `0.165.0`, executed `pwd` and `ls -A1` in the conversation workspace, and confirmed that the empty workspace run completed. Application source was not attached automatically. The project-edit prompt above remains guidance for further integration; source changes and builds were not tested.
+**Done when**: the read-only check has actual command results, the executing machine and the working directory, and the run record's status is `completed`; project code tasks should also have actual code differences and check results. This run connected Runner `0.1.0-beta.20` with Codex `0.165.0`, executed `pwd` and `ls -A1` in the conversation's working directory, and confirmed the directory was empty and the run completed. Since application source is not attached automatically, the code-changing prompt above remains guidance for further integration; changing code and building were not tested.
 
-![Personal Runner connected with Codex detected](/assets/core/agents/runner-online.png)
+![A personal Runner connected, with Codex detected](/assets/core/agents/runner-online.png)
 
-![Actual read-only commands and results from the machine Agent](/assets/core/agents/runner-chat.png)
+![A machine Agent's real read-only commands and results](/assets/core/agents/runner-chat.png)
 
 ## Key principles and implementation
 
-This section follows the example source used in the scenarios. It maps file changes to interface effects, then explains registration, chat state, Skill selection, and execution backends. Use the same integration points when developing manually.
+This section follows the example source used in the scenarios above: it first maps file changes to interface changes, then explains the key implementation of registration, chat state, Skill selection and execution backends. You can follow the same places when integrating manually.
 
-### Changed files and interface effects
+### Changed files and interface changes
 
 | File or directory | Change | Effect |
 | --- | --- | --- |
-| `client/plugins.ts`, `server/plugins.ts`, `cli/plugins.ts` | Register the three Agents contributions | Load plugin services, APIs, and commands; registration alone adds no menu |
-| `client/routes.ts` | Compose five plugin pages and the template's prepared user and permission settings routes | Add sidebar management entries while preserving home and sign-in pages |
-| `client/extensions/nocobase-agent-chat/` | Install Registry chat UI source and supporting components | Provide the panel, messages, model selection, and history interface |
-| `client/components/agents-provider.tsx` | Add the application's own `AgentsProvider` for the current account | Share conversation state and reinitialize it when identity changes |
-| `client/layouts/app-layout.tsx` | Mount the Provider, panel beside main content, and mobile launcher | Support desktop conversations alongside business pages |
-| `client/layouts/components/header-actions.tsx`, `client/components/release-notes-button.tsx` | Add ordinary chat and release-note launchers | Open ordinary conversations or business conversations with a selected scope |
-| `client/locales/en-US.ts`, `zh-CN.ts` | Merge component resources and add `agentDemo` navigation text | Supply English and Chinese text for new navigation and chat |
-| `package.json`, `server/config/agents.ts`, `server/config/index.ts` | Declare matching application CLI and distribution settings | Let Runner download the application CLI before executing tasks |
-| `server/providers/agents.ts`, `index.ts` | Add and register the release-note Provider | Resolve the `release-notes` conversation scope after server startup |
-| `examples/release-notes/` | Keep source for Skill instructions and supporting files | Make them available for import and maintenance in Skills |
-| `client/pages/settings/page-permission-titles.ts` | Name Skill child pages and runtime connection permissions in both languages | Show readable permission labels without changing authorization IDs |
-| `tests/client/release-notes-button.test.tsx` | Cover creation, duplicate clicks, failures, permissions, and identity teardown | Verify successful and failed business-entry behavior |
-| `tests/client/client-routes.test.ts` | Check route uniqueness, page loading, and authorization definitions | Verify integration and detect changes to existing page contracts |
+| `client/plugins.ts`, `server/plugins.ts`, `cli/plugins.ts` | Register Agents' contributions on all three sides | The application loads the plugin's services, APIs and commands; registration itself adds no menus |
+| `client/routes.ts` | Compose five plugin pages and connect the template's existing user and permission settings routes | Management entries appear in the sidebar, and the existing home and sign-in pages stay unchanged |
+| `client/extensions/nocobase-agent-chat/` | Install the chat interface source from the Registry and the components it depends on | Provides the chat panel, message display, model selection and history interface |
+| `client/components/agents-provider.tsx` | Add the application's own `AgentsProvider` to manage chat state for the current account | Panels share conversation state, which is reinitialized when the account changes |
+| `client/layouts/app-layout.tsx` | Mount the Provider, the chat panel beside the main content and the mobile entry | On desktop, users can work on a business page and chat at the same time |
+| `client/layouts/components/header-actions.tsx`, `client/components/release-notes-button.tsx` | Add the ordinary chat entry and the release-note entry | The header can open an ordinary conversation or a business conversation with a specific scope |
+| `client/locales/en-US.ts`, `zh-CN.ts` | Merge the components' language resources and add `agentDemo` navigation text | New entries and chat components have English and Chinese text |
+| `package.json`, `server/config/agents.ts`, `server/config/index.ts` | Declare the application CLI's name and distribution method consistently | The Runner can download the application CLI, avoiding "online but unable to run" |
+| `server/providers/agents.ts`, `index.ts` | Add and register the release-note Provider | After the server starts, the `release-notes` conversation scope can be resolved |
+| `examples/release-notes/` | Keep the source of the Skill text and supporting files | After import, they can be viewed and maintained on the Skills page |
+| `client/pages/settings/page-permission-titles.ts` | Add English and Chinese permission names for the Skills child pages and the Runner connection page | Permission management shows readable names, while authorization IDs stay the same |
+| `tests/client/release-notes-button.test.tsx` | Verify creation, repeated clicks, retry after failure, permissions and the end of an identity | Both success and failure paths of the business entry are checked |
+| `tests/client/client-routes.test.ts` | Add checks for route uniqueness, page loading and authorization definitions | Checks that new pages are connected correctly and existing page conventions are unchanged |
 
-`package.json` and the lockfile record dependency changes. Model services, business Skills, and conversation history are runtime application data. Copying source does not copy those records; configure your own model service and import the Skill after starting the example.
+`package.json` and the lockfile record the dependency changes. Model services, business Skills and conversation history are the application's runtime data: copying the source does not copy these records, so after starting the example you still configure your own model service and import the Skill.
 
-### What plugin registration changes
+### What registering the plugin does
 
-The default template includes the Agents dependency without registering it. The example registered it in the existing application and previewed and applied database changes:
+The default template already installs the Agents dependency but does not register it by default. The example registers it with the CLI in an existing application, then previews and applies the database changes:
 
 ```bash
 pnpm nocobase plugin register agents --dry-run --json
@@ -252,21 +252,21 @@ pnpm nocobase db apply --dry-run --json
 pnpm nocobase db apply --json
 ```
 
-Registration adds the plugin to the three plugin arrays. The database commands apply plugin migrations and seeds. The example adds no custom Agents business tables and does not write plugin tables directly. Authentication, authorization, and file capabilities reuse the template's existing plugins. See [Manage plugins](../../developing-apps/manage-plugins.md) for general installation and registration instructions.
+Registration adds the plugin to the plugin arrays on all three sides, and the database commands apply the migrations and seed data the plugin provides. The example writes no Agents business tables of its own and does not change the plugin's tables directly. Authentication, authorization and file capabilities reuse the plugins the template already has. For the common installation and registration steps, see [Manage plugins](../../developing-apps/manage-plugins.md).
 
 ### How management pages appear in the sidebar
 
-`client/routes.ts` imports public plugin page definitions and supplies application navigation titles and icons:
+`client/routes.ts` references the page definitions the plugin makes public and adds the application's own navigation titles and icons:
 
-| Export | Default path | Purpose |
+| Export | Default path | Page purpose |
 | --- | --- | --- |
-| `modelsRoute` | `/models` | Model services, available models, and connection tests |
-| `agentsRoute` | `/agents` | Coding tool and model combinations on machines |
-| `runtimesRoute` | `/runtimes` | Machine connections and execution environments |
-| `skillsRoute` | `/skills` | Business Skills, supporting files, and versions |
-| `usageRoute` | `/usage` | Usage and pricing settings |
+| `modelsRoute` | `/models` | Model services, available models and connection tests |
+| `agentsRoute` | `/agents` | Combinations of coding tools and models on machines |
+| `runtimesRoute` | `/runtimes` | Machine connections and runtime environments |
+| `skillsRoute` | `/skills` | Business Skills, supporting files and versions |
+| `usageRoute` | `/usage` | Usage and price settings |
 
-This excerpt shows the Models entry; the other four follow the same pattern:
+The excerpt below shows how the Models page is composed; the other four pages are done the same way:
 
 ```ts
 import { BrainCircuit } from 'lucide-react';
@@ -279,20 +279,20 @@ const modelsPage = {
 };
 ```
 
-Spreading `modelsRoute` preserves its page component, authentication requirements, authorization, and child routes while replacing its navigation presentation. New routes are exported alongside the original `appRoutes`. The runtime handles deployment prefixes such as `/main`; they are not part of these page paths.
+Spreading `modelsRoute` keeps the plugin's page component, sign-in requirement, authorization definition and child routes, replacing only how it appears in navigation. All new routes are exported together with the existing `appRoutes`. The application's deployment prefix `/main` is handled by the runtime; do not write it into these page paths.
 
-Models uses `settings:agents.services` authorization, and other pages retain their own definitions. If an entry is missing, check route composition and the current user's access.
+The Models page uses `settings:agents.services` authorization, and the other pages keep their own authorization definitions. If a menu entry does not appear, check the route composition and the current user's permissions.
 
-### How chat launchers, layout, and account state work together
+### How the chat entry, layout and account state fit together
 
-The example installs chat UI through the Registry:
+The example installs the chat interface through the Registry:
 
 ```bash
 pnpm exec shadcn add @nocobase/agent-chat
 ```
 
 > [!NOTE]
-> Inspect `package.json` and the lockfile immediately after installation. This Registry command downgraded Agents to `0.1.0-beta.14` during verification. Restore a template-compatible version before continuing. These are the correction commands for this example; check compatibility for other templates:
+> Check `package.json` and the lockfile right after installing. In this run, the Registry command downgraded Agents to `0.1.0-beta.14`, and work could only continue after restoring the version that matches the template. Below are the fix commands used in this example; for other templates, check the compatible version first:
 
 ```bash
 pnpm add @nocobase/app-plugin-agents@1.0.0-beta.29 --save-exact
@@ -300,7 +300,7 @@ pnpm nocobase skills sync --dry-run --json
 pnpm nocobase skills sync --json
 ```
 
-`@nocobase/app-plugin-agents/client/chat` provides conversation state and hooks. The installed Registry components provide presentation. The layout simplifies to:
+`@nocobase/app-plugin-agents/client/chat` provides conversation state and Hooks, and the Registry components installed into the application handle presentation. The layout relationship simplifies to:
 
 ```tsx
 <AgentsProvider>
@@ -316,15 +316,15 @@ pnpm nocobase skills sync --json
 </AgentsProvider>
 ```
 
-`ChatPanel` is a sibling of `main`, allowing it to dock beside the business page. Header and mobile launchers share the same conversation state. Existing navigation, breadcrumbs, theme controls, and the user menu remain. The mobile launcher is wired in source; screenshots and live acceptance in this example use the desktop interface.
+`ChatPanel` sits at the same level as `main`, so the chat panel can dock beside the business page; the header button and the mobile button share the same chat state. The existing navigation, breadcrumbs, theme switch and user menu stay unchanged. The screenshots in this guide use the English desktop interface; a 390 px narrow panel and the dark theme were also checked, but the full set of mobile combinations has not been accepted yet.
 
-`AgentsProvider` is a component added by the example, using the plugin's `ChatProvider` internally. It reads the signed-in user ID, uses a React `key` to recreate the controller when identity changes, passes the ID as `memoryScope`, and clears unscoped query cache and panel state during mounting and cleanup. This ties chat state to the current account's lifetime; the server still enforces conversation access.
+`AgentsProvider` is a component added by the example that uses the plugin's `ChatProvider` internally. It reads the signed-in user's ID, rebuilds the controller with a React `key` when the identity changes, passes the ID into `memoryScope`, and clears query caches and panel state that are not isolated per account when mounting and cleaning up. This binds the chat state's lifecycle to the current account, while checking access to conversations is still the server's job.
 
-### How the business Skill enters a conversation
+### How a business Skill enters a conversation
 
-Development Skills in the project's `.agents/skills/` teach a Coding Agent how to integrate the plugin. Business Skills in the application's **Skills** library guide runtime tasks. These have different purposes and do not synchronize automatically.
+A development Skill in the project's `.agents/skills/` tells the Coding Agent how to use the plugin; a business Skill in the application's **Skills** library tells the runtime Agent how to complete a task. They serve different purposes and are not synchronized automatically.
 
-The example's business files are:
+The business files in this example are:
 
 ```text
 release-notes/
@@ -333,9 +333,9 @@ release-notes/
     └── style.md
 ```
 
-`SKILL.md` requires reading `references/style.md`, producing Summary, Changes, and Verification, and using only supplied facts without inventing versions, dates, or test results. After the Skill is saved to the library, `server/providers/agents.ts` registers a named scope at boot. `server/providers/index.ts` loads that Provider.
+`SKILL.md` requires reading `references/style.md` first, producing output in three parts, Summary, Changes and Verification, and using only facts the user supplied, without adding versions, dates or test results. Once the standard is saved to the library, `server/providers/agents.ts` registers a named scope at startup, and `server/providers/index.ts` loads it.
 
-This is its key implementation; the example source contains the complete Provider:
+Below is the key code of this Provider; the full implementation is in the example source:
 
 ```ts
 const agents = this.app.container.resolve(agentsToken);
@@ -358,9 +358,9 @@ agents.onlineAgent.configurator.registerOnlineAgentScope(
 );
 ```
 
-The code resolves the public `agentsToken` service and selects one explicit Skill slug on the server. The `skill` tool reads instructions, `bash` reads supporting files in the virtual filesystem, and `systemPromptTemplate` supplies task guidance. A scope selects capabilities; it grants no business permissions.
+This code gets the service through the public `agentsToken`, and the server selects one Skill by an explicit slug. The `skill` tool reads the instructions, `bash` reads the supporting files in the virtual file system, and `systemPromptTemplate` adds the task conventions. A scope only selects capabilities and grants no business permissions.
 
-When creating a conversation, the current user's authenticated client submits this body to `POST /api/agents/conversations`:
+The header's `ReleaseNotesButton` creates a conversation with the application's API client and calls `panel.openChat({ conversationId })` on success. The current user's authenticated client submits this request body to `POST /api/agents/conversations`:
 
 ```json
 {
@@ -371,86 +371,86 @@ When creating a conversation, the current user's authenticated client submits th
 }
 ```
 
-`modelService` identifies a configured service, and `model` must be enabled in it. The client selects an allowed scope; the server resolves the actual tools and Skill. An ordinary new conversation without this scope does not automatically use the release-note Skill.
+`modelService` identifies a configured service, and `model` must be a model enabled in it. The client only chooses an allowed scope; the actual tools and Skill are resolved by the server. Ordinary new conversations lack this scope configuration, so they do not use the release-note Skill automatically.
 
-**Global attachment** in the Skills page controls global Skill merging for subsequent Runner tasks. Model API conversations select Skills through server scopes; that switch does not automatically attach a Skill to model API conversations.
+**Global attachment** on the Skills page merges global Skills into later Runner tasks. Model API conversations choose Skills through the server-side scope, and this switch does not add a Skill to model API conversations automatically.
 
-### Execution backends and capability boundaries
+### Execution backends and capability limits
 
-You will encounter these names when reading the code:
+When reading the code you will see these names:
 
 | Name | Meaning |
 | --- | --- |
-| `agentId: 'online'` | Select execution in which the plugin calls a model API |
-| `native` | The backend name for that method; it does not mean an offline or local model |
-| `runner` | Invoke a machine's Coding Agent through a concrete Agent ID |
-| `agentsToken.onlineAgent` / `OnlineAgent` | The shared conversation service; realtime conversations support both `native` and `runner` backends |
+| `agentId: 'online'` | Chooses the execution method in which the plugin calls a model API |
+| `native` | The backend name of that execution method; it does not mean offline or a local model |
+| `runner` | Calls a Coding Agent on a machine through a specific Agent ID |
+| `agentsToken.onlineAgent` / `OnlineAgent` | The unified conversation service; live conversations can use the `native` or `runner` backend |
 
-`OnlineAgent` is the conversation interface shared by both execution methods. The model API backend also supports structured background execution with JSON Schema. Runner does not implement that background interface, but has its own task queue and execution mechanism.
+`OnlineAgent` is the conversation interface both execution methods share. The model API backend also supports structured background execution with JSON Schema; the Runner does not support that background interface but has its own task queue and execution mechanism.
 
-The model API backend's virtual Shell can read selected Skills, process text, and use temporary files: `/skills` is read-only and `/tmp` is writable. It cannot access the host filesystem or directly run the project's Node, Python, build, or test processes. Connect an Agent on a machine when you need a real project execution environment.
+The model API backend's virtual Shell can read the selected Skills and process text and temporary files: `/skills` is read-only and `/tmp` is writable. It cannot reach the host machine's file system or directly run the project's Node, Python, builds or tests. When you need a real project execution environment, connect an Agent on a machine.
 
 ### What happens after a message is sent
 
-1. Chat components create or open a conversation. The server saves its model, scope, and other configuration.
-2. The user sends a message. The model API backend prepares selected Skills and tools and calls the model.
-3. When the model requests a tool, the server executes a selected tool and returns its result. This example actually read the Skill and style guide.
-4. The panel receives the streamed reply. The server persists messages and execution results, and reads saved history when the conversation reopens.
+1. The chat component creates or opens a conversation, and the server saves the conversation configuration such as the model and scope.
+2. The user sends a message; the model API backend prepares the selected Skills and tools, then calls the model.
+3. When the model asks for a tool, the server runs the selected tool and returns the result to the model; in this example, the Skill text and the style guide were actually read.
+4. The chat panel receives the streaming reply, and the server saves the messages and execution results; reopening the conversation reads the saved history.
 
-Public chat hooks and components already handle sending, stopping, and history recovery. Reuse them in business entry points. The application API client handles deployment prefixes such as `/main/api`.
+The chat Hooks and components the plugin makes public already handle sending, stopping and recovering history. Business entries should reuse them rather than writing another protocol. With the application's API client, deployment prefixes such as `/main/api` are handled by the client.
 
-Tasks that act on business data also need registered tools or allowed CLI commands. Their services must validate inputs, identity, operation permissions, and data access. For document retrieval, integrate the [Knowledge base](knowledge.md). Writing “can query orders” in a Skill does not implement an order-query capability.
+If a task needs to operate on business data, the application must also register tools or connect allowed CLI commands, and validate the input, current identity, action permissions and data scope in the actual services. When knowledge retrieval is needed, you can connect the [Knowledge base](knowledge.md) as well. Writing "can query orders" in a Skill does not create an order query capability out of nothing.
 
 ## AI development constraints and verification
 
-This section concerns AI helping developers integrate the Agents plugin. For general task scoping, project guidance, and collaboration, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md). Here the focus is on plugin-specific interfaces, authorization, conversations, and execution boundaries. The plugin does not automatically guarantee generated code or complete all application tests and review.
+This chapter covers how to constrain and verify changes when AI helps developers use the Agents plugin. For general requirement breakdown, project guidance and the collaboration process, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md); this chapter focuses on the interface, permission, conversation and execution limits specific to the plugin. The plugin does not guarantee that generated code is correct, and it does not complete all testing and review for the application.
 
-### Use the development Skill for the installed version
+### Use a plugin development Skill that matches the version
 
-Before integration, have the development Agent read `.agents/skills/nocobase-app-plugin-agents/SKILL.md` and the model service, conversation tool, Runner, or Skill references needed for the task. This Skill identifies public interfaces and integration patterns for the installed plugin. Application-specific conventions remain in the project's `AGENTS.md` and `.agents/rules/`.
+Before integration, have the development Agent read `.agents/skills/nocobase-app-plugin-agents/SKILL.md`, then consult the references on model services, conversation tools, Runner or Skills as the task needs. This Skill helps the Agent find the current plugin's public interfaces and integration approach; application-specific conventions still belong in the project's `AGENTS.md` and `.agents/rules/`.
 
-Run `pnpm nocobase skills sync` after dependency installation or updates. For a concrete interface, also check the installed package's public exports, types, and runtime behavior. Instructions can lag behind implementation; investigate and report discrepancies.
+After installing or updating dependencies, run `pnpm nocobase skills sync`. For specific interfaces, also check the current package's public exports, types and runtime behavior. Guidance can lag behind, so verify and report when you find a conflict.
 
-In this example, Registry installation changed Agents to the older `0.1.0-beta.14`. Restoring the compatible `1.0.0-beta.29` and synchronizing Skills passed type and runtime checks. Inspect manifest and lockfile changes after AI-assisted component installation; a successful install alone does not establish compatibility. These versions document the verified example, not a permanent recommendation for future projects.
+This example actually ran into the Registry installation changing the Agents dependency to the old `0.1.0-beta.14`. Only after restoring the matching `1.0.0-beta.29` and synchronizing Skills did the type and runtime checks pass. So after AI installs components, check the differences in `package.json` and the lockfile; a successful install command alone does not prove compatibility. The version numbers here are this example's verification baseline, not a fixed choice for future projects.
 
-### Preserve interface, authorization, and execution boundaries
+### Keep the plugin's interface, permission and execution limits
 
-When AI changes an Agents integration, retain the following boundaries in the implementation and acceptance criteria. Prompts state requirements; code and checks enforce them:
+When AI changes the Agents integration code, write the following limits into the implementation and the acceptance requirements. Prompts state the requirements, while code and checks enforce them:
 
-| Constraint | How the example implements it | What still needs checking |
+| Constraint | How this example enforces it | What still needs checking |
 | --- | --- | --- |
-| Use public interfaces | Public routes, `client/chat`, `agentsToken`, and CLI registration | Compatibility with public types and contracts after upgrades |
-| Preserve authorization | Spread original route definitions and assert page authorization resources | Ordinary users' API and data access restrictions |
-| Isolate account state | Recreate ChatProvider per user and clear cache and panel state | Account-switching browser behavior; full multi-account acceptance was not completed |
-| Control business capabilities | Server scope selects only the release-note Skill and reading tools | Server-side identity, input, and data checks for new tools |
-| Preserve existing data | Preview and apply migrations instead of writing plugin tables directly | Effects of new business migrations on existing data and failure cases |
+| Use public interfaces | References the public routes, `client/chat` and `agentsToken`, and registers through the CLI | Whether it still fits the public types and conventions after an upgrade |
+| Keep authorization | Spreads the existing route definitions; tests record each page's authorization resource | Whether ordinary users' API and data access are restricted correctly |
+| Isolate account state | Rebuilds `ChatProvider` per user and clears caches and panel state | Browser behavior after switching accounts; full multi-account acceptance was not completed |
+| Control business capabilities | The server-side scope selects only the release-note Skill and read-type tools | Whether new tools validate identity, parameters and data scope on the server |
+| Keep existing data | Uses migration previews and the application flow, without rewriting plugin tables directly | How new business migrations affect old data and failure cases |
 
-Prompts and Skills provide behavioral guidance. Identity checks, authorization, tool selection, and tests provide code-level safeguards. For Runner execution, also use an explicitly authorized directory, an isolated development environment, and reviewable code changes. Runner itself is not a filesystem sandbox; machine and coding-tool configuration determine actual access.
+Prompts and Skills are only behavioral guidance; identity checks, authorization, tool selection and tests are the safeguards in code. When running code through the Runner, also use an explicitly authorized directory, a separate development environment and reviewable code differences. The Runner itself is not a file system sandbox; what it can actually reach depends on the machine and the coding tool's configuration.
 
-### Verify affected behavior and actual results
+### Verify by change, and check real results
 
-Static checks, automated tests, and live operations answer different questions. This example completed:
+Static checks, automated tests and actual operation answer different questions. This example completed:
 
-| Check | Actual result and what it establishes |
+| Check | Actual result, and what it shows |
 | --- | --- |
-| Client/server types, scoped ESLint, and formatting | Passed; checked integration against current types and conventions |
-| Route, localization, permission-label, and business-entry suites | 4 files, 23 passing tests covering pages, authorization, bilingual text, creation, retry, duplicate clicks, and identity teardown |
-| Model connection and browser conversation | Real DeepSeek replies, readable saved history, and completed execution state |
-| Skill use | Original tool records confirm reading the Skill and `references/style.md`, beyond the model's own assertion |
-| Runner read-only execution | After preparing the application CLI, real `pwd` and `ls -A1` commands completed; the first failure and its correction are recorded |
-| Anonymous API access | Model service and Skill APIs returned 401; this does not verify the complete role matrix |
+| Client and server type checks, ESLint and formatting within the changed scope | Passed, showing the integration code fits the current types and conventions |
+| Tests for routes, languages, permission names and the business entry | 4 test files and 23 cases passed, covering page loading, route authorization, English and Chinese text, creation, retry after failure, repeated clicks and the end of an identity |
+| Model connection and in-browser conversation | DeepSeek returned real replies; saved history and completion status could be read |
+| Use of the Skill | The raw tool call records confirm reading the Skill and `references/style.md`, rather than only the model's own claim |
+| Read-only Runner execution | After adding the application CLI, `pwd` and `ls -A1` actually ran and the run record was `completed`; the cause of the first failure and its fix are recorded |
+| Anonymous API access | The model service and Skills APIs returned 401; this is not the same as verifying the full role permission matrix |
 
-Rerun the related tests in the example:
+In the example directory, you can rerun the related tests:
 
 ```bash
 pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts tests/client/release-notes-button.test.tsx
 ```
 
-For broader changes or delivery, run the project's required full checks and build. The default template's `pnpm check` includes package checks, lint, formatting, types, tests, and build. **This example did not run the full `pnpm check` or a production application build.** Inspect actual test cases and results; a successful command with no discovered tests is not acceptance. See [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
+When widening the change or preparing delivery, run the full checks and build the project requires. The default template's `pnpm check` includes package checks, lint, formatting, types, tests and the build; **this example did not run the full `pnpm check`, nor a production application build**. When reading check reports, look at the cases actually run and the exit results; exiting normally with no tests found does not count as passing acceptance. For testing methods, see [Testing and acceptance](../../developing-apps/testing-and-acceptance.md).
 
-### Make delivery reports reviewable
+### Make the delivery report reviewable
 
-After development, give the Agent an acceptance prompt:
+When development is done, you can give the Agent an acceptance prompt:
 
 ```prompt
 Review this @nocobase/app-plugin-agents integration:
@@ -468,10 +468,10 @@ If the required environment or accounts are unavailable, identify those items
 as unverified. Do not report planned checks as passed.
 ```
 
-The live baseline on 2026-10-29 was default template `1.0.0-beta.84`, Agents `1.0.0-beta.29`, SQLite, and DeepSeek `deepseek-flash`. Machine Agent project editing and builds, the full role matrix, business writes, attachment parsing, the full mobile matrix, and production deployment remain unverified. Add verification for each capability you extend.
+This guide's live baseline was default template `1.0.0-beta.84`, Agents `1.0.0-beta.29`, SQLite and DeepSeek `deepseek-flash` on 2026-10-29. Machine Agents changing project code and building, the full role matrix, business writes, attachment parsing, the full set of mobile combinations and production deployment have not been accepted yet. When extending later, add verification for each new capability.
 
 ### Example source
 
-- [Complete example project](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide): model conversations, business Skills, and Runner integration, pinned to commit `b91adc8`.
-- [Setup and verification](https://github.com/nocobase/docs-examples-v3/blob/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide/README.md): required versions, configuration, startup, and test commands.
-- [Download the example source ZIP](/assets/core/downloads/agents-doc-demo.zip): application source matching the commit above, without runtime data or installed dependencies.
+- [The complete example project](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide): model conversations, a business Skill and Runner integration, pinned at commit `b91adc8`.
+- [Run and verification notes](https://github.com/nocobase/docs-examples-v3/blob/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide/README.md): version requirements, installation and configuration, startup and test commands.
+- [Download the example source ZIP](/assets/core/downloads/agents-doc-demo.zip): the application source matching the commit above, without runtime data or dependencies.

@@ -91,10 +91,12 @@ function loadLanguage({ root, prefix, code, skip, sections, problems }) {
     try {
       const { data, body } = parseFrontMatter(readFileSync(file, 'utf8'));
       if (typeof data.title !== 'string' || !data.title.trim()) problems.push(`${rel(`${key}.md`)}: the front matter needs a title`);
-      if (data.description !== undefined && typeof data.description !== 'string') problems.push(`${rel(`${key}.md`)}: description must be a string`);
+      for (const field of ['description', 'metaDescription']) if (data[field] !== undefined && typeof data[field] !== 'string') problems.push(`${rel(`${key}.md`)}: ${field} must be a string`);
+      const description = typeof data.description === 'string' ? data.description : '';
       pages.set(key, {
         key, lang: code, file, relPath: rel(`${key}.md`), data, body,
-        title: String(data.title ?? key), description: typeof data.description === 'string' ? data.description : '',
+        // description is shown under the title; metaDescription, when set, replaces it in the meta description, llms.txt and the .md copy without being shown
+        title: String(data.title ?? key), description, metaDescription: (typeof data.metaDescription === 'string' && data.metaDescription) || description,
         status: data.status === undefined ? '' : String(data.status), placeholder: data.status !== undefined && data.status !== null && data.status !== '',
         section: null, label: null, trail: [], refs: [],
       });

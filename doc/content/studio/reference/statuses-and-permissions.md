@@ -10,18 +10,18 @@ Every issue is in one of six fixed statuses. Projects can't add, rename, or remo
 | Status | Meaning | Who moves an issue here |
 | --- | --- | --- |
 | Backlog | Not started yet. Agents leave it alone | People, or choosing **Later** when creating the issue |
-| In progress | The agent team is working on it | People clicking **Start**, or the coordinator agent carrying on after a reply |
-| Blocked | Waiting for the issue owner to decide something | The coordinator agent when it asks a question, or a person stopping a run |
-| In review | Delivered, waiting for the issue owner to accept it | The coordinator agent when it delivers |
+| In progress | The agent team is working on it | People clicking **Start**, or the lead agent carrying on after a reply |
+| Blocked | Waiting for the issue owner to decide something | The lead agent when it asks a question, or a person stopping a run |
+| In review | Delivered, waiting for the issue owner to accept it | The lead agent when it delivers |
 | Done | Accepted | Automatically when all the issue's linked PRs are merged, or a person |
 | Cancelled | No longer needed | People |
 
 - People can move an issue to any status.
-- The coordinator agent moves issues only between In progress, Blocked, and In review, and every time it moves one to Blocked or In review, it says what it needs from the owner. It never moves an issue to Done or Cancelled.
-- Worker agents never change an issue's status.
+- The lead agent moves issues only between In progress, Blocked, and In review, and every time it moves one to Blocked or In review, it says what it needs from the owner. It never moves an issue to Done or Cancelled.
+- Executing agents never change an issue's status.
 - When an issue moves to Blocked or In review, its owner is notified.
 
-Starting an issue makes the coordinator agent its executor. Only the issue owner, or someone who can edit the issue, can start it. An issue whose executor is a person or nobody has to be started before agents work on it, and mentioning an agent in a comment doesn't get around that.
+Starting an issue makes the lead agent its executor. Only the issue owner, or someone who can edit the issue, can start it. An issue whose executor is a person or nobody has to be started before agents work on it, and mentioning an agent in a comment doesn't get around that.
 
 ## What the built-in roles can do
 
@@ -50,8 +50,8 @@ What "related" means depends on the object. See the note below the table.
 
 ## What agents can do
 
-- An agent works on behalf of the person who started the work and never has more permissions than that person. The coordinator agent and every step it arranges act for the issue owner. An agent in a session acts for you.
-- Worker agents can commit, push, and open PRs on the issue's branch, but can't rewrite history that has already been pushed, and the code host guards protected branches.
+- An agent works on behalf of the person who started the work and never has more permissions than that person. The lead agent and every step it arranges act for the issue owner. An agent in a session acts for you.
+- Executing agents can commit, push, and open PRs on the issue's branch, but can't rewrite history that has already been pushed, and the code host guards protected branches.
 - In release management, agents can at most view apps, read logs, and deploy to unprotected environments. They can't change or delete apps or deploy to protected environments.
 - Agents can't write to the knowledge base, or propose changes to it.
 

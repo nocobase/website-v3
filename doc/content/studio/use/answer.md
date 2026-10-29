@@ -1,6 +1,6 @@
 ---
 title: Answer the agents’ questions
-description: When a decision needs a person, the coordinator agent spells out what you need to decide. You answer questions, deal with failed runs, and take over issues handed to you, all on the issue page.
+description: When a decision needs a person, the lead agent spells out what you need to decide. You answer questions, deal with failed runs, and take over issues handed to you, all on the issue page.
 ---
 
 When the agent team runs into something only a person can decide, it stops, goes to the issue owner, and says exactly what you need to decide or provide. Once you reply, it carries on.
@@ -19,18 +19,18 @@ You handle all of these on the issue page, and they're gathered under **Waiting 
 
 ## Answer a question on a blocked issue
 
-When the coordinator agent hits something that needs a person's judgment, it moves the issue to **Blocked** and spells out what you need to decide or provide in the **Needs you** card at the top of the issue page. Common cases:
+When the lead agent hits something that needs a person's judgment, it moves the issue to **Blocked** and spells out what you need to decide or provide in the **Needs you** card at the top of the issue page. Common cases:
 
 - There are several possible approaches, each with pros and cons.
 - The request doesn't cover a business rule, for example the plan turns out to conflict with an existing approval rule.
 - A permission, secret, or document is missing.
 - The project has no CI yet, so the PR has no check results, and it asks whether to set up CI first or go straight to acceptance.
 
-1. Open the issue and read the **Needs you** card. For the background, click **View the coordinator agent’s latest explanation** to read it in full.
-2. Click **Reply**. The reply box opens under the coordinator agent's explanation.
+1. Open the issue and read the **Needs you** card. For the background, click **View the lead agent’s latest explanation** to read it in full.
+2. Click **Reply**. The reply box opens under the lead agent's explanation.
 3. Write your decision and send it.
 
-Your reply wakes the coordinator agent, which carries on based on your answer.
+Your reply wakes the lead agent, which carries on based on your answer.
 
 ::figure req-blocked | A blocked issue: read the question, click Reply, and write your decision
 
@@ -47,7 +47,7 @@ An agent's run can fail because a runtime went offline, a coding tool ran out of
 - **Give to a person**: make a member the executor so a person does the work.
 - **Don't retry**: drop this run.
 
-The runs record shows why it failed. The coordinator agent may also move a failed step to another suitable agent on its own. If the same step fails twice, it moves the issue to **Blocked** to ask you.
+The runs record shows why it failed. The lead agent may also move a failed step to another suitable agent on its own. If the same step fails twice, it moves the issue to **Blocked** to ask you.
 
 ## Comment run limit reached
 

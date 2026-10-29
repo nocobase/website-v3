@@ -20,7 +20,7 @@ The top line sums up what's running, what's queued, and what's waiting for you, 
 
 ::figure agent-queue | The agent queue: one lane per agent, with anything that's your turn highlighted
 
-If you often see "All slots busy" or long queues, you don't have enough runtimes. Raise a runtime's maximum concurrent runs or connect another one. See [Connect a shared runtime](../setup/shared-runtimes.md). If an agent sits idle all the time, its **Good at** description may be too narrow for the coordinator agent to think of it. See [Enable agents](../setup/agents.md).
+If you often see "All slots busy" or long queues, you don't have enough runtimes. Raise a runtime's maximum concurrent runs or connect another one. See [Connect a shared runtime](../setup/shared-runtimes.md). If an agent sits idle all the time, its **Good at** description may be too narrow for the lead agent to think of it. See [Enable agents](../setup/agents.md).
 
 ## Usage
 

@@ -10,7 +10,7 @@ export function llmsGroups(tree, pageOf) {
     if (node.type === 'group') return pagesOf(node.children);
     return [];
   });
-  const toPages = keys => keys.map(pageOf).filter(p => p && !p.placeholder).map(p => ({ title: p.title, description: p.description, path: p.mdUrl }));
+  const toPages = keys => keys.map(pageOf).filter(p => p && !p.placeholder).map(p => ({ title: p.title, description: p.metaDescription, path: p.mdUrl }));
   let loose = null;
   for (const node of tree) {
     if (node.type === 'page') {
@@ -37,11 +37,11 @@ export function docsFiles(site) {
     llms.push({
       path: `${prefix}llms.txt`,
       title,
-      summary: pageOf('index')?.description || title,
+      summary: pageOf('index')?.metaDescription || title,
       sections: site.sections(lang.code).map(s => ({ title: s.title, groups: llmsGroups(s.tree, pageOf) })).filter(s => s.groups.length),
     });
     for (const page of site.pages.filter(p => p.lang === lang.code)) {
-      markdownCopies.push({ path: `${prefix}${page.key}.md`, title: page.title, description: page.description, body: stripFigures(page.body) });
+      markdownCopies.push({ path: `${prefix}${page.key}.md`, title: page.title, description: page.metaDescription, body: stripFigures(page.body) });
     }
   }
   return { llms, markdownCopies };

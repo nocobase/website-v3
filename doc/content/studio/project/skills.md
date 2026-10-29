@@ -11,8 +11,8 @@ Studio comes with five skills that set how the agent team works:
 
 | Skill | What it sets | Attached by default to |
 | --- | --- | --- |
-| studio-workflow | How the coordinator agent splits work into steps, who gets each one, when a plan comes first, how reviews go, and when work is ready to deliver | New projects |
-| studio-development | How a worker agent carries out a step: design, verification, handling CI failures, and delivery | New projects |
+| studio-workflow | How the lead agent splits work into steps, who gets each one, when a plan comes first, how reviews go, and when work is ready to deliver | New projects |
+| studio-development | How an executing agent carries out a step: design, verification, handling CI failures, and delivery | New projects |
 | studio-approach | How to write a plan | New projects |
 | studio-review | How to review a PR: what to look at, how findings are graded, and what blocks a merge | New projects |
 | studio-comment-style | How comments and delivery reports are written. The sections of the delivery report come from here | Global |

@@ -7,17 +7,17 @@ Acceptance is the most important decision a person makes. What the agent team ha
 
 ## When acceptance comes up
 
-The coordinator agent moves an issue to **In review** and hands it to you only after its PR has passed its checks and review. If the project has no CI yet, it first asks whether you want to accept without CI. Once the issue is in review:
+The lead agent moves an issue to **In review** and hands it to you only after its PR has passed its checks and review. If the project has no CI yet, it first asks whether you want to accept without CI. Once the issue is in review:
 
 - It appears under **Waiting for you** in **My issues**, labeled **Needs your acceptance**.
 - The **Needs you** card at the top of the issue page says what you're asked to confirm.
-- Below it is the delivery report the coordinator agent submitted.
+- Below it is the delivery report the lead agent submitted.
 
-Only a person can accept. Neither the coordinator agent nor worker agents can mark an issue done or merge a PR.
+Only a person can accept. Neither the lead agent nor executing agents can mark an issue done or merge a PR.
 
 ## Read the delivery report
 
-The delivery report is the main basis for acceptance. The coordinator agent follows a built-in structure:
+The delivery report is the main basis for acceptance. The lead agent follows a built-in structure:
 
 | Section | What it says |
 | --- | --- |
@@ -85,7 +85,7 @@ When the result isn't what you expected:
 2. Say what needs to change, as specifically as you can, for example "After merging, keep the earliest creation time. Right now it keeps the latest."
 3. Click **Send and return to In progress**.
 
-The issue goes back to **In progress**, and the coordinator agent arranges the changes based on your feedback, then hands it back to you for acceptance.
+The issue goes back to **In progress**, and the lead agent arranges the changes based on your feedback, then hands it back to you for acceptance.
 
 ## Already merged on the code host
 

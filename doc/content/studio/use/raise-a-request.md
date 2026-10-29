@@ -23,7 +23,7 @@ To fill in a form instead, click **Fill in manually** in the session:
 1. Enter a title and a description. The description supports Markdown.
 2. Check the project and the owner. The owner is the person responsible for the issue, which is you by default.
 3. Under **When to start**, choose one:
-   - **Start now**: the issue moves to **In progress**, and the coordinator agent starts arranging the work right away.
+   - **Start now**: the issue moves to **In progress**, and the lead agent starts arranging the work right away.
    - **Later**: the issue goes to **Backlog**, and you click **Start** on the issue page when you're ready.
 4. Click **Create and start** or **Create**.
 
@@ -42,11 +42,11 @@ The agent team understands the request from what you write. The clearer it is, t
 - **Scope**: what this request leaves out.
 - **Materials**: related spreadsheets, screenshots, and policy documents. For anything already in the knowledge base, just give the document's name.
 
-If you're not sure how it should be done, say so: "Not sure, please propose an approach first." The coordinator agent has an agent write up an approach first and comes back to you when there's a decision to make.
+If you're not sure how it should be done, say so: "Not sure, please propose an approach first." The lead agent has an agent write up an approach first and comes back to you when there's a decision to make.
 
 ## When the request is big
 
-However big the request, just describe it clearly. You don't need to split it up yourself. The coordinator agent breaks it into steps and hands each to a suitable agent.
+However big the request, just describe it clearly. You don't need to split it up yourself. The lead agent breaks it into steps and hands each to a suitable agent.
 
 If you want to accept some parts separately, click **New sub-issue** on the issue page:
 
@@ -58,4 +58,4 @@ An issue's priority affects the queue, and runtimes pick up work for urgent issu
 
 ## Do it yourself
 
-A member can also be an issue's executor, and such issues aren't given to agents. To hand one to the agent team later, click **Hand over to the coordinator agent to start** on the issue page.
+A member can also be an issue's executor, and such issues aren't given to agents. To hand one to the agent team later, click **Hand over to the lead agent to start** on the issue page.

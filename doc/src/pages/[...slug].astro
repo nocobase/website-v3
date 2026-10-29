@@ -36,7 +36,7 @@ const prev = i > 0 ? link(order[i - 1]) : undefined;
 const next = i >= 0 ? link(order[i + 1]) : undefined;
 const crumb = [section.id === config.sections[0].id ? '' : section.title, ...page.trail].filter(Boolean).join(' · ');
 ---
-<Layout lang={lang} title={page.title} description={page.description} sectionId={page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
+<Layout lang={lang} title={page.title} description={page.metaDescription} sectionId={page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
 {!page.placeholder && <div hidden data-pagefind-filter="section[data-value]" data-value={section.title}></div>}
 {crumb && <p class="doc-crumb" data-pagefind-ignore>{crumb}</p>}
 <h1>{page.title}</h1>

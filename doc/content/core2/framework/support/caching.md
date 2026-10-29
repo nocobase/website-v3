@@ -1,12 +1,13 @@
 ---
 title: Caching
+description: Reuse the host's cache instance through cachingToken, and learn about cache reads and invalidation, namespaces and permissions, counters and Bloom filters.
 ---
 
-`@nocobase/caching` provides namespaced caches, counters and Bloom filters. Applications share the host instance through `cachingToken` from `@nocobase/app-server/caching`. Caches accelerate reads and are not authoritative business storage.
+`@nocobase/caching` provides namespaced caches, counters and Bloom filters. Applications reuse the host's instance through `cachingToken` from `@nocobase/app-server/caching`. Caches speed up reads and must never be the only source of business data.
 
-## Application and plugin integration
+## Integrating with applications and plugins
 
-The caching Provider creates a shared service from application configuration. An application or plugin server Provider can call this helper with `app.container`, then pass the cache to a business service:
+The caching Provider creates a shared service from the application configuration. An application or plugin server Provider can call the following function with `app.container` and then pass the returned cache to a business service:
 
 ```ts
 import { cachingToken } from '@nocobase/app-server/caching';
@@ -20,11 +21,11 @@ export function orderSummaryCache(container: ServiceResolver) {
 }
 ```
 
-Read through `cache.wrap(key, loader)` and invalidate affected keys after data changes commit. Applications and plugins must not dispose of host Caching themselves; creators own cleanup only for standalone instances.
+In business code, read data through `cache.wrap(key, loader)` and invalidate the affected keys after a data change commits. Neither applications nor plugins should dispose of the host's Caching themselves; only instances created independently are released by their creator.
 
-## Cache reads
+## Reading from the cache
 
-This standalone example uses the default memory driver:
+The following example uses the library's default memory driver to show the lifecycle of a standalone instance:
 
 ```ts
 import { createCaching } from '@nocobase/caching';
@@ -40,21 +41,21 @@ try {
 }
 ```
 
-Application plugins resolve host Caching instead of creating and disposing an instance per request. `get()` returns `undefined` on a miss; `set()` writes, `delete()` invalidates, and `take()` reads and removes. `wrap()` loads missing data and coalesces concurrent loads for a key within this process.
+Plugins in an application should get Caching from the host instead of creating and disposing an instance in every request. `get()` returns `undefined` on a miss; `set()` writes, `delete()` invalidates, and `take()` reads and then deletes. On a miss, `wrap()` runs the loader and merges concurrent loads of the same key within the current process.
 
-Numeric TTL values are milliseconds; configuration also accepts strings such as `30s`. Invalidate or update on writes rather than relying solely on expiration for correctness-sensitive reads.
+Numeric TTLs are in milliseconds, and configuration also accepts duration strings such as `30s`. Delete or update cache entries actively on the write path; do not rely only on expiration to keep important business reads correct.
 
-## Namespaces and authorization
+## Namespaces and permissions
 
-Namespaces separate modules, not tenants, users or permission scopes automatically. Include those dimensions in keys for filtered data, or cache only public data with no permission variation. Invalidate affected entries when permissions change.
+Namespaces separate the keys of different modules, but do not automatically separate tenants, users or permission scopes. When a cache holds results filtered by permissions, the cache key must cover those dimensions; otherwise, cache only public data that does not vary by permission. When permissions change, invalidate the related cache entries as well.
 
-Provider initialization options are fixed on first use; incompatible settings fail. The built-in `memory` driver is process-local. Register custom drivers with `registerCachingDriver()`; changing a string to `redis` cannot install a missing driver.
+A Provider's initialization options are fixed after first use, and conflicting configuration throws. The built-in `memory` driver only works within the current process, so instances do not share a cache. Custom drivers are registered with `registerCachingDriver()`; changing the configuration to `redis` does not give you a driver that is not installed.
 
 ## Other capabilities
 
-`getCounter()` supports atomic increments and applies TTL when first created. `getBloomFilter()` supports probabilistic membership checks. A positive Bloom result can be false and still requires authoritative lookup.
+`getCounter()` provides counting and atomic increments, applying the TTL when it is first created; `getBloomFilter()` provides probabilistic set membership queries. A Bloom filter can wrongly report a value as present, so a hit still needs confirmation from the authoritative storage.
 
-`wrap()` coalescing is not a distributed lock and cannot guarantee a payment or stock mutation runs once. Keep business constraints and transactions in the database. Hosts dispose Providers on shutdown; standalone callers own `dispose()`.
+The merging done by `wrap()` is not a distributed lock and cannot guarantee that operations such as payments or inventory changes run only once. Business unique constraints and transactions stay in the database. The host releases Providers on shutdown, while standalone instances are released by their caller through `dispose()`.
 
 ## Interfaces and implementation
 

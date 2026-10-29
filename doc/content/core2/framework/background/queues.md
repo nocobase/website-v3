@@ -1,12 +1,13 @@
 ---
 title: Message queues
+description: Produce and consume messages with @nocobase/queue, and learn how to connect to the host's queue service, the consumption semantics, and configuration and durability considerations.
 ---
 
-`@nocobase/queue` provides message production and consumption. Start with [Jobs](jobs.md) for most background work; use queues directly when you need channels, delays, priorities, batching or rate limits.
+`@nocobase/queue` provides message production and consumption. Most background work can start with [Background jobs and executors](jobs.md); use queues directly when you need channels, delays, priorities, batch submission or rate limiting.
 
-## Host service
+## The host service
 
-Resolve `queueServiceToken` from `@nocobase/app-server/queue` to share connections and lifecycle. `producer(name)` and `consumer(name)` address the same queue, while channels distinguish message purposes.
+Applications share queue connections and lifecycle through `queueServiceToken` from `@nocobase/app-server/queue`. `producer(name)` and `consumer(name)` use the same queue name, and messages are then distinguished by channel.
 
 ```ts
 import { queueServiceToken } from '@nocobase/app-server/queue';
@@ -31,25 +32,25 @@ export async function requestOrderRefresh(container: ServiceResolver, orderId: s
 }
 ```
 
-The business layer supplies `refresh`, including payload validation. Register consumers in Provider `boot()`; the host Queue Provider starts consumption in `start()`. Publish after startup completes. Retain the unregister function from `consume()` and await it before releasing business dependencies.
+`refresh` here is provided by the business layer and validates the message before performing the operation. The Provider registers consumers in `boot()`, and the host's Queue Provider starts consuming in `start()`; submit messages only after startup completes. Keep the unregister function returned by `consume()`, wait for it during shutdown, and only then release business dependencies.
 
-Applications and plugins can pass `app.container` to both helpers. Use queue names owned by a business module or plugin, with the same convention on producers and consumers. The application configures connections, adapters and namespaces. Plugins unregister their consumers without stopping the shared host Queue service.
+Applications and plugins can both pass `app.container` to these two functions. Queue names should reflect the business or plugin they belong to, and producers and consumers should follow the same convention. Connections, adapters and namespaces are configured centrally by the application; a plugin only unregisters the consumers it registered and does not stop the Queue service shared by the host.
 
-Use Jobs for job classes, progress and recurring rules. Use [realtime communication](../realtime/topics.md) for page subscriptions. A queue assigns messages to workers; it does not broadcast to every connected page.
+When you need job classes, execution progress and recurring rules, prefer Jobs; when pages need to subscribe to business changes, use [Realtime messages and topic subscriptions](../realtime/topics.md). A queue suits having one worker process handle each message, and is not responsible for broadcasting to every online page.
 
-## Delivery behavior
+## Consumption semantics
 
-Handlers registered in one process run concurrently for a message claimed by that process. Any failure can retry the entire message, repeating handlers that already succeeded. Different processes compete for messages; delivery is not broadcast.
+Several handlers registered in the same process handle the messages that process claims in parallel; if any one of them fails, the whole message may be retried, so handlers that already succeeded may run again. Different processes compete to claim messages; this is not a broadcast to all processes.
 
-`withChannel()` filters channels without validating payloads. A `publish()` receipt confirms acceptance rather than completion. Custom Job IDs deduplicate while the job remains in the queue, not forever; retain business idempotency keys where required.
+`withChannel()` only filters by channel and does not validate payloads. The receipt from `publish()` means the message was accepted, not that it has been consumed. A custom Job ID deduplicates while the queue retains that job, but cannot replace a business idempotency key.
 
 ## Configuration and durability
 
-Queue adapters are named `inMemory` and `redis`, unlike the jobs adapter named `memory`. Configuration covers defaults, connections, namespaces, concurrency, retries, backoff and rate limits. A queue binds its configuration on first resolution; later callers cannot reinterpret the same queue with another configuration.
+The queue adapters are named `inMemory` and `redis`, which differ from the `memory` name in the jobs configuration. Queue configuration covers defaults, connections, namespaces, concurrency, retries, backoff and rate limits; a queue binds its configuration on first resolution and cannot be reinterpreted later with a different configuration.
 
-Memory suits local development. Saving state during clean shutdown does not guarantee recovery after abrupt exit. Redis needs appropriate persistence and resource limits. Batch inputs are checked before submission, but network or server failures can still leave a partially submitted batch.
+In-memory queues suit single-machine development; state saved during a clean shutdown is not guaranteed to recover after the process exits abruptly. Redis needs suitable data persistence and resource limits. Batched messages are checked before submission, but network or Redis server errors can still leave only part of a batch submitted.
 
-Observe cancellation signals. Do not await self-unregistration from a handler, which can wait on its own completion. Persist authoritative business outcomes so repeated delivery and recovery are safe.
+Handlers should respond to cancellation signals. Do not wait inside a handler for its own unregistration, or it may end up waiting for itself to finish. Store success records and business results in reliable storage, so that repeated delivery and failure recovery are safe.
 
 ## Interfaces and implementation
 

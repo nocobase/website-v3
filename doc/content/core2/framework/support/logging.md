@@ -1,10 +1,11 @@
 ---
 title: Logging
+description: Record structured business logs through the host's loggingToken, and learn how applications and plugins share the logging service, how outputs and rotation are configured, and how to diagnose problems and handle sensitive data.
 ---
 
-`@nocobase/logging` provides structured records, source labels, outputs and rotation. Resolve `loggingToken` from `@nocobase/app-server/logging` in an application.
+`@nocobase/logging` provides structured logs, source labels, outputs and rotation. Applications get the logging service through `loggingToken` from `@nocobase/app-server/logging`.
 
-## Business context
+## Recording business context
 
 ```ts
 import { loggingToken } from '@nocobase/app-server/logging';
@@ -15,17 +16,17 @@ export function orderLogger(container: ServiceResolver) {
 }
 ```
 
-Use the returned logger, for example `logger.info({ orderId }, 'Order submitted')` or `logger.error({ err: error, orderId }, 'Order submission failed')`. Put searchable fields in the object instead of embedding everything in a string.
+Log with the returned logger, for example `logger.info({ orderId }, 'Order submitted')`, and on failure `logger.error({ err: error, orderId }, 'Order submission failed')`. Put fields you want to search on in the object instead of concatenating everything into the message string.
 
-The source passed to `getLogger(source)` becomes the `logger` field; it does not select a separate file automatically. The no-argument source is normally `system`, while the default file stem remains `app`.
+The source passed to `getLogger(source)` is recorded as the `logger` field; it does not create a separate file automatically. Without an argument, `system` is usually the source, and the default file name is still `app`.
 
-## Shared logging in applications and plugins
+## Sharing logs between applications and plugins
 
-Pass `app.container` to `orderLogger()` from an application or plugin Provider, then inject the logger into the business service. Use a stable package or module name to filter by the `logger` field. The application manages outputs, levels and rotation. Plugins neither reconfigure nor close the shared logging service.
+In an application or plugin Provider, pass `app.container` to `orderLogger()` and inject the resulting logger into the business service. Use a stable package or module name as the source, so that logs are easy to filter by the `logger` field; outputs, log levels and rotation are managed centrally by the application configuration. Plugins must not reconfigure or close the shared logging service.
 
-Requests, jobs and schedules may have different contexts. Pass business and correlation IDs explicitly when needed; HTTP context does not automatically accompany background work. Business tests can inject a recording logger substitute to check fields and error paths. File rotation belongs in output integration tests.
+Requests, background jobs and scheduled runs can each have a different context. When you need to correlate them, pass business IDs and correlation IDs explicitly; never assume that the HTTP context appears in background jobs automatically. In tests, you can pass the business service a logger substitute that records calls, to verify key fields and error branches; file rotation belongs in output integration tests.
 
-## Outputs
+## Output configuration
 
 ```yaml
 logging:
@@ -45,17 +46,17 @@ logging:
         name: request
 ```
 
-Files always contain JSON Lines. `console.pretty` affects terminals only. Application logs live in persistent `storage/logs/`; source names do not change the directory. This example routes request records to their own file while other sources share app files.
+File output is always in JSON Lines format, and `console.pretty` only affects how logs look in the terminal. Application logs are stored in the persistent `storage/logs/` directory, which does not change with the source name. The example writes request logs to a separate file, while all other logs share the app file.
 
-Files rotate at UTC date boundaries and segment limits. Retention days and total-size budgets cover log files in the directory. One process should own each directory; rotation state is not coordinated across processes. App Host output policies and identity bindings take precedence for hosted apps.
+Log files rotate by UTC date and by the size of a single file; the retention days and the total size limit apply to all log files in the directory. Each log directory should be managed by only one process, because processes do not coordinate rotation state. When you use App Host, the host's output policy and identity binding take precedence.
 
-## Diagnosis and data handling
+## Diagnosing problems and handling data
 
-Retain correlation IDs, business record IDs, sources and error objects to trace requests into tasks. Temporarily use debug for startup details or request-start information, then restore an appropriate level.
+Keep request correlation IDs, business record IDs, module sources and error objects first, so that you can trace a request all the way into background jobs. When you need startup details or request-start information, use the debug level temporarily, and restore a level suitable for the environment after diagnosis.
 
-Do not deliberately log passwords, cookies, tokens, full personal records or file contents. Built-in redaction does not replace careful field selection. Diagnostic logs need retention policies and do not replace durable business audit records.
+Do not deliberately log passwords, cookies, tokens, complete personal profiles or the contents of large files. The built-in redaction cannot replace choosing log fields carefully. Log files need their own retention policy, and ordinary diagnostic logs cannot replace business audit records that must not be lost.
 
-The host waits for cleanup at shutdown; standalone users own the lifecycle. Preserve the log directory during deployment and monitor disk use.
+The host waits for logging to finish cleaning up at shutdown; when the library is used on its own, its user arranges the lifecycle. When deploying, keep the log directory and monitor disk usage.
 
 ## Interfaces and implementation
 

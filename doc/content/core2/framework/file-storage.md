@@ -1,10 +1,11 @@
 ---
 title: File storage and drivers
+description: Configure file storage disks, read and write files through the host's manager in applications and plugins, and understand the boundaries of storage and access and what to watch for in deployment and testing.
 ---
 
-`@nocobase/drive` provides storage drivers. The host exposes a manager through `driveManagerToken` from `@nocobase/app-server/drive`. The file plugin adds records, uploads, downloads and access control.
+`@nocobase/drive` unifies file storage drivers, and the host provides a manager through `driveManagerToken` from `@nocobase/app-server/drive`. The file plugin builds file records, uploads, downloads and access control on top of it.
 
-## Configure disks
+## Configuring disks
 
 ```ts
 // server/config/drive.ts
@@ -23,19 +24,19 @@ export default defineAppConfig<AppDriveConfig>(({ paths }) => ({
 }));
 ```
 
-`default` selects a disk and `disks` declares the available ones. Resolve the manager, select `drive.use('local')`, and call the disk's file methods. Business configuration can reference disk names, so update those references when renaming a disk.
+`default` selects the default disk, and `disks` declares the available disks. After resolving the manager, select a disk with `drive.use('local')` and call that disk's file methods. Business configuration refers to disk names, so when you rename a disk, update those references as well.
 
-| Driver | Main settings | Use |
+| Driver | Main settings | Use cases |
 | --- | --- | --- |
-| `fs` | `location`, `visibility`, optional `url` | Local or mounted shared filesystem |
-| `s3` | bucket, region, credentials, optional endpoint | S3 and compatible services |
-| `oss` | bucket, region, credentials | Alibaba Cloud OSS, including supported RAM Role configuration |
+| `fs` | `location`, `visibility`, optional `url` | A local filesystem or a mounted shared filesystem |
+| `s3` | bucket, region, credentials, optional endpoint | S3 and S3-compatible services |
+| `oss` | bucket, region, credentials | Alibaba Cloud OSS, including the supported RAM Role configuration |
 
-Provide server credentials through configuration and environment variables, never the browser. Generate and validate file keys in the business layer; never treat raw user input as an absolute filesystem path.
+Server credentials are provided through environment variables and the configuration system; never send them to the browser. File keys should be generated and validated by the business layer; never use user input directly as an absolute local path.
 
-## File operations in applications and plugins
+## Reading and writing files in applications and plugins
 
-The application supplies disk configuration. Applications and plugins resolve the same manager Token. This helper writes business-generated text to the default disk:
+The application provides the disk configuration, and applications and plugins get the manager through the same Token. The following example writes business-generated text to the default disk:
 
 ```ts
 import { driveManagerToken } from '@nocobase/app-server/drive';
@@ -52,21 +53,21 @@ export async function writeOrderExport(
 }
 ```
 
-Generate `key` on the server, for example `exports/orders/<id>.csv`, and retain the disk name and file key for later lookup. `get(key)` reads content and `delete(key)` removes the file. Authorize the business operation before creating an export.
+The caller generates the `key` on the server, such as `exports/orders/<id>.csv`, and stores the disk name and file key for later lookup. `get(key)` reads the content and `delete(key)` removes the file; business authorization must still be completed before creating an export.
 
-This helper only writes a storage object. It creates neither a file-plugin record nor a public URL. Use the file plugin for complete upload, record and access workflows. Plugins reuse host disk configuration instead of creating a manager per request.
+This function only writes a storage object; it neither creates a record in the file plugin nor produces a publicly accessible URL. When you need the complete upload, file record and access workflow, connect the file plugin. Plugins should reuse the host's disk configuration instead of creating a new manager for each request.
 
-## Storage and access
+## Boundaries of storage and access
 
-`visibility: 'private'` does not configure OS permissions or protect a publicly exposed HTTP directory. `url` builds URLs without mounting a download endpoint. The default filesystem driver has no built-in signed download or upload URLs.
+`visibility: 'private'` does not configure operating system permissions on the filesystem for you, and does not protect a publicly served HTTP directory. `url` only takes part in generating URLs and does not create a download route. The default filesystem driver has no built-in signed download or signed upload capability.
 
-For private files, use the file plugin's authorized download API or enforce identity and resource checks in your own route. Object-store signing depends on the driver; disks do not all have identical capabilities.
+When private files need to be accessed, use the file plugin's authorized download API, or perform identity and resource checks in your own endpoint. Signing support in object storage also depends on the specific driver, so do not assume every disk behaves the same.
 
 ## Deployment and testing
 
-The host prepares configured filesystem directories during startup; standalone callers prepare their own storage. Multiple instances need a shared volume or object storage.
+The host prepares the configured filesystem directories at startup; when the library is used on its own, the caller prepares the storage location. When several instances use local disks, they need a shared volume, or should switch to object storage.
 
-`storage/files` is business data. Back it up together with database file metadata. Deleting metadata does not delete an object, or vice versa; plan retries and orphan cleanup. Test with temporary disks or fakes rather than real files. See [Using plugins](../using-plugins/overview.md) for application-level features.
+`storage/files` is business data and should be backed up together with the file metadata in the database. Deleting the metadata does not mean the storage object has been deleted, and vice versa; business services should arrange retries on failure and cleanup of orphaned files. Use a temporary disk or a driver fake in tests to avoid overwriting real files. For more application-level capabilities, see [Using plugins](../using-plugins/overview.md).
 
 ## Interfaces and implementation
 

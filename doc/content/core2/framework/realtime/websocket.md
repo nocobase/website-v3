@@ -1,35 +1,36 @@
 ---
 title: WebSocket protocols and adapters
+description: Learn how the WebSocket adapter layer and the Realtime protocol layer divide responsibilities, the connection interface, requirements for paths and proxies, and identity checks and resource release.
 ---
 
-`@nocobase/app-websocket` defines the socket interface shared by hosts and applications and adapts Node HTTP Server upgrades. Prefer [Realtime topics](topics.md) for page updates; use this layer when implementing a host or another protocol.
+`@nocobase/app-websocket` defines the WebSocket interface shared by hosts and applications, along with the upgrade adapter for the Node HTTP Server. For realtime refreshes on ordinary pages, prefer [Realtime messages and topic subscriptions](topics.md); you only need this layer when implementing a custom host or another protocol.
 
-## Responsibilities
+## Two layers of responsibility
 
 | Layer | Responsibilities |
 | --- | --- |
-| WebSocket adapter | HTTP upgrade, connection lifecycle, message limits and native ping/pong |
-| Realtime protocol | Topic subscriptions, acknowledgements, identity and resource authorization, delivery and subscription recovery |
+| WebSocket adapter | HTTP upgrade, opening and closing connections, message size, native ping/pong |
+| Realtime protocol | Topic subscription and acknowledgement, identity and resource authorization, event delivery, restoring subscriptions after reconnect |
 
-The Node adapter uses `ws` in `noServer` mode so an existing HTTP server decides whether to accept an upgrade. An `AppWebSocketHandler` takes a `Request` and returns event handlers, a rejection `Response`, or an empty result when it does not handle the request.
+The Node adapter uses `ws` in `noServer` mode, so that the existing HTTP service decides first whether to accept an upgrade. An `AppWebSocketHandler` receives a `Request` and returns event handlers, a `Response` that rejects the upgrade, or an empty value meaning it does not handle the request.
 
 ## Connection interface
 
-`AppWebSocket` exposes `url`, `protocol`, `readyState`, optional `bufferedAmount`, and `send()` and `close()`. Handlers implement `onOpen`, `onMessage`, `onClose` and `onError`; messages are strings or `ArrayBuffer` values.
+`AppWebSocket` provides `url`, `protocol`, `readyState`, an optional `bufferedAmount`, and `send()` and `close()`. Event handlers include `onOpen`, `onMessage`, `onClose` and `onError`; messages are strings or `ArrayBuffer` values.
 
-Hosts identify upgrades with `isWebSocketUpgrade()`, convert requests through `createWebSocketUpgradeRequest()`, then call `acceptWebSocketUpgrade()` or `rejectWebSocketUpgrade()`. Ordinary apps and plugins do not need another WebSocket server.
+A host can recognize upgrade requests with `isWebSocketUpgrade()`, convert the request with `createWebSocketUpgradeRequest()`, and finally call `acceptWebSocketUpgrade()` or `rejectWebSocketUpgrade()`. Ordinary applications and plugins do not need to start a WebSocket server of their own.
 
 ## Paths and proxies
 
-Realtime uses `/ws` inside the application; external paths may include a mount prefix. Use host URL resolution instead of hard-coding deployment prefixes. A normal HTTP request to this path returns an upgrade-required response.
+Inside the application, Realtime uses the path `/ws`; the external path may also include the application's mount prefix. Browsers should use the address resolved by the host instead of hard-coding the deployment prefix. An ordinary HTTP request to this path gets a response requiring a WebSocket upgrade.
 
-Reverse proxies must forward upgrades, preserve the correct external host and protocol, and allow sufficient idle time. The application adapter rejects cross-origin browser connections. Incorrect origin or protocol rewriting can therefore reject a handshake.
+Reverse proxies must forward upgrade requests, preserve the correct external Host and protocol, and allow a long enough idle time. The application adapter rejects browser connections from other origins, so if a proxy rewrites the origin or protocol incorrectly, the handshake is rejected.
 
-## Identity and cleanup
+## Identity and resource release
 
-The application adapter resolves identity at handshake and rechecks session validity during later activity and idle checks. A user ID in a URL is not authentication. Custom adapters own origin checks, authentication, message limits and heartbeats.
+The application adapter resolves identity from the handshake request and reconfirms the session during later activity and idle checks; a user ID in the URL must never be treated as identity. Custom adapters must add their own origin checks, authentication, message limits and heartbeat handling.
 
-Release subscriptions and listeners on close or error and terminate connections during shutdown. Bound output buffering to avoid unlimited accumulation for slow clients. A connected socket only establishes transport; topic authorization and message validation remain protocol responsibilities.
+When a connection closes or fails, release its subscriptions and listeners; when the application shuts down, terminate all connections. Limit the send buffer so that slow clients cannot accumulate messages without bound. A successful transport connection only means the channel is established; topic permissions and business message validation are still done by the protocol layer.
 
 ## Interfaces and implementation
 

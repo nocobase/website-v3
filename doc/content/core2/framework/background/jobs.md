@@ -1,12 +1,13 @@
 ---
 title: Background jobs and executors
+description: Hand long-running work to the background with @nocobase/jobs, and learn how to define, register and submit jobs, how responsibilities split between applications and plugins, and how storage, failure and shutdown are handled.
 ---
 
-Use `@nocobase/jobs` for work that should outlive an HTTP request. Resolve `jobExecutorServiceToken` from `@nocobase/app-server/jobs` to obtain executors scoped to a plugin or business area.
+Long-running work can be handed to `@nocobase/jobs`, so that the request only has to accept the job. The host's `jobExecutorServiceToken` lives in `@nocobase/app-server/jobs`, and through it you get executors isolated by plugin or business scope.
 
-## Define a job
+## Defining a job
 
-Place a task in a server directory, for example `server/jobs/count-orders-job.ts`:
+Put the implementation in the server directory of the application or plugin, for example `server/jobs/count-orders-job.ts`:
 
 ```ts
 import { Job, type JobExecutionContext } from '@nocobase/jobs';
@@ -26,11 +27,11 @@ export class CountOrdersJob extends Job<{ orderIds: string[] }> {
 }
 ```
 
-Payloads are persistent JSON values, and each attempt creates a fresh instance. Pass record IDs and required parameters, not connections, containers, functions, `Date`, `bigint` or `undefined`. Represent dates as ISO strings.
+The payload is persistable JSON data, and every attempt of a job creates a new instance. Pass only record IDs and the necessary parameters; do not pass connections, service containers, functions, `Date`, `bigint` or `undefined`. When you need a date, pass an ISO string.
 
-## Register and submit
+## Registering and submitting
 
-Pass the application or plugin host’s `app.container` to startup code and resolve the shared service through its public Token:
+Pass the application's or plugin's `app.container` to the startup logic, and resolve the host's service through its public Token:
 
 ```ts
 import { jobExecutorServiceToken } from '@nocobase/app-server/jobs';
@@ -49,23 +50,23 @@ export async function startOrderJobs(container: ServiceResolver) {
 }
 ```
 
-Every consumer process registers task classes before `setup()`. Registration in the producer does not register a remote worker. Producer-only processes can call `setup({ consume: false })`. In an application, initialize the executor in a Provider's startup, submit from routes or business services, and await `shutdown()` during cleanup.
+Every process that consumes jobs must register the job classes before `setup()`. The producer's process knowing the class does not mean other processes have registered it. A process that only submits and does not consume can use `setup({ consume: false })`. In real business code, initialize the executor during the Provider's startup stage, call `addJob()` from endpoints or business services, and wait for the executor's `shutdown()` during the shutdown stage.
 
-A receipt confirms acceptance, not completion. The application namespace, executor scope and stable `jobName` identify persistent work. Avoid renaming them while pending tasks still depend on them.
+A receipt means the job was accepted, not that it was processed successfully. `jobName`, the application namespace and the executor's scope together determine the identity of a persisted job; do not rename them casually while existing jobs are still pending.
 
-## Application and plugin responsibilities
+## Responsibilities of applications and plugins
 
-The application supplies jobs configuration and adapters. Plugins use a stable package scope and register their own jobs. The example combines initialization and one submission to show the flow; real integration retains the executor and submits when business events occur. A plugin closes its executors, not the shared host Jobs service.
+The application provides the jobs configuration and adapters; plugins use a stable package name as their scope and register their own jobs. To make the flow easy to follow, the example puts initialization and one submission together; in a real integration, keep the executor and submit when the business event happens. A plugin closes only its own executors, not the Jobs service shared by the host.
 
-Job submission is not automatically atomic with a business database transaction. Work that must not be lost needs a durable pending record or outbox and idempotent consumption. See [Application background tasks](../../developing-apps/background-tasks.md) and the complete [Plugin Provider example](../../extension-development/background-jobs.md).
+Submitting a job does not automatically form an atomic operation with a business database transaction. For follow-up work that must not be lost, design persisted pending records or an outbox, and keep job consumption idempotent. For integration in an application, see [Background jobs and scheduled execution](../../developing-apps/background-tasks.md); for a complete Provider example in a plugin, see [Background jobs and executors](../../extension-development/background-jobs.md) in the plugin guides.
 
 ## Storage, failure and shutdown
 
-Memory suits development; use Redis for distributed consumers. Memory cannot guarantee recovery after a process crash. Redis durability still depends on persistence and eviction settings.
+Use memory during development and Redis for consumption across processes. The memory adapter cannot recover reliably after a process crash, and Redis's reliability still depends on its persistence and eviction policies.
 
-Retries can repeat business operations, so make external calls and database writes idempotent. `reportProgress()` reports progress rather than authoritative business completion; local events are not durable task history. Observe the abort `signal` and finish cleanup before dependent resources close.
+Retries can run business operations again, so external requests and database writes need idempotent design. `reportProgress()` reports progress and cannot be the only evidence that business work is complete; local events are not persisted job history either. Check `signal` while running and cooperate with stopping, so that work does not keep using released resources when the service shuts down.
 
-See [Scheduling](scheduling.md) for recurring work and [Queues](queues.md) for channels and lower-level producer/consumer control.
+For recurring jobs, see [Periodic scheduling](scheduling.md); when you need message channels and finer control over production and consumption, see [Message queues](queues.md).
 
 ## Interfaces and implementation
 

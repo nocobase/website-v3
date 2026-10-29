@@ -1,12 +1,13 @@
 ---
 title: Periodic scheduling
+description: Trigger jobs on a Cron expression or a fixed interval with ScheduleExecutor, and learn how to declare rules, the time settings, and how rules are updated and shut down.
 ---
 
-`ScheduleExecutor` triggers work using Cron or fixed intervals. Use it for code-defined cleanup, summaries and synchronization. Use the scheduler plugin when operators need task lists, enable/disable controls and execution records.
+`ScheduleExecutor` triggers jobs on a Cron expression or a fixed interval, and suits cleanup, summary and synchronization jobs declared in application code. When operators need a manageable list of scheduled jobs, enable and disable controls and execution records, connect the scheduler plugin.
 
-## Declare a schedule
+## Declaring rules
 
-Resolve `jobExecutorServiceToken` and call this startup function from a Provider:
+Resolve the service from the host's `jobExecutorServiceToken` and call the following startup function from a Provider:
 
 ```ts
 import { jobExecutorServiceToken } from '@nocobase/app-server/jobs';
@@ -29,28 +30,28 @@ export async function startOrderSchedule(
 }
 ```
 
-`runDigest` is a business function supplied by the caller. Register rules before `setup()` so handlers exist when consumption begins. A stable name updates an existing rule; changing it does not remove the old rule.
+`runDigest` is a business function provided by the caller. Register rules before `setup()`, so that the handlers are available when consumption begins. Using the same stable name updates an existing rule; renaming does not automatically remove the rule under the old name.
 
 ## Time settings
 
 | Setting | Meaning |
 | --- | --- |
-| `cron` | Five- or six-field Cron expression |
-| `every` | Interval in milliseconds; mutually exclusive with `cron` |
-| `tz` | Cron timezone; UTC by default |
-| `startDate` / `endDate` | Scheduling boundaries |
-| `limit` | Maximum number of occurrences |
-| `immediately` | Immediate first execution for Cron, subject to start-time settings |
+| `cron` | A five- or six-field Cron expression |
+| `every` | A fixed interval in milliseconds; use either this or `cron` |
+| `tz` | The time zone used by Cron; UTC by default |
+| `startDate` / `endDate` | Time boundaries for scheduling |
+| `limit` | The maximum number of triggers |
+| `immediately` | Trigger once immediately when a Cron rule is first registered; subject to the start time settings |
 
-Declare the business timezone explicitly. Scheduling is not a real-time guarantee: load, downtime and retries affect actual execution. Prefer repeatable jobs with explicit business time windows.
+Declare the business time zone explicitly instead of relying on the time zone of the deployment machine. Periodic scheduling is not a real-time guarantee: process load, pauses and retries can all affect when jobs actually run. Summary jobs work best when they take a business time window as input and can be run repeatedly.
 
 ## Updates and shutdown
 
-`addJob()` uses a stable name to create or update a rule. An unchanged definition preserves its schedule. Changed rules can reschedule future occurrences and restart their occurrence limit, so plan rule migrations explicitly.
+`addJob()` writes or updates a rule under a stable name; an unchanged definition does not reset the schedule for no reason. Changing a rule can reschedule later runs and recalculate the trigger limit, so plan how old rules are migrated explicitly.
 
-Call `shutdown()` when the application stops; persistent rules remain. `removeJob()` deletes a rule as a business operation and should not run on every process shutdown. Configure concurrency, retries and retention through host jobs configuration.
+When the application shuts down, call `shutdown()` to release the executor; persisted rules are kept. `removeJob()` is for deleting a rule as a business operation and should not be called every time the process shuts down. Configure concurrency, retries and retention through the host's jobs configuration.
 
-Handlers should observe cancellation and remain idempotent. Local events do not provide global history. Use a plugin for history, permissions and management pages. See [Background jobs](jobs.md).
+Job handling should respond to cancellation signals and stay idempotent. Local execution events are not a global execution history; when you need history, permission control and management pages, use the plugin. See also [Background jobs and executors](jobs.md).
 
 ## Interfaces and implementation
 

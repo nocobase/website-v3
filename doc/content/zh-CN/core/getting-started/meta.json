@@ -7,17 +7,7 @@
     },
     {
       "type": "page",
-      "path": "what-is-core-2",
-      "title": "认识 NocoBase Core（重写稿）"
-    },
-    {
-      "type": "page",
       "path": "create-app"
-    },
-    {
-      "type": "page",
-      "path": "create-app-2",
-      "title": "创建应用（重写稿）"
     },
     {
       "type": "page",
@@ -26,15 +16,6 @@
     {
       "type": "page",
       "path": "../tutorials/build-your-first-app"
-    },
-    {
-      "type": "page",
-      "path": "../tutorials/build-your-first-app-agent-first"
-    },
-    {
-      "type": "page",
-      "path": "../tutorials/build-your-first-app-3",
-      "title": "搭建第一个应用（重写稿）"
     }
   ]
 }

@@ -16,9 +16,9 @@ The issue page looks the same whether you open it from a list, a board, or a lin
 **The summary**:
 
 - **Now**: Studio writes what the issue is actually waiting on, for example "Codex · GPT-6.1 Sol working · 8 min · server-01", "Waiting for a runtime", "Waiting for the PR's checks", or "Waiting for Zhou Hang to accept". Studio generates this line from the facts, not from anything a person or agent wrote.
-- **Up next**: the next step the coordinator agent has planned.
+- **Up next**: the next step the lead agent has planned.
 - **Needs you**: appears when the issue is blocked or in review and waiting for your decision. It says what you need to do, with the buttons to do it right there. See [Answer the agents’ questions](answer.md) and [Accept the result](accept.md).
-- **Delivery report**: submitted by the coordinator agent when it delivers the work for acceptance, and kept until the next delivery replaces it.
+- **Delivery report**: submitted by the lead agent when it delivers the work for acceptance, and kept until the next delivery replaces it.
 
 **Properties**: priority, owner, and executor, plus labels, project, start and due dates, notifications, and more under **More properties**.
 
@@ -36,14 +36,14 @@ The issue page looks the same whether you open it from a list, a board, or a lin
 
 Write in the box at the bottom of the issue. There are two kinds of entries:
 
-- **Comment**: visible to everyone. It wakes the agents you mention, the agent whose comment you reply to, and the issue's executor, usually the coordinator agent. If an agent is running at the time, the comment goes straight to it.
+- **Comment**: visible to everyone. It wakes the agents you mention, the agent whose comment you reply to, and the issue's executor, usually the lead agent. If an agent is running at the time, the comment goes straight to it.
 - **Note**: a record for people only. It wakes no agent.
 
 ::figure composer | Comments wake agents, notes are for people only
 
 A few common uses:
 
-- Add to or change the requirements: just write a comment, and the coordinator agent adjusts the plan.
+- Add to or change the requirements: just write a comment, and the lead agent adjusts the plan.
 - Ask a specific agent a specific question: mention it in a comment. It answers only what you asked and doesn't change the issue's status.
 - Reply to a comment: reply under that comment so the discussion stays in one thread.
 
@@ -64,7 +64,7 @@ The **Runs** tab lists every run on the issue: which agent, on which runtime, wh
 
 ## Take the issue over
 
-To do the work yourself, make yourself the executor. Queued agent work is withdrawn, and runs in progress are asked to stop. To give it back to the agent team later, click **Hand over to the coordinator agent to start**.
+To do the work yourself, make yourself the executor. Queued agent work is withdrawn, and runs in progress are asked to stop. To give it back to the agent team later, click **Hand over to the lead agent to start**.
 
 ## See the whole project
 

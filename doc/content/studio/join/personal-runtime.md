@@ -3,7 +3,7 @@ title: Connect a personal runtime
 description: Connect a machine of your own to Studio as a personal runtime. It uses the coding tools and subscriptions you've signed in to there, and runs only work done on your behalf.
 ---
 
-An admin connects shared runtimes, which run work for everyone on the team. Members connect personal runtimes themselves, and a personal runtime runs only work done on your behalf: every step the coordinator agent arranges in issues you own, and your conversations with team agents in **My sessions**.
+An admin connects shared runtimes, which run work for everyone on the team. Members connect personal runtimes themselves, and a personal runtime runs only work done on your behalf: every step the lead agent arranges in issues you own, and your conversations with team agents in **My sessions**.
 
 Common reasons to connect one:
 
@@ -39,9 +39,9 @@ If the team has already enabled agents for the models this machine reports, **Wh
 
 ## What work comes here
 
-- **Issues you own**: every step the coordinator agent arranges, whether design, development, testing, or review, is done on behalf of the issue owner, so it can run on your personal runtime.
+- **Issues you own**: every step the lead agent arranges, whether design, development, testing, or review, is done on behalf of the issue owner, so it can run on your personal runtime.
 - **Your sessions**: your conversations with team agents in **My sessions**.
-- **Agents that exist only on personal runtimes**: for example, a model that is signed in only on your machine. The coordinator agent uses it only in issues you own. When someone else's issue is waiting for such an agent, the **Now** line on the issue page says that only other people's personal runtimes are online.
+- **Agents that exist only on personal runtimes**: for example, a model that is signed in only on your machine. The lead agent uses it only in issues you own. When someone else's issue is waiting for such an agent, the **Now** line on the issue page says that only other people's personal runtimes are online.
 - **Work that needs secrets**: variables marked **Shared runtimes only** in a project are never sent to personal runtimes, so work that uses them runs only on shared runtimes. Other variables go to whichever runtime takes the work. See [Project settings](../project/settings.md#agent-run-variables).
 
 When someone else comments on an issue you own and the next piece of work needs your personal runtime, Studio asks you first. The issue page shows a request to continue on your personal runner. Click **Confirm** to let the work continue on your runtime, or **Reject** to stop it. See [Answer the agents’ questions](../use/answer.md#requests-to-use-your-personal-runtime).

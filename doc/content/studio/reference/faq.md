@@ -42,17 +42,17 @@ description: Common problems with installing, signing in, connecting Git, runtim
 
 **Work waited more than 24 hours and the run failed.** No runtime picked it up. Connect or start a runtime, then click retry on the card the issue owner received.
 
-**The coordinator agent stops to ask whether to add CI.** The project has no CI yet, so the PR has no check results. Connect CI, or reply that you'll accept without CI. You can also say so in the issue description up front. See [Connect CI](../setup/ci.md).
+**The lead agent stops to ask whether to add CI.** The project has no CI yet, so the PR has no check results. Connect CI, or reply that you'll accept without CI. You can also say so in the issue description up front. See [Connect CI](../setup/ci.md).
 
 **Agents went back and forth many times and paused.** By default, comments from agents can trigger at most 20 runs per issue in 24 hours. First check the activity and runs to see whether they keep fixing the same problem. If you're sure it should continue, click **Continue (comment-triggered runs reached their limit)** on the issue page. See [Answer the agents’ questions](../use/answer.md#comment-run-limit-reached).
 
 **The delivery report has no screenshots, or says screenshots failed.** The runtime has no browser. Install Chromium and its system dependencies as described in the preparation section of [Connect a shared runtime](../setup/shared-runtimes.md).
 
-**A coding tool ran out of quota.** The coordinator agent immediately hands the step to another suitable agent, preferably from another vendor. The tool stops taking work on that runtime. When the reset time is known, it resumes automatically then. When it isn't, the runtime's owner or an admin clears the mark under the quota in the runtime's details once the quota is back.
+**A coding tool ran out of quota.** The lead agent immediately hands the step to another suitable agent, preferably from another vendor. The tool stops taking work on that runtime. When the reset time is known, it resumes automatically then. When it isn't, the runtime's owner or an admin clears the mark under the quota in the runtime's details once the quota is back.
 
 ## Accepting and merging
 
-**The Merge button is disabled.** The PR has conflicts, is still a draft, or checks are still running. The coordinator agent arranges for conflicts to be resolved. Merge once the checks finish.
+**The Merge button is disabled.** The PR has conflicts, is still a draft, or checks are still running. The lead agent arranges for conflicts to be resolved. Merge once the checks finish.
 
 **The button says Merge anyway.** A required check failed or there are no check results. When you're sure it can be merged, give a reason and merge. The merge is recorded on the PR and in the issue's activity.
 

@@ -7,8 +7,8 @@ description: The people in Studio, requests and issues, projects and repositorie
 <div class="row"><div class="box human"><b>People</b><span>Issue owners, project leads, and admins: raise requests, answer questions, accept results, and approve releases</span></div></div>
 <div class="down">Requests become issues</div>
 <div class="row"><div class="box brand"><b>Issues</b><span>Belong to a project, with the code in the project's repository</span></div></div>
-<div class="down">The coordinator agent assigns them</div>
-<div class="row c2"><div class="box agent"><b>Agent team</b><span>The coordinator agent hands out the work, and worker agents design, build, test, and review</span></div><div class="box"><b>Runtimes</b><span>Team servers and members' machines, where the agents work</span></div></div>
+<div class="down">The lead agent assigns them</div>
+<div class="row c2"><div class="box agent"><b>Agent team</b><span>The lead agent hands out the work, and executing agents design, build, test, and review</span></div><div class="box"><b>Runtimes</b><span>Team servers and members' machines, where the agents work</span></div></div>
 <div class="down">Read before working, written back with what they learn</div>
 <div class="row"><div class="box"><b>Skills · Knowledge base · Project memory</b><span>How work gets done · Business documents · What agents have learned</span></div></div>
 <div class="down">Deployed after merging</div>
@@ -32,7 +32,7 @@ People raise requests. You can talk a request through with an agent in **My sess
 Every issue has:
 
 - **An owner**: the person responsible for the result. Agents go to the owner when a person has to decide, and hand the finished work to the owner for acceptance.
-- **An executor**: once the issue is started, the executor is the coordinator agent, which has worker agents do the work. A member can also work on an issue themselves.
+- **An executor**: once the issue is started, the executor is the lead agent, which has executing agents do the work. A member can also work on an issue themselves.
 - **A project, priority, labels, and a due date**: runtimes pick up work for urgent issues first.
 - **Sub-issues and blockers**: an issue doesn't start until its blockers are done, then carries on by itself.
 
@@ -49,7 +49,7 @@ Every issue is in one of these six statuses:
 | Done | Accepted. An issue moves to Done on its own once all its linked PRs are merged |
 | Cancelled | No longer needed |
 
-People can move an issue to any status. The coordinator agent moves issues only between In progress, Blocked, and In review, and worker agents never change the status.
+People can move an issue to any status. The lead agent moves issues only between In progress, Blocked, and In review, and executing agents never change the status.
 
 ## Projects and repositories
 
@@ -57,14 +57,14 @@ A project keeps related issues and code together. When you create a project, you
 
 - A new project's first issue is "Initialize project", and the project's other issues wait until it is done.
 - Studio reaches repositories on GitHub, GitLab, or Gitee through the Git connections an admin adds. Once members connect their own Git accounts, the PRs agents open for them and the merges they make in Studio are done under their own names.
-- Worker agents use branches named `agent/<issue key>` by default, and PRs from these branches are linked to their issues automatically.
+- Executing agents use branches named `agent/<issue key>` by default, and PRs from these branches are linked to their issues automatically.
 
 > [!NOTE] Protect branches on your code host
 > Studio doesn't protect branches for you. Turn on protection rules for the default branch on GitHub, GitLab, or Gitee.
 
 ## Agents and runtimes
 
-A runtime is a machine where agents work: a team server, a virtual machine, or a member's own machine. A runtime reports the coding tools and models that are installed and signed in there, and each coding tool and model pair is an agent, such as Claude · Opus 5.5. Once an admin writes what it is **Good at** and enables it, it joins the agent team as a worker agent. The coordinator agent is built into Studio, and an admin picks one of the enabled agents for it to run on.
+A runtime is a machine where agents work: a team server, a virtual machine, or a member's own machine. A runtime reports the coding tools and models that are installed and signed in there, and each coding tool and model pair is an agent, such as Claude · Opus 5.5. Once an admin writes what it is **Good at** and enables it, it joins the agent team as an executing agent. The lead agent is built into Studio, and an admin picks one of the enabled agents for it to run on.
 
 | | Shared runtime | Personal runtime |
 | --- | --- | --- |
@@ -113,4 +113,4 @@ See [Connect CI](../setup/ci.md) and [Deploy environments](../admin/environments
 
 ## Permissions
 
-What a member can do depends on their role. Agents work on behalf of the person who started the work and never have more permissions than that person. The coordinator agent and every step it arranges act on behalf of the issue owner. Only people can merge PRs, approve deployments to protected environments, and manage members. See [Issue statuses and permissions](../reference/statuses-and-permissions.md).
+What a member can do depends on their role. Agents work on behalf of the person who started the work and never have more permissions than that person. The lead agent and every step it arranges act on behalf of the issue owner. Only people can merge PRs, approve deployments to protected environments, and manage members. See [Issue statuses and permissions](../reference/statuses-and-permissions.md).

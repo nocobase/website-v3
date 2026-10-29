@@ -23,7 +23,7 @@ A project page has six sections at the top: **Overview**, **Issues**, **Knowledg
 | General | The project's name and description, and how agents' commits are attributed |
 | Code repositories | The repositories the project uses. The first is the primary repository, where work starts. You can add, reorder, and remove them |
 | Deployment | How the repository's CI builds previews and deploys to Studio. See [Connect CI](../setup/ci.md) |
-| Branch rules | Which branch agents work on, which PRs are linked to issues, and when check results wake the coordinator agent. See [Checks and review](checks-and-review.md) |
+| Branch rules | Which branch agents work on, which PRs are linked to issues, and when check results wake the lead agent. See [Checks and review](checks-and-review.md) |
 | Agent run variables | The variables and secrets agents get when they work in this project. See below |
 | Default skills | The skills every run brings along by default, for the project or for one repository. See [Skills](skills.md) |
 

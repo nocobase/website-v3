@@ -38,7 +38,7 @@ Do these in order:
 2. After I sign in to Studio, I'll give you the setup instructions from "Connect a local Coding Agent". Follow them to install nb-studio, sign in, and install the skills. Signing in needs my approval in the browser, so keep the sign-in command running while you wait. From then on, use nb-studio for everything in Studio.
 3. Connect the code host.
 4. Generate a registration credential for the shared runtime, then install and register the runner there, adding whatever the docs' "Prepare a machine" section lists. Confirm it is online and its coding tools show as signed in.
-5. Check the enabled agents and write what each is "Good at" based on its strengths. Pick a first choice and a fallback for the coordinator agent.
+5. Check the enabled agents and write what each is "Good at" based on its strengths. Pick a first choice and a fallback for the lead agent.
 6. Then stop and give me a summary: the Studio address, the result of each step and where to see it in the interface, and anything left for me to do. Then ask me whether to do a trial run with the simplest possible issue. If I agree, follow the prompt in the "Trial run" section of the "Let an agent set up Studio" page.
 
 Rules:
@@ -68,7 +68,7 @@ Everything below should be done in the agent's final summary, and you can check 
 | The code host is connected | **Settings › Integrations › Git** |
 | The shared runtime is online, and its coding tools show **Signed in** | **Agent management › Runtimes** |
 | At least two agents are enabled, each with a **Good at** description | **Agent management › Agents** |
-| The coordinator agent has a first choice and a fallback | The coordinator agent section at the top of **Agent management › Agents** |
+| The lead agent has a first choice and a fallback | The lead agent section at the top of **Agent management › Agents** |
 
 That's Studio set up. When the agent asks about a trial run, you can let it go ahead, or skip it and go straight to [Create a project](new-project.md) and [Invite members](invite.md).
 
@@ -81,13 +81,13 @@ In NocoBase Studio (<address>), do a trial run of the agent team's workflow with
 
 1. Create a project called "Studio trial run" with a new repository named <repository name>. Choose the empty repository option, not the NocoBase app template.
 2. Create an issue in this project and start it, with this description: "Create hello.md in the repository root with one line: This repository is for a NocoBase Studio trial run. This repository has no CI, so don't wait for check results. Once the review passes, hand it to me for acceptance."
-3. Follow the issue until it reaches In review. When the coordinator agent asks a question, pass it on to me.
+3. Follow the issue until it reaches In review. When the lead agent asks a question, pass it on to me.
 4. Tell me the addresses of the issue and the PR, and how long each step took.
 
 I'll accept and merge in Studio myself. Don't merge the PR for me.
 ```
 
-A few minutes later, the issue reaches **In review**. In those few minutes, the agent team does all of this: the coordinator agent hands the step to an agent that is good at small changes, which edits the file and opens a PR. The coordinator agent then has another model review the PR, and once the review passes, it attaches a delivery report and hands the issue to you for acceptance.
+A few minutes later, the issue reaches **In review**. In those few minutes, the agent team does all of this: the lead agent hands the step to an agent that is good at small changes, which edits the file and opens a PR. The lead agent then has another model review the PR, and once the review passes, it attaches a delivery report and hands the issue to you for acceptance.
 
 Open the issue, read the delivery report, and merge. The trial project has no check results, so the button reads **Merge anyway**. Once merged, the issue moves to **Done**, and the whole workflow has run end to end.
 
@@ -102,7 +102,7 @@ See which step it stopped at and read the matching page, or hand that page strai
 | Deployment | [Install Studio](install.md) |
 | Connecting the code host | [Connect Git](git.md) |
 | Connecting a runtime | [Connect a shared runtime](shared-runtimes.md) |
-| Agents and the coordinator agent | [Enable agents](agents.md) |
+| Agents and the lead agent | [Enable agents](agents.md) |
 | Creating and initializing a project | [Create a project](new-project.md) |
 | Previews and deployments | [Connect CI](ci.md) |
 | The first real request | [Walk through your first request](first-request.md) |

@@ -1,9 +1,9 @@
 ---
 title: 客户端多语言
-description: 组织插件的客户端语言资源、命名空间和公共组件，验证显示与语言切换。
+description: 组织插件的客户端语言资源、命名空间和公共组件，并验证文案显示与语言切换。
 ---
 
-插件管理自己的文案，App 决定界面提供哪些语言以及用户当前选择的语言。本篇维护 `client/locales/`；请求和后台消息的文案见[服务端多语言](server-localization.md)。两端分别声明资源，使用相同的插件包名作为命名空间。
+插件管理自己的文案，App 决定界面提供哪些语言，以及用户当前选择了哪种语言。本篇维护 `client/locales/`；请求和后台消息中的文案见 [服务端多语言](server-localization.md)。两端分别声明各自的资源，并使用相同的插件包名作为命名空间。
 
 ## 使用 Agent
 
@@ -21,7 +21,7 @@ description: 组织插件的客户端语言资源、命名空间和公共组件�
 pnpm create @nocobase/plugin@beta notice-i18n --with client.components --with client.locales
 ```
 
-`client.locales` 生成资源和动态加载器，并接到 `client/plugin.ts`。已有插件增加语言支持时，需要同时补齐资源文件、加载器和插件声明中的 `locales`，不能只增加 JSON 或 TypeScript 文件。
+`client.locales` 会生成语言资源和动态加载器，并把它们接到 `client/plugin.ts`。给已有的插件增加语言支持时，需要同时补齐资源文件、加载器以及插件声明中的 `locales`，只增加 JSON 或 TypeScript 文件是不够的。
 
 ## 用英文定义键结构
 
@@ -50,9 +50,9 @@ const resource: NoticeI18NResource = {
 export default resource;
 ```
 
-键名表达稳定含义，动态值通过 `{{mode}}` 等插值传入。其他语言使用同一个完整资源类型，不使用 `Partial` 掩盖遗漏。
+键名应表达稳定的含义，动态的值通过 `{{mode}}` 这样的插值传入。其他语言都使用同一个完整的资源类型，不要用 `Partial` 掩盖遗漏。
 
-脚手架还生成另外八种语言。按下面的值补齐各自文件，保留相同的 `layout`、`compact`、`comfortable` 键和类型，变量名使用对应语言标识，如 `zhTW`、`jaJP`：
+脚手架还生成了另外八种语言。按下表的值补齐各自的文件，保留相同的 `layout`、`compact`、`comfortable` 键和类型，变量名使用对应的语言标识，例如 `zhTW`、`jaJP`：
 
 | 语言 | `layout` | `compact` | `comfortable` |
 | --- | --- | --- | --- |
@@ -65,7 +65,7 @@ export default resource;
 | `vi-VN` | Bố cục: {{mode}} | Gọn | Thoải mái |
 | `id-ID` | Tata letak: {{mode}} | Ringkas | Nyaman |
 
-保留 `client/locales/index.ts` 中每种语言各自的动态导入，不要改成启动时把所有资源直接导入。新增英文键后，其他语言的空对象也会导致类型检查失败；应补译，而不是只删加载器。
+请保留 `client/locales/index.ts` 中每种语言各自的动态导入，不要改成在启动时直接导入全部资源。新增英文键之后，其他语言中的空对象也会导致类型检查失败；这时应补上翻译，而不是只删掉加载器。
 
 ## 在组件中使用
 
@@ -81,13 +81,13 @@ export function NoticeLabel(): ReactElement {
 }
 ```
 
-插件自己的页面或 React Provider 树下可以用不带参数的 `useTranslation()`，默认命名空间来自插件贡献。但这个组件可能由 App 或其他插件直接渲染，所以明确绑定包名。
+在插件自己的页面或 React Provider 树之下，可以使用不带参数的 `useTranslation()`，默认的命名空间来自插件的贡献。但这个组件可能由 App 或其他插件直接渲染，所以要明确绑定包名。
 
-绑定命名空间不等于注册资源。App 仍需在 `client/plugins.ts` 注册插件的 Client 工厂；单独导入组件不会自动执行注册。本例沿用生成的 `./client/components/plugin-component` 公开导出，App 可从该包路径导入 `NoticeLabel`。新增其他公开组件时，成对维护源码及 `publishConfig.exports`，规则见[插件结构](plugin-structure.md)。
+绑定命名空间并不等于注册了资源。App 仍需在 `client/plugins.ts` 中注册插件的 Client 工厂；单独导入组件不会自动完成注册。本例沿用生成的公开导出 `./client/components/plugin-component`，App 可以从这个包路径导入 `NoticeLabel`。新增其他公开组件时，请成对维护源码导出和 `publishConfig.exports`，规则见 [插件结构](plugin-structure.md)。
 
 <span id="服务端文案属于另一份资源"></span>
 
-服务端资源、请求翻译与后台消息已单独整理到[服务端多语言](server-localization.md)。
+服务端资源、请求翻译和后台消息，已单独整理到 [服务端多语言](server-localization.md)。
 
 ## 验证资源和实际显示
 
@@ -140,8 +140,8 @@ pnpm nocobase plugin register @nocobase/app-plugin-notice-i18n --no-install --dr
 pnpm nocobase plugin register @nocobase/app-plugin-notice-i18n --no-install
 ```
 
-测试故意不指定渲染器的默认 `namespace`，这样能发现对外组件错误依赖宿主命名空间的问题。还应在实际 App 中切换语言，验证已挂载组件、菜单、日期格式和错误提示一起变化。服务端与后台消息的验证见[服务端多语言](server-localization.md#验证接入结果)。
+测试故意不为渲染器指定默认的 `namespace`，以便发现对外组件错误地依赖了宿主命名空间的问题。还应在实际的 App 中切换语言，验证已挂载的组件、菜单、日期格式和错误提示会一起变化。服务端和后台消息的验证见 [服务端多语言](server-localization.md#验证接入结果)。
 
-NocoBase 自身插件约定提供十种语言，App 可以只显示其中一部分。插件新增一种资源不会自动增加 App 的语言选项。App 特定的产品措辞可以通过自己的 locale overrides 覆盖插件键，而通用缺失翻译应修正插件源文件。
+NocoBase 自身的插件约定提供十种语言，App 可以只显示其中的一部分。插件新增一种语言资源，并不会自动增加 App 的语言选项。App 特有的产品措辞，可以通过 App 自己的 locale overrides 覆盖插件的键；而通用的翻译缺失，应在插件的源文件中修正。
 
-独立 App 使用插件的类型检查与行为测试。`pnpm i18n:check` 是 NocoBase 源码仓库的脚本，不能假设每个 App 都有这条命令。
+在独立的 App 中，请使用插件的类型检查和行为测试。`pnpm i18n:check` 是 NocoBase 源码仓库中的脚本，不能假设每个 App 都有这条命令。

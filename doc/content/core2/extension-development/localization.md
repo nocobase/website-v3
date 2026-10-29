@@ -1,9 +1,9 @@
 ---
 title: Client localization
-description: Organize Client resources, namespaces and public components, and verify rendering and language changes.
+description: Organize a plugin's client language resources, namespace and public components, and verify text display and language switching.
 ---
 
-Plugins own their copy. The App chooses which languages it offers and which language the user selects. This article maintains `client/locales/`; see [Server localization](server-localization.md) for request and background-message copy. Client and Server declare resources separately, using the full plugin package name as their namespace.
+A plugin manages its own text, while the App decides which languages the interface offers and which one the user has chosen. This guide maintains `client/locales/`; for text in requests and background messages, see [Server localization](server-localization.md). Each side declares its own resources, and both use the same plugin package name as the namespace.
 
 ## Use an Agent
 
@@ -16,13 +16,13 @@ Keep language selection owned by the App.
 
 ## Create locale resources
 
-Run from the App root. Paths are relative to `packages/app-plugin-notice-i18n/`:
+Run in the App root; file paths are relative to `packages/app-plugin-notice-i18n/`:
 
 ```bash
 pnpm create @nocobase/plugin@beta notice-i18n --with client.components --with client.locales
 ```
 
-`client.locales` generates resources and lazy loaders and connects them to `client/plugin.ts`. When adding localization to an existing plugin, provide all three: resource files, loaders and the `locales` declaration. Files alone do not register resources.
+`client.locales` generates the language resources and dynamic loaders and connects them to `client/plugin.ts`. When adding language support to an existing plugin, add the resource files, the loaders and `locales` in the plugin declaration together; adding JSON or TypeScript files alone is not enough.
 
 ## Define keys in English
 
@@ -51,11 +51,11 @@ const resource: NoticeI18NResource = {
 export default resource;
 ```
 
-Use stable semantic keys and interpolate dynamic values such as `{{mode}}`. Type every language against the complete resource shape rather than hiding omissions with `Partial`.
+Key names should express stable meanings, and dynamic values are passed in through interpolation such as `{{mode}}`. Every other language uses the same complete resource type; do not hide omissions with `Partial`.
 
-The scaffold also generates eight other languages. Fill their files with these values, preserving the same keys and resource type. Use locale-based variable names such as `zhTW` and `jaJP`:
+The scaffold also generates eight other languages. Fill in their files with the values in the table below, keeping the same `layout`, `compact` and `comfortable` keys and type, and name variables after the language identifier, such as `zhTW` and `jaJP`:
 
-| Locale | `layout` | `compact` | `comfortable` |
+| Language | `layout` | `compact` | `comfortable` |
 | --- | --- | --- | --- |
 | `zh-TW` | 版面配置：{{mode}} | 緊湊 | 舒適 |
 | `ja-JP` | レイアウト：{{mode}} | コンパクト | ゆったり |
@@ -66,7 +66,7 @@ The scaffold also generates eight other languages. Fill their files with these v
 | `vi-VN` | Bố cục: {{mode}} | Gọn | Thoải mái |
 | `id-ID` | Tata letak: {{mode}} | Ringkas | Nyaman |
 
-Keep each language’s dynamic import in `client/locales/index.ts`; do not eagerly load every resource at startup. Adding an English key makes empty resources fail type checking. Complete the translations instead of only removing loaders.
+Keep each language's own dynamic import in `client/locales/index.ts`; do not change it to import every resource directly at startup. After adding an English key, empty objects in other languages also fail type checks; add the translations then, rather than just deleting the loaders.
 
 ## Use translations in a component
 
@@ -82,17 +82,17 @@ export function NoticeLabel(): ReactElement {
 }
 ```
 
-Pages and React Provider trees contributed by the plugin inherit its namespace, so they can call `useTranslation()` without an argument. This component may be rendered by an App or another plugin, so it explicitly binds the package namespace.
+Under the plugin's own pages or React Provider tree, `useTranslation()` without arguments works, with the default namespace coming from the plugin's contribution. But this component may be rendered directly by the App or another plugin, so it binds the package name explicitly.
 
-Binding a namespace does not register its resources. The App still registers the Client factory in `client/plugins.ts`; importing a component alone does not do so. This example retains the generated `./client/components/plugin-component` public export, from which the App can import `NoticeLabel`. For other public components, maintain paired source and `publishConfig.exports` entries as explained in [Plugin structure](plugin-structure.md).
+Binding a namespace does not register the resources. The App still registers the plugin's Client factory in `client/plugins.ts`; importing the component alone does not register anything. This example keeps the generated public export `./client/components/plugin-component`, from which the App can import `NoticeLabel`. When adding other public components, maintain the source exports and `publishConfig.exports` as a pair; the rules are in [Plugin structure](plugin-structure.md).
 
 <span id="server-copy-has-separate-resources"></span>
 
-Server resources, request translation and background messages are covered in [Server localization](server-localization.md).
+Server resources, request translation and background messages are covered separately in [Server localization](server-localization.md).
 
 ## Verify structure and rendering
 
-Replace the generated `tests/client/component.test.tsx`; do not directly call a component function that uses Hooks:
+Replace the generated `tests/client/component.test.tsx` with the following, so it no longer calls a component function that uses Hooks directly:
 
 ```tsx
 import {
@@ -141,8 +141,8 @@ pnpm nocobase plugin register @nocobase/app-plugin-notice-i18n --no-install --dr
 pnpm nocobase plugin register @nocobase/app-plugin-notice-i18n --no-install
 ```
 
-The test deliberately omits a default rendering `namespace`, exposing components that accidentally depend on their host’s namespace. Also switch language in the running App and check mounted components, menus, date formatting and errors. See [Server localization](server-localization.md#verify-integration) for request and background-message checks.
+The test deliberately gives the renderer no default `namespace`, so that exposed components that wrongly depend on the host's namespace are caught. Also switch languages in a real App and verify that mounted components, menus, date formats and error messages change together. For verifying the server and background messages, see [Server localization](server-localization.md#verify-integration).
 
-NocoBase’s own plugins provide ten languages; an App may offer a subset. Plugin resources do not automatically add languages to the App selector. An App can override product wording in its locale overrides, while missing general translations belong in plugin source.
+NocoBase's own plugins conventionally provide ten languages, and an App may show only some of them. Adding a language resource to a plugin does not add a language option to the App. App-specific product wording can override the plugin's keys through the App's own locale overrides, while missing general translations should be fixed in the plugin's source files.
 
-Use plugin type checks and behavior tests in an independent App. `pnpm i18n:check` is a NocoBase source-repository script, not a command every App provides.
+In a standalone App, use the plugin's type checks and behavior tests. `pnpm i18n:check` is a script in the NocoBase source repository; do not assume every App has this command.

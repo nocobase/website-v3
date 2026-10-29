@@ -1,15 +1,15 @@
 ---
 title: Client services
-description: Contribute a plugin Client service, share it through a Token and bridge change subscriptions into React.
+description: Provide a client service from a plugin, register a shared instance with a Token, and connect change subscriptions to React.
 ---
 
-A plugin can provide change notifications when several pages need to refresh announcement lists. The service publishes “saved” notifications; pages load data and render feedback. This example keeps a revision number in one browser App instance. It does not implement saving, request caching or cross-browser synchronization.
+When several pages need to work together to refresh the announcement list, the plugin can provide a change notification service: it publishes "saved" notifications, while pages request data and show feedback. This example only maintains a revision number within the current browser application instance; it implements no save API, request cache or cross-browser synchronization.
 
-See [Client business services](../developing-apps/client-business-services.md) for application-level organization and [The service container](../framework/services/container.md) for shared mechanisms. This article focuses on plugin registration, public contracts and React subscriptions.
+For how the application layer organizes requests and shares business operations, see [Client business services](../developing-apps/client-business-services.md); for how the service container works, see [Service containers](../framework/services/container.md). This guide focuses on registration in a plugin, the public contract and React subscriptions.
 
 ## Prerequisites and files
 
-Add a Client service to the existing `@nocobase/app-plugin-announcements`. Context and database chapters are not prerequisites. Paths are relative to the plugin root. A new plugin can select `client.service-providers`; merge the following files and declarations into an existing one. Preserve compatible peers for `@nocobase/service-provider`, React and the Client runtime.
+Add a Client service to the existing `@nocobase/app-plugin-announcements`; the Context or database guides need not be completed first. File paths are relative to the plugin root. When creating a new plugin you can choose `client.service-providers`; for an existing plugin, merge the implementation and declarations below. Keep the compatible peer dependencies on `@nocobase/service-provider`, React and the client runtime.
 
 ## Use an Agent
 
@@ -23,7 +23,7 @@ at App shutdown. Preserve Client contributions and test real registration.
 
 ## Define the service and Token
 
-Add `client/services/changes.ts`. The directory organizes implementation but does not register it. The small example keeps its contract, Token and implementation together; larger plugins may separate them.
+Add `client/services/changes.ts`. `services/` is only a directory for organizing implementations and does not register services automatically. To keep the example easy to read, the contract, Token and implementation share one file; larger plugins can split them.
 
 ```ts
 import { createServiceToken, type ServiceToken } from '@nocobase/service-provider';
@@ -55,7 +55,7 @@ export class DefaultAnnouncementChanges implements AnnouncementChanges {
 }
 ```
 
-`getSnapshot()` returns the same number until notified, allowing React to detect changes. `subscribe()` returns an unsubscribe function. Only the owning Provider calls `dispose()`; it is not part of the consumer contract.
+With no new notification, `getSnapshot()` returns the same number, which lets React tell whether anything changed. `subscribe()` returns an unsubscribe function; `dispose()` is called only by the Provider that owns the implementation and is not part of the consumer's public contract.
 
 ## Register and release through a Provider
 
@@ -85,9 +85,9 @@ export class AnnouncementChangesProvider extends ServiceProvider<ClientApplicati
 }
 ```
 
-The private reference records only an instance this Provider actually created. Shutdown never resolves an unused service merely to clean it up, nor releases the App's shared API Client or another plugin's resources.
+The Provider's private reference records only the instance it actually created. On shutdown, it does not resolve the service for the first time just to clean up, and it does not release the API Client the application shares or other plugins' resources.
 
-Add `AnnouncementChangesProvider` to the constructor array in `client/providers/index.ts` and confirm `client/plugin.ts` contributes that array as `serviceProviders`. Preserve other Providers. Do not instantiate classes in the array or register a second implementation for the same Token. Shared registration and lifecycle rules are covered in [ServiceProvider](service-provider.md).
+Add `AnnouncementChangesProvider` to the constructor array in `client/providers/index.ts`, and confirm that `client/plugin.ts` assigns this array to `serviceProviders`. Keep the other Providers, never instantiate classes in the array, and never register a second implementation for the same Token. For the shared rules of registration and lifecycle, see [ServiceProviders and service lifecycle](service-provider.md).
 
 ## Subscribe from React
 
@@ -104,13 +104,13 @@ export function useAnnouncementRevision(): number {
 }
 ```
 
-`useService()` only resolves an instance. `useSyncExternalStore()` subscribes and unsubscribes when its consumer unmounts. Pages can reload through their existing data logic when the revision changes, preserving cancellation and stale-response handling; see [Data requests and state management](../developing-apps/data-requests-and-state.md).
+`useService()` only resolves the instance; `useSyncExternalStore()` is what subscribes to changes and unsubscribes when the consumer unmounts. Once a page has the revision, its existing data-reading logic can reload when the revision changes, keeping request cancellation and stale-response handling; see [Data requests and state management](../developing-apps/data-requests-and-state.md).
 
-Resolve `announcementChangesToken` from the same container at the save entry and call `notifySaved()` after the real save succeeds. Do not notify in `finally` or treat notification as proof of persistence. This chapter provides no write endpoint; use an existing authorized business API. Updates in other browsers or processes require a separate Server notification mechanism.
+The save entry resolves `announcementChangesToken` from the same container and calls `notifySaved()` after the real save request succeeds. Do not call it in `finally`, and do not treat the notification as proof that data was saved to the database. This guide implements no write API; when integrating for real, reuse the application's business API that already checks permissions. Updates across different browsers or processes need an additional server-side notification mechanism.
 
 ## Expose the contract and integrate the App
 
-Preserve the plugin default export in `client/index.ts` and add:
+In `client/index.ts`, keep the plugin's default export and add:
 
 ```ts
 export { announcementChangesToken } from './services/changes.js';
@@ -118,11 +118,11 @@ export type { AnnouncementChanges } from './services/changes.js';
 export { useAnnouncementRevision } from './hooks/use-announcement-revision.js';
 ```
 
-Consumers import the original Token or Hook from the public entry and register the factory in the App's `client/plugins.ts`. Do not recreate a Token with the same string. Importing a Hook does not register its service. See [Public exports](plugin-declarations.md#public-exports) for package paths and compiled mappings.
+Callers import the original Token or Hook from the plugin's public entry and register the plugin factory in the App's `client/plugins.ts`. Do not recreate the Token from the same string; importing only the Hook does not register the service either. For package paths and build output mappings, see [Plugin declarations and public exports](plugin-declarations.md#public-exports).
 
 ## Verify behavior
 
-Put behavior tests in `tests/client/service-provider.test.tsx`, updating scaffold assertions while preserving other valid tests:
+Put the behavior tests in `tests/client/service-provider.test.tsx`, updating the scaffold's existing assertions and keeping other tests that are still valid:
 
 ```tsx
 import { act, screen } from '@testing-library/react';
@@ -157,7 +157,7 @@ it('shares revisions and releases listeners', async () => {
 });
 ```
 
-Also verify success, failure and cancellation at the actual save entry: only a successful write changes the revision. Two consumers receive the same notification, unmounted consumers stop updating, and shutdown releases owned listeners.
+Also verify the success, failure and cancellation paths at the real save entry: only a successful write changes the revision. Two consumers should receive the same notification, stop updating after they unmount, and all listeners the plugin owns should be released after the application shuts down.
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements check
@@ -166,4 +166,4 @@ pnpm nocobase plugin register @nocobase/app-plugin-announcements --no-install
 pnpm build
 ```
 
-Context-owned display preferences and this service state have separate owners; there is no need to copy the same revision into another Context.
+The display preference managed by Context and the service state here each have a clear owner; there is no need to copy the same revision into another Context.

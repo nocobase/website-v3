@@ -1,15 +1,15 @@
 ---
 title: React Context and Providers
-description: Define plugin display preferences, contribute a React Provider and verify shared state and mounting scope.
+description: Define a display preference context in a plugin, connect it to the application's component tree through reactProviders, and verify the shared state and mounting scope.
 ---
 
-This article gives announcement pages a compact-display preference, connecting `contexts.ts`, a Provider component and `react-providers/`. React owns the state; no database, API or ServiceProvider is needed. General Context usage belongs in [UI components and interactions](../developing-apps/pages-and-interactions.md); mounting and ordering belong in [React Provider registration](../framework/runtime/react-providers.md).
+This guide gives the announcements page a "compact display" preference, focusing on how `contexts.ts`, the Provider component and `react-providers/` connect. The state lives in the React tree and needs no database, HTTP API or ServiceProvider. For general use of React Context, see [UI components and interactions](../developing-apps/pages-and-interactions.md); for the mounting and ordering mechanism, see [React Provider registration and mounting](../framework/runtime/react-providers.md).
 
 ## Prerequisites and files
 
-Use `@nocobase/app-plugin-announcements` from [Write your first plugin](write-your-first-plugin.md); only its Client entry is required. File paths are relative to the plugin root and commands run from the App root. Merge existing files and declarations, preserving pages, locales and other contributions.
+This guide continues with `@nocobase/app-plugin-announcements` from [Write your first plugin](write-your-first-plugin.md) and needs only the Client entry. File paths below are relative to the plugin root, and commands run in the App root. If files or declarations with the same names already exist, merge the changes and keep the pages, language resources and other contributions.
 
-A new plugin can select `client.react-providers`. An existing plugin can add these files without being recreated. Keep `react` as a compatible peer and use the scaffold's jsdom test configuration.
+When creating a new plugin you can choose `client.react-providers`; for an existing plugin, add the files described below without recreating it. `react` uses the compatible peer dependency the plugin conventions specify, and tests reuse the scaffold's jsdom configuration.
 
 ## Use an Agent
 
@@ -23,7 +23,7 @@ not by directly calling a component function that uses Hooks.
 
 ## Define the context
 
-Add or merge `client/contexts.ts`. Report a missing Provider explicitly instead of hiding integration mistakes with no-op defaults:
+Add or merge `client/contexts.ts`. Throw a clear error when the Provider is missing, rather than hiding a missed connection behind a default empty function:
 
 ```ts
 import { createContext, useContext, type Context } from 'react';
@@ -44,7 +44,7 @@ export function useAnnouncementDisplay(): AnnouncementDisplay {
 
 ## Implement the Provider
 
-Maintain state in `client/components/provider.tsx`. Consumers of this Provider instance share its value. Separate Apps or additionally nested Providers own separate state.
+Keep the state in `client/components/provider.tsx`. Consumers under the same Provider instance share one value; different application instances, or an extra nested Provider, each keep their own state.
 
 ```tsx
 import { useMemo, useState, type PropsWithChildren, type ReactElement } from 'react';
@@ -64,11 +64,11 @@ export function AnnouncementDisplayProvider({ children }: PropsWithChildren): Re
 }
 ```
 
-This example owns no external resources and needs no empty Effect. If adding browser subscriptions, return cleanup from the Effect and support development mounting checks. State is not shared across browsers and resets on refresh or Provider remount.
+This example has no external resources, so no empty Effect is needed. When you need to subscribe to browser events, return a cleanup function from the Effect and make it tolerate the repeated mounting checks of the development environment. This state is not shared across browsers, and it goes back to the default after a page refresh or when the Provider remounts.
 
 ## Declare and integrate the plugin contribution
 
-Aggregate React Providers in `client/react-providers/index.ts`:
+`client/react-providers/index.ts` gathers the plugin's React Providers:
 
 ```ts
 import {
@@ -87,23 +87,23 @@ const reactProviders: readonly AppClientReactProviderDefinition[] = defineClient
 export default reactProviders;
 ```
 
-Use a stable contribution name such as `announcements-display`, not a package path containing `@` or `/`. The runtime tracks plugin ownership separately. Declare ordering only when the Provider actually depends on another context, following the framework rules.
+`name` is a stable contribution name; use a short name such as `announcements-display`, and never use a package path containing `@` or `/` as the name, since the runtime records the owning plugin separately. Declare an ordering relationship following the framework's rules only when the Provider really depends on another context.
 
-Import this aggregate in `client/plugin.ts` and add `reactProviders` to its existing `defineClientPlugin()` declaration. Preserve `packageName`, `routes`, `locales` and existing services. Keep the factory export in `client/index.ts`. Registering that factory in the App's `client/plugins.ts` mounts the Provider with the application tree.
+Import this gathering file in `client/plugin.ts` and add `reactProviders` to the existing `defineClientPlugin()` declaration, keeping `packageName`, `routes`, `locales` and any existing service registrations. `client/index.ts` keeps exporting the plugin factory; once the App registers this factory in `client/plugins.ts`, the Provider mounts with the application's component tree.
 
-Components read `compact` and `setCompact` through `useAnnouncementDisplay()`. The announcement page can pass `compact` to its list and call `setCompact()` from existing shadcn controls, using plugin translations. Do not manually wrap the page in another copy of the Provider, which creates separate state.
+Components read `compact` and `setCompact` through `useAnnouncementDisplay()`. The existing announcements page can pass `compact` to the list component and call `setCompact()` from an existing shadcn control, with text from the plugin's language resources. Do not wrap the page manually in another copy of the same Provider, or you will get a second, separate state.
 
-To expose the Hook to Apps or other plugins, add this named export to `client/index.ts` while preserving its default export:
+If applications or other plugins should use this Hook, add a named export in `client/index.ts` while keeping the default export:
 
 ```ts
 export { useAnnouncementDisplay } from './contexts.js';
 ```
 
-Importing the Hook does not mount its Provider; the consumer must register the plugin. See [Plugin declarations and public exports](plugin-declarations.md).
+Importing the Hook does not mount the Provider automatically; consumers still need to register the plugin. For the public entry conventions, see [Plugin declarations and public exports](plugin-declarations.md).
 
 ## Verify shared state and integration
 
-Replace any scaffold test that directly calls the Provider function: it now uses Hooks and must be rendered through React. Save this as `tests/client/react-provider.test.tsx`. Native buttons here are test consumers, not production UI examples:
+Replace the scaffold's test that calls the Provider function directly: the Provider now contains a Hook and must be rendered through React. Save the following as `tests/client/react-provider.test.tsx`; the native button is only a test consumer, not an example of business UI:
 
 ```tsx
 import { fireEvent, screen } from '@testing-library/react';
@@ -129,7 +129,7 @@ it('shares display state through the registered plugin Provider', async () => {
 });
 ```
 
-Also verify missing-registration failures, defaults after remount and cleanup for any added subscriptions. `renderWithApp()` already provides application and router contexts; do not add another Router.
+Also check failure when registration is missing, the default value after remounting, and subscription cleanup for any Effect you add. `renderWithApp()` already provides the application and routing environment, so do not wrap another Router around it.
 
 ```bash
 pnpm --filter @nocobase/app-plugin-announcements check
@@ -138,4 +138,4 @@ pnpm nocobase plugin register @nocobase/app-plugin-announcements --no-install
 pnpm build
 ```
 
-Run registration commands when adding or checking integration; preserve existing entries. Tests establish context integration and state updates. Verify density, navigation and theme behavior in the actual page as well.
+Run the registration command only when you need to add or check the connection, and keep existing registration entries. The tests prove that the context is connected and the state changes; display density, navigation and theme effects on the real page still need to be checked separately.

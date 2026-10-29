@@ -12,7 +12,7 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | 插件包 | 用途 | 内置插件 |
 | --- | --- | --- |
 | [`@nocobase/app-plugin-agent-sessions`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-agent-sessions) | Agent 会话：连接本地编码 Agent，在浏览器中管理会话、记录和工作产物。 | 否 |
-| [`@nocobase/app-plugin-agents`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-agents) | Agents：管理 Agent、模型服务、运行记录、对话和执行节点。 | 是 |
+| [`@nocobase/app-plugin-agents`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-agents) | Agents：配置模型 API，或接入机器上的 Agent，提供对话、工具调用和任务执行能力。 | 是 |
 | [`@nocobase/app-plugin-api-keys`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-api-keys) | API keys：通过 API key 认证接口请求。 | 是 |
 | [`@nocobase/app-plugin-authentication`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authentication) | 认证：提供登录、会话及身份认证集成。 | 是 |
 | [`@nocobase/app-plugin-authorization`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authorization) | 权限：声明业务权限、检查访问权限并提供权限管理界面。 | 是 |

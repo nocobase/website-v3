@@ -38,6 +38,22 @@ Paths below are relative to `packages/plugins/app-plugin-<name>/` unless stated 
 | Localization / `i18n` | `README.md`, public indexes and declarations | App loaders determine languages; picker is App-owned; browser/server fallback semantics |
 | Foundation / `foundation` | `README.md`, `client/plugin.ts`, `client/routes.ts`, `server/plugin.ts` | Registered page with unrestricted-only access; evidence differs from installation; optional CLI build artifact |
 
+## Four-chapter organization (2026-10-29)
+
+All 21 plugin guides in both languages now use Capabilities, Scenarios and examples,
+Key principles and implementation, and AI development constraints and verification.
+Each guide retains its existing technical examples and adds plugin-specific task
+prompts, completion criteria, an integration/change map, and safeguards tied to its
+contracts. Template printing retains its existing prompt and guidance-only boundary.
+These maps describe proposed integration work, not newly executed applications.
+Agents retains its separately verified source download and six screenshots; see
+[Agents live verification](agents-plugin-verification.md) for that baseline.
+
+Shared installation and Agent-development workflows are linked, not reproduced.
+The overview and README document the outline. Page paths and menus remain unchanged;
+old section headings are retained as subsections where applicable. Documentation
+checks validate structure and links, not the runtime behavior of these integrations.
+
 ## Documentation boundaries
 
 The guides explain how to consume each plugin. They do not duplicate the full API reference or plugin-development chapters. Installation, registration, upgrades and removal link to Manage plugins. API details defer to the running application's OpenAPI document, with the application mount prefix made explicit in the overview.
@@ -50,4 +66,4 @@ Examples use illustrative business IDs and configuration names. Snippets labelle
 
 Required repository checks are `pnpm doc:test` and `pnpm doc:build`, including bilingual structure, links and anchors. Inspect built/served pages for complete bodies and removal of placeholder/noindex behavior, and confirm all 21 overview destinations in both languages resolve.
 
-This change runs documentation checks only. It does not run plugin test suites, start business applications, connect SMTP/IMAP/OAuth/model services, send notifications, subscribe a physical device, execute commercial approval flows or validate renderer binaries. No source plugin or application is changed.
+The four-chapter reorganization runs documentation checks only; Agents live work is recorded separately. It does not run plugin test suites, start business applications, connect SMTP/IMAP/OAuth/model services, send notifications, subscribe a physical device, execute commercial approval flows or validate renderer binaries. No source plugin or application is changed.

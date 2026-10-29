@@ -9,7 +9,7 @@ Use the topics below to find the plugins you need. For shared installation, regi
 
 ## Find plugins by function
 
-This section covers 21 plugins. Related features are grouped by topic, while other plugins have individual entries. Each guide covers purpose, configuration, integration, a business example and capability boundaries.
+This section covers 21 plugins. Related features are grouped by topic, while other plugins have individual entries. Each guide covers capabilities, scenarios, implementation, and AI development constraints in four chapters.
 
 | Feature | Usage guides | Main uses |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ This section covers 21 plugins. Related features are grouped by topic, while oth
 | Files | [Files](data-and-files/file-management.md) | Upload, store and access files |
 | Notifications | [Notifications](notifications/notification.md), [Notification providers](notifications/providers.md), [In-app notifications](notifications/in-app.md), [Web push](notifications/web-push.md) | Configure notification channels, deliver notifications and integrate inboxes and browser push |
 | Email | [Email](notifications/mail.md) | Send email, synchronize mailboxes and extend mail services |
-| Agents | [Agents](agents-and-knowledge/agents.md) | Manage Agents, model services, conversations and execution records |
+| Agents | [Agents](agents-and-knowledge/agents.md) | Configure a model API or connect an Agent on a machine for conversations and task execution |
 | Knowledge base | [Knowledge base](agents-and-knowledge/knowledge.md) | Manage document spaces, versions, search and change reviews |
 | Approvals (commercial) | [Approvals (commercial)](collaboration/approval.md) | Configure approval policies and handle outcomes |
 | Scheduled tasks | [Scheduled tasks](automation/scheduler.md) | Declare schedules, inspect execution records and enable or disable tasks |
@@ -35,17 +35,18 @@ Paths such as `/client` and `/server` in each guide refer to that package's publ
 
 ## Read a plugin's usage guide
 
-When using a plugin, focus on these topics:
+Each plugin guide follows four chapters:
 
-- **Features and use cases**: the problems the plugin solves and the capabilities it provides.
-- **Integration and configuration**: required dependencies, runtime registration and settings.
-- **Usage**: how to use its interfaces, components, APIs, services or Skills.
-- **Examples**: how to apply the plugin to a specific business need.
-- **Extensions and common questions**: supported customization and solutions to common issues.
+1. **Capabilities**: the problem, supplied pages, components, APIs, services or Skills, and application responsibilities.
+2. **Scenarios and examples**: a business need, development prompts for a Coding Agent, usage steps and completion criteria.
+3. **Key principles and implementation**: integration areas, code and configuration changes, interface changes and important mechanisms.
+4. **AI development constraints and verification**: plugin-specific boundaries, common mistakes and acceptance requirements.
+
+Development prompts target a Coding Agent working in the current application directory. Have it read `AGENTS.md`, application rules and relevant Skills shipped with installed versions first. Where no development Skill exists, use public interfaces, types and documentation. Chapter four addresses reliable AI-assisted integration; it does not require the plugin itself to have AI features. See [Develop with an Agent](../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../developing-apps/testing-and-acceptance.md) for shared workflows.
 
 Plugins provide different kinds of capabilities. Template printing supplies implementation guidance. User management supplies administration APIs and an invitation page, while the application owns its administration UI. Knowledge base and Application foundation provide registrable pages. Each guide explains ownership of pages, data and business logic.
 
-These guides were checked against source on 2026-10-28, using main-repository revision [`015404ecd`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins) and the commercial approval plugin's public contracts. Installed versions may differ. Verification steps describe checks for the consuming application; they do not claim that every plugin integration was executed while writing these guides.
+These guides were checked against source on 2026-10-28, using main-repository revision [`015404ecd`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins) and the commercial approval plugin's public contracts. [Agents](agents-and-knowledge/agents.md) has a separately verified application baseline, screenshots and source download. Installed versions may differ. Verification steps describe checks for the consuming application; they do not claim that every plugin integration was executed while writing these guides.
 
 ## Related documentation
 

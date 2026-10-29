@@ -9,14 +9,11 @@ This guide follows default template `1.0.0-beta.84`. Layouts and components are 
 
 ## With an agent
 
-```text
-Adjust the task page layout: filters on the left and the list on the right on wide screens, stacked on narrow screens.
-
-Inspect client/layouts/, PageContainer and PageHeader first. Reuse components and theme tokens.
-Keep one page container and main heading, retaining the existing filter and list state.
-Preserve navigation, breadcrumbs, page access, sidebar collapse and personal settings.
-Closing an editor child page or dialog must return to the list context without duplicate scrolling or navigation.
-Check long titles, wide tables, narrow screens, keyboard operation, both languages and both color modes.
+```prompt
+Adjust the task page so filters sit beside the list on wide screens and above it on narrow screens, using the existing layout components and theme.
+Keep one main heading and preserve filtering, list state, navigation, breadcrumbs, permissions and personal settings.
+Closing an editor or dialog should return to the same list position without duplicate navigation or nested scrolling.
+Check long headings, wide tables, narrow screens, keyboard use, both languages and light and dark modes.
 ```
 
 ## Choose the layer to change

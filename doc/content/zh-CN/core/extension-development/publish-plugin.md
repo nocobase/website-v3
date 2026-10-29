@@ -28,7 +28,7 @@ pnpm build
 
 已有私有源时，可以这样描述需求，将地址换成团队的实际地址：
 
-```text
+```prompt
 请把当前 App 的公告栏插件准备为 @my-company/app-plugin-announcements，
 检查并构建后发布 0.1.0 到 https://npm.example.com/。
 再在另一个 App 中安装、注册并验证这个版本。

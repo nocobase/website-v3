@@ -35,12 +35,12 @@ npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 
 **3. Describe what you want:**
 
-```text
+```prompt
 Create a NocoBase 3 application in the current directory for local development, using SQLite.
 Start it when ready and tell me the URL and the initial sign-in account.
 ```
 
-The agent checks Node.js and pnpm versions, creates the project, generates and checks configuration, starts the application and confirms the URL opens. It should then tell you:
+Ask the agent to follow the creation skill to check the environment, create the project, generate and check configuration, and start the application. Review the results it reports:
 
 - The application URL and initial sign-in account.
 - How to start the application again later.
@@ -48,7 +48,7 @@ The agent checks Node.js and pnpm versions, creates the project, generates and c
 
 If Node.js or pnpm is missing, the agent explains what is missing and how to install it; it does not install them itself. Name another database, such as PostgreSQL, in your request if needed. Do not send database passwords in the conversation: put them in environment variables and tell the agent the variable names.
 
-An application started by an agent session stops when that session ends. Run `pnpm dev` in the application directory to start it again.
+Whether an agent-started process survives the session depends on the coding tool's process management. For ongoing development, you can run `pnpm dev` in your own terminal from the application directory.
 
 For further development, start an agent session in the application directory. Its `AGENTS.md` and `.agents/skills/` match the installed version and take over from the app creation skill.
 

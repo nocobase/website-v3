@@ -18,22 +18,20 @@ Authentication supplies identity and sessions. The application owns sign-in UI; 
 3. Invite members through [User management](users.md).
 4. Verify pages and APIs as a guest, a member and a disabled user.
 
-For built-in recovery email, enable `auth.passwordReset.enabled`, configure the public application address and an available system email channel, and use `usePasswordResetCapability()` for its entry point. Email/password sign-in alone does not enable recovery. Applications can instead supply `sendResetPassword`. Configure trusted origins for cross-origin deployments rather than bypassing origin checks.
+For built-in recovery email on this guide's pinned source baseline, enable `auth.passwordReset.enabled`, configure the public application address and an available system email channel, and use `usePasswordResetCapability()` for its entry point. Email/password sign-in alone does not enable recovery. Applications can instead supply `sendResetPassword`. Configure trusted origins for cross-origin deployments rather than bypassing origin checks.
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Authentication to make this application invitation-only. Preserve existing
-sign-in, session and extension configuration. Disable self-registration on the
-server and align the UI. If recovery is enabled, check the public URL and email
-channel before exposing it. Verify guest, invited, disabled and signed-out access.
+```prompt
+Make joining the application invitation-only.
+Keep existing members' sign-in methods and permissions. Remove self-registration and reject direct sign-up requests too.
+If password recovery remains available, confirm that its email is delivered and the link works before showing the entry point.
+Check access for visitors, invited members, disabled accounts and signed-out users, and report the results.
 ```
 
 **Done when**: Direct self-registration is denied; invited users can still sign in with their intended access.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -42,6 +40,9 @@ These are the integration areas and expected interface changes for this example.
 | Protected routes and APIs | Authenticate, then authorize business operations | Guests are handled correctly, including direct API calls |
 
 ### Integration and configuration
+
+> [!NOTE]
+> [Newer development source](https://github.com/nocobase/nocobase/blob/a0b45681ee0a6940068abdff4c61b57ae888dd6d/packages/plugins/app-plugin-authentication/server/config.ts) adds independent `auth.email` and `AUTH_EMAIL_*` settings while retaining the legacy `auth.passwordReset.emailChannel`. Check the installed package's declarations and bundled guidance before configuring recovery; development-branch fields may not exist in an earlier published version.
 
 The default template registers both runtimes and composes authentication in `client/config/auth.ts` and `server/config/auth.ts`. Preserve existing extensions when editing configuration instead of replacing the whole `plugins` array with an example.
 
@@ -79,6 +80,6 @@ On the server, resolve `authenticationToken` from `/server` and protect APIs wit
 
 For installation and migrations, see [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authentication).

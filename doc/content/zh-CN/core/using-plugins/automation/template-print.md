@@ -25,7 +25,7 @@ pnpm nocobase skills sync
 
 可以将下面的需求交给应用 Agent：
 
-```text
+```prompt
 请使用模板打印 Skill，为当前应用的订单详情增加“下载订单”功能。
 
 使用我提供的 DOCX 模板，填充订单信息、明细与合计。
@@ -36,11 +36,9 @@ pnpm nocobase skills sync
 
 实现应由应用或业务插件持有：模板资产、数据查询、渲染依赖、下载接口和按钮。可以先使用固定模板完成一条业务流程，再决定是否需要模板上传、版本管理和预览。
 
-**完成标志**：授权用户能下载字段与排版正确的 DOCX；需要 PDF 时，在目标环境也能生成可打开的文件。
+**完成的标志**：授权用户能下载字段与排版正确的 DOCX；需要 PDF 时，在目标环境也能生成可打开的文件。
 
 ## 重要原理与实现
-
-以下是实现本例时的接入位置与预期界面变化；它们是开发说明，具体文件名沿用当前应用结构。
 
 | 接入位置 | 代码或配置变化 | 界面与行为变化 |
 | --- | --- | --- |
@@ -68,6 +66,6 @@ pnpm nocobase skills sync
 
 相关文档：[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)、[文件](../data-and-files/file-management.md)、[权限管理](../authorization/permissions.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+以上是接入后的验收步骤；示例基线和实测范围见[版本与验证说明](../overview.md#示例版本与验证范围)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-template-print)。

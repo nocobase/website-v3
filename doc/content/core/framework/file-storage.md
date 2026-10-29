@@ -2,7 +2,7 @@
 title: File storage and drivers
 ---
 
-`@nocobase/drive` provides storage drivers. The host exposes a manager through `driveManagerToken` from `@nocobase/app-server/drive`. The file plugin adds records, uploads, downloads and access control.
+`@nocobase/drive` provides storage drivers. The host exposes a manager through `driveManagerToken` from `@nocobase/app-server/drive`. The file plugin adds records, uploads and content access helpers. The application must apply business permissions to both metadata and content endpoints.
 
 ## Configure disks
 
@@ -60,7 +60,7 @@ This helper only writes a storage object. It creates neither a file-plugin recor
 
 `visibility: 'private'` does not configure OS permissions or protect a publicly exposed HTTP directory. `url` builds URLs without mounting a download endpoint. The default filesystem driver has no built-in signed download or upload URLs.
 
-For private files, use the file plugin's authorized download API or enforce identity and resource checks in your own route. Object-store signing depends on the driver; disks do not all have identical capabilities.
+For private files, provide a protected content endpoint that checks identity and resource permissions before reading the file. The file helper's default content path is outside Repository policy; see [Content and deletion boundaries](../using-plugins/data-and-files/file-management.md#content-and-deletion-boundaries). Object-store signing depends on the driver; disks do not all have identical capabilities.
 
 ## Deployment and testing
 

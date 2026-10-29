@@ -51,6 +51,9 @@ Memory suits local development. Saving state during clean shutdown does not guar
 
 Observe cancellation signals. Do not await self-unregistration from a handler, which can wait on its own completion. Persist authoritative business outcomes so repeated delivery and recovery are safe.
 
+> [!NOTE]
+> The examples retain the pinned source baseline listed below. [Newer development source](https://github.com/nocobase/nocobase/blob/a0b45681ee0a6940068abdff4c61b57ae888dd6d/packages/libs/queue/README.md) moves Redis support into the commercial `@nocobase/app-plugin-queue-redis` plugin. That implementation requires a compatible package and Server registration before selecting `redis`. Older npm installations may use the earlier integration; check the [installed version](../../reference/compatibility.md#documentation-baselines-and-installed-versions) and its bundled guidance first.
+
 ## Interfaces and implementation
 
 - [Queue API and guarantees](https://github.com/nocobase/nocobase/blob/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/queue/README.md)

@@ -11,11 +11,24 @@ The source can remain in the original App's workspace after publication. That Ap
 
 This article covers package publication. To also publish frontend components or blocks as source assets for Agents to obtain, modify and compose, distribute them through shadcn UI Registry; see [Publish UI source assets](frontend-components.md#optionally-distribute-ui-source-assets). Packages and source assets can be released independently. Component reuse alone does not require a Registry.
 
+## Build locally and deliver with the application
+
+From the application root, check and build the plugin, then build the whole application:
+
+```bash
+pnpm --filter @nocobase/app-plugin-announcements check
+pnpm build
+```
+
+Check the public entries, type declarations and resources in the plugin's `dist/`, then inspect local dependencies in the application output. Verify the pages, APIs or commands the plugin provides. For migrations and seeds, check the compiled resources and checksum manifests. The host builds component styles; see [Styles and themes](frontend-components.md#styles-and-theme-integration).
+
+If the plugin is only used by this application, complete application verification and follow [Choose a deployment method](../deployment/choose-a-deployment-method.md). The private registry workflow below is for distributing the package independently.
+
 ## Use an agent
 
 If your team already has a registry, replace the address below with its actual URL:
 
-```text
+```prompt
 Prepare this App's announcements plugin as @my-company/app-plugin-announcements.
 Check and build it, then publish version 0.1.0 to https://npm.example.com/.
 Install, register and verify that version in another App.

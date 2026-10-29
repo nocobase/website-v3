@@ -5,11 +5,11 @@ description: Organize application translations, format localized data, add langu
 
 Use `client/locales/` to organize application copy and reuse the existing translation and language-switching mechanisms. Menus, forms, empty states and errors should follow the same locale. For appearance, see [Themes and styles](themes-and-styles.md).
 
-This guide follows default template `1.0.0-beta.81`, used by the getting-started example. `projects` illustrates new business copy. Distinguish the default language from preferences users have already saved.
+The configuration examples follow default template `1.0.0-beta.81`; for a new project, check the corresponding configuration in its installed template. `projects` illustrates new business copy. Distinguish the default language from preferences users have already saved.
 
 ## With an agent
 
-```text
+```prompt
 Please complete English and Chinese copy for the project feature.
 
 Cover menus, buttons, field hints, empty states and success and error feedback without visible translation keys.

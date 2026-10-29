@@ -80,7 +80,7 @@ packages/
 | `agents`                  | Agent、模型服务、会话和运行管理    |
 | `api-keys`                | API Key 认证                       |
 | `authentication`          | 登录与身份认证                     |
-| `authorization`           | 权限控制与权限管理界面             |
+| `authorization`           | 权限决策与管理接口；页面由应用接入             |
 | `authz-default-access`    | 默认数据访问范围                   |
 | `authz-restriction-rules` | 数据访问限制规则                   |
 | `authz-sharing-rules`     | 数据共享规则                       |
@@ -95,7 +95,7 @@ packages/
 | `notification-providers`  | 内置通知渠道与发送服务             |
 | `scheduler`               | 定时任务调度                       |
 | `template-print`          | 模板打印的开发 Skill               |
-| `users`                   | 用户管理接口和页面                 |
+| `users`                   | 用户管理接口与邀请接受页                 |
 
 **已安装不等于已启用。** `package.json` 声明依赖，`client/plugins.ts`、`server/plugins.ts`、`cli/plugins.ts` 分别注册客户端、服务端和命令行插件；一个插件不一定同时提供这三个入口。
 
@@ -103,7 +103,7 @@ packages/
 
 ## tests：测试放在哪里
 
-当前入门示例基于默认模板 `1.0.0-beta.81`，测试按被测代码组织，与业务目录对应：
+当前入门示例基于默认模板 `1.0.0-beta.84`，测试按被测代码组织，与业务目录对应：
 
 ```text
 tests/

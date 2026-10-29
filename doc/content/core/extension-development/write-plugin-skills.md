@@ -11,7 +11,7 @@ For `AGENTS.md` instructions used when modifying and maintaining plugin source, 
 
 ## Use an Agent
 
-```text
+```prompt
 Write a Skill for notice-cli so an App Agent can preview notice text.
 Describe only the implemented preview command, including input, output, errors and registration prerequisites.
 Maintain it in plugin source and verify synchronization and invocation, without editing generated App copies.

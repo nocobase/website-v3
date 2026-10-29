@@ -2,7 +2,7 @@
 title: 文件存储与驱动
 ---
 
-`@nocobase/drive` 统一文件存储驱动，宿主通过 `@nocobase/app-server/drive` 的 `driveManagerToken` 提供管理器。文件插件在它上面提供文件记录、上传、下载和访问控制。
+`@nocobase/drive` 统一文件存储驱动，宿主通过 `@nocobase/app-server/drive` 的 `driveManagerToken` 提供管理器。文件插件在它上面提供文件记录、上传和内容访问工具，应用负责将业务权限接入元数据与内容接口。
 
 ## 配置磁盘
 
@@ -60,7 +60,7 @@ export async function writeOrderExport(
 
 `visibility: 'private'` 不会替文件系统自动配置操作系统权限，也不会自动保护一个公开的 HTTP 目录。`url` 只参与 URL 生成，不会创建下载路由。默认文件系统驱动没有内置签名下载或签名上传能力。
 
-需要私有文件访问时，使用文件插件的授权下载接口，或在自定义接口中完成身份和资源检查。对象存储的签名能力也取决于具体驱动，不应假定所有磁盘行为一致。
+需要私有文件访问时，由应用提供受保护的内容接口，检查身份和资源权限后再读取文件。文件插件默认生成的内容路径不受 Repository policy 保护，详见[文件访问边界](../using-plugins/data-and-files/file-management.md#内容访问与删除边界)。对象存储的签名能力也取决于具体驱动，不应假定所有磁盘行为一致。
 
 ## 部署和测试
 

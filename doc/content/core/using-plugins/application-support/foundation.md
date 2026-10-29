@@ -27,20 +27,16 @@ Foundation does not replace actual delivery, model calls or acceptance tests. Re
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Foundation to expose Core capability evidence to administrators. Reuse an
-existing page where present, retain unrestricted-only access, and place it in
-settings. Add the CLI contribution if deployment needs module associations.
-Distinguish installed, registered, configured and observed use. Do not render
-collection failure as zero or unused. Verify denial for ordinary-user API calls
-and run separate controlled acceptance for capabilities such as email.
+```prompt
+Add the Core capability overview to system settings for administrators, reusing an existing entry if available.
+I want to see which capabilities are installed, which are connected to business features and what evidence supports each result.
+Show collection failures and unknown results clearly instead of reporting zero or “unused.” Ordinary members must not access the page or its data.
+Check that the deployed page can read the generated module associations, and explain which business features still need separate verification.
 ```
 
 **Done when**: Administrators see evidence, ordinary users are denied, and unidentified or failed observations are not presented as business conclusions.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -81,6 +77,6 @@ Verify administrator access, ordinary-user denial, refresh and collection-failur
 
 Foundation does not install, enable or upgrade plugins and does not prove that migrations or business tests passed. Related: [Manage plugins](../../developing-apps/manage-plugins.md), [Database explorer](../data-and-files/database-explorer.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-foundation).

@@ -21,7 +21,7 @@ Commands use Bash. The server needs a Compose plugin supporting `--wait`. Bind-m
 
 From the application source directory, replace the server, directory and URL below with your actual target:
 
-```text
+```prompt
 Please deploy the current task app with Docker for the first time.
 
 Server: <my Docker server>
@@ -206,4 +206,4 @@ Recreate containers after configuration changes as well. A tool may replace the 
 
 The original `.77` rehearsal covered a prebuilt image, same-host save/load, custom password, Compose health waiting, task permissions, missing-mount rejection and recreation preserving data/configuration. Cross-server transfer, public HTTPS/proxy setup, cross-version deployment and rollback were not exercised. Build verification does not replace those environment-specific checks.
 
-The deployment evidence and screenshots above come from the earlier rehearsal; this documentation review did not redeploy the current `1.0.0-beta.81` npm example.
+The deployment evidence and screenshots above come from the earlier rehearsal; this documentation review did not redeploy the current getting-started example based on `1.0.0-beta.84`.

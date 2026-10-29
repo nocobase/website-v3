@@ -26,7 +26,7 @@ The app listens on `127.0.0.1:13000`. A separately configured reverse proxy prov
 
 ## With an agent
 
-```text
+```prompt
 Please use app-installer to deploy the current task app to this server for the first time.
 
 Server: <my SSH server alias>
@@ -136,7 +136,7 @@ See [Publish an application release](../deployment/publish-app-release.md) for a
 
 ### With an agent
 
-```text
+```prompt
 Please publish the verified new task application to the existing tutorial environment.
 
 Server: <my SSH server alias>
@@ -154,14 +154,45 @@ Restart and check again. Operate only on this tutorial application and report th
 
 ### Without an agent
 
-Build and copy the new archive as above. On the server, inspect the plan without the installer's confirmation flag:
+Keep a copy of the previous archive: rebuilding overwrites `storage/exports/dist.tar.gz`. In the source project, build the new archive and record its digest:
+
+```bash
+pnpm build --target linux-x64 --node-version 24 --tar
+sha256sum storage/exports/dist.tar.gz
+```
+
+For an update run on the server, copy the archive from the development machine to the exact path used below:
+
+```bash
+scp storage/exports/dist.tar.gz deploy@server:/tmp/tasks-new.tar.gz
+```
+
+On the server, use the original deployment account to check status and inspect the plan without the installer's confirmation flag:
+
+```bash
+npx --yes @nocobase/app-installer@beta status \
+  --dir /srv/nocobase/tasks --json
+```
 
 ```bash
 npx --yes @nocobase/app-installer@beta upgrade \
   --dir /srv/nocobase/tasks --archive /tmp/tasks-new.tar.gz --json
 ```
 
-From the development machine, use `deploy --ssh` with the existing directory and new local archive. Do not repeat first-install options such as origin, port or `--set`. The installer recognizes an existing `installer.json`; an identical artifact returns `success-noop`.
+Alternatively, update over SSH from the development machine using the existing installation directory and the new local archive:
+
+```bash
+npx --yes @nocobase/app-installer@beta status \
+  --ssh deploy@server --dir /srv/nocobase/tasks --json
+
+npx --yes @nocobase/app-installer@beta deploy \
+  --ssh deploy@server \
+  --dir /srv/nocobase/tasks \
+  --archive storage/exports/dist.tar.gz \
+  --json
+```
+
+Do not repeat first-install options such as origin, port or `--set`. The installer recognizes an existing `installer.json`; an identical artifact returns `success-noop`. The initial `npx --yes` permits fetching the installer; it does not confirm the update.
 
 A pending update returns `CONFIRMATION_REQUIRED` with downtime, backup and migration details while the old app remains running. Review these before adding the installer's own `--yes`:
 
@@ -170,9 +201,9 @@ npx --yes @nocobase/app-installer@beta upgrade \
   --dir /srv/nocobase/tasks --archive /tmp/tasks-new.tar.gz --yes --json
 ```
 
-The rehearsed installer, `0.1.0-beta.9`, reported one new due-date migration and zero checksum repairs. Unexpected migration/checksum changes require investigation, not a database reset. The installer stops the app, backs up SQLite and configuration, migrates, switches the release and verifies health. Uploads and external databases require separate backups; `--backup-done` acknowledges a backup rather than creating one.
+Match configuration, pending migrations and historical checksums to the actual release changes. The current getting-started app already includes due dates; do not add that field again to reproduce an earlier rehearsal or expect a fixed migration count. Unexpected migration/checksum changes require investigation, not a database reset. The installer stops the app, backs up SQLite and configuration, migrates, switches the release and verifies health. Uploads and external databases require separate backups; `--backup-done` acknowledges a backup rather than creating one.
 
-Check status and both old and new data afterward. Old dates remain unset; new dates persist through refresh and completion changes. Reader permissions and restart persistence must survive. Record the source commit and artifact digest; an application version alone does not identify a rebuild.
+Check status and both old and new data afterward. Existing IDs, titles, assignees, due dates and progress must remain intact. Verify the new feature against its requirements, then check unaffected task operations, member and reader permissions, and persistence after restarting. Record the source commit and artifact digest; an application version alone does not identify a rebuild.
 
 ### Failure and rollback
 
@@ -186,4 +217,4 @@ Only confirm after reviewing data loss and recovery. In the rehearsed SQLite mig
 
 ## Verification scope
 
-The original template `.77` rehearsal used installer `0.1.0-beta.9`: local installation, real transfer through an isolated local SSH endpoint, custom-password login, default-password rejection, task permissions, restart persistence, port conflicts, repeat deployment and a due-date update preserving existing data/configuration. Cross-host networking, public TLS/proxy setup, machine boot recovery and rollback were not exercised. The current `.81` npm example has not been redeployed through these routes in this documentation review.
+The original template `.77` rehearsal used installer `0.1.0-beta.9`: local installation, real transfer through an isolated local SSH endpoint, custom-password login, default-password rejection, task permissions, restart persistence, port conflicts, repeat deployment and a due-date update preserving existing data/configuration. Cross-host networking, public TLS/proxy setup, machine boot recovery and rollback were not exercised. The current getting-started example based on `1.0.0-beta.84` has not been redeployed through these routes in this documentation review.

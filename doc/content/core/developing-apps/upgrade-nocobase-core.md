@@ -48,7 +48,7 @@ pnpm nocobase skills sync
 
 Use this prompt, replacing the target with an explicit version if needed:
 
-```text
+```prompt
 Please upgrade the NocoBase Core used by this application to the newer release on its current release channel.
 
 First inspect the project and give me a concrete plan without editing it:
@@ -221,4 +221,4 @@ If release notes require historical checksum corrections, coordinate backups, re
 
 ## Verification scope
 
-This guide explains template merging and upgrade checks. The current getting-started example was reconciled with the npmjs.org-published `1.0.0-beta.81` template dependencies and passed tests and a build. This does not establish an upgrade path from every older version. Verify release-specific changes, existing data, permissions, and recovery in an isolated environment for each actual upgrade.
+This guide explains template merging and upgrade checks. The [current getting-started example](../tutorials/build-your-first-app.md) uses default template `1.0.0-beta.84`; its verification record covers a newly created application. The `.81` version record above only illustrates identifying an upgrade starting point. It does not establish a tested upgrade from `.81` or any other older version to `.84`. Verify release-specific changes, existing data, permissions, and recovery in an isolated environment for each actual upgrade.

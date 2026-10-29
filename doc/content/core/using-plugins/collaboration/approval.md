@@ -21,20 +21,17 @@ The API rechecks identity, business access, task eligibility and content version
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use the licensed Approval plugin for manager review of purchase requests. Keep
-the business record lifecycle and define draft, review, return and final states
-with eligible reviewers. Use public read models and approval UI for progress and
-actions; recheck eligibility and content versions in APIs. Commit final decisions
-and business state together, and integrate host Jobs sweeps. Test empty assignments,
-duplicates, returns, conflicts and transaction failure.
+```prompt
+Use the licensed approval plugin to add supervisor approval for purchase requests.
+Applicants can save a draft and submit it. Supervisors can approve, reject or return it for changes. Show progress, history and actions available to the current user.
+Only eligible people may act on the current version. Repeated clicks or concurrent actions must not produce conflicting results.
+Save the approval outcome and purchase status together; a failure must not update only one of them.
+Check missing approvers, resubmission after return, repeated actions, concurrent changes and failed saves.
 ```
 
 **Done when**: Purchases can be submitted, approved or returned; ineligible actions are denied and transaction failures leave no inconsistent final state.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -85,4 +82,4 @@ Related: [Permission management](../authorization/permissions.md), [Background j
 
 This guide follows the commercial plugin’s public exports and example. Package access and use depend on your license.
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.

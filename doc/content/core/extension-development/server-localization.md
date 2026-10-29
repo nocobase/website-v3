@@ -7,7 +7,7 @@ Plugins maintain Server copy in `server/locales/` and contribute it through `loc
 
 ## Use an Agent
 
-```text
+```prompt
 Add Server translations for this plugin's API feedback and background messages.
 Keep stable error codes and bind the full plugin package namespace explicitly.
 Translate requests in their current language and background messages in each

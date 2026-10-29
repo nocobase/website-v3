@@ -13,11 +13,11 @@ description: 在插件中组织服务实现、Token 和 Provider，通过公开�
 
 ## 使用 Agent
 
-```text
-把公告文本预览整理为插件的服务端服务，返回去空白后的文本与 Unicode 码点数量。
-通过原始 Token 和 ServiceProvider 注册一个惰性单例，并公开契约供接口和命令复用。
-保留现有 Server 贡献，不把当前请求、用户或事务保存在单例字段中。
-验证缺少注册时失败、注册后共享同一实例，以及公开入口的类型声明构建。
+```prompt
+请把公告文本预览提取为接口和命令都能复用的服务端服务。
+保留现有行为：去除首尾空白，返回整理后的文本和 Unicode 码点数量。
+通过插件公开入口提供契约和 Token，由 ServiceProvider 注册；当前请求、用户和事务通过调用参数传递。
+请验证未注册时明确失败、注册后复用同一实例，以及公开入口能生成正确的类型声明。
 ```
 
 ## 定义服务契约
@@ -94,7 +94,7 @@ export type { AnnouncementPreview, AnnouncementPreviewService } from './tokens.j
 
 在已完成输入校验的路由处理逻辑中，调用 `app.container.resolve(announcementPreviewToken).preview(text)`，再按 HTTP 响应合同返回结果。路由如何声明与保护见[路由与 HTTP 接口](server-apis.md)。
 
-CLI 在 `this.withApp(async ({ app }) => ...)` 中解析同一个 Token，并将结果作为命令返回值。应用必须已注册插件的 Server 入口；只注册 CLI 入口不会注册这个服务。纯预览不需要为了调用而额外执行 `app.start()`；依赖启动阶段资源的服务则必须按其契约启动应用。CLI 参数和错误处理见[命令行扩展](extend-command-line.md)。
+CLI 在 `this.withApp(async ({ app }) => ...)` 的回调中先调用 `await app.registerProviders()`，再解析同一个 Token，并将结果作为命令返回值。`withApp()` 只创建和清理应用，不会自动注册服务。应用必须已注册插件的 Server 入口；只注册 CLI 入口不会注册这个服务。纯预览不需要为了调用而额外执行 `app.start()`；依赖启动阶段资源的服务则必须按其契约启动应用。CLI 参数和错误处理见[命令行扩展](extend-command-line.md)。
 
 调用方通过公开入口取得接口类型，具体实现和 Provider 可以继续作为插件内部细节。包依赖、运行时注册和调用顺序的区别见[插件声明与公开入口](plugin-declarations.md)。
 

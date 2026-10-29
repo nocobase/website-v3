@@ -3,7 +3,7 @@ title: 插件索引
 description: NocoBase 3 插件清单、主要用途及是否内置。
 ---
 
-本页列出已核对源码中的应用插件：主仓库 24 个、商业仓库 2 个。清单按包名字母顺序排列，公开源码通过包名链接提供。
+本页列出文末核对基线中的应用插件：主仓库 24 个、商业仓库 2 个，不是持续变化的开发分支全量清单。清单按包名字母顺序排列，公开源码通过包名链接提供。
 
 “内置插件”表示创建应用时是否已随默认模板包含该插件。已包含标记为“是”，需要另外安装标记为“否”；是否启用以应用的插件注册文件为准。注册、移除和更新方法见[管理插件](../developing-apps/manage-plugins.md)。
 
@@ -15,7 +15,7 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | [`@nocobase/app-plugin-agents`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-agents) | Agents：配置模型 API，或接入机器上的 Agent，提供对话、工具调用和任务执行能力。 | 是 |
 | [`@nocobase/app-plugin-api-keys`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-api-keys) | API keys：通过 API key 认证接口请求。 | 是 |
 | [`@nocobase/app-plugin-authentication`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authentication) | 认证：提供登录、会话及身份认证集成。 | 是 |
-| [`@nocobase/app-plugin-authorization`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authorization) | 权限：声明业务权限、检查访问权限并提供权限管理界面。 | 是 |
+| [`@nocobase/app-plugin-authorization`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authorization) | 权限：声明业务权限、执行授权决策并提供管理接口；管理页面由应用接入。 | 是 |
 | [`@nocobase/app-plugin-authz-default-access`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-default-access) | 默认数据范围：为业务资源配置默认数据访问范围。 | 是 |
 | [`@nocobase/app-plugin-authz-restriction-rules`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-restriction-rules) | 限制规则：通过规则进一步限制可访问的数据。 | 是 |
 | [`@nocobase/app-plugin-authz-sharing-rules`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-authz-sharing-rules) | 共享规则：按规则扩展记录的共享访问范围。 | 是 |
@@ -34,13 +34,13 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | [`@nocobase/app-plugin-releases`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-releases) | 发布：管理应用、版本、运行环境及可扩展的部署驱动。 | 否 |
 | [`@nocobase/app-plugin-scheduler`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-scheduler) | 定时任务：在代码中声明计划任务，提供执行记录和启停接口。 | 是 |
 | [`@nocobase/app-plugin-template-print`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-template-print) | 模板打印：提供实现 DOCX、PDF 模板打印的 Agent Skills。 | 是 |
-| [`@nocobase/app-plugin-users`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-users) | 用户：提供用户管理接口和页面。 | 是 |
+| [`@nocobase/app-plugin-users`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-users) | 用户：提供用户管理接口与邀请接受页；用户列表由应用接入。 | 是 |
 
 `app-plugin-template-print` 当前仅分发 Skills，没有 Client、Server 或 CLI 运行时入口，因此不需要添加到插件注册数组。`agents` 和 `knowledge` 已在默认模板依赖中，但没有默认注册。
 
 ## 商业仓库插件
 
-以下商业插件未包含在默认模板中，使用范围以实际授权为准。
+以下商业插件未包含在该基线的默认模板中，使用范围以实际授权为准。较新开发源码拆分的 Redis 适配插件另见[后台任务](../framework/background/jobs.md)和[消息队列](../framework/background/queues.md)的版本说明，安装时核对实际发行版本。
 
 | 插件包 | 用途 |
 | --- | --- |

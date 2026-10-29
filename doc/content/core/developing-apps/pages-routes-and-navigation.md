@@ -13,7 +13,7 @@ This guide uses the task application's project pages to explain routing. Tables,
 
 ## With an agent
 
-```text
+```prompt
 Please add the existing project list to application navigation and present project creation as a dialog over that list.
 
 Only members with page access may enter Projects. Viewing projects does not imply permission to create them.

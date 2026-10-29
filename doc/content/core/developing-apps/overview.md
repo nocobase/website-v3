@@ -30,7 +30,7 @@ Each kind of code has a defined location:
 | `database/main/migrations/` | Schema changes. Migrations are history: do not edit them after merging; add a new migration for later changes |
 | `database/main/seeds/` | Initial data required by the application |
 | `server/routes/` | HTTP APIs: validate input, check identity and permissions, call services and return results |
-| `server/providers/` | Business services and their lifecycle; a place to centralize reusable business rules |
+| `server/providers/` | Service registration and lifecycle; complex business implementations can live in `server/services/` |
 | `client/pages/` | Page components; use a directory for a page with child pages or supporting files |
 | `client/routes.ts` | Page routes, navigation and page access permissions |
 | `client/components/` | Application components. Add shadcn primitives under `client/components/ui/` with the CLI rather than writing them by hand |

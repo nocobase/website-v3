@@ -22,20 +22,16 @@ The application mounts personal account and workspace pages. System notification
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Mail to show the current user's customer correspondence. Compose Mail config
-and integrate personal account connection and workspace pages with existing access
-checks. Query synchronized messages by the customer's exact participant address
-and handle loading and failures. Select sendable identities and associate business
-records with exact submission IDs. Verify synchronization, sending, receiving and
-mailbox isolation using a test mailbox; do not blindly resubmit unknown outcomes.
+```prompt
+Show the current user's correspondence with a customer on the customer detail page.
+Users first connect their own mailbox. Show only synchronized messages they are allowed to access, with clear loading, synchronization and failure states.
+Let users choose an available sending identity and link the specific submission result to the customer record.
+Use test mailboxes to verify synchronization, sending, receiving and account isolation. If a sending result is unknown, check it before sending again.
 ```
 
 **Done when**: Customer detail shows the user's synchronized correspondence, sends have exact record associations, and other mailboxes remain inaccessible.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -84,6 +80,6 @@ Server integrations use `mailServiceToken`; custom providers register through `m
 
 Related: [Notification providers](providers.md), [Authentication](../authentication/sign-in.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-mail).

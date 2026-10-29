@@ -18,14 +18,14 @@ This guide assumes you already have an application. Otherwise, start with [Creat
 
 ## Start a session
 
-Start the agent in the application root. Coding tools read `AGENTS.md` at session startup and use it to find project rules and skills. The template's `CLAUDE.md` references the same file for Claude Code.
+Start the agent in the application root and confirm that it has read `AGENTS.md` and consulted the linked rules and skills relevant to the task. The template's `CLAUDE.md` references the same guidance for Claude Code.
 
 > [!NOTE]
 > If you just created the application in the same session, some coding tools need a new session to load its skills. If the agent cannot find `nocobase-app-development`, start a new session in the application directory.
 
 When working in a project for the first time or taking over someone else's project, you can start with:
 
-```text
+```prompt
 Continue development in the current application. Read AGENTS.md first and consult the skills relevant to this task.
 Inspect the existing implementation and uncommitted changes, preserving existing features and my edits.
 Use existing plugins or components when they meet the requirement.
@@ -35,7 +35,7 @@ You do not need to repeat this for every small change.
 
 **State what is authorized.** Code changes and local development database work can usually be delegated freely. For deployment, changes to secrets in `config.yml`, database resets or rollbacks, and real accounts, specify what is allowed and in which environment. Commands such as `db reset` and `db rollback` refuse to run in a non-interactive terminal without `--force`. In that situation, the agent should ask you rather than add `--force` itself.
 
-**Decide where the application runs.** Run `pnpm dev` in your own terminal or ask the agent to start it. Processes started by the agent stop when the session ends. Open the full `Local:` URL printed by `pnpm dev`, including a trailing path such as `/main/`.
+**Decide where the application runs.** Run `pnpm dev` in your own terminal or ask the agent to start it. Whether the process stops at the end of a session depends on the tool's process management. Open the full `Local:` URL printed by `pnpm dev`, including a trailing path such as `/main/`.
 
 ## Describe the requirement
 
@@ -55,7 +55,7 @@ State unresolved business decisions explicitly, such as “We have not decided w
 
 This request applies to an application that already lists and creates tasks but does not yet support assignees:
 
-```text
+```prompt
 Add assignees to the existing task application.
 
 When creating a task, let users select one active existing user or leave it unassigned.
@@ -79,7 +79,7 @@ The request describes behavior a user understands. Let the agent follow applicat
 
 For a change spanning several areas, you can ask for a plan before implementation:
 
-```text
+```prompt
 Do not change code yet. Read the relevant implementation and list what needs to change, which business decisions I need to make, and how you will verify the result.
 ```
 
@@ -90,6 +90,21 @@ For example, adding projects to tasks can proceed in three steps:
 3. **Pages:** add a project list, creation dialog and task project selector; verify loading, saving, failure feedback and keyboard use.
 
 State the scope and completion criteria for each step. Completing the data step does not let users manage projects through the UI; passing migration tests is not the same as delivering that feature. Small features can be completed in one cycle without a separate request for each file.
+
+## Choose a prompt for the task
+
+These guides include requests you can adapt for a coding agent. Replace business names, roles, environments and completion criteria, and explain where your existing application differs from the example.
+
+| Task | Start here |
+| --- | --- |
+| Create and start an application | [Create an app](../getting-started/create-app.md) |
+| Deliver a usable feature | [Team task application](../tutorials/build-your-first-app.md), [Pages and interactions](pages-and-interactions.md) |
+| Change data and APIs | [Tables and initial data](data-models-and-migrations.md), [Routes and HTTP APIs](apis-and-services.md); check each example's version first |
+| Integrate files, notifications, permissions or another existing capability | [Find plugins by function](../using-plugins/overview.md#find-plugins-by-function) |
+| Develop a reusable plugin | [Create a plugin](../extension-development/create-plugin.md), [Plugin development guidance](../extension-development/plugin-development-guidance.md) |
+| Upgrade Core or release business changes | [Upgrade Core](upgrade-nocobase-core.md), [Publish an application release](../deployment/publish-app-release.md) |
+
+Everyday requests should focus on user behavior and acceptance criteria. Include established API contracts, version constraints or deployment targets when relevant. Plugin development and debugging may need technical details; natural wording should preserve those constraints. Prompts for business agents inside the application appear in the [Agents examples](../using-plugins/agents-and-knowledge/agents.md), separately from tasks that change source code.
 
 ## Check the result
 
@@ -128,7 +143,7 @@ If the agent lacks an environment or account to verify a step, it should explain
 
 Give reproduction steps and expected behavior instead of just saying something is wrong:
 
-```text
+```prompt
 When signed in as a read-only member, the task list hides the New task button, but a direct create request still succeeds.
 The member should be unable to create tasks through either the page or the API.
 Check server authorization, fix it, verify with the same ordinary account, and confirm administrators can still create tasks.
@@ -136,17 +151,17 @@ Check server authorization, fix it, verify with the same ordinary account, and c
 
 ## Keep project conventions
 
-A new session starts from what is written in the repository; agreements made only in conversation do not persist into the next session. Record lasting conventions in the project:
+Do not rely on a single conversation to carry conventions into every later session. Record lasting rules in the project so agents and teammates can consult them:
 
 | Location | Contents | Maintenance |
 | --- | --- | --- |
-| `AGENTS.md` | Rules for all tasks and an index of other rule files | Keep it concise: the entire file loads each session. Template tests enforce a 32 KB limit and check its links |
+| `AGENTS.md` | Rules for all tasks and an index of other rule files | Keep it concise for tools and collaborators to read. Template tests enforce a 32 KB limit and check its links |
 | `.agents/rules/` | Application-specific conventions. The template includes workspace, component, page-shell, build and deployment rules | Update rules as conventions change and register them in the `AGENTS.md` index |
 | `.agents/skills/` | Skills supplied by dependencies | Automatically synchronized during dependency installation; do not edit directly |
 
 Write rules when a previously corrected problem recurs, or when the team makes a decision that applies across tasks, such as a business-date timezone, state transition order or permission boundary. Ask the agent to record it:
 
-```text
+```prompt
 Record this convention in .agents/rules/business.md: business dates use Asia/Shanghai,
 and tasks can only move from To do → In progress → Done.
 Add the file to the AGENTS.md index and explain when it should be read.
@@ -172,13 +187,13 @@ Skills are development instructions shipped with packages, explaining how to wor
 | `nocobase-deployment` | Build a deployment archive and deploy to a server |
 | Plugin-provided skills | For example, `nocobase-app-plugin-mail`. Read a plugin's skill before using its capabilities to avoid rebuilding what it already provides |
 
-`pnpm install` synchronizes skills automatically, keeping them aligned with installed packages. If scripts were skipped or `.agents/skills/` is missing or stale, synchronize manually from the application root:
+The default template synchronizes skills through its `pnpm install` scripts to align guidance with installed packages. If scripts were skipped or `.agents/skills/` is missing or stale, synchronize manually from the application root:
 
 ```bash
 pnpm nocobase skills sync
 ```
 
-Add `--dry-run` to preview the synchronization plan. See [CLI reference](../reference/cli.md#plugins-and-skills) for more options. If a plugin's skill is still missing, confirm the plugin is installed, registered and actually supplies one.
+Add `--dry-run` to preview the synchronization plan. See [CLI reference](../reference/cli.md#plugins-and-skills) for more options. If a plugin's skill is still missing, confirm that the package supplies a skill, is installed where the sync command can discover it, and meets its synchronization requirements. Skill-only packages do not need runtime registration.
 
 Files in `.agents/skills/` are generated and overwritten on the next synchronization. Put application-specific additions in `.agents/rules/`.
 

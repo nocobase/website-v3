@@ -22,18 +22,16 @@ Follow `pageToken` for paginated lists. `DatabaseExplorerClient.allCollections()
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Database Explorer to add an administrator schema-viewing page. Reuse
-DatabaseExplorerClient and DATABASE_EXPLORER_ACCESS for connections, Collections
-and on-demand physical schemas. Support pagination and show truncation. Add no
-schema or record editing. Test denied access, unavailable connections and missing Collections.
+```prompt
+Add a database structure page for authorized administrators to investigate order fields and relations.
+They should be able to select a connection and inspect application definitions and physical database structure. Keep this view read-only.
+Support pagination and clearly show partial results, connection failures and missing tables.
+Confirm that unauthorized users cannot open the page or call its APIs directly, and keep connection credentials out of the page.
 ```
 
 **Done when**: Authorized administrators can inspect logical and physical schemas; denied users cannot query the API.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -74,6 +72,6 @@ Verify authorized and denied access, unavailable connections, missing Collection
 
 Related: [Database connections](../../framework/database/connections.md), [Permission management](../authorization/permissions.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-database-explorer).

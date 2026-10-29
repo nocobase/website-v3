@@ -67,7 +67,7 @@ The template declares shared capabilities in `package.json`. The table omits the
 | `agents` | Agents, model providers, conversations and runs |
 | `api-keys` | API key authentication |
 | `authentication` | Sign-in and authentication |
-| `authorization` | Authorization and permission management |
+| `authorization` | Permission decisions and management APIs; application-owned UI |
 | `authz-default-access` | Default data access scopes |
 | `authz-restriction-rules` | Data access restrictions |
 | `authz-sharing-rules` | Data sharing rules |
@@ -82,13 +82,13 @@ The template declares shared capabilities in `package.json`. The table omits the
 | `notification-providers` | Built-in notification delivery providers |
 | `scheduler` | Scheduled jobs |
 | `template-print` | Template printing development Skill |
-| `users` | User management APIs and pages |
+| `users` | User management APIs and an invitation acceptance page |
 
 **Installed does not mean registered.** Dependencies live in `package.json`; `client/plugins.ts`, `server/plugins.ts` and `cli/plugins.ts` register the respective contributions. A plugin may not provide all three entry points. The reference application does not register `agents`, `knowledge` or `template-print` in these lists. `template-print` is a development dependency supplying Agent guidance, not an automatically enabled printing page.
 
 ## Tests
 
-The current getting-started example uses default template `1.0.0-beta.81`. Organize tests by the code they verify:
+The current getting-started example uses default template `1.0.0-beta.84`. Organize tests by the code they verify:
 
 ```text
 tests/

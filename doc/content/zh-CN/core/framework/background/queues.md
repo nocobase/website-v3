@@ -51,6 +51,9 @@ export async function requestOrderRefresh(container: ServiceResolver, orderId: s
 
 处理器应响应取消信号。不要在处理器内部等待注销自身，否则可能等待自己的完成。将成功记录与业务结果保存在可靠存储中，便于重复投递和故障恢复。
 
+> [!NOTE]
+> 本页原有示例按文末固定源码基线编写。[较新的开发源码](https://github.com/nocobase/nocobase/blob/a0b45681ee0a6940068abdff4c61b57ae888dd6d/packages/libs/queue/README.md)已将 Redis 实现拆到商业插件 `@nocobase/app-plugin-queue-redis`；使用这套实现时，需要先取得兼容包并注册 Server 入口，不能只把适配器配置改成 `redis`。这不表示旧的 npm 安装版本也采用同一接入方式；先按[安装版本](../../reference/compatibility.md#文档基线与安装版本)核对包内说明。
+
 ## 接口与实现
 
 - [Queue API and guarantees](https://github.com/nocobase/nocobase/blob/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/queue/README.md)

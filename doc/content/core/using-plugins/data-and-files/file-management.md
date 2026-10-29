@@ -13,25 +13,22 @@ The application supplies file tables, business associations, disks and UI; the p
 
 ### Example: order attachments
 
-Create an attachment Collection, expose upload and query operations, connect them to order details and preserve the business association. Install the UI Library's `component-ui` source for editable upload, list, thumbnail and preview components.
+Create an attachment Collection, expose upload and query operations, connect them to order details and preserve the business association. Install the UI Library's `@nocobase/file-component-ui` source for editable upload, list, thumbnail and preview components.
 
 DOCX, XLSX and PPTX can render locally in the browser. Legacy Office and OpenDocument preview fallbacks need an internet-accessible URL and cannot use an application session to open private files.
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Files to add private order attachments: upload, list and preview. Create the
-Collection through a migration, configure a Drive disk, and declare actions and
-policy. Protect both metadata and bytes with order access checks; the default
-public content route is not private download. Define metadata/object cleanup
-separately and test denied uploads, unauthorized downloads and failed previews.
+```prompt
+Add private attachments to order details, with upload, a file list and preview.
+Only users allowed to access the order may see attachment details or download files. Copying a download link must not bypass access checks.
+Use the existing storage configuration. Explain preview failures and do not send private files to an online viewer that requires a public URL.
+Explain what happens to the stored file when its attachment record is deleted, and check rejected uploads, unauthorized downloads and preview failures.
 ```
 
 **Done when**: Authorized users can upload and read order attachments; denied users cannot query metadata or download bytes.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -80,6 +77,6 @@ The helper's generated `accessPath` content route has no authentication and is o
 
 Verify upload limits, denied writes, metadata/object consistency, content access and preview fallback. Related: [Repository data APIs](../../framework/http/repository-routes.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-file).

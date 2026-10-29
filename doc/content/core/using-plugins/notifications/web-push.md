@@ -31,19 +31,16 @@ This is a fragment of `notification.send()`, using real device and user IDs. Unl
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Web Push to add signed-in device preferences and order reminders. Reuse
-PushPreferences, persist VAPID and encryption keys, and serve the worker under
-the app prefix. Resolve devices per user, include the mount prefix in targets,
-and handle unsubscribe failures on sign-out. Test subscription, pause, expiry,
-denial and actual receipt on a test device; report unavailable environments.
+```prompt
+Let signed-in users subscribe, pause or remove order reminders for their current device in personal settings.
+Send reminders only to the recipient's devices. Clicking one should open the correct order, including under a deployment subpath.
+Preserve valid subscriptions across refreshes and application restarts. Handle device unlinking at sign-out and explain any failure.
+Use test devices to check actual receipt, pausing, expiry and denied browser permission, and list devices that remain unverified.
 ```
 
 **Done when**: A subscribed test device displays the reminder and opens the correct order; paused devices stop receiving it.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -83,6 +80,6 @@ Test missing permissions, absent or paused subscriptions, expired devices and ac
 
 Related: [Notifications](notification.md), [In-app notifications](in-app.md), [Manage plugins](../../developing-apps/manage-plugins.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification-web-push).

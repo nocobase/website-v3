@@ -183,7 +183,7 @@ pnpm nocobase collections generate --connection main --check
 <details>
 <summary>获取并配置本文的示例应用</summary>
 
-本篇接着 [app-tutorials 的 `04-task-due-date` 阶段](https://github.com/nocobase/app-tutorials/tree/04-task-due-date)开发，基于默认模板 `1.0.0-beta.78`。仓库为私有，需要访问权限。已经完成这一阶段的读者可以在原项目中继续；从头开始时，在一个新目录获取这一阶段：
+本篇接着 [app-tutorials 的 `04-task-due-date` 阶段](https://github.com/nocobase/app-tutorials/tree/04-task-due-date)开发，基于默认模板 `1.0.0-beta.78`。这是保留的历史示例，仓库已停止用于新增文档示例；不要把其中的模型或增量代码直接覆盖到当前入门应用。已经完成这一阶段的读者可以在原项目中继续；从头开始时，在一个新目录获取这一阶段：
 
 ```bash
 git clone --branch 04-task-due-date https://github.com/nocobase/app-tutorials.git team-tasks
@@ -215,7 +215,7 @@ pnpm nocobase config check
 
 在应用目录中把本篇作为参考交给 Agent，再描述下面的需求。字段、接口和组件的具体约定见手动步骤，由 Agent 结合项目指引处理。
 
-```text
+```prompt
 请给现有任务应用增加“项目”，这一轮先只完成数据存储，不增加页面和接口。
 
 每个项目需要有名称和创建时间，名称必填。

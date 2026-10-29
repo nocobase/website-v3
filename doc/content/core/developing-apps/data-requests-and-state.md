@@ -9,15 +9,12 @@ This guide follows default template `1.0.0-beta.84`. `useListData` and `useListL
 
 ## With an agent
 
-```text
-Complete request and state handling for the task list. Inspect existing endpoints and client/hooks/ first.
-
-Keep search and pagination in the URL so reloads and browser history restore them. Reset pagination when search changes.
-Reuse useListData and useListLocation; an old response must not overwrite a newer query.
-Distinguish loading, empty results, failure and retry. Stop showing old data when access is denied.
-Preserve drafts after a failed save and refresh the current query after success without losing search conditions.
-Check closing routed dialogs, deleting the last page's final item, out-of-order responses and duplicate submissions.
-Use existing shadcn components, translations and themes, and report the verification scope.
+```prompt
+Improve loading, search and editing on the task list using its existing APIs and request logic.
+Keep search and page number in the URL so refresh and browser navigation restore them; reset to the first page when search changes.
+Rapid changes must show only the latest result. Distinguish loading, empty results, failures and retries, and clear old data when access is lost.
+Preserve drafts after failed edits. Refresh the current list after saving and retain search and pagination when the dialog closes.
+Check rapid searches, repeated submissions and deleting the last record on a page. Keep the existing theme and English and Chinese copy.
 ```
 
 ## Assign ownership to state

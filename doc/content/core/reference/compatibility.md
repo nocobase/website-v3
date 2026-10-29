@@ -24,6 +24,16 @@ pnpm --version
 pnpm list @nocobase/app-client @nocobase/app-server @nocobase/app-cli @nocobase/db --depth 0
 ```
 
+## Documentation baselines and installed versions
+
+Version references serve three different purposes:
+
+- **Example template versions** identify the starting project structure, such as `1.0.0-beta.84` for the current getting-started application.
+- **Pinned source commits** make interfaces and explanations traceable; they do not mean every change in that commit has been published to npm.
+- **Installed application versions** are determined by dependencies and the lockfile. Use those packages' public exports, types and bundled guidance to establish available capabilities.
+
+Prepare a separate project with the stated prerequisites when running an older example. For upgrades, check the target release and its migration requirements. New-application tests, source review and upgrades with existing data are different forms of evidence.
+
 ## Public database dialects
 
 Integration environments below come from the reviewed Docker Compose configuration. They are source-defined test targets; these external database services were not rerun for this documentation check.

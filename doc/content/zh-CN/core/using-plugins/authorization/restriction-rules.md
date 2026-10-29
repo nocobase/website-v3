@@ -19,18 +19,16 @@ description: "配置限制规则，明确记录范围与操作授权的边界。
 
 **开发提示词**（交给当前应用目录中的 Coding Agent）：
 
-```text
-请使用 @nocobase/app-plugin-authz-restriction-rules，将实习生已有订单读取范围限制为非保密订单，并验证共享不能绕过限制。
-保留已有授权扩展，接入规则管理页面及相应设置权限。
-先检查主体是否拥有读取操作，再配置记录范围，不通过新增管理员权限绕过限制。
-用普通用户验证允许记录、范围外记录和直接 API 请求。
+```prompt
+请把实习生已有的订单查看范围限制为非保密订单。
+其他角色的权限保持不变；即使有人把保密订单共享给实习生，也不能绕过这条限制。
+有相应管理权限的人可以维护规则，普通成员不能修改它。
+请用实习生账号检查普通订单、保密订单和直接接口请求，并说明撤销规则会怎样影响可见范围。
 ```
 
-**完成标志**：实习生只看到非保密订单，即使共享了保密订单也不能读取。
+**完成的标志**：实习生只看到非保密订单，即使共享了保密订单也不能读取。
 
 ## 重要原理与实现
-
-以下是实现本例时的接入位置与预期界面变化；它们是开发说明，具体文件名沿用当前应用结构。
 
 | 接入位置 | 代码或配置变化 | 界面与行为变化 |
 | --- | --- | --- |
@@ -73,6 +71,6 @@ plugins: [restrictionRules()]
 
 相关文档：[权限管理](permissions.md)、[默认数据范围](default-access.md)、[共享规则](sharing-rules.md)、[限制规则](restriction-rules.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+以上是接入后的验收步骤；示例基线和实测范围见[版本与验证说明](../overview.md#示例版本与验证范围)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-restriction-rules)。

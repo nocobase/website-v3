@@ -19,18 +19,16 @@ A target such as `{ type: 'route', path: '/orders/123' }` omits the deployment p
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use In-app Notifications to add a header unread count and inbox. Reuse public
-components or hooks for pagination, read actions, realtime refresh and errors.
-Address order messages to actual user IDs and use app-relative route targets.
-Test two-user isolation, unread changes, reconnect refresh and denial after sign-out.
+```prompt
+Add a message entry in the application header with an unread count and access to the user's inbox.
+Support pagination, marking messages as read and live updates. Order messages should open the correct order, including when the app is hosted under a subpath.
+Show operation failures without leaving an incorrect unread count.
+Use two accounts to check message isolation, read status after refresh, reconnection and access after sign-out.
 ```
 
 **Done when**: Only the recipient sees the message; reading updates the count and persists after reopening.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -79,6 +77,6 @@ Inbox storage and APIs can run without the notification Server plugin, but no de
 
 Verify user isolation, unread counts, pagination and access after sign-out. Recipients have separate delivery/retry outcomes; nonexistent users fail recipient validation.
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification-in-app).

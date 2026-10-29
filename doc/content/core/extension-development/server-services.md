@@ -13,12 +13,11 @@ Add these files to the existing `@nocobase/app-plugin-announcements`. Paths are 
 
 ## Use an Agent
 
-```text
-Extract announcement text preview into a plugin Server service returning trimmed
-text and its Unicode code-point count. Register a lazy singleton through the original
-Token and ServiceProvider and expose the contract to APIs and commands.
-Preserve Server contributions and keep request, user and transaction state out of
-singleton fields. Verify missing registration, shared identity and declaration builds.
+```prompt
+Extract announcement text preview into a server service shared by the API and command.
+Preserve its behavior: trim surrounding whitespace and return the cleaned text and Unicode code point count.
+Expose the contract and Token through the plugin's public entry and register it with a ServiceProvider. Pass request, user and transaction data as call arguments.
+Verify clear failure when registration is missing, reuse of the registered instance and correct type declarations for the public entry.
 ```
 
 ## Define the service contract
@@ -95,7 +94,7 @@ After registration in the App's `server/plugins.ts`, APIs or other plugins impor
 
 After validating route input, call `app.container.resolve(announcementPreviewToken).preview(text)` and return the result through the HTTP response contract. See [Routes and HTTP APIs](server-apis.md) for declaration and protection.
 
-A CLI resolves the same Token within `this.withApp(async ({ app }) => ...)` and returns its result. The App must register the Server entry; registering the CLI entry alone does not register this service. Pure preview needs no extra `app.start()` call, while services depending on started resources require startup according to their contract. See [Command-line extensions](extend-command-line.md) for arguments and errors.
+Inside `this.withApp(async ({ app }) => ...)`, a CLI first calls `await app.registerProviders()`, then resolves the same Token and returns its result. `withApp()` creates and cleans up the application; it does not register services automatically. The App must register the Server entry; registering the CLI entry alone does not register this service. Pure preview needs no extra `app.start()` call, while services depending on started resources require startup according to their contract. See [Command-line extensions](extend-command-line.md) for arguments and errors.
 
 Consumers obtain interfaces from public entries; implementation and Provider classes may remain private. Package dependencies, runtime registration and call ordering are explained in [Plugin declarations and public exports](plugin-declarations.md).
 

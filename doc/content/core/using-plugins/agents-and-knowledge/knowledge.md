@@ -22,19 +22,16 @@ Basic knowledge management is independent of Agents and semantic indexing; the a
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Knowledge to add team spaces and document-change review. Bind a
-KnowledgeAccessResolver for team-visible spaces and read/propose/edit/manage
-access. Reuse its page or views for member proposals and editor review against
-the base version. Start with text search, without assuming semantic models or OCR.
-Test team isolation, edit conflicts, accepted proposals and parsing failures.
+```prompt
+Add team knowledge spaces and document change proposals.
+Members may access only their authorized spaces and submit proposals. Editors should review the differences, then accept or reject them; accepting a proposal should retain version history.
+Concurrent edits must report conflicts without overwriting another person's work. Search must not expose other teams' private documents.
+Start with basic search and report parsing failures or unsupported formats accurately. Check team isolation, proposal review, version conflicts and parsing failures.
 ```
 
 **Done when**: Members can propose changes, acceptance creates a version, and other teams cannot read the content through pages or search.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -81,6 +78,6 @@ Verify isolation, version conflicts, parsing failures, proposal review and searc
 - Submit expected versions and resolve conflicts instead of disabling version checks.
 - Verify proposal eligibility, cross-space search and parsing failures; never mark unsupported scanned content as successfully extracted.
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-knowledge).

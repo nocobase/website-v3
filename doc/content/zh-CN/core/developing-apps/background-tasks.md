@@ -12,7 +12,7 @@ description: 在应用中注册后台任务与周期规则，复用业务服务�
 | 当前请求需要立即知道业务结果 | 直接调用服务 |
 | 请求只需提交工作，允许稍后完成 | `JobExecutor` 与 `Job` |
 | 应用代码声明每天或固定间隔执行 | `ScheduleExecutor` |
-| 管理员需要创建、启停规则及查看执行记录 | 接入定时任务插件 |
+| 管理员需要查看计划、启停规则及查看执行记录 | 接入定时任务插件 |
 
 执行器由 `@nocobase/app-server/jobs` 的 `jobExecutorServiceToken` 提供。`@nocobase/jobs` 提供任务契约；低层消息队列是另一层能力，见[队列](../framework/background/queues.md)。
 

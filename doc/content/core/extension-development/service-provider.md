@@ -11,7 +11,7 @@ For plugin integration by runtime, see [Client services](client-services.md) and
 
 ## Use an Agent
 
-```text
+```prompt
 Organize ServiceProviders for the notice feature: a reusable text preview service on the Server,
 and shared layout preferences on the Client. Register each in its own container,
 make Tokens and public entries clear, and test lazy creation and instance reuse.

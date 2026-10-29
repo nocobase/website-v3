@@ -13,7 +13,7 @@ For plugins published by your team, configure the private registry and read acce
 
 ## With an agent
 
-```text
+```prompt
 Please inspect the plugin capabilities available in this application and identify which existing business features use them.
 
 Read installed dependencies, actual registrations and relevant guidance first. Do not infer capabilities from names or rebuild something already available.
@@ -100,10 +100,10 @@ Unregistration does not decide how to handle historical business data and is not
 | Existing plugin configuration | Public registration options |
 | Public composable plugin components | Import public exports and compose them in the application |
 | Editable UI source | Install components or blocks from the [NocoBase UI Library](https://ui.nocobase.com/); the application maintains its copies |
-| Replace a plugin page's presentation | Supported `client/route-overrides.ts` or plugin-provided overrides |
+| Replace a plugin page's presentation | Client runtime `routeComponentOverrides` or a public plugin override |
 | Application-owned business pages | New entries in `client/routes.ts` |
 
-Page overrides retain route identity, path and access conditions while replacing a lazy component according to the contract. Do not redeclare the same path or combine multiple overrides for one route. Current sign-in and registration pages are application-owned even though they use the authentication plugin.
+Pass overrides explicitly to the client runtime. `client/route-overrides.ts` is an optional way to organize them, not a file every template includes or loads automatically. Page overrides retain route identity, path and access conditions while replacing a lazy component according to the contract. Do not redeclare the same path or combine multiple overrides for one route. Current sign-in and registration pages are application-owned even though they use the authentication plugin.
 
 Do not edit package content in `node_modules/` or `.agents/skills/`. Put application rules in `.agents/rules/`; fix shared plugin defects in their source repository.
 

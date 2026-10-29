@@ -13,7 +13,7 @@ description: 在已有 App 中使用 @nocobase/create-plugin 创建本地插件�
 
 在应用目录中打开 Agent，告诉它插件的名称和用途即可。例如：
 
-```text
+```prompt
 帮我创建一个叫 demo-tools 的插件，用来扩展当前应用的命令行工具。
 先生成基础结构，并检查它能否正常构建。
 ```

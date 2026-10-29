@@ -67,6 +67,9 @@ export async function startOrderJobs(container: ServiceResolver) {
 
 周期任务见[周期调度](scheduling.md)，需要消息通道和更细的生产消费控制时见[队列](queues.md)。
 
+> [!NOTE]
+> 本页原有示例按文末固定源码基线编写。[较新的开发源码](https://github.com/nocobase/nocobase/blob/a0b45681ee0a6940068abdff4c61b57ae888dd6d/packages/libs/jobs/README.md)已将 Redis 实现拆到商业插件 `@nocobase/app-plugin-jobs-redis`；使用这套实现时，需要先取得兼容包并注册 Server 入口，不能只把适配器配置改成 `redis`。这不表示旧的 npm 安装版本也采用同一接入方式；先按[安装版本](../../reference/compatibility.md#文档基线与安装版本)核对包内说明。
+
 ## 接口与实现
 
 - [Job contracts and execution](https://github.com/nocobase/nocobase/blob/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/jobs/README.md)

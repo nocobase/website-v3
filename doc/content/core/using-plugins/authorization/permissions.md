@@ -37,18 +37,16 @@ An operation check followed by an unrestricted query loses record and field rest
 
 **Development prompt** (for a Coding Agent working in the application directory):
 
-```text
-Use Authorization to add order view and edit access. Declare pages and business
-actions, reuse existing roles, and do not add root or unrestricted grants.
-Control UI actions and enforce server-side operation, record and field policies.
-Test lists, details, relations and direct API calls as read-only, editing and denied users.
+```prompt
+Add view and edit permissions for orders using the existing roles.
+Read-only users may view allowed orders; only users with edit permission may change them. Lists, details and related data must not expose other orders or restricted fields.
+Buttons should reflect permissions, and direct API requests must follow the same rules.
+Do not grant administrator access to make the feature work. Verify with read-only, editing and unauthorized accounts.
 ```
 
 **Done when**: Read-only users can read allowed orders but cannot edit; other records and restricted fields stay inaccessible.
 
 ## Key principles and implementation
-
-These are the integration areas and expected interface changes for this example. They describe development work; use the actual file layout of your application.
 
 | Integration area | Code or configuration change | UI and behavior change |
 | --- | --- | --- |
@@ -78,6 +76,6 @@ None grants an action. Management UI grouping also has no authorization effect. 
 - Check pages, actions, fields, records and relations, not just a boolean can result followed by unrestricted queries.
 - Use ordinary roles and direct API requests; review role seed changes for unintended expansion of existing access.
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are checks to run after integration. See [Example versions and verification scope](../overview.md#example-versions-and-verification-scope) for the documented baseline and executed checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authorization).

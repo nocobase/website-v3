@@ -9,7 +9,7 @@ The snippets run on the application server and use `tutorialProjects` and `tutor
 
 ## With an agent
 
-```text
+```prompt
 Please improve the existing project list queries so search, sorting and pagination stay consistent.
 
 Return only projects the current user may view, and count only those projects.

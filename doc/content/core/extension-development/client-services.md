@@ -13,12 +13,11 @@ Add a Client service to the existing `@nocobase/app-plugin-announcements`. Conte
 
 ## Use an Agent
 
-```text
-Add a Client change-notification service to the announcements plugin,
-sharing one instance through its original Token. Notify pages only after a
-successful save, never after failure or cancellation. Provide a useSyncExternalStore
-Hook with stable snapshots, unsubscribe on unmount and release owned listeners
-at App shutdown. Preserve Client contributions and test real registration.
+```prompt
+Add a client change notification service that announcement pages can share.
+Notify subscribers after a successful save, but not after a failure, while preserving existing page behavior.
+Expose the service contract and the same Token through the plugin's public entry and use the host container.
+Verify instance reuse, subscription and unsubscription, and cleanup on application shutdown.
 ```
 
 ## Define the service and Token

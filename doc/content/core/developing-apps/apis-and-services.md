@@ -71,7 +71,7 @@ The example explicitly allows anonymous reads and denies every write. Protected 
 
 ## Prepare the project example
 
-The project/task example retains default template `1.0.0-beta.78` and its `tutorialTasks`/`tutorialProjects` collections. Follow [Create tables and initialize data](data-models-and-migrations.md#prepare-the-example-application) to prepare a separate app, including access to the private `nocobase/app-tutorials` repository. It does not continue the current getting-started `tasks` example. You can still read the code and responsibility boundaries without repository access.
+The project/task example retains default template `1.0.0-beta.78` and its `tutorialTasks`/`tutorialProjects` collections. Follow [Create tables and initialize data](data-models-and-migrations.md#prepare-the-example-application) to prepare a separate app, using the historical example retained there. `nocobase/app-tutorials` is no longer used for new documentation examples. This guide does not continue the current getting-started `tasks` example; you can read the code and responsibility boundaries without running the old project.
 
 Implement `TutorialProjectService` from [Server business services](server-business-services.md), then register the complete Provider, permissions and roles from [Authentication, permissions and data scopes](authentication-and-permissions.md). The routes below import those files.
 
@@ -89,7 +89,7 @@ The project association has its own subresource endpoint and permission. The exi
 
 Give the agent this chapter as context from the application directory, then describe the request below. Field, API and component details are in the manual steps; the agent should follow them alongside the project's guidance.
 
-```text
+```prompt
 Using the existing project data model, please provide APIs to list and create projects and change a task's project for later pages to use.
 
 Paginate the project list. Both records and totals must include only projects the current user may view.

@@ -17,19 +17,16 @@ description: "声明业务计划任务，检查执行记录并管理启停。"
 
 **开发提示词**（交给当前应用目录中的 Coding Agent）：
 
-```text
-请使用定时任务插件，在每天 UTC 02:00 生成业务汇总。
-先实现并注册 app.daily-report 目标，再用稳定 key 声明计划，接入宿主 Jobs。
-增加受保护的任务列表、触发记录和启停入口，不提供任意代码执行编辑器。
-使用独立测试数据和短周期检查时区、业务结果、失败状态与停用行为。
-若目标异步完成，补充状态检查；不要用不完整清单执行 finalize。
+```prompt
+请每天 UTC 02:00 生成一份业务汇总，并给有权限的管理者提供计划列表、执行记录和启停操作。
+列表要能看出是否已经触发、汇总是否完成，以及失败原因，不能只显示“已安排”。
+停用后不再产生新的计划执行，现有的其他计划保持不变。
+请用独立测试数据和短周期验证时间、实际汇总结果、失败和停用行为，再恢复正式时间设置。
 ```
 
-**完成标志**：计划按指定时区触发并产生真实汇总，停用后不再产生新的计划执行。
+**完成的标志**：计划按指定时区触发并产生真实汇总，停用后不再产生新的计划执行。
 
 ## 重要原理与实现
-
-以下是实现本例时的接入位置与预期界面变化；它们是开发说明，具体文件名沿用当前应用结构。
 
 | 接入位置 | 代码或配置变化 | 界面与行为变化 |
 | --- | --- | --- |
@@ -41,7 +38,7 @@ description: "声明业务计划任务，检查执行记录并管理启停。"
 
 注册 Server、Client 和需要的 CLI 入口，执行迁移，并确认应用已组合 `JobExecutorServiceProvider`。插件不自动注册任务管理页，应用使用 `/api/scheduler` 接入列表、详情和启停操作。
 
-调度默认使用 `jobs.default`，可通过 `scheduler.jobs` 或 `SCHEDULER_JOBS` 选择另一份 Jobs 配置。memory 适用于单进程；多实例共同调度使用 Redis。所选配置的 `attempts` 保持为 `1`，业务目标的失败与恢复由实际业务处理。
+调度默认使用 `jobs.default`，可通过 `scheduler.jobs` 或 `SCHEDULER_JOBS` 选择另一份 Jobs 配置。memory 适用于单进程；多实例共同调度使用 Redis。Redis 的提供方式随版本变化，先核对[Jobs 的版本说明](../../framework/background/jobs.md#存储失败和停止)。所选配置的 `attempts` 保持为 `1`，业务目标的失败与恢复由实际业务处理。
 
 ### 定义任务
 
@@ -91,6 +88,6 @@ scheduler.defineSchedule({
 
 应用关闭时，依赖服务应保持到 Scheduler 的 `drain()` 完成；它不等待所有外部业务或人工任务结束。相关文档：[后台任务](../../framework/background/jobs.md)、[定时调度](../../framework/background/scheduling.md)、[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+以上是接入后的验收步骤；示例基线和实测范围见[版本与验证说明](../overview.md#示例版本与验证范围)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-scheduler)。

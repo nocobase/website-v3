@@ -30,7 +30,7 @@ description: 一个业务功能由哪些部分组成、写在哪里、怎样连�
 | `database/main/migrations/` | 表结构变更。迁移是历史记录，合并后不再修改，新的变化写成新的迁移 |
 | `database/main/seeds/` | 应用必需的初始数据 |
 | `server/routes/` | HTTP 接口：校验输入，检查身份和权限，调用服务，返回结果 |
-| `server/providers/` | 业务服务及其生命周期。可复用的业务规则集中在这里 |
+| `server/providers/` | 服务注册及生命周期；复杂业务实现可提取到 `server/services/` |
 | `client/pages/` | 页面组件。页面有子页面或自己的文件时，用一个文件夹 |
 | `client/routes.ts` | 声明页面路由、导航和页面访问权限 |
 | `client/components/` | 自己的组件。`client/components/ui/` 放 shadcn 基础组件，用命令行添加，不要手写 |

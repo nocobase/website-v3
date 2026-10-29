@@ -45,17 +45,14 @@ description: "了解 app-plugin-agents 提供的能力，通过场景和提示�
 希望用户在业务页面旁打开聊天面板，选择模型、发送消息，并在下次打开时继续对话。可以把下面的需求交给开发 Agent：
 
 ```prompt
-请在当前 NocoBase 3 应用中使用 @nocobase/app-plugin-agents，增加 AI 对话。
-先阅读项目 AGENTS.md、应用开发 Skill 和 Agents 插件随包提供的 Skill。
+请为当前 NocoBase 3 应用增加 AI 对话，复用已安装的 Agents 插件和聊天组件，保留已有页面与插件。
 
-保留现有页面和插件，增加模型服务管理页面，以及页头聊天入口和右侧聊天面板。
-使用插件公开的会话能力和 agent-chat 组件，支持选择模型、发送消息、
-停止生成和恢复历史。按登录账号隔离聊天状态，补齐中英文文案。
+管理员可以管理模型服务；用户从页头打开右侧聊天面板，选择模型、发送消息、停止生成，并重新打开历史会话。
+切换登录账号后不能看到上一个账号的聊天，界面支持中英文。
 
-模型使用 DeepSeek，API 地址为 https://api.deepseek.com/v1。
-密钥通过私密方式提供，从服务返回的模型列表中选择可用的 chat 模型。
-完成后测试模型连接，在界面发送一条消息，再重新打开会话检查历史。
-请说明修改了哪些文件、界面增加了什么，以及实际通过了哪些检查。
+本例使用 DeepSeek，API 地址为 https://api.deepseek.com/v1，密钥通过私密方式提供。
+请从服务返回的模型列表中选择可用的 chat 模型，测试连接后实际发送一条消息，再打开会话检查历史。
+完成后说明增加了哪些入口、实际检查结果，以及仍需准备的配置。
 ```
 
 **配置与操作：** 开发 Agent 完成页面接入后，可在界面检查配置；手动接入时也使用以下步骤。
@@ -84,7 +81,7 @@ description: "了解 app-plugin-agents 提供的能力，通过场景和提示�
 
 接入后，点击页头的 **Agent chat**，选择已配置的模型。本例在界面中实际发送了以下对话提示词：
 
-```text
+```prompt
 Rewrite only these supplied facts as three short English bullets: the demo uses
 SQLite, connects to DeepSeek through a model API, and provides a chat panel.
 This is a writing exercise: do not use page context, call tools, or infer configuration.
@@ -127,7 +124,7 @@ Summary、Changes、Verification，只使用用户提供的事实。
 
 在这个业务会话中，本例实际发送的**对话提示词**为：
 
-```text
+```prompt
 Read the release-notes Skill and its style guide, then draft concise release notes
 in English. Supplied changes: Added model service configuration. Added a chat panel.
 Fixed the missing Skills navigation entry. Verification supplied: 17 route, locale, and
@@ -185,7 +182,7 @@ Runner 负责连接、领取工作和报告状态，实际任务由编码工具�
 
 先用下面的**对话提示词**检查执行环境：
 
-```text
+```prompt
 Perform a read-only smoke test in this conversation's assigned workspace.
 Run pwd and list its top-level files. Report the actual working directory and output
 in English. Do not read credentials, access other directories, edit files, install
@@ -194,7 +191,7 @@ packages, or claim that the application source is present unless you see it.
 
 普通 Runner 会话使用自己的工作目录，不会自动进入应用源码目录。连接成功后仍需开发项目上下文接入；不要让用户在聊天里输入任意宿主路径来代替授权。项目上下文就绪后，可以进一步使用这样的提示词：
 
-```text
+```prompt
 请检查当前已授权项目中聊天入口的实现，先阅读 AGENTS.md 和相关 Skills。
 为现有聊天按钮补充缺失的中英文提示文字，沿用项目多语言机制。
 保留按钮行为、权限和布局，只修改完成此任务必需的文件。

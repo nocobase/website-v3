@@ -20,14 +20,11 @@ A simple request used by one page does not need a service first. Client services
 
 ## With an agent
 
-```text
-Extract task modifications used by several pages into a client business service.
-
-Inspect client/service-provider.ts and API Client integration first; retain existing Providers.
-Inject the API Client through the constructor and call the existing endpoint. Pages keep drafts and submission feedback.
-Notify subscribers after success, without publishing success for failed or cancelled requests.
-Use one Token to register and resolve an application singleton; useService alone does not subscribe to state.
-Add React subscriptions and cleanup. Verify sharing across components, failure handling and shutdown cleanup.
+```prompt
+Tasks can be edited from several pages. Consolidate the repeated mutation logic into a reusable client service.
+Keep the existing APIs and application services, task permissions and page-local draft handling.
+Refresh related views after a successful save. On failure or cancellation, preserve input and do not announce success.
+Check that components share the service, subscriptions are removed on unmount and application shutdown releases connections and listeners.
 ```
 
 ## Organize the code

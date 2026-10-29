@@ -3,7 +3,7 @@ title: 组件与样式
 description: 组织插件组件、接入宿主样式与主题、公开组件，并按需通过 UI Registry 分发源码资产。
 ---
 
-开发应用和插件时，前端组件可以自由编写和组织，唯一约束是**基础组件使用 shadcn**。构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。
+开发应用和插件时，可以按业务组织前端组件，**基础组件使用 shadcn**，样式与主题沿用宿主约定。构建模块化界面时，优先参考 [NocoBase UI Library](https://ui.nocobase.com/) 中的组件和区块。
 
 NocoBase UI Library 是 NocoBase 提供的 UI 源码资产库，基于 shadcn UI Registry 分发组件和区块，供 Agent 按需取用、修改和组合。可以在其网站查看组件示例和安装方式。
 

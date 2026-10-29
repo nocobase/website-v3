@@ -1,17 +1,17 @@
 ---
 title: Pages, routes and navigation
-description: Register pages and menus, organize nested routes and breadcrumbs, and define sign-in and page-access requirements.
+description: Register pages and menus, organize child routes and breadcrumbs, and define sign-in requirements and page access permissions.
 ---
 
-Page components render content. Route declarations connect them to the application and describe addresses, menus, breadcrumbs and access conditions. The sidebar is generated from routes, so adding a business entry usually does not require editing layouts.
+Page components render content; route declarations connect those components to the application and describe their address, menu, breadcrumb and access conditions. The sidebar is generated from routes, so adding a business entry usually needs no layout changes.
 
-Business pages usually live in `client/pages/` and connect through `client/routes.ts`. `client/layouts/` owns the surrounding layout; edit it when changing the application shell, navigation area or content area. For route rendering and startup composition, see [Client runtime](../framework/runtime/client.md).
+Business pages usually live in `client/pages/` and are connected through `client/routes.ts`. `client/layouts/` owns the surrounding page layout and normally changes only when you adjust the application shell, the navigation area or the content area. For how routes are rendered and assembled at startup, see [Client runtime](../framework/runtime/client.md).
 
-See [Page layouts](page-layouts.md) for containers, columns and application shells, and [Data requests and state management](data-requests-and-state.md) for URL parameters, reading data and refreshing after returning.
+Related topics live in other guides: page containers, two-column arrangements and the application shell in [Page layouts](page-layouts.md); URL query parameters, reading data and refreshing after returning in [Data requests and state management](data-requests-and-state.md); tables, forms and request state in [UI components and interactions](pages-and-interactions.md).
 
-This guide uses the task application's project pages to explain routing. Tables, forms and request state are covered in [UI components and interactions](pages-and-interactions.md). The excerpts use an application generated from default template `1.0.0-beta.78`; preserve existing routes when integrating them. The `tutorialTasks`/`tutorialProjects` model belongs to the separate historical project example, not the current getting-started `tasks` model. Confirm the baseline in [Create tables and initialize data](data-models-and-migrations.md) before running it.
+This guide uses the project pages of the task application and focuses on how routes are organized. The excerpts come from an example application on default template `1.0.0-beta.78`; keep the project's existing routes when you integrate them. The `tutorialTasks`/`tutorialProjects` model belongs to the separate historical project example, not to the current getting-started `tasks`; confirm the baseline in [Create tables and initialize data](data-models-and-migrations.md) before running it.
 
-## With an agent
+## With an Agent
 
 ```text
 Please add the existing project list to application navigation and present project creation as a dialog over that list.
@@ -25,11 +25,11 @@ Check signed-out users, users without page access, read-only users and users all
 The server must still authorize each request independently.
 ```
 
-## Without an agent
+## Without an Agent
 
 ### Register a page and menu
 
-Add the project route to the existing `defineAppRoutes([...])` in `client/routes.ts`, merging the imports. If already present, edit that entry instead of registering it twice:
+Add the project route below to the existing `defineAppRoutes([...])` in `client/routes.ts`, and merge the imports it needs. If a route with the same name already exists, edit that entry instead of registering it twice:
 
 ```ts
 import { FolderKanban } from 'lucide-react';
@@ -58,22 +58,22 @@ const projectRoute: AppClientRouteDefinition = {
 };
 ```
 
-Include `projectRoute` in the existing route array; declaring a variable alone registers nothing. The [project example](pages-and-interactions.md) supplies these components and permission resources. A blank application must implement them first.
+Declaring the `projectRoute` variable registers nothing by itself; it must be placed in the existing route array. The component files and permission resources referenced above come from the [project example](pages-and-interactions.md); a blank application has to implement them first.
 
-| Declaration | Purpose |
+| Declaration | Meaning |
 | --- | --- |
-| `name` | Stable, unique route identity for references and overrides |
-| `path` | Internal application address; child paths such as `create` are relative to the parent |
-| `componentLoader` | Lazily loads a module that default-exports a React component |
-| `navigation` | Menu title, icon and sibling order; omit it for no menu entry |
-| `breadcrumb` | Title for this route level, normally a translation key |
-| `children` | Nested routes rendered through the parent's `Outlet` |
+| `name` | Stable, unique route name used to locate and override the route |
+| `path` | Address inside the application; a child path such as `create` is relative to its parent |
+| `componentLoader` | Lazily loads the page; the module must default-export a React component |
+| `navigation` | Menu title, icon and order among siblings; without it, no menu entry is created |
+| `breadcrumb` | Breadcrumb title for this route level, usually a translation key |
+| `children` | Child routes of the page, rendered in the parent page's `Outlet` |
 
-Paths exclude the deployment base path. With an entry at `/main/`, `/projects` becomes `/main/projects` in the browser. Do not hard-code `/main`. Template dynamic imports use `.js` even when the source file is `.tsx`.
+Page paths do not include the deployment base path. With the application entry at `/main/`, `/projects` is `/main/projects` in the browser; do not hard-code `/main` in business code. Also note that the template's dynamic imports use the `.js` suffix even when the source file is `.tsx`.
 
-### Compose pages and child routes
+### Compose page components and child routes
 
-A list page normally uses `PageContainer` and `PageHeader`, retaining an `<Outlet />` for child routes. This shows layout only, without list requests or form implementation:
+A list page usually builds its frame with `PageContainer` and `PageHeader`, and keeps an `<Outlet />` to render child routes. The code below only shows the layout relationship, without list requests or form implementation:
 
 ```tsx
 import { Outlet } from 'react-router';
@@ -95,20 +95,20 @@ export default function ProjectsPage() {
 }
 ```
 
-A child route need not be a full page. Choose its presentation according to its content:
+A child route is not necessarily a full page; which presentation to use depends on what it shows:
 
-| Presentation | Use | Relationship to the parent |
+| Presentation | When to use it | Relationship to the parent page |
 | --- | --- | --- |
-| Inline content | Tabs and page sections | Renders at the Outlet and shares the parent container |
-| `RouteDialog` | Short creation or editing forms | Dialog over the parent |
-| `RouteDrawer` | Record details or side editing | Drawer over the parent |
-| `RouteChildPage` | Long forms or complex child pages | Covers the content area while preserving parent state and application navigation |
+| Inline child content | Tabs and sections within the page | Renders at the `Outlet` and reuses the parent's container |
+| `RouteDialog` | Short creation or editing forms | A dialog over the parent page |
+| `RouteDrawer` | Record details or side editing | A drawer over the parent page |
+| `RouteChildPage` | Long forms or complex child pages | Covers the content area while keeping the parent's state and the application navigation |
 
-Inline tabs should not add another complete `PageContainer`. Use `RouteChildPage` to cover the content area; rendering a second container after the parent produces vertically stacked pages.
+Do not nest another complete `PageContainer` inside an inline tab. To cover the whole content area, use `RouteChildPage`; merely rendering a second page container after the parent stacks the two pages vertically.
 
-### Preserve navigation context
+### Keep the address and navigation context
 
-Carry current query parameters when opening a routed dialog:
+When opening a routed dialog, carry over the current query parameters:
 
 ```tsx
 <Link to={{ pathname: 'create', search: location.search }}>
@@ -116,43 +116,43 @@ Carry current query parameters when opening a routed dialog:
 </Link>
 ```
 
-`Link` and `useLocation` come from `react-router`; obtain `location` with the page's `useLocation()`. Closing should return to the parent route with its search, sorting and pagination. Do not rely only on browser Back: users may open the URL directly.
+`Link` and `useLocation` come from `react-router`, and `location` is obtained with the page's `useLocation()`. Closing the dialog should return to the parent route with its search, sorting and page preserved. Do not rely only on the browser's Back button, because users may also have opened the link directly.
 
-Represent shareable tabs as child routes. Redirect to a default accessible tab only from the parent's own address, not from an explicit child URL. Tab clicks use ordinary navigation; default redirects replace history to avoid loops when navigating back.
+Express shareable tabs as child routes. Redirect to the default accessible tab only when the parent's own address is visited; when a child address is given explicitly, do not force a jump back to the default tab. Switching tabs uses ordinary navigation, while the default-tab redirect replaces the history entry, so going back does not loop.
 
-See [UI components and interactions](pages-and-interactions.md) for pending-save close guards, browser Back and focus restoration, which must share the same submission state.
+The close guard during a pending save, browser Back and focus restoration are covered in [UI components and interactions](pages-and-interactions.md); they must share the same submission state.
 
 ### Menu groups and breadcrumbs
 
-A navigation-only group declares `name`, `navigation` and `children`, without `componentLoader` or `authz`. If it has a `path`, that contributes to descendant prefixes. Do not change existing page addresses just to rename a group.
+A group that only organizes the menu declares just `name`, `navigation` and `children`, with no `componentLoader` and no `authz`. If the group has a `path`, it becomes a prefix of its children's addresses; do not change existing page addresses just to rename a group.
 
-Lower `navigation.order` values come first; ties preserve registration order. Details, dialogs and tabs usually have no separate menu. Parameterized paths cannot serve as fixed menu destinations. Hiding a menu does not disable a feature; direct URLs still require route checks.
+Lower `navigation.order` values come first, and equal values keep the registration order. Details, dialogs and tabs usually have no menu entry of their own, and an address with parameters cannot be a fixed menu entry. Hiding something from the menu does not disable it: a direct visit to the address still goes through the route checks.
 
-Pages normally use `breadcrumb.title`, falling back to a page's `navigation.title`. For a record name or a return link carrying list filters, a page can supply a dynamic trail with `usePageBreadcrumb()`. Retain the static trail while loading. Avoid a duplicate Back button when the trail already provides the same return path.
+Pages normally use the route's `breadcrumb.title`; without an explicit title, it can be generated from the page's `navigation.title`. When the breadcrumb should show a record name, or the return link should carry the original list's query parameters, the page can supply a dynamic trail with `usePageBreadcrumb()`; keep the static title while the record is loading. If the breadcrumb already provides the same return path, do not add a duplicate Back button.
 
-### Separate sign-in from page authorization
+### Separate sign-in from page permissions
 
-| Configuration | Controls |
+| Configuration | What it controls |
 | --- | --- |
-| `auth: 'required'` | Requires sign-in; children inherit the entry's requirement |
+| `auth: 'required'` | Sign-in is required; child pages inherit the entry page's requirement |
 | `auth: 'guest'` | Guest pages such as sign-in and registration |
-| `auth: 'optional'` | Available before and after sign-in; content adapts to identity |
-| `authz: { resource, action }` | Checks a resource and action, such as page `access` or a creation action |
-| `authz: 'skip'` | Skips this page's own authorization check, retaining sign-in and ancestor checks |
-| `authz: 'unrestricted'` | Restricts access to unrestricted identities; it does not mean everyone |
+| `auth: 'optional'` | Can be opened before and after sign-in; the content adapts to the identity |
+| `authz: { resource, action }` | Checks the given resource and action, such as a page's `access` or a business action like creation |
+| `authz: 'skip'` | Skips this page's own authorization check, while sign-in and parent-page restrictions still apply |
+| `authz: 'unrestricted'` | Allows only identities with unrestricted access; it does not mean "allow everyone" |
 
-Explicitly declare `authz` on the first page of each path. Children without it inherit the nearest ancestor page's value. Declaring their own check does not bypass the parent. Thus Projects requires `projects/access`, and its creation dialog additionally checks `tutorial.projects/create`.
+Declare `authz` explicitly on the first page of every path. A child page without a declaration inherits the value of its nearest ancestor page, and a child that declares its own value still does not bypass the parent's check. So opening the project page requires `projects/access`, and the creation dialog additionally checks `tutorial.projects/create`.
 
-Page resource IDs are stored in role grants. Renaming them requires migrating grants; do not change IDs just to edit display text. Titles use translations. Pages without navigation or breadcrumbs can supply permission labels through `client/pages/settings/page-permission-titles.ts`.
+Page permission resource IDs are stored in role grants. Changing an ID requires migrating the existing grants, so do not change IDs just to adjust display text. Permission titles come from translations; pages without navigation or a breadcrumb can supply their permission display names through `client/pages/settings/page-permission-titles.ts`.
 
-These checks run in the browser. APIs still require independent authentication, business authorization and record scopes; see [Routes and HTTP APIs](apis-and-services.md).
+All of these checks run in the browser. APIs still need their own authentication, business authorization and data scope checks; see [Routes and HTTP APIs](apis-and-services.md).
 
 ## Verify results
 
-Run the actual project's route and permission-label checks:
+In this guide's `.78` project example, run the matching route and permission-title checks:
 
 ```bash
 pnpm exec vitest run tests/logic/client-routes.test.ts tests/logic/page-permission-titles.test.ts
 ```
 
-Then check menu entry, direct child links, refresh, history, dialog closing and preserved query parameters in the browser. Use ordinary users with no page access, read-only access and creation permission. Check direct API requests too; an administrator successfully viewing a page is insufficient acceptance evidence.
+Then check in the browser: entering from the menu, opening a child link directly, refreshing, going back and forward, closing the dialog, and whether query parameters are preserved. Then verify with ordinary users in three cases, no page access, view-only and allowed to create, and check direct API requests as well. "An administrator can see the page" is not enough as acceptance evidence.

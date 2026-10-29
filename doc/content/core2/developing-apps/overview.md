@@ -1,126 +1,127 @@
 ---
 title: Application development overview
-description: Understand application code, templates and plugins, and follow a feature from its page through an API and service to the database.
+description: Understand how application code, templates and plugins relate, and how one business feature connects a page, an API, a service and the database.
 ---
 
-Developing a NocoBase application means implementing business rules on top of its existing structure and capabilities: how data is stored, who can act on it, and how the interface presents the result. This section explains those topics for use during development. To build a feature from start to finish first, follow the [tutorial](../tutorials/build-your-first-app-agent-first.md).
+Developing a NocoBase application means implementing business rules on top of an existing application structure and capabilities: how data is stored, who can act on it, and how pages present the result to users. This section covers that work by topic, for reference while you develop. To build a feature from start to finish first, read [Build your first app](../tutorials/build-your-first-app-agent-first.md).
 
-The following sections use “assign a task to a project” to explain each responsibility. You do not need to run the example to read this overview.
+The sections below use "assign a task to a project" to explain what each part is responsible for. You do not need to run the example to read this page.
 
-> **Before running the topic examples:** The projects-and-tasks guides use a historical example based on the default template `1.0.0-beta.78`. Setup requires access to the `04-task-due-date` tag in the private `nocobase/app-tutorials` repository. Its `tutorialTasks` and `tutorialProjects` tables, endpoints and test configuration differ from the current tutorial's `tasks` example, so you cannot run it as a direct continuation of that tutorial. With repository access, follow [Create tables and initialize data](data-models-and-migrations.md#prepare-the-example-application) to prepare a separate example application. Without access, you can still read the explanations and code in each guide.
+> [!NOTE] Before running the topic examples
+> The projects-and-tasks guides reuse a historical example based on default template `1.0.0-beta.78`. Preparing it requires access to the `04-task-due-date` tag of the private `nocobase/app-tutorials` repository. That example uses two tables, `tutorialTasks` and `tutorialProjects`, and its tables, endpoints and test configuration all differ from the current getting-started tutorial's `tasks`, so it cannot be run as a continuation of that tutorial. With repository access, follow [Create tables and initialize data](data-models-and-migrations.md#prepare-the-example-application) to prepare a separate example application; without access, you can still read each guide's explanations and code.
 
 ## Application code, templates and plugins
 
-Creating an application gives you source code that you can change and maintain independently. The template supplies its initial structure, Core packages provide development and runtime capabilities, and plugins provide reusable features.
+Creating an application gives you source code you can change and maintain independently. The template provides the initial structure, Core packages provide runtime and development capabilities, and plugins provide reusable features.
 
-| Part | What it supplies | How you use it |
+| Part | What it provides | How you use it during development |
 | --- | --- | --- |
-| Application code | Your pages, APIs, data models, business services and tests | Change it in your application repository and release it with the application |
-| Application template | Entry points, layouts, components, configuration and development conventions | Generate it into the project when creating the app; merge template changes during upgrades |
-| Core foundation packages | Client and server runtimes, data access, configuration and related capabilities | Use public APIs and manage versions through project dependencies |
-| Plugins | Reusable authentication, users, authorization, files and other capabilities | Use the public interfaces, components and extension mechanisms of registered plugins |
+| Application code | Your own pages, APIs, data models, business services and tests | Change it directly in the application repository and release it with the application |
+| Application template | Entry points, page layouts, components, configuration and development conventions | Generated into the project at creation; merge template changes when upgrading |
+| Core foundation packages | Client and server runtimes, data access, configuration and more | Use them through public APIs; their versions are managed by project dependencies |
+| Plugins | Reusable capabilities such as authentication, users, permissions and files | Use the public interfaces, components and extension points of registered plugins |
 
-Project names and task assignments are application business concerns; sign-in and role permissions can use existing plugins. The default template already includes several plugins. Check available capabilities before adding a feature; plugin installation is not a required first step for every change.
+For example, project names and task assignments are the application's own business, while sign-in and role permissions can come straight from existing plugins. The default template already includes several plugins, so check what is available before building a feature; installing a plugin is not the first step of every change.
 
-Business features usually live directly in the application. Consider extracting a plugin when you need reuse across applications, or want to maintain and release a capability independently; see [When to write a plugin](../extension-development/when-to-write-a-plugin.md). Customize the application through public plugin interfaces, keeping dependencies in `node_modules/` unchanged.
+Business features usually live directly in the application. Consider extracting a plugin only when a capability must be reused across applications, or maintained and released on its own; see [When to write a plugin](../extension-development/when-to-write-a-plugin.md). Customize the application through plugins' public interfaces and do not modify dependencies in `node_modules/`.
 
-Generated layouts and themes also belong to the application's source. Prefer route declarations, component composition and theme configuration. When you need to change the framework structure, record why so that [upgrading NocoBase Core](upgrade-nocobase-core.md) preserves the customization.
+The layouts and themes generated by the template are also application source. Prefer route declarations, component composition and theme configuration for changes; when you really need to change the framework structure, record why, so that the customization survives when you later [upgrade NocoBase Core](upgrade-nocobase-core.md).
 
 ## The parts of a feature
 
-“Assign a task to a project” requires more than a selector:
+Taking "assign a task to a project" as the example, a complete delivery is much more than a selector:
 
-| Part | Question it answers | Location in the example |
+| Part | Questions it answers | Location in the example |
 | --- | --- | --- |
-| Data model | How is the project stored, what happens to old tasks, and what if a project does not exist? | `database/main/migrations/` |
-| Business service | Can this task change, is the target project eligible, and how is the association saved? | `server/providers/tutorial-project-service.ts` |
-| HTTP API | Who is calling, is the input valid, and what is returned? | `server/routes/tutorial-projects.ts` |
-| Permission declarations and service registration | Which business actions exist, and how do APIs obtain the service? | `server/providers/tutorial-projects.ts` |
-| Page routes and navigation | Where do users enter, and who can open the page? | `client/routes.ts` |
-| Pages and interactions | How are the current project, available options, loading and save results presented? | `client/pages/tasks/[taskId]/project.tsx` |
-| Copy | What are the English and Chinese labels, field hints and errors? | `client/locales/` |
-| Verification | Is data preserved, do allowed actions succeed, and are unauthorized actions rejected? | `tests/` |
+| Data model | How is a task's project stored? What happens to existing tasks? What if the project does not exist? | `database/main/migrations/` |
+| Business service | Can this task be changed? Is the target project selectable? How is the association saved? | `server/providers/tutorial-project-service.ts` |
+| HTTP API | Who is calling? Is the input valid? What is returned? | `server/routes/tutorial-projects.ts` |
+| Permission declarations and service registration | Which business actions exist? How do APIs obtain the service? | `server/providers/tutorial-projects.ts` |
+| Page routes and navigation | Where do users enter, and who may open the page? | `client/routes.ts` |
+| Pages and interactions | How are the current project and the options shown, and how are loading and save results handled? | `client/pages/tasks/[taskId]/project.tsx` |
+| Text | What are the English and Chinese labels, field hints and error messages? | `client/locales/` |
+| Verification | Is data preserved? Do allowed actions succeed? Are unauthorized actions rejected? | `tests/` |
 
-This is a map of responsibilities, not a requirement to create all these files for every change. Editing form copy needs no migration; adding a field does not require rebuilding sign-in. Identify what the request changes, then edit those parts. See [Project structure](../getting-started/project-structure.md) for the full directory guide.
+This is a map of responsibilities, not a list of files to create for every change. Changing form text needs no migration, and adding a field does not mean rewriting sign-in. Work out what the requirement changes first, then edit the matching parts. For the full directory guide, see [Project structure](../getting-started/project-structure.md).
 
-Start with the business outcome: “Users can assign a task to an eligible project, old tasks remain unchanged, and failed saves preserve input.” Define the data changes and permission rules, implement the API and page, then use isolated test data to verify successful operations, denied operations and existing behavior. When working with an agent, you specify the business requirements and the agent implements and verifies them using the project conventions. See [Develop with an agent](develop-with-an-agent.md).
+In practice, start by stating the business outcome, such as "users can assign a task to a project they are allowed to choose, existing tasks stay as they are, and a failed save keeps the input". Then decide the data changes and permission rules, implement the API and page, and finally verify successful actions, rejected actions and existing behavior with isolated test data. When you work with an Agent, you set the business requirements and the Agent implements and verifies them following the project conventions; see [Develop with an Agent](develop-with-an-agent.md).
 
 ## How a save reaches the database
 
-When a user selects a project in Change project and saves, the request follows this path:
+When a user picks a project in the **Change project** dialog and saves, the request follows this path:
 
-1. **The page submits the selection.** It sends the task ID and selected project ID, or requests that the association be cleared.
-2. **The endpoint validates the request.** It checks authentication, assignment permission and input, and obtains the allowed task and project scopes.
-3. **The service applies business rules.** It finds the task and target project within those scopes, confirms that the task can change and the project is eligible, then updates the association.
-4. **The database stores the result.** A migration has already created the field and foreign key, so the database rejects associations with nonexistent projects. Migrations change the structure beforehand; they do not run for every save.
-5. **The result returns to the page.** The endpoint returns the saved values, and the page updates the task list and provides feedback. Failures preserve input and associate field errors with the selector. Editing stops if the task no longer exists.
+1. **The page submits the choice.** It sends the task ID and the selected project ID, or asks to clear the association.
+2. **The endpoint validates the request.** It checks that the user is signed in, has permission to change the assignment and sent valid input, and obtains the task and project scopes the user may act on.
+3. **The service applies the business rules.** Within those scopes it finds the task and the target project, confirms that the task can be changed and the project can be selected, then updates the association.
+4. **The database stores the result.** A migration has already created the field and the foreign key, so the database rejects associations with projects that do not exist. Migrations change the structure in advance; they do not run on every save.
+5. **The result returns to the page.** The endpoint returns the saved values, and the page updates the task list and shows feedback. On failure the page keeps the user's input and shows field errors next to the selector; if the task no longer exists, editing stops.
 
-The endpoint receives and validates requests; the service keeps reusable business rules together. For service registration, endpoint implementation and transactions that commit or roll back these operations together, see [Routes and HTTP APIs](apis-and-services.md). For page requests and error feedback, see [UI components and interactions](pages-and-interactions.md). For fields and foreign keys, see [Create tables and initialize data](data-models-and-migrations.md).
+The endpoint receives and validates requests, and the service keeps reusable business rules in one place. For how services are registered, how endpoints call them, and how a transaction makes a group of operations succeed or roll back together, see [Routes and HTTP APIs](apis-and-services.md). For page requests and error feedback, see [UI components and interactions](pages-and-interactions.md); for how fields and foreign keys are created, see [Create tables and initialize data](data-models-and-migrations.md).
 
-### Permissions apply throughout the path
+### Permissions apply along the whole path
 
-Page access controls navigation, business permissions control actions, and data scopes control which records an action can affect. Hiding a button is interface feedback and cannot replace server checks.
+Permissions work at three levels: page access decides whether a user can open a page, business action permissions decide whether they can perform an action, and data scopes decide which records the action may touch. Hiding a button is only interface feedback and cannot replace server-side checks.
 
-Changing a task's project requires checking both sides: the user must be allowed to modify the task and assign it to the target project. Permission to view a project does not grant assignment access. A foreign key establishes that a project exists, not that the caller may use it.
+Changing a task's project needs checks on both sides: the user must be allowed to change this task and to assign tasks to the target project. Being able to view a project does not mean being able to assign tasks to it. A foreign key only proves that the project exists, not that the current user may use it.
 
-### Files must be registered
+### New files must be connected to the application
 
-When adding a page, endpoint or service, update its registration entry point as needed:
+When you add a page, an endpoint or a service, update the matching registration entry as needed:
 
-- **Pages:** Write components in `client/pages/` and declare their routes and navigation in `client/routes.ts`.
-- **Endpoints:** Write routes in `server/routes/` and connect them through its `index.ts`.
-- **Client services:** Register business services through `client/service-provider.ts`; connect component-tree context through `client/react-providers.ts`.
-- **Server services:** Register business services with a Provider and connect it through `server/providers/index.ts`.
+- **Pages**: write components in `client/pages/` and declare their routes and navigation in `client/routes.ts`.
+- **Endpoints**: write routes in `server/routes/` and connect them through that directory's `index.ts`.
+- **Client services**: register business services through `client/service-provider.ts`; context for the component tree is connected through `client/react-providers.ts`.
+- **Server services**: register business services with a Provider and connect it through `server/providers/index.ts`.
 
-`client/runtime.ts` and `server/runtime.ts` compose the application's routes, plugins, configuration and services. When the template already connects the entry points above, adding a business feature usually requires no changes to these two runtime files.
+`client/runtime.ts` and `server/runtime.ts` compose the application's routes, plugins, configuration and services. As long as the template has already connected the entries above, adding a business feature usually needs no change to these two runtime files.
 
-## Read the client chapter
+## Guide to the client chapter
 
-The client chapter starts with page development. [Pages, routes and navigation](pages-routes-and-navigation.md) covers entry points and access conditions. [UI components and interactions](pages-and-interactions.md) covers component organization, UI Library source assets, React Context and Providers, and list and form interactions. [Localization](localization.md) and [Themes and styles](themes-and-styles.md) cover copy and appearance separately.
+The client chapter starts from page development: [Pages, routes and navigation](pages-routes-and-navigation.md) covers entry points and access conditions; [UI components and interactions](pages-and-interactions.md) covers component organization, UI Library source assets, React Context and Providers, and list and form interactions; [Localization](localization.md) and [Themes and styles](themes-and-styles.md) cover text and appearance respectively.
 
-[Data requests and state management](data-requests-and-state.md) covers remote data, URL state, form drafts and shared state. [Page layouts](page-layouts.md) covers `client/layouts/` and page containers. [Client business services](client-business-services.md) covers service implementation, registration through `client/service-provider.ts` and React subscriptions. Shared mechanisms remain in [Client runtime](../framework/runtime/client.md), [React Providers](../framework/runtime/react-providers.md) and [Client services](../framework/services/integration.md#client-services).
+[Data requests and state management](data-requests-and-state.md) covers remote data, URL state, form drafts and shared state; [Page layouts](page-layouts.md) covers how `client/layouts/` and page containers fit together; [Client business services](client-business-services.md) covers implementing a service, registering it in `client/service-provider.ts` and subscribing from React. Shared mechanisms such as runtime assembly, the Provider hierarchy and dependency injection are covered in [Client runtime](../framework/runtime/client.md), [React Providers](../framework/runtime/react-providers.md) and [Client services](../framework/services/integration.md#client-services).
 
-## Read the server chapter
+## Guide to the server chapter
 
-[Routes and HTTP APIs](apis-and-services.md) covers declarations, registration, Repository endpoints and API documentation. [Server business services](server-business-services.md) covers business classes, dependency registration and transaction boundaries. [Request validation and error handling](request-validation-and-errors.md) explains input, output and failure contracts. [Authentication, permissions and data scopes](authentication-and-permissions.md) connects identity, operation authorization and record scopes.
+[Routes and HTTP APIs](apis-and-services.md) covers declaring and registering endpoints, Repository data endpoints and API documentation; [Server business services](server-business-services.md) covers business classes, dependency registration and transaction boundaries; [Request validation and error handling](request-validation-and-errors.md) covers the conventions for input, responses and failures; [Authentication, permissions and data scopes](authentication-and-permissions.md) covers how identity, action authorization and record scopes fit together.
 
-Use [Background jobs and scheduled execution](background-tasks.md) for asynchronous or periodic work, and [Server localization](server-localization.md) for server-generated mail and notification wording. The project/task example retains its historical baseline; the jobs and server localization guides independently follow default template `1.0.0-beta.84`.
+For asynchronous or periodic work, read [Background jobs and scheduled execution](background-tasks.md); to generate mail, notification and other text on the server, read [Server localization](server-localization.md). The projects-and-tasks example keeps the historical baseline mentioned above, while the background jobs and server localization guides follow default template `1.0.0-beta.84` and can be read on their own.
 
-`server/services/` and `server/jobs/` are optional organizational directories with no automatic registration. Configuration remains in [Application configuration (config.yml)](configuration-and-settings.md), assembly in [Server runtime](../framework/runtime/server.md), and plugin setup in [Manage plugins](manage-plugins.md).
+`server/services/` and `server/jobs/` are optional organizational directories and are not registered automatically. Application configuration is covered in [Application configuration (config.yml)](configuration-and-settings.md), startup assembly and shared mechanisms in [Server runtime](../framework/runtime/server.md), and installing and connecting plugins in [Manage plugins](manage-plugins.md).
 
-## Read the database chapter
+## Guide to the database chapter
 
-[Create tables and initialize data](data-models-and-migrations.md) introduces `defineMigration()`, `defineSeed()` and their Contexts through table creation, defaults and later changes. [Querying and manipulating data](querying-data.md) covers runtime access. [Transactions and data consistency](transactions-and-consistency.md) covers multi-step writes, rollback and concurrency constraints.
+[Create tables and initialize data](data-models-and-migrations.md) introduces creating tables, default records and later schema changes around `defineMigration()`, `defineSeed()` and their Contexts; [Querying and manipulating data](querying-data.md) covers data access while the business runs; [Transactions and data consistency](transactions-and-consistency.md) covers multi-step writes, rollback on failure and concurrency constraints.
 
-Read [Multiple database connections](multiple-databases.md) when adding a connection and [Connect an existing database](existing-databases.md) when another system owns the schema. `database/` stores structure, initialization resources and metadata; runtime queries normally live in server business services. Detailed APIs and shared mechanisms remain under [Framework databases](../framework/database/overview.md).
+Read [Multiple database connections](multiple-databases.md) when you need a second connection, and [Connect an existing database](existing-databases.md) when another system maintains the schema. `database/` holds the structure, initialization resources and metadata, while runtime queries usually live in server business services. For specific APIs and shared mechanisms, see [Framework databases](../framework/database/overview.md).
 
-## Read the CLI chapter
+## Guide to the CLI chapter
 
-[Write application commands](application-commands.md) starts with `cli/commands/` and covers arguments, service access, output and testing. [Integrate plugin commands](plugin-commands.md) explains `cli/plugins.ts`, namespaces and development hooks. [Provide an application CLI client](cli-client.md) shows how users and agents sign in to a running application and call business APIs over HTTP.
+[Write application commands](application-commands.md) starts from `cli/commands/` and covers arguments, service access, output and testing; [Integrate plugin commands](plugin-commands.md) covers registration in `cli/plugins.ts`, namespaces and development hooks; [Provide an application CLI client](cli-client.md) covers letting users and Agents sign in to a running application and call business APIs over HTTP.
 
-The first two guides run commands in the application environment; the third provides a client that can run on a user’s computer. Shared runtime mechanisms and built-in command options remain in the framework and reference sections.
+Commands from the first two guides run in the application environment, while the client from the third can run on the user's own computer. For shared runtime mechanisms and the full set of built-in commands, see the framework and reference sections.
 
 ## Continue with your current question
 
-| Current task | Guide |
+| What you need to do | Guide |
 | --- | --- |
-| Create tables, install defaults or evolve existing schemas | [Create tables and initialize data](data-models-and-migrations.md) |
-| Declare and register APIs or choose Repository endpoints | [Routes and HTTP APIs](apis-and-services.md) |
+| Create tables, initialize default records or change an existing schema | [Create tables and initialize data](data-models-and-migrations.md) |
+| Declare and register APIs, or choose Repository data endpoints | [Routes and HTTP APIs](apis-and-services.md) |
 | Reuse business rules and organize service dependencies | [Server business services](server-business-services.md) |
-| Validate inputs, define responses and handle failures | [Request validation and error handling](request-validation-and-errors.md) |
-| Integrate authentication, operation permissions and record scopes | [Authentication, permissions and data scopes](authentication-and-permissions.md) |
-| Submit jobs and declare recurring rules | [Background jobs and scheduled execution](background-tasks.md) |
-| Render wording for a request or recipient's language | [Server localization](server-localization.md) |
+| Validate input, define responses and handle errors | [Request validation and error handling](request-validation-and-errors.md) |
+| Integrate authentication, action permissions and record scopes | [Authentication, permissions and data scopes](authentication-and-permissions.md) |
+| Submit background jobs and declare recurring rules | [Background jobs and scheduled execution](background-tasks.md) |
+| Generate text in the language of a request or recipient | [Server localization](server-localization.md) |
 | Build lists, forms and dialogs with loading and error feedback | [UI components and interactions](pages-and-interactions.md) |
 | Write queries, relation reads and bulk operations | [Querying and manipulating data](querying-data.md) |
-| Coordinate writes, failures and concurrency | [Transactions and data consistency](transactions-and-consistency.md) |
-| Add a connection or access an external system | [Multiple database connections](multiple-databases.md), [Connect an existing database](existing-databases.md) |
+| Keep multi-step writes consistent and handle failures and concurrency | [Transactions and data consistency](transactions-and-consistency.md) |
+| Add a connection or read data from an external system | [Multiple database connections](multiple-databases.md), [Connect an existing database](existing-databases.md) |
 | Organize pages, menus and access conditions | [Pages, routes and navigation](pages-routes-and-navigation.md) |
 | Define, override and read application configuration | [Application configuration (config.yml)](configuration-and-settings.md) |
-| Organize copy, add languages and set the default locale | [Localization](localization.md) |
-| Adjust styles, theme presets and appearance defaults | [Themes and styles](themes-and-styles.md) |
+| Organize text, add languages and set the default language | [Localization](localization.md) |
+| Adjust styles, theme presets and default appearance | [Themes and styles](themes-and-styles.md) |
 | Inspect, update or extend registered capabilities | [Manage plugins](manage-plugins.md) |
-| Write maintenance commands or register plugin commands | [Write application commands](application-commands.md), [Integrate plugin commands](plugin-commands.md) |
-| Let users or agents call business APIs from a terminal | [Provide an application CLI client](cli-client.md) |
+| Write maintenance commands or integrate plugin commands | [Write application commands](application-commands.md), [Integrate plugin commands](plugin-commands.md) |
+| Let users or Agents call business APIs from a terminal | [Provide an application CLI client](cli-client.md) |
 | Choose verification methods and complete acceptance | [Testing and acceptance](testing-and-acceptance.md) |
-| Complete a working feature first | [Build your first app](../tutorials/build-your-first-app-agent-first.md) |
+| Get one complete feature working first | [Build your first app](../tutorials/build-your-first-app-agent-first.md) |

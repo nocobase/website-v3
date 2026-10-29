@@ -1,24 +1,24 @@
 ---
 title: Client business services
-description: Implement and register application client services, inject the API Client, and connect shared operations and observable state to pages.
+description: Write and register client services in an application, inject the API Client, and connect shared business operations and observable state to pages.
 ---
 
-Extract a client service when several pages need the same business operation or coordinate application-level state. Pages own interactions, services encapsulate independently callable behavior, and ServiceProviders connect them to the application container.
+When several pages need the same business operation, or need to maintain application-level state together, extract a client service. Each part has its own job: pages handle interaction, the service encapsulates behavior that can be called independently, and a ServiceProvider connects the service to the application container.
 
-This guide follows default template `1.0.0-beta.84`. Its example notifies other views after a task is modified. It assumes the `PATCH /tasks/:id` contract from [Data requests and state management](data-requests-and-state.md), implemented by your server. A client service creates neither endpoints nor database tables.
+This guide follows default template `1.0.0-beta.84` and builds on one scenario: after a task is changed on any page, other views are told to refresh. The example reuses the `PATCH /tasks/:id` API contract from [Data requests and state management](data-requests-and-state.md), which your own server must implement; a client service creates neither endpoints nor database tables.
 
-## When a service helps
+## When you need a service
 
 | Need | Starting point |
 | --- | --- |
-| A calculation or display transformation used in one place | Ordinary function |
-| Page loading, forms and local interaction | Component state or custom Hook |
-| Context shared by a component subtree | React Context and Provider |
-| Operations, change coordination or resources shared across pages | Client service and ServiceProvider |
+| A display transformation or calculation used in one place | An ordinary function |
+| Loading, forms and local interaction on a page | Component state or a custom Hook |
+| Context shared by a group of components | React Context and a Provider |
+| Business operations reused across pages, coordinated changes or shared resources | A client service and a ServiceProvider |
 
-A simple request used by one page does not need a service first. Client services also do not replace server business rules: permissions, data scopes, transactions and final validation belong on the server.
+A simple request used by only one page does not need to become a service first. Nor can a client service replace server-side business rules: permissions, data scopes, transactions and final validation are still enforced by the server.
 
-## With an agent
+## With an Agent
 
 ```text
 Extract task modifications used by several pages into a client business service.
@@ -30,9 +30,9 @@ Use one Token to register and resolve an application singleton; useService alone
 Add React subscriptions and cleanup. Verify sharing across components, failure handling and shutdown cleanup.
 ```
 
-## Organize the code
+## Organize the service code
 
-One optional structure is below. Directories do not register services automatically:
+The following is one optional organization. Note that directories alone do not register services:
 
 ```tree
 client/
@@ -47,9 +47,9 @@ client/
 └── react-providers.ts           # React component Provider aggregation
 ```
 
-### Implement the service
+### Write the business service
 
-In `client/services/tasks.ts`, receive dependencies through the constructor and operation input and cancellation through method parameters:
+Implement the service in `client/services/tasks.ts`. The constructor receives the dependencies, and business methods receive the data and cancellation signal for each operation:
 
 ```ts
 import type { ApiClient } from '@nocobase/app-client';
@@ -90,11 +90,11 @@ export class TasksService {
 }
 ```
 
-`revision` counts successful modifications observed by this service. It is neither a server record version nor a task-list cache. It does not synchronize changes from other browsers or users; add realtime subscriptions separately when required.
+`revision` only counts the successful changes this service has observed; it is neither a server-side record version nor a task-list cache. The service does not synchronize changes from other browsers or users automatically; when you need live updates, add a subscription mechanism separately.
 
-This `rename` method can replace the ordinary `renameTask` function in the data-request guide. Update pages to call the service rather than maintaining two mutation implementations. Move business types into the shared entry too, and import them into pages from the service module.
+This `rename` can replace the ordinary `renameTask` function from the data requests guide, with pages calling the service instead, so there are not two sets of update logic to maintain. Move the business types to the same entry as well, and have pages import them from the service module.
 
-API failures propagate to callers without incrementing the revision. Pages own translated feedback, field errors, submission locks and draft retention. Services do not call React Hooks or manipulate page DOM. Subscription callbacks should perform lightweight invalidation; their asynchronous refreshes must handle failures.
+When the API call fails, the exception goes to the caller as usual and the revision does not increase. Pages handle the text, field errors, submission lock and draft retention; the service does not call React Hooks or touch the page DOM. Subscription callbacks should only do lightweight invalidation, and any asynchronous refresh they start must handle its own failures.
 
 ### Define a Token
 
@@ -107,7 +107,7 @@ import type { TasksService } from './tasks.js';
 export const tasksServiceToken = createServiceToken<TasksService>('app.tasks');
 ```
 
-Registration and consumption import the same Token. Do not call `createServiceToken('app.tasks')` again inside components: equal names do not make equal service identities.
+The registering side and the consuming side must import the same Token. Do not call `createServiceToken('app.tasks')` again inside a component: the same name does not mean the same service identity.
 
 ### Register through a ServiceProvider
 
@@ -134,9 +134,9 @@ export class TasksServiceProvider extends ServiceProvider<ClientApplication> {
 }
 ```
 
-The factory runs on first resolution using the existing API Client. Consumers in the same container receive the same instance. `shutdown()` uses `resolveIfCreated()` to avoid creating an unused service while shutting down.
+The service factory runs the first time the service is resolved, using the application's existing API Client; every consumer in the same application container gets the same instance. `shutdown()` uses `resolveIfCreated()` so that shutting down does not create a service that was never used.
 
-Merge the import into `client/service-provider.ts` and append the Provider to its existing array:
+Then merge the import into `client/service-provider.ts` and append the Provider to the existing array:
 
 ```ts
 import { TasksServiceProvider } from './providers/tasks.js';
@@ -150,19 +150,19 @@ const serviceProviders: readonly ClientServiceProviderConstructor[] = [
 export default serviceProviders;
 ```
 
-This is a partial edit, not a replacement file. Keep the existing type imports, default Provider and other contributions. The default Provider supplies Toast and document-title behavior. The template's `client/runtime.ts` already imports this aggregation entry, so normally it needs no additional change.
+This is a partial edit of the aggregation file: keep its existing type imports, the default Provider and other entries. The default Provider also handles the Toast service and the page title, so do not overwrite the whole file with the snippet above. The template's `client/runtime.ts` already imports this aggregation entry, so the runtime usually needs no further change.
 
 ## Call the service from a page
 
-Call `useService(tasksServiceToken)` at the top level of a component or custom Hook, then call `tasks.rename(id, title, signal)` in its submit handler. Do not call `useService()` inside an event callback or construct a new service during every render.
+Call `useService(tasksServiceToken)` at the top level of a component or custom Hook, then call `tasks.rename(id, title, signal)` in the submit handler. Do not call `useService()` inside an event callback, and do not `new TasksService(...)` on every render.
 
-After receiving the saved record, update detail state, finish editing or reread the list. Handle failures as with ordinary API calls. For page-owned cancellation, create an `AbortController` in the page and pass its signal. Cancellation does not guarantee that the server rolls back the mutation.
+Once the service returns the saved record, the page updates the details, ends editing or reloads the list. Errors are handled the same way as for ordinary API calls; when the page needs to cancel a request, the page creates an `AbortController` and passes its signal. Note that cancelling a request does not guarantee that the server undoes the change.
 
-The singleton belongs to one browser application instance, not all tabs, browsers or the server. The example persists no records or user data. If you add identity-dependent caching, clear cached data and in-flight requests when identity changes.
+The container singleton lives in the current application instance in this browser; it is not shared across tabs, browsers or the server. The example persists no records or user data; if you extend it to cache results per identity, clear the cache and any in-flight requests when the identity changes.
 
 ## Connect service changes to React
 
-`useService()` resolves an instance without subscribing to its fields. To observe the revision, adapt it in `client/hooks/use-task-revision.ts`:
+`useService()` only obtains the service instance and does not watch its fields. When a component needs to observe the revision, adapt it as external state in `client/hooks/use-task-revision.ts`:
 
 ```ts
 import { useService } from '@nocobase/app-client';
@@ -175,9 +175,9 @@ export function useTaskRevision(): number {
 }
 ```
 
-The service notifies subscribers, React reads the snapshot again, and unmounting removes the subscription. Snapshots must remain stable while state is unchanged; this example uses a number. For object snapshots, reuse unchanged values instead of allocating on every read. The example targets browser rendering; server rendering also needs an appropriate `getServerSnapshot`. See [React useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore).
+The service announces changes through the subscription callback, and React then reads the snapshot; the subscription is removed automatically when the component unmounts. The snapshot must stay stable while the state is unchanged, which is why this example uses a number. If the snapshot is an object, reuse the same object while the state has not changed instead of building a new one on every `getSnapshot()` call. This example targets browser rendering; server rendering also needs a suitable `getServerSnapshot`. See [React useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore).
 
-A page that only needs to refresh a list can subscribe to its reload action directly. Merge this into the existing list Hook:
+If the page only needs to refresh the list after a change, it can subscribe the refresh action directly. Merge the following into the existing list Hook:
 
 ```ts
 // Inside the list Hook, with useEffect/useService and tasksServiceToken imported:
@@ -186,29 +186,29 @@ const { reload } = request; // The existing useListData result.
 useEffect(() => tasks.subscribe(reload), [tasks, reload]);
 ```
 
-The subscription lasts for the mounted page, with the returned function handling cleanup. The list still reads on initial mount, so it does not rely on receiving past events. Choose one refresh path per save instead of both subscribing and calling `reload()` in the submit callback. Changes from other sources still need their own refresh or realtime integration.
+This subscription is active while the page is mounted, and the returned function cleans it up on unmount. The list still reads normally on first mount, so it does not depend on receiving past events. Pick one refresh path per save: do not both subscribe to the service notification and call `reload()` again in the submit callback. This mechanism does not replace the refresh or live notifications needed for changes from other sources either.
 
-React Providers supply component-tree context through `client/react-providers.ts`. ServiceProviders register container services through `client/service-provider.ts`. They can cooperate, but calling a service does not require an additional React Provider.
+The two kinds of Provider have different entries: a React Provider supplies context to the component tree through `client/react-providers.ts`, and a ServiceProvider serves the service container through `client/service-provider.ts`. They can work together, but you do not need an extra React Provider just to call a service.
 
-## Own lifecycle resources
+## Manage lifecycle and resources
 
-Registration declares services and dependencies. Do not start network requests or access page DOM there. If a resource must connect during application startup, establish it in the appropriate Provider lifecycle and release the connections, timers and listeners it owns on shutdown.
+The registration phase only declares services and their dependencies; it starts no network requests and does not access the page DOM. Only resources that genuinely must connect when the application starts are set up in the matching Provider lifecycle, and on shutdown the Provider releases the connections, timers and listeners it owns.
 
-Pages clean up their requests and local subscriptions on unmount. Services cancel background requests they create. Do not close shared runtime API or realtime clients when disposing of a service's own resources.
+Requests and local subscriptions started by a page are cleaned up when the page unmounts; background requests the service creates itself are cancelled by the service. When releasing its own resources, a service must not close the API client or realtime client shared by the runtime.
 
-This Provider only clears its listeners; it creates no background work or global connection. See [Service container](../framework/services/container.md) and [ServiceProvider and service lifecycle](../extension-development/service-provider.md) for container contracts, lifecycle ordering and plugin integration.
+The Provider in this example only clears the service's listener set; it creates no background jobs or global connections. For the full container contract, lifecycle order and reuse in plugins, see [Service containers](../framework/services/container.md) and [ServiceProviders and service lifecycle](../extension-development/service-provider.md).
 
 ## Verify results
 
-Test observable behavior rather than only checking construction:
+Test the public behavior, not just whether the class gets created:
 
-- Repeated resolution in one container yields the same instance; different containers are independent.
-- Requests use the injected client and pass the ID, JSON body and cancellation signal correctly.
-- Success returns the server record and notifies subscribers; failures and cancelled requests do not increment the success revision.
-- Two subscribed components both update, and unmounting one does not affect the other.
-- Unsubscription and application shutdown release listeners; shutdown does not construct an unused service.
-- Pages retain drafts, submission locks, translated errors and server-side permission handling.
+- Resolving twice in the same container gives the same instance, and different application containers are independent of each other.
+- Requests use the injected client and pass the ID, JSON data and cancellation signal correctly.
+- A successful save returns the server record and notifies subscribers; a failure or a cancelled request does not increase the success count.
+- Two components subscribed to the same service both update, and unmounting one does not affect the other.
+- After unsubscribing or shutting down the application, no listeners remain; if the service was never used, shutting down does not create it.
+- Pages still keep drafts, submission locks, error text and server-side permission handling.
 
-Inject a test client to check methods, use the real `ServiceContainer` to check registration and disposal, and use component tests for subscriptions. Run type checks, relevant tests and a build. See [Testing and acceptance](testing-and-acceptance.md) for end-to-end data and permission checks.
+You can verify the business methods by passing a test client to the constructor, then verify registration and release with a real `ServiceContainer`, and finally verify subscriptions with component tests. Run the project's type checks, relevant tests and build; for end-to-end data and permission verification, see [Testing and acceptance](testing-and-acceptance.md).
 
 Source baseline: [Template ServiceProvider](https://github.com/nocobase/nocobase/blob/82f9c1dcf16a39810f9014ce2bcc93ec7088b3e2/packages/templates/app-template-default/client/service-provider.ts), [Client service Hooks](https://github.com/nocobase/nocobase/blob/82f9c1dcf16a39810f9014ce2bcc93ec7088b3e2/packages/app/app-client/src/hooks.ts).

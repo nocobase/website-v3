@@ -1,13 +1,13 @@
 ---
 title: Page layouts
-description: Customize the application shell and page content, compose containers and nested routes, and preserve navigation, scrolling and responsive behavior.
+description: Adjust the application shell and page content areas, combine page containers, nested routes and overlays, and keep navigation, scrolling and responsive behavior consistent.
 ---
 
-Layouts arrange navigation, headings, toolbars and business content. Most business pages can compose existing components. Change `client/layouts/` when adjusting the whole application's sidebar or header.
+Layouts decide how navigation, headings, toolbars and business content are arranged together. Most business pages only need to combine existing components; you change `client/layouts/` only when adjusting the whole application's sidebar or header area.
 
-This guide follows default template `1.0.0-beta.84`. Layouts and components are application-owned source that you can adapt. Use shadcn for base interaction components and first consult the [NocoBase UI Library](https://ui.nocobase.com/) for modular interfaces. See [UI components and interactions](pages-and-interactions.md) for adding and organizing them.
+This guide follows default template `1.0.0-beta.84`. Layouts and components are source owned by the application, so you can change them as the product requires. Basic interaction components use shadcn; for modular interfaces, first consult the [NocoBase UI Library](https://ui.nocobase.com/), and see [UI components and interactions](pages-and-interactions.md) for how to add and organize them.
 
-## With an agent
+## With an Agent
 
 ```text
 Adjust the task page layout: filters on the left and the list on the right on wide screens, stacked on narrow screens.
@@ -19,23 +19,23 @@ Closing an editor child page or dialog must return to the list context without d
 Check long titles, wide tables, narrow screens, keyboard operation, both languages and both color modes.
 ```
 
-## Choose the layer to change
+## Decide which layer to change
 
-| Layer | Main location | Responsibility |
+| Layer | Main location | What it handles |
 | --- | --- | --- |
-| Application shell | `client/layouts/app-layout.tsx` | Sidebar, header and business content composition |
-| Shell components | `client/layouts/components/` | Brand, navigation, header actions and user menu |
-| Page container | `client/components/page-container.tsx` | Width, padding and spacing between sections |
-| Page heading | `client/components/page-header.tsx` | Main title, description and page actions |
-| Business page | `client/pages/` | Filters, tables, forms and business panels |
-| Child route presentation | `Outlet`, `RouteDialog`, `RouteDrawer`, `RouteChildPage` | Inline content, dialogs, drawers and covering child pages |
-| Standalone shell | `client/routing/standalone-page-layout.tsx` | Guest and optionally authenticated pages in the default template |
+| Application shell | `client/layouts/app-layout.tsx` | How the sidebar, header area and business content area fit together |
+| Shell components | `client/layouts/components/` | Local areas such as the brand, menu, header actions and user menu |
+| Page container | `client/components/page-container.tsx` | Page width, padding and spacing between sections |
+| Page heading | `client/components/page-header.tsx` | The main title, description and page-level actions |
+| Business page | `client/pages/` | Arrangement of filters, tables, forms and business panels |
+| Child route presentation | `Outlet` with `RouteDialog`, `RouteDrawer`, `RouteChildPage` | Inline areas, dialogs, drawers, or child pages covering the content area |
+| Standalone page shell | `client/routing/standalone-page-layout.tsx` | Guest pages and optional sign-in pages in the default template |
 
-Add business navigation through route declarations. A link inserted into a layout does not provide page registration and access conditions. See [Pages, routes and navigation](pages-routes-and-navigation.md).
+Add business menu entries by changing route declarations; a link added only to a layout skips page registration and permission checks. For routes, menus and access conditions, see [Pages, routes and navigation](pages-routes-and-navigation.md).
 
 ## Compose a business page
 
-For a task page with filters beside a list, extract a layout into `client/pages/tasks/components/task-page-frame.tsx`:
+For example, to place the task page's filters and list in two columns, extract a layout component in `client/pages/tasks/components/task-page-frame.tsx`:
 
 ```tsx
 import type { ReactNode } from 'react';
@@ -71,15 +71,15 @@ export function TaskPageFrame({
 }
 ```
 
-Use `<TaskPageFrame>` in the page with translated `title` and `filterLabel`, an existing filter component as `filters`, the table as `children`, and actions such as Create as `actions`. Keep data requests and events in the page or business Hook. The frame arranges these regions; see [Data requests and state management](data-requests-and-state.md) for their state.
+When the page uses `<TaskPageFrame>`, it passes in the translated `title` and `filterLabel`, the existing filter component as `filters`, the table as `children`, and actions such as a **New** button as `actions`. Reading APIs and handling events stay with the page or a business Hook; the layout component only arranges the areas. For the related state handling, see [Data requests and state management](data-requests-and-state.md).
 
-The frame already includes `PageContainer`, so do not wrap it in another. Keep using shadcn for base interactions such as buttons and inputs. A layout used by one page can stay in that page's directory; move it into `client/components/` when several pages share it.
+This component already contains `PageContainer`, so do not wrap it in another one. Keep using the existing shadcn components for basic interactions such as buttons and inputs. A layout used by only this page stays in the page directory; once several pages really share it, move it to `client/components/`.
 
-`minmax(0,1fr)` and `min-w-0` let the content column shrink. Keep horizontal scrolling inside a wide table's region instead of the entire application. On narrow screens, the columns stack. Follow existing theme conventions for colors, borders and spacing; see [Themes and styles](themes-and-styles.md).
+`minmax(0,1fr)` and `min-w-0` let the content column shrink when space runs short. Keep horizontal scrolling for wide tables within the table area; on narrow screens the two columns stack automatically, so the whole application never gets a horizontal scrollbar. Colors, borders and spacing follow the existing theme conventions; see [Themes and styles](themes-and-styles.md).
 
-## Customize the application shell
+## Adjust the application shell
 
-The default template's authenticated pages use `AppLayout` to compose these areas:
+In the default template, pages after sign-in are composed by `AppLayout` from these areas:
 
 ```tree
 AppLayout
@@ -97,51 +97,51 @@ AppLayout
 │               └── Outlet
 ```
 
-This is a simplified view of visual regions. The source also includes route-tree and breadcrumb Providers. Preserve their relationship to consumers when modifying it.
+This sketch shows how the visible areas relate; the actual source also includes contexts such as the route tree and breadcrumb Providers. When you change it, keep the relationship between these contexts and their consumers intact.
 
-Choose the narrowest relevant entry:
+Choose where to change by scope:
 
-- For a global header action, start in `layouts/components/header-actions.tsx` and retain theme and user controls.
-- For branding or the sidebar footer, edit `app-brand.tsx` or `sidebar-footer.tsx` without rewriting business pages.
-- For navigation order or visible items, inspect route declarations and `useRouteNavigation`, retaining permission filtering and selected-item calculation.
-- For header/sidebar positioning, change `app-layout.tsx` and check mobile navigation, breadcrumbs and scrolling together.
+- To add a global action in the header: start with `layouts/components/header-actions.tsx`, and keep the theme switch and user menu.
+- To adjust the brand area or the sidebar footer: change `app-brand.tsx` or `sidebar-footer.tsx`, without touching business pages.
+- To change how menu items are arranged or which are visible: check the route declarations and `useRouteNavigation`, keeping the permission filtering and the current-item calculation.
+- To change how the header and sidebar are positioned: change `app-layout.tsx`, and check the narrow-screen sidebar, breadcrumbs and scrolling at the same time.
 
-Existing `use-sidebar-preference.ts` and its Providers manage sidebar preferences. Reuse collapse and mobile controls rather than creating conflicting state. Preserve `useSyncServerLocale()` when moving layout code so browser and server locales stay synchronized.
+The application's sidebar preference is managed by the existing `use-sidebar-preference.ts` and its Providers. Reuse the existing collapse and mobile controls rather than creating a second, unsynchronized state. `useSyncServerLocale()` keeps the browser and server languages in sync; keep it when moving layout code around.
 
-## Preserve scrolling and overlay relationships
+## Keep scrolling and overlays working
 
-The default shell's `main` provides the positioning boundary, while an inner container scrolls the page vertically. Covering components such as `RouteChildPage` depend on this relationship. Moving `overflow-y-auto` outward can make overlays scroll with the parent or stretch to its full content height.
+In the default layout, `main` provides the positioning boundary for the content area, and the container inside it scrolls the page vertically. Overlays such as `RouteChildPage` rely on this relationship; moving `overflow-y-auto` to an outer element can make an overlay scroll with its parent page or stretch to the height of long content.
 
-| Page form | Container arrangement |
+| Page form | How containers are organized |
 | --- | --- |
-| Ordinary business page | One `PageContainer` with its heading and content |
-| Tab or inline child route | Reuse the parent container and place `Outlet` where needed |
-| `RouteDialog` or `RouteDrawer` | Retain the parent list and use the matching overlay component |
-| `RouteChildPage` | Cover the content region with its own `PageContainer` when needed |
+| Ordinary business page | One `PageContainer` holding the heading and business content |
+| A tab or inline child route within a page | Reuses the parent's container and renders an `Outlet` in the chosen place |
+| `RouteDialog` or `RouteDrawer` | Keeps the parent list; the child route uses the matching overlay component |
+| `RouteChildPage` | Covers the content area and may have its own `PageContainer` inside |
 
-Do not render another complete `AppLayout` for a child page: that duplicates navigation, main regions and route contexts. The application runtime already provides a Router; another `BrowserRouter` is unnecessary.
+Do not render a child page by nesting another complete `AppLayout`; that easily duplicates the sidebar, the main content area and the route context. Nor do you need another `BrowserRouter`: the application runtime already provides a Router.
 
-Check list scroll position, filters and focus return after closing editors. See [Pages, routes and navigation](pages-routes-and-navigation.md) for overlay and closing behavior.
+When an editing page closes, check that the list's scroll position, filters and focus are restored correctly; for implementing overlays and their closing behavior, see [Pages, routes and navigation](pages-routes-and-navigation.md).
 
 ## Sign-in and other standalone pages
 
-In this template version, `client/routing/app-router.tsx` groups pages by their `auth` declarations. Required-authentication pages use `AppLayout`; guest and optional-authentication pages use `StandalonePageLayout`, with their respective authentication handling.
+In this version of the default template, `client/routing/app-router.tsx` organizes pages by their routes' `auth` declarations: pages that require sign-in use `AppLayout`, while guest pages and optional sign-in pages use `StandalonePageLayout`, each with its own authentication handling.
 
-`auth` describes access conditions. Do not make a protected page public to obtain a different shell. Compose a feature's content within its page when that is sufficient. A genuinely different application shell requires explicit router composition while retaining authentication, session preparation and page authorization. Adding an arbitrary `layout` field does not establish that integration.
+`auth` describes access conditions; never make a protected page public just to get a different shell. If you only want to adjust the content layout of a feature after sign-in, compose it within the business page. If you really need a different application shell, change the template's route composition explicitly and keep authentication, session preparation and page authorization. This is an application customization; declaring a new `layout` field does not make it work automatically.
 
-See [Client runtime](../framework/runtime/client.md) for startup, rendering and React Provider mechanisms. This guide focuses on using and changing existing layout source.
+For the general mechanisms of startup, rendering and React Providers, see [Client runtime](../framework/runtime/client.md); this guide only covers using and adjusting the existing layout source.
 
 ## Verify results
 
-Check layout changes on actual pages:
+Check layout changes on real pages:
 
-- Titles, navigation and actions work on wide/narrow screens with the sidebar expanded and collapsed.
-- Long titles, longer translations, empty lists and wide tables fit their content regions.
-- Scrolling, routed dialogs and covering child pages work without duplicate containers.
-- Keyboard users can reach filters and actions, with appropriate focus return after dialogs close.
-- Direct child-route links, refresh, back/forward navigation and denied page access behave correctly.
-- Both languages and color modes retain consistent spacing, contrast and borders.
+- On wide and narrow screens, with the sidebar expanded and collapsed, the title, menu and actions remain usable.
+- Long titles, text that grows after translation, empty lists and wide tables do not overflow the content area.
+- Page scrolling, routed dialogs and child-page overlays relate correctly, with no duplicate page containers.
+- The keyboard can reach the filter and action areas, and focus returns to a sensible place after a dialog closes.
+- Opening a child route directly, refreshing, going back and forward, and lacking page permission all behave correctly.
+- Spacing, contrast and borders are consistent in both languages and in light and dark modes.
 
-Use the template's `tests/client/layout-containers.test.tsx`, `client-shell.test.tsx`, `sidebar-preference.test.tsx` and `route-overlay.test.tsx` as references. Add behavior-focused tests for your layout and run type checks, relevant tests and a build. Screenshots alone do not verify navigation and interaction.
+The default template's `tests/client/layout-containers.test.tsx`, `client-shell.test.tsx`, `sidebar-preference.test.tsx` and `route-overlay.test.tsx` can serve as references. Write tests for the new layout that reflect user behavior, and run the project's type checks, relevant tests and build. Screenshot checks cannot replace navigation and interaction verification.
 
 Source baseline: [AppLayout](https://github.com/nocobase/nocobase/blob/82f9c1dcf16a39810f9014ce2bcc93ec7088b3e2/packages/templates/app-template-default/client/layouts/app-layout.tsx), [AppRouter](https://github.com/nocobase/nocobase/blob/82f9c1dcf16a39810f9014ce2bcc93ec7088b3e2/packages/templates/app-template-default/client/routing/app-router.tsx), [PageContainer](https://github.com/nocobase/nocobase/blob/82f9c1dcf16a39810f9014ce2bcc93ec7088b3e2/packages/templates/app-template-default/client/components/page-container.tsx).

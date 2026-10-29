@@ -1,13 +1,13 @@
 ---
 title: Localization
-description: Organize application translations, format localized data, add languages and configure the default locale.
+description: Organize application text and language resources, format displayed data by language, add languages and set the default language.
 ---
 
-Use `client/locales/` to organize application copy and reuse the existing translation and language-switching mechanisms. Menus, forms, empty states and errors should follow the same locale. For appearance, see [Themes and styles](themes-and-styles.md).
+An application organizes its text in `client/locales/` and reuses the existing translation and language-switching mechanisms, so menus, forms, empty states and error messages all follow the same language. For appearance, see [Themes and styles](themes-and-styles.md).
 
-This guide follows default template `1.0.0-beta.81`, used by the getting-started example. `projects` illustrates new business copy. Distinguish the default language from preferences users have already saved.
+This guide follows default template `1.0.0-beta.81`, used by the getting-started example; `projects` is just an example of new business text. Keep two things apart as you read: the application's default language, and the language preferences users have already saved.
 
-## With an agent
+## With an Agent
 
 ```text
 Please complete English and Chinese copy for the project feature.
@@ -18,21 +18,21 @@ Reuse the existing language controls, preserve saved user preferences and check 
 Check both languages in the application and report anything unverified.
 ```
 
-## Without an agent
+## Without an Agent
 
-### Keep copy in application locale files
+### Keep text in the application's locale files
 
 | Location | Responsibility |
 | --- | --- |
-| `client/locales/en-US.ts` | Application English copy and the `AppResource` type |
-| `client/locales/zh-CN.ts` | Matching Chinese copy using the same resource structure |
-| `client/locales/system/` | Template copy maintained with template upgrades |
-| `client/locales/index.ts` | Browser locales and their loaders |
-| `server/locales/` | Server-produced text and locale loaders |
+| `client/locales/en-US.ts` | The application's English text; also exports the `AppResource` type |
+| `client/locales/zh-CN.ts` | The matching Chinese text, using the same resource structure |
+| `client/locales/system/` | Text that ships with the template, maintained when upgrading the template |
+| `client/locales/index.ts` | Languages available in the browser and their loaders |
+| `server/locales/` | Messages produced by the server and their language loaders |
 
-Add business copy to application files, in groups such as `projects`. Do not put it in `system/`. Spread existing shared groups such as `navigation` or `actions` before extending them, so template keys remain available.
+Put new business text in the application locale files, grouped by feature, such as `projects`. Do not edit `system/` to add business content; when extending shared groups such as `navigation` or `actions`, spread the existing group first so the template's keys are not overwritten.
 
-For example, add a `projects` group with the following count messages in both locale files. If the group already exists, append these keys without replacing its other content:
+For example, add a `projects` group with the following count messages to both locale files. If the group already exists, only append these keys and leave the rest untouched:
 
 ```ts
 // client/locales/en-US.ts — inside projects
@@ -46,7 +46,7 @@ count_one: '{{count}} 个项目',
 count_other: '{{count}} 个项目',
 ```
 
-Use the application's translation hook:
+Components use the translation Hook provided by the application:
 
 ```tsx
 import { useTranslation } from '@nocobase/i18n/client';
@@ -57,46 +57,46 @@ export function ProjectCount({ count }: { count: number }) {
 }
 ```
 
-Use interpolation for complete sentences such as creation confirmations rather than concatenating words. Reuse shared Save and Cancel keys; keep feature-specific successes and errors in their feature group so changes do not alter other pages.
+Express complete sentences such as "Project X was created" with interpolation instead of joining separate words. Common text such as **Save** and **Cancel** can reuse existing keys, while success and error messages that mention a business object stay in their own feature group, so changing them does not alter the meaning on other pages.
 
-Locale types check resource structure, but TypeScript may not catch `t('projects.titel')`. Run copy coverage tests and check the browser too.
+The locale file types check the resource structure, but TypeScript may not catch a typo such as `t('projects.titel')`. That is why text coverage tests and browser checks are still needed.
 
-### Format data and handle server copy
+### Format data and handle server text
 
-Read the current language with `useLocale()` and format displayed values with `Intl.NumberFormat` and `Intl.DateTimeFormat`. Locale formatting and business time zones are different concerns. Switching language must not modify stored dates, and date-only values should not accidentally become cross-time-zone timestamps.
+Get the current language with `useLocale()`, then format displayed values with `Intl.NumberFormat` and `Intl.DateTimeFormat`. The language format of a date and the business time zone are separate concerns: do not implement "switch to Chinese" by changing times in the database, and do not mistake a date-only value for a timestamp that crosses time zones.
 
-Map API statuses and stable `reason` values to page copy, associating field errors with their inputs. Do not display arbitrary server `message` values directly as final user copy. Server-produced notifications, mail and other text belong in `server/locales/`. Background content follows the recipient's language, not the administrator who triggered it.
+Map API errors to page text by status code and stable `reason`, and attach field errors to their inputs. Do not show an arbitrary server `message` to end users as final text. Notifications, mail and other text the server generates belong in `server/locales/`; content sent in the background follows the recipient's language, not that of the administrator who triggered it.
 
-To reword plugin text, use the plugin namespace's `overrides` in application locale resources instead of editing installed packages. Check the owning plugin's locale contract rather than depending on internal keys.
+To reword a plugin's text, use `overrides` under that plugin's namespace in the application's language resources instead of editing the installed plugin. Check the keys against the plugin's public language contract first, so you do not depend on an internal, unpublished text structure.
 
-### Add locales and set the default
+### Add languages and set the default
 
-Add a resource file and dynamic loader in the relevant `locales/index.ts`. Adding translations to a plugin alone does not add a language to the application's selector.
+To add a language, add its resource file and register a dynamic loader in the relevant `locales/index.ts`. Adding translations to a single plugin does not put the language into the application's language picker.
 
-Client and server locale lists are independent. Add server resources when server-produced text needs that language, then run:
+The client and server language lists are maintained separately. If the server should support the language as well, add server resources too, then run:
 
 ```bash
 pnpm nocobase locales check
 ```
 
-This checks matching language lists, not translation completeness. A client-only locale can work with server fallback, but the check reports the mismatch.
+This command checks that the two language lists match; it does not check whether every key is translated. A client-only language can still be selected, but the server falls back to another language, and the check reports the mismatch.
 
-Set the default in `config.yml`:
+Set the default language in `config.yml`:
 
 ```yaml
 i18n:
   defaultLocale: zh-CN
 ```
 
-A saved browser choice takes precedence. Verify defaults in a fresh browser context rather than clearing every user's preferences. Preserve `useSyncServerLocale()` so the server session follows supported browser choices.
+A language choice already saved in the browser takes precedence over the default. To verify the default language, use a fresh browser context with no saved choice; do not clear every user's preference to force the default. Keep the application's existing `useSyncServerLocale()` synchronization, so the server session's language follows the supported choice in the browser.
 
 ## Verify results
 
-Run the locale coverage and type checks for this example:
+Run this example's text coverage test and type check:
 
 ```bash
 pnpm exec vitest run tests/client/app-locale-coverage.test.ts
 pnpm exec tsc -p tsconfig.json --noEmit
 ```
 
-Check both languages in the browser, including menus, empty states, field errors, plural counts and date formatting. Verify the default in a fresh browser context and confirm that an existing saved preference remains effective. Type checks do not replace checking displayed copy.
+Then check menus, empty states, field errors, plural counts and date formats in both languages in the browser. Verify the default language in a fresh browser context, and confirm that an existing personal choice still takes effect. Type checks cannot replace checking the actual text.

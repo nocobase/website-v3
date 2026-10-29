@@ -124,7 +124,7 @@ pnpm nocobase skills sync
 
 ## 本地示例界面
 
-下方截图来自默认模板 `1.0.0-beta.78` 的历史示例 [00-create-app](https://github.com/nocobase/app-tutorials/tree/00-create-app)，用于展示登录和首页，实际界面以创建时的模板为准。[搭建第一个应用](../tutorials/build-your-first-feature-agent-first.md)使用 npmjs.org 已发布的 `1.0.0-beta.84` 模板基线，不需要先检出这个旧标签。截图使用英文，两种语言的文档共用。
+下方截图来自默认模板 `1.0.0-beta.78` 的历史示例 [00-create-app](https://github.com/nocobase/app-tutorials/tree/00-create-app)，用于展示登录和首页，实际界面以创建时的模板为准。[搭建第一个应用](../tutorials/build-your-first-app-agent-first.md)使用 npmjs.org 已发布的 `1.0.0-beta.84` 模板基线，不需要先检出这个旧标签。截图使用英文，两种语言的文档共用。
 
 ![初次打开应用的英文登录页。](/assets/core/tutorials/getting-started/login.png)
 

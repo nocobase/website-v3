@@ -113,4 +113,4 @@ Run `pnpm test` for Vitest tests and `pnpm test:e2e` separately for browser test
 
 ## Next step
 
-Follow [Build your first app](../tutorials/build-your-first-feature-agent-first.md) to add a task table, API, page and tests.
+Follow [Build your first app](../tutorials/build-your-first-app-agent-first.md) to add a task table, API, page and tests.

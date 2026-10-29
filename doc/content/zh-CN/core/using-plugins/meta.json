@@ -18,8 +18,12 @@
       "path": "authorization"
     },
     {
-      "type": "folder",
-      "path": "data-and-files"
+      "type": "page",
+      "path": "data-and-files/database-explorer"
+    },
+    {
+      "type": "page",
+      "path": "data-and-files/file-management"
     },
     {
       "type": "folder",
@@ -30,16 +34,24 @@
       "path": "agents-and-knowledge"
     },
     {
-      "type": "folder",
-      "path": "collaboration"
+      "type": "page",
+      "path": "collaboration/approval"
     },
     {
-      "type": "folder",
-      "path": "automation"
+      "type": "page",
+      "path": "automation/scheduler"
     },
     {
-      "type": "folder",
-      "path": "application-support"
+      "type": "page",
+      "path": "automation/template-print"
+    },
+    {
+      "type": "page",
+      "path": "application-support/i18n"
+    },
+    {
+      "type": "page",
+      "path": "application-support/foundation"
     }
   ]
 }

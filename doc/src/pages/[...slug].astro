@@ -3,6 +3,7 @@
 import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Toc from '../components/Toc.astro';
+import PageActions from '../components/PageActions.astro';
 import { getSite } from '../lib/site.mjs';
 
 export function getStaticPaths() {
@@ -41,6 +42,7 @@ const crumb = [section.id === config.sections[0].id ? '' : section.title, ...pag
 {crumb && <p class="doc-crumb" data-pagefind-ignore>{crumb}</p>}
 <h1>{page.title}</h1>
 {page.description && <p class="doc-lead">{page.description}</p>}
+{!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
 <article class="prose">
 {hint ? <p set:html={hint}></p> : <Content />}
 </article>

@@ -1,4 +1,4 @@
-// Small interactions of a docs page: icons, the table of contents highlight, code copy buttons, and the search shortcut label (the sidebar position is set by an inline script in Layout.astro, before the first paint). The header's mobile menu and language select are in the shared shell.js.
+// Small interactions of a docs page: icons, the table of contents highlight, code copy buttons, the Copy Markdown button, and the search shortcut label (the sidebar position is set by an inline script in Layout.astro, before the first paint). The header's mobile menu and language select are in the shared shell.js.
 import { ArrowUpRight, Check, ChevronDown, Globe, Menu, MousePointerClick, Search, createIcons } from 'lucide';
 
 createIcons({ icons: { ArrowUpRight, Check, ChevronDown, Globe, Menu, MousePointerClick, Search }, attrs: { 'aria-hidden': 'true' } });
@@ -37,6 +37,43 @@ async function copyText(text) {
     field.remove();
     previous?.focus({ preventScroll: true });
   }
+}
+
+// Page actions under the title. Copy Markdown fetches the page's .md copy on click; Safari only allows writing the clipboard within the click, so where ClipboardItem is supported the fetch is handed to it as a promise.
+const flash = (label, text) => { const original = label.textContent; label.textContent = text; setTimeout(() => { label.textContent = original; }, 1600); };
+for (const button of document.querySelectorAll('.page-copy')) {
+  const label = button.querySelector('span');
+  button.addEventListener('click', async () => {
+    const markdown = fetch(button.dataset.src).then(r => { if (!r.ok) throw new Error(`${r.status}`); return r.text(); });
+    try {
+      if (window.ClipboardItem && navigator.clipboard?.write) {
+        await navigator.clipboard.write([new ClipboardItem({ 'text/plain': markdown.then(t => new Blob([t], { type: 'text/plain' })) })]).catch(async () => copyText(await markdown));
+      } else {
+        await copyText(await markdown);
+      }
+      flash(label, button.dataset.copied);
+    } catch {
+      flash(label, button.dataset.failed);
+    }
+  });
+}
+for (const more of document.querySelectorAll('.page-more')) {
+  const menu = document.getElementById(more.getAttribute('aria-controls'));
+  const items = [...menu.children];
+  const toggle = open => { menu.hidden = !open; more.setAttribute('aria-expanded', String(open)); };
+  more.addEventListener('click', () => { toggle(menu.hidden); if (!menu.hidden) items[0].focus(); });
+  document.addEventListener('click', e => { if (!menu.hidden && !more.parentElement.contains(e.target)) toggle(false); });
+  menu.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { toggle(false); more.focus(); }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); items[(items.indexOf(document.activeElement) + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length].focus(); }
+  });
+  for (const a of menu.querySelectorAll('a')) a.addEventListener('click', () => toggle(false));
+  const link = menu.querySelector('.page-copy-link');
+  link?.addEventListener('click', async () => {
+    const label = link.querySelector('span');
+    try { await copyText(link.dataset.href); flash(label, link.dataset.copied); } catch { flash(label, link.dataset.failed); }
+    setTimeout(() => toggle(false), 800);
+  });
 }
 
 // Button labels are localized at build time

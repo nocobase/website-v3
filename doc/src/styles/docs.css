@@ -36,6 +36,20 @@ body > footer .container { max-width: 1440px; }
 .doc-crumb { margin: 0 0 6px; font-size: 13px; color: var(--muted); }
 .doc-main h1 { font-size: 32px; line-height: 1.3; font-weight: 650; letter-spacing: -0.01em; }
 .doc-lead { margin: 12px 0 0; font-size: 17px; line-height: 1.8; color: var(--ink-2); }
+.page-actions { position: relative; display: flex; gap: 8px; margin: 16px 0 0; }
+.page-actions > button { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 8px; background: #fff; font: inherit; font-size: 13px; color: var(--ink-2); cursor: pointer; }
+.page-actions > button:hover, .page-more[aria-expanded="true"] { background: var(--paper-2); }
+.page-actions > .page-more { padding: 0 9px; }
+.page-actions svg { width: 15px; height: 15px; flex: none; }
+.page-more svg { transition: transform .15s; }
+.page-more[aria-expanded="true"] svg { transform: rotate(180deg); }
+.page-menu { position: absolute; top: calc(100% + 6px); left: 0; z-index: 20; min-width: 230px; padding: 6px; border: 1px solid var(--rule); border-radius: 10px; background: #fff; box-shadow: 0 8px 24px rgba(0, 0, 0, .08); }
+.page-menu[hidden] { display: none; }
+.page-menu > * { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 10px; border: 0; border-radius: 6px; background: none; font: inherit; font-size: 13px; color: var(--ink-2); text-align: left; text-decoration: none; cursor: pointer; }
+.page-menu > *:hover, .page-menu > *:focus-visible { background: var(--paper-2); outline: none; }
+.page-menu .brand { fill: currentColor; }
+.page-menu span { flex: 1; }
+.page-menu .lucide-arrow-up-right { color: var(--muted); }
 
 /* Sidebar */
 .doc-group + .doc-group, .doc-nav > ul + .doc-group, .doc-nav > .doc-group + ul { margin-top: 18px; }
@@ -288,4 +302,4 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .layers .ly-gap { display: none; }
   .doc-pager .next { grid-column: 1; }
 }
-@media print { .nav, .doc-side, .doc-pager, .copy-button, body > footer { display: none !important; } .doc-layout { display: block; } }
+@media print { .nav, .doc-side, .doc-pager, .copy-button, .page-actions, body > footer { display: none !important; } .doc-layout { display: block; } }

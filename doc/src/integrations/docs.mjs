@@ -1,12 +1,14 @@
-// Docs-specific build steps: a fresh content cache for production builds, the checks on the output, and the Pagefind search index.
+// Docs-specific build steps: a fresh content cache for production builds, the checks on the output, and the Pagefind search index. In the dev server it also serves the pages' .md copies, which the build writes.
 import { readFileSync, readdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as pagefind from 'pagefind';
+import { markdownCopy } from '@nocobase/site-shared/integration';
 import { checkLayout, findDeadLinks } from '../lib/checks.mjs';
 import { spaceCjkHtml } from '../lib/cjk.mjs';
 import { DOC_ROOT } from '../lib/paths.mjs';
-import { getSite } from '../lib/site.mjs';
+import { docsFiles } from '../lib/llms.mjs';
+import { buildSite, getSite } from '../lib/site.mjs';
 
 export default function docs() {
   return {
@@ -15,6 +17,18 @@ export default function docs() {
       'astro:config:setup': ({ command }) => {
         // The content cache is keyed by the Markdown text only; figures, menus and plugins are not part of it, so a production build always starts clean.
         if (command === 'build') rmSync(join(DOC_ROOT, '.astro'), { recursive: true, force: true });
+      },
+      // The Copy Markdown button fetches <page>.md. The content is read again on every request, so an edited page is copied as it is now.
+      'astro:server:setup': ({ server }) => {
+        server.middlewares.use((req, res, next) => {
+          const path = decodeURIComponent((req.url ?? '').split('?')[0]);
+          if (!path.endsWith('.md')) return next();
+          let copy;
+          try { copy = docsFiles(buildSite()).markdownCopies.find(c => `/${c.path}` === path); } catch { /* a content error is reported on the page itself */ }
+          if (!copy) return next();
+          res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+          res.end(markdownCopy(copy));
+        });
       },
       'astro:build:done': async ({ dir, logger }) => {
         const root = fileURLToPath(dir);

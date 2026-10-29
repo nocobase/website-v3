@@ -23,6 +23,8 @@ export interface DocsUi {
   copy?: string;
   copied?: string;
   copyFailed?: string;
+  /** The buttons under the title: copy the page's Markdown, copy its link, open it in ChatGPT or Claude. `{url}` in the prompt is the .md address. */
+  pageActions?: { copy?: string; copyLink?: string; chatgpt?: string; claude?: string; more?: string; prompt?: string };
   /** Label of a menu entry that has no page yet */
   planned?: string;
   codeLabels?: { text?: string; tree?: string; prompt?: string };

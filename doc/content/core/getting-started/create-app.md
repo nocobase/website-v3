@@ -20,17 +20,21 @@ On Windows, use WSL. Commands below assume a POSIX shell such as Bash. Choose on
 
 ## With an agent
 
-Prepare an empty directory, such as `my-app`, and start a coding agent session there. Send the following directly to the agent so it installs the creation Skill and then creates the application:
+Prepare an empty directory, such as `my-app`, and start a coding agent session there.
+
+First, send this command to the agent to install the creation Skill:
+
+```bash
+npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
+```
+
+Select the current agent when prompted during installation. If the session does not recognize the new Skill, start another in the same directory. Once the Skill is loaded, send the creation request:
 
 ```text
-npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
-
 Please create a NocoBase 3 application for local development in this empty directory.
 Use the default template and SQLite, following the application creation guidance.
 Complete the setup and checks, start the app, and tell me which URL to open and how to sign in for the first time.
 ```
-
-Select the current agent when prompted during Skill installation. If the session does not recognize the newly installed Skill, start a new session in the same directory and send the creation request again.
 
 The agent checks the environment, invokes the creation tool, installs dependencies, initializes and checks configuration, and starts the application. If prerequisites are missing, it explains the required preparation.
 

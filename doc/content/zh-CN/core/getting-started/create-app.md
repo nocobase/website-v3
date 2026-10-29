@@ -22,17 +22,21 @@ Windows 用户请在 WSL 中操作。下面的命令适用于 Bash 等 POSIX she
 
 ## 使用 Agent
 
-准备一个空目录，例如 `my-app`，在该目录中开启 Coding Agent 会话。将下面的内容直接发送给 Agent，让它先安装创建应用的 Skill，再完成应用创建：
+准备一个空目录，例如 `my-app`，在该目录中开启 Coding Agent 会话。
+
+先将下面的命令发送给 Agent，安装创建应用的 Skill：
+
+```bash
+npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
+```
+
+安装时按提示选择当前使用的 Agent。如果当前会话没有识别到新 Skill，在同一目录重新开启会话。确认 Skill 已加载后，发送创建需求：
 
 ```text
-npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
-
 请在当前空目录中创建一个供本地开发使用的 NocoBase 3 应用。
 使用默认模板和 SQLite，按创建应用的指引完成准备和检查。
 启动后告诉我打开哪个地址，以及如何完成首次登录。
 ```
-
-安装 Skill 时，按提示选择当前使用的 Agent。如果安装后当前会话没有识别到 Skill，在同一目录重新开启会话，再发送上面的创建需求。
 
 Agent 会按指引检查环境、调用创建工具、安装依赖、初始化并检查配置，然后启动应用。如果缺少环境依赖，它会说明需要完成的准备。
 

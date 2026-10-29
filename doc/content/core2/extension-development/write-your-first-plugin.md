@@ -378,7 +378,7 @@ pnpm --filter @nocobase/app-plugin-announcements format
 pnpm --filter @nocobase/app-plugin-announcements check
 ```
 
-## 6. Connect it to the App and see the result
+## 6. Register in the App and view the result
 
 Installing dependencies and runtime registration are two different things. Preview the registration plan first, then register the plugin:
 

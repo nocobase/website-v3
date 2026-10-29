@@ -1,11 +1,11 @@
 ---
 title: 插件索引
-description: NocoBase 3 插件清单、主要用途及是否内置。
+description: NocoBase 3 的插件清单、各插件的主要用途，以及是否随默认模板内置。
 ---
 
-本页列出已核对源码中的应用插件：主仓库 24 个、商业仓库 2 个。清单按包名字母顺序排列，公开源码通过包名链接提供。
+本页列出已核对源码中的应用插件，其中主仓库 24 个、商业仓库 2 个。清单按包名的字母顺序排列，点击包名即可查看公开的源码。
 
-“内置插件”表示创建应用时是否已随默认模板包含该插件。已包含标记为“是”，需要另外安装标记为“否”；是否启用以应用的插件注册文件为准。注册、移除和更新方法见[管理插件](../developing-apps/manage-plugins.md)。
+“内置插件”一列表示创建应用时，默认模板是否已经包含该插件：已包含的标记为“是”，需要另外安装的标记为“否”；插件是否启用，以应用的插件注册文件为准。注册、移除和更新的方法见 [管理插件](../developing-apps/manage-plugins.md)。
 
 ## 主仓库插件
 
@@ -36,7 +36,7 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | [`@nocobase/app-plugin-template-print`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-template-print) | 模板打印：提供实现 DOCX、PDF 模板打印的 Agent Skills。 | 是 |
 | [`@nocobase/app-plugin-users`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-users) | 用户：提供用户管理接口和页面。 | 是 |
 
-`app-plugin-template-print` 当前仅分发 Skills，没有 Client、Server 或 CLI 运行时入口，因此不需要添加到插件注册数组。`agents` 和 `knowledge` 已在默认模板依赖中，但没有默认注册。
+`app-plugin-template-print` 目前只分发 Skills，没有 Client、Server 或 CLI 的运行时入口，因此不需要添加到插件注册数组中。`agents` 和 `knowledge` 已经在默认模板的依赖中，但默认没有注册。
 
 ## 商业仓库插件
 
@@ -49,9 +49,9 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 
 ## 数据库方言
 
-方言是数据库适配包，使用方式与应用插件不同。具体连接模式、测试版本和配置差异见[数据库支持与版本兼容](compatibility.md)；其他框架库与工具见[核心包与工具包索引](packages.md)。
+方言是数据库的适配包，使用方式与应用插件不同。具体的连接模式、测试版本和配置差异，见 [数据库支持与版本兼容](compatibility.md)；其他框架库与工具，见 [核心包与工具包索引](packages.md)。
 
-`@nocobase/db` 通过以下 8 个方言包适配数据库，其中主仓库 5 个、商业仓库 3 个。公开源码通过包名链接提供。
+`@nocobase/db` 通过以下 8 个方言包适配不同的数据库，其中主仓库 5 个、商业仓库 3 个。点击包名即可查看公开的源码。
 
 | 方言包 | 数据库 | 所属仓库 |
 | --- | --- | --- |
@@ -64,10 +64,10 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | [`@nocobase/db-postgres`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/libs/db-postgres) | PostgreSQL | 主仓库 |
 | [`@nocobase/db-sqlite`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/libs/db-sqlite) | SQLite | 主仓库 |
 
-商业方言包通过 Pro registry 分发，源码访问和使用范围以相应授权为准。当前核对版本的 `db-dameng` 标记为实验性，仍需针对所用达梦服务端版本验证集成契约。
+商业方言包通过 Pro registry 分发，源码的访问和使用范围以相应的授权为准。在当前核对的版本中，`db-dameng` 被标记为实验性，仍需要针对所用的达梦服务端版本验证集成契约。
 
 ## 核对范围
 
-清单于 2026-10-25 按 [nocobase `db419f1d4`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins) 及商业插件源码核对，默认模板状态取自同一主仓库修订。具体发行版本的插件和注册状态可能不同。
+清单于 2026-10-25 按 [nocobase `db419f1d4`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins) 和商业插件的源码核对，默认模板的状态取自主仓库的同一修订。具体发行版本中的插件及其注册状态可能有所不同。
 
 文件界面的归属另按源码提交 [`d9a625d93b40`](https://github.com/nocobase/nocobase/tree/d9a625d93b4098c7e2cc664ed01f187178e145d4) 核对；其余清单与默认模板状态以上述基线为准。

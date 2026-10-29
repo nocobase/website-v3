@@ -9,7 +9,7 @@ Code specific to the current business can live directly in application `client/`
 
 ## Why does an installed plugin have no page or working feature?
 
-Installed dependencies, registered runtime entries and integrated pages are distinct states. Check which Client, Server and CLI entries the plugin provides and their registration in the corresponding application `plugins.ts` files. Some plugins provide only services or Skills, and may expect the app to compose its pages. Database resources also require migrations. See [Using plugins](../using-plugins/overview.md) and the [Plugin index](plugins.md).
+Installed dependencies, registered runtime entries and integrated pages are distinct states. Check which Client, Server and CLI entries the plugin provides and their registration in the corresponding application `plugins.ts` files. Some plugins provide only services or Skills, and may expect the app to compose its pages. Database resources also require migrations. See [Using plugins overview](../using-plugins/overview.md) and the [Plugin index](plugins.md).
 
 ## Must app and plugin components follow a fixed structure?
 
@@ -19,15 +19,15 @@ Components can be written and organized freely, with shadcn primitives. Consult 
 
 No. Publish when components or blocks should be source assets that Agents can obtain, modify and combine on demand. Ordinary source organization, shared package dependencies and runtime plugins can also reuse code.
 
-Maintain distributed source assets in a separate package such as `packages/announcements-ui/`, alongside the runtime plugin. Assets must not import the publisher's private plugin files or publisher-only aliases. Files distributed together can use relative imports if installation targets preserve them. See [Publish UI source assets](../extension-development/frontend-components.md#optionally-distribute-ui-source-assets).
+Maintain distributed source assets in a separate package such as `packages/announcements-ui/`, alongside the runtime plugin. Assets must not import the publisher's private plugin files or publisher-only aliases. Files distributed together can use relative imports if installation targets preserve them. See [Optionally distribute UI source assets](../extension-development/frontend-components.md#optionally-distribute-ui-source-assets).
 
 ## Do local UI assets need a Registry server?
 
-No. Build the item JSON and pass its local path to `shadcn add`. Absolute paths are clearer when `pnpm --filter` runs in a subpackage. Static hosting is needed only for URL-based distribution across machines, and can reuse an existing site. See [Install source assets locally](../extension-development/frontend-components.md#install-and-modify-it-in-the-target-project).
+No. Build the item JSON and pass its local path to `shadcn add`. Absolute paths are clearer when `pnpm --filter` runs in a subpackage. Static hosting is needed only for URL-based distribution across machines, and can reuse an existing site. See [Install and modify it in the target project](../extension-development/frontend-components.md#install-and-modify-it-in-the-target-project).
 
 ## Is ServiceProvider only for the server?
 
-Both client and server runtimes use ServiceProviders for service registration and lifecycle hooks, with separate containers and instances. React Providers supply context in the React component tree and are distinct from service containers. See [ServiceProvider](../extension-development/service-provider.md) and the [API reference](api.md).
+Both client and server runtimes use ServiceProviders for service registration and lifecycle hooks, with separate containers and instances. React Providers supply context in the React component tree and are distinct from service containers. See [ServiceProviders and service lifecycle](../extension-development/service-provider.md) and the [API reference](api.md).
 
 ## Why did a config.yml change have no effect?
 

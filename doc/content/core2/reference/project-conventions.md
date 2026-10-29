@@ -3,7 +3,7 @@ title: Directory and file conventions
 description: Look up app, plugin and UI source asset entry points, optional directories, generated files and ownership.
 ---
 
-Read [Project structure](../getting-started/project-structure.md) for an introduction. This reference maps paths to responsibilities and maintenance rules. File names illustrate conventions; adjust optional directories to the template and feature.
+When you first get to know a project, read [Project structure](../getting-started/project-structure.md). This page looks up the responsibilities and maintenance rules by path; file names illustrate the conventions, so add or remove optional directories to match your template and features.
 
 ## Application directories
 
@@ -53,7 +53,7 @@ my-app/
 └── pnpm-workspace.yaml           # Workspace package directories
 ```
 
-Create service directories, commands, local packages and external-database metadata only as needed. Empty directories are unnecessary. Template layouts, themes and runtime entries are application-owned source; preserve their business customizations during upgrades.
+Create service directories, commands, local packages and external-database metadata only when you need them; do not create empty directories just to match the tree. Template layouts, themes and runtime entries are application-owned source; preserve their business customizations during upgrades.
 
 ## Implementation and registration
 
@@ -136,4 +136,4 @@ Apps and plugins can freely organize frontend components, using shadcn primitive
 - `config.yml`: environment-specific configuration; keep real keys and passwords out of source control.
 - `pnpm-lock.yaml`: commit the lockfile to reproduce installations.
 
-This reference follows the templates and plugin declarations in Core `015404ecd0db` and the verified beta.83 default application. See [Configuration reference](configuration.md) and the [Core package index](packages.md).
+This reference follows the templates and plugin declarations in Core `015404ecd0db` and the verified beta.83 default application. See [Configuration reference](configuration.md) and the [Core and tool package index](packages.md).

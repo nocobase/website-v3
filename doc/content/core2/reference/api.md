@@ -1,11 +1,9 @@
 ---
 title: API reference
-description: Common public entries and contracts for services, HTTP, configuration and databases in NocoBase 3.
+description: Quick reference for the common public entries, service container, HTTP client, configuration and database APIs in NocoBase 3.
 ---
 
-This page lists common public APIs, return values and constraints by use case. Consult your installed declarations for complete parameters, overloads and supporting types; database reference chapters are linked below. For workflows, see [Developing apps](../developing-apps/overview.md) and [Framework](../framework/overview.md).
-
-For conceptual guides, see [Framework](../framework/overview.md). Learn schema, queries and transactions in the [Database topics](../framework/database/overview.md).
+This page lists common public APIs, their return values and usage constraints, grouped by use case. For complete parameters, overloads and supporting types, the type declarations of your installed version are authoritative; the database reference chapters are listed at the end of this page. For the development workflow, see the [Application development overview](../developing-apps/overview.md); to learn the mechanisms, see the [Framework overview](../framework/overview.md); for modeling, queries and transactions, see the [Database overview](../framework/database/overview.md).
 
 ## Public import entries
 
@@ -23,7 +21,7 @@ Source directories and npm exports can differ. Import from public entries declar
 
 ## Service containers and dependency injection
 
-Clients and servers use the same service-container concepts, with separate instances in their own runtimes.
+The client and the server share the same service container concepts, and each registers and resolves instances in its own runtime.
 
 | API | Purpose and return value |
 | --- | --- |
@@ -53,9 +51,9 @@ const message = services.resolve(greetingToken).greet('NocoBase');
 // Hello, NocoBase
 ```
 
-A container cannot bind the same token twice. Creating a new token with the same name does not recreate its identity: consumers must import the provider's exported token. Singleton factories are synchronous; perform asynchronous initialization in lifecycle hooks.
+A container cannot bind the same Token twice. A Token recreated with the same name is not the original Token, so consumers must import the original Token exported by the service provider. `singleton` factories are synchronous; do asynchronous initialization in lifecycle hooks.
 
-Use the runtime's existing container in an application. React components resolve services with `useService(token)`; server code commonly uses `app.container.resolve(token)`. React Providers supply component-tree context and are distinct from ServiceProviders. See [ServiceProvider](../extension-development/service-provider.md) for registration and execution order.
+In an application, use the container the runtime already has: client React components get services through `useService(token)`, and server code usually uses `app.container.resolve(token)`. React Providers supply context for the component tree and are not the same thing as the ServiceProviders described here. For registration examples and execution order, see [ServiceProviders and service lifecycle](../extension-development/service-provider.md).
 
 ## Client requests
 
@@ -85,7 +83,7 @@ export async function loadAnnouncements(api: ApiClient) {
 }
 ```
 
-This assumes the application provides an announcements endpoint returning `{ data: [...] }`. `request()` preserves the envelope, and a TypeScript generic does not validate the response. Remote `repository()` calls require matching server endpoints; creating a database table does not expose it over HTTP. The server still handles identity, input validation and data permissions.
+The example assumes the application already provides an announcements endpoint that returns `{ data: [...] }`. `request()` does not strip the `data` wrapper, and a TypeScript generic does not validate the response content. Remote `repository()` calls require matching server endpoints; creating a database table does not expose it over HTTP. The server still handles identity, input validation and data permissions.
 
 ## Server HTTP
 
@@ -98,11 +96,11 @@ This assumes the application provides an announcements endpoint returning `{ dat
 | `apiValidator(target, schema)` | Validate request input |
 | `ApiError` | Throw an API error recognized by the framework |
 
-A route factory receives the application and returns a Hono Router. Register the declaration through an application or plugin extension entry. The usual API prefix is `/api`; account for the application's base path as well.
+A route factory receives the application instance and returns a Hono Router; the declaration must also be connected through an application or plugin extension entry. The API prefix of an ordinary application is `/api`; when the application has a base path, account for that prefix as well.
 
 Import OpenAPI description helpers from `@nocobase/app-server/router` to avoid mixing metadata registries from separate dependency copies. With access checks enabled, the application exposes the UI at `/api/swagger` and the document at `/api/swagger/docs`. Default-template access remains subject to identity and permission checks; these are not automatically anonymous endpoint directories.
 
-See [Routes and HTTP APIs](../developing-apps/apis-and-services.md) and [Plugin server APIs](../extension-development/server-apis.md) for complete examples.
+For complete examples, see [Routes and HTTP APIs](../developing-apps/apis-and-services.md) and, for plugins, [Routes and HTTP APIs](../extension-development/server-apis.md).
 
 ## Configuration
 
@@ -117,7 +115,7 @@ See [Routes and HTTP APIs](../developing-apps/apis-and-services.md) and [Plugin 
 
 ## Database management
 
-Resolve the existing `databaseManagerToken` in an application. Create and release your own DatabaseManager for independent tools or tests.
+In an application, resolve the existing `databaseManagerToken` first. Only standalone tools and tests should create and release their own DatabaseManager.
 
 | API | Return value / purpose |
 | --- | --- |
@@ -146,11 +144,11 @@ Resolve the existing `databaseManagerToken` in an application. Create and releas
 | `deleteOne({ filter, ... })` | Deletion result; specify `select` when a returned record is needed |
 | `createMany`, `updateMany`, `deleteMany` | Bulk results with counts and optionally returned records |
 
-Do not mix awaiting and asynchronous iteration on the same `findMany()` query, or consume it repeatedly. Bulk update and deletion require a filter or explicit `all: true`.
+Do not mix `await` and asynchronous iteration on the same `findMany()` query object, and do not consume it more than once. Bulk updates and deletes require a filter, or an explicit `all: true` for operations on all records.
 
-`context` supplies query variables, not a transaction handle. Obtain Repositories from the callback's transaction connection; an outer connection's Repository does not automatically join it. The Builder's `transaction()` method currently does not start a database transaction either.
+`context` is the context for query variables, not a transaction handle. Inside a transaction, get Repositories from the connection provided to the callback; a Repository from the outer ordinary connection does not join the transaction. The Builder's `transaction()` currently does not start a database transaction either.
 
-Repositories do not infer the current HTTP user. Derive a policy from authorization and apply `withPolicy()` for row and field permissions; a user-supplied filter is not authorization. See [Query and manipulate data](../developing-apps/querying-data.md).
+Repositories do not infer the current HTTP user. For row- and field-level permissions, derive a policy from the authorization result and apply it with `withPolicy()`; a filter supplied by the user is not an authorization policy. For business examples, see [Querying and manipulating data](../developing-apps/querying-data.md).
 
 ## Full declarations and database chapters
 
@@ -167,6 +165,6 @@ Repositories do not infer the current HTTP user. Derive a policy from authorizat
 - [Database events](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db/docs/api-reference/events.md)
 - [Testing tools](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db/docs/api-reference/testing.md)
 
-These links are pinned to Core revision `015404ecd0db` (2026-10-26), including full signatures, export boundaries and known limitations. The [package index](packages.md) links client, HTTP and configuration sources at the same revision. Also inspect your lockfile and locally installed types: packages do not share one version number.
+These links are pinned to Core revision `015404ecd0db` (2026-10-26) and include full signatures, export boundaries and known limitations. The [Core and tool package index](packages.md) links client, HTTP and configuration sources at the same revision. Also inspect your lockfile and locally installed types: packages do not share one version number.
 
 The service, request and configuration examples passed type checking and execution. An in-memory SQLite check also verified single-mutation return values, queries and transaction rollback, using the installed dependencies of default template beta.83 without connecting to external databases.

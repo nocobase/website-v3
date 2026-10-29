@@ -3,14 +3,14 @@ title: 核心包与工具包索引
 description: 按职责查找 NocoBase Core 的运行时、基础库、数据库方言和开发工具。
 ---
 
-本页用于从功能找到包名和公开源码。它是包索引，不是每个应用都需要安装的依赖清单；应用实际依赖以 `package.json` 和锁文件为准。插件清单见[插件索引](plugins.md)，常用接口见 [API 参考](api.md)。
+本页用于根据功能查找包名和公开的源码。它是一份包的索引，而不是每个应用都需要安装的依赖清单；应用实际的依赖以 `package.json` 和锁文件为准。插件清单见 [插件索引](plugins.md)，常用接口见 [API 参考](api.md)。
 
 ## 怎样使用这个索引
 
-- 在应用中优先使用模板已经接入的运行时和服务。
-- 导入包根入口或 `package.json` 中声明的公开子路径，不引用依赖的 `src/`、`dist/` 私有文件。
-- 服务端库进入服务端代码；客户端只能使用声明支持浏览器的入口。
-- 插件提供运行时扩展，UI Registry 提供安装到使用方的可编辑源码，两者分别管理依赖和更新。
+- 在应用中，优先使用模板已经接入的运行时和服务。
+- 导入包的根入口，或 `package.json` 中声明的公开子路径，不要引用依赖中 `src/`、`dist/` 下的私有文件。
+- 服务端的库只用于服务端代码；客户端只能使用声明了支持浏览器的入口。
+- 插件提供运行时扩展，UI Registry 提供安装到使用方的可编辑源码，两者各自管理依赖和更新。
 
 ## 应用运行时
 
@@ -56,7 +56,7 @@ description: 按职责查找 NocoBase Core 的运行时、基础库、数据库�
 | [`@nocobase/db-mssql`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-mssql) | Microsoft SQL Server |
 | [`@nocobase/db-oracle`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-oracle) | Oracle Database |
 
-商业方言包括 `@nocobase/db-dameng`、`@nocobase/db-kingbase` 和 `@nocobase/db-oceanbase`。连接方式、数据库模式与版本核对见[数据库支持与版本兼容](compatibility.md)。
+商业方言包括 `@nocobase/db-dameng`、`@nocobase/db-kingbase` 和 `@nocobase/db-oceanbase`。连接方式、数据库模式和版本核对，见 [数据库支持与版本兼容](compatibility.md)。
 
 ## Agent 与远程命令配套包
 
@@ -90,10 +90,10 @@ description: 按职责查找 NocoBase Core 的运行时、基础库、数据库�
 
 ## 安装与版本
 
-使用项目锁文件复现依赖；升级时同时检查模板、运行时、插件的 peer dependencies 和数据库方言。各包独立编号，版本号不要求相同，不能根据包版本的主版本号判断它属于 NocoBase 2 还是 3。
+请使用项目的锁文件复现依赖；升级时，同时检查模板、运行时、插件的 peer dependencies 和数据库方言。各个包独立编号，版本号不要求相同，也不能根据包的主版本号判断它属于 NocoBase 2 还是 3。
 
-创建项目使用 `pnpm create @nocobase/app@beta`，创建插件使用 `pnpm create @nocobase/plugin@beta`；它们对应的实现包分别是 `@nocobase/create-app` 与 `@nocobase/create-plugin`。应用内命令见[命令行参考](cli.md)。
+创建项目使用 `pnpm create @nocobase/app@beta`，创建插件使用 `pnpm create @nocobase/plugin@beta`，对应的实现包分别是 `@nocobase/create-app` 和 `@nocobase/create-plugin`。应用内的命令见 [命令行参考](cli.md)。
 
 ## 核对范围
 
-包名、位置与职责按 [Core 源码修订 `015404ecd0db`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages) 核对于 2026-10-27。这里不把某个 beta 版本描述为永久兼容基线，安装后的公开入口与类型声明决定可用接口。
+包名、位置和职责于 2026-10-27 按 [Core 源码修订 `015404ecd0db`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages) 核对。本页不把某个 beta 版本描述为永久的兼容基线，可用的接口由安装后的公开入口和类型声明决定。

@@ -1,9 +1,9 @@
 ---
 title: Configuration reference
-description: File and environment precedence, common sections, browser-visible values, custom rules and validation commands.
+description: How configuration files and environment variables override each other, common configuration sections, browser-visible values, custom configuration rules and check commands.
 ---
 
-Applications and integrated modules define configuration together. This page indexes common default-template fields; inspect an installed application's complete metadata with `pnpm nocobase config variables --json`. For the development workflow, see [Application configuration (config.yml)](../developing-apps/configuration-and-settings.md).
+Configuration is defined jointly by the application and the modules connected to it. This page lists the commonly used fields of the default template; for an installed application's complete configuration metadata, run `pnpm nocobase config variables --json`. For the development workflow, see [Application configuration (config.yml)](../developing-apps/configuration-and-settings.md).
 
 ## Files and precedence
 
@@ -25,7 +25,7 @@ Plain objects merge recursively; arrays and scalars are replaced. Environment va
 | `APP_CONFIG_FILE` | Select another configuration file; relative paths resolve from the app root |
 | `dist/variables.json` | Generated deployment configuration metadata, not a backup of secret values |
 
-Run `pnpm nocobase config init --dialect sqlite` in an uninitialized app to generate local configuration and keys from the example. Preserve existing keys when upgrading; reinitialization is not an upgrade procedure.
+In an application that has not been initialized yet, run `pnpm nocobase config init --dialect sqlite`. The command generates local configuration and keys from the example; existing applications should keep their original keys, and reinitializing is not a way to upgrade.
 
 ## Common configuration fields
 
@@ -137,7 +137,7 @@ export default defineAppConfig({
 
 Import and add `announcements` to the existing `defaultAppConfigs({ ... })` in `server/config/index.ts`, and update its explicitly listed return type. Its file key is `announcements.pageSize`, with environment override `ANNOUNCEMENTS_PAGE_SIZE`. `public: ['pageSize']` publishes only that field.
 
-Validators run at startup, reload and `config check`. Validate actual values and avoid network requests or writes. Reloading configuration does not guarantee that existing services automatically adopt new behavior; services must handle updates themselves.
+Validators run at startup, on reload and during `config check`. They should only check the actual values, without making network requests or writing data. Reloading configuration does not guarantee that existing services automatically adopt new behavior; services must handle updates themselves.
 
 ## Editing and checking
 

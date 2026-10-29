@@ -3,7 +3,7 @@ title: Core and tool package index
 description: Find NocoBase Core runtimes, libraries, database dialects and development tools by responsibility.
 ---
 
-Use this index to map a capability to its package and public source. It is not a dependency list that every application must install; the application's manifest and lockfile determine its dependencies. See the [Plugin index](plugins.md) and [API reference](api.md) for plugins and common interfaces.
+Use this index to find the package and public source for a capability. It is a package index, not a list of dependencies every application must install; the application's `package.json` and lockfile determine its actual dependencies. See the [Plugin index](plugins.md) and [API reference](api.md) for plugins and common interfaces.
 
 ## Use this index
 

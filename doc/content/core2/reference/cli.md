@@ -1,9 +1,9 @@
 ---
 title: Command-line reference
-description: Application command entry points, source/deployment differences, configuration, databases, plugins and JSON output.
+description: How to invoke NocoBase 3 application commands, how source and deployment environments differ, and the configuration, database and plugin commands and JSON output.
 ---
 
-This page covers the application's `nocobase` command. Separate tools create apps and plugins or install production releases: see [Create an app](../getting-started/create-app.md), [Create a plugin](../extension-development/create-plugin.md) and [Deploy with PM2](../tutorials/deploy-with-app-installer.md).
+This page covers the application's own `nocobase` command. Creating applications, creating plugins and installing production releases are handled by separate tools; see [Create an app](../getting-started/create-app.md), [Create a plugin](../extension-development/create-plugin.md) and [Deploy with PM2 (app-installer)](../tutorials/deploy-with-app-installer.md).
 
 ## Entry points
 
@@ -22,7 +22,7 @@ node dist/cli/index.js commands
 node dist/cli/index.js config check --no-connect
 ```
 
-Deployment includes runtime commands retained during the build, rather than development commands such as `dev`, source plugin integration or builds. For app-installer installations, use the entry under the release directory described in the deployment guide.
+A deployment only includes the runtime commands kept during the build; development commands such as `dev`, source plugin integration and builds are not part of it. For app-installer installations, use the entry under the release directory described in the deployment guide.
 
 ## Command index
 
@@ -112,7 +112,7 @@ pnpm nocobase plugin register @nocobase/app-plugin-announcements --dry-run
 pnpm nocobase skills sync --dry-run
 ```
 
-The plugin's `package.json` determines its name. Use options such as `--no-install` or `--no-skills` only on commands that support them. Inspect the resulting Client, Server and CLI registration files to establish which runtime entries were integrated. See [Manage plugins](../developing-apps/manage-plugins.md).
+The plugin's `package.json` determines its name. Use options such as `--no-install` or `--no-skills` only on commands that support them. Do not assume one registration takes effect in every runtime; check the generated Client, Server and CLI registration files. See [Manage plugins](../developing-apps/manage-plugins.md).
 
 Synchronized guidance in `.agents/skills/` can be regenerated. Maintain a plugin's distributed Skill in its source `skills/` directory.
 
@@ -126,7 +126,7 @@ pnpm nocobase app orders sync --help
 
 Plugins declare commands through their CLI entries. The namespace normally strips the package scope and `app-plugin-` prefix; collisions fail. A deployment invokes packaged business commands rather than scanning newly added source files.
 
-See [Write application commands](../developing-apps/application-commands.md) for authoring and verification, [Integrate plugin commands](../developing-apps/plugin-commands.md) for application registration, and [Extend the CLI](../extension-development/extend-command-line.md) for plugin implementation.
+See [Write application commands](../developing-apps/application-commands.md) for authoring and verification, [Integrate plugin commands](../developing-apps/plugin-commands.md) for application registration, and [Command-line extensions](../extension-development/extend-command-line.md) for plugin implementation.
 
 `cli link` enables local development of a standalone client; `cli build` packages it for remote business calls. It uses a running application’s HTTP APIs. See [Provide an application CLI client](../developing-apps/cli-client.md) for integration.
 

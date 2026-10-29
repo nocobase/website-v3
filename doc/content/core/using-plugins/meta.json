@@ -30,6 +30,10 @@
       "path": "notifications"
     },
     {
+      "type": "page",
+      "path": "notifications/mail"
+    },
+    {
       "type": "folder",
       "path": "agents-and-knowledge"
     },

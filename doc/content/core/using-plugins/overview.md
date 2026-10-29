@@ -16,8 +16,9 @@ This section covers 22 plugins. Related features are grouped by topic, while oth
 | Users and authentication | [User management](authentication/users.md), [Authentication](authentication/sign-in.md), [API keys](authentication/api-keys.md) | Manage users, sign in and authenticate API requests |
 | Permissions and data access | [Permission management](authorization/permissions.md), [Default data access](authorization/default-access.md), [Sharing rules](authorization/sharing-rules.md), [Restriction rules](authorization/restriction-rules.md) | Control permitted operations and access to records |
 | Database explorer | [Database explorer](data-and-files/database-explorer.md) | Inspect database connections, tables and fields |
-| File management | [File management](data-and-files/file-management.md) | Upload, store and access files |
-| Messages and notifications | [Notifications](notifications/notification.md), [Notification providers](notifications/providers.md), [In-app notifications](notifications/in-app.md), [Web push](notifications/web-push.md), [Email](notifications/mail.md) | Send messages, receive notifications and work with email |
+| Files | [Files](data-and-files/file-management.md) | Upload, store and access files |
+| Notifications | [Notifications](notifications/notification.md), [Notification providers](notifications/providers.md), [In-app notifications](notifications/in-app.md), [Web push](notifications/web-push.md) | Configure notification channels, deliver notifications and integrate inboxes and browser push |
+| Email | [Email](notifications/mail.md) | Send email, synchronize mailboxes and extend mail services |
 | Agents and knowledge | [Agents](agents-and-knowledge/agents.md), [Agent sessions](agents-and-knowledge/agent-sessions.md), [Knowledge base](agents-and-knowledge/knowledge.md) | Use Agents, manage coding sessions and maintain knowledge documents |
 | Approvals (commercial) | [Approvals (commercial)](collaboration/approval.md) | Configure approval policies and handle outcomes |
 | Scheduled tasks | [Scheduled tasks](automation/scheduler.md) | Declare schedules, inspect execution records and enable or disable tasks |

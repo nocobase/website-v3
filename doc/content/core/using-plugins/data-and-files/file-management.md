@@ -1,4 +1,4 @@
 ---
-title: "File management"
+title: "Files"
 status: placeholder
 ---

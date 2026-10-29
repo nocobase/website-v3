@@ -16,8 +16,9 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 | 用户与认证 | [用户管理](authentication/users.md)、[身份认证](authentication/sign-in.md)、[API 密钥](authentication/api-keys.md) | 管理用户、登录应用及认证 API 请求 |
 | 权限与数据访问 | [权限管理](authorization/permissions.md)、[默认数据范围](authorization/default-access.md)、[共享规则](authorization/sharing-rules.md)、[限制规则](authorization/restriction-rules.md) | 控制操作权限和记录访问范围 |
 | 数据库浏览 | [数据库浏览](data-and-files/database-explorer.md) | 查看数据库连接、表和字段 |
-| 文件管理 | [文件管理](data-and-files/file-management.md) | 上传、存储和访问文件 |
-| 消息与通知 | [通知](notifications/notification.md)、[通知渠道](notifications/providers.md)、[站内信](notifications/in-app.md)、[浏览器推送](notifications/web-push.md)、[邮件](notifications/mail.md) | 发送消息、接收通知和处理邮件 |
+| 文件 | [文件](data-and-files/file-management.md) | 上传、存储和访问文件 |
+| 通知 | [通知](notifications/notification.md)、[通知渠道](notifications/providers.md)、[站内信](notifications/in-app.md)、[浏览器推送](notifications/web-push.md) | 配置通知渠道、投递通知并接入收件箱与浏览器推送 |
+| 邮件 | [邮件](notifications/mail.md) | 发送邮件、同步邮箱及扩展邮件服务 |
 | Agents 与知识 | [Agents](agents-and-knowledge/agents.md)、[Agent 会话](agents-and-knowledge/agent-sessions.md)、[知识库](agents-and-knowledge/knowledge.md) | 使用 Agent、管理编码会话和维护知识文档 |
 | 审批（商业） | [审批（商业）](collaboration/approval.md) | 配置审批策略并处理审批结果 |
 | 定时任务 | [定时任务](automation/scheduler.md) | 声明计划任务，查看执行记录和管理启停 |

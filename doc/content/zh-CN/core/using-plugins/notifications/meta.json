@@ -1,5 +1,5 @@
 {
-  "title": "消息与通知",
+  "title": "通知",
   "pages": [
     {
       "type": "page",
@@ -16,10 +16,6 @@
     {
       "type": "page",
       "path": "web-push"
-    },
-    {
-      "type": "page",
-      "path": "mail"
     }
   ]
 }

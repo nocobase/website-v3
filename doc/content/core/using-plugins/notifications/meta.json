@@ -1,5 +1,5 @@
 {
-  "title": "Messages and notifications",
+  "title": "Notifications",
   "pages": [
     {
       "type": "page",
@@ -16,10 +16,6 @@
     {
       "type": "page",
       "path": "web-push"
-    },
-    {
-      "type": "page",
-      "path": "mail"
     }
   ]
 }

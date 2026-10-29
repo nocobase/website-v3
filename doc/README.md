@@ -6,7 +6,7 @@ The source of the NocoBase 3 docs site (`docs.nocobase.com`): an Astro static si
 doc/
 ├── docs.config.ts   Site config: origin, languages (and their interface strings), sections, links, analytics
 ├── content/         The pages, one Markdown file per page; menus in meta.json files
-│   ├── index.md, start/, core/, studio/, guides/   English, mirroring the URLs (served at the site root)
+│   ├── index.md, start/, core/, core2/, studio/, guides/   English, mirroring the URLs (served at the site root)
 │   └── zh-CN/       Simplified Chinese, the same structure as the English tree (served under /zh-CN/)
 ├── figures/         Figure fragments (HTML), referenced from content with ::figure name | caption; figures/en/ has the English versions
 ├── plugins/         remark and rehype plugins (figures, callouts, links, code blocks, tables, images)
@@ -136,6 +136,10 @@ Rules, all checked by the build (the error names the file and the entry):
 ## Tutorials
 
 The Tutorials tab (`guides/`, served at `/guides/` and `/zh-CN/guides/`) holds end-to-end walkthroughs that span Core and Studio. The directory is named `guides` because `tutorials` is one of the v2 redirect prefixes. Its home is the first article, `guides/build-sustainable-enterprise-apps`; the English version is a placeholder until it is translated.
+
+## Core 2 content
+
+Core 2 (`content/core2/` and `content/zh-CN/core2/`, served at `/core2/` and `/zh-CN/core2/`) is a polished rewrite of Core that sits alongside it as its own section (`core2` in `docs.config.ts`, after `core`). It has the same pages, file names and menu structure as Core in both languages, so every `core/<path>` has a `core2/<path>` counterpart; its `meta.json` files are copies of Core's. The rewrite improves wording, terminology, structure and link text, and keeps code blocks, examples, version baselines and verification notes unchanged. Headings that other pages link to keep their anchors. Core itself is not changed by Core 2: edit the two sections separately, and when a Core page changes, apply the same change to its Core 2 counterpart until one of them is retired. Core 2 has no redirects of its own, because it has no former URLs.
 
 ## Core content
 

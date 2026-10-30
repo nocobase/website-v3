@@ -1,15 +1,14 @@
 ---
 title: Accept the agent's work
-metaDescription: Using a "needed by" date on device requests as the example, have the agent report automated checks and hands-on use separately, run it yourself with existing data, review the changes, and send it back with steps to reproduce and the expected result when something is wrong.
+metaDescription: Using a "needed by" date on device requests as the example, read the agent's report, run it yourself with existing data, review the changes, and send it back with steps to reproduce and the expected result when something is wrong.
 ---
 
 This chapter adds a "needed by" date to device requests and goes through acceptance and sending work back.
 
-## 1. Ask for separate reports in the request
+## 1. Raise the request
 
 ```prompt
 Add an optional "needed by" date to device requests. It cannot be earlier than today, and it shows in the list and the details. Requests already submitted stay empty.
-When done, report separately: which automated checks you ran; which account you used, what you did and what you saw, with screenshots; what was not verified.
 ```
 
 The agent's report:

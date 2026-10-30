@@ -3,125 +3,94 @@ title: Create an app
 description: Create a local NocoBase 3 application, start it and sign in as an administrator.
 ---
 
-By the end of this guide, you will have:
+## Before you start
 
-- A `my-app/` project directory containing application source, `AGENTS.md` and package-provided skills, ready to commit to Git.
-- A locally running application you can sign in to as an administrator.
-
-SQLite is the default, so no separate database installation is needed. Choose either approach below: let an agent do the work or run the commands yourself. Both use the same creation tool and produce the same result.
-
-## Prepare
-
-| Requirement | Details |
+| Requirement | Check or details |
 | --- | --- |
-| Node.js 24 or later | Check with `node --version`. Install with `nvm install 24` or `fnm install 24` |
-| pnpm 11 | Check with `pnpm --version`. Install with `corepack enable && corepack prepare pnpm@11 --activate` or `npm install -g pnpm@11` |
-| Unix-like terminal | Use macOS or Linux directly, or WSL on Windows. The commands below do not work in PowerShell or cmd |
-| Coding tool (for the agent approach) | A coding tool that supports skills, such as Claude Code or Codex |
+| Node.js 24 or later | Run `node --version` |
+| pnpm 11 | Run `pnpm --version` |
+| Unix-like terminal | Use macOS or Linux directly, or WSL on Windows. The commands use Bash-compatible shell syntax |
 
-After installing or upgrading Node.js or pnpm, open a new terminal to ensure the new versions take effect.
+To create the application with an agent, you also need a coding tool that supports Skills, such as Claude Code or Codex.
 
-## With an agent
+<details>
+<summary>Install or upgrade Node.js and pnpm</summary>
 
-**1. Install the app creation skill.** Run this in a terminal and select your coding tool when prompted:
+If you already manage Node.js with nvm or fnm, run `nvm install 24` or `fnm install 24`. Install pnpm 11 with:
+
+```bash
+npm install -g pnpm@11
+```
+
+After installing or upgrading, open a new terminal and run the checks in the table to confirm the versions.
+
+</details>
+
+For a local trial, SQLite needs no separate database installation. To use PostgreSQL or another database, have the database service, database name and connection account ready. The account must be able to create the application's tables.
+
+## Create and start the application
+
+Choose either [With an agent](#with-an-agent) or [From the command line](#from-the-command-line).
+
+The examples use `my-app` as both the application name and directory name. You can choose another name: start with a lowercase letter or digit and use only lowercase letters, digits, dots, dashes and underscores. The target directory must be new or empty.
+
+### With an agent
+
+**1. Install the app creation Skill.** Run this in a terminal and select your coding tool when prompted:
 
 ```bash
 npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 ```
 
-`-g` installs the skill globally so it is available from any directory.
+`-g` installs the Skill globally, making it available when you create applications in other directories too.
 
-**2. Start an agent session in an empty directory.** Create a directory such as `my-app`; its name becomes the application name. Start a new agent session there so it loads the newly installed skill.
+**2. Open an empty directory and start a new agent session.** For example:
 
-**3. Describe what you want:**
-
-```text
-Create a NocoBase 3 application in the current directory for local development, using SQLite.
-Start it when ready and tell me the URL and the initial sign-in account.
+```bash
+mkdir my-app
+cd my-app
 ```
 
-The agent checks Node.js and pnpm versions, creates the project, generates and checks configuration, starts the application and confirms the URL opens. It should then tell you:
+Open this directory in your coding tool and start a new session so it loads the Skill you just installed.
 
-- The application URL and initial sign-in account.
-- How to start the application again later.
-- Whether you can continue development in the current session.
+**3. Describe what you want.**
 
-If Node.js or pnpm is missing, the agent explains what is missing and how to install it; it does not install them itself. Name another database, such as PostgreSQL, in your request if needed. Do not send database passwords in the conversation: put them in environment variables and tell the agent the variable names.
+```prompt
+Create a NocoBase 3 app in the current directory for local development. Start it when ready and tell me the URL and sign-in details.
+```
 
-An application started by an agent session stops when that session ends. Run `pnpm dev` in the application directory to start it again.
+**4. Answer setup questions and wait for startup.** The agent checks the environment and asks which database to use. For a local trial, answer “Use SQLite.” For an existing database, provide its type and connection details. Supply the password through an environment variable and tell the agent its name, rather than sending the password in the conversation. If you want a custom initial administrator account, say so before the first startup too.
 
-For further development, start an agent session in the application directory. Its `AGENTS.md` and `.agents/skills/` match the installed version and take over from the app creation skill.
+Once the agent has created the application, checked configuration and started it, [sign in](#sign-in-and-check-the-application) at the complete URL it provides.
 
-## Without an agent
+### From the command line
 
-### 1. Create the project
-
-Run this from the directory where you want to keep the project:
+**1. Create the project and enter its directory.** Run this from the directory where you want to keep the project:
 
 ```bash
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
+cd my-app
 ```
 
-The tool creates `my-app/`, downloads the application template, installs dependencies and synchronizes their skills to `.agents/skills/`.
+The tool downloads the application template, installs dependencies and synchronizes their Skills to `.agents/skills/`.
 
-- `my-app` is both the directory name and application name. The directory must be new or empty. Its name must start with a lowercase letter or digit and contain only lowercase letters, digits, dots, dashes and underscores. You cannot use `.` for the current directory.
-- `@beta` selects the latest beta creation tool, and `--template-tag=beta` selects the latest beta application template. Both are required.
-- `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows pnpm to install newly published versions for this command only, without changing your pnpm configuration.
+Keep both `@beta` and `--template-tag=beta`: they select the beta channels for the creation tool and application template respectively. `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows newly published versions for this command only. The creation tool does not accept `.` in place of an application name.
 
-### 2. Generate configuration
+**2. Generate and check configuration.** The following uses SQLite as an example. For another database, use the commands in the expandable section below instead.
 
 ```bash
-cd my-app
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check
 ```
 
-`config init` generates `config.yml` from `config.example.yml`, including encryption keys. This machine-specific file contains secrets and is already ignored by Git. Do not commit or share it. Running the command again on a configured application leaves the existing file unchanged.
+`config init` generates `config.yml` and encryption keys from `config.example.yml`, without overwriting existing configuration. `config.yml` contains local settings and secrets and is already ignored by Git. Do not commit or share it.
 
-`config check` loads configuration as startup would and reports missing keys, unknown settings and other problems. Follow its guidance until the check passes.
+`config check` checks the configuration and, for databases other than SQLite, connectivity. Resolve any issues it reports before starting the application.
 
-> [!NOTE]
-> The initial administrator account comes from `users.initialAdmin` in `config.yml`. To choose your own username and password, change them before the first startup. Changing this setting later does not update an existing account.
+<details>
+<summary>Use PostgreSQL or another database</summary>
 
-### 3. Start the application
-
-```bash
-pnpm dev
-```
-
-On first startup, the application creates tables and initial data, including the administrator account. Wait for the terminal to print a line beginning with `Local:`, which means the application is ready.
-
-Open the complete URL from that line, keeping the trailing `/main/` or other application path. If the default port is occupied, another is selected automatically, so use the printed URL rather than constructing one yourself.
-
-Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the application. Next time, run `pnpm dev` from its directory to restart it.
-
-## Sign in
-
-If you have not changed `users.initialAdmin`, use the default administrator:
-
-| Username | Email | Password |
-| --- | --- | --- |
-| `nocobase` | `admin@nocobase.com` | `admin123` |
-
-You can sign in with either the username or email. Change the default password promptly, especially if others can access the application.
-
-**Done when**: You can sign in as an administrator and see the application home page.
-
-## Commit the first version
-
-Commit the new project to Git now so you can see exactly what each subsequent agent change modifies:
-
-```bash
-git init
-git add -A
-git commit -m "chore: create app"
-```
-
-The template's `.gitignore` excludes `config.yml`, SQLite database files, `storage/`, `node_modules/` and synchronized `.agents/skills/`. Commit `.agents/rules/`, which contains application-owned rules.
-
-## Use another database
-
-SQLite suits local development and evaluation. To use the same database locally as in production, complete the following before first startup, replacing the commands in step 2. For PostgreSQL:
+Install the appropriate driver in the application directory, then generate configuration. For PostgreSQL, use these commands instead of the SQLite configuration commands above:
 
 ```bash
 pnpm add @nocobase/db-postgres@beta
@@ -129,40 +98,87 @@ pnpm nocobase config init --dialect postgres
 pnpm nocobase config check
 ```
 
-When run in a terminal, `config init` prompts for the host, database name, username and password without echoing the password. It tests the connection before writing configuration. If the driver is missing, it writes no files and provides the required `pnpm add` command.
+In an interactive terminal, `config init` prompts for connection details without echoing the password, then tests the connection. If it fails, check the database service, address and credentials. Even if you choose to save the configuration, wait for `config check` to pass before starting. If the driver is missing, the command writes no configuration and provides the required installation command.
 
-| Database | Driver package | `--dialect` |
-| --- | --- | --- |
-| PostgreSQL | `@nocobase/db-postgres` | `postgres` |
-| MySQL, MariaDB | `@nocobase/db-mysql` | `mysql` |
-| SQL Server | `@nocobase/db-mssql` | `mssql` |
-| Oracle | `@nocobase/db-oracle` | `oracle` |
+For other drivers, `--dialect` values and version requirements, see [Database support and compatibility](../reference/compatibility.md).
 
-If `config.yml` already exists, `config init` will not overwrite it. Use `pnpm nocobase config set` to update fields under `database.connections.main`. Read passwords from environment variables with `--from-env` to keep them out of command history:
+If `config.yml` already exists, running `config init` again will not switch databases. Install the target driver, update the connection using [Database configuration](../reference/configuration.md#database-configuration), then run `config check` again. When updating a password through the CLI, use [`config set --from-env`](../reference/configuration.md#editing-and-checking) to read it from an environment variable. Switching databases does not migrate existing data.
+
+</details>
+
+> [!NOTE]
+> To customize the initial administrator account, edit `users.initialAdmin` in `config.yml` before the first startup, then run `pnpm nocobase config check` again.
+
+**3. Start the application.**
 
 ```bash
-pnpm nocobase config set --from-env database.connections.main.password=MY_APP_DB_PASSWORD
+pnpm dev
 ```
 
-Changing databases does not migrate existing data. See [Database support and compatibility](../reference/compatibility.md) for supported versions and [Configuration reference](../reference/configuration.md) for all settings.
+On first startup, the application creates tables and initial data, including the administrator account. Wait for the terminal to print a line beginning with `Local:`, then open its complete URL, keeping the trailing `/main/` or other application path. If the default port is occupied, another is selected automatically, so use the printed address.
+
+## Sign in and check the application
+
+If you have not customized the initial administrator account, sign in with:
+
+| Username | Email | Password |
+| --- | --- | --- |
+| `nocobase` | `admin@nocobase.com` | `admin123` |
+
+You can sign in with either the username or email. Change the default password after signing in, before allowing others to access the application. `users.initialAdmin` only creates the initial administrator; changing it does not reset an existing account's password.
+
+**Done when**: You can open the application, sign in as an administrator and see the home page.
+
+For an application you started manually, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in its terminal to stop it. If an agent started it, you can ask the agent to stop it. Once the process has stopped, run the following in the application directory to restart it, then use the newly printed URL:
+
+```bash
+pnpm dev
+```
+
+## Start developing
+
+Continue development in the application directory, with the agent loading its `AGENTS.md` and `.agents/skills/`. These match the installed version. Start a new session if the current one has not loaded them.
+
+Before making changes, commit the initial code to Git so you can review and revert later changes.
+
+<details>
+<summary>Save the first Git commit</summary>
+
+With Git installed, open another terminal in the application directory and run:
+
+```bash
+git init
+git add -A
+git diff --cached --stat
+git commit -m "chore: create app"
+```
+
+Check the staged files before committing. The template's `.gitignore` excludes `config.yml`, SQLite database files, `storage/`, `node_modules/` and synchronized `.agents/skills/`. Commit `.agents/rules/`, which contains application-owned rules.
+
+</details>
+
+Next, follow [Build your first app](../tutorials/build-your-first-app.md) to add task management with an agent. See [Project structure](project-structure.md) to find your way around the code, or [Develop with an agent](../developing-apps/develop-with-an-agent.md) for describing requirements and checking results.
 
 ## Troubleshooting
 
 | Symptom | Action |
 | --- | --- |
-| Node.js is older than 24, or creation reports `NODE_UNSUPPORTED` | Upgrade Node.js, open a new terminal and retry |
-| No matching version is found, or the newest version is not installed | Confirm the command starts with `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` |
-| Template download fails | Check the network and npm registry. The project has not been created, so retry directly |
-| Dependency installation fails | The project directory exists. Run `pnpm install` there instead of recreating it |
-| `Could not locate the bindings file` | No prebuilt `better-sqlite3` binary matches the platform. Install a C++ toolchain, add `better-sqlite3: true` under `allowBuilds` in `pnpm-workspace.yaml`, then run `rm -rf node_modules && pnpm install` |
-| Skill synchronization fails | The application can still run. Retry with `pnpm nocobase skills sync` in its directory |
-| `pnpm dev` reports the application is not configured | Run `config init` and `config check` from step 2 |
-| The browser cannot find the page | Use the complete `Local:` URL printed by `pnpm dev`, including the port and trailing `/main/` |
-| Changing `users.initialAdmin` does not change the sign-in password | This setting only creates the initial administrator; it does not reset an existing account. See [FAQ](../reference/faq.md#why-did-changing-the-initial-administrator-password-not-update-an-account) |
+| Node.js or pnpm has the wrong version, or `NODE_UNSUPPORTED` appears | Upgrade to the [required versions](#before-you-start), then confirm them in a new terminal |
+| A version cannot be found or the template download fails | Check the network, npm registry and the creation command's `@beta`, `--template-tag=beta` and `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0`. A failed download has not created the project, so you can retry directly |
+| Dependency installation fails | Run `pnpm install` in the existing application directory rather than recreating it. See below for SQLite driver errors |
+| Configuration checks fail, or startup reports missing configuration | Run `config init` if no configuration exists. Otherwise, run `config check` and use its output to fix settings or connection details. See [Configuration reference](../reference/configuration.md) |
+| The browser cannot open the application | Confirm the process is still running and use the complete startup URL, including its port and any path such as `/main/` |
+| New initial administrator settings do not let you sign in with the new password | Configuration does not reset existing accounts. See [FAQ](../reference/faq.md#why-did-changing-the-initial-administrator-password-not-update-an-account) |
+| Skill synchronization fails | Retry with `pnpm nocobase skills sync` in the application directory. The application itself can still run |
 
-## Next steps
+<details>
+<summary>The SQLite driver reports Could not locate the bindings file</summary>
 
-- [Project structure](project-structure.md): find pages, APIs, tables and tests.
-- [Build your first app](../tutorials/build-your-first-app.md): build a team task application with an agent.
-- [Develop with an agent](../developing-apps/develop-with-an-agent.md): describe requirements and check results.
-- When you are ready to deploy, see [Choose a deployment method](../deployment/choose-a-deployment-method.md).
+If no usable prebuilt `better-sqlite3` binary matches the platform, install a C++ toolchain, including make, a C++ compiler and Python. Set `better-sqlite3` to `true` under `allowBuilds` in the application's `pnpm-workspace.yaml`, then reinstall dependencies from the application directory:
+
+```bash
+rm -rf node_modules
+pnpm install
+```
+
+</details>

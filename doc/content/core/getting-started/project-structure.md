@@ -3,114 +3,121 @@ title: Project structure
 description: Find the pages, APIs, migrations, tests and plugins in your application.
 ---
 
-After [Create an app](create-app.md), you have an independent application. Most business development happens in `client/`, `server/`, `database/` and `tests/`.
-
 ## Directory overview
 
-This overview includes directories generated during installation, development or builds. Exact files depend on your template version.
+[Creating an app](create-app.md) gives you source code you can edit directly. The following shows common development locations in the default application template. Configuration, installed dependencies and build output appear after their respective setup steps.
 
 ```text
 my-app/
-├── .agents/             # Agent rules and Skills
-├── cli/                 # Application commands
-├── client/              # Pages and UI
-├── database/            # Migrations and seeds
-├── dist/                # Build output (generated)
-├── node_modules/        # Installed dependencies (generated)
-├── packages/            # Local plugins, shared packages and UI assets (optional)
+├── client/              # Pages, components and client logic
+├── server/              # APIs and business services
+├── database/            # Migrations and seeds, grouped by connection
+├── cli/                 # Application commands and CLI plugins
+├── tests/               # Tests and test helpers
 ├── public/              # Static assets
-├── server/              # APIs and services
-├── storage/             # Runtime data (generated)
-├── tests/               # Application tests
+├── packages/            # Local workspace packages (optional)
+├── .agents/
+│   ├── rules/           # Project-owned Agent rules
+│   └── skills/          # Synchronized dependency Skills (generated)
 ├── AGENTS.md            # Agent guidance entry
 ├── config.example.yml   # Configuration example
-├── config.yml           # Local configuration
+├── config.yml           # Local configuration (generated during setup)
 ├── package.json         # Scripts and dependencies
-└── pnpm-workspace.yaml  # Workspace package directories
+├── pnpm-lock.yaml       # Resolved dependency versions
+├── pnpm-workspace.yaml  # Workspace settings
+├── node_modules/        # Installed dependencies (generated)
+├── dist/                # Build output (generated)
+└── storage/             # Runtime data
 ```
 
-## Where business code belongs
+Directories vary with the template version and application features. Create optional directories such as `packages/` when needed, rather than adding empty directories to match the tree.
 
-| Directory | What you write |
+## Where pages, APIs and data belong
+
+| Change | Main location | How it connects to the application |
+| --- | --- | --- |
+| Add a page or menu item | `client/pages/` | Register the route and navigation in `client/routes.ts` |
+| Reuse UI components or interaction logic | `client/components/`, `client/hooks/` | Import them from pages or other components |
+| Change layouts, themes or interface text | `client/layouts/`, `client/theme/`, `client/locales/` | Edit the corresponding layout, theme or language resources |
+| Add static assets such as images | `public/` | Reference their URLs in pages or styles |
+| Add an HTTP API | `server/routes/` | Register it in `server/routes/index.ts` |
+| Extract a business service | Create `server/services/` as needed | Call it from routes; use `server/providers/` when it needs service registration and lifecycle management |
+| Create or change database tables | `database/main/migrations/` | Add a migration for the application to execute |
+| Prepare initial data | `database/main/seeds/` | Add initialization logic |
+| Add an application command | Create `cli/commands/` as needed | Follow the application's CLI command directory conventions |
+
+Connect pages and APIs to their registration entries: adding a file alone does not make it accessible. UI source installed in `client/extensions/` also belongs to the application and connects to pages or components through imports.
+
+`database/` groups resources by connection name; `main` is the default connection. Keep migrations that have already run and add new ones for later schema changes. See [Tables and initial data](../developing-apps/data-models-and-migrations.md) for implementation details.
+
+For example, task management typically involves a table migration, API routes, a page and the corresponding registration files. Follow [Build your first app](../tutorials/build-your-first-app.md) to see how these locations fit a working feature.
+
+## Configuration, dependencies and plugins
+
+### Configuration files
+
+| Location | Purpose |
 | --- | --- |
-| `client/pages/` | Pages, registered in `client/routes.ts` with their navigation and permissions |
-| `client/components/`, `client/hooks/` | Reusable components and hooks |
-| `client/locales/` | Application text in English and Chinese |
-| `server/routes/` | API endpoints, registered through `index.ts` |
-| `server/providers/` | Service registration and lifecycle; business implementations can be extracted into `server/services/` as needed |
-| `server/config/` | Application configuration definitions |
-| `database/main/migrations/` | Schema changes for the default database connection |
-| `database/main/seeds/` | Required initial data |
-| `cli/commands/` | Application-specific commands, when needed |
+| `config.example.yml` | A configuration example to commit, without real credentials |
+| `config.yml` | Database connections, secrets and other settings for the current environment; keep it out of Git |
+| `server/config/` | Configuration defaults, validation and environment variable mappings defined in code |
 
-Add a new migration when changing a schema. The generated `database/main/collections/` directory is a schema snapshot; do not edit it. Layouts and themes live in `client/layouts/` and `client/theme/`.
+Use `config.yml` to change connection details for the current environment. Update definitions in `server/config/` when adding configuration options for your business logic. See [Application configuration](../developing-apps/configuration-and-settings.md) for loading behavior and commands.
 
-## Local packages and source assets
+### Dependencies and plugin registration
 
-Use `packages/` for local plugins, shared packages or independent UI Registry packages as needed, and configure workspace package directories in `pnpm-workspace.yaml`. An application does not need all three:
+`package.json` contains development, test and build scripts alongside dependency declarations. `pnpm-lock.yaml` records resolved dependency versions and belongs in source control.
 
-```tree
-packages/
-├── app-plugin-<name>/   # Runtime plugin
-├── <name>-ui/           # UI Registry source assets (optional)
-└── <shared-package>/    # Shared package (optional)
-```
+The template provides capabilities such as users, authentication, authorization and files through plugins. `package.json` shows which packages are installed; the registration files show which contributions are connected:
 
-Connect a plugin's Client, Server and CLI entries to the application. UI Registry packages build source assets that consumers add as needed. See [Plugin structure](../extension-development/plugin-structure.md) and [Publish UI source assets](../extension-development/frontend-components.md#optionally-distribute-ui-source-assets) for these delivery workflows.
-
-## Preinstalled plugins
-
-The template declares shared capabilities in `package.json`. The table omits the common `@nocobase/app-plugin-` prefix. For example, `users` means `@nocobase/app-plugin-users`. This list reflects the tutorial's generated template; check your own manifest for differences.
-
-| Package | Purpose |
+| File | Registration |
 | --- | --- |
-| `agents` | Agents, model providers, conversations and runs |
-| `api-keys` | API key authentication |
-| `authentication` | Sign-in and authentication |
-| `authorization` | Authorization and permission management |
-| `authz-default-access` | Default data access scopes |
-| `authz-restriction-rules` | Data access restrictions |
-| `authz-sharing-rules` | Data sharing rules |
-| `database-explorer` | Read-only database inspection |
-| `file` | File storage, upload and access |
-| `foundation` | Installed Core capabilities and runtime information |
-| `i18n` | Interface language switching |
-| `knowledge` | Document spaces, search and versions |
-| `mail` | Sending mail and synchronizing mailboxes |
-| `notification` | Notification storage, delivery and logs |
-| `notification-in-app` | In-app notifications and inbox |
-| `notification-providers` | Built-in notification delivery providers |
-| `scheduler` | Scheduled jobs |
-| `template-print` | Template printing development Skill |
-| `users` | User management APIs and pages |
+| `client/plugins.ts` | Client plugins |
+| `server/plugins.ts` | Server plugins |
+| `cli/plugins.ts` | CLI plugins |
 
-**Installed does not mean registered.** Dependencies live in `package.json`; `client/plugins.ts`, `server/plugins.ts` and `cli/plugins.ts` register the respective contributions. A plugin may not provide all three entry points. The reference application does not register `agents`, `knowledge` or `template-print` in these lists. `template-print` is a development dependency supplying Agent guidance, not an automatically enabled printing page.
+A plugin may not provide all three entries, and some packages supply only development Skills. Installing dependencies, registering plugins and integrating pages are separate steps. See [Manage plugins](../developing-apps/manage-plugins.md) for instructions and the [Plugin index](../reference/plugins.md) for individual capabilities.
 
-## Tests
+Keep local plugins or shared packages in `packages/` and configure workspace package directories in `pnpm-workspace.yaml`. You can also maintain a UI Registry package there when distributing UI source assets independently. See [Project directory and file conventions](../reference/project-conventions.md#local-plugins-shared-packages-and-ui-assets) for the detailed structure.
 
-The current getting-started example uses default template `1.0.0-beta.81`. Organize tests by the code they verify:
+## Where tests belong
 
-```text
-tests/
-├── client/              # Pages, components and client logic
-├── server/              # APIs, services and permissions
-├── database/            # Migrations and seeds
-├── cli/                 # Commands (optional)
-├── project/             # Project configuration and builds
-├── fixtures/            # Test data and fixture applications
-├── helpers/             # Shared test helpers
-├── setup/               # Test environment setup
-└── playwright/          # Browser tests (optional)
-```
+Tests live in `tests/`, organized by the code they verify:
 
-Run `pnpm test` for Vitest tests and `pnpm test:e2e` separately for browser tests. Older projects may still use `tests/components/` and `tests/logic/`; follow your installed template and its configuration. Prefer real services and isolated databases, using mocks only where necessary. See [Testing and acceptance](../developing-apps/testing-and-acceptance.md) for details.
+| Directory | Contents |
+| --- | --- |
+| `tests/client/` | Pages, components and client logic |
+| `tests/server/` | APIs, services and permissions |
+| `tests/database/` | Migrations, initial data and database behavior |
+| `tests/cli/` | Application commands; create as needed |
+| `tests/project/` | Project configuration and builds |
+| `tests/fixtures/`, `tests/helpers/`, `tests/setup/` | Test data, shared helpers and environment setup |
+| `tests/playwright/` | Browser interaction tests; create as needed |
 
-## Configuration and Agent guidance
+Run `pnpm test` from the application root for Vitest tests. Browser tests use `pnpm test:e2e` and require a running application and sign-in details as specified in the test configuration. See [Testing and acceptance](../developing-apps/testing-and-acceptance.md) for setup instructions.
 
-`config.example.yml` documents the available configuration. Initialization generates `config.yml` with local database settings and secrets; keep it out of Git. `package.json` contains scripts and dependencies.
+Existing projects may use different directories; follow their `vitest.config.ts` and `playwright.config.ts`. Check the actual test count in the report: a successful exit with no tests does not verify the feature.
 
-`AGENTS.md` is the Agent entry point. Application rules live in `.agents/rules/`. Dependencies synchronize `.agents/skills/`; do not edit those generated files. `node_modules/`, `storage/` and `dist/` hold dependencies, runtime data and build output respectively.
+## Guidance the agent reads
 
-## Next step
+`AGENTS.md` is the entry point for application development guidance. Distinguish project-owned conventions from Skills supplied by dependencies:
 
-Follow [Build your first app](../tutorials/build-your-first-app.md) to add task management and explore the key code behind it.
+| Location | Maintenance |
+| --- | --- |
+| `AGENTS.md`, `.agents/rules/` | Maintain and commit the project's development conventions with its source |
+| `.agents/skills/` | Synchronized from dependencies; do not edit or commit these copies |
+
+Add business conventions to the project guidance. Run `pnpm nocobase skills sync` in the application directory to refresh Skills from dependencies. See [Develop with an agent](../developing-apps/develop-with-an-agent.md#keep-project-conventions) for details.
+
+## Generated files and runtime data
+
+The following are not maintained as business source code:
+
+| Location | How to manage it |
+| --- | --- |
+| `node_modules/` | Install and update through the package manager; do not edit dependency files directly |
+| `dist/` | Generate with `pnpm build`; change source code and rebuild |
+| `database/<connection>/collections/` | Database structure snapshots; update with `pnpm nocobase collections generate` rather than editing by hand |
+| `storage/` | Runtime data that may include uploads, logs or database files; preserve and back it up according to the configuration |
+
+The connection configuration determines where SQLite stores its database, which may also be in the application root. Do not delete database files or business data in `storage/` as though they were build caches. See [Project directory and file conventions](../reference/project-conventions.md) for the complete path reference.

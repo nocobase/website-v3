@@ -9,7 +9,7 @@ For the coding tool, use a common coding agent such as Codex, Claude Code or Ope
 
 ## Choose a model
 
-As of late 2026, the recommended models are the top models in the Claude and GPT families, and DeepSeek among Chinese models:
+As of late 2026, the recommended models are the top models in the Claude and GPT families, and DeepSeek among open-source models:
 
 | Model | Strengths |
 | --- | --- |

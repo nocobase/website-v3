@@ -27,7 +27,7 @@ Agent 开发完会自己运行测试，在浏览器里逐项验收并截图，�
 
 打开 Agent 给出的地址，侧边栏出现 **Customers**。在这里可以新建客户、指定负责销售和下次跟进日期、更新状态，也可以搜索和筛选：
 
-![客户列表，包含状态、负责销售、下次跟进日期和分页。](/assets/core/tutorials/customers/customer-list.png)
+![客户列表，包含状态、负责销售、下次跟进日期和分页。](/assets/core/tutorials/crm/customer-list-en.png)
 
 截图来自示例应用。同一段需求每次做出来的布局可能不同。
 
@@ -67,6 +67,8 @@ my-app/
 │   └── locales/         # 界面文案
 └── tests/               # 迁移、接口、页面和浏览器测试
 ```
+
+查看 [CRM 完整示例代码](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm)，或[下载 ZIP](/assets/core/downloads/crm-source-8ad9530.zip)。安装和运行步骤见项目 [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD)。
 
 ## 下一步
 

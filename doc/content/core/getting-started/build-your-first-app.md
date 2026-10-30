@@ -27,7 +27,7 @@ When development is complete, the agent runs tests, checks the application in a 
 
 Open the URL the agent provides. **Customers** appears in the sidebar. You can create customers, assign sales owners and follow-up dates, update statuses, search and filter:
 
-![Customer list with statuses, sales owners, follow-up dates and pagination.](/assets/core/tutorials/customers/customer-list.png)
+![Customer list with statuses, sales owners, follow-up dates and pagination.](/assets/core/tutorials/crm/customer-list-en.png)
 
 The screenshot comes from the example application. The same request may produce different layouts each time.
 
@@ -67,6 +67,8 @@ my-app/
 │   └── locales/         # Interface text
 └── tests/               # Migration, API, page and browser tests
 ```
+
+Browse the [complete CRM example](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm) or [download the ZIP](/assets/core/downloads/crm-source-8ad9530.zip). See the [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD) for setup and run instructions.
 
 ## Next step
 

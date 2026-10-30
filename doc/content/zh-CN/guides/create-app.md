@@ -18,8 +18,7 @@ npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 新建一个空目录 `itam-lite`，在里面开启 Codex 会话：
 
 ```prompt
-在当前目录创建一个 NocoBase 3 应用，用于本地开发，数据库用 SQLite。
-创建好后启动它，告诉我访问地址和首次登录的账号。
+在当前目录创建一个 NocoBase 3 应用，数据库用 SQLite。启动后告诉我访问地址和登录账号。
 ```
 
 Agent 检查 Node.js 和 pnpm 的版本，创建项目、安装依赖、生成配置，然后启动应用，给出地址（例如 `http://127.0.0.1:13000/main/`）和账号。手动创建的方式和遇到的问题见 [Core 的创建应用](../core/getting-started/create-app.md)。

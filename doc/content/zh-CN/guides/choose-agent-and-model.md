@@ -22,8 +22,7 @@ metaDescription: 选好编码工具和模型。
 评审代码时换另一家厂商的模型，更容易发现问题。例如 Codex 用 GPT 写的功能，开一个 Claude Code 会话让 Opus 评审：
 
 ```prompt
-请评审当前未提交的改动（git diff）。先阅读 AGENTS.md，按项目的约定检查缺陷、安全、权限和测试。
-只指出问题和修改建议，按严重程度排序，不要直接修改代码。
+评审当前未提交的改动，按 AGENTS.md 的约定找问题，按严重程度列出，不要改代码。
 ```
 
 Studio 的评审也是这样安排的，见 [检查与评审](../studio/project/checks-and-review.md#评审)。

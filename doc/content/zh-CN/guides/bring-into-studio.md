@@ -21,8 +21,7 @@ itam-lite 上线后，你在本地同时开几个 Codex 会话迭代：在终端
 在 itam-lite 的目录里对 Codex 说：
 
 ```prompt
-用 nb-studio 在 Studio 里新建一个项目 itam-lite，描述写“IT 资产管理：设备台账、领用与审批”，代码位置选已有仓库，关联当前目录对应的 itam-lite 仓库，初始化方式选“不初始化”。
-做完告诉我项目页的地址。
+用 nb-studio 在 Studio 里新建项目 itam-lite，关联当前仓库，不初始化。做完告诉我项目地址。
 ```
 
 其他选项见 [新建项目](../studio/setup/new-project.md)。

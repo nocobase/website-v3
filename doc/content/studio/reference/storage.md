@@ -76,7 +76,7 @@ Studio and the preview Host must reach artifact storage. When a file disk genera
 
 Artifacts default to a 256 MiB limit, adjustable with `releases.maxArtifactSizeMB`. Large uploads are also limited by the reverse proxy and `API_BODY_LIMIT`.
 
-## Switch and verify storage
+## Change storage and verify access
 
 Changing disks does not migrate existing files. Copy files and preserve their keys before switching. Adding a prefix does not move older artifacts. Keep Studio's `storage` directory persistent even when using object storage.
 

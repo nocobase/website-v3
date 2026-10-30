@@ -1,0 +1,91 @@
+# Studio 后续模块交接
+
+## 分支
+
+- 已校对内容快照：`docs/studio-intro-setup`，提交 `b563a46`。
+- 后续模块：`docs/studio-complete-guide`，从上述快照创建。
+- 两个分支均保留在本地；尚未推送或创建 PR。先合并快照分支，再提交后续模块分支，可避免重复审阅前一批变更。
+
+## 完成范围
+
+完成 42 篇文章的中英文版本，共 84 页。包括成员使用、任务开发、项目管理、Agent 管理、质量管理、发布交付、管理与参考。新增质量计划、质量跟进、验收标准三篇；同步菜单、链接和 README。
+
+新增 78 张截图，两种语言各 39 张。均为真实应用界面的 1440 × 900 视口截图，使用独立的中英文演示实例与示例数据。英文示例已去除中文内容；没有展示真实令牌或私有镜像地址。图片通过现有 PicGo 配置上传到 `static-docs.nocobase.com`。
+
+功能说明核对 Studio 源码 `f345a7bd`、仓库说明和界面。截图实例基于现有 beta.71 演示副本。截图中的任务、运行记录、检查结果和版本是演示数据，不代表本轮执行过真实开发、CI 或生产部署。
+
+## 逐页状态
+
+“已核对”指功能说明已对照源码、已有说明或可用界面；涉及真实外部服务的验证边界见下文。
+
+| 页面 | 功能核对 | 中文 | 英文 | 配图 |
+| --- | --- | --- | --- | --- |
+| `admin/api-keys.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `admin/environments.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `admin/members-and-roles.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
+| `admin/notifications.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `admin/upgrade-and-backup.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `configure/agents.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
+| `configure/checks.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `configure/git.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `configure/runtimes.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `join/connect-computer.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `join/index.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `join/local-agent.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `join/personal-runtime.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `join/runner-agent.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `join/sign-in.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
+| `project/checks-and-review.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `project/knowledge-base.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `project/progress.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `project/project-memory.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `project/release.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `project/settings.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
+| `project/skills.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `project/usage.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
+| `quality/follow-ups.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `quality/plans.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `quality/standards.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `reference/cli.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `reference/config.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `reference/faq.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `reference/statuses-and-permissions.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `reference/storage.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `release/overview.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `release/previews.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `release/versions.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `setup/first-request.md` | 已核对 | 完成 | 完成 | 3 张 / 语言 |
+| `use/accept.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `use/answer.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `use/follow-progress.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
+| `use/inbox.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
+| `use/my-tasks.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| `use/raise-a-request.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
+| `use/sessions.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+
+## 待人工或外部环境验证
+
+| 项目 | 后续操作 | 本轮处理 |
+| --- | --- | --- |
+| Git 平台授权 | 在目标 Studio 上确认 GitHub App 安装范围、仓库访问和回调 | 保留配置步骤；本轮未重新发起外部授权 |
+| 邀请与密码重置邮件 | 用实际 SMTP 配置验证邮件送达、链接地址和有效期 | 对照最新配置说明；没有发送真实邀请或邮件 |
+| 浏览器推送 | 在正式 HTTPS 域名和目标手机浏览器上验证订阅与送达 | 说明权限、密钥与偏好设置；未把本地演示当成推送验证 |
+| CI、预览和生产交付 | 用实际仓库跑完整检查、构建和预览；生产由团队自行部署并记录版本 | 说明各检查来源及发布边界；截图只展示示例状态 |
+| 质量计划完整执行 | 在更新后的实例上接入可工作的 Agent，确认计划，完成一轮执行、报告、修复与复测 | 已完成三篇功能指南和入口截图；未生成虚假的质量通过报告 |
+
+## 发现的产品问题
+
+1. 验收标准的内置名称和说明仍为硬编码中文，位于 `packages/app-plugin-testing/server/services/plans.ts`。英文演示数据已翻译为等义英文以供截图；产品代码的本地化仍需修复。
+2. 现有 beta.71 演示副本尚无最新 `client/agents/quality-discussion-entry.tsx` 的 Runner 会话入口，创建质量计划会进入未配置的 My Agent。文案已参考最新源码，截图使用质量计划列表入口；完整执行与报告截图待目标实例更新并接入 Agent 后补充。
+
+原有中文演示和安装验证实例未被本轮截图准备修改。本轮只修改隔离的截图副本及文档仓库。
+
+## 验证结果
+
+- `pnpm doc:test`：7 个测试文件、42 项测试通过。
+- `pnpm doc:build`：成功生成 369 页。
+- 84 个改动页面在本地预览中逐页检查：HTTP 200、无破损图片、无页面横向溢出。
+- 英文正文扫描与 39 张英文截图 OCR 检查：未发现中文残留。
+- 78 张新增截图：尺寸全部为 1440 × 900；图床文件与本地原图 SHA-256 一致。
+- 抽查中英文项目设置、任务状态图例、Agent 配置与质量计划的渲染。
+- `git diff --check` 通过；构建输出和本地认证文件未纳入提交。

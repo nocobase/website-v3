@@ -1,6 +1,6 @@
 ---
 title: Notifications and push
-description: Set up email and push notifications, which invitation emails, password resets, and reminders while you're away from the page all depend on. In-app reminders need no setup.
+description: Configure invitation email, password recovery, and device push.
 ---
 
 Studio reminds people in three ways:
@@ -113,9 +113,11 @@ A submitted request does not prove delivery. Check sender authorization, SMTP co
 Push notifications need:
 
 - Studio served over HTTPS, with `APP_PUBLIC_ORIGIN` set to the public address. An `http://` address on your local network won't work.
-- A push private key that stays the same for good: a 32-byte P-256 private key in base64url or as 64 hex characters, in `push.privateKey` in `config.yml` or in the `WEB_PUSH_PRIVATE_KEY` environment variable. Put a contact address in `push.contact`, such as `mailto:admin@example.com`.
+- A stable 32-byte P-256 private key, encoded as base64url or 64 hexadecimal characters. Set `push.privateKey` or `WEB_PUSH_PRIVATE_KEY`. Set a contact address in `push.contact`, such as `mailto:admin@example.com`.
 
 Without the private key, members can't subscribe to push.
 
-> [!WARNING] Keep the push key for good
+> [!WARNING] Preserve the push key
 > If you change the push private key, every subscribed device has to subscribe again. Store it somewhere safe together with `SECRETS_KEYS`, back them up together, and never commit it to a repository.
+
+![Member notification preferences](https://static-docs.nocobase.com/studio-en-guide-preferences-20261031.png)

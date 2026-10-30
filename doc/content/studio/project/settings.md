@@ -1,61 +1,55 @@
 ---
 title: Project settings
-description: A project's visibility, members, and lead, its repositories, the variables and secrets agents get when they run, commit attribution, and default skills.
+description: Manage project members, repositories, run variables, and default skills.
 ---
 
-The project lead manages a project's settings. Whoever creates a project is its lead by default, and admins can manage every project.
+Project leads and administrators can change project settings. Open **Members** to manage access and **Settings** to configure development work.
 
-A project page has six sections at the top: **Overview**, **Issues**, **Knowledge**, **Members**, **Releases**, and **Settings**. For the knowledge base, see [Knowledge base](knowledge-base.md). For releases, see [Approve releases and roll back](release.md). For the overview, see [Project progress](progress.md).
+## Members and visibility
 
-## Visibility, lead, and members
+Search for existing members and add them to the project. New members must [join Studio](../setup/invite.md); an invitation can also assign them to a project.
 
-- **Visibility**: with **Everyone**, every member of the workspace can see the project. With **Members only**, only project members and admins can see the project and its issues.
-- **Lead**: in **Members**, click **Set as lead** for a member. The project lead must be a project member. To remove the current lead, choose a new lead first.
-- **Members**: in **Members**, search by name to add people, or remove them. To invite colleagues who haven't joined Studio yet, see [Invite members](../setup/invite.md). You can pick this project right in the invitation.
-- **Status, priority, and dates**: set them in the project's properties. The project list sorts and filters by them. A project's status is Planned, In progress, Paused, Completed, or Cancelled.
+- **Everyone**: all workspace members can view the project.
+- **Project members only**: access is limited to project members and administrators.
+- **Project lead**: choose a project member. Assign a new lead before removing the current one.
 
-## Settings
+Change status, priority, and dates in the project properties.
 
-**Settings** has six sections:
+![Project members and lead](https://static-docs.nocobase.com/studio-en-guide-project-members-20261031.png)
 
-| Section | What it does |
+## Configure the project
+
+| Section | Settings |
 | --- | --- |
-| General | The project's name and description, and how agents' commits are attributed |
-| Code repositories | The repositories the project uses. The first is the primary repository, where work starts. You can add, reorder, and remove them |
-| Deployment | How the repository's CI builds previews and deploys to Studio. See [Connect CI](../setup/ci.md) |
-| Branch rules | Which branch agents work on, which PRs are linked to issues, and when check results wake the lead agent. See [Checks and review](checks-and-review.md) |
-| Agent run variables | The variables and secrets agents get when they work in this project. See below |
-| Default skills | The skills every run brings along by default, for the project or for one repository. See [Skills](skills.md) |
+| General | Name, description, and default commit attribution |
+| Code repositories | Repositories, checks, branch rules, and previews |
+| Agent run variables | Environment variables and secrets for development tasks |
+| Default skills | Skills used by runs in the project or a repository |
 
-### Code repositories
+![Configure checks, branch rules, and previews on each repository](https://static-docs.nocobase.com/studio-en-guide-project-repositories-20261031.png)
 
-A project can have several repositories, for example an app and its plugins kept apart. The first is the primary repository, where issues start by default. Removing a repository only means issues stop working in it. The repository itself isn't touched.
-
-In a project without a repository, agents can only work on issues that don't involve code. **Next steps** on the project overview reminds you to **Add a code repository**.
+The first repository is the primary repository. Removing a link does not delete the repository on the Git platform. See [Checks and CI](../configure/checks.md) and [Skills](skills.md) for their configuration.
 
 ### Connect an existing repository
 
-For an existing application, select **Existing repository** when creating the project, then choose a repository available to the Git connection. **No initialization** uses its code unchanged.
+In **New project**, choose **Existing repository** and select a repository available through the Git connection. For an existing application, usually choose no initialization.
 
-If initialization is needed, choose **NocoBase application** or **From a prompt**. Existing files are preserved and changes are submitted through a branch and pull request. The owner reviews and merges the PR to complete initialization. Check the repository layout and development instructions before selecting this option.
-
-Select **Add later** to connect a repository through **Settings › Repositories** after creating the project. Until then, agents can only perform tasks that do not require code.
+To add application scaffolding, choose **NocoBase application** or prompt-based initialization. The Agent preserves existing files and submits changes through a branch and PR for the owner to accept. You can also add a repository later. To start with an empty application, see [Create your first project](../setup/new-project.md).
 
 ### Commit attribution
 
-Agents commit code as the person who started the work. Each person can choose in **Account settings › Preferences** whether their commits also credit the agent as a co-author. The setting here is the default for anyone who hasn't chosen.
+Use the member's identity alone or include the Agent as a co-author. A member's personal preference takes priority over the project default.
 
 ### Agent run variables
 
-Set the environment variables agents need when they run here, such as a test API address or a key for a third-party service:
+Set variables for the whole project or a single repository. For the same name, repository values override project values; Agent values override both.
 
-- Set them for the whole project or for one repository only. A repository's variable overrides the project's variable with the same name, and the agent's own variable overrides both.
-- Once saved, values aren't shown again, and they're masked in run records. If you really need to see one, click **Reveal values**. Each reveal is recorded in the access log with your name and the time.
-- **From the runtime**: the value isn't stored here. Instead, the runtime that takes the work provides it from its own machine, where it's set with `nocobase-runner env set NAME`. On a runtime that doesn't provide the variable, the run fails before it starts.
-- For high-risk secrets, check **Shared runtimes only**. Runs that use the variable are then carried out only by shared runtimes and never sent to members' personal runtimes.
+- Values are hidden after saving. Revealing a secret records who viewed it and when.
+- For values supplied by a runtime, use `nocobase-runner env set NAME` on that runtime.
+- Restrict a variable to shared runtimes when work using it must not run on personal runtimes.
 
-Variables that deployed apps read, including previews, aren't set here. Set them per environment or per app in release management.
+Configure preview and test application variables in [Hosted environments](../admin/environments.md) or the application settings.
 
 ## Delete a project
 
-You can delete a project from **More project actions**, which needs admin permissions. The project, its members, and its repository links are deleted. The project's issues are kept and no longer belong to any project. Repositories on the code host aren't affected.
+Administrators can delete a project from its additional actions. Tasks remain but leave the project. Git repositories are unaffected.

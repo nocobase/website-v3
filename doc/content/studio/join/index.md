@@ -1,29 +1,33 @@
 ---
 title: Join a project
-description: Accept an invitation and use the team's Agents and runtimes to complete your first request.
+description: Accept an invitation and start work with the team’s configured Agents and runtimes.
 ---
 
-Once an administrator prepares a project, you can use the team's Agents and runtimes. You do not need to deploy Studio or install coding tools on your own computer.
+Once an administrator prepares your project, you can submit requests. The team's Agents and runtimes do the development. You do not need to install coding tools on your computer.
 
 ## Start work
 
-1. [Accept your invitation and sign in](sign-in.md). Confirm that you can open your project.
-2. [Walk through your first request](../setup/first-request.md): submit a small requirement, follow development, and accept the result.
-3. Use [My issues](../use/my-tasks.md) to follow progress and find questions or results waiting for you.
+1. [Accept your invitation and sign in](sign-in.md). Check that you can open your project.
+2. [Walk through your first request](../setup/first-request.md): submit a small change, follow progress, and accept the result.
+3. Use [My issues](../use/my-tasks.md) for questions and deliveries that need your attention.
 
-If Studio or the project is not ready yet, ask an administrator to start with [Install and configure](../setup/index.md).
+If your team does not have Studio or a project yet, an administrator can start with [Install and configure](../setup/index.md).
+
+![My issues brings together decisions, deliveries, and task progress](https://static-docs.nocobase.com/studio-en-guide-my-issues-20261031.png)
+
+## Choose how to work
+
+| Goal | Use |
+| --- | --- |
+| Discuss requirements or inspect a project in Studio | [Talk to a Runner Agent](runner-agent.md) |
+| Manage tasks from your usual Claude Code or Codex session | [Use a local Coding Agent](local-agent.md) |
+| Use a coding tool on your computer through the browser | [Connect your computer](connect-computer.md) |
+| Provide execution resources for your own tasks | [Connect a personal runtime](personal-runtime.md) |
+
+The team's shared runtime is enough for everyday work. Configure the other connections when you need them.
 
 ## Follow tasks
 
-| Goal | Guide |
-| --- | --- |
-| Discuss an idea before creating a task | [My sessions](../use/sessions.md) |
-| See what Agents are doing | [Follow progress](../use/follow-progress.md) |
-| Provide information or make a decision | [Answer questions](../use/answer.md) |
-| Check the result and merge changes | [Accept results](../use/accept.md) |
-
-To discuss requirements directly in Studio, [talk to a Runner Agent](runner-agent.md).
-
-## Use your own tools (optional)
-
-If you prefer the terminal, [use Studio with a local Coding Agent](local-agent.md). To talk to an Agent on your computer from Studio, [connect your computer](connect-computer.md).
+- [Follow progress](../use/follow-progress.md): check the current step, handoffs, and run history.
+- [Answer questions](../use/answer.md): confirm rules, add information, or resolve execution problems.
+- [Accept a result](../use/accept.md): review the delivery, then merge or request changes.

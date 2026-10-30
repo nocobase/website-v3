@@ -1,63 +1,38 @@
 ---
 title: Checks and review
-description: Before a person accepts the work, the code has to pass the repository's CI checks and then a review by a model from another vendor. The project lead decides which checks are required and when check results wake the lead agent.
+description: Follow check results, Agent reviews, and merge conditions.
 ---
 
-You don't have to review the agents' changes line by line. Before the work reaches you for acceptance, Studio puts it through two gates: the repository's CI checks and a code review by another model. Only when it passes both does the issue move to **In review**.
+Before delivery, the Lead Agent arranges verification and code review according to the project's skills. The task owner reads the delivery report and decides whether to merge.
 
-## Checks
+## Follow checks
 
-Checks run in the repository's own CI, such as GitHub Actions or GitLab CI: linting, type checks, tests, builds, and so on. Studio reads each PR's check results and shows them in the issue's **Code and deployments** section.
+Open **Code & previews** on the task to see each PR's check source, results, and log links. The repository selects the source: code-host CI, external CI, or Agent self-check. See [Checks and CI](../configure/checks.md).
 
-- **A check fails or a conflict appears**: Studio wakes the lead agent to arrange a fix. A common first step is to have an agent read the failure log and work out whether the change caused it or it was a fluke.
-- **Checks still fail after three commits in a row**: Studio stops waking agents for it and notifies the issue owner.
-- **All required checks pass**: Studio wakes the lead agent to arrange the review or the delivery.
+![PR check results on a task](https://static-docs.nocobase.com/studio-en-guide-checks-20261031.png)
 
-If the project has no CI yet, PRs have no check results. Before delivering, the lead agent asks the issue owner whether to accept without CI. You can also say so in the issue description up front. To set up CI, see [Connect CI](../setup/ci.md).
+Under **Project settings › Code repositories › Branch rules**, configure:
 
-### Required and reference checks
+- Whether failed required checks wake the Lead Agent.
+- Whether passing checks trigger the next step.
+- Whether PR conflicts trigger repair work.
+- Which checks are advisory and do not block normal merging in Studio.
 
-In **Project settings › Branch rules**, you can make some checks reference checks by entering one check name per line:
+Checks not listed as advisory are required. The code host's branch protection still applies. When automatic wake-up is disabled, comment on the task to ask the Lead Agent to continue.
 
-- **Reference checks**: a failure is only shown as a note. It doesn't wake agents or block merging in Studio. Use them for flaky or advisory checks, such as performance benchmarks.
-- **Required checks**: every other check. A failure wakes the lead agent and blocks a normal merge in Studio.
+## Arrange review
 
-Checks and reviews the code host itself requires, such as GitHub's branch protection rules, still apply. If the code host won't allow a merge, you can't merge in Studio either.
+The default workflow prefers a suitable, available reviewer from another vendor. It can use a model from the same vendor when no suitable alternative is available. Skills such as `studio-review` define review criteria and finding severity. See [Skills](skills.md).
 
-### When the lead agent wakes up
+The Lead Agent returns blocking findings to the implementer. Unrelated problems should be recorded with their impact and evidence, then scheduled separately.
 
-**Project settings › Branch rules** has three switches:
+## Decide whether to merge
 
-| Switch | When it's on |
+| PR condition | Action |
 | --- | --- |
-| Wake when checks fail | A required check fails, and the lead agent arranges a fix |
-| Wake when all checks pass | All required checks pass, and the lead agent moves on to the review or the delivery |
-| Wake when the PR has a conflict | The PR conflicts with the target branch, and the lead agent arranges a fix |
+| Required checks pass and the PR is mergeable | The owner accepts and merges |
+| Required checks fail or results are missing | A person with force-merge permission can explicitly proceed; the action is recorded |
+| Checks are pending, or the PR is conflicted or a draft | Wait or resolve the blocker |
+| The code host rejects the merge | Meet the platform's requirements |
 
-Usually leave them on. With a switch off, a person has to comment on the issue in that situation before the lead agent carries on.
-
-## Review
-
-Once the checks pass, the lead agent gives the code to another agent to review:
-
-- Preferably an agent from another vendor, for example Codex reviews code that Claude wrote. If none is online, a different model from the same vendor reviews it. The model that wrote the code never reviews its own work.
-- The review follows the built-in `studio-review` skill: it looks at defects, security, whether the design is simple, and the tests and their CI cost, grades the findings, and says which ones block the merge.
-- Review findings go back to the agent that wrote the code, and the fix is reviewed again.
-- A review is a read-only step in a separate copy, so it can run alongside other work.
-
-To have reviews follow your team's own standards, edit the `studio-review` skill or attach your team's review skill to the project. See [Skills](skills.md).
-
-## Checks at merge time
-
-When the issue owner clicks **Merge**, Studio checks the PR and its results with the code host once more:
-
-| Situation | Can it be merged |
-| --- | --- |
-| The PR has conflicts, is a draft, or checks are still running | No. Resolve that first |
-| A required check failed, or there are no check results | You can choose **Merge anyway** and give a reason. Studio posts a comment about the forced merge on the PR and records it in the issue's activity |
-| The code host's rules don't allow it | No. Do what the code host requires |
-
-Agents can't merge PRs, let alone force a merge.
-
-> [!NOTE] Protect the default branch on your code host
-> Studio doesn't protect branches for you. Turn on protection rules for the default branch on GitHub or GitLab, for example requiring checks to pass before merging, so the same gate applies when someone merges directly on the code host.
+Agents cannot merge PRs. See [Accept a task](../use/accept.md) for the steps.

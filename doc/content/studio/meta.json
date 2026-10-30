@@ -158,8 +158,16 @@
           "path": "project/checks-and-review"
         },
         {
-          "type": "planned",
-          "title": "Test plans and quality reports"
+          "type": "page",
+          "path": "quality/plans"
+        },
+        {
+          "type": "page",
+          "path": "quality/follow-ups"
+        },
+        {
+          "type": "page",
+          "path": "quality/standards"
         }
       ]
     },

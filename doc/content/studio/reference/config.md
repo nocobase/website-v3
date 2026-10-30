@@ -1,6 +1,6 @@
 ---
 title: Configuration options
-description: "Studio's config.yml and environment variables: the public address, encryption key, first administrator, database, language and sign-in, email and push, multiple instances, release management, and logging."
+description: Studio configuration fields, environment overrides, storage, and email.
 ---
 
 Studio's configuration lives in `config.yml` in the deployment directory, mounted at `/app/config.yml` in the container. Copy the template out of the image:
@@ -61,7 +61,7 @@ Studio is served under `/main`, as in `https://studio.example.com/main/`. When y
 
 | Setting | What it sets |
 | --- | --- |
-| `i18n.defaultLocale` | The interface language. Set it to your team's language, such as `en-US`. Without it, the interface is in English |
+| `i18n.defaultLocale` | The interface language. English is the default; set this only to use another language |
 | `auth.emailAndPassword.disableSignUp` | Set to `true` to turn off self sign-up, so members join only by invitation. The template doesn't include it, so add it yourself |
 | `auth.passwordReset.enabled` | Enable built-in recovery with a valid `auth.email` and public origin |
 | `auth.email` | Independent password-reset sender using `provider: smtp` or `provider: resend` |

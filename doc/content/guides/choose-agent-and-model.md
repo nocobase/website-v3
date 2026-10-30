@@ -9,12 +9,12 @@ For the coding tool, use a common coding agent such as Codex, Claude Code or Ope
 
 ## Choose a model
 
-As of 2026, we recommend the top models in the Claude and GPT families, and DeepSeek among Chinese models:
+As of late 2026, the recommended models are the top models in the Claude and GPT families, and DeepSeek among Chinese models:
 
 | Model | Strengths |
 | --- | --- |
 | Claude Opus | Builds better-looking pages and has stronger all-round ability |
-| GPT-6 Astra/Sol | Given a fairly complete system design document, can build the whole system |
+| GPT Astra/Sol | Given a fairly complete system design document, can build the whole system |
 | DeepSeek | Fast and low-cost. Use it in OpenCode, or connect it to Claude Code by following DeepSeek's documentation |
 
 For design documents and new features, use a strong model with a higher reasoning effort. For small changes such as copy or styling, switch to a faster, cheaper model.

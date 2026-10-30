@@ -52,7 +52,7 @@ git add -A && git commit -m "docs: record the business date convention"
 把 NocoBase 升级到最新版本。先给我升级计划，我确认后再改；改完跑全部测试，确认设备和申请数据都还在。
 ```
 
-计划里列出模板改动了哪些文件、应用自己也改过的文件怎样合并、依赖和数据库迁移的变化，以及回退方式（升级前的提交和数据库备份）。确认后，Agent 在新分支上合并、安装依赖、同步技能，跑完测试和构建，核对数据，再合并回主分支。
+计划里列出模板改动了哪些文件、应用自己也改过的文件怎样合并、依赖和数据库迁移的变化。确认后，Agent 在新分支上合并、安装依赖、同步技能，跑完测试和构建，核对数据，再合并回主分支。
 
 手动升级的步骤和验证清单见 [升级 NocoBase Core](../core/developing-apps/upgrade-nocobase-core.md)。升级后上线和发布新版本一样：构建新镜像，备份部署目录后替换，见 [部署新版本](../core/tutorials/deploy-with-docker.md#部署新版本)。
 

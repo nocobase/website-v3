@@ -10,6 +10,10 @@ import { CONTENT } from './paths.mjs';
 let ja = false;
 const JA = {
   'Blog': 'ブログ',
+  'Blog — NocoBase': 'ブログ — NocoBase',
+  'The NocoBase blog: building business systems with AI, release notes, and customer stories.': 'NocoBase ブログ：AI で業務システムを構築する方法、リリース情報、導入事例。',
+  'Customer Stories — NocoBase': '導入事例 — NocoBase',
+  'How teams worldwide build core business systems on NocoBase.': '世界各地のチームが NocoBase で基幹業務システムを構築した事例。',
   'All': 'すべて',
   'Customer stories': '導入事例',
   'Customer Stories': '導入事例',
@@ -32,6 +36,8 @@ const JA = {
   'More customer stories': 'その他の導入事例',
   'All customer stories': 'すべての導入事例',
 };
+// 列表页的标题和描述：日文那一轮换成 JA 里的译文
+const jaText = en => (ja ? JA[en] ?? en : en);
 const T = (zh, en) => (ja ? JA[en] ?? en : `<t-zh>${zh}</t-zh><t-en>${en}</t-en>`);
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -158,7 +164,7 @@ function generate(posts, stories, site) {
   }); });
 })();
 </script>`;
-  build('blog', 'blog', '博客 — NocoBase', 'Blog — NocoBase', 'NocoBase 博客：用 AI 构建业务系统的方法、版本更新与客户故事。', 'The NocoBase blog: building business systems with AI, release notes, and customer stories.', listing);
+  build('blog', 'blog', '博客 — NocoBase', jaText('Blog — NocoBase'), 'NocoBase 博客：用 AI 构建业务系统的方法、版本更新与客户故事。', jaText('The NocoBase blog: building business systems with AI, release notes, and customer stories.'), listing);
 
   const toc = t => t.map(([i, x]) => `<a href="#${i}">${esc(x)}</a>`).join('');
   // 详情页
@@ -218,7 +224,7 @@ function generate(posts, stories, site) {
     <div class="cta"><a class="btn btn-pri" href="contact.html#contact">${T('预约实战验证', 'Book a Pilot')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="solutions.html">${T('查看解决方案', 'See Solutions')}</a></div>
   </div>
 </div>`;
-  build('customers', 'customers', '客户案例 — NocoBase', 'Customer Stories — NocoBase', '全球各行业团队如何用 NocoBase 构建核心业务系统。', 'How teams worldwide build core business systems on NocoBase.', clist);
+  build('customers', 'customers', '客户案例 — NocoBase', jaText('Customer Stories — NocoBase'), '全球各行业团队如何用 NocoBase 构建核心业务系统。', jaText('How teams worldwide build core business systems on NocoBase.'), clist);
 
   for (const slug of corder) {
     if (ja && !stories[slug].ja) continue;

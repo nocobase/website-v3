@@ -27,10 +27,10 @@ nvm install 24
 fnm install 24
 ```
 
-然后启用 pnpm：
+然后安装 pnpm：
 
 ```bash
-corepack enable && corepack prepare pnpm@11 --activate
+npm install -g pnpm@11
 ```
 
 装完打开一个新终端。

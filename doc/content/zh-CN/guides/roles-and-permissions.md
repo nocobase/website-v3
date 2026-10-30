@@ -56,8 +56,8 @@ Alice 只看到自己的三个申请和名下的两台设备；Ben 打开待审�
 
 ## 4. 提交
 
-```bash
-git add -A && git commit -m "feat: limit each role to its own records and actions"
+```prompt
+提交代码。
 ```
 
 **完成的标志**：三个账号登录后看到和能做的与权限矩阵一致；权限测试里，普通账号直接调用越权接口全部被拒绝；权限管理里能看到并调整每个业务操作和数据范围。

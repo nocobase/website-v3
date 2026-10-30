@@ -54,8 +54,8 @@ To release a new version, build an image with a new tag, back up the deployment 
 
 Deployment changes no code. Record the deployment method and the verification results in the README, then commit:
 
-```bash
-git add -A && git commit -m "docs: record the Docker deployment"
+```prompt
+Commit the changes.
 ```
 
 **Done when**: the URL opens and the administrator can sign in; a device created before recreating the container is still there afterwards; `config.yml` and the database are in the deployment directory on the server, not in the image or the code repository.

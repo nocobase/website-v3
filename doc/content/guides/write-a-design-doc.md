@@ -45,8 +45,8 @@ The document the agent wrote is [docs/design.md](https://github.com/nocobase/doc
 
 Read through the document, have the agent fix anything that's wrong, then commit:
 
-```bash
-git add -A && git commit -m "docs: add the system design"
+```prompt
+Commit the changes.
 ```
 
 For a more structured process, you can use [OpenSpec](https://github.com/Fission-AI/OpenSpec) (each change written up as a proposal, design and tasks) or [superpowers](https://github.com/obra/superpowers) (brainstorm, then plan, then execute). This tutorial just uses conversation and one `docs/design.md`.

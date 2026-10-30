@@ -51,8 +51,8 @@ The agent added a new migration that puts a unique index on the serial number (m
 
 ## 4. Commit
 
-```bash
-git add -A && git commit -m "feat: add the device register"
+```prompt
+Commit the changes.
 ```
 
 **Done when**: you can create, edit and delete devices; a duplicate asset tag or serial number is flagged next to its field; the list can be filtered by status and category; the data is still there after a refresh.

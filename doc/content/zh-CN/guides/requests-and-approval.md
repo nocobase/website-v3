@@ -65,8 +65,8 @@ Agent 做完的内容：
 
 ## 5. 提交
 
-```bash
-git add -A && git commit -m "feat: add device requests with approval"
+```prompt
+提交代码。
 ```
 
 **完成的标志**：笔记本申请经资产管理员批准、IT 支持发放后，台账里设备变为在用、使用人是申请人；显示器申请直接进入待发放；Cathy、Ben、Alice 都收到了对应的站内信；流程管理里能看到流程图、审批规则和执行记录。

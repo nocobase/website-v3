@@ -65,8 +65,8 @@ An administrator opens **System settings › Workflow management** and clicks **
 
 ## 5. Commit
 
-```bash
-git add -A && git commit -m "feat: add device requests with approval"
+```prompt
+Commit the changes.
 ```
 
 **Done when**: after an asset manager approves a laptop request and IT support issues it, the device in the register is In use and assigned to the requester; a monitor request goes straight to Ready to issue; Cathy, Ben and Alice each get the matching in-app message; **Workflow management** shows the process diagram, the approval rules and the executions.

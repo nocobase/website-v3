@@ -45,13 +45,13 @@ You do not need to learn every framework detail before starting. Begin with a sp
 ## Quickstart
 
 1. [Create an app](getting-started/create-app.md): prepare your environment, create a project with an agent or the command line, start it and sign in.
-2. [Develop your first business feature](tutorials/build-your-first-app.md): follow the tutorial to build task management with an agent and explore the key code.
+2. [Develop your first feature](getting-started/build-your-first-app.md): follow the tutorial to build customer management with an agent and review the code changes.
 
-Read [Project structure](getting-started/project-structure.md) when you need to locate pages, APIs, database resources and tests.
+Read [Project structure](developing-apps/project-structure.md) when you need to locate pages, APIs, database resources and tests.
 
 ## Develop business features
 
-- [Develop with an agent](developing-apps/develop-with-an-agent.md): describe requirements, confirm business rules, check results and maintain project conventions.
+- [Continue developing your app](getting-started/develop-with-an-agent.md): describe requirements, confirm business rules, check results and maintain project conventions.
 - [Developing apps](developing-apps/overview.md): find implementation guidance for the client, server, business services, databases, configuration and tests.
 - [Using plugins](using-plugins/overview.md): find existing capabilities, configure them and integrate them into your business, such as adding permissions, attachments or notifications to an application.
 

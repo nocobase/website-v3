@@ -5,7 +5,7 @@ description: Understand the parts of a business feature, where they belong, how 
 
 Developing a NocoBase application means implementing your business on top of the template's structure and Core's existing capabilities: how data is stored, who can act on it and how pages present the result.
 
-This guide explains the parts of a feature, where to write them and how an operation passes through them, then lists this section's guides by task. These are also the conventions an agent follows, so you can use them to review its changes. To complete a feature from start to finish first, see [Build your first app](../tutorials/build-your-first-app.md).
+This guide explains the parts of a feature, where to write them and how an operation passes through them, then lists this section's guides by task. These are also the conventions an agent follows, so you can use them to review its changes. To complete a feature from start to finish first, see [Develop your first feature](../getting-started/build-your-first-app.md).
 
 ## Which code you change
 
@@ -40,7 +40,7 @@ Each kind of code has a defined location:
 
 A feature with a page and API usually changes five places: a table migration, an API in `server/routes/`, a page in `client/pages/`, routes and navigation in `client/routes.ts`, and copy in `client/locales/`. Add a service when the business rules warrant one, then add tests.
 
-These are responsibilities, not a checklist to fill every time. Changing form copy does not require a migration; adding a field does not require changing sign-in. Identify what the requirement changes and edit the relevant parts. See [Project structure](../getting-started/project-structure.md) for the full directory guide.
+These are responsibilities, not a checklist to fill every time. Changing form copy does not require a migration; adding a field does not require changing sign-in. Identify what the requirement changes and edit the relevant parts. See [Project structure](project-structure.md) for the full directory guide.
 
 ### Register new files with the application
 
@@ -132,7 +132,7 @@ Changing a task's project requires checking both sides: the user must be allowed
 | Define, override and read application configuration | [Application configuration (config.yml)](configuration-and-settings.md) |
 | Inspect, register and update plugins | [Manage plugins](manage-plugins.md) |
 | Choose verification methods and complete acceptance | [Testing and acceptance](testing-and-acceptance.md) |
-| Describe requirements and review agent changes | [Develop with an agent](develop-with-an-agent.md) |
+| Describe requirements and review agent changes | [Continue developing your app](../getting-started/develop-with-an-agent.md) |
 | Upgrade and reconcile template changes | [Upgrade NocoBase Core](upgrade-nocobase-core.md) |
 
 See [Framework overview](../framework/overview.md) for runtime composition, the service container, database mechanisms and other internals.

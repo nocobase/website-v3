@@ -45,13 +45,13 @@ Core 和配套插件提供可复用的基础能力，减少每个项目中重复
 ## 快速开始
 
 1. [创建应用](getting-started/create-app.md)：准备环境，使用 Agent 或命令行创建项目，启动并登录应用。
-2. [开发第一个业务功能](tutorials/build-your-first-app.md)：跟随教程，与 Agent 一起完成任务管理功能，并了解关键代码。
+2. [开发第一个功能](getting-started/build-your-first-app.md)：跟随教程，与 Agent 一起完成客户管理功能，并查看代码改动。
 
-需要了解页面、接口、数据和测试放在哪里时，阅读[项目结构](getting-started/project-structure.md)。
+需要了解页面、接口、数据和测试放在哪里时，阅读[项目结构](developing-apps/project-structure.md)。
 
 ## 开发业务功能
 
-- [和 Agent 一起开发](developing-apps/develop-with-an-agent.md)：描述需求、确认业务规则、检查结果，并维护项目约定。
+- [持续开发应用](getting-started/develop-with-an-agent.md)：描述需求、确认业务规则、检查结果，并维护项目约定。
 - [开发应用](developing-apps/overview.md)：按需查阅客户端、服务端、业务服务、数据库、配置和测试的开发方法。
 - [使用插件](using-plugins/overview.md)：查找已有能力，完成配置和业务接入，例如为应用增加权限、附件或通知。
 

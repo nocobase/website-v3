@@ -5,7 +5,7 @@ description: Build an image to deploy a production application independently, pr
 
 This guide uses the task application as a worked example and also applies to your own NocoBase Core apps. Confirm the target environment with [Choose a deployment method](../deployment/choose-a-deployment-method.md). For your own project, replace example application names, paths, and business acceptance checks.
 
-Use the application's own `Dockerfile` to build an image and run it with Docker Compose on your production server, with separate persistent directories for configuration, SQLite and uploaded files. Verify your application has passed its tests; see [Build your first app](build-your-first-app.md) for the task example. This guide uses Linux x64, a single SQLite instance and the template's Node.js 24 Debian runtime.
+Use the application's own `Dockerfile` to build an image and run it with Docker Compose on your production server, with separate persistent directories for configuration, SQLite and uploaded files. Verify your application has passed its tests; see [the task example README](https://github.com/nocobase/docs-examples-v3/blob/0185e4bfa9d7ef05dd180245005a6c1024fe41de/apps/team-tasks/README.MD) for the task example. This guide uses Linux x64, a single SQLite instance and the template's Node.js 24 Debian runtime.
 
 ## Prerequisites
 
@@ -160,7 +160,7 @@ curl --fail http://127.0.0.1:13000/tasks/api/healthz
 
 `--wait` waits for image health checks. On timeout, inspect status and logs rather than repeatedly creating containers. Configuration checks precede startup; actual migrations and required initialization happen when the app starts.
 
-Verify `ok: true`, the expected base path and no migration/database errors. Sign in with the default username `nocobase` and your newly configured password. The current getting-started example initializes task roles through required seeds; development team users, role assignments, and tasks are not copied with the image. Test the actual public URL as well: container health does not validate your domain, HTTPS or proxy.
+Verify `ok: true`, the expected base path and no migration/database errors. Sign in with the default username `nocobase` and your newly configured password. The task example application initializes task roles through required seeds; development team users, role assignments, and tasks are not copied with the image. Test the actual public URL as well: container health does not validate your domain, HTTPS or proxy.
 
 ### 5. Verify persistence after recreation
 

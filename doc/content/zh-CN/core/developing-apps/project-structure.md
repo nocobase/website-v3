@@ -5,7 +5,7 @@ description: 了解 NocoBase 应用的主要目录，以及页面、接口、数
 
 ## 目录概览
 
-[创建应用](create-app.md)得到的是一个可以直接修改的源码项目。以下以默认应用模板为例，列出开发时常用的位置；配置文件、依赖和构建产物会在对应步骤完成后生成。
+[创建应用](../getting-started/create-app.md)得到的是一个可以直接修改的源码项目。以下以默认应用模板为例，列出开发时常用的位置；配置文件、依赖和构建产物会在对应步骤完成后生成。
 
 ```text
 my-app/
@@ -48,9 +48,9 @@ my-app/
 
 页面和接口需要接入相应的注册入口，单独新增文件不会自动成为可访问的页面或 API。安装到 `client/extensions/` 的 UI 源码也属于应用源码，通过导入接入页面或组件。
 
-`database/` 按连接名组织，`main` 是默认连接。已经执行过的迁移应保留，后续结构变化写成新迁移。具体写法见[建表与数据初始化](../developing-apps/data-models-and-migrations.md)。
+`database/` 按连接名组织，`main` 是默认连接。已经执行过的迁移应保留，后续结构变化写成新迁移。具体写法见[建表与数据初始化](data-models-and-migrations.md)。
 
-例如添加任务管理，通常会涉及任务表迁移、任务接口、任务页面及其注册文件。可以跟随[搭建第一个应用](../tutorials/build-your-first-app.md)，对照一个实际功能理解这些位置。
+例如添加客户管理，通常会涉及客户表迁移、客户接口、客户页面及其注册文件。可以跟随[开发第一个功能](../getting-started/build-your-first-app.md)，对照一个实际功能理解这些位置。
 
 ## 配置、依赖和插件
 
@@ -62,7 +62,7 @@ my-app/
 | `config.yml` | 当前环境的数据库连接、密钥等配置，不提交到 Git |
 | `server/config/` | 在代码中定义配置默认值、校验规则和环境变量映射 |
 
-修改当前环境的连接信息时，查看 `config.yml`；为业务增加新的配置项时，再修改 `server/config/` 中的定义。配置加载方式和命令见[应用配置](../developing-apps/configuration-and-settings.md)。
+修改当前环境的连接信息时，查看 `config.yml`；为业务增加新的配置项时，再修改 `server/config/` 中的定义。配置加载方式和命令见[应用配置](configuration-and-settings.md)。
 
 ### 依赖与插件注册
 
@@ -76,7 +76,7 @@ my-app/
 | `server/plugins.ts` | 服务端插件 |
 | `cli/plugins.ts` | 命令行插件 |
 
-一个插件不一定同时提供三个入口，有些包只提供开发 Skills。安装依赖、注册插件以及接入页面分别处理，操作步骤见[管理插件](../developing-apps/manage-plugins.md)，各插件的用途见[插件索引](../reference/plugins.md)。
+一个插件不一定同时提供三个入口，有些包只提供开发 Skills。安装依赖、注册插件以及接入页面分别处理，操作步骤见[管理插件](manage-plugins.md)，各插件的用途见[插件索引](../reference/plugins.md)。
 
 需要维护本地插件或共享包时，放在 `packages/`，并在 `pnpm-workspace.yaml` 中配置工作区包目录。需要独立分发 UI 源码资产时，也可以在这里维护 UI Registry 包；详细结构见[项目目录与文件约定](../reference/project-conventions.md#本地插件共享包与-ui-资产)。
 
@@ -94,7 +94,7 @@ my-app/
 | `tests/fixtures/`、`tests/helpers/`、`tests/setup/` | 测试数据、共享辅助函数和环境初始化 |
 | `tests/playwright/` | 浏览器操作测试，按需创建 |
 
-在应用根目录运行 `pnpm test` 执行 Vitest 测试。浏览器测试使用 `pnpm test:e2e`，需要按测试配置准备运行中的应用和登录信息。具体准备步骤见[测试与验收](../developing-apps/testing-and-acceptance.md)。
+在应用根目录运行 `pnpm test` 执行 Vitest 测试。浏览器测试使用 `pnpm test:e2e`，需要按测试配置准备运行中的应用和登录信息。具体准备步骤见[测试与验收](testing-and-acceptance.md)。
 
 已有项目的目录可能不同，以 `vitest.config.ts` 和 `playwright.config.ts` 中的配置为准。检查报告中的实际用例数；没有找到用例时正常退出，不代表功能已经通过验证。
 
@@ -107,7 +107,7 @@ my-app/
 | `AGENTS.md`、`.agents/rules/` | 保存本项目的开发约定，随源码维护和提交 |
 | `.agents/skills/` | 从依赖包同步生成，不直接修改或提交这些副本 |
 
-需要补充业务约定时，写入项目指引；需要更新依赖提供的 Skills 时，在应用目录运行 `pnpm nocobase skills sync`。具体方法见[和 Agent 一起开发](../developing-apps/develop-with-an-agent.md#让-agent-记住项目约定)。
+需要补充业务约定时，写入项目指引，见[持续开发应用](../getting-started/develop-with-an-agent.md#保存项目规范)。需要更新依赖提供的 Skills 时，在应用目录运行 `pnpm nocobase skills sync`，更多选项见[命令行参考](../reference/cli.md#插件与-skills)。
 
 ## 生成文件与运行数据
 

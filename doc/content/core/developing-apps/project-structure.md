@@ -5,7 +5,7 @@ description: Find the pages, APIs, migrations, tests and plugins in your applica
 
 ## Directory overview
 
-[Creating an app](create-app.md) gives you source code you can edit directly. The following shows common development locations in the default application template. Configuration, installed dependencies and build output appear after their respective setup steps.
+[Creating an app](../getting-started/create-app.md) gives you source code you can edit directly. The following shows common development locations in the default application template. Configuration, installed dependencies and build output appear after their respective setup steps.
 
 ```text
 my-app/
@@ -48,9 +48,9 @@ Directories vary with the template version and application features. Create opti
 
 Connect pages and APIs to their registration entries: adding a file alone does not make it accessible. UI source installed in `client/extensions/` also belongs to the application and connects to pages or components through imports.
 
-`database/` groups resources by connection name; `main` is the default connection. Keep migrations that have already run and add new ones for later schema changes. See [Tables and initial data](../developing-apps/data-models-and-migrations.md) for implementation details.
+`database/` groups resources by connection name; `main` is the default connection. Keep migrations that have already run and add new ones for later schema changes. See [Tables and initial data](data-models-and-migrations.md) for implementation details.
 
-For example, task management typically involves a table migration, API routes, a page and the corresponding registration files. Follow [Build your first app](../tutorials/build-your-first-app.md) to see how these locations fit a working feature.
+For example, customer management typically involves a table migration, API routes, a page and the corresponding registration files. Follow [Develop your first feature](../getting-started/build-your-first-app.md) to see how these locations fit a working feature.
 
 ## Configuration, dependencies and plugins
 
@@ -62,7 +62,7 @@ For example, task management typically involves a table migration, API routes, a
 | `config.yml` | Database connections, secrets and other settings for the current environment; keep it out of Git |
 | `server/config/` | Configuration defaults, validation and environment variable mappings defined in code |
 
-Use `config.yml` to change connection details for the current environment. Update definitions in `server/config/` when adding configuration options for your business logic. See [Application configuration](../developing-apps/configuration-and-settings.md) for loading behavior and commands.
+Use `config.yml` to change connection details for the current environment. Update definitions in `server/config/` when adding configuration options for your business logic. See [Application configuration](configuration-and-settings.md) for loading behavior and commands.
 
 ### Dependencies and plugin registration
 
@@ -76,7 +76,7 @@ The template provides capabilities such as users, authentication, authorization 
 | `server/plugins.ts` | Server plugins |
 | `cli/plugins.ts` | CLI plugins |
 
-A plugin may not provide all three entries, and some packages supply only development Skills. Installing dependencies, registering plugins and integrating pages are separate steps. See [Manage plugins](../developing-apps/manage-plugins.md) for instructions and the [Plugin index](../reference/plugins.md) for individual capabilities.
+A plugin may not provide all three entries, and some packages supply only development Skills. Installing dependencies, registering plugins and integrating pages are separate steps. See [Manage plugins](manage-plugins.md) for instructions and the [Plugin index](../reference/plugins.md) for individual capabilities.
 
 Keep local plugins or shared packages in `packages/` and configure workspace package directories in `pnpm-workspace.yaml`. You can also maintain a UI Registry package there when distributing UI source assets independently. See [Project directory and file conventions](../reference/project-conventions.md#local-plugins-shared-packages-and-ui-assets) for the detailed structure.
 
@@ -94,7 +94,7 @@ Tests live in `tests/`, organized by the code they verify:
 | `tests/fixtures/`, `tests/helpers/`, `tests/setup/` | Test data, shared helpers and environment setup |
 | `tests/playwright/` | Browser interaction tests; create as needed |
 
-Run `pnpm test` from the application root for Vitest tests. Browser tests use `pnpm test:e2e` and require a running application and sign-in details as specified in the test configuration. See [Testing and acceptance](../developing-apps/testing-and-acceptance.md) for setup instructions.
+Run `pnpm test` from the application root for Vitest tests. Browser tests use `pnpm test:e2e` and require a running application and sign-in details as specified in the test configuration. See [Testing and acceptance](testing-and-acceptance.md) for setup instructions.
 
 Existing projects may use different directories; follow their `vitest.config.ts` and `playwright.config.ts`. Check the actual test count in the report: a successful exit with no tests does not verify the feature.
 
@@ -107,7 +107,7 @@ Existing projects may use different directories; follow their `vitest.config.ts`
 | `AGENTS.md`, `.agents/rules/` | Maintain and commit the project's development conventions with its source |
 | `.agents/skills/` | Synchronized from dependencies; do not edit or commit these copies |
 
-Add business conventions to the project guidance. Run `pnpm nocobase skills sync` in the application directory to refresh Skills from dependencies. See [Develop with an agent](../developing-apps/develop-with-an-agent.md#keep-project-conventions) for details.
+Add business conventions to the project guidance as described in [Continue developing your app](../getting-started/develop-with-an-agent.md#save-project-conventions). Run `pnpm nocobase skills sync` in the application directory to refresh Skills from dependencies; see the [CLI reference](../reference/cli.md#plugins-and-skills) for more options.
 
 ## Generated files and runtime data
 

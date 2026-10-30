@@ -9,7 +9,6 @@ When the agent says "done", that does not mean it works. This chapter adds a "ne
 
 ```prompt
 Add an optional "needed by" date to device requests. It cannot be earlier than today, and it shows in the list and the details. Requests already submitted stay empty.
-Acceptance: Alice submits a request needed by November 6, and the date shows in the list and the details; choosing yesterday cannot be submitted.
 When done, report separately: which automated checks you ran; which account you used, what you did and what you saw, with screenshots; what was not verified.
 ```
 

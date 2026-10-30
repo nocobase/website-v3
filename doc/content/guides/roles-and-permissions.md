@@ -28,7 +28,6 @@ Fix permissions according to the permission matrix in docs/design.md:
 1. Employees can see and withdraw only their own requests, and see only the devices assigned to them in the register.
 2. Request details show only the actions the current role can take.
 3. Every action and data scope for devices and device requests can be configured in Permission management.
-Acceptance: employees cannot see other people's requests, cannot approve or issue, and cannot create or edit devices; IT support cannot approve; asset managers cannot issue. Acting directly without the page must be refused too.
 ```
 
 How the agent fixed it:

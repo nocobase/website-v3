@@ -135,7 +135,7 @@ Rules, all checked by the build (the error names the file and the entry):
 
 ## Tutorials
 
-The Tutorials tab (`guides/`, served at `/guides/` and `/zh-CN/guides/`) holds end-to-end walkthroughs that span Core and Studio. The directory is named `guides` because `tutorials` is one of the v2 redirect prefixes. Its home is the first article, `guides/build-sustainable-enterprise-apps`; the English version is a placeholder until it is translated.
+The Tutorials tab (`guides/`, served at `/guides/` and `/zh-CN/guides/`) holds end-to-end walkthroughs that span Core and Studio. The directory is named `guides` because `tutorials` is one of the v2 redirect prefixes. It is a series of 17 short tutorials in four menu groups (Getting started, Part 1: build an app with Core, Part 2: use Studio in a team, Appendix), built around a slim IT asset management app whose code lives in `apps/itam-lite` of [nocobase/docs-examples-v3](https://github.com/nocobase/docs-examples-v3). Its home is `guides/what-nocobase-brings`; the former single article `guides/build-sustainable-enterprise-apps` redirects there. The pages use `metaDescription` rather than a visible `description`. The English versions are placeholders until the Chinese ones are final.
 
 ## Core content
 

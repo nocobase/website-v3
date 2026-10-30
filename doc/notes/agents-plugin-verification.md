@@ -173,3 +173,43 @@ Local review working files were removed after the findings were incorporated her
 local acceptance screenshots remain under `storage/ui-workflow/agents-guide/`.
 They can be removed with `rm -r storage/ui-workflow/agents-guide` from the example
 application. Public documentation screenshots are separate and remain available.
+
+## Editorial revision: reader-facing prompts
+
+The bilingual guide now uses shorter, natural-language prompt examples. Those new
+prompts were not executed as part of this editorial revision. Screenshots, application
+source, archives and the runtime results above are unchanged. The exact historical
+prompts previously quoted in both guides are retained here for comparison with the
+screenshots and original tool records. The project-edit prompt was never executed.
+
+### Model chat
+
+```text
+Rewrite only these supplied facts as three short English bullets: the demo uses
+SQLite, connects to DeepSeek through a model API, and provides a chat panel.
+This is a writing exercise: do not use page context, call tools, or infer configuration.
+Output only the bullets.
+```
+
+### Release-note conversation
+
+```text
+Read the release-notes Skill and its style guide, then draft concise release notes
+in English. Supplied changes: Added model service configuration. Added a chat panel.
+Fixed the missing Skills navigation entry. Verification supplied: 17 route, locale, and
+permission-label tests passed. Do not claim any other tests ran.
+```
+
+### Runner workspace check
+
+```text
+Perform a read-only smoke test in this conversation's assigned workspace.
+Run pwd and list its top-level files. Report the actual working directory and output
+in English. Do not read credentials, access other directories, edit files, install
+packages, or claim that the application source is present unless you see it.
+```
+
+Source check for this revision: inspected the existing source ZIP at the pinned
+`b91adc8` example version and the published `@nocobase/app-plugin-agents@1.0.0-beta.29`
+package (public route/chat/token exports, scope registration and ChatProvider types).
+No application or external-model tests were rerun.

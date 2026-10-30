@@ -19,7 +19,7 @@ description: Write, restructure, or review individual NocoBase 3 plugin usage gu
 
 ## 固定的四章
 
-正文用以下四个二级标题，中英文顺序一致。三级标题按插件实际能力组织，不要求每篇具有相同的小节或场景数量。简短导语放在第一章之前。
+正文用以下四个二级标题，中英文顺序一致。三级标题按插件实际能力组织，不要求每篇具有相同的小节或场景数量。仅在有助于理解时，在第一章前写简短导语；不要把 frontmatter 摘要复制到正文。
 
 四章用于帮助读者查找内容，不是凑篇幅的要求。按仓库的文档写作规范，直接讲插件能做什么、怎么用，以及必要的实现说明；不在每章重复目标、前提和总结。通用知识链接到已有说明，保留与本插件有关的具体内容。
 
@@ -48,6 +48,8 @@ description: Write, restructure, or review individual NocoBase 3 plugin usage gu
 - **结果与验收**：预期的界面或数据变化，以及可观察的完成条件。使用 `**完成的标志**：` / `**Done when**:` 标记。
 
 提示词使用 `prompt` 代码块。只有插件本身提供用户对话时，才另外给出应用内对话提示词，并与交给开发 Agent 的提示词区分。
+
+场景默认沿用应用已有配置。数据库、模型服务等只有影响功能或步骤时才限定；需要具体配置时，可选一种受支持的方案并标明“以此为例”。SQLite 等实测配置写在验证范围中，不作为通用使用前提，也不据此声称其他配置已验证。保留真正的兼容性和版本要求。
 
 有界面且截图能帮助理解时，使用实际应用截图，说明展示的功能和状态。服务端或指引类插件可以用接口响应、代码差异、文件产物等展示结果。不要为了统一版式给不存在的页面补截图，也不要把示意图当作运行证据。
 
@@ -88,7 +90,7 @@ description: Write, restructure, or review individual NocoBase 3 plugin usage gu
 - 实测结论注明有关版本和执行范围。模型说“已完成”、截图中出现成功提示、测试命令退出成功，都需要与实际验证对象对应；不要用它们代替持久化、权限、工具执行或测试用例的证据。
 - 仅修改文章时可以验证文档结构与链接，不必重新创建应用或调用外部服务；报告中区分本次文档检查与原有运行记录。
 
-可参考 [Agents 中文指南](../../../doc/content/zh-CN/core/using-plugins/agents-and-knowledge/agents.md) 与 [Agents 核验记录](../../../doc/notes/agents-plugin-verification.md) 如何关联场景、截图、代码和检查。不要把其模型、数据库、工具名称、版本或尚未验证的能力作为其他插件的固定要求。
+可参考 [Agents 中文指南](../../../doc/content/zh-CN/core/using-plugins/agents-and-knowledge/agents.md) 与 [Agents 核验记录](../../../doc/notes/agents-plugin-verification.md) 如何关联场景、截图、代码和检查；参考其组织方式，不照搬环境配置或验证结论。
 
 ## 完成检查
 

@@ -4,7 +4,9 @@
 
 - Write for the person using the document. Lead with what they can do or need to know, then give the necessary steps and explanation. Match the depth to the article's purpose: a quickstart should get readers to a working result; a reference should make precise details easy to find.
 - Use natural language, concrete actions and examples. Explain unfamiliar terms when needed; do not stack jargon or assume readers know internal implementation names.
+- Keep examples adaptable to the reader's existing setup. Require a specific database (such as SQLite), model provider, operating system or deployment method only when the user specifies it or the task depends on it. Distinguish example choices and tested environments from prerequisites; preserve real compatibility requirements and do not imply untested alternatives were verified.
 - Cut repeated introductions, obvious commentary, generic warnings, empty transitions and summaries that repeat the preceding text. Do not explain the article's organization when the headings already make it clear, or narrate the author's writing and verification process in place of useful instructions.
+- Keep docs front matter `description` and `metaDescription` for metadata and summaries. Do not render them in the visible article or copy them into its introduction. Add a body introduction only when it helps the reader.
 - Keep prerequisites, usable commands, important business rules, relevant limitations and essential code explanations. Concision means removing material that does not help readers act or understand, not omitting steps or turning prose into cryptic fragments.
 - Explain shared concepts once and link to them elsewhere. Do not fill every section with exhaustive lists or move a bloated prompt unchanged into the surrounding prose. Before finishing, remove any paragraph whose deletion would not cost the reader useful information. Apply the same standard to every language.
 

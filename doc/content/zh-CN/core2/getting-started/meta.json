@@ -16,6 +16,15 @@
     {
       "type": "page",
       "path": "../tutorials/build-your-first-app"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/build-your-first-app-2",
+      "title": "搭建第一个应用（重写稿）"
+    },
+    {
+      "type": "page",
+      "path": "../tutorials/team-tasks-explained"
     }
   ]
 }

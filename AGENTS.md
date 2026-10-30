@@ -1,5 +1,15 @@
 # AGENTS.md
 
+## Documentation writing
+
+- Write for the person using the document. Lead with what they can do or need to know, then give the necessary steps and explanation. Match the depth to the article's purpose: a quickstart should get readers to a working result; a reference should make precise details easy to find.
+- Use natural language, concrete actions and examples. Explain unfamiliar terms when needed; do not stack jargon or assume readers know internal implementation names.
+- Cut repeated introductions, obvious commentary, generic warnings, empty transitions and summaries that repeat the preceding text. Do not explain the article's organization when the headings already make it clear, or narrate the author's writing and verification process in place of useful instructions.
+- Keep prerequisites, usable commands, important business rules, relevant limitations and essential code explanations. Concision means removing material that does not help readers act or understand, not omitting steps or turning prose into cryptic fragments.
+- Explain shared concepts once and link to them elsewhere. Do not fill every section with exhaustive lists or move a bloated prompt unchanged into the surrounding prose. Before finishing, remove any paragraph whose deletion would not cost the reader useful information. Apply the same standard to every language.
+
+When writing or reviewing reader-facing prompts in any repository documentation, use [write-doc-prompts](.agents/skills/write-doc-prompts/SKILL.md). This applies to quickstarts, tutorials, plugin guides, configuration instructions and verification examples in every language. Prompts must read like something a person would naturally ask: describe the reader's goal and necessary business rules. Put implementation contracts, project instructions and detailed verification procedures in the surrounding documentation instead of packing them into the prompt.
+
 ## Docs site (`doc/`)
 
 `doc/` is the source of the NocoBase 3 docs site, an Astro site in the pnpm workspace (see `doc/README.md` for the layout, `docs.config.ts` and the full `meta.json` guide). CI builds it with `pnpm doc:build` on every pull request and push that touches it, and publishes it to `docs.nocobase.com` once merged into `main` (see "CI and publishing" below). When you change the docs, change the content, the menus and the links together so they never disagree:

@@ -27,7 +27,7 @@ When development is complete, the agent runs tests, checks the application in a 
 
 Open the URL the agent provides. **Customers** appears in the sidebar. You can create customers, assign sales owners and follow-up dates, update statuses, search and filter:
 
-![Customer list with statuses, sales owners, follow-up dates and pagination.](/assets/core/tutorials/customers/customer-list.png)
+![Customer list with statuses, sales owners, follow-up dates and pagination.](/assets/core/tutorials/crm/customer-list-en.png)
 
 The screenshot comes from the example application. The same request may produce different layouts each time.
 
@@ -68,30 +68,8 @@ my-app/
 └── tests/               # Migration, API, page and browser tests
 ```
 
+Browse the [complete CRM example](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm) or [download the ZIP](/assets/core/downloads/crm-source-8ad9530.zip). See the [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD) for setup and run instructions.
+
 ## Next step
 
 Read [Continue developing your app](develop-with-an-agent.md) to learn how to describe new requirements, confirm designs, and review results as you expand the application.
-
-## Complete example source
-
-The example is **CRM customer management**, in `apps/crm`. Browse the [complete source](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm) at commit `8ad9530`, or [download the complete project ZIP](/assets/core/downloads/crm-source-8ad9530.zip). It includes the client and server, database migration, initial roles, English and Chinese UI, tests, and dependency lockfile. The [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD) maps the implementation files and records the verification scope.
-
-Use Node.js 24 and pnpm 11.7.0. The example uses Default template `1.0.0-beta.85`, with dependency versions fixed by `pnpm-lock.yaml`. After downloading and extracting the project, run:
-
-```bash
-cd crm
-pnpm install --frozen-lockfile
-pnpm nocobase config init --dialect sqlite --json
-pnpm nocobase config check --json
-pnpm dev
-```
-
-Open the complete application URL printed in the terminal. The first startup creates the customer table and three business roles. A fresh default template uses `nocobase` / `admin123` for the initial login. The project includes no demo accounts, customer data, or local configuration; follow this page to create customers, assign roles, and check permissions.
-
-These screenshots show the running project with fictional demonstration data:
-
-![CRM customer list with statuses, sales owners, follow-up dates, search, filtering, and pagination.](/assets/core/tutorials/crm/customer-list-en.png)
-
-![CRM customer detail with contact information, sales owner, follow-up date, and notes.](/assets/core/tutorials/crm/customer-detail-en.png)
-
-Verified with SQLite: create, edit, delete, status changes, search, filtering, pagination, and persistence after refresh. Sales manager, sales rep, and read-only access were checked with accounts holding only the corresponding business role. All 24 targeted automated tests, type checking, and the application build passed. Other databases and production deployment were not verified.

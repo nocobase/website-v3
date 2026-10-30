@@ -54,10 +54,4 @@ Alice 只看到自己的三个申请和名下的两台设备；Ben 打开待审�
 
 权限怎样声明、检查和验证，见 [认证与权限](../core/developing-apps/authentication-and-permissions.md)；权限管理页面见 [权限](../core/using-plugins/authorization/permissions.md)。
 
-## 4. 提交
-
-```bash
-git add -A && git commit -m "feat: limit each role to its own records and actions"
-```
-
 **完成的标志**：三个账号登录后看到和能做的与权限矩阵一致；权限测试里，普通账号直接调用越权接口全部被拒绝；权限管理里能看到并调整每个业务操作和数据范围。

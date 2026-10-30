@@ -1,6 +1,6 @@
 ---
 title: Write a system design document first
-metaDescription: Talk ITAM's design through with the agent and keep the design document in the repository, then cover five points and write acceptance criteria for every request after that.
+metaDescription: Talk ITAM's design through with the agent and keep the design document in the repository, then describe every later request in business terms, covering who uses it, what to do and what the rules are.
 ---
 
 Don't ask the agent to generate the whole system in one sentence. "Build an IT asset management system" leaves dozens of business questions open, and the agent can only guess for you. Talk the design through with the agent first, write it up as a document in the repository, and base every later request on it.
@@ -15,7 +15,7 @@ Three roles: employees request devices, asset managers approve, and IT support i
 Ask me about anything I need to decide, one group of questions at a time, with your recommendation for each.
 ```
 
-The agent asks one group of questions at a time. In this tutorial we decided:
+The agent asks one group of questions at a time. This tutorial settled on:
 
 | The agent asks | Decision |
 | --- | --- |
@@ -43,25 +43,17 @@ The document the agent wrote is [docs/design.md](https://github.com/nocobase/doc
 | 2 Requests and approval | Requests, workflow, notifications, workflow management | A laptop request is approved and then issued by IT support, and the device becomes In use in the register; a monitor request goes straight to Ready to issue; the people involved get in-app messages |
 | 3 Roles and permissions | Three roles and their data scopes | Signing in with each of the three accounts, what you see and can do matches the permission matrix; API calls beyond a role's permissions are rejected |
 
-Read through the document, have the agent fix anything that's wrong, then commit:
-
-```bash
-git add -A && git commit -m "docs: add the system design"
-```
+Read through the document and have the agent fix anything that's wrong.
 
 For a more structured process, you can use [OpenSpec](https://github.com/Fission-AI/OpenSpec) (each change written up as a proposal, design and tasks) or [superpowers](https://github.com/obra/superpowers) (brainstorm, then plan, then execute). This tutorial just uses conversation and one `docs/design.md`.
 
-## 3. Cover five points in every later request
+## 3. Cover three points in every later request
 
-The design document covers the whole system. A single request still needs to cover five points:
+The design document covers the whole system. A single request covers three points in business terms:
 
-| Point | What it means |
-| --- | --- |
-| Who uses it, and where | Which role, on which page |
-| What it should achieve | The result the user sees |
-| Rules and limits | Business rules; what this change doesn't do; what happens to existing data |
-| What happens on failure | How it behaves on invalid input, conflicting data or missing permission |
-| How to tell it's done | Acceptance criteria a person can click through |
+- Who uses it.
+- What to do.
+- The rules: who can do what, and which data must not be touched.
 
 The same request, written two ways:
 
@@ -73,11 +65,9 @@ Devices should be returnable.
 Add "Return" to the device register.
 IT support clicks Return on a device that is In use and fills in the return location; the device becomes In stock and its user is cleared.
 Only IT support and asset managers can return devices, not employees. Devices that are In stock, In repair or Retired can't be returned.
-If someone else has changed the device meanwhile, ask the user to refresh and try again.
-Acceptance: after IT support returns a device that is In use, it is In stock with no user; employees don't see Return.
 ```
 
-With the first, the agent has to guess who can return devices, how the status changes and what happens to existing data. With the second, the agent follows it and a person accepts against it.
+With the first, the agent has to guess who can return devices and how the status changes. With the second, the agent follows it without guessing, and the plan is clearer.
 
 For larger requests, have the agent propose a plan first and start only after you confirm:
 

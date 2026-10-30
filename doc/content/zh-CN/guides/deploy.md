@@ -52,10 +52,6 @@ Agent 重建容器后，这台设备还在，登录状态也还在。之后开�
 
 ## 5. 提交
 
-部署不改代码。把部署方式和验证结果记进 README，提交：
-
-```bash
-git add -A && git commit -m "docs: record the Docker deployment"
-```
+部署不改代码。让 Agent 把部署方式和验证结果记进 README。
 
 **完成的标志**：访问地址能打开，管理员能登录；重建容器后新建的设备还在；`config.yml` 和数据库在服务器的部署目录里，不在镜像和代码仓库里。

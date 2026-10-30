@@ -72,15 +72,23 @@ description: 在 itam-lite 里开发、自测或评审任何涉及设备、领�
 - 领用标准、报废年限、盘点周期，以知识库《设备领用、报废与盘点规则》为准，不要写死在代码里猜。
 ```
 
-打开「Agent 管理 › 技能」，点「新建技能」，粘贴保存。再打开 itam-lite 的「项目设置 › 默认技能」，「应用于」选「整个项目」，加上 `itam-checklist`。全局和代码仓库范围的挂载见 [技能](../studio/project/skills.md)。
+确认内容后，让它建到 Studio 里：
+
+```prompt
+用 nb-studio 把 itam-checklist 建成 Studio 的技能，应用到 itam-lite 项目上。
+```
+
+建好后，「Agent 管理 › 技能」里能看到它，itam-lite 的「项目设置 › 默认技能」里也挂上了。
 
 ![技能列表：内置技能和团队自己的技能](https://static-docs.nocobase.com/20261028210018195.png)
+
+技能可以挂在三个范围：全局、项目、代码仓库，详见 [技能](../studio/project/skills.md)。
+
+![技能详情里的全局挂载和新项目自动挂载](https://static-docs.nocobase.com/20261028210517252.png)
 
 ![项目设置里的默认技能](https://static-docs.nocobase.com/20261029152525192.png)
 
 ![默认技能可以只应用于某个代码仓库](https://static-docs.nocobase.com/20261029152621517.png)
-
-![技能详情里的全局挂载和新项目自动挂载](https://static-docs.nocobase.com/20261028210517252.png)
 
 **完成的标志**：下一个涉及设备的任务，评审 Agent 按清单检查了角色权限和留痕，交付报告里有不同角色的截图。
 

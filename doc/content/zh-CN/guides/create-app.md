@@ -42,10 +42,8 @@ Agent 检查 Node.js 和 pnpm 的版本，创建项目、安装依赖、生成�
 
 ## 4. 第一次提交
 
-```bash
-git init
-git add -A
-git commit -m "chore: create the app"
+```prompt
+初始化 Git 仓库，做第一次提交。
 ```
 
 `config.yml`（含密钥）、SQLite 数据库、`node_modules/` 和 `.agents/skills/` 已被 `.gitignore` 排除。之后 Agent 每完成一步就提交一次，改了什么一目了然。

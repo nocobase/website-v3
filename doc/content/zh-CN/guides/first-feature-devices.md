@@ -1,6 +1,6 @@
 ---
 title: 第一个功能：设备台账
-metaDescription: 按设计文档让 Agent 做出设备台账，在运行的应用里试用，再提修改意见，提交一次。
+metaDescription: 按设计文档让 Agent 做出设备台账，在运行的应用里试用，再提修改意见。
 ---
 
 设计文档的第一步是设备台账。需求已经写在[文档](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md)里，提示词只需指向它。
@@ -48,11 +48,5 @@ Agent 新增了一个迁移给序列号加唯一索引（已经执行过的迁�
 ![序列号重复时的提示](https://static-docs.nocobase.com/20261030-itam-lite-devices-duplicate-serial.webp)
 
 ![按状态筛选](https://static-docs.nocobase.com/20261030-itam-lite-devices-filter-by-status.webp)
-
-## 4. 提交
-
-```bash
-git add -A && git commit -m "feat: add the device register"
-```
 
 **完成的标志**：能新建、编辑、删除设备；资产编号和序列号重复时在对应输入框旁提示；能按状态和类别筛选；刷新后数据还在。

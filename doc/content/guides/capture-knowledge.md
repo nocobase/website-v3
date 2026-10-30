@@ -72,15 +72,23 @@ description: Read when developing, self-testing or reviewing any change in itam-
 - Standard equipment, retirement ages and the stocktake schedule follow "Device request, retirement and stocktake rules" in the knowledge base. Don't guess and hard-code them.
 ```
 
-Open **Agent management › Skills**, click **New skill**, paste it and save. Then open itam-lite's **Project settings › Default skills**, choose **The whole project** under **Applies to**, and add `itam-checklist`. For attaching skills globally or to a repository, see [Skills](../studio/project/skills.md).
+Once the content looks right, have the agent add it to Studio:
+
+```prompt
+Use nb-studio to create itam-checklist as a Studio skill and apply it to the itam-lite project.
+```
+
+Afterwards it appears in **Agent management › Skills**, and itam-lite's **Project settings › Default skills** lists it.
 
 ![The skill list: built-in skills and the team's own](https://static-docs.nocobase.com/20261028210018195.png)
+
+Skills can be attached at three levels: global, project and repository. See [Skills](../studio/project/skills.md).
+
+![Global attachment and automatic attachment to new projects in the skill's details](https://static-docs.nocobase.com/20261028210517252.png)
 
 ![Default skills in the project settings](https://static-docs.nocobase.com/20261029152525192.png)
 
 ![Default skills can apply to a single repository](https://static-docs.nocobase.com/20261029152621517.png)
-
-![Global attachment and automatic attachment to new projects in the skill's details](https://static-docs.nocobase.com/20261028210517252.png)
 
 **Done when**: on the next issue that involves devices, the reviewing agent checks role permissions and audit trails against the checklist, and the delivery report has screenshots from different roles.
 

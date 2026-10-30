@@ -29,10 +29,8 @@ Register it in AGENTS.md: read it before any business change; when a request cha
 ## Raise a request
 
 ```prompt
-<What to build: who uses it and where, and what it should accomplish>
-<Rules and boundaries: who can do it, and when it is not allowed>
-<What happens when it fails>
-Acceptance: <which account does what, and what result it sees>
+<Who uses it, and what to do>
+<The rules: who can do what, and which data must not be touched>
 ```
 
 ## Plan first

@@ -63,10 +63,4 @@ The agent added a formatting function that shows only the date and shows "—" w
 
 Choose yesterday again and submit: `Choose today or a later date.` appears next to the date field. Sign in as Ben, and Alice's needed-by date shows in the list.
 
-## 5. Commit
-
-```bash
-git add -A && git commit -m "feat: add a needed-by date to device requests"
-```
-
 **Done when**: a new request's needed-by date shows only the date in the list and the details, and old requests show "—"; a date earlier than today cannot be submitted and is flagged next to the field; Ben can see the date; all tests pass.

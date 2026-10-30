@@ -63,10 +63,4 @@ Agent 新增了一个只显示日期的格式化函数，没有日期时显示�
 
 再选昨天提交，日期输入框旁提示 `Choose today or a later date.`；用 Ben 登录，列表里能看到 Alice 的期望日期。
 
-## 5. 提交
-
-```bash
-git add -A && git commit -m "feat: add a needed-by date to device requests"
-```
-
 **完成的标志**：新申请的期望到货日期在列表和详情里只显示日期，旧申请显示“—”；早于今天的日期提交不了并在输入框旁提示；Ben 能看到这个日期；全部测试通过。

@@ -71,3 +71,27 @@ my-app/
 ## 下一步
 
 继续阅读[持续开发应用](develop-with-an-agent.md)，了解如何提出新需求、确认设计和验收结果，逐步扩展这个应用。
+
+## 完整示例代码
+
+示例项目叫 **CRM 客户管理**，目录为 `apps/crm`。查看[完整源码](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm)（固定提交 `8ad9530`），或[下载完整项目 ZIP](/assets/core/downloads/crm-source-8ad9530.zip)。项目包含前后端、数据库迁移、角色初始化、中文和英文界面、测试及依赖锁文件；[README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD)说明了代码位置与验证范围。
+
+运行环境：Node.js 24、pnpm 11.7.0。示例基于 Default 模板 `1.0.0-beta.85`，依赖版本由 `pnpm-lock.yaml` 固定。下载并解压后执行：
+
+```bash
+cd crm
+pnpm install --frozen-lockfile
+pnpm nocobase config init --dialect sqlite --json
+pnpm nocobase config check --json
+pnpm dev
+```
+
+打开终端输出的完整应用地址。首次启动会创建客户表和三种业务角色；新模板默认使用 `nocobase` / `admin123` 登录。项目不包含演示账号、客户数据或本地配置，可按本文的步骤新建客户、分配角色并验证权限。
+
+下面是该项目实际运行的客户列表与详情页，数据为虚构示例：
+
+![CRM 客户列表：状态、负责销售、下次跟进日期，以及搜索、筛选和分页。](/assets/core/tutorials/crm/customer-list-en.png)
+
+![CRM 客户详情：查看联系方式、负责销售、下次跟进日期与备注。](/assets/core/tutorials/crm/customer-detail-en.png)
+
+已在 SQLite 环境中验证新建、编辑、删除、状态更新、搜索、筛选、分页和刷新后的数据保留，并用仅分配一种业务角色的账号检查销售主管、销售和只读权限。相关的 24 项自动化测试、类型检查和应用构建通过；其他数据库和生产部署未验证。

@@ -45,7 +45,7 @@ Agent 写出的文档见示例仓库的 [docs/design.md](https://github.com/noco
 
 读一遍文档，不对的地方直接让 Agent 改。
 
-想让这个过程更有章法，可以用 [OpenSpec](https://github.com/Fission-AI/OpenSpec)（把每次变更写成提案、设计、任务）或 [superpowers](https://github.com/obra/superpowers)（先头脑风暴、再写计划、再执行）。本教程直接用对话和一份 `docs/design.md`。
+想让这个过程更有章法，可以用 [OpenSpec](https://github.com/Fission-AI/OpenSpec)（把每次变更写成提案、设计、任务）或 [superpowers](https://github.com/obra/superpowers)（先头脑风暴、再写计划、再执行）。
 
 ## 3. 之后每个需求说清三件事
 

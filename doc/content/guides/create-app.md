@@ -46,6 +46,6 @@ Open **App foundation** now and you'll see capabilities such as data modeling, u
 Initialize a Git repository and make the first commit.
 ```
 
-`config.yml` (which holds secrets), the SQLite database, `node_modules/` and `.agents/skills/` are already excluded by `.gitignore`. From now on the agent commits after every step, so you can see exactly what changed.
+`config.yml` (which holds secrets), the SQLite database, `node_modules/` and `.agents/skills/` are already excluded by `.gitignore`. From now on the agent commits after every step.
 
 **Done when**: you see the home page after signing in as the administrator, and `git log` shows the first commit.

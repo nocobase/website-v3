@@ -3,7 +3,7 @@ title: Roles and permissions
 metaDescription: Sign in with each of the three accounts and check against the design document's permission matrix, so employees see only their own data, buttons follow the role, and the API refuses the same overreach.
 ---
 
-After the last chapter the three roles can already walk through the workflow, but who can see which records has not been worked out yet. This chapter checks each item against the permission matrix in section 6 of the [design document](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md), switching accounts, and has the agent fix what you find.
+This chapter checks each item against the permission matrix in section 6 of the [design document](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md), switching accounts, and has the agent fix what you find.
 
 ## 1. Check with each account
 

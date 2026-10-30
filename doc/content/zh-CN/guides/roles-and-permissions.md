@@ -3,7 +3,7 @@ title: 角色与权限
 metaDescription: 用三个账号分别登录，对照设计文档的权限矩阵检查，让员工只看自己的数据、按钮跟着角色走，并确认接口同样拒绝越权。
 ---
 
-上一步三个角色已经能走通流程，但谁能看到哪些记录还没细化。这一步对照[设计文档](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md)第 6 节的权限矩阵，换账号逐项检查，发现问题再让 Agent 改。
+这一步对照[设计文档](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md)第 6 节的权限矩阵，换账号逐项检查，发现问题再让 Agent 改。
 
 ## 1. 换账号检查
 

@@ -71,7 +71,6 @@ If it works as expected, click **Merge**. If not, click **Send back for changes*
 
 ![An issue in review: the Merge button on the Needs you card](https://static-docs.nocobase.com/20261028201509073.png)
 
-For issues you care about, click the star at the top right to follow them, and they show up at the very top of **My issues**.
 
 ![Following an issue](https://static-docs.nocobase.com/20261029152227386.png)
 

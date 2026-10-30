@@ -45,7 +45,7 @@ The document the agent wrote is [docs/design.md](https://github.com/nocobase/doc
 
 Read through the document and have the agent fix anything that's wrong.
 
-For a more structured process, you can use [OpenSpec](https://github.com/Fission-AI/OpenSpec) (each change written up as a proposal, design and tasks) or [superpowers](https://github.com/obra/superpowers) (brainstorm, then plan, then execute). This tutorial just uses conversation and one `docs/design.md`.
+For a more structured process, you can use [OpenSpec](https://github.com/Fission-AI/OpenSpec) (each change written up as a proposal, design and tasks) or [superpowers](https://github.com/obra/superpowers) (brainstorm, then plan, then execute).
 
 ## 3. Cover three points in every later request
 

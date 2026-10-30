@@ -46,7 +46,7 @@ Agent 的做法：
 
 ![部署后的设备台账](https://static-docs.nocobase.com/20261030-itam-lite-deploy-docker-devices.webp)
 
-Agent 重建容器后，这台设备还在，登录状态也还在。之后开发机关机、`pnpm dev` 停掉，服务器上的 itam-lite 照常使用。
+Agent 重建容器后，这台设备还在，登录状态也还在。
 
 发布新版本时，构建新标签的镜像，先备份部署目录，再保留原配置和数据换镜像，见 [部署新版本](../core/tutorials/deploy-with-docker.md#部署新版本)。
 

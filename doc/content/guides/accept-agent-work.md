@@ -1,6 +1,6 @@
 ---
 title: Accept the agent's work
-metaDescription: Using a "needed by" date on device requests as the example, read the agent's report, run it yourself with existing data, review the changes, and send it back with steps to reproduce and the expected result when something is wrong.
+metaDescription: Using a "needed by" date on device requests as the example, read the agent's report, run it yourself with existing data, and send it back with steps to reproduce and the expected result when something is wrong.
 ---
 
 This chapter adds a "needed by" date to device requests and goes through acceptance and sending work back.
@@ -34,17 +34,7 @@ Two problems:
 
 The agent's tests and hands-on use both used only new data. When accepting, use existing data and walk through each role's daily work. Once a scenario is settled, you can have the agent turn it into a browser test; see [Testing and acceptance](../core/developing-apps/testing-and-acceptance.md#browser-tests-and-functional-acceptance).
 
-## 3. Review the changes
-
-Use `git diff` to see what changed in this round. This time, focus on:
-
-- **Data**: a new migration `202610300401_add_device_request_needed_by` was added, and no migration that has already run was edited; this column is empty for old requests.
-- **Permissions**: `neededBy` was added to the readable fields of device requests, so the three roles need no extra grant; "cannot be earlier than today" is checked on the server.
-- **Pages**: the needed-by date reuses the formatting function for **Submitted**, which includes the time; the type marks the needed-by date as required. Both problems above come from here.
-
-For the other items to check, see [Continue developing your app](../core/getting-started/develop-with-an-agent.md#review-the-result).
-
-## 4. Send it back
+## 3. Send it back
 
 Send it back when an acceptance criterion is not met, old data is shown or handled wrongly, or permissions are wrong. Give steps to reproduce and the expected result:
 

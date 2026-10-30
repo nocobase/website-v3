@@ -43,7 +43,7 @@ In the **Release** column, click **How to publish**:
 1. Choose the itam-lite repository and the release line `v*`.
 2. Under **Based on staging environment**, choose the staging environment you just set up. The target commit is the one running on staging, so what you release is the version Xu Ning tried.
 3. You can change the **Suggested tag**, for example to `v1.1.0`.
-4. Look at **Included tasks** and the issues that aren't included, and confirm that device stocktaking and device retirement are both in.
+4. Look at **Included issues** and the issues that aren't included, and confirm that device stocktaking and device retirement are both in.
 5. Click **Copy commands** and run them in the itam-lite repository.
 
 ![Publishing a release: choose the release line and the staging environment, check the included issues, and copy the tag commands](https://static-docs.nocobase.com/20261030-studio-publish-pending.webp)

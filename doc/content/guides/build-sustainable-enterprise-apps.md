@@ -9,7 +9,7 @@ When you let an agent vibe-code a business system, the first version usually com
 
 1. Permissions, workflows and approvals have to be written from scratch, and then maintained forever.
 2. A new model, a new person or a new session brings a new way of writing code, and the architecture slowly gets out of control.
-3. With many tasks running in parallel, people can't keep up with confirming the agents' messages and changes.
+3. With many issues running in parallel, people can't keep up with confirming the agents' messages and changes.
 4. Requirement context, business rules and lessons learned are scattered across sessions, and they are lost when people or agents change.
 
 To address these problems, we built [NocoBase Core](https://www.nocobase.com/core/) and [NocoBase Studio](https://www.nocobase.com/studio/). They let companies develop their own enterprise apps quickly in the age of AI agents while solving the problems above. Using IT asset management as the example, this tutorial shows how to build enterprise apps that keep evolving with NocoBase 3.

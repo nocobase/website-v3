@@ -8,7 +8,7 @@ Once a system has a first version, it enters a phase of continuous iteration:
 1. Features already built need to be improved and their bugs fixed.
 2. New feature modules need to be added to the system.
 
-If one person develops several tasks in parallel, they have to jump between several agent sessions, and the faster agents produce output, the more it demands of that person. If several people develop together, requirement context, business material and project experience can end up scattered everywhere. When a different person or agent takes over, much of that context is likely lost. To address this, NocoBase built NocoBase Studio, made for governing development where people and agents work together.
+If one person works on several issues in parallel, they have to jump between several agent sessions, and the faster agents produce output, the more it demands of that person. If several people develop together, requirement context, business material and project experience can end up scattered everywhere. When a different person or agent takes over, much of that context is likely lost. To address this, NocoBase built NocoBase Studio, made for governing development where people and agents work together.
 
 ![My issues in Studio: what's waiting for you comes first](https://static-docs.nocobase.com/20261028173135810.png)
 

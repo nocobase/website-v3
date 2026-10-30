@@ -3,7 +3,7 @@ title: 项目目录与文件约定
 description: 查找应用、插件和 UI 源码资产的入口、可选目录、生成文件及维护归属。
 ---
 
-第一次认识项目时阅读[项目结构](../getting-started/project-structure.md)。本页按路径查找职责和维护方式；目录中的文件名是约定示例，按实际模板和功能增减。
+第一次认识项目时阅读[应用的代码结构](../developing-apps/app-structure.md)。本页按路径查找职责和维护方式；目录中的文件名是约定示例，按实际模板和功能增减。
 
 ## 应用目录
 
@@ -112,7 +112,7 @@ packages/
     └── package.json
 ```
 
-插件按需要提供 Client、Server、CLI、数据库和 Skills，不要求具备全部目录。完整结构见[插件结构](../extension-development/plugin-structure.md)。
+插件按需要提供 Client、Server、CLI、数据库和 Skill，不要求具备全部目录。完整结构见[插件结构](../extension-development/plugin-structure.md)。
 
 前端组件在应用和插件中都可以自由编写、组织，基础组件使用 shadcn，模块化界面优先参考 NocoBase UI Library。需要作为可编辑源码资产交付给 Agent 时，在独立 Registry 包维护。资产可以引用一起分发且安装后路径仍有效的文件；调用插件能力时使用公开包入口或使用方传入的数据，不能相对引用旁边插件包的私有实现。
 

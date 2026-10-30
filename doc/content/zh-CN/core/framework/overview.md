@@ -2,7 +2,7 @@
 title: 框架概览
 ---
 
-本章介绍应用和插件共同使用的框架机制，以及 `@nocobase/*` 核心包的职责、使用方式和运行边界。需要实现页面、接口或插件时，可以从[开发应用](../developing-apps/overview.md)和[开发插件](../extension-development/when-to-write-a-plugin.md)开始，遇到具体机制再回到这里查阅。
+本章介绍应用和插件共同使用的框架机制，以及 `@nocobase/*` 核心包的职责、使用方式和运行边界。需要实现页面、接口或插件时，可以从[开发应用](../developing-apps/app-structure.md)和[开发插件](../extension-development/when-to-write-a-plugin.md)开始，遇到具体机制再回到这里查阅。
 
 ## 运行时与共用机制
 

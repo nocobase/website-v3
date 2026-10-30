@@ -9,15 +9,15 @@ NocoBase Core provides application framework capabilities. Plugins provide featu
 
 1. [Meet NocoBase Core](getting-started/what-is-core.md): understand Core, templates, plugins and applications.
 2. [Create an app](getting-started/create-app.md): create a project, start it and sign in.
-3. [Project structure](getting-started/project-structure.md): locate pages, APIs, databases, local packages and tests.
-4. [Build your first app](tutorials/build-your-first-app-agent-first.md): build a task application with an Agent, and verify a complete business flow.
+3. [Project structure](developing-apps/app-structure.md): locate pages, APIs, databases, local packages and tests.
+4. [Build your first app](getting-started/build-your-first-app.md): build a task application with an Agent, and verify a complete business flow.
 
 ## Developing apps
 
 Organize business implementation around `client/`, `server/`, `database/`, `cli/`, `packages/` and `tests/`.
 
-- [Application development overview](developing-apps/overview.md): connect pages, APIs, services and the database.
-- [Develop with an Agent](developing-apps/develop-with-an-agent.md): use project rules and Skills, divide requirements and verify results.
+- [Application development overview](developing-apps/app-structure.md): connect pages, APIs, services and the database.
+- [Develop with an Agent](getting-started/develop-with-an-agent.md): use project rules and Skills, divide requirements and verify results.
 - [Client pages and navigation](developing-apps/pages-routes-and-navigation.md) and [components and interactions](developing-apps/pages-and-interactions.md): implement pages and user actions.
 - [Server APIs and business services](developing-apps/apis-and-services.md): organize business logic, validate input and integrate permissions.
 - [Create tables and initialize data](developing-apps/data-models-and-migrations.md) and [data operations](developing-apps/querying-data.md): store and access business data.

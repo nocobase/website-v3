@@ -25,7 +25,7 @@ description: "查看应用已接入的 Core 能力、使用证据和业务模块
 
 底座展示的是读取到的证据，不会代替真实邮件收发、模型调用或业务验收。记录总数只在明确选择统计时查询；采集失败不应被理解成数量为零。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用应用底座插件，为管理员接入 Core 能力概览。
@@ -80,6 +80,6 @@ description: "查看应用已接入的 Core 能力、使用证据和业务模块
 
 本插件不负责安装、启用或升级其他插件，也不能证明升级检查、迁移校验或业务测试已经通过。相关文档：[管理插件](../../developing-apps/manage-plugins.md)、[数据库浏览](../data-and-files/database-explorer.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-foundation)。

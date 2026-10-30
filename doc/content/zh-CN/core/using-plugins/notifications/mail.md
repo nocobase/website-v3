@@ -20,7 +20,7 @@ description: "连接用户邮箱，收发邮件、同步历史并组合邮件工
 
 `participant` 精确匹配 From、To、Cc 的实际地址，域名不包含子域名，不会扩展用户的邮箱权限，也不会临时查询尚未同步的远端历史。关键字模糊搜索使用独立的 `q`。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用邮件插件，在客户详情中展示当前用户与客户的往来邮件。
@@ -83,6 +83,6 @@ OAuth、SMTP 等凭据保存在服务端私有配置。使用 OAuth 时配置对
 
 相关文档：[通知渠道](providers.md)、[身份认证](../authentication/sign-in.md)、[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-mail)。

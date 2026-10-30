@@ -20,7 +20,7 @@ description: "接入用户管理、邀请、角色分配和个人偏好。"
 
 邀请邮件依赖可用的邮件投递配置。邮件发送失败不等于邀请创建失败；按响应判断是否可以转发邀请链接。重新生成链接会使旧链接失效。系统邀请邮件使用通知投递能力，不要求接入[用户邮箱](../notifications/mail.md)。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用用户管理插件，为现有应用接入成员管理和邀请。
@@ -77,6 +77,6 @@ React 页面可从 `/client/preferences` 使用 `useUserPreference(key, { defaul
 
 相关文档：[身份认证](sign-in.md)、[API 密钥](api-keys.md)、[权限管理](../authorization/permissions.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-users)。

@@ -178,7 +178,7 @@ pnpm nocobase collections generate --connection main --check
 
 ### 准备示例应用
 
-项目专题沿用独立的历史示例：`tutorialTasks` 保存任务，`tutorialProjects` 保存项目，任务使用 `completed` 表示完成状态。当前[入门示例](../tutorials/build-your-first-app-agent-first.md)则使用 `tasks` 和三阶段 `status`，两者不是同一套代码。运行本专题时使用下方指定的旧标签和配套配置；不要直接把这些迁移应用到入门示例的数据库。
+项目专题沿用独立的历史示例：`tutorialTasks` 保存任务，`tutorialProjects` 保存项目，任务使用 `completed` 表示完成状态。当前[入门示例](../getting-started/build-your-first-app.md)则使用 `tasks` 和三阶段 `status`，两者不是同一套代码。运行本专题时使用下方指定的旧标签和配套配置；不要直接把这些迁移应用到入门示例的数据库。
 
 <details>
 <summary>获取并配置本文的示例应用</summary>
@@ -480,6 +480,6 @@ pnpm exec vitest run --config vitest.tutorial.config.ts
 
 ### 继续阅读
 
-[路由与 HTTP 接口](apis-and-services.md)说明怎样把数据操作开放给页面：校验输入、检查项目与任务的权限，并把业务错误转换为一致的 API 错误。[应用开发概览](overview.md)介绍这些部分如何连起来。
+[路由与 HTTP 接口](apis-and-services.md)说明怎样把数据操作开放给页面：校验输入、检查项目与任务的权限，并把业务错误转换为一致的 API 错误。[应用的代码结构](app-structure.md)介绍这些部分如何连起来。
 
 迁移与初始数据按连接维护；新增连接见[多数据库连接](multiple-databases.md)。已有结构由其他系统管理时，使用[接入已有数据库](existing-databases.md)的流程，手写 `metadata/` 与生成的 `collections/` 分开维护。

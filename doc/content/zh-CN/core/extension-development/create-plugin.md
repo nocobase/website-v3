@@ -72,7 +72,7 @@ ServiceProvider 用于应用服务与生命周期，React Provider 用于组件�
 
 `server.routes` 不会自动生成 CRUD 接口，也不要求一定同时选择 `server.service-providers`；需要独立业务服务时再组合。`server.jobs` 已包含管理任务执行器的 Provider，任务后端由 App 配置，具体何时提交任务需要自行实现。
 
-#### 数据库、CLI 与 Skills
+#### 数据库、CLI 与 Skill
 
 | `--with` 的值 | 生成内容 | 需要继续实现的内容 |
 | --- | --- | --- |

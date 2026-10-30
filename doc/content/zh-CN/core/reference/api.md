@@ -3,7 +3,7 @@ title: API 参考
 description: NocoBase 3 常用公开入口、服务容器、HTTP 客户端、配置与数据库接口速查。
 ---
 
-本页按调用场景列出常用公开 API、返回值和使用约束。完整参数、重载和辅助类型以所安装版本的类型声明为准；数据库的专题参考见本文末尾。应用开发过程见[开发应用](../developing-apps/overview.md)，共享机制见[框架](../framework/overview.md)。
+本页按调用场景列出常用公开 API、返回值和使用约束。完整参数、重载和辅助类型以所安装版本的类型声明为准；数据库的专题参考见本文末尾。应用开发过程见[开发应用](../developing-apps/app-structure.md)，共享机制见[框架](../framework/overview.md)。
 
 按机制学习见[框架](../framework/overview.md)；数据库的建模、查询与事务用法见[数据库专题](../framework/database/overview.md)。
 

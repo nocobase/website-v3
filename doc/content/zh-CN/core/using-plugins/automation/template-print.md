@@ -1,6 +1,6 @@
 ---
 title: "模板打印"
-description: "使用插件 Skills 在应用中实现 DOCX 模板和 PDF 输出。"
+description: "使用插件 Skill 在应用中实现 DOCX 模板和 PDF 输出。"
 ---
 
 ## 提供的能力
@@ -44,7 +44,7 @@ pnpm nocobase skills sync
 
 | 接入位置 | 代码或配置变化 | 界面与行为变化 |
 | --- | --- | --- |
-| 开发依赖与同步 Skills | 安装指导包并同步到应用 | Coding Agent 能读取当前版本指引，不新增运行时插件 |
+| 开发依赖与同步 Skill | 安装指导包并同步到应用 | Agent 能读取当前版本指引，不新增运行时插件 |
 | 模板资产、业务查询与下载接口 | 实现受授权的数据装配和 DOCX 渲染 | 返回真实可打开的文档 |
 | 订单详情与可选 PDF 环境 | 接入下载按钮、转换依赖和失败反馈 | 用户可以下载，转换失败可解释 |
 
@@ -66,8 +66,8 @@ pnpm nocobase skills sync
 
 检查生成文档能打开、字段值和合计正确、重复区域与分页合理，并验证当前用户不能打印无权查看的记录或字段。需要 PDF 时，还要在部署环境验证转换、字体和错误处理。
 
-相关文档：[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)、[文件](../data-and-files/file-management.md)、[权限管理](../authorization/permissions.md)。
+相关文档：[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)、[文件](../data-and-files/file-management.md)、[权限管理](../authorization/permissions.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-template-print)。

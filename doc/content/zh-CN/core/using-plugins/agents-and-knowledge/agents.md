@@ -3,7 +3,7 @@ title: "Agents"
 description: "了解 app-plugin-agents 提供的能力，通过场景和提示词完成接入，对照代码与界面理解实现，并验证 AI 开发的结果。"
 ---
 
-`@nocobase/app-plugin-agents` 用于给应用增加 AI 对话、模型服务、Skills、机器上的 Agent 和用量管理。本文按提供的能力、使用场景、重要实现和 AI 开发验证介绍如何使用这个插件。
+`@nocobase/app-plugin-agents` 用于给应用增加 AI 对话、模型服务、Skill、机器上的 Agent 和用量管理。本文按提供的能力、使用场景、重要实现和 AI 开发验证介绍如何使用这个插件。
 
 ## 提供的能力
 
@@ -13,7 +13,7 @@ description: "了解 app-plugin-agents 提供的能力，通过场景和提示�
 | --- | --- | --- |
 | 模型服务 | 服务配置、可用模型列表和连接测试 | 接入 Models 页面，配置提供方、密钥和模型 |
 | AI 对话 | 会话、消息、流式回复、停止生成与历史恢复 | 通过公开聊天 hooks 和 agent-chat 组件组合业务界面 |
-| 业务 Skills | 指引、支持文件、导入和版本管理 | 在 Skills 页面维护规范，再为会话或机器任务选择它们 |
+| 业务 Skill | 指引、支持文件、导入和版本管理 | 在 Skill 页面维护规范，再为会话或机器任务选择它们 |
 | 工具与业务调用 | 工具注册、会话能力选择和调用执行机制 | 接入业务工具或允许的 CLI 命令，并实现对应授权 |
 | 机器 Agent | Runner 连接、编码工具与模型组合、任务执行状态 | 接入 Runtimes 和 Machine agents 页面，提供授权的项目上下文 |
 | 用量管理 | 用量查看和价格设置页面 | 将 Usage 页面接入应用导航 |
@@ -26,19 +26,19 @@ description: "了解 app-plugin-agents 提供的能力，通过场景和提示�
 
 | 对比项 | 配置模型 API | 接入机器上的 Agent |
 | --- | --- | --- |
-| 需要准备 | 模型服务地址、密钥和模型 | 机器上已安装并登录的 Coding Agent，以及 Runner 连接 |
-| 谁组织执行 | NocoBase 调用模型并调度会话选定的工具 | 机器上的 Coding Agent 使用自己的工具执行任务 |
+| 需要准备 | 模型服务地址、密钥和模型 | 机器上已安装并登录的 Agent，以及 Runner 连接 |
+| 谁组织执行 | NocoBase 调用模型并调度会话选定的工具 | 机器上的 Agent 使用自己的工具执行任务 |
 | 模型凭据 | 在应用的 Models 中管理 | 由机器上的编码工具管理 |
-| 可用资源 | 选定的 Skills、虚拟 Shell、应用接入的业务工具或 CLI | 编码工具及本地策略允许访问的项目、文件和命令 |
+| 可用资源 | 选定的 Skill、虚拟 Shell、应用接入的业务工具或 CLI | 编码工具及本地策略允许访问的项目、文件和命令 |
 | 常见用途 | 对话、内容整理、通过业务工具查询或处理数据 | 阅读和修改项目代码，运行真实构建与测试 |
 
-两种方式可以在同一应用中使用。下面的对话和发布说明示例使用模型 API，项目代码任务使用机器上的 Coding Agent。模型 API 会话没有宿主项目执行环境，需要读取、修改真实源码或运行测试时，应接入机器 Agent。
+两种方式可以在同一应用中使用。下面的对话和发布说明示例使用模型 API，项目代码任务使用机器上的 Agent。模型 API 会话没有宿主项目执行环境，需要读取、修改真实源码或运行测试时，应接入机器 Agent。
 
 ## 使用场景与示例
 
 示例 `agents-guide` 使用 SQLite、DeepSeek 和英文界面。文中的截图来自实际运行的应用。[查看示例源码](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide)，按其中的 `README.md` 启动；进入仓库的 `apps/agents-guide` 目录运行命令。源码不包含数据库、模型密钥、登录会话或依赖目录。尚无应用时，先按[创建应用](../../getting-started/create-app.md)准备项目。
 
-这里的**开发提示词**交给在项目目录工作的 Coding Agent，用来把插件接入应用；**对话提示词**则在接入后的应用聊天界面中使用。
+这里的**开发提示词**交给在项目目录工作的 Agent，用来把插件接入应用；**对话提示词**则在接入后的应用聊天界面中使用。
 
 ### 场景一：给应用增加 AI 对话
 
@@ -105,7 +105,7 @@ Output only the bullets.
 请用 @nocobase/app-plugin-agents 增加“生成发布说明”的能力。
 
 创建 release-notes 业务 Skill，包含 SKILL.md 和 references/style.md，
-保存到应用的 Skills 库。要求先读取写作规范，再输出
+保存到应用的 Skill 库。要求先读取写作规范，再输出
 Summary、Changes、Verification，只使用用户提供的事实。
 未提供测试结果时写明 Verification not provided。
 该 Skill 只生成草稿，不修改项目文件，也不发布内容。
@@ -119,7 +119,7 @@ Summary、Changes、Verification，只使用用户提供的事实。
 
 也可以[下载本例的 release-notes Skill](/assets/core/downloads/release-notes-skill.zip)，在 **Skills → Import** 导入。页面可以查看指引正文、支持文件和版本。
 
-![Skills 页面中的发布说明指引和支持文件](/assets/core/agents/skill.png)
+![Skill 页面中的发布说明指引和支持文件](/assets/core/agents/skill.png)
 
 导入后，点击页头文件图标 **Draft release notes**，即可创建并打开业务会话。按钮选择已启用服务中的第一个 `chat` 模型，通过已认证 API 提交 `release-notes` scope；需要使用其他模型时，可在发送前切换。每次点击都会新建会话，继续已有草稿请从 **Conversations** 打开。普通 **Agent chat** 入口不会自动选择这个 Skill。
 
@@ -130,7 +130,7 @@ Summary、Changes、Verification，只使用用户提供的事实。
 ```text
 Read the release-notes Skill and its style guide, then draft concise release notes
 in English. Supplied changes: Added model service configuration. Added a chat panel.
-Fixed the missing Skills navigation entry. Verification supplied: 17 route, locale, and
+Fixed the missing Skill navigation entry. Verification supplied: 17 route, locale, and
 permission-label tests passed. Do not claim any other tests ran.
 ```
 
@@ -140,14 +140,14 @@ permission-label tests passed. Do not claim any other tests ran.
 
 **完成的标志**：输出符合指定格式，工具记录能证明读取了 Skill 与支持文件，未提供的事实没有被补写。本次实测确认了 `skill` 调用和对 `references/style.md` 的读取。
 
-### 场景三：从应用调用机器上的 Coding Agent
+### 场景三：从应用调用机器上的 Agent
 
-需要 Agent 读取项目源码、修改文件、执行构建和测试时，可以接入已经安装在电脑或服务器上的 Coding Agent。应用负责提供任务入口和工作目录上下文，机器上的编码工具执行任务。
+需要 Agent 读取项目源码、修改文件、执行构建和测试时，可以接入已经安装在电脑或服务器上的 Agent。应用负责提供任务入口和工作目录上下文，机器上的编码工具执行任务。
 
 **开发提示词：**
 
 ```prompt
-请使用 @nocobase/app-plugin-agents，为当前应用接入机器上的 Coding Agent。
+请使用 @nocobase/app-plugin-agents，为当前应用接入机器上的 Agent。
 
 复用插件的 Runtimes 和 Machine agents 页面，保留原有权限。
 让我选择已经连接且可用的机器 Agent，并在业务入口中指定我有权使用的项目目录。
@@ -195,7 +195,7 @@ packages, or claim that the application source is present unless you see it.
 普通 Runner 会话使用自己的工作目录，不会自动进入应用源码目录。连接成功后仍需开发项目上下文接入；不要让用户在聊天里输入任意宿主路径来代替授权。项目上下文就绪后，可以进一步使用这样的提示词：
 
 ```text
-请检查当前已授权项目中聊天入口的实现，先阅读 AGENTS.md 和相关 Skills。
+请检查当前已授权项目中聊天入口的实现，先阅读 AGENTS.md 和相关 Skill。
 为现有聊天按钮补充缺失的中英文提示文字，沿用项目多语言机制。
 保留按钮行为、权限和布局，只修改完成此任务必需的文件。
 运行受影响的检查，完成后列出改动文件、检查结果和未验证项。
@@ -224,8 +224,8 @@ packages, or claim that the application source is present unless you see it.
 | `client/locales/en-US.ts`、`zh-CN.ts` | 合入组件语言资源，增加 `agentDemo` 导航文案 | 新入口和聊天组件具有中英文文案 |
 | `package.json`、`server/config/agents.ts`、`server/config/index.ts` | 声明并匹配应用 CLI 名称和分发方式 | Runner 可以下载应用 CLI，避免在线却无法执行 |
 | `server/providers/agents.ts`、`index.ts` | 新建并注册发布说明 Provider | 服务启动后可以解析 `release-notes` 会话 scope |
-| `examples/release-notes/` | 保存 Skill 正文和支持文件的源码 | 导入后可在 Skills 页面查看和维护 |
-| `client/pages/settings/page-permission-titles.ts` | 为 Skills 子页面和 Runner 连接页补充双语权限名称 | 权限管理显示可读名称，授权 ID 保持不变 |
+| `examples/release-notes/` | 保存 Skill 正文和支持文件的源码 | 导入后可在 Skill 页面查看和维护 |
+| `client/pages/settings/page-permission-titles.ts` | 为 Skill 子页面和 Runner 连接页补充双语权限名称 | 权限管理显示可读名称，授权 ID 保持不变 |
 | `tests/client/release-notes-button.test.tsx` | 验证创建、重复点击、失败重试、权限和身份结束 | 业务入口的成功与失败路径均有检查 |
 | `tests/client/client-routes.test.ts` | 补充路由唯一性、页面加载和授权定义检查 | 检查新增页面是否正确接入、是否改变原有页面约定 |
 
@@ -253,7 +253,7 @@ pnpm nocobase db apply --json
 | `modelsRoute` | `/models` | 模型服务、可用模型和连接测试 |
 | `agentsRoute` | `/agents` | 机器上的编码工具与模型组合 |
 | `runtimesRoute` | `/runtimes` | 机器连接和运行环境 |
-| `skillsRoute` | `/skills` | 业务 Skills、支持文件和版本 |
+| `skillsRoute` | `/skills` | 业务 Skill、支持文件和版本 |
 | `usageRoute` | `/usage` | 用量与价格设置 |
 
 下面截取 Models 的组合方式，其余四个页面使用相同方式：
@@ -312,7 +312,7 @@ pnpm nocobase skills sync --json
 
 ### 业务 Skill 如何进入会话
 
-项目 `.agents/skills/` 中的开发 Skill 告诉 Coding Agent 如何使用插件；应用 **Skills** 库里的业务 Skill 告诉运行时 Agent 如何完成任务。它们用途不同，不会自动同步。
+项目 `.agents/skills/` 中的开发 Skill 告诉 Agent 如何使用插件；应用 **Skills** 库里的业务 Skill 告诉运行时 Agent 如何完成任务。它们用途不同，不会自动同步。
 
 本例的业务文件为：
 
@@ -363,7 +363,7 @@ agents.onlineAgent.configurator.registerOnlineAgentScope(
 
 `modelService` 是已配置服务的标识，`model` 必须是其中启用的模型。客户端选择允许使用的 scope，具体工具和 Skill 由服务端解析。普通新会话没有这段 scope 配置，就不会自动使用发布说明 Skill。
 
-Skills 页面的 **Global attachment** 用于 Runner 后续任务的全局 Skill 合并。模型 API 会话通过服务端 scope 选择 Skills；这个开关不会自动给模型 API 会话添加 Skill。
+Skill 页面的 **Global attachment** 用于 Runner 后续任务的全局 Skill 合并。模型 API 会话通过服务端 scope 选择 Skill；这个开关不会自动给模型 API 会话添加 Skill。
 
 ### 执行后端与能力边界
 
@@ -373,7 +373,7 @@ Skills 页面的 **Global attachment** 用于 Runner 后续任务的全局 Skill
 | --- | --- |
 | `agentId: 'online'` | 选择由插件调用模型 API 的执行方式 |
 | `native` | 上述方式的后端名称，不表示离线或本地模型 |
-| `runner` | 通过具体 Agent ID 调用机器上的 Coding Agent |
+| `runner` | 通过具体 Agent ID 调用机器上的 Agent |
 | `agentsToken.onlineAgent` / `OnlineAgent` | 统一会话服务；实时会话可以使用 `native` 或 `runner` 后端 |
 
 `OnlineAgent` 是两种执行方式共用的会话接口。模型 API 后端还支持带 JSON Schema 的结构化后台执行；Runner 不支持这套后台接口，但有自己的任务队列与执行机制。
@@ -383,7 +383,7 @@ Skills 页面的 **Global attachment** 用于 Runner 后续任务的全局 Skill
 ### 发送消息后发生了什么
 
 1. 聊天组件创建或打开会话，服务端保存模型、scope 等会话配置。
-2. 用户发送消息，模型 API 后端准备选定的 Skills 和工具并调用模型。
+2. 用户发送消息，模型 API 后端准备选定的 Skill 和工具并调用模型。
 3. 模型请求工具时，服务端执行已选工具，将结果交回模型；本例实际读取了 Skill 正文和写作规范。
 4. 聊天面板接收流式回复，服务端保存消息和执行结果；重新打开会话时读取保存的历史。
 
@@ -393,15 +393,15 @@ Skills 页面的 **Global attachment** 用于 Runner 后续任务的全局 Skill
 
 ## AI 开发的约束与验证
 
-本章讨论 AI 帮助开发者使用 Agents 插件时，如何约束和验证改动。通用的需求拆分、项目指引和协作流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)；这里重点说明插件特有的接口、权限、会话和执行边界。插件不会自动保证生成代码正确，也不会替应用完成全部测试与审查。
+本章讨论 AI 帮助开发者使用 Agents 插件时，如何约束和验证改动。通用的需求拆分、项目指引和协作流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)；这里重点说明插件特有的接口、权限、会话和执行边界。插件不会自动保证生成代码正确，也不会替应用完成全部测试与审查。
 
 ### 使用匹配版本的插件开发 Skill
 
-接入前，让开发 Agent 读取 `.agents/skills/nocobase-app-plugin-agents/SKILL.md`，按任务继续查阅模型服务、会话工具、Runner 或 Skills 参考。该 Skill 帮助 Agent 找到当前插件的公开接口和接入方式；应用特有的约定仍放在项目 `AGENTS.md` 和 `.agents/rules/` 中。
+接入前，让开发 Agent 读取 `.agents/skills/nocobase-app-plugin-agents/SKILL.md`，按任务继续查阅模型服务、会话工具、Runner 或 Skill 参考。该 Skill 帮助 Agent 找到当前插件的公开接口和接入方式；应用特有的约定仍放在项目 `AGENTS.md` 和 `.agents/rules/` 中。
 
 安装或更新依赖后运行 `pnpm nocobase skills sync`。涉及具体接口时，再对照当前包的公开导出、类型和运行行为。指引也可能滞后，出现冲突时应核实并报告。
 
-本例实际遇到 Registry 安装将 Agents 依赖改为旧版 `0.1.0-beta.14`。恢复匹配的 `1.0.0-beta.29` 并同步 Skills 后，通过了类型与运行检查。因此，AI 安装组件后需要检查 `package.json` 和锁文件差异，不能仅凭安装命令成功判断兼容。这里的版本号是本例验证基线，不是后续项目的固定选型。
+本例实际遇到 Registry 安装将 Agents 依赖改为旧版 `0.1.0-beta.14`。恢复匹配的 `1.0.0-beta.29` 并同步 Skill 后，通过了类型与运行检查。因此，AI 安装组件后需要检查 `package.json` 和锁文件差异，不能仅凭安装命令成功判断兼容。这里的版本号是本例验证基线，不是后续项目的固定选型。
 
 ### 保留插件的接口、权限和执行边界
 
@@ -428,7 +428,7 @@ Skills 页面的 **Global attachment** 用于 Runner 后续任务的全局 Skill
 | 模型连接与浏览器对话 | DeepSeek 真实返回回复；保存的历史与完成状态可读取 |
 | Skill 使用 | 原始工具记录确认读取了 Skill 和 `references/style.md`，不是仅凭模型自述 |
 | Runner 只读执行 | 补齐应用 CLI 后，真实执行 `pwd` 和 `ls -A1`，运行记录为 `completed`；首次失败原因及修复已记录 |
-| 匿名 API 访问 | 模型服务和 Skills 接口返回 401；这不等于已验证完整角色权限矩阵 |
+| 匿名 API 访问 | 模型服务和 Skill 接口返回 401；这不等于已验证完整角色权限矩阵 |
 
 在示例目录中可以重跑相关测试：
 
@@ -448,7 +448,7 @@ pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-
 2. 检查新增页面是否保留授权，切换账号时是否清理聊天状态。
 3. 验证模型连接、真实回复和历史恢复；检查无权限请求是否被拒绝。
 4. 如果增加了 Skill，检查会话实际选择的 scope 和工具读取记录，
-   不把“已保存到 Skills 库”当成“对话已经使用”。
+   不把“已保存到 Skill 库”当成“对话已经使用”。
 5. 如果接入了机器 Agent，确认执行机器、授权目录、实际代码差异和检查结果。
 6. 运行本次改动涉及的类型、代码规范和测试检查，记录命令和用例数。
 环境或账号不具备时，说明对应项目尚未验证，不把计划执行写成已通过。

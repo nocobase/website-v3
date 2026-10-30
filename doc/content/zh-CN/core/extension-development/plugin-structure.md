@@ -181,7 +181,7 @@ packages/app-plugin-demo-full/
 | `private` | 本地插件默认设为 `true`，可以在 App 内使用，无需发布 npm |
 | `exports` | 声明消费者可以导入的路径；脚手架使用源码入口供本地开发 |
 | `publishConfig.exports` | 对应构建产物的导出映射，也供 App 构建收集本地包时使用 |
-| `files` | 包需要携带的内容，如 `dist/`；选择 Skills 时还包括 `skills/` |
+| `files` | 包需要携带的内容，如 `dist/`；选择 Skill 时还包括 `skills/` |
 | `scripts` | 插件自身的检查、测试和构建命令 |
 
 App 的 `package.json` 则通过 `dependencies` 中的 `workspace:*` 引用本地插件。包依赖让 App 找到它，运行时注册决定 App 加载哪些能力。

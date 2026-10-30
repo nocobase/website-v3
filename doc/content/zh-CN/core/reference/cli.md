@@ -49,9 +49,9 @@ node dist/cli/index.js config check --no-connect
 | `plugin inspect` | 源码 | 查看插件入口和接入信息 |
 | `plugin register` | 源码 | 安装或注册插件；可预览 `--dry-run` |
 | `plugin unregister` | 源码 | 取消插件注册；不等同于移除数据库中的业务数据 |
-| `plugin update` | 源码 | 升级指定插件；省略名称时升级全部已注册插件，再同步 Skills |
+| `plugin update` | 源码 | 升级指定插件；省略名称时升级全部已注册插件，再同步 Skill |
 | `package remove` | 源码 | 移除包依赖及相关接入；支持 `--dry-run` |
-| `skills sync` | 源码 | 从依赖同步 Skills；支持包 / 插件选择与 `--dry-run` |
+| `skills sync` | 源码 | 从依赖同步 Skill；支持包 / 插件选择与 `--dry-run` |
 | `dist check` / `dist retarget` | 源码 | 检查 / 调整部署产物 |
 | `cli build` / `cli link` | 源码 | 构建可分发的业务 CLI / 安装本地命令链接 |
 
@@ -103,7 +103,7 @@ pnpm nocobase db apply --connection main
 
 `rollback`、`redo`、`reset` 和 `repair` 支持的预览与确认选项以各自 `--help` 为准。`--force` 是明确确认操作，不是修复错误的常规办法。已经执行的迁移发生校验和变化时，应先确认原因；只有内容变化确实不影响已部署结构时，才考虑校验和修复。数据库变更与恢复流程见[建表与数据初始化](../developing-apps/data-models-and-migrations.md)。
 
-## 插件与 Skills
+## 插件与 Skill
 
 在已经创建 `packages/app-plugin-announcements/` 的应用中，可先预览注册改动：
 

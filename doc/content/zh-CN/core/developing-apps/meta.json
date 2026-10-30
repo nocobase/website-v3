@@ -3,11 +3,11 @@
   "pages": [
     {
       "type": "page",
-      "path": "overview"
+      "path": "app-structure"
     },
     {
       "type": "page",
-      "path": "develop-with-an-agent"
+      "path": "customers-walkthrough"
     },
     {
       "type": "folder",

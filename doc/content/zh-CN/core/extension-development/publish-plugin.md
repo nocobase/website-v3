@@ -126,7 +126,7 @@ npm whoami --registry http://localhost:4873/
 | `publishConfig.access` | 本例删除脚手架的 `public` 值，访问权限由 Verdaccio 配置管理 |
 | `exports`、`imports` | 保留本地开发的入口与包内别名 |
 | `publishConfig.exports`、`publishConfig.imports` | 保留脚手架指向 `dist/` 的映射，pnpm 打包时会应用它们 |
-| `files` | 包含 `dist/`；有 Skills 或其他运行资源时，也要包含对应目录 |
+| `files` | 包含 `dist/`；有 Skill 或其他运行资源时，也要包含对应目录 |
 | 依赖声明 | 服务端依赖、共享运行时与客户端 peer 依赖完整，版本与使用方兼容 |
 
 **在现有 `publishConfig` 中补充源地址，不要用只包含 `registry` 的对象替换它。** 本地开发入口和发布入口的关系见[插件结构](plugin-structure.md#packagejson包信息依赖与公开导出)。
@@ -221,7 +221,7 @@ pnpm nocobase plugin register @my-company/app-plugin-announcements \
   --version 0.1.0
 ```
 
-未安装时，预览主要展示安装计划；实际安装后，命令会读取公开入口，再写入 Client、Server 注册并同步 Skills。这里不使用 `--no-install`，因为使用方需要从私有源获取插件。
+未安装时，预览主要展示安装计划；实际安装后，命令会读取公开入口，再写入 Client、Server 注册并同步 Skill。这里不使用 `--no-install`，因为使用方需要从私有源获取插件。
 
 启动应用，验证公告页面与接口，再构建：
 

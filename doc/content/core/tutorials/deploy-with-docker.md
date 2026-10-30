@@ -5,7 +5,7 @@ description: Build an image to deploy a production application independently, pr
 
 This guide uses the task application as a worked example and also applies to your own NocoBase Core apps. Confirm the target environment with [Choose a deployment method](../deployment/choose-a-deployment-method.md). For your own project, replace example application names, paths, and business acceptance checks.
 
-Use the application's own `Dockerfile` to build an image and run it with Docker Compose on your production server, with separate persistent directories for configuration, SQLite and uploaded files. Verify your application has passed its tests; see [Build your first app](build-your-first-app-agent-first.md) for the task example. This guide uses Linux x64, a single SQLite instance and the template's Node.js 24 Debian runtime.
+Use the application's own `Dockerfile` to build an image and run it with Docker Compose on your production server, with separate persistent directories for configuration, SQLite and uploaded files. Verify your application has passed its tests; see [Build your first app](../getting-started/build-your-first-app.md) for the task example. This guide uses Linux x64, a single SQLite instance and the template's Node.js 24 Debian runtime.
 
 ## Prerequisites
 

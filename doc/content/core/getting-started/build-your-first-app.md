@@ -1,5 +1,5 @@
 ---
-title: Build your first app (V2)
+title: Build your first app
 description: Build a team task app with an AI agent, create and assign tasks, set due dates, and try different member permissions.
 ---
 
@@ -11,7 +11,7 @@ This tutorial uses an AI agent to develop the app. Get it running, then try a ro
 
 ## 1. Prepare the project
 
-Follow [Create an app](../getting-started/create-app.md) to prepare a NocoBase 3 development project that runs and supports sign-in. Open a Coding Agent session in the application root and make sure it can read `AGENTS.md` and `.agents/skills/`. These files provide guidance for the installed version. If they are missing, see [Develop with an agent](../developing-apps/develop-with-an-agent.md).
+Follow [Create an app](create-app.md) to prepare a NocoBase 3 development project that runs and supports sign-in. Open a Coding Agent session in the application root and make sure it can read `AGENTS.md` and `.agents/skills/`. These files provide guidance for the installed version. If they are missing, see [Develop with an agent](develop-with-an-agent.md).
 
 This walkthrough used Node.js 24, pnpm 11.7, default template `1.0.0-beta.84`, and SQLite. For a new project, follow the guidance shipped with its installed version.
 
@@ -219,6 +219,6 @@ The example uses dependencies published on npmjs.org, with versions pinned by it
 
 ## Related documentation
 
-- [Develop with an agent](../developing-apps/develop-with-an-agent.md): maintain project rules, describe requirements, and review delivery.
+- [Develop with an agent](develop-with-an-agent.md): maintain project rules, describe requirements, and review delivery.
 - [Testing and acceptance](../developing-apps/testing-and-acceptance.md): fixtures, isolated databases, and browser verification.
 - [Choose a deployment method](../deployment/choose-a-deployment-method.md): prepare deployment after acceptance.

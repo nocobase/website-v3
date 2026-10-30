@@ -40,7 +40,7 @@ description: 查看应用实际注册的插件，使用已有能力，并管理�
 
 包出现在依赖中不等于已注册到运行时；三个入口也不要求完全相同，例如只提供命令的插件只需相应 CLI 入口。数组顺序影响贡献顺序，不应为了排序好看而随意重排。
 
-`.agents/skills/` 中存在某个 Skill 也不证明插件已经启用：Skills 可以从直接依赖同步。实际注册以组合入口为准。插件包通常放在应用的 `dependencies`，以便进入部署产物；不要把客户端插件误认为只能放进 `devDependencies`。
+`.agents/skills/` 中存在某个 Skill 也不证明插件已经启用：Skill 可以从直接依赖同步。实际注册以组合入口为准。插件包通常放在应用的 `dependencies`，以便进入部署产物；不要把客户端插件误认为只能放进 `devDependencies`。
 
 ### 使用已有能力
 
@@ -57,7 +57,7 @@ pnpm nocobase plugin register @nocobase/app-plugin-scheduler --dry-run
 pnpm nocobase plugin register @nocobase/app-plugin-scheduler
 ```
 
-命令负责安装依赖、接入插件导出的组合入口并同步 Skills。检查 `package.json`、锁文件和实际 Client／Server／CLI 注册变化。需要固定兼容版本时使用 `--version`，不要把一个新包的默认版本当成一定与当前应用兼容。
+命令负责安装依赖、接入插件导出的组合入口并同步 Skill。检查 `package.json`、锁文件和实际 Client／Server／CLI 注册变化。需要固定兼容版本时使用 `--version`，不要把一个新包的默认版本当成一定与当前应用兼容。
 
 单独运行 `pnpm add` 只解决包安装，不能替代运行时注册。`--no-install` 需要依赖已经可解析；`--disabled` 用于安装而不接入运行贡献，不等于现有功能已可使用。根据命令输出检查实际处理了哪些入口。
 
@@ -72,7 +72,7 @@ pnpm nocobase plugin update @nocobase/app-plugin-scheduler
 
 包名是位置参数，不是 `--plugin`。不提供名称时会更新所有已注册插件，因此只改一项能力时应明确包名。
 
-pnpm 的更新遵循项目声明的版本范围；范围固定时不保证得到更高版本。需要跨范围升级时先确定兼容目标，调整依赖范围并同步锁文件和 Skills，再检查变化。插件更新不等于合并新模板，也不能替代[升级 NocoBase Core](upgrade-nocobase-core.md)的整体流程。
+pnpm 的更新遵循项目声明的版本范围；范围固定时不保证得到更高版本。需要跨范围升级时先确定兼容目标，调整依赖范围并同步锁文件和 Skill，再检查变化。插件更新不等于合并新模板，也不能替代[升级 NocoBase Core](upgrade-nocobase-core.md)的整体流程。
 
 更新后检查插件可能带来的迁移、配置和公开接口变化，验证使用它的功能并重新构建应用。已经部署的旧产物不会因为开发目录更新依赖就自动改变。
 
@@ -109,12 +109,12 @@ pnpm nocobase plugin unregister '@nocobase/app-plugin-<name>'
 
 ## 验证结果
 
-检查依赖与锁文件、三个组合入口、同步 Skills 和实际消费者。运行受影响的类型检查、测试和构建；涉及迁移时验证升级后的旧数据，涉及 API 时检查应用 API 文档。浏览器里同时验证正常访问和普通用户的权限边界。
+检查依赖与锁文件、三个组合入口、同步 Skill 和实际消费者。运行受影响的类型检查、测试和构建；涉及迁移时验证升级后的旧数据，涉及 API 时检查应用 API 文档。浏览器里同时验证正常访问和普通用户的权限边界。
 
-如果手动修改依赖或中途失败导致 Skills 不一致，可以重新同步：
+如果手动修改依赖或中途失败导致 Skill 不一致，可以重新同步：
 
 ```bash
 pnpm nocobase skills sync
 ```
 
-同步只修复指引副本，不会自动注册插件或修复应用代码。进一步阅读[应用开发概览](overview.md)和[测试与验收](testing-and-acceptance.md)。
+同步只修复指引副本，不会自动注册插件或修复应用代码。进一步阅读[应用的代码结构](app-structure.md)和[测试与验收](testing-and-acceptance.md)。

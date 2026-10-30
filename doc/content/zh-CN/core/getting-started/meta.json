@@ -11,15 +11,11 @@
     },
     {
       "type": "page",
-      "path": "project-structure"
+      "path": "build-your-first-app"
     },
     {
       "type": "page",
-      "path": "../tutorials/build-your-first-app"
-    },
-    {
-      "type": "page",
-      "path": "../tutorials/build-your-first-app-agent-first"
+      "path": "develop-with-an-agent"
     }
   ]
 }

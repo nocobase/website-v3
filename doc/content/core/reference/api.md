@@ -3,7 +3,7 @@ title: API reference
 description: Common public entries and contracts for services, HTTP, configuration and databases in NocoBase 3.
 ---
 
-This page lists common public APIs, return values and constraints by use case. Consult your installed declarations for complete parameters, overloads and supporting types; database reference chapters are linked below. For workflows, see [Developing apps](../developing-apps/overview.md) and [Framework](../framework/overview.md).
+This page lists common public APIs, return values and constraints by use case. Consult your installed declarations for complete parameters, overloads and supporting types; database reference chapters are linked below. For workflows, see [Developing apps](../developing-apps/app-structure.md) and [Framework](../framework/overview.md).
 
 For conceptual guides, see [Framework](../framework/overview.md). Learn schema, queries and transactions in the [Database topics](../framework/database/overview.md).
 

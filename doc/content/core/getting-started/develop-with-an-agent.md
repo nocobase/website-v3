@@ -5,7 +5,7 @@ description: Use the application's AGENTS.md and Skills to describe requirements
 
 When developing with an agent, explain what users should accomplish, the business constraints and how you will judge completion. The agent uses the project's conventions to locate code, implement changes and verify the result. You do not need to know an internal API before you can describe the requirement.
 
-This guide assumes you already have an application. Otherwise, start with [Create an app](../getting-started/create-app.md). Here, an agent means a coding agent that helps develop the application; Agents used by business users inside an application are a separate capability.
+This guide assumes you already have an application. Otherwise, start with [Create an app](create-app.md). Here, an agent means a coding agent that helps develop the application; Agents used by business users inside an application are a separate capability.
 
 ## Start in your application project
 
@@ -36,7 +36,7 @@ Record conventions that apply across tasks in `.agents/rules/` and link them fro
 ```markdown
 ## Project rules
 
-- [Business rules](.agents/rules/business.md): business dates, state transitions and permission conventions.
+- [Business rules](../developing-apps/.agents/rules/business.md): business dates, state transitions and permission conventions.
 ```
 
 **Application rules belong in the application; shared rules are maintained with their packages.** Save agreed conventions with the code so another session or developer can follow them. Maintain dependency-provided guidance in its source package, then synchronize it into the application.
@@ -128,7 +128,7 @@ Ask the agent to distinguish automated checks from actual application interactio
 
 Use the real application, database and authorization services for business rules when possible. Use substitutes only at necessary boundaries such as external transport or missing browser capabilities in the test environment, and explain what was replaced. Do not mock the business behavior being verified.
 
-Browser verification should use the application's actual printed entry URL and dedicated test accounts. Database tests should use isolated data; they must not clear current business data just to pass. See [Build your first app](../tutorials/build-your-first-app-agent-first.md) for a concrete example.
+Browser verification should use the application's actual printed entry URL and dedicated test accounts. Database tests should use isolated data; they must not clear current business data just to pass. See [Build your first app](build-your-first-app.md) for a concrete example.
 
 When reporting a problem, provide the reproduction path and expected result:
 

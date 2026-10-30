@@ -20,7 +20,7 @@ description: "查看应用数据库连接、Collection 定义和物理结构。"
 
 列表使用 `pageToken` 翻页。自行实现搜索时，应明确搜索当前页还是完整列表；`DatabaseExplorerClient.allCollections()` 可遍历所有页，达到遍历上限时会返回 `truncated` 标记。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用数据库浏览插件，为管理员增加数据库结构查看页。
@@ -74,6 +74,6 @@ description: "查看应用数据库连接、Collection 定义和物理结构。"
 
 相关文档：[数据库连接](../../framework/database/connections.md)、[权限管理](../authorization/permissions.md)、[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-database-explorer)。

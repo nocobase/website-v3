@@ -36,7 +36,7 @@ description: NocoBase 3 插件清单、主要用途及是否内置。
 | [`@nocobase/app-plugin-template-print`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-template-print) | 模板打印：提供实现 DOCX、PDF 模板打印的 Agent Skills。 | 是 |
 | [`@nocobase/app-plugin-users`](https://github.com/nocobase/nocobase/tree/db419f1d4828a88236860f2e69a9442e2f2c5f9c/packages/plugins/app-plugin-users) | 用户：提供用户管理接口和页面。 | 是 |
 
-`app-plugin-template-print` 当前仅分发 Skills，没有 Client、Server 或 CLI 运行时入口，因此不需要添加到插件注册数组。`agents` 和 `knowledge` 已在默认模板依赖中，但没有默认注册。
+`app-plugin-template-print` 当前仅分发 Skill，没有 Client、Server 或 CLI 运行时入口，因此不需要添加到插件注册数组。`agents` 和 `knowledge` 已在默认模板依赖中，但没有默认注册。
 
 ## 商业仓库插件
 

@@ -7,7 +7,7 @@ This guide uses the task application as a worked example and also applies to you
 
 Deploy the task application independently to your production server, with PM2 supervising the application process. `@nocobase/app-installer` extracts a release archive, prepares configuration, applies migrations, starts PM2 and checks health. It also manages subsequent application updates.
 
-Verify your application has passed its tests; see [Build your first app](build-your-first-app-agent-first.md) for the task example. This guide uses a single instance, SQLite, Linux x64/glibc, Node.js 24 and base path `/tasks`. Other database dialects require the appropriate driver in the source application and a new build.
+Verify your application has passed its tests; see [Build your first app](../getting-started/build-your-first-app.md) for the task example. This guide uses a single instance, SQLite, Linux x64/glibc, Node.js 24 and base path `/tasks`. Other database dialects require the appropriate driver in the source application and a new build.
 
 ## Prerequisites
 

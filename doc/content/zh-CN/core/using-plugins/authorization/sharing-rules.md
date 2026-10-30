@@ -17,7 +17,7 @@ description: "配置共享规则，明确记录范围与操作授权的边界。
 
 先确认主体拥有目标操作，再配置范围；最后分别检查允许记录、范围外记录和直接 API 调用。业务查询必须落实授权服务返回的数据策略，规则才会影响实际查询。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用 @nocobase/app-plugin-authz-sharing-rules，将客户 A 只读共享给销售乙，其他客户和修改权限保持不变。
@@ -73,6 +73,6 @@ plugins: [sharingRules()]
 
 相关文档：[权限管理](permissions.md)、[默认数据范围](default-access.md)、[共享规则](sharing-rules.md)、[限制规则](restriction-rules.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-sharing-rules)。

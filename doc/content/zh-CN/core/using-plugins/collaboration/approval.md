@@ -19,7 +19,7 @@ description: "将人工审批接入业务记录生命周期，配置参与人、
 
 接口必须重新检查当前用户、记录权限、任务资格和内容版本，不能只因为浏览器显示“通过”按钮就允许提交。审批内容变化后，原来的正向结论可能需要重新审阅。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用已获授权的审批插件，为采购申请接入主管审批。
@@ -84,4 +84,4 @@ description: "将人工审批接入业务记录生命周期，配置参与人、
 
 本篇按商业插件的公开导出与示例核对；包获取与使用以相应授权为准。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。

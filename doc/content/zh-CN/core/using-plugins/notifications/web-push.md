@@ -29,7 +29,7 @@ messages: {
 
 此处是 `notification.send()` 的消息片段，设备与用户 ID 来自实际查询。与站内信 route target 不同，Web Push 的 `url` 要包含应用公开挂载前缀，只允许应用内路径。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用浏览器推送插件，为已登录用户增加设备订阅设置和订单提醒。
@@ -82,6 +82,6 @@ messages: {
 
 相关文档：[通知](notification.md)、[站内信](in-app.md)、[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification-web-push)。

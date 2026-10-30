@@ -46,7 +46,7 @@ pnpm nocobase plugin register @nocobase/app-plugin-announcements --no-install
 
 检查命令修改的三端注册文件，保留应用原有插件。安装依赖让包可以被导入，运行端注册让应用加载它声明的功能；两者都不能省略。详细操作见[管理插件](../developing-apps/manage-plugins.md)。
 
-插件不必同时提供三端入口。只导出组件的包可以通过普通 `import` 使用；只提供 Skills 的包可以没有运行时入口。数据库资源需要服务端入口来声明。不要为了凑齐目录生成没有用途的入口。
+插件不必同时提供三端入口。只导出组件的包可以通过普通 `import` 使用；只提供 Skill 的包可以没有运行时入口。数据库资源需要服务端入口来声明。不要为了凑齐目录生成没有用途的入口。
 
 ## 扩展声明
 

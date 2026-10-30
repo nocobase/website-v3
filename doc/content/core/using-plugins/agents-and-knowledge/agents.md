@@ -403,7 +403,7 @@ Tasks that act on business data also need registered tools or allowed CLI comman
 
 ## AI development constraints and verification
 
-This section concerns AI helping developers integrate the Agents plugin. For general task scoping, project guidance, and collaboration, see [Develop with an Agent](../../developing-apps/develop-with-an-agent.md). Here the focus is on plugin-specific interfaces, authorization, conversations, and execution boundaries. The plugin does not automatically guarantee generated code or complete all application tests and review.
+This section concerns AI helping developers integrate the Agents plugin. For general task scoping, project guidance, and collaboration, see [Develop with an Agent](../../getting-started/develop-with-an-agent.md). Here the focus is on plugin-specific interfaces, authorization, conversations, and execution boundaries. The plugin does not automatically guarantee generated code or complete all application tests and review.
 
 ### Use the development Skill for the installed version
 

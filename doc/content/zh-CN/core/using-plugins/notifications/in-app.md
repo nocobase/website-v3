@@ -17,7 +17,7 @@ description: "投递用户站内信，接入收件箱、未读数和实时刷新
 
 消息点击目标可以是 `{ type: 'route', path: '/orders/123' }`，此时路径不包含 `/main` 等部署前缀；Router 会补上。外部地址使用 `{ type: 'url', url: 'https://example.com/...' }`。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用站内信插件，为应用顶栏接入未读数和收件箱。
@@ -79,6 +79,6 @@ Client 插件加载语言资源，不自动注册生产收件箱页面。应用�
 
 验证用户隔离、未读数、分页及登出后访问。每个接收者独立投递与重试；不存在的接收者会导致该投递失败。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification-in-app)。

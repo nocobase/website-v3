@@ -3,7 +3,7 @@ title: Application development overview
 description: Understand application code, templates and plugins, and follow a feature from its page through an API and service to the database.
 ---
 
-Developing a NocoBase application means implementing business rules on top of its existing structure and capabilities: how data is stored, who can act on it, and how the interface presents the result. This section explains those topics for use during development. To build a feature from start to finish first, follow the [tutorial](../tutorials/build-your-first-app-agent-first.md).
+Developing a NocoBase application means implementing business rules on top of its existing structure and capabilities: how data is stored, who can act on it, and how the interface presents the result. This section explains those topics for use during development. To build a feature from start to finish first, follow the [tutorial](../getting-started/build-your-first-app.md).
 
 The following sections use “assign a task to a project” to explain each responsibility. You do not need to run the example to read this overview.
 
@@ -41,9 +41,9 @@ Generated layouts and themes also belong to the application's source. Prefer rou
 | Copy | What are the English and Chinese labels, field hints and errors? | `client/locales/` |
 | Verification | Is data preserved, do allowed actions succeed, and are unauthorized actions rejected? | `tests/` |
 
-This is a map of responsibilities, not a requirement to create all these files for every change. Editing form copy needs no migration; adding a field does not require rebuilding sign-in. Identify what the request changes, then edit those parts. See [Project structure](../getting-started/project-structure.md) for the full directory guide.
+This is a map of responsibilities, not a requirement to create all these files for every change. Editing form copy needs no migration; adding a field does not require rebuilding sign-in. Identify what the request changes, then edit those parts. See [Project structure](app-structure.md) for the full directory guide.
 
-Start with the business outcome: “Users can assign a task to an eligible project, old tasks remain unchanged, and failed saves preserve input.” Define the data changes and permission rules, implement the API and page, then use isolated test data to verify successful operations, denied operations and existing behavior. When working with an agent, you specify the business requirements and the agent implements and verifies them using the project conventions. See [Develop with an agent](develop-with-an-agent.md).
+Start with the business outcome: “Users can assign a task to an eligible project, old tasks remain unchanged, and failed saves preserve input.” Define the data changes and permission rules, implement the API and page, then use isolated test data to verify successful operations, denied operations and existing behavior. When working with an agent, you specify the business requirements and the agent implements and verifies them using the project conventions. See [Develop with an agent](../getting-started/develop-with-an-agent.md).
 
 ## How a save reaches the database
 
@@ -123,4 +123,4 @@ The first two guides run commands in the application environment; the third prov
 | Write maintenance commands or register plugin commands | [Write application commands](application-commands.md), [Integrate plugin commands](plugin-commands.md) |
 | Let users or agents call business APIs from a terminal | [Provide an application CLI client](cli-client.md) |
 | Choose verification methods and complete acceptance | [Testing and acceptance](testing-and-acceptance.md) |
-| Complete a working feature first | [Build your first app](../tutorials/build-your-first-app-agent-first.md) |
+| Complete a working feature first | [Build your first app](../getting-started/build-your-first-app.md) |

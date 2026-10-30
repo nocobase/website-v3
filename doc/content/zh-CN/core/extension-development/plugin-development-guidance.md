@@ -35,7 +35,7 @@ my-app/
 
 模板还会指向应用已安装版本的 `.agents/skills/nocobase-app-plugin-development/SKILL.md`。这份通用开发 Skill 来自 `@nocobase/app-skills`，插件的 `AGENTS.md` 补充本插件的实际约定，不必复制整份通用开发说明。
 
-`pnpm nocobase skills sync` 同步包提供的 Skills，不会把插件根目录的 `AGENTS.md` 复制为应用 Skill。源码维护要求留在插件内，面向使用者的说明放在插件的 `skills/` 中。
+`pnpm nocobase skills sync` 同步包提供的 Skill，不会把插件根目录的 `AGENTS.md` 复制为应用 Skill。源码维护要求留在插件内，面向使用者的说明放在插件的 `skills/` 中。
 
 ## 记录哪些维护约定
 

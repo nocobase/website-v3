@@ -20,7 +20,7 @@ description: "配置应用登录、会话、注册与密码找回。"
 
 若使用内置密码找回邮件，启用 `auth.passwordReset.enabled`，配置应用公开地址和可投递的系统邮件渠道，再结合 `usePasswordResetCapability()` 展示入口；仅有邮箱密码登录，不代表找回邮件已经可用。应用也可以提供自己的 `sendResetPassword` 实现。跨域部署还需要正确配置可信来源，不能通过绕过请求来源检查解决登录问题。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请用身份认证插件将应用设为仅受邀成员加入。
@@ -79,6 +79,6 @@ description: "配置应用登录、会话、注册与密码找回。"
 
 通用安装与迁移操作见[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authentication)。

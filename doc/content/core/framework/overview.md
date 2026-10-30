@@ -2,7 +2,7 @@
 title: Framework overview
 ---
 
-This chapter explains mechanisms shared by applications and plugins, along with the responsibilities, usage and runtime boundaries of core `@nocobase/*` packages. Start with [Developing apps](../developing-apps/overview.md) or [Developing plugins](../extension-development/when-to-write-a-plugin.md) for implementation workflows, and return here for the underlying mechanisms.
+This chapter explains mechanisms shared by applications and plugins, along with the responsibilities, usage and runtime boundaries of core `@nocobase/*` packages. Start with [Developing apps](../developing-apps/app-structure.md) or [Developing plugins](../extension-development/when-to-write-a-plugin.md) for implementation workflows, and return here for the underlying mechanisms.
 
 ## Runtimes and shared mechanisms
 

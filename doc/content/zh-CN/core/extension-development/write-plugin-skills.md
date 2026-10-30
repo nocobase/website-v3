@@ -38,7 +38,7 @@ packages/app-plugin-notice-cli/
 
 名称遵循包归属：`@nocobase/app-plugin-notice-cli` 对应 `nocobase-app-plugin-notice-cli`。自定义 scope 也保留在前缀里，例如 `@acme/app-plugin-notice-cli` 对应 `acme-app-plugin-notice-cli`。多个独立任务可以使用同一前缀加后缀，但不要占用其他包的名称。
 
-确保插件 `package.json` 的 `files` 包含 `skills`，同时保留 `dist`、README 等已有条目。Skills 不需要 TypeScript 编译，但发布时必须进入包。
+确保插件 `package.json` 的 `files` 包含 `skills`，同时保留 `dist`、README 等已有条目。Skill 不需要 TypeScript 编译，但发布时必须进入包。
 
 ## 一份可执行的 Skill
 
@@ -101,7 +101,7 @@ This capability does not store, publish or send notices. Those actions need a se
 pnpm nocobase skills sync --package @nocobase/app-plugin-notice-cli
 ```
 
-注册插件默认也会同步其 Skills。同步结果位于 App 的 `.agents/skills/`，这里是生成副本，不是维护源；修改后再次同步会覆盖它。已有 Agent 会话是否自动重新加载取决于客户端，需要时重新开始会话。
+注册插件默认也会同步其 Skill。同步结果位于 App 的 `.agents/skills/`，这里是生成副本，不是维护源；修改后再次同步会覆盖它。已有 Agent 会话是否自动重新加载取决于客户端，需要时重新开始会话。
 
 ## 验证两件事
 

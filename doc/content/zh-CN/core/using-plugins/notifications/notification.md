@@ -17,7 +17,7 @@ description: "通过命名渠道发送通知，查询投递结果并处理重试
 
 各收件人对应独立投递记录，一路失败不等于全部失败。重试沿用原渠道及提供方。业务界面应区分排队、提交和失败，不能把渠道接受消息当作用户已收到或已读。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用通知插件，在订单审批成功后发送站内信和邮件。
@@ -81,6 +81,6 @@ await notification.send({
 
 验证多收件人结果、重复事件、渠道失败和日志权限。相关文档：[通知渠道](providers.md)、[站内信](in-app.md)、[浏览器推送](web-push.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification)。

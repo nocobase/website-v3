@@ -12,7 +12,7 @@ title: 插件加载与扩展
 | Server | `package/server` | `server/plugins.ts` |
 | CLI | `package/cli` | `cli/plugins.ts` |
 
-插件按需提供入口；只分发 Skills 的包可能没有任何运行时入口。客户端注册不自动启用服务端，服务端注册也不会给页面安装组件。
+插件按需提供入口；只分发 Skill 的包可能没有任何运行时入口。客户端注册不自动启用服务端，服务端注册也不会给页面安装组件。
 
 ## 声明如何进入应用
 

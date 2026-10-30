@@ -72,7 +72,7 @@ description: 按职责查找 NocoBase Core 的运行时、基础库、数据库�
 
 | 包 | 用途 |
 | --- | --- |
-| [`@nocobase/app-skills`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/app/app-skills) | 应用开发、升级、部署与插件开发 Skills |
+| [`@nocobase/app-skills`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/app/app-skills) | 应用开发、升级、部署与插件开发 Skill |
 | [`@nocobase/app-testing`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/tools/app-testing) | 应用与插件的测试辅助工具 |
 | [`@nocobase/db-testing`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-testing) | 隔离数据库环境与可跨方言运行的测试辅助工具 |
 | [`@nocobase/db-testkit`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-testkit) | 数据库方言共用的集成测试契约 |

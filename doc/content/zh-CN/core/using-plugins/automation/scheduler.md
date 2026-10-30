@@ -15,7 +15,7 @@ description: "声明业务计划任务，检查执行记录并管理启停。"
 
 每天 UTC 02:00 生成汇总报表。先实现目标，再声明计划，管理者通过列表检查触发记录并按需停用。
 
-**开发提示词**（交给当前应用目录中的 Coding Agent）：
+**开发提示词**（交给当前应用目录中的 Agent）：
 
 ```text
 请使用定时任务插件，在每天 UTC 02:00 生成业务汇总。
@@ -91,6 +91,6 @@ scheduler.defineSchedule({
 
 应用关闭时，依赖服务应保持到 Scheduler 的 `drain()` 完成；它不等待所有外部业务或人工任务结束。相关文档：[后台任务](../../framework/background/jobs.md)、[定时调度](../../framework/background/scheduling.md)、[管理插件](../../developing-apps/manage-plugins.md)。
 
-上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skills 与通用检查流程见[使用 Agent 开发](../../developing-apps/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
+上述检查是接入后的验收要求，不表示本文已完成运行验证。让 Agent 报告实际改动、执行过的检查和未验证项；项目指引、Skill 与通用检查流程见[使用 Agent 开发](../../getting-started/develop-with-an-agent.md)和[测试与验收](../../developing-apps/testing-and-acceptance.md)。
 
 源码依据：[插件公开入口与实现](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-scheduler)。

@@ -178,7 +178,7 @@ A required project name need not be unique. Allowing tasks to belong to projects
 
 ### Prepare the example application
 
-The project chapters use a separate historical example: `tutorialTasks` stores tasks, `tutorialProjects` stores projects, and `completed` represents task completion. The current [getting-started example](../tutorials/build-your-first-app-agent-first.md) uses `tasks` and a three-stage `status`. Use the historical tag and matching configuration below for this exercise; do not apply these migrations directly to the getting-started database.
+The project chapters use a separate historical example: `tutorialTasks` stores tasks, `tutorialProjects` stores projects, and `completed` represents task completion. The current [getting-started example](../getting-started/build-your-first-app.md) uses `tasks` and a three-stage `status`. Use the historical tag and matching configuration below for this exercise; do not apply these migrations directly to the getting-started database.
 
 <details>
 <summary>Obtain and configure the example application</summary>
@@ -480,6 +480,6 @@ Seeds provide the initial records an application needs to operate. Projects in t
 
 ### Further reading
 
-[Routes and HTTP APIs](apis-and-services.md) explains how to expose data operations to pages: validate input, check project and task permissions, and translate business failures into consistent API errors. [Application development overview](overview.md) shows how the parts fit together.
+[Routes and HTTP APIs](apis-and-services.md) explains how to expose data operations to pages: validate input, check project and task permissions, and translate business failures into consistent API errors. [Application development overview](app-structure.md) shows how the parts fit together.
 
 Migrations and Seeds belong to individual connections; see [Multiple database connections](multiple-databases.md). For schemas owned by another system, follow [Connect an existing database](existing-databases.md) and keep handwritten `metadata/` separate from generated `collections/`.

@@ -117,4 +117,4 @@ If manual changes or interruptions leave Skills inconsistent, resynchronize:
 pnpm nocobase skills sync
 ```
 
-Synchronization repairs guidance copies, not plugin registration or application code. Continue with [Application development overview](overview.md) and [Testing and acceptance](testing-and-acceptance.md).
+Synchronization repairs guidance copies, not plugin registration or application code. Continue with [Application development overview](app-structure.md) and [Testing and acceptance](testing-and-acceptance.md).

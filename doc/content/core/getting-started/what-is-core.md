@@ -47,6 +47,6 @@ Core can run independently. Studio organizes team development, review and releas
 
 ## Create your application
 
-Start with [Create an app](create-app.md), then use [Project structure](project-structure.md) to find your way around the code.
+Start with [Create an app](create-app.md), then use [Project structure](../developing-apps/app-structure.md) to find your way around the code.
 
-Continue with [Build your first app](../tutorials/build-your-first-app-agent-first.md) to build a complete team task app, verify it and deploy it.
+Continue with [Build your first app](build-your-first-app.md) to build a complete team task app, verify it and deploy it.

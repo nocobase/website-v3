@@ -15,7 +15,7 @@ npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 
 ## 2. 让 Agent 创建应用
 
-新建一个空目录 `itam-lite`，在里面开启 Codex 会话：
+新建一个空目录 `itam-lite`，在里面开启 Coding agent 会话：
 
 ```prompt
 在当前目录创建一个 NocoBase 3 应用，数据库用 SQLite。启动后告诉我访问地址和登录账号。

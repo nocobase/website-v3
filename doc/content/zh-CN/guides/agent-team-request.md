@@ -5,15 +5,15 @@ metaDescription: 用“设备盘点”这个需求，走一遍任务在 Studio �
 
 资产管理员提了一个新需求：每季度盘一次设备，现在靠导出表格手工勾，容易漏。这一篇把它交给 Agent 团队，从提出到合并走一遍。
 
-需求在 Studio 里是一个任务，只有「阻塞中」（要你回答）和「待验收」（要你验收）两种状态需要人，其余由调度 Agent 推进。状态说明见 [任务状态与权限](../studio/reference/statuses-and-permissions.md)。
+需求在 Studio 里是一个任务，只有「阻塞中」（要你回答）和「待验收」（要你验收）两种状态需要人决策，其余由调度 Agent 推进。状态说明见 [任务状态与权限](../studio/reference/statuses-and-permissions.md)。
 
 ![任务看板：每种状态一列](https://static-docs.nocobase.com/20261028201236304.png)
 
 ## 1. 提出需求，整理成任务
 
-![「新建任务」在页面右上角](https://static-docs.nocobase.com/20261029151913059.png)
+在「我的会话」点「新会话」，选你的 Coding agent 和 itam-lite 的本地目录，项目选 itam-lite（需要先 [连接自己的电脑](../studio/join/connect-computer.md)）：
 
-在「我的会话」点「新会话」，选你的 Codex 和 itam-lite 的本地目录，项目选 itam-lite（需要先 [连接自己的电脑](../studio/join/connect-computer.md)）：
+![新会话](https://static-docs.nocobase.com/20261030155023637.png)
 
 ```prompt
 资产管理员每个季度要盘点一次设备。想做成这样：

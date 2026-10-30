@@ -9,6 +9,8 @@ metaDescription: 邀请资产管理员加入 Studio，由这位同事在「我�
 
 打开「设置 › 成员」，点「邀请成员」，填许宁的邮箱，「加入的项目」选 itam-lite，点「发送邀请」。见 [邀请成员](../studio/setup/invite.md)。
 
+![邀请成员](https://static-docs.nocobase.com/20261030155133745.png)
+
 许宁打开邀请链接，填写姓名和密码，点「创建账号并加入」。见 [登录与个人设置](../studio/join/sign-in.md)。
 
 **完成的标志**：许宁出现在「设置 › 成员」的列表里。

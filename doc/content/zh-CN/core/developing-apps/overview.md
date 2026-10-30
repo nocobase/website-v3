@@ -5,7 +5,7 @@ description: 一个业务功能由哪些部分组成、写在哪里、怎样连�
 
 开发 NocoBase 应用，就是在模板给出的结构和 Core 现成的能力上实现你自己的业务：数据怎样保存，谁能做什么，页面怎样把结果呈现给用户。
 
-本篇先说明一个功能由哪些部分组成、各部分写在哪里、一次操作怎样经过它们，再按任务列出本节各篇，供开发时查阅。和 Agent 一起开发时，这也是 Agent 遵循的分工，你可以对照它检查改动。想先从头做完一个功能，看[搭建第一个应用](../tutorials/build-your-first-app.md)。
+本篇先说明一个功能由哪些部分组成、各部分写在哪里、一次操作怎样经过它们，再按任务列出本节各篇，供开发时查阅。和 Agent 一起开发时，这也是 Agent 遵循的分工，你可以对照它检查改动。想先从头做完一个功能，看[开发第一个功能](../getting-started/build-your-first-app.md)。
 
 ## 哪些代码由你修改
 
@@ -40,7 +40,7 @@ description: 一个业务功能由哪些部分组成、写在哪里、怎样连�
 
 一个带页面和接口的功能，通常要改五处：建表的迁移、`server/routes/` 里的接口、`client/pages/` 里的页面、`client/routes.ts` 里的路由和导航、`client/locales/` 里的文案。业务规则较多时再加一个服务，最后补上测试。
 
-这是一张分工表，不是每次都要填满的清单。只改表单文案不需要迁移，只加一个字段也不用碰登录。先弄清需求改变了什么，再改对应的部分。各目录的完整说明见[项目结构](../getting-started/project-structure.md)。
+这是一张分工表，不是每次都要填满的清单。只改表单文案不需要迁移，只加一个字段也不用碰登录。先弄清需求改变了什么，再改对应的部分。各目录的完整说明见[项目结构](project-structure.md)。
 
 ### 新文件要接入应用
 
@@ -132,7 +132,7 @@ description: 一个业务功能由哪些部分组成、写在哪里、怎样连�
 | 定义、覆盖和读取应用配置 | [应用配置（config.yml）](configuration-and-settings.md) |
 | 查看、注册、更新插件 | [管理插件](manage-plugins.md) |
 | 选择验证方式，完成验收 | [测试与验收](testing-and-acceptance.md) |
-| 描述需求，检查 Agent 的改动 | [和 Agent 一起开发](develop-with-an-agent.md) |
+| 描述需求，检查 Agent 的改动 | [持续开发应用](../getting-started/develop-with-an-agent.md) |
 | 升级到新版本，合并模板变化 | [升级 NocoBase Core](upgrade-nocobase-core.md) |
 
 运行时怎样组装、服务容器、数据库等底层机制，见[框架概览](../framework/overview.md)。

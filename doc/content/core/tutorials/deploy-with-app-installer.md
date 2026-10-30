@@ -7,7 +7,7 @@ This guide uses the task application as a worked example and also applies to you
 
 Deploy the task application independently to your production server, with PM2 supervising the application process. `@nocobase/app-installer` extracts a release archive, prepares configuration, applies migrations, starts PM2 and checks health. It also manages subsequent application updates.
 
-Verify your application has passed its tests; see [Build your first app](build-your-first-app.md) for the task example. This guide uses a single instance, SQLite, Linux x64/glibc, Node.js 24 and base path `/tasks`. Other database dialects require the appropriate driver in the source application and a new build.
+Verify your application has passed its tests; see [the task example README](https://github.com/nocobase/docs-examples-v3/blob/0185e4bfa9d7ef05dd180245005a6c1024fe41de/apps/team-tasks/README.MD) for the task example. This guide uses a single instance, SQLite, Linux x64/glibc, Node.js 24 and base path `/tasks`. Other database dialects require the appropriate driver in the source application and a new build.
 
 ## Prerequisites
 
@@ -124,7 +124,7 @@ curl --fail http://127.0.0.1:13000/tasks/api/healthz
 
 For remote status, add `--ssh deploy@server`. Check health is true, process status is `online`, Node matches, and no operation is pending. Once the proxy is ready, also test `https://tasks.example.com/tasks/api/healthz` and sign in through the real public URL. Server-local health does not verify DNS, TLS or the proxy. `result.remote.publicHealth: false` means the initiating machine could not reach the configured public endpoint.
 
-The installer keeps `installer.json`, `app.env`, `config.yml`, `storage/`, logs and backups outside versioned `releases/`. `current` points to the active release. Do not manually overwrite the installed release or symlink. The current getting-started example initializes task roles through required seeds. Development tasks, team users, and role assignments are not copied with the archive; configure or migrate them separately.
+The installer keeps `installer.json`, `app.env`, `config.yml`, `storage/`, logs and backups outside versioned `releases/`. `current` points to the active release. Do not manually overwrite the installed release or symlink. The task example application initializes task roles through required seeds. Development tasks, team users, and role assignments are not copied with the archive; configure or migrate them separately.
 
 ### 4. Verify supervision and persistence
 

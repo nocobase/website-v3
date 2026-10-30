@@ -95,7 +95,7 @@ function loadLanguage({ root, prefix, code, skip, sections, problems }) {
       const description = typeof data.description === 'string' ? data.description : '';
       pages.set(key, {
         key, lang: code, file, relPath: rel(`${key}.md`), data, body,
-        // description is shown under the title; metaDescription, when set, replaces it in the meta description, llms.txt and the .md copy without being shown
+        // Both summaries are metadata, not visible article text; metaDescription overrides description in the meta description, llms.txt and the .md copy.
         title: String(data.title ?? key), description, metaDescription: (typeof data.metaDescription === 'string' && data.metaDescription) || description,
         status: data.status === undefined ? '' : String(data.status), placeholder: data.status !== undefined && data.status !== null && data.status !== '',
         section: null, label: null, trail: [], refs: [],

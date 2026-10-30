@@ -8,7 +8,7 @@ description: NocoBase 是企业用 AI 开发和持续改进业务系统的开源
 | 你想 | 从这里开始 |
 | --- | --- |
 | 了解 NocoBase 3 | [NocoBase 3 是什么](start/what-is-nocobase.md) |
-| 用自己的 Agent 基于 Core 开发一个应用 | [认识 NocoBase Core](core/getting-started/what-is-core.md) → [创建应用](core/getting-started/create-app.md) |
+| 用自己的 Agent 基于 Core 开发一个应用 | [NocoBase Core](core/index.md) → [创建应用](core/getting-started/create-app.md) |
 | 带领 Agent 团队开发，同时推进多个项目 | [Studio 是什么](studio/intro/what-is-studio.md) |
 | 部署和运维应用 | [部署与运维](core/deployment/choose-a-deployment-method.md) |
 | 从 NocoBase 2 来 | [从 NocoBase 2 来](start/from-v2.md) · [管理插件](core/developing-apps/manage-plugins.md) |

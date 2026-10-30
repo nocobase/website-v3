@@ -44,7 +44,6 @@ const crumb = [section.id === config.sections[0].id ? '' : section.title, ...pag
 {!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
 </div>}
 <h1>{page.title}</h1>
-{page.description && <p class="doc-lead">{page.description}</p>}
 <article class="prose">
 {hint ? <p set:html={hint}></p> : <Content />}
 </article>

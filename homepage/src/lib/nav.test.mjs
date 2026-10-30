@@ -26,7 +26,7 @@ test('the active page is highlighted in the menu, the mobile menu and nowhere el
   const { header } = navSpec('blog');
   const active = header.menu.flatMap(m => m.items ?? [m]).filter(i => i.active).map(i => i.href);
   assert.deepEqual(active, ['blog.html']);
-  assert.deepEqual(header.mobile.filter(i => i.active).map(i => i.href), ['blog.html']);
+  assert.deepEqual(header.mobile.flatMap(i => i.items ?? [i]).filter(i => i.active).map(i => i.href), ['blog.html']);
   assert.equal(navSpec('home').header.menu.flatMap(m => m.items ?? [m]).some(i => i.active), false);
 });
 

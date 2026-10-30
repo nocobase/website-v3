@@ -84,21 +84,17 @@ export function navSpec(active, { stars = githubStars() } = {}) {
       },
       { label: T('定价', 'Pricing'), href: 'pricing.html', active: on('pricing') },
     ],
-    mobile: [
-      ...PRODUCTS.map(x => ({ href: x[1], label: x[3], active: on(x[0]) })),
-      { href: NOCODE, label: 'NocoBase 2', small: T('无代码 ↗', 'No-code ↗'), external: true },
-      { href: 'solutions.html', label: T('全部解决方案', 'All Solutions') },
-      { href: DOCS, label: T('文档', 'Docs'), external: true },
-      { href: 'customers.html', label: T('客户案例', 'Customers'), active: on('customers') },
-      { href: 'blog.html', label: T('博客', 'Blog'), active: on('blog') },
-      { href: 'find-partner.html', label: T('寻找 NocoBase 伙伴', 'Find a Partner'), active: on('find-partner') },
-      { href: 'partner.html', label: T('成为合作伙伴', 'Become a Partner'), active: on('partner') },
-      { href: 'pricing.html', label: T('定价', 'Pricing'), active: on('pricing') },
-      { href: 'contact.html', label: T('联系我们', 'Contact Us') },
-      { href: GITHUB, label: 'GitHub', small: stars, external: true },
-    ],
+    // 手机菜单：和桌面菜单同样分组，点组名展开（和旧官网 NocoBase 2 一样）；置灰的未上线项不放
+    mobile: [],
     links: [{ href: GITHUB, icon: 'github', label: stars, external: true }],
   };
+  const mItem = it => ({ href: it.href, label: it.title, small: it.tag && it.tag + (it.external ? ' ↗' : ''), external: it.external, active: it.active });
+  header.mobile = [
+    ...header.menu.map(m => m.items
+      ? { label: m.label, items: [...m.items.filter(it => it.href).map(mItem), ...(m.two ? [{ href: 'solutions.html', label: T('全部解决方案', 'All Solutions') }] : [])] }
+      : { href: m.href, label: m.label, active: m.active }),
+    { href: GITHUB, label: 'GitHub', small: stars, external: true },
+  ];
   const footer = {
     logo: { src: LOGO, alt: 'NocoBase', width: 150, height: 22 },
     tagline: T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Build reliable business systems.'),

@@ -179,11 +179,11 @@ test('a language directory cannot have the name of a content directory, and the 
   expect([...languages.get('zh').pages.keys()].sort()).toEqual(['core/index', 'index']);
 });
 
-test('metaDescription replaces the description only in the meta description, and both must be strings', () => {
-  const { languages } = load(both({ ...BASE, 'index.md': { title: 'Home', front: 'description: Shown\nmetaDescription: For search' }, 'core/index.md': { title: 'Core', front: 'description: Both' } }));
+test('metaDescription overrides the summary with description as fallback, and both must be strings', () => {
+  const { languages } = load(both({ ...BASE, 'index.md': { title: 'Home', front: 'description: Default summary\nmetaDescription: Override summary' }, 'core/index.md': { title: 'Core', front: 'description: Fallback summary' } }));
   const pages = languages.get('en').pages;
-  expect(pages.get('index')).toMatchObject({ description: 'Shown', metaDescription: 'For search' });
-  expect(pages.get('core/index')).toMatchObject({ description: 'Both', metaDescription: 'Both' });
+  expect(pages.get('index')).toMatchObject({ description: 'Default summary', metaDescription: 'Override summary' });
+  expect(pages.get('core/index')).toMatchObject({ description: 'Fallback summary', metaDescription: 'Fallback summary' });
   const text = problemsOf(() => load(both({ ...BASE, 'index.md': { title: 'Home', front: 'description: 1\nmetaDescription: [a]' } })));
   expect(text).toContain('description must be a string');
   expect(text).toContain('metaDescription must be a string');

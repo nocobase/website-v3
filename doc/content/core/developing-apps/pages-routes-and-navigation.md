@@ -5,7 +5,7 @@ description: Complete defineAppRoutes usage, including page loading, path parame
 
 Use `defineAppRoutes()` in `client/routes.ts` to declare page URLs, load components, add menu entries, and set authentication and authorization requirements. Applications and plugins use the same route declarations.
 
-## 1. Basic usage
+## Basic usage
 
 ### Register a page
 
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
 
 Merge `projects.title` into the existing `client/locales/en-US.ts` and `zh-CN.ts`, using “Projects” and “项目”. See [Localization](localization.md). Template imports use `.js` extensions even when the source file is `.tsx`.
 
-For an application mounted at `/main/`, the page URL is `/main/projects`; its route `path` remains `/projects`. Here, `authz: 'skip'` adds no page authorization check, while authentication still applies. To restrict the page by role, use the declarations under [Access control](#6-authentication-and-authorization).
+For an application mounted at `/main/`, the page URL is `/main/projects`; its route `path` remains `/projects`. Here, `authz: 'skip'` adds no page authorization check, while authentication still applies. To restrict the page by role, use the declarations under [Access control](#authentication-and-authorization).
 
 ### Argument and return value
 
@@ -74,9 +74,9 @@ For an application mounted at `/main/`, the page URL is `/main/projects`; its ro
 
 Its type is `AppClientAppRoutesContribution`, also available through the alias `AppClientRouteContribution`. This is a declaration collected by the runtime, not a React component; declaring it does not immediately execute `componentLoader`. The returned declaration is frozen. Assemble your array first rather than calling `push()` or modifying route entries afterwards.
 
-The contribution's `parent: 'app'` identifies the application route surface. It is separate from an individual route's [`parent`](#7-append-to-a-group-in-another-file-or-plugin), which attaches that route to a group.
+The contribution's `parent: 'app'` identifies the application route surface. It is separate from an individual route's [`parent`](#append-to-a-group-in-another-file-or-plugin), which attaches that route to a group.
 
-## 2. Page paths and component loading
+## Page paths and component loading
 
 ### Static paths and dynamic parameters
 
@@ -135,7 +135,7 @@ componentLoader: () =>
 
 `componentLoader` receives no route arguments and must return a Promise containing the default component. Do not return a JSX element or use a data-fetching function as the component loader. Read parameters and load data inside the page; see [Data requests and state management](data-requests-and-state.md).
 
-## 3. Nested pages and navigation
+## Nested pages and navigation
 
 ### Declare children
 
@@ -266,7 +266,7 @@ This component shows only the redirect logic and assumes both tabs inherit the p
 
 If tabs have different permissions, wait for permission checks and choose the first accessible tab. If none is accessible, show the appropriate state without redirecting.
 
-## 4. Navigation entries and groups
+## Navigation entries and groups
 
 ### Configure a menu entry
 
@@ -316,7 +316,7 @@ A group can also supply a path prefix. A group at `/settings` with a child at `p
 
 Use `children: []` to reserve a group for contributions from other modules. The default template shows only groups with visible page entries. Empty groups, groups whose children have no menu entries, and groups whose children are all hidden by permissions are omitted.
 
-## 5. Breadcrumbs
+## Breadcrumbs
 
 ### Static titles
 
@@ -365,7 +365,7 @@ usePageBreadcrumb(
 
 The template remembers queries from ancestor pages visited within the current route hierarchy. A direct detail URL or reload has no such recorded visit, so default ancestor links have no query. When a deep link must carry list conditions back, specify `to` explicitly as above and keep only parameters owned by the list. Avoid duplicating a back button when the breadcrumb already supplies the same return path.
 
-## 6. Authentication and authorization
+## Authentication and authorization
 
 ### `auth`: sign-in requirements
 
@@ -414,7 +414,7 @@ The default template checks permission before loading the page and filters menu 
 
 Route names and permission IDs need not match. Role grants persist `authz.resource.id`; renaming a route does not migrate that identifier. Change translations to rename menu text. For a `page/access` page without navigation or breadcrumbs, add a readable permission label through the template's `client/pages/settings/page-permission-titles.ts`.
 
-## 7. Append to a group in another file or plugin
+## Append to a group in another file or plugin
 
 When one module declares a settings group and another supplies a page, use the route entry's `parent`:
 
@@ -461,7 +461,7 @@ Rules:
 - Appending a route does not change its owning package, route ID, or translation namespace.
 - Siblings sort by `navigation.order`. Equal values retain the group's original children first, followed by appended entries in contribution registration order.
 
-## 8. Split, reuse, and contribute routes from plugins
+## Split, reuse, and contribute routes from plugins
 
 ### Aggregate route files
 
@@ -533,7 +533,7 @@ export default defineClientRouteComponentOverrides([
 
 An override preserves the path, permissions, menu, and children while replacing the component. The target must already be registered and must be a page. Groups and duplicate overrides of the same ID are rejected. Do not register a duplicate path to replace a page; see [Using and managing plugins](manage-plugins.md) for related extension mechanisms.
 
-## 9. Configuration and constraints reference
+## Configuration and constraints reference
 
 ### All route definition fields
 

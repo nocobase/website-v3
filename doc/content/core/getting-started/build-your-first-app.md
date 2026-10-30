@@ -5,7 +5,7 @@ metaDescription: Have an agent build customer management in a new application. T
 
 Have an agent build your first feature, customer management, in the application from [Create an app](create-app.md). Open the agent in the application root.
 
-## 1. Describe the requirement
+## Describe the requirement
 
 Send this to the agent:
 
@@ -17,11 +17,11 @@ Sales managers can manage all customers. Sales reps can only view their own cust
 
 Describe only the business: what to record, which actions are available and who can perform them. The agent follows the project's Skills to handle user and permission management, translations, tests and its completion report.
 
-## 2. Confirm the design
+## Confirm the design
 
 Before implementation, the agent presents a design for you to confirm, covering the page structure, main interactions and decisions it needs from you. Answer its questions and confirm the design so it can begin development.
 
-## 3. Try the result
+## Try the result
 
 When development is complete, the agent runs tests, checks the application in a browser and takes screenshots. It then provides a report of what it did and anything it could not verify. If verification requires signing in, it asks you to sign in yourself.
 
@@ -37,7 +37,7 @@ The agent also enables user and permission management. Try what a sales rep can 
 2. Create a customer and select this user as the sales owner.
 3. Sign in with that account. The list should show only customers owned by this user. The user can update their status but cannot edit their details or delete them.
 
-## 4. Keep refining
+## Keep refining
 
 If the result is wrong or you want something different, tell the agent what you did, what happened and what you expected:
 
@@ -48,7 +48,7 @@ Sales reps should only see their own customers.
 
 You can also request interaction changes, such as opening customer details when you click a name, then deciding whether to edit.
 
-## 5. Review the code changes
+## Review the code changes
 
 These are the main locations changed in the example application. Your filenames may differ, but the locations should be similar:
 

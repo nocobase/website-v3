@@ -5,7 +5,7 @@ description: defineAppRoutes 的完整用法：页面加载、路径参数、嵌
 
 在 `client/routes.ts` 中使用 `defineAppRoutes()`，可以为应用声明页面地址、加载组件、配置菜单，并设置登录要求和访问权限。应用和插件使用同一套路由声明。
 
-## 1. 基本用法
+## 基本用法
 
 ### 注册一个页面
 
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
 
 向现有 `client/locales/zh-CN.ts` 和 `en-US.ts` 合并 `projects.title`，分别填写“项目”和“Projects”，具体见[多语言](localization.md)。模板中的 import 使用 `.js` 后缀，对应源码文件可以是 `.tsx`。
 
-如果应用入口是 `/main/`，实际地址为 `/main/projects`。路由中的 `path` 仍写 `/projects`。这里的 `authz: 'skip'` 表示不增加页面授权检查，仍需要登录；需要按角色开放页面时，使用[访问控制](#6-登录与访问权限)中的声明。
+如果应用入口是 `/main/`，实际地址为 `/main/projects`。路由中的 `path` 仍写 `/projects`。这里的 `authz: 'skip'` 表示不增加页面授权检查，仍需要登录；需要按角色开放页面时，使用[访问控制](#登录与访问权限)中的声明。
 
 ### 参数与返回值
 
@@ -74,9 +74,9 @@ export default function ProjectsPage() {
 
 这个对象的类型是 `AppClientAppRoutesContribution`，也可使用别名 `AppClientRouteContribution`。它是供运行时收集的声明，不是 React 组件，也不会立即执行 `componentLoader`。返回的声明被冻结，应先组装好数组再调用，不要事后 `push()` 或修改路由条目。
 
-返回对象的 `parent: 'app'` 表示向应用贡献路由，与单个路由条目中用于挂载分组的 [`parent`](#7-挂载到其他文件或插件的分组) 是两个层次。
+返回对象的 `parent: 'app'` 表示向应用贡献路由，与单个路由条目中用于挂载分组的 [`parent`](#挂载到其他文件或插件的分组) 是两个层次。
 
-## 2. 页面路径与组件加载
+## 页面路径与组件加载
 
 ### 静态路径与动态参数
 
@@ -135,7 +135,7 @@ componentLoader: () =>
 
 `componentLoader` 不接收路由参数，必须返回包含默认组件的 Promise。不要返回 JSX 元素，也不要把数据请求函数当作页面加载器。页面参数和数据请求放在组件内处理，见[数据请求与状态管理](data-requests-and-state.md)。
 
-## 3. 嵌套页面与跳转
+## 嵌套页面与跳转
 
 ### 使用 `children` 声明父子关系
 
@@ -266,7 +266,7 @@ export default function ReportsPage() {
 
 如果页签权限不同，应在权限加载后选择第一个可访问页签；没有可访问页签时显示相应状态，不执行跳转。
 
-## 4. 导航菜单与分组
+## 导航菜单与分组
 
 ### 配置菜单入口
 
@@ -316,7 +316,7 @@ const businessRoutes = defineAppRoutes([
 
 `children: []` 可以预留供其他模块挂载的分组。默认模板只显示有可见页面的分组：空分组、所有子页面都没有菜单入口的分组，以及所有子页面都被权限隐藏的分组，不会显示。
 
-## 5. 面包屑
+## 面包屑
 
 ### 静态标题
 
@@ -365,7 +365,7 @@ usePageBreadcrumb(
 
 模板默认会记住当前路由层级中祖先页面访问过的查询条件。直接打开详情或刷新后，没有这条访问记录，默认祖先链接不附加查询参数；需要通过深链接带回列表条件时，像上面这样显式指定 `to`，并只保留属于列表的参数。已经有同一返回路径的面包屑时，不必再放一个重复的返回按钮。
 
-## 6. 登录与访问权限
+## 登录与访问权限
 
 ### `auth`：是否需要登录
 
@@ -414,7 +414,7 @@ authz: { resource: { type: 'settings', id: 'project-settings' }, action: 'read' 
 
 路由名称和权限 ID 不必相同。角色授权保存的是 `authz.resource.id`，修改名称不会自动迁移权限 ID；调整菜单文字时只改翻译。没有导航或面包屑的 `page/access` 页面，需要在模板的 `client/pages/settings/page-permission-titles.ts` 中补充可读的权限显示名。
 
-## 7. 挂载到其他文件或插件的分组
+## 挂载到其他文件或插件的分组
 
 当设置分组由一个模块声明、页面由另一个模块提供时，可以使用路由条目的 `parent`：
 
@@ -461,7 +461,7 @@ export default [settingsRoutes, projectSettingsRoutes];
 - 挂载不会改变路由所属的包，因此路由 ID、翻译命名空间仍属于提供该路由的包。
 - 同级先按 `navigation.order` 排序；同值时保留分组原有子项，再按贡献注册顺序追加条目。
 
-## 8. 拆分、复用与插件路由
+## 拆分、复用与插件路由
 
 ### 汇总多个路由文件
 
@@ -533,7 +533,7 @@ export default defineClientRouteComponentOverrides([
 
 这种覆盖保留路径、权限、菜单和子路由，只替换组件。目标必须已注册且是页面，不能覆盖分组，也不能对同一 ID 重复声明覆盖。不要通过再次注册相同路径来覆盖页面；相关扩展方式见[使用与管理插件](manage-plugins.md)。
 
-## 9. 配置项与限制速查
+## 配置项与限制速查
 
 ### 路由定义的全部字段
 

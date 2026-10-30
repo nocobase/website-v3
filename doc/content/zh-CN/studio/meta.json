@@ -1,73 +1,244 @@
 {
   "pages": [
-    { "type": "page", "path": "index", "title": "首页" },
     {
-      "type": "group",
-      "title": "入门",
-      "pages": [
-        { "type": "page", "path": "intro/what-is-studio" },
-        { "type": "page", "path": "intro/how-a-request-gets-done" },
-        { "type": "page", "path": "intro/agent-team" },
-        { "type": "page", "path": "intro/concepts" }
-      ]
-    },
-    { "type": "folder", "path": "setup" },
-    {
-      "type": "group",
-      "title": "加入团队",
-      "pages": [
-        { "type": "page", "path": "join/sign-in" },
-        { "type": "page", "path": "join/connect-computer" },
-        { "type": "page", "path": "join/local-agent", "title": "在本地 Coding Agent 里使用" },
-        { "type": "page", "path": "join/personal-runtime" }
-      ]
+      "type": "page",
+      "path": "index",
+      "title": "首页"
     },
     {
       "type": "group",
-      "title": "日常使用",
+      "title": "介绍",
       "pages": [
-        { "type": "page", "path": "use/raise-a-request" },
-        { "type": "page", "path": "use/sessions" },
-        { "type": "page", "path": "use/my-tasks" },
-        { "type": "page", "path": "use/follow-progress" },
-        { "type": "page", "path": "use/answer", "title": "回答提问" },
-        { "type": "page", "path": "use/accept" },
-        { "type": "page", "path": "use/inbox" }
+        {
+          "type": "page",
+          "path": "intro/what-is-studio"
+        },
+        {
+          "type": "page",
+          "path": "intro/how-a-request-gets-done"
+        },
+        {
+          "type": "page",
+          "path": "intro/agent-team"
+        },
+        {
+          "type": "page",
+          "path": "intro/concepts"
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "path": "setup"
+    },
+    {
+      "type": "group",
+      "title": "开始使用",
+      "pages": [
+        {
+          "type": "page",
+          "path": "join/index"
+        },
+        {
+          "type": "page",
+          "path": "join/sign-in"
+        },
+        {
+          "type": "page",
+          "path": "setup/first-request"
+        },
+        {
+          "type": "page",
+          "path": "join/local-agent",
+          "title": "在本地 Coding Agent 里使用"
+        },
+        {
+          "type": "page",
+          "path": "join/runner-agent"
+        },
+        {
+          "type": "page",
+          "path": "join/connect-computer"
+        }
       ]
     },
     {
       "type": "group",
-      "title": "管理项目",
+      "title": "任务开发",
       "pages": [
-        { "type": "page", "path": "project/settings" },
-        { "type": "page", "path": "project/skills" },
-        { "type": "page", "path": "project/knowledge-base" },
-        { "type": "page", "path": "project/checks-and-review" },
-        { "type": "page", "path": "project/project-memory" },
-        { "type": "page", "path": "project/release" },
-        { "type": "page", "path": "project/progress" },
-        { "type": "page", "path": "project/usage" }
+        {
+          "type": "page",
+          "path": "use/raise-a-request"
+        },
+        {
+          "type": "page",
+          "path": "use/sessions"
+        },
+        {
+          "type": "page",
+          "path": "use/my-tasks"
+        },
+        {
+          "type": "page",
+          "path": "use/follow-progress"
+        },
+        {
+          "type": "page",
+          "path": "use/answer",
+          "title": "回答提问"
+        },
+        {
+          "type": "page",
+          "path": "use/accept"
+        },
+        {
+          "type": "page",
+          "path": "use/inbox"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "项目管理",
+      "pages": [
+        {
+          "type": "page",
+          "path": "project/settings"
+        },
+        {
+          "type": "page",
+          "path": "project/knowledge-base"
+        },
+        {
+          "type": "page",
+          "path": "project/project-memory"
+        },
+        {
+          "type": "page",
+          "path": "project/progress"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Agent 管理",
+      "pages": [
+        {
+          "type": "page",
+          "path": "configure/agents"
+        },
+        {
+          "type": "page",
+          "path": "configure/runtimes"
+        },
+        {
+          "type": "page",
+          "path": "join/personal-runtime"
+        },
+        {
+          "type": "page",
+          "path": "project/skills"
+        },
+        {
+          "type": "page",
+          "path": "project/usage"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "质量管理（开发中）",
+      "pages": [
+        {
+          "type": "page",
+          "path": "configure/checks"
+        },
+        {
+          "type": "page",
+          "path": "project/checks-and-review"
+        },
+        {
+          "type": "planned",
+          "title": "测试计划与质量报告"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "发布管理",
+      "pages": [
+        {
+          "type": "page",
+          "path": "release/overview"
+        },
+        {
+          "type": "page",
+          "path": "release/previews"
+        },
+        {
+          "type": "page",
+          "path": "admin/environments"
+        },
+        {
+          "type": "page",
+          "path": "release/versions"
+        },
+        {
+          "type": "page",
+          "path": "project/release"
+        }
       ]
     },
     {
       "type": "group",
       "title": "系统管理",
       "pages": [
-        { "type": "page", "path": "admin/environments" },
-        { "type": "page", "path": "admin/members-and-roles" },
-        { "type": "page", "path": "admin/api-keys" },
-        { "type": "page", "path": "admin/notifications" },
-        { "type": "page", "path": "admin/upgrade-and-backup" }
+        {
+          "type": "page",
+          "path": "configure/git"
+        },
+        {
+          "type": "page",
+          "path": "admin/members-and-roles"
+        },
+        {
+          "type": "page",
+          "path": "admin/api-keys"
+        },
+        {
+          "type": "page",
+          "path": "admin/notifications"
+        },
+        {
+          "type": "page",
+          "path": "admin/upgrade-and-backup"
+        }
       ]
     },
     {
       "type": "group",
       "title": "参考",
       "pages": [
-        { "type": "page", "path": "reference/statuses-and-permissions" },
-        { "type": "page", "path": "reference/cli" },
-        { "type": "page", "path": "reference/config" },
-        { "type": "page", "path": "reference/faq" }
+        {
+          "type": "page",
+          "path": "reference/statuses-and-permissions"
+        },
+        {
+          "type": "page",
+          "path": "reference/cli"
+        },
+        {
+          "type": "page",
+          "path": "reference/config"
+        },
+        {
+          "type": "page",
+          "path": "reference/storage"
+        },
+        {
+          "type": "page",
+          "path": "reference/faq"
+        }
       ]
     }
   ]

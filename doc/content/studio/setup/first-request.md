@@ -3,13 +3,13 @@ title: Walk through your first request
 description: Raise a small request and watch the agent team plan, build, and review it. Answer its questions, accept and merge, and confirm the whole workflow runs end to end.
 ---
 
-Once Studio, the Git connection, a runtime, agents, and a project are all set up, take one small request through the whole workflow. Along the way you'll see how the agent team moves an issue forward and confirm that every part is connected before you invite your colleagues.
+After accepting your invitation and signing in, open the project your administrator prepared. Submit a small requirement and follow it through development and acceptance.
 
 ## Before you start
 
 - The project's "Initialize project" issue is done. See [Create a project](new-project.md).
-- At least two agents are enabled, and the lead agent has a first choice. See [Enable agents](agents.md).
-- A runtime is online.
+- The administrator has configured an available Agent team and Lead Agent.
+- A team runtime is online, and the repository has a [check source](ci.md).
 
 ## 1. Raise the request
 
@@ -32,9 +32,7 @@ To skip the session, click **Fill in manually** and enter the title and descript
 
 Open the issue. The **Now** line at the top always shows which agent is working on it, for how long, and on which runtime, with what comes next below it.
 
-**Activity** shows every handoff the lead agent makes: who gets the step, what to do, what to read, when it counts as done, and why that agent. This request adds a table, so the lead agent first has an agent that is good at design write a short plan, then hands development to an agent that is good at building. The building agent writes the code and tests, takes screenshots in the running app, and opens a PR from the `agent/<issue key>` branch. Finally, the lead agent has another model review the code. Review findings go back for fixes, and the fix is reviewed again.
-
-A small request like this one takes about half an hour from start to ready for acceptance.
+**Activity** records assignments, Agent replies, and review results. Agents design, implement, and verify the change, open a PR, and address review findings.
 
 ::figure req-now | The top of the issue page: who is working on it now and what comes next
 
@@ -46,7 +44,7 @@ When something isn't clear in the request, such as a choice between two approach
 
 If the request is written clearly, this step may never come up.
 
-If CI isn't connected yet, it will come up: the PR has no check results, so the lead agent asks whether to set up CI first or accept without CI, based on the delivery report and screenshots. For a trial run you can reply "No CI this time. I'll accept from the delivery report and screenshots and merge myself", and it hands the issue to you for acceptance. Before real use, remember to [connect CI](ci.md).
+If checks or previews cannot complete, read the Agent report. Administrators can resolve configuration issues using [Checks and CI](../configure/checks.md). You do not need to install local coding tools to submit a request.
 
 ## 4. Accept the result
 
@@ -54,13 +52,13 @@ Once the PR has passed review and its checks, the issue moves to **In review** a
 
 1. Open the issue. The **Needs you** card says what you're asked to accept, and below it is the delivery report: how it was before, what changed, how it was checked, open issues with recommendations, and finally the acceptance criteria and screenshots.
 2. Click **View changes** to see the PR.
-3. If CI is connected, open the preview from the issue page, sign in as the first administrator, and try it against the acceptance criteria.
+3. If a preview is available, open it from the issue page, sign in as the first administrator, and try it against the acceptance criteria.
 4. If it works as expected, click **Merge**. The confirmation shows the merge method (for example, squash into `main`), the commit title, and that the issue will move to **Done**. Confirm it. Without check results, the button reads **Merge anyway**, and you can give a reason. Studio records the merge on the PR and in the issue's activity.
 5. If something is off, click **Send back for changes** and say what needs fixing. The lead agent arranges the fix and hands it back to you.
 
 ::figure req-accept | At acceptance you read the delivery report, the acceptance criteria, and the screenshots
 
-**Done when**: the issue is **Done** and the change is on the repository's default branch. If CI is connected, the change is deployed to staging, and the issue shows which environments it has reached.
+**Done when**: the issue is **Done** and the change is on the repository's default branch. If delivery to a test environment is configured, follow its progress on the issue.
 
 ## Troubleshooting
 
@@ -70,4 +68,4 @@ Once the PR has passed review and its checks, the issue moves to **In review** a
 
 **The agent says it couldn't take screenshots.** The runtime has no browser. See the preparation section of [Connect a shared runtime](shared-runtimes.md).
 
-Once it all works, [invite members](invite.md).
+Continue with [My issues](../use/my-tasks.md) to handle pending work, or discuss your next requirement in [My sessions](../use/sessions.md).

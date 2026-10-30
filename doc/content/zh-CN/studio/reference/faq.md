@@ -10,11 +10,11 @@ description: 安装、登录、连接 Git、运行环境、任务推进、验收
 
 **打开地址看不到登录页。** 地址要带上 `/main/`，例如 `https://studio.example.com/main/`。
 
-**不知道用什么账号登录。** 用户名是 `nocobase`，密码在部署目录的 `.env` 里：`grep INITIAL_ADMIN_PASSWORD .env`。见 [安装 Studio](../setup/install.md#登录)。
+**不知道用什么账号登录。** 用户名是 `nocobase`，密码在部署目录的 `.env` 里：`grep INITIAL_ADMIN_PASSWORD .env`。见 [安装 Studio](../setup/install.md#首次登录)。
 
 **界面语言不对，或者登录页上有「注册」。** `config.yml` 里没有设置界面语言，或者没有关闭自助注册。把 `i18n.defaultLocale` 设为团队使用的语言，例如 `zh-CN`；加上 `auth.emailAndPassword.disableSignUp: true`。改完重启 Studio。
 
-**拉取镜像失败。** 提示 unauthorized：token 不对，重新登录镜像源。拉取 `postgres:16` 超时：服务器访问不了 Docker Hub，配置镜像加速或改用已有的 PostgreSQL。下载镜像层卡住：放行和 token 一起提供的镜像层下载地址。见 [安装 Studio](../setup/install.md#常见问题)。
+**拉取镜像失败。** 提示 unauthorized：token 不对，重新登录镜像源。拉取 `postgres:16` 超时：服务器访问不了 Docker Hub，配置镜像加速或改用已有的 PostgreSQL。下载镜像层卡住：放行和 token 一起提供的镜像层下载地址。见 [安装 Studio](../setup/install.md#排查启动问题)。
 
 **容器起不来或反复重启。** 运行 `docker compose logs studio` 看原因。常见的有：没有先取出 `config.yml`，Docker 建了一个同名目录；`storage` 目录的属主不是 UID 1000；没有设置加密密钥。
 
@@ -22,7 +22,7 @@ description: 安装、登录、连接 Git、运行环境、任务推进、验收
 
 ## 连接 Git
 
-**创建 GitHub App 时，GitHub 报错 “Hook url is not supported because it isn't reachable over the public Internet”。** Studio 没有公网地址，却打开了 Webhook。关掉「Webhook」再创建，Studio 改为每分钟查询一次。见 [连接 Git](../setup/git.md#要不要开-webhook)。
+**创建 GitHub App 时，GitHub 报错 “Hook url is not supported because it isn't reachable over the public Internet”。** Studio 没有公网地址，却打开了 Webhook。关掉「Webhook」再创建，Studio 改为每分钟查询一次。见 [连接 Git](../configure/git.md#webhook-与轮询)。
 
 **新建项目时提示“仓库已创建，但尚未确认 App 的访问权限”。** GitHub App 安装时只给了部分仓库的权限。到 GitHub 上 App 的安装设置里加上这个仓库，再新建项目，选「已有仓库」。
 
@@ -32,7 +32,7 @@ description: 安装、登录、连接 Git、运行环境、任务推进、验收
 
 **运行环境显示离线。** 执行机 150 秒没有联系 Studio 就显示离线。在那台机器上运行 `nocobase-runner status`，确认它在运行，且能访问 Studio 的地址。
 
-**编码工具显示「需要登录」或「未安装」。** 在那台机器上，用运行执行机的系统用户安装、登录这个工具，再在运行环境详情里点「重新检测」。已经装了还显示未安装，是后台服务的 PATH 里没有它：在能运行 `which claude` 的终端里重新运行 `nocobase-runner service install`，再重启服务。见 [接入共享运行环境](../setup/shared-runtimes.md#常见问题)。
+**编码工具显示「需要登录」或「未安装」。** 在那台机器上，用运行执行机的系统用户安装、登录这个工具，再在运行环境详情里点「重新检测」。已经装了还显示未安装，是后台服务的 PATH 里没有它：在能运行 `which claude` 的终端里重新运行 `nocobase-runner service install`，再重启服务。见 [接入共享运行环境](../configure/runtimes.md#排查连接问题)。
 
 **Agent 列表里没有某个模型。** 常用的模型上报后自动启用；其他的在「添加 Agent」的可用模型里添加。模型显示「需要设置」或「版本过低」时，按提示在运行环境上处理。
 
@@ -64,7 +64,9 @@ description: 安装、登录、连接 Git、运行环境、任务推进、验收
 
 **预览打开很慢。** 预览一段时间没人访问会停止或休眠，再次打开时要重新启动或准备，稍等即可。
 
-**部署到生产没有反应。** 生产环境受保护，部署变成了部署申请，在等审批人批准。审批人在收件箱的「待我决定」里处理。
+**部署到测试环境没有反应。** 这个环境受保护，部署变成了部署申请，在等审批人批准。审批人在收件箱里处理，见 [托管环境](../admin/environments.md#受保护的环境和审批)。
+
+**生产没有显示新版本。** Studio 不连接生产服务器。部署好后，项目负责人要在部署指引里记录生产版本，见 [部署到生产](../project/release.md#记录生产版本)。
 
 ## 通知
 

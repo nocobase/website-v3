@@ -12,7 +12,7 @@ description: 把自己的电脑连接到 Studio，在「我的会话」里和自
 2. 复制页面上的配置指令，交给这台电脑上的编码工具（如 Claude Code、Codex）执行。它会安装 `nb-studio` 命令行、请你在浏览器里确认登录，并运行 `nb-studio acp service install`，让电脑开机后自动保持连接。
 3. 回到 Studio，确认这台电脑显示在线。
 
-::figure connect-computer | 把配置指令交给这台电脑上的编码工具执行
+![「我的电脑」：连接过的电脑、识别到的编码工具和允许的目录](https://static-docs.nocobase.com/studio-zh-connect-computer-20261030-v2.png)
 
 - 支持 Codex、Claude Code、Gemini CLI、GitHub Copilot、Cursor、OpenCode 等编码工具；电脑可以是 macOS、Linux 或 Windows。
 - 默认允许 Agent 访问整个用户目录，可以在「我的电脑」里改成指定的目录。Agent 在这些目录里的权限，和你在自己终端里使用它时一样。

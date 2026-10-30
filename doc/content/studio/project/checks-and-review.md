@@ -60,4 +60,4 @@ When the issue owner clicks **Merge**, Studio checks the PR and its results with
 Agents can't merge PRs, let alone force a merge.
 
 > [!NOTE] Protect the default branch on your code host
-> Studio doesn't protect branches for you. Turn on protection rules for the default branch on GitHub, GitLab, or Gitee, for example requiring checks to pass before merging, so the same gate applies when someone merges directly on the code host.
+> Studio doesn't protect branches for you. Turn on protection rules for the default branch on GitHub or GitLab, for example requiring checks to pass before merging, so the same gate applies when someone merges directly on the code host.

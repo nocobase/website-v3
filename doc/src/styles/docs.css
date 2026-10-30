@@ -122,8 +122,10 @@ span.doc-folder-link { font-weight: 400; }
 .prose li { margin: 6px 0; }
 .prose li > p { margin: 6px 0; }
 .prose hr { border: 0; border-top: 1px solid var(--rule); margin: 36px 0; }
-.prose blockquote { margin: 16px 0; padding: 10px 16px; border-left: 3px solid var(--rule-2); background: var(--paper); color: var(--ink); }
-.prose blockquote p { margin: 0; }
+.prose blockquote { margin: 20px 0; padding: 0 16px; border-left: 3px solid var(--rule-2); color: var(--ink-2); overflow-wrap: anywhere; }
+.prose blockquote p { margin: 8px 0; }
+.prose blockquote > :first-child { margin-top: 0; }
+.prose blockquote > :last-child { margin-bottom: 0; }
 .prose code { font-family: var(--f-mono); font-size: 0.88em; overflow-wrap: anywhere; }
 .prose :is(p, li, td) code { padding: 1px 5px; border-radius: 4px; background: var(--paper-2); }
 .prose kbd { display: inline-block; min-width: 20px; padding: 0 5px; border: 1px solid var(--rule-2); border-bottom-width: 2px; border-radius: 5px; background: #fff; font: 12px/1.6 var(--f-mono); text-align: center; color: var(--ink-2); }
@@ -169,6 +171,15 @@ p.done > strong { margin-right: 6px; color: var(--pass-ink); }
 figure { margin: 20px 0 28px; }
 figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .fig > img { display: block; border: 1px solid var(--rule); border-radius: 8px; }
+.fig > img[role="button"] { cursor: zoom-in; }
+.fig > img:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.img-zoom { max-width: none; max-height: none; width: 100vw; height: 100dvh; margin: 0; padding: 24px; border: 0; background: transparent; display: none; place-items: center; align-content: center; gap: 10px; cursor: zoom-out; }
+.img-zoom[open] { display: grid; }
+.img-zoom::backdrop { background: rgb(15 18 25 / 0.82); }
+.img-zoom > img { max-width: 100%; max-height: calc(100dvh - 96px); border-radius: 6px; background: #fff; box-shadow: 0 12px 40px rgb(0 0 0 / 0.35); }
+.img-zoom-caption { margin: 0; max-width: 90ch; text-align: center; font-size: 14px; color: #e5e7eb; }
+.img-zoom-close { position: fixed; top: 14px; right: 18px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 0.14); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+.img-zoom-close:hover { background: rgb(255 255 255 / 0.26); }
 .fig.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
 .fig.pair figcaption { grid-column: 1 / -1; margin-top: 0; }
 
@@ -190,6 +201,17 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .flow .step-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .flow .step-head strong { margin-right: 2px; font-size: 15px; }
 .flow .step p { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); }
+
+/* 需求案例：连续步骤，用角色标签区分人和 Agent。 */
+.request-flow { border-color: #d5dae3; background: #fff; }
+.request-flow > li { padding: 8px 12px; gap: 8px; border-top-color: #e2e6ed; }
+.request-flow > li::before { width: 22px; height: 22px; margin-top: 1px; }
+.request-flow > li.human::before { background: #fff0d7; color: #8a5100; }
+.request-flow > li.agent::before { background: #e5edff; color: #4169e1; }
+.request-flow .step-head { gap: 6px; line-height: 1.5; }
+.request-flow .step p { margin-top: 3px; line-height: 1.55; }
+.request-flow .who.human { background: #fff0d7; color: #8a5100; }
+.request-flow .who.agent { background: #e5edff; color: #4169e1; }
 
 .prose .flow { padding: 0; }
 .tag { display: inline-block; padding: 0 6px; border: 1px solid var(--rule-2); border-radius: 4px; font-size: 11.5px; line-height: 1.6; font-weight: 500; color: var(--muted); white-space: nowrap; }
@@ -214,6 +236,18 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .map .box.brand b { color: var(--brand); }
 .map .down { padding: 2px 0; text-align: center; font-size: 12px; color: var(--muted); }
 .map .down::before { content: "↓ "; }
+/* 核心概念：项目统领全图，任务、执行能力和共享知识分层呈现。 */
+.concept-map { background: #f7f9ff; border-color: #d5dff4; }
+.concept-map .box.brand { background: #4169e1; border-color: #4169e1; }
+.concept-map .box.human { background: #fff4df; border-color: #efd4a2; }
+.concept-map .box.agent { background: #eaf0ff; border-color: #c8d6ff; }
+.concept-map .box.knowledge { background: #eaf7f1; border-color: #bfdfd0; }
+.concept-map .box.human b { color: #8a5100; }
+.concept-map .box.agent b { color: #4169e1; }
+.concept-map .box.knowledge b { color: #21745b; }
+.concept-map .box span { color: var(--ink-2); }
+.concept-map .box.brand b, .concept-map .box.brand span { color: #fff; }
+.concept-map .down { padding: 5px 0; }
 /* 首页的架构图：左边一根窄脊柱（三个块，箭头在轴线上），右边对着每个块写两行文字 */
 .layers { --ly-deep: oklch(0.25 0.06 266); margin: 20px 0; padding: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); display: grid; grid-template-columns: 220px minmax(0, 1fr); column-gap: 24px; align-items: center; }
 .layers .ly-b { align-self: stretch; min-height: 76px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 14px; text-align: center; border: 1px solid var(--rule); border-radius: 8px; background: #fff; }
@@ -234,6 +268,7 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .states { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0; font-size: 13px; }
 .states .arrow { color: var(--muted); }
 
+
 /* 分工：人 / Agent */
 .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .roles .col { padding: 14px; border-radius: 10px; }
@@ -249,6 +284,30 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .roles .role b { display: flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 600; }
 .roles .role span { color: var(--ink-2); }
 
+/* Studio 介绍：灰色表示人的职责，蓝色表示开发交付，青色表示应用底座。 */
+.studio-roles .col { border: 1px solid var(--rule); }
+.studio-roles .col.human { background: #f3f5f7; }
+.studio-roles .col.human .col-h { color: #334155; }
+.studio-roles .col.agent { background: #eff5ff; border-color: #d6e3f5; }
+.studio-roles .col.agent .col-h { color: #245295; }
+.studio-roles .role { border: 1px solid #e4e9f0; }
+.studio-roles .handoff { padding: 10px 0; text-align: center; font-size: 12px; color: #496585; }
+.studio-architecture { padding: 20px; background: #fff; }
+.studio-architecture .box.team { background: #f3f5f7; text-align: center; }
+.studio-architecture .box span { color: var(--ink-2); }
+.studio-architecture .down { padding: 12px 0; }
+.studio-architecture .delivery { padding: 16px; border: 1px solid #d6e3f5; border-radius: 10px; background: #eff5ff; }
+.studio-architecture .delivery-title { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin-bottom: 12px; color: #245295; }
+.studio-architecture .delivery-title b, .studio-architecture .app-title b { font-size: 16px; }
+.studio-architecture .delivery-title span, .studio-architecture .app-title span { font-size: 13px; }
+.studio-architecture .delivery-tools { margin-top: 12px; text-align: center; font-size: 12px; color: #496585; }
+.studio-architecture .application { overflow: hidden; border: 1px solid #bdded9; border-radius: 10px; text-align: center; }
+.studio-architecture .app-title { padding: 14px; }
+.studio-architecture .app-title span { display: block; margin-top: 3px; color: var(--ink-2); }
+.studio-architecture .core-base { padding: 12px; border-top: 1px solid #bdded9; background: #edf7f5; color: #21645b; }
+.studio-architecture .core-base b { display: block; font-size: 15px; }
+.studio-architecture .core-base span { font-size: 13px; }
+
 /* Studio 提供什么 */
 .pillars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
 .pillar { padding: 14px 16px; border: 1px solid var(--rule); border-radius: 8px; }
@@ -256,6 +315,15 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .pillar b { display: block; margin: 2px 0 4px; font-size: 16px; font-weight: 600; }
 .pillar p { margin: 0; font-size: 14.5px; line-height: 1.75; color: var(--ink-2); }
 .pillar.wide { grid-column: 1 / -1; }
+
+/* Section home: learn cards */
+.learn ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 18px 0; padding: 0; list-style: none; }
+.learn li { position: relative; margin: 0; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 8px; background: var(--card); font-size: 14.5px; line-height: 1.7; color: var(--ink-2); transition: border-color .15s; }
+.learn li:hover { border-color: var(--brand); }
+.learn li > p { margin: 0; }
+.learn li a { display: block; margin-bottom: 4px; font-size: 16px; color: var(--ink); text-decoration: none; }
+.learn li a::after { content: ""; position: absolute; inset: 0; border-radius: 8px; }
+.learn li a:focus-visible::after { outline: 2px solid var(--brand); outline-offset: 2px; }
 
 
 /* Previous / next */
@@ -295,7 +363,7 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .doc-search { margin-top: 12px; max-height: calc(100dvh - 24px); }
 }
 @media (max-width: 900px) {
-  .pillars, .roles, .fig.pair, .map .row.c2, .map .row.c3 { grid-template-columns: 1fr; }
+  .pillars, .learn ul, .roles, .fig.pair, .map .row.c2, .map .row.c3 { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .doc-pager { grid-template-columns: 1fr; }

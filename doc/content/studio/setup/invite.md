@@ -1,7 +1,9 @@
 ---
 title: Invite members
-description: Once your first request has gone all the way through, Studio, runtimes, agents, and repositories are all set up. Now invite your colleagues and give them roles and projects.
+description: Invite members to Studio and assign projects and roles.
 ---
+
+Once the project is ready, administrators can invite requesters and teammates. Before sending invitations, [configure invitation email](../admin/notifications.md#invitation-email).
 
 ## Invite people
 
@@ -10,11 +12,11 @@ description: Once your first request has gone all the way through, Studio, runti
 3. Under **Projects**, choose the projects they'll work on. Invitees join these projects as members.
 4. Click **Send invitations**.
 
-Each address gets an email with a link to set a name and password and join. The link is valid for 7 days.
+![Enter member email addresses and select their projects](https://static-docs.nocobase.com/studio-en-setup-invite-20261030.png)
+
+When email is configured, each address gets an email with a link to set a name and password and join. The link is valid for 7 days.
 
 If Studio has no email set up yet, the result shows **Email not sent**. Click **Copy invitation link** and send the link to your colleague yourself.
-
-::figure invite-result | Without email set up, copy the invitation link and send it yourself
 
 ## Roles
 
@@ -28,8 +30,6 @@ New members get the default role set in **Settings › General** when they join.
 
 When you need to, change someone's role in **Settings › Members**, or define a new role in **Settings › Roles**. See [Members and roles](../admin/members-and-roles.md).
 
-## After your colleagues join
+**Done when**: invited members appear in the member list and can open their assigned projects.
 
-Ask your colleagues to go through [Join the team](../join/sign-in.md): connect their own Git account and their own agent. Then they can [make a request](../use/raise-a-request.md).
-
-**Done when**: your colleagues appear in **Settings › Members** with the status **Active**.
+Share [Get started](../join/index.md) with members. They can sign in, submit a request, follow development, and accept the result. Connecting a personal Git account or runtime is optional.

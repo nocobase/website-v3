@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700" role="img" aria-labelledby="title desc">
+  <title id="title">Studio 组织 Agent 推进多个应用的开发与交付</title>
+  <desc id="desc">Studio 连接运行环境中的编码工具和模型，由调度 Agent 分派任务，人负责需求、决策与验收。多个应用各自推进开发、检查评审、验收与质量验证、发布交付。Studio 关联版本、制品与上线记录，新需求和反馈继续进入任务。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#7a8799"/></marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #253348; font-size: 15px; }
+      .zone { fill: #f8fafc; stroke: #d7dfe9; }
+      .studio { fill: #eff5ff; stroke: #cbdcf3; }
+      .card { fill: #fff; stroke: #d4ddea; }
+      .heading { font-size: 17px; font-weight: 600; }
+      .label { font-size: 15px; font-weight: 600; }
+      .sub { font-size: 14px; fill: #56657a; }
+      .blue { fill: #4169e1; }
+      .flow { fill: none; stroke: #7a8799; stroke-width: 1.4; marker-end: url(#arrow); }
+      .done { fill: #eaf1fc; stroke: #c5d5ec; }
+      .pending { fill: #fff; stroke: #c6cfdd; stroke-dasharray: 5 4; }
+      .active { fill: #4169e1; stroke: #4169e1; }
+      .on { fill: #fff; }
+      .on-sub { fill: #e4edfc; font-size: 14px; }
+    </style>
+  </defs>
+  <rect width="1000" height="700" rx="12" fill="#fff"/>
+
+  <rect class="zone" x="20" y="20" width="270" height="230" rx="10"/>
+  <text class="heading" x="36" y="48">运行环境</text>
+  <text class="sub" x="36" y="73">团队服务器 · 成员电脑</text>
+  <rect class="card" x="36" y="90" width="238" height="138" rx="8"/>
+  <text class="label" x="50" y="116">执行 Agent</text>
+  <text x="50" y="147">Claude Code</text><text x="184" y="147">Codex</text>
+  <text x="50" y="176">OpenCode</text><text x="184" y="176">…</text>
+  <text class="sub" x="50" y="209">执行任务 · 返回结果</text>
+
+  <rect class="studio" x="350" y="20" width="440" height="230" rx="10"/>
+  <text class="heading blue" x="366" y="48">NocoBase Studio</text>
+  <g class="label">
+    <rect class="card" x="366" y="68" width="196" height="44" rx="7"/><text x="382" y="96">项目管理</text>
+    <rect class="card" x="574" y="68" width="200" height="44" rx="7"/><text x="590" y="96">任务开发</text>
+    <rect class="card" x="366" y="124" width="196" height="44" rx="7"/><text x="382" y="152">Agent 管理</text>
+    <rect class="card" x="574" y="124" width="200" height="44" rx="7"/><text x="590" y="152">技能和项目记忆</text>
+    <rect class="card" x="366" y="180" width="196" height="44" rx="7"/><text x="382" y="208">质量管理</text>
+    <rect class="card" x="574" y="180" width="200" height="44" rx="7"/><text x="590" y="208">发布管理</text>
+  </g>
+  <path class="flow" d="M350 140H290"/><text class="sub" x="320" y="129" text-anchor="middle">调度</text>
+  <rect class="zone" x="850" y="90" width="130" height="106" rx="8"/>
+  <text class="heading" x="915" y="118" text-anchor="middle">人</text>
+  <text class="sub" x="915" y="146" text-anchor="middle">需求 · 决策</text>
+  <text class="sub" x="915" y="173" text-anchor="middle">验收 · 发布</text>
+  <path class="flow" d="M790 140H850" marker-start="url(#arrow)"/><text class="sub" x="820" y="129" text-anchor="middle">协作</text>
+
+  <path class="flow" d="M155 250V310"/><text class="sub" x="167" y="283">提交代码、创建 PR</text>
+  <path class="flow" d="M570 250V310"/><text class="sub" x="582" y="283">跟进任务、验收与版本</text>
+
+  <rect class="zone" x="20" y="310" width="960" height="370" rx="10"/>
+  <text class="heading" x="36" y="340">多个应用</text><text class="sub" x="132" y="340">各自的仓库、任务与版本</text>
+  <g text-anchor="middle">
+    <text class="label blue" x="274" y="376">持续开发</text><text class="sub" x="274" y="398">需求 · 方案 · 实现</text>
+    <text class="label blue" x="472" y="376">检查与评审</text><text class="sub" x="472" y="398">自动化测试 · 代码评审</text>
+    <text class="label blue" x="670" y="376">验收与质量验证</text><text class="sub" x="670" y="398">交付报告 · 质量计划</text>
+    <text class="label blue" x="868" y="376">发布与交付</text><text class="sub" x="868" y="398">版本 · 制品 · 上线记录</text>
+  </g>
+
+  <g transform="translate(0 416)">
+    <rect class="card" x="36" width="136" height="56" rx="7"/><text class="label" x="50" y="23">应用 A</text><text class="sub" x="50" y="44">正在开发</text>
+    <rect class="active" x="186" width="176" height="56" rx="7"/><text class="label on" x="200" y="23">实现业务功能</text><text class="on-sub" x="200" y="44">提交代码与 PR</text>
+    <rect class="pending" x="384" width="176" height="56" rx="7"/><text class="label" x="398" y="23">测试 · 评审</text><text class="sub" x="398" y="44">发现问题并修复</text>
+    <rect class="pending" x="582" width="176" height="56" rx="7"/><text class="label" x="596" y="23">验收 · 合并</text><text class="sub" x="596" y="44">验证结果 · 问题跟进</text>
+    <rect class="pending" x="780" width="176" height="56" rx="7"/><text class="label" x="794" y="23">发布版本与制品</text><text class="sub" x="794" y="44">记录上线版本</text>
+    <path class="flow" d="M362 28H382"/><path class="flow" d="M560 28H580"/><path class="flow" d="M758 28H778"/>
+  </g>
+  <g transform="translate(0 488)">
+    <rect class="card" x="36" width="136" height="56" rx="7"/><text class="label" x="50" y="23">应用 B</text><text class="sub" x="50" y="44">正在测试</text>
+    <rect class="done" x="186" width="176" height="56" rx="7"/><text class="label" x="200" y="23">实现业务功能</text><text class="sub" x="200" y="44">提交代码与 PR</text>
+    <rect class="active" x="384" width="176" height="56" rx="7"/><text class="label on" x="398" y="23">测试 · 评审</text><text class="on-sub" x="398" y="44">发现问题并修复</text>
+    <rect class="pending" x="582" width="176" height="56" rx="7"/><text class="label" x="596" y="23">验收 · 合并</text><text class="sub" x="596" y="44">验证结果 · 问题跟进</text>
+    <rect class="pending" x="780" width="176" height="56" rx="7"/><text class="label" x="794" y="23">发布版本与制品</text><text class="sub" x="794" y="44">记录上线版本</text>
+    <path class="flow" d="M362 28H382"/><path class="flow" d="M560 28H580"/><path class="flow" d="M758 28H778"/>
+  </g>
+  <g transform="translate(0 560)">
+    <rect class="card" x="36" width="136" height="56" rx="7"/><text class="label" x="50" y="23">应用 C</text><text class="sub" x="50" y="44">正在发布</text>
+    <rect class="done" x="186" width="176" height="56" rx="7"/><text class="label" x="200" y="23">实现业务功能</text><text class="sub" x="200" y="44">提交代码与 PR</text>
+    <rect class="done" x="384" width="176" height="56" rx="7"/><text class="label" x="398" y="23">测试 · 评审</text><text class="sub" x="398" y="44">发现问题并修复</text>
+    <rect class="done" x="582" width="176" height="56" rx="7"/><text class="label" x="596" y="23">验收 · 合并</text><text class="sub" x="596" y="44">验证结果 · 问题跟进</text>
+    <rect class="active" x="780" width="176" height="56" rx="7"/><text class="label on" x="794" y="23">发布版本与制品</text><text class="on-sub" x="794" y="44">记录上线版本</text>
+    <path class="flow" d="M362 28H382"/><path class="flow" d="M560 28H580"/><path class="flow" d="M758 28H778"/>
+  </g>
+  <path class="flow" d="M868 616V638H274V616"/>
+  <text class="sub" x="571" y="662" text-anchor="middle">新需求与反馈回到任务，持续迭代</text>
+</svg>

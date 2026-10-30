@@ -23,7 +23,7 @@ docker compose exec -T postgres pg_dump -U studio -Fc studio > backup/studio-$(d
 
 备份里有加密密钥，请按保管密码的方式存放。
 
-部署出来的业务应用，它们的数据库要另外备份，见 [部署环境](environments.md)。
+部署出来的业务应用，它们的数据库要另外备份，见 [托管环境](environments.md) 和 [部署到生产](../project/release.md)。
 
 ## 从备份恢复
 
@@ -52,7 +52,7 @@ docker compose exec -T postgres pg_dump -U studio -Fc studio > backup/studio-$(d
 
 4. 等 `docker compose ps` 显示 `healthy`，登录确认。
 
-数据库迁移在启动时自动执行。可用的版本见 [镜像的版本页面](https://pkg-v3.nocobase.com/-/images/nocobase/studio)。
+数据库迁移在启动时自动执行。Studio 为商业版本，可[联系我们](https://www.nocobase.com/zh-CN/contact/)获取可用镜像与版本。
 
 > [!WARNING] 回滚要连同数据库一起
 > 新版本启动时已经升级了数据库，只把镜像版本号改回去，旧版本可能读不了新的数据库。要回滚，先恢复升级前的数据库备份，再用旧版本启动。

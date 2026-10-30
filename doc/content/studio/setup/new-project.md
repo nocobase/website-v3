@@ -1,60 +1,51 @@
 ---
-title: Create a project
-description: A project keeps related issues and code together. When you create one, you choose its repository. A new repository is initialized from the NocoBase app template by default, which gives you an app built on Core, so agents build your business on one consistent architecture.
+title: Create your first project
+description: Create a private repository and initialize a NocoBase application, ready for business tasks.
 ---
 
-Any member of the team can create a project, and whoever creates it becomes the project lead by default.
+First [connect a Git platform](git.md) and [configure Agents](agents.md). At least one runtime must be online with Node.js 24 and pnpm 11 installed.
 
-## Create the project
+Team members can create projects and become their project lead. Confirm that the GitHub App has access to **All repositories**; see [Connect GitHub](git.md#connect-github).
 
-1. Open **Development › Projects** and click **New project**.
-2. Enter a name and description, such as "Supplier Management".
-3. Choose a **Code location**:
+## Enter project details
 
-   | Code location | Good for |
-   | --- | --- |
-   | New repository | A new business system. Studio creates the repository through a Git connection and initializes it |
-   | Existing repository | A repository your team already has |
-   | Add later | Creating the project now and adding a repository later in **Project settings › Code repositories**. Without a repository, agents can only work on issues that don't involve code |
+1. Open **Development › Projects** and select **New project**.
+2. Enter a name and description. For example, **Supplier Management** and **Manage supplier records, scoring, and purchase approvals**.
+3. Select **New repository** for the code location.
+4. Choose the connected Git account or organization and enter an unused repository name. Keep the repository private.
+5. Select **NocoBase app** and keep the default application template.
+6. Select **Create**.
 
-4. For **New repository**, choose a Git connection and enter a repository name. Usually keep it a **Private repository**. The Git connection decides the owner, so to create it under another account or organization, use a different Git connection. For **Existing repository**, pick one of the repositories the Git connection can reach.
-5. Choose how to initialize it, as described in the next section.
-6. Click **Create project**.
+![Create a private repository and initialize it with the default NocoBase template](https://static-docs.nocobase.com/studio-en-setup-create-nocobase-app-20261030.png)
 
-## Choose how to initialize the repository
+Studio creates the repository under the selected account or organization. The repository name must not already be in use.
 
-For a new repository:
+## Wait for initialization
 
-| Initialization | Result |
-| --- | --- |
-| NocoBase app | The default. An agent creates the app from the NocoBase app template on a runtime and pushes it to the default branch as the first commit. All later development happens in this app |
-| From a prompt | An agent makes the first commit by following the prompt you write, and pushes it to the default branch |
-| Empty | Only the code host's initial commit, with no initialization |
+Studio creates an **Initialize project** task. The Lead Agent assigns the work. An execution Agent creates the Core application on a runtime, installs dependencies, and commits the code.
 
-For an existing repository, the default is **No initialization**, which uses the repository as it is. You can also choose:
+Open the task to follow progress, Agent replies, and check results. Other project tasks wait for initialization to finish.
 
-- **NocoBase app**: an agent creates the app from the selected template, keeps the files already in the repository, and submits the changes through a branch and a PR.
-- **From a prompt**: for example "Read the code and add an AGENTS.md". The changes also go through a branch and a PR.
+![The project lists its initialization task](https://static-docs.nocobase.com/studio-en-setup-initializing-20261030.png)
 
-Initializing with the NocoBase app needs an online runtime with Node.js 24 and pnpm. If no runtime is online yet, the project is created now, and initialization starts once a runtime comes online.
+The first commit is pushed to the default branch. The initialization task completes automatically when checks pass, or when the repository has no checks configured.
 
-## The initialization issue
+Initialization downloads the template and dependencies, so timing depends on the network, runtime, and model. If work stays queued, check that a runtime is online and the Lead Agent is available.
 
-When the repository needs initializing, Studio creates an "Initialize project" issue and hands it to the lead agent. The lead agent gives the step to a suitable agent and says what to do and when it counts as done. Any issue created in the project afterwards waits until this one is done.
+## Start adding tasks
 
-Initializing with the NocoBase app installs dependencies and usually takes ten to twenty minutes. Meanwhile, the issue page shows which agent is on it, for how long, and on which runtime.
+Confirm that:
 
-- New repository: the first commit goes to the default branch, and once its checks pass (or if the repository has no checks), the issue completes on its own.
-- Existing repository: the initialization changes come as a PR, and the issue is done once you accept and merge it.
+- **Initialize project** is **Done**.
+- The repository's default branch contains the application code.
+- The overview no longer asks you to complete initialization.
 
-**Done when**: the "Initialize project" issue is **Done** and the default branch has the app code. On the project overview, "Finish the initialization" disappears from **Next steps**.
+The application is ready. Prepare checks and previews, then invite members.
 
-## Afterwards
+![Initialization is complete and the project is ready for business tasks](https://static-docs.nocobase.com/studio-en-setup-project-ready-20261030.png)
 
-- To get a preview for every PR and automatic deployment after merging, [connect CI](ci.md). **Next steps** on the project overview reminds you.
-- Adjust the project lead, members, repositories, variables and secrets, and default skills in the project settings. See [Project settings](../project/settings.md).
+## Next steps
 
-> [!NOTE] "The App could not confirm access" when creating a repository
-> The GitHub App was installed with access to only some repositories, so it can't reach the repository Studio just created. Add the repository in the App's installation settings on GitHub, then create the project again and choose **Existing repository**. See [Connect Git](git.md).
+[Configure checks and previews](ci.md) using Agent self-checks, GitHub Actions, or external CI. Then [invite members](invite.md).
 
-Next, [connect CI](ci.md), or go straight to [your first request](first-request.md).
+Manage project documents, members, and default skills in [Project settings](../project/settings.md). Adjust models in [Agent configuration](../configure/agents.md) and execution resources in [Runtimes](../configure/runtimes.md).

@@ -61,6 +61,8 @@ Studio 的地址由管理员告诉你，形如 `https://studio.example.com/main/
 
 ## 接下来
 
+按[走完第一个需求](../setup/first-request.md)提交一个小需求，体验从开发到验收的流程。
+
 - [提出需求](../use/raise-a-request.md)：把要做的事交给 Agent 团队。
 - [我的会话](../use/sessions.md)：先和你的 Agent 把需求聊清楚。
 - [我的任务](../use/my-tasks.md)：每天从这里开始，等你处理的排在最前面。

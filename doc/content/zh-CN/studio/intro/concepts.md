@@ -1,116 +1,101 @@
 ---
 title: 核心概念
-description: Studio 里的人、需求和任务、项目与代码仓库、Agent 与运行环境、技能、知识库和项目记忆、预览与部署环境，以及它们之间的关系。
+description: 理解 Studio 中项目、任务、会话、Agent、运行环境与团队知识的关系，以及代码改动如何关联到交付版本。
 ---
 
-<figure class="map" aria-label="Studio 的核心概念及其关系">
-<div class="row"><div class="box human"><b>人</b><span>任务负责人、项目负责人、管理员：提出需求，回答提问，验收，批准上线</span></div></div>
-<div class="down">需求整理成任务</div>
-<div class="row"><div class="box brand"><b>任务</b><span>属于某个项目，代码在项目的代码仓库里</span></div></div>
-<div class="down">调度 Agent 安排</div>
-<div class="row c2"><div class="box agent"><b>Agent 团队</b><span>调度 Agent 分派，执行 Agent 设计、开发、测试、评审</span></div><div class="box"><b>运行环境</b><span>团队服务器和成员电脑，Agent 在这里工作</span></div></div>
-<div class="down">做事时读，学到的写回去</div>
-<div class="row"><div class="box"><b>技能 · 知识库 · 项目记忆</b><span>做事的方法 · 业务资料 · Agent 学到的经验</span></div></div>
-<div class="down">合并后部署</div>
-<div class="row"><div class="box"><b>部署环境</b><span>预览 · 预发布 · 生产</span></div></div>
+Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队完成开发。技能、知识库和项目记忆供团队共同使用。
+
+<figure class="map concept-map" aria-label="项目组织任务与代码，Agent 和运行环境提供执行能力，技能与资料提供共同背景">
+<div class="row"><div class="box brand"><b>项目</b><span>组织相关任务、代码仓库与团队资料</span></div></div>
+<div class="down">任务与代码关联到同一项目</div>
+<div class="row c2"><div class="box human"><b>任务</b><span>需求、负责人、进展与交付结果</span></div><div class="box"><b>代码仓库</b><span>代码、PR 与版本</span></div></div>
+<div class="down">Agent 团队执行任务，提交代码改动</div>
+<div class="row c2"><div class="box agent"><b>Agent</b><span>调度 Agent 分派，执行 Agent 完成步骤</span></div><div class="box agent"><b>运行环境</b><span>提供编码工具、模型与执行资源</span></div></div>
+<div class="row"><div class="box knowledge"><b>技能 · 知识库 · 项目记忆</b><span>为 Agent 提供开发规范、业务资料与项目经验</span></div></div>
 </figure>
-
-## 人
-
-| 角色 | 是谁 | 做什么 |
-| --- | --- | --- |
-| 任务负责人 | 每个任务有一位，默认是提出需求的人 | 回答 Agent 的提问，验收结果 |
-| 项目负责人 | 每个项目有一位 | 管理项目的设置、技能和知识库，通常也负责批准上线 |
-| 管理员 | 系统角色「管理员」或「所有者」 | 接入共享运行环境，启用 Agent，管理成员、部署环境和系统设置 |
-
-每位成员都有一个系统角色：「成员」「管理员」或「所有者」，也可以使用自定义的角色，见 [成员与角色](../admin/members-and-roles.md)。任务负责人和项目负责人不是系统角色，团队里的每位成员都可能是。
-
-## 需求和任务
-
-人提出的是需求。需求可以先在「我的会话」里和 Agent 讨论清楚，由 Agent 整理成任务；也可以直接填写成任务。任务放进项目，是 Studio 里推进工作的单位。
-
-每个任务有：
-
-- **负责人**：对结果负责的人，Agent 需要人决定时找负责人，做完交给负责人验收。
-- **执行者**：任务开始执行后，执行者是调度 Agent，由它安排执行 Agent 去做。成员也可以自己执行一个任务。
-- **项目、优先级、标签、截止日期**：运行环境先领取紧急任务的工作。
-- **子任务和前置任务**：前置任务没完成时，任务先不开始；完成后自动接着推进。
-
-每个任务都处在下面六个状态之一：
-
-<div class="states" aria-label="任务状态"><span class="st-pill"><span class="si backlog"></span>待规划</span><span class="arrow">→</span><span class="st-pill"><span class="si progress"></span>进行中</span><span class="arrow">⇄</span><span class="st-pill"><span class="si blocked"></span>阻塞中</span><span class="arrow">·</span><span class="st-pill"><span class="si review"></span>待验收</span><span class="arrow">→</span><span class="st-pill"><span class="si done"></span>已完成</span><span class="st-pill"><span class="si cancel"></span>已取消</span></div>
-
-| 状态 | 含义 |
-| --- | --- |
-| 待规划 | 还没开始，Agent 不会动它 |
-| 进行中 | Agent 团队正在推进 |
-| 阻塞中 | 等任务负责人决定一件事 |
-| 待验收 | 已经交付，等任务负责人验收 |
-| 已完成 | 验收通过；任务关联的 PR 全部合并后，自动变为已完成 |
-| 已取消 | 不做了 |
-
-人可以把任务改到任何状态。调度 Agent 只在进行中、阻塞中和待验收之间移动任务，执行 Agent 不改状态。
 
 ## 项目与代码仓库
 
-项目把相关的任务和代码放在一起。新建项目时，可以新建代码仓库、选择已有的仓库，或者以后再添加。新建的仓库默认用 NocoBase 应用模板初始化，得到一个建在 Core 上的应用；也可以按提示词初始化，或者留空。
+**项目**组织相关任务、成员、代码仓库和资料。项目负责人管理设置、共享资料和版本交付。
 
-- 新项目的第一个任务是“初始化项目”，项目里的其他任务都等它完成后再开始。
-- Studio 通过管理员添加的 Git 连接，访问 GitHub、GitLab 或 Gitee 上的仓库。成员连接自己的 Git 账号后，Agent 为成员开的 PR、成员在 Studio 里的合并，都以成员本人的身份进行。
-- 执行 Agent 的分支默认叫 `agent/任务编号`，这个分支上的 PR 自动关联到任务。
+**代码仓库**保存应用代码，一个项目可关联多个仓库。新建仓库默认基于 NocoBase Core 初始化，也可接入已有仓库。
 
-> [!NOTE] 分支保护要在代码托管平台上设置
-> Studio 不替你保护分支。请在 GitHub、GitLab 或 Gitee 上为默认分支开启保护规则。
+![「供应商管理」项目汇总任务进展，并提供知识库、成员和发布入口](https://static-docs.nocobase.com/studio-zh-project-overview-20261030-v3.png)
+
+见 [新建项目](../setup/new-project.md)与 [项目设置](../project/settings.md)。
+
+## 任务与负责人
+
+**任务**记录一项工作的需求、验收标准、讨论和交付结果，例如「供应商评分与分级」。子任务用于拆分工作，前置任务表示依赖。
+
+每个任务有一位**负责人**，负责回答问题、确认取舍和验收。调度 Agent 组织执行，设计、开发和评审的结果都保留在任务中。
+
+任务有六种状态，常见流转如下：
+
+<div class="states" aria-label="主要流转：待规划到进行中，进行中与待验收可往返，验收后已完成"><span class="st-pill"><span class="si backlog"></span>待规划</span><span class="arrow">→</span><span class="st-pill"><span class="si progress"></span>进行中</span><span class="arrow">⇄</span><span class="st-pill"><span class="si review"></span>待验收</span><span class="arrow">→</span><span class="st-pill"><span class="si done"></span>已完成</span></div>
+<div class="states" aria-label="进行中与阻塞中可往返，未完成的任务可以取消"><span class="st-pill"><span class="si progress"></span>进行中</span><span class="arrow">⇄</span><span class="st-pill"><span class="si blocked"></span>阻塞中</span><span class="arrow">·</span><span>未完成的任务</span><span class="arrow">→</span><span class="st-pill"><span class="si cancel"></span>已取消</span></div>
+
+「阻塞中」等待负责人决策，「待验收」等待确认交付结果。这些事项会排在「我的任务」前面。
+
+![负责人在「我的任务」中查看交付报告并验收](https://static-docs.nocobase.com/studio-zh-req-accept-20261030-v3.png)
+
+任务负责人是一项职责，不是系统角色。Agent 代表发起人工作，受其权限约束。见 [任务状态与权限](../reference/statuses-and-permissions.md)。
+
+## 会话
+
+**会话**用于与 Agent 讨论需求、创建任务和跟进结果。一个会话可关联多个任务，任务进展会回到会话中。
+
+会话仅本人可见。任务按项目权限与团队共享。
+
+![在会话中确认业务规则，Agent 整理为任务，右侧显示任务进展](https://static-docs.nocobase.com/studio-zh-req-session-20261030-v3.png)
+
+见 [我的会话](../use/sessions.md)。
 
 ## Agent 与运行环境
 
-运行环境是 Agent 工作的机器：团队服务器、虚拟机，或者成员自己的电脑。运行环境上报它装好并登录了的编码工具和模型，每个“编码工具 · 模型”组合就是一个 Agent，例如 Claude · Opus 5.5。管理员写好它「擅长什么」并启用后，它就加入 Agent 团队，成为执行 Agent。调度 Agent 是 Studio 内置的，由管理员选一个启用的 Agent 来运行。
+| 概念 | 职责 |
+| --- | --- |
+| 调度 Agent | 分派步骤，读取结果，向负责人提问或提交验收。 |
+| 执行 Agent | 对应一个「编码工具 · 模型」组合，完成设计、开发、测试或评审。 |
+| 运行环境 | 提供机器、编码工具和模型，执行 Agent 的工作。 |
 
-| | 共享运行环境 | 个人运行环境 |
-| --- | --- | --- |
-| 谁来接入 | 管理员 | 每位成员 |
-| 执行谁的任务 | 所有人的 | 只执行它的主人自己发起的任务 |
-| 适合 | 团队服务器，全天在线 | 成员自己的机器，用自己的编码工具和订阅 |
+![团队按「擅长什么」配置多个 Agent，并为调度 Agent 指定首选和备选](https://static-docs.nocobase.com/studio-zh-agent-team-20261030-v3.png)
 
-Agent 团队怎样分工、怎样同时推进多个任务，见 [Agent 团队怎样工作](agent-team.md)。
+一个运行环境可提供多个 Agent，同一个 Agent 也可在多台机器上执行。共享环境承接团队任务，个人环境只承接本人发起的任务。
 
-> [!WARNING] 运行环境不是安全边界
-> Agent 在运行环境上，以运行 `nocobase-runner` 的系统用户的身份工作，能读写这个用户能访问的一切。请用专用的系统用户、容器或虚拟机来运行它。
+![运行环境列出可用机器、编码工具及共享范围](https://static-docs.nocobase.com/studio-zh-shared-runtimes-20261030-v3.png)
 
-## 我的任务和我的会话
+一次执行产生一条**运行记录**，保存过程、结果和用量。一个任务通常包含多次运行。
 
-每位成员有两种方式跟进工作：
-
-| | 我的任务 | 我的会话 |
-| --- | --- | --- |
-| 以什么为单位 | 任务 | 一段会话 |
-| 里面有什么 | 你负责、执行或关注的任务，等你处理的排在最前面 | 你和 Agent 的讨论，这段会话里建的任务，以及它们的进展 |
-| 适合 | 每天处理等你做的决定：回答提问、验收 | 需求还没想清楚时先讨论；一段会话里建的几个任务，在一处跟进 |
-
-::figure my-tasks-list+sessions-list pair | 左：「我的任务」按任务跟进；右：「我的会话」按会话跟进
-
-会话里可以和你自己的 Agent 对话，也可以和 Agent 团队里的 Agent 对话，见 [我的会话](../use/sessions.md)。会话只有你自己能看到。不论和谁对话，会话里的 Agent 都以你的身份和权限在 Studio 里做事，例如建任务、发评论。
+见 [Agent 团队怎样工作](agent-team.md)与 [接入共享运行环境](../setup/shared-runtimes.md)。
 
 ## 技能、知识库和项目记忆
 
-技能、知识库和项目记忆把方法和经验沉淀在团队里。Agent 做事时先读它们，换人、换 Agent 都能无障碍交接，提出新需求时也不用从头交代背景。
+| 概念 | 保存什么 | 示例 |
+| --- | --- | --- |
+| [技能](../project/skills.md) | 开发方法和执行要求。 | 设计步骤、评审要点、交付报告格式。 |
+| [知识库](../project/knowledge-base.md) | 团队编写或上传的业务资料。 | 供应商评分表、采购审批制度。 |
+| [项目记忆](../project/project-memory.md) | 已确认的规则、经验和决策原因。 | C 级供应商的订单不论金额都需采购经理审批。 |
 
-| | 保存什么 | 谁来写 | 在哪里 |
-| --- | --- | --- | --- |
-| 技能 | 做事的方法：怎样拆分步骤、写方案、开发、评审、写交付报告 | Studio 内置了几项，团队可以补充自己的，用在全局、某个项目或某个工作目录上 | 「Agent 管理 › 技能」 |
-| 知识库 | 业务资料：业务规则、产品说明、技术约定 | 人写和上传，Agent 只读 | 「开发 › 知识库」 |
-| 项目记忆 | Agent 在工作中学到的经验：人纠正或确认过的做法、踩过的坑、代码里看不出原因的决定 | Agent 自己写，随任务的 PR 一起评审、合并 | 「开发 › 项目记忆」，存在代码仓库的 `.nb-studio/memory/` |
+技能可用于全局、项目或代码仓库。项目记忆由 Agent 整理，随任务 PR 评审和合并，供后续任务复用。
 
-## 预览与部署环境
+![项目记忆保留已确认的业务规则和资料来源](https://static-docs.nocobase.com/studio-zh-project-memory-20261030-v3.png)
 
-代码仓库的 CI 连接到 Studio 之后：
+## PR、环境与版本
 
-- 每个 PR 部署一个预览，使用示例数据和自动生成的管理员账号，验收时可以亲自试一遍。
-- 合并后，CI 把改动部署到预发布环境，任务上标出它已经部署到的环境。
-- 受保护的环境（通常是生产环境）每次部署都要审批人批准；出了问题，可以回滚到上一个版本。
+**PR**（合并请求）关联任务与代码改动。Agent 提交代码，完成检查与评审；负责人验收后合并。
 
-见 [连接 CI](../setup/ci.md) 和 [部署环境](../admin/environments.md)。
+**预览和测试环境**中的应用以 Studio 子进程运行，用于验证改动。
 
-## 权限
+| 环境 | 用途 |
+| --- | --- |
+| PR 预览 | 由 CI 为 PR 创建，验证尚未合并的改动。 |
+| 测试环境 | 运行合并后的代码，验证多项改动的组合结果。 |
 
-成员能做什么，由角色决定。Agent 代表发起工作的人做事，权限不超过这个人；调度 Agent 和它安排的每一步，都代表任务负责人。合并 PR、批准部署到受保护的环境、管理成员，只能由人来做。见 [任务状态与权限](../reference/statuses-and-permissions.md)。
+**生产环境**建议自行构建镜像，部署到团队自己的基础设施。Studio 不承接生产环境部署，只记录生产版本。
+
+**版本**对应一次发布，来自仓库中符合版本线的 tag。Studio 关联版本包含的任务和制品。
+
+![发布页面关联版本、任务，以及测试和生产状态](https://static-docs.nocobase.com/studio-zh-releases-20261030-v3.png)
+
+任务完成后，可通过版本和部署记录跟踪是否上线。见 [发布概览](../release/overview.md)。

@@ -1,6 +1,6 @@
 ---
 title: "First feature: the device register"
-metaDescription: Have the agent build the device register from the design document, try it in the running app, ask for changes, and commit once.
+metaDescription: Have the agent build the device register from the design document, try it in the running app, and ask for changes.
 ---
 
 The first step in the design document is the device register. The requirements are already written in the [document](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md), so the prompt only needs to point to it.
@@ -48,11 +48,5 @@ The agent added a new migration that puts a unique index on the serial number (m
 ![The message for a duplicate serial number](https://static-docs.nocobase.com/20261030-itam-lite-devices-duplicate-serial.webp)
 
 ![Filtering by status](https://static-docs.nocobase.com/20261030-itam-lite-devices-filter-by-status.webp)
-
-## 4. Commit
-
-```prompt
-Commit the changes.
-```
 
 **Done when**: you can create, edit and delete devices; a duplicate asset tag or serial number is flagged next to its field; the list can be filtered by status and category; the data is still there after a refresh.

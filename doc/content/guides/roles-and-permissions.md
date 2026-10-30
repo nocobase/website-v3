@@ -54,10 +54,4 @@ When the system administrator edits the Employee role in **System settings › P
 
 For how permissions are declared, checked and verified, see [Authentication, permissions and data scopes](../core/developing-apps/authentication-and-permissions.md); for the permission management page, see [Permission management](../core/using-plugins/authorization/permissions.md).
 
-## 4. Commit
-
-```prompt
-Commit the changes.
-```
-
 **Done when**: what each of the three accounts sees and can do matches the permission matrix; in the permission tests, every overreaching API call from an ordinary account is refused; **Permission management** shows every business operation and data scope and lets you adjust them.

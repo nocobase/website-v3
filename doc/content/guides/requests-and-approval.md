@@ -8,9 +8,8 @@ This chapter does step 2 of the [design document](https://github.com/nocobase/do
 ## 1. Make the request
 
 ```prompt
-Do step 2 of docs/design.md: device requests and approval. Use Core's workflows for approval and in-app messages for notifications; administrators can adjust which categories need approval and the device limit per person.
+Do step 2 of docs/design.md: device requests and approval. Notify the people involved at each step; administrators can adjust which categories need approval and the device limit per person.
 Create the Employee, IT support and Asset manager roles now; who can see which records comes in step 3.
-Acceptance: a laptop request needs an asset manager's approval, and after IT support issues it, the device in the register is In use and assigned to the requester; a monitor request goes straight to Ready to issue; everyone involved in each step gets an in-app message.
 ```
 
 What the agent built:
@@ -27,7 +26,11 @@ Approval, notifications and permissions are ready-made Core capabilities, mainta
 
 ## 2. Prepare three accounts
 
-In **System settings › Users**, create three users and pick one role for each under **Roles**:
+```prompt
+Create three test users: Alice Wang is an employee, Ben Zhou is IT support, and Cathy Liu is an asset manager. Tell me their usernames and passwords.
+```
+
+The agent creates these three accounts:
 
 | User | Role |
 | --- | --- |
@@ -62,11 +65,5 @@ An administrator opens **System settings › Workflow management** and clicks **
 **Executions** has one entry per request, showing every step it went through, who did it, and whether each in-app message was sent.
 
 ![The execution record of one request](https://static-docs.nocobase.com/20261030-itam-lite-requests-workflow-execution.webp)
-
-## 5. Commit
-
-```prompt
-Commit the changes.
-```
 
 **Done when**: after an asset manager approves a laptop request and IT support issues it, the device in the register is In use and assigned to the requester; a monitor request goes straight to Ready to issue; Cathy, Ben and Alice each get the matching in-app message; **Workflow management** shows the process diagram, the approval rules and the executions.

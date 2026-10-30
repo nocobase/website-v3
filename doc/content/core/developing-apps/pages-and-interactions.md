@@ -1,15 +1,68 @@
 ---
 title: UI components and interactions
-description: Use shadcn primitives and the NocoBase UI Library to organize business components, implement list, form and dialog interactions, and verify user behavior.
+description: Add shadcn and NocoBase UI Library components, organize business components, and implement complete list, form and dialog interactions.
 ---
 
-Applications and plugins can freely write and organize frontend components, using shadcn for primitives. When building modular interfaces, first consult the components and blocks distributed through the [NocoBase UI Library](https://ui.nocobase.com/), then adapt and compose them for your business.
+Build business pages from existing application components, shadcn primitives, and components and blocks from the NocoBase UI Library. The application owns the source and can adapt it to its needs. Pages connect those components to data, permissions and action feedback.
 
-This guide covers component organization and source assets, then illustrates business interactions with a project list, project creation and task project assignment. See [Before you start](#before-you-start) for the full example's version and prerequisites. Apply the organization and Library guidance to your own project as needed.
+## Choose and add components
 
-## Write and organize components
+### Start with existing application components
 
-Inspect existing pages and components to decide what you can use or adapt. The following is one possible organization; adjust it to the project's size and business boundaries:
+Inspect existing pages and `client/components/` to see what you can use or adapt. Use the project's shadcn components for buttons, inputs, dialogs and other primitives to keep common interactions consistent.
+
+Add a missing primitive from the application root:
+
+```bash
+pnpm exec shadcn add button input
+```
+
+Aliases in `components.json` determine placement. When a file already exists, compare changes and preserve application customizations. See the [shadcn CLI](https://ui.shadcn.com/docs/cli#add) for command options.
+
+### Add components and blocks from the NocoBase UI Library
+
+The [NocoBase UI Library](https://ui.nocobase.com/) distributes editable source through shadcn UI Registry. Read an asset's description, examples and dependencies first. Blocks that use business plugins also need the corresponding plugins, APIs and permissions.
+
+The default template configures `@nocobase` in `components.json`. If an existing project lacks it, merge this entry into `registries`, keeping its style settings, aliases and other registries:
+
+```json
+{
+  "registries": {
+    "@nocobase": "https://ui.nocobase.com/r/{name}.json"
+  }
+}
+```
+
+For example, if the application lacks the page heading component, run from the application root:
+
+```bash
+pnpm exec shadcn add @nocobase/page-header
+```
+
+This asset writes `client/components/page-header.tsx`. Import `PageHeader` from `#components/page-header` and provide a title, with an optional description and actions. Review generated files, dependencies and stylesheet changes before connecting it to a page.
+
+Connect copy to application [translations](localization.md) and follow [theme and style conventions](themes-and-styles.md) for colors and spacing. When taking upstream updates, compare changes and preserve business customizations, especially permission checks and form behavior.
+
+<details>
+<summary>Add local UI source assets</summary>
+
+Team-provided Registry assets can also be added locally. For example, a built asset might be available at `packages/announcements-ui/public/r/announcement-list.json` in the workspace:
+
+```bash
+pnpm exec shadcn add ./packages/announcements-ui/public/r/announcement-list.json
+```
+
+Pass the individual asset JSON containing component source, relative to the application directory where you run the command. The local file needs no HTTP server. Other Registry items and npm dependencies declared by the asset may still need network access.
+
+To create and distribute your own assets, see [Optionally distribute UI source assets](../extension-development/frontend-components.md#optionally-distribute-ui-source-assets).
+
+</details>
+
+## Write and reuse business components
+
+### Organize files by where they are used
+
+Keep components used by one page beside that page. Move them to a shared location when several pages need them. For example:
 
 ```tree
 client/
@@ -27,150 +80,163 @@ client/
 └── styles.css                   # Stylesheet entry
 ```
 
-Small components can stay beside their page until they need a shared location. Components can receive Props or use Hooks, contexts and client services when appropriate; business components do not all need to follow the same pattern.
+`client/extensions/` can organize added UI source by module. Installation targets depend on asset declarations and project configuration. Connect files through ordinary imports; placing a file in this directory does not register a plugin, route or service.
 
-Use the project's shadcn components for primitives such as buttons, inputs and dialogs. Add a missing primitive with the project's CLI from the application root, for example:
+### Assign component and state responsibilities
 
-```bash
-pnpm exec shadcn add button input
-```
+For a Projects page:
 
-Aliases in `components.json` determine placement. Review differences and preserve application customizations when files already exist. See the [shadcn CLI](https://ui.shadcn.com/docs/cli#add) for command details.
+| Part | Responsibility |
+| --- | --- |
+| Page | Connect routes, permissions and data; compose headings, lists and forms |
+| List component | Display records, pagination and action entry points using data and callbacks from the page |
+| Form component | Maintain drafts, field errors and submission state; handle saving and cancellation |
+| Business Hook | Reuse request or interaction logic with explicit initialization, reset and cleanup conditions |
 
-The project example below uses these components and mechanisms. The template or Library supplies general implementations; the business page connects its data, permissions and feedback:
+Use props for data, copy and event callbacks, and Context when components need shared values. Extract components as a need emerges; business components do not all have to follow the same pattern.
 
-| Need | Component or mechanism used here | What the business page still owns |
-| --- | --- | --- |
-| Page heading and layout | `PageContainer`, `PageHeader` | Titles, actions and content; avoid nested page containers |
-| Lists and pagination | `DataTable` | Columns, scoped data, totals and server pagination |
-| Create or edit dialogs | `RouteDialog` | Forms, submission, close guards and return context |
-| Form validation | `react-hook-form` and `zodResolver` | Business validation, server field errors and focus |
-| Application API requests | `useApiClient()` | Parameters, cancellation of stale requests and result handling |
-| Action visibility | `useCan()` | Control action entry points while retaining independent server authorization |
+A custom Hook reuses logic. Calling it more than once does not automatically share state. Search, sorting and pagination belong to URL state; API results are server state; unsubmitted input is a form draft. Refreshing a list should not reset that draft. See [Data requests and state management](data-requests-and-state.md) for implementation details.
 
-Import components through application entries such as `#components/...`. Use semantic theme styles and translated copy; see [Localization](localization.md) and [Themes and styles](themes-and-styles.md).
+### Use React Context and Providers
 
-## Use the NocoBase UI Library
+Use React Context when several components need shared selections or editing state. Compose a Provider within the relevant page or subtree when only those components need it.
 
-The [NocoBase UI Library](https://ui.nocobase.com/) distributes editable component and block source through shadcn UI Registry. After adding an asset to an application, an agent or developer can read, modify and compose its files directly.
+Register application-wide Providers through `client/react-providers.ts`: write a component that accepts and renders `children`, then append it to the existing `defineClientReactProviders(...)` declaration with a `name`, `component` and suitable `layer`. Providers that depend on application context usually use the `application` layer. Preserve the template's existing theme and Toast declarations.
 
-### Find and add assets
+A React Provider supplies context to the component tree. A ServiceProvider in `client/service-provider.ts` registers business services in the service container and manages their lifecycle. Registering a service does not make its fields reactive React state; components still need state or subscriptions to update.
 
-Check the Library's descriptions, examples and installation commands to understand the interface an asset provides and its dependency or application requirements. Added components still need page integration. For blocks that use business plugins, follow the asset's instructions to prepare the corresponding plugins, APIs and permissions.
+See [React Provider registration](../framework/runtime/react-providers.md) for mounting layers and ordering, and [Client business services](client-business-services.md) for business capabilities shared across pages.
 
-Check `components.json` in the application root. The default template configures `@nocobase`. If an existing project lacks it, merge this entry into its `registries`, preserving existing style settings, aliases and other registries:
+## Implement list, form and dialog interactions
 
-```json
-{
-  "registries": {
-    "@nocobase": "https://ui.nocobase.com/r/{name}.json"
-  }
-}
-```
+### Example and prerequisites
 
-See [shadcn components.json](https://ui.shadcn.com/docs/components-json#registries) for configuration details. For example, add the page heading component if the application does not already have it:
+The following interfaces cover a project list, project creation and changing a task's project. The [incremental source package](/assets/core/downloads/team-tasks-pages-and-interactions.zip) contains added and modified files, a patch and instructions. It includes no configuration, accounts, database or dependencies.
 
-```bash
-pnpm exec shadcn add @nocobase/page-header
-```
+To run it, first complete the historical project examples in [Create tables and initialize data](data-models-and-migrations.md) and [Routes and HTTP APIs](apis-and-services.md), retaining their migrations, services, routes and permissions. The baseline is `@nocobase/app-template-default@1.0.0-beta.78`, with no additional plugin required. **The incremental package does not apply to the current getting-started example's `tasks` table and three-stage progress.** Review the patch before merging it into an application with custom changes.
 
-This asset writes `client/components/page-header.tsx`. Import `PageHeader` through the application's existing `#components/page-header` entry and provide a title, with an optional description and actions. If the component already exists, use or adapt the existing file first.
+In **System settings → Permission management**, configure a role with Projects page access and view/create actions, plus Tasks page access and the action to change a task's project. Set separate task and project scopes for assignment, then assign the role to specific users through user management. Page access does not grant data operations, and viewing a project does not grant permission to assign a task to it. The server must authorize every request independently.
 
-### Modify and compose
+This example includes no project details, deletion or approval flow. Saves use last-successful-write-wins behavior without a concurrency version check. Search matches names by containment, and sorting uses creation time; it does not provide Chinese pinyin sorting.
 
-Review generated files, dependencies and stylesheet changes before integrating the asset. Adjust layouts, change actions or split a larger block into components that fit the application. Connect copy to application translations and follow its theme conventions for colors and spacing.
+### Display the project list
 
-For example, a Projects page passes a translated title and New project action to `PageHeader`, while a list displays business data and a form handles input. Source assets provide an interface starting point; the application implements the business behavior.
-
-The application maintains these files. When adding an asset again or taking an upstream update, compare changes and retain business customizations, especially permission checks, form behavior and translations.
-
-Use `client/extensions/` to organize added components, Hooks and other UI source by module when appropriate. Installation targets depend on the asset declaration and project configuration; not every asset belongs here. Connect these files through ordinary imports. Placing a file in this directory does not automatically register a plugin, route or service.
-
-### Use local source assets
-
-Team-provided Registry assets can also be added locally. For example, a built asset might be available at `packages/announcements-ui/public/r/announcement-list.json` in the workspace:
-
-```bash
-pnpm exec shadcn add ./packages/announcements-ui/public/r/announcement-list.json
-```
-
-Pass the individual asset JSON containing component source, relative to the application directory where you run the command. It can come from a local build or another project and needs no HTTP server for the local file. Other Registry items and npm dependencies declared by the asset may still need network access. The CLI accepts names, URLs and local paths; see the [shadcn CLI](https://ui.shadcn.com/docs/cli#add).
-
-## Use React Context and Providers
-
-Use React Context when several components need shared selections, editing state or other interface context. Compose a Provider directly in the relevant page or subtree when only that part of the interface needs it.
-
-Register application-wide Providers through `client/react-providers.ts`. Write a React component that accepts and renders `children`, then append it to the existing `defineClientReactProviders(...)` declaration with a `name`, `component` and suitable `layer`. Providers that need application context usually use the `application` layer. Preserve the template's existing theme and Toast declarations.
-
-A React Provider supplies context to the component tree. A client ServiceProvider registers business services in the service container and manages their lifecycle, through `client/service-provider.ts`. They can work together when components need a service, but registering a service does not make its fields reactive React state. Components still need React state or an explicit subscription mechanism to update.
-
-See [React Providers](../framework/runtime/react-providers.md) for mounting layers, ordering and plugin contributions, and [Client services](../framework/services/integration.md#client-services) for service registration and access. Startup and runtime composition belong to [Client runtime](../framework/runtime/client.md).
-
-## Implement business interactions
-
-After connecting components to pages, define loading, empty, submitting, failure and success behavior. The existing project feature below illustrates these interactions. Follow the business API's input and response contract; see [API Client](../framework/http/api-client.md) for the general request mechanism.
-
-See [Data requests and state management](data-requests-and-state.md) for request Hooks, URL state, races and refreshes after saving, and [Page layouts](page-layouts.md) for page containers and application shells. The complete interaction walkthrough remains below for reading in sequence.
-
-### Separate three kinds of state
-
-**URL state** captures a shareable, restorable view: search, sorting, pagination and the current routed dialog. Closing a dialog should return to that list context.
-
-**Server state** contains records, options, totals and operation permission results. Read again when search or pagination changes; old requests must not replace newer results. The server still checks permissions when saving: permission observed when opening a dialog is not permanent authorization.
-
-**Form drafts** contain unsubmitted input, selected projects and field errors. Paging options, network failures and retries must not accidentally clear them. End editing after a successful submission or an explicit decision to discard it.
-
-These states have distinct purposes. Copying a whole list record into a dialog and writing it all back can overwrite another person's changes. Storing the selection only in the current options page loses it when paging.
-
-### Example interfaces
-
-Add a project list and two dialogs using the application's existing page, table and form components:
-
-- **Project list:** search by name, sort by creation time and browse server-side pages.
-- **New project:** validate a name, save it and return to the original list.
-- **Change task project:** load the current association, choose an allowed project or clear the association.
+`client/pages/projects/index.tsx` uses `PageContainer`, `PageHeader` and `DataTable` to compose the heading, create action, search and table. Keep a single page container; see [Page layouts](page-layouts.md) for layout changes.
 
 ![Project list with name search, creation-time sorting and pagination](/assets/core/developing-apps/pages-and-interactions/projects-list.png)
 
-This chapter adds no project detail, deletion or approval flow. The Tasks table keeps its existing columns. Its row action opens Change project, where the current association is displayed.
+Keep search, sorting and pagination in the URL, preserving query parameters when opening and closing dialogs. Use server-side pagination and sorting, with creation time descending by default and a matching table-header indicator.
 
-### Before you start
+| State | Page feedback |
+| --- | --- |
+| Initial load | Show skeletons; creation is not shown yet |
+| Refresh | Keep existing rows with a loading indicator |
+| No projects | Show an empty state with one create action when allowed |
+| Search results | Explain when there are no matches; keep Clear filters and the header create action available with or without matches, subject to create permission |
+| Request failed | Explain the failure; allow retry for network or server errors |
+| Session expired or permission denied | Hide stale data and offer sign-in or administrator guidance |
 
-Running this example requires the examples in [Create tables and initialize data](data-models-and-migrations.md) and [Routes and HTTP APIs](apis-and-services.md), retaining their migrations, services, routes and permissions. The example uses `@nocobase/app-template-default@1.0.0-beta.78` and needs no new plugin.
+<details>
+<summary>List requests in the example</summary>
 
-This incremental package targets the historical project example above, not the current getting-started application with its `tasks` table and three-stage progress.
+`useUrlSearch()` manages search input and IME composition; `useTableUrlState()` manages page number, page size and sorting. Request data through `useApiClient()`:
 
-Several frontend files work together here. Download the [incremental source package](/assets/core/downloads/team-tasks-pages-and-interactions.zip) for the added and modified files, a patch and instructions. It starts from the state after those two examples and contains no configuration, accounts, database or dependencies.
-
-Repository chapter tags remain the reference for published examples. This chapter's source is supplied with the documentation without depending on an unpublished tag. If your application already has custom changes, inspect and merge the patch instead of overwriting business code.
-
-### With an agent
-
-Give the agent this chapter as context from the application directory, then describe the request below. Field, API and component details are in the manual steps; the agent should follow them alongside the project's guidance.
-
-```text
-Please make the existing project features usable through pages, following the application's visual style with English and Chinese text.
-Use shadcn primitives and consult the components and blocks in the NocoBase UI Library first.
-Inspect existing components, add source assets as needed, and adapt and compose them while preserving current customizations.
-
-I need a Projects page with name search, creation-time sorting and pagination, plus a New project dialog.
-Add Change project to task row actions. The dialog should show the current assignment, let me select an eligible project, or clear it.
-Load current information when opening it, and retain my selection when paging through available projects.
-Only offer projects allowed for this assignment operation; viewing permission alone must not grant assignment access.
-
-Show progress while loading and explain empty data or searches with no matches.
-Place validation messages beside their fields. Keep input and allow retry if saving fails.
-Prevent duplicate submissions, update the list and confirm success after saving, and preserve filters and page position when closing dialogs.
-Request sign-in when the session expires, explain insufficient permissions, and stop editing if the task no longer exists.
-
-Follow the project's guidance and retain existing permissions without automatically assigning roles.
-Verify creation, assignment, clearing and denied actions, as well as keyboard use, Chinese input and narrow screens.
-Do not add project details, deletion or workflows yet. Report changes and verification results.
+```tsx
+api.request({
+  path: 'tutorialProjects',
+  query: { q: search, order, page: pageIndex + 1, pageSize },
+  signal: controller.signal,
+});
 ```
 
-### Without an agent
+Call `controller.abort()` in the effect cleanup and check cancellation before updating state so an older response cannot replace newer results. Only a successful `total` for the current query should correct an out-of-range page.
 
-#### Map pages to APIs
+Enable `manualPagination` and `manualSorting`, supplying the server's rows and total. See [API Client](../framework/http/api-client.md) for the general request mechanism.
+
+</details>
+
+### Create a project
+
+`client/pages/projects/create.tsx` presents a form in `RouteDialog`. `react-hook-form` manages input, and `zodResolver` requires a trimmed name of 1–120 characters.
+
+![New project dialog over the project list](/assets/core/developing-apps/pages-and-interactions/create-project.png)
+
+Make each submission state clear to the user:
+
+1. On validation failure, display the error below the name field and associate it with the input using `aria-invalid` and `aria-describedby`.
+2. While saving, disable Submit and Cancel, make the input read-only, and use a synchronous submission lock to prevent consecutive clicks from sending multiple requests.
+3. For server field errors, preserve input, show the error and focus the field. Show other failures in a form alert.
+4. On success, use the returned project to update the list, confirm the created project by name and close the dialog.
+
+A new project may belong outside the current page. This example inserts it immediately only on a matching first page sorted descending. Otherwise, it preserves filters and pagination and offers Show latest projects.
+
+### Change a task's project
+
+Task row actions use `useCan()` to control visibility. When completion/reopening and project assignment are both available, put them in one action menu. Show a single button when only one action is available.
+
+![Change project in the task row menu](/assets/core/developing-apps/pages-and-interactions/task-actions.png)
+
+`client/pages/tasks/[taskId]/project.tsx` loads the latest task and eligible projects when opened. Options are paged in groups of 20, with Previous and Next to reach further projects.
+
+![Changing a task project with options scoped to the assignment action](/assets/core/developing-apps/pages-and-interactions/change-project.png)
+
+**Keep options and the selected value separate.** Use the first response to initialize the selection; later pages update only the options. Retain the selected value and name even when that project is not on the current page. Retrying a failed load must also preserve the draft.
+
+If the current project is outside the allowed scope, display Project unavailable without exposing its name or treating it as an unset association. The server checks the task and target project again on submission; permissions observed when opening the dialog do not authorize a later save.
+
+Submit only the selected project ID, or `null` to clear the association:
+
+```tsx
+const { data } = await api.request({
+  path: `tutorialTasks/${encodeURIComponent(taskId)}/project`,
+  method: 'PATCH',
+  json: { projectId },
+});
+```
+
+Merge the returned `id`, `projectId` and `updatedAt` into the existing task, then refresh the list. This avoids overwriting its title, assignee or completion status with an older task object. Reopening the dialog reads the latest association again.
+
+### Handle closing and failures
+
+During a save, the close button, Cancel, Escape, browser Back and in-app navigation must check the same pending state to prevent leaving the editor before the request completes.
+
+<details>
+<summary>Guard RouteDialog closing</summary>
+
+```tsx
+<RouteDialog
+  title={t('projects.new')}
+  className="sm:max-w-md"
+  beforeClose={() => !pendingRef.current}
+  footer={<Footer pending={pending} />}
+>
+  <ProjectForm />
+</RouteDialog>
+```
+
+Pending saves must also block browser Back and in-app navigation. The source package’s `usePendingNavigation` calls `useNavigationGuard` from `@nocobase/app-client`, checking the same pending ref. It registers `beforeunload` only during a save to request the browser’s warning on reload or tab close. `beforeClose` alone does not cover these navigation paths.
+
+This illustrates component relationships. In the full source, the form synchronizes pending state with the parent, and the footer's `form` attribute connects its submit button to the form. Keep those connections when using the source package.
+
+</details>
+
+On closing, restore the list's filters, sorting and pagination. Return focus to the trigger, or to the parent page heading if the trigger disappeared or the dialog opened from a direct link. Confirming an IME candidate must not submit the form.
+
+| Situation | Behavior |
+| --- | --- |
+| Unchanged form | Disable Save and explain that there are no changes |
+| Unavailable target project | Associate the error with Project, focus the selector and retain the draft |
+| Missing or out-of-scope task | End editing and return to the refreshed list |
+| Expired session | Offer sign-in |
+| Revoked action permission | Explain the denial without an ineffective Retry button |
+| Network or server failure | Keep input and allow retry |
+
+![A real API rejection displayed under the Project field](/assets/core/developing-apps/pages-and-interactions/project-validation.png)
+
+<details>
+<summary>Project example API and route integration</summary>
+
+**Pages and APIs**
 
 Page paths are relative to the application entry. API paths are relative to its API root. Do not hard-code `/main` or a server address in the components.
 
@@ -198,7 +264,7 @@ The assignment dialog also needs a read endpoint. Read the task through the `ass
 
 The complete changes are in the package's `server/providers/tutorial-project-service.ts`, `tutorial-projects.ts` and `server/routes/tutorial-projects.ts`. The new GET endpoint declares `describeRoute()` and validates inputs with `apiValidator()`. No new migration is needed.
 
-#### Declare pages, navigation and dialogs in routes
+**Page, navigation and dialog routes**
 
 Add Projects to `defineAppRoutes()` in `client/routes.ts`, preserving the existing Tasks, authentication and settings routes:
 
@@ -246,144 +312,37 @@ Preserve the list query when opening a dialog:
 
 This makes copied links, refreshes and closing predictable. For example, `/projects/create?q=launch&page=2` opens over the corresponding project list and returns to the same query when closed.
 
-#### Keep list state in the URL
+See [Pages, routes and navigation](pages-routes-and-navigation.md) for route declarations and overlays.
 
-`client/pages/projects/index.tsx` uses `PageContainer`, `PageHeader` and `DataTable`. `useUrlSearch()` manages the search input and IME composition, while `useTableUrlState()` manages page number, page size and sorting.
+</details>
 
-Load data through `useApiClient()`:
+## Develop pages with an agent
 
-```tsx
-api.request({
-  path: 'tutorialProjects',
-  query: { q: search, order, page: pageIndex + 1, pageSize },
-  signal: controller.signal,
-});
+From an application directory that already has project and task features, give the development agent this article as a reference and describe the pages and business rules you need:
+
+```text
+Add pages for the existing project features, following the application's style with English and Chinese text.
+The project list should support name search, creation-time sorting and pagination, with a dialog to create projects.
+Let me change or clear a task's project from its row. Only offer projects the current user is allowed to assign; keep existing permissions.
+Keep my selection when paging through projects and my input if saving fails. Update the list after saving, and preserve its filters and page when closing the dialog.
 ```
 
-Abort in the effect cleanup and check cancellation before updating state. An older search response must not overwrite newer results. Only a successful count for the current query should normalize an out-of-range page.
+The API, permission and component integration requirements are described above. For your own business page, replace the page names and operations, then review the result using the checks below.
 
-Enable `manualPagination` and `manualSorting`, supplying the server's rows and total. The default header indicator must also show Created descending; a server default alone is insufficient.
+## Verify interaction behavior
 
-| State | Presentation |
-| --- | --- |
-| Initial load | Skeletons; creation is not shown yet |
-| Refresh | Keep existing rows with a loading indicator |
-| No projects | Empty state with the sole create action when allowed |
-| No search matches | No-results message, header create action and Clear filters |
-| Search has matches | Keep Clear filters available too |
-| Request failed | Explain the failure; allow retry for network/server errors |
-| Session expired or permission denied | Hide stale data and offer sign-in or administrator guidance |
+- Check pages with data, empty results, loading and failures, including both languages, light and dark themes, and narrow layouts.
+- Verify field validation, duplicate submission and retry behavior. Failed saves must retain input, and paging options must retain the selection.
+- Check dialog closing, direct links, reloads and browser history for correct list context and focus restoration. Complete actions using a keyboard and an IME.
+- Use an ordinary account to test allowed and denied actions, checking entry-point visibility, task scopes and project-option scopes separately. Hidden buttons cannot replace server authorization.
+- After adding or changing components, run the project's type checks, relevant tests and build to verify imports, dependencies and stylesheet integration.
 
-#### Build the create form
+Component tests cover input and interactions. Real API and browser tests cover authorization, persistence and page integration. See [Testing and acceptance](testing-and-acceptance.md) for test organization.
 
-`client/pages/projects/create.tsx` uses `RouteDialog` with `sm:max-w-md` for its single field. `react-hook-form` manages the form, and `zodResolver` requires a trimmed name of 1–120 characters.
+<details>
+<summary>Run the historical project example tests</summary>
 
-![New project dialog over the project list](/assets/core/developing-apps/pages-and-interactions/create-project.png)
-
-Handle the submission lifecycle explicitly:
-
-1. Validate on submit. Associate the name error with `aria-invalid` and `aria-describedby`.
-2. Disable Submit and Cancel while pending, make the input read-only, and use a ref to prevent duplicate requests and close races.
-3. Map server name violations back to the field, preserve its value and focus it. Show other failures in a form alert.
-4. Update the list using the returned project, show a named success message and close.
-
-Guard the dialog's close button, Cancel and Escape with the template's `beforeClose`:
-
-```tsx
-<RouteDialog
-  title={t('projects.new')}
-  className="sm:max-w-md"
-  beforeClose={() => !pendingRef.current}
-  footer={<Footer pending={pending} />}
->
-  <ProjectForm />
-</RouteDialog>
-```
-
-Pending saves must also block browser Back and in-app navigation. The source package’s `usePendingNavigation` calls `useNavigationGuard` from `@nocobase/app-client`, checking the same pending ref. It registers `beforeunload` only during a save to request the browser’s warning on reload or tab close. `beforeClose` alone does not cover these navigation paths.
-
-This illustrates component relationships. In the full source, the form synchronizes pending state with the parent, and the footer's `form` attribute connects its submit button to the form. Keep those connections when using the source package.
-
-A newly created row may belong outside the visible page: an oldest-first list, a later page or a nonmatching search are examples. Insert immediately only on a matching first page sorted descending. Otherwise preserve context, confirm the saved project by name and offer Show latest projects.
-
-#### Open the assignment dialog from a task
-
-When completion/reopening and project assignment are both available, put them in one row menu. When only one action is available, show a single button. Each action uses its own `useCan()` result.
-
-![Change project in the task row menu](/assets/core/developing-apps/pages-and-interactions/task-actions.png)
-
-`client/pages/tasks/[taskId]/project.tsx` loads the latest task and allowed projects when opened. Options are paged in groups of 20 with Previous and Next; the first page is not presented as the complete list.
-
-![Changing a task project with options scoped to the assignment action](/assets/core/developing-apps/pages-and-interactions/change-project.png)
-
-**Options pagination and the form draft are separate state.** Initialize the selection from the first response only. Later option pages must preserve the draft and its label, even when the selected project is on another page. Retrying a failed load must not reset input.
-
-Save the selected ID, or `null` for No project:
-
-```tsx
-const { data } = await api.request({
-  path: `tutorialTasks/${encodeURIComponent(taskId)}/project`,
-  method: 'PATCH',
-  json: { projectId },
-});
-```
-
-The response contains only `id`, `projectId` and `updatedAt`. Merge those fields into the existing task, then refresh the list. Do not overwrite its title, assignee or completion status using an older editor object. Reopening reads the association from the server again.
-
-#### Give failures a useful next step
-
-| Situation | Behavior |
-| --- | --- |
-| Unchanged form | Disable Save and explain that there are no changes |
-| Unavailable target project | Associate the error with Project, focus the trigger and retain the draft |
-| Missing or out-of-scope task | End editing and return to the refreshed list |
-| Expired session | Offer sign-in |
-| Revoked action permission | Explain the denial without an ineffective Retry button |
-| Network or server failure | Keep input and allow retry |
-
-![A real API rejection displayed under the Project field](/assets/core/developing-apps/pages-and-interactions/project-validation.png)
-
-Keyboard behavior matters too: confirming an IME candidate must not submit; pending saves must not submit twice; closing returns focus to the trigger, or to the parent heading when the trigger disappeared or the dialog opened from a direct link.
-
-## Extract components and reusable interaction logic
-
-Implement the business page first, then extract components around repeated content and change boundaries. In this example, the page can own route, permission and data integration, the list owns rows and action entry points, and the form owns drafts, field errors and submission interactions.
-
-| What needs reuse | Possible extraction |
-| --- | --- |
-| Presentation shared by several pages | Receive data, copy and event callbacks as props, with business context supplied by the page |
-| Editing forms for the same business | Share fields and validation with explicit initial values, pending state, save and cancel behavior |
-| Repeated interaction flows | Extract a Hook with clear inputs, outputs, reset conditions and resource cleanup |
-| Business capabilities shared across pages | Use a client service when appropriate; see [Client business services](client-business-services.md) for implementation and application integration |
-
-Props express explicit data and callbacks. React Context supplies shared values to a group of components, while client services can encapsulate business capabilities used across pages. Combine them as needed, making state ownership and subscriptions clear. Extracting a custom Hook reuses logic; separate calls do not automatically share the same state.
-
-When extracting a Hook, keep URL state, remote data and unsubmitted drafts distinct. Paging project options should preserve the form selection, while starting an editor for a different record should initialize a new draft. A component using `useCan()` to control actions still relies on independent endpoint authorization.
-
-Reuse within an application can use components, Hooks or local shared packages directly. To publish components as source assets for agents to take, modify and compose in other projects, see [Optionally distribute UI source assets](../extension-development/frontend-components.md#optionally-distribute-ui-source-assets).
-
-## Test and verify
-
-Cover presentation, interaction and application integration:
-
-- Check real pages with data, empty results, loading and failure states, including both languages, light and dark themes, and narrow layouts.
-- Use component tests for validation, duplicate submission, retaining drafts after failure, and selection across option pages.
-- Check keyboard focus, dialog closing and IME behavior. Use an ordinary account to verify both action visibility and server denials.
-- After adding or adapting Library assets, run the project's type checks, relevant tests and build to verify imports, dependencies and styles.
-
-See [Testing and acceptance](testing-and-acceptance.md) for test organization and scope. The files and commands below belong to this guide's historical project source package; choose the corresponding tests in your own application.
-
-### Project example permissions and tests
-
-Use System settings → Permission management to configure explicit roles:
-
-- Projects page access and the required view/create actions.
-- Tasks page access and Change task project.
-- Separate task and project scopes for assignment.
-
-Assign the role to specific people through user management. Page access does not grant data access or creation. Viewing a project does not necessarily allow assigning a task to it. Hidden buttons are feedback; the server independently checks every request.
-
-The package includes real API tests, component tests and a browser test:
+These files and commands belong to the incremental source package above. Run them from the application root after merging the example; use the corresponding test files in your own application.
 
 ```bash
 pnpm exec vitest run --config vitest.tutorial.config.ts tests/server/tutorial-tasks-project-api.test.ts
@@ -400,8 +359,4 @@ APP_URL=http://127.0.0.1:13321/main/ pnpm exec playwright test tests/playwright/
 
 Set `TUTORIAL_USERNAME` and `TUTORIAL_PASSWORD` as needed; keep production credentials out of scripts. Creation, assignment, clearing and scopes use a real database. Component tests substitute only necessary session, transport and jsdom browser-capability boundaries.
 
-### Example boundaries
-
-The model, business APIs and page interactions now work together. For another business page, follow the same sequence: establish data and permissions, declare routes and components, then complete loading, failure, save feedback and verification.
-
-The example still uses last-successful-write-wins behavior, without a concurrency version check. Search matches names by containment; sorting is by creation time, with no claim of Chinese pinyin ordering.
+</details>

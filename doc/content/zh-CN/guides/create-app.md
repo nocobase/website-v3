@@ -40,8 +40,6 @@ Agent 检查 Node.js 和 pnpm 的版本，创建项目、安装依赖、生成�
 
 ![应用底座](https://static-docs.nocobase.com/20261030-itam-lite-create-app-foundation.webp)
 
-规则和技能怎样配合，见 [和 Agent 一起开发](../core/developing-apps/develop-with-an-agent.md#让-agent-记住项目约定)。
-
 ## 4. 第一次提交
 
 ```bash

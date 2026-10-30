@@ -1,20 +1,18 @@
 ---
-title: NocoBase 给你的 Agent 带来什么
+title: 基于 NocoBase 3 开发可持续迭代的企业应用
 metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用底座，NocoBase Studio 是人与 Agent 协同开发的治理平台。
 ---
 
-这套教程用 NocoBase 和 Agent 开发一个精简版的 IT 资产管理系统，从准备环境到上线，再到带着团队持续迭代。
+## 前言
 
-## AI 写得越快，问题越多
-
-让 Agent 直接写业务系统，第一版很快，之后会遇到四个问题：
+让 Agent 直接 Vibe Coding 写一个业务系统，第一版通常很快，不断迭代之后就会遇到下面这些问题：
 
 1. 权限、工作流、审批这些底层能力要从零写，还要一直维护。
 2. 换模型、换人、开新会话，写法就变，架构逐渐失控。
 3. 并行任务多了，Agent 发来的消息和改动，人确认不过来。
 4. 需求背景、业务规则、踩过的坑散在各个会话里，换人、换 Agent 就丢了。
 
-前两个由 Core 解决，后两个由 Studio 解决。
+NocoBase 基于上述问题，我们推出了 [NocoBase Core](https://www.nocobase.com/zh-CN/core/) 和 [NocoBase Studio](https://www.nocobase.com/zh-CN/studio/)：既能够让企业在 AI Agent 时代能够快速开发自己的企业级应用， 同时又能解决上述这些问题。本教程将以 IT 资产管理为例，讲述如何在 NocoBase 3 的加持下开发可持续迭代的企业应用。
 
 ## Core：AI 开发和运行业务系统的开源应用底座
 
@@ -43,19 +41,21 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 
 下文称 ITAM：公司给员工配电脑、显示器，要知道每台设备在哪、归谁、状态如何，领用设备要走审批。三个角色：
 
-| 角色 | 在系统里做什么 |
-| --- | --- |
-| 员工 | 查看自己名下的设备，提交领用申请 |
-| IT 支持 | 处理领用申请，发放和回收设备，维护设备状态 |
-| 资产管理员 | 维护设备台账，审批领用，组织盘点 |
+| 角色       | 在系统里做什么                             |
+| ---------- | ------------------------------------------ |
+| 员工       | 查看自己名下的设备，提交领用申请           |
+| IT 支持    | 处理领用申请，发放和回收设备，维护设备状态 |
+| 资产管理员 | 维护设备台账，审批领用，组织盘点           |
 
-第一部分做设备台账、领用与审批、三个角色的权限；第二部分让 Agent 团队做设备盘点，并邀请资产管理员直接参与。完整版见 [NocoITAM 在线演示](https://solutions.nocobase.com/itam/)。
+第一部分做设备台账、领用与审批、三个角色的权限；第二部分让 Agent 团队做设备盘点，并邀请资产管理员直接参与。
+
+教程代码见 [nocobase/docs-examples-v3](https://github.com/nocobase/docs-examples-v3/tree/main/apps/itam-lite)。更完整的 IT 资产管理系统可以参考 [NocoITAM 在线演示](https://solutions.nocobase.com/itam/)。
 
 ## 教程路线
 
 ### 起步
 
-1. [NocoBase 给你的 Agent 带来什么](what-nocobase-brings.md)：本篇。
+1. [基于 NocoBase 3 开发可持续迭代的企业应用](build-sustainable-enterprise-apps.md)：本篇。
 2. [准备开发环境](prepare-environment.md)：装好 Node.js、pnpm 和 Git。
 3. [选择 Agent 和模型](choose-agent-and-model.md)：选编码工具和模型。
 
@@ -68,18 +68,20 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 8. [角色与权限](roles-and-permissions.md)：三个角色各自能看到什么、能做什么。
 9. [验收 Agent 的工作](accept-agent-work.md)：检查 Agent 交来的结果，让它修改。
 10. [部署上线](deploy.md)：把应用部署到服务器。
-11. [上线后继续迭代](keep-iterating.md)：加功能、修问题，保留已有数据。
 
 ### 第二部分：在团队中使用 Studio
 
-12. [把项目接入 Studio](bring-into-studio.md)：把 ITAM 的代码仓库接入 Studio 项目。
-13. [交给 Agent 团队推进一个需求](agent-team-request.md)：让 Agent 团队做设备盘点。
-14. [让业务同事直接参与](business-colleagues.md)：邀请资产管理员提需求、回答提问、验收。
-15. [沉淀方法和经验](capture-knowledge.md)：用技能、知识库和项目记忆留住方法和业务知识。
-16. [发布到生产](release.md)：部署到测试环境，打 tag 发布，部署到自己的服务器。
+11. [把项目接入 Studio](bring-into-studio.md)：把 ITAM 的代码仓库接入 Studio 项目。
+12. [交给 Agent 团队推进一个需求](agent-team-request.md)：让 Agent 团队做设备盘点。
+13. [让业务同事直接参与](business-colleagues.md)：邀请资产管理员提需求、回答提问、验收。
+14. [沉淀方法和经验](capture-knowledge.md)：用技能、知识库和项目记忆留住方法和业务知识。
+15. [发布到生产](release.md)：部署到测试环境，打 tag 发布，部署到自己的服务器。
+
+### 最佳实践
+
+- [最佳实践](best-practices.md)：用 Core 和 Studio 开发时的经验和技巧。
 
 ### 附录
 
 - [常用提示词](prompts.md)：教程里用到的提示词汇总。
-
-完整代码见 [nocobase/docs-examples-v3](https://github.com/nocobase/docs-examples-v3/tree/main/apps/itam-lite)。
+- [升级 NocoBase Core](upgrade-core.md)：用升级技能把 Core 升级到最新版本。

@@ -6,7 +6,7 @@
       "pages": [
         {
           "type": "page",
-          "path": "what-nocobase-brings"
+          "path": "build-sustainable-enterprise-apps"
         },
         {
           "type": "page",
@@ -49,10 +49,6 @@
         {
           "type": "page",
           "path": "deploy"
-        },
-        {
-          "type": "page",
-          "path": "keep-iterating"
         }
       ]
     },
@@ -84,11 +80,25 @@
     },
     {
       "type": "group",
+      "title": "Best practices",
+      "pages": [
+        {
+          "type": "page",
+          "path": "best-practices"
+        }
+      ]
+    },
+    {
+      "type": "group",
       "title": "Appendix",
       "pages": [
         {
           "type": "page",
           "path": "prompts"
+        },
+        {
+          "type": "page",
+          "path": "upgrade-core"
         }
       ]
     }

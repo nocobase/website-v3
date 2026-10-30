@@ -3,7 +3,7 @@ title: 第一个功能：设备台账
 metaDescription: 按设计文档让 Agent 做出设备台账，在运行的应用里试用，再提修改意见，提交一次。
 ---
 
-设计文档的第一步是设备台账。需求已经写在文档里，提示词只需指向它。
+设计文档的第一步是设备台账。需求已经写在[文档](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md)里，提示词只需指向它。
 
 ## 1. 提需求
 

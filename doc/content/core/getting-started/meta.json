@@ -3,10 +3,6 @@
   "pages": [
     {
       "type": "page",
-      "path": "what-is-core"
-    },
-    {
-      "type": "page",
       "path": "create-app"
     },
     {

@@ -57,5 +57,5 @@ NocoBase 2 里，表、页面、权限和工作流以**配置**的形式存在�
 
 ## 接下来
 
-- [认识 NocoBase Core](../core/getting-started/what-is-core.md)：建立对 NocoBase 3 的整体认识
+- [NocoBase Core](../core/index.md)：建立对 NocoBase 3 的整体认识
 - [管理插件](../core/developing-apps/manage-plugins.md)：插件给应用带来什么，管理入口在哪里

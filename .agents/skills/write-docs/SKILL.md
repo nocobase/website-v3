@@ -1,6 +1,6 @@
 ---
 name: write-docs
-description: Write, restructure, or review reader-facing pages in website-v3's doc/content, covering article purpose, organization, language and navigation. Complements write-doc-prompts and write-plugin-usage-docs. Not for homepage marketing copy or internal agent instructions.
+description: Write, restructure, or review reader-facing pages in website-v3's doc/content, covering article purpose, organization, language and navigation. Complements write-doc-prompts, write-app-development-docs and write-plugin-usage-docs. Not for homepage marketing copy or internal agent instructions.
 ---
 
 # 编写文档
@@ -13,6 +13,7 @@ description: Write, restructure, or review reader-facing pages in website-v3's d
 - 遵循用户本次要求与仓库 [AGENTS.md](../../../AGENTS.md)。双语、菜单、链接、资源、示例源码和检查命令以该文件及 [doc/README.md](../../../doc/README.md) 为准。
 - 只处理当前任务涉及的文章和必要关联修改。局部改标题、链接或段落时，不因使用本 Skill 就重组整篇、改换示例或迁移代码。
 - 编写或审阅读者提示词时，叠加 [write-doc-prompts](../write-doc-prompts/SKILL.md)，由它规定提示词与正文的分工。
+- 编写、重组或审阅“开发应用”的功能专题时，叠加 [write-app-development-docs](../write-app-development-docs/SKILL.md)，按一篇专题对应一个可运行 App、每种 API 用法有对应示例的要求组织内容。概览和项目结构等说明性文章不强制配独立 App。
 - 编写或重组单个插件使用指南时，叠加 [write-plugin-usage-docs](../write-plugin-usage-docs/SKILL.md)，沿用其四章结构和证据要求。下面的文章类型与导航建议不改变专项结构。
 
 ## 选择文章的主要目的

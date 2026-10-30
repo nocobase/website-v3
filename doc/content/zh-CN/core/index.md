@@ -10,7 +10,7 @@ NocoBase Core 提供应用开发的框架能力，插件提供可组合、可扩
 1. [认识 NocoBase Core](getting-started/what-is-core.md)：了解 Core、模板、插件和应用的关系。
 2. [创建应用](getting-started/create-app.md)：创建项目，启动并登录。
 3. [项目结构](getting-started/project-structure.md)：找到页面、接口、数据库、本地包和测试的位置。
-4. [搭建第一个应用](tutorials/build-your-first-app.md)：用 Agent 搭建任务应用，验证完整业务流程。
+4. [搭建第一个应用](tutorials/build-your-first-app.md)：用 Agent 加入任务管理功能，并了解生成的代码。
 
 ## 开发应用
 

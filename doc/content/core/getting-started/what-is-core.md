@@ -48,7 +48,7 @@ Open a coding tool such as Claude Code or Codex in the application directory and
 3. Try the application in a browser. Describe any changes you need until it behaves as intended.
 4. Commit the code, review it through your team's process and deploy it.
 
-See [Develop with an agent](../developing-apps/develop-with-an-agent.md) for methods and checks. You can also write the code yourself: both approaches use the same framework, components and commands, and can be mixed within one project. [Create an app](create-app.md) and [Build your first app](../tutorials/build-your-first-app.md) describe both approaches.
+See [Develop with an agent](../developing-apps/develop-with-an-agent.md) for methods and checks. You can also write the code yourself: both approaches use the same framework, components and commands, and can be mixed within one project. [Create an app](create-app.md) describes both ways to create a project; [Build your first app](../tutorials/build-your-first-app.md) guides you through building your first feature with an Agent and understanding the generated code.
 
 After deployment, administrators adjust users, roles and data access in **System settings**. Changes to pages, tables and business rules are made in code, tested and redeployed. When NocoBase releases a new version, reconcile changes from the new template; see [Upgrade NocoBase Core](../developing-apps/upgrade-nocobase-core.md).
 
@@ -73,4 +73,4 @@ You need Node.js 24 or later and pnpm 11. On Windows, use WSL. To develop with a
 
 1. [Create an app](create-app.md): create the project, start it and sign in.
 2. [Project structure](project-structure.md): find where each kind of code belongs.
-3. [Build your first app](../tutorials/build-your-first-app.md): build a team task application with an agent and try its role-based permissions.
+3. [Build your first app](../tutorials/build-your-first-app.md): add task management with an Agent, then explore the key code for its data, APIs and pages.

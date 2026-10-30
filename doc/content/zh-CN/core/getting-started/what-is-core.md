@@ -48,7 +48,7 @@ my-app/
 3. 你在浏览器里试用。不满意就接着描述，直到符合预期。
 4. 提交代码，按团队的流程评审，再部署。
 
-方法和检查要点见[和 Agent 一起开发](../developing-apps/develop-with-an-agent.md)。不用 Agent 也可以：框架、组件和命令行是同一套，两种方式可以在一个项目里混用。[创建应用](create-app.md)和[搭建第一个应用](../tutorials/build-your-first-app.md)都同时给出了两种做法。
+方法和检查要点见[和 Agent 一起开发](../developing-apps/develop-with-an-agent.md)。不用 Agent 也可以：框架、组件和命令行是同一套，两种方式可以在一个项目里混用。[创建应用](create-app.md)介绍了两种创建方式；[搭建第一个应用](../tutorials/build-your-first-app.md)带你用 Agent 完成第一个功能，并了解生成的代码。
 
 应用上线后，用户、角色和数据范围由管理员在「系统设置」里调整；页面、数据表和业务规则的变化都通过代码完成，测试通过后重新部署。NocoBase 发布新版本时，对照新模板合并变化，见[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)。
 
@@ -73,4 +73,4 @@ my-app/
 
 1. [创建应用](create-app.md)：创建项目，启动并登录。
 2. [项目结构](project-structure.md)：了解每类代码放在哪里。
-3. [搭建第一个应用](../tutorials/build-your-first-app.md)：和 Agent 一起做一个团队任务应用，体验不同角色的权限。
+3. [搭建第一个应用](../tutorials/build-your-first-app.md)：用 Agent 加入任务管理功能，再了解数据、接口和页面的关键代码。

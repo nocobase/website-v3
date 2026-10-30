@@ -3,7 +3,7 @@ title: Accept the agent's work
 metaDescription: Using a "needed by" date on device requests as the example, have the agent report automated checks and hands-on use separately, run it yourself with existing data, review the changes, and send it back with steps to reproduce and the expected result when something is wrong.
 ---
 
-When the agent says "done", that does not mean it works. This chapter adds a "needed by" date to device requests and walks through a full acceptance: the agent's first delivery has problems, and after it is sent back, they are fixed.
+This chapter adds a "needed by" date to device requests and goes through acceptance and sending work back.
 
 ## 1. Ask for separate reports in the request
 
@@ -31,7 +31,7 @@ Sign in as Alice and open **Device requests**:
 Two problems:
 
 - The old requests submitted in Device requests and approval and Roles and permissions have no needed-by date, yet show `Jan 1, 1970, 7:30 AM`.
-- The new request shows `Nov 6, 2026, 8:00 AM`, with a time after the date. The details screenshot the agent attached shows this too.
+- The new request shows `Nov 6, 2026, 8:00 AM`, with a time after the date.
 
 The agent's tests and hands-on use both used only new data. When accepting, use existing data and walk through each role's daily work. Once a scenario is settled, you can have the agent turn it into a browser test; see [Testing and acceptance](../core/developing-apps/testing-and-acceptance.md#browser-tests-and-functional-acceptance).
 

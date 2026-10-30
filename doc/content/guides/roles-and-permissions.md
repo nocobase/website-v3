@@ -3,7 +3,7 @@ title: Roles and permissions
 metaDescription: Sign in with each of the three accounts and check against the design document's permission matrix, so employees see only their own data, buttons follow the role, and the API refuses the same overreach.
 ---
 
-After the last chapter the three roles can already walk through the workflow, but who can see which records has not been worked out yet. This chapter checks each item against the permission matrix in section 6 of the [design document](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md), switching accounts, and has the agent fix what you find.
+This chapter checks each item against the permission matrix in section 6 of the [design document](https://github.com/nocobase/docs-examples-v3/blob/main/apps/itam-lite/docs/design.md), switching accounts, and has the agent fix what you find.
 
 ## 1. Check with each account
 
@@ -19,7 +19,7 @@ Sign in as Alice (Employee), Ben (IT support) and Cathy (Asset manager) in turn,
 
 ![IT support sees Approve and is refused after clicking it](https://static-docs.nocobase.com/20261030-itam-lite-roles-it-support-approve-denied.webp)
 
-When Ben clicks **Approve**, the action is refused, so the server's permission check is right; only the button does not hide with the role. The reverse also holds: **a hidden button does not mean the action is refused**. When you accept permissions, check both sides: the page does not show it, and acting directly without the page is refused too.
+When Ben clicks **Approve**, the action is refused, so the server's permission check is right.
 
 ## 2. Ask for changes
 

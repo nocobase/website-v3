@@ -32,7 +32,7 @@ You can also ask directly in **My sessions** and pick the project you're asking 
 
 ## Other teams should also write requests with an agent first
 
-When teams such as administration or finance bring a request, ask them to have their own agent write it up first: who uses it and where, what it should accomplish, the rules and boundaries, what happens when something fails, and what counts as done. When the pages are hard to describe, attach an HTML demo.
+When teams such as administration or finance bring a request, ask them to have their own agent write it up first: who uses it, what to do and what the rules are. When the pages are hard to describe, attach an HTML demo.
 
 ```prompt
 I want to send the IT department a request: <one sentence>. Ask me a few questions first, write it up as a requirements document, then make a single-file HTML demo of the main pages.

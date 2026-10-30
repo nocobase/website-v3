@@ -46,11 +46,11 @@ Open `https://<domain>/itam/`, sign in as the administrator, and create a device
 
 ![The device register after deployment](https://static-docs.nocobase.com/20261030-itam-lite-deploy-docker-devices.webp)
 
-After the agent recreates the container, the device is still there, and so is the sign-in session. From then on, with the development machine off and `pnpm dev` stopped, itam-lite on the server keeps working.
+After the agent recreates the container, the device is still there, and so is the sign-in session.
 
 To release a new version, build an image with a new tag, back up the deployment directory first, then swap the image while keeping the existing configuration and data; see [Publish a new release](../core/tutorials/deploy-with-docker.md#publish-a-new-release).
 
-## 5. Commit
+## 5. Record the deployment
 
 Deployment changes no code. Have the agent record the deployment method and the verification results in the README.
 

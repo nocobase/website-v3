@@ -3,7 +3,7 @@ title: Release to production
 metaDescription: Using the device stocktake launch as the example, deploy to the staging environment Studio hosts after merging so the team can try it first, pick this release's issues from those pending release and tag it in the repository, then deploy to your own server with Studio's deployment guide and record the version production runs.
 ---
 
-Device stocktaking and device retirement are both merged into itam-lite's default branch, but so far they have only run in PR previews. In Part 1, you deployed itam-lite to a server by hand with Docker. Now that the project is in Studio, every step of going live shows on the project's **Releases** page: which environment a change is in, which issues this release includes, and which version production runs.
+Now that the project is in Studio, every step of going live shows on the project's **Releases** page: which environment a change is in, which issues this release includes, and which version production runs.
 
 Studio hosts only the preview and staging environments. Production runs on your own server. Studio doesn't connect to it; it only gives a deployment guide and records the version production runs.
 
@@ -41,7 +41,7 @@ A release line decides which tags count as a release, for example `v*`. Open the
 In the **Release** column, click **How to publish**:
 
 1. Choose the itam-lite repository and the release line `v*`.
-2. Under **Based on staging environment**, choose the staging environment you just set up. The target commit is the one running on staging, so what you release is the version Xu Ning tried.
+2. Under **Based on staging environment**, choose the staging environment you just set up. The target commit is the one running on staging.
 3. You can change the **Suggested tag**, for example to `v1.1.0`.
 4. Look at **Included issues** and the issues that aren't included, and confirm that device stocktaking and device retirement are both in.
 5. Click **Copy commands** and run them in the itam-lite repository.
@@ -68,14 +68,3 @@ When the deployment is done, click **I have deployed it — record as v1.1.0**. 
 Only the project lead can view the deployment guide and record the deployed version.
 
 **Done when**: itam-lite's production runs `v1.1.0`, the **Production** column records the same version, and the asset manager can start the first quarterly stocktake in production.
-
-## Looking back at Part 2
-
-| | Part 1 | Part 2 |
-| --- | --- | --- |
-| Who moves the work forward | You and a few local coding agent sessions | The agent team on a shared runtime, around the clock |
-| Who raises requests and accepts results | You | Xu Ning, the asset manager, raises requests, answers questions and accepts results directly in Studio |
-| Where the background and experience live | Scattered across individual sessions | The knowledge base, skills and project memory |
-| How it goes live | You deploy it on the server yourself | Merges go to staging automatically, a tag publishes the release, the deployment guide deploys it to production, and Studio records the version |
-
-**Done when**: device stocktaking has been tried on staging, released as `v1.1.0` and deployed to production, and Studio records the version production runs.

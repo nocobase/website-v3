@@ -22,7 +22,7 @@ What the agent built:
 | The Employee, IT support and Asset manager roles | The permission plugin: each action is a separate business permission |
 | The **Device requests** page, the **Inbox** entry in the sidebar, the **Workflow management** page | The process diagram and workflow management components that ship with the template |
 
-Approval, notifications and permissions are ready-made Core capabilities, maintained and tested by NocoBase. The agent only writes the business rules for device requests, so it is fast and reliable. For the list of capabilities, see [NocoBase Core](../core/index.md#reuse-common-capabilities); for the package that provides workflows, see the [Core and tool package index](../core/reference/packages.md); for notifications, see [Notifications](../core/using-plugins/notifications/notification.md). If you need multi-level approval, countersigning or delegation and have a license for the commercial approval plugin, you can use [Approvals](../core/using-plugins/collaboration/approval.md) instead.
+For the list of capabilities, see [NocoBase Core](../core/index.md#reuse-common-capabilities); for the package that provides workflows, see the [Core and tool package index](../core/reference/packages.md); for notifications, see [Notifications](../core/using-plugins/notifications/notification.md). If you need multi-level approval, countersigning or delegation and have a license for the commercial approval plugin, you can use [Approvals](../core/using-plugins/collaboration/approval.md) instead.
 
 ## 2. Prepare three accounts
 

@@ -1,16 +1,43 @@
-// 博客列表页、每篇文章的详情页，以及客户案例的列表和详情页：从 content/blog/posts.json、cs-posts.json 生成中英双语的正文，构建时再和其他页面一样按语言生成（博客和客户案例只有英文和简体中文）。
+// 博客列表页、每篇文章的详情页，以及客户案例的列表和详情页：从 content/blog/posts.json、cs-posts.json 生成中英双语的正文，构建时再和其他页面一样按语言生成（博客和客户案例有英文和简体中文）。
+// 日文版：有日文正文的文章（posts.json 里带 ja，来自 CMS 的 index.ja.md）另有 /ja-JP/ 下的详情页，博客列表和客户案例列表也各有一份日文的，只列有日文版的文章。
+// 日文版用同一套模板再生成一遍：ja 为 true 时 T() 取 JA 里的日文界面文字（键是英文原文），文章的 en、cn 都换成 ja 那份，日期按日文写；结果挂在同一页的 ja 上（{ title, desc, main }）。
 // 站内链接写成源文件名（blog/<slug>.html、customers.html、contact.html#contact），构建时换成各语言的地址。
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { legacyDocLinks, legacySiteLinks } from './links.mjs';
 import { CONTENT } from './paths.mjs';
 
-const T = (zh, en) => `<t-zh>${zh}</t-zh><t-en>${en}</t-en>`;
+let ja = false;
+const JA = {
+  'Blog': 'ブログ',
+  'All': 'すべて',
+  'Customer stories': '導入事例',
+  'Customer Stories': '導入事例',
+  'Product thinking, engineering practice, <span class="m">and real customer stories.</span>': 'プロダクトの考え方、エンジニアリングの実践、<span class="m">そしてお客様の実例。</span>',
+  'How to build business systems with AI, what’s new in NocoBase, and how teams in every industry build on it.': 'AI で業務システムを構築する方法、NocoBase の最新情報、そしてさまざまな業界のチームが NocoBase でシステムを構築する方法を紹介します。',
+  'Read the post': '記事を読む',
+  'On this page': '目次',
+  'Keep reading': '関連記事',
+  'Build reliable business systems with AI.': 'AI で信頼できる業務システムを構築する。',
+  'Start with open-source NocoBase Core, or bring a real requirement and work with us.': 'オープンソースの NocoBase Core から始めるか、実際の要件を持ち込んで私たちと一緒に取り組みましょう。',
+  'Explore NocoBase Core': 'NocoBase Core の詳細',
+  'Book a Pilot': '実地検証を予約',
+  'Teams worldwide <span class="m">build core business systems on NocoBase.</span>': '世界中のチームが <span class="m">NocoBase で基幹業務システムを構築しています。</span>',
+  'From energy, manufacturing, and healthcare to government and universities—why they chose NocoBase, and how they built, launched, and keep improving their systems.': 'エネルギー、製造、医療から行政、大学まで。NocoBase を選んだ理由と、システムを構築・稼働させ、改善し続ける方法を紹介します。',
+  'Customer Story · Sungrow': '導入事例 · Sungrow',
+  'Read the story': '事例を読む',
+  'The next story could be yours.': '次の事例は、あなたのチームかもしれません。',
+  'Bring one real requirement and turn it into a system you’ll use for years.': '実際の要件を 1 つ持ち込み、長く使い続けられるシステムに仕上げましょう。',
+  'See Solutions': 'ソリューションを見る',
+  'More customer stories': 'その他の導入事例',
+  'All customer stories': 'すべての導入事例',
+};
+const T = (zh, en) => (ja ? JA[en] ?? en : `<t-zh>${zh}</t-zh><t-en>${en}</t-en>`);
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 export function fmtDate(d, lang) {
   const [y, m, dd] = d.split('-').map(Number);
-  return lang === 'cn' ? `${y}年${m}月${dd}日` : `${MONTHS[m - 1]} ${dd}, ${y}`;
+  return lang === 'cn' || ja ? `${y}年${m}月${dd}日` : `${MONTHS[m - 1]} ${dd}, ${y}`;
 }
 const zip = (a, b) => a.slice(0, Math.min(a.length, b.length)).map((x, i) => [x, b[i]]);
 
@@ -18,7 +45,10 @@ const zip = (a, b) => a.slice(0, Math.min(a.length, b.length)).map((x, i) => [x,
 export function articleSlugs(allposts, cs) {
   const story = slug => allposts[slug].en.tags.includes('Customer Stories');
   const blog = new Set(Object.keys(allposts).filter(k => !story(k)));
-  return { blog, customers: new Set(['sungrow', ...Object.keys(cs), ...Object.keys(allposts).filter(story)].filter(k => !blog.has(k))) };
+  const customers = new Set(['sungrow', ...Object.keys(cs), ...Object.keys(allposts).filter(story)].filter(k => !blog.has(k)));
+  // 另有 ja-JP 版的文章（lib/links.mjs 的 siteLink 用它换旧的 /ja/blog/ 地址）
+  const withJa = set => new Set([...set].filter(k => allposts[k]?.ja));
+  return { blog, customers, ja: { blog: withJa(blog), customers: withJa(customers) } };
 }
 const readBlog = name => JSON.parse(readFileSync(join(CONTENT, 'blog', name), 'utf8'));
 export const readArticleSlugs = () => articleSlugs(readBlog('posts.json'), readBlog('cs-posts.json'));
@@ -28,6 +58,8 @@ export function blogPages() {
   let stories = readBlog('cs-posts.json');
   const site = articleSlugs(allposts, stories);
   for (const [k, v] of Object.entries(allposts)) if (v.en.tags.includes('Customer Stories') && !(k in stories)) stories[k] = v;
+  // cs-posts.json 里手工抓取的客户案例没有日文，CMS 里同一篇有日文正文的，日文版用 CMS 的
+  for (const [k, v] of Object.entries(allposts)) if (v.ja && k in stories && !stories[k].ja) stories[k] = { ...stories[k], ja: v.ja };
   const posts = Object.fromEntries(Object.entries(allposts).filter(([, v]) => !v.en.tags.includes('Customer Stories')));
   // 阳光电源：官网还没有全文，先放标题与摘要
   const SUNGROW = {
@@ -35,6 +67,21 @@ export function blogPages() {
     en: { title: 'Sungrow: the systems behind a global business, built on NocoBase', desc: 'How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.', date: '2026-10-17', author: 'NocoBase', tags: ['Customer Stories'], image: '', body: '' },
   };
   stories = { sungrow: SUNGROW, ...stories };
+  const OUT = generate(posts, stories, site);
+  // 日文版只放有 ja 的文章；阳光电源没有日文版，日文的客户案例列表照样放它（英文），但不生成日文详情页
+  const jaView = (m, keep = []) => Object.fromEntries(Object.entries(m).filter(([k, v]) => v.ja || keep.includes(k)).map(([k, v]) => [k, { ...v, en: v.ja || v.en, cn: v.ja || v.en }]));
+  ja = true;
+  try {
+    for (const it of generate(jaView(posts), jaView(stories, ['sungrow']), site)) {
+      OUT.find(o => o.id === it.id).ja = { title: it.meta.title_en, desc: it.meta.desc_en, main: it.main };
+    }
+  } finally {
+    ja = false;
+  }
+  return OUT;
+}
+
+function generate(posts, stories, site) {
   const OUT = [];
   const order = Object.keys(posts).sort((a, b) => (posts[a].en.date < posts[b].en.date ? 1 : posts[a].en.date > posts[b].en.date ? -1 : 0));
   // CMS 文章带 listed：false 的只有详情页，不进列表和「相关文章」（规则见 scripts/cms-import.mjs）
@@ -46,7 +93,7 @@ export function blogPages() {
     // 指向 v2 文档的旧地址换成 nocode.docs.nocobase.com，指向旧官网的换成新地址或 nocode.nocobase.com（CMS 导入时已经换过，这里再保险一次）
     body = legacySiteLinks(legacyDocLinks(body), site);
     // 不带主机的旧博客地址换成站内链接
-    return body.replace(/href="\/(?:en|cn)\/blog\/([^"#?]+)"/g, (m, s) => {
+    return body.replace(/href="\/(?:en|cn|ja)\/blog\/([^"#?]+)"/g, (m, s) => {
       const slug = s.replace(/\/+$/, '');
       if (slug in posts) return `href="blog/${slug}.html"`;
       if (slug in stories) return `href="customers/${slug}.html"`;
@@ -174,6 +221,7 @@ export function blogPages() {
   build('customers', 'customers', '客户案例 — NocoBase', 'Customer Stories — NocoBase', '全球各行业团队如何用 NocoBase 构建核心业务系统。', 'How teams worldwide build core business systems on NocoBase.', clist);
 
   for (const slug of corder) {
+    if (ja && !stories[slug].ja) continue;
     const e = stories[slug].en, c = stories[slug].cn;
     let bz, be, tz, te;
     if (slug === 'sungrow') {

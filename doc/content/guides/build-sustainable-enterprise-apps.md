@@ -12,7 +12,7 @@ When you let an agent vibe-code a business system, the first version usually com
 3. With many issues running in parallel, people can't keep up with confirming the agents' messages and changes.
 4. Requirement context, business rules and lessons learned are scattered across sessions, and they are lost when people or agents change.
 
-To address these problems, we built [NocoBase Core](https://www.nocobase.com/core/) and [NocoBase Studio](https://www.nocobase.com/studio/). They let companies develop their own enterprise apps quickly in the age of AI agents while solving the problems above. Using IT asset management as the example, this tutorial shows how to build enterprise apps that keep evolving with NocoBase 3.
+To address these problems, NocoBase 3 introduces [NocoBase Core](https://www.nocobase.com/core/) and [NocoBase Studio](https://www.nocobase.com/studio/). They let companies develop their own enterprise apps quickly in the age of AI agents while solving the problems above. Using IT asset management as the example, this tutorial shows how to build enterprise apps that keep evolving with NocoBase 3.
 
 ## Core: the open-source foundation for developing and running business systems with AI
 

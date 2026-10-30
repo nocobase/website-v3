@@ -10,7 +10,7 @@ A runtime is a machine where agents work. Shared runtimes are what keep the agen
 | What | Requirements |
 | --- | --- |
 | Operating system | macOS or Linux. On Windows, run it in Ubuntu on WSL |
-| Basic software | Node.js 24 or later, and Git. Projects that use the NocoBase app template also need pnpm, which you can turn on with Node.js's bundled corepack: `corepack enable` |
+| Basic software | Node.js 24 or later, and Git. Projects that use the NocoBase app template also need pnpm: `npm install -g pnpm@11` |
 | Coding tools | Install and sign in the official way, for example Claude Code and Codex, as the system user that runs the runner. Have tools from two vendors so reviews can go to a model from another vendor |
 | Code host CLI | Agents use it to open PRs: `gh` for GitHub, `glab` for GitLab, `gitee` for Gitee |
 | A browser | When agents change the interface, they take screenshots in the running app for the delivery report. The runtime must be able to run Chromium. On Linux, install it along with its system dependencies, for example `npx playwright install --with-deps chromium` |

@@ -12,7 +12,7 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 3. 并行任务多了，Agent 发来的消息和改动，人确认不过来。
 4. 需求背景、业务规则、踩过的坑散在各个会话里，换人、换 Agent 就丢了。
 
-NocoBase 基于上述问题，我们推出了 [NocoBase Core](https://www.nocobase.com/zh-CN/core/) 和 [NocoBase Studio](https://www.nocobase.com/zh-CN/studio/)：既能够让企业在 AI Agent 时代能够快速开发自己的企业级应用， 同时又能解决上述这些问题。本教程将以 IT 资产管理为例，讲述如何在 NocoBase 3 的加持下开发可持续迭代的企业应用。
+基于此，NocoBase 3 推出了 [NocoBase Core](https://www.nocobase.com/zh-CN/core/) 和 [NocoBase Studio](https://www.nocobase.com/zh-CN/studio/)：既能够让企业在 AI Agent 时代快速开发自己的企业级应用，又能解决上述这些问题。本教程将以 IT 资产管理为例，讲述如何在 NocoBase 3 的加持下开发可持续迭代的企业应用。
 
 ## Core：AI 开发和运行业务系统的开源应用底座
 

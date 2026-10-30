@@ -27,10 +27,10 @@ If you use fnm, install fnm by following [fnm's instructions](https://github.com
 fnm install 24
 ```
 
-Then enable pnpm:
+Then install pnpm:
 
 ```bash
-corepack enable && corepack prepare pnpm@11 --activate
+npm install -g pnpm@11
 ```
 
 Open a new terminal when you're done.

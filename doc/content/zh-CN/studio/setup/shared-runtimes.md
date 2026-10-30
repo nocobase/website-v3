@@ -10,7 +10,7 @@ description: 在团队的服务器或虚拟机上安装执行机，接入 Studio
 | 准备什么 | 要求 |
 | --- | --- |
 | 系统 | macOS 或 Linux；Windows 要在 WSL 的 Ubuntu 里运行 |
-| 基础软件 | Node.js 24 或更高版本，Git。项目用 NocoBase 应用模板时还要 pnpm，用 Node.js 自带的 corepack 启用：`corepack enable` |
+| 基础软件 | Node.js 24 或更高版本，Git。项目用 NocoBase 应用模板时还要 pnpm：`npm install -g pnpm@11` |
 | 编码工具 | 用官方方式安装并登录，例如 Claude Code 和 Codex。用运行执行机的那个系统用户登录。建议准备两家厂商的工具，评审才能交给另一家厂商的模型 |
 | 代码托管平台的命令行 | Agent 用它开 PR：GitHub 用 `gh`，GitLab 用 `glab`，Gitee 用 `gitee` |
 | 浏览器 | Agent 改了界面，要在真实运行的应用里截图，附在交付报告里。运行环境上要能运行 Chromium，Linux 上连同它的系统依赖一起安装，例如 `npx playwright install --with-deps chromium` |

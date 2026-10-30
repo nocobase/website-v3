@@ -21,7 +21,7 @@ Agent 的报告：
 | 实际操作 | 用 Alice 提交了一个期望 11 月 6 日到货的笔记本申请，附详情截图 |
 | 没验证 | 浏览器自动化测试 |
 
-每类检查确认什么，见 [和 Agent 一起开发](../core/developing-apps/develop-with-an-agent.md#让-agent-分开报告验证结果)。
+每类检查确认什么，见 [和 Agent 一起开发](../core/getting-started/develop-with-an-agent.md#验收)。
 
 ## 2. 自己跑一遍业务场景
 
@@ -44,7 +44,7 @@ Agent 的测试和实际操作都只用了新数据。验收时用已有数据�
 - **权限**：领用申请的可读字段里加了 `neededBy`，三个角色不用另外授权；“不能早于今天”在服务端检查。
 - **页面**：期望日期复用了“提交时间”的格式化函数，它会带上时间；类型里把期望日期写成了必填。上面两个问题都出在这里。
 
-其余检查项见 [再看改动](../core/developing-apps/develop-with-an-agent.md#再看改动)。
+其余检查项见 [和 Agent 一起开发](../core/getting-started/develop-with-an-agent.md#验收)。
 
 ## 4. 打回
 

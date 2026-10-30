@@ -85,6 +85,6 @@ IT 支持在在用设备上点「归还」，填写归还位置后，设备变�
 先不改代码，列出这次要改哪些部分、需要我决策的问题，以及打算怎样验证。
 ```
 
-需求的写法和验收方法见 [和 Agent 一起开发](../core/developing-apps/develop-with-an-agent.md#描述需求)。
+需求的写法和验收方法见 [和 Agent 一起开发](../core/getting-started/develop-with-an-agent.md#提需求)。
 
 **完成的标志**：仓库里有 `docs/design.md`，`AGENTS.md` 的索引里登记了它，文档末尾有分步交付和每步的验收标准。

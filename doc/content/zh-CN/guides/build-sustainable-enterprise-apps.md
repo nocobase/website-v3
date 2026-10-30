@@ -16,9 +16,9 @@ NocoBase 基于上述问题，我们推出了 [NocoBase Core](https://www.nocoba
 
 ## Core：AI 开发和运行业务系统的开源应用底座
 
-**基础能力不用从头开发和验证。** 用户与权限、数据与文件、流程与审批、消息、AI 与 Agent 等 20 多项基础能力现成可用，由 NocoBase 持续维护和升级。做设备领用时，Agent 只写设备、领用单和审批规则。能力清单见 [认识 NocoBase Core](../core/getting-started/what-is-core.md#基础能力现成可用)。
+**基础能力不用从头开发和验证。** 用户与权限、数据与文件、流程与审批、消息、AI 与 Agent 等 20 多项基础能力现成可用，由 NocoBase 持续维护和升级。做设备领用时，Agent 只写设备、领用单和审批规则。能力清单见 [认识 NocoBase Core](../core/index.md#通用能力不必从零开发)。
 
-**统一的架构和规范。** 新建的应用自带统一的目录，页面、接口、迁移、测试各有固定位置；`AGENTS.md` 和随包发布的技能写明业务代码放在哪里、哪些直接用现成能力。换人、换模型、换会话，Agent 都按同一套写法开发。见 [项目结构](../core/getting-started/project-structure.md)。
+**统一的架构和规范。** 新建的应用自带统一的目录，页面、接口、迁移、测试各有固定位置；`AGENTS.md` 和随包发布的技能写明业务代码放在哪里、哪些直接用现成能力。换人、换模型、换会话，Agent 都按同一套写法开发。见 [项目结构](../core/developing-apps/project-structure.md)。
 
 应用用了哪些 Core 能力，在「系统设置 › 应用底座」里能直接查看，见 [应用底座](../core/using-plugins/application-support/foundation.md)。
 

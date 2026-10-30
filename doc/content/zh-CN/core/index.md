@@ -1,36 +1,73 @@
 ---
 title: NocoBase Core
-description: 创建 NocoBase Core 应用，并按开发、扩展、部署和维护任务查找文档。
+description: NocoBase Core 是面向 AI 开发的开源业务应用框架，提供统一的应用架构、可复用的基础能力和配套的 Agent 开发指引，支持业务系统的开发、部署与持续迭代。
 ---
 
-NocoBase Core 是 AI 开发和运行业务系统的开源应用底座。权限、流程、文件等基础能力现成可用，Agent 在统一架构上只开发企业自己的业务。
+**AI 时代的业务应用开发底座。**
 
-从[默认应用模板](https://github.com/nocobase/nocobase/tree/v3-develop/packages/templates/app-template-default)创建项目后，你会得到一个可以运行、修改和部署的应用。项目包含基础能力和配套的 Agent 开发指引。你可以让 Agent 在已有能力上开发业务页面、数据和规则，也可以自行编写代码。
+NocoBase Core 是用于开发和运行业务系统的开源框架。它提供统一的应用架构、基础服务和插件机制，并通过配套插件提供认证、权限、工作流、文件管理等通用能力，让开发者和 Agent 在已有基础上专注业务开发。
 
-## 开始使用
+从应用模板创建项目后，你会得到一个可以运行、修改和部署的应用。你可以使用 Agent，也可以自行编写代码，按照业务需要开发页面、数据模型、接口和业务规则。
 
-1. [创建应用](getting-started/create-app.md)：准备环境，使用 Agent 或命令行创建项目，启动并登录。
-2. [搭建第一个应用](tutorials/build-your-first-app.md)：和 Agent 一起添加任务管理功能，试用结果并了解关键代码。
+## 为什么选择 NocoBase Core？
 
-需要查找页面、接口、数据和测试的位置时，阅读[项目结构](getting-started/project-structure.md)。
+### 通用能力不必从零开发
+
+Core 和配套插件提供可复用的基础能力，减少每个项目中重复的基础建设。你可以根据业务需要选择、接入和扩展这些能力，将精力集中在具体的业务需求上。
+
+这些能力是构建应用的基础，不是一套固定形态的成品业务系统。最终的页面、交互和业务流程，由开发者和 Agent 按需实现。
+
+### 为 Agent 提供明确的开发依据
+
+统一的项目结构、开发规范、Skills 和示例，帮助 Agent 理解已有能力、查找相关代码，并按照项目约定完成开发。
+
+开发过程中，可以让 Agent 优先复用已有能力，而不是重复生成基础模块。开发者负责确认业务规则、评审关键实现并验收结果。
+
+### 业务实现可定制、可持续迭代
+
+业务功能以代码实现，页面、接口、数据模型和业务逻辑都可以按需组织与修改。你可以在应用中直接开发功能，也可以将需要独立维护或跨应用复用的能力组织成插件。
+
+业务代码与框架、插件之间保持清晰的职责边界，便于持续开发、定位问题和评估升级影响。
+
+## 使用 NocoBase Core 开发应用
+
+**Core 和插件提供通用基础能力，开发者和 Agent 完成具体的业务应用。**
+
+一个典型的开发过程包括：
+
+1. **创建应用**：从应用模板创建项目，准备配置并启动应用。
+2. **开发业务**：明确需求和业务规则，基于已有能力开发页面、数据模型、接口和业务逻辑。
+3. **验证结果**：检查实际使用效果、运行测试并评审实现，发现问题后继续改进。
+4. **部署与迭代**：将应用部署到自己的环境，持续交付业务更新，并按需升级 Core 和插件。
+
+你不需要先掌握所有框架细节。可以从一个具体的业务功能开始，在开发过程中按需查阅文档。
+
+## 快速开始
+
+1. [创建应用](getting-started/create-app.md)：准备环境，使用 Agent 或命令行创建项目，启动并登录应用。
+2. [开发第一个业务功能](tutorials/build-your-first-app.md)：跟随教程，与 Agent 一起完成任务管理功能，并了解关键代码。
+
+需要了解页面、接口、数据和测试放在哪里时，阅读[项目结构](getting-started/project-structure.md)。
 
 ## 开发业务功能
 
 - [和 Agent 一起开发](developing-apps/develop-with-an-agent.md)：描述需求、确认业务规则、检查结果，并维护项目约定。
-- [开发应用](developing-apps/overview.md)：按需要查阅页面、接口、业务服务、数据库、配置和测试的开发方法。
-- [使用插件](using-plugins/overview.md)：查找已有能力，按插件指南完成配置和业务接入，例如为业务增加权限、附件或通知。
+- [开发应用](developing-apps/overview.md)：按需查阅客户端、服务端、业务服务、数据库、配置和测试的开发方法。
+- [使用插件](using-plugins/overview.md)：查找已有能力，完成配置和业务接入，例如为应用增加权限、附件或通知。
 
 ## 扩展与理解 Core
 
-- [开发插件](extension-development/when-to-write-a-plugin.md)：需要独立维护或供多个应用复用时，了解如何把功能组织成插件。
-- [框架](framework/overview.md)：需要理解运行机制时，查阅应用运行时、插件接入、服务容器和基础服务。
+- [开发插件](extension-development/when-to-write-a-plugin.md)：需要独立维护或供多个应用复用时，了解如何将功能组织成插件。
+- [框架原理](framework/overview.md)：需要理解底层运行机制时，查阅应用运行时、插件接入、服务容器和基础服务。
 
 ## 部署与维护
 
 - [选择部署方式](deployment/choose-a-deployment-method.md)：将应用部署到自己的运行环境，准备配置和持久化数据。
 - [发布应用新版本](deployment/publish-app-release.md)：完成验证和构建，交付业务更新。
-- [升级 NocoBase Core](developing-apps/upgrade-nocobase-core.md)：更新基础能力和模板，在保留业务定制的同时检查兼容性。
+- [升级 NocoBase Core](developing-apps/upgrade-nocobase-core.md)：了解基础依赖与应用模板的更新方式，检查业务定制的兼容性。
 
-## 查阅参考
+## 参考手册
 
-查找具体用法时，使用[命令行参考](reference/cli.md)、[配置项参考](reference/configuration.md)和 [API 参考](reference/api.md)。环境与数据库要求见[数据库支持与版本兼容](reference/compatibility.md)，遇到问题时先查看[常见问题](reference/faq.md)。
+查找具体用法时，使用[命令行参考](reference/cli.md)、[配置项参考](reference/configuration.md)和 [API 参考](reference/api.md)。
+
+环境与数据库要求见[数据库支持与版本兼容](reference/compatibility.md)，遇到问题时先查看[常见问题](reference/faq.md)。

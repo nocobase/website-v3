@@ -23,6 +23,8 @@ export default defineConfig({
   outDir: DIST,
   trailingSlash: 'always',
   redirects: {
+    '/guides/build-sustainable-enterprise-apps/': '/guides/what-nocobase-brings/',
+    '/zh-CN/guides/build-sustainable-enterprise-apps/': '/zh-CN/guides/what-nocobase-brings/',
     '/core/getting-started/what-is-core-2/': '/core/getting-started/what-is-core/',
     '/core/getting-started/create-app-2/': '/core/getting-started/create-app/',
     '/core/tutorials/build-your-first-app-3/': '/core/tutorials/build-your-first-app/',

@@ -1,5 +1,96 @@
 {
   "pages": [
-    { "type": "page", "path": "build-sustainable-enterprise-apps" }
+    {
+      "type": "group",
+      "title": "Getting started",
+      "pages": [
+        {
+          "type": "page",
+          "path": "what-nocobase-brings"
+        },
+        {
+          "type": "page",
+          "path": "prepare-environment"
+        },
+        {
+          "type": "page",
+          "path": "choose-agent-and-model"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Part 1: Build an app with Core",
+      "pages": [
+        {
+          "type": "page",
+          "path": "create-app"
+        },
+        {
+          "type": "page",
+          "path": "write-a-design-doc"
+        },
+        {
+          "type": "page",
+          "path": "first-feature-devices"
+        },
+        {
+          "type": "page",
+          "path": "requests-and-approval"
+        },
+        {
+          "type": "page",
+          "path": "roles-and-permissions"
+        },
+        {
+          "type": "page",
+          "path": "accept-agent-work"
+        },
+        {
+          "type": "page",
+          "path": "deploy"
+        },
+        {
+          "type": "page",
+          "path": "keep-iterating"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Part 2: Work as a team with Studio",
+      "pages": [
+        {
+          "type": "page",
+          "path": "bring-into-studio"
+        },
+        {
+          "type": "page",
+          "path": "agent-team-request"
+        },
+        {
+          "type": "page",
+          "path": "business-colleagues"
+        },
+        {
+          "type": "page",
+          "path": "capture-knowledge"
+        },
+        {
+          "type": "page",
+          "path": "release"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Appendix",
+      "pages": [
+        {
+          "type": "page",
+          "path": "prompts"
+        }
+      ]
+    }
   ]
 }

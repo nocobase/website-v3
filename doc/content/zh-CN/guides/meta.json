@@ -1,5 +1,96 @@
 {
   "pages": [
-    { "type": "page", "path": "build-sustainable-enterprise-apps" }
+    {
+      "type": "group",
+      "title": "起步",
+      "pages": [
+        {
+          "type": "page",
+          "path": "what-nocobase-brings"
+        },
+        {
+          "type": "page",
+          "path": "prepare-environment"
+        },
+        {
+          "type": "page",
+          "path": "choose-agent-and-model"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "第一部分　用 Core 做出一个应用",
+      "pages": [
+        {
+          "type": "page",
+          "path": "create-app"
+        },
+        {
+          "type": "page",
+          "path": "write-a-design-doc"
+        },
+        {
+          "type": "page",
+          "path": "first-feature-devices"
+        },
+        {
+          "type": "page",
+          "path": "requests-and-approval"
+        },
+        {
+          "type": "page",
+          "path": "roles-and-permissions"
+        },
+        {
+          "type": "page",
+          "path": "accept-agent-work"
+        },
+        {
+          "type": "page",
+          "path": "deploy"
+        },
+        {
+          "type": "page",
+          "path": "keep-iterating"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "第二部分　带团队用 Studio",
+      "pages": [
+        {
+          "type": "page",
+          "path": "bring-into-studio"
+        },
+        {
+          "type": "page",
+          "path": "agent-team-request"
+        },
+        {
+          "type": "page",
+          "path": "business-colleagues"
+        },
+        {
+          "type": "page",
+          "path": "capture-knowledge"
+        },
+        {
+          "type": "page",
+          "path": "release"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "附录",
+      "pages": [
+        {
+          "type": "page",
+          "path": "prompts"
+        }
+      ]
+    }
   ]
 }

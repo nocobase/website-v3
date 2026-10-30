@@ -38,7 +38,6 @@ After using it for a while, you find two problems:
 Two changes to the device register:
 1. Serial numbers must be unique (they can be left empty). List any existing duplicates for me first; do not fix them automatically.
 2. The list can be filtered by status and category, and search also matches serial numbers.
-Acceptance: a device with an existing serial number cannot be saved; choosing "In stock" shows only devices in stock.
 ```
 
 The agent checked the existing data first and reported that `IT-2026-0002` and `IT-2026-0007` both have serial number `CN0ABC123`. Change one of them in the register to the real serial number on the device, then tell the agent to continue.

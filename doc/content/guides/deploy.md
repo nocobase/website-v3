@@ -50,7 +50,7 @@ After the agent recreates the container, the device is still there, and so is th
 
 To release a new version, build an image with a new tag, back up the deployment directory first, then swap the image while keeping the existing configuration and data; see [Publish a new release](../core/tutorials/deploy-with-docker.md#publish-a-new-release).
 
-## 5. Commit
+## 5. Record the deployment
 
 Deployment changes no code. Have the agent record the deployment method and the verification results in the README.
 

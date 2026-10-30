@@ -19,7 +19,7 @@ metaDescription: 用三个账号分别登录，对照设计文档的权限矩阵
 
 ![IT 支持看到「批准」，点击后被拒绝](https://static-docs.nocobase.com/20261030-itam-lite-roles-it-support-approve-denied.webp)
 
-Ben 点「批准」被拒绝，说明服务端的权限检查是对的，只是按钮没跟着角色隐藏。反过来也一样，**按钮隐藏不等于操作被拒绝**：验收权限要两头都查，页面上看不到，绕过页面直接操作也被拒绝。
+Ben 点「批准」被拒绝，说明服务端的权限检查是对的。
 
 ## 2. 提修改意见
 

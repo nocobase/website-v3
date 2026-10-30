@@ -1,72 +1,73 @@
 ---
 title: NocoBase Core
-description: Start by creating an app, then find guides for app development, plugins, the framework and deployment by task.
+description: NocoBase Core is an open-source business application framework for AI-assisted development, providing a unified application architecture, reusable foundational capabilities and agent development guidance for building, deploying and continuously improving business systems.
 ---
 
-NocoBase Core provides application framework capabilities. Plugins provide features that applications can compose and extend. Write business code directly or work with a coding Agent, using Skills and examples to assemble your application.
+**A foundation for business application development in the AI era.**
 
-## Getting started
+NocoBase Core is an open-source framework for developing and running business systems. It provides a unified application architecture, foundational services and a plugin mechanism. Companion plugins supply common capabilities such as authentication, authorization, workflows and file management, allowing developers and agents to focus on business functionality.
 
-1. [Meet NocoBase Core](getting-started/what-is-core.md): understand Core, templates, plugins and applications.
-2. [Create an app](getting-started/create-app.md): create a project, start it and sign in.
-3. [Project structure](getting-started/project-structure.md): locate pages, APIs, databases, local packages and tests.
-4. [Build your first app](tutorials/build-your-first-app.md): add task management with an Agent and understand the generated code.
+Creating a project from an application template gives you an application you can run, modify and deploy. Work with an agent or write code yourself to build pages, data models, APIs and rules for your business.
 
-## Developing apps
+## Why choose NocoBase Core?
 
-Organize business implementation around `client/`, `server/`, `database/`, `cli/`, `packages/` and `tests/`.
+### Reuse common capabilities
 
-- [Application development overview](developing-apps/overview.md): connect pages, APIs, services and the database.
-- [Develop with an Agent](developing-apps/develop-with-an-agent.md): use project rules and Skills, divide requirements and verify results.
-- [Client pages and navigation](developing-apps/pages-routes-and-navigation.md) and [components and interactions](developing-apps/pages-and-interactions.md): implement pages and user actions.
-- [Server APIs and business services](developing-apps/apis-and-services.md): organize business logic, validate input and integrate permissions.
-- [Create tables and initialize data](developing-apps/data-models-and-migrations.md) and [data operations](developing-apps/querying-data.md): store and access business data.
-- [Application configuration (config.yml)](developing-apps/configuration-and-settings.md), [Localization](developing-apps/localization.md) and [Themes and styles](developing-apps/themes-and-styles.md), and [testing and acceptance](developing-apps/testing-and-acceptance.md): configure and verify the application.
+Core and its companion plugins provide reusable foundational capabilities, reducing the infrastructure work repeated across projects. Choose, integrate and extend these capabilities according to your needs, and focus on your specific business requirements.
 
-## Using plugins
+These capabilities form the foundation for building applications; they are not a finished business system with a fixed design. Developers and agents implement the pages, interactions and business processes as needed.
 
-Start with existing capabilities. Follow each plugin's installation, registration, configuration and integration instructions, then compose its APIs, services, components and Skills for your business.
+### Give agents clear development guidance
 
-- [Using plugins overview](using-plugins/overview.md): choose, integrate and verify existing plugins.
-- [Manage plugins](developing-apps/manage-plugins.md): manage Client, Server and CLI plugin entries.
-- [Plugin index](reference/plugins.md): find authentication, users, permissions, files, notifications, Agents and other plugins by purpose and package name.
+Consistent project structure, development conventions, Skills and examples help agents understand existing capabilities, find relevant code and follow project conventions.
 
-## Developing plugins
+During development, agents can prioritize existing capabilities instead of generating foundational modules again. Developers confirm business rules, review critical implementation decisions and accept the results.
 
-Organize independent extensions as plugins, define public entries and service contracts, integrate them into applications, and verify delivery.
+### Customize and continuously improve business functionality
 
-- [When to write a plugin](extension-development/when-to-write-a-plugin.md), [Create a plugin](extension-development/create-plugin.md), and [Plugin structure](extension-development/plugin-structure.md): define boundaries and prepare the workspace.
-- [Write your first plugin](extension-development/write-your-first-plugin.md): implement an announcements API and page, register the plugin and verify it in an app.
-- [Pages, routes and menus](extension-development/pages-and-menus.md) and [Routes and HTTP APIs](extension-development/server-apis.md): implement client and server extensions.
-- [Components and styles](extension-development/frontend-components.md): build and integrate shadcn components, then optionally distribute editable source through an independent UI Registry package.
-- [Database resources and migrations](extension-development/database-and-migrations.md), [Command-line extensions](extension-development/extend-command-line.md), and [Client localization](extension-development/localization.md): provide resources and commands.
-- [Testing and verification](extension-development/testing-and-verification.md), [Plugin Skills](extension-development/write-plugin-skills.md), and [Build and publish](extension-development/publish-plugin.md): verify integration and deliver public capabilities.
+Business features are implemented in code. Pages, APIs, data models and business logic can be organized and modified as needed. Develop features directly in the application, or organize capabilities into plugins when they need independent maintenance or reuse across applications.
 
-## Framework
+Clear responsibilities between business code, the framework and plugins make it easier to continue development, investigate problems and assess the impact of upgrades.
 
-Explore mechanisms and core packages shared by applications and plugins. Start with business examples, then consult the underlying mechanisms as needed.
+## Develop applications with NocoBase Core
 
-- [Framework overview](framework/overview.md): runtimes, core packages and plugin features.
-- [Runtimes](framework/runtime/client.md), [Service containers](framework/services/container.md), [ServiceProviders](extension-development/service-provider.md), [HTTP and APIs](framework/http/routes.md): assembly, extension and calls.
-- [Database](framework/database/overview.md): connections, modeling, queries, transactions and schema evolution.
-- [Caching](framework/support/caching.md), [File storage](framework/file-storage.md), [Logging](framework/support/logging.md), [ID generation](framework/support/ids.md): shared host services.
-- [Background jobs](framework/background/jobs.md), [Scheduling](framework/background/scheduling.md), [Message queues](framework/background/queues.md), [Realtime](framework/realtime/topics.md): asynchronous work and page updates.
+**Core and plugins provide common foundational capabilities; developers and agents build the business application.**
 
-## Deployment and operations
+A typical development process includes:
 
-Core deployment guides cover independent production applications. For Studio development environments, previews and hosting workflows, see the [Studio documentation](../studio/index.md).
+1. **Create an application**: create a project from an application template, prepare configuration and start the application.
+2. **Develop business features**: clarify requirements and business rules, then build pages, data models, APIs and business logic using existing capabilities.
+3. **Verify the results**: try the application, run tests and review the implementation, then address any issues.
+4. **Deploy and iterate**: deploy to your own environment, deliver business updates and upgrade Core and plugins as needed.
 
-- [Choose a deployment method](deployment/choose-a-deployment-method.md): prepare configuration, persistent data and recovery.
-- [Publish an application release](deployment/publish-app-release.md): verify, build and update an application release.
-- [Deploy with Docker](tutorials/deploy-with-docker.md) or [Deploy with PM2](tutorials/deploy-with-app-installer.md): choose how to run the application; PM2 deployments use app-installer for installation and updates.
-- [Upgrade NocoBase Core](developing-apps/upgrade-nocobase-core.md): merge template changes and verify business compatibility.
+You do not need to learn every framework detail before starting. Begin with a specific business feature and consult the documentation as you develop it.
+
+## Quickstart
+
+1. [Create an app](getting-started/create-app.md): prepare your environment, create a project with an agent or the command line, start it and sign in.
+2. [Develop your first feature](getting-started/build-your-first-app.md): follow the tutorial to build customer management with an agent and review the code changes.
+
+Read [Project structure](developing-apps/project-structure.md) when you need to locate pages, APIs, database resources and tests.
+
+## Develop business features
+
+- [Continue developing your app](getting-started/develop-with-an-agent.md): describe requirements, confirm business rules, check results and maintain project conventions.
+- [Developing apps](developing-apps/overview.md): find implementation guidance for the client, server, business services, databases, configuration and tests.
+- [Using plugins](using-plugins/overview.md): find existing capabilities, configure them and integrate them into your business, such as adding permissions, attachments or notifications to an application.
+
+## Extend and understand Core
+
+- [Developing plugins](extension-development/when-to-write-a-plugin.md): learn how to organize a feature as a plugin for independent maintenance or reuse across applications.
+- [Framework principles](framework/overview.md): explore application runtimes, plugin integration, service containers and foundational services when you need to understand the underlying mechanisms.
+
+## Deploy and maintain
+
+- [Choose a deployment method](deployment/choose-a-deployment-method.md): deploy to your own environment and prepare configuration and persistent data.
+- [Publish an application release](deployment/publish-app-release.md): verify, build and deliver business updates.
+- [Upgrade NocoBase Core](developing-apps/upgrade-nocobase-core.md): learn how to update foundational dependencies and the application template, and check compatibility with business customizations.
 
 ## Reference
 
-Look up interfaces, options, directories and compatibility as needed:
+Look up specific usage in the [Command-line reference](reference/cli.md), [Configuration reference](reference/configuration.md) and [API reference](reference/api.md).
 
-- [API reference](reference/api.md): common public entries, return values and database declarations.
-- [Command-line reference](reference/cli.md) and [Configuration reference](reference/configuration.md): development/deployment commands, configuration precedence and environment variables.
-- [Directory and file conventions](reference/project-conventions.md): ownership of application, plugin, UI asset and generated files.
-- [Core and tool package index](reference/packages.md) and [Plugin index](reference/plugins.md): package purposes and inclusion in the default template.
-- [Database support and version compatibility](reference/compatibility.md) and [FAQ](reference/faq.md): runtime requirements, database differences and common problems.
+See [Database support and compatibility](reference/compatibility.md) for environment and database requirements, or the [FAQ](reference/faq.md) for common problems.

@@ -10,6 +10,8 @@
 - Keep prerequisites, usable commands, important business rules, relevant limitations and essential code explanations. Concision means removing material that does not help readers act or understand, not omitting steps or turning prose into cryptic fragments.
 - Explain shared concepts once and link to them elsewhere. Do not fill every section with exhaustive lists or move a bloated prompt unchanged into the surrounding prose. Before finishing, remove any paragraph whose deletion would not cost the reader useful information. Apply the same standard to every language.
 
+When writing, restructuring or reviewing reader-facing pages in `doc/content/`, use [write-docs](.agents/skills/write-docs/SKILL.md) for article purpose, organization, language and navigation. It complements the prompt and plugin-guide skills below; use their specialized rules only when the task involves those contents. Keep local edits within their scope, updating related links and menus when necessary; loading a skill does not authorize rewriting unrelated content or migrating examples.
+
 When writing or reviewing reader-facing prompts in any repository documentation, use [write-doc-prompts](.agents/skills/write-doc-prompts/SKILL.md). This applies to quickstarts, tutorials, plugin guides, configuration instructions and verification examples in every language. Prompts must read like something a person would naturally ask: describe the reader's goal and necessary business rules. Put implementation contracts, project instructions and detailed verification procedures in the surrounding documentation instead of packing them into the prompt.
 
 ## Docs site (`doc/`)

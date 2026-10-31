@@ -14,7 +14,7 @@ description: Integrate shared service contracts with client and server container
 | Application server | Application Provider collection, wired through its runtime | Resolve with `app.container.resolve()` and pass dependencies to business code |
 | Plugin server | `serviceProviders` in `server/plugin.ts` | Use the host container and application-managed lifecycle |
 
-Application Providers are commonly collected in `client/service-provider.ts` and `server/providers/index.ts`; follow the files referenced by the current runtime. A file's existence does not register it. See [Client business services](../../developing-apps/client-business-services.md), [Server business services](../../developing-apps/server-business-services.md) and [Plugin declarations](../../extension-development/plugin-declarations.md) for integration steps.
+Application Providers are commonly collected in `client/service-provider.ts` and `server/providers/index.ts`; follow the files referenced by the current runtime. A file's existence does not register it. See [Client services](../../developing-apps/client-business-services.md), [Server business services](../../developing-apps/server-business-services.md) and [Plugin declarations](../../extension-development/plugin-declarations.md) for integration steps.
 
 ## Client services
 

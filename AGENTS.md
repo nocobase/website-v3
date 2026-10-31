@@ -2,6 +2,7 @@
 
 ## Documentation writing
 
+- Before writing or editing reader-facing documentation, present an outline containing only headings, with at most three hierarchical levels, and wait for explicit human confirmation. Read-only research may precede the outline; do not draft body content or edit documentation files before confirmation. Silence or a request to revise the outline is not approval. An outline already approved in the current task remains valid while its scope and structure are unchanged; confirm material changes before proceeding. For narrow edits, outline only the affected sections and preserve the requested scope.
 - Write for the person using the document. Lead with what they can do or need to know, then give the necessary steps and explanation. Match the depth to the article's purpose: a quickstart should get readers to a working result; a reference should make precise details easy to find.
 - Use natural language, concrete actions and examples. Explain unfamiliar terms when needed; do not stack jargon or assume readers know internal implementation names.
 - Leave documentation headings unnumbered by default in every language. Use numbered headings only for steps that must be completed in order and where numbering helps readers follow or reference them. Do not number headings in overview, concept or reference articles, or non-step sections such as prerequisites, verification and next steps. Ordered lists within the body are unaffected.

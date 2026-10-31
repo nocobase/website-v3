@@ -168,4 +168,4 @@ Mail and task submission do not roll back with database changes. Normally commit
 - Calls with different policies do not share user state.
 - Commands and jobs respect their own execution identities and scopes.
 
-Beyond rule tests, use real databases and authorization services to verify transactions and scopes. The full project endpoint tests are linked from [Routes and HTTP APIs](apis-and-services.md).
+Beyond rule tests, use real databases and authorization services to verify transactions and scopes. The full project endpoint tests are linked from [Historical project API example](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md).

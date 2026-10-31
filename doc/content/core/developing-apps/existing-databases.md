@@ -118,7 +118,7 @@ export async function listCrmOrders(
 
 For read-only access, restrict both database credentials and exposed application operations. `include()` does not grant relation access. If orders and customers need separate business scopes, query with separate policies; see [Querying and manipulating data](querying-data.md).
 
-To expose HTTP, follow [Routes and HTTP APIs](apis-and-services.md) and explicitly configure `connection: 'externalCrm'`, operations and policies in Repository API declarations. A connection or metadata file does not automatically expose endpoints.
+To expose HTTP, follow [HTTP routes and APIs](apis-and-services.md) and explicitly configure `connection: 'externalCrm'`, operations and policies in Repository API declarations. A connection or metadata file does not automatically expose endpoints.
 
 ## Verify
 

@@ -1,5 +1,5 @@
 ---
-title: 基于 NocoBase 3 开发可持续迭代的企业应用
+title: 基于 NocoBase 3 开发可靠的企业应用
 metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用底座，NocoBase Studio 是人与 Agent 协同开发的治理平台。
 ---
 
@@ -12,7 +12,7 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 3. 并行任务多了，Agent 发来的消息和改动，人确认不过来。
 4. 需求背景、业务规则、踩过的坑散在各个会话里，换人、换 Agent 就丢了。
 
-基于此，NocoBase 3 推出了 [NocoBase Core](https://www.nocobase.com/zh-CN/core/) 和 [NocoBase Studio](https://www.nocobase.com/zh-CN/studio/)：既能够让企业在 AI Agent 时代快速开发自己的企业级应用，又能解决上述这些问题。本教程将以 IT 资产管理为例，讲述如何在 NocoBase 3 的加持下开发可持续迭代的企业应用。
+基于此，NocoBase 3 推出了 [NocoBase Core](https://www.nocobase.com/zh-CN/core/) 和 [NocoBase Studio](https://www.nocobase.com/zh-CN/studio/)：既能够让企业在 AI Agent 时代快速开发自己的企业级应用，又能解决上述这些问题。本教程将以 IT 资产管理为例，讲述如何在 NocoBase 3 的加持下开发可靠的企业应用。
 
 ## Core：AI 开发和运行业务系统的开源应用底座
 
@@ -55,7 +55,7 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 
 ### 起步
 
-1. [基于 NocoBase 3 开发可持续迭代的企业应用](build-sustainable-enterprise-apps.md)：本篇。
+1. [基于 NocoBase 3 开发可靠的企业应用](build-reliable-enterprise-apps.md)：本篇。
 2. [准备开发环境](prepare-environment.md)：装好 Node.js、pnpm 和 Git。
 3. [选择 Agent 和模型](choose-agent-and-model.md)：选编码工具和模型。
 

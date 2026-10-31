@@ -305,6 +305,8 @@ export function useProducts() {
 
 刷新示例页面后，两个计数归零，而商品名称仍来自服务端内存。重启服务端才会恢复初始商品。客户端服务的生命周期与服务端数据的保存时间是两回事。
 
+打开第二个标签页时，计数从零开始，其他标签页的成功修改不会自动触发这里的刷新；点击 **Refresh list** 才重新读取商品。
+
 React Provider 为组件树提供上下文，入口是 `client/react-providers.ts`；ServiceProvider 注册容器服务，入口是 `client/service-provider.ts`。调用服务不需要额外包一层 React Provider。如果以后增加与账号有关的缓存，还需在身份变化时清理缓存和在途请求。
 
 ### 取消订阅与释放资源
@@ -339,8 +341,6 @@ this.app.container.resolveIfCreated(productsServiceToken)?.dispose();
 
 ## 示例源码与运行
 
-### 安装与启动
-
 [完整示例与 README](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/README.MD)需要 Node.js 24 或更高版本、pnpm 11，依赖版本由 `pnpm-lock.yaml` 锁定。在独立目录运行：
 
 ```bash
@@ -358,14 +358,10 @@ pnpm dev
 
 示例使用真实 API Client 和 HTTP 接口，但商品仅保存在服务端内存中。公共演示接口只允许修改三个固定商品的名称，不接触真实业务数据，不演示身份权限或数据库持久化。将这个模式接入业务应用时，服务端应使用已有的鉴权、授权和数据访问机制。
 
-### 验证共享、失败与清理行为
-
-在示例 App 根目录运行：
+在示例 App 根目录运行服务、页面和接口测试：
 
 ```bash
 pnpm exec vitest run tests/client/products-service.test.ts tests/client/service-products.test.tsx tests/server/demo-products.test.ts
 ```
 
-这些测试分别验证服务的单例与通知、编辑界面的提交状态和草稿保留，以及演示接口的数据边界。用浏览器按前文操作确认成功、失败、取消和组件卸载后的表现；浏览器自动化命令见示例 README。
-
-还可打开第二个标签页：计数从零开始，其他标签页的成功修改不会自动触发这里的刷新；点击 **Refresh list** 才重新读取商品。更完整的业务数据与权限验收见[测试与验收](testing-and-acceptance.md)。
+详细测试说明与浏览器自动化命令见示例 README。

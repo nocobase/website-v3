@@ -305,6 +305,8 @@ A container singleton belongs to the current browser application instance. Compo
 
 Reloading the example resets both counters while retaining product names from server memory. Restarting the server restores the initial products. Client service lifetime and server data retention are separate concerns.
 
+Open a second tab: its counter starts at zero, and successful changes in another tab do not automatically refresh its list. **Refresh list** reads the products again.
+
 React Providers supply component-tree context through `client/react-providers.ts`; ServiceProviders register container services through `client/service-provider.ts`. Calling a service requires no additional React Provider. If you later add identity-dependent caching, clear cached data and in-flight requests when identity changes.
 
 ### Unsubscribe and release resources
@@ -339,8 +341,6 @@ Substitute your application's page and endpoint names. Use the preceding impleme
 
 ## Example source and setup
 
-### Install and start
-
 The [complete example and README](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/README.MD) require Node.js 24 or newer and pnpm 11. Dependency versions are locked in `pnpm-lock.yaml`. Run in a separate directory:
 
 ```bash
@@ -358,14 +358,10 @@ Append `service-products` to the application URL printed at startup. For a base 
 
 The example uses the real API Client and HTTP endpoints, but stores products only in server memory. Its public demo API can rename three fixed products; it accesses no real business data and demonstrates neither identity permissions nor database persistence. Business applications should use their existing server authentication, authorization and data-access mechanisms.
 
-### Verify sharing, failures and cleanup
-
-From the example App root, run:
+From the example App root, run the service, page and API tests:
 
 ```bash
 pnpm exec vitest run tests/client/products-service.test.ts tests/client/service-products.test.tsx tests/server/demo-products.test.ts
 ```
 
-These tests cover singleton and notification behavior, form submission states and draft retention, and the demo API's data boundaries. Follow the preceding browser operations to check success, failure, cancellation and unmounting. The README provides browser automation commands.
-
-Also try a second tab: its counter starts at zero, and successful changes in another tab do not automatically refresh its list. **Refresh list** reads the products again. See [Testing and acceptance](testing-and-acceptance.md) for broader business data and permission checks.
+See the example README for test details and browser automation commands.

@@ -327,18 +327,6 @@ this.app.container.resolveIfCreated(productsServiceToken)?.dispose();
 
 [查看释放实现](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/providers/products.ts) · [查看单例、取消订阅与关闭测试](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/tests/client/products-service.test.ts)
 
-## 使用 Agent 开发客户端服务
-
-在已有商品页面和接口的应用中，可以向开发 Agent 提出需求：
-
-```text
-把多个页面使用的商品名称修改操作提取为一个客户端服务。
-保存成功后，让当前打开的商品列表和变更计数同步更新；失败时保留输入，允许重试。
-等待响应时可以取消请求，离开页面后清理订阅和请求。
-```
-
-将具体页面和接口名称替换为自己的应用内容。注册入口、API Client 注入和 React 订阅方式按前面的实现说明处理；验收时检查页面行为，而不只检查是否新增了服务类。
-
 ## 示例源码与运行
 
 [完整示例与 README](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/README.MD)需要 Node.js 24 或更高版本、pnpm 11，依赖版本由 `pnpm-lock.yaml` 锁定。在独立目录运行：

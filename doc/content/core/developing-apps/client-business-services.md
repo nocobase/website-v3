@@ -327,18 +327,6 @@ If a service creates connections, timers or background requests, it must close o
 
 [View disposal](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/providers/products.ts) · [View singleton, unsubscription and shutdown tests](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/tests/client/products-service.test.ts)
 
-## Develop a client service with an agent
-
-In an application with product pages and endpoints already available, ask your development Agent:
-
-```text
-Extract the product-renaming operation used by several pages into a client service.
-After a successful save, update the open product list and change counters. Keep my input if saving fails so I can retry.
-Let me cancel while waiting for a response, and clean up subscriptions and requests when I leave the page.
-```
-
-Substitute your application's page and endpoint names. Use the preceding implementation guidance for registration, API Client injection and React subscriptions. Verify page behavior rather than only checking that a service class was added.
-
 ## Example source and setup
 
 The [complete example and README](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/README.MD) require Node.js 24 or newer and pnpm 11. Dependency versions are locked in `pnpm-lock.yaml`. Run in a separate directory:

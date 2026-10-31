@@ -5,7 +5,7 @@ description: 在业务服务中划分事务，验证失败回滚、并发约束�
 
 事务用于让同一数据库连接中的一组操作共同提交或回滚。它应围绕一个明确的业务结果组织，例如确认任务和目标项目都允许操作后，再保存归属。
 
-本篇保留[建表与数据初始化](data-models-and-migrations.md)的历史 `tutorialTasks`／`tutorialProjects` 示例及其准备条件，不是当前入门教程的 `tasks` 模型。完整服务见[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)。
+本篇保留[历史项目的数据准备](https://github.com/nocobase/website-v3/blob/e7f20aeea2f9e63d396cb99a4e3775902823f3cb/doc/content/zh-CN/core/developing-apps/data-models-and-migrations.md)的历史 `tutorialTasks`／`tutorialProjects` 示例及其准备条件，不是当前入门教程的 `tasks` 模型。完整服务见[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)。
 
 ## 在服务中使用事务连接
 

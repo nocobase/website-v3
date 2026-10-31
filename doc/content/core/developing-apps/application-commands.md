@@ -24,7 +24,7 @@ Application commands are included in deployment builds, so their runtime package
 
 ## Example: export the status dictionary
 
-First complete the independent `appStatuses` example at the start of [Create tables and initialize data](data-models-and-migrations.md). Apply its migration and Seed to create the `code` and `title` fields and default records. This example does not depend on the historical project-and-task walkthrough later in that guide.
+First complete the independent `appStatuses` example at the start of [Create tables and initialize data](data-models-and-migrations.md). Apply its migration and Seed to create the `code` and `title` fields and default records. Adding the optional description field does not change the fields or default codes this command exports.
 
 Add `cli/commands/statuses/export.ts`:
 

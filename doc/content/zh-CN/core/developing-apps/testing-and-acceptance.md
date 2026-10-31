@@ -149,7 +149,7 @@ pnpm test --project node tests/server/users.test.ts
 
 数据库用例放在 `tests/database/`。使用 `describeMigration()` 检查迁移，用 `createDatabaseTest()` 检查查询、约束、Seed 结果和事务；二者均从 `@nocobase/app-testing/server` 导入。
 
-例如，完成[建表与数据初始化](data-models-and-migrations.md)中的 `appStatuses` 示例后，创建 `tests/database/app-statuses.test.ts`：
+例如，在自己的应用中完成[建表与数据初始化](data-models-and-migrations.md)的 `appStatuses` 示例后，创建 `tests/database/app-statuses.test.ts`。独立的 Database basics App 已包含更完整的测试，无需覆盖；下面展示最小写法：
 
 ```ts
 import { fileURLToPath } from 'node:url';

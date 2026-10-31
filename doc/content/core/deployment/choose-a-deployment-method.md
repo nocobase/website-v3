@@ -5,7 +5,7 @@ description: Deploy a production application independently with Docker or PM2 (a
 
 After developing and testing your application, deploy it independently to production on your own server with Docker or PM2. Docker runs the application in a container. PM2 supervises the Node.js process, while app-installer handles installation and updates.
 
-This section applies to your own NocoBase Core applications. Both guides use the [task example application](https://github.com/nocobase/docs-examples-v3/blob/0185e4bfa9d7ef05dd180245005a6c1024fe41de/apps/team-tasks/README.MD) as a worked example and provide **With an agent** and **Without an agent** paths.
+This section applies to your own NocoBase Core applications. Both guides use the [product catalog example application](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md) as a worked example and provide **With an agent** and **Without an agent** paths.
 
 ## Choose a method
 
@@ -23,7 +23,7 @@ Choose Docker if you already operate containers, or PM2 (app-installer) to super
 - **Separate runtime configuration**: prepare database, administrator, and service settings. Retain generated secrets and keep secret-bearing configuration out of the repository.
 - **Persistent data**: identify database and file storage locations and establish backup and recovery procedures.
 
-Build output includes pages, APIs, migrations, and runtime dependencies. It does not automatically include the development database, uploaded files, or runtime secrets. A new database runs migrations and required seeds. The task example application initializes its task roles but does not copy development tasks, team users, or role assignments. Other roles and grants created through administration pages also require a separate data migration if they must be retained.
+Build output includes pages, APIs, migrations, and runtime dependencies. It does not automatically include the development database, uploaded files, or runtime secrets. A new database runs migrations and required seeds. The product catalog example application initializes its catalog roles but does not copy development products, users, or role assignments. Other roles and grants created through administration pages also require a separate data migration if they must be retained.
 
 Running `node dist/server/standalone.js` can check a build artifact. A deployment also needs process supervision, configuration management, and persistent data storage.
 

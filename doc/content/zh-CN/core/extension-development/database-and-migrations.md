@@ -1,30 +1,19 @@
 ---
 title: 数据库资源与迁移
-description: 声明插件的迁移与 Seed 资源，由应用统一执行，并验证插件构建、安装与升级。
+description: 为插件声明迁移和 Seed 目录，接入应用默认连接，并验证资源构建、安装和升级。
 ---
 
-插件和应用共用 `defineMigration()`、`defineSeed()`、Repository 与事务机制。插件的区别在于资源由独立包维护，通过 Server 声明交给应用，并随插件版本构建和交付；插件本身不代表拥有独立数据库。
+插件通过 Server 声明提供迁移和 Seed，由安装它的应用统一执行。下面以 `notice-data` 插件的公告分类字典为例；建模、Context 和执行规则与应用共用，详细用法见[数据表与字段](../framework/database/schema.md)、[数据库迁移](../framework/database/migrations.md)和[初始数据](../framework/database/seeds.md)。
 
-本篇集中说明插件的资源接入。建表与初始化的完整实践见[建表与数据初始化](../developing-apps/data-models-and-migrations.md)，通用 API 和执行规则见[迁移](../framework/database/migrations.md)与[初始数据](../framework/database/seeds.md)。
+## 创建数据库资源目录
 
-## 使用 Agent
-
-```text
-请检查当前插件的数据库资源接入。
-明确迁移与 Seed 的职责，核对 Server 声明、baseDir 和源码、产物中的路径。
-任务名称要避免与应用及其他插件冲突，不在 Provider 启动时建表或插入初始数据。
-检查应用整体执行计划，验证空库安装、旧版本升级和编译资源加载。
-```
-
-## 创建数据库能力
-
-新建插件时，在 App 根目录选择 `database` 能力：
+新建插件时，在 App 根目录选择数据库能力：
 
 ```bash
 pnpm create @nocobase/plugin@beta notice-data --with database
 ```
 
-已有插件保留原有实现，补齐数据库目录和声明，不必重新创建。以下路径相对于 `packages/app-plugin-notice-data/`：
+已有插件直接补齐目录与声明，不必重新创建。以下插件文件路径相对于 `packages/app-plugin-notice-data/`：
 
 ```text
 server/
@@ -32,12 +21,16 @@ server/
 └── plugin.ts
 database/
 ├── migrations/
+│   └── 202611040020_notice_data_create_categories.ts
 └── seeds/
+    └── 202611040020_notice_data_default_categories.ts
 ```
 
-创建工具生成的 `.ts.example` 文件是草稿，不会执行。按实际需求编写 `.ts` 文件；不需要初始记录时，Seed 目录可以保持为空。
+插件目录没有 `main/` 这一层。创建工具生成的 `.ts.example` 是不会执行的草稿，按需求编写真正的 `.ts` 文件；没有初始数据时可省略 Seed 声明。
 
-`server/plugin.ts` 声明插件拥有的资源，`server/index.ts` 对外导出 Server 入口。下面是仅包含数据库能力的声明；已有插件应保留其他贡献：
+## 声明资源路径与连接归属
+
+在 `server/plugin.ts` 中声明资源，已有插件保留其他贡献：
 
 ```ts
 import path from 'node:path';
@@ -46,32 +39,72 @@ import { defineServerPlugin, type AppServerPlugin } from '@nocobase/app-server/p
 const plugin: AppServerPlugin = defineServerPlugin({
   packageName: '@nocobase/app-plugin-notice-data',
   baseDir: path.resolve(import.meta.dirname, '..'),
-  database: { migrations: './database/migrations', seeds: './database/seeds' },
+  database: {
+    migrations: './database/migrations',
+    seeds: './database/seeds',
+  },
 });
+
 export default plugin;
 ```
 
-`baseDir` 必须是绝对路径，资源路径相对于它。源码运行时指向插件根目录；编译后从 `dist/server/plugin.js` 出发，指向 `dist/` 内的迁移与 Seed。不要写死开发机器上的路径。创建目录、声明资源和执行任务是不同的步骤。
+`server/index.ts` 对外导出入口：
 
-## 编写迁移
+```ts
+export { default } from './plugin.js';
+```
 
-迁移放在 `database/migrations/`，使用与应用相同的 `defineMigration()`。建表、字段、索引和升级中的数据变更，按[迁移机制](../framework/database/migrations.md)编写，不需要插件专用的数据库 API。
+`baseDir` 必须是绝对路径，资源路径以 `./` 开头且不能向父目录跳转。上例在源码中解析到插件根目录，在 `dist/server/plugin.js` 中解析到 `dist/`。因此编译后也必须包含相应数据库目录。
 
-文件名和声明中的 `name` 保持一致，并带上插件标识，例如 `202610260001_notice_data_create_entries`。应用会合并各来源的任务并按名称排序；名称需要在应用与全部插件中唯一，插件内的迁移也不是独立执行的一整组。依赖其他插件的数据结构时，明确前置版本与迁移顺序。
+插件声明的迁移和 Seed 仅贡献到应用的默认连接，即 `database.default` 指定的连接，不保证名称是 `main`。插件声明没有选择另一个连接的选项，也不创建自己的数据库。目录存在、资源声明、应用注册和任务执行是不同环节。
 
-迁移必须自包含，已交付的文件保持不可变。后续变化新增迁移，不通过修改旧文件升级已有应用。回滚可能删除数据，需要独立评估；不要在 Provider 启动时执行建表逻辑。
+## 编写迁移与初始数据
 
-## 初始数据
+在 `database/migrations/202611040020_notice_data_create_categories.ts` 创建字典：
 
-插件正常运行必需的固定记录放在 `database/seeds/`，默认导出 `defineSeed()` 声明。名称同样带插件标识，并与文件名一致。资源路径已经由前面的 `database.seeds` 声明，不需要另一套注册机制。写法见[定义 Seed](../framework/database/seeds.md#定义-seed)。
+```ts
+import { defineMigration } from '@nocobase/db';
 
-Seed 依赖的结构先由迁移建立。用稳定业务键与数据库唯一约束识别记录，明确已有数据应跳过、报错，还是仅更新插件拥有的字段；不能无条件覆盖管理员的修改。成功任务按历史跳过，已交付 Seed 保持不可变，后续变化新增文件。
+export default defineMigration({
+  name: '202611040020_notice_data_create_categories',
+  async up({ builder }) {
+    await builder.createCollection('noticeCategories', (c) => {
+      c.string('code', { length: 32 }).primary().notNull();
+      c.string('title', { length: 100 }).notNull();
+    });
+  },
+  async down({ builder }) {
+    await builder.dropCollection('noticeCategories');
+  },
+});
+```
 
-Seed 没有迁移的 `down()`。用户创建的记录通过业务服务写入，演示数据放在测试 fixture 中，升级回填按业务目的设计迁移；不要把这些操作都放进发布 Seed。
+任务名称带插件标识，避免与应用及其他插件重名。所有来源在同一连接中按名称统一排序，不按插件注册顺序分组。依赖其他插件的结构时，明确前置版本和迁移顺序，不能仅依赖“先注册了它”。
 
-## 注册后应用到 App
+在 `database/seeds/202611040020_notice_data_default_categories.ts` 安装默认分类：
 
-先接入插件的 Server 入口，再查看当前应用的整体执行计划。以下命令在 App 根目录执行：
+```ts
+import { defineSeed } from '@nocobase/db';
+
+export default defineSeed({
+  name: '202611040020_notice_data_default_categories',
+  async run(context) {
+    const categories = context.repository('noticeCategories');
+    if (await categories.findOne({ filter: { code: 'general' } })) return;
+    await categories.createOne({ values: { code: 'general', title: 'General' } });
+  },
+});
+```
+
+应用迁移完成后执行 Seed，得到 `general` / `General`。已有分类保留管理员修改。不要在 Provider 启动时创建这些表或反复插入默认记录。
+
+虚构公告等可选演示内容使用单独的 `sample: true` Seed，由宿主的首次安装与 `app.sampleData` 配置控制；普通 Seed 不会自动识别示例数据。若生成示例必须调用其他插件服务，可在 Provider 的 `boot()` 中通过 `sampleDataToken` 注册生成器，等应用就绪后执行，而不是在 `boot()` 当场写入。服务名称也应包含插件标识。具体执行条件见[可选示例数据](../framework/database/seeds.md#必需数据与可选示例数据)。
+
+已合入或发布的迁移、Seed 保持不可变，后续修改新增文件。结构变更及历史回填写在迁移中，不能用 Seed 反复覆盖用户数据。
+
+## 注册插件并执行变更
+
+本地插件已是应用可解析的工作区依赖后，在 App 根目录预览并注册：
 
 ```bash
 pnpm nocobase plugin register @nocobase/app-plugin-notice-data --no-install --dry-run
@@ -80,27 +113,60 @@ pnpm nocobase db apply --dry-run
 pnpm nocobase db apply
 ```
 
-`--no-install` 要求本地插件已是应用可解析的工作区依赖。`db apply` 先执行迁移，再执行 Seed；计划包含应用和全部已注册插件的待执行任务，不只包含当前插件。执行前检查输出，不要用 `db reset` 代替日常升级。
+`--no-install` 只跳过安装，不能替代工作区依赖配置。检查 Server 入口已进入 `server/plugins.ts`，详细注册方法见[插件声明与公开入口](plugin-declarations.md#运行端入口)。
 
-资源声明不会自动开放 CRUD 接口或添加菜单。运行时读写仍通过服务使用应用的数据库能力，方法见[查询与操作数据](../developing-apps/querying-data.md)和[事务与数据一致性](../developing-apps/transactions-and-consistency.md)。
+数据库计划应包含上述迁移与 Seed，也可能包含应用和其他插件的待执行任务。首次执行后应能解析 `noticeCategories` 并读到默认分类；重复执行应跳过成功历史。`db apply` 不是只运行当前插件的命令。
 
-## 用真实数据库验证
+资源声明不会自动开放 CRUD 接口或添加菜单。业务访问需要单独实现接口和权限；数据访问 API 见[Repository](../framework/database/repositories.md)，接口接入见[路由与 HTTP 接口](server-apis.md)。
 
-插件的数据库测试放在 `tests/database/`，复用 `@nocobase/app-testing/server`。使用 `describeMigration()` 时，将插件迁移目录与包名作为来源；依赖其他插件集合时，也提供前置迁移来源。验证应用、回滚和重新应用后的真实结构，而不仅检查文件可以导入。
+## 验证安装与升级
 
-Seed 验证首次安装、已有记录、重复执行、失败恢复，以及升级时用户修改是否保留。使用隔离测试数据库和真实实现，测试工具与示例见[数据库与命令行测试](../developing-apps/testing-and-acceptance.md#数据库与命令行测试)。
+在插件的 `tests/database/categories.test.ts` 中使用真实迁移来源：
 
-## 构建与升级检查
+```ts
+import { fileURLToPath } from 'node:url';
+import { describeMigration } from '@nocobase/app-testing/server';
+import metadata from '../../package.json' with { type: 'json' };
 
-保留脚手架的插件构建步骤：TypeScript 编译后运行 `nocobase-db-manifests`，让源码与编译任务使用对应的校验清单。不要手工修改清单，也不要省略这个步骤。
+describeMigration('202611040020_notice_data_create_categories', {
+  sources: [{
+    packageName: metadata.name,
+    directory: fileURLToPath(new URL('../../database/migrations/', import.meta.url)),
+  }],
+  up: async ({ expectCollection }) => {
+    await expectCollection('noticeCategories').toHaveField('code', {
+      type: 'string', nullable: false,
+    });
+  },
+  down: async ({ expectCollection }) => {
+    await expectCollection('noticeCategories').not.toExist();
+  },
+});
+```
 
-在 App 根目录运行插件检查和应用构建：
+`describeMigration()` 会应用迁移、检查结构和元数据、回退并重新应用。实际业务还应断言重复分类编码被拒绝；Seed 测试应检查首次安装、已有名称保留和失败重试。依赖其他插件集合时，为测试补齐前置迁移来源或使用完整 App 测试夹具。
+
+在 App 根目录运行：
+
+```bash
+pnpm --filter @nocobase/app-plugin-notice-data exec vitest run tests/database/categories.test.ts
+```
+
+新增升级迁移时，先准备旧版本数据，再验证升级后的记录与约束。测试工具的共同用法见[数据库与命令行测试](../developing-apps/testing-and-acceptance.md#数据库与命令行测试)。
+
+## 构建和交付数据库资源
+
+保留脚手架的编译和 `nocobase-db-manifests` 步骤，后者为编译后的迁移、Seed 生成校验清单。插件自己生成清单，应用不应替已安装依赖重新生成；原理见[校验和与编译产物](../framework/database/migrations.md#校验和与编译产物)。
+
+在 App 根目录完成插件检查和应用构建：
 
 ```bash
 pnpm --filter @nocobase/app-plugin-notice-data check
 pnpm build
 ```
 
-检查插件产物与发布包中的 `dist/database/migrations/`、实际使用的 `dist/database/seeds/` 及清单，确认编译后的 Server 入口能够定位资源。交付前验证空库安装和旧版本升级两条路径；只在工作区源码下通过不代表安装包可用。
+检查发布包包含 `dist/database/migrations/`、实际使用的 `dist/database/seeds/`，以及各目录中的 `.manifest.json`。在隔离应用中分别验证编译产物的空库安装和旧版本升级，确认 `baseDir` 能找到资源；工作区源码测试通过不代表发布包内容齐全。
 
-移除插件注册不会自动删除已有结构和数据；数据保留、清理与迁移回滚需要单独决定。更多交付检查见[测试与验证](testing-and-verification.md)和[构建与发布](publish-plugin.md)。
+移除插件注册不会自动删除已有结构和数据。回退使用应用的批次规则，可能同时影响其他插件，不能把 `db rollback` 当作插件卸载命令。交付检查见[构建与发布](publish-plugin.md)。
+
+[资源声明类型](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/app/app-server/src/plugins/types.ts)、[脚手架声明](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/tools/create-plugin/template/server/plugin.ts)和 [脚手架测试](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/tools/create-plugin/template/tests/database/migrations.test.ts)。

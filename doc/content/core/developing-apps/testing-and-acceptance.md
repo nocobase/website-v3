@@ -149,7 +149,7 @@ Hiding a page entry does not verify API authorization. When changing initial rol
 
 Put database tests in `tests/database/`. Use `describeMigration()` for migrations and `createDatabaseTest()` for queries, constraints, Seed results and transactions. Import both from `@nocobase/app-testing/server`.
 
-After completing the `appStatuses` example in [Create tables and initialize data](data-models-and-migrations.md), create `tests/database/app-statuses.test.ts`:
+After adding the `appStatuses` example from [Create tables and initialize data](data-models-and-migrations.md) to your own application, create `tests/database/app-statuses.test.ts`. The standalone Database basics App already includes more complete tests; keep those when using it. This shows the minimal form:
 
 ```ts
 import { fileURLToPath } from 'node:url';

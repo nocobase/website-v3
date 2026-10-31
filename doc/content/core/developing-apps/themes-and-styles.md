@@ -44,7 +44,7 @@ Choose classes by purpose rather than a fixed color. The catalog panel uses `bg-
 </section>
 ```
 
-`DataTable` is the application's existing table component; `columns` and `products` are defined in this page. See the [product page source](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/pages/products/index.tsx) for imports, column definitions, and data.
+`DataTable` is the application's existing table component; `columns` and `products` are defined in this page. See the [product page source](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/pages/products/index.tsx) for imports, column definitions, and data.
 
 Select surface and foreground classes together:
 
@@ -57,7 +57,7 @@ Select surface and foreground classes together:
 | Supporting text | `text-muted-foreground` |
 | Dividers and error text | `border-border`, `text-destructive` |
 
-Reuse existing buttons, inputs, and dialogs, which already handle hover, focus, and disabled states. When validation fails, set `aria-invalid` and show an error message rather than relying on color alone. See the [edit form source](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/pages/products/edit.tsx).
+Reuse existing buttons, inputs, and dialogs, which already handle hover, focus, and disabled states. When validation fails, set `aria-invalid` and show an error message rather than relying on color alone. See the [edit form source](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/pages/products/edit.tsx).
 
 Select **Light → Compact** to inspect panels, the table, and status badges. Then select **Dark**: the same components use the dark tokens.
 
@@ -97,11 +97,11 @@ Selecting **Compact** tightens the product panels, buttons, and table, as shown 
 
 The template's Compact and Spacious presets share colors, fonts, and shadows; they differ in density. Change both files when updating their shared palette or fonts. Add a separate preset when you want to retain a different appearance alongside them. Keep existing IDs: browser preferences and configuration refer to them.
 
-[View the Compact preset source](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/theme/themes/compact.css)
+[View the Compact preset source](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/theme/themes/compact.css)
 
 ### Add a brand preset
 
-Copy a complete preset to `client/theme/themes/brand.css` and change the IDs in its selectors to `brand`. Retain all color and non-color tokens, then adjust the values you need. The excerpt below shows selected changes; the [complete Brand preset](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/theme/themes/brand.css) includes the remaining tokens.
+Copy a complete preset to `client/theme/themes/brand.css` and change the IDs in its selectors to `brand`. Retain all color and non-color tokens, then adjust the values you need. The excerpt below shows selected changes; the [complete Brand preset](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/theme/themes/brand.css) includes the remaining tokens.
 
 ```css
 /* client/theme/themes/brand.css: excerpt */
@@ -163,7 +163,7 @@ Then connect the preset in three places:
    },
    ```
 
-The [stylesheet entry](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/styles.css), [preset registry](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/theme/theme-presets.ts), and [locale sources](https://github.com/nocobase/docs-examples-v3/tree/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/locales) contain the complete implementation.
+The [stylesheet entry](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/styles.css), [preset registry](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/theme/theme-presets.ts), and [locale sources](https://github.com/nocobase/docs-examples-v3/tree/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/locales) contain the complete implementation.
 
 The appearance panel lists the new preset automatically. Select **Brand**, then **Light** and **Dark**, to see the primary color, heading font, and radii change together.
 
@@ -202,7 +202,7 @@ Select **System**. The page's **Applied mode** reads `resolvedTheme`. Change the
 
 ![System mode with the applied light appearance](/assets/core/themes-and-styles/system-light.png)
 
-[View the color mode component](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/pages/products/appearance-controls.tsx)
+[View the color mode component](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/pages/products/appearance-controls.tsx)
 
 ### Change the theme preset
 
@@ -234,7 +234,7 @@ Choose a preset on the product page, then open **Appearance** in the upper-right
 
 ![Appearance panel showing Brand and its dark thumbnail](/assets/core/themes-and-styles/appearance-preview.png)
 
-[View the preset component](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/pages/products/appearance-controls.tsx)
+[View the preset component](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/pages/products/appearance-controls.tsx)
 
 ## Configure appearance defaults
 
@@ -267,7 +267,7 @@ Restore the example's initial configuration:
 pnpm nocobase config set client.app.defaultColorScheme=system client.app.defaultTheme=compact --json
 ```
 
-[View the example configuration](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/config.example.yml)
+[View the example configuration](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/config.example.yml)
 
 ### Defaults and saved preferences
 
@@ -277,7 +277,7 @@ To verify this, select **Light → Spacious** in one window, then change the con
 
 Preferences are isolated by browser origin and application deployment path. They do not synchronize through the signed-in account across devices. When storage is unavailable, selections still work for the current page but may not survive a reload.
 
-[View the preference resolution source](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/theme/theme-preferences.ts)
+[View the preference resolution source](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/theme/theme-preferences.ts)
 
 ## Check the theme in use
 
@@ -302,12 +302,12 @@ These tests cover token completeness, preference fallbacks, switching, and form 
 
 ## Example source and setup
 
-The [complete example and README](https://github.com/nocobase/docs-examples-v3/tree/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles) require Node.js 24 or later and pnpm 11. Dependencies are locked in the committed `pnpm-lock.yaml`. Get the source in a separate directory:
+The [complete example and README](https://github.com/nocobase/docs-examples-v3/tree/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles) require Node.js 24 or later and pnpm 11. Dependencies are locked in the committed `pnpm-lock.yaml`. Get the source in a separate directory:
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
-git checkout b0f1701944a1243b5939c88c4486966db9c09e61
+git checkout d2a4fc7ef80558996299c2475abeefe049aa6874
 cd apps/themes-and-styles
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite --json

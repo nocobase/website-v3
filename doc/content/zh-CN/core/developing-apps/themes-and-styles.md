@@ -44,7 +44,7 @@ description: 使用语义样式编写组件，定制主题预设，通过 Hook �
 </section>
 ```
 
-`DataTable` 是应用已有的表格组件，`columns` 和 `products` 来自该页面。完整导入、列定义和数据见[商品页源码](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/pages/products/index.tsx)。
+`DataTable` 是应用已有的表格组件，`columns` 和 `products` 来自该页面。完整导入、列定义和数据见[商品页源码](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/pages/products/index.tsx)。
 
 常用颜色按用途成对选择：
 
@@ -57,7 +57,7 @@ description: 使用语义样式编写组件，定制主题预设，通过 Hook �
 | 辅助说明 | `text-muted-foreground` |
 | 分隔线、错误文字 | `border-border`、`text-destructive` |
 
-按钮、输入框和弹窗优先复用已有组件，它们已处理悬停、焦点和禁用状态。表单校验失败时设置 `aria-invalid`，同时显示文字错误，不能只改变颜色。商品编辑表单的实现见[表单源码](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/pages/products/edit.tsx)。
+按钮、输入框和弹窗优先复用已有组件，它们已处理悬停、焦点和禁用状态。表单校验失败时设置 `aria-invalid`，同时显示文字错误，不能只改变颜色。商品编辑表单的实现见[表单源码](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/pages/products/edit.tsx)。
 
 在示例页选择 **Light → Compact**，可看到面板、表格和状态标签；再选择 **Dark**，相同组件便使用深色变量。
 
@@ -97,11 +97,11 @@ description: 使用语义样式编写组件，定制主题预设，通过 Hook �
 
 模板的紧凑与宽松预设共享配色、字体和阴影，只在密度上不同。若改变它们共同使用的主色或字体，应同步修改两个文件；需要保留一套不同外观时，增加独立预设。保持已有 ID 不变，浏览器偏好和配置都通过 ID 引用预设。
 
-[查看紧凑预设源码](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/theme/themes/compact.css)
+[查看紧凑预设源码](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/theme/themes/compact.css)
 
 ### 添加品牌预设
 
-从完整预设复制一份 `client/theme/themes/brand.css`，将选择器中的 ID 改为 `brand`。保留全部颜色和非颜色变量，再修改所需值。下面只摘录品牌预设中调整的部分，完整文件见[品牌预设源码](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/theme/themes/brand.css)：
+从完整预设复制一份 `client/theme/themes/brand.css`，将选择器中的 ID 改为 `brand`。保留全部颜色和非颜色变量，再修改所需值。下面只摘录品牌预设中调整的部分，完整文件见[品牌预设源码](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/theme/themes/brand.css)：
 
 ```css
 /* client/theme/themes/brand.css，节选 */
@@ -163,7 +163,7 @@ description: 使用语义样式编写组件，定制主题预设，通过 Hook �
    },
    ```
 
-[样式入口](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/styles.css)、[预设注册](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/theme/theme-presets.ts)和[翻译源码](https://github.com/nocobase/docs-examples-v3/tree/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/locales)包含完整实现。
+[样式入口](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/styles.css)、[预设注册](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/theme/theme-presets.ts)和[翻译源码](https://github.com/nocobase/docs-examples-v3/tree/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/locales)包含完整实现。
 
 外观面板会自动列出新预设，不需要修改面板组件。在商品页选择 **Brand**，再分别选择 **Light** 和 **Dark**，按钮主色、标题字体和圆角一起变化。
 
@@ -202,7 +202,7 @@ const { theme, resolvedTheme, setTheme } = useTheme();
 
 ![系统模式下显示实际应用的浅色外观](/assets/core/themes-and-styles/system-light.png)
 
-[查看模式切换组件源码](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/pages/products/appearance-controls.tsx)
+[查看模式切换组件源码](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/pages/products/appearance-controls.tsx)
 
 ### 切换主题预设
 
@@ -234,7 +234,7 @@ const { preset, setPreset } = useThemePreset();
 
 ![外观面板显示品牌预设和深色缩略图](/assets/core/themes-and-styles/appearance-preview.png)
 
-[查看预设切换组件源码](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/pages/products/appearance-controls.tsx)
+[查看预设切换组件源码](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/pages/products/appearance-controls.tsx)
 
 ## 设置默认外观
 
@@ -267,7 +267,7 @@ client:
 pnpm nocobase config set client.app.defaultColorScheme=system client.app.defaultTheme=compact --json
 ```
 
-[查看配置样例](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/config.example.yml)
+[查看配置样例](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/config.example.yml)
 
 ### 默认值与已保存偏好的优先级
 
@@ -277,7 +277,7 @@ pnpm nocobase config set client.app.defaultColorScheme=system client.app.default
 
 偏好按浏览器来源和应用部署路径隔离，不随登录账号在设备间同步。存储不可用时，切换仍可在当前页面生效，但不能保证刷新后保留。
 
-[查看偏好解析源码](https://github.com/nocobase/docs-examples-v3/blob/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles/client/theme/theme-preferences.ts)
+[查看偏好解析源码](https://github.com/nocobase/docs-examples-v3/blob/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles/client/theme/theme-preferences.ts)
 
 ## 检查主题效果
 
@@ -302,12 +302,12 @@ pnpm exec tsc -p tsconfig.json --noEmit
 
 ## 示例源码与运行
 
-[完整示例与 README](https://github.com/nocobase/docs-examples-v3/tree/b0f1701944a1243b5939c88c4486966db9c09e61/apps/themes-and-styles)使用 Node.js 24 或更高版本、pnpm 11，依赖锁定在提交中的 `pnpm-lock.yaml`。在独立目录获取源码：
+[完整示例与 README](https://github.com/nocobase/docs-examples-v3/tree/d2a4fc7ef80558996299c2475abeefe049aa6874/apps/themes-and-styles)使用 Node.js 24 或更高版本、pnpm 11，依赖锁定在提交中的 `pnpm-lock.yaml`。在独立目录获取源码：
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
-git checkout b0f1701944a1243b5939c88c4486966db9c09e61
+git checkout d2a4fc7ef80558996299c2475abeefe049aa6874
 cd apps/themes-and-styles
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite --json

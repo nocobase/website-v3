@@ -78,7 +78,7 @@ pnpm exec nocobase-examples user options --json
 
 ## 怎样提供自己的业务命令
 
-先编写、注册并验证业务 HTTP 接口，见[路由与 HTTP 接口](apis-and-services.md)。CLI 使用同一份接口描述，不需要在 `cli/commands/` 中另写一个重复的实现。
+先编写、注册并验证业务 HTTP 接口，见[HTTP 路由与接口](apis-and-services.md)。CLI 使用同一份接口描述，不需要在 `cli/commands/` 中另写一个重复的实现。
 
 用户插件的 `/options` 接口在 `describeRoute()` 的元数据中展开 `cliRoute({ command: 'user options' })`。等价的 CLI 元数据可这样取得，再通过 `...cliMetadata` 合并进现有声明：
 

@@ -122,7 +122,7 @@ export default defineDocsConfig({
     { id: 'start', dir: 'start', extra: ['index'], home: 'index', title: { en: 'Start', 'zh-CN': '开始' } },
     { id: 'core', dir: 'core', home: 'core/index', title: { en: 'Core', 'zh-CN': 'Core' } },
     { id: 'studio', dir: 'studio', home: 'studio/index', title: { en: 'Studio', 'zh-CN': 'Studio' } },
-    { id: 'guides', dir: 'guides', home: 'guides/build-sustainable-enterprise-apps', title: { en: 'Tutorials', 'zh-CN': '教程' } },
+    { id: 'guides', dir: 'guides', home: 'guides/build-reliable-enterprise-apps', title: { en: 'Tutorials', 'zh-CN': '教程' } },
   ],
   nav: {
     github: 'https://github.com/nocobase/nocobase',

@@ -102,7 +102,7 @@ A route factory receives the application and returns a Hono Router. Register the
 
 Import OpenAPI description helpers from `@nocobase/app-server/router` to avoid mixing metadata registries from separate dependency copies. With access checks enabled, the application exposes the UI at `/api/swagger` and the document at `/api/swagger/docs`. Default-template access remains subject to identity and permission checks; these are not automatically anonymous endpoint directories.
 
-See [Routes and HTTP APIs](../developing-apps/apis-and-services.md) and [Plugin server APIs](../extension-development/server-apis.md) for complete examples.
+See [HTTP routes and APIs](../developing-apps/apis-and-services.md) and [Plugin server APIs](../extension-development/server-apis.md) for complete examples.
 
 ## Configuration
 

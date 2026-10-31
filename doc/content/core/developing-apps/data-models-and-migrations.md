@@ -480,6 +480,6 @@ Seeds provide the initial records an application needs to operate. Projects in t
 
 ### Further reading
 
-[Routes and HTTP APIs](apis-and-services.md) explains how to expose data operations to pages: validate input, check project and task permissions, and translate business failures into consistent API errors. [Application development overview](overview.md) shows how the parts fit together.
+[HTTP routes and APIs](apis-and-services.md) explains how to expose data operations to pages: validate input, check operation permissions, and translate business failures into consistent API errors. [Application development overview](overview.md) shows how the parts fit together.
 
 Migrations and Seeds belong to individual connections; see [Multiple database connections](multiple-databases.md). For schemas owned by another system, follow [Connect an existing database](existing-databases.md) and keep handwritten `metadata/` separate from generated `collections/`.

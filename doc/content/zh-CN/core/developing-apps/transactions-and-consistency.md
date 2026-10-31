@@ -31,7 +31,7 @@ await database.transaction(async (connection) => {
 });
 ```
 
-这是事务结构示意；正式服务使用可区分的业务错误，再由路由转换为 API 错误，见[路由与 HTTP 接口](apis-and-services.md)。事务中调用外层的 `database.repository()` 会离开本次事务；捕获错误后正常返回则可能提交部分工作。
+这是事务结构示意；正式服务使用可区分的业务错误，再由路由转换为 API 错误，见[HTTP 路由与接口](apis-and-services.md)。事务中调用外层的 `database.repository()` 会离开本次事务；捕获错误后正常返回则可能提交部分工作。
 
 事务不自动解决并发覆盖。同一任务被两个人修改时，如果业务不接受“最后一次成功写入生效”，还需要版本条件等并发控制。通知等外部副作用放到提交之后处理；`connection.afterCommit()` 适合提交后触发工作，但其失败不能撤销已经提交的数据，也不保证外部消息可靠送达。
 
@@ -62,4 +62,4 @@ await database.transaction(async (connection) => {
 
 在隔离数据库中，至少覆盖成功提交、第一步写入后第二步失败，以及提交后回调失败。失败后必须重新读取数据，确认是否回滚；只断言抛错不能证明原记录未改变。
 
-再验证唯一键竞争、版本冲突、权限范围和连接隔离。SQLite 测试可以验证基础规则，但不能替代目标数据库的隔离级别、锁及 DDL 行为验证。项目示例的真实接口测试见[路由与 HTTP 接口](apis-and-services.md)，通用测试组织见[测试与验收](testing-and-acceptance.md)。
+再验证唯一键竞争、版本冲突、权限范围和连接隔离。SQLite 测试可以验证基础规则，但不能替代目标数据库的隔离级别、锁及 DDL 行为验证。项目示例的真实接口测试见[历史项目接口示例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)，通用测试组织见[测试与验收](testing-and-acceptance.md)。

@@ -43,7 +43,7 @@ export function createReportJob(generateReport: GenerateReport) {
 
 Job constructors accept only persistable JSON payloads. Bind dependencies through the factory rather than putting connections, containers, functions or request objects into payloads. `jobName` is a stable type name; every consumer process must register its implementation before consumption starts.
 
-`generateReport` provides business behavior using a report ID and cancellation signal; it can call a [Server business service](server-business-services.md). The Provider below binds logging to demonstrate execution. It does not generate report files.
+`generateReport` provides business behavior using a report ID and cancellation signal; it can call a [server-side service](server-business-services.md). The Provider below binds logging to demonstrate execution. It does not generate report files.
 
 ## Start and stop in a Provider
 
@@ -146,7 +146,7 @@ The example submits a job at 02:00 in Shanghai each day. Schedule success means 
 - Choose either `cron` or `every`; `every` uses milliseconds. Specify `tz` for Cron.
 - Keep scopes, job types and rule names stable. Update existing names; renaming does not remove old rules. Use `shutdown()` when stopping and `removeJob()` for intentional rule deletion.
 - Retries can repeat execution. The report ID can support business deduplication, but executors do not automatically deduplicate by it. The actual report service must implement idempotency.
-- Database changes and submission are not one transaction. Persist pending deliveries and provide recovery when reliability requires it; see [Server business services](server-business-services.md).
+- Database changes and submission are not one transaction. Persist pending deliveries and provide recovery when reliability requires it; see [Server-side services](server-business-services.md).
 - Background work has no browser identity. Define system or user task scopes explicitly rather than trusting client-supplied policies in payloads.
 
 Without `jobs.default`, the template uses a single-process memory executor and writes state under `storage/jobs/` on normal shutdown. This does not guarantee crash recovery or distribute work across instances. Configure a shared backend for multiple instances. See [Background jobs and executors](../framework/background/jobs.md) and [Scheduled execution](../framework/background/scheduling.md) for configuration and retries. `jobs` and the lower-level `queue` have separate configuration.

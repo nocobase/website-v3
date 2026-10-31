@@ -82,7 +82,7 @@ pnpm nocobase db apply
 
 `--no-install` 要求本地插件已是应用可解析的工作区依赖。`db apply` 先执行迁移，再执行 Seed；计划包含应用和全部已注册插件的待执行任务，不只包含当前插件。执行前检查输出，不要用 `db reset` 代替日常升级。
 
-资源声明不会自动开放 CRUD 接口或添加菜单。运行时读写仍通过服务端业务服务使用应用的数据库能力，方法见[查询与操作数据](../developing-apps/querying-data.md)和[事务与数据一致性](../developing-apps/transactions-and-consistency.md)。
+资源声明不会自动开放 CRUD 接口或添加菜单。运行时读写仍通过服务使用应用的数据库能力，方法见[查询与操作数据](../developing-apps/querying-data.md)和[事务与数据一致性](../developing-apps/transactions-and-consistency.md)。
 
 ## 用真实数据库验证
 

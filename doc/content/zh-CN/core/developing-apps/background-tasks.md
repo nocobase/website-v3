@@ -43,7 +43,7 @@ export function createReportJob(generateReport: GenerateReport) {
 
 任务构造函数只接收可持久化的 JSON 载荷。依赖通过工厂函数绑定，不把数据库连接、服务容器、函数或请求对象放进载荷。`jobName` 是稳定的任务类型名称；所有消费进程都必须在启动消费前注册同名实现。
 
-`generateReport` 是实际业务实现；它接收业务 ID 和取消信号，可以调用[服务端业务服务](server-business-services.md)。下面先绑定日志输出，验证运行链路，不会真正生成报表文件。
+`generateReport` 是实际业务实现；它接收业务 ID 和取消信号，可以调用[服务端服务](server-business-services.md)。下面先绑定日志输出，验证运行链路，不会真正生成报表文件。
 
 ## 在 Provider 中启动与关闭
 
@@ -146,7 +146,7 @@ export default serviceProviders;
 - `cron` 与 `every` 二选一；`every` 的单位是毫秒。Cron 显式写 `tz`。
 - scope、任务类型和规则名称保持稳定。修改规则沿用名称；更名不会自动删除旧规则。关闭时用 `shutdown()`，业务删除规则才用 `removeJob()`。
 - 重试可能重复执行。上例的报表 ID 可以作为业务去重依据，但执行器不会自动按该 ID 去重；真正的生成服务必须自行实现幂等。
-- 数据写入与投递不是同一个事务。需要可靠交付时，持久化待投递记录并提供恢复逻辑，见[服务端业务服务](server-business-services.md)。
+- 数据写入与投递不是同一个事务。需要可靠交付时，持久化待投递记录并提供恢复逻辑，见[服务端服务](server-business-services.md)。
 - 后台任务没有浏览器请求身份。明确系统任务或用户任务的权限范围，不要把客户端提供的权限策略直接作为可信载荷。
 
 未配置 `jobs.default` 时，模板使用单进程 memory 执行器，在正常关闭时把状态写到 `storage/jobs/`。它不能保证崩溃恢复，也不负责多个实例之间分配工作。多实例应配置共享执行后端；具体配置与重试参数见[后台任务与执行器](../framework/background/jobs.md)和[周期调度](../framework/background/scheduling.md)。这里的 `jobs` 配置与低层 `queue` 配置分开。

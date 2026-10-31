@@ -156,7 +156,7 @@ The last command creates `statuses.json`. Running it again with the same output 
 | Resolve the database or business services | Call `app.registerProviders()` inside the callback, then use `app.container` |
 | Use the full startup lifecycle | Call `await app.start()` inside the callback |
 
-`withApp()` creates the application, runs the callback, then shuts it down and destroys the runtime, including when the callback fails. It does not register or start providers automatically. `app.config` and `app.paths` need no registration. Start the full lifecycle only when needed: doing so may also start consumers and schedules. See [Server business services](server-business-services.md) for service organization.
+`withApp()` creates the application, runs the callback, then shuts it down and destroys the runtime, including when the callback fails. It does not register or start providers automatically. `app.config` and `app.paths` need no registration. Start the full lifecycle only when needed: doing so may also start consumers and schedules. See [Server-side services](server-business-services.md) for service organization.
 
 Use the application object only inside the callback and return plain result data. Cleanup failures become warnings so that completed work is not reported as failed and inadvertently repeated.
 

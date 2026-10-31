@@ -26,7 +26,7 @@ database/
 | Create tables or change fields, relations, indexes and constraints | Migration |
 | Transform or backfill existing records during an upgrade | Data operations in a Migration |
 | Install default statuses, categories and similar records | Seed |
-| Create and edit ordinary business records | Server business services and APIs |
+| Create and edit ordinary business records | Services and APIs |
 
 Migrations can change data too; Seeds are not the entry point for all writes.
 

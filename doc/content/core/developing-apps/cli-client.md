@@ -78,7 +78,7 @@ pnpm exec nocobase-examples user options --json
 
 ## Expose your own business commands
 
-First implement, register and verify the HTTP API as described in [Routes and HTTP APIs](apis-and-services.md). The CLI uses that same API description without a duplicate implementation under `cli/commands/`.
+First implement, register and verify the HTTP API as described in [HTTP routes and APIs](apis-and-services.md). The CLI uses that same API description without a duplicate implementation under `cli/commands/`.
 
 The users plugin spreads `cliRoute({ command: 'user options' })` into its `/options` route's `describeRoute()` metadata. Equivalently, obtain the metadata below and spread `...cliMetadata` into the existing declaration:
 

@@ -147,7 +147,7 @@ These are object-property fragments. Merge them into the existing locale objects
 
 ## Enforce authorization in endpoints
 
-[Routes and HTTP APIs](apis-and-services.md) retains the complete route implementation. The sequence is:
+[Historical project API example](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md) retains the complete route implementation. The sequence is:
 
 1. Mount `auth.required()` and `authz.middleware()` on this contribution's business paths.
 2. Use `c.get('authz')` to `authorize()` the specific action on `tutorial.projects`.
@@ -198,6 +198,6 @@ The tests below create roles and assign them to isolated users through the real 
 | Both scopes allow the operation | Successful update, confirmed by reading it back |
 | Request after revoking the action from the role | Denied, without reusing an earlier authorization decision |
 
-Administrator success does not verify ordinary users' scopes. Download the [complete endpoint tests](/assets/core/downloads/tutorial-tasks-project-api.test.ts) and run them with the historical setup in [Routes and HTTP APIs](apis-and-services.md). They use real authentication, authorization and isolated databases.
+Administrator success does not verify ordinary users' scopes. Download the [complete endpoint tests](/assets/core/downloads/tutorial-tasks-project-api.test.ts) and run them with the historical setup in [Historical project API example](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md). They use real authentication, authorization and isolated databases.
 
 See [Request validation and error handling](request-validation-and-errors.md) for stable error identifiers and field feedback.

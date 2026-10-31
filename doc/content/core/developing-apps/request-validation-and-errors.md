@@ -5,7 +5,7 @@ description: Declare input and response contracts, translate domain errors into 
 
 Validation converts external input into values business code can use. Authorization decides whether the operation is permitted; the service checks whether the current business state permits the change. These checks have different responsibilities.
 
-The following excerpts come from the [project API example](apis-and-services.md). Running them requires its historical app, data model and services. This guide explains that example's input and error contracts rather than creating another endpoint set.
+The following excerpts come from the [project API example](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md). Running them requires its historical app, data model and services. This guide explains that example's input and error contracts rather than creating another endpoint set.
 
 ## Declare input schemas
 
@@ -30,7 +30,7 @@ The example uses `z.uuid()` because its project and task IDs are UUIDs. Do not a
 
 ## Use validated values
 
-Pass schemas to `apiValidator('query' | 'param' | 'json', schema)` and read matching values through `c.req.valid(...)`. See [Routes and HTTP APIs](apis-and-services.md) for complete handlers. This also declares API document inputs; calling `zod.parse()` inside a handler alone does not provide that integration.
+Pass schemas to `apiValidator('query' | 'param' | 'json', schema)` and read matching values through `c.req.valid(...)`. See [Historical project API example](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md) for complete handlers. This also declares API document inputs; calling `zod.parse()` inside a handler alone does not provide that integration.
 
 Send JSON requests with `Content-Type: application/json`. Complete authentication, operation authorization and validation before business writes; validation afterward cannot undo an earlier write.
 
@@ -95,4 +95,4 @@ Translate only recognized domain failures. `apiErrorHandler()` handles known API
 
 Check missing fields, empty strings, extra fields, invalid IDs and out-of-range pagination, followed by missing and inaccessible records. Read the database after refusals to confirm no unintended writes. Valid syntax with an invalid business state still needs a meaningful failure. Unknown exceptions must remain server failures rather than successful saves.
 
-See [Routes and HTTP APIs](apis-and-services.md) for complete tests and [Validation and response handling](../framework/http/validation.md) for standard input and error contracts.
+See [Historical project API example](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md) for complete tests and [Validation and response handling](../framework/http/validation.md) for standard input and error contracts.

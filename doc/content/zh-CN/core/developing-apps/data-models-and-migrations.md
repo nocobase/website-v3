@@ -480,6 +480,6 @@ pnpm exec vitest run --config vitest.tutorial.config.ts
 
 ### 继续阅读
 
-[路由与 HTTP 接口](apis-and-services.md)说明怎样把数据操作开放给页面：校验输入、检查项目与任务的权限，并把业务错误转换为一致的 API 错误。[应用开发概览](overview.md)介绍这些部分如何连起来。
+[HTTP 路由与接口](apis-and-services.md)说明怎样把数据操作开放给页面：校验输入、检查操作权限，并把业务错误转换为一致的 API 错误。[应用开发概览](overview.md)介绍这些部分如何连起来。
 
 迁移与初始数据按连接维护；新增连接见[多数据库连接](multiple-databases.md)。已有结构由其他系统管理时，使用[接入已有数据库](existing-databases.md)的流程，手写 `metadata/` 与生成的 `collections/` 分开维护。

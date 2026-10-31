@@ -60,7 +60,7 @@ export default locales;
 
 模板的 `server/app.ts` 在会话中间件之后挂载 `i18nHttpMiddleware`。它按会话语言、`Accept-Language`、默认语言解析并加载资源。路由直接使用 `getRequestTranslator(c)`，不需要为每个接口创建新翻译实例。
 
-下面是只预览文案的公开接口，不读取或生成真实报表。保存为 `server/routes/report-message-preview.ts`，再按[路由与 HTTP 接口](apis-and-services.md)加入 `server/routes/index.ts`：
+下面是只预览文案的公开接口，不读取或生成真实报表。保存为 `server/routes/report-message-preview.ts`，再按[HTTP 路由与接口](apis-and-services.md)加入 `server/routes/index.ts`：
 
 ```ts
 import { Hono } from 'hono';

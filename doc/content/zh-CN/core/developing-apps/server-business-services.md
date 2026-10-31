@@ -168,4 +168,4 @@ HTTP 路由负责取得身份与策略。CLI、任务和定时执行没有浏览
 - 不同请求传入不同策略时，服务不会共享用户状态。
 - CLI 或任务调用遵守各自的执行身份与范围。
 
-规则测试之外，使用真实数据库和权限服务验证事务及数据范围；项目示例的完整接口测试在[路由与 HTTP 接口](apis-and-services.md)。
+规则测试之外，使用真实数据库和权限服务验证事务及数据范围；项目示例的完整接口测试在[历史项目接口示例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)。

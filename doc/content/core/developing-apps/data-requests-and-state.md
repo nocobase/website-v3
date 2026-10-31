@@ -31,7 +31,7 @@ Use existing shadcn components, translations and themes, and report the verifica
 | Values shared within a component tree | Common ancestor or React Context | Component coordination |
 | Business operations and observable state shared across pages | Client business service | Business methods or service events |
 
-Prefer deriving values over storing another copy. For example, derive the current page's selection count from selected IDs and records. A custom Hook reuses logic; separate calls do not automatically share state. See [UI components and interactions](pages-and-interactions.md#use-react-context-and-providers) for Context and Providers, and [Client business services](client-business-services.md) for services.
+Prefer deriving values over storing another copy. For example, derive the current page's selection count from selected IDs and records. A custom Hook reuses logic; separate calls do not automatically share state. See [UI components and interactions](pages-and-interactions.md#supply-application-context-for-a-block) for Context and Providers, and [Client business services](client-business-services.md) for services.
 
 ## Obtain the application's API Client
 

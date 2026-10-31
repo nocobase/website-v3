@@ -31,7 +31,7 @@ description: 使用应用已有的 API Client 和列表 Hooks，组织 URL、远
 | 同一组件树中的共享值 | 共同父组件或 React Context | 相关组件协作时 |
 | 跨页面的业务操作与可订阅状态 | 客户端业务服务 | 业务方法或服务事件 |
 
-能从现有状态计算出来的值，通常不需要再保存一份。例如，当前页选中数量可以从选中 ID 与记录计算。自定义 Hook 用于复用逻辑；两个组件分别调用同一个 Hook，不会自动共享一份状态。React Context 与 Provider 的接入见 [UI 组件与交互](pages-and-interactions.md#使用-react-context-与-provider)，服务组织见[客户端业务服务](client-business-services.md)。
+能从现有状态计算出来的值，通常不需要再保存一份。例如，当前页选中数量可以从选中 ID 与记录计算。自定义 Hook 用于复用逻辑；两个组件分别调用同一个 Hook，不会自动共享一份状态。React Context 与 Provider 的接入见 [UI 组件与交互](pages-and-interactions.md#接入区块需要的应用上下文)，服务组织见[客户端业务服务](client-business-services.md)。
 
 ## 取得应用的 API Client
 

@@ -7,7 +7,7 @@ NocoBase Core and its plugins provide the foundations for business applications,
 
 You can write code yourself or ask an AI Agent to develop features from your requirements.
 
-## 1. What makes up an application?
+## What makes up an application?
 
 A NocoBase application consists of these main parts:
 
@@ -21,7 +21,7 @@ A NocoBase application consists of these main parts:
 
 Combine these parts as needed. Not every feature involves all of them.
 
-## 2. How is a business feature implemented?
+## How is a business feature implemented?
 
 Consider creating a customer in a CRM system:
 
@@ -34,7 +34,7 @@ In NocoBase, you usually only need to implement the parts specific to your busin
 - **Database**: define the customer data structure.
 - **Plugins**: reuse existing authentication and permission capabilities.
 
-## 3. Where does the code go?
+## Where does the code go?
 
 A NocoBase application organizes code by responsibility:
 
@@ -51,7 +51,7 @@ Write code in the appropriate directories for your feature. Connect new pages, A
 
 See [Project structure](project-structure.md) for details.
 
-## 4. Develop with an Agent
+## Develop with an Agent
 
 NocoBase supports collaboration between people and Agents to develop applications.
 
@@ -62,11 +62,3 @@ A typical workflow:
 An Agent can use project rules, documentation and Skills to implement business features with NocoBase's existing capabilities.
 
 Developers are primarily responsible for clarifying requirements, reviewing key design decisions and accepting the results.
-
-See [Continue developing your app](../getting-started/develop-with-an-agent.md) for details.
-
-## 5. Next steps
-
-For your first NocoBase application, start with [Develop your first feature](../getting-started/build-your-first-app.md) to learn the development process through a complete business example.
-
-As you continue developing, consult individual topics as needed. You do not have to read them all in order.

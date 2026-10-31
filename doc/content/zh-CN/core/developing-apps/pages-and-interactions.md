@@ -1,29 +1,57 @@
 ---
 title: UI 组件与交互
-description: 选择和添加 shadcn 与 NocoBase UI Library 组件，组织业务组件，并实现列表、表单和弹窗的完整交互。
+description: 遵循 shadcn 规范，接入 NocoBase UI Library 的源码组件、业务区块、路由弹窗和应用上下文。
 ---
 
-业务页面可以由应用已有组件、shadcn 基础组件和 NocoBase UI Library 的组件与区块组合而成。组件源码由应用维护，可以按业务需要修改；页面负责接入数据、权限和操作反馈。
+NocoBase 应用统一使用 shadcn 规范组织 UI。组件源码放在应用中，页面负责连接数据与操作，应用负责维护自己的组件和交互约定。
 
-## 选择与添加组件
+下面以商品目录示例展示各用法。商品、人员和评审记录都是演示数据；商品修改只保留到刷新页面，评审备注在离开页面后重置。完整源码与启动方式见文末[示例源码与运行](#示例源码与运行)。
 
-### 先使用应用已有组件
+## 组件规范
 
-开发前先查看现有页面和 `client/components/`，确认哪些组件可以直接使用，哪些需要调整。按钮、输入框、弹窗等基础交互使用项目中的 shadcn 组件，避免为同一种操作维护多套实现。
+### 统一遵循 shadcn 规范
 
-缺少基础组件时，在应用根目录添加：
+按钮、输入框、表单和确认框使用应用中的 shadcn 组件，沿用统一的主题、交互和可访问性约定。[NocoBase UI Library](https://ui.nocobase.com/) 通过 shadcn Registry 分发适合 NocoBase 应用的组件与业务区块，也遵循这套规范。
 
-```bash
-pnpm exec shadcn add button input
+当前示例使用模板 `1.0.0-beta.85` 的 Base UI 组件。组合 API 以应用已经安装的源码为准，例如这里使用 `render`，不要直接混入其他实现的 `asChild` 用法。通用组件用法见 [shadcn 官方文档](https://ui.shadcn.com/docs)。
+
+### 优先复用应用已有组件
+
+先检查 `client/components/` 和现有页面。默认模板已提供 `PageContainer`、`PageHeader`、`DataTable` 和路由弹窗；基础组件在 `client/components/ui/`。缺少组件时再通过项目里的 shadcn CLI 添加。
+
+商品目录复用已有的 `DataTable`、`Input` 和行操作菜单，把库存状态封装为可复用的 `StockBadge`。无需另写一套表格或按钮：
+
+```tsx
+import { PageHeader } from '#components/page-header';
+import { DataTable } from '#components/data-table';
+import { Input } from '#components/ui/input';
+
+// CatalogPage 中的关键组合；筛选、列和状态见完整源码。
+<PageHeader title={t('catalog.title')} description={t('catalog.description')} />
+<DataTable
+  data={products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase()))}
+  columns={columns}
+  pagination={false}
+  toolbar={() => (
+    <Input
+      aria-label={t('catalog.search')}
+      placeholder={t('catalog.search')}
+      value={query}
+      onChange={(event) => setQuery(event.target.value)}
+    />
+  )}
+/>
 ```
 
-添加位置由 `components.json` 的别名配置决定。已有同名文件时先比较差异，保留应用定制。命令选项见 [shadcn CLI](https://ui.shadcn.com/docs/cli#add)。
+打开示例的 **Product catalog**，搜索商品或从行菜单选择 **Edit**。[查看目录页源码](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/pages/ui-components/catalog.tsx)。
 
-### 从 NocoBase UI Library 添加组件与区块
+![商品目录复用页面标题、表格、搜索框和行操作菜单](/assets/core/developing-apps/pages-and-interactions/catalog.png)
 
-[NocoBase UI Library](https://ui.nocobase.com/) 通过 shadcn UI Registry 分发可编辑的源码。先查看组件说明、示例和依赖；涉及业务插件的区块，还需要准备对应插件、接口和权限。
+## 使用 NocoBase UI Library
 
-默认模板已在 `components.json` 中配置 `@nocobase`。已有项目缺少时，将以下条目合并到 `registries`，保留原来的样式、别名和其他 Registry 配置：
+### 配置 Registry 与添加组件
+
+默认模板的 `components.json` 已配置 NocoBase Registry。已有应用缺少此项时，在原配置中补充：
 
 ```json
 {
@@ -33,330 +61,325 @@ pnpm exec shadcn add button input
 }
 ```
 
-例如，应用缺少页面标题组件时，在应用根目录执行：
+在应用根目录运行项目安装的 CLI。例如，添加页面标题组件或评审展示区块：
 
 ```bash
 pnpm exec shadcn add @nocobase/page-header
+pnpm exec shadcn add @nocobase/approval-ui
 ```
 
-这个资产写入 `client/components/page-header.tsx`。从 `#components/page-header` 导入 `PageHeader`，传入标题，并按需提供描述和操作区。添加后检查生成文件、依赖与样式变化，再接入页面。
+已有的组件可以直接使用。CLI 询问是否覆盖文件时，保留现有文件，先检查差异；不要为了添加区块一起覆盖应用里的基础组件。
 
-文案接入应用[多语言](localization.md)，颜色与间距沿用[主题与样式](themes-and-styles.md)约定。以后获取上游更新时，比较差异并保留业务修改，尤其是权限判断和表单行为。
+示例安装 `approval-ui` 后新增 13 个文件，主要位置如下：
 
-<details>
-<summary>添加本地 UI 源码资产</summary>
-
-团队提供的 Registry 资产也可以从本地添加。例如，已构建的资产位于工作区中的 `packages/announcements-ui/public/r/announcement-list.json`：
-
-```bash
-pnpm exec shadcn add ./packages/announcements-ui/public/r/announcement-list.json
+```text
+client/components/page-header.tsx
+client/extensions/nocobase-approval-ui/
+  index.ts
+  types.ts
+  approval-progress.tsx
+  approval-timeline.tsx
+  approval-action-bar.tsx
+  approval-ui-provider.tsx
+  locales/
+  ...
 ```
 
-传入包含组件源码的单个资产 JSON，路径相对于执行命令的应用目录。本地文件无需启动 HTTP 服务；资产声明的其他 Registry 项和 npm 依赖仍可能需要联网获取。
+[查看 Registry 配置](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/components.json) · [查看已安装的区块源码](https://github.com/nocobase/docs-examples-v3/tree/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/extensions/nocobase-approval-ui)。
 
-如需制作和分发自己的资产，见[按需分发 UI 源码资产](../extension-development/frontend-components.md#按需分发-ui-源码资产)。
+### 使用组件与业务区块
 
-</details>
+从应用内的源码路径导入。单个组件通常位于 `client/components/`；区块包含多个组件、类型和语言资源，通常位于 `client/extensions/nocobase-<名称>/`。
 
-## 编写与复用业务组件
-
-### 按使用范围组织文件
-
-只在一个页面使用的组件可以与页面放在一起，多个页面确实需要时再提取到共享位置。例如：
-
-```tree
-client/
-├── pages/
-│   └── projects/
-│       ├── index.tsx             # 页面与业务接入
-│       └── components/           # 仅此页面使用的组件（按需）
-├── components/
-│   ├── ui/                      # shadcn 基础组件
-│   └── projects/                # 跨页面共享的项目组件（按需）
-├── hooks/                       # 复用交互逻辑（按需）
-├── extensions/                  # 模块化 UI 源码资产（按需）
-├── locales/                     # 多语言文案
-├── react-providers.ts           # 应用级 React Provider 注册
-└── styles.css                   # 样式入口
-```
-
-`client/extensions/` 可以按模块组织引入的 UI 源码，具体写入位置由资产声明和项目配置决定。文件通过普通导入接入页面；放进目录本身不会注册插件、路由或服务。
-
-### 明确组件与状态的职责
-
-以项目页面为例：
-
-| 组成 | 职责 |
-| --- | --- |
-| 页面 | 接入路由、权限和数据，组合标题、列表与表单 |
-| 列表组件 | 展示记录、分页和操作入口，接收页面提供的数据与回调 |
-| 表单组件 | 维护草稿、字段错误和提交状态，处理保存与取消 |
-| 业务 Hook | 复用请求或交互逻辑，明确初始化、重置和清理时机 |
-
-组件通过 Props 接收数据、文案和事件回调，需要共享上下文时再使用 Context。不必预先拆出所有组件，也不要求所有业务组件都采用同一种模式。
-
-自定义 Hook 复用的是逻辑，多次调用不会自动共享同一份状态。搜索、排序和页码属于 URL 状态，接口结果属于服务端状态，未提交输入属于表单草稿；不要在列表刷新时顺便重置草稿。具体实现见[数据请求与状态管理](data-requests-and-state.md)。
-
-### 使用 React Context 与 Provider
-
-多个组件需要共享选择项或编辑状态时，可以使用 React Context。只在一个页面或组件子树中使用的 Provider，直接在对应位置组合。
-
-应用级 Provider 通过 `client/react-providers.ts` 接入：编写接收并渲染 `children` 的组件，将它追加到已有 `defineClientReactProviders(...)` 声明，填写 `name`、`component` 和合适的 `layer`。依赖应用上下文时通常使用 `application` 层；保留模板已有的主题和 Toast 声明。
-
-React Provider 向组件树提供上下文；`client/service-provider.ts` 中的 ServiceProvider 向服务容器注册业务服务并管理生命周期。注册服务不会让字段自动成为 React 响应式状态，组件仍需通过状态或订阅更新。
-
-挂载层级与顺序见 [React Provider 的注册与挂载](../framework/runtime/react-providers.md)；跨页面业务能力的封装见[客户端业务服务](client-business-services.md)。
-
-## 实现列表、表单与弹窗交互
-
-### 示例与前提
-
-下面沿用项目列表、新建项目和修改任务所属项目三个界面。完整代码见[项目示例增量源码包](/assets/core/downloads/team-tasks-pages-and-interactions.zip)，包含新增与修改的文件、补丁和说明，不包含配置、账号、数据库或依赖目录。
-
-运行示例需要先完成[建表与数据初始化](data-models-and-migrations.md)和[路由与 HTTP 接口](apis-and-services.md)中的历史项目示例，保留其迁移、服务、路由与权限声明。基线为 `@nocobase/app-template-default@1.0.0-beta.78`，无需新增插件。**增量包不适用于当前入门示例的 `tasks` 表及三阶段进度。** 已有业务修改时，先查看补丁再合并。
-
-在“系统设置 → 权限管理”中为指定角色配置项目页面访问、查看和新建权限，以及任务页面访问和修改任务项目权限；修改归属需要分别设置任务范围与可选项目范围，再通过用户管理分配给具体用户。能进入页面不代表能操作数据，能查看项目也不代表能把任务分配给它；服务端必须独立检查每次请求。
-
-本例不包含项目详情、删除或审批流程。保存采用“最后一次成功保存生效”，没有并发版本检查；搜索按名称包含匹配，排序按创建时间，不提供中文拼音排序。
-
-### 展示项目列表
-
-`client/pages/projects/index.tsx` 使用 `PageContainer`、`PageHeader` 和 `DataTable`，组合标题、新建入口、搜索与表格。页面只保留一层页面容器；布局调整见[页面布局](page-layouts.md)。
-
-![项目列表，包含名称搜索、创建时间排序和分页](/assets/core/developing-apps/pages-and-interactions/projects-list.png)
-
-搜索、排序和页码保存在 URL 中，打开与关闭弹窗时保留查询参数。表格使用服务端分页和排序，默认按创建时间降序，表头箭头与接口排序保持一致。
-
-| 状态 | 页面反馈 |
-| --- | --- |
-| 首次加载 | 展示骨架屏，暂不显示新建入口 |
-| 刷新已有列表 | 保留现有行，显示加载提示 |
-| 没有项目 | 展示空状态；有权限时提供一个新建入口 |
-| 搜索结果 | 无匹配时说明情况；有无匹配都保留清除筛选和顶部新建入口，新建入口仍受权限控制 |
-| 请求失败 | 说明原因；网络或服务错误允许重试 |
-| 登录失效或权限不足 | 隐藏旧数据，提示重新登录或联系管理员 |
-
-<details>
-<summary>示例的列表请求实现</summary>
-
-`useUrlSearch()` 管理搜索词和中文输入法组合状态，`useTableUrlState()` 管理页码、每页条数与排序。通过 `useApiClient()` 请求：
+示例的 **Review block** 把进度、历史和操作栏组合在同一页：
 
 ```tsx
-api.request({
-  path: 'tutorialProjects',
-  query: { q: search, order, page: pageIndex + 1, pageSize },
-  signal: controller.signal,
-});
+import {
+  ApprovalProgress,
+  ApprovalTimeline,
+  ApprovalActionBar,
+} from '#extensions/nocobase-approval-ui/index';
+
+// ReviewPage 中的区块组合；steps、lines、actions 由页面准备。
+<ApprovalProgress steps={steps} />
+<ApprovalTimeline lines={lines} />
+<ApprovalActionBar actions={actions} />
 ```
 
-在 effect 清理函数中执行 `controller.abort()`，更新状态前检查是否已取消，防止旧响应覆盖新结果。只有当前查询成功返回的 `total` 才能用于纠正超出范围的页码。
+打开 **Review block**，可以看到商品资料已提交、内容评审正在进行。[查看区块组合源码](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/pages/ui-components/review.tsx)。
 
-表格开启 `manualPagination` 和 `manualSorting`，使用服务端返回的数据与总数。通用请求机制见 [API Client](../framework/http/api-client.md)。
+![进度、历史和操作栏组合成商品评审界面](/assets/core/developing-apps/pages-and-interactions/review-block.png)
 
-</details>
+### 确认依赖与源码位置
 
-### 新建项目
+Registry 安装的是源码及其声明的依赖，不会自动完成业务接入。检查资产说明、生成的文件、`package.json` 和锁文件，确认区块需要哪些数据、回调、Provider、语言资源或插件。
 
-`client/pages/projects/create.tsx` 使用 `RouteDialog` 展示表单，`react-hook-form` 管理输入，`zodResolver` 校验名称去除首尾空格后为 1–120 个字符。
+例如，`approval-ui` 是展示区块，不要求安装审批插件，也不提供审批引擎。示例把固定评审数据传入组件，用回调更新页面中的备注。需要真实审批流程时，应另外接入相应的业务能力；按钮是否可见也不能代替服务端授权。
 
-![在项目列表上打开新建弹窗](/assets/core/developing-apps/pages-and-interactions/create-project.png)
+shadcn CLI 可能把新增的前端依赖写入 `dependencies`。按应用约定，将仅客户端使用的包放入 `devDependencies`，服务端也使用的包仍留在 `dependencies`。导入别名由 `package.json` 的 `imports` 和 `components.json` 共同确定，不要为同一目录另加一套 Vite 或 TypeScript 别名。
 
-提交过程需要让用户知道当前发生了什么：
+要分发自己的组件源码，见[前端扩展](../extension-development/frontend-components.md)；Registry 的通用机制见 [shadcn Registry](https://ui.shadcn.com/docs/registry)。
 
-1. 校验失败时，把错误显示在名称字段下，用 `aria-invalid`、`aria-describedby` 关联输入与提示。
-2. 保存期间禁用提交和取消，输入只读，并用同步的提交锁防止连续点击发出多次请求。
-3. 服务端返回字段错误时，保留输入、显示错误并聚焦该字段；其他失败显示表单提示。
-4. 保存成功后，用接口返回的项目更新列表，提示已创建的项目名称，再关闭弹窗。
+## 接入应用交互
 
-新增项目未必属于当前可见页。本例只在“第一页、降序、符合搜索条件”时立即插入；其他情况保留筛选和页码，并提供“查看最新项目”操作。
+### 接入业务区块的数据与操作
 
-### 修改任务所属项目
+区块定义输入和交互契约，页面把业务数据转换为这些输入，并决定操作完成后的变化。`ApprovalActionBar` 的 `form` 定义输入与校验，`run` 执行操作；返回 `false` 时保留表单，其他正常返回会关闭表单。
 
-任务行通过 `useCan()` 控制操作入口。完成／恢复与修改项目都可用时，放进同一个行操作菜单；只有一个操作时显示单个按钮。
-
-![任务行操作菜单中的修改项目入口](/assets/core/developing-apps/pages-and-interactions/task-actions.png)
-
-`client/pages/tasks/[taskId]/project.tsx` 打开时读取最新任务和允许分配的项目。候选项目每页 20 条，通过上一页、下一页继续选择。
-
-![修改任务项目，显示按操作权限加载的候选项目](/assets/core/developing-apps/pages-and-interactions/change-project.png)
-
-**候选项与已选值分别维护。** 首次读取用于初始化选择，之后翻页只更新候选项；已选项目不在当前页时，仍保留其值与名称。加载失败后重试也不应重置草稿。
-
-已有项目不在允许范围内时，显示“项目不可用”，不泄露名称，也不能当成“未设置项目”。提交时服务端重新检查任务和目标项目，打开弹窗时的权限结果不能代替保存授权。
-
-保存时仅提交所选项目 ID，解除关联则提交 `null`：
+示例的 **Add review note** 使用以下关键配置。完整的输入框渲染和状态声明见[操作接入源码](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/pages/ui-components/review.tsx)：
 
 ```tsx
-const { data } = await api.request({
-  path: `tutorialTasks/${encodeURIComponent(taskId)}/project`,
-  method: 'PATCH',
-  json: { projectId },
-});
+{
+  key: 'note',
+  label: t('catalog.review.addNote'),
+  primary: true,
+  form: {
+    initialValues: { note: '' },
+    validate: (values) => noteText(values.note).trim() ? [] : ['note'],
+    // render 使用区块传入的 values、setValues、invalid 和 busy 绘制表单。
+  },
+  run: async (values) => {
+    setError('');
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    if (rejectNext) {
+      setRejectNext(false);
+      setError(t('catalog.review.refused'));
+      return false;
+    }
+    setComment(noteText(values.note).trim());
+  },
+}
 ```
 
-返回的 `id`、`projectId`、`updatedAt` 合并回已有任务，再刷新列表，避免用旧任务对象覆盖标题、负责人或完成状态。重新打开弹窗时再次读取最新关联。
+点击 **Add review note**，空内容不能提交。填写备注后提交，历史区域出现新备注，操作表单关闭。这里的延迟用于观察执行状态，真实应用应在回调中调用业务接口，并处理失败。
 
-### 处理关闭与异常
+![评审备注表单及必填校验](/assets/core/developing-apps/pages-and-interactions/review-note.png)
 
-保存期间，关闭按钮、取消、Escape、浏览器后退和应用内导航需要使用同一个提交状态判断，避免请求尚未完成就退出编辑。
+先点击 **Refuse the next note** 再提交，可以复现 `run` 返回 `false`：页面解释失败原因，输入仍然保留，再次提交即可成功。不要把异常直接丢给区块而不提供可见反馈。真实数据请求与刷新方式见[数据请求与状态管理](data-requests-and-state.md)。
 
-<details>
-<summary>RouteDialog 的关闭保护</summary>
+![操作被拒绝后保留表单和已填写的备注](/assets/core/developing-apps/pages-and-interactions/review-refused.png)
+
+### 使用路由弹窗与关闭保护
+
+代表记录编辑或详情的弹窗使用子路由。父页面放置 `<Outlet />`，子页面用 `RouteDialog` 承载表单；打开状态由 URL 决定。商品示例中，`catalog/edit/:productId` 是目录页的子路由：
 
 ```tsx
-<RouteDialog
-  title={t('projects.new')}
-  className="sm:max-w-md"
-  beforeClose={() => !pendingRef.current}
-  footer={<Footer pending={pending} />}
->
-  <ProjectForm />
+// client/routes.ts 中 /ui-components 下的 catalog 路由。
+{
+  name: 'uiCatalog',
+  path: 'catalog',
+  componentLoader: () => import('./pages/ui-components/catalog.js'),
+  children: [{
+    name: 'uiProductEdit',
+    path: 'edit/:productId',
+    componentLoader: () => import('./pages/ui-components/edit.js'),
+  }],
+}
+```
+
+点击 **Arc desk lamp** 打开编辑弹窗，直接访问同一 URL 也能打开。路由声明与嵌套方式详见[页面、路由与导航](pages-routes-and-navigation.md)。[查看编辑页源码](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/pages/ui-components/edit.tsx)。
+
+![通过商品子路由打开编辑弹窗](/assets/core/developing-apps/pages-and-interactions/edit-product.png)
+
+`useRouteOverlay()` 必须在 `RouteDialog` 的后代组件中调用，例如传入 `footer` 的组件。它的 `close()` 先执行 `beforeClose`，允许后再返回父路由；默认保留查询参数。不要在返回 `RouteDialog` 的页面组件本身调用这个 Hook。
+
+```tsx
+function EditorFooter({ pending, disabled }: { pending: boolean; disabled: boolean }) {
+  const { t } = useTranslation();
+  const { close, isClosing } = useRouteOverlay();
+  return <>
+    <Button variant="outline" disabled={pending || isClosing}
+      onClick={() => void close()}>{t('catalog.cancel')}</Button>
+    <Button type="submit" form="product-edit"
+      disabled={pending || isClosing || disabled}>{t('catalog.save')}</Button>
+  </>;
+}
+```
+
+示例的关闭检查先阻止正在提交的表单离开；存在未保存修改时，返回等待确认的 Promise。选择 **Keep editing** 保留输入，选择 **Discard** 才离开。共用同一个待确认 Promise，避免连续触发时出现多次确认。
+
+```tsx
+// useEditorLeave 中的核心判断；确认框和 Promise 管理见完整源码。
+function guard() {
+  if (allowedRef.current) return true;
+  if (flagsRef.current.pending) return false;
+  if (!flagsRef.current.dirty) return true;
+  if (!requestRef.current) {
+    let resolve!: (allow: boolean) => void;
+    const promise = new Promise<boolean>((done) => { resolve = done; });
+    requestRef.current = { promise, resolve };
+    setOpen(true);
+  }
+  return requestRef.current.promise;
+}
+useNavigationGuard(guard);
+
+// 编辑页把相同的检查传给弹窗。
+<RouteDialog beforeClose={leave.guard} footer={<EditorFooter pending={pending} disabled={!product} />}>
+  {/* 表单与确认框 */}
 </RouteDialog>
 ```
 
-保存期间还要阻止浏览器后退和应用内导航。源码中的 `usePendingNavigation` 调用 `@nocobase/app-client` 的 `useNavigationGuard`，使用同一个 ref 判断请求是否进行中；同时仅在保存期间注册 `beforeunload`，对刷新或关闭标签页触发浏览器提示。仅配置 `beforeClose` 不能覆盖这些导航路径。
+上面的片段只展示连接位置；可运行实现见[关闭保护源码](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/pages/ui-components/use-editor-leave.tsx)。保存时同步更新状态与 ref，成功后先解除保护再关闭，避免刚保存就被旧的提交状态拦住。
 
-这是组件关系示意；完整代码中表单把提交状态同步给父组件，页脚通过 `form` 属性关联表单。不要把未连线的示意代码直接替代源码包中的文件。
+![放弃修改前的确认框叠加在编辑弹窗上](/assets/core/developing-apps/pages-and-interactions/discard-changes.png)
 
-</details>
+三种离开途径需要分别处理：
 
-关闭后恢复原列表的筛选、排序和页码，焦点回到触发入口；入口已消失或从直接链接打开时，回到父页面标题。中文输入法确认候选字时不能误提交表单。
-
-| 情况 | 处理方式 |
+| 离开途径 | 示例使用的机制 |
 | --- | --- |
-| 尚未修改 | 禁用保存，并说明无需保存 |
-| 目标项目不可用 | 错误关联项目字段，聚焦选择框，保留草稿 |
-| 任务不存在或已超出范围 | 停止编辑，关闭后回到刷新后的列表 |
-| 登录失效 | 提供重新登录入口 |
-| 操作权限被撤销 | 说明无权限，不提供无效的重试按钮 |
-| 网络或服务错误 | 保留输入，允许重试 |
+| 关闭按钮、Esc、点击遮罩、调用 `close()` | `beforeClose` |
+| 浏览器前进后退、应用内路由跳转 | `useNavigationGuard` |
+| 刷新或关闭浏览器页面 | `beforeunload`，显示浏览器自己的提示 |
 
-![真实接口拒绝无效项目，错误显示在选择字段下](/assets/core/developing-apps/pages-and-interactions/project-validation.png)
+勾选 **Simulate save failure** 后保存，弹窗保持打开，输入不丢失；取消勾选即可重试。示例的“保存”只更新当前页面会话，不写数据库。
 
-<details>
-<summary>项目示例的接口与路由接入</summary>
+![保存失败后保留弹窗和输入](/assets/core/developing-apps/pages-and-interactions/save-failure.png)
 
-**页面与接口**
+### 接入区块需要的应用上下文
 
-页面路由相对于应用入口，API 路径相对于应用 API 根路径。代码中不用写死 `/main` 或服务器地址。
+区块可能需要应用提供的人员名称、头像、日期格式等上下文。`ApprovalUiProvider` 不负责查询用户；示例用自己的人员映射和日期格式器提供这些能力。未提供 `personName` 时，区块默认显示人员 ID。
 
-| 页面路由 | 展示方式 | 使用的 API |
-| --- | --- | --- |
-| `/projects` | 项目列表 | `GET /tutorialProjects` |
-| `/projects/create` | 新建弹窗 | `POST /tutorialProjects` |
-| `/tasks/:taskId/project` | 修改项目弹窗 | `GET`、`PATCH /tutorialTasks/:id/project` |
-
-[路由与 HTTP 接口](apis-and-services.md)示例中的项目列表只有分页参数。本章增加 `q` 和 `order`：按名称包含匹配搜索，按创建时间升序或降序排序，默认最新在前。相同时间用 `id` 稳定排序；列表与 `total` 使用相同过滤条件和权限策略。
-
-修改弹窗还需要一个读取接口。它先按 `assignTask` 的任务范围读取当前任务，再按这个操作的项目范围读取候选项和当前项目名称：
-
-```ts
-{
-  data: {
-    task: { id, title, projectId, projectName },
-    options: [{ id, name, createdAt }],
-  },
-  meta: { page, pageSize, total },
-}
-```
-
-`projectName` 可以是 `null`：已有项目现在可能不在允许范围内。此时展示“项目不可用”，不泄露名称，也不把它当成“未设置项目”。保存时服务仍会重新检查任务与目标项目，不能把打开弹窗时的结果当成长期授权。
-
-完整变更在源码包的 `server/providers/tutorial-project-service.ts`、`tutorial-projects.ts` 和 `server/routes/tutorial-projects.ts` 中。新 GET 接口同样声明 `describeRoute()`，通过 `apiValidator()` 校验参数，不需要新增迁移。
-
-**页面、菜单与弹窗路由**
-
-在 `client/routes.ts` 的 `defineAppRoutes()` 中加入项目页面。保留已有任务、登录和系统设置路由：
+`CatalogApprovalProvider` 的关键配置如下；头像组合与完整实现见[Provider 源码](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/pages/ui-components/approval-provider.tsx)：
 
 ```tsx
-{
-  name: 'projects',
-  path: '/projects',
-  auth: 'required',
-  authz: {
-    resource: { type: 'page', id: 'projects' },
-    action: 'access',
-  },
-  navigation: { title: 'projects.title', icon: FolderKanban },
-  breadcrumb: { title: 'projects.title' },
-  componentLoader: () => import('./pages/projects/index.js'),
-  children: [
-    {
-      name: 'projectCreate',
-      path: 'create',
-      authz: {
-        resource: { type: 'composite', id: 'tutorial.projects' },
-        action: 'create',
-      },
-      breadcrumb: { title: 'projects.new' },
-      componentLoader: () => import('./pages/projects/create.js'),
-    },
-  ],
-}
-```
-
-`FolderKanban` 从 `lucide-react` 导入。菜单由 `navigation` 生成，不需要改侧栏。页面模块默认导出 React 组件，并在父页面保留 `<Outlet />` 供子路由渲染。
-
-任务的修改项目路由放在已有 `tasks.children` 中，路径为 `:taskId/project`，使用 `tutorial.projects/assignTask` 操作权限。
-
-打开弹窗时保留列表查询参数：
-
-```tsx
-<Button
-  nativeButton={false}
-  render={<Link to={{ pathname: 'create', search: location.search }} />}
+<ApprovalUiProvider
+  personName={(id) => people[id] ?? id}
+  formatDateTime={(iso) =>
+    new Intl.DateTimeFormat(i18n.language, {
+      dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC',
+    }).format(new Date(iso)) + ' UTC'
+  }
 >
-  {t('projects.new')}
-</Button>
+  {children}
+</ApprovalUiProvider>
 ```
 
-这样复制链接、刷新页面和关闭弹窗都有明确位置。例如 `/projects/create?q=launch&page=2` 仍然以对应项目列表为背景，关闭后回到原查询条件。
+示例选择 UTC 以便观察一致的结果；业务应用应按自己的时区要求格式化。多页需要相同上下文时，在 `client/react-providers.ts` 注册到 `application` 层，不必在每页重复包裹：
 
-路由声明与覆盖层机制见[页面、路由与导航](pages-routes-and-navigation.md)。
-
-</details>
-
-## 使用 Agent 开发页面
-
-在已有项目与任务功能的应用目录中，把本文作为参考交给开发 Agent，再描述需要的页面和业务规则：
-
-```text
-帮我给现有项目功能加上页面，沿用应用风格，支持中英文。
-项目列表能按名称搜索、按创建时间排序和翻页，并通过弹窗新建项目。
-任务行可以修改所属项目或解除关联，只能选择当前用户允许分配的项目，不要扩大现有权限。
-切换候选项目的页码时保留已选值，保存失败保留输入，成功后更新列表；关闭弹窗后保留原来的筛选和页码。
+```tsx
+// 加入原有 defineClientReactProviders([...])，保留已有注册。
+{
+  name: 'catalog-approval-ui',
+  layer: 'application',
+  component: CatalogApprovalProvider,
+}
 ```
 
-示例接口、权限与组件接入要求见上文。开发自己的业务页面时，替换页面名称和操作规则，并按下面的检查项验收结果。
+同时把区块语言资源合并到应用对应语言文件中，例如 `client/locales/en-US.ts` 中的 `...approvalUi`。这与 `client/service-provider.ts` 的服务注册不同：前者提供 React 渲染上下文，后者负责应用服务及启动逻辑。详见 [React Providers](../framework/runtime/react-providers.md)。
+
+在 **Review block** 提交备注后，可以看到映射后的姓名、头像和 UTC 时间。[查看应用注册](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/react-providers.ts) · [查看语言资源](https://github.com/nocobase/docs-examples-v3/tree/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/locales)。
+
+![共享上下文为评审进度和更新后的历史提供姓名、头像和日期格式](/assets/core/developing-apps/pages-and-interactions/review-updated.png)
+
+## 定制与维护组件
+
+### 组织组件源码
+
+按复用范围放置源码，不把页面私有逻辑都提升为全局组件：
+
+| 位置 | 商品示例中的内容 |
+| --- | --- |
+| `client/pages/ui-components/` | 页面、局部表单、演示数据和交互 Hook |
+| `client/components/stock-badge.tsx` | 表格与卡片共用的库存标签 |
+| `client/components/ui/` | 通过 shadcn CLI 安装的基础组件 |
+| `client/extensions/nocobase-approval-ui/` | Registry 安装的完整区块 |
+| `client/react-providers.ts` | 应用级 React Provider 注册 |
+| `client/locales/` | 应用文案与区块语言资源 |
+
+[查看示例源码目录](https://github.com/nocobase/docs-examples-v3/tree/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client)。页面容器和布局的详细约定见[页面布局](page-layouts.md)。
+
+### 按业务需要定制组件
+
+优先用现有组件的属性、变体和组合表达业务含义。示例把库存规则放在 `StockBadge`，继续使用原有 `Badge`，让表格和卡片保持一致：
+
+```tsx
+export function StockBadge({ stock }: { stock: number }) {
+  const { t } = useTranslation();
+  const state = stock === 0 ? 'out' : stock < 5 ? 'low' : 'available';
+  return (
+    <Badge variant={state === 'out' ? 'outline' : state === 'low' ? 'secondary' : 'default'}>
+      {t(`catalog.stock.${state}`)}
+    </Badge>
+  );
+}
+```
+
+打开 **Component variants**，三张商品卡片分别显示有货、库存不足和缺货；目录表格复用同一个组件。[查看库存标签源码](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/components/stock-badge.tsx) · [查看卡片示例](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/client/pages/ui-components/customize.tsx)。
+
+![同一库存标签组件在三种业务状态下的表现](/assets/core/developing-apps/pages-and-interactions/stock-variants.png)
+
+使用 `bg-muted`、`text-muted-foreground` 等语义 token，主题调整遵循应用的 `client/theme/` 约定。需要修改复制来的区块源码时，把业务适配尽量留在外层组件，并记录必须保留的改动；不要直接改写基础按钮来满足某一页的需要。
+
+### 更新组件并保留业务修改
+
+复制到应用的源码不会随 npm 包升级自动更新。更新前先提交当前代码，检查 Registry 的变化，再合并所需部分。例如，查看 `PageHeader` 的差异：
+
+```bash
+pnpm exec shadcn add @nocobase/page-header --diff client/components/page-header.tsx
+```
+
+没有差异时输出 `No changes.`。有差异时，同时检查组件依赖、导入路径和调用方契约；不要用整批覆盖替代合并。更新后重新验证业务变体、回调和弹窗关闭行为。
+
+Registry 内容可能继续变化。本文的源码链接固定到示例提交；其[来源记录](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/docs/registry-sources.json)保留模板版本和区块资产校验值，便于比较升级前后的源码。
 
 ## 验证交互结果
 
-- 检查有数据、空结果、加载和失败时的页面反馈，以及中英文、明暗主题和窄屏布局。
-- 验证字段校验、重复提交与失败重试；失败后保留输入，候选项翻页后保留选择。
-- 检查关闭弹窗、直接打开链接、刷新和前进后退，确认列表上下文与焦点恢复正确；用键盘与中文输入法完成操作。
-- 使用普通用户验证允许和拒绝的操作，分别检查入口可见性、任务范围与候选项目范围。隐藏按钮不能替代服务端授权。
-- 添加或修改组件后，运行项目的类型检查、相关测试与构建，确认导入、依赖和样式接入正确。
+### 验证各用法与关键状态
 
-组件测试验证输入与交互，真实接口和浏览器测试验证授权、持久化及页面接入。测试组织见[测试与验收](testing-and-acceptance.md)。
+运行示例后，可以按以下操作检查：
 
-<details>
-<summary>运行历史项目示例的测试</summary>
+| 入口 | 操作与预期结果 |
+| --- | --- |
+| **Product catalog** | 搜索能过滤商品；没有匹配项时显示空结果 |
+| **Edit product** | 空名称不能保存；保存成功后列表立即更新；刷新恢复初始演示数据 |
+| 编辑弹窗关闭 | 修改后取消或后退会确认；继续编辑保留输入；直接 URL 打开后也能返回目录 |
+| **Simulate save failure** | 保存中不能关闭；失败后保留输入并允许重试 |
+| **Review block** | 空备注不能提交；拒绝一次后保留表单；重试后历史更新 |
+| **Component variants** | 三种库存状态都有文字；切换深色主题和缩窄窗口后仍可读、可操作 |
 
-以下文件和命令属于上面的增量源码包，应在合并示例后的应用根目录执行；自己的应用使用对应测试文件。
+截图展示操作状态，关闭和返回行为仍需要实际验证。[示例浏览器测试](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/tests/playwright/ui-components.test.ts)覆盖上述流程，并检查查询参数保留、刷新提示和移动端弹窗尺寸。
+
+### 运行测试与构建
+
+在示例 App 目录运行：
 
 ```bash
-pnpm exec vitest run --config vitest.tutorial.config.ts tests/server/tutorial-tasks-project-api.test.ts
-pnpm exec vitest run tests/components/tutorial-projects.test.tsx
-pnpm exec vitest run tests/logic/client-routes.test.ts tests/logic/page-permission-titles.test.ts tests/logic/app-locale-coverage.test.ts tests/logic/authorization-assignment-safety.test.ts
 pnpm typecheck
+pnpm exec vitest run tests/client/ui-components.test.tsx tests/client/client-routes.test.ts tests/client/page-permission-titles.test.ts tests/client/route-overlay.test.tsx tests/project/agents-md.test.ts
+pnpm build
 ```
 
-浏览器测试运行在单独的本地测试应用中，会创建项目与任务。将 `APP_URL` 设置为 `pnpm dev` 打印的完整应用入口，用本地测试账号运行：
+启动应用后，把实际入口地址传给浏览器测试，包含应用部署前缀：
 
 ```bash
-APP_URL=http://127.0.0.1:13321/main/ pnpm exec playwright test tests/playwright/tutorial-projects.test.ts
+pnpm exec playwright install chromium
+APP_URL=http://<host>:<port>/main/ pnpm exec playwright test tests/playwright/ui-components.test.ts
 ```
 
-账号可通过 `TUTORIAL_USERNAME`、`TUTORIAL_PASSWORD` 环境变量指定；不要把生产账号写进脚本。真实数据库验证创建、分配、解除关联和权限范围；组件测试仅在必要的会话、传输和 jsdom 浏览器能力边界提供替身。
+不设置 `APP_URL` 会跳过浏览器测试。业务持久化、真实审批和业务角色授权不属于此 UI 示例的验证范围。
 
-</details>
+## 示例源码与运行
+
+### 完整示例 App 源码
+
+[查看完整示例](https://github.com/nocobase/docs-examples-v3/tree/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components) · [查看 README](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/README.MD)。
+
+这是独立应用，不依赖其他章节的示例。README 对应每个用法列出操作入口、源码、截图和验证方式。
+
+### 环境准备与启动
+
+使用 Node.js 24、pnpm 11。示例基于模板 `1.0.0-beta.85`，锁文件中的 `@nocobase/app-client` 为 `4.0.0-beta.5`。以下命令使用 SQLite 保存模板自身的系统数据；UI 演示数据保存在内存中，无需外部服务。
+
+```bash
+git clone https://github.com/nocobase/docs-examples-v3.git
+cd docs-examples-v3
+git checkout c8670ab1f784d76c4fef61936bdc3462fe1c1d89
+cd apps/ui-components
+pnpm install --frozen-lockfile
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config check
+pnpm dev
+```
+
+打开启动日志打印的应用入口，在部署前缀后追加 `ui-components/catalog`。例如入口以 `/main/` 结尾时，目录页为 `/main/ui-components/catalog`。这三个演示页面不需要登录；`config.yml` 和本地数据库不提交到仓库。其他数据库配置、局域网访问和截图生成方式见示例 README。

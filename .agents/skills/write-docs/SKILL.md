@@ -1,6 +1,6 @@
 ---
 name: write-docs
-description: Write, restructure, or review reader-facing pages in website-v3's doc/content, covering article purpose, organization, language and navigation. Complements write-doc-prompts and write-plugin-usage-docs. Not for homepage marketing copy or internal agent instructions.
+description: Write, restructure, or review reader-facing pages in website-v3's doc/content, covering article purpose, organization, language and navigation. Complements write-doc-prompts, write-app-development-docs and write-plugin-usage-docs. Not for homepage marketing copy or internal agent instructions.
 ---
 
 # 编写文档
@@ -13,7 +13,16 @@ description: Write, restructure, or review reader-facing pages in website-v3's d
 - 遵循用户本次要求与仓库 [AGENTS.md](../../../AGENTS.md)。双语、菜单、链接、资源、示例源码和检查命令以该文件及 [doc/README.md](../../../doc/README.md) 为准。
 - 只处理当前任务涉及的文章和必要关联修改。局部改标题、链接或段落时，不因使用本 Skill 就重组整篇、改换示例或迁移代码。
 - 编写或审阅读者提示词时，叠加 [write-doc-prompts](../write-doc-prompts/SKILL.md)，由它规定提示词与正文的分工。
+- 编写、重组或审阅“开发应用”的功能专题时，叠加 [write-app-development-docs](../write-app-development-docs/SKILL.md)，按一篇专题对应一个可运行 App、每种 API 用法有对应示例的要求组织内容。概览和项目结构等说明性文章不强制配独立 App。
 - 编写或重组单个插件使用指南时，叠加 [write-plugin-usage-docs](../write-plugin-usage-docs/SKILL.md)，沿用其四章结构和证据要求。下面的文章类型与导航建议不改变专项结构。
+
+## 先确认大纲
+
+每次编写或修改读者文档，先按 [AGENTS.md 的文档写作规则](../../../AGENTS.md#documentation-writing) 提交大纲，等待人工明确确认后再开始正文写作或修改文档文件。
+
+- 大纲只列标题，最多三级，可包含文章标题、章节和小节；不附正文、解释、代码或示例内容。
+- 确认前可以阅读现有文档、源码和规范，以确定文章目的和范围。用户要求调整大纲时，先更新大纲并继续等待确认，不把讨论或未回复当作批准。
+- 当前任务中已确认的大纲，在范围和结构未改变时继续有效，无需重复确认；范围或结构有实质变化时，先提交调整后的大纲确认。局部修改只列受影响部分，保持原定范围。
 
 ## 选择文章的主要目的
 
@@ -61,7 +70,7 @@ Skill 规定应该做什么，不证明 Agent 已经执行或结果正确。保�
 
 ## 示例、截图与语言
 
-- 示例选用读者熟悉、适合当前功能的业务。客户、任务、项目等都可以使用；明确应用中的业务概念，避免与 Studio 的同名产品功能混淆，不因通用文风规则更换已有示例。
+- 示例选用读者熟悉、适合当前功能的业务，选题遵循 [AGENTS.md 的示例项目约定](../../../AGENTS.md#documentation-example-projects)，尽量避免与 Studio 的任务、项目混淆。已有示例仅在当前任务涉及选题调整时更换。
 - 示例源码、固定提交、截图和验证范围按仓库规范维护。截图说明有助于理解的功能或状态；示例与读者结果会有差异时说明差异，不重复添加无用的截图来源声明。
 - 不把实测数据库、模型服务或地区设置变成所有读者的前提。需要具体环境才能复现时，保留明确配置和适用范围。
 - 面向各语言读者自然表达。通用例子可以说“公司所在的时区”；代码、兼容性或验证记录需要具体时区、货币、界面语言时，准确保留。
@@ -85,6 +94,7 @@ Skill 规定应该做什么，不证明 Agent 已经执行或结果正确。保�
 
 ## 完成检查
 
+- 已获得人工对大纲的明确确认，正文符合确认的范围与结构。
 - 文章的主要目的清楚；从搜索进入也能识别前提并完成当前任务。
 - 精简后仍保留可用步骤、关键限制和结果判断，没有把 Agent 的约定写成已验证的事实。
 - 标题和链接符合实际内容，相关页面各有职责；按适用范围核对提示词或插件指南专项规则。

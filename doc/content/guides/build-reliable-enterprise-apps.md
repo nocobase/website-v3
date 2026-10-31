@@ -1,5 +1,5 @@
 ---
-title: Build enterprise apps that keep evolving with NocoBase 3
+title: Build reliable enterprise apps with NocoBase 3
 metaDescription: NocoBase Core is the open-source foundation for developing and running business systems with AI, and NocoBase Studio is the governance platform where people and agents develop together.
 ---
 
@@ -12,7 +12,7 @@ When you let an agent vibe-code a business system, the first version usually com
 3. With many issues running in parallel, people can't keep up with confirming the agents' messages and changes.
 4. Requirement context, business rules and lessons learned are scattered across sessions, and they are lost when people or agents change.
 
-To address these problems, NocoBase 3 introduces [NocoBase Core](https://www.nocobase.com/core/) and [NocoBase Studio](https://www.nocobase.com/studio/). They let companies develop their own enterprise apps quickly in the age of AI agents while solving the problems above. Using IT asset management as the example, this tutorial shows how to build enterprise apps that keep evolving with NocoBase 3.
+To address these problems, NocoBase 3 introduces [NocoBase Core](https://www.nocobase.com/core/) and [NocoBase Studio](https://www.nocobase.com/studio/). They let companies develop their own enterprise apps quickly in the age of AI agents while solving the problems above. Using IT asset management as the example, this tutorial shows how to build reliable enterprise apps with NocoBase 3.
 
 ## Core: the open-source foundation for developing and running business systems with AI
 
@@ -55,7 +55,7 @@ The tutorial's code is in [nocobase/docs-examples-v3](https://github.com/nocobas
 
 ### Getting started
 
-1. [Build enterprise apps that keep evolving with NocoBase 3](build-sustainable-enterprise-apps.md): this page.
+1. [Build reliable enterprise apps with NocoBase 3](build-reliable-enterprise-apps.md): this page.
 2. [Prepare your development environment](prepare-environment.md): install Node.js, pnpm and Git.
 3. [Choose an agent and a model](choose-agent-and-model.md): pick a coding tool and a model.
 

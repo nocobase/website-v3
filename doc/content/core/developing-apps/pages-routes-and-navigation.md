@@ -1,358 +1,190 @@
 ---
-title: Pages, routing, and navigation
-description: Complete defineAppRoutes usage, including page loading, path parameters, nested routes, navigation groups, breadcrumbs, access control, cross-module contributions, and configuration limits.
+title: Pages, routes and navigation
+description: Use a dedicated routing app to learn page registration, parameters, drawers and dialogs, tabs, navigation, breadcrumbs, access control and component overrides.
 ---
 
-Use `defineAppRoutes()` in `client/routes.ts` to declare page URLs, load components, add menu entries, and set authentication and authorization requirements. Applications and plugins use the same route declarations.
+Use `defineAppRoutes()` to declare page addresses, components, navigation and access rules. The project example below puts these usages in one application so you can try each one and inspect its source.
 
-## Basic usage
+## Run the example
 
-### Register a page
+The [example app][app] uses default template `1.0.0-beta.85` and locks `@nocobase/app-client` to `4.0.0-beta.5`. It requires Node.js 24 and pnpm 11.7.0.
 
-The following adds a `/projects` page that any signed-in user can access:
+```bash
+git clone https://github.com/nocobase/docs-examples-v3.git
+cd docs-examples-v3
+git checkout 58ae0befa2272cbc1f4c946db699bd3b93661486
+cd apps/pages-routes-navigation
+pnpm install --frozen-lockfile
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config check
+pnpm dev
+```
+
+SQLite is the demonstration and verification environment for this example. It needs no separate database service; it is not a routing requirement. To open the app from another device, set the listening address and `app.publicOrigin` as described in the [example README][readme], then open `/main/` on that address. The local `config.yml` defines the initial account under `users.initialAdmin`.
+
+The home page links to each demo. Projects and tasks are public fictional fixtures. **New draft** demonstrates routing and form state without saving business records. Users, roles and authentication use the app's real SQLite database.
+
+![The example home page links to each routing demo](/assets/core/developing-apps/pages-routes-and-navigation/home.png)
+
+All paths below are relative to the application. With the default `/main` deployment prefix, `/projects` appears as `/main/projects` in the browser. Keep that prefix out of route declarations. Both documentation languages use these English screenshots.
+
+## Register a page and load its component
+
+Open **Project list** from the example home page to see the list and its sidebar entry. [client/pages/projects/routes.ts][routes] declares the page, and [client/routes.ts][collection] collects the contribution for the runtime:
 
 ```ts
-// client/routes.ts
+// client/pages/projects/routes.ts (excerpt)
 import { FolderKanban } from 'lucide-react';
-import {
-  defineAppRoutes,
-  type AppClientRouteContribution,
-} from '@nocobase/app-client/plugins';
+import { defineAppRoutes } from '@nocobase/app-client/plugins';
 
-const projectRoutes: AppClientRouteContribution = defineAppRoutes([
-  {
-    name: 'projects',
-    path: '/projects',
-    auth: 'required',
-    authz: 'skip',
-    navigation: {
-      title: 'projects.title',
-      icon: FolderKanban,
-      order: 20,
-    },
-    componentLoader: () => import('./pages/projects/index.js'),
-  },
-]);
-
-export default [projectRoutes];
-```
-
-In an existing app, add `projectRoutes` to the existing export array and retain its other routes. The default template already imports this file in `client/runtime.ts` and passes it to the `routes` property of `defineAppRuntime()`. Calling `defineAppRoutes()` in a file that nothing imports does not register a page.
-
-The page module must default-export a React component:
-
-```tsx
-// client/pages/projects/index.tsx
-import { useTranslation } from '@nocobase/i18n/client';
-import { PageContainer } from '#components/page-container';
-import { PageHeader } from '#components/page-header';
-
-export default function ProjectsPage() {
-  const { t } = useTranslation();
-  return (
-    <PageContainer>
-      <PageHeader title={t('projects.title')} />
-    </PageContainer>
-  );
-}
-```
-
-Merge `projects.title` into the existing `client/locales/en-US.ts` and `zh-CN.ts`, using “Projects” and “项目”. See [Localization](localization.md). Template imports use `.js` extensions even when the source file is `.tsx`.
-
-For an application mounted at `/main/`, the page URL is `/main/projects`; its route `path` remains `/projects`. Here, `authz: 'skip'` adds no page authorization check, while authentication still applies. To restrict the page by role, use the declarations under [Access control](#authentication-and-authorization).
-
-### Argument and return value
-
-`defineAppRoutes()` takes a readonly array of route definitions and returns a route contribution object with this shape:
-
-```ts
-{
-  parent: 'app',
-  routes: [/* Page or group definitions */],
-}
-```
-
-Its type is `AppClientAppRoutesContribution`, also available through the alias `AppClientRouteContribution`. This is a declaration collected by the runtime, not a React component; declaring it does not immediately execute `componentLoader`. The returned declaration is frozen. Assemble your array first rather than calling `push()` or modifying route entries afterwards.
-
-The contribution's `parent: 'app'` identifies the application route surface. It is separate from an individual route's [`parent`](#append-to-a-group-in-another-file-or-plugin), which attaches that route to a group.
-
-## Page paths and component loading
-
-### Static paths and dynamic parameters
-
-| Path | Purpose | Example URL |
-| --- | --- | --- |
-| `/projects` | A fixed page | `/projects` |
-| `/projects/:projectId` | A record selected by a parameter | `/projects/p100` |
-| `/projects/:projectId/tasks/:taskId` | Multiple path parameters | `/projects/p100/tasks/t200` |
-
-Dynamic pages normally omit `navigation`: a fixed menu entry cannot supply a value for `:projectId`. A detail page can be a separate route or a child of the list. A separate route replaces the page; a child renders in the parent's `Outlet`.
-
-Read parameters with React Router's [`useParams()`](https://reactrouter.com/api/hooks/useParams). Values are strings, and child pages can also read their parents' parameters:
-
-```tsx
-import { useParams } from 'react-router';
-
-export default function ProjectDetailPage() {
-  const { projectId } = useParams<'projectId'>();
-  // Use projectId to request the corresponding project.
-  return <div>{projectId}</div>;
-}
-```
-
-### Path rules
-
-- An outermost `path` starts with `/`. The application supplies the deployment base path; leave it out of declarations.
-- Child paths are appended to their parent. Prefer `new`; `/new` is also appended and does not escape to the application root.
-- Repeated slashes and trailing slashes are normalized.
-- Queries and hashes are not part of route definitions. Do not declare `/projects?q=abc` or `/projects#summary`. Supply them when navigating and read them with `useSearchParams()` or `useLocation()`.
-- Wildcards (`*`), optional parameters containing `?`, backslashes, and `.` or `..` path segments are not supported.
-
-For a parent at `/projects`:
-
-| Child `path` | Resolved application path |
-| --- | --- |
-| `new` or `/new` | `/projects/new` |
-| `:projectId` | `/projects/:projectId` |
-| `/projects/new` | `/projects/projects/new`, usually an accidental repeated prefix |
-
-### Two forms of `componentLoader`
-
-Prefer a dynamic import of a default-exported page so it loads on demand:
-
-```ts
-componentLoader: () => import('./pages/projects/index.js'),
-```
-
-For a named export, adapt the module to the required `{ default: Component }` shape:
-
-```ts
-componentLoader: () =>
-  import('./pages/projects/index.js').then((module) => ({
-    default: module.ProjectsPage,
-  })),
-```
-
-`componentLoader` receives no route arguments and must return a Promise containing the default component. Do not return a JSX element or use a data-fetching function as the component loader. Read parameters and load data inside the page; see [Data requests and state management](data-requests-and-state.md).
-
-## Nested pages and navigation
-
-### Declare children
-
-This entry can replace the earlier `projects` route to add create and detail pages:
-
-```ts
-{
-  name: 'projects',
-  path: '/projects',
-  auth: 'required',
-  authz: { resource: { type: 'page', id: 'projects' }, action: 'access' },
-  navigation: { title: 'projects.title', icon: FolderKanban },
-  componentLoader: () => import('./pages/projects/index.js'),
-  children: [
-    {
-      name: 'projectCreate',
-      path: 'new',
-      authz: {
-        resource: { type: 'composite', id: 'projects' },
-        action: 'create',
-      },
-      componentLoader: () => import('./pages/projects/new.js'),
-    },
-    {
-      name: 'projectDetail',
-      path: ':projectId',
-      breadcrumb: { title: 'projects.detail' },
-      componentLoader: () => import('./pages/projects/detail.js'),
-    },
-  ],
-}
-```
-
-The children resolve to `/projects/new` and `/projects/:projectId`. The static `new` path takes precedence over the parameter match. Children can have further children, such as `/projects/:projectId/edit`. Multiple routes with distinct names and paths can also load the same component.
-
-A parent page must render an `Outlet` for its children:
-
-```tsx
-import { Outlet } from 'react-router';
-
-// Inside the project list component's returned content.
-<PageContainer>
-  <PageHeader title={t('projects.title')} />
-  {/* Project list */}
-  <Outlet />
-</PageContainer>
-```
-
-Pass loaded data or refresh functions through `<Outlet context={{ reload }} />`; children read them with `useOutletContext()`. The template supplies an `Outlet` for a pure navigation group, but a route with its own page component controls its own outlet placement.
-
-### Choose how a child is displayed
-
-`children` defines URLs and hierarchy. The child component determines presentation:
-
-| Child component content | Use case |
-| --- | --- |
-| Ordinary content | A tab or page section rendered inline at the `Outlet` |
-| `RouteDialog` | A short create or edit form over the parent page |
-| `RouteDrawer` | Record details or editing in a side panel |
-| `RouteChildPage` | A long form or complex page covering the content area while retaining application navigation |
-
-These are default-template components, not fields of `defineAppRoutes`. Dialogs and drawers supply their own containers. Inline tabs reuse the parent's container. A covering child page uses its own `PageContainer` inside `RouteChildPage`. See [Page layouts](page-layouts.md).
-
-### Links and programmatic navigation
-
-Use `Link` or `NavLink` in the parent to open a child. Use `useNavigate()` when navigation follows another action, such as a menu command. Carrying the current query preserves list search and pagination:
-
-```tsx
-import { Link, useLocation, useNavigate } from 'react-router';
-
-const location = useLocation();
-const navigate = useNavigate();
-
-<Link to={{ pathname: 'new', search: location.search }}>
-  {t('projects.new')}
-</Link>;
-
-// In the child page, return to the parent after closing or saving.
-await navigate(
-  { pathname: '..', search: location.search },
-  { relative: 'route', replace: true },
-);
-```
-
-The link and return action belong in the parent and child respectively. Relative navigation defaults to **the route rendering the link**, rather than the last segment currently visible in the address bar. At `/projects/p100/tasks`, an `edit` link rendered by the detail parent resolves to `/projects/p100/edit`; one rendered by the `tasks` child resolves to `/projects/p100/tasks/edit`. React Router also supports `relative: 'path'` when resolution should follow URL segments; see [Relative path resolution](https://reactrouter.com/api/hooks/useResolvedPath).
-
-Inside `RouteDialog` or `RouteDrawer`, call `useRouteOverlay().close()` to return to the parent. Do not rely exclusively on `navigate(-1)`: a directly opened child URL may have another website as its previous history entry. `replace: true` replaces the current entry so Back does not reopen a just-submitted form.
-
-Queries do not track which page owns each parameter. When list and child pages share a URL, retain list parameters on return and remove parameters belonging only to the detail or tab.
-
-### Default children and tabs
-
-`defineAppRoutes` has no `index` or `redirect` field. If a parent page already occupies `/reports`, registering a child page at the same resolved path conflicts with it.
-
-To show `/reports/summary` when someone enters `/reports`, declare `summary` and `owners` child routes and redirect only when the parent URL itself matches:
-
-```tsx
-import {
-  Navigate,
-  Outlet,
-  matchPath,
-  useLocation,
-  useResolvedPath,
-} from 'react-router';
-
-export default function ReportsPage() {
-  const location = useLocation();
-  const parent = useResolvedPath('.');
-  const atParent = matchPath(
-    { path: parent.pathname, end: true },
-    location.pathname,
-  );
-
-  if (atParent) {
-    return (
-      <Navigate
-        replace
-        to={{ pathname: 'summary', search: location.search }}
-      />
-    );
-  }
-
-  return <Outlet />;
-}
-```
-
-This component shows only the redirect logic and assumes both tabs inherit the parent's permission. Build the tab bar with `NavLink`; tabs normally omit their own `navigation` and `breadcrumb`. Opening `/reports/owners` directly must retain that URL, rather than unconditionally redirecting to the default tab. [`Navigate`'s `replace`](https://reactrouter.com/api/components/Navigate) avoids repeated default redirects when going Back.
-
-If tabs have different permissions, wait for permission checks and choose the first accessible tab. If none is accessible, show the appropriate state without redirecting.
-
-## Navigation entries and groups
-
-### Configure a menu entry
-
-```ts
-navigation: {
-  title: 'projects.title',
-  icon: FolderKanban,
-  order: 20,
-},
-```
-
-| Field | Purpose |
-| --- | --- |
-| `title` | Required, nonempty string. The default template looks up a translation in the owning package's namespace, falling back to the original text; use translation keys for multilingual apps |
-| `icon` | Optional component accepting `className`; lucide-react icons work directly. Pass the component, not `<FolderKanban />` |
-| `order` | Optional number, lower first among siblings; defaults to `0`. Ties retain registration order |
-
-Omitting `navigation` leaves the page accessible through its URL or links. Details, create dialogs, and tabs commonly omit it. While they are open, the default template selects the nearest ancestor page with a menu entry.
-
-A parameterized page cannot declare `navigation`. A static child segment does not change this rule if its full resolved path still contains a parameter.
-
-### Create a group without a page
-
-A group requires `name`, `navigation`, and `children`. It has no `componentLoader` and cannot declare `authz`:
-
-```ts
-const businessRoutes = defineAppRoutes([
+export const projectRoutes = defineAppRoutes([
   {
     name: 'business',
-    navigation: { title: 'navigation.business', order: 10 },
+    navigation: { title: 'demo.business', order: 10 },
     children: [
       {
         name: 'projects',
         path: '/projects',
+        auth: 'required',
         authz: { resource: { type: 'page', id: 'projects' }, action: 'access' },
-        navigation: { title: 'projects.title' },
-        componentLoader: () => import('./pages/projects/index.js'),
+        navigation: { title: 'demo.projects', icon: FolderKanban },
+        componentLoader: () => import('./index.js'),
+        // The complete example also declares children here.
       },
     ],
   },
 ]);
 ```
+```ts
+// client/routes.ts
+import { projectRoutes, appendedRoutes } from './pages/projects/routes.js';
+// Retain the template appRoutes and systemSettingsRoutes.
+export default [appRoutes, appendedRoutes, projectRoutes, systemSettingsRoutes];
+```
 
-This is an alternative organization of the earlier project route; do not register it twice. A group without a `path` changes menu hierarchy only: the project URL remains `/projects`. Groups can be nested further.
+`defineAppRoutes()` takes a readonly array of definitions and returns a frozen `{ parent: 'app', routes: [...] }` contribution. It does not load components immediately. Runtime `routes` accepts one contribution or a flat array of contributions; the template already imports this file in `client/runtime.ts`. Calling the function in an unused file does not register anything. Do not mutate the returned object or pass an array of contributions back into `defineAppRoutes()`.
 
-A group can also supply a path prefix. A group at `/settings` with a child at `projects` produces `/settings/projects`. The group itself has no page, and opening its URL does not automatically select its first child. To provide a landing page at the group's own URL, declare an ordinary child page with `path: '/'`, provided no other page occupies that URL.
+`componentLoader` returns `Promise<{ default: Component }>`. This dynamic import loads the default export from [index.tsx][list], which uses the template's `PageContainer`, `PageHeader` and `DataTable`. A loader receives no path parameters and is not a data fetching function. For named exports, see [standalone pages](#standalone-page-and-named-export).
 
-Use `children: []` to reserve a group for contributions from other modules. The default template shows only groups with visible page entries. Empty groups, groups whose children have no menu entries, and groups whose children are all hidden by permissions are omitted.
+![A static project page with a default component export and navigation entry](/assets/core/developing-apps/pages-routes-and-navigation/projects.png)
 
-## Breadcrumbs
+## Path parameters and query state
 
-### Static titles
+Enter `Harbor` in **Search projects**. The address becomes `/projects?q=Harbor`; selecting **Harbor launch** opens `/projects/p100?q=Harbor`. `useSearchParams()` reads and updates the query. `useParams()` reads the string `projectId` in the detail page.
 
-`breadcrumb` names a level in the page hierarchy and is allowed on dynamic paths:
+This excerpt from [index.tsx][list] simplifies the table cell and omits filtering:
+
+```tsx
+// client/pages/projects/index.tsx (excerpt)
+const location = useLocation();
+const [search, setSearch] = useSearchParams();
+const query = search.get('q') ?? '';
+
+<RecordLink to={{ pathname: project.id, search: location.search }}>
+  {project.name}
+</RecordLink>
+<Outlet context={{ listSearch: location.search }} />
+```
+
+`RecordLink` wraps React Router's `Link`. The relative `p100` path extends the list path. Pass the query explicitly: a parent/child relationship does not preserve it automatically. The `Outlet` context lets the detail component read the list query through `useOutletContext()`.
+
+![The q query filters the list and is included in detail links](/assets/core/developing-apps/pages-routes-and-navigation/filtered.png)
+
+## Detail drawer and nested dialog
+
+### Open a drawer through a child route
+
+Declare children of the project list so details render in its `Outlet`:
 
 ```ts
+// Children of the projects page (excerpt)
+children: [
+  {
+    name: 'projectDetail',
+    path: ':projectId',
+    componentLoader: () => import('./detail.js'),
+    children: [
+      {
+        name: 'projectTask',
+        path: 'tasks/:taskId',
+        componentLoader: () => import('./task.js'),
+      },
+    ],
+  },
+],
+```
+
+[detail.tsx][detail] presents the record with the template's `RouteDrawer`. This excerpt omits record lookup, missing-record handling and other buttons:
+
+```tsx
+// client/pages/projects/detail.tsx (excerpt)
+const { projectId } = useParams();
+const { listSearch } = useOutletContext<{ listSearch: string }>();
+
+<RouteDrawer title={project.name} footer={<CloseButton />}>
+  <RecordLink to={{ pathname: `tasks/${task.id}`, search: listSearch }}>
+    {task.name}
+  </RecordLink>
+  <Outlet />
+</RouteDrawer>
+```
+
+Selecting a project opens a drawer over the filtered list. Opening or refreshing `/projects/p100?q=Harbor` restores this state. **Back to list** returns to `/projects?q=Harbor`. A nonexistent record such as `/projects/missing` produces a missing-record message.
+
+![The detail drawer keeps the filtered list behind it](/assets/core/developing-apps/pages-routes-and-navigation/drawer.png)
+![An unknown project displays a missing-record message](/assets/core/developing-apps/pages-routes-and-navigation/missing.png)
+
+### Open a task dialog inside the drawer
+
+Select **Prepare launch checklist** to open `/projects/p100/tasks/t200?q=Harbor`. [task.tsx][task] reads its own parameter and the parent parameter, then renders `RouteDialog`:
+
+```tsx
+// client/pages/projects/task.tsx (excerpt)
+const { projectId, taskId } = useParams();
+
+<RouteDialog title={task.name} footer={<CloseTask />}>
+  <p>{t('demo.taskPath', { projectId, taskId })}</p>
+</RouteDialog>
+```
+
+`children` declares the hierarchy, `Outlet` places the content, and `RouteDrawer` or `RouteDialog` determines its presentation. Keep the second `Outlet` inside the detail drawer. **Back to project** closes only the inner dialog. Closing the drawer then returns to the list.
+
+![A task dialog above the project drawer reads both path parameters](/assets/core/developing-apps/pages-routes-and-navigation/task.png)
+
+## Full child page and breadcrumbs
+
+### Cover the parent content
+
+Select **Open workspace** in the drawer to open `/projects/workspace/p100?q=Harbor`. [workspace.tsx][workspace] uses the template's `RouteChildPage` to cover the parent content while keeping the application navigation available:
+
+```tsx
+// Another child of the projects page
 {
-  name: 'projectDetail',
-  path: ':projectId',
-  breadcrumb: { title: 'projects.detail' },
-  componentLoader: () => import('./pages/projects/detail.js'),
+  name: 'projectWorkspace',
+  path: 'workspace/:projectId',
+  breadcrumb: { title: 'demo.workspace' },
+  componentLoader: () => import('./workspace.js'),
+}
+
+// client/pages/projects/workspace.tsx
+export default function ProjectWorkspace() {
+  return <RouteChildPage><ProjectPage /></RouteChildPage>;
 }
 ```
 
-`breadcrumb.title` is a nonempty string, translated in the same way as a menu title, not a callback that reads record names. Navigation and breadcrumbs are separate metadata. The default template's header uses these rendering rules:
+This is still a child route, so the parent must retain its `Outlet`. For ordinary embedded content, render directly in the outlet, as the report tabs do below.
 
-- An explicit `breadcrumb` supplies the level's title.
-- A page with `navigation` but no `breadcrumb` uses `navigation.title`. This fallback belongs to the template.
-- A pure group contributes a breadcrumb level only when it declares `breadcrumb`. Dialogs and tabs without either declaration add no level.
-- Earlier page levels are links; pure groups are text; the last level identifies the current page. Denied pages are omitted from the default trail.
+### Dynamic labels and return addresses
 
-`AppLayout` already renders the breadcrumb. Business pages do not need another `Breadcrumbs` component. The standalone layout for guest and optional-auth pages has no such header.
-
-### Dynamic titles and return destinations
-
-To show a project name, declare the **whole trail** inside the page with `usePageBreadcrumb()`:
+`breadcrumb: { title: 'demo.workspace' }` supplies a static route title. Once the project is available, `usePageBreadcrumb()` replaces it with the project name:
 
 ```tsx
-import { usePageBreadcrumb } from '@nocobase/app-client';
-
-// project is the loaded record; location comes from useLocation().
+// client/pages/projects/workspace.tsx (excerpt)
 usePageBreadcrumb(
   project
     ? [
         {
-          label: t('projects.title'),
+          label: t('demo.projects'),
           to: { pathname: '/projects', search: location.search },
         },
         { label: project.name },
@@ -361,218 +193,376 @@ usePageBreadcrumb(
 );
 ```
 
-`label` is display text and `to` is an optional destination; the last level is never a link. Pass `undefined` or `null` while the record loads to retain the route-derived trail. If both parent and child declare a trail, the inner page wins; closing it restores the outer declaration.
+`label` is display text and `to` is an optional destination. The final item is not a link. Pass `undefined` or `null` to use the default route breadcrumb. The innermost active declaration takes precedence; unmounting restores the outer declaration.
 
-The template remembers queries from ancestor pages visited within the current route hierarchy. A direct detail URL or reload has no such recorded visit, so default ancestor links have no query. When a deep link must carry list conditions back, specify `to` explicitly as above and keep only parameters owned by the list. Avoid duplicating a back button when the breadcrumb already supplies the same return path.
+The screenshot shows **Project list → Harbor launch**. Selecting **Project list** returns with `q=Harbor`. The template remembers queries from visited ancestors in the current hierarchy, but a deep link or reload may lack that history. Specify `to` explicitly when returning with a query must work in those cases.
+
+![A full child page with the project name and query-preserving breadcrumb](/assets/core/developing-apps/pages-routes-and-navigation/workspace.png)
+
+### Standalone page and named export
+
+Back in the drawer, select **Open as a full page** to open `/project-pages/p100?q=Harbor`. This route is a sibling of the list. It reuses the named `ProjectPage` export without rendering through the list outlet:
+
+```ts
+// A sibling route of projects
+{
+  name: 'projectStandalone',
+  path: '/project-pages/:projectId',
+  authz: { resource: { type: 'page', id: 'projects' }, action: 'access' },
+  breadcrumb: { title: 'demo.projectPage' },
+  componentLoader: () =>
+    import('./workspace.js').then((module) => ({ default: module.ProjectPage })),
+}
+```
+
+`.then()` adapts the named export to the required `default` structure; do not return a JSX element. The standalone page and workspace share content but have different route hierarchies.
+
+![A standalone project page reuses the named export without the list outlet](/assets/core/developing-apps/pages-routes-and-navigation/standalone.png)
+
+## Draft dialog and leave confirmation
+
+### Open a form and close it through routing
+
+Select **New draft** from the list to open `/projects/new`. Static `new` takes precedence over dynamic `:projectId`. Enter a name and select **Preview draft**, then **Finish preview** to return to the list. These actions do not create a project.
+
+![The static new child route opens a draft form](/assets/core/developing-apps/pages-routes-and-navigation/draft.png)
+![Draft preview with the action that closes the dialog](/assets/core/developing-apps/pages-routes-and-navigation/draft-preview.png)
+
+The [complete form][draft] gets `close()` from `useRouteOverlay()` inside a component rendered in the dialog:
+
+```tsx
+// Call this inside a button component rendered within RouteDialog.
+const { close } = useRouteOverlay();
+
+<Button onClick={() => {
+  onFinish(); // Clear the draft dirty flag in this example.
+  void close();
+}}>
+  {t('demo.finishPreview')}
+</Button>
+```
+
+`close()` returns to the matched parent route and preserves the query, avoiding assumptions about the last URL segment. The close icon, Escape and backdrop use the same close flow. Use React Router's `useNavigate()` for ordinary programmatic navigation; prefer the template close method for route overlays.
+
+### Confirm before leaving an unsaved draft
+
+After entering a name, select Close. **Discard this unsaved draft?** lets you keep editing or discard and return to the list:
+
+```tsx
+// client/pages/projects/new.tsx (excerpt)
+const dirtyRef = useRef(false);
+const pendingDecisionRef = useRef<((allowed: boolean) => void) | null>(null);
+const [confirmOpen, setConfirmOpen] = useState(false);
+
+const canLeave = useCallback((): boolean | Promise<boolean> => {
+  if (!dirtyRef.current) return true;
+  return new Promise<boolean>((resolve) => {
+    pendingDecisionRef.current = resolve;
+    setConfirmOpen(true);
+  });
+}, []);
+
+useNavigationGuard(canLeave);
+// RouteDialog also receives canLeave as beforeClose.
+// AlertDialog buttons call decide(false) or decide(true).
+const decide = (allowed: boolean) => {
+  setConfirmOpen(false);
+  if (allowed) dirtyRef.current = false;
+  pendingDecisionRef.current?.(allowed);
+  pendingDecisionRef.current = null;
+};
+```
+
+The same asynchronous decision is passed to `RouteDialog.beforeClose` and `useNavigationGuard()`. They cover overlay close and application navigation, including browser history traversal. The default template places `NavigationGuardProvider` outside the routes. Returning `false` blocks departure, `true` allows it, and a Promise waits for the choice. Clear the dirty flag when allowing departure to avoid a second confirmation during the close navigation.
+
+The full implementation also handles `beforeunload` for reloads and leaving the site. The browser supplies that native confirmation text; application navigation guards do not replace it.
+
+![An asynchronous navigation guard waits for the discard decision](/assets/core/developing-apps/pages-routes-and-navigation/guard.png)
+
+## Default child page and tabs
+
+Open **Project reports**. `/reports` redirects to `/reports/summary`; **Owners** switches to `/reports/owners`. [reports/index.tsx][reports] redirects only when the address exactly matches the parent:
+
+```tsx
+// client/pages/reports/index.tsx (excerpt)
+const location = useLocation();
+const parent = useResolvedPath('.');
+if (matchPath({ path: parent.pathname, end: true }, location.pathname)) {
+  return <Navigate replace to={{ pathname: 'summary', search: location.search }} />;
+}
+
+// These elements go in the navigation and content returned by the component.
+<NavLink to={{ pathname: 'owners', search: location.search }}>
+  {t('demo.owners')}
+</NavLink>
+<Outlet />
+```
+
+`Navigate replace` avoids adding a redundant parent entry to history. `end: true` prevents a direct visit to Owners from being redirected to Summary. `NavLink` identifies the active tab; `Outlet` renders its content. Both children inherit the report page's authorization.
+
+![The parent report address opens Summary by default](/assets/core/developing-apps/pages-routes-and-navigation/summary.png)
+![Opening Owners directly preserves that tab and its parent navigation](/assets/core/developing-apps/pages-routes-and-navigation/owners.png)
+
+## Navigation and groups
+
+Projects uses a pathless **Projects** group. Reports uses **Insights** with the `/reports` prefix. A group has no component and organizes children without needing its own `Outlet`:
+
+```ts
+{
+  name: 'reportsGroup',
+  path: '/reports',
+  navigation: { title: 'demo.insights', order: 20 },
+  children: [
+    {
+      name: 'reports',
+      path: '/',
+      authz: 'skip',
+      navigation: { title: 'demo.reports', icon: ChartColumn },
+      componentLoader: () => import('../reports/index.js'),
+      children: [
+        { name: 'reportSummary', path: 'summary',
+          componentLoader: () => import('../reports/summary.js') },
+        { name: 'reportOwners', path: 'owners',
+          componentLoader: () => import('../reports/owners.js') },
+      ],
+    },
+  ],
+}
+```
+
+The child's `path: '/'` lands at the group address `/reports`. The group itself does not claim a page address. Only `navigation` creates a menu entry: details and tasks remain accessible through record links without adding menus.
+
+`title` is text or a translation key; `icon` is a React component such as a Lucide icon, not a string or JSX element. `order` is a finite number, defaults to `0`, and sorts siblings in ascending order. Group headings do not show icons. A nested task keeps Project list selected. Authorization hides inaccessible pages and empty groups.
+
+![Pathless and prefixed groups, with additional pages under Insights](/assets/core/developing-apps/pages-routes-and-navigation/navigation.png)
 
 ## Authentication and authorization
 
-### `auth`: sign-in requirements
+### Sign-in requirements and layouts
 
-| Value | Behavior | Default-template layout |
+The [route definitions][routes] demonstrate all three `auth` values in separate route trees:
+
+```ts
+// Three independent routes, not a parent/child tree.
+{ name: 'projects', path: '/projects', auth: 'required', /* ... */ }
+{ name: 'welcome', path: '/welcome', auth: 'guest', authz: 'skip', /* ... */ }
+{ name: 'publicProjects', path: '/public-projects', auth: 'optional', authz: 'skip', /* ... */ }
+```
+
+| Usage | Action | Default template behavior |
 | --- | --- | --- |
-| `required` | Requires sign-in; signed-out visitors enter the sign-in flow. Default for an outermost route | Application layout with sidebar and header |
-| `guest` | Sign-in, registration, and other guest pages; signed-in users are redirected away | Standalone page layout |
-| `optional` | Available signed in or out; the page adapts its content to the session | Standalone page layout |
+| `required` | Open `/projects` in a signed-out window | Redirects to `/login`; signed-in pages use the application layout with its sidebar |
+| `guest` | Open `/welcome` while signed out | Shows the guest welcome page; signed-in visitors are redirected away |
+| `optional` | Open `/public-projects` signed in or out | Both identities can open the standalone layout |
 
-Children inherit `auth`, including through groups. They may omit it or repeat the same value, but cannot change it. Declare pages with different authentication requirements in separate route trees.
+![A required route sends a signed-out visitor to the login page](/assets/core/developing-apps/pages-routes-and-navigation/login.png)
+![A guest route displays its welcome page before sign-in](/assets/core/developing-apps/pages-routes-and-navigation/guest.png)
+![An optional route is available without signing in and uses a standalone layout](/assets/core/developing-apps/pages-routes-and-navigation/public.png)
 
-### `authz`: access requirements
+Root routes default to `required`. Descendants inherit `auth` and cannot change it to another value. Authentication alone does not grant page access.
 
-| Configuration | Use |
-| --- | --- |
-| `{ resource: { type, id }, action }` | Check the specified resource and action |
-| `'skip'` | Skip this page's own authorization check; authentication and parent checks still apply |
-| `'unrestricted'` | Admit only identities with unrestricted access, such as root. This does not mean public access and is not an assignable page grant |
+The current template redirects a protected visit to `/login` without automatically carrying the original destination. A guest page visited while signed in uses a safe in-app `redirect` query or returns home. For example, `/welcome?redirect=%2Freports%2Fowners` sends a signed-in visitor to Owners. Do not assume arbitrary deep links automatically resume after sign-in.
 
-Choose resources and actions according to the page:
+### Page grants, inheritance and denied access
+
+The [complete routes][routes] use these authorization declarations:
 
 ```ts
-// Enter a business page.
-authz: { resource: { type: 'page', id: 'projects' }, action: 'access' },
-
-// Open a create page only if the user can create projects.
-authz: { resource: { type: 'composite', id: 'projects' }, action: 'create' },
-
-// Read a particular settings item.
-authz: { resource: { type: 'settings', id: 'project-settings' }, action: 'read' },
+// Project list and children without their own authorization declaration
+ authz: { resource: { type: 'page', id: 'projects' }, action: 'access' }
+// The draft page requires another page grant
+ authz: { resource: { type: 'page', id: 'project-drafts' }, action: 'access' }
+// Reports skip their own page authorization check but still require sign-in
+ authz: 'skip'
+// Administrator notes require an unrestricted identity
+ authz: 'unrestricted'
 ```
 
-`type`, `id`, and `action` must be nonempty strings. The relevant server capability must register business resources such as `composite` and `settings` and their actions. A route declaration neither creates those resources nor grants users access automatically.
+In **System settings → Permission management → Roles and permissions**, create a `Project viewer` role granting only project page access. Create a demonstration user in **Users** and assign that role. Sign in with a separate browser session and follow the [README][readme] to verify:
 
-### Inheritance and defaults
+- The list, details, tasks and workspace are accessible. A child without its own `authz` inherits the nearest ancestor page's effective value.
+- **New draft** is hidden and `/projects/new` is denied. A child's own grant does not replace the parent's check.
+- Reports remain available through `skip`, while still requiring sign-in.
+- The administrator menu is hidden and `/admin-notes/child` is denied. The child's `skip` cannot bypass its parent's `unrestricted` requirement.
 
-1. A page with an explicit `authz` uses that declaration.
-2. An omitted child declaration inherits the nearest ancestor **page's** effective value; intervening groups do not change it.
-3. With no ancestor page to inherit from, `auth: 'required'` defaults to `'unrestricted'`; `guest` and `optional` default to `'skip'`. Development mode warns about the omission.
+![A project viewer can use the list without draft or administrator controls](/assets/core/developing-apps/pages-routes-and-navigation/viewer.png)
+![Project access alone is insufficient to open a new draft](/assets/core/developing-apps/pages-routes-and-navigation/draft-denied.png)
+![A child with skip cannot bypass an unrestricted parent](/assets/core/developing-apps/pages-routes-and-navigation/admin-denied.png)
 
-Declare `authz` explicitly on the first page of each path. Otherwise a new page may be visible only to administrators because of the default. Pure navigation groups cannot declare `authz`.
+An administrator can open **Administrator notes → Open child page**. `unrestricted` means an identity with unrestricted access, not every signed-in user.
 
-A child's own permission or `'skip'` never bypasses its parent. In the project example, opening the create page requires both the list's `projects/access` and the child's `projects/create`.
+![An unrestricted account can open the administrator parent and child](/assets/core/developing-apps/pages-routes-and-navigation/admin.png)
 
-The default template checks permission before loading the page and filters menu entries accordingly. Use `useCan()` for operation buttons inside a page. Client checks do not replace API authorization: endpoints must independently check authentication, business actions, and data scopes. See [Authentication, permissions, and data scopes](authentication-and-permissions.md).
+With no ancestor page to inherit from, an omitted `authz` defaults to `unrestricted` for `required`, or `skip` for `guest` and `optional`. Declare it explicitly on the first page of each tree. Pure groups cannot declare `authz`.
 
-Route names and permission IDs need not match. Role grants persist `authz.resource.id`; renaming a route does not migrate that identifier. Change translations to rename menu text. For a `page/access` page without navigation or breadcrumbs, add a readable permission label through the template's `client/pages/settings/page-permission-titles.ts`.
+`resource.type`, `resource.id` and `action` must be nonempty strings. Route names and permission IDs are separate; saved role grants refer to the resource ID. Pages without a navigation or breadcrumb title need a readable name in [page-permission-titles.ts][permission-titles], such as `projectCreate: 'demo.newDraft'`. `useCan()` controls buttons for the same permission. Frontend page grants do not secure APIs or data bundled into the client. This example's project data is public fiction; see [authentication, permissions and data scope](authentication-and-permissions.md) for business resources and server enforcement.
 
-## Append to a group in another file or plugin
+## Attach routes across files and packages
 
-When one module declares a settings group and another supplies a page, use the route entry's `parent`:
+### Append to a group in the same package
+
+Open **Export instructions** under **Insights** at `/reports/exports`. Another contribution attaches it through `parent: 'reportsGroup'`:
 
 ```ts
-const settingsRoutes = defineAppRoutes([
+export const appendedRoutes = defineAppRoutes([
   {
-    name: 'settings',
-    path: '/settings',
-    navigation: { title: 'settings.title' },
-    children: [],
+    parent: 'reportsGroup',
+    name: 'reportExports',
+    path: 'exports',
+    authz: 'skip',
+    navigation: { title: 'demo.exports', order: 10 },
+    componentLoader: () => import('../examples/exports.js'),
   },
 ]);
+```
 
-const projectSettingsRoutes = defineAppRoutes([
-  {
-    parent: 'settings',
-    name: 'projectSettings',
-    path: 'projects',
-    authz: {
-      resource: { type: 'settings', id: 'project-settings' },
-      action: 'read',
+[client/routes.ts][collection] deliberately collects `appendedRoutes` before `projectRoutes`, showing that the target may be declared later. In a larger application, place contributions in separate files and collect them in a flat array.
+
+![A separate same-package contribution appears under Insights](/assets/core/developing-apps/pages-routes-and-navigation/exports.png)
+
+### Cross-package attachment and plugin options
+
+[reporting-plugin.ts][plugin] is a client contribution factory kept in this app. `@example/project-reporting` demonstrates a plugin namespace; it is not a separate npm package to install. Use `package:group` to attach to the application's report group:
+
+```ts
+// client/reporting-plugin.ts (excerpt)
+export default defineClientPlugin<{ enabled?: boolean }>({
+  packageName: '@example/project-reporting',
+  // The complete file also registers en-US and zh-CN locales.
+  routes: (options) => defineAppRoutes(options.enabled === false ? [] : [
+    {
+      parent: 'pages-routes-navigation:reportsGroup',
+      name: 'snapshot',
+      path: 'snapshot',
+      authz: 'skip',
+      navigation: { title: 'demo.snapshot', order: 20 },
+      componentLoader: () => import('./pages/examples/plugin-original.js'),
     },
-    navigation: { title: 'projects.settings', order: 20 },
-    componentLoader: () => import('./pages/settings/projects.js'),
-  },
-]);
-
-export default [settingsRoutes, projectSettingsRoutes];
-```
-
-The declarations can live in separate files and be aggregated in the export. The resulting URL is `/settings/projects`.
-
-| Declaration | Target |
-| --- | --- |
-| `parent: 'settings'` | A group named `settings` in the current app or plugin package |
-| `parent: '@acme/admin:settings'` | A group named `settings` contributed by `@acme/admin` |
-
-Rules:
-
-- `parent` is allowed only on root entries passed to `defineAppRoutes()`, not inside an existing `children` array.
-- The target must be a **group**, not a page with a component. To add children to a page, change its `children` declaration.
-- Both pages and groups can be appended. Their paths are relative to the target group, and they inherit its authentication requirements and ancestor-page authorization.
-- Forward references work, but both contributions must be registered in the same application. Missing targets and cycles raise errors; groups are not created or merged automatically.
-- Appending a route does not change its owning package, route ID, or translation namespace.
-- Siblings sort by `navigation.order`. Equal values retain the group's original children first, followed by appended entries in contribution registration order.
-
-## Split, reuse, and contribute routes from plugins
-
-### Aggregate route files
-
-The application's `routes` accepts a single contribution or an array of contributions. Each module can export its own `defineAppRoutes()` result:
-
-```ts
-// client/routes.ts
-import projectRoutes from './pages/projects/routes.js';
-import settingsRoutes from './pages/settings/routes.js';
-
-export default [projectRoutes, settingsRoutes];
-```
-
-If a module already exports an array of contributions, flatten it: `export default [...projectRoutes, settingsRoutes]`. Do not pass contribution objects back into `defineAppRoutes()`, which takes page and group definitions.
-
-### Generate routes from plugin options
-
-`AppClientRoutes<TOptions>` also accepts a synchronous function returning a contribution or contribution array. A plugin can decide whether to contribute pages from its registration options:
-
-```ts
-import { defineAppRoutes, defineClientPlugin } from '@nocobase/app-client/plugins';
-
-interface ProjectOptions {
-  enabled?: boolean;
-}
-
-export default defineClientPlugin<ProjectOptions>({
-  packageName: '@acme/projects',
-  routes: (options) =>
-    defineAppRoutes(
-      options.enabled === false
-        ? []
-        : [
-            {
-              name: 'projects',
-              path: '/projects',
-              authz: {
-                resource: { type: 'page', id: 'projects' },
-                action: 'access',
-              },
-              navigation: { title: 'projects.title' },
-              componentLoader: () => import('./pages/projects/index.js'),
-            },
-          ],
-    ),
+  ]),
 });
+
+// Inside the defineClientPlugins array in client/plugins.ts
+reportingPlugin({ enabled: true }),
 ```
 
-Register it through `defineClientPlugins([...])` in the application's `client/plugins.ts`, for example with `projectsPlugin({ enabled: true })`, and supply the plugin's locale resources. See [Plugin pages, routes, and menus](../extension-development/pages-and-menus.md) for the complete setup.
+`routes(options)` is a synchronous registration function returning one contribution or a flat array. It does not run again when React state or the current user changes. To try disabling the contribution, change `enabled` to `false` and clear the next section's override array to `[]` so it does not target an absent route. Restore both afterward. An isolated test also covers this option.
 
-These are registration-time options; routes are not regenerated whenever React state or the current user changes. Use `authz` for user-dependent access. `defineAppRoutes` itself always takes an array, never a callback or Promise.
+![Disabling the reporting contribution removes Reporting snapshot from Insights](/assets/core/developing-apps/pages-routes-and-navigation/plugin-disabled.png)
 
-### Route IDs and component overrides
+The page becomes `/reports/snapshot`, while its route ownership and translation namespace remain with the plugin. The example registers both plugin locales.
 
-A resolved route ID is `package-name:route-name`, such as `@acme/projects:projects`. Within one package, `name` must be unique across files, groups, and nesting levels. Different packages may reuse a name, but page paths must still be unique.
+![The original reporting contribution, captured with the component override temporarily cleared](/assets/core/developing-apps/pages-routes-and-navigation/plugin-original.png)
 
-To replace an existing page component, use the separate override API in the template's `client/route-overrides.ts`:
+`parent` is allowed only on contribution root entries and must target a group, not a page. Missing targets, cycles and `parent` inside existing `children` fail validation. Add page children through `children`. Siblings sort by `navigation.order`; equal values keep existing children first, then appended contributions in registration order.
+
+### Override a plugin page component
+
+The default example displays a custom **Reporting snapshot**. Target its `package:route` ID to replace the component:
 
 ```ts
+// client/route-overrides.ts
 import { defineClientRouteComponentOverrides } from '@nocobase/app-client/plugins';
 
 export default defineClientRouteComponentOverrides([
   {
-    routeId: '@acme/projects:projects',
-    componentLoader: () => import('./pages/custom-projects.js'),
+    routeId: '@example/project-reporting:snapshot',
+    componentEntry: './client/pages/examples/plugin-custom',
+    componentLoader: () => import('./pages/examples/plugin-custom.js'),
   },
 ]);
+
+// client/runtime.ts (excerpt)
+import routeComponentOverrides from './route-overrides.js';
+const appRuntime = defineAppRuntime({
+  // Retain createAppConfig, locales, routes, plugins and other existing options.
+  routeComponentOverrides,
+});
 ```
 
-An override preserves the path, permissions, menu, and children while replacing the component. The target must already be registered and must be a page. Groups and duplicate overrides of the same ID are rejected. Do not register a duplicate path to replace a page; see [Using and managing plugins](manage-plugins.md) for related extension mechanisms.
+The runtime does not discover `route-overrides.ts` automatically: pass it explicitly to `defineAppRuntime()`. An override preserves the path, authorization, navigation, owning package and children. The component still runs under the original package's translation namespace. `componentEntry` records the source entry; `componentLoader` loads the component.
 
-## Configuration and constraints reference
+![The custom reporting component keeps its original menu entry and URL](/assets/core/developing-apps/pages-routes-and-navigation/plugin-custom.png)
 
-### All route definition fields
+Temporarily use an empty override array to see the original component, then restore it. Targets must be registered pages, not groups; each ID may be overridden only once. Do not register a duplicate path to replace a page.
 
-An entry is either a page or a pure navigation group:
+## Loading, errors and unknown addresses
 
-| Field | Page | Group | Description |
-| --- | --- | --- | --- |
-| `name` | Required | Required | Unique within its package; starts with a letter or digit, followed by letters, digits, dots, underscores, or hyphens |
-| `path` | Required | Optional | Page path or group prefix, joined relative to the parent |
-| `componentLoader` | Required | Not allowed | `() => Promise<{ default: Component }>` |
-| `children` | Optional | Required | Child page/group definitions; an empty array reserves a group for contributions |
-| `navigation` | Optional | Required | `{ title, icon?, order? }` |
-| `breadcrumb` | Optional | Optional | `{ title }`, a static title or translation key |
-| `auth` | Optional | Optional | `'required'`, `'guest'`, or `'optional'`; outermost default is `'required'`, children inherit |
-| `authz` | Optional; declare on the first page | Not allowed | Permission request, `'skip'`, or `'unrestricted'`; inheritance rules above |
-| `parent` | Optional, contribution roots only | Optional, contribution roots only | Append to an existing group in the same or another package |
+**Try a slow page** opens `/route-status/loading`. This [demonstration loader][routes] waits 1.2 seconds to expose the template's loading state:
 
-The sections above list all nested fields of `navigation` and `breadcrumb`. `title` is a string and `icon` is a component; neither is a configuration callback evaluated for the current user.
+```ts
+{
+  name: 'slowPage',
+  path: '/route-status/loading',
+  authz: 'skip',
+  componentLoader: async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+    return import('../examples/loaded.js');
+  },
+}
+```
+![The template loading state while the route component loads](/assets/core/developing-apps/pages-routes-and-navigation/loading.png)
+![Page content after the component loads](/assets/core/developing-apps/pages-routes-and-navigation/loaded.png)
 
-`defineAppRoutes` does not expose React Router fields such as `index`, `element`, `Component`, `loader`, `action`, `errorElement`, or `redirect`. Register pages with `componentLoader`; handle data, redirects, and errors in components and the application router. The default template handles unmatched URLs in `client/routing/app-router.tsx`; adding `path: '*'` here is not supported.
+**Try a page error** opens `/route-status/error`. Its component deliberately throws to demonstrate the [ClientRoute][client-route] error interface. Do not keep this intentional exception in a production page. Reload after fixing the component or network problem. A rejected loader Promise reaches the same error interface.
 
-### Path collisions and reserved URLs
+![A component exception displays the error interface and retry action](/assets/core/developing-apps/pages-routes-and-navigation/error.png)
 
-- Page paths are unique across the whole application, including plugins. Groups themselves do not claim page URLs.
-- Collision detection ignores the case of static segments: `/Projects` and `/projects` cannot be registered separately.
-- Parameter names do not distinguish path shapes: `/projects/:id` conflicts with `/projects/:projectId`. A static `/projects/new` route can coexist with dynamic details.
-- Only the application may declare a page at `/`; plugins cannot claim the application homepage.
-- `/login`, `/register`, `/forgot-password`, and `/reset-password` require `auth: 'guest'` and remain subject to path uniqueness.
+**Try an unknown address** opens the unregistered `/unknown-example`. The current [app-router.tsx][app-router] redirects it to the home page. This fallback belongs to the application template; `defineAppRoutes()` does not accept `path: '*'`.
 
-### Troubleshooting
+![The template redirects an unknown address to the example home page](/assets/core/developing-apps/pages-routes-and-navigation/unknown.png)
 
-| Symptom | What to check |
-| --- | --- |
-| A page is missing from the menu | Its contribution reaches the runtime, it declares `navigation`, and the current user has access |
-| Only administrators can open a new page | The first page may omit `authz` and therefore default to `'unrestricted'` |
-| A child URL matches but no content appears | The parent must render `Outlet`; a child route does not automatically become a dialog |
-| A `parent` target cannot be found | Use a group name rather than a URL, qualify cross-package targets, and register the target contribution |
-| Duplicate route names or paths | Check other files and plugins, normalized paths, parameter-name-only differences, and package-wide names |
-| A page component fails to load | Check the import path, default export, and module loading or execution errors |
-| A hidden menu entry's API remains callable | Page checks do not authorize the server; inspect the endpoint's own authorization |
+## Configuration and boundaries
 
-Version baseline: the public API of `@nocobase/app-client` `4.0.0-beta.4` and default template `1.0.0-beta.84`. See the [route interfaces and implementation](https://github.com/nocobase/nocobase/blob/d54bae62e652ce2fd8057840bacbcbf0e29a5599/packages/app/app-client/src/plugins.ts) and the runnable template navigation and breadcrumbs in the [Team tasks example](https://github.com/nocobase/docs-examples-v3/tree/46290c9c8efa59dfd484f9018196d65c2a1e0dd6/apps/team-tasks/client). Page paths and component names here illustrate configuration patterns; provide the corresponding components, translations, and business permissions when using them.
+### Route fields
+
+| Field | Page | Pure group |
+| --- | --- | --- |
+| `name` | Required, unique within its package | Required, unique within its package |
+| `path` | Required | Optional prefix for children |
+| `componentLoader` | Required | Not allowed |
+| `children` | Optional | Required; may be empty |
+| `navigation` | Optional; `{ title, icon?, order? }` | Required |
+| `breadcrumb` | Optional; `{ title }` | Optional |
+| `auth` | Optional; defaults to or inherits `required` | Optional; passed to descendants |
+| `authz` | Optional; declare explicitly on the first page | Not allowed |
+| `parent` | Optional, contribution roots only | Optional, contribution roots only |
+
+Names start with a letter or digit and may then contain letters, digits, dots, underscores and hyphens. Titles are strings and icons are components, not per-user configuration callbacks. React Router fields such as `index`, `element`, `loader`, `action` and `errorElement` are not fields of this declaration API.
+
+### Path rules and conflicts
+
+- Top-level page paths start with `/`. Child paths append to the parent: both `new` and `/new` append; the latter does not jump to the root. Repeated and trailing slashes are normalized.
+- Keep queries and hashes out of `path`. Wildcards `*`, optional parameters `?`, backslashes, and `.` or `..` segments are unsupported.
+- Page addresses are unique across the app and its plugins. Conflicts ignore static segment case and parameter names: `/Projects` conflicts with `/projects`, and `/:id` conflicts with `/:projectId`. Static `new` can coexist with `:projectId`.
+- Names must be unique within a package across files, groups and levels. Different packages may reuse a name, but not a page address.
+- Only the application may contribute `/`. `/login`, `/register`, `/forgot-password` and `/reset-password` must use `auth: 'guest'`.
+
+Invalid definitions stay out of the running app. [routing-contract.test.ts][contract-tests] reproduces rejection cases in isolation.
+
+### Verify the example
+
+Run from the example directory:
+
+```bash
+pnpm typecheck
+pnpm exec vitest run tests/client/client-routes.test.ts tests/client/routing-contract.test.ts tests/client/routing-behavior.test.tsx tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts
+pnpm build
+```
+
+Client interaction tests use controlled authorization responses to check nested close, query preservation, default tabs, denied access and draft confirmation. They do not replace real-account checks. The [README][readme] records browser verification, screenshot reproduction commands and the tested environment.
+
+[app]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation
+[readme]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/README.MD
+[routes]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/routes.ts
+[collection]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/routes.ts
+[list]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/index.tsx
+[detail]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/detail.tsx
+[task]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/task.tsx
+[workspace]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/workspace.tsx
+[draft]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/new.tsx
+[reports]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/reports/index.tsx
+[permission-titles]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/settings/page-permission-titles.ts
+[plugin]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/reporting-plugin.ts
+[client-route]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/routing/client-route.tsx
+[app-router]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/routing/app-router.tsx
+[contract-tests]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/tests/client/routing-contract.test.ts

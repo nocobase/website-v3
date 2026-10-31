@@ -14,7 +14,7 @@ description: 将共用服务契约接入客户端和服务端容器，明确应�
 | 应用服务端 | 应用 Provider 聚合入口，由运行时接入 | 通过 `app.container.resolve()` 解析后传给业务代码 |
 | 插件服务端 | `server/plugin.ts` 的 `serviceProviders` | 使用宿主容器，生命周期由应用统一调度 |
 
-应用的 Provider 汇总通常位于 `client/service-provider.ts` 和 `server/providers/index.ts`，以项目当前运行时引用为准。文件存在不等于已经注册。具体接入见[客户端服务](../../developing-apps/client-business-services.md)、[服务端业务服务](../../developing-apps/server-business-services.md)与[插件声明](../../extension-development/plugin-declarations.md)。
+应用的 Provider 汇总通常位于 `client/service-provider.ts` 和 `server/providers/index.ts`，以项目当前运行时引用为准。文件存在不等于已经注册。具体接入见[客户端服务](../../developing-apps/client-business-services.md)、[服务端服务](../../developing-apps/server-business-services.md)与[插件声明](../../extension-development/plugin-declarations.md)。
 
 ## 客户端服务
 
@@ -119,7 +119,7 @@ ServiceProvider 从 `databaseManagerToken` 解析应用数据库，将它注入 
 
 CLI 或任务没有浏览器请求身份，应明确系统执行者和允许的数据范围。不能因为复用同一服务就默认拥有管理员权限。
 
-对规则用单元测试，对策略、事务和并发行为用真实数据库测试。完整接入见[服务端业务服务](../../developing-apps/server-business-services.md)和[事务](../database/transactions.md)。
+对规则用单元测试，对策略、事务和并发行为用真实数据库测试。完整接入见[服务端服务](../../developing-apps/server-business-services.md)和[事务](../database/transactions.md)。
 
 ### 接口与实现
 

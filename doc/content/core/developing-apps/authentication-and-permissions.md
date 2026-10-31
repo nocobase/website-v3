@@ -19,7 +19,7 @@ See [Using plugins](../using-plugins/overview.md) for plugin integration. This g
 
 The project/task example retains default template `1.0.0-beta.78` and its `tutorialTasks`/`tutorialProjects` collections. Follow [Create tables and initialize data](data-models-and-migrations.md#prepare-the-example-application) to prepare a separate app, including access to the private `nocobase/app-tutorials` repository. It does not continue the current getting-started `tasks` example. You can still read the code and responsibility boundaries without repository access.
 
-First implement `TutorialProjectService` from [Server business services](server-business-services.md). The original example already has authentication, authorization and users plugins plus `TutorialTasksProvider`. The following adds project capabilities.
+First implement `TutorialProjectService` from [historical project service source](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md). The original example already has authentication, authorization and users plugins plus `TutorialTasksProvider`. The following adds project capabilities.
 
 ## Declare operations and register the service
 

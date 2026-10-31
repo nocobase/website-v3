@@ -84,7 +84,7 @@ pnpm nocobase db apply
 
 `--no-install` requires the local plugin to be a resolvable workspace dependency already. `db apply` runs migrations before Seeds. Its plan includes pending tasks from the App and all registered plugins, not just the current plugin. Review the output before applying; do not use `db reset` for routine upgrades.
 
-Declaring resources does not expose CRUD endpoints or add menus. Runtime reads and writes still use the App's database capabilities from Server business services; see [Query and manipulate data](../developing-apps/querying-data.md) and [Transactions and data consistency](../developing-apps/transactions-and-consistency.md).
+Declaring resources does not expose CRUD endpoints or add menus. Runtime reads and writes still use the App's database capabilities through services; see [Query and manipulate data](../developing-apps/querying-data.md) and [Transactions and data consistency](../developing-apps/transactions-and-consistency.md).
 
 ## Test against a real database
 

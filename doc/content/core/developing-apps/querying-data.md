@@ -5,7 +5,7 @@ description: Use Repositories for business records, relations, pagination, trans
 
 Start data access with a Repository. It understands Collection fields and relations and supports reading, creating and changing business records. Query operates on tables and result sets, for reports and aggregations that Repository cannot express. Both require callers to establish identity and permissions first.
 
-The snippets run on the application server and use `tutorialProjects` and `tutorialTasks` from [Create tables and initialize data](data-models-and-migrations.md). The example application uses default template `1.0.0-beta.78`. This is a separate historical project example, not the current getting-started application with its `tasks` table. These are data-access excerpts; complete routing, authorization and service registration are in [Server business services](server-business-services.md).
+The snippets run on the application server and use `tutorialProjects` and `tutorialTasks` from [Create tables and initialize data](data-models-and-migrations.md). The example application uses default template `1.0.0-beta.78`. This is a separate historical project example, not the current getting-started application with its `tasks` table. These are data-access excerpts; see the [historical project service source](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md) for the service and [HTTP routes and APIs](apis-and-services.md) for endpoint integration.
 
 ## With an agent
 
@@ -141,4 +141,4 @@ Query conditions take `where(field, operator, value)` and parameterize values. T
 
 Use real test databases for filters, stable ordering, empty results, relations and bulk scopes; use the real application and ordinary users for authorization. Trigger a failure within a transaction and reread the database to confirm earlier writes were also rolled back. Mocking a Repository cannot establish its behavior.
 
-See [Server business services](server-business-services.md) for the complete project service and [Testing and acceptance](testing-and-acceptance.md) for fixture selection.
+See the [historical project service source](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md) for the complete project service and [Testing and acceptance](testing-and-acceptance.md) for fixture selection.

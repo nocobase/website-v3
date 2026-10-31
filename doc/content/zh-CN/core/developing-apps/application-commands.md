@@ -156,7 +156,7 @@ pnpm nocobase app statuses export --output ./statuses.json --json
 | 获取数据库或业务服务 | 在回调中先 `app.registerProviders()`，再从 `app.container` 获取 |
 | 依赖完整启动生命周期 | 在回调中 `await app.start()` |
 
-`withApp()` 创建应用，执行回调，然后关闭应用并销毁运行时；回调失败也会清理。它不会自动注册或启动 Provider。`app.config` 和 `app.paths` 无需注册即可访问；需要运行中的服务时才启动完整生命周期，因为启动也可能启动消费者与定时任务。服务的组织方式见[服务端业务服务](server-business-services.md)。
+`withApp()` 创建应用，执行回调，然后关闭应用并销毁运行时；回调失败也会清理。它不会自动注册或启动 Provider。`app.config` 和 `app.paths` 无需注册即可访问；需要运行中的服务时才启动完整生命周期，因为启动也可能启动消费者与定时任务。服务的组织方式见[服务端服务](server-business-services.md)。
 
 应用对象只在回调中使用，返回普通结果数据。清理失败会成为警告，避免把已经完成的业务结果改判为失败后诱发重复执行。
 

@@ -19,7 +19,7 @@ description: 为应用接口接入身份认证、声明业务操作，并把授�
 
 项目与任务示例沿用默认模板 `1.0.0-beta.78`，使用 `tutorialTasks` 和 `tutorialProjects`。运行需要先按[建表与数据初始化](data-models-and-migrations.md#准备示例应用)准备独立应用，包括有访问权限的 `nocobase/app-tutorials` 私有仓库；它不能直接接在当前入门教程的 `tasks` 示例之后。没有该仓库权限也可以阅读代码与职责说明。
 
-先实现[服务端业务服务](server-business-services.md)中的 `TutorialProjectService`；原示例已有认证、权限、用户插件及 `TutorialTasksProvider`。下面只新增项目能力。
+先实现[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)中的 `TutorialProjectService`；原示例已有认证、权限、用户插件及 `TutorialTasksProvider`。下面只新增项目能力。
 
 ## 声明业务操作与注册服务
 

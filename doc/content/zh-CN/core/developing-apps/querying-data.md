@@ -5,7 +5,7 @@ description: 使用 Repository 查询和修改业务记录，处理关联、分�
 
 数据访问通常从 Repository 开始：它理解 Collection 的字段和关系，适合读取、创建和修改业务记录。Query 面向表和结果集，适合 Repository 不能表达的报表与聚合。两者都需要调用方先确定身份与权限。
 
-本篇代码用于应用服务端，沿用[建表与数据初始化](data-models-and-migrations.md)中的 `tutorialProjects` 和 `tutorialTasks`。示例以默认模板 `1.0.0-beta.78` 的应用为基础；代码片段说明数据访问方法，完整的路由、授权和服务注册见[服务端业务服务](server-business-services.md)。本文的 `tutorialTasks`／`tutorialProjects` 属于独立的历史项目示例，不是当前入门示例的 `tasks`；运行前按[建表与数据初始化](data-models-and-migrations.md)确认基线。
+本篇代码用于应用服务端，沿用[建表与数据初始化](data-models-and-migrations.md)中的 `tutorialProjects` 和 `tutorialTasks`。示例以默认模板 `1.0.0-beta.78` 的应用为基础；代码片段说明数据访问方法，完整服务见[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)，接口接入见[HTTP 路由与接口](apis-and-services.md)。本文的 `tutorialTasks`／`tutorialProjects` 属于独立的历史项目示例，不是当前入门示例的 `tasks`；运行前按[建表与数据初始化](data-models-and-migrations.md)确认基线。
 
 ## 使用 Agent
 
@@ -141,4 +141,4 @@ Query 的条件形式为 `where(field, operator, value)`，值由查询构造器
 
 用真实测试数据库检查筛选、稳定排序、空结果、关联与批量范围；用真实应用和普通用户检查权限。构造一次事务内失败，重新读取数据库，确认之前的写入也已撤销。不要通过 mock Repository 来证明 Repository 的行为。
 
-现有项目服务的完整例子见[服务端业务服务](server-business-services.md)，测试工具的选择见[测试与验收](testing-and-acceptance.md)。
+现有项目服务的完整例子见[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)，测试工具的选择见[测试与验收](testing-and-acceptance.md)。

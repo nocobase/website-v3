@@ -1,6 +1,6 @@
 ---
 title: Accept the agent's work
-metaDescription: Using a "needed by" date on device requests as the example, read the agent's report, run it yourself with existing data, and send it back with steps to reproduce and the expected result when something is wrong.
+metaDescription: Using a "needed by" date on device requests as the example, run it yourself with existing data, and send it back with steps to reproduce and the expected result when something is wrong.
 ---
 
 This chapter adds a "needed by" date to device requests and goes through acceptance and sending work back.
@@ -10,16 +10,6 @@ This chapter adds a "needed by" date to device requests and goes through accepta
 ```prompt
 Add an optional "needed by" date to device requests. It cannot be earlier than today, and it shows in the list and the details. Requests already submitted stay empty.
 ```
-
-The agent's report:
-
-| | Content |
-| --- | --- |
-| Automated checks | `pnpm typecheck` and `pnpm lint` pass; new migration and API tests (the date is saved, Ben can read it, a date earlier than today is refused), 5 cases pass |
-| Hands-on | As Alice, submitted a laptop request needed by November 6, with a screenshot of the details |
-| Not verified | Browser automation tests |
-
-For what each kind of check confirms, see [Continue developing your app](../core/getting-started/develop-with-an-agent.md#review-the-result).
 
 ## 2. Run the business scenario yourself
 
@@ -32,7 +22,7 @@ Two problems:
 - The old requests submitted in Device requests and approval and Roles and permissions have no needed-by date, yet show `Jan 1, 1970, 7:30 AM`.
 - The new request shows `Nov 6, 2026, 8:00 AM`, with a time after the date.
 
-The agent's tests and hands-on use both used only new data. When accepting, use existing data and walk through each role's daily work. Once a scenario is settled, you can have the agent turn it into a browser test; see [Testing and acceptance](../core/developing-apps/testing-and-acceptance.md#browser-tests-and-functional-acceptance).
+When accepting, use existing data and walk through each role's daily work. Once a scenario is settled, you can have the agent turn it into a browser test; see [Testing and acceptance](../core/developing-apps/testing-and-acceptance.md#browser-tests-and-functional-acceptance).
 
 ## 3. Send it back
 

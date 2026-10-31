@@ -5,9 +5,9 @@ metaDescription: NocoBase Core is the open-source foundation for developing and 
 
 ## Introduction
 
-When you let an agent vibe-code a business system, the first version usually comes quickly. As you keep iterating, these problems show up:
+When you let an agent vibe-code a business system, the first version usually comes quickly, and then these problems show up:
 
-1. Permissions, workflows and approvals have to be written from scratch, and then maintained forever.
+1. Permissions, workflows, approvals and other underlying capabilities have to be written from scratch, and they may not be reliable or may break easily.
 2. A new model, a new person or a new session brings a new way of writing code, and the architecture slowly gets out of control.
 3. With many issues running in parallel, people can't keep up with confirming the agents' messages and changes.
 4. Requirement context, business rules and lessons learned are scattered across sessions, and they are lost when people or agents change.

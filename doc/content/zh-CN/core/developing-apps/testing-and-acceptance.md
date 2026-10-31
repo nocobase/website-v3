@@ -75,7 +75,7 @@ pnpm test:coverage
 
 在测试内部调用 `renderWithApp()`，它会在用例结束时关闭客户端应用。沿用模板的 React 测试环境与 DOM 清理，不重复包裹另一套 Router，也不关闭严格翻译检查来绕过缺失文案。点击等操作放在 `waitFor()` 外，等待时只做断言。
 
-客户端业务服务可以先直接构造实例验证方法，再用真实容器检查注册、订阅和资源释放。需要验证 React Provider 时导入实际组件；这与服务容器里的 ServiceProvider 是两层不同的集成，见[客户端业务服务](client-business-services.md)和 [UI 组件与交互](pages-and-interactions.md)。
+客户端业务服务可以先直接构造实例验证方法，再用真实容器检查注册、订阅和资源释放。需要验证 React Provider 时导入实际组件；这与服务容器里的 ServiceProvider 是两层不同的集成，见[客户端服务](client-business-services.md)和 [UI 组件与交互](pages-and-interactions.md)。
 
 完整的请求、重试和防重复提交示例见[客户端测试示例](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/client/page.md)。默认模板的 `tests/client/page-harness.test.tsx` 还展示了权限、日期格式和路由弹窗。使用受控响应的组件测试不证明服务端授权或数据库持久化正确，这两部分继续用下面的真实应用测试验证。
 

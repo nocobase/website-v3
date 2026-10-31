@@ -5,7 +5,7 @@ description: Contribute a plugin Client service, share it through a Token and br
 
 A plugin can provide change notifications when several pages need to refresh announcement lists. The service publishes “saved” notifications; pages load data and render feedback. This example keeps a revision number in one browser App instance. It does not implement saving, request caching or cross-browser synchronization.
 
-See [Client business services](../developing-apps/client-business-services.md) for application-level organization and [The service container](../framework/services/container.md) for shared mechanisms. This article focuses on plugin registration, public contracts and React subscriptions.
+See [Client services](../developing-apps/client-business-services.md) for application-level organization and [The service container](../framework/services/container.md) for shared mechanisms. This article focuses on plugin registration, public contracts and React subscriptions.
 
 ## Prerequisites and files
 

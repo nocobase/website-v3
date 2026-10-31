@@ -5,7 +5,7 @@ description: 通过插件提供客户端服务，用 Token 注册共享实例，
 
 当多个页面需要协作刷新公告列表时，可以由插件提供一个变更通知服务。它负责发布“已保存”的通知，页面负责请求数据和显示反馈。本例只维护当前浏览器应用实例中的版本号，不实现保存接口、请求缓存或跨浏览器同步。
 
-应用层如何组织请求和共享业务操作，见[客户端业务服务](../developing-apps/client-business-services.md)；服务容器原理见[业务服务与依赖注入](../framework/services/container.md)。本篇重点是插件注册、公开契约和 React 订阅。
+应用层如何组织请求和共享业务操作，见[客户端服务](../developing-apps/client-business-services.md)；服务容器原理见[业务服务与依赖注入](../framework/services/container.md)。本篇重点是插件注册、公开契约和 React 订阅。
 
 ## 前提与文件
 

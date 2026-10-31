@@ -1,214 +1,355 @@
 ---
-title: Client business services
-description: Implement and register application client services, inject the API Client, and connect shared operations and observable state to pages.
+title: Client services
+metaDescription: Register and consume NocoBase client services, inject the API Client, subscribe to shared state, and manage cancellation and cleanup.
 ---
 
-Extract a client service when several pages need the same business operation or coordinate application-level state. Pages own interactions, services encapsulate independently callable behavior, and ServiceProviders connect them to the application container.
+Client services share operations, coordinate state changes, or manage application-level resources across components and pages. They can encapsulate business operations or provide general capabilities such as caching and notifications. A ServiceProvider registers them in the application container.
 
-This guide follows default template `1.0.0-beta.84`. Its example notifies other views after a task is modified. It assumes the `PATCH /tasks/:id` contract from [Data requests and state management](data-requests-and-state.md), implemented by your server. A client service creates neither endpoints nor database tables.
+The product catalog example extracts renaming into a service: the editor calls it, the list reloads after a change notification, and two counters subscribe to the same state. It uses default template `1.0.0-beta.85` and its shadcn components. [Get the source and run it](#example-source-and-setup).
 
-## When a service helps
+## When a client service helps
 
-| Need | Starting point |
-| --- | --- |
-| A calculation or display transformation used in one place | Ordinary function |
-| Page loading, forms and local interaction | Component state or custom Hook |
-| Context shared by a component subtree | React Context and Provider |
-| Operations, change coordination or resources shared across pages | Client service and ServiceProvider |
+Use ordinary functions for isolated calculations or formatting, and component state or custom Hooks for form drafts and loading states. React Context can share context within a component tree. Consider a client service when several pages reuse operations, coordinate changes, or share a resource with its own lifecycle.
 
-A simple request used by one page does not need a service first. Client services also do not replace server business rules: permissions, data scopes, transactions and final validation belong on the server.
+Client services do not replace server business rules. Permissions, data scopes, transactions and final validation still belong on the server. For basic API calls, see [Data requests and state management](data-requests-and-state.md).
 
-## With an agent
+## Implement and register a service
 
-```text
-Extract task modifications used by several pages into a client business service.
+### Encapsulate operations and change notifications
 
-Inspect client/service-provider.ts and API Client integration first; retain existing Providers.
-Inject the API Client through the constructor and call the existing endpoint. Pages keep drafts and submission feedback.
-Notify subscribers after success, without publishing success for failed or cancelled requests.
-Use one Token to register and resolve an application singleton; useService alone does not subscribe to state.
-Add React subscriptions and cleanup. Verify sharing across components, failure handling and shutdown cleanup.
-```
-
-## Organize the code
-
-One optional structure is below. Directories do not register services automatically:
-
-```tree
-client/
-├── services/
-│   ├── tasks.ts                 # Operations and change subscriptions
-│   └── tokens.ts                # Service contract entry
-├── providers/
-│   └── tasks.ts                 # Registration and disposal
-├── hooks/
-│   └── use-task-revision.ts     # React state adapter
-├── service-provider.ts          # Application ServiceProvider aggregation
-└── react-providers.ts           # React component Provider aggregation
-```
-
-### Implement the service
-
-In `client/services/tasks.ts`, receive dependencies through the constructor and operation input and cancellation through method parameters:
+In `client/services/products.ts`, receive the API Client through the constructor. `rename()` accepts a product ID, name and request options, then increments the counter and notifies subscribers after the API succeeds:
 
 ```ts
 import type { ApiClient } from '@nocobase/app-client';
 
-export interface Task {
+export interface Product {
   id: string;
-  title: string;
+  name: string;
+  sku: string;
+}
+export type DemoMode = 'normal' | 'slow' | 'fail';
+export interface RenameOptions {
+  signal?: AbortSignal;
+  mode?: DemoMode;
 }
 
-export class TasksService {
+export class ProductsService {
   private revision = 0;
+  private disposed = false;
   private readonly listeners = new Set<() => void>();
-
   constructor(private readonly api: ApiClient) {}
-
   getSnapshot = (): number => this.revision;
-
   subscribe = (listener: () => void): (() => void) => {
+    if (this.disposed) throw new Error('ProductsService has been disposed.');
     this.listeners.add(listener);
-    return () => { this.listeners.delete(listener); };
+    return () => {
+      this.listeners.delete(listener);
+    };
   };
-
-  async rename(id: string, title: string, signal?: AbortSignal): Promise<Task> {
-    const response = await this.api.request<{ data: Task }>({
+  async rename(
+    id: string,
+    name: string,
+    options: RenameOptions = {},
+  ): Promise<Product> {
+    if (this.disposed) throw new Error('ProductsService has been disposed.');
+    const response = await this.api.request<{ data: Product }>({
       method: 'PATCH',
-      path: `/tasks/${encodeURIComponent(id)}`,
-      json: { title },
-      signal,
+      path: `clientServiceProducts/${encodeURIComponent(id)}`,
+      json: { name },
+      signal: options.signal,
+      // This header controls this example's HTTP response, not a framework feature.
+      headers: { 'x-demo-mode': options.mode ?? 'normal' },
     });
-    this.revision += 1;
-    for (const listener of this.listeners) listener();
+    if (!this.disposed) {
+      this.revision += 1;
+      for (const listener of this.listeners) listener();
+    }
     return response.data;
   }
-
   dispose(): void {
+    this.disposed = true;
     this.listeners.clear();
   }
 }
 ```
 
-`revision` counts successful modifications observed by this service. It is neither a server record version nor a task-list cache. It does not synchronize changes from other browsers or users; add realtime subscriptions separately when required.
+`getSnapshot()` returns the counter, `subscribe()` returns an unsubscribe function, and `dispose()` clears listeners and stops future notifications. These are application-defined methods, not methods inherited from a NocoBase service base class.
 
-This `rename` method can replace the ordinary `renameTask` function in the data-request guide. Update pages to call the service rather than maintaining two mutation implementations. Move business types into the shared entry too, and import them into pages from the service module.
+`revision` counts successful modification responses received by this service. It is neither a product record version nor a list cache. A failed or aborted request rejects to the caller without incrementing it. Subscription callbacks should perform lightweight invalidation and handle failures in their asynchronous refreshes.
 
-API failures propagate to callers without incrementing the revision. Pages own translated feedback, field errors, submission locks and draft retention. Services do not call React Hooks or manipulate page DOM. Subscription callbacks should perform lightweight invalidation; their asynchronous refreshes must handle failures.
+Request paths are relative to the application's API base URL; omit the deployment path and `/api` prefix. The `x-demo-mode` header controls this example's slow and failed responses, not an API Client feature. The example includes the corresponding server endpoint; adding a client service does not create one.
 
-### Define a Token
+[View the service](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/services/products.ts) · [View the demo API](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/server/routes/demo-products.ts)
 
-Define and export one stable Token in `client/services/tokens.ts`:
+### Define a shared Token
+
+Define and export the service identity in `client/services/tokens.ts`:
 
 ```ts
 import { createServiceToken } from '@nocobase/service-provider';
-import type { TasksService } from './tasks.js';
-
-export const tasksServiceToken = createServiceToken<TasksService>('app.tasks');
+import type { ProductsService } from './products.js';
+export const productsServiceToken =
+  createServiceToken<ProductsService>('app.products');
 ```
 
-Registration and consumption import the same Token. Do not call `createServiceToken('app.tasks')` again inside components: equal names do not make equal service identities.
+Registration and consumers must import the same Token. Calling `createServiceToken('app.products')` again creates a different identity, even with the same name.
 
-### Register through a ServiceProvider
+[View the Token](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/services/tokens.ts)
 
-Declare the Provider in `client/providers/tasks.ts`:
+### Register a ServiceProvider and inject dependencies
+
+In `client/providers/products.ts`, register a factory that resolves the application's existing API Client:
 
 ```ts
 import { apiClientToken, type ClientApplication } from '@nocobase/app-client';
 import { ServiceProvider } from '@nocobase/service-provider';
-import { TasksService } from '../services/tasks.js';
-import { tasksServiceToken } from '../services/tokens.js';
-
-export class TasksServiceProvider extends ServiceProvider<ClientApplication> {
-  readonly name = 'app.tasks';
-
+import { ProductsService } from '../services/products.js';
+import { productsServiceToken } from '../services/tokens.js';
+export class ProductsServiceProvider extends ServiceProvider<ClientApplication> {
+  readonly name = 'app.products';
   override register(): void {
-    this.app.container.singleton(tasksServiceToken, (services) =>
-      new TasksService(services.resolve(apiClientToken)),
+    this.app.container.singleton(
+      productsServiceToken,
+      (services) => new ProductsService(services.resolve(apiClientToken)),
     );
   }
-
   override async shutdown(): Promise<void> {
-    this.app.container.resolveIfCreated(tasksServiceToken)?.dispose();
+    this.app.container.resolveIfCreated(productsServiceToken)?.dispose();
   }
 }
 ```
 
-The factory runs on first resolution using the existing API Client. Consumers in the same container receive the same instance. `shutdown()` uses `resolveIfCreated()` to avoid creating an unused service while shutting down.
+`singleton()` creates the instance on first resolution and returns that instance for subsequent resolutions in the same container. Registration declares dependencies without starting requests or accessing page DOM. Shutdown cleanup is explained under [Unsubscribe and release resources](#unsubscribe-and-release-resources).
 
-Merge the import into `client/service-provider.ts` and append the Provider to its existing array:
+Append the Provider to the existing array in `client/service-provider.ts`:
 
 ```ts
-import { TasksServiceProvider } from './providers/tasks.js';
+import { ProductsServiceProvider } from './providers/products.js';
 
-// Keep the existing DefaultClientServiceProvider implementation and imports.
 const serviceProviders: readonly ClientServiceProviderConstructor[] = [
   DefaultClientServiceProvider,
-  TasksServiceProvider,
+  ProductsServiceProvider,
 ];
 
 export default serviceProviders;
 ```
 
-This is a partial edit, not a replacement file. Keep the existing type imports, default Provider and other contributions. The default Provider supplies Toast and document-title behavior. The template's `client/runtime.ts` already imports this aggregation entry, so normally it needs no additional change.
+This is a partial edit: retain the existing type imports, `DefaultClientServiceProvider`, and other Providers. The default Provider also supplies Toast and document-title behavior. The template's `client/runtime.ts` already loads this aggregation entry. The `services/` and `providers/` directories organize source files; they do not register them automatically.
+
+[View the Provider](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/providers/products.ts) · [View the registration entry](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/service-provider.ts)
 
 ## Call the service from a page
 
-Call `useService(tasksServiceToken)` at the top level of a component or custom Hook, then call `tasks.rename(id, title, signal)` in its submit handler. Do not call `useService()` inside an event callback or construct a new service during every render.
+### Submit changes and handle failure
 
-After receiving the saved record, update detail state, finish editing or reread the list. Handle failures as with ordinary API calls. For page-owned cancellation, create an `AbortController` in the page and pass its signal. Cancellation does not guarantee that the server rolls back the mutation.
+Call `useService(productsServiceToken)` at the top level of a component or custom Hook, then call service methods in the submit handler. Do not call Hooks inside event callbacks or create a new service on each render.
 
-The singleton belongs to one browser application instance, not all tabs, browsers or the server. The example persists no records or user data. If you add identity-dependent caching, clear cached data and in-flight requests when identity changes.
+The editor owns its draft, pending state and feedback. This excerpt shows its state and submission logic. `product` is the selected record; `mode` comes from **Response mode**. Mount and unmount handling follows in the next section:
 
-## Connect service changes to React
+```tsx
+// Inside ProductEditor. Imports, validation and form markup are in the full source.
+const products = useService(productsServiceToken);
+const [name, setName] = useState(product.name);
+const [pending, setPending] = useState(false);
+const [feedback, setFeedback] = useState('');
+const activeRef = useRef<AbortController | null>(null);
+const mountedRef = useRef(false);
 
-`useService()` resolves an instance without subscribing to its fields. To observe the revision, adapt it in `client/hooks/use-task-revision.ts`:
+async function submit(event: FormEvent) {
+  event.preventDefault();
+  // Name validation is omitted here.
+  if (activeRef.current) return;
+  setFeedback('');
+  setPending(true);
+  const controller = new AbortController();
+  activeRef.current = controller;
+  try {
+    const saved = await products.rename(product.id, name.trim(), {
+      signal: controller.signal,
+      mode,
+    });
+    if (mountedRef.current) {
+      setName(saved.name);
+      setFeedback('saved');
+    }
+  } catch {
+    if (mountedRef.current)
+      setFeedback(controller.signal.aborted ? 'cancelled' : 'failed');
+  } finally {
+    activeRef.current = null;
+    if (mountedRef.current) setPending(false);
+  }
+}
+```
+
+The complete form validates the name, disables inputs and saving while pending, and uses `activeRef` to prevent duplicate submissions. Failure leaves `name` intact, and the page translates its feedback key. A business application should also distinguish field validation, permission failures and other API errors.
+
+Open `/service-products`, click **Edit** on a product row, change its name and click **Save changes**. The list shows the new name and both **Successful changes** counters increase.
+
+![The product list and both counters update after saving](/assets/core/client-services/saved.png)
+
+Set **Response mode** to **Fail** and save again. The error message appears, the draft remains, and neither the list nor the counters change.
+
+![A failed request preserves the draft and existing counters](/assets/core/client-services/failed.png)
+
+[View the complete editor](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/pages/service-products/editor.tsx)
+
+### Cancel page-owned requests
+
+The page owns requests it starts. Pass an `AbortSignal` through the service to the API Client, cancel on unmount, and avoid updating an unmounted component:
+
+```tsx
+// Inside ProductEditor, using the refs declared above.
+useEffect(() => {
+  mountedRef.current = true;
+  return () => {
+    mountedRef.current = false;
+    activeRef.current?.abort();
+  };
+}, []);
+
+// The cancel button in the form:
+<Button
+  variant="outline"
+  type="button"
+  onClick={() => activeRef.current?.abort()}
+>
+  {t('serviceProducts.cancel')}
+</Button>
+```
+
+Select **Slow (3 seconds)** and save. Inputs become disabled, and **Saving…** and **Cancel request** appear. Cancelling stops the client from waiting without increasing its counter.
+
+![A pending response can be cancelled](/assets/core/client-services/pending.png)
+
+Cancellation does not guarantee that the server undoes a mutation. This example deliberately updates the in-memory record before delaying the response. After cancelling, click **Refresh list**: the server's saved name still appears. Undoing a business change requires a separate server operation.
+
+![Refreshing after cancellation reveals the name already saved by the server](/assets/core/client-services/cancelled.png)
+
+[View cancellation and unmount cleanup](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/pages/service-products/editor.tsx)
+
+## Update multiple views when a service changes
+
+### Subscribe with useSyncExternalStore
+
+`useService()` resolves an instance without observing its fields. Connect subscriptions and snapshots with `useSyncExternalStore` to rerender components when service state changes:
 
 ```ts
 import { useService } from '@nocobase/app-client';
 import { useSyncExternalStore } from 'react';
-import { tasksServiceToken } from '../services/tokens.js';
-
-export function useTaskRevision(): number {
-  const tasks = useService(tasksServiceToken);
-  return useSyncExternalStore(tasks.subscribe, tasks.getSnapshot);
+import { productsServiceToken } from '../services/tokens.js';
+export function useProductRevision(): number {
+  const products = useService(productsServiceToken);
+  return useSyncExternalStore(products.subscribe, products.getSnapshot);
 }
 ```
 
-The service notifies subscribers, React reads the snapshot again, and unmounting removes the subscription. Snapshots must remain stable while state is unchanged; this example uses a number. For object snapshots, reuse unchanged values instead of allocating on every read. The example targets browser rendering; server rendering also needs an appropriate `getServerSnapshot`. See [React useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore).
+Both `ChangeCounter` components use this Hook. Component imports are omitted here; the complete implementation is linked below:
 
-A page that only needs to refresh a list can subscribe to its reload action directly. Merge this into the existing list Hook:
-
-```ts
-// Inside the list Hook, with useEffect/useService and tasksServiceToken imported:
-const tasks = useService(tasksServiceToken);
-const { reload } = request; // The existing useListData result.
-useEffect(() => tasks.subscribe(reload), [tasks, reload]);
+```tsx
+function ChangeCounter({ title }: { title: string }) {
+  const { t } = useTranslation();
+  const count = useProductRevision();
+  return (
+    <Card>
+      <CardHeader><CardTitle>{title}</CardTitle></CardHeader>
+      <CardContent>
+        <p role="status">{t('serviceProducts.count', { count })}</p>
+      </CardContent>
+    </Card>
+  );
+}
 ```
 
-The subscription lasts for the mounted page, with the returned function handling cleanup. The list still reads on initial mount, so it does not rely on receiving past events. Choose one refresh path per save instead of both subscribing and calling `reload()` in the submit callback. Changes from other sources still need their own refresh or realtime integration.
+Saving notifies both subscribers, React reads the snapshot again, and both counters update as shown in [the saved state](#submit-changes-and-handle-failure). React calls the cleanup function returned by `subscribe()` when a component unmounts.
 
-React Providers supply component-tree context through `client/react-providers.ts`. ServiceProviders register container services through `client/service-provider.ts`. They can cooperate, but calling a service does not require an additional React Provider.
+A snapshot must remain stable while state is unchanged. This example returns a number. For object snapshots, reuse unchanged values instead of allocating on every read. The example renders in the browser; server rendering also needs an appropriate `getServerSnapshot`. See [React useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore).
 
-## Own lifecycle resources
+[View the subscription Hook](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/hooks/use-product-revision.ts) · [View the counters](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/pages/service-products/index.tsx)
 
-Registration declares services and dependencies. Do not start network requests or access page DOM there. If a resource must connect during application startup, establish it in the appropriate Provider lifecycle and release the connections, timers and listeners it owns on shutdown.
+### Subscribe to notifications and reload a list
 
-Pages clean up their requests and local subscriptions on unmount. Services cancel background requests they create. Do not close shared runtime API or realtime clients when disposing of a service's own resources.
+A list can subscribe directly to a reload action without storing the entire list in the service. The example reuses the template's `useListData`, which handles initial loading, cancellation and stale responses:
 
-This Provider only clears its listeners; it creates no background work or global connection. See [Service container](../framework/services/container.md) and [ServiceProvider and service lifecycle](../extension-development/service-provider.md) for container contracts, lifecycle ordering and plugin integration.
+```ts
+import { useService } from '@nocobase/app-client';
+import { useEffect } from 'react';
+import { useListData } from './use-list-data.js';
+import { productsServiceToken } from '../services/tokens.js';
+import type { Product } from '../services/products.js';
+export function useProducts() {
+  const products = useService(productsServiceToken);
+  const request = useListData<{ data: Product[] }>('clientServiceProducts');
+  const { reload } = request;
+  useEffect(() => products.subscribe(reload), [products, reload]);
+  return {
+    rows: request.data?.data ?? [],
+    loading: request.loading,
+    failed: Boolean(request.error),
+    reload,
+  };
+}
+```
 
-## Verify results
+Mounting reads the list without depending on past notifications; unmounting removes the subscription. A save uses this one refresh path, so the submit handler does not also call `reload()`. The result is shown in [the saved state](#submit-changes-and-handle-failure).
 
-Test observable behavior rather than only checking construction:
+These notifications cover successful changes made through this service only. Changes from other users or browsers need manual refreshing or realtime integration.
 
-- Repeated resolution in one container yields the same instance; different containers are independent.
-- Requests use the injected client and pass the ID, JSON body and cancellation signal correctly.
-- Success returns the server record and notifies subscribers; failures and cancelled requests do not increment the success revision.
-- Two subscribed components both update, and unmounting one does not affect the other.
-- Unsubscription and application shutdown release listeners; shutdown does not construct an unused service.
-- Pages retain drafts, submission locks, translated errors and server-side permission handling.
+[View list subscriptions](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/hooks/use-products.ts) · [View the template list Hook](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/hooks/use-list-data.ts)
 
-Inject a test client to check methods, use the real `ServiceContainer` to check registration and disposal, and use component tests for subscriptions. Run type checks, relevant tests and a build. See [Testing and acceptance](testing-and-acceptance.md) for end-to-end data and permission checks.
+## Manage service lifecycle
 
-Source baseline: [Template ServiceProvider](https://github.com/nocobase/nocobase/blob/82f9c1dcf16a39810f9014ce2bcc93ec7088b3e2/packages/templates/app-template-default/client/service-provider.ts), [Client service Hooks](https://github.com/nocobase/nocobase/blob/82f9c1dcf16a39810f9014ce2bcc93ec7088b3e2/packages/app/app-client/src/hooks.ts).
+### Understand the singleton scope
+
+A container singleton belongs to the current browser application instance. Components resolving the same Token share one service. A page reload, another tab, or another application container has its own instance.
+
+Reloading the example resets both counters while retaining product names from server memory. Restarting the server restores the initial products. Client service lifetime and server data retention are separate concerns.
+
+Open a second tab: its counter starts at zero, and successful changes in another tab do not automatically refresh its list. **Refresh list** reads the products again.
+
+React Providers supply component-tree context through `client/react-providers.ts`; ServiceProviders register container services through `client/service-provider.ts`. Calling a service requires no additional React Provider. If you later add identity-dependent caching, clear cached data and in-flight requests when identity changes.
+
+### Unsubscribe and release resources
+
+Pages clean up their subscriptions and requests on unmount. Services release resources they own. On shutdown, the example Provider calls:
+
+```ts
+this.app.container.resolveIfCreated(productsServiceToken)?.dispose();
+```
+
+`resolveIfCreated()` returns only an already-created instance, avoiding construction of an unused service during shutdown. Here, `dispose()` clears listeners and prevents pending requests from publishing later notifications. It does not close the application's shared API Client.
+
+Click **Hide second view** to unmount the second counter, then save a product. The first counter still updates. Clicking **Show second view** mounts a new component that immediately reads the current snapshot without waiting for another save.
+
+![The remaining counter updates after the second view unmounts](/assets/core/client-services/unmounted.png)
+
+If a service creates connections, timers or background requests, it must close or cancel them too. See [Service container](../framework/services/container.md) and [ServiceProvider and service lifecycle](../extension-development/service-provider.md) for container contracts and lifecycle ordering.
+
+[View disposal](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/client/providers/products.ts) · [View singleton, unsubscription and shutdown tests](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/tests/client/products-service.test.ts)
+
+## Example source and setup
+
+The [complete example and README](https://github.com/nocobase/docs-examples-v3/blob/36708ad5b081835c6ab206cdc5ec1a40618971f3/apps/client-business-services/README.MD) require Node.js 24 or newer and pnpm 11. Dependency versions are locked in `pnpm-lock.yaml`. Run in a separate directory:
+
+```bash
+git clone https://github.com/nocobase/docs-examples-v3.git
+cd docs-examples-v3
+git checkout 36708ad5b081835c6ab206cdc5ec1a40618971f3
+cd apps/client-business-services
+pnpm install --frozen-lockfile
+pnpm nocobase config init --dialect sqlite --json
+pnpm nocobase config check --json
+pnpm dev
+```
+
+Append `service-products` to the application URL printed at startup. For a base URL ending in `/main/`, open `/main/service-products`. The demo page needs no login. SQLite starts this standalone example's template capabilities; client services do not depend on a particular database. Existing applications should retain their own configuration.
+
+The example uses the real API Client and HTTP endpoints, but stores products only in server memory. Its public demo API can rename three fixed products; it accesses no real business data and demonstrates neither identity permissions nor database persistence. Business applications should use their existing server authentication, authorization and data-access mechanisms.
+
+From the example App root, run the service, page and API tests:
+
+```bash
+pnpm exec vitest run tests/client/products-service.test.ts tests/client/service-products.test.tsx tests/server/demo-products.test.ts
+```
+
+See the example README for test details and browser automation commands.

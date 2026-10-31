@@ -1,60 +1,64 @@
 ---
-title: What is Studio
-description: NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.
+title: What is Studio?
+description: How Studio organizes AI development and delivery for teams, and how it works with NocoBase Core.
 ---
 
-Connect Claude Code, Codex, and other agents on your team's computers and servers, and they form one agent team. A lead agent assigns design, development, testing, and review, and moves multiple projects forward on its own. You can see at a glance where every issue stands and what comes next. Methods and experience are captured in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off. At every key point, agents attach reports and screenshots, and a person makes the decision.
+NocoBase Studio is an AI development platform for teams. It connects Coding Agents, project management, and software delivery so teams can share tasks, quality standards, and project knowledge.
 
-## Why Studio
+## From local AI development to teamwork
 
-Your team is already developing with AI or vibe coding, and code gets written fast. But once the team has many projects and issues going at the same time, new problems show up. Everyone switches between terminals and chats, and agents hand back more and more changes. There is more than anyone can review, but letting go feels too risky. Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers, and when people or agents change, they are hard to find.
+A local Coding Agent helps an individual build software. Teams also need to handle incoming requests, coordinate work, verify quality, and track releases. Studio brings these activities into a shared workflow, reducing reliance on individual chat sessions and manual coordination.
 
-NocoBase Studio is built to govern how people and agents develop together.
+### Assign work across Agents
 
-### An agent team that keeps work moving
+Studio connects tools and models from Claude Code, Codex, OpenCode, and other providers. The [Lead Agent](agent-team.md) assigns design, development, review, and testing based on each Agent's strengths. It reads the results and plans the next step. Members can also talk directly to a [Runner Agent](../join/runner-agent.md) to discuss requirements and move tasks forward.
 
-Studio connects agents across many machines and schedules them centrally as one agent team that moves many projects and issues forward in parallel, around the clock. Claude Code, Codex, Gemini CLI, Cursor, OpenCode, and other common coding tools can all join. To see how the lead agent hands out the work, read [How the agent team works](agent-team.md).
+![The Lead Agent assigns design work with a clear goal and delivery requirements](https://static-docs.nocobase.com/studio-en-req-dispatch-20261030.png)
 
-### Progress at a glance
+### Share progress with requesters
 
-In Studio you can see where every issue stands and what comes next, along with project progress, agent workload, and model usage. Anything waiting on you sits at the top of **My issues**. See [Follow progress](../use/follow-progress.md) and [Project progress](../project/progress.md).
+Requests from business teams and customers become project tasks. Discussions, Agent runs, and delivery results stay with each task, where project members can follow progress. Task owners answer questions and accept results in **My issues**.
 
-### Decisions backed by evidence
+![Task owners review delivery reports and accept results in My issues](https://static-docs.nocobase.com/studio-en-home-20261030.png)
 
-In Studio, several agents work together on design, development, testing, and review, and a change reaches a person only after it passes its checks and review. When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don't code can make the call. See [Accept the result](../use/accept.md).
+### Track changes through delivery
 
-### Know-how stays with the team
+Studio connects Git platforms and CI/CD to link tasks, pull requests, checks, and reviews. When a check or review fails, the Lead Agent assigns a fix. Owners verify results against the delivery report and acceptance criteria, using previews or test environments when needed. Teams track versions in [Releases](../release/overview.md), deploy production themselves, and record the production version.
 
-Skills hold how work gets done, the knowledge base holds business documents, and project memory holds what agents learn on their own. When people or agents change, the next one picks up where the last one left off. See [Skills](../project/skills.md), [Knowledge base](../project/knowledge-base.md), and [Project memory](../project/project-memory.md).
+![Releases shows versions and their test and production status](https://static-docs.nocobase.com/studio-en-releases-20261030.png)
 
-## How people and agents divide the work
+### Keep standards and knowledge with the team
 
-Agents write the code and do the work, and people make the decisions.
+[Skills](../project/skills.md) define shared requirements for design, development, review, and testing. The [knowledge base](../project/knowledge-base.md) stores business documents. [Project memory](../project/project-memory.md) preserves confirmed rules and experience. Future tasks can reuse this context even when people or models change.
 
-::figure roles | The roles of people and agents in Studio
+![Project memory preserves confirmed business rules for future tasks](https://static-docs.nocobase.com/studio-en-project-memory-20261030.png)
 
-People decide at three key points:
+### Keep your local tools, use shared resources
 
-1. **Answering questions.** When there is a trade-off between approaches, a business rule to settle, or an exception, the lead agent spells out what needs deciding and hands it to the issue owner.
-2. **Accepting the result.** The lead agent attaches a delivery report, acceptance criteria, and screenshots, and a preview you can try yourself when one is available. If everything checks out, the issue owner merges. If not, they send it back for changes.
-3. **Approving releases.** A deployment to a protected environment, such as production, needs an approver's sign-off. If something goes wrong, you can roll back to the previous version.
+With the [nb-studio CLI](../reference/cli.md), members can create tasks, add requirements, and follow results from their usual Coding Agent. Studio schedules execution on shared runtimes, so the local session does not need to stay open. Progress and results remain available to the team in Studio.
 
-To follow one request from idea to release, read [How a request gets done](how-a-request-gets-done.md).
+![Shared runtimes provide coding tools and execution resources for the team](https://static-docs.nocobase.com/studio-en-shared-runtimes-20261030.png)
 
-## How Studio relates to NocoBase Core
+## People decide, Agents develop
 
-On top of AI development, NocoBase adds the foundation and the governance. Core is the application foundation, with the building blocks and development standards every business system shares. Studio is the governance platform for people and agents building software together.
+People raise requests, confirm business rules, accept results, and decide when to release. Agents design, code, test, and review.
 
-<figure class="map" aria-label="Your team works with the agent team in Studio to build business apps on Core">
-<div class="row"><div class="box human"><b>Your team</b><span>Raises requests, keeps track of progress, and makes the key decisions</span></div></div>
-<div class="down">Requests</div>
-<div class="row c2"><div class="box brand"><b>NocoBase Studio</b><span>Schedules the agent team, runs checks and reviews, and keeps the team's know-how</span></div><div class="box agent"><b>Agent team</b><span>Claude Code, Codex, and other coding tools, sharing out design, development, testing, and review</span></div></div>
-<div class="down">Development</div>
-<div class="row"><div class="box"><b>Your business apps · built on NocoBase Core</b><span>Use Core's permissions, workflows, files, and other building blocks, and run on their own once released</span></div></div>
+::figure roles | People make decisions and accept results; the Lead Agent organizes the work
+
+When a business rule or design tradeoff needs a decision, the Lead Agent asks the task owner. On delivery, the owner reviews the report and acceptance criteria, then merges or requests changes. See [How a request gets done](how-a-request-gets-done.md).
+
+## Studio manages delivery, Core powers the application
+
+Studio organizes Agents to build business applications on NocoBase Core. Core provides data, permissions, workflows, and files. Agents build business features on these foundations.
+
+<figure class="map studio-architecture" aria-label="Teams use Studio to coordinate Agents building applications on Core">
+<div class="row"><div class="box team"><b>Your team</b><span>Request features · Confirm rules · Accept and release</span></div></div>
+<div class="down">Move work forward through Studio</div>
+<div class="delivery"><div class="delivery-title"><b>NocoBase Studio</b><span>Manage development and delivery</span></div><div class="row c2"><div class="box"><b>Lead Agent</b><span>Assign work · Follow results · Request decisions</span></div><div class="box"><b>Execution Agents</b><span>Design · Develop · Test · Review</span></div></div><div class="delivery-tools">Projects and tasks · Git and CI/CD · Skills and project memory</div></div>
+<div class="down">Develop, verify, and deliver</div>
+<div class="application"><div class="app-title"><b>Your business application</b><span>Business features and interfaces</span></div><div class="core-base"><b>NocoBase Core</b><span>Data · Permissions · Workflows · Files</span></div></div>
 </figure>
-
-A new project in Studio starts from the NocoBase app template by default. Agents use the permissions, workflows, files, and other building blocks Core already provides and build only what is specific to your business. There is far less code to write and verify, and the system evolves steadily for years on one consistent architecture. Once released, your business apps run on their own, and day-to-day business requests never go through Studio.
 
 ## Self-hosted
 
-Studio comes with the NocoBase commercial editions, and Core and Solution apps such as NocoCRM are free and open source. Studio and your business apps run on your own servers, and your code and data belong to you. You choose your own models and agents, with no vendor lock-in.
+Studio is part of NocoBase's commercial offering. Core and solution applications such as NocoCRM are free and open source. Studio and your applications run on your infrastructure. Your organization owns the code and data, and chooses its Coding Agents and models.

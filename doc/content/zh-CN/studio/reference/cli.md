@@ -47,7 +47,7 @@ nb-studio login --server https://studio.example.com/main
 | `run`、`report` | 运行记录、仪表盘指标和用量 |
 | `kb`、`memory` | 知识库、项目记忆 |
 | `git`、`pr`、`commit` | Git 连接、仓库、个人授权、PR |
-| `preview`、`app`、`deploy`、`env`、`release`、`build`、`registry` | 预览、应用、部署和部署申请、部署环境、版本、CI、镜像仓库 |
+| `preview`、`app`、`deploy`、`env`、`release`、`build`、`registry` | 预览、应用、部署和部署申请、托管环境、版本、CI、镜像仓库 |
 | `inbox`、`follow-up` | 收件箱、关注的任务 |
 | `session`、`conversation` | 会话 |
 | `user`、`access`、`api-key` | 账号和邀请、角色、API 密钥 |

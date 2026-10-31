@@ -91,3 +91,32 @@ for (const button of document.querySelectorAll('.copy-button')) {
     setTimeout(() => { button.textContent = label; }, 1600);
   });
 }
+
+// Images open full size: click or Enter on a figure's image; Esc, a click or the close button closes it
+const zoomable = [...document.querySelectorAll('.doc-main .fig > img')];
+if (zoomable.length) {
+  const dialog = document.createElement('dialog');
+  dialog.className = 'img-zoom';
+  dialog.innerHTML = '<button type="button" class="img-zoom-close">×</button><img alt=""><p class="img-zoom-caption"></p>';
+  dialog.firstChild.setAttribute('aria-label', document.documentElement.lang.startsWith('zh') ? '关闭' : 'Close');
+  document.body.append(dialog);
+  const [close, full, caption] = dialog.children;
+  const open = img => {
+    full.src = img.currentSrc || img.src;
+    full.alt = img.alt;
+    caption.textContent = img.alt;
+    caption.hidden = !img.alt;
+    dialog.showModal();
+  };
+  dialog.addEventListener('click', () => dialog.close());
+  close.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => full.removeAttribute('src'));
+  for (const img of zoomable) {
+    img.tabIndex = 0;
+    img.setAttribute('role', 'button');
+    img.addEventListener('click', () => open(img));
+    img.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(img); }
+    });
+  }
+}

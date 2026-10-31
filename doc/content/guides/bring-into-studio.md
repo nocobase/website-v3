@@ -19,7 +19,7 @@ If one person works on several issues in parallel, they have to jump between sev
 
 Fill in the prompt in [Let an agent set up Studio](../studio/setup/with-agent.md) and give it to your coding agent. It does four things: deploys Studio, connects Git, connects a shared runtime and enables agents. You do a few steps yourself: signing in to the registry, signing in to Studio for the first time, approving the `nb-studio` sign-in and creating the App on GitHub.
 
-**Done when**: every item in the table under [When setup is done](../studio/setup/with-agent.md#when-setup-is-done) is met.
+**Done when**: all items under [Check the result](../studio/setup/with-agent.md#check-the-result) are met.
 
 ## 2. Create a project linked to itam-lite
 

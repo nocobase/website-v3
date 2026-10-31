@@ -10,9 +10,9 @@ description: Common problems with installing, signing in, connecting Git, runtim
 
 **The address doesn't show the sign-in page.** Include `/main/` in the address, for example `https://studio.example.com/main/`.
 
-**You don't know which account to sign in with.** The username is `nocobase`, and the password is in `.env` in the deployment directory: `grep INITIAL_ADMIN_PASSWORD .env`. See [Install Studio](../setup/install.md#sign-in).
+**You don't know which account to sign in with.** Use `INITIAL_ADMIN_USERNAME` and `INITIAL_ADMIN_PASSWORD` from `.env` in the deployment directory. See [Install Studio](../setup/install.md#sign-in).
 
-**The interface is in the wrong language, or the sign-in page has a Sign up link.** `config.yml` doesn't set the interface language or turn off self sign-up. Set `i18n.defaultLocale` to your team's language, such as `zh-CN`, and add `auth.emailAndPassword.disableSignUp: true`. Then restart Studio.
+**The sign-in page has a Sign up link.** Set `auth.emailAndPassword.disableSignUp: true` in `config.yml`, then restart Studio.
 
 **Pulling the image fails.** If it says unauthorized, the token is wrong, so sign in to the registry again. If pulling `postgres:16` times out, the server can't reach Docker Hub, so set up a registry mirror or use an existing PostgreSQL. If downloading image layers hangs, allow the image layer download address you received with your token. See [Install Studio](../setup/install.md#troubleshooting).
 
@@ -22,7 +22,7 @@ description: Common problems with installing, signing in, connecting Git, runtim
 
 ## Connecting Git
 
-**GitHub says "Hook url is not supported because it isn't reachable over the public Internet" when you create the GitHub App.** Studio has no public address, but the webhook is on. Turn off **Webhook** and create it again, and Studio checks once a minute instead. See [Connect Git](../setup/git.md#should-you-turn-on-webhooks).
+**GitHub says "Hook url is not supported because it isn't reachable over the public Internet" when you create the GitHub App.** Studio has no public address, but the webhook is on. Turn off **Webhook** and create it again, and Studio checks once a minute instead. See [Connect Git](../configure/git.md#should-you-turn-on-webhooks).
 
 **Creating a project says "The repository was created, but the App could not confirm access."** The GitHub App was installed with access to only some repositories. Add this repository in the App's installation settings on GitHub, then create the project again and choose **Existing repository**.
 
@@ -32,7 +32,7 @@ description: Common problems with installing, signing in, connecting Git, runtim
 
 **A runtime shows as offline.** A runner that hasn't contacted Studio for 150 seconds shows as offline. On that machine, run `nocobase-runner status` to make sure it's running and can reach Studio's address.
 
-**A coding tool shows Login required or Not installed.** On that machine, install and sign in to the tool as the system user that runs the runner, then click **Detect again** in the runtime's details. If it's installed and still shows as not installed, the background service's PATH doesn't include it: in a terminal where `which claude` works, run `nocobase-runner service install` again and restart the service. See [Connect a shared runtime](../setup/shared-runtimes.md#troubleshooting).
+**A coding tool shows Login required or Not installed.** On that machine, install and sign in to the tool as the system user that runs the runner, then click **Detect again** in the runtime's details. If it's installed and still shows as not installed, the background service's PATH doesn't include it: in a terminal where `which claude` works, run `nocobase-runner service install` again and restart the service. See [Connect a shared runtime](../configure/runtimes.md#troubleshooting).
 
 **A model is missing from the agent list.** Common models are enabled automatically once a runtime reports them. Add other models from **Available models** under **Add agent**. If a model shows **Needs setup** or **Version too low**, deal with it on the runtime as the hint says.
 

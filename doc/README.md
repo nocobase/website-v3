@@ -86,18 +86,52 @@ The sidebar of a section is the `meta.json` in the section's directory (`content
 
 ```json
 {
-  "title": "Set up Studio",
+  "title": "Install and configure",
   "defaultOpen": true,
   "pages": [
-    { "type": "page", "path": "with-agent" },
-    { "type": "group", "title": "Step by step", "pages": [{ "type": "page", "path": "install" }] }
+    {
+      "type": "page",
+      "path": "index"
+    },
+    {
+      "type": "page",
+      "path": "with-agent"
+    },
+    {
+      "type": "page",
+      "path": "install"
+    },
+    {
+      "type": "page",
+      "path": "git"
+    },
+    {
+      "type": "page",
+      "path": "shared-runtimes"
+    },
+    {
+      "type": "page",
+      "path": "agents"
+    },
+    {
+      "type": "page",
+      "path": "new-project"
+    },
+    {
+      "type": "page",
+      "path": "ci"
+    },
+    {
+      "type": "page",
+      "path": "invite"
+    }
   ]
 }
 ```
 
 There are two ways to use subdirectories:
 
-1. A directory **without** `meta.json` is only a storage folder. Its pages are listed from a `meta.json` above with `page` entries whose `path` goes into it (`getting-started/create-app`), and no level appears in the sidebar. Core also uses relative `page` paths to keep tutorials in their existing URL directories while listing them under the appropriate topic.
+1. A directory **without** `meta.json` is only a storage folder. Its pages are listed from a `meta.json` above with `page` entries whose `path` goes into it (`getting-started/create-app`), and no level appears in the sidebar. Core also uses relative `page` paths to keep tutorials in their existing URL directories while listing them under the appropriate topic. Studio does the same: its menu has ten groups (Introduction, Install and configure, Get started, Issue development, Project management, Agent management, Quality management, Release management, Administration, Reference), and pages such as `project/release` keep their URLs while listed under another group. Studio has two onboarding paths. “Install and configure” is for administrators: deployment, Git platform connection (GitHub example), runtime, Agents, project creation, checks and previews, then invitations. CI is one optional check source, alongside Agent self-checks. “Get started” is for members: the joining overview, sign-in, and the first request, followed by local Coding Agent integration, online Runner Agent conversations, and optional computer connection. The first-request page keeps its `setup/first-request` URL but appears only in the member path. Detailed configuration pages live in the `configure/` storage directory without a `meta.json`: `agents` and `runtimes` appear under Agent management, `checks` under Quality management, and `git` under Administration. Deployment configuration stays under Reference, with a separate `reference/storage` guide for file storage drivers and release artifacts. The setup overview and project completion page link to these topic-specific guides; there is no separate configuration group.
 2. A directory **with** a `meta.json`, referenced by a `folder` entry, creates a menu category. First-level categories render as non-collapsible groups in both desktop and mobile navigation; nested folders remain collapsible. Nested folders containing the current page are open, and `defaultOpen: true` opens a nested folder by default. Core keeps its seven topic groups and their nested subjects in separate menu files, retaining the existing article URLs.
 
 Use each article's front matter `title` as the default sidebar label, so navigation and the page heading stay consistent. Choose a title that reflects the article's actual scope. Add a `page.title` in `meta.json` only when a long article title needs a shorter label with the same meaning; do not use it to promise a different topic or narrower coverage.

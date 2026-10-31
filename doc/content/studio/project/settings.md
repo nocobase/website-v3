@@ -33,6 +33,14 @@ A project can have several repositories, for example an app and its plugins kept
 
 In a project without a repository, agents can only work on issues that don't involve code. **Next steps** on the project overview reminds you to **Add a code repository**.
 
+### Connect an existing repository
+
+For an existing application, select **Existing repository** when creating the project, then choose a repository available to the Git connection. **No initialization** uses its code unchanged.
+
+If initialization is needed, choose **NocoBase application** or **From a prompt**. Existing files are preserved and changes are submitted through a branch and pull request. The owner reviews and merges the PR to complete initialization. Check the repository layout and development instructions before selecting this option.
+
+Select **Add later** to connect a repository through **Settings › Repositories** after creating the project. Until then, agents can only perform tasks that do not require code.
+
 ### Commit attribution
 
 Agents commit code as the person who started the work. Each person can choose in **Account settings › Preferences** whether their commits also credit the agent as a co-author. The setting here is the default for anyone who hasn't chosen.

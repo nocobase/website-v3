@@ -1,60 +1,64 @@
 ---
 title: Studio 是什么
-description: NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
+description: 了解 Studio 如何组织团队的 AI 开发与交付，以及它与 NocoBase Core 的分工。
 ---
 
-个人电脑和团队服务器上的 Claude Code、Codex 等接入后，组成一支 Agent 团队，由调度 Agent 分派设计、开发、测试、评审工作，自主推进多个项目。每个任务做到哪里、下一步做什么，都一目了然。方法和经验沉淀在技能、知识库和项目记忆中，换人、换 Agent 都能无障碍交接。在每个关键处，Agent 会附上报告、截图，由人来做决策。
+NocoBase Studio 是面向团队的 AI 开发治理平台。它连接 Coding Agent、项目管理和软件交付流程，让团队统一管理开发任务、质量标准和项目经验。
 
-## 为什么需要 Studio
+## 从本地 AI 开发到团队协作
 
-你的企业已经在用 AI 开发或者 Vibe Coding，代码写得很快。但团队同时推进的项目和任务一多，新的问题就随之出现。每个人在多个终端和对话之间切换，Agent 交过来的改动也越来越多，人看不过来，又不敢放手。需求背景、业务资料、项目经验散落在不同电脑的不同会话里，换人、换 Agent 就很难找到。
+本地 Coding Agent 提升个人开发效率。团队交付还需要持续处理需求、协调分工、核验质量和跟踪上线。Studio 将这些工作组织为团队共享的流程，减少对个人会话和手工协调的依赖。
 
-NocoBase Studio 正是为治理人与 Agent 协同开发而生。
+### 多个 Agent 分工，持续推进任务
 
-### 一支持续推进的 Agent 团队
+Studio 接入 Claude Code、Codex、OpenCode 等工具和模型。[调度 Agent](agent-team.md) 按能力分派设计、开发、评审和测试，并根据结果安排下一步，减少人工转交任务和结果的工作。成员也可以直接与 [Runner Agent](../use/sessions.md) 对话，讨论需求并驱动任务。
 
-Studio 接入多台机器上的 Agent 统一调度，组成一支 Agent 团队，24 小时同步推进多个项目和大量任务。Claude Code、Codex、Gemini CLI、Cursor、OpenCode 等常见编码工具都可以接入。调度 Agent 怎样分派工作，见 [Agent 团队怎样工作](agent-team.md)。
+![调度 Agent 分派设计任务，并明确目标和交付要求](https://static-docs.nocobase.com/studio-zh-req-dispatch-20261030-v3.png)
 
-### 各项进展一目了然
+### 需求方与开发团队共享进展
 
-在 Studio 里，每个任务做到哪里、下一步做什么，都一目了然，项目进展、Agent 工作负荷和模型用量也都清晰可见。需要你处理的事，都排在「我的任务」最前面。见 [跟进进展](../use/follow-progress.md) 和 [项目进展](../project/progress.md)。
+业务部门、客户等需求方的请求进入统一的项目与任务。讨论、Agent 执行记录和交付结果都关联到任务，项目成员可以直接查看进展。需求负责人在「我的任务」中回答问题、验收结果，减少反复同步进度和转述需求的工作。
 
-### 有理有据做决策
+![需求负责人处理决策与验收，团队通过任务动态查看 Agent 交接、执行结果和状态变化](https://static-docs.nocobase.com/studio-zh-home-20261030-v3.png)
 
-在 Studio 里，设计、开发、测试和评审由多个 Agent 协同完成，检查和评审都通过了，才交给人。需要人做决策时，Agent 会附上详细的报告、清单、截图和建议，不懂代码的业务专家也可以直接拍板。见 [验收](../use/accept.md)。
+### 从代码改动跟踪到发布上线
 
-### 方法、经验、知识沉淀在团队里
+Studio 对接 Git 代码平台和 CI/CD，关联任务、PR、检查结果与评审记录。检查或评审未通过时，调度 Agent 安排修复。负责人依据交付报告和验收标准确认结果，需要时通过预览或测试环境验证。团队在 [发布](../release/overview.md) 中跟踪版本，自行部署生产，并记录生产版本。
 
-Studio 用技能保存做事的方法，用知识库保存业务资料，用项目记忆保存 Agent 自主学到的经验，换人、换 Agent 都能无障碍交接。见 [技能](../project/skills.md)、[知识库](../project/knowledge-base.md) 和 [项目记忆](../project/project-memory.md)。
+![发布页面汇总版本及其在测试、生产环境中的状态](https://static-docs.nocobase.com/studio-zh-releases-20261030-v3.png)
 
-## 人和 Agent 怎样分工
+### 开发规范与经验由团队积累
 
-Agent 写代码、做执行，人来做决策。
+团队用 [技能](../project/skills.md) 统一设计、开发、评审和测试要求，为每个任务提供共同的质量基准。[知识库](../project/knowledge-base.md) 保存业务资料，[项目记忆](../project/project-memory.md) 保存已确认的规则和经验。更换成员或模型后，后续任务仍可复用这些规范与背景，减少重复说明和交付差异。
 
-::figure roles | Studio 里人和 Agent 的角色
+![项目记忆保存团队已确认的业务规则，供后续任务复用](https://static-docs.nocobase.com/studio-zh-project-memory-20261030-v3.png)
 
-人在三个关键处做决策：
+### 保留本地习惯，使用团队执行资源
 
-1. **回答提问。** 遇到方案取舍、业务规则、例外情况，调度 Agent 写清要决定什么，交给任务负责人回复。
-2. **验收。** 调度 Agent 附上交付报告、验收标准和截图，需要时还有可以亲自试用的预览。任务负责人确认没问题就合并，不满意就退回修改。
-3. **批准上线。** 部署到受保护的环境（例如生产环境）之前，要由审批人批准；出了问题，可以回滚到上一个版本。
+通过命令行 [nb-studio](../reference/cli.md)，成员可以继续在常用的 Coding Agent 中创建任务、补充要求和跟进结果。任务交给 Studio 调度到共享运行环境后，执行不再依赖本地会话持续打开。进展与结果保存在 Studio 中，供团队跟进。
 
-一个需求从提出到上线的全过程，见 [一个需求怎样完成](how-a-request-gets-done.md)。
+![共享运行环境集中提供 Claude Code、Codex 等编码工具和执行资源](https://static-docs.nocobase.com/studio-zh-shared-runtimes-20261030-v3.png)
 
-## 与 NocoBase Core 的关系
+## 人做决策，Agent 完成开发
 
-NocoBase 在 AI 开发之上补齐底座和治理能力。Core 是应用底座，提供业务系统共用的基础能力和开发规范；Studio 是人与 Agent 协同开发的治理平台。
+人提出需求、确认业务规则、验收结果，并决定发布时机。设计、编码、测试和评审由 Agent 完成。
 
-<figure class="map" aria-label="团队在 Studio 中与 Agent 团队协同，基于 Core 开发业务应用">
-<div class="row"><div class="box human"><b>你的团队</b><span>提出需求，掌握进展，在关键处做决策</span></div></div>
-<div class="down">需求</div>
-<div class="row c2"><div class="box brand"><b>NocoBase Studio</b><span>统一调度 Agent 团队，组织检查和评审，沉淀方法和经验</span></div><div class="box agent"><b>Agent 团队</b><span>Claude Code、Codex 等编码工具，分工设计、开发、测试、评审</span></div></div>
-<div class="down">开发</div>
-<div class="row"><div class="box"><b>你的业务应用 · 建在 NocoBase Core 上</b><span>使用 Core 的权限、流程、文件等基础能力；发布后独立运行</span></div></div>
+::figure roles | 人掌握决策与验收，调度 Agent 组织执行 Agent 完成任务
+
+需要确认业务规则或方案取舍时，调度 Agent 向任务负责人提问。完成后，负责人依据交付报告和验收标准决定合并或退回修改。完整流程见 [一个需求怎样完成](how-a-request-gets-done.md)。
+
+## Studio 管理交付，Core 支撑业务应用
+
+Studio 组织 Agent 基于 NocoBase Core 开发业务应用。Core 提供数据、权限、工作流和文件等基础能力，Agent 在此基础上实现业务功能。
+
+<figure class="map studio-architecture" aria-label="团队通过 Studio 调度 Agent 开发基于 Core 的业务应用">
+<div class="row"><div class="box team"><b>你的团队</b><span>提出需求 · 确认规则 · 验收与发布</span></div></div>
+<div class="down">通过 Studio 推进任务</div>
+<div class="delivery"><div class="delivery-title"><b>NocoBase Studio</b><span>管理开发与交付</span></div><div class="row c2"><div class="box"><b>调度 Agent</b><span>分派任务 · 跟进结果 · 提请决策</span></div><div class="box"><b>执行 Agent</b><span>设计 · 开发 · 测试 · 评审</span></div></div><div class="delivery-tools">项目与任务 · Git 与 CI/CD · 技能与项目记忆</div></div>
+<div class="down">开发、验证与交付</div>
+<div class="application"><div class="app-title"><b>你的业务应用</b><span>业务功能与界面</span></div><div class="core-base"><b>NocoBase Core</b><span>数据 · 权限 · 工作流 · 文件</span></div></div>
 </figure>
-
-在 Studio 里新建项目，代码默认用 NocoBase 应用模板初始化。Agent 使用 Core 现成的权限、流程、文件等基础能力，只开发企业自己的业务部分，需要开发和验证的代码大幅减少，系统在统一架构下长期稳定迭代。业务应用发布后独立运行，日常业务请求不经过 Studio。
 
 ## 私有部署
 
-Studio 在 NocoBase 商业版中提供，Core 和 NocoCRM 等 Solution 应用开源免费。Studio 和业务应用都部署在企业自己的服务器上，代码和数据归企业所有。模型和 Agent 由企业自由选择，不绑定厂商。
+Studio 在 NocoBase 商业版中提供，Core 和 NocoCRM 等 Solution 应用开源免费。Studio 和业务应用部署在企业自己的服务器上，代码与数据归企业所有。Coding Agent 和模型可按需选择。

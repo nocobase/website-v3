@@ -1,146 +1,246 @@
 ---
-title: 安装 Studio
-description: Studio 部署在企业自己的服务器上。用 Docker Compose 在一台 Linux 服务器上部署 Studio 和它的 PostgreSQL 数据库，做完就可以用初始管理员登录。
+title: 部署 Studio
+description: 使用 Docker Compose 部署空白 Studio，配置持久化数据，并登录管理员账号。
 ---
 
-## 准备
+Studio 是商业产品，请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取镜像、版本信息和访问授权。
 
-| 准备什么 | 要求 |
-| --- | --- |
-| 服务器 | Linux，装有 Docker 和 Docker Compose。镜像支持 amd64 和 arm64 |
-| NocoBase Pro token | 登录私有镜像源 `pkg-v3.nocobase.com` 用 |
-| 域名和 HTTPS | 正式使用时，用 Caddy 或 Nginx 把域名反向代理到 Studio。代码托管平台的回调、浏览器推送、邮件里的链接，都需要 HTTPS 和固定的地址 |
-| 网络 | 能访问 `pkg-v3.nocobase.com`，以及和 token 一起提供给你的镜像层下载地址；能拉取 PostgreSQL 镜像 |
-| 按需 | SMTP 邮箱，用于邀请成员、找回密码和邮件通知；对象存储；Redis，只有部署多个实例时才需要 |
+本文使用 Docker Compose 部署单个 Studio 实例，数据库以 PostgreSQL 为例。已有数据库可以直接接入，配置项见[配置参考](../reference/config.md)。
 
-## 登录镜像源
+## 准备环境
 
-用户名填 `nocobase`，密码是你的 token。通过标准输入传入 token，它就不会留在命令历史里：
+- 一台装有 Docker 和 Docker Compose 的服务器。镜像支持 Linux amd64 和 arm64。
+- 已获取的 Studio 镜像。服务器需要能访问交付说明中的镜像服务；离线交付的镜像包用 `docker load -i <镜像包>` 导入。
+- 一个固定的访问地址。团队使用时配置域名和 HTTPS；本机试用可以先用 `http://localhost:13000`。
+
+编码工具安装在[运行环境](shared-runtimes.md)上，后续再接入。单实例不需要 Redis。团队使用前，还需要准备文件与产物存储，以及邀请和密码重置邮件。
+
+## 准备配置文件
+
+按交付说明取得镜像，在终端中设置 `STUDIO_IMAGE`。值使用包含具体版本号的完整镜像名称。
 
 ```bash
-echo "<YOUR_TOKEN>" | docker login pkg-v3.nocobase.com -u nocobase --password-stdin
+export STUDIO_IMAGE='<交付的镜像名称与版本>'
+mkdir studio
+cd studio
+mkdir storage
+sudo chown 1000:1000 storage
+
+docker run --rm --entrypoint cat "$STUDIO_IMAGE" \
+  /app/config.example.yml > config.yml
 ```
 
-看到 `Login Succeeded` 就登录成功了。
+Studio 容器以 UID 1000 运行，需要能写入 `storage` 目录。
 
-可用的版本号在 [镜像的版本页面](https://pkg-v3.nocobase.com/-/images/nocobase/studio) 查看，不需要登录。生产环境请写具体的版本号，例如 `1.0.0-beta.61`，部署结果才稳定、可以复现；`latest` 和 `beta` 会随新版本移动。下文用 `<版本号>` 代替。
+编辑 `config.yml`，在对应位置设置界面语言，并关闭自助注册。保留模板里的其他配置，不要重复添加同名节点。
 
-## 部署
+```yaml
+i18n:
+  defaultLocale: zh-CN
 
-1. 新建部署目录，从镜像里取出配置文件模板。Studio 启动时必须有这个文件，否则会直接退出。
+auth:
+  passwordReset:
+    enabled: false
+  emailAndPassword:
+    enabled: true
+    autoSignIn: false
+    disableSignUp: true
+```
 
-   ```bash
-   mkdir studio && cd studio
-   mkdir storage && sudo chown 1000:1000 storage   # 容器以 UID 1000 运行，要能写这个目录
-   docker run --rm --entrypoint cat pkg-v3.nocobase.com/nocobase/studio:<版本号> /app/config.example.yml > config.yml
-   ```
+生成 `.env`。下面的命令会生成加密密钥、初始管理员密码和数据库密码。
 
-2. 编辑 `config.yml`，改两处。在文件开头加上界面语言，设为团队使用的语言，例如中文是 `zh-CN`：
+```bash
+umask 077
+cat > .env <<EOF
+STUDIO_IMAGE=${STUDIO_IMAGE}
+STUDIO_SECRET_KEY=$(openssl rand -hex 32)
+INITIAL_ADMIN_USERNAME=admin
+INITIAL_ADMIN_EMAIL=admin@example.com
+INITIAL_ADMIN_PASSWORD=$(openssl rand -hex 18)
+DB_PASSWORD=$(openssl rand -hex 24)
+APP_PUBLIC_ORIGIN=http://localhost:13000
+EOF
+```
 
-   ```yaml
-   i18n:
-     defaultLocale: zh-CN
-   ```
+把管理员邮箱换成自己的邮箱。`APP_PUBLIC_ORIGIN` 填浏览器访问 Studio 的协议、域名和端口，末尾不带 `/main`。
 
-   在 `auth` 下的 `emailAndPassword` 里加上 `disableSignUp: true`，关闭自助注册，成员由管理员邀请加入：
+> [!NOTE] 保留加密密钥
+> `STUDIO_SECRET_KEY` 用于加密 Studio 保存的凭据。重启和升级时保留它，并与数据库一起备份。丢失密钥后，已保存的凭据无法解密。
 
-   ```yaml
-   auth:
-     emailAndPassword:
-       enabled: true
-       autoSignIn: false
-       disableSignUp: true
-   ```
+## 文件与产物上传
 
-   不设置语言时，界面是英文；不关闭自助注册，登录页上任何人都能自己注册账号。
+本地存储可以直接使用，后面的 Compose 配置会持久化 `/app/storage`。团队使用对象存储时，将下面的配置加入 `config.yml`。下面以 Amazon S3 为例：
 
-3. 生成 `.env`，里面是加密密钥、初始管理员的密码和数据库密码。把地址换成你的域名：
+```yaml
+drive:
+  default: s3
+  disks:
+    s3:
+      driver: s3
+      bucket: example-studio-files
+      region: us-east-1
+      supportsACL: false
+      visibility: private
+      credentials:
+        accessKeyId: replace-with-access-key-id
+        secretAccessKey: replace-with-access-key-secret
 
-   ```bash
-   cat > .env <<EOF
-   STUDIO_SECRET_KEY=$(openssl rand -hex 32)
-   INITIAL_ADMIN_PASSWORD=$(openssl rand -base64 18 | tr -d '/+=')
-   DB_PASSWORD=$(openssl rand -hex 16)
-   APP_PUBLIC_ORIGIN=https://studio.example.com
-   EOF
-   chmod 600 .env
-   ```
+releases:
+  artifact:
+    disk: s3
+    prefix: releases/artifacts
+```
 
-4. 新建 `docker-compose.yml`：
+替换 bucket、地域和凭据，并将 bucket 设为私有。`drive.default` 用于上传的附件等文件；`releases.artifact` 用于 CI 或 Agent 上传的构建产物，必须单独设置。
 
-   ```yaml
-   services:
-     studio:
-       image: pkg-v3.nocobase.com/nocobase/studio:<版本号>
-       restart: unless-stopped
-       depends_on:
-         postgres:
-           condition: service_healthy
-       ports:
-         - "13000:13000"
-       environment:
-         # 对外访问的地址，用于登录回调和邮件里的链接
-         APP_PUBLIC_ORIGIN: ${APP_PUBLIC_ORIGIN:-http://localhost:13000}
-         # 加密密钥，部署后不要再改
-         SECRETS_KEYS: 1:${STUDIO_SECRET_KEY:?set STUDIO_SECRET_KEY in .env}
-         # 首次启动时创建的管理员
-         INITIAL_ADMIN_USERNAME: nocobase
-         INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL:-admin@nocobase.com}
-         INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:?set INITIAL_ADMIN_PASSWORD in .env}
-         DB_DIALECT: postgres
-         DB_HOST: postgres
-         DB_PORT: 5432
-         DB_DATABASE: studio
-         DB_USERNAME: studio
-         DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
-       volumes:
-         - ./config.yml:/app/config.yml:ro
-         - ./storage:/app/storage
+对象存储不能替代整个 `storage` 目录，仍需保留下面的持久化挂载。本地文件、S3 兼容服务和 OSS 的配置，见[文件与产物存储](../reference/storage.md)。
 
-     postgres:
-       image: postgres:16
-       restart: unless-stopped
-       environment:
-         POSTGRES_DB: studio
-         POSTGRES_USER: studio
-         POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
-       volumes:
-         - ./postgres:/var/lib/postgresql/data
-       healthcheck:
-         test: ["CMD-SHELL", "pg_isready -U studio -d studio"]
-         interval: 5s
-         timeout: 5s
-         retries: 10
-   ```
+## 邀请与密码重置邮件
 
-5. 启动：
+团队使用前配置这两种邮件。邀请使用通知通道；密码重置使用独立的 `auth.email`。下面以同一个 SMTP 账号为例，合并到 `config.yml` 的对应节点：
 
-   ```bash
-   docker compose up -d
-   docker compose ps
-   ```
+```yaml
+users:
+  invitations:
+    emailChannel: system-email
 
-   `studio` 显示 `healthy` 就启动好了，通常在一分钟内。第一次启动会自动建表、写入初始数据。
+notification:
+  channels:
+    inbox:
+      type: in-app
+    system-email:
+      type: smtp
+      host: smtp.example.com
+      port: 587
+      secure: false
+      auth:
+        user: notifications@example.com
+      from: "Studio <notifications@example.com>"
 
-> [!WARNING] 保管好加密密钥
-> `.env` 里的 `STUDIO_SECRET_KEY` 用来加密已保存的 Git 凭据、API 密钥等。部署后不要再改：改了，所有人都会被退出登录；丢了，这些凭据都无法再解密。把 `.env` 和数据一起备份，按保管密码的方式存放。
+auth:
+  passwordReset:
+    enabled: true
+  email:
+    provider: smtp
+    host: smtp.example.com
+    port: 587
+    secure: false
+    auth:
+      user: notifications@example.com
+    from: "Studio <notifications@example.com>"
+```
 
-## 登录
+保留前面已有的 `users.initialAdmin` 和 `auth.emailAndPassword` 等设置。替换 SMTP 主机、端口、账号和发件地址，确保发件地址已获服务商授权。
 
-打开 `https://studio.example.com/main/`。还没有配置域名时，打开 `http://<服务器地址>:13000/main/`。
+将密码填入 `.env`：
 
-- 用户名：`nocobase`
-- 密码：`.env` 里的 `INITIAL_ADMIN_PASSWORD`，用 `grep INITIAL_ADMIN_PASSWORD .env` 查看
+```dotenv
+SMTP_PASSWORD=<邀请邮件的 SMTP 密码>
+AUTH_EMAIL_PASSWORD=<密码重置邮件的 SMTP 密码>
+```
 
-登录后，在右上角的账户菜单里打开「个人设置 › 账号与安全」，修改密码。
+在下面 Compose 文件的 `services.studio.environment` 中补上：
 
-地址里的 `/main` 不能省。之后添加运行环境、登录 `nb-studio` 时用的 Studio 地址，都是这个带 `/main` 的完整地址。
+```yaml
+SMTP_PASSWORD: ${SMTP_PASSWORD:?set SMTP_PASSWORD in .env}
+AUTH_EMAIL_PASSWORD: ${AUTH_EMAIL_PASSWORD:?set AUTH_EMAIL_PASSWORD in .env}
+```
 
-**完成的标志**：能用初始管理员登录，界面是团队使用的语言，登录页上没有「注册」。接着 [连接 Git](git.md)。
+`.env` 必须通过 Compose 传入容器；不要在 `config.yml` 中写 `${SMTP_PASSWORD}`，它不会展开。两种邮件可以使用相同密码，但变量要分别传入。`APP_PUBLIC_ORIGIN` 应是成员能访问的 Studio 地址，邮件中的链接会用到它。
 
-## 配置 HTTPS
+仅本机试用、暂不配置邮件时，保留 `auth.passwordReset.enabled: false`。邀请可以先复制链接分享。Resend 和旧邮件配置迁移，见[通知与推送](../admin/notifications.md#从旧配置迁移)。
 
-用反向代理把域名转到 Studio 的 13000 端口，WebSocket 也要转发。用 Caddy 时，在 `Caddyfile` 里加上：
+## 启动服务
+
+在同一目录创建 `docker-compose.yml`：
+
+```yaml
+services:
+  studio:
+    image: ${STUDIO_IMAGE:?set STUDIO_IMAGE in .env}
+    init: true
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:13000:13000"
+    environment:
+      APP_CONFIG_FILE: /app/config.yml
+      APP_PUBLIC_ORIGIN: ${APP_PUBLIC_ORIGIN}
+      APP_BASE_PATH: /main
+      APP_SAMPLE_DATA: "false"
+      SECRETS_KEYS: 1:${STUDIO_SECRET_KEY:?set STUDIO_SECRET_KEY in .env}
+      INITIAL_ADMIN_USERNAME: ${INITIAL_ADMIN_USERNAME}
+      INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL}
+      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:?set INITIAL_ADMIN_PASSWORD in .env}
+      DB_DIALECT: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: studio
+      DB_USERNAME: studio
+      DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - ./config.yml:/app/config.yml:ro
+      - ./storage:/app/storage
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: studio
+      POSTGRES_USER: studio
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U studio -d studio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:
+```
+
+此配置只向本机开放 13000 端口。远程服务器通过下文的 HTTPS 地址访问；临时验证也可以使用 SSH 端口转发。
+
+```bash
+docker compose config --quiet
+docker compose up -d
+docker compose ps
+curl -fsS http://localhost:13000/main/api/healthz
+```
+
+首次启动会自动建表并创建管理员。等待 Studio 显示 `healthy`，健康检查返回 `"ok": true`。
+
+## 首次登录
+
+本机试用打开 `http://localhost:13000/main/`。团队使用时，按下文配置 HTTPS 地址。使用 `.env` 中的 `INITIAL_ADMIN_USERNAME` 和 `INITIAL_ADMIN_PASSWORD` 登录。
+
+![使用初始管理员账号登录 Studio](https://static-docs.nocobase.com/studio-zh-setup-login-full-1440x900-20261030.png)
+
+初始管理员配置仅在首次安装时生效。以后修改密码，使用「个人设置 › 账号与安全」。
+
+**完成的标志**：管理员可以登录，项目列表为空，登录页没有注册入口。后续连接执行机和 CLI 时，使用包含 `/main` 的完整地址。
+
+![首次登录后的空白项目列表](https://static-docs.nocobase.com/studio-zh-setup-empty-projects-full-1440x900-20261030.png)
+
+团队使用前，再验证以下结果：
+
+- 上传一个测试文件，刷新后能够下载。
+- 用自己控制的测试邮箱接收邀请，邮件链接能打开 Studio。
+- 用已有测试账号完成「忘记密码」，设置新密码后能够登录。
+
+产物上传和预览启动，在项目的[检查与预览](ci.md)配置完成后验证。
+
+接着[连接代码平台](git.md)。
+
+## 团队访问（可选）
+
+本机试用可以跳过这一步。团队使用时，将域名解析到服务器，并用反向代理提供 HTTPS。反向代理需要转发 WebSocket。
+
+例如 Caddy 与 Studio 在同一台服务器上时：
 
 ```text
 studio.example.com {
@@ -148,47 +248,21 @@ studio.example.com {
 }
 ```
 
-反向代理和 Studio 在同一台服务器上时，把 `docker-compose.yml` 里的端口改成 `"127.0.0.1:13000:13000"`，只让反向代理访问。确认 `.env` 里的 `APP_PUBLIC_ORIGIN` 是对外的 HTTPS 地址，再运行一次 `docker compose up -d`。
-
-## 让 Agent 部署
-
-也可以把下面的提示词交给 Claude Code 或 Codex，由它登录服务器部署。替换服务器地址、域名和版本号，token 单独提供给它：
-
-```prompt
-请通过 SSH 登录 <服务器地址>，用 Docker Compose 部署 NocoBase Studio 和 PostgreSQL，访问地址是 https://studio.example.com/main/。
-
-- 镜像：pkg-v3.nocobase.com/nocobase/studio:<版本号>。先用我提供的 NocoBase Pro token 登录镜像源，用户名 nocobase，token 从标准输入传入。
-- 配置文件从镜像里的 /app/config.example.yml 复制，挂载到 /app/config.yml。在其中把 i18n.defaultLocale 设为 <界面语言，例如 zh-CN>，并在 auth.emailAndPassword 下设置 disableSignUp: true。
-- 数据目录 /app/storage 挂载到宿主机，目录归属 UID 1000。
-- 加密密钥、初始管理员密码和数据库密码随机生成，写进权限为 600 的 .env，不要出现在命令历史和日志里。
-- 先检查服务器上已有的容器、Docker 网络和反向代理，不要影响其他服务。已有反向代理就接入它，没有就用 Caddy 提供 HTTPS，WebSocket 也要转发。
-
-完成后确认：studio 容器为 healthy，https://studio.example.com/main/ 能打开、用 nocobase 登录、界面语言正确、登录页没有注册入口，重启容器后数据还在。告诉我部署目录在哪里，管理员密码和加密密钥存在哪里。
-```
-
-## 升级与备份
-
-升级时，先备份，再把 `docker-compose.yml` 里的版本号改成新的，然后：
+将 `.env` 中的地址改为 `APP_PUBLIC_ORIGIN=https://studio.example.com`，然后重新创建容器：
 
 ```bash
-docker compose pull
 docker compose up -d
 ```
 
-数据库迁移在启动时自动执行。回滚要先恢复升级前的数据库备份，再改回原来的版本号。先升级 Studio，执行机会在空闲时自动升级。
+## 排查启动问题
 
-要备份的有：PostgreSQL 数据库（例如用 `pg_dump -Fc` 导出，或者停机后备份 `postgres` 目录）、`config.yml`、`.env` 和 `storage` 目录。见 [升级与备份](../admin/upgrade-and-backup.md)。
+| 现象 | 检查方法 |
+| --- | --- |
+| 镜像拉取提示无权访问 | 核对交付的版本和访问授权；无法确认时联系我们 |
+| 镜像下载超时 | 检查 Docker 服务的代理和网络，放行交付说明中的下载地址 |
+| 容器反复重启 | 运行 `docker compose logs --tail=100 studio`，检查数据库连接和配置错误 |
+| 提示配置文件不存在或无法读取 | 确认 `config.yml` 是从镜像提取的文件，不是 Docker 自动创建的目录 |
+| 提示数据目录无写入权限 | 确认 `storage` 可由 UID 1000 写入 |
+| 页面打不开或登录回调失败 | 检查 `/main/`、`APP_PUBLIC_ORIGIN` 和反向代理设置 |
 
-## 常见问题
-
-**`docker login` 或 `docker pull` 提示 unauthorized。** token 不对，或者没有这个镜像的授权。确认复制的 token 完整、没有多余的空格，再重新登录。
-
-**`docker pull` 提示 403，说版本发布于授权的更新期限之后。** 改用期限内的版本号，或者续费后再拉取。
-
-**拉取 `postgres:16` 超时。** 服务器访问不了 Docker Hub。为 Docker 配置镜像加速，或者改用已有的 PostgreSQL：删掉 `docker-compose.yml` 里的 `postgres` 服务和 `depends_on`，把 `DB_HOST` 等改成它的连接信息。
-
-**下载镜像层时卡住或超时。** 防火墙或代理没有放行镜像层的下载地址，这个地址和 token 一起提供给你。Docker 需要代理时，要给 Docker 服务本身配置代理，只在终端里设置 `HTTP_PROXY` 对 `docker pull` 不生效。
-
-**打开地址看不到登录页。** 地址要带上 `/main/`。
-
-**容器起不来或反复重启。** 运行 `docker compose logs studio` 看原因。常见的有：没有先取出 `config.yml`，Docker 建了一个同名的目录，删掉它，重做第 1 步；`storage` 目录的属主不是 UID 1000。
+后续维护见[升级与备份](../admin/upgrade-and-backup.md)。

@@ -59,7 +59,7 @@ Projects without CI have no previews. See [Connect CI](../setup/ci.md).
 
 **Issues with a PR**: click **Merge**. The confirmation first checks the PR and its check results with the code host, then shows:
 
-- The merge commit's title and the merge method, such as "Squash and merge into main". GitHub and Gitee use squash merges, and GitLab follows the project's setting.
+- The merge commit's title and the merge method, such as "Squash and merge into main". GitHub uses squash merges, and GitLab follows the project's setting.
 - The status the issue will have after the merge.
 
 ::figure merge-dialog | Confirming before the merge

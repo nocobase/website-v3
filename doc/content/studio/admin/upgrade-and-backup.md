@@ -52,7 +52,7 @@ The encryption key in `.env` must be the same as when the backup was made. Other
 
 4. Wait until `docker compose ps` shows `healthy`, then sign in to check.
 
-Database migrations run automatically on start. The available versions are listed on the [image versions page](https://pkg-v3.nocobase.com/-/images/nocobase/studio).
+Database migrations run automatically on start. [Contact us](https://www.nocobase.com/contact/) for available Studio images and versions.
 
 > [!WARNING] Roll back together with the database
 > The new version upgrades the database when it starts, so the old version may not be able to read it if you only change the image version back. To roll back, restore the database backup from before the upgrade first, then start the old version.

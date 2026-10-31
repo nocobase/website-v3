@@ -12,7 +12,7 @@ description: 收件箱放同事发来的消息和任务之外的事项，例如�
 
 顶栏的收件箱图标打开收件箱。
 
-::figure inbox | 收件箱里是同事的消息和任务之外的事项
+![收件箱：同事的评论和指派，右侧是选中事项的详情](https://static-docs.nocobase.com/studio-zh-inbox-20261030-v2.png)
 
 ## 收件箱的视图
 

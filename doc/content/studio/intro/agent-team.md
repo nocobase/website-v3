@@ -1,83 +1,95 @@
 ---
-title: How the agent team works
-description: The lead agent assigns design, development, testing, and review by what each agent is good at, and keeps many issues moving at once. Work reaches a person for acceptance only after it passes its checks and review.
+title: How the Agent team works
+description: How the Lead Agent assigns work, advances tasks in parallel, and brings decisions to task owners.
 ---
 
-Once Claude Code, Codex, and other coding tools are connected to Studio, they form one agent team. When a request has become an issue and the issue is started, this team moves it forward. The lead agent decides who does each step, executing agents do the design, development, testing, and review, and anything that needs a person's decision goes to the issue owner.
+Connect coding tools such as Claude Code and Codex to form an Agent team. The Lead Agent assigns work. Execution Agents design, develop, test, and review. Task owners handle decisions and acceptance.
 
-## Who is on the agent team
+## The Agent team
 
-| | What it is | What it does |
+| Role | Source | Responsibility |
 | --- | --- | --- |
-| Lead agent | Built into Studio, one for the whole team | Decides who does each step of each issue, reads the replies, and picks the next step. Goes to the issue owner when a person has to decide, and hands the finished work to the issue owner for acceptance. It writes no code and merges nothing. |
-| Executing agent | A coding tool installed and signed in on a runtime. Each coding tool and model pair is one agent, such as Claude · Opus 5.5 or Codex · GPT-5.5 | Does the step the lead agent hands it: writing a plan, building, writing tests, reviewing, or finding out why CI failed. Replies on the issue with the result, and never changes the issue's status or passes the work to someone else. |
+| Lead Agent | Built into Studio, shared by the team | Assign steps, read results, and decide what comes next. Ask the owner questions or submit work for acceptance. Does not write code or merge PRs. |
+| Execution Agent | A coding tool installed and signed in on a runtime | Design, develop, test, review, or investigate CI failures. Report results without changing task status or reassigning work. |
 
-Every executing agent has a **Good at** description, such as "approach design and code review" or "feature development and bug fixes". It is the only thing the lead agent goes by when it assigns work, and an admin writes it when enabling the agent. See [Enable agents](../setup/agents.md).
+Each tool and model combination is an execution Agent. Administrators describe its strengths under **Good at**, such as design and code review. The Lead Agent uses this description to assess its capabilities. See [Configure Agents](../setup/agents.md).
 
-The lead agent needs a model to run on too. An admin picks a first choice and a fallback for it. If the first choice can't start within two minutes, the fallback takes over.
+The Lead Agent also needs a model. An administrator selects a primary and fallback. If the primary cannot start within two minutes, the fallback takes over.
 
-In **My sessions** you can talk a request through with your own agent, which turns it into issues. Once an issue is started, the agent team takes it from there. See [My sessions](../use/sessions.md).
+![Agent strengths, available runtimes, and the Lead Agent's primary and fallback models](https://static-docs.nocobase.com/studio-en-agent-team-20261030.png)
 
-## How the lead agent assigns work
+**Where it runs** lists the runtimes available to each Agent. Administrators connect shared runtimes for the team. Personal runtimes serve only their owner; Agents available only there also serve only that member. See [Agents and runtimes](concepts.md#agents-and-runtimes).
 
-The lead agent wakes up when an issue is started, when an executing agent replies, when someone comments, and when a PR's checks pass or fail. It reads what's new, decides the next step, and then does one of three things:
+Members can discuss requirements in **My sessions** before creating tasks. See [My sessions](../use/sessions.md).
 
-- Hands a step to an executing agent.
-- When a person needs to decide, moves the issue to **Blocked** and spells out what the issue owner has to decide.
-- When the PR has passed review and its checks, moves the issue to **In review** and attaches a delivery report.
+## Work assignment
 
-To hand out a step, the lead agent posts a comment on the issue that mentions the agent and says what to do, what to read, when the step counts as done, and why it picked that agent. The executing agent's reply wakes the lead agent again.
+When a task starts, the Lead Agent assigns the first step. It reassesses progress when an Agent replies, a member comments, or PR checks change.
 
-::figure req-dispatch | The lead agent hands out a step and says what to do, what to read, and when it counts as done
+Design, development, testing, and troubleshooting go to Agents suited to the work. Reviews preferably go to another provider. If no candidate is online, another model from the same provider can review. A model does not review its own code.
 
-The lead agent follows built-in allocation principles:
+Each handoff appears in the task comments. It identifies the Agent, goal, references, completion criteria, and reason for the assignment. The Lead Agent reads the response and moves the task forward.
 
-- **Pick the agent by what it's good at.** Approach design and hard investigations go to an agent that is good at reasoning and design, regular development to one that is good at building, small changes and extra tests to one that is good at small changes, and reviews to one that is good at reviewing.
-- **Plan first, then build.** When a change spans several modules, touches data and migrations, concurrency, or permissions, or the issue doesn't say how to do it, an agent that is good at design writes a short plan first. Once the plan is settled, it sets the scope of the build, and going beyond it needs the lead agent's approval.
-- **Have another vendor review.** Code goes to an agent from another vendor for review. If none is online, a different model from the same vendor reviews it. The model that wrote the code never reviews its own work. Review findings go back to the agent that wrote the code, and the fix is reviewed again.
-- **A person sees it only after the checks and review pass.** An issue moves to **In review** only when its PR has passed review and every check.
+![A design handoff includes business documents and verification requirements](https://static-docs.nocobase.com/studio-en-req-dispatch-20261030.png)
 
-::figure req-checks | After a failed check is fixed, a model from another vendor reviews the code
+Administrators can adjust assignment rules or restore the defaults in [Agent settings](../setup/agents.md).
 
-Admins can change the allocation principles, for example to add the way your team likes to divide work, or restore the built-in ones. See [Enable agents](../setup/agents.md).
+## Task workflow
 
-## How many issues move at once
+Skills define how each stage works and what counts as complete. The Lead Agent plans steps around these requirements, and execution Agents follow them.
 
-- **Each issue works on its own.** Every issue has its own branch, `agent/<issue key>` by default, and its own working directory, so issues don't get in each other's way.
-- **Within an issue, only one step changes code at a time.** Steps that don't change code, such as reviews and finding out why CI failed, run in a separate read-only copy and can run alongside development.
-- **More machines, more issues at once.** Each runtime runs three pieces of work at a time by default, which you can adjust to the machine's resources and your model quota. Urgent issues are picked up first.
-- **Issues with an order wait their turn.** An issue that has to wait for a blocker, or for all its sub-issues, doesn't start until they are done, then carries on by itself.
-- **Work goes on around the clock.** Any runtime that is online picks up queued work. Nobody has to stand by.
+| Stage | How it progresses | Built-in skills |
+| --- | --- | --- |
+| Design | Write a short plan for changes involving multiple modules, migrations, concurrency, permissions, or an unclear approach. Well-defined changes can go straight to development. | `studio-workflow`, `studio-approach` |
+| Develop and verify | Implement the agreed plan and verify results. Changes beyond the plan require the Lead Agent's agreement. | `studio-development` |
+| Check and review | Run checks and request an independent review. Return required fixes to the developer, then review again. | `studio-development`, `studio-review` |
+| Deliver for acceptance | After review and all checks pass, prepare a delivery report and submit it to the owner. | `studio-workflow`, `studio-comment-style` |
 
-::figure agent-queue | The agent queue: what each agent is doing, what comes next, and who it is waiting for
+![Codex fixes a failed check and Claude completes an independent review](https://static-docs.nocobase.com/studio-en-review-thread-20261030.png)
 
-There are two kinds of runtime. Shared runtimes are connected by an admin and run everyone's issues. Personal runtimes are connected by members themselves and run only the work their owner starts. An agent that exists only on personal runtimes works only for their owners.
+The Lead Agent marks a task **Blocked** when it needs a decision and explains the question. When delivery is ready, it marks the task **In review** and attaches a report. Execution Agents do not change task status.
 
-## When work goes to a person
+Teams can edit built-in skills or add their own. Skills can apply globally, to a project, or to a repository. See [Skills](../project/skills.md).
 
-The lead agent hands an issue to its owner in these cases, and each one shows up at the top of the owner's **My issues**:
+## Parallel tasks
 
-- **A person needs to decide.** A trade-off between approaches, a missing permission or secret, or a business question the issue left open moves the issue to **Blocked**.
-- **The work is stuck.** No suitable agent is online, or a step still fails after switching agents. The issue moves to **Blocked** with a note on what it needs to carry on.
-- **It's ready for acceptance.** The PR has passed review and its checks, and the issue moves to **In review** with a delivery report.
+Runtimes pick up queued work. Multiple tasks can advance at once, each with its own branch and working directory.
 
-The lead agent never marks an issue **Done** or **Cancelled**, and never merges a PR. People accept and merge.
-
-## When something goes wrong
-
-| What happens | How the agent team handles it |
+| Mechanism | Behavior |
 | --- | --- |
-| A check fails, or the PR has a conflict | The lead agent is woken to arrange a fix. If the checks still fail after three commits in a row, the issue owner is notified. |
-| The same step fails twice | It goes to the next suitable agent. If that fails too, the issue moves to **Blocked**. |
-| A coding tool runs out of quota | The step goes straight to another suitable agent, preferably from another vendor. |
-| A runtime goes offline | Its work returns to the queue for other runtimes to pick up. |
-| Work waits more than 24 hours with no runtime to take it | The run fails and the issue owner is notified, and can retry it, hand it to someone else, or cancel it. |
-| Agents go back and forth too often | By default, comments from agents can trigger at most 20 runs per issue in 24 hours. Beyond that the issue pauses and its owner is notified to decide whether to continue. |
+| Task isolation | Changes stay in a separate working directory. The default branch name is `agent/<task-identifier>`. |
+| Concurrency within a task | Only one step writes code at a time. Read-only steps, such as reviews and CI investigations, use separate copies and can run alongside development. |
+| Capacity | Each runtime runs three jobs concurrently by default. Adjust this to resources and model quotas, or add runtimes. Urgent tasks take priority. |
+| Dependencies | Tasks wait for required predecessors or subtasks, then continue automatically. |
+| Continuous execution | Online runtimes keep picking up queued work without manual supervision. |
 
-## What agents can and can't do
+![The Agent queue shows active work and available capacity](https://static-docs.nocobase.com/studio-en-agent-queue-20261030.png)
 
-- An agent works on behalf of the person who started the work, and never has more permissions than that person.
-- Executing agents can commit and push to the issue's branch and open PRs. They can't rewrite history that has already been pushed, and the code host guards protected branches.
-- Only people can merge PRs, approve deployments to protected environments, and manage members.
+## Human involvement
 
-While agents work, people can step in at any time: comment on the issue to add requirements, stop a run, or take the issue over. See [Follow progress](../use/follow-progress.md).
+These items appear first in the owner's **My issues**:
+
+| Situation | Status | Owner's action |
+| --- | --- | --- |
+| A business rule or tradeoff needs confirmation, or access is missing | Blocked | Answer the question or provide the required information or access. |
+| Suitable Agents are offline, or a step still fails after reassignment | Blocked | Resolve the blocker or adjust the assignment. |
+| PR checks and review have passed | In review | Read the delivery report and accept the result. |
+
+The Lead Agent does not mark tasks **Done** or **Canceled**, or merge PRs. People accept and merge the work.
+
+- Agents act on behalf of the requester, within that person's permissions.
+- Execution Agents can commit, push, and open PRs on task branches. They cannot rewrite pushed history. The code host controls protected branches.
+- Only people merge PRs, approve deployment to protected environments, and manage members.
+
+Members can add requirements, stop a run, or take over a task at any time. See [Follow progress](../use/follow-progress.md).
+
+## Failure handling
+
+| Situation | Response |
+| --- | --- |
+| Checks fail or a PR has conflicts | Assign a fix. Notify the owner after three consecutive failing commits. |
+| The same step fails twice | Try another suitable Agent. If it fails again, mark the task Blocked. |
+| A coding tool runs out of quota | Switch Agents immediately, preferably to another provider. |
+| A runtime goes offline | Return work to the queue for another runtime. |
+| Work remains unclaimed for 24 hours | Fail the run and notify the owner, who can retry, reassign, or cancel. |
+| Agents repeatedly hand work back and forth | By default, allow up to 20 runs triggered by Agent comments per task every 24 hours. Pause at the limit and ask the owner whether to continue. |

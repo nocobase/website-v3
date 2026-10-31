@@ -1,116 +1,101 @@
 ---
 title: Core concepts
-description: The people in Studio, requests and issues, projects and repositories, agents and runtimes, skills, the knowledge base, project memory, previews and deploy environments, and how they fit together.
+description: Projects, tasks, sessions, Agents, runtimes, shared knowledge, and the link between code changes and releases.
 ---
 
-<figure class="map" aria-label="Studio's core concepts and how they relate">
-<div class="row"><div class="box human"><b>People</b><span>Issue owners, project leads, and admins: raise requests, answer questions, accept results, and approve releases</span></div></div>
-<div class="down">Requests become issues</div>
-<div class="row"><div class="box brand"><b>Issues</b><span>Belong to a project, with the code in the project's repository</span></div></div>
-<div class="down">The lead agent assigns them</div>
-<div class="row c2"><div class="box agent"><b>Agent team</b><span>The lead agent hands out the work, and executing agents design, build, test, and review</span></div><div class="box"><b>Runtimes</b><span>Team servers and members' machines, where the agents work</span></div></div>
-<div class="down">Read before working, written back with what they learn</div>
-<div class="row"><div class="box"><b>Skills · Knowledge base · Project memory</b><span>How work gets done · Business documents · What agents have learned</span></div></div>
-<div class="down">Deployed after merging</div>
-<div class="row"><div class="box"><b>Deploy environments</b><span>Previews · Staging · Production</span></div></div>
+Studio organizes tasks and code by project. People make decisions and accept results. Agents develop the application, using shared skills, business documents, and project memory.
+
+<figure class="map concept-map" aria-label="Projects organize tasks and code, Agents and runtimes execute work, and shared knowledge provides context">
+<div class="row"><div class="box brand"><b>Project</b><span>Related tasks, repositories, and team knowledge</span></div></div>
+<div class="down">Tasks and code belong to the same project</div>
+<div class="row c2"><div class="box human"><b>Task</b><span>Requirements, owner, progress, and delivery</span></div><div class="box"><b>Repository</b><span>Code, pull requests, and versions</span></div></div>
+<div class="down">The Agent team executes tasks and submits changes</div>
+<div class="row c2"><div class="box agent"><b>Agent</b><span>The Lead Agent assigns; execution Agents deliver</span></div><div class="box agent"><b>Runtime</b><span>Coding tools, models, and execution resources</span></div></div>
+<div class="row"><div class="box knowledge"><b>Skills · Knowledge base · Project memory</b><span>Development standards, business documents, and project experience</span></div></div>
 </figure>
-
-## People
-
-| Role | Who | What they do |
-| --- | --- | --- |
-| Issue owner | One per issue, by default the person who raised the request | Answers the agents' questions and accepts the result |
-| Project lead | One per project | Manages the project's settings, skills, and knowledge base, and usually approves releases too |
-| Admin | Anyone with the **Admin** or **Owner** system role | Connects shared runtimes, enables agents, and manages members, deploy environments, and system settings |
-
-Every member has a system role, **Member**, **Admin**, or **Owner**, or a custom role. See [Members and roles](../admin/members-and-roles.md). Issue owner and project lead aren't system roles, and any member of the team can be one.
-
-## Requests and issues
-
-People raise requests. You can talk a request through with an agent in **My sessions** first and have the agent turn it into issues, or fill in an issue directly. Issues go into projects and are the unit of work in Studio.
-
-Every issue has:
-
-- **An owner**: the person responsible for the result. Agents go to the owner when a person has to decide, and hand the finished work to the owner for acceptance.
-- **An executor**: once the issue is started, the executor is the lead agent, which has executing agents do the work. A member can also work on an issue themselves.
-- **A project, priority, labels, and a due date**: runtimes pick up work for urgent issues first.
-- **Sub-issues and blockers**: an issue doesn't start until its blockers are done, then carries on by itself.
-
-Every issue is in one of these six statuses:
-
-<div class="states" aria-label="Issue statuses"><span class="st-pill"><span class="si backlog"></span>Backlog</span><span class="arrow">→</span><span class="st-pill"><span class="si progress"></span>In progress</span><span class="arrow">⇄</span><span class="st-pill"><span class="si blocked"></span>Blocked</span><span class="arrow">·</span><span class="st-pill"><span class="si review"></span>In review</span><span class="arrow">→</span><span class="st-pill"><span class="si done"></span>Done</span><span class="st-pill"><span class="si cancel"></span>Cancelled</span></div>
-
-| Status | Meaning |
-| --- | --- |
-| Backlog | Not started yet. Agents leave it alone |
-| In progress | The agent team is working on it |
-| Blocked | Waiting for the issue owner to decide something |
-| In review | Delivered, waiting for the issue owner to accept it |
-| Done | Accepted. An issue moves to Done on its own once all its linked PRs are merged |
-| Cancelled | No longer needed |
-
-People can move an issue to any status. The lead agent moves issues only between In progress, Blocked, and In review, and executing agents never change the status.
 
 ## Projects and repositories
 
-A project keeps related issues and code together. When you create a project, you can create a new repository, choose an existing one, or add one later. A new repository is initialized from the NocoBase app template by default, which gives you an app built on Core. You can also initialize it from a prompt, or leave it empty.
+A **project** groups tasks, members, repositories, and documents. The project lead manages settings, shared knowledge, and releases.
 
-- A new project's first issue is "Initialize project", and the project's other issues wait until it is done.
-- Studio reaches repositories on GitHub, GitLab, or Gitee through the Git connections an admin adds. Once members connect their own Git accounts, the PRs agents open for them and the merges they make in Studio are done under their own names.
-- Executing agents use branches named `agent/<issue key>` by default, and PRs from these branches are linked to their issues automatically.
+A **repository** stores application code. A project can have multiple repositories. New repositories are initialized with NocoBase Core by default; existing repositories can also be connected.
 
-> [!NOTE] Protect branches on your code host
-> Studio doesn't protect branches for you. Turn on protection rules for the default branch on GitHub, GitLab, or Gitee.
+![Supplier Management summarizes task progress and provides access to knowledge, members, and releases](https://static-docs.nocobase.com/studio-en-project-overview-20261030.png)
+
+See [Create your first project](../setup/new-project.md) and [Project settings](../project/settings.md).
+
+## Tasks and owners
+
+A **task** records requirements, acceptance criteria, discussions, and delivery results—for example, Supplier scoring and tiers. Subtasks divide the work; predecessor tasks express dependencies.
+
+Each task has an **owner** who answers questions, confirms tradeoffs, and accepts the result. The Lead Agent organizes execution. Design, development, and review results stay with the task.
+
+Tasks have six states. Common transitions are:
+
+<div class="states" aria-label="Backlog to In progress, In progress and In review can repeat, then Done"><span class="st-pill"><span class="si backlog"></span>Backlog</span><span class="arrow">→</span><span class="st-pill"><span class="si progress"></span>In progress</span><span class="arrow">⇄</span><span class="st-pill"><span class="si review"></span>In review</span><span class="arrow">→</span><span class="st-pill"><span class="si done"></span>Done</span></div>
+<div class="states" aria-label="In progress and Blocked can repeat; unfinished tasks can be canceled"><span class="st-pill"><span class="si progress"></span>In progress</span><span class="arrow">⇄</span><span class="st-pill"><span class="si blocked"></span>Blocked</span><span class="arrow">·</span><span>Unfinished tasks</span><span class="arrow">→</span><span class="st-pill"><span class="si cancel"></span>Canceled</span></div>
+
+**Blocked** tasks need a decision. **In review** tasks await acceptance. These items appear first in **My issues**.
+
+![An owner reads the delivery report and accepts a task in My issues](https://static-docs.nocobase.com/studio-en-req-accept-20261030.png)
+
+Task ownership is a responsibility, not a system role. Agents act within the requester's permissions. See [Task states and permissions](../reference/statuses-and-permissions.md).
+
+## Sessions
+
+A **session** is a conversation with an Agent to discuss requirements, create tasks, and follow results. One session can link to several tasks, whose progress returns to the conversation.
+
+Sessions are private to their owner. Tasks are shared according to project permissions.
+
+![An Agent turns confirmed rules into a task, with progress shown alongside the conversation](https://static-docs.nocobase.com/studio-en-req-session-20261030.png)
+
+See [My sessions](../use/sessions.md).
 
 ## Agents and runtimes
 
-A runtime is a machine where agents work: a team server, a virtual machine, or a member's own machine. A runtime reports the coding tools and models that are installed and signed in there, and each coding tool and model pair is an agent, such as Claude · Opus 5.5. Once an admin writes what it is **Good at** and enables it, it joins the agent team as an executing agent. The lead agent is built into Studio, and an admin picks one of the enabled agents for it to run on.
+| Concept | Responsibility |
+| --- | --- |
+| Lead Agent | Assign steps, read results, ask the owner questions, and submit work for acceptance. |
+| Execution Agent | A coding tool and model combination that designs, develops, tests, or reviews. |
+| Runtime | Provides the machine, tools, and models that execute Agent work. |
 
-| | Shared runtime | Personal runtime |
+![Agents are configured by their strengths, with primary and fallback models for the Lead Agent](https://static-docs.nocobase.com/studio-en-agent-team-20261030.png)
+
+One runtime can provide several Agents, and the same Agent can run on several machines. Shared runtimes serve the team. Personal runtimes serve only tasks started by their owner.
+
+![Runtimes lists machines, available coding tools, and sharing scope](https://static-docs.nocobase.com/studio-en-shared-runtimes-20261030.png)
+
+Each execution creates a **run record** with its process, result, and usage. A task usually involves several runs.
+
+See [How the Agent team works](agent-team.md) and [Connect a runtime](../setup/shared-runtimes.md).
+
+## Skills, knowledge base, and project memory
+
+| Concept | What it stores | Examples |
 | --- | --- | --- |
-| Who connects it | An admin | Any member |
-| Whose work it runs | Everyone's | Only the work its owner starts |
-| Good for | Team servers that are online all day | A member's own machine, with their own coding tools and subscriptions |
+| [Skills](../project/skills.md) | Development methods and execution requirements | Design steps, review criteria, delivery report format |
+| [Knowledge base](../project/knowledge-base.md) | Business documents written or uploaded by the team | Supplier scoring sheet, purchasing policy |
+| [Project memory](../project/project-memory.md) | Confirmed rules, experience, and reasons for decisions | All tier C supplier orders require approval, regardless of value |
 
-To see how the agent team divides the work and moves many issues at once, read [How the agent team works](agent-team.md).
+Skills can apply globally, to a project, or to a repository. Agents maintain project memory, which is reviewed and merged with the task's PR for later work to reuse.
 
-> [!WARNING] A runtime is not a security boundary
-> On a runtime, agents work as the system user that runs `nocobase-runner` and can read and write everything that user can reach. Run it under a dedicated system user, in a container, or in a virtual machine.
+![Project memory preserves confirmed rules and their sources](https://static-docs.nocobase.com/studio-en-project-memory-20261030.png)
 
-## My issues and My sessions
+## PRs, environments, and versions
 
-Every member has two ways to keep track of work:
+A **PR** (pull request) links a task to code changes. Agents submit code and complete checks and review. The owner accepts the result and merges it.
 
-| | My issues | My sessions |
-| --- | --- | --- |
-| Organized by | Issue | Session |
-| What's in it | Issues you own, are working on, or follow, with anything waiting on you at the top | Your conversations with agents, the issues created in each session, and their progress |
-| Good for | Handling the decisions waiting on you each day: answering questions and accepting results | Talking a request through before it's clear, and following the issues from one session in one place |
+Applications in **preview and test environments** run as Studio child processes to verify changes.
 
-::figure my-tasks-list+sessions-list pair | Left: My issues, organized by issue. Right: My sessions, organized by session
+| Environment | Use |
+| --- | --- |
+| PR preview | Created by CI to verify changes before merging |
+| Test environment | Runs merged code to verify combined changes |
 
-In a session you can talk to your own agent or to an agent from the agent team. See [My sessions](../use/sessions.md). Only you can see your sessions. Whoever you talk to, the agent in the session acts in Studio with your identity and permissions, for example when it creates issues or posts comments.
+For **production**, build an image and deploy it on your own infrastructure. Studio records production versions; it does not deploy production environments.
 
-## Skills, the knowledge base, and project memory
+A **version** represents a release from a repository tag that matches its release line. Studio links the version to its tasks and artifacts.
 
-Skills, the knowledge base, and project memory keep methods and experience with the team. Agents read them before they start, so a new person or agent can pick up where the last one left off, and you don't have to explain the background again for every new request.
+![Releases links versions and tasks with test and production status](https://static-docs.nocobase.com/studio-en-releases-20261030.png)
 
-| | What it holds | Who writes it | Where |
-| --- | --- | --- | --- |
-| Skills | How work gets done: how to split it into steps, write a plan, build, review, and write a delivery report | Studio comes with a few, and your team can add its own, for everything, one project, or one working directory | **Agent management › Skills** |
-| Knowledge base | Business documents: business rules, product notes, technical conventions | People write and upload it. Agents only read it | **Development › Knowledge** |
-| Project memory | What agents learn on the job: approaches a person corrected or confirmed, pitfalls, decisions the code doesn't explain | Agents write it themselves, and it is reviewed and merged with the issue's PR | **Development › Project memory**, stored in the repository under `.nb-studio/memory/` |
-
-## Previews and deploy environments
-
-Once the repository's CI is connected to Studio:
-
-- Every PR gets a preview with sample data and a generated admin account, so you can try the change yourself when you accept it.
-- After a merge, CI deploys the change to staging, and the issue shows which environments it has reached.
-- Every deployment to a protected environment, usually production, needs an approver's sign-off. If something goes wrong, you can roll back to the previous version.
-
-See [Connect CI](../setup/ci.md) and [Deploy environments](../admin/environments.md).
-
-## Permissions
-
-What a member can do depends on their role. Agents work on behalf of the person who started the work and never have more permissions than that person. The lead agent and every step it arranges act on behalf of the issue owner. Only people can merge PRs, approve deployments to protected environments, and manage members. See [Issue statuses and permissions](../reference/statuses-and-permissions.md).
+After a task is complete, use versions and deployment records to see whether it is live. See [Release overview](../release/overview.md).

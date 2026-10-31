@@ -1,96 +1,91 @@
 ---
 title: How a request gets done
-description: Follow one request, supplier scoring and tiers, from idea to release. See how the agent team moves it forward, where people make the key decisions, and what evidence they have when they do.
+description: Follow supplier scoring and tiers from requirements through development, review, acceptance, and release.
 ---
 
-The purchasing team has a Supplier Management project in Studio, and the app is built on NocoBase Core. Zhou Hang, the purchasing lead, doesn't write code. This time purchasing wants to tier its suppliers, so Zhou Hang raises this request:
+The purchasing team wants to add scoring and tiers to its supplier management application, built on NocoBase Core. Purchasing lead Jordan confirms business rules and accepts the result. The Agent team handles design, development, testing, and review.
 
-> Score suppliers on on-time delivery, quality pass rate, and price, and sort them into tiers A, B, and C. Orders to tier C suppliers need the purchasing manager's approval before they go out.
+> Score suppliers by on-time delivery, quality, and price, then assign tiers A, B, or C. Orders from tier C suppliers require purchasing manager approval.
 
-<ol class="flow">
-<li class="human"><div class="step"><div class="step-head"><strong>Raise</strong><span class="who human">Zhou Hang</span><span class="who agent">My agent</span></div><p>Explains the tier rules in business terms and answers the agent's questions. The agent writes them up as an issue with acceptance scenarios.</p></div></li>
-<li class="agent"><div class="step"><div class="step-head"><strong>Assign</strong><span class="who agent">Lead agent</span></div><p>Asks an agent that is good at design for a plan first, then hands development to an agent that is good at building features.</p></div></li>
-<li class="human"><div class="step"><div class="step-head"><strong>Answer</strong><span class="who human">Zhou Hang</span></div><p>The plan turns up an existing approval rule, and Zhou Hang decides whether small orders from tier C suppliers need approval.</p></div></li>
-<li class="agent"><div class="step"><div class="step-head"><strong>Build</strong><span class="who agent">Executing agent</span></div><p>Builds on Core in the issue's own branch, writes tests, and opens a PR.</p></div></li>
-<li class="agent"><div class="step"><div class="step-head"><strong>Check and review</strong><span class="who sys">Repository CI</span><span class="who agent">Executing agent</span></div><p>CI runs the checks and tests, then a model from another vendor reviews the code.</p></div></li>
-<li class="human"><div class="step"><div class="step-head"><strong>Accept</strong><span class="who human">Zhou Hang</span></div><p>Reads the delivery report, acceptance criteria, and screenshots, tries it in the preview, and merges.</p></div></li>
-<li class="human"><div class="step"><div class="step-head"><strong>Release</strong><span class="who human">Project lead</span></div><p>Once merged, it goes to staging. Production needs a person's approval, and you can roll back if something goes wrong.</p></div></li>
-<li class="agent"><div class="step"><div class="step-head"><strong>Remember</strong><span class="who agent">Executing agent</span></div><p>Writes what it learned into project memory, which agents read before the next job.</p></div></li>
-</ol>
+::figure request-lifecycle | Decisions and execution records stay with the task, from requirements to release
 
-## Raise
+## Define requirements and acceptance criteria
 
-Zhou Hang opens **My sessions** and talks it over with their own agent. The agent first looks at the existing supplier module, then asks two questions: how much does each of the three measures count toward the score, and which tier does a new supplier with no order history get? Zhou Hang settles both on the spot. On-time delivery and pass rate count 40% each and price 20%, and new suppliers start at tier B and are re-tiered by score after three months.
+Jordan discusses the request with a Runner Agent in **My sessions**. The Agent checks the existing supplier module and confirms two rules:
 
-The agent writes these rules into the issue description and acceptance scenarios and adds the issue to the Supplier Management project. Zhou Hang clicks **Start 1 issue**, and the issue moves to **In progress**.
+- **Score weights**: on-time delivery 40%, quality 40%, price 20%.
+- **New suppliers**: start at tier B and receive a calculated tier after three months.
 
-::figure req-session | Zhou Hang talks the request through with their agent, which creates the issue once the rules are settled
+The Agent creates **PUR-23, Supplier scoring and tiers**, with the rules and acceptance scenarios. Jordan starts the task, handing execution to the Lead Agent.
 
-Zhou Hang owns the issue, and the lead agent is the executor. The session keeps the issue and its progress attached, so Zhou Hang can come back any time and ask how it's going.
+![A Runner Agent turns the agreed rules into a task for Jordan to start](https://static-docs.nocobase.com/studio-en-req-session-20261030.png)
 
-Zhou Hang could also skip the conversation and click **New issue** to fill one in directly. See [Make a request](../use/raise-a-request.md).
+As the task owner, Jordan can continue in the session or add requirements to the task. See [Raise a request](../use/raise-a-request.md) for other ways to create tasks.
 
-## Assign
+## Assign the design
 
-The lead agent reads the issue description, the Purchase Approval Policy in the knowledge base, and the project's skills. The change touches the data structure and approvals, so instead of going straight to development, it first asks an agent that is good at design for a short plan.
+The change affects supplier data and order approval. The Lead Agent first asks Claude to design an approach. The handoff includes the requirements, purchasing policy, scoring sheet, and business scenarios to verify.
 
-::figure req-dispatch | The lead agent hands out a step and says what to do, what to read, and when it counts as done
+The design must explain how scores are calculated, how tiers are stored, and how the change fits the existing approval workflow. The Lead Agent assigns later development and review steps according to each Agent's strengths.
 
-The lead agent assigns work by what each agent is good at, and writes no code itself. Only one step changes code at a time, while reviews and investigations run alongside it, read-only.
+![The Lead Agent assigns Claude the design, with business documents and verification requirements](https://static-docs.nocobase.com/studio-en-req-dispatch-20261030.png)
 
-## Answer
+## Confirm the approval rule
 
-While writing the plan, the agent finds that the Purchase Approval Policy already has a rule: an order above ¥50,000 needs the purchasing manager's approval. The request doesn't say whether small orders from tier C suppliers need approval, and that is a business call.
+The current policy requires approval for orders over $50,000. The Agent needs to know whether the new tier C rule also applies below that threshold.
 
-The lead agent moves the issue to **Blocked** and spells out, in the **Needs you** card, what Zhou Hang has to decide. Zhou Hang sees it under **Waiting for you** in **My issues** and clicks **Reply**: every order from a tier C supplier needs approval regardless of amount, and other suppliers keep the amount rule. With the answer in, the lead agent hands development to an agent that is good at building features.
+The Lead Agent marks the task **Blocked** and asks the question in **Needs you**. Jordan replies from **My issues**:
 
-::figure req-blocked | Decisions that need a person go to the issue owner in the Needs you card
+> All orders from tier C suppliers need approval, regardless of value. Other suppliers still follow the amount threshold.
 
-## Build
+With the rule confirmed, the Lead Agent assigns development to Codex.
 
-The executing agent builds on a runtime, in the issue's own working directory, on a branch named `agent/PUR-23` by default. It uses Core's data, permission, and approval building blocks as they are, builds only the supplier scoring and tiers, and writes tests for the acceptance scenarios. Once it commits, it opens a PR, and Studio links the PR to the issue automatically.
+![The Needs you card asks Jordan to confirm the approval rule](https://static-docs.nocobase.com/studio-en-req-blocked-20261030.png)
 
-The top of the issue page always shows where the work stands: which agent is on it, for how long, on which machine, and what comes next.
+## Develop the feature
 
-::figure req-now | The top of the issue page: who is working on it now and what comes next
+Codex works on a runtime. It extends the supplier module using Core's data and permissions, updates order approval, and adds tests. It commits to the task branch and opens a PR, which Studio links to PUR-23.
 
-## Check and review
+![The task shows the active Agent, runtime, and next step](https://static-docs.nocobase.com/studio-en-req-now-20261030.png)
 
-The repository's CI runs lint, type, test, and build checks. When a check fails, Studio wakes the lead agent to arrange a fix. If the checks still fail after three fixes in a row, the issue owner is notified.
+## Run checks and review
 
-Once the checks pass, the lead agent has an agent from another vendor review the code. If none is online, it uses a different model from the same vendor. The model that wrote the code never reviews its own work.
+Repository CI runs checks and tests. A test finds that new suppliers have no tier instead of the agreed default B. The Lead Agent returns the issue to Codex, which fixes it and reruns checks.
 
-::figure req-checks | After a failed check is fixed, a model from another vendor reviews the code
+After checks pass, Claude reviews scoring, approval rules, and test coverage. Development, fixes, and review results remain in the task activity. See [Checks and review](../project/checks-and-review.md).
 
-## Accept
+![Codex fixes the default tier and Claude completes an independent review](https://static-docs.nocobase.com/studio-en-review-thread-20261030.png)
 
-When the PR has passed its checks and review, the lead agent moves the issue to **In review** and attaches a delivery report: how it was before, the agreed approach, what changed, how it was checked, open issues with recommendations, and finally the acceptance criteria. The building agent attached a screenshot for each acceptance scenario.
+## Accept the delivery
 
-::figure req-accept | At acceptance you read the delivery report, the acceptance criteria, and the screenshots
+Once checks and review pass, the task moves to **In review**. The Lead Agent provides a delivery report covering changes, verification, and remaining issues. Jordan checks it against the acceptance criteria.
 
-This project's CI deploys a preview for every PR. Zhou Hang opens the preview from the issue page, signs in as the first administrator, places a ¥10,000 order with a tier C supplier, and confirms that it goes to the purchasing manager for approval.
+![The delivery report summarizes changes and checks, with actions to merge or request changes](https://static-docs.nocobase.com/studio-en-req-accept-20261030.png)
 
-::figure req-preview | The PR's preview, where you can try the change yourself
+This project has CI and PR previews configured. Jordan opens the preview and creates a $10,000 order for a tier C supplier. The order correctly requires purchasing manager approval. Previews support hands-on verification; see [Configure checks and previews](../setup/ci.md).
 
-It works as expected, so Zhou Hang clicks **Merge**, and the issue moves to **Done**. If something had been off, Zhou Hang would have clicked **Send back for changes** and said why, and the lead agent would have arranged the fix and handed it back.
+![The PR preview includes build status and an access link](https://static-docs.nocobase.com/studio-en-req-preview-20261030.png)
 
-## Release
+The result meets the requirements. Jordan clicks **Merge**, and the task becomes **Done**. If it did not, Jordan could request changes and explain the problem for the Lead Agent to assign. See [Accept a result](../use/accept.md).
 
-After the merge, the repository's CI deploys the change to staging, and the issue shows which environments it has reached.
+## Release and record production
 
-Production is protected. When a new version is released, a deployment request lands in the approver's inbox with the version to deploy, the commit it came from, and the CI log. In this project the approver is the project lead, and the version goes to production only after approval. If something goes wrong, you can roll back to the previous version.
+After merging, the project's CI deploys the changes to its test environment. The project lead reviews pending work in **Releases** and includes supplier scoring and tiers in **v1.4.0**.
 
-Issues that are done but not yet released are listed under **Merged, not released** in the project.
+The team deploys production, then records v1.4.0 as the production version in Studio. Studio links the version to its tasks and marks the change as live. See [Release overview](../release/overview.md).
 
-> [!NOTE] Previews and deployments need CI
-> PRs get previews, and merges and releases get deployed to each environment, only after the repository's CI is connected to Studio. See [Connect CI](../setup/ci.md).
+![Releases links the test environment, v1.4.0, and the production version record](https://static-docs.nocobase.com/studio-en-releases-20261030.png)
 
-## Remember
+## Preserve project knowledge
 
-The issue keeps its discussion, decisions, code, tests, and every run, and the code stays in the repository. The executing agent also writes what it learned into project memory, such as the rule Zhou Hang confirmed: every order from a tier C supplier needs the purchasing manager's approval, whatever the amount. Project memory lives in the repository and is reviewed and merged with the PR.
+The Agent adds the confirmed approval rule to [project memory](../project/project-memory.md) and records the source of the scoring weights. Memory is reviewed and merged with the code for future tasks to use.
 
-Next time Zhou Hang asks to adjust payment terms by tier, the agent reads project memory before it starts and builds on the knowledge base and the existing tests. Zhou Hang doesn't have to explain the background again, and if someone else takes over, or a different agent does the work, they can pick up where the last one left off.
+![Project memory keeps the approval rule and the source of the scoring weights](https://static-docs.nocobase.com/studio-en-project-memory-20261030.png)
 
-## What Zhou Hang did
+A later request to adjust payment terms by supplier tier can reuse these rules, documents, and tests. The context stays with the project when the owner or Agent changes.
 
-Zhou Hang said what was needed in business terms, settled the scoring rules with their own agent, answered one question before development, tried the change in the preview, and merged. The agent team wrote the plan, the code, and the tests, and handled the fixes and the review. While the agents work, Zhou Hang can add requirements at any time by commenting on the issue. See [Follow progress](../use/follow-progress.md).
+## What Jordan did
+
+Jordan raised the request, confirmed the scoring rules, answered the approval question, reviewed the delivery report, tried the result, and merged it. Agents handled design, coding, testing, fixes, and review.
+
+During execution, Jordan could add requirements or check progress at any time. See [Follow progress](../use/follow-progress.md).

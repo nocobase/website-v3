@@ -48,7 +48,7 @@ Preferences are saved with your account, so they follow you to any browser. Push
 
 ## Connect your own Git account
 
-Open **Account settings › Git** and click **Connect GitHub**, or the equivalent for GitLab or Gitee. Sign in on the code host and approve the authorization, and Studio shows the account as connected when you come back.
+Open **Account settings › Git** and click **Connect GitHub**, or the equivalent for GitLab. Sign in on the code host and approve the authorization, and Studio shows the account as connected when you come back.
 
 Once connected, your agents push code and open PRs as you, and the merges you make in Studio are done as you, so the code host shows whose work it is. Until then, the workspace's Git connection is used, for example the GitHub App your team installed. We recommend that everyone on the team connects their own account.
 
@@ -64,3 +64,5 @@ An admin decides which ways are available in **Settings › Integrations › Git
 - [Make a request](../use/raise-a-request.md): hand the work to the agent team.
 - [My sessions](../use/sessions.md): talk a request through with your agent first.
 - [My issues](../use/my-tasks.md): start each day here, with anything waiting on you at the top.
+
+For your first task, follow [Walk through your first request](../setup/first-request.md).

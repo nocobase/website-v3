@@ -1,146 +1,221 @@
 ---
-title: Install Studio
-description: Studio runs on your own servers. Use Docker Compose to deploy Studio and its PostgreSQL database on a Linux server, then sign in as the first administrator.
+title: Deploy Studio
+description: Deploy an empty Studio instance with Docker Compose, persist its data, and sign in as the administrator.
 ---
 
-## What you need
+Studio is a commercial product. [Contact us](https://www.nocobase.com/contact/) for the image, available versions, and access authorization.
 
-| What | Requirements |
-| --- | --- |
-| A server | Linux with Docker and Docker Compose. The image supports amd64 and arm64 |
-| A NocoBase Pro token | For signing in to the private registry `pkg-v3.nocobase.com` |
-| A domain and HTTPS | For real use, put Studio behind a reverse proxy such as Caddy or Nginx on your own domain. Code host callbacks, browser push, and links in emails all need HTTPS and a stable address |
-| Network access | The server can reach `pkg-v3.nocobase.com` and the image layer download address you receive with your token, and can pull the PostgreSQL image |
-| Optional | An SMTP mailbox for invitations, password resets, and email notifications; object storage; Redis, needed only when you run more than one instance |
+This guide deploys one Studio instance with PostgreSQL. You can use an existing database instead; see the [configuration reference](../reference/config.md).
 
-## Sign in to the registry
+## Prepare the environment
 
-Use `nocobase` as the username and your token as the password. Pass the token through standard input so it stays out of your command history:
+- A server with Docker and Docker Compose. The image supports Linux amd64 and arm64.
+- The Studio image supplied to you. For an offline image archive, use `docker load -i <archive>`.
+- A stable address. Use a domain and HTTPS for team access. For a local trial, `http://localhost:13000` is sufficient.
+
+Coding tools run on a separate [runtime](shared-runtimes.md), connected later. A single instance does not require Redis. Before onboarding a team, prepare file and artifact storage, invitation email, and password reset email.
+
+## Prepare configuration
+
+Obtain the image following the delivery instructions. Set `STUDIO_IMAGE` to its complete name with an exact version:
 
 ```bash
-echo "<YOUR_TOKEN>" | docker login pkg-v3.nocobase.com -u nocobase --password-stdin
+export STUDIO_IMAGE='<supplied-image-name-and-version>'
+mkdir studio
+cd studio
+mkdir storage
+sudo chown 1000:1000 storage
+
+docker run --rm --entrypoint cat "$STUDIO_IMAGE" \
+  /app/config.example.yml > config.yml
 ```
 
-`Login Succeeded` means you're in.
+The Studio container runs as UID 1000 and needs write access to `storage`.
 
-The available versions are listed on the [image versions page](https://pkg-v3.nocobase.com/-/images/nocobase/studio), which doesn't need a sign-in. In production, pin an exact version such as `1.0.0-beta.61` so deployments are stable and repeatable. The `latest` and `beta` tags move with each new release. The steps below use `<version>` in its place.
+Edit the matching sections in `config.yml` to disable self-registration. Keep the rest of the template and avoid duplicate YAML keys. The interface uses English by default.
 
-## Deploy
+```yaml
+auth:
+  passwordReset:
+    enabled: false
+  emailAndPassword:
+    enabled: true
+    autoSignIn: false
+    disableSignUp: true
+```
 
-1. Create a deployment directory and copy the configuration template out of the image. Studio needs this file to start and exits right away without it.
+Generate `.env` with random encryption, administrator, and database secrets:
 
-   ```bash
-   mkdir studio && cd studio
-   mkdir storage && sudo chown 1000:1000 storage   # the container runs as UID 1000 and must be able to write here
-   docker run --rm --entrypoint cat pkg-v3.nocobase.com/nocobase/studio:<version> /app/config.example.yml > config.yml
-   ```
+```bash
+umask 077
+cat > .env <<EOF
+STUDIO_IMAGE=${STUDIO_IMAGE}
+STUDIO_SECRET_KEY=$(openssl rand -hex 32)
+INITIAL_ADMIN_USERNAME=admin
+INITIAL_ADMIN_EMAIL=admin@example.com
+INITIAL_ADMIN_PASSWORD=$(openssl rand -hex 18)
+DB_PASSWORD=$(openssl rand -hex 24)
+APP_PUBLIC_ORIGIN=http://localhost:13000
+EOF
+```
 
-2. Edit `config.yml` in two places. The interface is in English unless you set another language. If your team works in another language, set it at the top of the file, for example `zh-CN` for Chinese:
+Replace the administrator email with your own. `APP_PUBLIC_ORIGIN` contains the public scheme, host, and port, without `/main`.
 
-   ```yaml
-   i18n:
-     defaultLocale: zh-CN
-   ```
+> [!NOTE] Keep the encryption key
+> `STUDIO_SECRET_KEY` encrypts credentials stored in Studio. Preserve it during restarts and upgrades, and back it up with the database. Stored credentials cannot be decrypted without it.
 
-   Under `auth`, add `disableSignUp: true` to `emailAndPassword`. This turns off self sign-up, so members join only when an admin invites them:
+## File and artifact uploads
 
-   ```yaml
-   auth:
-     emailAndPassword:
-       enabled: true
-       autoSignIn: false
-       disableSignUp: true
-   ```
+Local storage works without additional setup. The Compose file below persists `/app/storage`. To use object storage, merge the following into `config.yml`. This example uses Amazon S3:
 
-   If you leave sign-up on, anyone who reaches the sign-in page can create an account.
+```yaml
+drive:
+  default: s3
+  disks:
+    s3:
+      driver: s3
+      bucket: example-studio-files
+      region: us-east-1
+      supportsACL: false
+      visibility: private
+      credentials:
+        accessKeyId: replace-with-access-key-id
+        secretAccessKey: replace-with-access-key-secret
 
-3. Create `.env`, which holds the encryption key, the first administrator's password, and the database password. Replace the address with your domain:
+releases:
+  artifact:
+    disk: s3
+    prefix: releases/artifacts
+```
 
-   ```bash
-   cat > .env <<EOF
-   STUDIO_SECRET_KEY=$(openssl rand -hex 32)
-   INITIAL_ADMIN_PASSWORD=$(openssl rand -base64 18 | tr -d '/+=')
-   DB_PASSWORD=$(openssl rand -hex 16)
-   APP_PUBLIC_ORIGIN=https://studio.example.com
-   EOF
-   chmod 600 .env
-   ```
+Replace the bucket, region, and credentials, and make the bucket private. `drive.default` stores uploaded attachments and other files. Configure `releases.artifact` separately for build artifacts uploaded by CI or Agents.
 
-4. Create `docker-compose.yml`:
+Keep the `storage` volume mount even when using object storage. For local files and S3-compatible services, see [File and artifact storage](../reference/storage.md).
 
-   ```yaml
-   services:
-     studio:
-       image: pkg-v3.nocobase.com/nocobase/studio:<version>
-       restart: unless-stopped
-       depends_on:
-         postgres:
-           condition: service_healthy
-       ports:
-         - "13000:13000"
-       environment:
-         # The public address, used for sign-in callbacks and links in emails
-         APP_PUBLIC_ORIGIN: ${APP_PUBLIC_ORIGIN:-http://localhost:13000}
-         # The encryption key. Never change it after deployment
-         SECRETS_KEYS: 1:${STUDIO_SECRET_KEY:?set STUDIO_SECRET_KEY in .env}
-         # The administrator created on first start
-         INITIAL_ADMIN_USERNAME: nocobase
-         INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL:-admin@nocobase.com}
-         INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:?set INITIAL_ADMIN_PASSWORD in .env}
-         DB_DIALECT: postgres
-         DB_HOST: postgres
-         DB_PORT: 5432
-         DB_DATABASE: studio
-         DB_USERNAME: studio
-         DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
-       volumes:
-         - ./config.yml:/app/config.yml:ro
-         - ./storage:/app/storage
+## Invitation and password reset email
 
-     postgres:
-       image: postgres:16
-       restart: unless-stopped
-       environment:
-         POSTGRES_DB: studio
-         POSTGRES_USER: studio
-         POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
-       volumes:
-         - ./postgres:/var/lib/postgresql/data
-       healthcheck:
-         test: ["CMD-SHELL", "pg_isready -U studio -d studio"]
-         interval: 5s
-         timeout: 5s
-         retries: 10
-   ```
+Configure both before onboarding your team. Invitations use a notification channel; password resets use the independent `auth.email` sender. This example uses the same SMTP account for both. Merge it into the matching sections of `config.yml`:
 
-5. Start it:
+```yaml
+users:
+  invitations:
+    emailChannel: system-email
 
-   ```bash
-   docker compose up -d
-   docker compose ps
-   ```
+notification:
+  channels:
+    inbox:
+      type: in-app
+    system-email:
+      type: smtp
+      host: smtp.example.com
+      port: 587
+      secure: false
+      auth:
+        user: notifications@example.com
+      from: "Studio <notifications@example.com>"
 
-   Studio is up when `studio` shows `healthy`, usually within a minute. On first start it creates its tables and initial data automatically.
+auth:
+  passwordReset:
+    enabled: true
+  email:
+    provider: smtp
+    host: smtp.example.com
+    port: 587
+    secure: false
+    auth:
+      user: notifications@example.com
+    from: "Studio <notifications@example.com>"
+```
 
-> [!WARNING] Keep the encryption key safe
-> `STUDIO_SECRET_KEY` in `.env` encrypts saved Git credentials, API keys, and other secrets. Never change it after deployment: if you change it, everyone is signed out, and if you lose it, those credentials can't be decrypted again. Back up `.env` with your data and store it the way you store passwords.
+Keep existing settings such as `users.initialAdmin` and `auth.emailAndPassword`. Replace the SMTP host, port, account, and sender address with values authorized by your email provider.
 
-## Sign in
+Add the passwords to `.env`:
 
-Open `https://studio.example.com/main/`. If you haven't set up a domain yet, open `http://<server address>:13000/main/`.
+```dotenv
+SMTP_PASSWORD=<invitation-email-smtp-password>
+AUTH_EMAIL_PASSWORD=<password-reset-smtp-password>
+```
 
-- Username: `nocobase`
-- Password: `INITIAL_ADMIN_PASSWORD` in `.env`. Run `grep INITIAL_ADMIN_PASSWORD .env` to see it
+Add these entries to `services.studio.environment` in the Compose file below:
 
-Once you're in, open **Account settings › Account and security** from the account menu at the top right and change the password.
+```yaml
+SMTP_PASSWORD: ${SMTP_PASSWORD:?set SMTP_PASSWORD in .env}
+AUTH_EMAIL_PASSWORD: ${AUTH_EMAIL_PASSWORD:?set AUTH_EMAIL_PASSWORD in .env}
+```
 
-Don't drop `/main` from the address. When you add runtimes or sign in to `nb-studio` later, the Studio address you use is this full address with `/main`.
+Compose must pass the variables into the container. Do not write `${SMTP_PASSWORD}` in `config.yml`; it will not expand. Both senders can use the same password, but require separate variables. Set `APP_PUBLIC_ORIGIN` to the address members can access; email links use this address.
 
-**Done when**: you can sign in as the first administrator, the interface is in your team's language, and the sign-in page has no **Sign up** link. Next, [connect Git](git.md).
+For a local trial without email, keep `auth.passwordReset.enabled: false`. You can share invitation links manually. For Resend and migration from older settings, see [Notifications and push](../admin/notifications.md#migrate-older-configuration).
 
-## Set up HTTPS
+## Start the services
 
-Point a reverse proxy at Studio's port 13000, and forward WebSockets too. With Caddy, add this to your `Caddyfile`:
+Create `docker-compose.yml` in the same directory:
+
+```yaml
+services:
+  studio:
+    image: ${STUDIO_IMAGE:?set STUDIO_IMAGE in .env}
+    init: true
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:13000:13000"
+    environment:
+      APP_CONFIG_FILE: /app/config.yml
+      APP_PUBLIC_ORIGIN: ${APP_PUBLIC_ORIGIN}
+      APP_BASE_PATH: /main
+      APP_SAMPLE_DATA: "false"
+      SECRETS_KEYS: 1:${STUDIO_SECRET_KEY:?set STUDIO_SECRET_KEY in .env}
+      INITIAL_ADMIN_USERNAME: ${INITIAL_ADMIN_USERNAME}
+      INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL}
+      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:?set INITIAL_ADMIN_PASSWORD in .env}
+      DB_DIALECT: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: studio
+      DB_USERNAME: studio
+      DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - ./config.yml:/app/config.yml:ro
+      - ./storage:/app/storage
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: studio
+      POSTGRES_USER: studio
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U studio -d studio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:
+```
+
+This configuration exposes port 13000 only on the local host. For a remote server, configure HTTPS as described below or use SSH port forwarding for an initial check.
+
+```bash
+docker compose config --quiet
+docker compose up -d
+docker compose ps
+curl -fsS http://localhost:13000/main/api/healthz
+```
+
+The first start creates database tables and the administrator. Wait for Studio to become `healthy` and the health endpoint to return `"ok": true`.
+
+## Configure the public address
+
+Skip this step for a local trial. For team use, point a domain to the server and configure an HTTPS reverse proxy with WebSocket support.
+
+For example, with Caddy on the same server:
 
 ```text
 studio.example.com {
@@ -148,47 +223,43 @@ studio.example.com {
 }
 ```
 
-If the reverse proxy runs on the same server as Studio, change the port in `docker-compose.yml` to `"127.0.0.1:13000:13000"` so only the proxy can reach it. Make sure `APP_PUBLIC_ORIGIN` in `.env` is the public HTTPS address, then run `docker compose up -d` again.
-
-## Let an agent deploy it
-
-You can also give the prompt below to Claude Code or Codex and let it sign in to the server and deploy. Replace the server address, domain, and version, and give it the token separately:
-
-```prompt
-Sign in to <server address> over SSH and use Docker Compose to deploy NocoBase Studio and PostgreSQL at https://studio.example.com/main/.
-
-- Image: pkg-v3.nocobase.com/nocobase/studio:<version>. First sign in to the registry with the NocoBase Pro token I give you, username nocobase, passing the token through standard input.
-- Copy the configuration file from /app/config.example.yml in the image and mount it at /app/config.yml. If the team works in a language other than English, set i18n.defaultLocale to <interface language, such as zh-CN>. Set disableSignUp: true under auth.emailAndPassword.
-- Mount the data directory /app/storage on the host, owned by UID 1000.
-- Generate the encryption key, the first administrator's password, and the database password at random, and write them to an .env file with permissions 600. Keep them out of the command history and the logs.
-- Check the existing containers, Docker networks, and reverse proxies on the server first, and don't affect other services. If there is already a reverse proxy, use it. If not, use Caddy for HTTPS, and forward WebSockets too.
-
-When you're done, confirm that the studio container is healthy, https://studio.example.com/main/ opens, you can sign in as nocobase, the interface language is right, the sign-in page has no sign-up link, and the data survives a container restart. Tell me where the deployment directory is and where the administrator password and encryption key are stored.
-```
-
-## Upgrade and back up
-
-To upgrade, back up first, change the version in `docker-compose.yml` to the new one, and run:
+Set `APP_PUBLIC_ORIGIN=https://studio.example.com` in `.env`, then recreate the container:
 
 ```bash
-docker compose pull
 docker compose up -d
 ```
 
-Database migrations run automatically on start. To roll back, restore the database backup from before the upgrade first, then change the version back. Upgrade Studio first, and runners upgrade themselves when they're idle.
+## Sign in
 
-Back up the PostgreSQL database (for example with `pg_dump -Fc`, or by copying the `postgres` directory while Studio is stopped), `config.yml`, `.env`, and the `storage` directory. See [Upgrade and backup](../admin/upgrade-and-backup.md).
+Open `https://studio.example.com/main/`, or `http://localhost:13000/main/` for a local trial. Use `INITIAL_ADMIN_USERNAME` and `INITIAL_ADMIN_PASSWORD` from `.env`.
+
+![Sign in with the initial administrator account](https://static-docs.nocobase.com/studio-en-setup-login-20261030.png)
+
+These administrator settings apply only on first installation. To change the password later, use **Account settings › Account and security**.
+
+**Done when**: the administrator can sign in, the project list is empty, and the sign-in page has no registration link. Use the complete URL including `/main` when connecting runners and the CLI.
+
+![An empty project list after the first sign-in](https://static-docs.nocobase.com/studio-en-setup-empty-projects-20261030.png)
+
+Before onboarding your team, verify that you can:
+
+- Upload a test file, refresh the page, and download it.
+- Receive an invitation at a test mailbox you control and open its link.
+- Reset an existing test account's password and sign in with the new password.
+
+Verify artifact upload and preview startup after [configuring checks and previews](ci.md).
+
+Next, [connect your code host](git.md).
 
 ## Troubleshooting
 
-**`docker login` or `docker pull` says unauthorized.** The token is wrong, or it isn't licensed for this image. Make sure you copied the whole token with no extra spaces, and sign in again.
+| Symptom | What to check |
+| --- | --- |
+| Image access denied | Check the supplied version and access authorization; contact us if needed |
+| Image download times out | Check the Docker service's proxy and access to the supplied download addresses |
+| Container keeps restarting | Run `docker compose logs --tail=100 studio` and check database and configuration errors |
+| Configuration file cannot be read | Confirm `config.yml` is a file copied from the image, not a directory created by Docker |
+| Storage is not writable | Confirm UID 1000 can write to `storage` |
+| Page or sign-in callback fails | Check `/main/`, `APP_PUBLIC_ORIGIN`, and the reverse proxy |
 
-**`docker pull` returns 403 and says the version was released after your license's update period.** Use a version from within the period, or renew and pull again.
-
-**Pulling `postgres:16` times out.** The server can't reach Docker Hub. Set up a registry mirror for Docker, or use an existing PostgreSQL: remove the `postgres` service and `depends_on` from `docker-compose.yml`, and point `DB_HOST` and the other settings at your database.
-
-**Downloading image layers hangs or times out.** The firewall or proxy is blocking the image layer download address you received with your token. If Docker needs a proxy, configure it for the Docker service itself. Setting `HTTP_PROXY` in your terminal has no effect on `docker pull`.
-
-**The address doesn't show the sign-in page.** Include `/main/` in the address.
-
-**The container won't start or keeps restarting.** Run `docker compose logs studio` to see why. Common causes: `config.yml` wasn't copied out first, so Docker created a directory with that name (delete it and redo step 1), or the `storage` directory isn't owned by UID 1000.
+For ongoing maintenance, see [Upgrade and backup](../admin/upgrade-and-backup.md).

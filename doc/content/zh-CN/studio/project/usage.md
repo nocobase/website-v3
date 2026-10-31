@@ -18,7 +18,7 @@ Agent 团队在做什么、够不够用、花了多少，看两个地方：「Ag
 
 顶部一行汇总运行中、排队中、等你处理的数量，以及运行环境的忙碌情况。勾选「只看与我相关」，只显示你负责、创建或关注的任务。
 
-::figure agent-queue | Agent 队列：每个 Agent 一条泳道，轮到你的事项高亮
+![Agent 队列：每个 Agent 一条泳道，轮到你的事项高亮](https://static-docs.nocobase.com/studio-zh-agent-queue-20261030-v2.png)
 
 经常看到“并发已满”或者排队很久，说明运行环境不够用：调高运行环境的最大并发数，或者再接入一台，见 [接入共享运行环境](../setup/shared-runtimes.md)。某个 Agent 一直空闲，可能是它的「擅长什么」写得太窄，调度 Agent 很少想到它，见 [启用 Agent](../setup/agents.md)。
 

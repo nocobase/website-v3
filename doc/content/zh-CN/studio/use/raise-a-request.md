@@ -12,7 +12,7 @@ description: 在会话里和 Agent 把需求说清楚，由它整理成任务交
 3. 需求清楚时，Agent 直接整理成任务；不清楚的地方，它会先问你，或者先看看现有的代码再建。
 4. 建好的任务列在会话里。点「开始执行」，交给 Agent 团队；暂时不做，点「先不开始」，任务留在「待规划」。
 
-::figure new-task-chat | 新建任务会开始一段会话；想直接填表时点「手动填写」
+![新建任务会在右侧开始一段会话；想直接填表时点右下角的「手动填写」](https://static-docs.nocobase.com/studio-zh-new-task-chat-20261030-v2.png)
 
 会话里可以和哪些 Agent 对话，见 [我的会话](sessions.md)。
 
@@ -27,7 +27,7 @@ description: 在会话里和 Agent 把需求说清楚，由它整理成任务交
    - **以后再说**：任务放进「待规划」，之后在任务页点「开始」。
 4. 点「创建并开始」或「创建」。
 
-::figure manual-form | 手动填写的表单
+![手动填写的表单](https://static-docs.nocobase.com/studio-zh-manual-form-20261030-v2.png)
 
 > [!NOTE] 待规划的任务不会自动开始
 > 放在「待规划」里的任务，Agent 不会动它。准备好后，在任务页点「开始」。

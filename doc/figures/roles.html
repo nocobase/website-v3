@@ -1,14 +1,12 @@
-<div class="roles">
-<div class="col human"><div class="col-h"><i data-lucide="user-round"></i>人：做决策</div>
-<div class="role"><b>任务负责人</b><span>每个任务都有一位负责人。提出需求、回答提问、验收结果，不懂代码的业务专家也可以直接拍板。</span></div>
-<div class="role"><b>项目负责人</b><span>每个项目都有一位负责人。新建项目、连接 CI，维护技能和知识库，关注方案和代码质量，批准上线。</span></div>
-<div class="role"><b>管理员</b><span>部署 Studio，接入共享运行环境，启用 Agent，管理成员与角色。</span></div>
+<div class="roles studio-roles">
+<div class="col human"><div class="col-h"><i data-lucide="user-round"></i>人 · 定义目标与把关</div>
+<div class="role"><b>任务负责人</b><span>提出需求，确认业务规则与方案取舍，验收交付结果。</span></div>
+<div class="role"><b>项目负责人</b><span>确定项目规范与质量要求，管理发布和生产部署。</span></div>
+<div class="role"><b>管理员</b><span>部署 Studio，接入运行环境与 Agent，管理成员权限。</span></div>
 </div>
-<div class="col agent"><div class="col-h"><i data-lucide="bot"></i>Agent：写代码、做执行</div>
-<div class="sub">AGENT 团队 · 团队共用，推进任务</div>
-<div class="role"><b><span class="st-a pm">调</span>调度 Agent</b><span>Studio 内置，全局一个。分派设计、开发、测试、评审工作；需要人做决策时找任务负责人；完成后交付验收。它不写代码，也不合并代码。</span></div>
-<div class="role"><b><span class="st-a cx">CX</span>执行 Agent</b><span>团队启用的 Claude Code、Codex、Gemini CLI 等编码工具，负责执行调度 Agent 为它们分配的设计、开发、测试或评审等工作。</span></div>
-<div class="sub">我的 Agent · 你自己的，陪你讨论</div>
-<div class="role"><b><span class="st-a cc">CC</span>我的 Agent</b><span>你自己的 Agent，例如 Claude Code、Codex、Cursor。在「我的会话」里和你讨论、看代码、把需求整理成任务，任务交给 Agent 团队推进。</span></div>
+<div class="col agent"><div class="col-h"><i data-lucide="bot"></i>Agent · 推进开发与交付</div>
+<div class="role"><b>调度 Agent</b><span>按能力分派工作，根据结果安排下一步。遇到待确认事项时提问，完成后交付验收。</span></div>
+<div class="handoff">分派工作 ↓ &nbsp; ↑ 返回结果</div>
+<div class="role"><b>执行 Agent</b><span>使用 Claude Code、Codex 等工具和模型，完成设计、开发、测试与评审。</span></div>
 </div>
 </div>

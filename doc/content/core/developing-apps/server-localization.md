@@ -60,7 +60,7 @@ export default locales;
 
 The template's `server/app.ts` mounts `i18nHttpMiddleware` after sessions. It resolves and loads resources using session language, `Accept-Language`, then the default. Routes use `getRequestTranslator(c)` without creating another translation instance.
 
-The following public endpoint only previews wording; it neither reads nor generates reports. Save it as `server/routes/report-message-preview.ts` and add it to `server/routes/index.ts` as shown in [Routes and HTTP APIs](apis-and-services.md):
+The following public endpoint only previews wording; it neither reads nor generates reports. Save it as `server/routes/report-message-preview.ts` and add it to `server/routes/index.ts` as shown in [HTTP routes and APIs](apis-and-services.md):
 
 ```ts
 import { Hono } from 'hono';

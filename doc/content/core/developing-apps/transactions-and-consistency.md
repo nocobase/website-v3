@@ -31,7 +31,7 @@ await database.transaction(async (connection) => {
 });
 ```
 
-This illustrates transaction structure. Production services use distinguishable business errors, translated into API errors by routes; see [Routes and HTTP APIs](apis-and-services.md). Calling the outer `database.repository()` runs outside this transaction. Catching an error and returning normally may commit partial work.
+This illustrates transaction structure. Production services use distinguishable business errors, translated into API errors by routes; see [HTTP routes and APIs](apis-and-services.md). Calling the outer `database.repository()` runs outside this transaction. Catching an error and returning normally may commit partial work.
 
 Transactions do not automatically prevent concurrent overwrites. If last successful write wins is unacceptable, add concurrency controls such as version conditions. Trigger external effects such as notifications after commit. `connection.afterCommit()` is useful for that boundary, but failure cannot undo committed data and does not guarantee external message delivery.
 
@@ -62,4 +62,4 @@ Mail, HTTP calls and job submission do not roll back with the database. For even
 
 In isolated databases, cover successful commit, failure after the first write, and after-commit callback failure. Read data again after failures to establish whether it rolled back; asserting an exception alone is insufficient.
 
-Also test unique-key races, version conflicts, authorization scopes and connection isolation. SQLite can verify basic rules, but not another database's isolation, locking or DDL behavior. The project endpoint tests are linked from [Routes and HTTP APIs](apis-and-services.md); see [Testing and acceptance](testing-and-acceptance.md) for test organization.
+Also test unique-key races, version conflicts, authorization scopes and connection isolation. SQLite can verify basic rules, but not another database's isolation, locking or DDL behavior. The project endpoint tests are linked from the [historical project API example](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md); see [Testing and acceptance](testing-and-acceptance.md) for test organization.

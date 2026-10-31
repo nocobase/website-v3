@@ -14,7 +14,7 @@ The public entry is `@nocobase/app-server/router`, and the current export is nam
 | An operation checks persisted business state, spans permission scopes or has side effects | A custom route and business service |
 | Server-internal data access | Call the database Repository directly |
 
-Editing a personal note title fits this adapter. Submitting an order with state checks, inventory updates and follow-up jobs needs a business endpoint. One resource can use both approaches, chosen per operation. See [Routes and HTTP APIs](../../developing-apps/apis-and-services.md).
+Editing a personal note title fits this adapter. Submitting an order with state checks, inventory updates and follow-up jobs needs a business endpoint. One resource can use both approaches, chosen per operation. See [HTTP routes and APIs](../../developing-apps/apis-and-services.md).
 
 ## Declare and register endpoints
 

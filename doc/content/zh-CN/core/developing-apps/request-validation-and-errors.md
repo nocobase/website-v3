@@ -5,7 +5,7 @@ description: 声明接口输入与响应契约，将业务错误转换为稳定�
 
 校验负责把外部输入转换为业务可接受的值；权限检查决定是否允许操作；服务再判断当前业务状态是否允许变化。这三类检查各有职责，不能互相代替。
 
-下列片段来自[项目接口示例](apis-and-services.md)，运行前需完成该页列出的历史应用、数据模型和服务。这里只集中解释输入与错误约定，不新增另一套接口。
+下列片段来自[项目接口示例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)，运行前需完成该页列出的历史应用、数据模型和服务。这里只集中解释输入与错误约定，不新增另一套接口。
 
 ## 声明输入 schema
 
@@ -30,7 +30,7 @@ export const assignInput = z.strictObject({
 
 ## 使用校验后的值
 
-把 schema 交给 `apiValidator('query' | 'param' | 'json', schema)`，处理函数只读取相应的 `c.req.valid(...)`。完整写法见[路由与 HTTP 接口](apis-and-services.md)。该校验同时声明 API 文档输入；只在处理函数里调用 `zod.parse()` 不会完成这项接入。
+把 schema 交给 `apiValidator('query' | 'param' | 'json', schema)`，处理函数只读取相应的 `c.req.valid(...)`。完整写法见[历史项目接口示例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)。该校验同时声明 API 文档输入；只在处理函数里调用 `zod.parse()` 不会完成这项接入。
 
 JSON 请求发送 `Content-Type: application/json`。身份、操作权限、中间件顺序和参数验证都应在业务写入之前完成；再校验输入不能补救已经发生的写入。
 
@@ -95,4 +95,4 @@ router.onError((error, c) =>
 
 至少检查缺少字段、空字符串、额外字段、无效 ID、负数或过大页码；再检查不存在和范围外记录。每次拒绝后读取数据库，确认没有意外写入。参数校验通过但业务规则不满足，也应返回有意义的错误。未知异常必须保持为服务器失败，不能显示为一次成功保存。
 
-完整测试见[路由与 HTTP 接口](apis-and-services.md)，标准错误与输入协议见[请求校验与响应处理](../framework/http/validation.md)。
+完整测试见[历史项目接口示例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)，标准错误与输入协议见[请求校验与响应处理](../framework/http/validation.md)。

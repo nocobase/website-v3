@@ -147,7 +147,7 @@ projects: {
 
 ## 在接口中检查授权
 
-[路由与 HTTP 接口](apis-and-services.md)保留完整可复制的路由代码。处理顺序如下：
+[历史项目接口示例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)保留完整可复制的路由代码。处理顺序如下：
 
 1. 仅对本文件的业务路径挂载 `auth.required()` 和 `authz.middleware()`。
 2. 使用请求中的 `c.get('authz')` 对 `tutorial.projects` 的具体 action 调用 `authorize()`。
@@ -198,6 +198,6 @@ projects: {
 | 两边范围均允许 | 修改成功；再读取确认已保存 |
 | 撤销角色中的该操作后再次请求 | 被拒绝，不沿用以前的授权结果 |
 
-管理员成功不代表普通用户的数据范围正确。下载[完整接口测试](/assets/core/downloads/tutorial-tasks-project-api.test.ts)，按[路由文章](apis-and-services.md)中的历史示例配置运行；该测试使用真实认证、权限服务与隔离数据库。
+管理员成功不代表普通用户的数据范围正确。下载[完整接口测试](/assets/core/downloads/tutorial-tasks-project-api.test.ts)，按[路由文章](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)中的历史示例配置运行；该测试使用真实认证、权限服务与隔离数据库。
 
 API 错误的稳定标识和字段反馈见[请求校验与错误处理](request-validation-and-errors.md)。

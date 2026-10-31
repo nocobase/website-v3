@@ -47,7 +47,7 @@ description: 应用与插件边界、UI 组件、配置、命令、数据库、�
 
 ## 创建数据表后，会自动生成 API 吗？
 
-不会仅因创建 Collection 就自动把它公开给客户端。应用或插件需要声明接口，校验输入，确定用户身份，并应用数据权限。客户端远程 Repository 同样依赖匹配的服务端接口。见[路由与 HTTP 接口](../developing-apps/apis-and-services.md)。
+不会仅因创建 Collection 就自动把它公开给客户端。应用或插件需要声明接口，校验输入，确定用户身份，并应用数据权限。客户端远程 Repository 同样依赖匹配的服务端接口。见[HTTP 路由与接口](../developing-apps/apis-and-services.md)。
 
 ## 为什么迁移提示校验和不一致？
 

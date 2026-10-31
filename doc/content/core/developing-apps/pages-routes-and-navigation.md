@@ -152,7 +152,7 @@ The standalone page in [routes.ts][routes] is a sibling of the list and reuses `
 }
 ```
 
-![A standalone project page reuses the named export without the list outlet](/assets/core/developing-apps/pages-routes-and-navigation/standalone.png)
+See the screenshot under [Load page components](#load-page-components): the standalone page reuses the named export without the list outlet.
 
 Select **Open as a full page** in the drawer to open this independent page. To host details within the list instead, declare the hierarchy through `children`:
 
@@ -310,15 +310,21 @@ After entering a name, select Close. **Discard this unsaved draft?** lets you ke
 ```tsx
 // client/pages/projects/new.tsx (excerpt)
 const dirtyRef = useRef(false);
-const pendingDecisionRef = useRef<((allowed: boolean) => void) | null>(null);
+const pendingDecisionRef = useRef<{
+  promise: Promise<boolean>;
+  resolve: (allowed: boolean) => void;
+} | null>(null);
 const [confirmOpen, setConfirmOpen] = useState(false);
 
 const canLeave = useCallback((): boolean | Promise<boolean> => {
   if (!dirtyRef.current) return true;
-  return new Promise<boolean>((resolve) => {
-    pendingDecisionRef.current = resolve;
+  if (!pendingDecisionRef.current) {
+    let resolve!: (allowed: boolean) => void;
+    const promise = new Promise<boolean>((done) => { resolve = done; });
+    pendingDecisionRef.current = { promise, resolve };
     setConfirmOpen(true);
-  });
+  }
+  return pendingDecisionRef.current.promise;
 }, []);
 
 useNavigationGuard(canLeave);
@@ -327,12 +333,15 @@ useNavigationGuard(canLeave);
 const decide = (allowed: boolean) => {
   setConfirmOpen(false);
   if (allowed) dirtyRef.current = false;
-  pendingDecisionRef.current?.(allowed);
+  pendingDecisionRef.current?.resolve(allowed);
   pendingDecisionRef.current = null;
 };
+useEffect(() => () => pendingDecisionRef.current?.resolve(false), []);
 ```
 
-The same asynchronous decision is passed to `RouteDialog.beforeClose` and `useNavigationGuard()`. They cover overlay close and application navigation, including browser history traversal. The default template places `NavigationGuardProvider` outside the routes. Returning `false` blocks departure, `true` allows it, and a Promise waits for the choice. Clear the dirty flag when allowing departure to avoid a second confirmation during the close navigation.
+The same asynchronous decision is passed to `RouteDialog.beforeClose` and `useNavigationGuard()`. They cover overlay close and application navigation, including browser history traversal. The default template places `NavigationGuardProvider` outside the routes. Returning `false` blocks departure, `true` allows it, and a Promise waits for the choice.
+
+While confirmation is open, overlapping requests share one Promise so a single choice settles every waiter without overwriting a callback. Resolve any pending request with `false` on unmount. Clear the dirty flag when allowing departure to avoid a second confirmation during the close navigation.
 
 The full implementation also handles `beforeunload` for reloads and leaving the site. The browser supplies that native confirmation text; application navigation guards do not replace it.
 
@@ -412,9 +421,7 @@ usePageBreadcrumb(
 
 `label` is display text and `to` is an optional destination. The final item is not a link. Pass `undefined` or `null` to use the default route breadcrumb. The innermost active declaration takes precedence; unmounting restores the outer declaration.
 
-The screenshot shows **Project list → Harbor launch**. Selecting **Project list** returns with `q=Harbor`. The template remembers queries from visited ancestors in the current hierarchy, but a deep link or reload may lack that history. Specify `to` explicitly when returning with a query must work in those cases.
-
-![A full child page with the project name and query-preserving breadcrumb](/assets/core/developing-apps/pages-routes-and-navigation/workspace.png)
+The screenshot under [Child pages that cover parent content](#child-pages-that-cover-parent-content) shows **Project list → Harbor launch**. Selecting **Project list** returns with `q=Harbor`. The template remembers queries from visited ancestors in the current hierarchy, but a deep link or reload may lack that history. Specify `to` explicitly when returning with a query must work in those cases.
 
 [View source][workspace]
 
@@ -665,7 +672,7 @@ The [example app][app] uses default template `1.0.0-beta.85` and locks `@nocobas
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
-git checkout 58ae0befa2272cbc1f4c946db699bd3b93661486
+git checkout 2700e75f5ed0d927c0c37b53e4ffdf105961cc52
 cd apps/pages-routes-navigation
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
@@ -691,20 +698,20 @@ pnpm build
 
 Client interaction tests use controlled authorization responses to check nested close, query preservation, default tabs, denied access and draft confirmation. They do not replace real-account checks. The [README][readme] records browser verification, screenshot reproduction commands and the tested environment.
 
-[app]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation
-[readme]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/README.MD
-[routes]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/routes.ts
-[collection]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/routes.ts
-[list]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/index.tsx
-[detail]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/detail.tsx
-[task]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/task.tsx
-[workspace]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/workspace.tsx
-[draft]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/projects/new.tsx
-[reports]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/reports/index.tsx
-[permission-titles]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/pages/settings/page-permission-titles.ts
-[plugin]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/reporting-plugin.ts
-[client-route]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/routing/client-route.tsx
-[app-router]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/routing/app-router.tsx
-[contract-tests]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/tests/client/routing-contract.test.ts
-[overrides]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/route-overrides.ts
-[runtime]: https://github.com/nocobase/docs-examples-v3/tree/58ae0befa2272cbc1f4c946db699bd3b93661486/apps/pages-routes-navigation/client/runtime.ts
+[app]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation
+[readme]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/README.MD
+[routes]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/pages/projects/routes.ts
+[collection]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/routes.ts
+[list]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/pages/projects/index.tsx
+[detail]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/pages/projects/detail.tsx
+[task]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/pages/projects/task.tsx
+[workspace]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/pages/projects/workspace.tsx
+[draft]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/pages/projects/new.tsx
+[reports]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/pages/reports/index.tsx
+[permission-titles]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/pages/settings/page-permission-titles.ts
+[plugin]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/reporting-plugin.ts
+[client-route]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/routing/client-route.tsx
+[app-router]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/routing/app-router.tsx
+[contract-tests]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/tests/client/routing-contract.test.ts
+[overrides]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/route-overrides.ts
+[runtime]: https://github.com/nocobase/docs-examples-v3/tree/2700e75f5ed0d927c0c37b53e4ffdf105961cc52/apps/pages-routes-navigation/client/runtime.ts

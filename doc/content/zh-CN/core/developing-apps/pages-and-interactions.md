@@ -319,7 +319,7 @@ export function StockBadge({ stock }: { stock: number }) {
 pnpm exec shadcn add @nocobase/page-header --diff client/components/page-header.tsx
 ```
 
-示例核对时输出 `No changes.`。有差异时，同时检查组件依赖、导入路径和调用方契约；不要用整批覆盖替代合并。更新后重新验证业务变体、回调和弹窗关闭行为。
+没有差异时输出 `No changes.`。有差异时，同时检查组件依赖、导入路径和调用方契约；不要用整批覆盖替代合并。更新后重新验证业务变体、回调和弹窗关闭行为。
 
 Registry 内容可能继续变化。本文的源码链接固定到示例提交；其[来源记录](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/docs/registry-sources.json)保留模板版本和区块资产校验值，便于比较升级前后的源码。
 
@@ -357,7 +357,7 @@ pnpm exec playwright install chromium
 APP_URL=http://<host>:<port>/main/ pnpm exec playwright test tests/playwright/ui-components.test.ts
 ```
 
-不设置 `APP_URL` 会跳过浏览器测试。此示例已通过类型检查、上述 30 项定向测试、5 个浏览器场景和构建；业务持久化、真实审批和业务角色授权不属于此 UI 示例的验证范围。
+不设置 `APP_URL` 会跳过浏览器测试。业务持久化、真实审批和业务角色授权不属于此 UI 示例的验证范围。
 
 ## 示例源码与运行
 

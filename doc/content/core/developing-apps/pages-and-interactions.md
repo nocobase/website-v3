@@ -319,7 +319,7 @@ Copied source does not update automatically when npm packages change. Commit the
 pnpm exec shadcn add @nocobase/page-header --diff client/components/page-header.tsx
 ```
 
-This check returned `No changes.` for the example. When differences exist, also review dependencies, import paths and caller contracts; merge deliberately instead of overwriting the whole set. Recheck business variants, callbacks and overlay closing after an update.
+When no differences exist, the command prints `No changes.`. When differences exist, also review dependencies, import paths and caller contracts; merge deliberately instead of overwriting the whole set. Recheck business variants, callbacks and overlay closing after an update.
 
 Registry content can change. This article links to a fixed example commit; its [source provenance](https://github.com/nocobase/docs-examples-v3/blob/c8670ab1f784d76c4fef61936bdc3462fe1c1d89/apps/ui-components/docs/registry-sources.json) records the template version and block asset checksum for future comparison.
 
@@ -357,7 +357,7 @@ pnpm exec playwright install chromium
 APP_URL=http://<host>:<port>/main/ pnpm exec playwright test tests/playwright/ui-components.test.ts
 ```
 
-Omitting `APP_URL` skips the browser tests. The example passed type checking, the 30 targeted tests above, five browser scenarios and the build. Business persistence, real approval execution and business-role authorization are outside this UI example's verification scope.
+Omitting `APP_URL` skips the browser tests. Business persistence, real approval execution and business-role authorization are outside this UI example's verification scope.
 
 ## Example source and setup
 

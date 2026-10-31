@@ -7,7 +7,7 @@ metaDescription: NocoBase Core is the open-source foundation for developing and 
 
 When you let an agent vibe-code a business system, the first version usually comes quickly, and then these problems show up:
 
-1. Permissions, workflows, approvals and other underlying capabilities have to be written from scratch, and they may not be reliable or may break easily.
+1. Permissions, workflows, approvals and other underlying capabilities have to be built from scratch, and they may not be reliable or may break easily.
 2. A new model, a new person or a new session brings a new way of writing code, and the architecture slowly gets out of control.
 3. With many issues running in parallel, people can't keep up with confirming the agents' messages and changes.
 4. Requirement context, business rules and lessons learned are scattered across sessions, and they are lost when people or agents change.
@@ -16,7 +16,7 @@ To address these problems, NocoBase 3 introduces [NocoBase Core](https://www.noc
 
 ## Core: the open-source foundation for developing and running business systems with AI
 
-**Common capabilities don't have to be built and verified from scratch.** More than 20 common capabilities, including users and permissions, data and files, workflows and approvals, messaging, and AI and agents, are ready to use, and NocoBase keeps maintaining and upgrading them. For device requests, the agent writes only devices, requests and approval rules. For the list of capabilities, see [NocoBase Core](../core/index.md#reuse-common-capabilities).
+**Common capabilities don't have to be built and verified from scratch.** More than 20 common capabilities, including users and permissions, data and files, workflows and approvals, messaging, and AI and agents, are ready to use, and NocoBase keeps maintaining and upgrading them. For the list of capabilities, see [NocoBase Core](../core/index.md#reuse-common-capabilities).
 
 **One architecture and one set of conventions.** A new app comes with a fixed layout, where pages, APIs, migrations and tests each have their place. `AGENTS.md` and the skills shipped with packages say where business code goes and which capabilities to use as they are. Whoever the person, model or session, the agent develops the same way. See [Project structure](../core/developing-apps/project-structure.md).
 

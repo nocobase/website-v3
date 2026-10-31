@@ -3,7 +3,7 @@ title: Pages, routes and navigation
 description: Use a dedicated routing app to learn page registration, parameters, drawers and dialogs, tabs, navigation, breadcrumbs, access control and component overrides.
 ---
 
-Use `defineAppRoutes()` to declare page addresses, components, navigation and access rules. The [example app][app] demonstrates these usages with public fictional projects and tasks, separate from Studio's projects and tasks. See [environment and startup](#environment-and-startup) for setup and account preparation.
+Use `defineAppRoutes()` to declare page addresses, components, navigation and access rules. To run the [example app][app] and prepare an account, see [environment and startup](#environment-and-startup).
 
 ## Register pages
 

@@ -24,7 +24,7 @@ cli/
 
 ## 示例：导出状态字典
 
-先完成[建表与数据初始化](data-models-and-migrations.md)开头的 `appStatuses` 示例，执行迁移和 Seed，得到 `code`、`title` 两个字段及默认记录。本例使用该独立示例，不依赖后面的历史项目与任务教程。
+先完成[建表与数据初始化](data-models-and-migrations.md)开头的 `appStatuses` 示例，执行迁移和 Seed，得到 `code`、`title` 两个字段及默认记录。状态字典的字段与默认编码保持不变，新增说明字段不影响本命令。
 
 新增 `cli/commands/statuses/export.ts`：
 

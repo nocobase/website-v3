@@ -5,7 +5,7 @@ description: 使用 Repository 查询和修改业务记录，处理关联、分�
 
 数据访问通常从 Repository 开始：它理解 Collection 的字段和关系，适合读取、创建和修改业务记录。Query 面向表和结果集，适合 Repository 不能表达的报表与聚合。两者都需要调用方先确定身份与权限。
 
-本篇代码用于应用服务端，沿用[建表与数据初始化](data-models-and-migrations.md)中的 `tutorialProjects` 和 `tutorialTasks`。示例以默认模板 `1.0.0-beta.78` 的应用为基础；代码片段说明数据访问方法，完整服务见[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)，接口接入见[HTTP 路由与接口](apis-and-services.md)。本文的 `tutorialTasks`／`tutorialProjects` 属于独立的历史项目示例，不是当前入门示例的 `tasks`；运行前按[建表与数据初始化](data-models-and-migrations.md)确认基线。
+本篇代码用于应用服务端，沿用[历史项目的数据准备](https://github.com/nocobase/website-v3/blob/e7f20aeea2f9e63d396cb99a4e3775902823f3cb/doc/content/zh-CN/core/developing-apps/data-models-and-migrations.md)中的 `tutorialProjects` 和 `tutorialTasks`。示例以默认模板 `1.0.0-beta.78` 的应用为基础；代码片段说明数据访问方法，完整服务见[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)，接口接入见[HTTP 路由与接口](apis-and-services.md)。本文的 `tutorialTasks`／`tutorialProjects` 属于独立的历史项目示例，不是当前入门示例的 `tasks`；运行前按[历史项目的数据准备](https://github.com/nocobase/website-v3/blob/e7f20aeea2f9e63d396cb99a4e3775902823f3cb/doc/content/zh-CN/core/developing-apps/data-models-and-migrations.md)确认基线。
 
 ## 使用 Agent
 

@@ -5,7 +5,7 @@ description: Define service transaction boundaries and verify rollback, concurre
 
 A transaction commits or rolls back a group of operations on one database connection. Organize it around a business result, such as checking that a task and target project are eligible before saving an assignment.
 
-This guide retains the historical `tutorialTasks`/`tutorialProjects` model and prerequisites from [Create tables and initialize data](data-models-and-migrations.md), not the current getting-started `tasks` model. See [historical project service source](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md) for the complete service.
+This guide retains the historical `tutorialTasks`/`tutorialProjects` model and prerequisites from [historical project data setup](https://github.com/nocobase/website-v3/blob/e7f20aeea2f9e63d396cb99a4e3775902823f3cb/doc/content/core/developing-apps/data-models-and-migrations.md), not the current getting-started `tasks` model. See [historical project service source](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md) for the complete service.
 
 ## Use the transaction connection in a service
 

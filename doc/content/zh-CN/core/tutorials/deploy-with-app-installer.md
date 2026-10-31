@@ -7,7 +7,7 @@ description: 通过 app-installer 安装和更新生产应用，由 PM2 托管�
 
 这一篇把任务应用独立部署到自己的生产服务器，由 PM2 托管应用进程。`@nocobase/app-installer` 负责解压发布包、生成配置、应用迁移、启动 PM2 进程和检查健康状态，之后也通过它升级应用。
 
-部署前确认应用已通过测试；任务示例的测试步骤见[搭建第一个应用](build-your-first-app.md)。以下使用单实例、SQLite、Linux x64/glibc、Node.js 24，应用路径为 `/tasks`。其他数据库需要在源码项目中安装相应驱动，再重新构建。
+部署前确认应用已通过测试；任务示例的测试步骤见[任务示例说明](https://github.com/nocobase/docs-examples-v3/blob/0185e4bfa9d7ef05dd180245005a6c1024fe41de/apps/team-tasks/README.MD)。以下使用单实例、SQLite、Linux x64/glibc、Node.js 24，应用路径为 `/tasks`。其他数据库需要在源码项目中安装相应驱动，再重新构建。
 
 ## 部署前准备
 
@@ -176,12 +176,12 @@ curl --fail https://tasks.example.com/tasks/api/healthz
         └── dist/
 ```
 
-配置和数据位于发布目录之外，由不同版本共用。当前入门示例通过必需种子初始化任务角色；开发环境中的任务、团队用户和角色分配不会随包复制，需要在部署后配置或另行迁移。不要手工覆盖 `current` 或改写已安装的发布文件。
+配置和数据位于发布目录之外，由不同版本共用。任务示例应用通过必需种子初始化任务角色；开发环境中的任务、团队用户和角色分配不会随包复制，需要在部署后配置或另行迁移。不要手工覆盖 `current` 或改写已安装的发布文件。
 
 ### 4. 验证托管与持久化
 
 1. 在任务页新建一条任务，完成并刷新，确认状态保留。
-2. 按[搭建第一个应用](build-your-first-app.md)中的权限说明配置普通只读成员，验证可读、不可写。
+2. 按[任务示例说明](https://github.com/nocobase/docs-examples-v3/blob/0185e4bfa9d7ef05dd180245005a6c1024fe41de/apps/team-tasks/README.MD)中的权限说明配置普通只读成员，验证可读、不可写。
 3. 在服务器以同一服务账号执行 `pm2 restart nocobase-tasks`。如果安装时设置了 `--name`，使用实际进程名。
 4. 再次打开应用，确认任务和状态保留。
 5. 按安装结果的 `nextCommands` 配置开机恢复。安装器已经保存 pm2 进程列表；以同一服务账号运行 `pm2 startup`，再执行它打印的系统命令。SSH 部署时这些命令也在服务器上执行。

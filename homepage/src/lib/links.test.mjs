@@ -16,6 +16,13 @@ test('old customer stories move to /customers/ and /zh-CN/customers/', () => {
   assert.deepEqual(to('https://www.nocobase.com/cn/blog/astrolab-nocobase'), { kind: 'customers', url: 'https://www.nocobase.com/zh-CN/customers/astrolab-nocobase/' });
 });
 
+test('old Japanese posts move to /ja-JP/ only when the new site has a Japanese version', () => {
+  const ja = { ...site, ja: { blog: new Set(['what-is-ai-no-code']), customers: new Set(['astrolab-nocobase']) } };
+  assert.deepEqual(siteLink('https://www.nocobase.com/ja/blog/what-is-ai-no-code', ja), { kind: 'blog', url: 'https://www.nocobase.com/ja-JP/blog/what-is-ai-no-code/' });
+  assert.deepEqual(siteLink('https://www.nocobase.com/ja/blog/astrolab-nocobase', ja), { kind: 'customers', url: 'https://www.nocobase.com/ja-JP/customers/astrolab-nocobase/' });
+  assert.deepEqual(siteLink('https://www.nocobase.com/ja/blog/what-is-ai-no-code', site), { kind: 'nocode', url: 'https://nocode.nocobase.com/ja/blog/what-is-ai-no-code' });
+});
+
 test('old blog posts missing from the new site and other blog pages move to nocode.nocobase.com', () => {
   assert.deepEqual(to('https://www.nocobase.com/en/blog/gone'), { kind: 'nocode', url: 'https://nocode.nocobase.com/en/blog/gone' });
   assert.deepEqual(to('https://www.nocobase.com/cn/blog/tags/customer-stories'), { kind: 'nocode', url: 'https://nocode.nocobase.com/cn/blog/tags/customer-stories' });

@@ -10,7 +10,7 @@ description: 接入共享运行环境，让已安装并登录的编码工具执�
 | 项目 | 要求 |
 | --- | --- |
 | 系统 | macOS 或 Linux；Windows 使用 WSL |
-| 基础软件 | Node.js 24 或更高版本、Git。开发 NocoBase 应用还需要 pnpm 11 |
+| 基础软件 | Node.js 24 或更高版本、Git。开发 NocoBase 应用还需要 pnpm 11：`npm install -g pnpm@11` |
 | 编码工具 | 安装 Claude Code、Codex 等支持的工具，并使用运行执行机的系统用户完成登录 |
 | Git 工具 | GitHub CLI `gh` |
 | 网络 | 可以访问 Studio、代码平台、模型服务和项目依赖源 |

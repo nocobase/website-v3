@@ -13,6 +13,7 @@ description: Write, restructure, or review individual NocoBase 3 plugin usage gu
 
 - 目标是 `doc/content/zh-CN/core/using-plugins/` 与 `doc/content/core/using-plugins/` 下的单个插件指南。新写或整体重组时使用下述四章；局部纠错保持本次任务范围，不顺带改写其他文章。
 - 先遵循仓库 [AGENTS.md](../../../AGENTS.md) 与 [doc/README.md](../../../doc/README.md) 的双语、菜单、链接和资源约定。中文作为编写参考，示例代码、应用界面和截图使用英文。
+- 通用表达、开头、步骤和导航按 [write-docs](../write-docs/SKILL.md)；本 Skill 补充插件指南的四章结构、能力边界、示例和验证证据，不因通用导航建议增加第五章。
 - 编写或审阅提示词时，使用 [write-doc-prompts](../write-doc-prompts/SKILL.md)。提示词要像读者自然提出的需求；实现约束和详细验收要求分别放在本指南对应章节中。
 - 核实目标插件的包名、版本、公开导出、注册方式、配置和依赖。按问题读取已安装包或对应版本源码、类型、随包开发 Skill 及示例；说明与实现冲突时核实差异，不凭包名推断功能。
 - 区分源码确认、片段示意、可运行示例和实际运行验证。既有核验记录见 [plugin-usage-verification.md](../../../doc/notes/plugin-usage-verification.md)，记录中的版本和结论只适用于其原有范围。
@@ -78,13 +79,13 @@ description: Write, restructure, or review individual NocoBase 3 plugin usage gu
 
 提示词和 Skill 提供行为指引，代码中的校验、授权及测试才提供可执行的约束。不要声称插件或 Skill 自动保证代码正确、自动完成测试、提供未实现的沙箱或自动回滚。
 
-通用协作方法引用“使用 Agent 开发”，测试方法引用“测试与验收”。保持本章聚焦插件的约束；需要验收提示词时，用自然语言说明本次要确认的行为，把检查方法、测试命令和证据要求留在正文中。
+通用协作方法引用[持续开发应用](../../../doc/content/zh-CN/core/getting-started/develop-with-an-agent.md)，测试方法引用[测试与验收](../../../doc/content/zh-CN/core/developing-apps/testing-and-acceptance.md)。英文文章链接到对应英文页。保持本章聚焦插件的约束；需要验收提示词时，用自然语言说明本次要确认的行为，把检查方法、测试命令和证据要求留在正文中。
 
 ## 示例代码与证据
 
 配套代码仓库为 `nocobase/docs-examples-v3`。每个独立运行的应用放在 `apps/<example-name>/`；贯穿多章的同一应用共用一个目录，其 README 关联章节、代码文件、版本、运行方式和验证步骤。
 
-- 只链接实际存在且与文章匹配的目录、文件和版本。可复现的源码链接优先指向已存在的 commit 或 tag；仓库已创建不代表某个示例已经迁入。
+- 只链接实际存在且与文章匹配的目录、文件和版本。按仓库规范，示例源码链接指向已存在的固定提交；仓库已创建不代表某个示例已经迁入。
 - 既有源码下载、截图和章节链接在迁移完成前保持可用。根据本次任务范围维护示例，单纯整理文档不自动扩大为迁移或发布代码。
 - 源码、配置模板和说明可以进入示例仓库；环境密钥、会话、运行数据库、依赖目录和构建产物不进入公开示例。截图也不得暴露凭据。
 - 实测结论注明有关版本和执行范围。模型说“已完成”、截图中出现成功提示、测试命令退出成功，都需要与实际验证对象对应；不要用它们代替持久化、权限、工具执行或测试用例的证据。

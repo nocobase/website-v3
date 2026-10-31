@@ -21,7 +21,8 @@ const LEGACY_LANGS = new Set(['en', 'cn', 'tw', 'ja', 'ko', 'ru', 'es', 'fr', 'd
 const PLUGINS = { en: '/plugins', cn: '/cn/plugins', ja: '/ja/plugins', fr: '/fr/plugins' };
 const PLUGINS_HTML = { 'plugins.html': '/plugins', 'plugins-cn.html': '/cn/plugins' };
 
-// 一条指向 www.nocobase.com（或 nocobase.com）的地址怎么换，返回 { kind, url }。site 是新官网的文章：{ blog: Set<slug>, customers: Set<slug> }，每篇都有英文和 zh-CN 版。
+// 一条指向 www.nocobase.com（或 nocobase.com）的地址怎么换，返回 { kind, url }。site 是新官网的文章：{ blog: Set<slug>, customers: Set<slug> }，每篇都有英文和 zh-CN 版；
+// site.ja（可选，同样的结构）是另有 ja-JP 版的文章，旧的 /ja/blog/<slug> 换成它，没有日文版的仍按其余旧页面处理。
 // kind：blog、customers（旧博客地址换成新站文章）、home（旧首页）、plugins（v2 文档站的插件列表）、nocode（其余旧页面搬到 nocode.nocobase.com，路径不变）、keep（新站的地址或认不出的，不动）。
 // 换掉的地址一律用 https，保留查询串和锚点。
 export function siteLink(url, site) {
@@ -30,8 +31,12 @@ export function siteLink(url, site) {
   const path = m[1] || '/', rest = m[2];
   const segs = path.split('/').filter(Boolean);
   const lang = segs[0];
-  const blog = /^\/(en|cn)\/blog\/([^/]+)\/?$/.exec(path);
-  if (blog) {
+  const blog = /^\/(en|cn|ja)\/blog\/([^/]+)\/?$/.exec(path);
+  if (blog && blog[1] === 'ja') {
+    const slug = blog[2];
+    if (site.ja?.blog.has(slug)) return { kind: 'blog', url: `${SITE}/ja-JP/blog/${slug}/${rest}` };
+    if (site.ja?.customers.has(slug)) return { kind: 'customers', url: `${SITE}/ja-JP/customers/${slug}/${rest}` };
+  } else if (blog) {
     const [, l, slug] = blog, zh = l === 'cn' ? '/zh-CN' : '';
     if (site.blog.has(slug)) return { kind: 'blog', url: `${SITE}${zh}/blog/${slug}/${rest}` };
     if (site.customers.has(slug)) return { kind: 'customers', url: `${SITE}${zh}/customers/${slug}/${rest}` };

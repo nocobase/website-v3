@@ -59,4 +59,3 @@ GitHub 创建 App 时会检查 Webhook 地址是否可达。本机试用必须�
 ![GitHub App 已连接到组织](https://static-docs.nocobase.com/studio-zh-setup-github-connected-full-1440x900-20261030.png)
 
 GitLab 和 Gitee 的凭据有有效期时，需要在到期前更新。成员也可以[连接自己的 Git 账号](../join/sign-in.md#连接自己的-git-账号)，让 Agent 以成员身份提交 PR。
-

@@ -1,322 +1,87 @@
 ---
 title: Build enterprise apps that keep evolving with NocoBase 3
-metaDescription: From a requirements document, creating the app, building the system and upgrading Core, to teamwork, issues, shared knowledge and deployment in Studio, this guide shows how to build an enterprise app with NocoBase 3 that can keep evolving for years.
+metaDescription: NocoBase Core is the open-source foundation for developing and running business systems with AI, and NocoBase Studio is the governance platform where people and agents develop together.
 ---
 
 ## Introduction
 
-AI-assisted development, or vibe coding, can produce a system that looks like it works in very little time. For a personal app or a simple one, that is usually enough. Build an enterprise app the same way, though, and as it keeps evolving and needs maintenance, problems start to show:
+When you let an agent vibe-code a business system, the first version usually comes quickly. As you keep iterating, these problems show up:
 
-1. Many foundational capabilities have to be built from scratch, such as permissions, workflows and approvals
-2. The underlying architecture can slowly drift out of control as models change and developers come and go
-3. There are too many parallel tasks and too many agent messages for people to keep up with
-4. Knowledge and experience gained during development are hard to capture and share
+1. Permissions, workflows and approvals have to be written from scratch, and then maintained forever.
+2. A new model, a new person or a new session brings a new way of writing code, and the architecture slowly gets out of control.
+3. With many issues running in parallel, people can't keep up with confirming the agents' messages and changes.
+4. Requirement context, business rules and lessons learned are scattered across sessions, and they are lost when people or agents change.
 
-With these problems in mind, and with agents becoming capable so quickly, the NocoBase team offers its own answer: let enterprises build their own apps quickly in the age of agents, while solving the problems above. This guide draws on NocoBase's own internal experience to show how to build enterprise apps that keep evolving with NocoBase 3.
+To address these problems, NocoBase 3 introduces [NocoBase Core](https://www.nocobase.com/core/) and [NocoBase Studio](https://www.nocobase.com/studio/). They let companies develop their own enterprise apps quickly in the age of AI agents while solving the problems above. Using IT asset management as the example, this tutorial shows how to build enterprise apps that keep evolving with NocoBase 3.
 
-## Before you start
+## Core: the open-source foundation for developing and running business systems with AI
 
-From NocoBase's internal experience, it's best not to begin by asking the AI to build an "XX system" straight away. Generating a whole system from a single sentence is risky for an enterprise app and easily leads to rework or major rewrites later.
+**Common capabilities don't have to be built and verified from scratch.** More than 20 common capabilities, including users and permissions, data and files, workflows and approvals, messaging, and AI and agents, are ready to use, and NocoBase keeps maintaining and upgrading them. For device requests, the agent writes only devices, requests and approval rules. For the list of capabilities, see [NocoBase Core](../core/index.md#reuse-common-capabilities).
 
-Instead, start by preparing a system design document or a requirements document for the product. The point is to talk it through with the agent first: what app you are building and what it needs to do. For example:
+**One architecture and one set of conventions.** A new app comes with a fixed layout, where pages, APIs, migrations and tests each have their place. `AGENTS.md` and the skills shipped with packages say where business code goes and which capabilities to use as they are. Whoever the person, model or session, the agent develops the same way. See [Project structure](../core/developing-apps/project-structure.md).
 
-```prompt
-Write a design document for a CRM system for the XXX industry. Cover an overview of the solution, the design goals, the core business objects and how they relate, the key business processes and the main pages, and how AI agents can assist with or directly handle routine work to make the business team more productive. Research a few leading products on the market before you write.
-If you have any questions while writing, ask me at any time.
-```
+You can see which Core capabilities an app uses in **System settings › App foundation**. See [App foundation](../core/using-plugins/application-support/foundation.md).
 
-You can also use one of the well-known spec tools to help, such as:
+![App foundation: the Core capabilities the app uses](https://static-docs.nocobase.com/20261030-itam-lite-ego-preview-foundation-2x.webp)
 
-- [OpenSpec](https://github.com/Fission-AI/openspec)
-- [superpowers](https://github.com/obra/superpowers)
+## Studio: the governance platform where people and agents develop together
 
-## Development workflow
+**The agent team moves work forward on its own.** Claude Code, Codex and other coding tools join Studio as an agent team. The lead agent assigns design, development, testing and review by each agent's strengths, and several issues move forward at once, each on its own branch. For every issue you can see at a glance how far it has got, who is working on it and what comes next.
 
-### Create the app
+**People make the key decisions.** Work reaches a person only after it passes testing and review. People read the report, screenshots and preview, then accept it or send it back. Business experts who don't code can also raise requests, make decisions and accept results directly.
 
-With the preparation done, you can start building the app on NocoBase 3. Follow [Create app](../core/getting-started/create-app.md) to install the skills and create a NocoBase 3 app directory.
+**Methods and experience stay with the team.** Skills hold how work gets done, the knowledge base holds business documents, and project memory holds what agents learn, so the next person or agent can pick up the work. See [What is Studio](../studio/intro/what-is-studio.md).
 
-```bash
-npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
-mkdir my-app
-cd my-app
-```
+Core alone is enough to develop and ship a complete app. Bring in Studio when your team runs several projects at once, or when business colleagues want to take part directly.
 
-Then open your coding agent in the app directory and enter a prompt like the following (the database can be MySQL, PostgreSQL, SQLite and so on):
+> [!NOTE] Studio editions
+> Studio is available only in the NocoBase Professional and Enterprise editions. See [Pricing](https://www.nocobase.com/pricing/).
 
-```prompt
-Create a NocoBase 3 app for local development in the current directory.
-Use the default template and SQLite, and follow the create-app guide to prepare and check everything.
-Once it starts, tell me which address to open and how to complete the first sign-in.
-```
+## The tutorial's example: IT asset management
 
-Once the NocoBase 3 app is initialized, the agent tells you how to open it and sign in.
+Called ITAM below. The company gives employees laptops and monitors, needs to know where each device is, who has it and what state it is in, and device requests need approval. There are three roles:
 
-![](https://static-docs.nocobase.com/20261029150256019.png)
+| Role | What they do in the system |
+| --- | --- |
+| Employee | Views the devices assigned to them and submits device requests |
+| IT support | Handles device requests, issues and collects devices, and keeps device status up to date |
+| Asset manager | Maintains the device register, approves requests and organizes stocktakes |
 
-### Build the system
+Part 1 builds the device register, device requests and approval, and permissions for the three roles. Part 2 has the agent team build device stocktaking and invites the asset manager to take part directly.
 
-Next, start a new session of your coding agent in this directory (make sure it loads the development skills that NocoBase 3 ships in the project) and enter a prompt like the one below, putting what you prepared earlier to use. It's a good idea to add those documents to the project's repository too, for example under `docs/`, as the initial system outline and requirements.
+The tutorial's code is in [nocobase/docs-examples-v3](https://github.com/nocobase/docs-examples-v3/tree/main/apps/itam-lite). For a fuller IT asset management system, see the [NocoITAM online demo](https://solutions.nocobase.com/itam/).
 
-If your company has its own design guidelines (brand colors, font sizes, component styles and so on), give them to the agent together with the requirements before it starts building, and ask it to follow them. If you don't have any, ask the agent to follow the design guidelines built into NocoBase 3:
+## Tutorial roadmap
 
-```prompt
-Read the xxx design document I put in the xxx directory, then build this PMS system on the capabilities NocoBase 3 provides, following the NocoBase 3 framework, design guidelines and development skills.
+### Getting started
 
-If you have any questions, ask me before you start or along the way.
-```
+1. [Build enterprise apps that keep evolving with NocoBase 3](build-sustainable-enterprise-apps.md): this page.
+2. [Prepare your development environment](prepare-environment.md): install Node.js, pnpm and Git.
+3. [Choose an agent and a model](choose-agent-and-model.md): pick a coding tool and a model.
 
-While building, the AI refers to the material you prepared. With that material plus the foundational capabilities of NocoBase 3, it can deliver a business system that matches the requirements in a fairly short time. All you need to do is describe your business needs, without worrying much about how the underlying logic is implemented.
+### Part 1: Build an app with Core
 
-From the requirements document, the agent can build a first version of the business system:
+4. [Create the app](create-app.md): have the agent create the app, start it, sign in and make the first commit.
+5. [Write a system design document first](write-a-design-doc.md): talk through what ITAM should do with the agent and write it up as a design document.
+6. [First feature: the device register](first-feature-devices.md): entering, searching and tracking the status of devices.
+7. [Device requests and approval](requests-and-approval.md): employees submit device requests, and devices are issued after approval.
+8. [Roles and permissions](roles-and-permissions.md): what each of the three roles can see and do.
+9. [Accept the agent's work](accept-agent-work.md): check what the agent delivers and have it make changes.
+10. [Deploy the app](deploy.md): deploy the app to a server.
 
-![](https://static-docs.nocobase.com/20261028161432844.png)
+### Part 2: Use Studio in a team
 
-What lets the AI build a reliable business system quickly once it understands the requirements is the foundation that NocoBase 3 provides: [NocoBase Core](https://www.nocobase.com/core/). NocoBase Core is the foundation for developing and running business apps. It provides an app framework along with shared capabilities such as sign-in, users, permissions, files and notifications that your app can use directly. Core provides:
+11. [Bring the project into Studio](bring-into-studio.md): connect the ITAM code repository to a Studio project.
+12. [Hand a request to the agent team](agent-team-request.md): have the agent team build device stocktaking.
+13. [Bring business colleagues in](business-colleagues.md): invite the asset manager to raise requests, answer questions and accept results.
+14. [Capture methods and experience](capture-knowledge.md): keep methods and business knowledge in skills, the knowledge base and project memory.
+15. [Release to production](release.md): deploy to a test environment, tag a release and deploy to your own servers.
 
-- **App template and runtime framework**: start from a project that already runs, with a client, a server and runtime configuration, and add your own features.
+### Best practices
 
-- **Shared capabilities**: use authentication, users, permissions, data access, file storage, notifications and more through plugins and base libraries, combined as your app needs.
+- [Best practices](best-practices.md): lessons and tips for developing with Core and Studio.
 
-- **UI component library**: reuse tables, forms, dialogs and other components, as well as business blocks. Components are installed into your app's source, so you can change them as needed.
+### Appendix
 
-- **Development tools and skills**: the command line handles configuration, migrations, plugin management and builds; skills give the agent guidance that matches the versions of your dependencies.
-
-With these building blocks, the agent can put a business system together quickly, like building with bricks.
-
-If you're not sure which NocoBase Core capabilities an app uses, NocoBase also provides the foundation plugin, which shows you at a glance. Apps built with the default template include it:
-
-![](https://static-docs.nocobase.com/20261028161615621.png)
-
-
-At this point, two of the problems above are solved:
-
-1. Many foundational capabilities have to be built from scratch, such as permissions, workflows and approvals
-2. The underlying architecture can slowly drift out of control as models change and developers come and go
-
-As development continues, the agent keeps following NocoBase Core's conventions and builds on the capabilities that already exist, so different developers and agents all produce reliable apps that follow the same standards.
-
-If you're interested in what Core provides and how it works, see the [Core documentation](../core/index.md).
-
-### Upgrade Core
-
-Once the app is built and you're evolving it, you won't need to upgrade Core very often. To keep the business system stable, in most cases it's best to simply carry on with business development. If you do want to upgrade, because of a bug in Core or a new capability, NocoBase also provides skills for upgrading Core, so you no longer upgrade each Core plugin and the framework by hand.
-
-Use a prompt like the following to upgrade the project's Core version:
-
-```prompt
-Upgrade the NocoBase Core used by this app to the latest version in the current release channel.
-
-First check and give me a concrete plan, without changing the project yet:
-- The current version and the version you plan to upgrade to. If it is already on the target version, say no upgrade is needed, and don't downgrade.
-- Which features, dependencies, configuration and plugins this upgrade affects, and which changes need my decision.
-- How existing business features, themes, user permissions and data will be kept, and how to recover if something goes wrong.
-- Whether there are data changes that can't be undone, or historical records that need fixing, with the reason and impact of each.
-
-After I confirm the plan, follow the project's upgrade guide and make the changes on a separate branch.
-Don't overwrite the current app or empty the database, and don't consider it done after only changing version numbers.
-Verify in a separate test environment that existing data, sign-in, regular users' permissions and task operations still work.
-Finally, tell me the versions before and after, the adjustments you made, the verification results and anything left unfinished.
-This time, only prepare and verify the upgraded project. Deploying to production will be confirmed separately.
-```
-
-During the upgrade, the agent follows the skills and upgrades only Core itself, changing the business logic you've built as little as possible. If existing business code really has to change to work with the new Core, the agent brings it to you to decide.
-
-### How other teams raise requests
-
-Besides the development team, other teams in the company usually have their own business needs. NocoBase recommends that when they raise requests with the development team, they also do something like the preparation described in [Before you start](#before-you-start), and hand over fairly clear business requirements.
-
-[Optional] If the requesting team can have an agent produce an HTML demo to help describe the request, that helps the agent too.
-
-The development team can then give these requests to the agent as input:
-
-```prompt
-Read the material describing the xxx business requirement, and build this feature on the capabilities NocoBase 3 provides, following the NocoBase 3 framework, design guidelines and development skills.
-```
-
-## Teamwork and long-term evolution with Studio
-
-Once the first version of a system is in place, it moves into a phase of continuous evolution:
-
-1. Features already built need improvements and bug fixes
-2. New feature modules need to be added to the system
-
-When one person develops and runs several tasks in parallel, they have to jump back and forth between agent sessions; the faster the agents produce output, the more is asked of the person.
-When several people develop, the background of requests, business material and project experience may be scattered everywhere. When a different person or a different agent takes over, that context is easily lost.
-That is why NocoBase built [NocoBase Studio](https://www.nocobase.com/studio/): it is designed to govern how people and agents develop together.
-
-
-In NocoBase Studio, you can turn your own agents (such as Codex, Claude Code and OpenCode) into an agent team that moves issues forward on its own, with people deciding only at the points that matter. Every issue has a clear status (in progress, waiting for your decision, done and so on), so you only need to pay attention to the issues that need your decision.
-
-![](https://static-docs.nocobase.com/20261028173135810.png)
-
-
-> [!NOTE]
-> NocoBase Studio is currently available only in NocoBase Professional and NocoBase Enterprise. See [Editions & Pricing](https://www.nocobase.com/pricing/).
-
-### Set up Studio
-
-Follow [Let an agent set up Studio](../studio/setup/with-agent.md). At a minimum, you need to:
-
-1. [Install Studio](../studio/setup/install.md)
-2. [Connect Git](../studio/setup/git.md)
-3. [Connect a shared runtime](../studio/setup/shared-runtimes.md)
-4. [Enable agents](../studio/setup/agents.md)
-5. [Create a project](../studio/setup/new-project.md)
-
-Once the project is created, you can start creating issues and evolve and maintain the project through them.
-
-### Issues
-
-#### Create issues
-
-There are several ways to create an issue in Studio:
-
-1. With the **New issue** button at the top right of the issues page
-
-![](https://static-docs.nocobase.com/20261029151913059.png)
-
-2. By describing a request or a problem in **My sessions**, which the agent breaks down into issues it can carry out
-
-![](https://static-docs.nocobase.com/20261029151954700.png)
-
-3. With your own agent
-
-```prompt
-I ran into problem YYY in project XXX. Here are the details: ZZZZ. Use nb-studio to create an issue for project XXX.
-```
-
-A new issue starts in **Backlog** by default and isn't worked on right away. To start it, see [How issues move between statuses](#how-issues-move-between-statuses) below.
-
-#### How issues move between statuses
-
-When developing locally, developers often run into exchanges like this:
-
-```text
-Agent: XXX is like this. Should I continue?
-Me: Yes, please continue.
-...
-Agent: YYY is like this. Should I continue?
-Me: Yes, please continue.
-```
-
-The agent asks for permission even when it could clearly carry on. The task is interrupted, and you spend effort confirming low-value decisions.
-
-Studio has a mechanism for this: issues move forward on their own as much as possible, and people step in only when a decision is really needed. A lead agent analyzes and breaks down each issue and hands the work to suitable executing agents. Whenever an executing agent stops to ask like this, the lead agent tells it to keep going.
-
-Studio has six built-in issue statuses:
-
-1. Backlog: the request is still being gathered, and agents haven't started work.
-2. In progress: agents are working on it.
-3. **Blocked: the agents ran into something that needs your decision.**
-4. **In review: the agents have finished and need you to accept the result.**
-5. Done: the work is finished and accepted, the code is merged and the PR is closed.
-6. Cancelled: the issue was cancelled, and agents no longer work on it.
-
-![](https://static-docs.nocobase.com/20261028201236304.png)
-
-Of the six statuses, only **Blocked** and **In review** need you. As described above, the lead agent keeps the issue moving as far as it can. Only when it reaches a decision it can't make and a person has to step in does it move the issue to **Blocked** and ask you to decide. So Studio notifies you as little as possible, only when a decision really needs you:
-
-![](https://static-docs.nocobase.com/20261028203035957.png)
-
-All you need to do then is reply to the agent with your decision. Once the lead agent receives it, it moves the issue back to **In progress**, until it needs your decision again and the issue becomes **Blocked**, or the work is finished and the issue moves to **In review**.
-
-When the work is complete, the issue moves to **In review**, which of course also needs a person. If everything looks right, click **Merge** to merge the code into the repository, and the issue moves to **Done**.
-
-![](https://static-docs.nocobase.com/20261028201509073.png)
-
-If you have many issues but care most about how a few of them are going, click **Follow** on those issues to add them to your following list, where you can keep track of them easily.
-
-![](https://static-docs.nocobase.com/20261029152227386.png)
-
-#### Preview environment
-
-Once Studio is deployed, it comes with a preview environment, which gives each issue's code branch an environment where it actually runs:
-
-![](https://static-docs.nocobase.com/20261028203544307.png)
-
-
-The lead agent uses it to check the executing agents' work: an executing agent runs the result in the preview environment and takes screenshots for the lead agent to confirm. These are also a useful reference when you accept an issue.
-
-![](https://static-docs.nocobase.com/20261028203712314.png)
-
-You can also use the preview environment to see the issue branch's code in action yourself before deciding whether to accept it.
-
-![](https://static-docs.nocobase.com/20261028204209835.png)
-
-### Knowledge base and project memory
-
-Studio has a built-in knowledge base where you can add documents and information at the project level or the system level (shared by all projects). While developing, agents consult the knowledge base as they need it. The knowledge base is stored in Studio's database. Anything important that people and agents should share, such as team standards and domain terms, can go into it. As the project evolves, the knowledge base keeps growing.
-
-![](https://static-docs.nocobase.com/20261028205037978.png)
-
-Project memory is another important feature. Modeled on Claude Code's [auto memory](https://code.claude.com/docs/en/memory), it has agents record memories automatically, and only at key moments: when a person keeps stressing a fact, when the project has context that can't be found in the code, when an agent has hit the same pitfall before, and so on. Project memory is stored in the project's repository (in `.nb-studio/memory/` at the repository root) and kept as part of the code. It is injected into the context of every Studio run (by design it is short and to the point, with strict limits on how much context it takes up), so agents don't repeat the same mistakes.
-
-![](https://static-docs.nocobase.com/20261028205613068.png)
-
-
-### Skills
-
-Studio supports standard Agent Skills. You can use them for development standards, review points, test steps and more. Write them as skills, attach them globally, to a project or to a repository, and agents follow them on every run.
-
-![](https://static-docs.nocobase.com/20261028210018195.png)
-
-
-Skills in Studio can be attached at several levels:
-
-1. Globally, so they apply to every project. You can also turn on **Attach to new projects automatically**.
-
-![](https://static-docs.nocobase.com/20261028210517252.png)
-
-2. To a project
-
-Some skills only suit certain projects. In that case, don't attach them globally; instead, open the project's details and attach them in the **Default skills** panel for that project.
-
-![](https://static-docs.nocobase.com/20261029152525192.png)
-
-3. To a repository
-
-A project can have several repositories, so you can also attach skills to a single repository in the project settings. Then, within the same project, only runs in that repository get those skills.
-
-![](https://static-docs.nocobase.com/20261029152621517.png)
-
-These three levels go a long way toward sharing standards across a team, while still letting individual projects and repositories have skills of their own.
-
-### Deploy the app
-
-Once a NocoBase 3 app is ready, [deploying it with Docker](../core/tutorials/deploy-with-docker.md) is recommended: package the app as a Docker image, then deploy it on the target server. You can send the agent a prompt like the following, replacing the server, directory, address and so on with your own values:
-
-```prompt
-Use Docker to deploy the current task app for the first time to the environment below.
-
-Server: <my Docker server>
-Server platform: linux/amd64
-Deployment directory: <absolute path on the server>/tasks-docker
-Database: a new SQLite database, without importing development data or sample tasks
-Local listen address on the server: 127.0.0.1:13000
-Address for users: https://tasks.example.com/tasks/
-
-Prepare and start the app following the project's Docker deployment guide, and touch only this tutorial app.
-Keep configuration, passwords and business data separate from the image, so they survive rebuilding the container.
-Set up the administrator sign-in, keep the app keys safe, and don't expose them in code or reports.
-If a required configuration or storage location is missing, say so instead of quietly carrying on with empty data.
-
-Check sign-in, task operations and read-only permissions, then rebuild this app's container and confirm the existing data and permissions are still there.
-When you're done, tell me the address, the verification results, and anything not yet configured, such as the domain or HTTPS.
-```
-
-## Summary
-
-AI writes code fast, but building a reliable business system is still hard. When AI writes a business system from scratch, the faster it writes, the more problems pile up. NocoBase Core solves two of them:
-
-1. Many foundational capabilities have to be built from scratch, such as permissions, workflows and approvals
-
-2. The underlying architecture can slowly drift out of control as models change and developers come and go
-
-But as enterprise projects grow larger and teams take on more of them, two more problems become unavoidable:
-
-3. There are too many parallel tasks and too many agent messages for people to keep up with
-
-4. Knowledge and experience gained during development are hard to capture and share
-
-That's why NocoBase built NocoBase Studio. With an agent team, a standard flow of issue statuses, and a knowledge base, memory and skills that keep growing, it solves these problems in enterprise app development. We hope our experience helps teams facing the same challenges in building and governing enterprise apps.
+- [Common prompts](prompts.md): the prompts used in the tutorial, in one place.
+- [Upgrade NocoBase Core](upgrade-core.md): upgrade Core to the latest version with the upgrade skill.

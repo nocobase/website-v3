@@ -11,7 +11,7 @@ description: 修改代码后重新构建，按原来的部署方式更新已有�
 
 ```text
 请把当前应用的新版本部署到原来的服务器，继续使用 Docker。
-部署目录是 /srv/nocobase/tasks。保留已有数据和配置，更新前做好备份，更新后检查应用是否正常。
+部署目录是 /srv/nocobase/shop。保留已有数据和配置，更新前做好备份，更新后检查应用是否正常。
 ```
 
 使用 PM2（app-installer）时，提供服务器和已有安装目录，由 app-installer 更新应用。

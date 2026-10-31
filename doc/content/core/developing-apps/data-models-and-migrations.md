@@ -47,7 +47,7 @@ export default defineMigration({
 
 After execution, `code` is a unique status identifier and `title` is a required display name. Renaming a status preserves its identity through `code`. `down()` deletes the entire dictionary and its records, so use it only where losing them is acceptable.
 
-This uses Migration Context's `builder`. See [Tables and fields](../framework/database/schema.md) for fields, indexes and constraints, and [Migrations](../framework/database/migrations.md) for definition options. [View this migration](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/database/main/migrations/202611040001_create_app_statuses.ts).
+This uses Migration Context's `builder`. See [Tables and fields](../framework/database/schema.md) for fields, indexes and constraints, and [Migrations](../framework/database/migrations.md) for definition options. [View this migration](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/database/main/migrations/202611040001_create_app_statuses.ts).
 
 ## Initialize default records
 
@@ -73,7 +73,7 @@ export default defineSeed({
 
 The first installation creates `draft` / `Draft` and `published` / `Published`. If an administrator has already renamed `draft` to `Writing`, this preserves that title and fills only missing statuses. The primary key prevents duplicate codes; a concurrent conflict between reading and inserting should fail the task rather than be silently ignored.
 
-`context.repository()` is bound to the Seed's connection and transaction. Do not obtain another DatabaseManager or create tables in a Seed. See [Seed data](../framework/database/seeds.md) for updating defaults, configuration and optional samples. [View the Seed](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/database/main/seeds/202611040002_default_app_statuses.ts).
+`context.repository()` is bound to the Seed's connection and transaction. Do not obtain another DatabaseManager or create tables in a Seed. See [Seed data](../framework/database/seeds.md) for updating defaults, configuration and optional samples. [View the Seed](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/database/main/seeds/202611040002_default_app_statuses.ts).
 
 ## Apply changes and inspect the result
 
@@ -116,11 +116,11 @@ export default defineMigration({
 
 Run the same `db apply` command. Existing codes and titles remain, with `description: null`. Rolling back this migration loses descriptions but retains the original status records. Before making descriptions required, define how existing rows should be populated and add another migration; see [Backfill and transform historical data](../framework/database/migrations.md#backfill-and-transform-historical-data).
 
-Do not empty the database to make an edit take effect. Editing an executed file does not make it run again. See [Migrations](../framework/database/migrations.md#rollback-and-irreversible-changes) for checksums, batch rollback and Seed history. [View the upgrade migration](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/database/main/migrations/202611040003_add_app_status_description.ts).
+Do not empty the database to make an edit take effect. Editing an executed file does not make it run again. See [Migrations](../framework/database/migrations.md#rollback-and-irreversible-changes) for checksums, batch rollback and Seed history. [View the upgrade migration](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/database/main/migrations/202611040003_add_app_status_description.ts).
 
 ## Verify installation and upgrades
 
-The complete example's [`tests/database/app-statuses.test.ts`](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/tests/database/app-statuses.test.ts) uses real isolated databases. From the example application root, run:
+The complete example's [`tests/database/app-statuses.test.ts`](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/tests/database/app-statuses.test.ts) uses real isolated databases. From the example application root, run:
 
 ```bash
 pnpm exec vitest run --project node tests/database/app-statuses.test.ts
@@ -134,13 +134,13 @@ These tests do not reset the application's development database. See [Database a
 
 ## Example source and running
 
-The example reuses the [Team tasks App](https://github.com/nocobase/docs-examples-v3/tree/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks). Its status dictionary is independent of task workflow states and adds no management page. Use Node.js 24 and pnpm 11; see the pinned [README](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/README.MD#tables-and-initial-data-example) for dependencies and configuration.
+The independent [Database basics App](https://github.com/nocobase/docs-examples-v3/tree/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics) demonstrates the status dictionary through database commands and isolated tests, without requiring a business management page. Use Node.js 24 and pnpm 11; see the pinned [README](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/README.MD) for dependencies and configuration.
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
-git checkout 3892ff215c813b92d84bce1cce7433a14f6b693a
-cd apps/team-tasks
+git checkout 96410dc943d7ac65737b50f110c129da1588fa94
+cd apps/database-basics
 pnpm install --frozen-lockfile
 pnpm exec vitest run --project node tests/database/app-statuses.test.ts
 ```

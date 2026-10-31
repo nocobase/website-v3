@@ -47,7 +47,7 @@ export default defineMigration({
 
 执行后，`code` 是不可重复的状态标识，`title` 是必填显示名称。名称允许修改，记录身份仍由 `code` 决定。`down()` 删除整张状态表和全部记录，只在允许丢弃这些数据的场景使用。
 
-这里使用 Migration Context 的 `builder`。更多字段、索引和约束用法见[数据表与字段](../framework/database/schema.md)，定义选项见[数据库迁移](../framework/database/migrations.md)。[查看此迁移源码](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/database/main/migrations/202611040001_create_app_statuses.ts)。
+这里使用 Migration Context 的 `builder`。更多字段、索引和约束用法见[数据表与字段](../framework/database/schema.md)，定义选项见[数据库迁移](../framework/database/migrations.md)。[查看此迁移源码](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/database/main/migrations/202611040001_create_app_statuses.ts)。
 
 ## 初始化默认记录
 
@@ -73,7 +73,7 @@ export default defineSeed({
 
 首次安装得到 `draft` / `Draft` 和 `published` / `Published`。如果管理员已经把 `draft` 改名为 `Writing`，本例保留该名称，只补齐缺失的状态。主键约束防止重复编码；查询后插入的并发冲突应让任务失败，不能静默忽略。
 
-`context.repository()` 绑定当前 Seed 的连接和事务。无需自己获取 DatabaseManager，也不能在 Seed 中建表。更新已有默认值、配置和可选演示数据的写法见[初始数据](../framework/database/seeds.md)。[查看 Seed 源码](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/database/main/seeds/202611040002_default_app_statuses.ts)。
+`context.repository()` 绑定当前 Seed 的连接和事务。无需自己获取 DatabaseManager，也不能在 Seed 中建表。更新已有默认值、配置和可选演示数据的写法见[初始数据](../framework/database/seeds.md)。[查看 Seed 源码](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/database/main/seeds/202611040002_default_app_statuses.ts)。
 
 ## 执行变更与检查结果
 
@@ -116,11 +116,11 @@ export default defineMigration({
 
 执行同样的 `db apply` 命令后，旧状态的编码和名称保留，新增 `description` 为 `null`。回退这份迁移会丢失说明内容，但保留原来的状态记录。需要进一步设为必填时，先明确旧记录的补齐规则，再新增迁移处理，见[回填与转换历史数据](../framework/database/migrations.md#回填与转换历史数据)。
 
-不要为了让修改生效而清空数据库。已执行的文件修改后不会自动重跑；校验和、批次回退和 Seed 历史的关系见[数据库迁移](../framework/database/migrations.md#回退与不可逆变更)。[查看升级迁移源码](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/database/main/migrations/202611040003_add_app_status_description.ts)。
+不要为了让修改生效而清空数据库。已执行的文件修改后不会自动重跑；校验和、批次回退和 Seed 历史的关系见[数据库迁移](../framework/database/migrations.md#回退与不可逆变更)。[查看升级迁移源码](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/database/main/migrations/202611040003_add_app_status_description.ts)。
 
 ## 验证安装与升级
 
-完整示例的 [`tests/database/app-statuses.test.ts`](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/tests/database/app-statuses.test.ts) 使用真实隔离数据库，可以在示例 App 根目录执行：
+完整示例的 [`tests/database/app-statuses.test.ts`](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/tests/database/app-statuses.test.ts) 使用真实隔离数据库，可以在示例 App 根目录执行：
 
 ```bash
 pnpm exec vitest run --project node tests/database/app-statuses.test.ts
@@ -134,13 +134,13 @@ pnpm exec vitest run --project node tests/database/app-statuses.test.ts
 
 ## 示例源码与运行
 
-示例复用 [Team tasks App](https://github.com/nocobase/docs-examples-v3/tree/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks)，状态字典与其中的任务状态相互独立，没有新增管理页面。Node.js 24、pnpm 11；固定提交中的依赖与配置要求见 [README](https://github.com/nocobase/docs-examples-v3/blob/3892ff215c813b92d84bce1cce7433a14f6b693a/apps/team-tasks/README.MD#tables-and-initial-data-example)。
+独立示例 [Database basics App](https://github.com/nocobase/docs-examples-v3/tree/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics) 通过数据库命令和隔离测试演示状态字典，不需要业务管理页面。Node.js 24、pnpm 11；固定提交中的依赖与配置要求见 [README](https://github.com/nocobase/docs-examples-v3/blob/96410dc943d7ac65737b50f110c129da1588fa94/apps/database-basics/README.MD)。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
-git checkout 3892ff215c813b92d84bce1cce7433a14f6b693a
-cd apps/team-tasks
+git checkout 96410dc943d7ac65737b50f110c129da1588fa94
+cd apps/database-basics
 pnpm install --frozen-lockfile
 pnpm exec vitest run --project node tests/database/app-statuses.test.ts
 ```

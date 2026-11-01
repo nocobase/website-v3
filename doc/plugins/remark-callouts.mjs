@@ -1,10 +1,10 @@
-// `> [!NOTE] Title` blockquotes become <div class="note note-kind">, and a paragraph starting with **Done when**: (or **完成的标志**：) gets the class `done`.
+// `> [!NOTE] Title` blockquotes become <div class="note note-kind">, and localized completion markers get the class `done`.
 import { visit } from 'unist-util-visit';
 import { getSite } from '../src/lib/site.mjs';
 import { fileInfo } from './file-info.mjs';
 
 const KINDS = ['TIP', 'NOTE', 'WARNING', 'PENDING'];
-const DONE = ['完成的标志', 'Done when'];
+const DONE = ['完成的标志', 'Done when', '完了の条件'];
 
 export default function remarkCallouts({ site, contentDir } = {}) {
   return (tree, file) => {

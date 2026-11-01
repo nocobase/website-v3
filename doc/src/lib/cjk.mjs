@@ -1,5 +1,6 @@
 // Chinese and Japanese search: Pagefind segments these languages with a dictionary when indexing but with the browser's Intl.Segmenter when searching, and the two often disagree (Pagefind issues #1237, #1379), so a page that contains 创建插件 is not found by searching it. Instead both sides index and search single characters: the build puts a marker space between characters before handing a page to Pagefind, the search box does the same to the query, and the results are shown with those spaces removed again.
-const CJK = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}　-〿＀-￯]/u;
+// Script_Extensions includes shared kana characters such as the prolonged sound mark ー.
+const CJK = /[\p{Script=Han}\p{Script_Extensions=Hiragana}\p{Script_Extensions=Katakana}　-〿＀-￯]/u;
 const CJK_ALL = new RegExp(CJK.source, 'gu');
 // A thin space: Pagefind treats it as a word separator like any whitespace, and it never occurs in the content, so the display side can remove exactly the spaces added here
 const MARK = ' ';
@@ -33,7 +34,7 @@ export function spaceCjkHtml(html) {
 }
 
 // Removes the spaces between characters from a title or an excerpt (HTML with <mark>). Pagefind turns the marker spaces into plain ones, so this removes any space between two CJK characters or next to CJK punctuation, skipping <mark> tags, and keeps the spaces between Chinese and Latin text that the writing style asks for
-const C = '[\\p{Script=Han}\\p{Script=Hiragana}\\p{Script=Katakana}]';
+const C = '[\\p{Script=Han}\\p{Script_Extensions=Hiragana}\\p{Script_Extensions=Katakana}]';
 const P = '[\\u2018-\\u201f\\u3000-\\u303f\\uff00-\\uffef]';
 const T = '(?:</?mark>)*';
 const BETWEEN = new RegExp(`(${C}|${P})(${T})\\s+(${T})(?=${C}|${P})`, 'gu');

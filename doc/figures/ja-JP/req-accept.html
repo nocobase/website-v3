@@ -1,0 +1,15 @@
+<div class="sw">
+<div class="st-dh"><span class="id">PUR-23</span><span>· Supplier Management</span><span class="r"><span class="st-pill"><span class="si review"></span>In review<i data-lucide="chevron-down"></i></span><span><i data-lucide="star"></i>Follow</span><span><i data-lucide="messages-square"></i>Ask agent</span></span></div>
+<div class="sw-body">
+<p class="st-title">Supplier scoring and tiers<i data-lucide="pencil"></i></p>
+<dl class="st-now"><dt>Up next</dt><dd>Zhou Hang reviews the delivery report and accepts PR #31.</dd></dl>
+<div class="needs"><b>Needs you</b><p>Zhou Hang: review the delivery report and accept the supplier tiers. If they pass, merge PR #31; if not, send it back.</p><p class="meta">Checks passed · Review: approved</p><div class="st-btns"><span class="st-btn p"><i data-lucide="git-merge"></i>Merge</span><span class="st-btn">Mark as merged</span><span class="st-btn"><i data-lucide="external-link"></i>View changes</span><span class="st-btn"><i data-lucide="undo-2"></i>Send back</span></div></div>
+<div class="report"><div class="rh"><i data-lucide="list-checks"></i>Delivery report</div>
+<h5>How it was before</h5><p>Suppliers had only basic profiles, with no score or tier. An order needed the purchasing manager&rsquo;s approval only above &yen;50,000.</p>
+<h5>What changed</h5><ul><li>Suppliers now have a score and a tier, A, B, or C, recalculated every night from on-time delivery, quality pass rate, and price</li><li>Every order to a tier C supplier now goes to the purchasing manager for approval when it is submitted, whatever the amount. Other suppliers keep the amount rule</li><li>New suppliers start at tier B and are re-tiered after three months</li></ul>
+<h5>How it was checked</h5><p>Walked through all three acceptance scenarios in the preview. All tests and CI passed, and a model from another vendor approved the review.</p>
+<h5>Open issues</h5><ul><li>Existing suppliers get a tier only after the first nightly recalculation. Recommend running it once by hand on release day.</li></ul>
+<h5>Acceptance criteria</h5><ul><li>The supplier list shows each supplier&rsquo;s tier (screenshot 1)</li><li>A &yen;10,000 order to a tier C supplier goes to the purchasing manager for approval when submitted (screenshots 2 and 3)</li></ul>
+<div class="thumbs"><span></span><span></span><span></span></div></div>
+</div>
+</div>

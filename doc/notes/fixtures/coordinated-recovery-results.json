@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-01T13:26:37.288Z",
+  "scenarios": [
+    {
+      "name": "installer-snapshot-A",
+      "sqliteReturnedToA": true,
+      "selectedPointBAbsent": true,
+      "configurationStayedAtC": true
+    },
+    {
+      "name": "cold-selected-point-B",
+      "codePreparedBeforeRestore": true,
+      "bothServicesStoppedThroughoutRestore": true,
+      "databaseAndUploadMetadataAtB": true,
+      "laterWritesAbsent": true,
+      "noInstallerOperationAfterRestore": true
+    },
+    {
+      "name": "restored-runtime-B",
+      "nativeLogin": true,
+      "selectedRecordRetained": true,
+      "actualUploadedBytesMatchB": true,
+      "configurationMarkerAtB": true,
+      "postBackupRecordAndUploadAbsent": true,
+      "anonymousDownloadDenied": true
+    },
+    {
+      "name": "recovered-restart",
+      "configurationAndUploadedFileRetained": true
+    }
+  ],
+  "baselineArchiveSha256": "e6e5faef86eaa26649aafaaa3cc21385cab36807360d7499c58e44e05338e5eb",
+  "versions": {
+    "node": "v24.22.2",
+    "installer": "0.1.0-beta.10",
+    "pm2": "6.0.14"
+  },
+  "template": "1.0.0-beta.85",
+  "fixtureArchiveSha256": {
+    "a": "77d0e95f8e87e0ff4f948163f95adc513bd1c0e1c3359dac6672bdbe3a93aed8",
+    "b": "a8dab7300941da4d8663b1ee3e770fb9362c577a2de1d755980462bf2408acdf"
+  },
+  "passed": true
+}

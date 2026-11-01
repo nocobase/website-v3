@@ -43,11 +43,11 @@ app-installer 更新在停应用后备份配置声明的 SQLite 数据库及相�
 
 ## 回滚应用与恢复数据
 
-Docker 切回旧镜像不撤销迁移和业务写入。app-installer 的 rollback 可选择旧 release；默认只在对应升级执行了迁移、种子任务或校验修复等条件下恢复记录的 SQLite 备份，以返回计划为准。
+Docker 切回旧镜像不撤销迁移和业务写入。**安装器快照回滚**以返回计划为准：app-installer 可能恢复升级前的 SQLite 快照，然后切换 release 并启动应用。它不会同时恢复文件、配置与外部数据库。即使加 `--no-restore` 也会启动应用，不能用它离线选择代码版本。
 
-需要恢复数据时，停服务并准备与备份匹配的代码，恢复数据库、文件、配置及稳定密钥，再启动。配置虽然有快照，也不能认为 rollback 会自动恢复全部配置、文件和外部数据库。外部数据库与对象存储需要协调恢复时间点。
+**整套备份恢复**需要先封闭外部访问，停止应用和其他写入者。在独立恢复目录中先解压与选定恢复点匹配的发布包，再在两个应用均停止的状态下，恢复同一组数据库、上传文件、配置及稳定密钥。调整目录路径，离线检查配置与迁移计划后，只启动恢复后的应用。人工恢复选定数据库后不要再执行安装器 rollback，以免覆盖恢复点或提前启动服务。
 
-恢复后验证登录、原记录、权限、文件及写入。先在隔离副本验证备份，确认会丢弃哪些后续写入，再操作实际环境。
+开放访问前验证登录、选定记录、权限、上传文件内容、配置和写入。先在隔离副本演练并确认后续写入的取舍，外部数据库与对象存储也要保持恢复点一致。
 
 ## 手动更新与恢复参考
 
@@ -80,14 +80,39 @@ npx --yes @nocobase/app-installer@0.1.0-beta.10 upgrade \
 
 SSH 路线改为 `deploy --ssh deploy@server --dir /srv/nocobase/my-app --archive <本地新包路径>`，不要重复首次安装的 origin、port、name 或 `--set` 等参数。
 
-检查回滚计划，确认目标 release、SQLite 恢复及写入损失后再执行：
+**安装器快照回滚**：仅在其恢复点符合目标，且现有文件与配置仍兼容该数据时使用；否则选择整套备份恢复。先封闭外部访问。检查目标 release、SQLite 恢复及后续写入损失后再执行；确认命令会启动应用：
 ```bash
 npx --yes @nocobase/app-installer@0.1.0-beta.10 rollback --dir /srv/nocobase/my-app --json
 # After accepting the recovery point and any loss of later writes:
 npx --yes @nocobase/app-installer@0.1.0-beta.10 rollback --dir /srv/nocobase/my-app --yes --json
 ```
 
-外部数据库恢复没有通用命令，使用数据库自己的恢复工具。完整恢复时先 `pm2 stop nocobase-my-app`，恢复配套的数据库、文件和配置；由安装器选择匹配 release，检查 status 后再开放访问。不要手工篡改 `current` 或删除 pending 状态。备份操作见[日常维护与排错](maintenance-and-troubleshooting.md)。
+**整套备份恢复**：beta.10 没有离线 rollback 参数。使用独立目录和匹配的发布包，不在人工恢复数据之后切换安装器管理的 release。
+
+1. 封闭外部访问，执行 `pm2 stop nocobase-my-app`，停止使用同一数据库或存储的其他应用、后台任务等写入者。
+2. 为服务账号准备新的恢复目录，先解压匹配发布包，再恢复选定备份中的 `config.yml`、`app.env` 和完整 `storage/`。外部存储使用自身工具恢复到同一时间点，全程保持两个应用停止。
+3. 将恢复的 `app.env` 中 `APP_CONFIG_FILE`、`APP_STORAGE_DIR` 指向恢复目录；核对其他绝对路径及环境覆盖，保留备份的密钥和业务配置。演练使用独立回环端口。
+4. 在恢复目录检查配置及下面两项数据库 dry-run，发现非预期迁移或校验变化时先解决版本匹配问题，不执行迁移来强行兼容备份。确认一致后才执行 PM2 启动命令。
+
+匹配发布包和选定备份是两个文件。原服务停止后，以服务账号准备新目录：
+```bash
+mkdir /srv/nocobase/my-app-recovery
+tar -xzf /tmp/my-app-matching.tar.gz -C /srv/nocobase/my-app-recovery
+tar -xzf /safe/backup/my-app-selected.tar.gz -C /srv/nocobase/my-app-recovery
+```
+
+按上面的要求调整恢复的 `app.env` 路径及环境覆盖后，进入恢复目录检查，再启动：
+```bash
+cd /srv/nocobase/my-app-recovery
+node --env-file=./app.env dist/cli/index.js config check --connect
+node --env-file=./app.env dist/cli/index.js db apply --dry-run --json
+node --env-file=./app.env dist/cli/index.js db repair --dry-run --json
+pm2 start node --name nocobase-my-app-recovery --interpreter none \
+  --cwd /srv/nocobase/my-app-recovery --kill-timeout 60000 -- \
+  --env-file=/srv/nocobase/my-app-recovery/app.env ./dist/server/standalone.js
+```
+
+此恢复目录是手动部署目录，不是 app-installer 安装目录。核对健康、原生登录、记录、上传元数据与下载内容、配置和权限后再开放访问；后续若要恢复安装器托管，另行安排迁移。不要改动旧目录的 `current` 或 pending 状态。备份操作见[日常维护与排错](maintenance-and-troubleshooting.md)。
 
 > [!NOTE]
-> 本机 SQLite 验证覆盖新增测试迁移、显式回滚、启动失败恢复和离线 storage 恢复。框架升级、外部数据库与对象存储仍需单独演练恢复。
+> 本机 SQLite 验证覆盖新增测试迁移、安装器回滚、启动失败恢复，以及记录、原生上传文件与配置的整套恢复。框架升级、外部数据库与对象存储仍需单独演练恢复。

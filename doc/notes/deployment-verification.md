@@ -19,7 +19,35 @@ The five guides share an Agent-led workflow in English, Simplified Chinese and J
 | After failed-update recovery | Native login, the original product, anonymous rejection and catalog rendering passed; the added table was absent. |
 | Authorization tests | The two existing real-application suites passed: 7 tests covering explicit grants, record scopes, revocation and assignment safety. This is separate from deployed-process recovery checks. |
 
-The storage test used a synthetic file, not a browser upload or a file-plugin API. No file contents, configuration, passwords, cookies or database backups are included in the delivery.
+The initial storage test used a synthetic file. The coordinated restore fixture below additionally covers actual native File Repository uploads and downloads over HTTP. No file contents, configuration, passwords, cookies or database backups are included in the delivery.
+
+## Coordinated restore verification
+
+The reusable [recovery fixture](fixtures/verify-coordinated-recovery.mjs) exercises a selected backup that differs from the installer's rollback snapshot. [Sanitized results](fixtures/coordinated-recovery-results.json) contain assertions, versions and artifact digests, without credentials, database contents or private deployment paths.
+
+| Recovery point | Database, upload and configuration state |
+| --- | --- |
+| A: installer pre-update snapshot | Product A and uploaded file A; configuration marker A |
+| B: selected complete backup after one migration | Products A/B, uploaded files A/B and configuration marker B |
+| C: changes after that backup | A further product/upload and configuration marker C |
+
+- Installer rollback restored SQLite to A and removed product B, while configuration remained at C. This reproduces why that operation cannot follow a restore to B.
+- The original process was stopped before matching release B was unpacked into a separate directory. Both HTTP listeners remained unavailable at every restore/check checkpoint; no installer operation ran after the selected backup was restored.
+- The complete B backup restored the database, native File Repository upload metadata and bytes, configuration and stable keys. Only directory paths and the loopback address changed for the isolated target.
+- Offline checks passed before startup. Native login, product B, both uploaded downloads and configuration marker B passed afterward; product/upload C were absent and anonymous downloads returned 401.
+- The recovered PM2 process retained the configuration marker and uploaded bytes after restart. This directory is a standalone recovery deployment, not an app-installer installation.
+
+The fixture adds authenticated test-only file routes and two migrations to temporary copies of the fixed archive. The real File Repository handles multipart uploads, metadata and streamed downloads. The example checkout and all installed dependencies remain unchanged.
+
+To repeat with Node 24 on Linux x64/glibc, prepare a private task-local tools prefix and a **new** working directory. Install the two pinned tools into that prefix with `npm install --prefix <tools-prefix> @nocobase/app-installer@0.1.0-beta.10 pm2@6.0.14`, then run from the website repository:
+
+```bash
+node doc/notes/fixtures/verify-coordinated-recovery.mjs \
+  ../docs-examples-v3/apps/product-catalog/storage/exports/dist.tar.gz \
+  <tools-prefix> <new-private-workdir>
+```
+
+Use the baseline archive digest recorded below. The fixture creates its own PM2 home, free loopback ports, generated native-login credentials and test files; it stops only its own PM2 daemon afterward. Private backups and stderr stay in the private work directory. Publish only `results.json`, never the backup archives or configuration.
 
 ## Documentation checks
 
@@ -39,8 +67,9 @@ The storage test used a synthetic file, not a browser upload or a file-plugin AP
 - Docker source/prebuilt image builds, Compose startup, container recreation, image update and Docker restore: no Docker CLI or daemon socket is present. These commands were checked against the pinned Dockerfile and prior source documentation; rehearse them on a Docker host before relying on this revision for a release.
 - SSH transfer, remote account PATH, public DNS, HTTPS, reverse proxy and WebSocket forwarding: only loopback deployment was available. Public access still needs target-environment checks.
 - External databases, object storage and coordinated point-in-time recovery: the runtime used SQLite and a local file fixture. The installer does not provide external backup/restore.
-- Browser upload/download recovery and permission-grant persistence through rollback: no deployed browser scenario was run. Server authorization suites passed separately.
+- Browser upload/download UI and permission-grant persistence through rollback: no deployed browser scenario was run. Native HTTP upload/download recovery is covered by the coordinated restore fixture; server authorization suites passed separately.
 - ARM64, musl, multiple instances, host reboot recovery, key rotation, checksum-repair authorization and interruption of an installer operation were not exercised.
+- The coordinated recovery directory uses manual PM2 supervision; returning it to app-installer management was not tested.
 - Framework or template upgrades were not tested. Update fixtures retained the baseline dependencies and added a test migration; they are not evidence of cross-version compatibility.
 
 ## Chapter mapping
@@ -88,4 +117,4 @@ The canonical page URLs remain unchanged except for the added maintenance page. 
 - Final successful fixture archive SHA-256 values: migration `7c33901e1f45a9c0048b13da6c5be70c90a553f8eaba447b18906584a0d286c1`; failing-startup `013e920c25b019779a86499a37f3d161ad87b6cfa81a7c3f8b44e4b5518365c2`.
 - Runtime sequence: `install`, `status`, native sign-in and product create/publish/read, `pm2 restart`, identical-archive `upgrade`, new-archive preflight and confirmed `upgrade`, preflight and confirmed `rollback`, stopped storage backup/restore, then confirmed failed-startup `upgrade` and post-recovery checks.
 - Permission checks: `pnpm exec vitest run tests/server/catalog.test.ts tests/server/authorization-assignment-safety.test.ts`.
-- The initial test fixture lacked a migration manifest entry; the normal preflight refused it. The fixture was corrected without bypassing checks. Harness assertions were corrected to use physical snake_case table names and the documented rolled-back exit code 3. HTTP connections were explicitly closed to avoid reusing a stale connection across synchronous child processes.
+- The initial update test fixture lacked a migration manifest entry; the normal preflight refused it. The fixture was corrected without bypassing checks. Harness assertions were corrected to use physical snake_case table names and the documented rolled-back exit code 3. HTTP connections were explicitly closed to avoid reusing a stale connection across synchronous child processes.

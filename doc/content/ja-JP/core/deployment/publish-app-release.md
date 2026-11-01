@@ -43,11 +43,11 @@ app-installer の更新はアプリ停止後、設定に宣言された SQLite �
 
 ## アプリのロールバックとデータ復元を行う
 
-Docker で旧イメージに切り替えてもマイグレーションや業務書き込みは戻りません。app-installer rollback は旧 release を選べます。既定では、対応する更新でマイグレーション、seed、チェックサム修復を行った場合などに、記録された SQLite バックアップを復元します。返された計画を確認してください。
+Docker の旧イメージへの切り替えはマイグレーションや業務書き込みを戻しません。**インストーラーのスナップショットへのロールバック**では、返された計画を確認します。app-installer は更新前の SQLite を復元する場合があり、その後 release を切り替えてアプリを起動します。ファイル、設定、外部データベースは一緒に戻りません。`--no-restore` でも起動するため、オフラインでのコード選択には使えません。
 
-データ復旧ではサービスを停止し、バックアップと合うコードを用意して、データベース、ファイル、設定、鍵を復元してから起動します。設定のスナップショットがあっても、rollback がすべての設定、ファイル、外部データベースを自動復元するわけではありません。外部データベースとオブジェクトストレージは復旧時点を揃えます。
+**一式のバックアップからの復旧**では、外部アクセスを遮断し、アプリと他の書き込み元を停止します。まず選択した復旧時点に合うアーカイブを別の復旧ディレクトリに展開します。両アプリを停止したまま、同じ一式のデータベース、アップロード、設定、鍵を復元します。パスを調整して設定とマイグレーション計画をオフライン確認し、復旧したアプリだけを起動します。選んだデータベースを復元した後に installer rollback を実行すると、復旧時点が上書きされたり、サービスが早く起動したりするため、実行しません。
 
-復旧後はログイン、旧レコード、権限、ファイル、書き込みを検証します。隔離コピーで演習し、失われる後続書き込みを確認してから実環境を復旧します。
+公開再開前にログイン、選択したレコード、権限、アップロードの内容、設定、書き込みを確認します。隔離コピーで演習し、後続書き込みの扱いを決めます。外部データベースとオブジェクトストレージの復旧時点も揃えます。
 
 ## 手動更新と復旧の参考
 
@@ -80,14 +80,39 @@ npx --yes @nocobase/app-installer@0.1.0-beta.10 upgrade \
 
 SSH は `deploy --ssh deploy@server --dir /srv/nocobase/my-app --archive <ローカルの新しいアーカイブ>` を使い、初回の origin、port、name、`--set` は再指定しません。
 
-ロールバック計画を調べ、対象 release、SQLite 復元、後続書き込みの損失を確認してから実行します。
+**インストーラーのスナップショットへのロールバック**：その復旧時点を使い、現行のファイルと設定もそのデータと互換性がある場合だけ実行します。それ以外は一式のバックアップから復旧します。外部アクセスを先に遮断し、release、SQLite 復元、後続書き込みの損失を確認します。承認したコマンドはアプリを起動します。
 ```bash
 npx --yes @nocobase/app-installer@0.1.0-beta.10 rollback --dir /srv/nocobase/my-app --json
 # After accepting the recovery point and any loss of later writes:
 npx --yes @nocobase/app-installer@0.1.0-beta.10 rollback --dir /srv/nocobase/my-app --yes --json
 ```
 
-外部データベースの復元にはその製品のツールを使います。一式の復旧では先に `pm2 stop nocobase-my-app` で停止し、対応するデータベース、ファイル、設定を復元し、インストーラーで対応する release を選びます。status 確認後に利用を再開します。`current` の改変や pending の削除は行いません。バックアップは[日常の保守とトラブルシューティング](maintenance-and-troubleshooting.md)を参照してください。
+**一式のバックアップからの復旧**：beta.10 にオフライン rollback 引数はありません。別ディレクトリと対応アーカイブを使い、手動復元後にインストーラー管理の release を切り替えません。
+
+1. 外部アクセスを遮断し、`pm2 stop nocobase-my-app` を実行します。同じデータベースやストレージを使う他のアプリやバックグラウンド処理も止めます。
+2. サービスアカウント用の新しい復旧ディレクトリを用意し、対応アーカイブを先に展開します。選んだバックアップの `config.yml`、`app.env`、完全な `storage/` を復元します。外部ストレージはその製品のツールで同じ時点に戻します。両アプリを停止したまま作業します。
+3. 復元した `app.env` の `APP_CONFIG_FILE` と `APP_STORAGE_DIR` を復旧ディレクトリに変更します。他の絶対パスと環境変数の上書きを確認し、バックアップの鍵と業務設定は保持します。演習は別のループバックポートを使います。
+4. 復旧ディレクトリで設定と以下の 2 つのデータベース dry-run を確認します。予期しないマイグレーションやチェックサム変更があれば、バックアップに合うバージョンを調べ、強引に適用しません。整合性を確認してから PM2 を起動します。
+
+対応リリースのアーカイブと選んだバックアップは別のファイルです。旧サービス停止後、サービスアカウントで新しいディレクトリを準備します。
+```bash
+mkdir /srv/nocobase/my-app-recovery
+tar -xzf /tmp/my-app-matching.tar.gz -C /srv/nocobase/my-app-recovery
+tar -xzf /safe/backup/my-app-selected.tar.gz -C /srv/nocobase/my-app-recovery
+```
+
+復元した `app.env` のパスと環境変数を上記のとおり確認してから、復旧先で確認と起動を行います。
+```bash
+cd /srv/nocobase/my-app-recovery
+node --env-file=./app.env dist/cli/index.js config check --connect
+node --env-file=./app.env dist/cli/index.js db apply --dry-run --json
+node --env-file=./app.env dist/cli/index.js db repair --dry-run --json
+pm2 start node --name nocobase-my-app-recovery --interpreter none \
+  --cwd /srv/nocobase/my-app-recovery --kill-timeout 60000 -- \
+  --env-file=/srv/nocobase/my-app-recovery/app.env ./dist/server/standalone.js
+```
+
+この復旧先は手動デプロイで、app-installer のインストール先ではありません。ヘルス、ネイティブログイン、レコード、アップロードのメタデータとダウンロード内容、設定、権限を確認してから公開します。インストーラー管理への移行は別途計画します。旧ディレクトリの `current` や pending は変更しません。バックアップは[日常の保守とトラブルシューティング](maintenance-and-troubleshooting.md)を参照してください。
 
 > [!NOTE]
-> ローカル SQLite ではテスト用マイグレーションの追加、明示的ロールバック、起動失敗後の復旧、オフライン storage 復元を確認しました。フレームワーク更新、外部データベース、オブジェクトストレージは個別の復旧演習が必要です。
+> ローカル SQLite ではテスト用マイグレーション、インストーラーのロールバック、起動失敗後の復旧、レコード・ネイティブアップロード・設定の一式の復元を確認しました。フレームワーク更新、外部データベース、オブジェクトストレージは個別の復旧演習が必要です。

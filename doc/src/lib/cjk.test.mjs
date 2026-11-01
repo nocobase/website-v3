@@ -31,3 +31,10 @@ test('a query is searched as an exact phrase first, then as all of its character
   expect(cjkQueries('什么是 Core')).toEqual(['"什 么 是 Core"', '什 么 是 Core']);
   expect(cjkQueries('"创建插件"')).toEqual(['"创 建 插 件"', '创 建 插 件']);
 });
+
+test('Japanese long vowel marks are indexed and displayed together with kana', () => {
+  expect(visible(spaceCjk('ロケール'))).toBe('_ロ__ケ__ー__ル_');
+  expect(cjkQueries('サーバーの設定')).toEqual(['"サ ー バ ー の 設 定"', 'サ ー バ ー の 設 定']);
+  expect(unspaceCjk('ロ ケ ー ル 検 証')).toBe('ロケール検証');
+  expect(unspaceCjk('<mark>サ ー バ ー </mark>の 設 定')).toBe('<mark>サーバー</mark>の設定');
+});

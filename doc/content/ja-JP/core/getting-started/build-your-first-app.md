@@ -55,17 +55,17 @@ metaDescription: 新しいアプリで、エージェントに顧客管理を構
 ```tree
 my-app/
 ├── database/main/
-│   ├── migrations/      # Create the customers table
-│   └── seeds/           # Initialize three customer roles
+│   ├── migrations/      # 顧客のテーブルを作成する
+│   └── seeds/           # 顧客の 3 つのロールを初期化する
 ├── server/
-│   ├── customers/       # Input validation, business services and permissions
-│   ├── providers/       # Register customer services and permissions
-│   └── routes/          # Customer HTTP APIs
+│   ├── customers/       # 入力の検証、業務のサービス、権限
+│   ├── providers/       # 顧客のサービスと権限を登録する
+│   └── routes/          # 顧客の HTTP の API
 ├── client/
-│   ├── routes.ts        # Customer pages, sidebar entry and system settings
-│   ├── pages/customers/ # List, details, forms and action menus
-│   └── locales/         # Interface text
-└── tests/               # Migration, API, page and browser tests
+│   ├── routes.ts        # 顧客のページ、サイドバーの項目、システム設定
+│   ├── pages/customers/ # 一覧、詳細、フォーム、操作メニュー
+│   └── locales/         # 画面の文言
+└── tests/               # マイグレーション、API、ページ、ブラウザーのテスト
 ```
 
 [CRM の完全なサンプル](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm) を参照するか、[ZIP をダウンロード](/assets/core/downloads/crm-source-8ad9530.zip) してください。セットアップと実行の手順は [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD) を参照してください。

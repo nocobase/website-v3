@@ -66,4 +66,4 @@ Employee、IT support、Asset manager のロールを今作成してください
 
 ![1 件の申請の実行記録](https://static-docs.nocobase.com/20261030-itam-lite-requests-workflow-execution.webp)
 
-**完了の目安**：資産管理者がノート PC の申請を承認し、IT サポートが貸与すると、台帳のデバイスが In use になって申請者に割り当てられること。モニターの申請がそのまま Ready to issue になること。Cathy、Ben、Alice にそれぞれ対応するアプリ内メッセージが届くこと。**Workflow management** にプロセス図、承認ルール、実行記録が表示されること。
+**完了の条件**：資産管理者がノート PC の申請を承認し、IT サポートが貸与すると、台帳のデバイスが In use になって申請者に割り当てられること。モニターの申請がそのまま Ready to issue になること。Cathy、Ben、Alice にそれぞれ対応するアプリ内メッセージが届くこと。**Workflow management** にプロセス図、承認ルール、実行記録が表示されること。

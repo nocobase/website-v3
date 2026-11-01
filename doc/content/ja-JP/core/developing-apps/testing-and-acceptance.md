@@ -14,15 +14,15 @@ description: アプリを中心にクライアント、サーバー、データ�
 ```tree
 my-app/
 ├── tests/
-│   ├── client/          # Pages, components, Hooks and client services
-│   ├── server/          # HTTP APIs, business services and permissions
-│   ├── database/        # Migrations, Seeds, queries and transactions
-│   ├── cli/             # Application commands
-│   ├── project/         # Project configuration and build artifacts
-│   ├── fixtures/        # Test data and fixture applications
-│   ├── helpers/         # Shared test helpers
-│   ├── setup/           # Test environment setup
-│   └── playwright/      # Browser tests (optional)
+│   ├── client/          # ページ、コンポーネント、Hooks、クライアントのサービス
+│   ├── server/          # HTTP の API、業務のサービス、権限
+│   ├── database/        # マイグレーション、シード、照会、トランザクション
+│   ├── cli/             # アプリのコマンド
+│   ├── project/         # プロジェクトの設定とビルドの成果物
+│   ├── fixtures/        # テストのデータとフィクスチャーのアプリ
+│   ├── helpers/         # 共有のテストのヘルパー
+│   ├── setup/           # テスト環境のセットアップ
+│   └── playwright/      # ブラウザーのテスト（任意）
 ├── vitest.config.ts
 └── playwright.config.ts
 ```
@@ -303,4 +303,4 @@ pnpm build
 
 実際に実行したコマンド、テストファイルと結果、データベースのダイアレクト、ユーザーのロール、主要な流れを記録します。SQLite でしかテストしていない、ブラウザーのテストを実行していない、デプロイの成果物を確認していないなど、スキップしたことと検証していないことは明記します。それらのチェックを合格として報告しないでください。
 
-**完了の目安**：変更した動作、データ、権限の境界に対応する検証があり、必要な型とビルドのチェックに合格し、ブラウザーが必要な流れが検収され、残っている制約が記録されていること。
+**完了の条件**：変更した動作、データ、権限の境界に対応する検証があり、必要な型とビルドのチェックに合格し、ブラウザーが必要な流れが検収され、残っている制約が記録されていること。

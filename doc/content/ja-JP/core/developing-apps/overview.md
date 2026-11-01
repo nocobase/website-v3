@@ -40,11 +40,11 @@ NocoBase アプリは、責任ごとにコードを整理します。
 
 ```tree
 my-app/
-├── client/       # Pages, components and routes
-├── server/       # APIs and business services
-├── database/     # Migrations and initial data
-├── tests/        # Tests
-└── config.yml    # Application configuration
+├── client/       # ページ、コンポーネント、ルート
+├── server/       # API と業務のサービス
+├── database/     # マイグレーションと初期データ
+├── tests/        # テスト
+└── config.yml    # アプリの設定
 ```
 
 機能に応じた適切なディレクトリにコードを書きます。新しいページ、API、サービスは、それぞれの登録の入口からアプリに接続します。

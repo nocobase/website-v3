@@ -17,7 +17,7 @@ database/
     │   └── 202611040003_add_app_status_description.ts
     ├── seeds/
     │   └── 202611040002_default_app_statuses.ts
-    └── collections/  # Generated cache
+    └── collections/  # 生成されるキャッシュ
 ```
 
 ディレクトリ名は接続を識別しますが、ディレクトリを作成しても接続は登録されません。別の接続の場合は、ディレクトリと `--connection` 引数の両方を変更します。[複数のデータベース接続](multiple-databases.md) を参照してください。データベースのファイルがサーバーの型チェックに含まれるよう、テンプレートの `database/tsconfig.json` は残しておきます。

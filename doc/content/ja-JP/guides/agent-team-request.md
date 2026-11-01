@@ -27,7 +27,7 @@ Studio では、要件はタスクです。人の判断が必要なステータ�
 
 <!-- TODO screenshot (English interface, browser width 1440): discussing the device stocktake in My sessions; after the agent asks and you answer, the session lists the created ITAM-12 issue and the Start button -->
 
-**完了の目安**：itam-lite プロジェクトに「Device stocktake」タスクがあり、その説明に決めたルールと検収シナリオが含まれていること。
+**完了の条件**：itam-lite プロジェクトに「Device stocktake」タスクがあり、その説明に決めたルールと検収シナリオが含まれていること。
 
 ## 2. 開始する
 
@@ -37,7 +37,7 @@ Studio では、要件はタスクです。人の判断が必要なステータ�
 
 <!-- TODO screenshot (English interface, browser width 1440): the top of the ITAM-12 issue page, with Now showing the developing agent at work and Up next saying that after development it goes to another vendor for review -->
 
-**完了の目安**：タスクが In progress で、実行者がコーディネーターエージェントになっていること。
+**完了の条件**：タスクが In progress で、実行者がコーディネーターエージェントになっていること。
 
 ## 3. 質問に答える
 
@@ -53,7 +53,7 @@ Studio では、要件はタスクです。人の判断が必要なステータ�
 
 [エージェントの質問に答える](../studio/use/answer.md) を参照してください。
 
-**完了の目安**：タスクが In progress に戻っていること。
+**完了の条件**：タスクが In progress に戻っていること。
 
 ## 4. チェックとレビュー
 
@@ -75,4 +75,4 @@ PR が作成されると、まず CI が実行され、続いて別ベンダー�
 
 ![タスクをフォローする](https://static-docs.nocobase.com/20261029152227386.png)
 
-**完了の目安**：タスクが Done になり、デバイスの棚卸しが itam-lite の既定のブランチにマージされていること。
+**完了の条件**：タスクが Done になり、デバイスの棚卸しが itam-lite の既定のブランチにマージされていること。

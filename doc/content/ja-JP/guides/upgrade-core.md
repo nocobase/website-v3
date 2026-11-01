@@ -13,4 +13,4 @@ NocoBase Core を最新バージョンにアップグレードしてください
 
 手動でのアップグレード手順と確認のチェックリストについては、[NocoBase Core をアップグレードする](../core/developing-apps/upgrade-nocobase-core.md) を参照してください。アップグレード後のリリースは、ほかの新しいリリースの公開と同じです。新しいイメージをビルドし、デプロイ先のディレクトリをバックアップしてから置き換えます。[新しいリリースを公開する](../core/tutorials/deploy-with-docker.md#新しいリリースを公開する) を参照してください。
 
-**完了の目安**：`package.json` の `nocobase.defaultTemplateVersion` が新しいバージョンになり、テストとビルドが通過し、アップグレード前のデータがすべて残っていること。
+**完了の条件**：`package.json` の `nocobase.defaultTemplateVersion` が新しいバージョンになり、テストとビルドが通過し、アップグレード前のデータがすべて残っていること。

@@ -237,7 +237,7 @@ docker compose up -d
 
 これらの管理者の設定は、初回インストール時にだけ適用されます。あとからパスワードを変更するには、**Account settings › Account and security** を使います。
 
-**完了の目安**：管理者がサインインでき、プロジェクト一覧が空で、サインインページに登録用のリンクがないこと。runner と CLI を接続するときは、`/main` を含む完全な URL を使います。
+**完了の条件**：管理者がサインインでき、プロジェクト一覧が空で、サインインページに登録用のリンクがないこと。runner と CLI を接続するときは、`/main` を含む完全な URL を使います。
 
 ![初回サインイン後の空のプロジェクト一覧](https://static-docs.nocobase.com/studio-en-setup-empty-projects-20261030.png)
 

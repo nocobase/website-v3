@@ -59,7 +59,7 @@ curl -fsSL https://studio.example.com/main/api/agents/dist/installScript | sh -s
 | Login required | インストールされているがサインインしていない | マシンで、runner を実行するシステムユーザーとしてツールにサインインし、詳細で **Detect again** をクリックします |
 | Not installed | ツールが見つからない | インストールします。インストール済みなのにまだ表示される場合は、下のトラブルシューティングを参照してください |
 
-**完了の目安**：ランタイムがオンラインで、使いたいコーディングツールに **Signed in** と表示されていること。このとき **Agent management › Agents** には、よく使われるモデルのエージェントが一覧表示され、ほかのモデルは **Add agent** で追加できます。次に、[エージェントを有効にします](../setup/agents.md)。
+**完了の条件**：ランタイムがオンラインで、使いたいコーディングツールに **Signed in** と表示されていること。このとき **Agent management › Agents** には、よく使われるモデルのエージェントが一覧表示され、ほかのモデルは **Add agent** で追加できます。次に、[エージェントを有効にします](../setup/agents.md)。
 
 ## ランタイムを管理する
 

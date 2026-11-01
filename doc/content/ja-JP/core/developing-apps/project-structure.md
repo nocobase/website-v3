@@ -9,25 +9,25 @@ description: アプリ内のページ、API、マイグレーション、テス�
 
 ```text
 my-app/
-├── client/              # Pages, components and client logic
-├── server/              # APIs and business services
-├── database/            # Migrations and seeds, grouped by connection
-├── cli/                 # Application commands and CLI plugins
-├── tests/               # Tests and test helpers
-├── public/              # Static assets
-├── packages/            # Local workspace packages (optional)
+├── client/              # ページ、コンポーネント、クライアントのロジック
+├── server/              # API と業務のサービス
+├── database/            # 接続ごとにまとめたマイグレーションとシード
+├── cli/                 # アプリのコマンドと CLI のプラグイン
+├── tests/               # テストとテストのヘルパー
+├── public/              # 静的アセット
+├── packages/            # ローカルの workspace のパッケージ（任意）
 ├── .agents/
-│   ├── rules/           # Project-owned Agent rules
-│   └── skills/          # Synchronized dependency Skills (generated)
-├── AGENTS.md            # Agent guidance entry
-├── config.example.yml   # Configuration example
-├── config.yml           # Local configuration (generated during setup)
-├── package.json         # Scripts and dependencies
-├── pnpm-lock.yaml       # Resolved dependency versions
-├── pnpm-workspace.yaml  # Workspace settings
-├── node_modules/        # Installed dependencies (generated)
-├── dist/                # Build output (generated)
-└── storage/             # Runtime data
+│   ├── rules/           # プロジェクトが所有するエージェントのルール
+│   └── skills/          # 依存関係から同期したスキル（生成）
+├── AGENTS.md            # エージェント向けガイダンスの入口
+├── config.example.yml   # 設定の例
+├── config.yml           # ローカルの設定（セットアップ時に生成）
+├── package.json         # スクリプトと依存関係
+├── pnpm-lock.yaml       # 解決済みの依存関係のバージョン
+├── pnpm-workspace.yaml  # workspace の設定
+├── node_modules/        # インストール済みの依存関係（生成）
+├── dist/                # ビルドの出力（生成）
+└── storage/             # 実行時のデータ
 ```
 
 ディレクトリはテンプレートのバージョンやアプリの機能によって異なります。`packages/` などの任意のディレクトリは、ツリーに合わせて空のディレクトリを追加するのではなく、必要になったときに作成してください。

@@ -19,7 +19,7 @@ metaDescription: itam-lite を NocoBase Studio に取り込み、エージェン
 
 [エージェントでインストールと設定を行う](../studio/setup/with-agent.md) のプロンプトに情報を記入し、コーディングエージェントに渡します。エージェントは、Studio のデプロイ、Git の接続、共有ランタイムの接続、エージェントの有効化の 4 つを行います。レジストリへのサインイン、Studio への初回サインイン、`nb-studio` のサインインの承認、GitHub での App の作成は、自分で行います。
 
-**完了の目安**：[結果を確認する](../studio/setup/with-agent.md#結果を確認する) の項目がすべて満たされていること。
+**完了の条件**：[結果を確認する](../studio/setup/with-agent.md#結果を確認する) の項目がすべて満たされていること。
 
 ## 2. itam-lite にひも付いたプロジェクトを作成する
 
@@ -31,7 +31,7 @@ nb-studio を使って、Studio に itam-lite という名前のプロジェク�
 
 その他のオプションについては、[プロジェクトを作成する](../studio/setup/new-project.md) を参照してください。
 
-**完了の目安**：プロジェクトページが開き、**Project settings › Code repositories** に itam-lite が表示されていること。
+**完了の条件**：プロジェクトページが開き、**Project settings › Code repositories** に itam-lite が表示されていること。
 
 ## 3. PR プレビュー用に CI を接続する（任意）
 
@@ -45,4 +45,4 @@ nb-studio を使って、Studio に itam-lite という名前のプロジェク�
 
 ![チェックの設定：トリガーとアプリを選び、プロンプトをエージェントに渡します](https://static-docs.nocobase.com/20261030-studio-checks-dialog.webp)
 
-**完了の目安**：この PR をマージしたあと、**Checks** の行が接続済みと表示され、以降に作成された PR ではタスクページからプレビューを開けること。
+**完了の条件**：この PR をマージしたあと、**Checks** の行が接続済みと表示され、以降に作成された PR ではタスクページからプレビューを開けること。

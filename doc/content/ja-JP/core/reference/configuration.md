@@ -10,9 +10,9 @@ description: ファイルと環境変数の優先順位、よく使うセクシ�
 既定のテンプレートは、次の順に値をマージし、あとのものが優先されます。
 
 ```text
-Code defaults in server/config/
+server/config/ のコードの既定値
     → config.yml
-    → explicitly mapped environment variables
+    → 明示的に対応付けた環境変数
 ```
 
 プレーンなオブジェクトは再帰的にマージされ、配列とスカラー値は置き換えられます。環境変数には宣言された対応付けが必要で、任意にパスへ変換されることはありません。YAML の `${NAME}` はリテラルの文字列で、自動で展開されることはありません。

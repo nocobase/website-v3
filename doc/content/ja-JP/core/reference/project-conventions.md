@@ -10,47 +10,47 @@ description: アプリ、プラグイン、UI のソースアセットの入口�
 ```tree
 my-app/
 ├── .agents/
-│   ├── rules/                    # Project-owned rules
-│   └── skills/                   # Synchronized dependency Skills (generated)
+│   ├── rules/                    # プロジェクトが所有するルール
+│   └── skills/                   # 依存関係から同期したスキル（生成）
 ├── cli/
-│   ├── commands/                 # App commands (optional)
-│   └── plugins.ts                # CLI plugin registration
+│   ├── commands/                 # アプリのコマンド（任意）
+│   └── plugins.ts                # CLI のプラグインの登録
 ├── client/
-│   ├── pages/                    # Business pages
-│   ├── layouts/                  # Page layouts
-│   ├── components/               # UI components
-│   ├── hooks/                    # Shared interaction and state logic
-│   ├── locales/                  # Translations
-│   ├── theme/                    # Theme and styles
-│   ├── routes.ts                 # Routes, menus and navigation
-│   ├── plugins.ts                # Client plugin registration
-│   └── runtime.ts                # Client assembly
+│   ├── pages/                    # 業務のページ
+│   ├── layouts/                  # ページのレイアウト
+│   ├── components/               # UI コンポーネント
+│   ├── hooks/                    # 共有の操作と状態のロジック
+│   ├── locales/                  # 翻訳
+│   ├── theme/                    # テーマとスタイル
+│   ├── routes.ts                 # ルート、メニュー、ナビゲーション
+│   ├── plugins.ts                # Client のプラグインの登録
+│   └── runtime.ts                # Client の組み立て
 ├── database/
 │   └── main/
-│       ├── migrations/           # Schema and metadata changes
-│       ├── seeds/                # Initial data
-│       ├── metadata/             # External-connection metadata (optional)
-│       └── collections/          # Resolved model snapshots (generated)
-├── packages/                     # Workspace packages (optional)
-├── public/                       # Static assets
+│       ├── migrations/           # スキーマとメタデータの変更
+│       ├── seeds/                # 初期データ
+│       ├── metadata/             # 外部の接続のメタデータ（任意）
+│       └── collections/          # 解決済みのモデルのスナップショット（生成）
+├── packages/                     # workspace のパッケージ（任意）
+├── public/                       # 静的アセット
 ├── server/
-│   ├── routes/                   # HTTP routes and index.ts registration
-│   ├── services/                 # Business implementations (optional)
-│   ├── providers/                # Service registration and lifecycle
-│   ├── config/                   # Defaults, validation and environment mappings
-│   ├── plugins.ts                # Server plugin registration
-│   └── runtime.ts                # Server assembly
-├── tests/                        # Tests, fixtures and helpers
-├── storage/                      # Runtime data (generated)
-├── dist/                         # Build output (generated)
-├── node_modules/                 # Installed dependencies (generated)
-├── AGENTS.md                     # Project guidance entry
-├── config.example.yml            # Configuration example
-├── config.yml                    # Local/deployment configuration
-├── components.json               # shadcn configuration
-├── package.json                  # Scripts, dependencies and app metadata
-├── pnpm-lock.yaml                # Resolved dependency versions
-└── pnpm-workspace.yaml           # Workspace package directories
+│   ├── routes/                   # HTTP のルートと index.ts での登録
+│   ├── services/                 # 業務の実装（任意）
+│   ├── providers/                # サービスの登録とライフサイクル
+│   ├── config/                   # 既定値、検証、環境変数の対応付け
+│   ├── plugins.ts                # Server のプラグインの登録
+│   └── runtime.ts                # Server の組み立て
+├── tests/                        # テスト、フィクスチャー、ヘルパー
+├── storage/                      # 実行時のデータ（生成）
+├── dist/                         # ビルドの出力（生成）
+├── node_modules/                 # インストール済みの依存関係（生成）
+├── AGENTS.md                     # プロジェクトのガイダンスの入口
+├── config.example.yml            # 設定の例
+├── config.yml                    # ローカル / デプロイの設定
+├── components.json               # shadcn の設定
+├── package.json                  # スクリプト、依存関係、アプリのメタデータ
+├── pnpm-lock.yaml                # 解決済みの依存関係のバージョン
+└── pnpm-workspace.yaml           # workspace のパッケージのディレクトリ
 ```
 
 サービスのディレクトリ、コマンド、ローカルのパッケージ、外部のデータベースのメタデータは、必要なときだけ作成します。空のディレクトリは不要です。テンプレートのレイアウト、テーマ、実行時の入口はアプリが所有するソースです。アップグレードの際も、業務のためのカスタマイズを保ってください。
@@ -84,31 +84,31 @@ my-app/
 
 ```tree
 packages/
-├── app-plugin-orders/            # Runtime plugin
+├── app-plugin-orders/            # 実行時のプラグイン
 │   ├── client/
 │   │   ├── components/
-│   │   ├── react-providers/      # React context integration
-│   │   ├── providers/            # Client ServiceProviders
+│   │   ├── react-providers/      # React の Context の組み込み
+│   │   ├── providers/            # Client の ServiceProvider
 │   │   ├── plugin.ts
-│   │   └── index.ts              # Public Client entry
+│   │   └── index.ts              # 公開の Client の入口
 │   ├── server/
 │   │   ├── services/
-│   │   ├── providers/            # Server ServiceProviders
-│   │   ├── tokens.ts             # Public service contracts
+│   │   ├── providers/            # Server の ServiceProvider
+│   │   ├── tokens.ts             # 公開のサービスの取り決め
 │   │   ├── plugin.ts
-│   │   └── index.ts              # Public Server entry
+│   │   └── index.ts              # 公開の Server の入口
 │   ├── cli/
 │   ├── database/
 │   ├── skills/
 │   ├── tests/
 │   ├── AGENTS.md
 │   └── package.json
-├── orders-ui/                    # Independent UI Registry package
+├── orders-ui/                    # 独立した UI Registry のパッケージ
 │   ├── registry/
 │   ├── registry.json
-│   ├── public/r/                 # Built item JSON (generated)
+│   ├── public/r/                 # ビルドしたアイテムの JSON（生成）
 │   └── package.json
-└── shared-domain/                # Internal shared code (optional)
+└── shared-domain/                # 内部の共有コード（任意）
     └── package.json
 ```
 

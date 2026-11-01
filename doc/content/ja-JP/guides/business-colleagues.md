@@ -13,7 +13,7 @@ metaDescription: 資産管理者を Studio に招待し、My sessions で業務�
 
 Xu Ning は招待リンクを開いて名前とパスワードを入力し、**Create account and join** をクリックします。[サインインと個人設定](../studio/join/sign-in.md) を参照してください。
 
-**完了の目安**：**Settings › Members** の一覧に Xu Ning が表示されていること。
+**完了の条件**：**Settings › Members** の一覧に Xu Ning が表示されていること。
 
 ## 2. Xu Ning が要件を出す
 
@@ -31,7 +31,7 @@ Xu Ning はデバイスの廃棄を管理したいと考えています。Studio
 
 <!-- TODO screenshot (English interface, browser width 1440): Xu Ning discussing device retirement in the Runner Agent mode of My sessions, with the created issue and Start listed on the right of the session -->
 
-**完了の目安**：itam-lite プロジェクトに「Device retirement」タスクがあり、Xu Ning が責任者で、In progress になっていること。
+**完了の条件**：itam-lite プロジェクトに「Device retirement」タスクがあり、Xu Ning が責任者で、In progress になっていること。
 
 ## 3. Xu Ning が質問に答える
 
@@ -47,4 +47,4 @@ Xu Ning はデバイスの廃棄を管理したいと考えています。Studio
 
 タスクが In review に移ると、Xu Ning は引き渡しレポートとスクリーンショットを読み、プレビューで試します。従業員がまだ持っているデバイスの廃棄申請を出し、止められることを確認します。デバイスが返却されたあとでもう一度申請し、承認されたら、そのデバイスが申請できるデバイスに表示されなくなったことを確認します。期待どおりに動けば、Xu Ning は **Merge** をクリックします。[結果を検収する](../studio/use/accept.md) を参照してください。
 
-**完了の目安**：「Device retirement」タスクが Done になり、Xu Ning がすべての業務上の質問に直接答えていること。
+**完了の条件**：「Device retirement」タスクが Done になり、Xu Ning がすべての業務上の質問に直接答えていること。

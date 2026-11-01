@@ -44,4 +44,4 @@ git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
 
-**完了の目安**：`node --version` に `v24` 以降、`pnpm --version` に 11.7 以降が表示され、`git config user.name` に自分の名前が表示されること。
+**完了の条件**：`node --version` に `v24` 以降、`pnpm --version` に 11.7 以降が表示され、`git config user.name` に自分の名前が表示されること。

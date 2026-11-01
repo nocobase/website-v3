@@ -8,7 +8,7 @@ title: サーバーのランタイム
 
 ```text
 server/runtime.ts + server/config/
-  → resolved runtime
+  → 解決済みのランタイム
   → createApp(runtime)
   → Application + ServiceProviders
   → app.start()

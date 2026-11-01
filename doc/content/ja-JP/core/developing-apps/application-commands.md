@@ -14,8 +14,8 @@ cli/
 ├── commands/
 │   └── statuses/
 │       ├── export.ts       # app statuses export
-│       └── _helpers.ts     # Helpers, not a command
-└── plugins.ts              # Plugin command registration
+│       └── _helpers.ts     # ヘルパー。コマンドではない
+└── plugins.ts              # プラグインのコマンドの登録
 ```
 
 各コマンドファイルは `AppCommand` のサブクラスをデフォルトエクスポートします。パスが `app` の下での名前を決め、索引への登録は不要です。`_` で始まるファイルとディレクトリ、`lib` という名前のディレクトリはスキップされます。`dist`、`build`、`coverage`、`generated` はコマンドのディレクトリに使わないでください。プロジェクトのバージョン管理、フォーマット、チェックのルールがこれらの名前を無視します。

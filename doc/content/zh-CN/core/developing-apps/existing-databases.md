@@ -118,7 +118,7 @@ export async function listCrmOrders(
 
 只想提供只读访问时，同时限制数据库账号与应用开放操作。`include()` 不授予关联读取权限；若订单和客户需要分别使用不同业务操作的范围，分别绑定策略查询，见[查询与操作数据](querying-data.md)。
 
-如果需要 HTTP 接口，可按[路由与 HTTP 接口](apis-and-services.md)声明 Repository 数据接口，并明确 `connection: 'externalCrm'`、允许的操作及权限策略。增加连接或元数据本身不会自动开放 API。
+如果需要 HTTP 接口，可按[HTTP 路由与接口](apis-and-services.md)声明 Repository 数据接口，并明确 `connection: 'externalCrm'`、允许的操作及权限策略。增加连接或元数据本身不会自动开放 API。
 
 ## 验证
 

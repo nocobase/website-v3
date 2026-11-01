@@ -11,7 +11,7 @@ Tell the Agent where the application runs and how it is deployed. For example:
 
 ```text
 Please deploy the current application's new version to the existing server using Docker.
-The deployment directory is /srv/nocobase/tasks. Keep the existing data and configuration, back up before updating, and check the app afterward.
+The deployment directory is /srv/nocobase/shop. Keep the existing data and configuration, back up before updating, and check the app afterward.
 ```
 
 For PM2 (app-installer), provide the server and existing installation directory so app-installer can update the application.

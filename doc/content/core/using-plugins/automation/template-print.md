@@ -65,8 +65,8 @@ Map fields and repeating regions to authorized data. Inspect images, QR codes, f
 
 Open generated files and check values, totals, repeating regions and pagination. Verify denied records and fields cannot be printed. For PDF, test conversion, fonts and failure handling in the deployment environment.
 
-Related: [Develop with an agent](../../developing-apps/develop-with-an-agent.md), [Files](../data-and-files/file-management.md), [Permission management](../authorization/permissions.md).
+Related: [Continue developing your app](../../getting-started/develop-with-an-agent.md), [Files](../data-and-files/file-management.md), [Permission management](../authorization/permissions.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Develop with an Agent](../../developing-apps/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Continue developing your app](../../getting-started/develop-with-an-agent.md) and [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-template-print).

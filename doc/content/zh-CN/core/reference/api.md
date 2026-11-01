@@ -102,7 +102,7 @@ export async function loadAnnouncements(api: ApiClient) {
 
 OpenAPI 描述相关辅助函数从 `@nocobase/app-server/router` 导入，避免混用另一份依赖的元数据注册表。启用访问检查后，可通过应用的 `/api/swagger` 和 `/api/swagger/docs` 查看页面及描述文件；默认模板的访问仍受身份和权限检查约束。这两个入口不是默认向匿名用户开放的接口目录。
 
-完整示例见[路由与 HTTP 接口](../developing-apps/apis-and-services.md)和[插件路由与 HTTP 接口](../extension-development/server-apis.md)。
+完整示例见[HTTP 路由与接口](../developing-apps/apis-and-services.md)和[插件路由与 HTTP 接口](../extension-development/server-apis.md)。
 
 ## 配置
 

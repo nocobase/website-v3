@@ -4,7 +4,7 @@
 // 页面：
 // - content/pages/home.html：首页，12 种语言。
 // - content/pages/<名称>.body.html：子页面，头部写了 i18n: <组> 的有 12 种语言，没写的只有英文和简体中文（NocoReach）；404.body.html 只有英文。
-// - content/blog/：博客、客户案例、更新日志（blog.mjs、changelog.mjs），只有英文和简体中文。
+// - content/blog/：博客、客户案例、更新日志（blog.mjs、changelog.mjs），有英文和简体中文；有日文正文的博客文章、客户案例和两个列表页另有日文版（ja-JP）。
 // 只有英文和简体中文的页面，语言菜单里其他语言链接到它的英文版。
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -22,8 +22,9 @@ import { CONTENT } from './paths.mjs';
 const warn = msg => console.warn('警告：' + msg);
 
 export class Page {
-  constructor(id, langs, meta, { main = '', style = '', after = '', kind = 'body' } = {}) {
-    Object.assign(this, { id, langs, meta, main, style, after, kind });
+  // mains：某种语言另有一份正文（{ 语言: 正文 }，博客的日文版），其余语言用 main
+  constructor(id, langs, meta, { main = '', mains = {}, style = '', after = '', kind = 'body' } = {}) {
+    Object.assign(this, { id, langs, meta, main, mains, style, after, kind });
     this.group = meta.i18n;
     this.noindex = meta.noindex === '1';
   }
@@ -52,7 +53,10 @@ export function getSite() {
     const langs = m.langs ? m.langs.split(/\s+/) : m.i18n ? ALL : ZH_EN;
     pages.push(new Page(name, langs, m, p));
   }
-  for (const it of [...blogPages(), ...changelogPages()]) pages.push(new Page(it.id, ZH_EN, it.meta, { main: it.main }));
+  for (const it of [...blogPages(), ...changelogPages()]) {
+    if (!it.ja) { pages.push(new Page(it.id, ZH_EN, it.meta, { main: it.main })); continue; }
+    pages.push(new Page(it.id, [...ZH_EN, 'ja'], { ...it.meta, title_ja: it.ja.title, desc_ja: it.ja.desc }, { main: it.main, mains: { ja: it.ja.main } }));
+  }
   SITE = { pages, byId: new Map(pages.map(p => [p.id, p])) };
   return SITE;
 }
@@ -77,14 +81,15 @@ function translations(group, lang) {
 const inlineJson = v => JSON.stringify(v).replaceAll('</', '<\\/');
 const sortKeys = o => Object.fromEntries(Object.keys(o).sort().map(k => [k, o[k]]));
 
-// 一个页面在一种语言的处理参数：中英文直接选，其他语言换上译文。home 的子页面译文要加上导航页脚那组（site）
+// 一个页面在一种语言的处理参数：中英文直接选，其他语言换上译文。home 的子页面译文要加上导航页脚那组（site）。
+// 没有译文组的页面（博客的日文版）正文已经是这种语言，只用 site 那组，标题和描述取 meta 里的 title_<语言>、desc_<语言>
 function lingoFor(page, lang) {
   const m = page.meta;
   if (lang === 'zh' || lang === 'en') return { lingo: new Lingo(lang), title: m[`title_${lang}`], desc: m[`desc_${lang}`] };
-  const t = translations(page.group, lang);
+  const t = translations(page.group || 'site', lang);
   const strings = page.group === 'home' ? t.strings : { ...translations('site', lang).strings, ...t.strings };
   const lingo = new Lingo(lang, strings, t.ui, page.group === 'home');
-  return { lingo, title: t.meta.title ?? m.title_en, desc: t.meta.description ?? m.desc_en, t };
+  return { lingo, title: m[`title_${lang}`] ?? t.meta.title ?? m.title_en, desc: m[`desc_${lang}`] ?? t.meta.description ?? m.desc_en, t };
 }
 
 const NAV_LINGO = new Map();
@@ -132,7 +137,7 @@ export function renderPage(page, lang) {
     return lang === 'zh' || lang === 'zh-TW' ? links.zhDocLinks(text) : text;
   };
   const { lingo, title, desc, t } = lingoFor(page, lang);
-  const main = localize(page.main, lingo);
+  const main = localize(page.mains[lang] ?? page.main, lingo);
   if (lingo.missingUi.size) warn(`${page.id || 'home'} 繁体中文缺 ${lingo.missingUi.size} 条界面文字（显示简体中文）：` + [...lingo.missingUi].sort().slice(0, 5).join('；'));
 
   let inline = `window.__lang = ${JSON.stringify(lang)};`;

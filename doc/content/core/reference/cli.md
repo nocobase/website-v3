@@ -101,7 +101,7 @@ pnpm nocobase db apply --connection main --dry-run
 pnpm nocobase db apply --connection main
 ```
 
-Consult each command's `--help` for preview and confirmation options on `rollback`, `redo`, `reset` and `repair`. `--force` explicitly confirms an operation; it is not a routine remedy for failures. Investigate changed checksums in applied migrations first, and consider repair only when edits do not change deployed schema semantics. See [Create tables and initialize data](../developing-apps/data-models-and-migrations.md).
+Consult each command's `--help` for preview and confirmation options on `rollback`, `redo`, `reset` and `repair`. `--force` explicitly confirms an operation; it is not a routine remedy for failures. Investigate changed checksums in applied migrations first, and consider repair only when edits do not change deployed schema semantics. See [Database migrations](../framework/database/migrations.md).
 
 ## Plugins and Skills
 

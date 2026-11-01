@@ -26,10 +26,22 @@
 .mnav a { display: block; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
 .mnav a small { color: var(--muted); margin-left: 8px; font-size: 13px; }
 .mnav .off { display: block; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 15px; color: var(--muted); cursor: default; }
+/* 手机菜单的分组：点组名展开，箭头转向；组内链接缩进 */
+.mnav .mgrp { border-bottom: 1px solid var(--rule); }
+.mnav .mgrp > summary { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; font-size: 15px; cursor: pointer; list-style: none; }
+.mnav .mgrp > summary::-webkit-details-marker { display: none; }
+.mnav .mgrp > summary svg.lucide { width: 16px; height: 16px; color: var(--muted); transition: transform 0.15s; }
+.mnav .mgrp[open] > summary svg.lucide { transform: rotate(180deg); }
+.mnav .msub { padding: 0 0 8px 14px; }
+.mnav .msub a { padding: 8px 0; border-bottom: 0; font-size: 14.5px; color: var(--ink-2); }
+.mnav .msub a.on { color: var(--brand); }
 @media (max-width: 1000px) {
   .menu, .nav .right .plain { display: none; }
   .menu-btn { display: grid; }
-  .nav.open .mnav { display: block; }
+  /* 菜单不超过一屏，超出时菜单自己滚动；打开时页面不跟着滚（shell.js 给 html 加 nav-locked）；打开时导航不透明，后面的页面不透出来 */
+  .nav.open { background: var(--paper); box-shadow: 0 18px 40px -18px var(--shadow); }
+  .nav.open .mnav { display: block; max-height: calc(100dvh - 64px - env(safe-area-inset-top, 0px)); overflow-y: auto; overscroll-behavior: contain; }
+  html.nav-locked { overflow: hidden; }
 }
 /* 页脚 */
 footer { margin-top: 160px; border-top: 1px solid var(--rule); padding-block: 56px 40px; }

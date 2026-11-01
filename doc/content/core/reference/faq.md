@@ -47,11 +47,11 @@ Template dependencies identify included packages; registration files determine i
 
 ## Does creating a table automatically expose an API?
 
-Creating a Collection does not automatically expose it to clients. Apps or plugins must declare endpoints, validate input, establish identity and apply permissions. A remote Repository client likewise requires matching server endpoints. See [Routes and HTTP APIs](../developing-apps/apis-and-services.md).
+Creating a Collection does not automatically expose it to clients. Apps or plugins must declare endpoints, validate input, establish identity and apply permissions. A remote Repository client likewise requires matching server endpoints. See [HTTP routes and APIs](../developing-apps/apis-and-services.md).
 
 ## Why does a migration report a checksum mismatch?
 
-An applied migration differs from current source. Check for edits to historical migrations, a wrong branch or a mismatched deployment. Normally add a migration for new changes. Consider `db repair` only after confirming edits do not alter deployed schema semantics; do not reset the database merely to silence the check. See [Create tables and initialize data](../developing-apps/data-models-and-migrations.md).
+An applied migration differs from current source. Check for edits to historical migrations, a wrong branch or a mismatched deployment. Normally add a migration for new changes. Consider `db repair` only after confirming edits do not alter deployed schema semantics; do not reset the database merely to silence the check. See [Database migrations](../framework/database/migrations.md).
 
 ## Does changing a dialect transfer existing data?
 

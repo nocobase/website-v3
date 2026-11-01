@@ -1,0 +1,42 @@
+{
+  "title": "インストールと設定",
+  "defaultOpen": true,
+  "pages": [
+    {
+      "type": "page",
+      "path": "index"
+    },
+    {
+      "type": "page",
+      "path": "with-agent"
+    },
+    {
+      "type": "page",
+      "path": "install"
+    },
+    {
+      "type": "page",
+      "path": "git"
+    },
+    {
+      "type": "page",
+      "path": "shared-runtimes"
+    },
+    {
+      "type": "page",
+      "path": "agents"
+    },
+    {
+      "type": "page",
+      "path": "new-project"
+    },
+    {
+      "type": "page",
+      "path": "ci"
+    },
+    {
+      "type": "page",
+      "path": "invite"
+    }
+  ]
+}

@@ -35,7 +35,8 @@ export interface Menu {
   /** 下拉分两列（解决方案菜单） */
   two?: boolean;
 }
-export interface MobileLink { href: string; label: string; small?: string; external?: boolean; active?: boolean }
+/** 手机菜单的一项：普通链接；有 items 时是可展开的分组（label 是组名，不用 href），含当前页的组默认展开 */
+export interface MobileLink { href?: string; label: string; small?: string; external?: boolean; active?: boolean; items?: MobileLink[] }
 export interface Language { code: string; name: string; html: string; url: string; current?: boolean }
 export interface SideLink { href: string; label?: string; icon?: 'github'; external?: boolean; small?: string }
 export interface Props {
@@ -43,7 +44,7 @@ export interface Props {
   /** Logo 旁的版本切换：按钮上的文字、无障碍名称和下拉里的项 */
   version?: { label: string; ariaLabel: string; items: Item[] };
   menu: Menu[];
-  /** 手机菜单里的链接，顺序即显示顺序 */
+  /** 手机菜单里的链接和分组，顺序即显示顺序 */
   mobile: MobileLink[];
   languages: Language[];
   /** 右侧的链接，如 GitHub 和星标数 */
@@ -72,6 +73,9 @@ const current = languages.find(l => l.current) ?? languages[0];
 <div class="right">{search && <button class="search-btn" type="button" data-search-open aria-label={search.label}><Icon name="search" /><span class="search-text">{search.placeholder}</span>{search.shortcut && <kbd>{search.shortcut}</kbd>}</button>}<div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-label={labels.language ?? 'Language'}><Icon name="globe" /><span id="langName">{current.name}</span><Icon name="chevron-down" /></button><div class="dd">{languages.map(l => (
 <a class:list={{ cur: l.current }} href={l.url} hreflang={l.html} lang={l.html}><Icon name="check" />{l.name}</a>))}</div></div>{links.map(l => (
 <a class="plain" href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.icon === 'github' && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={GH}></path></svg>}{l.label}</a>))}<button class="menu-btn" type="button" aria-label={labels.menu ?? 'Menu'} aria-expanded="false" id="menuBtn"><Icon name="menu" /></button></div></div>
-<div class="container mnav" id="mnav">{mobile.map(l => (
+<div class="container mnav" id="mnav">{mobile.map(l => l.items ? (
+<details class="mgrp" open={l.items.some(i => i.active)}><summary><Fragment set:html={l.label} /><Icon name="chevron-down" /></summary><div class="msub">{l.items.map(i => (
+<a class:list={{ on: i.active }} href={i.href} target={i.external ? '_blank' : undefined} rel={i.external ? 'noopener' : undefined}><Fragment set:html={i.label} />{i.small && <small set:html={i.small}></small>}</a>))}</div></details>
+) : (
 <a class:list={{ on: l.active }} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}><Fragment set:html={l.label} />{l.small && <small set:html={l.small}></small>}</a>))}<slot name="mobile" /><label class="lang-switch-m"><Icon name="globe" /><select id="langSelM" aria-label={labels.language ?? 'Language'}>{languages.map(l => (
 <option value={l.url} lang={l.html} selected={l.current}>{l.name}</option>))}</select></label></div></header>

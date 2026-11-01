@@ -1,37 +1,274 @@
 ---
-title: Routes and HTTP APIs
-description: Write and register application routes, choose Repository data APIs or business endpoints, and verify API contracts.
+title: HTTP routes and APIs
+description: Register server Web routes, custom APIs and Repository data endpoints for pages, redirects, downloads, permissions and API documentation.
 ---
 
-Write endpoints in `server/routes/` and register them in `server/routes/index.ts`. The application runtime mounts these contributions under its API root; creating a file alone does not expose an endpoint.
+An application can return HTML, redirects and files directly, as well as JSON APIs for pages and other clients. The Product Catalog example demonstrates these uses; see [Example source and setup](#example-source-and-setup) for the complete application.
 
-This guide starts with route registration and Repository data APIs, then retains the complete HTTP implementation of the project example. See [Server business services](server-business-services.md), [Request validation and error handling](request-validation-and-errors.md) and [Authentication, permissions and data scopes](authentication-and-permissions.md) for the other parts.
+## Choose a route type
 
-## Where endpoints belong
+### Web routes and API routes
 
-| Location | Purpose |
-| --- | --- |
-| `server/routes/<feature>.ts` | Declare custom Hono endpoints with `defineApiRoutes()`, or Repository operations with `defineRepositoryApiRoutes()` |
-| `server/routes/index.ts` | Aggregate application routes, appending to existing contributions |
-| `server/runtime.ts` | The template already connects the route entry; adding endpoints normally needs no runtime change |
-| `server/app.ts` | Application middleware and assembly; see [Server runtime](../framework/runtime/server.md) |
+| Requirement | Declaration | Example path |
+| --- | --- | --- |
+| HTML pages, redirects, file downloads or protocol callbacks | `defineRootRoutes()` | `/catalog` |
+| Custom queries, record creation and business operations | `defineApiRoutes()` | `/api/products` |
+| Standard Repository operations on one collection over HTTP | `defineRepositoryApiRoutes()` | `/api/publicCategories/findMany` |
 
-Business API declarations omit `/api` and the deployment base path: `/projects` becomes `<APP_BASE_PATH>/api/projects`. For protocols such as webhooks that need root routes, see [Routes and request context](../framework/http/routes.md).
+The root in `defineRootRoutes()` means the application root, which may differ from the domain root. Web routes choose their content and status codes. API routes use standard validation, JSON responses and errors, and appear in the API documentation. Neither route type determines whether an endpoint is public; configure access for its purpose.
 
-## Choosing endpoint and service boundaries
+The example's public catalog shows published products. Categories allow anonymous reads. Product management APIs and CSV downloads require authentication and the relevant permission.
 
-| Situation | Approach |
-| --- | --- |
-| A simple operation on one collection | Use [Repository data APIs](../framework/http/repository-routes.md), configuring operations, policies, authentication and business input validation |
-| An operation involves multiple record types or explicit business rules | Write a business service and let the route handle the HTTP boundary |
-| Multiple entry points need the same rules | Reuse the service and define the identity, policies and validated input each caller supplies |
-| A service needs dependencies such as the database | Register it in a Provider and resolve it through a token |
+### Server routes and client page routes
 
-Changing a task's project checks both the task and the target project, so this example uses custom routes and a business service. A service is not an internal bypass around authorization: its caller must supply policies appropriate to the operation.
+A Web route here handles an HTTP request on the server and returns HTML or another response directly. React page routes organize client pages, layouts and navigation; see [Pages, routes and navigation](pages-routes-and-navigation.md). Adding a server route does not add a sidebar entry.
+
+For application lists, forms and drawers, usually declare client page routes that call APIs. Server Web routes fit standalone HTML pages, redirects from old addresses and downloads.
+
+## Declare and register routes
+
+### Route files and the registration entry
+
+Declare routes in `server/routes/`, then add them to `server/routes/index.ts`. Creating a file alone does not expose its routes.
+
+```ts
+import type { Application } from '@nocobase/app-server/application';
+import type { AppRouteContribution } from '@nocobase/app-server/router';
+import catalogWeb from './catalog-web.js';
+import products from './products.js';
+import categories from './categories.js';
+
+const routes: readonly AppRouteContribution<Application>[] = [
+  catalogWeb,
+  products,
+  categories,
+];
+export default routes;
+```
+
+Append these declarations to the existing array, preserving other routes. The default template's `server/runtime.ts` already connects this entry, so runtime changes are usually unnecessary. A route factory runs during startup; its handlers run for each request.
+
+Source: [Route registration](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/index.ts). After starting the example, open `/catalog` beneath the application entry to see the catalog.
+
+### Application base path and API prefix
+
+Declare neither `/api` nor the deployment base path in individual handlers. When the application is mounted at `/shop`:
+
+| Declaration | Path in code | Request path |
+| --- | --- | --- |
+| `defineRootRoutes()` | `/catalog` | `/shop/catalog` |
+| `defineApiRoutes()` | `/products` | `/shop/api/products` |
+| Repository `publicCategories`, action `findMany` | Generated by the adapter | `/shop/api/publicCategories/findMany` |
+
+Use the application address printed at startup. For links in generated HTML, use `app.publicBasePath` instead of hardcoding `/shop` or `/main`. API Client already has the API base URL; its request paths, such as `/products`, are relative to that address.
+
+## Write Web routes
+
+### Return an HTML page
+
+`defineRootRoutes()` accepts a factory returning a Hono router. `c.html()` returns HTML. Templates from `hono/html` escape interpolated ordinary strings; do not concatenate external data such as product names into HTML.
+
+This is the catalog handler's core pattern from `server/routes/catalog-web.ts`, with navigation and styling omitted:
+
+```ts
+import { Hono } from 'hono';
+import { html } from 'hono/html';
+import type { Application } from '@nocobase/app-server/application';
+import { defineRootRoutes } from '@nocobase/app-server/router';
+import { catalogServiceToken } from '../providers/catalog.js';
+import { publicProductPolicy } from '../providers/catalog-service.js';
+
+export default defineRootRoutes<Application>((app) => {
+  const router = new Hono();
+  const service = app.container.resolve(catalogServiceToken);
+
+  router.get('/catalog', async (c) => {
+    const { data } = await service.list(publicProductPolicy, {
+      q: '', page: 1, pageSize: 50,
+    });
+    return c.html(html`<ul>${data.map((product) =>
+      html`<li>${product.name}</li>`,
+    )}</ul>`);
+  });
+  return router;
+});
+```
+
+`publicProductPolicy` belongs to the example. It allows only specified fields of products with `published` set to true and denies writes. The server defines the public scope independently of filters a browser supplies.
+
+Open `<application entry>/catalog`. The initial data should show **Canvas Backpack** and **Desk Lamp**, while the unpublished **Travel Mug** stays hidden. The page displays up to 50 products.
+
+![The server-rendered catalog shows two published products and links to the application, API documentation and CSV download](/assets/core/developing-apps/apis-and-services/catalog-web.png)
+
+Source: [Web routes](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/catalog-web.ts), [Public read policy and query service](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/providers/catalog-service.ts).
+
+### Redirect to another address
+
+Use `c.redirect()` in the same Web router:
+
+```ts
+router.get('/old-catalog', (c) => c.redirect('/catalog', 302));
+```
+
+Requesting `/shop/old-catalog` returns `302` with `Location: /shop/catalog`, which the browser follows. The runtime used by this example adds the application base path to application-local redirect locations starting with `/`; it leaves absolute external URLs unchanged. Never use unchecked user input as a redirect target.
+
+Run `curl -i "$APP_URL/old-catalog"` to inspect the status and `Location`. `APP_URL` includes the application base path and has no trailing slash. See the [Web route implementation](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/catalog-web.ts).
+
+### Return files and downloads
+
+A download can also be a Web route. The following handler runs behind authentication and authorization middleware. `productPolicy()` supplies the current request's permitted data scope:
+
+```ts
+router.get('/catalog/export.csv', async (c) => {
+  const policy = await productPolicy(c, 'view');
+  const records = await service.repository(policy).findMany({
+    limit: 500,
+    sort: (s) => s.field('name').asc(),
+  });
+  // The example handles quotes, newlines and spreadsheet formula prefixes.
+  const csv = toCsv(records);
+  c.header('Content-Type', 'text/csv; charset=utf-8');
+  c.header('Content-Disposition', 'attachment; filename="products.csv"');
+  c.header('Cache-Control', 'private, no-store');
+  return c.body(csv);
+});
+```
+
+`toCsv` is the [example's CSV conversion function](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/catalog-web.ts), not a framework API. `Content-Type` describes the content; `Content-Disposition: attachment` requests a file download.
+
+Sign in to the same application with product view permission, then click **Download CSV** on the catalog. The downloaded `products.csv` contains up to 500 products the account may view, including drafts where permitted. An administrator's export scope differs from the public page's published-only policy. An anonymous download returns `401`; an authenticated caller without view permission receives `403`.
+
+This example generates a small file in memory. Larger exports need batched reads or streaming rather than removing the limit and loading every record at once.
+
+## Write custom APIs
+
+The handlers below belong inside the `defineApiRoutes()` factory in `server/routes/products.ts`. It resolves authentication, authorization and the product service and registers error handling. `service` is the product service; `productPolicy(c, action)` returns the current operation's database policy. Both are example code. See [Product APIs](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/products.ts) for their complete integration.
+
+The factory uses `defineApiRoutes()`. This is its integration skeleton; the source above includes authentication, handlers and imports for the example helpers:
+
+```ts
+import { Hono } from 'hono';
+import type { Application } from '@nocobase/app-server/application';
+import { defineApiRoutes } from '@nocobase/app-server/router';
+import { catalogServiceToken } from '../providers/catalog.js';
+import {
+  catalogErrorHandler, type CatalogEnv,
+} from './catalog-access.js';
+
+export default defineApiRoutes<Application>((app) => {
+  const router = new Hono<CatalogEnv>();
+  const service = app.container.resolve(catalogServiceToken);
+  router.onError(catalogErrorHandler);
+  // Register path-scoped authentication and the handlers below here.
+  return new Hono().route('/', router);
+});
+```
+
+### Read query parameters and return a list
+
+Validate query parameters with `apiValidator('query', schema)` and read the converted values through `c.req.valid('query')`:
+
+```ts
+const Query = z.strictObject({
+  q: z.string().max(100).default(''),
+  page: z.coerce.number().int().min(1).max(10000).default(1),
+  pageSize: z.coerce.number().int().min(1).max(50).default(10),
+});
+
+router.get('/products',
+  describeRoute({
+    tags: ['Products'], summary: 'List products', operationId: 'listProducts',
+    responses: { 200: listResponse(Product), ...apiErrorResponses },
+  }),
+  apiValidator('query', Query),
+  async (c) => c.json(await service.list(
+    await productPolicy(c, 'view'), c.req.valid('query'),
+  )),
+);
+```
+
+After signing in, execute `GET /products?q=Desk&page=1&pageSize=10` in the API documentation. Expect **Desk Lamp**, with `data` and `meta.page`, `meta.pageSize`, and `meta.total`. Apply the same policy and filter to rows and the total; otherwise the count can reveal records the caller cannot access. `pageSize=51` returns `400`.
+
+Source: [List handler](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/products.ts), [Paginated query](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/providers/catalog-service.ts).
+
+### Read path parameters and return a record
+
+Hono declares a path parameter as `:id`; OpenAPI displays it as `{id}`:
+
+```ts
+router.get('/products/:id',
+  describeRoute({
+    tags: ['Products'], summary: 'Get a product', operationId: 'getProduct',
+    responses: { 200: dataResponse(Product), ...apiErrorResponses },
+  }),
+  apiValidator('param', z.object({ id: z.uuid() })),
+  async (c) => c.json({ data: await service.get(
+    await productPolicy(c, 'view'), c.req.valid('param').id,
+  ) }),
+);
+```
+
+Take a product ID from the list and request `GET /products/{id}`. Expect `{ data: product }`. This example generates UUIDs, hence `z.uuid()`; other applications may use different identifiers. An invalid UUID returns `400`. A valid ID that is missing or outside the caller's read scope returns the same `404`.
+
+Source: [Detail handler](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/products.ts).
+
+### Validate a request body and create a record
+
+Creation accepts a name and a price in cents. The server controls publication:
+
+```ts
+const Values = z.strictObject({
+  name: z.string().trim().min(1).max(100),
+  priceCents: z.number().int().min(0).max(100000000),
+});
+```
+
+The route passes this schema to `apiValidator('json', Values)` and reads `c.req.valid('json')`. Execute `POST /products` in the API documentation with:
+
+```json
+{ "name": "Travel Notebook", "priceCents": 1200 }
+```
+
+Also provide an `Idempotency-Key` header in the form `<13-digit millisecond timestamp>.<UUID v4>`. Generate a new operation key from the application directory:
+
+```bash
+node -e 'console.log(`${Date.now()}.${require("node:crypto").randomUUID()}`)'
+```
+
+Success returns `201` with `id`, `name`, `priceCents` and `published: false` in `data`. An extra `published` field, empty name or negative price returns `400` without creating a record. `strictObject()` rejects undeclared fields; a `describeRoute()` response declaration does not itself filter the actual response.
+
+The example explicitly uses `executeIdempotentMutation()` to commit creation and its receipt in one transaction. Retry an operation whose response was lost with the original key and input. A successful replay includes `Idempotency-Replayed: true` and creates no second product. Use a new key for an intentional new record. Adding the header alone does not give an ordinary custom POST this behavior.
+
+Source: [Creation handler and receipt integration](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/products.ts). See [Validation and response handling](../framework/http/validation.md) for input and error conventions.
+
+### Call a business service
+
+Keep business rules in `server/providers/`, register the service through a Provider and resolve it once in the route factory:
+
+```ts
+const service = app.container.resolve(catalogServiceToken);
+```
+
+The core service call in `POST /products/{id}/publish` is:
+
+```ts
+const policy = await productPolicy(c, 'publish');
+const id = c.req.valid('param').id;
+// Inside executeIdempotentMutation's execute(transaction) callback:
+return service.publish(policy, id, transaction);
+```
+
+The route owns HTTP input, identity, authorization and responses. The service checks that the product exists and is unpublished, then updates it through the supplied policy and transaction connection. It does not read a Hono Context or choose an HTTP status.
+
+Publish the product you just created using a new key and an empty body `{}`. Expect `200` with `published: true`; refresh the public catalog to see it. Retrying the same key returns its original result. Publishing it again with a new key returns `409 PRODUCT_ALREADY_PUBLISHED`. A conditional update preserves the expected state so concurrent callers cannot both treat the same draft as unpublished.
+
+Source: [Provider and token](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/providers/catalog.ts), [Product service](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/providers/catalog-service.ts), [Publish route](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/products.ts). See [ServiceProvider](../extension-development/service-provider.md) for service lifecycle and [Transactions and consistency](transactions-and-consistency.md) for transaction boundaries.
 
 ## Use Repository data APIs
 
-`defineRepositoryApiRoutes()` exposes standard operations on one Collection. This independent example assumes a migration has created `categories` with public `id` and `title` fields. It does not depend on the historical project example below. Save it as `server/routes/public-categories.ts`:
+### Configure collections and exposed operations
+
+`defineRepositoryApiRoutes()` fits standard operations on one collection. It creates neither tables nor management pages. Prepare `catalogCategories` through a migration, then declare:
 
 ```ts
 import { defineRepositoryApiRoutes } from '@nocobase/app-server/router';
@@ -39,334 +276,166 @@ import { defineRepositoryApiRoutes } from '@nocobase/app-server/router';
 export default defineRepositoryApiRoutes({
   repositories: [{
     name: 'publicCategories',
-    collection: 'categories',
+    collection: 'catalogCategories',
     actions: { findMany: { maxLimit: 50 }, findOne: {}, count: {} },
     policy: {
       read: { scope: true, fields: ['id', 'title'] },
-      create: false,
-      update: false,
-      delete: false,
+      create: false, update: false, delete: false,
     },
   }],
 });
 ```
 
-Add the contribution to `server/routes/index.ts`:
+`name` is the HTTP resource name; `collection` names the database collection. Only operations listed in `actions` are registered, so this declaration exposes no `createOne` route. Reads also use POST: `POST /api/publicCategories/findMany`.
+
+Source: [Category APIs](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/categories.ts), [Migration](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/database/main/migrations/202610310001_create_catalog.ts).
+
+### Restrict records and fields
+
+`actions` controls which operations exist. `policy` controls the records, fields and writes those operations allow. Configure both.
+
+The policy above permits anonymous reads of every category but returns only `id` and `title`. The stored `internalNote` must not appear in responses, and client filters cannot broaden the server's scope. `findMany.maxLimit: 50` bounds the result size; `limit: 51` returns `400`.
+
+For identity- or role-dependent access, integrate authenticated identity resolution and dynamic policies. See [Repository data APIs](../framework/http/repository-routes.md) for the complete options and authorization plugin integration.
+
+### Call with API Client and HTTP
+
+Obtain the client with `useApiClient()` in a React page, then pass it into an ordinary function:
 
 ```ts
-import type { Application } from '@nocobase/app-server/application';
-import type { AppRouteContribution } from '@nocobase/app-server/router';
-import categoryRoutes from './public-categories.js';
+import type { ApiClient } from '@nocobase/app-client';
 
-const routes: readonly AppRouteContribution<Application>[] = [
-  // Keep the application's existing route contributions here.
-  categoryRoutes,
-];
-export default routes;
+type Category = { id: string; title: string };
+export async function loadCategories(api: ApiClient) {
+  return api.repository<Category>('publicCategories').findMany({ limit: 20 });
+}
 ```
 
-Clients can call `api.repository('publicCategories')`. Raw HTTP operations use paths such as `POST <APP_BASE_PATH>/api/publicCategories/findMany`, including reads. This declaration creates neither database tables nor management pages.
-
-The example explicitly allows anonymous reads and denies every write. Protected business data requires identity and authorization-derived policies. `actions` selects exposed operations; `policy` controls records, fields and writes. See [Repository data APIs](../framework/http/repository-routes.md) for dynamic policies, write idempotency and full input contracts.
-
-## Prepare the project example
-
-The project/task example retains default template `1.0.0-beta.78` and its `tutorialTasks`/`tutorialProjects` collections. Follow [Create tables and initialize data](data-models-and-migrations.md#prepare-the-example-application) to prepare a separate app, including access to the private `nocobase/app-tutorials` repository. It does not continue the current getting-started `tasks` example. You can still read the code and responsibility boundaries without repository access.
-
-Implement `TutorialProjectService` from [Server business services](server-business-services.md), then register the complete Provider, permissions and roles from [Authentication, permissions and data scopes](authentication-and-permissions.md). The routes below import those files.
-
-## Example API contract
-
-These paths are relative to the application's API root. For an application at `/main/`, that root is `/main/api`:
-
-- `GET /tutorialProjects`: list projects within the operation's authorized scope, with pagination.
-- `POST /tutorialProjects`: create a project and return `201` with `{ data }`.
-- `PATCH /tutorialTasks/{id}/project`: change the task's project association; `projectId: null` removes the association.
-
-The project association has its own subresource endpoint and permission. The existing `PATCH /tutorialTasks/{id}` still only completes or reopens a task and does not accept `projectId`. Task list responses gain `projectId`, without automatically returning project names or exposing project details.
-
-## With an agent
-
-Give the agent this chapter as context from the application directory, then describe the request below. Field, API and component details are in the manual steps; the agent should follow them alongside the project's guidance.
-
-```text
-Using the existing project data model, please provide APIs to list and create projects and change a task's project for later pages to use.
-
-Paginate the project list. Both records and totals must include only projects the current user may view.
-Changing a task's project should allow an eligible project or no project.
-Being able to view a project does not necessarily allow assigning tasks to it; check the permissions for both the task and the target project.
-If the project no longer exists or cannot be selected, report that it cannot be selected, preserve the old assignment and avoid disclosing inaccessible project information.
-
-Control viewing, creation and assignment separately, without automatically granting ordinary users access.
-Keep task completion and reopening unchanged; those actions must not allow project reassignment.
-Follow the project's development guidance, make these business rules reusable, and document usage in the application's API documentation.
-
-Use real test accounts and data to verify allowed and denied actions, and report the results.
-Do not add project pages, approvals, notifications or background jobs yet.
-```
-
-## Declare and register business routes
-
-Create `server/routes/tutorial-projects.ts`:
-
-<details>
-<summary>Project API routes</summary>
-
-```ts
-import { Hono, type MiddlewareHandler } from 'hono';
-import { z } from 'zod';
-import { authenticationToken } from '@nocobase/app-plugin-authentication/server';
-import {
-  authorizationToken,
-  type AuthorizationEnv,
-} from '@nocobase/app-plugin-authorization/server';
-import type { Application } from '@nocobase/app-server/application';
-import {
-  ApiError,
-  apiErrorHandler,
-  apiErrorResponses,
-  apiErrorResponse,
-  apiValidator,
-  dataResponse,
-  listResponse,
-  defineApiRoutes,
-} from '@nocobase/app-server/router';
-import { describeRoute } from '@nocobase/app-server/router';
-import type { RepositoryPolicy } from '@nocobase/db';
-import { tutorialProjectServiceToken } from '../providers/tutorial-projects.js';
-import {
-  ProjectUnavailableError,
-  TaskUnavailableError,
-  type ProjectView,
-  type TaskProjectView,
-} from '../providers/tutorial-project-service.js';
-
-const projectSchema: z.ZodType<ProjectView> = z.object({
-  id: z.uuid(),
-  name: z.string(),
-  createdAt: z.iso.datetime(),
-});
-const taskProjectSchema: z.ZodType<TaskProjectView> = z.object({
-  id: z.uuid(),
-  projectId: z.uuid().nullable(),
-  updatedAt: z.iso.datetime(),
-});
-const listInput = z.strictObject({
-  page: z.coerce.number().int().min(1).max(1_000_000).default(1),
-  pageSize: z.coerce.number().int().min(1).max(100).default(20),
-});
-const createInput = z.strictObject({ name: z.string().trim().min(1).max(120) });
-const assignInput = z.strictObject({ projectId: z.uuid().nullable() });
-type ProjectEnv = {
-  Variables: AuthorizationEnv['Variables'] & {
-    projectPolicy: RepositoryPolicy;
-    taskPolicy: RepositoryPolicy;
-  };
-};
-
-export default defineApiRoutes<Application>((app) => {
-  const router = new Hono<ProjectEnv>();
-  const auth = app.container.resolve(authenticationToken);
-  const authz = app.container.resolve(authorizationToken);
-  const service = app.container.resolve(tutorialProjectServiceToken);
-  // Scope authentication to these endpoints; do not depend on another contribution.
-  router.use('/tutorialProjects', auth.required(), authz.middleware());
-  router.use('/tutorialTasks/:id/project', auth.required(), authz.middleware());
-  router.onError((error, c) =>
-    apiErrorHandler(
-      error instanceof ProjectUnavailableError
-        ? new ApiError({
-            status: 'INVALID_ARGUMENT',
-            reason: 'PROJECT_UNAVAILABLE',
-            domain: 'tutorialProjects',
-            message: error.message,
-            fieldViolations: [
-              {
-                field: 'projectId',
-                description: 'Choose an available project.',
-              },
-            ],
-          })
-        : error instanceof TaskUnavailableError
-          ? new ApiError({
-              status: 'NOT_FOUND',
-              reason: 'TASK_NOT_FOUND',
-              domain: 'tutorialProjects',
-              message: error.message,
-            })
-          : error,
-      c,
-    ),
-  );
-  const permit =
-    (action: 'read' | 'create' | 'assignTask'): MiddlewareHandler<ProjectEnv> =>
-    async (c, next) => {
-      const decision = await c.get('authz').authorize({
-        resource: { type: 'composite', id: 'tutorial.projects' },
-        action,
-      });
-      const projects = decision.conditions?.database?.tutorialProjects;
-      const tasks = decision.conditions?.database?.tutorialTasks;
-      if (
-        decision.effect === 'deny' ||
-        !projects ||
-        (action === 'assignTask' && !tasks)
-      ) {
-        throw new ApiError({
-          status: 'PERMISSION_DENIED',
-          reason: 'PROJECT_ACTION_DENIED',
-          domain: 'tutorialProjects',
-          message: 'This project action is not allowed.',
-        });
-      }
-      c.set('projectPolicy', projects);
-      if (tasks) c.set('taskPolicy', tasks);
-      await next();
-    };
-  router.get(
-    '/tutorialProjects',
-    permit('read'),
-    describeRoute({
-      tags: ['Tutorial projects'],
-      summary: 'List projects',
-      operationId: 'listTutorialProjects',
-      responses: { 200: listResponse(projectSchema), ...apiErrorResponses },
-    }),
-    apiValidator('query', listInput),
-    async (c) =>
-      c.json(await service.list(c.get('projectPolicy'), c.req.valid('query'))),
-  );
-  router.post(
-    '/tutorialProjects',
-    permit('create'),
-    describeRoute({
-      tags: ['Tutorial projects'],
-      summary: 'Create a project',
-      operationId: 'createTutorialProject',
-      responses: { 201: dataResponse(projectSchema), ...apiErrorResponses },
-    }),
-    apiValidator('json', createInput),
-    async (c) =>
-      c.json(
-        {
-          data: await service.create(
-            c.get('projectPolicy'),
-            c.req.valid('json'),
-          ),
-        },
-        201,
-      ),
-  );
-  router.patch(
-    '/tutorialTasks/:id/project',
-    permit('assignTask'),
-    describeRoute({
-      tags: ['Tutorial projects'],
-      summary: 'Change a task project',
-      operationId: 'assignTutorialTaskProject',
-      responses: {
-        200: dataResponse(taskProjectSchema),
-        400: apiErrorResponse(400),
-        404: apiErrorResponse(404),
-        ...apiErrorResponses,
-      },
-    }),
-    apiValidator('param', z.object({ id: z.uuid() })),
-    apiValidator('json', assignInput),
-    async (c) =>
-      c.json({
-        data: await service.assignTask(
-          { tasks: c.get('taskPolicy'), projects: c.get('projectPolicy') },
-          c.req.valid('param').id,
-          c.req.valid('json').projectId,
-        ),
-      }),
-  );
-  return new Hono().route('/', router);
-});
-```
-
-</details>
-
-Do not put `/api` or the deployment base path into route definitions; `defineApiRoutes()` and the runtime add them. Authentication middleware covers only the paths owned by this file. An endpoint must not rely on another route contribution happening to register authentication first.
-
-Each endpoint authenticates and authorizes before `apiValidator()` runs. `describeRoute()` declares the operation, responses and errors; input schemas also appear in the API document. Pagination is bounded, names are trimmed and length-checked, and `strictObject()` rejects extra fields. The association endpoint cannot also modify the task title or completion state.
-
-All project IDs in this example are generated by `randomUUID()`, so they are validated with `z.uuid()`. User IDs elsewhere in the application are not necessarily UUIDs; do not apply this rule to the existing assignee field.
-
-Update `server/routes/index.ts`:
-
-```ts
-import projectRoutes from './tutorial-projects.js';
-import taskRoutes from './tutorial-tasks.js';
-import type { Application } from '@nocobase/app-server/application';
-import type { AppRouteContribution } from '@nocobase/app-server/router';
-
-const routes: readonly AppRouteContribution<Application>[] = [
-  taskRoutes,
-  projectRoutes,
-];
-
-export default routes;
-```
-
-Make two small changes so the existing task list can return the saved association:
-
-- Add `projectId` to `taskData`'s `.read([...])` fields in `server/providers/tutorial-tasks.ts`. Do not add it to the original create or complete action's writable fields.
-- Add `projectId: z.uuid().nullable()` to `taskSchema` in `server/routes/tutorial-tasks.ts`, keeping the documented response aligned with the data. Leave `createInput` and `updateInput` unchanged.
-
-## Include endpoints in the API document
-
-Every `/api` route should declare `describeRoute()` with a stable `operationId`, group, purpose, success responses and error responses. `apiValidator()` supplies the input schema. Update response schemas alongside endpoint changes so documentation matches actual responses.
-
-The running application serves its API description at `<APP_BASE_PATH>/api/swagger` and its interactive page at `<APP_BASE_PATH>/api/swagger/docs`. Register routes in `server/routes/index.ts`; a declaration in an unregistered file does not become a callable endpoint.
-
-## Verify endpoint behavior
-
-Run `pnpm dev` in the local example and sign in at the complete application URL printed in the terminal. Open `<APP_BASE_PATH>/api/swagger/docs` on the same application, for example `/main/api/swagger/docs`. The API documentation uses the signed-in session, so no administrator password needs to be stored in the article or code.
-
-Find `Tutorial projects` to see the three endpoints added in this chapter. Expand an endpoint, select **Try it out**, enter its parameters, then select **Execute** to send the request.
-
-![The Tutorial projects API group lists project queries, project creation and task-project assignment](/assets/core/developing-apps/apis-and-services/api-overview.png)
-
-Verify the following sequence:
-
-1. Call `POST /tutorialProjects` with `{ "name": "Product launch" }`. Expect `201` and record `data.id`.
-2. Call `GET /tutorialProjects?page=1&pageSize=20`. Check the project and `meta.page`, `meta.pageSize` and `meta.total`.
-3. Take a task ID from the existing task list and call the association endpoint with the new project ID as `projectId`.
-4. Query the task list again and confirm that `projectId` persists. Send null to remove the association.
-5. Use a valid UUID that does not identify a project. Expect `400`, `error.reason: PROJECT_UNAVAILABLE` and a field violation for `projectId`, with the previous association unchanged.
-6. Sign in as an ordinary user with only task-completion permission. They can complete a task, but the association endpoint returns `403`.
-
-![A successful task-project request returns 200 with the task id, projectId and updatedAt in data](/assets/core/developing-apps/apis-and-services/assign-project-success.png)
-
-After assignment, check the `200` status under **Server response** and the returned `projectId`, then query the task list to confirm persistence. The screenshot uses local example IDs; use IDs from your own records when following along.
-
-![An unavailable project returns 400 with PROJECT_UNAVAILABLE and a field violation for projectId](/assets/core/developing-apps/apis-and-services/project-unavailable.png)
-
-A missing project returns `PROJECT_UNAVAILABLE` with `fieldViolations` identifying `projectId`. Read the task again to confirm that its previous project association is unchanged.
-
-The error cases are distinct: anonymous requests return `401`; missing operation grants return `403`; an authorized operation with a missing or out-of-scope task returns `404`; a missing or unselectable project referenced in the body returns the same `400` field error. Identical responses for missing and out-of-scope records avoid revealing hidden record existence.
-
-## Add real endpoint tests
-
-
-Create `tests/server/tutorial-tasks-project-api.test.ts`. It uses the existing test configuration, real sign-in and permissions, and an isolated database. Authentication and database services are not replaced.
-
-[Download the complete endpoint tests](/assets/core/downloads/tutorial-tasks-project-api.test.ts) and save them at that path. The file preserves this example's success, denial and data-scope checks for inspection or reuse.
-
-Run the new tests and the existing task regression suite:
+The result is the category array: the remote Repository unwraps `{ data }`. A raw HTTP response retains the wrapper:
 
 ```bash
-pnpm exec vitest run --config vitest.tutorial.config.ts tests/server/tutorial-tasks-project-api.test.ts
-pnpm exec vitest run --config vitest.tutorial.config.ts
-pnpm exec vitest run tests/logic/authorization-assignment-safety.test.ts
-pnpm typecheck
+curl "$APP_URL/api/publicCategories/findMany" \
+  -H 'Content-Type: application/json' \
+  -d '{"limit":20}'
 ```
 
-The tests check more than `200`: invalid inputs do not write data, unavailable projects preserve the previous association, task and project scopes are enforced independently, revocation blocks subsequent requests, and the API document contains the new operations and input definitions. This example was verified with SQLite.
+```json
+{ "data": [
+  { "id": "office", "title": "Office" },
+  { "id": "travel", "title": "Travel" }
+] }
+```
 
+Without an explicit sort, do not rely on array order. The same client's `count()` returns a number; `findOne()` returns a record or `undefined`. See [loadCategories](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/client/catalog-api.ts) for the client wrapper. The example's [endpoint tests](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/tests/server/catalog.test.ts) also call the registered routes with the real API Client. See [Data requests and state](data-requests-and-state.md) for client request state.
 
-## Continue reading
+## Protect routes and handle errors
 
-See [Server business services](server-business-services.md) for transaction and concurrency boundaries, and [Authentication, permissions and data scopes](authentication-and-permissions.md) for the access test matrix. Continue with [UI components and interactions](pages-and-interactions.md) to connect the endpoints to pages.
+### Add authentication and business authorization
+
+Mounting under `/api` authenticates nothing. Each module should protect the paths it owns, without relying on another module's registration order or accidentally protecting public routes through global wildcard middleware.
+
+```ts
+const auth = app.container.resolve(authenticationToken);
+const authz = app.container.resolve(authorizationToken);
+for (const path of ['/products', '/products/*']) {
+  router.use(path, auth.required({ scopedKeys: false }), authz.middleware());
+}
+```
+
+Authentication identifies the caller. Authorization checks `view`, `create` or `publish`; the resulting database policy constrains records and fields. Downloads use authentication and the `view` policy too. This example's management operations use signed-in sessions and do not accept scoped API keys.
+
+Installation creates **Catalog viewer** and **Catalog editor** roles without assigning them to ordinary users. Administrators assign roles to specific users through **Users** and edit operations and data scopes in **Permission management**. Page access does not authorize server operations.
+
+Source: [Business permissions](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/catalog-resource.ts), [Request authorization](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/catalog-access.ts), [Initial roles](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/database/main/seeds/202610310001_catalog_roles.ts).
+
+### Handle invalid input and business errors
+
+Represent HTTP errors with `ApiError` and pass them to `apiErrorHandler()`, instead of constructing different error JSON in each handler. The example translates service errors into standard API errors:
+
+```ts
+new ApiError({
+  status: 'NOT_FOUND',
+  reason: 'PRODUCT_NOT_FOUND',
+  domain: 'catalog',
+  message: 'Product not found.',
+});
+```
+
+| Situation | Response |
+| --- | --- |
+| Anonymous product API or download request | `401` |
+| Signed in without the required operation | `403` |
+| Invalid input | `400`, with field information for validation errors |
+| Product missing or outside the permitted scope | `404 PRODUCT_NOT_FOUND` |
+| Publishing an already published product with a new operation key | `409 PRODUCT_ALREADY_PUBLISHED` |
+
+Callers branch on status and `reason`, not `message` text. See the [error handler](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/catalog-access.ts). Web routes need not use the API format: this example reuses standard JSON errors for failed downloads, while an HTML page may provide its own error page.
+
+### Avoid path conflicts
+
+Give each method and path a single clear handler. The framework reports duplicate API routes at startup; do not rely on registration order to override another endpoint. Keep Web routes clear of `/api`, static asset paths and client page paths. Avoid catch-all handlers that consume other entries.
+
+The example uses `/catalog` for HTML and `/api/products` for business APIs, leaving `/` to the client application. API documentation and [endpoint tests](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/tests/server/catalog.test.ts) can check the registered result.
+
+## Generate and use API documentation
+
+### Describe inputs, responses and errors
+
+Custom APIs use `describeRoute()` for a stable `operationId`, tag, purpose and responses. Schemas passed to `apiValidator()` supply input descriptions. `dataResponse()` and `listResponse()` describe record and list responses; they neither query the database nor replace runtime validation.
+
+Repository endpoints generate descriptions from their collections and enabled actions. Web routes are absent from the API document; verify them directly in the browser or with HTTP requests as shown above.
+
+Source: [API declarations](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/server/routes/products.ts). When response fields change, update both the actual result and its schema.
+
+### Send requests from the interactive documentation
+
+Sign in, then open `<application entry>/api/swagger/docs#/Products` to reach the product group directly. The JSON document is at `<application entry>/api/swagger`. Both require a session or credential allowed to access them.
+
+Expand an operation under **Products**, click **Try it out**, enter its parameters and body, then click **Execute**. Creation and publication also need the `Idempotency-Key` described earlier. Copy the new product ID from the creation response for detail and publication requests.
+
+![The Products group in the interactive API documentation includes list, create, detail and publish operations](/assets/core/developing-apps/apis-and-services/catalog-api.png)
+
+## Verify routes and APIs
+
+### Check responses and saved data
+
+With the example's initial data:
+
+1. Open `/catalog` anonymously and confirm only published products appear. Open `/old-catalog` and confirm the redirect stays beneath the same application base path.
+2. Call category `findMany` anonymously. Confirm category titles are returned without `internalNote`.
+3. Sign in with management permissions and create a product through the API documentation. Expect `201`; its detail is readable, but it is absent from the public catalog.
+4. Publish it. Expect `200` and its appearance after refreshing the catalog. Replaying the original operation does not execute it again; a new publication operation returns `409`.
+5. Download CSV and check its filename, content and the caller's permitted records.
+
+### Verify access limits and failure cases
+
+Check ordinary users too. With no role, product APIs and downloads are denied. View permission allows reads and downloads, but not creation or publication. A restricted product scope must affect lists, totals, details and downloads alike.
+
+Also verify that invalid input creates no record, out-of-scope details disclose no product and permission revocation denies the next request. Run the example's automated checks:
+
+```bash
+pnpm exec vitest run tests/server/catalog.test.ts tests/database/catalog.test.ts tests/server/authorization-assignment-safety.test.ts
+```
+
+These tests start the real application with isolated databases and real sign-in. They cover those boundaries, migration rollback and reapplication, receipt replay and API documentation. Browser checks and screenshot instructions are in the [example README](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/README.md).
+
+## Example source and setup
+
+The [complete Product Catalog source](https://github.com/nocobase/docs-examples-v3/tree/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog) includes all three route types, the product service, migrations, English sample records, permissions and tests.
+
+The example uses default template `1.0.0-beta.85`, Node.js 24 or later and pnpm 11.7.0. Its lockfile fixes the example's dependencies. See the [README](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/README.md) for configuration and a map from each documented usage to its implementation.
+
+```bash
+git clone https://github.com/nocobase/docs-examples-v3.git
+cd docs-examples-v3
+git checkout 0639e6a2a6cba857bf967757083e9f8d7aa6b9fe
+cd apps/product-catalog
+pnpm install --frozen-lockfile
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config check
+APP_SAMPLE_DATA=true pnpm dev
+```
+
+SQLite is the example's setup choice, not an HTTP routing requirement. Before the first startup, configure the administrator under `users.initialAdmin` in local `config.yml`. Sign in using the full application address printed at startup. `APP_SAMPLE_DATA=true` installs sample products and categories on first installation; later starts do not overwrite edited data. If the first installation omitted samples, use `pnpm nocobase db sample` in development to add them.
+
+Append `/catalog` to the application address for the public page, or `/api/swagger/docs` for API operations. Saved products survive page reloads and server restarts.

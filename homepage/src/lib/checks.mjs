@@ -1,7 +1,7 @@
 // 构建结束后对产物的检查，build 的 astro:build:done 钩子（src/integrations/checks.mjs）调用；逻辑都在这里，方便测试。
 // - 站内链接指向的页面和文件都存在（地址按 CDN 回源规则映射到文件：以 / 结尾或最后一段不带点号的读 index.html）；
 // - 译文格式正确；
-// - 每种语言的页面数一致（12 种语言的页面每种语言一样多；只有中英文的页面英文和简体中文一样多），产物里每个页面都在；
+// - 每种语言的页面数一致（12 种语言的页面每种语言一样多；中英文的页面（博客等，部分另有日文版）英文和简体中文一样多），产物里每个页面都在；
 // - 产物根目录没有会被 CDN 回源规则误处理的名字（/en/ 会被去掉前缀映射到根目录，/api/ai/ 原样透传），也没有带点号的目录。
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
@@ -33,7 +33,7 @@ export const makeExists = dist => path => {
   return existsSync(f) && statSync(f).isFile();
 };
 
-export const isArticleUrl = url => /^\/(?:zh-CN\/)?(?:blog|customers|changelog)\/[^/]+\/$/.test(url);
+export const isArticleUrl = url => /^\/(?:zh-CN\/|ja-JP\/)?(?:blog|customers|changelog)\/[^/]+\/$/.test(url);
 
 export function checkTranslations() {
   const errors = [];
@@ -41,11 +41,11 @@ export function checkTranslations() {
   return errors;
 }
 
-// 每种语言各类页面的数量：{ 语言: { all, 'zh-en', 'en-only' } }
+// 每种语言各类页面的数量：{ 语言: { all, 'zh-en', 'en-only' } }。zh-en 是有英文和简体中文的页面（含另有日文版的博客文章），日文那份也记在 zh-en 里
 export function countPages(pages) {
   const counts = Object.fromEntries(ALL.map(c => [c, { all: 0, 'zh-en': 0, 'en-only': 0 }]));
   for (const page of pages) {
-    const kind = page.langs.length === ALL.length ? 'all' : page.langs.join() === ZH_EN.join() ? 'zh-en' : 'en-only';
+    const kind = page.langs.length === ALL.length ? 'all' : ZH_EN.every(l => page.langs.includes(l)) ? 'zh-en' : 'en-only';
     for (const lang of page.langs) counts[lang][kind]++;
   }
   return counts;
@@ -84,6 +84,6 @@ export function runChecks(dist, pages) {
   errors.push(...checkRoot(readdirSync(dist), n => statSync(join(dist, n)).isDirectory()));
   const dotted = Object.keys(files).filter(u => u.endsWith('/') && u.slice(0, -1).split('/').pop().includes('.')).sort();
   if (dotted.length) warnings.push(`${dotted.length} 个地址的最后一段带点号（如 ${dotted[0]}），只有以 / 结尾的写法能访问：CDN 规则把不带 / 且含点号的地址当成文件`);
-  const summary = ['页面数（12 种语言的页面 / 只有中英文的页面 / 只有英文的页面）：', ...LANGS.map(l => `  ${l.code.padEnd(6)} ${(l.dir || '(根)').padEnd(6)} ${String(counts[l.code].all).padStart(3)} / ${String(counts[l.code]['zh-en']).padStart(3)} / ${counts[l.code]['en-only']}`), `共 ${Object.keys(files).length} 个 HTML 文件，输出到 ${dist}`];
+  const summary = ['页面数（12 种语言的页面 / 中英文的页面（日文是其中另有日文版的）/ 只有英文的页面）：', ...LANGS.map(l => `  ${l.code.padEnd(6)} ${(l.dir || '(根)').padEnd(6)} ${String(counts[l.code].all).padStart(3)} / ${String(counts[l.code]['zh-en']).padStart(3)} / ${counts[l.code]['en-only']}`), `共 ${Object.keys(files).length} 个 HTML 文件，输出到 ${dist}`];
   return { errors, warnings, summary };
 }

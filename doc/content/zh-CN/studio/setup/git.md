@@ -11,12 +11,12 @@ description: 以 GitHub 为例连接代码平台，让 Studio 创建仓库并提
 
 1. 打开「设置 › 集成 › Git」，点「添加连接」，选择「GitHub」。
 2. 选择「我的账号」或「组织」。使用组织时填写组织名称。
-3. 本机试用关闭 Webhook，Studio 会定时查询 PR 和检查结果。
+3. 建议开启 Webhook，及时接收 PR 和检查结果更新。本地试用或内网部署时，如果 Git 平台无法访问 Studio，可关闭 Webhook，改由 Studio 定时查询。
 4. 点「在 GitHub 上创建」，为 App 命名并确认创建。
 5. 将 App 安装到目标账号或组织。「Repository access」选择「All repositories」，以便访问接下来新建的仓库。
 6. 返回 Studio。
 
-![添加 GitHub 连接：选择组织，本机试用关闭 Webhook](https://static-docs.nocobase.com/studio-zh-setup-github-connection-full-1440x900-20261030.png)
+![本地试用示例：连接 GitHub 组织，关闭 Webhook](https://static-docs.nocobase.com/studio-zh-setup-github-connection-full-1440x900-20261030.png)
 
 「All repositories」覆盖当前和以后新建的仓库。安装时核对 GitHub 展示的权限；创建 App 和安装到组织，需要对应账号或组织的权限。
 

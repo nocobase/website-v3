@@ -3,7 +3,7 @@ title: Directory and file conventions
 description: Look up app, plugin and UI source asset entry points, optional directories, generated files and ownership.
 ---
 
-Read [Project structure](../getting-started/project-structure.md) for an introduction. This reference maps paths to responsibilities and maintenance rules. File names illustrate conventions; adjust optional directories to the template and feature.
+Read [Project structure](../developing-apps/project-structure.md) for an introduction. This reference maps paths to responsibilities and maintenance rules. File names illustrate conventions; adjust optional directories to the template and feature.
 
 ## Application directories
 

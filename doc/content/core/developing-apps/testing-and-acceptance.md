@@ -75,7 +75,7 @@ Keep `useApiClient()`, translations and routing real, and supply responses at th
 
 Call `renderWithApp()` inside a test; it shuts down the client application when the case ends. Keep the template's React environment and DOM cleanup, avoid wrapping the component in another Router, and keep strict translation checks enabled. Perform clicks outside `waitFor()` and use its callback only for assertions.
 
-For a client business service, first construct an instance to test its methods, then use the real container to check registration, subscriptions and resource cleanup. Import the real React component when testing a React Provider. That integration differs from a ServiceProvider in the service container; see [Client business services](client-business-services.md) and [UI components and interactions](pages-and-interactions.md).
+For a client business service, first construct an instance to test its methods, then use the real container to check registration, subscriptions and resource cleanup. Import the real React component when testing a React Provider. That integration differs from a ServiceProvider in the service container; see [Client services](client-business-services.md) and [UI components and interactions](pages-and-interactions.md).
 
 The [client testing example](https://github.com/nocobase/nocobase/blob/7fb8311d89fb59468d9fac3d6263c3379c8c6083/packages/app/app-skills/skills/nocobase-app-development/references/testing/client/page.md) includes complete request, retry and duplicate-submission checks. The template's `tests/client/page-harness.test.tsx` also demonstrates permissions, date formatting and route dialogs. Controlled-response component tests do not establish server authorization or database persistence; use real application tests for those boundaries.
 
@@ -149,7 +149,7 @@ Hiding a page entry does not verify API authorization. When changing initial rol
 
 Put database tests in `tests/database/`. Use `describeMigration()` for migrations and `createDatabaseTest()` for queries, constraints, Seed results and transactions. Import both from `@nocobase/app-testing/server`.
 
-After completing the `appStatuses` example in [Create tables and initialize data](data-models-and-migrations.md), create `tests/database/app-statuses.test.ts`:
+After adding the `appStatuses` example from [Create tables and initialize data](data-models-and-migrations.md) to your own application, create `tests/database/app-statuses.test.ts`. The standalone Database basics App already includes more complete tests; keep those when using it. This shows the minimal form:
 
 ```ts
 import { fileURLToPath } from 'node:url';

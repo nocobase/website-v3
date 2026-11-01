@@ -5,7 +5,7 @@ description: Organize plugin service implementations, Tokens and Providers and e
 
 This article gives the announcements plugin a text-preview service shared by HTTP, CLI and other plugins. `services/` owns implementation, `tokens.ts` defines public contracts, and `providers/` registers them in the App container. No database or Client code is required.
 
-See [ServiceProvider](service-provider.md) for dependency injection and lifecycle, and [Server business services](../developing-apps/server-business-services.md) for transactions and request state. This article focuses on plugin registration and public consumption.
+See [ServiceProvider](service-provider.md) for dependency injection and lifecycle, and [Server-side services](../developing-apps/server-business-services.md) for transactions and request state. This article focuses on plugin registration and public consumption.
 
 ## Prerequisites and files
 

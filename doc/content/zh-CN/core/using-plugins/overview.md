@@ -42,7 +42,7 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 3. **重要原理与实现**：解释示例的接入位置、代码和配置变化、界面变化，以及关键机制。
 4. **AI 开发的约束与验证**：列出该插件特有的开发边界、易错点和验收要求。
 
-开发提示词用于当前应用目录中的 Coding Agent。先让它阅读项目 `AGENTS.md`、应用规则和当前安装版本随包提供的相关 Skills；没有开发 Skill 的能力以公开接口、类型与文档为准。第四章讨论 AI 帮助开发者使用插件时的约束，不要求插件本身具有 AI 功能。通用协作方法与检查流程见[使用 Agent 开发](../developing-apps/develop-with-an-agent.md)和[测试与验收](../developing-apps/testing-and-acceptance.md)。
+开发提示词用于当前应用目录中的 Coding Agent。先让它阅读项目 `AGENTS.md`、应用规则和当前安装版本随包提供的相关 Skills；没有开发 Skill 的能力以公开接口、类型与文档为准。第四章讨论 AI 帮助开发者使用插件时的约束，不要求插件本身具有 AI 功能。通用协作方法与检查流程见[持续开发应用](../getting-started/develop-with-an-agent.md)和[测试与验收](../developing-apps/testing-and-acceptance.md)。
 
 各插件提供的能力不同。例如，模板打印只提供实现指导；用户管理提供管理接口和邀请页，用户管理页面由应用接入；知识库和应用底座则提供可注册的页面。每篇会说明页面、数据和业务逻辑分别由谁负责。
 

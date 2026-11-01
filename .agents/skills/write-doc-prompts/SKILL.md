@@ -9,6 +9,8 @@ description: Write or review reader-facing prompt examples in website-v3 documen
 
 适用于本仓库各种文档中的开发、配置、应用内对话、排错和验证提示词，中英文都遵循同一原则。只处理当前任务涉及的内容，不因使用本 Skill 就批量改写其他文章。
 
+文档站文章的整体写法见 [write-docs](../write-docs/SKILL.md)。本 Skill 只补充提示词的自然表达、业务边界，以及提示词与正文的分工；单个插件指南的章节组织仍按 [write-plugin-usage-docs](../write-plugin-usage-docs/SKILL.md)。仅修改提示词时，不顺带重组文章。
+
 ## 写读者会说的话
 
 - 从读者的目的出发：想在什么地方做什么、希望看到什么结果。通常一句或几句就够，不套固定模板，也不以字数代替判断。

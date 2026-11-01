@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 import { describe, expect, test } from 'vitest';
+import raw from '../docs.config.ts';
 import rehypeDocs, { SPECIAL_LANGS, highlightTree } from './rehype-docs.mjs';
 import remarkCallouts from './remark-callouts.mjs';
 import remarkFigures from './remark-figures.mjs';
@@ -15,11 +16,12 @@ writeFileSync(join(figuresDir, 'one.html'), '<div class="sw">zh one</div>\n');
 writeFileSync(join(figuresDir, 'en', 'one.html'), '<div class="sw">en one</div>\n');
 writeFileSync(join(figuresDir, 'two.html'), '<div class="sw">two</div>\n');
 const ui = { copy: 'Copy', copied: 'Copied', copyFailed: 'Failed', codeLabels: { text: 'Plain text', tree: 'Directory tree', prompt: 'Prompt' }, callouts: { NOTE: 'Note', TIP: 'Tip', WARNING: 'Warning', PENDING: 'To be written' } };
-const pages = new Set(['en:core/a', 'en:core/b/c']);
+const japanese = raw.languages.find(l => l.code === 'ja-JP');
+const pages = new Set(['en:core/a', 'en:core/b/c', 'ja-JP:core/a', 'ja-JP:core/b/c']);
 const site = {
-  config: { languages: [{ code: 'en', dir: '' }, { code: 'zh', dir: 'zh' }], byCode: { en: { ui }, zh: { ui: { ...ui, callouts: { NOTE: '说明' } } } } },
+  config: { languages: [{ code: 'en', dir: '' }, { code: 'zh', dir: 'zh' }, japanese], byCode: { en: { ui }, zh: { ui: { ...ui, callouts: { NOTE: '说明' } } }, 'ja-JP': japanese } },
   page: (l, k) => (pages.has(`${l}:${k}`) ? {} : undefined),
-  urlOf: (l, k) => `/${k}/`,
+  urlOf: (l, k) => `/${l === 'en' ? '' : `${l}/`}${k}/`,
 };
 const opts = { site, contentDir, figuresDir };
 
@@ -56,11 +58,23 @@ describe('callouts and done markers', () => {
     expect(await render('> [!NOTE]\n> x', 'zh')).toContain('<strong>说明</strong>');
     expect(await render('> plain quote')).toContain('<blockquote>');
   });
-  test('Done when and the Chinese marker', async () => {
+  test('completion markers in English, Chinese and Japanese', async () => {
     expect(await render('**Done when**: it works.')).toContain('<p class="done"><strong>Done when</strong>it works.</p>');
     expect(await render('**完成的标志**：好了。')).toContain('<p class="done"><strong>完成的标志</strong>好了。</p>');
+    expect(await render('**完了の条件**：動作します。', 'ja-JP')).toContain('<p class="done"><strong>完了の条件</strong>動作します。</p>');
     expect(await render('**Other**: x')).not.toContain('class="done"');
   });
+});
+
+test('Japanese Markdown uses localized callouts, code toolbars and links', async () => {
+  const html = await render('> [!NOTE]\n> Test\n\n```text\nfixture\n```\n\n```tree\nfixture/\n```\n\n```prompt\nfixture\n```\n\n[Link](a.md)', 'ja-JP');
+  expect(html).toContain('<strong>補足</strong>');
+  expect(html).toContain('>プレーンテキスト</span>');
+  expect(html).toContain('>ディレクトリ構成</span>');
+  expect(html).toContain('>プロンプト</span>');
+  expect(html).toContain('>コピー</button>');
+  expect(html).toContain('data-copied="コピーしました"');
+  expect(html).toContain('href="/ja-JP/core/a/"');
 });
 
 describe('links', () => {

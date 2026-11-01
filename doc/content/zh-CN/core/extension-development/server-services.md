@@ -5,7 +5,7 @@ description: 在插件中组织服务实现、Token 和 Provider，通过公开�
 
 本篇为公告插件提供文本预览服务，让 HTTP、CLI 或其他插件复用同一实现。`services/` 放业务实现，`tokens.ts` 定义公开契约，`providers/` 把实现注册到应用容器。这里不访问数据库，也不需要客户端。
 
-通用的依赖注入与生命周期见 [ServiceProvider](service-provider.md)，事务和请求状态的处理见[服务端业务服务](../developing-apps/server-business-services.md)。本篇重点是插件的注册与公开使用边界。
+通用的依赖注入与生命周期见 [ServiceProvider](service-provider.md)，事务和请求状态的处理见[服务端服务](../developing-apps/server-business-services.md)。本篇重点是插件的注册与公开使用边界。
 
 ## 前提与相关文件
 

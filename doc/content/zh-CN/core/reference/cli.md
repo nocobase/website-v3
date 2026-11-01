@@ -101,7 +101,7 @@ pnpm nocobase db apply --connection main --dry-run
 pnpm nocobase db apply --connection main
 ```
 
-`rollback`、`redo`、`reset` 和 `repair` 支持的预览与确认选项以各自 `--help` 为准。`--force` 是明确确认操作，不是修复错误的常规办法。已经执行的迁移发生校验和变化时，应先确认原因；只有内容变化确实不影响已部署结构时，才考虑校验和修复。数据库变更与恢复流程见[建表与数据初始化](../developing-apps/data-models-and-migrations.md)。
+`rollback`、`redo`、`reset` 和 `repair` 支持的预览与确认选项以各自 `--help` 为准。`--force` 是明确确认操作，不是修复错误的常规办法。已经执行的迁移发生校验和变化时，应先确认原因；只有内容变化确实不影响已部署结构时，才考虑校验和修复。数据库变更与恢复流程见[数据库迁移](../framework/database/migrations.md)。
 
 ## 插件与 Skills
 

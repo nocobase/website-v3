@@ -8,7 +8,7 @@ A runtime is the machine where Agents work. An administrator connects one shared
 ## Prepare a machine
 
 - macOS or Linux; use WSL on Windows.
-- Node.js 24 or later, pnpm 11, Git, and GitHub CLI (`gh`).
+- Node.js 24 or later, pnpm 11 (`npm install -g pnpm@11`), Git, and GitHub CLI (`gh`).
 - At least one coding tool installed and signed in as the system user running the runtime.
 - Access to Studio, GitHub, model services, and package registries.
 - Chromium and its system dependencies for tasks that verify the application UI.

@@ -83,7 +83,7 @@ pnpm nocobase config check
 4. 按目标平台重新构建，避免把开发机的原生依赖直接复制到另一种系统或架构。
 5. 分别验证代码回退和数据库恢复；回退程序版本不会自动撤销已提交的数据结构变化。
 
-构建的 `--target` 与 `--node-version` 参数见[命令行参考](cli.md)，生产部署见[选择部署方式](../deployment/choose-a-deployment-method.md)。
+构建的 `--target` 与 `--node-version` 参数见[命令行参考](cli.md)，生产部署见[部署概览](../deployment/choose-a-deployment-method.md)。
 
 ## 核对范围
 

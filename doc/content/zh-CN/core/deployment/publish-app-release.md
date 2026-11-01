@@ -1,32 +1,93 @@
 ---
-title: 发布应用新版本
-description: 修改代码后重新构建，按原来的部署方式更新已有应用。
+title: 更新与恢复
+description: 与 Agent 确认更新、备份和停机，验证已有数据，并按恢复边界回滚应用或恢复数据。
 ---
 
-发布应用新版本，就是把验证通过的代码重新构建，再通过 Docker 或 PM2（app-installer）更新已有的生产应用。沿用生产环境的数据库、运行配置和文件存储，应用地址通常也不需要改变。
+## 告诉 Agent 更新目标与现有部署信息
 
-## 使用 Agent
+<a id="使用-agent"></a>
 
-告诉 Agent 原应用部署在哪里、使用哪种部署方式，例如：
+提供目标提交、原服务器、Docker Compose 项目及目录或 app-installer 安装目录，以及当前版本、数据库和文件位置。
 
-```text
-请把当前应用的新版本部署到原来的服务器，继续使用 Docker。
-部署目录是 /srv/nocobase/shop。保留已有数据和配置，更新前做好备份，更新后检查应用是否正常。
+```prompt
+请把 <目标提交> 发布到 <现有服务器和部署目录>，继续使用 <Docker 或 app-installer>，保留现有数据、配置和密钥。先检查变更、备份和停机要求，给我更新及恢复方案，等我确认后执行。
 ```
 
-使用 PM2（app-installer）时，提供服务器和已有安装目录，由 app-installer 更新应用。
+应用发布不等于框架升级。涉及框架依赖时，先在开发环境完成[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)及兼容性验证。
 
-## 不使用 Agent
+## 确认变更、备份与停机安排
 
-先完成代码修改和测试，确认要发布的提交或版本，再按照原部署方式重新构建、发布。两种方式主要有以下差别：
+确认代码、配置、迁移与必需种子的变更，保留旧产物和摘要。已执行迁移属于历史，不应改写；校验值异常先查明原因，不盲目 repair 或清空数据库。
 
-| 部署方式 | 更新时怎么做 |
-| --- | --- |
-| [Docker](../tutorials/deploy-with-docker.md#部署新版本) | 构建新标签的镜像，修改 Compose 中的镜像版本并重新创建容器，保留原配置和存储挂载。 |
-| [PM2（app-installer）](../tutorials/deploy-with-app-installer.md#部署新版本) | 构建新的部署包，使用 app-installer 的 `upgrade` 更新原安装目录；从开发机远程发布时继续使用 `deploy --ssh`。 |
+确定停写时段、可接受的数据恢复点、备份位置和恢复负责人。数据库、文件、配置与稳定密钥必须形成可配套恢复的一组；外部数据库用对应数据库工具备份，文件及对象存储单独保存。
 
-具体命令见各部署指南的“部署新版本”章节。
+app-installer 更新在停应用后备份配置声明的 SQLite 数据库及相关日志文件、`config.yml` 和 `app.env`，不备份上传文件，也不自动备份外部数据库。`--backup-done` 仅声明外部备份已完成。
 
-如果修改涉及数据库结构，将新增迁移随代码一起发布，保留已经执行过的迁移。更新前备份数据库和文件，并留存旧部署包或镜像；切回旧代码不一定能恢复数据库。
+## 让 Agent 执行更新
 
-更新后检查应用能否访问、已有数据和权限是否保留、新功能是否正常。需要升级框架依赖时，先按[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)完成升级和验证，再按同样的流程部署。
+让 Agent 先检查配置、迁移 dry-run 和历史校验值，再按确认的停机方案执行。Docker 使用新镜像标签并保留原挂载；app-installer 对原安装目录执行 upgrade，远程仍用 deploy。
+
+安装器预检遇到更新会返回 `CONFIRMATION_REQUIRED`，此时旧服务仍运行；确认计划后才加安装器的 `--yes`。同一包返回 `success-noop`。不要重新生成配置、密钥或把更新当作新安装。
+
+## 验证新功能与原有数据
+
+核对运行版本及健康状态，从原访问地址登录。用更新前记录的 ID 检查旧数据、文件和权限，执行本次新功能；涉及结构变更时核对旧记录与新字段。
+
+在演练环境重启或重建后重复检查。让 Agent 报告源码提交、包或镜像摘要、迁移结果及实际操作结果。
+
+## 更新失败后评估恢复方案
+
+先停止新增业务写入，保留错误、日志和当前状态。确认正在运行的版本、迁移是否已提交、是否仍有安装器 pending 操作，以及备份是否完整。
+
+安装器在失败后尝试切回原版本，不能保证回退成功；若仍有 pending 或健康失败，先排查再重试。按当前数据与旧程序是否兼容，选择修复新版本、仅回滚程序或恢复配套备份，并确认备份后写入的取舍。
+
+## 回滚应用与恢复数据
+
+Docker 切回旧镜像不撤销迁移和业务写入。app-installer 的 rollback 可选择旧 release；默认只在对应升级执行了迁移、种子任务或校验修复等条件下恢复记录的 SQLite 备份，以返回计划为准。
+
+需要恢复数据时，停服务并准备与备份匹配的代码，恢复数据库、文件、配置及稳定密钥，再启动。配置虽然有快照，也不能认为 rollback 会自动恢复全部配置、文件和外部数据库。外部数据库与对象存储需要协调恢复时间点。
+
+恢复后验证登录、原记录、权限、文件及写入。先在隔离副本验证备份，确认会丢弃哪些后续写入，再操作实际环境。
+
+## 手动更新与恢复参考
+
+<a id="不使用-agent"></a>
+
+在源码目录保留旧包后重新构建：
+```bash
+pnpm build --target linux-x64 --node-version 24 --tar
+sha256sum storage/exports/dist.tar.gz
+```
+
+**Docker**：用新标签构建镜像并传输到服务器。备份完成后，在原 Compose 目录把 `image` 改为新标签。先运行下面前三个检查命令，确认变更后再执行最后一条启动命令：
+```bash
+docker compose -p my-app run --rm --no-deps app node dist/cli/index.js config check --connect
+docker compose -p my-app run --rm --no-deps app node dist/cli/index.js db apply --dry-run --json
+docker compose -p my-app run --rm --no-deps app node dist/cli/index.js db repair --dry-run --json
+docker compose -p my-app up -d --wait --wait-timeout 180
+```
+
+回滚时把 `image` 改回保留的旧标签；仅在旧程序兼容当前数据库时启动。需要数据恢复时，先 `docker compose -p my-app stop app`，恢复配套备份到原挂载路径及权限后，再用匹配镜像 `up -d --wait`。
+
+**PM2**：把新包复制为服务器 `/tmp/my-app-new.tar.gz`，以同一服务账号先预检，再在备份及停机获确认后执行：
+```bash
+npx --yes @nocobase/app-installer@0.1.0-beta.10 upgrade \
+  --dir /srv/nocobase/my-app --archive /tmp/my-app-new.tar.gz --json
+# After reviewing the plan and completing backups:
+npx --yes @nocobase/app-installer@0.1.0-beta.10 upgrade \
+  --dir /srv/nocobase/my-app --archive /tmp/my-app-new.tar.gz --yes --json
+```
+
+SSH 路线改为 `deploy --ssh deploy@server --dir /srv/nocobase/my-app --archive <本地新包路径>`，不要重复首次安装的 origin、port、name 或 `--set` 等参数。
+
+检查回滚计划，确认目标 release、SQLite 恢复及写入损失后再执行：
+```bash
+npx --yes @nocobase/app-installer@0.1.0-beta.10 rollback --dir /srv/nocobase/my-app --json
+# After accepting the recovery point and any loss of later writes:
+npx --yes @nocobase/app-installer@0.1.0-beta.10 rollback --dir /srv/nocobase/my-app --yes --json
+```
+
+外部数据库恢复没有通用命令，使用数据库自己的恢复工具。完整恢复时先 `pm2 stop nocobase-my-app`，恢复配套的数据库、文件和配置；由安装器选择匹配 release，检查 status 后再开放访问。不要手工篡改 `current` 或删除 pending 状态。备份操作见[日常维护与排错](maintenance-and-troubleshooting.md)。
+
+> [!NOTE]
+> 本机 SQLite 验证覆盖新增测试迁移、显式回滚、启动失败恢复和离线 storage 恢复。框架升级、外部数据库与对象存储仍需单独演练恢复。

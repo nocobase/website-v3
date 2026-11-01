@@ -7,10 +7,6 @@
     },
     {
       "type": "page",
-      "path": "publish-app-release"
-    },
-    {
-      "type": "page",
       "path": "../tutorials/deploy-with-docker"
     },
     {
@@ -18,32 +14,12 @@
       "path": "../tutorials/deploy-with-app-installer"
     },
     {
-      "type": "planned",
-      "title": "実行時の設定とシークレット"
-    },
-    {
-      "type": "planned",
-      "title": "データのディレクトリと永続化"
+      "type": "page",
+      "path": "publish-app-release"
     },
     {
       "type": "page",
-      "path": "../developing-apps/upgrade-nocobase-core"
-    },
-    {
-      "type": "planned",
-      "title": "アップグレードとロールバック"
-    },
-    {
-      "type": "planned",
-      "title": "バックアップと復元"
-    },
-    {
-      "type": "planned",
-      "title": "ログとトラブルシューティング"
-    },
-    {
-      "type": "planned",
-      "title": "監視とヘルスチェック"
+      "path": "maintenance-and-troubleshooting"
     }
   ]
 }

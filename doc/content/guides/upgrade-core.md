@@ -11,6 +11,6 @@ Upgrade NocoBase Core to the latest version. Give me an upgrade plan first and c
 
 The plan lists which files the template changed, how files the app has also changed will be merged, and what changes in dependencies and database migrations. After you confirm, the agent merges on a new branch, installs dependencies, syncs skills, runs the tests and the build, checks the data, and then merges back into the main branch.
 
-For manual upgrade steps and a verification checklist, see [Upgrade NocoBase Core](../core/developing-apps/upgrade-nocobase-core.md). Releasing after an upgrade works like publishing any new release: build a new image, back up the deployment directory, then replace it. See [Publish a new release](../core/tutorials/deploy-with-docker.md#publish-a-new-release).
+For manual upgrade steps and a verification checklist, see [Upgrade NocoBase Core](../core/developing-apps/upgrade-nocobase-core.md). Releasing after an upgrade works like publishing any new release: build a new image, back up the deployment directory, then replace it. See [Publish a new release](../core/deployment/publish-app-release.md).
 
 **Done when**: `nocobase.defaultTemplateVersion` in `package.json` is the new version, the tests and build pass, and all data from before the upgrade is still there.

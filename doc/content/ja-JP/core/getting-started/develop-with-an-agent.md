@@ -100,4 +100,4 @@ metaDescription: エージェントと開発するときに、要件を伝え、
 
 - [アプリ開発の概要](../developing-apps/overview.md)：機能を構成する部分を理解し、必要に応じてページ、API、データ、テストのガイドを探します。
 - [プロジェクト構成](../developing-apps/project-structure.md)：エージェントの変更を確認するときや自分でコードを書くときに、関係するディレクトリとファイルを見つけます。
-- [デプロイ方法を選ぶ](../deployment/choose-a-deployment-method.md)：機能を検証したら、アプリを自社のサーバーにデプロイします。
+- [デプロイの概要](../deployment/choose-a-deployment-method.md)：機能を検証したら、アプリを自社のサーバーにデプロイします。

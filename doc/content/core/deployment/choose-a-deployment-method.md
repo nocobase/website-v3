@@ -1,46 +1,47 @@
 ---
-title: Choose a deployment method
-description: Deploy a production application independently with Docker or PM2 (app-installer), with separate runtime configuration, persistent data, and subsequent updates.
+title: Deployment overview
+description: Prepare a deployment, choose Docker or PM2 with an Agent, agree on data retention and verify the result.
 ---
 
-After developing and testing your application, deploy it independently to production on your own server with Docker or PM2. Docker runs the application in a container. PM2 supervises the Node.js process, while app-installer handles installation and updates.
+## What to prepare before deployment
 
-This section applies to your own NocoBase Core applications. Both guides use the [product catalog example application](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md) as a worked example and provide **With an agent** and **Without an agent** paths.
+<a id="prepare-for-deployment"></a>
 
-## Choose a method
+Prepare tested application source, its lockfile and the commit to release. The Agent needs the application's `AGENTS.md` and synchronized `nocobase-deployment` Skill. Installing dependencies in the app synchronizes Skills; run `pnpm nocobase skills sync` if they are missing.
 
-| Method | Suitable when | Guide |
+Provide server access, OS and CPU details, a writable directory, free port and user-facing URL. Arrange the domain, HTTPS, reverse proxy, database and file storage accounts. Supply passwords through secure input or environment variables, outside prompts and source control.
+
+The command examples use the beta.85 template's [Product Catalog](https://github.com/nocobase/docs-examples-v3/blob/51658852e7290b0ed3c0735d2856681850560efb/apps/product-catalog/README.md) on Linux x64/glibc, Node.js 24 and single-instance SQLite. Build your own app for its actual platform and installed database driver.
+
+## Ask an Agent to choose a deployment method
+
+<a id="choose-a-method"></a>
+
+In the application source directory, describe your environment and operations preferences:
+
+```prompt
+Deploy this app to my server. It runs <OS and CPU>, users will access <URL>, and we currently manage applications with <containers or a process manager>. Compare Docker and PM2 maintenance requirements and recommend a method, including anything we need to prepare first.
+```
+
+| Method | What you manage | Guide |
 | --- | --- | --- |
-| Docker | You run containers and manage images and persistent mounts | [Deploy with Docker](../tutorials/deploy-with-docker.md) |
-| PM2 (app-installer) | You run Node.js processes on a Linux server and use app-installer to install archives, manage configuration, and update the application | [Deploy with PM2 (app-installer)](../tutorials/deploy-with-app-installer.md) |
+| Docker | Images, Compose, configuration and data mounts | [Deploy with Docker](../tutorials/deploy-with-docker.md) |
+| PM2 | Node.js, service account and processes; app-installer manages installation and updates | [Deploy with PM2](../tutorials/deploy-with-app-installer.md) |
 
-Choose Docker if you already operate containers, or PM2 (app-installer) to supervise a Node.js process directly on the server. Both methods use separate production configuration, a database, and file storage. Establish the target platform, database, and storage plan before building; each guide describes its prerequisites.
+## Agree on the target and data retention
 
-## Prepare for deployment
+<a id="initial-deployment-and-subsequent-releases"></a>
 
-- **Buildable source**: tests pass, dependencies and the lockfile are established, and the build target matches the runtime environment.
-- **An identified environment**: confirm the server, application directory, ports, access URL, and permissions. Configure domains, HTTPS, and reverse proxies for that environment.
-- **Separate runtime configuration**: prepare database, administrator, and service settings. Retain generated secrets and keep secret-bearing configuration out of the repository.
-- **Persistent data**: identify database and file storage locations and establish backup and recovery procedures.
+Identify whether this is a first install, update or migration, with one explicit server, application directory and target version. Starting with an empty database and moving existing data are separate operations.
 
-Build output includes pages, APIs, migrations, and runtime dependencies. It does not automatically include the development database, uploaded files, or runtime secrets. A new database runs migrations and required seeds. The product catalog example application initializes its catalog roles but does not copy development products, users, or role assignments. Other roles and grants created through administration pages also require a separate data migration if they must be retained.
+Builds contain code, dependencies, migrations and required initialization logic. They do not contain development databases, uploads, user-configured roles or runtime secrets. Agree on database and file locations, data to migrate, backup time and acceptable data loss. Updates retain existing data and stable keys without reinitializing them.
 
-Running `node dist/server/standalone.js` can check a build artifact. A deployment also needs process supervision, configuration management, and persistent data storage.
+## What to confirm after deployment
 
-## Initial deployment and subsequent releases
+<a id="verify-and-recover"></a>
 
-| Initial deployment | Subsequent release |
-| --- | --- |
-| Prepare the deployment directory and production runtime configuration | Reuse the application and deployment directory, preserving stable secrets |
-| Run migrations and required initialization on a new database, or migrate existing data according to a plan | Back up existing data, review and apply new migrations |
-| Verify sign-in, business behavior, permissions, and persistence | Verify new behavior, retained data, and existing permissions together |
+Use the actual URL to check sign-in, page refresh, static assets and representative business reads and writes. Verify ordinary users' permissions. Exercise file operations and WebSocket features when used.
 
-For subsequent business releases, change source, test, rebuild, and update through the original deployment method. Each guide includes a “Publish a new release” section. [Publish an application release](publish-app-release.md) summarizes the differences between the two update methods.
+Restart the process or recreate the container, then check the same record, files and permissions. Ask the Agent for the version and artifact digest, data locations, verification results and unfinished work. These checks are still needed after health checks pass.
 
-To update the framework and related dependencies, first follow [Upgrade NocoBase Core](../developing-apps/upgrade-nocobase-core.md), verify compatibility, then deploy.
-
-## Verify and recover
-
-After deployment, check the actual application URL, sign-in, core business reads and writes, ordinary-user permissions, and persistence after restart. A successful build, upload, or health check alone does not prove these behaviors.
-
-Before publishing, retain the previous build, matching configuration, and restorable database and file backups. Rolling back program code does not automatically undo migrations or business writes. If the previous runtime cannot use the new schema, restore compatible data and account for writes made since the backup. Follow the chosen method's guide for update and recovery operations.
+Continue with [Updates and recovery](publish-app-release.md) or [Maintenance and troubleshooting](maintenance-and-troubleshooting.md). For framework dependency changes, first [upgrade NocoBase Core](../developing-apps/upgrade-nocobase-core.md) in development, then release the application.

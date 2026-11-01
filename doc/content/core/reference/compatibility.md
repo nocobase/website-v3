@@ -83,7 +83,7 @@ Set `MAIN_DB_PASSWORD` through your environment-management mechanism first. Pres
 4. Rebuild for the target platform instead of copying native dependencies across operating systems or architectures.
 5. Verify code rollback and database recovery separately. Reverting program code does not automatically undo committed schema changes.
 
-See the [Command-line reference](cli.md) for `--target` and `--node-version`, and [Choose a deployment method](../deployment/choose-a-deployment-method.md) for production deployment.
+See the [Command-line reference](cli.md) for `--target` and `--node-version`, and [Deployment overview](../deployment/choose-a-deployment-method.md) for production deployment.
 
 ## Verification scope
 

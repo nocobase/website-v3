@@ -1,193 +1,97 @@
 ---
-title: Deploy with PM2 (app-installer)
-description: Install and update a production application with app-installer, using PM2 process supervision and persistent configuration and data.
+title: Deploy with PM2
+description: Have an Agent install the app with app-installer and verify PM2 supervision, access and data persistence.
 ---
 
-This guide uses the product catalog application as a worked example and also applies to your own NocoBase Core apps. Confirm the target environment with [Choose a deployment method](../deployment/choose-a-deployment-method.md). For your own project, replace example application names, paths, and business acceptance checks.
+## Prepare the app and server
 
-Deploy the product catalog application independently to your production server, with PM2 supervising the application process. `@nocobase/app-installer` extracts a release archive, prepares configuration, applies migrations, starts PM2 and checks health. It also manages subsequent application updates.
+<a id="prerequisites"></a>
 
-Verify your application has passed its tests; see [the product catalog example README](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md) for the product catalog example. This guide uses a single instance, SQLite, Linux x64/glibc, Node.js 24 and base path `/shop`. Other database dialects require the appropriate driver in the source application and a new build.
+Keep tested source, the lockfile and pnpm on the development machine. The server needs Node.js 24, PM2 4.3 or later on PATH, tar and a new directory writable by a fixed service account. Use that account for installation and later management.
 
-## Prerequisites
+Match OS, CPU and libc to the build target, with the database driver included in the app. Provide a free port, URL, database and file storage plan. Configure the reverse proxy and HTTPS in the server environment.
 
-Keep source and pnpm on the development machine. The server needs Node.js 24, globally available pm2 4.3 or later, `tar` and an empty writable installation directory owned by a fixed service account. Commands below use Bash.
+The machine running npx needs registry access. SSH deployment transfers the installer and archive; the target needs no source, Agent or online dependency installation.
 
-```bash
-node --version
-node -p "process.platform + '-' + process.arch"
-command -v pm2
-command -v tar
+## Tell the Agent what to deploy
+
+<a id="with-an-agent"></a>
+
+Provide the target in the application source directory:
+
+```prompt
+Use app-installer to deploy this app for the first time to <SSH server> in <new installation directory>, supervised by PM2 and accessible at <URL>. Use a new database with separate configuration and file storage. Explain the runtime configuration and deployment plan, and wait for my confirmation before installing.
 ```
 
-If necessary, the server maintainer installs pm2 with `npm install -g pm2`. Use the same service account for later operations. This example uses `/srv/nocobase/shop`; for a local rehearsal, use `$HOME/shop` and adjust every directory argument.
+Supply administrator and database credentials securely. For existing data, specify the backup and restore target.
 
-The app listens on `127.0.0.1:13000`. A separately configured reverse proxy provides `https://shop.example.com/shop/`, preserving the base path and WebSocket upgrades. For a local rehearsal, use origin `http://127.0.0.1:13000`. Confirm the port is free. The machine running `npx` needs registry access; an offline target can receive the installer and artifact over SSH from the development machine.
+## Confirm the installation directory and runtime configuration
 
-The example uses default template `1.0.0-beta.85`; the pinned README above describes its source and setup. The configuration below disables optional samples: required roles are initialized, but the product catalog starts empty. Create a product in the verification steps.
+Check the server, service account, new directory, unique PM2 name, port, Node version, artifact digest and data locations. `--origin` excludes the application path; `--base-path` sets it separately. Loopback is the default bind address, with the proxy providing public access.
 
-## With an agent
+SSH uses non-interactive login and strict host-key checking. Verify the host fingerprint and that the account's non-interactive PATH includes Node, PM2 and tar.
 
-```text
-Please use app-installer to deploy the current product catalog app to this server for the first time.
+## Have the Agent deploy with app-installer
 
-Server: <my SSH server alias>
-Installation directory: /srv/nocobase/shop, using a new directory and SQLite database
-Server environment: Linux x64/glibc, Node.js 24
-Application listens on: 127.0.0.1:13000
-User-facing URL: https://shop.example.com/shop/
+Have the Agent build a matching archive, compare its digest after transfer, then install in the new directory, initialize configuration and migrations, start PM2 and check health. This guide pins installer beta.10 and does not require upgrading the app template.
 
-Follow the project's deployment guidance, check the target and prerequisites, then prepare and install the application.
-Operate only on this tutorial app, without importing development data or adding sample products.
-Set up administrator sign-in, read my supplied password securely, and keep passwords and secrets out of output and code.
+`config.yml`, `app.env`, `storage/`, logs and backups live outside versioned releases; `current` points to the active release. Later updates use this installation directory rather than starting another first installation.
 
-Verify sign-in, product creation and publication and read-only member permissions.
-Restart this application and check that created products and permissions survive.
-Report the URL, verification results and any environment setup I still need to handle.
-```
+## Verify access and process supervision
 
-Replace the placeholders with the actual authorized target. The server does not need an Agent, source tree or development dependencies.
+<a id="verification-scope"></a>
 
-## Without an agent
+Expect installation `ok: true` and `result.started: true`. In status, check `result.health.ok`, `result.process.status`, `result.node.matches` and `result.pending`: expect `true`, `online`, `true` and `null`.
 
-### 1. Build on the development machine
+Sign in through the actual URL and check business reads, writes and permissions. Keep a record ID and file; see the [example instructions](https://github.com/nocobase/docs-examples-v3/blob/51658852e7290b0ed3c0735d2856681850560efb/apps/product-catalog/README.md#create-and-publish) for Product Catalog. Restart only this app's PM2 process, then verify the same record, file and permissions.
 
+The installer saves the process list. For boot recovery, the service account still needs to follow `nextCommands`, run `pm2 startup` and its printed system command, then test a machine reboot when downtime is allowed. SSH `result.remote.publicHealth: false` requires checking the public address's DNS, proxy and network.
+
+## Manual deployment reference
+
+<a id="without-an-agent"></a>
+<a id="1-build-on-the-development-machine"></a>
+<a id="2-choose-local-installation-or-ssh-deployment"></a>
+<a id="3-check-installation-and-access"></a>
+<a id="4-verify-supervision-and-persistence"></a>
+<a id="with-an-agent-1"></a>
+<a id="without-an-agent-1"></a>
+
+These examples use Bash, Linux x64/glibc, Node.js 24 and SQLite. On the server check `node --version`, `command -v pm2` and `command -v tar`; have the maintainer prepare PM2. Build in the app directory on the development machine:
 ```bash
 pnpm build --target linux-x64 --node-version 24 --tar
 sha256sum storage/exports/dist.tar.gz
 ```
 
-The archive includes production dependencies. Its platform, libc and Node major must match the server. Do not run `pnpm install` on the server for this archive installation.
-
-### 2. Choose local installation or SSH deployment
-
-**A. Run the installer on the server.** Copy the archive from the development machine:
-
+The resulting `storage/exports/dist.tar.gz` includes runtime dependencies. Copy it to `/tmp/my-app.tar.gz` on the server. As the service account, install into a new directory; replace `/srv` with an account-owned writable location if necessary:
 ```bash
-scp storage/exports/dist.tar.gz deploy@server:/tmp/shop.tar.gz
-```
-
-Then, as the service account on the server:
-
-```bash
-read -r -s -p 'Initial admin password: ' CATALOG_INITIAL_PASSWORD
-export CATALOG_INITIAL_PASSWORD
-
-npx --yes @nocobase/app-installer@0.1.0-beta.9 install /srv/nocobase/shop \
-  --archive /tmp/shop.tar.gz \
-  --origin https://shop.example.com \
-  --base-path /shop --host 127.0.0.1 --port 13000 \
-  --name nocobase-catalog \
+read -r -s -p 'Initial admin password: ' APP_INITIAL_PASSWORD
+export APP_INITIAL_PASSWORD
+npx --yes @nocobase/app-installer@0.1.0-beta.10 install /srv/nocobase/my-app \
+  --archive /tmp/my-app.tar.gz --origin http://127.0.0.1:13000 \
+  --base-path /shop --host 127.0.0.1 --port 13000 --name nocobase-my-app \
   --set app.sampleData=false \
-  --set-from-env users.initialAdmin.password=CATALOG_INITIAL_PASSWORD \
-  --json
-
-unset CATALOG_INITIAL_PASSWORD
+  --set-from-env users.initialAdmin.password=APP_INITIAL_PASSWORD --json
+unset APP_INITIAL_PASSWORD
 ```
 
-**B. Deploy over SSH from the development machine.** Configure key-based login and verify the host key through a trusted channel. Check the non-interactive account PATH:
-
+Initial administrator settings apply only to an empty user table. Check the returned username; a custom password should make `result.initialAdmin.defaultPassword` false. Check status and restart:
 ```bash
-ssh deploy@server 'node --version && command -v pm2 && command -v tar'
-```
-
-Then run locally:
-
-```bash
-read -r -s -p 'Initial admin password: ' CATALOG_INITIAL_PASSWORD
-export CATALOG_INITIAL_PASSWORD
-
-npx --yes @nocobase/app-installer@0.1.0-beta.9 deploy \
-  --ssh deploy@server --dir /srv/nocobase/shop \
-  --archive storage/exports/dist.tar.gz \
-  --origin https://shop.example.com \
-  --base-path /shop --host 127.0.0.1 --port 13000 \
-  --name nocobase-catalog \
-  --set app.sampleData=false \
-  --set-from-env users.initialAdmin.password=CATALOG_INITIAL_PASSWORD \
-  --json
-
-unset CATALOG_INITIAL_PASSWORD
-```
-
-`--archive` is local to the development machine; `--dir` is an absolute server path. Use `--ssh-port`, `--ssh-identity` or `--ssh-config` when needed, including on subsequent commands. The tool transfers the installer and archive; the server still needs Node.js, pm2 and tar.
-
-Both first-install routes require a new or empty directory. The origin excludes `/shop`; the base path is separate. `--set-from-env` reads the password on the machine executing the installer and transfers it over encrypted SSH when applicable. Initial credentials only affect an empty user table. The leading `npx --yes` accepts tool download, not future update or rollback plans.
-
-### 3. Check installation and access
-
-Expect JSON `ok: true`, `status: "success"`, and `result.started: true`. Use the returned application URL, initial username and your configured password. A custom password should produce `result.initialAdmin.defaultPassword: false`.
-
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 status \
-  --dir /srv/nocobase/shop --json
+npx --yes @nocobase/app-installer@0.1.0-beta.10 status --dir /srv/nocobase/my-app --json
 curl --fail http://127.0.0.1:13000/shop/api/healthz
+pm2 restart nocobase-my-app
 ```
 
-For remote status, add `--ssh deploy@server`. Check health is true, process status is `online`, Node matches, and no operation is pending. Once the proxy is ready, also test `https://shop.example.com/shop/api/healthz` and sign in through the real public URL. Server-local health does not verify DNS, TLS or the proxy. `result.remote.publicHealth: false` means the initiating machine could not reach the configured public endpoint.
+For SSH installation from the development machine, replace `install /srv/nocobase/my-app` with `deploy --ssh deploy@server --dir /srv/nocobase/my-app`, and use the local archive path. First check `ssh deploy@server 'node --version && command -v pm2 && command -v tar'`. Use `--ssh-port`, `--ssh-identity` or `--ssh-config` for custom connections, including later status commands.
 
-The installer keeps `installer.json`, `app.env`, `config.yml`, `storage/`, logs and backups outside versioned `releases/`. `current` points to the active release. Do not manually overwrite the installed release or symlink. The product catalog example application initializes **Catalog viewer** and **Catalog editor** roles through required seeds. Development products, users, and role assignments are not copied with the archive; configure or migrate them separately.
+`--set-from-env` reads the variable on the initiating machine and transfers it over encrypted SSH. The leading `npx --yes` accepts tool download; the installer's own `--yes` confirms an update or rollback plan.
 
-### 4. Verify supervision and persistence
+Continue with [Updates and recovery](../deployment/publish-app-release.md) and [Maintenance and troubleshooting](../deployment/maintenance-and-troubleshooting.md).
 
-Sign in as administrator and open `/shop/api/swagger/docs`. Under **Products**, create `Deployment Notebook` with `priceCents: 1200`, record the returned ID, then publish it. Supply a new `Idempotency-Key` for each new operation; see [Create and publish](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md#create-and-publish). Verify it appears at `/shop/catalog`.
+<a id="publish-a-new-release"></a>
+<a id="failure-and-rollback"></a>
 
-Assign **Catalog viewer** to an ordinary account without administrator or **Catalog editor** access. Reads and CSV downloads should succeed; create and publish requests should return `403`. Restart only this app with `pm2 restart nocobase-catalog` using the same service account. Sign in again and verify the same ID, name, price, publication state and permissions. Follow the installation result’s `nextCommands` to configure boot recovery with `pm2 startup` and its printed system command. Process restart and machine reboot recovery are separate checks.
+[Updates and recovery](../deployment/publish-app-release.md)
 
-## Publish a new release
-
-See [Publish an application release](../deployment/publish-app-release.md) for an overview of the update process. Keep old artifacts and source revisions. Build a new archive, then inspect status and the update plan.
-
-### With an agent
-
-```text
-Please publish the verified new product catalog application to the existing tutorial environment.
-
-Server: <my SSH server alias>
-Existing installation directory: /srv/nocobase/shop
-Continue using app-installer and preserve the database, configuration, sign-in secrets and uploaded files.
-
-Before updating, inspect the current version and products, prepare a backup and retain the previous version.
-Explain data changes, expected downtime and recovery if the update fails.
-If previously applied data changes have been rewritten, investigate before attempting repairs or skipping checks.
-Do not treat the update as a fresh installation or clear existing data.
-
-Verify that old prices, publication states and reader permissions survive, and that the new feature works.
-Restart and check again. Operate only on this tutorial application and report the actual results.
-```
-
-### Without an agent
-
-Build and copy the new archive as above. On the server, inspect the plan without the installer's confirmation flag:
-
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 upgrade \
-  --dir /srv/nocobase/shop --archive /tmp/shop-new.tar.gz --json
-```
-
-From the development machine, use `deploy --ssh` with the existing directory and new local archive. Do not repeat first-install options such as origin, port or `--set`. The installer recognizes an existing `installer.json`; an identical artifact returns `success-noop`.
-
-A pending update returns `CONFIRMATION_REQUIRED` with downtime, backup and migration details while the old app remains running. Review these before adding the installer's own `--yes`:
-
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 upgrade \
-  --dir /srv/nocobase/shop --archive /tmp/shop-new.tar.gz --yes --json
-```
-
-The installer checks configuration, pending migrations and historical checksums through the new application CLI. The migration count should match the release; changing a page or service does not itself require a new migration. Investigate unexpected migrations or checksum drift rather than resetting the database. The installer stops the app, backs up SQLite and configuration, migrates, switches the release and verifies health. Uploads and external databases need separate backups; `--backup-done` acknowledges a backup rather than creating one.
-
-Check status and both old and new data afterward. Retain product IDs, names, prices and publication states. Published products must remain visible at `/shop/catalog`, while drafts remain private. Administrators can create and publish; **Catalog viewer** users can read and download CSV but cannot write. Verify the new feature and any documented schema changes, then restart and repeat the checks. Record the source commit and artifact digest; a version number alone does not identify a rebuild.
-
-### Failure and rollback
-
-Preserve errors and inspect status, logs, current release and pending operations before retrying. Inspect a rollback plan with:
-
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 rollback --dir /srv/nocobase/shop --json
-```
-
-Only confirm after reviewing data loss and recovery. When an update applied database migrations, the rollback plan may restore the pre-update SQLite backup and discard later writes; inspect the returned plan. External databases and uploads have separate recovery procedures.
-
-## Verification scope
-
-The product catalog example was checked with `@nocobase/app-installer@0.1.0-beta.9`, PM2 `6.0.14`, Node.js 24 and SQLite: fresh local installation, status, native login, product creation/publication, and PM2 restart retaining the same product and password. Real application tests separately cover role-based read/write restrictions. Cross-host SSH, public TLS/proxy setup, machine boot recovery, cross-version upgrades, failure recovery and rollback were not exercised.
+> [!NOTE]
+> The beta.85 example was checked locally with Node.js 24, PM2 6.0.14, installer beta.10 and SQLite: installation, native sign-in, business writes and restart persistence. SSH, public proxy/TLS and host reboot recovery remain unverified.

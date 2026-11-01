@@ -1,131 +1,91 @@
 ---
 title: Docker でデプロイする
-description: イメージをビルドして本番アプリを独立してデプロイし、Docker Compose で設定とデータを保ちます。
+description: Agent に Docker アプリのビルドとデプロイを依頼し、設定とデータの永続化を確認します。
 ---
 
-このガイドでは製品カタログのアプリを実例として使いますが、自分の NocoBase Core のアプリにも当てはまります。対象の環境は [デプロイ方法を選ぶ](../deployment/choose-a-deployment-method.md) で確認してください。自分のプロジェクトでは、例のアプリ名、パス、業務の検収のチェックを置き換えます。
+## アプリ、サーバー、アクセス先を準備する
 
-アプリ自身の `Dockerfile` でイメージをビルドし、本番のサーバーで Docker Compose を使って動かします。設定、SQLite、アップロードされたファイルには、それぞれ別の永続化されたディレクトリを使います。アプリがテストに合格していることを確認してください。製品カタログの例については [製品カタログのサンプルの README](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md) を参照してください。このガイドでは、Linux x64、単一の SQLite のインスタンス、テンプレートの Node.js 24 の Debian のランタイムを使います。
+<a id="前提条件"></a>
 
-## 前提条件
+テスト済みのソースと対象コミットを用意します。ビルド環境には Docker、実行サーバーには Docker と `--wait` 対応の Compose プラグインが必要です。Docker context が指すマシンを確認してください。マウント元は daemon が動くサーバー上に必要です。
 
-```bash
-docker version
-docker compose version
-docker context show
+デプロイ先ディレクトリ、CPU、空きポート、公開 URL を伝えます。プロキシではアプリのパス、Cookie、WebSocket を転送し、Host とプロトコルのヘッダーを保持します。設定と `storage` はイメージ外に保存します。テンプレートコンテナの UID 1000 に設定の読み取りとデータの書き込み権限を与えます。
+
+## Agent にデプロイ要件を伝える
+
+<a id="エージェントを使う場合"></a>
+
+アプリのソースディレクトリで、次の内容を実際の値に置き換えて伝えます。
+
+```prompt
+このアプリを Docker で <サーバー> の <新しいデプロイ先> に配置し、<URL> から使えるようにしてください。新しいデータベースで始め、開発データは取り込みません。設定とデータは別に保存し、コンテナを作り直しても使えるようにしてください。まず配置計画を示し、私の確認を待ってから実行してください。
 ```
 
-コマンドは Bash を使います。サーバーには、`--wait` に対応した Compose プラグインが必要です。バインドマウントの元のパスは、リモートの Docker コンテキストにコマンドを送るマシンではなく、Docker サーバー上に存在する必要があります。このチュートリアル用に、独立したプロジェクト名、ディレクトリ、使われていないホストのポートを選んでください。
+既存データが必要な場合は、新しいデータベースという条件を変更し、バックアップと復元先を指定します。
 
-この例は既定のテンプレート `1.0.0-beta.85` を使い、上の固定コミットの README がそのソースとセットアップを説明しています。以下の設定では任意のサンプルを無効にしています。必要なロールは初期化されますが、製品カタログは空の状態で始まります。確認の手順で製品を作成してください。
+## デプロイ計画を確認する
 
-## エージェントを使う場合
+コミット、イメージタグ、対象 CPU、Node のメジャーバージョン、ディレクトリ、ポート、データベース、マウント先を確認します。管理者設定と鍵の保管方法、ドメイン・HTTPS・プロキシの担当も決めます。
 
-アプリのソースのディレクトリで、下のサーバー、ディレクトリ、URL を実際の対象に置き換えます。
+`APP_PUBLIC_ORIGIN` はスキームとホストのみ、`APP_BASE_PATH` はアプリのパスです。選択したストレージが永続化されることを確認してから起動を許可します。
 
-```text
-現在の製品カタログのアプリを、初めて Docker でデプロイしてください。
+## Agent にビルドとデプロイを依頼する
 
-サーバー：<my Docker server>
-サーバーのプラットフォーム：linux/amd64
-デプロイ先のディレクトリ：<absolute server path>/catalog-docker
-データベース：新しい SQLite のデータベース。開発中のデータやサンプルの製品は含めない
-サーバー内の待ち受け：127.0.0.1:13000
-ユーザー向けの URL：https://shop.example.com/shop/
+アプリ付属の `Dockerfile` と `Dockerfile.dockerignore` を使い、ソースからビルドするか、対象に合った `dist/` を格納してもらいます。prebuilt は Linux/glibc、CPU、Node のメジャーバージョンと relocatable マーカーを確認します。
 
-プロジェクトの Docker のデプロイのガイダンスに従い、このチュートリアルのアプリだけを操作してください。
-コンテナを作り直しても残るよう、設定、パスワード、業務データはイメージから分けてください。
-管理者のサインインを設定し、アプリのシークレットはコードやレポートに出さずに保持してください。
-必要な設定やストレージが足りない場合は、空のデータのまま黙って起動するのではなく、問題を説明してください。
+初回のみ設定を生成して管理者パスワードを設定し、その後は設定と鍵を保持します。Compose、設定、データベース接続を確認してから起動し、ヘルスチェックを待ちます。別サーバーに転送する場合は前後のイメージ ID を比較します。イメージのエクスポートには業務データは含まれません。
 
-サインイン、製品の作成と公開、閲覧者の権限を確認してから、このアプリのコンテナを作り直し、元のデータと権限が残っていることを確認してください。
-URL、確認の結果、ドメインや HTTPS など未完了の設定を報告してください。
-```
+## アクセスとデータの永続化を確認する
 
-DNS、HTTPS、リバースプロキシは別に設定します。ローカルでのリハーサルでは、オリジンを `http://127.0.0.1:13000` に置き換えます。
+実際の URL でログインし、識別できるレコードを作成して ID を記録します。一般ユーザーの読み書き権限を確認し、ファイルを使う場合はアップロードとダウンロードも試します。商品カタログの操作は[サンプルの説明](https://github.com/nocobase/docs-examples-v3/blob/51658852e7290b0ed3c0735d2856681850560efb/apps/product-catalog/README.md#create-and-publish)を参照してください。
 
-## エージェントを使わない場合
+同じ Compose プロジェクトのコンテナを作り直してもらい、再ログインして同じレコードとファイルを確認します。マウントと鍵が変わらず、プロキシ経由の更新、API、リアルタイム接続が動くことを確認します。以降の変更は[更新と復旧](../deployment/publish-app-release.md)に従います。
 
-### 1. 開発マシンでイメージをビルドする
+## 手動デプロイの参考
 
+<a id="エージェントを使わない場合"></a>
+<a id="1-開発マシンでイメージをビルドする"></a>
+<a id="2-永続化するストレージと設定を準備する"></a>
+<a id="3-composeyml-を作成する"></a>
+<a id="4-検証して起動する"></a>
+<a id="5-作り直したあとの永続性を確認する"></a>
+
+以下は Bash、Linux x64/glibc、Node.js 24、SQLite、ローカルの `/shop` URL を使う例です。自分のアドレスと導入済みドライバーに合わせて変更します。最初に `docker version`、`docker compose version`、`docker context show` を確認します。
+
+アプリのソースディレクトリでビルドします。
 ```bash
 pnpm build --target linux-x64 --node-version 24
-
-docker build --platform linux/amd64 \
-  --build-arg DIST=prebuilt \
-  -t catalog-app:1 .
+docker build --platform linux/amd64 --build-arg DIST=prebuilt -t my-app:1 .
 ```
 
-Docker が読むのは `dist/` で、`dist.tar.gz` ではありません。app-installer 用のアーカイブも必要な場合は、アプリのビルドに `--tar` を付けます。`linux-x64` は Docker の `linux/amd64` に対応し、glibc を使います。ARM64 の対象には、`linux-arm64` と `linux/arm64` の両方が必要です。Node のメジャーバージョンは Dockerfile と一致している必要があります。
+ソースから直接 `docker build --platform linux/amd64 -t my-app:1 .` でもビルドできます。ARM64 では `linux-arm64` と `linux/arm64` の両方に変更します。転送にはレジストリ、または `docker save -o my-app-1.tar my-app:1` を使い、コピー後にサーバーで `docker load -i my-app-1.tar` を実行します。
 
-`Dockerfile.dockerignore` は残してください。ローカルの設定、データベース、開発用の依存関係を除外しています。ビルド済みの段階では、プラットフォーム、Node のメジャーバージョン、再配置可能性が検証されます。それらのチェックを回避するのではなく、一致しないビルドのパラメーターを修正してください。
-
-イメージはレジストリで転送するか、書き出します。
-
+サーバー上の新しいデプロイ先で設定を生成します。先にディレクトリ管理者が、このアプリの `config` と `storage` のみ UID 1000 で書き込めるようにします。
 ```bash
-# Development machine
-docker save -o catalog-app-1.tar catalog-app:1
-scp catalog-app-1.tar deploy@server:/tmp/catalog-app-1.tar
-```
-
-サーバーで次を実行します。
-
-```bash
-docker load -i /tmp/catalog-app-1.tar
-```
-
-必要に応じて、転送の前後で `docker image inspect catalog-app:1 --format '{{.Id}}'` を比較します。イメージのアーカイブはデータのバックアップではありません。以降のコマンドは Docker サーバーで実行します。ローカルでのリハーサルでは転送は不要です。
-
-### 2. 永続化するストレージと設定を準備する
-
-```bash
-mkdir -p "$HOME/catalog-docker/config" "$HOME/catalog-docker/storage"
-cd "$HOME/catalog-docker"
-```
-
-このインストールには新しいディレクトリを使います。テンプレートのコンテナは UID 1000（`node`）で動作し、マウントに書き込める必要があります。必要に応じて、管理者がこれらのディレクトリの所有者だけを調整します。たとえば `sudo chown 1000:1000 config storage` です。
-
-イメージの CLI で設定を生成します。
-
-```bash
-docker run --rm \
-  --mount "type=bind,src=$PWD/config,dst=/config" \
-  catalog-app:1 \
+mkdir -p config storage
+# Run in the new deployment directory on the Docker server.
+docker run --rm --mount "type=bind,src=$PWD/config,dst=/config" my-app:1 \
   node dist/cli/index.js config init --dialect sqlite --config /config/config.yml
+read -r -s -p 'Initial admin password: ' APP_INITIAL_PASSWORD
+export APP_INITIAL_PASSWORD
+docker run --rm -e APP_INITIAL_PASSWORD -e APP_CONFIG_FILE=/config/config.yml \
+  --mount "type=bind,src=$PWD/config,dst=/config" my-app:1 \
+  node dist/cli/index.js config set --from-env users.initialAdmin.password=APP_INITIAL_PASSWORD
+unset APP_INITIAL_PASSWORD
 ```
 
-初回の起動の前に、管理者のパスワードを設定します。
-
-```bash
-read -r -s -p 'Initial admin password: ' CATALOG_INITIAL_PASSWORD
-export CATALOG_INITIAL_PASSWORD
-
-docker run --rm \
-  -e CATALOG_INITIAL_PASSWORD \
-  -e APP_CONFIG_FILE=/config/config.yml \
-  --mount "type=bind,src=$PWD/config,dst=/config" \
-  catalog-app:1 \
-  node dist/cli/index.js config set \
-  --from-env users.initialAdmin.password=CATALOG_INITIAL_PASSWORD
-
-unset CATALOG_INITIAL_PASSWORD
-```
-
-生成された設定と固定のシークレットは、アクセスを制限したバックアップで保持してください。再起動のたびに生成し直さないでください。初期管理者の設定は、ユーザーのテーブルが空のときにだけ適用されます。
-
-### 3. compose.yml を作成する
-
+`compose.yml` として保存します。
 ```yaml
 services:
   app:
-    image: catalog-app:1
+    image: my-app:1
     init: true
     restart: unless-stopped
     ports:
       - '127.0.0.1:13000:13000'
     environment:
       APP_BASE_PATH: /shop
-      APP_PUBLIC_ORIGIN: https://shop.example.com
+      APP_PUBLIC_ORIGIN: http://127.0.0.1:13000
       APP_SAMPLE_DATA: 'false'
     volumes:
       - type: bind
@@ -141,71 +101,28 @@ services:
           create_host_path: false
 ```
 
-オリジンにはベースパスを含めません。コンテナは `0.0.0.0:13000` で待ち受け、ホストはループバックにだけ公開します。公開の HTTPS、パスの転送、WebSocket のアップグレードはリバースプロキシが扱います。ループバックでのリハーサルでは、対応する HTTP のオリジンを設定し、`http://127.0.0.1:13000/shop/` を開きます。
+公開 URL が `https://apps.example.com/shop/` なら origin を `https://apps.example.com` に変更し、プロキシを別途設定します。長いマウント記法は存在しないパスを拒否し、意図しない空ディレクトリの使用を防ぎます。
 
-`create_host_path: false` を指定すると、マウントの元がない場合に、誤った空のディレクトリを黙って作るのではなく失敗します。動作中のコンテナでは設定は読み取り専用で、SQLite、アップロード、そのほかの永続的な内容は書き込み可能なストレージを使います。
-
-### 4. 検証して起動する
-
+同じデプロイ先で確認、起動、再作成を行います。
 ```bash
-docker compose -p catalog-app config --quiet
-
-docker compose -p catalog-app run --rm --no-deps app \
-  node dist/cli/index.js config check --connect
-
-docker compose -p catalog-app up -d --wait --wait-timeout 180
-
-docker compose -p catalog-app ps
-docker compose -p catalog-app logs --tail=80 app
+docker compose -p my-app config --quiet
+docker compose -p my-app run --rm --no-deps app node dist/cli/index.js config check --connect
+docker compose -p my-app up -d --wait --wait-timeout 180
 curl --fail http://127.0.0.1:13000/shop/api/healthz
+docker compose -p my-app up -d --force-recreate --wait --wait-timeout 180
 ```
 
-`--wait` は、イメージのヘルスチェックを待ちます。タイムアウトした場合は、コンテナを何度も作り直すのではなく、状態とログを調べてください。設定のチェックは起動の前に行われ、実際のマイグレーションと必要な初期化はアプリの起動時に行われます。
+ヘルスエンドポイントは `ok: true` と正しい base path を返すことを確認します。初期管理者名の既定値は `nocobase`、パスワードは設定した値です。再作成前後に上記のデータ確認を行います。演習終了時は `docker compose -p my-app down` を使い、設定とデータのディレクトリは保持します。
 
-`ok: true`、期待どおりのベースパス、マイグレーションやデータベースのエラーがないことを確認します。既定のユーザー名 `nocobase` と、新しく設定したパスワードでサインインします。製品カタログのサンプルアプリは、必須のシードで **Catalog viewer** と **Catalog editor** のロールを初期化します。開発中のユーザー、ロールの割り当て、製品はイメージと一緒にはコピーされません。実際の公開 URL もテストしてください。コンテナが正常でも、ドメイン、HTTPS、プロキシが検証されたことにはなりません。
+設定変更、バックアップ、ログ、障害対応は[日常の保守とトラブルシューティング](../deployment/maintenance-and-troubleshooting.md)を参照してください。
 
-### 5. 作り直したあとの永続性を確認する
+<a id="新しいリリースを公開する"></a>
 
-管理者としてサインインし、`/shop/api/swagger/docs` を開きます。**Products** で `priceCents: 1200` の `Deployment Notebook` を作成し、その ID を控えてから、公開のエンドポイントを呼び出します。操作ごとに新しい `Idempotency-Key` を使います。[作成と公開](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md#create-and-publish) を参照してください。`/shop/catalog` に表示されることを確認します。この公開カタログには公開済みの製品が表示され、作成は API ドキュメントで行います。このプロジェクトだけを作り直します。
+[更新と復旧](../deployment/publish-app-release.md)
 
-```bash
-docker compose -p catalog-app up -d --force-recreate --wait --wait-timeout 180
-```
+<a id="トラブルシューティングと検証の範囲"></a>
 
-もう一度サインインして同じ製品の ID を照会し、名前、価格、公開状態を確認してから、`/shop/catalog` を再読み込みします。管理者や **Catalog editor** のアクセスを持たない一般ユーザーに、明示的に **Catalog viewer** を割り当てます。製品の読み取りと CSV のダウンロードは成功し、作成と公開のリクエストは `403` を返すことを確認します。
+[日常の保守とトラブルシューティング](../deployment/maintenance-and-troubleshooting.md)
 
-リハーサルを止めるには、このディレクトリで `docker compose -p catalog-app down` を実行します。ホストの設定とストレージは残ります。もう一度始めるには `up` を使い、設定の初期化は再実行しないでください。
-
-## 新しいリリースを公開する
-
-`catalog-app:2` などの新しいイメージのタグをビルドし、サーバーに転送します。概要は [アプリのリリースを公開する](../deployment/publish-app-release.md) を参照してください。データベース、ファイル、設定をバックアップしてから、マウントとシークレットは保ったまま、イメージの参照だけを変更します。
-
-既存のインストールに対して、新しいイメージを確認します。
-
-```bash
-docker compose -p catalog-app run --rm --no-deps app \
-  node dist/cli/index.js config check --connect
-
-docker compose -p catalog-app run --rm --no-deps app \
-  node dist/cli/index.js db apply --dry-run --json
-
-docker compose -p catalog-app run --rm --no-deps app \
-  node dist/cli/index.js db repair --dry-run --json
-```
-
-これらのチェックで別のアプリのサービスが起動することはありません。保留中のマイグレーションと過去のチェックサムを確認し、バックアップを確かめてから、`docker compose -p catalog-app up -d --wait --wait-timeout 180` を実行します。起動時に新しいマイグレーションが適用されます。古いレコード、ロール、新しい機能を確認してください。古いイメージに戻してもコードが変わるだけで、データベースのマイグレーションや書き込みは元に戻りません。
-
-エージェントを使う場合は、既存のディレクトリ、Compose のプロジェクト名、新しいタグを伝え、同じ確認と保持のチェックを求めてください。新しい設定を初期化させないでください。
-
-設定を変更したあとも、コンテナを作り直します。ツールが設定ファイルをアトミックに置き換えると、古い単一ファイルのマウントが以前の inode を指したままになることがあります。コンテナを作り直すと、マウントし直されます。Compose の環境変数を変更した場合も作り直しが必要です。`docker restart` では新しい環境変数は反映されません。
-
-## トラブルシューティングと検証の範囲
-
-| 症状 | 確認すること |
-| --- | --- |
-| バインドの元がない | サーバーのディレクトリが正しいこと、設定が生成され、ストレージがあること |
-| `EACCES` | UID 1000 が設定を読み、ストレージに書き込めること |
-| ホストのポートが使用中 | 別のホストのポートを選び、直接アクセスするオリジンを更新する |
-| 異常またはタイムアウト | プロジェクトのログ、データベース、マイグレーション、ベースパス |
-
-製品カタログの例は、Linux x64、Node.js 24、SQLite で確認しています。ビルド済みのイメージ、設定の初期化、独自のパスワード、Compose のヘルスチェックの待機、ネイティブのログイン、製品の作成と公開、CSV のダウンロード、匿名での管理のリクエストの拒否、コンテナを作り直しても同じ製品とパスワードが保たれることです。ロールに基づく読み書きの制限は、実際のアプリのテストで別に網羅しています。サーバー間の転送、公開の HTTPS とプロキシの設定、バージョンをまたぐデプロイとロールバックは試していません。
+> [!NOTE]
+> これらの Docker コマンドの実行検証は未完了です。公開前に Docker ホストでイメージのビルド、コンテナの再作成、復旧を演習してください。

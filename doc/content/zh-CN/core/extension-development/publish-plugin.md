@@ -231,7 +231,7 @@ pnpm dev
 pnpm build
 ```
 
-按[编写第一个插件](write-your-first-plugin.md#6-接入-app-并查看结果)检查菜单、公告内容、语言切换和接口。随后按 App 原有方式部署，见[选择部署方式](../deployment/choose-a-deployment-method.md)。
+按[编写第一个插件](write-your-first-plugin.md#6-接入-app-并查看结果)检查菜单、公告内容、语言切换和接口。随后按 App 原有方式部署，见[部署概览](../deployment/choose-a-deployment-method.md)。
 
 开发机和 CI 构建环境需要有私有源的读取权限。App 构建会保留源地址，但不会把项目中的认证 token 复制到部署产物；CI 通过用户级 npm 配置或受保护的凭据配置提供认证。若部署流程还会重新安装依赖，也要为该安装步骤提供读取权限。
 

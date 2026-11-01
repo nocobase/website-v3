@@ -100,4 +100,4 @@ The agent writes the rule in `.agents/rules/` and adds it to the index in `AGENT
 
 - [Application development overview](../developing-apps/overview.md): understand the parts of a feature and find guides for pages, APIs, data, and tests as needed.
 - [Project structure](../developing-apps/project-structure.md): find the relevant directories and files when reviewing the agent's changes or writing code yourself.
-- [Choose a deployment method](../deployment/choose-a-deployment-method.md): deploy the application to your own server after verifying its features.
+- [Deployment overview](../deployment/choose-a-deployment-method.md): deploy the application to your own server after verifying its features.

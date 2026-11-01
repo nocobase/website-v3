@@ -67,7 +67,7 @@ description: 应用与插件边界、UI 组件、配置、命令、数据库、�
 
 ## 开发预览和生产部署如何选择？
 
-本地用开发命令；Studio 中的开发预览见 Studio 文档。独立生产部署使用 Docker 或 PM2 配合 app-installer，部署构建产物并保留运行数据。见[选择部署方式](../deployment/choose-a-deployment-method.md)。
+本地用开发命令；Studio 中的开发预览见 Studio 文档。独立生产部署使用 Docker 或 PM2 配合 app-installer，部署构建产物并保留运行数据。见[部署概览](../deployment/choose-a-deployment-method.md)。
 
 ## 反馈问题时提供什么信息？
 

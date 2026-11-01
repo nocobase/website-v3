@@ -62,8 +62,8 @@ Core 和配套插件提供可复用的基础能力，减少每个项目中重复
 
 ## 部署与维护
 
-- [选择部署方式](deployment/choose-a-deployment-method.md)：将应用部署到自己的运行环境，准备配置和持久化数据。
-- [发布应用新版本](deployment/publish-app-release.md)：完成验证和构建，交付业务更新。
+- [部署概览](deployment/choose-a-deployment-method.md)：将应用部署到自己的运行环境，准备配置和持久化数据。
+- [更新与恢复](deployment/publish-app-release.md)：完成验证和构建，交付业务更新。
 - [升级 NocoBase Core](developing-apps/upgrade-nocobase-core.md)：了解基础依赖与应用模板的更新方式，检查业务定制的兼容性。
 
 ## 参考手册

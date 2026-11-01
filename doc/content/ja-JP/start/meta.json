@@ -1,0 +1,27 @@
+{
+  "pages": [
+    {
+      "type": "page",
+      "path": "../index",
+      "title": "ホーム"
+    },
+    {
+      "type": "group",
+      "title": "はじめに",
+      "pages": [
+        {
+          "type": "page",
+          "path": "what-is-nocobase"
+        },
+        {
+          "type": "page",
+          "path": "from-v2"
+        },
+        {
+          "type": "page",
+          "path": "glossary"
+        }
+      ]
+    }
+  ]
+}

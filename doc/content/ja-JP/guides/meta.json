@@ -1,0 +1,106 @@
+{
+  "pages": [
+    {
+      "type": "group",
+      "title": "はじめる",
+      "pages": [
+        {
+          "type": "page",
+          "path": "build-reliable-enterprise-apps"
+        },
+        {
+          "type": "page",
+          "path": "prepare-environment"
+        },
+        {
+          "type": "page",
+          "path": "choose-agent-and-model"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "パート 1：Core でアプリを構築する",
+      "pages": [
+        {
+          "type": "page",
+          "path": "create-app"
+        },
+        {
+          "type": "page",
+          "path": "write-a-design-doc"
+        },
+        {
+          "type": "page",
+          "path": "first-feature-devices"
+        },
+        {
+          "type": "page",
+          "path": "requests-and-approval"
+        },
+        {
+          "type": "page",
+          "path": "roles-and-permissions"
+        },
+        {
+          "type": "page",
+          "path": "accept-agent-work"
+        },
+        {
+          "type": "page",
+          "path": "deploy"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "パート 2：チームで Studio を使う",
+      "pages": [
+        {
+          "type": "page",
+          "path": "bring-into-studio"
+        },
+        {
+          "type": "page",
+          "path": "agent-team-request"
+        },
+        {
+          "type": "page",
+          "path": "business-colleagues"
+        },
+        {
+          "type": "page",
+          "path": "capture-knowledge"
+        },
+        {
+          "type": "page",
+          "path": "release"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "ベストプラクティス",
+      "pages": [
+        {
+          "type": "page",
+          "path": "best-practices"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "付録",
+      "pages": [
+        {
+          "type": "page",
+          "path": "prompts"
+        },
+        {
+          "type": "page",
+          "path": "upgrade-core"
+        }
+      ]
+    }
+  ]
+}

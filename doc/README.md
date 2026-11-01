@@ -7,8 +7,9 @@ doc/
 ├── docs.config.ts   Site config: origin, languages (and their interface strings), sections, links, analytics
 ├── content/         The pages, one Markdown file per page; menus in meta.json files
 │   ├── index.md, start/, core/, studio/, guides/   English, mirroring the URLs (served at the site root)
-│   └── zh-CN/       Simplified Chinese, the same structure as the English tree (served under /zh-CN/)
-├── figures/         Figure fragments (HTML), referenced from content with ::figure name | caption; figures/en/ has the English versions
+│   ├── zh-CN/       Simplified Chinese (served under /zh-CN/)
+│   └── ja-JP/       Japanese (served under /ja-JP/), with the same pages and menus
+├── figures/         Figure fragments (HTML), referenced from content with ::figure name | caption; figures/en/ and figures/ja-JP/ hold localized versions
 ├── plugins/         remark and rehype plugins (figures, callouts, links, code blocks, tables, images)
 ├── public/assets/   Files copied as they are (the Core screenshots and downloads, at /assets/core/...)
 ├── src/             The Astro app: pages/, layouts/, components/, lib/ (menus, config, checks), scripts/, styles/, integrations/
@@ -28,7 +29,7 @@ pnpm doc:preview   # serves doc/dist/ on http://localhost:4321/ the way the CDN 
 pnpm doc:test      # vitest: menus, links, plugins, llms.txt and the output checks
 ```
 
-`dist/` has the layout of the live site: every page is `<path>/index.html`, addresses have no extension and end with `/` (for example `/core/getting-started/create-app/`), and internal links and assets are root-relative, so use the preview server rather than opening files directly. Besides the pages, the root has `404.html` (English only, the CDN serves a single 404 page), `sitemap-index.xml` and `sitemap-0.xml` (with `hreflang` alternates and `x-default`; placeholder pages and the 404 are left out), `robots.txt`, `llms.txt` and `zh-CN/llms.txt`, a `.md` copy of every page (`/core/index.md`, front matter stripped, title and description added, a `::figure` line replaced by its caption), the search index in `pagefind/`, and the bundled CSS, JavaScript and fonts in `_astro/`. `DOCS_SITE_ORIGIN` sets the site origin (default `https://docs.nocobase.com`), `DOCS_OUT_DIR` the output directory, and `GITHUB_STARS` the star count in the header (a raw number; the default is in `packages/shared/src/config.mjs`).
+`dist/` has the layout of the live site: every page is `<path>/index.html`, addresses have no extension and end with `/` (for example `/core/getting-started/create-app/`), and internal links and assets are root-relative, so use the preview server rather than opening files directly. Besides the pages, the root has `404.html` (English only, the CDN serves a single 404 page), `sitemap-index.xml` and `sitemap-0.xml` (with `hreflang` alternates and `x-default`; placeholder pages and the 404 are left out), `robots.txt`, `llms.txt`, `zh-CN/llms.txt` and `ja-JP/llms.txt`, a `.md` copy of every page (`/core/index.md`, front matter stripped, title and description added, a `::figure` line replaced by its caption), the search index in `pagefind/`, and the bundled CSS, JavaScript and fonts in `_astro/`. `DOCS_SITE_ORIGIN` sets the site origin (default `https://docs.nocobase.com`), `DOCS_OUT_DIR` the output directory, and `GITHUB_STARS` the star count in the header (a raw number; the default is in `packages/shared/src/config.mjs`).
 
 The Markdown content cache of Astro does not notice changes to figures, menus or plugins; `pnpm doc:build` always starts from a clean, build-only cache in `doc/node_modules/.astro-build/`. Builds preserve `doc/.astro/`, which holds the running dev server's content store, so building while developing does not remove its page entries. In the dev server, restart after editing figures, menus or plugins.
 
@@ -40,9 +41,9 @@ Old addresses of the v2 documentation (top-level paths and language prefixes suc
 
 ```ts
 export default defineDocsConfig({
-  site: { origin, title: { en, 'zh-CN' }, logo },
-  languages: [{ code: 'en', dir: '', hreflang: 'en', label: 'English', website: 'https://www.nocobase.com/', ui: { ... } }, { code: 'zh-CN', dir: 'zh-CN', ... }],
-  sections: [{ id: 'start', dir: 'start', extra: ['index'], home: 'index', title: { en: 'Start', 'zh-CN': '开始' } }, { id: 'core', dir: 'core', home: 'core/index', ... }, ...],
+  site: { origin, title: { en, 'zh-CN', 'ja-JP' }, logo },
+  languages: [{ code: 'en', dir: '', hreflang: 'en', label: 'English', website: 'https://www.nocobase.com/', ui: { ... } }, { code: 'zh-CN', dir: 'zh-CN', ... }, { code: 'ja-JP', dir: 'ja-JP', hreflang: 'ja-JP', label: '日本語', ... }],
+  sections: [{ id: 'start', dir: 'start', extra: ['index'], home: 'index', title: { en: 'Start', 'zh-CN': '开始', 'ja-JP': 'はじめに' } }, { id: 'core', dir: 'core', home: 'core/index', ... }, ...],
   nav: { github, website, versionSwitch },
   search: { provider: 'pagefind' },
   analytics: { ga4, baidu, clarity },
@@ -50,12 +51,13 @@ export default defineDocsConfig({
 ```
 
 - `languages`: the first one is the default; it is served at the site root (`dir: ''`) and its content is at the root of `content/`. The others are served under `/<dir>/` and their content is in `content/<dir>/`. The language menu, `hreflang`, the sitemap and one `llms.txt` per language all derive from this list. `ui` holds the interface strings of the language (previous/next, "on this page", search, callout labels, the footer columns, the "not translated yet" hint, ...); a string a language does not set falls back to the first language's.
+- Japanese uses `ja-JP`, matching the homepage. The legacy `/ja/` prefix redirects to the v2 documentation and must remain reserved. Keep Japanese UI strings explicit to avoid English fallbacks.
 - `sections`: the tabs in the header. `dir` is the directory (inside each language's content) with the section's `meta.json` and all its pages; `extra` lists pages outside `dir` that the menu may include (Start lists the docs home); `home` is the page the tab opens.
 - `analytics` has its own IDs (the same as the website for now), so the docs can change them without touching the website.
 
 ## Menus: meta.json
 
-The sidebar of a section is the `meta.json` in the section's directory (`content/core/meta.json`, `content/zh-CN/core/meta.json`). It has a `pages` array of entries, and every entry is an object with a `type`:
+The sidebar of a section is the `meta.json` in the section's directory (`content/core/meta.json`, `content/zh-CN/core/meta.json`, `content/ja-JP/core/meta.json`). It has a `pages` array of entries, and every entry is an object with a `type`:
 
 | type | fields | meaning |
 | --- | --- | --- |
@@ -142,17 +144,18 @@ Rules, all checked by the build (the error names the file and the entry):
 - A `path` must point to an existing file or directory, and a `folder` needs a `meta.json`.
 - A path cannot leave the section (`dir`, plus the section's `extra` pages); there are no references between sections.
 - Folders cannot form a cycle, and a directory can be the folder of only one entry.
-- The `meta.json` files of the languages have the same structure (the same `type`, `path`, nesting and `defaultOpen`; only titles may differ), and both languages have the same pages.
+- The `meta.json` files of the languages have the same structure (the same `type`, `path`, nesting and `defaultOpen`; only titles may differ), and all languages have the same pages.
 - A page whose front matter sets `status` is a placeholder: it is shown lighter in the menu, skipped by previous / next, kept out of the sitemap, `llms.txt` and search, and marked `noindex`. An English placeholder with an empty body shows a hint that points to the other language's version (or says the page is not written yet).
 
 ## Writing
 
 - Individual plugin usage guides follow the repository Skill [write-plugin-usage-docs](../.agents/skills/write-plugin-usage-docs/SKILL.md): Capabilities, Scenarios and examples, Key principles and implementation, and AI development constraints and verification. The Skill owns the detailed writing standard, including companion-code mapping and verification evidence; the section overview and general plugin-management guide keep their own structure.
+- Japanese follows the terminology and tone in `homepage/content/i18n/*.ja.yaml`: foundation is 基盤, agent team is エージェントチーム, and a Studio issue is タスク. Product names, identifiers and English product UI labels stay unchanged; example screenshots and interface figures use English, while explanatory diagrams and captions are Japanese. All 197 pages have Japanese content, including the five pages whose English versions remain placeholders; those use the complete Chinese sources. The two Studio connection guides retain the source rewrite status and are excluded from search, the sitemap and page navigation.
 - All wording follows the NocoBase Product Definition and Standard Wording (in the [nocobase/nocobase-v3-standard](https://github.com/nocobase/nocobase-v3-standard) repository).
 - Pages are `.md` (not `.mdx`; some contain handwritten HTML) with YAML front matter: `title`, `description`, optionally `metaDescription`, and `status` for a placeholder. `description` supplies the page's meta description and its summary in `llms.txt` and the `.md` copy; `metaDescription`, when set, overrides it. Neither field is rendered in the visible article, in any language. Do not copy the summary into the body; write an introduction only when it helps the reader. The front matter must be valid YAML, so quote a value that contains a colon. The title becomes the `<h1>`; body headings start at `##`.
 - Write internal links as relative `.md` paths (`[My tasks](../use/my-tasks.md#views)`); the build turns them into final addresses, and a link to a page that does not exist fails the build. Heading anchors are the default Astro (GitHub-style) slugs; the build checks every in-site link and anchor on the generated pages.
-- `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]` and `> [!PENDING]` blockquotes become callouts (`> [!NOTE] Own title` replaces the default title), and a paragraph starting with `**Done when**:` (`**完成的标志**：` in Chinese) is highlighted.
-- `::figure name | caption` on a line of its own inlines `figures/name.html` (or `figures/en/name.html` on English pages when it exists; `a+b` joins two figures, extra words after the names become classes).
+- `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]` and `> [!PENDING]` blockquotes become callouts (`> [!NOTE] Own title` replaces the default title), and a paragraph starting with `**Done when**:` (`**完成的标志**：` in Chinese, `**完了の条件**：` in Japanese) is highlighted.
+- `::figure name | caption` on a line of its own inlines `figures/name.html` (or `figures/<code>/name.html` when a localized fragment exists; `a+b` joins two figures, extra words after the names become classes).
 - Code blocks are highlighted by Shiki with a theme driven by CSS variables (`src/styles/docs.css`). Use the real language name. `text`, `plaintext`, `txt` and unlabeled blocks use a monospace font and wrap; `prompt` uses a font suited to natural-language instructions; `tree` (or a plain block containing `├──` or `└──`) is a directory tree that keeps indentation, scrolls horizontally and colors directories, files, connectors and `#` comments. Every block has a copy button.
 - Temporarily unpublished pages live in `notes/drafts/`, with the same relative paths as `content/` (English at the root, Chinese under `zh-CN/`). They are not built and appear in no menu, sitemap, `llms.txt` or search. Keep their source-relative links for restoration; to publish them again, move both languages back to `content/`, add them to both `meta.json` files, and restore incoming links.
 
@@ -162,14 +165,14 @@ Rules, all checked by the build (the error names the file and the entry):
 
 ## How to add things
 
-- **A page**: create the `.md` file in `content/zh-CN/` and at the same path in `content/` (an untranslated English page contains only front matter and `status: placeholder`), then add a `page` entry to the `meta.json` of both languages (with a `title` for the sidebar when it should differ). Moving or renaming a page means changing both `meta.json` files and every link to it.
-- **A collapsible level**: create a directory with a `meta.json` in both languages and add a `folder` entry above it.
+- **A page**: create the `.md` file at the same path in `content/`, `content/zh-CN/` and `content/ja-JP/` (an untranslated English page contains only front matter and `status: placeholder`), then add a `page` entry to each language’s `meta.json` (with a `title` for the sidebar when it should differ). Moving or renaming a page means updating the menus in every language and every link to it.
+- **A collapsible level**: create a directory with a `meta.json` in every language and add a `folder` entry above it.
 - **A language**: add an entry to `languages` in `docs.config.ts` (with its `ui` strings and `website` URL) and a directory `content/<dir>/` with the same structure; its name must not clash with a content directory (`core`, `studio`, ...) or the v2 redirect prefixes. If it has its own figures, put them in `figures/<code>/`. Add `@nocobase/site-shared`'s `inter.css` import in `src/layouts/Layout.astro` for languages that need Inter (Russian).
 - **A section**: add it to `sections` with a `dir`, create `content/<dir>/meta.json` (and the same for every other language) and the section's pages. Sections are tabs in the header, so keep their number small. Check that `dir` is not one of the v2 prefixes.
 
 ## Tutorials
 
-The Tutorials tab (`guides/`, served at `/guides/` and `/zh-CN/guides/`) holds end-to-end walkthroughs that span Core and Studio. The directory is named `guides` because `tutorials` is one of the v2 redirect prefixes. It is a series of 18 short tutorials in five menu groups (Getting started, Part 1: build an app with Core, Part 2: use Studio in a team, Best practices, Appendix), built around a slim IT asset management app whose code lives in `apps/itam-lite` of [nocobase/docs-examples-v3](https://github.com/nocobase/docs-examples-v3). Its home is `guides/build-reliable-enterprise-apps`. The pages use `metaDescription` rather than a visible `description`. The English versions are translated from the Chinese ones.
+The Tutorials tab (`guides/`, served at `/guides/`, `/zh-CN/guides/` and `/ja-JP/guides/`) holds end-to-end walkthroughs that span Core and Studio. The directory is named `guides` because `tutorials` is one of the v2 redirect prefixes. It is a series of 18 short tutorials in five menu groups (Getting started, Part 1: build an app with Core, Part 2: use Studio in a team, Best practices, Appendix), built around a slim IT asset management app whose code lives in `apps/itam-lite` of [nocobase/docs-examples-v3](https://github.com/nocobase/docs-examples-v3). Its home is `guides/build-reliable-enterprise-apps`. The pages use `metaDescription` rather than a visible `description`. The English versions are translated from the Chinese ones.
 
 ## Core content
 

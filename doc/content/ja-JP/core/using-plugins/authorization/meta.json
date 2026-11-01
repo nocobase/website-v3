@@ -1,0 +1,21 @@
+{
+  "title": "権限とデータアクセス",
+  "pages": [
+    {
+      "type": "page",
+      "path": "permissions"
+    },
+    {
+      "type": "page",
+      "path": "default-access"
+    },
+    {
+      "type": "page",
+      "path": "sharing-rules"
+    },
+    {
+      "type": "page",
+      "path": "restriction-rules"
+    }
+  ]
+}

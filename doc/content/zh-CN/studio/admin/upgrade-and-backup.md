@@ -57,7 +57,7 @@ docker compose logs --tail=100 studio
 
 ## 更新执行机和 CLI
 
-执行机空闲时自动更新，也可在机器上运行：
+执行机可自动更新，也可在机器上运行：
 
 ```bash
 nocobase-runner update

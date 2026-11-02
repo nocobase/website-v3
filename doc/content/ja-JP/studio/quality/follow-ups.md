@@ -1,4 +1,4 @@
 ---
-title: 品質フォローアップ
+title: "品質フォローアップ"
 status: placeholder
 ---

@@ -5,6 +5,8 @@ description: 安装和使用 Studio CLI，查询当前版本提供的命令。
 
 `nb-studio` 供本地 Coding Agent、脚本和 CI 调用 Studio。业务命令由登录的 Studio 提供，随服务端版本和调用身份变化。
 
+执行机的注册、日志、更新和卸载命令，见 [nocobase-runner 命令](../reference/runner.md)。
+
 ## 安装与登录
 
 在账户菜单打开「在 Agent 中使用 Studio」，把安装指令交给本地 Coding Agent，见[在本地 Agent 中使用](../join/local-agent.md)。需要 Node.js 24 或更高版本。

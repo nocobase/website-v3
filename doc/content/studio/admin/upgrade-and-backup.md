@@ -57,7 +57,7 @@ Before returning to an older image, check database compatibility. If migrations 
 
 ## Update runners and the CLI
 
-Runners update automatically while idle. You can also run these commands on the machine:
+Runners can update automatically. You can also run these commands on the machine:
 
 ```bash
 nocobase-runner update

@@ -7,6 +7,8 @@ A runtime provides coding tools, model sign-in, and execution resources. Use a s
 
 ![Runtime connectivity, scope, and capacity](https://static-docs.nocobase.com/studio-en-guide-runtimes-20261031.png)
 
+For runner registration, logs, updates, and removal, see [nocobase-runner commands](../reference/runner.md).
+
 ## Choose the scope
 
 | Scope | Eligible work | Connected by |
@@ -24,7 +26,7 @@ If a tool needs sign-in, sign in on the machine as the system user running the s
 
 ## Inspect and maintain
 
-On the runtime machine, check status or pause incoming work:
+On the runtime machine, check status, stop, or start the service. Stopping interrupts active work:
 
 ```bash
 nocobase-runner status
@@ -38,8 +40,8 @@ If tools work in your terminal but are missing from the service, reinstall the s
 nocobase-runner service install
 ```
 
-Runners can update automatically while idle. Use `nocobase-runner update` for a manual update. Working directories and run history help diagnose disk usage and unpushed changes. Preserve required changes before cleaning directories.
+Runners can update automatically. Use `nocobase-runner update` for a manual update. Working directories and run history help diagnose disk usage and unpushed changes. Preserve required changes before cleaning directories.
 
 ## Remove a runtime
 
-Revoke its credential before deleting it. Run history remains. Run `nocobase-runner uninstall` on the machine to remove its background service. Register a replacement machine with a new credential.
+Revoke its credential before deleting it. Run history remains. Run `nocobase-runner uninstall` on the machine to remove its background service and program. Register a replacement machine with a new credential.

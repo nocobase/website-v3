@@ -3,7 +3,9 @@ title: 加入项目
 description: 接受邀请，使用团队已配置的 Agent 和运行环境，开始第一个需求。
 ---
 
-管理员准备好项目后，你可以直接提出需求。开发由团队的 Agent 和运行环境执行，无需在自己的电脑上安装编码工具。
+管理员准备好项目后，你就可以提出需求、跟进任务。开发任务由团队的 Agent 在运行环境中执行。
+
+推荐在 Studio 中[与 Runner Agent 对话](runner-agent.md)，或安装 `nb-studio` CLI，通过[本地 Coding Agent](local-agent.md) 使用 Studio。
 
 ## 开始工作
 
@@ -20,11 +22,11 @@ description: 接受邀请，使用团队已配置的 Agent 和运行环境，开
 | 你想做什么 | 使用方式 |
 | --- | --- |
 | 在 Studio 中讨论需求、分析项目 | [与 Runner Agent 对话](runner-agent.md) |
-| 留在常用的 Claude Code、Codex 中管理任务 | [在本地 Coding Agent 中使用 Studio](local-agent.md) |
+| 通过 CLI，在本地 Claude Code、Codex 中管理任务 | [在本地 Coding Agent 中使用 Studio](local-agent.md) |
 | 在网页里操作自己电脑上的编码工具 | [连接自己的电脑](connect-computer.md) |
 | 为自己的任务提供执行资源 | [接入个人运行环境](personal-runtime.md) |
 
-使用团队共享的运行环境即可完成日常工作，后三项按需配置。
+这两种方式都可以使用团队共享的运行环境执行任务。连接自己的电脑和接入个人运行环境按需配置。
 
 ## 跟进任务
 

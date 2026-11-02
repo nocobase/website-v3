@@ -3,18 +3,26 @@ title: Installation overview
 description: Administrators deploy Studio, prepare projects and Agents, configure checks, and invite the team.
 ---
 
-We recommend giving the [installation and configuration guide](with-agent.md) to your local Coding Agent to handle deployment, connections, and project setup. Follow its prompts when authorization or sign-in requires your participation.
+We recommend using a local Coding Agent, such as Claude Code or Codex, to install and configure Studio. If you already have an invitation, go to [Get started](../join/index.md).
 
-If you already have an invitation, go to [Get started](../join/index.md).
+## Set up with an Agent
 
-This guide uses Docker Compose, GitHub, and one shared runtime. Keep using your existing coding tools and model accounts.
+```prompt
+Follow https://docs.nocobase.com/studio/setup/ to install NocoBase Studio and configure my first project.
+```
+
+The Agent checks the target environment, asks for missing information, and follows the steps below to configure and verify the setup. Follow its prompts when sign-in or authorization requires your participation.
 
 ## Before you begin
 
-- Obtain a Studio commercial image and access authorization. [Contact us](https://www.nocobase.com/contact/).
-- Prepare Docker and Docker Compose. A local trial does not need a domain.
-- Prepare a GitHub account or organization where you can create repositories and install a GitHub App.
-- Prepare a machine with coding tools installed and signed in, such as Claude Code or Codex.
+This guide uses Docker Compose, GitHub, and one shared runtime. Prepare:
+
+- **Image access**: Studio is a commercial product. [Contact us](https://www.nocobase.com/contact/) for the image and access authorization.
+- **Deployment environment**: Server access and a URL for Studio. A local trial does not need a domain.
+- **Git account**: A GitHub account or organization where you can create repositories and install a GitHub App.
+- **Coding tools and model accounts**: For example, Claude Code or Codex. You can keep using existing accounts.
+
+The Agent can install and configure the software. Reuse existing databases, reverse proxies, storage, or email services where suitable. The Agent asks for any missing information.
 
 We recommend a separate container or virtual machine for the runtime, isolated from Studio. Install the coding tools and runner inside that environment.
 

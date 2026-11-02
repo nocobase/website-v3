@@ -7,6 +7,8 @@ description: 管理执行资源、工具状态、并发和工作目录。
 
 ![运行环境的连接状态、使用范围和执行容量](https://static-docs.nocobase.com/studio-zh-guide-runtimes-20261031.png)
 
+执行机的注册、日志、更新和卸载命令，见 [nocobase-runner 命令](../reference/runner.md)。
+
 ## 选择使用范围
 
 | 范围 | 谁可使用 | 谁来接入 |
@@ -24,7 +26,7 @@ description: 管理执行资源、工具状态、并发和工作目录。
 
 ## 检查与维护
 
-在执行机上查看状态或暂停接收工作：
+在执行机上查看状态、停止或启动服务。停止会中断正在执行的工作：
 
 ```bash
 nocobase-runner status
@@ -38,8 +40,8 @@ nocobase-runner start
 nocobase-runner service install
 ```
 
-执行机空闲时可自动升级，也可以运行 `nocobase-runner update`。详情中的工作目录和运行记录可用于检查磁盘占用及未推送改动。清理目录前先确认需要保留的改动已提交。
+执行机可自动升级，也可以运行 `nocobase-runner update`。详情中的工作目录和运行记录可用于检查磁盘占用及未推送改动。清理目录前先确认需要保留的改动已推送到远程仓库。
 
 ## 移除运行环境
 
-先吊销凭证，再删除运行环境；历史运行记录保留。在机器上运行 `nocobase-runner uninstall` 可移除后台服务。新机器需要重新注册，不应复制旧机器的凭证。
+先吊销凭证，再删除运行环境；历史运行记录保留。在机器上运行 `nocobase-runner uninstall` 可移除后台服务和执行机程序。新机器需要重新注册，不应复制旧机器的凭证。

@@ -1,4 +1,4 @@
 ---
-title: 品質計画
+title: "品質計画"
 status: placeholder
 ---

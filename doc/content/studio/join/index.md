@@ -3,7 +3,9 @@ title: Join a project
 description: Accept an invitation and start work with the team’s configured Agents and runtimes.
 ---
 
-Once an administrator prepares your project, you can submit requests. The team's Agents and runtimes do the development. You do not need to install coding tools on your computer.
+Once an administrator prepares your project, you can submit requests and follow tasks. The team's Agents carry out development in the configured runtimes.
+
+We recommend [talking to a Runner Agent](runner-agent.md) in Studio or installing the `nb-studio` CLI to [use Studio from your local Coding Agent](local-agent.md).
 
 ## Start work
 
@@ -20,11 +22,11 @@ If your team does not have Studio or a project yet, an administrator can start w
 | Goal | Use |
 | --- | --- |
 | Discuss requirements or inspect a project in Studio | [Talk to a Runner Agent](runner-agent.md) |
-| Manage tasks from your usual Claude Code or Codex session | [Use a local Coding Agent](local-agent.md) |
+| Manage tasks through the CLI from your local Claude Code or Codex session | [Use a local Coding Agent](local-agent.md) |
 | Use a coding tool on your computer through the browser | [Connect your computer](connect-computer.md) |
 | Provide execution resources for your own tasks | [Connect a personal runtime](personal-runtime.md) |
 
-The team's shared runtime is enough for everyday work. Configure the other connections when you need them.
+Both approaches can use the team's shared runtime to execute tasks. Connect your computer or a personal runtime when needed.
 
 ## Follow tasks
 

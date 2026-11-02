@@ -1,63 +1,46 @@
 ---
-title: ローカルのコーディングエージェントから Studio を使う
-status: 書き直し予定
-description: nb-studio コマンドラインをインストールし、ターミナルの Claude Code や Codex にプロジェクトの照会、タスクの作成、問題の分析を手伝ってもらいます。
+title: "ローカルのコーディングエージェントを使う"
+description: "Claude Code や Codex から nb-studio でプロジェクトを調べ、タスクを作成し、結果を確認します。"
 ---
 
-`nb-studio` は Studio のコマンドラインです。インストールしてサインインすると、ターミナルで使っている Claude Code や Codex などが、あなたとして Studio を操作できるようになります。タスクの照会と作成、コメントの投稿、ナレッジベースの閲覧などです。
-
-[My sessions](../use/sessions.md) の「My agent」との違い：「My agent」は Studio のページから自分の PC 上のエージェントと対話するものです。`nb-studio` はターミナルにとどまったまま、エージェントにコマンドラインで Studio を操作させるものです。両方を同時に使え、PC を接続するときにも `nb-studio` がインストールされます。
+`nb-studio` を使うと、普段の Claude Code や Codex などから Studio を管理できます。エージェントは CLI でタスクと資料を読み、要件を作成し、コメントを追加します。開発作業は Studio のランタイムに任せられます。
 
 ## インストールとサインイン
 
-1. Studio の右上のアバターをクリックし、**Use Studio in your agent** を選びます。
-2. ページに生成された設定手順をコピーし、普段使っているコーディングツール（Claude Code、Codex など）に渡します。
-3. エージェントは手順に従って次のことを行います。
-   - Node.js 24 以降と npm があるかを確認し、ない場合はあなたの同意を得てからインストールします。
-   - あなたの Studio から `nb-studio` をダウンロードしてインストールします。
-   - `nb-studio login --server <Studio のアドレス>` を実行し、サインイン用のアドレスと確認コードを伝えて、あなたがブラウザーで確認するのを待ちます。
-   - `nb-studio whoami` を実行して身元を確認し、`nb-studio docs` を実行して使えるコマンドを把握します。
-   - `nb-studio skills install` を実行し、`nb-studio` を使うためのスキルをコーディングツールにインストールします。
+1. Studio のアバターメニューで **Use Studio in your agent** を選びます。
+2. 設定手順をコピーし、コーディングエージェントに渡します。
+3. CLI のインストール後、案内された URL をブラウザーで開いて認可します。
+4. エージェントが現在のアカウントを確認し、CLI のスキルをインストールします。
 
-設定手順に含まれるインストール用のリンクは 30 分間有効です。`nb-studio` は自分の Studio からだけインストールされ、バージョンは Studio と一致します。
+![Studio の設定手順をローカルのコーディングエージェントに渡す](https://static-docs.nocobase.com/studio-en-guide-local-agent-20261031.png)
 
-> [!NOTE] 権限はあなたと同じ
-> `nb-studio` はあなたとして動作し、使えるコマンドは Studio でのあなたの権限で決まります。サインインには、ブラウザーでのあなたの確認が必要です。
+Node.js 24 以降と npm が必要です。パッケージは接続先の Studio から取得し、サーバーのバージョンに一致します。リンクは 30 分で失効するため、必要に応じて再生成してください。
 
-## 何を任せられるか
+`nb-studio` は自分のアカウント権限で動作します。ブラウザーでの認可が完了するまで、ログインコマンドを実行したままにしてください。
 
-インストールしたら、やりたいことを自然な言葉でコーディングツールに伝えるだけで、`nb-studio` を呼び出して処理します。いくつかの例：
+## 作業を依頼する
 
-```text
-https://studio.example.com/main/issues/PUR-23
-このタスクがどこで止まっていて、どう対処すればよいかを分析してください。分析だけで、変更はしないでください。
+```prompt
+Studio で私の対応を待っているタスクを、緊急度の高い順に一覧にしてください。
 ```
 
-```text
-Studio で私の対応を待っているタスクを確認して、緊急度の高い順に並べてください。
+```prompt
+docs/supplier-rating.md を読み、要件を Supplier Management プロジェクトのタスクとして作成してください。まだ開始しないでください。
 ```
 
-```text
-docs/supplier-rating.md を読んで、その要件をタスクに分割し、「Supplier Management」プロジェクトに作成してください。まだ開始しないでください。
+```prompt
+PUR-23 が何で止まっているのかを調べ、私が補う必要のある情報を教えてください。
 ```
 
-```text
-ナレッジベースで購買承認の規程を探して、ランク C の仕入先に発注するときにだれの承認が必要かを教えてください。
+Studio のタスク URL をエージェントに渡すこともできます。
+
+## 接続を確認する
+
+```bash
+nb-studio whoami
+nb-studio docs
 ```
 
-## よく使うコマンド
+`whoami` は現在のアカウント、`docs` は接続先で使えるコマンドを表示します。[nb-studio コマンド](../reference/cli.md)を参照してください。
 
-普段は自分でコマンドを入力する必要はありませんが、いくつか知っておくと、エージェントが何をしているかを理解しやすくなります。
-
-| コマンド | 内容 |
-| --- | --- |
-| `nb-studio whoami` | 現在サインインしている身元と権限 |
-| `nb-studio docs` | 使えるコマンドの説明 |
-| `nb-studio <command> --help` | 個々のコマンドの詳しい使い方 |
-| `nb-studio issue get <issue>` | タスクを読む |
-| `nb-studio issue progress <issue>` | タスクが今何を待っているか |
-| `nb-studio issue comment add <issue>` | タスクにコメントを投稿する |
-| `nb-studio follow-up list` | あなたが責任者またはフォローしているタスクと、それぞれが待っているもの |
-| `nb-studio kb read <document>` | ナレッジベースのドキュメントを読む |
-
-コマンドの完全な一覧は [nb-studio コマンド](../reference/cli.md) を参照してください。
+Studio のブラウザー画面で対話するには、[Runner Agent](runner-agent.md) を使うか、[自分の PC を接続](connect-computer.md)します。

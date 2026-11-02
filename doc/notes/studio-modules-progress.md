@@ -4,11 +4,17 @@
 
 - 已校对内容快照：`docs/studio-intro-setup`，提交 `b563a46`。
 - 后续模块：`docs/studio-complete-guide`，从上述快照创建。
-- 两个分支均保留在本地；尚未推送或创建 PR。先合并快照分支，再提交后续模块分支，可避免重复审阅前一批变更。
+- 一阶段已通过 [PR #47](https://github.com/nocobase/website-v3/pull/47) 合入 main。二阶段继续在 `docs/studio-complete-guide` 提交 PR。
+
+## 日文同步（2026-11-02）
+
+Studio 的 56 个页面入口保持三语一致。其中 53 篇正文已对齐；质量计划、质量跟进、验收标准因功能尚未完成，按用户要求在中英日三语均改为待编写。此次按英文版对齐后续模块，并同步成员入口、命令参考和章节链接。日文复用英文版全部 83 处图片引用（64 个独立图片地址），只翻译图注，不另建日文界面截图。
+
+逐页检查英文与日文的文件和菜单结构、二三级标题层级、表格行数、命令与配置代码块、图片 URL 及顺序。日文提示词按原意翻译，命令、配置键和示例标识保留。这里的内容同步不改变下方外部服务验证的边界。
 
 ## 完成范围
 
-完成 42 篇文章的中英文版本，共 84 页。包括成员使用、任务开发、项目管理、Agent 管理、质量管理、发布交付、管理与参考。新增质量计划、质量跟进、验收标准三篇；同步菜单、链接和 README。
+首轮整理 42 篇后续模块的中英文版本，覆盖成员使用、任务开发、项目管理、Agent 管理、发布交付、管理与参考。现已补齐日文；其中质量计划、质量跟进、验收标准三篇暂不发布正文，保留待编写入口。菜单、链接和 README 同步更新。
 
 新增 78 张截图，两种语言各 39 张。均为真实应用界面的 1440 × 900 视口截图，使用独立的中英文演示实例与示例数据。英文示例已去除中文内容；没有展示真实令牌或私有镜像地址。图片通过现有 PicGo 配置上传到 `static-docs.nocobase.com`。
 
@@ -18,50 +24,50 @@
 
 “已核对”指功能说明已对照源码、已有说明或可用界面；涉及真实外部服务的验证边界见下文。
 
-| 页面 | 功能核对 | 中文 | 英文 | 配图 |
-| --- | --- | --- | --- | --- |
-| `admin/api-keys.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `admin/environments.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `admin/members-and-roles.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
-| `admin/notifications.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `admin/upgrade-and-backup.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
-| `configure/agents.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
-| `configure/checks.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `configure/git.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `configure/runtimes.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `join/connect-computer.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `join/index.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `join/local-agent.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `join/personal-runtime.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `join/runner-agent.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `join/sign-in.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
-| `project/checks-and-review.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `project/knowledge-base.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `project/progress.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `project/project-memory.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `project/release.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `project/settings.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
-| `project/skills.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `project/usage.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
-| `quality/follow-ups.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `quality/plans.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `quality/standards.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `reference/cli.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
-| `reference/config.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
-| `reference/faq.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
-| `reference/statuses-and-permissions.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
-| `reference/storage.md` | 已核对 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
-| `release/overview.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `release/previews.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `release/versions.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `setup/first-request.md` | 已核对 | 完成 | 完成 | 3 张 / 语言 |
-| `use/accept.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `use/answer.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `use/follow-progress.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
-| `use/inbox.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
-| `use/my-tasks.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
-| `use/raise-a-request.md` | 已核对 | 完成 | 完成 | 2 张 / 语言 |
-| `use/sessions.md` | 已核对 | 完成 | 完成 | 1 张 / 语言 |
+| 页面 | 功能核对 | 中文 | 英文 | 日文 | 配图 |
+| --- | --- | --- | --- | --- | --- |
+| `admin/api-keys.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `admin/environments.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `admin/members-and-roles.md` | 已核对 | 完成 | 完成 | 完成 | 2 张 / 语言 |
+| `admin/notifications.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `admin/upgrade-and-backup.md` | 已核对 | 完成 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `configure/agents.md` | 已核对 | 完成 | 完成 | 完成 | 2 张 / 语言 |
+| `configure/checks.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `configure/git.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `configure/runtimes.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `join/connect-computer.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `join/index.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `join/local-agent.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `join/personal-runtime.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `join/runner-agent.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `join/sign-in.md` | 已核对 | 完成 | 完成 | 完成 | 2 张 / 语言 |
+| `project/checks-and-review.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `project/knowledge-base.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `project/progress.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `project/project-memory.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `project/release.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `project/settings.md` | 已核对 | 完成 | 完成 | 完成 | 2 张 / 语言 |
+| `project/skills.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `project/usage.md` | 已核对 | 完成 | 完成 | 完成 | 2 张 / 语言 |
+| `quality/follow-ups.md` | 功能待完成 | 待编写 | 待编写 | 待编写 | 暂不展示 |
+| `quality/plans.md` | 功能待完成 | 待编写 | 待编写 | 待编写 | 暂不展示 |
+| `quality/standards.md` | 功能待完成 | 待编写 | 待编写 | 待编写 | 暂不展示 |
+| `reference/cli.md` | 已核对 | 完成 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `reference/config.md` | 已核对 | 完成 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `reference/faq.md` | 已核对 | 完成 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `reference/statuses-and-permissions.md` | 已核对 | 完成 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `reference/storage.md` | 已核对 | 完成 | 完成 | 完成 | 命令、配置或状态图例；无需额外截图 |
+| `release/overview.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `release/previews.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `release/versions.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `setup/first-request.md` | 已核对 | 完成 | 完成 | 完成 | 3 张 / 语言 |
+| `use/accept.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `use/answer.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `use/follow-progress.md` | 已核对 | 完成 | 完成 | 完成 | 2 张 / 语言 |
+| `use/inbox.md` | 已核对 | 完成 | 完成 | 完成 | 2 张 / 语言 |
+| `use/my-tasks.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
+| `use/raise-a-request.md` | 已核对 | 完成 | 完成 | 完成 | 2 张 / 语言 |
+| `use/sessions.md` | 已核对 | 完成 | 完成 | 完成 | 1 张 / 语言 |
 
 ## 待人工或外部环境验证
 
@@ -71,7 +77,7 @@
 | 邀请与密码重置邮件 | 用实际 SMTP 配置验证邮件送达、链接地址和有效期 | 对照最新配置说明；没有发送真实邀请或邮件 |
 | 浏览器推送 | 在正式 HTTPS 域名和目标手机浏览器上验证订阅与送达 | 说明权限、密钥与偏好设置；未把本地演示当成推送验证 |
 | CI、预览和生产交付 | 用实际仓库跑完整检查、构建和预览；生产由团队自行部署并记录版本 | 说明各检查来源及发布边界；截图只展示示例状态 |
-| 质量计划完整执行 | 在更新后的实例上接入可工作的 Agent，确认计划，完成一轮执行、报告、修复与复测 | 已完成三篇功能指南和入口截图；未生成虚假的质量通过报告 |
+| 质量计划完整执行 | 在更新后的实例上接入可工作的 Agent，确认计划，完成一轮执行、报告、修复与复测 | 三语均标记待编写；功能可用后再补充正文和截图，未生成质量通过报告 |
 
 ## 发现的产品问题
 

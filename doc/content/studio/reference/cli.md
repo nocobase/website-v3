@@ -5,6 +5,8 @@ description: Install the Studio CLI and discover commands provided by your serve
 
 `nb-studio` lets local Coding Agents, scripts, and CI call Studio. Business commands come from the connected server and reflect its version and the caller's identity.
 
+For runner registration, logs, updates, and removal, see [nocobase-runner commands](../reference/runner.md).
+
 ## Install and sign in
 
 Open **Use Studio in your agent** from the account menu and give the setup instructions to a local Coding Agent. See [Use a local Agent](../join/local-agent.md). Node.js 24 or later is required.

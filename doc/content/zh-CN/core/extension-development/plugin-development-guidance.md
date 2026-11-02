@@ -137,7 +137,7 @@ application and verify the command through its built CLI entry.
 - 修改功能后，相关声明、导出、依赖和使用示例得到同步检查。
 - 能区分插件内部测试与目标应用验证，并记录尚未验证的部分。
 
-检查命令以当前插件和应用为准。NocoBase 源码仓库专用的检查脚本，不应直接复制到普通应用的插件指引中。测试方法见[测试与验证](testing-and-verification.md)，应用验收见[测试与验收](../developing-apps/testing-and-acceptance.md)。
+检查命令以当前插件和应用为准。NocoBase 源码仓库专用的检查脚本，不应直接复制到普通应用的插件指引中。测试方法见[测试与验证](testing-and-verification.md)，应用验收见[测试](../developing-apps/testing-and-acceptance.md)。
 
 仅修改开发指引时，核对路径、命令和描述即可；需要实际验证功能或接入变更时，再运行相应代码检查。不要为了验证一段说明重复执行没有变化的全部业务测试。
 

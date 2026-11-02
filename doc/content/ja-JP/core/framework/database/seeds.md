@@ -130,6 +130,6 @@ pnpm nocobase db sample
 
 分離した実際のデータベースで、空の状態からのインストール、既存の業務キー、ユーザーの編集の保持、再試行を確認します。2 つのテストを区別してください。Seeder をもう一度呼び出すと履歴によってスキップされるはずです。制御したテストで同じ `run()` のロジックをわざともう一度実行すると、その業務上の冪等性を確認できます。
 
-失敗の網羅では、書き込み後に例外を投げ、レコードも成功の履歴も残っていないことを確認してから、失敗の条件を取り除いて実行が成功することを確認します。サンプルについては、モジュールがインポートできることを確認するだけでなく、有効、無効、あとから読み込んだ場合をテストします。[データベースとコマンドラインのテスト](../../developing-apps/testing-and-acceptance.md#データベースとコマンドラインのテスト) を参照してください。
+失敗の網羅では、書き込み後に例外を投げ、レコードも成功の履歴も残っていないことを確認してから、失敗の条件を取り除いて実行が成功することを確認します。サンプルについては、モジュールがインポートできることを確認するだけでなく、有効、無効、あとから読み込んだ場合をテストします。[データベースのテスト](../../developing-apps/testing-and-acceptance.md#databaseデータとマイグレーション) を参照してください。
 
 [シードのインターフェース](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db/src/seed/types.ts)、[ランナーの実装](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db/src/seed/seeder.ts)、[シードの動作のテスト](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db-testkit/tests/integration/seed/seeder.test.ts) を参照してください。

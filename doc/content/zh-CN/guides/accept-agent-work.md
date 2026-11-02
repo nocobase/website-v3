@@ -22,7 +22,7 @@ metaDescription: 以给领用申请加“期望到货日期”为例：自己用
 - 「设备领用与审批」「角色与权限」里提交的旧申请没有期望日期，却显示 `Jan 1, 1970, 7:30 AM`。
 - 新申请显示 `Nov 6, 2026, 8:00 AM`，日期后面多了一个时间。
 
-验收时用已有数据，按每个角色的日常操作走一遍。走熟的场景可以让 Agent 写成浏览器测试，见 [测试与验收](../core/developing-apps/testing-and-acceptance.md#浏览器测试与功能验收)。
+验收时用已有数据，按每个角色的日常操作走一遍。走熟的场景可以让 Agent 写成浏览器测试，见 [测试](../core/developing-apps/testing-and-acceptance.md#使用-playwright-自动验证)。
 
 ## 3. 打回
 

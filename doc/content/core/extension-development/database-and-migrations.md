@@ -152,7 +152,7 @@ Run from the App root:
 pnpm --filter @nocobase/app-plugin-notice-data exec vitest run tests/database/categories.test.ts
 ```
 
-For an upgrade migration, prepare old-version records before checking the new data and constraints. See [Database and CLI tests](../developing-apps/testing-and-acceptance.md#database-and-cli-tests) for shared test tools.
+For an upgrade migration, prepare old-version records before checking the new data and constraints. See [Database tests](../developing-apps/testing-and-acceptance.md#database-data-and-migrations) for shared test tools.
 
 ## Build and deliver database resources
 

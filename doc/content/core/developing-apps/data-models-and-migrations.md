@@ -130,7 +130,7 @@ Tests cover schema creation, duplicate code rejection, default installation, his
 
 The failure test calls the real Seed and then deliberately throws, checks that records and successful history rolled back, removes the failure condition and retries. Another test uses a separate history table to execute the same Seed again, checking business idempotency independently of history-based skipping.
 
-These tests do not reset the application's development database. See [Database and CLI tests](testing-and-acceptance.md#database-and-cli-tests) for `describeMigration()`, `createDatabaseTest()` and configuring other test dialects.
+These tests do not reset the application's development database. See [Database tests](testing-and-acceptance.md#database-data-and-migrations) for `describeMigration()`, `createDatabaseTest()` and configuring other test dialects.
 
 ## Example source and running
 

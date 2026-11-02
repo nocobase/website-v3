@@ -94,7 +94,7 @@ Tests live in `tests/`, organized by the code they verify:
 | `tests/fixtures/`, `tests/helpers/`, `tests/setup/` | Test data, shared helpers and environment setup |
 | `tests/playwright/` | Browser interaction tests; create as needed |
 
-Run `pnpm test` from the application root for Vitest tests. Browser tests use `pnpm test:e2e` and require a running application and sign-in details as specified in the test configuration. See [Testing and acceptance](testing-and-acceptance.md) for setup instructions.
+Run `pnpm test` from the application root for Vitest tests. Browser tests use `pnpm test:e2e` and require a running application and sign-in details as specified in the test configuration. See [Testing](testing-and-acceptance.md) for setup instructions.
 
 Existing projects may use different directories; follow their `vitest.config.ts` and `playwright.config.ts`. Check the actual test count in the report: a successful exit with no tests does not verify the feature.
 

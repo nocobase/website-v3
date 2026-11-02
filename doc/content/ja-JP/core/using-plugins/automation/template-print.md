@@ -67,6 +67,6 @@ template-print のスキルを使って、注文の詳細ページに「Download
 
 関連：[アプリの開発を続ける](../../getting-started/develop-with-an-agent.md)、[ファイル](../data-and-files/file-management.md)、[権限管理](../authorization/permissions.md)。
 
-これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テストと検収](../../developing-apps/testing-and-acceptance.md) を参照してください。
+これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
 
 出典：[公開のプラグインの入口と実装](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-template-print)。

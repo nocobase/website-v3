@@ -344,7 +344,7 @@ Runner のアクセスはマシンとコーディングツールの方針に依�
 pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts tests/client/release-notes-button.test.tsx
 ```
 
-引き渡しの前に、プロジェクトのチェックに従って `pnpm check` を実行し、パッケージのチェック、lint、フォーマット、型、テスト、ビルドを網羅します。ケースと結果を確認してください。テストが見つからないまま正常終了しても、検証にはなりません。ほかの方法については [テストと検収](../../developing-apps/testing-and-acceptance.md) を参照してください。
+引き渡しの前に、プロジェクトのチェックに従って `pnpm check` を実行し、パッケージのチェック、lint、フォーマット、型、テスト、ビルドを網羅します。ケースと結果を確認してください。テストが見つからないまま正常終了しても、検証にはなりません。ほかの方法については [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
 
 ### サンプルの検証の範囲
 

@@ -130,7 +130,7 @@ pnpm exec vitest run --project node tests/database/app-statuses.test.ts
 
 失敗のテストは、実際のシードを呼び出してからわざと例外を投げ、レコードと成功の履歴がロールバックされたことを確認し、失敗の条件を取り除いて再試行します。別のテストでは、別の履歴テーブルを使って同じシードをもう一度実行し、履歴に基づくスキップとは別に、業務上の冪等性を確認します。
 
-これらのテストは、アプリの開発用データベースをリセットしません。`describeMigration()`、`createDatabaseTest()`、ほかのテスト用データベースの設定については、[データベースとコマンドラインのテスト](testing-and-acceptance.md#データベースとコマンドラインのテスト) を参照してください。
+これらのテストは、アプリの開発用データベースをリセットしません。`describeMigration()`、`createDatabaseTest()`、ほかのテスト用データベースの設定については、[データベースのテスト](testing-and-acceptance.md#databaseデータとマイグレーション) を参照してください。
 
 ## サンプルのソースと実行
 

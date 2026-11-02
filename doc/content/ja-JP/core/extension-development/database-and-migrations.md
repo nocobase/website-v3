@@ -152,7 +152,7 @@ describeMigration('202611040020_notice_data_create_categories', {
 pnpm --filter @nocobase/app-plugin-notice-data exec vitest run tests/database/categories.test.ts
 ```
 
-アップグレードのマイグレーションでは、古いバージョンのレコードを用意してから、新しいデータと制約を確認します。共通のテストのツールについては [データベースとコマンドラインのテスト](../developing-apps/testing-and-acceptance.md#データベースとコマンドラインのテスト) を参照してください。
+アップグレードのマイグレーションでは、古いバージョンのレコードを用意してから、新しいデータと制約を確認します。共通のテストのツールについては [データベースのテスト](../developing-apps/testing-and-acceptance.md#databaseデータとマイグレーション) を参照してください。
 
 ## データベースのリソースをビルドして引き渡す
 

@@ -27,10 +27,10 @@ The default application template uses SQLite, so local development needs no sepa
 | KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL-compatible mode, `DB_MODE=pg` |
 | OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL-compatible tenant |
 
-These three drivers are NocoBase Pro commercial packages and require the appropriate license. Obtain registry account details and a download-enabled read token (`nbr_…`) from your license provider. Run the command below and enter the token as the password when prompted:
+These three drivers are NocoBase Pro commercial packages and require the appropriate license. Obtain the private registry URL, account details and a download-enabled read token (`nbr_…`) from your license provider. Replace `<nocobase-pro-registry-url>` below with the supplied URL, then run the command and enter the token as the password when prompted:
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
 ```
 
 This command maps the `@nocobase` scope to the Pro registry in user-level configuration. The registry also proxies public NocoBase packages; other dependencies continue to use their existing registry. Keep the token out of documentation, command-line arguments and Git.

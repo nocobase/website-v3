@@ -165,7 +165,7 @@ database:
 
 ### 达梦
 
-达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
+达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。商业驱动的登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
@@ -189,7 +189,7 @@ database:
 
 ### 人大金仓 KingbaseES
 
-确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
+确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
@@ -215,7 +215,7 @@ database:
 
 ### OceanBase
 
-使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
+使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta

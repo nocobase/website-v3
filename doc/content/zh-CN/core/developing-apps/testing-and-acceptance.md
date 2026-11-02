@@ -91,197 +91,6 @@ pnpm test:e2e
 
 每个测试用例都应包含环境或数据准备、执行操作、检查结果三个部分。先确定要验证的行为，再选择对应的测试维度。独立函数可以直接使用 Vitest；依赖应用服务、页面或数据库的测试，使用 app-testing 准备环境。
 
-### client：组件交互与状态
-
-client 测试验证用户操作后，组件是否发出正确请求，以及页面是否显示预期状态。适合检查表单输入、按钮操作、数据展示、错误提示和重试行为。
-
-**渲染应用组件**
-
-从 `@nocobase/app-testing/client` 导入 `renderWithApp()`，将实际组件放入带应用服务、路由和翻译能力的客户端环境。通过 `namespace`、`namespaces` 和 `locale` 配置组件需要的翻译。组件使用应用上下文时，应在这个环境中测试，避免用替代组件绕过实际逻辑。
-
-`renderWithApp()` 在用例结束时关闭客户端应用。Testing Library 用来查找界面元素，`userEvent` 用来模拟输入和点击，Vitest 的 `expect()` 用来检查结果。
-
-**控制请求并检查页面反馈**
-
-通过 `fetch: answerApi(handler)` 控制接口响应。处理函数可以读取请求的 `method`、`path` 和 `json`，返回指定状态码与响应体的 `Response`。配合 `vi.fn()` 记录调用，可以检查请求内容和发送次数。
-
-分别覆盖请求等待中、成功和失败的状态：等待中检查是否阻止重复操作；成功后检查数据和反馈是否更新；失败后检查错误提示、输入保留及重试行为。异步界面变化应等待后再断言，延迟响应应在测试结束前释放。
-
-模拟响应可以验证页面如何处理结果，不能证明服务端完成了写入或权限检查。这些行为需要 server 测试，真实浏览器的完整操作流程则由 playwright 测试验证。
-
-**示例：商品表单的提交与反馈**
-
-商品表单使用真实组件，通过受控响应验证请求和页面状态。以下摘录中的 `respond` 由不同用例提供，`metadata` 和 `locales` 来自应用：
-
-```tsx
-import { answerApi, renderWithApp } from '@nocobase/app-testing/client';
-
-const requests = vi.fn((call: ApiCall) =>
-  call.method === 'POST' && call.path === 'products'
-    ? respond()
-    : new Response(null, { status: 404 }),
-);
-await renderWithApp(<ProductForm onCreated={onCreated} />, {
-  namespace: metadata.name,
-  namespaces: { [metadata.name]: locales },
-  locale: 'en-US',
-  fetch: answerApi(requests),
-});
-```
-
-成功用例检查请求中的名称和价格、输入清空以及回调次数；失败用例检查输入保留和重试；延迟用例检查提交中按钮禁用。运行：
-
-```bash
-pnpm test --project client tests/client/product-form.test.tsx
-```
-
-[完整测试与辅助函数](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/tests/client/product-form.test.tsx)。
-
-![创建商品草稿后的页面。](/assets/core/testing-acceptance/testing-products-draft.png)
-
-![保存失败时保留输入并提示重试。](/assets/core/testing-acceptance/testing-products-failure.png)
-
-![请求等待中，按钮禁用。](/assets/core/testing-acceptance/testing-products-pending.png)
-
-### server：接口与业务规则
-
-server 测试验证接口响应、业务规则、身份认证、权限和持久化。独立计算可以直接调用函数；依赖插件或应用服务的行为，应加载实际应用进行测试。
-
-**创建测试应用**
-
-从 `@nocobase/app-testing/server` 导入 `createAppTest()`，通过 `createServer` 传入应用的服务端创建函数，通过 `config` 设置测试需要的配置。它返回带应用上下文的 Vitest `test`：
-
-| 上下文 | 用途 |
-| --- | --- |
-| `request` | 向应用 API 发送请求 |
-| `testApp` | 访问测试应用，包括通过 `fetch` 调用 Web 路由 |
-| `app` | 访问应用及其服务容器 |
-| `connection` | 查询测试数据库，检查操作后的数据 |
-
-请求在进程内执行，不需要启动一个供外部访问的 HTTP 服务。默认同一文件内的用例共享应用和数据库；需要逐用例隔离时设置 `scope: 'test'`。`connections` 默认隔离 `main`；应用有多个自有连接时应全部列出，未列出的连接仍沿用应用配置。套件在作用域结束时关闭应用并清理测试数据库。
-
-**验证响应、业务结果和权限**
-
-准备数据后发送真实请求，同时检查状态码、响应内容和持久化结果。正常操作之外，还应覆盖非法输入、记录不存在、状态冲突等业务分支；支持请求重试的接口还需检查是否重复写入。
-
-权限测试分别使用未登录、已登录但未授权、已授权的身份。通过真实认证机制建立会话，再检查允许和拒绝的操作；有数据范围限制时，还应检查列表、总数、详情和导出是否一致。客户端隐藏按钮不能替代这些断言。
-
-共享数据库中的测试应准备各自的数据，避免依赖其他用例的执行顺序。
-
-**示例：商品创建与权限控制**
-
-示例加载实际应用，配置独立的认证环境：
-
-```ts
-import { createAppTest } from '@nocobase/app-testing/server';
-import { DEFAULT_ADMIN_CREDENTIALS, signIn } from '@nocobase/app-plugin-authentication/testing';
-import { expect } from 'vitest';
-import { createStandaloneServer } from '../../server/standalone.js';
-
-const test = createAppTest({
-  createServer: createStandaloneServer,
-  server: { basePath: '/shop' },
-  config: {
-    app: { publicOrigin: 'http://localhost' },
-    auth: {
-      secret: 'catalog-test-secret-at-least-32-characters',
-      trustedOrigins: ['http://localhost'],
-      emailAndPassword: { disableSignUp: false },
-    },
-  },
-});
-```
-
-在此环境中，测试创建商品、重复发送同一操作键并查询数据库，确认不会重复写入；普通用户只有显式授权后才能读取，创建和发布仍返回 `403`。下面将创建与重试的关键断言放在一个用例中，展示如何取得测试上下文并登录。`post()` 和 `key()` 是源码中的请求辅助函数，分别构造 JSON 请求和生成操作键：
-
-```ts
-test('creates a draft without duplicating retries', async ({ testApp, connection, request }) => {
-  expect((await request('/products')).status).toBe(401);
-  const admin = await signIn(testApp, DEFAULT_ADMIN_CREDENTIALS);
-  const values = { name: 'Catalog test lamp', priceCents: 3500 };
-  const operation = key();
-  const created = await admin.fetch('/products', post(values, operation));
-  expect(created.status).toBe(201);
-  const { data } = await created.json();
-  expect(data).toMatchObject({ ...values, published: false });
-  const repeated = await admin.fetch('/products', post(values, operation));
-  expect(repeated.headers.get('Idempotency-Replayed')).toBe('true');
-  expect(await connection.repository('catalogProducts').count({
-    filter: { name: values.name },
-  })).toBe(1);
-});
-```
-
-```bash
-pnpm test --project node tests/server/catalog.test.ts
-```
-
-[完整测试、会话准备与权限断言](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/tests/server/catalog.test.ts)。
-
-### cli：应用命令
-
-cli 测试验证参数处理、退出状态、标准输出、错误信息，以及命令产生的数据或文件变化。结果检查应覆盖实际副作用，例如读回导出的文件，而不仅是命令有没有抛错。
-
-**准备命令执行环境**
-
-从 `@nocobase/app-testing/cli` 导入辅助工具，根据命令是否需要启动应用选择环境：
-
-| 命令依赖 | 准备方式 |
-| --- | --- |
-| 只处理参数或文件 | 使用 `bindAppCommand()` 绑定临时应用根目录和命令 ID，再用 `runAppCommand()` 执行 |
-| 依赖应用服务或数据库 | 使用 `createTestAppConfig()` 创建隔离配置，准备测试数据，通过 `bindTestAppCommand()` 绑定实际命令类，再执行 |
-
-测试自行创建的临时文件需要清理；应用配置使用 `config.dispose()` 清理。下方商品导出展示第二种方式，不启动应用的写法见[文件命令完整示例](https://github.com/nocobase/nocobase/blob/6cc8acf0c9062e99c759ed0a9ca1d038c4145705/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/files.md)。
-
-**执行命令并检查结果**
-
-使用 `runAppCommand(Command, args)` 执行命令。返回值包含 `exitCode`、`stdout`、`stderr` 等信息。成功时 `exitCode` 可以是 `undefined`，检查时用 `exitCode ?? 0` 归一化。命令支持 JSON 输出时，可通过 `json()` 读取结构化结果。检查成功输出的同时，查询数据库或读取生成文件，确认内容符合预期。支持试运行的命令还需确认未产生写入。
-
-对非法参数、目标已存在或执行失败等情况，检查退出状态、错误内容以及已有数据是否保持完整。JSON 模式下已处理的错误可能不在 `run.error` 中，应同时检查退出码和错误响应。
-
-命令输出捕获涉及进程级状态，应顺序执行相关测试。使用 `withApp()` 的命令会在结束后关闭应用；测试创建的配置仍需在 `finally` 中调用 `config.dispose()` 清理。
-
-**示例：导出已发布商品**
-
-示例命令从真实数据库导出已发布商品。测试先准备一条已发布商品和一条草稿，再绑定实际命令；`config` 由 `createTestAppConfig()` 创建，`createApp` 和 `runtime` 来自应用入口：
-
-```ts
-const Command = bindTestAppCommand(ExportProducts, {
-  rootDir, config, id: 'app:products:export', createApp,
-  loadRuntime: () => resolveStandaloneAppRuntime(runtime, {
-    rootDir,
-    configPath: config.path,
-    consoleLogStream: 'stderr',
-    env: { APP_STORAGE_DIR: path.join(config.directory, 'storage') },
-  }),
-});
-```
-
-`consoleLogStream: 'stderr'` 避免日志混入 JSON 输出，临时配置和存储路径保持一致。执行后应返回一条导出记录，生成文件不包含草稿：
-
-```ts
-const run = await runAppCommand(Command, ['--output', file, '--json']);
-expect(run.exitCode ?? 0).toBe(0);
-expect(run.json()).toMatchObject({
-  ok: true, result: { count: 1, written: true },
-});
-```
-
-测试还检查试运行不生成文件、目标文件已存在时返回错误且原内容不变，并在 `finally` 中释放配置。
-
-```bash
-pnpm test --project node tests/cli/export.test.ts
-```
-
-[完整命令测试](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/tests/cli/export.test.ts) · [导出命令实现](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/cli/commands/products/export.ts)。
-
-手动执行导出前，停止使用同一存储的应用进程。此示例按单进程运行，输出目录需要已存在；超过 500 条公开商品时命令拒绝导出。
-
-```bash
-pnpm nocobase app products export --output ./products.json --dry-run --json
-pnpm nocobase app products export --output ./products.json --json
-```
-
 ### database：数据与迁移
 
 database 测试验证数据操作、约束、事务、迁移和初始数据。测试不依赖完整应用时，可以只加载需要的迁移与数据，减少与其他模块的耦合。
@@ -382,6 +191,197 @@ pnpm test --project node tests/database/catalog.test.ts tests/database/catalog-d
 ```
 
 [数据操作测试](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/tests/database/catalog-data.test.ts) · [迁移测试](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/tests/database/catalog.test.ts)。初始数据验证放在服务端测试中：执行 sample Seed、修改商品名称、再次执行 Seed，确认不增加记录，也不覆盖修改。应用启动默认不填充商品。
+
+### server：接口与业务规则
+
+server 测试验证接口响应、业务规则、身份认证、权限和持久化。独立计算可以直接调用函数；依赖插件或应用服务的行为，应加载实际应用进行测试。
+
+**创建测试应用**
+
+从 `@nocobase/app-testing/server` 导入 `createAppTest()`，通过 `createServer` 传入应用的服务端创建函数，通过 `config` 设置测试需要的配置。它返回带应用上下文的 Vitest `test`：
+
+| 上下文 | 用途 |
+| --- | --- |
+| `request` | 向应用 API 发送请求 |
+| `testApp` | 访问测试应用，包括通过 `fetch` 调用 Web 路由 |
+| `app` | 访问应用及其服务容器 |
+| `connection` | 查询测试数据库，检查操作后的数据 |
+
+请求在进程内执行，不需要启动一个供外部访问的 HTTP 服务。默认同一文件内的用例共享应用和数据库；需要逐用例隔离时设置 `scope: 'test'`。`connections` 默认隔离 `main`；应用有多个自有连接时应全部列出，未列出的连接仍沿用应用配置。套件在作用域结束时关闭应用并清理测试数据库。
+
+**验证响应、业务结果和权限**
+
+准备数据后发送真实请求，同时检查状态码、响应内容和持久化结果。正常操作之外，还应覆盖非法输入、记录不存在、状态冲突等业务分支；支持请求重试的接口还需检查是否重复写入。
+
+权限测试分别使用未登录、已登录但未授权、已授权的身份。通过真实认证机制建立会话，再检查允许和拒绝的操作；有数据范围限制时，还应检查列表、总数、详情和导出是否一致。客户端隐藏按钮不能替代这些断言。
+
+共享数据库中的测试应准备各自的数据，避免依赖其他用例的执行顺序。
+
+**示例：商品创建与权限控制**
+
+示例加载实际应用，配置独立的认证环境：
+
+```ts
+import { createAppTest } from '@nocobase/app-testing/server';
+import { DEFAULT_ADMIN_CREDENTIALS, signIn } from '@nocobase/app-plugin-authentication/testing';
+import { expect } from 'vitest';
+import { createStandaloneServer } from '../../server/standalone.js';
+
+const test = createAppTest({
+  createServer: createStandaloneServer,
+  server: { basePath: '/shop' },
+  config: {
+    app: { publicOrigin: 'http://localhost' },
+    auth: {
+      secret: 'catalog-test-secret-at-least-32-characters',
+      trustedOrigins: ['http://localhost'],
+      emailAndPassword: { disableSignUp: false },
+    },
+  },
+});
+```
+
+在此环境中，测试创建商品、重复发送同一操作键并查询数据库，确认不会重复写入；普通用户只有显式授权后才能读取，创建和发布仍返回 `403`。下面将创建与重试的关键断言放在一个用例中，展示如何取得测试上下文并登录。`post()` 和 `key()` 是源码中的请求辅助函数，分别构造 JSON 请求和生成操作键：
+
+```ts
+test('creates a draft without duplicating retries', async ({ testApp, connection, request }) => {
+  expect((await request('/products')).status).toBe(401);
+  const admin = await signIn(testApp, DEFAULT_ADMIN_CREDENTIALS);
+  const values = { name: 'Catalog test lamp', priceCents: 3500 };
+  const operation = key();
+  const created = await admin.fetch('/products', post(values, operation));
+  expect(created.status).toBe(201);
+  const { data } = await created.json();
+  expect(data).toMatchObject({ ...values, published: false });
+  const repeated = await admin.fetch('/products', post(values, operation));
+  expect(repeated.headers.get('Idempotency-Replayed')).toBe('true');
+  expect(await connection.repository('catalogProducts').count({
+    filter: { name: values.name },
+  })).toBe(1);
+});
+```
+
+```bash
+pnpm test --project node tests/server/catalog.test.ts
+```
+
+[完整测试、会话准备与权限断言](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/tests/server/catalog.test.ts)。
+
+### client：组件交互与状态
+
+client 测试验证用户操作后，组件是否发出正确请求，以及页面是否显示预期状态。适合检查表单输入、按钮操作、数据展示、错误提示和重试行为。
+
+**渲染应用组件**
+
+从 `@nocobase/app-testing/client` 导入 `renderWithApp()`，将实际组件放入带应用服务、路由和翻译能力的客户端环境。通过 `namespace`、`namespaces` 和 `locale` 配置组件需要的翻译。组件使用应用上下文时，应在这个环境中测试，避免用替代组件绕过实际逻辑。
+
+`renderWithApp()` 在用例结束时关闭客户端应用。Testing Library 用来查找界面元素，`userEvent` 用来模拟输入和点击，Vitest 的 `expect()` 用来检查结果。
+
+**控制请求并检查页面反馈**
+
+通过 `fetch: answerApi(handler)` 控制接口响应。处理函数可以读取请求的 `method`、`path` 和 `json`，返回指定状态码与响应体的 `Response`。配合 `vi.fn()` 记录调用，可以检查请求内容和发送次数。
+
+分别覆盖请求等待中、成功和失败的状态：等待中检查是否阻止重复操作；成功后检查数据和反馈是否更新；失败后检查错误提示、输入保留及重试行为。异步界面变化应等待后再断言，延迟响应应在测试结束前释放。
+
+模拟响应可以验证页面如何处理结果，不能证明服务端完成了写入或权限检查。这些行为需要 server 测试，真实浏览器的完整操作流程则由 playwright 测试验证。
+
+**示例：商品表单的提交与反馈**
+
+商品表单使用真实组件，通过受控响应验证请求和页面状态。以下摘录中的 `respond` 由不同用例提供，`metadata` 和 `locales` 来自应用：
+
+```tsx
+import { answerApi, renderWithApp } from '@nocobase/app-testing/client';
+
+const requests = vi.fn((call: ApiCall) =>
+  call.method === 'POST' && call.path === 'products'
+    ? respond()
+    : new Response(null, { status: 404 }),
+);
+await renderWithApp(<ProductForm onCreated={onCreated} />, {
+  namespace: metadata.name,
+  namespaces: { [metadata.name]: locales },
+  locale: 'en-US',
+  fetch: answerApi(requests),
+});
+```
+
+成功用例检查请求中的名称和价格、输入清空以及回调次数；失败用例检查输入保留和重试；延迟用例检查提交中按钮禁用。运行：
+
+```bash
+pnpm test --project client tests/client/product-form.test.tsx
+```
+
+[完整测试与辅助函数](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/tests/client/product-form.test.tsx)。
+
+![创建商品草稿后的页面。](/assets/core/testing-acceptance/testing-products-draft.png)
+
+![保存失败时保留输入并提示重试。](/assets/core/testing-acceptance/testing-products-failure.png)
+
+![请求等待中，按钮禁用。](/assets/core/testing-acceptance/testing-products-pending.png)
+
+### cli：应用命令
+
+cli 测试验证参数处理、退出状态、标准输出、错误信息，以及命令产生的数据或文件变化。结果检查应覆盖实际副作用，例如读回导出的文件，而不仅是命令有没有抛错。
+
+**准备命令执行环境**
+
+从 `@nocobase/app-testing/cli` 导入辅助工具，根据命令是否需要启动应用选择环境：
+
+| 命令依赖 | 准备方式 |
+| --- | --- |
+| 只处理参数或文件 | 使用 `bindAppCommand()` 绑定临时应用根目录和命令 ID，再用 `runAppCommand()` 执行 |
+| 依赖应用服务或数据库 | 使用 `createTestAppConfig()` 创建隔离配置，准备测试数据，通过 `bindTestAppCommand()` 绑定实际命令类，再执行 |
+
+测试自行创建的临时文件需要清理；应用配置使用 `config.dispose()` 清理。下方商品导出展示第二种方式，不启动应用的写法见[文件命令完整示例](https://github.com/nocobase/nocobase/blob/6cc8acf0c9062e99c759ed0a9ca1d038c4145705/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/files.md)。
+
+**执行命令并检查结果**
+
+使用 `runAppCommand(Command, args)` 执行命令。返回值包含 `exitCode`、`stdout`、`stderr` 等信息。成功时 `exitCode` 可以是 `undefined`，检查时用 `exitCode ?? 0` 归一化。命令支持 JSON 输出时，可通过 `json()` 读取结构化结果。检查成功输出的同时，查询数据库或读取生成文件，确认内容符合预期。支持试运行的命令还需确认未产生写入。
+
+对非法参数、目标已存在或执行失败等情况，检查退出状态、错误内容以及已有数据是否保持完整。JSON 模式下已处理的错误可能不在 `run.error` 中，应同时检查退出码和错误响应。
+
+命令输出捕获涉及进程级状态，应顺序执行相关测试。使用 `withApp()` 的命令会在结束后关闭应用；测试创建的配置仍需在 `finally` 中调用 `config.dispose()` 清理。
+
+**示例：导出已发布商品**
+
+示例命令从真实数据库导出已发布商品。测试先准备一条已发布商品和一条草稿，再绑定实际命令；`config` 由 `createTestAppConfig()` 创建，`createApp` 和 `runtime` 来自应用入口：
+
+```ts
+const Command = bindTestAppCommand(ExportProducts, {
+  rootDir, config, id: 'app:products:export', createApp,
+  loadRuntime: () => resolveStandaloneAppRuntime(runtime, {
+    rootDir,
+    configPath: config.path,
+    consoleLogStream: 'stderr',
+    env: { APP_STORAGE_DIR: path.join(config.directory, 'storage') },
+  }),
+});
+```
+
+`consoleLogStream: 'stderr'` 避免日志混入 JSON 输出，临时配置和存储路径保持一致。执行后应返回一条导出记录，生成文件不包含草稿：
+
+```ts
+const run = await runAppCommand(Command, ['--output', file, '--json']);
+expect(run.exitCode ?? 0).toBe(0);
+expect(run.json()).toMatchObject({
+  ok: true, result: { count: 1, written: true },
+});
+```
+
+测试还检查试运行不生成文件、目标文件已存在时返回错误且原内容不变，并在 `finally` 中释放配置。
+
+```bash
+pnpm test --project node tests/cli/export.test.ts
+```
+
+[完整命令测试](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/tests/cli/export.test.ts) · [导出命令实现](https://github.com/nocobase/docs-examples-v3/blob/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance/cli/commands/products/export.ts)。
+
+手动执行导出前，停止使用同一存储的应用进程。此示例按单进程运行，输出目录需要已存在；超过 500 条公开商品时命令拒绝导出。
+
+```bash
+pnpm nocobase app products export --output ./products.json --dry-run --json
+pnpm nocobase app products export --output ./products.json --json
+```
 
 ## UI 测试
 

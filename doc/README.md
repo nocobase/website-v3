@@ -61,7 +61,7 @@ The sidebar of a section is the `meta.json` in the section's directory (`content
 
 | type | fields | meaning |
 | --- | --- | --- |
-| `page` | `path`, optional `title`, `hidden` | A page. `path` is relative to the directory of this `meta.json`, without `.md`; it may contain subdirectories and `../`. `title` is the sidebar text and may differ from the page's own title; when omitted the page's front matter `title` is used. `hidden: true` hides the page from the sidebar and previous/next navigation; it still builds and remains in search, the sitemap and `llms.txt`. |
+| `page` | `path`, optional `title` | A page. `path` is relative to the directory of this `meta.json`, without `.md`; it may contain subdirectories and `../`. `title` is the sidebar text and may differ from the page's own title; when omitted the page's front matter `title` is used. |
 | `folder` | `path` | A directory with its own `meta.json` (`{ "title": "...", "defaultOpen": true, "pages": [...] }`). At the sidebar's top level it renders as an always-visible group heading, with any `index` page listed first beneath it. Nested folders are collapsible: if `pages` includes `path: "index"`, the folder title links to that page and the chevron toggles; otherwise the title only toggles. |
 | `group` | `title`, `pages` | A non-collapsible heading with entries below it. A group cannot contain a group, but a folder can contain groups. |
 | `planned` | `title` | A "coming soon" entry that is not a link and has no file. |
@@ -144,8 +144,7 @@ Rules, all checked by the build (the error names the file and the entry):
 - A `path` must point to an existing file or directory, and a `folder` needs a `meta.json`.
 - A path cannot leave the section (`dir`, plus the section's `extra` pages); there are no references between sections.
 - Folders cannot form a cycle, and a directory can be the folder of only one entry.
-- The `meta.json` files of the languages have the same structure (the same `type`, `path`, nesting, `defaultOpen` and `hidden`; only titles may differ), and all languages have the same pages.
-- A supplementary page can use `{ "type": "page", "path": "create-app-with-database", "hidden": true }`. It still needs exactly one registration in every language. Link to it from another article. `hidden` must be a boolean; omission is equivalent to `false`. A hidden folder index does not become the folder title's link. Hidden pages are public content, not unpublished drafts or access-controlled pages.
+- The `meta.json` files of the languages have the same structure (the same `type`, `path`, nesting and `defaultOpen`; only titles may differ), and all languages have the same pages.
 - A page whose front matter sets `status` is a placeholder: it is shown lighter in the menu, skipped by previous / next, kept out of the sitemap, `llms.txt` and search, and marked `noindex`. An English placeholder with an empty body shows a hint that points to the other language's version (or says the page is not written yet).
 
 ## Writing
@@ -177,7 +176,7 @@ The Tutorials tab (`guides/`, served at `/guides/`, `/zh-CN/guides/` and `/ja-JP
 
 ## Core content
 
-The database compatibility reference at `core/reference/compatibility` owns the eight dialects (MariaDB shares MySQL's driver), driver installation, connection parameters, version restrictions and runtime compatibility in English, Chinese and Japanese. The supplementary guide `core/getting-started/create-app-with-database` covers existing database connection details, driver commands, complete database configuration sections and startup checks. It is registered with `hidden: true` under Getting started and linked from Create an app and the compatibility reference. Source review and validation records live in `notes/database-compatibility-verification.md`.
+The database compatibility reference at `core/reference/compatibility` owns the eight dialects (MariaDB shares MySQL's driver), driver installation, connection parameters, version restrictions and runtime compatibility in English, Chinese and Japanese. The supplementary guide `core/getting-started/create-app-with-database` covers existing database connection details, driver commands, complete database configuration sections and startup checks. It appears under Reference immediately after Database support and version compatibility, using a relative menu path to preserve its original URL. Create an app and the compatibility reference link to it. Source review and validation records live in `notes/database-compatibility-verification.md`.
 
 Core started from the content and menu of `nocobase/app-docs`, migrated from baseline `5d8bdbe93bf63c6066013b121b189b3f8fdcad33`. The migrated guides, later plugin guides, two topic overviews, reference articles and framework topics now total 122 pages per language, including 21 complete bilingual plugin usage guides, in `content/zh-CN/core/` and `content/core/`. The Studio deployment guide remains an unpublished draft. Content is maintained here and is not regenerated or overwritten from the old site.
 

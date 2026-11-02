@@ -30,12 +30,12 @@ Added `core/getting-started/create-app-with-database` in all three languages aft
 
 Additional source reads at the same Core commit covered driver connection types and resolvers, `connectionEnvironment`, and the default template's database configuration. Commercial driver connection types, Dameng's resolver and `docs/database-drivers.md` were read at the same commercial commit. The examples use configurable service endpoints, database/schema/service names, account credentials and TLS options; no real external database credentials or services were used.
 
-The `hidden` boolean belongs to a `page` entry in `meta.json`. Hidden pages retain content, section metadata, public routes, search, sitemap entries, Markdown copies and `llms.txt`; they are excluded from desktop/mobile sidebar links and previous/next navigation. All languages must agree on visibility. Hidden folder indexes do not create a folder-title link. Validation still rejects missing targets, duplicate registrations and non-boolean values.
+The guide was initially hidden under Getting started. Following the user’s navigation decision, it now appears under Reference immediately after Database support and version compatibility in all three languages. A relative menu path preserves the original article URL and links. The temporary hidden-menu implementation and its dedicated tests were removed because this guide no longer needs them.
 
-- `pnpm doc:test`: passed, 54 tests across 8 files, including hidden page navigation, validation, language parity and `llms.txt` coverage.
+- `pnpm doc:test`: passed, 50 tests across 8 files after removing the unused hidden-menu feature.
 - `pnpm doc:build`: passed with 595 pages and 629 search-index entries, including internal link and anchor checks.
 - All eight database YAML blocks parse; YAML and Bash blocks are identical across the three translations. These are syntax and source-contract checks, not successful database connections.
-- Checked generated HTML in all three languages: both parent articles link to the guide; desktop/mobile sidebars and pagination omit it; the guide has no previous/next navigation. Markdown output and `llms.txt` include the new page.
+- Checked generated HTML in all three languages: both parent articles link to the guide; desktop/mobile sidebars list it after the compatibility reference, and its previous/next links point to the compatibility reference and FAQ. The guide has the Reference breadcrumb. Markdown output and `llms.txt` include the new page.
 - The running documentation preview serves the Chinese guide with HTTP 200 through both its LAN URL and the temporary public tunnel; responses match. Temporary review addresses are not embedded in the articles.
 
 ## OceanBase creation prompt runtime test

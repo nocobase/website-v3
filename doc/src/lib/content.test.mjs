@@ -65,31 +65,6 @@ describe('menus', () => {
     expect(load(files).languages.get('en').sections.get('core').order).toEqual(['core/index', 'core/deep/er/a']);
   });
 
-  test('hidden pages keep their content and section but stay out of page navigation', () => {
-    const { languages } = load(both({
-      ...BASE,
-      'core/meta.json': { pages: [page('index'), { type: 'folder', path: 'f' }, page('last')] },
-      'core/f/meta.json': { title: 'F', pages: [{ ...page('index'), hidden: true }, { type: 'group', title: 'G', pages: [{ ...page('details'), hidden: true }, page('visible')] }] },
-      'core/f/index.md': 'Overview', 'core/f/details.md': 'Details', 'core/f/visible.md': 'Visible', 'core/last.md': 'Last',
-    }));
-    const en = languages.get('en');
-    expect(en.pages.get('core/f/details')).toMatchObject({ section: 'core', title: 'Details', placeholder: false, body: 'Body\n', trail: ['F', 'G'] });
-    const section = en.sections.get('core');
-    expect(section.order).toEqual(['core/index', 'core/f/visible', 'core/last']);
-    const folder = section.tree[1];
-    expect(folder.link).toBeNull();
-    expect(folder.children[0]).toMatchObject({ key: 'core/f/index', hidden: true });
-    expect(folder.children[1].children[0]).toMatchObject({ key: 'core/f/details', hidden: true });
-  });
-
-  test('hidden entries still validate their type, target and unique registration', () => {
-    const files = both({ ...BASE, 'core/meta.json': { pages: [{ ...page('index'), hidden: 'true' }, { ...page('gone'), hidden: true }, { ...page('index'), hidden: true }] } });
-    const text = problemsOf(() => load(files));
-    expect(text).toContain('hidden must be true or false');
-    expect(text).toContain('core/gone.md, which does not exist');
-    expect(text).toContain('core/index.md is listed 2 times');
-  });
-
   test('paths may use ../ inside the section', () => {
     const files = both({
       ...BASE,
@@ -192,13 +167,6 @@ describe('languages', () => {
     const f = open => ({ 'core/f/meta.json': { title: 'F', defaultOpen: open, pages: [page('x')] } });
     const files = both({ ...BASE, 'core/meta.json': { pages: [page('index'), { type: 'folder', path: 'f' }] }, 'core/f/x.md': 'X', ...f(true) }, { zh: f(false) });
     expect(problemsOf(() => load(files))).toContain('(defaultOpen)');
-  });
-
-  test('hidden must match across languages, with omission equivalent to false', () => {
-    const files = both(BASE, { zh: { 'core/meta.json': { pages: [{ ...page('index'), hidden: true }] } } });
-    expect(problemsOf(() => load(files))).toContain('page "core/index" versus page "core/index" (hidden)');
-    files['zh/core/meta.json'].pages[0].hidden = false;
-    expect(() => load(files)).not.toThrow();
   });
 });
 

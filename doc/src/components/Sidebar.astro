@@ -2,8 +2,7 @@
 // Top-level categories are always-visible group headings; nested folders remain collapsible. Rendered in both the desktop sidebar and mobile menu.
 import Self from './Sidebar.astro';
 export interface Props { nodes: any[]; current?: string; urlOf: (key: string) => string; planned: string; root?: boolean }
-const { nodes: allNodes, current, urlOf, planned, root = true } = Astro.props as Props;
-const nodes = allNodes.filter(n => !n.hidden);
+const { nodes, current, urlOf, planned, root = true } = Astro.props as Props;
 const has = (list: any[]): boolean => list.some(n => (n.type === 'page' && n.key === current) || (n.type === 'folder' && ((n.link && n.link.key === current) || has(n.children))) || (n.type === 'group' && has(n.children)));
 ---
 {root ? nodes.map(n => n.type === 'group' || n.type === 'folder' ? (

@@ -33,7 +33,7 @@ The creation tool generates `my-app` and installs dependencies. NocoBase 3 is in
 
 ## Install a driver and configure the database
 
-Run the following commands in `my-app`, choosing one database section. `config init` generates `config.yml` and application secrets. In an interactive terminal, it also asks for connection details and attempts a connection. In a non-interactive environment, such as a script, it generates connection placeholders to complete before startup.
+Run the following commands in `my-app`, choosing one database section. `config init --json` generates `config.yml`, application secrets and connection placeholders non-interactively, without attempting a database connection. Fill in connection details and TLS settings before running the connection check.
 
 Each example provides a complete `database` section. After initialization, fill it with your actual connection details while preserving secrets and other configuration. Do not replace the entire `config.yml` with the snippet. Replace `db.example.com`, the port, `my_app`, the account and the password to match your service. Example ports are not deployment requirements. `schemaManagement: managed` allows the application to manage its tables through migrations.
 
@@ -46,7 +46,8 @@ If `config.yml` already exists, install the required driver and edit the connect
 The default template already includes the SQLite driver. Initialize it directly:
 
 ```bash
-pnpm nocobase config init --dialect sqlite
+mkdir -p storage
+pnpm nocobase config init --dialect sqlite --json
 ```
 
 ```yaml
@@ -59,7 +60,7 @@ database:
       schemaManagement: managed
 ```
 
-Here, `database` is a file path. `database.sqlite` is stored under the application’s `storage/` directory; an absolute path is also accepted. The application account needs write permission to the containing directory. This file holds application data and must survive redeployment.
+Here, `database` is a file path. `database.sqlite` is stored under the application’s `storage/` directory; an absolute path is also accepted. The commands above create the example’s `storage/` directory. If you change the file path, create its parent directory before checking the connection and give the application account write permission. This file holds application data and must survive redeployment.
 
 ### PostgreSQL
 
@@ -67,7 +68,7 @@ Prepare a PostgreSQL database and an account authorized to use the target schema
 
 ```bash
 pnpm add @nocobase/db-postgres@beta
-pnpm nocobase config init --dialect postgres
+pnpm nocobase config init --dialect postgres --json
 ```
 
 ```yaml
@@ -94,7 +95,7 @@ MySQL and MariaDB share the driver and the `mysql` dialect:
 
 ```bash
 pnpm add @nocobase/db-mysql@beta
-pnpm nocobase config init --dialect mysql
+pnpm nocobase config init --dialect mysql --json
 ```
 
 ```yaml
@@ -121,7 +122,7 @@ Prepare a database and a SQL login authorized to access it, read and write data,
 
 ```bash
 pnpm add @nocobase/db-mssql@beta
-pnpm nocobase config init --dialect mssql
+pnpm nocobase config init --dialect mssql --json
 ```
 
 ```yaml
@@ -148,7 +149,7 @@ Prepare the Oracle service name and an application user with the required schema
 
 ```bash
 pnpm add @nocobase/db-oracle@beta
-pnpm nocobase config init --dialect oracle
+pnpm nocobase config init --dialect oracle --json
 ```
 
 ```yaml
@@ -169,11 +170,11 @@ Set `serviceName` to the service supplied by the administrator, such as the serv
 
 ### Dameng
 
-The Dameng driver requires a NocoBase Pro commercial license and Pro registry access. Configure registry authentication first. The driver is experimental; verify it against the target database version before use.
+The Dameng driver requires a NocoBase Pro commercial license and Pro registry access. Configure registry authentication first. The driver is experimental; verify it against the target database version before use. For the registry address and login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
-pnpm nocobase config init --dialect dameng
+pnpm nocobase config init --dialect dameng --json
 ```
 
 ```yaml
@@ -194,11 +195,11 @@ Use the assigned schema name in `schema`, preserving its case. The example uses 
 
 ### KingbaseES
 
-Confirm the server uses PostgreSQL-compatible mode (`DB_MODE=pg`) and prepare the database and schema. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry.
+Confirm the server uses PostgreSQL-compatible mode (`DB_MODE=pg`) and prepare the database and schema. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For the registry address and login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
-pnpm nocobase config init --dialect kingbase
+pnpm nocobase config init --dialect kingbase --json
 ```
 
 ```yaml
@@ -221,11 +222,11 @@ Set `schema` to an authorized schema. TLS follows the PostgreSQL configuration: 
 
 ### OceanBase
 
-Use an OceanBase CE MySQL-compatible tenant and prepare a database and account within that tenant. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry.
+Use an OceanBase CE MySQL-compatible tenant and prepare a database and account within that tenant. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For the registry address and login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta
-pnpm nocobase config init --dialect oceanbase
+pnpm nocobase config init --dialect oceanbase --json
 ```
 
 ```yaml

@@ -27,7 +27,13 @@ NocoBase は 8 種類のデータベースダイアレクトを提供してい�
 | KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 互換モード、`DB_MODE=pg` |
 | OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 互換テナント |
 
-この 3 つのドライバーは NocoBase Pro の商用パッケージです。該当する商用ライセンスと、プライベートパッケージレジストリーへのアクセス権が必要です。インストール前に Pro レジストリーの認証情報を設定してください。
+この 3 つのドライバーは NocoBase Pro の商用パッケージで、該当するライセンスが必要です。ライセンス提供元からレジストリーのアカウント情報とダウンロード権限を持つ読み取り用トークン（`nbr_…`）を取得してください。次のコマンドを実行し、パスワードの入力時にトークンを指定します。
+
+```bash
+pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+```
+
+このコマンドはユーザーレベルの設定で `@nocobase` スコープを Pro レジストリーに割り当てます。このレジストリーは公開 NocoBase パッケージもプロキシし、その他の依存関係は既存のレジストリーを使います。トークンをドキュメントやコマンドライン引数に記載したり、Git にコミットしたりしないでください。
 
 ## アプリのデータベースを設定する
 
@@ -39,12 +45,12 @@ NocoBase は 8 種類のデータベースダイアレクトを提供してい�
 
 ```bash
 pnpm add @nocobase/db-postgres@beta
-pnpm nocobase config init --dialect postgres
+pnpm nocobase config init --dialect postgres --json
 ```
 
-ターミナルの案内に従ってホスト、ポート、データベース名、ユーザー名、パスワードを入力します。コマンドはデータベースへの接続を試み、`config.yml` とアプリのシークレットを生成します。他のデータベースでは、パッケージ名と `--dialect` を上の表の値に置き換えてください。`config init` はドライバーのインストールや、データベースサーバー・アカウントの作成は行いません。
+コマンドはデータベースに接続せず、`config.yml` とアプリのシークレットを生成します。接続前に、実際のホスト、ポート、データベース名、ユーザー名、パスワード、必要な TLS 設定を入力してください。各データベースの例は[異なるデータベースでアプリを作成する](../getting-started/create-app-with-database.md)を参照してください。他のデータベースでは、パッケージ名と `--dialect` を対応する値に置き換えます。`config init` はドライバーのインストールや、データベースサーバー・アカウントの作成は行いません。
 
-非対話環境で実行すると、接続情報を入力する必要がある設定ファイルが生成されます。起動前に `config.yml` を編集するか、[設定コマンド](cli.md)で値を設定してください。`config.yml` にはパスワードやシークレットが含まれる場合があるため、Git に入れないでください。
+`config.yml` にはパスワードやシークレットが含まれる場合があるため、Git に入れないでください。[設定コマンド](cli.md)で接続パラメーターを指定することもできます。
 
 設定後に接続を確認します。
 
@@ -62,7 +68,7 @@ pnpm nocobase config check
 
 | データベース | 設定の要点 |
 | --- | --- |
-| SQLite | `filename` でファイルを指定します。アプリの設定では `database` も使えます。相対パスはアプリの `storage/` ディレクトリを基準に解決されます |
+| SQLite | 生成された設定は `database` でファイルを指定します。`filename` や `DB_FILENAME` を使う場合は `database` を削除し、`DB_DATABASE` による上書きも確認してください。残っている場合は `database` が優先されます。相対パスはアプリの `storage/` を基準に解決されます |
 | PostgreSQL、KingbaseES | 必要に応じて `schema` と `ssl` を設定します |
 | MySQL、MariaDB、OceanBase | `database` でデータベース名、`username` でユーザーを指定します |
 | Microsoft SQL Server | サーバーの証明書設定に合わせて `encrypt` と `trustServerCertificate` を設定します |

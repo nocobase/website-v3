@@ -27,7 +27,13 @@ NocoBase 提供 8 种数据库方言。方言是连接配置中 `dialect` 的取
 | 人大金仓 KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 兼容模式，`DB_MODE=pg` |
 | OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 兼容租户 |
 
-这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权和私有包仓库访问权限。安装前先配置 Pro registry 的认证信息。
+这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权。从授权交付方取得私有仓库的账号信息及具有下载权限的只读令牌（`nbr_…`），再执行以下命令，按提示将令牌作为密码输入：
+
+```bash
+pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+```
+
+该命令在用户级配置中将 `@nocobase` 映射到 Pro registry；此仓库也代理公开的 NocoBase 包，其他依赖仍使用原有 registry。不要把令牌写入文档、命令行参数或提交到 Git。
 
 ## 配置应用数据库
 
@@ -39,12 +45,12 @@ NocoBase 提供 8 种数据库方言。方言是连接配置中 `dialect` 的取
 
 ```bash
 pnpm add @nocobase/db-postgres@beta
-pnpm nocobase config init --dialect postgres
+pnpm nocobase config init --dialect postgres --json
 ```
 
-在终端中按提示填写主机、端口、数据库名、用户名和密码。命令会尝试连接数据库，生成 `config.yml` 和应用密钥。使用其他数据库时，将包名和 `--dialect` 替换为上表中的对应值。`config init` 不会安装驱动，也不会创建数据库服务或账号。
+命令生成 `config.yml` 和应用密钥，但不连接数据库。先在配置文件中填写真实的主机、端口、数据库名、用户名、密码及所需的 TLS 配置；各数据库的示例见[使用不同数据库创建应用](../getting-started/create-app-with-database.md)。使用其他数据库时，替换包名和 `--dialect` 值。`config init` 不会安装驱动，也不会创建数据库服务或账号。
 
-在非交互环境中执行时，命令生成带有待填写连接信息的配置文件；启动前需在 `config.yml` 中补齐，或使用[配置命令](cli.md)设置。`config.yml` 可能包含密码和密钥，不提交到 Git。
+`config.yml` 可能包含密码和密钥，不提交到 Git。也可使用[配置命令](cli.md)设置连接参数。
 
 完成配置后检查连接：
 
@@ -62,7 +68,7 @@ pnpm nocobase config check
 
 | 数据库 | 配置要点 |
 | --- | --- |
-| SQLite | 使用 `filename` 指定文件；应用配置也接受 `database`。相对路径按应用的 `storage/` 目录解析 |
+| SQLite | 生成的配置使用 `database` 指定文件。改用 `filename` 或 `DB_FILENAME` 时，需移除 `database`，并确认没有 `DB_DATABASE` 覆盖，否则仍优先使用 `database`。相对路径按应用的 `storage/` 目录解析 |
 | PostgreSQL、人大金仓 | 按需设置 `schema` 和 `ssl` |
 | MySQL、MariaDB、OceanBase | 使用 `database` 指定数据库，`username` 指定用户 |
 | Microsoft SQL Server | 按服务端证书配置 `encrypt` 和 `trustServerCertificate` |

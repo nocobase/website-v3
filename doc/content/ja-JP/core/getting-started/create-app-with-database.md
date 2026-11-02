@@ -33,7 +33,7 @@ cd my-app
 
 ## ドライバーをインストールしてデータベースを設定する
 
-以下はすべて `my-app` ディレクトリで実行します。使用するデータベースの節を 1 つ選んでください。`config init` は `config.yml` とアプリのシークレットを生成します。対話型ターミナルでは接続情報を尋ね、接続を試みます。スクリプトなどの非対話環境では、起動前に入力が必要な接続パラメーターを生成します。
+以下はすべて `my-app` ディレクトリで実行します。使用するデータベースの節を 1 つ選んでください。`config init --json` は非対話形式で `config.yml`、アプリのシークレット、入力が必要な接続パラメーターを生成し、データベースには接続しません。例に従って接続情報と TLS 設定を入力してから、接続を確認してください。
 
 各例は `database` セクション全体を示しています。初期化後、実際の接続情報を入力し、シークレットや他の設定を保持してください。この断片で `config.yml` 全体を置き換えないでください。`db.example.com`、ポート、`my_app`、アカウント、パスワードは実際の値に置き換えます。例のポートはデプロイの必須条件ではありません。`schemaManagement: managed` は、アプリがマイグレーションで自身のテーブル構造を管理することを許可します。
 
@@ -46,7 +46,8 @@ cd my-app
 既定のテンプレートには SQLite ドライバーが含まれるため、そのまま初期化します。
 
 ```bash
-pnpm nocobase config init --dialect sqlite
+mkdir -p storage
+pnpm nocobase config init --dialect sqlite --json
 ```
 
 ```yaml
@@ -59,7 +60,7 @@ database:
       schemaManagement: managed
 ```
 
-`database` はファイルパスです。`database.sqlite` はアプリの `storage/` ディレクトリに保存されます。絶対パスも指定できます。アプリを実行するアカウントには保存先ディレクトリへの書き込み権限が必要です。このファイルにはアプリのデータが保存されるため、再デプロイ時にも保持してください。
+`database` はファイルパスです。`database.sqlite` はアプリの `storage/` ディレクトリに保存されます。絶対パスも指定できます。上のコマンドは例で使う `storage/` ディレクトリを作成します。パスを変更する場合は、接続確認の前に親ディレクトリを作成し、実行アカウントに書き込み権限を付与してください。このファイルにはアプリのデータが保存されるため、再デプロイ時にも保持してください。
 
 ### PostgreSQL
 
@@ -67,7 +68,7 @@ PostgreSQL のデータベースと、対象スキーマを使用できるアカ
 
 ```bash
 pnpm add @nocobase/db-postgres@beta
-pnpm nocobase config init --dialect postgres
+pnpm nocobase config init --dialect postgres --json
 ```
 
 ```yaml
@@ -94,7 +95,7 @@ MySQL と MariaDB は同じドライバーと `mysql` ダイアレクトを使�
 
 ```bash
 pnpm add @nocobase/db-mysql@beta
-pnpm nocobase config init --dialect mysql
+pnpm nocobase config init --dialect mysql --json
 ```
 
 ```yaml
@@ -121,7 +122,7 @@ database:
 
 ```bash
 pnpm add @nocobase/db-mssql@beta
-pnpm nocobase config init --dialect mssql
+pnpm nocobase config init --dialect mssql --json
 ```
 
 ```yaml
@@ -148,7 +149,7 @@ Oracle のサービス名と、必要なスキーマ権限・表領域クォー�
 
 ```bash
 pnpm add @nocobase/db-oracle@beta
-pnpm nocobase config init --dialect oracle
+pnpm nocobase config init --dialect oracle --json
 ```
 
 ```yaml
@@ -169,11 +170,11 @@ database:
 
 ### Dameng
 
-Dameng ドライバーには NocoBase Pro の商用ライセンスと Pro レジストリーへのアクセス権が必要です。先にレジストリー認証を設定してください。ドライバーは実験段階のため、対象のデータベースバージョンで検証してから使用します。
+Dameng ドライバーには NocoBase Pro の商用ライセンスと Pro レジストリーへのアクセス権が必要です。先にレジストリー認証を設定してください。ドライバーは実験段階のため、対象のデータベースバージョンで検証してから使用します。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
-pnpm nocobase config init --dialect dameng
+pnpm nocobase config init --dialect dameng --json
 ```
 
 ```yaml
@@ -194,11 +195,11 @@ database:
 
 ### KingbaseES
 
-サーバーが PostgreSQL 互換モード（`DB_MODE=pg`）で動作していることを確認し、データベースとスキーマを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。
+サーバーが PostgreSQL 互換モード（`DB_MODE=pg`）で動作していることを確認し、データベースとスキーマを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
-pnpm nocobase config init --dialect kingbase
+pnpm nocobase config init --dialect kingbase --json
 ```
 
 ```yaml
@@ -221,11 +222,11 @@ database:
 
 ### OceanBase
 
-OceanBase CE の MySQL 互換テナントを使い、そのテナント内にデータベースとアカウントを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。
+OceanBase CE の MySQL 互換テナントを使い、そのテナント内にデータベースとアカウントを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta
-pnpm nocobase config init --dialect oceanbase
+pnpm nocobase config init --dialect oceanbase --json
 ```
 
 ```yaml

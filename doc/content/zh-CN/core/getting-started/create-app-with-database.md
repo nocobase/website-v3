@@ -33,7 +33,7 @@ cd my-app
 
 ## 安装驱动并配置数据库
 
-以下操作均在 `my-app` 目录执行，按所用数据库选择一个小节。`config init` 会生成 `config.yml` 和应用密钥；在交互式终端中，还会询问连接信息并尝试连接数据库。脚本等非交互环境会生成待填写的连接参数，需在启动前补齐。
+以下操作均在 `my-app` 目录执行，按所用数据库选择一个小节。`config init --json` 以非交互方式生成 `config.yml`、应用密钥和待填写的连接参数，不会尝试连接数据库。先按示例填写连接信息和 TLS 配置，再执行连接检查。
 
 每个示例给出完整的 `database` 分区。初始化后，用实际连接信息填写该分区，保留文件中的密钥和其他配置，不要用片段覆盖整个 `config.yml`。`db.example.com`、端口、`my_app`、账号和密码均需按实际服务替换；示例中的端口不是部署要求。`schemaManagement: managed` 允许应用通过迁移管理自己的表结构。
 
@@ -46,7 +46,8 @@ cd my-app
 默认模板已安装 SQLite 驱动，直接初始化：
 
 ```bash
-pnpm nocobase config init --dialect sqlite
+mkdir -p storage
+pnpm nocobase config init --dialect sqlite --json
 ```
 
 ```yaml
@@ -59,7 +60,7 @@ database:
       schemaManagement: managed
 ```
 
-这里的 `database` 是文件路径，`database.sqlite` 位于应用的 `storage/` 目录下；也可指定绝对路径。运行应用的账号需对存放目录有写权限。该文件保存应用数据，不能在重新部署时丢弃。
+这里的 `database` 是文件路径，`database.sqlite` 位于应用的 `storage/` 目录下；也可指定绝对路径。上面的命令会创建示例使用的 `storage/` 目录；若修改文件路径，需在连接检查前创建对应的父目录，并保证运行账号有写权限。该文件保存应用数据，不能在重新部署时丢弃。
 
 ### PostgreSQL
 
@@ -67,7 +68,7 @@ database:
 
 ```bash
 pnpm add @nocobase/db-postgres@beta
-pnpm nocobase config init --dialect postgres
+pnpm nocobase config init --dialect postgres --json
 ```
 
 ```yaml
@@ -94,7 +95,7 @@ MySQL 和 MariaDB 共用驱动与 `mysql` 方言：
 
 ```bash
 pnpm add @nocobase/db-mysql@beta
-pnpm nocobase config init --dialect mysql
+pnpm nocobase config init --dialect mysql --json
 ```
 
 ```yaml
@@ -121,7 +122,7 @@ database:
 
 ```bash
 pnpm add @nocobase/db-mssql@beta
-pnpm nocobase config init --dialect mssql
+pnpm nocobase config init --dialect mssql --json
 ```
 
 ```yaml
@@ -148,7 +149,7 @@ database:
 
 ```bash
 pnpm add @nocobase/db-oracle@beta
-pnpm nocobase config init --dialect oracle
+pnpm nocobase config init --dialect oracle --json
 ```
 
 ```yaml
@@ -169,11 +170,11 @@ database:
 
 ### 达梦
 
-达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。
+达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
-pnpm nocobase config init --dialect dameng
+pnpm nocobase config init --dialect dameng --json
 ```
 
 ```yaml
@@ -194,11 +195,11 @@ database:
 
 ### 人大金仓 KingbaseES
 
-确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。
+确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
-pnpm nocobase config init --dialect kingbase
+pnpm nocobase config init --dialect kingbase --json
 ```
 
 ```yaml
@@ -221,11 +222,11 @@ database:
 
 ### OceanBase
 
-使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。
+使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta
-pnpm nocobase config init --dialect oceanbase
+pnpm nocobase config init --dialect oceanbase --json
 ```
 
 ```yaml

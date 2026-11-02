@@ -67,3 +67,9 @@ Observed package warnings:
 - `pnpm peers check` reported that Tiptap bubble/floating menu extensions 3.32.2 expect core/pm 3.32.2, while the template installs core/pm 3.30.2. No OceanBase peer mismatch was reported. Editor behavior was not tested and those dependencies were left unchanged.
 
 The test project and logs were retained in an isolated temporary directory for review. It is not a maintained example app or a published demo, and no temporary URL is added to reader-facing documentation.
+
+## Pre-merge review corrections
+
+Re-fetched Core `v3-develop`; the source remains at `09646a97a60ce0758b3635454cb483cb3f1a57c3`. Checked `config init` interactive gating, connection-check behavior and SQLite connection normalization. Initialization examples now use `--json` to defer the first connection until credentials and TLS have been configured. SQLite examples create the parent directory before `config check --connect`; the compatibility reference explains that `database` overrides `filename` and must be removed when using `filename` or `DB_FILENAME`.
+
+Commercial registry instructions follow the application dependency-download instructions in the Pro repository AGENTS.md at `8a2410fe860d8f269542d86a1d9d05249da83a60`. The public guide includes the registry endpoint and interactive login command, without private source links or credentials. Each commercial database section links to that setup. These documentation corrections were synchronized across all three languages.

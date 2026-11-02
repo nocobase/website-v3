@@ -2,6 +2,7 @@
 // 把 CMS 推送的文章（content/blog/cms/articles/<slug>/metadata.json、index.md、index.cn.md）合并进 content/blog/posts.json，构建时由 lib/blog.mjs 生成页面。
 // 推送由 CMS 工作流「Website_v3_github_sync」完成，格式和旧官网 nocobase/website 的 content/articles 相同。
 // 显示规则沿用旧官网：status 为 published 且没有 hideDetailPage 的文章有详情页；再没有 hideOnListPage 的进博客列表。
+// 草稿（status 为 drafted）也有详情页，供 CMS 里的「预览」按钮打开：记为 draft: true，不进任何列表、相关文章和 sitemap，页面加 noindex。
 // 有日文正文（index.ja.md）的文章另记一份 ja（标题、描述取 title_ja、description_ja，标签取标签表的 title_ja），构建时生成 /ja-JP/ 下的页面。
 // hideOnBlog 的文章旧官网不进 /blog 首页，但出现在标签页和侧栏；v3 照此处理：记为 onBlog: false，博客列表「全部」里不显示，按标签筛选时显示。
 // 打了 Release Notes 标签、已发布的 v3 版本（slug 以 v3. 开头）另外写进 releases.json，给 lib/changelog.mjs 生成更新日志；含没有详情页的。
@@ -46,17 +47,26 @@ const tagsPath = join(here, 'cms', 'article-tags.json');
 const TAGS = new Map((existsSync(tagsPath) ? JSON.parse(readFileSync(tagsPath, 'utf8')) : []).map(t => [t.id, t]));
 const current = t => TAGS.get(t.id) || t;
 const releases = {};
-let pages = 0, listed = 0;
+let pages = 0, listed = 0, drafts = 0;
+// CMS 里改了 slug 的文章，旧 slug 的目录不会被删（推送只写不删），同一个 id 只用最近更新的那份
+const meta = slug => JSON.parse(readFileSync(join(root, slug, 'metadata.json'), 'utf8'));
+const newest = new Map();
 for (const slug of existsSync(root) ? readdirSync(root).sort() : []) {
+  if (!existsSync(join(root, slug, 'metadata.json'))) continue;
+  const { id, updatedAt = '' } = meta(slug);
+  const prev = newest.get(id);
+  if (!prev || updatedAt > prev.updatedAt) newest.set(id, { slug, updatedAt });
+}
+for (const slug of [...newest.values()].map(v => v.slug).sort()) {
   const dir = join(root, slug);
-  if (!existsSync(join(dir, 'metadata.json'))) continue;
-  const m = JSON.parse(readFileSync(join(dir, 'metadata.json'), 'utf8'));
-  if (m.status !== 'published') continue;
+  const m = meta(slug);
+  if (m.status !== 'published' && m.status !== 'drafted') continue;
+  const draft = m.status === 'drafted';
   const en = legacyDocLinks(read(join(dir, 'index.md'))), cn = legacyDocLinks(read(join(dir, 'index.cn.md'))) || en;
   const ja = legacyDocLinks(read(join(dir, 'index.ja.md'))).trim();
   if (!en && !cn) continue;
   const date = day(m.publishedAt || m.createdAt || m.updatedAt);
-  if (/^v3\./.test(m.slug || slug) && (m.tags || []).some(t => t.slug === 'release-notes')) {
+  if (!draft && /^v3\./.test(m.slug || slug) && (m.tags || []).some(t => t.slug === 'release-notes')) {
     releases[m.slug || slug] = {
       kind: kindOf(m.sub_tags, m.slug || slug), post: !m.hideDetailPage, image: (m.cover && m.cover.url) || '',
       en: { title: m.title || m.title_cn, desc: m.description || m.description_cn || '', date, body: marked.parse(en || cn).trim() },
@@ -70,13 +80,15 @@ for (const slug of existsSync(root) ? readdirSync(root).sort() : []) {
   const author = m.author || 'NocoBase';
   posts[m.slug || slug] = {
     source: 'cms',
-    listed: !m.hideOnListPage,
+    listed: !draft && !m.hideOnListPage,
+    ...(draft && { draft: true }),
     onBlog: !m.hideOnBlog,
     en: { title: m.title || m.title_cn, desc: m.description || m.description_cn || '', date, author, tags: tags.map(t => t.title), image, body: marked.parse(en || cn).trim() },
     cn: { title: m.title_cn || m.title, desc: m.description_cn || m.description || '', date, author, tags: tags.map(t => t.title_cn || t.title), image, body: marked.parse(cn).trim() },
     ...(ja && { ja: { title: m.title_ja || m.title, desc: m.description_ja || m.description || '', date, author, tags: tags.map(t => t.title_ja || t.title), image, body: marked.parse(ja).trim() } }),
   };
   pages++;
+  if (draft) drafts++;
   if (posts[m.slug || slug].listed) listed++;
 }
 
@@ -92,4 +104,4 @@ const sorted = Object.fromEntries(Object.keys(posts).sort().map(k => [k, posts[k
 writeFileSync(postsPath, JSON.stringify(sorted, null, 1) + '\n');
 writeFileSync(csPath, JSON.stringify(cs, null, 1) + '\n');
 writeFileSync(releasesPath, JSON.stringify(Object.fromEntries(Object.keys(releases).sort().map(k => [k, releases[k]])), null, 1) + '\n');
-console.log(`cms: ${pages} pages, ${listed} listed, ${Object.keys(releases).length} releases`);
+console.log(`cms: ${pages} pages (${drafts} drafts), ${listed} listed, ${Object.keys(releases).length} releases`);

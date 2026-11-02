@@ -31,6 +31,10 @@
     },
     {
       "type": "page",
+      "path": "../getting-started/create-app-with-database"
+    },
+    {
+      "type": "page",
       "path": "faq"
     }
   ]

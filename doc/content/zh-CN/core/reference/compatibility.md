@@ -1,22 +1,112 @@
 ---
 title: 数据库支持与版本兼容
-description: 查找数据库方言、连接差异、运行环境要求，以及升级时需要一起核对的版本。
+description: 查找支持的数据库、驱动安装与连接配置方法，以及数据库版本、运行环境和升级要求。
 ---
 
-本页区分可用的方言包、源码中配置的集成测试环境和当前应用实际验证过的组合。测试环境版本不是完整的最低版本或支持期限承诺。
+## 支持的数据库
+
+NocoBase 提供 8 种数据库方言。方言是连接配置中 `dialect` 的取值，用于选择对应的数据库驱动；MariaDB 与 MySQL 共用 `mysql` 方言。
+
+### 开源数据库驱动
+
+| 数据库 | 驱动包 | `dialect` |
+| --- | --- | --- |
+| SQLite | `@nocobase/db-sqlite` | `sqlite` |
+| PostgreSQL | `@nocobase/db-postgres` | `postgres` |
+| MySQL、MariaDB | `@nocobase/db-mysql` | `mysql` |
+| Microsoft SQL Server | `@nocobase/db-mssql` | `mssql` |
+| Oracle Database | `@nocobase/db-oracle` | `oracle` |
+
+默认应用模板使用 SQLite，本地开发无需单独安装数据库服务。使用其他数据库时，需要准备可连接的服务、数据库和账号，再安装对应的驱动。
+
+### 商业数据库驱动
+
+| 数据库 | 驱动包 | `dialect` | 使用条件 |
+| --- | --- | --- | --- |
+| 达梦 | `@nocobase/db-dameng` | `dameng` | 驱动目前为实验性，使用前需在目标数据库版本上验证 |
+| 人大金仓 KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 兼容模式，`DB_MODE=pg` |
+| OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 兼容租户 |
+
+这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权。从授权交付方取得私有仓库地址、账号信息及具有下载权限的只读令牌（`nbr_…`）。将下方的 `<nocobase-pro-registry-url>` 替换为取得的仓库地址，再执行命令，按提示将令牌作为密码输入：
+
+```bash
+pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
+```
+
+该命令在用户级配置中将 `@nocobase` 映射到 Pro registry；此仓库也代理公开的 NocoBase 包，其他依赖仍使用原有 registry。不要把令牌写入文档、命令行参数或提交到 Git。
+
+## 配置应用数据库
+
+各数据库的完整连接配置示例见[使用不同数据库创建应用](../getting-started/create-app-with-database.md)，可直接使用本机、独立服务器或云数据库提供的连接信息。
+
+### 安装驱动并初始化配置
+
+在[创建应用](../getting-started/create-app.md)生成的项目目录中操作。下面以尚未生成 `config.yml` 的 PostgreSQL 应用为例；先准备可访问的 PostgreSQL 服务、数据库和账号，再执行：
+
+```bash
+pnpm add @nocobase/db-postgres@beta
+pnpm nocobase config init --dialect postgres --json
+```
+
+命令生成 `config.yml` 和应用密钥，但不连接数据库。先在配置文件中填写真实的主机、端口、数据库名、用户名、密码及所需的 TLS 配置；各数据库的示例见[使用不同数据库创建应用](../getting-started/create-app-with-database.md)。使用其他数据库时，替换包名和 `--dialect` 值。`config init` 不会安装驱动，也不会创建数据库服务或账号。
+
+`config.yml` 可能包含密码和密钥，不提交到 Git。也可使用[配置命令](cli.md)设置连接参数。
+
+完成配置后检查连接：
+
+```bash
+pnpm nocobase config check
+```
+
+检查通过时，终端会显示数据库连接成功；有问题时会指出配置项和修复建议。默认检查会连接除 SQLite 外的数据库；SQLite 需要连接检查时加 `--connect`，只检查配置、不连接数据库时加 `--no-connect`。该命令不执行迁移。
+
+已有 `config.yml` 时，直接修改所需连接配置并保留原有密钥。修改 `dialect` 不会把已有数据迁移到另一个数据库。
+
+### 不同数据库的连接参数
+
+连接写在 `database.connections.<name>` 下，`database.default` 指定默认连接名，默认模板为 `main`。常用网络连接字段为 `host`、`port`、`database`、`username` 和 `password`，以下字段按数据库调整：
+
+| 数据库 | 配置要点 |
+| --- | --- |
+| SQLite | 生成的配置使用 `database` 指定文件。改用 `filename` 或 `DB_FILENAME` 时，需移除 `database`，并确认没有 `DB_DATABASE` 覆盖，否则仍优先使用 `database`。相对路径按应用的 `storage/` 目录解析 |
+| PostgreSQL、人大金仓 | 按需设置 `schema` 和 `ssl` |
+| MySQL、MariaDB、OceanBase | 使用 `database` 指定数据库，`username` 指定用户 |
+| Microsoft SQL Server | 按服务端证书配置 `encrypt` 和 `trustServerCertificate` |
+| Oracle | 使用 `serviceName` 指定服务 |
+| 达梦 | 使用 `schema` 指定模式；初始化配置不生成 `database` 字段 |
+
+环境变量可能覆盖文件中的连接参数，覆盖规则见[配置项参考](configuration.md)。增加其他连接见[多数据库连接](../developing-apps/multiple-databases.md)；连接现有业务库、限制框架修改表结构见[接入已有数据库](../developing-apps/existing-databases.md)。
+
+## 数据库版本与功能限制
+
+下表是驱动集成测试配置使用的数据库版本，不代表完整的兼容版本范围或最低版本要求：
+
+| 数据库 | 集成测试配置版本 |
+| --- | --- |
+| PostgreSQL | 16 |
+| MySQL | 8.4 |
+| MariaDB | 10.11 |
+| Microsoft SQL Server | 2022 |
+| Oracle Database | Oracle Free 23 |
+
+选择部署版本时，还需满足应用使用的功能要求：
+
+- **MySQL、MariaDB**：JSON 过滤使用 `JSON_OVERLAPS`，要求 MySQL 8.0.17 或以上、MariaDB 10.9 或以上。TEXT 字段默认值使用的表达式语法要求 MySQL 8.0.13 或以上、MariaDB 10.2.1 或以上。详见 [MySQL 驱动说明](https://github.com/nocobase/nocobase/blob/09646a97a60ce0758b3635454cb483cb3f1a57c3/packages/libs/db-mysql/README.md)。
+- **OceanBase**：TEXT 字段默认值由 Repository 在创建记录时填充；直接执行 SQL 插入记录时，需自行提供该字段的值。
+- **SQLite**：原生模块需要匹配 Node.js 版本、操作系统和 CPU 架构。
+
+人大金仓和 OceanBase 需使用[支持的数据库](#支持的数据库)中指定的兼容模式，并在目标数据库上验证应用的查询、迁移和事务。
 
 ## 运行环境与包版本
 
-| 项目 | 核对方式 |
+| 项目 | 要求与查看方式 |
 | --- | --- |
-| Node.js | 核对基线的应用模板与运行时要求 `>=24.0.0`；构建、安装依赖和运行环境应匹配 |
-| pnpm | 使用应用 `package.json` 的 `packageManager`；已验证模板声明 `pnpm@11.7.0` |
+| Node.js | 24 或更高版本 |
+| pnpm | 使用应用 `package.json` 中 `packageManager` 指定的版本 |
 | 应用模板 | 查看 `package.json` 的 `nocobase.defaultTemplateVersion` |
-| Core 包 | 查看实际安装版本、锁文件与各包 `peerDependencies` |
-| 数据库方言 | 与所用 `@nocobase/db` 版本、Node 版本和目标平台一起核对 |
-| 插件 | 核对 Client、Server、CLI 的公开入口、依赖范围和迁移 |
+| Core、数据库驱动和插件 | 按各包的依赖范围及 `peerDependencies` 配套安装，保留锁文件 |
 
-各包独立编号。例如本次验证的 `app-client` 是 `4.0.0-beta.3`，`app-server` 是 `3.0.0-beta.3`，`app-cli` 是 `1.0.0-beta.29`，它们用于同一个 NocoBase 3 应用。不能把包的主版本号当成产品代际。
+NocoBase 的各个包独立编号，包的主版本号不等同于 NocoBase 产品版本。查看当前环境和已安装的包版本：
 
 ```bash
 node --version
@@ -24,67 +114,8 @@ pnpm --version
 pnpm list @nocobase/app-client @nocobase/app-server @nocobase/app-cli @nocobase/db --depth 0
 ```
 
-## 公开数据库方言
+## 升级与跨平台部署
 
-以下“集成环境”取自核对修订的 Docker Compose 配置，表示源码使用的测试目标，本次文档验证没有重新运行这些外部数据库服务。
+升级前备份数据库、运行配置和密钥，保留锁文件；按[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)更新模板和依赖，并在独立环境中验证迁移、查询、事务及权限。回退代码不会自动撤销数据库结构变更，需同时准备数据恢复方案。
 
-| 数据库 | 包 / `dialect` | 底层驱动 | 源码集成环境或要求 |
-| --- | --- | --- | --- |
-| SQLite | `@nocobase/db-sqlite` / `sqlite` | `better-sqlite3` | 嵌入式数据库；原生模块必须匹配 Node、操作系统和架构 |
-| PostgreSQL | `@nocobase/db-postgres` / `postgres` | `pg` | PostgreSQL 16 |
-| MySQL | `@nocobase/db-mysql` / `mysql` | `mysql2` | MySQL 8.4 |
-| MariaDB | `@nocobase/db-mysql` / `mysql` | `mysql2` | MariaDB 10.11 |
-| Microsoft SQL Server | `@nocobase/db-mssql` / `mssql` | `tedious` | SQL Server 2022 |
-| Oracle Database | `@nocobase/db-oracle` / `oracle` | `oracledb` | Oracle Free 23 |
-
-MySQL 方言中的 JSON 过滤依赖 `JSON_OVERLAPS`：MySQL 需要 8.0.17 或以上，MariaDB 需要 10.9 或以上。TEXT 字段默认值所需的表达式形式，在 MySQL 8.0.13 起可用。这些是具体功能的版本条件，选择部署版本时还需核对其他使用中的功能。依据见 [MySQL 方言说明](https://github.com/nocobase/nocobase/blob/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-mysql/README.md)。
-
-## 商业数据库方言
-
-| 数据库 | 包 / `dialect` | 连接模式与核对事项 |
-| --- | --- | --- |
-| 达梦 | `@nocobase/db-dameng` / `dameng` | 使用 `knex-dm` 与 `dmdb`；所核对说明标记为实验性，需要针对目标服务端验证集成契约 |
-| 人大金仓 | `@nocobase/db-kingbase` / `kingbase` | KingbaseES 的 PostgreSQL 兼容模式，`DB_MODE=pg` |
-| OceanBase | `@nocobase/db-oceanbase` / `oceanbase` | OceanBase CE 的 MySQL 兼容租户 |
-
-商业包按授权从 Pro registry 获取。兼容模式属于连接前提；不能仅因协议相似，就将所有专有行为视为 PostgreSQL 或 MySQL 的相同行为。OceanBase 的 TEXT 默认值由 Repository 在创建记录时补齐，直接 SQL 写入仍需提供值。
-
-## 应用连接配置
-
-应用默认数据库配置会按需加载已安装的官方方言。将需要的方言放入生产依赖，再配置连接；单独使用 `@nocobase/db` 时，则按其 API 显式提供驱动工厂或注册表。
-
-新建且尚未配置的 PostgreSQL 应用可以按以下顺序操作：
-
-```bash
-pnpm add @nocobase/db-postgres@beta
-pnpm nocobase config init --dialect postgres
-pnpm nocobase config set database.connections.main.host=127.0.0.1 database.connections.main.database=my_app database.connections.main.username=my_app
-pnpm nocobase config set --from-env database.connections.main.password=MAIN_DB_PASSWORD
-pnpm nocobase config check
-```
-
-运行前通过自己的环境管理方式设置 `MAIN_DB_PASSWORD`。已有应用修改连接配置时保留其他配置、密钥和数据；修改 `dialect` 不会迁移已有业务数据到新数据库。
-
-| 配置差异 | 说明 |
-| --- | --- |
-| SQLite | 使用 `filename`；默认模板解析到应用 `storage/` 下的数据库文件 |
-| 通用用户名 | 高层连接配置使用 `username`，不是底层驱动各自的 `user` 字段 |
-| Oracle | 使用 `serviceName` 指定服务，不能只填写普通数据库名 |
-| PostgreSQL | 按需要设置 `schema` 与 `ssl` |
-| SQL Server | 按部署证书要求设置 `encrypt` 与 `trustServerCertificate` |
-| 多连接 | `database.default` 指定默认连接，资源按 `database/<connection>/` 组织 |
-| 外部数据库 | `schemaManagement: external` 限制框架执行结构变更；数据读写仍取决于账号和授权策略 |
-
-## 升级与跨平台构建
-
-1. 保留当前锁文件、运行配置和可恢复的数据备份。
-2. 按[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)合并模板变化，核对依赖和 peer 范围。
-3. 在独立验证环境检查迁移、查询、事务、权限以及插件行为。
-4. 按目标平台重新构建，避免把开发机的原生依赖直接复制到另一种系统或架构。
-5. 分别验证代码回退和数据库恢复；回退程序版本不会自动撤销已提交的数据结构变化。
-
-构建的 `--target` 与 `--node-version` 参数见[命令行参考](cli.md)，生产部署见[选择部署方式](../deployment/choose-a-deployment-method.md)。
-
-## 核对范围
-
-2026-10-27：公开方言与模板按 [Core `015404ecd0db`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs) 核对；商业方言说明按其源码修订 `138665ffaaaa` 核对。实际命令检查使用默认模板 beta.83、Node 24.21.0、pnpm 11.7.0、`@nocobase/db` 1.0.0-beta.22 和 SQLite 方言 0.1.0-beta.6。
+跨操作系统或 CPU 架构部署时，应为目标平台重新构建，避免直接复制本机的原生依赖。数据库驱动需安装在应用的生产依赖中；增加驱动后重新构建部署包。构建参数见[命令行参考](cli.md)，部署步骤见[选择部署方式](../deployment/choose-a-deployment-method.md)。

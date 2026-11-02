@@ -90,9 +90,10 @@ export function rewrite(text, resolve) {
   return text;
 }
 
-// files：{地址: html}；exists(路径) 判断产物里有没有这个地址；isArticle(地址) 是不是博客、客户案例、更新日志的文章页。
+// files：{地址: html}；exists(路径) 判断产物里有没有这个地址；isArticle(地址) 是不是博客、客户案例、更新日志的文章页；isDraft(地址) 是不是 CMS 草稿的预览页。
 // 返回 { errors, warnings }：站内链接指向不存在的页面或文件是错误；留着相对链接是错误，文章正文（来自 CMS）里的只是警告。
-export function check(files, exists, isArticle) {
+// 草稿预览页上的坏链接也只是警告：草稿每小时自动同步，没写完的草稿不能挡住整个官网的发布。
+export function check(files, exists, isArticle, isDraft = () => false) {
   const errors = [], warnings = [];
   for (const [url, text] of Object.entries(files)) {
     const html = text.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
@@ -104,7 +105,7 @@ export function check(files, exists, isArticle) {
         continue;
       }
       const path = u.split(/[?#]/)[0];
-      if (!exists(path)) errors.push(`${url}: 链接指向不存在的地址 ${u}`);
+      if (!exists(path)) (isDraft(url) ? warnings : errors).push(`${url}: 链接指向不存在的地址 ${u}` + (isDraft(url) ? '（草稿预览页，在 CMS 里改）' : ''));
     }
     // 脚本里写的站内地址（首页的应用链接）
     for (const m of text.matchAll(/(['"])(\/(?:[a-zA-Z]{2}-[A-Z]{2}\/)?(?:[a-z0-9-]+\/)*)\1/g)) {

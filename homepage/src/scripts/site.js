@@ -91,6 +91,26 @@ if (document.querySelector('form[data-public-form-zh][data-public-form-en]')) im
       show((tabs.indexOf(b) + d + tabs.length) % tabs.length, true);
     });
   });
+  /* 博客和客户案例正文里的图：点一下在全屏的 dialog 里放大看，点任意处或按 Esc 关闭；带链接的图照常跳转 */
+  var zoom;
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest && e.target.closest('.prose img');
+    if (!img || img.closest('a')) return;
+    if (!zoom) {
+      zoom = document.createElement('dialog');
+      zoom.className = 'img-zoom';
+      zoom.innerHTML = '<img alt="">';
+      zoom.addEventListener('click', function () { zoom.close(); });
+      document.body.appendChild(zoom);
+    }
+    var big = zoom.querySelector('img');
+    big.src = img.currentSrc || img.src;
+    big.alt = img.alt;
+    // 小图放大太多会糊：最多到原图的 2 倍
+    big.style.maxWidth = img.naturalWidth ? img.naturalWidth * 2 + 'px' : '';
+    big.style.maxHeight = img.naturalHeight ? img.naturalHeight * 2 + 'px' : '';
+    zoom.showModal();
+  });
   fit();
   window.addEventListener('resize', fit);
   window.addEventListener('load', fit);

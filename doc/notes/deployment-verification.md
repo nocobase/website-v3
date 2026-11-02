@@ -74,7 +74,9 @@ Use the baseline archive digest recorded below. The fixture creates its own PM2 
 
 ## Chapter mapping
 
-The canonical page URLs remain unchanged except for the added maintenance page. Each language has the same page paths and menu structure.
+All five guides now live under `core/deployment/`. The Docker guide moved from `tutorials/deploy-with-docker` to `deployment/deploy-with-docker`; the PM2 guide moved from `tutorials/deploy-with-app-installer` to `deployment/deploy-with-pm2`. The old URLs redirect to the new pages. Each language has the same page paths and menu structure. The previous-page column below records the paths before this move.
+
+For this path-only migration, source references were checked on `nocobase/nocobase` branch `v3-develop` at `09646a97a60ce0758b3635454cb483cb3f1a57c3`: the deployment Skill, the default template Dockerfile and app-installer PM2 integration. This does not change the versions or runtime verification recorded above.
 
 | Previous page or section | Current destination |
 | --- | --- |

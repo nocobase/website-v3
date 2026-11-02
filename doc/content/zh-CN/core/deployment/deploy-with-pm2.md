@@ -84,16 +84,16 @@ pm2 restart nocobase-my-app
 
 `--set-from-env` 在执行安装器的机器读取变量，通过 SSH 加密传输。`npx --yes` 只确认获取工具；安装器自己的 `--yes` 才确认更新或回滚计划。
 
-后续操作见[更新与恢复](../deployment/publish-app-release.md)及[日常维护与排错](../deployment/maintenance-and-troubleshooting.md)。
+后续操作见[更新与恢复](publish-app-release.md)及[日常维护与排错](maintenance-and-troubleshooting.md)。
 
 <a id="部署新版本"></a>
 <a id="更新失败与回退"></a>
 
-[更新与恢复](../deployment/publish-app-release.md)
+[更新与恢复](publish-app-release.md)
 
 <a id="遇到问题时"></a>
 
-[日常维护与排错](../deployment/maintenance-and-troubleshooting.md)
+[日常维护与排错](maintenance-and-troubleshooting.md)
 
 > [!NOTE]
 > beta.85 示例已在本机 Node.js 24、PM2 6.0.14、安装器 beta.10 和 SQLite 环境验证安装、原生登录、业务写入及重启持久化。SSH、公开代理与 HTTPS、主机开机恢复尚未验证。

@@ -39,7 +39,7 @@ description: 让 Agent 构建并部署 Docker 应用，保留独立配置与数�
 
 从实际 URL 登录，创建一条可识别记录，记录 ID；核对普通用户的读写边界。涉及文件时上传并下载文件。商品目录的具体业务操作见[示例说明](https://github.com/nocobase/docs-examples-v3/blob/51658852e7290b0ed3c0735d2856681850560efb/apps/product-catalog/README.md#create-and-publish)。
 
-要求 Agent 重建同一 Compose 项目的容器，重新登录并读取同一记录和文件。核对挂载位置及密钥未改变，确认代理下的刷新、接口和实时连接可用。后续变更按[更新与恢复](../deployment/publish-app-release.md)执行。
+要求 Agent 重建同一 Compose 项目的容器，重新登录并读取同一记录和文件。核对挂载位置及密钥未改变，确认代理下的刷新、接口和实时连接可用。后续变更按[更新与恢复](publish-app-release.md)执行。
 
 ## 手动部署参考
 
@@ -114,15 +114,15 @@ docker compose -p my-app up -d --force-recreate --wait --wait-timeout 180
 
 健康接口应返回 `ok: true` 及正确的 base path。首次管理员用户名默认为 `nocobase`；密码使用刚设置的值。重建前后按上节核对数据。结束演练用 `docker compose -p my-app down`，保留配置与数据目录。
 
-配置变更、备份、日志和故障处理见[日常维护与排错](../deployment/maintenance-and-troubleshooting.md)。
+配置变更、备份、日志和故障处理见[日常维护与排错](maintenance-and-troubleshooting.md)。
 
 <a id="部署新版本"></a>
 
-[更新与恢复](../deployment/publish-app-release.md)
+[更新与恢复](publish-app-release.md)
 
 <a id="遇到问题时"></a>
 
-[日常维护与排错](../deployment/maintenance-and-troubleshooting.md)
+[日常维护与排错](maintenance-and-troubleshooting.md)
 
 > [!NOTE]
 > 这些 Docker 命令尚未完成运行验证。发布前在 Docker 主机演练镜像构建、容器重建和恢复。

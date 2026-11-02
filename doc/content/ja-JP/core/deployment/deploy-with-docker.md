@@ -39,7 +39,7 @@ description: Agent に Docker アプリのビルドとデプロイを依頼し�
 
 実際の URL でログインし、識別できるレコードを作成して ID を記録します。一般ユーザーの読み書き権限を確認し、ファイルを使う場合はアップロードとダウンロードも試します。商品カタログの操作は[サンプルの説明](https://github.com/nocobase/docs-examples-v3/blob/51658852e7290b0ed3c0735d2856681850560efb/apps/product-catalog/README.md#create-and-publish)を参照してください。
 
-同じ Compose プロジェクトのコンテナを作り直してもらい、再ログインして同じレコードとファイルを確認します。マウントと鍵が変わらず、プロキシ経由の更新、API、リアルタイム接続が動くことを確認します。以降の変更は[更新と復旧](../deployment/publish-app-release.md)に従います。
+同じ Compose プロジェクトのコンテナを作り直してもらい、再ログインして同じレコードとファイルを確認します。マウントと鍵が変わらず、プロキシ経由の更新、API、リアルタイム接続が動くことを確認します。以降の変更は[更新と復旧](publish-app-release.md)に従います。
 
 ## 手動デプロイの参考
 
@@ -114,15 +114,15 @@ docker compose -p my-app up -d --force-recreate --wait --wait-timeout 180
 
 ヘルスエンドポイントは `ok: true` と正しい base path を返すことを確認します。初期管理者名の既定値は `nocobase`、パスワードは設定した値です。再作成前後に上記のデータ確認を行います。演習終了時は `docker compose -p my-app down` を使い、設定とデータのディレクトリは保持します。
 
-設定変更、バックアップ、ログ、障害対応は[日常の保守とトラブルシューティング](../deployment/maintenance-and-troubleshooting.md)を参照してください。
+設定変更、バックアップ、ログ、障害対応は[日常の保守とトラブルシューティング](maintenance-and-troubleshooting.md)を参照してください。
 
 <a id="新しいリリースを公開する"></a>
 
-[更新と復旧](../deployment/publish-app-release.md)
+[更新と復旧](publish-app-release.md)
 
 <a id="トラブルシューティングと検証の範囲"></a>
 
-[日常の保守とトラブルシューティング](../deployment/maintenance-and-troubleshooting.md)
+[日常の保守とトラブルシューティング](maintenance-and-troubleshooting.md)
 
 > [!NOTE]
 > これらの Docker コマンドの実行検証は未完了です。公開前に Docker ホストでイメージのビルド、コンテナの再作成、復旧を演習してください。

@@ -28,7 +28,7 @@ What the agent did:
 | Run | Writes `compose.yml`: the configuration is mounted read-only at `/app/config.yml`, `storage/` is mounted at `/app/storage`, and `APP_BASE_PATH` is set to `/itam` |
 | Check | `config check --connect` checks the configuration and the database connection, and `up -d --wait` waits until the health check passes |
 
-For every command and the full Compose file, see [Deploy with Docker](../core/tutorials/deploy-with-docker.md#manual-deployment-reference).
+For every command and the full Compose file, see [Deploy with Docker](../core/deployment/deploy-with-docker.md#manual-deployment-reference).
 
 ## 3. Keep configuration, data and the image apart
 

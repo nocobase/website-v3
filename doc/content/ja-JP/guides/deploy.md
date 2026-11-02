@@ -28,7 +28,7 @@ Docker と Docker Compose プラグインをインストールした Linux サ�
 | 実行 | `compose.yml` を書きます。設定は `/app/config.yml` に読み取り専用でマウントし、`storage/` は `/app/storage` にマウントし、`APP_BASE_PATH` を `/itam` に設定します |
 | 確認 | `config check --connect` で設定とデータベースの接続を確認し、`up -d --wait` でヘルスチェックを通過するまで待ちます |
 
-すべてのコマンドと Compose ファイルの全体は、[Docker でデプロイする](../core/tutorials/deploy-with-docker.md#手動デプロイの参考) を参照してください。
+すべてのコマンドと Compose ファイルの全体は、[Docker でデプロイする](../core/deployment/deploy-with-docker.md#手動デプロイの参考) を参照してください。
 
 ## 3. 設定、データ、イメージを分けて管理する
 

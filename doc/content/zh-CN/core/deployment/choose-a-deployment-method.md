@@ -25,8 +25,8 @@ description: 准备部署条件，与 Agent 选择 Docker 或 PM2，确认数据
 
 | 方式 | 需要管理什么 | 操作指南 |
 | --- | --- | --- |
-| Docker | 镜像、Compose、配置及数据挂载 | [使用 Docker 部署](../tutorials/deploy-with-docker.md) |
-| PM2 | Node.js、服务账号和进程；app-installer 管理安装与更新 | [使用 PM2 部署](../tutorials/deploy-with-app-installer.md) |
+| Docker | 镜像、Compose、配置及数据挂载 | [使用 Docker 部署](deploy-with-docker.md) |
+| PM2 | Node.js、服务账号和进程；app-installer 管理安装与更新 | [使用 PM2 部署](deploy-with-pm2.md) |
 
 ## 明确部署目标与数据保留要求
 

@@ -7,11 +7,11 @@
     },
     {
       "type": "page",
-      "path": "../tutorials/deploy-with-docker"
+      "path": "deploy-with-docker"
     },
     {
       "type": "page",
-      "path": "../tutorials/deploy-with-app-installer"
+      "path": "deploy-with-pm2"
     },
     {
       "type": "page",

@@ -86,12 +86,12 @@ For SSH installation from the development machine, replace `install /srv/nocobas
 
 `--set-from-env` reads the variable on the initiating machine and transfers it over encrypted SSH. The leading `npx --yes` accepts tool download; the installer's own `--yes` confirms an update or rollback plan.
 
-Continue with [Updates and recovery](../deployment/publish-app-release.md) and [Maintenance and troubleshooting](../deployment/maintenance-and-troubleshooting.md).
+Continue with [Updates and recovery](publish-app-release.md) and [Maintenance and troubleshooting](maintenance-and-troubleshooting.md).
 
 <a id="publish-a-new-release"></a>
 <a id="failure-and-rollback"></a>
 
-[Updates and recovery](../deployment/publish-app-release.md)
+[Updates and recovery](publish-app-release.md)
 
 > [!NOTE]
 > The beta.85 example was checked locally with Node.js 24, PM2 6.0.14, installer beta.10 and SQLite: installation, native sign-in, business writes and restart persistence. SSH, public proxy/TLS and host reboot recovery remain unverified.

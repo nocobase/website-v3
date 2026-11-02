@@ -39,7 +39,7 @@ Generate configuration and set the administrator password on the first installat
 
 Sign in through the real URL, create an identifiable record and keep its ID. Check ordinary users' read/write permissions. Upload and download a file when applicable. For Product Catalog operations, see the [example instructions](https://github.com/nocobase/docs-examples-v3/blob/51658852e7290b0ed3c0735d2856681850560efb/apps/product-catalog/README.md#create-and-publish).
 
-Have the Agent recreate the container in the same Compose project. Sign in again and retrieve the same record and files. Check mounts and keys are unchanged, and refresh, APIs and realtime connections work through the proxy. Use [Updates and recovery](../deployment/publish-app-release.md) for subsequent changes.
+Have the Agent recreate the container in the same Compose project. Sign in again and retrieve the same record and files. Check mounts and keys are unchanged, and refresh, APIs and realtime connections work through the proxy. Use [Updates and recovery](publish-app-release.md) for subsequent changes.
 
 ## Manual deployment reference
 
@@ -114,15 +114,15 @@ docker compose -p my-app up -d --force-recreate --wait --wait-timeout 180
 
 The health endpoint should return `ok: true` and the correct base path. The default initial username is `nocobase`; use your configured password. Check data before and after recreation as described above. End a rehearsal with `docker compose -p my-app down`, keeping configuration and data directories.
 
-See [Maintenance and troubleshooting](../deployment/maintenance-and-troubleshooting.md) for configuration changes, backups, logs and failures.
+See [Maintenance and troubleshooting](maintenance-and-troubleshooting.md) for configuration changes, backups, logs and failures.
 
 <a id="publish-a-new-release"></a>
 
-[Updates and recovery](../deployment/publish-app-release.md)
+[Updates and recovery](publish-app-release.md)
 
 <a id="troubleshooting-and-verification-scope"></a>
 
-[Maintenance and troubleshooting](../deployment/maintenance-and-troubleshooting.md)
+[Maintenance and troubleshooting](maintenance-and-troubleshooting.md)
 
 > [!NOTE]
 > Runtime verification for these Docker commands is pending. Rehearse image builds, container recreation and recovery on a Docker host before release.

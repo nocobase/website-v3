@@ -86,12 +86,12 @@ pm2 restart nocobase-my-app
 
 `--set-from-env` は開始側の環境変数を読み取り、SSH で暗号化して転送します。先頭の `npx --yes` はツール取得の確認だけで、更新やロールバック計画の承認はインストーラー自身の `--yes` です。
 
-次の作業は[更新と復旧](../deployment/publish-app-release.md)、[日常の保守とトラブルシューティング](../deployment/maintenance-and-troubleshooting.md)を参照してください。
+次の作業は[更新と復旧](publish-app-release.md)、[日常の保守とトラブルシューティング](maintenance-and-troubleshooting.md)を参照してください。
 
 <a id="新しいリリースを公開する"></a>
 <a id="失敗とロールバック"></a>
 
-[更新と復旧](../deployment/publish-app-release.md)
+[更新と復旧](publish-app-release.md)
 
 > [!NOTE]
 > beta.85 サンプルはローカルの Node.js 24、PM2 6.0.14、インストーラー beta.10、SQLite で、インストール、ネイティブログイン、業務書き込み、再起動後の永続化を確認済みです。SSH、公開プロキシ・HTTPS、ホスト起動時の復帰は未検証です。

@@ -25,8 +25,8 @@ description: Agent と Docker または PM2 を選び、データの保持方法
 
 | 方法 | 管理するもの | 手順 |
 | --- | --- | --- |
-| Docker | イメージ、Compose、設定とデータのマウント | [Docker でデプロイする](../tutorials/deploy-with-docker.md) |
-| PM2 | Node.js、サービスアカウント、プロセス。インストールと更新は app-installer が管理 | [PM2 でデプロイする](../tutorials/deploy-with-app-installer.md) |
+| Docker | イメージ、Compose、設定とデータのマウント | [Docker でデプロイする](deploy-with-docker.md) |
+| PM2 | Node.js、サービスアカウント、プロセス。インストールと更新は app-installer が管理 | [PM2 でデプロイする](deploy-with-pm2.md) |
 
 ## 対象とデータの保持要件を決める
 

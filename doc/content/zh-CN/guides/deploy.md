@@ -28,7 +28,7 @@ Agent 的做法：
 | 运行 | 写 `compose.yml`：配置只读挂载到 `/app/config.yml`，`storage/` 挂载到 `/app/storage`，`APP_BASE_PATH` 设为 `/itam` |
 | 检查 | `config check --connect` 检查配置和数据库连接，`up -d --wait` 等到健康检查通过 |
 
-每条命令和完整的 Compose 文件见 [使用 Docker 部署](../core/tutorials/deploy-with-docker.md#手动部署参考)。
+每条命令和完整的 Compose 文件见 [使用 Docker 部署](../core/deployment/deploy-with-docker.md#手动部署参考)。
 
 ## 3. 配置、数据和镜像分开
 

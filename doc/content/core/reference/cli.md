@@ -3,7 +3,7 @@ title: Command-line reference
 description: Application command entry points, source/deployment differences, configuration, databases, plugins and JSON output.
 ---
 
-This page covers the application's `nocobase` command. Separate tools create apps and plugins or install production releases: see [Create an app](../getting-started/create-app.md), [Create a plugin](../extension-development/create-plugin.md) and [Deploy with PM2](../tutorials/deploy-with-app-installer.md).
+This page covers the application's `nocobase` command. Separate tools create apps and plugins or install production releases: see [Create an app](../getting-started/create-app.md), [Create a plugin](../extension-development/create-plugin.md) and [Deploy with PM2](../deployment/deploy-with-pm2.md).
 
 ## Entry points
 

@@ -25,8 +25,8 @@ Deploy this app to my server. It runs <OS and CPU>, users will access <URL>, and
 
 | Method | What you manage | Guide |
 | --- | --- | --- |
-| Docker | Images, Compose, configuration and data mounts | [Deploy with Docker](../tutorials/deploy-with-docker.md) |
-| PM2 | Node.js, service account and processes; app-installer manages installation and updates | [Deploy with PM2](../tutorials/deploy-with-app-installer.md) |
+| Docker | Images, Compose, configuration and data mounts | [Deploy with Docker](deploy-with-docker.md) |
+| PM2 | Node.js, service account and processes; app-installer manages installation and updates | [Deploy with PM2](deploy-with-pm2.md) |
 
 ## Agree on the target and data retention
 

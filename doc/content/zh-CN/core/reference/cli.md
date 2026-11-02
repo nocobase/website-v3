@@ -3,7 +3,7 @@ title: 命令行参考
 description: NocoBase 3 应用命令的调用方式、开发与部署差异、配置、数据库、插件和 JSON 输出。
 ---
 
-本页说明应用的 `nocobase` 命令。创建应用、创建插件和生产安装由独立工具完成，分别见[创建应用](../getting-started/create-app.md)、[创建插件](../extension-development/create-plugin.md)和[使用 PM2 部署](../tutorials/deploy-with-app-installer.md)。
+本页说明应用的 `nocobase` 命令。创建应用、创建插件和生产安装由独立工具完成，分别见[创建应用](../getting-started/create-app.md)、[创建插件](../extension-development/create-plugin.md)和[使用 PM2 部署](../deployment/deploy-with-pm2.md)。
 
 ## 调用入口
 

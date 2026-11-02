@@ -1,14 +1,15 @@
 // Docs-specific build steps: a fresh content cache for production builds, the checks on the output, and the Pagefind search index. In the dev server it also serves the pages' .md copies, which the build writes.
 import { readFileSync, readdirSync, rmSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as pagefind from 'pagefind';
 import { markdownCopy } from '@nocobase/site-shared/integration';
 import { checkLayout, findDeadLinks } from '../lib/checks.mjs';
 import { spaceCjkHtml } from '../lib/cjk.mjs';
-import { DOC_ROOT } from '../lib/paths.mjs';
+import { activateLanguage, languageOfPath, limitLanguages } from '../lib/dev-languages.mjs';
+import { CONTENT_DIR, DOC_ROOT } from '../lib/paths.mjs';
 import { docsFiles } from '../lib/llms.mjs';
-import { buildSite, getSite } from '../lib/site.mjs';
+import { buildSite, getSite, resetSite } from '../lib/site.mjs';
 
 export default function docs() {
   return {
@@ -22,9 +23,29 @@ export default function docs() {
           rmSync(cacheDir, { recursive: true, force: true });
           updateConfig({ cacheDir });
         }
+        if (command === 'dev') limitLanguages(getSite().config.defaultLanguage.code);
       },
-      // The Copy Markdown button fetches <page>.md. The content is read again on every request, so an edited page is copied as it is now.
-      'astro:server:setup': ({ server }) => {
+      'astro:server:setup': ({ server, refreshContent }) => {
+        // The first request for a language renders its pages, and every request for it waits until they are ready.
+        const loading = new Map();
+        // Astro tells open pages to reload after a content sync. Here that would cancel the navigation that is waiting for this language: the language menu would stay on the old page.
+        let rendering = 0;
+        const { hot } = server.environments.client;
+        const send = hot.send.bind(hot);
+        hot.send = (...args) => (rendering && args[0]?.type === 'full-reload' ? undefined : send(...args));
+        server.middlewares.use((req, res, next) => {
+          const language = languageOfPath((req.url ?? '').split('?')[0], getSite().config.languages);
+          if (!language) return next();
+          if (!loading.has(language.code)) {
+            activateLanguage(language.code);
+            rendering++;
+            loading.set(language.code, refreshContent().finally(() => { rendering--; }));
+          }
+          loading.get(language.code).then(() => next(), next);
+        });
+        // Titles, descriptions and menus come from the site model, which the content collection does not refresh.
+        for (const event of ['add', 'change', 'unlink']) server.watcher.on(event, file => { if (file.startsWith(`${CONTENT_DIR}${sep}`)) resetSite(); });
+        // The Copy Markdown button fetches <page>.md. The content is read again on every request, so an edited page is copied as it is now.
         server.middlewares.use((req, res, next) => {
           const path = decodeURIComponent((req.url ?? '').split('?')[0]);
           if (!path.endsWith('.md')) return next();

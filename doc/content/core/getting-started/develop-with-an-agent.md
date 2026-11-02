@@ -56,7 +56,7 @@ I'm signed in as a read-only user, but I can still add follow-up records in the 
 Read-only users should be able to view records, but not add them.
 ```
 
-See [Testing and acceptance](../developing-apps/testing-and-acceptance.md) for the testing and verification practices the agent follows.
+See [Testing](../developing-apps/testing-and-acceptance.md) for the testing and verification practices the agent follows.
 
 ## Break down larger requests
 

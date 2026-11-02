@@ -74,6 +74,6 @@ plugins: [restrictionRules()]
 
 関連：[権限管理](permissions.md)、[既定のデータアクセス](default-access.md)、[共有ルール](sharing-rules.md)、[制限ルール](restriction-rules.md)。
 
-これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テストと検収](../../developing-apps/testing-and-acceptance.md) を参照してください。
+これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
 
 出典：[公開のプラグインの入口と実装](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-restriction-rules)。

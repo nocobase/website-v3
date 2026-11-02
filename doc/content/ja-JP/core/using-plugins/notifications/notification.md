@@ -82,6 +82,6 @@ await notification.send({
 
 受信者ごとの結果、重複したイベント、チャネルの失敗、ログへのアクセスを検証します。関連：[通知チャネル](providers.md)、[アプリ内通知](in-app.md)、[Web プッシュ](web-push.md)。
 
-これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テストと検収](../../developing-apps/testing-and-acceptance.md) を参照してください。
+これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
 
 出典：[公開のプラグインの入口と実装](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification)。

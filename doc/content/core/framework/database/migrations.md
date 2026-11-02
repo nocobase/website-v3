@@ -164,6 +164,6 @@ Standard builds generate `.manifest.json` after compiling migrations and Seeds, 
 
 Applications and plugins import `describeMigration()` from `@nocobase/app-testing/server` and supply real migration sources. Prepare historical data in `before`, check changed schema and records in `up`, and check data after reversal in `down`. Set `reversible: false` for an irreversible migration.
 
-The helper checks physical schema and metadata consistency, plus rollback and reapplication for reversible migrations. Write the business assertions yourself, especially preservation of existing records, backfill conditions, invalid references and deletion effects. See [Database and CLI tests](../../developing-apps/testing-and-acceptance.md#database-and-cli-tests).
+The helper checks physical schema and metadata consistency, plus rollback and reapplication for reversible migrations. Write the business assertions yourself, especially preservation of existing records, backfill conditions, invalid references and deletion effects. See [Database tests](../../developing-apps/testing-and-acceptance.md#database-data-and-migrations).
 
 [View the runner implementation](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db/src/migration/migrator.ts) and [migration behavior tests](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db-testkit/tests/integration/migration/migrator.test.ts).

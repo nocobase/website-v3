@@ -117,4 +117,4 @@ pnpm nocobase plugin unregister '@nocobase/app-plugin-<name>'
 pnpm nocobase skills sync
 ```
 
-同期で修復されるのはガイダンスのコピーであり、プラグインの登録やアプリのコードではありません。続けて [アプリ開発の概要](overview.md) と [テストと検収](testing-and-acceptance.md) を読んでください。
+同期で修復されるのはガイダンスのコピーであり、プラグインの登録やアプリのコードではありません。続けて [アプリ開発の概要](overview.md) と [テスト](testing-and-acceptance.md) を読んでください。

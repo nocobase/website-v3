@@ -138,7 +138,7 @@ Use a real maintenance task to assess the guidance, beyond checking that the fil
 - Feature changes prompt checks of related declarations, exports, dependencies and usage examples.
 - Plugin tests and target application verification are distinguished, with unverified work recorded.
 
-Use commands available in the current plugin and application. Do not copy NocoBase source-repository-only checks into guidance for an ordinary application's plugin. See [Testing and verification](testing-and-verification.md) for plugin tests and [Testing and acceptance](../developing-apps/testing-and-acceptance.md) for application acceptance.
+Use commands available in the current plugin and application. Do not copy NocoBase source-repository-only checks into guidance for an ordinary application's plugin. See [Testing and verification](testing-and-verification.md) for plugin tests and [Testing](../developing-apps/testing-and-acceptance.md) for application acceptance.
 
 For guidance-only edits, check paths, commands and descriptions. Run code checks when functionality or integration needs verification; do not repeat every unchanged business test just to verify a paragraph.
 

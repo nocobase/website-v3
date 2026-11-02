@@ -141,4 +141,4 @@ Query conditions take `where(field, operator, value)` and parameterize values. T
 
 Use real test databases for filters, stable ordering, empty results, relations and bulk scopes; use the real application and ordinary users for authorization. Trigger a failure within a transaction and reread the database to confirm earlier writes were also rolled back. Mocking a Repository cannot establish its behavior.
 
-See the [historical project service source](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md) for the complete project service and [Testing and acceptance](testing-and-acceptance.md) for fixture selection.
+See the [historical project service source](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md) for the complete project service and [Testing](testing-and-acceptance.md) for fixture selection.

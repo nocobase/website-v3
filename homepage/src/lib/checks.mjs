@@ -78,9 +78,10 @@ export function runChecks(dist, pages) {
   errors.push(...checkCounts(counts));
   const files = readOutput(dist);
   for (const url of expectedFiles(pages)) if (!(url in files)) errors.push(`产物里缺少页面 ${url}`);
-  const checked = links.check(files, makeExists(dist), isArticleUrl);
+  const drafts = new Set(pages.filter(p => p.noindex && /^(blog|customers)\//.test(p.id)).flatMap(p => p.langs.map(l => p.path(l))));
+  const checked = links.check(files, makeExists(dist), isArticleUrl, url => drafts.has(url));
   errors.push(...checked.errors);
-  if (checked.warnings.length) warnings.push(`文章正文里有 ${checked.warnings.length} 个相对链接（多是 CMS 里写坏的 Markdown 链接，构建前就是坏的）：\n    ` + checked.warnings.join('\n    '));
+  if (checked.warnings.length) warnings.push(`文章正文里有 ${checked.warnings.length} 个相对链接或草稿里的坏链接（多是 CMS 里写坏的 Markdown 链接，构建前就是坏的）：\n    ` + checked.warnings.join('\n    '));
   errors.push(...checkRoot(readdirSync(dist), n => statSync(join(dist, n)).isDirectory()));
   const dotted = Object.keys(files).filter(u => u.endsWith('/') && u.slice(0, -1).split('/').pop().includes('.')).sort();
   if (dotted.length) warnings.push(`${dotted.length} 个地址的最后一段带点号（如 ${dotted[0]}），只有以 / 结尾的写法能访问：CDN 规则把不带 / 且含点号的地址当成文件`);

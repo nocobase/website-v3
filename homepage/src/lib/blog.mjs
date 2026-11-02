@@ -50,8 +50,10 @@ const zip = (a, b) => a.slice(0, Math.min(a.length, b.length)).map((x, i) => [x,
 // 新官网的文章：posts.json 里打了 Customer Stories 标签的和 cs-posts.json 的（加上阳光电源）是客户案例 /customers/<slug>/，其余是博客 /blog/<slug>/，都有英文和 zh-CN 版。正文里旧博客地址的替换（lib/links.mjs 的 legacySiteLinks）按它判断。
 export function articleSlugs(allposts, cs) {
   const story = slug => allposts[slug].en.tags.includes('Customer Stories');
-  const blog = new Set(Object.keys(allposts).filter(k => !story(k)));
-  const customers = new Set(['sungrow', ...Object.keys(cs), ...Object.keys(allposts).filter(story)].filter(k => !blog.has(k)));
+  // 草稿只有预览页，不当作旧链接的去处
+  const live = Object.keys(allposts).filter(k => !allposts[k].draft);
+  const blog = new Set(live.filter(k => !story(k)));
+  const customers = new Set(['sungrow', ...Object.keys(cs), ...live.filter(story)].filter(k => !blog.has(k)));
   // 另有 ja-JP 版的文章（lib/links.mjs 的 siteLink 用它换旧的 /ja/blog/ 地址）
   const withJa = set => new Set([...set].filter(k => allposts[k]?.ja));
   return { blog, customers, ja: { blog: withJa(blog), customers: withJa(customers) } };
@@ -72,7 +74,9 @@ export function blogPages() {
     cn: { title: '阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统', desc: '全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。', date: '2026-10-17', author: 'NocoBase', tags: ['客户故事'], image: '', body: '' },
     en: { title: 'Sungrow: the systems behind a global business, built on NocoBase', desc: 'How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.', date: '2026-10-17', author: 'NocoBase', tags: ['Customer Stories'], image: '', body: '' },
   };
-  stories = { sungrow: SUNGROW, ...stories };
+  // CMS 里的阳光电源全文发布后替换这份摘要；还是草稿时不替换，线上的客户案例页不能变成草稿预览
+  const { sungrow: cmsSungrow, ...rest } = stories;
+  stories = { sungrow: cmsSungrow && !cmsSungrow.draft ? cmsSungrow : SUNGROW, ...rest };
   const OUT = generate(posts, stories, site);
   // 日文版只放有 ja 的文章；阳光电源没有日文版，日文的客户案例列表照样放它（英文），但不生成日文详情页
   const jaView = (m, keep = []) => Object.fromEntries(Object.entries(m).filter(([k, v]) => v.ja || keep.includes(k)).map(([k, v]) => [k, { ...v, en: v.ja || v.en, cn: v.ja || v.en }]));
@@ -132,7 +136,8 @@ function generate(posts, stories, site) {
       `${meta(slug)}<h3>${T(esc(c.title), esc(e.title))}</h3><p>${T(esc(c.desc), esc(e.desc))}</p></a>`;
   };
   // 每页一条：地址（blog、blog/<slug>……）、导航高亮、中英文标题和描述、正文
-  const build = (id, page, tz, te, dz, de, main) => OUT.push({ id, meta: { page, title_zh: tz, title_en: te, desc_zh: dz, desc_en: de }, main });
+  // draft：CMS 草稿的预览页（scripts/cms-import.mjs），加 noindex，也就不进 sitemap
+  const build = (id, page, tz, te, dz, de, main, draft) => OUT.push({ id, meta: { page, title_zh: tz, title_en: te, desc_zh: dz, desc_en: de, ...(draft && { noindex: '1' }) }, main });
 
   // 列表页
   const alltags = [];
@@ -196,11 +201,12 @@ function generate(posts, stories, site) {
     <div class="cta"><a class="btn btn-pri" href="core.html">${T('了解 NocoBase Core', 'Explore NocoBase Core')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="contact.html#contact">${T('预约实战验证', 'Book a Pilot')}</a></div>
   </div>
 </div>`;
-    build('blog/' + slug, 'blog', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body);
+    build('blog/' + slug, 'blog', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body, posts[slug].draft);
   }
 
   // ======================= 客户案例：独立的列表与详情 =======================
-  const corder = ['sungrow', ...Object.keys(stories).filter(k => k !== 'sungrow').sort((a, b) => (stories[a].en.date < stories[b].en.date ? 1 : stories[a].en.date > stories[b].en.date ? -1 : 0))];
+  // 草稿的客户案例只有预览页，不进列表和「更多客户案例」
+  const corder = ['sungrow', ...Object.keys(stories).filter(k => k !== 'sungrow' && !stories[k].draft).sort((a, b) => (stories[a].en.date < stories[b].en.date ? 1 : stories[a].en.date > stories[b].en.date ? -1 : 0))];
   const logos = [['nxp', 'NXP'], ['lenovo', 'Lenovo'], ['sony', 'Sony'], ['ntt-data', 'NTT DATA'], ['american-express', 'American Express'], ['smfl', 'SMFL'], ['vinfast', 'VinFast']]
     .map(([n, a]) => `<img src="https://static-docs.nocobase.com/${n}.png" alt="${a}">`).join('');
   const se = stories.sungrow.en, sc = stories.sungrow.cn;
@@ -226,7 +232,7 @@ function generate(posts, stories, site) {
 </div>`;
   build('customers', 'customers', '客户案例 — NocoBase', jaText('Customer Stories — NocoBase'), '全球各行业团队如何用 NocoBase 构建核心业务系统。', jaText('How teams worldwide build core business systems on NocoBase.'), clist);
 
-  for (const slug of corder) {
+  for (const slug of [...corder, ...Object.keys(stories).filter(k => stories[k].draft)]) {
     if (ja && !stories[slug].ja) continue;
     const e = stories[slug].en, c = stories[slug].cn;
     let bz, be, tz, te;
@@ -261,7 +267,7 @@ function generate(posts, stories, site) {
     <div class="cta"><a class="btn btn-pri" href="contact.html#contact">${T('预约实战验证', 'Book a Pilot')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="customers.html">${T('全部客户案例', 'All customer stories')}</a></div>
   </div>
 </div>`;
-    build('customers/' + slug, 'customers', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body);
+    build('customers/' + slug, 'customers', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body, stories[slug].draft);
   }
   return OUT;
 }

@@ -1,7 +1,7 @@
 // 正文里指向旧官网的地址的替换（legacySiteLinks、siteLink），CMS 导入和构建生成文章页都用它（pnpm test）。
 import assert from 'node:assert/strict';
 import { test } from 'vitest';
-import { legacySiteLinks, siteLink, siteLinksIn } from './links.mjs';
+import { check, legacySiteLinks, siteLink, siteLinksIn } from './links.mjs';
 
 const site = { blog: new Set(['what-is-ai-no-code']), customers: new Set(['astrolab-nocobase']) };
 const to = url => siteLink(url, site);
@@ -79,4 +79,11 @@ test('rewriting is idempotent', () => {
   const text = 'https://www.nocobase.com/cn/blog/astrolab-nocobase https://www.nocobase.com/en/plugins https://www.nocobase.com/en/commercial https://www.nocobase.com/cn/';
   const once = legacySiteLinks(text, site);
   assert.equal(legacySiteLinks(once, site), once);
+});
+
+test('a broken link fails the build, except on a CMS draft preview page', () => {
+  const files = { '/blog/a/': '<img src="/missing.png">', '/blog/draft/': '<img src="/missing.png">' };
+  const { errors, warnings } = check(files, () => false, () => true, url => url === '/blog/draft/');
+  assert.deepEqual(errors, ['/blog/a/: 链接指向不存在的地址 /missing.png']);
+  assert.equal(warnings.length, 1);
 });

@@ -27,10 +27,10 @@ NocoBase は 8 種類のデータベースダイアレクトを提供してい�
 | KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 互換モード、`DB_MODE=pg` |
 | OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 互換テナント |
 
-この 3 つのドライバーは NocoBase Pro の商用パッケージで、該当するライセンスが必要です。ライセンス提供元から非公開レジストリーの URL、アカウント情報、ダウンロード権限を持つ読み取り用トークン（`nbr_…`）を取得してください。以下の `<registry-url>` を提供された URL に置き換えてコマンドを実行し、パスワードの入力時にトークンを指定します。
+この 3 つのドライバーは NocoBase Pro の商用パッケージで、該当するライセンスが必要です。ライセンス提供元から非公開レジストリーの URL、アカウント情報、ダウンロード権限を持つ読み取り用トークン（`nbr_…`）を取得してください。以下の `<NocoBase 商用プラグインの Pro registry>` を提供された URL に置き換えてコマンドを実行し、パスワードの入力時にトークンを指定します。
 
 ```bash
-pnpm login --registry="<registry-url>" --scope=@nocobase
+pnpm login --registry="<NocoBase 商用プラグインの Pro registry>" --scope=@nocobase
 ```
 
 このコマンドはユーザーレベルの設定で `@nocobase` スコープを Pro レジストリーに割り当てます。このレジストリーは公開 NocoBase パッケージもプロキシし、その他の依存関係は既存のレジストリーを使います。トークンをドキュメントやコマンドライン引数に記載したり、Git にコミットしたりしないでください。

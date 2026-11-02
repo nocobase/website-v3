@@ -423,7 +423,7 @@ pnpm test:e2e --reporter=html --trace=retain-on-failure
 
 **示例：创建并发布商品**
 
-先按[示例源码与运行](#示例源码与运行)中的步骤启动应用。`pnpm setup` 创建编辑员和只读账号，凭据保存在本地 `storage/demo.json`。本示例通过 `APP_URL` 指定包含基础路径的完整应用地址；将下面的地址替换为实际地址：
+先按[示例源码与运行](#示例源码与运行)中的步骤启动应用。`pnpm run setup` 创建编辑员和只读账号，凭据保存在本地 `storage/demo.json`。本示例通过 `APP_URL` 指定包含基础路径的完整应用地址；将下面的地址替换为实际地址：
 
 ```bash
 pnpm exec playwright install chromium
@@ -524,7 +524,7 @@ cd docs-examples-v3
 git checkout 3e886903c7965530dd6ca50c7840d6ae991f2799
 cd apps/testing-acceptance
 pnpm install --frozen-lockfile
-pnpm setup
+pnpm run setup
 pnpm dev
 ```
 

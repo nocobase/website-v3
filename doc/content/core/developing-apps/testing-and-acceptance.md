@@ -423,7 +423,7 @@ Configure the application address and accounts as required by the project. Repor
 
 **Example: creating and publishing a product**
 
-Start the application using [Example source and setup](#example-source-and-setup). `pnpm setup` creates editor and read-only accounts and saves credentials locally in `storage/demo.json`. The example uses `APP_URL` for the full application address, including its base path. Replace the address below with your actual address:
+Start the application using [Example source and setup](#example-source-and-setup). `pnpm run setup` creates editor and read-only accounts and saves credentials locally in `storage/demo.json`. The example uses `APP_URL` for the full application address, including its base path. Replace the address below with your actual address:
 
 ```bash
 pnpm exec playwright install chromium
@@ -524,7 +524,7 @@ cd docs-examples-v3
 git checkout 3e886903c7965530dd6ca50c7840d6ae991f2799
 cd apps/testing-acceptance
 pnpm install --frozen-lockfile
-pnpm setup
+pnpm run setup
 pnpm dev
 ```
 

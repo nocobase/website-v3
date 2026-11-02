@@ -423,7 +423,7 @@ pnpm test:e2e --reporter=html --trace=retain-on-failure
 
 **例：商品の作成と公開**
 
-[サンプルのソースコードと実行](#サンプルのソースコードと実行)の手順でアプリケーションを起動します。`pnpm setup` が編集者と読み取り専用のアカウントを作成し、認証情報をローカルの `storage/demo.json` に保存します。この例では `APP_URL` にベースパスを含む完全な URL を指定します。次のアドレスを実際のものに置き換えてください。
+[サンプルのソースコードと実行](#サンプルのソースコードと実行)の手順でアプリケーションを起動します。`pnpm run setup` が編集者と読み取り専用のアカウントを作成し、認証情報をローカルの `storage/demo.json` に保存します。この例では `APP_URL` にベースパスを含む完全な URL を指定します。次のアドレスを実際のものに置き換えてください。
 
 ```bash
 pnpm exec playwright install chromium
@@ -524,7 +524,7 @@ cd docs-examples-v3
 git checkout 3e886903c7965530dd6ca50c7840d6ae991f2799
 cd apps/testing-acceptance
 pnpm install --frozen-lockfile
-pnpm setup
+pnpm run setup
 pnpm dev
 ```
 

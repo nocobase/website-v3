@@ -54,10 +54,10 @@ Playwright 使用独立的测试运行器，不由 app-testing 提供。示例�
 
 ```text
 tests/
-├── client/       # 页面交互测试
-├── server/       # 服务端测试
-├── cli/          # 应用命令测试
 ├── database/     # 数据库测试
+├── server/       # 服务端测试
+├── client/       # 页面交互测试
+├── cli/          # 应用命令测试
 └── playwright/   # 浏览器测试
 ```
 

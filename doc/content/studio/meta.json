@@ -159,7 +159,15 @@
         },
         {
           "type": "planned",
-          "title": "Test plans and quality reports"
+          "title": "Quality plans"
+        },
+        {
+          "type": "planned",
+          "title": "Quality follow-ups"
+        },
+        {
+          "type": "planned",
+          "title": "Acceptance standards"
         }
       ]
     },
@@ -226,6 +234,10 @@
         {
           "type": "page",
           "path": "reference/cli"
+        },
+        {
+          "type": "page",
+          "path": "reference/runner"
         },
         {
           "type": "page",

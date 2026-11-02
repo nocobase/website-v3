@@ -159,7 +159,15 @@
         },
         {
           "type": "planned",
-          "title": "テスト計画と品質レポート"
+          "title": "品質計画"
+        },
+        {
+          "type": "planned",
+          "title": "品質フォローアップ"
+        },
+        {
+          "type": "planned",
+          "title": "受け入れ基準"
         }
       ]
     },
@@ -226,6 +234,10 @@
         {
           "type": "page",
           "path": "reference/cli"
+        },
+        {
+          "type": "page",
+          "path": "reference/runner"
         },
         {
           "type": "page",

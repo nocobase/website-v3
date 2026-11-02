@@ -1,65 +1,67 @@
 ---
 title: 升级与备份
-description: 备份 Studio 的数据库、配置和文件；升级到新版本，出了问题回滚；运行环境和命令行怎样更新。
+description: 备份并恢复 Studio 数据，升级服务端、执行机和 CLI。
 ---
 
 ## 备份
 
-Studio 的数据都在部署目录里，要备份的有四样：
+同时保存数据库、配置、加密密钥和文件。下面以[部署指南](../setup/install.md)中的 Compose 与 PostgreSQL 为例。
 
-| 备份什么 | 说明 |
+| 内容 | 保存什么 |
 | --- | --- |
-| 数据库 | PostgreSQL 的数据。用 `pg_dump -Fc` 导出，或者停机后备份 `postgres` 目录 |
-| `.env` | 加密密钥 `STUDIO_SECRET_KEY` 等。丢了它，保存的 Git 凭据、API 密钥都无法解密 |
-| `config.yml` | Studio 的配置，包括推送私钥（如果写在这里） |
-| `storage` 目录 | 上传的文件、日志、技能文件等 |
+| 数据库 | PostgreSQL 导出或数据库服务提供的备份 |
+| 配置 | `config.yml`、Compose 文件和 `.env` |
+| 密钥 | `SECRETS_KEYS` 使用的密钥，以及推送私钥 |
+| 文件 | `storage` 目录及对象存储中的文件、技能和制品 |
 
-例如每天导出一次数据库：
+在部署目录执行：
 
 ```bash
-cd studio
-docker compose exec -T postgres pg_dump -U studio -Fc studio > backup/studio-$(date +%F).dump
+mkdir -p backup
+docker compose exec -T postgres pg_dump -U studio -Fc studio   > "backup/studio-$(date +%F).dump"
 ```
 
-备份里有加密密钥，请按保管密码的方式存放。
+数据库用户名和名称按实际配置调整。备份期间暂停写入，或使用能保持数据库与文件一致的快照方案。业务应用的数据库需要另行备份。
 
-部署出来的业务应用，它们的数据库要另外备份，见 [托管环境](environments.md) 和 [部署到生产](../project/release.md)。
+## 恢复
 
-## 从备份恢复
+1. 停止 Studio，保留当前数据副本。
+2. 恢复同一备份时间点的配置、密钥、文件和数据库。
+3. 使用备份对应的镜像版本启动。
+4. 检查登录、项目任务、文件下载和 Git 连接。
 
-1. 停止 Studio：`docker compose stop studio`。
-2. 放回 `.env`、`config.yml` 和 `storage` 目录。
-3. 恢复数据库，例如：
+将备份恢复到准备好的空数据库，例如：
 
-   ```bash
-   docker compose exec -T postgres pg_restore -U studio -d studio --clean --if-exists < backup/studio-2026-10-25.dump
-   ```
+```bash
+docker compose exec -T postgres pg_restore -U studio -d studio   < backup/studio-backup.dump
+```
 
-4. 启动 Studio：`docker compose start studio`，确认能登录、项目和任务都在。
+已有数据的数据库应先按团队的恢复流程处理，避免把备份叠加到现有记录。安装示例中的 `STUDIO_SECRET_KEY` 会传入 `SECRETS_KEYS`，恢复时必须保留相同密钥。
 
-恢复时 `.env` 里的加密密钥必须和备份时一致，否则保存的凭据无法解密，所有人都要重新登录。
+## 升级 Studio
 
-## 升级
+1. 完成备份，取得要升级的镜像版本。
+2. 更新部署配置中的 `STUDIO_IMAGE`。
+3. 拉取并重建 Studio 容器。
 
-1. 先备份。
-2. 把 `docker-compose.yml` 里的镜像版本号改成新的。
-3. 拉取并重启：
+```bash
+docker compose pull studio
+docker compose up -d studio
+docker compose ps
+docker compose logs --tail=100 studio
+```
 
-   ```bash
-   docker compose pull
-   docker compose up -d
-   ```
+数据库迁移随启动执行。确认服务健康，并检查登录、任务和运行环境。Studio 为商业版本，可[联系我们](https://www.nocobase.com/zh-CN/contact/)获取镜像。
 
-4. 等 `docker compose ps` 显示 `healthy`，登录确认。
+回退到旧镜像前，确认数据库兼容；需要回滚迁移时，恢复升级前的数据库和文件备份，再启动对应旧版本。
 
-数据库迁移在启动时自动执行。Studio 为商业版本，可[联系我们](https://www.nocobase.com/zh-CN/contact/)获取可用镜像与版本。
+## 更新执行机和 CLI
 
-> [!WARNING] 回滚要连同数据库一起
-> 新版本启动时已经升级了数据库，只把镜像版本号改回去，旧版本可能读不了新的数据库。要回滚，先恢复升级前的数据库备份，再用旧版本启动。
+执行机可自动更新，也可在机器上运行：
 
-## 运行环境和命令行的更新
+```bash
+nocobase-runner update
+nb-studio update
+```
 
-先升级 Studio，运行环境和命令行会跟着更新：
-
-- **执行机**：在没有 Agent 运行时自动更新到 Studio 提供的版本。要立即更新，在那台机器上运行 `nocobase-runner update`。版本太旧、协议不兼容的执行机，在「Agent 管理 › 运行环境」里会标出需要升级。
-- **nb-studio**：运行 `nb-studio update`，更新到 Studio 提供的版本，已安装的技能会一起更新。Studio 有新版本时，`nb-studio` 也会提示。
+`nb-studio update` 同步更新已安装的技能。版本不兼容时，运行环境页面会提示升级。

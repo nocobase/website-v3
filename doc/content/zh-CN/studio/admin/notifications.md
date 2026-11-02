@@ -1,6 +1,6 @@
 ---
 title: 通知与推送
-description: 配置邮件和手机推送：邀请邮件、找回密码、离开页面时的提醒都靠它们。站内的提醒不用配置。
+description: 配置邀请邮件、密码重置邮件和设备推送。
 ---
 
 Studio 的提醒有三种：
@@ -123,3 +123,5 @@ docker compose up -d --force-recreate studio
 ## 其他通道
 
 `notification.channels` 还支持飞书、钉钉的群机器人（`feishu-webhook`、`dingtalk-webhook`）等通道。Studio 现在的提醒只用到站内、邮件和推送。
+
+![成员在偏好设置中启用提醒](https://static-docs.nocobase.com/studio-zh-guide-preferences-20261031.png)

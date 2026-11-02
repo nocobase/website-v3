@@ -1,50 +1,43 @@
 ---
 title: My sessions
-description: My issues follows work issue by issue, and My sessions follows it session by session. A session starts as a conversation in which you and an agent get something clear, and the agent turns it into issues for the agent team. The session keeps those issues and their progress attached, so you can come back and ask how it's going.
+description: Keep requirement discussions, linked tasks, and follow-up conversations together.
 ---
 
-::figure sessions-list | My sessions: the bar under each session has one segment per issue, colored by its status
+**My sessions** keeps your Agent discussions and linked tasks. Return to the same conversation to add requirements or ask about results.
 
-Each session in the list shows its project and how many issues it has. Each segment of the bar is one issue: green for done, purple for in review, blue for in progress, amber for blocked, and gray for backlog. Sessions with issues waiting on you are marked.
+![Conversation history keeps the context beside linked tasks and their status](https://static-docs.nocobase.com/studio-en-guide-runner-session-20261031.png)
 
-Only you can see your sessions. The agent in a session acts in Studio with your identity and permissions, for example when it creates issues or posts comments, and can't do anything you can't.
+## Choose an Agent connection
 
-## Who you talk to
-
-The session panel has two modes:
-
-| | My sessions | Runner Agent |
+| Mode | Execution location | Preparation |
 | --- | --- | --- |
-| Who | Your own agent, such as Claude Code or Codex | An agent from the agent team, run by a runtime |
-| What it can see | The code, tools, and configuration in the folders you allow | The repositories on the runtime |
-| Setup | [Connect your computer](../join/connect-computer.md), once | None |
-| Good for | Discussing a request alongside the code you have and turning it into issues | Asking questions, looking things up, and turning a request into issues |
+| Runner Agent | A shared or personal runtime | An online runtime and an available Agent |
+| My Agent | Your connected computer and allowed folders | [Connect your computer](../join/connect-computer.md) |
 
-Sessions in both modes are listed in **My sessions**.
+Only you can see a conversation. Its Agent acts with your identity and permissions. Linked tasks are shared according to project permissions.
 
-## Start a session
+## Start a conversation
 
-1. In **My sessions**, click **New session**.
-2. Choose a mode. For **My sessions**, choose your agent and a working directory. For **Runner Agent**, choose an agent from the team. In either mode you can set the project the session belongs to.
-3. Say what you want to do. You can cover several things at once and paste screenshots.
+1. Choose a mode and select **New session**.
+2. Choose an Agent. For My Agent, also select a computer and working folder.
+3. If project code is needed, select the project before the first message.
+4. Describe the request and add images, attachments, or `#task-identifier` references.
 
-When discussing requests, pick the most capable model so the request is understood correctly.
+**Ask agent** on a project or task includes that page's context. See [Talk to a Runner Agent](../join/runner-agent.md) for project binding, queued messages, and switching runtimes.
 
-On an issue or project page, click **Ask agent** to start a session with the current page as context.
+## Create tasks from the discussion
 
-## Turn the discussion into issues
+```prompt
+Create three tasks in Supplier Management for the changes we agreed on. Include acceptance criteria for each, but do not start them yet.
+```
 
-Once things are clear, ask the agent to turn the discussion into issues, for example "Create issues for these three things in the Supplier Management project."
+Created tasks appear in the conversation. Review and start them, or leave them in Backlog. A task's properties link back to its conversations.
 
-::figure req-session | The session lists the issues it created, ready to start
+## Follow conversations
 
-- Issues created in a session stay attached to it, and the session shows their latest status and progress.
-- Click **Start** to hand them to the agent team, or **Not now** to leave them in **Backlog**.
-- Mention an existing issue with `#` in the input box to have the agent read it, comment on it, or change it as you ask.
-- From an issue page you can also go back to the session that created it.
+- The list shows linked-task counts and a progress segment for each task.
+- Filter by **Needs me** or **In progress** to focus on active work.
+- Task starts, blockers, acceptance requests, and completion return to the conversation.
+- Archive inactive conversations and restore them when needed.
 
-## Follow your sessions
-
-- Filter the session list by **Needs you** or **In progress**. A session is marked when the agent asks for permission or waits for your confirmation.
-- When issues from a session reach a milestone with the agent team, such as a run finishing, the issue being blocked, ready for review, failed, or closed, or a PR being opened, a card comes back into the session, and the agent sums it up and suggests what to do next.
-- Archive sessions you no longer need, and restore them any time.
+Archives are not permanent storage. Runner Agent conversations are deleted after 30 archived days by default. Save lasting decisions in tasks, the [knowledge base](../project/knowledge-base.md), or [project memory](../project/project-memory.md).

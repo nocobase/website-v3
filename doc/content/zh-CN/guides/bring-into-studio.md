@@ -17,9 +17,9 @@ metaDescription: 把 itam-lite 接入 NocoBase Studio，让 Agent 团队接着�
 
 ## 1. 让 Agent 搭建 Studio
 
-把 [让 Agent 搭建 Studio](../studio/setup/with-agent.md) 里的提示词填好交给 Coding agent，它会完成部署 Studio、连接 Git、接入共享运行环境、启用 Agent 这四步。登录镜像源、第一次登录 Studio、批准 `nb-studio` 登录、在 GitHub 上创建 App 这几处需要你亲自操作。
+按[安装概览](../studio/setup/index.md)将部署与配置交给本地 Coding Agent。已有 itam-lite 仓库，项目关联在下一步完成。需要本人登录或授权时，按 Agent 的提示操作。
 
-**完成的标志**：[检查结果](../studio/setup/with-agent.md#检查结果) 中的各项都满足。
+**完成的标志**：可以登录 Studio，运行环境在线，并有可用的 Agent。
 
 ## 2. 新建项目，关联 itam-lite
 

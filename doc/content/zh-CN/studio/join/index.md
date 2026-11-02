@@ -1,29 +1,35 @@
 ---
 title: 加入项目
-description: 接受邀请，使用团队已配置好的 Agent 和运行环境，提出并完成第一个需求。
+description: 接受邀请，使用团队已配置的 Agent 和运行环境，开始第一个需求。
 ---
 
-管理员准备好项目后，你可以使用团队的 Agent 和运行环境开展工作。无需部署 Studio，也无需在自己的电脑上安装编码工具。
+管理员准备好项目后，你就可以提出需求、跟进任务。开发任务由团队的 Agent 在运行环境中执行。
+
+推荐在 Studio 中[与 Runner Agent 对话](runner-agent.md)，或安装 `nb-studio` CLI，通过[本地 Coding Agent](local-agent.md) 使用 Studio。
 
 ## 开始工作
 
-1. [接受邀请并登录](sign-in.md)，确认可以打开分配给你的项目。
-2. [走完第一个需求](../setup/first-request.md)，提出一个小需求，跟进开发并验收结果。
-3. 日常从[我的任务](../use/my-tasks.md)查看进展，处理需要你回答或验收的事项。
+1. [接受邀请并登录](sign-in.md)，确认能打开分配给你的项目。
+2. [走完第一个需求](../setup/first-request.md)，提交一个小需求，跟进开发并验收。
+3. 日常从[我的任务](../use/my-tasks.md)处理需要你回答或验收的事项。
 
 还没有 Studio 或项目时，请管理员从[安装与配置](../setup/index.md)开始。
 
+![我的任务汇总需要你处理的事项和任务进展](https://static-docs.nocobase.com/studio-zh-guide-my-issues-20261031.png)
+
+## 选择工作方式
+
+| 你想做什么 | 使用方式 |
+| --- | --- |
+| 在 Studio 中讨论需求、分析项目 | [与 Runner Agent 对话](runner-agent.md) |
+| 通过 CLI，在本地 Claude Code、Codex 中管理任务 | [在本地 Coding Agent 中使用 Studio](local-agent.md) |
+| 在网页里操作自己电脑上的编码工具 | [连接自己的电脑](connect-computer.md) |
+| 为自己的任务提供执行资源 | [接入个人运行环境](personal-runtime.md) |
+
+这两种方式都可以使用团队共享的运行环境执行任务。连接自己的电脑和接入个人运行环境按需配置。
+
 ## 跟进任务
 
-| 你想做什么 | 文档 |
-| --- | --- |
-| 先讨论，再整理需求 | [我的会话](../use/sessions.md) |
-| 了解 Agent 正在做什么 | [跟进进展](../use/follow-progress.md) |
-| 补充信息或确认取舍 | [回答提问](../use/answer.md) |
-| 检查结果并合并改动 | [验收](../use/accept.md) |
-
-在 Studio 页面中直接讨论需求，可以[与 Runner Agent 对话](runner-agent.md)。
-
-## 使用自己的工具（可选）
-
-习惯在终端工作，可以[在本地 Coding Agent 里使用 Studio](local-agent.md)。希望在 Studio 中与自己电脑上的 Agent 对话，可以[连接自己的电脑](connect-computer.md)。
+- [跟进进展](../use/follow-progress.md)：看当前步骤、交接和运行记录。
+- [回答提问](../use/answer.md)：确认业务规则、补充资料或处理执行问题。
+- [验收](../use/accept.md)：检查交付报告和结果，合并或退回修改。

@@ -23,6 +23,10 @@ export default defineConfig({
   outDir: DIST,
   trailingSlash: 'always',
   redirects: {
+    '/studio/setup/with-agent/': '/studio/setup/',
+    '/zh-CN/studio/setup/with-agent/': '/zh-CN/studio/setup/',
+    '/ja-JP/studio/setup/with-agent/': '/ja-JP/studio/setup/',
+
     '/core/getting-started/what-is-core/': '/core/',
     '/core/getting-started/what-is-core-2/': '/core/',
     '/core/getting-started/create-app-2/': '/core/getting-started/create-app/',

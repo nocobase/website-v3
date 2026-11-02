@@ -1,47 +1,48 @@
 ---
 title: Inbox and reminders
-description: The inbox holds messages from colleagues and things outside issues, such as deployment approvals. Decisions on issues are handled on the issue page and in My issues. Set up the sound reminder, desktop notifications, and push notifications on your phone here too.
+description: Read comments, mentions, and system messages, and choose sound, desktop, or push reminders.
 ---
 
-## What goes where
+Open the inbox from its icon in the top bar. Handle task decisions in **My issues** and Agent conversation replies in **My sessions**.
 
-| | What it holds |
+## Where to find updates
+
+| Entry | Content |
 | --- | --- |
-| **My issues** | Decisions waiting for you on issues: accepting results, answering questions, dealing with failed runs, and taking over issues handed to you. You handle all of them on the issue page. See [My issues](my-tasks.md) |
-| Inbox | Comments, mentions, and assignments from colleagues, and things outside issues, such as deployment requests waiting for your approval, deployment results and failures, knowledge base change proposals, and runtime notices |
+| My issues | Acceptance, blockers, run failures, and ownership handoffs |
+| My sessions | Agent replies, conversation questions, and permission requests |
+| Inbox | Human comments, mentions, assignments, and non-task system messages and decisions |
 
-The inbox icon in the top bar opens the inbox.
-
-::figure inbox | The inbox holds messages from colleagues and things outside issues
+![Read messages in the inbox and open the related work](https://static-docs.nocobase.com/studio-en-guide-inbox-20261031.png)
 
 ## Inbox views
 
-| View | What it shows |
-| --- | --- |
-| All | Every message |
-| To decide | Things that need your decision, such as approving a deployment or whether to accept a knowledge base change proposal |
-| Notifications | Messages you only need to know about |
+- **All**: messages and decisions.
+- **Needs my decision**: pending decisions outside tasks.
+- **Notifications**: informational updates.
 
-Use <kbd>J</kbd> / <kbd>K</kbd> to move up and down the list. Items you've dealt with close on their own. Marking items as read or deleting them affects only your own inbox.
+Use <kbd>J</kbd> / <kbd>K</kbd> to move between items. Marking a message read or deleting it affects only your inbox; it does not complete a task.
 
 ## Reminders
 
-When something new is waiting for you:
+Configure reminders in **Account settings › Preferences**.
 
-- A count appears next to **My issues** and **My sessions** in the sidebar, in the top bar, and in the browser tab's title.
-- If the sound reminder is on, you hear a chime. The issue or session you're looking at doesn't remind you again.
+| Method | Use |
+| --- | --- |
+| Sound | New waiting work, replies, and mentions while Studio is in the foreground |
+| Desktop notifications | Browser notifications while Studio is in the background; browser permission is required |
+| Push notifications | Reminders on subscribed devices while the page is closed; an administrator must configure push |
 
-In the account menu at the top right, go to **Account settings › Preferences** and adjust the reminders section:
+![Choose reminder methods in personal preferences](https://static-docs.nocobase.com/studio-en-guide-preferences-20261031.png)
 
-- **Sound reminder**: on or off.
-- **Desktop notifications**: off by default. When you turn them on, the browser asks for permission. If the browser blocks them, allow notifications in the browser's site settings.
-- **Push notifications**: reminders reach your phone or another computer even when Studio isn't open. Each device subscribes separately from this section.
+Studio suppresses reminders for the task or conversation you are viewing. Each navigation badge counts its own waiting or unread items.
 
-> [!NOTE] Subscribing to push on your phone
-> On Android, open Studio in Chrome and subscribe directly. iPhone and iPad need iOS or iPadOS 16.4 or later: in Safari's Share menu, choose **Add to Home Screen** first, then open Studio from the Home Screen and subscribe. Push needs Studio to be served over HTTPS, with push set up by an admin.
+## Subscribe on a phone
 
-## Subscribe to an issue
+Studio must use HTTPS. Subscribe each device separately. On iPhone or iPad with iOS/iPadOS 16.4 or later, add Studio to the Home Screen from Safari, then open it there to subscribe.
 
-Under **More properties** on the issue page, **Notifications** lists who gets notified about this issue. Click **Subscribe** or **Unsubscribe** to choose whether you do.
+For subscription problems, check server configuration and browser permissions in [Notifications and push](../admin/notifications.md).
 
-To keep an issue in front of you, use the follow star: followed issues sit at the top of **My issues**.
+## Subscribe to a task
+
+Subscribe or unsubscribe in task properties. To keep a task in your work list, use its follow star. See [Follow a task](my-tasks.md#follow-a-task).

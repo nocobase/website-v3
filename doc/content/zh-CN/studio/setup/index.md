@@ -3,18 +3,28 @@ title: 安装概览
 description: 管理员部署 Studio，准备项目、Agent 和检查方式，再邀请团队成员使用。
 ---
 
-推荐将[安装与配置指南](with-agent.md)交给本地 Coding Agent，由 Agent 完成部署、接入和项目配置。需要本人授权或登录时，再按提示操作。
+推荐使用 Claude Code、Codex 等本地 Coding Agent 安装和配置 Studio。
 
-已经收到邀请的成员，直接从[开始使用](../join/index.md)进入。
+如果你已收到团队邀请，请前往[开始使用](../join/index.md)。
 
-本指南使用 Docker Compose、GitHub 和一台共享运行环境。已有编码工具和模型账号可以继续使用。
+## 交给 Agent
+
+```prompt
+请按照 https://docs.nocobase.com/zh-CN/studio/setup/ 安装 NocoBase Studio，并完成首个项目的配置。
+```
+
+Agent 先检查目标环境，询问缺少的信息，再按下方步骤完成配置和验证。需要本人登录或授权时，按提示操作。
 
 ## 开始前
 
-- 获取 Studio 商业版镜像和访问授权，请[联系我们](https://www.nocobase.com/zh-CN/contact/)。
-- 准备 Docker 和 Docker Compose。本机试用无需域名。
-- 准备可创建仓库、安装 GitHub App 的账号或组织。
-- 准备一台执行开发工作的机器，安装并登录编码工具，如 Claude Code 或 Codex。
+本指南使用 Docker Compose、GitHub 和一台共享运行环境。请准备：
+
+- **镜像授权**：Studio 为商业版本，请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取镜像和访问授权。
+- **部署环境**：服务器访问方式和 Studio 访问地址。本机试用无需域名。
+- **Git 账号**：可创建仓库、安装 GitHub App 的账号或组织。
+- **编码工具与模型账号**：如 Claude Code 或 Codex，可以继续使用已有账号。
+
+软件安装和配置可由 Agent 完成。已有数据库、反向代理、存储或邮件服务时，优先沿用现有配置；缺少必要信息时，由 Agent 询问。
 
 建议将运行环境部署在独立的容器或虚拟机中，与 Studio 隔离。编码工具和执行机都安装在该环境内。
 

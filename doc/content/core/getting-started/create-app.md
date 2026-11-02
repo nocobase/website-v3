@@ -8,6 +8,8 @@ metaDescription: Create a local NocoBase 3 application with the default template
 - Node.js 24 or later, and pnpm 11.
 - On Windows, use WSL. Run the commands below in a POSIX shell such as Bash.
 
+The steps below use SQLite, which needs no separate database server. To use another database, see [Create an app with a different database](create-app-with-database.md).
+
 Choose either to have an agent create the application or to run the commands yourself.
 
 ## Create with an agent

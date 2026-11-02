@@ -35,7 +35,7 @@ The creation tool generates `my-app` and installs dependencies. NocoBase 3 is in
 
 Run the following commands in `my-app`, choosing one database section. `config init --json` generates `config.yml`, application secrets and connection placeholders non-interactively, without attempting a database connection. Fill in connection details and TLS settings before running the connection check.
 
-Each example provides a complete `database` section. After initialization, fill it with your actual connection details while preserving secrets and other configuration. Do not replace the entire `config.yml` with the snippet. Replace `db.example.com`, the port, `my_app`, the account and the password to match your service. Example ports are not deployment requirements. `schemaManagement: managed` allows the application to manage its tables through migrations.
+Each example provides a complete `database` section. After initialization, fill it with your actual connection details while preserving secrets and other configuration. Do not replace the entire `config.yml` with the snippet. Replace `db.example.com`, the port, `my_app`, the account and the password to match your service. Example ports are not deployment requirements.
 
 Keep `config.yml` out of Git. The default template also accepts the process environment variable `DB_PASSWORD` for the main connection password, overriding the file value. Do not write `${DB_PASSWORD}` in YAML: it is not interpolated. See the [Configuration reference](../reference/configuration.md) for other override rules.
 
@@ -57,7 +57,6 @@ database:
     main:
       dialect: sqlite
       database: database.sqlite
-      schemaManagement: managed
 ```
 
 Here, `database` is a file path. `database.sqlite` is stored under the application’s `storage/` directory; an absolute path is also accepted. The commands above create the example’s `storage/` directory. If you change the file path, create its parent directory before checking the connection and give the application account write permission. This file holds application data and must survive redeployment.
@@ -84,7 +83,6 @@ database:
       username: app_user
       password: "replace-with-your-password"
       ssl: true
-      schemaManagement: managed
 ```
 
 `database` is the database name. Use `public` for `schema`, or a schema your administrator has prepared and authorized. The example enables TLS; use `ssl: false` for a service without TLS. For a custom CA, change `ssl` to an object and put the PEM certificate contents in `ssl.ca`, not a certificate file path.
@@ -111,7 +109,6 @@ database:
       password: "replace-with-your-password"
       charset: utf8mb4
       ssl: true
-      schemaManagement: managed
 ```
 
 The database must already exist and support the character set your application needs. The example connection uses `utf8mb4`. TLS is enabled; use `ssl: false` for a service without TLS, or supply a custom CA as PEM contents in `ssl.ca`. For MariaDB, keep `dialect: mysql`; do not change it to `mariadb`.
@@ -138,7 +135,6 @@ database:
       password: "replace-with-your-password"
       encrypt: true
       trustServerCertificate: false
-      schemaManagement: managed
 ```
 
 `database` is the database name. For a named instance, supply a reachable host and TCP port as well. The example encrypts the connection and validates the server certificate. For a local test server with a self-signed certificate, `trustServerCertificate: true` can be used when required by the test setup; it skips server certificate validation. Use a verifiable certificate in production.
@@ -163,7 +159,6 @@ database:
       serviceName: APPPDB
       username: app_user
       password: "replace-with-your-password"
-      schemaManagement: managed
 ```
 
 Set `serviceName` to the service supplied by the administrator, such as the service of the target PDB. It is not a SID or a regular database name. Replace the example `APPPDB`. Application objects use the account’s schema; do not substitute MySQL’s `database` field.
@@ -188,7 +183,6 @@ database:
       schema: APP_USER
       username: APP_USER
       password: "replace-with-your-password"
-      schemaManagement: managed
 ```
 
 Use the assigned schema name in `schema`, preserving its case. The example uses `APP_USER` for both account and schema. Initialization does not generate a `database` field; do not put the schema name in that field.
@@ -215,7 +209,6 @@ database:
       username: app_user
       password: "replace-with-your-password"
       ssl: true
-      schemaManagement: managed
 ```
 
 Set `schema` to an authorized schema. TLS follows the PostgreSQL configuration: the example enables it; use `ssl: false` when TLS is not used, or PEM contents in `ssl.ca` for a custom CA. Even in PostgreSQL-compatible mode, install the KingbaseES driver and use `dialect: kingbase`.
@@ -242,7 +235,6 @@ database:
       password: "replace-with-your-password"
       charset: utf8mb4
       ssl: true
-      schemaManagement: managed
 ```
 
 Use the actual connection host and port. When connecting through a proxy, use its endpoint rather than assuming the example’s direct connection port. Use the full username supplied by the administrator, including any tenant information required for the connection. Match TLS to the service: the example enables it; use `ssl: false` when TLS is not used, or `ssl.ca` for a custom CA. See [Database support and version compatibility](../reference/compatibility.md) for differences such as TEXT defaults.

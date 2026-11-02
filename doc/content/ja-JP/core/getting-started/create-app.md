@@ -8,7 +8,7 @@ metaDescription: 既定のテンプレートと SQLite でローカルの NocoBa
 - Node.js 24 以降と pnpm 11。
 - Windows では WSL を使います。以下のコマンドは Bash などの POSIX シェルで実行します。
 
-NocoBase は SQLite、PostgreSQL、MySQL（MariaDB にも対応）、Microsoft SQL Server、Oracle、Dameng、KingbaseES、OceanBase に対応しています。以下の手順では、データベースサーバーを別途用意する必要がない SQLite を使います。他のデータベースの接続情報がある場合は、[異なるデータベースでアプリを作成する](create-app-with-database.md)に従って設定してください。バージョンの制限と商用ライセンスの要件は[データベースの対応状況とバージョンの互換性](../reference/compatibility.md)を参照してください。
+以下の手順では、データベースサーバーを別途用意する必要がない SQLite を使います。他のデータベースを使う場合は、[異なるデータベースでアプリを作成する](create-app-with-database.md)を参照してください。
 
 アプリの作成はエージェントに任せるか、自分でコマンドを実行するかを選べます。
 

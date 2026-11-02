@@ -8,7 +8,7 @@ metaDescription: Create a local NocoBase 3 application with the default template
 - Node.js 24 or later, and pnpm 11.
 - On Windows, use WSL. Run the commands below in a POSIX shell such as Bash.
 
-NocoBase supports SQLite, PostgreSQL, MySQL (including MariaDB), Microsoft SQL Server, Oracle, Dameng, KingbaseES and OceanBase. The steps below use SQLite, which needs no separate database server. If you have connection details for another database, follow [Create an app with a different database](create-app-with-database.md). See [Database support and version compatibility](../reference/compatibility.md) for version limitations and commercial license requirements.
+The steps below use SQLite, which needs no separate database server. To use another database, see [Create an app with a different database](create-app-with-database.md).
 
 Choose either to have an agent create the application or to run the commands yourself.
 

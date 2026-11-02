@@ -50,8 +50,10 @@ const zip = (a, b) => a.slice(0, Math.min(a.length, b.length)).map((x, i) => [x,
 // 新官网的文章：posts.json 里打了 Customer Stories 标签的和 cs-posts.json 的（加上阳光电源）是客户案例 /customers/<slug>/，其余是博客 /blog/<slug>/，都有英文和 zh-CN 版。正文里旧博客地址的替换（lib/links.mjs 的 legacySiteLinks）按它判断。
 export function articleSlugs(allposts, cs) {
   const story = slug => allposts[slug].en.tags.includes('Customer Stories');
-  const blog = new Set(Object.keys(allposts).filter(k => !story(k)));
-  const customers = new Set(['sungrow', ...Object.keys(cs), ...Object.keys(allposts).filter(story)].filter(k => !blog.has(k)));
+  // 草稿只有预览页，不当作旧链接的去处
+  const live = Object.keys(allposts).filter(k => !allposts[k].draft);
+  const blog = new Set(live.filter(k => !story(k)));
+  const customers = new Set([...Object.keys(cs), ...live.filter(story)].filter(k => !blog.has(k)));
   // 另有 ja-JP 版的文章（lib/links.mjs 的 siteLink 用它换旧的 /ja/blog/ 地址）
   const withJa = set => new Set([...set].filter(k => allposts[k]?.ja));
   return { blog, customers, ja: { blog: withJa(blog), customers: withJa(customers) } };
@@ -67,18 +69,12 @@ export function blogPages() {
   // cs-posts.json 里手工抓取的客户案例没有日文，CMS 里同一篇有日文正文的，日文版用 CMS 的
   for (const [k, v] of Object.entries(allposts)) if (v.ja && k in stories && !stories[k].ja) stories[k] = { ...stories[k], ja: v.ja };
   const posts = Object.fromEntries(Object.entries(allposts).filter(([, v]) => !v.en.tags.includes('Customer Stories')));
-  // 阳光电源：官网还没有全文，先放标题与摘要
-  const SUNGROW = {
-    cn: { title: '阳光电源：在 NocoBase 上构建覆盖全球业务的管理系统', desc: '全球新能源龙头企业如何用一个底座支撑多个业务系统的快速搭建与长期演进。', date: '2026-10-17', author: 'NocoBase', tags: ['客户故事'], image: '', body: '' },
-    en: { title: 'Sungrow: the systems behind a global business, built on NocoBase', desc: 'How a global renewable-energy leader uses one foundation to build business applications fast and keep them evolving.', date: '2026-10-17', author: 'NocoBase', tags: ['Customer Stories'], image: '', body: '' },
-  };
-  stories = { sungrow: SUNGROW, ...stories };
   const OUT = generate(posts, stories, site);
-  // 日文版只放有 ja 的文章；阳光电源没有日文版，日文的客户案例列表照样放它（英文），但不生成日文详情页
-  const jaView = (m, keep = []) => Object.fromEntries(Object.entries(m).filter(([k, v]) => v.ja || keep.includes(k)).map(([k, v]) => [k, { ...v, en: v.ja || v.en, cn: v.ja || v.en }]));
+  // 日文版只放有 ja 的文章
+  const jaView = m => Object.fromEntries(Object.entries(m).filter(([, v]) => v.ja).map(([k, v]) => [k, { ...v, en: v.ja, cn: v.ja }]));
   ja = true;
   try {
-    for (const it of generate(jaView(posts), jaView(stories, ['sungrow']), site)) {
+    for (const it of generate(jaView(posts), jaView(stories), site)) {
       OUT.find(o => o.id === it.id).ja = { title: it.meta.title_en, desc: it.meta.desc_en, main: it.main };
     }
   } finally {
@@ -121,18 +117,19 @@ function generate(posts, stories, site) {
     const { en: e, cn: c } = src(slug);
     return `<div class="bmeta">${tags(slug)}<span>${T(fmtDate(c.date, 'cn'), fmtDate(e.date, 'en'))}</span><span>${T(esc(c.author), esc(e.author))}</span></div>`;
   };
-  const cover = (img, title = '') => (img ? `<img src="${img}" alt="">` : `<span class="cv-ph"><b>${title}</b></span>`);
+  const cover = (img, title = 'NOCOBASE') => (img ? `<img src="${img}" alt="">` : `<span class="cv-ph"><b>${title}</b></span>`);
   const href = slug => (slug in posts ? `blog/${slug}.html` : `customers/${slug}.html`);
   // inList：博客列表页的卡片，带 data-home，onBlog：false 的默认隐藏；相关文章、客户案例列表不受影响
   const card = (slug, inList) => {
     const { en: e, cn: c } = src(slug);
     const keys = e.tags.map(t => t.replaceAll(' ', '_')).join(' ');
     const home = !inList || onHome(slug);
-    return `<a class="bcard" href="${href(slug)}" data-tags="${keys}"${inList ? ` data-home="${home ? 1 : 0}"${home ? '' : ' hidden'}` : ''}><span class="cv">${cover(e.image, 'SUNGROW')}</span>` +
+    return `<a class="bcard" href="${href(slug)}" data-tags="${keys}"${inList ? ` data-home="${home ? 1 : 0}"${home ? '' : ' hidden'}` : ''}><span class="cv">${cover(e.image)}</span>` +
       `${meta(slug)}<h3>${T(esc(c.title), esc(e.title))}</h3><p>${T(esc(c.desc), esc(e.desc))}</p></a>`;
   };
   // 每页一条：地址（blog、blog/<slug>……）、导航高亮、中英文标题和描述、正文
-  const build = (id, page, tz, te, dz, de, main) => OUT.push({ id, meta: { page, title_zh: tz, title_en: te, desc_zh: dz, desc_en: de }, main });
+  // draft：CMS 草稿的预览页（scripts/cms-import.mjs），加 noindex，也就不进 sitemap
+  const build = (id, page, tz, te, dz, de, main, draft) => OUT.push({ id, meta: { page, title_zh: tz, title_en: te, desc_zh: dz, desc_en: de, ...(draft && { noindex: '1' }) }, main });
 
   // 列表页
   const alltags = [];
@@ -196,14 +193,16 @@ function generate(posts, stories, site) {
     <div class="cta"><a class="btn btn-pri" href="core.html">${T('了解 NocoBase Core', 'Explore NocoBase Core')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="contact.html#contact">${T('预约实战验证', 'Book a Pilot')}</a></div>
   </div>
 </div>`;
-    build('blog/' + slug, 'blog', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body);
+    build('blog/' + slug, 'blog', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body, posts[slug].draft);
   }
 
   // ======================= 客户案例：独立的列表与详情 =======================
-  const corder = ['sungrow', ...Object.keys(stories).filter(k => k !== 'sungrow').sort((a, b) => (stories[a].en.date < stories[b].en.date ? 1 : stories[a].en.date > stories[b].en.date ? -1 : 0))];
+  // 以 CMS 为准：草稿的客户案例只有预览页，不进列表和「更多客户案例」。列表按日期倒序，阳光电源发布后放在最前面做头条，否则头条是最新的一篇
+  const byDate = (a, b) => (stories[a].en.date < stories[b].en.date ? 1 : stories[a].en.date > stories[b].en.date ? -1 : 0);
+  const corder = Object.keys(stories).filter(k => !stories[k].draft).sort((a, b) => (b === 'sungrow') - (a === 'sungrow') || byDate(a, b));
   const logos = [['nxp', 'NXP'], ['lenovo', 'Lenovo'], ['sony', 'Sony'], ['ntt-data', 'NTT DATA'], ['american-express', 'American Express'], ['smfl', 'SMFL'], ['vinfast', 'VinFast']]
     .map(([n, a]) => `<img src="https://static-docs.nocobase.com/${n}.png" alt="${a}">`).join('');
-  const se = stories.sungrow.en, sc = stories.sungrow.cn;
+  const cfeat = corder[0], se = stories[cfeat].en, sc = stories[cfeat].cn;
   const clist = `<section class="phero">
   <div class="container">
     <p class="label"><b>${T('客户案例', 'Customer Stories')}</b></p>
@@ -214,7 +213,7 @@ function generate(posts, stories, site) {
 </section>
 <section class="sec tight" style="padding-top:56px">
   <div class="container">
-    <a class="bfeat" href="customers/sungrow.html"><span class="cv">${cover('', 'SUNGROW')}</span><span class="tx"><p class="label" style="margin:0"><b>${T('客户故事 · 阳光电源', 'Customer Story · Sungrow')}</b></p><h2>${T(esc(sc.title), esc(se.title))}</h2><p>${T(esc(sc.desc), esc(se.desc))}</p><span class="link">${T('阅读故事', 'Read the story')}<i data-lucide="arrow-right"></i></span></span></a>
+    <a class="bfeat" href="customers/${cfeat}.html"><span class="cv">${cover(se.image)}</span><span class="tx"><p class="label" style="margin:0"><b>${T('客户故事', 'Customer Story')}</b></p><h2>${T(esc(sc.title), esc(se.title))}</h2><p>${T(esc(sc.desc), esc(se.desc))}</p><span class="link">${T('阅读故事', 'Read the story')}<i data-lucide="arrow-right"></i></span></span></a>
     <div class="bgrid">${corder.slice(1).map(card).join('')}</div>
   </div>
 </section>
@@ -226,18 +225,11 @@ function generate(posts, stories, site) {
 </div>`;
   build('customers', 'customers', '客户案例 — NocoBase', jaText('Customer Stories — NocoBase'), '全球各行业团队如何用 NocoBase 构建核心业务系统。', jaText('How teams worldwide build core business systems on NocoBase.'), clist);
 
-  for (const slug of corder) {
+  for (const slug of [...corder, ...Object.keys(stories).filter(k => stories[k].draft)]) {
     if (ja && !stories[slug].ja) continue;
     const e = stories[slug].en, c = stories[slug].cn;
-    let bz, be, tz, te;
-    if (slug === 'sungrow') {
-      bz = `<p>${esc(c.desc)}</p><blockquote><p>完整故事即将发布。</p></blockquote>`;
-      be = `<p>${esc(e.desc)}</p><blockquote><p>The full story is coming soon.</p></blockquote>`;
-      tz = te = [];
-    } else {
-      [bz, tz] = withIds(localLinks(c.body), 'zh');
-      [be, te] = withIds(localLinks(e.body), 'en');
-    }
+    const [bz, tz] = withIds(localLinks(c.body), 'zh');
+    const [be, te] = withIds(localLinks(e.body), 'en');
     const related = corder.filter(k => k !== slug).slice(0, 3);
     const nav = tz.length ? `<nav class="toc" aria-label="Contents"><b>${T('本文目录', 'On this page')}</b><div class="zh-only">${toc(tz)}</div><div class="en-only">${toc(te)}</div></nav>` : '<div></div>';
     const body = `<div class="container">
@@ -247,7 +239,7 @@ function generate(posts, stories, site) {
     <p class="lede">${T(esc(c.desc), esc(e.desc))}</p>
     <div class="bmeta"><span>${T(fmtDate(c.date, 'cn'), fmtDate(e.date, 'en'))}</span><span>${T(esc(c.author), esc(e.author))}</span></div>
   </header>
-  <div class="post-cover">${cover(e.image, 'SUNGROW')}</div>
+  <div class="post-cover">${cover(e.image)}</div>
   <div class="post-body">
     <article><div class="prose zh-only">${bz}</div><div class="prose en-only">${be}</div></article>
     ${nav}
@@ -261,7 +253,7 @@ function generate(posts, stories, site) {
     <div class="cta"><a class="btn btn-pri" href="contact.html#contact">${T('预约实战验证', 'Book a Pilot')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="customers.html">${T('全部客户案例', 'All customer stories')}</a></div>
   </div>
 </div>`;
-    build('customers/' + slug, 'customers', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body);
+    build('customers/' + slug, 'customers', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body, stories[slug].draft);
   }
   return OUT;
 }

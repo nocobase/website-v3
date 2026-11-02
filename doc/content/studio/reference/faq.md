@@ -1,73 +1,52 @@
 ---
-title: FAQ and troubleshooting
-description: Common problems with installing, signing in, connecting Git, runtimes, moving issues forward, accepting and merging, and previews and deployments, and how to deal with them.
+title: Troubleshooting
+description: Diagnose common installation, Git, runtime, task, and delivery problems.
 ---
 
-> [!TIP] When something goes wrong, ask your agent first
-> Whatever the problem, hand it to your agent first, such as Claude Code or Codex. Tell it what you see and the error. It can sign in to the server to read the logs, check Studio's state with `nb-studio`, and use this page and the rest of the docs to find the cause and fix it. When it needs you to do something in the browser or provide a credential, it stops and tells you.
+Give a local Coding Agent the symptoms, related task, and error message to investigate. Keep passwords and tokens out of prompts. An Agent connected to Studio can query status with `nb-studio`.
 
-## Installing and signing in
+## Installation and sign-in
 
-**The address doesn't show the sign-in page.** Include `/main/` in the address, for example `https://studio.example.com/main/`.
+| Problem | What to check |
+| --- | --- |
+| No sign-in page | Use `https://studio.example.com/main/`; check container health and the reverse proxy |
+| Initial account cannot sign in | Check the original administrator username and password; changing environment variables does not reset an existing account |
+| Container restarts repeatedly | Read `docker compose logs --tail=100 studio`; check configuration, database connectivity, and storage permissions |
+| CLI approval did not sign in | Keep the login command running; retry with a new code after expiry |
 
-**You don't know which account to sign in with.** Use `INITIAL_ADMIN_USERNAME` and `INITIAL_ADMIN_PASSWORD` from `.env` in the deployment directory. See [Install Studio](../setup/install.md#sign-in).
+See [Deploy Studio](../setup/install.md) and [Notifications and push](../admin/notifications.md) for password recovery.
 
-**The sign-in page has a Sign up link.** Set `auth.emailAndPassword.disableSignUp: true` in `config.yml`, then restart Studio.
+## Git connections
 
-**Pulling the image fails.** If it says unauthorized, the token is wrong, so sign in to the registry again. If pulling `postgres:16` times out, the server can't reach Docker Hub, so set up a registry mirror or use an existing PostgreSQL. If downloading image layers hangs, allow the image layer download address you received with your token. See [Install Studio](../setup/install.md#troubleshooting).
+If GitHub rejects a private webhook URL, disable webhooks and use polling. If a newly created repository is inaccessible, check the GitHub App's installation scope. Grant access, then connect it as an [existing repository](../project/settings.md#connect-an-existing-repository).
 
-**The container won't start or keeps restarting.** Run `docker compose logs studio` to see why. Common causes: `config.yml` wasn't copied out first, so Docker created a directory with that name; the `storage` directory isn't owned by UID 1000; or no encryption key is set.
+A personal Git account with read-only repository access cannot push a PR. Grant write access or use the workspace connection according to team policy. See [Git platforms](../configure/git.md).
 
-**`nb-studio login` was approved but you're still not signed in.** `nb-studio login` has to keep running while you approve. Approving after it exits has no effect. Run `nb-studio login` again and approve the new code.
+## Runtimes and tasks
 
-## Connecting Git
+| Symptom | Next action |
+| --- | --- |
+| Runtime offline | Run `nocobase-runner status` on the machine; check the service and network |
+| Tool missing or signed out | Install and sign in as the service's system user, then check again |
+| Tool works in a terminal but not the service | Run `nocobase-runner service install` from the correct terminal |
+| Task does not start | Check status, predecessors, initialization, and queue reasons |
+| Work pauses after many runs | Inspect the task run limit and repeated failures before continuing |
+| Tool quota exhausted | Wait for recovery or use another model; clear unknown-reset marks after recovery |
 
-**GitHub says "Hook url is not supported because it isn't reachable over the public Internet" when you create the GitHub App.** Studio has no public address, but the webhook is on. Turn off **Webhook** and create it again, and Studio checks once a minute instead. See [Connect Git](../configure/git.md#should-you-turn-on-webhooks).
+Use **Start** for backlog tasks. A task can legitimately queue while shared runtimes are busy. See [Follow progress](../use/follow-progress.md).
 
-**Creating a project says "The repository was created, but the App could not confirm access."** The GitHub App was installed with access to only some repositories. Add this repository in the App's installation settings on GitHub, then create the project again and choose **Existing repository**.
+## Checks, previews, and merging
 
-**An agent opening a PR says it has no permission to push.** The member connected their own Git account, but that account has only read access to the repository. Give the account write access, or disconnect the personal account so the workspace's connection is used.
+When results are missing, check the repository's selected source. Code-host CI, external CI, and Agent self-check do not combine their results. See [Checks and CI](../configure/checks.md).
 
-## Runtimes and agents
+For missing previews, inspect build records, CI connectivity to Studio, required variables, and the `no-preview` label. Stopped or dormant previews restart when visited.
 
-**A runtime shows as offline.** A runner that hasn't contacted Studio for 150 seconds shows as offline. On that machine, run `nocobase-runner status` to make sure it's running and can reach Studio's address.
+Resolve conflicts, draft state, or pending checks before merging. Overriding failed or missing checks requires permission and does not bypass code-host protection.
 
-**A coding tool shows Login required or Not installed.** On that machine, install and sign in to the tool as the system user that runs the runner, then click **Detect again** in the runtime's details. If it's installed and still shows as not installed, the background service's PATH doesn't include it: in a terminal where `which claude` works, run `nocobase-runner service install` again and restart the service. See [Connect a shared runtime](../configure/runtimes.md#troubleshooting).
+If a merged PR has not updated the task, allow time for synchronization and check whether all linked PRs have merged.
 
-**A model is missing from the agent list.** Common models are enabled automatically once a runtime reports them. Add other models from **Available models** under **Add agent**. If a model shows **Needs setup** or **Version too low**, deal with it on the runtime as the hint says.
+## Email and delivery
 
-## Moving issues forward
+If invitation email fails, copy the invitation link. Invitations and password resets use separate sender configuration; check each in [Notifications and push](../admin/notifications.md).
 
-**An issue never starts.** Look at the **Now** line on the issue page. It says what it's waiting for: no runtime online, all slots busy, an agent that exists only on someone else's personal runtime, a blocker, or "Initialize project" still running. Issues in Backlog need you to click **Start** first.
-
-**Work waited more than 24 hours and the run failed.** No runtime picked it up. Connect or start a runtime, then click retry on the card the issue owner received.
-
-**The lead agent stops to ask whether to add CI.** The project has no CI yet, so the PR has no check results. Connect CI, or reply that you'll accept without CI. You can also say so in the issue description up front. See [Connect CI](../setup/ci.md).
-
-**Agents went back and forth many times and paused.** By default, comments from agents can trigger at most 20 runs per issue in 24 hours. First check the activity and runs to see whether they keep fixing the same problem. If you're sure it should continue, click **Continue (comment-triggered runs reached their limit)** on the issue page. See [Answer the agents’ questions](../use/answer.md#comment-run-limit-reached).
-
-**The delivery report has no screenshots, or says screenshots failed.** The runtime has no browser. Install Chromium and its system dependencies as described in the preparation section of [Connect a shared runtime](../setup/shared-runtimes.md).
-
-**A coding tool ran out of quota.** The lead agent immediately hands the step to another suitable agent, preferably from another vendor. The tool stops taking work on that runtime. When the reset time is known, it resumes automatically then. When it isn't, the runtime's owner or an admin clears the mark under the quota in the runtime's details once the quota is back.
-
-## Accepting and merging
-
-**The Merge button is disabled.** The PR has conflicts, is still a draft, or checks are still running. The lead agent arranges for conflicts to be resolved. Merge once the checks finish.
-
-**The button says Merge anyway.** A required check failed or there are no check results. When you're sure it can be merged, give a reason and merge. The merge is recorded on the PR and in the issue's activity.
-
-**The PR was merged directly on GitHub, and the issue in Studio didn't change.** Studio checks once a minute (or knows right away when webhooks are on). Give it a moment, and the issue moves to Done on its own.
-
-## Previews and deployments
-
-**A PR has no preview.** The project hasn't connected CI yet, or CI can't reach Studio's address. See [Connect CI](../setup/ci.md).
-
-**A preview is slow to open.** Previews stop or go to sleep after a while without visitors and have to start or get ready again when opened. Give it a moment.
-
-**Deploying to production does nothing.** Production is protected, so the deployment became a deployment request waiting for an approver. The approver handles it under **To decide** in the inbox.
-
-## Notifications
-
-**The invitation email wasn't sent.** Studio has no email channel yet, and the result shows **Email not sent**. Copy the invitation link and send it to your colleague, or set up email. See [Notifications and push](../admin/notifications.md).
-
-**Push notifications don't reach your phone.** Push needs Studio to be served over HTTPS and an admin to set up the push private key. On an iPhone, add Studio to your Home Screen first, then open it from the Home Screen to subscribe.
+Deployments to protected test environments wait for approval. After production deployment, the lead must [record the version](../project/release.md#record-the-production-version) before delivery marks update.

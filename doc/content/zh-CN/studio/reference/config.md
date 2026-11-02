@@ -1,6 +1,6 @@
 ---
 title: 配置项
-description: Studio 的 config.yml 和环境变量：访问地址、加密密钥、初始管理员、数据库、语言和登录、邮件和推送、多实例、发布管理、日志。
+description: 查询 Studio 配置字段、环境变量、存储与邮件设置。
 ---
 
 Studio 的配置写在部署目录的 `config.yml` 里，挂载到容器的 `/app/config.yml`。模板从镜像里取出：

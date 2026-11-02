@@ -35,7 +35,7 @@ cd my-app
 
 以下操作均在 `my-app` 目录执行，按所用数据库选择一个小节。`config init --json` 以非交互方式生成 `config.yml`、应用密钥和待填写的连接参数，不会尝试连接数据库。先按示例填写连接信息和 TLS 配置，再执行连接检查。
 
-每个示例给出完整的 `database` 分区。初始化后，用实际连接信息填写该分区，保留文件中的密钥和其他配置，不要用片段覆盖整个 `config.yml`。`db.example.com`、端口、`my_app`、账号和密码均需按实际服务替换；示例中的端口不是部署要求。`schemaManagement: managed` 允许应用通过迁移管理自己的表结构。
+每个示例给出完整的 `database` 分区。初始化后，用实际连接信息填写该分区，保留文件中的密钥和其他配置，不要用片段覆盖整个 `config.yml`。`db.example.com`、端口、`my_app`、账号和密码均需按实际服务替换；示例中的端口不是部署要求。
 
 `config.yml` 不提交到 Git。默认模板也支持用进程环境变量 `DB_PASSWORD` 提供主连接密码，环境变量会覆盖文件值；不要在 YAML 中写 `${DB_PASSWORD}`，它不会被替换。其他覆盖规则见[配置项参考](../reference/configuration.md)。
 
@@ -57,7 +57,6 @@ database:
     main:
       dialect: sqlite
       database: database.sqlite
-      schemaManagement: managed
 ```
 
 这里的 `database` 是文件路径，`database.sqlite` 位于应用的 `storage/` 目录下；也可指定绝对路径。上面的命令会创建示例使用的 `storage/` 目录；若修改文件路径，需在连接检查前创建对应的父目录，并保证运行账号有写权限。该文件保存应用数据，不能在重新部署时丢弃。
@@ -84,7 +83,6 @@ database:
       username: app_user
       password: "replace-with-your-password"
       ssl: true
-      schemaManagement: managed
 ```
 
 `database` 为数据库名，`schema` 默认可用 `public`，也可改为管理员已准备并授权的 schema。示例启用 TLS；不使用 TLS 的服务改为 `ssl: false`。如服务使用专用 CA，将 `ssl` 改为对象，在 `ssl.ca` 中填写 PEM 格式证书内容，而不是证书文件路径。
@@ -111,7 +109,6 @@ database:
       password: "replace-with-your-password"
       charset: utf8mb4
       ssl: true
-      schemaManagement: managed
 ```
 
 数据库需已存在，并支持应用需要的字符集；示例连接字符集为 `utf8mb4`。示例启用 TLS，不使用 TLS 时改为 `ssl: false`；专用 CA 可通过 `ssl.ca` 提供 PEM 格式证书内容。MariaDB 仍填写 `dialect: mysql`，不改成 `mariadb`。
@@ -138,7 +135,6 @@ database:
       password: "replace-with-your-password"
       encrypt: true
       trustServerCertificate: false
-      schemaManagement: managed
 ```
 
 `database` 是数据库名；命名实例也应提供可连接的主机和 TCP 端口。示例使用加密连接并验证服务端证书。若连接的是本地测试服务的自签名证书，可按测试环境需要设置 `trustServerCertificate: true`，这会跳过服务端证书验证；正式环境应使用可验证的证书。
@@ -163,14 +159,13 @@ database:
       serviceName: APPPDB
       username: app_user
       password: "replace-with-your-password"
-      schemaManagement: managed
 ```
 
 `serviceName` 填管理员提供的服务名，例如目标 PDB 的服务名；它不是 SID，也不是普通的数据库名。示例中的 `APPPDB` 需替换。账号对应的 schema 用于存放应用对象，不要套用 MySQL 的 `database` 字段。
 
 ### 达梦
 
-达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
+达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。商业驱动的登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
@@ -188,14 +183,13 @@ database:
       schema: APP_USER
       username: APP_USER
       password: "replace-with-your-password"
-      schemaManagement: managed
 ```
 
 `schema` 使用实际分配的模式名，并保留正确大小写；示例账号和模式均为 `APP_USER`。初始化不会生成 `database` 字段，不要把 schema 名填写到该字段中。
 
 ### 人大金仓 KingbaseES
 
-确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
+确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
@@ -215,14 +209,13 @@ database:
       username: app_user
       password: "replace-with-your-password"
       ssl: true
-      schemaManagement: managed
 ```
 
 `schema` 填已授权的模式名。TLS 配置与 PostgreSQL 相同：示例启用 TLS，不使用时改为 `ssl: false`，专用 CA 在 `ssl.ca` 中填写 PEM 内容。虽然使用 PostgreSQL 兼容模式，仍需安装金仓驱动并填写 `dialect: kingbase`。
 
 ### OceanBase
 
-使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的仓库地址和登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
+使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的登录步骤见[商业数据库驱动](../reference/compatibility.md#商业数据库驱动)。
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta
@@ -242,7 +235,6 @@ database:
       password: "replace-with-your-password"
       charset: utf8mb4
       ssl: true
-      schemaManagement: managed
 ```
 
 主机和端口使用实际连接端点；通过代理连接时填写代理端点，不要固定使用示例中的直连端口。用户名使用管理员提供的完整形式，包含连接所需的租户信息。TLS 按服务要求设置：示例启用 TLS，不使用时改为 `ssl: false`，专用 CA 可用 `ssl.ca` 配置。TEXT 默认值等差异见[数据库支持与版本兼容](../reference/compatibility.md)。

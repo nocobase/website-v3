@@ -35,7 +35,7 @@ cd my-app
 
 以下はすべて `my-app` ディレクトリで実行します。使用するデータベースの節を 1 つ選んでください。`config init --json` は非対話形式で `config.yml`、アプリのシークレット、入力が必要な接続パラメーターを生成し、データベースには接続しません。例に従って接続情報と TLS 設定を入力してから、接続を確認してください。
 
-各例は `database` セクション全体を示しています。初期化後、実際の接続情報を入力し、シークレットや他の設定を保持してください。この断片で `config.yml` 全体を置き換えないでください。`db.example.com`、ポート、`my_app`、アカウント、パスワードは実際の値に置き換えます。例のポートはデプロイの必須条件ではありません。`schemaManagement: managed` は、アプリがマイグレーションで自身のテーブル構造を管理することを許可します。
+各例は `database` セクション全体を示しています。初期化後、実際の接続情報を入力し、シークレットや他の設定を保持してください。この断片で `config.yml` 全体を置き換えないでください。`db.example.com`、ポート、`my_app`、アカウント、パスワードは実際の値に置き換えます。例のポートはデプロイの必須条件ではありません。
 
 `config.yml` は Git に入れないでください。既定のテンプレートでは、プロセスの環境変数 `DB_PASSWORD` でメイン接続のパスワードを指定することもできます。環境変数がファイルの値より優先されます。YAML に `${DB_PASSWORD}` と書いても展開されません。その他の優先順位は[設定リファレンス](../reference/configuration.md)を参照してください。
 
@@ -57,7 +57,6 @@ database:
     main:
       dialect: sqlite
       database: database.sqlite
-      schemaManagement: managed
 ```
 
 `database` はファイルパスです。`database.sqlite` はアプリの `storage/` ディレクトリに保存されます。絶対パスも指定できます。上のコマンドは例で使う `storage/` ディレクトリを作成します。パスを変更する場合は、接続確認の前に親ディレクトリを作成し、実行アカウントに書き込み権限を付与してください。このファイルにはアプリのデータが保存されるため、再デプロイ時にも保持してください。
@@ -84,7 +83,6 @@ database:
       username: app_user
       password: "replace-with-your-password"
       ssl: true
-      schemaManagement: managed
 ```
 
 `database` はデータベース名です。`schema` には `public`、または管理者が準備して権限を付与したスキーマを指定します。例では TLS を有効にしています。TLS を使わないサービスでは `ssl: false` に変更してください。専用 CA が必要な場合は `ssl` をオブジェクトに変更し、`ssl.ca` に証明書ファイルのパスではなく PEM 形式の証明書の内容を指定します。
@@ -111,7 +109,6 @@ database:
       password: "replace-with-your-password"
       charset: utf8mb4
       ssl: true
-      schemaManagement: managed
 ```
 
 データベースは事前に作成し、アプリが必要とする文字セットに対応させてください。例の接続文字セットは `utf8mb4` です。TLS を使わない場合は `ssl: false` に変更し、専用 CA が必要なら `ssl.ca` に PEM 形式の証明書の内容を指定します。MariaDB でも `dialect: mysql` のままにし、`mariadb` に変更しないでください。
@@ -138,7 +135,6 @@ database:
       password: "replace-with-your-password"
       encrypt: true
       trustServerCertificate: false
-      schemaManagement: managed
 ```
 
 `database` はデータベース名です。名前付きインスタンスでも、接続可能なホストと TCP ポートを指定してください。例では接続を暗号化し、サーバー証明書を検証します。ローカルのテストサーバーが自己署名証明書を使う場合は、テスト環境に応じて `trustServerCertificate: true` を指定できますが、サーバー証明書の検証が省略されます。本番環境では検証可能な証明書を使ってください。
@@ -163,14 +159,13 @@ database:
       serviceName: APPPDB
       username: app_user
       password: "replace-with-your-password"
-      schemaManagement: managed
 ```
 
 `serviceName` には管理者から提供されたサービス名（対象 PDB のサービス名など）を指定します。SID や通常のデータベース名ではありません。例の `APPPDB` を置き換えてください。アプリのオブジェクトはアカウントに対応するスキーマに保存されます。MySQL の `database` フィールドで代用しないでください。
 
 ### Dameng
 
-Dameng ドライバーには NocoBase Pro の商用ライセンスと Pro レジストリーへのアクセス権が必要です。先にレジストリー認証を設定してください。ドライバーは実験段階のため、対象のデータベースバージョンで検証してから使用します。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
+Dameng ドライバーには NocoBase Pro の商用ライセンスと Pro レジストリーへのアクセス権が必要です。先にレジストリー認証を設定してください。ドライバーは実験段階のため、対象のデータベースバージョンで検証してから使用します。レジストリーのログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
@@ -188,14 +183,13 @@ database:
       schema: APP_USER
       username: APP_USER
       password: "replace-with-your-password"
-      schemaManagement: managed
 ```
 
 `schema` には割り当てられたスキーマ名を、大文字・小文字を含めて正確に指定します。例ではユーザーとスキーマの両方に `APP_USER` を使っています。初期化では `database` フィールドは生成されません。このフィールドにスキーマ名を設定しないでください。
 
 ### KingbaseES
 
-サーバーが PostgreSQL 互換モード（`DB_MODE=pg`）で動作していることを確認し、データベースとスキーマを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
+サーバーが PostgreSQL 互換モード（`DB_MODE=pg`）で動作していることを確認し、データベースとスキーマを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
@@ -215,14 +209,13 @@ database:
       username: app_user
       password: "replace-with-your-password"
       ssl: true
-      schemaManagement: managed
 ```
 
 `schema` には権限が付与されたスキーマを指定します。TLS 設定は PostgreSQL と同じです。例では TLS を有効にしています。使わない場合は `ssl: false` に変更し、専用 CA は `ssl.ca` に PEM 形式で指定します。PostgreSQL 互換モードでも KingbaseES ドライバーをインストールし、`dialect: kingbase` を使ってください。
 
 ### OceanBase
 
-OceanBase CE の MySQL 互換テナントを使い、そのテナント内にデータベースとアカウントを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
+OceanBase CE の MySQL 互換テナントを使い、そのテナント内にデータベースとアカウントを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta
@@ -242,7 +235,6 @@ database:
       password: "replace-with-your-password"
       charset: utf8mb4
       ssl: true
-      schemaManagement: managed
 ```
 
 実際の接続先ホストとポートを使ってください。プロキシ経由では、例の直接接続用ポートをそのまま使わず、プロキシのエンドポイントを指定します。ユーザー名には、必要なテナント情報を含む、管理者から提供された完全な形式を使います。TLS はサービスの要件に合わせて設定します。例では有効です。使わない場合は `ssl: false` に変更し、専用 CA は `ssl.ca` で設定できます。TEXT の既定値などの違いは[データベースの対応状況とバージョンの互換性](../reference/compatibility.md)を参照してください。

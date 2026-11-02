@@ -107,6 +107,12 @@ jobs:
             echo "::warning::Could not read the GitHub star count; the build uses the default in packages/shared/src/config.mjs."
           fi
 
+      # The CMS workflow "Website_v3_github_sync" pushes articles (published and drafts) to homepage/content/blog/cms/ every
+      # hour; regenerate posts.json and releases.json from them here so a CMS push is live without anyone running
+      # `pnpm cms:import` by hand. It runs after the figures check because that check diffs homepage/content.
+      - name: Import the CMS articles
+        run: pnpm --filter homepage cms:import
+
       # Fails on a broken internal link, a translation error, a language with a different number of pages, or a
       # top-level name the CDN rules would map elsewhere (`en`, `api`).
       - name: Build the site

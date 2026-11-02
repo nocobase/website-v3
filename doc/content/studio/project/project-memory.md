@@ -1,45 +1,30 @@
 ---
 title: Project memory
-description: Project memory holds what agents learn on their own. When a person corrects an agent, it hits a pitfall, or something gets confirmed in a project, the agent writes it down and reads it before the next job, so the same mistake doesn't happen twice. A different agent can pick it up too.
+description: Share confirmed rules, constraints, and lessons across Agents and maintain them with the code.
 ---
 
-It works the same way as Claude Code's auto memory: agents write it and read it themselves, and nobody has to maintain it. The difference is that project memory lives in the repository and is shared by every agent on the team.
+Project memory lives in the code repository. Agents read it in later tasks, so the team can reuse it when members or models change.
 
-## What agents remember
+## What belongs in memory
 
-Only what later issues will need and the code can't tell them. Most issues add nothing at all:
+| Type | Content | Example |
+| --- | --- | --- |
+| Feedback | Confirmed practices and corrections | Every tier C supplier order needs approval |
+| Project | Decisions and constraints not apparent from code | Number migrations in merge order |
+| Reference | Locations of resources outside the repository | Use the scoring sheet in the knowledge base for weights |
 
-| Type | Example |
-| --- | --- |
-| Feedback | Approaches a person corrected or confirmed, and pitfalls, such as "Every order from a tier C supplier needs the purchasing manager's approval, whatever the amount" |
-| Project | Decisions, constraints, and background the code and commit history don't show, such as "Number migrations in merge order" |
-| Reference | Where material outside the repository lives, such as "The scoring weights follow the Purchase Approval Policy in the knowledge base" |
+Do not repeat what the code, README, or AGENTS.md already explains. Task progress, temporary logs, secrets, and personal information do not belong in memory.
 
-Agents don't record anything they can work out from the code, the directory structure, or the commit history, anything the repository's `AGENTS.md` or README already says, or progress that matters only to the current issue.
+## Read memory
 
-> [!WARNING] No sensitive information in memory
-> Memory goes into the repository. Never write secrets, tokens, passwords, connection strings, or personal contact details there, whether the repository is public or private. Memory in a public repository is public.
+Open **Project memory** and select a project and repository, or use the project's **Memory** tab. Filter by type or search, then open an entry to read its content and source commit.
 
-## Where it lives and how it's reviewed
+![Read shared project memory](https://static-docs.nocobase.com/studio-en-guide-memory-20261031.png)
 
-Memory is a set of files in the repository's `.nb-studio/memory/` directory, one file per memory. Agents write memory on the issue's branch and commit it with the PR, and the reviewing agent checks it along with the code. Once you accept and merge, it reaches the default branch, and later issues can read it.
+## Update memory
 
-Memory is written in whatever language the repository's own conventions say, for example in its `AGENTS.md`, and in English if the repository doesn't say.
+Agents write one file per entry in `.nb-studio/memory/`. Changes are reviewed and merged with the task's PR. Later tasks read them from the repository.
 
-When a project has several repositories, each repository's memory covers only that repository and is stored separately.
+State lasting rules in the task; the Agent decides whether to record them. When an entry conflicts with current code, the Agent updates or removes it in a task PR. Each repository maintains its own memory.
 
-## Look at the memory
-
-**Development › Project memory** lists the memory of each project, and a project's **Memory** section shows only that project's. You can search it and filter by feedback, project, or reference, and each entry says which branch and commit it came from.
-
-Memory is written for agents, so you don't need to read or tidy it. Browse it when you're curious about what the agent team has learned from the project.
-
-## Ask an agent to remember something
-
-To have agents remember a rule, tell the agent on the issue, and it decides whether to write it down. Material that people and agents should both refer to over the long term belongs in the [knowledge base](knowledge-base.md).
-
-## When memory goes stale
-
-Memory records what was true at the time. Before an agent relies on a memory, it checks it against the current code. When they disagree, the code wins, and the agent updates or deletes the memory in the current PR.
-
-Keep each repository to about 50 memories, each no larger than 4 KB. Beyond that, Studio suggests tidying up, without holding up the current issue.
+Entries follow the repository's language convention, using English if none is specified. Keep each repository to about 50 entries and each entry under 4 KB. Put member-maintained business material in the [Knowledge base](knowledge-base.md) and development procedures in [Skills](skills.md).

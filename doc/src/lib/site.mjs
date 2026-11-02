@@ -30,8 +30,28 @@ export function buildSite({ config = resolveConfig(raw), contentDir = CONTENT_DI
   };
 }
 
-let cached;
-/** The site model, built once per process. */
+// The config (with the Markdown plugins) and the pages each load their own copy of this module in the dev server, so the cache lives on globalThis for resetSite() to clear it for both.
+const CACHE = Symbol.for('nocobase.doc.site');
+
+/**
+ * The site model, built once and kept until resetSite().
+ * After a reset the content can be invalid for a while, such as a new page that is not in a menu yet. The last valid model stays in use then, because a Markdown plugin that fails on it would leave the page being saved out of the content collection until its next save. Without a valid model the error is thrown, which is what fails a build.
+ */
 export function getSite() {
-  return (cached ??= buildSite());
+  const state = (globalThis[CACHE] ??= {});
+  if (state.fresh) return state.site;
+  try {
+    state.site = buildSite();
+    state.fresh = true;
+    state.problem = undefined;
+  } catch (error) {
+    if (!state.site) throw error;
+    if (state.problem !== error.message) console.error((state.problem = error.message));
+  }
+  return state.site;
+}
+
+/** Makes the next getSite() read the content again. The dev server calls it when the content changes. */
+export function resetSite() {
+  if (globalThis[CACHE]) globalThis[CACHE].fresh = false;
 }

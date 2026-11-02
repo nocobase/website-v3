@@ -1,70 +1,45 @@
 ---
-title: Answer the agents’ questions
-description: When a decision needs a person, the lead agent spells out what you need to decide. You answer questions, deal with failed runs, and take over issues handed to you, all on the issue page.
+title: Answer questions
+description: Confirm business rules and handle failed runs, ownership handoffs, and personal runtime requests.
 ---
 
-When the agent team runs into something only a person can decide, it stops, goes to the issue owner, and says exactly what you need to decide or provide. Once you reply, it carries on.
+When a task needs a business decision or missing information, the Lead Agent explains the question. Open it from **My issues › Waiting for you**.
 
-## When agents come to you
+## Answer a blocking question
 
-| Situation | What you see | What you do |
-| --- | --- | --- |
-| A decision is needed from you | The issue moves to **Blocked** and is labeled **Needs your reply** in **My issues** | Reply to the question |
-| A run still fails after retrying | A decision card for the failed run appears on the issue, labeled **Run failed** | Retry, give it to a person, or don't retry |
-| Runs triggered between agents hit the limit | The issue page offers **Continue (comment-triggered runs reached their limit)** | Confirm to continue |
-| Someone hands an issue over to you | It's labeled **Needs you to take over** in **My issues** | Take it over or decline |
-| Someone asks to continue on your personal runtime | A request on the issue page | Confirm or reject |
+1. Read **Needs you**. For context, select **View the Lead Agent’s latest explanation**.
+2. Select **Reply** and answer in the corresponding thread.
+3. Send the reply for the Lead Agent to continue arranging work.
 
-You handle all of these on the issue page, and they're gathered under **Waiting for you** in **My issues**.
+![A blocked task explains which decision its owner needs to make](https://static-docs.nocobase.com/studio-en-guide-answer-20261031.png)
 
-## Answer a question on a blocked issue
+```prompt
+All tier C supplier orders need purchasing manager approval, regardless of value. Other suppliers should still follow the amount threshold.
+```
 
-When the lead agent hits something that needs a person's judgment, it moves the issue to **Blocked** and spells out what you need to decide or provide in the **Needs you** card at the top of the issue page. Common cases:
+If unsure, ask for options and their effects. Provide missing credentials through project variables or the relevant configuration page, not a comment.
 
-- There are several possible approaches, each with pros and cons.
-- The request doesn't cover a business rule, for example the plan turns out to conflict with an existing approval rule.
-- A permission, secret, or document is missing.
-- The project has no CI yet, so the PR has no check results, and it asks whether to set up CI first or go straight to acceptance.
+## Run failures
 
-1. Open the issue and read the **Needs you** card. For the background, click **View the lead agent’s latest explanation** to read it in full.
-2. Click **Reply**. The reply box opens under the lead agent's explanation.
-3. Write your decision and send it.
+Read the run record to identify the cause. Network failures, exhausted quotas, and offline runtimes need different remedies.
 
-Your reply wakes the lead agent, which carries on based on your answer.
+Once automatic retries are exhausted, the task's decision card offers retry, reassignment, or no further retry. Restore the required service before retrying. The Lead Agent may also try another suitable Agent.
 
-::figure req-blocked | A blocked issue: read the question, click Reply, and write your decision
+## Comment run limit
 
-> [!TIP] Answers that keep things moving
-> Give the decision first, then one sentence of reasoning, for example: "Every order from a tier C supplier needs approval regardless of amount. Other suppliers keep the amount rule. Tier C suppliers are a delivery risk, so even small orders need a check." If you're not sure, ask it to lay out a few options and what each one means.
+By default, Agent comments can trigger up to 20 runs per task every 24 hours. Administrators can change the limit. Studio stops further automatic triggers at the limit and notifies the owner.
 
-## Failed runs
+Check whether Agents are repeatedly trying to fix the same problem. If work should continue, use the task's continue action or provide a new instruction.
 
-An agent's run can fail because a runtime went offline, a coding tool ran out of quota, the network dropped, and so on. Failures that can be retried are retried automatically. Once the retries run out, the owner gets a **Run failed: what next?** card:
+## Accept an ownership handoff
 
-::figure failed-run | The decision card for a failed run
+Agent work pauses while you decide whether to accept responsibility.
 
-- **Retry**: have the agent try again. Good for temporary problems, such as a runtime that just came back online.
-- **Give to a person**: make a member the executor so a person does the work.
-- **Don't retry**: drop this run.
+- **Accept**: become the owner and continue answering questions or accepting delivery.
+- **Decline**: return ownership to the previous owner. If that account is disabled, you keep the paused task.
 
-The runs record shows why it failed. The lead agent may also move a failed step to another suitable agent on its own. If the same step fails twice, it moves the issue to **Blocked** to ask you.
+## Personal runtime requests
 
-## Comment run limit reached
+If another person requests work on your task that would use your personal runtime, Studio asks you to confirm. The work can use your runtime only after you accept. Declining prevents that request from running.
 
-To keep agents from triggering each other back and forth, comments from agents can trigger only so many runs per issue in 24 hours, 20 by default, which admins can adjust. After that, agent comments no longer start new runs, and the owner is notified.
-
-Once you're sure the issue really needs to continue, click **Continue (comment-triggered runs reached their limit)** on the issue page. Posting a comment of your own that wakes an agent also resets the count.
-
-> [!NOTE] Hitting the limit is often a sign
-> Look at the activity and the runs first. Is an agent fixing the same problem over and over? If so, clarifying the request or adjusting the issue works better than simply continuing.
-
-## Take over an issue handed to you
-
-When someone hands an issue's ownership over to you, it shows up under **Needs you to take over**. Until you take it over, the agents' work is paused, and anything waiting for the owner's decision waits for you too.
-
-- Open the issue and click **Take over the issue**. You become the owner and can go on answering questions and accepting results.
-- You can also decline. The issue goes back to its previous owner. If the previous owner's account has been deactivated, the issue stays with you and remains paused.
-
-## Requests to use your personal runtime
-
-A personal runtime runs only work its owner starts. When someone else comments on an issue you own and the next piece of work needs your personal runtime, the issue page shows "{name} requests to continue on your personal runner", and you can **Confirm** or **Reject**. The work runs on your personal runtime only after you confirm.
+See [Connect a personal runtime](../join/personal-runtime.md).

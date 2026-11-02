@@ -29,6 +29,10 @@ export default defineConfig({
     '/zh-CN/core/tutorials/deploy-with-app-installer/': '/zh-CN/core/deployment/deploy-with-pm2/',
     '/ja-JP/core/tutorials/deploy-with-docker/': '/ja-JP/core/deployment/deploy-with-docker/',
     '/ja-JP/core/tutorials/deploy-with-app-installer/': '/ja-JP/core/deployment/deploy-with-pm2/',
+    '/studio/setup/with-agent/': '/studio/setup/',
+    '/zh-CN/studio/setup/with-agent/': '/zh-CN/studio/setup/',
+    '/ja-JP/studio/setup/with-agent/': '/ja-JP/studio/setup/',
+
     '/core/getting-started/what-is-core/': '/core/',
     '/core/getting-started/what-is-core-2/': '/core/',
     '/core/getting-started/create-app-2/': '/core/getting-started/create-app/',

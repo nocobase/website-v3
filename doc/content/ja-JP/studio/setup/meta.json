@@ -8,10 +8,6 @@
     },
     {
       "type": "page",
-      "path": "with-agent"
-    },
-    {
-      "type": "page",
       "path": "install"
     },
     {

@@ -147,7 +147,7 @@
     },
     {
       "type": "group",
-      "title": "质量管理（开发中）",
+      "title": "质量管理",
       "pages": [
         {
           "type": "page",
@@ -159,7 +159,15 @@
         },
         {
           "type": "planned",
-          "title": "测试计划与质量报告"
+          "title": "质量计划"
+        },
+        {
+          "type": "planned",
+          "title": "质量跟进"
+        },
+        {
+          "type": "planned",
+          "title": "验收标准"
         }
       ]
     },
@@ -226,6 +234,10 @@
         {
           "type": "page",
           "path": "reference/cli"
+        },
+        {
+          "type": "page",
+          "path": "reference/runner"
         },
         {
           "type": "page",

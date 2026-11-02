@@ -1,65 +1,36 @@
 ---
 title: Agent configuration
-description: Once runtimes report their coding tools and models, check what each agent is good at, enable the ones you need, and pick a first choice and a fallback for the lead agent.
+description: Configure available models, responsibilities, and the Lead Agent.
 ---
 
-A runtime reports the coding tools and models that are installed and signed in there, and each coding tool and model pair is an agent, such as Claude · Opus 5.5 or Codex · GPT-6.1 Sol. Once enabled, it joins the agent team. The lead agent hands out work by what each agent is **Good at**, so how well that description is written decides how well the work gets assigned.
+Administrators configure the team under **Agents**. Each coding tool and model reported by a runtime can become an Agent. For initial setup, see [Configure Agents](../setup/agents.md).
 
-Enabling agents and setting up the lead agent need permission to manage agents, which usually means an admin.
+![Agent responsibilities, runtimes, and reasoning effort](https://static-docs.nocobase.com/studio-en-guide-agents-20261031.png)
 
-## Check the agents that were enabled automatically
+## Define responsibilities
 
-Open **Agent management › Agents**. When a runtime reports in, common coding tool and model pairs join the list and are enabled automatically, with a suggested **Good at** description already filled in.
+Select **Edit**, describe what the Agent is good at, and choose its reasoning effort. The Lead Agent assigns work using the description; it does not change reasoning effort itself.
 
-Go through each **Good at** description and adjust it to how your team actually uses the agent: click **Edit**, make your changes, and save. Say clearly what it is suited for and what it isn't, for example:
-
-| Agent | Good at (example) |
+| Work | Example description |
 | --- | --- |
-| Claude · Opus 5.5 | Approach design, hard investigations, and code review |
-| Codex · GPT-6.1 Sol | Regular feature work, cross-module changes, and refactoring |
-| Codex · GPT-6 Luna | Small changes, adding tests, and finding out why CI failed. Fast and cheap |
+| Design and review | Design proposals, difficult investigations, and code review |
+| Feature development | Regular implementation, cross-module changes, and refactoring |
+| Small changes | Small fixes, additional tests, and CI failure analysis |
 
-**Edit** also lets you set the reasoning effort. The lead agent can't change it when it hands out work, so set it for the kind of work this agent usually does.
+**Where it runs** lists runtimes that provide the model. An Agent available only on a personal runtime works only for that runtime's owner.
 
-::figure qs-agents | The agent list: what each agent is good at and which runtimes it runs on
+## Add or disable Agents
 
-## Add other models
+Select **Add Agent**, choose a reported model, and describe its capabilities. Resolve setup or version warnings on the runtime, then check the tool again.
 
-Models that aren't on the common list have to be added by hand:
+Disable an Agent in its editor to stop assigning new work. Show disabled Agents to enable it again. If a model is missing, check tool sign-in and runtime connectivity.
 
-1. Click **Add agent**. **Available models** lists every model the runtimes have reported, grouped by coding tool. Models on the common list are marked **Enabled automatically when reported**, and ones you've already added are marked **Added**.
-2. Select the models you want and write what each is good at.
-3. Click **Add**. They're enabled right away.
+## Configure the Lead Agent
 
-If a model shows **Needs setup** or **Version too low**, set up or upgrade that coding tool on the runtime as the hint says, then detect again.
+All projects share one Lead Agent. Open its **Settings** at the top of the page to choose the first choice and fallback, assignment principles, and per-task run limit.
 
-An agent that exists only on personal runtimes is marked **Personal runners only**. The lead agent hands it work only for issues started by the owner of that runtime.
+![Choose the Lead Agent and its fallback](https://static-docs.nocobase.com/studio-en-guide-coordinator-20261031.png)
 
-Enable agents from at least two vendors. For reviews, the lead agent gives the code to an agent from another vendor. With only one vendor, it uses a different model from the same vendor.
+An idle fallback can take over after the configured queue wait, which defaults to 120 seconds. If no runtime can run the first choice, Studio tries the fallback immediately.
 
-## Set up the lead agent
-
-The lead agent is built into Studio. There is only one, and it arranges the issues of every project. It needs an enabled agent to run on. Above the agent list, click **Settings** in the lead agent section:
-
-1. Under **First choice**, pick an agent that is good at reasoning, such as Claude · Opus 5.5.
-2. Pick another one as the **Fallback**. If the first choice waits in the queue longer than the **Fallback delay** (120 seconds by default), an idle fallback takes over. If no runtime can run the first choice at all, the fallback is used right away.
-3. Save.
-
-::figure qs-coordinator | The lead agent's settings
-
-Leave the other settings at their defaults for now:
-
-| Setting | Default | What it does |
-| --- | --- | --- |
-| Allocation principles | Built-in | How the lead agent hands out and moves work along. You can change them or click **Restore built-in**. See [How the agent team works](../intro/agent-team.md) |
-| Comment run limit | 20 per issue every 24 hours | How many runs agents can trigger for each other. Beyond the limit the issue pauses and its owner is notified |
-| Delegated step queue timeout | 600 seconds | When no runtime picks up a step the lead agent handed out, the step is withdrawn and the lead agent rearranges it |
-
-**Done when**: the agent list has at least two enabled agents, **Where it runs** shows your runtime, and the lead agent section shows a first choice and a fallback.
-
-Next, [create a project](../setup/new-project.md).
-
-## Disable agents
-
-- To stop using an agent, turn off **Enabled** in **Edit**. Disabled agents are hidden by default. Check **Show disabled** to see them, and turn them back on when you need them.
-- If no runtime has reported an agent for 14 days, it shows as having no runtime, and the lead agent stops giving it work.
+Assignment principles determine who receives work. Project [Skills](../project/skills.md) define how to develop, review, and deliver it. See [How the Agent team works](../intro/agent-team.md).

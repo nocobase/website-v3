@@ -1,65 +1,67 @@
 ---
-title: Upgrade and backup
-description: Back up Studio's database, configuration, and files, upgrade to a new version and roll back if something goes wrong, and see how runtimes and the CLI get updated.
+title: Upgrades and backups
+description: Back up and restore Studio, then update the server, runners, and CLI.
 ---
 
 ## Back up
 
-All of Studio's data is in its deployment directory. Back up four things:
+Keep the database, configuration, encryption keys, and files together. These examples use Compose and PostgreSQL from the [Deployment guide](../setup/install.md).
 
-| What | Notes |
+| Content | What to preserve |
 | --- | --- |
-| The database | The PostgreSQL data. Export it with `pg_dump -Fc`, or copy the `postgres` directory while Studio is stopped |
-| `.env` | The encryption key `STUDIO_SECRET_KEY` and other values. Lose it, and saved Git credentials and API keys can't be decrypted |
-| `config.yml` | Studio's configuration, including the push private key if it's stored there |
-| The `storage` directory | Uploaded files, logs, skill files, and more |
+| Database | PostgreSQL dump or managed database backup |
+| Configuration | `config.yml`, Compose file, and `.env` |
+| Keys | Encryption keys used by `SECRETS_KEYS` and the push private key |
+| Files | `storage` and object-storage files, skills, and artifacts |
 
-For example, to export the database every day:
+Run from the deployment directory:
 
 ```bash
-cd studio
-docker compose exec -T postgres pg_dump -U studio -Fc studio > backup/studio-$(date +%F).dump
+mkdir -p backup
+docker compose exec -T postgres pg_dump -U studio -Fc studio   > "backup/studio-$(date +%F).dump"
 ```
 
-Backups contain the encryption key, so store them the way you store passwords.
+Adjust the database user and name to your configuration. Pause writes during backup or use a snapshot method that keeps database and files consistent. Back up business application databases separately.
 
-The databases of the business apps you deploy need their own backups. See [Deploy environments](environments.md).
+## Restore
 
-## Restore from a backup
+1. Stop Studio and preserve a copy of its current data.
+2. Restore configuration, keys, files, and database from the same backup point.
+3. Start the image version corresponding to that backup.
+4. Check sign-in, project tasks, file downloads, and Git connectivity.
 
-1. Stop Studio: `docker compose stop studio`.
-2. Put back `.env`, `config.yml`, and the `storage` directory.
-3. Restore the database, for example:
+Restore into a prepared empty database, for example:
 
-   ```bash
-   docker compose exec -T postgres pg_restore -U studio -d studio --clean --if-exists < backup/studio-2026-10-25.dump
-   ```
+```bash
+docker compose exec -T postgres pg_restore -U studio -d studio   < backup/studio-backup.dump
+```
 
-4. Start Studio with `docker compose start studio`, and check that you can sign in and your projects and issues are all there.
+For a database with existing data, follow your team's replacement procedure rather than adding backup records to it. The installation example passes `STUDIO_SECRET_KEY` into `SECRETS_KEYS`; preserve the same key during recovery.
 
-The encryption key in `.env` must be the same as when the backup was made. Otherwise saved credentials can't be decrypted and everyone has to sign in again.
+## Upgrade Studio
 
-## Upgrade
+1. Complete the backup and obtain the target image version.
+2. Update `STUDIO_IMAGE` in the deployment configuration.
+3. Pull the image and recreate the Studio container.
 
-1. Back up first.
-2. Change the image version in `docker-compose.yml` to the new one.
-3. Pull and restart:
+```bash
+docker compose pull studio
+docker compose up -d studio
+docker compose ps
+docker compose logs --tail=100 studio
+```
 
-   ```bash
-   docker compose pull
-   docker compose up -d
-   ```
+Migrations run at startup. Check service health, sign-in, tasks, and runtimes. Studio is a commercial product; [contact us](https://www.nocobase.com/contact/) for the image.
 
-4. Wait until `docker compose ps` shows `healthy`, then sign in to check.
+Before returning to an older image, check database compatibility. If migrations must be rolled back, restore the pre-upgrade database and files, then start the matching old version.
 
-Database migrations run automatically on start. [Contact us](https://www.nocobase.com/contact/) for available Studio images and versions.
+## Update runners and the CLI
 
-> [!WARNING] Roll back together with the database
-> The new version upgrades the database when it starts, so the old version may not be able to read it if you only change the image version back. To roll back, restore the database backup from before the upgrade first, then start the old version.
+Runners can update automatically. You can also run these commands on the machine:
 
-## Updating runtimes and the CLI
+```bash
+nocobase-runner update
+nb-studio update
+```
 
-Upgrade Studio first, and runtimes and the CLI follow:
-
-- **Runners** update themselves to the version Studio serves whenever no agent is running. To update right away, run `nocobase-runner update` on the machine. Runners too old to speak the current protocol are marked as needing an upgrade in **Agent management › Runtimes**.
-- **nb-studio**: run `nb-studio update` to update to the version Studio serves, along with its installed skills. `nb-studio` also tells you when Studio has a newer version.
+`nb-studio update` also updates installed skills. The runtime page identifies incompatible versions that need an update.

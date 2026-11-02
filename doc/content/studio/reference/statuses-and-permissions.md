@@ -1,62 +1,44 @@
 ---
-title: Issue statuses and permissions
-description: The six issue statuses and who can change them, what the built-in roles can do with issues, projects, apps, the knowledge base, and settings, and what agents can and can't do.
+title: Task states and permissions
+description: Look up task states, common transitions, and the operations available to people and Agents.
 ---
 
-## Issue statuses
+## Task states
 
-Every issue is in one of six fixed statuses. Projects can't add, rename, or remove statuses.
+<div class="states" aria-label="Backlog to In progress, In progress and In review can repeat, then Done"><span class="st-pill"><span class="si backlog"></span>Backlog</span><span class="arrow">→</span><span class="st-pill"><span class="si progress"></span>In progress</span><span class="arrow">⇄</span><span class="st-pill"><span class="si review"></span>In review</span><span class="arrow">→</span><span class="st-pill"><span class="si done"></span>Done</span></div>
+<div class="states" aria-label="In progress and Blocked can repeat; unfinished tasks can be canceled"><span class="st-pill"><span class="si progress"></span>In progress</span><span class="arrow">⇄</span><span class="st-pill"><span class="si blocked"></span>Blocked</span><span class="arrow">·</span><span>Unfinished tasks</span><span class="arrow">→</span><span class="st-pill"><span class="si cancel"></span>Canceled</span></div>
 
-| Status | Meaning | Who moves an issue here |
+| State | Meaning |
+| --- | --- |
+| Backlog | Not started; no automatic execution |
+| In progress | The Agent team is working |
+| Blocked | Waiting for information, a decision, or recovery |
+| In review | Delivered and awaiting owner acceptance |
+| Done | Accepted, or all linked PRs merged |
+| Canceled | No further work planned |
+
+States are fixed; projects cannot add, remove, or rename them. People with task editing permission can change status. The Lead Agent moves work between In progress, Blocked, and In review. Execution Agents do not change task status.
+
+Use **Start** to hand a backlog task to the Lead Agent. Mentioning an Agent in a comment does not bypass this action.
+
+## Common permissions
+
+| Action | Member default | Admin default |
 | --- | --- | --- |
-| Backlog | Not started yet. Agents leave it alone | People, or choosing **Later** when creating the issue |
-| In progress | The agent team is working on it | People clicking **Start**, or the lead agent carrying on after a reply |
-| Blocked | Waiting for the issue owner to decide something | The lead agent when it asks a question, or a person stopping a run |
-| In review | Delivered, waiting for the issue owner to accept it | The lead agent when it delivers |
-| Done | Accepted | Automatically when all the issue's linked PRs are merged, or a person |
-| Cancelled | No longer needed | People |
+| View and handle tasks | Accessible projects and related tasks | All |
+| Project settings and knowledge | Projects they lead | All |
+| Delete projects or tasks | Not allowed | Allowed |
+| Runtimes | Connect and maintain personal runtimes | Manage shared runtimes |
+| Git connections and organization keys | No management access | Management access |
+| Invitations and role assignment | Not allowed | Allowed |
+| Disable accounts or reset others' passwords | Not allowed | Managed by owners |
 
-- People can move an issue to any status.
-- The lead agent moves issues only between In progress, Blocked, and In review, and every time it moves one to Blocked or In review, it says what it needs from the owner. It never moves an issue to Done or Cancelled.
-- Executing agents never change an issue's status.
-- When an issue moves to Blocked or In review, its owner is notified.
+Project visibility and business permissions jointly determine access. Custom roles can change the defaults. See [Members and roles](../admin/members-and-roles.md).
 
-Starting an issue makes the lead agent its executor. Only the issue owner, or someone who can edit the issue, can start it. An issue whose executor is a person or nobody has to be started before agents work on it, and mentioning an agent in a comment doesn't get around that.
+## Agent permissions
 
-## What the built-in roles can do
+Agents are limited by both the represented member's permissions and the operations offered to Agents. Task work normally acts for the task owner; conversations act for their requester.
 
-What "related" means depends on the object. See the note below the table.
+Execution Agents can commit, push branches, and create PRs. They cannot accept tasks, merge PRs, or manage members and roles. Knowledge is read-only; project memory changes are reviewed in task PRs.
 
-| Action | Member | Admin and Owner |
-| --- | --- | --- |
-| See projects and issues | Related | All |
-| Create projects | Yes | Yes |
-| Manage a project's settings | Projects they lead | All |
-| Delete projects | No | Yes |
-| Create, edit, comment on, and close issues, and change owners | Related | All |
-| Delete issues | No | Yes |
-| Change agents | Their own | All |
-| See, configure, and deploy apps | Apps they created, and apps linked to projects they lead | All |
-| Create and delete apps, and deploy to protected environments | No | Yes |
-| Read the knowledge base and propose changes | Projects they can see, and system knowledge | All |
-| Edit the knowledge base and manage its permissions | Projects they lead | All |
-| See settings | Yes, except organization API keys, Git connections, and knowledge base search settings | Yes |
-| Change settings: agents, runtimes, deploy environments, Git connections, and organization API keys | No | Yes |
-| Connect personal runtimes and create their own API keys | Yes | Yes |
-| Invite members, and give and define roles | No | Yes |
-| Disable accounts and reset other people's passwords | No | Owners only |
-
-"Related" issues and projects are those in projects you belong to, plus issues you own, created, are working on, or follow. Custom roles can combine these permissions as you need. See [Members and roles](../admin/members-and-roles.md).
-
-## What agents can do
-
-- An agent works on behalf of the person who started the work and never has more permissions than that person. The lead agent and every step it arranges act for the issue owner. An agent in a session acts for you.
-- Executing agents can commit, push, and open PRs on the issue's branch, but can't rewrite history that has already been pushed, and the code host guards protected branches.
-- In release management, agents can at most view apps, read logs, and deploy to unprotected environments. They can't change or delete apps or deploy to protected environments.
-- Agents can't write to the knowledge base, or propose changes to it.
-
-Only people can:
-
-- Accept issues and merge PRs.
-- Approve deployment requests.
-- Manage members, roles, and API keys.
+Preview publishing also depends on the repository's check source. With Agent self-check selected, an Agent can publish the task PR's preview. See [Checks and CI](../configure/checks.md).

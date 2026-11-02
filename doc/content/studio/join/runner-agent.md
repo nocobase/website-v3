@@ -1,41 +1,41 @@
 ---
 title: Talk to a Runner Agent
-description: Choose a Runner Agent in Studio to discuss requirements, inspect a project, and turn a discussion into tasks.
+description: Discuss requirements, inspect project code, and create tasks from a conversation in Studio.
 ---
 
-A Runner Agent is a coding tool and model available on a runtime. Talk to it directly in Studio to discuss requirements, inspect a project, or follow tasks.
+A Runner Agent combines a coding tool and model on a runtime. In **My sessions**, talk to it directly to clarify requirements, inspect project code, or follow tasks.
 
-Your team needs an online [runtime](../configure/runtimes.md) and an enabled [Agent](../configure/agents.md). With a shared runtime, you do not need to connect your own computer.
+Your team needs an online [runtime](../configure/runtimes.md) and an enabled [Agent](../configure/agents.md). A shared runtime does not require connecting your own computer.
 
 ## Start a conversation
 
-1. Open **My sessions** and switch to **Runner Agent**.
+1. Open **My sessions** and select **Runner Agent**.
 2. Create a conversation and choose an Agent.
-3. For project-specific work, select the project before sending the first message.
-4. Send a request. For example:
+3. To inspect project code, select the project before sending the first message.
+4. Send your question.
 
-   ```prompt
-   Explain how supplier ratings are calculated in this project. Describe the current rules without changing the code.
-   ```
+```prompt
+Explain how supplier scores are calculated in this project. Read the existing rules without changing any code.
+```
 
-The Agent works on the runtime. Replies and execution progress stay in the conversation. Continue with questions or add images and attachments.
+![A Runner Agent conversation keeps the discussion beside its linked tasks](https://static-docs.nocobase.com/studio-en-guide-runner-session-20261031.png)
+
+The project is fixed after the first message. Start another conversation for a different project. The Agent prepares the selected project's code. You can send text, images, and attachments; messages sent during a run are queued.
 
 ## Turn a discussion into a task
 
-Once the requirement is clear, ask the Agent to create a task:
-
 ```prompt
-Turn the supplier rating changes we agreed on into a task. Don't start it yet.
+Create a task for the scoring changes we agreed on, but do not start it yet.
 ```
 
-Linked tasks appear beside the conversation. Review the requirement and select **Start** for the coordinator to arrange execution. Follow progress and answer questions from the same conversation.
+The created task appears in the conversation. Check the requirements, then select **Start** for the Lead Agent to arrange execution. Use `#task-identifier` to link existing work.
 
-Use **Link task** to include an existing task. Conversations are private to you; tasks are shared according to project permissions.
+Only you can see the conversation. Tasks are shared according to project permissions, and their status updates return to the conversation.
 
-## Continue or adjust the conversation
+## Change Agents or runtimes
 
-- **Change Agent:** finish or stop the current execution and handle queued messages first. The conversation history and linked tasks are preserved.
-- **Offline runtime:** messages wait for the original runtime to return. **Switch runtime** sends conversation history to another eligible machine; files in the old working directory are not moved.
-- **No available Agent:** ask an administrator to check runtime status, coding-tool sign-in, and enabled Agents.
+- **Change Agent**: finish the active run and handle queued messages first. Conversation history and linked tasks remain.
+- **Runtime offline**: wait for it to reconnect or select **Switch runtime**. The new runtime receives conversation history; unpushed edits stay on the original machine.
+- **No Agent available**: check runtime connectivity, coding-tool sign-in, and whether the Agent is enabled.
 
-When work is delivered, [accept the result](../use/accept.md) and merge the change.
+Conversations can inspect and change a project. Explicitly request a push or PR when needed. Turn formal requirements into tasks for team tracking and [acceptance](../use/accept.md).

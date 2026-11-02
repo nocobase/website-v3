@@ -7,6 +7,11 @@
     },
     {
       "type": "page",
+      "path": "create-app-with-database",
+      "hidden": true
+    },
+    {
+      "type": "page",
       "path": "build-your-first-app"
     },
     {

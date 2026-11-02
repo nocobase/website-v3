@@ -14,7 +14,7 @@ export class ContentError extends Error {
   }
 }
 
-const ENTRY_KEYS = { page: ['type', 'path', 'title'], folder: ['type', 'path'], group: ['type', 'title', 'pages'], planned: ['type', 'title'] };
+const ENTRY_KEYS = { page: ['type', 'path', 'title', 'hidden'], folder: ['type', 'path'], group: ['type', 'title', 'pages'], planned: ['type', 'title'] };
 const FOLDER_META_KEYS = ['title', 'defaultOpen', 'pages'];
 const SECTION_META_KEYS = ['title', 'pages'];
 
@@ -39,7 +39,7 @@ export function diffSkeleton(a, b, trail = 'menu') {
   for (let i = 0; i < n; i++) {
     const x = a[i], y = b[i], at = `${trail}[${i}]`;
     if (!x || !y) return `${at}: one language has ${describe(x ?? y)} where the other has nothing`;
-    if (x.type !== y.type || x.key !== y.key || (x.defaultOpen ?? false) !== (y.defaultOpen ?? false)) return `${at}: ${describe(x)} versus ${describe(y)}`;
+    if (x.type !== y.type || x.key !== y.key || (x.defaultOpen ?? false) !== (y.defaultOpen ?? false) || (x.hidden ?? false) !== (y.hidden ?? false)) return `${at}: ${describe(x)} versus ${describe(y)}`;
     if (x.children || y.children) {
       const inner = diffSkeleton(x.children ?? [], y.children ?? [], `${at}.pages`);
       if (inner) return inner;
@@ -47,7 +47,7 @@ export function diffSkeleton(a, b, trail = 'menu') {
   }
   return null;
 }
-const describe = s => `${s.type}${s.key !== undefined ? ` "${s.key}"` : ''}${s.defaultOpen ? ' (defaultOpen)' : ''}`;
+const describe = s => `${s.type}${s.key !== undefined ? ` "${s.key}"` : ''}${s.defaultOpen ? ' (defaultOpen)' : ''}${s.hidden ? ' (hidden)' : ''}`;
 
 /**
  * The default language's content is at the root of `contentDir` (its `dir` is ''), the others are in contentDir/<dir>/ with the same structure.
@@ -165,10 +165,12 @@ function loadLanguage({ root, prefix, code, skip, sections, problems }) {
         page.label = typeof entry.title === 'string' && entry.title ? entry.title : page.title;
         page.trail = trail;
         if (entry.title !== undefined && typeof entry.title !== 'string') problems.push(`${at}: title must be a string`);
-        const node = { type: 'page', key, title: page.label, placeholder: page.placeholder };
+        if (entry.hidden !== undefined && typeof entry.hidden !== 'boolean') problems.push(`${at}: hidden must be true or false`);
+        const visibility = entry.hidden === true ? { hidden: true } : {};
+        const node = { type: 'page', key, title: page.label, placeholder: page.placeholder, ...visibility };
         // A folder's own index page is the folder title's link, not a child of its own
-        if (!inGroup && stack.length > 1 && key === `${dir}/index` && dir === stack[stack.length - 1] && dir !== section.dir) link = node;
-        else { nodes.push(node); skeleton.push({ type: 'page', key }); }
+        if (!entry.hidden && !inGroup && stack.length > 1 && key === `${dir}/index` && dir === stack[stack.length - 1] && dir !== section.dir) link = node;
+        else { nodes.push(node); skeleton.push({ type: 'page', key, ...visibility }); }
         return;
       }
       // folder
@@ -197,6 +199,7 @@ function loadLanguage({ root, prefix, code, skip, sections, problems }) {
     const order = [];
     const visit = list => {
       for (const node of list) {
+        if (node.hidden) continue;
         if (node.type === 'page') order.push(node.key);
         else if (node.type === 'folder') { if (node.link) order.push(node.link.key); visit(node.children); } else if (node.type === 'group') visit(node.children);
       }

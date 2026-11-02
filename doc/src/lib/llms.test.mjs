@@ -30,3 +30,9 @@ test('figure lines are parsed, and the .md copies replace them with their captio
   expect(parseFigureLine('plain text')).toBeNull();
   expect(stripFigures('Before\n\n::figure a | Caption\n\n::figure b\n\nAfter')).toBe('Before\n\n*Caption*\n\n\n\nAfter');
 });
+
+test('pages hidden from navigation remain discoverable in llms.txt', () => {
+  expect(llmsGroups([{ type: 'page', key: 'a', hidden: true }], pageOf)).toEqual([
+    { pages: [{ title: 'A', description: '', path: '/a.md' }] },
+  ]);
+});

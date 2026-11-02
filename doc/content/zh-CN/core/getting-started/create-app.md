@@ -8,6 +8,8 @@ metaDescription: 在本机创建一个 NocoBase 3 应用，使用默认模板和
 - Node.js 24 或更高版本，pnpm 11。
 - Windows 上在 WSL 中操作。下面的命令都在 Bash 等 POSIX shell 中运行。
 
+NocoBase 支持 SQLite、PostgreSQL、MySQL（兼容 MariaDB）、Microsoft SQL Server、Oracle、达梦、人大金仓和 OceanBase。下面使用 SQLite，无需另外安装数据库服务。已有其他数据库的连接信息时，按[使用不同数据库创建应用](create-app-with-database.md)配置；版本限制和商业授权要求见[数据库支持与版本兼容](../reference/compatibility.md)。
+
 可以交给 Agent 创建，也可以自己执行命令，任选一种。
 
 ## 交给 Agent 创建

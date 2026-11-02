@@ -117,4 +117,4 @@ pnpm nocobase plugin unregister '@nocobase/app-plugin-<name>'
 pnpm nocobase skills sync
 ```
 
-同步只修复指引副本，不会自动注册插件或修复应用代码。进一步阅读[应用开发概览](overview.md)和[测试与验收](testing-and-acceptance.md)。
+同步只修复指引副本，不会自动注册插件或修复应用代码。进一步阅读[应用开发概览](overview.md)和[测试](testing-and-acceptance.md)。

@@ -94,7 +94,7 @@ my-app/
 | `tests/fixtures/`、`tests/helpers/`、`tests/setup/` | 测试数据、共享辅助函数和环境初始化 |
 | `tests/playwright/` | 浏览器操作测试，按需创建 |
 
-在应用根目录运行 `pnpm test` 执行 Vitest 测试。浏览器测试使用 `pnpm test:e2e`，需要按测试配置准备运行中的应用和登录信息。具体准备步骤见[测试与验收](testing-and-acceptance.md)。
+在应用根目录运行 `pnpm test` 执行 Vitest 测试。浏览器测试使用 `pnpm test:e2e`，需要按测试配置准备运行中的应用和登录信息。具体准备步骤见[测试](testing-and-acceptance.md)。
 
 已有项目的目录可能不同，以 `vitest.config.ts` 和 `playwright.config.ts` 中的配置为准。检查报告中的实际用例数；没有找到用例时正常退出，不代表功能已经通过验证。
 

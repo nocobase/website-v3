@@ -141,4 +141,4 @@ Query 的条件形式为 `where(field, operator, value)`，值由查询构造器
 
 用真实测试数据库检查筛选、稳定排序、空结果、关联与批量范围；用真实应用和普通用户检查权限。构造一次事务内失败，重新读取数据库，确认之前的写入也已撤销。不要通过 mock Repository 来证明 Repository 的行为。
 
-现有项目服务的完整例子见[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)，测试工具的选择见[测试与验收](testing-and-acceptance.md)。
+现有项目服务的完整例子见[旧版项目服务源码](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/server-business-services.md)，测试工具的选择见[测试](testing-and-acceptance.md)。

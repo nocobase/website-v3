@@ -165,7 +165,7 @@ Set `serviceName` to the service supplied by the administrator, such as the serv
 
 ### Dameng
 
-The Dameng driver requires a NocoBase Pro commercial license and Pro registry access. Configure registry authentication first. The driver is experimental; verify it against the target database version before use. For the registry address and login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
+The Dameng driver requires a NocoBase Pro commercial license and Pro registry access. Configure registry authentication first. The driver is experimental; verify it against the target database version before use. For registry login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
@@ -189,7 +189,7 @@ Use the assigned schema name in `schema`, preserving its case. The example uses 
 
 ### KingbaseES
 
-Confirm the server uses PostgreSQL-compatible mode (`DB_MODE=pg`) and prepare the database and schema. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For the registry address and login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
+Confirm the server uses PostgreSQL-compatible mode (`DB_MODE=pg`) and prepare the database and schema. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For registry login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
@@ -215,7 +215,7 @@ Set `schema` to an authorized schema. TLS follows the PostgreSQL configuration: 
 
 ### OceanBase
 
-Use an OceanBase CE MySQL-compatible tenant and prepare a database and account within that tenant. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For the registry address and login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
+Use an OceanBase CE MySQL-compatible tenant and prepare a database and account within that tenant. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For registry login steps, see [Commercial database drivers](../reference/compatibility.md#commercial-database-drivers).
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta

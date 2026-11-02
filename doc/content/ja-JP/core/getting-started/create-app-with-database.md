@@ -165,7 +165,7 @@ database:
 
 ### Dameng
 
-Dameng ドライバーには NocoBase Pro の商用ライセンスと Pro レジストリーへのアクセス権が必要です。先にレジストリー認証を設定してください。ドライバーは実験段階のため、対象のデータベースバージョンで検証してから使用します。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
+Dameng ドライバーには NocoBase Pro の商用ライセンスと Pro レジストリーへのアクセス権が必要です。先にレジストリー認証を設定してください。ドライバーは実験段階のため、対象のデータベースバージョンで検証してから使用します。レジストリーのログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
@@ -189,7 +189,7 @@ database:
 
 ### KingbaseES
 
-サーバーが PostgreSQL 互換モード（`DB_MODE=pg`）で動作していることを確認し、データベースとスキーマを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
+サーバーが PostgreSQL 互換モード（`DB_MODE=pg`）で動作していることを確認し、データベースとスキーマを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
@@ -215,7 +215,7 @@ database:
 
 ### OceanBase
 
-OceanBase CE の MySQL 互換テナントを使い、そのテナント内にデータベースとアカウントを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのアドレスとログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
+OceanBase CE の MySQL 互換テナントを使い、そのテナント内にデータベースとアカウントを準備します。インストールには NocoBase Pro の商用ライセンスと Pro レジストリーの認証設定が必要です。レジストリーのログイン手順は[商用データベースドライバー](../reference/compatibility.md#商用データベースドライバー)を参照してください。
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta

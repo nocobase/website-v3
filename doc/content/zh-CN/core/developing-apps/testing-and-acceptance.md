@@ -85,7 +85,7 @@ pnpm test:e2e
 
 功能修改后，先运行受影响维度的测试，再检查调用它的页面、接口或命令；涉及认证、共享服务或数据结构的改动，还需重新验证关键完整流程。修复缺陷时，增加能够复现问题的用例，并在修复后保留为回归测试。
 
-## 编写代码测试
+## 使用 Vitest 编写测试
 
 下面使用同一个商品管理 App 展示具体方法。源码和安装步骤见[示例源码与运行](#示例源码与运行)，各节代码为关键摘录，完整的数据准备和辅助函数在对应源码中。
 
@@ -158,7 +158,7 @@ server 测试验证接口响应、业务规则、身份认证、权限和持久�
 | `app` | 访问应用及其服务容器 |
 | `connection` | 查询测试数据库，检查操作后的数据 |
 
-请求在进程内执行，不需要启动一个供外部访问的 HTTP 服务。默认同一文件内的用例共享应用和数据库；需要逐用例隔离时设置 `scope: 'test'`。多个自有数据库连接通过 `connections` 指定。套件在作用域结束时关闭应用并清理测试数据库。
+请求在进程内执行，不需要启动一个供外部访问的 HTTP 服务。默认同一文件内的用例共享应用和数据库；需要逐用例隔离时设置 `scope: 'test'`。`connections` 默认隔离 `main`；应用有多个自有连接时应全部列出，未列出的连接仍沿用应用配置。套件在作用域结束时关闭应用并清理测试数据库。
 
 **验证响应、业务结果和权限**
 
@@ -174,6 +174,8 @@ server 测试验证接口响应、业务规则、身份认证、权限和持久�
 
 ```ts
 import { createAppTest } from '@nocobase/app-testing/server';
+import { DEFAULT_ADMIN_CREDENTIALS, signIn } from '@nocobase/app-plugin-authentication/testing';
+import { expect } from 'vitest';
 import { createStandaloneServer } from '../../server/standalone.js';
 
 const test = createAppTest({
@@ -190,20 +192,24 @@ const test = createAppTest({
 });
 ```
 
-在此环境中，测试创建商品、重复发送同一操作键并查询数据库，确认不会重复写入；普通用户只有显式授权后才能读取，创建和发布仍返回 `403`。商品写入断言如下，`admin` 为已登录会话，`post()` 和 `key()` 为源码中的请求辅助函数：
+在此环境中，测试创建商品、重复发送同一操作键并查询数据库，确认不会重复写入；普通用户只有显式授权后才能读取，创建和发布仍返回 `403`。下面将创建与重试的关键断言放在一个用例中，展示如何取得测试上下文并登录。`post()` 和 `key()` 是源码中的请求辅助函数，分别构造 JSON 请求和生成操作键：
 
 ```ts
-const values = { name: 'Catalog test lamp', priceCents: 3500 };
-const operation = key();
-const created = await admin.fetch('/products', post(values, operation));
-expect(created.status).toBe(201);
-const { data } = await created.json();
-expect(data).toMatchObject({ ...values, published: false });
-const repeated = await admin.fetch('/products', post(values, operation));
-expect(repeated.headers.get('Idempotency-Replayed')).toBe('true');
-expect(await connection.repository('catalogProducts').count({
-  filter: { name: values.name },
-})).toBe(1);
+test('creates a draft without duplicating retries', async ({ testApp, connection, request }) => {
+  expect((await request('/products')).status).toBe(401);
+  const admin = await signIn(testApp, DEFAULT_ADMIN_CREDENTIALS);
+  const values = { name: 'Catalog test lamp', priceCents: 3500 };
+  const operation = key();
+  const created = await admin.fetch('/products', post(values, operation));
+  expect(created.status).toBe(201);
+  const { data } = await created.json();
+  expect(data).toMatchObject({ ...values, published: false });
+  const repeated = await admin.fetch('/products', post(values, operation));
+  expect(repeated.headers.get('Idempotency-Replayed')).toBe('true');
+  expect(await connection.repository('catalogProducts').count({
+    filter: { name: values.name },
+  })).toBe(1);
+});
 ```
 
 ```bash
@@ -218,11 +224,18 @@ cli 测试验证参数处理、退出状态、标准输出、错误信息，以�
 
 **准备命令执行环境**
 
-应用命令依赖数据库或服务时，从 `@nocobase/app-testing/cli` 使用 `createTestAppConfig()` 创建隔离配置，准备测试数据，再通过 `bindTestAppCommand()` 将配置绑定到实际命令类。测试配置、存储路径和输出文件都应位于临时环境中。
+从 `@nocobase/app-testing/cli` 导入辅助工具，根据命令是否需要启动应用选择环境：
+
+| 命令依赖 | 准备方式 |
+| --- | --- |
+| 只处理参数或文件 | 使用 `bindAppCommand()` 绑定临时应用根目录和命令 ID，再用 `runAppCommand()` 执行 |
+| 依赖应用服务或数据库 | 使用 `createTestAppConfig()` 创建隔离配置，准备测试数据，通过 `bindTestAppCommand()` 绑定实际命令类，再执行 |
+
+测试自行创建的临时文件需要清理；应用配置使用 `config.dispose()` 清理。下方商品导出展示第二种方式，不启动应用的写法见[文件命令完整示例](https://github.com/nocobase/nocobase/blob/6cc8acf0c9062e99c759ed0a9ca1d038c4145705/packages/app/app-skills/skills/nocobase-app-development/references/testing/cli/files.md)。
 
 **执行命令并检查结果**
 
-使用 `runAppCommand(Command, args)` 执行命令。返回值包含 `exitCode`、`stdout`、`stderr` 等信息；命令支持 JSON 输出时，可通过 `json()` 读取结构化结果。检查成功输出的同时，查询数据库或读取生成文件，确认内容符合预期。支持试运行的命令还需确认未产生写入。
+使用 `runAppCommand(Command, args)` 执行命令。返回值包含 `exitCode`、`stdout`、`stderr` 等信息。成功时 `exitCode` 可以是 `undefined`，检查时用 `exitCode ?? 0` 归一化。命令支持 JSON 输出时，可通过 `json()` 读取结构化结果。检查成功输出的同时，查询数据库或读取生成文件，确认内容符合预期。支持试运行的命令还需确认未产生写入。
 
 对非法参数、目标已存在或执行失败等情况，检查退出状态、错误内容以及已有数据是否保持完整。JSON 模式下已处理的错误可能不在 `run.error` 中，应同时检查退出码和错误响应。
 
@@ -277,15 +290,25 @@ database 测试验证数据操作、约束、事务、迁移和初始数据。�
 
 从 `@nocobase/app-testing/server` 导入 `createDatabaseTest()`，通过 `migrations` 指定迁移来源，再使用用例上下文中的 `connection` 操作测试数据库。这些辅助能力由 `@nocobase/db-testing` 提供，并通过 app-testing 的 server 入口重导出。
 
+`createDatabaseTest()` 默认使用 `isolation: 'schema'`，每个用例重置测试数据库结构，再运行传入的迁移与 Seed，结束后清理连接和数据库。它不会自动安装应用及插件；需要初始数据时通过 `seeds` 显式指定来源，依赖插件服务时改用 `createAppTest()`。
+
 写入后重新查询，检查字段值和记录数量。验证约束时，既要确认非法写入失败，也要确认原有记录未被改变。验证事务时，在多步操作中触发失败，再查询数据库，确认没有留下部分写入。
 
 **验证迁移与初始数据**
 
-使用 `describeMigration()` 指定迁移来源，并分别在 `up`、`down` 回调中检查结果。辅助工具执行迁移、回滚和重新应用；业务断言仍需检查预期的表结构、字段和数据变化。
+使用 `describeMigration()` 指定迁移来源，并分别在 `up`、`down` 回调中检查结果。辅助工具执行迁移、回滚和重新应用，`up` 中的断言会执行两次；业务断言仍需检查预期的表结构、字段和数据变化。
 
 初始数据应验证首次执行的结果，以及重复执行是否符合预期，例如不重复插入、不覆盖用户修改。如果初始化过程依赖认证、授权等插件服务，应使用 server 测试环境加载完整应用。
 
-测试应使用独立数据库。涉及数据库方言差异的功能，需要在项目实际使用的数据库中执行验证。
+**选择测试数据库**
+
+`NOCOBASE_TEST_DB_DIALECT` 选择测试方言，未设置时使用 SQLite。切换方言前，需要安装兼容版本的驱动，并配置该驱动要求的测试服务与连接参数；测试账号应具备创建和清理隔离数据库或 schema 的权限。例如，完成 PostgreSQL 测试环境配置后，可运行：
+
+```bash
+NOCOBASE_TEST_DB_DIALECT=postgres pnpm test --project node tests/database/catalog-data.test.ts
+```
+
+此命令展示切换方式，本文商品示例实际验证的是 SQLite。具体连接配置见[数据库测试环境说明](https://github.com/nocobase/nocobase/blob/6cc8acf0c9062e99c759ed0a9ca1d038c4145705/packages/app/app-skills/skills/nocobase-app-development/references/testing/database/repository.md)。同一环境选择也适用于使用套件隔离数据库的 server 和 cli 测试。
 
 **示例：商品数据的事务与迁移**
 
@@ -370,7 +393,7 @@ UI 测试打开实际应用，检查页面、接口、会话与数据共同参�
 | Agent 自主验证 | 开发过程中针对改动检查界面，发现问题后修复并复测 | 实际操作、观察结果、问题与复测记录 |
 | 人工验证 | 结合真实工作场景检查流程、业务术语和使用体验 | 场景、预期结果、实际结果和使用者反馈 |
 
-三种方式都应检查关键流程、角色差异和必要的异常状态。界面入口受到限制，并不能证明服务端拒绝越权，还需要结合接口权限测试。
+三种方式都应检查关键流程、角色差异和必要的异常状态。需要确认数据持久化时，刷新或重新进入页面检查保存结果。界面入口受到限制，并不能证明服务端拒绝越权，还需要结合接口权限测试。
 
 ### 使用 Playwright 自动验证
 
@@ -384,9 +407,9 @@ playwright 测试在真实浏览器中验证完整的用户路径，覆盖页面
 
 **操作页面并验证结果**
 
-优先按角色、标签和可见名称定位元素，使用 `fill()`、`click()` 等操作模拟用户行为，再通过 Playwright 的断言等待预期状态。需要验证保存结果时，刷新或重新访问页面，确认数据仍然存在。
+优先按角色、标签和可见名称定位元素，使用 `fill()`、`click()` 等操作模拟用户行为，再通过 Playwright 的断言等待预期状态。
 
-关键流程应包含正常路径和必要的异常路径。可以控制网络响应复现暂时失败或延迟，检查提示、重试和重复提交；这类受控场景应与真实接口完成的正常流程区分。权限测试还需与 server 测试配合，验证界面限制和接口拒绝行为。
+关键流程应包含正常路径和必要的异常路径。可以控制网络响应复现暂时失败或延迟，检查提示、重试和重复提交；这类受控场景应与真实接口完成的正常流程区分。
 
 **查看失败信息与测试报告**
 
@@ -449,9 +472,9 @@ NocoBase 应用开发 Skill 的[前端工作流](https://github.com/nocobase/noc
 
 **保留实际验证结果**
 
-Agent 的交付说明应列出实际访问的页面、使用的角色、执行的操作、观察到的结果，以及发现问题后的复测情况。关键状态可以保留截图；截图不能替代对操作和结果的记录。
+Agent 的交付说明应列出实际访问的页面、使用的角色、执行的操作、观察到的结果，以及发现问题后的复测情况，并保留必要的关键状态截图。
 
-没有可用浏览器、应用无法启动或缺少登录会话时，应明确记录阻碍和未验证项。开发 Skill 规定了应执行的检查，不代表每个 Agent 环境都会自动具备条件或已经完成检查。对本次发现且需要持续防止回归的问题，再补充相应的固定测试用例。
+没有可用浏览器、应用无法启动或缺少登录会话时，应明确记录阻碍和未验证项。对本次发现且需要持续防止回归的问题，再补充相应的固定测试用例。
 
 ### 人工验证
 
@@ -469,7 +492,7 @@ Agent 的交付说明应列出实际访问的页面、使用的角色、执行�
 | 编辑员拥有一个草稿商品 | 发布商品，再打开公开目录 | 状态变为已发布，公开目录中可以找到商品 |
 | 只读账号已登录 | 打开商品页面并查看记录 | 可以查看，没有创建或发布入口 |
 
-执行时检查页面反馈与实际数据是否一致。对需要持久保存的结果，刷新或重新进入页面确认；对有数据范围限制的功能，分别使用不同账号检查列表、详情和导出内容。界面没有编辑入口，只能证明入口受到限制，服务端是否拒绝越权仍需结合接口测试确认。
+执行时检查页面反馈与实际数据是否一致，并使用不同账号核对可见数据是否符合各自的职责。
 
 每个场景记录“操作、预期结果、实际结果、通过或失败”。发现问题时，补充应用版本、角色、相关数据和复现步骤，必要时附截图或错误信息，让开发者能够复现。
 

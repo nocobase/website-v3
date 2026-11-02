@@ -27,10 +27,10 @@ NocoBase 提供 8 种数据库方言。方言是连接配置中 `dialect` 的取
 | 人大金仓 KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 兼容模式，`DB_MODE=pg` |
 | OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 兼容租户 |
 
-这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权。从授权交付方取得私有仓库地址、账号信息及具有下载权限的只读令牌（`nbr_…`）。将下方的 `<NocoBase 商业插件的 Pro registry>` 替换为取得的仓库地址，再执行命令，按提示将令牌作为密码输入：
+这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权。从授权交付方取得私有仓库地址、账号信息及具有下载权限的只读令牌（`nbr_…`）。将下方的 `<nocobase-pro-registry-url>` 替换为取得的仓库地址，再执行命令，按提示将令牌作为密码输入：
 
 ```bash
-pnpm login --registry="<NocoBase 商业插件的 Pro registry>" --scope=@nocobase
+pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
 ```
 
 该命令在用户级配置中将 `@nocobase` 映射到 Pro registry；此仓库也代理公开的 NocoBase 包，其他依赖仍使用原有 registry。不要把令牌写入文档、命令行参数或提交到 Git。

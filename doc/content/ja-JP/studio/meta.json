@@ -158,16 +158,16 @@
           "path": "project/checks-and-review"
         },
         {
-          "type": "page",
-          "path": "quality/plans"
+          "type": "planned",
+          "title": "品質計画"
         },
         {
-          "type": "page",
-          "path": "quality/follow-ups"
+          "type": "planned",
+          "title": "品質フォローアップ"
         },
         {
-          "type": "page",
-          "path": "quality/standards"
+          "type": "planned",
+          "title": "受け入れ基準"
         }
       ]
     },

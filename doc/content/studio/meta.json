@@ -158,16 +158,16 @@
           "path": "project/checks-and-review"
         },
         {
-          "type": "page",
-          "path": "quality/plans"
+          "type": "planned",
+          "title": "Quality plans"
         },
         {
-          "type": "page",
-          "path": "quality/follow-ups"
+          "type": "planned",
+          "title": "Quality follow-ups"
         },
         {
-          "type": "page",
-          "path": "quality/standards"
+          "type": "planned",
+          "title": "Acceptance standards"
         }
       ]
     },

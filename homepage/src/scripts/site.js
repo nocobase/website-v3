@@ -111,6 +111,33 @@ if (document.querySelector('form[data-public-form-zh][data-public-form-en]')) im
     big.style.maxHeight = img.naturalHeight ? img.naturalHeight * 2 + 'px' : '';
     zoom.showModal();
   });
+  /* 文章目录：高亮最后一个滚到视口上方 TOC_LINE 以内的标题，并让它留在目录的可视范围内（目录比屏幕长时自己滚动，不带动页面）。图片加载会改变标题位置，所以每次都重新量。
+     点目录跳转后标题停在 170px（html 的 scroll-padding-top 加标题的 scroll-margin-top），判定线要比它略低，否则高亮的是上一项 */
+  var TOC_LINE = 180;
+  var toc = document.querySelector('.toc');
+  if (toc) {
+    var tocLinks = [].slice.call(toc.querySelectorAll('a'));
+    var tocHeads = tocLinks.map(function (a) { return document.getElementById(a.hash.slice(1)); });
+    var tocOn = -1, tocTick = false;
+    var tocUpdate = function () {
+      tocTick = false;
+      var cur = -1;
+      for (var i = 0; i < tocHeads.length && tocHeads[i].getBoundingClientRect().top <= TOC_LINE; i++) cur = i;
+      if (cur === tocOn) return;
+      if (tocOn >= 0) { tocLinks[tocOn].classList.remove('on'); tocLinks[tocOn].removeAttribute('aria-current'); }
+      tocOn = cur;
+      if (cur < 0) return;
+      var a = tocLinks[cur], box = toc.getBoundingClientRect(), r = a.getBoundingClientRect();
+      a.classList.add('on');
+      a.setAttribute('aria-current', 'location');
+      if (r.top < box.top || r.bottom > box.bottom) toc.scrollTop += r.top - box.top - (box.height - r.height) / 2;
+    };
+    var tocSchedule = function () { if (!tocTick) { tocTick = true; requestAnimationFrame(tocUpdate); } };
+    window.addEventListener('scroll', tocSchedule, { passive: true });
+    window.addEventListener('resize', tocSchedule);
+    window.addEventListener('load', tocSchedule);
+    tocUpdate();
+  }
   fit();
   window.addEventListener('resize', fit);
   window.addEventListener('load', fit);

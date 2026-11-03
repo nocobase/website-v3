@@ -5,6 +5,8 @@ description: 创建应用并构建 Docker 镜像，在服务器配置持久化�
 
 ## 部署前准备
 
+以下直接通过 IP 和 HTTP 访问的示例仅用于可信网络中的部署验证。通过公网或不可信网络访问时，先配置域名、HTTPS 和反向代理，再登录管理员账号。
+
 开发机需要 Node.js 24 或更高版本、pnpm 11 和 Docker；服务器需要 Docker 和支持 `--wait` 的 Docker Compose 插件。以下命令使用 Bash，以 Linux x64、SQLite、单实例部署为例。使用其他数据库时，先在应用中安装对应驱动，再构建镜像，并在服务器填写数据库连接配置。
 
 在开发机和服务器分别检查 Docker，服务器还需检查 Compose：
@@ -207,7 +209,7 @@ services:
 YAML
 ```
 
-使用 `sudoedit docker-compose.yml` 将 `YOUR_SERVER_IP` 替换为实际服务器 IP。目录结构为：
+使用 `sudo vi docker-compose.yml` 将 `YOUR_SERVER_IP` 替换为实际服务器 IP。目录结构为：
 
 ```text
 my-app-deploy/
@@ -303,7 +305,7 @@ sudo tar -czf \
 
 ### 更新镜像标签并检查迁移
 
-用 `sudoedit docker-compose.yml` 将 `image: my-app:1` 改为 `image: my-app:2`，保留原来的挂载路径。若新版本需要新增配置，在原 `config.yml` 上调整并保持容器用户可读。
+用 `sudo vi docker-compose.yml` 将 `image: my-app:1` 改为 `image: my-app:2`，保留原来的挂载路径。若新版本需要新增配置，在原 `config.yml` 上调整并保持容器用户可读。
 
 使用新镜像检查：
 

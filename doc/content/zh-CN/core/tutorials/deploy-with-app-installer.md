@@ -7,6 +7,8 @@ description: 构建应用部署包，上传到服务器后使用 app-installer �
 
 ## 部署前准备
 
+
+以下直接通过 IP 和 HTTP 访问的示例仅用于可信网络中的部署验证。通过公网或不可信网络访问时，先配置域名、HTTPS 和反向代理，再登录管理员账号。
 开发机需要 Node.js 24、pnpm 11。服务器需要 Node.js 24、全局安装的 PM2 4.3 或以上版本。以下命令使用 Bash，以 Linux x64/glibc、SQLite、单实例为例。其他数据库需要在应用源码中安装对应驱动后重新构建，并在安装时填写连接配置。
 
 示例使用应用名 `my-app`、SSH 目标 `deploy@server`、安装目录 `/srv/nocobase/my-app`、PM2 进程名 `nocobase-my-app`、端口 `13000` 和应用路径 `/main`。替换为自己的目标；多个应用使用独立的目录、端口和进程名。

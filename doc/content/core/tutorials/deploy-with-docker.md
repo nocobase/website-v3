@@ -5,6 +5,8 @@ description: Create an application, build and transfer its Docker image, and dep
 
 ## Prerequisites
 
+The direct IP and HTTP examples below are for deployment checks on a trusted network. Before administrator sign-in over a public or untrusted network, configure a domain, HTTPS and a reverse proxy.
+
 The development machine needs Node.js 24 or later, pnpm 11 and Docker. The server needs Docker and a Docker Compose plugin supporting `--wait`. Commands use Bash and demonstrate a single-instance deployment on Linux x64 with SQLite. For another database, install its driver in the application before building the image, then configure the connection on the server.
 
 Check Docker on both machines, and Compose on the server:
@@ -207,7 +209,7 @@ services:
 YAML
 ```
 
-Run `sudoedit docker-compose.yml` and replace `YOUR_SERVER_IP` with the actual server IP. The directory now contains:
+Run `sudo vi docker-compose.yml` and replace `YOUR_SERVER_IP` with the actual server IP. The directory now contains:
 
 ```text
 my-app-deploy/
@@ -303,7 +305,7 @@ Confirm the backup succeeded and inspect the archive for the configuration, stor
 
 ### Update the image tag and check migrations
 
-Run `sudoedit docker-compose.yml` and change `image: my-app:1` to `image: my-app:2`, keeping the existing mount paths. If the new version requires additional configuration, update the existing `config.yml` and keep it readable by the container user.
+Run `sudo vi docker-compose.yml` and change `image: my-app:1` to `image: my-app:2`, keeping the existing mount paths. If the new version requires additional configuration, update the existing `config.yml` and keep it readable by the container user.
 
 Check with the new image:
 

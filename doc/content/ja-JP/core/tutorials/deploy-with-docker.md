@@ -5,6 +5,8 @@ description: アプリを作成して Docker イメージをビルド・転送�
 
 ## 前提条件
 
+以下の IP と HTTP による直接アクセスの例は、信頼できるネットワーク内でのデプロイ確認用です。公開ネットワークや信頼できないネットワークから管理者としてサインインする前に、ドメイン、HTTPS、リバースプロキシを設定してください。
+
 開発マシンには Node.js 24 以上、pnpm 11、Docker が必要です。サーバーには Docker と `--wait` に対応する Docker Compose プラグインが必要です。以下は Bash を使い、Linux x64、SQLite、単一インスタンスでデプロイする例です。別のデータベースを使う場合は、イメージのビルド前に対応するドライバーをアプリにインストールし、サーバーで接続を設定してください。
 
 両方のマシンで Docker を、サーバーでは Compose も確認します：
@@ -207,7 +209,7 @@ services:
 YAML
 ```
 
-`sudoedit docker-compose.yml` を実行し、`YOUR_SERVER_IP` を実際のサーバー IP に置き換えます。ディレクトリは次の構成になります：
+`sudo vi docker-compose.yml` を実行し、`YOUR_SERVER_IP` を実際のサーバー IP に置き換えます。ディレクトリは次の構成になります：
 
 ```text
 my-app-deploy/
@@ -303,7 +305,7 @@ sudo tar -czf \
 
 ### イメージタグを更新してマイグレーションを確認する
 
-`sudoedit docker-compose.yml` で `image: my-app:1` を `image: my-app:2` に変更し、マウント先はそのままにします。新しい設定が必要な場合は元の `config.yml` を更新し、コンテナユーザーが引き続き読めるようにしてください。
+`sudo vi docker-compose.yml` で `image: my-app:1` を `image: my-app:2` に変更し、マウント先はそのままにします。新しい設定が必要な場合は元の `config.yml` を更新し、コンテナユーザーが引き続き読めるようにしてください。
 
 新しいイメージで確認します：
 

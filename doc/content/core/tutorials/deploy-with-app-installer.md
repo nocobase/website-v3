@@ -7,6 +7,8 @@ description: Build an application archive and upload it to the server and instal
 
 ## Prerequisites
 
+
+The direct IP and HTTP examples below are for deployment checks on a trusted network. Before administrator sign-in over a public or untrusted network, configure a domain, HTTPS and a reverse proxy.
 The development machine needs Node.js 24 and pnpm 11. The server needs Node.js 24 and globally installed PM2 4.3 or later. Commands use Bash and demonstrate a single instance on Linux x64/glibc with SQLite. For another database, install its driver in the application sources before rebuilding and supply connection settings during installation.
 
 Examples use application `my-app`, SSH destination `deploy@server`, installation directory `/srv/nocobase/my-app`, PM2 process `nocobase-my-app`, port `13000` and application path `/main`. Substitute your own targets. Give each application a separate directory, port and process name.

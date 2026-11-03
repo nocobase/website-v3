@@ -45,6 +45,22 @@ export function fmtDate(d, lang) {
   const [y, m, dd] = d.split('-').map(Number);
   return lang === 'cn' || ja ? `${y}年${m}月${dd}日` : `${MONTHS[m - 1]} ${dd}, ${y}`;
 }
+// 给正文的标题加 id 并收集目录项 [id, 文字, 缩进层数]。H2 的 id 沿用 <前缀>-<序号>，已经发出去的 #en-1 这类链接不会变；其他标题是 <前缀>-<所属 H2 序号>-<序号>。
+// 正文里零星的 H1 在目录里按 H2 算，否则整篇的 H2 都要多缩进一层。正文本来就是 HTML，去掉标签后的文字已经转义过，不要再转义一次。没有文字的标题（比如只放了一张图）不进目录。
+export function withIds(body, prefix) {
+  const toc = [];
+  let h2 = 0, sub = 0;
+  body = body.replace(/<h([1-6])>([\s\S]*?)<\/h\1>/g, (m, n, h) => {
+    if (n === '2') { h2++; sub = 0; }
+    const hid = n === '2' ? `${prefix}-${h2}` : `${prefix}-${h2}-${++sub}`;
+    const text = h.replace(/<[^>]+>/g, '').trim();
+    if (text) toc.push([hid, text, Math.max(+n, 2)]);
+    return `<h${n} id="${hid}">${h}</h${n}>`;
+  });
+  const top = Math.min(...toc.map(t => t[2]));
+  return [body, toc.map(([i, x, l]) => [i, x, l - top])];
+}
+
 const zip = (a, b) => a.slice(0, Math.min(a.length, b.length)).map((x, i) => [x, b[i]]);
 
 // 新官网的文章：posts.json 里打了 Customer Stories 标签的和 cs-posts.json 的（加上阳光电源）是客户案例 /customers/<slug>/，其余是博客 /blog/<slug>/，都有英文和 zh-CN 版。正文里旧博客地址的替换（lib/links.mjs 的 legacySiteLinks）按它判断。
@@ -102,15 +118,6 @@ function generate(posts, stories, site) {
       return m;
     });
   }
-  function withIds(body, prefix) {
-    const toc = [];
-    body = body.replace(/<h2>([\s\S]*?)<\/h2>/g, (m, h) => {
-      const hid = `${prefix}-${toc.length + 1}`;
-      toc.push([hid, h.replace(/<[^>]+>/g, '').trim()]);
-      return `<h2 id="${hid}">${h}</h2>`;
-    });
-    return [body, toc];
-  }
   const src = slug => posts[slug] || stories[slug];
   const tags = slug => zip(src(slug).cn.tags, src(slug).en.tags).map(([z, x]) => `<span class="pill">${T(esc(z), esc(x))}</span>`).join('');
   const meta = slug => {
@@ -163,7 +170,7 @@ function generate(posts, stories, site) {
 </script>`;
   build('blog', 'blog', '博客 — NocoBase', jaText('Blog — NocoBase'), 'NocoBase 博客：用 AI 构建业务系统的方法、版本更新与客户故事。', jaText('The NocoBase blog: building business systems with AI, release notes, and customer stories.'), listing);
 
-  const toc = t => t.map(([i, x]) => `<a href="#${i}">${esc(x)}</a>`).join('');
+  const toc = t => t.map(([i, x, d]) => `<a href="#${i}"${d ? ` style="--d:${d}"` : ''}>${x}</a>`).join('');
   // 详情页
   for (const slug of order) {
     const e = posts[slug].en, c = posts[slug].cn;
@@ -206,7 +213,7 @@ function generate(posts, stories, site) {
   const clist = `<section class="phero">
   <div class="container">
     <p class="label"><b>${T('客户案例', 'Customer Stories')}</b></p>
-    <h1>${T('全球各行业团队，<span class="m">用 NocoBase 构建核心业务系统。</span>', 'Teams worldwide <span class="m">build core business systems on NocoBase.</span>')}</h1>
+    <h1>${T('全球各行业团队，<br><span class="m">用 NocoBase 构建核心业务系统。</span>', 'Teams worldwide <span class="m">build core business systems on NocoBase.</span>')}</h1>
     <p class="lede">${T('从新能源、制造、医疗到政府与高校，看他们为什么选择 NocoBase，怎样搭建、上线并持续改进自己的系统。', 'From energy, manufacturing, and healthcare to government and universities—why they chose NocoBase, and how they built, launched, and keep improving their systems.')}</p>
     <div class="cs-logos">${logos}</div>
   </div>

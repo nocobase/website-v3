@@ -152,7 +152,7 @@ describeMigration('202611040020_notice_data_create_categories', {
 pnpm --filter @nocobase/app-plugin-notice-data exec vitest run tests/database/categories.test.ts
 ```
 
-新增升级迁移时，先准备旧版本数据，再验证升级后的记录与约束。测试工具的共同用法见[数据库与命令行测试](../developing-apps/testing-and-acceptance.md#数据库与命令行测试)。
+新增升级迁移时，先准备旧版本数据，再验证升级后的记录与约束。测试工具的共同用法见[数据库测试](../developing-apps/testing-and-acceptance.md#database数据与迁移)。
 
 ## 构建和交付数据库资源
 

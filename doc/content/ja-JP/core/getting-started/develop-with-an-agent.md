@@ -56,7 +56,7 @@ metaDescription: エージェントと開発するときに、要件を伝え、
 閲覧専用ユーザーは記録を閲覧できても、追加はできないようにしてください。
 ```
 
-エージェントが従うテストと検証の方法については、[テストと検収](../developing-apps/testing-and-acceptance.md) を参照してください。
+エージェントが従うテストと検証の方法については、[テスト](../developing-apps/testing-and-acceptance.md) を参照してください。
 
 ## 大きな要件を分割する
 

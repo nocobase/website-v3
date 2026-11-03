@@ -62,4 +62,4 @@ await database.transaction(async (connection) => {
 
 在隔离数据库中，至少覆盖成功提交、第一步写入后第二步失败，以及提交后回调失败。失败后必须重新读取数据，确认是否回滚；只断言抛错不能证明原记录未改变。
 
-再验证唯一键竞争、版本冲突、权限范围和连接隔离。SQLite 测试可以验证基础规则，但不能替代目标数据库的隔离级别、锁及 DDL 行为验证。项目示例的真实接口测试见[历史项目接口示例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)，通用测试组织见[测试与验收](testing-and-acceptance.md)。
+再验证唯一键竞争、版本冲突、权限范围和连接隔离。SQLite 测试可以验证基础规则，但不能替代目标数据库的隔离级别、锁及 DDL 行为验证。项目示例的真实接口测试见[历史项目接口示例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/zh-CN/core/developing-apps/apis-and-services.md)，通用测试组织见[测试](testing-and-acceptance.md)。

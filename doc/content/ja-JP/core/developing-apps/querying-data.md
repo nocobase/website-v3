@@ -141,4 +141,4 @@ Query の条件は `where(field, operator, value)` を取り、値はパラメ�
 
 フィルター、安定した順序、空の結果、リレーション、一括操作の範囲には実際のテスト用データベースを、認可には実際のアプリと一般ユーザーを使います。トランザクション内で失敗を起こし、データベースを読み直して、それより前の書き込みもロールバックされたことを確認します。Repository をモックしても、その動作は確認できません。
 
-プロジェクトのサービスの全体は [過去のプロジェクトのサービスのソース](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md) を、フィクスチャーの選び方は [テストと検収](testing-and-acceptance.md) を参照してください。
+プロジェクトのサービスの全体は [過去のプロジェクトのサービスのソース](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/server-business-services.md) を、フィクスチャーの選び方は [テスト](testing-and-acceptance.md) を参照してください。

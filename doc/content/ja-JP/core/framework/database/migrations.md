@@ -164,6 +164,6 @@ pnpm nocobase db rollback --dry-run
 
 アプリとプラグインは `@nocobase/app-testing/server` から `describeMigration()` をインポートし、実際のマイグレーションの取得元を渡します。`before` で過去のデータを用意し、`up` で変更されたスキーマとレコードを確認し、`down` で元に戻したあとのデータを確認します。元に戻せないマイグレーションには `reversible: false` を設定します。
 
-このヘルパーは、物理的なスキーマとメタデータの整合性と、元に戻せるマイグレーションのロールバックと再適用を確認します。業務上のアサーション、特に既存のレコードの保持、埋め戻しの条件、無効な参照、削除の影響は、自分で書いてください。[データベースとコマンドラインのテスト](../../developing-apps/testing-and-acceptance.md#データベースとコマンドラインのテスト) を参照してください。
+このヘルパーは、物理的なスキーマとメタデータの整合性と、元に戻せるマイグレーションのロールバックと再適用を確認します。業務上のアサーション、特に既存のレコードの保持、埋め戻しの条件、無効な参照、削除の影響は、自分で書いてください。[データベースのテスト](../../developing-apps/testing-and-acceptance.md#databaseデータとマイグレーション) を参照してください。
 
 [ランナーの実装を見る](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db/src/migration/migrator.ts) と [マイグレーションの動作のテスト](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db-testkit/tests/integration/migration/migrator.test.ts)。

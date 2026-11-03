@@ -61,4 +61,4 @@ await database.transaction(async (connection) => {
 
 分離されたデータベースで、正常なコミット、最初の書き込み後の失敗、コミット後のコールバックの失敗を網羅します。失敗後にデータを読み直して、ロールバックされたかどうかを確認します。例外が起きたことを確認するだけでは不十分です。
 
-一意キーの競合、バージョンの競合、認可の範囲、接続の分離もテストします。SQLite で基本的なルールは検証できますが、ほかのデータベースの分離レベル、ロック、DDL の動作は検証できません。プロジェクトのエンドポイントのテストは [過去のプロジェクトの API の例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md) からリンクされています。テストの構成については [テストと検収](testing-and-acceptance.md) を参照してください。
+一意キーの競合、バージョンの競合、認可の範囲、接続の分離もテストします。SQLite で基本的なルールは検証できますが、ほかのデータベースの分離レベル、ロック、DDL の動作は検証できません。プロジェクトのエンドポイントのテストは [過去のプロジェクトの API の例](https://github.com/nocobase/website-v3/blob/963e7d7570b6f4b0a4bb37ba48af54bff2f219e6/doc/content/core/developing-apps/apis-and-services.md) からリンクされています。テストの構成については [テスト](testing-and-acceptance.md) を参照してください。

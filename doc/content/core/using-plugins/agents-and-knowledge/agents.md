@@ -344,7 +344,7 @@ Run the example's relevant automated tests from its application directory:
 pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts tests/client/release-notes-button.test.tsx
 ```
 
-Before delivery, follow the project's checks with `pnpm check`, covering package checks, lint, formatting, types, tests and build. Inspect the cases and results: a successful exit with no tests found is not verification. See [Testing and acceptance](../../developing-apps/testing-and-acceptance.md) for more methods.
+Before delivery, follow the project's checks with `pnpm check`, covering package checks, lint, formatting, types, tests and build. Inspect the cases and results: a successful exit with no tests found is not verification. See [Testing](../../developing-apps/testing-and-acceptance.md) for more methods.
 
 ### Example verification scope
 

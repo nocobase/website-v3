@@ -22,7 +22,7 @@ Two problems:
 - The old requests submitted in Device requests and approval and Roles and permissions have no needed-by date, yet show `Jan 1, 1970, 7:30 AM`.
 - The new request shows `Nov 6, 2026, 8:00 AM`, with a time after the date.
 
-When accepting, use existing data and walk through each role's daily work. Once a scenario is settled, you can have the agent turn it into a browser test; see [Testing and acceptance](../core/developing-apps/testing-and-acceptance.md#browser-tests-and-functional-acceptance).
+When accepting, use existing data and walk through each role's daily work. Once a scenario is settled, you can have the agent turn it into a browser test; see [Testing](../core/developing-apps/testing-and-acceptance.md#automated-verification-with-playwright).
 
 ## 3. Send it back
 

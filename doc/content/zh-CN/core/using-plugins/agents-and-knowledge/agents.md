@@ -344,7 +344,7 @@ Runner 的访问范围取决于机器和编码工具策略，它本身不是文�
 pnpm exec vitest run tests/client/client-routes.test.ts tests/client/app-locale-coverage.test.ts tests/client/page-permission-titles.test.ts tests/client/release-notes-button.test.tsx
 ```
 
-交付前按项目要求运行 `pnpm check`，它包含包检查、lint、格式、类型、测试和构建。检查实际执行的用例及结果，不能把“没有找到测试但正常退出”当作验证通过。更多方法见 [测试与验收](../../developing-apps/testing-and-acceptance.md)。
+交付前按项目要求运行 `pnpm check`，它包含包检查、lint、格式、类型、测试和构建。检查实际执行的用例及结果，不能把“没有找到测试但正常退出”当作验证通过。更多方法见 [测试](../../developing-apps/testing-and-acceptance.md)。
 
 ### 示例的验证范围
 

@@ -92,6 +92,6 @@ CLI を登録していれば、`pnpm nocobase scheduler sync` で宣言を同期
 
 終了時は、Scheduler の `drain()` が落ち着くまで依存関係を保ってください。外部の作業や人による作業がすべて終わるのを待つわけではありません。関連：[バックグラウンドジョブ](../../framework/background/jobs.md)、[スケジュール](../../framework/background/scheduling.md)、[プラグインを管理する](../../developing-apps/manage-plugins.md)。
 
-これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テストと検収](../../developing-apps/testing-and-acceptance.md) を参照してください。
+これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
 
 出典：[公開のプラグインの入口と実装](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-scheduler)。

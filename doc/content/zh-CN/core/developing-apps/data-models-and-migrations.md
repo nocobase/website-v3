@@ -130,7 +130,7 @@ pnpm exec vitest run --project node tests/database/app-statuses.test.ts
 
 失败测试调用真实 Seed 后主动抛错，检查记录与成功历史都回滚，再解除失败条件重试。另一个测试使用独立历史表再次运行同一 Seed，验证业务幂等，不把执行器跳过历史误当作写入逻辑本身幂等。
 
-这些测试不会重置应用的开发数据库。`describeMigration()` 和 `createDatabaseTest()` 的使用方式、其他方言测试配置见[数据库与命令行测试](testing-and-acceptance.md#数据库与命令行测试)。
+这些测试不会重置应用的开发数据库。`describeMigration()` 和 `createDatabaseTest()` 的使用方式、其他方言测试配置见[数据库测试](testing-and-acceptance.md#database数据与迁移)。
 
 ## 示例源码与运行
 

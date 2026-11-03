@@ -164,6 +164,6 @@ Seed 没有 `down()`，迁移回退也不删除 Seed 历史。`db redo` 回退�
 
 应用和插件从 `@nocobase/app-testing/server` 导入 `describeMigration()`，提供真实迁移来源。在 `before` 准备旧数据，`up` 检查变更后结构与记录，`down` 检查回退后的数据；不可逆迁移设置 `reversible: false`。
 
-辅助工具会检查物理结构与元数据的一致性，并对可逆迁移验证回退与重新应用。业务断言仍需自己编写，特别是旧记录保留、回填条件、非法引用及删除行为。测试入口见[数据库与命令行测试](../../developing-apps/testing-and-acceptance.md#数据库与命令行测试)。
+辅助工具会检查物理结构与元数据的一致性，并对可逆迁移验证回退与重新应用。业务断言仍需自己编写，特别是旧记录保留、回填条件、非法引用及删除行为。测试入口见[数据库测试](../../developing-apps/testing-and-acceptance.md#database数据与迁移)。
 
 [查看执行器实现](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db/src/migration/migrator.ts)与 [迁移行为测试](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db-testkit/tests/integration/migration/migrator.test.ts)。

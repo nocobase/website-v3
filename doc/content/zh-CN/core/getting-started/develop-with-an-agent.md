@@ -56,7 +56,7 @@ Agent 开发完会自己运行测试，在浏览器里逐项验收并截图，�
 只读用户应该只能查看，不能添加。
 ```
 
-想了解 Agent 按什么规则测试和检查，见[测试与验收](../developing-apps/testing-and-acceptance.md)。
+想了解 Agent 按什么规则测试和检查，见[测试](../developing-apps/testing-and-acceptance.md)。
 
 ## 拆分需求
 

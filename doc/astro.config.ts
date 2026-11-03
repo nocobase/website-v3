@@ -6,7 +6,7 @@ import { noindexFilter, xDefaultSerializer } from '@nocobase/site-shared/sitemap
 import remarkCallouts from './plugins/remark-callouts.mjs';
 import remarkFigures from './plugins/remark-figures.mjs';
 import remarkLinks from './plugins/remark-links.mjs';
-import rehypeDocs, { SPECIAL_LANGS } from './plugins/rehype-docs.mjs';
+import rehypeDocs, { SPECIAL_LANGS, codeTitleTransformer } from './plugins/rehype-docs.mjs';
 import docs from './src/integrations/docs.mjs';
 import { docsFiles } from './src/lib/llms.mjs';
 import { DIST } from './src/lib/paths.mjs';
@@ -75,7 +75,7 @@ export default defineConfig({
     shikiConfig: {
       theme: 'css-variables',
       // The theme colors come from CSS variables (src/styles/docs.css); the toolbar and block look come from rehype-docs
-      transformers: [{ pre(node) { delete node.properties.style; } }],
+      transformers: [codeTitleTransformer, { pre(node) { delete node.properties.style; } }],
     },
     processor: unified({
       gfm: true,

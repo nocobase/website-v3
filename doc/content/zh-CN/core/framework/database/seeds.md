@@ -130,6 +130,6 @@ Seed 没有回退入口，迁移回退不清除 Seed 历史。修改成功文件
 
 使用隔离的真实数据库，检查空库安装、已有业务键、保留用户修改以及失败后重试。还要区分两个测试：重复调用 Seeder 应按历史跳过；在受控测试中再次执行同一 `run()` 逻辑，应验证其业务幂等行为。
 
-失败用例应在写入后主动抛错，再检查记录和成功历史都未保留，并在解除失败条件后验证可以成功执行。sample Seed 分别检查开启、关闭以及后续补载，不能仅检查文件可导入。测试工具见[数据库与命令行测试](../../developing-apps/testing-and-acceptance.md#数据库与命令行测试)。
+失败用例应在写入后主动抛错，再检查记录和成功历史都未保留，并在解除失败条件后验证可以成功执行。sample Seed 分别检查开启、关闭以及后续补载，不能仅检查文件可导入。测试工具见[数据库测试](../../developing-apps/testing-and-acceptance.md#database数据与迁移)。
 
 [Seed 接口](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db/src/seed/types.ts)、[执行器实现](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db/src/seed/seeder.ts)与 [Seed 行为测试](https://github.com/nocobase/nocobase/blob/d04061ee252afbcc2f42cf1d69ab8888e72d604a/packages/libs/db-testkit/tests/integration/seed/seeder.test.ts)。

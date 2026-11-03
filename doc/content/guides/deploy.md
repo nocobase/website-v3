@@ -28,7 +28,7 @@ What the agent did:
 | Run | Writes `compose.yml`: the configuration is mounted read-only at `/app/config.yml`, `storage/` is mounted at `/app/storage`, and `APP_BASE_PATH` is set to `/itam` |
 | Check | `config check --connect` checks the configuration and the database connection, and `up -d --wait` waits until the health check passes |
 
-For every command and the full Compose file, see [Deploy with Docker](../core/tutorials/deploy-with-docker.md#without-an-agent).
+For every command and the full Compose file, see [Deploy with Docker](../core/tutorials/deploy-with-docker.md#manual-deployment).
 
 ## 3. Keep configuration, data and the image apart
 
@@ -48,7 +48,7 @@ Open `https://<domain>/itam/`, sign in as the administrator, and create a device
 
 After the agent recreates the container, the device is still there, and so is the sign-in session.
 
-To release a new version, build an image with a new tag, back up the deployment directory first, then swap the image while keeping the existing configuration and data; see [Publish a new release](../core/tutorials/deploy-with-docker.md#publish-a-new-release).
+To release a new version, build an image with a new tag, back up the deployment directory first, then swap the image while keeping the existing configuration and data; see [Publish a new release](../core/tutorials/deploy-with-docker.md#deploy-a-new-version-manually).
 
 ## 5. Record the deployment
 

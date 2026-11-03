@@ -1,149 +1,202 @@
 ---
 title: 使用 Docker 部署
-description: 使用应用自带的 Dockerfile 构建镜像，独立部署生产应用，通过 Compose 持久化配置和应用数据。
+description: 创建应用并构建 Docker 镜像，在服务器配置持久化存储，通过 Docker Compose 首次部署应用和部署新版本。
 ---
-
-本文以商品目录应用为例说明部署流程，也适用于自己的 NocoBase Core 应用。先按[选择部署方式](../deployment/choose-a-deployment-method.md)确认目标环境；部署自己的项目时，替换示例中的应用名称、路径和业务验收项。
-
-这一篇使用应用自带的 `Dockerfile` 构建商品目录应用镜像，再用 Docker Compose 在自己的生产服务器上启动。镜像保存代码和生产依赖，服务器上的独立目录保存配置、数据库和上传文件。
-
-部署前确认应用已通过测试；商品目录示例的测试步骤见[商品目录示例说明](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md)。以下以 Linux x64、单实例 SQLite 为例，使用模板的 Node.js 24 Debian 镜像。服务器需要 Docker 和 Compose 插件。
 
 ## 部署前准备
 
-在构建镜像的开发机和运行容器的服务器上，分别确认 Docker 可用；服务器还需要支持下文 `--wait` 参数的 Docker Compose 插件：
+以下直接通过 IP 和 HTTP 访问的示例仅用于可信网络中的部署验证。通过公网或不可信网络访问时，先配置域名、HTTPS 和反向代理，再登录管理员账号。
+
+开发机需要 Node.js 24 或更高版本、pnpm 11 和 Docker；服务器需要 Docker 和支持 `--wait` 的 Docker Compose 插件。以下命令使用 Bash，以 Linux x64、SQLite、单实例部署为例。使用其他数据库时，先在应用中安装对应驱动，再构建镜像，并在服务器填写数据库连接配置。
+
+在开发机和服务器分别检查 Docker，服务器还需检查 Compose：
 
 ```bash
 docker version
-docker compose version
 docker context show
+docker compose version
 ```
 
-本篇 shell 命令使用 Bash。后面的挂载目录必须位于 Docker 服务实际运行的服务器上；使用远程 Docker context 时，不要把开发机本地目录误当成服务器目录。
-
-为这次应用准备新目录和空闲端口，使用独立的 Compose 项目名。下文示例统一用 `catalog-app`；同一台服务器部署多个应用时，分别更换项目名、目录和宿主机端口。
-
-示例使用默认模板 `1.0.0-beta.85`，源码和运行准备见上面的固定提交 README。以下配置关闭可选示例数据：首次安装只初始化必需角色，商品目录为空，需要按验证步骤自行创建商品。
+下文使用 `my-app` 作为应用和 Compose 项目名，服务器端口为 `13000`。部署多个应用时，分别使用独立的项目名、部署目录和端口。挂载目录必须位于 Docker 服务实际运行的服务器上。
 
 ## 使用 Agent
 
-在应用源码目录使用下面的需求。将服务器、目录和访问地址替换为自己的实际值：
+在应用源码目录中使用开发 Agent；还没有应用时，先[创建应用并进入目录](#创建应用并进入目录)。Agent 部署和手动执行是两种方式，选择一种即可。
+
+先让 Agent 能连接目标服务器，并准备好 Docker 操作权限。使用镜像仓库时，提前配置仓库登录。密码和访问凭据通过安全方式提供，不写进提示词。应用自带的 `AGENTS.md` 和 `nocobase-deployment` Skill 提供与项目版本对应的部署指引。
+
+### 首次部署
+
+将下面的服务器、目录和访问地址替换为自己的环境。数据库可以使用新的 SQLite，也可以填写实际的外部数据库连接要求；镜像传输选择镜像仓库或文件传输。
 
 ```text
-请使用 Docker，把当前商品目录应用首次部署到下面的环境。
+请把当前应用用 Docker 部署到我的服务器，这是首次部署。
 
-服务器：<我的 Docker 服务器>
-服务器平台：linux/amd64
-部署目录：<服务器上的绝对路径>/catalog-docker
-数据库：新的 SQLite 数据库，不导入开发数据或示例商品
-服务器本地监听地址：127.0.0.1:13000
-用户访问地址：https://shop.example.com/shop/
+服务器：<SSH 用户和地址>
+部署目录：<服务器上的绝对路径>
+访问地址：<包含应用路径的完整 URL>
+数据库：新建 SQLite 数据库，不导入开发数据或示例数据
+镜像传输：导出镜像文件后通过 SSH 传到服务器
 
-请按项目的 Docker 部署指引准备应用并启动，只操作这个教程应用。
-配置、密码和业务数据需要独立保留，不放进镜像；重建容器后不能丢失。
-设置管理员登录信息，妥善保存应用密钥，不在代码或报告中暴露它们。
-如果需要的配置或存储位置缺失，请说明问题，不要悄悄用空数据继续运行。
-
-检查登录、商品创建、发布和只读权限，再重建这个应用的容器，确认原来的数据和权限仍然保留。
-完成后告诉我访问地址、验证结果，以及域名或 HTTPS 等尚未完成的配置。
+请配置管理员登录，并把配置和业务数据保存在服务器上，重建容器后仍能继续使用。
+部署后检查登录和一项主要业务操作，再重建容器确认数据没有丢失，告诉我访问地址和检查结果。
 ```
 
-Agent 应先核对目标服务器、目录和已有数据，再执行。域名、HTTPS 和反向代理需要在目标环境配置；只在本机演练时，把 origin 换成 `http://127.0.0.1:13000`。
+使用镜像仓库时，将传输要求换成“通过 `<镜像仓库地址>` 推送和拉取镜像”。使用域名和 HTTPS 时，说明已有的代理配置或需要完成的配置。服务器架构、可用端口和 Docker 环境可由 Agent 检查。
 
-## 不使用 Agent
+完成后按[访问和持久化验证](#验证访问和数据持久化)检查结果。Agent 无法连接服务器时，只能准备配置和命令，实际部署仍需在服务器执行。
 
-### 1. 在开发机构建镜像
+### 部署新版本
 
-本篇先构建 `dist`，再装入镜像。在应用根目录执行：
+在已更新并通过测试的应用源码目录中使用以下提示词。明确允许停机的时间；版本检查、备份和切换都在原部署环境进行。
+
+```text
+请将当前项目的新版本部署到服务器，替换已运行的版本。
+
+服务器：<SSH 用户和地址>
+原部署目录：<服务器上的绝对路径>
+Compose 项目名：<原项目名>
+新镜像标签：<例如 my-app:2>
+允许停机时间：<维护时间段>
+
+沿用现有的镜像传输方式、访问地址、配置、密钥和业务数据，不重新初始化。
+先检查版本变化并完成备份，再更新应用。部署后检查原有数据、用户权限和新功能，告诉我结果；如果部署失败，请说明能否恢复，以及是否会影响数据。
+```
+
+确认 Agent 已完成[版本检查与备份](#检查版本变更并备份)，并按[新版本验证](#启动新版本并验证)核对结果。回退前仍需确认数据库兼容性，不能把切回旧镜像当作数据恢复。
+
+## 手动部署
+
+### 创建应用并进入目录
+
+在开发机执行：
 
 ```bash
-pnpm build --target linux-x64 --node-version 24
-
-docker build --platform linux/amd64 \
-  --build-arg DIST=prebuilt \
-  -t catalog-app:1 .
+pnpm create @nocobase/app@beta my-app --template-tag=beta
+cd my-app
 ```
 
-Docker 使用项目中的 `dist/`，不读取 `dist.tar.gz`。如果还需要供 app-installer 使用的部署包，可以给上面的构建命令加 `--tar`。
+已有应用直接进入源码目录。构建前确认应用已通过自身的测试，并保留项目自带的 `Dockerfile`、`Dockerfile.dockerignore`、`config.example.yml` 和锁文件。旧项目缺少 Docker 文件时，从匹配版本的应用模板补齐。
 
-这里的 `linux-x64` 与镜像平台 `linux/amd64` 相对应，且都使用 glibc；ARM64 服务器需要同时改为 `linux-arm64` 和 `linux/arm64`。Node 主版本也必须与 Dockerfile 一致。
+### 构建 Docker 镜像
 
-保留项目自带的 `Dockerfile.dockerignore`，避免把本地配置、数据库或开发依赖带入构建上下文。`DIST=prebuilt` 会检查 `dist` 的平台、Node 主版本和可重定位标记；目标不匹配时，应修正构建参数。
-
-如果镜像和运行容器不在同一台机器，可以通过自己的镜像仓库传输，也可以导出后复制到服务器：
+在应用根目录执行：
 
 ```bash
-# Development machine
-docker save -o catalog-app-1.tar catalog-app:1
-scp catalog-app-1.tar deploy@server:/tmp/catalog-app-1.tar
+docker build --platform linux/amd64 -t my-app:1 .
 ```
 
-在服务器上加载复制来的镜像：
+Dockerfile 会安装依赖并构建应用，无需提前执行 `pnpm build`。ARM64 服务器将平台改为 `linux/arm64`。
+
+镜像包含代码和生产依赖，不包含开发环境的配置、数据库和上传文件。`Dockerfile.dockerignore` 排除本地配置和数据，必须与 Dockerfile 一起保留。运行配置在服务器单独准备。
+
+### 传输镜像：镜像仓库或镜像文件
+
+选择一种方式；构建和运行在同一台 Docker 服务器时可跳过。
+
+**通过镜像仓库**
+
+将 `registry.example.com/team` 替换为自己的仓库地址。开发机执行：
 
 ```bash
-docker load -i /tmp/catalog-app-1.tar
+docker tag my-app:1 registry.example.com/team/my-app:1
+docker login registry.example.com
+docker push registry.example.com/team/my-app:1
 ```
 
-可以在导出前和加载后分别执行 `docker image inspect catalog-app:1 --format '{{.Id}}'` 核对镜像标识。`docker save` 导出的是镜像，不是应用数据备份。
-
-后面的命令都在 Docker 服务器上执行。如果就是本机演练，无需导出和加载。
-
-### 2. 准备持久化目录
+服务器执行：
 
 ```bash
-mkdir -p "$HOME/catalog-docker/config" "$HOME/catalog-docker/storage"
-cd "$HOME/catalog-docker"
+docker login registry.example.com
+docker pull registry.example.com/team/my-app:1
+docker tag registry.example.com/team/my-app:1 my-app:1
 ```
 
-确认这是本次应用的新目录。模板容器以 `node` 用户运行，UID 为 `1000`；挂载目录需要允许它写入。Linux 上若目录属于其他用户，由管理员只调整这两个新目录的属主，例如 `sudo chown 1000:1000 config storage`。
+最后一条命令添加本地标签，后面的命令统一使用 `my-app:1`。也可以直接使用完整仓库名称，同时替换后续命令和 Compose 中的镜像名。
 
-用镜像中的 CLI 生成配置：
+**通过镜像文件**
+
+开发机执行，将 `deploy@server` 替换为服务器的 SSH 用户和地址：
+
+```bash
+docker save -o my-app-1.tar my-app:1
+scp my-app-1.tar deploy@server:/tmp/my-app-1.tar
+```
+
+服务器执行：
+
+```bash
+docker load -i /tmp/my-app-1.tar
+```
+
+`docker save` 保存的是镜像，不是业务数据备份。
+
+### 创建服务器部署目录
+
+后续命令全部在服务器执行。首次部署使用新目录：
+
+```bash
+mkdir -p "$HOME/my-app-deploy/storage"
+cd "$HOME/my-app-deploy"
+sudo chown 1000:1000 . storage
+```
+
+模板容器使用 UID `1000` 的 `node` 用户。初始化配置时需要写入部署目录，运行时需要写入 `storage/`。这里仅调整新建部署目录和 storage 的属主，不递归修改其他文件。
+
+### 初始化配置并设置管理员密码
+
+用镜像中的 CLI 在当前目录生成 `config.yml`：
 
 ```bash
 docker run --rm \
-  --mount "type=bind,src=$PWD/config,dst=/config" \
-  catalog-app:1 \
-  node dist/cli/index.js config init --dialect sqlite --config /config/config.yml
+  --mount "type=bind,src=$PWD,dst=/config" \
+  my-app:1 \
+  node dist/cli/index.js config init \
+  --dialect sqlite \
+  --config /config/config.yml
 ```
 
-首次启动前设置管理员密码：
+设置初始管理员密码：
 
 ```bash
-read -r -s -p 'Initial admin password: ' CATALOG_INITIAL_PASSWORD
-export CATALOG_INITIAL_PASSWORD
+read -r -s -p 'Initial admin password: ' MY_APP_ADMIN_PASSWORD
+export MY_APP_ADMIN_PASSWORD
 
 docker run --rm \
-  -e CATALOG_INITIAL_PASSWORD \
+  -e MY_APP_ADMIN_PASSWORD \
   -e APP_CONFIG_FILE=/config/config.yml \
-  --mount "type=bind,src=$PWD/config,dst=/config" \
-  catalog-app:1 \
+  --mount "type=bind,src=$PWD,dst=/config" \
+  my-app:1 \
   node dist/cli/index.js config set \
-  --from-env users.initialAdmin.password=CATALOG_INITIAL_PASSWORD
+  --from-env users.initialAdmin.password=MY_APP_ADMIN_PASSWORD
 
-unset CATALOG_INITIAL_PASSWORD
+unset MY_APP_ADMIN_PASSWORD
 ```
 
-保存生成的 `config/config.yml`，其中的密钥需要与数据库配套备份，备份应限制访问。不要每次重启都重新生成配置。初始管理员设置只在空用户表首次初始化时生效。
+模板默认管理员用户名为 `nocobase`。初始管理员配置只在用户表为空时生效，不用于重置已有账号的密码。
 
-### 3. 创建 Compose 文件
+保留生成的 `config.yml`，其中的应用密钥需要与数据库配套备份并限制访问。重启和部署新版本时不重新初始化配置。镜像中的运行环境没有 pnpm，管理命令使用 `node dist/cli/index.js`。
 
-在部署目录创建 `compose.yml`：
+### 创建 Docker Compose 文件
 
-```yaml
+在部署目录创建 `docker-compose.yml`。目录属主已交给容器用户，以下通过 `sudo tee` 写入文件：
+
+```bash
+sudo tee docker-compose.yml > /dev/null <<'YAML'
 services:
   app:
-    image: catalog-app:1
+    image: my-app:1
     init: true
     restart: unless-stopped
     ports:
-      - '127.0.0.1:13000:13000'
+      - '13000:13000'
     environment:
-      APP_BASE_PATH: /shop
-      APP_PUBLIC_ORIGIN: https://shop.example.com
+      APP_BASE_PATH: /main
+      APP_PUBLIC_ORIGIN: http://YOUR_SERVER_IP:13000
       APP_SAMPLE_DATA: 'false'
     volumes:
       - type: bind
-        source: ./config/config.yml
+        source: ./config.yml
         target: /app/config.yml
         read_only: true
         bind:
@@ -153,81 +206,170 @@ services:
         target: /app/storage
         bind:
           create_host_path: false
+YAML
 ```
 
-`APP_PUBLIC_ORIGIN` 不包含应用路径，路径由 `APP_BASE_PATH` 指定。容器内监听 `0.0.0.0:13000`，宿主机只向回环地址开放端口；服务器反向代理负责域名、HTTPS、路径转发及 WebSocket。首次演练使用本机 origin 时，直接访问 `http://127.0.0.1:13000/shop/`。
+使用 `sudo vi docker-compose.yml` 将 `YOUR_SERVER_IP` 替换为实际服务器 IP。目录结构为：
 
-这里使用长格式挂载并设置 `create_host_path: false`：配置或数据目录不存在时直接报错，不自动创建错误的空目录。`config.yml` 在运行容器中只读；SQLite、上传文件及其他持久化内容位于可写的 `storage` 挂载中。
+```text
+my-app-deploy/
+├── docker-compose.yml
+├── config.yml
+└── storage/
+```
 
-### 4. 检查配置并启动
+配置以只读方式挂载，数据库和上传文件保存在可写的 `storage/` 中。`create_host_path: false` 让缺失的配置文件或存储目录直接报错，避免意外创建空目录。`APP_SAMPLE_DATA: 'false'` 关闭首次安装时的可选示例数据。
+
+`APP_PUBLIC_ORIGIN` 是用户访问的协议、主机和端口，不包含应用路径；路径由 `APP_BASE_PATH` 指定。这里直接开放服务器的 `13000` 端口，需要在防火墙或安全组允许访问。
+
+使用正式域名和 HTTPS 时，将 origin 改为实际地址，例如 `https://apps.example.com`，并配置反向代理转发 `/main/`、保留 Host 和协议头、传递 Cookie 及支持 WebSocket。代理在同一宿主机上时，可将端口映射改为 `127.0.0.1:13000:13000`，只允许本机代理连接。
+
+### 检查配置并启动应用
+
+在部署目录执行：
 
 ```bash
-docker compose -p catalog-app config --quiet
+docker compose -p my-app config --quiet
 
-docker compose -p catalog-app run --rm --no-deps app \
+docker compose -p my-app run --rm --no-deps app \
   node dist/cli/index.js config check --connect
 
-docker compose -p catalog-app up -d --wait --wait-timeout 180
-
-docker compose -p catalog-app ps
-docker compose -p catalog-app logs --tail=80 app
-curl --fail http://127.0.0.1:13000/shop/api/healthz
+docker compose -p my-app up -d --wait --wait-timeout 180
 ```
 
-`--wait` 会等待镜像中的健康检查通过，避免容器刚启动就访问。若超时或报告 unhealthy，先检查 `ps` 和 `logs`，不要反复创建容器。`config check --connect` 用于启动前检查配置及数据库连接，真正的应用迁移和基础数据初始化在启动时执行。
+前两条命令检查 Compose 配置、应用配置和数据库连接；不执行数据库迁移。默认配置会在应用启动时执行迁移和基础数据初始化。如果应用关闭了自动迁移或自动种子，需要按应用的部署规则先单独执行。
 
-检查健康接口返回 `ok: true`，且 base path 为 `/shop`，日志中没有迁移或数据库连接失败，再通过实际访问地址登录。使用初始管理员用户名（模板默认 `nocobase`）和刚设置的密码；商品目录示例应用会通过必需种子初始化 **Catalog viewer** 和 **Catalog editor** 角色，开发环境的用户、角色分配和商品不会随镜像复制。
-
-反向代理配置好后，还要从实际访问网络打开 `https://shop.example.com/shop/`，验证登录、页面刷新和商品操作。容器 healthy 只证明容器内应用正常，不会替你验证域名、HTTPS 或代理配置。
-
-### 5. 验证容器重建后数据保留
-
-以管理员登录后，打开应用的 `/shop/api/swagger/docs`。在 **Products** 中创建商品 `Deployment Notebook`，`priceCents` 为 `1200`，记录返回的商品 ID，再调用发布接口。创建和发布分别使用新的 `Idempotency-Key`，生成方法见[商品目录 README](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md#create-and-publish)。访问 `/shop/catalog`，确认商品已显示；该公开目录只能展示已发布商品，创建操作在 API 文档中完成。然后重建这个 Compose 项目的容器：
+查看状态和日志：
 
 ```bash
-docker compose -p catalog-app up -d --force-recreate --wait --wait-timeout 180
+docker compose -p my-app ps
+docker compose -p my-app logs --tail=100 app
 ```
 
-命令成功后重新登录，通过商品查询接口核对同一 ID、名称、价格和发布状态，并刷新 `/shop/catalog`。在用户管理中为普通用户显式分配 **Catalog viewer**，确认商品查询和 CSV 下载可用，而创建和发布接口返回 `403`。只读用户不要同时拥有管理员或 **Catalog editor** 角色。
+`--wait` 等待镜像的健康检查通过。超时或 unhealthy 时，先检查日志中的数据库连接、权限和迁移错误。
 
-停止演练环境时，在同一部署目录执行 `docker compose -p catalog-app down`，保留宿主机的 `config` 和 `storage` 目录。再次执行上面的 `up` 命令，继续使用原数据；不要重新运行 `config init`。
+### 验证访问和数据持久化
 
-## 部署新版本
-
-业务功能修改并验证后，按前面的构建步骤生成新镜像，使用新标签，例如 `catalog-app:2`，并传到目标服务器。更新流程概览见[发布应用新版本](../deployment/publish-app-release.md)。
-
-在原部署目录备份数据库、文件和配置，修改 Compose 的 `image`，保留原来的挂载路径和密钥。使用新镜像检查配置、迁移和历史校验值：
+替换实际服务器 IP 后检查健康接口：
 
 ```bash
-docker compose -p catalog-app run --rm --no-deps app \
+curl --fail http://YOUR_SERVER_IP:13000/main/api/healthz
+```
+
+确认返回 `ok: true`，再打开 `http://YOUR_SERVER_IP:13000/main/`，使用 `nocobase` 和设置的密码登录。使用反向代理时，通过真实域名验证访问。
+
+检查页面刷新、管理员和普通用户权限，并完成一项业务操作，例如创建并查询一条记录。应用使用文件存储时，验证上传和下载。随后重建容器：
+
+```bash
+docker compose -p my-app up -d \
+  --force-recreate \
+  --wait \
+  --wait-timeout 180
+```
+
+重新登录，确认同一条记录、文件和权限仍然保留；应用使用定时任务时，也要确认任务继续运行。健康检查通过不能代替这些业务验证。
+
+## 手动部署新版本
+
+### 构建并传输新镜像
+
+在开发机更新并验证应用代码后，在源码目录构建新标签的镜像：
+
+```bash
+docker build --platform linux/amd64 -t my-app:2 .
+```
+
+按[镜像传输步骤](#传输镜像镜像仓库或镜像文件)将新镜像传到服务器，把命令中的标签 `1` 和文件名 `my-app-1.tar` 分别换为 `2` 和 `my-app-2.tar`。使用仓库传输时，同样添加本地标签 `my-app:2`。
+
+### 检查版本变更并备份
+
+先阅读新版本的迁移、配置变更和升级说明。部署新版本时沿用原部署目录、配置、密钥和数据，不执行 `config init`。
+
+下面的停机备份适用于数据库和本地文件都保存在 `storage/` 的 SQLite 部署。外部数据库和对象存储需要使用相应的备份方式，并与配置、文件保持一致的恢复时间点。
+
+在服务器执行：
+
+```bash
+cd "$HOME/my-app-deploy"
+docker compose -p my-app stop
+
+mkdir -p "$HOME/my-app-backups"
+chmod 700 "$HOME/my-app-backups"
+
+sudo tar -czf \
+  "$HOME/my-app-backups/my-app-$(date +%Y%m%d-%H%M%S).tar.gz" \
+  config.yml storage docker-compose.yml
+```
+
+确认备份成功并检查归档包含配置、storage 和 Compose 文件，再继续部署。保留旧镜像，并确认备份的恢复方法。
+
+### 更新镜像标签并检查迁移
+
+用 `sudo vi docker-compose.yml` 将 `image: my-app:1` 改为 `image: my-app:2`，保留原来的挂载路径。若新版本需要新增配置，在原 `config.yml` 上调整并保持容器用户可读。
+
+使用新镜像检查：
+
+```bash
+docker compose -p my-app config --quiet
+
+docker compose -p my-app run --rm --no-deps app \
   node dist/cli/index.js config check --connect
 
-docker compose -p catalog-app run --rm --no-deps app \
+docker compose -p my-app run --rm --no-deps app \
   node dist/cli/index.js db apply --dry-run --json
 
-docker compose -p catalog-app run --rm --no-deps app \
+docker compose -p my-app run --rm --no-deps app \
   node dist/cli/index.js db repair --dry-run --json
 ```
 
-这些命令只检查，不启动第二个应用服务。确认无需校验值修复、迁移适用于已有数据，并完成备份后，执行 `docker compose -p catalog-app up -d --wait --wait-timeout 180`。启动时会应用新增迁移；随后核对旧商品、角色与新功能。切回旧镜像只更换代码，不会撤销数据库迁移或业务写入。
+数据库命令检查默认连接；使用多个数据库的应用需要检查其他相关连接。确认待执行的迁移和种子符合预期。若报告历史迁移校验值变化，按目标版本的升级说明处理，不直接去掉 `--dry-run` 执行修复。
 
-与 Agent 一起执行时，提供原 Compose 目录、项目名和新镜像标签，要求沿用原配置与数据，先检查更新计划再按授权范围替换容器；不要重新初始化配置。
-
-修改运行配置后，也应在同一部署目录重建容器：
+### 启动新版本并验证
 
 ```bash
-docker compose -p catalog-app up -d --force-recreate --wait --wait-timeout 180
+docker compose -p my-app up -d --wait --wait-timeout 180
+
+docker compose -p my-app ps
+docker compose -p my-app logs --tail=100 app
 ```
 
-配置工具可能通过替换文件来保存内容，单文件 bind mount 的旧容器可能仍指向旧文件；重建会重新挂载配置。修改 Compose 环境变量同样需要重新创建容器，单独 `docker restart` 不会应用新的容器环境。
+默认配置会在启动时应用新增迁移。通过原访问地址登录，检查旧记录、文件、权限、新功能和后台任务。保留部署新版本前的备份和旧镜像，直到确认新版本可用。
 
-## 遇到问题时
+### 回退时的数据处理
 
-| 现象 | 下一步 |
+将镜像标签改回旧版本只会更换代码，不会撤销数据库迁移或部署新版本后的业务写入。先确认旧版本与当前数据库兼容，再决定是否仅切换镜像。
+
+需要恢复备份时，先停止应用，再配套恢复部署新版本前的数据库、文件、配置和镜像版本。恢复到部署新版本前备份会失去备份之后的业务写入，不能与无损回退混为一谈。
+
+## 停止和启动应用
+
+在原部署目录执行：
+
+```bash
+cd "$HOME/my-app-deploy"
+
+# Stop and remove the containers; keep host configuration and data.
+docker compose -p my-app down
+
+# Start again with the same configuration and data.
+docker compose -p my-app up -d --wait --wait-timeout 180
+```
+
+修改配置文件或 Compose 环境变量后，重建容器以重新加载配置和挂载：
+
+```bash
+docker compose -p my-app up -d --force-recreate --wait --wait-timeout 180
+```
+
+单独执行 `docker restart` 不会应用新的容器环境变量；配置工具替换文件后，旧容器的单文件挂载也可能仍指向旧文件。
+
+## 常见问题
+
+| 现象 | 处理方法 |
 | --- | --- |
-| `bind source path does not exist` | 核对当前部署目录，先生成配置文件并创建 storage，确认文件位于 Docker 服务器。 |
-| `permission denied` / `EACCES` | 核对挂载目录和配置文件的属主、权限，确保容器 UID 1000 可读取配置并写入 storage。 |
-| 宿主机端口已被占用 | 更换 Compose `ports` 左侧的宿主机端口；若直接访问该端口，同时更新 origin。 |
-| 容器 unhealthy 或等待超时 | 查看该 Compose 项目的日志，检查数据库、迁移和启动错误，再核对 base path。 |
-
-商品目录示例已在 Linux x64、Node.js 24、SQLite 环境验证预构建镜像、配置初始化、自定义管理员密码、Compose 健康等待、真实登录、商品创建和发布、CSV 下载、匿名管理接口拒绝，以及容器重建后同一商品和密码保留。角色读写边界另有真实应用测试覆盖。未验证跨服务器传输、正式域名与 HTTPS、跨版本升级或回退。
+| 配置文件或挂载目录不存在 | 核对服务器上的部署目录，确认已生成 `config.yml` 并创建 `storage/`。 |
+| `permission denied` / `EACCES` | 确保容器 UID 1000 可读取配置并写入 storage；初始化配置还需要部署目录可写。 |
+| 宿主机端口被占用 | 修改 `ports` 左侧的宿主机端口；直接访问该端口时，同步修改 `APP_PUBLIC_ORIGIN`。 |
+| 容器 unhealthy 或等待超时 | 查看 `ps` 和 `logs`，检查数据库、迁移、文件权限和应用路径。 |
+| 容器 healthy，但其他电脑无法访问 | 检查服务器 IP、端口映射、防火墙和安全组；使用域名时检查代理、DNS 和 HTTPS。 |
+| 登录后跳转地址不正确 | 核对 `APP_PUBLIC_ORIGIN` 和 `APP_BASE_PATH` 是否与实际访问地址一致，再重建容器。 |

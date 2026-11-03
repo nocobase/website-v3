@@ -1,135 +1,202 @@
 ---
 title: Deploy with Docker
-description: Build an image to deploy a production application independently, preserving configuration and data with Docker Compose.
+description: Create an application, build and transfer its Docker image, and deploy it and subsequent versions with persistent storage using Docker Compose.
 ---
-
-This guide uses the product catalog application as a worked example and also applies to your own NocoBase Core apps. Confirm the target environment with [Choose a deployment method](../deployment/choose-a-deployment-method.md). For your own project, replace example application names, paths, and business acceptance checks.
-
-Use the application's own `Dockerfile` to build an image and run it with Docker Compose on your production server, with separate persistent directories for configuration, SQLite and uploaded files. Verify your application has passed its tests; see [the product catalog example README](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md) for the product catalog example. This guide uses Linux x64, a single SQLite instance and the template's Node.js 24 Debian runtime.
 
 ## Prerequisites
 
+The direct IP and HTTP examples below are for deployment checks on a trusted network. Before administrator sign-in over a public or untrusted network, configure a domain, HTTPS and a reverse proxy.
+
+The development machine needs Node.js 24 or later, pnpm 11 and Docker. The server needs Docker and a Docker Compose plugin supporting `--wait`. Commands use Bash and demonstrate a single-instance deployment on Linux x64 with SQLite. For another database, install its driver in the application before building the image, then configure the connection on the server.
+
+Check Docker on both machines, and Compose on the server:
+
 ```bash
 docker version
-docker compose version
 docker context show
+docker compose version
 ```
 
-Commands use Bash. The server needs a Compose plugin supporting `--wait`. Bind-mount source paths must exist on the Docker server, not merely on the machine issuing commands to a remote Docker context. Choose an independent project name, directory and unused host port for this tutorial.
+The examples use `my-app` as the application and Compose project name and `13000` as the server port. Give each application its own project name, deployment directory and port. Bind-mount directories must exist on the machine running the Docker daemon.
 
-The example uses default template `1.0.0-beta.85`; the pinned README above describes its source and setup. The configuration below disables optional samples: required roles are initialized, but the product catalog starts empty. Create a product in the verification steps.
+## Use an agent
 
-## With an agent
+Use a development agent from the application source directory. If you do not have an application yet, [create it and enter its directory](#create-the-application-and-enter-its-directory). Agent deployment and manual commands are alternative workflows; choose one.
 
-From the application source directory, replace the server, directory and URL below with your actual target:
+Give the agent access to the target server and permission to operate Docker. If using an image registry, configure registry sign-in first. Supply passwords and credentials securely rather than putting them in the prompt. The application's `AGENTS.md` and `nocobase-deployment` Skill provide deployment guidance for its version.
+
+### First deployment
+
+Replace the server, directory and URL with your environment. Use a new SQLite database or specify the connection requirements for your external database. Choose a registry or file transfer for the image.
 
 ```text
-Please deploy the current product catalog app with Docker for the first time.
+Please deploy the current application to my server with Docker. This is its first deployment.
 
-Server: <my Docker server>
-Server platform: linux/amd64
-Deployment directory: <absolute server path>/catalog-docker
-Database: a new SQLite database, without development data or sample products
-Server-local listener: 127.0.0.1:13000
-User-facing URL: https://shop.example.com/shop/
+Server: <SSH user and address>
+Deployment directory: <absolute path on the server>
+Application URL: <full URL including the application path>
+Database: a new SQLite database, without development or sample data
+Image transfer: export the image to a file and transfer it over SSH
 
-Follow the project's Docker deployment guidance and operate only on this tutorial app.
-Keep configuration, passwords and business data separate from the image so they survive container recreation.
-Set up administrator sign-in and retain application secrets without exposing them in code or reports.
-If required configuration or storage is missing, explain the problem instead of silently starting with empty data.
-
-Verify sign-in, product creation and publication and reader permissions, then recreate this app's container and confirm the original data and permissions survive.
-Report the URL, verification results and unfinished setup such as the domain or HTTPS.
+Set up administrator sign-in and keep configuration and business data on the server so they survive container recreation.
+After deployment, check sign-in and a main business operation, then recreate the container to confirm the data survives. Give me the URL and the check results.
 ```
 
-Configure DNS, HTTPS and the reverse proxy separately. For a local rehearsal, replace the origin with `http://127.0.0.1:13000`.
+For a registry, replace the transfer requirement with “Push and pull the image through `<registry address>`.” For a domain and HTTPS, describe the existing proxy configuration or the setup still needed. The agent can check server architecture, available ports and the Docker environment.
 
-## Without an agent
+Review the results using the [access and persistence checks](#verify-access-and-data-persistence). An agent without server access can prepare configuration and commands, but deployment still needs to be performed on the server.
 
-### 1. Build the image on the development machine
+### Deploy a new version
 
-```bash
-pnpm build --target linux-x64 --node-version 24
+Use this prompt from the application source directory after updating and testing the code. Specify when downtime is allowed. Checks, backup and the version switch use the existing deployment environment.
 
-docker build --platform linux/amd64 \
-  --build-arg DIST=prebuilt \
-  -t catalog-app:1 .
+```text
+Please deploy the current project version to my server, replacing the version already running.
+
+Server: <SSH user and address>
+Existing deployment directory: <absolute path on the server>
+Compose project name: <existing project name>
+New image tag: <for example, my-app:2>
+Allowed downtime: <maintenance window>
+
+Keep the existing image transfer method, URL, configuration, secrets and business data. Do not initialize them again.
+Review the version changes and complete a backup before deploying the new version. Afterwards, check existing data, user permissions and new features, and give me the results. If deployment fails, explain whether recovery is possible and how it would affect the data.
 ```
 
-Docker reads `dist/`, not `dist.tar.gz`. Add `--tar` to the application build if you also need an archive for app-installer. `linux-x64` corresponds to Docker `linux/amd64`, using glibc. An ARM64 target needs both `linux-arm64` and `linux/arm64`. The Node major must match the Dockerfile.
+Confirm the agent completed the [version review and backup](#review-version-changes-and-back-up), then review the [new-version checks](#start-and-verify-the-new-version). A rollback still requires checking database compatibility; switching to an old image does not restore data.
 
-Keep `Dockerfile.dockerignore`: it excludes local configuration, databases and development dependencies. The prebuilt stage verifies platform, Node major and relocatability. Fix mismatched build parameters rather than bypassing those checks.
+## Manual deployment
 
-Transfer the image through your registry, or export it:
+### Create the application and enter its directory
+
+On the development machine:
 
 ```bash
-# Development machine
-docker save -o catalog-app-1.tar catalog-app:1
-scp catalog-app-1.tar deploy@server:/tmp/catalog-app-1.tar
+pnpm create @nocobase/app@beta my-app --template-tag=beta
+cd my-app
+```
+
+For an existing application, enter its source directory instead. Before building, ensure the application passes its tests and retain its `Dockerfile`, `Dockerfile.dockerignore`, `config.example.yml` and lockfile. If an older project lacks the Docker files, obtain them from a compatible application template version.
+
+### Build the Docker image
+
+From the application root:
+
+```bash
+docker build --platform linux/amd64 -t my-app:1 .
+```
+
+The Dockerfile installs dependencies and builds the application; you do not need to run `pnpm build` first. For an ARM64 server, use `linux/arm64`.
+
+The image contains code and production dependencies, not development configuration, databases or uploads. Keep `Dockerfile.dockerignore` beside the Dockerfile: it excludes local configuration and data. Prepare runtime configuration separately on the server.
+
+### Transfer the image through a registry or file
+
+Choose one method. Skip this step when building and running on the same Docker server.
+
+**Through an image registry**
+
+Replace `registry.example.com/team` with your registry location. On the development machine:
+
+```bash
+docker tag my-app:1 registry.example.com/team/my-app:1
+docker login registry.example.com
+docker push registry.example.com/team/my-app:1
 ```
 
 On the server:
 
 ```bash
-docker load -i /tmp/catalog-app-1.tar
+docker login registry.example.com
+docker pull registry.example.com/team/my-app:1
+docker tag registry.example.com/team/my-app:1 my-app:1
 ```
 
-Compare `docker image inspect catalog-app:1 --format '{{.Id}}'` before and after transfer if needed. An image archive is not a data backup. The remaining commands run on the Docker server; a local rehearsal needs no transfer.
+The last command adds a local tag so the remaining commands can use `my-app:1`. Alternatively, use the full registry name in subsequent commands and in Compose.
 
-### 2. Prepare persistent storage and configuration
+**Through an image file**
+
+On the development machine, replace `deploy@server` with the server's SSH user and address:
 
 ```bash
-mkdir -p "$HOME/catalog-docker/config" "$HOME/catalog-docker/storage"
-cd "$HOME/catalog-docker"
+docker save -o my-app-1.tar my-app:1
+scp my-app-1.tar deploy@server:/tmp/my-app-1.tar
 ```
 
-Use new directories for this installation. The template container runs as UID 1000 (`node`), which must be able to write the mounts. If necessary, an administrator adjusts ownership of only these directories, for example `sudo chown 1000:1000 config storage`.
+On the server:
 
-Generate configuration through the image's CLI:
+```bash
+docker load -i /tmp/my-app-1.tar
+```
+
+`docker save` exports the image, not a backup of business data.
+
+### Create the server deployment directory
+
+Run all remaining commands on the server. Use a new directory for the first deployment:
+
+```bash
+mkdir -p "$HOME/my-app-deploy/storage"
+cd "$HOME/my-app-deploy"
+sudo chown 1000:1000 . storage
+```
+
+The template container runs as the `node` user, UID `1000`. It needs to write to the deployment directory to initialize configuration and to `storage/` during operation. This changes ownership only of the new deployment directory and storage directory, without recursively changing other files.
+
+### Initialize configuration and set the administrator password
+
+Use the CLI inside the image to generate `config.yml` in the current directory:
 
 ```bash
 docker run --rm \
-  --mount "type=bind,src=$PWD/config,dst=/config" \
-  catalog-app:1 \
-  node dist/cli/index.js config init --dialect sqlite --config /config/config.yml
+  --mount "type=bind,src=$PWD,dst=/config" \
+  my-app:1 \
+  node dist/cli/index.js config init \
+  --dialect sqlite \
+  --config /config/config.yml
 ```
 
-Set your administrator password before first start:
+Set the initial administrator password:
 
 ```bash
-read -r -s -p 'Initial admin password: ' CATALOG_INITIAL_PASSWORD
-export CATALOG_INITIAL_PASSWORD
+read -r -s -p 'Initial admin password: ' MY_APP_ADMIN_PASSWORD
+export MY_APP_ADMIN_PASSWORD
 
 docker run --rm \
-  -e CATALOG_INITIAL_PASSWORD \
+  -e MY_APP_ADMIN_PASSWORD \
   -e APP_CONFIG_FILE=/config/config.yml \
-  --mount "type=bind,src=$PWD/config,dst=/config" \
-  catalog-app:1 \
+  --mount "type=bind,src=$PWD,dst=/config" \
+  my-app:1 \
   node dist/cli/index.js config set \
-  --from-env users.initialAdmin.password=CATALOG_INITIAL_PASSWORD
+  --from-env users.initialAdmin.password=MY_APP_ADMIN_PASSWORD
 
-unset CATALOG_INITIAL_PASSWORD
+unset MY_APP_ADMIN_PASSWORD
 ```
 
-Preserve the generated configuration and stable secrets with restricted backups. Do not regenerate it on restart. Initial administrator settings apply only when the user table is empty.
+The template's default administrator username is `nocobase`. Initial administrator settings apply only when the user table is empty; they do not reset an existing account's password.
 
-### 3. Create compose.yml
+Keep the generated `config.yml`. Back up its application secrets together with the database and restrict access to the backups. Do not initialize configuration again on restart or when deploying a new version. The runtime image has no pnpm; run management commands with `node dist/cli/index.js`.
 
-```yaml
+### Create the Docker Compose file
+
+Create `docker-compose.yml` in the deployment directory. Since the directory is now owned by the container user, use `sudo tee` to write it:
+
+```bash
+sudo tee docker-compose.yml > /dev/null <<'YAML'
 services:
   app:
-    image: catalog-app:1
+    image: my-app:1
     init: true
     restart: unless-stopped
     ports:
-      - '127.0.0.1:13000:13000'
+      - '13000:13000'
     environment:
-      APP_BASE_PATH: /shop
-      APP_PUBLIC_ORIGIN: https://shop.example.com
+      APP_BASE_PATH: /main
+      APP_PUBLIC_ORIGIN: http://YOUR_SERVER_IP:13000
       APP_SAMPLE_DATA: 'false'
     volumes:
       - type: bind
-        source: ./config/config.yml
+        source: ./config.yml
         target: /app/config.yml
         read_only: true
         bind:
@@ -139,73 +206,170 @@ services:
         target: /app/storage
         bind:
           create_host_path: false
+YAML
 ```
 
-The origin excludes the base path. The container listens on `0.0.0.0:13000`, while the host publishes only on loopback. The reverse proxy handles public HTTPS, path forwarding and WebSocket upgrades. For a loopback rehearsal, set the matching HTTP origin and open `http://127.0.0.1:13000/shop/`.
+Run `sudo vi docker-compose.yml` and replace `YOUR_SERVER_IP` with the actual server IP. The directory now contains:
 
-`create_host_path: false` fails on a missing mount source instead of silently creating an incorrect empty directory. Configuration is read-only in the running container; SQLite, uploads and other persistent content use writable storage.
+```text
+my-app-deploy/
+├── docker-compose.yml
+├── config.yml
+└── storage/
+```
 
-### 4. Validate and start
+Configuration is mounted read-only; the database and uploads live in writable `storage/`. `create_host_path: false` fails on a missing configuration file or storage directory instead of creating an unexpected empty directory. `APP_SAMPLE_DATA: 'false'` disables optional sample data during initial installation.
+
+`APP_PUBLIC_ORIGIN` is the external scheme, host and port without the application path; `APP_BASE_PATH` sets the path. This example exposes server port `13000` directly, so allow it through the firewall or security group.
+
+For a domain with HTTPS, set the actual origin, such as `https://apps.example.com`, and configure a reverse proxy to forward `/main/`, preserve Host and protocol headers, forward cookies and support WebSocket. When the proxy runs on the same host, you can restrict the port mapping to `127.0.0.1:13000:13000` for local proxy access only.
+
+### Check configuration and start the application
+
+From the deployment directory:
 
 ```bash
-docker compose -p catalog-app config --quiet
+docker compose -p my-app config --quiet
 
-docker compose -p catalog-app run --rm --no-deps app \
+docker compose -p my-app run --rm --no-deps app \
   node dist/cli/index.js config check --connect
 
-docker compose -p catalog-app up -d --wait --wait-timeout 180
-
-docker compose -p catalog-app ps
-docker compose -p catalog-app logs --tail=80 app
-curl --fail http://127.0.0.1:13000/shop/api/healthz
+docker compose -p my-app up -d --wait --wait-timeout 180
 ```
 
-`--wait` waits for image health checks. On timeout, inspect status and logs rather than repeatedly creating containers. Configuration checks precede startup; actual migrations and required initialization happen when the app starts.
+The first two commands check Compose configuration, application configuration and database connectivity; they do not run migrations. By default, application startup runs migrations and initial seeds. If the application disables automatic migrations or seeds, run them separately first according to its deployment rules.
 
-Verify `ok: true`, the expected base path and no migration/database errors. Sign in with the default username `nocobase` and your newly configured password. The product catalog example application initializes **Catalog viewer** and **Catalog editor** roles through required seeds; development users, role assignments, and products are not copied with the image. Test the actual public URL as well: container health does not validate your domain, HTTPS or proxy.
-
-### 5. Verify persistence after recreation
-
-Sign in as administrator and open `/shop/api/swagger/docs`. Under **Products**, create `Deployment Notebook` with `priceCents: 1200`, record its ID, then call the publish endpoint. Use a new `Idempotency-Key` for each operation; see [Create and publish](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md#create-and-publish). Confirm it appears at `/shop/catalog`. That public catalog displays published products; creation happens through the API documentation. Recreate only this project:
+Inspect status and logs:
 
 ```bash
-docker compose -p catalog-app up -d --force-recreate --wait --wait-timeout 180
+docker compose -p my-app ps
+docker compose -p my-app logs --tail=100 app
 ```
 
-Sign in again and query the same product ID to check its name, price and publication state, then refresh `/shop/catalog`. Explicitly assign **Catalog viewer** to an ordinary user without administrator or **Catalog editor** access. Verify product reads and CSV downloads succeed while create and publish requests return `403`.
+`--wait` waits for the image's health check to pass. On a timeout or unhealthy status, inspect logs for database connection, permission and migration errors.
 
-To stop the rehearsal, run `docker compose -p catalog-app down` from this directory, keeping host configuration and storage. Start again with `up`; do not rerun configuration initialization.
+### Verify access and data persistence
 
-## Publish a new release
-
-Build a new image tag, such as `catalog-app:2`, and transfer it to the server. See [Publish an application release](../deployment/publish-app-release.md) for an overview. Back up database, files and configuration, then change only the image reference while retaining mounts and secrets.
-
-Check the new image against the existing installation:
+Replace the server IP and check the health endpoint:
 
 ```bash
-docker compose -p catalog-app run --rm --no-deps app \
+curl --fail http://YOUR_SERVER_IP:13000/main/api/healthz
+```
+
+Confirm `ok: true`, then open `http://YOUR_SERVER_IP:13000/main/` and sign in as `nocobase` with the password you set. When using a reverse proxy, verify access through the real domain.
+
+Check page refreshes, administrator and ordinary-user permissions, and one business operation such as creating and retrieving a record. If the application uses file storage, verify uploads and downloads. Then recreate the container:
+
+```bash
+docker compose -p my-app up -d \
+  --force-recreate \
+  --wait \
+  --wait-timeout 180
+```
+
+Sign in again and confirm the same record, files and permissions remain. If the application uses scheduled jobs, confirm they continue running. A passing health check does not replace these business checks.
+
+## Deploy a new version manually
+
+### Build and transfer the new image
+
+After updating and verifying the application code on the development machine, build a new image tag from the source directory:
+
+```bash
+docker build --platform linux/amd64 -t my-app:2 .
+```
+
+Follow the [image transfer steps](#transfer-the-image-through-a-registry-or-file), replacing tag `1` with `2` and filename `my-app-1.tar` with `my-app-2.tar`. For registry transfers, also add the local tag `my-app:2`.
+
+### Review version changes and back up
+
+Read the new version's migration, configuration and upgrade notes first. Keep the existing deployment directory, configuration, secrets and data; do not run `config init`.
+
+The stopped-service backup below applies to SQLite deployments with both the database and local files in `storage/`. External databases and object storage need their own backup procedures, coordinated with configuration and files to the same recovery point.
+
+On the server:
+
+```bash
+cd "$HOME/my-app-deploy"
+docker compose -p my-app stop
+
+mkdir -p "$HOME/my-app-backups"
+chmod 700 "$HOME/my-app-backups"
+
+sudo tar -czf \
+  "$HOME/my-app-backups/my-app-$(date +%Y%m%d-%H%M%S).tar.gz" \
+  config.yml storage docker-compose.yml
+```
+
+Confirm the backup succeeded and inspect the archive for the configuration, storage and Compose file before continuing. Keep the old image and confirm how to restore the backup.
+
+### Update the image tag and check migrations
+
+Run `sudo vi docker-compose.yml` and change `image: my-app:1` to `image: my-app:2`, keeping the existing mount paths. If the new version requires additional configuration, update the existing `config.yml` and keep it readable by the container user.
+
+Check with the new image:
+
+```bash
+docker compose -p my-app config --quiet
+
+docker compose -p my-app run --rm --no-deps app \
   node dist/cli/index.js config check --connect
 
-docker compose -p catalog-app run --rm --no-deps app \
+docker compose -p my-app run --rm --no-deps app \
   node dist/cli/index.js db apply --dry-run --json
 
-docker compose -p catalog-app run --rm --no-deps app \
+docker compose -p my-app run --rm --no-deps app \
   node dist/cli/index.js db repair --dry-run --json
 ```
 
-These checks do not start another application service. Review pending migrations and historical checksums, confirm the backup and then run `docker compose -p catalog-app up -d --wait --wait-timeout 180`. Startup applies new migrations. Verify old records, roles and the new feature. Switching back to an old image changes code but does not undo database migrations or writes.
+The database commands check the default connection; applications with multiple databases must also check other affected connections. Review pending migrations and seeds. If historical migration checksums have changed, follow the target version's upgrade notes instead of simply removing `--dry-run` to run repairs.
 
-With an Agent, supply the existing directory, Compose project name and new tag, requiring the same review and preservation checks. Do not initialize new configuration.
+### Start and verify the new version
 
-Recreate containers after configuration changes as well. A tool may replace the configuration file atomically, leaving an old single-file mount pointing at the previous inode. Container recreation remounts it. Changing Compose environment variables also requires recreation; `docker restart` cannot apply a new environment.
+```bash
+docker compose -p my-app up -d --wait --wait-timeout 180
 
-## Troubleshooting and verification scope
+docker compose -p my-app ps
+docker compose -p my-app logs --tail=100 app
+```
 
-| Symptom | Check |
+The default configuration applies new migrations at startup. Sign in at the existing URL and check old records, files, permissions, new features and background jobs. Keep the backup and old image until the new version is confirmed usable.
+
+### Handle data when rolling back
+
+Changing the image tag back replaces code only; it does not undo migrations or business writes made after deploying the new version. Check whether the old version is compatible with the current database before deciding to switch only the image.
+
+If a restore is needed, stop the application first, then restore the matching previous database, files, configuration and image version. Restoring a backup taken before deployment loses business writes made after that backup; it is not a lossless rollback.
+
+## Stop and start the application
+
+From the original deployment directory:
+
+```bash
+cd "$HOME/my-app-deploy"
+
+# Stop and remove the containers; keep host configuration and data.
+docker compose -p my-app down
+
+# Start again with the same configuration and data.
+docker compose -p my-app up -d --wait --wait-timeout 180
+```
+
+After changing configuration files or Compose environment variables, recreate the container to reload its configuration and mounts:
+
+```bash
+docker compose -p my-app up -d --force-recreate --wait --wait-timeout 180
+```
+
+`docker restart` alone does not apply new container environment variables. When configuration tools replace a file, an existing container's single-file mount may also still point to the old file.
+
+## Troubleshooting
+
+| Symptom | What to check |
 | --- | --- |
-| Missing bind source | Correct server directory; configuration generated and storage present |
-| `EACCES` | UID 1000 can read configuration and write storage |
-| Host port in use | Choose another host port and update a directly accessed origin |
-| Unhealthy or timeout | Project logs, database, migrations and base path |
-
-The product catalog example was checked on Linux x64, Node.js 24 and SQLite: prebuilt image, configuration initialization, custom password, Compose health waiting, native login, product creation/publication, CSV download, anonymous management-request denial, and container recreation preserving the same product and password. Real application tests separately cover role-based read/write restrictions. Cross-server transfer, public HTTPS/proxy setup, cross-version deployment and rollback were not exercised.
+| Configuration file or mount directory is missing | Check the deployment directory on the server; generate `config.yml` and create `storage/`. |
+| `permission denied` / `EACCES` | UID 1000 must read configuration and write storage; configuration initialization also needs a writable deployment directory. |
+| Host port is occupied | Change the host port on the left of `ports`; update `APP_PUBLIC_ORIGIN` when accessing that port directly. |
+| Unhealthy container or timeout | Check `ps` and `logs`, database connectivity, migrations, file permissions and the application path. |
+| Healthy container cannot be reached from another computer | Check server IP, port mappings, firewall and security group; for domain access, check the proxy, DNS and HTTPS. |
+| Incorrect redirect after sign-in | Match `APP_PUBLIC_ORIGIN` and `APP_BASE_PATH` to the actual URL, then recreate the container. |

@@ -213,7 +213,7 @@ Verify the features your application actually implements. Configure a separate t
 Commit source and lockfile changes after verification. Record the baseline, target, merge decisions, and verification results. Rebuild and publish through your existing deployment method:
 
 - [Deploy with Docker](../tutorials/deploy-with-docker.md#deploy-a-new-version-manually)
-- [Deploy with PM2 (app-installer)](../tutorials/deploy-with-app-installer.md#publish-a-new-release)
+- [Deploy with PM2 (app-installer)](../tutorials/deploy-with-app-installer.md#deploy-a-new-version-manually)
 
 Keep configuration and data backups that match the previous build. Rolling back code does not undo database migrations. If the previous runtime cannot use the upgraded schema, restore matching database and file backups and account for business writes made since those backups.
 

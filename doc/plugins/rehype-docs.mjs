@@ -18,6 +18,17 @@ for (const info of bundledLanguagesInfo) for (const id of [info.id, ...(info.ali
 for (const id of ['bash', 'sh', 'shell', 'zsh']) NAMES.set(id, 'Bash');
 export const languageLabel = lang => (lang === 'tsx' ? 'TSX' : NAMES.get(lang) ?? lang);
 
+const codeTitle = meta => /(?:^|\s)title=(?:"([^"]*)"|'([^']*)')/.exec(String(meta ?? ''))?.slice(1).find(value => value !== undefined)?.trim();
+
+// Shiki replaces the original code node, so carry its fence title onto the highlighted pre.
+export const codeTitleTransformer = {
+  name: 'docs-code-title',
+  pre(node) {
+    const title = codeTitle(this.options.meta?.__raw);
+    if (title) node.properties.dataCodeTitle = title;
+  },
+};
+
 /** Directory-tree highlighting: only annotates the connectors, directories, files and `#` comments; every source character is kept so alignment and copying are unchanged. Returns hast nodes. */
 export function highlightTree(code) {
   const nodes = [];
@@ -56,7 +67,8 @@ export default function rehypeDocs({ site, contentDir } = {}) {
         const tree_ = !highlighted && (lang === 'tree' || (plain && /^[ \t│]*[├└]─{2,}[ \t]+/m.test(source)));
         const prompt = !highlighted && lang === 'prompt';
         const kind = tree_ ? ['plain-text', 'code-tree'] : prompt ? ['wrap', 'code-prompt'] : plain ? ['wrap', 'plain-text'] : [];
-        const label = tree_ ? ui.codeLabels.tree : prompt ? ui.codeLabels.prompt : plain ? ui.codeLabels.text : languageLabel(lang);
+        const title = node.properties.dataCodeTitle || codeTitle(code?.data?.meta);
+        const label = title || (tree_ ? ui.codeLabels.tree : prompt ? ui.codeLabels.prompt : plain ? ui.codeLabels.text : languageLabel(lang));
         if (!highlighted && code) {
           // Unhighlighted blocks drop the trailing newline Markdown leaves and keep the source otherwise
           const body = source.replace(/\n$/, '');

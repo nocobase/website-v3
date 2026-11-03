@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 import { describe, expect, test } from 'vitest';
 import raw from '../docs.config.ts';
-import rehypeDocs, { SPECIAL_LANGS, highlightTree } from './rehype-docs.mjs';
+import rehypeDocs, { SPECIAL_LANGS, highlightTree, codeTitleTransformer } from './rehype-docs.mjs';
 import remarkCallouts from './remark-callouts.mjs';
 import remarkFigures from './remark-figures.mjs';
 import remarkLinks from './remark-links.mjs';
@@ -29,7 +29,7 @@ async function render(markdown, lang = 'en', key = 'core/a') {
   const processor = await createMarkdownProcessor({
     gfm: true, smartypants: false,
     syntaxHighlight: { type: 'shiki', excludeLangs: SPECIAL_LANGS },
-    shikiConfig: { theme: 'css-variables' },
+    shikiConfig: { theme: 'css-variables', transformers: [codeTitleTransformer] },
     remarkPlugins: [[remarkFigures, opts], [remarkCallouts, opts], [remarkLinks, opts]],
     rehypePlugins: [[rehypeDocs, opts]],
   });
@@ -91,6 +91,16 @@ describe('links', () => {
 });
 
 describe('code blocks, tables, images', () => {
+  test('fence titles replace the toolbar label without entering copied code', async () => {
+    for (const lang of ['bash', 'text', 'prompt']) {
+      const html = await render('```' + lang + ' title="开发机 · my-app/ <source>"\necho hello\n```');
+      expect(html).toContain('<span class="code-language">开发机 · my-app/ &#x3C;source></span>');
+      expect(html).toContain('class="copy-button"');
+      expect(html.match(/<code[^>]*>([\s\S]*?)<\/code>/)?.[1]).not.toContain('开发机');
+    }
+    expect(await render("```bash title='Server'\necho hello\n```")).toContain('class="code-language">Server</span>');
+    expect(await render('```bash title=" "\necho hello\n```')).toContain('class="code-language">Bash</span>');
+  });
   test('a highlighted block gets a toolbar with the language name and a copy button', async () => {
     const html = await render('```ts\nconst a = 1;\n```');
     expect(html).toContain('<div class="code-block"><div class="code-toolbar" data-pagefind-ignore=""><span class="code-language">TypeScript</span><button type="button" class="copy-button" data-copied="Copied" data-failed="Failed" aria-live="polite">Copy</button></div><pre class="astro-code');

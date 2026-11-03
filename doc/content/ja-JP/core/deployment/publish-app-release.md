@@ -23,7 +23,7 @@ PM2（app-installer）の場合は、app-installer がアプリを更新でき�
 | デプロイ方法 | 更新方法 |
 | --- | --- |
 | [Docker](../tutorials/deploy-with-docker.md#新しいバージョンを手動でデプロイする) | 新しいタグでイメージをビルドし、Compose のイメージの参照を更新して、元の設定とストレージのマウントを保ったままコンテナを作り直します。 |
-| [PM2（app-installer）](../tutorials/deploy-with-app-installer.md#新しいリリースを公開する) | 新しいデプロイ用アーカイブをビルドし、既存のインストール先ディレクトリに対して app-installer の `upgrade` を実行します。開発マシンからリモートにデプロイする場合は、引き続き `deploy --ssh` を使います。 |
+| [PM2（app-installer）](../tutorials/deploy-with-app-installer.md#新しいバージョンを手動でデプロイする) | 開発マシンでビルドしてアーカイブを作成・アップロードし、サーバーで app-installer の `upgrade` を実行して既存のインストール先を更新します。 |
 
 コマンドは、各デプロイガイドの「新しいリリースを公開する」を参照してください。
 

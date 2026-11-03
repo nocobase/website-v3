@@ -23,7 +23,7 @@ Finish your code changes and tests, confirm the commit or version to release, th
 | Deployment method | How to update |
 | --- | --- |
 | [Docker](../tutorials/deploy-with-docker.md#deploy-a-new-version-manually) | Build an image with a new tag, update the image reference in Compose, and recreate the container while keeping the original configuration and storage mounts. |
-| [PM2 (app-installer)](../tutorials/deploy-with-app-installer.md#publish-a-new-release) | Build a new deployment archive and run app-installer's `upgrade` against the existing installation directory. For remote deployment from your development machine, continue using `deploy --ssh`. |
+| [PM2 (app-installer)](../tutorials/deploy-with-app-installer.md#deploy-a-new-version-manually) | Build, package and upload from the development machine, then run app-installer's `upgrade` on the server against the existing installation directory. |
 
 See “Publish a new release” in each deployment guide for commands.
 

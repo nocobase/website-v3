@@ -1,170 +1,198 @@
 ---
 title: 使用 PM2 部署（app-installer）
-description: 通过 app-installer 安装和更新生产应用，由 PM2 托管进程，并保留独立的运行配置和数据。
+description: 构建应用部署包，上传到服务器后使用 app-installer 安装应用，由 PM2 管理运行并部署新版本。
 ---
 
-本文以商品目录应用为例说明部署流程，也适用于自己的 NocoBase Core 应用。先按[选择部署方式](../deployment/choose-a-deployment-method.md)确认目标环境；部署自己的项目时，替换示例中的应用名称、路径和业务验收项。
-
-这一篇把商品目录应用独立部署到自己的生产服务器，由 PM2 托管应用进程。`@nocobase/app-installer` 负责解压发布包、生成配置、应用迁移、启动 PM2 进程和检查健康状态，之后也通过它升级应用。
-
-部署前确认应用已通过测试；商品目录示例的测试步骤见[商品目录示例说明](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md)。以下使用单实例、SQLite、Linux x64/glibc、Node.js 24，应用路径为 `/shop`。其他数据库需要在源码项目中安装相应驱动，再重新构建。
+`app-installer` 将部署包安装到服务器，由 PM2 管理应用进程，并负责后续的版本切换、备份和回退。应用源码保留在开发机，服务器上的运行配置和业务数据独立于发布版本保存。
 
 ## 部署前准备
 
-开发机保留源码、Node.js 和项目要求的 pnpm。服务器需要 Node.js 24、全局安装的 pm2 4.3 或以上版本、tar，以及可写的部署目录。本篇命令使用 Bash。
+开发机需要 Node.js 24、pnpm 11。服务器需要 Node.js 24、全局安装的 PM2 4.3 或以上版本。以下命令使用 Bash，以 Linux x64/glibc、SQLite、单实例为例。其他数据库需要在应用源码中安装对应驱动后重新构建，并在安装时填写连接配置。
 
-在服务器上检查：
+示例使用应用名 `my-app`、SSH 目标 `deploy@server`、安装目录 `/srv/nocobase/my-app`、PM2 进程名 `nocobase-my-app`、端口 `13000` 和应用路径 `/main`。替换为自己的目标；多个应用使用独立的目录、端口和进程名。
 
-```bash
-node --version
-node -p "process.platform + '-' + process.arch"
-command -v pm2
-command -v tar
-```
-
-没有 pm2 时，先由服务器维护者安装 `npm install -g pm2`。部署归属一个固定服务账号，后续管理也使用这个账号。提前由管理员给这个账号准备可写的空目录；如果没有 `/srv` 的写权限，本机演练可改用 `$HOME/shop`，后续所有 `--dir` 一并替换。
-
-本篇示例目录为 `/srv/nocobase/shop`，监听地址为 `127.0.0.1:13000`。正式访问由服务器上的反向代理提供 `https://shop.example.com/shop/`；准备对应域名和 HTTPS，并保留转发路径及 WebSocket 升级头。只在本机演练时，可以把 origin 换成 `http://127.0.0.1:13000`。先确认端口未被其他应用占用；多应用使用不同目录、端口和 pm2 进程名。
-
-`npx` 所在机器需要能访问 npm registry。若服务器不能联网，使用开发机上的 `deploy --ssh`，由工具传输安装器与部署包，服务器不需要访问 npm。
-
-示例使用默认模板 `1.0.0-beta.85`，源码和运行准备见上面的固定提交 README。以下配置关闭可选示例数据：首次安装只初始化必需角色，商品目录为空，需要按验证步骤自行创建商品。
+命令使用 `@nocobase/app-installer@beta`，沿用服务器已有的 npm registry 配置，全部在服务器执行。服务器需要能从配置的 registry 获取安装器。已有部署如需固定安装器版本，可将 `@beta` 替换为指定版本。开发机负责构建、打包和上传部署包。
 
 ## 使用 Agent
 
-在应用源码目录向 Agent 提供明确的目标：
+在应用源码目录中使用开发 Agent；还没有应用时，先[创建应用并进入目录](#创建应用并进入目录)。提前准备服务器访问权限，通过安全方式提供密码和凭据，不写进提示词。应用自己的部署 Skill 提供与项目版本对应的指引。
+
+### 首次部署
+
+替换目标信息后使用：
 
 ```text
-请使用 app-installer，把当前商品目录应用首次部署到下面的服务器。
+请在开发机构建、打包并上传当前应用，再在服务器运行 app-installer 完成首次安装，由 PM2 管理运行。
 
-服务器：<我的 SSH 服务器别名>
-安装目录：/srv/nocobase/shop，使用新目录和新的 SQLite 数据库
-服务器环境：Linux x64/glibc，Node.js 24
-应用在服务器上监听：127.0.0.1:13000
-用户访问地址：https://shop.example.com/shop/
+服务器：<SSH 用户和地址>
+安装目录：<服务器上的绝对路径>
+访问地址：<包含应用路径的完整 URL>
+数据库：新建 SQLite 数据库，不导入开发数据或示例数据
 
-请按项目部署指引先检查目标和运行条件，准备好应用再安装。
-只操作这个教程应用，不导入开发数据，不添加示例商品。
-设置管理员登录信息，用安全方式读取我提供的密码，不在输出或代码里暴露密码和密钥。
-
-部署后实际检查登录、商品创建、发布和只读用户的权限。
-重启这个应用，确认之前创建的商品和权限仍然保留。
-完成后告诉我访问地址、验证结果，以及还有哪些环境配置需要我处理。
+请设置管理员登录信息，保留独立的配置和业务数据。
+部署后检查登录和一项主要业务操作，再重启应用确认数据仍然保留。
+告诉我访问地址、检查结果，以及开机自动启动是否配置完成。
 ```
 
-把占位值替换为实际目标。Agent 可以在开发机执行 `deploy --ssh`；服务器无需安装 Agent、源码或项目依赖。工具会通过 SSH 传输安装器及应用包，服务器仍需事先具备 Node.js、pm2 和 tar。
+### 部署新版本
 
-## 不使用 Agent
+在已更新并通过测试的应用源码目录中使用：
 
-### 1. 在开发机构建
+```text
+请在开发机构建、打包并上传当前项目的新版本，再在原服务器运行 app-installer 完成更新。
 
-```bash
+服务器：<SSH 用户和地址>
+原安装目录：<服务器上的绝对路径>
+允许停机时间：<维护时间段>
+
+保留原来的访问地址、配置、密钥、数据库和上传文件，不重新初始化。
+先检查版本变化和备份范围，再部署新版本。
+完成后确认原有数据、用户权限和新功能正常；如果失败，说明恢复结果及对数据的影响。
+```
+
+Agent 按相同分工执行：在开发机构建、打包并上传，然后连接服务器，在服务器上运行 app-installer 和 PM2 命令。Agent 与手动执行选择一种即可，两种方式都需要完成后面的访问和持久化验证。
+
+## 手动部署
+
+**开发机终端**负责构建、打包和上传部署包；**服务器终端**负责安装、部署新版本、状态检查、回退和 PM2 管理。建议分别保留两个终端；所有 `@nocobase/app-installer` 命令均在服务器终端执行。
+
+每组命令前标明执行位置。设置密码变量、运行安装命令和清除变量必须在同一个终端中完成。命令中的绝对路径不要求先 `cd` 到安装目录；`storage/exports/dist.tar.gz` 是相对路径，必须在开发机的应用源码目录中使用。
+
+### 创建应用并进入目录
+
+```bash title="开发机 · 应用父目录"
+pnpm create @nocobase/app@beta my-app --template-tag=beta
+cd my-app
+```
+
+已有应用直接进入源码目录，构建前确认项目测试通过。
+
+### 构建部署包
+
+```bash title="开发机 · 应用源码目录 my-app/"
 pnpm build --target linux-x64 --node-version 24 --tar
 ```
 
-得到 `storage/exports/dist.tar.gz`。可以执行 `sha256sum storage/exports/dist.tar.gz` 记录本次发布包摘要。target 与 Node 主版本必须匹配服务器；ARM 或 musl 环境使用对应 target。包内已经包含生产依赖，服务器不需要为这个 archive 再运行 `pnpm install`。
+产物为 `storage/exports/dist.tar.gz`，包含 `dist/`、生产依赖和配置模板，不包含开发数据库、密钥和上传文件。服务器不需要为这个包再执行 `pnpm install`。
 
-### 2. 选择本机安装或 SSH 部署
+构建目标的架构、libc 和 Node 主版本需要匹配服务器。ARM64/glibc 使用 `linux-arm64`；Alpine 等 musl 环境使用相应的 musl target。
 
-两种操作使用同一个部署包，选择其中一种。
+### 准备服务器
 
-**A. 已在服务器上操作**
+以运行应用的服务账号登录服务器：
 
-先在开发机复制部署包：
-
-```bash
-scp storage/exports/dist.tar.gz deploy@server:/tmp/shop.tar.gz
+```bash title="开发机 · 任意目录"
+ssh deploy@server
 ```
 
-再以部署服务账号登录服务器，执行安装：
+检查运行环境：
 
-```bash
-read -r -s -p 'Initial admin password: ' CATALOG_INITIAL_PASSWORD
-export CATALOG_INITIAL_PASSWORD
+```bash title="服务器 · 原服务账号，任意目录"
+node --version
+node -p "process.platform + '-' + process.arch"
+command -v pm2
+```
 
-npx --yes @nocobase/app-installer@0.1.0-beta.9 install /srv/nocobase/shop \
-  --archive /tmp/shop.tar.gz \
-  --origin https://shop.example.com \
-  --base-path /shop \
-  --host 127.0.0.1 \
+未安装 PM2 时，在服务器全局安装：
+
+```bash title="服务器 · 原服务账号，任意目录"
+npm install -g pm2
+```
+
+由管理员为当前服务账号准备新的空目录：
+
+```bash title="服务器 · 原服务账号，任意目录"
+sudo mkdir -p /srv/nocobase/my-app
+sudo chown "$(id -u):$(id -g)" /srv/nocobase/my-app
+```
+
+后续安装、状态查询和 PM2 管理均使用同一服务账号。安装目标必须是新的或空的目录，不要清空已有部署来安装。
+
+### 在服务器本机安装
+
+先从开发机上传部署包，再切换到服务器终端安装：
+
+```bash title="开发机 · 应用源码目录 my-app/"
+scp storage/exports/dist.tar.gz deploy@server:/tmp/my-app.tar.gz
+```
+
+在服务器设置密码变量，再执行安装。将 `YOUR_SERVER_IP` 替换为实际服务器 IP：
+
+```bash title="服务器 · 原服务账号，任意目录"
+read -r -s -p 'Initial admin password: ' MY_APP_ADMIN_PASSWORD
+export MY_APP_ADMIN_PASSWORD
+```
+
+```bash title="服务器 · 原服务账号，任意目录"
+npx --yes @nocobase/app-installer@beta install /srv/nocobase/my-app \
+  --archive /tmp/my-app.tar.gz \
+  --origin http://YOUR_SERVER_IP:13000 \
+  --base-path /main \
+  --host 0.0.0.0 \
   --port 13000 \
-  --name nocobase-catalog \
+  --name nocobase-my-app \
+  --dialect sqlite \
   --set app.sampleData=false \
-  --set-from-env users.initialAdmin.password=CATALOG_INITIAL_PASSWORD \
+  --set-from-env users.initialAdmin.password=MY_APP_ADMIN_PASSWORD \
   --json
-
-unset CATALOG_INITIAL_PASSWORD
 ```
 
-**B. 在开发机通过 SSH 部署**
-
-提前配置好 SSH 密钥登录，并通过可信方式核对服务器指纹。安装器使用非交互连接且严格检查主机密钥；先在开发机确认下面的命令能直接执行：
-
-```bash
-ssh deploy@server 'node --version && command -v pm2 && command -v tar'
+```bash title="服务器 · 原服务账号，任意目录"
+unset MY_APP_ADMIN_PASSWORD
 ```
 
-如果工具只在交互终端里可用，需要先修正这个账号的非交互 SSH PATH。使用非默认端口、密钥或配置文件时，分别添加 `--ssh-port`、`--ssh-identity`、`--ssh-config`；后续 status 和更新也保留相同参数。
+安装器会解压部署包、初始化配置、执行迁移和种子、注册 PM2 进程并启动应用。初始管理员密码只在用户表为空时生效，不用于重置已有账号。
 
-以下命令在开发机执行。`--archive` 是开发机上的文件，`--dir` 是服务器上的绝对路径：
+`--set-from-env` 从服务器当前终端读取密码变量；不要把密码直接写进 `--set`。
 
-```bash
-read -r -s -p 'Initial admin password: ' CATALOG_INITIAL_PASSWORD
-export CATALOG_INITIAL_PASSWORD
+### 配置访问地址
 
-npx --yes @nocobase/app-installer@0.1.0-beta.9 deploy \
-  --ssh deploy@server \
-  --dir /srv/nocobase/shop \
-  --archive storage/exports/dist.tar.gz \
-  --origin https://shop.example.com \
-  --base-path /shop \
-  --host 127.0.0.1 \
-  --port 13000 \
-  --name nocobase-catalog \
-  --set app.sampleData=false \
-  --set-from-env users.initialAdmin.password=CATALOG_INITIAL_PASSWORD \
-  --json
+上述示例直接监听服务器的 `13000` 端口，需要在防火墙或安全组允许访问。`--origin` 不包含路径，`--base-path` 单独设置应用路径，最终访问地址为 `http://YOUR_SERVER_IP:13000/main/`。
 
-unset CATALOG_INITIAL_PASSWORD
-```
-
-两条首次安装命令都要求目标目录是新的或空的。`--origin` 不包含 `/shop`，`--base-path` 单独设置应用路径。默认只监听回环地址；如果选择直接通过服务器 IP 和端口访问，需要明确设置 `--host 0.0.0.0`、对应的 origin 及网络访问规则。
-
-`--set-from-env` 从执行安装器的机器读取环境变量；SSH 路线通过加密连接传入，不需要在服务器再 export 一次。初始密码只在新数据库创建管理员时生效，不用于重置已有账号。
-
-`npx --yes` 只跳过下载工具的提示，不代表同意未来的升级或回滚。不要把密码写进 `--set`。
-
-### 3. 检查安装结果
-
-先确认返回 JSON 的 `ok: true`、`status: "success"`。`result.started: true` 表示应用已启动并通过健康检查，`result.url` 是配置的应用入口。按 `result.initialAdmin.username` 和刚设置的密码登录；使用了自定义密码后，`result.initialAdmin.defaultPassword` 应为 `false`。
-
-在服务器上检查状态：
-
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 status \
-  --dir /srv/nocobase/shop --json
-```
-
-从开发机检查远程安装时，在同一条命令中增加 `--ssh deploy@server`。检查 `result.health.ok`、`result.process.status`、`result.node.matches` 以及 `result.pending`；预期分别为 `true`、`online`、`true`、`null`。
-
-健康检查与对外访问分开验证。在服务器上执行：
-
-```bash
-curl --fail http://127.0.0.1:13000/shop/api/healthz
-```
-
-配置好反向代理后，从开发机或实际访问网络执行：
-
-```bash
-curl --fail https://shop.example.com/shop/api/healthz
-```
-
-两者都应返回 `ok: true`，并且应用 base path 为 `/shop`。最后在浏览器打开 `https://shop.example.com/shop/`，检查登录、页面刷新和商品操作。本机演练直接打开对应回环地址即可。SSH 返回的 `result.remote.publicHealth: false` 表示开发机无法访问配置的公开地址，应检查 DNS、代理及网络，先用 status 确认服务器上的应用状态。
-
-服务器部署目录大致如下：
+使用域名、HTTPS 和同机反向代理时，将首次安装命令中的参数替换为：
 
 ```text
-/srv/nocobase/shop/
+--origin https://apps.example.com
+--base-path /main
+--host 127.0.0.1
+--port 13000
+```
+
+代理需要转发 `/main/`、保留 Host 和协议头、传递 Cookie，并支持 WebSocket。安装器不自动配置域名和 HTTPS。
+
+### 检查安装结果
+
+返回 JSON 中的 `ok: true` 表示命令成功；`result.started: true` 表示应用通过启动健康检查；`result.url` 是应用入口。使用 `result.initialAdmin.username` 和设置的密码登录。
+
+```bash title="服务器 · 原服务账号，任意目录"
+npx --yes @nocobase/app-installer@beta status \
+  --dir /srv/nocobase/my-app --json
+```
+
+确认 `result.health.ok` 为 `true`、`result.process.status` 为 `online`、`result.node.matches` 为 `true`、`result.pending` 为 `null`。在服务器检查健康接口：
+
+```bash title="服务器 · 原服务账号，任意目录"
+curl --fail http://127.0.0.1:13000/main/api/healthz
+```
+
+返回 `ok: true` 后，在浏览器登录，检查页面刷新和用户权限。使用正式域名时，通过真实域名验证。无法访问时，先在服务器查询 status，再检查 DNS、代理及网络。
+
+### 配置开机启动并验证持久化
+
+```bash title="服务器 · 原服务账号，任意目录"
+pm2 startup
+```
+
+执行它打印的系统配置命令，再保存进程列表：
+
+```bash title="服务器 · 原服务账号，任意目录"
+pm2 save
+```
+
+安装目录大致如下：
+
+```text
+/srv/nocobase/my-app/
 ├── installer.json
 ├── app.env
 ├── config.yml
@@ -173,137 +201,129 @@ curl --fail https://shop.example.com/shop/api/healthz
 ├── backups/
 ├── current -> releases/<release>/app
 └── releases/
-    └── <release>/app/
-        ├── config.example.yml
-        └── dist/
 ```
 
-配置和数据位于发布目录之外，由不同版本共用。商品目录示例应用通过必需种子初始化 **Catalog viewer** 和 **Catalog editor** 角色；开发环境中的商品、用户和角色分配不会随包复制，需要在部署后配置或另行迁移。不要手工覆盖 `current` 或改写已安装的发布文件。
+配置和数据保存在 release 之外。创建一条业务记录，应用支持文件时再上传一个文件，然后在服务器重启：
 
-### 4. 验证托管与持久化
-
-1. 以管理员登录，打开 `/shop/api/swagger/docs`，在 **Products** 中创建 `Deployment Notebook`（`priceCents: 1200`），记下 ID，再调用发布接口。每次新操作提供新的 `Idempotency-Key`，格式和用法见[商品目录 README](https://github.com/nocobase/docs-examples-v3/blob/b24857f529ae5bb80e97a881b846ea2fd1424242/apps/product-catalog/README.md#create-and-publish)。在 `/shop/catalog` 确认商品已显示。
-2. 为普通用户显式分配 **Catalog viewer**，不要同时分配管理员或 **Catalog editor**。确认查询和 CSV 下载成功，创建和发布接口返回 `403`。
-3. 在服务器以同一服务账号执行 `pm2 restart nocobase-catalog`，或使用安装时指定的实际进程名。
-4. 再次登录，核对同一商品的 ID、名称、价格和发布状态，确认只读权限仍然生效。
-5. 按安装结果的 `nextCommands` 配置开机恢复。安装器已经保存 pm2 进程列表；以同一服务账号运行 `pm2 startup`，再执行它打印的系统命令。SSH 部署时这些命令也在服务器上执行。
-
-应用进程重启与服务器开机恢复是两项不同的验证。配置 pm2 不会自动替你配置域名、HTTPS 或反向代理。
-
-## 部署新版本
-
-业务功能修改并验证后，在开发机重新构建部署包，再发布到原来的安装目录。更新流程概览见[发布应用新版本](../deployment/publish-app-release.md)。
-
-### 使用 Agent
-
-在应用源码目录提供明确目标：
-
-```text
-请把已经验证通过的新版商品目录应用，发布到原来的教程环境。
-
-服务器：<我的 SSH 服务器别名>
-已有安装目录：/srv/nocobase/shop
-继续使用 app-installer，保留现有数据库、配置、登录密钥和上传文件。
-
-更新前先查看当前版本和已有商品，准备好备份并保留旧版本。
-说明这次更新会怎样改变数据、是否需要停机，以及失败后怎样恢复。
-如果发现以前执行过的数据变更被改写，先查明原因，不要直接修复或跳过检查。
-不要把更新当作全新安装，不清空已有数据。
-
-更新后检查旧商品的价格、发布状态和只读权限仍然保留，新功能也能正常使用。
-重启应用后再检查一次，只操作这个教程应用，并告诉我实际结果。
+```bash title="服务器 · 原服务账号，任意目录"
+pm2 restart nocobase-my-app
 ```
 
-### 不使用 Agent
+重新登录，确认原记录、文件和权限仍然保留，定时任务继续运行。服务器开机恢复与应用重启是不同的验证，需要在适合重启服务器的时间单独检查。
 
-**1. 保存旧包并构建。** `pnpm build --tar` 会重新生成 `storage/exports/dist.tar.gz`，需要留存的旧包应先复制到其他位置。然后在源码项目执行：
+## 手动部署新版本
 
-```bash
+### 构建新部署包
+
+```bash title="开发机 · 应用源码目录 my-app/"
 pnpm build --target linux-x64 --node-version 24 --tar
-sha256sum storage/exports/dist.tar.gz
 ```
 
-**2. 检查更新计划。** 选择与原部署一致的操作方式。
+构建会覆盖 `storage/exports/dist.tar.gz`，需要留存的旧包先另存。先阅读目标版本的迁移和配置变更说明。
 
-在服务器上更新时，先从开发机复制新包：
+### 查看当前状态和部署计划
 
-```bash
-scp storage/exports/dist.tar.gz deploy@server:/tmp/shop-new.tar.gz
+先在开发机上传新包：
+
+```bash title="开发机 · 应用源码目录 my-app/"
+scp storage/exports/dist.tar.gz deploy@server:/tmp/my-app-new.tar.gz
 ```
 
-再以原部署账号在服务器执行：
+再在服务器执行：
 
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 status \
-  --dir /srv/nocobase/shop --json
-
-npx --yes @nocobase/app-installer@0.1.0-beta.9 upgrade \
-  --dir /srv/nocobase/shop --archive /tmp/shop-new.tar.gz --json
+```bash title="服务器 · 原服务账号，任意目录"
+npx --yes @nocobase/app-installer@beta status \
+  --dir /srv/nocobase/my-app --json
 ```
 
-如果从开发机通过 SSH 更新，使用本地包和远程安装目录：
-
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 status \
-  --ssh deploy@server --dir /srv/nocobase/shop --json
-
-npx --yes @nocobase/app-installer@0.1.0-beta.9 deploy \
-  --ssh deploy@server \
-  --dir /srv/nocobase/shop \
-  --archive storage/exports/dist.tar.gz \
-  --json
+```bash title="服务器 · 原服务账号，任意目录"
+npx --yes @nocobase/app-installer@beta upgrade \
+  --dir /srv/nocobase/my-app \
+  --archive /tmp/my-app-new.tar.gz --json
 ```
 
-`deploy` 根据目录中是否存在 `installer.json` 选择首次安装或更新。已有安装不要再传 `--origin`、`--base-path`、`--host`、`--port`、`--name`、`--set` 等首次安装参数。同一发布包重复部署返回 `success-noop`。
+部署新版本使用服务器上的 `upgrade` 命令，不再传 `--origin`、`--host`、`--port`、`--name`、`--set` 等首次安装参数，原配置继续使用。
 
-有更新时，非交互预检返回 `CONFIRMATION_REQUIRED` 和停机、备份、迁移说明，旧版此时仍在运行。开头的 `npx --yes` 只确认获取安装器，不代表确认更新。
+需要更新时，预检返回 `CONFIRMATION_REQUIRED`，说明停机、备份和迁移影响；此时尚未切换，旧版仍在运行。同一个部署包重复执行可返回 `success-noop`。应用版本号相同但重新构建的包，也可以成为新的 release。
 
-安装器会通过新版 CLI 检查配置、待执行迁移及历史校验值。新增迁移数量应与本次发布内容相符；仅修改页面或服务代码不意味着必须新增迁移。如果出现不符合预期的迁移或校验值变化，先核对源码和版本说明，不要通过重置数据库或盲目修复来绕过。
+### 确认备份范围
 
-**3. 确认后执行。** 检查计划、备份和停机时间后，在所选的 `upgrade` 或 `deploy` 命令末尾增加安装器的 `--yes`。例如在服务器执行：
+安装器停机后自动备份配置中可识别的 SQLite 数据库、`config.yml` 和 `app.env`。上传文件、外部数据库和对象存储需要另行备份；`--backup-done` 只确认外部数据库备份已完成，不会执行备份或恢复。
 
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 upgrade \
-  --dir /srv/nocobase/shop \
-  --archive /tmp/shop-new.tar.gz --yes --json
+当前版本会检查配置、待执行迁移及历史迁移和种子的校验值。如果返回 `CHECKSUM_REPAIR_REQUIRED`，先逐项核对变化及版本说明；普通 `--yes` 不会授权修复。确认合理后，才在同一命令中添加返回计划对应的 `--repair-checksums <token>`。工具会先备份，再执行获批的修复和迁移；不要提前手动修复来绕过预检。
+
+### 确认后执行部署
+
+确认计划、备份和停机时间后，在服务器执行：
+
+```bash title="服务器 · 原服务账号，任意目录"
+npx --yes @nocobase/app-installer@beta upgrade \
+  --dir /srv/nocobase/my-app \
+  --archive /tmp/my-app-new.tar.gz --yes --json
 ```
 
-安装器停止应用，备份 SQLite、`config.yml` 和 `app.env`，执行迁移、切换 release，再启动并检查健康状态。原配置、密钥和 `storage/` 继续使用，不重新运行 `install` 或 `config init`。
+安装器停止应用、备份、执行迁移、切换版本并启动检查。原配置、密钥和数据继续保留，不重新执行 `install` 或 `config init`。
 
-自动备份不包含上传文件，也不覆盖外部数据库；使用这些资源时，应单独备份。外部数据库所需的 `--backup-done` 只是确认已备份，不会替你完成备份或恢复。
+开头的 `npx --yes` 仅确认获取安装器；命令末尾的 `--yes` 才确认执行本次更新。外部数据库需要先完成备份，再在所选命令中增加 `--backup-done`。
 
-**4. 验证新旧数据。** 重新运行同一目标的 `status`，确认新 release 和健康状态，再用原地址登录：
+### 验证新版本
 
-- 旧商品的 ID、名称、价格和发布状态保留。
-- 已发布商品仍显示在 `/shop/catalog`，草稿不会公开。
-- 管理员仍能创建和发布商品，原 **Catalog viewer** 用户可查询、下载 CSV，但不能创建或发布。
-- 本次新增功能符合预期；若包含结构变更，按对应迁移说明检查旧记录与新增字段。
-- 在演练环境重启同一应用后，再检查数据和权限。
+重新执行同一目标的 `status`，确认新 release 和健康状态，再通过原地址登录，检查旧记录、上传文件、用户权限、新功能及后台任务。
 
-记录每次发布对应的源码提交和包摘要；应用版本号相同也可能是不同构建。保留旧包，以便核对更新和恢复范围。
+记录源码版本与包摘要，保留旧部署包和备份。安装器默认保留三个 release，可通过 `--keep` 调整；被清理的 release 不能再直接回退到。
 
-### 更新失败与回退
+## 更新失败与回退
 
-先保留错误结果和日志，通过 `status` 检查当前 release、健康状态及未完成操作，不要立即重新初始化或重复部署。
+先保留错误和日志，执行同一目标的 `status`，确认当前运行版本和 `pending`。安装器可能已自动恢复旧版；退出码 `3` 表示更新失败后已回退，`4` 表示回退也失败、应用停机。结合 JSON 的错误和恢复建议判断，不要重新初始化。
 
-需要回退时，先查看计划：
+在服务器查看回退计划：
 
-```bash
-npx --yes @nocobase/app-installer@0.1.0-beta.9 rollback \
-  --dir /srv/nocobase/shop --json
+```bash title="服务器 · 原服务账号，任意目录"
+npx --yes @nocobase/app-installer@beta rollback \
+  --dir /srv/nocobase/my-app --json
 ```
 
-当更新执行了数据库迁移时，回滚计划可能包含恢复升级前的 SQLite 备份，导致升级后的商品和其他写入丢失；以安装器返回的计划为准。确认可接受这一影响、保存需要保留的数据后，才加 `--yes` 执行。切换代码版本不等于撤销迁移；外部数据库和上传文件仍需各自的恢复流程。
+确认数据影响后执行：
 
-## 遇到问题时
+```bash title="服务器 · 原服务账号，任意目录"
+npx --yes @nocobase/app-installer@beta rollback \
+  --dir /srv/nocobase/my-app --yes --json
+```
+
+先运行不带末尾 `--yes` 的命令，确认后才执行第二条。执行过迁移或校验值修复的更新，回退时可能恢复原 SQLite 备份，丢失备份后的业务写入。外部数据库和上传文件需要各自的恢复流程。只有确认旧版兼容当前数据库，才考虑 `--no-restore`。
+
+执行中断后，先在服务器查询 `status`，检查进程和 `pending`。确认状态后按返回的恢复建议处理，不要立即重复部署。
+
+## 日常管理
+
+以下命令在服务器上以原服务账号执行：
+
+```bash title="服务器 · 原服务账号，任意目录"
+# Process status
+pm2 status nocobase-my-app
+
+# Logs; press Ctrl+C to stop following
+pm2 logs nocobase-my-app --lines 100
+
+# Restart
+pm2 restart nocobase-my-app
+
+# Stop
+pm2 stop nocobase-my-app
+
+# Resume
+pm2 restart nocobase-my-app
+```
+
+修改访问 origin、监听地址或端口时，编辑安装目录中的 `app.env`，确认端口可用并同步调整代理，再重启对应进程、查询 status 和验证实际访问地址。不要手工覆盖 `current` 或修改已安装 release 中的构建文件。
+
+## 常见问题
 
 | 现象 | 下一步 |
 | --- | --- |
-| `PORT_IN_USE` | 确认端口属于哪个进程，为本应用选择空闲端口，同时修改 origin；不要停止无关应用。 |
-| SSH 无法登录，或找不到 Node / pm2 | 先验证上面的非交互 SSH 命令、主机指纹和 PATH，再重试。 |
-| `START_FAILED` | 查看错误返回的日志路径和部署目录 `logs/`，检查配置、数据库及启动错误。 |
-| `REMOTE_STATE_UNKNOWN` | 远程操作可能仍在运行，先执行相同目标的 status；不要立即重复部署。 |
+| `PORT_IN_USE` | 为本应用选择空闲端口，并同步修改 origin；不要停止无关进程。 |
+| `DRIVER_MISSING` | 在应用源码中添加目标数据库驱动，重新构建部署包。 |
+| `START_FAILED` | 查看错误返回的日志路径和安装目录 `logs/`，检查配置、数据库和启动错误。 |
+| 状态正常但无法访问 | 检查监听地址、端口、防火墙、DNS 和代理；确认使用包含应用路径的入口地址。 |
 
-读取 JSON 的 `error.code`、`error.message` 和 `error.suggestions`；不要只凭退出码猜测发生了什么，也不要把配置文件中的密钥贴进排查日志。
-
-商品目录示例已使用 `@nocobase/app-installer@0.1.0-beta.9`、PM2 `6.0.14`、Node.js 24 和 SQLite 完成本机新目录安装、status 检查、真实登录、商品创建与发布，以及 PM2 重启后同一商品和密码保留。角色读写边界另有真实应用测试覆盖。未验证跨主机 SSH、正式域名代理、服务器开机恢复、跨版本升级、失败恢复或发布回退。
+排查时保留 JSON 的 `error.code`、`error.message` 和 `error.suggestions`，不要输出含密钥的配置文件。

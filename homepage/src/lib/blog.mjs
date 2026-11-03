@@ -213,7 +213,7 @@ function generate(posts, stories, site) {
   const clist = `<section class="phero">
   <div class="container">
     <p class="label"><b>${T('客户案例', 'Customer Stories')}</b></p>
-    <h1>${T('全球各行业团队，<span class="m">用 NocoBase 构建核心业务系统。</span>', 'Teams worldwide <span class="m">build core business systems on NocoBase.</span>')}</h1>
+    <h1>${T('全球各行业团队，<br><span class="m">用 NocoBase 构建核心业务系统。</span>', 'Teams worldwide <span class="m">build core business systems on NocoBase.</span>')}</h1>
     <p class="lede">${T('从新能源、制造、医疗到政府与高校，看他们为什么选择 NocoBase，怎样搭建、上线并持续改进自己的系统。', 'From energy, manufacturing, and healthcare to government and universities—why they chose NocoBase, and how they built, launched, and keep improving their systems.')}</p>
     <div class="cs-logos">${logos}</div>
   </div>

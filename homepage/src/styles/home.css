@@ -99,8 +99,7 @@ svg.lucide { width: 16px; height: 16px; stroke-width: 1.8; flex: none; }
 @media (max-width: 400px) { .hero h1 span { white-space: normal; } }
 .logos img { display: block; height: 46px; width: auto; filter: grayscale(1); opacity: 0.72; }
 .case { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 32px; align-items: center; padding: 20px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-/* 全文发布前卡片不可点击，「即将发布」用灰字，不做成链接的样子 */
-.case-soon { font-size: 15px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.case-more { white-space: nowrap; }
 @media (max-width: 700px) { .logos img { height: 34px; } .case { grid-template-columns: 1fr; } }
 /* Studio */
 .cols3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 64px; }

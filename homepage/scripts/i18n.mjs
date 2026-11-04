@@ -20,11 +20,9 @@ import { CONTENT, HOMEPAGE } from '../src/lib/paths.mjs';
 import { collectText, navSpec } from '../src/lib/nav.mjs';
 import { readYaml, writeYaml } from '../src/lib/yaml-io.mjs';
 
-// 联系页的两道选择题，选项由 public-form.js 从 NocoBase 2 的英文表单（service-en，ect266yzsld）读取：source、what_to_do 两个字段的 enum
+// 联系页的选择题，选项由 public-form.js 从 NocoBase 2 的英文表单（service-en，ect266yzsld）读取：what_to_do 字段的 enum
 const FORM_OPTIONS = {
   contact: [
-    'Search Engine', 'GitHub', 'LinkedIn', 'Facebook', 'Instagram', 'TikTok', 'YouTube', 'X', 'Business Partner or Third-Party Recommendation',
-    'Friends/Colleagues', 'Reddit', 'Online Community', 'AI Chat', 'Article/Blog post', 'Hacker News', 'Product Hunt', 'Review Site', 'Others',
     'Internal use for developing business systems or tools', 'Provide outsourcing services based on NocoBase',
     'Develop commercial products based on NocoBase', 'Study or research',
   ],

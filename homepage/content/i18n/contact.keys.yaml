@@ -50,6 +50,7 @@ items:
     en: How did you find out about NocoBase
     zh: 你是通过什么渠道了解到 NocoBase 的
     where: contact
+    unused: true
   "011":
     en: What do you want to do with NocoBase (choose all that apply)
     zh: 你希望用 NocoBase 做什么（可多选）
@@ -74,78 +75,97 @@ items:
     en: Select one
     zh: 请选择
     where: form
+    unused: true
   "017":
     en: Search Engine
     zh: ""
     where: form-options
+    unused: true
   "018":
     en: GitHub
     zh: ""
     where: form-options
+    unused: true
   "019":
     en: LinkedIn
     zh: ""
     where: form-options
+    unused: true
   "020":
     en: Facebook
     zh: ""
     where: form-options
+    unused: true
   "021":
     en: Instagram
     zh: ""
     where: form-options
+    unused: true
   "022":
     en: TikTok
     zh: ""
     where: form-options
+    unused: true
   "023":
     en: YouTube
     zh: ""
     where: form-options
+    unused: true
   "024":
     en: X
     zh: ""
     where: form-options
+    unused: true
   "025":
     en: Business Partner or Third-Party Recommendation
     zh: ""
     where: form-options
+    unused: true
   "026":
     en: Friends/Colleagues
     zh: ""
     where: form-options
+    unused: true
   "027":
     en: Reddit
     zh: ""
     where: form-options
+    unused: true
   "028":
     en: Online Community
     zh: ""
     where: form-options
+    unused: true
   "029":
     en: AI Chat
     zh: ""
     where: form-options
+    unused: true
   "030":
     en: Article/Blog post
     zh: ""
     where: form-options
+    unused: true
   "031":
     en: Hacker News
     zh: ""
     where: form-options
+    unused: true
   "032":
     en: Product Hunt
     zh: ""
     where: form-options
+    unused: true
   "033":
     en: Review Site
     zh: ""
     where: form-options
+    unused: true
   "034":
     en: Others
     zh: ""
     where: form-options
+    unused: true
   "035":
     en: Internal use for developing business systems or tools
     zh: ""

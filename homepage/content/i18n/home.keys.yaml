@@ -934,6 +934,7 @@ items:
     en: Coming soon
     zh: 即将发布
     where: customers
+    unused: true
   "215":
     en: Sales · 6 Sales Agents
     zh: 销售管理 · 配备 6 个销售 Agent
@@ -1081,3 +1082,7 @@ items:
     en: Get Started with Core
     zh: 开始使用 Core
     where: start
+  "248":
+    en: Read the full story
+    zh: 阅读全文
+    where: customers

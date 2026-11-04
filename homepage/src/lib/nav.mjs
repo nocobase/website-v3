@@ -100,9 +100,9 @@ export function navSpec(active, { stars = githubStars() } = {}) {
     tagline: T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Build reliable business systems.'),
     columns: [
       { title: T('产品', 'Products'), links: [...PRODUCTS.map(x => ({ href: x[1], label: x[3] })), { href: NOCODE, label: T('NocoBase 2 无代码 ↗', 'NocoBase 2 No-code ↗'), external: true }] },
-      { title: T('定价与许可', 'Pricing &amp; License'), links: [{ href: 'pricing.html', label: T('版本与价格', 'Editions &amp; Pricing') }, { href: '#', label: T('许可协议', 'License') }, { href: NOCODE, label: 'NocoBase 2.x ↗', external: true }] },
+      { title: T('定价与许可', 'Pricing &amp; License'), links: [{ href: 'pricing.html', label: T('版本与价格', 'Editions &amp; Pricing') }, { label: T('许可协议', 'License') }, { href: NOCODE, label: 'NocoBase 2.x ↗', external: true }] },
       { title: T('伙伴', 'Partners'), links: [{ href: 'partner.html', label: T('合作伙伴计划', 'Partner Program') }, { href: 'find-partner.html', label: T('寻找 NocoBase 伙伴', 'Find a Partner') }, { href: 'customers.html', label: T('客户案例', 'Customers') }] },
-      { title: T('资源', 'Resources'), links: [{ href: DOCS, label: T('文档', 'Docs'), external: true }, { href: 'blog.html', label: T('博客', 'Blog') }, { href: '#', label: T('更新日志', 'Changelog') }] },
+      { title: T('资源', 'Resources'), links: [{ href: DOCS, label: T('文档', 'Docs'), external: true }, { href: 'blog.html', label: T('博客', 'Blog') }, { label: T('更新日志', 'Changelog') }] },
       { title: T('联系', 'Connect'), links: [{ href: 'contact.html', label: T('联系我们', 'Contact Us') }, { href: FORUM, label: T('社区论坛', 'Forum'), external: true }, { href: GITHUB, label: 'GitHub', external: true }] },
     ],
     copyright: '© 2020-2026 NocoBase. All rights reserved.',

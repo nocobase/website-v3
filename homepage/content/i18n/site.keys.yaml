@@ -145,6 +145,7 @@ items:
     en: No-code ↗
     zh: 无代码 ↗
     where: site
+    unused: true
   "036":
     en: All Solutions
     zh: 全部解决方案

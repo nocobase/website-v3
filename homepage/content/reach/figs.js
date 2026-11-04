@@ -224,6 +224,30 @@
       </div></section>`, 'nr-pad-0');
   } };
 
+  // 项目知识 › 记忆: the weekly suggestions from task feedback, approved deliverables and the website, above what memory holds
+  F.memory = { w: 820, h: 0, html: () => {
+    const SUG = (label, text, replace, source, reason, examples) => `<div class="flex items-start gap-3 border-b px-3 py-2.5 last:border-0"><div class="flex min-w-0 flex-1 flex-col gap-0.5 text-sm"><p><span class="text-muted-foreground">${label} · </span>${replace ? `<span class="text-muted-foreground line-through">${replace}</span> → ` : ''}<span class="whitespace-pre-wrap">${text}</span></p>` +
+      `<p class="text-xs text-muted-foreground">${source}${L('：', ': ')}${reason}${examples ? L(`（例如：${examples.join('；')}）`, ` (for example: ${examples.join('; ')})`) : ''}</p></div>${BTN_XS(replace ? L('替换', 'Replace') : L('补充', 'Add'))}${BTN_XS(L('忽略', 'Ignore'), true)}</div>`;
+    const ROW = (k, v) => `<div class="contents"><dt class="text-xs text-muted-foreground sm:pt-0.5">${k}</dt><dd class="m-0 whitespace-pre-wrap">${v}</dd></div>`;
+    return PAGE(`${HEAD(L('项目知识', 'Project knowledge'), L('AI 团队对这个项目的了解：记忆每次都读，知识库需要时去查。', 'What the AI team knows about this project: memory is read every time, the knowledge base when needed.'), BTN(L('添加', 'Add'), 'primary', 'plus'))}
+     <section class="flex flex-col gap-3 rounded-lg border bg-card p-4 text-card-foreground">
+      <div class="flex flex-wrap items-center gap-2"><i data-lucide="notebook-pen" class="size-4 text-muted-foreground"></i><h2 class="text-sm font-semibold">${L('记忆', 'Memory')}</h2>${INFO}<span class="text-xs text-muted-foreground">${L('约 1,860 字 · 建议 3,000 字以内', 'About 1,860 characters · keep under 3,000')}</span><span class="ml-auto flex gap-2">${BTN_SM(L('重新生成', 'Regenerate'), 'ghost')}${BTN_SM(L('编辑', 'Edit'), '', 'pencil')}</span></div>
+      <p class="text-xs text-muted-foreground">${L('每日分析和每个任务都会读这里，写结论就好；长材料放进下面的知识库。', 'Every daily analysis and task reads this, so write conclusions; put long material in the knowledge base below.')}</p>
+      <div class="flex flex-col gap-3"><div class="rounded-md border"><div class="flex items-center gap-2 border-b px-3 py-2">${AIMARK}<h3 class="text-sm font-semibold">${L('3 条更新建议', '3 suggested updates')}</h3><span class="text-xs text-muted-foreground">${L('补充后写进记忆，之后的任务都会读到', 'Added to memory; all later tasks read it')}</span></div>
+       ${SUG(L('语气与风格', 'Voice and style'), L('教程开头先放一张截图，再写步骤。', 'Open tutorials with a screenshot, then the steps.'), '', L('来自任务修改意见', 'From task feedback'), L('最近两篇教程都提了', 'given on the last two tutorials'), [L('开头先放一张导入界面的截图', 'import dialog screenshot first')])}
+       ${SUG(L('竞品', 'Competitors'), L('Nimbus（按人收费，甘特图只在企业版）', 'Nimbus (per seat; Gantt only in Enterprise)'), 'Nimbus', L('来自审核通过的成果', 'From approved deliverables'), L('竞品对比里核实了定价和功能', 'confirmed in the competitor comparison'))}
+       ${SUG(L('产品', 'Product'), L('模板中心：项目计划、周报、复盘等 30 个模板', 'Templates: 30 for plans, weekly reports and retros'), '', L('来自官网', 'From the website'), L('官网新增了「模板中心」', 'a new Templates page'))}
+      </div>
+      <p class="flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">${L('每周自动看一次任务修改意见、审核通过的成果和官网变化，有要更新的会提出建议 · 上次检查 10/20，3 条建议', 'Checks task feedback, approved deliverables, and website changes weekly and suggests updates when needed · last checked 10/20, 3 suggestions')}<span class="font-medium text-primary">${L('立即检查', 'Check now')}</span></p></div>
+      <dl class="grid fx-mem gap-x-4 gap-y-2 text-sm">
+       ${ROW(L('品牌基础', 'Brand basics'), L('Acme：给中小团队用的在线项目管理软件。官网 acme.example', 'Acme: online project management for small teams. Website: acme.example'))}
+       ${ROW(L('产品', 'Product'), L('任务、看板、甘特图和时间线；可以从 Excel、Trello 导入。', 'Tasks, boards, Gantt charts and timelines; imports from Excel and Trello.'))}
+       ${ROW(L('受众', 'Audience'), L('10–50 人团队的负责人和项目经理，在意上手快、迁移省事。', 'Leads of 10–50-person teams who want a quick start and an easy move.'))}
+       ${ROW(L('语气与风格', 'Voice and style'), L('直接、具体，先讲怎么做，少用形容词。', 'Direct and concrete: how to do it first, few adjectives.'))}
+      </dl>
+     </section>`);
+  } };
+
   // 做法: every built-in kind of work, how many steps it takes; yours to change, or add your own
   F.playbook = { w: 760, h: 600, html: () => {
     const PB = (name, desc, n) => `<div class="flex flex-col gap-1 rounded-lg border bg-card p-3 text-left text-card-foreground"><span class="text-sm font-medium">${name}</span><span class="line-clamp-2 text-xs text-muted-foreground">${desc}</span><span class="mt-auto pt-1 text-xs text-muted-foreground">${L('内置', 'Built-in')} · ${L(n + ' 步', n + ' steps')}</span></div>`;

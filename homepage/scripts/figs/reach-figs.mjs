@@ -29,7 +29,7 @@ const FIGS = [
   // 机会：左边列表留 4 条，和右边的详情一样高
   ['opportunities', 'reachOpportunities', [['机会', 'Opportunities']], [[OPP, 'O-25'], [OPP, 'O-26']]],
   ['review', 'reachReview', [['任务', 'Tasks'], ['T-34', 'T-34']]],
-  ['replies', 'reachReplies', [['任务', 'Tasks'], ['T-28', 'T-28']]],
+  ['memory', 'reachMemory', [['AI 团队', 'AI team'], ['项目知识', 'Project knowledge']]],
   // 做法：四类都留着（正文写了这四类），每类一行
   ['playbook', 'reachPlaybook', [['AI 团队', 'AI team'], ['做法', 'Playbooks']],
     [[PB, ['竞品对比', 'Competitor comparison']], [PB, ['新建文档页', 'New docs page']], [PB, ['写发布说明', 'Write release notes']]]],

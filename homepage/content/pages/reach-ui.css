@@ -1,0 +1,11 @@
+/* NocoReach 页的产品界面图：窗口外框（沿用 Studio 界面图的 sv-win / sv-top）和产品界面的容器 .nr-app。
+   由 homepage/scripts/figs/reach-figs.mjs 写进 content/pages/solution-reach.body.html 的 REACH-UI 标记之间，改样式改这里再运行脚本。 */
+.rx-brand { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+.rx-brand svg { width: 18px; height: 18px; flex: none; }
+.rx-proj { display: inline-flex; align-items: center; gap: 7px; height: 28px; padding: 0 8px 0 4px; border: 1px solid var(--rule); border-radius: 7px; background: var(--card); font-size: 12.5px; font-weight: 500; color: var(--ink); }
+.rx-proj i { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 5px; background: #1677ff; font: 600 11px/1 var(--f-sans); color: #fff; font-style: normal; }
+.rx-proj svg.lucide { width: 13px; height: 13px; color: var(--muted); }
+/* 产品界面：字号、行高、字体和颜色都用产品自己的，不继承官网；产品给 body 的 min-height: 100svh 换到 .nr-app 上会把图撑成一屏高，改回 0 */
+.sv-win > .nr-app { min-height: 0; font-size: 16px; line-height: 1.5; text-align: left; -webkit-font-smoothing: antialiased; }
+/* 官网给所有图标定了 16px 和 1.8 的线宽；产品里没有尺寸类的图标按 Lucide 默认的 24px、线宽 2 画（优先级低于产品的尺寸类） */
+html body .nr-app :where(svg.lucide) { width: 24px; height: 24px; stroke-width: 2; }

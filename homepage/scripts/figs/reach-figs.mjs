@@ -30,8 +30,6 @@ const FIGS = [
   ['opportunities', 'reachOpportunities', [['机会', 'Opportunities']], [[OPP, 'O-25'], [OPP, 'O-26']]],
   ['review', 'reachReview', [['任务', 'Tasks'], ['T-34', 'T-34']]],
   ['replies', 'reachReplies', [['任务', 'Tasks'], ['T-28', 'T-28']]],
-  // 提修改意见：和旁边的回复草稿并排，文章只留标题和导语，两张图差不多高
-  ['revise', 'reachRevise', [['任务', 'Tasks'], ['T-34', 'T-34']], ['<div class="nr-article-body">']],
   // 做法：四类都留着（正文写了这四类），每类一行
   ['playbook', 'reachPlaybook', [['AI 团队', 'AI team'], ['做法', 'Playbooks']],
     [[PB, ['竞品对比', 'Competitor comparison']], [PB, ['新建文档页', 'New docs page']], [PB, ['写发布说明', 'Write release notes']]]],
@@ -62,22 +60,23 @@ function render(fig, lang) {
   if (i >= 0) html = html.slice(i + open.length, html.lastIndexOf('</main>'));
   return html.replace(/\n\s*/g, ' ').trim();
 }
-// 去掉一个元素：spec 是元素开头的标记，或 [开头的标记, 元素里的文字]（按同名标签的开闭配对找到结尾）
-function cut(html, spec, fig, lang) {
+// 找一个元素：spec 是元素开头的标记，或 [开头的标记, 元素里的文字]（按同名标签的开闭配对找到结尾），返回 [开头, 结尾] 的位置
+function locate(html, spec, fig, lang) {
   const [start, has] = Array.isArray(spec) ? spec : [spec];
   const text = Array.isArray(has) ? has[lang === 'zh' ? 0 : 1] : has;
   const at = text ? html.indexOf(text) : 0;
   const i = at < 0 ? -1 : text ? html.lastIndexOf(start, at) : html.indexOf(start);
-  if (i < 0) throw new Error(`${fig}（${lang}）里找不到要去掉的部分：${start} ${text ?? ''}`);
+  if (i < 0) throw new Error(`${fig}（${lang}）里找不到：${start} ${text ?? ''}`);
   const tag = start.match(/^<(\w+)/)[1], re = new RegExp(`<${tag}[\\s>]|</${tag}>`, 'g');
   re.lastIndex = i + 1;
   for (let depth = 1, m; (m = re.exec(html));) {
     if ((depth += m[0][1] === '/' ? -1 : 1) !== 0) continue;
     if (text && m.index < at) break; // 找到的元素没有包住这段文字
-    return html.slice(0, i) + html.slice(m.index + m[0].length);
+    return [i, m.index + m[0].length];
   }
   throw new Error(`${fig}（${lang}）里 ${start} ${text ?? ''} 没有找到完整的元素`);
 }
+const cut = (html, spec, fig, lang) => { const [i, j] = locate(html, spec, fig, lang); return html.slice(0, i) + html.slice(j); };
 
 // NocoReach 的标识，和产品里画的一样：三根柱子，最高一根的顶面是紫色
 const MARK = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x=".5" y=".5" width="63" height="63" rx="14.5" fill="#0B0B0F"/>' +

@@ -51,6 +51,7 @@ footer { margin-top: 160px; border-top: 1px solid var(--rule); padding-block: 56
 .fgrid h4 { font-size: 13px; font-weight: 500; color: var(--muted); }
 .fgrid ul { margin-top: 12px; display: grid; gap: 8px; font-size: 14px; }
 .fgrid a:hover { color: var(--brand); }
+.fgrid .soon { color: var(--muted); opacity: 0.6; cursor: default; }
 .fbot { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: var(--muted); }
 .fbot span:first-child { margin-right: auto; }
 @media (max-width: 900px) { .fgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fgrid > div:first-child { grid-column: 1 / -1; } footer { margin-top: 104px; } }

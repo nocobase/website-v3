@@ -27,16 +27,9 @@ docker run --rm --entrypoint cat "$STUDIO_IMAGE" /app/config.example.yml > confi
 
 ## 邀请与密码重置邮件
 
-| 用途 | 发件配置 | 密码环境变量 |
-| --- | --- | --- |
-| 邀请成员 | `notification.channels.system-email`，使用 `type: smtp` | `SMTP_PASSWORD` |
-| 重置密码 | `auth.email`，使用 `provider: smtp` | `AUTH_EMAIL_PASSWORD` |
+邀请和密码重置共用 `mailers.default` 指定的服务。在 `mailers` 中配置发件信息，支持 `provider: smtp` 和 `provider: resend`。密码重置还需要启用密码登录、设置 `auth.passwordReset.enabled: true` 和正确的 `APP_PUBLIC_ORIGIN`。
 
-`auth.passwordReset.emailChannel` 是旧的兼容字段。新配置使用 `auth.email`，邀请邮件继续使用通知通道。
-
-两者可以使用同一个 SMTP 账号，但需要分别配置。密码重置还需要 `auth.passwordReset.enabled: true` 和正确的 `APP_PUBLIC_ORIGIN`。
-
-完整示例、Compose 环境变量传入方式和旧配置迁移，见[通知与邮件](../admin/notifications.md#邀请邮件)。邀请成员前确认邀请邮件可达，并用测试账号验证「忘记密码」。
+配置示例和发送检查，见[邀请邮件](../admin/notifications.md#邀请邮件)。
 
 ## 环境变量
 
@@ -47,9 +40,13 @@ docker run --rm --entrypoint cat "$STUDIO_IMAGE" /app/config.example.yml > confi
 | `INITIAL_ADMIN_USERNAME`、`INITIAL_ADMIN_EMAIL`、`INITIAL_ADMIN_PASSWORD` | 第一个管理员，只在第一次启动、还没有任何账号时创建；之后修改不会改变已有的账号 |
 | `DB_DIALECT`、`DB_HOST`、`DB_PORT`、`DB_DATABASE`、`DB_USERNAME`、`DB_PASSWORD`、`DB_SSL` | 数据库连接 |
 | `WEB_PUSH_PRIVATE_KEY` | 推送私钥，见 [通知与推送](../admin/notifications.md) |
-| `SMTP_PASSWORD`、`RESEND_API_KEY` | `system-email` 通知通道的密码或密钥，用于邀请邮件 |
-| `AUTH_EMAIL_PASSWORD`、`AUTH_EMAIL_API_KEY` | 独立身份验证邮件的密码或密钥，用于密码重置 |
-| `AUTH_EMAIL_PROVIDER`、`AUTH_EMAIL_HOST`、`AUTH_EMAIL_PORT`、`AUTH_EMAIL_SECURE`、`AUTH_EMAIL_USER`、`AUTH_EMAIL_FROM`、`AUTH_EMAIL_REPLY_TO` | 覆盖 `auth.email` 中对应的发件设置 |
+| `MAILERS_DEFAULT` | 默认发件服务名称，例如 `system` |
+| `MAILERS_SYSTEM_PROVIDER` | `mailers.system.provider`，可选 `smtp` 或 `resend` |
+| `MAILERS_SYSTEM_HOST`、`MAILERS_SYSTEM_PORT`、`MAILERS_SYSTEM_SECURE` | SMTP 主机、端口（整数）和 TLS 开关（`true` 或 `false`） |
+| `MAILERS_SYSTEM_USER`、`MAILERS_SYSTEM_PASSWORD` | SMTP 用户名和密码 |
+| `MAILERS_SYSTEM_API_KEY` | Resend API 密钥 |
+| `MAILERS_SYSTEM_FROM`、`MAILERS_SYSTEM_REPLY_TO` | 发件地址和回复地址 |
+| `MAILERS_SYSTEM_ENABLED` | 启用或停用发件服务（`true` 或 `false`） |
 | `API_BODY_LIMIT`、`API_TIMEOUT` | 接口请求体的大小上限、处理超时 |
 
 Studio 的访问路径是 `/main`，例如 `https://studio.example.com/main/`。添加运行环境、登录 `nb-studio` 时用的都是这个带 `/main` 的完整地址。
@@ -63,10 +60,11 @@ Studio 的访问路径是 `/main`，例如 `https://studio.example.com/main/`。
 | --- | --- |
 | `i18n.defaultLocale` | 界面语言，设为团队使用的语言，例如 `zh-CN`；不设置时是英文 |
 | `auth.emailAndPassword.disableSignUp` | 设为 `true`，关闭自助注册，成员只能通过邀请加入。模板里没有这一项，请自己加上 |
-| `auth.passwordReset.enabled` | 是否启用内置找回密码，需要有效的 `auth.email` 和对外访问地址 |
-| `auth.email` | 密码重置的独立发件方式，使用 `provider: smtp` 或 `provider: resend` |
-| `users.invitations.emailChannel` | 邀请邮件使用的通知通道，默认 `system-email` |
-| `notification.channels` | 提醒的通道：站内（`inbox`）、邮件（`system-email`，SMTP 或 Resend）等，见 [通知与推送](../admin/notifications.md) |
+| `mailers` | SMTP 或 Resend 发件服务；`default` 指定共用的服务名称 |
+| `auth.passwordReset.enabled` | 启用找回密码，需要启用密码登录、配置发件服务和对外访问地址 |
+| `auth.email.mailer` | 密码重置使用的服务名称，默认使用 `mailers.default` |
+| `users.invitations.mailer` | 邀请邮件使用的服务名称，默认使用 `mailers.default` |
+| `notification.channels` | 站内通道使用 `type: in-app`。邮件通道使用 `type: email`，可用 `mailer` 指定服务，否则使用 `mailers.default`。通道需单独配置，设置 `mailers` 不会自动创建通道 |
 | `push` | 推送通知：`privateKey`、`contact` |
 | `database` | 数据库连接，环境变量会覆盖它 |
 | `users.initialAdmin` | 第一个管理员，环境变量会覆盖它 |

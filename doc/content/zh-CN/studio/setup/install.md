@@ -97,30 +97,12 @@ releases:
 
 ## 邀请与密码重置邮件
 
-团队使用前配置这两种邮件。邀请使用通知通道；密码重置使用独立的 `auth.email`。下面以同一个 SMTP 账号为例，合并到 `config.yml` 的对应节点：
+邀请成员前先配置邮件。邀请和密码重置共用一套 SMTP 配置，将以下内容合并到 `config.yml` 的对应节点：
 
 ```yaml
-users:
-  invitations:
-    emailChannel: system-email
-
-notification:
-  channels:
-    inbox:
-      type: in-app
-    system-email:
-      type: smtp
-      host: smtp.example.com
-      port: 587
-      secure: false
-      auth:
-        user: notifications@example.com
-      from: "Studio <notifications@example.com>"
-
-auth:
-  passwordReset:
-    enabled: true
-  email:
+mailers:
+  default: system
+  system:
     provider: smtp
     host: smtp.example.com
     port: 587
@@ -128,27 +110,29 @@ auth:
     auth:
       user: notifications@example.com
     from: "Studio <notifications@example.com>"
+
+auth:
+  passwordReset:
+    enabled: true
 ```
 
-保留前面已有的 `users.initialAdmin` 和 `auth.emailAndPassword` 等设置。替换 SMTP 主机、端口、账号和发件地址，确保发件地址已获服务商授权。
+保留 `users.initialAdmin`、`auth.emailAndPassword` 等设置。将 SMTP 主机、端口、账号和发件地址替换为邮件服务商提供并授权的值。
 
-将密码填入 `.env`：
+在 `.env` 中添加密码：
 
 ```dotenv
-SMTP_PASSWORD=<邀请邮件的 SMTP 密码>
-AUTH_EMAIL_PASSWORD=<密码重置邮件的 SMTP 密码>
+MAILERS_SYSTEM_PASSWORD=<smtp-password>
 ```
 
-在下面 Compose 文件的 `services.studio.environment` 中补上：
+在下方 Compose 文件的 `services.studio.environment` 中增加：
 
 ```yaml
-SMTP_PASSWORD: ${SMTP_PASSWORD:?set SMTP_PASSWORD in .env}
-AUTH_EMAIL_PASSWORD: ${AUTH_EMAIL_PASSWORD:?set AUTH_EMAIL_PASSWORD in .env}
+MAILERS_SYSTEM_PASSWORD: ${MAILERS_SYSTEM_PASSWORD:?set MAILERS_SYSTEM_PASSWORD in .env}
 ```
 
-`.env` 必须通过 Compose 传入容器；不要在 `config.yml` 中写 `${SMTP_PASSWORD}`，它不会展开。两种邮件可以使用相同密码，但变量要分别传入。`APP_PUBLIC_ORIGIN` 应是成员能访问的 Studio 地址，邮件中的链接会用到它。
+变量必须通过 Compose 传入容器，`config.yml` 中的 `${NAME}` 不会展开。`APP_PUBLIC_ORIGIN` 应是成员能访问的 Studio 地址，邮件链接会用到它。
 
-仅本机试用、暂不配置邮件时，保留 `auth.passwordReset.enabled: false`。邀请可以先复制链接分享。Resend 和旧邮件配置迁移，见[通知与推送](../admin/notifications.md#从旧配置迁移)。
+仅本机试用、暂不配置邮件时，保留 `auth.passwordReset.enabled: false`，邀请可先复制链接分享。Resend 配置和邮件发送检查，见[通知与推送](../admin/notifications.md#邀请邮件)。
 
 ## 启动服务
 

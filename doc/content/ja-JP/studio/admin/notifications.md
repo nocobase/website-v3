@@ -8,53 +8,19 @@ Studio の通知には 3 種類あります。
 | 通知 | 必要な設定 | 用途 |
 | --- | --- | --- |
 | アプリ内の通知 | なし | 受信トレイ、My issues の件数、通知音、デスクトップ通知 |
-| メール | 通知チャネルと認証用の送信設定 | 招待、パスワード再設定 |
+| メール | `mailers` の送信サービス | 招待、パスワード再設定 |
 | プッシュ通知 | HTTPS とプッシュ用キー | Studio を開いていない端末への通知 |
 
 メンバーによる通知音、デスクトップ通知、携帯端末のプッシュ購読は[受信トレイと通知](../use/inbox.md)を参照してください。
 
 ## 招待メール
 
-招待には既定で `system-email` 通知チャネルを使います。`config.yml` の対応する項目に以下を追加します。
+招待とパスワード再設定は、`mailers` の既定の送信サービスを共有します。以下の SMTP 設定を `config.yml` の対応する項目に統合します。
 
 ```yaml
-users:
-  invitations:
-    emailChannel: system-email
-
-notification:
-  channels:
-    inbox:
-      type: in-app
-    system-email:
-      type: smtp
-      host: smtp.example.com
-      port: 587
-      secure: false
-      auth:
-        user: notifications@example.com
-      from: "Studio <notifications@example.com>"
-```
-
-パスワードは、後述の `SMTP_PASSWORD` で渡します。送信元アドレスをメールサービスで認可し、指定のポートと TLS 設定を使ってください。
-
-Resend を使う場合は、`system-email` 全体を `type: resend` と `from` に置き換えます。`RESEND_API_KEY` を渡し、SMTP の項目は削除します。
-
-メール未設定でも、管理者は招待リンクをコピーして共有できます。[メンバーを招待する](../setup/invite.md)を参照してください。
-
-## パスワード再設定メール
-
-パスワード再設定は、独立した `auth.email` の送信設定を使います。招待と同じ SMTP アカウントを利用できますが、両方の送信設定が必要です。
-
-```yaml
-auth:
-  emailAndPassword:
-    enabled: true
-    autoSignIn: false
-    disableSignUp: true
-  passwordReset:
-    enabled: true
-  email:
+mailers:
+  default: system
+  system:
     provider: smtp
     host: smtp.example.com
     port: 587
@@ -64,26 +30,40 @@ auth:
     from: "Studio <notifications@example.com>"
 ```
 
-パスワードは `AUTH_EMAIL_PASSWORD` で渡します。`APP_PUBLIC_ORIGIN` に `https://studio.example.com` などを設定し、メールのリンクが Studio に届くようにしてください。
+パスワードは、後述の `MAILERS_SYSTEM_PASSWORD` で渡します。送信元アドレスをメールサービスで認可し、指定のポートと TLS 設定を使ってください。
 
-Resend の場合は、`auth.email` 全体を `provider: resend` と `from` に置き換えます。`AUTH_EMAIL_API_KEY` を渡し、SMTP の項目は削除します。
+Resend を使う場合は、`mailers.system` を `provider: resend` と `from` に置き換え、SMTP の項目を削除します。`.env` と Compose の両方で `MAILERS_SYSTEM_API_KEY` を設定し、API キーを渡します。
 
-標準の再設定機能には、パスワードでのサインイン、`auth.passwordReset.enabled: true`、有効な送信設定が必要です。
+招待は `mailers.default` を使います。別の設定済みサービスを使う場合は、その名前を `users.invitations.mailer` に指定します。メール未設定でも、管理者は招待リンクをコピーして共有できます。[メンバーを招待する](../setup/invite.md)を参照してください。
+
+## パスワード再設定メール
+
+パスワード再設定も `mailers.default` を使います。パスワードでのサインインと再設定を有効にします。
+
+```yaml
+auth:
+  emailAndPassword:
+    enabled: true
+    autoSignIn: false
+    disableSignUp: true
+  passwordReset:
+    enabled: true
+```
+
+`APP_PUBLIC_ORIGIN` に `https://studio.example.com` など、メンバーがアクセスできる Studio の URL を設定します。再設定に別の設定済みサービスを使う場合は、その名前を `auth.email.mailer` に指定します。
 
 ## シークレットを渡して設定を反映する
 
 デプロイ先の `.env` に追加します。
 
 ```dotenv
-SMTP_PASSWORD=<invitation-email-smtp-password>
-AUTH_EMAIL_PASSWORD=<password-reset-smtp-password>
+MAILERS_SYSTEM_PASSWORD=<smtp-password>
 ```
 
 `docker-compose.yml` の `services.studio.environment` に追加します。
 
 ```yaml
-SMTP_PASSWORD: ${SMTP_PASSWORD:?set SMTP_PASSWORD in .env}
-AUTH_EMAIL_PASSWORD: ${AUTH_EMAIL_PASSWORD:?set AUTH_EMAIL_PASSWORD in .env}
+MAILERS_SYSTEM_PASSWORD: ${MAILERS_SYSTEM_PASSWORD:?set MAILERS_SYSTEM_PASSWORD in .env}
 ```
 
 Compose の `.env` は、変数を自動でコンテナに渡しません。Compose 内で明示してください。`config.yml` 内の `${NAME}` も展開されません。
@@ -101,12 +81,6 @@ docker compose up -d --force-recreate studio
 3. メールのリンクから新しいパスワードを設定し、サインインを確認します。
 
 リクエストの送信だけでは配信成功を確認できません。送信元の認可、SMTP 接続、迷惑メール、Studio のログを調べてください。パスワードや再設定リンクを公開ログに残さないでください。
-
-## 旧設定から移行する
-
-- 通知チャネルには `type: smtp` を使います。旧 `provider: smtp` は互換用の別名です。
-- 再設定メールは `auth.email` に設定し、`auth.passwordReset.emailChannel` は削除します。後者は互換用にのみ残っています。
-- 招待用の `notification.channels.system-email` は残します。`SMTP_PASSWORD` と `AUTH_EMAIL_PASSWORD` は、それぞれの送信元を独立して設定します。
 
 ## プッシュ通知
 

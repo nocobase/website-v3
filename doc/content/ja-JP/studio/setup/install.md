@@ -94,30 +94,12 @@ releases:
 
 ## 招待メールとパスワード再設定メール
 
-チームに使い始めてもらう前に、両方を設定します。招待は通知チャネルを使い、パスワード再設定は独立した `auth.email` の送信設定を使います。この例では両方に同じ SMTP アカウントを使います。`config.yml` の該当するセクションにマージしてください。
+メンバーを招待する前にメールを設定します。招待とパスワード再設定は 1 つの SMTP 設定を共有します。以下を `config.yml` の対応する項目に統合してください。
 
 ```yaml
-users:
-  invitations:
-    emailChannel: system-email
-
-notification:
-  channels:
-    inbox:
-      type: in-app
-    system-email:
-      type: smtp
-      host: smtp.example.com
-      port: 587
-      secure: false
-      auth:
-        user: notifications@example.com
-      from: "Studio <notifications@example.com>"
-
-auth:
-  passwordReset:
-    enabled: true
-  email:
+mailers:
+  default: system
+  system:
     provider: smtp
     host: smtp.example.com
     port: 587
@@ -125,27 +107,29 @@ auth:
     auth:
       user: notifications@example.com
     from: "Studio <notifications@example.com>"
+
+auth:
+  passwordReset:
+    enabled: true
 ```
 
-`users.initialAdmin` や `auth.emailAndPassword` など、既存の設定は残します。SMTP のホスト、ポート、アカウント、送信元アドレスは、メールプロバイダーで許可された値に置き換えます。
+`users.initialAdmin` や `auth.emailAndPassword` などの設定は残します。SMTP のホスト、ポート、アカウント、送信元アドレスを、メールサービスで認可された値に置き換えてください。
 
-パスワードを `.env` に追加します。
+`.env` にパスワードを追加します。
 
 ```dotenv
-SMTP_PASSWORD=<invitation-email-smtp-password>
-AUTH_EMAIL_PASSWORD=<password-reset-smtp-password>
+MAILERS_SYSTEM_PASSWORD=<smtp-password>
 ```
 
-下の Compose ファイルの `services.studio.environment` に、次のエントリを追加します。
+以下の Compose ファイルの `services.studio.environment` に追加します。
 
 ```yaml
-SMTP_PASSWORD: ${SMTP_PASSWORD:?set SMTP_PASSWORD in .env}
-AUTH_EMAIL_PASSWORD: ${AUTH_EMAIL_PASSWORD:?set AUTH_EMAIL_PASSWORD in .env}
+MAILERS_SYSTEM_PASSWORD: ${MAILERS_SYSTEM_PASSWORD:?set MAILERS_SYSTEM_PASSWORD in .env}
 ```
 
-変数は Compose からコンテナに渡す必要があります。`config.yml` に `${SMTP_PASSWORD}` と書いても展開されません。2 つの送信設定で同じパスワードを使うこともできますが、変数は別々にする必要があります。`APP_PUBLIC_ORIGIN` には、メンバーがアクセスできるアドレスを設定します。メール内のリンクにはこのアドレスが使われます。
+変数は Compose からコンテナに渡します。`config.yml` 内の `${NAME}` は展開されません。`APP_PUBLIC_ORIGIN` には、メンバーがアクセスできるアドレスを設定します。メールのリンクに使われます。
 
-メールを使わずにローカルで試す場合は、`auth.passwordReset.enabled: false` のままにします。招待リンクは手動で共有できます。Resend の使い方や旧設定からの移行については、[通知とプッシュ](../admin/notifications.md#旧設定から移行する) を参照してください。
+メールを使わずにローカルで試す場合は、`auth.passwordReset.enabled: false` のままにします。招待リンクは手動で共有できます。Resend の設定と送信確認は[通知とプッシュ](../admin/notifications.md#招待メール)を参照してください。
 
 ## サービスを起動する
 

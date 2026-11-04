@@ -27,16 +27,9 @@ docker run --rm --entrypoint cat "$STUDIO_IMAGE" /app/config.example.yml > confi
 
 ## 招待とパスワード再設定メール
 
-| 用途 | 送信設定 | パスワード変数 |
-| --- | --- | --- |
-| 招待 | `notification.channels.system-email`、`type: smtp` | `SMTP_PASSWORD` |
-| パスワード再設定 | `auth.email`、`provider: smtp` | `AUTH_EMAIL_PASSWORD` |
+招待とパスワード再設定は `mailers.default` のサービスを共有します。`mailers` に送信設定を定義し、`provider: smtp` または `provider: resend` を使います。パスワード再設定には、パスワードでのサインイン、`auth.passwordReset.enabled: true`、正しい `APP_PUBLIC_ORIGIN` も必要です。
 
-`auth.passwordReset.emailChannel` は旧設定との互換用です。新しい設定は `auth.email` を使い、招待には引き続き通知チャネルを使います。
-
-同じ SMTP アカウントを使えますが、設定は別々に行います。パスワード再設定には `auth.passwordReset.enabled: true` と、正しい `APP_PUBLIC_ORIGIN` も必要です。
-
-設定例、Compose への変数の渡し方、移行は[招待メール](../admin/notifications.md#招待メール)を参照してください。チームの利用開始前に、招待とパスワード再設定の両方を確認します。
+設定例と送信確認は[招待メール](../admin/notifications.md#招待メール)を参照してください。
 
 ## 環境変数
 
@@ -47,9 +40,13 @@ docker run --rm --entrypoint cat "$STUDIO_IMAGE" /app/config.example.yml > confi
 | `INITIAL_ADMIN_USERNAME`、`INITIAL_ADMIN_EMAIL`、`INITIAL_ADMIN_PASSWORD` | 初期管理者。アカウントがない初回起動時だけ作成し、後の変更で既存アカウントは更新しない |
 | `DB_DIALECT`、`DB_HOST`、`DB_PORT`、`DB_DATABASE`、`DB_USERNAME`、`DB_PASSWORD`、`DB_SSL` | データベース接続 |
 | `WEB_PUSH_PRIVATE_KEY` | プッシュ用の秘密鍵。[通知とプッシュ](../admin/notifications.md)を参照 |
-| `SMTP_PASSWORD`、`RESEND_API_KEY` | 招待で使う `system-email` 通知チャネルの認証情報 |
-| `AUTH_EMAIL_PASSWORD`、`AUTH_EMAIL_API_KEY` | 独立したパスワード再設定の送信元の認証情報 |
-| `AUTH_EMAIL_PROVIDER`、`AUTH_EMAIL_HOST`、`AUTH_EMAIL_PORT`、`AUTH_EMAIL_SECURE`、`AUTH_EMAIL_USER`、`AUTH_EMAIL_FROM`、`AUTH_EMAIL_REPLY_TO` | `auth.email` の対応する送信設定を上書き |
+| `MAILERS_DEFAULT` | 既定のサービス名。例：`system` |
+| `MAILERS_SYSTEM_PROVIDER` | `mailers.system.provider`。`smtp` または `resend` |
+| `MAILERS_SYSTEM_HOST`、`MAILERS_SYSTEM_PORT`、`MAILERS_SYSTEM_SECURE` | SMTP ホスト、整数のポート、TLS の有効・無効（`true` / `false`） |
+| `MAILERS_SYSTEM_USER`、`MAILERS_SYSTEM_PASSWORD` | SMTP ユーザー名とパスワード |
+| `MAILERS_SYSTEM_API_KEY` | Resend API キー |
+| `MAILERS_SYSTEM_FROM`、`MAILERS_SYSTEM_REPLY_TO` | 送信元と返信先のアドレス |
+| `MAILERS_SYSTEM_ENABLED` | サービスの有効・無効（`true` / `false`） |
 | `API_BODY_LIMIT`、`API_TIMEOUT` | API リクエスト本文の最大サイズと処理タイムアウト |
 
 Studio は `https://studio.example.com/main/` のように `/main` 配下で動作します。ランタイムの追加や `nb-studio` のサインインには、`/main` を含む完全なアドレスを使います。
@@ -63,10 +60,11 @@ Studio は `https://studio.example.com/main/` のように `/main` 配下で動�
 | --- | --- |
 | `i18n.defaultLocale` | 表示言語。既定は英語で、他の言語を使う場合だけ設定 |
 | `auth.emailAndPassword.disableSignUp` | `true` で自己登録を無効にし、招待のみで参加。テンプレートにはないため追加が必要 |
-| `auth.passwordReset.enabled` | 有効な `auth.email` と公開 URL を使った標準の再設定機能 |
-| `auth.email` | `provider: smtp` または `provider: resend` を使う独立した再設定メール送信元 |
-| `users.invitations.emailChannel` | 招待用の通知チャネル。既定は `system-email` |
-| `notification.channels` | アプリ内通知の `inbox`、SMTP・Resend の `system-email` など。[通知とプッシュ](../admin/notifications.md)を参照 |
+| `mailers` | 名前付きの SMTP または Resend サービス。`default` で共通の送信サービスを選択 |
+| `auth.passwordReset.enabled` | パスワード再設定を有効化。パスワードでのサインイン、送信サービス、公開 URL が必要 |
+| `auth.email.mailer` | 再設定メールのサービス名。既定は `mailers.default` |
+| `users.invitations.mailer` | 招待メールのサービス名。既定は `mailers.default` |
+| `notification.channels` | アプリ内は `type: in-app`、メールは `type: email`。メールの `mailer` を省略すると `mailers.default` を使用。チャネルは個別に設定し、`mailers` の定義だけでは作成されない |
 | `push` | プッシュ通知の `privateKey` と `contact` |
 | `database` | データベース接続。環境変数で上書き可能 |
 | `users.initialAdmin` | 初期管理者。環境変数で上書き可能 |

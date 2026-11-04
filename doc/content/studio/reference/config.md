@@ -27,16 +27,9 @@ File storage supports `fs` and `s3`. For driver settings, release artifacts, and
 
 ## Invitation and password reset email
 
-| Purpose | Sender configuration | Password variable |
-| --- | --- | --- |
-| Invitations | `notification.channels.system-email`, with `type: smtp` | `SMTP_PASSWORD` |
-| Password resets | `auth.email`, with `provider: smtp` | `AUTH_EMAIL_PASSWORD` |
+Invitations and password resets share `mailers.default`. Define the service under `mailers`, using `provider: smtp` or `provider: resend`. Password recovery also requires password sign-in, `auth.passwordReset.enabled: true`, and a correct `APP_PUBLIC_ORIGIN`.
 
-`auth.passwordReset.emailChannel` is a legacy compatibility field. New configurations use `auth.email`; invitations continue to use notification channels.
-
-Both can use the same SMTP account, but must be configured separately. Password recovery also requires `auth.passwordReset.enabled: true` and a correct `APP_PUBLIC_ORIGIN`.
-
-See [Invitation email](../admin/notifications.md#invitation-email) for complete examples, passing variables through Compose, and migration. Verify both invitation delivery and password recovery before onboarding the team.
+For configuration examples and delivery checks, see [Invitation email](../admin/notifications.md#invitation-email).
 
 ## Environment variables
 
@@ -47,9 +40,13 @@ See [Invitation email](../admin/notifications.md#invitation-email) for complete 
 | `INITIAL_ADMIN_USERNAME`, `INITIAL_ADMIN_EMAIL`, `INITIAL_ADMIN_PASSWORD` | The first administrator, created only on first start when there are no accounts yet. Changing them later doesn't change the existing account |
 | `DB_DIALECT`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `DB_SSL` | The database connection |
 | `WEB_PUSH_PRIVATE_KEY` | The push private key. See [Notifications and push](../admin/notifications.md) |
-| `SMTP_PASSWORD`, `RESEND_API_KEY` | Credentials for the `system-email` notification channel, used by invitations |
-| `AUTH_EMAIL_PASSWORD`, `AUTH_EMAIL_API_KEY` | Credentials for the independent password-reset sender |
-| `AUTH_EMAIL_PROVIDER`, `AUTH_EMAIL_HOST`, `AUTH_EMAIL_PORT`, `AUTH_EMAIL_SECURE`, `AUTH_EMAIL_USER`, `AUTH_EMAIL_FROM`, `AUTH_EMAIL_REPLY_TO` | Override the corresponding `auth.email` sender settings |
+| `MAILERS_DEFAULT` | Default service name, such as `system` |
+| `MAILERS_SYSTEM_PROVIDER` | `mailers.system.provider`: `smtp` or `resend` |
+| `MAILERS_SYSTEM_HOST`, `MAILERS_SYSTEM_PORT`, `MAILERS_SYSTEM_SECURE` | SMTP host, integer port, and TLS flag (`true` or `false`) |
+| `MAILERS_SYSTEM_USER`, `MAILERS_SYSTEM_PASSWORD` | SMTP username and password |
+| `MAILERS_SYSTEM_API_KEY` | Resend API key |
+| `MAILERS_SYSTEM_FROM`, `MAILERS_SYSTEM_REPLY_TO` | Sender and reply-to address |
+| `MAILERS_SYSTEM_ENABLED` | Enable or disable the service (`true` or `false`) |
 | `API_BODY_LIMIT`, `API_TIMEOUT` | The maximum request body size and the processing timeout for API requests |
 
 Studio is served under `/main`, as in `https://studio.example.com/main/`. When you add runtimes or sign in to `nb-studio`, use this full address with `/main`.
@@ -63,10 +60,11 @@ Studio is served under `/main`, as in `https://studio.example.com/main/`. When y
 | --- | --- |
 | `i18n.defaultLocale` | The interface language. English is the default; set this only to use another language |
 | `auth.emailAndPassword.disableSignUp` | Set to `true` to turn off self sign-up, so members join only by invitation. The template doesn't include it, so add it yourself |
-| `auth.passwordReset.enabled` | Enable built-in recovery with a valid `auth.email` and public origin |
-| `auth.email` | Independent password-reset sender using `provider: smtp` or `provider: resend` |
-| `users.invitations.emailChannel` | Invitation notification channel; defaults to `system-email` |
-| `notification.channels` | Reminder channels: in-app (`inbox`), email (`system-email`, through SMTP or Resend), and others. See [Notifications and push](../admin/notifications.md) |
+| `mailers` | Named SMTP or Resend services; `default` selects the shared sender configuration |
+| `auth.passwordReset.enabled` | Enable password recovery; requires password sign-in, a configured mailer, and a public origin |
+| `auth.email.mailer` | Password-reset service name; defaults to `mailers.default` |
+| `users.invitations.mailer` | Invitation service name; defaults to `mailers.default` |
+| `notification.channels` | In-app channels use `type: in-app`. Email channels use `type: email` and an optional `mailer` name; otherwise they use `mailers.default`. Configure channels explicitly; defining `mailers` does not create them |
 | `push` | Push notifications: `privateKey` and `contact` |
 | `database` | The database connection, overridden by environment variables |
 | `users.initialAdmin` | The first administrator, overridden by environment variables |

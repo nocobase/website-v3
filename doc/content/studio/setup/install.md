@@ -94,30 +94,12 @@ Keep the `storage` volume mount even when using object storage. For local files 
 
 ## Invitation and password reset email
 
-Configure both before onboarding your team. Invitations use a notification channel; password resets use the independent `auth.email` sender. This example uses the same SMTP account for both. Merge it into the matching sections of `config.yml`:
+Configure email before onboarding your team. Invitations and password resets share one SMTP configuration. Merge the following into the matching sections of `config.yml`:
 
 ```yaml
-users:
-  invitations:
-    emailChannel: system-email
-
-notification:
-  channels:
-    inbox:
-      type: in-app
-    system-email:
-      type: smtp
-      host: smtp.example.com
-      port: 587
-      secure: false
-      auth:
-        user: notifications@example.com
-      from: "Studio <notifications@example.com>"
-
-auth:
-  passwordReset:
-    enabled: true
-  email:
+mailers:
+  default: system
+  system:
     provider: smtp
     host: smtp.example.com
     port: 587
@@ -125,27 +107,29 @@ auth:
     auth:
       user: notifications@example.com
     from: "Studio <notifications@example.com>"
+
+auth:
+  passwordReset:
+    enabled: true
 ```
 
-Keep existing settings such as `users.initialAdmin` and `auth.emailAndPassword`. Replace the SMTP host, port, account, and sender address with values authorized by your email provider.
+Keep settings such as `users.initialAdmin` and `auth.emailAndPassword`. Replace the SMTP host, port, account, and sender address with values authorized by your email provider.
 
-Add the passwords to `.env`:
+Add the password to `.env`:
 
 ```dotenv
-SMTP_PASSWORD=<invitation-email-smtp-password>
-AUTH_EMAIL_PASSWORD=<password-reset-smtp-password>
+MAILERS_SYSTEM_PASSWORD=<smtp-password>
 ```
 
-Add these entries to `services.studio.environment` in the Compose file below:
+Add this entry to `services.studio.environment` in the Compose file below:
 
 ```yaml
-SMTP_PASSWORD: ${SMTP_PASSWORD:?set SMTP_PASSWORD in .env}
-AUTH_EMAIL_PASSWORD: ${AUTH_EMAIL_PASSWORD:?set AUTH_EMAIL_PASSWORD in .env}
+MAILERS_SYSTEM_PASSWORD: ${MAILERS_SYSTEM_PASSWORD:?set MAILERS_SYSTEM_PASSWORD in .env}
 ```
 
-Compose must pass the variables into the container. Do not write `${SMTP_PASSWORD}` in `config.yml`; it will not expand. Both senders can use the same password, but require separate variables. Set `APP_PUBLIC_ORIGIN` to the address members can access; email links use this address.
+Compose must pass the variable into the container. `${NAME}` in `config.yml` is not expanded. Set `APP_PUBLIC_ORIGIN` to the address members can access; email links use this address.
 
-For a local trial without email, keep `auth.passwordReset.enabled: false`. You can share invitation links manually. For Resend and migration from older settings, see [Notifications and push](../admin/notifications.md#migrate-older-configuration).
+For a local trial without email, keep `auth.passwordReset.enabled: false`. You can share invitation links manually. For Resend and delivery checks, see [Notifications and push](../admin/notifications.md#invitation-email).
 
 ## Start the services
 

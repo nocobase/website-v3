@@ -44,7 +44,7 @@ const crumb = [section.id === config.sections[0].id ? '' : section.title, ...pag
 {crumb ? <p class="doc-crumb">{crumb}</p> : <span></span>}
 {!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
 </div>}
-{key === 'index' ? <HomeAsk lang={lang} title={page.title} /> : <h1>{page.title}</h1>}
+{key === 'index' && config.ask?.endpoint ? <HomeAsk lang={lang} title={page.title} /> : <h1>{page.title}</h1>}
 <article class:list={['prose', { 'doc-home-content': key === 'index' }]}>
 {hint ? <p set:html={hint}></p> : <Content />}
 </article>

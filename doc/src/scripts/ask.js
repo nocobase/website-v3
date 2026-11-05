@@ -110,7 +110,6 @@ if (root && dialog) {
     const controller = new AbortController();
     active = controller;
     busy(true);
-    input.value = '';
     const timeout = setTimeout(() => controller.abort('timeout'), 310_000);
     try {
       if (!root.dataset.endpoint) throw new Error('unconfigured');

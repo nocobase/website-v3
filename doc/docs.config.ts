@@ -186,8 +186,9 @@ export default defineDocsConfig({
     versionSwitch: 'https://nocode.docs.nocobase.com/',
   },
   search: { provider: 'pagefind' },
+  // Opt in only after verifying the service allows the site's browser origin.
   // Public URL of the documentation answer service; never put model credentials here.
-  ask: { endpoint: process.env.DOCS_AI_API_URL ?? ((process.env.DOCS_AI_PROXY_TARGET || process.env.NODE_ENV === 'development') ? '/docs-ai' : 'https://docs-ai-service.nocobase.com/api/ai') },
+  ask: { endpoint: process.env.DOCS_AI_API_URL ?? ((process.env.DOCS_AI_PROXY_TARGET || process.env.NODE_ENV === 'development') ? '/docs-ai' : '') },
   // Same IDs as the website for now (the data lands in one account; reports tell the sites apart by hostname). Change them here to give the docs their own.
   analytics: { ga4: 'G-237XXSVYHE', baidu: 'acfb678ac7bbc9df89e1aa4327e47907', clarity: 'y0qzc9z3xg' },
 });

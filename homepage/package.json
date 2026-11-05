@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "node scripts/serve.mjs",
     "test": "vitest run",
-    "figs": "node scripts/figs/product-figs.mjs && node scripts/figs/studio-figs.mjs && node scripts/figs/home-studio.mjs && node scripts/figs/home-sol.mjs",
+    "figs": "node scripts/figs/product-figs.mjs && node scripts/figs/studio-figs.mjs && node scripts/figs/home-studio.mjs && node scripts/figs/reach-figs.mjs && node scripts/figs/home-sol.mjs",
     "i18n:extract": "node scripts/i18n.mjs extract",
     "i18n:check": "node scripts/i18n.mjs check",
     "cms:import": "node scripts/cms-import.mjs",

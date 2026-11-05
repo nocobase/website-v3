@@ -170,3 +170,7 @@ strings:
   "174": Persetujuan lanjutan dan SSO perusahaan
   "175": Semua aplikasi Solution, seperti NocoCRM, NocoITAM, dan NocoReach, beserta agen bisnisnya
   "176": Bisa. Community mencakup seluruh Core serta semua aplikasi Solution, gratis untuk produksi dan pengerjaan proyek klien. Tambahkan skill pengembangan NocoBase ke agen coding Anda dan mulai membangun. Tim Anda menangani pengujian, rilis, dan operasional.
+  "177": Bisakah saya membangun aplikasi untuk klien dengan Professional atau Enterprise?
+  "178": Bisa. Aplikasi yang Anda bangun dengan Professional atau Enterprise boleh dijual ke klien sebanyak apa pun, tanpa biaya tambahan ke NocoBase. Namun Professional atau Enterprise itu sendiri tidak boleh didistribusikan ke perusahaan yang tidak memiliki lisensi.
+  "179": Bisakah saya men-deploy Studio untuk klien?
+  "180": Tidak. Studio hanya boleh digunakan oleh perusahaan pemegang lisensi. Anda bisa menyerahkan aplikasi yang dibangun dengan Studio kepada klien, tetapi Studio itu sendiri tidak boleh di-deploy untuk mereka.

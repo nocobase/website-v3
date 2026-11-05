@@ -170,3 +170,7 @@ strings:
   "174": 高度な承認、エンタープライズ SSO
   "175": NocoCRM、NocoITAM、NocoReach などすべての Solution アプリとその業務エージェント
   "176": 使えます。Community には Core のすべてとすべての Solution アプリが含まれ、本番運用や顧客向けの納品にも使えます。コーディングエージェントに NocoBase の開発スキルを入れればすぐに開発でき、テスト、リリース、運用はチーム自身で担います。
+  "177": Professional や Enterprise で顧客向けのアプリを開発できる？
+  "178": できます。Professional や Enterprise で開発した業務アプリは、顧客の数に制限なく販売でき、NocoBase に追加費用を支払う必要はありません。ただし、Professional や Enterprise そのものをライセンスを持たない企業に配布することはできません。
+  "179": Studio を顧客向けにデプロイできる？
+  "180": できません。Studio はライセンスを取得した企業のみが使用できます。Studio で開発した業務アプリは顧客に納品できますが、Studio そのものを顧客向けにデプロイすることはできません。

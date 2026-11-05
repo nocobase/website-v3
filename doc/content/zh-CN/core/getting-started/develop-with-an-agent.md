@@ -100,4 +100,4 @@ Agent 会把它写进 `.agents/rules/`，并在 `AGENTS.md` 的索引里登记�
 
 - [应用开发概览](../developing-apps/overview.md)：了解一个功能由哪些部分组成，按需查阅页面、接口、数据和测试的开发方法。
 - [项目结构](../developing-apps/project-structure.md)：审查 Agent 的改动或自己写代码时，查找对应的目录和文件。
-- [选择部署方式](../deployment/choose-a-deployment-method.md)：功能验证通过后，将应用部署到自己的服务器。
+- [部署概览](../deployment/choose-a-deployment-method.md)：功能验证通过后，将应用部署到自己的服务器。

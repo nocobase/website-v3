@@ -187,7 +187,7 @@ pnpm nocobase db apply --json
 
 ## 验证升级结果
 
-Core 升级可能影响整个应用。对本文示例，检查项目既有脚本，并按[测试](testing-and-acceptance.md)补齐任务功能的独立测试：
+Core 升级可能影响整个应用。对本文示例，检查项目既有脚本，并按[测试与验收](testing-and-acceptance.md)补齐任务功能的独立测试：
 
 ```bash
 pnpm typecheck
@@ -206,14 +206,13 @@ pnpm build
 - 普通用户只能访问已授权页面和数据；只读用户仍不能写入，直接请求接口也不能绕过权限。
 - 刷新和重启后数据仍然保留；本次涉及的插件功能、后台任务或外部集成通过对应检查。
 
-按应用实际已有的功能验收。在独立应用中配置测试地址与账号后，使用 `pnpm test:e2e` 运行浏览器测试；具体准备见[测试](testing-and-acceptance.md#使用-playwright-自动验证)。`pnpm test` 不包含浏览器测试。
+按应用实际已有的功能验收。在独立应用中配置测试地址与账号后，使用 `pnpm test:e2e` 运行浏览器测试；具体准备见[测试与验收](testing-and-acceptance.md#ui-测试)。`pnpm test` 不包含浏览器测试。
 
 ## 部署与回退
 
 验证完成后提交源码及锁文件，记录基线、目标版本、合并决定和验证结果，重新构建，再沿用原部署方式发布：
 
-- [使用 Docker 部署](../tutorials/deploy-with-docker.md#手动部署新版本)
-- [使用 PM2 部署（app-installer）](../tutorials/deploy-with-app-installer.md#手动部署新版本)
+- [更新与恢复](../deployment/publish-app-release.md)
 
 保留与旧版构建匹配的配置和数据备份。回退代码不会自动撤销数据库迁移；若旧版不能使用升级后的表结构，需要恢复匹配的数据库和文件，并处理备份之后的业务写入。
 

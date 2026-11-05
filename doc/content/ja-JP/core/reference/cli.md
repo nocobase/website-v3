@@ -3,7 +3,7 @@ title: コマンドラインリファレンス
 description: アプリのコマンドの入口、ソースとデプロイの違い、設定、データベース、プラグイン、JSON の出力。
 ---
 
-このページでは、アプリの `nocobase` コマンドを扱います。アプリやプラグインの作成、本番のリリースのインストールには、別のツールを使います。[アプリを作成する](../getting-started/create-app.md)、[プラグインを作成する](../extension-development/create-plugin.md)、[PM2 でデプロイする](../tutorials/deploy-with-app-installer.md) を参照してください。
+このページでは、アプリの `nocobase` コマンドを扱います。アプリやプラグインの作成、本番のリリースのインストールには、別のツールを使います。[アプリを作成する](../getting-started/create-app.md)、[プラグインを作成する](../extension-development/create-plugin.md)、[PM2 でデプロイする](../deployment/deploy-with-pm2.md) を参照してください。
 
 ## 入口
 

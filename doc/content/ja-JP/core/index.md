@@ -62,8 +62,8 @@ Core と付属のプラグインは再利用できる基盤機能を提供し、
 
 ## デプロイと保守
 
-- [デプロイ方法を選ぶ](deployment/choose-a-deployment-method.md)：自社の環境にデプロイし、設定と永続データを準備します。
-- [アプリのリリースを公開する](deployment/publish-app-release.md)：業務の更新を検証、ビルドして届けます。
+- [デプロイの概要](deployment/choose-a-deployment-method.md)：自社の環境にデプロイし、設定と永続データを準備します。
+- [更新と復旧](deployment/publish-app-release.md)：業務の更新を検証、ビルドして届けます。
 - [NocoBase Core をアップグレードする](developing-apps/upgrade-nocobase-core.md)：基盤の依存関係とアプリテンプレートを更新し、業務のカスタマイズとの互換性を確認する方法を学びます。
 
 ## リファレンス

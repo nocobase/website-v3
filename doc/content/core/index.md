@@ -62,8 +62,8 @@ Read [Project structure](developing-apps/project-structure.md) when you need to 
 
 ## Deploy and maintain
 
-- [Choose a deployment method](deployment/choose-a-deployment-method.md): deploy to your own environment and prepare configuration and persistent data.
-- [Publish an application release](deployment/publish-app-release.md): verify, build and deliver business updates.
+- [Deployment overview](deployment/choose-a-deployment-method.md): deploy to your own environment and prepare configuration and persistent data.
+- [Updates and recovery](deployment/publish-app-release.md): verify, build and deliver business updates.
 - [Upgrade NocoBase Core](developing-apps/upgrade-nocobase-core.md): learn how to update foundational dependencies and the application template, and check compatibility with business customizations.
 
 ## Reference

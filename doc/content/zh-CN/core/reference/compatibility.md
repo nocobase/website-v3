@@ -118,4 +118,4 @@ pnpm list @nocobase/app-client @nocobase/app-server @nocobase/app-cli @nocobase/
 
 升级前备份数据库、运行配置和密钥，保留锁文件；按[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)更新模板和依赖，并在独立环境中验证迁移、查询、事务及权限。回退代码不会自动撤销数据库结构变更，需同时准备数据恢复方案。
 
-跨操作系统或 CPU 架构部署时，应为目标平台重新构建，避免直接复制本机的原生依赖。数据库驱动需安装在应用的生产依赖中；增加驱动后重新构建部署包。构建参数见[命令行参考](cli.md)，部署步骤见[选择部署方式](../deployment/choose-a-deployment-method.md)。
+跨操作系统或 CPU 架构部署时，应为目标平台重新构建，避免直接复制本机的原生依赖。数据库驱动需安装在应用的生产依赖中；增加驱动后重新构建部署包。构建参数见[命令行参考](cli.md)，部署步骤见[部署概览](../deployment/choose-a-deployment-method.md)。

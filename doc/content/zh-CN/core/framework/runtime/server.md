@@ -41,7 +41,7 @@ server/runtime.ts + server/config/
 
 在异步生命周期中建立、检查和释放资源。清理函数应允许部分初始化，仅关闭自己拥有的资源。严格启动策略、健康检查与进程管理属于宿主接入，需要与应用内部就绪状态一起检查。
 
-继续阅读[生命周期](lifecycle.md)、[服务端服务](../services/integration.md#服务端服务)和[选择部署方式](../../deployment/choose-a-deployment-method.md)。
+继续阅读[生命周期](lifecycle.md)、[服务端服务](../services/integration.md#服务端服务)和[部署概览](../../deployment/choose-a-deployment-method.md)。
 
 ## 接口与实现
 

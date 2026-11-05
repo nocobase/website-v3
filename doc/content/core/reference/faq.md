@@ -67,7 +67,7 @@ No. Runtimes, libraries, plugins and scaffold tools are versioned independently.
 
 ## How do development preview and production deployment differ?
 
-Use development commands locally; see Studio documentation for Studio previews. Deploy independent production applications with Docker or PM2 plus app-installer, using build output and preserving runtime data. See [Choose a deployment method](../deployment/choose-a-deployment-method.md).
+Use development commands locally; see Studio documentation for Studio previews. Deploy independent production applications with Docker or PM2 plus app-installer, using build output and preserving runtime data. See [Deployment overview](../deployment/choose-a-deployment-method.md).
 
 ## What should a problem report include?
 

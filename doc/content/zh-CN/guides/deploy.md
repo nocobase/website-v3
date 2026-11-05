@@ -3,7 +3,7 @@ title: 部署上线
 metaDescription: 让 Agent 用应用自带的 Dockerfile 构建 itam-lite 镜像，在服务器上用 Docker Compose 运行；配置、数据和镜像分开保存，上线后应用独立运行。
 ---
 
-开发时 itam-lite 跑在 `pnpm dev` 里，用的是开发数据库。这一篇把它用 Docker 部署到服务器，独立运行。应用自带 `Dockerfile` 和部署技能 `nocobase-deployment`，Agent 照着做。Docker 和 PM2 两种方式怎样选，见 [选择部署方式](../core/deployment/choose-a-deployment-method.md)。
+开发时 itam-lite 跑在 `pnpm dev` 里，用的是开发数据库。这一篇把它用 Docker 部署到服务器，独立运行。应用自带 `Dockerfile` 和部署技能 `nocobase-deployment`，Agent 照着做。Docker 和 PM2 两种方式怎样选，见 [部署概览](../core/deployment/choose-a-deployment-method.md)。
 
 ## 1. 准备服务器
 
@@ -28,7 +28,7 @@ Agent 的做法：
 | 运行 | 写 `compose.yml`：配置只读挂载到 `/app/config.yml`，`storage/` 挂载到 `/app/storage`，`APP_BASE_PATH` 设为 `/itam` |
 | 检查 | `config check --connect` 检查配置和数据库连接，`up -d --wait` 等到健康检查通过 |
 
-每条命令和完整的 Compose 文件见 [使用 Docker 部署](../core/tutorials/deploy-with-docker.md#手动部署)。
+每条命令和完整的 Compose 文件见 [使用 Docker 部署](../core/deployment/deploy-with-docker.md#手动部署参考)。
 
 ## 3. 配置、数据和镜像分开
 
@@ -48,7 +48,7 @@ Agent 的做法：
 
 Agent 重建容器后，这台设备还在，登录状态也还在。
 
-发布新版本时，构建新标签的镜像，先备份部署目录，再保留原配置和数据换镜像，见 [部署新版本](../core/tutorials/deploy-with-docker.md#手动部署新版本)。
+发布新版本时，构建新标签的镜像，先备份部署目录，再保留原配置和数据换镜像，见 [部署新版本](../core/deployment/publish-app-release.md)。
 
 ## 5. 记录部署方式
 

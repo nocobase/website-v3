@@ -187,7 +187,7 @@ Production migrations belong to the deployment procedure. Do not point a develop
 
 ## Verify the upgrade
 
-Core upgrades can affect the entire application. For this example, review the existing project scripts and add isolated tests for the task feature using [Testing](testing-and-acceptance.md):
+Core upgrades can affect the entire application. For this example, review the existing project scripts and add isolated tests for the task feature using [Testing and acceptance](testing-and-acceptance.md):
 
 ```bash
 pnpm typecheck
@@ -206,14 +206,13 @@ After database preparation, run `pnpm dev` and use its printed `Local:` URL to v
 - Ordinary users can access only permitted pages and records. Read-only users still cannot write, including through direct API calls.
 - Data survives refreshes and restarts. Affected plugin features, background jobs, and integrations pass their corresponding checks.
 
-Verify the features your application actually implements. Configure a separate test application and credentials, then run `pnpm test:e2e` for browser tests; see [Testing](testing-and-acceptance.md) for setup. `pnpm test` does not include browser tests.
+Verify the features your application actually implements. Configure a separate test application and credentials, then run `pnpm test:e2e` for browser tests; see [Testing and acceptance](testing-and-acceptance.md) for setup. `pnpm test` does not include browser tests.
 
 ## Deploy and recover
 
 Commit source and lockfile changes after verification. Record the baseline, target, merge decisions, and verification results. Rebuild and publish through your existing deployment method:
 
-- [Deploy with Docker](../tutorials/deploy-with-docker.md#deploy-a-new-version-manually)
-- [Deploy with PM2 (app-installer)](../tutorials/deploy-with-app-installer.md#deploy-a-new-version-manually)
+- [Updates and recovery](../deployment/publish-app-release.md)
 
 Keep configuration and data backups that match the previous build. Rolling back code does not undo database migrations. If the previous runtime cannot use the upgraded schema, restore matching database and file backups and account for business writes made since those backups.
 

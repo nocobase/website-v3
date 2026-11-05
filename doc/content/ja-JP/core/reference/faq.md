@@ -67,7 +67,7 @@ description: アプリ、プラグイン、UI のアセット、設定、コマ�
 
 ## 開発中のプレビューと本番のデプロイはどう違うか
 
-ローカルでは開発用のコマンドを使います。Studio のプレビューについては Studio のドキュメントを参照してください。独立した本番のアプリは、ビルドの出力を使い、実行時のデータを保ったまま、Docker か PM2 と app-installer でデプロイします。[デプロイ方法を選ぶ](../deployment/choose-a-deployment-method.md) を参照してください。
+ローカルでは開発用のコマンドを使います。Studio のプレビューについては Studio のドキュメントを参照してください。独立した本番のアプリは、ビルドの出力を使い、実行時のデータを保ったまま、Docker か PM2 と app-installer でデプロイします。[デプロイの概要](../deployment/choose-a-deployment-method.md) を参照してください。
 
 ## 問題の報告には何を含めるべきか
 

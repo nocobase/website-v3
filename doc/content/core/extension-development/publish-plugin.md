@@ -218,7 +218,7 @@ pnpm dev
 pnpm build
 ```
 
-Follow [Write your first plugin](write-your-first-plugin.md#6-register-in-the-app-and-view-the-result) to check navigation, announcement content, language switching and the API. Then deploy the App through its usual process; see [Choose a deployment method](../deployment/choose-a-deployment-method.md).
+Follow [Write your first plugin](write-your-first-plugin.md#6-register-in-the-app-and-view-the-result) to check navigation, announcement content, language switching and the API. Then deploy the App through its usual process; see [Deployment overview](../deployment/choose-a-deployment-method.md).
 
 Development and CI build environments need registry read access. The App build retains registry addresses but does not copy authentication tokens from the project's configuration into deployment artifacts. Supply CI authentication through user-level npm configuration or protected credential settings. If the deployment process installs dependencies again, that installation step also needs read access.
 

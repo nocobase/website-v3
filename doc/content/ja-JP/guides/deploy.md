@@ -3,7 +3,7 @@ title: アプリをデプロイする
 metaDescription: アプリ付属の Dockerfile でエージェントに itam-lite のイメージをビルドさせ、Docker Compose でサーバー上で動かします。設定、データ、イメージは分けて管理し、本番稼働後はアプリが独立して動作します。
 ---
 
-開発中、itam-lite は `pnpm dev` と開発用のデータベースで動いています。この章では Docker でサーバーにデプロイし、独立して動作させます。アプリには `Dockerfile` とデプロイ用のスキル `nocobase-deployment` が付属しており、エージェントはそれに従います。Docker と PM2 のどちらにするかは、[デプロイ方法を選ぶ](../core/deployment/choose-a-deployment-method.md) を参照してください。
+開発中、itam-lite は `pnpm dev` と開発用のデータベースで動いています。この章では Docker でサーバーにデプロイし、独立して動作させます。アプリには `Dockerfile` とデプロイ用のスキル `nocobase-deployment` が付属しており、エージェントはそれに従います。Docker と PM2 のどちらにするかは、[デプロイの概要](../core/deployment/choose-a-deployment-method.md) を参照してください。
 
 ## 1. サーバーを準備する
 
@@ -28,7 +28,7 @@ Docker と Docker Compose プラグインをインストールした Linux サ�
 | 実行 | `compose.yml` を書きます。設定は `/app/config.yml` に読み取り専用でマウントし、`storage/` は `/app/storage` にマウントし、`APP_BASE_PATH` を `/itam` に設定します |
 | 確認 | `config check --connect` で設定とデータベースの接続を確認し、`up -d --wait` でヘルスチェックを通過するまで待ちます |
 
-すべてのコマンドと Compose ファイルの全体は、[Docker でデプロイする](../core/tutorials/deploy-with-docker.md#手動でデプロイする) を参照してください。
+すべてのコマンドと Compose ファイルの全体は、[Docker でデプロイする](../core/deployment/deploy-with-docker.md#手動デプロイの参考) を参照してください。
 
 ## 3. 設定、データ、イメージを分けて管理する
 
@@ -48,7 +48,7 @@ Docker と Docker Compose プラグインをインストールした Linux サ�
 
 エージェントがコンテナを作り直したあとも、デバイスは残っており、サインインセッションも維持されています。
 
-新しいバージョンをリリースするには、新しいタグでイメージをビルドし、先にデプロイ先のディレクトリをバックアップしてから、既存の設定とデータはそのままにイメージを入れ替えます。[新しいリリースを公開する](../core/tutorials/deploy-with-docker.md#新しいバージョンを手動でデプロイする) を参照してください。
+新しいバージョンをリリースするには、新しいタグでイメージをビルドし、先にデプロイ先のディレクトリをバックアップしてから、既存の設定とデータはそのままにイメージを入れ替えます。[新しいリリースを公開する](../core/deployment/publish-app-release.md) を参照してください。
 
 ## 5. デプロイを記録する
 

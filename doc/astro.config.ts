@@ -23,6 +23,12 @@ export default defineConfig({
   outDir: DIST,
   trailingSlash: 'always',
   redirects: {
+    '/core/tutorials/deploy-with-docker/': '/core/deployment/deploy-with-docker/',
+    '/core/tutorials/deploy-with-app-installer/': '/core/deployment/deploy-with-pm2/',
+    '/zh-CN/core/tutorials/deploy-with-docker/': '/zh-CN/core/deployment/deploy-with-docker/',
+    '/zh-CN/core/tutorials/deploy-with-app-installer/': '/zh-CN/core/deployment/deploy-with-pm2/',
+    '/ja-JP/core/tutorials/deploy-with-docker/': '/ja-JP/core/deployment/deploy-with-docker/',
+    '/ja-JP/core/tutorials/deploy-with-app-installer/': '/ja-JP/core/deployment/deploy-with-pm2/',
     '/studio/setup/with-agent/': '/studio/setup/',
     '/zh-CN/studio/setup/with-agent/': '/zh-CN/studio/setup/',
     '/ja-JP/studio/setup/with-agent/': '/ja-JP/studio/setup/',

@@ -207,6 +207,11 @@ function loadLanguage({ root, prefix, code, skip, sections, problems }) {
   }
 
   for (const page of pages.values()) {
+    // The standalone site home can belong to a section without appearing in its sidebar or pager.
+    if (page.key === 'index' && page.refs.length === 0) {
+      const homeSection = sections.find(section => (section.extra ?? []).includes('index'));
+      if (homeSection) { page.section = homeSection.id; continue; }
+    }
     if (page.refs.length === 0) problems.push(`${page.relPath} is not in any menu (add it to a meta.json)`);
     else if (page.refs.length > 1) problems.push(`${page.relPath} is listed ${page.refs.length} times: ${page.refs.join('; ')}`);
   }

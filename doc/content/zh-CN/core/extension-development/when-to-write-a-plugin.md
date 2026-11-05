@@ -39,7 +39,7 @@ my-app/
 
 ## 在 App 中开发插件
 
-先通过 [create-app 创建应用](../getting-started/create-app.md)，再在 App 中开发插件。App 支持 monorepo，本地插件放在 `packages/` 下，通过 pnpm 工作区依赖接入，与应用一起开发和构建。
+先通过 [create-app 创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)，再在 App 中开发插件。App 支持 monorepo，本地插件放在 `packages/` 下，通过 pnpm 工作区依赖接入，与应用一起开发和构建。
 
 **插件可以只服务当前 App，不需要先发布到 npm。** 将来需要提供给其他应用时，再考虑分发、版本和兼容性。代码复用和模块化也可以逐步结合：先把当前应用的一项功能组织为插件，成熟后再供其他应用使用。
 

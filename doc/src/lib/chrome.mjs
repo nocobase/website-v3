@@ -12,7 +12,7 @@ export function headerProps(site, { lang, sectionId, pageKey, stars = githubStar
   const l = config.byCode[lang];
   const ui = l.ui;
   const home = site.urlOf(lang, 'index');
-  const tabs = config.sections.map(s => ({ title: config.sectionTitle(s, lang), href: site.urlOf(lang, s.home), active: s.id === sectionId }));
+  const tabs = config.sections.filter(s => s.showInNav !== false).map(s => ({ title: config.sectionTitle(s, lang), href: site.urlOf(lang, s.home), active: s.id === sectionId }));
   return {
     logo: { href: home, src: config.site.logo.src, alt: config.site.logo.alt, width: config.site.logo.width, height: config.site.logo.height },
     version: {

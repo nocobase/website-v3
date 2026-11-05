@@ -1,43 +1,50 @@
 ---
 title: NocoBase Studio
-description: NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
 ---
 
-## 概览
+Studio 是人与 Agent 协同开发的治理平台，连接项目与任务、编码工具、Git 和交付流程。团队在这里推进工作、处理决策和验收；业务应用发布后独立运行。首次使用可先阅读[使用 Studio 协作开发](../getting-started/collaborate-with-studio.md)，具体操作按下方手册查阅。
 
-NocoBase Studio 是面向团队的 AI 开发治理平台，让人与 Agent 在同一套流程中协同交付。
+## 安装配置与成员接入
 
-它支持接入多家厂商的 Coding Agent 与模型，由调度 Agent 按能力分派设计、开发、评审和测试，也支持直接与 Agent 对话推进工作；将需求与项目管理接入开发流程，并对接 Git 代码平台、CI/CD 和发布流程；通过技能和项目记忆沉淀团队的开发规范，为每个任务提供一致的质量基准。
+- [安装概览](setup/index.md)
+- [加入项目](join/index.md)
+- [在本地 Coding Agent 中使用 Studio](join/local-agent.md)
+- [与 Runner Agent 对话](join/runner-agent.md)
 
-Studio 提供完整的命令行工具，团队可以在本地 Coding Agent 中发起和跟进任务，由 Studio 统一执行与治理。Studio 部署在企业自己的服务器上，代码与数据归企业所有。
+## 任务开发与项目管理
 
-![Studio 组织 Agent 推进多个应用的开发与交付，新需求与反馈持续进入任务](/assets/studio/architecture.svg)
+- [提出需求](use/raise-a-request.md)
+- [我的会话](use/sessions.md)
+- [我的任务](use/my-tasks.md)
+- [跟进进展](use/follow-progress.md)
+- [回答 Agent 的提问](use/answer.md)
+- [验收](use/accept.md)
+- [项目设置](project/settings.md)
+- [知识库](project/knowledge-base.md)
+- [项目记忆](project/project-memory.md)
+- [项目进展](project/progress.md)
 
-![调度 Agent 把需求交给擅长的 Agent 推进，每次交接、执行结果和评审都留在任务里，最后交给人验收](https://static-docs.nocobase.com/studio-zh-home-20261030-v3.png)
+## Agent、质量与发布管理
 
-## 学习
+- [Agent 配置](configure/agents.md)
+- [运行环境](configure/runtimes.md)
+- [技能](project/skills.md)
+- [工作负荷与用量](project/usage.md)
+- [检查与 CI](configure/checks.md)
+- [检查与评审](project/checks-and-review.md)
+- [发布概览](release/overview.md)
 
-<div class="learn">
+## 系统管理与参考
 
-- [**介绍**](intro/what-is-studio.md)
-  Studio 解决什么问题，一个需求从提出到上线怎样完成，Agent 团队怎样分工。
-- [**安装与配置**](setup/index.md)
-  管理员部署 Studio，准备 Git 平台、运行环境、Agent、项目和检查方式，再邀请成员。
-- [**开始使用**](join/index.md)
-  成员接受邀请并登录，提出需求，跟进开发，验收结果。
-- [**任务开发**](use/raise-a-request.md)
-  提出需求，在会话里和 Agent 讨论，跟进进展，回答提问，验收。
-- [**项目管理**](project/settings.md)
-  新建项目，管理成员和设置、知识库和项目记忆，掌握项目进展。
-- [**Agent 管理**](configure/agents.md)
-  启用 Agent，接入共享和个人运行环境，维护技能，查看用量。
-- [**质量管理（开发中）**](project/checks-and-review.md)
-  检查与评审，测试计划与质量报告。
-- [**发布管理**](release/overview.md)
-  PR 预览、测试环境、版本与发布，部署到自己的服务器并记录生产版本。
-- [**系统管理**](admin/members-and-roles.md)
-  成员与角色、API 密钥、通知、升级与备份。
-- [**参考**](reference/statuses-and-permissions.md)
-  任务状态与权限、nb-studio 命令、配置项、常见问题与排错。
-
-</div>
+- [成员与角色](admin/members-and-roles.md)
+- [API 密钥](admin/api-keys.md)
+- [通知与推送](admin/notifications.md)
+- [升级与备份](admin/upgrade-and-backup.md)
+- [任务状态与权限](reference/statuses-and-permissions.md)
+- [nb-studio 命令](reference/cli.md)
+- [nocobase-runner 命令](reference/runner.md)
+- [配置项](reference/config.md)
+- [文件与产物存储](reference/storage.md)
+- [常见问题与排错](reference/faq.md)
+- [核心概念](reference/concepts.md)
+- [Agent 执行规则](reference/agent-execution.md)

@@ -3,8 +3,10 @@
 import { createServer } from 'node:http';
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { extname, join, normalize } from 'node:path';
+import { createAiProxy } from '../src/lib/ai-proxy.mjs';
 import { DIST } from '../src/lib/paths.mjs';
 
+const proxyAi = createAiProxy(process.env.DOCS_AI_PROXY_TARGET);
 const port = Number(process.env.PORT || 4321);
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.woff2': 'font/woff2', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.md': 'text/plain; charset=utf-8', '.zip': 'application/zip' };
 
@@ -12,6 +14,7 @@ const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=
 const cacheOf = (path) => (path.startsWith('/_astro/') ? 'public, max-age=31536000, immutable' : 'no-cache');
 
 createServer((req, res) => {
+  if (proxyAi(req, res)) return;
   const path = normalize(decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
   const last = path.slice(path.lastIndexOf('/') + 1);
   const file = join(DIST, path.endsWith('/') ? `${path}index.html` : last.includes('.') ? path : `${path}/index.html`);

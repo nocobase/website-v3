@@ -3,7 +3,7 @@ title: プラグインを作成する
 description: 既存のアプリの中で @nocobase/create-plugin を使い、ローカルのプラグインのひな形を生成して、機能を選び、workspace につなぎます。エージェントを使う方法と使わない方法があります。
 ---
 
-まず [アプリを作成](../getting-started/create-app.md) し、その依存関係をインストールします。プラグインはこのアプリの `packages/` ディレクトリの下に生成され、アプリと一緒に開発、ビルドされます。
+まず [アプリを作成](../../getting-started/develop-your-first-app.md#アプリを作成して起動する) し、その依存関係をインストールします。プラグインはこのアプリの `packages/` ディレクトリの下に生成され、アプリと一緒に開発、ビルドされます。
 
 エージェントにプラグインの作成を依頼するか、自分で `pnpm create @nocobase/plugin@beta` を実行します。どちらの方法も `@nocobase/create-plugin` を使います。
 

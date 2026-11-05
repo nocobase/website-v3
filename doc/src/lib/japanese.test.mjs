@@ -63,7 +63,7 @@ test('the language menu keeps the page across English, Chinese and Japanese', ()
   }
   const header = headerProps(site, { lang: 'ja-JP', sectionId: 'core', pageKey: 'core/example' });
   expect(header.logo.href).toBe('/ja-JP/');
-  expect(header.menu.map(m => m.href)).toEqual(['/ja-JP/', '/ja-JP/core/', '/ja-JP/studio/', '/ja-JP/guides/build-reliable-enterprise-apps/']);
+  expect(header.menu.map(m => m.href)).toEqual(['/ja-JP/getting-started/what-is-nocobase/', '/ja-JP/core/', '/ja-JP/studio/', '/ja-JP/guides/build-reliable-enterprise-apps/']);
   expect(header.labels.language).toBe('言語');
   expect(header.search.label).toBe('ドキュメントを検索');
   expect(footerProps(site, { lang: 'ja-JP' }).columns[0].links[0].href).toBe('https://www.nocobase.com/ja-JP/core/');

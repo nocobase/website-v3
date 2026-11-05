@@ -80,6 +80,6 @@ Files を使って、注文の非公開の添付ファイルを追加してく�
 
 アップロードの上限、拒否される書き込み、メタデータとオブジェクトの整合性、内容へのアクセス、プレビューのフォールバックを検証します。関連：[Repository のデータ API](../../framework/http/repository-routes.md)、[プラグインを管理する](../../developing-apps/manage-plugins.md)。
 
-これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
+これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../../getting-started/develop-your-first-app.md#改善して開発を続ける) と [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
 
 出典：[公開のプラグインの入口と実装](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-file)。

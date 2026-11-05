@@ -1,0 +1,32 @@
+{
+  "pages": [
+    {
+      "type": "group",
+      "title": "Introduction",
+      "pages": [
+        {
+          "type": "page",
+          "path": "what-is-nocobase"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Hands-on",
+      "pages": [
+        {
+          "type": "page",
+          "path": "develop-your-first-app"
+        },
+        {
+          "type": "page",
+          "path": "collaborate-with-studio"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "path": "learning-path"
+    }
+  ]
+}

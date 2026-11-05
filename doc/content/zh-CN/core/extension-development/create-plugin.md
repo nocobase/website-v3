@@ -3,7 +3,7 @@ title: 创建插件
 description: 在已有 App 中使用 @nocobase/create-plugin 创建本地插件，通过 Agent 或手动操作生成骨架、选择能力并接入工作区。
 ---
 
-先按[创建应用](../getting-started/create-app.md)准备一个 App 并完成依赖安装。插件会生成在这个 App 的 `packages/` 下，与应用一起开发和构建。
+先按[创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)准备一个 App 并完成依赖安装。插件会生成在这个 App 的 `packages/` 下，与应用一起开发和构建。
 
 你可以让 Agent 帮你创建，也可以手动使用 `pnpm create @nocobase/plugin@beta`。两种方式都使用 `@nocobase/create-plugin`。
 

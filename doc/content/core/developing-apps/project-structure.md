@@ -5,7 +5,7 @@ description: Find the pages, APIs, migrations, tests and plugins in your applica
 
 ## Directory overview
 
-[Creating an app](../getting-started/create-app.md) gives you source code you can edit directly. The following shows common development locations in the default application template. Configuration, installed dependencies and build output appear after their respective setup steps.
+[Creating an app](../../getting-started/develop-your-first-app.md#create-and-start-the-application) gives you source code you can edit directly. The following shows common development locations in the default application template. Configuration, installed dependencies and build output appear after their respective setup steps.
 
 ```text
 my-app/
@@ -50,7 +50,7 @@ Connect pages and APIs to their registration entries: adding a file alone does n
 
 `database/` groups resources by connection name; `main` is the default connection. Keep migrations that have already run and add new ones for later schema changes. See [Tables and initial data](data-models-and-migrations.md) for implementation details.
 
-For example, customer management typically involves a table migration, API routes, a page and the corresponding registration files. Follow [Develop your first feature](../getting-started/build-your-first-app.md) to see how these locations fit a working feature.
+For example, customer management typically involves a table migration, API routes, a page and the corresponding registration files. Follow [Develop your first feature](../../getting-started/develop-your-first-app.md#describe-your-first-business-requirement) to see how these locations fit a working feature.
 
 ## Configuration, dependencies and plugins
 
@@ -107,7 +107,7 @@ Existing projects may use different directories; follow their `vitest.config.ts`
 | `AGENTS.md`, `.agents/rules/` | Maintain and commit the project's development conventions with its source |
 | `.agents/skills/` | Synchronized from dependencies; do not edit or commit these copies |
 
-Add business conventions to the project guidance as described in [Continue developing your app](../getting-started/develop-with-an-agent.md#save-project-conventions). Run `pnpm nocobase skills sync` in the application directory to refresh Skills from dependencies; see the [CLI reference](../reference/cli.md#plugins-and-skills) for more options.
+Add business conventions to the project guidance as described in [Continue developing your app](../../getting-started/develop-your-first-app.md#refine-and-continue-developing). Run `pnpm nocobase skills sync` in the application directory to refresh Skills from dependencies; see the [CLI reference](../reference/cli.md#plugins-and-skills) for more options.
 
 ## Generated files and runtime data
 

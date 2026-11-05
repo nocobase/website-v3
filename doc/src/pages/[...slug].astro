@@ -2,6 +2,7 @@
 // Every docs page, in every language: content/<language>/<path>.md at <language dir>/<path>/ (English at the site root).
 import { getEntry, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import HomeAsk from '../components/HomeAsk.astro';
 import Toc from '../components/Toc.astro';
 import PageActions from '../components/PageActions.astro';
 import { getSite } from '../lib/site.mjs';
@@ -37,19 +38,19 @@ const prev = i > 0 ? link(order[i - 1]) : undefined;
 const next = i >= 0 ? link(order[i + 1]) : undefined;
 const crumb = [section.id === config.sections[0].id ? '' : section.title, ...page.trail].filter(Boolean).join(' · ');
 ---
-<Layout lang={lang} title={page.title} description={page.metaDescription} sectionId={page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
+<Layout home={key === 'index'} lang={lang} title={page.title} description={page.metaDescription} sectionId={key === 'index' ? undefined : page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
 {!page.placeholder && <div hidden data-pagefind-filter="section[data-value]" data-value={section.title}></div>}
-{(crumb || !page.placeholder) && <div class="doc-head" data-pagefind-ignore>
+{key !== 'index' && (crumb || !page.placeholder) && <div class="doc-head" data-pagefind-ignore>
 {crumb ? <p class="doc-crumb">{crumb}</p> : <span></span>}
 {!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
 </div>}
-<h1>{page.title}</h1>
-<article class="prose">
+{key === 'index' ? <HomeAsk lang={lang} title={page.title} /> : <h1>{page.title}</h1>}
+<article class:list={['prose', { 'doc-home-content': key === 'index' }]}>
 {hint ? <p set:html={hint}></p> : <Content />}
 </article>
-{(prev || next) && <nav class="doc-pager" aria-label={ui.pager}>
+{key !== 'index' && (prev || next) && <nav class="doc-pager" aria-label={ui.pager}>
 {prev ? <a class="prev" href={prev.href}><small>{ui.prev}</small>{prev.title}</a> : <span></span>}
 {next && <a class="next" href={next.href}><small>{ui.next}</small>{next.title}</a>}
 </nav>}
-<Toc slot="toc" headings={headings} title={ui.toc} />
+{key !== 'index' && <Toc slot="toc" headings={headings} title={ui.toc} />}
 </Layout>

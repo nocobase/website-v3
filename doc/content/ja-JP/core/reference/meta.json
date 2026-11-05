@@ -31,7 +31,7 @@
     },
     {
       "type": "page",
-      "path": "../getting-started/create-app-with-database"
+      "path": "database-configuration"
     },
     {
       "type": "page",

@@ -37,18 +37,18 @@ pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
 
 ## アプリのデータベースを設定する
 
-各データベースの接続設定例は[異なるデータベースでアプリを作成する](../getting-started/create-app-with-database.md)を参照してください。ローカル、別のサーバー、クラウドデータベースの接続情報を使えます。
+各データベースの接続設定例は[異なるデータベースでアプリを作成する](database-configuration.md)を参照してください。ローカル、別のサーバー、クラウドデータベースの接続情報を使えます。
 
 ### ドライバーのインストールと設定の初期化
 
-[アプリを作成する](../getting-started/create-app.md)で生成したプロジェクトディレクトリで操作します。以下は、まだ `config.yml` がない PostgreSQL アプリの例です。接続可能な PostgreSQL サーバー、データベース、アカウントを準備してから実行してください。
+[アプリを作成する](../../getting-started/develop-your-first-app.md#アプリを作成して起動する)で生成したプロジェクトディレクトリで操作します。以下は、まだ `config.yml` がない PostgreSQL アプリの例です。接続可能な PostgreSQL サーバー、データベース、アカウントを準備してから実行してください。
 
 ```bash
 pnpm add @nocobase/db-postgres@beta
 pnpm nocobase config init --dialect postgres --json
 ```
 
-コマンドはデータベースに接続せず、`config.yml` とアプリのシークレットを生成します。接続前に、実際のホスト、ポート、データベース名、ユーザー名、パスワード、必要な TLS 設定を入力してください。各データベースの例は[異なるデータベースでアプリを作成する](../getting-started/create-app-with-database.md)を参照してください。他のデータベースでは、パッケージ名と `--dialect` を対応する値に置き換えます。`config init` はドライバーのインストールや、データベースサーバー・アカウントの作成は行いません。
+コマンドはデータベースに接続せず、`config.yml` とアプリのシークレットを生成します。接続前に、実際のホスト、ポート、データベース名、ユーザー名、パスワード、必要な TLS 設定を入力してください。各データベースの例は[異なるデータベースでアプリを作成する](database-configuration.md)を参照してください。他のデータベースでは、パッケージ名と `--dialect` を対応する値に置き換えます。`config init` はドライバーのインストールや、データベースサーバー・アカウントの作成は行いません。
 
 `config.yml` にはパスワードやシークレットが含まれる場合があるため、Git に入れないでください。[設定コマンド](cli.md)で接続パラメーターを指定することもできます。
 

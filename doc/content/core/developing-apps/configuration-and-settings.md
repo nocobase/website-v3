@@ -20,7 +20,7 @@ This guide first changes an existing setting, then adds `reports.pageSize` to co
 
 `server/config.ts` is the loader; `server/config/` contains section definitions. The template's `server/runtime.ts` and `client/runtime.ts` already connect their configuration entries. Usually, maintain the sections and their `index.ts` rather than changing the runtime.
 
-`config.example.yml` shows selected common settings, not every available field. The application and integrated modules define configuration together. Consult [Configuration reference](../reference/configuration.md) and module documentation for complete options. For a new application, `pnpm nocobase config init --dialect sqlite` initializes local configuration and keys. For an existing application, edit its current configuration as needed; see [Create an app](../getting-started/create-app.md).
+`config.example.yml` shows selected common settings, not every available field. The application and integrated modules define configuration together. Consult [Configuration reference](../reference/configuration.md) and module documentation for complete options. For a new application, `pnpm nocobase config init --dialect sqlite` initializes local configuration and keys. For an existing application, edit its current configuration as needed; see [Create an app](../../getting-started/develop-your-first-app.md#create-and-start-the-application).
 
 ## Change existing configuration
 

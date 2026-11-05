@@ -73,6 +73,6 @@ Rules grant no page, operation or field permission and do not automatically expo
 
 Related: [Permission management](permissions.md), [Default data access](default-access.md), [Sharing rules](sharing-rules.md), [Restriction rules](restriction-rules.md).
 
-These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Continue developing your app](../../getting-started/develop-with-an-agent.md) and [Testing](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
+These are acceptance requirements for your integration, not claims of completed live verification. Ask the Agent to report actual changes, executed checks and unverified items. See [Continue developing your app](../../../getting-started/develop-your-first-app.md#refine-and-continue-developing) and [Testing](../../developing-apps/testing-and-acceptance.md) for project guidance, Skills and shared checks.
 
 Source: [public plugin entries and implementation](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-authz-sharing-rules).

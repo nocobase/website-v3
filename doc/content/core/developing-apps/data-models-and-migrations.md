@@ -3,7 +3,7 @@ title: Create tables and initialize data
 description: Create an application status dictionary, install defaults and maintain later changes through new migrations and real database tests.
 ---
 
-In an existing NocoBase application, use a Migration to create a status dictionary and a Seed to install defaults. Here, `appStatuses` stores stable codes and editable titles; a later upgrade adds descriptions. If you need an application, [create one first](../getting-started/create-app.md), or run the [complete example](#example-source-and-running) below.
+In an existing NocoBase application, use a Migration to create a status dictionary and a Seed to install defaults. Here, `appStatuses` stores stable codes and editable titles; a later upgrade adds descriptions. If you need an application, [create one first](../../getting-started/develop-your-first-app.md#create-and-start-the-application), or run the [complete example](#example-source-and-running) below.
 
 ## Directory and file conventions
 

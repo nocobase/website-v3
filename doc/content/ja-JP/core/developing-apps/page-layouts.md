@@ -299,7 +299,7 @@ import { RouteChildPage } from '#components/route-child-page';
 
 ## サンプルのソースとセットアップ
 
-[サンプルのアプリの全体][app] は Node.js 24 と pnpm 11 を使います。製品はフィクスチャーですが、テンプレートのアカウント、セッション、設定にはデータベースが必要です。次の SQLite の設定で検証しています。ほかのデータベースでは、[アプリを作成する](../getting-started/create-app.md) の説明に従ってドライバーをインストールし、接続を設定します。
+[サンプルのアプリの全体][app] は Node.js 24 と pnpm 11 を使います。製品はフィクスチャーですが、テンプレートのアカウント、セッション、設定にはデータベースが必要です。次の SQLite の設定で検証しています。ほかのデータベースでは、[アプリを作成する](../../getting-started/develop-your-first-app.md#アプリを作成して起動する) の説明に従ってドライバーをインストールし、接続を設定します。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git

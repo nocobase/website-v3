@@ -3,7 +3,7 @@ title: Create a plugin
 description: Use @nocobase/create-plugin inside an existing App to generate a local plugin scaffold, select capabilities and connect the workspace, with or without an agent.
 ---
 
-First [create an application](../getting-started/create-app.md) and install its dependencies. Plugins are generated under this App's `packages/` directory and developed and built with the application.
+First [create an application](../../getting-started/develop-your-first-app.md#create-and-start-the-application) and install its dependencies. Plugins are generated under this App's `packages/` directory and developed and built with the application.
 
 Ask an agent to create the plugin, or run `pnpm create @nocobase/plugin@beta` yourself. Both approaches use `@nocobase/create-plugin`.
 

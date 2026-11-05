@@ -248,8 +248,10 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .concept-map .box span { color: var(--ink-2); }
 .concept-map .box.brand b, .concept-map .box.brand span { color: #fff; }
 .concept-map .down { padding: 5px 0; }
-/* 首页的架构图：左边一根窄脊柱（三个块，箭头在轴线上），右边对着每个块写两行文字 */
-.layers { --ly-deep: oklch(0.25 0.06 266); margin: 20px 0; padding: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); display: grid; grid-template-columns: 220px minmax(0, 1fr); column-gap: 24px; align-items: center; }
+/* Application layers on the left; Studio governance spans them on the right. */
+.layers { --ly-deep: oklch(0.25 0.06 266); margin: 20px 0; padding: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: stretch; }
+.layers .ly-stack { min-width: 0; display: grid; gap: 10px; }
+.layers .ly-governance { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 16px; border: 1px solid var(--rule); border-radius: 8px; background: var(--brand-tint); }
 .layers .ly-b { align-self: stretch; min-height: 76px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 14px; text-align: center; border: 1px solid var(--rule); border-radius: 8px; background: #fff; }
 .layers .ly-b b { font-size: 16px; font-weight: 600; line-height: 1.4; }
 .layers .ly-b span { margin-top: 3px; font-size: 13px; line-height: 1.45; color: var(--muted); }
@@ -367,9 +369,11 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 }
 @media (max-width: 600px) {
   .doc-pager { grid-template-columns: 1fr; }
-  .layers { grid-template-columns: 1fr; }
-  .layers .ly-t { margin: 10px 0 2px; }
-  .layers .ly-gap { display: none; }
+  .layers { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 10px; padding: 10px; }
+  .layers .ly-governance { padding: 10px; }
+  .layers .ly-b { padding: 10px 6px; }
+  .layers .ly-t b { font-size: 14px; }
+  .layers .ly-t span { font-size: 13px; }
   .doc-pager .next { grid-column: 1; }
 }
 @media print { .nav, .doc-side, .doc-pager, .copy-button, .page-actions, body > footer { display: none !important; } .doc-layout { display: block; } }

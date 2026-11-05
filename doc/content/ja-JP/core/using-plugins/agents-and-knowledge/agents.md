@@ -31,7 +31,7 @@ description: "アプリに AI チャット、業務のスキル、マシン上�
 
 ## シナリオと例
 
-[アプリを作成する](../../getting-started/create-app.md) から始めるか、最後にリンクした [完全なサンプル](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide) を実行します。アプリの既存のデータベースの設定はそのままにし、モデルサービスの例には DeepSeek を使います。サンプルの画面は英語です。コマンドは `apps/agents-guide` で実行します。
+[アプリを作成する](../../../getting-started/develop-your-first-app.md#アプリを作成して起動する) から始めるか、最後にリンクした [完全なサンプル](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide) を実行します。アプリの既存のデータベースの設定はそのままにし、モデルサービスの例には DeepSeek を使います。サンプルの画面は英語です。コマンドは `apps/agents-guide` で実行します。
 
 **開発用のプロンプト** は、プロジェクトで作業するコーディングエージェントに送ります。**会話のプロンプト** は、アプリのチャットの画面で使います。以下のプロンプトは読者向けに簡略化しており、スクリーンショットは元の検証済みの会話のものです。最後の検証の範囲を参照してください。
 

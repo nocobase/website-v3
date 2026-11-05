@@ -10,7 +10,7 @@ Studio で [Runner Agent と対話する](runner-agent.md)か、`nb-studio` CLI 
 ## 作業を始める
 
 1. [招待を受けてサインイン](sign-in.md)し、担当のプロジェクトを開けることを確認します。
-2. [最初の要件を一通り試します](../setup/first-request.md)。小さな変更を依頼し、進捗を追って結果を検収します。
+2. [最初の要件を一通り試します](../../getting-started/collaborate-with-studio.md)。小さな変更を依頼し、進捗を追って結果を検収します。
 3. 日常の質問への回答や作業結果の確認には [My issues](../use/my-tasks.md) を使います。
 
 Studio やプロジェクトがまだない場合は、管理者が[インストールと設定](../setup/index.md)から始めてください。

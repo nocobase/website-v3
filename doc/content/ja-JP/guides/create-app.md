@@ -21,7 +21,7 @@ npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 現在のディレクトリに、データベースに SQLite を使う NocoBase 3 アプリを作成してください。起動したら、URL とサインイン用のアカウントを教えてください。
 ```
 
-エージェントは Node.js と pnpm のバージョンを確認し、プロジェクトを作成し、依存関係をインストールし、設定を生成してから、アプリを起動して URL（たとえば `http://127.0.0.1:13000/main/`）とアカウントを伝えます。アプリを手動で作成する場合や問題が起きた場合は、Core の [アプリを作成する](../core/getting-started/create-app.md) を参照してください。
+エージェントは Node.js と pnpm のバージョンを確認し、プロジェクトを作成し、依存関係をインストールし、設定を生成してから、アプリを起動して URL（たとえば `http://127.0.0.1:13000/main/`）とアカウントを伝えます。アプリを手動で作成する場合や問題が起きた場合は、Core の [アプリを作成する](../getting-started/develop-your-first-app.md#アプリを作成して起動する) を参照してください。
 
 `nocobase` / `admin123` でサインインすると、ホームページが表示されます。
 

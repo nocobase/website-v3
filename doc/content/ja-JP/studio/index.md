@@ -1,43 +1,50 @@
 ---
 title: NocoBase Studio
-description: コーディングエージェント、プロジェクト、ソフトウェアの引き渡しを、チームで共有するワークスペースで取りまとめます。
 ---
 
-## 概要
+Studio は人とエージェントが協働開発するためのガバナンスプラットフォームで、プロジェクト、タスク、コーディングツール、Git、交付の流れをつなぎます。チームは作業を進め、判断と検収を行います。公開済みの業務アプリは独立して稼働します。初めて使う場合は[Studio で協働開発する](../getting-started/collaborate-with-studio.md)、個別の操作は以下のマニュアルを参照してください。
 
-NocoBase Studio は、チームのための AI 開発プラットフォームです。人とエージェントが、要件から引き渡しまでのワークフローを共有します。
+## インストールとメンバーの参加
 
-複数のベンダーのコーディングエージェントとモデルを接続できます。コーディネーターエージェントが、得意分野に応じて設計、開発、レビュー、テストを割り振ります。メンバーはエージェントと直接対話することもできます。Studio はプロジェクト管理を Git、CI/CD、リリースとつなぎ、スキルとプロジェクトメモリーがチーム共通の開発規約を保ちます。
+- [インストールの概要](setup/index.md)
+- [プロジェクトに参加する](join/index.md)
+- [ローカルのコーディングエージェントを使う](join/local-agent.md)
+- [Runner Agent と対話する](join/runner-agent.md)
 
-CLI を使うと、メンバーはローカルのコーディングエージェントからタスクを作成して追跡でき、実行は Studio が取りまとめます。Studio は自社のインフラで稼働し、コードとデータは自社が所有します。
+## タスク開発とプロジェクト管理
 
-![Studio は複数のアプリにまたがってエージェントを取りまとめ、新しい要件やフィードバックが継続的な開発につながります](/assets/studio/architecture-en.svg)
+- [要件を提出する](use/raise-a-request.md)
+- [自分の会話](use/sessions.md)
+- [自分のタスク](use/my-tasks.md)
+- [進捗を追う](use/follow-progress.md)
+- [質問に答える](use/answer.md)
+- [結果を検収する](use/accept.md)
+- [プロジェクト設定](project/settings.md)
+- [ナレッジベース](project/knowledge-base.md)
+- [プロジェクトメモリー](project/project-memory.md)
+- [プロジェクトの進捗](project/progress.md)
 
-![コーディネーターエージェントが仕事を割り振り、引き継ぎ、結果、レビューをタスクに残して人の検収につなげます](https://static-docs.nocobase.com/studio-en-home-20261030.png)
+## エージェント、品質、リリース管理
 
-## 学ぶ
+- [エージェントの設定](configure/agents.md)
+- [ランタイム](configure/runtimes.md)
+- [スキル](project/skills.md)
+- [作業量と使用量](project/usage.md)
+- [チェックと CI](configure/checks.md)
+- [チェックとレビュー](project/checks-and-review.md)
+- [リリースの概要](release/overview.md)
 
-<div class="learn">
+## システム管理とリファレンス
 
-- [**紹介**](intro/what-is-studio.md)
-  Studio でできること、要件が引き渡しに至るまでの流れ、エージェントの分担。
-- [**インストールと設定**](setup/index.md)
-  Studio をデプロイし、Git とランタイムを接続し、エージェントとプロジェクトを設定し、チェックを準備して、メンバーを招待します。
-- [**はじめる**](join/index.md)
-  招待を受けてサインインし、要件を出して、結果を検収します。
-- [**タスク開発**](use/raise-a-request.md)
-  要件の相談、進捗の追跡、質問への回答、引き渡しの検収。
-- [**プロジェクト管理**](project/settings.md)
-  設定、メンバー、ナレッジ、メモリー、プロジェクトの進捗を管理します。
-- [**エージェント管理**](configure/agents.md)
-  エージェント、共有ランタイムと個人ランタイム、スキル、使用量を設定します。
-- [**品質管理**](project/checks-and-review.md)
-  チェック、レビュー、テスト計画、品質レポート。
-- [**リリース管理**](release/overview.md)
-  PR プレビュー、テスト環境、バージョン、本番バージョンの記録。
-- [**システム管理**](admin/members-and-roles.md)
-  メンバー、ロール、API キー、通知、アップグレード、バックアップ。
-- [**リファレンス**](reference/statuses-and-permissions.md)
-  タスクのステータス、権限、CLI コマンド、設定、トラブルシューティング。
-
-</div>
+- [メンバーとロール](admin/members-and-roles.md)
+- [API キー](admin/api-keys.md)
+- [通知とプッシュ](admin/notifications.md)
+- [アップグレードとバックアップ](admin/upgrade-and-backup.md)
+- [タスクの状態と権限](reference/statuses-and-permissions.md)
+- [nb-studio コマンド](reference/cli.md)
+- [nocobase-runner コマンド](reference/runner.md)
+- [設定項目](reference/config.md)
+- [ファイルと成果物のストレージ](reference/storage.md)
+- [トラブルシューティング](reference/faq.md)
+- [基本概念](reference/concepts.md)
+- [エージェントの実行ルール](reference/agent-execution.md)

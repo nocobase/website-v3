@@ -5,7 +5,7 @@ description: 了解 NocoBase 应用的主要目录，以及页面、接口、数
 
 ## 目录概览
 
-[创建应用](../getting-started/create-app.md)得到的是一个可以直接修改的源码项目。以下以默认应用模板为例，列出开发时常用的位置；配置文件、依赖和构建产物会在对应步骤完成后生成。
+[创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)得到的是一个可以直接修改的源码项目。以下以默认应用模板为例，列出开发时常用的位置；配置文件、依赖和构建产物会在对应步骤完成后生成。
 
 ```text
 my-app/
@@ -50,7 +50,7 @@ my-app/
 
 `database/` 按连接名组织，`main` 是默认连接。已经执行过的迁移应保留，后续结构变化写成新迁移。具体写法见[建表与数据初始化](data-models-and-migrations.md)。
 
-例如添加客户管理，通常会涉及客户表迁移、客户接口、客户页面及其注册文件。可以跟随[开发第一个功能](../getting-started/build-your-first-app.md)，对照一个实际功能理解这些位置。
+例如添加客户管理，通常会涉及客户表迁移、客户接口、客户页面及其注册文件。可以跟随[开发第一个功能](../../getting-started/develop-your-first-app.md#提出第一个业务需求)，对照一个实际功能理解这些位置。
 
 ## 配置、依赖和插件
 
@@ -107,7 +107,7 @@ my-app/
 | `AGENTS.md`、`.agents/rules/` | 保存本项目的开发约定，随源码维护和提交 |
 | `.agents/skills/` | 从依赖包同步生成，不直接修改或提交这些副本 |
 
-需要补充业务约定时，写入项目指引，见[持续开发应用](../getting-started/develop-with-an-agent.md#保存项目规范)。需要更新依赖提供的 Skills 时，在应用目录运行 `pnpm nocobase skills sync`，更多选项见[命令行参考](../reference/cli.md#插件与-skills)。
+需要补充业务约定时，写入项目指引，见[持续开发应用](../../getting-started/develop-your-first-app.md#调整功能并继续迭代)。需要更新依赖提供的 Skills 时，在应用目录运行 `pnpm nocobase skills sync`，更多选项见[命令行参考](../reference/cli.md#插件与-skills)。
 
 ## 生成文件与运行数据
 

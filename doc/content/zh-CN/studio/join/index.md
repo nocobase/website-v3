@@ -10,7 +10,7 @@ description: 接受邀请，使用团队已配置的 Agent 和运行环境，开
 ## 开始工作
 
 1. [接受邀请并登录](sign-in.md)，确认能打开分配给你的项目。
-2. [走完第一个需求](../setup/first-request.md)，提交一个小需求，跟进开发并验收。
+2. [走完第一个需求](../../getting-started/collaborate-with-studio.md)，提交一个小需求，跟进开发并验收。
 3. 日常从[我的任务](../use/my-tasks.md)处理需要你回答或验收的事项。
 
 还没有 Studio 或项目时，请管理员从[安装与配置](../setup/index.md)开始。

@@ -299,7 +299,7 @@ Try these actions in the running example:
 
 ## Example source and setup
 
-The [complete example App][app] uses Node.js 24 and pnpm 11. Products are fixtures; template accounts, sessions and settings still need a database. The following SQLite configuration was verified. For another database, install its driver and configure the connection as described in [Create an app](../getting-started/create-app.md).
+The [complete example App][app] uses Node.js 24 and pnpm 11. Products are fixtures; template accounts, sessions and settings still need a database. The following SQLite configuration was verified. For another database, install its driver and configure the connection as described in [Create an app](../../getting-started/develop-your-first-app.md#create-and-start-the-application).
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git

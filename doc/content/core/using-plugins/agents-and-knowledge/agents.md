@@ -31,7 +31,7 @@ Both methods can be used together. The first two scenarios below use a model API
 
 ## Scenarios and examples
 
-Start with [Create an app](../../getting-started/create-app.md), or run the [complete example](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide) linked at the end. Keep your app's existing database configuration; DeepSeek is used as the model-service example. The example interface is in English. Run its commands from `apps/agents-guide`.
+Start with [Create an app](../../../getting-started/develop-your-first-app.md#create-and-start-the-application), or run the [complete example](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide) linked at the end. Keep your app's existing database configuration; DeepSeek is used as the model-service example. The example interface is in English. Run its commands from `apps/agents-guide`.
 
 Send **development prompts** to the Coding Agent working in your project. Use **conversation prompts** in the application's chat interface. The prompts below have been simplified for readers; screenshots come from the original verified conversations. See the verification scope at the end.
 

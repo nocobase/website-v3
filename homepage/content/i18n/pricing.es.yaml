@@ -170,3 +170,7 @@ strings:
   "174": Aprobaciones avanzadas y SSO empresarial
   "175": Todas las apps de Solution, como NocoCRM, NocoITAM y NocoReach, con sus agentes de negocio
   "176": Sí. Community incluye todo Core, además de todas las apps de Solution, de uso gratuito en producción y en proyectos para clientes. Añade las skills de desarrollo de NocoBase a tu agente de programación y empieza a desarrollar. Tu equipo se encarga de las pruebas, las publicaciones y la operación.
+  "177": ¿Puedo desarrollar apps para mis clientes con Professional o Enterprise?
+  "178": Sí. Puedes vender las apps que desarrolles con Professional o Enterprise a tantos clientes como quieras, sin pagar nada extra a NocoBase. Lo que no puedes es redistribuir Professional o Enterprise a empresas que no tengan licencia.
+  "179": ¿Puedo desplegar Studio para mis clientes?
+  "180": No. Studio solo puede usarlo la empresa con licencia. Puedes entregar a tus clientes las apps que desarrolles con él, pero no desplegar Studio para ellos.

@@ -720,3 +720,19 @@ items:
     en: Yes. Community includes all of Core plus every Solution app, free for production and client delivery. Add NocoBase’s development skills to your coding agent and start building. Your team handles testing, releases, and operations.
     zh: 可以。Community 包含完整的 Core 和所有 Solution 应用，可以用于生产和商业交付。你的 Coding Agent 装上 NocoBase 的开发技能就能开发，测试、发布和运维由团队自己负责。
     where: sec
+  "177":
+    en: Can I build apps for my clients with Professional or Enterprise?
+    zh: 可以用 Professional 或 Enterprise 为客户开发应用吗？
+    where: sec
+  "178":
+    en: Yes. You can sell the apps you build with Professional or Enterprise to any number of clients, with no extra fees to NocoBase. You can’t redistribute Professional or Enterprise itself to companies that don’t hold a license.
+    zh: 可以。你基于 Professional 或 Enterprise 开发的业务应用，可以出售给任意数量的客户，无需向 NocoBase 支付额外费用。但不能把 Professional 或 Enterprise 本身分发给未获授权的公司。
+    where: sec
+  "179":
+    en: Can I deploy Studio for my clients?
+    zh: 可以把 Studio 部署给客户使用吗？
+    where: sec
+  "180":
+    en: No. Studio may only be used by the licensed company. You can deliver the apps you build with it to your clients, but you can’t deploy Studio itself for them.
+    zh: 不能。Studio 仅限获得授权的公司使用。你可以把用 Studio 开发的业务应用交付给客户，但 Studio 本身不能部署给客户使用。
+    where: sec

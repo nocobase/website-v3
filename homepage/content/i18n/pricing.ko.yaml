@@ -170,3 +170,7 @@ strings:
   "174": 고급 승인, 엔터프라이즈 SSO
   "175": NocoCRM, NocoITAM, NocoReach 등 모든 Solution 앱과 각 비즈니스 에이전트
   "176": 네. Community에는 Core 전체와 모든 Solution 앱이 포함되며, 프로덕션과 고객 납품에 사용할 수 있습니다. 코딩 에이전트에 NocoBase 개발 스킬을 설치하면 바로 개발할 수 있고, 테스트, 배포, 운영은 팀이 직접 맡습니다.
+  "177": Professional이나 Enterprise로 고객용 앱을 개발할 수 있나요?
+  "178": 네. Professional이나 Enterprise로 개발한 업무 앱은 고객 수에 제한 없이 판매할 수 있으며, NocoBase에 추가 비용을 낼 필요가 없습니다. 다만 Professional이나 Enterprise 자체를 라이선스가 없는 회사에 배포할 수는 없습니다.
+  "179": Studio를 고객에게 배포해 사용하게 할 수 있나요?
+  "180": 아니요. Studio는 라이선스를 받은 회사만 사용할 수 있습니다. Studio로 개발한 업무 앱은 고객에게 납품할 수 있지만, Studio 자체를 고객에게 배포할 수는 없습니다.

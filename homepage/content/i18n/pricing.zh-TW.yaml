@@ -169,3 +169,7 @@ strings:
   "174": 進階簽核、企業 SSO
   "175": NocoCRM、NocoITAM、NocoReach 等全部 Solution 應用及其業務 Agent
   "176": 可以。Community 包含完整的 Core 和所有 Solution 應用，可用於正式環境和商業交付。你的 Coding Agent 裝上 NocoBase 的開發技能就能開發，測試、發布和維運由團隊自己負責。
+  "177": 可以用 Professional 或 Enterprise 為客戶開發應用嗎？
+  "178": 可以。你基於 Professional 或 Enterprise 開發的業務應用，可以出售給任意數量的客戶，無需向 NocoBase 支付額外費用。但不能把 Professional 或 Enterprise 本身散布給未獲授權的公司。
+  "179": 可以把 Studio 部署給客戶使用嗎？
+  "180": 不能。Studio 僅限獲得授權的公司使用。你可以把用 Studio 開發的業務應用交付給客戶，但 Studio 本身不能部署給客戶使用。

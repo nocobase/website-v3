@@ -170,3 +170,7 @@ strings:
   "174": Phê duyệt nâng cao và SSO doanh nghiệp
   "175": Toàn bộ ứng dụng Solution như NocoCRM, NocoITAM, NocoReach cùng các agent nghiệp vụ
   "176": Có. Community gồm toàn bộ Core và mọi ứng dụng Solution, dùng được cho production và bàn giao thương mại. Cài kỹ năng phát triển của NocoBase cho coding agent là có thể bắt đầu phát triển; kiểm thử, phát hành và vận hành do đội của bạn tự đảm nhận.
+  "177": Có thể dùng Professional hoặc Enterprise để phát triển ứng dụng cho khách hàng không?
+  "178": Có. Ứng dụng nghiệp vụ bạn phát triển trên Professional hoặc Enterprise có thể bán cho bất kỳ số lượng khách hàng nào, không phải trả thêm phí cho NocoBase. Tuy nhiên, không được phân phối chính Professional hoặc Enterprise cho công ty chưa được cấp phép.
+  "179": Có thể triển khai Studio cho khách hàng sử dụng không?
+  "180": Không. Studio chỉ dành cho công ty được cấp phép. Bạn có thể bàn giao ứng dụng nghiệp vụ phát triển bằng Studio cho khách hàng, nhưng không được triển khai chính Studio cho họ.

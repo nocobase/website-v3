@@ -65,3 +65,17 @@ export function checkLayout(root, { dirs = [] } = {}) {
   if (conflicts.length) errors.push(`These top-level entries share a name with old v2 docs addresses that docs.nocobase.com redirects with a 301 (see packages/shared/v2-redirect-prefixes.txt): ${conflicts.join(', ')}`);
   return errors;
 }
+
+/** Every generated page needs a visible header entry for search or the configured AI dialog. */
+export function checkHeaderAction(root, { aiEnabled = false } = {}) {
+  const trigger = aiEnabled ? 'data-chat-open' : 'data-search-open';
+  return htmlFiles(root).flatMap(file => {
+    const html = readFileSync(file, 'utf8');
+    // Astro also emits redirect stubs, which do not use the page shell.
+    if (/<meta\b[^>]*\shttp-equiv="refresh"/i.test(html)) return [];
+    const header = html.match(/<header\b[^>]*>[\s\S]*?<\/header>/i)?.[0] ?? '';
+    const buttons = header.match(/<button\b[^>]*>/gi) ?? [];
+    return buttons.some(button => new RegExp(`\\s${trigger}(?:[\\s=>])`).test(button))
+      ? [] : [`/${relative(root, file)}: header has no ${trigger} button`];
+  });
+}

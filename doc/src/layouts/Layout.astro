@@ -71,7 +71,7 @@ const chat = askUi[lang] || askUi.en;
 <body class:list={{ 'docs-home': home }}>
 <a class="skip-link" href="#content">{ui.skip}</a>
 <Header {...header}>
-{config.ask?.endpoint && <button slot="action" class="plain doc-chat-trigger" type="button" data-chat-open aria-label={chat.label} aria-controls="docChat" aria-expanded="false" aria-haspopup="dialog"><Icon name="sparkles" /><span>{chat.label}</span></button>}
+{config.ask?.endpoint ? <button slot="action" class="plain doc-chat-trigger" type="button" data-chat-open aria-label={chat.label} aria-controls="docChat" aria-expanded="false" aria-haspopup="dialog"><Icon name="sparkles" /><span>{chat.label}</span></button> : <button slot="action" class="search-btn" type="button" data-search-open aria-label={search.label}><Icon name="search" /><span class="search-text">{search.placeholder}</span>{search.shortcut && <kbd>{search.shortcut}</kbd>}</button>}
 {section && <nav slot="mobile" class="doc-nav doc-nav-m" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav>}
 </Header>
 <div class:list={['doc-layout', { 'no-side': !section, 'doc-home-layout': home }]}>

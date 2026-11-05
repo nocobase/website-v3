@@ -4,7 +4,7 @@ import { join, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as pagefind from 'pagefind';
 import { markdownCopy } from '@nocobase/site-shared/integration';
-import { checkLayout, findDeadLinks } from '../lib/checks.mjs';
+import { checkHeaderAction, checkLayout, findDeadLinks } from '../lib/checks.mjs';
 import { spaceCjkHtml } from '../lib/cjk.mjs';
 import { activateLanguage, languageOfPath, limitLanguages } from '../lib/dev-languages.mjs';
 import { CONTENT_DIR, DOC_ROOT } from '../lib/paths.mjs';
@@ -59,7 +59,7 @@ export default function docs() {
       'astro:build:done': async ({ dir, logger }) => {
         const root = fileURLToPath(dir);
         const { config } = getSite();
-        const errors = [...checkLayout(root, { dirs: config.languages.map(l => l.dir).filter(Boolean) }), ...findDeadLinks(root)];
+        const errors = [...checkLayout(root, { dirs: config.languages.map(l => l.dir).filter(Boolean) }), ...findDeadLinks(root), ...checkHeaderAction(root, { aiEnabled: Boolean(config.ask?.endpoint) })];
         if (errors.length) {
           for (const e of errors.slice(0, 100)) logger.error(e);
           throw new Error(`The output has ${errors.length} problem${errors.length === 1 ? '' : 's'} (listed above)`);

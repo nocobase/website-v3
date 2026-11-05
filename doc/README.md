@@ -43,17 +43,16 @@ Old addresses of the v2 documentation (top-level paths and language prefixes suc
 
 [Docs AI sync](../.github/workflows/docs-ai-sync.yml) sends the Markdown sources to the Linux host running `docs-ai-service`, independently of the static site's OSS/CDN release. It runs on pushes to `main` that change `doc/content/`, `scripts/docs-ai-sync/` or the workflow itself. To run it manually, select **Actions → Docs AI sync → Run workflow → main**. Runs are serialized and check out the current `main` when they execute; they do not wait for the static site to publish.
 
-In the repository's **Settings → Environments → production**, configure these variables and secrets before enabling sync:
+In the repository's **Settings → Environments → production**, configure these secrets before the first sync. Missing required configuration fails the sync job:
 
 | Type | Name | Value |
 | --- | --- | --- |
-| Variable | `DOCS_AI_HOST` | SSH hostname or IPv4 address reachable from the GitHub-hosted runner. |
-| Variable | `DOCS_AI_USER` | SSH deployment user. |
-| Variable | `DOCS_AI_PORT` | SSH port; optional, defaults to `22`. |
-| Variable | `DOCS_AI_PATH` | Dedicated absolute directory, for example `/srv/docs-ai-service/markdown`. Use at least two path components, without spaces or `.`/`..` components. |
+| Secret | `DOCS_AI_HOST` | SSH hostname or IPv4 address reachable from the GitHub-hosted runner. |
+| Secret | `DOCS_AI_USER` | SSH deployment user. |
+| Secret | `DOCS_AI_PORT` | SSH port; optional, defaults to `22`. |
+| Secret | `DOCS_AI_PATH` | Dedicated absolute directory, for example `/srv/docs-ai-service/markdown`. Use at least two path components, without spaces or `.`/`..` components. |
 | Secret | `DOCS_AI_SSH_KEY` | Private key without a passphrase; install the matching public key in the deployment user's `authorized_keys`. |
 | Secret | `DOCS_AI_KNOWN_HOSTS` | Verified server host-key records in OpenSSH `known_hosts` format; for a non-default port, use `[host]:port` records. |
-| Variable | `DOCS_AI_SYNC_ENABLED` | Set to `true` after configuration to enable sync. Any other value leaves it disabled. |
 
 The server needs Bash, tar and GNU mv. Give the deployment user write access to the dedicated directory and the service user read access. Configure the service's document reader to use `DOCS_AI_PATH/current`, for example `/srv/docs-ai-service/markdown/current`.
 

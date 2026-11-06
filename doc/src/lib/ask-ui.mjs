@@ -2,7 +2,7 @@ export const askUi = {
   en: {
     homeTagline: 'Learn and master NocoBase 3 quickly',
     label: 'Ask AI', placeholder: 'Ask anything about NocoBase…', send: 'Ask',
-    suggested: 'Explore', questions: ['How do I create my first app?', 'What is the difference between Core and Studio?', 'How do I connect SSO?'],
+    suggested: 'Explore', questions: ['How do I create my first app?', 'What is the difference between Core and Studio?', 'How do I connect an existing database?'],
     title: 'NocoBase docs assistant', close: 'Close assistant', clear: 'Reset',
     next: 'Ask a new question…', hint: 'Each question is answered independently, without earlier questions or answers. Include all relevant context.',
     waiting: 'Looking through the documentation…', cancel: 'Stop generating', cancelled: 'Generation stopped.',
@@ -19,7 +19,7 @@ export const askUi = {
   'zh-CN': {
     homeTagline: '快速了解和掌握 NocoBase 3',
     label: 'AI 问答', placeholder: '关于 NocoBase，你想了解什么？', send: '提问',
-    suggested: '你可能想了解', questions: ['如何创建第一个应用？', 'Core 和 Studio 有什么区别？', '如何接入 SSO？'],
+    suggested: '你可能想了解', questions: ['如何创建第一个应用？', 'Core 和 Studio 有什么区别？', '如何接入已有数据库？'],
     title: 'NocoBase 文档助手', close: '关闭助手', clear: '重置',
     next: '提出新问题…', hint: '每次提问独立回答，不会参考之前的问答。请提供完整背景。',
     waiting: '正在查阅文档…', cancel: '停止生成', cancelled: '已停止生成。',
@@ -35,7 +35,7 @@ export const askUi = {
   'ja-JP': {
     homeTagline: 'NocoBase 3 を知り、使いこなす',
     label: 'AI に質問', placeholder: 'NocoBase について何を知りたいですか？', send: '質問する',
-    suggested: '知りたいこと', questions: ['最初のアプリを作るには？', 'Core と Studio の違いは？', 'SSO を接続するには？'],
+    suggested: '知りたいこと', questions: ['最初のアプリを作るには？', 'Core と Studio の違いは？', '既存のデータベースに接続するには？'],
     title: 'NocoBase ドキュメントアシスタント', close: 'アシスタントを閉じる', clear: 'リセット',
     next: '新しい質問を入力…', hint: '質問は個別に回答され、過去の質問や回答は参照されません。必要な背景をすべて含めてください。',
     waiting: 'ドキュメントを調べています…', cancel: '生成を停止', cancelled: '生成を停止しました。',

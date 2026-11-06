@@ -98,6 +98,7 @@ jobs:
       - name: Build the site
         env:
           DOCS_AI_API_URL: ${{ vars.DOCS_AI_API_URL }}
+          DOCS_AI_SITE_ID: ${{ vars.DOCS_AI_SITE_ID }}
         run: pnpm doc:build
 
       # Only that the files the CDN, crawlers and search depend on exist; the build itself checks the content.

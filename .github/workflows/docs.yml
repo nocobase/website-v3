@@ -96,6 +96,8 @@ jobs:
       # Fails on a page missing from the menus, menus that differ between languages, a broken link or anchor, or a top-level
       # name the CDN rules would map elsewhere (`en`, `api`, the v2 prefixes). Builds the search index at the end.
       - name: Build the site
+        env:
+          DOCS_AI_API_URL: ${{ vars.DOCS_AI_API_URL }}
         run: pnpm doc:build
 
       # Only that the files the CDN, crawlers and search depend on exist; the build itself checks the content.

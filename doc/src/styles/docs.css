@@ -248,21 +248,25 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .concept-map .box span { color: var(--ink-2); }
 .concept-map .box.brand b, .concept-map .box.brand span { color: #fff; }
 .concept-map .down { padding: 5px 0; }
-/* 首页的架构图：左边一根窄脊柱（三个块，箭头在轴线上），右边对着每个块写两行文字 */
-.layers { --ly-deep: oklch(0.25 0.06 266); margin: 20px 0; padding: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); display: grid; grid-template-columns: 220px minmax(0, 1fr); column-gap: 24px; align-items: center; }
-.layers .ly-b { align-self: stretch; min-height: 76px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px 14px; text-align: center; border: 1px solid var(--rule); border-radius: 8px; background: #fff; }
-.layers .ly-b b { font-size: 16px; font-weight: 600; line-height: 1.4; }
-.layers .ly-b span { margin-top: 3px; font-size: 13px; line-height: 1.45; color: var(--muted); }
-.layers .ly-b.st { background: var(--brand-tint); border-color: transparent; }
-.layers .ly-b.st b { color: var(--brand); }
-.layers .ly-b.co { background: var(--ly-deep); border-color: var(--ly-deep); }
-.layers .ly-b.co b { color: #fff; }
-.layers .ly-b.co span { color: oklch(0.8 0.03 266); }
-.layers .ly-t b { display: block; font-size: 15px; font-weight: 600; line-height: 1.6; }
-.layers .ly-t span { display: block; font-size: 14px; line-height: 1.6; color: var(--muted); }
-.layers .ly-k { padding: 6px 0; text-align: center; font-size: 12px; line-height: 1.5; color: var(--muted); }
-.layers .ly-k.down::before { content: "↓ "; color: var(--muted); }
-.layers .ly-k.up::before { content: "↑ "; color: var(--muted); }
+/* Solution and Studio feed into the business app; Core spans the foundation. */
+.layers { --ly-deep: oklch(0.25 0.06 266); margin: 28px 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1.15fr) 64px minmax(0, 1fr); gap: 0; align-items: stretch; }
+.layers .ly-node { min-width: 0; padding: 18px 14px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); }
+.layers .ly-node > b { display: block; font-size: 16px; font-weight: 650; line-height: 1.4; letter-spacing: -0.025em; }
+.layers .ly-node > strong { display: block; margin-top: 12px; font-size: 12px; font-weight: 600; line-height: 1.7; }
+.layers .ly-node > p { margin: 8px 0 0; font-size: 12px; line-height: 1.85; color: var(--muted); }
+.layers .ly-app { border-color: color-mix(in oklch, var(--brand) 45%, var(--rule)); box-shadow: 0 3px 12px oklch(0.25 0.06 266 / 0.05); }
+.layers .ly-studio { background: var(--brand-tint); border-color: color-mix(in oklch, var(--brand) 20%, var(--rule)); }
+.layers .ly-studio > b { color: var(--brand); }
+.layers .ly-link { min-width: 0; align-self: center; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0 6px; color: var(--brand); }
+.layers .ly-link span { font-size: 10px; line-height: 1.5; text-align: center; overflow-wrap: anywhere; }
+.layers .ly-link i { display: block; width: 100%; height: 10px; background: currentColor; clip-path: polygon(0 45%, calc(100% - 6px) 45%, calc(100% - 6px) 0, 100% 50%, calc(100% - 6px) 100%, calc(100% - 6px) 55%, 0 55%); }
+.layers .ly-generate i { transform: rotate(180deg); }
+.layers .ly-foundation { grid-column: 1 / -1; margin-top: 20px; padding: 18px 20px; border-radius: 10px; background: var(--ly-deep); color: #fff; }
+.layers .ly-foundation > div { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; }
+.layers .ly-foundation b { font-size: 18px; font-weight: 650; line-height: 1.4; }
+.layers .ly-foundation span { font-size: 12px; color: oklch(0.83 0.025 266); }
+.layers .ly-foundation p { margin: 8px 0 0; font-size: 12px; line-height: 1.8; color: oklch(0.83 0.025 266); }
+
 
 /* 任务状态 */
 .states { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0; font-size: 13px; }
@@ -367,9 +371,16 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 }
 @media (max-width: 600px) {
   .doc-pager { grid-template-columns: 1fr; }
-  .layers { grid-template-columns: 1fr; }
-  .layers .ly-t { margin: 10px 0 2px; }
-  .layers .ly-gap { display: none; }
+  .layers { grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr); row-gap: 12px; }
+  .layers .ly-node { padding: 14px 12px; }
+  .layers .ly-solution { grid-column: 3; grid-row: 1; }
+  .layers .ly-studio { grid-column: 1; grid-row: 1; }
+  .layers .ly-generate { grid-column: 3; grid-row: 2; }
+  .layers .ly-develop { grid-column: 1; grid-row: 2; }
+  .layers .ly-link { gap: 6px; }
+  .layers .ly-link i { width: 10px; height: 18px; transform: none; clip-path: polygon(45% 0, 55% 0, 55% 12px, 100% 12px, 50% 100%, 0 12px, 45% 12px); }
+  .layers .ly-app { grid-column: 1 / -1; grid-row: 3; }
+  .layers .ly-foundation { grid-row: 4; margin-top: 0; padding: 16px; }
   .doc-pager .next { grid-column: 1; }
 }
 @media print { .nav, .doc-side, .doc-pager, .copy-button, .page-actions, body > footer { display: none !important; } .doc-layout { display: block; } }

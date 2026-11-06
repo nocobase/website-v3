@@ -1,0 +1,49 @@
+name: Docs AI sync
+
+# Configure the production Environment before the first sync:
+# Secrets: DOCS_AI_HOST, DOCS_AI_USER,
+# DOCS_AI_PATH (dedicated absolute directory, e.g. /srv/docs-ai-service/markdown),
+# DOCS_AI_PORT (optional, defaults to 22).
+# Secrets: DOCS_AI_SSH_KEY (private key), DOCS_AI_KNOWN_HOSTS (verified host keys).
+# The service should read DOCS_AI_PATH/current. This only syncs Markdown;
+# service-specific indexing/reload is not configured here.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'doc/content/**'
+      - '.github/workflows/docs-ai-sync.yml'
+      - 'scripts/docs-ai-sync/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-ai-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    steps:
+      # Read main at execution time so a delayed or manually rerun workflow
+      # cannot overwrite newer content with its original older commit.
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Sync Markdown over SSH
+        env:
+          DOCS_AI_HOST: ${{ secrets.DOCS_AI_HOST }}
+          DOCS_AI_USER: ${{ secrets.DOCS_AI_USER }}
+          DOCS_AI_PORT: ${{ secrets.DOCS_AI_PORT || '22' }}
+          DOCS_AI_PATH: ${{ secrets.DOCS_AI_PATH }}
+          DOCS_AI_SSH_KEY: ${{ secrets.DOCS_AI_SSH_KEY }}
+          DOCS_AI_KNOWN_HOSTS: ${{ secrets.DOCS_AI_KNOWN_HOSTS }}
+        run: bash scripts/docs-ai-sync/sync.sh

@@ -299,7 +299,7 @@ import { RouteChildPage } from '#components/route-child-page';
 
 ## 示例源码与运行
 
-[完整示例 App][app] 使用 Node.js 24 和 pnpm 11。商品是固定演示数据，模板的账号、会话和设置仍需数据库。以下为已验证的 SQLite 配置；使用其他数据库时按[创建应用](../getting-started/create-app.md)安装驱动并配置连接。
+[完整示例 App][app] 使用 Node.js 24 和 pnpm 11。商品是固定演示数据，模板的账号、会话和设置仍需数据库。以下为已验证的 SQLite 配置；使用其他数据库时按[创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)安装驱动并配置连接。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git

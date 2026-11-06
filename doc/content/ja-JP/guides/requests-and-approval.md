@@ -22,7 +22,7 @@ Employee、IT support、Asset manager のロールを今作成してください
 | Employee、IT support、Asset manager のロール | 権限プラグイン：各操作が個別の業務権限になります |
 | **Device requests** ページ、サイドバーの **Inbox**、**Workflow management** ページ | テンプレートに付属のプロセス図とワークフロー管理のコンポーネント |
 
-機能の一覧は [NocoBase Core](../core/index.md#共通機能を再利用する)、ワークフローを提供するパッケージは [Core とツールのパッケージ一覧](../core/reference/packages.md)、通知は [通知](../core/using-plugins/notifications/notification.md) を参照してください。多段階承認、合議、代理承認が必要で、商用の承認プラグインのライセンスがある場合は、代わりに [承認](../core/using-plugins/collaboration/approval.md) を使えます。
+機能の一覧は [NocoBase Core](../core/using-plugins/overview.md)、ワークフローを提供するパッケージは [Core とツールのパッケージ一覧](../core/reference/packages.md)、通知は [通知](../core/using-plugins/notifications/notification.md) を参照してください。多段階承認、合議、代理承認が必要で、商用の承認プラグインのライセンスがある場合は、代わりに [承認](../core/using-plugins/collaboration/approval.md) を使えます。
 
 ## 2. 3 つのアカウントを用意する
 

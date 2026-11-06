@@ -16,7 +16,7 @@ To address these problems, NocoBase 3 introduces [NocoBase Core](https://www.noc
 
 ## Core: the open-source foundation for developing and running business systems with AI
 
-**Common capabilities don't have to be built and verified from scratch.** More than 20 common capabilities, including users and permissions, data and files, workflows and approvals, messaging, and AI and agents, are ready to use, and NocoBase keeps maintaining and upgrading them. For the list of capabilities, see [NocoBase Core](../core/index.md#reuse-common-capabilities).
+**Common capabilities don't have to be built and verified from scratch.** More than 20 common capabilities, including users and permissions, data and files, workflows and approvals, messaging, and AI and agents, are ready to use, and NocoBase keeps maintaining and upgrading them. For the list of capabilities, see [NocoBase Core](../core/using-plugins/overview.md).
 
 **One architecture and one set of conventions.** A new app comes with a fixed layout, where pages, APIs, migrations and tests each have their place. `AGENTS.md` and the skills shipped with packages say where business code goes and which capabilities to use as they are. Whoever the person, model or session, the agent develops the same way. See [Project structure](../core/developing-apps/project-structure.md).
 
@@ -30,7 +30,7 @@ You can see which Core capabilities an app uses in **System settings › App fou
 
 **People make the key decisions.** Work reaches a person only after it passes testing and review. People read the report, screenshots and preview, then accept it or send it back. Business experts who don't code can also raise requests, make decisions and accept results directly.
 
-**Methods and experience stay with the team.** Skills hold how work gets done, the knowledge base holds business documents, and project memory holds what agents learn, so the next person or agent can pick up the work. See [What is Studio](../studio/intro/what-is-studio.md).
+**Methods and experience stay with the team.** Skills hold how work gets done, the knowledge base holds business documents, and project memory holds what agents learn, so the next person or agent can pick up the work. See [What is Studio](../studio/index.md).
 
 Core alone is enough to develop and ship a complete app. Bring in Studio when your team runs several projects at once, or when business colleagues want to take part directly.
 

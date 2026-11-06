@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { expect, test } from 'vitest';
-import { checkLayout, fileOfUrl, findDeadLinks } from './checks.mjs';
+import { checkHeaderAction, checkLayout, fileOfUrl, findDeadLinks } from './checks.mjs';
 
 function site(files) {
   const root = mkdtempSync(join(tmpdir(), 'docs-out-'));
@@ -41,4 +41,28 @@ test('the layout check: required files, no en or api, no second 404, no v2 prefi
   expect(text).toContain('zh-CN/404.html must not exist');
   expect(text).toContain('guide/');
   expect(text).toContain('no 404.html');
+});
+
+test('default builds require a search button in every page header, including localized pages and 404', () => {
+  const paths = ['index.html', 'getting-started/index.html', 'zh-CN/index.html', 'zh-CN/getting-started/index.html', 'ja-JP/index.html', 'ja-JP/getting-started/index.html', '404.html'];
+  const root = site(Object.fromEntries(paths.map(path => [path, '<header><button data-search-open aria-label="Search"></button></header>'])));
+  expect(checkHeaderAction(root)).toEqual([]);
+  for (const path of paths) {
+    writeFileSync(join(root, path), '<header></header><dialog id="docSearch"></dialog><script>"data-search-open"</script><button data-search-open></button>');
+  }
+  expect(checkHeaderAction(root)).toHaveLength(paths.length);
+});
+
+test('AI builds require the AI header button, while default builds still require search', () => {
+  const root = site({ 'index.html': '<header><button data-chat-open></button></header>' });
+  expect(checkHeaderAction(root, { aiEnabled: true })).toEqual([]);
+  expect(checkHeaderAction(root)).toHaveLength(1);
+  writeFileSync(join(root, 'index.html'), '<header><button data-search-open></button></header>');
+  expect(checkHeaderAction(root, { aiEnabled: true })).toHaveLength(1);
+});
+
+test('redirect stubs do not need a header action', () => {
+  const root = site({ 'old/index.html': '<meta http-equiv="refresh" content="0;url=/new/">' });
+  expect(checkHeaderAction(root)).toEqual([]);
+  expect(checkHeaderAction(root, { aiEnabled: true })).toEqual([]);
 });

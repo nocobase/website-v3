@@ -16,7 +16,7 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 
 ## Core：AI 开发和运行业务系统的开源应用底座
 
-**基础能力不用从头开发和验证。** 用户与权限、数据与文件、流程与审批、消息、AI 与 Agent 等 20 多项基础能力现成可用，由 NocoBase 持续维护和升级。能力清单见 [认识 NocoBase Core](../core/index.md#通用能力不必从零开发)。
+**基础能力不用从头开发和验证。** 用户与权限、数据与文件、流程与审批、消息、AI 与 Agent 等 20 多项基础能力现成可用，由 NocoBase 持续维护和升级。能力清单见 [认识 NocoBase Core](../core/using-plugins/overview.md)。
 
 **统一的架构和规范。** 新建的应用自带统一的目录，页面、接口、迁移、测试各有固定位置；`AGENTS.md` 和随包发布的技能写明业务代码放在哪里、哪些直接用现成能力。换人、换模型、换会话，Agent 都按同一套写法开发。见 [项目结构](../core/developing-apps/project-structure.md)。
 
@@ -30,7 +30,7 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 
 **关键处由人做决策。** 测试和评审都通过才交给人。人看报告、截图和预览，通过或退回；不懂代码的业务专家也能直接提需求、拍板、验收。
 
-**方法和经验沉淀在团队里。** 技能保存做事的方法，知识库保存业务资料，项目记忆保存 Agent 学到的经验，换人、换 Agent 都能接着做。见 [Studio 是什么](../studio/intro/what-is-studio.md)。
+**方法和经验沉淀在团队里。** 技能保存做事的方法，知识库保存业务资料，项目记忆保存 Agent 学到的经验，换人、换 Agent 都能接着做。见 [Studio 是什么](../studio/index.md)。
 
 只用 Core 就能开发和上线完整的应用。团队要同时推进多个项目，或者业务同事要直接参与时，再用 Studio。
 

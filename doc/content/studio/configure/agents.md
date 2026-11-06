@@ -33,4 +33,4 @@ All projects share one Lead Agent. Open its **Settings** at the top of the page 
 
 An idle fallback can take over after the configured queue wait, which defaults to 120 seconds. If no runtime can run the first choice, Studio tries the fallback immediately.
 
-Assignment principles determine who receives work. Project [Skills](../project/skills.md) define how to develop, review, and deliver it. See [How the Agent team works](../intro/agent-team.md).
+Assignment principles determine who receives work. Project [Skills](../project/skills.md) define how to develop, review, and deliver it. See [How the Agent team works](../reference/agent-execution.md).

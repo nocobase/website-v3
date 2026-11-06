@@ -20,7 +20,7 @@ description: config.yml を変更し、クライアントとサーバーのコ�
 
 `server/config.ts` はローダーで、`server/config/` にはセクションの定義が入っています。テンプレートの `server/runtime.ts` と `client/runtime.ts` は、すでにそれぞれの設定の入口を接続しています。通常は、ランタイムを変えるのではなく、セクションとその `index.ts` を管理します。
 
-`config.example.yml` に載っているのはよく使う設定の一部で、利用できるすべてのフィールドではありません。設定は、アプリと組み込まれたモジュールが一緒に定義します。完全なオプションは [設定リファレンス](../reference/configuration.md) と各モジュールのドキュメントを参照してください。新しいアプリでは、`pnpm nocobase config init --dialect sqlite` でローカルの設定とキーを初期化します。既存のアプリでは、現在の設定を必要に応じて編集します。[アプリを作成する](../getting-started/create-app.md) を参照してください。
+`config.example.yml` に載っているのはよく使う設定の一部で、利用できるすべてのフィールドではありません。設定は、アプリと組み込まれたモジュールが一緒に定義します。完全なオプションは [設定リファレンス](../reference/configuration.md) と各モジュールのドキュメントを参照してください。新しいアプリでは、`pnpm nocobase config init --dialect sqlite` でローカルの設定とキーを初期化します。既存のアプリでは、現在の設定を必要に応じて編集します。[アプリを作成する](../../getting-started/develop-your-first-app.md#アプリを作成して起動する) を参照してください。
 
 ## 既存の設定を変更する
 

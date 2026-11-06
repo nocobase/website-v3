@@ -47,4 +47,4 @@ description: 接受项目邀请，登录 Studio，设置个人资料、通知偏
 
 无法通过浏览器授权时，可在「其他方式」中使用验证码或个人令牌。可用方式由管理员在[代码平台](../configure/git.md)中设置。令牌加密保存，之后不再显示。
 
-登录完成后，继续[走完第一个需求](../setup/first-request.md)。
+登录完成后，继续[走完第一个需求](../../getting-started/collaborate-with-studio.md)。

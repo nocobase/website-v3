@@ -21,7 +21,7 @@ Create an empty directory `itam-lite` and start a coding agent session in it:
 Create a NocoBase 3 app in the current directory with SQLite as the database. Once it's running, tell me the URL and the sign-in account.
 ```
 
-The agent checks the Node.js and pnpm versions, creates the project, installs dependencies, generates the configuration, then starts the app and gives you the URL (for example `http://127.0.0.1:13000/main/`) and the account. To create the app by hand, or if you run into problems, see Core's [Create an app](../core/getting-started/create-app.md).
+The agent checks the Node.js and pnpm versions, creates the project, installs dependencies, generates the configuration, then starts the app and gives you the URL (for example `http://127.0.0.1:13000/main/`) and the account. To create the app by hand, or if you run into problems, see Core's [Create an app](../getting-started/develop-your-first-app.md#create-and-start-the-application).
 
 Sign in with `nocobase` / `admin123` and you'll see the home page.
 

@@ -1,0 +1,18 @@
+---
+import Icon from '@nocobase/site-shared/Icon.astro';
+import { askUi } from '../lib/ask-ui.mjs';
+import '../styles/home.css';
+const { lang, title } = Astro.props;
+const ui = askUi[lang] || askUi.en;
+---
+<section class="doc-home-hero" aria-labelledby="home-title">
+  <h1 id="home-title">{title}</h1>
+  <p class="doc-home-subtitle">{ui.homeTagline}</p>
+  <form class="doc-ask-form" data-ask-form>
+    <label class="doc-sr-only" for="home-question">{ui.label}</label>
+    <textarea id="home-question" name="question" rows="2" maxlength="500" required placeholder={ui.placeholder}></textarea>
+    <div class="doc-ask-toolbar"><span><Icon name="sparkles" />{ui.label}</span><button type="submit" aria-label={ui.send}><Icon name="arrow-up" /></button></div>
+  </form>
+  <div class="doc-ask-suggestions"><span>{ui.suggested}</span>{ui.questions.map(q => <button type="button" data-ask-question={q}>{q}<Icon name="arrow-up-right" /></button>)}</div>
+  <noscript><p>{ui.noScript}</p></noscript>
+</section>

@@ -47,4 +47,4 @@ description: "招待を受けてサインインし、プロフィール、通知
 
 ブラウザーで認可できない場合は、**Other methods** からデバイスコードや個人トークンを利用できます。利用可能な方法は管理者が[コードプラットフォーム](../configure/git.md)で設定します。トークンは暗号化され、再表示されません。
 
-次に[最初の要件](../setup/first-request.md)を進めてください。
+次に[最初の要件](../../getting-started/collaborate-with-studio.md)を進めてください。

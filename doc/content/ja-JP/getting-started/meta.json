@@ -1,0 +1,38 @@
+{
+  "pages": [
+    {
+      "type": "group",
+      "title": "紹介",
+      "pages": [
+        {
+          "type": "page",
+          "path": "what-is-nocobase"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "ハンズオン",
+      "pages": [
+        {
+          "type": "page",
+          "path": "develop-your-first-app"
+        },
+        {
+          "type": "page",
+          "path": "collaborate-with-studio"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "その他",
+      "pages": [
+        {
+          "type": "page",
+          "path": "learning-path"
+        }
+      ]
+    }
+  ]
+}

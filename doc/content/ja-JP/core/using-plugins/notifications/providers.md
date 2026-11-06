@@ -78,6 +78,6 @@ notification:
 
 追加の実装には `ChannelInstance` と `registry.registerChannelType()` を使います。[アプリ内通知](in-app.md) と [Web プッシュ](web-push.md) は別のプラグインで提供されます。個人のメールボックスを接続するには [メール](mail.md) を使います。
 
-これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../getting-started/develop-with-an-agent.md) と [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
+これらはあなたの組み込みの検収の要件であり、実機での検証が完了したことを示すものではありません。実際の変更、実行したチェック、未検証の項目をエージェントに報告させてください。プロジェクトのガイダンス、スキル、共通のチェックについては [アプリの開発を続ける](../../../getting-started/develop-your-first-app.md#改善して開発を続ける) と [テスト](../../developing-apps/testing-and-acceptance.md) を参照してください。
 
 出典：[公開のプラグインの入口と実装](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/plugins/app-plugin-notification-providers)。

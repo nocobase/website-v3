@@ -171,12 +171,13 @@ export default defineDocsConfig({
       },
     },
   ],
-  // The section tabs. A section's menu is the meta.json in its `dir`; Start is the docs home plus start/.
+  // The section tabs. A section's menu is the meta.json in its `dir`; Getting started includes the standalone docs home and getting-started/.
   sections: [
-    { id: 'start', dir: 'start', extra: ['index'], home: 'index', title: { en: 'Start', 'zh-CN': '开始', 'ja-JP': 'はじめに' } },
+    { id: 'getting-started', dir: 'getting-started', extra: ['index'], home: 'getting-started/what-is-nocobase', title: { en: 'Getting started', 'zh-CN': '开始', 'ja-JP': 'はじめに' } },
     { id: 'core', dir: 'core', home: 'core/index', title: { en: 'Core', 'zh-CN': 'Core', 'ja-JP': 'Core' } },
     { id: 'studio', dir: 'studio', home: 'studio/index', title: { en: 'Studio', 'zh-CN': 'Studio', 'ja-JP': 'Studio' } },
     { id: 'guides', dir: 'guides', home: 'guides/build-reliable-enterprise-apps', title: { en: 'Tutorials', 'zh-CN': '教程', 'ja-JP': 'チュートリアル' } },
+    { id: 'faq', dir: 'faq', showInNav: false, home: 'faq/from-v2', title: { en: 'FAQ', 'zh-CN': 'FAQ', 'ja-JP': 'FAQ' } },
   ],
   nav: {
     github: 'https://github.com/nocobase/nocobase',
@@ -185,6 +186,13 @@ export default defineDocsConfig({
     versionSwitch: 'https://nocode.docs.nocobase.com/',
   },
   search: { provider: 'pagefind' },
+  // Opt in only after verifying the service allows the site's browser origin.
+  // Public URL of the documentation answer service; never put model credentials here.
+  ask: {
+    // Must match a key under sites in the service YAML. Omit for its default site.
+    siteId: process.env.DOCS_AI_SITE_ID ?? (process.env.NODE_ENV === 'development' ? 'nocobase-v3' : undefined),
+    endpoint: process.env.DOCS_AI_API_URL ?? ((process.env.DOCS_AI_PROXY_TARGET || process.env.NODE_ENV === 'development') ? '/docs-ai' : ''),
+  },
   // Same IDs as the website for now (the data lands in one account; reports tell the sites apart by hostname). Change them here to give the docs their own.
   analytics: { ga4: 'G-237XXSVYHE', baidu: 'acfb678ac7bbc9df89e1aa4327e47907', clarity: 'y0qzc9z3xg' },
 });

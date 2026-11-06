@@ -1,0 +1,28 @@
+{
+  "pages": [
+    {
+      "type": "page",
+      "path": "from-v2"
+    },
+    {
+      "type": "page",
+      "path": "core-and-studio"
+    },
+    {
+      "type": "page",
+      "path": "coding-experience"
+    },
+    {
+      "type": "page",
+      "path": "coding-agents-and-models"
+    },
+    {
+      "type": "page",
+      "path": "independent-deployment"
+    },
+    {
+      "type": "page",
+      "path": "find-help"
+    }
+  ]
+}

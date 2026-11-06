@@ -37,18 +37,18 @@ pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
 
 ## 配置应用数据库
 
-各数据库的完整连接配置示例见[使用不同数据库创建应用](../getting-started/create-app-with-database.md)，可直接使用本机、独立服务器或云数据库提供的连接信息。
+各数据库的完整连接配置示例见[使用不同数据库创建应用](database-configuration.md)，可直接使用本机、独立服务器或云数据库提供的连接信息。
 
 ### 安装驱动并初始化配置
 
-在[创建应用](../getting-started/create-app.md)生成的项目目录中操作。下面以尚未生成 `config.yml` 的 PostgreSQL 应用为例；先准备可访问的 PostgreSQL 服务、数据库和账号，再执行：
+在[创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)生成的项目目录中操作。下面以尚未生成 `config.yml` 的 PostgreSQL 应用为例；先准备可访问的 PostgreSQL 服务、数据库和账号，再执行：
 
 ```bash
 pnpm add @nocobase/db-postgres@beta
 pnpm nocobase config init --dialect postgres --json
 ```
 
-命令生成 `config.yml` 和应用密钥，但不连接数据库。先在配置文件中填写真实的主机、端口、数据库名、用户名、密码及所需的 TLS 配置；各数据库的示例见[使用不同数据库创建应用](../getting-started/create-app-with-database.md)。使用其他数据库时，替换包名和 `--dialect` 值。`config init` 不会安装驱动，也不会创建数据库服务或账号。
+命令生成 `config.yml` 和应用密钥，但不连接数据库。先在配置文件中填写真实的主机、端口、数据库名、用户名、密码及所需的 TLS 配置；各数据库的示例见[使用不同数据库创建应用](database-configuration.md)。使用其他数据库时，替换包名和 `--dialect` 值。`config init` 不会安装驱动，也不会创建数据库服务或账号。
 
 `config.yml` 可能包含密码和密钥，不提交到 Git。也可使用[配置命令](cli.md)设置连接参数。
 

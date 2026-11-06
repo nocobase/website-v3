@@ -40,7 +40,7 @@ https://docs.nocobase.com/ja-JP/studio/setup/ に従って NocoBase Studio を�
 
 ## メンバーが作業を始める
 
-[招待を受けてサインイン](../join/sign-in.md) したら、メンバーは [最初の要件を一通り試します](first-request.md)。要件を出し、開発を追い、結果を検収します。自分の PC を接続しなくても、チームのランタイムを使えます。
+[招待を受けてサインイン](../join/sign-in.md) したら、メンバーは [最初の要件を一通り試します](../../getting-started/collaborate-with-studio.md)。要件を出し、開発を追い、結果を検収します。自分の PC を接続しなくても、チームのランタイムを使えます。
 
 ## 設定を調整する
 

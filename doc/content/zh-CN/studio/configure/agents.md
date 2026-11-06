@@ -33,4 +33,4 @@ description: 设置可用模型、工作分工和调度 Agent。
 
 首选排队超过配置的时间后，空闲的备选可以接手，默认等待 120 秒。没有可执行首选的运行环境时，直接尝试备选。
 
-分配原则决定选谁，项目[技能](../project/skills.md)决定怎样开发、评审和交付。完整流程见[Agent 团队怎样工作](../intro/agent-team.md)。
+分配原则决定选谁，项目[技能](../project/skills.md)决定怎样开发、评审和交付。完整流程见[Agent 团队怎样工作](../reference/agent-execution.md)。

@@ -6,10 +6,6 @@
     },
     {
       "type": "folder",
-      "path": "getting-started"
-    },
-    {
-      "type": "folder",
       "path": "developing-apps"
     },
     {

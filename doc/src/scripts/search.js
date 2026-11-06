@@ -33,6 +33,7 @@ if (dialog && input && box) {
     return pagefind;
   };
   const open = () => {
+    document.getElementById('docChat')?.close();
     if (!dialog.open) dialog.showModal();
     input.focus();
     input.select();
@@ -113,7 +114,7 @@ if (dialog && input && box) {
   dialog.addEventListener('close', () => { input.value = ''; });
   document.addEventListener('click', e => { if (e.target.closest('[data-search-open]')) { e.preventDefault(); open(); document.getElementById('nav')?.classList.remove('open'); } });
   document.addEventListener('keydown', e => {
-    if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'k') { e.preventDefault(); dialog.open ? dialog.close() : open(); }
+    if (!document.querySelector('[data-chat-open]') && (e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'k') { e.preventDefault(); dialog.open ? dialog.close() : open(); }
     else if (e.key === '/' && !dialog.open && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName ?? '') && !document.activeElement?.isContentEditable) { e.preventDefault(); open(); }
   });
 }

@@ -3,7 +3,7 @@ title: 建表与数据初始化
 description: 在应用中创建状态字典、安装默认记录，并通过新增迁移与真实数据库测试维护后续变更。
 ---
 
-在已有 NocoBase 应用中，可以用 Migration 创建状态字典，再用 Seed 安装默认值。下面的 `appStatuses` 保存稳定的状态编码和可编辑名称；后续升级为它增加说明字段。没有应用时先[创建应用](../getting-started/create-app.md)，也可以直接运行文末的[完整示例](#示例源码与运行)。
+在已有 NocoBase 应用中，可以用 Migration 创建状态字典，再用 Seed 安装默认值。下面的 `appStatuses` 保存稳定的状态编码和可编辑名称；后续升级为它增加说明字段。没有应用时先[创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)，也可以直接运行文末的[完整示例](#示例源码与运行)。
 
 ## 目录与文件约定
 

@@ -31,7 +31,7 @@ description: "给应用加入 AI 对话、业务 Skills 和机器上的编程助
 
 ## 使用场景与示例
 
-没有应用时，先按 [创建应用](../../getting-started/create-app.md) 准备项目；也可以运行文末的 [完整示例](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide)。数据库沿用应用现有配置，模型服务以 DeepSeek 为例。示例界面为英文，示例命令在 `apps/agents-guide` 目录执行。
+没有应用时，先按 [创建应用](../../../getting-started/develop-your-first-app.md#创建并启动应用) 准备项目；也可以运行文末的 [完整示例](https://github.com/nocobase/docs-examples-v3/tree/b91adc8bcd89a238c84f9e62026f250b4833615a/apps/agents-guide)。数据库沿用应用现有配置，模型服务以 DeepSeek 为例。示例界面为英文，示例命令在 `apps/agents-guide` 目录执行。
 
 下面的**开发提示词**发给项目中的 Coding Agent，**对话提示词**在应用的聊天界面中使用。提示词已按读者使用习惯简化；截图来自原有实测会话，验证范围见文末。
 

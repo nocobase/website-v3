@@ -10,7 +10,7 @@ We recommend [talking to a Runner Agent](runner-agent.md) in Studio or installin
 ## Start work
 
 1. [Accept your invitation and sign in](sign-in.md). Check that you can open your project.
-2. [Walk through your first request](../setup/first-request.md): submit a small change, follow progress, and accept the result.
+2. [Walk through your first request](../../getting-started/collaborate-with-studio.md): submit a small change, follow progress, and accept the result.
 3. Use [My issues](../use/my-tasks.md) for questions and deliveries that need your attention.
 
 If your team does not have Studio or a project yet, an administrator can start with [Install and configure](../setup/index.md).

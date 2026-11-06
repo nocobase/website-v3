@@ -20,7 +20,7 @@ description: 从 config.yml 修改现有配置，理解客户端与服务端代�
 
 注意 `server/config.ts` 是加载入口，`server/config/` 是配置分区目录。模板的 `server/runtime.ts`、`client/runtime.ts` 已经接入各自的配置入口，通常只需维护分区及其 `index.ts`。
 
-`config.example.yml` 展示的是部分常用配置，不是所有可用字段。应用和已接入模块共同提供配置声明，完整字段继续查[配置项参考](../reference/configuration.md)和各模块文档。首次创建应用时通过 `pnpm nocobase config init --dialect sqlite` 初始化本地配置及密钥；已有应用按实际需求修改原配置，见[创建应用](../getting-started/create-app.md)。
+`config.example.yml` 展示的是部分常用配置，不是所有可用字段。应用和已接入模块共同提供配置声明，完整字段继续查[配置项参考](../reference/configuration.md)和各模块文档。首次创建应用时通过 `pnpm nocobase config init --dialect sqlite` 初始化本地配置及密钥；已有应用按实际需求修改原配置，见[创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)。
 
 ## 修改已有配置
 

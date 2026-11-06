@@ -22,7 +22,7 @@ Agent 做完的内容：
 | 员工、IT 支持、资产管理员三个角色 | 权限插件：每个动作是一项独立的业务权限 |
 | 「领用申请」页面、侧边栏「收件箱」入口、「流程管理」页面 | 模板自带的流程图和流程管理组件 |
 
-能力清单见 [NocoBase Core](../core/index.md#通用能力不必从零开发)，工作流所在的包见 [核心包与工具包索引](../core/reference/packages.md)，通知见 [通知](../core/using-plugins/notifications/notification.md)。需要多级审批、会签、转交时，有商业审批插件授权的可以改用 [审批](../core/using-plugins/collaboration/approval.md)。
+能力清单见 [NocoBase Core](../core/using-plugins/overview.md)，工作流所在的包见 [核心包与工具包索引](../core/reference/packages.md)，通知见 [通知](../core/using-plugins/notifications/notification.md)。需要多级审批、会签、转交时，有商业审批插件授权的可以改用 [审批](../core/using-plugins/collaboration/approval.md)。
 
 ## 2. 准备三个账号
 

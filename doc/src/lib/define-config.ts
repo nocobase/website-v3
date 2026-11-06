@@ -56,6 +56,8 @@ export interface DocsLanguage {
 }
 
 export interface DocsSection {
+  /** Hide this section from desktop and mobile header navigation when false. */
+  showInNav?: boolean;
   id: string;
   /** The directory (relative to content/<language>/) that holds the section's meta.json. Pages of the section live below it */
   dir: string;
@@ -78,6 +80,8 @@ export interface DocsConfig {
   sections: DocsSection[];
   nav: { github: string; website: string; versionSwitch: string };
   search: { provider: 'pagefind' };
+  /** Public docs-ai-service base URL. Model credentials belong on its server. */
+  ask?: { endpoint: string; /** Key under sites in the service YAML; omit to use its default site. */ siteId?: string };
   analytics: { ga4?: string; baidu?: string; clarity?: string };
 }
 

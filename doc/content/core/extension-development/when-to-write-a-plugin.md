@@ -39,7 +39,7 @@ Modules may still depend on one another. For example, a reporting plugin should 
 
 ## Develop plugins inside an App
 
-First [create an application with create-app](../getting-started/create-app.md), then develop plugins inside it. An App supports a monorepo: local plugins live under `packages/`, are connected through pnpm workspace dependencies, and are developed and built with the application.
+First [create an application with create-app](../../getting-started/develop-your-first-app.md#create-and-start-the-application), then develop plugins inside it. An App supports a monorepo: local plugins live under `packages/`, are connected through pnpm workspace dependencies, and are developed and built with the application.
 
 **A plugin can serve only the current App without being published to npm.** Consider distribution, versioning and compatibility when other applications need it. Reuse and modular organization can develop together: start by organizing a feature in the current App as a plugin, then share it with other applications as it matures.
 

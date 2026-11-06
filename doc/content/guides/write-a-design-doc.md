@@ -75,6 +75,6 @@ For larger requests, have the agent propose a plan first and start only after yo
 Don't change code yet. List which parts this change touches, the questions I need to decide, and how you plan to verify it.
 ```
 
-For how to write requests and accept the results, see [Continue developing your app](../core/getting-started/develop-with-an-agent.md#describe-requirements).
+For how to write requests and accept the results, see [Continue developing your app](../getting-started/develop-your-first-app.md#refine-and-continue-developing).
 
 **Done when**: the repository has `docs/design.md`, it is registered in the index in `AGENTS.md`, and the document ends with a step-by-step delivery plan and acceptance criteria for each step.

@@ -47,4 +47,4 @@ Agents use your identity to push code and open PRs. Merges you make in Studio al
 
 If browser authorization is unavailable, **Other methods** offers device codes or personal tokens. Administrators control these options in [Code platforms](../configure/git.md). Tokens are encrypted and are not shown again.
 
-Continue with [your first request](../setup/first-request.md).
+Continue with [your first request](../../getting-started/collaborate-with-studio.md).

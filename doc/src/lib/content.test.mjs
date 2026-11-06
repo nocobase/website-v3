@@ -35,6 +35,15 @@ const load = (files, sections = SECTIONS) => loadContent({ contentDir: fixture(f
 const problemsOf = fn => { try { fn(); } catch (e) { if (e instanceof ContentError) return e.problems.join('\n'); throw e; } return ''; };
 
 describe('menus', () => {
+  test('the standalone home keeps its section without entering the sidebar or pager', () => {
+    const files = both({ ...BASE, 'start/meta.json': { pages: [] } });
+    const en = load(files).languages.get('en');
+    expect(en.pages.get('index').section).toBe('start');
+    expect(en.sections.get('start')).toMatchObject({ tree: [], order: [] });
+    const missing = both({ ...BASE, 'start/meta.json': { pages: [] }, 'start/unlisted.md': 'Unlisted' });
+    expect(problemsOf(() => load(missing))).toContain('start/unlisted.md is not in any menu');
+  });
+
   test('resolves pages, groups, folders, planned entries and the folder index link', () => {
     const files = both({
       ...BASE,

@@ -7,10 +7,11 @@ export class AnswerError extends Error {
   }
 }
 
-export function answerRequest(question, language, currentPage) {
+export function answerRequest(question, language, currentPage, siteId) {
   question = question.trim();
   if (!question || [...question].length > 500) throw new Error('Invalid question');
-  return { question, language: language === 'en' ? 'en-US' : language, productVersion: '3', currentPage };
+  if (siteId !== undefined && !/^[A-Za-z0-9_-]{1,64}$/.test(siteId)) throw new Error('Invalid siteId');
+  return { ...(siteId === undefined ? {} : { siteId }), question, language: language === 'en' ? 'en-US' : language, currentPage };
 }
 
 export async function readAnswer(response, onProgress = () => {}) {

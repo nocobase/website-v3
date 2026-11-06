@@ -41,6 +41,8 @@ Follow practical guides to build your application.
 
 ## [FAQ](faq/from-v2.md)
 
+Find answers to questions about using NocoBase.
+
 </section>
 
 </div>

@@ -6,8 +6,10 @@ const stream = chunks => new Response(new ReadableStream({ start(controller) { c
 const encode = text => new TextEncoder().encode(text);
 
 describe('docs-ai-service adapter', () => {
-  it('sends the service language and version without conversation history', () => {
-    expect(answerRequest('  Create an app?  ', 'en', 'https://docs.nocobase.com/')).toEqual({ question: 'Create an app?', language: 'en-US', productVersion: '3', currentPage: 'https://docs.nocobase.com/' });
+  it('sends the service language and optional site without a product version or conversation history', () => {
+    expect(answerRequest('  Create an app?  ', 'en', 'https://docs.nocobase.com/')).toEqual({ question: 'Create an app?', language: 'en-US', currentPage: 'https://docs.nocobase.com/' });
+    expect(answerRequest('权限？', 'zh-CN', '/zh-CN/', 'nocobase-v3')).toEqual({ siteId: 'nocobase-v3', question: '权限？', language: 'zh-CN', currentPage: '/zh-CN/' });
+    for (const siteId of ['', 'a/b', 'a b', 'x'.repeat(65)]) expect(() => answerRequest('Question', 'en', '/', siteId)).toThrow('Invalid siteId');
     expect(() => answerRequest(' ', 'zh-CN', '/')).toThrow();
     expect(() => answerRequest('x'.repeat(501), 'en', '/')).toThrow();
     expect(answerRequest('😀'.repeat(500), 'ja-JP', '/').language).toBe('ja-JP');

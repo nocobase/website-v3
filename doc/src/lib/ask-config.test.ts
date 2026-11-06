@@ -15,3 +15,17 @@ test.each([
   const { default: config } = await import('../../docs.config');
   expect(config.ask?.endpoint).toBe(expected);
 });
+
+test.each([undefined, 'nocobase-v3'])('passes configured site ID %s', async siteId => {
+  vi.stubEnv('NODE_ENV', 'production');
+  vi.stubEnv('DOCS_AI_SITE_ID', siteId);
+  const { default: config } = await import('../../docs.config');
+  expect(config.ask?.siteId).toBe(siteId);
+});
+
+test('local development selects the local NocoBase 3 site', async () => {
+  vi.stubEnv('NODE_ENV', 'development');
+  vi.stubEnv('DOCS_AI_SITE_ID', undefined);
+  const { default: config } = await import('../../docs.config');
+  expect(config.ask?.siteId).toBe('nocobase-v3');
+});

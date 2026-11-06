@@ -13,7 +13,9 @@ if (root && dialog) {
   const input = dialog.querySelector('textarea');
   const viewport = dialog.querySelector('.doc-chat-scroll');
   const welcome = dialog.querySelector('[data-chat-welcome]');
-  const stop = dialog.querySelector('[data-chat-stop]');
+  const composer = dialog.querySelector('[data-ask-form]');
+  const send = dialog.querySelector('[data-chat-send]');
+  const clear = dialog.querySelector('[data-chat-clear]');
   const launcher = document.querySelector('[data-chat-open]');
   const forms = [...document.querySelectorAll('[data-ask-form]')];
   let active;
@@ -26,8 +28,14 @@ if (root && dialog) {
   };
   const scroll = () => viewport.scrollTo({ top: viewport.scrollHeight, behavior: 'instant' });
   const busy = value => {
-    forms.forEach(form => { form.querySelector('button[type="submit"]').disabled = value; });
-    stop.hidden = !value;
+    forms.forEach(form => {
+      if (form !== composer) form.querySelector('button[type="submit"]').disabled = value;
+    });
+    send.type = value ? 'button' : 'submit';
+    send.setAttribute('aria-label', value ? ui.cancel : ui.send);
+    send.title = value ? `${ui.cancel} (Esc)` : ui.send;
+    send.querySelector('[data-send-icon]').hidden = value;
+    send.querySelector('[data-stop-icon]').hidden = !value;
   };
   const open = () => {
     if (!dialog.open) { opener = document.activeElement; dialog.showModal(); }
@@ -61,7 +69,7 @@ if (root && dialog) {
   const appendMessage = (text, user = false) => {
     welcome.hidden = true;
     const wrapper = element('section', '', user ? 'doc-chat-message is-user' : 'doc-chat-message');
-    wrapper.append(element('p', user ? ui.you : ui.assistant, 'doc-chat-role'));
+    wrapper.setAttribute('aria-label', user ? ui.you : ui.assistant);
     const body = element('div', text, user ? 'doc-chat-user' : 'doc-chat-answer');
     wrapper.append(body);
     messages.append(wrapper);
@@ -96,12 +104,17 @@ if (root && dialog) {
       }
       body.append(sources);
     }
+    return data.status === 'answered';
   };
   const submit = async (question, existingBody) => {
     if (active || !question.trim()) return;
     question = question.trim();
+    clear.hidden = true;
     open();
-    if (!existingBody) appendMessage(question, true);
+    if (!existingBody) {
+      messages.replaceChildren();
+      appendMessage(question, true);
+    }
     const body = existingBody || appendMessage('');
     body.replaceChildren();
     const status = element('p', ui.waiting, 'doc-chat-status');
@@ -116,11 +129,11 @@ if (root && dialog) {
       const response = await fetch(`${root.dataset.endpoint.replace(/\/$/, '')}/v1/answers/stream${root.dataset.endpoint.startsWith('/') ? '/' : ''}`, {
         method: 'POST', mode: 'cors', credentials: 'omit',
         headers: { 'Content-Type': 'application/json', 'X-Docs-AI-Session': sessionId() },
-        body: JSON.stringify(answerRequest(question, root.dataset.lang, `https://docs.nocobase.com${location.pathname}`)),
+        body: JSON.stringify(answerRequest(question, root.dataset.lang, `https://docs.nocobase.com${location.pathname}`, root.dataset.siteId)),
         signal: controller.signal,
       });
       const answer = await readAnswer(response, event => { status.textContent = event.message; });
-      if (!controller.signal.aborted) renderAnswer(answer, body);
+      if (!controller.signal.aborted) clear.hidden = !renderAnswer(answer, body);
     } catch (error) {
       const cancelled = controller.signal.aborted && controller.signal.reason !== 'timeout';
       body.replaceChildren(element('p', cancelled ? ui.cancelled : error.message === 'unconfigured' ? ui.unavailable : error.status === 403 ? ui.forbidden : error.status === 429 ? ui.rate : ui.error, 'doc-chat-status'));
@@ -132,7 +145,6 @@ if (root && dialog) {
       const search = element('button', ui.search);
       search.type = 'button';
       search.setAttribute('data-search-open', '');
-      search.addEventListener('click', () => dialog.close());
       actions.append(retry, search);
       body.append(actions);
     } finally {
@@ -156,10 +168,14 @@ if (root && dialog) {
     });
   });
   document.querySelectorAll('[data-ask-question]').forEach(button => button.addEventListener('click', () => submit(button.dataset.askQuestion)));
-  stop.addEventListener('click', () => active?.abort());
+  send.addEventListener('click', event => {
+    if (active) { event.preventDefault(); active.abort(); }
+  });
+  dialog.addEventListener('cancel', event => {
+    if (active) { event.preventDefault(); active.abort(); }
+  });
   dialog.querySelector('[data-chat-close]').addEventListener('click', () => dialog.close());
   if (launcher) { launcher.addEventListener('click', open); }
-  dialog.querySelector('.doc-chat-search').addEventListener('click', () => dialog.close());
   document.addEventListener('keydown', event => {
     if ((event.metaKey || event.ctrlKey) && !event.shiftKey && !event.altKey && event.key.toLowerCase() === 'k') {
       event.preventDefault();
@@ -173,9 +189,17 @@ if (root && dialog) {
     }
   });
   dialog.addEventListener('close', () => {
-    // Closing hides the conversation; only Cancel or New conversation stops a request.
+    // Closing hides the conversation; Stop, Escape during generation, or Reset stops a request.
     if (launcher) { launcher.setAttribute('aria-expanded', 'false'); }
     if (!document.querySelector('dialog[open]')) opener?.focus();
   });
-  dialog.querySelector('[data-chat-clear]').addEventListener('click', () => { active?.abort(); messages.replaceChildren(); welcome.hidden = false; input.value = ''; input.focus(); });
+  clear.addEventListener('click', () => {
+    active?.abort();
+    active = undefined;
+    busy(false);
+    messages.replaceChildren();
+    welcome.hidden = false;
+    clear.hidden = true;
+    input.focus();
+  });
 }

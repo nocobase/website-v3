@@ -81,7 +81,7 @@ export interface DocsConfig {
   nav: { github: string; website: string; versionSwitch: string };
   search: { provider: 'pagefind' };
   /** Public docs-ai-service base URL. Model credentials belong on its server. */
-  ask?: { endpoint: string };
+  ask?: { endpoint: string; /** Key under sites in the service YAML; omit to use its default site. */ siteId?: string };
   analytics: { ga4?: string; baidu?: string; clarity?: string };
 }
 

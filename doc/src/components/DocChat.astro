@@ -3,12 +3,12 @@ import Icon from '@nocobase/site-shared/Icon.astro';
 import { askUi } from '../lib/ask-ui.mjs';
 import { getSite } from '../lib/site.mjs';
 import '../styles/chat.css';
-const { lang, endpoint } = Astro.props;
+const { lang, endpoint, siteId } = Astro.props;
 const ui = askUi[lang] || askUi.en;
 const articles = Object.fromEntries(getSite().pages.filter(p => !p.placeholder).map(p => [p.url, p.title]));
 ---
-<dialog class="doc-chat" id="docChat" aria-labelledby="chat-title" data-ask-root data-endpoint={endpoint} data-lang={lang} data-articles={JSON.stringify(articles)} data-pagefind-ignore>
-  <header class="doc-chat-head"><h2 id="chat-title"><Icon name="sparkles" />{ui.title}</h2><button type="button" data-chat-clear aria-label={ui.clear} title={ui.clear}><Icon name="square-pen" /></button><button type="button" data-chat-close aria-label={ui.close}><Icon name="x" /></button></header>
+<dialog class="doc-chat" id="docChat" aria-labelledby="chat-title" data-ask-root data-endpoint={endpoint} data-site-id={siteId} data-lang={lang} data-articles={JSON.stringify(articles)} data-pagefind-ignore>
+  <header class="doc-chat-head"><h2 id="chat-title"><Icon name="sparkles" />{ui.title}</h2><button type="button" data-search-open aria-label={ui.search} title={ui.search}><Icon name="search" /></button><button type="button" data-chat-close aria-label={ui.close}><Icon name="x" /></button></header>
   <div class="doc-chat-scroll">
     <div class="doc-chat-welcome" data-chat-welcome>
       <span class="doc-chat-mark"><Icon name="sparkles" /></span>
@@ -16,15 +16,20 @@ const articles = Object.fromEntries(getSite().pages.filter(p => !p.placeholder).
       <div class="doc-chat-suggestions">{ui.questions.map(q => <button type="button" data-ask-question={q}><span>{q}</span><Icon name="arrow-up-right" /></button>)}</div>
     </div>
   <div class="doc-chat-messages" role="log" aria-live="polite" aria-relevant="additions text" aria-label={ui.title}></div>
+    <button type="button" data-chat-clear hidden title={ui.clear}><Icon name="rotate-ccw" />{ui.clear}</button>
   </div>
   <div class="doc-chat-bottom">
+    <p class="doc-chat-hint" id="chat-hint">{ui.hint}</p>
     <form class="doc-ask-form" data-ask-form>
       <label class="doc-sr-only" for="chat-question">{ui.label}</label>
       <textarea id="chat-question" name="question" rows="2" maxlength="500" required placeholder={ui.placeholder} aria-describedby="chat-hint"></textarea>
-      <div class="doc-ask-toolbar"><button type="button" data-chat-stop hidden>{ui.cancel}</button><button type="submit" aria-label={ui.send}><Icon name="arrow-up" /></button></div>
+      <div class="doc-ask-toolbar">
+        <button type="submit" data-chat-send aria-label={ui.send} title={ui.send}>
+          <span data-send-icon><Icon name="arrow-up" /></span>
+          <span data-stop-icon hidden><Icon name="square" /></span>
+        </button>
+      </div>
     </form>
-    <p class="doc-chat-hint" id="chat-hint">{ui.hint}</p>
-    <button type="button" class="doc-chat-search" data-search-open><Icon name="search" />{ui.search}</button>
   </div>
 </dialog>
 <script>

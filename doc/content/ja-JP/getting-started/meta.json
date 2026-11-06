@@ -25,8 +25,14 @@
       ]
     },
     {
-      "type": "page",
-      "path": "learning-path"
+      "type": "group",
+      "title": "その他",
+      "pages": [
+        {
+          "type": "page",
+          "path": "learning-path"
+        }
+      ]
     }
   ]
 }

@@ -39,7 +39,9 @@ Agent 自主推进，团队掌控全局。
 
 <section class="doc-home-card">
 
-## [FAQ](faq/from-v2.md)
+## [常见问题](faq/from-v2.md)
+
+解答使用中的疑问。
 
 </section>
 

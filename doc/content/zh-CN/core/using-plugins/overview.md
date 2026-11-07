@@ -21,7 +21,7 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 | 邮件 | [邮件](notifications/mail.md) | 发送邮件、同步邮箱及扩展邮件服务 |
 | Agents | [Agents](agents-and-knowledge/agents.md) | 配置模型 API，或接入机器上的 Agent，使用对话与任务执行能力 |
 | 知识库 | [知识库](agents-and-knowledge/knowledge.md) | 管理文档空间、版本、搜索与变更审阅 |
-| 审批（商业） | [审批（商业）](collaboration/approval.md) | 配置审批策略并处理审批结果 |
+| 审批 | [审批](collaboration/approval.md) | 配置审批策略并处理审批结果 |
 | 定时任务 | [定时任务](automation/scheduler.md) | 声明计划任务，查看执行记录和管理启停 |
 | 模板打印 | [模板打印](automation/template-print.md) | 使用 Skills 实现 DOCX、PDF 模板打印 |
 | 多语言 | [多语言](application-support/i18n.md) | 接入多语言能力和应用语言切换 |

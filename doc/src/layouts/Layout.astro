@@ -69,6 +69,7 @@ const chat = askUi[lang] || askUi.en;
 <link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
 </head>
 <body class:list={{ 'docs-home': home }}>
+<div class="doc-page">
 <a class="skip-link" href="#content">{ui.skip}</a>
 <Header {...header}>
 {config.ask?.endpoint ? <button slot="action" class="plain doc-chat-trigger" type="button" data-chat-open aria-label={chat.label} aria-controls="docChat" aria-expanded="false" aria-haspopup="dialog"><Icon name="sparkles" /><span>{chat.label}</span></button> : <button slot="action" class="search-btn" type="button" data-search-open aria-label={search.label}><Icon name="search" /><span class="search-text">{search.placeholder}</span>{search.shortcut && <kbd>{search.shortcut}</kbd>}</button>}
@@ -108,6 +109,7 @@ const chat = askUi[lang] || askUi.en;
 {hasToc && <aside class="doc-toc" aria-label={ui.toc}><slot name="toc" /></aside>}
 </div>
 <Footer {...footer} />
+</div>
 {config.ask?.endpoint && <DocChat lang={lang} endpoint={config.ask.endpoint} siteId={config.ask.siteId} />}
 <dialog id="docSearch" class="doc-search" aria-label={search.label} data-empty={search.empty} data-error={search.error} data-loading={search.loading} data-hint={search.hint}>
 <form method="dialog" class="doc-search-box"><Icon name="search" /><input id="docSearchInput" type="search" placeholder={search.placeholder} aria-label={search.label} autocomplete="off" spellcheck="false" aria-controls="docSearchResults"><button type="submit" class="doc-search-close" aria-label={search.close}>Esc</button></form>

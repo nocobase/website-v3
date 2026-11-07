@@ -1,6 +1,20 @@
 export const askUi = {
   en: {
+    submitting: 'Submitting your question…',
+    progress: {
+      submitted: "Question submitted…",
+      understanding_question: "Understanding your question…",
+      searching_docs: "Finding relevant documentation…",
+      reading_docs: "Reading relevant documentation…",
+      reviewing_evidence: "Reviewing documentation and preparing your answer…",
+      composing_answer: "Preparing your answer…",
+      checking_answer: "Checking the answer and its references…",
+      retrying: "The service is temporarily busy. Retrying…",
+      waiting_for_shared_answer: "Waiting for an answer already in progress…",
+    },
     homeTagline: 'Learn and master NocoBase 3 quickly',
+    quote: 'Selected text', removeQuote: 'Remove quote', quotePlaceholder: 'What would you like to know about this passage?', quoteLimit: 'The quote and question together must be within 500 characters. Shorten your question or select a shorter passage.',
+    selectionAsk: 'Ask AI', selectionTooLong: 'Select up to 500 characters to ask AI.',
     label: 'Ask AI', placeholder: 'Ask anything about NocoBase…', send: 'Ask',
     suggested: 'Explore', questions: ['How do I create my first app?', 'What is the difference between Core and Studio?', 'How do I connect an existing database?'],
     title: 'NocoBase docs assistant', close: 'Close assistant', clear: 'Reset',
@@ -17,7 +31,21 @@ export const askUi = {
     noScript: 'Enable JavaScript to ask a question. You can also browse the sections below.',
   },
   'zh-CN': {
+    submitting: '正在提交你的问题…',
+    progress: {
+      submitted: "问题已提交…",
+      understanding_question: "正在理解你的问题…",
+      searching_docs: "正在查找相关文档…",
+      reading_docs: "正在阅读相关文档…",
+      reviewing_evidence: "正在分析文档，准备回答…",
+      composing_answer: "正在整理回答…",
+      checking_answer: "正在核对回答和参考来源…",
+      retrying: "服务暂时繁忙，正在重试…",
+      waiting_for_shared_answer: "相同问题正在处理中，请稍候…",
+    },
     homeTagline: '快速了解和掌握 NocoBase 3',
+    quote: '引用原文', removeQuote: '移除引用', quotePlaceholder: '想了解这段内容的什么？', quoteLimit: '引用与问题合计需在 500 字以内，请缩短问题或重新选择较短的内容。',
+    selectionAsk: '问问 AI', selectionTooLong: '请将选中文字缩短至 500 字以内。',
     label: 'AI 问答', placeholder: '关于 NocoBase，你想了解什么？', send: '提问',
     suggested: '你可能想了解', questions: ['如何创建第一个应用？', 'Core 和 Studio 有什么区别？', '如何接入已有数据库？'],
     title: 'NocoBase 文档助手', close: '关闭助手', clear: '重置',
@@ -33,7 +61,21 @@ export const askUi = {
     noScript: '启用 JavaScript 后即可提问，也可以浏览下方文档模块。',
   },
   'ja-JP': {
+    submitting: '質問を送信しています…',
+    progress: {
+      submitted: "質問を送信しました…",
+      understanding_question: "質問を理解しています…",
+      searching_docs: "関連するドキュメントを探しています…",
+      reading_docs: "関連するドキュメントを読んでいます…",
+      reviewing_evidence: "ドキュメントを確認して回答を準備しています…",
+      composing_answer: "回答をまとめています…",
+      checking_answer: "回答と参照元を確認しています…",
+      retrying: "サービスが混み合っています。再試行しています…",
+      waiting_for_shared_answer: "処理中の同じ質問の回答を待っています…",
+    },
     homeTagline: 'NocoBase 3 を知り、使いこなす',
+    quote: '引用したテキスト', removeQuote: '引用を削除', quotePlaceholder: 'この部分について何を知りたいですか？', quoteLimit: '引用と質問の合計を 500 文字以内にしてください。質問を短くするか、短い部分を選択してください。',
+    selectionAsk: 'AI に質問', selectionTooLong: '500 文字以内で選択してください。',
     label: 'AI に質問', placeholder: 'NocoBase について何を知りたいですか？', send: '質問する',
     suggested: '知りたいこと', questions: ['最初のアプリを作るには？', 'Core と Studio の違いは？', '既存のデータベースに接続するには？'],
     title: 'NocoBase ドキュメントアシスタント', close: 'アシスタントを閉じる', clear: 'リセット',
@@ -49,3 +91,8 @@ export const askUi = {
     noScript: '質問するには JavaScript を有効にしてください。以下のセクションからも閲覧できます。',
   },
 };
+
+// Translate stable service stages locally; unknown stages retain the server message.
+export function progressMessage(event, ui) {
+  return Object.hasOwn(ui.progress, event.stage) ? ui.progress[event.stage] : event.message || ui.waiting;
+}

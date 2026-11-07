@@ -147,23 +147,15 @@
       "pages": [
         {
           "type": "page",
+          "path": "quality/index"
+        },
+        {
+          "type": "page",
           "path": "configure/checks"
         },
         {
           "type": "page",
           "path": "project/checks-and-review"
-        },
-        {
-          "type": "planned",
-          "title": "Quality plans"
-        },
-        {
-          "type": "planned",
-          "title": "Quality follow-ups"
-        },
-        {
-          "type": "planned",
-          "title": "Acceptance standards"
         }
       ]
     },

@@ -1,7 +1,9 @@
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import { answerRequest, readAnswer, sessionId, citationPath, verifiedCitations } from '../lib/ask.mjs';
-import { askUi } from '../lib/ask-ui.mjs';
+import { askUi, progressMessage } from '../lib/ask-ui.mjs';
+
+import { setupSelectionAsk } from './selection-ask.mjs';
 
 const root = document.querySelector('[data-ask-root]');
 const dialog = document.getElementById('docChat');
@@ -15,10 +17,28 @@ if (root && dialog) {
   const welcome = dialog.querySelector('[data-chat-welcome]');
   const composer = dialog.querySelector('[data-ask-form]');
   const send = dialog.querySelector('[data-chat-send]');
-  const clear = dialog.querySelector('[data-chat-clear]');
   const launcher = document.querySelector('[data-chat-open]');
   const forms = [...document.querySelectorAll('[data-ask-form]')];
+  const quoteCard = dialog.querySelector('[data-chat-quote]');
+  const quoteText = dialog.querySelector('[data-quote-text]');
+  const quoteError = dialog.querySelector('[data-quote-error]');
+  let quote = '';
+  const withQuote = question => quote ? `${ui.quote}:\n${quote}\n\n${question.trim()}` : question;
+  const validateQuote = question => {
+    const valid = [...withQuote(question).trim()].length <= 500;
+    quoteError.hidden = valid;
+    return valid;
+  };
+  const setQuote = text => {
+    quote = text;
+    quoteText.textContent = text;
+    quoteCard.hidden = !text;
+    quoteText.title = text;
+    input.placeholder = text ? ui.quotePlaceholder : ui.placeholder;
+    validateQuote(input.value);
+  };
   let active;
+  let selectionAsk;
   let opener;
   const element = (tag, text, className) => {
     const el = document.createElement(tag);
@@ -28,6 +48,7 @@ if (root && dialog) {
   };
   const scroll = () => viewport.scrollTo({ top: viewport.scrollHeight, behavior: 'instant' });
   const busy = value => {
+    selectionAsk?.setBusy(value);
     forms.forEach(form => {
       if (form !== composer) form.querySelector('button[type="submit"]').disabled = value;
     });
@@ -38,7 +59,7 @@ if (root && dialog) {
     send.querySelector('[data-stop-icon]').hidden = !value;
   };
   const open = () => {
-    if (!dialog.open) { opener = document.activeElement; dialog.showModal(); }
+    if (!dialog.open) { opener = document.activeElement; dialog.show(); }
     if (launcher) { launcher.setAttribute('aria-expanded', 'true'); }
     document.getElementById('docSearch')?.close();
     document.getElementById('nav')?.classList.remove('open');
@@ -104,12 +125,10 @@ if (root && dialog) {
       }
       body.append(sources);
     }
-    return data.status === 'answered';
   };
   const submit = async (question, existingBody) => {
     if (active || !question.trim()) return;
     question = question.trim();
-    clear.hidden = true;
     open();
     if (!existingBody) {
       messages.replaceChildren();
@@ -117,8 +136,10 @@ if (root && dialog) {
     }
     const body = existingBody || appendMessage('');
     body.replaceChildren();
-    const status = element('p', ui.waiting, 'doc-chat-status');
+    const status = element('p', ui.submitting, 'doc-chat-status');
+    status.setAttribute('role', 'status');
     body.append(status);
+    scroll();
     body.setAttribute('aria-busy', 'true');
     const controller = new AbortController();
     active = controller;
@@ -132,8 +153,10 @@ if (root && dialog) {
         body: JSON.stringify(answerRequest(question, root.dataset.lang, `https://docs.nocobase.com${location.pathname}`, root.dataset.siteId)),
         signal: controller.signal,
       });
-      const answer = await readAnswer(response, event => { status.textContent = event.message; });
-      if (!controller.signal.aborted) clear.hidden = !renderAnswer(answer, body);
+      const answer = await readAnswer(response, event => {
+        status.textContent = progressMessage(event, ui);
+      });
+      if (!controller.signal.aborted) renderAnswer(answer, body);
     } catch (error) {
       const cancelled = controller.signal.aborted && controller.signal.reason !== 'timeout';
       body.replaceChildren(element('p', cancelled ? ui.cancelled : error.message === 'unconfigured' ? ui.unavailable : error.status === 403 ? ui.forbidden : error.status === 429 ? ui.rate : ui.error, 'doc-chat-status'));
@@ -154,13 +177,27 @@ if (root && dialog) {
       scroll();
     }
   };
+  selectionAsk = setupSelectionAsk(document, ui, text => {
+    setQuote(text);
+    open();
+  });
+  dialog.querySelector('[data-quote-remove]').addEventListener('click', () => {
+    setQuote('');
+    input.focus();
+  });
+  input.addEventListener('input', () => validateQuote(input.value));
   forms.forEach(form => {
     form.addEventListener('submit', event => {
       event.preventDefault();
       const textarea = form.querySelector('textarea');
-      const question = textarea.value;
+      let question = textarea.value;
       if (active || !question.trim()) return;
+      if (form === composer) {
+        if (!validateQuote(question)) return;
+        question = withQuote(question);
+      }
       textarea.value = '';
+      if (form === composer) setQuote('');
       submit(question);
     });
     form.querySelector('textarea').addEventListener('keydown', event => {
@@ -171,8 +208,13 @@ if (root && dialog) {
   send.addEventListener('click', event => {
     if (active) { event.preventDefault(); active.abort(); }
   });
-  dialog.addEventListener('cancel', event => {
-    if (active) { event.preventDefault(); active.abort(); }
+  // Non-modal dialogs need explicit Escape handling, scoped to the sidebar.
+  dialog.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || event.isComposing) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (active) active.abort();
+    else dialog.close();
   });
   dialog.querySelector('[data-chat-close]').addEventListener('click', () => dialog.close());
   if (launcher) { launcher.addEventListener('click', open); }
@@ -182,24 +224,9 @@ if (root && dialog) {
       dialog.open ? dialog.close() : open();
     }
   });
-  dialog.addEventListener('click', event => {
-    if (event.target === dialog) {
-      const rect = dialog.getBoundingClientRect();
-      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
-    }
-  });
   dialog.addEventListener('close', () => {
-    // Closing hides the conversation; Stop, Escape during generation, or Reset stops a request.
+    // Closing hides the conversation; Stop or Escape during generation stops a request.
     if (launcher) { launcher.setAttribute('aria-expanded', 'false'); }
     if (!document.querySelector('dialog[open]')) opener?.focus();
-  });
-  clear.addEventListener('click', () => {
-    active?.abort();
-    active = undefined;
-    busy(false);
-    messages.replaceChildren();
-    welcome.hidden = false;
-    clear.hidden = true;
-    input.focus();
   });
 }

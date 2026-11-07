@@ -7,7 +7,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 /* Header additions: the "Docs" label next to the version switch, the search button */
 .nav .in { position: relative; }
 /* Wide screens: a divider where the sidebar border is (the first column of .doc-layout is 270px wide, its border is the last pixel), and the section tabs starting with the content column (48px padding, minus the 12px padding of a tab), whatever the width of the logo and the version switch */
-@media (min-width: 1001px) {
+@container doc-page (min-width: 1001px) {
   .nav .in::after { content: ""; position: absolute; left: 269px; top: 22px; width: 1px; height: 20px; background: var(--rule-2); }
   .nav .in > .menu { position: absolute; left: 306px; top: 0; bottom: 0; }
 }
@@ -18,7 +18,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 .search-btn kbd { padding: 0 6px; border: 1px solid var(--rule); border-radius: 5px; background: var(--paper); font: 12px/20px var(--f-sans); color: var(--muted); }
 .nav .right { gap: 4px; }
 .nav .right .search-btn { margin-right: 6px; }
-@media (max-width: 1000px) {
+@container doc-page (max-width: 1000px) {
   .search-btn { min-width: 0; width: 40px; height: 40px; padding: 0; justify-content: center; margin-right: 0; }
   .search-btn .search-text, .search-btn kbd { display: none; }
   .nav.open .mnav { max-height: calc(100dvh - var(--nav-h)); overflow-y: auto; overscroll-behavior: contain; }
@@ -31,8 +31,8 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 .doc-side { position: sticky; top: var(--nav-h); align-self: start; height: calc(100vh - var(--nav-h)); overflow-y: auto; padding: 20px 12px 40px 24px; border-right: 1px solid var(--rule); scrollbar-width: thin; }
 .doc-main { min-width: 0; max-width: 860px; padding: 36px 48px 64px; }
 .doc-toc { position: sticky; top: var(--nav-h); align-self: start; max-height: calc(100vh - var(--nav-h)); overflow-y: auto; padding: 36px 24px 40px 0; font-size: 13px; scrollbar-width: thin; }
-body > footer { margin-top: 48px; }
-body > footer .container { max-width: 1440px; }
+.doc-page > footer { margin-top: 48px; }
+.doc-page > footer .container { max-width: 1440px; }
 .doc-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; }
 .doc-crumb { margin: 0; font-size: 13px; color: var(--muted); }
 .doc-main h1 { font-size: 32px; line-height: 1.3; font-weight: 650; letter-spacing: -0.01em; }
@@ -358,18 +358,17 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .doc-search-sub .doc-search-hit { padding: 7px 12px; }
 .doc-search-sub .doc-search-hit b { font-size: 14px; font-weight: 500; }
 
-@media (max-width: 1200px) { .doc-layout { grid-template-columns: 270px minmax(0, 1fr); } .doc-toc { display: none; } }
-@media (max-width: 1000px) {
+@container doc-page (max-width: 1200px) { .doc-layout { grid-template-columns: 270px minmax(0, 1fr); } .doc-toc { display: none; } }
+@container doc-page (max-width: 1000px) {
   .doc-layout { display: block; }
   .doc-side { display: none; }
   .doc-main { max-width: none; padding: 24px 16px 48px; }
   .doc-main h1 { font-size: 26px; }
-  .doc-search { margin-top: 12px; max-height: calc(100dvh - 24px); }
 }
-@media (max-width: 900px) {
+@container doc-page (max-width: 900px) {
   .pillars, .learn ul, .roles, .fig.pair, .map .row.c2, .map .row.c3 { grid-template-columns: 1fr; }
 }
-@media (max-width: 600px) {
+@container doc-page (max-width: 600px) {
   .doc-pager { grid-template-columns: 1fr; }
   .layers { grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr); row-gap: 12px; }
   .layers .ly-node { padding: 14px 12px; }
@@ -383,4 +382,25 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .layers .ly-foundation { grid-row: 4; margin-top: 0; padding: 16px; }
   .doc-pager .next { grid-column: 1; }
 }
-@media print { .nav, .doc-side, .doc-pager, .copy-button, .page-actions, body > footer { display: none !important; } .doc-layout { display: block; } }
+@media print { .nav, .doc-side, .doc-pager, .copy-button, .page-actions, .doc-page > footer { display: none !important; } .doc-layout { display: block; } }
+
+/* Use the remaining page width when the answer sidebar is open. */
+.doc-page { container: doc-page / inline-size; min-width: 0; }
+@media (max-width: 1000px) {
+  .doc-search { margin-top: 12px; max-height: calc(100dvh - 24px); }
+}
+@container doc-page (max-width: 1000px) {
+  .nav .in::after { display: none; }
+  .nav .menu, .nav .right .plain, .nav .lang { display: none; }
+  .nav .menu-btn { display: grid; }
+  .nav.open { background: var(--paper); }
+  .nav.open .mnav { display: block; }
+  .nav .in > .ver { margin-left: -14px; position: static; }
+  .ver .dd { left: 16px; right: 16px; top: 60px; min-width: 0; }
+  .nav .right .doc-chat-trigger { display: flex; justify-content: center; width: 36px; padding: 0; }
+  .nav .doc-chat-trigger span { display: none; }
+}
+@container doc-page (max-width: 900px) {
+  .fgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fgrid > div:first-child { grid-column: 1 / -1; }
+}

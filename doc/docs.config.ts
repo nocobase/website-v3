@@ -177,7 +177,7 @@ export default defineDocsConfig({
     { id: 'core', dir: 'core', home: 'core/index', title: { en: 'Core', 'zh-CN': 'Core', 'ja-JP': 'Core' } },
     { id: 'studio', dir: 'studio', home: 'studio/index', title: { en: 'Studio', 'zh-CN': 'Studio', 'ja-JP': 'Studio' } },
     { id: 'guides', dir: 'guides', home: 'guides/build-reliable-enterprise-apps', title: { en: 'Tutorials', 'zh-CN': '教程', 'ja-JP': 'チュートリアル' } },
-    { id: 'faq', dir: 'faq', showInNav: false, home: 'faq/from-v2', title: { en: 'FAQ', 'zh-CN': 'FAQ', 'ja-JP': 'FAQ' } },
+    { id: 'faq', dir: 'faq', home: 'faq/from-v2', title: { en: 'FAQ', 'zh-CN': 'FAQ', 'ja-JP': 'FAQ' } },
   ],
   nav: {
     github: 'https://github.com/nocobase/nocobase',

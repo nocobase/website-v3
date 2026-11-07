@@ -39,7 +39,7 @@ Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队�
 
 ![负责人在「我的任务」中查看交付报告并验收](https://static-docs.nocobase.com/studio-zh-req-accept-20261030-v3.png)
 
-任务负责人是一项职责，不是系统角色。Agent 代表发起人工作，受其权限约束。见 [任务状态与权限](statuses-and-permissions.md)。
+任务负责人是一项职责，不是系统角色。Agent 代表发起人工作，受其权限约束。见 [任务状态与权限](../reference/statuses-and-permissions.md)。
 
 ## 会话
 
@@ -67,7 +67,7 @@ Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队�
 
 一次执行产生一条**运行记录**，保存过程、结果和用量。一个任务通常包含多次运行。
 
-见 [Agent 团队怎样工作](agent-execution.md)与 [接入共享运行环境](../setup/shared-runtimes.md)。
+见 [Agent 团队怎样工作](agent-team.md)与 [接入共享运行环境](../setup/shared-runtimes.md)。
 
 ## 技能、知识库和项目记忆
 

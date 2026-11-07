@@ -1,6 +1,9 @@
 ---
-title: Agent 执行规则
+title: Agent 团队怎样工作
+description: 了解调度 Agent 如何分派设计、开发、测试与评审，如何并行推进任务，以及何时需要任务负责人决策。
 ---
+
+Claude Code、Codex 等编码工具接入 Studio 后，组成 Agent 团队。调度 Agent 分派工作，执行 Agent 完成设计、开发、测试与评审。需要决策或验收时，任务交给负责人。
 
 ## Agent 团队
 
@@ -61,6 +64,7 @@ title: Agent 执行规则
 | 持续执行 | 运行环境在线时持续领取排队工作，无需人工值守。 |
 
 ![Agent 队列显示正在执行、等待执行和受依赖阻塞的工作](https://static-docs.nocobase.com/studio-zh-agent-queue-20261030-v2.png)
+
 
 ## 人工介入
 

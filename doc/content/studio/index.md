@@ -1,50 +1,43 @@
 ---
 title: NocoBase Studio
+description: Coordinate Coding Agents, projects, and software delivery in a shared workspace for your team.
 ---
 
-Studio is the governance platform for people and Agents developing software together. It connects projects, tasks, coding tools, Git, and delivery workflows. Teams track work, make decisions, and accept results here; released business applications run independently. Start with [Collaborate with Studio](../getting-started/collaborate-with-studio.md), then consult the manuals below for specific operations.
+## Overview
 
-## Installation and member access
+NocoBase Studio is an AI development platform for teams. People and Agents share a workflow from requirements to delivery.
 
-- [Installation overview](setup/index.md)
-- [Join a project](join/index.md)
-- [Use a local Coding Agent](join/local-agent.md)
-- [Talk to a Runner Agent](join/runner-agent.md)
+Connect Coding Agents and models from multiple providers. The Lead Agent assigns design, development, review, and testing by capability. Members can also talk directly to an Agent. Studio connects project management with Git, CI/CD, and releases, while skills and project memory preserve shared development standards.
 
-## Task development and project management
+The CLI lets members create and follow tasks from local Coding Agents, with Studio coordinating execution. Studio runs on your infrastructure, and your organization owns the code and data.
 
-- [Make a request](use/raise-a-request.md)
-- [My sessions](use/sessions.md)
-- [My issues](use/my-tasks.md)
-- [Follow progress](use/follow-progress.md)
-- [Answer questions](use/answer.md)
-- [Accept a result](use/accept.md)
-- [Project settings](project/settings.md)
-- [Knowledge base](project/knowledge-base.md)
-- [Project memory](project/project-memory.md)
-- [Project progress](project/progress.md)
+![Studio coordinates Agents across applications, with new requests and feedback feeding continuous development](/assets/studio/architecture-en.svg)
 
-## Agents, quality, and releases
+![The Lead Agent assigns work and keeps handoffs, results, and reviews with the task for human acceptance](https://static-docs.nocobase.com/studio-en-home-20261030.png)
 
-- [Agent configuration](configure/agents.md)
-- [Runtimes](configure/runtimes.md)
-- [Skills](project/skills.md)
-- [Workload and usage](project/usage.md)
-- [Checks and CI](configure/checks.md)
-- [Checks and review](project/checks-and-review.md)
-- [Release overview](release/overview.md)
+## Learn
 
-## Administration and reference
+<div class="learn">
 
-- [Members and roles](admin/members-and-roles.md)
-- [API keys](admin/api-keys.md)
-- [Notifications and push](admin/notifications.md)
-- [Upgrades and backups](admin/upgrade-and-backup.md)
-- [Task states and permissions](reference/statuses-and-permissions.md)
-- [nb-studio commands](reference/cli.md)
-- [nocobase-runner commands](reference/runner.md)
-- [Configuration options](reference/config.md)
-- [File and artifact storage](reference/storage.md)
-- [Troubleshooting](reference/faq.md)
-- [Core concepts](reference/concepts.md)
-- [Agent execution rules](reference/agent-execution.md)
+- [**Introduction**](intro/what-is-studio.md)
+  What Studio does, how a request reaches delivery, and how Agents divide the work.
+- [**Install and configure**](setup/index.md)
+  Deploy Studio, connect Git and runtimes, configure Agents and a project, prepare checks, and invite members.
+- [**Get started**](join/index.md)
+  Accept an invitation, sign in, submit a request, and accept the result.
+- [**Task development**](use/raise-a-request.md)
+  Discuss requirements, follow progress, answer questions, and accept deliveries.
+- [**Project management**](project/settings.md)
+  Manage settings, members, knowledge, memory, and project progress.
+- [**Agent management**](configure/agents.md)
+  Configure Agents, shared and personal runtimes, skills, and usage.
+- [**Quality management**](project/checks-and-review.md)
+  Checks, reviews, test plans, and quality reports.
+- [**Release management**](release/overview.md)
+  PR previews, test environments, versions, and production version records.
+- [**Administration**](admin/members-and-roles.md)
+  Members, roles, API keys, notifications, upgrades, and backups.
+- [**Reference**](reference/statuses-and-permissions.md)
+  Task states, permissions, CLI commands, configuration, and troubleshooting.
+
+</div>

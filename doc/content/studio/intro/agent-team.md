@@ -1,6 +1,9 @@
 ---
-title: Agent execution rules
+title: How the Agent team works
+description: How the Lead Agent assigns work, advances tasks in parallel, and brings decisions to task owners.
 ---
+
+Connect coding tools such as Claude Code and Codex to form an Agent team. The Lead Agent assigns work. Execution Agents design, develop, test, and review. Task owners handle decisions and acceptance.
 
 ## The Agent team
 

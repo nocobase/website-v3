@@ -39,7 +39,7 @@ Tasks have six states. Common transitions are:
 
 ![An owner reads the delivery report and accepts a task in My issues](https://static-docs.nocobase.com/studio-en-req-accept-20261030.png)
 
-Task ownership is a responsibility, not a system role. Agents act within the requester's permissions. See [Task states and permissions](statuses-and-permissions.md).
+Task ownership is a responsibility, not a system role. Agents act within the requester's permissions. See [Task states and permissions](../reference/statuses-and-permissions.md).
 
 ## Sessions
 
@@ -67,7 +67,7 @@ One runtime can provide several Agents, and the same Agent can run on several ma
 
 Each execution creates a **run record** with its process, result, and usage. A task usually involves several runs.
 
-See [How the Agent team works](agent-execution.md) and [Connect a runtime](../setup/shared-runtimes.md).
+See [How the Agent team works](agent-team.md) and [Connect a runtime](../setup/shared-runtimes.md).
 
 ## Skills, knowledge base, and project memory
 

@@ -13,7 +13,7 @@ When requirements and results stay in personal conversations, colleagues rely on
 
 ### Let agents coordinate development and checks
 
-The Lead Agent assigns design, development, testing, and independent review to execution Agents, then arranges fixes when needed. Handoffs and results stay in the task, without people relaying every step. Tasks can advance in parallel on separate branches; see [Agent execution rules](../studio/reference/agent-execution.md).
+The Lead Agent assigns design, development, testing, and independent review to execution Agents, then arranges fixes when needed. Handoffs and results stay in the task, without people relaying every step. Tasks can advance in parallel on separate branches; see [Agent execution rules](../studio/intro/agent-team.md).
 
 ### Keep decisions, acceptance, and project knowledge with people
 

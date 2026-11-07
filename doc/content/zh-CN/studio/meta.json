@@ -3,7 +3,29 @@
     {
       "type": "page",
       "path": "index",
-      "title": "手册入口"
+      "title": "首页"
+    },
+    {
+      "type": "group",
+      "title": "介绍",
+      "pages": [
+        {
+          "type": "page",
+          "path": "intro/what-is-studio"
+        },
+        {
+          "type": "page",
+          "path": "intro/how-a-request-gets-done"
+        },
+        {
+          "type": "page",
+          "path": "intro/agent-team"
+        },
+        {
+          "type": "page",
+          "path": "intro/concepts"
+        }
+      ]
     },
     {
       "type": "folder",
@@ -201,14 +223,6 @@
       "type": "group",
       "title": "参考",
       "pages": [
-        {
-          "type": "page",
-          "path": "reference/concepts"
-        },
-        {
-          "type": "page",
-          "path": "reference/agent-execution"
-        },
         {
           "type": "page",
           "path": "reference/statuses-and-permissions"

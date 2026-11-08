@@ -758,6 +758,7 @@ items:
     en: Advanced approvals and enterprise SSO
     zh: 高级审批、信创数据库、企业 SSO
     where: tight
+    unused: true
   "175":
     en: Every Solution app, such as NocoCRM, NocoITAM, and NocoReach, with its business agents
     zh: NocoCRM、NocoITAM、NocoReach 等全部 Solution 应用及其业务 Agent
@@ -802,6 +803,7 @@ items:
     en: NocoBase Studio, with an agent team working on many projects at once
     zh: NocoBase Studio：调度 Agent 团队，同时推进多个项目
     where: tight
+    unused: true
   "186":
     en: Checks, review, and human sign-off before every merge
     zh: 每次合并前检查、评审、人工验收
@@ -831,6 +833,7 @@ items:
     en: Clustering and high availability, multi-tenant architecture, audit logs, and air-gapped delivery
     zh: 集群与高可用、多租户架构、审计日志、离线交付
     where: tight
+    unused: true
   "193":
     en: Quality plans per project, with 8 built-in testing methods
     zh: 质量计划：按项目把关质量，内置 8 种测试方式
@@ -899,3 +902,23 @@ items:
     en: Multi-app architecture
     zh: 多应用架构
     where: tint
+  "210":
+    en: An agent team that moves many projects forward at once
+    zh: 调度 Agent 团队，同时推进多个项目
+    where: tight
+  "211":
+    en: "Commercial plugins: advanced approvals and enterprise SSO"
+    zh: 商业插件：高级审批、信创数据库、企业 SSO
+    where: tight
+  "212":
+    en: Services
+    zh: 服务
+    where: tight
+  "213":
+    en: Clustering and high availability, multi-tenant and multi-app architecture
+    zh: 集群与高可用、多租户架构、多应用架构
+    where: tight
+  "214":
+    en: Audit logs and air-gapped delivery
+    zh: 审计日志、离线交付
+    where: tight

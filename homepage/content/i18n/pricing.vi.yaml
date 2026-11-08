@@ -174,3 +174,4 @@ strings:
   "178": Có. Ứng dụng nghiệp vụ bạn phát triển trên Professional hoặc Enterprise có thể bán cho bất kỳ số lượng khách hàng nào, không phải trả thêm phí cho NocoBase. Tuy nhiên, không được phân phối chính Professional hoặc Enterprise cho công ty chưa được cấp phép.
   "179": Có thể triển khai Studio cho khách hàng sử dụng không?
   "180": Không. Studio chỉ dành cho công ty được cấp phép. Bạn có thể bàn giao ứng dụng nghiệp vụ phát triển bằng Studio cho khách hàng, nhưng không được triển khai chính Studio cho họ.
+  "181": Chỉ cần bản Professional hoặc Enterprise của NocoBase 2 còn trong thời hạn nâng cấp là có thể dùng ngay NocoBase 3, không cần mua lại. Không áp dụng cho bản Standard. 2.x và 3.x được bảo trì song song lâu dài.

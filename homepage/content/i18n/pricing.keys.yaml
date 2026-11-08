@@ -3,7 +3,7 @@ meta:
     zh: 版本与价格 — NocoBase 3
     en: Editions &amp; Pricing — NocoBase 3
   description:
-    zh: Core 和所有 Solution 应用开源免费。Professional 5 万元一次买断，含 Studio、1 年升级与技术支持和一次部署服务；Enterprise 按需报价。
+    zh: Core 和所有 Solution 应用开源免费。专业版 5 万元一次买断，含 Studio、1 年升级与技术支持和一次部署服务；企业版按需报价。
     en: Core and every Solution app are free and open source. Professional is $8,000 one-time, with Studio, 1 year of upgrades and support, and one deployment. Enterprise is quoted to your needs.
 items:
   "000":
@@ -59,6 +59,7 @@ items:
     en: For a team that builds and ships with an agent team in Studio.
     zh: 一个团队用 Studio 带领 Agent 团队开发和交付。
     where: tight
+    unused: true
   "013":
     en: $8,000
     zh: ¥50,000
@@ -77,16 +78,18 @@ items:
     where: tight
   "017":
     en: "Everything in Community, plus:"
-    zh: 包含 Community 全部内容，另增：
+    zh: 包含社区版全部内容，另增：
     where: tight
   "018":
     en: NocoBase Studio, with an agent team that builds for you
     zh: NocoBase Studio，调度 Agent 团队开发
     where: tight
+    unused: true
   "019":
     en: Tests, review, and human sign-off before every release
     zh: 每次发布前测试、评审、人工验收
     where: tight
+    unused: true
   "020":
     en: Advanced approvals, regional databases, and enterprise SSO
     zh: 高级审批、信创数据库、企业 SSO
@@ -101,6 +104,7 @@ items:
     en: A Core upgrade agent, quality gates, and cost controls
     zh: Core 升级 Agent、质量门禁、成本控制
     where: tight
+    unused: true
   "023":
     en: One deployment, done by the NocoBase team
     zh: 一次部署服务，由 NocoBase 团队完成
@@ -109,10 +113,12 @@ items:
     en: Multi-team
     zh: 多团队
     where: tight
+    unused: true
   "025":
     en: For multiple teams and environments that need org-wide governance and high availability.
     zh: 多个团队、多套环境，需要组织级治理和高可用。
     where: tight
+    unused: true
   "026":
     en: Contact us
     zh: 联系我们
@@ -123,24 +129,28 @@ items:
     where: tight
   "028":
     en: "Everything in Professional, plus:"
-    zh: 包含 Professional 全部内容，另增：
+    zh: 包含专业版全部内容，另增：
     where: tight
   "029":
     en: Multi-environment release, and change windows and freezes
     zh: 跨环境发布、变更窗口与冻结期
     where: tight
+    unused: true
   "030":
     en: "Cross-team governance: shared skills, knowledge, and model policy"
     zh: 跨团队治理：统一的技能、知识库和模型策略
     where: tight
+    unused: true
   "031":
     en: Audit logs and agent isolation
     zh: 审计日志、Agent 安全隔离
     where: tight
+    unused: true
   "032":
     en: Clustering and high availability, multi-tenant architecture, and air-gapped delivery
     zh: 集群与高可用、多租户架构、离线交付
     where: tight
+    unused: true
   "033":
     en: Priority support, with a first response within 4&nbsp;hours
     zh: 优先支持，首次响应不超过 4 小时
@@ -383,10 +393,12 @@ items:
     en: Testing and sign-off
     zh: 测试与验收
     where: tint
+    unused: true
   "093":
     en: Automated tests, cross-model review, previews, human sign-off
     zh: 自动测试、换模型评审、预览与人工验收
     where: tint
+    unused: true
   "094":
     en: Deploy and roll back
     zh: 部署与回滚
@@ -395,6 +407,7 @@ items:
     en: Deploy to staging and other environments, and roll back when something goes wrong
     zh: 部署到预发布等环境，出了问题回滚到上一个版本
     where: tint
+    unused: true
   "096":
     en: Run history and usage
     zh: 运行记录与用量
@@ -407,10 +420,12 @@ items:
     en: Production release approval
     zh: 生产环境上线审批
     where: tint
+    unused: true
   "099":
     en: Every deployment to a protected environment needs an approver
     zh: 受保护的环境，每次部署都要审批人批准
     where: tint
+    unused: true
   "100":
     en: Custom roles
     zh: 自定义角色
@@ -423,10 +438,12 @@ items:
     en: Quality gates
     zh: 质量门禁
     where: tint
+    unused: true
   "103":
     en: Required checks, plus dedicated checks for data migrations, permission changes, and Core compatibility
     zh: 必需检查，数据迁移和权限变更的专项检查，与 Core 的兼容性检查
     where: tint
+    unused: true
   "104":
     en: Cost controls
     zh: 成本控制
@@ -435,30 +452,37 @@ items:
     en: Budgets per project, member, or agent, with work paused and you notified when one runs out
     zh: 按项目、成员、Agent 设预算，超出就暂停并通知
     where: tint
+    unused: true
   "106":
     en: Core upgrade agent
     zh: Core 升级 Agent
     where: tint
+    unused: true
   "107":
     en: When Core ships a new version, it opens an upgrade PR, runs compatibility checks, and explains the changes
     zh: Core 发新版后，自动开升级 PR、跑兼容性检查、附上变更说明
     where: tint
+    unused: true
   "108":
     en: Decide from Feishu, DingTalk, or WeCom
     zh: 在飞书、钉钉、企业微信里做决策
     where: tint
+    unused: true
   "109":
     en: Answer questions, sign off, and approve releases without opening Studio
     zh: 回答提问、验收、批准上线，不用打开 Studio
     where: tint
+    unused: true
   "110":
     en: Production feedback loop
     zh: 生产问题回流
     where: tint
+    unused: true
   "111":
     en: Production errors and user feedback become issues automatically, and agents find the cause and submit a fix
     zh: 生产环境的报错和用户反馈自动建成任务，Agent 定位问题并提交修复
     where: tint
+    unused: true
   "112":
     en: Delivery metrics
     zh: 交付度量
@@ -467,70 +491,87 @@ items:
     en: Pass rate, rework rate, cost per issue, and acceptance rate, with a weekly report
     zh: 通过率、返工率、单任务成本、采纳率，自动生成周报
     where: tint
+    unused: true
   "114":
     en: Multi-environment release
     zh: 跨环境发布
     where: tint
+    unused: true
   "115":
     en: Promote exactly what passed in staging to production
     zh: 预发布验证过的版本，原样推进到生产
     where: tint
+    unused: true
   "116":
     en: Change windows and freezes
     zh: 变更窗口与冻结期
     where: tint
+    unused: true
   "117":
     en: Set when releases may go out
     zh: 规定什么时候可以上线
     where: tint
+    unused: true
   "118":
     en: Cross-team governance
     zh: 跨团队治理
     where: tint
+    unused: true
   "119":
     en: Workspaces for many teams, skills and knowledge shared out to each, and one policy for allowed models and vendors
     zh: 多团队工作区，技能和知识库分发给各团队，统一规定可用的模型和厂商
     where: tint
+    unused: true
   "120":
     en: Org-wide quality policy
     zh: 组织级质量策略
     where: tint
+    unused: true
   "121":
     en: One set of required checks, including security scans, for every project
     zh: 统一规定所有项目必须通过的检查，包括安全扫描
     where: tint
+    unused: true
   "122":
     en: Development audit trail
     zh: 开发审计
     where: tint
+    unused: true
   "123":
     en: Who asked an agent to do what, what it changed, and who merged and approved it, all on record and exportable
     zh: 谁让 Agent 做了什么、Agent 改了什么、谁合并、谁批准，全程留痕，可以导出
     where: tint
+    unused: true
   "124":
     en: Agent isolation
     zh: Agent 安全隔离
     where: tint
+    unused: true
   "125":
     en: A disposable, isolated runtime per issue, restricted network access, and secrets agents can use but never see
     zh: 每个任务用一次性的隔离运行环境，限制外部网络访问，Agent 能用密钥但看不到明文
     where: tint
+    unused: true
   "126":
     en: Fleet upgrades
     zh: 应用批量升级
     where: tint
+    unused: true
   "127":
     en: See every app’s Core version and upgrade dozens of apps at once
     zh: 查看所有应用的 Core 版本，一次升级几十个应用
     where: tint
+    unused: true
   "128":
     en: Chargeback
     zh: 成本分摊
     where: tint
+    unused: true
   "129":
     en: Split usage and cost by department and cost center
     zh: 用量和费用分摊到部门和成本中心
     where: tint
+    unused: true
   "130":
     en: Agent-driven business apps
     zh: 由 Agent 驱动的企业业务应用
@@ -567,10 +608,12 @@ items:
     en: Official updates, merged for you
     zh: 官方更新同步
     where: tint
+    unused: true
   "139":
     en: Customized apps keep up with official releases, with agents merging, resolving conflicts, and verifying
     zh: 定制后的应用跟进官方新版本，由 Agent 合并、解决冲突、验证
     where: tint
+    unused: true
   "140":
     en: Services &amp; support
     zh: 服务与支持
@@ -633,19 +676,21 @@ items:
     where: sec
   "155":
     en: How do I choose between Professional and Enterprise?
-    zh: Professional 和 Enterprise 如何选择？
+    zh: 专业版和企业版如何选择？
     where: sec
   "156":
     en: Choose Professional if one team builds with Studio. It includes one deployment by the NocoBase team and a first response to support requests within 12&nbsp;hours.
     zh: 一个团队用 Studio 开发，选 Professional：包含一次部署服务，技术支持首次响应不超过 12&nbsp;小时。
     where: sec
+    unused: true
   "157":
     en: Choose Enterprise for multiple teams, or if you need multi-environment release, high availability, audit logs, or air-gapped delivery. It includes 3 days of deployment, training, and implementation, and a first response within 4&nbsp;hours.
     zh: 多个团队协作，或需要跨环境发布、集群高可用、审计日志、离线交付，选 Enterprise：包含 3 天部署、培训和实施服务，技术支持首次响应不超过 4&nbsp;小时。
     where: sec
+    unused: true
   "158":
     en: Can I use Community in production?
-    zh: Community 可以用于生产环境吗？
+    zh: 社区版可以用于生产环境吗？
     where: sec
   "159":
     en: Yes. Community includes all of Core plus NocoCRM, NocoReach, and NocoProject, free for production and client delivery. Add NocoBase’s development skills to your coding agent and start building. Your team handles testing, releases, and operations.
@@ -682,7 +727,7 @@ items:
     where: sec
   "167":
     en: No. Studio comes with Professional and Enterprise.
-    zh: 不能。Studio 包含在 Professional 和 Enterprise 中。
+    zh: 不能。Studio 包含在专业版和企业版中。
     where: sec
   "168":
     en: Do NocoBase 2 commercial license holders need to buy again?
@@ -719,15 +764,15 @@ items:
     where: tight
   "176":
     en: Yes. Community includes all of Core plus every Solution app, free for production and client delivery. Add NocoBase’s development skills to your coding agent and start building. Your team handles testing, releases, and operations.
-    zh: 可以。Community 包含完整的 Core 和所有 Solution 应用，可以用于生产和商业交付。你的 Coding Agent 装上 NocoBase 的开发技能就能开发，测试、发布和运维由团队自己负责。
+    zh: 可以。社区版包含完整的 Core 和所有 Solution 应用，可以用于生产和商业交付。你的 Coding Agent 装上 NocoBase 的开发技能就能开发，测试、发布和运维由团队自己负责。
     where: sec
   "177":
     en: Can I build apps for my clients with Professional or Enterprise?
-    zh: 可以用 Professional 或 Enterprise 为客户开发应用吗？
+    zh: 可以用专业版或企业版为客户开发应用吗？
     where: sec
   "178":
     en: Yes. You can sell the apps you build with Professional or Enterprise to any number of clients, with no extra fees to NocoBase. You can’t redistribute Professional or Enterprise itself to companies that don’t hold a license.
-    zh: 可以。你基于 Professional 或 Enterprise 开发的业务应用，可以出售给任意数量的客户，无需向 NocoBase 支付额外费用。但不能把 Professional 或 Enterprise 本身分发给未获授权的公司。
+    zh: 可以。你基于专业版或企业版开发的业务应用，可以出售给任意数量的客户，无需向 NocoBase 支付额外费用。但不能把专业版或企业版本身分发给未获授权的公司。
     where: sec
   "179":
     en: Can I deploy Studio for my clients?
@@ -741,3 +786,116 @@ items:
     en: As long as your NocoBase 2 Professional or Enterprise license is still within its upgrade period, you can use NocoBase 3 without buying again. This does not include the Standard edition. Both 2.x and 3.x are maintained in parallel.
     zh: 只要 NocoBase 2 专业版或企业版还在升级有效期内，就可以直接使用 NocoBase 3，不用重新购买。标准版不包含在内。2.x 和 3.x 会长期并行维护。
     where: sec
+  "182":
+    en: Community
+    zh: 社区版
+    where: tight
+  "183":
+    en: Professional
+    zh: 专业版
+    where: tight
+  "184":
+    en: Lead an agent team in Studio to keep building and shipping business systems.
+    zh: 用 Studio 带领 Agent 团队，持续开发和交付业务系统。
+    where: tight
+  "185":
+    en: NocoBase Studio, with an agent team working on many projects at once
+    zh: NocoBase Studio：调度 Agent 团队，同时推进多个项目
+    where: tight
+  "186":
+    en: Checks, review, and human sign-off before every merge
+    zh: 每次合并前检查、评审、人工验收
+    where: tight
+  "187":
+    en: Skills, knowledge base, and project memory, so work carries over between people and agents
+    zh: 技能、知识库和项目记忆，换人、换 Agent 都能接上
+    where: tight
+  "188":
+    en: Raise requests, answer questions, and sign off from your phone
+    zh: 在手机上提需求、回答提问、做验收
+    where: tight
+  "189":
+    en: Enterprise
+    zh: 企业版
+    where: tight
+  "190":
+    en: Mission-critical
+    zh: 关键业务
+    where: tight
+  "191":
+    en: For critical systems that need high availability and air-gapped delivery, with quality, approval, and cost controls over development.
+    zh: 关键业务系统需要高可用和内网交付，开发过程需要质量、审批和成本管控。
+    where: tight
+    unused: true
+  "192":
+    en: Clustering and high availability, multi-tenant architecture, audit logs, and air-gapped delivery
+    zh: 集群与高可用、多租户架构、审计日志、离线交付
+    where: tight
+  "193":
+    en: Quality plans per project, with 8 built-in testing methods
+    zh: 质量计划：按项目把关质量，内置 8 种测试方式
+    where: tight
+  "194":
+    en: Deployment approval and cost controls
+    zh: 部署审批与成本控制
+    where: tight
+  "195":
+    en: Your team’s methods and knowledge, loaded into every run
+    zh: 团队的做法和资料，每次运行自动带上
+    where: tint
+  "196":
+    en: Checks, review, and sign-off
+    zh: 检查、评审与验收
+    where: tint
+  "197":
+    en: CI or agent self-checks, review by another vendor’s model, previews, and human sign-off
+    zh: CI 或 Agent 自检、换厂商的模型评审、预览与人工验收
+    where: tint
+  "198":
+    en: Deploy to test environments hosted by Studio, and roll back when something goes wrong
+    zh: 部署到 Studio 托管的测试环境，出了问题回滚到上一个版本
+    where: tint
+  "199":
+    en: Completed issues, cycle time, rework rate, and cost per issue, compared with the previous period
+    zh: 完成任务数、周期时间、返工率、单任务成本，和上一周期对比
+    where: tint
+  "200":
+    en: Decide from your phone
+    zh: 在手机上做决策
+    where: tint
+  "201":
+    en: Add Studio to your home screen to raise requests, answer questions, and sign off, with a push notification when you’re needed
+    zh: 添加到手机主屏幕，提需求、回答提问、验收，需要你时推送提醒
+    where: tint
+  "202":
+    en: Quality plans
+    zh: 质量计划
+    where: tint
+  "203":
+    en: Quality checks per project, with 8 built-in testing methods
+    zh: 按项目把关质量，内置 8 种测试方式
+    where: tint
+  "204":
+    en: Deployment approval
+    zh: 部署审批
+    where: tint
+  "205":
+    en: Deployments and rollbacks to protected environments need an approver
+    zh: 向受保护的环境部署和回滚，须经审批人批准
+    where: tint
+  "206":
+    en: Choose Professional to build and ship business systems with Studio. It includes all of Studio’s core capabilities and one deployment by the NocoBase team, with a first response to support requests within 12&nbsp;hours.
+    zh: 用 Studio 开发和交付业务系统，选专业版：包含 Studio 的全部核心能力和一次部署服务，技术支持首次响应不超过 12&nbsp;小时。
+    where: sec
+  "207":
+    en: Choose Enterprise if your systems need clustering and high availability, multi-tenancy, audit logs, or air-gapped delivery, or if development needs quality plans, deployment approval, and cost controls. It includes 3 days of deployment, training, and implementation, and a first response within 4&nbsp;hours.
+    zh: 业务系统需要集群高可用、多租户、审计日志或离线交付，或者开发过程需要质量计划、部署审批和成本控制，选企业版：包含 3 天部署、培训和实施服务，技术支持首次响应不超过 4&nbsp;小时。
+    where: sec
+  "208":
+    en: "For critical systems: high availability, air-gapped delivery, and development controls."
+    zh: 关键业务系统需要高可用和内网交付，开发过程需要质量、审批和成本管控。
+    where: tight
+  "209":
+    en: Multi-app architecture
+    zh: 多应用架构
+    where: tint

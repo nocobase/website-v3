@@ -175,3 +175,30 @@ strings:
   "179": Có thể triển khai Studio cho khách hàng sử dụng không?
   "180": Không. Studio chỉ dành cho công ty được cấp phép. Bạn có thể bàn giao ứng dụng nghiệp vụ phát triển bằng Studio cho khách hàng, nhưng không được triển khai chính Studio cho họ.
   "181": Chỉ cần bản Professional hoặc Enterprise của NocoBase 2 còn trong thời hạn nâng cấp là có thể dùng ngay NocoBase 3, không cần mua lại. Không áp dụng cho bản Standard. 2.x và 3.x được bảo trì song song lâu dài.
+  "182": Community
+  "183": Professional
+  "184": Dùng Studio dẫn dắt đội agent, liên tục phát triển và bàn giao hệ thống nghiệp vụ.
+  "185": NocoBase Studio, điều phối đội agent cùng lúc thúc đẩy nhiều dự án
+  "186": Kiểm tra, review và nghiệm thu thủ công trước mỗi lần merge
+  "187": Kỹ năng, kho tri thức và bộ nhớ dự án, đổi người hay đổi agent đều tiếp nối được
+  "188": Gửi yêu cầu, trả lời câu hỏi và nghiệm thu ngay trên điện thoại
+  "189": Enterprise
+  "190": Hệ thống trọng yếu
+  "192": Cụm và tính sẵn sàng cao, kiến trúc đa tenant, nhật ký kiểm toán, triển khai ngoại tuyến
+  "193": Kế hoạch chất lượng theo dự án, tích hợp sẵn 8 phương thức kiểm thử
+  "194": Phê duyệt triển khai và kiểm soát chi phí
+  "195": Phương pháp và tri thức của đội, tự động nạp vào mỗi lần chạy
+  "196": Kiểm tra, review và nghiệm thu
+  "197": CI hoặc agent tự kiểm tra, review bằng model của nhà cung cấp khác, xem trước và nghiệm thu thủ công
+  "198": Triển khai lên môi trường kiểm thử do Studio quản lý, gặp sự cố thì rollback
+  "199": Số việc hoàn thành, thời gian chu kỳ, tỷ lệ làm lại và chi phí mỗi việc, so với kỳ trước
+  "200": Ra quyết định trên điện thoại
+  "201": Thêm Studio vào màn hình chính để gửi yêu cầu, trả lời câu hỏi và nghiệm thu, có thông báo đẩy khi cần bạn
+  "202": Kế hoạch chất lượng
+  "203": Kiểm soát chất lượng theo dự án, tích hợp sẵn 8 phương thức kiểm thử
+  "204": Phê duyệt triển khai
+  "205": Triển khai và rollback vào môi trường được bảo vệ đều cần người phê duyệt
+  "206": "Phát triển và bàn giao hệ thống nghiệp vụ bằng Studio thì chọn Professional: gồm toàn bộ năng lực cốt lõi của Studio và một lần triển khai do đội ngũ NocoBase thực hiện, phản hồi hỗ trợ đầu tiên trong vòng 12&nbsp;giờ."
+  "207": "Hệ thống cần cụm và tính sẵn sàng cao, đa tenant, nhật ký kiểm toán hoặc triển khai ngoại tuyến, hoặc quá trình phát triển cần kế hoạch chất lượng, phê duyệt triển khai và kiểm soát chi phí thì chọn Enterprise: gồm 3 ngày triển khai, đào tạo và áp dụng, phản hồi đầu tiên trong vòng 4&nbsp;giờ."
+  "208": "Cho hệ thống trọng yếu: tính sẵn sàng cao, triển khai ngoại tuyến và kiểm soát phát triển."
+  "209": Kiến trúc đa ứng dụng

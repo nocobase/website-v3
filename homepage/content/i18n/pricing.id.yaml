@@ -175,3 +175,30 @@ strings:
   "179": Bisakah saya men-deploy Studio untuk klien?
   "180": Tidak. Studio hanya boleh digunakan oleh perusahaan pemegang lisensi. Anda bisa menyerahkan aplikasi yang dibangun dengan Studio kepada klien, tetapi Studio itu sendiri tidak boleh di-deploy untuk mereka.
   "181": Selama lisensi NocoBase 2 Professional atau Enterprise Anda masih dalam masa upgrade, Anda bisa memakai NocoBase 3 tanpa membeli lagi. Edisi Standard tidak termasuk. Versi 2.x dan 3.x dipelihara secara paralel.
+  "182": Community
+  "183": Professional
+  "184": Pimpin tim agen di Studio untuk terus membangun dan mengirimkan sistem bisnis.
+  "185": NocoBase Studio, dengan tim agen yang mengerjakan banyak proyek sekaligus
+  "186": Pemeriksaan, review, dan persetujuan manusia sebelum setiap merge
+  "187": Skill, basis pengetahuan, dan memori proyek, agar pekerjaan mudah dilanjutkan oleh orang maupun agen lain
+  "188": Ajukan permintaan, jawab pertanyaan, dan terima hasil dari ponsel
+  "189": Enterprise
+  "190": Sistem kritis
+  "192": Klaster dan ketersediaan tinggi, arsitektur multi-tenant, log audit, dan pengiriman air-gapped
+  "193": Rencana kualitas per proyek, dengan 8 metode pengujian bawaan
+  "194": Persetujuan deploy dan kontrol biaya
+  "195": Metode dan pengetahuan tim Anda, dimuat di setiap eksekusi
+  "196": Pemeriksaan, review, dan persetujuan
+  "197": CI atau pemeriksaan mandiri oleh agen, review oleh model dari vendor lain, pratinjau, dan persetujuan manusia
+  "198": Deploy ke lingkungan uji yang di-hosting Studio, dan rollback jika ada masalah
+  "199": Tugas selesai, waktu siklus, tingkat pengerjaan ulang, dan biaya per tugas, dibandingkan dengan periode sebelumnya
+  "200": Putuskan dari ponsel
+  "201": Tambahkan Studio ke layar utama untuk mengajukan permintaan, menjawab pertanyaan, dan menerima hasil, dengan notifikasi saat Anda dibutuhkan
+  "202": Rencana kualitas
+  "203": Kontrol kualitas per proyek, dengan 8 metode pengujian bawaan
+  "204": Persetujuan deploy
+  "205": Deploy dan rollback ke lingkungan terlindungi memerlukan penyetuju
+  "206": Pilih Professional untuk membangun dan mengirimkan sistem bisnis dengan Studio. Sudah termasuk semua kemampuan inti Studio dan satu kali deploy oleh tim NocoBase, dengan respons pertama dukungan dalam 12&nbsp;jam.
+  "207": Pilih Enterprise jika sistem Anda memerlukan klaster dan ketersediaan tinggi, multi-tenant, log audit, atau pengiriman air-gapped, atau jika pengembangan memerlukan rencana kualitas, persetujuan deploy, dan kontrol biaya. Sudah termasuk 3 hari deploy, pelatihan, dan implementasi, dengan respons pertama dalam 4&nbsp;jam.
+  "208": "Untuk sistem kritis: ketersediaan tinggi, pengiriman air-gapped, dan kontrol pengembangan."
+  "209": Arsitektur multi-aplikasi

@@ -175,3 +175,29 @@ strings:
   "179": Posso implantar o Studio para meus clientes?
   "180": Não. O Studio só pode ser usado pela empresa licenciada. Você pode entregar aos seus clientes os apps desenvolvidos com ele, mas não pode implantar o próprio Studio para eles.
   "181": Enquanto sua licença Professional ou Enterprise do NocoBase 2 estiver dentro do período de atualizações, você pode usar o NocoBase 3 sem comprar de novo. A edição Standard não está incluída. As versões 2.x e 3.x são mantidas em paralelo.
+  "182": Community
+  "183": Professional
+  "184": Lidere uma equipe de agentes no Studio para desenvolver e entregar sistemas de negócio continuamente.
+  "185": NocoBase Studio, com uma equipe de agentes trabalhando em vários projetos ao mesmo tempo
+  "186": Verificações, revisão e aceitação humana antes de cada merge
+  "187": Skills, base de conhecimento e memória do projeto, para que pessoas e agentes continuem o trabalho sem perder contexto
+  "188": Abra solicitações, responda perguntas e aceite entregas pelo celular
+  "189": Enterprise
+  "190": Missão crítica
+  "192": Cluster e alta disponibilidade, arquitetura multi-tenant, logs de auditoria e entrega em ambientes isolados
+  "193": Planos de qualidade por projeto, com 8 métodos de teste integrados
+  "194": Aprovação de implantações e controle de custos
+  "195": Os métodos e o conhecimento da sua equipe, carregados em cada execução
+  "196": Verificações, revisão e aceitação
+  "197": CI ou autoverificação do agente, revisão pelo modelo de outro fornecedor, previews e aceitação humana
+  "198": Implante em ambientes de teste hospedados pelo Studio e faça rollback quando algo der errado
+  "199": Tarefas concluídas, tempo de ciclo, taxa de retrabalho e custo por tarefa, comparados ao período anterior
+  "200": Decida pelo celular
+  "201": Adicione o Studio à tela inicial para abrir solicitações, responder perguntas e aceitar entregas, com uma notificação quando precisarem de você
+  "202": Planos de qualidade
+  "203": Controle de qualidade por projeto, com 8 métodos de teste integrados
+  "204": Aprovação de implantações
+  "205": Implantações e rollbacks em ambientes protegidos precisam de um aprovador
+  "206": Escolha o Professional para desenvolver e entregar sistemas de negócio com o Studio. Inclui todos os recursos principais do Studio e uma implantação feita pela equipe da NocoBase, com primeira resposta do suporte em até 12&nbsp;horas.
+  "207": Escolha o Enterprise se seus sistemas exigem cluster e alta disponibilidade, multi-tenant, logs de auditoria ou entrega em ambientes isolados, ou se o desenvolvimento precisa de planos de qualidade, aprovação de implantações e controle de custos. Inclui 3 dias de implantação, treinamento e implementação, e primeira resposta em até 4&nbsp;horas.
+  "208": "Para sistemas críticos: alta disponibilidade, entrega em ambientes isolados e controle do desenvolvimento."

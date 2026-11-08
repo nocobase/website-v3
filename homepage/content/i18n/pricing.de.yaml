@@ -175,3 +175,29 @@ strings:
   "179": Kann ich Studio für meine Kunden bereitstellen?
   "180": Nein. Studio darf nur vom lizenzierten Unternehmen genutzt werden. Die damit entwickelten Apps können Sie an Ihre Kunden ausliefern, Studio selbst jedoch nicht für sie bereitstellen.
   "181": Solange Ihre NocoBase-2-Lizenz der Edition Professional oder Enterprise noch im Upgrade-Zeitraum ist, können Sie NocoBase 3 ohne erneuten Kauf nutzen. Die Standard-Edition ist davon ausgenommen. 2.x und 3.x werden parallel gepflegt.
+  "182": Community
+  "183": Professional
+  "184": Führen Sie in Studio ein Agenten-Team, das Geschäftssysteme laufend entwickelt und ausliefert.
+  "185": NocoBase Studio mit einem Agenten-Team, das mehrere Projekte gleichzeitig vorantreibt
+  "186": Prüfungen, Review und menschliche Abnahme vor jedem Merge
+  "187": Skills, Wissensdatenbank und Projektgedächtnis, damit Menschen und Agenten nahtlos übernehmen können
+  "188": Anforderungen stellen, Fragen beantworten und abnehmen, auch vom Smartphone aus
+  "189": Enterprise
+  "190": Geschäftskritisch
+  "192": Cluster und Hochverfügbarkeit, Multi-Tenant-Architektur, Audit-Logs und Air-Gap-Bereitstellung
+  "193": Qualitätspläne pro Projekt mit 8 integrierten Testverfahren
+  "194": Deployment-Freigaben und Kostenkontrolle
+  "195": Die Arbeitsweisen und das Wissen Ihres Teams, bei jedem Lauf automatisch dabei
+  "196": Prüfungen, Review und Abnahme
+  "197": CI oder Selbstprüfung durch den Agenten, Review durch das Modell eines anderen Anbieters, Vorschauen, menschliche Abnahme
+  "198": Deployment in von Studio gehostete Testumgebungen und Rollback, wenn etwas schiefgeht
+  "199": Erledigte Aufgaben, Durchlaufzeit, Nacharbeitsquote und Kosten pro Aufgabe im Vergleich zur Vorperiode
+  "200": Entscheiden vom Smartphone aus
+  "201": Studio zum Startbildschirm hinzufügen, Anforderungen stellen, Fragen beantworten und abnehmen, mit Push-Benachrichtigung, wenn Sie gebraucht werden
+  "202": Qualitätspläne
+  "203": Qualitätssicherung pro Projekt mit 8 integrierten Testverfahren
+  "204": Deployment-Freigabe
+  "205": Deployments und Rollbacks in geschützte Umgebungen brauchen eine Freigabe
+  "206": Wählen Sie Professional, um mit Studio Geschäftssysteme zu entwickeln und auszuliefern. Enthalten sind alle Kernfunktionen von Studio und ein Deployment durch das NocoBase-Team; die erste Antwort auf Supportanfragen kommt innerhalb von 12&nbsp;Stunden.
+  "207": Wählen Sie Enterprise, wenn Ihre Systeme Cluster und Hochverfügbarkeit, Mandantenfähigkeit, Audit-Logs oder Air-Gap-Bereitstellung brauchen oder die Entwicklung Qualitätspläne, Deployment-Freigaben und Kostenkontrolle erfordert. Enthalten sind 3 Tage Deployment, Schulung und Implementierung sowie eine erste Antwort innerhalb von 4&nbsp;Stunden.
+  "208": "Für kritische Systeme: Hochverfügbarkeit, Air-Gap-Bereitstellung und kontrollierte Entwicklung."

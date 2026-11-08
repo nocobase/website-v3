@@ -175,3 +175,29 @@ strings:
   "179": ¿Puedo desplegar Studio para mis clientes?
   "180": No. Studio solo puede usarlo la empresa con licencia. Puedes entregar a tus clientes las apps que desarrolles con él, pero no desplegar Studio para ellos.
   "181": Mientras tu licencia Professional o Enterprise de NocoBase 2 siga dentro de su periodo de actualizaciones, puedes usar NocoBase 3 sin volver a comprar. La edición Standard no está incluida. Las versiones 2.x y 3.x se mantienen en paralelo.
+  "182": Community
+  "183": Professional
+  "184": Dirige un equipo de agentes en Studio para seguir desarrollando y entregando sistemas de negocio.
+  "185": NocoBase Studio, con un equipo de agentes que avanza en varios proyectos a la vez
+  "186": Comprobaciones, revisión y aceptación humana antes de cada merge
+  "187": Skills, base de conocimiento y memoria del proyecto, para que personas y agentes retomen el trabajo sin perder contexto
+  "188": Crea solicitudes, responde preguntas y acepta trabajo desde el móvil
+  "189": Enterprise
+  "190": Misión crítica
+  "192": Clúster y alta disponibilidad, arquitectura multiinquilino, registros de auditoría y entrega en entornos aislados
+  "193": Planes de calidad por proyecto, con 8 métodos de prueba integrados
+  "194": Aprobación de despliegues y control de costos
+  "195": Los métodos y el conocimiento de tu equipo, cargados en cada ejecución
+  "196": Comprobaciones, revisión y aceptación
+  "197": CI o autocomprobación del agente, revisión con el modelo de otro proveedor, vistas previas y aceptación humana
+  "198": Despliega en entornos de prueba alojados por Studio y revierte si algo sale mal
+  "199": Tareas completadas, tiempo de ciclo, tasa de retrabajo y costo por tarea, comparados con el periodo anterior
+  "200": Decide desde el móvil
+  "201": Añade Studio a la pantalla de inicio para crear solicitudes, responder preguntas y aceptar trabajo, con una notificación cuando se te necesita
+  "202": Planes de calidad
+  "203": Control de calidad por proyecto, con 8 métodos de prueba integrados
+  "204": Aprobación de despliegues
+  "205": Los despliegues y reversiones en entornos protegidos necesitan un aprobador
+  "206": Elige Professional para desarrollar y entregar sistemas de negocio con Studio. Incluye todas las capacidades principales de Studio y un despliegue a cargo del equipo de NocoBase, con primera respuesta de soporte en menos de 12&nbsp;horas.
+  "207": Elige Enterprise si tus sistemas necesitan clúster y alta disponibilidad, multiinquilino, registros de auditoría o entrega en entornos aislados, o si el desarrollo requiere planes de calidad, aprobación de despliegues y control de costos. Incluye 3 días de despliegue, formación e implementación, y primera respuesta en menos de 4&nbsp;horas.
+  "208": "Para sistemas críticos: alta disponibilidad, entrega en entornos aislados y control del desarrollo."

@@ -175,3 +175,29 @@ strings:
   "179": Puis-je déployer Studio pour mes clients ?
   "180": Non. Studio est réservé à l’entreprise titulaire de la licence. Vous pouvez livrer à vos clients les applications développées avec Studio, mais pas déployer Studio pour eux.
   "181": Tant que votre licence NocoBase 2 Professional ou Enterprise est dans sa période de mises à jour, vous pouvez utiliser NocoBase 3 sans racheter. L’édition Standard n’est pas concernée. Les versions 2.x et 3.x sont maintenues en parallèle.
+  "182": Community
+  "183": Professional
+  "184": Pilotez une équipe d’agents dans Studio pour développer et livrer vos systèmes métier en continu.
+  "185": NocoBase Studio, avec une équipe d’agents qui fait avancer plusieurs projets à la fois
+  "186": Vérifications, revue et validation humaine avant chaque fusion
+  "187": Skills, base de connaissances et mémoire de projet, pour que personnes et agents reprennent le travail sans rien perdre
+  "188": Soumettez des demandes, répondez aux questions et validez depuis votre téléphone
+  "189": Enterprise
+  "190": Systèmes critiques
+  "192": Cluster et haute disponibilité, architecture multi-tenant, journaux d’audit et livraison hors ligne
+  "193": Plans qualité par projet, avec 8 méthodes de test intégrées
+  "194": Approbation des déploiements et maîtrise des coûts
+  "195": Les méthodes et connaissances de votre équipe, chargées à chaque exécution
+  "196": Vérifications, revue et validation
+  "197": CI ou auto-vérification par l’agent, revue par le modèle d’un autre fournisseur, aperçus et validation humaine
+  "198": Déployez dans des environnements de test hébergés par Studio, et revenez en arrière en cas de problème
+  "199": Tâches terminées, temps de cycle, taux de reprise et coût par tâche, comparés à la période précédente
+  "200": Décidez depuis votre téléphone
+  "201": Ajoutez Studio à l’écran d’accueil pour soumettre des demandes, répondre aux questions et valider, avec une notification quand on a besoin de vous
+  "202": Plans qualité
+  "203": Contrôle qualité par projet, avec 8 méthodes de test intégrées
+  "204": Approbation des déploiements
+  "205": Les déploiements et retours arrière dans un environnement protégé doivent être approuvés
+  "206": Choisissez Professional pour développer et livrer vos systèmes métier avec Studio. L’édition comprend toutes les fonctions essentielles de Studio et un déploiement réalisé par l’équipe NocoBase, avec une première réponse du support sous 12&nbsp;heures.
+  "207": Choisissez Enterprise si vos systèmes exigent cluster et haute disponibilité, multi-tenant, journaux d’audit ou livraison hors ligne, ou si le développement nécessite des plans qualité, l’approbation des déploiements et la maîtrise des coûts. L’édition comprend 3 jours de déploiement, de formation et de mise en œuvre, et une première réponse sous 4&nbsp;heures.
+  "208": "Pour les systèmes critiques : haute disponibilité, livraison hors ligne et développement maîtrisé."

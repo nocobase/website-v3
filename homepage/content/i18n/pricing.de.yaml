@@ -174,3 +174,4 @@ strings:
   "178": Ja. Die Apps, die Sie mit Professional oder Enterprise entwickeln, können Sie an beliebig viele Kunden verkaufen, ohne zusätzliche Gebühren an NocoBase. Professional oder Enterprise selbst dürfen Sie jedoch nicht an Unternehmen ohne eigene Lizenz weitergeben.
   "179": Kann ich Studio für meine Kunden bereitstellen?
   "180": Nein. Studio darf nur vom lizenzierten Unternehmen genutzt werden. Die damit entwickelten Apps können Sie an Ihre Kunden ausliefern, Studio selbst jedoch nicht für sie bereitstellen.
+  "181": Solange Ihre NocoBase-2-Lizenz der Edition Professional oder Enterprise noch im Upgrade-Zeitraum ist, können Sie NocoBase 3 ohne erneuten Kauf nutzen. Die Standard-Edition ist davon ausgenommen. 2.x und 3.x werden parallel gepflegt.

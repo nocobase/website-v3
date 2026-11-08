@@ -692,6 +692,7 @@ items:
     en: As long as your NocoBase 2 commercial license is still within its upgrade period, you can use NocoBase 3 without buying again. Both 2.x and 3.x are maintained in parallel.
     zh: 只要 NocoBase 2 商业版还在升级有效期内，就可以直接使用 NocoBase 3，不用重新购买。2.x 和 3.x 会长期并行维护。
     where: sec
+    unused: true
   "170":
     en: Not sure which edition fits?
     zh: 拿不准选哪个版本？
@@ -735,4 +736,8 @@ items:
   "180":
     en: No. Studio may only be used by the licensed company. You can deliver the apps you build with it to your clients, but you can’t deploy Studio itself for them.
     zh: 不能。Studio 仅限获得授权的公司使用。你可以把用 Studio 开发的业务应用交付给客户，但 Studio 本身不能部署给客户使用。
+    where: sec
+  "181":
+    en: As long as your NocoBase 2 Professional or Enterprise license is still within its upgrade period, you can use NocoBase 3 without buying again. This does not include the Standard edition. Both 2.x and 3.x are maintained in parallel.
+    zh: 只要 NocoBase 2 专业版或企业版还在升级有效期内，就可以直接使用 NocoBase 3，不用重新购买。标准版不包含在内。2.x 和 3.x 会长期并行维护。
     where: sec

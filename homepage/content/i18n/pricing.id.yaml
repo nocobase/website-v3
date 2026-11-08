@@ -174,3 +174,4 @@ strings:
   "178": Bisa. Aplikasi yang Anda bangun dengan Professional atau Enterprise boleh dijual ke klien sebanyak apa pun, tanpa biaya tambahan ke NocoBase. Namun Professional atau Enterprise itu sendiri tidak boleh didistribusikan ke perusahaan yang tidak memiliki lisensi.
   "179": Bisakah saya men-deploy Studio untuk klien?
   "180": Tidak. Studio hanya boleh digunakan oleh perusahaan pemegang lisensi. Anda bisa menyerahkan aplikasi yang dibangun dengan Studio kepada klien, tetapi Studio itu sendiri tidak boleh di-deploy untuk mereka.
+  "181": Selama lisensi NocoBase 2 Professional atau Enterprise Anda masih dalam masa upgrade, Anda bisa memakai NocoBase 3 tanpa membeli lagi. Edisi Standard tidak termasuk. Versi 2.x dan 3.x dipelihara secara paralel.

@@ -174,3 +174,4 @@ strings:
   "178": 네. Professional이나 Enterprise로 개발한 업무 앱은 고객 수에 제한 없이 판매할 수 있으며, NocoBase에 추가 비용을 낼 필요가 없습니다. 다만 Professional이나 Enterprise 자체를 라이선스가 없는 회사에 배포할 수는 없습니다.
   "179": Studio를 고객에게 배포해 사용하게 할 수 있나요?
   "180": 아니요. Studio는 라이선스를 받은 회사만 사용할 수 있습니다. Studio로 개발한 업무 앱은 고객에게 납품할 수 있지만, Studio 자체를 고객에게 배포할 수는 없습니다.
+  "181": NocoBase 2 Professional 또는 Enterprise 라이선스의 업그레이드 기간이 남아 있다면 다시 구매하지 않고 NocoBase 3을 사용할 수 있습니다. Standard 에디션은 포함되지 않습니다. 2.x와 3.x는 장기간 병행 유지보수됩니다.

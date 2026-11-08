@@ -72,6 +72,7 @@ export function navSpec(active, { stars = githubStars() } = {}) {
           // 更新日志：还没有已发布的 v3 版本，暂不开放，置灰不可点击；有内容后改回 { href: 'changelog.html', … }，页脚里的也一起改
           { icon: 'history', title: T('更新日志', 'Changelog'), desc: T('每次版本迭代的新能力与改进', 'What shipped in every release'), soon: '' },
           { href: FORUM, icon: 'messages-square', title: T('社区', 'Community'), desc: T('在论坛提问、交流经验与反馈建议', 'Ask questions and share patterns'), external: true },
+          { href: 'license.html', icon: 'scale', title: T('许可协议', 'License Agreement'), desc: T('开源与商业许可的权利和义务', 'Open source and commercial license terms'), active: on('license') },
           { href: 'contact.html', icon: 'mail', title: T('联系我们', 'Contact Us'), desc: T('商务合作、产品咨询与技术支持', 'Partnerships, product questions, and support') },
         ],
       },
@@ -100,7 +101,7 @@ export function navSpec(active, { stars = githubStars() } = {}) {
     tagline: T('AI + NocoBase，构建可靠的业务系统。', 'AI + NocoBase. Build reliable business systems.'),
     columns: [
       { title: T('产品', 'Products'), links: [...PRODUCTS.map(x => ({ href: x[1], label: x[3] })), { href: NOCODE, label: T('NocoBase 2 无代码 ↗', 'NocoBase 2 No-code ↗'), external: true }] },
-      { title: T('定价与许可', 'Pricing &amp; License'), links: [{ href: 'pricing.html', label: T('版本与价格', 'Editions &amp; Pricing') }, { label: T('许可协议', 'License') }, { href: NOCODE, label: 'NocoBase 2.x ↗', external: true }] },
+      { title: T('定价与许可', 'Pricing &amp; License'), links: [{ href: 'pricing.html', label: T('版本与价格', 'Editions &amp; Pricing') }, { href: 'license.html', label: T('许可协议', 'License') }, { href: NOCODE, label: 'NocoBase 2.x ↗', external: true }] },
       { title: T('伙伴', 'Partners'), links: [{ href: 'partner.html', label: T('合作伙伴计划', 'Partner Program') }, { href: 'find-partner.html', label: T('寻找 NocoBase 伙伴', 'Find a Partner') }, { href: 'customers.html', label: T('客户案例', 'Customers') }] },
       { title: T('资源', 'Resources'), links: [{ href: DOCS, label: T('文档', 'Docs'), external: true }, { href: 'blog.html', label: T('博客', 'Blog') }, { label: T('更新日志', 'Changelog') }] },
       { title: T('联系', 'Connect'), links: [{ href: 'contact.html', label: T('联系我们', 'Contact Us') }, { href: FORUM, label: T('社区论坛', 'Forum'), external: true }, { href: GITHUB, label: 'GitHub', external: true }] },

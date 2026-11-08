@@ -53,7 +53,7 @@ items:
     unused: true
   "011":
     en: What do you want to do with NocoBase (choose all that apply)
-    zh: 你希望用 NocoBase 做什么（可多选）
+    zh: ""
     where: contact
   "012":
     en: Tell us about your team and your use cases for NocoBase
@@ -169,19 +169,19 @@ items:
   "035":
     en: Internal use for developing business systems or tools
     zh: ""
-    where: form-options
+    where: contact
   "036":
     en: Provide outsourcing services based on NocoBase
     zh: ""
-    where: form-options
+    where: contact
   "037":
     en: Develop commercial products based on NocoBase
     zh: ""
-    where: form-options
+    where: contact
   "038":
     en: Study or research
     zh: ""
-    where: form-options
+    where: contact
   "039":
     en: Your email
     zh: ""

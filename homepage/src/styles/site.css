@@ -1214,6 +1214,7 @@ html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],
 .bookf .opts legend { width: 100%; margin-bottom: 6px; font-size: 13.5px; color: var(--on-deep-2); }
 .bookf .opts label { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--deep-line); background: oklch(1 0 0 / 0.06); color: var(--on-deep); font-size: 13.5px; cursor: pointer; }
 .bookf .opts input { width: auto; accent-color: var(--deep-accent); }
+.bookf .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 @media (max-width: 640px) { .bookf .two { grid-template-columns: minmax(0, 1fr); } }
 /* 「我的 Agent」页面（首页 Hero 与 Studio 页共用） */
 .hwin { height: 570px; grid-template-columns: 184px 244px minmax(0, 1fr) 256px; grid-template-rows: minmax(0, 1fr); }

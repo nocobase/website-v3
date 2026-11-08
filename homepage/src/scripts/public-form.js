@@ -1,4 +1,4 @@
-/* 把页面里的表单提交到 NocoBase 2 的公开表单。
+/* 把页面里的表单（合作伙伴页 partner、find-partner）提交到 NocoBase 2 的公开表单。联系页的表单直接提交到 Customer Portal，见 lead-form.js。
    表单上写 data-public-form-zh / data-public-form-en，值为「实例地址|表单 key」：中文页提交到前者，其他语言提交到后者。
    流程与公开表单页面相同：先用 publicForms:getMeta 换取一小时有效的 token，再带 X-Form-Token 调用 <数据表>:publicSubmit。
    只在当前语言显示的字段放在 data-lang-only="zh|en" 的元素里，另一种语言下会被禁用，不参与校验和提交。

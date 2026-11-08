@@ -6,6 +6,8 @@ export { ALL, BY_CODE, LANGS } from '@nocobase/site-shared/languages';
 
 export const ORIGIN = (process.env.SITE_ORIGIN || 'https://www.nocobase.com').replace(/\/+$/, '');
 export const ZH_EN = ['en', 'zh'];
+// 联系页表单提交线索的 Customer Portal 地址（src/scripts/lead-form.js）；构建时用环境变量 LEADS_ENDPOINT 换成预览或本地调试的地址
+export const LEADS_ENDPOINT = process.env.LEADS_ENDPOINT || 'https://customer.nocobase.com/api/leads/submissions';
 // 中文、英文以外的语言，译文在 content/i18n/<组>.<语言>.yaml
 export const TRANSLATED = ALL.filter(c => c !== 'en' && c !== 'zh');
 

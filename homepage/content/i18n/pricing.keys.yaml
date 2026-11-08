@@ -895,3 +895,7 @@ items:
     en: "For critical systems: high availability, air-gapped delivery, and development controls."
     zh: 关键业务系统需要高可用和内网交付，开发过程需要质量、审批和成本管控。
     where: tight
+  "209":
+    en: Multi-app architecture
+    zh: 多应用架构
+    where: tint

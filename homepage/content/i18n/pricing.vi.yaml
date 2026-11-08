@@ -201,3 +201,4 @@ strings:
   "206": "Phát triển và bàn giao hệ thống nghiệp vụ bằng Studio thì chọn Professional: gồm toàn bộ năng lực cốt lõi của Studio và một lần triển khai do đội ngũ NocoBase thực hiện, phản hồi hỗ trợ đầu tiên trong vòng 12&nbsp;giờ."
   "207": "Hệ thống cần cụm và tính sẵn sàng cao, đa tenant, nhật ký kiểm toán hoặc triển khai ngoại tuyến, hoặc quá trình phát triển cần kế hoạch chất lượng, phê duyệt triển khai và kiểm soát chi phí thì chọn Enterprise: gồm 3 ngày triển khai, đào tạo và áp dụng, phản hồi đầu tiên trong vòng 4&nbsp;giờ."
   "208": "Cho hệ thống trọng yếu: tính sẵn sàng cao, triển khai ngoại tuyến và kiểm soát phát triển."
+  "209": Kiến trúc đa ứng dụng

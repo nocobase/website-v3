@@ -34,6 +34,8 @@ In NocoBase, you usually only need to implement the parts specific to your busin
 - **Database**: define the customer data structure.
 - **Plugins**: reuse existing authentication and permission capabilities.
 
+For records such as orders that advance through stages driven by people, automatic processing or external results, see [Workflow](business-workflows.md).
+
 ## Where does the code go?
 
 A NocoBase application organizes code by responsibility:

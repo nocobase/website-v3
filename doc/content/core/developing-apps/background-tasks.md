@@ -18,6 +18,8 @@ The [order report example](https://github.com/nocobase/docs-examples-v3/tree/3cf
 
 Resolve the application's existing service through `jobExecutorServiceToken` from `@nocobase/app-server/jobs`. Ordinary jobs and schedules use the `jobs` configuration. For messaging capabilities such as delayed submission or priorities, see [Queues](../framework/background/queues.md), which use separate configuration.
 
+When processing advances a record through stages involving human actions, external results and waiting deadlines, see [Workflow](business-workflows.md). It reuses application job executors while maintaining transition rules and processing history.
+
 ## Define and submit background jobs
 
 ### Define the job and its parameters

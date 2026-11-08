@@ -286,6 +286,8 @@ A callback failure cannot undo committed data or make the transaction Promise re
 
 Run `pnpm test -t post-commit` to reproduce a callback throwing. The order still commits, and repeating confirmation does not replay the callback. Reliable delivery requires persisting pending deliveries alongside business changes and providing retry and recovery. `afterCommit()` does not provide that guarantee itself.
 
+For orders that advance through declared stages and persist post-commit work and its retry outcomes, integrate a [workflow](business-workflows.md). Workflow-managed state changes through its transition entry points rather than the direct updates used in this example.
+
 ### Return results and handle business errors
 
 The service returns `OrderView` on success and throws business errors on failure, without setting HTTP statuses. The example's `OrderError` provides stable error codes for callers:

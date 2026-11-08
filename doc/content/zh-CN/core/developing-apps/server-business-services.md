@@ -286,6 +286,8 @@ return this.database.transaction(async (connection) => {
 
 运行 `pnpm test -t post-commit` 可复现回调抛错：订单仍然确认成功，再次确认也不会重放回调。需要可靠投递时，应将待投递记录与业务变更一起持久化，并实现重试与恢复；`afterCommit()` 本身不提供这一保证。
 
+当订单需要按声明的阶段推进，并持久化提交后的工作及其重试结果时，可接入[工作流](business-workflows.md)。受工作流管理的状态通过其流转入口更新，不再沿用本例直接更新状态的方式。
+
 ### 返回结果与处理业务错误
 
 服务成功时返回 `OrderView`，失败时抛出业务错误，不在服务内设置 HTTP 状态。示例的 `OrderError` 为调用方提供稳定的错误代码：

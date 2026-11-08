@@ -5,8 +5,8 @@
 //
 // 条目的来源：
 // - home：首页 content/pages/home.html 上写死的 <t-en>（不含模板里的界面示意和脚本画的图），以及脚本里的 M(中文, 英文)、Hero 收尾卡片、Core 图的能力和模块；
-// - site：导航和页脚（src/lib/nav.mjs 的 T(中文, 英文)），表单脚本 src/scripts/public-form.js 的 T(中文, 英文)；
-// - 各子页面：正文里的 <t-en>（同一段英文在页面上意思不同时写 <t-en data-k="…"> 给它单独的键），表单上 data-ph-en、data-text-en、data-ok-en 的英文，联系页下拉的选项（FORM_OPTIONS），以及页面标题和描述。
+// - site：导航和页脚（src/lib/nav.mjs 的 T(中文, 英文)），表单脚本 src/scripts/public-form.js 和 lead-form.js 的 T(中文, 英文)；
+// - 各子页面：正文里的 <t-en>（同一段英文在页面上意思不同时写 <t-en data-k="…"> 给它单独的键），表单上 data-ph-en、data-text-en、data-ok-en 的英文，以及页面标题和描述（联系页的多选选项就写在页面的 <t-en> 里）。
 // 界面示意图（.fit-in 和 <template> 里）不翻译：繁体中文显示繁体中文界面，文字表在 <组>.zh-TW.yaml 的 ui（简体中文 → 繁体中文），由人填写，用语见 content/i18n/ui-terms.md。
 //
 // 已有条目的编号不变：英文原文没变的沿用原编号；页面上已经没有的标记 unused: true（译文文件里的那条可以留着）；新出现的追加在末尾，各语言要补上新编号的译文。
@@ -20,13 +20,6 @@ import { CONTENT, HOMEPAGE } from '../src/lib/paths.mjs';
 import { collectText, navSpec } from '../src/lib/nav.mjs';
 import { readYaml, writeYaml } from '../src/lib/yaml-io.mjs';
 
-// 联系页的选择题，选项由 public-form.js 从 NocoBase 2 的英文表单（service-en，ect266yzsld）读取：what_to_do 字段的 enum
-const FORM_OPTIONS = {
-  contact: [
-    'Internal use for developing business systems or tools', 'Provide outsourcing services based on NocoBase',
-    'Develop commercial products based on NocoBase', 'Study or research',
-  ],
-};
 const HAN = /[一-鿿¥]/;
 const homeSrc = () => readFileSync(join(CONTENT, 'pages', 'home.html'), 'utf8');
 
@@ -62,7 +55,6 @@ function pageItems(group) {
     const zh = new RegExp(`\\bdata-${m[1]}-zh="([^"]*)"`).exec(m[0]);
     items.push({ en: unescape(m[2]), zh: zh ? unescape(zh[1]) : '', where: 'form' });
   }
-  items.push(...(FORM_OPTIONS[group] || []).map(en => ({ en, zh: '', where: 'form-options' })));
   const t = /<title data-zh="([^"]*)" data-en="([^"]*)"/.exec(src), d = /<meta name="description"[^>]*data-zh="([^"]*)" data-en="([^"]*)"/.exec(src);
   return { items, meta: { title: { zh: t[1], en: t[2] }, description: { zh: d[1], en: d[2] } } };
 }
@@ -71,7 +63,7 @@ function siteItems() {
   const { header, footer } = navSpec('');
   const nav = [...collectText(header), ...collectText(footer)].map(([n, k]) => n[k]).join('\n');
   const items = [...nav.matchAll(/<t-zh>(.*?)<\/t-zh><t-en>(.*?)<\/t-en>/g)].map(m => ({ en: m[2], zh: m[1], where: 'site' }));
-  const js = readFileSync(join(HOMEPAGE, 'src', 'scripts', 'public-form.js'), 'utf8'), unq = x => x.replaceAll("\\'", "'");
+  const js = ['public-form.js', 'lead-form.js'].map(f => readFileSync(join(HOMEPAGE, 'src', 'scripts', f), 'utf8')).join('\n'), unq = x => x.replaceAll("\\'", "'");
   for (const m of js.matchAll(/\bT\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*\)/g)) items.push({ en: unq(m[2]), zh: unq(m[1]), where: 'form' });
   return { items, meta: null };
 }

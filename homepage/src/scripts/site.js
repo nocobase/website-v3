@@ -3,6 +3,7 @@
 import './lucide.js';
 
 if (document.querySelector('form[data-public-form-zh][data-public-form-en]')) import('./public-form.js');
+if (document.querySelector('form[data-lead-form]')) import('./lead-form.js');
 
 (function () {
   var $ = function (id) { return document.getElementById(id); };

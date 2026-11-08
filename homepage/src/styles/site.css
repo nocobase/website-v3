@@ -878,6 +878,8 @@ section.sec.tint { margin-top: 160px; padding-block: 128px 136px; background: ok
 .bookf .form-msg[data-state="error"] { color: oklch(0.8 0.12 30); }
 @media (max-width: 900px) { .bookf { min-width: 0; } }
 .plan ul li.hd { display: block; }
+.plan ul li.grp { margin-top: 8px; }
+.plan ul li.grp .h { font-weight: 600; }
 /* ======================= 博客 ======================= */
 .bfilter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
 .bfilter button { height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--rule-2); background: var(--card); font-size: 14px; color: var(--ink-2); cursor: pointer; }

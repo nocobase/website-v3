@@ -202,3 +202,8 @@ strings:
   "207": Pilih Enterprise jika sistem Anda memerlukan klaster dan ketersediaan tinggi, multi-tenant, log audit, atau pengiriman air-gapped, atau jika pengembangan memerlukan rencana kualitas, persetujuan deploy, dan kontrol biaya. Sudah termasuk 3 hari deploy, pelatihan, dan implementasi, dengan respons pertama dalam 4&nbsp;jam.
   "208": "Untuk sistem kritis: ketersediaan tinggi, pengiriman air-gapped, dan kontrol pengembangan."
   "209": Arsitektur multi-aplikasi
+  "210": Tim agen yang menggerakkan banyak proyek sekaligus
+  "211": "Plugin komersial: persetujuan lanjutan dan SSO perusahaan"
+  "212": Layanan
+  "213": Klaster dan ketersediaan tinggi, arsitektur multi-tenant dan multi-aplikasi
+  "214": Log audit dan pengiriman air-gapped

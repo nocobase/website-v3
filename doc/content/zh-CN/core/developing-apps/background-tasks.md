@@ -18,6 +18,8 @@ description: 在应用中定义和投递后台任务，配置定时执行、失�
 
 通过 `@nocobase/app-server/jobs` 的 `jobExecutorServiceToken` 获取应用已有的服务。普通任务和周期调度使用 `jobs` 配置；需要延迟投递、优先级等消息处理能力时，参见使用独立配置的[队列](../framework/background/queues.md)。
 
+如果后台处理需要围绕订单等记录的阶段推进，并处理人员操作、外部结果和等待超时，参见[工作流](business-workflows.md)。工作流复用应用的任务执行器，同时维护记录的流转规则与处理历史。
+
 ## 定义和投递后台任务
 
 ### 定义任务与参数

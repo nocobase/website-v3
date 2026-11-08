@@ -23,6 +23,10 @@
     },
     {
       "type": "page",
+      "path": "../business-workflows"
+    },
+    {
+      "type": "page",
       "path": "../server-localization"
     }
   ]

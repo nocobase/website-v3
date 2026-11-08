@@ -58,6 +58,8 @@ Reading before updating does not automatically prevent lost updates. The project
 
 Mail, HTTP calls and job submission do not roll back with the database. For eventual delivery after commit, persist pending-delivery records in the same transaction, then use a recoverable background process with business idempotency keys. See [Background jobs and scheduled execution](background-tasks.md).
 
+For persisting record transitions, history and queued post-commit work together, see [Workflow](business-workflows.md). External calls still run after commit, and the application must integrate external idempotency and result reconciliation.
+
 ## Verify persisted results
 
 In isolated databases, cover successful commit, failure after the first write, and after-commit callback failure. Read data again after failures to establish whether it rolled back; asserting an exception alone is insufficient.

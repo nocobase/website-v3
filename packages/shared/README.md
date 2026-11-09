@@ -6,7 +6,7 @@ What the NocoBase website (`homepage/`) and the docs site (`doc/`) have in commo
 | --- | --- |
 | `src/Header.astro`, `src/HeaderItem.astro` | The top navigation. Fully driven by props: the logo, an optional version switch next to it, the menu (dropdowns or plain links), the mobile menu links, the language list with the address of the current page in each language, and the links on the right (such as GitHub and its star count). All text is HTML that the caller has already localized, and all addresses are final. The website passes product menus; the docs site passes its section tabs as plain menu links. Three optional props are for the docs only: `label` (the "Docs" text after the version switch), `search` (a search button with `data-search-open`; the page's script opens the dialog) and the named slot `mobile` (the sidebar, shown in the mobile menu panel). Without them the output is the website's. |
 | `src/Footer.astro` | The footer: logo, tagline, link columns and the copyright line, also all props. |
-| `src/Analytics.astro` | Google Analytics 4, Baidu Tongji and Microsoft Clarity. Each site passes its own IDs (`ga4`, `baidu`, `clarity`); one that is missing is not loaded. |
+| `src/Analytics.astro` | Google Analytics 4 and Microsoft Clarity. Each site passes its own IDs (`ga4`, `clarity`); one that is missing is not loaded. |
 | `src/shell.js` | The header's behavior: the mobile menu (it closes when a link in it is clicked) and the mobile language select. Import it from a bundled `<script>`. |
 | `src/styles/tokens.css` | Color and font variables, the reset, per-language fonts and line breaking. |
 | `src/styles/shell.css` | Styles of the header, language menu, version switch and footer. |

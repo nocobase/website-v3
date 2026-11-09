@@ -69,7 +69,7 @@ export default defineDocsConfig({
   sections: [{ id: 'getting-started', dir: 'getting-started', extra: ['index'], home: 'getting-started/what-is-nocobase', title: { en: 'Getting started', 'zh-CN': '开始', 'ja-JP': 'はじめに' } }, { id: 'core', dir: 'core', home: 'core/index', ... }, ...],
   nav: { github, website, versionSwitch },
   search: { provider: 'pagefind' },
-  analytics: { ga4, baidu, clarity },
+  analytics: { ga4, clarity },
 });
 ```
 

@@ -14,7 +14,7 @@ const FORUM = 'https://forum.nocobase.com/';
 const LOGO = 'https://static-docs.nocobase.com/logo-nocobase.png';
 
 // 访问统计：Google Analytics 4、百度统计、Microsoft Clarity，编号和旧官网 nocode.nocobase.com 的相同，数据进同一个账号，报表里按「主机名」区分新旧官网。文档站在自己的配置里写自己的编号。
-export const ANALYTICS = { ga4: 'G-237XXSVYHE', baidu: 'acfb678ac7bbc9df89e1aa4327e47907', clarity: 'y0qzc9z3xg' };
+export const ANALYTICS = { ga4: 'G-237XXSVYHE', clarity: 'y0qzc9z3xg' };
 
 // 短句取自《NocoBase 产品定义与标准表述》
 const PRODUCTS = [

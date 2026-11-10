@@ -19,6 +19,7 @@ import { askUi } from '../lib/ask-ui.mjs';
 
 export interface Props {
   home?: boolean;
+  catalog?: boolean;
   lang: string;
   title: string;
   description?: string;
@@ -32,7 +33,7 @@ export interface Props {
   /** Section title shown as a filter in search */
   sectionTitle?: string;
 }
-const { home = false, lang, title, description, sectionId, pageKey, noindex = false, searchable = false, sectionTitle } = Astro.props as Props;
+const { home = false, catalog = false, lang, title, description, sectionId, pageKey, noindex = false, searchable = false, sectionTitle } = Astro.props as Props;
 const site = getSite();
 const { config } = site;
 const ui = config.byCode[lang].ui;
@@ -42,6 +43,11 @@ const abs = (path: string) => site.absolute(path);
 const alternates = pageKey ? config.languages.filter(l => site.page(l.code, pageKey)) : [];
 const siteTitle = config.siteTitle(lang);
 const section = !home && sectionId ? site.sections(lang).find(s => s.id === sectionId) : undefined;
+// Keep the archive menu available on archived articles, outside the new course navigation.
+const navigation = section?.tree.filter(node =>
+  sectionId !== 'guides' || pageKey?.startsWith('guides/legacy/') ||
+  !(node.type === 'group' && node.children.some(child => child.type === 'folder' && child.dir === 'guides/legacy'))
+) ?? [];
 const hasToc = !home && Astro.slots.has('toc');
 const search = ui.search;
 const chat = askUi[lang] || askUi.en;
@@ -68,15 +74,15 @@ const chat = askUi[lang] || askUi.en;
 <link rel="icon" type="image/png" sizes="16x16" href="https://static-docs.nocobase.com/nocobase-favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="https://static-docs.nocobase.com/nocobase-apple-touch-icon.png">
 </head>
-<body class:list={{ 'docs-home': home }}>
+<body class:list={{ 'docs-home': home, 'docs-catalog': catalog }}>
 <div class="doc-page">
 <a class="skip-link" href="#content">{ui.skip}</a>
 <Header {...header}>
 {config.ask?.endpoint ? <button slot="action" class="plain doc-chat-trigger" type="button" data-chat-open aria-label={chat.label} aria-controls="docChat" aria-expanded="false" aria-haspopup="dialog"><Icon name="sparkles" /><span>{chat.label}</span></button> : <button slot="action" class="search-btn" type="button" data-search-open aria-label={search.label}><Icon name="search" /><span class="search-text">{search.placeholder}</span>{search.shortcut && <kbd>{search.shortcut}</kbd>}</button>}
-{section && <nav slot="mobile" class="doc-nav doc-nav-m" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav>}
+{section && <nav slot="mobile" class="doc-nav doc-nav-m" aria-label={ui.sidebar}><Sidebar nodes={navigation} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav>}
 </Header>
 <div class:list={['doc-layout', { 'no-side': !section, 'doc-home-layout': home }]}>
-{section && <aside class="doc-side"><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav></aside>}
+{section && <aside class="doc-side"><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={navigation} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav></aside>}
 {section && <script is:inline>
 // 侧栏在第一次绘制前就定好滚动位置，切换页面时不跳：先恢复同一侧栏上次的位置（按侧栏第一个链接区分板块和语言），当前页不在可视范围内再把它滚到上方三分之一处
 (() => {

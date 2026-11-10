@@ -10,7 +10,7 @@ metaDescription: "Explore the documentation map and reading routes for applicati
 | [Getting started](what-is-nocobase.md) | Concepts, your first app, Studio collaboration, learning path | Your first encounter with NocoBase 3 |
 | [Core manual](../core/index.md) | Application development, using and developing plugins, framework, deployment, reference | Look up the feature you are developing or maintaining |
 | [Studio manual](../studio/index.md) | Installation, member access, tasks, projects, Agents, quality, releases, administration, reference | Look up operations for your role |
-| [Project tutorials](../guides/build-reliable-enterprise-apps.md) | Environment and Agent selection, Core application development, Studio collaboration, best practices, appendices | Follow a project through successive stages |
+| [Project tutorials](../guides/legacy/build-reliable-enterprise-apps.md) | Environment and Agent selection, Core application development, Studio collaboration, best practices, appendices | Follow a project through successive stages |
 | [FAQ](../faq/from-v2.md) | NocoBase 2 and 3 differences, feature mapping, migration | Understand the relationship between versions |
 
 ## Complete your first walkthrough
@@ -38,7 +38,7 @@ Studio's reference section contains statuses, permissions, Agent execution rules
 
 ## Follow a complete project
 
-[Build reliable business systems](../guides/build-reliable-enterprise-apps.md) follows an asset-management application through environment setup, design, device management, requests and approvals, roles, acceptance, and deployment. It then introduces Studio collaboration, shared knowledge, and releases.
+[Build reliable business systems](../guides/legacy/build-reliable-enterprise-apps.md) follows an asset-management application through environment setup, design, device management, requests and approvals, roles, acceptance, and deployment. It then introduces Studio collaboration, shared knowledge, and releases.
 
 Use this route for sustained practice across a whole project. If you have completed the quickstart, continue from the stage that matches your experience and consult the manuals for specific mechanisms.
 

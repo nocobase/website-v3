@@ -176,7 +176,7 @@ export default defineDocsConfig({
     { id: 'getting-started', dir: 'getting-started', extra: ['index'], home: 'getting-started/what-is-nocobase', title: { en: 'Getting started', 'zh-CN': '开始', 'ja-JP': 'はじめに' } },
     { id: 'core', dir: 'core', home: 'core/index', title: { en: 'Core', 'zh-CN': 'Core', 'ja-JP': 'Core' } },
     { id: 'studio', dir: 'studio', home: 'studio/index', title: { en: 'Studio', 'zh-CN': 'Studio', 'ja-JP': 'Studio' } },
-    { id: 'guides', dir: 'guides', home: 'guides/build-reliable-enterprise-apps', title: { en: 'Tutorials', 'zh-CN': '教程', 'ja-JP': 'チュートリアル' } },
+    { id: 'guides', dir: 'guides', home: 'guides/index', title: { en: 'Tutorials', 'zh-CN': '教程', 'ja-JP': 'チュートリアル' } },
     { id: 'faq', dir: 'faq', home: 'faq/from-v2', title: { en: 'FAQ', 'zh-CN': 'FAQ', 'ja-JP': 'FAQ' } },
   ],
   nav: {

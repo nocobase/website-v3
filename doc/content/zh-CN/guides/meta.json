@@ -1,104 +1,97 @@
 {
   "pages": [
     {
+      "type": "page",
+      "path": "index"
+    },
+    {
       "type": "group",
-      "title": "起步",
+      "title": "快速上手",
       "pages": [
         {
           "type": "page",
-          "path": "build-reliable-enterprise-apps"
+          "path": "crm/create-app",
+          "title": "1. 创建 CRM 应用"
         },
         {
           "type": "page",
-          "path": "prepare-environment"
+          "path": "crm/customers-and-follow-ups",
+          "title": "2. 开发客户跟进功能"
         },
         {
           "type": "page",
-          "path": "choose-agent-and-model"
+          "path": "crm/test-and-deliver",
+          "title": "3. 测试与交付应用"
         }
       ]
     },
     {
       "type": "group",
-      "title": "第一部分　用 Core 做出一个应用",
+      "title": "深入实战",
       "pages": [
         {
           "type": "page",
-          "path": "create-app"
+          "path": "crm/opportunities-and-quotes",
+          "title": "4. 商机与报价数据建模"
         },
         {
           "type": "page",
-          "path": "write-a-design-doc"
+          "path": "crm/sales-workspace",
+          "title": "5. 销售工作台 UI 搭建"
         },
         {
           "type": "page",
-          "path": "first-feature-devices"
+          "path": "crm/team-permissions",
+          "title": "6. 角色权限与客户访问控制"
         },
         {
           "type": "page",
-          "path": "requests-and-approval"
+          "path": "crm/quote-approvals",
+          "title": "7. 报价审批与待办"
         },
         {
           "type": "page",
-          "path": "roles-and-permissions"
+          "path": "crm/attachments-and-documents",
+          "title": "8. 附件管理与报价单生成"
         },
         {
           "type": "page",
-          "path": "accept-agent-work"
+          "path": "crm/notifications",
+          "title": "9. 业务通知与渠道接入"
         },
         {
           "type": "page",
-          "path": "deploy"
+          "path": "crm/email",
+          "title": "10. 邮箱接入与客户邮件"
+        },
+        {
+          "type": "page",
+          "path": "crm/scheduled-reminders",
+          "title": "11. 定时跟进与到期提醒"
+        },
+        {
+          "type": "page",
+          "path": "crm/ai-assistant",
+          "title": "12. AI 辅助客户跟进"
+        },
+        {
+          "type": "page",
+          "path": "crm/import-and-integrations",
+          "title": "13. 客户导入与 API 接入"
         }
       ]
     },
     {
-      "type": "group",
-      "title": "第二部分　在团队中使用 Studio",
-      "pages": [
-        {
-          "type": "page",
-          "path": "bring-into-studio"
-        },
-        {
-          "type": "page",
-          "path": "agent-team-request"
-        },
-        {
-          "type": "page",
-          "path": "business-colleagues"
-        },
-        {
-          "type": "page",
-          "path": "capture-knowledge"
-        },
-        {
-          "type": "page",
-          "path": "release"
-        }
-      ]
+      "type": "planned",
+      "title": "Studio"
     },
     {
       "type": "group",
-      "title": "最佳实践",
+      "title": "旧版教程",
       "pages": [
         {
-          "type": "page",
-          "path": "best-practices"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "title": "附录",
-      "pages": [
-        {
-          "type": "page",
-          "path": "prompts"
-        },
-        {
-          "type": "page",
-          "path": "upgrade-core"
+          "type": "folder",
+          "path": "legacy"
         }
       ]
     }

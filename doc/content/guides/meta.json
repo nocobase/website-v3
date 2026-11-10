@@ -1,104 +1,97 @@
 {
   "pages": [
     {
+      "type": "page",
+      "path": "index"
+    },
+    {
       "type": "group",
-      "title": "Getting started",
+      "title": "Quick start",
       "pages": [
         {
           "type": "page",
-          "path": "build-reliable-enterprise-apps"
+          "path": "crm/create-app",
+          "title": "1. Create a CRM app"
         },
         {
           "type": "page",
-          "path": "prepare-environment"
+          "path": "crm/customers-and-follow-ups",
+          "title": "2. Develop customer follow-up features"
         },
         {
           "type": "page",
-          "path": "choose-agent-and-model"
+          "path": "crm/test-and-deliver",
+          "title": "3. Test and deliver the app"
         }
       ]
     },
     {
       "type": "group",
-      "title": "Part 1: Build an app with Core",
+      "title": "Hands-on practice",
       "pages": [
         {
           "type": "page",
-          "path": "create-app"
+          "path": "crm/opportunities-and-quotes",
+          "title": "4. Model opportunity and quote data"
         },
         {
           "type": "page",
-          "path": "write-a-design-doc"
+          "path": "crm/sales-workspace",
+          "title": "5. Build the sales workspace UI"
         },
         {
           "type": "page",
-          "path": "first-feature-devices"
+          "path": "crm/team-permissions",
+          "title": "6. Role permissions and customer access"
         },
         {
           "type": "page",
-          "path": "requests-and-approval"
+          "path": "crm/quote-approvals",
+          "title": "7. Quote approvals and tasks"
         },
         {
           "type": "page",
-          "path": "roles-and-permissions"
+          "path": "crm/attachments-and-documents",
+          "title": "8. Attachments and quote documents"
         },
         {
           "type": "page",
-          "path": "accept-agent-work"
+          "path": "crm/notifications",
+          "title": "9. Business notifications and channel integration"
         },
         {
           "type": "page",
-          "path": "deploy"
+          "path": "crm/email",
+          "title": "10. Mailbox integration and customer emails"
+        },
+        {
+          "type": "page",
+          "path": "crm/scheduled-reminders",
+          "title": "11. Scheduled follow-ups and expiry reminders"
+        },
+        {
+          "type": "page",
+          "path": "crm/ai-assistant",
+          "title": "12. AI-assisted customer follow-ups"
+        },
+        {
+          "type": "page",
+          "path": "crm/import-and-integrations",
+          "title": "13. Customer imports and API integration"
         }
       ]
     },
     {
-      "type": "group",
-      "title": "Part 2: Use Studio in a team",
-      "pages": [
-        {
-          "type": "page",
-          "path": "bring-into-studio"
-        },
-        {
-          "type": "page",
-          "path": "agent-team-request"
-        },
-        {
-          "type": "page",
-          "path": "business-colleagues"
-        },
-        {
-          "type": "page",
-          "path": "capture-knowledge"
-        },
-        {
-          "type": "page",
-          "path": "release"
-        }
-      ]
+      "type": "planned",
+      "title": "Studio"
     },
     {
       "type": "group",
-      "title": "Best practices",
+      "title": "Legacy tutorials",
       "pages": [
         {
-          "type": "page",
-          "path": "best-practices"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "title": "Appendix",
-      "pages": [
-        {
-          "type": "page",
-          "path": "prompts"
-        },
-        {
-          "type": "page",
-          "path": "upgrade-core"
+          "type": "folder",
+          "path": "legacy"
         }
       ]
     }

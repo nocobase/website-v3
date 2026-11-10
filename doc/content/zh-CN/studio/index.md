@@ -31,8 +31,8 @@ Studio 提供完整的命令行工具，团队可以在本地 Coding Agent 中�
   新建项目，管理成员和设置、知识库和项目记忆，掌握项目进展。
 - [**Agent 管理**](configure/agents.md)
   启用 Agent，接入共享和个人运行环境，维护技能，查看用量。
-- [**质量管理（开发中）**](project/checks-and-review.md)
-  检查与评审，测试计划与质量报告。
+- [**质量管理**](quality/index.md)
+  制定测试计划，持续验证交付质量，通过报告和后续任务跟进问题。
 - [**发布管理**](release/overview.md)
   PR 预览、测试环境、版本与发布，部署到自己的服务器并记录生产版本。
 - [**系统管理**](admin/members-and-roles.md)

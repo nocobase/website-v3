@@ -3,7 +3,16 @@ title: Multi-portal example - ServiceHub
 metaDescription: Run the ServiceHub equipment service example to explore portal switching, independent layouts, role permissions, and collaboration around shared tickets.
 ---
 
-The [ServiceHub example repository](https://github.com/nocobase/app-example-multi-portal) models equipment service for coffee shops. Customers report faults, dispatchers assign engineers, and customers confirm the completed work. Each portal presents the information and actions its users need for the same ticket.
+ServiceHub models equipment service for coffee shops. Customers report faults, dispatchers assign engineers, and customers confirm the completed work. Each portal presents the information and actions its users need for the same ticket.
+
+<a class="doc-repo-card" href="https://github.com/nocobase/app-example-multi-portal">
+  <span class="doc-repo-card-content">
+    <strong>ServiceHub example repository</strong>
+    <span class="doc-repo-card-name">nocobase/app-example-multi-portal</span>
+    <span class="doc-repo-card-description">Complete source, sample data, and setup instructions</span>
+  </span>
+  <span class="doc-repo-card-action">View on GitHub <span aria-hidden="true">↗</span></span>
+</a>
 
 ![System administrator workbench](/assets/core/servicehub/admin-workbench.png)
 

@@ -3,7 +3,16 @@ title: 多门户示例 - ServiceHub
 metaDescription: 运行 ServiceHub 设备服务示例，体验同账号门户切换、独立布局、角色权限与跨门户工单协作。
 ---
 
-[ServiceHub 示例仓库](https://github.com/nocobase/app-example-multi-portal)以咖啡门店的设备服务为场景。客户提交报修，调度员分配工程师，工程师处理后由客户确认；同一张工单在不同门户中呈现各自需要的信息和操作。
+ServiceHub 以咖啡门店的设备服务为场景。客户提交报修，调度员分配工程师，工程师处理后由客户确认；同一张工单在不同门户中呈现各自需要的信息和操作。
+
+<a class="doc-repo-card" href="https://github.com/nocobase/app-example-multi-portal">
+  <span class="doc-repo-card-content">
+    <strong>ServiceHub 示例仓库</strong>
+    <span class="doc-repo-card-name">nocobase/app-example-multi-portal</span>
+    <span class="doc-repo-card-description">完整源码、初始化数据与运行说明</span>
+  </span>
+  <span class="doc-repo-card-action">在 GitHub 查看 <span aria-hidden="true">↗</span></span>
+</a>
 
 ![系统管理员工作台](/assets/core/servicehub/admin-workbench.png)
 

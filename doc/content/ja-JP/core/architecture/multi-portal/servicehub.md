@@ -3,7 +3,16 @@ title: マルチポータルの例 - ServiceHub
 metaDescription: ServiceHub の設備サービス例で、同じアカウントでのポータル切り替え、独立したレイアウト、ロール権限、チケットを共有する業務連携を体験します。
 ---
 
-[ServiceHub のサンプルリポジトリ](https://github.com/nocobase/app-example-multi-portal)は、コーヒーショップの設備サービスを扱います。顧客が修理を依頼し、配車担当者がエンジニアを割り当て、作業後に顧客が完了を確認します。同じチケットに対して、各ポータルが利用者に必要な情報と操作を提供します。
+ServiceHub は、コーヒーショップの設備サービスを扱います。顧客が修理を依頼し、配車担当者がエンジニアを割り当て、作業後に顧客が完了を確認します。同じチケットに対して、各ポータルが利用者に必要な情報と操作を提供します。
+
+<a class="doc-repo-card" href="https://github.com/nocobase/app-example-multi-portal">
+  <span class="doc-repo-card-content">
+    <strong>ServiceHub サンプルリポジトリ</strong>
+    <span class="doc-repo-card-name">nocobase/app-example-multi-portal</span>
+    <span class="doc-repo-card-description">ソースコード、サンプルデータ、実行手順</span>
+  </span>
+  <span class="doc-repo-card-action">GitHub で見る <span aria-hidden="true">↗</span></span>
+</a>
 
 ![システム管理者のワークベンチ](/assets/core/servicehub/admin-workbench.png)
 

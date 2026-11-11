@@ -5,7 +5,7 @@ metaDescription: 运行 ServiceHub 设备服务示例，体验同账号门户切
 
 [ServiceHub 示例仓库](https://github.com/nocobase/app-example-multi-portal)以咖啡门店的设备服务为场景。客户提交报修，调度员分配工程师，工程师处理后由客户确认；同一张工单在不同门户中呈现各自需要的信息和操作。
 
-![经理在调度与工程师门户之间切换](/assets/core/servicehub/portal-switching.png)
+![系统管理员工作台](/assets/core/servicehub/admin-workbench.png)
 
 ## 示例场景与门户分工
 
@@ -77,6 +77,8 @@ pnpm dev
 
 点击 **Switch portal → Engineer workspace**。无需退出登录，页面变为任务卡片和底部导航，只显示派给 Morgan Brooks 的任务。初始有两张待处理任务；**Completed work** 初始为空，客户确认完成后才会出现记录。
 
+![经理在调度与工程师门户之间切换](/assets/core/servicehub/portal-switching.png)
+
 <img src="/assets/core/servicehub/engineer-mobile.png" alt="工程师手机端的门户切换、任务卡片和底部导航" width="390" />
 
 用 `customer1` 登录，可以看到另一种顶部导航布局。**Overview** 展示欢迎区和概览，**My devices** 为每台设备提供报修入口，**Service tickets** 用于查询进度和确认服务。
@@ -100,8 +102,6 @@ ServiceHub 自行实现了面向业务用户的工作台与门户切换器，只
 ## 管理门户与恢复演示数据
 
 系统管理员的首页提供业务门户入口，以及 **Portal management** 和 **Restore demo data**。业务用户不会获得这两个管理入口。
-
-![系统管理员工作台](/assets/core/servicehub/admin-workbench.png)
 
 在门户管理中安装 **Service insights**，再刷新经理页面，切换菜单中会出现该门户。进入后可查看按工单状态和门店汇总的数据。卸载后入口隐藏，业务数据仍保留；安装与卸载的规则见[管理门户](manage.md)。
 

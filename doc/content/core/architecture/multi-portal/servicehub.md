@@ -5,7 +5,7 @@ metaDescription: Run the ServiceHub equipment service example to explore portal 
 
 The [ServiceHub example repository](https://github.com/nocobase/app-example-multi-portal) models equipment service for coffee shops. Customers report faults, dispatchers assign engineers, and customers confirm the completed work. Each portal presents the information and actions its users need for the same ticket.
 
-![A manager switching between dispatch and engineer portals](/assets/core/servicehub/portal-switching.png)
+![System administrator workbench](/assets/core/servicehub/admin-workbench.png)
 
 ## Scenario and portal responsibilities
 
@@ -77,6 +77,8 @@ Sign in as `manager` and open **Dispatch console**. Its sidebar provides **Ticke
 
 Choose **Switch portal → Engineer workspace**. Without signing out, the page changes to task cards and bottom navigation, showing only Morgan Brooks's assignments. Two active tasks are provided initially. **Completed work** starts empty for this account and gains records after customers confirm completed service.
 
+![A manager switching between dispatch and engineer portals](/assets/core/servicehub/portal-switching.png)
+
 <img src="/assets/core/servicehub/engineer-mobile.png" alt="Engineer mobile workspace with portal switching, task cards, and bottom navigation" width="390" />
 
 Sign in as `customer1` to see the top navigation layout. **Overview** contains a welcome area and summaries, **My devices** provides a fault-report entry for each device, and **Service tickets** supports progress tracking and service confirmation.
@@ -100,8 +102,6 @@ To demonstrate a separate dispatcher and engineer, have `dispatcher` assign the 
 ## Manage portals and restore demo data
 
 The system administrator's home provides business portal entries, **Portal management**, and **Restore demo data**. Business users do not receive the two administrative entries.
-
-![System administrator workbench](/assets/core/servicehub/admin-workbench.png)
 
 Install **Service insights** in portal management, then refresh the manager's page to see it in the switcher. Open it to view ticket counts by status and location. Uninstalling hides its entry while preserving business data; see [Manage portals](manage.md) for lifecycle rules.
 

@@ -5,7 +5,7 @@ metaDescription: ServiceHub の設備サービス例で、同じアカウント�
 
 [ServiceHub のサンプルリポジトリ](https://github.com/nocobase/app-example-multi-portal)は、コーヒーショップの設備サービスを扱います。顧客が修理を依頼し、配車担当者がエンジニアを割り当て、作業後に顧客が完了を確認します。同じチケットに対して、各ポータルが利用者に必要な情報と操作を提供します。
 
-![マネージャーが配車とエンジニアのポータルを切り替える画面](/assets/core/servicehub/portal-switching.png)
+![システム管理者のワークベンチ](/assets/core/servicehub/admin-workbench.png)
 
 ## シナリオとポータルの役割
 
@@ -77,6 +77,8 @@ pnpm dev
 
 **Switch portal → Engineer workspace** を選びます。ログアウトせずにタスクカードと下部ナビゲーションに切り替わり、Morgan Brooks に割り当てられた作業だけが表示されます。初期状態では未完了の作業が 2 件あります。**Completed work** は最初は空で、顧客がサービス完了を確認すると履歴が追加されます。
 
+![マネージャーが配車とエンジニアのポータルを切り替える画面](/assets/core/servicehub/portal-switching.png)
+
 <img src="/assets/core/servicehub/engineer-mobile.png" alt="ポータル切り替え、タスクカード、下部ナビゲーションを備えたエンジニアのモバイル画面" width="390" />
 
 `customer1` でログインすると、上部ナビゲーションを使った別のレイアウトが表示されます。**Overview** にはウェルカムエリアと概要、**My devices** には設備ごとの修理依頼入口があり、**Service tickets** で進捗と完了を確認できます。
@@ -100,8 +102,6 @@ ServiceHub は業務ユーザー用のワークベンチと切り替えメニュ
 ## ポータル管理とデモデータの復元
 
 システム管理者のホームには業務ポータルの入口と **Portal management**、**Restore demo data** が表示されます。業務ユーザーにはこの 2 つの管理入口は表示されません。
-
-![システム管理者のワークベンチ](/assets/core/servicehub/admin-workbench.png)
 
 ポータル管理で **Service insights** をインストールし、マネージャーのページを更新すると、切り替えメニューに追加されます。状態別、店舗別の集計を確認できます。アンインストールすると入口は非表示になりますが、業務データは保持されます。ライフサイクルの規則は[ポータルの管理](manage.md)を参照してください。
 

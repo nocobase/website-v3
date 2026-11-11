@@ -175,6 +175,7 @@ services:
 
   postgres:
     image: postgres:16
+    command: ["postgres", "-c", "jit=off"]
     restart: unless-stopped
     environment:
       POSTGRES_DB: replace-with-database-name
@@ -191,6 +192,16 @@ services:
 volumes:
   postgres-data:
 ```
+
+Studio が使う PostgreSQL データベースでは、JIT（実行時コンパイル）を無効にすることを推奨します。[JIT は主に、実行時間が長く CPU 負荷の高いクエリに適しています](https://www.postgresql.org/docs/16/jit-decision.html)。Studio の日常的な操作は短いクエリが中心です。JIT が使われると、コンパイルの負担が時間短縮の効果を上回り、応答が遅くなることがあります。
+
+上の `command` で `jit=off` を設定しています。既存のデータベースを使う場合は、データベース名を置き換え、所有者または管理者として次の SQL を実行します。
+
+```sql
+ALTER DATABASE "your_studio_database" SET jit = off;
+```
+
+この設定は新しい接続に適用されます。Studio が起動済みの場合は、再起動して接続を更新してください。Studio のデータベースアカウントで新しく接続し、`SHOW jit;` の結果が `off` になることを確認します。
 
 既存のデータベースを使う場合は、Compose から `postgres` サービス、`studio.depends_on`、`postgres-data` ボリュームの設定を削除してください。
 

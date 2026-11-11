@@ -1,132 +1,57 @@
 ---
 title: Portal access and permissions
-metaDescription: Configure portal page, operation and data access for different users, and distinguish administrator defaults from ordinary-user integration.
+metaDescription: Ask an Agent to integrate portal permissions, configure portal and page access for roles, and verify the result with ordinary accounts.
 ---
 
-## Understand portal permission boundaries
+> [!NOTE]
+> The multi-portal plugin does not include the portal permission editor or access rules shown here out of the box. First ask an Agent to build portal entry checks, page access, navigation filtering, and server authorization using the application’s existing permission system. Administrators can then configure roles and users. The screenshots show an example after this integration.
 
-### Share accounts and roles
+## Have the Agent implement and configure portal permissions
 
-Portals in one app use the app's authentication and authorization. Switching portals retains the current identity; users do not need a separate account for each portal.
+In an application with a portal already created and installed, ask an Agent to implement portal access control using the existing permission system. This example uses Portal 1 and its Overview and Examples pages from [Develop a portal](develop.md). Give the development Agent in your application project the following request and identify two ordinary test accounts:
 
-Separate layouts and routes do not isolate permissions or data by themselves. One user can access several portals, while different users can have different entries, operations and data scopes.
+```prompt
+Implement portal access control using this application's existing permission system. Add a portal permission section to the role editor, listing portals and pages with an entry switch for each portal and individual page checkboxes. Retain page selections when a portal is disabled, leave new pages ungranted, and preserve the other permission settings.
 
-### Separate installation, page access and data access
+Create Portal reader and Portal explorer roles: readers can access only Overview in Portal 1; explorers can access Overview and Examples. Assign them to the two test accounts I provide without changing existing members' default permissions.
 
-| Check | Question it answers |
-| --- | --- |
-| Installation state | Is this portal currently available? |
-| Authentication and page permission | May this user open the page? |
-| Operation permission | May the user query, create, update or delete? |
-| Data scope | Which records and fields may this operation access? |
-
-Installing a portal grants no user permissions. Opening a page does not grant all its operations or access to all data. Enforce permissions on both pages and server APIs.
-
-## Understand default access rules
-
-### Home, workbench and portal management
-
-The current multi-portal template separates **Home** from **Workbench**. Signed-in users retain the app homepage; administrators use the workbench to enter installed portals. **System settings → Portal management** handles installation, entry and uninstallation.
-
-| Entry | Default requirement |
-| --- | --- |
-| App homepage | Signed in; no business page grant required |
-| Portal workbench | Signed in with `unrestricted` access |
-| Portal management and catalog APIs | Signed in with `unrestricted` access |
-| Generated portal pages | `auth: 'required'`, `authz: 'unrestricted'` |
-
-![Installed portal entry on the administrator workbench](/assets/core/multi-portal/access/workbench.png)
-
-For older templates without a separate workbench, inspect the app's actual routes. See [Manage portals](manage.md) for installation and removal.
-
-### Default portal page and switcher
-
-The default switcher lists installed portals and provides a return to the workbench. Both it and the default `PortalPage` read the administrator catalog, **not an ordinary user's authorized portal list**.
-
-![Administrator opening the portal switcher](/assets/core/multi-portal/access/switcher.png)
-
-Relaxing only a page's `authz` does not make these components work for ordinary users: their catalog requests still require administrator access. Adapt the page, data requests and entry presentation together.
-
-## Open portals to users
-
-The following target configuration lets User A access only Portal 1 and User B access both Portal 1 and Portal 2. It is an integration example, not a set of roles or an ordinary-user catalog already supplied by the template.
-
-### Configure page access
-
-Declare a stable permission resource for each page. For example, change Portal 1's Examples route to require page access:
-
-```ts
-{
-  name: 'portal1Examples',
-  path: '/portals/portal-1/examples',
-  auth: 'required',
-  authz: {
-    resource: { type: 'page', id: 'portal1.examples' },
-    action: 'access',
-  },
-  breadcrumb: { title: 'examples.title' },
-  componentLoader: () => import('./pages/examples.js'),
-},
+The workbench, portal switcher, and navigation should show only accessible content. Entering a URL directly must not bypass permissions. Ordinary users must not be able to install or uninstall portals. Start a preview when it is ready for review.
 ```
 
-Declare and register the corresponding page resource in the app's authorization system so administrators can grant it. The route states a requirement; it does not grant access to anyone. Apply suitable requirements to the portal homepage and other pages too; changing one route does not open the entire portal.
+**Portal entry and page access are separate grants**; both are required. Portals in one application share identities and roles, so there is no need for a separate portal account and role system.
 
-Configure role grants under **System settings → Permission management**, then assign roles to the intended accounts through user management. The screenshot shows the app's shared permission management, not separate portal role settings:
+The Agent needs to connect portal entry, page routes, navigation, and the current user's portal directory to consistent authorization rules, storing grants in the application's existing role system. The server must filter the ordinary user's directory by identity; opening the administrator directory API is not a substitute.
 
-![Application permission management](/assets/core/multi-portal/access/permissions.png)
+Pages must declare access permissions to appear in the corresponding editor. If a new page is missing, ask the Agent to check its route permission declaration and directory integration. Portal management retains its separate administrator permissions.
 
-### Configure operations and data scope
+Pages that read or write business data also need server-side operation permissions and data scopes. See [Authentication, permissions, and data scopes](../../developing-apps/authentication-and-permissions.md).
 
-Beyond page access, declare read, create and update operations and their permitted records and fields. Grant User A's role the capabilities needed for Portal 1; add Portal 2's capabilities to User B's role. Do not assign `root` or `unrestricted` to ordinary users as a substitute for business grants.
+## Review and adjust the configuration
 
-A user may receive grants from several roles or other sources. Check all effective permissions when validating. See [Permission management](../../using-plugins/authorization/permissions.md) and [Authentication, permissions and data scope](../../developing-apps/authentication-and-permissions.md) for declarations, assignments and data policies.
+After the Agent completes the integration, sign in as an administrator, open **System settings → Permission management → Roles and permissions**, edit **Portal reader**, and select **Portal permissions**.
 
-### Provide authorized entries and switching
+1. Enable entry to Portal 1.
+2. Select **Overview**, leaving **Examples** unselected.
+3. Click **Save**, reopen the role, and confirm the settings persist.
 
-The current template has no ready-made ordinary-user portal catalog. The app must supply an authenticated, business-authorized query returning only installed portals the user may access and the necessary metadata. Use it for homepage entries, switching and page availability.
+![Agent-implemented portal permission editor: Portal reader entry and page grants](/assets/core/multi-portal/access/role-editor.png)
 
-User A should see only Portal 1; User B can see both. Generate results on the server from the current identity rather than returning the full administrator catalog and filtering only in the browser. Preserve administrator checks on management and catalog APIs instead of weakening them to reuse the default switcher.
+Disabling portal entry preserves page selections but makes them ineffective; enabling it restores their effect. Uninstalled portals remain unavailable. **Other permissions** retains the application's existing page and operation settings. Entry does not grant installation, uninstallation, or role management.
 
-## Enforce access on the server
+## Verify access with different users
 
-### Check authentication, authorization and installation
+In user management, confirm each test account holds its intended role, then sign in using separate browser sessions. Do not validate ordinary access with an unrestricted administrator account. A user may hold several roles; check their combined effective permissions.
 
-Each business endpoint must independently authenticate, authorize its operation and check portal installation before performing permitted reads or writes. A page's `authz` does not automatically protect a similarly named API.
-
-Inside an already authenticated and business-authorized handler, check availability through the portal service:
-
-```ts
-import { portalCenterServiceToken } from '@nocobase/app-plugin-multi-portal/server';
-
-await app.container
-  .resolve(portalCenterServiceToken)
-  .requireInstalled('portal-1');
-```
-
-`requireInstalled()` checks installation only, not user permissions. Queries and writes must also apply the record and field policies returned by authorization. Checking a read capability and then running an unrestricted query loses the data-scope constraints.
-
-### Preserve boundaries when sharing data
-
-Portal 2 may consume Portal 1's service or data, but sharing does not grant unrestricted access. Define who owns the data and who may read or modify it, and enforce the caller's scope in the shared service or API.
-
-Portal dependencies govern installation and removal order; they do not authorize users. Hidden buttons, filtered navigation and custom layouts cannot prevent direct API calls.
-
-## Verify the configuration
-
-### Test Portal 1 and Portal 2 with different accounts
-
-Use ordinary test accounts rather than testing only as an administrator:
-
-| Account | Entries and pages | Operations and data |
+| Check | Portal reader | Portal explorer |
 | --- | --- | --- |
-| User A | Portal 1 only | Granted operations and permitted data only |
-| User B | Portal 1 and Portal 2 | Each portal respects the configured scope |
-| User without portal grants | No corresponding entry; direct access denied | Business APIs return no protected data |
+| Enter Portal 1 from the workbench | Allowed | Allowed |
+| Open Overview | Allowed | Allowed |
+| Examples appears in navigation | No | Yes |
+| Open `/main/portals/portal-1/examples` directly | Denied | Allowed |
+| Install or uninstall a portal | Denied | Denied |
 
-### Open pages and call APIs directly
+Replace `/main` if your application uses another base path. A user without portal grants should see an empty workbench, not an error or the administrator directory.
 
-Test anonymous, signed-in-but-denied and authorized callers. In addition to menu navigation, open page URLs and call APIs directly. Verify queries, writes, fields and related data follow the same permissions. Business portal access must not grant portal administration.
+Revoke portal entry and save, then refresh the user's workbench and portal page. The entry should disappear and direct access should be denied. Newly added pages should remain ungranted until explicitly enabled.
 
-### Check uninstallation and permission changes
-
-In a test environment, uninstall a portal and call its business API again: installation checks should reject the request. After revoking a user's permission, new page and API requests should enforce the updated grants and entries should refresh. A retained browser menu is not authorization. Also check expired sessions, page refresh and mobile switching.
+For business APIs, also make direct requests to verify that unauthorized operations, records, and fields remain inaccessible. Hiding navigation or buttons does not replace server authorization. See [Manage portals](manage.md) for installation and uninstallation.

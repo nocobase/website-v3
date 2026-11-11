@@ -1,0 +1,21 @@
+{
+  "title": "Application architecture",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "folder",
+      "path": "multi-portal"
+    },
+    {
+      "type": "planned",
+      "title": "Multi-app"
+    },
+    {
+      "type": "planned",
+      "title": "Multi-tenancy"
+    }
+  ]
+}

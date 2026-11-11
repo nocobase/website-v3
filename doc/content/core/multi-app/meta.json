@@ -1,0 +1,37 @@
+{
+  "title": "Multi-app",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "page",
+      "path": "quickstart"
+    },
+    {
+      "type": "page",
+      "path": "development"
+    },
+    {
+      "type": "page",
+      "path": "management"
+    },
+    {
+      "type": "page",
+      "path": "single-sign-on"
+    },
+    {
+      "type": "page",
+      "path": "external-apps"
+    },
+    {
+      "type": "page",
+      "path": "migration"
+    },
+    {
+      "type": "page",
+      "path": "deployment"
+    }
+  ]
+}

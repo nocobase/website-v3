@@ -32,6 +32,10 @@
     {
       "type": "page",
       "path": "testing-and-acceptance"
+    },
+    {
+      "type": "folder",
+      "path": "../multi-app"
     }
   ]
 }

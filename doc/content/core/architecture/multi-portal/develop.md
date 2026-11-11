@@ -95,23 +95,108 @@ Click the portal name at the top left to open the switcher. Once other portals a
 
 Generated portal pages initially allow administrators only. Configure ordinary-user entry points, portal lists and page authorization through [Portal access and permissions](access.md). Displaying a navigation item does not grant access.
 
+## Understand the portal structure
+
+### Directory structure
+
+The generated portal is a local package inside the app. Its main files are shown below, omitting development instructions, tooling configuration and build output:
+
+```text
+packages/app-portal-portal-1/
+├── portal.ts
+├── package.json
+├── client/
+│   ├── index.ts
+│   ├── plugin.ts
+│   ├── routes.ts
+│   ├── layout.tsx
+│   ├── styles.css
+│   ├── pages/
+│   │   └── overview.tsx
+│   └── locales/
+│       ├── index.ts
+│       ├── en-US.ts
+│       ├── zh-CN.ts
+│       └── …
+├── server/
+│   ├── index.ts
+│   ├── plugin.ts
+│   └── providers/
+│       ├── index.ts
+│       └── portal.ts
+└── database/
+    └── main/
+        ├── migrations/
+        └── seeds/
+            └── portal_portal_1_installation.ts
+```
+
+Most frontend work belongs in `client/pages/` for pages, `client/routes.ts` for routes, and `client/layout.tsx` for layout and navigation. Names, descriptions and page text live in `client/locales/`. Server code lives in `server/`; database migrations and seeds live in `database/`.
+
+### Portal definition and registration
+
+**`portal.ts` defines the portal identity and entry point.**
+
+```ts
+import type { PortalDescriptor } from '@nocobase/app-plugin-multi-portal/shared';
+const portal: PortalDescriptor = {
+  id: 'portal-1',
+  namespace: '@nocobase/app-portal-portal-1',
+  entry: '/portals/portal-1',
+  icon: 'LayoutGrid',
+  tone: 1,
+};
+export default portal;
+```
+
+`id` is the stable identifier, `namespace` identifies the portal's locale resources, and `entry` is its entry path. `icon` and `tone` control the portal icon and color. The entry excludes the app's deployment base path, such as `/main`. Display names and descriptions come from `title` and `description` in the locale resources. Renaming a label does not require changing the ID or package name, which installation records and permissions may reference.
+
+**`client/plugin.ts` registers routes and locale resources.**
+
+```ts
+import {
+  defineClientPlugin,
+  type AppClientPluginFactory,
+} from '@nocobase/app-client/plugins';
+import locales from './locales/index.js';
+import routes from './routes.js';
+const plugin: AppClientPluginFactory = defineClientPlugin({
+  packageName: '@nocobase/app-portal-portal-1',
+  locales,
+  routes,
+});
+export default plugin;
+```
+
+`routes` comes from the adjacent `routes.ts`; `locales` comes from `locales/index.ts`. Adding pages and translations normally means editing those files rather than rewriting the plugin entry.
+
+**`server/plugin.ts` registers service providers and database resources.**
+
+```ts
+import path from 'node:path';
+import {
+  defineServerPlugin,
+  type AppServerPlugin,
+} from '@nocobase/app-server/plugins';
+import serviceProviders from './providers/index.js';
+const plugin: AppServerPlugin = defineServerPlugin({
+  packageName: '@nocobase/app-portal-portal-1',
+  baseDir: path.resolve(import.meta.dirname, '..'),
+  serviceProviders,
+  database: {
+    connections: {
+      main: {},
+    },
+  },
+});
+export default plugin;
+```
+
+`baseDir` points to the portal package root. `serviceProviders` includes `providers/portal.ts`, which registers the definition from `portal.ts` with the portal management service and declares that the portal starts uninstalled.
+
+`database.connections.main: {}` contributes database tasks to the host app's `main` connection. The empty object uses conventional paths relative to `baseDir`: `database/main/migrations/` and `database/main/seeds/`. Database addresses and credentials are configured by the host app, not here. The generated migrations directory starts empty; the seeds directory contains the portal installation-state initializer.
+
 ## Add pages and navigation
-
-### Find the portal code
-
-The main files are under `packages/app-portal-portal-1/`:
-
-| File | What to change |
-| --- | --- |
-| `portal.ts` | Portal ID, namespace, entry, icon and tone |
-| `client/pages/overview.tsx` | Default homepage |
-| `client/routes.ts` | Page routes and access requirements |
-| `client/layout.tsx` | Portal layout and navigation |
-| `client/locales/` | Names and interface text |
-| `server/plugin.ts`, `server/providers/portal.ts` | Server registration and portal definition |
-| `database/main/` | Migrations and seeds for the main connection |
-
-The entry is `/portals/portal-1`, without the app's deployment base path such as `/main`. Change the locale resource's `title` to rename the display label. Avoid changing an existing ID or package name: installation records and permissions may reference them.
 
 ### Add a page and route
 
@@ -192,7 +277,7 @@ Changing the app's shared shell affects other portals that use it. Do not change
 
 To persist business records, implement business logic and HTTP endpoints in the portal's Server. Each endpoint must check authentication, business permissions and portal installation status independently. Hiding a menu does not protect data. See [Server APIs](../../extension-development/server-apis.md).
 
-The generator declares `database.connections.main` in `server/plugin.ts`. Put schema migrations in `database/main/migrations/` and required initial data in `database/main/seeds/`. Keep the generated installation seed; do not overwrite the administrator's installation choice at every startup.
+Put schema migrations in `database/main/migrations/` and required initial data in `database/main/seeds/`. Keep the generated installation seed; do not overwrite the administrator's installation choice at every startup.
 
 Additional connections and drivers are configured by the app. The portal declares matching connection names and their migrations and seeds. Installation waits for every required connection's database tasks to succeed. These connections do not form a cross-database atomic transaction: preserve execution history, fix failures and retry. See [Database connections](../../framework/database/connections.md) and [Database and migrations](../../extension-development/database-and-migrations.md).
 

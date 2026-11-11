@@ -95,23 +95,108 @@ pnpm dev
 
 默认生成的门户页面只允许管理员访问。普通用户的入口、门户列表和页面授权需要按[门户访问与权限](access.md)配置，不能仅通过显示导航来授予访问权。
 
+## 了解门户结构
+
+### 目录结构
+
+生成的门户是应用内的本地包。主要文件如下，省略开发指引、工具配置和构建产物：
+
+```text
+packages/app-portal-portal-1/
+├── portal.ts
+├── package.json
+├── client/
+│   ├── index.ts
+│   ├── plugin.ts
+│   ├── routes.ts
+│   ├── layout.tsx
+│   ├── styles.css
+│   ├── pages/
+│   │   └── overview.tsx
+│   └── locales/
+│       ├── index.ts
+│       ├── en-US.ts
+│       ├── zh-CN.ts
+│       └── …
+├── server/
+│   ├── index.ts
+│   ├── plugin.ts
+│   └── providers/
+│       ├── index.ts
+│       └── portal.ts
+└── database/
+    └── main/
+        ├── migrations/
+        └── seeds/
+            └── portal_portal_1_installation.ts
+```
+
+日常开发主要修改 `client/pages/` 中的页面、`client/routes.ts` 中的路由和 `client/layout.tsx` 中的布局与导航。名称、描述及页面文案在 `client/locales/` 中维护。服务端代码放在 `server/`，数据库迁移和初始化数据放在 `database/`。
+
+### 门户定义与注册
+
+**`portal.ts` 定义门户身份与入口。**
+
+```ts
+import type { PortalDescriptor } from '@nocobase/app-plugin-multi-portal/shared';
+const portal: PortalDescriptor = {
+  id: 'portal-1',
+  namespace: '@nocobase/app-portal-portal-1',
+  entry: '/portals/portal-1',
+  icon: 'LayoutGrid',
+  tone: 1,
+};
+export default portal;
+```
+
+`id` 是稳定标识，`namespace` 用于读取门户的语言资源，`entry` 是入口路径，`icon` 和 `tone` 控制门户图标与配色。入口不包含 `/main` 等应用部署基础路径。界面的名称和描述来自语言资源中的 `title`、`description`；改名时不需要更改 ID 或包名，安装记录和权限可能引用它们。
+
+**`client/plugin.ts` 注册路由和语言资源。**
+
+```ts
+import {
+  defineClientPlugin,
+  type AppClientPluginFactory,
+} from '@nocobase/app-client/plugins';
+import locales from './locales/index.js';
+import routes from './routes.js';
+const plugin: AppClientPluginFactory = defineClientPlugin({
+  packageName: '@nocobase/app-portal-portal-1',
+  locales,
+  routes,
+});
+export default plugin;
+```
+
+`routes` 来自同目录的 `routes.ts`，`locales` 来自 `locales/index.ts`。新增页面和翻译通常修改这些文件，不需要重新编写插件入口。
+
+**`server/plugin.ts` 注册服务提供者和数据库资源。**
+
+```ts
+import path from 'node:path';
+import {
+  defineServerPlugin,
+  type AppServerPlugin,
+} from '@nocobase/app-server/plugins';
+import serviceProviders from './providers/index.js';
+const plugin: AppServerPlugin = defineServerPlugin({
+  packageName: '@nocobase/app-portal-portal-1',
+  baseDir: path.resolve(import.meta.dirname, '..'),
+  serviceProviders,
+  database: {
+    connections: {
+      main: {},
+    },
+  },
+});
+export default plugin;
+```
+
+`baseDir` 指向门户包根目录。`serviceProviders` 包含 `providers/portal.ts`，由它将 `portal.ts` 中的定义注册到门户管理服务，并声明门户默认未安装。
+
+`database.connections.main: {}` 表示门户向宿主应用的 `main` 连接提供数据库任务。空对象使用相对于 `baseDir` 的约定目录：`database/main/migrations/` 和 `database/main/seeds/`。数据库地址和凭据由宿主应用配置，不在这里填写。生成的迁移目录初始为空，seed 目录包含门户安装状态的初始化文件。
+
 ## 添加页面与导航
-
-### 找到门户代码
-
-常用文件都在 `packages/app-portal-portal-1/` 下：
-
-| 文件 | 修改内容 |
-| --- | --- |
-| `portal.ts` | 门户 ID、命名空间、入口、图标与色调 |
-| `client/pages/overview.tsx` | 默认首页 |
-| `client/routes.ts` | 页面路由与访问要求 |
-| `client/layout.tsx` | 门户布局与导航 |
-| `client/locales/` | 名称和界面文案 |
-| `server/plugin.ts`、`server/providers/portal.ts` | 服务端注册与门户定义 |
-| `database/main/` | 主连接的迁移和初始化数据 |
-
-本例入口为 `/portals/portal-1`，不包含 `/main` 等应用部署基础路径。改显示名称时修改语言资源中的 `title`，不要随意更换已使用的 ID 或包名，安装记录和权限可能引用它们。
 
 ### 新增页面与路由
 
@@ -192,7 +277,7 @@ const { t: tPortal } = useTranslation('@nocobase/app-portal-portal-1');
 
 需要保存业务记录时，在门户的 Server 中实现业务逻辑和 HTTP 接口。接口必须独立检查登录、业务权限和门户安装状态；隐藏菜单不能保护数据。具体做法见[服务端 API](../../extension-development/server-apis.md)。
 
-生成器已在 `server/plugin.ts` 声明 `database.connections.main`。表结构迁移放在 `database/main/migrations/`，必要的初始化数据放在 `database/main/seeds/`。保留生成的安装 seed，不要在每次启动时覆盖管理员选择的安装状态。
+表结构迁移放在 `database/main/migrations/`，必要的初始化数据放在 `database/main/seeds/`。保留生成的安装 seed，不要在每次启动时覆盖管理员选择的安装状态。
 
 额外数据库连接由应用配置并提供驱动，再由门户声明同名连接及其迁移、seed。安装需要等待各连接的数据库任务成功；多个连接之间不是跨库原子事务，失败时保留执行历史、修复后重试。详见[数据库连接](../../framework/database/connections.md)和[数据库与迁移](../../extension-development/database-and-migrations.md)。
 

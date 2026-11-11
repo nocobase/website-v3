@@ -25,18 +25,7 @@ Agent 使用项目的 `AGENTS.md`、`.agents/rules/multi-portal.md` 和项目内
 
 ### 使用命令创建
 
-在应用根目录执行以下命令，创建一个名为 `Portal 1` 的最小门户：
-
-```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1
-```
-
-`portal-1` 是门户 ID，初始显示名称由它生成。ID 以小写字母开头，由小写字母、数字和单个连字符分隔的片段组成，最长 40 个字符。
-
-如果希望创建时就设置名称、描述和翻译，**改用下面的命令**，不必先执行上面的命令：
-
-> [!NOTE]
-> `--set-locale` 需要使用支持该参数的生成器版本，可通过 `pnpm create @nocobase/portal@beta --help` 确认。旧版本可先创建，再编辑下方说明的语言文件。
+在应用根目录执行以下命令，创建门户并设置中英文名称和描述：
 
 ```bash
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1 \
@@ -46,12 +35,16 @@ PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1 \
   --set-locale 'zh-CN.description=体验页面与导航。'
 ```
 
+此命令需要支持 `--set-locale` 的生成器版本，可用 `pnpm create @nocobase/portal@beta --help` 确认；旧版本请省略这些参数，生成后修改语言文件。
+
 每个 `--set-locale` 设置一个 `语言.字段=值`，`title` 是名称，`description` 是描述。只填写需要修改的字段，其余保留默认值。
 
 这些文案直接写入 `packages/app-portal-portal-1/client/locales/` 下的对应语言文件，如 `en-US.ts` 和 `zh-CN.ts`。创建后直接修改文件中的 `title`、`description`，保留原有导入、类型和导出即可，无需重新运行生成命令，也不需要更改门户 ID、包名或路由。
 
 <details>
 <summary>语言参数规则与生成预览</summary>
+
+- `portal-1` 是门户 ID。ID 以小写字母开头，由小写字母、数字和单个连字符分隔的片段组成，最长 40 个字符。
 
 - 支持 `en-US`、`zh-CN`、`zh-TW`、`ja-JP`、`de-DE`、`es-ES`、`fr-FR`、`pt-BR`、`vi-VN`、`id-ID`。
 - 名称须为非空单行文字，描述可以为空。

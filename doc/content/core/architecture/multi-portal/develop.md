@@ -25,18 +25,7 @@ The Agent uses the project's `AGENTS.md`, `.agents/rules/multi-portal.md` and lo
 
 ### Create with the command
 
-At the app root, run this command to create a minimal portal named `Portal 1`:
-
-```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1
-```
-
-`portal-1` is the portal ID, from which the initial display name is derived. IDs start with a lowercase letter and contain lowercase letters, numbers and single-hyphen-separated segments, up to 40 characters.
-
-To set names, descriptions and translations at creation time, **use this command instead**. You do not need to run the command above first:
-
-> [!NOTE]
-> `--set-locale` requires a generator version that supports it. Check with `pnpm create @nocobase/portal@beta --help`. With an older version, create the portal first and edit the locale files described below.
+Run this command at the app root to create a portal with English and Chinese names and descriptions:
 
 ```bash
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1 \
@@ -46,12 +35,16 @@ PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1 \
   --set-locale 'zh-CN.description=体验页面与导航。'
 ```
 
+This command requires a generator version that supports `--set-locale`; check with `pnpm create @nocobase/portal@beta --help`. With an older version, omit these options and edit the locale files after generation.
+
 Each `--set-locale` assigns one `language.field=value`: `title` is the name and `description` is the description. Specify only the fields you want to change; the others keep their defaults.
 
 The text is written directly to the corresponding files, such as `en-US.ts` and `zh-CN.ts`, under `packages/app-portal-portal-1/client/locales/`. After creation, edit their `title` and `description` fields, keeping the existing imports, types and exports. There is no need to rerun the generator or change the portal ID, package name or route.
 
 <details>
 <summary>Locale parameter rules and generation preview</summary>
+
+- `portal-1` is the portal ID. IDs start with a lowercase letter and contain lowercase letters, numbers and single-hyphen-separated segments, up to 40 characters.
 
 - Supported locales: `en-US`, `zh-CN`, `zh-TW`, `ja-JP`, `de-DE`, `es-ES`, `fr-FR`, `pt-BR`, `vi-VN` and `id-ID`.
 - Titles must be nonempty single-line text; descriptions can be empty.

@@ -36,3 +36,9 @@ The preceding ServiceHub implementation run passed type checks, client build, 11
 Before making the example public, checked 666 historical Git blobs for common credential patterns and sensitive runtime paths. The only pattern matches were configuration placeholders; the tracked packages contain the four example portals, not commercial dependency sources. Changed repository visibility to public at the user's request and confirmed an unauthenticated GitHub request returned HTTP 200.
 
 Documentation validation passed: `pnpm doc:test` (90 tests), `pnpm doc:build` (all three languages, navigation, links and search index), Bash syntax checks for the new command blocks, and generated-page checks for all six screenshots and the repository URL. No new app deployment or browser session was needed for this content-only change.
+
+## High-density screenshot refresh
+
+Recaptured all seven README screenshots from the running ServiceHub application, then copied the six used by the documentation without resizing. Desktop captures use a 1280 CSS-pixel viewport and `deviceScaleFactor: 2`, yielding 2560-pixel-wide PNGs. The engineer view uses 390 × 844 CSS pixels at density 3, yielding 1170 × 2532 pixels. These are native Chromium renders, not enlarged copies and not captures from macOS itself. Fonts were loaded before capturing; English locale, light appearance and the configured compact theme were retained. The workbench viewport includes the service journey footer. No horizontal overflow was detected in any capture.
+
+The shared preview screenshot export returned only 1280 pixels even with a wider viewport, so this capture used Playwright's native `scale: 'device'` output. Documentation public assets are copied unchanged; their pixel dimensions and hashes are checked against the source PNGs after the build.

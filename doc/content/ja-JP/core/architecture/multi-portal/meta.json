@@ -16,6 +16,10 @@
     {
       "type": "page",
       "path": "manage"
+    },
+    {
+      "type": "page",
+      "path": "servicehub"
     }
   ]
 }

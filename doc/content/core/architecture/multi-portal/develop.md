@@ -1,161 +1,219 @@
 ---
 title: Develop a business portal
-metaDescription: Create a business portal, understand its generated files and registration, and extend pages, navigation, services and database resources.
+metaDescription: Create a portal in an existing multi-portal app, install and open it, then add pages, navigation and layouts and verify the result.
 ---
 
-Start with a configured [multi-portal app](create-app.md) that runs successfully, and keep your commercial registry login valid. A portal is a local package using the plugin runtime. It builds and deploys with the app; you do not need to publish your business portal to npm first.
+## Prepare a multi-portal app
 
-## Create a business portal
+Start with a configured [multi-portal app](create-app.md) that runs successfully. Keep your commercial registry login valid and use an administrator account with `unrestricted` permission for these steps.
 
-Generate the portal with either an Agent or the command, then install and verify it.
+This example creates **Portal 1** (`portal-1`), starting with an empty portal you can open, then adding a details page. A portal is a local package that builds and deploys with the app; publishing it to npm is not required. Follow shadcn/ui conventions for pages, reusing existing components and NocoBase UI Library where possible.
 
-### Create a portal with an Agent
+## Create your first portal
 
-Open the Agent at the existing multi-portal app root. Use the app's `AGENTS.md`, `.agents/rules/multi-portal.md`, and its application and plugin development Skills. The global `nocobase-create-app` Skill creates whole apps; this task belongs to the existing project.
+Work at the existing app root. Choose one of the following methods; do not generate the same portal twice.
+
+### Create with an Agent
+
+Open your coding Agent at the app root and ask:
 
 ```prompt
-Add an Inventory management portal named inventory to this app, starting with a basic homepage I can open.
+Add a portal called Portal 1 with the name portal-1 to this app. Start with a basic homepage I can open, without business data.
 ```
 
-Project guidance directs the Agent to the portal generator and the required source, dependencies and Client/Server registration. Confirm that `packages/app-portal-inventory/` exists and that the portal appears in management after restarting the app. Generation does not install it. Sign in as an administrator and follow the installation steps below. Ordinary-user entry points and authorization require the work described in [Portal access and permissions](access.md).
+The Agent uses the project's `AGENTS.md`, `.agents/rules/multi-portal.md` and local development Skills to generate and register it. Confirm that `packages/app-portal-portal-1/` exists and that the portal is registered on both the app's Client and Server. You do not need to create another app.
 
-If the Agent has generated the portal, skip the generation command below to avoid creating the same directory twice.
-
-### Create a portal with the command
-
-Run from the app root:
+### Create with the command
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta inventory \
-  --title 'Inventory management' --title-zh '库存管理'
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1
 ```
 
-`inventory` is the portal ID. It must start with a lowercase letter, use lowercase letters and digits in segments separated by single hyphens, and be no longer than 40 characters, for example `inventory` or `quality-checks`. The generated package is `@nocobase/app-portal-inventory`.
+The command generates `packages/app-portal-portal-1/`, installs dependencies and registers the portal on Client and Server. It does not start the app, change the database or install the portal. It does not generate business tables or CRUD pages.
 
-| Option | Purpose |
-| --- | --- |
-| `--title` | Default display name, here `Inventory management` |
-| `--title-zh` | Simplified Chinese display name, here `库存管理` |
-| `--dry-run --json` | Inspect the generation plan without writing files |
+A portal ID starts with a lowercase letter and contains lowercase letters, numbers and single-hyphen-separated segments, up to 40 characters. Add `--dry-run --json` to inspect the plan without writing files.
 
-Without `--title`, the display name is derived from the ID. Without `--title-zh`, Simplified Chinese uses the default display name.
-
-The command creates `packages/app-portal-inventory/`, installs dependencies and registers the Client and Server. It generates a minimal portal, without inventory tables, sample records or CRUD pages. It neither starts the app nor changes the database.
-
-The portal remains uninstalled. If dependency installation fails, keep the generated source and follow the recovery commands in the output; do not rerun generation over an existing target.
-
-### Install and verify the portal
-
-After generation, start or restart the development server to load the new registration. Sign in as an administrator:
-
-1. Open **System settings → Portal management**.
-2. Find Inventory management, initially uninstalled.
-3. Select **Install** and wait for database tasks and portal startup.
-4. Once installed, enter the portal directly or from the administrator's homepage workbench.
-
-The minimal inventory homepage should now open and remain accessible after a refresh. It has no inventory business features yet; continue below to extend its pages, services and data. For installation failures, inspect the failed stage using [Manage portals](manage.md).
-
-## Divide host and portal responsibilities
-
-The app owns authentication, permissions, runtime configuration, database connections and deployment. It supplies the shared sidebar, account menu and header. Each portal owns its entry, layout, navigation, pages, locales, business services and data definitions.
-
-The app supplies `PortalLayoutHost`. The portal passes navigation and content through `PortalLayout`. Add portal menu items in the portal layout; edit the app's `client/layouts/portal-shell.tsx` only when changing the shell shared by all portals.
-
-## Locate the files to change
-
-The main inventory portal files are:
-
-```text
-packages/app-portal-inventory/
-├── portal.ts
-├── client/
-│   ├── plugin.ts
-│   ├── routes.ts
-│   ├── layout.tsx
-│   ├── pages/overview.tsx
-│   └── locales/
-├── server/
-│   ├── plugin.ts
-│   └── providers/portal.ts
-└── database/main/
-    ├── migrations/
-    └── seeds/portal_inventory_installation.ts
-```
-
-`portal.ts` declares the identity and entry. The generated inventory portal uses:
+The initial title is derived from the ID: `portal-1` becomes `Portal 1`. After generation, maintain localized names and descriptions in `packages/app-portal-portal-1/client/locales/`. Edit the fields in the existing files, keeping their imports, types and exports:
 
 ```ts
-import type { PortalDescriptor } from '@nocobase/app-plugin-multi-portal/shared';
-
-const portal: PortalDescriptor = {
-  id: 'inventory',
-  namespace: '@nocobase/app-portal-inventory',
-  entry: '/portals/inventory',
-  icon: 'LayoutGrid',
-  tone: 1,
-};
-
-export default portal;
+// Fields in messages in en-US.ts
+title: 'Portal 1',
+description: 'Your portal workspace.',
 ```
 
-The display name comes from `title` in `client/locales/`, not the portal ID. Change translations to rename the display, preserving established IDs, package names and route identifiers that installation records or permissions may reference. Entries omit deployment base paths such as `/main`.
+```ts
+// Fields in messages in zh-CN.ts
+title: '门户 1',
+description: '你的门户工作台。',
+```
+
+The interface uses the current language's text. Renaming a portal does not require changing its ID, package name or route. Maintain other languages in their corresponding files.
+
+To set the initial text from the command line, use repeatable `--set-locale` assignments. This requires a generator version whose `--help` lists `--set-locale`; with an older version, generate the portal first and edit the locale files above.
+
+```bash
+pnpm create @nocobase/portal@beta portal-1 \
+  --set-locale 'en-US.title=Portal 1' \
+  --set-locale 'en-US.description=Your portal workspace.' \
+  --set-locale 'zh-CN.title=门户 1' \
+  --set-locale 'zh-CN.description=你的门户工作台。'
+```
+
+Use `language.field=value`, with `title` or `description` as the field. Omitted fields keep their defaults. Values can contain `=`: only the first one is the separator. Unsupported locales or fields and duplicate assignments are rejected. Titles must be nonempty single-line text; descriptions can be empty. The supported locales are `en-US`, `zh-CN`, `zh-TW`, `ja-JP`, `de-DE`, `es-ES`, `fr-FR`, `pt-BR`, `vi-VN` and `id-ID`. These options initialize the same locale files; they do not introduce a separate configuration source.
+
+If dependency installation fails, keep the generated source and follow the recovery steps printed by the command. Do not rerun the generator over the existing directory.
+
+## Install and open the portal
+
+Start or restart the app to load the newly registered portal:
+
+```bash
+pnpm dev
+```
+
+### Install in Portal management
+
+As an administrator, open **System settings → Portal management** and find **Portal 1**. Its initial status is **Not installed**. Open the row's **…** menu and choose **Install**.
+
+![Installing Portal 1 from its actions menu](/assets/core/multi-portal/develop/install.png)
+
+Wait for **Installed**, then choose **Open** from the same menu. Installation runs the portal's database tasks and starts the portal. If it fails, use [Manage portals](manage.md) to identify the failed stage; do not delete migration history to start over.
+
+### Open from the workbench
+
+Administrators can also open installed portal cards from **Workbench**. **Home** provides the app's landing content, **Workbench** provides portal entry points, and **Portal management** handles installation and uninstallation.
+
+![Portal 1 on the separate workbench](/assets/core/multi-portal/develop/workbench.png)
+
+> [!NOTE]
+> The separate workbench screenshots use a preview template. If your installed template does not yet have a separate Workbench menu, use the portal list on Home. Installation and opening through Portal management work the same way.
+
+The portal should show its own **Overview** navigation and basic homepage. Refresh the page and confirm it still opens. This verifies the minimal portal; it has no business features yet.
+
+![Portal 1 with its default navigation and homepage](/assets/core/multi-portal/develop/portal.png)
+
+### Switch portals and return to the workbench
+
+Click the portal name at the top left to open the switcher. Once other portals are installed and authorized, you can switch to them here. With only one portal, use **Back to workbench**.
+
+![The portal switcher and Back to workbench entry](/assets/core/multi-portal/develop/switcher.png)
+
+Generated portal pages initially allow administrators only. Configure ordinary-user entry points, portal lists and page authorization through [Portal access and permissions](access.md). Displaying a navigation item does not grant access.
 
 ## Add pages and navigation
 
-To continue development with an Agent, describe the business behavior:
+### Find the portal code
+
+The main files are under `packages/app-portal-portal-1/`:
+
+| File | What to change |
+| --- | --- |
+| `portal.ts` | Portal ID, namespace, entry, icon and tone |
+| `client/pages/overview.tsx` | Default homepage |
+| `client/routes.ts` | Page routes and access requirements |
+| `client/layout.tsx` | Portal layout and navigation |
+| `client/locales/` | Names and interface text |
+| `server/plugin.ts`, `server/providers/portal.ts` | Server registration and portal definition |
+| `database/main/` | Migrations and seeds for the main connection |
+
+The entry is `/portals/portal-1`, without the app's deployment base path such as `/main`. Change the locale resource's `title` to rename the display label. Avoid changing an existing ID or package name: installation records and permissions may reference them.
+
+### Add a page and route
+
+You can continue with an Agent:
 
 ```prompt
-Add an inventory list to the Inventory management portal with product, warehouse and quantity fields. Let administrators add and edit entries and search by product name.
+Add a Details page to Portal 1 with a navigation entry. For now, show a short introduction on the page and allow administrators to view it.
 ```
 
-This involves pages, services and data. The Agent should follow existing app and portal conventions; the file descriptions below help you understand and review its changes. Verify actual operations using the checks at the end of this guide.
+For a manual implementation, default-export a page component from `client/pages/details.tsx`, using the existing `Layout`:
 
-Edit `client/pages/overview.tsx` for the homepage. Add pages under `client/pages/` and register them in `client/routes.ts`. The generated homepage route is:
+```tsx
+import type { ReactElement } from 'react';
+import { useTranslation } from '@nocobase/i18n/client';
+import Layout from '../layout.js';
 
-```ts
-{
-  name: 'inventoryOverview',
-  path: '/portals/inventory',
-  auth: 'required',
-  authz: 'unrestricted',
-  breadcrumb: { title: 'title' },
-  componentLoader: () => import('./pages/overview.js'),
+export default function DetailsPage(): ReactElement {
+  const { t } = useTranslation('@nocobase/app-portal-portal-1');
+  return (
+    <Layout>
+      <section className='p-6'>
+        <h1 className='text-2xl font-semibold'>{t('detailsTitle')}</h1>
+        <p className='mt-2 text-muted-foreground'>{t('detailsDescription')}</p>
+      </section>
+    </Layout>
+  );
 }
 ```
 
-Keep new pages under `/portals/inventory/...` and add their entries to `navigation` in `client/layout.tsx`. Routes determine matching and access; navigation provides links. Maintain both. Pages default-export their component and use the portal Layout; put visible text in the portal's locales.
-
-Use shadcn/ui, preferring existing package components and NocoBase UI Library. See [Pages and menus](../../extension-development/pages-and-menus.md) and [Localization](../../extension-development/localization.md). Generated pages allow administrators only; business users also need [Portal access and permissions](access.md).
-
-## Add services and database resources
-
-Keep domain logic in portal Server services and register HTTP endpoints through the plugin route mechanism. Every endpoint independently checks authentication, business authorization and portal installation. Hiding a page is not sufficient. See [Server APIs](../../extension-development/server-apis.md).
-
-The generator declares the main connection in `server/plugin.ts`:
+Add `detailsTitle: 'Details'` and `detailsDescription: 'A page inside Portal 1.'` to the portal's `client/locales/en-US.ts`, and translations to the corresponding locale files. Then append this entry to the route array in `client/routes.ts`:
 
 ```ts
-database: {
-  connections: {
-    main: {},
-  },
-},
+{
+  name: 'portal1Details',
+  path: '/portals/portal-1/details',
+  auth: 'required',
+  authz: 'unrestricted',
+  breadcrumb: { title: 'detailsTitle' },
+  componentLoader: () => import('./pages/details.js'),
+}
 ```
 
-Add schema migrations under `database/main/migrations/` and required initialization data under `database/main/seeds/`. Retain the generated installation seed; do not overwrite an administrator's installation choice on each startup.
+### Add a navigation entry
 
-Portals support multiple connections. Configure each connection and driver in the host app, then declare the same name in the portal, for example `analytics: {}` with resources under `database/analytics/migrations/` and `database/analytics/seeds/`. The app owns connection configuration. Installation coordinates required database tasks and activates the portal only after they all succeed.
+Read the portal's translations in `client/layout.tsx`:
 
-These connections do not form a distributed atomic transaction. Failure on one connection does not automatically roll back migrations completed on another. Preserve execution history, fix the cause and retry. See [Database and migrations](../../extension-development/database-and-migrations.md) and [Database connections](../../framework/database/connections.md).
+```ts
+const { t: tPortal } = useTranslation('@nocobase/app-portal-portal-1');
+```
+
+Keep the existing Overview item and append the following to `navigation`. The generated layout already imports `ChartNoAxesCombined`; you can choose another supported icon.
+
+```ts
+{
+  path: `${portal.entry}/details`,
+  title: tPortal('detailsTitle'),
+  icon: ChartNoAxesCombined,
+}
+```
+
+Clicking **Details** should display the introduction. Opening `/main/portals/portal-1/details` directly and refreshing should work too; substitute your actual app base path if it is not `/main`. Routes determine page matching and access; navigation provides entry points. Maintain both.
+
+## Adjust the portal layout
+
+### App shell and portal layout
+
+The app owns sign-in, user permissions, runtime configuration, connections and deployment. The portal owns its pages, navigation, business services and data definitions.
+
+Generated portals use `PortalLayout`, which delegates the sidebar, header and account menu to the app's `PortalLayoutHost`. The portal layout is in `client/layout.tsx`; the shared shell is in the app's `client/layouts/portal-shell.tsx`.
+
+### Customize the portal's page structure
+
+For changes to one portal's menus, page arrangement or content area, start with that portal's layout and pages. You can implement a portal-specific layout for top navigation or another page structure. Retain the account, sign-out and portal-switching entry points you need, and use the app's authentication and authorization mechanisms.
+
+Changing the app's shared shell affects other portals that use it. Do not change the global shell just to accommodate one portal's special layout. See [Pages and menus](../../extension-development/pages-and-menus.md) and [Localization](../../extension-development/localization.md) for the underlying APIs.
+
+## Add services and data
+
+To persist business records, implement business logic and HTTP endpoints in the portal's Server. Each endpoint must check authentication, business permissions and portal installation status independently. Hiding a menu does not protect data. See [Server APIs](../../extension-development/server-apis.md).
+
+The generator declares `database.connections.main` in `server/plugin.ts`. Put schema migrations in `database/main/migrations/` and required initial data in `database/main/seeds/`. Keep the generated installation seed; do not overwrite the administrator's installation choice at every startup.
+
+Additional connections and drivers are configured by the app. The portal declares matching connection names and their migrations and seeds. Installation waits for every required connection's database tasks to succeed. These connections do not form a cross-database atomic transaction: preserve execution history, fix failures and retry. See [Database connections](../../framework/database/connections.md) and [Database and migrations](../../extension-development/database-and-migrations.md).
 
 ## Verify and deliver
 
-From the app root, check the affected portal and build the app to verify integration:
+At the app root, run:
 
 ```bash
-pnpm --filter @nocobase/app-portal-inventory check
+pnpm --filter @nocobase/app-portal-portal-1 check
 pnpm build
 ```
 
-Verify the homepage, added pages and navigation. Test pages and APIs as an administrator, an authorized business user and an unauthorized user. The generated minimal package may contain no business tests; a passing check does not establish business coverage.
+Then check actual behavior:
 
-Local portals ship with the host app. Use `pnpm build --tar` for a deployment archive, then follow [Publish an app release](../../deployment/publish-app-release.md). See [Manage portals](manage.md) for installation, removal and upgrades.
+- After installation, open the portal from management and the portal list, and refresh it.
+- Verify navigation and direct access to the new page, switching portals and the return entry.
+- After configuring ordinary-user permissions, check pages and endpoints with an administrator, an authorized user and an unauthorized user.
+
+The minimal generated package may have no business tests. Passing checks does not mean business behavior is covered. Local portals ship with the app. Run `pnpm build --tar` when you need a deployment archive, then follow [Publish an app release](../../deployment/publish-app-release.md).

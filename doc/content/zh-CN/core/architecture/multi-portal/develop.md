@@ -1,161 +1,219 @@
 ---
 title: 开发业务门户
-metaDescription: 创建业务门户，了解生成的目录和注册方式，再扩展页面、布局、服务和数据库连接。
+metaDescription: 在已有多门户应用中创建门户，安装并进入，再添加页面、导航和布局，完成开发验证。
 ---
 
-先准备一个已配置并能正常启动的[多门户应用](create-app.md)，并保持商业包源登录有效。门户是应用中的本地包，复用插件运行时，随应用一起构建和部署；开发自己的业务门户不需要先把它发布到 npm。
+## 准备多门户应用
 
-## 创建业务门户
+准备一个已配置并能正常启动的[多门户应用](create-app.md)，保持商业包源登录有效，并使用具有 `unrestricted` 权限的管理员账号完成以下操作。
 
-可以使用 Agent 或命令生成门户，选择一种方式即可，然后完成安装验证。
+本例创建“门户 1”（`portal-1`）：先得到一个可进入的空门户，再添加一个详情页面。门户是应用中的本地包，随应用一起构建和部署，不需要先发布到 npm。页面开发沿用 shadcn/ui 组件约定，优先复用已有组件和 NocoBase UI Library。
 
-### 使用 Agent 创建门户
+## 创建第一个门户
 
-在已有多门户应用的根目录打开 Agent。此时使用应用自带的开发指引：`AGENTS.md`、`.agents/rules/multi-portal.md`，以及项目内的应用开发和插件开发 Skills。创建整个应用的全局 `nocobase-create-app` Skill 不负责这一步，也不需要再创建一个应用。
+在已有应用的根目录操作。下面两种方式任选一种，不要重复生成同名门户。
+
+### 使用 Agent 创建
+
+在应用根目录打开开发 Agent，输入：
 
 ```prompt
-在当前应用里新增一个“库存管理”门户，名称用 inventory，先做好能进入的基础首页。
+在当前应用里新增一个“门户 1”，名称用 portal-1，先做好能进入的基础首页，不添加业务数据。
 ```
 
-项目指引会引导 Agent 使用门户生成器，处理源码、依赖和 Client/Server 注册。完成后应能找到 `packages/app-portal-inventory/`，并在重启应用后从门户管理看到它。生成器默认不安装门户；管理员登录后按下方“安装并验证门户”操作。普通业务用户的入口和授权需要按[门户访问与权限](access.md)单独完成。
+Agent 使用项目的 `AGENTS.md`、`.agents/rules/multi-portal.md` 和项目内的开发 Skills 完成生成与注册。完成后，确认存在 `packages/app-portal-portal-1/`，并且门户已注册到应用的 Client 和 Server。这里不需要重新创建应用。
 
-Agent 已生成门户时，跳过下面的生成命令，避免重复创建同名目录。
+### 使用命令创建
 
-### 使用命令创建门户
+```bash
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1
+```
+
+命令会生成 `packages/app-portal-portal-1/`，安装依赖，并注册到应用的 Client 和 Server。它不会启动应用、修改数据库或安装门户，也不生成业务表和 CRUD 页面。
+
+门户 ID 以小写字母开头，只包含小写字母、数字和单个连字符分隔的片段，最长 40 个字符。添加 `--dry-run --json` 可先查看生成计划。
+
+门户名称默认从 ID 生成，例如 `portal-1` 对应 `Portal 1`。生成后在 `packages/app-portal-portal-1/client/locales/` 中维护各语言的名称和描述。修改现有文件中的字段，保留其导入、类型和导出：
+
+```ts
+// en-US.ts 中的 messages 字段
+title: 'Portal 1',
+description: 'Your portal workspace.',
+```
+
+```ts
+// zh-CN.ts 中的 messages 字段
+title: '门户 1',
+description: '你的门户工作台。',
+```
+
+界面随当前语言显示对应文案。修改名称不需要更改门户 ID、包名或路由，其他语言也在各自的文件中维护。
+
+需要在创建时快速填写文案，可以重复使用 `--set-locale`。请先通过生成器的 `--help` 确认所用版本支持该参数；旧版本可先生成门户，再按上面的方式修改语言文件。
+
+```bash
+pnpm create @nocobase/portal@beta portal-1 \
+  --set-locale 'en-US.title=Portal 1' \
+  --set-locale 'en-US.description=Your portal workspace.' \
+  --set-locale 'zh-CN.title=门户 1' \
+  --set-locale 'zh-CN.description=你的门户工作台。'
+```
+
+格式为 `语言.字段=值`，字段只支持 `title` 和 `description`。未指定的字段保留默认值；按第一个 `=` 分隔，文案中可以继续包含 `=`。不支持的语言、字段或重复设置都会报错。名称须为非空单行文字，描述可以为空。支持的语言为 `en-US`、`zh-CN`、`zh-TW`、`ja-JP`、`de-DE`、`es-ES`、`fr-FR`、`pt-BR`、`vi-VN` 和 `id-ID`。参数直接写入同一套语言文件，后续仍在 `client/locales` 中维护。
+
+如果依赖安装失败，保留生成的源码，按命令输出的恢复步骤处理；不要在已有目录上重复运行生成器。
+
+## 安装并进入门户
+
+生成完成后，启动或重启应用，让它加载新注册的门户：
+
+```bash
+pnpm dev
+```
+
+### 在门户管理中安装
+
+使用管理员账号打开 **系统设置 → 门户管理**，找到“门户 1”。初始状态为 **未安装**，打开行末的 **…** 菜单，选择 **安装**。
+
+![在门户管理的操作菜单中安装 Portal 1](/assets/core/multi-portal/develop/install.png)
+
+等待状态变为 **已安装**，再从同一菜单选择 **进入**。安装过程中会执行门户的数据库任务并启动门户；失败时按[管理门户](manage.md)检查失败阶段，不要删除迁移记录重新开始。
+
+### 从工作台进入门户
+
+管理员也可以从 **工作台** 点击已安装的门户卡片进入。**首页**展示应用的起始内容，**工作台**提供门户入口，**门户管理**负责安装与卸载。
+
+![独立工作台中的 Portal 1 入口](/assets/core/multi-portal/develop/workbench.png)
+
+> [!NOTE]
+> 独立工作台的截图来自预览版模板。若当前安装的模板尚未提供独立的“工作台”菜单，请从首页的门户列表进入；门户管理中的安装与进入方式相同。
+
+进入后应看到门户自己的 **Overview** 导航和基础首页。刷新页面后仍能进入，就完成了最小门户的安装验证。这里还没有业务功能。
+
+![Portal 1 的默认导航和基础首页](/assets/core/multi-portal/develop/portal.png)
+
+### 切换门户与返回工作台
+
+点击门户左上角的名称，打开切换菜单。安装并授权其他门户后，可以从这里切换；当前只有一个门户时，可使用 **返回工作台**。
+
+![门户切换菜单与返回工作台入口](/assets/core/multi-portal/develop/switcher.png)
+
+默认生成的门户页面只允许管理员访问。普通用户的入口、门户列表和页面授权需要按[门户访问与权限](access.md)配置，不能仅通过显示导航来授予访问权。
+
+## 添加页面与导航
+
+### 找到门户代码
+
+常用文件都在 `packages/app-portal-portal-1/` 下：
+
+| 文件 | 修改内容 |
+| --- | --- |
+| `portal.ts` | 门户 ID、命名空间、入口、图标与色调 |
+| `client/pages/overview.tsx` | 默认首页 |
+| `client/routes.ts` | 页面路由与访问要求 |
+| `client/layout.tsx` | 门户布局与导航 |
+| `client/locales/` | 名称和界面文案 |
+| `server/plugin.ts`、`server/providers/portal.ts` | 服务端注册与门户定义 |
+| `database/main/` | 主连接的迁移和初始化数据 |
+
+本例入口为 `/portals/portal-1`，不包含 `/main` 等应用部署基础路径。改显示名称时修改语言资源中的 `title`，不要随意更换已使用的 ID 或包名，安装记录和权限可能引用它们。
+
+### 新增页面与路由
+
+可以继续向 Agent 描述需求：
+
+```prompt
+给门户 1 添加一个“详情”页面，在导航里加入口，页面先展示一段介绍文字，供管理员查看。
+```
+
+手动实现时，在 `client/pages/details.tsx` 默认导出页面组件，沿用现有的 `Layout`：
+
+```tsx
+import type { ReactElement } from 'react';
+import { useTranslation } from '@nocobase/i18n/client';
+import Layout from '../layout.js';
+
+export default function DetailsPage(): ReactElement {
+  const { t } = useTranslation('@nocobase/app-portal-portal-1');
+  return (
+    <Layout>
+      <section className='p-6'>
+        <h1 className='text-2xl font-semibold'>{t('detailsTitle')}</h1>
+        <p className='mt-2 text-muted-foreground'>{t('detailsDescription')}</p>
+      </section>
+    </Layout>
+  );
+}
+```
+
+在门户的 `client/locales/en-US.ts` 中添加 `detailsTitle: 'Details'` 和 `detailsDescription: 'A page inside Portal 1.'`，并在对应语言文件中补充翻译。随后向 `client/routes.ts` 的路由数组追加：
+
+```ts
+{
+  name: 'portal1Details',
+  path: '/portals/portal-1/details',
+  auth: 'required',
+  authz: 'unrestricted',
+  breadcrumb: { title: 'detailsTitle' },
+  componentLoader: () => import('./pages/details.js'),
+}
+```
+
+### 添加导航入口
+
+在 `client/layout.tsx` 中读取门户自己的翻译：
+
+```ts
+const { t: tPortal } = useTranslation('@nocobase/app-portal-portal-1');
+```
+
+保留原有 Overview 菜单，向 `navigation` 数组追加以下条目。`ChartNoAxesCombined` 已由生成的布局导入，可替换为其他受支持的图标。
+
+```ts
+{
+  path: `${portal.entry}/details`,
+  title: tPortal('detailsTitle'),
+  icon: ChartNoAxesCombined,
+}
+```
+
+此时点击 **Details** 应显示介绍文字，直接访问 `/main/portals/portal-1/details` 并刷新也应正常；若应用基础路径不是 `/main`，使用实际路径。路由决定页面匹配与访问，导航提供入口，两处都需要维护。
+
+## 调整门户布局
+
+### 应用外壳与门户布局
+
+应用负责登录、用户权限、运行配置、连接和部署；门户负责自己的页面、导航、业务服务与数据定义。
+
+生成的门户使用 `PortalLayout`，通过应用提供的 `PortalLayoutHost` 显示侧边栏、页头和账户菜单。门户布局在 `client/layout.tsx`，共用外壳在应用的 `client/layouts/portal-shell.tsx`。
+
+### 自定义门户的页面组织
+
+只调整某个门户的菜单、页面排列或内容区域时，从该门户的布局和页面修改。需要独立的顶部导航或不同页面结构时，可以在门户内实现自己的布局；应保留所需的账户、退出和门户切换入口，并沿用应用的认证与权限机制。
+
+修改应用的共用外壳会影响使用它的其他门户，不要为了一个门户的特殊排版直接改全局外壳。页面与菜单的完整用法见[页面与菜单](../../extension-development/pages-and-menus.md)，界面文案见[国际化](../../extension-development/localization.md)。
+
+## 添加服务与数据
+
+需要保存业务记录时，在门户的 Server 中实现业务逻辑和 HTTP 接口。接口必须独立检查登录、业务权限和门户安装状态；隐藏菜单不能保护数据。具体做法见[服务端 API](../../extension-development/server-apis.md)。
+
+生成器已在 `server/plugin.ts` 声明 `database.connections.main`。表结构迁移放在 `database/main/migrations/`，必要的初始化数据放在 `database/main/seeds/`。保留生成的安装 seed，不要在每次启动时覆盖管理员选择的安装状态。
+
+额外数据库连接由应用配置并提供驱动，再由门户声明同名连接及其迁移、seed。安装需要等待各连接的数据库任务成功；多个连接之间不是跨库原子事务，失败时保留执行历史、修复后重试。详见[数据库连接](../../framework/database/connections.md)和[数据库与迁移](../../extension-development/database-and-migrations.md)。
+
+## 验证与交付
 
 在应用根目录执行：
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta inventory \
-  --title 'Inventory management' --title-zh '库存管理'
-```
-
-`inventory` 是门户 ID，应以小写字母开头，只包含小写字母、数字和单个连字符分隔的片段，最长 40 个字符，例如 `inventory` 或 `quality-checks`。命令生成的包名为 `@nocobase/app-portal-inventory`。
-
-| 参数 | 用途 |
-| --- | --- |
-| `--title` | 默认显示名称，本例为 `Inventory management` |
-| `--title-zh` | 简体中文显示名称，本例为“库存管理” |
-| `--dry-run --json` | 先查看生成计划，不写入文件 |
-
-省略 `--title` 时，显示名称由 ID 生成；省略 `--title-zh` 时，简体中文沿用默认显示名称。
-
-命令创建 `packages/app-portal-inventory/`，安装所需依赖，并把门户注册到应用的 Client 和 Server。它只生成最小门户，不创建库存业务表、样例记录或 CRUD 页面，也不会启动应用或修改数据库。
-
-门户生成后仍是未安装状态。若命令报告安装依赖失败，保留已生成的源码，按输出的恢复命令处理；不要在已有目标目录上重新运行生成器。
-
-### 安装并验证门户
-
-生成完成后，启动或重启开发服务，让应用加载新注册的门户。使用管理员账号登录：
-
-1. 打开 **系统设置 → 门户管理**。
-2. 找到“库存管理”，此时状态应为未安装。
-3. 点击 **安装**，等待数据库任务和门户启动完成。
-4. 状态变为已安装后，进入门户，或回到管理员首页的工作台进入。
-
-现在应看到库存管理的最小首页，刷新后仍可进入。这里还没有库存业务功能，接下来按下文扩展页面、服务和数据。安装失败时，按[管理门户](manage.md)检查失败阶段。
-
-## 门户与应用各自负责什么
-
-应用负责登录、用户权限、运行配置、数据库连接和部署，并提供侧边栏、账户菜单、页头等公共外壳。门户负责自己的业务入口、布局与导航、页面、语言资源、业务服务和数据定义。
-
-`PortalLayoutHost` 由应用提供，门户通过 `PortalLayout` 把导航和页面内容交给这个外壳。添加一个门户菜单时，应修改门户的布局；只有需要改变所有门户共用的外壳时，才调整应用的 `client/layouts/portal-shell.tsx`。
-
-## 找到需要修改的文件
-
-以下是库存门户的主要文件，不是完整目录：
-
-```text
-packages/app-portal-inventory/
-├── portal.ts
-├── client/
-│   ├── plugin.ts
-│   ├── routes.ts
-│   ├── layout.tsx
-│   ├── pages/overview.tsx
-│   └── locales/
-├── server/
-│   ├── plugin.ts
-│   └── providers/portal.ts
-└── database/main/
-    ├── migrations/
-    └── seeds/portal_inventory_installation.ts
-```
-
-`portal.ts` 声明门户标识和入口。生成的库存门户使用：
-
-```ts
-import type { PortalDescriptor } from '@nocobase/app-plugin-multi-portal/shared';
-
-const portal: PortalDescriptor = {
-  id: 'inventory',
-  namespace: '@nocobase/app-portal-inventory',
-  entry: '/portals/inventory',
-  icon: 'LayoutGrid',
-  tone: 1,
-};
-
-export default portal;
-```
-
-显示名称来自 `client/locales/` 中的 `title`，不是门户 ID。需要改名时优先改翻译，保留已经使用的 ID、包名和路由标识；安装记录和权限可能引用它们。入口不包含 `/main` 等部署基础路径。
-
-## 添加页面与导航
-
-继续使用 Agent 开发时，直接说明业务需求，例如：
-
-```prompt
-给库存管理门户加一个库存列表，记录商品、仓库和数量，支持新增、修改以及按商品名称搜索，先供管理员使用。
-```
-
-这类需求同时涉及页面、服务和数据。Agent 应按应用与门户的现有规范实现；下面的文件说明可用于理解和检查它的改动。完成后按文末的检查步骤验证实际操作。
-
-修改首页时，从 `client/pages/overview.tsx` 开始；新增页面放在 `client/pages/`，通过 `client/routes.ts` 注册。生成的首页路由是：
-
-```ts
-{
-  name: 'inventoryOverview',
-  path: '/portals/inventory',
-  auth: 'required',
-  authz: 'unrestricted',
-  breadcrumb: { title: 'title' },
-  componentLoader: () => import('./pages/overview.js'),
-}
-```
-
-新页面沿用 `/portals/inventory/...` 路径，并在 `client/layout.tsx` 的 `navigation` 中添加菜单。路由控制页面匹配与访问，导航控制入口展示，两者需要同时维护。页面默认导出组件，并使用门户的 Layout；用户可见文字放到门户自己的语言资源中。
-
-UI 使用 shadcn/ui，优先复用包内已有组件和 NocoBase UI Library。具体写法见[页面与菜单](../../extension-development/pages-and-menus.md)和[国际化](../../extension-development/localization.md)。默认生成页面只允许管理员访问，面向普通用户时还需完成[门户访问与权限](access.md)。
-
-## 添加服务与数据库资源
-
-业务逻辑放在门户的 Server 服务中；HTTP 接口按插件的服务端路由机制注册。每个接口独立执行登录检查、业务授权和门户安装状态检查，不能仅依赖页面不可见。接口组织见[服务端 API](../../extension-development/server-apis.md)。
-
-生成器已经在 `server/plugin.ts` 声明主连接：
-
-```ts
-database: {
-  connections: {
-    main: {},
-  },
-},
-```
-
-在 `database/main/migrations/` 添加业务表结构迁移，在 `database/main/seeds/` 添加必要的初始化数据。保留生成的安装 seed；不要用每次启动重新赋值的方式覆盖管理员选择的安装状态。
-
-门户也支持多个连接。先在宿主应用配置连接和驱动，再在门户声明同名连接，例如增加 `analytics: {}`，并将对应资源放到 `database/analytics/migrations/` 与 `database/analytics/seeds/`。连接由应用持有，不在门户中另建一套配置。安装时会协调该门户所需连接的数据库任务，全部成功后才开放门户。
-
-多个连接之间不是一个跨库原子事务；某个连接失败时，已经完成的迁移不会自动回滚。保留执行历史，修复失败原因后重试。迁移规则见[数据库与迁移](../../extension-development/database-and-migrations.md)，连接配置见[数据库连接](../../framework/database/connections.md)。
-
-## 检查与交付
-
-在应用根目录检查修改的门户，并构建应用验证集成：
-
-```bash
-pnpm --filter @nocobase/app-portal-inventory check
+pnpm --filter @nocobase/app-portal-portal-1 check
 pnpm build
 ```
 
-检查首页和新增页面是否可进入，菜单与路由是否一致，并用管理员、授权业务用户和无权用户分别验证页面与接口。生成的最小包可能还没有业务测试，检查命令成功不等于业务行为已经覆盖。
+再检查实际操作：
 
-本地门户随宿主应用交付。需要部署包时执行 `pnpm build --tar`，后续流程见[发布应用版本](../../deployment/publish-app-release.md)。门户安装、卸载及升级行为见[管理门户](manage.md)。
+- 安装后能从门户管理和门户列表进入，刷新后仍可访问。
+- 新增页面的导航与直接访问结果一致，门户切换和返回入口正常。
+- 配置普通用户权限后，分别用管理员、有权用户和无权用户检查页面与接口。
+
+生成的最小包可能没有业务测试，检查命令通过不代表业务行为已经覆盖。本地门户随应用交付；需要部署包时运行 `pnpm build --tar`，后续步骤见[发布应用版本](../../deployment/publish-app-release.md)。

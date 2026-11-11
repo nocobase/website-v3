@@ -1,5 +1,5 @@
 ---
-title: Develop a business portal
+title: Develop a portal
 metaDescription: Create a portal in an existing multi-portal app, install and open it, then add pages, navigation and layouts and verify the result.
 ---
 

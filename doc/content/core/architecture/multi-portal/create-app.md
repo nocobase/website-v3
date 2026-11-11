@@ -40,7 +40,7 @@ Confirm the database and access setup with me, then start it and give me the URL
 
 The creation Skill supports the commercial multi-portal template. It checks package access, selects `multi-portal`, installs dependencies, configures and starts the app. Check the delivered directory and URL, then sign in to confirm the administrator workbench and portal management are available. An empty portal list is expected. A creation success message alone does not verify login.
 
-Continue development inside the generated app directory, using its `AGENTS.md`, `.agents/rules/multi-portal.md` and project Skills. If the current session has not loaded that guidance, reopen the Agent in the app directory before [creating a business portal](develop.md#create-your-first-portal).
+Continue development inside the generated app directory, using its `AGENTS.md`, `.agents/rules/multi-portal.md` and project Skills. If the current session has not loaded that guidance, reopen the Agent in the app directory before [developing a portal](develop.md#create-your-first-portal).
 
 The manual steps below are an alternative. Do not repeat them if the Agent has already created, configured and started the app.
 
@@ -104,4 +104,4 @@ After login, the administrator workbench and **System settings → Portal manage
 
 ## Next step
 
-Continue with [Create a business portal](develop.md#create-your-first-portal) to generate, install and extend your first portal.
+Continue with [Develop a portal](develop.md#create-your-first-portal) to generate, install and extend your first portal.

@@ -40,7 +40,7 @@ npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 
 创建 Skill 支持商业多门户模板，会检查包访问权限，使用 `multi-portal` 模板创建项目，再完成依赖安装、配置和启动。创建完成后，检查交付的项目目录和访问地址，并登录确认能看到管理员工作台与门户管理。新应用的门户列表为空是正常状态；读到“创建成功”不等于已经完成登录验证。
 
-后续在生成的应用目录中继续开发，Agent 应读取该应用的 `AGENTS.md`、`.agents/rules/multi-portal.md` 和项目 Skills。若当前会话没有加载新项目指引，在应用目录重新打开会话，再进入[开发业务门户](develop.md#创建第一个门户)。
+后续在生成的应用目录中继续开发，Agent 应读取该应用的 `AGENTS.md`、`.agents/rules/multi-portal.md` 和项目 Skills。若当前会话没有加载新项目指引，在应用目录重新打开会话，再进入[开发门户](develop.md#创建第一个门户)。
 
 下面的手动步骤是另一种创建方式；Agent 已完成创建、配置和启动时，不需要再执行一遍。
 
@@ -104,4 +104,4 @@ pnpm dev
 
 ## 下一步
 
-继续[开发业务门户](develop.md#创建第一个门户)，生成、安装并扩展第一个门户。
+继续[开发门户](develop.md#创建第一个门户)，生成、安装并扩展第一个门户。

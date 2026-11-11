@@ -27,12 +27,22 @@ mailers:
     secure: false
     auth:
       user: notifications@example.com
+      pass: replace-with-smtp-password
     from: "Studio <notifications@example.com>"
 ```
 
-Supply the password through `MAILERS_SYSTEM_PASSWORD`, as shown below. Authorize the sender address with your email provider and use its required port and TLS settings.
+Set the SMTP password in `mailers.system.auth.pass`. Authorize the sender address with your email provider and use its required port and TLS settings.
 
-For Resend, set `mailers.system` to `provider: resend` and `from`. Remove the SMTP fields and pass the API key through `MAILERS_SYSTEM_API_KEY` in both `.env` and Compose.
+For Resend, replace the `mailers` configuration with the following. Do not mix SMTP fields into it:
+
+```yaml
+mailers:
+  default: system
+  system:
+    provider: resend
+    apiKey: replace-with-resend-api-key
+    from: "Studio <notifications@example.com>"
+```
 
 Invitations use `mailers.default`. To select another configured service, set `users.invitations.mailer` to its name. Without email configuration, administrators can copy and share invitation links. See [Invite members](../setup/invite.md).
 
@@ -41,6 +51,9 @@ Invitations use `mailers.default`. To select another configured service, set `us
 Password resets use `mailers.default` too. Enable password sign-in and recovery:
 
 ```yaml
+app:
+  publicOrigin: https://studio.example.com
+
 auth:
   emailAndPassword:
     enabled: true
@@ -50,25 +63,11 @@ auth:
     enabled: true
 ```
 
-Set `APP_PUBLIC_ORIGIN`, such as `https://studio.example.com`, so email links reach your Studio instance. To use a different configured service for recovery, set `auth.email.mailer` to its name.
+Set `app.publicOrigin`, such as `https://studio.example.com`, so email links reach your Studio instance. To use a different configured service for recovery, set `auth.passwordReset.mailer` to its name.
 
-## Pass secrets and apply configuration
+## Apply configuration
 
-Add to the deployment's `.env`:
-
-```dotenv
-MAILERS_SYSTEM_PASSWORD=<smtp-password>
-```
-
-Add these entries under `services.studio.environment` in `docker-compose.yml`:
-
-```yaml
-MAILERS_SYSTEM_PASSWORD: ${MAILERS_SYSTEM_PASSWORD:?set MAILERS_SYSTEM_PASSWORD in .env}
-```
-
-A Compose `.env` does not automatically pass variables into containers. Declare them in Compose. `${NAME}` in `config.yml` is not expanded either.
-
-Recreate the Studio container after making changes:
+Save `config.yml` and ensure the container user can read it. Then recreate the Studio container:
 
 ```bash
 docker compose up -d --force-recreate studio
@@ -86,12 +85,12 @@ A submitted request does not prove delivery. Check sender authorization, SMTP co
 
 Push notifications need:
 
-- Studio served over HTTPS, with `APP_PUBLIC_ORIGIN` set to the public address. An `http://` address on your local network won't work.
-- A stable 32-byte P-256 private key, encoded as base64url or 64 hexadecimal characters. Set `push.privateKey` or `WEB_PUSH_PRIVATE_KEY`. Set a contact address in `push.contact`, such as `mailto:admin@example.com`.
+- Studio served over HTTPS, with `app.publicOrigin` set to the public address. An `http://` address on your local network won't work.
+- A stable 32-byte P-256 private key, encoded as base64url or 64 hexadecimal characters. Set `push.privateKey` in `config.yml`. Set a contact address in `push.contact`, such as `mailto:admin@example.com`.
 
 Without the private key, members can't subscribe to push.
 
 > [!WARNING] Preserve the push key
-> If you change the push private key, every subscribed device has to subscribe again. Store it somewhere safe together with `SECRETS_KEYS`, back them up together, and never commit it to a repository.
+> If you change the push private key, every subscribed device has to subscribe again. Store it somewhere safe together with `secrets.keys`, back them up together, and never commit it to a repository.
 
-![Member notification preferences](https://static-docs.nocobase.com/studio-en-guide-preferences-20261031.png)
+![Member notification preferences](https://static-docs.nocobase.com/studio-en-notifications-20261111-normal-2x.webp)

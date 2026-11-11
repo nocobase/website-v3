@@ -5,7 +5,7 @@ description: "アカウント、ロール、チームのアクセス権限を管
 
 アカウントは **Settings › Members**、権限は **Settings › Roles** で管理します。エージェントの作業も、依頼者の権限とエージェントに許可された操作に制限されます。
 
-![メンバーのアカウント、ロール、状態](https://static-docs.nocobase.com/studio-en-guide-members-20261031.png)
+![メンバーのアカウント、ロール、状態](https://static-docs.nocobase.com/studio-en-members-20261111-normal-2x.webp)
 
 ## メンバーを管理する
 
@@ -33,7 +33,7 @@ Owner の付与と解除は Owner だけが行えます。最後の Owner は削
 
 新しいロールを作成するか、既存ロールをコピーして、ページ、設定、業務操作の権限を調整します。
 
-![チームのロールを確認・管理する](https://static-docs.nocobase.com/studio-en-guide-roles-20261031.png)
+![チームのロールを確認・管理する](https://static-docs.nocobase.com/studio-en-roles-20261111-normal-2x.webp)
 
 業務操作の対象は、許可なし、関連レコード、全レコードから選びます。関連レコードの意味は操作ごとに表示されます。たとえば、メンバーが責任者を務めるプロジェクトです。ページ権限は入口、業務権限は実際の操作を制御します。
 

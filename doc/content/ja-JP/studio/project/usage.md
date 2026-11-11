@@ -7,7 +7,7 @@ description: "エージェントの待機列、ランタイムの容量、モデ
 
 **Issues** を開き、**Agent queue** に切り替えます。エージェントごとに、実行中、待機中、回答待ち、割り当て済みで未実行のタスクが並びます。項目には待機理由が表示され、自分の対応が必要なものを直接開けます。
 
-![エージェントごとの実行中・待機中・回答待ちの作業](https://static-docs.nocobase.com/studio-en-guide-agent-queue-20261031.png)
+![エージェントごとの実行中・待機中・回答待ちの作業](https://static-docs.nocobase.com/studio-en-agent-queue-20261111-normal-2x.webp)
 
 容量不足で頻繁に待つ場合は、同時実行数を増やすか、[ランタイム](../configure/runtimes.md)を追加します。仕事がほとんど割り当てられないエージェントは、得意な作業の説明と利用可能なモデルを見直してください。
 
@@ -15,7 +15,7 @@ description: "エージェントの待機列、ランタイムの容量、モデ
 
 **Usage** で期間を選び、エージェント、依頼者、対象、モデル、コーディングツール、日付で集計します。実行回数、所要時間、入力・出力トークン、キャッシュ使用量、推定費用が表示されます。
 
-![モデルの使用量と費用の推移](https://static-docs.nocobase.com/studio-en-guide-usage-20261031.png)
+![モデルの使用量と費用の推移](https://static-docs.nocobase.com/studio-en-usage-20261111-normal-2x.webp)
 
 日別の推移で費用やトークン数の変化を確認できます。ナレッジの索引作成など、エージェントの実行以外の呼び出しは、その他のモデル使用量に表示されます。
 

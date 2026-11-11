@@ -11,7 +11,7 @@ description: 确认业务规则，处理失败运行、负责人交接和个人�
 2. 点「回复」，在对应线程中写下决定或补充资料。
 3. 发送后，调度 Agent 根据答复继续安排。
 
-![阻塞中的任务明确列出需要负责人确认的问题](https://static-docs.nocobase.com/studio-zh-guide-answer-20261031.png)
+![阻塞中的任务明确列出需要负责人确认的问题](https://static-docs.nocobase.com/studio-zh-req-blocked-20261111-normal-2x.webp)
 
 ```prompt
 C 级供应商的订单不论金额都需要采购经理审批。其他供应商仍按金额判断。

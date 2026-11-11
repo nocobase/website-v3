@@ -16,7 +16,7 @@ This guide uses GitHub as the example. For GitLab and other options, see [Code p
 5. Install the App on the target account or organization. Select **All repositories** under **Repository access** so it can access the repository you create next.
 6. Return to Studio.
 
-![Local trial example: connect a GitHub organization with Webhook disabled](https://static-docs.nocobase.com/studio-en-setup-github-connection-20261030.png)
+![Local trial example: connect a GitHub organization with Webhook disabled](https://static-docs.nocobase.com/studio-en-github-connection-20261111-normal-2x.webp)
 
 **All repositories** covers existing and future repositories. Review the permissions GitHub displays. Creating an App and installing it in an organization require the corresponding permissions.
 
@@ -24,7 +24,7 @@ This guide uses GitHub as the example. For GitLab and other options, see [Code p
 
 The connection card should show **Connected** and the number of accessible repositories.
 
-![The GitHub App is connected to the organization](https://static-docs.nocobase.com/studio-en-setup-github-connected-20261030.png)
+![The GitHub App is connected to the organization](https://static-docs.nocobase.com/studio-en-git-20261111-normal-2x.webp)
 
 Next, [connect a runtime](shared-runtimes.md).
 

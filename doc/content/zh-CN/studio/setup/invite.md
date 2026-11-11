@@ -12,7 +12,7 @@ description: 邀请团队成员加入 Studio，分配项目和角色。
 3. 选择「加入的项目」。被邀请人以项目成员身份加入。
 4. 点「发送邀请」。
 
-![填写成员邮箱并选择加入的项目](https://static-docs.nocobase.com/studio-zh-setup-invite-full-1440x900-20261030.png)
+![填写成员邮箱并选择加入的项目](https://static-docs.nocobase.com/studio-zh-invite-20261111-normal-2x.webp)
 
 已配置邮件服务时，Studio 会发送邀请邮件。未配置时，结果显示「邮件未发送」，可以复制邀请链接，单独发给对方。
 

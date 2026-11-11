@@ -18,7 +18,7 @@ description: 以供应商评分与分级为例，了解需求确认、Agent 开�
 
 Agent 创建任务 **PUR-23「供应商评分与分级」**，写入业务规则和验收场景。周航点击「开始执行 1 个任务」，由调度 Agent 接手推进。
 
-![Runner Agent 将确认后的规则整理为任务，周航确认后开始执行](https://static-docs.nocobase.com/studio-zh-req-session-20261030-v3.png)
+![Runner Agent 将确认后的规则整理为任务，周航确认后开始执行](https://static-docs.nocobase.com/studio-zh-req-session-20261111-normal-2x.webp)
 
 周航是任务负责人，可以继续在会话中跟进进展，也可以在任务中补充要求。其他创建方式见 [提出需求](../use/raise-a-request.md)。
 
@@ -28,7 +28,7 @@ Agent 创建任务 **PUR-23「供应商评分与分级」**，写入业务规则
 
 方案需要明确评分如何计算、等级如何保存，以及怎样接入已有审批流程。后续开发和评审也由调度 Agent 根据各 Agent 的能力分派。
 
-![调度 Agent 将方案设计交给 Claude，并附上业务资料和验证要求](https://static-docs.nocobase.com/studio-zh-req-dispatch-20261030-v3.png)
+![调度 Agent 将方案设计交给 Claude，并附上业务资料和验证要求](https://static-docs.nocobase.com/studio-zh-req-dispatch-20261111-normal-2x.webp)
 
 ## 确认审批规则
 
@@ -40,13 +40,13 @@ Agent 创建任务 **PUR-23「供应商评分与分级」**，写入业务规则
 
 规则确认后，调度 Agent 安排 Codex 开发。
 
-![「需要你」卡片列出待确认的审批规则，任务等待周航回复](https://static-docs.nocobase.com/studio-zh-req-blocked-20261030-v3.png)
+![「需要你」卡片列出待确认的审批规则，任务等待周航回复](https://static-docs.nocobase.com/studio-zh-req-blocked-20261111-normal-2x.webp)
 
 ## 开发业务功能
 
 Codex 在运行环境中开发，基于 Core 的数据和权限能力扩展供应商模块，调整订单审批逻辑，并补充测试。代码提交到任务分支后创建 PR，Studio 将 PR 关联到 PUR-23。
 
-![任务顶部显示当前执行的 Agent、运行环境和下一步安排](https://static-docs.nocobase.com/studio-zh-req-now-20261030-v3.png)
+![任务顶部显示当前执行的 Agent、运行环境和下一步安排](https://static-docs.nocobase.com/studio-zh-req-now-20261111-normal-2x.webp)
 
 ## 检查与评审
 
@@ -54,17 +54,17 @@ Codex 在运行环境中开发，基于 Core 的数据和权限能力扩展供�
 
 检查通过后，Claude 评审评分逻辑、审批规则和测试覆盖。开发、修复与评审的结果都保存在任务动态中。相关机制见 [检查与评审](../project/checks-and-review.md)。
 
-![Codex 修复新供应商的默认等级问题，Claude 完成独立评审](https://static-docs.nocobase.com/studio-zh-review-thread-20261030-v3.png)
+![Codex 修复新供应商的默认等级问题，Claude 完成独立评审](https://static-docs.nocobase.com/studio-zh-review-thread-20261111-normal-2x.webp)
 
 ## 验收交付结果
 
 检查与评审通过后，任务进入「待验收」。调度 Agent 提交交付报告，说明改动、验证结果和遗留问题。周航依据报告和验收标准确认结果。
 
-![交付报告汇总业务改动和验证结果，负责人可合并或退回修改](https://static-docs.nocobase.com/studio-zh-req-accept-20261030-v3.png)
+![交付报告汇总业务改动和验证结果，负责人可合并或退回修改](https://static-docs.nocobase.com/studio-zh-req-accept-20261111-normal-2x.webp)
 
 这个项目已接入 CI 并配置 PR 预览。周航打开预览，给一家 C 级供应商创建 1 万元订单，确认订单进入采购经理审批。预览用于需要亲自操作的验证，配置方式见 [连接 CI](../setup/ci.md)。
 
-![任务中的 PR 预览提供构建状态、访问入口和登录信息](https://static-docs.nocobase.com/studio-zh-req-preview-20261030-v3.png)
+![任务中的 PR 预览提供构建状态、访问入口和登录信息](https://static-docs.nocobase.com/studio-zh-req-preview-20261111-normal-2x.webp)
 
 结果符合要求，周航点击「合并」，任务变为「已完成」。若不符合要求，可选择「退回修改」并说明问题，由调度 Agent 安排后续修复。操作说明见 [验收](../use/accept.md)。
 
@@ -74,13 +74,13 @@ Codex 在运行环境中开发，基于 Core 的数据和权限能力扩展供�
 
 团队完成生产部署后，在 Studio 记录生产版本为 v1.4.0。Studio 将版本与任务关联，标出这次改动已上线。版本、制品和上线记录的管理方式见 [发布概览](../release/overview.md)。
 
-![「发布」页关联测试环境、v1.4.0 版本和生产版本记录](https://static-docs.nocobase.com/studio-zh-releases-20261030-v3.png)
+![「发布」页关联测试环境、v1.4.0 版本和生产版本记录](https://static-docs.nocobase.com/studio-zh-supplier-releases-20261111-normal-2x.webp)
 
 ## 为后续需求保留项目经验
 
 Agent 将已确认的审批规则写入 [项目记忆](../project/project-memory.md)，并记录评分权重的资料来源。记忆随代码一起评审和合并，供后续任务读取。
 
-![项目记忆保存 C 级供应商的审批规则，以及评分权重的资料来源](https://static-docs.nocobase.com/studio-zh-project-memory-20261030-v3.png)
+![项目记忆保存 C 级供应商的审批规则，以及评分权重的资料来源](https://static-docs.nocobase.com/studio-zh-supplier-memory-20261111-normal-2x.webp)
 
 后续开发「按供应商等级调整付款周期」时，Agent 可以复用这些规则、资料和已有测试。更换负责人或执行 Agent 后，项目背景仍可延续。
 

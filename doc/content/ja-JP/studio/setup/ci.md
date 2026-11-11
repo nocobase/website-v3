@@ -17,7 +17,7 @@ description: エージェントのセルフチェック、GitHub Actions、外�
 
 各リポジトリは、選んだ取得元からの結果だけを受け付けます。取得元を切り替えると、以前の取得元からの報告は受け付けられなくなります。
 
-![チェックの取得元、トリガー、プレビュー環境を選びます](https://static-docs.nocobase.com/studio-en-setup-ci-options-20261030.png)
+![チェックの取得元、トリガー、プレビュー環境を選びます](https://static-docs.nocobase.com/studio-en-ci-20261111-normal-2x.webp)
 
 ## GitHub Actions を使う
 

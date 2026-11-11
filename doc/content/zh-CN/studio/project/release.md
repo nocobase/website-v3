@@ -5,7 +5,7 @@ description: 在自己的环境部署应用，并记录生产运行的版本。
 
 在「发布」中选择项目，从生产卡片打开「部署指引」。项目负责人可选择版本，取得部署命令或交给 Coding Agent 的提示词。
 
-![取得生产部署指引并记录交付版本](https://static-docs.nocobase.com/studio-zh-guide-production-guide-20261031.png)
+![取得生产部署指引并记录交付版本](https://static-docs.nocobase.com/studio-zh-production-guide-20261111-normal-2x.webp)
 
 ## 准备并部署
 

@@ -15,7 +15,7 @@ description: "メンバー、リポジトリ、実行変数、既定のスキル
 
 プロジェクトのプロパティで状態、優先度、日付を変更します。
 
-![プロジェクトのメンバーと責任者](https://static-docs.nocobase.com/studio-en-guide-project-members-20261031.png)
+![プロジェクトのメンバーと責任者](https://static-docs.nocobase.com/studio-en-project-members-20261111-normal-2x.webp)
 
 ## プロジェクトを設定する
 
@@ -26,7 +26,7 @@ description: "メンバー、リポジトリ、実行変数、既定のスキル
 | Agent run variables | 開発タスクの環境変数とシークレット |
 | Default skills | プロジェクトやリポジトリの実行で使うスキル |
 
-![リポジトリごとにチェック、ブランチルール、プレビューを設定する](https://static-docs.nocobase.com/studio-en-guide-project-repositories-20261031.png)
+![リポジトリごとにチェック、ブランチルール、プレビューを設定する](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
 
 最初のリポジトリが主リポジトリです。関連付けを外しても、Git プラットフォームのリポジトリは削除しません。[チェックと CI](../configure/checks.md)、[スキル](skills.md)も参照してください。
 

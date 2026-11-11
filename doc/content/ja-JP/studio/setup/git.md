@@ -16,7 +16,7 @@ Git プラットフォームを接続すると、Studio がリポジトリを作
 5. 対象のアカウントまたは組織に App をインストールします。次に作成するリポジトリにアクセスできるよう、**Repository access** で **All repositories** を選びます。
 6. Studio に戻ります。
 
-![ローカルで試す例：Webhook を無効にして GitHub 組織を接続します](https://static-docs.nocobase.com/studio-en-setup-github-connection-20261030.png)
+![ローカルで試す例：Webhook を無効にして GitHub 組織を接続します](https://static-docs.nocobase.com/studio-en-github-connection-20261111-normal-2x.webp)
 
 **All repositories** は、既存のリポジトリと今後作成するリポジトリの両方を対象にします。GitHub に表示される権限を確認してください。App の作成と組織へのインストールには、それぞれ対応する権限が必要です。
 
@@ -24,7 +24,7 @@ Git プラットフォームを接続すると、Studio がリポジトリを作
 
 接続カードに **Connected** と、アクセスできるリポジトリの数が表示されます。
 
-![GitHub App が組織に接続されています](https://static-docs.nocobase.com/studio-en-setup-github-connected-20261030.png)
+![GitHub App が組織に接続されています](https://static-docs.nocobase.com/studio-en-git-20261111-normal-2x.webp)
 
 次に、[ランタイムを接続します](shared-runtimes.md)。
 

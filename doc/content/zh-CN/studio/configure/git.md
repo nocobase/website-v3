@@ -5,7 +5,7 @@ description: 连接团队的 Git 平台，配置仓库访问和状态同步。
 
 管理员在「设置 › Git」管理团队连接。项目通过连接访问仓库、创建 PR 和读取检查结果。成员的个人 Git 授权另见[登录与个人设置](../join/sign-in.md)。
 
-![管理团队的代码平台连接](https://static-docs.nocobase.com/studio-zh-guide-git-20261031.png)
+![管理团队的代码平台连接](https://static-docs.nocobase.com/studio-zh-git-20261111-normal-2x.webp)
 
 ## GitHub
 
@@ -29,6 +29,14 @@ Developer 可推送分支、创建合并请求和读取流水线。自动创建 
 ## Gitee
 
 使用有仓库权限的账号创建私人令牌，选择 `user_info`、`projects`、`pull_requests` 和 `hook`。在 Studio 添加 Gitee 连接并保存凭据。目前支持 gitee.com，合并使用 squash。
+
+## Gitea
+
+添加 Gitea 连接，填写实例地址和专用账号的个人访问令牌。地址包含部署路径，不包含 `/api/v1`。
+
+令牌需要 `write:user`、`write:organization`、`write:repository` 和 `write:issue`。账号还必须有目标仓库的访问权限；创建 Webhook 需要仓库管理员权限。仓库需启用 squash 合并。
+
+成员可在「个人设置 › Git」填写个人令牌。需要浏览器授权时，在 Gitea 创建 OAuth2 应用，并将 Studio 表单显示的回调地址、客户端 ID 和密钥配好。执行机使用官方 `gt` CLI。
 
 ## Webhook 与轮询
 

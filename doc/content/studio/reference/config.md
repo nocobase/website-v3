@@ -1,93 +1,159 @@
 ---
-title: Configuration options
-description: Studio configuration fields, environment overrides, storage, and email.
+title: Configuration reference
+description: Look up Studio config.yml fields, upload limits, and environment variables.
 ---
 
-Studio's configuration lives in `config.yml` in the deployment directory, mounted at `/app/config.yml` in the container. Copy the template out of the image:
+Keep Studio settings in the deployment directory’s `config.yml`, mounted at `/app/config.yml` in the container. See [Deploy Studio](../setup/install.md) to extract the template from the supplied image.
+
+## Use config.yml
+
+Merge settings into existing sections without duplicate keys. Put passwords and keys in their corresponding fields and restrict file access. Recreate the Studio container after changes:
 
 ```bash
-export STUDIO_IMAGE='<supplied-image-name-and-version>'
-docker run --rm --entrypoint cat "$STUDIO_IMAGE" /app/config.example.yml > config.yml
+docker compose up -d --force-recreate studio
 ```
 
-Merge these settings into the template from your image without duplicating top-level nodes. Replace placeholder credentials and restrict access to configuration files.
+## Application address and interface
 
-Environment variables override only fields explicitly supported by the application. Pass Compose `.env` entries through `environment` or `env_file`; `config.yml` does not expand `${NAME}`. Run `docker compose up -d --force-recreate studio` after changes so mounted-file updates are read too.
+| Field | Meaning |
+| --- | --- |
+| `app.publicOrigin` | Public scheme, host, and port without a path, such as `https://studio.example.com`; used for callbacks, email links, and push |
+| `app.sampleData` | Load sample data on first installation; use `false` for an empty deployment |
+| `client.app.title` | Application name shown in the UI; values under `client` are public, so never put credentials there |
+| `i18n.defaultLocale` | Default interface language; English when omitted |
 
-## File uploads and release artifacts
+Studio uses `/main` by default. Connect runtimes and the CLI with the full URL, such as `https://studio.example.com/main/`.
 
-| Content | Configuration | Default location |
-| --- | --- | --- |
-| Uploaded attachments and other files | `drive.default` selects a disk in `drive.disks` | `/app/storage` |
-| Release artifacts uploaded by CI or Agents | `releases.artifact` | `/app/storage/releases/artifacts` |
+## Database
 
-Local storage works without additional setup, but persist `/app/storage`. Changing the default file disk does not change artifact storage.
+| Field | Meaning |
+| --- | --- |
+| `database.default` | Default connection name, normally `main` |
+| `database.connections.main.dialect` | Database dialect; the template defaults to `sqlite`, while the deployment guide uses `postgres` |
+| `database.connections.main` | Connection fields include `host`, `port`, `database`, `username`, `password`, and `ssl` for TLS |
+| `database.connections.main.schemaManagement` | Use `managed` for the Studio database |
+| `database.connections.main.migrations.autoRun` | Set to `true` to run migrations on startup |
+| `database.connections.main.seeds.autoRun` | Set to `true` to run database seeds on startup |
 
-File storage supports `fs` and `s3`. For driver settings, release artifacts, and migration, see [File and artifact storage](storage.md).
+See [Deploy Studio](../setup/install.md) for a complete PostgreSQL example. For an existing database, use its host, port, and credentials.
 
-## Invitation and password reset email
+## Administrator and sign-in
 
-Invitations and password resets share `mailers.default`. Define the service under `mailers`, using `provider: smtp` or `provider: resend`. Password recovery also requires password sign-in, `auth.passwordReset.enabled: true`, and a correct `APP_PUBLIC_ORIGIN`.
+| Field | Meaning |
+| --- | --- |
+| `users.initialAdmin` | Initial administrator `username`, `email`, and `password`; created only when the user table is empty. Later changes do not reset existing accounts |
+| `auth.emailAndPassword.enabled` | Enable password sign-in |
+| `auth.emailAndPassword.disableSignUp` | Set to `true` to disable self-registration for a team deployment |
+| `auth.emailAndPassword.autoSignIn` | Sign in automatically after registration; `false` in the deployment example |
+| `auth.passwordReset.enabled` | Enable password recovery; requires a mailer and the correct `app.publicOrigin` |
+| `auth.session.storeSessionInDatabase` | The template uses `true` to store sign-in sessions in the database |
 
-For configuration examples and delivery checks, see [Invitation email](../admin/notifications.md#invitation-email).
+## Encryption keys
+
+| Field | Meaning |
+| --- | --- |
+| `secrets.keys` | Ordered list of `version` and `key` entries; the first encrypts new data, and the others decrypt existing data |
+
+Generate a key with `openssl rand -hex 32`. Back up the entire `secrets.keys` list; losing keys prevents decryption of stored credentials. Changing the current key invalidates sign-in sessions. Keep old keys until their data has been re-encrypted.
+
+## File storage and upload limits
+
+| Field | Meaning |
+| --- | --- |
+| `drive.default` | Default file disk, `local` by default |
+| `drive.disks.<name>` | Disk driver, location, and credentials; supports `fs` and `s3` |
+| `drive.disks.<name>.maxFileSizeMb` | Single-file upload limit for the disk, in MiB; defaults to `20` and must be a positive integer |
+
+`maxFileSizeMb` applies to task, comment, and Agent conversation attachments on their destination disk. Restart Studio and reload the page after changes. Increase the reverse proxy limit with room for the multipart form; a configured `api.bodyLimit` must also accommodate the request. See [File and artifact storage](storage.md) for driver examples.
+
+## API request limits
+
+| Field | Meaning |
+| --- | --- |
+| `api.bodyLimit` | API request body limit, such as `60mb`; the global limit is off by default, but routes may impose their own limits |
+| `api.timeout` | Handler timeout, such as `30s`; off by default, and does not cut off a streaming response that has started |
+| `api.rateLimit` | Optional `max` and `window`, such as `600` requests per `1m`; counted per process and client connection address |
+
+Behind a reverse proxy, requests may share the proxy’s address and rate-limit budget. Account for this when setting `api.rateLimit`.
+
+## Email and notifications
+
+| Field | Meaning |
+| --- | --- |
+| `mailers.default` | Default mailer name, such as `system` |
+| `mailers.<name>` | SMTP: `provider: smtp`, `host`, `port`, `secure`, `auth.user`, `auth.pass`, and `from`. Resend: `provider: resend`, `apiKey`, and `from` |
+| `users.invitations.mailer` | Invitation mailer; falls back to `mailers.default` |
+| `auth.passwordReset.mailer` | Password reset mailer; falls back to `mailers.default` |
+| `notification.channels` | Use `type: in-app` for inbox channels and `type: email` for email channels, optionally selecting a `mailer`. Mailer configuration does not create notification channels |
+| `push.privateKey`, `push.contact` | Push private key and contact address; requires HTTPS |
+
+Invitations and password resets share the default mailer. Password recovery also needs `auth.passwordReset.enabled`. See [Notifications and push](../admin/notifications.md) for SMTP, Resend, and delivery checks.
+
+## Agents and run records
+
+| Field | Meaning |
+| --- | --- |
+| `studio.agents.queuedExpiryHours` | Queued work expiry, `24` hours by default; `0` waits indefinitely |
+| `studio.agents.managerIdleMinutes` | Lead Agent idle recovery threshold, `15` minutes by default; `0` disables recovery |
+| `studio.agents.managerIdleSweepMinutes` | Idle check interval, `5` minutes by default; must be positive |
+| `agents.runs.retentionDays` | Retention for completed run events and prompt snapshots, `14` days by default; `0` keeps them |
+| `agents.conversations.archivedRetentionDays` | Archived conversation retention, `30` days by default; `0` keeps them |
+| `agents.skills.disk` | Disk for skill contents; defaults to `drive.default` |
+
+## Git platforms
+
+| Field | Meaning |
+| --- | --- |
+| `studio.git.apiBaseUrls` | Override self-hosted code platform API URLs by hostname; omit when the default URL works |
+
+Configure Git connections and authorization in the UI. See [Code hosts](../configure/git.md).
+
+## Previews and release artifacts
+
+| Field | Meaning |
+| --- | --- |
+| `releases.artifact` | Artifact storage; defaults to `/app/storage/releases/artifacts`, independently of `drive.default` |
+| `releases.maxArtifactSizeMB` | Release artifact size limit, `256` MiB by default; separate from attachment `maxFileSizeMb` |
+| `releases.host.memoryBudget` | `targetRatio` defaults to `0.7`, `appMemoryMb` to `320`, and `reserveMb` to `0`; size for application peaks and server resources |
+| `releases.host.maxActiveApps` | Optional active application limit; memory checks still apply |
+| `releases.host.launchPrefix` | Command prefix for preview processes; can switch to a system user that cannot read Studio configuration |
+| `releases.docker` | Set `enabled: true` for Docker runtimes; configure a fixed ingress port and reverse proxy |
+| `studio.releases.previewPublicUrl` | Separate preview origin, such as `https://studio-preview.example.com/{appId}/` |
+| `studio.releases.previewEnvironment` | Set to `false` to skip automatic preview environment creation |
+
+Use a separate origin for previews and a system user that cannot read Studio configuration. See [Hosted environments](../admin/environments.md) for runtime options. Your team manages production deployments.
+
+## Logging
+
+| Field | Meaning |
+| --- | --- |
+| `logging.level` | Log level, `info` in the template |
+| `logging.file` | File logging `enabled` flag; template limits: `retentionDays: 7`, `maxFileSizeMB: 10`, `maxTotalSizeMB: 500` |
+| `logging.loggers.request.file.name` | Request log filename, `request` in the template |
+| `logging.console` | Console `enabled` and `pretty` options; the template disables pretty output |
 
 ## Environment variables
 
-| Variable | What it sets |
+Deployment platforms can inject the environment variables explicitly supported by Studio. These override their corresponding `config.yml` fields. Keep fields without a mapping in the file.
+
+Compose uses `.env` for variable substitution in its own configuration; it does not automatically pass those values to Studio. Declare them in `services.studio.environment` or `env_file`. `${NAME}` is not expanded inside `config.yml`.
+
+| Environment variable | config.yml field or purpose |
 | --- | --- |
-| `APP_PUBLIC_ORIGIN` | The address browsers use to reach Studio, without a path, such as `https://studio.example.com`. Code host callbacks, links in emails, and push all use it |
-| `SECRETS_KEYS` | The encryption key, in the form `1:<key>`. Generate one with `openssl rand -hex 32`. Encrypted credentials and API keys depend on it, and sign-in sessions are derived from it |
-| `INITIAL_ADMIN_USERNAME`, `INITIAL_ADMIN_EMAIL`, `INITIAL_ADMIN_PASSWORD` | The first administrator, created only on first start when there are no accounts yet. Changing them later doesn't change the existing account |
-| `DB_DIALECT`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `DB_SSL` | The database connection |
-| `WEB_PUSH_PRIVATE_KEY` | The push private key. See [Notifications and push](../admin/notifications.md) |
-| `MAILERS_DEFAULT` | Default service name, such as `system` |
-| `MAILERS_SYSTEM_PROVIDER` | `mailers.system.provider`: `smtp` or `resend` |
-| `MAILERS_SYSTEM_HOST`, `MAILERS_SYSTEM_PORT`, `MAILERS_SYSTEM_SECURE` | SMTP host, integer port, and TLS flag (`true` or `false`) |
-| `MAILERS_SYSTEM_USER`, `MAILERS_SYSTEM_PASSWORD` | SMTP username and password |
-| `MAILERS_SYSTEM_API_KEY` | Resend API key |
-| `MAILERS_SYSTEM_FROM`, `MAILERS_SYSTEM_REPLY_TO` | Sender and reply-to address |
-| `MAILERS_SYSTEM_ENABLED` | Enable or disable the service (`true` or `false`) |
-| `API_BODY_LIMIT`, `API_TIMEOUT` | The maximum request body size and the processing timeout for API requests |
-
-Studio is served under `/main`, as in `https://studio.example.com/main/`. When you add runtimes or sign in to `nb-studio`, use this full address with `/main`.
-
-> [!WARNING] The encryption key
-> Don't change `SECRETS_KEYS` after deployment. If you change it, everyone is signed out, and if you lose it, saved credentials can't be decrypted. To replace the key, put the new key first with a higher version number (`2:<new key>,1:<old key>`), re-encrypt, and only then remove the old one.
-
-## Main config.yml settings
-
-| Setting | What it sets |
-| --- | --- |
-| `i18n.defaultLocale` | The interface language. English is the default; set this only to use another language |
-| `auth.emailAndPassword.disableSignUp` | Set to `true` to turn off self sign-up, so members join only by invitation. The template doesn't include it, so add it yourself |
-| `mailers` | Named SMTP or Resend services; `default` selects the shared sender configuration |
-| `auth.passwordReset.enabled` | Enable password recovery; requires password sign-in, a configured mailer, and a public origin |
-| `auth.email.mailer` | Password-reset service name; defaults to `mailers.default` |
-| `users.invitations.mailer` | Invitation service name; defaults to `mailers.default` |
-| `notification.channels` | In-app channels use `type: in-app`. Email channels use `type: email` and an optional `mailer` name; otherwise they use `mailers.default`. Configure channels explicitly; defining `mailers` does not create them |
-| `push` | Push notifications: `privateKey` and `contact` |
-| `database` | The database connection, overridden by environment variables |
-| `users.initialAdmin` | The first administrator, overridden by environment variables |
-| `secrets.keys` | The encryption key, overridden by the `SECRETS_KEYS` environment variable |
-| `logging` | Log level, and how many days and how much log data to keep |
-| `studio.git.apiBaseUrls` | API addresses for self-hosted GitHub Enterprise or GitLab, when they aren't in the default location |
-| `studio.agents.queuedExpiryHours` | How many hours queued work waits for a runtime before it fails, 24 by default. Set to 0 to wait forever |
-| `agents.runs.retentionDays` | How many days finished runs keep their transcripts and prompts, 14 by default |
-| `drive` | File storage, the local `storage` directory by default. Also supports S3-compatible object storage |
-| `releases.artifact` | Release artifact storage; configure separately from the default file disk |
-| `studio.testing.enabled` | Show the quality management menu; also available as `STUDIO_TESTING_ENABLED=true` |
-
-## Run multiple instances
-
-A single Studio instance doesn't need Redis. With multiple instances, switch both `realtime` (live messages) and `jobs` (scheduled jobs) to Redis, with all instances sharing one namespace. Turn on persistence in Redis and set `maxmemory-policy noeviction`, or scheduled jobs may be lost.
-
-## Release management
-
-| Setting | What it sets |
-| --- | --- |
-| `releases.docker` | Turns on Docker mode: `enabled: true`, plus the entry address and ports for Docker apps. See [Deploy environments](../admin/environments.md) |
-| `releases.host.launchPrefix` | Runs previews as a different system user that can't read Studio's configuration |
-| `studio.releases.previewPublicUrl` | A separate domain for previews, such as `https://studio-preview.example.com/{appId}/`, instead of sharing Studio's address |
-| `studio.releases.previewEnvironment` | Set to `false` to skip creating the preview environment on installation |
-
-For real use, give previews their own domain and run them as a different system user. Previews run code that hasn't been merged yet and shouldn't be able to read Studio's configuration and secrets.
+| `APP_PUBLIC_ORIGIN` | `app.publicOrigin` |
+| `APP_SAMPLE_DATA` | `app.sampleData` |
+| `INITIAL_ADMIN_USERNAME` / `INITIAL_ADMIN_EMAIL` / `INITIAL_ADMIN_PASSWORD` | `users.initialAdmin.username` / `email` / `password` |
+| `SECRETS_KEYS` | `secrets.keys` — `2:<new-key>,1:<old-key>` |
+| `DB_DIALECT` / `DB_HOST` / `DB_PORT` / `DB_DATABASE` / `DB_USERNAME` / `DB_PASSWORD` / `DB_SSL` / `DB_FILENAME` | `database.connections.main.dialect` / `host` / `port` / `database` / `username` / `password` / `ssl` / `filename` |
+| `MAILERS_DEFAULT` | `mailers.default` |
+| `MAILERS_SYSTEM_PROVIDER` / `MAILERS_SYSTEM_HOST` / `MAILERS_SYSTEM_PORT` / `MAILERS_SYSTEM_SECURE` | `mailers.system.provider` / `host` / `port` / `secure` |
+| `MAILERS_SYSTEM_USER` / `MAILERS_SYSTEM_PASSWORD` | `mailers.system.auth.user` / `auth.pass` |
+| `MAILERS_SYSTEM_API_KEY` | `mailers.system.apiKey` |
+| `MAILERS_SYSTEM_FROM` / `MAILERS_SYSTEM_REPLY_TO` / `MAILERS_SYSTEM_ENABLED` | `mailers.system.from` / `replyTo` / `enabled` |
+| `WEB_PUSH_PRIVATE_KEY` | `push.privateKey` |
+| `API_BODY_LIMIT` / `API_TIMEOUT` | `api.bodyLimit` / `api.timeout` |
+| `STUDIO_MANAGER_IDLE_MINUTES` / `STUDIO_MANAGER_IDLE_SWEEP_MINUTES` | `studio.agents.managerIdleMinutes` / `managerIdleSweepMinutes` |
+| `RELEASES_HOST_ENABLED` | `releases.host.enabled` |
+| `APP_CONFIG_FILE` | Configuration path read at startup; `/app/config.yml` in the supplied image |
+| `APP_BASE_PATH` | Mount path set at startup; `/main` in the supplied image |
+| `APP_SERVER_HOST` / `APP_SERVER_PORT` | Listener address and port; `0.0.0.0` / `13000` in the supplied image |

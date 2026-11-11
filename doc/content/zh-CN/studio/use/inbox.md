@@ -13,7 +13,7 @@ description: 查看评论、提及和系统消息，并设置提示音、桌面�
 | 我的会话 | Agent 回复、会话问题和权限确认 |
 | 收件箱 | 同事评论、提及、指派，以及任务之外的系统消息和决定 |
 
-![在收件箱中阅读消息并打开相关任务](https://static-docs.nocobase.com/studio-zh-guide-inbox-20261031.png)
+![在收件箱中阅读消息并打开相关任务](https://static-docs.nocobase.com/studio-zh-inbox-20261111-normal-2x.webp)
 
 ## 收件箱的视图
 
@@ -25,7 +25,7 @@ description: 查看评论、提及和系统消息，并设置提示音、桌面�
 
 ## 提醒
 
-在「个人设置 › 偏好设置」配置提醒：
+在「个人设置 › 通知」配置提醒：
 
 | 方式 | 使用场景 |
 | --- | --- |
@@ -33,7 +33,7 @@ description: 查看评论、提及和系统消息，并设置提示音、桌面�
 | 桌面通知 | Studio 在后台时显示浏览器通知，需允许通知权限 |
 | 推送通知 | 页面关闭后向已订阅设备发送提醒，需管理员配置推送 |
 
-![在个人偏好中选择提醒方式](https://static-docs.nocobase.com/studio-zh-guide-preferences-20261031.png)
+![在通知设置中选择提醒方式](https://static-docs.nocobase.com/studio-zh-notifications-20261111-normal-2x.webp)
 
 正在查看的任务或会话不会重复提醒。各入口的数字按各自待办和未读内容计算。
 

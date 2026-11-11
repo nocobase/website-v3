@@ -7,11 +7,11 @@ description: "チェックの取得元、PR プレビュー、テスト環境へ
 
 | 取得元 | チェックの実行元 | プレビューの公開元 |
 | --- | --- | --- |
-| コードプラットフォームの CI | GitHub Actions、GitLab CI など | 同じパイプライン |
+| コードプラットフォームの CI | GitHub Actions、GitLab CI、Gitea Actions など | 同じパイプライン |
 | 外部 CI | Jenkins や既存の CI サービス | 外部パイプライン |
 | エージェントのセルフチェック | プロジェクトのスクリプトと指示を使うエージェント | タスクを担当するエージェント |
 
-![チェックの取得元とプレビューを設定する](https://static-docs.nocobase.com/studio-en-guide-ci-20261031.png)
+![チェックの取得元とプレビューを設定する](https://static-docs.nocobase.com/studio-en-ci-20261111-normal-2x.webp)
 
 ## エージェントのセルフチェック
 
@@ -37,6 +37,8 @@ GitHub Actions の場合：
 設定はトリガーごとに生成します。必要なトリガーをそれぞれ設定してください。手動手順を展開すると、コマンドと CI ファイルを確認できます。GitHub では Actions のシークレット `NB_STUDIO_API_KEY` を使います。
 
 CI から Studio に接続できる必要があります。クラウド CI はローカルアドレスにアクセスできません。接続可能な HTTPS アドレス、またはセルフホストの CI runner を使ってください。テスト先は[ホスト環境](../admin/environments.md)で設定します。
+
+Gitea Actions では、生成された `.gitea/workflows/` ファイルと同じ `NB_STUDIO_API_KEY` シークレットを使います。runner から Studio とワークフロー内の actions に接続できる必要があります。
 
 ## 外部 CI
 

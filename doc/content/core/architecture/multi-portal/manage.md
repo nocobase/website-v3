@@ -1,50 +1,71 @@
 ---
 title: Manage portals
-metaDescription: Install and uninstall portals, handle dependencies and failed operations, and understand upgrades with the host app.
+metaDescription: Find, install, open and uninstall portals, check operation status and recover from failures.
 ---
 
-Sign in as an administrator with `unrestricted` access and open **System settings → Portal management**. The page lists registered portals, with search, installation filters, and actions to install, enter or uninstall.
+## Open portal management
 
-Management operates code already included in the app; it is not a store that downloads packages from npm. Adding source requires Client/Server registration and a development restart, or a rebuild and deployment in production.
+Sign in as an administrator with `unrestricted` access and open **System settings → Portal management**.
 
-## Install a portal
+The list shows registered portals and their installation status. Management operates on code already included in the app; it does not download portals from npm. To add one, follow [Develop a portal](develop.md), register it and restart development. Production requires a rebuild and deployment.
 
-1. Find an uninstalled portal and select **Install**.
-2. Wait for dependency checks, migrations and seeds on required connections, and resource startup.
-3. Confirm the installed state before entering.
+![Portal management showing names, descriptions, installation status and action menus](/assets/core/multi-portal/manage/list.png)
 
-Generated portals start uninstalled. Configure required connections and drivers, and install declared portal dependencies first. Generating source or registering the package alone does not activate it.
+## Find and filter portals
 
-A portal is unavailable during installation. Incomplete database tasks or startup failure do not produce an installed portal.
+Search by name or description, or filter with **All**, **Installed** and **Not installed**. Search and status filters work together.
+
+Each row's **…** menu contains the actions available for its current state:
+
+| Portal state | Available actions |
+| --- | --- |
+| Not installed | Install |
+| Installed | Open, Uninstall |
+| Failed | Retry |
+| Installing, upgrading or uninstalling | Wait for completion; further actions are temporarily disabled |
+
+## Install and open a portal
+
+1. Find an uninstalled portal and select **… → Install**.
+2. Wait for installation. The system checks dependencies, runs required database tasks and starts portal resources.
+3. Once the status is **Installed**, select **… → Open**.
+
+Generated portals start uninstalled. Configure the required database connections and drivers in the app first. If the portal depends on others, install those portals first. Generating source or registering a package does not complete installation.
+
+The following menu belongs to an installed portal:
+
+![Installed portal menu with Open and Uninstall actions](/assets/core/multi-portal/manage/actions.png)
 
 ## Uninstall and reinstall
 
-Uninstallation closes entry points and stops registered resources while retaining business data, configuration records and migration history. It does not remove source, npm dependencies or business databases.
+1. Select **Uninstall** from an installed portal's **…** menu.
+2. Read the confirmation and select **Uninstall** if the portal is no longer needed. Select **Cancel** to keep its current state.
+3. Wait for the status to become **Not installed**.
 
-Resolve installed dependent portals first; the system blocks unsafe uninstallation. Check whether other business processes still use the portal before confirming.
+![Uninstall confirmation explaining that records and settings are preserved](/assets/core/multi-portal/manage/uninstall.png)
 
-Reinstallation uses execution history to apply outstanding database tasks and retains existing data. Do not delete historical migrations or edit executed migrations to force a fresh start.
+Uninstallation closes the portal entry and stops registered runtime resources. **Business data, configuration records and database task history are retained.** It does not delete source, npm packages or business databases. If another installed portal depends on it, the system blocks removal; resolve the dependent portal first.
 
-## Interpret states and recover from failure
+To restore access, select **… → Install** again. Reinstallation uses execution history to process outstanding tasks and preserves existing data; it does not reset the portal to a fresh installation.
 
-| State | Meaning and action |
+## Check status and retry failed operations
+
+A portal is temporarily unavailable while installing, upgrading or uninstalling. If its status is **Failed**, inspect the failed stage in the list and the server logs:
+
+| Failed stage | What to check |
 | --- | --- |
-| Uninstalled | Registered code is not yet available for use |
-| Installing / upgrading | Dependency checks, database tasks or startup are in progress; wait |
-| Installed | Activated and accessible according to permissions |
-| Uninstalling | Resource cleanup is in progress; wait |
-| Failed | Inspect the failed stage and server logs, fix the cause and retry |
+| Dependencies | Whether required portals are installed, or installed portals still depend on this one |
+| Database initialization | Connection and driver configuration, database account permissions, and failed migrations or seeds |
+| Startup or shutdown | Portal service errors and whether registered resources can start and clean up correctly |
 
-Failures can occur during dependency checks, database initialization, startup or shutdown. For database failures, check connection settings, database permissions and migration/seed execution. For startup or shutdown failures, inspect services and cleanup. Resources acquired in `start(onStop)` should register cleanup functions.
+After fixing the cause, select **… → Retry**. Retry continues the previous installation or uninstallation goal using each connection's task history. A multi-connection operation may have completed some tasks without rolling everything back. Do not edit installation state, delete execution history or rewrite executed migrations to bypass errors.
 
-Multi-connection installation may complete only some tasks. Retry follows each connection's history rather than guaranteeing rollback across all successful connections. Restart also attempts recovery of admitted unfinished operations. Do not manually change installation state or delete history to skip failures.
-
-If another administrator changes the portal, refresh to get the latest state before deciding what to do; do not repeatedly submit stale state.
+If another administrator has changed the portal, refresh its state before deciding what to do. An app restart also attempts to recover admitted but unfinished operations.
 
 ## Upgrade with the app
 
-Portals do not select independent runtime versions. Their code builds, releases and upgrades with the host app. Installed portals participate in pending database upgrades at app startup or `pnpm nocobase db apply`; uninstalled portals are not automatically installed.
+Portal code builds, releases and upgrades with the app; management does not offer independent portal version selection. Installed portals participate in pending database upgrades at app startup or when running `pnpm nocobase db apply`. Uninstalled portals are not automatically installed.
 
-For startup execution, enable the relevant migration and seed `autoRun` settings on each connection. If executing an explicit database plan, include the complete set of tasks the portal requires. A failed upgrade leaves the portal unavailable until the cause is resolved.
+For startup execution, enable the relevant migration and seed `autoRun` settings on each connection. An explicit database plan must cover the complete task set required by the portal. Failed upgrades leave the portal unavailable until the cause is resolved.
 
-Retain historical migration and seed sources even for uninstalled portals, for validation and reinstallation. Verify upgrade paths and back up business data before release. Follow [Publish an app release](../../deployment/publish-app-release.md) and [Upgrade NocoBase](../../developing-apps/upgrade-nocobase-core.md) for app and template updates.
+Back up data and verify the upgrade path before release. Keep historical migration and seed sources even for uninstalled portals, for validation and reinstallation. See [Publish an app release](../../deployment/publish-app-release.md) for deployment steps.

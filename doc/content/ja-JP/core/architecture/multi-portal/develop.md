@@ -26,19 +26,18 @@ Agent が生成済みなら、同じディレクトリを重複して作成し�
 アプリのルートで実行します。
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta inventory \
-  --title 'Inventory management' --title-zh '库存管理'
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta inventory
 ```
 
 `inventory` はポータル ID です。小文字で始まり、小文字と数字を単一のハイフンで区切った形式で、40 文字以内にします。例えば `inventory` や `quality-checks` です。生成されるパッケージ名は `@nocobase/app-portal-inventory` です。
 
-| オプション | 用途 |
-| --- | --- |
-| `--title` | 既定の表示名。例では `Inventory management` |
-| `--title-zh` | 簡体字中国語の表示名。例では `库存管理` |
-| `--dry-run --json` | ファイルを書き込まず生成計画を確認 |
+初期の表示名は ID から生成されます。作成後に `packages/app-portal-inventory/client/locales/` の各言語ファイルで `title` と `description` を編集します。例えば `en-US.ts` の `title` を `Inventory management`、`zh-CN.ts` を `库存管理` に変更します。既存のインポート、型、エクスポートは残してください。表示名を変更しても、ポータル ID、パッケージ名、ルートは変わりません。
 
-`--title` を省略すると ID から表示名を生成します。`--title-zh` を省略すると簡体字中国語にも既定の表示名を使用します。
+`--dry-run --json` を追加すると、ファイルを書き込まずに生成計画を確認できます。
+
+作成時に文言を指定する場合は、`--set-locale 'en-US.title=Inventory management' --set-locale 'zh-CN.title=库存管理'` を追加できます。生成器の `--help` に `--set-locale` があるバージョンで利用でき、旧バージョンでは作成後に言語ファイルを編集します。
+
+形式は `言語.フィールド=値` で、`title` と `description` のみを指定できます。最初の `=` で分割するため、値に `=` を含められます。省略したフィールドは既定値のままです。未対応の言語やフィールド、同じ言語・フィールドの重複指定はエラーになります。タイトルは空でない単一行、説明は空文字も指定できます。対応言語は `en-US`、`zh-CN`、`zh-TW`、`ja-JP`、`de-DE`、`es-ES`、`fr-FR`、`pt-BR`、`vi-VN`、`id-ID` です。値は `client/locales` に書き込まれ、作成後もそこで管理します。
 
 `packages/app-portal-inventory/` を生成し、依存関係をインストールして Client と Server に登録します。生成されるのは最小のポータルで、在庫テーブル、サンプルレコード、CRUD ページは含みません。アプリの起動やデータベース変更も行いません。
 

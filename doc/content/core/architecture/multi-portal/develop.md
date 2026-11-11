@@ -95,106 +95,87 @@ Click the portal name at the top left to open the switcher. Once other portals a
 
 Generated portal pages initially allow administrators only. Configure ordinary-user entry points, portal lists and page authorization through [Portal access and permissions](access.md). Displaying a navigation item does not grant access.
 
-## Understand the portal structure
+## Understand the portal directory structure
 
 ### Directory structure
 
-The generated portal is a local package inside the app. Its main files are shown below, omitting development instructions, tooling configuration and build output:
+Portal code lives in `packages/app-portal-portal-1/`. Tooling configuration and build output are omitted below:
 
 ```text
 packages/app-portal-portal-1/
-├── portal.ts
-├── package.json
-├── client/
-│   ├── index.ts
-│   ├── plugin.ts
-│   ├── routes.ts
-│   ├── layout.tsx
-│   ├── styles.css
+├── portal.ts                  # Identity, entry and appearance
+├── package.json               # Package metadata, dependencies and scripts
+├── client/                    # Client code
+│   ├── index.ts               # Client entry
+│   ├── plugin.ts              # Register routes and locale resources
+│   ├── routes.ts              # Page routes and access requirements
+│   ├── layout.tsx             # Layout and navigation
+│   ├── styles.css             # Portal styles
 │   ├── pages/
-│   │   └── overview.tsx
-│   └── locales/
-│       ├── index.ts
-│       ├── en-US.ts
-│       ├── zh-CN.ts
+│   │   └── overview.tsx       # Default homepage
+│   └── locales/               # Names, descriptions and page text
+│       ├── index.ts           # Locale loaders
+│       ├── en-US.ts           # English
+│       ├── zh-CN.ts           # Simplified Chinese
 │       └── …
-├── server/
-│   ├── index.ts
-│   ├── plugin.ts
+├── server/                    # Server code
+│   ├── index.ts               # Server entry
+│   ├── plugin.ts              # Register services and database resources
 │   └── providers/
-│       ├── index.ts
-│       └── portal.ts
+│       ├── index.ts           # Service provider list
+│       └── portal.ts          # Register the portal, initially uninstalled
 └── database/
-    └── main/
-        ├── migrations/
-        └── seeds/
+    └── main/                  # Host app's main connection
+        ├── migrations/        # Schema migrations, initially empty
+        └── seeds/             # Initial data
             └── portal_portal_1_installation.ts
+                               # Initialize portal installation state
 ```
-
-Most frontend work belongs in `client/pages/` for pages, `client/routes.ts` for routes, and `client/layout.tsx` for layout and navigation. Names, descriptions and page text live in `client/locales/`. Server code lives in `server/`; database migrations and seeds live in `database/`.
 
 ### Portal definition and registration
 
-**`portal.ts` defines the portal identity and entry point.**
+The following excerpts show the key configuration in three files.
+
+**`portal.ts`:**
 
 ```ts
-import type { PortalDescriptor } from '@nocobase/app-plugin-multi-portal/shared';
 const portal: PortalDescriptor = {
-  id: 'portal-1',
-  namespace: '@nocobase/app-portal-portal-1',
-  entry: '/portals/portal-1',
-  icon: 'LayoutGrid',
-  tone: 1,
+  id: 'portal-1',                              // Stable identifier
+  namespace: '@nocobase/app-portal-portal-1',    // Locale namespace
+  entry: '/portals/portal-1',                   // Entry without a base path such as /main
+  icon: 'LayoutGrid',                          // Portal icon
+  tone: 1,                                    // Color identifier
 };
-export default portal;
 ```
 
-`id` is the stable identifier, `namespace` identifies the portal's locale resources, and `entry` is its entry path. `icon` and `tone` control the portal icon and color. The entry excludes the app's deployment base path, such as `/main`. Display names and descriptions come from `title` and `description` in the locale resources. Renaming a label does not require changing the ID or package name, which installation records and permissions may reference.
+Edit names and descriptions in `client/locales/`. Do not change the ID or package name just to rename a label: installation records and permissions may reference them.
 
-**`client/plugin.ts` registers routes and locale resources.**
+**`client/plugin.ts`:**
 
 ```ts
-import {
-  defineClientPlugin,
-  type AppClientPluginFactory,
-} from '@nocobase/app-client/plugins';
-import locales from './locales/index.js';
-import routes from './routes.js';
 const plugin: AppClientPluginFactory = defineClientPlugin({
   packageName: '@nocobase/app-portal-portal-1',
-  locales,
-  routes,
+  locales, // From ./locales/index.js
+  routes,  // From ./routes.js
 });
-export default plugin;
 ```
 
-`routes` comes from the adjacent `routes.ts`; `locales` comes from `locales/index.ts`. Adding pages and translations normally means editing those files rather than rewriting the plugin entry.
-
-**`server/plugin.ts` registers service providers and database resources.**
+**`server/plugin.ts`:**
 
 ```ts
-import path from 'node:path';
-import {
-  defineServerPlugin,
-  type AppServerPlugin,
-} from '@nocobase/app-server/plugins';
-import serviceProviders from './providers/index.js';
 const plugin: AppServerPlugin = defineServerPlugin({
   packageName: '@nocobase/app-portal-portal-1',
-  baseDir: path.resolve(import.meta.dirname, '..'),
-  serviceProviders,
+  baseDir: path.resolve(import.meta.dirname, '..'), // Portal package root
+  serviceProviders, // Includes the PortalProvider that registers the portal
   database: {
     connections: {
-      main: {},
+      main: {}, // Use migrations and seeds under database/main/
     },
   },
 });
-export default plugin;
 ```
 
-`baseDir` points to the portal package root. `serviceProviders` includes `providers/portal.ts`, which registers the definition from `portal.ts` with the portal management service and declares that the portal starts uninstalled.
-
-`database.connections.main: {}` contributes database tasks to the host app's `main` connection. The empty object uses conventional paths relative to `baseDir`: `database/main/migrations/` and `database/main/seeds/`. Database addresses and credentials are configured by the host app, not here. The generated migrations directory starts empty; the seeds directory contains the portal installation-state initializer.
+`main` references the host app's connection. The empty object uses conventional directories; database addresses and credentials are configured by the host app.
 
 ## Add pages and navigation
 

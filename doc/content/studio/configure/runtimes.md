@@ -5,7 +5,7 @@ description: Manage execution capacity, tool availability, concurrency, and work
 
 A runtime provides coding tools, model sign-in, and execution resources. Use a separate container or virtual machine, isolated from Studio. For installation, see [Connect a runtime](../setup/shared-runtimes.md).
 
-![Runtime connectivity, scope, and capacity](https://static-docs.nocobase.com/studio-en-guide-runtimes-20261031.png)
+![Runtime connectivity, scope, and capacity](https://static-docs.nocobase.com/studio-en-runtimes-20261111-normal-2x.webp)
 
 For runner registration, logs, updates, and removal, see [nocobase-runner commands](../reference/runner.md).
 

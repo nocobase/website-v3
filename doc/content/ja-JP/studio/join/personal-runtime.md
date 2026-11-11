@@ -18,7 +18,7 @@ description: "自分のコーディングツールと実行容量を、自分の
 
 コマンドには一回限りの認証情報が含まれます。期限が切れたら再生成してください。[マシンへのインストール](../setup/shared-runtimes.md#マシンにインストールする)も参照してください。
 
-![個人ランタイムの所有者、接続状態、利用可能なツール](https://static-docs.nocobase.com/studio-en-guide-personal-runtime-20261031.png)
+![個人ランタイムと接続するコーディングツールを選択](https://static-docs.nocobase.com/studio-en-personal-runtime-20261111-normal-2x.webp)
 
 ## 接続を確認する
 

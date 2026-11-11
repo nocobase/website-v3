@@ -14,7 +14,7 @@ description: 保存需求背景、业务规则和团队资料，供成员和 Age
 
 打开项目的「知识库」。项目工作可以引用项目知识，也可以引用有权访问的系统知识。
 
-![在项目知识库中整理业务资料](https://static-docs.nocobase.com/studio-zh-guide-knowledge-20261031.png)
+![在项目知识库中整理业务资料](https://static-docs.nocobase.com/studio-zh-knowledge-20261111-normal-2x.webp)
 
 ## 添加与维护资料
 

@@ -13,31 +13,39 @@ NocoBase Studio は、チームのための AI 開発プラットフォームで
 
 Studio は Claude Code、Codex、OpenCode などのツールとモデルを接続します。[コーディネーターエージェント](agent-team.md) が、各エージェントの得意分野に応じて設計、開発、レビュー、テストを割り振ります。結果を読んで次のステップを計画します。メンバーは [Runner Agent](../join/runner-agent.md) と直接対話して、要件を相談し、タスクを進めることもできます。
 
-![コーディネーターエージェントが、明確な目標と引き渡し要件を添えて設計作業を割り振ります](https://static-docs.nocobase.com/studio-en-req-dispatch-20261030.png)
+![コーディネーターエージェントが、明確な目標と引き渡し要件を添えて設計作業を割り振ります](https://static-docs.nocobase.com/studio-en-req-dispatch-20261111-normal-2x.webp)
 
 ### 依頼者と進捗を共有する
 
 業務チームや顧客からの要件は、プロジェクトのタスクになります。議論、エージェントの実行、引き渡しの結果は各タスクに残り、プロジェクトメンバーはそこで進捗を追えます。タスク責任者は **My issues** で質問に答え、結果を検収します。
 
-![タスク責任者は My issues で引き渡しレポートを確認し、結果を検収します](https://static-docs.nocobase.com/studio-en-home-20261030.png)
+![タスク責任者は My issues で引き渡しレポートを確認し、結果を検収します](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
+
+### 継続的にテストし、問題を追跡する
+
+チームは [品質管理](../quality/overview.md) でコアシナリオを管理し、スケジュールまたは手動でテストを実行します。エージェントは機能、権限、パフォーマンスなどの観点でチェックし、レポートに結果と根拠を残します。
+
+見つかった問題をフォローアップタスクにひも付け、修正後のテストで確認します。テスト範囲、結果、未解決の問題はプロジェクトに残るため、チームで継続して追跡できます。
+
+![サンプルプロジェクトの機能、権限、セキュリティ、パフォーマンス、コード品質の結果](https://static-docs.nocobase.com/studio-en-quality-sample-20261111-normal-2x.webp)
 
 ### 変更を引き渡しまで追跡する
 
 Studio は Git プラットフォームと CI/CD に接続し、タスク、プルリクエスト、チェック、レビューをひも付けます。チェックやレビューが失敗すると、コーディネーターエージェントが修正を割り振ります。責任者は引き渡しレポートと検収基準に照らして結果を確認し、必要に応じてプレビューやテスト環境を使います。チームは [Releases](../release/overview.md) でバージョンを追跡し、本番環境へのデプロイは自分たちで行って、本番バージョンを記録します。
 
-![Releases にはバージョンと、そのテスト環境・本番環境での状況が表示されます](https://static-docs.nocobase.com/studio-en-releases-20261030.png)
+![Releases にはバージョンと、そのテスト環境・本番環境での状況が表示されます](https://static-docs.nocobase.com/studio-en-supplier-releases-20261111-normal-2x.webp)
 
 ### 規約と知識をチームに残す
 
 [スキル](../project/skills.md) は、設計、開発、レビュー、テストの共通要件を定めます。[ナレッジベース](../project/knowledge-base.md) には業務資料を保存します。[プロジェクトメモリー](../project/project-memory.md) には、確認済みのルールと経験を残します。担当者やモデルが変わっても、以降のタスクはこのコンテキストを再利用できます。
 
-![プロジェクトメモリーに、確認済みの業務ルールが以降のタスクのために残されます](https://static-docs.nocobase.com/studio-en-project-memory-20261030.png)
+![プロジェクトメモリーに、確認済みの業務ルールが以降のタスクのために残されます](https://static-docs.nocobase.com/studio-en-supplier-memory-20261111-normal-2x.webp)
 
 ### ローカルのツールはそのまま、共有リソースを使う
 
 [nb-studio CLI](../reference/cli.md) を使えば、メンバーはいつものコーディングエージェントからタスクを作成し、要件を追加し、結果を追跡できます。Studio が共有ランタイムで実行をスケジュールするので、ローカルの会話を開いたままにしておく必要はありません。進捗と結果は Studio でチームが確認できます。
 
-![共有ランタイムがチームにコーディングツールと実行リソースを提供します](https://static-docs.nocobase.com/studio-en-shared-runtimes-20261030.png)
+![共有ランタイムがチームにコーディングツールと実行リソースを提供します](https://static-docs.nocobase.com/studio-en-runtimes-20261111-normal-2x.webp)
 
 ## 人が判断し、エージェントが開発する
 

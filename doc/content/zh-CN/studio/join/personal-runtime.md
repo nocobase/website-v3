@@ -18,7 +18,7 @@ description: 接入自己的编码工具与执行资源，仅承接代表自己�
 
 安装命令带一次性凭证，过期后重新生成。安装细节见[接入运行环境](../setup/shared-runtimes.md#安装执行机)。
 
-![个人运行环境显示所有者、在线状态和可用编码工具](https://static-docs.nocobase.com/studio-zh-guide-personal-runtime-20261031.png)
+![选择个人运行环境和要接入的编码工具](https://static-docs.nocobase.com/studio-zh-personal-runtime-20261111-normal-2x.webp)
 
 ## 确认接入成功
 

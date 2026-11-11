@@ -3,7 +3,7 @@ title: 部署 Studio
 description: 使用 Docker Compose 部署空白 Studio，配置持久化数据，并登录管理员账号。
 ---
 
-Studio 是商业产品，请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取镜像、版本信息和访问授权。
+Studio 和 Studio EE 均为商业产品，请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取镜像和访问授权。质量管理由 Studio EE 提供。
 
 本文使用 Docker Compose 部署单个 Studio 实例，数据库以 PostgreSQL 为例。已有数据库可以直接接入，配置项见[配置参考](../reference/config.md)。
 
@@ -17,26 +17,44 @@ Studio 是商业产品，请[联系我们](https://www.nocobase.com/zh-CN/contac
 
 ## 准备配置文件
 
-按交付说明取得镜像，在终端中设置 `STUDIO_IMAGE`。值使用包含具体版本号的完整镜像名称。
+从交付的镜像中提取配置模板。将命令中的镜像名称替换为包含具体版本号的完整名称：
 
 ```bash
-export STUDIO_IMAGE='<交付的镜像名称与版本>'
 mkdir studio
 cd studio
 mkdir storage
-sudo chown 1000:1000 storage
 
-docker run --rm --entrypoint cat "$STUDIO_IMAGE" \
+docker run --rm --entrypoint cat '<supplied-image-name-and-version>' \
   /app/config.example.yml > config.yml
 ```
 
-Studio 容器以 UID 1000 运行，需要能写入 `storage` 目录。
+生成加密密钥：
 
-编辑 `config.yml`，在对应位置设置界面语言，并关闭自助注册。保留模板里的其他配置，不要重复添加同名节点。
+```bash
+openssl rand -hex 32
+```
+
+编辑 `config.yml`，将以下值合并到模板的对应节点。填写管理员账号、生成的加密密钥，以及数据库连接信息。保留模板中的其他设置，不要重复添加同名节点。
+
+数据库配置以 PostgreSQL 为例。使用已有数据库时，填写 Studio 容器可访问的主机、端口、数据库名、用户名和密码。
+
+使用下文的 [Compose 配置](#启动服务)新建数据库时，Studio 通过容器网络连接 PostgreSQL。`host: postgres` 对应 Compose 中的服务名，`port: 5432` 是数据库容器内的监听端口；数据库名、用户名和密码由你设置。
 
 ```yaml
-i18n:
-  defaultLocale: zh-CN
+app:
+  publicOrigin: http://localhost:13000
+  sampleData: false
+
+users:
+  initialAdmin:
+    username: admin
+    email: admin@example.com
+    password: replace-with-admin-password
+
+secrets:
+  keys:
+    - version: 1
+      key: replace-with-generated-key
 
 auth:
   passwordReset:
@@ -45,31 +63,43 @@ auth:
     enabled: true
     autoSignIn: false
     disableSignUp: true
+
+database:
+  default: main
+  connections:
+    main:
+      dialect: postgres
+      host: postgres
+      port: 5432
+      database: replace-with-database-name
+      username: replace-with-database-user
+      password: replace-with-database-password
+      schemaManagement: managed
+      migrations:
+        autoRun: true
+      seeds:
+        autoRun: true
 ```
 
-生成 `.env`。下面的命令会生成加密密钥、初始管理员密码和数据库密码。
-
-```bash
-umask 077
-cat > .env <<EOF
-STUDIO_IMAGE=${STUDIO_IMAGE}
-STUDIO_SECRET_KEY=$(openssl rand -hex 32)
-INITIAL_ADMIN_USERNAME=admin
-INITIAL_ADMIN_EMAIL=admin@example.com
-INITIAL_ADMIN_PASSWORD=$(openssl rand -hex 18)
-DB_PASSWORD=$(openssl rand -hex 24)
-APP_PUBLIC_ORIGIN=http://localhost:13000
-EOF
-```
-
-把管理员邮箱换成自己的邮箱。`APP_PUBLIC_ORIGIN` 填浏览器访问 Studio 的协议、域名和端口，末尾不带 `/main`。
+`app.publicOrigin` 填浏览器访问 Studio 的协议、域名和端口，末尾不带 `/main`。初始管理员只在空数据库首次启动时创建。中文界面可在 `config.yml` 中设置 `i18n.defaultLocale: zh-CN`。
 
 > [!NOTE] 保留加密密钥
-> `STUDIO_SECRET_KEY` 用于加密 Studio 保存的凭据。重启和升级时保留它，并与数据库一起备份。丢失密钥后，已保存的凭据无法解密。
+> `secrets.keys` 用于加密 Studio 保存的凭据。重启和升级时保留它，并与数据库一起备份。丢失密钥后，已保存的凭据无法解密。
 
 ## 文件与产物上传
 
-本地存储可以直接使用，后面的 Compose 配置会持久化 `/app/storage`。团队使用对象存储时，将下面的配置加入 `config.yml`。下面以 Amazon S3 为例：
+本地存储可直接使用，后面的 Compose 配置会持久化 `/app/storage`。任务、评论和 Agent 会话的单个附件默认上限为 20 MiB。需要调大时，在 `config.yml` 中设置目标磁盘，例如改为 50 MiB：
+
+```yaml
+drive:
+  disks:
+    local:
+      maxFileSizeMb: 50
+```
+
+`maxFileSizeMb` 必须是正整数。使用对象存储时，将它放到对应磁盘下。反向代理的请求大小限制也需相应调大，并为上传表单留出余量。
+
+团队使用对象存储时，将下面的配置合并到 `config.yml`。这里以 Amazon S3 为例：
 
 ```yaml
 drive:
@@ -77,6 +107,7 @@ drive:
   disks:
     s3:
       driver: s3
+      maxFileSizeMb: 50
       bucket: example-studio-files
       region: us-east-1
       supportsACL: false
@@ -109,6 +140,7 @@ mailers:
     secure: false
     auth:
       user: notifications@example.com
+      pass: replace-with-smtp-password
     from: "Studio <notifications@example.com>"
 
 auth:
@@ -118,30 +150,18 @@ auth:
 
 保留 `users.initialAdmin`、`auth.emailAndPassword` 等设置。将 SMTP 主机、端口、账号和发件地址替换为邮件服务商提供并授权的值。
 
-在 `.env` 中添加密码：
-
-```dotenv
-MAILERS_SYSTEM_PASSWORD=<smtp-password>
-```
-
-在下方 Compose 文件的 `services.studio.environment` 中增加：
-
-```yaml
-MAILERS_SYSTEM_PASSWORD: ${MAILERS_SYSTEM_PASSWORD:?set MAILERS_SYSTEM_PASSWORD in .env}
-```
-
-变量必须通过 Compose 传入容器，`config.yml` 中的 `${NAME}` 不会展开。`APP_PUBLIC_ORIGIN` 应是成员能访问的 Studio 地址，邮件链接会用到它。
+密码填写在 `mailers.system.auth.pass`。`app.publicOrigin` 应是成员能访问的 Studio 地址，邮件链接会用到它。
 
 仅本机试用、暂不配置邮件时，保留 `auth.passwordReset.enabled: false`，邀请可先复制链接分享。Resend 配置和邮件发送检查，见[通知与推送](../admin/notifications.md#邀请邮件)。
 
 ## 启动服务
 
-在同一目录创建 `docker-compose.yml`：
+在同一目录创建 `docker-compose.yml`。替换镜像名称，将 `POSTGRES_DB`、`POSTGRES_USER`、`POSTGRES_PASSWORD` 分别填为 `config.yml` 中相同的数据库名、用户名和密码：
 
 ```yaml
 services:
   studio:
-    image: ${STUDIO_IMAGE:?set STUDIO_IMAGE in .env}
+    image: <supplied-image-name-and-version>
     init: true
     restart: unless-stopped
     depends_on:
@@ -149,21 +169,6 @@ services:
         condition: service_healthy
     ports:
       - "127.0.0.1:13000:13000"
-    environment:
-      APP_CONFIG_FILE: /app/config.yml
-      APP_PUBLIC_ORIGIN: ${APP_PUBLIC_ORIGIN}
-      APP_BASE_PATH: /main
-      APP_SAMPLE_DATA: "false"
-      SECRETS_KEYS: 1:${STUDIO_SECRET_KEY:?set STUDIO_SECRET_KEY in .env}
-      INITIAL_ADMIN_USERNAME: ${INITIAL_ADMIN_USERNAME}
-      INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL}
-      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:?set INITIAL_ADMIN_PASSWORD in .env}
-      DB_DIALECT: postgres
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_DATABASE: studio
-      DB_USERNAME: studio
-      DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
     volumes:
       - ./config.yml:/app/config.yml:ro
       - ./storage:/app/storage
@@ -172,19 +177,30 @@ services:
     image: postgres:16
     restart: unless-stopped
     environment:
-      POSTGRES_DB: studio
-      POSTGRES_USER: studio
-      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      POSTGRES_DB: replace-with-database-name
+      POSTGRES_USER: replace-with-database-user
+      POSTGRES_PASSWORD: replace-with-database-password
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U studio -d studio"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       timeout: 5s
       retries: 10
 
 volumes:
   postgres-data:
+```
+
+使用已有数据库时，移除 Compose 中的 `postgres` 服务、`studio.depends_on` 和 `postgres-data` 卷配置。
+
+Studio 镜像默认读取 `/app/config.yml`，访问路径为 `/main`。上述环境变量用于初始化 PostgreSQL 容器；Studio 的配置都保存在 `config.yml`。
+
+Studio 容器以 UID 1000 运行。启动前确保它能读取配置并写入存储目录，同时限制配置文件的读取权限：
+
+```bash
+sudo chown 1000:1000 config.yml storage
+sudo chmod 600 config.yml
 ```
 
 此配置只向本机开放 13000 端口。远程服务器通过下文的 HTTPS 地址访问；临时验证也可以使用 SSH 端口转发。
@@ -200,15 +216,17 @@ curl -fsS http://localhost:13000/main/api/healthz
 
 ## 首次登录
 
-本机试用打开 `http://localhost:13000/main/`。团队使用时，按下文配置 HTTPS 地址。使用 `.env` 中的 `INITIAL_ADMIN_USERNAME` 和 `INITIAL_ADMIN_PASSWORD` 登录。
+本机试用打开 `http://localhost:13000/main/`。团队使用时，按下文配置 HTTPS 地址。使用 `config.yml` 中 `users.initialAdmin` 的用户名和密码登录。
 
-![使用初始管理员账号登录 Studio](https://static-docs.nocobase.com/studio-zh-setup-login-full-1440x900-20261030.png)
+![使用初始管理员账号登录 Studio](https://static-docs.nocobase.com/studio-zh-login-20261111-normal-2x.webp)
 
 初始管理员配置仅在首次安装时生效。以后修改密码，使用「个人设置 › 账号与安全」。
 
+出现授权提示时，填写交付的 License Key。Studio EE 需要企业版授权。管理员可在「设置 › 授权」查看授权状态和可用更新；初始化应用需要商业依赖时，也在这里配置交付的依赖访问凭据。
+
 **完成的标志**：管理员可以登录，项目列表为空，登录页没有注册入口。后续连接执行机和 CLI 时，使用包含 `/main` 的完整地址。
 
-![首次登录后的空白项目列表](https://static-docs.nocobase.com/studio-zh-setup-empty-projects-full-1440x900-20261030.png)
+![首次登录后的空白项目列表](https://static-docs.nocobase.com/studio-zh-empty-projects-20261111-normal-2x.webp)
 
 团队使用前，再验证以下结果：
 
@@ -232,10 +250,17 @@ studio.example.com {
 }
 ```
 
-将 `.env` 中的地址改为 `APP_PUBLIC_ORIGIN=https://studio.example.com`，然后重新创建容器：
+将 `config.yml` 的 `app.publicOrigin` 改为实际访问地址：
+
+```yaml
+app:
+  publicOrigin: https://studio.example.com
+```
+
+重新创建 Studio 容器，使配置生效：
 
 ```bash
-docker compose up -d
+docker compose up -d --force-recreate studio
 ```
 
 ## 排查启动问题
@@ -247,6 +272,6 @@ docker compose up -d
 | 容器反复重启 | 运行 `docker compose logs --tail=100 studio`，检查数据库连接和配置错误 |
 | 提示配置文件不存在或无法读取 | 确认 `config.yml` 是从镜像提取的文件，不是 Docker 自动创建的目录 |
 | 提示数据目录无写入权限 | 确认 `storage` 可由 UID 1000 写入 |
-| 页面打不开或登录回调失败 | 检查 `/main/`、`APP_PUBLIC_ORIGIN` 和反向代理设置 |
+| 页面打不开或登录回调失败 | 检查 `/main/`、`app.publicOrigin` 和反向代理设置 |
 
 后续维护见[升级与备份](../admin/upgrade-and-backup.md)。

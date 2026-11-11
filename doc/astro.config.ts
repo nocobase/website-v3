@@ -24,6 +24,9 @@ export default defineConfig({
   outDir: DIST,
   trailingSlash: 'always',
   redirects: {
+    '/studio/join/connect-computer/': '/studio/join/runner-agent/',
+    '/zh-CN/studio/join/connect-computer/': '/zh-CN/studio/join/runner-agent/',
+    '/ja-JP/studio/join/connect-computer/': '/ja-JP/studio/join/runner-agent/',
     '/studio/reference/agent-execution/': '/studio/intro/agent-team/',
     '/studio/reference/concepts/': '/studio/intro/concepts/',
     '/zh-CN/studio/reference/agent-execution/': '/zh-CN/studio/intro/agent-team/',

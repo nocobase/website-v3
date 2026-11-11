@@ -42,7 +42,7 @@ Agent 先检查目标环境，询问缺少的信息，再按下方步骤完成�
 
 ## 成员开始工作
 
-成员[接受邀请并登录](../join/sign-in.md)后，按[走完第一个需求](../../getting-started/collaborate-with-studio.md)提交需求、跟进开发并验收结果。使用团队已准备好的运行环境即可，不必连接自己的电脑。
+成员[接受邀请并登录](../join/sign-in.md)后，按[走完第一个需求](../../getting-started/collaborate-with-studio.md)提交需求、跟进开发并验收结果。使用团队已准备好的运行环境即可。
 
 ## 调整配置
 

@@ -7,7 +7,7 @@ Task details bring together active execution, next steps, and delivery results. 
 
 ## Task details
 
-![The summary shows who is working and what comes next](https://static-docs.nocobase.com/studio-en-guide-task-progress-20261031.png)
+![The summary shows who is working and what comes next](https://static-docs.nocobase.com/studio-en-req-now-20261111-normal-2x.webp)
 
 | Area | Content |
 | --- | --- |
@@ -37,7 +37,7 @@ Changed requirements affect later work. Say explicitly when you want discussion 
 
 ## Run history
 
-![Inspect the Agent, status, duration, and transcript of each execution](https://static-docs.nocobase.com/studio-en-guide-runs-20261031.png)
+![Inspect the Agent, status, duration, and transcript of each execution](https://static-docs.nocobase.com/studio-en-runs-20261111-normal-2x.webp)
 
 | Action | Purpose |
 | --- | --- |

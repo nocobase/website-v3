@@ -47,7 +47,7 @@ Studio は商用版で提供されます。管理者は[インストールと設
 
 エージェントが不足するルールを確認し、タスクを作成します。内容を確認して **Start** を選びます。**Fill in manually** で直接作成することもできます。
 
-![会話で目的と業務ルールを定める](https://static-docs.nocobase.com/studio-en-guide-new-task-20261031.png)
+![会話で目的と業務ルールを定める](https://static-docs.nocobase.com/studio-en-new-task-20261111-normal-2x.webp)
 
 タスクは **In progress** になり、コーディネーターエージェントが設計、開発、レビューを手配します。
 
@@ -57,7 +57,7 @@ Studio は商用版で提供されます。管理者は[インストールと設
 
 タスク上部に、作業中のエージェント、ランタイム、次のステップが表示されます。**Activity** に引き継ぎ、返信、レビュー結果が残り、**Runs** で実行の詳細を確認できます。
 
-![現在のステップと次の作業を確認する](https://static-docs.nocobase.com/studio-en-guide-task-progress-20261031.png)
+![現在のステップと次の作業を確認する](https://static-docs.nocobase.com/studio-en-req-now-20261111-normal-2x.webp)
 
 コーディネーターエージェントは変更に応じて設計と実装を割り振ります。実行エージェントはタスクのブランチでコードを変更し、PR（プルリクエスト）を作成します。チェックとレビューも同じタスクに紐づきます。失敗や指摘があれば修正し、再チェックとレビューを経て検収に進みます。
 
@@ -76,7 +76,7 @@ Studio は商用版で提供されます。管理者は[インストールと設
 3. 要件を満たしていれば **Merge** を選び、対象ブランチと方法を確認します。
 4. 修正が必要なら **Send back** で問題と期待する結果を伝えます。
 
-![受け入れ基準と引き渡しレポートを照合する](https://static-docs.nocobase.com/studio-en-guide-accept-20261031.png)
+![受け入れ基準と引き渡しレポートを照合する](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 タスクが **Done** になり、変更が既定ブランチに入れば開発完了です。テストとリリースの進捗は[リリース](../studio/release/overview.md)で確認できます。
 

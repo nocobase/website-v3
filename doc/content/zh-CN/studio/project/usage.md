@@ -7,7 +7,7 @@ description: 查看 Agent 排队情况、运行资源和模型费用。
 
 打开「任务」，切换到「Agent 队列」。每个 Agent 一条泳道，区分正在执行、接下来、等待回复和已分配但空闲的任务。队列显示等待原因，轮到你的事项可直接打开处理。
 
-![按 Agent 查看执行、排队和待处理任务](https://static-docs.nocobase.com/studio-zh-guide-agent-queue-20261031.png)
+![按 Agent 查看执行、排队和待处理任务](https://static-docs.nocobase.com/studio-zh-agent-queue-20261111-normal-2x.webp)
 
 经常等待并发空位时，可调整[运行环境](../configure/runtimes.md)的并发或增加实例。某个 Agent 很少被分派工作时，检查它的能力说明和可用模型。
 
@@ -15,7 +15,7 @@ description: 查看 Agent 排队情况、运行资源和模型费用。
 
 打开「用量」，选择日期范围，按 Agent、唤醒人、对象、模型、编码工具或日期汇总。报表包含运行次数、时长、输入输出 token、缓存用量和估算费用。
 
-![查看模型用量与费用趋势](https://static-docs.nocobase.com/studio-zh-guide-usage-20261031.png)
+![查看模型用量与费用趋势](https://static-docs.nocobase.com/studio-zh-usage-20261111-normal-2x.webp)
 
 「每日趋势」展示费用或 token 的变化。知识库索引等不属于 Agent 运行的调用，列在「其他模型用量」。
 

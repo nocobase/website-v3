@@ -17,7 +17,7 @@ A skill contains `SKILL.md` and optional reference files or scripts. Its `name` 
 
 The first four attach to new projects by default. The comment style attaches globally. You can edit built-in skills; upgrades preserve saved changes. The NocoBase application template also includes Core development instructions.
 
-![Maintain team skills and their versions](https://static-docs.nocobase.com/studio-en-guide-skills-20261031.png)
+![Maintain team skills and their versions](https://static-docs.nocobase.com/studio-en-skills-20261111-normal-2x.webp)
 
 ## Create and update
 
@@ -36,3 +36,5 @@ Save edits as a new version. Previous versions can be viewed and exported as ZIP
 Scopes combine. The more specific scope takes priority for skills with the same name. Automatic attachment to new projects affects future projects only.
 
 Document team-specific rules, such as required tests, review criteria, and delivery evidence. Keep each skill focused on one kind of work. After changing it, check subsequent runs and delivery reports to see how it is used.
+
+Quality dimensions bind their own Skills in [test settings](../quality/settings.md). Each test keeps the Skill versions captured when it was created; edits apply to later tests.

@@ -5,11 +5,13 @@ description: "チェック結果、エージェントのレビュー、マージ
 
 引き渡し前に、コーディネーターエージェントがプロジェクトのスキルに従って検証とコードレビューを手配します。タスクの責任者が引き渡しレポートを読み、マージするかを判断します。
 
+完了済みタスクやプロジェクト全体のテストには[Quality](../quality/overview.md)を使います。専用のレポートとフォローアップタスクで結果を追跡します。
+
 ## チェックを確認する
 
 タスクの **Code & previews** で、各 PR のチェック取得元、結果、ログを確認します。取得元はリポジトリで選んだコードプラットフォームの CI、外部 CI、エージェントのセルフチェックです。[チェックと CI](../configure/checks.md)を参照してください。
 
-![タスク上で PR のチェック結果を確認する](https://static-docs.nocobase.com/studio-en-guide-checks-20261031.png)
+![タスク上で PR のチェック結果を確認する](https://static-docs.nocobase.com/studio-en-req-preview-20261111-normal-2x.webp)
 
 **Project settings › Code repositories › Branch rules** で設定します。
 

@@ -11,9 +11,7 @@ Studio では、要件はタスクです。人の判断が必要なステータ�
 
 ## 1. 要件を出してタスクにする
 
-**My sessions** で **New session** をクリックし、コーディングエージェントとローカルの itam-lite ディレクトリを選び、プロジェクトに itam-lite を選びます（先に [自分の PC を接続](../studio/join/connect-computer.md) しておく必要があります）。
-
-![New session](https://static-docs.nocobase.com/20261030155023637.png)
+**My sessions** で [Runner Agent の会話](../studio/join/runner-agent.md)を開始し、利用可能なエージェントを選びます。最初のメッセージを送る前に、プロジェクトに itam-lite を指定します。
 
 ```prompt
 資産管理者は四半期ごとにデバイスの棚卸しをしています。次のようにしたいです。

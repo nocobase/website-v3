@@ -11,9 +11,7 @@ In Studio, a request is an issue. Only two statuses need a person to decide, Blo
 
 ## 1. Raise the request and turn it into an issue
 
-In **My sessions**, click **New session**, choose your coding agent and the local itam-lite directory, and choose itam-lite as the project (you need to [connect your computer](../studio/join/connect-computer.md) first):
-
-![New session](https://static-docs.nocobase.com/20261030155023637.png)
+In **My sessions**, start a [Runner Agent conversation](../studio/join/runner-agent.md), choose an available Agent, and select itam-lite as the project before sending your first message:
 
 ```prompt
 The asset manager does a device stocktake every quarter. Here's what I want:

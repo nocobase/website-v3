@@ -5,11 +5,11 @@ description: 在 Studio 中与运行环境里的编码工具讨论需求、检�
 
 Runner Agent 是运行环境中的编码工具与模型。在「我的会话」中，可以直接与它讨论需求、检查项目代码或跟进任务。
 
-团队需有在线的[运行环境](../configure/runtimes.md)和已启用的 [Agent](../configure/agents.md)。使用共享运行环境时，无需连接自己的电脑。
+团队需有在线的[运行环境](../configure/runtimes.md)和已启用的 [Agent](../configure/agents.md)。
 
 ## 开始对话
 
-1. 打开「我的会话」，切换到「Runner Agent」。
+1. 打开「我的会话」。
 2. 新建会话，选择 Agent。
 3. 需要读取项目代码时，在第一条消息发送前选择项目。
 4. 输入问题并发送。
@@ -18,9 +18,9 @@ Runner Agent 是运行环境中的编码工具与模型。在「我的会话」�
 帮我看看这个项目里供应商评分是怎么计算的，先解释现有规则，不要修改代码。
 ```
 
-![Runner Agent 会话保留讨论，并在右侧显示关联任务](https://static-docs.nocobase.com/studio-zh-guide-runner-session-20261031.png)
-
 第一条消息发出后，项目不能更换；需要讨论其他项目时新建会话。Agent 会准备所选项目的代码。你可以继续发送文字、图片或附件，执行中的后续消息会进入队列。
+
+![与 Runner Agent 讨论需求，查看关联任务](https://static-docs.nocobase.com/studio-zh-req-session-20261111-normal-2x.webp)
 
 ## 把讨论转为任务
 
@@ -30,7 +30,7 @@ Runner Agent 是运行环境中的编码工具与模型。在「我的会话」�
 
 任务创建后显示在会话中。确认需求，再点「开始」，由调度 Agent 安排执行。也可用 `#任务编号` 关联已有任务。
 
-会话只有你可见。任务按项目权限共享，状态变化会回到会话中。
+会话默认只有你可见。分享后，指定成员可以只读查看分享时的内容；后续消息需要再次分享。Agent 按发起人的权限执行，关联任务按项目权限开放。
 
 ## 切换 Agent 或运行环境
 

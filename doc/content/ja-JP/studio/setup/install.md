@@ -3,7 +3,7 @@ title: Studio をデプロイする
 description: Docker Compose で空の Studio インスタンスをデプロイし、データを永続化して、管理者としてサインインします。
 ---
 
-Studio は商用製品です。イメージ、利用できるバージョン、アクセス許可については [お問い合わせ](https://www.nocobase.com/ja-JP/contact/) ください。
+Studio と Studio EE は商用製品です。イメージとアクセス許可については[お問い合わせ](https://www.nocobase.com/ja-JP/contact/)ください。品質管理は Studio EE で利用できます。
 
 このガイドでは、PostgreSQL を使う Studio インスタンスを 1 つデプロイします。既存のデータベースを使うこともできます。[設定リファレンス](../reference/config.md) を参照してください。
 
@@ -17,24 +17,45 @@ Studio は商用製品です。イメージ、利用できるバージョン、�
 
 ## 設定を準備する
 
-提供時の手順に従ってイメージを入手します。`STUDIO_IMAGE` に、正確なバージョンを含む完全なイメージ名を設定します。
+提供されたイメージから設定テンプレートを取り出します。プレースホルダーを、正確なバージョンを含む完全なイメージ名に置き換えてください。
 
 ```bash
-export STUDIO_IMAGE='<supplied-image-name-and-version>'
 mkdir studio
 cd studio
 mkdir storage
-sudo chown 1000:1000 storage
 
-docker run --rm --entrypoint cat "$STUDIO_IMAGE" \
+docker run --rm --entrypoint cat '<supplied-image-name-and-version>' \
   /app/config.example.yml > config.yml
 ```
 
-Studio のコンテナは UID 1000 で動作し、`storage` への書き込み権限が必要です。
+暗号化キーを生成します。
 
-`config.yml` の該当するセクションを編集して、セルフ登録を無効にします。テンプレートのほかの部分はそのまま残し、YAML のキーが重複しないようにします。画面は既定で英語です。
+```bash
+openssl rand -hex 32
+```
+
+`config.yml` を編集し、以下の値をテンプレートの対応する項目に反映します。管理者アカウント、生成した暗号化キー、データベースの接続情報を入力してください。他の設定は保持し、同名のキーを重複させないでください。
+
+この例では PostgreSQL を使います。既存のデータベースを使う場合は、Studio コンテナから接続できるホスト、ポート、データベース名、ユーザー名、パスワードを入力します。
+
+以下の [Compose 設定](#サービスを起動する)でデータベースを作成する場合、Studio はコンテナネットワーク経由で PostgreSQL に接続します。`host: postgres` は Compose のサービス名、`port: 5432` はデータベースコンテナ内の待受ポートです。データベース名、ユーザー名、パスワードは自分で設定します。
 
 ```yaml
+app:
+  publicOrigin: http://localhost:13000
+  sampleData: false
+
+users:
+  initialAdmin:
+    username: admin
+    email: admin@example.com
+    password: replace-with-admin-password
+
+secrets:
+  keys:
+    - version: 1
+      key: replace-with-generated-key
+
 auth:
   passwordReset:
     enabled: false
@@ -42,31 +63,43 @@ auth:
     enabled: true
     autoSignIn: false
     disableSignUp: true
+
+database:
+  default: main
+  connections:
+    main:
+      dialect: postgres
+      host: postgres
+      port: 5432
+      database: replace-with-database-name
+      username: replace-with-database-user
+      password: replace-with-database-password
+      schemaManagement: managed
+      migrations:
+        autoRun: true
+      seeds:
+        autoRun: true
 ```
 
-ランダムな暗号化キー、管理者パスワード、データベースのシークレットを含む `.env` を生成します。
-
-```bash
-umask 077
-cat > .env <<EOF
-STUDIO_IMAGE=${STUDIO_IMAGE}
-STUDIO_SECRET_KEY=$(openssl rand -hex 32)
-INITIAL_ADMIN_USERNAME=admin
-INITIAL_ADMIN_EMAIL=admin@example.com
-INITIAL_ADMIN_PASSWORD=$(openssl rand -hex 18)
-DB_PASSWORD=$(openssl rand -hex 24)
-APP_PUBLIC_ORIGIN=http://localhost:13000
-EOF
-```
-
-管理者のメールアドレスは自分のものに置き換えます。`APP_PUBLIC_ORIGIN` には公開時のスキーム、ホスト、ポートを書き、`/main` は含めません。
+`app.publicOrigin` にはブラウザーからアクセスするスキーム、ホスト、ポートを指定し、`/main` は含めません。初期管理者は、ユーザーがいないデータベースでの初回起動時だけ作成されます。
 
 > [!NOTE] 暗号化キーを保管する
-> `STUDIO_SECRET_KEY` は、Studio に保存される認証情報を暗号化します。再起動やアップグレードのときも保持し、データベースと一緒にバックアップしてください。このキーがないと、保存済みの認証情報を復号できません。
+> `secrets.keys` は Studio に保存した認証情報の暗号化に使います。再起動やアップグレードでも保持し、データベースと一緒にバックアップしてください。紛失すると保存済みの認証情報を復号できません。
 
 ## ファイルと成果物のアップロード
 
-ローカルストレージは追加の設定なしで使えます。下の Compose ファイルで `/app/storage` を永続化します。オブジェクトストレージを使う場合は、次の内容を `config.yml` にマージします。この例では Amazon S3 を使います。
+ローカルストレージはそのまま使えます。後述の Compose 設定で `/app/storage` を永続化します。タスク、コメント、エージェント会話の添付ファイルは、1 ファイルあたり既定で 20 MiB までです。変更する場合は `config.yml` の保存先ディスクに設定します。以下は 50 MiB の例です。
+
+```yaml
+drive:
+  disks:
+    local:
+      maxFileSizeMb: 50
+```
+
+`maxFileSizeMb` は正の整数で指定します。オブジェクトストレージでは、対応するディスクに設定してください。リバースプロキシのリクエストサイズ上限にも、アップロードフォームの分を含めた余裕を持たせます。
+
+オブジェクトストレージを使う場合は、次の設定を `config.yml` に反映します。ここでは Amazon S3 を使用します。
 
 ```yaml
 drive:
@@ -74,6 +107,7 @@ drive:
   disks:
     s3:
       driver: s3
+      maxFileSizeMb: 50
       bucket: example-studio-files
       region: us-east-1
       supportsACL: false
@@ -106,6 +140,7 @@ mailers:
     secure: false
     auth:
       user: notifications@example.com
+      pass: replace-with-smtp-password
     from: "Studio <notifications@example.com>"
 
 auth:
@@ -115,30 +150,18 @@ auth:
 
 `users.initialAdmin` や `auth.emailAndPassword` などの設定は残します。SMTP のホスト、ポート、アカウント、送信元アドレスを、メールサービスで認可された値に置き換えてください。
 
-`.env` にパスワードを追加します。
-
-```dotenv
-MAILERS_SYSTEM_PASSWORD=<smtp-password>
-```
-
-以下の Compose ファイルの `services.studio.environment` に追加します。
-
-```yaml
-MAILERS_SYSTEM_PASSWORD: ${MAILERS_SYSTEM_PASSWORD:?set MAILERS_SYSTEM_PASSWORD in .env}
-```
-
-変数は Compose からコンテナに渡します。`config.yml` 内の `${NAME}` は展開されません。`APP_PUBLIC_ORIGIN` には、メンバーがアクセスできるアドレスを設定します。メールのリンクに使われます。
+パスワードは `mailers.system.auth.pass` に設定します。`app.publicOrigin` はメンバーがアクセスできる Studio のアドレスにします。メールのリンクに使われます。
 
 メールを使わずにローカルで試す場合は、`auth.passwordReset.enabled: false` のままにします。招待リンクは手動で共有できます。Resend の設定と送信確認は[通知とプッシュ](../admin/notifications.md#招待メール)を参照してください。
 
 ## サービスを起動する
 
-同じディレクトリに `docker-compose.yml` を作成します。
+同じディレクトリに `docker-compose.yml` を作成します。イメージ名を置き換え、`POSTGRES_DB`、`POSTGRES_USER`、`POSTGRES_PASSWORD` に `config.yml` と同じデータベース名、ユーザー名、パスワードを設定します。
 
 ```yaml
 services:
   studio:
-    image: ${STUDIO_IMAGE:?set STUDIO_IMAGE in .env}
+    image: <supplied-image-name-and-version>
     init: true
     restart: unless-stopped
     depends_on:
@@ -146,21 +169,6 @@ services:
         condition: service_healthy
     ports:
       - "127.0.0.1:13000:13000"
-    environment:
-      APP_CONFIG_FILE: /app/config.yml
-      APP_PUBLIC_ORIGIN: ${APP_PUBLIC_ORIGIN}
-      APP_BASE_PATH: /main
-      APP_SAMPLE_DATA: "false"
-      SECRETS_KEYS: 1:${STUDIO_SECRET_KEY:?set STUDIO_SECRET_KEY in .env}
-      INITIAL_ADMIN_USERNAME: ${INITIAL_ADMIN_USERNAME}
-      INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL}
-      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:?set INITIAL_ADMIN_PASSWORD in .env}
-      DB_DIALECT: postgres
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_DATABASE: studio
-      DB_USERNAME: studio
-      DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
     volumes:
       - ./config.yml:/app/config.yml:ro
       - ./storage:/app/storage
@@ -169,19 +177,30 @@ services:
     image: postgres:16
     restart: unless-stopped
     environment:
-      POSTGRES_DB: studio
-      POSTGRES_USER: studio
-      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      POSTGRES_DB: replace-with-database-name
+      POSTGRES_USER: replace-with-database-user
+      POSTGRES_PASSWORD: replace-with-database-password
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U studio -d studio"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       timeout: 5s
       retries: 10
 
 volumes:
   postgres-data:
+```
+
+既存のデータベースを使う場合は、Compose から `postgres` サービス、`studio.depends_on`、`postgres-data` ボリュームの設定を削除してください。
+
+Studio イメージは既定で `/app/config.yml` を読み込み、`/main` を使用します。上記の環境変数は PostgreSQL コンテナの初期化用です。Studio の設定は `config.yml` にまとめます。
+
+Studio コンテナは UID 1000 で動作します。起動前に設定ファイルの読み取りとストレージへの書き込みを許可し、設定ファイルの閲覧を制限します。
+
+```bash
+sudo chown 1000:1000 config.yml storage
+sudo chmod 600 config.yml
 ```
 
 この設定では、ポート 13000 をローカルホストにだけ公開します。リモートサーバーの場合は、下の説明に従って HTTPS を設定するか、最初の確認には SSH のポートフォワーディングを使います。
@@ -207,23 +226,32 @@ studio.example.com {
 }
 ```
 
-`.env` に `APP_PUBLIC_ORIGIN=https://studio.example.com` を設定し、コンテナを作り直します。
+`config.yml` の `app.publicOrigin` を実際の公開アドレスに変更します。
+
+```yaml
+app:
+  publicOrigin: https://studio.example.com
+```
+
+設定を反映するため Studio コンテナを作り直します。
 
 ```bash
-docker compose up -d
+docker compose up -d --force-recreate studio
 ```
 
 ## サインインする
 
-`https://studio.example.com/main/` を開きます。ローカルで試す場合は `http://localhost:13000/main/` です。`.env` の `INITIAL_ADMIN_USERNAME` と `INITIAL_ADMIN_PASSWORD` を使います。
+`https://studio.example.com/main/` を開きます。ローカルで試す場合は `http://localhost:13000/main/` です。`config.yml` の `users.initialAdmin` に設定したユーザー名とパスワードでサインインします。
 
-![初期管理者アカウントでサインインします](https://static-docs.nocobase.com/studio-en-setup-login-20261030.png)
+![初期管理者アカウントでサインインします](https://static-docs.nocobase.com/studio-en-login-20261111-normal-2x.webp)
 
 これらの管理者の設定は、初回インストール時にだけ適用されます。あとからパスワードを変更するには、**Account settings › Account and security** を使います。
 
 **完了の条件**：管理者がサインインでき、プロジェクト一覧が空で、サインインページに登録用のリンクがないこと。runner と CLI を接続するときは、`/main` を含む完全な URL を使います。
 
-![初回サインイン後の空のプロジェクト一覧](https://static-docs.nocobase.com/studio-en-setup-empty-projects-20261030.png)
+License Key の入力を求められたら、製品とともに提供されたキーを入力します。Studio EE には Enterprise Key が必要です。管理者は **Settings › License** でライセンスと更新を確認できます。アプリの初期化で商用パッケージが必要な場合は、提供されたアクセス認証情報もここで設定します。
+
+![初回サインイン後の空のプロジェクト一覧](https://static-docs.nocobase.com/studio-en-empty-projects-20261111-normal-2x.webp)
 
 チームに使い始めてもらう前に、次のことができるか確認します。
 
@@ -244,6 +272,6 @@ docker compose up -d
 | コンテナが再起動を繰り返す | `docker compose logs --tail=100 studio` を実行し、データベースと設定のエラーを確認します |
 | 設定ファイルを読み込めない | `config.yml` が、Docker が作成したディレクトリではなく、イメージからコピーしたファイルであることを確認します |
 | ストレージに書き込めない | UID 1000 が `storage` に書き込めることを確認します |
-| ページやサインインのコールバックが失敗する | `/main/`、`APP_PUBLIC_ORIGIN`、リバースプロキシを確認します |
+| ページやサインインのコールバックが失敗する | `/main/`、`app.publicOrigin`、リバースプロキシを確認します |
 
 継続的な保守については、[アップグレードとバックアップ](../admin/upgrade-and-backup.md) を参照してください。

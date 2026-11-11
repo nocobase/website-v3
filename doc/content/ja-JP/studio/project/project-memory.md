@@ -19,7 +19,7 @@ description: "確定したルール、制約、知見をエージェント間で
 
 **Project memory** でプロジェクトとリポジトリを選ぶか、プロジェクトの **Memory** を開きます。種類で絞り込むか検索し、項目を開いて内容と元のコミットを確認します。
 
-![共有されたプロジェクトメモリーを読む](https://static-docs.nocobase.com/studio-en-guide-memory-20261031.png)
+![共有されたプロジェクトメモリーを読む](https://static-docs.nocobase.com/studio-en-memory-20261111-normal-2x.webp)
 
 ## メモリーを更新する
 

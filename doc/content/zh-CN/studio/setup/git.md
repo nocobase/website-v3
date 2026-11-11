@@ -16,7 +16,7 @@ description: 以 GitHub 为例连接代码平台，让 Studio 创建仓库并提
 5. 将 App 安装到目标账号或组织。「Repository access」选择「All repositories」，以便访问接下来新建的仓库。
 6. 返回 Studio。
 
-![本地试用示例：连接 GitHub 组织，关闭 Webhook](https://static-docs.nocobase.com/studio-zh-setup-github-connection-full-1440x900-20261030.png)
+![本地试用示例：连接 GitHub 组织，关闭 Webhook](https://static-docs.nocobase.com/studio-zh-github-connection-20261111-normal-2x.webp)
 
 「All repositories」覆盖当前和以后新建的仓库。安装时核对 GitHub 展示的权限；创建 App 和安装到组织，需要对应账号或组织的权限。
 
@@ -24,7 +24,7 @@ description: 以 GitHub 为例连接代码平台，让 Studio 创建仓库并提
 
 连接卡片应显示「已连接」和可访问的仓库数量。
 
-![GitHub App 已连接到组织](https://static-docs.nocobase.com/studio-zh-setup-github-connected-full-1440x900-20261030.png)
+![GitHub App 已连接到组织](https://static-docs.nocobase.com/studio-zh-git-20261111-normal-2x.webp)
 
 接着[接入运行环境](shared-runtimes.md)。
 

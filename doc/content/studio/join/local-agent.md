@@ -12,7 +12,7 @@ With `nb-studio`, you can manage Studio from your usual Claude Code, Codex, or o
 3. After it installs the CLI, open the sign-in URL it provides and authorize in your browser.
 4. The Agent checks your identity and installs the CLI skill.
 
-![Copy Studio’s setup instructions to your local Coding Agent](https://static-docs.nocobase.com/studio-en-guide-local-agent-20261031.png)
+![Copy Studio’s setup instructions to your local Coding Agent](https://static-docs.nocobase.com/studio-en-local-agent-20261111-normal-2x.webp)
 
 Node.js 24 or later and npm are required. The package comes from your Studio instance and matches its version. The download link expires after 30 minutes; generate another if needed.
 
@@ -43,4 +43,4 @@ nb-studio docs
 
 `whoami` shows your identity. `docs` lists commands available on the connected server. See [nb-studio commands](../reference/cli.md).
 
-To chat through the Studio browser interface, use a [Runner Agent](runner-agent.md) or [connect your computer](connect-computer.md).
+To chat through the Studio browser interface, use a [Runner Agent](runner-agent.md).

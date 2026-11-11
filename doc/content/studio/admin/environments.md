@@ -5,7 +5,7 @@ description: Configure runtime modes, variables, and lifecycle policies for prev
 
 Administrators add and maintain environments under **Hosted environments**. Each environment serves previews or testing and has its own applications, variables, and runtime policies.
 
-![Runtime modes and policies for previews and testing](https://static-docs.nocobase.com/studio-en-guide-environments-20261031.png)
+![Runtime modes and policies for previews and testing](https://static-docs.nocobase.com/studio-en-environments-20261111-normal-2x.webp)
 
 ## Add an environment
 
@@ -20,7 +20,7 @@ Deploy production on your own infrastructure rather than creating a production h
 
 ## Deliver test applications
 
-Add a test application from the project's release page, or let CI create it on its first report. The deployment dialog offers an Agent prompt, CI setup, and manual commands.
+Add a test application from its hosted environment or the project's release page, or let CI create it on its first report. The deployment dialog offers an Agent prompt, CI setup, and manual commands.
 
 Use branch-push CI for continuous testing; see [Checks and CI](../configure/checks.md). Application details provide deployment history, logs, stop, wake, and delete actions.
 

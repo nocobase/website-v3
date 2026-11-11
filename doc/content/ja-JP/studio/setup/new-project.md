@@ -16,7 +16,7 @@ description: プライベートリポジトリを作成して NocoBase アプリ
 5. **NocoBase app** を選び、既定のアプリテンプレートのままにします。
 6. **Create** を選びます。
 
-![プライベートリポジトリを作成し、既定の NocoBase テンプレートで初期化します](https://static-docs.nocobase.com/studio-en-setup-create-nocobase-app-20261030.png)
+![プライベートリポジトリを作成し、既定の NocoBase テンプレートで初期化します](https://static-docs.nocobase.com/studio-en-new-project-20261111-normal-2x.webp)
 
 Studio は、選んだアカウントまたは組織の下にリポジトリを作成します。リポジトリ名は、すでに使われているものであってはなりません。
 
@@ -25,8 +25,6 @@ Studio は、選んだアカウントまたは組織の下にリポジトリを�
 Studio は **Initialize project** タスクを作成します。コーディネーターエージェントが作業を割り振ります。実行エージェントがランタイム上で Core アプリを作成し、依存関係をインストールして、コードをコミットします。
 
 タスクを開くと、進捗、エージェントの返信、チェックの結果を追えます。プロジェクトのほかのタスクは、初期化が終わるまで待機します。
-
-![プロジェクトに初期化タスクが表示されています](https://static-docs.nocobase.com/studio-en-setup-initializing-20261030.png)
 
 最初のコミットは既定のブランチにプッシュされます。チェックを通過したとき、またはリポジトリにチェックが設定されていないとき、初期化タスクは自動で完了します。
 
@@ -42,7 +40,7 @@ Studio は **Initialize project** タスクを作成します。コーディネ�
 
 アプリの準備ができました。チェックとプレビューを準備してから、メンバーを招待します。
 
-![初期化が完了し、プロジェクトで業務のタスクを追加できる状態になりました](https://static-docs.nocobase.com/studio-en-setup-project-ready-20261030.png)
+![タスクの進捗と設定を確認できるプロジェクト概要](https://static-docs.nocobase.com/studio-en-supplier-overview-20261111-normal-2x.webp)
 
 ## 次のステップ
 

@@ -10,8 +10,8 @@
       "path": "multi-portal"
     },
     {
-      "type": "planned",
-      "title": "多应用"
+      "type": "folder",
+      "path": "multi-app"
     },
     {
       "type": "planned",

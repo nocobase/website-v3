@@ -248,25 +248,68 @@ const { t: tPortal } = useTranslation('@nocobase/app-portal-portal-1');
 
 ### 应用外壳与门户布局
 
-应用负责登录、用户权限、运行配置、连接和部署；门户负责自己的页面、导航、业务服务与数据定义。
+前面的 Examples 页面使用 `Layout` 包裹内容。生成的 `client/layout.tsx` 再将门户信息、导航和页面内容交给 `PortalLayout`，由应用的共用外壳显示侧边栏、页头和账户菜单。
 
-生成的门户使用 `PortalLayout`，通过应用提供的 `PortalLayoutHost` 显示侧边栏、页头和账户菜单。门户布局在 `client/layout.tsx`，共用外壳在应用的 `client/layouts/portal-shell.tsx`。
+先根据要改的范围选择文件：
+
+| 想调整什么 | 修改哪里 | 影响范围 |
+| --- | --- | --- |
+| Examples 列表的间距、列数或内容 | 门户的 `client/pages/examples.tsx` | 这个页面 |
+| 门户的导航、多个页面共用的内容容器 | 门户的 `client/layout.tsx` | 使用此布局的门户页面 |
+| 共用侧边栏、页头和账户菜单 | 应用的 `client/layouts/portal-shell.tsx` | 使用该外壳的所有门户 |
 
 ### 自定义门户的页面组织
 
-只调整某个门户的菜单、页面排列或内容区域时，从该门户的布局和页面修改。需要独立的顶部导航或不同页面结构时，可以在门户内实现自己的布局；应保留所需的账户、退出和门户切换入口，并沿用应用的认证与权限机制。
+例如，希望门户 1 的页面内容居中，并限制最大宽度。将门户 `client/layout.tsx` 的返回内容改为：
 
-修改应用的共用外壳会影响使用它的其他门户，不要为了一个门户的特殊排版直接改全局外壳。页面与菜单的完整用法见[页面与菜单](../../extension-development/pages-and-menus.md)，界面文案见[国际化](../../extension-development/localization.md)。
+```tsx
+return (
+  <PortalLayout portal={portal} navigation={navigation}>
+    <div className='mx-auto w-full max-w-5xl'>{children}</div>
+  </PortalLayout>
+);
+```
+
+`children` 是当前页面内容。修改后，Overview 和 Examples 都会使用这个居中容器；侧边栏和页头保持原样。只想调整 Examples 时，把容器放在 `examples.tsx` 中即可。
+
+如果某个门户需要顶部导航或完全不同的页面结构，需要在它的 `client/layout.tsx` 中实现独立布局。默认 `PortalLayout` 只有门户信息、导航和内容这三个输入，并不提供切换侧栏与顶部导航的配置项。独立布局仍应保留所需的账户、退出和门户切换入口，并沿用页面路由的认证与权限要求。相关用法见[页面与菜单](../../extension-development/pages-and-menus.md)。
 
 ## 添加服务与数据
 
-需要保存业务记录时，在门户的 Server 中实现业务逻辑和 HTTP 接口。接口必须独立检查登录、业务权限和门户安装状态；隐藏菜单不能保护数据。具体做法见[服务端 API](../../extension-development/server-apis.md)。
+当前 Examples 的三条记录直接写在前端代码和语言资源中，不会从数据库读取。只有需要保存、修改或共享记录时，才需要添加服务端接口和数据库资源。
 
-`server/plugin.ts` 中的 `database.connections.main: {}` 引用宿主应用的 `main` 连接，并使用约定目录加载迁移和 seed；连接地址与凭据由宿主应用配置。
+例如，要把它扩展成“可新增并保存示例记录”的列表，可以按以下分工实现。下面是需要新增的文件示意，不是生成器已经提供的功能：
 
-表结构迁移放在 `database/main/migrations/`，必要的初始化数据放在 `database/main/seeds/`。保留生成的安装 seed，不要在每次启动时覆盖管理员选择的安装状态。
+```text
+packages/app-portal-portal-1/
+├── client/pages/examples.tsx         # 调用接口，显示和提交记录
+├── server/
+│   ├── routes/examples.ts           # 查询、新增接口及访问校验
+│   ├── services/examples.ts         # 业务规则和数据读写
+│   └── providers/examples.ts        # 注册需要注入的业务服务
+└── database/main/
+    ├── migrations/<迁移文件>.ts      # 创建示例记录表
+    └── seeds/<初始化文件>.ts         # 可选：初始化记录
+```
 
-额外数据库连接由应用配置并提供驱动，再由门户声明同名连接及其迁移、seed。安装需要等待各连接的数据库任务成功；多个连接之间不是跨库原子事务，失败时保留执行历史、修复后重试。详见[数据库连接](../../framework/database/connections.md)和[数据库与迁移](../../extension-development/database-and-migrations.md)。
+1. **定义数据结构。** 在迁移中创建记录表，例如包含名称和描述。需要初始化记录时再添加 seed；不要修改生成的门户安装状态 seed。
+2. **实现服务和接口。** 接口处理输入、登录、业务权限和门户安装状态检查，业务服务负责规则与数据读写。在 `server/plugin.ts` 中注册新增的路由贡献；需要依赖注入的服务通过 Provider 注册，并加入 `server/providers/index.ts`。
+3. **让页面调用接口。** 将 Examples 的静态记录替换为接口返回的数据，补充加载、空列表、失败和保存反馈。
+4. **验证保存结果。** 新增记录后刷新页面仍能看到它，并验证无权用户无法直接调用接口读取或修改数据。
+
+门户的 `server/plugin.ts` 已声明使用主连接：
+
+```ts
+database: {
+  connections: {
+    main: {}, // 加载 database/main/migrations 和 database/main/seeds
+  },
+},
+```
+
+`main` 是宿主应用配置的连接名，`{}` 表示使用约定目录，不是新建一个数据库。数据库地址、凭据和驱动由应用配置。同一连接上的各门户应使用不会冲突的业务表名；使用同一个连接也不等于自动授予彼此数据访问权限。
+
+接口与数据读写的具体实现见[服务端 API](../../extension-development/server-apis.md)和[数据库与迁移](../../extension-development/database-and-migrations.md)。需要额外连接时，先在应用中配置连接和驱动，再在门户中声明同名连接，详见[数据库连接](../../framework/database/connections.md)。安装时各连接的数据库任务都需要成功；多个连接之间不提供跨库原子事务，失败后保留执行历史并修复重试。
 
 ## 验证与交付
 

@@ -248,25 +248,68 @@ Clicking **Examples** should display the three sample records. Opening `/main/po
 
 ### App shell and portal layout
 
-The app owns sign-in, user permissions, runtime configuration, connections and deployment. The portal owns its pages, navigation, business services and data definitions.
+The Examples page wraps its content in `Layout`. The generated `client/layout.tsx` passes portal information, navigation and page content to `PortalLayout`. The app's shared shell then supplies the sidebar, header and account menu.
 
-Generated portals use `PortalLayout`, which delegates the sidebar, header and account menu to the app's `PortalLayoutHost`. The portal layout is in `client/layout.tsx`; the shared shell is in the app's `client/layouts/portal-shell.tsx`.
+Choose the file according to the scope of the change:
+
+| What to adjust | File to edit | Scope |
+| --- | --- | --- |
+| Spacing, columns or content in the Examples list | Portal's `client/pages/examples.tsx` | This page |
+| Portal navigation or a shared content container | Portal's `client/layout.tsx` | Portal pages using this layout |
+| Shared sidebar, header or account menu | App's `client/layouts/portal-shell.tsx` | All portals using this shell |
 
 ### Customize the portal's page structure
 
-For changes to one portal's menus, page arrangement or content area, start with that portal's layout and pages. You can implement a portal-specific layout for top navigation or another page structure. Retain the account, sign-out and portal-switching entry points you need, and use the app's authentication and authorization mechanisms.
+For example, to center Portal 1's page content and limit its width, change the return value in the portal's `client/layout.tsx`:
 
-Changing the app's shared shell affects other portals that use it. Do not change the global shell just to accommodate one portal's special layout. See [Pages and menus](../../extension-development/pages-and-menus.md) and [Localization](../../extension-development/localization.md) for the underlying APIs.
+```tsx
+return (
+  <PortalLayout portal={portal} navigation={navigation}>
+    <div className='mx-auto w-full max-w-5xl'>{children}</div>
+  </PortalLayout>
+);
+```
+
+`children` is the current page content. Both Overview and Examples now use this centered container; the sidebar and header remain unchanged. To adjust only Examples, put the container in `examples.tsx` instead.
+
+If a portal needs top navigation or a completely different page structure, implement its own layout in `client/layout.tsx`. The default `PortalLayout` accepts portal information, navigation and content; it has no setting to switch between sidebar and top navigation. An independent layout should retain the account, sign-out and portal-switching entries you need, and preserve the routes' authentication and authorization requirements. See [Pages and menus](../../extension-development/pages-and-menus.md).
 
 ## Add services and data
 
-To persist business records, implement business logic and HTTP endpoints in the portal's Server. Each endpoint must check authentication, business permissions and portal installation status independently. Hiding a menu does not protect data. See [Server APIs](../../extension-development/server-apis.md).
+The three Examples records currently live in frontend code and locale resources. They are not loaded from a database. Add server endpoints and database resources when records need to be saved, edited or shared.
 
-In `server/plugin.ts`, `database.connections.main: {}` references the host app's `main` connection and loads migrations and seeds from conventional directories. Connection addresses and credentials belong to the host app.
+For example, extending the list to create and persist records involves the following files. This is a proposed extension, not functionality already supplied by the generator:
 
-Put schema migrations in `database/main/migrations/` and required initial data in `database/main/seeds/`. Keep the generated installation seed; do not overwrite the administrator's installation choice at every startup.
+```text
+packages/app-portal-portal-1/
+├── client/pages/examples.tsx         # Fetch, display and submit records
+├── server/
+│   ├── routes/examples.ts           # Query/create endpoints and access checks
+│   ├── services/examples.ts         # Business rules and data access
+│   └── providers/examples.ts        # Register injectable business services
+└── database/main/
+    ├── migrations/<migration>.ts    # Create the example records table
+    └── seeds/<seed>.ts              # Optional initial records
+```
 
-Additional connections and drivers are configured by the app. The portal declares matching connection names and their migrations and seeds. Installation waits for every required connection's database tasks to succeed. These connections do not form a cross-database atomic transaction: preserve execution history, fix failures and retry. See [Database connections](../../framework/database/connections.md) and [Database and migrations](../../extension-development/database-and-migrations.md).
+1. **Define the data structure.** Create a table in a migration, for example with name and description fields. Add a seed only if initial records are needed; keep the generated portal installation-state seed intact.
+2. **Implement services and endpoints.** Endpoints validate input, authentication, business permissions and portal installation status. Business services handle rules and data access. Register new route contributions in `server/plugin.ts`; register injectable services through a Provider included in `server/providers/index.ts`.
+3. **Connect the page.** Replace the static Examples records with endpoint responses and add loading, empty, failure and save feedback.
+4. **Verify persistence.** Create a record and confirm it remains after a refresh. Verify that unauthorized users cannot read or change data by calling endpoints directly.
+
+The portal's `server/plugin.ts` already declares the main connection:
+
+```ts
+database: {
+  connections: {
+    main: {}, // Load database/main/migrations and database/main/seeds
+  },
+},
+```
+
+`main` names a connection configured by the host app. `{}` uses conventional directories; it does not create another database. The app owns database addresses, credentials and drivers. Portals sharing a connection should use business table names that do not conflict; sharing a connection does not automatically grant access to each other's data.
+
+For implementation details, see [Server APIs](../../extension-development/server-apis.md) and [Database and migrations](../../extension-development/database-and-migrations.md). For additional connections, configure the connection and driver in the app first, then declare the same connection name in the portal; see [Database connections](../../framework/database/connections.md). Installation requires every connection's database tasks to succeed. These connections do not form a cross-database atomic transaction: retain execution history, fix failures and retry.
 
 ## Verify and deliver
 

@@ -25,41 +25,43 @@ The Agent uses the project's `AGENTS.md`, `.agents/rules/multi-portal.md` and lo
 
 ### Create with the command
 
+At the app root, run this command to create a minimal portal named `Portal 1`:
+
 ```bash
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1
 ```
 
-The command generates `packages/app-portal-portal-1/`, installs dependencies and registers the portal on Client and Server. It does not start the app, change the database or install the portal. It does not generate business tables or CRUD pages.
+`portal-1` is the portal ID, from which the initial display name is derived. IDs start with a lowercase letter and contain lowercase letters, numbers and single-hyphen-separated segments, up to 40 characters.
 
-A portal ID starts with a lowercase letter and contains lowercase letters, numbers and single-hyphen-separated segments, up to 40 characters. Add `--dry-run --json` to inspect the plan without writing files.
+To set names, descriptions and translations at creation time, **use this command instead**. You do not need to run the command above first:
 
-The initial title is derived from the ID: `portal-1` becomes `Portal 1`. After generation, maintain localized names and descriptions in `packages/app-portal-portal-1/client/locales/`. Edit the fields in the existing files, keeping their imports, types and exports:
-
-```ts
-// Fields in messages in en-US.ts
-title: 'Portal 1',
-description: 'Your portal workspace.',
-```
-
-```ts
-// Fields in messages in zh-CN.ts
-title: '门户 1',
-description: '你的门户工作台。',
-```
-
-The interface uses the current language's text. Renaming a portal does not require changing its ID, package name or route. Maintain other languages in their corresponding files.
-
-To set the initial text from the command line, use repeatable `--set-locale` assignments. This requires a generator version whose `--help` lists `--set-locale`; with an older version, generate the portal first and edit the locale files above.
+> [!NOTE]
+> `--set-locale` requires a generator version that supports it. Check with `pnpm create @nocobase/portal@beta --help`. With an older version, create the portal first and edit the locale files described below.
 
 ```bash
-pnpm create @nocobase/portal@beta portal-1 \
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1 \
   --set-locale 'en-US.title=Portal 1' \
-  --set-locale 'en-US.description=Your portal workspace.' \
+  --set-locale 'en-US.description=Explore pages and navigation.' \
   --set-locale 'zh-CN.title=门户 1' \
-  --set-locale 'zh-CN.description=你的门户工作台。'
+  --set-locale 'zh-CN.description=体验页面与导航。'
 ```
 
-Use `language.field=value`, with `title` or `description` as the field. Omitted fields keep their defaults. Values can contain `=`: only the first one is the separator. Unsupported locales or fields and duplicate assignments are rejected. Titles must be nonempty single-line text; descriptions can be empty. The supported locales are `en-US`, `zh-CN`, `zh-TW`, `ja-JP`, `de-DE`, `es-ES`, `fr-FR`, `pt-BR`, `vi-VN` and `id-ID`. These options initialize the same locale files; they do not introduce a separate configuration source.
+Each `--set-locale` assigns one `language.field=value`: `title` is the name and `description` is the description. Specify only the fields you want to change; the others keep their defaults.
+
+The text is written directly to the corresponding files, such as `en-US.ts` and `zh-CN.ts`, under `packages/app-portal-portal-1/client/locales/`. After creation, edit their `title` and `description` fields, keeping the existing imports, types and exports. There is no need to rerun the generator or change the portal ID, package name or route.
+
+<details>
+<summary>Locale parameter rules and generation preview</summary>
+
+- Supported locales: `en-US`, `zh-CN`, `zh-TW`, `ja-JP`, `de-DE`, `es-ES`, `fr-FR`, `pt-BR`, `vi-VN` and `id-ID`.
+- Titles must be nonempty single-line text; descriptions can be empty.
+- Only the first `=` is the separator, so values can contain `=`.
+- A language/field pair cannot be assigned twice. Unsupported languages or fields are rejected.
+- Append `--dry-run --json` to inspect the generation plan without writing files.
+
+</details>
+
+On success, the app contains `packages/app-portal-portal-1/`, with dependencies installed and Client/Server registration completed. The portal is still **Not installed**. Next, start the app and install the portal. The generator does not create business tables or CRUD pages, start services or change the database.
 
 If dependency installation fails, keep the generated source and follow the recovery steps printed by the command. Do not rerun the generator over the existing directory.
 

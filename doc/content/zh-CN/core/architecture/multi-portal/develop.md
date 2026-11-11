@@ -25,43 +25,45 @@ Agent 使用项目的 `AGENTS.md`、`.agents/rules/multi-portal.md` 和项目内
 
 ### 使用命令创建
 
+在应用根目录执行以下命令，创建一个名为 `Portal 1` 的最小门户：
+
 ```bash
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1
 ```
 
-命令会生成 `packages/app-portal-portal-1/`，安装依赖，并注册到应用的 Client 和 Server。它不会启动应用、修改数据库或安装门户，也不生成业务表和 CRUD 页面。
+`portal-1` 是门户 ID，初始显示名称由它生成。ID 以小写字母开头，由小写字母、数字和单个连字符分隔的片段组成，最长 40 个字符。
 
-门户 ID 以小写字母开头，只包含小写字母、数字和单个连字符分隔的片段，最长 40 个字符。添加 `--dry-run --json` 可先查看生成计划。
+如果希望创建时就设置名称、描述和翻译，**改用下面的命令**，不必先执行上面的命令：
 
-门户名称默认从 ID 生成，例如 `portal-1` 对应 `Portal 1`。生成后在 `packages/app-portal-portal-1/client/locales/` 中维护各语言的名称和描述。修改现有文件中的字段，保留其导入、类型和导出：
-
-```ts
-// en-US.ts 中的 messages 字段
-title: 'Portal 1',
-description: 'Your portal workspace.',
-```
-
-```ts
-// zh-CN.ts 中的 messages 字段
-title: '门户 1',
-description: '你的门户工作台。',
-```
-
-界面随当前语言显示对应文案。修改名称不需要更改门户 ID、包名或路由，其他语言也在各自的文件中维护。
-
-需要在创建时快速填写文案，可以重复使用 `--set-locale`。请先通过生成器的 `--help` 确认所用版本支持该参数；旧版本可先生成门户，再按上面的方式修改语言文件。
+> [!NOTE]
+> `--set-locale` 需要使用支持该参数的生成器版本，可通过 `pnpm create @nocobase/portal@beta --help` 确认。旧版本可先创建，再编辑下方说明的语言文件。
 
 ```bash
-pnpm create @nocobase/portal@beta portal-1 \
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1 \
   --set-locale 'en-US.title=Portal 1' \
-  --set-locale 'en-US.description=Your portal workspace.' \
+  --set-locale 'en-US.description=Explore pages and navigation.' \
   --set-locale 'zh-CN.title=门户 1' \
-  --set-locale 'zh-CN.description=你的门户工作台。'
+  --set-locale 'zh-CN.description=体验页面与导航。'
 ```
 
-格式为 `语言.字段=值`，字段只支持 `title` 和 `description`。未指定的字段保留默认值；按第一个 `=` 分隔，文案中可以继续包含 `=`。不支持的语言、字段或重复设置都会报错。名称须为非空单行文字，描述可以为空。支持的语言为 `en-US`、`zh-CN`、`zh-TW`、`ja-JP`、`de-DE`、`es-ES`、`fr-FR`、`pt-BR`、`vi-VN` 和 `id-ID`。参数直接写入同一套语言文件，后续仍在 `client/locales` 中维护。
+每个 `--set-locale` 设置一个 `语言.字段=值`，`title` 是名称，`description` 是描述。只填写需要修改的字段，其余保留默认值。
 
-如果依赖安装失败，保留生成的源码，按命令输出的恢复步骤处理；不要在已有目录上重复运行生成器。
+这些文案直接写入 `packages/app-portal-portal-1/client/locales/` 下的对应语言文件，如 `en-US.ts` 和 `zh-CN.ts`。创建后直接修改文件中的 `title`、`description`，保留原有导入、类型和导出即可，无需重新运行生成命令，也不需要更改门户 ID、包名或路由。
+
+<details>
+<summary>语言参数规则与生成预览</summary>
+
+- 支持 `en-US`、`zh-CN`、`zh-TW`、`ja-JP`、`de-DE`、`es-ES`、`fr-FR`、`pt-BR`、`vi-VN`、`id-ID`。
+- 名称须为非空单行文字，描述可以为空。
+- 按第一个 `=` 分隔，文案中可以包含 `=`。
+- 同一语言的同一字段不能重复设置；不支持的语言或字段会报错。
+- 在命令末尾添加 `--dry-run --json`，可查看生成计划，不写入文件。
+
+</details>
+
+执行成功后，应用中会新增 `packages/app-portal-portal-1/`，并完成依赖安装及 Client、Server 注册。此时门户仍是**未安装**状态，下一步启动应用并安装门户。生成器不创建业务表或 CRUD 页面，也不启动服务或修改数据库。
+
+如果依赖安装失败，保留已生成的源码，按输出的恢复步骤处理，不要在已有目录上重复运行生成器。
 
 ## 安装并进入门户
 

@@ -11,9 +11,7 @@ metaDescription: 用“设备盘点”这个需求，走一遍任务在 Studio �
 
 ## 1. 提出需求，整理成任务
 
-在「我的会话」点「新会话」，选你的 Coding agent 和 itam-lite 的本地目录，项目选 itam-lite（需要先 [连接自己的电脑](../studio/join/connect-computer.md)）：
-
-![新会话](https://static-docs.nocobase.com/20261030155023637.png)
+在「我的会话」中发起 [Runner Agent 会话](../studio/join/runner-agent.md)，选择可用 Agent，并在发送第一条消息前选择 itam-lite 项目：
 
 ```prompt
 资产管理员每个季度要盘点一次设备。想做成这样：

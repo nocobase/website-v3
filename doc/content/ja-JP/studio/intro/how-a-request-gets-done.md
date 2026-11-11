@@ -18,7 +18,7 @@ Jordan は **My sessions** で Runner Agent と要件を相談します。エー
 
 エージェントは、ルールと検収シナリオを含む **PUR-23「仕入先の評価とランク分け」** を作成します。Jordan がタスクを開始し、実行をコーディネーターエージェントに引き渡します。
 
-![Runner Agent が合意したルールをタスクにまとめ、Jordan が開始します](https://static-docs.nocobase.com/studio-en-req-session-20261030.png)
+![Runner Agent が合意したルールをタスクにまとめ、Jordan が開始します](https://static-docs.nocobase.com/studio-en-req-session-20261111-normal-2x.webp)
 
 タスク責任者として、Jordan はセッションで相談を続けることも、タスクに要件を追加することもできます。タスクを作成するほかの方法は [要件を出す](../use/raise-a-request.md) を参照してください。
 
@@ -28,7 +28,7 @@ Jordan は **My sessions** で Runner Agent と要件を相談します。エー
 
 設計では、スコアの計算方法、ランクの保存方法、既存の承認フローへの組み込み方を説明する必要があります。コーディネーターエージェントは、以降の開発とレビューのステップを各エージェントの得意分野に応じて割り振ります。
 
-![コーディネーターエージェントが、業務資料と検証要件を添えて Claude に設計を割り振ります](https://static-docs.nocobase.com/studio-en-req-dispatch-20261030.png)
+![コーディネーターエージェントが、業務資料と検証要件を添えて Claude に設計を割り振ります](https://static-docs.nocobase.com/studio-en-req-dispatch-20261111-normal-2x.webp)
 
 ## 承認ルールを確認する
 
@@ -40,13 +40,13 @@ Jordan は **My sessions** で Runner Agent と要件を相談します。エー
 
 ルールが確定したので、コーディネーターエージェントは開発を Codex に割り振ります。
 
-![Needs you カードで、Jordan に承認ルールの確認が求められます](https://static-docs.nocobase.com/studio-en-req-blocked-20261030.png)
+![Needs you カードで、Jordan に承認ルールの確認が求められます](https://static-docs.nocobase.com/studio-en-req-blocked-20261111-normal-2x.webp)
 
 ## 機能を開発する
 
 Codex はランタイム上で作業します。Core のデータと権限を使って仕入先モジュールを拡張し、発注の承認を更新し、テストを追加します。タスクブランチにコミットして PR を作成し、Studio がそれを PUR-23 にひも付けます。
 
-![タスクに、作業中のエージェント、ランタイム、次のステップが表示されます](https://static-docs.nocobase.com/studio-en-req-now-20261030.png)
+![タスクに、作業中のエージェント、ランタイム、次のステップが表示されます](https://static-docs.nocobase.com/studio-en-req-now-20261111-normal-2x.webp)
 
 ## チェックとレビューを実行する
 
@@ -54,17 +54,17 @@ Codex はランタイム上で作業します。Core のデータと権限を使
 
 チェックを通過すると、Claude が評価、承認ルール、テストの網羅性をレビューします。開発、修正、レビューの結果はタスクのアクティビティに残ります。[チェックとレビュー](../project/checks-and-review.md) を参照してください。
 
-![Codex が既定のランクを修正し、Claude が独立したレビューを完了します](https://static-docs.nocobase.com/studio-en-review-thread-20261030.png)
+![Codex が既定のランクを修正し、Claude が独立したレビューを完了します](https://static-docs.nocobase.com/studio-en-review-thread-20261111-normal-2x.webp)
 
 ## 引き渡しを検収する
 
 チェックとレビューを通過すると、タスクは **In review** に移ります。コーディネーターエージェントは、変更内容、検証、残っている課題をまとめた引き渡しレポートを提出します。Jordan はそれを検収基準と照らし合わせます。
 
-![引き渡しレポートに変更内容とチェックがまとめられ、マージと修正依頼の操作があります](https://static-docs.nocobase.com/studio-en-req-accept-20261030.png)
+![引き渡しレポートに変更内容とチェックがまとめられ、マージと修正依頼の操作があります](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 このプロジェクトでは CI と PR プレビューが設定されています。Jordan はプレビューを開き、ランク C の仕入先に 10,000 ドルの発注を作成します。発注には正しく購買マネージャーの承認が求められます。プレビューを使えば実際に操作して検証できます。[チェックとプレビューを設定する](../setup/ci.md) を参照してください。
 
-![PR プレビューに、ビルドの状況とアクセス用リンクが表示されます](https://static-docs.nocobase.com/studio-en-req-preview-20261030.png)
+![PR プレビューに、ビルドの状況とアクセス用リンクが表示されます](https://static-docs.nocobase.com/studio-en-req-preview-20261111-normal-2x.webp)
 
 結果は要件を満たしています。Jordan が **Merge** をクリックすると、タスクは **Done** になります。満たしていなければ、Jordan は修正を依頼して問題を説明し、コーディネーターエージェントがそれを割り振ります。[結果を検収する](../use/accept.md) を参照してください。
 
@@ -74,13 +74,13 @@ Codex はランタイム上で作業します。Core のデータと権限を使
 
 チームは本番環境にデプロイし、Studio で v1.4.0 を本番バージョンとして記録します。Studio はバージョンをそのタスクにひも付け、変更を本番反映済みとして示します。[リリースの概要](../release/overview.md) を参照してください。
 
-![Releases でテスト環境、v1.4.0、本番バージョンの記録がひも付けられます](https://static-docs.nocobase.com/studio-en-releases-20261030.png)
+![Releases でテスト環境、v1.4.0、本番バージョンの記録がひも付けられます](https://static-docs.nocobase.com/studio-en-supplier-releases-20261111-normal-2x.webp)
 
 ## プロジェクトの知識を残す
 
 エージェントは確定した承認ルールを [プロジェクトメモリー](../project/project-memory.md) に追加し、評価の重みの出典を記録します。メモリーはコードと一緒にレビュー・マージされ、以降のタスクで使われます。
 
-![プロジェクトメモリーに、承認ルールと評価の重みの出典が残されます](https://static-docs.nocobase.com/studio-en-project-memory-20261030.png)
+![プロジェクトメモリーに、承認ルールと評価の重みの出典が残されます](https://static-docs.nocobase.com/studio-en-supplier-memory-20261111-normal-2x.webp)
 
 あとから仕入先のランクに応じて支払条件を変えたいという要件が来ても、これらのルール、資料、テストを再利用できます。責任者やエージェントが変わっても、コンテキストはプロジェクトに残ります。
 

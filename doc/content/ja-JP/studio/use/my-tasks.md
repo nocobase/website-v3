@@ -5,7 +5,7 @@ description: "責任者・実行担当・フォロー中のタスクを、判断
 
 **My issues** には、自分が責任者、実行担当、またはフォローしているタスクが集まります。判断が必要な質問、作業結果、実行上の問題は **Waiting for you** に表示されます。
 
-![グループ化した一覧からタスクを選び、詳細画面で対応する](https://static-docs.nocobase.com/studio-en-guide-my-issues-20261031.png)
+![グループ化した一覧からタスクを選び、詳細画面で対応する](https://static-docs.nocobase.com/studio-en-my-issues-20261111-normal-2x.webp)
 
 ## グループ
 

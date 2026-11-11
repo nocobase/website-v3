@@ -32,12 +32,10 @@ description: 共有ランタイムを 1 つ接続し、コーディングツー�
 
 このコマンドは、Studio インスタンスから `nocobase-runner` と `nb-studio` をダウンロードし、ランタイムを登録して、バックグラウンドサービスをインストールします。コマンドには有効期間の短い、一度だけ使える認証情報が含まれています。期限が切れたら生成し直してください。コマンド全体を共有しないでください。
 
-![生成したコマンドで runner をインストールします。認証情報は伏せてあります](https://static-docs.nocobase.com/studio-en-setup-runtime-install-20261030.png)
-
 ## ランタイムがオンラインであることを確認する
 
 ランタイムの一覧に戻り、**Online** になるまで待ちます。詳細を開き、選んだコーディングツールに **Signed in** と表示されていることを確認します。対応が必要なツールはインストールまたはサインインしてから、もう一度検出します。
 
-![共有ランタイムがオンラインになり、コーディングツールがサインイン済みです](https://static-docs.nocobase.com/studio-en-setup-runtime-online-20261030.png)
+![共有ランタイムがオンラインになり、コーディングツールがサインイン済みです](https://static-docs.nocobase.com/studio-en-runtimes-20261111-normal-2x.webp)
 
 次に、[エージェントを設定します](agents.md)。トラブルシューティング、アップグレード、ランタイムの無効化については、[ランタイムの設定](../configure/runtimes.md) を参照してください。

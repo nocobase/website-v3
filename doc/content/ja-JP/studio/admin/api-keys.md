@@ -17,7 +17,7 @@ description: "CI、スクリプト、外部連携に必要な権限を付与し�
 3. 有効期限を選びます。既定は 90 日です。
 4. 作成直後に値を保存します。値は一度しか表示されません。
 
-![必要な権限に絞って組織キーを作成する](https://static-docs.nocobase.com/studio-en-guide-api-keys-20261031.png)
+![必要な権限に絞って組織キーを作成する](https://static-docs.nocobase.com/studio-en-api-key-create-20261111-normal-2x.webp)
 
 **CI deploy** は選択したアプリへのアップロードとデプロイ、**CI upload** はアップロードのみを許可します。**Read only** は許可されたデータの参照用です。自分が持つ権限だけを付与できます。
 

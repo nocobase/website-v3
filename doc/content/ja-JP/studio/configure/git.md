@@ -5,7 +5,7 @@ description: "チームのリポジトリ接続、アクセス権限、状態更
 
 管理者は **Settings › Git** でチームの接続を管理します。プロジェクトはこの接続でリポジトリにアクセスし、PR を作成し、チェック結果を取得します。メンバー個人の Git 認可は[サインインと個人設定](../join/sign-in.md)を参照してください。
 
-![チームの Git 接続を管理する](https://static-docs.nocobase.com/studio-en-guide-git-20261031.png)
+![チームの Git 接続を管理する](https://static-docs.nocobase.com/studio-en-git-20261111-normal-2x.webp)
 
 ## GitHub
 
@@ -25,6 +25,14 @@ GitHub App で GitHub または GitHub Enterprise Server に接続します。�
 3. 保存後にグループ、権限、有効期限を確認します。
 
 Developer 権限でブランチのプッシュ、マージリクエスト、パイプラインの参照ができます。Webhook の自動作成には Maintainer 権限が必要です。それ以外はポーリングを使ってください。
+
+## Gitea
+
+Gitea 接続を追加し、インスタンスの URL と専用アカウントの個人アクセストークンを入力します。URL にはデプロイ先のパスを含め、`/api/v1` は付けません。
+
+トークンには `write:user`、`write:organization`、`write:repository`、`write:issue` が必要です。アカウント自体にも対象リポジトリへのアクセス権限が必要です。Webhook の作成にはリポジトリ管理者権限が必要です。リポジトリでは squash マージを有効にします。
+
+メンバーは **Account settings › Git** で個人トークンを入力できます。ブラウザー認可を使う場合は、Gitea の OAuth2 アプリを作成し、Studio に表示されるコールバック URL、クライアント ID、シークレットを設定します。ランタイムには公式の `gt` CLI をインストールします。
 
 ## Webhook とポーリング
 

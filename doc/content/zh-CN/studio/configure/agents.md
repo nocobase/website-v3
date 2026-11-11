@@ -5,7 +5,7 @@ description: 设置可用模型、工作分工和调度 Agent。
 
 管理员打开「Agent」。运行环境上报的每个“编码工具 · 模型”组合都可配置为一个 Agent。首次接入见[配置 Agent](../setup/agents.md)。
 
-![Agent 团队的分工、运行环境和推理强度](https://static-docs.nocobase.com/studio-zh-guide-agents-20261031.png)
+![Agent 团队的分工、运行环境和推理强度](https://static-docs.nocobase.com/studio-zh-agents-20261111-normal-verified-2x.webp)
 
 ## 设置工作分工
 
@@ -29,7 +29,7 @@ description: 设置可用模型、工作分工和调度 Agent。
 
 所有项目共用一个调度 Agent。在页面上方点「设置」，选择首选和备选模型，设置分配原则及任务运行上限。
 
-![选择调度 Agent 的首选与备选](https://static-docs.nocobase.com/studio-zh-guide-coordinator-20261031.png)
+![选择调度 Agent 的首选与备选](https://static-docs.nocobase.com/studio-zh-coordinator-20261111-normal-verified-2x.webp)
 
 首选排队超过配置的时间后，空闲的备选可以接手，默认等待 120 秒。没有可执行首选的运行环境时，直接尝试备选。
 

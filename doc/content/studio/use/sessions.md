@@ -5,21 +5,18 @@ description: Keep requirement discussions, linked tasks, and follow-up conversat
 
 **My sessions** keeps your Agent discussions and linked tasks. Return to the same conversation to add requirements or ask about results.
 
-![Conversation history keeps the context beside linked tasks and their status](https://static-docs.nocobase.com/studio-en-guide-runner-session-20261031.png)
+![Discuss requirements with a Runner Agent and follow linked tasks](https://static-docs.nocobase.com/studio-en-req-session-20261111-normal-2x.webp)
 
 ## Choose an Agent connection
 
-| Mode | Execution location | Preparation |
-| --- | --- | --- |
-| Runner Agent | A shared or personal runtime | An online runtime and an available Agent |
-| My Agent | Your connected computer and allowed folders | [Connect your computer](../join/connect-computer.md) |
+Runner Agent works in a shared or personal runtime. You need an online runtime and an available Agent.
 
-Only you can see a conversation. Its Agent acts with your identity and permissions. Linked tasks are shared according to project permissions.
+Conversations are private by default. Sharing gives selected members a read-only snapshot; share again to include later messages. The Agent acts with your permissions. Linked tasks follow project permissions.
 
 ## Start a conversation
 
-1. Choose a mode and select **New session**.
-2. Choose an Agent. For My Agent, also select a computer and working folder.
+1. Select **New session**.
+2. Choose an Agent.
 3. If project code is needed, select the project before the first message.
 4. Describe the request and add images, attachments, or `#task-identifier` references.
 

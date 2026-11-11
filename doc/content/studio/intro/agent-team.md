@@ -16,7 +16,7 @@ Each tool and model combination is an execution Agent. Administrators describe i
 
 The Lead Agent also needs a model. An administrator selects a primary and fallback. If the primary cannot start within two minutes, the fallback takes over.
 
-![Agent strengths, available runtimes, and the Lead Agent's primary and fallback models](https://static-docs.nocobase.com/studio-en-agent-team-20261030.png)
+![Agent strengths, available runtimes, and the Lead Agent's primary and fallback models](https://static-docs.nocobase.com/studio-en-agents-20261111-normal-2x.webp)
 
 **Where it runs** lists the runtimes available to each Agent. Administrators connect shared runtimes for the team. Personal runtimes serve only their owner; Agents available only there also serve only that member. See [Agents and runtimes](concepts.md#agents-and-runtimes).
 
@@ -30,7 +30,7 @@ Design, development, testing, and troubleshooting go to Agents suited to the wor
 
 Each handoff appears in the task comments. It identifies the Agent, goal, references, completion criteria, and reason for the assignment. The Lead Agent reads the response and moves the task forward.
 
-![A design handoff includes business documents and verification requirements](https://static-docs.nocobase.com/studio-en-req-dispatch-20261030.png)
+![A design handoff includes business documents and verification requirements](https://static-docs.nocobase.com/studio-en-req-dispatch-20261111-normal-2x.webp)
 
 Administrators can adjust assignment rules or restore the defaults in [Agent settings](../setup/agents.md).
 
@@ -45,7 +45,7 @@ Skills define how each stage works and what counts as complete. The Lead Agent p
 | Check and review | Run checks and request an independent review. Return required fixes to the developer, then review again. | `studio-development`, `studio-review` |
 | Deliver for acceptance | After review and all checks pass, prepare a delivery report and submit it to the owner. | `studio-workflow`, `studio-comment-style` |
 
-![Codex fixes a failed check and Claude completes an independent review](https://static-docs.nocobase.com/studio-en-review-thread-20261030.png)
+![Codex fixes a failed check and Claude completes an independent review](https://static-docs.nocobase.com/studio-en-review-thread-20261111-normal-2x.webp)
 
 The Lead Agent marks a task **Blocked** when it needs a decision and explains the question. When delivery is ready, it marks the task **In review** and attaches a report. Execution Agents do not change task status.
 
@@ -63,7 +63,7 @@ Runtimes pick up queued work. Multiple tasks can advance at once, each with its 
 | Dependencies | Tasks wait for required predecessors or subtasks, then continue automatically. |
 | Continuous execution | Online runtimes keep picking up queued work without manual supervision. |
 
-![The Agent queue shows active work and available capacity](https://static-docs.nocobase.com/studio-en-agent-queue-20261030.png)
+![The Agent queue shows active work and available capacity](https://static-docs.nocobase.com/studio-en-agent-queue-20261111-normal-2x.webp)
 
 ## Human involvement
 
@@ -89,7 +89,7 @@ Members can add requirements, stop a run, or take over a task at any time. See [
 | --- | --- |
 | Checks fail or a PR has conflicts | Assign a fix. Notify the owner after three consecutive failing commits. |
 | The same step fails twice | Try another suitable Agent. If it fails again, mark the task Blocked. |
-| A coding tool runs out of quota | Switch Agents immediately, preferably to another provider. |
+| A coding tool runs out of quota | Keep the original runtime, session, and working directory. Resume after the known reset time, or let a person switch the Agent or runtime. |
 | A runtime goes offline | Return work to the queue for another runtime. |
 | Work remains unclaimed for 24 hours | Fail the run and notify the owner, who can retry, reassign, or cancel. |
 | Agents repeatedly hand work back and forth | By default, allow up to 20 runs triggered by Agent comments per task every 24 hours. Pause at the limit and ask the owner whether to continue. |

@@ -7,7 +7,7 @@ description: Track Agent queues, runtime capacity, and estimated model costs.
 
 Open **Issues** and switch to **Agent queue**. Each Agent has a lane for running work, queued work, items waiting for a reply, and assigned but idle tasks. Waiting reasons appear with each item. Open items that need your response directly from the queue.
 
-![See running, queued, and waiting work by Agent](https://static-docs.nocobase.com/studio-en-guide-agent-queue-20261031.png)
+![See running, queued, and waiting work by Agent](https://static-docs.nocobase.com/studio-en-agent-queue-20261111-normal-2x.webp)
 
 Frequent capacity waits may call for more concurrency or additional [Runtimes](../configure/runtimes.md). If an Agent rarely receives work, review its capability description and available models.
 
@@ -15,7 +15,7 @@ Frequent capacity waits may call for more concurrency or additional [Runtimes](.
 
 Open **Usage**, choose a date range, and group by Agent, requester, subject, model, coding tool, or date. Reports include run counts, duration, input and output tokens, cache usage, and estimated cost.
 
-![Model usage and cost trends](https://static-docs.nocobase.com/studio-en-guide-usage-20261031.png)
+![Model usage and cost trends](https://static-docs.nocobase.com/studio-en-usage-20261111-normal-2x.webp)
 
 Daily trends show cost or token changes. Calls outside Agent runs, such as knowledge indexing, appear under other model usage.
 

@@ -20,7 +20,7 @@ Studio はタスクとコードをプロジェクト単位で整理します。�
 
 **リポジトリ** はアプリのコードを保存します。1 つのプロジェクトに複数のリポジトリを持てます。新しいリポジトリは既定で NocoBase Core で初期化されます。既存のリポジトリを接続することもできます。
 
-![Supplier Management プロジェクトでタスクの進捗がまとめて表示され、ナレッジ、メンバー、リリースへの入口があります](https://static-docs.nocobase.com/studio-en-project-overview-20261030.png)
+![Supplier Management プロジェクトでタスクの進捗がまとめて表示され、ナレッジ、メンバー、リリースへの入口があります](https://static-docs.nocobase.com/studio-en-supplier-overview-20261111-normal-2x.webp)
 
 [最初のプロジェクトを作成する](../setup/new-project.md) と [プロジェクト設定](../project/settings.md) を参照してください。
 
@@ -37,7 +37,7 @@ Studio はタスクとコードをプロジェクト単位で整理します。�
 
 **Blocked** のタスクは判断を必要としています。**In review** のタスクは検収を待っています。これらは **My issues** の先頭に表示されます。
 
-![責任者が My issues で引き渡しレポートを読み、タスクを検収します](https://static-docs.nocobase.com/studio-en-req-accept-20261030.png)
+![責任者が My issues で引き渡しレポートを読み、タスクを検収します](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 タスクの責任者は役割上の責任であり、システムのロールではありません。エージェントは依頼者の権限の範囲内で動作します。[タスクのステータスと権限](../reference/statuses-and-permissions.md) を参照してください。
 
@@ -47,7 +47,7 @@ Studio はタスクとコードをプロジェクト単位で整理します。�
 
 セッションは所有者だけが見られます。タスクはプロジェクトの権限に従って共有されます。
 
-![エージェントが確認済みのルールをタスクにまとめ、会話の横に進捗が表示されます](https://static-docs.nocobase.com/studio-en-req-session-20261030.png)
+![エージェントが確認済みのルールをタスクにまとめ、会話の横に進捗が表示されます](https://static-docs.nocobase.com/studio-en-req-session-20261111-normal-2x.webp)
 
 [My sessions](../use/sessions.md) を参照してください。
 
@@ -59,11 +59,11 @@ Studio はタスクとコードをプロジェクト単位で整理します。�
 | 実行エージェント | コーディングツールとモデルの組み合わせで、設計、開発、テスト、レビューを行います。 |
 | ランタイム | エージェントの作業を実行するマシン、ツール、モデルを提供します。 |
 
-![エージェントは得意分野ごとに設定され、コーディネーターエージェントにはメインとフォールバックのモデルがあります](https://static-docs.nocobase.com/studio-en-agent-team-20261030.png)
+![エージェントは得意分野ごとに設定され、コーディネーターエージェントにはメインとフォールバックのモデルがあります](https://static-docs.nocobase.com/studio-en-agents-20261111-normal-2x.webp)
 
 1 つのランタイムで複数のエージェントを提供でき、同じエージェントを複数のマシンで実行できます。共有ランタイムはチームに提供されます。個人ランタイムは、所有者が開始したタスクだけを実行します。
 
-![Runtimes には、マシン、利用できるコーディングツール、共有範囲が一覧表示されます](https://static-docs.nocobase.com/studio-en-shared-runtimes-20261030.png)
+![Runtimes には、マシン、利用できるコーディングツール、共有範囲が一覧表示されます](https://static-docs.nocobase.com/studio-en-runtimes-20261111-normal-2x.webp)
 
 実行のたびに、処理内容、結果、使用量を含む **実行記録** が作成されます。1 つのタスクには通常、複数の実行があります。
 
@@ -79,7 +79,7 @@ Studio はタスクとコードをプロジェクト単位で整理します。�
 
 スキルはグローバル、プロジェクト、リポジトリのいずれにも適用できます。プロジェクトメモリーはエージェントが管理し、タスクの PR と一緒にレビュー・マージされて、以降の作業で再利用されます。
 
-![プロジェクトメモリーに、確認済みのルールとその出典が残されます](https://static-docs.nocobase.com/studio-en-project-memory-20261030.png)
+![プロジェクトメモリーに、確認済みのルールとその出典が残されます](https://static-docs.nocobase.com/studio-en-supplier-memory-20261111-normal-2x.webp)
 
 ## PR、環境、バージョン
 
@@ -96,6 +96,8 @@ Studio はタスクとコードをプロジェクト単位で整理します。�
 
 **バージョン** は、リリースラインに一致するリポジトリのタグから作られるリリースを表します。Studio はバージョンをそのタスクと成果物にひも付けます。
 
-![Releases でバージョンとタスクがひも付けられ、テスト環境・本番環境での状況が表示されます](https://static-docs.nocobase.com/studio-en-releases-20261030.png)
+![Releases でバージョンとタスクがひも付けられ、テスト環境・本番環境での状況が表示されます](https://static-docs.nocobase.com/studio-en-supplier-releases-20261111-normal-2x.webp)
 
 タスクが完了したら、バージョンとデプロイ記録を見て、本番に反映されているかを確認します。[リリースの概要](../release/overview.md) を参照してください。
+
+[品質管理](../quality/overview.md)では、テスト範囲、実行記録、レポートをテストタスクに保存します。検出した問題はフォローアップタスクにし、修正後に再テストできます。

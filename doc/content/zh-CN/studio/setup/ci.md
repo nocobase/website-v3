@@ -17,7 +17,7 @@ description: 选择 Agent 自检、GitHub Actions 或外部 CI，验证任务改
 
 每个仓库只采用选定来源的检查结果。切换来源后，旧来源的上报不再生效。
 
-![选择检查来源、触发方式和预览环境](https://static-docs.nocobase.com/studio-zh-setup-ci-options-full-1440x900-20261030.png)
+![选择检查来源、触发方式和预览环境](https://static-docs.nocobase.com/studio-zh-ci-20261111-normal-2x.webp)
 
 ## 使用 GitHub Actions
 

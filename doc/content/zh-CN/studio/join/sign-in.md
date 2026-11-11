@@ -27,11 +27,13 @@ description: 接受项目邀请，登录 Studio，设置个人资料、通知偏
 | --- | --- |
 | 个人资料 | 显示名称和用户名。邮箱变更请联系所有者 |
 | 账号与安全 | 修改密码；保存后其他设备的登录会退出 |
-| 偏好设置 | 语言、主题、密度、提示音、桌面通知和提交署名 |
+| 偏好设置 | 语言、主题和显示密度 |
+| 通知 | 提示音、桌面通知和设备推送 |
+| Agent | 优先使用个人或共享运行环境，以及提交署名 |
 | API 密钥 | 创建以自己身份调用 Studio 的密钥 |
 | Git | 连接个人代码平台账号 |
 
-![在个人偏好中设置界面、通知和提交署名](https://static-docs.nocobase.com/studio-zh-guide-preferences-20261031.png)
+![设置界面语言和显示方式](https://static-docs.nocobase.com/studio-zh-preferences-20261111-normal-2x.webp)
 
 界面偏好随账号保存。推送订阅按设备设置，需要 HTTPS；iPhone 需从主屏幕打开 Studio。见[通知与推送](../admin/notifications.md)。
 
@@ -43,7 +45,7 @@ description: 接受项目邀请，登录 Studio，设置个人资料、通知偏
 
 连接后，Agent 推送代码、创建 PR，以及你在 Studio 中合并时，使用个人身份。未连接时使用工作区的 Git 连接。账号缺少仓库权限时，请先补充权限。
 
-![个人 Git 连接用于代码提交、PR 和合并身份](https://static-docs.nocobase.com/studio-zh-guide-personal-git-20261031.png)
+![个人 Git 设置与连接条件](https://static-docs.nocobase.com/studio-zh-personal-git-20261111-normal-2x.webp)
 
 无法通过浏览器授权时，可在「其他方式」中使用验证码或个人令牌。可用方式由管理员在[代码平台](../configure/git.md)中设置。令牌加密保存，之后不再显示。
 

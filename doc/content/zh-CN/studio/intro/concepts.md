@@ -20,7 +20,7 @@ Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队�
 
 **代码仓库**保存应用代码，一个项目可关联多个仓库。新建仓库默认基于 NocoBase Core 初始化，也可接入已有仓库。
 
-![「供应商管理」项目汇总任务进展，并提供知识库、成员和发布入口](https://static-docs.nocobase.com/studio-zh-project-overview-20261030-v3.png)
+![「供应商管理」项目汇总任务进展，并提供知识库、成员和发布入口](https://static-docs.nocobase.com/studio-zh-supplier-overview-20261111-normal-2x.webp)
 
 见 [新建项目](../setup/new-project.md)与 [项目设置](../project/settings.md)。
 
@@ -37,7 +37,7 @@ Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队�
 
 「阻塞中」等待负责人决策，「待验收」等待确认交付结果。这些事项会排在「我的任务」前面。
 
-![负责人在「我的任务」中查看交付报告并验收](https://static-docs.nocobase.com/studio-zh-req-accept-20261030-v3.png)
+![负责人在「我的任务」中查看交付报告并验收](https://static-docs.nocobase.com/studio-zh-req-accept-20261111-normal-2x.webp)
 
 任务负责人是一项职责，不是系统角色。Agent 代表发起人工作，受其权限约束。见 [任务状态与权限](../reference/statuses-and-permissions.md)。
 
@@ -47,7 +47,7 @@ Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队�
 
 会话仅本人可见。任务按项目权限与团队共享。
 
-![在会话中确认业务规则，Agent 整理为任务，右侧显示任务进展](https://static-docs.nocobase.com/studio-zh-req-session-20261030-v3.png)
+![在会话中确认业务规则，Agent 整理为任务，右侧显示任务进展](https://static-docs.nocobase.com/studio-zh-req-session-20261111-normal-2x.webp)
 
 见 [我的会话](../use/sessions.md)。
 
@@ -59,11 +59,11 @@ Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队�
 | 执行 Agent | 对应一个「编码工具 · 模型」组合，完成设计、开发、测试或评审。 |
 | 运行环境 | 提供机器、编码工具和模型，执行 Agent 的工作。 |
 
-![团队按「擅长什么」配置多个 Agent，并为调度 Agent 指定首选和备选](https://static-docs.nocobase.com/studio-zh-agent-team-20261030-v3.png)
+![团队按「擅长什么」配置多个 Agent，并为调度 Agent 指定首选和备选](https://static-docs.nocobase.com/studio-zh-agents-20261111-normal-verified-2x.webp)
 
 一个运行环境可提供多个 Agent，同一个 Agent 也可在多台机器上执行。共享环境承接团队任务，个人环境只承接本人发起的任务。
 
-![运行环境列出可用机器、编码工具及共享范围](https://static-docs.nocobase.com/studio-zh-shared-runtimes-20261030-v3.png)
+![运行环境列出可用机器、编码工具及共享范围](https://static-docs.nocobase.com/studio-zh-runtimes-20261111-normal-verified-2x.webp)
 
 一次执行产生一条**运行记录**，保存过程、结果和用量。一个任务通常包含多次运行。
 
@@ -79,7 +79,7 @@ Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队�
 
 技能可用于全局、项目或代码仓库。项目记忆由 Agent 整理，随任务 PR 评审和合并，供后续任务复用。
 
-![项目记忆保留已确认的业务规则和资料来源](https://static-docs.nocobase.com/studio-zh-project-memory-20261030-v3.png)
+![项目记忆保留已确认的业务规则和资料来源](https://static-docs.nocobase.com/studio-zh-supplier-memory-20261111-normal-2x.webp)
 
 ## PR、环境与版本
 
@@ -96,6 +96,8 @@ Studio 以项目组织任务和代码。人负责决策与验收，Agent 团队�
 
 **版本**对应一次发布，来自仓库中符合版本线的 tag。Studio 关联版本包含的任务和制品。
 
-![发布页面关联版本、任务，以及测试和生产状态](https://static-docs.nocobase.com/studio-zh-releases-20261030-v3.png)
+![发布页面关联版本、任务，以及测试和生产状态](https://static-docs.nocobase.com/studio-zh-supplier-releases-20261111-normal-2x.webp)
 
 任务完成后，可通过版本和部署记录跟踪是否上线。见 [发布概览](../release/overview.md)。
+
+项目的[质量管理](../quality/overview.md)将测试范围、执行记录和报告保存在测试任务中。发现的问题可建立跟进任务，修复后复测。

@@ -29,7 +29,7 @@ description: 接入共享运行环境，让已安装并登录的编码工具执�
 4. 设置「最大并发数」。首次接入可以设为 1，验证通过后再按资源和模型额度调整。
 5. 点「生成安装命令」，选择机器的操作系统。
 
-![选择共享运行环境、编码工具和最大并发数](https://static-docs.nocobase.com/studio-zh-setup-runtime-options-full-1440x900-20261030.png)
+![选择共享运行环境、编码工具和最大并发数](https://static-docs.nocobase.com/studio-zh-runtime-connect-20261111-normal-2x.webp)
 
 并发数和启用的工具，之后可以在运行环境详情里修改。
 
@@ -43,8 +43,6 @@ description: 接入共享运行环境，让已安装并登录的编码工具执�
 安装命令从当前 Studio 下载执行机 `nocobase-runner` 和 CLI `nb-studio`，完成注册并安装后台服务。
 
 命令包含短期有效的一次性凭证。过期后重新生成，不要把完整命令放进文档、截图或共享聊天记录。
-
-![复制安装命令或交给本地 Agent；截图中的凭据已隐藏](https://static-docs.nocobase.com/studio-zh-setup-runtime-install-full-1440x900-20261030.png)
 
 Windows 用户先安装并打开 WSL，再在其中安装 Node.js、编码工具和执行机。
 
@@ -60,6 +58,6 @@ Windows 用户先安装并打开 WSL，再在其中安装 Node.js、编码工具
 
 **完成的标志**：运行环境在线，要使用的编码工具显示「已登录」。接着[配置 Agent](agents.md)。
 
-![共享运行环境已在线，Claude Code 和 Codex 已登录](https://static-docs.nocobase.com/studio-zh-setup-runtime-online-full-1440x900-20261030.png)
+![共享运行环境已在线，Claude Code 和 Codex 已登录](https://static-docs.nocobase.com/studio-zh-runtimes-20261111-normal-verified-2x.webp)
 
 连接排查、升级和停用运行环境，见[运行环境配置](../configure/runtimes.md)。

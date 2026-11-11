@@ -5,7 +5,7 @@ description: Track PR previews, test delivery, versions, and production records.
 
 **Releases** brings together delivery progress by project. Select a project to view previews, staging applications, versions, and recorded production deployments.
 
-![Follow previews, testing, and version delivery for a project](https://static-docs.nocobase.com/studio-en-guide-releases-20261031.png)
+![Follow previews, testing, and version delivery for a project](https://static-docs.nocobase.com/studio-en-project-releases-20261111-normal-2x.webp)
 
 | Stage | What it shows | Next action |
 | --- | --- | --- |
@@ -21,6 +21,8 @@ Studio can host previews and test applications. The team deploys production with
 **Pending release** lists completed tasks that have not reached production and indicates whether they are in testing. Check which tasks a version contains before releasing and deploying it.
 
 Testing and production marks on tasks are calculated from commit relationships. Production marks use the version recorded by the lead. Recording an older version removes marks for changes it no longer contains.
+
+Before publishing, run a [release test](../quality/runs.md) over the current pending tasks. Review its report and unresolved findings before deciding to deliver.
 
 ## Continue delivery
 

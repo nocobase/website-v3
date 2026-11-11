@@ -26,6 +26,7 @@ nb-studio skills install
 ```bash
 nb-studio docs
 nb-studio issue --help
+nb-studio quality --help
 nb-studio whoami --missing
 ```
 
@@ -39,9 +40,9 @@ nb-studio whoami --missing
 | `skill`、`variable`、`run` | スキル、変数、実行履歴 |
 | `kb`、`memory` | ナレッジとプロジェクトメモリー |
 | `git`、`pr`、`commit` | リポジトリ、PR、チェック |
-| `quality` | 有効な品質計画と対応事項 |
+| `quality` | Studio EE のプロジェクトテスト、レポート、コアシナリオ、指標、フォローアップ |
 | `app`、`deploy`、`env`、`release`、`build` | アプリ、環境、成果物、リリース |
-| `session`、`conversation` | ローカルと Runner の会話 |
+| `conversation` | Runner Agent の会話 |
 | `user`、`access`、`api-key` | 許可された管理操作 |
 
 ## 複数の Studio を使う

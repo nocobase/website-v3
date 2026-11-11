@@ -32,12 +32,10 @@ Copy the installation prompt to your local Coding Agent, or run the installation
 
 The command downloads `nocobase-runner` and `nb-studio` from your Studio instance, registers the runtime, and installs its background service. It includes a short-lived, single-use credential. Generate another if it expires; do not share the complete command.
 
-![Install the runner with the generated command; the credential is hidden](https://static-docs.nocobase.com/studio-en-setup-runtime-install-20261030.png)
-
 ## Confirm the runtime is online
 
 Return to the runtime list and wait for **Online**. Open its details and check that the selected coding tools show **Signed in**. Install or sign in to any tools that need attention, then detect them again.
 
-![The shared runtime is online and its coding tools are signed in](https://static-docs.nocobase.com/studio-en-setup-runtime-online-20261030.png)
+![The shared runtime is online and its coding tools are signed in](https://static-docs.nocobase.com/studio-en-runtimes-20261111-normal-2x.webp)
 
 Next, [configure Agents](agents.md). See [Runtime configuration](../configure/runtimes.md) for troubleshooting, upgrades, and disabling a runtime.

@@ -5,7 +5,7 @@ description: Configure available models, responsibilities, and the Lead Agent.
 
 Administrators configure the team under **Agents**. Each coding tool and model reported by a runtime can become an Agent. For initial setup, see [Configure Agents](../setup/agents.md).
 
-![Agent responsibilities, runtimes, and reasoning effort](https://static-docs.nocobase.com/studio-en-guide-agents-20261031.png)
+![Agent responsibilities, runtimes, and reasoning effort](https://static-docs.nocobase.com/studio-en-agents-20261111-normal-2x.webp)
 
 ## Define responsibilities
 
@@ -29,7 +29,7 @@ Disable an Agent in its editor to stop assigning new work. Show disabled Agents 
 
 All projects share one Lead Agent. Open its **Settings** at the top of the page to choose the first choice and fallback, assignment principles, and per-task run limit.
 
-![Choose the Lead Agent and its fallback](https://static-docs.nocobase.com/studio-en-guide-coordinator-20261031.png)
+![Choose the Lead Agent and its fallback](https://static-docs.nocobase.com/studio-en-coordinator-20261111-normal-2x.webp)
 
 An idle fallback can take over after the configured queue wait, which defaults to 120 seconds. If no runtime can run the first choice, Studio tries the fallback immediately.
 

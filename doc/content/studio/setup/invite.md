@@ -12,7 +12,7 @@ Once the project is ready, administrators can invite requesters and teammates. B
 3. Under **Projects**, choose the projects they'll work on. Invitees join these projects as members.
 4. Click **Send invitations**.
 
-![Enter member email addresses and select their projects](https://static-docs.nocobase.com/studio-en-setup-invite-20261030.png)
+![Enter member email addresses and select their projects](https://static-docs.nocobase.com/studio-en-invite-20261111-normal-2x.webp)
 
 When email is configured, each address gets an email with a link to set a name and password and join. The link is valid for 7 days.
 

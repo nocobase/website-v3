@@ -13,31 +13,39 @@ NocoBase Studio 是面向团队的 AI 开发治理平台。它连接 Coding Agen
 
 Studio 接入 Claude Code、Codex、OpenCode 等工具和模型。[调度 Agent](agent-team.md) 按能力分派设计、开发、评审和测试，并根据结果安排下一步，减少人工转交任务和结果的工作。成员也可以直接与 [Runner Agent](../use/sessions.md) 对话，讨论需求并驱动任务。
 
-![调度 Agent 分派设计任务，并明确目标和交付要求](https://static-docs.nocobase.com/studio-zh-req-dispatch-20261030-v3.png)
+![调度 Agent 分派设计任务，并明确目标和交付要求](https://static-docs.nocobase.com/studio-zh-req-dispatch-20261111-normal-2x.webp)
 
 ### 需求方与开发团队共享进展
 
 业务部门、客户等需求方的请求进入统一的项目与任务。讨论、Agent 执行记录和交付结果都关联到任务，项目成员可以直接查看进展。需求负责人在「我的任务」中回答问题、验收结果，减少反复同步进度和转述需求的工作。
 
-![需求负责人处理决策与验收，团队通过任务动态查看 Agent 交接、执行结果和状态变化](https://static-docs.nocobase.com/studio-zh-home-20261030-v3.png)
+![需求负责人处理决策与验收，团队通过任务动态查看 Agent 交接、执行结果和状态变化](https://static-docs.nocobase.com/studio-zh-req-accept-20261111-normal-2x.webp)
+
+### 持续测试，跟进质量问题
+
+团队在 [质量管理](../quality/overview.md) 中维护核心场景，按计划或手动发起测试。Agent 按功能、权限、性能等维度执行检查，报告保留结果与证据。
+
+发现的问题关联到跟进任务，修复后通过后续测试验证。测试范围、结果和未解决的问题都保存在项目中，供团队持续跟进。
+
+![示例项目的功能、权限、安全、性能和代码质量结果](https://static-docs.nocobase.com/studio-zh-quality-sample-20261111-normal-2x.webp)
 
 ### 从代码改动跟踪到发布上线
 
 Studio 对接 Git 代码平台和 CI/CD，关联任务、PR、检查结果与评审记录。检查或评审未通过时，调度 Agent 安排修复。负责人依据交付报告和验收标准确认结果，需要时通过预览或测试环境验证。团队在 [发布](../release/overview.md) 中跟踪版本，自行部署生产，并记录生产版本。
 
-![发布页面汇总版本及其在测试、生产环境中的状态](https://static-docs.nocobase.com/studio-zh-releases-20261030-v3.png)
+![发布页面汇总版本及其在测试、生产环境中的状态](https://static-docs.nocobase.com/studio-zh-supplier-releases-20261111-normal-2x.webp)
 
 ### 开发规范与经验由团队积累
 
 团队用 [技能](../project/skills.md) 统一设计、开发、评审和测试要求，为每个任务提供共同的质量基准。[知识库](../project/knowledge-base.md) 保存业务资料，[项目记忆](../project/project-memory.md) 保存已确认的规则和经验。更换成员或模型后，后续任务仍可复用这些规范与背景，减少重复说明和交付差异。
 
-![项目记忆保存团队已确认的业务规则，供后续任务复用](https://static-docs.nocobase.com/studio-zh-project-memory-20261030-v3.png)
+![项目记忆保存团队已确认的业务规则，供后续任务复用](https://static-docs.nocobase.com/studio-zh-supplier-memory-20261111-normal-2x.webp)
 
 ### 保留本地习惯，使用团队执行资源
 
 通过命令行 [nb-studio](../reference/cli.md)，成员可以继续在常用的 Coding Agent 中创建任务、补充要求和跟进结果。任务交给 Studio 调度到共享运行环境后，执行不再依赖本地会话持续打开。进展与结果保存在 Studio 中，供团队跟进。
 
-![共享运行环境集中提供 Claude Code、Codex 等编码工具和执行资源](https://static-docs.nocobase.com/studio-zh-shared-runtimes-20261030-v3.png)
+![共享运行环境集中提供 Claude Code、Codex 等编码工具和执行资源](https://static-docs.nocobase.com/studio-zh-runtimes-20261111-normal-verified-2x.webp)
 
 ## 人做决策，Agent 完成开发
 

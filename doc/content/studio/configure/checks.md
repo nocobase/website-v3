@@ -7,11 +7,11 @@ Open **Project settings › Code repositories** and select **Checks** on a repos
 
 | Source | Checks run by | Previews published by |
 | --- | --- | --- |
-| Code-host CI | GitHub Actions, GitLab CI, or the host's pipeline | The same pipeline |
+| Code-host CI | GitHub Actions, GitLab CI, Gitea Actions, or the host’s pipeline | The same pipeline |
 | External CI | Jenkins or your existing CI service | The external pipeline |
 | Agent self-check | The Agent, using project scripts and instructions | The Agent working on the task |
 
-![Select a repository check source and preview configuration](https://static-docs.nocobase.com/studio-en-guide-ci-20261031.png)
+![Select a repository check source and preview configuration](https://static-docs.nocobase.com/studio-en-ci-20261111-normal-2x.webp)
 
 ## Agent self-check
 
@@ -37,6 +37,8 @@ For GitHub Actions:
 Generate one trigger configuration at a time. Set up each trigger you need. Expand the manual instructions for commands and CI files. GitHub uses the Actions secret `NB_STUDIO_API_KEY`.
 
 CI must be able to reach Studio. Cloud CI cannot reach a local address; use reachable HTTPS or a self-hosted CI runner. Configure test targets under [Hosted environments](../admin/environments.md).
+
+Gitea Actions uses the generated `.gitea/workflows/` file and the same `NB_STUDIO_API_KEY` secret. Its runner must be able to reach Studio and the actions referenced by the workflow.
 
 ## External CI
 

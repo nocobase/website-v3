@@ -7,7 +7,7 @@ description: 查看当前步骤、交接和运行记录，通过评论补充要�
 
 ## 任务页
 
-![摘要说明现在谁在做，以及接下来的安排](https://static-docs.nocobase.com/studio-zh-guide-task-progress-20261031.png)
+![摘要说明现在谁在做，以及接下来的安排](https://static-docs.nocobase.com/studio-zh-req-now-20261111-normal-2x.webp)
 
 | 区域 | 内容 |
 | --- | --- |
@@ -37,7 +37,7 @@ description: 查看当前步骤、交接和运行记录，通过评论补充要�
 
 ## 运行记录
 
-![查看每次执行的 Agent、状态、用时和过程](https://static-docs.nocobase.com/studio-zh-guide-runs-20261031.png)
+![查看每次执行的 Agent、状态、用时和过程](https://static-docs.nocobase.com/studio-zh-runs-20261111-normal-2x.webp)
 
 | 操作 | 用途 |
 | --- | --- |

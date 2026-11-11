@@ -26,6 +26,7 @@ Keep the login command running while you check and approve the code in the brows
 ```bash
 nb-studio docs
 nb-studio issue --help
+nb-studio quality --help
 nb-studio whoami --missing
 ```
 
@@ -39,9 +40,9 @@ Use `docs` for current commands and `--help` for arguments. `whoami --missing` g
 | `skill`, `variable`, `run` | Skills, variables, and run history |
 | `kb`, `memory` | Knowledge and project memory |
 | `git`, `pr`, `commit` | Repositories, PRs, and checks |
-| `quality` | Enabled quality plans and follow-up work |
+| `quality` | Studio EE project tests, reports, core scenarios, metrics, and follow-ups |
 | `app`, `deploy`, `env`, `release`, `build` | Applications, environments, artifacts, and delivery |
-| `session`, `conversation` | Local sessions and Runner conversations |
+| `conversation` | Runner Agent conversations |
 | `user`, `access`, `api-key` | Authorized administration operations |
 
 ## Use multiple servers

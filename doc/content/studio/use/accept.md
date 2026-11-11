@@ -9,7 +9,7 @@ When a task is **In review**, its owner checks the delivery. Agents provide the 
 
 Open the task from **My issues › Waiting for you**. Read **Needs you**, then check the report.
 
-![Acceptance actions appear above the delivery report](https://static-docs.nocobase.com/studio-en-guide-accept-20261031.png)
+![Acceptance actions appear above the delivery report](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 | Content | What to check |
 | --- | --- |

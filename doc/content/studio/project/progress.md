@@ -5,7 +5,7 @@ description: Follow project progress, unfinished setup, and team delivery metric
 
 Open a project's **Overview** to see task counts, status distribution, and release progress. Unfinished setup appears under the next steps, such as adding a repository or configuring checks and previews.
 
-![Project overview with task and delivery progress](https://static-docs.nocobase.com/studio-en-guide-project-overview-20261031.png)
+![Project overview with task and delivery progress](https://static-docs.nocobase.com/studio-en-project-overview-20261111-normal-2x.webp)
 
 ## Follow team delivery
 
@@ -22,3 +22,5 @@ The **Dashboard** summarizes projects and tasks you can access. Choose a date ra
 Hover over a metric for its calculation. The attention section lists blocked or overdue work, tasks waiting too long for acceptance, and recent failed runs.
 
 See [Follow progress](../use/follow-progress.md) for individual tasks, [Workload and usage](usage.md) for capacity and costs, and [Release overview](../release/overview.md) for changes awaiting release.
+
+Testing and follow-up tasks use the same project task list. For test coverage and findings, open [Quality](../quality/overview.md).

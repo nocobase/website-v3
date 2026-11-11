@@ -5,7 +5,7 @@ description: 用 Git tag 标识交付版本，查看包含的任务和可部署�
 
 Studio 从 Git tag 识别版本，并计算版本包含的任务。版本线决定哪些 tag 属于同一发布序列，制品则用于实际部署。
 
-![查看版本、任务和部署制品](https://static-docs.nocobase.com/studio-zh-guide-versions-20261031.png)
+![查看版本、任务和部署制品](https://static-docs.nocobase.com/studio-zh-versions-20261111-normal-2x.webp)
 
 ## 配置版本线
 

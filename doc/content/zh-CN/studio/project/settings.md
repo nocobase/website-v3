@@ -15,7 +15,7 @@ description: 管理项目成员、代码仓库、运行变量和默认技能。
 
 项目状态、优先级和起止日期在项目属性中修改。
 
-![项目成员与负责人](https://static-docs.nocobase.com/studio-zh-guide-project-members-20261031.png)
+![项目成员与负责人](https://static-docs.nocobase.com/studio-zh-project-members-20261111-normal-2x.webp)
 
 ## 配置项目
 
@@ -26,7 +26,7 @@ description: 管理项目成员、代码仓库、运行变量和默认技能。
 | Agent 运行变量 | 开发任务使用的环境变量与密钥 |
 | 默认技能 | 项目或仓库每次运行使用的技能 |
 
-![在仓库卡片中配置检查、分支规则和预览](https://static-docs.nocobase.com/studio-zh-guide-project-repositories-20261031.png)
+![在仓库卡片中配置检查、分支规则和预览](https://static-docs.nocobase.com/studio-zh-project-repositories-20261111-normal-2x.webp)
 
 多个仓库按顺序排列，第一个为主仓库。移除关联不会删除 Git 平台上的仓库。检查和预览的配置见[检查与 CI](../configure/checks.md)，技能配置见[技能](skills.md)。
 

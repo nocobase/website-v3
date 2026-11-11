@@ -272,6 +272,10 @@ return (
 
 `children` is the current page content. Both Overview and Examples now use this centered container; the sidebar and header remain unchanged. To adjust only Examples, put the container in `examples.tsx` instead.
 
+On a wide screen, the Examples list is centered with space on both sides. On narrower screens, the content shrinks to fit the available width.
+
+![Portal layout: centered Examples content with a maximum width](/assets/core/multi-portal/develop/layout.png)
+
 If a portal needs top navigation or a completely different page structure, implement its own layout in `client/layout.tsx`. The default `PortalLayout` accepts portal information, navigation and content; it has no setting to switch between sidebar and top navigation. An independent layout should retain the account, sign-out and portal-switching entries you need, and preserve the routes' authentication and authorization requirements. See [Pages and menus](../../extension-development/pages-and-menus.md).
 
 ## Add services and data

@@ -272,6 +272,10 @@ return (
 
 `children` 是当前页面内容。修改后，Overview 和 Examples 都会使用这个居中容器；侧边栏和页头保持原样。只想调整 Examples 时，把容器放在 `examples.tsx` 中即可。
 
+宽屏下，Examples 列表会居中显示，两侧留出空白；窗口变窄时，内容随可用宽度收缩。
+
+![门户布局：Examples 页面内容居中并限制最大宽度](/assets/core/multi-portal/develop/layout.png)
+
 如果某个门户需要顶部导航或完全不同的页面结构，需要在它的 `client/layout.tsx` 中实现独立布局。默认 `PortalLayout` 只有门户信息、导航和内容这三个输入，并不提供切换侧栏与顶部导航的配置项。独立布局仍应保留所需的账户、退出和门户切换入口，并沿用页面路由的认证与权限要求。相关用法见[页面与菜单](../../extension-development/pages-and-menus.md)。
 
 ## 添加服务与数据

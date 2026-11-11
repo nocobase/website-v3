@@ -17,3 +17,9 @@
 - Rechecked OSS `origin/v3-develop` at `74f1bf8bf713b0867975bcf8be116aa7419e8c9d` and Pro `origin/develop` at `211a22b03a68fc98f04b610f4cac091cd729d975`. The primary OSS checkout still contains unrelated changes and was not overwritten; fetched source was inspected with Git.
 - Reused the running minimal Portal 1 app and its PR #131 plugin snapshot for English screenshots. Captured management list, installed-portal action menu and uninstall confirmation at 1280 × 720 CSS pixels / DPR 2 (2560 × 1440 PNG). No UI state was fabricated. The confirmation was cancelled; the portal remains installed.
 - Checked name search with a matching and non-matching query and verified the Open/Uninstall menu and cancellation. Installation, failure recovery, dependencies and upgrade behavior were checked against implementation; this screenshot session did not execute uninstall/reinstall, manufacture failures or test database recovery.
+
+## Portal access and permissions guide
+
+- Reused the OSS `74f1bf8bf713b0867975bcf8be116aa7419e8c9d` and Pro `211a22b03a68fc98f04b610f4cac091cd729d975` source checks for route authentication/authorization, administrator-only catalog APIs and installation checks. Corrected the obsolete claim that the administrator homepage is the workbench.
+- Captured the actual administrator workbench, portal switcher and shared permission-management role list in the same minimal app, English UI, 1280 × 720 CSS pixels at DPR 2 (2560 × 1440 PNG). Waited for role table content before capture. No grants, users, portal installation state or business records were changed.
+- User A/B and Portal 2 describe an integration target and reader verification cases, not a built ordinary-user portal catalog. Screenshots show existing defaults only. This session did not verify the proposed member grants, revocation, ordinary-user discovery or shared-data policies end to end.

@@ -37,6 +37,8 @@ Studio 默认访问路径为 `/main`。连接运行环境和 CLI 时，使用 `h
 
 PostgreSQL 的完整示例见[部署 Studio](../setup/install.md)。连接已有数据库时，使用实际的主机、端口和账号。
 
+建议在 PostgreSQL 服务端关闭 JIT，配置方法见[启动服务](../setup/install.md#启动服务)。
+
 ## 管理员与登录
 
 | 字段 | 说明 |

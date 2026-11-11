@@ -175,6 +175,7 @@ services:
 
   postgres:
     image: postgres:16
+    command: ["postgres", "-c", "jit=off"]
     restart: unless-stopped
     environment:
       POSTGRES_DB: replace-with-database-name
@@ -191,6 +192,14 @@ services:
 volumes:
   postgres-data:
 ```
+
+We recommend disabling JIT (just-in-time compilation) for the PostgreSQL database used by Studio. The `command` above sets `jit=off`. For an existing database, run the following SQL as its owner or a database administrator, replacing the database name:
+
+```sql
+ALTER DATABASE "your_studio_database" SET jit = off;
+```
+
+The setting applies to new connections. If Studio is already running, restart it to reconnect. Open a new connection with Studio’s database account and run `SHOW jit;`; the result should be `off`.
 
 For an existing database, remove the `postgres` service, `studio.depends_on`, and the `postgres-data` volume configuration from Compose.
 

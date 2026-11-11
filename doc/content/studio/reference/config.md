@@ -37,6 +37,8 @@ Studio uses `/main` by default. Connect runtimes and the CLI with the full URL, 
 
 See [Deploy Studio](../setup/install.md) for a complete PostgreSQL example. For an existing database, use its host, port, and credentials.
 
+We recommend disabling JIT on the PostgreSQL server. See [Start the services](../setup/install.md#start-the-services) for configuration steps.
+
 ## Administrator and sign-in
 
 | Field | Meaning |

@@ -175,6 +175,7 @@ services:
 
   postgres:
     image: postgres:16
+    command: ["postgres", "-c", "jit=off"]
     restart: unless-stopped
     environment:
       POSTGRES_DB: replace-with-database-name
@@ -191,6 +192,14 @@ services:
 volumes:
   postgres-data:
 ```
+
+建议为 Studio 使用的 PostgreSQL 关闭 JIT（即时编译）。上面的 `command` 已设置 `jit=off`。使用已有数据库时，以数据库所有者或管理员身份执行以下 SQL，将数据库名替换为实际值：
+
+```sql
+ALTER DATABASE "your_studio_database" SET jit = off;
+```
+
+该设置对新连接生效。若 Studio 已启动，重启 Studio 以重新建立连接。使用 Studio 的数据库账号重新连接后，执行 `SHOW jit;`，结果应为 `off`。
 
 使用已有数据库时，移除 Compose 中的 `postgres` 服务、`studio.depends_on` 和 `postgres-data` 卷配置。
 

@@ -193,7 +193,9 @@ volumes:
   postgres-data:
 ```
 
-建议为 Studio 使用的 PostgreSQL 关闭 JIT（即时编译）。上面的 `command` 已设置 `jit=off`。使用已有数据库时，以数据库所有者或管理员身份执行以下 SQL，将数据库名替换为实际值：
+建议为 Studio 使用的 PostgreSQL 关闭 JIT（即时编译）。[JIT 主要适合耗时较长、CPU 密集的查询](https://www.postgresql.org/docs/16/jit-decision.html)。Studio 日常操作以短查询为主，触发 JIT 时，编译开销可能超过收益，增加响应延迟。
+
+上面的 `command` 已设置 `jit=off`。使用已有数据库时，以数据库所有者或管理员身份执行以下 SQL，将数据库名替换为实际值：
 
 ```sql
 ALTER DATABASE "your_studio_database" SET jit = off;

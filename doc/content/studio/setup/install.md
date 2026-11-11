@@ -193,7 +193,9 @@ volumes:
   postgres-data:
 ```
 
-We recommend disabling JIT (just-in-time compilation) for the PostgreSQL database used by Studio. The `command` above sets `jit=off`. For an existing database, run the following SQL as its owner or a database administrator, replacing the database name:
+We recommend disabling JIT (just-in-time compilation) for the PostgreSQL database used by Studio. [JIT mainly benefits long-running, CPU-bound queries](https://www.postgresql.org/docs/16/jit-decision.html). Routine Studio operations mainly use short queries; when JIT is triggered, compilation overhead can outweigh the savings and increase response time.
+
+The `command` above sets `jit=off`. For an existing database, run the following SQL as its owner or a database administrator, replacing the database name:
 
 ```sql
 ALTER DATABASE "your_studio_database" SET jit = off;

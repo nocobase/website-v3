@@ -1,4 +1,0 @@
----
-title: クイックスタート
-status: placeholder
----

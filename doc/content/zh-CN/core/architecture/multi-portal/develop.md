@@ -97,8 +97,6 @@ pnpm dev
 
 ## 了解门户目录结构
 
-### 目录结构
-
 门户代码位于 `packages/app-portal-portal-1/`。以下省略工具配置和构建产物：
 
 ```text
@@ -131,51 +129,6 @@ packages/app-portal-portal-1/
             └── portal_portal_1_installation.ts
                                # 初始化门户安装状态
 ```
-
-### 门户定义与注册
-
-下面摘录三个文件的关键配置。
-
-**`portal.ts`：**
-
-```ts
-const portal: PortalDescriptor = {
-  id: 'portal-1',                              // 稳定标识
-  namespace: '@nocobase/app-portal-portal-1',    // 语言资源命名空间
-  entry: '/portals/portal-1',                   // 入口，不含 /main 等基础路径
-  icon: 'LayoutGrid',                          // 门户图标
-  tone: 1,                                    // 配色标识
-};
-```
-
-名称和描述在 `client/locales/` 中修改。不要为了改显示名称更换 ID 或包名，安装记录和权限可能引用它们。
-
-**`client/plugin.ts`：**
-
-```ts
-const plugin: AppClientPluginFactory = defineClientPlugin({
-  packageName: '@nocobase/app-portal-portal-1',
-  locales, // 来自 ./locales/index.js
-  routes,  // 来自 ./routes.js
-});
-```
-
-**`server/plugin.ts`：**
-
-```ts
-const plugin: AppServerPlugin = defineServerPlugin({
-  packageName: '@nocobase/app-portal-portal-1',
-  baseDir: path.resolve(import.meta.dirname, '..'), // 门户包根目录
-  serviceProviders, // 包含注册门户的 PortalProvider
-  database: {
-    connections: {
-      main: {}, // 使用 database/main/ 下的 migrations 和 seeds
-    },
-  },
-});
-```
-
-`main` 引用宿主应用的连接，空对象表示沿用约定目录；数据库地址和凭据由宿主应用配置。
 
 ## 添加页面与导航
 
@@ -257,6 +210,8 @@ const { t: tPortal } = useTranslation('@nocobase/app-portal-portal-1');
 ## 添加服务与数据
 
 需要保存业务记录时，在门户的 Server 中实现业务逻辑和 HTTP 接口。接口必须独立检查登录、业务权限和门户安装状态；隐藏菜单不能保护数据。具体做法见[服务端 API](../../extension-development/server-apis.md)。
+
+`server/plugin.ts` 中的 `database.connections.main: {}` 引用宿主应用的 `main` 连接，并使用约定目录加载迁移和 seed；连接地址与凭据由宿主应用配置。
 
 表结构迁移放在 `database/main/migrations/`，必要的初始化数据放在 `database/main/seeds/`。保留生成的安装 seed，不要在每次启动时覆盖管理员选择的安装状态。
 

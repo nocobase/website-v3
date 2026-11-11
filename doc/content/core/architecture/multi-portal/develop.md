@@ -97,8 +97,6 @@ Generated portal pages initially allow administrators only. Configure ordinary-u
 
 ## Understand the portal directory structure
 
-### Directory structure
-
 Portal code lives in `packages/app-portal-portal-1/`. Tooling configuration and build output are omitted below:
 
 ```text
@@ -131,51 +129,6 @@ packages/app-portal-portal-1/
             └── portal_portal_1_installation.ts
                                # Initialize portal installation state
 ```
-
-### Portal definition and registration
-
-The following excerpts show the key configuration in three files.
-
-**`portal.ts`:**
-
-```ts
-const portal: PortalDescriptor = {
-  id: 'portal-1',                              // Stable identifier
-  namespace: '@nocobase/app-portal-portal-1',    // Locale namespace
-  entry: '/portals/portal-1',                   // Entry without a base path such as /main
-  icon: 'LayoutGrid',                          // Portal icon
-  tone: 1,                                    // Color identifier
-};
-```
-
-Edit names and descriptions in `client/locales/`. Do not change the ID or package name just to rename a label: installation records and permissions may reference them.
-
-**`client/plugin.ts`:**
-
-```ts
-const plugin: AppClientPluginFactory = defineClientPlugin({
-  packageName: '@nocobase/app-portal-portal-1',
-  locales, // From ./locales/index.js
-  routes,  // From ./routes.js
-});
-```
-
-**`server/plugin.ts`:**
-
-```ts
-const plugin: AppServerPlugin = defineServerPlugin({
-  packageName: '@nocobase/app-portal-portal-1',
-  baseDir: path.resolve(import.meta.dirname, '..'), // Portal package root
-  serviceProviders, // Includes the PortalProvider that registers the portal
-  database: {
-    connections: {
-      main: {}, // Use migrations and seeds under database/main/
-    },
-  },
-});
-```
-
-`main` references the host app's connection. The empty object uses conventional directories; database addresses and credentials are configured by the host app.
 
 ## Add pages and navigation
 
@@ -257,6 +210,8 @@ Changing the app's shared shell affects other portals that use it. Do not change
 ## Add services and data
 
 To persist business records, implement business logic and HTTP endpoints in the portal's Server. Each endpoint must check authentication, business permissions and portal installation status independently. Hiding a menu does not protect data. See [Server APIs](../../extension-development/server-apis.md).
+
+In `server/plugin.ts`, `database.connections.main: {}` references the host app's `main` connection and loads migrations and seeds from conventional directories. Connection addresses and credentials belong to the host app.
 
 Put schema migrations in `database/main/migrations/` and required initial data in `database/main/seeds/`. Keep the generated installation seed; do not overwrite the administrator's installation choice at every startup.
 

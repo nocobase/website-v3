@@ -1,0 +1,21 @@
+{
+  "title": "应用架构",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "folder",
+      "path": "multi-portal"
+    },
+    {
+      "type": "planned",
+      "title": "多应用"
+    },
+    {
+      "type": "planned",
+      "title": "多租户"
+    }
+  ]
+}

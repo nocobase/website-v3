@@ -7,7 +7,7 @@ metaDescription: 在已有多门户应用中创建门户，安装并进入，再
 
 准备一个已配置并能正常启动的[多门户应用](create-app.md)，保持商业包源登录有效，并使用具有 `unrestricted` 权限的管理员账号完成以下操作。
 
-本例创建“门户 1”（`portal-1`）：先得到一个可进入的空门户，再添加一个详情页面。门户是应用中的本地包，随应用一起构建和部署，不需要先发布到 npm。页面开发沿用 shadcn/ui 组件约定，优先复用已有组件和 NocoBase UI Library。
+本例创建“门户 1”（`portal-1`）：先得到一个可进入的空门户，再添加一个示例列表页面。门户是应用中的本地包，随应用一起构建和部署，不需要先发布到 npm。页面开发沿用 shadcn/ui 组件约定，优先复用已有组件和 NocoBase UI Library。
 
 ## 创建第一个门户
 
@@ -134,42 +134,91 @@ packages/app-portal-portal-1/
 
 ### 新增页面与路由
 
-可以继续向 Agent 描述需求：
+下面给门户 1 新增一个 **Examples（示例列表）** 页面，展示三条静态记录：基础页面、导航入口和多语言文案。页面沿用门户布局，仅管理员可访问，不需要数据库或接口。
+
+可以向 Agent 描述需求：
 
 ```prompt
-给门户 1 添加一个“详情”页面，在导航里加入口，页面先展示一段介绍文字，供管理员查看。
+给门户 1 添加一个“示例列表”页面和导航入口，展示基础页面、导航入口、多语言文案三条静态记录，每条包含名称和简短描述，供管理员查看。
 ```
 
-手动实现时，在 `client/pages/details.tsx` 默认导出页面组件，沿用现有的 `Layout`：
+手动实现时，在 `client/pages/examples.tsx` 默认导出页面组件，沿用现有的 `Layout`：
 
 ```tsx
 import type { ReactElement } from 'react';
 import { useTranslation } from '@nocobase/i18n/client';
 import Layout from '../layout.js';
 
-export default function DetailsPage(): ReactElement {
+const examples = ['page', 'navigation', 'localization'] as const;
+
+export default function ExamplesPage(): ReactElement {
   const { t } = useTranslation('@nocobase/app-portal-portal-1');
   return (
     <Layout>
       <section className='p-6'>
-        <h1 className='text-2xl font-semibold'>{t('detailsTitle')}</h1>
-        <p className='mt-2 text-muted-foreground'>{t('detailsDescription')}</p>
+        <h1 className='text-2xl font-semibold'>{t('examples.title')}</h1>
+        <p className='mt-2 text-muted-foreground'>
+          {t('examples.description')}
+        </p>
+        <ul className='mt-6 divide-y rounded-xl border'>
+          {examples.map((id, index) => (
+            <li key={id} className='flex gap-4 p-4'>
+              <span
+                className='text-sm text-muted-foreground'
+                aria-hidden='true'
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div className='min-w-0'>
+                <h2 className='font-medium'>
+                  {t(`examples.items.${id}.title`)}
+                </h2>
+                <p className='mt-1 text-sm text-muted-foreground'>
+                  {t(`examples.items.${id}.description`)}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
     </Layout>
   );
 }
 ```
 
-在门户的 `client/locales/en-US.ts` 中添加 `detailsTitle: 'Details'` 和 `detailsDescription: 'A page inside Portal 1.'`，并在对应语言文件中补充翻译。随后向 `client/routes.ts` 的路由数组追加：
+在门户的 `client/locales/en-US.ts` 的 `messages` 中添加以下 `examples` 字段，并在其他语言文件中补充对应翻译：
+
+```ts
+examples: {
+  "title": "Examples",
+  "description": "Static records for this portal page.",
+  "items": {
+    "page": {
+      "title": "Basic page",
+      "description": "A page rendered inside the portal layout."
+    },
+    "navigation": {
+      "title": "Navigation entry",
+      "description": "A sidebar link that opens a portal page."
+    },
+    "localization": {
+      "title": "Localized text",
+      "description": "Page labels loaded from the portal’s locale files."
+    }
+  }
+},
+```
+
+向 `client/routes.ts` 的路由数组追加：
 
 ```ts
 {
-  name: 'portal1Details',
-  path: '/portals/portal-1/details',
+  name: 'portal1Examples',
+  path: '/portals/portal-1/examples',
   auth: 'required',
   authz: 'unrestricted',
-  breadcrumb: { title: 'detailsTitle' },
-  componentLoader: () => import('./pages/details.js'),
+  breadcrumb: { title: 'examples.title' },
+  componentLoader: () => import('./pages/examples.js'),
 }
 ```
 
@@ -185,13 +234,15 @@ const { t: tPortal } = useTranslation('@nocobase/app-portal-portal-1');
 
 ```ts
 {
-  path: `${portal.entry}/details`,
-  title: tPortal('detailsTitle'),
+  path: `${portal.entry}/examples`,
+  title: tPortal('examples.title'),
   icon: ChartNoAxesCombined,
 }
 ```
 
-此时点击 **Details** 应显示介绍文字，直接访问 `/main/portals/portal-1/details` 并刷新也应正常；若应用基础路径不是 `/main`，使用实际路径。路由决定页面匹配与访问，导航提供入口，两处都需要维护。
+此时点击 **Examples** 应显示三条示例记录，直接访问 `/main/portals/portal-1/examples` 并刷新也应正常；若应用基础路径不是 `/main`，使用实际路径。路由决定页面匹配与访问，导航提供入口，两处都需要维护。
+
+![门户 1 中新增的 Examples 导航入口和示例列表页面](/assets/core/multi-portal/develop/examples.png)
 
 ## 调整门户布局
 

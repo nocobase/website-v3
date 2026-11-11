@@ -7,7 +7,7 @@ metaDescription: Create a portal in an existing multi-portal app, install and op
 
 Start with a configured [multi-portal app](create-app.md) that runs successfully. Keep your commercial registry login valid and use an administrator account with `unrestricted` permission for these steps.
 
-This example creates **Portal 1** (`portal-1`), starting with an empty portal you can open, then adding a details page. A portal is a local package that builds and deploys with the app; publishing it to npm is not required. Follow shadcn/ui conventions for pages, reusing existing components and NocoBase UI Library where possible.
+This example creates **Portal 1** (`portal-1`), starting with an empty portal you can open, then adding an Examples page. A portal is a local package that builds and deploys with the app; publishing it to npm is not required. Follow shadcn/ui conventions for pages, reusing existing components and NocoBase UI Library where possible.
 
 ## Create your first portal
 
@@ -134,42 +134,91 @@ packages/app-portal-portal-1/
 
 ### Add a page and route
 
-You can continue with an Agent:
+This example adds an **Examples** page to Portal 1 with three static records: Basic page, Navigation entry and Localized text. It uses the portal layout and requires administrator access, without a database or API.
+
+You can ask an Agent:
 
 ```prompt
-Add a Details page to Portal 1 with a navigation entry. For now, show a short introduction on the page and allow administrators to view it.
+Add an Examples page and navigation entry to Portal 1. Show three static records: Basic page, Navigation entry and Localized text, each with a name and short description. Allow administrators to view the page.
 ```
 
-For a manual implementation, default-export a page component from `client/pages/details.tsx`, using the existing `Layout`:
+For a manual implementation, default-export a page component from `client/pages/examples.tsx`, using the existing `Layout`:
 
 ```tsx
 import type { ReactElement } from 'react';
 import { useTranslation } from '@nocobase/i18n/client';
 import Layout from '../layout.js';
 
-export default function DetailsPage(): ReactElement {
+const examples = ['page', 'navigation', 'localization'] as const;
+
+export default function ExamplesPage(): ReactElement {
   const { t } = useTranslation('@nocobase/app-portal-portal-1');
   return (
     <Layout>
       <section className='p-6'>
-        <h1 className='text-2xl font-semibold'>{t('detailsTitle')}</h1>
-        <p className='mt-2 text-muted-foreground'>{t('detailsDescription')}</p>
+        <h1 className='text-2xl font-semibold'>{t('examples.title')}</h1>
+        <p className='mt-2 text-muted-foreground'>
+          {t('examples.description')}
+        </p>
+        <ul className='mt-6 divide-y rounded-xl border'>
+          {examples.map((id, index) => (
+            <li key={id} className='flex gap-4 p-4'>
+              <span
+                className='text-sm text-muted-foreground'
+                aria-hidden='true'
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div className='min-w-0'>
+                <h2 className='font-medium'>
+                  {t(`examples.items.${id}.title`)}
+                </h2>
+                <p className='mt-1 text-sm text-muted-foreground'>
+                  {t(`examples.items.${id}.description`)}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
     </Layout>
   );
 }
 ```
 
-Add `detailsTitle: 'Details'` and `detailsDescription: 'A page inside Portal 1.'` to the portal's `client/locales/en-US.ts`, and translations to the corresponding locale files. Then append this entry to the route array in `client/routes.ts`:
+Add the following `examples` field to `messages` in the portal's `client/locales/en-US.ts`, and translations in the other locale files:
+
+```ts
+examples: {
+  "title": "Examples",
+  "description": "Static records for this portal page.",
+  "items": {
+    "page": {
+      "title": "Basic page",
+      "description": "A page rendered inside the portal layout."
+    },
+    "navigation": {
+      "title": "Navigation entry",
+      "description": "A sidebar link that opens a portal page."
+    },
+    "localization": {
+      "title": "Localized text",
+      "description": "Page labels loaded from the portal’s locale files."
+    }
+  }
+},
+```
+
+Append this entry to the route array in `client/routes.ts`:
 
 ```ts
 {
-  name: 'portal1Details',
-  path: '/portals/portal-1/details',
+  name: 'portal1Examples',
+  path: '/portals/portal-1/examples',
   auth: 'required',
   authz: 'unrestricted',
-  breadcrumb: { title: 'detailsTitle' },
-  componentLoader: () => import('./pages/details.js'),
+  breadcrumb: { title: 'examples.title' },
+  componentLoader: () => import('./pages/examples.js'),
 }
 ```
 
@@ -185,13 +234,15 @@ Keep the existing Overview item and append the following to `navigation`. The ge
 
 ```ts
 {
-  path: `${portal.entry}/details`,
-  title: tPortal('detailsTitle'),
+  path: `${portal.entry}/examples`,
+  title: tPortal('examples.title'),
   icon: ChartNoAxesCombined,
 }
 ```
 
-Clicking **Details** should display the introduction. Opening `/main/portals/portal-1/details` directly and refreshing should work too; substitute your actual app base path if it is not `/main`. Routes determine page matching and access; navigation provides entry points. Maintain both.
+Clicking **Examples** should display the three sample records. Opening `/main/portals/portal-1/examples` directly and refreshing should work too; substitute your actual app base path if it is not `/main`. Routes determine page matching and access; navigation provides entry points. Maintain both.
+
+![The new Examples navigation entry and page in Portal 1](/assets/core/multi-portal/develop/examples.png)
 
 ## Adjust the portal layout
 

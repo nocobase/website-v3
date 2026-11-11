@@ -11,3 +11,9 @@
 - Examples-page screenshot: the final example replaces the temporary Details page with three static, translated records (Basic page, Navigation entry and Localized text). Its page, route, navigation and locale resource match the article. The preview retains Examples for review. `examples.png` is captured at 1280 × 640 CSS pixels and device scale factor 2. Verified direct access, refresh, navigation and a 390 px viewport; the generated package has no unit tests, so browser verification supplies the behavior checks.
 
 - Layout example: applied the documented `mx-auto w-full max-w-5xl` container in the portal’s `client/layout.tsx`. Captured `layout.png` at 1600 × 800 CSS pixels with device scale factor 2 (3200 × 1600 PNG). Verified direct access, refresh, Overview → Examples navigation and no horizontal overflow at 390 px. The portal package check passed. The preview retains this layout for review.
+
+## Portal management guide
+
+- Rechecked OSS `origin/v3-develop` at `74f1bf8bf713b0867975bcf8be116aa7419e8c9d` and Pro `origin/develop` at `211a22b03a68fc98f04b610f4cac091cd729d975`. The primary OSS checkout still contains unrelated changes and was not overwritten; fetched source was inspected with Git.
+- Reused the running minimal Portal 1 app and its PR #131 plugin snapshot for English screenshots. Captured management list, installed-portal action menu and uninstall confirmation at 1280 × 720 CSS pixels / DPR 2 (2560 × 1440 PNG). No UI state was fabricated. The confirmation was cancelled; the portal remains installed.
+- Checked name search with a matching and non-matching query and verified the Open/Uninstall menu and cancellation. Installation, failure recovery, dependencies and upgrade behavior were checked against implementation; this screenshot session did not execute uninstall/reinstall, manufacture failures or test database recovery.

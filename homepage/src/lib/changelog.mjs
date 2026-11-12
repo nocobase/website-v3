@@ -1,15 +1,16 @@
-// 更新日志：content/changelog/ 里每个条目一个 JSON 文件，生成分页的时间线 changelog、changelog/page/<n>，每页 PAGE_SIZE 条，每条直接显示完整的更新说明，没有单独的详情页。
+// 更新日志：content/changelog/ 里每个条目一组 Markdown 文件（<id>.md 英文，<id>.zh-CN.md、<id>.ja-JP.md 翻译，YAML front matter 加正文），生成分页的时间线 changelog、changelog/page/<n>，每页 PAGE_SIZE 条，每条直接显示完整的更新说明，没有单独的详情页。
 // 条目由 nocobase 仓库的发版流程自动提交（格式见 content/changelog/README.md）：
-// - 发版条目（type: release）：<channel>-<version>.json，标题、渠道（beta / stable）、日期、GitHub Release 地址和各语言的更新说明（Markdown，取自 CHANGELOG.md、CHANGELOG.zh-CN.md、CHANGELOG.ja-JP.md 里这个版本的那一节）。
-// - 公告条目（type: announcement）：大版本发布时手写的，只有标题和摘要，整张卡片链接到博客文章（href 写源文件名 blog/<slug>.html，或 https 地址）。
+// - 发版条目（type: release）：<channel>-<version>.md，front matter 是标题、渠道（beta / stable）、日期、GitHub Release 地址，正文是这个版本在 CHANGELOG.md（翻译文件对应 CHANGELOG.zh-CN.md、CHANGELOG.ja-JP.md）里的那一节。
+// - 公告条目（type: announcement）：大版本发布时手写的，只有标题和摘要（各语言文件各写各的），整张卡片链接到博客文章（href 写源文件名 blog/<slug>.html，或 https 地址）。
 // 排序：date 倒序，同一天按版本号的 <n> 倒序，再按 publishedAt 倒序；同一天的公告排在发版条目前面。
 // 页面有英文、简体中文和日文（ja-JP）；某种语言的更新说明缺了显示英文。其他语言在语言菜单里链接到英文版。
-// 每条有 id（文件名去掉 .json），卡片标题链接到第一页的 #<id>；条目翻到后面的页以后，第一页的脚本按 id 跳到它所在的页，已经发出去的链接不会失效。
+// 每条有 id（英文文件名去掉 .md），卡片标题链接到第一页的 #<id>；条目翻到后面的页以后，第一页的脚本按 id 跳到它所在的页，已经发出去的链接不会失效。
 // 预览：环境变量 CHANGELOG_DIR 换成另一个目录（比如示例数据），不要把假的条目提交进 content/changelog/。
 // v2 及更早的版本在旧官网的更新日志里，页面顶部有链接。
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { marked } from 'marked';
+import { parse } from 'yaml';
 import { escapeAttr, escapeText } from './html.mjs';
 import { CONTENT } from './paths.mjs';
 
@@ -35,8 +36,8 @@ const UI = {
   read: ['Read the announcement', '阅读发布公告', 'お知らせを読む'],
   permalink: ['Link to this release', '本条目的链接', 'このリリースへのリンク'],
   empty: ['NocoBase 3 releases will be listed here.', 'NocoBase 3 的版本发布后会列在这里。', 'NocoBase 3 のリリースはここに掲載されます。'],
-  newer: ['Newer', '较新', '新しい'],
-  older: ['Older', '较早', '古い'],
+  newer: ['Previous', '上一页', '前へ'],
+  older: ['Next', '下一页', '次へ'],
   pages: ['Pages', '分页', 'ページ'],
   title: ['Release Notes — NocoBase', '更新日志 — NocoBase', 'リリースノート — NocoBase'],
   titleN: ['Release Notes — Page {n} — NocoBase', '更新日志 — 第 {n} 页 — NocoBase', 'リリースノート — {n} ページ目 — NocoBase'],
@@ -53,28 +54,58 @@ export function fmtDate(d, lang) {
 // ======================= 读取和排序 =======================
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
-// 读一个目录里的条目（*.json，README 等其他文件不管）。格式不对直接报错，让构建失败（线上保持上一个版本），而不是悄悄少一条。
+// 翻译文件的后缀（<id>.zh-CN.md、<id>.ja-JP.md），英文是 <id>.md
+const TRANSLATIONS = ['zh-CN', 'ja-JP'];
+
+// 拆出 YAML front matter 和正文。yaml 默认的 core schema 不把 2026-11-12 解析成 Date（不会按时区偏一天），这里再统一转成字符串
+export function parseEntryFile(src, name) {
+  const m = /^---\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)([\s\S]*)$/.exec(src.replace(/^\uFEFF/, ''));
+  if (!m) throw new Error(`更新日志条目 ${name}：开头要有 --- 包起来的 front matter`);
+  let data;
+  try {
+    data = parse(m[1]) ?? {};
+  } catch (err) {
+    throw new Error(`更新日志条目 ${name}：front matter 不是合法的 YAML：${err.message}`);
+  }
+  if (typeof data !== 'object' || Array.isArray(data)) throw new Error(`更新日志条目 ${name}：front matter 要是键值对`);
+  for (const k of Object.keys(data)) if (data[k] instanceof Date) data[k] = data[k].toISOString().replace(/T00:00:00\.000Z$/, '');
+  for (const k of Object.keys(data)) if (typeof data[k] === 'number') data[k] = String(data[k]);
+  return { data, body: m[2].trim() };
+}
+
+// 读一个目录里的条目：<id>.md 是英文（必需），<id>.zh-CN.md、<id>.ja-JP.md 是可选的翻译，README.md 和其他文件不管。
+// 合成和以前一样的结构：{ id, type, date, …, notes: { en, 'zh-CN', 'ja-JP' } }（发版条目），公告的 title、summary 是 { en, 'zh-CN', 'ja-JP' }。
+// 格式不对直接报错，让构建失败（线上保持上一个版本），而不是悄悄少一条。
 export function readEntries(dir = changelogDir()) {
   if (!existsSync(dir)) return [];
-  return readdirSync(dir).filter(f => f.endsWith('.json')).sort().map(f => {
-    const id = f.slice(0, -'.json'.length);
-    let e;
-    try {
-      e = JSON.parse(readFileSync(join(dir, f), 'utf8'));
-    } catch (err) {
-      throw new Error(`更新日志条目 ${f} 不是合法的 JSON：${err.message}`);
-    }
-    const bad = msg => new Error(`更新日志条目 ${f}：${msg}`);
+  const files = readdirSync(dir).filter(f => f.endsWith('.md') && !/^readme\.md$/i.test(f)).sort();
+  const groups = new Map();
+  for (const f of files) {
+    const base = f.slice(0, -'.md'.length);
+    const lang = TRANSLATIONS.find(l => base.endsWith('.' + l)) ?? 'en';
+    const id = lang === 'en' ? base : base.slice(0, -(lang.length + 1));
+    if (!groups.has(id)) groups.set(id, {});
+    groups.get(id)[lang] = { f, ...parseEntryFile(readFileSync(join(dir, f), 'utf8'), f) };
+  }
+  return [...groups].map(([id, langs]) => {
+    const en = langs.en;
+    if (!en) throw new Error(`更新日志条目 ${Object.values(langs)[0].f}：只有翻译，没有英文的 ${id}.md`);
+    const bad = msg => new Error(`更新日志条目 ${en.f}：${msg}`);
     if (!/^[a-z0-9][a-z0-9.-]*$/i.test(id)) throw bad('文件名只能有字母、数字、点和连字符');
+    const e = { ...en.data, id };
     if (!DATE.test(e.date || '')) throw bad('date 要写成 YYYY-MM-DD');
     if (e.type === 'release') {
       if (!['beta', 'stable'].includes(e.channel)) throw bad('channel 只能是 beta 或 stable');
-      if (!e.title || !e.version || !e.notes || typeof e.notes.en !== 'string') throw bad('发版条目要有 title、version 和英文的 notes.en');
+      if (!e.title || !e.version) throw bad('发版条目要有 title 和 version');
+      if (!en.body) throw bad('发版条目的英文正文（更新说明）不能为空');
+      e.notes = { en: en.body };
+      for (const l of TRANSLATIONS) if (langs[l]?.body) e.notes[l] = langs[l].body;
     } else if (e.type === 'announcement') {
-      if (!text(e.title, 'en') || !e.href) throw bad('公告条目要有英文标题和 href');
+      if (!e.title || !e.href) throw bad('公告条目要有 title 和 href');
       if (!/^(https:\/\/|blog\/[^/]+\.html$|[a-z][a-z0-9-]*\.html$)/.test(e.href)) throw bad('href 要写源文件名（blog/<slug>.html）或 https 地址');
+      for (const k of ['title', 'summary']) e[k] = Object.fromEntries([['en', en.data[k]], ...TRANSLATIONS.map(l => [l, langs[l]?.data[k]])].filter(([, v]) => v));
     } else throw bad('type 只能是 release 或 announcement');
-    return { ...e, id };
+    return e;
   });
 }
 

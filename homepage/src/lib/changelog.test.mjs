@@ -4,32 +4,68 @@ import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'vitest';
-import { changelogPages, hasChangelog, pageId, pageNumbers, paginate, readEntries, renderNotes, sortEntries, stripAuthors } from './changelog.mjs';
+import { stringify } from 'yaml';
+import { changelogPages, hasChangelog, pageId, pageNumbers, paginate, parseEntryFile, readEntries, renderNotes, sortEntries, stripAuthors } from './changelog.mjs';
 
 const release = (channel, version, extra = {}) => ({
   type: 'release', tag: `${channel === 'beta' ? 'nocobase-v3-beta' : 'release'}/${version}`, channel, version,
   title: `NocoBase v3 ${channel === 'beta' ? 'Beta ' : ''}· ${version}`, date: version.split('.')[0], publishedAt: `${version.split('.')[0]}T08:00:00Z`,
   url: `https://github.com/nocobase/nocobase/releases/tag/x`, notes: { en: `### 🐛 Bug Fixes\n\n- **[Server]** Fix ${version}. ([#1](https://github.com/nocobase/nocobase/pull/1)) by @someone` }, ...extra,
 });
+// 条目对象 → 发版流程写出的文件：<id>.md（英文）和 <id>.<语言>.md，front matter 加正文
+const SUFFIX = { en: '', 'zh-CN': '.zh-CN', 'ja-JP': '.ja-JP' };
+const file = (data, body = '') => `---\n${stringify(data)}---\n\n${body}\n`;
+function entryFiles(id, e) {
+  const out = {};
+  if (e.type === 'release') {
+    const { notes, ...fm } = e;
+    for (const [l, body] of Object.entries(notes)) out[`${id}${SUFFIX[l]}.md`] = file(fm, body);
+  } else {
+    const per = v => (typeof v === 'string' ? { en: v } : v || {});
+    const { title, summary, ...fm } = e;
+    for (const l of Object.keys(per(title))) out[`${id}${SUFFIX[l]}.md`] = file({ ...fm, title: per(title)[l], ...(per(summary)[l] && { summary: per(summary)[l] }) });
+  }
+  return out;
+}
+// 键是文件名（带 .md 或其他后缀）时原样写，否则键是条目 id、值是条目对象
 function dir(files) {
   const d = mkdtempSync(join(tmpdir(), 'changelog-'));
-  for (const [name, v] of Object.entries(files)) writeFileSync(join(d, name), typeof v === 'string' ? v : JSON.stringify(v));
+  for (const [name, v] of Object.entries(files)) {
+    if (typeof v === 'string') writeFileSync(join(d, name), v);
+    else for (const [f, text] of Object.entries(entryFiles(name, v))) writeFileSync(join(d, f), text);
+  }
   return d;
 }
 
-test('entries are read from JSON files only, with the file name as id', () => {
-  const d = dir({ 'beta-2026-11-12.1.json': release('beta', '2026-11-12.1'), 'README.md': '# not an entry', '.gitkeep': '' });
-  assert.deepEqual(readEntries(d).map(e => e.id), ['beta-2026-11-12.1']);
+test('entries are read from Markdown files, with the English file name as id and translations merged in', () => {
+  const d = dir({ 'beta-2026-11-12.1': release('beta', '2026-11-12.1', { notes: { en: '- English', 'zh-CN': '- 中文' } }), 'README.md': '# not an entry', '.gitkeep': '' });
+  const [e] = readEntries(d);
+  assert.equal(readEntries(d).length, 1);
+  assert.equal(e.id, 'beta-2026-11-12.1');
+  assert.deepEqual(e.notes, { en: '- English', 'zh-CN': '- 中文' });
+  assert.equal(e.date, '2026-11-12');
+  assert.equal(e.version, '2026-11-12.1');
   assert.equal(hasChangelog(d), true);
   assert.equal(hasChangelog(dir({ 'README.md': '' })), false);
   assert.deepEqual(readEntries(join(d, 'missing')), []);
 });
 
+test('dates stay plain strings whatever the YAML says', () => {
+  const { data, body } = parseEntryFile('---\ndate: 2026-11-12\npublishedAt: 2026-11-12T08:31:00Z\nversion: 2026-11-12.1\nn: 3\n---\n\n- note\n', 'x.md');
+  assert.deepEqual(data, { date: '2026-11-12', publishedAt: '2026-11-12T08:31:00Z', version: '2026-11-12.1', n: '3' });
+  assert.equal(body, '- note');
+  assert.equal(parseEntryFile('---\ndate: !!timestamp 2026-11-12\n---\n', 'x.md').data.date, '2026-11-12');
+});
+
 test('a malformed entry fails the build with the file name', () => {
-  assert.throws(() => readEntries(dir({ 'beta-x.json': '{' })), /beta-x\.json/);
-  assert.throws(() => readEntries(dir({ 'a.json': release('nightly', '2026-11-12.1') })), /channel/);
-  assert.throws(() => readEntries(dir({ 'a.json': release('beta', '2026-11-12.1', { date: '12/11/2026' }) })), /date/);
-  assert.throws(() => readEntries(dir({ 'a.json': { type: 'announcement', date: '2026-12-01', title: { en: 'x' }, href: 'javascript:alert(1)' } })), /href/);
+  assert.throws(() => readEntries(dir({ 'beta-x.md': '- no front matter' })), /beta-x\.md/);
+  assert.throws(() => readEntries(dir({ 'beta-x.md': '---\ntitle: [unclosed\n---\n' })), /beta-x\.md.*YAML/);
+  assert.throws(() => readEntries(dir({ a: release('nightly', '2026-11-12.1') })), /channel/);
+  assert.throws(() => readEntries(dir({ a: release('beta', '2026-11-12.1', { date: '12/11/2026' }) })), /date/);
+  assert.throws(() => readEntries(dir({ a: release('beta', '2026-11-12.1', { notes: { en: '' } }) })), /正文/);
+  assert.throws(() => readEntries(dir({ a: { type: 'announcement', date: '2026-12-01', title: 'x', href: 'javascript:alert(1)' } })), /href/);
+  // 只有翻译没有英文
+  assert.throws(() => readEntries(dir({ a: release('beta', '2026-11-12.1', { notes: { 'zh-CN': '- 中文' } }) })), /a\.zh-CN\.md.*a\.md/);
 });
 
 test('newest date first, then the release number, then publishedAt; announcements lead their day', () => {
@@ -98,9 +134,9 @@ test('pages in English, Chinese and Japanese, with English notes when a language
   const files = {};
   for (let d = 1; d <= 12; d++) {
     const v = `2026-11-${String(d).padStart(2, '0')}.1`;
-    files[`beta-${v}.json`] = release('beta', v, d === 12 ? { notes: { en: '- English note', 'zh-CN': '- 中文说明' } } : {});
+    files[`beta-${v}`] = release('beta', v, d === 12 ? { notes: { en: '- English note', 'zh-CN': '- 中文说明' } } : {});
   }
-  files['v3-0.json'] = { type: 'announcement', date: '2026-11-01', title: { en: 'NocoBase 3.0', 'zh-CN': 'NocoBase 3.0 发布' }, summary: { en: 'Big one.' }, href: 'blog/nocobase-3-0.html' };
+  files['v3-0'] = { type: 'announcement', date: '2026-11-01', title: { en: 'NocoBase 3.0', 'zh-CN': 'NocoBase 3.0 发布' }, summary: { en: 'Big one.' }, href: 'blog/nocobase-3-0.html' };
   const pages = changelogPages(dir(files));
   assert.deepEqual(pages.map(p => p.id), ['changelog', 'changelog/page/2']);
   const [first, second] = pages;

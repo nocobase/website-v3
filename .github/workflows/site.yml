@@ -28,6 +28,7 @@ name: Site
 # - `notify` posts a red card to the release Feishu group when `build` or `publish` fails for `main` (a push or a manual
 #   run; never a pull request, whose failure shows on the pull request). It checks out and runs no repository code: the
 #   card is assembled with `jq` in the step itself, in the format of nocobase/nocobase's `scripts/feishu-notify.sh`.
+#   Titles are 「NocoBase 官网构建失败」 / 「NocoBase 官网发布失败」; there is no success notification.
 #   The webhook is the repository secret `RELEASE_RESULT_FEISHU_WEBHOOK_URL` (the same name as in nocobase/nocobase); when
 #   it is not set, the job only prints a warning. A malformed changelog entry fails `build` with an error that names the
 #   file, so the card's link to the run leads straight to it.
@@ -316,21 +317,25 @@ jobs:
             exit 0
           fi
 
-          if [ "$BUILD_RESULT" = "failure" ]; then
-            TITLE="Website build failed"
-            WHAT="官网构建失败，没有发布，线上仍是上一个版本。常见原因：链接指向不存在的页面、译文格式错误、更新日志条目（homepage/content/changelog/）格式不对，构建日志里会写出是哪个文件。"
-          else
-            TITLE="Website publish failed"
-            WHAT="官网构建成功，但发布到 OSS / CDN 失败，线上可能仍是上一个版本。"
-          fi
           SUBJECT="$(printf '%s' "$COMMIT_MESSAGE" | head -n 1)"
           COMMIT_LINE="[\`${SHA:0:8}\`]($COMMIT_URL)${SUBJECT:+ $SUBJECT}"
-          CONTENT="$WHAT
+          if [ "$BUILD_RESULT" = "failure" ]; then
+            TITLE="NocoBase 官网构建失败"
+            STATUS_TEXT="未发布，线上保持上一版本"
+            CONTENT="**提交**：$COMMIT_LINE
+          **作者**：${COMMIT_AUTHOR:-$ACTOR}
 
-          **提交**：$COMMIT_LINE
-          **作者**：${COMMIT_AUTHOR:-$ACTOR}"
+          如果是更新日志条目格式有误，日志里会写出文件名。"
+          else
+            TITLE="NocoBase 官网发布失败"
+            STATUS_TEXT="需要人工处理"
+            CONTENT="**提交**：$COMMIT_LINE
+          **作者**：${COMMIT_AUTHOR:-$ACTOR}
+
+          构建成功，但上传或切换 CDN 失败，CDN 可能仍指向上一版本。"
+          fi
           # Same footer as feishu-notify.sh. The colon sits outside `**` so the stricter Markdown of card 2.0 keeps the bold.
-          FOOTER="**状态**：❌ 失败
+          FOOTER="**状态**：❌ $STATUS_TEXT
           **时间**：$(TZ=Asia/Shanghai date +"%Y-%m-%d %H:%M:%S")
           **触发者**：$ACTOR
           **仓库**：$REPOSITORY"

@@ -2,6 +2,7 @@
 // 其他语言的译文在 content/i18n/site.<语言>.yaml（键是这里的英文原文，pnpm i18n:extract 从这里抽取）。
 // 站内链接写成 core.html 这样的源文件名，生成页面时换成各语言的地址。
 import { githubStars } from '@nocobase/site-shared/config';
+import { hasChangelog } from './changelog.mjs';
 import { LANGS } from './config.mjs';
 import { zhDocLinks } from './links.mjs';
 
@@ -42,9 +43,10 @@ export function makeHref(resolve, lang) {
 
 /**
  * 导航和页脚的参数，文字还是中英双语的 HTML。active 是本页的 page（core、blog……，首页是 home）。
+ * changelog：content/changelog/ 里有没有条目；有才把「更新日志」做成链接，没有时置灰（空的更新日志页不值得从导航点进去）。
  * 返回 { header, footer }，字符串字段里的 <t-zh>/<t-en> 由调用方一次处理完（见 site.mjs 的 localizeAll），href 是源文件名。
  */
-export function navSpec(active, { stars = githubStars() } = {}) {
+export function navSpec(active, { stars = githubStars(), changelog = hasChangelog() } = {}) {
   const on = k => k === active;
   const item = x => (x[5]
     ? { icon: x[2], title: x[3], desc: x[4], soon: 'Coming soon' }
@@ -69,8 +71,8 @@ export function navSpec(active, { stars = githubStars() } = {}) {
           { href: DOCS, icon: 'book-open', title: T('文档', 'Docs'), desc: T('上手指南、核心能力与扩展开发参考', 'Guides, core capabilities, and API reference'), external: true },
           { href: 'customers.html', icon: 'building-2', title: T('客户案例', 'Customers'), desc: T('看看各行业团队如何用 NocoBase 搭建核心系统', 'How teams run core systems on NocoBase'), active: on('customers') },
           { href: 'blog.html', icon: 'newspaper', title: T('博客', 'Blog'), desc: T('产品思考、工程实践与方法论', 'Product thinking and engineering practices'), active: on('blog') },
-          // 更新日志：还没有已发布的 v3 版本，暂不开放，置灰不可点击；有内容后改回 { href: 'changelog.html', … }，页脚里的也一起改
-          { icon: 'history', title: T('更新日志', 'Changelog'), desc: T('每次版本迭代的新能力与改进', 'What shipped in every release'), soon: '' },
+          // 更新日志：content/changelog/ 里还没有条目时置灰不可点击，有了自动变成链接（页脚的同样处理）
+          { ...(changelog ? { href: 'changelog.html', active: on('changelog') } : { soon: '' }), icon: 'history', title: T('更新日志', 'Changelog'), desc: T('每次版本迭代的新能力与改进', 'What shipped in every release') },
           { href: FORUM, icon: 'messages-square', title: T('社区', 'Community'), desc: T('在论坛提问、交流经验与反馈建议', 'Ask questions and share patterns'), external: true },
           { href: 'license.html', icon: 'scale', title: T('许可协议', 'License Agreement'), desc: T('开源与商业许可的权利和义务', 'Open source and commercial license terms'), active: on('license') },
           { href: 'contact.html', icon: 'mail', title: T('联系我们', 'Contact Us'), desc: T('商务合作、产品咨询与技术支持', 'Partnerships, product questions, and support') },
@@ -103,7 +105,7 @@ export function navSpec(active, { stars = githubStars() } = {}) {
       { title: T('产品', 'Products'), links: [...PRODUCTS.map(x => ({ href: x[1], label: x[3] })), { href: NOCODE, label: T('NocoBase 2 无代码 ↗', 'NocoBase 2 No-code ↗'), external: true }] },
       { title: T('定价与许可', 'Pricing &amp; License'), links: [{ href: 'pricing.html', label: T('版本与价格', 'Editions &amp; Pricing') }, { href: 'license.html', label: T('许可协议', 'License') }, { href: NOCODE, label: 'NocoBase 2.x ↗', external: true }] },
       { title: T('伙伴', 'Partners'), links: [{ href: 'partner.html', label: T('合作伙伴计划', 'Partner Program') }, { href: 'find-partner.html', label: T('寻找 NocoBase 伙伴', 'Find a Partner') }, { href: 'customers.html', label: T('客户案例', 'Customers') }] },
-      { title: T('资源', 'Resources'), links: [{ href: DOCS, label: T('文档', 'Docs'), external: true }, { href: 'blog.html', label: T('博客', 'Blog') }, { label: T('更新日志', 'Changelog') }] },
+      { title: T('资源', 'Resources'), links: [{ href: DOCS, label: T('文档', 'Docs'), external: true }, { href: 'blog.html', label: T('博客', 'Blog') }, { ...(changelog && { href: 'changelog.html' }), label: T('更新日志', 'Changelog') }] },
       { title: T('联系', 'Connect'), links: [{ href: 'contact.html', label: T('联系我们', 'Contact Us') }, { href: FORUM, label: T('社区论坛', 'Forum'), external: true }, { href: GITHUB, label: 'GitHub', external: true }] },
     ],
     copyright: '© 2020-2026 NocoBase. All rights reserved.',

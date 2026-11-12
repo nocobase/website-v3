@@ -364,13 +364,14 @@ const { can } = useCan({
 
 ## サンプルのソースとセットアップ
 
-[完全な Customer Access アプリ][source] は、既定のテンプレート `1.0.0-beta.85`、Node.js 24、pnpm 11.7.0 を使います。ロックファイルで、認証 `2.0.0-beta.16`、認可 `1.0.0-beta.33`、データベース `1.0.0-beta.24` を含む依存関係を固定しています。
+[完全な Customer Access アプリ][source] は、既定のテンプレート `1.0.0-beta.85`、Node.js 24、pnpm 11.11.0 を使います。ロックファイルで、認証 `2.0.0-beta.16`、認可 `1.0.0-beta.33`、データベース `1.0.0-beta.24` を含む依存関係を固定しています。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 5c9b1dcae021f4e4ae94416e783e3e84a71a1781
 cd apps/customer-access
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

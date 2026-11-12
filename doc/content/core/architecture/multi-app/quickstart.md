@@ -5,7 +5,7 @@ description: Create a Main/Sub workspace, prepare HTTPS, explicitly initialize a
 
 ## Version prerequisites and workspace creation
 
-Prepare Node.js 24 or newer, pnpm 11.7.0, and compatible [commercial plugins](overview.md) with a license and package-download access.
+Prepare Node.js 24 or newer, pnpm 11.11.0, and compatible [commercial plugins](overview.md) with a license and package-download access.
 
 > [!NOTE]
 > These commands require a released create-app supporting `multi-app`, an available `@nocobase/app-template-multi-app`, and compatible commercial packages in your registry. If those releases are unavailable, an older CLI or a different template cannot substitute for this workflow. Source availability does not establish package publication.

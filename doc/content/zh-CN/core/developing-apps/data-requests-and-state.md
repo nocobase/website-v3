@@ -294,13 +294,14 @@ pnpm exec playwright test tests/playwright/customers.test.ts
 
 ### 运行环境与启动方式
 
-需要 Node.js 24 或更高版本；应用的 `packageManager` 指定 pnpm `11.7.0`，锁文件固定依赖。以下命令用 SQLite 快速启动；它是本示例的运行选择，不是 API Client 或这些 Hooks 的使用前提。
+使用 Node.js 24 或更高版本和 pnpm 11.11.0，依赖版本由锁文件固定。以下命令用 SQLite 快速启动；它是本示例的运行选择，不是 API Client 或这些 Hooks 的使用前提。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 0db1a6aade41a18757f5a709aacd2df695fcf7f8
 cd apps/customer-directory
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

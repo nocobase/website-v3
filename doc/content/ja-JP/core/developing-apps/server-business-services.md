@@ -307,13 +307,14 @@ HTTP の入口は、`ORDER_UNAVAILABLE` を 404 に、在庫不足や状態の�
 
 ### インストールと起動
 
-[サンプルの全体と README](https://github.com/nocobase/docs-examples-v3/blob/89d899c436563335529aba9b75fbc12b5dc0db34/apps/order-services/README.md) には、ソースの対応と詳しい手順が記載されています。Node.js 24 と pnpm 11.7.0 を使います。公開済みの依存関係は固定されており、`@nocobase/app-server` `3.0.0-beta.4`、`@nocobase/db` `1.0.0-beta.23`、`@nocobase/service-provider` `0.0.2-beta.2` を含みます。
+[サンプルの全体と README](https://github.com/nocobase/docs-examples-v3/blob/89d899c436563335529aba9b75fbc12b5dc0db34/apps/order-services/README.md) には、ソースの対応と詳しい手順が記載されています。Node.js 24 と pnpm 11.11.0 を使います。公開済みの依存関係は固定されており、`@nocobase/app-server` `3.0.0-beta.4`、`@nocobase/db` `1.0.0-beta.23`、`@nocobase/service-provider` `0.0.2-beta.2` を含みます。
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 89d899c436563335529aba9b75fbc12b5dc0db34
 cd apps/order-services
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm setup
 pnpm start

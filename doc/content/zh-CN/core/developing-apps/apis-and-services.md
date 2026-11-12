@@ -423,13 +423,14 @@ pnpm exec vitest run tests/server/catalog.test.ts tests/database/catalog.test.ts
 
 [Product Catalog 完整源码](https://github.com/nocobase/docs-examples-v3/tree/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog)包含三类路由、商品服务、数据迁移、英文演示数据、权限配置和测试。
 
-示例使用默认模板 `1.0.0-beta.85`，需要 Node.js 24 或更高版本及 pnpm 11.7.0。锁文件固定本例使用的依赖；安装配置、各用法与源码的对应关系见 [README](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/README.md)。
+示例使用默认模板 `1.0.0-beta.85`，需要 Node.js 24 或更高版本及 pnpm 11.11.0。锁文件固定本例使用的依赖；安装配置、各用法与源码的对应关系见 [README](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/README.md)。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 0639e6a2a6cba857bf967757083e9f8d7aa6b9fe
 cd apps/product-catalog
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

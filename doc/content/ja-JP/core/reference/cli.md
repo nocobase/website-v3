@@ -7,6 +7,8 @@ description: アプリのコマンドの入口、ソースとデプロイの違�
 
 ## 入口
 
+pnpm 11.11.0 を使用します。
+
 アプリのソースのルートで、ローカルの依存関係のコマンドを実行します。
 
 ```bash
@@ -154,4 +156,4 @@ pnpm nocobase config check --no-connect --json
 
 ## 検証の範囲
 
-2026-10-27 に、既定のテンプレート beta.83、`@nocobase/app-cli` 1.0.0-beta.29、Node 24.21.0、pnpm 11.7.0 で確認しました。ソースとデプロイのコマンドのカタログ、オフラインでの設定の検証、変数のメタデータ、オプションのヘルプ、ローカルの announcements プラグインの登録のプレビューです。リセット、ロールバック、キーのローテーションなどの状態を変える操作は、このページのためには実行していません。[app-cli のソース](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/app/app-cli) を参照してください。
+2026-10-27 に、既定のテンプレート beta.83、`@nocobase/app-cli` 1.0.0-beta.29、Node 24.21.0 で確認しました。ソースとデプロイのコマンドのカタログ、オフラインでの設定の検証、変数のメタデータ、オプションのヘルプ、ローカルの announcements プラグインの登録のプレビューです。リセット、ロールバック、キーのローテーションなどの状態を変える操作は、このページのためには実行していません。[app-cli のソース](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/app/app-cli) を参照してください。

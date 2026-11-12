@@ -294,13 +294,14 @@ pnpm exec playwright test tests/playwright/customers.test.ts
 
 ### 要件と起動
 
-Node.js 24 以降を使います。アプリの `packageManager` は pnpm `11.7.0` を指定しており、ロックファイルで依存関係のバージョンを固定しています。これらのコマンドはすぐに始められるよう SQLite を使っていますが、それはこの例での選択で、API Client やフックの前提条件ではありません。
+Node.js 24 以降と pnpm 11.11.0 を使います。依存関係のバージョンはロックファイルで固定されています。これらのコマンドはすぐに始められるよう SQLite を使っていますが、それはこの例での選択で、API Client やフックの前提条件ではありません。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 0db1a6aade41a18757f5a709aacd2df695fcf7f8
 cd apps/customer-directory
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

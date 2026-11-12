@@ -1,9 +1,9 @@
 ---
 title: 准备开发环境
-metaDescription: 装好 Node.js 24、pnpm 11.7 和 Git，Windows 用户准备好 WSL。
+metaDescription: 装好 Node.js 24、pnpm 11.11 和 Git，Windows 用户准备好 WSL。
 ---
 
-需要 Node.js 24 及以上、pnpm 11.7 及以上和 Git，命令都在类 Unix 终端里运行。
+需要 Node.js 24 及以上、pnpm 11.11 及以上和 Git，命令都在类 Unix 终端里运行。
 
 ## Windows 用户：先装 WSL
 
@@ -30,7 +30,7 @@ fnm install 24
 然后安装 pnpm：
 
 ```bash
-npm install -g pnpm@11
+npm install -g pnpm@11.11
 ```
 
 装完打开一个新终端。
@@ -44,4 +44,4 @@ git config --global user.name "你的名字"
 git config --global user.email "you@example.com"
 ```
 
-**完成的标志**：`node --version` 显示 `v24` 或更高，`pnpm --version` 显示 11.7 或更高，`git config user.name` 显示你的名字。
+**完成的标志**：`node --version` 显示 `v24` 或更高，`pnpm --version` 显示 11.11 或更高，`git config user.name` 显示你的名字。

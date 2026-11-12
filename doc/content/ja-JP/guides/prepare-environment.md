@@ -1,9 +1,9 @@
 ---
 title: 開発環境を準備する
-metaDescription: Node.js 24、pnpm 11.7、Git をインストールし、Windows の場合は WSL を設定します。
+metaDescription: Node.js 24、pnpm 11.11、Git をインストールし、Windows の場合は WSL を設定します。
 ---
 
-Node.js 24 以降、pnpm 11.7 以降、Git が必要で、すべてのコマンドは Unix 系のターミナルで実行します。
+Node.js 24 以降、pnpm 11.11 以降、Git が必要で、すべてのコマンドは Unix 系のターミナルで実行します。
 
 ## Windows の場合：先に WSL をインストールする
 
@@ -30,7 +30,7 @@ fnm install 24
 続いて pnpm をインストールします。
 
 ```bash
-npm install -g pnpm@11
+npm install -g pnpm@11.11
 ```
 
 終わったら、新しいターミナルを開きます。
@@ -44,4 +44,4 @@ git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
 
-**完了の条件**：`node --version` に `v24` 以降、`pnpm --version` に 11.7 以降が表示され、`git config user.name` に自分の名前が表示されること。
+**完了の条件**：`node --version` に `v24` 以降、`pnpm --version` に 11.11 以降が表示され、`git config user.name` に自分の名前が表示されること。

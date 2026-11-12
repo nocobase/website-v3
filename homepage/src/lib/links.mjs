@@ -73,8 +73,8 @@ export function zhDocLinks(text) {
   return text.replace(/https:\/\/docs\.nocobase\.com\/(?!zh-CN\/)([^"'\s<>]*)/g, (m, path) => (DOCS_V3.has(path.split(/[/#?]/)[0]) ? `https://docs.nocobase.com/zh-CN/${path}` : m));
 }
 
-// 源文件里的站内链接：core.html、index.html、blog/<slug>.html，前面可能带 ../
-const SRC_LINK = String.raw`(?:\.\./)*((?:blog|customers|changelog)/[^"'#?/\s]+|[a-z][a-z0-9-]*)\.html((?:#[^"'\s]*)?)`;
+// 源文件里的站内链接：core.html、index.html、blog/<slug>.html、changelog/page/<n>.html，前面可能带 ../
+const SRC_LINK = String.raw`(?:\.\./)*(changelog/page/\d+|(?:blog|customers|changelog)/[^"'#?/\s]+|[a-z][a-z0-9-]*)\.html((?:#[^"'\s]*)?)`;
 
 // resolve(源文件名) 返回该页在本页语言的地址，没有这页时返回 null（链接保留原样，由 check 报错）
 export function rewrite(text, resolve) {

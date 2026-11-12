@@ -108,7 +108,7 @@ jobs:
           fi
 
       # The CMS workflow "Website_v3_github_sync" pushes articles (published and drafts) to homepage/content/blog/cms/ every
-      # hour; regenerate posts.json and releases.json from them here so a CMS push is live without anyone running
+      # hour; regenerate posts.json from them here so a CMS push is live without anyone running
       # `pnpm cms:import` by hand. It runs after the figures check because that check diffs homepage/content.
       - name: Import the CMS articles
         run: pnpm --filter homepage cms:import

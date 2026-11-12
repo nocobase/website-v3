@@ -6,7 +6,7 @@
 // - content/pages/<名称>.body.html：子页面，头部写了 i18n: <组> 的有 12 种语言，没写的只有英文和简体中文（NocoReach）；404.body.html 只有英文。
 // - content/blog/：博客、客户案例（blog.mjs），有英文和简体中文；有日文正文的博客文章、客户案例和两个列表页另有日文版（ja-JP）。
 // - content/changelog/：更新日志（changelog.mjs），分页的时间线，有英文、简体中文和日文（ja-JP）。
-// 只有英文和简体中文的页面，语言菜单里其他语言链接到它的英文版。
+// 只有英文和简体中文的页面，语言菜单和站内链接里繁体中文链接到简体中文版，其他语言链接到英文版。
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { githubStars } from '@nocobase/site-shared/config';
@@ -37,8 +37,10 @@ export class Page {
     return '/' + (d ? d + '/' : '') + (this.id ? this.id + '/' : '');
   }
 
+  // 没有这种语言的页面：繁体中文先退到简体中文，其余退到英文
   url(lang) {
-    return this.path(this.langs.includes(lang) ? lang : 'en');
+    if (this.langs.includes(lang)) return this.path(lang);
+    return this.path(lang === 'zh-TW' && this.langs.includes('zh') ? 'zh' : 'en');
   }
 }
 

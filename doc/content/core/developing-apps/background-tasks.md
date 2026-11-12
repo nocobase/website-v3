@@ -338,13 +338,14 @@ Verify multi-instance consumption and failure recovery against the actual Redis 
 
 ## Example source and setup
 
-[Complete example and verification notes](https://github.com/nocobase/docs-examples-v3/tree/3cfe5c53612d783d038a7b2a46c7b05fda1e1c26/apps/background-tasks). Use Node.js 24 and pnpm 11.7.0. The lockfile pins App Server `3.0.0-beta.5`, Jobs `1.0.0-beta.5` and ServiceProvider `0.0.2-beta.2`.
+[Complete example and verification notes](https://github.com/nocobase/docs-examples-v3/tree/3cfe5c53612d783d038a7b2a46c7b05fda1e1c26/apps/background-tasks). Use Node.js 24 and pnpm 11.11.0. The lockfile pins App Server `3.0.0-beta.5`, Jobs `1.0.0-beta.5` and ServiceProvider `0.0.2-beta.2`.
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 3cfe5c53612d783d038a7b2a46c7b05fda1e1c26
 cd apps/background-tasks
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm demo manual
 ```

@@ -516,13 +516,14 @@ After a fix, retest the original issue, the related normal workflow, and affecte
 
 ## Example source and setup
 
-The [product management example App](https://github.com/nocobase/docs-examples-v3/tree/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance) lives in `nocobase/docs-examples-v3`. Links on this page use the same fixed commit. Use Node.js 24 and pnpm 11.7.0:
+The [product management example App](https://github.com/nocobase/docs-examples-v3/tree/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance) lives in `nocobase/docs-examples-v3`. Links on this page use the same fixed commit. Use Node.js 24 and pnpm 11.11.0:
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 3e886903c7965530dd6ca50c7840d6ae991f2799
 cd apps/testing-acceptance
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm run setup
 pnpm dev

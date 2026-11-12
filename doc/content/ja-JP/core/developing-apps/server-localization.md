@@ -309,13 +309,14 @@ throw new ApiError({
 
 ## サンプルのソースとセットアップ
 
-[完全なソースと README](https://github.com/nocobase/docs-examples-v3/tree/44cc65d121ea8cebf26fee77c924119cc57f4aad/apps/server-localization) には、バージョンの要件、使い方とソースの対応、コマンドの期待される出力が記載されています。サンプルは Node.js 24、pnpm 11.7.0、App Server `3.0.0-beta.5`、I18n `2.0.0-beta.1` を使い、Default テンプレート `1.0.0-beta.85` の依存関係のバージョンに合わせています。
+[完全なソースと README](https://github.com/nocobase/docs-examples-v3/tree/44cc65d121ea8cebf26fee77c924119cc57f4aad/apps/server-localization) には、バージョンの要件、使い方とソースの対応、コマンドの期待される出力が記載されています。サンプルは Node.js 24、pnpm 11.11.0、App Server `3.0.0-beta.5`、I18n `2.0.0-beta.1` を使い、Default テンプレート `1.0.0-beta.85` の依存関係のバージョンに合わせています。
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 44cc65d121ea8cebf26fee77c924119cc57f4aad
 cd apps/server-localization
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm demo request zh-CN
 pnpm test

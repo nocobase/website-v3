@@ -423,13 +423,14 @@ These tests start the real application with isolated databases and real sign-in.
 
 The [complete Product Catalog source](https://github.com/nocobase/docs-examples-v3/tree/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog) includes all three route types, the product service, migrations, English sample records, permissions and tests.
 
-The example uses default template `1.0.0-beta.85`, Node.js 24 or later and pnpm 11.7.0. Its lockfile fixes the example's dependencies. See the [README](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/README.md) for configuration and a map from each documented usage to its implementation.
+The example uses default template `1.0.0-beta.85`, Node.js 24 or later and pnpm 11.11.0. Its lockfile fixes the example's dependencies. See the [README](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/README.md) for configuration and a map from each documented usage to its implementation.
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 0639e6a2a6cba857bf967757083e9f8d7aa6b9fe
 cd apps/product-catalog
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

@@ -667,13 +667,14 @@ Invalid definitions stay out of the running app. [routing-contract.test.ts][cont
 
 ### Environment and startup
 
-The [example app][app] uses default template `1.0.0-beta.85` and locks `@nocobase/app-client` to `4.0.0-beta.5`. It requires Node.js 24 and pnpm 11.7.0.
+The [example app][app] uses default template `1.0.0-beta.85` and locks `@nocobase/app-client` to `4.0.0-beta.5`. It requires Node.js 24 and pnpm 11.11.0.
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 2700e75f5ed0d927c0c37b53e4ffdf105961cc52
 cd apps/pages-routes-navigation
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

@@ -309,13 +309,14 @@ The HTTP entry maps `ORDER_UNAVAILABLE` to 404 and insufficient stock or state c
 
 ### Install and start
 
-The [complete example and README](https://github.com/nocobase/docs-examples-v3/blob/89d899c436563335529aba9b75fbc12b5dc0db34/apps/order-services/README.md) contain the source map and detailed walkthrough. Use Node.js 24 and pnpm 11.7.0. Published dependencies are locked, including `@nocobase/app-server` `3.0.0-beta.4`, `@nocobase/db` `1.0.0-beta.23`, and `@nocobase/service-provider` `0.0.2-beta.2`.
+The [complete example and README](https://github.com/nocobase/docs-examples-v3/blob/89d899c436563335529aba9b75fbc12b5dc0db34/apps/order-services/README.md) contain the source map and detailed walkthrough. Use Node.js 24 and pnpm 11.11.0. Published dependencies are locked, including `@nocobase/app-server` `3.0.0-beta.4`, `@nocobase/db` `1.0.0-beta.23`, and `@nocobase/service-provider` `0.0.2-beta.2`.
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 89d899c436563335529aba9b75fbc12b5dc0db34
 cd apps/order-services
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm setup
 pnpm start

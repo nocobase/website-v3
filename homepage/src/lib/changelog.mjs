@@ -3,7 +3,7 @@
 // - 发版条目（type: release）：<channel>-<version>.md，front matter 是标题、渠道（beta / stable）、日期、GitHub Release 地址，正文是这个版本在 CHANGELOG.md（翻译文件对应 CHANGELOG.zh-CN.md、CHANGELOG.ja-JP.md）里的那一节。
 // - 公告条目（type: announcement）：大版本发布时手写的，只有标题和摘要（各语言文件各写各的），整张卡片链接到博客文章（href 写源文件名 blog/<slug>.html，或 https 地址）。
 // 排序：date 倒序，同一天按版本号的 <n> 倒序，再按 publishedAt 倒序；同一天的公告排在发版条目前面。
-// 页面有英文、简体中文和日文（ja-JP）；某种语言的更新说明缺了显示英文。其他语言在语言菜单里链接到英文版。
+// 页面有英文、简体中文和日文（ja-JP）；某种语言的更新说明缺了显示英文。其他语言在语言菜单里链接到英文版，繁体中文链接到简体中文版。
 // 每条有 id（英文文件名去掉 .md），卡片标题链接到第一页的 #<id>；条目翻到后面的页以后，第一页的脚本按 id 跳到它所在的页，已经发出去的链接不会失效。
 // 预览：环境变量 CHANGELOG_DIR 换成另一个目录（比如示例数据），不要把假的条目提交进 content/changelog/。
 // v2 及更早的版本在旧官网的更新日志里，页面顶部有链接。

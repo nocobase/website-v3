@@ -1,5 +1,13 @@
 # Multi-app documentation verification
 
+## English translation aligned with the Chinese guides
+
+All six English multi-app guides now follow the approved outline and the Chinese baseline at commit `379dd332`. The English deployment-environment and template pages are no longer placeholders. Commands and YAML examples match the Chinese guides, and all twenty image references use the corresponding seventeen English-interface screenshots under `doc/public/assets/core/multi-app/`. Chinese articles, Japanese placeholders, and both screenshot sets are unchanged. This supersedes the pending English translation status recorded below.
+
+Validation passed: `pnpm doc:test` (16 files, 104 tests), `pnpm doc:build`, and `git diff --check`. Regression coverage checks translated-page status, localized screenshot paths and 1440 by 900 dimensions, retired links, and matching executable examples and screenshot pairs in each English and Chinese guide. All six English pages were opened in the local preview and visually inspected; their headings and navigation rendered correctly, all twenty image references loaded at the expected dimensions, and no article overflow or unrendered bold markers were detected.
+
+This translation adds no application-runtime acceptance results. Fresh commercial installation, independent enrollment, permission rejection and revocation, deployment, upgrade, archive, restore, and production recovery were not rerun. The earlier commercial-registry authentication limitation and runtime-verification boundaries still apply.
+
 ## Chinese-interface screenshot refresh
 
 At the user's request, all twenty screenshot references across the six Chinese multi-app pages now use seventeen Chinese-interface assets under `doc/public/assets/core/multi-app/zh-CN/`. The previous English-interface assets remain unchanged. Main was already in Chinese; the child application's language menu was switched to Chinese for the application-switcher capture. Existing template, environment and account names were not renamed, and no deployment, configuration, membership or business-data changes were submitted. Registration dialogs were closed without saving, and no credentials were revealed.

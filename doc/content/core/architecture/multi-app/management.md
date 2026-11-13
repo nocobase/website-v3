@@ -1,54 +1,67 @@
 ---
 title: Manage hosted applications
-description: Publish immutable versions, configure and selectively upgrade instances, and handle archives and uncertain operation results.
+description: Create child application instances from templates, grant workbench access, and manage configuration, runtime state, and versions.
 ---
 
-These operations manage App Host applications and require the relevant page, action, and row-scope permissions. Entry access does not grant administration. [Independent applications](external-apps.md) do not gain platform deployment capabilities by registering.
+An application instance is a running child application. A single customer management template can create several instances, each with its own access URL, data, configuration, and running version. The main application manages them centrally.
 
-## Publish immutable versions and provision instances
+## Create an instance and grant access
 
-First prepare a complete child archive compatible with the destination through [Application templates](templates.md), and verify a working Host environment.
+Prepare a [published template version](templates.md#publish-and-maintain-versions) and an [available deployment environment](environments.md). In the main application:
 
-1. Open **Application templates** and create or select a template.
-2. Upload the child's `dist.tar.gz`, checking the recognized package name, version, and artifact identity.
-3. Publish and retain its checksum. Keep the application package name stable across versions; changed contents require a new version, not replacement.
-4. In **Application instances**, enter a name and unique ID, then choose an explicit published version and deployment environment.
-5. Complete required approvals, observe the operation/deployment result, and check the actual version, runtime state, and entry URL.
+1. Open **Templates**, open the template details, and click **Create instance**. You can also create an instance from **Application instances → Hosted applications**.
+2. Enter a name and unique identifier, then select the template version and deployment environment. The identifier becomes part of the application's path, cannot be changed after creation, and must not conflict with the main application's `main` path.
+3. Submit and wait for deployment to finish. If the environment requires approval, an approver must approve it first. Open the instance details and confirm that **Current version** is correct and **Runtime state** is running.
 
-Instance IDs participate in runtime paths; they are not freely editable display names. A target version expresses intent. Successful deployment and business behavior establish effect. Publishing does not upgrade existing instances.
+![Select a template version and deployment environment to create an independent instance](/assets/core/multi-app/create-instance.png)
 
-Disabling a template prevents new publication and provisioning without deleting published versions or existing instances. With identity integration enabled, each new instance registers its own client but still requires [explicit membership](management.md).
+The main application automatically configures single sign-on for new instances. You do not need to enter the identity service URL, client identifier, or secret manually. The child itself must have [platform sign-in integrated](templates.md#prepare-a-child-application-archive) before it is packaged.
 
-## Configure, start, stop, and selectively upgrade
+After deployment succeeds, an administrator with full permissions in the main application opens the instance's **Access** tab, clicks **Add users**, and selects users with view or edit permissions.
 
-| Operation | Effect                                                          | Verify afterward                                                                 |
-| --------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Start     | Run a stopped instance                                          | Entry works and existing data remains                                            |
-| Stop      | Stop execution, retaining persistent data                       | Direct requests cannot reactivate it                                             |
-| Restart   | Stop and start                                                  | Availability and business operations recover                                     |
-| Configure | Change supported titles, default language, and similar settings | Intended settings apply without replacing others                                 |
-| Upgrade   | Deploy an explicitly selected target version                    | Actual version, data, and permissions are correct; other instances are unchanged |
+![Grant selected users access to the child application](/assets/core/multi-app/instance-access.png)
 
-Instance configuration is not an arbitrary YAML or secret editor. Infrastructure and secret variables belong to authorized deployment configuration, not broader raw Releases write grants.
+Main application administrators also need access to the instance. The child maps view and edit permissions to specific business permissions; neither grants child administrator privileges. To add single sign-on to an existing instance, first click **Register platform sign-in** on this page, then upgrade to a version that supports it.
 
-Viewing initial administrator credentials requires instance configuration permission and the relevant data scope, and is unavailable to non-user or restricted-key callers. It returns the originally generated credentials, not later password changes. Keep them out of tickets, logs, and URLs.
+## Open and switch applications from the workbench
 
-Before upgrading, record the current version, back up data, and check migration compatibility. Select the intended instance and version, then verify business behavior, attachments, permissions, restart retention, and an untouched instance. Upgrade testing needs a real new artifact, not a fixed pair of demonstration versions.
+After a user signs in to the main application, the workbench shows the applications they may access. Click an application card to open the child. While the main application's sign-in session remains valid, no password is needed again.
 
-Automation first reads the authenticated `<application-path>/api/swagger` document and follows its revision, confirmation, and submission-protection requirements. Preserve the original submission ID when retrying the same logical request after an unknown result. Do not replace the real operator with an unauthorized internal caller.
+![The workbench shows applications available to the current user](/assets/core/multi-app/workbench.png)
 
-## Inspect results, archive, and recover instances
+Inside a child application, click the switcher beside the application name to open another authorized application or select **Back to workbench**.
 
-Deployment history records execution, not business backups. Before selecting older code, verify that it supports the current database; switching code does not undo migrations.
+![Switch from customer management to expense management or return to the main application's workbench](/assets/core/multi-app/app-switcher.png)
 
-Archiving stops an instance, retains data/files/configuration, and blocks platform identity entry. Restoring archive status retains membership but still requires explicit start. It does not restore a database backup; ordinary management does not provide permanent deletion.
+If an application is missing from the workbench, check the user's access and the instance's runtime state. If the child has no switcher, check that its deployed version includes the application-switching component. Granting access alone does not add that component to the page.
 
-After failure, timeout, or interruption, inspect the instance's operation records for:
+## Update configuration and manage runtime state
 
-- The failed stage and any existing deployment or approval request.
-- Recorded operation/deployment IDs and actual results.
-- Any unfinished operation still occupying the instance.
+Open **Application instances** and click an application name to view its details. The overview shows the actual runtime state, current version, and environment. The action menu in the upper-right corner provides configuration, upgrade, start, and stop options.
 
-Reconcile existing deployments through supported recovery before retrying. Do not provision duplicates, clear locks, or edit internal state directly. Repeated upgrades cannot repair a failed migration. Retain IDs and errors, then use [Backup and recovery](environments.md) with compatible code and data.
+![Instance details show the current version, runtime state, and available actions](/assets/core/multi-app/instance-actions.png)
 
-Generated project integration lives in `apps/main/client/pages/template-portal/`. The installed `nocobase-app-plugin-multi-app` Skill describes management capabilities and API rules.
+- **Update configuration:** select **Configure**, change the display name and default language, and enter the instance identifier as prompted to confirm. This does not change database connections or sign-in secrets.
+- **Stop or start:** select **Stop** for a running instance and **Start** after it has stopped. Stopping preserves data; it does not delete the application. To restart, wait for stopping to finish before starting again.
+- **Check results:** review execution status in **Deployment history** and **Operation history**. If an operation fails, open its record and address the reported problem before deciding whether to retry. Avoid creating duplicate instances.
+
+![Change the instance display name and default language](/assets/core/multi-app/instance-configure.png)
+
+If single sign-on is unavailable, an administrator with the required permissions can view the initial administrator credentials under **Access** and use the child's local sign-in to recover access. This shows the initial credentials, not a password changed afterward.
+
+## Upgrade, archive, and restore instances
+
+**Upgrade an instance:**
+
+1. [Publish a new version](templates.md#publish-and-maintain-versions) in the original template.
+2. Back up the instance's database, attachments, and private configuration, and record its current version.
+3. Select **Upgrade** from the instance's action menu, choose the target version, confirm that a backup is available, and submit.
+4. Wait for deployment to finish, check the current version, and open the child to verify existing data and new features. Instances you did not select remain on their previous versions.
+
+![Choose a version and confirm a recoverable backup before upgrading an instance](/assets/core/multi-app/instance-upgrade.png)
+
+**Archive an instance:** stop it first, then select **Archive** from its action menu. Archiving preserves data and configuration but removes the application's entry from users' view.
+
+**Restore an instance:** filter the instance list to show archived applications and select **Restore**. Once restoration finishes, start the instance and check its existing data and user access.
+
+Restoring an archived instance is not the same as restoring a data backup. Before reverting to an older version, confirm that the old code is compatible with the current database. Switching code versions does not undo database migrations that have already run.

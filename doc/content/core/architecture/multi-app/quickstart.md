@@ -66,15 +66,21 @@ The Agent creates the child's source in `customer-demo`; it is not yet deployed 
 
 ### Build the child application and create the first instance
 
-Continue in the child application's directory:
+Open the account menu at the top right of the main application, select **Use in terminal / Agent**, and click **Copy Agent instructions**. Paste the instructions into your conversation with the Agent developing `customer-demo`.
+
+![Copy the Agent setup instructions provided by the main application](/assets/core/multi-app/cli-install.png)
+
+The Agent will install and configure the tool. When sign-in is required, open the address it provides in your browser, check the verification code, and approve access.
+
+Once setup is complete, continue with this request:
 
 ```prompt
-Build this customer management application into a deployment archive I can upload to the multi-app platform. Confirm the target runtime environment first, then tell me the archive path and application version.
+Use the main application's command-line tool we just configured to create or reuse a template for this customer management application, build and upload its deployment archive, publish a version, and deploy the first instance.
+Confirm the application template, deployment environment, and instance name with me first. Do not modify existing instances.
+When finished, confirm that the instance is deployed successfully and the application is accessible, then give me its access URL.
 ```
 
-Once you have `storage/exports/dist.tar.gz`, [upload it, publish a version, and create an instance](#build-the-child-application-and-create-an-instance-in-the-management-interface) in the main application. Do not repeat creation, configuration, or build steps that the Agent has already completed.
-
-After deployment succeeds and the current user has been granted access, the child appears on the main application's workbench. Click its card to open it.
+After deployment, open the URL provided by the Agent and check that the customer management features work as expected.
 
 ![View and open child applications from the main application's workbench](/assets/core/multi-app/workbench.png)
 
@@ -202,7 +208,3 @@ Check that the homepage loads and the expected features work. Either the Default
 | Upload or deployment fails | Check the archive's target platform and the operation records; do not repeatedly create instances with the same name |
 | The child application is missing from the workbench | Check that the instance is running, its entry is enabled, and the current user has membership |
 | SSO works, but the child has no application switcher | Check that the layout renders `AppSwitcher` and that the instance has been upgraded to a version containing it |
-
-## Next steps
-
-Continue with [Manage hosted applications](management.md) for version updates, start and stop operations, configuration, and failure handling.

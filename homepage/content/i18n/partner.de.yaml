@@ -7,8 +7,11 @@ notes: |-
 title: NocoBase-Partnerprogramm — Mehr Kundenprojekte mit einem Agenten-Team liefern
 description: "Werden Sie NocoBase-Partner: 15–40 % Vertriebsprovision und 100 % Ihres Serviceumsatzes. Mit Core, Studio und Solution konzentrieren sich Ihre Berater auf den Kundenbedarf, während ein Agenten-Team entwickelt. So laufen viele Kundenprojekte gleichzeitig."
 strings:
+  "000": Partnerprogramm
   "001": KI hat die Softwarelieferung neu definiert. <span class="m">Machen Sie daraus Ihr Geschäft.</span>
   "002": Früher hing die Zahl der Projekte davon ab, wie viele Entwickler Sie hatten. Heute konzentrieren sich Ihre Berater auf Anforderungsanalyse, Schlüsselentscheidungen und Abnahme, während ein Agenten-Team programmiert, testet und deployt. So laufen viele Kundenprojekte parallel. NocoBase 3 liefert Core als Fundament, Studio und die Geschäftsanwendungen von Solution. Ihre Branchenerfahrung und Ihre Kundenbeziehungen machen den Unterschied.
+  "003": Partner werden
+  "004": Partner finden
   "005": Vertriebsprovision
   "006": Berechnung
   "007": Lebenslang, sinkt nie
@@ -27,11 +30,13 @@ strings:
   "020": Kapazität
   "021": Projektzahl begrenzt durch die Zahl der Entwickler
   "022": Ein Agenten-Team treibt alle Kundenprojekte voran, rund um die Uhr
+  "023": Preisgestaltung
   "024": Abrechnung nach Personentagen, Marge an Stunden gebunden
   "025": "Preise nach Modul und Ergebnis: schnellere Lieferung, höhere Marge"
   "026": Was Sie übergeben
   "027": Undurchsichtige Konfigurationen oder Spezialcode, schwer zu übergeben
   "028": "Sauberer Quellcode auf einem Standardfundament: prüfbar, upgradefähig, mit KI weiterentwickelbar"
+  "029": Know-how
   "030": Wissen steckt in wenigen Köpfen
   "031": In Skills und Wissensdatenbanken festgehalten, wiederverwendbar beim nächsten Kunden
   "032": Nach dem Go-live
@@ -66,6 +71,7 @@ strings:
   "061": Skills, Konnektoren und UI-Komponenten für Entwickler und Agenten veröffentlichen
   "062": Lösungen, technische Dokumentation und Kundenfallstudien gemeinsam veröffentlichen
   "063": Frühzeitiger Zugang zu Core-Releases für Kompatibilitätsprüfungen
+  "064": Warum NocoBase
   "065": "Schneller und stabiler liefern. "
   "066": Zufriedenere Kunden.
   "067": 100 % Quellcode
@@ -147,3 +153,5 @@ strings:
   "144": Land / Region
   "145": Land oder Region auswählen
   "146": Passen Sie die Open-Source-Apps NocoCRM, NocoITAM oder NocoReach an Ihren Kunden an, statt bei null anzufangen.
+  "147": Schreiben Sie an partner@nocobase.com, stellen Sie Ihr Team vor und wie Sie mit uns zusammenarbeiten möchten – wir melden uns zeitnah.
+  "148": E-Mail schreiben

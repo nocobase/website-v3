@@ -547,51 +547,71 @@ items:
     en: Tell us about your team and plans, and we’ll get back to you soon. Or write to partner@nocobase.com.
     zh: 告诉我们你的团队和想做的事，我们会尽快联系你。也可以直接写信到 partner@nocobase.com。
     where: apply
+    unused: true
   "135":
     en: Contact name
     zh: 联系人姓名
     where: apply
+    unused: true
   "136":
     en: Contact email
     zh: 联系人邮箱
     where: apply
+    unused: true
   "137":
     en: Company name
     zh: 公司名称
     where: apply
+    unused: true
   "138":
     en: About your company
     zh: 公司简介
     where: apply
+    unused: true
   "139":
     en: How you’d like to work with us
     zh: 合作意向简述
     where: apply
+    unused: true
   "140":
     en: Submit Application
     zh: 提交申请
     where: apply
+    unused: true
   "141":
     en: Thanks! We’ve received your application and will be in touch soon.
     zh: 已收到你的申请，我们会尽快与你联系。
     where: form
+    unused: true
   "142":
     en: Team size, the industries you serve, and current clients
     zh: 团队规模、擅长的行业和已有客户
     where: form
+    unused: true
   "143":
     en: The partnership models you’re interested in (distribution, delivery, industry solutions, technology), and your target clients and regions
     zh: 想选的合作方式（渠道分销、服务交付、行业方案、技术生态），以及目标客户和地区
     where: form
+    unused: true
   "144":
     en: Country / region
     zh: ""
     where: apply
+    unused: true
   "145":
     en: Select your country or region
     zh: ""
     where: form
+    unused: true
   "146":
     en: Customize open-source NocoCRM, NocoITAM, or NocoReach to fit your client instead of building from scratch.
     zh: NocoCRM、NocoITAM、NocoReach 均开源可用，在其基础上按客户需求定制，远快于从零开发。
     where: sec
+  "147":
+    en: Email partner@nocobase.com about your team and how you’d like to work with us, and we’ll get back to you soon.
+    zh: 请写邮件到 partner@nocobase.com，介绍你的团队和想做的合作，我们会尽快联系你。
+    where: apply
+  "148":
+    en: Email us
+    zh: 写邮件给我们
+    where: apply

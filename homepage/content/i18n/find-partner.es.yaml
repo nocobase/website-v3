@@ -7,9 +7,11 @@ notes: |-
 title: Encuentra un partner de NocoBase — Pon tu sistema en marcha
 description: Los partners de NocoBase conocen NocoBase 3, Studio y tu sector. Con sus equipos de agentes definen, desarrollan, validan, publican y mantienen contigo, y el código es tuyo.
 strings:
+  "000": Encuentra un partner
   "001": Encuentra el partner adecuado <span class="m">para poner tu sistema en marcha.</span>
   "002": Los partners de NocoBase conocen a fondo NocoBase 3, Studio y tu sector. Al frente de un equipo de agentes, trabajan contigo para definir, desarrollar, verificar, lanzar y mantener tu sistema. Cada paso es visible en Studio, y el código fuente, las skills y la base de conocimiento resultantes son 100 % tuyos.
   "003": Envía tus requisitos
+  "004": Hazte partner
   "005": Cuándo ayuda un partner
   "006": "Quieres construir con IA, "
   "007": pero con alguien experimentado al frente.
@@ -86,3 +88,5 @@ strings:
   "078": "Por ejemplo: tu sector, el sistema o caso de uso, el problema que quieres resolver, los servicios que necesitas, el presupuesto o la escala y la fecha objetivo"
   "079": País o región
   "080": Selecciona tu país o región
+  "081": Escribe a partner@nocobase.com sobre el sistema que quieres y te recomendaremos partners adecuados a tu región, tu sector y los servicios que necesitas.
+  "082": Escríbenos

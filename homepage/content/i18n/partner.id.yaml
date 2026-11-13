@@ -7,8 +7,11 @@ notes: |-
 title: Program Mitra NocoBase — Kerjakan lebih banyak proyek klien dengan tim agen
 description: "Jadilah mitra NocoBase: komisi kanal 15%–40% dan 100% pendapatan layanan untuk Anda. Dengan Core, Studio, dan Solution, konsultan Anda fokus pada kebutuhan klien sementara tim agen membangun, sehingga banyak proyek berjalan bersamaan."
 strings:
+  "000": Program Mitra
   "001": AI mengubah cara perangkat lunak dikirimkan. <span class="m">Jadikan itu bisnis Anda.</span>
   "002": Dulu, jumlah proyek dibatasi jumlah developer. Kini, konsultan Anda cukup fokus menganalisis kebutuhan klien, mengambil keputusan penting, dan menerima hasil, sementara tim agen menangani coding, pengujian, dan deploy, sehingga banyak proyek klien berjalan paralel. NocoBase 3 menyediakan Core sebagai fondasi, Studio, dan aplikasi bisnis Solution. Keahlian industri dan hubungan klien Anda adalah pembeda utama.
+  "003": Jadi Mitra
+  "004": Temukan Mitra
   "005": Komisi kanal
   "006": Akumulasi
   "007": Seumur hidup, tak pernah turun
@@ -27,11 +30,13 @@ strings:
   "020": Kapasitas
   "021": Jumlah proyek dibatasi jumlah developer
   "022": Satu tim agen menggerakkan semua proyek klien, sepanjang waktu
+  "023": Penetapan harga
   "024": Ditagih per hari-orang; margin terkunci pada jam kerja
   "025": "Harga per modul dan hasil: pengiriman lebih cepat, margin lebih tinggi"
   "026": Yang diserahkan
   "027": Konfigurasi tertutup atau kode khusus yang sulit diserahterimakan
   "028": "Kode sumber bersih di atas fondasi standar: bisa diaudit, di-upgrade, dan terus dikembangkan dengan AI"
+  "029": Keahlian
   "030": Pengetahuan hanya ada di kepala segelintir orang
   "031": Tersimpan dalam skill dan basis pengetahuan, siap dipakai ulang untuk klien berikutnya
   "032": Setelah go-live
@@ -66,6 +71,7 @@ strings:
   "061": Terbitkan skill, konektor, dan komponen UI untuk developer dan agen
   "062": Terbitkan bersama solusi, dokumentasi teknis, dan studi kasus pelanggan
   "063": Akses lebih awal ke rilis Core untuk validasi kompatibilitas
+  "064": Mengapa NocoBase
   "065": "Pengiriman lebih cepat dan stabil. "
   "066": Klien lebih yakin.
   "067": 100% kode sumber
@@ -147,3 +153,5 @@ strings:
   "144": Negara / wilayah
   "145": Pilih negara atau wilayah Anda
   "146": Kustomisasi NocoCRM, NocoITAM, atau NocoReach yang open source untuk klien Anda, alih-alih membangun dari nol.
+  "147": Kirim email ke partner@nocobase.com tentang tim Anda dan bentuk kerja sama yang Anda inginkan, dan kami akan segera menghubungi Anda.
+  "148": Kirim email

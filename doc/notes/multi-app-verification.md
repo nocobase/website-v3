@@ -1,5 +1,13 @@
 # Multi-app documentation verification
 
+## Japanese translation aligned with the Chinese guides
+
+All six Japanese multi-app guides now follow the approved outline and the Chinese baseline at commit `43a7fd89`; none remain placeholders. Commands and YAML examples match the Chinese guides. All twenty screenshot references reuse the seventeen existing English-interface images, with Japanese captions and English interface labels retained alongside Japanese descriptions where needed. Chinese and English articles, navigation structure, and both screenshot sets are unchanged. This supersedes the Japanese placeholder status recorded in the earlier entries.
+
+Validation passed: `pnpm doc:test` (16 files, 112 tests), `pnpm doc:build`, and `git diff --check`. Regression checks now cover all three languages and compare both translations' executable examples and screenshot pairs with the Chinese baseline. All six Japanese pages were opened and visually inspected in the local preview. All twenty screenshot references loaded at 1440 by 900; headings and navigation rendered correctly, with no article overflow. Moving the English-label parentheses outside Markdown emphasis resolved literal bold markers found during preview; the repeated inspection found none remaining.
+
+This was a documentation-only translation. No application settings, access grants, deployment operations, or business data were changed, and no application-runtime acceptance tests were rerun. The previously recorded commercial-registry and runtime-verification limits remain unchanged.
+
 ## English translation aligned with the Chinese guides
 
 All six English multi-app guides now follow the approved outline and the Chinese baseline at commit `379dd332`. The English deployment-environment and template pages are no longer placeholders. Commands and YAML examples match the Chinese guides, and all twenty image references use the corresponding seventeen English-interface screenshots under `doc/public/assets/core/multi-app/`. Chinese articles, Japanese placeholders, and both screenshot sets are unchanged. This supersedes the pending English translation status recorded below.

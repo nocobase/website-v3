@@ -16,7 +16,6 @@ const languages = [
   { code: 'zh-CN', directory: 'zh-CN', prefix: '/zh-CN', title: '多应用' },
   { code: 'ja-JP', directory: 'ja-JP', prefix: '/ja-JP', title: 'マルチアプリ' },
 ];
-const translatedLanguages = languages.filter((language) => language.code !== 'ja-JP');
 const readMenu = (file) => JSON.parse(readFileSync(file, 'utf8'));
 
 describe('multi-app architecture navigation', () => {
@@ -38,7 +37,7 @@ describe('multi-app architecture navigation', () => {
       const page = site.page(language.code, `core/architecture/multi-app/${name}`);
       expect(page).toMatchObject({ url: `${language.prefix}/core/architecture/multi-app/${name}/` });
       expect(site.page(language.code, `core/multi-app/${name}`)).toBeUndefined();
-      expect(Boolean(page.placeholder)).toBe(language.code === 'ja-JP');
+      expect(Boolean(page.placeholder)).toBe(false);
     }
     for (const name of ['development', ...Object.keys(retiredPages)]) {
       expect(site.page(language.code, `core/architecture/multi-app/${name}`)).toBeUndefined();
@@ -72,18 +71,18 @@ describe('multi-app architecture navigation', () => {
     }
   });
 
-  it.each(translatedLanguages)('does not link to retired pages from the $code guides', (language) => {
+  it.each(languages)('does not link to retired pages from the $code guides', (language) => {
     for (const name of pages) {
       const markdown = readFileSync(path.join(root, 'content', language.directory, `core/architecture/multi-app/${name}.md`), 'utf8');
       expect(markdown).not.toMatch(/\((?:single-sign-on|migration|deployment)\.md(?:[)#])/);
     }
   });
 
-  it.each(translatedLanguages)('uses localized 1440 by 900 PNG screenshots in the $code guides', (language) => {
+  it.each(languages)('uses localized 1440 by 900 PNG screenshots in the $code guides', (language) => {
     const assets = new Set();
-    const assetPattern = language.code === 'en'
-      ? /^\/assets\/core\/multi-app\/[^/]+\.png$/
-      : /^\/assets\/core\/multi-app\/zh-CN\/[^/]+\.png$/;
+    const assetPattern = language.code === 'zh-CN'
+      ? /^\/assets\/core\/multi-app\/zh-CN\/[^/]+\.png$/
+      : /^\/assets\/core\/multi-app\/[^/]+\.png$/;
     for (const name of pages) {
       const markdown = readFileSync(path.join(root, 'content', language.directory, `core/architecture/multi-app/${name}.md`), 'utf8');
       for (const match of markdown.matchAll(/!\[[^\]]*\]\((\/assets\/core\/multi-app\/[^)]+\.png)\)/g)) {
@@ -99,14 +98,18 @@ describe('multi-app architecture navigation', () => {
     }
   });
 
-  it.each(pages)('keeps executable examples and screenshot pairs aligned in %s', (name) => {
-    const english = readFileSync(path.join(root, `content/core/architecture/multi-app/${name}.md`), 'utf8');
+  it.each(
+    languages.filter((language) => language.code !== 'zh-CN')
+      .flatMap((language) => pages.map((name) => ({ ...language, name }))),
+  )('keeps $code examples and screenshots aligned with Chinese in $name', (language) => {
+    const { name } = language;
+    const translation = readFileSync(path.join(root, 'content', language.directory, `core/architecture/multi-app/${name}.md`), 'utf8');
     const chinese = readFileSync(path.join(root, `content/zh-CN/core/architecture/multi-app/${name}.md`), 'utf8');
     const commands = (markdown) => [...markdown.matchAll(/^```(bash|yaml)\n([\s\S]*?)^```/gm)]
       .map((match) => ({ language: match[1], code: match[2] }));
     const screenshots = (markdown) => [...markdown.matchAll(/!\[[^\]]*\]\((\/assets\/core\/multi-app\/[^)]+\.png)\)/g)]
       .map((match) => match[1].replace('/zh-CN/', '/'));
-    expect(commands(english)).toEqual(commands(chinese));
-    expect(screenshots(english)).toEqual(screenshots(chinese));
+    expect(commands(translation)).toEqual(commands(chinese));
+    expect(screenshots(translation)).toEqual(screenshots(chinese));
   });
 });

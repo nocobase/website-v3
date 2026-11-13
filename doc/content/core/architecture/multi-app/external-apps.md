@@ -35,7 +35,7 @@ The NocoBase child server needs access to platform discovery, token, JWKS, useri
 
 Third-party OIDC applications must support authorization code flow, PKCE S256, `client_secret_basic`, and standard issuer/audience/signature validation. Configure the supplied issuer and credentials in their own client and register their actual callback. Do not append NocoBase login paths.
 
-Third parties own user mapping, business roles, existing-account linking, and session revocation. The platform does not automatically synchronize organizations or translate business permissions. See [Single sign-on and access](single-sign-on.md) for settings and membership.
+Third parties own user mapping, business roles, existing-account linking, and session revocation. The platform does not automatically synchronize organizations or translate business permissions. See [Application access](management.md) for settings and membership.
 
 ## Verify direct access and disablement
 

@@ -1,4 +1,4 @@
 ---
-title: テンプレートとインスタンスの管理
+title: ホスト型子アプリを管理する
 status: placeholder
 ---

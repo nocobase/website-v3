@@ -1,5 +1,5 @@
 ---
-title: Manage templates and instances
+title: Manage hosted applications
 description: Publish immutable versions, configure and selectively upgrade instances, and handle archives and uncertain operation results.
 ---
 
@@ -7,7 +7,7 @@ These operations manage App Host applications and require the relevant page, act
 
 ## Publish immutable versions and provision instances
 
-First prepare a complete child archive compatible with the destination through [Deployment](deployment.md), and verify a working Host environment.
+First prepare a complete child archive compatible with the destination through [Application templates](templates.md), and verify a working Host environment.
 
 1. Open **Application templates** and create or select a template.
 2. Upload the child's `dist.tar.gz`, checking the recognized package name, version, and artifact identity.
@@ -17,7 +17,7 @@ First prepare a complete child archive compatible with the destination through [
 
 Instance IDs participate in runtime paths; they are not freely editable display names. A target version expresses intent. Successful deployment and business behavior establish effect. Publishing does not upgrade existing instances.
 
-Disabling a template prevents new publication and provisioning without deleting published versions or existing instances. With identity integration enabled, each new instance registers its own client but still requires [explicit membership](single-sign-on.md).
+Disabling a template prevents new publication and provisioning without deleting published versions or existing instances. With identity integration enabled, each new instance registers its own client but still requires [explicit membership](management.md).
 
 ## Configure, start, stop, and selectively upgrade
 
@@ -49,6 +49,6 @@ After failure, timeout, or interruption, inspect the instance's operation record
 - Recorded operation/deployment IDs and actual results.
 - Any unfinished operation still occupying the instance.
 
-Reconcile existing deployments through supported recovery before retrying. Do not provision duplicates, clear locks, or edit internal state directly. Repeated upgrades cannot repair a failed migration. Retain IDs and errors, then use [Backup and recovery](deployment.md) with compatible code and data.
+Reconcile existing deployments through supported recovery before retrying. Do not provision duplicates, clear locks, or edit internal state directly. Repeated upgrades cannot repair a failed migration. Retain IDs and errors, then use [Backup and recovery](environments.md) with compatible code and data.
 
 Generated project integration lives in `apps/main/client/pages/template-portal/`. The installed `nocobase-app-plugin-multi-app` Skill describes management capabilities and API rules.

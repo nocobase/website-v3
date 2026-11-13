@@ -52,4 +52,4 @@ The platform decides who may enter; the child decides what they may do. Platform
 
 OIDC supplies verified identity while the child retains its own account bindings and sessions, not shared user tables or cookies. Stopping or archiving retains data but is not a backup. Selecting older code does not roll back a database.
 
-Start a new project with [Quickstart](quickstart.md). For existing business systems, read [Migrate a single application](migration.md) instead of overwriting the project with a new template.
+Start a new project with [Quickstart](quickstart.md). For existing business systems, read [Connect independently deployed applications](external-apps.md) instead of overwriting the project with a new template.

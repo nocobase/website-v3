@@ -11,7 +11,11 @@
     },
     {
       "type": "page",
-      "path": "development"
+      "path": "environments"
+    },
+    {
+      "type": "page",
+      "path": "templates"
     },
     {
       "type": "page",
@@ -19,19 +23,7 @@
     },
     {
       "type": "page",
-      "path": "single-sign-on"
-    },
-    {
-      "type": "page",
       "path": "external-apps"
-    },
-    {
-      "type": "page",
-      "path": "migration"
-    },
-    {
-      "type": "page",
-      "path": "deployment"
     }
   ]
 }

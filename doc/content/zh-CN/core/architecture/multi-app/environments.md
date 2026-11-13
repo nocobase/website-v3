@@ -9,14 +9,14 @@ description: 为托管子应用设置运行方式、访问地址和部署规则�
 
 先按[快速开始](quickstart.md#配置并启动主应用)启用主应用的子应用托管功能。然后使用有环境管理权限的账号，打开主应用的**部署环境**（Deploy environments）页面。
 
-![部署环境列表显示运行方式、应用数量和访问地址规则](/assets/core/multi-app/environment-list.png)
+![部署环境列表显示运行方式、应用数量和访问地址规则](/assets/core/multi-app/zh-CN/environment-list.png)
 
 1. 点击**添加环境**（Add environment），填写名称和唯一标识。名称可修改，标识创建后不能修改。
 2. 按实际用途选择环境用途，并选择当前主应用可用的运行方式。
 3. 填写**访问地址规则**（Public URL pattern），用 `{appId}` 表示子应用标识。例如 `https://apps.example.com/{appId}/`，标识为 `customer-demo` 的实例将使用 `/customer-demo/` 路径。
 4. 点击**测试连接**（Test connection），确认通过后保存。
 
-![环境设置中的名称、运行方式和访问地址规则](/assets/core/multi-app/environment-settings.png)
+![环境设置中的名称、运行方式和访问地址规则](/assets/core/multi-app/zh-CN/environment-settings.png)
 
 地址必须能从用户浏览器访问。同域部署时，反向代理需将主应用和子应用的路径都转发到主应用入口，并支持 WebSocket。不要把内部控制端口填成公开访问地址。
 
@@ -52,7 +52,7 @@ sso:
 | 无访问后停止或休眠 | 为未单独设置运行策略的应用指定默认空闲策略 |
 | 首次部署时加载示例数据 | 仅在需要演示数据的环境启用，正式业务环境不要开启 |
 
-![环境的部署审批、应用数量和空闲策略设置](/assets/core/multi-app/environment-policy.png)
+![环境的部署审批、应用数量和空闲策略设置](/assets/core/multi-app/zh-CN/environment-policy.png)
 
 修改访问地址规则后，检查受影响应用的实际入口和登录回调；已有应用不会因为规则变更而自动完成域名迁移。删除环境前，需要先处理其中的应用，不能用删除环境代替停用某个子应用。
 

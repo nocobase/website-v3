@@ -76,7 +76,7 @@ Agent 完成后，子应用代码保存在 `customer-demo` 目录中，尚未部
 
 部署成功并授予当前用户访问资格后，子应用会显示在主应用工作台中。点击应用卡片，即可从主应用进入子应用。
 
-![在主应用工作台中查看并进入子应用](/assets/core/multi-app/workbench.png)
+![在主应用工作台中查看并进入子应用](/assets/core/multi-app/zh-CN/workbench.png)
 
 ## 手动创建多应用环境
 
@@ -138,7 +138,7 @@ pnpm dev
 
 已有可用环境时可以直接使用，不必重复创建。启用 Host 只启动运行服务，不会自动生成这条部署环境记录。
 
-![部署环境列表展示运行方式、公开地址规则和 Host 状态](/assets/core/multi-app/environments.png)
+![部署环境列表展示运行方式、公开地址规则和 Host 状态](/assets/core/multi-app/zh-CN/environments.png)
 
 ### 创建并配置子应用
 
@@ -178,7 +178,7 @@ pnpm build --tar
 
 实例标识不要使用主应用已占用的 `main`。上传只保存制品，发布才使版本可供创建实例，创建实例才会部署运行；三者是不同操作。
 
-![模板已发布版本列表，可选择一个版本创建实例](/assets/core/multi-app/template-versions.png)
+![模板已发布版本列表，可选择一个版本创建实例](/assets/core/multi-app/zh-CN/template-versions.png)
 
 ## 检查实例运行状态
 
@@ -189,7 +189,7 @@ pnpm build --tar
 
 确认首页可见、预期功能可用。Default 首页与自定义客户页面都可以用来验证托管流程，不需要在子应用源码目录同时运行开发服务器。
 
-![客户实例详情展示已部署版本、运行状态和应用入口](/assets/core/multi-app/instance-details.png)
+![客户实例详情展示已部署版本、运行状态和应用入口](/assets/core/multi-app/zh-CN/instance-details.png)
 
 
 ## 常见问题

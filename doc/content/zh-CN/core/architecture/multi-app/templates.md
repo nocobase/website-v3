@@ -7,7 +7,7 @@ description: 将子应用打包为可部署的版本，创建和维护应用模�
 
 主应用的**应用模板**页面可以查看模板的最新版本和实例数量。这里的模板用于部署已有应用，不是创建源码项目时选择的 `default` 项目模板。
 
-![应用模板列表展示已发布版本及使用该模板的实例数量](/assets/core/multi-app/template-list.png)
+![应用模板列表展示已发布版本及使用该模板的实例数量](/assets/core/multi-app/zh-CN/template-list.png)
 
 ## 准备子应用部署包
 
@@ -43,7 +43,7 @@ pnpm build --tar
 2. 填写名称和说明，选择已经检查通过的[部署环境](environments.md)。
 3. 创建后进入模板详情，打开右上角操作菜单，选择**上传产物**（Upload archive），上传子应用的 `dist.tar.gz`。
 
-![创建应用模板时填写名称、说明并选择部署环境](/assets/core/multi-app/template-create.png)
+![创建应用模板时填写名称、说明并选择部署环境](/assets/core/multi-app/zh-CN/template-create.png)
 
 上传完成后核对识别出的应用包名和版本。上传只保存部署包，还需要发布版本，才能用它创建实例。
 
@@ -51,11 +51,11 @@ pnpm build --tar
 
 打开模板操作菜单，选择**发布版本**（Publish version），从已上传的产物中选择要发布的版本并确认。
 
-![模板操作菜单提供上传、发布和退役入口](/assets/core/multi-app/template-actions.png)
+![模板操作菜单提供上传、发布和退役入口](/assets/core/multi-app/zh-CN/template-actions.png)
 
 发布成功后，版本出现在**已发布版本**（Published versions）中。选择一个版本，即可[创建托管实例](management.md#创建实例并授权访问)。
 
-![已发布版本可用于创建新的应用实例](/assets/core/multi-app/template-versions.png)
+![已发布版本可用于创建新的应用实例](/assets/core/multi-app/zh-CN/template-versions.png)
 
 更新业务功能时，在原子应用项目中修改代码、更新 `package.json` 的版本号，再重新构建、上传并发布。保持应用包名不变，不覆盖已经发布的版本。
 

@@ -80,11 +80,12 @@ describe('multi-app architecture navigation', () => {
     }
   });
 
-  it('uses 1440 by 900 PNG screenshots in the multi-app guides', () => {
+  it('uses localized 1440 by 900 PNG screenshots in the multi-app guides', () => {
     const assets = new Set();
     for (const name of pages) {
       const markdown = readFileSync(path.join(root, `content/zh-CN/core/architecture/multi-app/${name}.md`), 'utf8');
       for (const match of markdown.matchAll(/!\[[^\]]*\]\((\/assets\/core\/multi-app\/[^)]+\.png)\)/g)) {
+        expect(match[1]).toMatch(/^\/assets\/core\/multi-app\/zh-CN\//);
         assets.add(match[1]);
       }
     }

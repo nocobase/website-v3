@@ -1,5 +1,11 @@
 # Multi-app documentation verification
 
+## Chinese-interface screenshot refresh
+
+At the user's request, all twenty screenshot references across the six Chinese multi-app pages now use seventeen Chinese-interface assets under `doc/public/assets/core/multi-app/zh-CN/`. The previous English-interface assets remain unchanged. Main was already in Chinese; the child application's language menu was switched to Chinese for the application-switcher capture. Existing template, environment and account names were not renamed, and no deployment, configuration, membership or business-data changes were submitted. Registration dialogs were closed without saving, and no credentials were revealed.
+
+The screenshots were inspected for Chinese interface labels and absence of browser-tool overlays; all measure 1440 by 900. Article prose and captions are unchanged. The screenshot regression now requires the localized asset directory as well as the image dimensions. This supersedes the shared-English-screenshot convention recorded in the earlier verification below.
+
 ## Current Chinese operational-guide reorganization
 
 The approved section now contains Overview, Quickstart, Manage deployment environments, Manage application templates, Manage hosted applications, and Connect independently deployed applications. The four Chinese operational guides replace the previous management, SSO, external-application, migration and deployment arrangement. Overview and Quickstart were compared with the pre-reorganization copies and are unchanged except for necessary Markdown links. English translation remains pending: existing English bodies are retained with link and title maintenance, and the two new pages are placeholders. Japanese remains title-only. Menus match across all three languages; old URLs redirect directly to their replacement pages.

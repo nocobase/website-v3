@@ -16,7 +16,7 @@ description: 保留子应用原有部署，将其接入主应用工作台，配�
 3. 填写完整应用入口，例如 `https://crm.example.com/`。如果应用部署在 `/crm/` 下，地址也要包含该路径，不带查询参数。
 4. 登录方式选择**平台统一登录**（Platform sign-in），保存。
 
-![登记独立应用的名称、访问地址和登录方式](/assets/core/multi-app/external-connect.png)
+![登记独立应用的名称、访问地址和登录方式](/assets/core/multi-app/zh-CN/external-connect.png)
 
 主应用和子应用应使用可访问的 HTTPS 地址。受控本地或内网环境使用 HTTP 时，先在主应用[允许对应地址](environments.md#添加部署环境)。
 

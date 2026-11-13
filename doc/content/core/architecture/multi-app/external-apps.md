@@ -1,46 +1,61 @@
 ---
-title: Connect independent applications
-description: Choose an independent integration type, configure entry and optional SSO, and verify access and disablement boundaries.
+title: Connect independently deployed applications
+description: Connect an existing child application to the main application's workbench, configure single sign-on, and manage access without changing its deployment.
 ---
 
-## Choose an integration type and define operational ownership
+A child application already running on its own server can connect directly to the main application without an uploaded archive or a hosted instance. The main application provides a workbench entry and single sign-on. The child's owner remains responsible for deployment, upgrades, and backups.
 
-Independent applications keep their own deployment, databases, and backups. The platform registers an entry and optionally provides login, without creating hosted templates, Host instances, or deployment records.
+Unlike hosted instances, which receive sign-in configuration automatically, independently deployed children need their owners to apply the SSO configuration to their projects and runtime environments after registration.
 
-| Type                               | Platform supplies                     | Application supplies                                                      |
-| ---------------------------------- | ------------------------------------- | ------------------------------------------------------------------------- |
-| Independent NocoBase 3 application | Entry, membership, and platform login | Commercial SSO integration with its own sessions and business permissions |
-| Web link                           | An entry shown to authorized users    | Its own login and direct-access control                                   |
-| Web OIDC application               | An OIDC client and platform admission | Its own OIDC client, identity validation, and sessions                    |
+## Register the child application in the main application
 
-Main needs [multi-app management and the identity provider](overview.md). An application developed in `apps/sub/` can deploy independently; using the workspace development Skill does not require Host management. Hiding a Web link does not block direct access to the external server.
+Sign in with full administrative permissions. In the main application, open **Application instances → Connected applications** and click **Connect application**.
 
-Current registration and configuration require an unrestricted administrator:
+1. Enter the application name.
+2. Select **Independent NocoBase 3** as the application type.
+3. Enter the full application URL, such as `https://crm.example.com/`. If the application runs under `/crm/`, include that path. Do not include query parameters.
+4. Select **Platform sign-in** as the sign-in method and save.
 
-1. In **Application instances → Connect application**, enter the name, type, full address, and login method.
-2. For Web OIDC, supply the external application's exact callback.
-3. Obtain login parameters after saving and grant access explicitly to intended users.
+![Register an independent application's name, access URL, and sign-in method](/assets/core/multi-app/external-connect.png)
 
-A NocoBase entry is the application root including its mount prefix, without query parameters. Web links preserve their paths and queries. Addresses accept HTTP/HTTPS, not embedded credentials or fragments; unified login requires trusted HTTPS.
+Both main and child applications should use accessible HTTPS URLs. To use HTTP in a controlled local or private-network environment, first [allow the corresponding origin](environments.md#add-a-deployment-environment) in the main application.
 
-Address and type are currently immutable. Disable and re-register when changing them, planning identity-binding migration for existing users rather than creating duplicate accounts.
+If you only need a workbench entry without single sign-on, select a Web application with the link option. Users continue signing in with the original website's accounts. For a third-party application that supports OIDC, select a Web application with single sign-on and enter the exact callback URL supplied by that application.
 
-## Configure entry, SSO, and access grants
+## Configure single sign-on for the child application
 
-Use `skills/nocobase-multi-app-development/SKILL.md` for child development and the target's installed `nocobase-app-plugin-platform-sso` Skill for integration. Register server, client, and config factories, merge existing authentication, and securely supply the actual public origin, mount path, issuer, app/client IDs, and server-only secret.
+Registration does not complete the child's sign-in integration. Open the connected application's details and select **Copy setup instructions** in the sign-in integration area. Give the instructions to the child's developer or a trusted Agent.
 
-**View integration instructions** masks secrets, whereas **Copy integration instructions** includes them. Deliver only through a secure channel to the trusted target developer or Agent, not repositories, logs, or public conversations. Regenerating instructions reuses the existing secret; it does not rotate, deploy, or complete integration.
+Open an Agent session in the child project directory, provide the setup instructions, and explain how existing users and business permissions must be preserved. The Agent needs to integrate platform sign-in, business roles, and the application switcher. These preparations are the same as for hosted children; see the sign-in instructions in [Prepare a child application archive](templates.md#prepare-a-child-application-archive). An independent application does not need to follow that section's hosted archive build steps.
 
-The NocoBase child server needs access to platform discovery, token, JWKS, userinfo, and identity-check endpoints. Match its actual callback to registration. The current child's backend obtains application-switching entries with its own credentials, without cross-origin platform cookies or browser-specified subjects for other users.
+**View setup instructions** masks secrets, but the copied instructions contain the full secrets. Share them only with trusted recipients, and do not commit them to Git or paste them into public conversations.
 
-Third-party OIDC applications must support authorization code flow, PKCE S256, `client_secret_basic`, and standard issuer/audience/signature validation. Configure the supplied issuer and credentials in their own client and register their actual callback. Do not append NocoBase login paths.
+For manual configuration, write the instructions' `serverEnvironment` values into the child server's private environment configuration:
 
-Third parties own user mapping, business roles, existing-account linking, and session revocation. The platform does not automatically synchronize organizations or translate business permissions. See [Single sign-on and access](single-sign-on.md) for settings and membership.
+| Configuration | What to use |
+| --- | --- |
+| `PLATFORM_SSO_ISSUER`, `PLATFORM_SSO_APP_ID`, `PLATFORM_SSO_CLIENT_ID`, `PLATFORM_SSO_CLIENT_SECRET` | Use the values generated by the main application for this child, not values copied from another application |
+| `PLATFORM_URL` | Use the main application URL from the instructions, including any path such as `/main/` |
+| `APP_PUBLIC_ORIGIN`, `APP_BASE_PATH` | Keep these consistent with the registered child application URL |
 
-## Verify direct access and disablement
+Redeploy or restart the child after configuration. Its server must be able to reach the main application's identity service, and the sign-in callback must match `callbackUrl` in the setup instructions.
 
-Registration, a platform account, or platform administration does not automatically grant membership. Test the workbench, real login, and business permissions with an explicitly admitted ordinary user, then direct denial without access. Reading discovery alone is not successful sign-in.
+When connecting an existing business system, preserve its database, users, and business permissions; do not initialize it again. Platform accounts and existing local accounts are not automatically merged just because their email addresses match. If you need to retain existing accounts, have the developer confirm the identity-linking approach first, and keep local administrator sign-in available.
 
-Disabling the entry hides it and denies new platform access without stopping the external server or deleting memberships. NocoBase children recheck subsequent sessions; third parties control whether existing sessions expire. Web links need direct-access enforcement in the target application itself.
+Third-party OIDC applications do not install the NocoBase sign-in plugin. Configure the URLs and client credentials from the setup instructions in the application's own sign-in settings.
 
-Retain local recovery and test downgrade, revocation, and restart behavior. Upgrades, data restoration, and service failures remain the independent operator's responsibility; registration or disablement does not transfer that ownership.
+## Grant access and verify sign-in
+
+1. Add users in the connected application's **Access** tab and select view or edit permissions. Registration does not automatically grant access to existing users.
+2. Sign in to the main application as an authorized user and click the application on the workbench. Confirm that the business page opens without another password prompt.
+3. Check that view and edit operations follow the child's business permissions. Then open the [application switcher](management.md#open-and-switch-applications-from-the-workbench) and confirm that you can switch applications and return to the workbench.
+
+Main application administrators need their own application access grants too. Also test with an unauthorized account to confirm that it cannot sign in to the child through the main application.
+
+## Maintain or disable the application entry
+
+Manage user access in the connected application's details. Revoke a user's access when it is no longer needed. To disconnect the entire application, disable its entry.
+
+Disabling removes the entry from the main application and prevents entry through platform identity. It does not stop the external server or delete business data. Direct access to a Web link remains under the target website's control.
+
+An existing connection's URL and type cannot be changed in place. To replace them, prepare a new connection and sign-in configuration, verify user access, and then disable the old entry. Do not overwrite existing account bindings or copy the old application's secret. Regenerating setup instructions does not rotate credentials.

@@ -1,55 +1,41 @@
 ---
 title: Overview
-description: Understand when to use multiple applications, the Main/Sub workspace, and template, instance, identity, and permission boundaries.
+description: Understand when to use multiple applications, how main and child applications work together, and what you need to get started.
 ---
 
-## Use cases and application responsibilities
+## When to use multiple applications
 
-Use multiple applications when business areas need independent data, releases, or access management. A platform application supplies management and a shared entry point.
+Use a multi-app architecture when several business systems need independent data, configuration, and release versions, but you want a shared entry point and sign-in experience.
 
-| Requirement                                                                | Approach                                            |
-| -------------------------------------------------------------------------- | --------------------------------------------------- |
-| Stores share inventory features but keep separate data                     | One inventory template with multiple instances      |
-| Customer and purchasing systems have different release cycles              | Separate application templates                      |
-| An existing system needs shared entry or login without changing deployment | Register an independent application                 |
-| Modules do not need independent data or upgrades                           | Keep one application and organize pages and plugins |
+| Business need | Approach |
+| --- | --- |
+| Several stores need the same inventory features but separate data | Run an independent inventory application for each store, with separate data and update schedules |
+| Different teams maintain customer management and purchasing on different release schedules | Develop and deploy each application separately, and access both from one workbench |
+| An existing system should keep running while gaining a shared entry point | Add it to the workbench, optionally connect single sign-on, and retain its existing deployment |
+| Several entry points share one application, dataset, and version | Use [multiple portals](../multi-portal/create-app.md) instead of splitting the system into applications |
 
-The platform manages templates, versions, hosted instances, independent entries, and platform identity. Each child owns its pages, APIs, migrations, and business permissions. Its business code does not need to move into the platform.
+The platform can deploy and manage child applications or connect systems that already run independently. Applications do not automatically share business data. Integrate them through APIs with the appropriate permissions when they need to exchange data.
 
-Multi-app does not automatically supply complete tenant organization management, cross-application queries, or service governance. Exchange business data through explicit APIs and permissions rather than reading another application's private database.
+## Main and child applications
 
-## The Main/Sub workspace, templates, and instances
+The **main application** provides the workbench, application management, and single sign-on. After signing in, users open the applications they are allowed to access from the workbench.
 
-A create-app release supporting `--template=multi-app` generates two complete applications:
+A **child application** handles a specific business function, such as customer, inventory, or expense management. Each child has its own pages, data, configuration, and business permissions, and can be developed, deployed, and updated independently.
 
-| Location       | Responsibility                                                                                                   |
-| -------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Workspace root | Shared installation and lockfile; forwarding development, build, and Skills commands; not an application runtime |
-| `apps/main/`   | Platform workbench, application management, and identity provider                                                |
-| `apps/sub/`    | Business child with a reagent-management example and platform SSO integration                                    |
+![The workbench shows the customer and expense applications available to the current user](/assets/core/multi-app/workbench.png)
 
-Each App has separate configuration, database, storage, development process, tests, and build output. Generated package names are `<project>-main` and `<project>-sub`; npm names are distinct from business template and instance identifiers.
+The main application determines which applications a user may enter. Each child determines what that user may do inside it. For example, permission to enter an inventory application does not necessarily allow an employee to adjust stock. Administrators of the main application do not automatically become child application administrators.
 
-A **template version** identifies a fixed child deployment artifact. An **instance** runs a selected version with its own data, configuration, and runtime version. Main consumes Sub's deployment archive, not its business source. One version can create multiple instances; publication does not upgrade existing instances.
+Child applications can use their own sign-in method or integrate with the main application's single sign-on (SSO). SSO does not mean sharing user tables, business data, or all permissions.
 
-**Hosted applications** use Releases and App Host for provisioning, start, stop, and upgrades. Independent instances do not necessarily have separate OS processes. **Independent applications** retain their own deployment, restart, and backup operations; the platform registers their entries and optionally supplies sign-in.
+## Prerequisites
 
-Source location does not determine deployment mode. A child in a separate repository can still produce an artifact for Host management.
+Multi-app requires compatible commercial plugin versions, a valid commercial license, and package download access. The project template does not contain the commercial plugins' implementation or grant a commercial license.
 
-## Commercial plugins and data, identity, and permission boundaries
+| Plugin | Used in | Capabilities |
+| --- | --- | --- |
+| `@nocobase/app-plugin-multi-app` | Main application | Manage application templates, versions, instances, and external entries |
+| `@nocobase/app-plugin-identity-provider` | Main application | Platform identity service, OIDC clients, and membership grants |
+| `@nocobase/app-plugin-platform-sso` | Child application | Platform sign-in, session checks, and application switching |
 
-Open-source template code does not make the following commercial plugins free or open source. You need compatible released versions, a commercial license, and package-download access:
-
-| Plugin                                   | Install in                                 | Responsibility                                                                               |
-| ---------------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| `@nocobase/app-plugin-multi-app`         | Main                                       | Templates, immutable versions, hosted instances, deployment records, and independent entries |
-| `@nocobase/app-plugin-identity-provider` | Main                                       | OIDC identity provider, client registration, and explicit membership                         |
-| `@nocobase/app-plugin-platform-sso`      | NocoBase children requiring platform login | Sign-in, independent sessions, admission rechecks, and application switching                 |
-
-Hosted deployment also needs Releases and a working App Host environment. Management can run without SSO. Third-party OIDC applications use their own client rather than the NocoBase child plugin.
-
-The platform decides who may enter; the child decides what they may do. Platform administrators are not automatically child administrators, and provisioning does not grant access to every platform user.
-
-OIDC supplies verified identity while the child retains its own account bindings and sessions, not shared user tables or cookies. Stopping or archiving retains data but is not a backup. Selecting older code does not roll back a database.
-
-Start a new project with [Quickstart](quickstart.md). For existing business systems, read [Migrate a single application](migration.md) instead of overwriting the project with a new template.
+For a new project, start with the [Quickstart](quickstart.md). For an existing NocoBase 3 application, see [Connect independently deployed applications](external-apps.md).

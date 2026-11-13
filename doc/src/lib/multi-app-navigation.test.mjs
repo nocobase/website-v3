@@ -5,16 +5,12 @@ import { describe, expect, it } from 'vitest';
 import { getSite } from './site.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
-const pages = [
-  'overview',
-  'quickstart',
-  'development',
-  'management',
-  'single-sign-on',
-  'external-apps',
-  'migration',
-  'deployment',
-];
+const pages = ['overview', 'quickstart', 'environments', 'templates', 'management', 'external-apps'];
+const retiredPages = {
+  'single-sign-on': 'external-apps',
+  migration: 'external-apps',
+  deployment: 'environments',
+};
 const languages = [
   { code: 'en', directory: '', prefix: '', title: 'Multi-app' },
   { code: 'zh-CN', directory: 'zh-CN', prefix: '/zh-CN', title: '多应用' },
@@ -23,7 +19,7 @@ const languages = [
 const readMenu = (file) => JSON.parse(readFileSync(file, 'utf8'));
 
 describe('multi-app architecture navigation', () => {
-  it.each(languages)('places all eight guides under architecture for $code', (language) => {
+  it.each(languages)('places the six guides under architecture for $code', (language) => {
     const core = path.join(root, 'content', language.directory, 'core');
     const architecture = readMenu(path.join(core, 'architecture/meta.json'));
     expect(architecture.pages.filter((entry) => entry.path === 'multi-app')).toEqual([
@@ -38,27 +34,82 @@ describe('multi-app architecture navigation', () => {
 
     const site = getSite();
     for (const name of pages) {
-      expect(site.page(language.code, `core/architecture/multi-app/${name}`)).toMatchObject({
-        url: `${language.prefix}/core/architecture/multi-app/${name}/`,
-      });
+      const page = site.page(language.code, `core/architecture/multi-app/${name}`);
+      expect(page).toMatchObject({ url: `${language.prefix}/core/architecture/multi-app/${name}/` });
       expect(site.page(language.code, `core/multi-app/${name}`)).toBeUndefined();
-      expect(Boolean(site.page(language.code, `core/architecture/multi-app/${name}`).placeholder)).toBe(
-        language.code === 'ja-JP',
-      );
+      expect(Boolean(page.placeholder)).toBe(false);
+    }
+    for (const name of ['development', ...Object.keys(retiredPages)]) {
+      expect(site.page(language.code, `core/architecture/multi-app/${name}`)).toBeUndefined();
+      expect(existsSync(path.join(core, `architecture/multi-app/${name}.md`))).toBe(false);
     }
   });
 
-  it('redirects all former article URLs to their matching localized architecture guides', () => {
+  it('redirects former article URLs directly to their localized replacement guides', () => {
     const config = readFileSync(path.join(root, 'astro.config.ts'), 'utf8');
     const redirects = new Map(
       [...config.matchAll(/['"]([^'"]+)['"]:\s*['"]([^'"]+)['"]/g)].map((match) => [match[1], match[2]]),
     );
     for (const language of languages) {
-      for (const name of pages) {
+      for (const name of ['overview', 'quickstart', 'management', 'external-apps']) {
         expect(redirects.get(`${language.prefix}/core/multi-app/${name}/`)).toBe(
           `${language.prefix}/core/architecture/multi-app/${name}/`,
         );
       }
+      for (const [previous, current] of Object.entries(retiredPages)) {
+        for (const directory of ['core/multi-app', 'core/architecture/multi-app']) {
+          expect(redirects.get(`${language.prefix}/${directory}/${previous}/`)).toBe(
+            `${language.prefix}/core/architecture/multi-app/${current}/`,
+          );
+        }
+      }
+      for (const source of ['core/multi-app/development', 'core/architecture/multi-app/development']) {
+        expect(redirects.get(`${language.prefix}/${source}/`)).toBe(
+          `${language.prefix}/core/developing-apps/overview/`,
+        );
+      }
     }
+  });
+
+  it.each(languages)('does not link to retired pages from the $code guides', (language) => {
+    for (const name of pages) {
+      const markdown = readFileSync(path.join(root, 'content', language.directory, `core/architecture/multi-app/${name}.md`), 'utf8');
+      expect(markdown).not.toMatch(/\((?:single-sign-on|migration|deployment)\.md(?:[)#])/);
+    }
+  });
+
+  it.each(languages)('uses localized 1440 by 900 PNG screenshots in the $code guides', (language) => {
+    const assets = new Set();
+    const assetPattern = language.code === 'zh-CN'
+      ? /^\/assets\/core\/multi-app\/zh-CN\/[^/]+\.png$/
+      : /^\/assets\/core\/multi-app\/[^/]+\.png$/;
+    for (const name of pages) {
+      const markdown = readFileSync(path.join(root, 'content', language.directory, `core/architecture/multi-app/${name}.md`), 'utf8');
+      for (const match of markdown.matchAll(/!\[[^\]]*\]\((\/assets\/core\/multi-app\/[^)]+\.png)\)/g)) {
+        expect(match[1]).toMatch(assetPattern);
+        assets.add(match[1]);
+      }
+    }
+    expect(assets.size).toBeGreaterThan(6);
+    for (const asset of assets) {
+      const buffer = readFileSync(path.join(root, 'public', asset));
+      expect([...buffer.subarray(0, 8)], asset).toEqual([137, 80, 78, 71, 13, 10, 26, 10]);
+      expect([buffer.readUInt32BE(16), buffer.readUInt32BE(20)], asset).toEqual([1440, 900]);
+    }
+  });
+
+  it.each(
+    languages.filter((language) => language.code !== 'zh-CN')
+      .flatMap((language) => pages.map((name) => ({ ...language, name }))),
+  )('keeps $code examples and screenshots aligned with Chinese in $name', (language) => {
+    const { name } = language;
+    const translation = readFileSync(path.join(root, 'content', language.directory, `core/architecture/multi-app/${name}.md`), 'utf8');
+    const chinese = readFileSync(path.join(root, `content/zh-CN/core/architecture/multi-app/${name}.md`), 'utf8');
+    const commands = (markdown) => [...markdown.matchAll(/^```(bash|yaml)\n([\s\S]*?)^```/gm)]
+      .map((match) => ({ language: match[1], code: match[2] }));
+    const screenshots = (markdown) => [...markdown.matchAll(/!\[[^\]]*\]\((\/assets\/core\/multi-app\/[^)]+\.png)\)/g)]
+      .map((match) => match[1].replace('/zh-CN/', '/'));
+    expect(commands(translation)).toEqual(commands(chinese));
+    expect(screenshots(translation)).toEqual(screenshots(chinese));
   });
 });

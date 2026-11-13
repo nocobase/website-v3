@@ -57,6 +57,9 @@ Once published, the version appears under **Published versions**. Select a versi
 
 ![Published versions can be used to create application instances](/assets/core/multi-app/template-versions.png)
 
+> [!TIP]
+> An **included** tag under **SSO plugin** means this version's deployment archive includes the Platform SSO plugin and supports single sign-on integration.
+
 To update business features, change the code in the original child project, update the version in `package.json`, and build, upload, and publish again. Keep the application package name unchanged, and do not overwrite published versions.
 
 Publishing a new version does not change existing instances. They can stay on their current version or be [upgraded individually](management.md#upgrade-archive-and-restore-instances) by an administrator.

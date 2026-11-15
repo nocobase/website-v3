@@ -4,50 +4,51 @@ title: NocoBase 2 and NocoBase 3
 
 ## Products and development approaches
 
-In NocoBase 2, tables, pages, permissions, and workflows exist as **configuration** stored in the database, and the platform reads that configuration to render the interface. In NocoBase 3, they are all **code**, in your own repository, written by agents. NocoBase provides the runtime, plugins, and foundation libraries as npm packages.
+NocoBase 2 primarily manages no-code pages, collection definitions, permissions, and workflows through platform configuration. A NocoBase 3 Core application maintains pages, APIs, business logic, and database migrations as application source. Core provides the runtime, foundation libraries, and plugins as npm packages, with Skills guiding agents in their use.
 
-Once changes are code, you can manage them like code: develop on a branch, review, test, release by version, and roll back when something goes wrong. When the platform lacks a capability, an agent can write it directly, so you are no longer limited by the configuration screens.
+Agents or people can maintain the application code. Code changes go through branches, review, testing, and deployment. Day-to-day administration data, such as users and role assignments, can still live in the database and be managed through pages connected by the application; these changes do not always require code edits. See [What Core provides](core-capabilities.md) for the boundary between foundation capabilities and business development.
 
-| In NocoBase 2 | In NocoBase 3 |
-| --- | --- |
-| Enable a plugin in the plugin manager | Register the plugin in the app's plugin lists, usually done by an agent with `pnpm nocobase plugin register`. See [Manage plugins](../core/developing-apps/manage-plugins.md) |
-| Configure it on the plugin's settings page | Three places: deployment settings (database, storage, mail provider) go in `config.yml`; business rules are written into the code by agents; what administrators adjust day to day (users, roles, data scopes, approvers, amount thresholds) lives in the app's **System settings** |
-| Drag and drop pages and blocks in the interface | Describe the page to an agent, and it writes the page as code using components from the UI library |
-| Configure processes on the workflow canvas | Processes are written in code (record lifecycle). Administrators view the flow chart, adjust workflow parameters, and check execution records in **Workflow management**. |
-| Create tables and add fields in data source management | Agents write migration files, and `pnpm nocobase db apply` runs them |
-| Changes take effect as soon as they are saved | Changes are code, and take effect after development, verification, and deployment |
-| AI employees | Business agents, connected by the Agents plugin, using the same roles and permissions as people |
+## AI Portal and Core applications
 
-### Do plugins still have a UI?
+[AI Portal](https://nocode.docs.nocobase.com/ai-builder/ai-portal/) builds custom interfaces on the data, authentication, permissions, and APIs provided by the no-code platform. The Portal project itself is primarily client code. Its companion agent can also use platform tools to create collections and configure permissions.
 
-Yes, in a different form. A plugin brings server-side capabilities, skills, and commands to the app, and a few plugins ship their own pages (for example **App foundation**). More of the interface comes as UI components that agents place into your pages. The admin entry points are collected in the app's **System settings**, and agents build them by default when they deliver an app.
-
-To see which plugins an app uses, open **System settings › App foundation**. It lists the Core capabilities the app actually uses and the packages that provide them.
+A V3 Core application maintains its client, server APIs, business services, and database migrations in its own repository, reusing Core capabilities. The difference is application structure and how the backend is maintained, not simply whether AI writes code. V3 does not carry over V2's no-code page and data-modeling interfaces. See [Tables and data initialization](../core/developing-apps/data-models-and-migrations.md) for schema changes.
 
 ## Feature mapping
 
 | NocoBase 2 | NocoBase 3 | Notes |
 | --- | --- | --- |
-| Users, roles, and permissions | The authentication, users, and authorization plugins, plus three plugins for default data scopes, sharing rules, and restriction rules | Enabled in the default template, which ships with the **User management**, **Roles and permissions**, and **Default data scopes** pages |
+| Users, roles, and permissions | The authentication, users, and authorization plugins, plus three plugins for default data scopes, sharing rules, and restriction rules | The default template registers the relevant plugins; connect administration pages as needed and define business operations and data scopes |
 | Data sources and collections | The database foundation library and migrations; an external database is connected as a second connection | Supports SQLite, PostgreSQL, MySQL, SQL Server, and Oracle; Dameng, KingbaseES, and OceanBase are in the commercial editions |
 | File manager | The file plugin and the storage foundation library | Local storage, S3-compatible storage, and Alibaba Cloud OSS |
 | Workflows | Record lifecycle (a foundation library) and the scheduled tasks plugin | Process structure is written in code, with no drag-and-drop designer |
 | Approvals | The approval plugin <span class="tag pro">Commercial</span> | Multi-level, all-must-approve, any-can-approve, add approver, transfer, and send back |
 | Notifications and in-app messages | The notification, in-app message, and notification channel plugins | In-app messages; email (SMTP, Resend); Feishu and DingTalk group bots |
 | Email management | The mail plugin | Link personal mailboxes, then send, receive, and sync email |
-| AI employees and AI knowledge base | The Agents plugin and the knowledge base plugin | Installed in the default template; register them when needed |
+| AI employees and AI knowledge base | The Agents plugin and the knowledge base plugin | Dependencies are included in the default template; register plugins, connect interfaces, and configure models or knowledge sources when needed |
 | Localization and themes | The localization plugin; themes are in the template | |
 | API keys | The API keys plugin | Enabled in the default template |
 | Template printing | The template printing skill pack | Guidance for agents only. The agent implements it in the app |
 | Charts, import and export, and other blocks | Implemented in the app by agents | The UI library provides components such as data tables and dashboards |
 | Audit logs | Not available yet | The audit item in **App foundation** shows that no provider has been detected yet |
-| LDAP, SAML, DingTalk, WeCom, Feishu, Slack, and other sign-in methods | Authentication plugin | All supported. The authentication plugin is built on Better Auth, and enterprise identity and social sign-in are connected through configuration |
+| LDAP, SAML, DingTalk, WeCom, Feishu, Slack, and other sign-in methods | Authentication plugin | Extend Better Auth for the specific provider and protocol, with configuration or development and verification of account mapping and callbacks; not every method is ready out of the box |
 
 See [Manage plugins](../core/developing-apps/manage-plugins.md) to inspect, register, update, or remove the plugins used by an app.
 
+## Will NocoBase 2 continue to receive updates?
+
+Yes. NocoBase 2 and NocoBase 3 are maintained in parallel. The introduction of V3 does not require moving existing V2 applications. See the [official partner information](https://www.nocobase.com/partner/) for this policy and the [NocoBase 2 release timeline](https://nocode.nocobase.com/en/blog/timeline) for features, improvements, and fixes. Their architectures and development approaches differ, so parallel maintenance does not mean every feature will ship in both versions.
+
+## Does NocoBase 3 require NocoBase 2 to be installed?
+
+No. A V3 Core application has its own runtime, database, and foundation capabilities. It can be developed, deployed, and run independently without installing V2.
+
+If you already have a V2 system, you can integrate it with the new application through APIs or other suitable interfaces. This is optional integration, not a V3 runtime dependency. Define identity, data, and permission boundaries as described in [Existing-system integration](existing-systems.md).
+
 ## Migrating existing applications
 
-The two are structured differently: in 2 the business definitions are configuration in the database, and in 3 they are code, so an app cannot be upgraded in place. Moving to 3 means rebuilding the app on 3 and then importing the business data.
+The application structures differ. Changing a version number or image cannot upgrade a V2 application directly into a V3 Core application. Migration generally means rebuilding pages, APIs, data structures, and permissions for the original business requirements, then importing business data.
 
-> [!PENDING] Migration path to be added
-> This section will be filled in once the official migration method and tools, and the maintenance plan for NocoBase 2, are confirmed.
+Inventory tables and relations, roles and data scopes, workflows, attachments, and external integrations before migration. Verify data mappings and actual business operations afterwards. Do not assume no-code configuration, plugin settings, or AI employee configurations can be reused directly. See [Add business AI](business-ai.md) for AI integration and [Backup, recovery, and migration](backup-and-migration.md) for moving data.
+
+The [Core upgrade guide](../core/developing-apps/upgrade-nocobase-core.md) updates framework dependencies and templates within V3 applications. It is not an automatic V2-to-V3 migration tool.

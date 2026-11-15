@@ -13,7 +13,7 @@ description: "コメント、メンション、システム通知を読み、音
 | My sessions | エージェントの返信、会話中の質問、権限の要求 |
 | Inbox | 人のコメント、メンション、割り当て、タスク以外のシステム通知と判断 |
 
-![受信トレイでメッセージを読み、関連する作業を開く](https://static-docs.nocobase.com/studio-en-guide-inbox-20261031.png)
+![受信トレイでメッセージを読み、関連する作業を開く](https://static-docs.nocobase.com/studio-en-inbox-20261111-normal-2x.webp)
 
 ## 受信トレイの表示
 
@@ -25,7 +25,7 @@ description: "コメント、メンション、システム通知を読み、音
 
 ## 通知方法
 
-**Account settings › Preferences** で設定します。
+**Account settings › Notifications** で設定します。
 
 | 方法 | 用途 |
 | --- | --- |
@@ -33,7 +33,7 @@ description: "コメント、メンション、システム通知を読み、音
 | Desktop notifications | Studio が背面にあるときのブラウザー通知。ブラウザーの許可が必要 |
 | Push notifications | ページを閉じていても購読端末に通知。管理者の設定が必要 |
 
-![個人設定で通知方法を選ぶ](https://static-docs.nocobase.com/studio-en-guide-preferences-20261031.png)
+![Notifications で通知方法を選択](https://static-docs.nocobase.com/studio-en-notifications-20261111-normal-2x.webp)
 
 表示中のタスクや会話の通知は抑制されます。ナビゲーションのバッジは、その入口の未対応・未読件数を示します。
 

@@ -15,7 +15,7 @@ Studio で [Runner Agent と対話する](runner-agent.md)か、`nb-studio` CLI 
 
 Studio やプロジェクトがまだない場合は、管理者が[インストールと設定](../setup/index.md)から始めてください。
 
-![My issues に判断待ちの事項、作業結果、進捗をまとめる](https://static-docs.nocobase.com/studio-en-guide-my-issues-20261031.png)
+![My issues に判断待ちの事項、作業結果、進捗をまとめる](https://static-docs.nocobase.com/studio-en-my-issues-20261111-normal-2x.webp)
 
 ## 作業方法を選ぶ
 
@@ -23,10 +23,9 @@ Studio やプロジェクトがまだない場合は、管理者が[インスト
 | --- | --- |
 | Studio で要件を相談し、プロジェクトを調べる | [Runner Agent と対話する](runner-agent.md) |
 | CLI を通じてローカルの Claude Code や Codex でタスクを管理する | [ローカルのコーディングエージェントを使う](local-agent.md) |
-| ブラウザーから自分の PC のコーディングツールを操作する | [自分の PC を接続する](connect-computer.md) |
 | 自分のタスク用の実行リソースを提供する | [個人ランタイムを接続する](personal-runtime.md) |
 
-Runner Agent とローカルのコーディングエージェントのどちらからも、チームの共有ランタイムにタスクを任せられます。自分の PC や個人ランタイムは必要に応じて接続します。
+Runner Agent とローカルのコーディングエージェントのどちらからも、チームの共有ランタイムにタスクを任せられます。自分用の実行リソースが必要な場合は、個人ランタイムを接続します。
 
 ## タスクを追う
 

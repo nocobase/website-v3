@@ -12,7 +12,7 @@ description: 通过会话或表单创建任务，明确业务规则、范围与�
 3. 回答 Agent 的问题，检查它整理的任务。
 4. 点「开始执行」交给 Agent 团队，或选择「先不开始」保留在「待规划」。
 
-![新建任务会打开带有当前项目上下文的会话](https://static-docs.nocobase.com/studio-zh-guide-new-task-20261031.png)
+![通过 Agent 会话创建任务](https://static-docs.nocobase.com/studio-zh-new-task-20261111-normal-2x.webp)
 
 ```prompt
 在供应商列表中显示每家的评分和等级。采购员可以按等级筛选，暂停合作的供应商不能新建订单。
@@ -28,7 +28,7 @@ description: 通过会话或表单创建任务，明确业务规则、范围与�
 2. 选择「立即开始」或「以后再说」。
 3. 点「创建并开始」或「创建」。
 
-![直接填写任务的标题、要求和开始时间](https://static-docs.nocobase.com/studio-zh-guide-manual-task-20261031.png)
+![直接填写任务的标题、要求和开始时间](https://static-docs.nocobase.com/studio-zh-manual-task-20261111-normal-2x.webp)
 
 负责人负责确认业务规则和验收结果。「待规划」任务不会自动执行，准备好后需点「开始」。
 

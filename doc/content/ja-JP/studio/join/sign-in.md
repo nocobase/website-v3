@@ -27,11 +27,13 @@ description: "招待を受けてサインインし、プロフィール、通知
 | --- | --- |
 | Profile | 表示名とユーザー名。メールアドレスの変更は Owner に依頼 |
 | Account and security | パスワードの変更。他の端末はサインアウトされる |
-| Preferences | 言語、テーマ、表示密度、音、デスクトップ通知、コミットの名義 |
+| Preferences | 言語、テーマ、表示密度 |
+| Notifications | 通知音、デスクトップ通知、端末へのプッシュ通知 |
+| Agents | 個人または共有ランタイムの優先設定、コミットの名義 |
 | API keys | 自分の権限で Studio を呼び出すキーの作成 |
 | Git | 個人のコードプラットフォームアカウントの接続 |
 
-![表示、通知、コミット名義の設定](https://static-docs.nocobase.com/studio-en-guide-preferences-20261031.png)
+![表示言語と表示オプションを設定](https://static-docs.nocobase.com/studio-en-preferences-20261111-normal-2x.webp)
 
 表示設定はアカウントに保存されます。プッシュ通知の購読は端末ごとに行い、HTTPS が必要です。iPhone ではホーム画面から Studio を開いてください。[通知とプッシュ](../admin/notifications.md)を参照してください。
 
@@ -43,7 +45,7 @@ description: "招待を受けてサインインし、プロフィール、通知
 
 エージェントは自分の名義でコードをプッシュし、PR を作成します。Studio で自分が行うマージも同じ名義です。個人接続がない場合はワークスペースの接続を使います。個人アカウントにはリポジトリのアクセス権限が必要です。
 
-![個人の Git 接続でコード変更とマージの名義を設定する](https://static-docs.nocobase.com/studio-en-guide-personal-git-20261031.png)
+![個人の Git 設定と接続条件](https://static-docs.nocobase.com/studio-en-personal-git-20261111-normal-2x.webp)
 
 ブラウザーで認可できない場合は、**Other methods** からデバイスコードや個人トークンを利用できます。利用可能な方法は管理者が[コードプラットフォーム](../configure/git.md)で設定します。トークンは暗号化され、再表示されません。
 

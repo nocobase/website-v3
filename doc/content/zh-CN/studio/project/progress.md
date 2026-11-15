@@ -5,7 +5,7 @@ description: 查看项目进度、待办配置和团队交付表现。
 
 打开项目的「概览」，查看任务数量、状态分布和发布进展。尚未完成的项目配置会出现在「接下来」，例如添加仓库或配置检查与预览。
 
-![项目概览汇总任务与交付进展](https://static-docs.nocobase.com/studio-zh-guide-project-overview-20261031.png)
+![项目概览汇总任务与交付进展](https://static-docs.nocobase.com/studio-zh-project-overview-20261111-normal-2x.webp)
 
 ## 查看团队交付
 
@@ -22,3 +22,5 @@ description: 查看项目进度、待办配置和团队交付表现。
 将鼠标移到指标上，可查看计算方法。「需要关注」列出阻塞、逾期、等待验收过久和近期运行失败的事项。
 
 单个任务的执行细节见[跟进任务](../use/follow-progress.md)，运行资源和费用见[工作负荷与用量](usage.md)，待发布改动见[发布概览](../release/overview.md)。
+
+测试任务和跟进任务也会出现在项目任务列表中。测试覆盖情况与发现的问题在[质量](../quality/overview.md)中查看。

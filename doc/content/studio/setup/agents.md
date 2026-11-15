@@ -9,7 +9,7 @@ Once the runtime is online, open **Agent management › Agents**. Common models 
 
 Confirm that **Where it runs** includes the runtime you connected. Each coding tool and model combination is one Agent.
 
-![Enabled Agents reported by the runtime](https://static-docs.nocobase.com/studio-en-setup-agents-20261030.png)
+![Enabled Agents reported by the runtime](https://static-docs.nocobase.com/studio-en-agents-20261111-normal-2x.webp)
 
 Keep the default responsibilities and reasoning effort for now. The Lead Agent uses these descriptions to assign work.
 
@@ -20,7 +20,7 @@ Keep the default responsibilities and reasoning effort for now. The Lead Agent u
 3. If another model is available, you can select it under **Fallback**.
 4. Save and keep the other defaults.
 
-![Set primary and fallback models for the Lead Agent](https://static-docs.nocobase.com/studio-en-setup-coordinator-20261030.png)
+![Set primary and fallback models for the Lead Agent](https://static-docs.nocobase.com/studio-en-coordinator-20261111-normal-2x.webp)
 
 **Done when**: the team has an enabled Agent, and the Lead Agent's primary has an available runtime.
 

@@ -16,7 +16,7 @@ Claude Code、Codex 等编码工具接入 Studio 后，组成 Agent 团队。调
 
 调度 Agent 也需要模型。管理员指定首选和备选。首选在 2 分钟内未能开始，备选接手。
 
-![Agent 列表展示模型分工、可用运行环境，以及调度 Agent 的首选和备选](https://static-docs.nocobase.com/studio-zh-agent-team-20261030-v3.png)
+![Agent 列表展示模型分工、可用运行环境，以及调度 Agent 的首选和备选](https://static-docs.nocobase.com/studio-zh-agents-20261111-normal-verified-2x.webp)
 
 列表中的「在哪跑」显示 Agent 可用的运行环境。共享环境由管理员接入，服务全体成员。个人环境由成员接入，只执行本人发起的任务。仅在个人环境中可用的 Agent，也只为该成员工作。见 [核心概念](concepts.md#agent-与运行环境)。
 
@@ -30,7 +30,7 @@ Claude Code、Codex 等编码工具接入 Studio 后，组成 Agent 团队。调
 
 每次交接都留在任务评论中。交接内容包括执行 Agent、目标、参考资料、完成条件和选择理由。执行 Agent 回复结果后，调度 Agent 继续推进。
 
-![调度 Agent 分派方案设计，交接内容包括业务资料和验证要求](https://static-docs.nocobase.com/studio-zh-req-dispatch-20261030-v3.png)
+![调度 Agent 分派方案设计，交接内容包括业务资料和验证要求](https://static-docs.nocobase.com/studio-zh-req-dispatch-20261111-normal-2x.webp)
 
 管理员可以按团队习惯调整分配原则，也可以恢复内置规则。见 [启用 Agent](../setup/agents.md)。
 
@@ -45,7 +45,7 @@ Claude Code、Codex 等编码工具接入 Studio 后，组成 Agent 团队。调
 | 检查与评审 | 运行检查，由独立 Agent 评审。需要修复的问题交回开发 Agent，修复后再次评审。 | `studio-development`、`studio-review` |
 | 交付验收 | PR 通过评审和全部检查后，整理交付报告。随后提交负责人验收。 | `studio-workflow`、`studio-comment-style` |
 
-![Codex 修复检查发现的问题，Claude 完成独立评审](https://static-docs.nocobase.com/studio-zh-review-thread-20261030-v3.png)
+![Codex 修复检查发现的问题，Claude 完成独立评审](https://static-docs.nocobase.com/studio-zh-review-thread-20261111-normal-2x.webp)
 
 需要负责人决策时，调度 Agent 将任务设为「阻塞中」，说明待确认的问题。准备好交付时，设为「待验收」并附上交付报告。执行 Agent 不修改任务状态。
 
@@ -63,7 +63,7 @@ Claude Code、Codex 等编码工具接入 Studio 后，组成 Agent 团队。调
 | 任务依赖 | 需要等待前置任务或全部子任务时，暂不开始。依赖完成后自动继续。 |
 | 持续执行 | 运行环境在线时持续领取排队工作，无需人工值守。 |
 
-![Agent 队列显示正在执行、等待执行和受依赖阻塞的工作](https://static-docs.nocobase.com/studio-zh-agent-queue-20261030-v2.png)
+![Agent 队列显示正在执行、等待执行和受依赖阻塞的工作](https://static-docs.nocobase.com/studio-zh-agent-queue-20261111-normal-2x.webp)
 
 
 ## 人工介入
@@ -90,7 +90,7 @@ Claude Code、Codex 等编码工具接入 Studio 后，组成 Agent 团队。调
 | --- | --- |
 | 检查失败或 PR 冲突 | 调度 Agent 安排修复。连续 3 次提交仍失败，通知任务负责人。 |
 | 同一步骤失败两次 | 更换合适的 Agent。再次失败后，任务转为「阻塞中」。 |
-| 编码工具额度用完 | 立即更换合适的 Agent，优先选择另一家厂商。 |
+| 编码工具额度用完 | 保留原运行环境、会话和工作目录。恢复时间已知时等待后继续，也可由人更换 Agent 或运行环境。 |
 | 运行环境离线 | 工作返回队列，由其他运行环境接手。 |
 | 排队超过 24 小时仍未被领取 | 本次运行失败，通知负责人。负责人可重试、转交或取消。 |
 | Agent 反复交接 | 每个任务由 Agent 评论触发的运行，默认每 24 小时最多 20 次。超过后暂停并通知负责人，由其决定是否继续。 |

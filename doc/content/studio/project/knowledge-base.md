@@ -14,7 +14,7 @@ The knowledge base stores material written or uploaded by members. Agents read i
 
 Open a project's **Knowledge** tab. Project work can reference both project knowledge and accessible system knowledge.
 
-![Organize business material in the project knowledge base](https://static-docs.nocobase.com/studio-en-guide-knowledge-20261031.png)
+![Organize business material in the project knowledge base](https://static-docs.nocobase.com/studio-en-knowledge-20261111-normal-2x.webp)
 
 ## Add and maintain material
 

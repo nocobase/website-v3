@@ -97,6 +97,16 @@ span.doc-folder-link { font-weight: 400; }
 .prose pre { font-family: var(--f-mono); }
 .prose .code-block pre.astro-code { background: none; }
 
+/* A standalone repository entry inside an article. */
+.prose .doc-repo-card { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px 24px; margin: 24px 0; padding: 20px 24px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); color: var(--ink); text-decoration: none; }
+.prose .doc-repo-card:hover { border-color: var(--brand); text-decoration: none; }
+.prose .doc-repo-card:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.doc-repo-card-content { display: grid; gap: 5px; min-width: 0; }
+.doc-repo-card-content strong { font-size: 17px; }
+.doc-repo-card-name { font: 13px/1.6 var(--f-mono); color: var(--ink-2); overflow-wrap: anywhere; }
+.doc-repo-card-description { font-size: 14px; color: var(--muted); }
+.doc-repo-card-action { flex-shrink: 0; color: var(--brand); font-size: 14px; font-weight: 500; }
+
 /* Shiki: the colors of the css-variables theme, tuned to the site */
 :root {
   --astro-code-foreground: var(--ink);

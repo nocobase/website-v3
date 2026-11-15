@@ -5,7 +5,7 @@ description: "実行リソース、ツールの状態、同時実行数、作業
 
 ランタイムは、コーディングツール、モデルへのサインイン状態、実行リソースを提供します。Studio から分離した専用コンテナや仮想マシンをおすすめします。初回は[ランタイムを接続する](../setup/shared-runtimes.md)を参照してください。
 
-![ランタイムの接続状態、利用範囲、実行容量](https://static-docs.nocobase.com/studio-en-guide-runtimes-20261031.png)
+![ランタイムの接続状態、利用範囲、実行容量](https://static-docs.nocobase.com/studio-en-runtimes-20261111-normal-2x.webp)
 
 runner の登録、ログ、更新、削除は [nocobase-runner コマンド](../reference/runner.md)を参照してください。
 

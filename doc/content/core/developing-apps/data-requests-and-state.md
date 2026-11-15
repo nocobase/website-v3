@@ -294,13 +294,14 @@ The example maintains only name, contact, email, and status. Delays, explicit re
 
 ### Requirements and startup
 
-Use Node.js 24 or later. The application's `packageManager` specifies pnpm `11.7.0`, and its lockfile fixes dependency versions. These commands use SQLite for a quick start; that is an example choice, not a prerequisite for API Client or the hooks.
+Use Node.js 24 or later and pnpm 11.11.0. The lockfile fixes dependency versions. These commands use SQLite for a quick start; that is an example choice, not a prerequisite for API Client or the hooks.
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 0db1a6aade41a18757f5a709aacd2df695fcf7f8
 cd apps/customer-directory
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

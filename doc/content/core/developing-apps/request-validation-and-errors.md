@@ -346,13 +346,14 @@ Tests use isolated databases and do not reset walkthrough data. Repository refus
 
 ## Example source and running
 
-Source: [request-validation](https://github.com/nocobase/docs-examples-v3/tree/12e46abf29509039d988bab437de0aad8931f93e/apps/request-validation). Use Node.js 24 and pnpm 11.7.0; the lockfile pins dependencies. This is an independent server application and does not require a historical project from another chapter.
+Source: [request-validation](https://github.com/nocobase/docs-examples-v3/tree/12e46abf29509039d988bab437de0aad8931f93e/apps/request-validation). Use Node.js 24 and pnpm 11.11.0; the lockfile pins dependencies. This is an independent server application and does not require a historical project from another chapter.
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 12e46abf29509039d988bab437de0aad8931f93e
 cd apps/request-validation
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm setup
 pnpm start

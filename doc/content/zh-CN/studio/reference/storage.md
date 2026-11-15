@@ -94,6 +94,21 @@ credentials:
 
 `roleName` 可省略，由实例元数据服务提供角色名称。不要同时填写角色和访问密钥。
 
+## 单文件上传大小
+
+任务、评论和 Agent 会话附件按实际写入的磁盘读取 `maxFileSizeMb`。默认上限为 20 MiB，必须使用正整数。例如，将本地磁盘的单文件上限设为 50 MiB：
+
+```yaml
+drive:
+  disks:
+    local:
+      maxFileSizeMb: 50
+```
+
+使用 S3 或 OSS 时，将 `maxFileSizeMb` 加到对应磁盘配置下。不同磁盘可以使用不同上限；任一磁盘的值无效都会阻止 Studio 启动。此字段不替代其他文件接口自身的限制，也不控制发布产物大小。
+
+修改后重启 Studio 并刷新页面。反向代理的请求大小上限需覆盖文件和 multipart 表单；配置了 `api.bodyLimit` 时，也需满足其请求体限制。不要把请求上限设得刚好等于文件上限。
+
 ## 发布产物
 
 文件上传和构建产物分别配置。修改 `drive.default` 不会改变产物存储；产物默认保存在 `/app/storage/releases/artifacts`。
@@ -111,7 +126,7 @@ releases:
 
 Studio 和预览所在的 Host 都需要访问产物存储。文件磁盘生成浏览器直达下载链接时，存储地址也必须能从浏览器访问。
 
-产物默认上限为 256 MiB，可通过 `releases.maxArtifactSizeMB` 调整。大文件上传还受反向代理和 `API_BODY_LIMIT` 限制。
+产物默认上限为 256 MiB，可通过 `releases.maxArtifactSizeMB` 调整。大文件上传还受反向代理和 `api.bodyLimit` 限制。
 
 ## 切换存储并验证访问
 

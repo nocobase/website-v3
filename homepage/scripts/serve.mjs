@@ -1,13 +1,14 @@
 // 本地预览 homepage/dist/：按 CDN 回源规则（scripts/deploy-cdn/deploy-cdn.mjs 的 REWRITE_RULES）把地址映射到文件。
 // 以 / 结尾的地址读 <路径>/index.html，不带扩展名的地址（最后一段没有点号）读 <路径>/index.html，其他读同名文件；/en/… 和线上一样当成根目录。
 // 找不到时返回根目录的 404.html，状态码 404（线上 bucket 的 404 页面也是它）。只用于本地预览。
-// 运行：pnpm preview（先 pnpm build），端口读 PORT，默认 4322。
+// 运行：pnpm preview（先 pnpm build），端口读 PORT，默认 4322；HOST 指定监听的地址（比如 0.0.0.0 让别的机器访问），默认和 Node 一样监听所有地址。
 import { createServer } from 'node:http';
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { extname, join, normalize } from 'node:path';
 import { DIST } from '../src/lib/paths.mjs';
 
 const port = Number(process.env.PORT || 4322);
+const host = process.env.HOST || undefined;
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.woff2': 'font/woff2', '.xml': 'application/xml; charset=utf-8', '.txt': 'text/plain; charset=utf-8' };
 
 // 和线上一样让浏览器缓存打包出来的资源（/_astro/ 下的文件名带内容哈希，线上 CDN 缓存 30 天）：不缓存的话每次切换页面都重新下载字体，文字会先用备用字体显示再换掉，看起来像抖了一下。页面本身不缓存，重新构建后刷新就能看到
@@ -25,4 +26,4 @@ createServer((req, res) => {
   const notFound = join(DIST, '404.html');
   res.writeHead(404, { 'content-type': TYPES['.html'] });
   res.end(existsSync(notFound) ? readFileSync(notFound) : 'Not found');
-}).listen(port, () => console.log(`官网预览：http://localhost:${port}/`));
+}).listen(port, host, () => console.log(`官网预览：http://${host && host !== '0.0.0.0' ? host : 'localhost'}:${port}/`));

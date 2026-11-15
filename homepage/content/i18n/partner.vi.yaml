@@ -7,8 +7,11 @@ notes: |-
 title: Chương trình đối tác NocoBase — Bàn giao nhiều dự án khách hàng hơn với đội agent
 description: "Trở thành đối tác NocoBase: hoa hồng phân phối 15%–40%, doanh thu dịch vụ 100% thuộc về bạn. Dựa trên Core, Studio và Solution, tư vấn viên tập trung vào nhu cầu khách hàng, việc phát triển giao cho đội agent, nhiều dự án chạy cùng lúc."
 strings:
+  "000": Chương trình đối tác
   "001": AI đã thay đổi cách bàn giao phần mềm. <span class="m">Hãy biến nó thành công việc kinh doanh của bạn.</span>
   "002": Trước đây, nhận được bao nhiêu dự án phụ thuộc vào số lập trình viên. Giờ đây, tư vấn viên của bạn chỉ cần tập trung phân tích nhu cầu khách hàng, chốt phương án và nghiệm thu, còn phát triển, kiểm thử và triển khai giao cho đội agent, nhiều dự án khách hàng chạy song song. NocoBase 3 cung cấp nền móng Core, Studio và các ứng dụng nghiệp vụ Solution; kinh nghiệm ngành và quan hệ khách hàng của bạn chính là lợi thế cạnh tranh cốt lõi.
+  "003": Trở thành đối tác
+  "004": Tìm đối tác
   "005": Hoa hồng phân phối
   "006": Cách tích lũy
   "007": Tích lũy trọn đời, chỉ tăng không giảm
@@ -27,11 +30,13 @@ strings:
   "020": Năng lực bàn giao
   "021": Số dự án bị giới hạn bởi quy mô đội lập trình
   "022": Một đội agent thúc đẩy đồng thời mọi dự án khách hàng suốt 24 giờ
+  "023": Cách báo giá
   "024": Báo giá theo ngày công, lợi nhuận bị khóa theo giờ công
   "025": Định giá theo module và kết quả, bàn giao nhanh hơn, biên lợi nhuận cao hơn
   "026": Sản phẩm bàn giao
   "027": Cấu hình hộp đen hoặc code tùy biến, đổi người là khó bảo trì
   "028": Mã nguồn sạch trên nền móng chuẩn, có thể review, nâng cấp và tiếp tục để AI phát triển
+  "029": Kinh nghiệm ngành
   "030": Kinh nghiệm nằm trong đầu nhân viên cũ, người nghỉ là mất
   "031": Đúc kết thành kỹ năng và kho tri thức, tái sử dụng ngay cho khách hàng cùng loại tiếp theo
   "032": Sau khi đưa vào vận hành
@@ -66,6 +71,7 @@ strings:
   "061": Phát hành gói kỹ năng, connector và thành phần UI để lập trình viên và agent dùng trực tiếp
   "062": Cùng xây dựng giải pháp, tài liệu kỹ thuật và case study tiêu biểu
   "063": Nhận trước bản xem trước của Core để hoàn tất chứng nhận tương thích
+  "064": Vì sao chọn NocoBase
   "065": "Bàn giao nhanh hơn, ổn định hơn, "
   "066": khách hàng yên tâm hơn.
   "067": Bàn giao toàn bộ mã nguồn
@@ -147,3 +153,5 @@ strings:
   "144": Quốc gia / khu vực
   "145": Chọn quốc gia hoặc khu vực
   "146": NocoCRM, NocoITAM, NocoReach đều mã nguồn mở, tùy biến theo nhu cầu khách hàng trên nền có sẵn, nhanh hơn nhiều so với làm từ đầu.
+  "147": Hãy gửi email tới partner@nocobase.com, giới thiệu đội ngũ của bạn và hình thức hợp tác bạn mong muốn, chúng tôi sẽ sớm liên hệ.
+  "148": Gửi email

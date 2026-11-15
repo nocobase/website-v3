@@ -1,0 +1,21 @@
+{
+  "title": "多门户",
+  "pages": [
+    {
+      "type": "page",
+      "path": "create-app"
+    },
+    {
+      "type": "page",
+      "path": "develop"
+    },
+    {
+      "type": "page",
+      "path": "access"
+    },
+    {
+      "type": "page",
+      "path": "manage"
+    }
+  ]
+}

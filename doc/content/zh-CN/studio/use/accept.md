@@ -9,7 +9,7 @@ description: 核对交付报告与实际结果，合并代码或退回修改。
 
 从「我的任务 › 等你处理」打开任务。先读「需要你」，再核对报告。
 
-![任务顶部提供验收操作，下方是交付报告](https://static-docs.nocobase.com/studio-zh-guide-accept-20261031.png)
+![任务顶部提供验收操作，下方是交付报告](https://static-docs.nocobase.com/studio-zh-req-accept-20261111-normal-2x.webp)
 
 | 内容 | 检查重点 |
 | --- | --- |

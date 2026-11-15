@@ -27,12 +27,22 @@ mailers:
     secure: false
     auth:
       user: notifications@example.com
+      pass: replace-with-smtp-password
     from: "Studio <notifications@example.com>"
 ```
 
-パスワードは、後述の `MAILERS_SYSTEM_PASSWORD` で渡します。送信元アドレスをメールサービスで認可し、指定のポートと TLS 設定を使ってください。
+SMTP パスワードは `mailers.system.auth.pass` に記入します。送信元アドレスをメールサービスで認可し、指定のポートと TLS 設定を使ってください。
 
-Resend を使う場合は、`mailers.system` を `provider: resend` と `from` に置き換え、SMTP の項目を削除します。`.env` と Compose の両方で `MAILERS_SYSTEM_API_KEY` を設定し、API キーを渡します。
+Resend を使う場合は、`mailers` を以下に置き換えます。SMTP の項目とは混在させないでください。
+
+```yaml
+mailers:
+  default: system
+  system:
+    provider: resend
+    apiKey: replace-with-resend-api-key
+    from: "Studio <notifications@example.com>"
+```
 
 招待は `mailers.default` を使います。別の設定済みサービスを使う場合は、その名前を `users.invitations.mailer` に指定します。メール未設定でも、管理者は招待リンクをコピーして共有できます。[メンバーを招待する](../setup/invite.md)を参照してください。
 
@@ -41,6 +51,9 @@ Resend を使う場合は、`mailers.system` を `provider: resend` と `from` �
 パスワード再設定も `mailers.default` を使います。パスワードでのサインインと再設定を有効にします。
 
 ```yaml
+app:
+  publicOrigin: https://studio.example.com
+
 auth:
   emailAndPassword:
     enabled: true
@@ -50,25 +63,11 @@ auth:
     enabled: true
 ```
 
-`APP_PUBLIC_ORIGIN` に `https://studio.example.com` など、メンバーがアクセスできる Studio の URL を設定します。再設定に別の設定済みサービスを使う場合は、その名前を `auth.email.mailer` に指定します。
+`app.publicOrigin` に `https://studio.example.com` など、メンバーがアクセスできる Studio の URL を設定します。再設定に別の設定済みサービスを使う場合は、その名前を `auth.passwordReset.mailer` に指定します。
 
-## シークレットを渡して設定を反映する
+## 設定を反映する
 
-デプロイ先の `.env` に追加します。
-
-```dotenv
-MAILERS_SYSTEM_PASSWORD=<smtp-password>
-```
-
-`docker-compose.yml` の `services.studio.environment` に追加します。
-
-```yaml
-MAILERS_SYSTEM_PASSWORD: ${MAILERS_SYSTEM_PASSWORD:?set MAILERS_SYSTEM_PASSWORD in .env}
-```
-
-Compose の `.env` は、変数を自動でコンテナに渡しません。Compose 内で明示してください。`config.yml` 内の `${NAME}` も展開されません。
-
-変更後は Studio コンテナを再作成します。
+`config.yml` を保存し、コンテナのユーザーが読み取れることを確認して、Studio コンテナを作り直します。
 
 ```bash
 docker compose up -d --force-recreate studio
@@ -86,12 +85,12 @@ docker compose up -d --force-recreate studio
 
 以下が必要です。
 
-- HTTPS で公開した Studio と、その公開アドレスを指定した `APP_PUBLIC_ORIGIN`。LAN 内の `http://` アドレスでは使えません。
-- 長期保存する 32 バイトの P-256 秘密鍵。base64url または 64 桁の 16 進数で `push.privateKey` か `WEB_PUSH_PRIVATE_KEY` に設定します。`push.contact` には `mailto:admin@example.com` などの連絡先を指定します。
+- HTTPS で公開した Studio と、その公開アドレスを指定した `app.publicOrigin`。LAN 内の `http://` アドレスでは使えません。
+- 長期保存する 32 バイトの P-256 秘密鍵。base64url または 64 桁の 16 進数で `config.yml` の `push.privateKey` に設定します。`push.contact` には `mailto:admin@example.com` などの連絡先を指定します。
 
 秘密鍵がない場合、メンバーはプッシュ通知を購読できません。
 
 > [!WARNING] プッシュ用キーを保管する
-> 秘密鍵を変更すると、すべての端末で再購読が必要です。`SECRETS_KEYS` と一緒に安全に保管・バックアップし、リポジトリにはコミットしないでください。
+> 秘密鍵を変更すると、すべての端末で再購読が必要です。`secrets.keys` と一緒に安全に保管・バックアップし、リポジトリにはコミットしないでください。
 
-![メンバーの通知設定](https://static-docs.nocobase.com/studio-en-guide-preferences-20261031.png)
+![メンバーの通知設定](https://static-docs.nocobase.com/studio-en-notifications-20261111-normal-2x.webp)

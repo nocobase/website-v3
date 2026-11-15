@@ -5,7 +5,7 @@ description: 管理执行资源、工具状态、并发和工作目录。
 
 运行环境提供编码工具、模型登录状态和执行资源。建议使用独立容器或虚拟机，与 Studio 隔离。首次安装见[接入运行环境](../setup/shared-runtimes.md)。
 
-![运行环境的连接状态、使用范围和执行容量](https://static-docs.nocobase.com/studio-zh-guide-runtimes-20261031.png)
+![运行环境的连接状态、使用范围和执行容量](https://static-docs.nocobase.com/studio-zh-runtimes-20261111-normal-verified-2x.webp)
 
 执行机的注册、日志、更新和卸载命令，见 [nocobase-runner 命令](../reference/runner.md)。
 

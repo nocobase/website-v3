@@ -309,13 +309,14 @@ HTTP 入口把 `ORDER_UNAVAILABLE` 转换为 404，把库存不足和状态冲�
 
 ### 安装与启动
 
-[完整示例与 README](https://github.com/nocobase/docs-examples-v3/blob/89d899c436563335529aba9b75fbc12b5dc0db34/apps/order-services/README.md)提供文件对应关系和详细操作。示例要求 Node.js 24、pnpm 11.7.0，并锁定已发布的依赖；其中 `@nocobase/app-server` 为 `3.0.0-beta.4`，`@nocobase/db` 为 `1.0.0-beta.23`，`@nocobase/service-provider` 为 `0.0.2-beta.2`。
+[完整示例与 README](https://github.com/nocobase/docs-examples-v3/blob/89d899c436563335529aba9b75fbc12b5dc0db34/apps/order-services/README.md)提供文件对应关系和详细操作。示例要求 Node.js 24、pnpm 11.11.0，并锁定已发布的依赖；其中 `@nocobase/app-server` 为 `3.0.0-beta.4`，`@nocobase/db` 为 `1.0.0-beta.23`，`@nocobase/service-provider` 为 `0.0.2-beta.2`。
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 89d899c436563335529aba9b75fbc12b5dc0db34
 cd apps/order-services
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm setup
 pnpm start

@@ -11,7 +11,7 @@ When a task needs a business decision or missing information, the Lead Agent exp
 2. Select **Reply** and answer in the corresponding thread.
 3. Send the reply for the Lead Agent to continue arranging work.
 
-![A blocked task explains which decision its owner needs to make](https://static-docs.nocobase.com/studio-en-guide-answer-20261031.png)
+![A blocked task explains which decision its owner needs to make](https://static-docs.nocobase.com/studio-en-req-blocked-20261111-normal-2x.webp)
 
 ```prompt
 All tier C supplier orders need purchasing manager approval, regardless of value. Other suppliers should still follow the amount threshold.

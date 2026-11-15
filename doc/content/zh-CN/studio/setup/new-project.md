@@ -16,7 +16,7 @@ description: 为项目连接代码仓库，使用 NocoBase 应用模板初始化
 5. 初始化方式选择「NocoBase 应用」，应用模板保留「默认模板」。
 6. 点「创建」。
 
-![新建私有仓库，使用 NocoBase 默认模板初始化应用](https://static-docs.nocobase.com/studio-zh-setup-create-nocobase-app-full-1440x900-20261030.png)
+![新建私有仓库，使用 NocoBase 默认模板初始化应用](https://static-docs.nocobase.com/studio-zh-new-project-20261111-normal-2x.webp)
 
 Studio 会在所选 Git 连接对应的账号或组织下创建仓库。仓库名称需要尚未被使用。
 
@@ -25,8 +25,6 @@ Studio 会在所选 Git 连接对应的账号或组织下创建仓库。仓库�
 Studio 自动创建「初始化项目」任务。调度 Agent 分派工作，执行 Agent 在运行环境上创建基于 Core 的应用、安装依赖并提交代码。
 
 打开这个任务，可以查看执行进度、Agent 回复和检查结果。项目中的其他任务会等待初始化完成。
-
-![项目概览显示初始化任务正在进行](https://static-docs.nocobase.com/studio-zh-setup-initializing-full-1440x900-20261030.png)
 
 首次提交推送到默认分支。检查通过，或仓库未配置检查时，初始化任务自动完成。
 
@@ -42,7 +40,7 @@ Studio 自动创建「初始化项目」任务。调度 Agent 分派工作，执
 
 应用初始化已完成。接下来准备检查与预览，再邀请成员使用。
 
-![初始化已完成，可以添加业务任务](https://static-docs.nocobase.com/studio-zh-setup-project-ready-full-1440x900-20261030.png)
+![项目概览中的任务进度与设置入口](https://static-docs.nocobase.com/studio-zh-supplier-overview-20261111-normal-2x.webp)
 
 ## 下一步
 

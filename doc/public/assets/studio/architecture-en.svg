@@ -56,7 +56,7 @@
   <g text-anchor="middle">
     <text class="label blue" x="274" y="376">Continuous development</text><text class="sub" x="274" y="398">Requirements · Design · Code</text>
     <text class="label blue" x="472" y="376">Checks and review</text><text class="sub" x="472" y="398">Tests · Code review</text>
-    <text class="label blue" x="670" y="376">Acceptance and quality</text><text class="sub" x="670" y="398">Delivery report · Quality plan</text>
+    <text class="label blue" x="670" y="376">Acceptance and quality</text><text class="sub" x="670" y="398">Core scenarios · Test reports</text>
     <text class="label blue" x="868" y="376">Release and delivery</text><text class="sub" x="868" y="398">Versions · Artifacts · Records</text>
   </g>
 

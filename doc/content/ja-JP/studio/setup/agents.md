@@ -9,7 +9,7 @@ description: 利用できるモデルを確認し、コーディネーターエ�
 
 **Where it runs** に、接続したランタイムが含まれていることを確認します。コーディングツールとモデルの組み合わせごとに、1 つのエージェントになります。
 
-![ランタイムから報告された、有効なエージェント](https://static-docs.nocobase.com/studio-en-setup-agents-20261030.png)
+![ランタイムから報告された、有効なエージェント](https://static-docs.nocobase.com/studio-en-agents-20261111-normal-2x.webp)
 
 担当と推論の強さは、ひとまず既定のままにしておきます。コーディネーターエージェントはこれらの説明をもとに仕事を割り振ります。
 
@@ -20,7 +20,7 @@ description: 利用できるモデルを確認し、コーディネーターエ�
 3. ほかに利用できるモデルがあれば、**Fallback** で選べます。
 4. 保存し、その他は既定のままにします。
 
-![コーディネーターエージェントのメインとフォールバックのモデルを設定します](https://static-docs.nocobase.com/studio-en-setup-coordinator-20261030.png)
+![コーディネーターエージェントのメインとフォールバックのモデルを設定します](https://static-docs.nocobase.com/studio-en-coordinator-20261111-normal-2x.webp)
 
 **完了の条件**：チームに有効なエージェントがあり、コーディネーターエージェントのメインのモデルに利用可能なランタイムがあること。
 

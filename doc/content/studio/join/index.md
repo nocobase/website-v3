@@ -15,7 +15,7 @@ We recommend [talking to a Runner Agent](runner-agent.md) in Studio or installin
 
 If your team does not have Studio or a project yet, an administrator can start with [Install and configure](../setup/index.md).
 
-![My issues brings together decisions, deliveries, and task progress](https://static-docs.nocobase.com/studio-en-guide-my-issues-20261031.png)
+![My issues brings together decisions, deliveries, and task progress](https://static-docs.nocobase.com/studio-en-my-issues-20261111-normal-2x.webp)
 
 ## Choose how to work
 
@@ -23,10 +23,9 @@ If your team does not have Studio or a project yet, an administrator can start w
 | --- | --- |
 | Discuss requirements or inspect a project in Studio | [Talk to a Runner Agent](runner-agent.md) |
 | Manage tasks through the CLI from your local Claude Code or Codex session | [Use a local Coding Agent](local-agent.md) |
-| Use a coding tool on your computer through the browser | [Connect your computer](connect-computer.md) |
 | Provide execution resources for your own tasks | [Connect a personal runtime](personal-runtime.md) |
 
-Both approaches can use the team's shared runtime to execute tasks. Connect your computer or a personal runtime when needed.
+Runner Agent and local Coding Agents can both use the team's shared runtime to execute tasks. Connect a personal runtime if you need your own execution resources.
 
 ## Follow tasks
 

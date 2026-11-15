@@ -1,0 +1,17 @@
+<style>
+.architecture-diagram{padding:16px;background:var(--card);border-radius:8px;font-size:14px;line-height:1.7}
+.architecture-diagram .box,.architecture-diagram .node,.architecture-diagram .platform{padding:14px;border:1px solid var(--rule);border-radius:7px;background:var(--paper);min-width:0}
+.architecture-diagram .label{font-weight:600;margin-bottom:12px}
+.architecture-diagram .grid,.architecture-diagram .tenant-apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.architecture-diagram .node{text-align:center;padding:12px 6px;overflow-wrap:anywhere}
+.architecture-diagram strong,.architecture-diagram small,.architecture-diagram .platform span{display:block}
+.architecture-diagram small,.architecture-diagram .base,.architecture-diagram .platform span{font-size:12px;color:var(--muted)}
+.architecture-diagram .base{border-top:1px solid var(--rule);padding-top:10px;margin-top:12px;text-align:center}
+.architecture-diagram .platform{max-width:440px;margin:auto;text-align:center}
+.architecture-diagram .capability{background:var(--card);padding:8px;border-radius:4px;margin-top:8px}
+.architecture-diagram .arrow{text-align:center;color:var(--muted);line-height:28px}
+.architecture-diagram h3{margin:0;font-size:14px;line-height:1.7}
+.architecture-diagram .module-stack{display:grid;gap:7px;margin:12px 0}
+.architecture-diagram .module-stack span{padding:6px;text-align:center;border:1px solid var(--rule);border-radius:4px;background:var(--card);font-size:12px}
+@media(max-width:560px){.architecture-diagram .grid,.architecture-diagram .tenant-apps{grid-template-columns:1fr}.architecture-diagram{padding:12px}}
+</style>

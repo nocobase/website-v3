@@ -5,7 +5,7 @@ description: 集中查看自己负责、执行和关注的任务，优先处理�
 
 「我的任务」汇总你负责、执行或关注的任务。需要你回答、验收或处理执行问题的事项，会进入「等你处理」。
 
-![左侧按待办分组，右侧直接处理选中的任务](https://static-docs.nocobase.com/studio-zh-guide-my-issues-20261031.png)
+![左侧按待办分组，右侧直接处理选中的任务](https://static-docs.nocobase.com/studio-zh-my-issues-20261111-normal-2x.webp)
 
 ## 按“轮到谁”分组
 

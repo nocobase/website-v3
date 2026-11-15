@@ -5,7 +5,7 @@ description: Identify delivery versions with Git tags and inspect their tasks an
 
 Studio identifies versions from Git tags and calculates which tasks they contain. A release line defines a tag sequence. Artifacts contain the files or images used for deployment.
 
-![Versions, included tasks, and deployment artifacts](https://static-docs.nocobase.com/studio-en-guide-versions-20261031.png)
+![Versions, included tasks, and deployment artifacts](https://static-docs.nocobase.com/studio-en-versions-20261111-normal-2x.webp)
 
 ## Configure release lines
 

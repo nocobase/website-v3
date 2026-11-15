@@ -5,11 +5,13 @@ description: Follow check results, Agent reviews, and merge conditions.
 
 Before delivery, the Lead Agent arranges verification and code review according to the project's skills. The task owner reads the delivery report and decides whether to merge.
 
+For tests across completed tasks or the whole project, use [Quality](../quality/overview.md). These tests keep their own reports and follow-up tasks.
+
 ## Follow checks
 
 Open **Code & previews** on the task to see each PR's check source, results, and log links. The repository selects the source: code-host CI, external CI, or Agent self-check. See [Checks and CI](../configure/checks.md).
 
-![PR check results on a task](https://static-docs.nocobase.com/studio-en-guide-checks-20261031.png)
+![PR check results on a task](https://static-docs.nocobase.com/studio-en-req-preview-20261111-normal-2x.webp)
 
 Under **Project settings › Code repositories › Branch rules**, configure:
 

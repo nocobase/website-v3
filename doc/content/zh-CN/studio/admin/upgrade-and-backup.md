@@ -10,8 +10,8 @@ description: 备份并恢复 Studio 数据，升级服务端、执行机和 CLI�
 | 内容 | 保存什么 |
 | --- | --- |
 | 数据库 | PostgreSQL 导出或数据库服务提供的备份 |
-| 配置 | `config.yml`、Compose 文件和 `.env` |
-| 密钥 | `SECRETS_KEYS` 使用的密钥，以及推送私钥 |
+| 配置 | `config.yml`、Compose 文件及其他实际使用的配置文件 |
+| 密钥 | `config.yml` 中的 `secrets.keys`，以及推送私钥 |
 | 文件 | `storage` 目录及对象存储中的文件、技能和制品 |
 
 在部署目录执行：
@@ -36,12 +36,12 @@ docker compose exec -T postgres pg_dump -U studio -Fc studio   > "backup/studio-
 docker compose exec -T postgres pg_restore -U studio -d studio   < backup/studio-backup.dump
 ```
 
-已有数据的数据库应先按团队的恢复流程处理，避免把备份叠加到现有记录。安装示例中的 `STUDIO_SECRET_KEY` 会传入 `SECRETS_KEYS`，恢复时必须保留相同密钥。
+已有数据的数据库应先按团队的恢复流程处理，避免把备份叠加到现有记录。恢复时必须保留 `config.yml` 中原有的 `secrets.keys`。
 
 ## 升级 Studio
 
 1. 完成备份，取得要升级的镜像版本。
-2. 更新部署配置中的 `STUDIO_IMAGE`。
+2. 更新 Compose 文件中的 `services.studio.image`。
 3. 拉取并重建 Studio 容器。
 
 ```bash

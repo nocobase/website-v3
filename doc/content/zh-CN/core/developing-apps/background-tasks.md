@@ -338,13 +338,14 @@ memory 在启动时读取状态，运行时保留在内存，正常关闭时写�
 
 ## 示例源码与运行
 
-[完整示例与验证说明](https://github.com/nocobase/docs-examples-v3/tree/3cfe5c53612d783d038a7b2a46c7b05fda1e1c26/apps/background-tasks)。使用 Node.js 24、pnpm 11.7.0，依赖版本由锁文件固定：App Server `3.0.0-beta.5`、Jobs `1.0.0-beta.5`、ServiceProvider `0.0.2-beta.2`。
+[完整示例与验证说明](https://github.com/nocobase/docs-examples-v3/tree/3cfe5c53612d783d038a7b2a46c7b05fda1e1c26/apps/background-tasks)。使用 Node.js 24、pnpm 11.11.0，依赖版本由锁文件固定：App Server `3.0.0-beta.5`、Jobs `1.0.0-beta.5`、ServiceProvider `0.0.2-beta.2`。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 3cfe5c53612d783d038a7b2a46c7b05fda1e1c26
 cd apps/background-tasks
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm demo manual
 ```

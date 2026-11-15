@@ -309,13 +309,14 @@ throw new ApiError({
 
 ## 示例源码与运行
 
-[完整源码与 README](https://github.com/nocobase/docs-examples-v3/tree/44cc65d121ea8cebf26fee77c924119cc57f4aad/apps/server-localization)包含版本要求、用法与源码对应关系，以及每个命令的预期结果。示例使用 Node.js 24、pnpm 11.7.0、App Server `3.0.0-beta.5` 和 I18n `2.0.0-beta.1`，依赖版本与默认模板 `1.0.0-beta.85` 对齐。
+[完整源码与 README](https://github.com/nocobase/docs-examples-v3/tree/44cc65d121ea8cebf26fee77c924119cc57f4aad/apps/server-localization)包含版本要求、用法与源码对应关系，以及每个命令的预期结果。示例使用 Node.js 24、pnpm 11.11.0、App Server `3.0.0-beta.5` 和 I18n `2.0.0-beta.1`，依赖版本与默认模板 `1.0.0-beta.85` 对齐。
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 44cc65d121ea8cebf26fee77c924119cc57f4aad
 cd apps/server-localization
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm demo request zh-CN
 pnpm test

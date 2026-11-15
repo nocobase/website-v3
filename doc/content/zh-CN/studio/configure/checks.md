@@ -7,11 +7,11 @@ description: 选择检查来源，接入自动验证、PR 预览和测试环境�
 
 | 来源 | 执行方式 | 预览发布者 |
 | --- | --- | --- |
-| 代码平台 CI | GitHub Actions、GitLab CI 等 | 同一流水线 |
+| 代码平台 CI | GitHub Actions、GitLab CI、Gitea Actions 等 | 同一流水线 |
 | 外部 CI | Jenkins 或已有 CI 服务 | 外部流水线 |
 | Agent 自检 | Agent 按项目脚本和开发规范验证 | 执行任务的 Agent |
 
-![为仓库选择检查来源和预览方式](https://static-docs.nocobase.com/studio-zh-guide-ci-20261031.png)
+![为仓库选择检查来源和预览方式](https://static-docs.nocobase.com/studio-zh-ci-20261111-normal-2x.webp)
 
 ## Agent 自检
 
@@ -37,6 +37,8 @@ description: 选择检查来源，接入自动验证、PR 预览和测试环境�
 每次生成一种触发方式的配置。需要多种时分别接入。手动配置可展开页面中的命令和 CI 文件；GitHub 使用 Actions 密钥 `NB_STUDIO_API_KEY`。
 
 CI 必须能访问 Studio。云端 CI 无法访问本机地址，需要可达的 HTTPS 地址或自托管执行机。测试目标先在[托管环境](../admin/environments.md)中配置。
+
+Gitea Actions 使用页面生成的 `.gitea/workflows/` 文件，同样设置 `NB_STUDIO_API_KEY` 密钥。执行机需要能访问 Studio 和工作流引用的 actions。
 
 ## 外部 CI
 

@@ -667,13 +667,14 @@ const appRuntime = defineAppRuntime({
 
 ### 環境と起動
 
-[サンプルアプリ][app] は既定のテンプレート `1.0.0-beta.85` を使い、`@nocobase/app-client` を `4.0.0-beta.5` に固定しています。Node.js 24 と pnpm 11.7.0 が必要です。
+[サンプルアプリ][app] は既定のテンプレート `1.0.0-beta.85` を使い、`@nocobase/app-client` を `4.0.0-beta.5` に固定しています。Node.js 24 と pnpm 11.11.0 が必要です。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 2700e75f5ed0d927c0c37b53e4ffdf105961cc52
 cd apps/pages-routes-navigation
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

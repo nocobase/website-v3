@@ -47,7 +47,7 @@ Studio 在商业版中提供。管理员按[安装与配置](../studio/setup/ind
 
 Agent 会先确认不清楚的规则，再整理为任务。检查内容后点「开始执行」。也可选择「手动填写」，直接创建任务。
 
-![新建任务时，通过会话补充目标和业务规则](https://static-docs.nocobase.com/studio-en-guide-new-task-20261031.png)
+![新建任务时，通过会话补充目标和业务规则](https://static-docs.nocobase.com/studio-en-new-task-20261111-normal-2x.webp)
 
 开始后，任务进入「进行中」，由调度 Agent 安排设计、开发和评审。
 
@@ -57,7 +57,7 @@ Agent 会先确认不清楚的规则，再整理为任务。检查内容后点�
 
 任务顶部显示当前 Agent、运行环境和下一步。「动态」保留交接、回复和评审结果；「运行记录」提供具体执行过程。
 
-![任务详情显示当前执行步骤及后续安排](https://static-docs.nocobase.com/studio-en-guide-task-progress-20261031.png)
+![任务详情显示当前执行步骤及后续安排](https://static-docs.nocobase.com/studio-en-req-now-20261111-normal-2x.webp)
 
 调度 Agent 根据改动安排设计与实现。执行 Agent 在任务分支修改代码并创建 PR（合并请求）；检查与评审的结果仍关联到同一任务。检查失败或评审提出问题时，调度 Agent 安排修复，再次检查和评审，通过后交给你验收。
 
@@ -76,7 +76,7 @@ Agent 会先确认不清楚的规则，再整理为任务。检查内容后点�
 3. 满足要求后点「合并」，确认目标分支和合并方式。
 4. 需要调整时点「退回修改」，写清问题和预期结果。
 
-![通过交付报告和验收标准确认任务结果](https://static-docs.nocobase.com/studio-en-guide-accept-20261031.png)
+![通过交付报告和验收标准确认任务结果](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 任务显示「已完成」，且默认分支包含此次改动，表示本次开发完成。后续进入测试与发布的状态可在[发布](../studio/release/overview.md)中查看。
 

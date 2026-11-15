@@ -16,7 +16,7 @@ Team members can create projects and become their project lead. Confirm that the
 5. Select **NocoBase app** and keep the default application template.
 6. Select **Create**.
 
-![Create a private repository and initialize it with the default NocoBase template](https://static-docs.nocobase.com/studio-en-setup-create-nocobase-app-20261030.png)
+![Create a private repository and initialize it with the default NocoBase template](https://static-docs.nocobase.com/studio-en-new-project-20261111-normal-2x.webp)
 
 Studio creates the repository under the selected account or organization. The repository name must not already be in use.
 
@@ -25,8 +25,6 @@ Studio creates the repository under the selected account or organization. The re
 Studio creates an **Initialize project** task. The Lead Agent assigns the work. An execution Agent creates the Core application on a runtime, installs dependencies, and commits the code.
 
 Open the task to follow progress, Agent replies, and check results. Other project tasks wait for initialization to finish.
-
-![The project lists its initialization task](https://static-docs.nocobase.com/studio-en-setup-initializing-20261030.png)
 
 The first commit is pushed to the default branch. The initialization task completes automatically when checks pass, or when the repository has no checks configured.
 
@@ -42,7 +40,7 @@ Confirm that:
 
 The application is ready. Prepare checks and previews, then invite members.
 
-![Initialization is complete and the project is ready for business tasks](https://static-docs.nocobase.com/studio-en-setup-project-ready-20261030.png)
+![Project overview with task progress and project settings](https://static-docs.nocobase.com/studio-en-supplier-overview-20261111-normal-2x.webp)
 
 ## Next steps
 

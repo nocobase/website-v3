@@ -5,7 +5,7 @@ description: Manage accounts, roles, and team access.
 
 Manage accounts under **Settings › Members** and permissions under **Settings › Roles**. Agent work is also limited by the requester's permissions and the operations available to Agents.
 
-![Member accounts, roles, and status](https://static-docs.nocobase.com/studio-en-guide-members-20261031.png)
+![Member accounts, roles, and status](https://static-docs.nocobase.com/studio-en-members-20261111-normal-2x.webp)
 
 ## Manage members
 
@@ -33,7 +33,7 @@ Project visibility determines which projects ordinary members can access. See [T
 
 Create a role or copy an existing one, then adjust pages, settings, and business actions.
 
-![View and maintain team roles](https://static-docs.nocobase.com/studio-en-guide-roles-20261031.png)
+![View and maintain team roles](https://static-docs.nocobase.com/studio-en-roles-20261111-normal-2x.webp)
 
 Business actions can apply to none, related records, or all records. The editor explains what related means for each action, such as projects the member leads. Page permissions control entry points; business permissions control operations.
 

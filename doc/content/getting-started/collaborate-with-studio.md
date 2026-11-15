@@ -47,7 +47,7 @@ I want to add a supplier, change its status to suspended, and filter the list by
 
 The Agent clarifies missing rules and creates a task. Review it and select **Start**. You can also choose **Fill in manually** to create the task directly.
 
-![Use a conversation to define the goal and business rules](https://static-docs.nocobase.com/studio-en-guide-new-task-20261031.png)
+![Use a conversation to define the goal and business rules](https://static-docs.nocobase.com/studio-en-new-task-20261111-normal-2x.webp)
 
 The task moves to **In progress**. The Lead Agent arranges design, development, and review.
 
@@ -57,7 +57,7 @@ Before starting, confirm the allowed supplier statuses, which suppliers buyers c
 
 The task header shows the active Agent, runtime, and next step. **Activity** keeps handoffs, replies, and review results. **Runs** provides execution details.
 
-![Task details show the current step and what comes next](https://static-docs.nocobase.com/studio-en-guide-task-progress-20261031.png)
+![Task details show the current step and what comes next](https://static-docs.nocobase.com/studio-en-req-now-20261111-normal-2x.webp)
 
 The Lead Agent arranges design and implementation according to the change. An execution Agent edits code on the task branch and creates a PR (pull request). Checks and reviews stay linked to the task. Failed checks or review findings go back for fixes and another check or review before acceptance.
 
@@ -76,7 +76,7 @@ When the task is **In review**:
 3. Select **Merge** when the result meets the requirements. Confirm the target branch and merge method.
 4. Otherwise, select **Send back** and describe the problem and expected result.
 
-![Check the delivery report against the acceptance criteria](https://static-docs.nocobase.com/studio-en-guide-accept-20261031.png)
+![Check the delivery report against the acceptance criteria](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 Development is complete when the task is **Done** and its changes are on the default branch. Follow testing and release progress in [Releases](../studio/release/overview.md).
 

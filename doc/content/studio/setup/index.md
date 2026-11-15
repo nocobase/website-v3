@@ -40,7 +40,7 @@ We recommend a separate container or virtual machine for the runtime, isolated f
 
 ## Members start work
 
-After [accepting an invitation and signing in](../join/sign-in.md), members [walk through their first request](../../getting-started/collaborate-with-studio.md): submit a requirement, follow development, and accept the result. They can use the team's runtime without connecting their own computers.
+After [accepting an invitation and signing in](../join/sign-in.md), members [walk through their first request](../../getting-started/collaborate-with-studio.md): submit a requirement, follow development, and accept the result. They can use the runtimes prepared by their team.
 
 ## Adjust configuration
 

@@ -13,6 +13,7 @@
     "@astrojs/sitemap": "3.7.4",
     "@nocobase/site-shared": "workspace:*",
     "astro": "7.4.2",
+    "cookie": "2.0.1",
     "lucide": "0.460.0",
     "pagefind": "1.5.2",
     "remark-parse": "11.0.0",

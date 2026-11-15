@@ -7,9 +7,11 @@ notes: |-
 title: Tìm đối tác NocoBase — Cùng đối tác hiểu nghiệp vụ xây dựng và vận hành hệ thống
 description: Đối tác NocoBase am hiểu NocoBase 3, Studio và nghiệp vụ ngành của bạn, dẫn dắt đội agent cùng bạn làm rõ yêu cầu, phát triển, nghiệm thu, đưa vào vận hành và bảo trì về sau; code bàn giao thuộc về bạn.
 strings:
+  "000": Tìm đối tác
   "001": Tìm đối tác hiểu ngành của bạn, <span class="m">xây dựng hệ thống và đưa vào sử dụng.</span>
   "002": Đối tác NocoBase vừa thành thạo NocoBase 3 và Studio, vừa am hiểu sâu ngành của bạn. Họ dẫn dắt đội agent cùng bạn làm rõ yêu cầu, phát triển hệ thống, nghiệm thu bản xem trước và vận hành sau khi lên production. Toàn bộ quá trình minh bạch trong Studio, mã nguồn, kỹ năng và kho tri thức bàn giao hoàn toàn thuộc về bạn.
   "003": Gửi yêu cầu
+  "004": Trở thành đối tác
   "005": Khi nào nên tìm đối tác
   "006": "Muốn dùng AI xây hệ thống nghiệp vụ, "
   "007": nhưng đội ngũ chưa sẵn sàng.
@@ -86,3 +88,5 @@ strings:
   "078": "Có thể ghi: ngành, hệ thống hoặc kịch bản muốn xây, vấn đề cần giải quyết, dịch vụ cần, ngân sách hoặc quy mô, thời gian mong muốn đưa vào sử dụng"
   "079": Quốc gia / khu vực
   "080": Chọn quốc gia hoặc khu vực
+  "081": Hãy gửi email tới partner@nocobase.com, cho chúng tôi biết hệ thống bạn muốn xây dựng, chúng tôi sẽ giới thiệu đối tác phù hợp với khu vực, ngành và dịch vụ bạn cần.
+  "082": Gửi email

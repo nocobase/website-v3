@@ -5,7 +5,7 @@ description: "プロジェクトの進捗、未完了の設定、チームの開
 
 プロジェクトの **Overview** でタスク数、状態別の分布、リリースの進捗を確認します。リポジトリの追加やチェックとプレビューの設定など、未完了の設定は次の操作として表示されます。
 
-![プロジェクトのタスクとリリースの進捗](https://static-docs.nocobase.com/studio-en-guide-project-overview-20261031.png)
+![プロジェクトのタスクとリリースの進捗](https://static-docs.nocobase.com/studio-en-project-overview-20261111-normal-2x.webp)
 
 ## チームの成果を確認する
 
@@ -22,3 +22,5 @@ description: "プロジェクトの進捗、未完了の設定、チームの開
 指標にカーソルを合わせると計算方法が表示されます。注意が必要な項目には、ブロック中・期限超過の作業、長く検収待ちのタスク、最近の実行失敗が表示されます。
 
 個別タスクは[進捗を追う](../use/follow-progress.md)、容量と費用は[作業量と使用量](usage.md)、未リリースの変更は[リリースの概要](../release/overview.md)を参照してください。
+
+テストとフォローアップもプロジェクトのタスク一覧に表示されます。カバレッジと検出事項は[Quality](../quality/overview.md)で確認します。

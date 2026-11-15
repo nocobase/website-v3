@@ -12,7 +12,7 @@ description: "会話やフォームで、ルール、範囲、受け入れ基準
 3. 質問に答え、エージェントが作成したタスクを確認します。
 4. **Start** でエージェントチームに渡すか、**Not now** で Backlog に残します。
 
-![新しいタスクの会話に現在のプロジェクトの背景を含める](https://static-docs.nocobase.com/studio-en-guide-new-task-20261031.png)
+![Agent との会話からタスクを作成](https://static-docs.nocobase.com/studio-en-new-task-20261111-normal-2x.webp)
 
 ```prompt
 仕入先一覧にスコアとランクを表示してください。購買担当者がランクで絞り込めるようにし、停止中の仕入先への新規注文は禁止してください。
@@ -28,7 +28,7 @@ description: "会話やフォームで、ルール、範囲、受け入れ基準
 2. すぐ開始するか、後で開始するかを選びます。
 3. **Create and start** または **Create** を選びます。
 
-![タスクのタイトル、要件、開始方法を入力する](https://static-docs.nocobase.com/studio-en-guide-manual-task-20261031.png)
+![タスクのタイトル、要件、開始方法を入力する](https://static-docs.nocobase.com/studio-en-manual-task-20261111-normal-2x.webp)
 
 責任者が業務ルールを確認し、結果を検収します。Backlog のタスクは自動実行されません。準備ができたら **Start** を選んでください。
 

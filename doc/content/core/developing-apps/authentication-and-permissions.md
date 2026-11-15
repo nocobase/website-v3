@@ -364,13 +364,14 @@ See the example README for [endpoint][tests] and [browser test][browser-tests] c
 
 ## Example source and setup
 
-The [complete Customer Access app][source] uses default template `1.0.0-beta.85`, Node.js 24 and pnpm 11.7.0. Its lockfile fixes dependencies, including authentication `2.0.0-beta.16`, authorization `1.0.0-beta.33` and database `1.0.0-beta.24`.
+The [complete Customer Access app][source] uses default template `1.0.0-beta.85`, Node.js 24 and pnpm 11.11.0. Its lockfile fixes dependencies, including authentication `2.0.0-beta.16`, authorization `1.0.0-beta.33` and database `1.0.0-beta.24`.
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 5c9b1dcae021f4e4ae94416e783e3e84a71a1781
 cd apps/customer-access
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

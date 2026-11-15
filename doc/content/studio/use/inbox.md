@@ -13,7 +13,7 @@ Open the inbox from its icon in the top bar. Handle task decisions in **My issue
 | My sessions | Agent replies, conversation questions, and permission requests |
 | Inbox | Human comments, mentions, assignments, and non-task system messages and decisions |
 
-![Read messages in the inbox and open the related work](https://static-docs.nocobase.com/studio-en-guide-inbox-20261031.png)
+![Read messages in the inbox and open the related work](https://static-docs.nocobase.com/studio-en-inbox-20261111-normal-2x.webp)
 
 ## Inbox views
 
@@ -25,7 +25,7 @@ Use <kbd>J</kbd> / <kbd>K</kbd> to move between items. Marking a message read or
 
 ## Reminders
 
-Configure reminders in **Account settings › Preferences**.
+Configure reminders in **Account settings › Notifications**.
 
 | Method | Use |
 | --- | --- |
@@ -33,7 +33,7 @@ Configure reminders in **Account settings › Preferences**.
 | Desktop notifications | Browser notifications while Studio is in the background; browser permission is required |
 | Push notifications | Reminders on subscribed devices while the page is closed; an administrator must configure push |
 
-![Choose reminder methods in personal preferences](https://static-docs.nocobase.com/studio-en-guide-preferences-20261031.png)
+![Choose reminder methods under Notifications](https://static-docs.nocobase.com/studio-en-notifications-20261111-normal-2x.webp)
 
 Studio suppresses reminders for the task or conversation you are viewing. Each navigation badge counts its own waiting or unread items.
 

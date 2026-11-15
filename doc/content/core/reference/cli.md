@@ -7,6 +7,8 @@ This page covers the application's `nocobase` command. Separate tools create app
 
 ## Entry points
 
+Use pnpm 11.11.0.
+
 Run the local dependency's command from the application source root:
 
 ```bash
@@ -154,4 +156,4 @@ This illustrates envelope fields rather than a complete configuration-check resu
 
 ## Verification scope
 
-Checked on 2026-10-27 with default template beta.83, `@nocobase/app-cli` 1.0.0-beta.29, Node 24.21.0 and pnpm 11.7.0: source/deployment command catalogs, offline configuration validation, variable metadata, option help and registration preview for the local announcements plugin. Stateful operations such as resets, rollbacks and key rotation were not executed for this page. See the [app-cli source](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/app/app-cli).
+Checked on 2026-10-27 with default template beta.83, `@nocobase/app-cli` 1.0.0-beta.29, Node 24.21.0: source/deployment command catalogs, offline configuration validation, variable metadata, option help and registration preview for the local announcements plugin. Stateful operations such as resets, rollbacks and key rotation were not executed for this page. See the [app-cli source](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/app/app-cli).

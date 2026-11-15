@@ -516,13 +516,14 @@ Agent の完了報告には、訪問したページ、使用したロール、�
 
 ## サンプルのソースコードと実行
 
-[商品管理サンプル App](https://github.com/nocobase/docs-examples-v3/tree/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance)は `nocobase/docs-examples-v3` にあります。このページのリンクは同じ固定コミットを参照します。Node.js 24 と pnpm 11.7.0 を使用します。
+[商品管理サンプル App](https://github.com/nocobase/docs-examples-v3/tree/3e886903c7965530dd6ca50c7840d6ae991f2799/apps/testing-acceptance)は `nocobase/docs-examples-v3` にあります。このページのリンクは同じ固定コミットを参照します。Node.js 24 と pnpm 11.11.0 を使用します。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 3e886903c7965530dd6ca50c7840d6ae991f2799
 cd apps/testing-acceptance
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm run setup
 pnpm dev

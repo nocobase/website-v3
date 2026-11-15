@@ -1,9 +1,9 @@
 ---
 title: Prepare your development environment
-metaDescription: Install Node.js 24, pnpm 11.7 and Git, and set up WSL if you're on Windows.
+metaDescription: Install Node.js 24, pnpm 11.11 and Git, and set up WSL if you're on Windows.
 ---
 
-You need Node.js 24 or later, pnpm 11.7 or later and Git, and all commands run in a Unix-like terminal.
+You need Node.js 24 or later, pnpm 11.11 or later and Git, and all commands run in a Unix-like terminal.
 
 ## Windows users: install WSL first
 
@@ -30,7 +30,7 @@ fnm install 24
 Then install pnpm:
 
 ```bash
-npm install -g pnpm@11
+npm install -g pnpm@11.11
 ```
 
 Open a new terminal when you're done.
@@ -44,4 +44,4 @@ git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
 
-**Done when**: `node --version` shows `v24` or later, `pnpm --version` shows 11.7 or later, and `git config user.name` shows your name.
+**Done when**: `node --version` shows `v24` or later, `pnpm --version` shows 11.11 or later, and `git config user.name` shows your name.

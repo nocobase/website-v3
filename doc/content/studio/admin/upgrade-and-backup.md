@@ -10,8 +10,8 @@ Keep the database, configuration, encryption keys, and files together. These exa
 | Content | What to preserve |
 | --- | --- |
 | Database | PostgreSQL dump or managed database backup |
-| Configuration | `config.yml`, Compose file, and `.env` |
-| Keys | Encryption keys used by `SECRETS_KEYS` and the push private key |
+| Configuration | `config.yml`, the Compose file, and any other configuration files in use |
+| Keys | `secrets.keys` from `config.yml` and the push private key |
 | Files | `storage` and object-storage files, skills, and artifacts |
 
 Run from the deployment directory:
@@ -36,12 +36,12 @@ Restore into a prepared empty database, for example:
 docker compose exec -T postgres pg_restore -U studio -d studio   < backup/studio-backup.dump
 ```
 
-For a database with existing data, follow your team's replacement procedure rather than adding backup records to it. The installation example passes `STUDIO_SECRET_KEY` into `SECRETS_KEYS`; preserve the same key during recovery.
+For a database with existing data, follow your team's replacement procedure rather than adding backup records to it. Preserve the original `secrets.keys` in `config.yml` during recovery.
 
 ## Upgrade Studio
 
 1. Complete the backup and obtain the target image version.
-2. Update `STUDIO_IMAGE` in the deployment configuration.
+2. Update `services.studio.image` in the Compose file.
 3. Pull the image and recreate the Studio container.
 
 ```bash

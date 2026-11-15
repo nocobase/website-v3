@@ -309,13 +309,14 @@ An unsupported language and a missing key are different cases. The former resolv
 
 ## Example source and setup
 
-The [complete source and README](https://github.com/nocobase/docs-examples-v3/tree/44cc65d121ea8cebf26fee77c924119cc57f4aad/apps/server-localization) provide version requirements, the usage-to-source map and expected command output. The example uses Node.js 24, pnpm 11.7.0, App Server `3.0.0-beta.5` and I18n `2.0.0-beta.1`, matching the dependency versions used by Default template `1.0.0-beta.85`.
+The [complete source and README](https://github.com/nocobase/docs-examples-v3/tree/44cc65d121ea8cebf26fee77c924119cc57f4aad/apps/server-localization) provide version requirements, the usage-to-source map and expected command output. The example uses Node.js 24, pnpm 11.11.0, App Server `3.0.0-beta.5` and I18n `2.0.0-beta.1`, matching the dependency versions used by Default template `1.0.0-beta.85`.
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 44cc65d121ea8cebf26fee77c924119cc57f4aad
 cd apps/server-localization
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm demo request zh-CN
 pnpm test

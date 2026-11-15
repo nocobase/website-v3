@@ -12,7 +12,7 @@ description: Studio にメンバーを招待し、プロジェクトとロール
 3. **Projects** で、参加してもらうプロジェクトを選びます。招待された人はメンバーとしてこれらのプロジェクトに参加します。
 4. **Send invitations** をクリックします。
 
-![メンバーのメールアドレスを入力し、参加するプロジェクトを選びます](https://static-docs.nocobase.com/studio-en-setup-invite-20261030.png)
+![メンバーのメールアドレスを入力し、参加するプロジェクトを選びます](https://static-docs.nocobase.com/studio-en-invite-20261111-normal-2x.webp)
 
 メールが設定されていれば、各アドレスに、名前とパスワードを設定して参加するためのリンクを含むメールが届きます。リンクの有効期間は 7 日間です。
 

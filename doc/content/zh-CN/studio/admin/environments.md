@@ -5,7 +5,7 @@ description: 配置预览和测试应用的运行方式、变量与生命周期�
 
 管理员在「托管环境」中添加和维护环境。每个环境用于预览或测试，包含独立的应用、变量和运行策略。
 
-![预览与测试环境的运行方式和策略](https://static-docs.nocobase.com/studio-zh-guide-environments-20261031.png)
+![预览与测试环境的运行方式和策略](https://static-docs.nocobase.com/studio-zh-environments-20261111-normal-2x.webp)
 
 ## 添加环境
 
@@ -20,7 +20,7 @@ description: 配置预览和测试应用的运行方式、变量与生命周期�
 
 ## 交付测试应用
 
-在项目的发布页添加测试应用，或由 CI 首次上报时创建。部署对话框提供给 Agent 的提示词、CI 配置和手动命令。
+在托管环境或项目的发布页添加测试应用，也可以由 CI 首次上报时创建。部署对话框提供给 Agent 的提示词、CI 配置和手动命令。
 
 持续测试可使用分支推送触发 CI，见[检查与 CI](../configure/checks.md)。应用详情提供部署记录、日志、停止、唤醒和删除操作。
 

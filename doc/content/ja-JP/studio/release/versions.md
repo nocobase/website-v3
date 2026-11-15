@@ -5,7 +5,7 @@ description: "Git タグでリリースバージョンを識別し、含まれ�
 
 Studio は Git タグからバージョンを識別し、含まれるタスクを計算します。リリースラインはタグの系列を定義し、成果物にはデプロイに使うファイルやイメージを保存します。
 
-![バージョン、含まれるタスク、デプロイ成果物](https://static-docs.nocobase.com/studio-en-guide-versions-20261031.png)
+![バージョン、含まれるタスク、デプロイ成果物](https://static-docs.nocobase.com/studio-en-versions-20261111-normal-2x.webp)
 
 ## リリースラインを設定する
 

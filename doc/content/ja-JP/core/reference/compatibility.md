@@ -27,13 +27,14 @@ NocoBase は 8 種類のデータベースダイアレクトを提供してい�
 | KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 互換モード、`DB_MODE=pg` |
 | OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 互換テナント |
 
-この 3 つのドライバーは NocoBase Pro の商用パッケージで、該当するライセンスが必要です。ライセンス提供元から非公開レジストリーの URL、アカウント情報、ダウンロード権限を持つ読み取り用トークン（`nbr_…`）を取得してください。以下の `<nocobase-pro-registry-url>` を提供された URL に置き換えてコマンドを実行し、パスワードの入力時にトークンを指定します。
+この 3 つのドライバーは NocoBase Pro の商用パッケージで、該当するライセンスが必要です。ライセンス提供元から非公開レジストリーの URL、アカウント情報、ダウンロード権限を持つ読み取り用トークン（`nbr_…`）を取得してください。以下のコマンドの `<nocobase-pro-registry-url>` を提供された URL に、`<nocobase-pro-registry-host>` をその URL から `https://` と末尾の `/` を除いたホストとパスに、`<nocobase-pro-read-token>` をトークンに置き換えて実行します。
 
 ```bash
-pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
+npm config set "@nocobase:registry" "<nocobase-pro-registry-url>"
+npm config set "//<nocobase-pro-registry-host>/:_authToken" "<nocobase-pro-read-token>"
 ```
 
-このコマンドはユーザーレベルの設定で `@nocobase` スコープを Pro レジストリーに割り当てます。このレジストリーは公開 NocoBase パッケージもプロキシし、その他の依存関係は既存のレジストリーを使います。トークンをドキュメントやコマンドライン引数に記載したり、Git にコミットしたりしないでください。
+これらのコマンドは `@nocobase` スコープを Pro レジストリーに割り当て、トークンとともにユーザーの `~/.npmrc` に保存します。このファイルは npm と pnpm の両方が読み取ります。このレジストリーは公開 NocoBase パッケージもプロキシし、その他の依存関係は既存のレジストリーを使います。トークンをドキュメントに記載したり、Git にコミットしたりしないでください。
 
 ## アプリのデータベースを設定する
 

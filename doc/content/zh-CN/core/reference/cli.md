@@ -7,7 +7,7 @@ description: NocoBase 3 应用命令的调用方式、开发与部署差异、�
 
 ## 调用入口
 
-在应用源码根目录调用本地依赖中的命令：
+使用 pnpm 11.11.0，在应用源码根目录调用本地依赖中的命令：
 
 ```bash
 pnpm nocobase commands
@@ -154,4 +154,4 @@ pnpm nocobase config check --no-connect --json
 
 ## 核对范围
 
-2026-10-27 在默认模板 beta.83、`@nocobase/app-cli` 1.0.0-beta.29、Node 24.21.0 和 pnpm 11.7.0 下，核对了源码与部署产物的命令目录，并执行离线配置检查、环境变量清单、选项帮助和本地公告插件的注册预览。数据库重置、回退、密钥轮换等有状态操作未作为本页验证步骤执行。实现参考见 [app-cli 源码](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/app/app-cli)。
+2026-10-27 在默认模板 beta.83、`@nocobase/app-cli` 1.0.0-beta.29、Node 24.21.0 下，核对了源码与部署产物的命令目录，并执行离线配置检查、环境变量清单、选项帮助和本地公告插件的注册预览。数据库重置、回退、密钥轮换等有状态操作未作为本页验证步骤执行。实现参考见 [app-cli 源码](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/app/app-cli)。

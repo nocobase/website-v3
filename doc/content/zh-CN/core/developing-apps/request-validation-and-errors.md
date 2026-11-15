@@ -346,13 +346,14 @@ HTTP 错误响应本身不会撤销已经提交的操作。本例在写入前完
 
 ## 示例源码与运行
 
-源码：[request-validation](https://github.com/nocobase/docs-examples-v3/tree/12e46abf29509039d988bab437de0aad8931f93e/apps/request-validation)。使用 Node.js 24、pnpm 11.7.0，依赖版本由 lockfile 固定。这是独立的服务端应用，不需要先搭建其他章节的历史项目。
+源码：[request-validation](https://github.com/nocobase/docs-examples-v3/tree/12e46abf29509039d988bab437de0aad8931f93e/apps/request-validation)。使用 Node.js 24、pnpm 11.11.0，依赖版本由 lockfile 固定。这是独立的服务端应用，不需要先搭建其他章节的历史项目。
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 12e46abf29509039d988bab437de0aad8931f93e
 cd apps/request-validation
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm setup
 pnpm start

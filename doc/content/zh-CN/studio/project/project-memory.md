@@ -19,7 +19,7 @@ description: 让 Agent 共享已确认的规则、约束和经验，并随代码
 
 打开「项目记忆」，选择项目和仓库。也可以在项目的「记忆」页签中查看。按类型筛选或搜索，打开条目阅读正文和来源提交。
 
-![查看项目的共享记忆](https://static-docs.nocobase.com/studio-zh-guide-memory-20261031.png)
+![查看项目的共享记忆](https://static-docs.nocobase.com/studio-zh-memory-20261111-normal-2x.webp)
 
 ## 更新记忆
 

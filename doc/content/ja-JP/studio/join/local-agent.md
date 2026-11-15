@@ -12,7 +12,7 @@ description: "Claude Code や Codex から nb-studio でプロジェクトを調
 3. CLI のインストール後、案内された URL をブラウザーで開いて認可します。
 4. エージェントが現在のアカウントを確認し、CLI のスキルをインストールします。
 
-![Studio の設定手順をローカルのコーディングエージェントに渡す](https://static-docs.nocobase.com/studio-en-guide-local-agent-20261031.png)
+![Studio の設定手順をローカルのコーディングエージェントに渡す](https://static-docs.nocobase.com/studio-en-local-agent-20261111-normal-2x.webp)
 
 Node.js 24 以降と npm が必要です。パッケージは接続先の Studio から取得し、サーバーのバージョンに一致します。リンクは 30 分で失効するため、必要に応じて再生成してください。
 
@@ -43,4 +43,4 @@ nb-studio docs
 
 `whoami` は現在のアカウント、`docs` は接続先で使えるコマンドを表示します。[nb-studio コマンド](../reference/cli.md)を参照してください。
 
-Studio のブラウザー画面で対話するには、[Runner Agent](runner-agent.md) を使うか、[自分の PC を接続](connect-computer.md)します。
+Studio のブラウザー画面で対話するには、[Runner Agent](runner-agent.md) を使います。

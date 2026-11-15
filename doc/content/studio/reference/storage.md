@@ -57,6 +57,21 @@ drive:
 
 Make the bucket private too. `visibility: private` does not change its bucket policy.
 
+## Single-file upload size
+
+Task, comment, and Agent conversation attachments use `maxFileSizeMb` from their destination disk. The default is 20 MiB, and the value must be a positive integer. For example, set the local disk to 50 MiB:
+
+```yaml
+drive:
+  disks:
+    local:
+      maxFileSizeMb: 50
+```
+
+For S3, add `maxFileSizeMb` to that disk’s configuration. Disks can have different limits. An invalid value on any disk prevents Studio from starting. This field does not replace other file endpoints’ limits or control release artifact sizes.
+
+Restart Studio and reload the page after changes. The reverse proxy must allow both the file and multipart form. If `api.bodyLimit` is configured, the request must fit that limit too. Leave room beyond the file’s size.
+
 ## Release artifacts
 
 File uploads and build artifacts use separate settings. Changing `drive.default` does not change artifact storage. Artifacts default to `/app/storage/releases/artifacts`.
@@ -74,7 +89,7 @@ releases:
 
 Studio and the preview Host must reach artifact storage. When a file disk generates direct browser download links, its address must also be reachable from the browser.
 
-Artifacts default to a 256 MiB limit, adjustable with `releases.maxArtifactSizeMB`. Large uploads are also limited by the reverse proxy and `API_BODY_LIMIT`.
+Artifacts default to a 256 MiB limit, adjustable with `releases.maxArtifactSizeMB`. Large uploads are also limited by the reverse proxy and `api.bodyLimit`.
 
 ## Change storage and verify access
 

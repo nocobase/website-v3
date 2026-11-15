@@ -1,0 +1,21 @@
+{
+  "title": "アプリケーションアーキテクチャ",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "folder",
+      "path": "multi-portal"
+    },
+    {
+      "type": "folder",
+      "path": "multi-app"
+    },
+    {
+      "type": "planned",
+      "title": "マルチテナンシー"
+    }
+  ]
+}

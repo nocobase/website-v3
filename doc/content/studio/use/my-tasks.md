@@ -5,7 +5,7 @@ description: Find tasks you own, execute, or follow, with decisions and acceptan
 
 **My issues** brings together tasks you own, execute, or follow. Questions, deliveries, and execution problems that need your decision appear under **Waiting for you**.
 
-![Choose a task from the grouped list and handle it in the detail pane](https://static-docs.nocobase.com/studio-en-guide-my-issues-20261031.png)
+![Choose a task from the grouped list and handle it in the detail pane](https://static-docs.nocobase.com/studio-en-my-issues-20261111-normal-2x.webp)
 
 ## Groups
 

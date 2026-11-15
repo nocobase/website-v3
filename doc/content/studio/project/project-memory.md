@@ -19,7 +19,7 @@ Do not repeat what the code, README, or AGENTS.md already explains. Task progres
 
 Open **Project memory** and select a project and repository, or use the project's **Memory** tab. Filter by type or search, then open an entry to read its content and source commit.
 
-![Read shared project memory](https://static-docs.nocobase.com/studio-en-guide-memory-20261031.png)
+![Read shared project memory](https://static-docs.nocobase.com/studio-en-memory-20261111-normal-2x.webp)
 
 ## Update memory
 

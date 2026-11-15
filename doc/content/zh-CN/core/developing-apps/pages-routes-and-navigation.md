@@ -667,13 +667,14 @@ const appRuntime = defineAppRuntime({
 
 ### 运行环境与启动方式
 
-[示例 App 源码][app]使用默认模板 `1.0.0-beta.85`，锁定 `@nocobase/app-client` `4.0.0-beta.5`。需要 Node.js 24 和 pnpm 11.7.0。
+[示例 App 源码][app]使用默认模板 `1.0.0-beta.85`，锁定 `@nocobase/app-client` `4.0.0-beta.5`。需要 Node.js 24 和 pnpm 11.11.0。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 2700e75f5ed0d927c0c37b53e4ffdf105961cc52
 cd apps/pages-routes-navigation
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

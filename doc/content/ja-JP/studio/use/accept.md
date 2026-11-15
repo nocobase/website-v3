@@ -9,7 +9,7 @@ description: "引き渡しレポートと動作を確認し、マージするか
 
 **My issues › Waiting for you** からタスクを開きます。**Needs you** を読んでから、報告を確認します。
 
-![引き渡しレポートの上に検収操作が表示される](https://static-docs.nocobase.com/studio-en-guide-accept-20261031.png)
+![引き渡しレポートの上に検収操作が表示される](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 | 内容 | 確認すること |
 | --- | --- |

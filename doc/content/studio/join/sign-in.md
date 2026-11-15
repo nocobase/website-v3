@@ -27,11 +27,13 @@ Open the avatar menu and select **Account settings**.
 | --- | --- |
 | Profile | Display name and username. Contact an owner to change your email |
 | Account and security | Change your password; this signs out other devices |
-| Preferences | Language, theme, density, sounds, desktop notifications, and commit attribution |
+| Preferences | Language, theme, and display density |
+| Notifications | Sounds, desktop notifications, and device push |
+| Agents | Prefer personal or shared runtimes, and choose commit attribution |
 | API keys | Create keys that call Studio as you |
 | Git | Connect your personal code host account |
 
-![Set interface preferences, notifications, and commit attribution](https://static-docs.nocobase.com/studio-en-guide-preferences-20261031.png)
+![Choose interface language and display options](https://static-docs.nocobase.com/studio-en-preferences-20261111-normal-2x.webp)
 
 Interface preferences follow your account. Push subscriptions are per device and require HTTPS. On iPhone, open Studio from the Home Screen. See [Notifications and push](../admin/notifications.md).
 
@@ -43,7 +45,7 @@ In **Account settings › Git**, connect GitHub or another configured platform a
 
 Agents use your identity to push code and open PRs. Merges you make in Studio also use that identity. Without a personal connection, Studio uses the workspace connection. Your account needs access to the repository.
 
-![A personal Git connection provides the identity for code changes and merges](https://static-docs.nocobase.com/studio-en-guide-personal-git-20261031.png)
+![Personal Git settings and connection requirements](https://static-docs.nocobase.com/studio-en-personal-git-20261111-normal-2x.webp)
 
 If browser authorization is unavailable, **Other methods** offers device codes or personal tokens. Administrators control these options in [Code platforms](../configure/git.md). Tokens are encrypted and are not shown again.
 

@@ -5,7 +5,7 @@ description: Deploy on your own infrastructure and record the version running in
 
 Select a project in **Releases** and open **Deployment guide** from the production card. Project leads can choose a version and get deployment commands or a prompt for a Coding Agent.
 
-![Get production deployment instructions and record the delivered version](https://static-docs.nocobase.com/studio-en-guide-production-guide-20261031.png)
+![Get production deployment instructions and record the delivered version](https://static-docs.nocobase.com/studio-en-production-guide-20261111-normal-2x.webp)
 
 ## Prepare and deploy
 

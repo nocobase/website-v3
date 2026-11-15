@@ -11,7 +11,7 @@ description: "業務ルールを確認し、実行失敗、責任者の引き継
 2. **Reply** を選び、該当するスレッドで回答します。
 3. 送信すると、コーディネーターエージェントが作業の手配を続けます。
 
-![ブロック中のタスクに、責任者が判断すべき事項が表示される](https://static-docs.nocobase.com/studio-en-guide-answer-20261031.png)
+![ブロック中のタスクに、責任者が判断すべき事項が表示される](https://static-docs.nocobase.com/studio-en-req-blocked-20261111-normal-2x.webp)
 
 ```prompt
 C ランクの仕入先への注文は、金額にかかわらず購買マネージャーの承認を必須にしてください。それ以外の仕入先は、引き続き金額の基準に従います。

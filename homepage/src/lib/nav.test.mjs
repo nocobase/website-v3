@@ -52,3 +52,16 @@ test('the language list marks the current language and carries each page address
   assert.deepEqual(list.filter(l => l.current).map(l => l.html), ['zh-CN']);
   assert.equal(list.find(l => l.code === 'ja').url, '/ja/');
 });
+
+test('the changelog entry is a link once there are entries, greyed out before', () => {
+  const find = spec => spec.header.menu.find(m => m.items?.some(i => /Changelog/.test(i.title))).items.find(i => /Changelog/.test(i.title));
+  const foot = spec => spec.footer.columns.flatMap(c => c.links).find(l => /Changelog/.test(l.label));
+  const off = navSpec('home', { changelog: false }), on = navSpec('changelog', { changelog: true });
+  assert.equal(find(off).href, undefined);
+  assert.equal(find(off).soon, '');
+  assert.equal(foot(off).href, undefined);
+  assert.equal(find(on).href, 'changelog.html');
+  assert.equal(find(on).active, true);
+  assert.equal(foot(on).href, 'changelog.html');
+  assert.ok(on.header.mobile.flatMap(i => i.items ?? [i]).some(i => i.href === 'changelog.html'));
+});

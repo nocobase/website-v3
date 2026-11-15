@@ -17,7 +17,7 @@ Organization keys hold only their selected permissions. Personal keys are also l
 3. Choose an expiry, which defaults to 90 days.
 4. Save the value immediately after creation; it appears only once.
 
-![Create an organization key with limited permissions](https://static-docs.nocobase.com/studio-en-guide-api-keys-20261031.png)
+![Create an organization key with limited permissions](https://static-docs.nocobase.com/studio-en-api-key-create-20261111-normal-2x.webp)
 
 **CI deploy** permits uploads and deployment to selected applications. **CI upload** permits uploads only. **Read only** reads authorized data. You can grant only permissions you hold.
 

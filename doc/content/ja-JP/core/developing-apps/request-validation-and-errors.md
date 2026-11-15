@@ -346,13 +346,14 @@ HTTP のエラーレスポンスは、すでにコミットされた作業を元
 
 ## サンプルのソースと実行
 
-ソース：[request-validation](https://github.com/nocobase/docs-examples-v3/tree/12e46abf29509039d988bab437de0aad8931f93e/apps/request-validation)。Node.js 24 と pnpm 11.7.0 を使い、ロックファイルで依存関係を固定しています。これは独立したサーバーアプリで、ほかの章の過去のプロジェクトは必要ありません。
+ソース：[request-validation](https://github.com/nocobase/docs-examples-v3/tree/12e46abf29509039d988bab437de0aad8931f93e/apps/request-validation)。Node.js 24 と pnpm 11.11.0 を使い、ロックファイルで依存関係を固定しています。これは独立したサーバーアプリで、ほかの章の過去のプロジェクトは必要ありません。
 
 ```sh
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 12e46abf29509039d988bab437de0aad8931f93e
 cd apps/request-validation
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm setup
 pnpm start

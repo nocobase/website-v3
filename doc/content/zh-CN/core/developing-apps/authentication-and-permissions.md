@@ -364,13 +364,14 @@ const { can } = useCan({
 
 ## 示例源码与运行
 
-[Customer Access 完整源码][source]基于默认模板 `1.0.0-beta.85`，使用 Node.js 24 和 pnpm 11.7.0。锁文件固定本例依赖，包括认证插件 `2.0.0-beta.16`、授权插件 `1.0.0-beta.33` 和数据库包 `1.0.0-beta.24`。
+[Customer Access 完整源码][source]基于默认模板 `1.0.0-beta.85`，使用 Node.js 24 和 pnpm 11.11.0。锁文件固定本例依赖，包括认证插件 `2.0.0-beta.16`、授权插件 `1.0.0-beta.33` 和数据库包 `1.0.0-beta.24`。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 5c9b1dcae021f4e4ae94416e783e3e84a71a1781
 cd apps/customer-access
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

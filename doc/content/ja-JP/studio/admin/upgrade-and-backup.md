@@ -10,8 +10,8 @@ description: "Studio のバックアップと復元、サーバー・runner・CL
 | 対象 | 保存するもの |
 | --- | --- |
 | データベース | PostgreSQL のダンプ、またはマネージドデータベースのバックアップ |
-| 設定 | `config.yml`、Compose ファイル、`.env` |
-| キー | `SECRETS_KEYS` の暗号化キーとプッシュ通知の秘密鍵 |
+| 設定 | `config.yml`、Compose ファイル、その他の使用中の設定ファイル |
+| キー | `config.yml` の `secrets.keys`とプッシュ通知の秘密鍵 |
 | ファイル | `storage`、オブジェクトストレージのファイル、スキル、成果物 |
 
 デプロイディレクトリで実行します。
@@ -36,12 +36,12 @@ docker compose exec -T postgres pg_dump -U studio -Fc studio   > "backup/studio-
 docker compose exec -T postgres pg_restore -U studio -d studio   < backup/studio-backup.dump
 ```
 
-既存データがある場合は、バックアップのレコードを追加するのではなく、チームの置き換え手順に従ってください。インストール例では `STUDIO_SECRET_KEY` を `SECRETS_KEYS` に渡しています。復元時も同じキーを使います。
+既存データがある場合は、バックアップのレコードを追加するのではなく、チームの置き換え手順に従ってください。復元時には `config.yml` の元の `secrets.keys` を保持してください。
 
 ## Studio をアップグレードする
 
 1. バックアップを完了し、更新先のイメージを入手します。
-2. デプロイ設定の `STUDIO_IMAGE` を更新します。
+2. Compose ファイルの `services.studio.image` を更新します。
 3. イメージを取得し、Studio コンテナを再作成します。
 
 ```bash

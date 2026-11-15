@@ -51,10 +51,6 @@
         {
           "type": "page",
           "path": "join/runner-agent"
-        },
-        {
-          "type": "page",
-          "path": "join/connect-computer"
         }
       ]
     },
@@ -147,23 +143,39 @@
       "pages": [
         {
           "type": "page",
+          "path": "quality/overview"
+        },
+        {
+          "type": "page",
+          "path": "quality/runs"
+        },
+        {
+          "type": "page",
+          "path": "quality/reports"
+        },
+        {
+          "type": "page",
+          "path": "quality/scenarios"
+        },
+        {
+          "type": "page",
+          "path": "quality/follow-ups"
+        },
+        {
+          "type": "page",
+          "path": "quality/metrics"
+        },
+        {
+          "type": "page",
+          "path": "quality/settings"
+        },
+        {
+          "type": "page",
           "path": "configure/checks"
         },
         {
           "type": "page",
           "path": "project/checks-and-review"
-        },
-        {
-          "type": "planned",
-          "title": "品質計画"
-        },
-        {
-          "type": "planned",
-          "title": "品質フォローアップ"
-        },
-        {
-          "type": "planned",
-          "title": "受け入れ基準"
         }
       ]
     },

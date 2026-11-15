@@ -20,7 +20,7 @@ A **project** groups tasks, members, repositories, and documents. The project le
 
 A **repository** stores application code. A project can have multiple repositories. New repositories are initialized with NocoBase Core by default; existing repositories can also be connected.
 
-![Supplier Management summarizes task progress and provides access to knowledge, members, and releases](https://static-docs.nocobase.com/studio-en-project-overview-20261030.png)
+![Supplier Management summarizes task progress and provides access to knowledge, members, and releases](https://static-docs.nocobase.com/studio-en-supplier-overview-20261111-normal-2x.webp)
 
 See [Create your first project](../setup/new-project.md) and [Project settings](../project/settings.md).
 
@@ -37,7 +37,7 @@ Tasks have six states. Common transitions are:
 
 **Blocked** tasks need a decision. **In review** tasks await acceptance. These items appear first in **My issues**.
 
-![An owner reads the delivery report and accepts a task in My issues](https://static-docs.nocobase.com/studio-en-req-accept-20261030.png)
+![An owner reads the delivery report and accepts a task in My issues](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 Task ownership is a responsibility, not a system role. Agents act within the requester's permissions. See [Task states and permissions](../reference/statuses-and-permissions.md).
 
@@ -47,7 +47,7 @@ A **session** is a conversation with an Agent to discuss requirements, create ta
 
 Sessions are private to their owner. Tasks are shared according to project permissions.
 
-![An Agent turns confirmed rules into a task, with progress shown alongside the conversation](https://static-docs.nocobase.com/studio-en-req-session-20261030.png)
+![An Agent turns confirmed rules into a task, with progress shown alongside the conversation](https://static-docs.nocobase.com/studio-en-req-session-20261111-normal-2x.webp)
 
 See [My sessions](../use/sessions.md).
 
@@ -59,11 +59,11 @@ See [My sessions](../use/sessions.md).
 | Execution Agent | A coding tool and model combination that designs, develops, tests, or reviews. |
 | Runtime | Provides the machine, tools, and models that execute Agent work. |
 
-![Agents are configured by their strengths, with primary and fallback models for the Lead Agent](https://static-docs.nocobase.com/studio-en-agent-team-20261030.png)
+![Agents are configured by their strengths, with primary and fallback models for the Lead Agent](https://static-docs.nocobase.com/studio-en-agents-20261111-normal-2x.webp)
 
 One runtime can provide several Agents, and the same Agent can run on several machines. Shared runtimes serve the team. Personal runtimes serve only tasks started by their owner.
 
-![Runtimes lists machines, available coding tools, and sharing scope](https://static-docs.nocobase.com/studio-en-shared-runtimes-20261030.png)
+![Runtimes lists machines, available coding tools, and sharing scope](https://static-docs.nocobase.com/studio-en-runtimes-20261111-normal-2x.webp)
 
 Each execution creates a **run record** with its process, result, and usage. A task usually involves several runs.
 
@@ -79,7 +79,7 @@ See [How the Agent team works](agent-team.md) and [Connect a runtime](../setup/s
 
 Skills can apply globally, to a project, or to a repository. Agents maintain project memory, which is reviewed and merged with the task's PR for later work to reuse.
 
-![Project memory preserves confirmed rules and their sources](https://static-docs.nocobase.com/studio-en-project-memory-20261030.png)
+![Project memory preserves confirmed rules and their sources](https://static-docs.nocobase.com/studio-en-supplier-memory-20261111-normal-2x.webp)
 
 ## PRs, environments, and versions
 
@@ -96,6 +96,8 @@ For **production**, build an image and deploy it on your own infrastructure. Stu
 
 A **version** represents a release from a repository tag that matches its release line. Studio links the version to its tasks and artifacts.
 
-![Releases links versions and tasks with test and production status](https://static-docs.nocobase.com/studio-en-releases-20261030.png)
+![Releases links versions and tasks with test and production status](https://static-docs.nocobase.com/studio-en-supplier-releases-20261111-normal-2x.webp)
 
 After a task is complete, use versions and deployment records to see whether it is live. See [Release overview](../release/overview.md).
+
+[Quality management](../quality/overview.md) keeps test scope, execution records, and reports in testing issues. Findings can become follow-up tasks for fixes and retesting.

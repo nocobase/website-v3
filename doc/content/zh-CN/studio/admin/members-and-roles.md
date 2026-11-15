@@ -5,7 +5,7 @@ description: 管理成员账号和角色，设置团队的访问范围。
 
 在「设置 › 成员」管理账号，在「设置 › 角色」配置权限。Agent 执行工作时，还受发起人的权限和 Agent 可用操作范围限制。
 
-![查看成员账号、角色和状态](https://static-docs.nocobase.com/studio-zh-guide-members-20261031.png)
+![查看成员账号、角色和状态](https://static-docs.nocobase.com/studio-zh-members-20261111-normal-2x.webp)
 
 ## 管理成员
 
@@ -33,7 +33,7 @@ description: 管理成员账号和角色，设置团队的访问范围。
 
 新建角色，或复制已有角色，再调整页面、设置和业务操作权限。
 
-![查看和维护团队角色](https://static-docs.nocobase.com/studio-zh-guide-roles-20261031.png)
+![查看和维护团队角色](https://static-docs.nocobase.com/studio-zh-roles-20261111-normal-2x.webp)
 
 业务操作可选择无、相关或全部。「相关」的范围由操作决定，编辑器中会说明，例如只管理自己负责的项目。页面权限控制入口，业务权限控制具体操作。
 

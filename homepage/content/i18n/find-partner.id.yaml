@@ -7,9 +7,11 @@ notes: |-
 title: Temukan Mitra NocoBase — Bangun dan jalankan sistem Anda
 description: Mitra NocoBase memahami NocoBase 3, Studio, dan industri Anda. Bersama tim agen mereka, mitra merumuskan kebutuhan, membangun, menguji, merilis, dan memelihara sistem bersama Anda, dan kodenya milik Anda.
 strings:
+  "000": Temukan Mitra
   "001": Temukan mitra yang tepat <span class="m">untuk membangun dan menjalankan sistem Anda.</span>
   "002": Mitra NocoBase memahami NocoBase 3, Studio, dan industri Anda secara mendalam. Memimpin tim agen, mereka bekerja bersama Anda untuk merumuskan, membangun, memverifikasi, merilis, dan memelihara sistem. Setiap langkah terlihat di Studio, dan kode sumber, skill, serta basis pengetahuan yang dihasilkan 100% milik Anda.
   "003": Kirim kebutuhan Anda
+  "004": Jadi Mitra
   "005": Kapan butuh mitra
   "006": "Siap membangun dengan AI, "
   "007": tetapi butuh pemandu berpengalaman.
@@ -86,3 +88,5 @@ strings:
   "078": "Misalnya: industri Anda, sistem atau kasus penggunaan, masalah yang ingin diselesaikan, layanan yang dibutuhkan, anggaran atau skala, dan target go-live"
   "079": Negara / wilayah
   "080": Pilih negara atau wilayah Anda
+  "081": Kirim email ke partner@nocobase.com tentang sistem yang Anda inginkan, dan kami akan merekomendasikan mitra yang sesuai dengan wilayah, industri, dan layanan yang Anda butuhkan.
+  "082": Kirim email

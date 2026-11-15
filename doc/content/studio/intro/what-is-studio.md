@@ -13,31 +13,39 @@ A local Coding Agent helps an individual build software. Teams also need to hand
 
 Studio connects tools and models from Claude Code, Codex, OpenCode, and other providers. The [Lead Agent](agent-team.md) assigns design, development, review, and testing based on each Agent's strengths. It reads the results and plans the next step. Members can also talk directly to a [Runner Agent](../join/runner-agent.md) to discuss requirements and move tasks forward.
 
-![The Lead Agent assigns design work with a clear goal and delivery requirements](https://static-docs.nocobase.com/studio-en-req-dispatch-20261030.png)
+![The Lead Agent assigns design work with a clear goal and delivery requirements](https://static-docs.nocobase.com/studio-en-req-dispatch-20261111-normal-2x.webp)
 
 ### Share progress with requesters
 
 Requests from business teams and customers become project tasks. Discussions, Agent runs, and delivery results stay with each task, where project members can follow progress. Task owners answer questions and accept results in **My issues**.
 
-![Task owners review delivery reports and accept results in My issues](https://static-docs.nocobase.com/studio-en-home-20261030.png)
+![Task owners review delivery reports and accept results in My issues](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
+
+### Test continuously and follow up on findings
+
+Teams maintain core scenarios in [Quality](../quality/overview.md) and run tests on a schedule or manually. Agents check dimensions such as functionality, permissions, and performance. Reports retain the results and supporting evidence.
+
+Findings link to follow-up tasks. Subsequent tests verify fixes. Test scope, results, and unresolved findings stay with the project so the team can track them over time.
+
+![Example project: results for functionality, permissions, security, performance, and code quality](https://static-docs.nocobase.com/studio-en-quality-sample-20261111-normal-2x.webp)
 
 ### Track changes through delivery
 
 Studio connects Git platforms and CI/CD to link tasks, pull requests, checks, and reviews. When a check or review fails, the Lead Agent assigns a fix. Owners verify results against the delivery report and acceptance criteria, using previews or test environments when needed. Teams track versions in [Releases](../release/overview.md), deploy production themselves, and record the production version.
 
-![Releases shows versions and their test and production status](https://static-docs.nocobase.com/studio-en-releases-20261030.png)
+![Releases shows versions and their test and production status](https://static-docs.nocobase.com/studio-en-supplier-releases-20261111-normal-2x.webp)
 
 ### Keep standards and knowledge with the team
 
 [Skills](../project/skills.md) define shared requirements for design, development, review, and testing. The [knowledge base](../project/knowledge-base.md) stores business documents. [Project memory](../project/project-memory.md) preserves confirmed rules and experience. Future tasks can reuse this context even when people or models change.
 
-![Project memory preserves confirmed business rules for future tasks](https://static-docs.nocobase.com/studio-en-project-memory-20261030.png)
+![Project memory preserves confirmed business rules for future tasks](https://static-docs.nocobase.com/studio-en-supplier-memory-20261111-normal-2x.webp)
 
 ### Keep your local tools, use shared resources
 
 With the [nb-studio CLI](../reference/cli.md), members can create tasks, add requirements, and follow results from their usual Coding Agent. Studio schedules execution on shared runtimes, so the local session does not need to stay open. Progress and results remain available to the team in Studio.
 
-![Shared runtimes provide coding tools and execution resources for the team](https://static-docs.nocobase.com/studio-en-shared-runtimes-20261030.png)
+![Shared runtimes provide coding tools and execution resources for the team](https://static-docs.nocobase.com/studio-en-runtimes-20261111-normal-2x.webp)
 
 ## People decide, Agents develop
 

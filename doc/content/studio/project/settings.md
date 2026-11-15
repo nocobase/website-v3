@@ -15,7 +15,7 @@ Search for existing members and add them to the project. New members must [join 
 
 Change status, priority, and dates in the project properties.
 
-![Project members and lead](https://static-docs.nocobase.com/studio-en-guide-project-members-20261031.png)
+![Project members and lead](https://static-docs.nocobase.com/studio-en-project-members-20261111-normal-2x.webp)
 
 ## Configure the project
 
@@ -26,7 +26,7 @@ Change status, priority, and dates in the project properties.
 | Agent run variables | Environment variables and secrets for development tasks |
 | Default skills | Skills used by runs in the project or a repository |
 
-![Configure checks, branch rules, and previews on each repository](https://static-docs.nocobase.com/studio-en-guide-project-repositories-20261031.png)
+![Configure checks, branch rules, and previews on each repository](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
 
 The first repository is the primary repository. Removing a link does not delete the repository on the Git platform. See [Checks and CI](../configure/checks.md) and [Skills](skills.md) for their configuration.
 

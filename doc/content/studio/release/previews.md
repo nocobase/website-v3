@@ -9,7 +9,7 @@ A PR preview is an isolated application running a specific commit. First [config
 
 Use the task's **Code & previews** tab to see its URL, commit, and build status. **Releases › Previews** lists all previews for the selected project.
 
-![PR previews and their build status](https://static-docs.nocobase.com/studio-en-guide-previews-20261031.png)
+![PR previews and their build status](https://static-docs.nocobase.com/studio-en-previews-20261111-normal-2x.webp)
 
 New commits update the preview after the new build completes. Before accepting a task, confirm that the preview matches the changes being merged.
 
@@ -32,3 +32,5 @@ The default policy below can be changed in [Hosted environments](../admin/enviro
 The default capacity is 20 previews. A dormant application takes longer to prepare on its next visit.
 
 Previews run as application subprocesses started by Studio. For team use, configure a separate preview domain and a restricted system user. See [Configuration reference](../reference/config.md).
+
+Applications hosted within Studio share the host process’s memory. Before starting an application, Studio checks available capacity and stops an idle application when safe. If none can be reclaimed, the page reports that capacity is full. Retry later or adjust the hosting resources.

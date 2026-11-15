@@ -18,7 +18,7 @@ Follow [Prepare a machine](../setup/shared-runtimes.md#prepare-a-machine) to ins
 
 The command carries a single-use credential. Generate another if it expires. See [Install on the machine](../setup/shared-runtimes.md#install-on-the-machine).
 
-![A personal runtime shows its owner, connectivity, and available coding tools](https://static-docs.nocobase.com/studio-en-guide-personal-runtime-20261031.png)
+![Choose a personal runtime and the coding tools to connect](https://static-docs.nocobase.com/studio-en-personal-runtime-20261111-normal-2x.webp)
 
 ## Check the connection
 

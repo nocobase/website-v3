@@ -17,7 +17,7 @@ Open **Project settings › Code repositories** and select the repository's **Ch
 
 Each repository accepts results only from its selected source. After switching sources, reports from the previous source are no longer accepted.
 
-![Select a check source, trigger, and preview environment](https://static-docs.nocobase.com/studio-en-setup-ci-options-20261030.png)
+![Select a check source, trigger, and preview environment](https://static-docs.nocobase.com/studio-en-ci-20261111-normal-2x.webp)
 
 ## Use GitHub Actions
 

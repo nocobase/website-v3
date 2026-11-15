@@ -12,7 +12,7 @@ Describe the problem, business rules, and how you will check the result. Studio 
 3. Answer questions and review the tasks the Agent creates.
 4. Select **Start** to hand work to the Agent team, or **Not now** to keep it in Backlog.
 
-![A new-task conversation includes the current project context](https://static-docs.nocobase.com/studio-en-guide-new-task-20261031.png)
+![Start a task from an Agent conversation](https://static-docs.nocobase.com/studio-en-new-task-20261111-normal-2x.webp)
 
 ```prompt
 Show each supplier’s score and tier in the supplier list. Buyers should be able to filter by tier. Suspended suppliers must not receive new orders.
@@ -28,7 +28,7 @@ Select **Fill in manually** in the new-task conversation:
 2. Choose to start now or later.
 3. Select **Create and start** or **Create**.
 
-![Enter the task’s title, requirements, and start option](https://static-docs.nocobase.com/studio-en-guide-manual-task-20261031.png)
+![Enter the task’s title, requirements, and start option](https://static-docs.nocobase.com/studio-en-manual-task-20261111-normal-2x.webp)
 
 The owner confirms business rules and accepts results. Backlog tasks do not run automatically; select **Start** when ready.
 

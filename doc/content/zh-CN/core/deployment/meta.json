@@ -18,6 +18,10 @@
       "path": "../tutorials/deploy-with-app-installer"
     },
     {
+      "type": "page",
+      "path": "multi-instance-deployment"
+    },
+    {
       "type": "planned",
       "title": "运行配置与敏感信息"
     },

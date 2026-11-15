@@ -194,5 +194,5 @@ export default defineDocsConfig({
     endpoint: process.env.DOCS_AI_API_URL ?? ((process.env.DOCS_AI_PROXY_TARGET || process.env.NODE_ENV === 'development') ? '/docs-ai' : ''),
   },
   // Same IDs as the website for now (the data lands in one account; reports tell the sites apart by hostname). Change them here to give the docs their own.
-  analytics: { ga4: 'G-237XXSVYHE', baidu: 'acfb678ac7bbc9df89e1aa4327e47907', clarity: 'y0qzc9z3xg' },
+  analytics: { ga4: 'G-237XXSVYHE', clarity: 'y0qzc9z3xg' },
 });

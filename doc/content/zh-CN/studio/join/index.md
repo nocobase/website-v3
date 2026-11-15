@@ -15,7 +15,7 @@ description: 接受邀请，使用团队已配置的 Agent 和运行环境，开
 
 还没有 Studio 或项目时，请管理员从[安装与配置](../setup/index.md)开始。
 
-![我的任务汇总需要你处理的事项和任务进展](https://static-docs.nocobase.com/studio-zh-guide-my-issues-20261031.png)
+![我的任务汇总需要你处理的事项和任务进展](https://static-docs.nocobase.com/studio-zh-my-issues-20261111-normal-2x.webp)
 
 ## 选择工作方式
 
@@ -23,10 +23,9 @@ description: 接受邀请，使用团队已配置的 Agent 和运行环境，开
 | --- | --- |
 | 在 Studio 中讨论需求、分析项目 | [与 Runner Agent 对话](runner-agent.md) |
 | 通过 CLI，在本地 Claude Code、Codex 中管理任务 | [在本地 Coding Agent 中使用 Studio](local-agent.md) |
-| 在网页里操作自己电脑上的编码工具 | [连接自己的电脑](connect-computer.md) |
 | 为自己的任务提供执行资源 | [接入个人运行环境](personal-runtime.md) |
 
-这两种方式都可以使用团队共享的运行环境执行任务。连接自己的电脑和接入个人运行环境按需配置。
+Runner Agent 和本地 Coding Agent 都可以使用团队共享的运行环境执行任务。需要自己的执行资源时，可接入个人运行环境。
 
 ## 跟进任务
 

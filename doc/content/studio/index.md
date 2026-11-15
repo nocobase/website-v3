@@ -7,13 +7,13 @@ description: Coordinate Coding Agents, projects, and software delivery in a shar
 
 NocoBase Studio is an AI development platform for teams. People and Agents share a workflow from requirements to delivery.
 
-Connect Coding Agents and models from multiple providers. The Lead Agent assigns design, development, review, and testing by capability. Members can also talk directly to an Agent. Studio connects project management with Git, CI/CD, and releases, while skills and project memory preserve shared development standards.
+Studio connects Coding Agents and models from multiple providers. The Lead Agent assigns design, development, review, and testing by capability. Members can also talk directly to an Agent to move work forward. Studio brings requirements and project management into the development workflow, connecting Git, CI/CD, and releases. Quality management supports continuous testing and issue follow-up. Skills and project memory preserve team standards and experience, giving every task a shared quality baseline.
 
 The CLI lets members create and follow tasks from local Coding Agents, with Studio coordinating execution. Studio runs on your infrastructure, and your organization owns the code and data.
 
 ![Studio coordinates Agents across applications, with new requests and feedback feeding continuous development](/assets/studio/architecture-en.svg)
 
-![The Lead Agent assigns work and keeps handoffs, results, and reviews with the task for human acceptance](https://static-docs.nocobase.com/studio-en-home-20261030.png)
+![The Lead Agent assigns work and keeps handoffs, results, and reviews with the task for human acceptance](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
 ## Learn
 
@@ -31,8 +31,8 @@ The CLI lets members create and follow tasks from local Coding Agents, with Stud
   Manage settings, members, knowledge, memory, and project progress.
 - [**Agent management**](configure/agents.md)
   Configure Agents, shared and personal runtimes, skills, and usage.
-- [**Quality management**](project/checks-and-review.md)
-  Checks, reviews, test plans, and quality reports.
+- [**Quality management**](quality/overview.md)
+  Project tests, core scenarios, quality reports, and follow-up work.
 - [**Release management**](release/overview.md)
   PR previews, test environments, versions, and production version records.
 - [**Administration**](admin/members-and-roles.md)

@@ -17,7 +17,7 @@ description: 为 CI、脚本和系统集成授予限定权限。
 3. 选择有效期，默认 90 天。
 4. 创建后立即保存，密钥只显示一次。
 
-![创建组织密钥并选择权限范围](https://static-docs.nocobase.com/studio-zh-guide-api-keys-20261031.png)
+![创建组织密钥并选择权限范围](https://static-docs.nocobase.com/studio-zh-api-key-create-20261111-normal-2x.webp)
 
 「CI 部署」允许上传并部署到指定应用；「CI 上传」只允许上传；「只读」用于读取已授权数据。只能授予自己拥有的权限。
 

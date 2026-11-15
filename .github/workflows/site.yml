@@ -24,6 +24,14 @@ name: Site
 # optionally, `SITE_CDN_DOMAINS` (whitespace- or comma-separated; a secret that does not exist reads as empty).
 #
 # `docs.yml` publishes the documentation the same way; keep the two in step when changing how either publishes.
+#
+# - `notify` posts a red card to the release Feishu group when `build` or `publish` fails for `main` (a push or a manual
+#   run; never a pull request, whose failure shows on the pull request). It checks out and runs no repository code: the
+#   card is assembled with `jq` in the step itself, in the format of nocobase/nocobase's `scripts/feishu-notify.sh`.
+#   Titles are 「NocoBase 官网构建失败」 / 「NocoBase 官网发布失败」; there is no success notification.
+#   The webhook is the repository secret `RELEASE_RESULT_FEISHU_WEBHOOK_URL` (the same name as in nocobase/nocobase); when
+#   it is not set, the job only prints a warning. A malformed changelog entry fails `build` with an error that names the
+#   file, so the card's link to the run leads straight to it.
 
 on:
   pull_request:
@@ -108,7 +116,7 @@ jobs:
           fi
 
       # The CMS workflow "Website_v3_github_sync" pushes articles (published and drafts) to homepage/content/blog/cms/ every
-      # hour; regenerate posts.json and releases.json from them here so a CMS push is live without anyone running
+      # hour; regenerate posts.json from them here so a CMS push is live without anyone running
       # `pnpm cms:import` by hand. It runs after the figures check because that check diffs homepage/content.
       - name: Import the CMS articles
         run: pnpm --filter homepage cms:import
@@ -281,3 +289,83 @@ jobs:
             echo
             echo "Version \`$TIMESTAMP\` is live on every domain in \`SITE_CDN_DOMAINS\`. The newest 3 version directories are kept."
           } >> "$GITHUB_STEP_SUMMARY"
+
+  notify:
+    name: Notify failure
+    needs: [build, publish]
+    if: ${{ always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && (needs.build.result == 'failure' || needs.publish.result == 'failure') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Send a Feishu card
+        env:
+          WEBHOOK_URL: ${{ secrets.RELEASE_RESULT_FEISHU_WEBHOOK_URL }}
+          BUILD_RESULT: ${{ needs.build.result }}
+          REPOSITORY: ${{ github.repository }}
+          ACTOR: ${{ github.actor }}
+          SHA: ${{ github.sha }}
+          # Only a push carries the head commit; a manual run shows the SHA alone.
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          COMMIT_AUTHOR: ${{ github.event.head_commit.author.name }}
+          WORKFLOW_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          COMMIT_URL: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "::warning::RELEASE_RESULT_FEISHU_WEBHOOK_URL is not set, so no Feishu notification was sent."
+            exit 0
+          fi
+
+          SUBJECT="$(printf '%s' "$COMMIT_MESSAGE" | head -n 1)"
+          COMMIT_LINE="[\`${SHA:0:8}\`]($COMMIT_URL)${SUBJECT:+ $SUBJECT}"
+          if [ "$BUILD_RESULT" = "failure" ]; then
+            TITLE="NocoBase 官网构建失败"
+            STATUS_TEXT="未发布，线上保持上一版本"
+            CONTENT="**提交**：$COMMIT_LINE
+          **作者**：${COMMIT_AUTHOR:-$ACTOR}
+
+          如果是更新日志条目格式有误，日志里会写出文件名。"
+          else
+            TITLE="NocoBase 官网发布失败"
+            STATUS_TEXT="需要人工处理"
+            CONTENT="**提交**：$COMMIT_LINE
+          **作者**：${COMMIT_AUTHOR:-$ACTOR}
+
+          构建成功，但上传或切换 CDN 失败，CDN 可能仍指向上一版本。"
+          fi
+          # Same footer as feishu-notify.sh. The colon sits outside `**` so the stricter Markdown of card 2.0 keeps the bold.
+          FOOTER="**状态**：❌ $STATUS_TEXT
+          **时间**：$(TZ=Asia/Shanghai date +"%Y-%m-%d %H:%M:%S")
+          **触发者**：$ACTOR
+          **仓库**：$REPOSITORY"
+
+          PAYLOAD=$(jq -n --arg title "$TITLE" --arg content "$CONTENT" --arg footer "$FOOTER" --arg url "$WORKFLOW_URL" '{
+            msg_type: "interactive",
+            card: {
+              schema: "2.0",
+              header: { title: { tag: "plain_text", content: $title }, template: "red" },
+              body: { elements: [
+                { tag: "markdown", content: $content },
+                { tag: "hr" },
+                { tag: "markdown", content: $footer },
+                { tag: "column_set", horizontal_spacing: "8px", columns: [
+                  { tag: "column", width: "auto", elements: [
+                    { tag: "button", text: { tag: "plain_text", content: "查看构建详情" }, type: "primary", width: "default",
+                      behaviors: [ { type: "open_url", default_url: $url } ] }
+                  ] }
+                ] }
+              ] }
+            }
+          }')
+
+          RESPONSE="$(mktemp)"
+          HTTP_CODE=$(curl -sS -o "$RESPONSE" -w "%{http_code}" -X POST "$WEBHOOK_URL" -H 'Content-Type: application/json' -d "$PAYLOAD")
+          # Feishu answers a rejected card with HTTP 200 and a non-zero code.
+          CODE=$(jq -r '.code // 0' < "$RESPONSE" 2>/dev/null || echo 0)
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ] && [ "$CODE" = "0" ]; then
+            echo "Feishu notification sent (HTTP $HTTP_CODE)."
+          else
+            echo "::error::Failed to send the Feishu notification (HTTP $HTTP_CODE): $(cat "$RESPONSE")"
+            exit 1
+          fi

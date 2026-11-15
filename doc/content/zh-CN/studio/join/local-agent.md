@@ -12,7 +12,7 @@ description: 通过 nb-studio，让本地 Claude Code、Codex 查询项目、创
 3. Agent 安装 CLI 后，打开它提供的地址，在浏览器中确认登录。
 4. Agent 确认当前身份，并安装 CLI 使用技能。
 
-![复制 Studio 生成的配置指令，交给本地 Coding Agent](https://static-docs.nocobase.com/studio-zh-guide-local-agent-20261031.png)
+![复制 Studio 生成的配置指令，交给本地 Coding Agent](https://static-docs.nocobase.com/studio-zh-local-agent-20261111-normal-2x.webp)
 
 需要 Node.js 24 或更高版本和 npm。安装包从自己的 Studio 下载，与服务器版本保持一致。安装链接有效期为 30 分钟，过期后重新获取。
 
@@ -43,4 +43,4 @@ nb-studio docs
 
 `whoami` 显示当前身份，`docs` 列出当前服务器提供的命令。完整用法见 [nb-studio 命令](../reference/cli.md)。
 
-若想在 Studio 网页中与 Agent 对话，使用 [Runner Agent](runner-agent.md) 或[连接自己的电脑](connect-computer.md)。
+若想在 Studio 网页中与 Agent 对话，使用 [Runner Agent](runner-agent.md)。

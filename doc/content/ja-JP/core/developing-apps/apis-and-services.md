@@ -423,13 +423,14 @@ pnpm exec vitest run tests/server/catalog.test.ts tests/database/catalog.test.ts
 
 [Product Catalog のソースの全体](https://github.com/nocobase/docs-examples-v3/tree/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog) には、3 種類のルートすべて、製品のサービス、マイグレーション、英語のサンプルレコード、権限、テストが含まれます。
 
-この例は、既定のテンプレート `1.0.0-beta.85`、Node.js 24 以降、pnpm 11.7.0 を使います。ロックファイルでサンプルの依存関係を固定しています。設定と、ドキュメントの各使い方とその実装の対応については [README](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/README.md) を参照してください。
+この例は、既定のテンプレート `1.0.0-beta.85`、Node.js 24 以降、pnpm 11.11.0 を使います。ロックファイルでサンプルの依存関係を固定しています。設定と、ドキュメントの各使い方とその実装の対応については [README](https://github.com/nocobase/docs-examples-v3/blob/0639e6a2a6cba857bf967757083e9f8d7aa6b9fe/apps/product-catalog/README.md) を参照してください。
 
 ```bash
 git clone https://github.com/nocobase/docs-examples-v3.git
 cd docs-examples-v3
 git checkout 0639e6a2a6cba857bf967757083e9f8d7aa6b9fe
 cd apps/product-catalog
+npm pkg set packageManager=pnpm@11.11.0
 pnpm install --frozen-lockfile
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config check

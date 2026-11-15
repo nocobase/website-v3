@@ -1,0 +1,29 @@
+{
+  "title": "マルチアプリケーション",
+  "pages": [
+    {
+      "type": "page",
+      "path": "overview"
+    },
+    {
+      "type": "page",
+      "path": "quickstart"
+    },
+    {
+      "type": "page",
+      "path": "environments"
+    },
+    {
+      "type": "page",
+      "path": "templates"
+    },
+    {
+      "type": "page",
+      "path": "management"
+    },
+    {
+      "type": "page",
+      "path": "external-apps"
+    }
+  ]
+}

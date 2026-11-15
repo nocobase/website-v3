@@ -5,7 +5,7 @@ description: "利用可能なモデル、担当業務、コーディネーター
 
 管理者は **Agents** でチームを設定します。ランタイムが報告するコーディングツールとモデルの組み合わせを、エージェントとして利用できます。初期設定は[エージェントを設定する](../setup/agents.md)を参照してください。
 
-![エージェントの担当、ランタイム、推論の強さ](https://static-docs.nocobase.com/studio-en-guide-agents-20261031.png)
+![エージェントの担当、ランタイム、推論の強さ](https://static-docs.nocobase.com/studio-en-agents-20261111-normal-2x.webp)
 
 ## 担当を設定する
 
@@ -29,7 +29,7 @@ description: "利用可能なモデル、担当業務、コーディネーター
 
 全プロジェクトで 1 つのコーディネーターエージェントを共有します。ページ上部の **Settings** で、第一候補と代替候補、割り当て方針、タスクごとの実行上限を設定します。
 
-![コーディネーターエージェントと代替候補を選ぶ](https://static-docs.nocobase.com/studio-en-guide-coordinator-20261031.png)
+![コーディネーターエージェントと代替候補を選ぶ](https://static-docs.nocobase.com/studio-en-coordinator-20261111-normal-2x.webp)
 
 設定した待機時間を超えると、空いている代替候補が引き継げます。既定は 120 秒です。第一候補を実行できるランタイムがない場合は、すぐに代替候補を試します。
 

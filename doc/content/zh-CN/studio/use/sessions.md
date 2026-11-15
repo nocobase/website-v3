@@ -5,21 +5,18 @@ description: 保留需求讨论，查看关联任务，并继续与 Agent 沟通
 
 「我的会话」保存你与 Agent 的讨论和关联任务。需要继续补充需求或询问结果时，可以回到同一段会话。
 
-![会话保留需求背景，右侧显示关联任务及其状态](https://static-docs.nocobase.com/studio-zh-guide-runner-session-20261031.png)
+![与 Runner Agent 讨论需求，查看关联任务](https://static-docs.nocobase.com/studio-zh-req-session-20261111-normal-2x.webp)
 
 ## 和谁对话
 
-| 模式 | 执行位置 | 准备 |
-| --- | --- | --- |
-| Runner Agent | 团队共享或自己的个人运行环境 | 有在线运行环境和可用 Agent |
-| 我的 Agent | 自己连接的电脑和允许目录 | [连接自己的电脑](../join/connect-computer.md) |
+Runner Agent 在团队共享或自己的个人运行环境中工作。开始前，需要有在线运行环境和可用 Agent。
 
-会话只有你可见。Agent 以你的身份和权限操作 Studio，关联任务则按项目权限共享。
+会话默认只有你可见。分享后，指定成员可以只读查看分享时的内容；后续消息需要再次分享。Agent 按发起人的权限执行，关联任务按项目权限开放。
 
 ## 开始一段会话
 
-1. 选择模式，点「新会话」。
-2. 选择 Agent；「我的 Agent」还需选择电脑和工作目录。
+1. 点「新会话」。
+2. 选择 Agent。
 3. 需要项目代码时，在首次发送前选择项目。
 4. 描述需求，按需添加图片、附件或 `#任务编号`。
 

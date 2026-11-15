@@ -14,7 +14,7 @@ description: "要件、業務ルール、参考資料をメンバーとエージ
 
 プロジェクトの **Knowledge** を開きます。プロジェクト内の作業では、プロジェクト資料とアクセス可能なシステム資料を参照できます。
 
-![プロジェクトのナレッジベースに業務資料を整理する](https://static-docs.nocobase.com/studio-en-guide-knowledge-20261031.png)
+![プロジェクトのナレッジベースに業務資料を整理する](https://static-docs.nocobase.com/studio-en-knowledge-20261111-normal-2x.webp)
 
 ## 資料を追加・更新する
 

@@ -5,7 +5,7 @@ description: "自社のインフラにデプロイし、本番で動いている
 
 **Releases** でプロジェクトを選び、本番カードの **Deployment guide** を開きます。プロジェクト責任者はバージョンを選び、デプロイコマンドやコーディングエージェント用のプロンプトを取得できます。
 
-![本番のデプロイ手順を取得し、デプロイしたバージョンを記録する](https://static-docs.nocobase.com/studio-en-guide-production-guide-20261031.png)
+![本番のデプロイ手順を取得し、デプロイしたバージョンを記録する](https://static-docs.nocobase.com/studio-en-production-guide-20261111-normal-2x.webp)
 
 ## 準備してデプロイする
 

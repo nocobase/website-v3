@@ -16,6 +16,8 @@ Give a local Coding Agent the symptoms, related task, and error message to inves
 
 See [Deploy Studio](../setup/install.md) and [Notifications and push](../admin/notifications.md) for password recovery.
 
+If **Quality** is missing, confirm that Studio EE is installed and the project is visible to your account. See [Quality overview](../quality/overview.md).
+
 ## Git connections
 
 If GitHub rejects a private webhook URL, disable webhooks and use polling. If a newly created repository is inaccessible, check the GitHub App's installation scope. Grant access, then connect it as an [existing repository](../project/settings.md#connect-an-existing-repository).
@@ -31,7 +33,7 @@ A personal Git account with read-only repository access cannot push a PR. Grant 
 | Tool works in a terminal but not the service | Run `nocobase-runner service install` from the correct terminal |
 | Task does not start | Check status, predecessors, initialization, and queue reasons |
 | Work pauses after many runs | Inspect the task run limit and repeated failures before continuing |
-| Tool quota exhausted | Wait for recovery or use another model; clear unknown-reset marks after recovery |
+| Tool quota exhausted | Use the quota decision card to wait for recovery, change Agent, or change runtime. Unpushed work remains on the original runtime |
 
 Use **Start** for backlog tasks. A task can legitimately queue while shared runtimes are busy. See [Follow progress](../use/follow-progress.md).
 
@@ -47,6 +49,6 @@ If a merged PR has not updated the task, allow time for synchronization and chec
 
 ## Email and delivery
 
-If invitation email fails, copy the invitation link. Invitations and password resets use separate sender configuration; check each in [Notifications and push](../admin/notifications.md).
+If invitation email fails, copy the invitation link. Invitations and password resets use the configured mailers; check SMTP credentials and the selected mailer in [Notifications and push](../admin/notifications.md).
 
 Deployments to protected test environments wait for approval. After production deployment, the lead must [record the version](../project/release.md#record-the-production-version) before delivery marks update.

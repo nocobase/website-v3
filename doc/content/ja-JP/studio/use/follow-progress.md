@@ -7,7 +7,7 @@ description: "実行中のステップ、引き継ぎ、履歴を確認し、コ
 
 ## タスクの詳細
 
-![誰が作業しているか、次に何をするかを確認する](https://static-docs.nocobase.com/studio-en-guide-task-progress-20261031.png)
+![誰が作業しているか、次に何をするかを確認する](https://static-docs.nocobase.com/studio-en-req-now-20261111-normal-2x.webp)
 
 | 項目 | 内容 |
 | --- | --- |
@@ -37,7 +37,7 @@ description: "実行中のステップ、引き継ぎ、履歴を確認し、コ
 
 ## 実行履歴
 
-![各実行のエージェント、状態、時間、記録を確認する](https://static-docs.nocobase.com/studio-en-guide-runs-20261031.png)
+![各実行のエージェント、状態、時間、記録を確認する](https://static-docs.nocobase.com/studio-en-runs-20261111-normal-2x.webp)
 
 | 操作 | 用途 |
 | --- | --- |

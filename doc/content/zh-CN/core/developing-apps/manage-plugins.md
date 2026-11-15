@@ -11,6 +11,18 @@ description: 查看应用实际注册的插件，使用已有能力，并管理�
 
 使用团队发布的插件时，先配置私有源与读取权限，再安装和注册，见[构建与发布](../extension-development/publish-plugin.md)。
 
+## 商业插件授权与包仓库登录
+
+使用商业插件前，先通过 [NocoBase 商务联系入口](https://www.nocobase.com/cn/contact)或已有授权交付方确认所需插件的使用授权和包下载权限，并取得对应的 registry 地址、账号信息与只读下载令牌。审批等插件的可用范围以实际授权为准。
+
+在 Agent 实际运行的开发环境中，使用当前开发用户完成包仓库登录；登录 CRM 应用不会提供包下载权限。将地址替换为授权交付方提供的地址，按提示输入账号，并将下载令牌作为密码输入：
+
+```sh
+pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
+```
+
+该登录方式将 `@nocobase` 包映射到授权仓库，其他依赖沿用原有 registry。不要将令牌写入提示词、项目文件或 Git。远程 Agent 或容器使用独立环境时，也需在该环境准备对应认证。完成后，Agent 可按业务需求安装兼容插件并注册；若下载被拒绝，先检查当前环境的认证及该插件的下载权限。
+
 ## 使用 Agent
 
 ```text

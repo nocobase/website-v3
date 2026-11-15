@@ -1,104 +1,133 @@
 {
   "pages": [
     {
+      "type": "page",
+      "path": "index"
+    },
+    {
       "type": "group",
-      "title": "はじめる",
+      "title": "Core：クイックスタート",
       "pages": [
         {
           "type": "page",
-          "path": "build-reliable-enterprise-apps"
+          "path": "create-app",
+          "title": "1. アプリの作成"
         },
         {
           "type": "page",
-          "path": "prepare-environment"
+          "path": "define-requirements",
+          "title": "2. CRM の要件を明確にする"
         },
         {
           "type": "page",
-          "path": "choose-agent-and-model"
+          "path": "customers-and-follow-ups",
+          "title": "3. 顧客フォロー機能の開発"
+        },
+        {
+          "type": "page",
+          "path": "test-and-deliver",
+          "title": "4. アプリのテストとデプロイ"
         }
       ]
     },
     {
       "type": "group",
-      "title": "パート 1：Core でアプリを構築する",
+      "title": "Core：実践編",
       "pages": [
         {
           "type": "page",
-          "path": "create-app"
+          "path": "opportunities-and-quotes",
+          "title": "5. 商談と見積のデータ設計"
         },
         {
           "type": "page",
-          "path": "write-a-design-doc"
+          "path": "sales-workspace",
+          "title": "6. 営業ワークスペースの UI 構築"
         },
         {
           "type": "page",
-          "path": "first-feature-devices"
+          "path": "team-permissions",
+          "title": "7. ロール権限と顧客アクセス制御"
         },
         {
           "type": "page",
-          "path": "requests-and-approval"
+          "path": "quote-approvals",
+          "title": "8. 見積承認と対応事項"
         },
         {
           "type": "page",
-          "path": "roles-and-permissions"
+          "path": "attachments-and-documents",
+          "title": "9. 添付ファイル管理と見積書生成"
         },
         {
           "type": "page",
-          "path": "accept-agent-work"
+          "path": "notifications",
+          "title": "10. 業務通知とチャネル連携"
         },
         {
           "type": "page",
-          "path": "deploy"
+          "path": "email",
+          "title": "11. メールボックス連携と顧客メール"
+        },
+        {
+          "type": "page",
+          "path": "scheduled-reminders",
+          "title": "12. 定期フォローと期限リマインダー"
+        },
+        {
+          "type": "page",
+          "path": "ai-assistant",
+          "title": "13. AI による顧客フォロー支援"
+        },
+        {
+          "type": "page",
+          "path": "import-and-integrations",
+          "title": "14. 顧客インポートと API 連携"
         }
       ]
     },
     {
       "type": "group",
-      "title": "パート 2：チームで Studio を使う",
+      "title": "Studio：チームでの開発",
       "pages": [
         {
           "type": "page",
-          "path": "bring-into-studio"
+          "path": "bring-into-studio",
+          "title": "15. Studio に接続する"
         },
         {
           "type": "page",
-          "path": "agent-team-request"
+          "path": "agent-team-request",
+          "title": "16. Agent チームと開発する"
         },
         {
           "type": "page",
-          "path": "business-colleagues"
+          "path": "business-colleagues",
+          "title": "17. 業務担当者と協働する"
         },
         {
           "type": "page",
-          "path": "capture-knowledge"
+          "path": "capture-knowledge",
+          "title": "18. 知識と経験を残す"
         },
         {
           "type": "page",
-          "path": "release"
+          "path": "release",
+          "title": "19. 本番に公開する"
         }
       ]
     },
     {
-      "type": "group",
-      "title": "ベストプラクティス",
-      "pages": [
-        {
-          "type": "page",
-          "path": "best-practices"
-        }
-      ]
+      "type": "planned",
+      "title": "ベストプラクティス"
     },
     {
       "type": "group",
-      "title": "付録",
+      "title": "旧版チュートリアル",
       "pages": [
         {
-          "type": "page",
-          "path": "prompts"
-        },
-        {
-          "type": "page",
-          "path": "upgrade-core"
+          "type": "folder",
+          "path": "legacy"
         }
       ]
     }

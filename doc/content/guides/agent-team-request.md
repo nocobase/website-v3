@@ -1,76 +1,67 @@
 ---
-title: Hand a request to the agent team
-metaDescription: Use the device stocktake request to walk an issue through its whole flow in Studio, from raising it, starting, assigning and answering questions to checks and review, acceptance and merging.
+title: Work with Agents
+metaDescription: Take quote revision comparison from discussion through development, business decisions, checks, review, and human acceptance.
+lesson: 16
 ---
 
-The asset manager has a new request: devices are counted once a quarter, and today that means exporting a spreadsheet and ticking items off by hand, which makes it easy to miss some. This page hands the request to the agent team and follows it from raising it to merging it.
+Continue with the CRM [connected to Studio](bring-into-studio.md). Salespeople revise quotes during negotiations and need to explain price changes while retaining versions already sent to customers. Ask the Agent team to implement this change.
 
-In Studio, a request is an issue. Only two statuses need a person to decide, Blocked (you answer) and In review (you accept). The lead agent moves it through the rest. For what each status means, see [Issue statuses and permissions](../studio/reference/statuses-and-permissions.md).
+## Describe quote revision comparison
 
-![The issue board: one column per status](https://static-docs.nocobase.com/20261028201236304.png)
+Open **My sessions** and choose **New conversation**. Select an available Agent and the CRM project below the message box before sending the first message. Start a new conversation to discuss a different project. With a shared team runtime, business colleagues do not need a coding tool installed locally.
 
-## 1. Raise the request and turn it into an issue
-
-In **My sessions**, start a [Runner Agent conversation](../studio/join/runner-agent.md), choose an available Agent, and select itam-lite as the project before sending your first message:
+![Choose an Agent and the CRM project when starting a conversation.](/assets/guides/studio/new-session.png)
 
 ```prompt
-The asset manager does a device stocktake every quarter. Here's what I want:
-- The asset manager starts a stocktake and chooses which devices it covers.
-- IT support checks each device: is it there, is the location right, is the assignee right. If not, record what's actually the case.
-- When the stocktake ends, it produces a result: how many devices were counted, how many were fine, and every discrepancy listed one by one.
-Ask me about anything unclear before creating the issue.
+Customers often ask us to revise quotes. I want to compare versions of the same CRM quote and see changes to products, quantities, unit prices, discounts, and totals, plus who changed it and when. Keep versions already sent to customers so later edits cannot overwrite them. Discuss the rules with me first, then turn the agreed requirement into an issue.
 ```
 
-The agent asks a few questions. You decide: the scope is chosen by location, device requests aren't restricted during a stocktake, and employees can't see stocktakes. The agent writes these into the issue description and acceptance scenarios and creates `ITAM-12 Device stocktake`.
+Agree on when a version is saved, which versions can be compared, and who can read them. For this exercise, submitted revisions are immutable; further changes create a new draft. Comparison follows the customer's existing access scope. A user without access to that customer must not read its quote history. Save these rules and acceptance scenarios in the issue description.
 
-<!-- TODO screenshot (English interface, browser width 1440): discussing the device stocktake in My sessions; after the agent asks and you answer, the session lists the created ITAM-12 issue and the Start button -->
+**Step check**: The CRM project has a quote revision comparison issue with an owner and explicit retention and access rules.
 
-**Done when**: the itam-lite project has a "Device stocktake" issue, and its description contains the rules you decided and the acceptance scenarios.
+## Start work and follow progress
 
-## 2. Start
+After reviewing the issue, click **Start**. The coordinating Agent arranges design, implementation, testing, and review. The issue moves from **Backlog** to **In progress**. Read **Now** and the next action at the top, use **Activity** for handoffs, and open **Runs** for execution details.
 
-Click **Start** in the session. The issue moves to In progress. The lead agent first has an agent write the plan (two new tables, stocktakes and stocktake items, two statuses, and permissions for two roles), then hands it to another agent to develop on the `agent/ITAM-12` branch, write tests, take screenshots and open a PR.
+![The project board groups issues by their current status.](/assets/guides/studio/issues-board.png)
 
-**Now** and **Up next** at the top of the issue page show who is working and what comes next, and **Activity** shows each handoff. To add requirements, comment on the issue. See [Follow progress](../studio/use/follow-progress.md).
+Add requirements in issue comments. Private conversation conclusions are not automatically shared project documentation: check that important decisions are written back to the issue. See [Follow progress](../studio/use/follow-progress.md).
 
-<!-- TODO screenshot (English interface, browser width 1440): the top of the ITAM-12 issue page, with Now showing the developing agent at work and Up next saying that after development it goes to another vendor for review -->
+## Answer business questions
 
-**Done when**: the issue is In progress and its executor is the lead agent.
+The Agent may ask how to handle existing quotes that have no revision history. When a decision is needed, the issue may become **Blocked**. Its owner can open **Needs you** from **My issues** and reply:
 
-## 3. Answer questions
-
-While writing the plan, the agent hits a business question a person needs to decide: when a stocktake finds a discrepancy, should the device register be updated automatically? The issue moves to Blocked and is marked **Needs your reply** in **My issues**.
-
-![A blocked issue: the Needs you card says what you need to decide](https://static-docs.nocobase.com/20261028203035957.png)
-
-Open the issue and click **Reply**:
-
-```text
-Don't update the register automatically. When the stocktake ends, list the discrepancies, and the asset manager confirms them one by one. Only confirmed ones update the register.
+```prompt
+Keep each existing quote's identifier, lines, and amount as its first viewable version. Do not invent earlier edits. Record new revisions from this release onward, and do not allow submitted versions to be edited.
 ```
 
-See [Answer the agents' questions](../studio/use/answer.md).
+Check that the decision is recorded and work resumes. Runtime or check failures can also block an issue; resolve the actual cause rather than merely changing its status. See [Answer questions](../studio/use/answer.md).
 
-**Done when**: the issue is back In progress.
+## Check results and review
 
-## 4. Checks and review
+Open **Code & previews** to inspect the PR commit, checks, and preview. The coordinating Agent arranges independent review according to project Skills and returns required fixes to the implementer. The configured check source may be CI or Agent self-check. See [Checks and review](../studio/project/checks-and-review.md).
 
-Once the PR is open, CI runs first, then an agent from another vendor reviews it. The developing agent fixes any problems and the PR is reviewed again. Only when everything passes does it come to you. See [Checks and review](../studio/project/checks-and-review.md).
+![Code & previews lists a CRM issue’s PR, check source, and individual results.](/assets/guides/studio/issue-checks.png)
 
-## 5. Accept and merge
+Read the delivery report for evidence covering existing-quote migration, amount calculations, immutable revisions, and access boundaries. Passing tests do not replace business acceptance.
 
-The issue moves to In review and is marked **Needs your acceptance** in **My issues**. Read the delivery report and screenshots, then open the preview from the issue page and try it as the first administrator: as the asset manager, start a stocktake by location; switch to IT support and check a few devices, deliberately entering one with the wrong location; end the stocktake, and see whether the result lists that discrepancy and whether the register was left unchanged. See [Accept the result](../studio/use/accept.md).
+## Verify existing quotes and merge
 
-![The delivery report and the screenshots the developing agent attached](https://static-docs.nocobase.com/20261028203712314.png)
+When the issue enters **In review**, use separate test accounts in the preview:
 
-![The PR's preview: the issue page shows the first administrator's username and password](https://static-docs.nocobase.com/20261028204209835.png)
+| Action | Expected result |
+| --- | --- |
+| Open a quote created before the upgrade | Its identifier, customer relationship, lines, and amount remain unchanged; its initial version is available |
+| Submit a version, then change quantities or discounts | A new draft is created; the submitted version remains unchanged |
+| Compare two versions | Product additions and removals, quantities, prices, discounts, totals, editor, and time can be checked |
+| Change a product's catalog price | Saved quote versions do not change |
+| Open quote history or call its API as a salesperson without customer access | The history cannot be read |
 
-If it works as expected, click **Merge**. If not, click **Send back for changes** and say what needs to change.
+![The demo's completed quote revision issue retains its business context, delivery report, and verification records.](/assets/guides/studio/quote-task.png)
 
-![An issue in review: the Merge button on the Needs you card](https://static-docs.nocobase.com/20261028201509073.png)
+Click **Merge** in **Needs you**, check the target branch and commit, then confirm. If the result is wrong, choose **Send back** and describe the action, actual result, and expected behavior. The issue completes after its linked PRs merge. Git permissions and branch protection still apply; see [Accept work](../studio/use/accept.md).
 
-For issues you care about, click the star at the top right to follow them, and they show up at the very top of **My issues**.
+**Done when**: Quote revision comparison is accepted and merged, and existing customers and quotes remain usable.
 
-![Following an issue](https://static-docs.nocobase.com/20261029152227386.png)
-
-**Done when**: the issue is Done, and device stocktaking is merged into itam-lite's default branch.
+Next, [let the sales manager participate in customer handover](business-colleagues.md).

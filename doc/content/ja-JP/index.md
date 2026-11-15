@@ -31,7 +31,7 @@ NocoBase を知り、自分に合った使い方を見つける。
 
 <section class="doc-home-card">
 
-## [チュートリアル](guides/build-reliable-enterprise-apps.md)
+## [チュートリアル](guides/index.md)
 
 実践ガイドに沿ってアプリを構築する。
 

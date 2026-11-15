@@ -1,0 +1,37 @@
+/* Course catalog: compact, fully linked cards, using the shared site tokens. */
+.docs-catalog .prose .course-intro { margin: 12px 0 0; font-size: 14px; color: var(--muted); }
+.course-section { margin-top: 30px; }
+.course-heading { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; flex-wrap: wrap; }
+.prose .course-heading > p { margin: 0; }
+.prose .course-section h2 { margin: 0; padding: 0; border: 0; font-size: 20px; font-weight: 600; }
+.course-range { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.prose .course-section > p { margin: 0 0 16px; font-size: 13px; color: var(--muted); }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+.prose .course-grid > p { display: flex; margin: 0; min-width: 0; }
+.prose .course-grid a { display: block; width: 100%; padding: 15px 16px; border: 1px solid var(--rule-2); border-radius: 10px; background: var(--card); color: var(--ink); text-decoration: none; transition: border-color .15s; }
+.prose .course-grid a:hover { border-color: var(--brand); text-decoration: none; }
+.course-grid a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.course-title { display: block; margin-bottom: 6px; font-size: 15px; line-height: 1.5; font-weight: 400; }
+.course-description { display: block; font-size: 12px; line-height: 1.65; color: var(--muted); }
+.course-back { display: inline-block; margin-bottom: 25px; font-size: 13px; color: var(--brand); }
+.course-label { margin: 0 0 12px; font: 12px/1.65 var(--f-mono); color: var(--muted); }
+.prose .course-pending { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--muted); }
+
+/* Supporting example links in lesson introductions. */
+.prose .course-example .table-wrap { width: fit-content; max-width: 100%; margin: 12px 0; overflow: visible; border: 0; }
+.prose .course-example table { width: auto; border: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+.prose .course-example :is(th, td) { padding: 5px 10px; border-bottom-color: color-mix(in srgb, var(--rule) 70%, transparent); }
+.prose .course-example th { background: transparent; font-weight: 600; }
+.prose .course-example tr:last-child th { border-bottom: 0; }
+.prose .course-example code { font-size: 0.95em; }
+.prose .course-example a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+.prose .course-example a:hover { color: var(--brand); text-decoration-color: currentColor; }
+.course-example caption { padding: 0 0 6px; text-align: left; }
+.course-example-caption { display: flex; align-items: center; }
+.course-example-label { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.course-example-help { position: relative; display: inline-flex; }
+.course-example-help button { display: inline-flex; padding: 2px; border: 0; background: transparent; color: inherit; cursor: help; }
+.course-example-help button:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 3px; }
+.course-example-popover { position: absolute; z-index: 2; top: 100%; left: -100px; width: max-content; max-width: 240px; padding: 8px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--card); box-shadow: 0 4px 12px rgb(0 0 0 / 8%); white-space: normal; visibility: hidden; }
+.course-example-help:hover .course-example-popover,
+.course-example-help:focus-within .course-example-popover { visibility: visible; }

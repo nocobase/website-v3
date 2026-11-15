@@ -7,6 +7,8 @@ description: "Connect human approval to record lifecycles, participants, policie
 
 `@nocobase/app-plugin-approval` integrates human decisions with [workflows](../../developing-apps/business-workflows.md) around business records, maintaining participants, tasks, evidence and content snapshots. Use it for leave, purchasing or contracts. It is commercial; confirm package access and licensing before installation.
 
+For entitlement and registry access, see [Commercial plugin authorization and registry sign-in](../../developing-apps/manage-plugins.md#commercial-plugin-authorization-and-registry-sign-in).
+
 The plugin supplies approval orchestration and read models; the application composes pages, APIs, authorization and timers.
 
 ## Scenarios and examples

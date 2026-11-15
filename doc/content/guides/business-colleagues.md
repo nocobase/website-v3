@@ -1,50 +1,55 @@
 ---
-title: Bring business colleagues in
-metaDescription: Invite the asset manager to Studio, where they raise requests in business language in My sessions and answer questions, make decisions and accept results in My issues, without installing an agent.
+title: Involve business colleagues
+metaDescription: Invite a sales manager to own the customer handover requirement, answer business questions, and accept the result.
+lesson: 17
 ---
 
-The device stocktake request came from the asset manager, yet you were the one relaying it, answering the questions and accepting the result. This page invites Xu Ning, the asset manager (a business colleague), to join the itam-lite project directly: raising requests in the Studio web interface, answering the agents' business questions and accepting the results in person, without writing code or installing an agent.
+After [quote revision comparison](agent-team-request.md), sales manager Morgan wants customer handovers to retain their reason and history as well as change the owner. Let Morgan request, clarify, and accept the work directly in Studio.
 
-## 1. Invite Xu Ning
+## Invite the sales manager
 
-Open **Settings › Members**, click **Invite members**, enter Xu Ning's email, choose itam-lite under **Projects**, and click **Send invitations**. See [Invite members](../studio/setup/invite.md).
+Someone with member-management permission opens **Settings → Members → Invite members**, enters Morgan's email, and selects the CRM project. Follow [Invite members](../studio/setup/invite.md) to send the invitation or share its link. After joining, Morgan should be able to open the project.
 
-![Invite members](https://static-docs.nocobase.com/20261030155133745.png)
+![The CRM project's Members tab lists its members and lead.](/assets/guides/studio/members.png)
 
-Xu Ning opens the invitation link, enters a name and password, and clicks **Create account and join**. See [Sign in and personal settings](../studio/join/sign-in.md).
+Studio project permissions govern participation in development. The sales manager role inside the CRM governs customer access. Configure them separately: joining a Studio project does not grant CRM business permissions. Keep separate CRM test accounts for acceptance.
 
-**Done when**: Xu Ning appears in the list in **Settings › Members**.
+## Request customer handover
 
-## 2. Xu Ning raises a request
-
-Xu Ning wants device retirement. In Studio, Xu Ning opens **My sessions**, clicks **New session**, chooses the **Runner Agent** mode and chooses itam-lite as the project:
+Morgan starts a conversation in **My sessions**, selects the team's Agent and CRM project, and asks:
 
 ```prompt
-When a device is broken or too old, it gets retired. Today we just delete it from the register, with no record. Here's what I want:
-- When IT support finds a device that should be retired, they submit a retirement request with the reason and photos.
-- The asset manager approves it. Once approved, the device's status changes to Retired, and it no longer appears among the devices available for request.
-- For a retired device, we can see who requested it, who approved it and why.
-Ask me about anything you're not sure of first.
+When a salesperson changes jobs, I need to hand their customers to another salesperson. Our CRM can already change the owner, but I also want to record the reason, who made the handover, and when. The new owner must retain access to the customer's contacts, follow-ups, opportunities, and quotes. Salespeople must not transfer other people's customers to themselves. Discuss the rules with me first, then create an issue.
 ```
 
-The agent asks follow-up questions, and Xu Ning answers according to company policy: laptops can be retired after 4 years and monitors after 5; before that, the damage has to be described; a device an employee still has must be returned first; the asset manager approves. Xu Ning says "create the issue", then clicks **Start**. Xu Ning is the issue owner, so later questions and acceptance go straight to Xu Ning. See [My sessions](../studio/use/sessions.md).
+Once the rules are agreed, create the issue, make Morgan its owner, and start work. Extend the existing ownership and access controls with handover records; do not introduce a second ownership model.
 
-<!-- TODO screenshot (English interface, browser width 1440): Xu Ning discussing device retirement in the Runner Agent mode of My sessions, with the created issue and Start listed on the right of the session -->
+![A conversation retains the discussion and shows its related issues and statuses on the right.](/assets/guides/studio/session.png)
 
-**Done when**: the itam-lite project has a "Device retirement" issue, Xu Ning is its owner, and it is In progress.
+**Step check**: Morgan owns the handover issue and receives its questions and acceptance requests directly.
 
-## 3. Xu Ning answers questions
+## Decide ownership and access rules
 
-During development, the agent asks: should retired devices still show in the register? In **My issues**, Xu Ning sees the issue marked **Needs your reply** and clicks **Reply**:
+The Agent may ask whether the former owner can still read the customer. Morgan replies in the issue:
 
-```text
-Don't show retired devices in the register by default, but let people filter by status to see them. Audits need the history.
+```prompt
+After handover, the new owner can maintain the customer and related records. The former owner loses access granted by ownership. If they still need to help, the manager must explicitly give them read-only sharing. Keep the original follow-up authors and quote history, and do not allow handover records to be rewritten.
 ```
 
-<!-- TODO screenshot (English interface, browser width 1440): Xu Ning's My issues, with the device retirement issue marked Needs your reply in the Waiting for you group -->
+This continues the [customer access rules](team-permissions.md). Before testing loss of access, confirm that the former owner has no other sharing grant. Otherwise, continued read access does not necessarily indicate a failed handover. Put the final decision in the issue description for implementation and review.
 
-## 4. Xu Ning accepts the result
+## Accept the handover result
 
-Once the issue moves to In review, Xu Ning reads the delivery report and screenshots and tries it in the preview: submit a retirement request for a device an employee still has and check that it's blocked; after the device is returned, submit it again, and once it's approved, check that the device no longer appears among the devices available for request. If it works as expected, Xu Ning clicks **Merge**. See [Accept the result](../studio/use/accept.md).
+Morgan reads the delivery report and opens the preview. Using separate manager, Alex, and Taylor CRM accounts:
 
-**Done when**: the "Device retirement" issue is Done, and Xu Ning answered every business question directly.
+1. As manager, transfer a customer owned by Alex to Taylor, with no extra sharing grants, and enter the reason.
+2. As Taylor, maintain the customer and read its existing contacts, follow-ups, opportunities, and saved quote versions. Record counts, amounts, and original authors must remain unchanged.
+3. As Alex, refresh the list, an already open detail page, and the workspace. The customer must no longer be readable; direct API requests must also respect access limits.
+4. Verify that Alex cannot transfer another salesperson's customer to themselves or edit handover records.
+5. As manager, grant Alex read-only sharing. Alex can now read the customer and related records but cannot change them.
+
+For a failure, Morgan sends the issue back with a concrete report, such as “Alex can still edit the transferred customer after refreshing its detail page; editing should be denied.” Repeat the affected checks after redelivery and merge only after acceptance. See [Accept work](../studio/use/accept.md).
+
+**Done when**: The business owner has accepted the handover, access follows ownership, and business records and handover history remain intact.
+
+Next, [capture development methods and project experience](capture-knowledge.md).

@@ -1,104 +1,133 @@
 {
   "pages": [
     {
+      "type": "page",
+      "path": "index"
+    },
+    {
       "type": "group",
-      "title": "Getting started",
+      "title": "Core: Quick start",
       "pages": [
         {
           "type": "page",
-          "path": "build-reliable-enterprise-apps"
+          "path": "create-app",
+          "title": "1. Create an app"
         },
         {
           "type": "page",
-          "path": "prepare-environment"
+          "path": "define-requirements",
+          "title": "2. Define CRM requirements"
         },
         {
           "type": "page",
-          "path": "choose-agent-and-model"
+          "path": "customers-and-follow-ups",
+          "title": "3. Develop customer follow-up features"
+        },
+        {
+          "type": "page",
+          "path": "test-and-deliver",
+          "title": "4. Accept and deliver the app"
         }
       ]
     },
     {
       "type": "group",
-      "title": "Part 1: Build an app with Core",
+      "title": "Core: Hands-on practice",
       "pages": [
         {
           "type": "page",
-          "path": "create-app"
+          "path": "opportunities-and-quotes",
+          "title": "5. Model opportunity and quote data"
         },
         {
           "type": "page",
-          "path": "write-a-design-doc"
+          "path": "sales-workspace",
+          "title": "6. Build the sales workspace UI"
         },
         {
           "type": "page",
-          "path": "first-feature-devices"
+          "path": "team-permissions",
+          "title": "7. Role permissions and customer access"
         },
         {
           "type": "page",
-          "path": "requests-and-approval"
+          "path": "quote-approvals",
+          "title": "8. Quote approvals and tasks"
         },
         {
           "type": "page",
-          "path": "roles-and-permissions"
+          "path": "attachments-and-documents",
+          "title": "9. Attachments and quote documents"
         },
         {
           "type": "page",
-          "path": "accept-agent-work"
+          "path": "notifications",
+          "title": "10. In-app notifications for assignments and quotation results"
         },
         {
           "type": "page",
-          "path": "deploy"
+          "path": "email",
+          "title": "11. Mailbox integration and customer emails"
+        },
+        {
+          "type": "page",
+          "path": "scheduled-reminders",
+          "title": "12. Scheduled follow-ups and expiry reminders"
+        },
+        {
+          "type": "page",
+          "path": "ai-assistant",
+          "title": "13. AI-assisted customer follow-ups"
+        },
+        {
+          "type": "page",
+          "path": "import-and-integrations",
+          "title": "14. Customer imports and API integration"
         }
       ]
     },
     {
       "type": "group",
-      "title": "Part 2: Use Studio in a team",
+      "title": "Studio: Develop as a team",
       "pages": [
         {
           "type": "page",
-          "path": "bring-into-studio"
+          "path": "bring-into-studio",
+          "title": "15. Connect to Studio"
         },
         {
           "type": "page",
-          "path": "agent-team-request"
+          "path": "agent-team-request",
+          "title": "16. Work with Agents"
         },
         {
           "type": "page",
-          "path": "business-colleagues"
+          "path": "business-colleagues",
+          "title": "17. Involve business colleagues"
         },
         {
           "type": "page",
-          "path": "capture-knowledge"
+          "path": "capture-knowledge",
+          "title": "18. Capture knowledge"
         },
         {
           "type": "page",
-          "path": "release"
+          "path": "release",
+          "title": "19. Release to production"
         }
       ]
     },
     {
-      "type": "group",
-      "title": "Best practices",
-      "pages": [
-        {
-          "type": "page",
-          "path": "best-practices"
-        }
-      ]
+      "type": "planned",
+      "title": "Best practices"
     },
     {
       "type": "group",
-      "title": "Appendix",
+      "title": "Legacy tutorials",
       "pages": [
         {
-          "type": "page",
-          "path": "prompts"
-        },
-        {
-          "type": "page",
-          "path": "upgrade-core"
+          "type": "folder",
+          "path": "legacy"
         }
       ]
     }

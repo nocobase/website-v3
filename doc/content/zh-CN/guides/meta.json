@@ -1,104 +1,133 @@
 {
   "pages": [
     {
+      "type": "page",
+      "path": "index"
+    },
+    {
       "type": "group",
-      "title": "起步",
+      "title": "Core：快速上手",
       "pages": [
         {
           "type": "page",
-          "path": "build-reliable-enterprise-apps"
+          "path": "create-app",
+          "title": "1. 创建应用"
         },
         {
           "type": "page",
-          "path": "prepare-environment"
+          "path": "define-requirements",
+          "title": "2. 确定 CRM 需求"
         },
         {
           "type": "page",
-          "path": "choose-agent-and-model"
+          "path": "customers-and-follow-ups",
+          "title": "3. 开发客户跟进功能"
+        },
+        {
+          "type": "page",
+          "path": "test-and-deliver",
+          "title": "4. 验收与交付应用"
         }
       ]
     },
     {
       "type": "group",
-      "title": "第一部分　用 Core 做出一个应用",
+      "title": "Core：深入实战",
       "pages": [
         {
           "type": "page",
-          "path": "create-app"
+          "path": "opportunities-and-quotes",
+          "title": "5. 商机与报价数据建模"
         },
         {
           "type": "page",
-          "path": "write-a-design-doc"
+          "path": "sales-workspace",
+          "title": "6. 销售工作台 UI 搭建"
         },
         {
           "type": "page",
-          "path": "first-feature-devices"
+          "path": "team-permissions",
+          "title": "7. 角色权限与客户访问控制"
         },
         {
           "type": "page",
-          "path": "requests-and-approval"
+          "path": "quote-approvals",
+          "title": "8. 报价审批与待办"
         },
         {
           "type": "page",
-          "path": "roles-and-permissions"
+          "path": "attachments-and-documents",
+          "title": "9. 附件管理与报价单生成"
         },
         {
           "type": "page",
-          "path": "accept-agent-work"
+          "path": "notifications",
+          "title": "10. 客户分配与报价结果的站内通知"
         },
         {
           "type": "page",
-          "path": "deploy"
+          "path": "email",
+          "title": "11. 邮箱接入与客户邮件"
+        },
+        {
+          "type": "page",
+          "path": "scheduled-reminders",
+          "title": "12. 定时跟进与到期提醒"
+        },
+        {
+          "type": "page",
+          "path": "ai-assistant",
+          "title": "13. AI 辅助客户跟进"
+        },
+        {
+          "type": "page",
+          "path": "import-and-integrations",
+          "title": "14. 客户导入与 API 接入"
         }
       ]
     },
     {
       "type": "group",
-      "title": "第二部分　在团队中使用 Studio",
+      "title": "Studio：团队协作开发",
       "pages": [
         {
           "type": "page",
-          "path": "bring-into-studio"
+          "path": "bring-into-studio",
+          "title": "15. 接入 Studio"
         },
         {
           "type": "page",
-          "path": "agent-team-request"
+          "path": "agent-team-request",
+          "title": "16. Agent 团队协作"
         },
         {
           "type": "page",
-          "path": "business-colleagues"
+          "path": "business-colleagues",
+          "title": "17. 业务同事参与"
         },
         {
           "type": "page",
-          "path": "capture-knowledge"
+          "path": "capture-knowledge",
+          "title": "18. 沉淀方法与经验"
         },
         {
           "type": "page",
-          "path": "release"
+          "path": "release",
+          "title": "19. 发布到生产"
         }
       ]
     },
     {
-      "type": "group",
-      "title": "最佳实践",
-      "pages": [
-        {
-          "type": "page",
-          "path": "best-practices"
-        }
-      ]
+      "type": "planned",
+      "title": "最佳实践"
     },
     {
       "type": "group",
-      "title": "附录",
+      "title": "旧版教程",
       "pages": [
         {
-          "type": "page",
-          "path": "prompts"
-        },
-        {
-          "type": "page",
-          "path": "upgrade-core"
+          "type": "folder",
+          "path": "legacy"
         }
       ]
     }

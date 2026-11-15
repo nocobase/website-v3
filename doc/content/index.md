@@ -31,7 +31,7 @@ Agents keep the work moving. Your team stays in control.
 
 <section class="doc-home-card">
 
-## [Tutorials](guides/build-reliable-enterprise-apps.md)
+## [Tutorials](guides/index.md)
 
 Follow practical guides to build your application.
 

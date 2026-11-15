@@ -66,3 +66,13 @@ test('redirect stubs do not need a header action', () => {
   expect(checkHeaderAction(root)).toEqual([]);
   expect(checkHeaderAction(root, { aiEnabled: true })).toEqual([]);
 });
+
+test('standalone HTML assets skip header checks but still have their links checked', () => {
+  const root = site({
+    'index.html': '<header><button data-search-open></button></header><iframe src="/assets/prototype.html"></iframe>',
+    'assets/prototype.html': '<header>CRM</header><img src="/assets/missing.png">',
+  });
+  expect(checkHeaderAction(root)).toEqual([]);
+  expect(findDeadLinks(root)).toEqual(['/assets/prototype.html → /assets/missing.png (src: not found)']);
+  expect(checkHeaderAction(root, { aiEnabled: true })).toHaveLength(1);
+});

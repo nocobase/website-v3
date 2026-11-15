@@ -6,84 +6,120 @@
     },
     {
       "type": "group",
-      "title": "クイックスタート",
+      "title": "Core：クイックスタート",
       "pages": [
         {
           "type": "page",
-          "path": "crm/create-app",
-          "title": "1. CRM アプリの作成"
+          "path": "create-app",
+          "title": "1. アプリの作成"
         },
         {
           "type": "page",
-          "path": "crm/customers-and-follow-ups",
-          "title": "2. 顧客フォロー機能の開発"
+          "path": "define-requirements",
+          "title": "2. CRM の要件を明確にする"
         },
         {
           "type": "page",
-          "path": "crm/test-and-deliver",
-          "title": "3. アプリのテストとデプロイ"
+          "path": "customers-and-follow-ups",
+          "title": "3. 顧客フォロー機能の開発"
+        },
+        {
+          "type": "page",
+          "path": "test-and-deliver",
+          "title": "4. アプリのテストとデプロイ"
         }
       ]
     },
     {
       "type": "group",
-      "title": "実践編",
+      "title": "Core：実践編",
       "pages": [
         {
           "type": "page",
-          "path": "crm/opportunities-and-quotes",
-          "title": "4. 商談と見積のデータ設計"
+          "path": "opportunities-and-quotes",
+          "title": "5. 商談と見積のデータ設計"
         },
         {
           "type": "page",
-          "path": "crm/sales-workspace",
-          "title": "5. 営業ワークスペースの UI 構築"
+          "path": "sales-workspace",
+          "title": "6. 営業ワークスペースの UI 構築"
         },
         {
           "type": "page",
-          "path": "crm/team-permissions",
-          "title": "6. ロール権限と顧客アクセス制御"
+          "path": "team-permissions",
+          "title": "7. ロール権限と顧客アクセス制御"
         },
         {
           "type": "page",
-          "path": "crm/quote-approvals",
-          "title": "7. 見積承認と対応事項"
+          "path": "quote-approvals",
+          "title": "8. 見積承認と対応事項"
         },
         {
           "type": "page",
-          "path": "crm/attachments-and-documents",
-          "title": "8. 添付ファイル管理と見積書生成"
+          "path": "attachments-and-documents",
+          "title": "9. 添付ファイル管理と見積書生成"
         },
         {
           "type": "page",
-          "path": "crm/notifications",
-          "title": "9. 業務通知とチャネル連携"
+          "path": "notifications",
+          "title": "10. 業務通知とチャネル連携"
         },
         {
           "type": "page",
-          "path": "crm/email",
-          "title": "10. メールボックス連携と顧客メール"
+          "path": "email",
+          "title": "11. メールボックス連携と顧客メール"
         },
         {
           "type": "page",
-          "path": "crm/scheduled-reminders",
-          "title": "11. 定期フォローと期限リマインダー"
+          "path": "scheduled-reminders",
+          "title": "12. 定期フォローと期限リマインダー"
         },
         {
           "type": "page",
-          "path": "crm/ai-assistant",
-          "title": "12. AI による顧客フォロー支援"
+          "path": "ai-assistant",
+          "title": "13. AI による顧客フォロー支援"
         },
         {
           "type": "page",
-          "path": "crm/import-and-integrations",
-          "title": "13. 顧客インポートと API 連携"
+          "path": "import-and-integrations",
+          "title": "14. 顧客インポートと API 連携"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Studio：チームでの開発",
+      "pages": [
+        {
+          "type": "page",
+          "path": "bring-into-studio",
+          "title": "15. Studio に接続する"
+        },
+        {
+          "type": "page",
+          "path": "agent-team-request",
+          "title": "16. Agent チームと開発する"
+        },
+        {
+          "type": "page",
+          "path": "business-colleagues",
+          "title": "17. 業務担当者と協働する"
+        },
+        {
+          "type": "page",
+          "path": "capture-knowledge",
+          "title": "18. 知識と経験を残す"
+        },
+        {
+          "type": "page",
+          "path": "release",
+          "title": "19. 本番に公開する"
         }
       ]
     },
     {
       "type": "planned",
-      "title": "Studio"
+      "title": "ベストプラクティス"
     },
     {
       "type": "group",

@@ -6,84 +6,120 @@
     },
     {
       "type": "group",
-      "title": "Quick start",
+      "title": "Core: Quick start",
       "pages": [
         {
           "type": "page",
-          "path": "crm/create-app",
-          "title": "1. Create a CRM app"
+          "path": "create-app",
+          "title": "1. Create an app"
         },
         {
           "type": "page",
-          "path": "crm/customers-and-follow-ups",
-          "title": "2. Develop customer follow-up features"
+          "path": "define-requirements",
+          "title": "2. Define CRM requirements"
         },
         {
           "type": "page",
-          "path": "crm/test-and-deliver",
-          "title": "3. Test and deliver the app"
+          "path": "customers-and-follow-ups",
+          "title": "3. Develop customer follow-up features"
+        },
+        {
+          "type": "page",
+          "path": "test-and-deliver",
+          "title": "4. Accept and deliver the app"
         }
       ]
     },
     {
       "type": "group",
-      "title": "Hands-on practice",
+      "title": "Core: Hands-on practice",
       "pages": [
         {
           "type": "page",
-          "path": "crm/opportunities-and-quotes",
-          "title": "4. Model opportunity and quote data"
+          "path": "opportunities-and-quotes",
+          "title": "5. Model opportunity and quote data"
         },
         {
           "type": "page",
-          "path": "crm/sales-workspace",
-          "title": "5. Build the sales workspace UI"
+          "path": "sales-workspace",
+          "title": "6. Build the sales workspace UI"
         },
         {
           "type": "page",
-          "path": "crm/team-permissions",
-          "title": "6. Role permissions and customer access"
+          "path": "team-permissions",
+          "title": "7. Role permissions and customer access"
         },
         {
           "type": "page",
-          "path": "crm/quote-approvals",
-          "title": "7. Quote approvals and tasks"
+          "path": "quote-approvals",
+          "title": "8. Quote approvals and tasks"
         },
         {
           "type": "page",
-          "path": "crm/attachments-and-documents",
-          "title": "8. Attachments and quote documents"
+          "path": "attachments-and-documents",
+          "title": "9. Attachments and quote documents"
         },
         {
           "type": "page",
-          "path": "crm/notifications",
-          "title": "9. Business notifications and channel integration"
+          "path": "notifications",
+          "title": "10. In-app notifications for assignments and quotation results"
         },
         {
           "type": "page",
-          "path": "crm/email",
-          "title": "10. Mailbox integration and customer emails"
+          "path": "email",
+          "title": "11. Mailbox integration and customer emails"
         },
         {
           "type": "page",
-          "path": "crm/scheduled-reminders",
-          "title": "11. Scheduled follow-ups and expiry reminders"
+          "path": "scheduled-reminders",
+          "title": "12. Scheduled follow-ups and expiry reminders"
         },
         {
           "type": "page",
-          "path": "crm/ai-assistant",
-          "title": "12. AI-assisted customer follow-ups"
+          "path": "ai-assistant",
+          "title": "13. AI-assisted customer follow-ups"
         },
         {
           "type": "page",
-          "path": "crm/import-and-integrations",
-          "title": "13. Customer imports and API integration"
+          "path": "import-and-integrations",
+          "title": "14. Customer imports and API integration"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Studio: Develop as a team",
+      "pages": [
+        {
+          "type": "page",
+          "path": "bring-into-studio",
+          "title": "15. Connect to Studio"
+        },
+        {
+          "type": "page",
+          "path": "agent-team-request",
+          "title": "16. Work with Agents"
+        },
+        {
+          "type": "page",
+          "path": "business-colleagues",
+          "title": "17. Involve business colleagues"
+        },
+        {
+          "type": "page",
+          "path": "capture-knowledge",
+          "title": "18. Capture knowledge"
+        },
+        {
+          "type": "page",
+          "path": "release",
+          "title": "19. Release to production"
         }
       ]
     },
     {
       "type": "planned",
-      "title": "Studio"
+      "title": "Best practices"
     },
     {
       "type": "group",

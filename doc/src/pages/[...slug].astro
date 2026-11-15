@@ -23,7 +23,7 @@ const { Content, headings } = await render(entry);
 const section = site.sections(lang).find(s => s.id === page.section)!;
 const empty = !page.body.trim();
 const catalog = key === 'guides/index';
-const lesson = key.startsWith('guides/crm/') ? Number(page.data.lesson) : 0;
+const lesson = page.section === 'guides' ? Number(page.data.lesson) || 0 : 0;
 const courseUi = {
   en: { back: 'All courses', quick: 'Quick start', practice: 'Hands-on practice', pending: 'This lesson is being written. Please check back later.' },
   'zh-CN': { back: '全部课程', quick: '快速上手', practice: '深入实战', pending: '本课正在编写中，敬请期待。' },
@@ -38,9 +38,9 @@ if (page.placeholder && empty) {
   hint = other ? ui.untranslated.replace('{href}', site.urlOf(other.code, key)).replace('{current}', name(lang)).replace('{language}', name(other.code)) : ui.unwritten;
 }
 
-// CRM lessons have their own sequence, including pending lessons. Keep the archive
+// Tutorial lessons have their own sequence, including pending lessons. Keep the archive
 // separate; other sections continue to navigate only between written pages.
-const order = section.order.filter(k => lesson ? k.startsWith('guides/crm/') :
+const order = section.order.filter(k => lesson ? Number(site.page(lang, k)!.data.lesson) > 0 :
   !site.page(lang, k)!.placeholder && (page.section !== 'guides' || k.startsWith('guides/legacy/')));
 const i = order.indexOf(key);
 const link = (k?: string) => (k ? { href: site.urlOf(lang, k), title: site.page(lang, k)!.title } : undefined);

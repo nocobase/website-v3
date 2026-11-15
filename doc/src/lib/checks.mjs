@@ -70,6 +70,8 @@ export function checkLayout(root, { dirs = [] } = {}) {
 export function checkHeaderAction(root, { aiEnabled = false } = {}) {
   const trigger = aiEnabled ? 'data-chat-open' : 'data-search-open';
   return htmlFiles(root).flatMap(file => {
+    // Standalone HTML assets (such as embedded prototypes) do not use the page shell.
+    if (relative(root, file).split('\\').join('/').startsWith('assets/')) return [];
     const html = readFileSync(file, 'utf8');
     // Astro also emits redirect stubs, which do not use the page shell.
     if (/<meta\b[^>]*\shttp-equiv="refresh"/i.test(html)) return [];

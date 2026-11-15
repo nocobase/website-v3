@@ -6,84 +6,120 @@
     },
     {
       "type": "group",
-      "title": "快速上手",
+      "title": "Core：快速上手",
       "pages": [
         {
           "type": "page",
-          "path": "crm/create-app",
-          "title": "1. 创建 CRM 应用"
+          "path": "create-app",
+          "title": "1. 创建应用"
         },
         {
           "type": "page",
-          "path": "crm/customers-and-follow-ups",
-          "title": "2. 开发客户跟进功能"
+          "path": "define-requirements",
+          "title": "2. 确定 CRM 需求"
         },
         {
           "type": "page",
-          "path": "crm/test-and-deliver",
-          "title": "3. 测试与交付应用"
+          "path": "customers-and-follow-ups",
+          "title": "3. 开发客户跟进功能"
+        },
+        {
+          "type": "page",
+          "path": "test-and-deliver",
+          "title": "4. 验收与交付应用"
         }
       ]
     },
     {
       "type": "group",
-      "title": "深入实战",
+      "title": "Core：深入实战",
       "pages": [
         {
           "type": "page",
-          "path": "crm/opportunities-and-quotes",
-          "title": "4. 商机与报价数据建模"
+          "path": "opportunities-and-quotes",
+          "title": "5. 商机与报价数据建模"
         },
         {
           "type": "page",
-          "path": "crm/sales-workspace",
-          "title": "5. 销售工作台 UI 搭建"
+          "path": "sales-workspace",
+          "title": "6. 销售工作台 UI 搭建"
         },
         {
           "type": "page",
-          "path": "crm/team-permissions",
-          "title": "6. 角色权限与客户访问控制"
+          "path": "team-permissions",
+          "title": "7. 角色权限与客户访问控制"
         },
         {
           "type": "page",
-          "path": "crm/quote-approvals",
-          "title": "7. 报价审批与待办"
+          "path": "quote-approvals",
+          "title": "8. 报价审批与待办"
         },
         {
           "type": "page",
-          "path": "crm/attachments-and-documents",
-          "title": "8. 附件管理与报价单生成"
+          "path": "attachments-and-documents",
+          "title": "9. 附件管理与报价单生成"
         },
         {
           "type": "page",
-          "path": "crm/notifications",
-          "title": "9. 业务通知与渠道接入"
+          "path": "notifications",
+          "title": "10. 客户分配与报价结果的站内通知"
         },
         {
           "type": "page",
-          "path": "crm/email",
-          "title": "10. 邮箱接入与客户邮件"
+          "path": "email",
+          "title": "11. 邮箱接入与客户邮件"
         },
         {
           "type": "page",
-          "path": "crm/scheduled-reminders",
-          "title": "11. 定时跟进与到期提醒"
+          "path": "scheduled-reminders",
+          "title": "12. 定时跟进与到期提醒"
         },
         {
           "type": "page",
-          "path": "crm/ai-assistant",
-          "title": "12. AI 辅助客户跟进"
+          "path": "ai-assistant",
+          "title": "13. AI 辅助客户跟进"
         },
         {
           "type": "page",
-          "path": "crm/import-and-integrations",
-          "title": "13. 客户导入与 API 接入"
+          "path": "import-and-integrations",
+          "title": "14. 客户导入与 API 接入"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Studio：团队协作开发",
+      "pages": [
+        {
+          "type": "page",
+          "path": "bring-into-studio",
+          "title": "15. 接入 Studio"
+        },
+        {
+          "type": "page",
+          "path": "agent-team-request",
+          "title": "16. Agent 团队协作"
+        },
+        {
+          "type": "page",
+          "path": "business-colleagues",
+          "title": "17. 业务同事参与"
+        },
+        {
+          "type": "page",
+          "path": "capture-knowledge",
+          "title": "18. 沉淀方法与经验"
+        },
+        {
+          "type": "page",
+          "path": "release",
+          "title": "19. 发布到生产"
         }
       ]
     },
     {
       "type": "planned",
-      "title": "Studio"
+      "title": "最佳实践"
     },
     {
       "type": "group",

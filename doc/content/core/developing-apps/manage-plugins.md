@@ -11,6 +11,18 @@ To develop your own plugin, start with [When to write a plugin](../extension-dev
 
 For plugins published by your team, configure the private registry and read access before installation and registration; see [Build and publish](../extension-development/publish-plugin.md).
 
+## Commercial plugin authorization and registry sign-in
+
+Before using a commercial plugin, contact [NocoBase sales](https://www.nocobase.com/en/contact) or your existing license provider to confirm the required plugin's usage entitlement and package download access. Obtain the registry URL, account details and a read-only download token. Availability of plugins such as Approval depends on your actual entitlement.
+
+Sign in as the development user in the environment where the Agent runs; signing in to the CRM does not grant package access. Replace the URL with the one supplied by your license provider, then enter your account details and use the download token as the password when prompted:
+
+```sh
+pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
+```
+
+This maps `@nocobase` packages to the authorized registry; other dependencies retain their existing registry. Keep tokens out of prompts, project files and Git. A remote Agent or container with a separate environment needs authentication there as well. The Agent can then install and register compatible plugins for the requested business feature. If a download is denied, check authentication in that environment and access to the specific package.
+
 ## With an agent
 
 ```text

@@ -67,7 +67,7 @@ export default function docs() {
         // Pagefind indexes the built pages: one index per <html lang>, only what is inside data-pagefind-body. Chinese and Japanese pages are indexed character by character (lib/cjk.mjs); the files on disk are not changed.
         const { index } = await pagefind.createIndex({});
         let pages = 0;
-        for (const file of readdirSync(root, { recursive: true }).filter(f => f.endsWith('.html')).sort()) {
+        for (const file of readdirSync(root, { recursive: true }).filter(f => f.endsWith('.html') && !f.split('\\').join('/').startsWith('assets/')).sort()) {
           const html = readFileSync(join(root, file), 'utf8');
           const lang = html.match(/<html[^>]*\slang="([^"]+)"/)?.[1] ?? '';
           const added = await index.addHTMLFile({ sourcePath: file, content: /^(zh|ja)\b/i.test(lang) ? spaceCjkHtml(html) : html });

@@ -7,6 +7,8 @@ description: "将人工审批接入业务记录生命周期，配置参与人、
 
 `@nocobase/app-plugin-approval` 将人工审批接入围绕业务记录推进的[工作流](../../developing-apps/business-workflows.md)，管理审批参与人、任务、操作记录与内容快照。适合请假、采购、合同等需要人工确认的业务。它是商业插件，安装前确认相应包访问权限与使用授权。
 
+授权获取和 registry 登录见[商业插件授权与包仓库登录](../../developing-apps/manage-plugins.md#商业插件授权与包仓库登录)。
+
 插件提供审批编排与读模型；业务页面、接口、授权和定时执行由应用组合。
 
 ## 使用场景与示例

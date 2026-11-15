@@ -24,10 +24,6 @@ export default defineConfig({
   outDir: DIST,
   trailingSlash: 'always',
   redirects: {
-    // Keep bookmarks to the archived tutorials working in every language.
-    ...Object.fromEntries(site.pages.filter(p => p.key.startsWith('guides/legacy/')).map(p => [
-      p.url.replace('/guides/legacy/', '/guides/'), p.url,
-    ])),
     '/studio/reference/agent-execution/': '/studio/intro/agent-team/',
     '/studio/reference/concepts/': '/studio/intro/concepts/',
     '/zh-CN/studio/reference/agent-execution/': '/zh-CN/studio/intro/agent-team/',

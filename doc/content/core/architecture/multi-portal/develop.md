@@ -5,7 +5,7 @@ metaDescription: Create a portal in an existing multi-portal app, install and op
 
 ## Prepare a multi-portal app
 
-Start with a configured [multi-portal app](create-app.md) that runs successfully. Keep your commercial registry login valid and use an administrator account with `unrestricted` permission for these steps.
+Start with a configured [multi-portal app](create-app.md) that runs successfully. Keep your commercial registry token valid and use an administrator account with `unrestricted` permission for these steps.
 
 This example creates **Portal 1** (`portal-1`), starting with an empty portal you can open, then adding an Examples page. A portal is a local package that builds and deploys with the app; publishing it to npm is not required. Follow shadcn/ui conventions for pages, reusing existing components and NocoBase UI Library where possible.
 

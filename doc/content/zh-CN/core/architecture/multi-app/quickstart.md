@@ -9,16 +9,17 @@ description: 创建多应用主应用和独立子应用，配置托管环境，�
 
 准备 Node.js 24 或更高版本、pnpm 11.11.0，以及有权下载[多应用商业包](overview.md#使用前提)的账号。以下命令使用 Bash 等 POSIX shell；Windows 可使用 WSL。
 
-在实际执行安装的机器上登录商业源，密码处使用账号的读取令牌：
+在实际执行安装的机器上配置商业源，将 `<read-token>` 替换为账号的读取令牌：
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
 npm whoami --registry=https://pkg-v3.nocobase.com/
 npm view @nocobase/app-template-multi-app@beta version \
   --@nocobase:registry=https://pkg-v3.nocobase.com/
 ```
 
-确认模板版本查询成功后再创建项目。读取令牌仅保存在用户的 npm 配置中，不写入项目或对话。认证或下载失败时，见文末[常见问题](#常见问题)。
+这两条命令写入用户的 `~/.npmrc`，npm 和 pnpm 都会读取它。确认模板版本查询成功后再创建项目。读取令牌仅保存在用户的 npm 配置中，不写入项目或对话。认证或下载失败时，见文末[常见问题](#常见问题)。
 
 ## 安排项目目录
 
@@ -33,7 +34,7 @@ npm view @nocobase/app-template-multi-app@beta version \
 
 ## 使用 Agent 创建多应用环境
 
-在 Agent 实际运行的机器和用户环境中完成商业源登录。远程 Agent 不会自动获得本机的登录信息。
+在 Agent 实际运行的机器和用户环境中完成商业源配置。远程 Agent 不会自动获得本机的认证信息。
 
 安装创建应用的 Skill，按提示选择使用的 Agent，然后重新打开 Agent 会话：
 
@@ -202,7 +203,7 @@ pnpm build --tar
 
 | 现象 | 处理 |
 | --- | --- |
-| 商业包返回 401、403 或查询不到版本 | `401` 先检查登录状态；`403` 或找不到包时，检查下载权限、包名和版本。`NOCOBASE_REGISTRY` 仅指定创建器下载模板的源，不能替代认证 |
+| 商业包返回 401、403 或查询不到版本 | `401` 先检查令牌配置；`403` 或找不到包时，检查下载权限、包名和版本。`NOCOBASE_REGISTRY` 仅指定创建器下载模板的源，不能替代认证 |
 | 第三方依赖或创建器下载失败 | 商业源仅配置到 `@nocobase` scope，其他依赖使用公共 npm 源或你的镜像。外层 pnpm 下载创建器所用的源不受 `NOCOBASE_REGISTRY` 控制 |
 | pnpm 拒绝安装刚发布的包 | 确认版本可信后，可为本次创建命令设置 `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` |
 | 主应用可访问，但没有可用部署环境 | 检查 Host 配置与启动日志，并在页面创建和检查部署环境 |

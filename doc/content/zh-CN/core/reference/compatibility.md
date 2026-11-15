@@ -27,13 +27,14 @@ NocoBase 提供 8 种数据库方言。方言是连接配置中 `dialect` 的取
 | 人大金仓 KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 兼容模式，`DB_MODE=pg` |
 | OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 兼容租户 |
 
-这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权。从授权交付方取得私有仓库地址、账号信息及具有下载权限的只读令牌（`nbr_…`）。将下方的 `<nocobase-pro-registry-url>` 替换为取得的仓库地址，再执行命令，按提示将令牌作为密码输入：
+这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权。从授权交付方取得私有仓库地址、账号信息及具有下载权限的只读令牌（`nbr_…`）。将下方命令中的 `<nocobase-pro-registry-url>` 替换为取得的仓库地址，`<nocobase-pro-registry-host>` 替换为该地址去掉 `https://` 和末尾 `/` 后的主机名及路径，`<nocobase-pro-read-token>` 替换为令牌，再执行命令：
 
 ```bash
-pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
+npm config set "@nocobase:registry" "<nocobase-pro-registry-url>"
+npm config set "//<nocobase-pro-registry-host>/:_authToken" "<nocobase-pro-read-token>"
 ```
 
-该命令在用户级配置中将 `@nocobase` 映射到 Pro registry；此仓库也代理公开的 NocoBase 包，其他依赖仍使用原有 registry。不要把令牌写入文档、命令行参数或提交到 Git。
+这两条命令在用户的 `~/.npmrc` 中将 `@nocobase` 映射到 Pro registry 并保存令牌，npm 和 pnpm 都会读取该文件；此仓库也代理公开的 NocoBase 包，其他依赖仍使用原有 registry。不要把令牌写入文档或提交到 Git。
 
 ## 配置应用数据库
 

@@ -1,6 +1,6 @@
 ---
 title: Create a multi-portal app
-metaDescription: Sign in to the commercial registry, then create, configure and start a multi-portal app.
+metaDescription: Set up commercial registry access, then create, configure and start a multi-portal app.
 ---
 
 Create and start a multi-portal app to host your business portals. The template includes multi-portal registration, the workbench and portal management, but no preinstalled business portals or sample data.
@@ -9,21 +9,22 @@ Create and start a multi-portal app to host your business portals. The template 
 
 Use Node.js 24 or later, pnpm 11, and an account authorized to download the commercial multi-portal packages. These commands use a POSIX shell such as Bash; on Windows, use WSL.
 
-Sign in through your own terminal. Reuse an existing valid login:
+Configure the commercial registry in your own terminal, replacing `<read-token>` with the registry read token. Skip this if it is already configured:
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
 npm whoami --registry=https://pkg-v3.nocobase.com/
 npm view @nocobase/app-template-multi-portal@beta version --registry=https://pkg-v3.nocobase.com/
 ```
 
-Provide the requested account details and use the registry read token at the password prompt. Keep credentials in the npm user configuration, outside project files and Git. Check package access as well as login: a successful `whoami` does not prove download permission.
+These commands write to your user-level `~/.npmrc`, which both npm and pnpm read. Keep credentials there, outside project files and Git. Check package access as well as authentication: a successful `whoami` does not prove download permission.
 
 The template, management plugin and portal generator use the commercial registry. Third-party dependencies still use public npm or your public mirror; do not change the entire default registry to the commercial source.
 
 ## Create the app with an Agent
 
-Complete the commercial registry login above on the machine and under the user account where the Agent runs commands. A local npm login is not automatically available to a remote Agent. Do not paste read tokens into chat.
+Complete the commercial registry configuration above on the machine and under the user account where the Agent runs commands. Your local npm configuration is not automatically available to a remote Agent. Do not paste read tokens into chat.
 
 Install the global `nocobase-create-app` Skill and select your Agent when prompted:
 
@@ -98,7 +99,7 @@ After login, the administrator workbench and **System settings → Portal manage
 
 | Symptom | Action |
 | --- | --- |
-| Commercial package returns 401, 403 or no accessible version | Check login expiry, package access and the requested version |
+| Commercial package returns 401, 403 or no accessible version | Check that the token is configured and valid, package access and the requested version |
 | A third-party package returns 404 from the commercial registry | Correct the default registry; scope the commercial source to `@nocobase`, then run `pnpm install` in the existing app |
 | LAN login fails | Match `app.publicOrigin` to the actual browser origin |
 

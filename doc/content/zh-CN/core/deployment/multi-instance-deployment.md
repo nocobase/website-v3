@@ -96,10 +96,11 @@ Agent 无法获取兼容的商业插件，或无法连接服务器时，可以�
 | Concurrency | `@nocobase/app-plugin-concurrency-redis` |
 | Snowflake worker 自动分配 | `@nocobase/app-plugin-snowflake-worker` |
 
-使用有权下载对应包的账号登录商业包仓库，已有有效配置可跳过：
+将 `<读取令牌>` 替换为有权下载对应包的账号的读取令牌，配置商业包仓库。命令写入用户的 `~/.npmrc`，npm 和 pnpm 都会读取它。已有有效配置可跳过：
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<读取令牌>"
 ```
 
 按检查结果逐个注册需要的插件。以 Jobs 为例，先查看可用版本及其依赖要求，再把 `<兼容版本>` 替换为与当前应用匹配的版本：

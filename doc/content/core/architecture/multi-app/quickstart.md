@@ -9,16 +9,17 @@ First create the main application that provides the workbench and management fea
 
 Prepare Node.js 24 or later, pnpm 11.11.0, and an account with download access to the [commercial multi-app packages](overview.md#prerequisites). The commands below use a POSIX shell such as Bash; on Windows, use WSL.
 
-Sign in to the commercial registry on the machine where installation will run. Use your account's read token as the password:
+Configure the commercial registry on the machine where installation will run. Replace `<read-token>` with your account's read token:
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
 npm whoami --registry=https://pkg-v3.nocobase.com/
 npm view @nocobase/app-template-multi-app@beta version \
   --@nocobase:registry=https://pkg-v3.nocobase.com/
 ```
 
-Confirm that the template version query succeeds before creating a project. Keep the read token only in your user-level npm configuration, not in the project or a conversation. For authentication or download failures, see [Troubleshooting](#troubleshooting).
+These commands write to your user-level `~/.npmrc`, which both npm and pnpm read. Confirm that the template version query succeeds before creating a project. Keep the read token only in your user-level npm configuration, not in the project or a conversation. For authentication or download failures, see [Troubleshooting](#troubleshooting).
 
 ## Arrange your project directories
 
@@ -33,7 +34,7 @@ This layout is only an example. The main and child applications are independent 
 
 ## Create a multi-app environment with an Agent
 
-Complete registry sign-in on the machine and under the user account where the Agent runs. A remote Agent does not automatically inherit your local credentials.
+Configure registry access on the machine and under the user account where the Agent runs. A remote Agent does not automatically inherit your local credentials.
 
 Install the application creation Skill, select your Agent when prompted, and reopen the Agent session:
 
@@ -201,7 +202,7 @@ Check that the homepage loads and the expected features work. Either the Default
 
 | Symptom | Action |
 | --- | --- |
-| Commercial packages return 401, 403, or no version | For `401`, check sign-in status first. For `403` or a missing package, check download permissions, the package name, and the version. `NOCOBASE_REGISTRY` only selects the registry the creator uses to download the template; it does not authenticate you |
+| Commercial packages return 401, 403, or no version | For `401`, check the token configuration first. For `403` or a missing package, check download permissions, the package name, and the version. `NOCOBASE_REGISTRY` only selects the registry the creator uses to download the template; it does not authenticate you |
 | Third-party dependencies or the creator fail to download | Configure the commercial registry only for the `@nocobase` scope. Other dependencies use public npm or your mirror. `NOCOBASE_REGISTRY` does not control the registry the outer pnpm command uses to download the creator |
 | pnpm refuses to install a recently published package | After confirming that you trust the version, set `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` for this creation command |
 | The main application is accessible, but no deployment environment is available | Check the Host configuration and startup logs, then create and check a deployment environment in the interface |

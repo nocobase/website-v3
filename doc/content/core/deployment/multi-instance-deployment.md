@@ -96,10 +96,11 @@ Change dependencies and plugin registrations in the **application's source direc
 | Concurrency | `@nocobase/app-plugin-concurrency-redis` |
 | Automatic Snowflake worker allocation | `@nocobase/app-plugin-snowflake-worker` |
 
-Sign in to the commercial package registry with an account authorized to download the required packages. Skip this step if valid credentials are already configured:
+Configure the commercial package registry with the read token of an account authorized to download the required packages, replacing `<read-token>`. The commands write to your user-level `~/.npmrc`, which both npm and pnpm read. Skip this step if valid credentials are already configured:
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
 ```
 
 Register the required plugins one by one based on the review. For Jobs, first check the available versions and their dependency requirements, then replace `<compatible-version>` with a version that matches the application:

@@ -27,13 +27,14 @@ The default application template uses SQLite, so local development needs no sepa
 | KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL-compatible mode, `DB_MODE=pg` |
 | OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL-compatible tenant |
 
-These three drivers are NocoBase Pro commercial packages and require the appropriate license. Obtain the private registry URL, account details and a download-enabled read token (`nbr_…`) from your license provider. Replace `<nocobase-pro-registry-url>` below with the supplied URL, then run the command and enter the token as the password when prompted:
+These three drivers are NocoBase Pro commercial packages and require the appropriate license. Obtain the private registry URL, account details and a download-enabled read token (`nbr_…`) from your license provider. In the commands below, replace `<nocobase-pro-registry-url>` with the supplied URL, `<nocobase-pro-registry-host>` with that URL's host and any path, without `https://` or the trailing `/`, and `<nocobase-pro-read-token>` with the token, then run them:
 
 ```bash
-pnpm login --registry="<nocobase-pro-registry-url>" --scope=@nocobase
+npm config set "@nocobase:registry" "<nocobase-pro-registry-url>"
+npm config set "//<nocobase-pro-registry-host>/:_authToken" "<nocobase-pro-read-token>"
 ```
 
-This command maps the `@nocobase` scope to the Pro registry in user-level configuration. The registry also proxies public NocoBase packages; other dependencies continue to use their existing registry. Keep the token out of documentation, command-line arguments and Git.
+These commands map the `@nocobase` scope to the Pro registry and store the token in your user-level `~/.npmrc`, which both npm and pnpm read. The registry also proxies public NocoBase packages; other dependencies continue to use their existing registry. Keep the token out of documentation and Git.
 
 ## Configure the application database
 

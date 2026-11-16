@@ -136,6 +136,10 @@ deployment:
 
 创建实例前检查节点可用，以及目标版本的操作系统、架构、libc、Node.js 和数据库驱动是否兼容。节点不可用时查看主应用与节点日志；刷新状态只重新检查，不会替你启动失败的节点。
 
+![创建第一个实例前，确认 local 运行节点已就绪。](/assets/core/multi-app/hd-runtime-nodes.png)
+
+![运行节点详情展示驱动、地址及运行状态。](/assets/core/multi-app/hd-runtime-node-detail.png)
+
 ### 停用运行节点
 
 先确认节点上的实例是否仍在使用，为停机和数据保存安排维护窗口，然后设置该节点 `enabled: false` 并重启主应用。如果它是默认节点，同时调整 `defaultNode`。

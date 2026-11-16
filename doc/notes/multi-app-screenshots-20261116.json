@@ -1,0 +1,255 @@
+[
+  {
+    "file": "/assets/core/multi-app/hd-workbench.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The workbench opens applications available to the signed-in platform user.",
+      "zh-CN": "工作台提供当前平台用户可访问的应用入口。",
+      "ja-JP": "ワークベンチから、ログイン中のユーザーが利用できるアプリを開きます。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-deployment-settings.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Deployment management is grouped under System settings.",
+      "zh-CN": "系统设置中的部署管理分组集中提供实例、构建产物、运行节点和部署记录入口。",
+      "ja-JP": "System settings の Deployment management に、インスタンス、成果物、実行ノード、デプロイ記録がまとまっています。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-runtime-nodes.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The local runtime node is ready before the first instance is created.",
+      "zh-CN": "创建第一个实例前，确认 local 运行节点已就绪。",
+      "ja-JP": "最初のインスタンスを作る前に、local 実行ノードが利用可能であることを確認します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-runtime-node-detail.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Node details show the driver, address and runtime status.",
+      "zh-CN": "运行节点详情展示驱动、地址及运行状态。",
+      "ja-JP": "ノード詳細でドライバー、アドレス、実行状態を確認します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-child-local-home.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The child project runs locally with its own administrator account.",
+      "zh-CN": "子应用项目在本地独立运行，使用自己的管理员账号登录。",
+      "ja-JP": "子アプリをローカルで起動し、専用の管理者アカウントでログインします。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-cli-authorization.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Approve the project CLI authorization, then return to the terminal.",
+      "zh-CN": "批准项目 CLI 授权后，返回终端继续部署。",
+      "ja-JP": "プロジェクト CLI の認可を承認してから、ターミナルに戻ります。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-instance-overview.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The deployed instance is running with platform SSO enabled.",
+      "zh-CN": "部署完成的实例处于运行中状态，并已启用平台 SSO。",
+      "ja-JP": "デプロイしたインスタンスが稼働し、プラットフォーム SSO が有効になっています。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-save-initial-admin.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Save the generated administrator credentials before confirming. The password is masked here.",
+      "zh-CN": "确认前先安全保存生成的管理员凭据，截图中的密码保持隐藏。",
+      "ja-JP": "生成された管理者の資格情報を保存してから確認します。画像ではパスワードを非表示にしています。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-application-switcher.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Open the application switcher to return to the platform workbench.",
+      "zh-CN": "打开应用切换器，可以返回平台工作台。",
+      "ja-JP": "アプリ切り替えメニューからプラットフォームのワークベンチへ戻れます。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-deployment-detail.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The deployment record identifies the instance, version, node and completed operation.",
+      "zh-CN": "部署记录展示实例、版本、运行节点和已完成的操作。",
+      "ja-JP": "デプロイ記録でインスタンス、バージョン、ノード、完了した操作を確認します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-build-artifacts.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The uploaded child-app package contains a published version and its instance count.",
+      "zh-CN": "上传后的 child-app 应用包展示已发布版本及关联实例数量。",
+      "ja-JP": "アップロードした child-app パッケージに、公開済みバージョンと関連インスタンス数が表示されます。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-artifact-version.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Version details show build compatibility and associated application instances.",
+      "zh-CN": "版本详情展示构建兼容信息及关联的应用实例。",
+      "ja-JP": "バージョン詳細でビルドの互換情報と関連インスタンスを確認します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-create-instance.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Choose a version, runtime node and database, then review the access address before creating an instance.",
+      "zh-CN": "选择版本、运行节点和数据库后，在提交前核对实例访问地址。",
+      "ja-JP": "バージョン、実行ノード、データベースを選び、作成前にアクセス URL を確認します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-application-instances.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The instance list shows the running state and current version.",
+      "zh-CN": "实例列表展示运行状态与当前版本。",
+      "ja-JP": "インスタンス一覧で実行状態と現在のバージョンを確認します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-instance-configuration.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The Configuration tab shows the runtime and effective instance settings.",
+      "zh-CN": "配置页展示运行环境及当前生效的实例设置。",
+      "ja-JP": "Configuration で実行条件と現在有効なインスタンス設定を確認します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-deployment-records.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Deployment records collect operations across application instances.",
+      "zh-CN": "部署记录汇总各应用实例的操作结果。",
+      "ja-JP": "Deployment records に各インスタンスの操作結果が集まります。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-runtime-logs.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Runtime logs show application output for troubleshooting.",
+      "zh-CN": "运行日志展示应用自身的输出，供排查运行问题。",
+      "ja-JP": "実行ログでアプリの出力を確認し、問題を調べます。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-deployment-logs.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Deployment logs show extraction, activation and successful completion.",
+      "zh-CN": "部署日志展示解包、激活及操作成功等阶段。",
+      "ja-JP": "デプロイログで展開、起動、有効化、完了の各段階を確認します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-platform-access.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "Platform entry and SSO switches are separate; issued credentials remain managed by the platform.",
+      "zh-CN": "平台入口与 SSO 分别控制，签发的凭据仍由平台管理。",
+      "ja-JP": "プラットフォーム入口と SSO は個別に切り替えます。発行済みの資格情報はプラットフォームが管理します。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-child-local-login.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The child local sign-in page remains available alongside platform login.",
+      "zh-CN": "子应用保留本地账号登录，同时提供平台登录入口。",
+      "ja-JP": "子アプリではプラットフォームログインとローカルアカウントのログインを併用できます。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-child-sso-home.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "An ordinary platform user reaches the child home page without administrator navigation.",
+      "zh-CN": "普通平台用户可以通过 SSO 进入子应用首页，但不会因此获得管理入口。",
+      "ja-JP": "一般のプラットフォームユーザーは SSO で子アプリのホームを開けますが、管理メニューは付与されません。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-connect-external-application.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "External application login adds a link without configuring platform SSO.",
+      "zh-CN": "选择应用自行登录，只添加访问链接，不配置平台 SSO。",
+      "ja-JP": "External application login を選ぶと、プラットフォーム SSO を設定せずにリンクを追加できます。"
+    }
+  },
+  {
+    "file": "/assets/core/multi-app/hd-external-application.png",
+    "width": 2880,
+    "height": 1800,
+    "interfaceLanguage": "en-US",
+    "caption": {
+      "en": "The connected application keeps its own deployment and login responsibilities.",
+      "zh-CN": "外部接入应用的部署维护和登录仍由原应用负责。",
+      "ja-JP": "接続したアプリのデプロイとログインは、引き続き接続先が管理します。"
+    }
+  }
+]

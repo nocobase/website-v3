@@ -10,6 +10,8 @@ title: 既存アプリの接続
 
 **System settings → Deployment management → Application instances → External connections** で名前、URL、方式を登録します。SSO では実際のコールバック URL と対象システムの設定権限が必要です。
 
+![External application login を選ぶと、プラットフォーム SSO を設定せずにリンクを追加できます。](/assets/core/multi-app/hd-connect-external-application.png)
+
 ## 独立した NocoBase アプリを接続する
 
 互換版の `@nocobase/app-plugin-platform-sso` を入れ、同梱 Skill に従ってクライアント、サーバー、設定ファクトリー、認証オプション、ログイン画面、切り替え UI を統合します。
@@ -53,6 +55,8 @@ Main への登録成功だけでは対象の設定完了を証明しません。
 外部アプリの詳細で入口と SSO を操作します。SSO 無効化後も登録 URL を開き、ログインは元のアプリが処理します。Main のスイッチは第三者のアカウントや権限設定を変更しません。
 
 URL やコールバックの編集が現行画面にない場合は、再接続と対象設定の変更を調整します。DB 記録を直接書き換えないでください。
+
+![接続したアプリのデプロイとログインは、引き続き接続先が管理します。](/assets/core/multi-app/hd-external-application.png)
 
 ## 無効化と接続解除
 

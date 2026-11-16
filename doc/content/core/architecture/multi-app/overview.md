@@ -54,6 +54,10 @@ Users enter applications from the **Workbench**. Administrators with the relevan
 
 Deployment management and child business permissions are separate. Users do not need management access to use their applications.
 
+![The workbench opens applications available to the signed-in platform user.](/assets/core/multi-app/hd-workbench.png)
+
+![Deployment management is grouped under System settings.](/assets/core/multi-app/hd-deployment-settings.png)
+
 ## Prerequisites
 
 Prepare Node.js 24 or later, a pnpm version compatible with the selected templates, and access to the commercial packages. Main needs a stable address, a separate database and persistent storage. Runtime nodes must meet the artifact's operating system, CPU architecture, libc and Node.js requirements.

@@ -13,6 +13,8 @@ Existing applications continue running on their original servers. Main manages a
 
 Under **System settings → Deployment management → Application instances → External connections**, add a name, access URL and login mode. For SSO, obtain the real callback URL and permission to configure the target application.
 
+![External application login adds a link without configuring platform SSO.](/assets/core/multi-app/hd-connect-external-application.png)
+
 ## Connect an independently deployed NocoBase application
 
 Install a compatible `@nocobase/app-plugin-platform-sso` in the target project. Follow its installed `nocobase-app-plugin-platform-sso` Skill to register client and server contributions, register platform configuration, merge platform authentication options with existing authentication, and add platform login and the switcher to the login page and persistent shell.
@@ -56,6 +58,8 @@ Successful registration in Main does not prove the target has deployed its confi
 Manage platform entry and SSO switches from external application details. Disabling SSO preserves the registered URL, leaving login to the application. Main's switches do not edit third-party local accounts or access rules.
 
 Before changing a URL or callback, check whether the current interface supports editing it. If not, arrange a new enrollment and update the target configuration together. Do not directly edit database records.
+
+![The connected application keeps its own deployment and login responsibilities.](/assets/core/multi-app/hd-external-application.png)
 
 ## Disable and detach access
 

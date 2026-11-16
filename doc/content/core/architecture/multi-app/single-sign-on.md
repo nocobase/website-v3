@@ -8,6 +8,8 @@ Single sign-on establishes who the user is, not what they may do in a child. Ena
 
 Main administrators do not automatically become child administrators. Matching names, email addresses or Main roles must not directly grant child administrative access.
 
+![An ordinary platform user reaches the child home page without administrator navigation.](/assets/core/multi-app/hd-child-sso-home.png)
+
 ## Automatic login integration for hosted instances
 
 The `sub-app` template includes Platform SSO server, configuration and client integration. Enable platform SSO when creating a hosted instance. Main issues credentials for that instance, injects them during deployment and enables access after runtime activation.
@@ -33,7 +35,11 @@ The **Platform-issued credentials** card shows the issuer, client ID, applicatio
 
 Main generates these settings; the card does not edit them. Do not copy credentials between instances or place a secret in client configuration, source or screenshots.
 
+![Platform entry and SSO switches are separate; issued credentials remain managed by the platform.](/assets/core/multi-app/hd-platform-access.png)
+
 ## Configure child business permissions
+
+The bare child template includes prepared user and role administration pages, but does not register them by default. As you develop business features, enable the prepared `client/pages/settings/routes.ts` contribution in `client/routes.ts` following the project’s application-development guidance, then build and deploy the updated version. A freshly created template therefore does not yet show a Permission management entry.
 
 Use the child's local administrator to assign the required roles, page permissions, operations and data scopes inside the child. Verify a real business rule, such as sales users seeing only their own customers without system administration access.
 
@@ -45,6 +51,8 @@ Open `login?auth=local` below the child's entry path, for example `https://apps.
 
 Keep local login available for recovery from platform login failures. See [Save the initial administrator account](management.md#save-the-initial-administrator-account). If signing out immediately signs you in again, check that the login flow preserves `signedOut=1` to prevent automatic login from an active platform session.
 
+![The child local sign-in page remains available alongside platform login.](/assets/core/multi-app/hd-child-local-login.png)
+
 ## Verify login, switching and permissions
 
 Test with both an ordinary platform user and a local administrator:
@@ -54,6 +62,8 @@ Test with both an ordinary platform user and a local administrator:
 3. Confirm ordinary users can perform only authorized business operations and cannot access child administration APIs.
 4. Confirm local administrator recovery works. A local account must not receive a fabricated platform application list.
 5. Disable a platform user or entry and confirm new logins and subsequent admission checks are restricted.
+
+![Open the application switcher to return to the platform workbench.](/assets/core/multi-app/hd-application-switcher.png)
 
 ## Troubleshoot callbacks and login failures
 

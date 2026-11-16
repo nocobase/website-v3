@@ -31,7 +31,15 @@ pnpm nocobase config init --dialect sqlite
 pnpm nocobase config set server.host=0.0.0.0 server.port=13230 app.publicOrigin=http://192.168.1.10:13230
 ```
 
-初期化の案内に従い、初期管理者の資格情報を設定・保存します。生成された暗号鍵を保持し、Main 専用のデータベースであることを確認します。
+初回起動前に、専用の初期管理者パスワードを設定します。`config init` は設定を生成しますが、このパスワードの入力は求めません。以下の Bash コマンドは入力を表示せず、履歴にもパスワードを残しません。安全に保存してください。既定のユーザー名は `nocobase` です。生成された暗号鍵と Main のデータベースも保持します。
+
+```bash
+read -r -s -p "Main administrator password: " MAIN_ADMIN_PASSWORD
+printf '\n'
+export MAIN_ADMIN_PASSWORD
+pnpm nocobase config set --from-env users.initialAdmin.password=MAIN_ADMIN_PASSWORD
+unset MAIN_ADMIN_PASSWORD
+```
 
 生成された `config.yml` の `sso` に以下を設定します。同名の YAML キーを重複させないでください。
 
@@ -43,14 +51,18 @@ sso:
 
 これは管理された HTTP origin への子アプリのログインコールバックを許可する、Main 側の設定です。
 
+開発サーバーは `config.yml` とは別にポートを選びます。以下のように `APP_SERVER_PORT` を明示し、表示された URL が `app.publicOrigin` と一致することを確認します。使用中なら、そのポートを空けてください。
+
 ```bash
 pnpm nocobase config check
-pnpm dev
+APP_SERVER_HOST=0.0.0.0 APP_SERVER_PORT=13230 pnpm dev
 ```
 
 `http://192.168.1.10:13230/main/` に初期管理者でログインします。**System settings → Deployment management → Runtime nodes** で `local` が利用可能なことを確認します。ノードは Main が自動起動するため、画面から追加しません。
 
 利用できない場合は `13231` の競合、保存先の書き込み権限、Main のログを確認します。ブラウザーにはノード内部ポートではなく Main のポートを使います。
+
+![最初のインスタンスを作る前に、local 実行ノードが利用可能であることを確認します。](/assets/core/multi-app/hd-runtime-nodes.png)
 
 ## ステップ 2：子アプリを作成する
 
@@ -61,13 +73,25 @@ pnpm create @nocobase/app@beta child-app --template sub-app --template-tag beta
 cd child-app
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config set server.host=0.0.0.0 server.port=13240 app.publicOrigin=http://192.168.1.10:13240
+```
+
+起動前に、子アプリのローカル管理者には別のパスワードを設定します。ステップ 1 と同じ Bash の非表示入力を使います。このアカウントは、後でホスト型インスタンス用に生成する管理者とは別です。
+
+```bash
+read -r -s -p "Child administrator password: " CHILD_ADMIN_PASSWORD
+printf '\n'
+export CHILD_ADMIN_PASSWORD
+pnpm nocobase config set --from-env users.initialAdmin.password=CHILD_ADMIN_PASSWORD
+unset CHILD_ADMIN_PASSWORD
 pnpm nocobase config check
-pnpm dev
+APP_SERVER_HOST=0.0.0.0 APP_SERVER_PORT=13240 pnpm dev
 ```
 
 ターミナルに表示された入口を開き、子アプリ自身の初期管理者でホーム画面を確認します。テンプレートにはデプロイ CLI、プラットフォームログイン、アプリ切り替えが含まれます。プラットフォーム資格情報がないローカル開発では、ローカルログインを使います。
 
 Main と子アプリのデータベース・設定は独立しています。確認後、子アプリの開発プロセスは停止できます。配置するインスタンスはこのプロセスに依存しません。
+
+![子アプリをローカルで起動し、専用の管理者アカウントでログインします。](/assets/core/multi-app/hd-child-local-home.png)
 
 ## ステップ 3：子アプリのデプロイ管理を設定する
 
@@ -85,6 +109,8 @@ pnpm nocobase deploy doctor
 `auth` が開始するブラウザー認証で、デプロイ権限を持つアカウントを使って対象 Main と要求を確認し、承認します。ターミナルで成功を確認してください。これは開発者のデプロイ認可であり、子アプリの SSO とは別です。
 
 既定ではインスタンス管理者を生成し、プラットフォーム SSO を有効にします。続行前に `deploy.yml` の接続先、ID、ノードを確認します。
+
+![プロジェクト CLI の認可を承認してから、ターミナルに戻ります。](/assets/core/multi-app/hd-cli-authorization.png)
 
 ## ステップ 4：子アプリをビルドしてデプロイする
 
@@ -104,9 +130,13 @@ pnpm nocobase deploy instance status dev
 
 承認が必要なノードでは、別の権限を持つ管理者が Main で承認します。完了後、**Application instances** で実際のバージョン、実行状態、URL を確認します。
 
+![デプロイしたインスタンスが稼働し、プラットフォーム SSO が有効になっています。](/assets/core/multi-app/hd-instance-overview.png)
+
 ## ステップ 5：ログインと業務権限を確認する
 
 インスタンス詳細で **View and save** を選び、初期管理者の資格情報を安全に保存してから保存済みと確認します。その後 Main はパスワードを保持しません。CLI からも取得できません。
+
+![生成された管理者の資格情報を保存してから確認します。画像ではパスワードを非表示にしています。](/assets/core/multi-app/hd-save-initial-admin.png)
 
 **Open application** で `http://192.168.1.10:13230/quickstart-child/` を開き、次を確認します。
 
@@ -114,6 +144,8 @@ pnpm nocobase deploy instance status dev
 2. アプリ切り替えメニューを開き、Main に戻れる。他のアプリがあれば切り替えも確認する。
 3. 一般ユーザーが許可された業務操作だけを実行でき、管理権限を自動取得しない。
 4. 子アプリの `/login?auth=local` で保存したローカル管理者が使える。必要な業務ロールは子アプリで設定する。
+
+![アプリ切り替えメニューからプラットフォームのワークベンチへ戻れます。](/assets/core/multi-app/hd-application-switcher.png)
 
 `SSO_REDIRECT_NOT_ALLOWED` は、最初に設定した HTTP origin と実際の URL を照合します。Main の設定変更後は再起動し、元の操作記録から再試行してください。詳しくは [SSO と業務権限](single-sign-on.md)を参照してください。
 

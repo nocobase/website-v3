@@ -136,6 +136,10 @@ Main が起動時にプロセスを開始します。変更後は `pnpm nocobase
 
 デプロイ前に OS、CPU、libc、Node.js、データベースドライバーの互換性を確認します。利用不可の場合は Main とノードのログを調べます。状態の更新は確認だけで、失敗したプロセスを起動する操作ではありません。
 
+![最初のインスタンスを作る前に、local 実行ノードが利用可能であることを確認します。](/assets/core/multi-app/hd-runtime-nodes.png)
+
+![ノード詳細でドライバー、アドレス、実行状態を確認します。](/assets/core/multi-app/hd-runtime-node-detail.png)
+
 ### 実行ノードを停止対象にする
 
 依存するインスタンスを確認し、保守時間とデータ保全を準備します。ノードを `enabled: false` にして Main を再起動し、必要なら `defaultNode` も変更します。

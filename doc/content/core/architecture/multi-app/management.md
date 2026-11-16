@@ -10,17 +10,23 @@ Choose a package, version and available runtime node. Supply a display name and 
 
 Check runtime requirements and required settings before submitting. Main creates a deployment record. Nodes requiring approval wait first; others proceed through deployment phases. Verify the real application only after completion and a healthy runtime state.
 
+![Choose a version, runtime node and database, then review the access address before creating an instance.](/assets/core/multi-app/hd-create-instance.png)
+
 ## Inspect runtime state and open the application
 
 Instance details show the actual version, runtime node and address. **Open application** opens the instance; other maintenance actions are in the more menu. The workbench supplies ordinary users' entry points.
 
 Running describes process state. It does not prove login or business functionality. Check real pages after first deployment, upgrades and login configuration changes.
 
+![The instance list shows the running state and current version.](/assets/core/multi-app/hd-application-instances.png)
+
 ## Save the initial administrator account
 
 When Main generates the initial administrator, the detail page offers **View and save**. An authorized administrator should store the credentials securely and confirm saving. Main then stops retaining the password. The project deployment CLI cannot read it.
 
 This account is created during initialization only. Editing initialization settings does not reset an existing password. Use the child's local login and account recovery mechanisms for later maintenance.
+
+![Save the generated administrator credentials before confirming. The password is masked here.](/assets/core/multi-app/hd-save-initial-admin.png)
 
 ## Change the name and instance configuration
 
@@ -29,6 +35,8 @@ Rename through the more menu. This changes the display name, not the instance ID
 The **Configuration** tab shows effective settings and provides editing. An installed instance's database type cannot change. Main owns issued SSO credentials; do not overwrite them through ordinary configuration. Publish a new version first if you need another plugin or database driver.
 
 Review changes and acknowledge a verified backup before applying configuration. The operation may restart the instance. Follow its deployment record and inspect effective settings afterward.
+
+![The Configuration tab shows the runtime and effective instance settings.](/assets/core/multi-app/hd-instance-configuration.png)
 
 ## Start, stop and restart
 
@@ -53,6 +61,12 @@ If node configuration or instance state changes before approval, follow the prom
 An instance's **Deployment history** lists creation, configuration, upgrades and lifecycle operations. Global **Deployment records** provides a cross-instance view. Open a record for phases, errors and deployment logs. The instance's **Logs** tab shows runtime output instead.
 
 Record the instance ID, operation ID, time and error code when investigating. Size and retention limits can affect logs; missing logs do not prove an operation never ran.
+
+![Deployment records collect operations across application instances.](/assets/core/multi-app/hd-deployment-records.png)
+
+![Deployment logs show extraction, activation and successful completion.](/assets/core/multi-app/hd-deployment-logs.png)
+
+![Runtime logs show application output for troubleshooting.](/assets/core/multi-app/hd-runtime-logs.png)
 
 ## Investigate failures and recover interrupted operations
 

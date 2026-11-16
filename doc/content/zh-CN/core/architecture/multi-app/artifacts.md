@@ -20,6 +20,8 @@ pnpm nocobase deploy artifact upload --build --yes
 
 上传不会创建实例，也不会升级已有实例。版本已存在时，为修改后的代码使用新版本号；不要删除并覆盖旧内容来复用版本号。
 
+![上传后的 child-app 应用包展示已发布版本及关联实例数量。](/assets/core/multi-app/hd-build-artifacts.png)
+
 ## 查看构建平台、运行要求与配置项
 
 打开应用包下的版本详情，检查构建平台、Node.js 要求、数据库驱动、平台 SSO 依赖、配置示例和变量声明。创建实例时，界面根据这些声明提供可配置项。
@@ -28,11 +30,15 @@ pnpm nocobase deploy artifact upload --build --yes
 
 归档用于分发代码和运行依赖，不用于分发某个实例的数据库、上传文件、密钥或 `config.yml`。
 
+![版本详情展示构建兼容信息及关联的应用实例。](/assets/core/multi-app/hd-artifact-version.png)
+
 ## 从同一版本创建多个实例
 
 在版本或应用包的更多操作中选择**创建应用实例**，分别设置不同的实例标识、名称和运行节点。为每个实例配置独立数据库及业务参数，平台 SSO 凭据也由平台按实例签发。
 
 发布一次可以部署多次，不需要为每个实例重新构建相同代码。具体创建流程见[管理应用实例](management.md)。
+
+![选择版本、运行节点和数据库后，在提交前核对实例访问地址。](/assets/core/multi-app/hd-create-instance.png)
 
 ## 查看版本关联的应用实例
 

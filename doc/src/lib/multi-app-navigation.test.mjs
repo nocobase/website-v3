@@ -78,14 +78,14 @@ describe('multi-app architecture navigation', () => {
     }
   });
 
-  it.each(languages)('validates any referenced multi-app PNG screenshots in the $code guides', (language) => {
+  it.each(languages)('includes shared high-resolution screenshots in every $code guide', (language) => {
     const assets = new Set();
-    const assetPattern = language.code === 'zh-CN'
-      ? /^\/assets\/core\/multi-app\/zh-CN\/[^/]+\.png$/
-      : /^\/assets\/core\/multi-app\/[^/]+\.png$/;
+    const assetPattern = /^\/assets\/core\/multi-app\/hd-[^/]+\.png$/;
     for (const name of pages) {
       const markdown = readFileSync(path.join(root, 'content', language.directory, `core/architecture/multi-app/${name}.md`), 'utf8');
-      for (const match of markdown.matchAll(/!\[[^\]]*\]\((\/assets\/core\/multi-app\/[^)]+\.png)\)/g)) {
+      const screenshots = [...markdown.matchAll(/!\[[^\]]*\]\((\/assets\/core\/multi-app\/[^)]+\.png)\)/g)];
+      expect(screenshots.length, `${language.code}/${name}`).toBeGreaterThan(0);
+      for (const match of screenshots) {
         expect(match[1]).toMatch(assetPattern);
         assets.add(match[1]);
       }
@@ -93,7 +93,7 @@ describe('multi-app architecture navigation', () => {
     for (const asset of assets) {
       const buffer = readFileSync(path.join(root, 'public', asset));
       expect([...buffer.subarray(0, 8)], asset).toEqual([137, 80, 78, 71, 13, 10, 26, 10]);
-      expect([buffer.readUInt32BE(16), buffer.readUInt32BE(20)], asset).toEqual([1440, 900]);
+      expect([buffer.readUInt32BE(16), buffer.readUInt32BE(20)], asset).toEqual([2880, 1800]);
     }
   });
 
@@ -107,7 +107,7 @@ describe('multi-app architecture navigation', () => {
     const commands = (markdown) => [...markdown.matchAll(/^```(bash|yaml)\n([\s\S]*?)^```/gm)]
       .map((match) => ({ language: match[1], code: match[2].split('\n').filter((line) => !/^\s*#/.test(line)).join('\n') }));
     const screenshots = (markdown) => [...markdown.matchAll(/!\[[^\]]*\]\((\/assets\/core\/multi-app\/[^)]+\.png)\)/g)]
-      .map((match) => match[1].replace('/zh-CN/', '/'));
+      .map((match) => match[1]);
     expect(commands(translation)).toEqual(commands(chinese));
     expect(screenshots(translation)).toEqual(screenshots(chinese));
   });

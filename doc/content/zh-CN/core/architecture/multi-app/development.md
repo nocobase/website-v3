@@ -17,9 +17,15 @@ pnpm nocobase config check
 
 ## 本地开发与登录
 
-为本地开发配置独立数据库和空闲端口，执行 `pnpm dev`，按终端打印的应用入口登录。本地管理员与部署后的实例管理员分别初始化；开发数据不会随构建归档部署。
+按[快速开始](quickstart.md#第二步创建子应用)配置独立数据库、访问地址和初始管理员，启动时显式传入开发端口，并核对终端打印的地址。本地管理员与部署后的实例管理员分别初始化；开发数据不会随构建归档部署。
+
+```bash
+APP_SERVER_HOST=0.0.0.0 APP_SERVER_PORT=13240 pnpm dev
+```
 
 未配置平台凭据时，子应用使用本地登录。不要把某个已部署实例的 SSO 密钥复制进源码或本地示例配置来代替集成。
+
+![子应用项目在本地独立运行，使用自己的管理员账号登录。](/assets/core/multi-app/hd-child-local-home.png)
 
 ## 初始化部署配置
 
@@ -43,6 +49,8 @@ pnpm nocobase deploy doctor
 在浏览器中使用有部署权限的平台账号确认授权。CLI 会按主应用保存会话；`auth logout` 移除当前主应用的本机会话。部署权限不等于子应用业务权限。
 
 `doctor` 检查 Node.js、配置、主应用连接、授权、运行节点和已有归档。尚未构建的项目应先解决连接和授权问题，再构建并重新检查。
+
+![批准项目 CLI 授权后，返回终端继续部署。](/assets/core/multi-app/hd-cli-authorization.png)
 
 ## 配置目标节点与应用实例
 
@@ -96,6 +104,8 @@ pnpm nocobase deploy instance create dev --plan <planId> --yes --wait
 以第一条命令返回的 `planId` 替换占位符。计划只读，显示目标版本、节点、配置变化和阻塞项；执行前确认这些内容。计划绑定请求内容和实例版本状态，目标或输入变化后需要重新生成。
 
 部署结束后执行 `instance status dev`，并在真实访问地址验证登录和业务功能。等待审批、请求结果未知或进程仍在启动都不等于部署成功。
+
+![部署记录展示实例、版本、运行节点和已完成的操作。](/assets/core/multi-app/hd-deployment-detail.png)
 
 ## 更新版本与同步配置
 

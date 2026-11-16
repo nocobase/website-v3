@@ -136,6 +136,10 @@ Open **System settings → Deployment management → Runtime nodes** to inspect 
 
 Before deployment, check availability and compatibility with the version's OS, architecture, libc, Node.js and database drivers. For failures, inspect Main and node logs. Refreshing status checks the node; it does not start a failed process.
 
+![The local runtime node is ready before the first instance is created.](/assets/core/multi-app/hd-runtime-nodes.png)
+
+![Node details show the driver, address and runtime status.](/assets/core/multi-app/hd-runtime-node-detail.png)
+
 ### Disable a runtime node
 
 Check which instances depend on the node and arrange maintenance and data preservation. Set its `enabled` to `false` and restart Main. Update `defaultNode` too if necessary.

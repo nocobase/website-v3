@@ -54,6 +54,10 @@ title: 概述
 
 部署管理权限与子应用业务权限分别控制。没有管理权限的用户不需要访问这些页面。
 
+![工作台提供当前平台用户可访问的应用入口。](/assets/core/multi-app/hd-workbench.png)
+
+![系统设置中的部署管理分组集中提供实例、构建产物、运行节点和部署记录入口。](/assets/core/multi-app/hd-deployment-settings.png)
+
 ## 使用前提
 
 准备 Node.js 24 或更高版本、与所选模板兼容的 pnpm，以及商业包下载权限。主应用需要稳定的访问地址、独立数据库和持久化存储。运行节点必须满足构建产物的操作系统、CPU 架构、libc 和 Node.js 要求。

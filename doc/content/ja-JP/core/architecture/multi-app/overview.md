@@ -54,6 +54,10 @@ Main テンプレートはシェル、システム設定、プラグイン構成
 
 デプロイ管理権限と子アプリの業務権限は別です。
 
+![ワークベンチから、ログイン中のユーザーが利用できるアプリを開きます。](/assets/core/multi-app/hd-workbench.png)
+
+![System settings の Deployment management に、インスタンス、成果物、実行ノード、デプロイ記録がまとまっています。](/assets/core/multi-app/hd-deployment-settings.png)
+
 ## 前提条件
 
 Node.js 24 以降、テンプレートに対応する pnpm、商用パッケージのダウンロード権限が必要です。Main には安定した URL、独立したデータベース、永続ストレージを用意します。実行ノードは成果物の OS、CPU、libc、Node.js 要件を満たす必要があります。

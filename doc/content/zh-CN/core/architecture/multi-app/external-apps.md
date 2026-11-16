@@ -13,6 +13,8 @@ title: 接入已有应用
 
 在**系统设置 → 部署管理 → 应用实例 → 外部接入**添加应用，填写名称、访问地址和登录方式。采用 SSO 时，准备实际回调地址和配置目标应用的权限。
 
+![选择应用自行登录，只添加访问链接，不配置平台 SSO。](/assets/core/multi-app/hd-connect-external-application.png)
+
 ## 接入独立部署的 NocoBase 应用
 
 在目标项目中安装兼容的 `@nocobase/app-plugin-platform-sso`，按安装后的 `nocobase-app-plugin-platform-sso` Skill 完成集成：注册客户端与服务端、平台配置工厂，将平台认证选项合并到已有认证配置，并在登录页和持久布局中集成平台登录与应用切换器。
@@ -56,6 +58,8 @@ title: 接入已有应用
 在外部应用详情管理平台入口和 SSO 开关。关闭 SSO 后，入口仍指向登记的 URL，由应用自身处理登录。主应用的开关不修改第三方系统的本地账号和访问规则。
 
 需要更改目标 URL 或回调时，先检查当前界面是否支持该变更；没有编辑入口时安排重新接入，并同步目标系统配置，不直接修改数据库中的登记记录。
+
+![外部接入应用的部署维护和登录仍由原应用负责。](/assets/core/multi-app/hd-external-application.png)
 
 ## 停用与解除接入
 

@@ -20,6 +20,8 @@ The first upload creates the application package. Alternatively, run `pnpm build
 
 Uploading neither creates instances nor upgrades existing ones. Give changed code a new version. Do not delete and replace old content to reuse a version number.
 
+![The uploaded child-app package contains a published version and its instance count.](/assets/core/multi-app/hd-build-artifacts.png)
+
 ## Inspect build platforms, runtime requirements and configuration
 
 Open a version to inspect its platform, Node.js requirements, database drivers, Platform SSO dependency, configuration example and variable declarations. These declarations inform the instance creation form.
@@ -28,11 +30,15 @@ The runtime node must match the OS, CPU architecture, libc and runtime requireme
 
 Archives distribute code and runtime dependencies, not a particular instance's database, uploads, secrets or `config.yml`.
 
+![Version details show build compatibility and associated application instances.](/assets/core/multi-app/hd-artifact-version.png)
+
 ## Create several instances from one version
 
 Choose **Create application instance** from a version or package's more menu. Give each instance a distinct ID, name and runtime node, with its own database and business configuration. Platform SSO credentials are also issued separately.
 
 Publish once and deploy several times without rebuilding identical code. See [Manage application instances](management.md) for creation details.
+
+![Choose a version, runtime node and database, then review the access address before creating an instance.](/assets/core/multi-app/hd-create-instance.png)
 
 ## View instances associated with a version
 

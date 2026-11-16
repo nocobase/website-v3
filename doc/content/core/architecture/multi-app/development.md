@@ -17,9 +17,15 @@ pnpm nocobase config check
 
 ## Local development and login
 
-Configure a separate development database and an available port. Run `pnpm dev` and use the application entry printed in the terminal. Local and hosted instance administrators are initialized separately. Development data does not travel in the archive.
+Configure a separate development database, public origin and initial administrator as in [Quickstart](quickstart.md#step-2-create-the-child-application). Start with an explicit development port and check the address printed in the terminal. Local and hosted instance administrators are initialized separately. Development data does not travel in the archive.
+
+```bash
+APP_SERVER_HOST=0.0.0.0 APP_SERVER_PORT=13240 pnpm dev
+```
 
 Without platform credentials, the child uses local login. Do not copy a hosted instance's SSO secret into source or sample configuration as an integration shortcut.
+
+![The child project runs locally with its own administrator account.](/assets/core/multi-app/hd-child-local-home.png)
 
 ## Initialize deployment configuration
 
@@ -43,6 +49,8 @@ pnpm nocobase deploy doctor
 Approve browser authorization with a platform account permitted to deploy. Sessions are stored per Main; `auth logout` removes the local session for the current Main. Deployment authorization does not grant child business permissions.
 
 `doctor` checks Node.js, configuration, Main connectivity, authorization, runtime nodes and an existing archive. For a new project, resolve connectivity and authorization first, then build and check again.
+
+![Approve the project CLI authorization, then return to the terminal.](/assets/core/multi-app/hd-cli-authorization.png)
 
 ## Configure target nodes and instances
 
@@ -96,6 +104,8 @@ pnpm nocobase deploy instance create dev --plan <planId> --yes --wait
 Replace `<planId>` with the first command's output. Plans are read-only and show the version, node, changes and blockers. Review them before execution. A plan binds the request and instance revision; changed targets or inputs require a new plan.
 
 After deployment, run `instance status dev`, then verify login and business functionality at the real address. Pending approval, an unknown outcome or a process still starting is not success.
+
+![The deployment record identifies the instance, version, node and completed operation.](/assets/core/multi-app/hd-deployment-detail.png)
 
 ## Update versions and synchronize configuration
 

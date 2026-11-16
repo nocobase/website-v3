@@ -1,211 +1,118 @@
 ---
 title: 快速开始
-description: 创建多应用主应用和独立子应用，配置托管环境，发布第一个版本并进入应用实例。
 ---
 
-先创建提供工作台和管理功能的主应用，再将一个独立开发的子应用打包并部署为托管实例。可以让 Agent 协助完成，也可以按手动步骤操作。
+## 开始前的准备
 
-## 准备环境与商业包访问权限
+准备 Node.js 24+、兼容模板要求的 pnpm，以及主应用和子应用模板的下载权限。下列命令需要下载源中已经发布兼容版本；若模板尚未提供，请先取得可用版本，不要将工作区源码路径当作 npm 包名。
 
-准备 Node.js 24 或更高版本、pnpm 11.11.0，以及有权下载[多应用商业包](overview.md#使用前提)的账号。以下命令使用 Bash 等 POSIX shell；Windows 可使用 WSL。
-
-在实际执行安装的机器上登录商业源，密码处使用账号的读取令牌：
+商业包使用授权源。首次使用时登录，密码填写你的下载令牌：
 
 ```bash
 pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
-npm whoami --registry=https://pkg-v3.nocobase.com/
-npm view @nocobase/app-template-multi-app@beta version \
-  --@nocobase:registry=https://pkg-v3.nocobase.com/
 ```
 
-确认模板版本查询成功后再创建项目。读取令牌仅保存在用户的 npm 配置中，不写入项目或对话。认证或下载失败时，见文末[常见问题](#常见问题)。
+选择一台用于体验的机器，预留主应用 `13230`、运行节点 `13231` 和子应用本地开发 `13240` 端口。示例使用 SQLite，不需要单独安装数据库；它是体验配置，其他数据库可按实际需要选择。
 
-## 安排项目目录
+下面的 `192.168.1.10` 是示例局域网 IP，请全部替换为你的机器地址。此流程仅用于受控内网 HTTP 体验；面向公网部署时，先完成[HTTPS 配置](nodes.md#配置-https-与反向代理)。
 
-以下示例把主应用和子应用放在 `demo` 目录中，便于跟随操作：
+## 第一步：创建并启动主应用
 
-| 项目目录 | 用途 |
-| --- | --- |
-| `demo/platform/` | 主应用，提供工作台和应用管理 |
-| `demo/customer-demo/` | 子应用，提供客户业务页面 |
-
-目录结构仅供示例。主应用和子应用是独立项目，可以放在不同位置、使用独立的 Git 仓库。部署时只需子应用的构建归档，无需将其源码放入主应用。
-
-## 使用 Agent 创建多应用环境
-
-在 Agent 实际运行的机器和用户环境中完成商业源登录。远程 Agent 不会自动获得本机的登录信息。
-
-安装创建应用的 Skill，按提示选择使用的 Agent，然后重新打开 Agent 会话：
+在准备存放项目的目录执行：
 
 ```bash
-npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
-```
-
-### 创建并启动主应用
-
-在示例的 `demo` 目录开启 Agent 会话，提出创建主应用的需求：
-
-```prompt
-请创建一个 NocoBase 3 多应用平台，项目目录为 platform。
-开始前，请与我确认数据库配置、访问地址和部署环境，再配置管理员账号及托管子应用所需的运行环境。完成后启动平台，并提供访问地址和登录说明。
-```
-
-完成后，你将得到一个已启动的多应用平台，以及访问地址和管理员登录说明。登录后可以使用工作台和应用管理页面，托管子应用所需的运行环境也已配置好，可以继续创建和部署子应用。
-
-### 创建子应用
-
-在示例的 `demo` 目录开启 Agent 会话，提出创建子应用的需求：
-
-```prompt
-请创建一个独立的 NocoBase 3 客户管理应用，项目目录为 customer-demo，后续由多应用平台托管。
-需要支持新增、编辑、查询和删除客户，记录客户名称、联系人、联系电话和跟进备注。
-开始前，请与我确认数据库配置，以及是否使用主应用统一登录。
-```
-
-Agent 完成后，子应用代码保存在 `customer-demo` 目录中，尚未部署到主应用。接下来需要将子应用构建为部署包，再通过主应用上传、发布并创建实例。
-
-### 构建子应用并创建第一个实例
-
-在主应用右上角账户菜单中打开**在命令行 / Agent 中使用**，点击**复制 Agent 提示词**，粘贴给正在开发 `customer-demo` 的 Agent。
-
-![复制主应用提供的 Agent 配置提示词](/assets/core/multi-app/zh-CN/cli-install.png)
-
-Agent 会完成工具安装和配置。需要登录时，按它提供的地址打开浏览器，核对验证码并批准授权即可。
-
-配置完成后，继续告诉 Agent：
-
-```prompt
-请使用刚配置好的主应用命令行工具，为这个客户管理应用创建或复用应用模板，构建并上传部署包，发布版本并部署第一个实例。
-先与我确认应用模板、部署环境和实例名称，不要修改已有实例。
-完成后确认实例已部署成功、应用可以正常访问，并给我访问地址。
-```
-
-部署完成后，打开 Agent 提供的访问地址，检查客户管理功能是否正常。
-
-![在主应用工作台中查看并进入子应用](/assets/core/multi-app/zh-CN/workbench.png)
-
-## 手动创建多应用环境
-
-### 创建主应用
-
-在示例的 `demo` 目录执行，`platform` 必须是新目录或空目录：
-
-```bash
-NOCOBASE_REGISTRY=https://pkg-v3.nocobase.com/ \
-  pnpm create @nocobase/app@beta platform \
-  --template multi-app --template-tag beta
+pnpm create @nocobase/app@beta platform --template multi-app --template-tag beta
 cd platform
-pnpm nocobase config init
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config set server.host=0.0.0.0 server.port=13230 app.publicOrigin=http://192.168.1.10:13230
 ```
 
-`multi-app` 生成完整的主应用源码，不创建子应用。按初始化提示选择数据库并填写连接参数；非交互执行需要显式指定 `--dialect`。缺少驱动时，按提示安装后再初始化，详见[数据库配置](../../reference/database-configuration.md)。
+按初始化提示配置并保存初始管理员凭据。保留生成的密钥，确认数据库文件属于当前主应用。
 
-### 配置并启动主应用
+编辑生成的 `config.yml`，合并以下配置。已有 `sso` 段时修改该段，不要创建重复的 YAML 键：
 
-在首次启动前，检查 `config.yml` 中的 `users.initialAdmin`，设置管理员用户名、邮箱和独立密码。例如，在 Bash 中安全输入密码并写入配置：
-
-```bash
-read -r -s -p 'Initial administrator password: ' INITIAL_ADMIN_PASSWORD
-printf '\n'
-export INITIAL_ADMIN_PASSWORD
-pnpm nocobase config set --from-env users.initialAdmin.password=INITIAL_ADMIN_PASSWORD
-unset INITIAL_ADMIN_PASSWORD
+```yaml
+sso:
+  insecureRedirectOrigins:
+    - http://192.168.1.10:13230
 ```
 
-妥善保护生成的配置和密钥，不提交到 Git。初始管理员只在用户表为空时创建，之后修改这段配置不会重置已有账号密码。
-
-主应用默认不启用 Host。下面以同机本地体验为例，主应用使用 `13230` 端口，Host 使用 `13231`；确认端口未被占用后，在主应用根目录执行：
+这个例外允许该受控 HTTP origin 下的子应用登录回调，配置在主应用。然后检查并启动：
 
 ```bash
-pnpm nocobase config set \
-  server.host=127.0.0.1 \
-  server.port=13230 \
-  app.publicOrigin=http://127.0.0.1:13230 \
-  releases.host.enabled=true \
-  releases.host.host=127.0.0.1 \
-  releases.host.port=13231 \
-  releases.host.publicUrl=http://127.0.0.1:13230
 pnpm nocobase config check
 pnpm dev
 ```
 
-打开终端打印的 `Local:` 地址；上述配置对应 `http://127.0.0.1:13230/main/`。使用刚配置的管理员登录。主应用保留 `/main` 路径，并将子应用路径转发给 Host，浏览器不直接访问 Host 内部端口。
+打开 `http://192.168.1.10:13230/main/`，使用初始管理员登录。进入**系统设置 → 部署管理 → 运行节点**，确认默认 `local` 节点可用。主应用会自动启动它，不需要在页面中添加节点。
 
-若从另一台机器访问，应调整监听地址，并将 `app.publicOrigin` 和 `releases.host.publicUrl` 设为浏览器实际使用的 origin（协议、主机和端口，不含路径）。使用 SSO 的 HTTP 本地环境，还需配置[回调例外](environments.md#添加部署环境)。
+如果节点不可用，先检查 `13231` 是否被占用、节点目录是否可写以及主应用日志。浏览器访问主应用端口，不访问节点内部端口。
 
-### 创建部署环境
+## 第二步：创建子应用
 
-登录主应用，打开**部署环境（Deploy environments）**，选择**添加环境（Add environment）**：
-
-1. 填写环境名称和标识，例如 `Local Host`、`local`。
-2. 选择托管 Host 及适合部署归档的运行方式；同机体验可使用 **In process**。
-3. 将公开地址规则设为浏览器可访问的地址，例如 `http://127.0.0.1:13230/{appId}/`，让每个实例拥有独立路径。
-4. 按界面要求检查连接和配置，保存环境。
-
-已有可用环境时可以直接使用，不必重复创建。启用 Host 只启动运行服务，不会自动生成这条部署环境记录。
-
-![部署环境列表展示运行方式、公开地址规则和 Host 状态](/assets/core/multi-app/zh-CN/environments.png)
-
-### 创建并配置子应用
-
-保持主应用运行，打开另一个终端，在示例的 `demo` 目录执行：
+保持主应用运行，在另一个终端中回到项目的父目录：
 
 ```bash
-pnpm create @nocobase/app@beta customer-demo \
-  --template default --template-tag beta
-cd customer-demo
-pnpm nocobase config init
+pnpm create @nocobase/app@beta child-app --template sub-app --template-tag beta
+cd child-app
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config set server.host=0.0.0.0 server.port=13240 app.publicOrigin=http://192.168.1.10:13240
 pnpm nocobase config check
+pnpm dev
 ```
 
-主应用和子应用不共享业务表；使用同一数据库服务时，也要分配独立数据库或隔离空间。
+打开子应用终端打印的应用入口，用子应用自己的初始管理员登录，确认首页正常。子应用模板已集成项目部署 CLI、平台登录与应用切换；本地尚未配置平台登录时使用本地账号。
 
-普通 Default 应用不会自动接入主应用的 SSO。保留本地登录时，可以直接构建默认首页来体验托管流程；需要统一登录和应用切换时，先完成[子应用 SSO 集成](templates.md#准备子应用部署包)。
+主应用与子应用的数据库和配置相互独立。确认本地应用正常后，可以停止子应用开发进程；后续部署的实例不依赖它。
 
-业务功能在子应用项目中开发。可以按实际需要创建客户管理或其他业务页面，完成后再构建并部署。
+## 第三步：配置子应用的部署管理
 
-### 构建子应用并在管理界面创建实例
-
-在子应用根目录执行：
+以下命令均在 `child-app` 根目录执行：
 
 ```bash
-pnpm build --tar
+pnpm nocobase deploy init --server http://192.168.1.10:13230/main --instance dev --id quickstart-child --node local
+pnpm nocobase deploy auth
+pnpm nocobase deploy validate
+pnpm nocobase deploy doctor
 ```
 
-构建成功后取得 `storage/exports/dist.tar.gz`。目标操作系统、CPU 架构、libc 和 Node.js 版本须与 Host 兼容；不同机器间交付时按[构建部署包](../../tutorials/deploy-with-app-installer.md#构建部署包)指定目标。不要将本地数据库、上传文件、密钥和实例专属配置放进归档。
+`init` 生成 `deploy.yml`。`dev` 是配置中的实例键，`quickstart-child` 是主应用中的实例标识，`local` 是运行节点标识。主应用地址要包含 `/main`。
 
-保持主应用运行，在管理页面完成以下操作：
+`auth` 发起浏览器授权：使用具有部署权限的平台账号登录，核对主应用和授权请求后批准，再返回终端确认成功。此授权用于项目部署，不是子应用用户的统一登录。
 
-1. 打开**应用模板（Templates）**，创建模板，例如 `Customer management`，选择已准备的部署环境。
-2. 在模板操作中上传 `dist.tar.gz`，核对应用包名和版本，然后发布版本。
-3. 在模板的**已发布版本（Published versions）**中，选择目标版本的**用此版本创建（Create with this version）**。
-4. 填写实例名称和唯一标识，例如 `Customer demo`、`customer-demo`，确认版本和环境后提交。
-5. 如需审批，完成审批后等待部署操作结束。在实例详情中确认实际版本、运行状态和访问地址。
+默认配置为新实例生成管理员，并启用平台 SSO。检查 `deploy.yml` 的目标地址、实例标识和节点，再继续。
 
-实例标识不要使用主应用已占用的 `main`。上传只保存制品，发布才使版本可供创建实例，创建实例才会部署运行；三者是不同操作。
+## 第四步：构建并部署子应用
 
-![模板已发布版本列表，可选择一个版本创建实例](/assets/core/multi-app/zh-CN/template-versions.png)
+构建并上传当前代码：
 
-## 检查实例运行状态
+```bash
+pnpm nocobase deploy artifact upload --build --yes
+pnpm nocobase deploy instance plan dev --action create
+```
 
-在实例详情中确认运行状态正常，再打开实际访问地址。
+上传会发布应用版本，首次上传还会创建应用包。构建目标需要与节点兼容；出现平台不匹配时，按 CLI 给出的命令重新构建。
 
-- **使用本地登录**：有实例配置权限的管理员可以查看初始管理员凭据，用它登录子应用并修改初始密码。
-- **使用平台 SSO**：先在实例的**访问授权（Access）**中为用户授予成员资格，再从工作台进入，验证登录、业务权限和[应用切换](management.md#从工作台进入与切换应用)。主应用管理员也不会自动获得子应用成员资格。
+检查计划中的版本、节点、实例标识和配置。没有阻塞项后，将输出的 `planId` 替换到下面命令：
 
-确认首页可见、预期功能可用。Default 首页与自定义客户页面都可以用来验证托管流程，不需要在子应用源码目录同时运行开发服务器。
+```bash
+pnpm nocobase deploy instance create dev --plan <planId> --yes --wait
+pnpm nocobase deploy instance status dev
+```
 
-![客户实例详情展示已部署版本、运行状态和应用入口](/assets/core/multi-app/zh-CN/instance-details.png)
+若节点要求审批，操作会停在等待审批状态，由另一位有权限的管理员在主应用审批。等待部署完成后，在**应用实例**确认 `quickstart-child` 运行中，并核对实际版本和访问地址。
 
+## 第五步：进入子应用，验证登录与业务权限
 
-## 常见问题
+在实例详情的初始管理员提示中选择**查看并保存**，将凭据保存到安全位置，再确认已保存。确认后主应用不再保留该密码，CLI 也不能读取它。
 
-| 现象 | 处理 |
-| --- | --- |
-| 商业包返回 401、403 或查询不到版本 | `401` 先检查登录状态；`403` 或找不到包时，检查下载权限、包名和版本。`NOCOBASE_REGISTRY` 仅指定创建器下载模板的源，不能替代认证 |
-| 第三方依赖或创建器下载失败 | 商业源仅配置到 `@nocobase` scope，其他依赖使用公共 npm 源或你的镜像。外层 pnpm 下载创建器所用的源不受 `NOCOBASE_REGISTRY` 控制 |
-| pnpm 拒绝安装刚发布的包 | 确认版本可信后，可为本次创建命令设置 `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` |
-| 主应用可访问，但没有可用部署环境 | 检查 Host 配置与启动日志，并在页面创建和检查部署环境 |
-| 上传或部署失败 | 检查归档目标平台和操作记录，不要反复创建同名实例 |
-| 工作台没有子应用 | 检查实例是否运行、入口是否启用，以及当前用户的成员资格 |
-| SSO 子应用可以登录，但没有切换器 | 检查布局是否渲染 `AppSwitcher`，并确认实例已升级到包含该组件的版本 |
+从工作台或实例详情选择**打开应用**。此示例的地址是 `http://192.168.1.10:13230/quickstart-child/`。确认以下结果：
+
+1. 已登录的平台用户可以进入子应用首页，不必再次输入子应用密码。
+2. 打开应用切换器，确认可以返回主应用；存在其他可访问应用时，再验证切换。
+3. 使用普通平台用户检查业务页面和操作权限。成功登录不应让用户自动获得子应用管理权限。
+4. 访问子应用的 `/login?auth=local`，确认保存的本地管理员仍可用于维护，再在子应用中配置需要的业务角色。
+
+如果出现 `SSO_REDIRECT_NOT_ALLOWED`，检查第一步的 HTTP origin 是否与实际访问地址完全一致；修改主应用配置后重启，再根据原部署记录重试。其他登录问题见[统一登录与业务权限](single-sign-on.md)。
+
+接下来可按[开发与部署子应用](development.md)发布新版本、同步配置并接入 CI。

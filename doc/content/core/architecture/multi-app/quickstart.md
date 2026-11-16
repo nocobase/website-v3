@@ -1,210 +1,118 @@
 ---
 title: Quickstart
-description: Create a main application and an independent child application, configure hosting, publish the first version, and open the deployed instance.
 ---
 
-First create the main application that provides the workbench and management features. Then package an independently developed child application and deploy it as a hosted instance. You can use an Agent or follow the manual steps.
+## Before you start
 
-## Prepare your environment and commercial package access
+Prepare Node.js 24+, pnpm compatible with the templates, and download access to both templates. The commands require compatible packages already published to your package source. If they are unavailable, obtain an available version first; a workspace source path is not an npm package name.
 
-Prepare Node.js 24 or later, pnpm 11.11.0, and an account with download access to the [commercial multi-app packages](overview.md#prerequisites). The commands below use a POSIX shell such as Bash; on Windows, use WSL.
-
-Sign in to the commercial registry on the machine where installation will run. Use your account's read token as the password:
+Sign in to the authorized commercial registry, using your download token as the password:
 
 ```bash
 pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
-npm whoami --registry=https://pkg-v3.nocobase.com/
-npm view @nocobase/app-template-multi-app@beta version \
-  --@nocobase:registry=https://pkg-v3.nocobase.com/
 ```
 
-Confirm that the template version query succeeds before creating a project. Keep the read token only in your user-level npm configuration, not in the project or a conversation. For authentication or download failures, see [Troubleshooting](#troubleshooting).
+Choose a machine and reserve ports `13230` for Main, `13231` for its runtime node and `13240` for local child development. This walkthrough uses SQLite so no separate database server is needed. Other supported databases can be configured for your requirements.
 
-## Arrange your project directories
+Replace every occurrence of the example LAN IP `192.168.1.10` with your machine's address. This HTTP walkthrough is for a controlled private network. For public access, configure [HTTPS](nodes.md#configure-https-and-a-reverse-proxy) first.
 
-The examples place both projects in a `demo` directory:
+## Step 1: Create and start Main
 
-| Project directory | Purpose |
-| --- | --- |
-| `demo/platform/` | Main application, providing the workbench and application management |
-| `demo/customer-demo/` | Child application, providing customer management pages |
-
-This layout is only an example. The main and child applications are independent projects and can live in different locations and separate Git repositories. Deployment needs only the child's build archive; its source does not need to be inside the main application.
-
-## Create a multi-app environment with an Agent
-
-Complete registry sign-in on the machine and under the user account where the Agent runs. A remote Agent does not automatically inherit your local credentials.
-
-Install the application creation Skill, select your Agent when prompted, and reopen the Agent session:
+From the directory where you keep projects:
 
 ```bash
-npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
-```
-
-### Create and start the main application
-
-Open an Agent session in the example `demo` directory and request the main application:
-
-```prompt
-Create a NocoBase 3 multi-app platform in the platform directory.
-Before you start, confirm the database configuration, access URL, and deployment environment with me. Then configure an administrator account and the runtime needed to host child applications. Start the platform and give me the access URL and sign-in instructions.
-```
-
-Once complete, you should have a running multi-app platform, its access URL, and administrator sign-in instructions. After signing in, you can use the workbench and application management pages. The runtime for hosted child applications should also be configured, ready for you to create and deploy a child.
-
-### Create a child application
-
-Open an Agent session in the example `demo` directory and request the child application:
-
-```prompt
-Create an independent NocoBase 3 customer management application in the customer-demo directory. I will host it on the multi-app platform later.
-It needs to support creating, editing, searching for, and deleting customers, with a customer name, contact person, phone number, and follow-up notes.
-Before you start, confirm the database configuration and whether to use single sign-on through the main application.
-```
-
-The Agent creates the child's source in `customer-demo`; it is not yet deployed to the main application. Next, build a deployment archive, then upload it, publish a version, and create an instance through the main application.
-
-### Build the child application and create the first instance
-
-Open the account menu at the top right of the main application, select **Use in terminal / Agent**, and click **Copy Agent instructions**. Paste the instructions into your conversation with the Agent developing `customer-demo`.
-
-![Copy the Agent setup instructions provided by the main application](/assets/core/multi-app/cli-install.png)
-
-The Agent will install and configure the tool. When sign-in is required, open the address it provides in your browser, check the verification code, and approve access.
-
-Once setup is complete, continue with this request:
-
-```prompt
-Use the main application's command-line tool we just configured to create or reuse a template for this customer management application, build and upload its deployment archive, publish a version, and deploy the first instance.
-Confirm the application template, deployment environment, and instance name with me first. Do not modify existing instances.
-When finished, confirm that the instance is deployed successfully and the application is accessible, then give me its access URL.
-```
-
-After deployment, open the URL provided by the Agent and check that the customer management features work as expected.
-
-![View and open child applications from the main application's workbench](/assets/core/multi-app/workbench.png)
-
-## Create a multi-app environment manually
-
-### Create the main application
-
-Run the following in the example `demo` directory. `platform` must be a new or empty directory:
-
-```bash
-NOCOBASE_REGISTRY=https://pkg-v3.nocobase.com/ \
-  pnpm create @nocobase/app@beta platform \
-  --template multi-app --template-tag beta
+pnpm create @nocobase/app@beta platform --template multi-app --template-tag beta
 cd platform
-pnpm nocobase config init
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config set server.host=0.0.0.0 server.port=13230 app.publicOrigin=http://192.168.1.10:13230
 ```
 
-`multi-app` generates the complete main application source, without creating any child applications. Follow the initialization prompts to select a database and enter its connection settings. Non-interactive execution requires an explicit `--dialect`. If a driver is missing, install it as directed and initialize again. See [Database configuration](../../reference/database-configuration.md).
+Follow initialization prompts to configure and save the first administrator credentials. Keep the generated encryption keys and check that the database file belongs to this Main.
 
-### Configure and start the main application
+Merge the following into the generated `config.yml`. Edit an existing `sso` section instead of creating duplicate YAML keys:
 
-Before the first start, check `users.initialAdmin` in `config.yml` and set an administrator username, email, and unique password. For example, enter the password securely in Bash and write it to the configuration:
-
-```bash
-read -r -s -p 'Initial administrator password: ' INITIAL_ADMIN_PASSWORD
-printf '\n'
-export INITIAL_ADMIN_PASSWORD
-pnpm nocobase config set --from-env users.initialAdmin.password=INITIAL_ADMIN_PASSWORD
-unset INITIAL_ADMIN_PASSWORD
+```yaml
+sso:
+  insecureRedirectOrigins:
+    - http://192.168.1.10:13230
 ```
 
-Protect the generated configuration and keys, and do not commit them to Git. The initial administrator is created only when the user table is empty. Changing this configuration later does not reset an existing account's password.
-
-The main application's Host, which runs child instances, is disabled by default. The following example runs everything locally on one machine, with the main application on port `13230` and the Host on `13231`. Check that both ports are available, then run this in the main application's root directory:
+This Main-side exception permits child login callbacks on that controlled HTTP origin. Check the configuration and start Main:
 
 ```bash
-pnpm nocobase config set \
-  server.host=127.0.0.1 \
-  server.port=13230 \
-  app.publicOrigin=http://127.0.0.1:13230 \
-  releases.host.enabled=true \
-  releases.host.host=127.0.0.1 \
-  releases.host.port=13231 \
-  releases.host.publicUrl=http://127.0.0.1:13230
 pnpm nocobase config check
 pnpm dev
 ```
 
-Open the `Local:` URL printed in the terminal: `http://127.0.0.1:13230/main/` with these settings. Sign in with the administrator you just configured. The main application keeps its `/main` path and forwards child application paths to the Host. The browser does not access the Host's internal port directly.
+Open `http://192.168.1.10:13230/main/` and sign in as the initial administrator. In **System settings → Deployment management → Runtime nodes**, confirm the default `local` node is available. Main starts it automatically; do not add it through the page.
 
-To connect from another machine, adjust the listening address and set `app.publicOrigin` and `releases.host.publicUrl` to the origin your browser uses: the scheme, host, and port, without a path. A local HTTP environment that uses SSO also needs a [callback exception](environments.md#add-a-deployment-environment).
+If unavailable, check for a port conflict on `13231`, a writable node directory and errors in Main's log. Browsers use Main's port, not the node's internal port.
 
-### Create a deployment environment
+## Step 2: Create the child application
 
-Sign in to the main application, open **Deploy environments**, and select **Add environment**:
-
-1. Enter a name and identifier, such as `Local Host` and `local`.
-2. Select the managed Host and a runtime mode that supports deployment archives. For a local setup on one machine, use **In process**.
-3. Set the public URL pattern to a browser-accessible address, such as `http://127.0.0.1:13230/{appId}/`, so each instance has its own path.
-4. Check the connection and configuration as prompted, then save the environment.
-
-You can reuse an existing available environment. Enabling the Host starts the runtime service; it does not create a deployment environment record automatically.
-
-![Deployment environments show the runtime mode, public URL pattern, and Host status](/assets/core/multi-app/environments.png)
-
-### Create and configure a child application
-
-Keep the main application running. Open another terminal and run this in the example `demo` directory:
+Keep Main running. In another terminal, return to the parent projects directory:
 
 ```bash
-pnpm create @nocobase/app@beta customer-demo \
-  --template default --template-tag beta
-cd customer-demo
-pnpm nocobase config init
+pnpm create @nocobase/app@beta child-app --template sub-app --template-tag beta
+cd child-app
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config set server.host=0.0.0.0 server.port=13240 app.publicOrigin=http://192.168.1.10:13240
 pnpm nocobase config check
+pnpm dev
 ```
 
-The main and child applications do not share business tables. Even when they use the same database server, allocate separate databases or isolated namespaces.
+Open the application entry printed by the child terminal. Sign in using its own initial administrator and check the home page. The template includes the project deployment CLI, platform login and application switcher. Without platform credentials, local development uses local accounts.
 
-An ordinary Default application does not automatically integrate with the main application's SSO. If you keep local sign-in, you can build the default homepage to try the hosting workflow. If you need single sign-on and application switching, first complete the [child's SSO integration](templates.md#prepare-a-child-application-archive).
+Main and the child have separate databases and configuration. You can stop the child's development process after checking it. The hosted instance will not depend on that process.
 
-Develop business features in the child project. Create customer management or other pages as needed, then build and deploy the application.
+## Step 3: Configure the child's deployment management
 
-### Build the child application and create an instance in the management interface
-
-Run this in the child application's root directory:
+Run these commands in the `child-app` root:
 
 ```bash
-pnpm build --tar
+pnpm nocobase deploy init --server http://192.168.1.10:13230/main --instance dev --id quickstart-child --node local
+pnpm nocobase deploy auth
+pnpm nocobase deploy validate
+pnpm nocobase deploy doctor
 ```
 
-A successful build produces `storage/exports/dist.tar.gz`. The target operating system, CPU architecture, libc, and Node.js version must be compatible with the Host. When building for another machine, specify the target as described in [Build the deployment archive](../../tutorials/deploy-with-app-installer.md#build-the-deployment-archive). Keep local databases, uploaded files, keys, and instance-specific configuration out of the archive.
+`init` creates `deploy.yml`. `dev` is its local instance key, `quickstart-child` is the instance ID in Main, and `local` is the runtime node ID. Include `/main` in the server address.
 
-Keep the main application running and complete these steps in its management interface:
+`auth` starts browser authorization. Sign in with a platform account permitted to deploy, review the target Main and authorization request, approve it, and return to the terminal to confirm success. This authorizes project deployment, separately from child user SSO.
 
-1. Open **Templates**, create a template such as `Customer management`, and select the deployment environment you prepared.
-2. Upload `dist.tar.gz` from the template's action menu, check the application package name and version, and publish the version.
-3. In the template's **Published versions** tab, select **Create with this version** for the target version.
-4. Enter an instance name and unique identifier, such as `Customer demo` and `customer-demo`. Confirm the version and environment, then submit.
-5. If approval is required, obtain it and wait for deployment to finish. Check the actual version, runtime state, and access URL in the instance details.
+The default configuration generates an administrator for the new instance and enables platform SSO. Check the server, instance ID and node in `deploy.yml` before proceeding.
 
-Do not use `main` as the instance identifier: the main application already uses that path. Uploading saves the archive, publishing makes a version available for instance creation, and creating an instance deploys and runs it. These are three separate operations.
+## Step 4: Build and deploy the child
 
-![Choose a published template version to create an instance](/assets/core/multi-app/template-versions.png)
+Build and upload the current code:
 
-## Check the instance runtime
+```bash
+pnpm nocobase deploy artifact upload --build --yes
+pnpm nocobase deploy instance plan dev --action create
+```
 
-Confirm that the instance is running in its details page, then open its access URL.
+Upload publishes an application version and creates its package on the first upload. The build must match the node's platform; follow the CLI's rebuild instructions if it reports a mismatch.
 
-- **Local sign-in:** an administrator with instance configuration permission can view the initial administrator credentials, sign in to the child, and change the initial password.
-- **Platform SSO:** first grant the user membership in the instance's **Access** tab. Then open it from the workbench and verify sign-in, business permissions, and [application switching](management.md#open-and-switch-applications-from-the-workbench). Main application administrators do not automatically receive child application membership either.
+Review the version, node, instance ID and configuration in the plan. Resolve blockers, then replace `<planId>` with the returned value:
 
-Check that the homepage loads and the expected features work. Either the Default homepage or a custom customer management page can verify the hosting workflow. You do not need to run a development server in the child's source directory at the same time.
+```bash
+pnpm nocobase deploy instance create dev --plan <planId> --yes --wait
+pnpm nocobase deploy instance status dev
+```
 
-![The customer instance details show the deployed version, runtime state, and application entry](/assets/core/multi-app/instance-details.png)
+If the node requires approval, another authorized administrator must approve the operation in Main. After completion, check that `quickstart-child` is running under **Application instances**, with the expected version and access address.
 
-## Troubleshooting
+## Step 5: Enter the child and verify login and permissions
 
-| Symptom | Action |
-| --- | --- |
-| Commercial packages return 401, 403, or no version | For `401`, check sign-in status first. For `403` or a missing package, check download permissions, the package name, and the version. `NOCOBASE_REGISTRY` only selects the registry the creator uses to download the template; it does not authenticate you |
-| Third-party dependencies or the creator fail to download | Configure the commercial registry only for the `@nocobase` scope. Other dependencies use public npm or your mirror. `NOCOBASE_REGISTRY` does not control the registry the outer pnpm command uses to download the creator |
-| pnpm refuses to install a recently published package | After confirming that you trust the version, set `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` for this creation command |
-| The main application is accessible, but no deployment environment is available | Check the Host configuration and startup logs, then create and check a deployment environment in the interface |
-| Upload or deployment fails | Check the archive's target platform and the operation records; do not repeatedly create instances with the same name |
-| The child application is missing from the workbench | Check that the instance is running, its entry is enabled, and the current user has membership |
-| SSO works, but the child has no application switcher | Check that the layout renders `AppSwitcher` and that the instance has been upgraded to a version containing it |
+In the instance's initial administrator notice, select **View and save**. Store the credentials securely before confirming. Main no longer retains that password after confirmation; the CLI cannot read it either.
+
+Select **Open application** from the workbench or instance detail. This example uses `http://192.168.1.10:13230/quickstart-child/`. Verify:
+
+1. A signed-in platform user reaches the child home page without entering another password.
+2. Open the application switcher and return to Main. If other accessible applications exist, test switching to one.
+3. Use an ordinary platform user to test business pages and operations. Successful login must not grant child administration rights automatically.
+4. Open the child's `/login?auth=local` and confirm that its saved local administrator still works. Configure business roles inside the child.
+
+For `SSO_REDIRECT_NOT_ALLOWED`, compare the HTTP origin configured in step 1 with the actual access address. Restart Main after editing it, then retry through the original deployment record. See [Single sign-on and business permissions](single-sign-on.md) for other login failures.
+
+Continue with [Develop and deploy child applications](development.md) for new versions, configuration updates and CI.

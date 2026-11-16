@@ -11,15 +11,23 @@
     },
     {
       "type": "page",
-      "path": "environments"
+      "path": "nodes"
     },
     {
       "type": "page",
-      "path": "templates"
+      "path": "development"
+    },
+    {
+      "type": "page",
+      "path": "artifacts"
     },
     {
       "type": "page",
       "path": "management"
+    },
+    {
+      "type": "page",
+      "path": "single-sign-on"
     },
     {
       "type": "page",

@@ -2,27 +2,95 @@
   "pages": [
     {
       "type": "page",
-      "path": "from-v2"
+      "path": "index"
     },
     {
-      "type": "page",
-      "path": "core-and-studio"
+      "type": "group",
+      "title": "Product and selection",
+      "pages": [
+        {
+          "type": "page",
+          "path": "from-v2",
+          "title": "V2 and V3"
+        },
+        {
+          "type": "page",
+          "path": "core-capabilities",
+          "title": "Core capabilities"
+        },
+        {
+          "type": "page",
+          "path": "technology-and-databases",
+          "title": "Stack and databases"
+        },
+        {
+          "type": "page",
+          "path": "core-and-studio",
+          "title": "Core and Studio"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "coding-experience"
+      "type": "group",
+      "title": "Development and integration",
+      "pages": [
+        {
+          "type": "page",
+          "path": "coding-experience",
+          "title": "Coding experience"
+        },
+        {
+          "type": "page",
+          "path": "human-maintenance",
+          "title": "Human maintenance"
+        },
+        {
+          "type": "page",
+          "path": "coding-agents-and-models",
+          "title": "Agents and models"
+        },
+        {
+          "type": "page",
+          "path": "development-skills",
+          "title": "Using Skills"
+        },
+        {
+          "type": "page",
+          "path": "business-ai",
+          "title": "Business AI"
+        },
+        {
+          "type": "page",
+          "path": "existing-systems",
+          "title": "Existing systems"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "coding-agents-and-models"
-    },
-    {
-      "type": "page",
-      "path": "independent-deployment"
-    },
-    {
-      "type": "page",
-      "path": "find-help"
+      "type": "group",
+      "title": "Deployment and maintenance",
+      "pages": [
+        {
+          "type": "page",
+          "path": "independent-deployment",
+          "title": "Independent deployment"
+        },
+        {
+          "type": "page",
+          "path": "object-storage",
+          "title": "Object storage"
+        },
+        {
+          "type": "page",
+          "path": "backup-and-migration",
+          "title": "Backup and migration"
+        },
+        {
+          "type": "page",
+          "path": "find-help",
+          "title": "Troubleshooting"
+        }
+      ]
     }
   ]
 }

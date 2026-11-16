@@ -6,11 +6,15 @@ title: Quickstart
 
 Prepare Node.js 24+, pnpm compatible with the templates, and download access to both templates. The commands require compatible packages already published to your package source. If they are unavailable, obtain an available version first; a workspace source path is not an npm package name.
 
-Sign in to the authorized commercial registry, using your download token as the password:
+Configure the authorized commercial registry, replacing `<read-token>` with your download token:
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
+npm whoami --registry=https://pkg-v3.nocobase.com/
 ```
+
+These commands write to your user-level `~/.npmrc`, which npm and pnpm both read. Keep the token out of project files.
 
 Choose a machine and reserve ports `13230` for Main, `13231` for its runtime node and `13240` for local child development. This walkthrough uses SQLite so no separate database server is needed. Other supported databases can be configured for your requirements.
 

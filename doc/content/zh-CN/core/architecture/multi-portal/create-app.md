@@ -1,6 +1,6 @@
 ---
 title: 创建多门户应用
-metaDescription: 登录商业包源，创建、配置并启动多门户应用。
+metaDescription: 配置商业包源访问，创建、配置并启动多门户应用。
 ---
 
 创建并启动一个多门户应用，为后续业务门户提供运行环境。模板已经接好多门户插件、工作台和门户管理，但不包含预装的业务门户或示例数据。
@@ -9,21 +9,22 @@ metaDescription: 登录商业包源，创建、配置并启动多门户应用。
 
 准备 Node.js 24 或更高版本、pnpm 11，以及有权下载多门户商业包的账号。下列命令适用于 Bash 等 POSIX shell；Windows 可使用 WSL。
 
-先在自己的终端登录私有 npm 源。已有有效登录时无需重复登录：
+先在自己的终端配置私有 npm 源，将 `<读取令牌>` 替换为商业源的读取令牌。已有有效配置时无需重复配置：
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<读取令牌>"
 npm whoami --registry=https://pkg-v3.nocobase.com/
 npm view @nocobase/app-template-multi-portal@beta version --registry=https://pkg-v3.nocobase.com/
 ```
 
-按登录提示提供账号信息，密码处使用商业源的读取令牌。令牌由 npm 用户配置保存，不要写入项目文件或提交到 Git。`whoami` 成功后还要确认包版本查询成功；账号登录成功并不代表拥有该包的下载权限。
+这两条命令写入用户的 `~/.npmrc`，npm 和 pnpm 都会读取它。令牌由这份用户配置保存，不要写入项目文件或提交到 Git。`whoami` 成功后还要确认包版本查询成功；认证通过并不代表拥有该包的下载权限。
 
 多门户模板、管理插件和门户生成器都来自商业源。普通第三方依赖仍从公共 npm 源或你配置的镜像下载，不要把默认 registry 整体改成商业源。
 
 ## 使用 Agent 创建应用
 
-先在 Agent 实际执行命令的机器和用户环境中完成上面的商业源登录。若 Agent 运行在远程机器，本机的 npm 登录不会自动传过去。不要把读取令牌粘贴到对话中。
+先在 Agent 实际执行命令的机器和用户环境中完成上面的商业源配置。若 Agent 运行在远程机器，本机的 npm 配置不会自动传过去。不要把读取令牌粘贴到对话中。
 
 安装全局 `nocobase-create-app` Skill，并按提示选择你使用的 Agent：
 
@@ -98,7 +99,7 @@ pnpm dev
 
 | 现象 | 处理 |
 | --- | --- |
-| 商业包返回 401、403 或查询不到版本 | 检查登录是否过期、账号是否有包权限，以及所选版本是否可用 |
+| 商业包返回 401、403 或查询不到版本 | 检查令牌是否已配置且有效、账号是否有包权限，以及所选版本是否可用 |
 | 第三方包从商业源下载并返回 404 | 检查默认 registry；商业源只配置到 `@nocobase` scope，修正后在现有应用中执行 `pnpm install` |
 | 使用局域网地址无法登录 | 检查 `app.publicOrigin` 是否与浏览器实际使用的 origin 一致 |
 

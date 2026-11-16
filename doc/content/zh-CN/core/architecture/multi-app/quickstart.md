@@ -6,11 +6,15 @@ title: 快速开始
 
 准备 Node.js 24+、兼容模板要求的 pnpm，以及主应用和子应用模板的下载权限。下列命令需要下载源中已经发布兼容版本；若模板尚未提供，请先取得可用版本，不要将工作区源码路径当作 npm 包名。
 
-商业包使用授权源。首次使用时登录，密码填写你的下载令牌：
+配置商业包的授权源，将 `<read-token>` 替换为你的下载令牌：
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
+npm whoami --registry=https://pkg-v3.nocobase.com/
 ```
+
+这些命令写入用户级 `~/.npmrc`，npm 和 pnpm 都会读取。不要将令牌写入项目文件。
 
 选择一台用于体验的机器，预留主应用 `13230`、运行节点 `13231` 和子应用本地开发 `13240` 端口。示例使用 SQLite，不需要单独安装数据库；它是体验配置，其他数据库可按实际需要选择。
 

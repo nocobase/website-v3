@@ -7,3 +7,9 @@ Yes. NocoBase does not require a single model provider. With Core, you can use c
 With Studio, install a supported coding tool in a connected runtime and sign in with the appropriate account. Studio offers agents based on the tool and model combinations reported by that runtime. Availability depends on tool support, account access, and runtime status; entering an arbitrary model name is not enough to make it available.
 
 For initial setup, see [Connect a runtime](../studio/setup/shared-runtimes.md) and [Configure agents](../studio/setup/agents.md). To add models or adjust responsibilities in an existing team, see [Agent configuration](../studio/configure/agents.md).
+
+## Can Codex CLI use DeepSeek models?
+
+Yes. Codex supports custom model providers. DeepSeek publishes an official Codex integration guide and natively supports the Responses API it uses. Configure the provider, model, and DeepSeek API key as described there; installing Codex or changing a model name alone is not enough. See the [DeepSeek integration guide](https://api-docs.deepseek.com/quick_start/agent_integrations/codex/) and [Codex custom provider configuration](https://developers.openai.com/codex/config-advanced/) for configuration and version requirements.
+
+Compatibility depends on the tool and model versions; support for this combination does not imply support for every model. First verify in the project directory that the model works and can read project guidance and perform development tasks. With Studio, also confirm that the connected runtime reports and uses the combination correctly.

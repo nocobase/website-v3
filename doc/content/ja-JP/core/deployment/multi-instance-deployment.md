@@ -96,10 +96,11 @@ description: アプリの共有状態とバックグラウンドタスクを確�
 | Concurrency | `@nocobase/app-plugin-concurrency-redis` |
 | Snowflake ワーカー ID の自動割り当て | `@nocobase/app-plugin-snowflake-worker` |
 
-対象パッケージのダウンロード権限を持つアカウントで、商用パッケージレジストリにログインします。有効な設定がある場合は省略できます。
+対象パッケージのダウンロード権限を持つアカウントの読み取りトークンで `<read-token>` を置き換え、商用パッケージレジストリを設定します。コマンドはユーザーの `~/.npmrc` に書き込み、npm と pnpm の両方がこのファイルを読み取ります。有効な設定がある場合は省略できます。
 
 ```bash
-pnpm login --registry=https://pkg-v3.nocobase.com/ --scope=@nocobase
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
 ```
 
 確認結果に応じて、必要なプラグインを 1 つずつ登録します。Jobs の例では、まず利用可能なバージョンと依存条件を確認し、`<compatible-version>` を現在のアプリに対応するバージョンに置き換えます。

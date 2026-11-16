@@ -2,27 +2,95 @@
   "pages": [
     {
       "type": "page",
-      "path": "from-v2"
+      "path": "index"
     },
     {
-      "type": "page",
-      "path": "core-and-studio"
+      "type": "group",
+      "title": "製品と選定",
+      "pages": [
+        {
+          "type": "page",
+          "path": "from-v2",
+          "title": "V2 と V3"
+        },
+        {
+          "type": "page",
+          "path": "core-capabilities",
+          "title": "Core の基盤機能"
+        },
+        {
+          "type": "page",
+          "path": "technology-and-databases",
+          "title": "技術構成とデータベース"
+        },
+        {
+          "type": "page",
+          "path": "core-and-studio",
+          "title": "Core と Studio"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "coding-experience"
+      "type": "group",
+      "title": "開発と連携",
+      "pages": [
+        {
+          "type": "page",
+          "path": "coding-experience",
+          "title": "プログラミング経験"
+        },
+        {
+          "type": "page",
+          "path": "human-maintenance",
+          "title": "人による保守"
+        },
+        {
+          "type": "page",
+          "path": "coding-agents-and-models",
+          "title": "Agent とモデル"
+        },
+        {
+          "type": "page",
+          "path": "development-skills",
+          "title": "Skills の利用"
+        },
+        {
+          "type": "page",
+          "path": "business-ai",
+          "title": "業務 AI"
+        },
+        {
+          "type": "page",
+          "path": "existing-systems",
+          "title": "既存システムとの連携"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "coding-agents-and-models"
-    },
-    {
-      "type": "page",
-      "path": "independent-deployment"
-    },
-    {
-      "type": "page",
-      "path": "find-help"
+      "type": "group",
+      "title": "デプロイと保守",
+      "pages": [
+        {
+          "type": "page",
+          "path": "independent-deployment",
+          "title": "独立デプロイ"
+        },
+        {
+          "type": "page",
+          "path": "object-storage",
+          "title": "オブジェクトストレージ"
+        },
+        {
+          "type": "page",
+          "path": "backup-and-migration",
+          "title": "バックアップと移行"
+        },
+        {
+          "type": "page",
+          "path": "find-help",
+          "title": "トラブルシューティング"
+        }
+      ]
     }
   ]
 }

@@ -1,67 +1,83 @@
 ---
-title: Manage hosted applications
-description: Create child application instances from templates, grant workbench access, and manage configuration, runtime state, and versions.
+title: Manage application instances
 ---
 
-An application instance is a running child application. A single customer management template can create several instances, each with its own access URL, data, configuration, and running version. The main application manages them centrally.
+## Choose a version and runtime node to create an instance
 
-## Create an instance and grant access
+In **System settings → Deployment management → Application instances**, select **Create instance**, or start from a version's more menu under Build artifacts.
 
-Prepare a [published template version](templates.md#publish-and-maintain-versions) and an [available deployment environment](environments.md). In the main application:
+Choose a package, version and available runtime node. Supply a display name and unique instance ID, then configure the database, instance settings, initial administrator and platform access. The ID affects the access path; `main` is reserved by Main.
 
-1. Open **Templates**, open the template details, and click **Create instance**. You can also create an instance from **Application instances → Hosted applications**.
-2. Enter a name and unique identifier, then select the template version and deployment environment. The identifier becomes part of the application's path, cannot be changed after creation, and must not conflict with the main application's `main` path.
-3. Submit and wait for deployment to finish. If the environment requires approval, an approver must approve it first. Open the instance details and confirm that **Current version** is correct and **Runtime state** is running.
+Check runtime requirements and required settings before submitting. Main creates a deployment record. Nodes requiring approval wait first; others proceed through deployment phases. Verify the real application only after completion and a healthy runtime state.
 
-![Select a template version and deployment environment to create an independent instance](/assets/core/multi-app/create-instance.png)
+![Choose a version, runtime node and database, then review the access address before creating an instance.](/assets/core/multi-app/hd-create-instance.png)
 
-The main application automatically configures single sign-on for new instances. You do not need to enter the identity service URL, client identifier, or secret manually. The child itself must have [platform sign-in integrated](templates.md#prepare-a-child-application-archive) before it is packaged.
+## Inspect runtime state and open the application
 
-After deployment succeeds, an administrator with full permissions in the main application opens the instance's **Access** tab, clicks **Add users**, and selects users with view or edit permissions.
+Instance details show the actual version, runtime node and address. **Open application** opens the instance; other maintenance actions are in the more menu. The workbench supplies ordinary users' entry points.
 
-![Grant selected users access to the child application](/assets/core/multi-app/instance-access.png)
+Running describes process state. It does not prove login or business functionality. Check real pages after first deployment, upgrades and login configuration changes.
 
-Main application administrators also need access to the instance. The child maps view and edit permissions to specific business permissions; neither grants child administrator privileges. To add single sign-on to an existing instance, first click **Register platform sign-in** on this page, then upgrade to a version that supports it.
+![The instance list shows the running state and current version.](/assets/core/multi-app/hd-application-instances.png)
 
-## Open and switch applications from the workbench
+## Save the initial administrator account
 
-After a user signs in to the main application, the workbench shows the applications they may access. Click an application card to open the child. While the main application's sign-in session remains valid, no password is needed again.
+When Main generates the initial administrator, the detail page offers **View and save**. An authorized administrator should store the credentials securely and confirm saving. Main then stops retaining the password. The project deployment CLI cannot read it.
 
-![The workbench shows applications available to the current user](/assets/core/multi-app/workbench.png)
+This account is created during initialization only. Editing initialization settings does not reset an existing password. Use the child's local login and account recovery mechanisms for later maintenance.
 
-Inside a child application, click the switcher beside the application name to open another authorized application or select **Back to workbench**.
+![Save the generated administrator credentials before confirming. The password is masked here.](/assets/core/multi-app/hd-save-initial-admin.png)
 
-![Switch from customer management to expense management or return to the main application's workbench](/assets/core/multi-app/app-switcher.png)
+## Change the name and instance configuration
 
-If an application is missing from the workbench, check the user's access and the instance's runtime state. If the child has no switcher, check that its deployed version includes the application-switching component. Granting access alone does not add that component to the page.
+Rename through the more menu. This changes the display name, not the instance ID or access path.
 
-## Update configuration and manage runtime state
+The **Configuration** tab shows effective settings and provides editing. An installed instance's database type cannot change. Main owns issued SSO credentials; do not overwrite them through ordinary configuration. Publish a new version first if you need another plugin or database driver.
 
-Open **Application instances** and click an application name to view its details. The overview shows the actual runtime state, current version, and environment. The action menu in the upper-right corner provides configuration, upgrade, start, and stop options.
+Review changes and acknowledge a verified backup before applying configuration. The operation may restart the instance. Follow its deployment record and inspect effective settings afterward.
 
-![Instance details show the current version, runtime state, and available actions](/assets/core/multi-app/instance-actions.png)
+![The Configuration tab shows the runtime and effective instance settings.](/assets/core/multi-app/hd-instance-configuration.png)
 
-- **Update configuration:** select **Configure**, change the display name and default language, and enter the instance identifier as prompted to confirm. This does not change database connections or sign-in secrets.
-- **Stop or start:** select **Stop** for a running instance and **Start** after it has stopped. Stopping preserves data; it does not delete the application. To restart, wait for stopping to finish before starting again.
-- **Check results:** review execution status in **Deployment history** and **Operation history**. If an operation fails, open its record and address the reported problem before deciding whether to retry. Avoid creating duplicate instances.
+## Start, stop and restart
 
-![Change the instance display name and default language](/assets/core/multi-app/instance-configure.png)
+Choose the action from the more menu, wait for its operation to finish and refresh status. Stopping retains data and platform entry settings, allowing a later start. Restart interrupts connections; schedule it around business usage.
 
-If single sign-on is unavailable, an administrator with the required permissions can view the initial administrator credentials under **Access** and use the child's local sign-in to recover access. This shows the initial credentials, not a password changed afterward.
+Disabling a platform entry controls platform access. Stopping an instance controls its runtime process.
 
-## Upgrade, archive, and restore instances
+## Upgrade versions
 
-**Upgrade an instance:**
+[Publish the new version](artifacts.md), then choose upgrade from the instance's more menu. Review its version, configuration changes, required variables and database requirements. Resolve conflicts, confirm backups and submit.
 
-1. [Publish a new version](templates.md#publish-and-maintain-versions) in the original template.
-2. Back up the instance's database, attachments, and private configuration, and record its current version.
-3. Select **Upgrade** from the instance's action menu, choose the target version, confirm that a backup is available, and submit.
-4. Wait for deployment to finish, check the current version, and open the child to verify existing data and new features. Instances you did not select remain on their previous versions.
+Afterward, verify the target version, login, business data and critical operations. A version downgrade does not reverse database migrations and is not a general recovery method.
 
-![Choose a version and confirm a recoverable backup before upgrading an instance](/assets/core/multi-app/instance-upgrade.png)
+## Handle deployment approvals
 
-**Archive an instance:** stop it first, then select **Archive** from its action menu. Archiving preserves data and configuration but removes the application's entry from users' view.
+Operations on nodes requiring approval remain pending. Another administrator with approval permission must review the instance, version, configuration and impact before approving or rejecting. The requester cannot approve their own operation.
 
-**Restore an instance:** filter the instance list to show archived applications and select **Restore**. Once restoration finishes, start the instance and check its existing data and user access.
+If node configuration or instance state changes before approval, follow the prompt to recheck or regenerate the request. Pending approval is not success. Do not change nodes simply to bypass required approval.
 
-Restoring an archived instance is not the same as restoring a data backup. Before reverting to an older version, confirm that the old code is compatible with the current database. Switching code versions does not undo database migrations that have already run.
+## Inspect deployment records and runtime logs
+
+An instance's **Deployment history** lists creation, configuration, upgrades and lifecycle operations. Global **Deployment records** provides a cross-instance view. Open a record for phases, errors and deployment logs. The instance's **Logs** tab shows runtime output instead.
+
+Record the instance ID, operation ID, time and error code when investigating. Size and retention limits can affect logs; missing logs do not prove an operation never ran.
+
+![Deployment records collect operations across application instances.](/assets/core/multi-app/hd-deployment-records.png)
+
+![Deployment logs show extraction, activation and successful completion.](/assets/core/multi-app/hd-deployment-logs.png)
+
+![Runtime logs show application output for troubleshooting.](/assets/core/multi-app/hd-runtime-logs.png)
+
+## Investigate failures and recover interrupted operations
+
+Read the specific error and instance logs first. Determine whether the cause is node availability, platform incompatibility, a database connection, missing variables or callback policy. Fix it, then use the retry or recovery action offered by the original operation.
+
+For a timeout, disconnected request or unknown outcome, query the original record before acting again. Do not immediately delete the instance, create another with the same ID or clear operation files. Recovery remains subject to permissions, current state and approval rules.
+
+For CLI receipts and exit codes, see [Develop and deploy child applications](development.md#deploy-with-agents-and-ci).
+
+## Delete instances and retain data
+
+Verify the instance ID and save necessary backups before deletion. Removal retains persistent data by default. Purging it requires an explicit option and additional confirmation. Retention is not automatic migration or one-click instance restoration.
+
+Main revokes platform access before removing runtime resources. On failure, inspect the original deployment record to avoid leaving an active entry or repeating deletion. For externally connected applications, Main manages enrollment only; their original operators retain runtime and data ownership.

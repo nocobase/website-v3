@@ -1,211 +1,152 @@
 ---
 title: クイックスタート
-description: メインアプリと独立した子アプリを作成し、ホスティング環境を設定して最初のバージョンを公開し、アプリインスタンスにアクセスします。
 ---
 
-まず、ワークベンチと管理機能を提供するメインアプリを作成します。次に、独立して開発した子アプリをパッケージ化し、ホスト型インスタンスとしてデプロイします。Agent に依頼する方法と、手動で操作する方法があります。
+## 事前準備
 
-## 開発環境と商用パッケージへのアクセスを準備する
+Node.js 24+、テンプレートに対応する pnpm、Main と子アプリテンプレートの取得権限を用意します。以下のコマンドは互換パッケージが配布元に公開されていることが前提です。未提供の場合は利用可能な版を取得してください。
 
-Node.js 24 以降、pnpm 11.11.0、[マルチアプリの商用パッケージ](overview.md#利用の前提条件)をダウンロードできるアカウントを用意してください。以下のコマンドは Bash などの POSIX シェルを使用します。Windows では WSL を利用できます。
-
-実際にインストールするマシンで商用レジストリを設定します。`<read-token>` は、アカウントの読み取りトークンに置き換えてください。
+商用レジストリを設定します。`<read-token>` をダウンロードトークンに置き換えてください。
 
 ```bash
 npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
 npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
 npm whoami --registry=https://pkg-v3.nocobase.com/
-npm view @nocobase/app-template-multi-app@beta version \
-  --@nocobase:registry=https://pkg-v3.nocobase.com/
 ```
 
-これらのコマンドはユーザーの `~/.npmrc` に書き込み、npm と pnpm の両方がこのファイルを読み取ります。テンプレートのバージョンを取得できることを確認してから、プロジェクトを作成してください。読み取りトークンはユーザーの npm 設定にのみ保存し、プロジェクトや会話には書き込まないでください。認証やダウンロードに失敗した場合は、[トラブルシューティング](#トラブルシューティング)を参照してください。
+これらのコマンドはユーザーの `~/.npmrc` に設定を書き込み、npm と pnpm が読み取ります。トークンをプロジェクトファイルに保存しないでください。
 
-## プロジェクトディレクトリを配置する
+Main 用に `13230`、ノード用に `13231`、子アプリのローカル開発用に `13240` を空けます。この例は SQLite を使いますが、必要に応じて他の対応データベースを選べます。
 
-以下の例では、操作を追いやすいように、メインアプリと子アプリを `demo` ディレクトリに配置します。
+例の LAN IP `192.168.1.10` は、すべて自分のマシンのアドレスに置き換えてください。HTTP の手順は管理された内部ネットワーク向けです。公開する場合は先に [HTTPS](nodes.md#https-とリバースプロキシを設定する) を設定します。
 
-| プロジェクトディレクトリ | 用途 |
-| --- | --- |
-| `demo/platform/` | ワークベンチとアプリ管理を提供するメインアプリ |
-| `demo/customer-demo/` | 顧客管理画面を提供する子アプリ |
+## ステップ 1：Main を作成して起動する
 
-これは配置例です。メインアプリと子アプリは独立したプロジェクトなので、別の場所に配置し、別々の Git リポジトリで管理できます。デプロイに必要なのは子アプリのビルド済みアーカイブだけで、メインアプリ内に子アプリのソースコードを置く必要はありません。
-
-## Agent でマルチアプリ環境を作成する
-
-Agent が実際に動作するマシンとユーザー環境で、商用レジストリへのアクセスを設定してください。リモートの Agent に、手元のマシンの認証情報が自動的に引き継がれることはありません。
-
-アプリ作成用の Skill をインストールし、案内に従って利用する Agent を選択してから、Agent のセッションを開き直します。
+プロジェクトの保存先で実行します。
 
 ```bash
-npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
-```
-
-### メインアプリを作成して起動する
-
-例の `demo` ディレクトリで Agent のセッションを開き、メインアプリの作成を依頼します。
-
-```prompt
-NocoBase 3 のマルチアプリプラットフォームを、platform ディレクトリに作成してください。
-作業を始める前に、データベース設定、アクセス URL、デプロイ環境を私に確認してください。その後、管理者アカウントと子アプリをホストするための実行環境を設定し、プラットフォームを起動して、アクセス URL とログイン方法を教えてください。
-```
-
-完了すると、マルチアプリプラットフォームが起動し、アクセス URL と管理者のログイン方法が案内されます。ログイン後はワークベンチとアプリ管理画面を利用できます。子アプリをホストする実行環境も設定されているため、続けて子アプリを作成・デプロイできます。
-
-### 子アプリを作成する
-
-例の `demo` ディレクトリで Agent のセッションを開き、子アプリの作成を依頼します。
-
-```prompt
-独立した NocoBase 3 の顧客管理アプリを、customer-demo ディレクトリに作成してください。後でマルチアプリプラットフォーム上にホストします。
-顧客の追加、編集、検索、削除ができ、顧客名、担当者名、連絡先電話番号、フォローアップのメモを記録できるようにしてください。
-作業を始める前に、データベース設定と、メインアプリのシングルサインオンを使うかどうかを私に確認してください。
-```
-
-Agent の作業が完了すると、子アプリのコードが `customer-demo` ディレクトリに保存されます。この時点では、まだメインアプリにデプロイされていません。次に子アプリをデプロイパッケージとしてビルドし、メインアプリでアップロード、公開、インスタンス作成を行います。
-
-### 子アプリをビルドして最初のインスタンスを作成する
-
-メインアプリ右上のアカウントメニューから **Use in terminal / Agent** を開き、**Copy Agent instructions** をクリックします。コピーした内容を、`customer-demo` を開発している Agent に貼り付けてください。
-
-![メインアプリが提供する Agent 設定用プロンプトをコピーする](/assets/core/multi-app/cli-install.png)
-
-ツールのインストールと設定は Agent が行います。ログインが必要になったら、Agent が案内するアドレスをブラウザーで開き、認証コードを確認して承認してください。
-
-設定が完了したら、続けて依頼します。
-
-```prompt
-先ほど設定したメインアプリのコマンドラインツールを使い、この顧客管理アプリ用のテンプレートを新規作成するか既存のものを利用して、デプロイパッケージのビルドとアップロード、バージョンの公開、最初のインスタンスのデプロイまで進めてください。
-始める前に、アプリテンプレート、デプロイ環境、インスタンス名を私に確認してください。既存のインスタンスは変更しないでください。
-完了したら、インスタンスのデプロイが成功し、アプリに正常にアクセスできることを確認して、アクセス先の URL を教えてください。
-```
-
-デプロイが完了したら、Agent が提示した URL を開き、顧客管理機能が正常に動作するか確認します。
-
-![メインアプリのワークベンチで子アプリを確認して開く](/assets/core/multi-app/workbench.png)
-
-## マルチアプリ環境を手動で作成する
-
-### メインアプリを作成する
-
-例の `demo` ディレクトリで実行します。`platform` は未作成、または空のディレクトリである必要があります。
-
-```bash
-NOCOBASE_REGISTRY=https://pkg-v3.nocobase.com/ \
-  pnpm create @nocobase/app@beta platform \
-  --template multi-app --template-tag beta
+pnpm create @nocobase/app@beta platform --template multi-app --template-tag beta
 cd platform
-pnpm nocobase config init
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config set server.host=0.0.0.0 server.port=13230 app.publicOrigin=http://192.168.1.10:13230
 ```
 
-`multi-app` はメインアプリの完全なソースコードを生成しますが、子アプリは作成しません。初期化の案内に従ってデータベースを選び、接続情報を入力してください。非対話モードで実行する場合は、`--dialect` を明示する必要があります。ドライバーがない場合は、案内に従ってインストールしてから初期化をやり直します。詳細は[データベース設定](../../reference/database-configuration.md)を参照してください。
-
-### メインアプリを設定して起動する
-
-初回起動の前に、`config.yml` の `users.initialAdmin` を確認し、管理者のユーザー名、メールアドレス、専用のパスワードを設定してください。たとえば Bash では、次のようにパスワードを画面に表示せず入力し、設定に保存できます。
+初回起動前に、専用の初期管理者パスワードを設定します。`config init` は設定を生成しますが、このパスワードの入力は求めません。以下の Bash コマンドは入力を表示せず、履歴にもパスワードを残しません。安全に保存してください。既定のユーザー名は `nocobase` です。生成された暗号鍵と Main のデータベースも保持します。
 
 ```bash
-read -r -s -p 'Initial administrator password: ' INITIAL_ADMIN_PASSWORD
+read -r -s -p "Main administrator password: " MAIN_ADMIN_PASSWORD
 printf '\n'
-export INITIAL_ADMIN_PASSWORD
-pnpm nocobase config set --from-env users.initialAdmin.password=INITIAL_ADMIN_PASSWORD
-unset INITIAL_ADMIN_PASSWORD
+export MAIN_ADMIN_PASSWORD
+pnpm nocobase config set --from-env users.initialAdmin.password=MAIN_ADMIN_PASSWORD
+unset MAIN_ADMIN_PASSWORD
 ```
 
-生成された設定とシークレットは適切に保護し、Git にコミットしないでください。初期管理者が作成されるのはユーザーテーブルが空の場合だけです。その後この設定を変更しても、既存アカウントのパスワードはリセットされません。
+生成された `config.yml` の `sso` に以下を設定します。同名の YAML キーを重複させないでください。
 
-メインアプリでは、Host はデフォルトで無効です。以下は同じマシンで試す例で、メインアプリに `13230`、Host に `13231` ポートを使います。ポートが使用されていないことを確認し、メインアプリのルートディレクトリで実行してください。
+```yaml
+sso:
+  insecureRedirectOrigins:
+    - http://192.168.1.10:13230
+```
+
+これは管理された HTTP origin への子アプリのログインコールバックを許可する、Main 側の設定です。
+
+開発サーバーは `config.yml` とは別にポートを選びます。以下のように `APP_SERVER_PORT` を明示し、表示された URL が `app.publicOrigin` と一致することを確認します。使用中なら、そのポートを空けてください。
 
 ```bash
-pnpm nocobase config set \
-  server.host=127.0.0.1 \
-  server.port=13230 \
-  app.publicOrigin=http://127.0.0.1:13230 \
-  releases.host.enabled=true \
-  releases.host.host=127.0.0.1 \
-  releases.host.port=13231 \
-  releases.host.publicUrl=http://127.0.0.1:13230
 pnpm nocobase config check
-pnpm dev
+APP_SERVER_HOST=0.0.0.0 APP_SERVER_PORT=13230 pnpm dev
 ```
 
-ターミナルに表示される `Local:` の URL を開きます。上記の設定では `http://127.0.0.1:13230/main/` です。先ほど設定した管理者でログインしてください。メインアプリは `/main` パスを使用し、子アプリのパスへのリクエストを Host に転送します。ブラウザーから Host の内部ポートに直接アクセスすることはありません。
+`http://192.168.1.10:13230/main/` に初期管理者でログインします。**System settings → Deployment management → Runtime nodes** で `local` が利用可能なことを確認します。ノードは Main が自動起動するため、画面から追加しません。
 
-別のマシンからアクセスする場合は、待ち受けアドレスを変更し、`app.publicOrigin` と `releases.host.publicUrl` をブラウザーで実際に使うオリジン（スキーム、ホスト、ポート。パスは含めない）に設定してください。SSO を使うローカルの HTTP 環境では、[コールバックの例外設定](environments.md#デプロイ環境を追加する)も必要です。
+利用できない場合は `13231` の競合、保存先の書き込み権限、Main のログを確認します。ブラウザーにはノード内部ポートではなく Main のポートを使います。
 
-### デプロイ環境を作成する
+![最初のインスタンスを作る前に、local 実行ノードが利用可能であることを確認します。](/assets/core/multi-app/hd-runtime-nodes.png)
 
-メインアプリにログインし、**デプロイ環境**（Deploy environments）を開いて、**環境を追加**（Add environment）を選択します。
+## ステップ 2：子アプリを作成する
 
-1. 環境の名前と識別子を入力します。例：`Local Host`、`local`。
-2. ホスティング用の Host と、デプロイアーカイブに適した実行方式を選びます。同じマシンで試す場合は **In process** を使えます。
-3. 公開 URL のパターンに、ブラウザーからアクセスできる URL を設定します。例：`http://127.0.0.1:13230/{appId}/`。各インスタンスに独立したパスが割り当てられます。
-4. 画面の案内に従って接続と設定を確認し、環境を保存します。
-
-利用可能な環境がすでにある場合は、そのまま使えます。Host を有効にしても実行サービスが起動するだけで、このデプロイ環境のレコードは自動作成されません。
-
-![実行方式、公開 URL のパターン、Host の状態を表示するデプロイ環境一覧](/assets/core/multi-app/environments.png)
-
-### 子アプリを作成して設定する
-
-メインアプリを起動したまま別のターミナルを開き、例の `demo` ディレクトリで実行します。
+Main を起動したまま、別のターミナルでプロジェクトの親ディレクトリに戻ります。
 
 ```bash
-pnpm create @nocobase/app@beta customer-demo \
-  --template default --template-tag beta
-cd customer-demo
-pnpm nocobase config init
+pnpm create @nocobase/app@beta child-app --template sub-app --template-tag beta
+cd child-app
+pnpm nocobase config init --dialect sqlite
+pnpm nocobase config set server.host=0.0.0.0 server.port=13240 app.publicOrigin=http://192.168.1.10:13240
+```
+
+起動前に、子アプリのローカル管理者には別のパスワードを設定します。ステップ 1 と同じ Bash の非表示入力を使います。このアカウントは、後でホスト型インスタンス用に生成する管理者とは別です。
+
+```bash
+read -r -s -p "Child administrator password: " CHILD_ADMIN_PASSWORD
+printf '\n'
+export CHILD_ADMIN_PASSWORD
+pnpm nocobase config set --from-env users.initialAdmin.password=CHILD_ADMIN_PASSWORD
+unset CHILD_ADMIN_PASSWORD
 pnpm nocobase config check
+APP_SERVER_HOST=0.0.0.0 APP_SERVER_PORT=13240 pnpm dev
 ```
 
-メインアプリと子アプリで業務テーブルは共有しません。同じデータベースサービスを使う場合も、それぞれに独立したデータベースまたは分離された領域を割り当ててください。
+ターミナルに表示された入口を開き、子アプリ自身の初期管理者でホーム画面を確認します。テンプレートにはデプロイ CLI、プラットフォームログイン、アプリ切り替えが含まれます。プラットフォーム資格情報がないローカル開発では、ローカルログインを使います。
 
-通常の Default アプリは、メインアプリの SSO と自動的には連携しません。ローカルログインを維持する場合は、デフォルトのホーム画面をそのままビルドしてホスティングの流れを試せます。シングルサインオンとアプリ切り替えが必要な場合は、先に[子アプリの SSO 連携](templates.md#子アプリのデプロイパッケージを準備する)を完了してください。
+Main と子アプリのデータベース・設定は独立しています。確認後、子アプリの開発プロセスは停止できます。配置するインスタンスはこのプロセスに依存しません。
 
-業務機能は子アプリのプロジェクトで開発します。必要に応じて顧客管理などの業務画面を作成し、完成してからビルド・デプロイしてください。
+![子アプリをローカルで起動し、専用の管理者アカウントでログインします。](/assets/core/multi-app/hd-child-local-home.png)
 
-### 子アプリをビルドし、管理画面でインスタンスを作成する
+## ステップ 3：子アプリのデプロイ管理を設定する
 
-子アプリのルートディレクトリで実行します。
+`child-app` のルートで実行します。
 
 ```bash
-pnpm build --tar
+pnpm nocobase deploy init --server http://192.168.1.10:13230/main --instance dev --id quickstart-child --node local
+pnpm nocobase deploy auth
+pnpm nocobase deploy validate
+pnpm nocobase deploy doctor
 ```
 
-ビルドが成功すると、`storage/exports/dist.tar.gz` が生成されます。対象の OS、CPU アーキテクチャ、libc、Node.js のバージョンは Host と互換性がある必要があります。別のマシンに配布する場合は、[デプロイ用アーカイブのビルド](../../tutorials/deploy-with-app-installer.md#デプロイ用アーカイブをビルドする)に従って対象を指定してください。ローカルのデータベース、アップロードファイル、シークレット、インスタンス固有の設定をアーカイブに含めないでください。
+`init` が `deploy.yml` を生成します。`dev` は設定内のキー、`quickstart-child` は Main 上のインスタンス ID、`local` はノード ID です。Main の URL には `/main` を含めます。
 
-メインアプリを起動したまま、管理画面で次の操作を行います。
+`auth` が開始するブラウザー認証で、デプロイ権限を持つアカウントを使って対象 Main と要求を確認し、承認します。ターミナルで成功を確認してください。これは開発者のデプロイ認可であり、子アプリの SSO とは別です。
 
-1. **アプリテンプレート**（Templates）を開き、`Customer management` などのテンプレートを作成して、準備したデプロイ環境を選択します。
-2. テンプレートの操作メニューから `dist.tar.gz` をアップロードし、アプリのパッケージ名とバージョンを確認して、バージョンを公開します。
-3. テンプレートの**公開済みバージョン**（Published versions）で、対象バージョンの **Create with this version** を選択します。
-4. インスタンスの名前と一意の識別子を入力します。例：`Customer demo`、`customer-demo`。バージョンと環境を確認して送信します。
-5. 承認が必要な場合は承認を済ませ、デプロイ操作の完了を待ちます。インスタンスの詳細で、実際のバージョン、稼働状態、アクセス URL を確認します。
+既定ではインスタンス管理者を生成し、プラットフォーム SSO を有効にします。続行前に `deploy.yml` の接続先、ID、ノードを確認します。
 
-インスタンスの識別子に、メインアプリが使用する `main` は指定しないでください。アップロードは成果物の保存、公開はインスタンス作成に使えるバージョンの提供、インスタンス作成はデプロイと実行です。それぞれ別の操作です。
+![プロジェクト CLI の認可を承認してから、ターミナルに戻ります。](/assets/core/multi-app/hd-cli-authorization.png)
 
-![公開済みバージョンを選択してインスタンスを作成する](/assets/core/multi-app/template-versions.png)
+## ステップ 4：子アプリをビルドしてデプロイする
 
-## インスタンスの稼働状態を確認する
+```bash
+pnpm nocobase deploy artifact upload --build --yes
+pnpm nocobase deploy instance plan dev --action create
+```
 
-インスタンスの詳細で正常に稼働していることを確認してから、実際のアクセス URL を開きます。
+アップロードはバージョンを公開し、初回はアプリパッケージも作成します。ビルドとノードの実行環境が一致しない場合は、CLI の案内に従って再ビルドします。
 
-- **ローカルログインを使う場合**：インスタンスの設定権限を持つ管理者は、初期管理者の認証情報を確認できます。その情報で子アプリにログインし、初期パスワードを変更してください。
-- **プラットフォーム SSO を使う場合**：まずインスタンスの**アクセス権**（Access）でユーザーをメンバーに追加します。その後、ワークベンチからアクセスし、ログイン、業務権限、[アプリの切り替え](management.md#ワークベンチからアプリを開く切り替える)を確認してください。メインアプリの管理者にも、子アプリのメンバー資格が自動的に付与されるわけではありません。
+計画のバージョン、ノード、ID、設定と阻害要因を確認し、返された値で `<planId>` を置き換えます。
 
-ホーム画面が表示され、必要な機能が利用できることを確認してください。ホスティングの確認には、Default のホーム画面でも独自の顧客管理画面でも使えます。子アプリのソースディレクトリで開発サーバーを同時に動かす必要はありません。
+```bash
+pnpm nocobase deploy instance create dev --plan <planId> --yes --wait
+pnpm nocobase deploy instance status dev
+```
 
-![デプロイ済みバージョン、稼働状態、アプリの入口を表示する顧客管理インスタンスの詳細](/assets/core/multi-app/instance-details.png)
+承認が必要なノードでは、別の権限を持つ管理者が Main で承認します。完了後、**Application instances** で実際のバージョン、実行状態、URL を確認します。
 
-## トラブルシューティング
+![デプロイしたインスタンスが稼働し、プラットフォーム SSO が有効になっています。](/assets/core/multi-app/hd-instance-overview.png)
 
-| 症状 | 対処方法 |
-| --- | --- |
-| 商用パッケージで 401、403 が返る、またはバージョンが見つからない | `401` の場合はトークンの設定を確認します。`403` やパッケージが見つからない場合は、ダウンロード権限、パッケージ名、バージョンを確認します。`NOCOBASE_REGISTRY` は作成ツールがテンプレートを取得するレジストリを指定するだけで、認証の代わりにはなりません |
-| サードパーティの依存パッケージや作成ツールをダウンロードできない | 商用レジストリは `@nocobase` スコープだけに設定し、その他の依存パッケージには公開 npm レジストリまたは利用中のミラーを使います。pnpm が作成ツール自体をダウンロードするレジストリは、`NOCOBASE_REGISTRY` の対象外です |
-| pnpm が公開直後のパッケージのインストールを拒否する | バージョンが信頼できることを確認したうえで、今回の作成コマンドに `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` を設定できます |
-| メインアプリにはアクセスできるが、利用可能なデプロイ環境がない | Host の設定と起動ログを確認し、画面からデプロイ環境を作成・確認します |
-| アップロードやデプロイに失敗する | アーカイブの対象プラットフォームと操作履歴を確認します。同じ名前のインスタンスを繰り返し作成しないでください |
-| ワークベンチに子アプリが表示されない | インスタンスの稼働状態、入口が有効かどうか、現在のユーザーのメンバー資格を確認します |
-| SSO で子アプリにログインできるが、切り替えメニューがない | レイアウトで `AppSwitcher` が描画されているか、また、そのコンポーネントを含むバージョンにインスタンスがアップグレードされているかを確認します |
+## ステップ 5：ログインと業務権限を確認する
+
+インスタンス詳細で **View and save** を選び、初期管理者の資格情報を安全に保存してから保存済みと確認します。その後 Main はパスワードを保持しません。CLI からも取得できません。
+
+![生成された管理者の資格情報を保存してから確認します。画像ではパスワードを非表示にしています。](/assets/core/multi-app/hd-save-initial-admin.png)
+
+**Open application** で `http://192.168.1.10:13230/quickstart-child/` を開き、次を確認します。
+
+1. ログイン済みのプラットフォームユーザーが、追加のパスワード入力なしで子アプリに入れる。
+2. アプリ切り替えメニューを開き、Main に戻れる。他のアプリがあれば切り替えも確認する。
+3. 一般ユーザーが許可された業務操作だけを実行でき、管理権限を自動取得しない。
+4. 子アプリの `/login?auth=local` で保存したローカル管理者が使える。必要な業務ロールは子アプリで設定する。
+
+![アプリ切り替えメニューからプラットフォームのワークベンチへ戻れます。](/assets/core/multi-app/hd-application-switcher.png)
+
+`SSO_REDIRECT_NOT_ALLOWED` は、最初に設定した HTTP origin と実際の URL を照合します。Main の設定変更後は再起動し、元の操作記録から再試行してください。詳しくは [SSO と業務権限](single-sign-on.md)を参照してください。
+
+更新と CI は[子アプリの開発とデプロイ](development.md)へ進んでください。

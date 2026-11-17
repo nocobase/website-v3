@@ -28,14 +28,14 @@ The Agent uses the project's `AGENTS.md`, `.agents/rules/multi-portal.md` and lo
 Run this command at the app root to create a portal with English and Chinese names and descriptions:
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1 \
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal portal-1 \
   --set-locale 'en-US.title=Portal 1' \
   --set-locale 'en-US.description=Explore pages and navigation.' \
   --set-locale 'zh-CN.title=门户 1' \
   --set-locale 'zh-CN.description=体验页面与导航。'
 ```
 
-This command requires a generator version that supports `--set-locale`; check with `pnpm create @nocobase/portal@beta --help`. With an older version, omit these options and edit the locale files after generation.
+This command requires a generator version that supports `--set-locale`; check with `pnpm create @nocobase/portal --help`. With an older version, omit these options and edit the locale files after generation.
 
 Each `--set-locale` assigns one `language.field=value`: `title` is the name and `description` is the description. Specify only the fields you want to change; the others keep their defaults.
 

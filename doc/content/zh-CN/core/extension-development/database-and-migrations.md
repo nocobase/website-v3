@@ -10,7 +10,7 @@ description: 为插件声明迁移和 Seed 目录，接入应用默认连接，�
 新建插件时，在 App 根目录选择数据库能力：
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-data --with database
+pnpm create @nocobase/plugin notice-data --with database
 ```
 
 已有插件直接补齐目录与声明，不必重新创建。以下插件文件路径相对于 `packages/app-plugin-notice-data/`：

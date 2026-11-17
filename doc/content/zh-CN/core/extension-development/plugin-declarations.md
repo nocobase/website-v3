@@ -10,7 +10,7 @@ description: 声明插件的客户端、服务端和 CLI 能力，通过公开�
 以下沿用 `@nocobase/app-plugin-announcements` 公告插件。示例使用客户端路由和语言资源、服务端路由和 ServiceProvider，以及可选的 CLI 入口。首次创建时可以选择：
 
 ```bash
-pnpm create @nocobase/plugin@beta announcements \
+pnpm create @nocobase/plugin announcements \
   --with client.routes --with client.locales \
   --with server.routes --with server.service-providers --with cli
 ```

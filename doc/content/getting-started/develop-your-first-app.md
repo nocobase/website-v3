@@ -38,10 +38,10 @@ The agent creates the application, generates configuration and starts it, then g
 Run the following where you want to keep the application. The creation tool makes a new `my-app` directory and installs dependencies:
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app my-app
 ```
 
-NocoBase 3 is in beta. `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows pnpm to install newly published versions for this command only.
+`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows pnpm to install newly published versions for this command only.
 
 Enter the directory, generate configuration, check it and start the application:
 

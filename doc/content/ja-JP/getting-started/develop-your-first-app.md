@@ -38,10 +38,10 @@ npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 アプリを置きたい場所で次を実行します。作成ツールが新しい `my-app` ディレクトリを作り、依存関係をインストールします。
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app my-app
 ```
 
-NocoBase 3 はベータ版です。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` は、このコマンドに限って、新しく公開されたバージョンを pnpm がインストールできるようにします。
+`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` は、このコマンドに限って、新しく公開されたバージョンを pnpm がインストールできるようにします。
 
 ディレクトリに入り、設定を生成して確認し、アプリを起動します。
 

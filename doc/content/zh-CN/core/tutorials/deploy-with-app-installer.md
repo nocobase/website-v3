@@ -13,7 +13,7 @@ description: 构建应用部署包，上传到服务器后使用 app-installer �
 
 示例使用应用名 `my-app`、SSH 目标 `deploy@server`、安装目录 `/srv/nocobase/my-app`、PM2 进程名 `nocobase-my-app`、端口 `13000` 和应用路径 `/main`。替换为自己的目标；多个应用使用独立的目录、端口和进程名。
 
-命令使用 `@nocobase/app-installer@beta`，沿用服务器已有的 npm registry 配置，全部在服务器执行。服务器需要能从配置的 registry 获取安装器。已有部署如需固定安装器版本，可将 `@beta` 替换为指定版本。开发机负责构建、打包和上传部署包。
+命令使用 `@nocobase/app-installer`，沿用服务器已有的 npm registry 配置，全部在服务器执行。服务器需要能从配置的 registry 获取安装器。已有部署如需固定安装器版本，可改用 `@nocobase/app-installer@<version>`。开发机负责构建、打包和上传部署包。
 
 ## 使用 Agent
 
@@ -63,7 +63,7 @@ Agent 按相同分工执行：在开发机构建、打包并上传，然后连�
 ### 创建应用并进入目录
 
 ```bash title="开发机 · 应用父目录"
-pnpm create @nocobase/app@beta my-app --template-tag=beta
+pnpm create @nocobase/app my-app
 cd my-app
 ```
 
@@ -126,7 +126,7 @@ export MY_APP_ADMIN_PASSWORD
 ```
 
 ```bash title="服务器 · 原服务账号，任意目录"
-npx --yes @nocobase/app-installer@beta install /srv/nocobase/my-app \
+npx --yes @nocobase/app-installer install /srv/nocobase/my-app \
   --archive /tmp/my-app.tar.gz \
   --origin http://YOUR_SERVER_IP:13000 \
   --base-path /main \
@@ -167,7 +167,7 @@ unset MY_APP_ADMIN_PASSWORD
 返回 JSON 中的 `ok: true` 表示命令成功；`result.started: true` 表示应用通过启动健康检查；`result.url` 是应用入口。使用 `result.initialAdmin.username` 和设置的密码登录。
 
 ```bash title="服务器 · 原服务账号，任意目录"
-npx --yes @nocobase/app-installer@beta status \
+npx --yes @nocobase/app-installer status \
   --dir /srv/nocobase/my-app --json
 ```
 
@@ -234,12 +234,12 @@ scp storage/exports/dist.tar.gz deploy@server:/tmp/my-app-new.tar.gz
 再在服务器执行：
 
 ```bash title="服务器 · 原服务账号，任意目录"
-npx --yes @nocobase/app-installer@beta status \
+npx --yes @nocobase/app-installer status \
   --dir /srv/nocobase/my-app --json
 ```
 
 ```bash title="服务器 · 原服务账号，任意目录"
-npx --yes @nocobase/app-installer@beta upgrade \
+npx --yes @nocobase/app-installer upgrade \
   --dir /srv/nocobase/my-app \
   --archive /tmp/my-app-new.tar.gz --json
 ```
@@ -259,7 +259,7 @@ npx --yes @nocobase/app-installer@beta upgrade \
 确认计划、备份和停机时间后，在服务器执行：
 
 ```bash title="服务器 · 原服务账号，任意目录"
-npx --yes @nocobase/app-installer@beta upgrade \
+npx --yes @nocobase/app-installer upgrade \
   --dir /srv/nocobase/my-app \
   --archive /tmp/my-app-new.tar.gz --yes --json
 ```
@@ -281,14 +281,14 @@ npx --yes @nocobase/app-installer@beta upgrade \
 在服务器查看回退计划：
 
 ```bash title="服务器 · 原服务账号，任意目录"
-npx --yes @nocobase/app-installer@beta rollback \
+npx --yes @nocobase/app-installer rollback \
   --dir /srv/nocobase/my-app --json
 ```
 
 确认数据影响后执行：
 
 ```bash title="服务器 · 原服务账号，任意目录"
-npx --yes @nocobase/app-installer@beta rollback \
+npx --yes @nocobase/app-installer rollback \
   --dir /srv/nocobase/my-app --yes --json
 ```
 

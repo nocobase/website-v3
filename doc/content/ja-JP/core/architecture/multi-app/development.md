@@ -7,7 +7,7 @@ title: 子アプリの開発とデプロイ
 取得権限のある互換テンプレートを使います。
 
 ```bash
-pnpm create @nocobase/app@beta customer-app --template sub-app --template-tag beta
+pnpm create @nocobase/app customer-app --template sub-app
 cd customer-app
 pnpm nocobase config init
 pnpm nocobase config check

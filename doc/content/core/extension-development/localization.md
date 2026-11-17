@@ -19,7 +19,7 @@ Keep language selection owned by the App.
 Run from the App root. Paths are relative to `packages/app-plugin-notice-i18n/`:
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-i18n --with client.components --with client.locales
+pnpm create @nocobase/plugin notice-i18n --with client.components --with client.locales
 ```
 
 `client.locales` generates resources and lazy loaders and connects them to `client/plugin.ts`. When adding localization to an existing plugin, provide all three: resource files, loaders and the `locales` declaration. Files alone do not register resources.

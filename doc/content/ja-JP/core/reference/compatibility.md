@@ -45,7 +45,7 @@ npm config set "//<nocobase-pro-registry-host>/:_authToken" "<nocobase-pro-read-
 [アプリを作成する](../../getting-started/develop-your-first-app.md#アプリを作成して起動する)で生成したプロジェクトディレクトリで操作します。以下は、まだ `config.yml` がない PostgreSQL アプリの例です。接続可能な PostgreSQL サーバー、データベース、アカウントを準備してから実行してください。
 
 ```bash
-pnpm add @nocobase/db-postgres@beta
+pnpm add @nocobase/db-postgres
 pnpm nocobase config init --dialect postgres --json
 ```
 

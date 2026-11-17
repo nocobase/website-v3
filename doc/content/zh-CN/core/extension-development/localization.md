@@ -18,7 +18,7 @@ description: 组织插件的客户端语言资源、命名空间和公共组件�
 在 App 根目录执行，文件路径相对于 `packages/app-plugin-notice-i18n/`：
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-i18n --with client.components --with client.locales
+pnpm create @nocobase/plugin notice-i18n --with client.components --with client.locales
 ```
 
 `client.locales` 生成资源和动态加载器，并接到 `client/plugin.ts`。已有插件增加语言支持时，需要同时补齐资源文件、加载器和插件声明中的 `locales`，不能只增加 JSON 或 TypeScript 文件。

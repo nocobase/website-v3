@@ -15,7 +15,7 @@ Node.js 24 以降、pnpm 11、マルチポータルの商用パッケージを�
 npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
 npm config set "//pkg-v3.nocobase.com/:_authToken" "<読み取りトークン>"
 npm whoami --registry=https://pkg-v3.nocobase.com/
-npm view @nocobase/app-template-multi-portal@beta version --registry=https://pkg-v3.nocobase.com/
+npm view @nocobase/app-template-multi-portal version --registry=https://pkg-v3.nocobase.com/
 ```
 
 これらのコマンドはユーザーの `~/.npmrc` に書き込み、npm と pnpm の両方がこのファイルを読み取ります。認証情報はこのユーザー設定で管理し、プロジェクトや Git に保存しないでください。認証の成功だけではダウンロード権限を確認できないため、パッケージのバージョン取得も確認します。
@@ -55,12 +55,12 @@ Agent のセッションを開き直して Skill を読み込みます。プロ�
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 \
 NOCOBASE_REGISTRY=https://pkg-v3.nocobase.com/ \
 npm_config_registry=https://registry.npmjs.org \
-pnpm create @nocobase/app@beta my-portals \
-  --template=multi-portal --template-tag=beta
+pnpm create @nocobase/app my-portals \
+  --template=multi-portal
 cd my-portals
 ```
 
-`multi-portal` は `@nocobase/app-template-multi-portal` を選択します。作成ツールはソース生成、依存関係のインストール、開発用 Skills の同期を行います。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` はこのコマンドで公開直後の beta パッケージを利用できるようにします。公開ミラーを使う場合は公開 registry の URL を置き換えます。
+`multi-portal` は `@nocobase/app-template-multi-portal` を選択します。作成ツールはソース生成、依存関係のインストール、開発用 Skills の同期を行います。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` はこのコマンドで公開直後のパッケージを利用できるようにします。公開ミラーを使う場合は公開 registry の URL を置き換えます。
 
 Create-app `0.1.0-beta.36` 以降では商用パッケージとサードパーティ依存関係の取得先を分けてインストールできます。プロジェクトの `.npmrc` は `@nocobase:registry` の URL を保持し、認証情報はユーザー設定に残ります。作成後はプロジェクトの `AGENTS.md`、`.agents/rules/multi-portal.md`、同期された Skills に従います。
 

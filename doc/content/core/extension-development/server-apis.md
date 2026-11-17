@@ -20,7 +20,7 @@ Validate length, use standard responses and errors, document and test the API, t
 Run commands from the existing App root. File paths are relative to `packages/app-plugin-notice-api/`. Inspect an existing plugin with that name instead of generating it again.
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-api --with server.routes --with server.service-providers
+pnpm create @nocobase/plugin notice-api --with server.routes --with server.service-providers
 ```
 
 Add `zod` to the plugin’s `dependencies`, using a compatible version already installed in the App, then run `pnpm install` from the App root. The scaffold configures `hono` and runtime contracts. Keep its Provider aggregation, Server declaration and public entry.

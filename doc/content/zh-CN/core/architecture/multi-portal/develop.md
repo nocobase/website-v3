@@ -28,14 +28,14 @@ Agent 使用项目的 `AGENTS.md`、`.agents/rules/multi-portal.md` 和项目内
 在应用根目录执行以下命令，创建门户并设置中英文名称和描述：
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta portal-1 \
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal portal-1 \
   --set-locale 'en-US.title=Portal 1' \
   --set-locale 'en-US.description=Explore pages and navigation.' \
   --set-locale 'zh-CN.title=门户 1' \
   --set-locale 'zh-CN.description=体验页面与导航。'
 ```
 
-此命令需要支持 `--set-locale` 的生成器版本，可用 `pnpm create @nocobase/portal@beta --help` 确认；旧版本请省略这些参数，生成后修改语言文件。
+此命令需要支持 `--set-locale` 的生成器版本，可用 `pnpm create @nocobase/portal --help` 确认；旧版本请省略这些参数，生成后修改语言文件。
 
 每个 `--set-locale` 设置一个 `语言.字段=值`，`title` 是名称，`description` 是描述。只填写需要修改的字段，其余保留默认值。
 

@@ -26,7 +26,7 @@ Agent が生成済みなら、同じディレクトリを重複して作成し�
 アプリのルートで実行します。
 
 ```bash
-PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta inventory
+PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal inventory
 ```
 
 `inventory` はポータル ID です。小文字で始まり、小文字と数字を単一のハイフンで区切った形式で、40 文字以内にします。例えば `inventory` や `quality-checks` です。生成されるパッケージ名は `@nocobase/app-portal-inventory` です。

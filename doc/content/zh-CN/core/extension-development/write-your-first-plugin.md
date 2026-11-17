@@ -26,7 +26,7 @@ description: 在 App 中实现公告栏插件，走通接口、页面、菜单�
 创建插件，选择页面路由、客户端语言资源和服务端路由：
 
 ```bash
-pnpm create @nocobase/plugin@beta announcements \
+pnpm create @nocobase/plugin announcements \
   --with client.routes --with client.locales --with server.routes
 ```
 

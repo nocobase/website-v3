@@ -20,7 +20,7 @@ description: 検証、レスポンスの取り決め、アクセス制御、テ�
 コマンドは既存のアプリのルートで実行します。ファイルのパスは `packages/app-plugin-notice-api/` からの相対パスです。その名前のプラグインがすでにある場合は、生成し直さずに確認してください。
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-api --with server.routes --with server.service-providers
+pnpm create @nocobase/plugin notice-api --with server.routes --with server.service-providers
 ```
 
 アプリにすでにインストールされている互換性のあるバージョンを使って、プラグインの `dependencies` に `zod` を追加し、アプリのルートで `pnpm install` を実行します。ひな形は `hono` と実行時の取り決めを設定します。その Provider の集約、Server の宣言、公開の入口は保ってください。

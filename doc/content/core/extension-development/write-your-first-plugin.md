@@ -26,7 +26,7 @@ Start with an App created by create-app, with dependencies installed and a worki
 Select page routes, Client translations and Server routes:
 
 ```bash
-pnpm create @nocobase/plugin@beta announcements \
+pnpm create @nocobase/plugin announcements \
   --with client.routes --with client.locales --with server.routes
 ```
 

@@ -10,7 +10,7 @@ A plugin's pages, APIs, services and commands enter the application through its 
 The examples use the `@nocobase/app-plugin-announcements` plugin, with client routes and locales, server routes and a ServiceProvider, and an optional CLI entry. When creating it for the first time, select:
 
 ```bash
-pnpm create @nocobase/plugin@beta announcements \
+pnpm create @nocobase/plugin announcements \
   --with client.routes --with client.locales \
   --with server.routes --with server.service-providers --with cli
 ```

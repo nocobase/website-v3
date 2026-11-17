@@ -26,7 +26,7 @@ create-app で作成し、依存関係をインストール済みで、開発サ
 ページのルート、Client の翻訳、Server のルートを選びます。
 
 ```bash
-pnpm create @nocobase/plugin@beta announcements \
+pnpm create @nocobase/plugin announcements \
   --with client.routes --with client.locales --with server.routes
 ```
 

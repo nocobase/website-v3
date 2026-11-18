@@ -22,6 +22,10 @@
       "path": "multi-instance-deployment"
     },
     {
+      "type": "page",
+      "path": "deploy-with-kubernetes"
+    },
+    {
       "type": "planned",
       "title": "実行時の設定とシークレット"
     },

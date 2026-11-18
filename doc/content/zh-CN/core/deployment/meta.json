@@ -22,6 +22,10 @@
       "path": "multi-instance-deployment"
     },
     {
+      "type": "page",
+      "path": "deploy-with-kubernetes"
+    },
+    {
       "type": "planned",
       "title": "运行配置与敏感信息"
     },

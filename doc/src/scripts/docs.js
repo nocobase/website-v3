@@ -1,4 +1,4 @@
-// Small interactions of a docs page: icons, the table of contents highlight, code copy buttons, the Copy Markdown button, and the search shortcut label (the sidebar position is set by an inline script in Layout.astro, before the first paint). The header's mobile menu and language select are in the shared shell.js.
+// Small interactions of a docs page: icons, the table of contents highlight, the narrow-screen bar (sidebar drawer and table of contents drop-down), code copy buttons, the Copy Markdown button, and the search shortcut label (the sidebar position is set by an inline script in Layout.astro, before the first paint). The header's mobile menu and language select are in the shared shell.js.
 import { ArrowUpRight, Check, ChevronDown, Globe, Menu, MousePointerClick, Search, createIcons } from 'lucide';
 
 createIcons({ icons: { ArrowUpRight, Check, ChevronDown, Globe, Menu, MousePointerClick, Search }, attrs: { 'aria-hidden': 'true' } });
@@ -6,8 +6,8 @@ createIcons({ icons: { ArrowUpRight, Check, ChevronDown, Globe, Menu, MousePoint
 // The shortcut shown on the search button: ⌘K on Apple devices, Ctrl K elsewhere
 if (/Mac|iPhone|iPad/.test(navigator.platform)) for (const kbd of document.querySelectorAll('.search-btn kbd')) kbd.textContent = '⌘ K';
 
-// Table of contents: highlight the section being read
-const links = [...document.querySelectorAll('.doc-toc a')];
+// Table of contents (the right column and the drop-down of the narrow-screen bar): highlight the section being read
+const links = [...document.querySelectorAll('.doc-toc a, .doc-localnav-panel a')];
 const targets = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1)))).filter(Boolean);
 if (targets.length && 'IntersectionObserver' in window) {
   const visible = new Set();
@@ -17,6 +17,42 @@ if (targets.length && 'IntersectionObserver' in window) {
     if (first) for (const a of links) a.classList.toggle('active', decodeURIComponent(a.hash.slice(1)) === first.id);
   }, { rootMargin: '-70px 0px -65% 0px' });
   targets.forEach(t => observer.observe(t));
+}
+
+// Scroll a list so that its highlighted item is a third of the way down, when it is out of view
+const reveal = (box, item) => {
+  if (!item) return;
+  const outer = box.getBoundingClientRect(), rect = item.getBoundingClientRect();
+  if (rect.top < outer.top || rect.bottom > outer.bottom) box.scrollTop += rect.top - outer.top - outer.height / 3;
+};
+
+// Narrow screens: Menu in the bar under the header opens the sidebar as a drawer. Following a link, the close button, a click on the backdrop or Esc closes it.
+const drawer = document.getElementById('docDrawer');
+const menuButton = document.querySelector('.doc-localnav-menu');
+if (drawer && menuButton) {
+  menuButton.addEventListener('click', () => {
+    drawer.showModal();
+    menuButton.setAttribute('aria-expanded', 'true');
+    reveal(drawer.querySelector('.doc-nav'), drawer.querySelector('[aria-current="page"]'));
+  });
+  drawer.addEventListener('close', () => menuButton.setAttribute('aria-expanded', 'false'));
+  drawer.addEventListener('click', e => { if (e.target === drawer || e.target.closest('a[href], .doc-drawer-close')) drawer.close(); });
+  // The sidebar column comes back when the page grows wide enough
+  addEventListener('resize', () => { if (drawer.open && !menuButton.offsetParent) drawer.close(); });
+}
+
+// Narrow screens: On this page in the bar drops down the table of contents; following a link, a click outside or Esc closes it
+const tocButton = document.querySelector('.doc-localnav-toc > button');
+if (tocButton) {
+  const panel = document.getElementById(tocButton.getAttribute('aria-controls'));
+  const toggle = open => { panel.hidden = !open; tocButton.setAttribute('aria-expanded', String(open)); };
+  tocButton.addEventListener('click', () => {
+    toggle(panel.hidden);
+    if (!panel.hidden) reveal(panel, panel.querySelector('a.active'));
+  });
+  panel.addEventListener('click', e => { if (e.target.closest('a')) toggle(false); });
+  document.addEventListener('click', e => { if (!panel.hidden && !tocButton.parentElement.contains(e.target)) toggle(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { toggle(false); tocButton.focus(); } });
 }
 
 // Local HTTP previews also support copying, without the secure Clipboard API

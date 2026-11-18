@@ -59,7 +59,7 @@ Once the PR is open, CI runs first, then an agent from another vendor reviews it
 
 ## 5. Accept and merge
 
-The issue moves to In review and is marked **Needs your acceptance** in **My issues**. Read the delivery report and screenshots, then open the preview from the issue page and try it as the first administrator: as the asset manager, start a stocktake by location; switch to IT support and check a few devices, deliberately entering one with the wrong location; end the stocktake, and see whether the result lists that discrepancy and whether the register was left unchanged. See [Accept the result](../studio/use/accept.md).
+The issue moves to In review and is marked **Needs your acceptance** in **My issues**. Read the delivery report and screenshots, then open the preview from the issue page and try it as the first administrator: as the asset manager, start a stocktake by location; switch to IT support and check a few devices, deliberately entering one with the wrong location; end the stocktake, and see whether the result lists that discrepancy and whether the register was left unchanged. See [Accept a task](../studio/use/accept.md).
 
 ![The delivery report and the screenshots the developing agent attached](https://static-docs.nocobase.com/20261028203712314.png)
 

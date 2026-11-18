@@ -30,7 +30,7 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 
 ## 使用与管理 Studio
 
-- 成员日常工作：从[提出需求](../studio/use/raise-a-request.md)和[会话](../studio/use/sessions.md)开始，按需查[跟进进展](../studio/use/follow-progress.md)、[回答提问](../studio/use/answer.md)和[验收](../studio/use/accept.md)。
+- 成员日常工作：从[提出需求](../studio/use/raise-a-request.md)和[会话](../studio/use/sessions.md)开始，按需查[跟进进展](../studio/use/follow-progress.md)、[回答提问](../studio/use/answer.md)和[任务验收](../studio/use/accept.md)。
 - 项目负责人：查[项目设置](../studio/project/settings.md)、[知识库](../studio/project/knowledge-base.md)、[项目记忆](../studio/project/project-memory.md)和[项目进展](../studio/project/progress.md)，再了解[检查与评审](../studio/project/checks-and-review.md)及[发布](../studio/release/overview.md)。
 - 管理员：完成[安装配置](../studio/setup/index.md)，再按需管理[Agent](../studio/configure/agents.md)、[运行环境](../studio/configure/runtimes.md)、[技能](../studio/project/skills.md)、[用量](../studio/project/usage.md)、[成员与角色](../studio/admin/members-and-roles.md)及[升级备份](../studio/admin/upgrade-and-backup.md)。
 

@@ -40,7 +40,7 @@ docker compose exec -T postgres pg_restore -U studio -d studio   < backup/studio
 
 ## 升级 Studio
 
-1. 完成备份，取得要升级的镜像版本。
+1. 完成备份，选择当前版本类型对应的新镜像标签。社区版使用[部署指南](../setup/install.md)中的公开仓库，专业版和企业版使用交付的镜像仓库。
 2. 更新 Compose 文件中的 `services.studio.image`。
 3. 拉取并重建 Studio 容器。
 
@@ -51,7 +51,7 @@ docker compose ps
 docker compose logs --tail=100 studio
 ```
 
-数据库迁移随启动执行。确认服务健康，并检查登录、任务和运行环境。Studio 为商业版本，可[联系我们](https://www.nocobase.com/zh-CN/contact/)获取镜像。
+数据库迁移随启动执行。确认服务健康，并检查登录、任务和运行环境。
 
 回退到旧镜像前，确认数据库兼容；需要回滚迁移时，恢复升级前的数据库和文件备份，再启动对应旧版本。
 

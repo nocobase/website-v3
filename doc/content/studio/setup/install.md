@@ -3,28 +3,28 @@ title: Deploy Studio
 description: Deploy an empty Studio instance with Docker Compose, persist its data, and sign in as the administrator.
 ---
 
-Studio and Studio EE are commercial products. [Contact us](https://www.nocobase.com/contact/) for images and access authorization. Quality management is available in Studio EE.
+This guide uses the Community Edition (CE) image, which requires no license key. For other images, see [Choose an edition](index.md#choose-an-edition).
 
 This guide deploys one Studio instance with PostgreSQL. You can use an existing database instead; see the [configuration reference](../reference/config.md).
 
 ## Prepare the environment
 
 - A server with Docker and Docker Compose. The image supports Linux amd64 and arm64.
-- The Studio image supplied to you. For an offline image archive, use `docker load -i <archive>`.
+- Access to the image registry from the deployment server. For offline installation, import the image archive with `docker load -i <archive>`.
 - A stable address. Use a domain and HTTPS for team access. For a local trial, `http://localhost:13000` is sufficient.
 
 Coding tools run on a separate [runtime](shared-runtimes.md), connected later. A single instance does not require Redis. Before onboarding a team, prepare file and artifact storage, invitation email, and password reset email.
 
 ## Prepare configuration
 
-Extract the configuration template from the supplied image. Replace the placeholder with the full image name and an exact version:
+Extract the configuration template from the [official CE image on Docker Hub](https://hub.docker.com/r/nocobase/studio-ce).
 
 ```bash
 mkdir studio
 cd studio
 mkdir storage
 
-docker run --rm --entrypoint cat '<supplied-image-name-and-version>' \
+docker run --rm --entrypoint cat nocobase/studio-ce:latest \
   /app/config.example.yml > config.yml
 ```
 
@@ -156,12 +156,12 @@ For a local trial without email, keep `auth.passwordReset.enabled: false`. You c
 
 ## Start the services
 
-Create `docker-compose.yml` in the same directory. Replace the image name. Set `POSTGRES_DB`, `POSTGRES_USER`, and `POSTGRES_PASSWORD` to the same database name, username, and password as in `config.yml`:
+Create `docker-compose.yml` in the same directory. Set `POSTGRES_DB`, `POSTGRES_USER`, and `POSTGRES_PASSWORD` to match the database name, username, and password in `config.yml`.
 
 ```yaml
 services:
   studio:
-    image: <supplied-image-name-and-version>
+    image: nocobase/studio-ce:latest
     init: true
     restart: unless-stopped
     depends_on:
@@ -258,11 +258,11 @@ Open `https://studio.example.com/main/`, or `http://localhost:13000/main/` for a
 
 These administrator settings apply only on first installation. To change the password later, use **Account settings › Account and security**.
 
-If Studio asks for a License Key, enter the key supplied with your deployment. Studio EE requires an Enterprise Key. Administrators can review the license and available updates under **Settings › License**. If application initialization needs access to commercial dependencies, configure the supplied package access credential there.
+For Professional or Enterprise, enter the license key supplied with your image. Administrators can check license status and available updates in **Settings › License**. If your application uses commercial dependencies, configure the supplied package access credential there.
 
 **Done when**: the administrator can sign in, the project list is empty, and the sign-in page has no registration link. Use the complete URL including `/main` when connecting runners and the CLI.
 
-![An empty project list after the first sign-in](https://static-docs.nocobase.com/studio-en-empty-projects-20261111-normal-2x.webp)
+![An empty project list after the first sign-in](/assets/studio/ce-empty-projects-en.webp)
 
 Before onboarding your team, verify that you can:
 
@@ -278,8 +278,8 @@ Next, [connect your code host](git.md).
 
 | Symptom | What to check |
 | --- | --- |
-| Image access denied | Check the supplied version and access authorization; contact us if needed |
-| Image download times out | Check the Docker service's proxy and access to the supplied download addresses |
+| Image access denied | Check the repository name and version tag. For Professional or Enterprise, check access to the registry supplied with your image |
+| Image download times out | Check the Docker proxy settings and connectivity from the server to the selected registry |
 | Container keeps restarting | Run `docker compose logs --tail=100 studio` and check database and configuration errors |
 | Configuration file cannot be read | Confirm `config.yml` is a file copied from the image, not a directory created by Docker |
 | Storage is not writable | Confirm UID 1000 can write to `storage` |

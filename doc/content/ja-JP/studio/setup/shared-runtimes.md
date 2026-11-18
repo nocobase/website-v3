@@ -8,15 +8,25 @@ description: 共有ランタイムを 1 つ接続し、コーディングツー�
 ## マシンを準備する
 
 - macOS または Linux。Windows では WSL を使います。
-- Node.js 24 以降、pnpm 11（`npm install -g pnpm@11`）、Git、GitHub CLI（`gh`）。
+- Node.js 24 以降、pnpm 11（`npm install -g pnpm@11`）、Git。
 - ランタイムを実行するシステムユーザーで、少なくとも 1 つのコーディングツールをインストールしてサインイン済みであること。
-- Studio、GitHub、モデルサービス、パッケージレジストリにアクセスできること。
+- Studio、コードプラットフォーム、モデルサービス、パッケージレジストリにアクセスできること。
 - アプリの画面を検証するタスクのために、Chromium とそのシステム依存関係。
 
 コーディングツールがターミナルで応答できることを確認してください。
 
 > [!NOTE] 専用の環境を使う
 > コーディングツールと runner は、Studio から分離した専用のコンテナまたは仮想マシンにインストールすることをおすすめします。エージェントは、ランタイムのシステムユーザーがアクセスできるファイルを読み書きし、コマンドを実行できます。
+
+### Git プラットフォームに合わせて CLI をインストールする
+
+ランタイムのマシンで、サービスの実行ユーザーとして `git --version` を実行し、Git が使えることを確認します。次に、プロジェクトのリポジトリを置いているプラットフォームの CLI をインストールします。表のコマンドでバージョンが表示されれば準備完了です。
+
+| Git プラットフォーム | インストール手順 | 確認コマンド |
+| --- | --- | --- |
+| GitHub | [GitHub CLI](https://cli.github.com/) | `gh --version` |
+| GitLab | [GitLab CLI](https://docs.gitlab.com/cli/) | `glab --version` |
+| Gitea | [Gitea CLI](https://docs.gitea.com/cli/installation/) | `gt --version` |
 
 ## 共有ランタイムを追加する
 

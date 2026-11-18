@@ -81,11 +81,19 @@
         },
         {
           "type": "page",
+          "path": "project/checks-and-review"
+        },
+        {
+          "type": "page",
           "path": "use/accept"
         },
         {
           "type": "page",
           "path": "use/inbox"
+        },
+        {
+          "type": "page",
+          "path": "use/multi-role-workflow"
         }
       ]
     },
@@ -96,6 +104,10 @@
         {
           "type": "page",
           "path": "project/settings"
+        },
+        {
+          "type": "page",
+          "path": "configure/checks"
         },
         {
           "type": "page",
@@ -168,14 +180,6 @@
         {
           "type": "page",
           "path": "quality/settings"
-        },
-        {
-          "type": "page",
-          "path": "configure/checks"
-        },
-        {
-          "type": "page",
-          "path": "project/checks-and-review"
         }
       ]
     },

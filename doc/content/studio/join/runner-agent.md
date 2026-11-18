@@ -34,8 +34,10 @@ Conversations are private by default. Sharing gives selected members a read-only
 
 ## Change Agents or runtimes
 
+To choose where the next message runs, select the runtime beside the composer, choose an available machine, and confirm. The conversation history carries over. Push any local code you need on the new machine before switching.
+
 - **Change Agent**: finish the active run and handle queued messages first. Conversation history and linked tasks remain.
-- **Runtime offline**: wait for it to reconnect or select **Switch runtime**. The new runtime receives conversation history; unpushed edits stay on the original machine.
+- **Runtime offline**: wait for it to reconnect or select **Switch runtime**.
 - **No Agent available**: check runtime connectivity, coding-tool sign-in, and whether the Agent is enabled.
 
 Conversations can inspect and change a project. Explicitly request a push or PR when needed. Turn formal requirements into tasks for team tracking and [acceptance](../use/accept.md).

@@ -13,11 +13,21 @@ https://docs.nocobase.com/ja-JP/studio/setup/ に従って NocoBase Studio を�
 
 エージェントは対象の環境を確認し、不足している情報を質問します。その後、下記の手順に沿って設定と検証を進めます。本人によるサインインや承認が必要な場合は、案内に従って操作してください。
 
+## エディションを選ぶ
+
+| エディション | 用途 |
+| --- | --- |
+| コミュニティ版（CE） | チームでタスクを作成し、エージェントが開発を進め、タスク責任者が成果を確認する |
+| プロフェッショナル版 | [依頼者と開発担当者で分担できます](../use/multi-role-workflow.md)。依頼者は要件確認と検収を、開発担当者はタスクの開始とマージを担当します |
+| エンタープライズ版（EE） | プロフェッショナル版の機能に加え、品質管理でコアシナリオの管理、定期テスト、レポートの確認、問題の追跡を行う |
+
+プロフェッショナル版とエンタープライズ版のイメージおよびライセンスは、[お問い合わせください](https://www.nocobase.com/ja-JP/contact/)。
+
 ## 始める前に
 
 このガイドでは Docker Compose、GitHub、1 台の共有ランタイムを使います。次のものを用意してください。
 
-- **イメージの利用権限**：Studio は商用製品です。イメージとアクセス許可については[お問い合わせ](https://www.nocobase.com/ja-JP/contact/)ください。
+- **Studio イメージ**。コミュニティ版の `nocobase/studio-ce:latest` は [Docker Hub](https://hub.docker.com/r/nocobase/studio-ce) から取得できます。
 - **デプロイ先の環境**：サーバーへのアクセス方法と Studio のアクセス URL。ローカルで試すだけならドメインは不要です。
 - **Git アカウント**：リポジトリを作成でき、GitHub App をインストールできるアカウントまたは組織。
 - **コーディングツールとモデルのアカウント**：Claude Code や Codex など。既存のアカウントを引き続き使えます。
@@ -47,7 +57,7 @@ https://docs.nocobase.com/ja-JP/studio/setup/ に従って NocoBase Studio を�
 | 設定 | ドキュメント |
 | --- | --- |
 | モデルの担当、実行マシン、共有スキル | エージェント管理：[エージェント](../configure/agents.md)、[ランタイム](../configure/runtimes.md)、[スキル](../project/skills.md) |
-| チェックの取得元と CI パイプライン | 品質管理：[チェックと CI](../configure/checks.md) |
+| チェックの取得元と CI パイプライン | [リポジトリのチェックと CI を設定する](../configure/checks.md) |
 | プロジェクト情報、メンバー、既定のスキル | プロジェクト管理：[プロジェクト設定](../project/settings.md) |
 | Git の接続とその他のコードプラットフォーム | システム管理：[コードプラットフォーム](../configure/git.md) |
 | データベース、アクセス URL、デプロイのパラメーター | リファレンス：[設定](../reference/config.md) |

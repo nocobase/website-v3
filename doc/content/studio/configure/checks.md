@@ -1,5 +1,5 @@
 ---
-title: Checks and CI
+title: Configure repository checks and CI
 description: Select a check source and configure verification, PR previews, and test delivery.
 ---
 
@@ -15,7 +15,7 @@ Open **Project settings › Code repositories** and select **Checks** on a repos
 
 ## Agent self-check
 
-Select the source and save. No CI file is needed. The Agent runs project checks, reports each result with `nb-studio check report`, then builds and publishes a PR preview.
+New repositories use Agent self-checks by default. No CI file is required. The Agent runs project checks, reports each result with `nb-studio check report`, then builds and publishes a PR preview.
 
 The Agent doing the work reports these results. Use code-host or external CI when you need an independent pipeline.
 
@@ -46,10 +46,21 @@ Select Jenkins or another CI system and generate the repository's CI key. Store 
 
 The key appears only when generated. Keep it out of the repository. CI keys belong to the organization and expire after 90 days by default. Leads and administrators receive expiry reminders. Update the pipeline when replacing a key.
 
+## Configure branch rules
+
+Under **Project settings › Code repositories › Branch rules**, configure:
+
+- Whether failed required checks wake the Lead Agent.
+- Whether passing checks trigger the next step.
+- Whether PR conflicts trigger repair work.
+- Which checks are advisory and do not block normal merging in Studio.
+
+Checks not listed as advisory are required. The code host's branch protection still applies. When automatic wake-up is disabled, comment on the task to ask the Lead Agent to continue.
+
 ## Verify the connection
 
 Submit a PR and check the repository's build records. The task's **Code & previews** tab should show results and a preview link. Open the preview and verify the application works.
 
 **Not reported yet** means the selected source has not reported results. If required variables are missing, set them on the environment or application as indicated. Tasks that do not need previews can use the **No preview needed** property; generated CI templates respect the `no-preview` label.
 
-See [Checks and review](../project/checks-and-review.md) for how results affect task progress.
+See [PR checks and code review](../project/checks-and-review.md) for how results affect task progress.

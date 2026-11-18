@@ -18,7 +18,7 @@ Check the scope, code commit, and selected dimensions first. Open a dimension to
 | Unverified | Missing access, an environment, or another prerequisite prevents a conclusion |
 | Not applicable | The scenario is unrelated to this dimension; it counts as neither passed nor failed |
 
-Functional verification distinguishes existing automated tests from Agent-operated checks. Automated results come from submitted test reports. Scenario results explain what was checked. Permissions, performance risks, and code quality may involve code inspection rather than browser testing.
+Open the relevant dimension to inspect its evidence. Functional results distinguish automated tests from scenarios exercised by an Agent. Performance results can include page and API measurements. For a permission finding, check which role attempted which action and what happened. If the only evidence is a code review, verify the behavior with the affected role.
 
 Review failure evidence, reasons for unverified items, and linked follow-ups. A screenshot is one form of evidence; it does not replace a clear expectation and observation.
 

@@ -8,15 +8,25 @@ A runtime is the machine where Agents work. An administrator connects one shared
 ## Prepare a machine
 
 - macOS or Linux; use WSL on Windows.
-- Node.js 24 or later, pnpm 11 (`npm install -g pnpm@11`), Git, and GitHub CLI (`gh`).
+- Node.js 24 or later, pnpm 11 (`npm install -g pnpm@11`), and Git.
 - At least one coding tool installed and signed in as the system user running the runtime.
-- Access to Studio, GitHub, model services, and package registries.
+- Access to Studio, your code host, model services, and package registries.
 - Chromium and its system dependencies for tasks that verify the application UI.
 
 Confirm that your coding tool can respond in the terminal.
 
 > [!NOTE] Use a dedicated environment
 > We recommend installing the coding tools and runner in a separate container or virtual machine, isolated from Studio. Agents can read and write files accessible to the runtime's system user and run commands.
+
+### Install the CLI for your Git platform
+
+On the runtime machine, run `git --version` as the user that runs the service. Then install the CLI for the platform that hosts your project repository. Run the matching command below. It should print the version.
+
+| Git platform | Installation guide | Version check |
+| --- | --- | --- |
+| GitHub | [GitHub CLI](https://cli.github.com/) | `gh --version` |
+| GitLab | [GitLab CLI](https://docs.gitlab.com/cli/) | `glab --version` |
+| Gitea | [Gitea CLI](https://docs.gitea.com/cli/installation/) | `gt --version` |
 
 ## Add a shared runtime
 

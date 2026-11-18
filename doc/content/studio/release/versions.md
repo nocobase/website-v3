@@ -26,4 +26,4 @@ Studio discovers new versions through webhooks and polling. Changing a release l
 
 An artifact can be an application archive or an image. NocoBase applications produce deployment archives with `pnpm build --tar`. CI or a Coding Agent builds images and pushes them to a registry.
 
-From the version list, inspect artifacts, download archives, or open deployment actions. See [Checks and CI](../configure/checks.md) for builds and uploads, [Hosted environments](../admin/environments.md) for testing, and [Production delivery](../project/release.md) for production.
+From the version list, inspect artifacts, download archives, or open deployment actions. See [Configure repository checks and CI](../configure/checks.md) for builds and uploads, [Hosted environments](../admin/environments.md) for testing, and [Production delivery](../project/release.md) for production.

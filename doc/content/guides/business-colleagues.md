@@ -45,6 +45,6 @@ Don't show retired devices in the register by default, but let people filter by 
 
 ## 4. Xu Ning accepts the result
 
-Once the issue moves to In review, Xu Ning reads the delivery report and screenshots and tries it in the preview: submit a retirement request for a device an employee still has and check that it's blocked; after the device is returned, submit it again, and once it's approved, check that the device no longer appears among the devices available for request. If it works as expected, Xu Ning clicks **Merge**. See [Accept the result](../studio/use/accept.md).
+Once the issue moves to In review, Xu Ning reads the delivery report and screenshots and tries it in the preview: submit a retirement request for a device an employee still has and check that it's blocked; after the device is returned, submit it again, and once it's approved, check that the device no longer appears among the devices available for request. If it works as expected, Xu Ning clicks **Merge**. See [Accept a task](../studio/use/accept.md).
 
 **Done when**: the "Device retirement" issue is Done, and Xu Ning answered every business question directly.

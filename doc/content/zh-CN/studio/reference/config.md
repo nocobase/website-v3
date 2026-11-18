@@ -3,7 +3,7 @@ title: 配置项
 description: 查询 Studio 的 config.yml 字段、上传限制和环境变量。
 ---
 
-Studio 的配置保存在部署目录的 `config.yml`，容器读取挂载后的 `/app/config.yml`。从交付镜像提取模板的方法见[部署 Studio](../setup/install.md)。
+Studio 的配置保存在部署目录的 `config.yml`，容器读取挂载后的 `/app/config.yml`。从Studio 镜像提取模板的方法见[部署 Studio](../setup/install.md)。
 
 ## 使用 config.yml
 
@@ -38,6 +38,8 @@ Studio 默认访问路径为 `/main`。连接运行环境和 CLI 时，使用 `h
 PostgreSQL 的完整示例见[部署 Studio](../setup/install.md)。连接已有数据库时，使用实际的主机、端口和账号。
 
 建议在 PostgreSQL 服务端关闭 JIT，配置方法见[启动服务](../setup/install.md#启动服务)。
+
+使用 KingbaseES 时，数据库须运行在 PostgreSQL 兼容模式（`DB_MODE=pg`）。将 `dialect` 设为 `kingbase`，并按实例填写端口、数据库名和 schema。
 
 ## 管理员与登录
 
@@ -116,7 +118,9 @@ Git 连接和授权在界面中配置，见[代码平台](../configure/git.md)�
 | --- | --- |
 | `releases.artifact` | 产物存储，默认 `/app/storage/releases/artifacts`；独立于 `drive.default` |
 | `releases.maxArtifactSizeMB` | 单个发布产物的大小上限，默认 `256` MiB；不使用附件的 `maxFileSizeMb` |
-| `releases.host.memoryBudget` | `targetRatio` 默认 `0.7`，`appMemoryMb` 默认 `320`，`reserveMb` 默认 `0`；按应用峰值和服务器资源调整 |
+| `releases.host.memoryBudget` | `targetRatio` 默认 `0.85`，`appMemoryMb` 默认 `320`，`reserveMb` 默认 `0`；按应用峰值和服务器资源调整 |
+| `releases.host.artifactRead.idleTimeoutMs`, `releases.host.artifactRead.timeoutMs` | 从存储读取压缩包时，连续无数据默认等待 60 秒，单次读取总时限默认 10 分钟 |
+| `releases.host.artifactWorker.timeoutMs` | 压缩包校验和解压各自的执行时限，默认 120 秒 |
 | `releases.host.maxActiveApps` | 可选的运行中应用数量上限；仍需满足内存检查 |
 | `releases.host.launchPrefix` | 启动预览进程的命令前缀，可用于切换到不能读取 Studio 配置的系统用户 |
 | `releases.docker` | `enabled: true` 启用 Docker 运行方式；配置固定的入口端口和反向代理 |
@@ -156,6 +160,6 @@ Compose 的 `.env` 用于替换 Compose 文件中的变量，不会自动传入 
 | `API_BODY_LIMIT` / `API_TIMEOUT` | `api.bodyLimit` / `api.timeout` |
 | `STUDIO_MANAGER_IDLE_MINUTES` / `STUDIO_MANAGER_IDLE_SWEEP_MINUTES` | `studio.agents.managerIdleMinutes` / `managerIdleSweepMinutes` |
 | `RELEASES_HOST_ENABLED` | `releases.host.enabled` |
-| `APP_CONFIG_FILE` | 启动时读取的配置文件路径；交付镜像默认 `/app/config.yml` |
-| `APP_BASE_PATH` | 启动时的访问路径；交付镜像默认 `/main` |
-| `APP_SERVER_HOST` / `APP_SERVER_PORT` | 监听地址与端口；交付镜像默认 `0.0.0.0` / `13000` |
+| `APP_CONFIG_FILE` | 启动时读取的配置文件路径；Studio 镜像默认 `/app/config.yml` |
+| `APP_BASE_PATH` | 启动时的访问路径；Studio 镜像默认 `/main` |
+| `APP_SERVER_HOST` / `APP_SERVER_PORT` | 监听地址与端口；Studio 镜像默认 `0.0.0.0` / `13000` |

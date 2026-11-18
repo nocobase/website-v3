@@ -18,6 +18,8 @@ For runner registration, logs, updates, and removal, see [nocobase-runner comman
 
 See [Personal runtimes](../join/personal-runtime.md) for member setup. Variables restricted to shared runtimes are not sent to personal runtimes.
 
+When several machines report the same tool and model, the Agent list shows one entry. Studio assigns development work to an eligible runtime available to the task owner. Open the run in the task history to see the model and runtime used.
+
 ## Adjust tools and concurrency
 
 Open runtime details to change its name, enabled coding tools, and maximum concurrency. Allow for machine resources, project build costs, and model quotas. Start with one slot when connecting a new runtime.

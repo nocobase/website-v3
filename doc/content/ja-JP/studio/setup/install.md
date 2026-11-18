@@ -3,28 +3,28 @@ title: Studio をデプロイする
 description: Docker Compose で空の Studio インスタンスをデプロイし、データを永続化して、管理者としてサインインします。
 ---
 
-Studio と Studio EE は商用製品です。イメージとアクセス許可については[お問い合わせ](https://www.nocobase.com/ja-JP/contact/)ください。品質管理は Studio EE で利用できます。
+この手順ではライセンスキーが不要なコミュニティ版（CE）を使います。他のエディションの入手方法は[エディションを選ぶ](index.md#エディションを選ぶ)を参照してください。
 
 このガイドでは、PostgreSQL を使う Studio インスタンスを 1 つデプロイします。既存のデータベースを使うこともできます。[設定リファレンス](../reference/config.md) を参照してください。
 
 ## 環境を準備する
 
 - Docker と Docker Compose が使えるサーバー。イメージは Linux の amd64 と arm64 に対応しています。
-- 提供された Studio のイメージ。オフラインのイメージアーカイブの場合は `docker load -i <archive>` を使います。
+- サーバーからイメージレジストリにアクセスできること。オフラインの場合は `docker load -i <archive>` でイメージを読み込みます。
 - 固定のアドレス。チームで使う場合はドメインと HTTPS を使います。ローカルで試すだけなら `http://localhost:13000` で十分です。
 
 コーディングツールは別の [ランタイム](shared-runtimes.md) で動作し、あとから接続します。単一インスタンスでは Redis は不要です。チームに使い始めてもらう前に、ファイルと成果物のストレージ、招待メール、パスワード再設定メールを準備してください。
 
 ## 設定を準備する
 
-提供されたイメージから設定テンプレートを取り出します。プレースホルダーを、正確なバージョンを含む完全なイメージ名に置き換えてください。
+[Docker Hub の CE 公式イメージ](https://hub.docker.com/r/nocobase/studio-ce)から設定テンプレートを取り出します。
 
 ```bash
 mkdir studio
 cd studio
 mkdir storage
 
-docker run --rm --entrypoint cat '<supplied-image-name-and-version>' \
+docker run --rm --entrypoint cat nocobase/studio-ce:latest \
   /app/config.example.yml > config.yml
 ```
 
@@ -156,12 +156,12 @@ auth:
 
 ## サービスを起動する
 
-同じディレクトリに `docker-compose.yml` を作成します。イメージ名を置き換え、`POSTGRES_DB`、`POSTGRES_USER`、`POSTGRES_PASSWORD` に `config.yml` と同じデータベース名、ユーザー名、パスワードを設定します。
+同じディレクトリに `docker-compose.yml` を作成します。`POSTGRES_DB`、`POSTGRES_USER`、`POSTGRES_PASSWORD` には、`config.yml` と同じデータベース名、ユーザー名、パスワードを設定します。
 
 ```yaml
 services:
   studio:
-    image: <supplied-image-name-and-version>
+    image: nocobase/studio-ce:latest
     init: true
     restart: unless-stopped
     depends_on:
@@ -260,9 +260,9 @@ docker compose up -d --force-recreate studio
 
 **完了の条件**：管理者がサインインでき、プロジェクト一覧が空で、サインインページに登録用のリンクがないこと。runner と CLI を接続するときは、`/main` を含む完全な URL を使います。
 
-License Key の入力を求められたら、製品とともに提供されたキーを入力します。Studio EE には Enterprise Key が必要です。管理者は **Settings › License** でライセンスと更新を確認できます。アプリの初期化で商用パッケージが必要な場合は、提供されたアクセス認証情報もここで設定します。
+プロフェッショナル版とエンタープライズ版では、提供されたライセンスキーを入力します。管理者は **Settings › License** でライセンスと更新を確認できます。アプリの初期化に商用パッケージが必要な場合は、ここで認証情報を設定します。
 
-![初回サインイン後の空のプロジェクト一覧](https://static-docs.nocobase.com/studio-en-empty-projects-20261111-normal-2x.webp)
+![初回サインイン後の空のプロジェクト一覧](/assets/studio/ce-empty-projects-en.webp)
 
 チームに使い始めてもらう前に、次のことができるか確認します。
 
@@ -278,8 +278,8 @@ License Key の入力を求められたら、製品とともに提供された�
 
 | 症状 | 確認すること |
 | --- | --- |
-| イメージへのアクセスが拒否される | 提供されたバージョンとアクセス許可を確認します。必要に応じてお問い合わせください |
-| イメージのダウンロードがタイムアウトする | Docker サービスのプロキシと、提供されたダウンロード先へのアクセスを確認します |
+| イメージへのアクセスが拒否される | リポジトリ名とバージョンタグを確認します。プロフェッショナル版またはエンタープライズ版の場合は、提供されたレジストリへのアクセス権も確認します |
+| ダウンロードがタイムアウトする | Docker のプロキシ設定と、サーバーからレジストリへのネットワーク接続を確認します |
 | コンテナが再起動を繰り返す | `docker compose logs --tail=100 studio` を実行し、データベースと設定のエラーを確認します |
 | 設定ファイルを読み込めない | `config.yml` が、Docker が作成したディレクトリではなく、イメージからコピーしたファイルであることを確認します |
 | ストレージに書き込めない | UID 1000 が `storage` に書き込めることを確認します |

@@ -3,28 +3,28 @@ title: 部署 Studio
 description: 使用 Docker Compose 部署空白 Studio，配置持久化数据，并登录管理员账号。
 ---
 
-Studio 和 Studio EE 均为商业产品，请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取镜像和访问授权。质量管理由 Studio EE 提供。
+本指南使用社区版（CE）镜像，无需 License Key。其他版本的获取方式见[选择版本](index.md#选择版本)。
 
 本文使用 Docker Compose 部署单个 Studio 实例，数据库以 PostgreSQL 为例。已有数据库可以直接接入，配置项见[配置参考](../reference/config.md)。
 
 ## 准备环境
 
 - 一台装有 Docker 和 Docker Compose 的服务器。镜像支持 Linux amd64 和 arm64。
-- 已获取的 Studio 镜像。服务器需要能访问交付说明中的镜像服务；离线交付的镜像包用 `docker load -i <镜像包>` 导入。
+- 部署服务器可访问镜像仓库。离线安装时，先用 `docker load -i <镜像包>` 导入镜像。
 - 一个固定的访问地址。团队使用时配置域名和 HTTPS；本机试用可以先用 `http://localhost:13000`。
 
 编码工具安装在[运行环境](shared-runtimes.md)上，后续再接入。单实例不需要 Redis。团队使用前，还需要准备文件与产物存储，以及邀请和密码重置邮件。
 
 ## 准备配置文件
 
-从交付的镜像中提取配置模板。将命令中的镜像名称替换为包含具体版本号的完整名称：
+从社区版镜像提取配置模板。
 
 ```bash
 mkdir studio
 cd studio
 mkdir storage
 
-docker run --rm --entrypoint cat '<supplied-image-name-and-version>' \
+docker run --rm --entrypoint cat registry.cn-shanghai.aliyuncs.com/nocobase/studio-ce:latest \
   /app/config.example.yml > config.yml
 ```
 
@@ -156,12 +156,12 @@ auth:
 
 ## 启动服务
 
-在同一目录创建 `docker-compose.yml`。替换镜像名称，将 `POSTGRES_DB`、`POSTGRES_USER`、`POSTGRES_PASSWORD` 分别填为 `config.yml` 中相同的数据库名、用户名和密码：
+在同一目录创建 `docker-compose.yml`。将 `POSTGRES_DB`、`POSTGRES_USER`、`POSTGRES_PASSWORD` 分别填为 `config.yml` 中的数据库名、用户名和密码。
 
 ```yaml
 services:
   studio:
-    image: <supplied-image-name-and-version>
+    image: registry.cn-shanghai.aliyuncs.com/nocobase/studio-ce:latest
     init: true
     restart: unless-stopped
     depends_on:
@@ -233,11 +233,11 @@ curl -fsS http://localhost:13000/main/api/healthz
 
 初始管理员配置仅在首次安装时生效。以后修改密码，使用「个人设置 › 账号与安全」。
 
-出现授权提示时，填写交付的 License Key。Studio EE 需要企业版授权。管理员可在「设置 › 授权」查看授权状态和可用更新；初始化应用需要商业依赖时，也在这里配置交付的依赖访问凭据。
+专业版和企业版使用交付的 License Key。管理员可在「设置 › 授权」查看授权状态和可用更新。初始化应用需要商业依赖时，在此配置对应的依赖访问凭据。
 
 **完成的标志**：管理员可以登录，项目列表为空，登录页没有注册入口。后续连接执行机和 CLI 时，使用包含 `/main` 的完整地址。
 
-![首次登录后的空白项目列表](https://static-docs.nocobase.com/studio-zh-empty-projects-20261111-normal-2x.webp)
+![首次登录后的空白项目列表](/assets/studio/ce-empty-projects-zh.webp)
 
 团队使用前，再验证以下结果：
 
@@ -278,8 +278,8 @@ docker compose up -d --force-recreate studio
 
 | 现象 | 检查方法 |
 | --- | --- |
-| 镜像拉取提示无权访问 | 核对交付的版本和访问授权；无法确认时联系我们 |
-| 镜像下载超时 | 检查 Docker 服务的代理和网络，放行交付说明中的下载地址 |
+| 拉取镜像时提示无权访问 | 核对镜像仓库名和版本标签。使用专业版或企业版时，检查交付的仓库访问权限 |
+| 镜像下载超时 | 检查 Docker 服务的代理设置，以及部署服务器到所选镜像仓库的网络连接 |
 | 容器反复重启 | 运行 `docker compose logs --tail=100 studio`，检查数据库连接和配置错误 |
 | 提示配置文件不存在或无法读取 | 确认 `config.yml` 是从镜像提取的文件，不是 Docker 自动创建的目录 |
 | 提示数据目录无写入权限 | 确认 `storage` 可由 UID 1000 写入 |

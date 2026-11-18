@@ -26,8 +26,8 @@ Scenario language controls newly generated core scenarios. If unset, it follows 
 | --- | --- |
 | Functional | Expected behavior of business tasks and core scenarios |
 | Permissions | Account, role, and data access boundaries |
-| Security | Dependency vulnerabilities and their impact |
-| Performance | Performance risks in code; Lighthouse measurements for enabled daily, release, and project tests |
+| Security | Dependency vulnerabilities and findings reported by security scanners |
+| Performance | Page loads and API responses. Review measurements, test conditions, and risks found during code inspection |
 | Code quality | Maintainability issues and slow or unstable tests |
 
 Functional checks are always enabled. Choose the applicable test types and Skill for other dimensions. To add a dimension, enter its name, choose a library Skill, and select the test types.

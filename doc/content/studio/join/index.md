@@ -31,4 +31,4 @@ Runner Agent and local Coding Agents can both use the team's shared runtime to e
 
 - [Follow progress](../use/follow-progress.md): check the current step, handoffs, and run history.
 - [Answer questions](../use/answer.md): confirm rules, add information, or resolve execution problems.
-- [Accept a result](../use/accept.md): review the delivery, then merge or request changes.
+- [Accept a task](../use/accept.md): review the delivery, then merge or request changes.

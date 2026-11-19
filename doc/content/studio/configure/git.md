@@ -38,15 +38,15 @@ Creating a group token requires the Owner role in that group. On GitLab.com, gro
 
 1. Open the target group in GitLab. Go to **Settings › Access tokens** and select **Add new token**. Give the token a descriptive name.
 
-   ![Add a token in the target group’s access token settings](/assets/studio/group-token-settings.webp)
+   ![Add a token in the target group’s access token settings](https://static-docs.nocobase.com/studio-en-group-token-settings-20261119-7d9d3999c1.webp)
 
 2. Select the `api` scope. The Developer role can push development branches, open merge requests, and read pipelines. Choose Maintainer if Studio will create repository webhooks.
 
-   ![Select Maintainer for automatic webhooks and enable the api scope](/assets/studio/group-token-permissions.webp)
+   ![Select Maintainer for automatic webhooks and enable the api scope](https://static-docs.nocobase.com/studio-en-group-token-permissions-20261119-bd31e03fc3.webp)
 
 3. Add a GitLab connection in Studio. Enter the instance URL, group path, and token. Save, check the group and expiration date, then link the repository in your project.
 
-   ![Enter the GitLab host and full group path in Studio](/assets/studio/studio-gitlab-en.webp)
+   ![Enter the GitLab host and full group path in Studio](https://static-docs.nocobase.com/studio-en-gitlab-20261119-49dfcbb2d9.webp)
 
 Members can connect their own Git account in account settings. That account needs access to the repository for the operations it performs.
 

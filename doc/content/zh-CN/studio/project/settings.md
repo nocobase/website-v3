@@ -34,7 +34,7 @@ description: 管理项目成员、代码仓库、运行变量和默认技能。
 
 打开项目设置的「常规」，选择「默认开发负责人」。可以选任务创建人、项目负责人或指定项目成员。此设置用于新任务，成员创建任务时可另选负责人。业务与开发分工的操作见[多角色流程](../use/multi-role-workflow.md)。
 
-![选择新任务默认指派给谁](/assets/studio/multi-role-default-owner-zh.webp)
+![选择新任务默认指派给谁](https://static-docs.nocobase.com/studio-zh-multi-role-default-owner-20261119-663a272543.webp)
 
 ### 接入已有仓库
 

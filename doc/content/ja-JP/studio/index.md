@@ -11,7 +11,7 @@ NocoBase Studio は、チームのための AI 開発プラットフォームで
 
 CLI を使うと、メンバーはローカルのコーディングエージェントからタスクを作成して追跡でき、実行は Studio が取りまとめます。Studio は自社のインフラで稼働し、コードとデータは自社が所有します。
 
-![Studio は複数のアプリにまたがってエージェントを取りまとめ、新しい要件やフィードバックが継続的な開発につながります](/assets/studio/architecture-en.svg)
+![Studio は複数のアプリにまたがってエージェントを取りまとめ、新しい要件やフィードバックが継続的な開発につながります](https://static-docs.nocobase.com/studio-en-architecture-20261119-61e212f336.svg)
 
 ![コーディネーターエージェントが仕事を割り振り、引き継ぎ、結果、レビューをタスクに残して人の検収につなげます](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 

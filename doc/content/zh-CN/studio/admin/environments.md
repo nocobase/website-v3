@@ -46,7 +46,7 @@ description: 配置预览和测试应用的运行方式、变量与生命周期�
 
 4. 点「应用并重启」。打开启动日志检查数据库连接，再到测试应用中新建一条记录，刷新后确认可以读回。
 
-   ![检查应用变量后，点「应用并重启」](/assets/studio/studio-app-vars-zh.webp)
+   ![检查应用变量后，点「应用并重启」](https://static-docs.nocobase.com/studio-zh-app-vars-20261119-841feaef9f.webp)
 
 这些变量只作用于测试应用。切换数据库前，需要保留的 SQLite 数据请另行迁移。
 

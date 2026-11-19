@@ -38,15 +38,15 @@ description: 连接团队的 Git 平台，配置仓库访问和状态同步。
 
 1. 在 GitLab 打开目标群组，进入 **Settings › Access tokens**，点 **Add new token**。令牌名称可自定。
 
-   ![在目标群组的访问令牌页添加令牌](/assets/studio/group-token-settings.webp)
+   ![在目标群组的访问令牌页添加令牌](https://static-docs.nocobase.com/studio-en-group-token-settings-20261119-7d9d3999c1.webp)
 
 2. 选择 `api` 范围。推送开发分支、创建 MR 和读取流水线可用 Developer 角色。需要 Studio 自动创建仓库 Webhook 时，选择 Maintainer。
 
-   ![自动创建 Webhook 时选择 Maintainer，同时勾选 api](/assets/studio/group-token-permissions.webp)
+   ![自动创建 Webhook 时选择 Maintainer，同时勾选 api](https://static-docs.nocobase.com/studio-en-group-token-permissions-20261119-bd31e03fc3.webp)
 
 3. 在 Studio 添加 GitLab 连接，填入实例地址、群组路径和刚创建的令牌。保存后核对群组及到期时间，再到项目中关联仓库。
 
-   ![填写 GitLab 主机地址与群组的完整路径](/assets/studio/studio-gitlab-zh.webp)
+   ![填写 GitLab 主机地址与群组的完整路径](https://static-docs.nocobase.com/studio-zh-gitlab-20261119-c0ec43b2e2.webp)
 
 成员需要以自己的身份操作时，可在个人设置中连接 Git 账号。已连接的个人账号也需要相应的仓库权限。
 

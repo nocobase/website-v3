@@ -34,7 +34,7 @@ The first repository is the primary repository. Removing a link does not delete 
 
 Open the general project settings and set **Default owner** to the task creator, project lead, or a specific project member. This applies to new tasks. Members can override it when creating a task. See [Multi-role workflow](../use/multi-role-workflow.md).
 
-![Choose the default owner for new issues](/assets/studio/multi-role-default-owner-en.webp)
+![Choose the default owner for new issues](https://static-docs.nocobase.com/studio-en-multi-role-default-owner-20261119-d223c51313.webp)
 
 ### Connect an existing repository
 

@@ -262,7 +262,7 @@ docker compose up -d --force-recreate studio
 
 プロフェッショナル版とエンタープライズ版では、提供されたライセンスキーを入力します。管理者は **Settings › License** でライセンスと更新を確認できます。アプリの初期化に商用パッケージが必要な場合は、ここで認証情報を設定します。
 
-![初回サインイン後の空のプロジェクト一覧](/assets/studio/ce-empty-projects-en.webp)
+![初回サインイン後の空のプロジェクト一覧](https://static-docs.nocobase.com/studio-en-ce-empty-projects-20261119-7bcc68297d.webp)
 
 チームに使い始めてもらう前に、次のことができるか確認します。
 

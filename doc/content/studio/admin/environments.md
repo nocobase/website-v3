@@ -46,7 +46,7 @@ For example, to connect an inventory test application to PostgreSQL:
 
 4. Select **Apply & restart**. Check the startup log for database connection errors. Create a record in the test application, then refresh and read it back.
 
-   ![Apply the variable changes and restart the test application](/assets/studio/studio-app-vars-en.webp)
+   ![Apply the variable changes and restart the test application](https://static-docs.nocobase.com/studio-en-app-vars-20261119-6810922c1e.webp)
 
 These values apply to the test application. Migrate any SQLite data you want to keep before switching databases.
 

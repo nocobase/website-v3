@@ -11,7 +11,7 @@ Studio connects Coding Agents and models from multiple providers. The Lead Agent
 
 The CLI lets members create and follow tasks from local Coding Agents, with Studio coordinating execution. Studio runs on your infrastructure, and your organization owns the code and data.
 
-![Studio coordinates Agents across applications, with new requests and feedback feeding continuous development](/assets/studio/architecture-en.svg)
+![Studio coordinates Agents across applications, with new requests and feedback feeding continuous development](https://static-docs.nocobase.com/studio-en-architecture-20261119-61e212f336.svg)
 
 ![The Lead Agent assigns work and keeps handoffs, results, and reviews with the task for human acceptance](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 

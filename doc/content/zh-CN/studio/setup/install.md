@@ -237,7 +237,7 @@ curl -fsS http://localhost:13000/main/api/healthz
 
 **完成的标志**：管理员可以登录，项目列表为空，登录页没有注册入口。后续连接执行机和 CLI 时，使用包含 `/main` 的完整地址。
 
-![首次登录后的空白项目列表](/assets/studio/ce-empty-projects-zh.webp)
+![首次登录后的空白项目列表](https://static-docs.nocobase.com/studio-zh-ce-empty-projects-20261119-1348a767f8.webp)
 
 团队使用前，再验证以下结果：
 

@@ -38,15 +38,15 @@ GitHub App で GitHub または GitHub Enterprise Server に接続します。�
 
 1. GitLab で対象グループの **Settings › Access tokens** を開き、**Add new token** を選びます。トークンには任意の名前を付けます。
 
-   ![対象グループのアクセストークン画面でトークンを追加](/assets/studio/group-token-settings.webp)
+   ![対象グループのアクセストークン画面でトークンを追加](https://static-docs.nocobase.com/studio-en-group-token-settings-20261119-7d9d3999c1.webp)
 
 2. スコープに `api` を選びます。開発ブランチへのプッシュ、MR の作成、パイプラインの参照には Developer ロールを使えます。Studio で Webhook を自動作成する場合は Maintainer を選びます。
 
-   ![Webhook を自動作成する場合は Maintainer と api を選択](/assets/studio/group-token-permissions.webp)
+   ![Webhook を自動作成する場合は Maintainer と api を選択](https://static-docs.nocobase.com/studio-en-group-token-permissions-20261119-bd31e03fc3.webp)
 
 3. Studio で GitLab 接続を追加し、インスタンス URL、グループのパス、トークンを入力します。保存後にグループと有効期限を確認し、プロジェクトでリポジトリを関連付けます。
 
-   ![Studio に GitLab のホストとグループのフルパスを入力](/assets/studio/studio-gitlab-en.webp)
+   ![Studio に GitLab のホストとグループのフルパスを入力](https://static-docs.nocobase.com/studio-en-gitlab-20261119-49dfcbb2d9.webp)
 
 メンバーは個人設定で自分の Git アカウントも接続できます。そのアカウントにも、実行する操作に応じたリポジトリ権限が必要です。
 

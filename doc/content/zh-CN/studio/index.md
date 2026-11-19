@@ -11,7 +11,7 @@ NocoBase Studio 是面向团队的 AI 开发治理平台，让人与 Agent 在�
 
 Studio 提供完整的命令行工具，团队可以在本地 Coding Agent 中发起和跟进任务，由 Studio 统一执行与治理。Studio 部署在企业自己的服务器上，代码与数据归企业所有。
 
-![Studio 组织 Agent 推进多个应用的开发与交付，新需求与反馈持续进入任务](/assets/studio/architecture.svg)
+![Studio 组织 Agent 推进多个应用的开发与交付，新需求与反馈持续进入任务](https://static-docs.nocobase.com/studio-zh-architecture-20261119-58581f0dbf.svg)
 
 ![调度 Agent 把需求交给擅长的 Agent 推进，每次交接、执行结果和评审都留在任务里，最后交给人验收](https://static-docs.nocobase.com/studio-zh-req-accept-20261111-normal-2x.webp)
 

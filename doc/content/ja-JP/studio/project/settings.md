@@ -34,7 +34,7 @@ description: "メンバー、リポジトリ、実行変数、既定のスキル
 
 プロジェクトの一般設定で **Default owner** を選びます。新規タスクの作成者、プロジェクト責任者、指定したメンバーのいずれかに設定できます。タスクの作成時には別の担当者も指定できます。詳しくは[複数の担当者でタスクを進める](../use/multi-role-workflow.md)を参照してください。
 
-![新しいタスクの既定の担当者を選ぶ](/assets/studio/multi-role-default-owner-en.webp)
+![新しいタスクの既定の担当者を選ぶ](https://static-docs.nocobase.com/studio-en-multi-role-default-owner-20261119-d223c51313.webp)
 
 ### 既存リポジトリを接続する
 

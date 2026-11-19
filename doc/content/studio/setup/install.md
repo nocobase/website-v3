@@ -262,7 +262,7 @@ For Professional or Enterprise, enter the license key supplied with your image. 
 
 **Done when**: the administrator can sign in, the project list is empty, and the sign-in page has no registration link. Use the complete URL including `/main` when connecting runners and the CLI.
 
-![An empty project list after the first sign-in](/assets/studio/ce-empty-projects-en.webp)
+![An empty project list after the first sign-in](https://static-docs.nocobase.com/studio-en-ce-empty-projects-20261119-7bcc68297d.webp)
 
 Before onboarding your team, verify that you can:
 

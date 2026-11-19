@@ -3,7 +3,7 @@ title: 配置检查与预览
 description: 选择 Agent 自检、GitHub Actions 或外部 CI，验证任务改动并提供预览。
 ---
 
-项目初始化完成后，为仓库选择检查方式，并准备 PR 预览。无需搭建 CI 流水线也可以使用 Agent 自检。
+新仓库默认使用 Agent 自检。团队已有流水线时，可在仓库设置中切换到代码平台或外部 CI。
 
 ## 选择检查方式
 
@@ -28,8 +28,8 @@ description: 选择 Agent 自检、GitHub Actions 或外部 CI，验证任务改
 
 GitHub Actions 必须能够访问 Studio。Studio 只有本机或内网地址时，使用可访问它的自托管执行机，或先配置可达的 HTTPS 地址。
 
-手动配置、外部 CI、分支或标签触发，以及密钥维护，见[检查与 CI](../configure/checks.md)。
+手动配置、外部 CI、分支或标签触发，以及密钥维护，见[配置仓库检查与 CI](../configure/checks.md)。
 
 ## 下一步
 
-配置完成后，[邀请成员](invite.md)加入项目。外部 CI、其他触发方式和密钥维护可随时在[检查与 CI](../configure/checks.md)中查阅。
+配置完成后，[邀请成员](invite.md)加入项目。外部 CI、其他触发方式和密钥维护可随时在[配置仓库检查与 CI](../configure/checks.md)中查阅。

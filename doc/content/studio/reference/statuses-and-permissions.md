@@ -41,4 +41,4 @@ Agents are limited by both the represented member's permissions and the operatio
 
 Execution Agents can commit, push branches, and create PRs. They cannot accept tasks, merge PRs, or manage members and roles. Knowledge is read-only; project memory changes are reviewed in task PRs.
 
-Preview publishing also depends on the repository's check source. With Agent self-check selected, an Agent can publish the task PR's preview. See [Checks and CI](../configure/checks.md).
+Preview publishing also depends on the repository's check source. With Agent self-check selected, an Agent can publish the task PR's preview. See [Configure repository checks and CI](../configure/checks.md).

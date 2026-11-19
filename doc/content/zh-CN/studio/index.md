@@ -22,7 +22,7 @@ Studio 提供完整的命令行工具，团队可以在本地 Coding Agent 中�
 - [**介绍**](intro/what-is-studio.md)
   Studio 解决什么问题，一个需求从提出到上线怎样完成，Agent 团队怎样分工。
 - [**安装与配置**](setup/index.md)
-  管理员部署 Studio，准备 Git 平台、运行环境、Agent、项目和检查方式，再邀请成员。
+  从社区版开始部署，连接 Git 平台与运行环境，配置首个项目并邀请成员。
 - [**开始使用**](join/index.md)
   成员接受邀请并登录，提出需求，跟进开发，验收结果。
 - [**任务开发**](use/raise-a-request.md)

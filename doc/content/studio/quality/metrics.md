@@ -14,7 +14,10 @@ In **Quality › Metrics**, choose a test type and time range to inspect results
 | Task, scenario, and checkpoint outcomes | Explicit findings and evidence submitted by each dimension |
 | Automated passes, failures, skips, and duration | Uploaded reports from Vitest, Playwright, and other test runners |
 | Dependency vulnerabilities | Dependency audit output, separated into production and development dependencies |
-| Permission issues, performance risks, and code quality issues | Recorded checks from the corresponding dimensions |
+| Page and API performance | Compare measurements for the same page or endpoint |
+| Permission checks | Compare expected and observed access by role and action. Check which cases lack evidence |
+| Scan findings | Inspect results submitted in SARIF format and the affected locations |
+| Code quality | Findings and locations recorded in the code quality report |
 | Follow-up tasks | Linked defects, questions, test cases, scenarios, and cleanup tasks |
 
 Missing reports produce no corresponding metrics. An empty value does not mean zero problems. Unverified and not applicable do not mean passed.

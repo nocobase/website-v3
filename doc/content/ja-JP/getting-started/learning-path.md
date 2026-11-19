@@ -30,7 +30,7 @@ metaDescription: "ドキュメントの全体像と、アプリ、Studio、プ�
 
 ## Studio を利用、管理する
 
-- メンバー：[要件の提出](../studio/use/raise-a-request.md)と[セッション](../studio/use/sessions.md)から始め、[進捗の確認](../studio/use/follow-progress.md)、[質問への回答](../studio/use/answer.md)、[検収](../studio/use/accept.md)を参照します。
+- メンバー：[要件の提出](../studio/use/raise-a-request.md)と[セッション](../studio/use/sessions.md)から始め、[進捗の確認](../studio/use/follow-progress.md)、[質問への回答](../studio/use/answer.md)、[タスクを検収する](../studio/use/accept.md)を参照します。
 - プロジェクト責任者：[設定](../studio/project/settings.md)、[ナレッジベース](../studio/project/knowledge-base.md)、[プロジェクトメモリ](../studio/project/project-memory.md)、[進捗](../studio/project/progress.md)に続き、[チェックとレビュー](../studio/project/checks-and-review.md)、[リリース](../studio/release/overview.md)を参照します。
 - 管理者：[インストール](../studio/setup/index.md)後、[エージェント](../studio/configure/agents.md)、[実行環境](../studio/configure/runtimes.md)、[スキル](../studio/project/skills.md)、[使用量](../studio/project/usage.md)、[メンバーと役割](../studio/admin/members-and-roles.md)、[アップグレードとバックアップ](../studio/admin/upgrade-and-backup.md)を管理します。
 

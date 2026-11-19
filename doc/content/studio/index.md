@@ -22,7 +22,7 @@ The CLI lets members create and follow tasks from local Coding Agents, with Stud
 - [**Introduction**](intro/what-is-studio.md)
   What Studio does, how a request reaches delivery, and how Agents divide the work.
 - [**Install and configure**](setup/index.md)
-  Deploy Studio, connect Git and runtimes, configure Agents and a project, prepare checks, and invite members.
+  Deploy Community Edition, connect Git and a runtime, configure your first project, and invite members.
 - [**Get started**](join/index.md)
   Accept an invitation, sign in, submit a request, and accept the result.
 - [**Task development**](use/raise-a-request.md)

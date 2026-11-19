@@ -13,11 +13,21 @@ Follow https://docs.nocobase.com/studio/setup/ to install NocoBase Studio and co
 
 The Agent checks the target environment, asks for missing information, and follows the steps below to configure and verify the setup. Follow its prompts when sign-in or authorization requires your participation.
 
+## Choose an edition
+
+| Edition | When to use it |
+| --- | --- |
+| Community (CE) | Create tasks, coordinate development with Agents, and have the task owner accept the delivery |
+| Professional | Use the [multi-role workflow](../use/multi-role-workflow.md) to split responsibilities. The requester confirms requirements and accepts delivery. The owner starts development and merges the changes |
+| Enterprise (EE) | Includes Professional features and the Quality workspace for core scenarios, scheduled tests, reports, and follow-up work |
+
+[Contact us](https://www.nocobase.com/contact/) for Professional or Enterprise images and licenses.
+
 ## Before you begin
 
 This guide uses Docker Compose, GitHub, and one shared runtime. Prepare:
 
-- **Image access**: Studio is a commercial product. [Contact us](https://www.nocobase.com/contact/) for the image and access authorization.
+- **Studio image**. Community Edition is available on [Docker Hub](https://hub.docker.com/r/nocobase/studio-ce) as `nocobase/studio-ce:latest`.
 - **Deployment environment**: Server access and a URL for Studio. A local trial does not need a domain.
 - **Git account**: A GitHub account or organization where you can create repositories and install a GitHub App.
 - **Coding tools and model accounts**: For example, Claude Code or Codex. You can keep using existing accounts.
@@ -47,7 +57,7 @@ After [accepting an invitation and signing in](../join/sign-in.md), members [wal
 | Setting | Documentation |
 | --- | --- |
 | Model responsibilities, execution machines, and shared skills | Agent management: [Agents](../configure/agents.md), [Runtimes](../configure/runtimes.md), and [Skills](../project/skills.md) |
-| Check sources and CI pipelines | Quality management: [Checks and CI](../configure/checks.md) |
+| Check sources and CI pipelines | [Configure repository checks and CI](../configure/checks.md) |
 | Project information, members, and default skills | Project management: [Project settings](../project/settings.md) |
 | Git connections and other code platforms | Administration: [Code platforms](../configure/git.md) |
 | Databases, access URLs, and deployment parameters | Reference: [Configuration](../reference/config.md) |

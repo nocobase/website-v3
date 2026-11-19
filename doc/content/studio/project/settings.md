@@ -28,7 +28,13 @@ Change status, priority, and dates in the project properties.
 
 ![Configure checks, branch rules, and previews on each repository](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
 
-The first repository is the primary repository. Removing a link does not delete the repository on the Git platform. See [Checks and CI](../configure/checks.md) and [Skills](skills.md) for their configuration.
+The first repository is the primary repository. Removing a link does not delete the repository on the Git platform. See [Configure repository checks and CI](../configure/checks.md) and [Skills](skills.md) for their configuration.
+
+### Default owner
+
+Open the general project settings and set **Default owner** to the task creator, project lead, or a specific project member. This applies to new tasks. Members can override it when creating a task. See [Multi-role workflow](../use/multi-role-workflow.md).
+
+![Choose the default owner for new issues](/assets/studio/multi-role-default-owner-en.webp)
 
 ### Connect an existing repository
 

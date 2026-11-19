@@ -31,4 +31,4 @@ Runner Agent 和本地 Coding Agent 都可以使用团队共享的运行环境�
 
 - [跟进进展](../use/follow-progress.md)：看当前步骤、交接和运行记录。
 - [回答提问](../use/answer.md)：确认业务规则、补充资料或处理执行问题。
-- [验收](../use/accept.md)：检查交付报告和结果，合并或退回修改。
+- [任务验收](../use/accept.md)：检查交付报告和结果，合并或退回修改。

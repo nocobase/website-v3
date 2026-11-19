@@ -3,7 +3,7 @@ title: Quality overview
 description: Test each project, inspect evidence, and track follow-up work.
 ---
 
-Studio EE’s **Quality** workspace brings together project tests, core scenarios, reports, and follow-ups. [Contact us to obtain Studio EE](../setup/install.md).
+Quality management is available in Studio Enterprise Edition (EE). Use the Quality workspace to maintain core scenarios, run project tests, review reports and metrics, and create follow-up tasks. [Contact us for Enterprise Edition](https://www.nocobase.com/contact/).
 
 Open **Development › Quality** and select a project. Review its [settings](settings.md), then [start a test](runs.md). New projects have no automatic triggers.
 
@@ -26,4 +26,4 @@ Each test creates a native task. It keeps the test scope, frozen Skill versions,
 
 Agents check each dimension and link findings to follow-up tasks. Completing a test does not resolve those findings. Continue in [Follow-ups](follow-ups.md), then verify the changes in a later test.
 
-PR checks and code review still validate individual changes. Project quality tests examine a broader scope over time. See [Checks and review](../project/checks-and-review.md).
+PR checks and code review still validate individual changes. Project quality tests examine a broader scope over time. See [PR checks and code review](../project/checks-and-review.md).

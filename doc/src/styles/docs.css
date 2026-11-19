@@ -224,6 +224,94 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .request-flow .who.agent { background: #e5edff; color: #4169e1; }
 
 .prose .flow { padding: 0; }
+
+/* Task handoffs. The return line connects review back to development. */
+.prose .role-workflow {
+  --step-gap: 18px;
+  --return-line: #a46a23;
+  display: grid;
+  gap: var(--step-gap);
+  list-style: none;
+  max-width: 42rem;
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+.role-workflow .workflow-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: center;
+  column-gap: 1.3rem;
+  margin: 0;
+}
+.role-workflow .workflow-node {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--rule-2);
+  border-radius: 7px;
+  background: var(--paper);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.role-workflow .who.requester { color: #855115; background: #fff0d7; }
+.role-workflow .who.owner { color: #255d5b; background: #e4f3f1; }
+.role-workflow .workflow-stage:not(:last-child) .workflow-node::after {
+  content: "↓" / "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  color: var(--muted);
+  line-height: var(--step-gap);
+}
+.role-workflow .workflow-branch {
+  position: relative;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.role-workflow .workflow-branch b { display: block; }
+.role-workflow .workflow-branch::before {
+  content: "";
+  position: absolute;
+  right: calc(100% + 4px);
+  top: 50%;
+  width: calc(1.3rem - 5px);
+  border-top: 1px dashed var(--rule-2);
+}
+.role-workflow .work::before, .role-workflow .review::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  width: 16px;
+  border-left: 2px solid var(--return-line);
+}
+.role-workflow .work::before {
+  top: 50%;
+  bottom: calc(-1 * var(--step-gap));
+  border-top: 2px solid var(--return-line);
+  border-top-left-radius: 6px;
+}
+.role-workflow .review::before {
+  top: 0;
+  bottom: 50%;
+  border-bottom: 2px solid var(--return-line);
+  border-bottom-left-radius: 6px;
+}
+.role-workflow .work .workflow-node::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-block: 4px solid transparent;
+  border-left: 6px solid var(--return-line);
+}
+.role-workflow .review .workflow-branch b { color: var(--return-line); }
 .tag { display: inline-block; padding: 0 6px; border: 1px solid var(--rule-2); border-radius: 4px; font-size: 11.5px; line-height: 1.6; font-weight: 500; color: var(--muted); white-space: nowrap; }
 .tag.wip { border-color: transparent; background: var(--human-tint); color: var(--human-ink); }
 .tag.ok { border-color: transparent; background: var(--pass-tint); color: var(--pass-ink); }

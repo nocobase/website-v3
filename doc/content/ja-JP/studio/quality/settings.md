@@ -26,8 +26,8 @@ description: 実行時刻、条件、シナリオの言語、確認方法を設�
 | --- | --- |
 | Functional | 業務タスクとコアシナリオの期待する動作 |
 | Permissions | アカウント、ロール、データアクセスの境界 |
-| Security | 依存関係の脆弱性と影響 |
-| Performance | コード上の性能リスク。有効な場合、Daily、Release、Project テストで Lighthouse 測定も実行可能 |
+| Security | 依存関係の脆弱性とセキュリティスキャンの検出結果 |
+| Performance | 画面の読み込みと API 応答。実測値、計測条件、コード上のリスクを確認 |
 | Code quality | 保守性の問題、遅いテストや不安定なテスト |
 
 Functional は常に有効です。他の項目は適用するテスト種類と Skill を選びます。追加する場合は名前を入力し、ライブラリの Skill と適用するテスト種類を選びます。

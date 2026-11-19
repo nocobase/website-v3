@@ -1,26 +1,17 @@
 ---
-title: Checks and review
+title: PR checks and code review
 description: Follow check results, Agent reviews, and merge conditions.
 ---
 
 Before delivery, the Lead Agent arranges verification and code review according to the project's skills. The task owner reads the delivery report and decides whether to merge.
 
-For tests across completed tasks or the whole project, use [Quality](../quality/overview.md). These tests keep their own reports and follow-up tasks.
-
 ## Follow checks
 
-Open **Code & previews** on the task to see each PR's check source, results, and log links. The repository selects the source: code-host CI, external CI, or Agent self-check. See [Checks and CI](../configure/checks.md).
+Open **Code & previews** on the task to see each PR's check source, results, and log links. The repository selects the source: code-host CI, external CI, or Agent self-check. See [Configure repository checks and CI](../configure/checks.md).
 
 ![PR check results on a task](https://static-docs.nocobase.com/studio-en-req-preview-20261111-normal-2x.webp)
 
-Under **Project settings › Code repositories › Branch rules**, configure:
-
-- Whether failed required checks wake the Lead Agent.
-- Whether passing checks trigger the next step.
-- Whether PR conflicts trigger repair work.
-- Which checks are advisory and do not block normal merging in Studio.
-
-Checks not listed as advisory are required. The code host's branch protection still applies. When automatic wake-up is disabled, comment on the task to ask the Lead Agent to continue.
+If a required check fails, open its log. The Lead Agent arranges a fix when automatic follow-up is enabled. Otherwise, ask it to investigate in a task comment. Advisory checks do not block a normal merge in Studio.
 
 ## Arrange review
 
@@ -37,4 +28,4 @@ The Lead Agent returns blocking findings to the implementer. Unrelated problems 
 | Checks are pending, or the PR is conflicted or a draft | Wait or resolve the blocker |
 | The code host rejects the merge | Meet the platform's requirements |
 
-Agents cannot merge PRs. See [Accept a task](../use/accept.md) for the steps.
+Agents cannot merge PRs. See [Accept a task](../use/accept.md) for the steps. When the requester and owner are different people, the [requester must accept delivery](../use/multi-role-workflow.md) before the owner can merge.

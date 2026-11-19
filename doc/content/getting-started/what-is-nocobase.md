@@ -54,7 +54,7 @@ One person or a small team working on one or a few apps can open Claude Code, Co
 
 Use Studio when your team moves many projects and issues forward at once, or business experts need to raise requests and make decisions directly. The lead agent assigns design, development, testing, and review. Work reaches a person for acceptance after it passes checks and review, and deployments to protected environments need an approver's sign-off.
 
-Studio is provided in the commercial edition.
+Start with Studio Community Edition or [choose an edition](../studio/setup/index.md#choose-an-edition) for your team.
 
 ### Solution: ready-made business apps
 

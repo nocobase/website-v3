@@ -1,9 +1,9 @@
 ---
-title: Accept a result
+title: Accept a task
 description: Check the delivery report and working result, then merge or request changes.
 ---
 
-When a task is **In review**, its owner checks the delivery. Agents provide the report, verification records, and relevant screenshots. People decide whether to accept it.
+Check the delivery report and test the result against the acceptance criteria. Then merge the PR, complete the task, or request changes. In a [multi-role workflow](multi-role-workflow.md), the requester accepts delivery before the owner merges or completes the task.
 
 ## Read the delivery report
 

@@ -97,6 +97,7 @@ html[lang="zh-CN"] .nav .lang a[data-lang="zh"] svg.lucide, html[lang="en"] .nav
   .nav .lang { position: static; }
   .nav .right .lang > button.plain { display: grid; place-items: center; width: 36px; padding: 0; }
   .nav .lang > button.plain > :not(.lucide-globe) { display: none; }
+  .nav .lang > button.plain svg.lucide-globe { opacity: 1; }
   .nav .lang .dd { top: calc(100% + 4px); right: 16px; width: min(340px, calc(100vw - 32px)); min-width: 0; }
   .nav .lang:not(.open) .dd { opacity: 0; visibility: hidden; transform: translateY(-4px); }
   .nav .lang.open .dd { opacity: 1; visibility: visible; transform: none; }

@@ -18,6 +18,20 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 .search-btn kbd { padding: 0 6px; border: 1px solid var(--rule); border-radius: 5px; background: var(--paper); font: 12px/20px var(--f-sans); color: var(--muted); }
 .nav .right { gap: 4px; }
 .nav .right .search-btn { margin-right: 6px; }
+/* Medium widths: the section tabs start at a fixed position, so the right side shrinks before it reaches them. First the search button drops its shortcut; then the search and Ask AI buttons and the language switch become icons; finally the GitHub star count is hidden (font-size 0 keeps it as the link's accessible name). */
+@container doc-page (min-width: 1001px) and (max-width: 1300px) {
+  .search-btn { min-width: 0; }
+  .search-btn kbd { display: none; }
+}
+@container doc-page (min-width: 1001px) and (max-width: 1200px) {
+  .nav .right .search-btn { width: 40px; padding: 0; justify-content: center; }
+  .nav .right .search-btn .search-text, .nav .doc-chat-trigger span, .nav .lang > button.plain > :not(.lucide-globe) { display: none; }
+  .nav .right .doc-chat-trigger, .nav .right .lang > button.plain { justify-content: center; width: 36px; padding: 0; }
+  .nav .lang > button.plain svg.lucide-globe { opacity: 1; }
+}
+@container doc-page (min-width: 1001px) and (max-width: 1100px) {
+  .nav .right a.plain:has(> svg) { justify-content: center; width: 36px; padding: 0; gap: 0; font-size: 0; }
+}
 @container doc-page (max-width: 1000px) {
   .search-btn { min-width: 0; width: 40px; height: 40px; padding: 0; justify-content: center; margin-right: 0; }
   .search-btn .search-text, .search-btn kbd { display: none; }
@@ -443,6 +457,7 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .nav .lang { position: static; }
   .nav .right .lang > button.plain { display: grid; place-items: center; width: 36px; padding: 0; }
   .nav .lang > button.plain > :not(.lucide-globe) { display: none; }
+  .nav .lang > button.plain svg.lucide-globe { opacity: 1; }
   .nav .lang .dd { top: calc(100% + 4px); right: 16px; width: min(340px, calc(100% - 32px)); min-width: 0; }
   .nav .lang:not(.open) .dd { opacity: 0; visibility: hidden; transform: translateY(-4px); }
   .nav .lang.open .dd { opacity: 1; visibility: visible; transform: none; }

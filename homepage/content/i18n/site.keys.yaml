@@ -214,3 +214,199 @@ items:
     en: Open source and commercial license terms
     zh: 开源与商业许可的权利和义务
     where: site
+  "053":
+    en: 1–10 people
+    zh: 1–10 人
+    where: form
+  "054":
+    en: 11–50 people
+    zh: 11–50 人
+    where: form
+  "055":
+    en: 51–200 people
+    zh: 51–200 人
+    where: form
+  "056":
+    en: 201–500 people
+    zh: 201–500 人
+    where: form
+  "057":
+    en: 500+ people
+    zh: 500 人以上
+    where: form
+  "058":
+    en: Evaluating it
+    zh: 正在评估
+    where: form
+  "059":
+    en: Learning it
+    zh: 正在学习
+    where: form
+  "060":
+    en: Using it internally
+    zh: 内部使用
+    where: form
+  "061":
+    en: Delivered client projects
+    zh: 为客户交付过
+    where: form
+  "062":
+    en: Expert, building extensions
+    zh: 专家，能做二次开发
+    where: form
+  "063":
+    en: Startups
+    zh: 初创企业
+    where: form
+  "064":
+    en: Small and mid-sized businesses
+    zh: 中小企业
+    where: form
+  "065":
+    en: Large enterprises
+    zh: 大型企业
+    where: form
+  "066":
+    en: Individuals
+    zh: 个人
+    where: form
+  "067":
+    en: IT and software
+    zh: IT 与软件
+    where: form
+  "068":
+    en: Finance
+    zh: 金融
+    where: form
+  "069":
+    en: Education
+    zh: 教育
+    where: form
+  "070":
+    en: Healthcare
+    zh: 医疗健康
+    where: form
+  "071":
+    en: Manufacturing
+    zh: 制造业
+    where: form
+  "072":
+    en: Retail and e-commerce
+    zh: 零售与电商
+    where: form
+  "073":
+    en: Real estate
+    zh: 房地产
+    where: form
+  "074":
+    en: Government and public sector
+    zh: 政府与公共事业
+    where: form
+  "075":
+    en: Media and entertainment
+    zh: 传媒与娱乐
+    where: form
+  "076":
+    en: Other
+    zh: 其他
+    where: form
+  "077":
+    en: As soon as possible
+    zh: 尽快
+    where: form
+  "078":
+    en: Within 1 month
+    zh: 1 个月内
+    where: form
+  "079":
+    en: Within 3 months
+    zh: 3 个月内
+    where: form
+  "080":
+    en: Within 6 months
+    zh: 6 个月内
+    where: form
+  "081":
+    en: Flexible
+    zh: 时间灵活
+    where: form
+  "082":
+    en: Solution delivery
+    zh: 方案交付
+    where: form
+  "083":
+    en: System implementation
+    zh: 系统实施
+    where: form
+  "084":
+    en: Training and support
+    zh: 培训与支持
+    where: form
+  "085":
+    en: Consulting
+    zh: 咨询
+    where: form
+  "086":
+    en: Under ¥10,000
+    zh: ¥1 万以下
+    where: form
+  "087":
+    en: ¥10,000–50,000
+    zh: ¥1–5 万
+    where: form
+  "088":
+    en: ¥50,000–200,000
+    zh: ¥5–20 万
+    where: form
+  "089":
+    en: Over ¥200,000
+    zh: ¥20 万以上
+    where: form
+  "090":
+    en: Not decided
+    zh: 未定
+    where: form
+  "091":
+    en: Under $3,000
+    zh: $3,000 以下
+    where: form
+  "092":
+    en: $3,000–$10,000
+    zh: $3,000–$10,000
+    where: form
+  "093":
+    en: $10,000–$30,000
+    zh: $10,000–$30,000
+    where: form
+  "094":
+    en: Over $30,000
+    zh: $30,000 以上
+    where: form
+  "095":
+    en: Search
+    zh: 搜索
+    where: form
+  "096":
+    en: Select
+    zh: 请选择
+    where: form
+  "097":
+    en: "{n} selected"
+    zh: 已选 {n} 项
+    where: form
+  "098":
+    en: Choose at least one
+    zh: 请至少选择一项
+    where: form
+  "099":
+    en: Choose a country or region first
+    zh: 请先选择国家或地区
+    where: form
+  "100":
+    en: Some answers could not be accepted. Please check them and try again, or email {mail}.
+    zh: 有内容没能通过校验，请检查后再提交，或发邮件到 {mail}。
+    where: form
+  "101":
+    en: Too many submissions. Please try again in a few minutes.
+    zh: 提交得太频繁了，请过几分钟再试。
+    where: form

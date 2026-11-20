@@ -111,9 +111,26 @@ desc_en: NocoBase partners know NocoBase 3, Studio, and your industry. With thei
 
 <section class="sec" id="req">
   <div class="container">
-    <div class="band" style="margin-top:0">
-      <div><h2><t-zh>提交你的需求</t-zh><t-en>Submit your requirements</t-en></h2><p><t-zh>请写邮件到 partner@nocobase.com，说说你想做的系统，我们会按地区、行业和需要的服务，为你推荐合适的伙伴。</t-zh><t-en>Email partner@nocobase.com about the system you want, and we’ll recommend partners that fit your region, industry and the services you need.</t-en></p></div>
-      <div class="cta"><a class="btn btn-pri" href="mailto:partner@nocobase.com"><t-zh>写邮件给我们</t-zh><t-en>Email us</t-en><i data-lucide="mail"></i></a></div>
+    <div class="band book" style="margin-top:0;align-items:start">
+      <div><h2><t-zh>提交你的需求</t-zh><t-en>Submit your requirements</t-en></h2><p><t-zh>说说你想做的系统、预算和时间，我们会按地区和需要的服务，为你推荐合适的合作伙伴。也可以直接写邮件到 partner@nocobase.com。</t-zh><t-en>Tell us about the system you want, your budget and timeline, and we’ll recommend a partner that fits your region and the services you need. You can also email partner@nocobase.com.</t-en></p></div>
+      <form class="bookf" data-partner-form="findPartner" data-ok-zh="已收到你的需求，我们会尽快为你推荐合适的伙伴。" data-ok-en="Thanks! We’ve received your requirements and will recommend a partner soon." data-mail="partner@nocobase.com" novalidate>
+        <fieldset class="fsec">
+          <legend><t-zh>你的需求</t-zh><t-en>Your project</t-en></legend>
+          <label><span><t-zh>公司名称</t-zh><t-en>Company name</t-en></span><input type="text" name="companyName" autocomplete="organization" maxlength="200"></label>
+          <label><span><t-zh>所需服务</t-zh><t-en>Services you need</t-en></span><select name="serviceTypes" data-options="serviceTypes" multiple required></select></label>
+          <div class="two"><label class="en-only"><span><t-zh>国家或地区</t-zh><t-en>Country or region</t-en></span><select name="countryCode" data-countries required></select></label><input class="zh-only" type="hidden" name="countryCode" value="CN"><label><span><t-zh>预算</t-zh><t-en>Budget</t-en></span><select name="budget" required></select></label></div>
+          <label><span><t-zh>时间计划</t-zh><t-en>Timeline</t-en></span><select name="timeline" data-options="timeline" required></select></label>
+          <label><span><t-zh>具体需求</t-zh><t-en>Requirements</t-en></span><textarea name="requirements" rows="4" maxlength="5000" required data-ph-zh="想做什么系统、要解决什么问题、现在用什么" data-ph-en="The system you want, the problem it should solve, and what you use today"></textarea></label>
+        </fieldset>
+        <fieldset class="fsec">
+          <legend><t-zh>联系方式</t-zh><t-en>Contact details</t-en></legend>
+          <div class="two"><label><span><t-zh>联系人</t-zh><t-en>Your name</t-en></span><input type="text" name="contactName" autocomplete="name" maxlength="200" required></label><label><span><t-zh>邮箱</t-zh><t-en>Email</t-en></span><input type="email" name="contactEmail" autocomplete="email" maxlength="320" required></label></div>
+          <label class="zh-only"><span><t-zh>电话</t-zh><t-en>Phone</t-en></span><input type="tel" name="contactPhone" autocomplete="tel" maxlength="64"></label>
+        </fieldset>
+        <div class="trap" aria-hidden="true"><label>Leave this empty<input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn-pri" type="submit"><t-zh>提交需求</t-zh><t-en>Submit requirements</t-en><i data-lucide="arrow-right"></i></button>
+        <p class="form-msg" role="status" aria-live="polite" hidden></p>
+      </form>
     </div>
   </div>
 </section>

@@ -154,9 +154,9 @@ export function renderPage(page, lang) {
     const data = Object.keys(t.ui).length ? { strings: used, ui: sortKeys(t.ui) } : { strings: used };
     inline += ` window.NB_I18N = {}; window.NB_I18N[${JSON.stringify(lang)}] = ${inlineJson(data)};`;
   }
-  if (page.kind !== 'home' && /\bdata-lead-form\b/.test(page.main)) inline += ` window.NB_LEADS_ENDPOINT = ${inlineJson(LEADS_ENDPOINT)};`;
-  if (page.kind !== 'home' && /\bdata-(public|lead)-form\b/.test(page.main) && lang !== 'zh' && lang !== 'en') {
-    // 表单脚本（public-form.js、lead-form.js）在浏览器里要用的译文（提示语、下拉和多选的选项）
+  if (page.kind !== 'home' && /\bdata-(lead|partner)-form\b/.test(page.main)) inline += ` window.NB_LEADS_ENDPOINT = ${inlineJson(LEADS_ENDPOINT)};`;
+  if (page.kind !== 'home' && /\bdata-(public|lead|partner)-form\b/.test(page.main) && lang !== 'zh' && lang !== 'en') {
+    // 表单脚本（public-form.js、lead-form.js、partner-forms.js）在浏览器里要用的译文（提示语、下拉和多选的选项）
     const keys = [...new Set([...i18n.formKeys('site'), ...(page.group ? i18n.formKeys(page.group) : [])])].sort();
     inline += ` window.NB_STRINGS = ${inlineJson(Object.fromEntries(keys.map(k => [k, lingo.tr(k)]).filter(([k, v]) => v !== k)))};`;
   }

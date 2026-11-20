@@ -1210,11 +1210,44 @@ html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],
 .bfilter .to-cs { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; margin-left: auto; border-radius: 999px; color: var(--brand); font-size: 14px; font-weight: 500; }
 /* 伙伴页表单：两列与多选 */
 .bookf .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+/* 简体中文页隐藏了国家或地区，一行只剩一项时占满整行 */
+.bookf .two > label:only-of-type { grid-column: 1 / -1; }
 .bookf .opts { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
 .bookf .opts legend { width: 100%; margin-bottom: 6px; font-size: 13.5px; color: var(--on-deep-2); }
 .bookf .opts label { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--deep-line); background: oklch(1 0 0 / 0.06); color: var(--on-deep); font-size: 13.5px; cursor: pointer; }
 .bookf .opts input { width: auto; accent-color: var(--deep-accent); }
 .bookf .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+/* 伙伴页两个表单（partner-forms.js）：必填的分区直接显示，选填的分区收在 <details class="more"> 里 */
+.bookf .fsec { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.bookf .fsec legend { padding: 0; margin-bottom: 10px; font-size: 15px; font-weight: 600; color: var(--on-deep); }
+.bookf .fsec + .fsec { margin-top: 8px; }
+.bookf label em { font-style: normal; color: var(--on-deep-2); opacity: 0.75; }
+.bookf label em[hidden] { display: none; }
+.bookf .more { border-top: 1px solid var(--deep-line); }
+.bookf .more:last-of-type { border-bottom: 1px solid var(--deep-line); }
+.bookf .more summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 0; font-size: 15px; font-weight: 600; color: var(--on-deep); cursor: pointer; list-style: none; }
+.bookf .more summary::-webkit-details-marker { display: none; }
+.bookf .more summary em { margin-left: 8px; font-style: normal; font-weight: 400; font-size: 13px; color: var(--on-deep-2); }
+.bookf .more summary svg.lucide { width: 16px; height: 16px; color: var(--on-deep-2); transition: transform 0.15s; }
+.bookf .more[open] summary svg.lucide { transform: rotate(180deg); }
+.bookf .more-body { display: grid; gap: 12px; padding: 2px 0 16px; }
+.bookf select:disabled { cursor: not-allowed; color: rgb(117 117 117); }
+/* 多选下拉：原 select 留在原处但看不见，浏览器的校验提示仍以它为落点 */
+.bookf label:has(.ms) { position: relative; }
+.bookf .ms-native { position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; padding: 0; border: 0; opacity: 0; pointer-events: none; }
+.bookf .ms { position: relative; }
+.bookf .ms-btn { width: 100%; padding: 10px 38px 10px 12px; border-radius: 8px; border: 1px solid var(--deep-line); background: oklch(1 0 0 / 0.06) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-opacity='0.6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 16px; color: var(--on-deep); font: inherit; font-size: 15px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bookf .ms-btn.empty { color: rgb(117 117 117); }
+.bookf .ms-btn:focus-visible { outline: 2px solid var(--deep-accent); outline-offset: 1px; }
+.bookf .ms.bad .ms-btn { border-color: oklch(0.8 0.12 30); }
+.bookf .ms-pop { position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 4px); display: grid; gap: 6px; padding: 6px; border-radius: 8px; border: 1px solid var(--deep-line); background: var(--deep-2); box-shadow: 0 12px 32px oklch(0 0 0 / 0.4); }
+.bookf .ms-pop[hidden] { display: none; }
+.bookf .ms-search { padding: 8px 10px; font-size: 14px; }
+.bookf .ms-list { display: grid; max-height: 240px; overflow-y: auto; }
+.bookf .ms-opt { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 6px; color: var(--on-deep); font-size: 14px; cursor: pointer; }
+.bookf .ms-opt[hidden] { display: none; }
+.bookf .ms-opt:hover { background: oklch(1 0 0 / 0.08); }
+.bookf .ms-opt input { width: auto; accent-color: var(--deep-accent); }
 @media (max-width: 640px) { .bookf .two { grid-template-columns: minmax(0, 1fr); } }
 /* 「我的 Agent」页面（首页 Hero 与 Studio 页共用） */
 .hwin { height: 570px; grid-template-columns: 184px 244px minmax(0, 1fr) 256px; grid-template-rows: minmax(0, 1fr); }

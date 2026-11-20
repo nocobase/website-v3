@@ -562,17 +562,14 @@ items:
     en: Company name
     zh: 公司名称
     where: apply
-    unused: true
   "138":
     en: About your company
-    zh: 公司简介
+    zh: 公司介绍
     where: apply
-    unused: true
   "139":
     en: How you’d like to work with us
-    zh: 合作意向简述
+    zh: 合作意向
     where: apply
-    unused: true
   "140":
     en: Submit Application
     zh: 提交申请
@@ -582,7 +579,6 @@ items:
     en: Thanks! We’ve received your application and will be in touch soon.
     zh: 已收到你的申请，我们会尽快与你联系。
     where: form
-    unused: true
   "142":
     en: Team size, the industries you serve, and current clients
     zh: 团队规模、擅长的行业和已有客户
@@ -611,7 +607,133 @@ items:
     en: Email partner@nocobase.com about your team and how you’d like to work with us, and we’ll get back to you soon.
     zh: 请写邮件到 partner@nocobase.com，介绍你的团队和想做的合作，我们会尽快联系你。
     where: apply
+    unused: true
   "148":
     en: Email us
     zh: 写邮件给我们
     where: apply
+    unused: true
+  "149":
+    en: Tell us about your team and the clients you serve. The more detail you share, the better we’ll understand your business. We’ll reach out soon after we receive your application, or you can email us at partner@nocobase.com.
+    zh: 介绍一下你的团队和服务的客户。填写得越详细，我们越能了解你的情况。收到申请后我们会尽快联系你，也可以直接发邮件到 partner@nocobase.com。
+    where: apply
+  "150":
+    en: Company and contact
+    zh: 公司与联系人
+    where: apply
+  "151":
+    en: Country or region
+    zh: 国家或地区
+    where: apply
+  "152":
+    en: Your name
+    zh: 姓名
+    where: apply
+  "153":
+    en: Phone
+    zh: 电话
+    where: apply
+  "154":
+    en: Email
+    zh: 邮箱
+    where: apply
+  "155":
+    en: Team and experience
+    zh: 团队与经验
+    where: apply
+  "156":
+    en: Optional
+    zh: 选填
+    where: apply
+  "157":
+    en: Company website
+    zh: 公司网站
+    where: apply
+  "158":
+    en: Team size
+    zh: 团队规模
+    where: apply
+  "159":
+    en: Experience with NocoBase
+    zh: NocoBase 使用经验
+    where: apply
+  "160":
+    en: Project experience
+    zh: 项目经验
+    where: apply
+  "161":
+    en: Technical capability
+    zh: 技术能力
+    where: apply
+  "162":
+    en: Low-code experience
+    zh: 低代码经验
+    where: apply
+  "163":
+    en: AI experience
+    zh: AI 经验
+    where: apply
+  "164":
+    en: Target market
+    zh: 目标市场
+    where: apply
+  "165":
+    en: Client size
+    zh: 客户规模
+    where: apply
+  "166":
+    en: Target industries
+    zh: 目标行业
+    where: apply
+  "167":
+    en: Regions you serve
+    zh: 服务区域
+    where: apply
+  "168":
+    en: Client network
+    zh: 客户资源
+    where: apply
+  "169":
+    en: Partnership goals
+    zh: 合作期望
+    where: apply
+  "170":
+    en: Anything else
+    zh: 其他补充
+    where: apply
+  "171":
+    en: Submit application
+    zh: 提交申请
+    where: apply
+  "172":
+    en: What your company does, who you serve, and when you started
+    zh: 公司的主营业务、服务对象和成立时间
+    where: form
+  "173":
+    en: Business systems you’ve delivered, and how large they were
+    zh: 交付过的业务系统及其规模
+    where: form
+  "174":
+    en: Your team’s development, implementation and support skills
+    zh: 团队的开发、实施和售后能力
+    where: form
+  "175":
+    en: Low-code or no-code platforms you’ve used
+    zh: 用过的低代码或无代码平台
+    where: form
+  "176":
+    en: AI work you’ve done for yourselves or for clients
+    zh: 为自己或客户做过的 AI 相关工作
+    where: form
+  "177":
+    en: The clients and channels you can bring
+    zh: 可以带来的客户和渠道
+    where: form
+  "178":
+    en: Reselling, implementation services, or both
+    zh: 分销、实施服务，或两者都做
+    where: form
+  "179":
+    en: Anything else you’d like our partner team to know
+    zh: 希望合作伙伴团队了解的其他信息
+    where: form

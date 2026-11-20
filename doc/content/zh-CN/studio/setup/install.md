@@ -5,92 +5,76 @@ description: 用一条命令在自己的电脑上安装 Studio 试用，或使�
 
 ## 一键安装
 
-想在自己的电脑上试用 Studio，运行一条命令即可。它会完成以下准备：
+一键安装会在你的电脑上准备：
 
-- Studio 社区版和 PostgreSQL 数据库，用 Docker Compose 运行在 `~/.nocobase-studio/`。
-- Gitea，运行在同一台电脑上的 Git 服务，存放首个项目的仓库。
-- 把这台电脑接入为[个人运行环境](../join/personal-runtime.md)：安装执行机 `nocobase-runner` 和命令行工具 `nb-studio`。
-- 名为 **My first project** 的项目，仓库里已有一个 NocoBase 3 应用。
-- 与一个 Agent 的对话，Agent 使用你已登录的编码工具；对话里附带一个建议的首个任务，等你启动。
+- Studio 社区版和 PostgreSQL，由 Docker Compose 运行在 `~/.nocobase-studio/`
+- Gitea，本地 Git 服务
+- 把这台电脑接入为[个人运行环境](../join/personal-runtime.md)，安装执行机和命令行工具 `nb-studio`
+- **My first project**，仓库里有一个 NocoBase 3 应用
+- 与 Agent 的对话和一个建议的首个任务
 
 ### 开始前
 
-- macOS、Linux，或带 WSL 的 Windows。在 Windows 上，在 WSL 终端（例如 Ubuntu）中运行命令，并在 Windows 上安装 Docker Desktop。不支持 Git Bash 和 MSYS。
-- Docker，带 Compose v2，Docker 服务已启动。
-- Node.js 24、Git 和 curl。
-- 至少一个已安装并登录的编码工具：Claude Code、Codex、OpenCode 或 Pi。
+- macOS、Linux，或 Windows 上的 WSL 加 Docker Desktop
+- Docker，带 Compose v2，并已启动
+- Node.js 24、Git 和 curl
+- 至少一个已安装并登录的编码工具：Claude Code、Codex、OpenCode 或 Pi
 
 ### 运行安装命令
-
-以下命令使用简体中文界面，并从中国大陆的镜像下载镜像和 npm 包：
 
 ```bash
 curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang zh-CN --mirror registry.cn-shanghai.aliyuncs.com --npm-registry https://registry.npmmirror.com/
 ```
 
-[安装选项](#安装选项)写在 `sh -s --` 之后。不需要镜像时，去掉 `--mirror` 和 `--npm-registry`。
-
-首次运行需要几分钟，主要用于下载镜像和创建首个项目的应用。Studio 使用 13000 端口，Gitea 使用 3000 端口。端口被占用时，安装程序改用下一个空闲端口，之后的运行沿用它。
-
-完成后，安装程序会输出摘要：要打开的地址及其下方的登录账号、Gitea 地址、运行环境状态，以及停止、升级和卸载这次安装的命令。
+完成后，安装程序会输出要打开的地址和登录账号。
 
 ### 打开 Studio
 
-打开摘要中的地址，它以 `http://127.0.0.1:13000/main/` 开头。用初始管理员登录：邮箱 `admin@nocobase.com`，密码 `admin123`。登录后进入首个对话。
+打开输出的地址，用 `admin@nocobase.com` 和 `admin123` 登录，然后在「个人设置 › 账号与安全」修改密码。
 
-登录后请立即在「个人设置 › 账号与安全」修改密码。修改后安装程序仍能正常使用，只是以后运行时，摘要仍显示初始密码。
+Gitea 也可以用同一邮箱和初始密码登录。
 
-摘要中的 Gitea 地址可以用同一邮箱和初始密码登录。在 Studio 修改密码不会改变 Gitea 的密码。
-
-**完成的标志**：对话中显示 Agent 的计划和带「开始」按钮的建议任务，项目列表中有 **My first project**，「Agent 管理 › 运行环境」显示这台电脑在线。
+**完成的标志**：首个对话中显示 Agent 的计划和带「开始」按钮的建议任务。
 
 ### 修改配置
 
-Studio 读取 `~/.nocobase-studio/` 中的两个文件：
-
-| 文件 | 内容 | 修改后运行 |
+| `~/.nocobase-studio/` 中的文件 | 内容 | 修改后运行 |
 | --- | --- | --- |
-| `config/config.yml` | Studio 自身的配置，如数据库连接、[邮件](#邀请与密码重置邮件)和[文件存储](#文件与产物上传)。首次运行时生成，之后不会被覆盖 | `docker compose -f ~/.nocobase-studio/compose.yml restart studio` |
-| `.env` | 镜像、端口、界面语言、初始管理员、加密密钥 `SECRETS_KEYS` 和数据库密码 `POSTGRES_PASSWORD`。安装程序只补充缺少的值，你的修改会保留 | `docker compose -f ~/.nocobase-studio/compose.yml up -d` |
+| `config/config.yml` | Studio 的配置，如数据库、[邮件](#邀请与密码重置邮件)和[文件存储](#文件与产物上传) | `docker compose -f ~/.nocobase-studio/compose.yml restart studio` |
+| `.env` | 镜像、端口、语言、初始管理员、`SECRETS_KEYS` 和 `POSTGRES_PASSWORD` | `docker compose -f ~/.nocobase-studio/compose.yml up -d` |
 
-Compose 根据 `.env` 设置 Studio 的端口、访问地址、语言、加密密钥和初始管理员，这些设置优先于 `config.yml` 中的同名配置。安装程序每次运行都会重写 `compose.yml`，修改请写在上面两个文件中。
-
-请保留 `SECRETS_KEYS`：没有它，Studio 无法解密已保存的凭据。`POSTGRES_PASSWORD` 只在首次启动时设置数据库密码，之后修改它不会改变已有数据库的密码。
-
-Studio 的文件以及 PostgreSQL 和 Gitea 的数据都在 `data/` 中。升级时如果镜像有变化，安装程序会先把 `data/` 打包到 `backups/`，保留最近三份。
+再次运行安装程序不会覆盖你的修改。`.env` 中的设置优先于 `config.yml` 中的同名配置。请保留 `SECRETS_KEYS`，没有它 Studio 无法解密已保存的凭据。
 
 ### 安装选项
 
 | 选项 | 作用 |
 | --- | --- |
-| `--lang <语言>` | 安装程序输出和 Studio 界面的语言。可选 `en-US`（默认）、`zh-CN`、`zh-TW`、`ja-JP`、`ko-KR`、`es-ES`、`fr-FR`、`de-DE`、`pt-BR`、`ru-RU`、`id-ID`、`vi-VN` |
-| `--mirror <镜像仓库>` | 从该镜像仓库而不是 Docker Hub 拉取 Studio、PostgreSQL 和 Gitea 镜像。中国大陆使用 `registry.cn-shanghai.aliyuncs.com` |
-| `--npm-registry <地址>` | 从该源安装首个项目的 npm 包，例如 `https://registry.npmmirror.com/`。`@nocobase` 包仍从 npmjs 下载 |
-| `--dry-run` | 只显示将要执行的操作，不做任何修改 |
-| `--uninstall` | 移除容器、执行机和 `nb-studio`，保留数据和设置 |
-| `--purge` | 与 `--uninstall` 一起使用，确认后同时删除 `~/.nocobase-studio/` |
+| `--lang <语言>` | 安装程序和 Studio 的语言：`en-US`（默认）、`zh-CN`、`zh-TW`、`ja-JP`、`ko-KR`、`es-ES`、`fr-FR`、`de-DE`、`pt-BR`、`ru-RU`、`id-ID` 或 `vi-VN` |
+| `--mirror <镜像仓库>` | 从该镜像仓库而不是 Docker Hub 拉取镜像，中国大陆可用 `registry.cn-shanghai.aliyuncs.com` |
+| `--npm-registry <地址>` | 从该源安装首个项目的 npm 包，例如 `https://registry.npmmirror.com/` |
+| `--dry-run` | 只显示将要执行的操作，不做修改 |
+| `--uninstall` | 移除容器、执行机和 `nb-studio`，保留数据 |
+| `--purge` | 与 `--uninstall` 一起使用，同时删除 `~/.nocobase-studio/` |
 | `-h`、`--help` | 显示用法 |
-
-`--lang`、`--mirror` 和 `--npm-registry` 会保存到 `.env`，之后的运行沿用这些设置。
 
 ### 升级、停止和卸载
 
-升级时，再次运行安装命令。摘要中会给出带有当前选项的完整命令。安装程序拉取最新镜像，镜像有变化时先备份 `data/`，并保留你的设置。创建首个项目等已完成的步骤不会重复执行。
+升级时，再次运行安装命令。设置会保留；镜像有变化时，会先把 `data/` 备份到 `backups/`。
 
-停止和重新启动 Studio 与 Gitea：
+停止和启动：
 
 ```bash
 docker compose -f ~/.nocobase-studio/compose.yml down
 docker compose -f ~/.nocobase-studio/compose.yml up -d
 ```
 
-卸载并保留数据，以后重新安装可以从原来的状态继续：
+卸载并保留数据：
 
 ```bash
 curl -fsSL https://get.nocobase.com/studio | sh -s -- --uninstall
 ```
 
-只有执行机和 `nb-studio` 由安装程序安装、且没有为其他 Studio 服务时，才会被移除。要同时删除数据和设置，加上 `--purge`。
+加上 `--purge` 会同时删除数据。
 
 ## 手动部署
 
@@ -369,11 +353,11 @@ docker compose up -d --force-recreate studio
 
 | 现象 | 检查方法 |
 | --- | --- |
-| 安装程序停止，并指出缺少某个工具 | 用安装程序给出的命令安装，再重新运行安装命令 |
-| 安装程序提示运行环境没有检测到编码工具已登录 | 执行机作为后台服务检查登录状态，读取不到 shell 配置文件中的环境变量。按工具的常规方式登录；Claude Code 需要把 shell 配置文件中的 `ANTHROPIC_*` 变量移到 `~/.claude/settings.json` 的 `env` 中。然后在「Agent 管理 › 运行环境」重新检测该工具，再重新运行安装命令 |
+| 安装程序停止，并指出缺少某个工具 | 用输出的命令安装，再运行安装命令 |
+| 安装程序提示运行环境没有检测到编码工具已登录 | 登录该工具。Claude Code 需把 shell 配置文件中的 `ANTHROPIC_*` 变量移到 `~/.claude/settings.json` 的 `env` 中。在「Agent 管理 › 运行环境」重新检测该工具，再运行安装命令 |
 | 拉取镜像时提示无权访问 | 核对镜像仓库名和版本标签。使用专业版或企业版时，检查交付的仓库访问权限 |
-| 镜像下载超时 | 检查 Docker 服务的代理设置，以及部署服务器到所选镜像仓库的网络连接。一键安装时可使用 `--mirror` |
-| 容器反复重启 | 运行 `docker compose logs --tail=100 studio`，检查数据库连接和配置错误。一键安装时运行 `docker compose -f ~/.nocobase-studio/compose.yml logs --tail=100 studio` |
+| 镜像下载超时 | 检查 Docker 服务的代理设置，以及部署服务器到所选镜像仓库的网络连接。一键安装时使用 `--mirror` |
+| 容器反复重启 | 运行 `docker compose logs --tail=100 studio`，检查数据库连接和配置错误。一键安装时加上 `-f ~/.nocobase-studio/compose.yml` |
 | 提示配置文件不存在或无法读取 | 确认 `config.yml` 是从镜像提取的文件，不是 Docker 自动创建的目录 |
 | 提示数据目录无写入权限 | 确认 `storage` 可由 UID 1000 写入 |
 | 页面打不开或登录回调失败 | 检查 `/main/`、`app.publicOrigin` 和反向代理设置 |

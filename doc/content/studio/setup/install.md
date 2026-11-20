@@ -5,20 +5,20 @@ description: Install Studio on your computer with one command to try it, or depl
 
 ## Install with one command
 
-To try Studio on your own computer, run one command. It sets up:
+The one-command install sets up Studio on your own computer:
 
-- Studio Community Edition with a PostgreSQL database, running with Docker Compose in `~/.nocobase-studio/`.
-- Gitea, a Git server on the same computer, which holds the first project's repository.
-- Your computer as a [personal runtime](../join/personal-runtime.md): the runner `nocobase-runner` and the `nb-studio` command line.
-- A project named **My first project**, whose repository starts with a NocoBase 3 application.
-- A conversation with an Agent of a coding tool you are signed in to, and a suggested first task that waits for you to start it.
+- Studio Community Edition and PostgreSQL, run by Docker Compose in `~/.nocobase-studio/`
+- Gitea, a local Git server
+- Your computer as a [personal runtime](../join/personal-runtime.md), with the runner and the `nb-studio` command line
+- **My first project**, whose repository holds a NocoBase 3 application
+- A conversation with an Agent and a suggested first task
 
 ### Before you begin
 
-- macOS, Linux, or Windows with WSL. On Windows, run the command in a WSL terminal such as Ubuntu, with Docker Desktop installed on Windows. Git Bash and MSYS are not supported.
-- Docker with Compose v2, with the Docker daemon running.
-- Node.js 24, Git and curl.
-- At least one coding tool installed and signed in: Claude Code, Codex, OpenCode or Pi.
+- macOS, Linux, or WSL on Windows with Docker Desktop
+- Docker with Compose v2, running
+- Node.js 24, Git and curl
+- At least one coding tool installed and signed in: Claude Code, Codex, OpenCode or Pi
 
 ### Run the installer
 
@@ -26,73 +26,59 @@ To try Studio on your own computer, run one command. It sets up:
 curl -fsSL https://get.nocobase.com/studio | sh
 ```
 
-To pass [options](#installer-options), add them after `sh -s --`. For example, to use Studio in Chinese and download images and npm packages from mirrors in mainland China:
+When it finishes, it prints the address to open and the sign-in.
+
+### Open Studio
+
+Open the printed address and sign in with `admin@nocobase.com` and `admin123`. Then change the password under **Account settings › Account and security**.
+
+Gitea accepts the same email and initial password.
+
+**Done when**: the first conversation shows the Agent's plan and a suggested task with **Start**.
+
+### Change the configuration
+
+| File in `~/.nocobase-studio/` | Holds | After editing, run |
+| --- | --- | --- |
+| `config/config.yml` | Studio's configuration, such as the database, [email](#invitation-and-password-reset-email) and [file storage](#file-and-artifact-uploads) | `docker compose -f ~/.nocobase-studio/compose.yml restart studio` |
+| `.env` | Images, ports, language, the initial administrator, `SECRETS_KEYS` and `POSTGRES_PASSWORD` | `docker compose -f ~/.nocobase-studio/compose.yml up -d` |
+
+Running the installer again keeps your edits. Settings in `.env` override the same settings in `config.yml`. Keep `SECRETS_KEYS`: without it, Studio cannot decrypt stored credentials.
+
+### Installer options
 
 ```bash
 curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang zh-CN --mirror registry.cn-shanghai.aliyuncs.com --npm-registry https://registry.npmmirror.com/
 ```
 
-The first run takes a few minutes, mostly to download the images and create the first project's application. Studio uses port 13000 and Gitea port 3000. When a port is taken, the installer uses the next free one and keeps it for later runs.
-
-When it finishes, the installer prints a summary: the address to open with the sign-in below it, the Gitea address, the runtime status, and the commands to stop, upgrade and uninstall this installation.
-
-### Open Studio
-
-Open the address in the summary, which starts with `http://127.0.0.1:13000/main/`. Sign in as the initial administrator: email `admin@nocobase.com`, password `admin123`. You arrive in the first conversation.
-
-Change the password right after signing in, under **Account settings › Account and security**. The installer keeps working after the change, although the summary of later runs still shows the initial password.
-
-Gitea, at the address in the summary, accepts the same email and initial password. Changing the password in Studio does not change it in Gitea.
-
-**Done when**: the conversation shows the Agent's plan and the suggested task with **Start**, the project list shows **My first project**, and **Agent management › Runtimes** shows your computer online.
-
-### Change the configuration
-
-Studio reads two files in `~/.nocobase-studio/`:
-
-| File | What it holds | After editing it, run |
-| --- | --- | --- |
-| `config/config.yml` | Studio's own configuration, such as the database connection, [email](#invitation-and-password-reset-email) and [file storage](#file-and-artifact-uploads). Written on the first run and never overwritten | `docker compose -f ~/.nocobase-studio/compose.yml restart studio` |
-| `.env` | Images, ports, interface language, the initial administrator, the encryption key `SECRETS_KEYS` and the database password `POSTGRES_PASSWORD`. The installer only adds missing values, so your changes stay | `docker compose -f ~/.nocobase-studio/compose.yml up -d` |
-
-Compose sets Studio's port, public address, language, encryption key and initial administrator from `.env`. These take precedence over the same settings in `config.yml`. The installer rewrites `compose.yml` on every run, so make changes in these two files instead.
-
-Keep `SECRETS_KEYS`: Studio cannot decrypt its stored credentials without it. `POSTGRES_PASSWORD` sets the database password only on the first start; changing it later does not change the password of the existing database.
-
-Studio's files and the PostgreSQL and Gitea data are in `data/`. Before an upgrade that changes an image, the installer archives `data/` into `backups/` and keeps the three most recent archives.
-
-### Installer options
-
 | Option | Effect |
 | --- | --- |
-| `--lang <locale>` | Language of the installer's output and of Studio. One of `en-US` (default), `zh-CN`, `zh-TW`, `ja-JP`, `ko-KR`, `es-ES`, `fr-FR`, `de-DE`, `pt-BR`, `ru-RU`, `id-ID`, `vi-VN` |
-| `--mirror <registry>` | Pulls the Studio, PostgreSQL and Gitea images from this registry instead of Docker Hub. In mainland China, use `registry.cn-shanghai.aliyuncs.com` |
-| `--npm-registry <url>` | Installs the first project's npm packages from this registry, such as `https://registry.npmmirror.com/`. `@nocobase` packages still come from npmjs |
-| `--dry-run` | Shows what the installer would do without changing anything |
-| `--uninstall` | Removes the containers, the runner and `nb-studio`, and keeps the data and settings |
-| `--purge` | With `--uninstall`, also deletes `~/.nocobase-studio/`, after asking |
+| `--lang <locale>` | Language of the installer and of Studio: `en-US` (default), `zh-CN`, `zh-TW`, `ja-JP`, `ko-KR`, `es-ES`, `fr-FR`, `de-DE`, `pt-BR`, `ru-RU`, `id-ID` or `vi-VN` |
+| `--mirror <registry>` | Pulls the images from this registry instead of Docker Hub, such as `registry.cn-shanghai.aliyuncs.com` in mainland China |
+| `--npm-registry <url>` | Installs the first project's npm packages from this registry, such as `https://registry.npmmirror.com/` |
+| `--dry-run` | Shows what would be done without changing anything |
+| `--uninstall` | Removes the containers, the runner and `nb-studio`, and keeps the data |
+| `--purge` | With `--uninstall`, also deletes `~/.nocobase-studio/` |
 | `-h`, `--help` | Shows the usage |
-
-The installer saves `--lang`, `--mirror` and `--npm-registry` in `.env`, so later runs keep them.
 
 ### Upgrade, stop and uninstall
 
-To upgrade, run the install command again. The summary prints it with your options. The installer pulls the latest images, backs up `data/` first when an image changed, and keeps your settings. Steps already done, such as creating the first project, are not repeated.
+To upgrade, run the install command again. It keeps your settings and, when an image changes, first backs up `data/` to `backups/`.
 
-To stop Studio and Gitea, and to start them again:
+Stop and start:
 
 ```bash
 docker compose -f ~/.nocobase-studio/compose.yml down
 docker compose -f ~/.nocobase-studio/compose.yml up -d
 ```
 
-To uninstall while keeping the data, so that installing again continues where you left off:
+Uninstall and keep the data:
 
 ```bash
 curl -fsSL https://get.nocobase.com/studio | sh -s -- --uninstall
 ```
 
-The runner and `nb-studio` are removed only when the installer installed them and they serve no other Studio. To delete the data and settings too, add `--purge`.
+Add `--purge` to delete the data too.
 
 ## Deploy manually
 
@@ -371,11 +357,11 @@ Next, [connect your code host](git.md).
 
 | Symptom | What to check |
 | --- | --- |
-| The installer stops and names a missing tool | Install it with the command the installer prints, then run the installer again |
-| The installer says the runtime does not see a coding tool as signed in | The runner checks sign-in as a background service, without your shell profile's variables. Sign in to the tool in its usual way. For Claude Code, move `ANTHROPIC_*` variables from your shell profile to `env` in `~/.claude/settings.json`. Check the tool again under **Agent management › Runtimes**, then run the installer again |
+| The installer stops and names a missing tool | Install it with the printed command and run the installer again |
+| The installer says the runtime does not see a coding tool as signed in | Sign in to the tool. For Claude Code, move `ANTHROPIC_*` variables from your shell profile to `env` in `~/.claude/settings.json`. Check the tool again under **Agent management › Runtimes** and run the installer again |
 | Image access denied | Check the repository name and version tag. For Professional or Enterprise, check access to the registry supplied with your image |
 | Image download times out | Check the Docker proxy settings and connectivity from the server to the selected registry. With the one-command install, use `--mirror` |
-| Container keeps restarting | Run `docker compose logs --tail=100 studio` and check database and configuration errors. For the one-command install, run `docker compose -f ~/.nocobase-studio/compose.yml logs --tail=100 studio` |
+| Container keeps restarting | Run `docker compose logs --tail=100 studio` and check database and configuration errors. For the one-command install, add `-f ~/.nocobase-studio/compose.yml` |
 | Configuration file cannot be read | Confirm `config.yml` is a file copied from the image, not a directory created by Docker |
 | Storage is not writable | Confirm UID 1000 can write to `storage` |
 | Page or sign-in callback fails | Check `/main/`, `app.publicOrigin`, and the reverse proxy |

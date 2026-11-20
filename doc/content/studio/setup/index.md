@@ -11,7 +11,7 @@ To try Studio on your own computer, use the one-command install. To deploy Studi
 curl -fsSL https://get.nocobase.com/studio | sh
 ```
 
-The command installs Studio Community Edition on this computer with Docker Compose, together with a local Git server, a runtime and a first project, and creates a conversation with an Agent. You need Docker, Node.js 24, Git and a signed-in coding tool. For prerequisites, options and signing in, see [Install with one command](install.md#install-with-one-command).
+It installs Studio Community Edition with a local Git server, a runtime and a first project on this computer. See [Install with one command](install.md#install-with-one-command) for prerequisites and options.
 
 ## Set up with an Agent
 
@@ -29,7 +29,7 @@ The Agent checks the target environment, asks for missing information, and follo
 | Professional | Use the [multi-role workflow](../use/multi-role-workflow.md) to split responsibilities. The requester confirms requirements and accepts delivery. The owner starts development and merges the changes |
 | Enterprise (EE) | Includes Professional features and the Quality workspace for core scenarios, scheduled tests, reports, and follow-up work |
 
-The one-command install sets up Community Edition. [Contact us](https://www.nocobase.com/contact/) for Professional or Enterprise images and licenses.
+[Contact us](https://www.nocobase.com/contact/) for Professional or Enterprise images and licenses.
 
 ## Before you begin
 

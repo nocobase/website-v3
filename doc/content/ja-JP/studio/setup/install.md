@@ -5,92 +5,76 @@ description: 1 つのコマンドで自分のコンピューターに Studio を
 
 ## 1 つのコマンドでインストールする
 
-自分のコンピューターで Studio を試すなら、コマンドを 1 つ実行するだけです。次のものが用意されます。
+1 つのコマンドで、自分のコンピューターに次のものが用意されます。
 
-- PostgreSQL データベースを使う Studio コミュニティ版。Docker Compose で `~/.nocobase-studio/` に配置されます。
-- 同じコンピューターで動く Git サーバー Gitea。最初のプロジェクトのリポジトリを保存します。
-- このコンピューターを[個人ランタイム](../join/personal-runtime.md)として接続するための runner `nocobase-runner` とコマンドライン `nb-studio`。
-- **My first project** という名前のプロジェクト。リポジトリには最初から NocoBase 3 アプリが入っています。
-- サインイン済みのコーディングツールを使うエージェントとの会話と、開始を待っている最初のタスクの提案。
+- Studio コミュニティ版と PostgreSQL。Docker Compose で `~/.nocobase-studio/` に配置されます
+- ローカルの Git サーバー Gitea
+- このコンピューターを[個人ランタイム](../join/personal-runtime.md)として接続する runner とコマンドライン `nb-studio`
+- NocoBase 3 アプリが入ったリポジトリを持つ **My first project**
+- エージェントとの会話と、最初のタスクの提案
 
 ### 始める前に
 
-- macOS、Linux、または WSL を使う Windows。Windows では、Ubuntu などの WSL のターミナルでコマンドを実行し、Docker Desktop を Windows にインストールします。Git Bash と MSYS には対応していません。
-- Compose v2 を含む Docker。Docker デーモンが起動していること。
-- Node.js 24、Git、curl。
-- インストールしてサインイン済みのコーディングツールが 1 つ以上あること：Claude Code、Codex、OpenCode、Pi。
+- macOS、Linux、または Windows の WSL と Docker Desktop
+- Compose v2 を含む Docker が起動していること
+- Node.js 24、Git、curl
+- インストールしてサインイン済みのコーディングツールが 1 つ以上あること：Claude Code、Codex、OpenCode、Pi
 
 ### インストーラーを実行する
-
-次のコマンドは、Studio を日本語で使う設定でインストールします。
 
 ```bash
 curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang ja-JP
 ```
 
-[オプション](#インストーラーのオプション)は `sh -s --` のあとに指定します。
-
-初回の実行には数分かかります。時間の大半は、イメージのダウンロードと最初のプロジェクトのアプリ作成です。Studio はポート 13000、Gitea はポート 3000 を使います。ポートが使用中の場合は次の空いているポートを使い、以降の実行でもそのポートを使い続けます。
-
-完了すると、インストーラーは概要を表示します。開くアドレスとその下にサインイン情報、Gitea のアドレス、ランタイムの状態、このインストールを停止・アップグレード・アンインストールするコマンドです。
+完了すると、開くアドレスとサインイン情報が表示されます。
 
 ### Studio を開く
 
-概要に表示されたアドレスを開きます。アドレスは `http://127.0.0.1:13000/main/` で始まります。初期管理者としてサインインします。メールアドレスは `admin@nocobase.com`、パスワードは `admin123` です。サインインすると最初の会話が開きます。
+表示されたアドレスを開き、`admin@nocobase.com` と `admin123` でサインインします。その後、**アカウント設定 › アカウントとセキュリティ** でパスワードを変更します。
 
-サインインしたら、すぐに **アカウント設定 › アカウントとセキュリティ** でパスワードを変更してください。変更してもインストーラーはそのまま使えますが、以降の実行の概要には初期パスワードが表示されたままになります。
+Gitea にも同じメールアドレスと初期パスワードでサインインできます。
 
-概要に表示された Gitea のアドレスでは、同じメールアドレスと初期パスワードでサインインできます。Studio でパスワードを変更しても、Gitea のパスワードは変わりません。
-
-**完了の条件**：会話にエージェントの計画と **開始** ボタンのある提案タスクが表示され、プロジェクト一覧に **My first project** があり、**Agent 管理 › 実行環境** でこのコンピューターがオンラインになっていること。
+**完了の条件**：最初の会話にエージェントの計画と **開始** ボタンのある提案タスクが表示されること。
 
 ### 設定を変更する
 
-Studio は `~/.nocobase-studio/` にある 2 つのファイルを読み込みます。
-
-| ファイル | 内容 | 編集後に実行するコマンド |
+| `~/.nocobase-studio/` のファイル | 内容 | 編集後に実行するコマンド |
 | --- | --- | --- |
-| `config/config.yml` | データベース接続、[メール](#招待メールとパスワード再設定メール)、[ファイルストレージ](#ファイルと成果物のアップロード)など、Studio 自体の設定。初回の実行時に作成され、上書きされることはありません | `docker compose -f ~/.nocobase-studio/compose.yml restart studio` |
-| `.env` | イメージ、ポート、表示言語、初期管理者、暗号化キー `SECRETS_KEYS`、データベースのパスワード `POSTGRES_PASSWORD`。インストーラーは不足している値だけを追加するので、変更した内容は残ります | `docker compose -f ~/.nocobase-studio/compose.yml up -d` |
+| `config/config.yml` | データベース、[メール](#招待メールとパスワード再設定メール)、[ファイルストレージ](#ファイルと成果物のアップロード)などの Studio の設定 | `docker compose -f ~/.nocobase-studio/compose.yml restart studio` |
+| `.env` | イメージ、ポート、言語、初期管理者、`SECRETS_KEYS`、`POSTGRES_PASSWORD` | `docker compose -f ~/.nocobase-studio/compose.yml up -d` |
 
-Studio のポート、公開アドレス、言語、暗号化キー、初期管理者は、Compose が `.env` をもとに設定します。これらは `config.yml` の同じ設定より優先されます。`compose.yml` はインストーラーを実行するたびに書き直されるため、変更は上の 2 つのファイルに書いてください。
-
-`SECRETS_KEYS` は保管してください。これがないと、Studio は保存済みの認証情報を復号できません。`POSTGRES_PASSWORD` がデータベースのパスワードを設定するのは初回の起動時だけです。あとから変更しても、既存のデータベースのパスワードは変わりません。
-
-Studio のファイル、PostgreSQL と Gitea のデータは `data/` にあります。イメージが変わるアップグレードの前に、インストーラーは `data/` を `backups/` にアーカイブし、最新の 3 つを残します。
+インストーラーをもう一度実行しても、編集した内容は残ります。`.env` の設定は `config.yml` の同じ設定より優先されます。`SECRETS_KEYS` は保管してください。これがないと、Studio は保存済みの認証情報を復号できません。
 
 ### インストーラーのオプション
 
 | オプション | 効果 |
 | --- | --- |
-| `--lang <locale>` | インストーラーの出力と Studio の言語。`en-US`（既定）、`zh-CN`、`zh-TW`、`ja-JP`、`ko-KR`、`es-ES`、`fr-FR`、`de-DE`、`pt-BR`、`ru-RU`、`id-ID`、`vi-VN` のいずれか |
-| `--mirror <registry>` | Studio、PostgreSQL、Gitea のイメージを Docker Hub ではなくこのレジストリから取得します。中国本土では `registry.cn-shanghai.aliyuncs.com` を使います |
-| `--npm-registry <url>` | 最初のプロジェクトの npm パッケージを `https://registry.npmmirror.com/` などのレジストリからインストールします。`@nocobase` パッケージは引き続き npmjs から取得します |
+| `--lang <locale>` | インストーラーと Studio の言語：`en-US`（既定）、`zh-CN`、`zh-TW`、`ja-JP`、`ko-KR`、`es-ES`、`fr-FR`、`de-DE`、`pt-BR`、`ru-RU`、`id-ID`、`vi-VN` |
+| `--mirror <registry>` | Docker Hub の代わりにこのレジストリからイメージを取得します。中国本土では `registry.cn-shanghai.aliyuncs.com` など |
+| `--npm-registry <url>` | 最初のプロジェクトの npm パッケージを `https://registry.npmmirror.com/` などのレジストリからインストールします |
 | `--dry-run` | 何も変更せず、実行する内容だけを表示します |
-| `--uninstall` | コンテナー、runner、`nb-studio` を削除し、データと設定は残します |
-| `--purge` | `--uninstall` と一緒に指定すると、確認のうえ `~/.nocobase-studio/` も削除します |
+| `--uninstall` | コンテナー、runner、`nb-studio` を削除し、データは残します |
+| `--purge` | `--uninstall` と一緒に指定すると、`~/.nocobase-studio/` も削除します |
 | `-h`、`--help` | 使い方を表示します |
-
-`--lang`、`--mirror`、`--npm-registry` は `.env` に保存されるため、以降の実行でも引き継がれます。
 
 ### アップグレード・停止・アンインストール
 
-アップグレードするには、インストールコマンドをもう一度実行します。概要には、現在のオプションを含むコマンドが表示されます。インストーラーは最新のイメージを取得し、イメージが変わった場合は先に `data/` をバックアップします。設定はそのまま残ります。最初のプロジェクトの作成など、完了済みの手順は繰り返されません。
+アップグレードするには、インストールコマンドをもう一度実行します。設定はそのまま残り、イメージが変わる場合は先に `data/` を `backups/` にバックアップします。
 
-Studio と Gitea を停止する、または再び起動するには次のコマンドを使います。
+停止と起動：
 
 ```bash
 docker compose -f ~/.nocobase-studio/compose.yml down
 docker compose -f ~/.nocobase-studio/compose.yml up -d
 ```
 
-データを残してアンインストールします。再インストールすると、続きから使えます。
+データを残してアンインストール：
 
 ```bash
 curl -fsSL https://get.nocobase.com/studio | sh -s -- --uninstall
 ```
 
-runner と `nb-studio` が削除されるのは、インストーラーがインストールし、ほかの Studio で使われていない場合だけです。データと設定も削除するには、`--purge` を追加します。
+データも削除するには `--purge` を追加します。
 
 ## 手動でデプロイする
 
@@ -369,11 +353,11 @@ docker compose up -d --force-recreate studio
 
 | 症状 | 確認すること |
 | --- | --- |
-| インストーラーが停止し、不足しているツールを表示する | インストーラーが表示したコマンドでインストールし、インストーラーをもう一度実行します |
-| ランタイムがコーディングツールをサインイン済みと認識していないとインストーラーが表示する | runner はバックグラウンドサービスとしてサインイン状態を確認するため、シェルの設定ファイルの環境変数を読み込みません。ツールを通常の方法でサインインします。Claude Code の場合は、シェルの設定ファイルにある `ANTHROPIC_*` 変数を `~/.claude/settings.json` の `env` に移します。**Agent 管理 › 実行環境** でツールを再検出してから、インストーラーをもう一度実行します |
+| インストーラーが停止し、不足しているツールを表示する | 表示されたコマンドでインストールし、インストーラーをもう一度実行します |
+| ランタイムがコーディングツールをサインイン済みと認識していないとインストーラーが表示する | ツールにサインインします。Claude Code の場合は、シェルの設定ファイルにある `ANTHROPIC_*` 変数を `~/.claude/settings.json` の `env` に移します。**Agent 管理 › 実行環境** でツールを再検出してから、インストーラーをもう一度実行します |
 | イメージへのアクセスが拒否される | リポジトリ名とバージョンタグを確認します。プロフェッショナル版またはエンタープライズ版の場合は、提供されたレジストリへのアクセス権も確認します |
 | ダウンロードがタイムアウトする | Docker のプロキシ設定と、サーバーからレジストリへのネットワーク接続を確認します。1 つのコマンドでインストールした場合は `--mirror` を使います |
-| コンテナが再起動を繰り返す | `docker compose logs --tail=100 studio` を実行し、データベースと設定のエラーを確認します。1 つのコマンドでインストールした場合は `docker compose -f ~/.nocobase-studio/compose.yml logs --tail=100 studio` を実行します |
+| コンテナが再起動を繰り返す | `docker compose logs --tail=100 studio` を実行し、データベースと設定のエラーを確認します。1 つのコマンドでインストールした場合は `-f ~/.nocobase-studio/compose.yml` を追加します |
 | 設定ファイルを読み込めない | `config.yml` が、Docker が作成したディレクトリではなく、イメージからコピーしたファイルであることを確認します |
 | ストレージに書き込めない | UID 1000 が `storage` に書き込めることを確認します |
 | ページやサインインのコールバックが失敗する | `/main/`、`app.publicOrigin`、リバースプロキシを確認します |

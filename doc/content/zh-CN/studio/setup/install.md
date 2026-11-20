@@ -1,13 +1,88 @@
 ---
 title: 部署 Studio
-description: 使用 Docker Compose 部署空白 Studio，配置持久化数据，并登录管理员账号。
+description: 用一条命令在自己的电脑上安装 Studio 试用，或使用 Docker Compose 手动部署供团队使用。
 ---
 
-本指南使用社区版（CE）镜像，无需 License Key。其他版本的获取方式见[选择版本](index.md#选择版本)。
+## 一键安装
 
-本文使用 Docker Compose 部署单个 Studio 实例，数据库以 PostgreSQL 为例。已有数据库可以直接接入，配置项见[配置参考](../reference/config.md)。
+一键安装会在你的电脑上准备：
 
-## 准备环境
+- Studio 社区版和 PostgreSQL，由 Docker Compose 运行在 `~/.nocobase-studio/`
+- Gitea，本地 Git 服务
+- 把这台电脑接入为[个人运行环境](../join/personal-runtime.md)，安装执行机和命令行工具 `nb-studio`
+- **My first project**，仓库里有一个 NocoBase 3 应用
+- 与 Agent 的对话和一个建议的首个任务
+
+### 开始前
+
+- macOS、Linux，或 Windows 上的 WSL 加 Docker Desktop
+- Docker，带 Compose v2，并已启动
+- Node.js 24、Git 和 curl
+- 至少一个已安装并登录的编码工具：Claude Code、Codex、OpenCode 或 Pi
+
+### 运行安装命令
+
+```bash
+curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang zh-CN --mirror registry.cn-shanghai.aliyuncs.com --npm-registry https://registry.npmmirror.com/
+```
+
+完成后，安装程序会输出要打开的地址和登录账号。
+
+### 打开 Studio
+
+打开输出的地址，用 `admin@nocobase.com` 和 `admin123` 登录，然后在「个人设置 › 账号与安全」修改密码。
+
+Gitea 也可以用同一邮箱和初始密码登录。
+
+**完成的标志**：首个对话中显示 Agent 的计划和带「开始」按钮的建议任务。
+
+### 修改配置
+
+| `~/.nocobase-studio/` 中的文件 | 内容 | 修改后运行 |
+| --- | --- | --- |
+| `config/config.yml` | Studio 的配置，如数据库、[邮件](#邀请与密码重置邮件)和[文件存储](#文件与产物上传) | `docker compose -f ~/.nocobase-studio/compose.yml restart studio` |
+| `.env` | 镜像、端口、语言、初始管理员、`SECRETS_KEYS` 和 `POSTGRES_PASSWORD` | `docker compose -f ~/.nocobase-studio/compose.yml up -d` |
+
+再次运行安装程序不会覆盖你的修改。`.env` 中的设置优先于 `config.yml` 中的同名配置。请保留 `SECRETS_KEYS`，没有它 Studio 无法解密已保存的凭据。
+
+### 安装选项
+
+| 选项 | 作用 |
+| --- | --- |
+| `--lang <语言>` | 安装程序和 Studio 的语言：`en-US`（默认）、`zh-CN`、`zh-TW`、`ja-JP`、`ko-KR`、`es-ES`、`fr-FR`、`de-DE`、`pt-BR`、`ru-RU`、`id-ID` 或 `vi-VN` |
+| `--mirror <镜像仓库>` | 从该镜像仓库而不是 Docker Hub 拉取镜像，中国大陆可用 `registry.cn-shanghai.aliyuncs.com` |
+| `--npm-registry <地址>` | 从该源安装首个项目的 npm 包，例如 `https://registry.npmmirror.com/` |
+| `--dry-run` | 只显示将要执行的操作，不做修改 |
+| `--uninstall` | 移除容器、执行机和 `nb-studio`，保留数据 |
+| `--purge` | 与 `--uninstall` 一起使用，同时删除 `~/.nocobase-studio/` |
+| `-h`、`--help` | 显示用法 |
+
+### 升级、停止和卸载
+
+升级时，再次运行安装命令。设置会保留；镜像有变化时，会先把 `data/` 备份到 `backups/`。
+
+停止和启动：
+
+```bash
+docker compose -f ~/.nocobase-studio/compose.yml down
+docker compose -f ~/.nocobase-studio/compose.yml up -d
+```
+
+卸载并保留数据：
+
+```bash
+curl -fsSL https://get.nocobase.com/studio | sh -s -- --uninstall
+```
+
+加上 `--purge` 会同时删除数据。
+
+## 手动部署
+
+以下步骤使用社区版（CE）镜像，无需 License Key。其他版本的获取方式见[选择版本](index.md#选择版本)。
+
+使用 Docker Compose 部署单个 Studio 实例，数据库以 PostgreSQL 为例。已有数据库可以直接接入，配置项见[配置参考](../reference/config.md)。
+
+### 准备环境
 
 - 一台装有 Docker 和 Docker Compose 的服务器。镜像支持 Linux amd64 和 arm64。
 - 部署服务器可访问镜像仓库。离线安装时，先用 `docker load -i <镜像包>` 导入镜像。
@@ -15,7 +90,7 @@ description: 使用 Docker Compose 部署空白 Studio，配置持久化数据�
 
 编码工具安装在[运行环境](shared-runtimes.md)上，后续再接入。单实例不需要 Redis。团队使用前，还需要准备文件与产物存储，以及邀请和密码重置邮件。
 
-## 准备配置文件
+### 准备配置文件
 
 从社区版镜像提取配置模板。
 
@@ -86,7 +161,7 @@ database:
 > [!NOTE] 保留加密密钥
 > `secrets.keys` 用于加密 Studio 保存的凭据。重启和升级时保留它，并与数据库一起备份。丢失密钥后，已保存的凭据无法解密。
 
-## 文件与产物上传
+### 文件与产物上传
 
 本地存储可直接使用，后面的 Compose 配置会持久化 `/app/storage`。任务、评论和 Agent 会话的单个附件默认上限为 20 MiB。需要调大时，在 `config.yml` 中设置目标磁盘，例如改为 50 MiB：
 
@@ -126,7 +201,7 @@ releases:
 
 对象存储不能替代整个 `storage` 目录，仍需保留下面的持久化挂载。本地文件、S3 兼容服务和 OSS 的配置，见[文件与产物存储](../reference/storage.md)。
 
-## 邀请与密码重置邮件
+### 邀请与密码重置邮件
 
 邀请成员前先配置邮件。邀请和密码重置共用一套 SMTP 配置，将以下内容合并到 `config.yml` 的对应节点：
 
@@ -154,7 +229,7 @@ auth:
 
 仅本机试用、暂不配置邮件时，保留 `auth.passwordReset.enabled: false`，邀请可先复制链接分享。Resend 配置和邮件发送检查，见[通知与推送](../admin/notifications.md#邀请邮件)。
 
-## 启动服务
+### 启动服务
 
 在同一目录创建 `docker-compose.yml`。将 `POSTGRES_DB`、`POSTGRES_USER`、`POSTGRES_PASSWORD` 分别填为 `config.yml` 中的数据库名、用户名和密码。
 
@@ -225,7 +300,7 @@ curl -fsS http://localhost:13000/main/api/healthz
 
 首次启动会自动建表并创建管理员。等待 Studio 显示 `healthy`，健康检查返回 `"ok": true`。
 
-## 首次登录
+### 首次登录
 
 本机试用打开 `http://localhost:13000/main/`。团队使用时，按下文配置 HTTPS 地址。使用 `config.yml` 中 `users.initialAdmin` 的用户名和密码登录。
 
@@ -249,7 +324,7 @@ curl -fsS http://localhost:13000/main/api/healthz
 
 接着[连接代码平台](git.md)。
 
-## 团队访问（可选）
+### 团队访问（可选）
 
 本机试用可以跳过这一步。团队使用时，将域名解析到服务器，并用反向代理提供 HTTPS。反向代理需要转发 WebSocket。
 
@@ -278,9 +353,11 @@ docker compose up -d --force-recreate studio
 
 | 现象 | 检查方法 |
 | --- | --- |
+| 安装程序停止，并指出缺少某个工具 | 用输出的命令安装，再运行安装命令 |
+| 安装程序提示运行环境没有检测到编码工具已登录 | 登录该工具。Claude Code 需把 shell 配置文件中的 `ANTHROPIC_*` 变量移到 `~/.claude/settings.json` 的 `env` 中。在「Agent 管理 › 运行环境」重新检测该工具，再运行安装命令 |
 | 拉取镜像时提示无权访问 | 核对镜像仓库名和版本标签。使用专业版或企业版时，检查交付的仓库访问权限 |
-| 镜像下载超时 | 检查 Docker 服务的代理设置，以及部署服务器到所选镜像仓库的网络连接 |
-| 容器反复重启 | 运行 `docker compose logs --tail=100 studio`，检查数据库连接和配置错误 |
+| 镜像下载超时 | 检查 Docker 服务的代理设置，以及部署服务器到所选镜像仓库的网络连接。一键安装时使用 `--mirror` |
+| 容器反复重启 | 运行 `docker compose logs --tail=100 studio`，检查数据库连接和配置错误。一键安装时加上 `-f ~/.nocobase-studio/compose.yml` |
 | 提示配置文件不存在或无法读取 | 确认 `config.yml` 是从镜像提取的文件，不是 Docker 自动创建的目录 |
 | 提示数据目录无写入权限 | 确认 `storage` 可由 UID 1000 写入 |
 | 页面打不开或登录回调失败 | 检查 `/main/`、`app.publicOrigin` 和反向代理设置 |

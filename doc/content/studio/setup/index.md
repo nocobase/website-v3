@@ -1,9 +1,17 @@
 ---
 title: Installation overview
-description: Administrators deploy Studio, prepare projects and Agents, configure checks, and invite the team.
+description: Try Studio on your computer with one command, or deploy it for a team, prepare projects and Agents, configure checks, and invite members.
 ---
 
-We recommend using a local Coding Agent, such as Claude Code or Codex, to install and configure Studio. If you already have an invitation, go to [Get started](../join/index.md).
+To try Studio on your own computer, use the one-command install. To deploy Studio for a team, we recommend having a local Coding Agent, such as Claude Code or Codex, install and configure it. If you already have an invitation, go to [Get started](../join/index.md).
+
+## Try Studio with one command
+
+```bash
+curl -fsSL https://get.nocobase.com/studio | sh
+```
+
+It installs Studio Community Edition with a local Git server, a runtime and a first project on this computer. See [Install with one command](install.md#install-with-one-command) for prerequisites and options.
 
 ## Set up with an Agent
 
@@ -25,7 +33,7 @@ The Agent checks the target environment, asks for missing information, and follo
 
 ## Before you begin
 
-This guide uses Docker Compose, GitHub, and one shared runtime. Prepare:
+For a team deployment, this guide uses Docker Compose, GitHub, and one shared runtime. Prepare:
 
 - **Studio image**. Community Edition is available on [Docker Hub](https://hub.docker.com/r/nocobase/studio-ce) as `nocobase/studio-ce:latest`.
 - **Deployment environment**: Server access and a URL for Studio. A local trial does not need a domain.

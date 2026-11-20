@@ -50,8 +50,8 @@ Gitea にも同じメールアドレスと初期パスワードでサインイ�
 | オプション | 効果 |
 | --- | --- |
 | `--lang <locale>` | インストーラーと Studio の言語：`en-US`（既定）、`zh-CN`、`zh-TW`、`ja-JP`、`ko-KR`、`es-ES`、`fr-FR`、`de-DE`、`pt-BR`、`ru-RU`、`id-ID`、`vi-VN` |
-| `--mirror <registry>` | Docker Hub の代わりにこのレジストリからイメージを取得します。中国本土では `registry.cn-shanghai.aliyuncs.com` など |
-| `--npm-registry <url>` | 最初のプロジェクトの npm パッケージを `https://registry.npmmirror.com/` などのレジストリからインストールします |
+| `--mirror <registry>` | Docker Hub の代わりにこのレジストリからイメージを取得します |
+| `--npm-registry <url>` | 最初のプロジェクトの npm パッケージをこのレジストリからインストールします |
 | `--dry-run` | 何も変更せず、実行する内容だけを表示します |
 | `--uninstall` | コンテナー、runner、`nb-studio` を削除し、データは残します |
 | `--purge` | `--uninstall` と一緒に指定すると、`~/.nocobase-studio/` も削除します |

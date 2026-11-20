@@ -47,15 +47,11 @@ Running the installer again keeps your edits. Settings in `.env` override the sa
 
 ### Installer options
 
-```bash
-curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang zh-CN --mirror registry.cn-shanghai.aliyuncs.com --npm-registry https://registry.npmmirror.com/
-```
-
 | Option | Effect |
 | --- | --- |
 | `--lang <locale>` | Language of the installer and of Studio: `en-US` (default), `zh-CN`, `zh-TW`, `ja-JP`, `ko-KR`, `es-ES`, `fr-FR`, `de-DE`, `pt-BR`, `ru-RU`, `id-ID` or `vi-VN` |
-| `--mirror <registry>` | Pulls the images from this registry instead of Docker Hub, such as `registry.cn-shanghai.aliyuncs.com` in mainland China |
-| `--npm-registry <url>` | Installs the first project's npm packages from this registry, such as `https://registry.npmmirror.com/` |
+| `--mirror <registry>` | Pulls the images from this registry instead of Docker Hub |
+| `--npm-registry <url>` | Installs the first project's npm packages from this registry |
 | `--dry-run` | Shows what would be done without changing anything |
 | `--uninstall` | Removes the containers, the runner and `nb-studio`, and keeps the data |
 | `--purge` | With `--uninstall`, also deletes `~/.nocobase-studio/` |

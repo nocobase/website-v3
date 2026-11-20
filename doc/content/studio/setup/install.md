@@ -13,16 +13,12 @@ To try Studio on your own computer, run one command. It sets up:
 - A project named **My first project**, whose repository starts with a NocoBase 3 application.
 - A conversation with an Agent of a coding tool you are signed in to, and a suggested first task that waits for you to start it.
 
-For team access with a domain and HTTPS, or for the Professional and Enterprise editions, [deploy manually](#deploy-manually).
-
 ### Before you begin
 
 - macOS, Linux, or Windows with WSL. On Windows, run the command in a WSL terminal such as Ubuntu, with Docker Desktop installed on Windows. Git Bash and MSYS are not supported.
 - Docker with Compose v2, with the Docker daemon running.
 - Node.js 24, Git and curl.
-- At least one coding tool installed and signed in: Claude Code, Codex, OpenCode or Pi. ACP tools only need to be installed.
-
-When something is missing, the installer names it, prints the install command for your platform, and stops. In an interactive terminal it can offer to install Docker or Node.js for you.
+- At least one coding tool installed and signed in: Claude Code, Codex, OpenCode or Pi.
 
 ### Run the installer
 

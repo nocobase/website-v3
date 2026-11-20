@@ -13,16 +13,12 @@ description: 用一条命令在自己的电脑上安装 Studio 试用，或使�
 - 名为 **My first project** 的项目，仓库里已有一个 NocoBase 3 应用。
 - 与一个 Agent 的对话，Agent 使用你已登录的编码工具；对话里附带一个建议的首个任务，等你启动。
 
-团队通过域名和 HTTPS 访问，或者使用专业版、企业版时，请[手动部署](#手动部署)。
-
 ### 开始前
 
 - macOS、Linux，或带 WSL 的 Windows。在 Windows 上，在 WSL 终端（例如 Ubuntu）中运行命令，并在 Windows 上安装 Docker Desktop。不支持 Git Bash 和 MSYS。
 - Docker，带 Compose v2，Docker 服务已启动。
 - Node.js 24、Git 和 curl。
-- 至少一个已安装并登录的编码工具：Claude Code、Codex、OpenCode 或 Pi。ACP 工具只需安装。
-
-缺少某项时，安装程序会指出缺少什么，给出适合当前系统的安装命令，然后停止。在可交互的终端里运行时，它也可以代你安装 Docker 或 Node.js。
+- 至少一个已安装并登录的编码工具：Claude Code、Codex、OpenCode 或 Pi。
 
 ### 运行安装命令
 

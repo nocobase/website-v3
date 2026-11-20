@@ -1,9 +1,17 @@
 ---
 title: Installation overview
-description: Administrators deploy Studio, prepare projects and Agents, configure checks, and invite the team.
+description: Try Studio on your computer with one command, or deploy it for a team, prepare projects and Agents, configure checks, and invite members.
 ---
 
-We recommend using a local Coding Agent, such as Claude Code or Codex, to install and configure Studio. If you already have an invitation, go to [Get started](../join/index.md).
+To try Studio on your own computer, use the one-command install. To deploy Studio for a team, we recommend having a local Coding Agent, such as Claude Code or Codex, install and configure it. If you already have an invitation, go to [Get started](../join/index.md).
+
+## Try Studio with one command
+
+```bash
+curl -fsSL https://get.nocobase.com/studio | sh
+```
+
+The command installs Studio Community Edition on this computer with Docker Compose, together with a local Git server, a runtime and a first project, and creates a conversation with an Agent. You need Docker, Node.js 24, Git and a signed-in coding tool. Studio installed this way is reachable only from this computer. For prerequisites, options and signing in, see [Install with one command](install.md#install-with-one-command).
 
 ## Set up with an Agent
 
@@ -21,11 +29,11 @@ The Agent checks the target environment, asks for missing information, and follo
 | Professional | Use the [multi-role workflow](../use/multi-role-workflow.md) to split responsibilities. The requester confirms requirements and accepts delivery. The owner starts development and merges the changes |
 | Enterprise (EE) | Includes Professional features and the Quality workspace for core scenarios, scheduled tests, reports, and follow-up work |
 
-[Contact us](https://www.nocobase.com/contact/) for Professional or Enterprise images and licenses.
+The one-command install sets up Community Edition. [Contact us](https://www.nocobase.com/contact/) for Professional or Enterprise images and licenses.
 
 ## Before you begin
 
-This guide uses Docker Compose, GitHub, and one shared runtime. Prepare:
+For a team deployment, this guide uses Docker Compose, GitHub, and one shared runtime. Prepare:
 
 - **Studio image**. Community Edition is available on [Docker Hub](https://hub.docker.com/r/nocobase/studio-ce) as `nocobase/studio-ce:latest`.
 - **Deployment environment**: Server access and a URL for Studio. A local trial does not need a domain.

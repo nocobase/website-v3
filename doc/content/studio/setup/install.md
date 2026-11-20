@@ -13,7 +13,7 @@ To try Studio on your own computer, run one command. It sets up:
 - A project named **My first project**, whose repository starts with a NocoBase 3 application.
 - A conversation with an Agent of a coding tool you are signed in to, and a suggested first task that waits for you to start it.
 
-Studio and Gitea are reachable only from this computer. For team access with a domain and HTTPS, or for the Professional and Enterprise editions, [deploy manually](#deploy-manually).
+For team access with a domain and HTTPS, or for the Professional and Enterprise editions, [deploy manually](#deploy-manually).
 
 ### Before you begin
 

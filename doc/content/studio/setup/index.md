@@ -11,7 +11,7 @@ To try Studio on your own computer, use the one-command install. To deploy Studi
 curl -fsSL https://get.nocobase.com/studio | sh
 ```
 
-The command installs Studio Community Edition on this computer with Docker Compose, together with a local Git server, a runtime and a first project, and creates a conversation with an Agent. You need Docker, Node.js 24, Git and a signed-in coding tool. Studio installed this way is reachable only from this computer. For prerequisites, options and signing in, see [Install with one command](install.md#install-with-one-command).
+The command installs Studio Community Edition on this computer with Docker Compose, together with a local Git server, a runtime and a first project, and creates a conversation with an Agent. You need Docker, Node.js 24, Git and a signed-in coding tool. For prerequisites, options and signing in, see [Install with one command](install.md#install-with-one-command).
 
 ## Set up with an Agent
 

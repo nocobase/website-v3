@@ -13,7 +13,7 @@ description: 用一条命令在自己的电脑上试用 Studio，或为团队部
 curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang zh-CN --mirror registry.cn-shanghai.aliyuncs.com --npm-registry https://registry.npmmirror.com/
 ```
 
-这条命令用 Docker Compose 在本机安装 Studio 社区版，同时准备本地 Git 服务、运行环境和首个项目，并创建与 Agent 的对话。需要 Docker、Node.js 24、Git 和一个已登录的编码工具。这样安装的 Studio 只能从本机访问。前提、选项和登录方式见[一键安装](install.md#一键安装)。
+这条命令用 Docker Compose 在本机安装 Studio 社区版，同时准备本地 Git 服务、运行环境和首个项目，并创建与 Agent 的对话。需要 Docker、Node.js 24、Git 和一个已登录的编码工具。前提、选项和登录方式见[一键安装](install.md#一键安装)。
 
 ## 交给 Agent
 

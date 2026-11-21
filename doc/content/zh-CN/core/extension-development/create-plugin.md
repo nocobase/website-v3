@@ -5,7 +5,7 @@ description: 在已有 App 中使用 @nocobase/create-plugin 创建本地插件�
 
 先按[创建应用](../../getting-started/develop-your-first-app.md#创建并启动应用)准备一个 App 并完成依赖安装。插件会生成在这个 App 的 `packages/` 下，与应用一起开发和构建。
 
-你可以让 Agent 帮你创建，也可以手动使用 `pnpm create @nocobase/plugin@beta`。两种方式都使用 `@nocobase/create-plugin`。
+你可以让 Agent 帮你创建，也可以手动使用 `pnpm create @nocobase/plugin`。两种方式都使用 `@nocobase/create-plugin`。
 
 ## 使用 Agent
 
@@ -22,7 +22,7 @@ Agent 使用 `@nocobase/create-plugin` 生成插件，并根据用途选择能�
 
 ## 不使用 Agent
 
-以下命令都在 App 根目录执行，使用应用要求的 Node.js 和 pnpm 版本。创建工具和 App CLI 需要支持 App 工作区；`@beta` 选择创建工具的 beta 发布渠道。本篇以只选择 `cli` 能力的 `demo-tools` 为例，无需启动数据库或 Web 服务。
+以下命令都在 App 根目录执行，使用应用要求的 Node.js 和 pnpm 版本。创建工具和 App CLI 需要支持 App 工作区。本篇以只选择 `cli` 能力的 `demo-tools` 为例，无需启动数据库或 Web 服务。
 
 ### 创建工具会完成什么
 
@@ -44,7 +44,7 @@ Agent 使用 `@nocobase/create-plugin` 生成插件，并根据用途选择能�
 基本用法：
 
 ```bash
-pnpm create @nocobase/plugin@beta <name> --with <capability>
+pnpm create @nocobase/plugin <name> --with <capability>
 ```
 
 `--with` 选择的是**要生成的代码能力**，不是安装已有插件，也不是启用某项业务功能。必须至少选择一种能力，或者使用 `--empty` 只生成包基础结构。多个能力通过重复 `--with` 组合，不使用逗号拼接。
@@ -103,13 +103,13 @@ ServiceProvider 用于应用服务与生命周期，React Provider 用于组件�
 仅提供可复用组件：
 
 ```bash
-pnpm create @nocobase/plugin@beta feature-card --with client.components
+pnpm create @nocobase/plugin feature-card --with client.components
 ```
 
 需要页面、服务、接口和插件自有数据的业务模块：
 
 ```bash
-pnpm create @nocobase/plugin@beta orders \
+pnpm create @nocobase/plugin orders \
   --with client.routes \
   --with server.service-providers \
   --with server.routes \
@@ -119,13 +119,13 @@ pnpm create @nocobase/plugin@beta orders \
 提供工具命令，并附带 Agent 使用指引：
 
 ```bash
-pnpm create @nocobase/plugin@beta audit-tools --with cli --with skills
+pnpm create @nocobase/plugin audit-tools --with cli --with skills
 ```
 
 只建立包基础结构：
 
 ```bash
-pnpm create @nocobase/plugin@beta shared-tools --empty
+pnpm create @nocobase/plugin shared-tools --empty
 ```
 
 `--empty` 不生成业务能力目录，不能与 `--with` 混用。`--with all` 会选择当前工具版本支持的全部能力，适合查看完整骨架；实际开发通常明确选择需要的能力即可。
@@ -133,7 +133,7 @@ pnpm create @nocobase/plugin@beta shared-tools --empty
 ### 1. 预览生成计划
 
 ```bash
-pnpm create @nocobase/plugin@beta demo-tools --with cli --dry-run --json
+pnpm create @nocobase/plugin demo-tools --with cli --dry-run --json
 ```
 
 dry-run 不生成插件文件、不修改 App，也不安装 App 的依赖；`pnpm create` 本身仍可能下载并缓存创建工具。返回的 JSON 中，`ok` 应为 `true`，`status` 为 `success-noop`，重点检查：
@@ -156,7 +156,7 @@ dry-run 不生成插件文件、不修改 App，也不安装 App 的依赖；`pn
 使用相同的名称和能力执行创建：
 
 ```bash
-pnpm create @nocobase/plugin@beta demo-tools --with cli
+pnpm create @nocobase/plugin demo-tools --with cli
 ```
 
 创建工具会完成以下工作：
@@ -183,7 +183,7 @@ pnpm --filter @nocobase/app-plugin-demo-tools check
 短名称 `demo-tools` 默认生成 `@nocobase/app-plugin-demo-tools`。自己的插件可以使用完整包名保留组织 scope，例如：
 
 ```bash
-pnpm create @nocobase/plugin@beta @my-company/app-plugin-audit-tools --with cli
+pnpm create @nocobase/plugin @my-company/app-plugin-audit-tools --with cli
 ```
 
 目录仍为 `packages/app-plugin-audit-tools/`，注册时使用完整包名。名称中的能力部分以小写字母开头，使用小写字母、数字和单连字符。创建工具拒绝已有目录或冲突的包名。本地插件不必发布；需要发布时，再检查 `private`、包名、导出、兼容性和发布内容。
@@ -209,7 +209,7 @@ pnpm create @nocobase/plugin@beta @my-company/app-plugin-audit-tools --with cli
 | 现象 | 处理方式 |
 | --- | --- |
 | 找不到 App | 在 create-app 生成的应用根目录执行，或用 `--dir` 指向该应用；确认已安装依赖且工具版本支持 App 工作区 |
-| 报错寻找 `packages/plugins` | 可能解析到了仅支持源码仓库的旧版创建工具。用 `pnpm create @nocobase/plugin@beta --version` 核对实际版本，检查包管理器缓存与发布时间限制，选择支持 App 工作区的版本后重新 dry-run；不要在 App 中补建 `packages/plugins` 绕过错误。本教程已验证 `@nocobase/create-plugin@0.1.0-beta.26` |
+| 报错寻找 `packages/plugins` | 可能解析到了仅支持源码仓库的旧版创建工具。用 `pnpm create @nocobase/plugin --version` 核对实际版本，检查包管理器缓存与发布时间限制，选择支持 App 工作区的版本后重新 dry-run；不要在 App 中补建 `packages/plugins` 绕过错误。本教程已验证 `@nocobase/create-plugin@0.1.0-beta.26` |
 | 缺少依赖，或依赖版本不兼容 | 先完成 App 的依赖安装，按报错修复所需版本，再重新预览 |
 | 目标目录、包名或应用依赖已存在 | 检查已有实现，或换用不冲突的名称，不要覆盖已有插件 |
 | 工作区规则排除了插件目录 | 检查 `pnpm-workspace.yaml` 的排除规则，按项目需要调整后再预览 |

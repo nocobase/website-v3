@@ -22,7 +22,7 @@ ServiceProvider 把插件提供的服务接入 App 的容器，并管理服务�
 下面的示例插件名为 `notice-services`，命令在 App 根目录执行，文件路径相对于 `packages/app-plugin-notice-services/`。
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-services --with server.service-providers --with client.service-providers
+pnpm create @nocobase/plugin notice-services --with server.service-providers --with client.service-providers
 ```
 
 脚手架已生成两端的 Provider、聚合文件和插件声明。保留这些连接，修改各自实现即可。

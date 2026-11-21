@@ -25,7 +25,7 @@ Main 用に `13230`、ノード用に `13231`、子アプリのローカル開�
 プロジェクトの保存先で実行します。
 
 ```bash
-pnpm create @nocobase/app@beta platform --template multi-app --template-tag beta
+pnpm create @nocobase/app platform --template multi-app
 cd platform
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config set server.host=0.0.0.0 server.port=13230 app.publicOrigin=http://192.168.1.10:13230
@@ -69,7 +69,7 @@ APP_SERVER_HOST=0.0.0.0 APP_SERVER_PORT=13230 pnpm dev
 Main を起動したまま、別のターミナルでプロジェクトの親ディレクトリに戻ります。
 
 ```bash
-pnpm create @nocobase/app@beta child-app --template sub-app --template-tag beta
+pnpm create @nocobase/app child-app --template sub-app
 cd child-app
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config set server.host=0.0.0.0 server.port=13240 app.publicOrigin=http://192.168.1.10:13240

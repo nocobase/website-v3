@@ -10,7 +10,7 @@ A plugin contributes migrations and Seeds through its Server declaration; the in
 For a new plugin, select the database capability from the App root:
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-data --with database
+pnpm create @nocobase/plugin notice-data --with database
 ```
 
 For an existing plugin, add directories and declarations without recreating it. Plugin paths below are relative to `packages/app-plugin-notice-data/`:

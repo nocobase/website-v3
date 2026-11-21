@@ -5,7 +5,7 @@ description: 既存のアプリの中で @nocobase/create-plugin を使い、ロ
 
 まず [アプリを作成](../../getting-started/develop-your-first-app.md#アプリを作成して起動する) し、その依存関係をインストールします。プラグインはこのアプリの `packages/` ディレクトリの下に生成され、アプリと一緒に開発、ビルドされます。
 
-エージェントにプラグインの作成を依頼するか、自分で `pnpm create @nocobase/plugin@beta` を実行します。どちらの方法も `@nocobase/create-plugin` を使います。
+エージェントにプラグインの作成を依頼するか、自分で `pnpm create @nocobase/plugin` を実行します。どちらの方法も `@nocobase/create-plugin` を使います。
 
 ## エージェントを使う場合
 
@@ -22,7 +22,7 @@ description: 既存のアプリの中で @nocobase/create-plugin を使い、ロ
 
 ## エージェントを使わない場合
 
-以下のコマンドは、アプリが求める Node.js と pnpm のバージョンを使って、アプリのルートで実行します。ジェネレーターとアプリの CLI は、アプリの workspace に対応している必要があります。`@beta` はジェネレーターのベータ版のリリースチャネルを選びます。このガイドでは `cli` の機能だけを持つ `demo-tools` を使い、動作中のデータベースや Web サーバーは必要ありません。
+以下のコマンドは、アプリが求める Node.js と pnpm のバージョンを使って、アプリのルートで実行します。ジェネレーターとアプリの CLI は、アプリの workspace に対応している必要があります。このガイドでは `cli` の機能だけを持つ `demo-tools` を使い、動作中のデータベースや Web サーバーは必要ありません。
 
 ### ジェネレーターが行うこと
 
@@ -44,7 +44,7 @@ description: 既存のアプリの中で @nocobase/create-plugin を使い、ロ
 基本の使い方：
 
 ```bash
-pnpm create @nocobase/plugin@beta <name> --with <capability>
+pnpm create @nocobase/plugin <name> --with <capability>
 ```
 
 `--with` は**生成するコードの機能**を選びます。既存のプラグインをインストールしたり、完成した機能を有効にしたりするものではありません。少なくとも 1 つの機能を選ぶか、パッケージの土台だけなら `--empty` を使います。機能を組み合わせるには `--with` を繰り返します。名前をカンマでつながないでください。
@@ -103,13 +103,13 @@ ServiceProvider はアプリのサービスとライフサイクルを扱い、R
 再利用できるコンポーネントだけ：
 
 ```bash
-pnpm create @nocobase/plugin@beta feature-card --with client.components
+pnpm create @nocobase/plugin feature-card --with client.components
 ```
 
 ページ、サービス、エンドポイント、プラグインが所有するデータを持つ業務のモジュール：
 
 ```bash
-pnpm create @nocobase/plugin@beta orders \
+pnpm create @nocobase/plugin orders \
   --with client.routes \
   --with server.service-providers \
   --with server.routes \
@@ -119,13 +119,13 @@ pnpm create @nocobase/plugin@beta orders \
 エージェント向けの組み込みのガイダンスを持つツールのコマンド：
 
 ```bash
-pnpm create @nocobase/plugin@beta audit-tools --with cli --with skills
+pnpm create @nocobase/plugin audit-tools --with cli --with skills
 ```
 
 パッケージの土台だけ：
 
 ```bash
-pnpm create @nocobase/plugin@beta shared-tools --empty
+pnpm create @nocobase/plugin shared-tools --empty
 ```
 
 `--empty` は機能のディレクトリを生成せず、`--with` と組み合わせることはできません。`--with all` は、そのツールのバージョンが対応するすべての機能を選び、完全なひな形を調べるのに便利です。開発では、必要な機能を明示的に選んでください。
@@ -133,7 +133,7 @@ pnpm create @nocobase/plugin@beta shared-tools --empty
 ### 1. 生成の計画をプレビューする
 
 ```bash
-pnpm create @nocobase/plugin@beta demo-tools --with cli --dry-run --json
+pnpm create @nocobase/plugin demo-tools --with cli --dry-run --json
 ```
 
 ドライランでは、プラグインのファイルは生成されず、アプリのファイルも変更されず、アプリの依存関係もインストールされません。ただし、`pnpm create` 自体がジェネレーターをダウンロードしてキャッシュすることはあります。JSON のレスポンスは `ok: true` と `status: "success-noop"` になるはずです。次のフィールドを確認します。
@@ -156,7 +156,7 @@ pnpm create @nocobase/plugin@beta demo-tools --with cli --dry-run --json
 同じ名前と機能でプラグインを作成します。
 
 ```bash
-pnpm create @nocobase/plugin@beta demo-tools --with cli
+pnpm create @nocobase/plugin demo-tools --with cli
 ```
 
 ジェネレーターは次のことを行います。
@@ -183,7 +183,7 @@ pnpm --filter @nocobase/app-plugin-demo-tools check
 短い名前 `demo-tools` からは、既定で `@nocobase/app-plugin-demo-tools` が生成されます。自分の組織のスコープを保つには、完全なパッケージ名を使います。
 
 ```bash
-pnpm create @nocobase/plugin@beta @my-company/app-plugin-audit-tools --with cli
+pnpm create @nocobase/plugin @my-company/app-plugin-audit-tools --with cli
 ```
 
 ディレクトリは `packages/app-plugin-audit-tools/` のままで、登録には完全なパッケージ名を使います。名前の機能の部分は小文字で始め、小文字、数字、単独のハイフンを使います。既存のディレクトリや衝突するパッケージ名は拒否されます。ローカルのプラグインは公開する必要はありません。あとで公開する前に、`private`、パッケージ名、エクスポート、互換性、パッケージの内容を確認してください。
@@ -209,7 +209,7 @@ pnpm create @nocobase/plugin@beta @my-company/app-plugin-audit-tools --with cli
 | 症状 | 対処 |
 | --- | --- |
 | アプリが見つからない | create-app で生成したアプリで実行するか、`--dir` で選ぶ。依存関係がインストール済みであることと、ジェネレーターのバージョンがアプリの workspace に対応していることを確認する |
-| エラーが `packages/plugins` を探している | ソースリポジトリにしか対応していない古いジェネレーターが解決された可能性がある。`pnpm create @nocobase/plugin@beta --version` で実際のバージョンを確認し、パッケージマネージャーのキャッシュとリリース後の経過期間の設定を見直して、アプリの workspace に対応したバージョンを選び、ドライランをやり直す。エラーを回避するためにアプリに `packages/plugins` を作らないこと。このチュートリアルは `@nocobase/create-plugin@0.1.0-beta.26` で確認した |
+| エラーが `packages/plugins` を探している | ソースリポジトリにしか対応していない古いジェネレーターが解決された可能性がある。`pnpm create @nocobase/plugin --version` で実際のバージョンを確認し、パッケージマネージャーのキャッシュとリリース後の経過期間の設定を見直して、アプリの workspace に対応したバージョンを選び、ドライランをやり直す。エラーを回避するためにアプリに `packages/plugins` を作らないこと。このチュートリアルは `@nocobase/create-plugin@0.1.0-beta.26` で確認した |
 | 依存関係がない、または互換性がない | アプリの依存関係のインストールを済ませ、報告されたバージョンを解決してから、もう一度プレビューする |
 | ディレクトリ、パッケージ名、アプリの依存関係がすでにある | 既存の実装を確認するか、衝突しない名前を選ぶ。既存のプラグインは保つ |
 | workspace のルールが出力先を除外している | `pnpm-workspace.yaml` の除外の設定を確認し、プロジェクトに合わせて調整してから、もう一度プレビューする |

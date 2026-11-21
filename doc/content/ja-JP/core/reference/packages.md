@@ -92,7 +92,7 @@ description: NocoBase Core のランタイム、ライブラリー、データ�
 
 依存関係の再現には、プロジェクトのロックファイルを使います。アップグレードでは、テンプレート、ランタイム、プラグインの peer 依存関係、データベースのダイアレクトをまとめて確認します。パッケージのバージョン番号はそれぞれ独立しており、メジャーバージョンで NocoBase 2 と 3 のどちらに属するかは決まりません。
 
-アプリは `pnpm create @nocobase/app@beta` で、プラグインは `pnpm create @nocobase/plugin@beta` で作成します。その実装のパッケージは `@nocobase/create-app` と `@nocobase/create-plugin` です。アプリの中のコマンドについては [コマンドラインリファレンス](cli.md) を参照してください。
+アプリは `pnpm create @nocobase/app` で、プラグインは `pnpm create @nocobase/plugin` で作成します。その実装のパッケージは `@nocobase/create-app` と `@nocobase/create-plugin` です。アプリの中のコマンドについては [コマンドラインリファレンス](cli.md) を参照してください。
 
 ## 検証の範囲
 

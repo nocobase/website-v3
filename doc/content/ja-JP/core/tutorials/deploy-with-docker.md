@@ -72,7 +72,7 @@ Compose プロジェクト名：<元のプロジェクト名>
 開発マシンで実行します：
 
 ```bash
-pnpm create @nocobase/app@beta my-app --template-tag=beta
+pnpm create @nocobase/app my-app
 cd my-app
 ```
 

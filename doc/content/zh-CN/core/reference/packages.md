@@ -92,7 +92,7 @@ description: 按职责查找 NocoBase Core 的运行时、基础库、数据库�
 
 使用项目锁文件复现依赖；升级时同时检查模板、运行时、插件的 peer dependencies 和数据库方言。各包独立编号，版本号不要求相同，不能根据包版本的主版本号判断它属于 NocoBase 2 还是 3。
 
-创建项目使用 `pnpm create @nocobase/app@beta`，创建插件使用 `pnpm create @nocobase/plugin@beta`；它们对应的实现包分别是 `@nocobase/create-app` 与 `@nocobase/create-plugin`。应用内命令见[命令行参考](cli.md)。
+创建项目使用 `pnpm create @nocobase/app`，创建插件使用 `pnpm create @nocobase/plugin`；它们对应的实现包分别是 `@nocobase/create-app` 与 `@nocobase/create-plugin`。应用内命令见[命令行参考](cli.md)。
 
 ## 核对范围
 

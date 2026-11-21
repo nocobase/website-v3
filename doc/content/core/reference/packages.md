@@ -92,7 +92,7 @@ Commercial dialects include `@nocobase/db-dameng`, `@nocobase/db-kingbase` and `
 
 Use the project lockfile to reproduce dependencies. During upgrades, check the template, runtimes, plugin peer dependencies and database dialects together. Packages have independent version numbers; their major versions do not determine whether they belong to NocoBase 2 or 3.
 
-Create an app with `pnpm create @nocobase/app@beta` and a plugin with `pnpm create @nocobase/plugin@beta`. Their implementation packages are `@nocobase/create-app` and `@nocobase/create-plugin`. See the [Command-line reference](cli.md) for commands within an app.
+Create an app with `pnpm create @nocobase/app` and a plugin with `pnpm create @nocobase/plugin`. Their implementation packages are `@nocobase/create-app` and `@nocobase/create-plugin`. See the [Command-line reference](cli.md) for commands within an app.
 
 ## Verification scope
 

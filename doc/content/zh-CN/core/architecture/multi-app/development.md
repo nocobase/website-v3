@@ -7,7 +7,7 @@ title: 开发与部署子应用
 使用已取得下载权限的兼容模板：
 
 ```bash
-pnpm create @nocobase/app@beta customer-app --template sub-app --template-tag beta
+pnpm create @nocobase/app customer-app --template sub-app
 cd customer-app
 pnpm nocobase config init
 pnpm nocobase config check

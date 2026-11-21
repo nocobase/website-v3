@@ -72,7 +72,7 @@ Confirm the agent completed the [version review and backup](#review-version-chan
 On the development machine:
 
 ```bash
-pnpm create @nocobase/app@beta my-app --template-tag=beta
+pnpm create @nocobase/app my-app
 cd my-app
 ```
 

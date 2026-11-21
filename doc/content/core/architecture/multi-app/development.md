@@ -7,7 +7,7 @@ title: Develop and deploy child applications
 Use a compatible template from your authorized package source:
 
 ```bash
-pnpm create @nocobase/app@beta customer-app --template sub-app --template-tag beta
+pnpm create @nocobase/app customer-app --template sub-app
 cd customer-app
 pnpm nocobase config init
 pnpm nocobase config check

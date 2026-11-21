@@ -95,12 +95,12 @@ npm view "$TEMPLATE" dist-tags --json
 
 Review and commit outstanding changes first. If the template source or baseline is missing, establish it from project history before continuing. `templateKind: app` alone does not distinguish Default from Examples; do not guess a baseline.
 
-Beta applications normally stay on `beta`; stable applications normally use `latest`. The `latest` tag is neither guaranteed to be newer than `beta` nor guaranteed to point to a stable release. Confirm other prerelease channels individually.
+Applications normally use the `latest` tag, which points to the current stable release. Confirm prerelease channels individually.
 
-For a beta application, resolve the target once and retain that exact version:
+Resolve the target once and retain that exact version:
 
 ```bash
-TARGET=$(npm view "$TEMPLATE@beta" version)
+TARGET=$(npm view "$TEMPLATE" version)
 printf 'Template: %s\nBase: %s\nTarget: %s\n' "$TEMPLATE" "$BASE" "$TARGET"
 ```
 

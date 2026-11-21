@@ -13,7 +13,7 @@ The development machine needs Node.js 24 and pnpm 11. The server needs Node.js 2
 
 Examples use application `my-app`, SSH destination `deploy@server`, installation directory `/srv/nocobase/my-app`, PM2 process `nocobase-my-app`, port `13000` and application path `/main`. Substitute your own targets. Give each application a separate directory, port and process name.
 
-Commands use `@nocobase/app-installer@beta` with the server’s existing npm registry configuration and run on the server. The configured registry must provide access to the installer. For an existing deployment that needs a pinned installer version, replace `@beta` with that version. The development machine builds, packages and uploads the deployment archive.
+Commands use `@nocobase/app-installer` with the server’s existing npm registry configuration and run on the server. The configured registry must provide access to the installer. For an existing deployment that needs a pinned installer version, use `@nocobase/app-installer@<version>` instead. The development machine builds, packages and uploads the deployment archive.
 
 ## Use an agent
 
@@ -63,7 +63,7 @@ Each command block identifies its execution location. Set the password variable,
 ### Create the application and enter its directory
 
 ```bash title="Development machine · parent directory of the application"
-pnpm create @nocobase/app@beta my-app --template-tag=beta
+pnpm create @nocobase/app my-app
 cd my-app
 ```
 
@@ -126,7 +126,7 @@ export MY_APP_ADMIN_PASSWORD
 ```
 
 ```bash title="Server · original service account, any directory"
-npx --yes @nocobase/app-installer@beta install /srv/nocobase/my-app \
+npx --yes @nocobase/app-installer install /srv/nocobase/my-app \
   --archive /tmp/my-app.tar.gz \
   --origin http://YOUR_SERVER_IP:13000 \
   --base-path /main \
@@ -167,7 +167,7 @@ The proxy must forward `/main/`, preserve Host and protocol headers, forward coo
 In the JSON result, `ok: true` means success, `result.started: true` means startup health passed, and `result.url` is the application entry. Sign in with `result.initialAdmin.username` and the password you set.
 
 ```bash title="Server · original service account, any directory"
-npx --yes @nocobase/app-installer@beta status \
+npx --yes @nocobase/app-installer status \
   --dir /srv/nocobase/my-app --json
 ```
 
@@ -234,12 +234,12 @@ scp storage/exports/dist.tar.gz deploy@server:/tmp/my-app-new.tar.gz
 Then run on the server:
 
 ```bash title="Server · original service account, any directory"
-npx --yes @nocobase/app-installer@beta status \
+npx --yes @nocobase/app-installer status \
   --dir /srv/nocobase/my-app --json
 ```
 
 ```bash title="Server · original service account, any directory"
-npx --yes @nocobase/app-installer@beta upgrade \
+npx --yes @nocobase/app-installer upgrade \
   --dir /srv/nocobase/my-app \
   --archive /tmp/my-app-new.tar.gz --json
 ```
@@ -259,7 +259,7 @@ This installer version checks configuration, pending migrations, and historical 
 After reviewing the plan, backups and downtime, run on the server:
 
 ```bash title="Server · original service account, any directory"
-npx --yes @nocobase/app-installer@beta upgrade \
+npx --yes @nocobase/app-installer upgrade \
   --dir /srv/nocobase/my-app \
   --archive /tmp/my-app-new.tar.gz --yes --json
 ```
@@ -281,14 +281,14 @@ Keep the error and logs, and run `status` for the same target to inspect the run
 Preview rollback on the server:
 
 ```bash title="Server · original service account, any directory"
-npx --yes @nocobase/app-installer@beta rollback \
+npx --yes @nocobase/app-installer rollback \
   --dir /srv/nocobase/my-app --json
 ```
 
 After reviewing the data impact:
 
 ```bash title="Server · original service account, any directory"
-npx --yes @nocobase/app-installer@beta rollback \
+npx --yes @nocobase/app-installer rollback \
   --dir /srv/nocobase/my-app --yes --json
 ```
 

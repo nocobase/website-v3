@@ -19,7 +19,7 @@ description: 引数、JSON の出力、エラー、ビルドのフックを備�
 アプリのルートで実行します。パスは `packages/app-plugin-notice-cli/` からの相対パスです。
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-cli --with cli
+pnpm create @nocobase/plugin notice-cli --with cli
 ```
 
 ひな形は、`cli/index.ts`、`info` コマンド、`./cli` のエクスポート、開発とビルドの設定を用意します。CLI のプラグインには、Client や Server の入口は必要ありません。

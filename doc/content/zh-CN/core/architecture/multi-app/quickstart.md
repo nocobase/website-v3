@@ -25,7 +25,7 @@ npm whoami --registry=https://pkg-v3.nocobase.com/
 在准备存放项目的目录执行：
 
 ```bash
-pnpm create @nocobase/app@beta platform --template multi-app --template-tag beta
+pnpm create @nocobase/app platform --template multi-app
 cd platform
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config set server.host=0.0.0.0 server.port=13230 app.publicOrigin=http://192.168.1.10:13230
@@ -69,7 +69,7 @@ APP_SERVER_HOST=0.0.0.0 APP_SERVER_PORT=13230 pnpm dev
 保持主应用运行，在另一个终端中回到项目的父目录：
 
 ```bash
-pnpm create @nocobase/app@beta child-app --template sub-app --template-tag beta
+pnpm create @nocobase/app child-app --template sub-app
 cd child-app
 pnpm nocobase config init --dialect sqlite
 pnpm nocobase config set server.host=0.0.0.0 server.port=13240 app.publicOrigin=http://192.168.1.10:13240

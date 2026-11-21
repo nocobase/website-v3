@@ -19,7 +19,7 @@ description: Client のリソース、名前空間、公開のコンポーネン
 アプリのルートで実行します。パスは `packages/app-plugin-notice-i18n/` からの相対パスです。
 
 ```bash
-pnpm create @nocobase/plugin@beta notice-i18n --with client.components --with client.locales
+pnpm create @nocobase/plugin notice-i18n --with client.components --with client.locales
 ```
 
 `client.locales` は、リソースと遅延読み込みのローダーを生成し、`client/plugin.ts` につなぎます。既存のプラグインに多言語化を追加する場合は、リソースのファイル、ローダー、`locales` の宣言の 3 つすべてを用意します。ファイルだけでは、リソースは登録されません。

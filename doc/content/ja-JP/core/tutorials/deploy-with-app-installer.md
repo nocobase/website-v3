@@ -13,7 +13,7 @@ description: アプリのデプロイ用アーカイブを作成し、サーバ�
 
 例ではアプリ名 `my-app`、SSH 接続先 `deploy@server`、インストール先 `/srv/nocobase/my-app`、PM2 プロセス名 `nocobase-my-app`、ポート `13000`、アプリのパス `/main` を使います。実際の値に置き換え、複数のアプリには別々のディレクトリ、ポート、プロセス名を指定してください。
 
-コマンドは `@nocobase/app-installer@beta` を使い、サーバーの既存の npm registry 設定に従って、すべてサーバーで実行します。設定した registry からインストーラーを取得できる必要があります。既存環境でインストーラーのバージョンを固定する場合は、`@beta` を指定バージョンに置き換えてください。開発マシンはビルド、アーカイブ作成、アップロードを担当します。
+コマンドは `@nocobase/app-installer` を使い、サーバーの既存の npm registry 設定に従って、すべてサーバーで実行します。設定した registry からインストーラーを取得できる必要があります。既存環境でインストーラーのバージョンを固定する場合は、代わりに `@nocobase/app-installer@<version>` を使ってください。開発マシンはビルド、アーカイブ作成、アップロードを担当します。
 
 ## エージェントを使う
 
@@ -63,7 +63,7 @@ description: アプリのデプロイ用アーカイブを作成し、サーバ�
 ### アプリを作成してディレクトリに移動する
 
 ```bash title="開発マシン · アプリの親ディレクトリ"
-pnpm create @nocobase/app@beta my-app --template-tag=beta
+pnpm create @nocobase/app my-app
 cd my-app
 ```
 
@@ -126,7 +126,7 @@ export MY_APP_ADMIN_PASSWORD
 ```
 
 ```bash title="サーバー · 元のサービスアカウント、任意のディレクトリ"
-npx --yes @nocobase/app-installer@beta install /srv/nocobase/my-app \
+npx --yes @nocobase/app-installer install /srv/nocobase/my-app \
   --archive /tmp/my-app.tar.gz \
   --origin http://YOUR_SERVER_IP:13000 \
   --base-path /main \
@@ -167,7 +167,7 @@ unset MY_APP_ADMIN_PASSWORD
 JSON の `ok: true` は成功、`result.started: true` は起動時のヘルスチェック成功、`result.url` はアプリの入口です。`result.initialAdmin.username` と設定したパスワードでサインインします。
 
 ```bash title="サーバー · 元のサービスアカウント、任意のディレクトリ"
-npx --yes @nocobase/app-installer@beta status \
+npx --yes @nocobase/app-installer status \
   --dir /srv/nocobase/my-app --json
 ```
 
@@ -234,12 +234,12 @@ scp storage/exports/dist.tar.gz deploy@server:/tmp/my-app-new.tar.gz
 次にサーバーで実行します：
 
 ```bash title="サーバー · 元のサービスアカウント、任意のディレクトリ"
-npx --yes @nocobase/app-installer@beta status \
+npx --yes @nocobase/app-installer status \
   --dir /srv/nocobase/my-app --json
 ```
 
 ```bash title="サーバー · 元のサービスアカウント、任意のディレクトリ"
-npx --yes @nocobase/app-installer@beta upgrade \
+npx --yes @nocobase/app-installer upgrade \
   --dir /srv/nocobase/my-app \
   --archive /tmp/my-app-new.tar.gz --json
 ```
@@ -259,7 +259,7 @@ npx --yes @nocobase/app-installer@beta upgrade \
 計画、バックアップ、停止時間を確認したら、サーバーで実行します：
 
 ```bash title="サーバー · 元のサービスアカウント、任意のディレクトリ"
-npx --yes @nocobase/app-installer@beta upgrade \
+npx --yes @nocobase/app-installer upgrade \
   --dir /srv/nocobase/my-app \
   --archive /tmp/my-app-new.tar.gz --yes --json
 ```
@@ -281,14 +281,14 @@ npx --yes @nocobase/app-installer@beta upgrade \
 サーバーでロールバック計画を確認します：
 
 ```bash title="サーバー · 元のサービスアカウント、任意のディレクトリ"
-npx --yes @nocobase/app-installer@beta rollback \
+npx --yes @nocobase/app-installer rollback \
   --dir /srv/nocobase/my-app --json
 ```
 
 データへの影響を確認して実行します：
 
 ```bash title="サーバー · 元のサービスアカウント、任意のディレクトリ"
-npx --yes @nocobase/app-installer@beta rollback \
+npx --yes @nocobase/app-installer rollback \
   --dir /srv/nocobase/my-app --yes --json
 ```
 

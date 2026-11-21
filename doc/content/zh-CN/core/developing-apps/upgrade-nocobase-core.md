@@ -95,12 +95,12 @@ npm view "$TEMPLATE" dist-tags --json
 
 如果工作区有修改，先整理并提交。若模板来源或基线字段缺失，先根据项目历史确认；不要从 `templateKind: app` 猜测它来自 Default 还是 Examples，也不要猜一个基线继续。
 
-Beta 应用通常继续使用 `beta` 通道；稳定版应用通常使用 `latest`。`latest` 只是发布标签，不保证比 `beta` 新，也不保证指向稳定版。其他预发布通道需要单独确认。
+应用通常使用 `latest` 标签，它指向当前稳定版。预发布通道需要单独确认。
 
-下面以 beta 应用为例，解析一次目标版本并固定下来：
+解析一次目标版本并固定下来：
 
 ```bash
-TARGET=$(npm view "$TEMPLATE@beta" version)
+TARGET=$(npm view "$TEMPLATE" version)
 printf 'Template: %s\nBase: %s\nTarget: %s\n' "$TEMPLATE" "$BASE" "$TARGET"
 ```
 

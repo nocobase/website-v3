@@ -15,7 +15,7 @@ metaDescription: 配置商业包源访问，创建、配置并启动多门户应
 npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
 npm config set "//pkg-v3.nocobase.com/:_authToken" "<读取令牌>"
 npm whoami --registry=https://pkg-v3.nocobase.com/
-npm view @nocobase/app-template-multi-portal@beta version --registry=https://pkg-v3.nocobase.com/
+npm view @nocobase/app-template-multi-portal version --registry=https://pkg-v3.nocobase.com/
 ```
 
 这两条命令写入用户的 `~/.npmrc`，npm 和 pnpm 都会读取它。令牌由这份用户配置保存，不要写入项目文件或提交到 Git。`whoami` 成功后还要确认包版本查询成功；认证通过并不代表拥有该包的下载权限。
@@ -55,12 +55,12 @@ npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 \
 NOCOBASE_REGISTRY=https://pkg-v3.nocobase.com/ \
 npm_config_registry=https://registry.npmjs.org \
-pnpm create @nocobase/app@beta my-portals \
-  --template=multi-portal --template-tag=beta
+pnpm create @nocobase/app my-portals \
+  --template=multi-portal
 cd my-portals
 ```
 
-`multi-portal` 对应 `@nocobase/app-template-multi-portal`。创建器会生成源码、安装依赖，并同步项目的开发 Skills。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` 仅让本次命令可以安装刚发布的 beta 包。使用公共镜像时，可替换上面的公共 registry 地址。
+`multi-portal` 对应 `@nocobase/app-template-multi-portal`。创建器会生成源码、安装依赖，并同步项目的开发 Skills。`PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` 仅让本次命令可以安装刚发布的包。使用公共镜像时，可替换上面的公共 registry 地址。
 
 创建器 `0.1.0-beta.36` 起支持商业源和第三方依赖源分开安装。项目 `.npmrc` 保存 `@nocobase:registry` 地址，认证信息仍由用户配置提供。后续开发以项目的 `AGENTS.md`、`.agents/rules/multi-portal.md` 和同步的 Skills 为准。
 

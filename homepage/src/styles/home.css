@@ -169,14 +169,16 @@ html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],
 /* Studio 整段的浅色底：上接深色 Core，下接 Solutions */
 .band-studio { padding-block: 100px 108px; background: oklch(0.955 0.012 262); border-bottom: 1px solid var(--rule); }
 @media (max-width: 900px) { .band-studio { padding-block: 76px 84px; } }
-/* 发送按钮：持续的光环、扫光和上跳的箭头，提示可以点 */
-.b.p.hot { position: relative; overflow: hidden; animation: ring 1.8s ease-out 0.8s infinite; }
-.b.p.hot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, oklch(1 0 0 / 0.45) 50%, transparent 70%); transform: translateX(-120%); animation: sheen 2.6s ease-in-out 1.2s infinite; }
-.b.p.hot svg.lucide { animation: nudge 1.8s ease-in-out 0.8s infinite; }
-.b.p.hot:hover { animation-play-state: paused; }
+/* 发送按钮：持续的光环、扫光和上跳的箭头，提示可以点；鼠标移上去时保持同样闪烁动效 */
+.b.p.hot,
+.b.p[data-k="send"]:not(:disabled):hover { position: relative; overflow: hidden; animation: ring 1.8s ease-out infinite; }
+.b.p.hot::after,
+.b.p[data-k="send"]:not(:disabled):hover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, oklch(1 0 0 / 0.45) 50%, transparent 70%); transform: translateX(-120%); animation: sheen 2.6s ease-in-out 0.3s infinite; }
+.b.p.hot svg.lucide,
+.b.p[data-k="send"]:not(:disabled):hover svg.lucide { animation: nudge 1.8s ease-in-out infinite; }
 @keyframes sheen { 0% { transform: translateX(-120%); } 45%, 100% { transform: translateX(120%); } }
 @keyframes nudge { 0%, 60%, 100% { transform: none; } 30% { transform: translateY(-3px); } }
-@media (prefers-reduced-motion: reduce) { .b.p.hot, .b.p.hot::after, .b.p.hot svg.lucide { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .b.p.hot, .b.p.hot::after, .b.p.hot svg.lucide, .b.p[data-k="send"]:hover, .b.p[data-k="send"]:hover::after, .b.p[data-k="send"]:hover svg.lucide { animation: none; } }
 /* 上线庆祝 */
 /* 验收清单：每项附截图 */
 .hrep .cb { gap: 0; padding: 4px 12px 10px; }

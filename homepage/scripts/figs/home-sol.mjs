@@ -210,13 +210,10 @@ const hr = win('users', 'HR', '入职', 'Onboarding', hr_body, '<span class="tag
 const tpls = [['crm', crm], ['itam', itam], ['reach', reach], ['support', support], ['project', project], ['hr', hr]].map(([k, v]) => `<template id="tpl-${k}">${v}</template>`).join('');
 const p = join(here, 'home.html');
 let s = readFileSync(p, 'utf8'), n = 0;
-s = s.replace(/<!-- SOLTPL -->[\s\S]*?<!-- \/SOLTPL -->/g, () => (n++, '<!-- SOLTPL -->' + tpls + '<!-- /SOLTPL -->'));
-if (!n) {
-  const anchor = '<div class="apptabs" role="tablist" aria-label="Solutions" id="apptabs"></div>';
-  if (s.split(anchor).length - 1 !== 1) throw new Error('content/pages/home.html 里 apptabs 锚点不是恰好一处');
-  s = s.split(anchor).join(anchor + '\n      <!-- SOLTPL -->' + tpls + '<!-- /SOLTPL -->');
+if (s.includes('<!-- SOLTPL -->')) {
+  s = s.replace(/<!-- SOLTPL -->[\s\S]*?<!-- \/SOLTPL -->/g, () => (n++, '<!-- SOLTPL -->' + tpls + '<!-- /SOLTPL -->'));
+  writeFileSync(p, s, 'utf8');
 }
-writeFileSync(p, s, 'utf8');
 // Solution 页的应用列表用同一批图：写成 snips/solCrm.html 等，正文里用 {{SNIP:solCrm:880}} 引用
 const snipdir = join(here, 'snips');
 for (const [k, v] of [['Crm', crm], ['Itam', itam], ['Reach', reach], ['Support', support], ['Project', project], ['Hr', hr]])

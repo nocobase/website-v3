@@ -2,12 +2,12 @@ page: studio
 i18n: studio
 title_zh: NocoBase Studio — Agent 自主推进，团队掌控全局
 title_en: NocoBase Studio — Agents keep the work moving. Your team stays in control.
-desc_zh: NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。
-desc_en: NocoBase Studio is the governance platform for people and agents building software together.
+desc_zh: NocoBase Studio 是 NocoBase 的工作台。把多台设备上的 Claude Code、Codex、OpenCode 等组建成一支 24 小时工作的 Agent 团队，按流程自主推进开发、测试和评审；人在电脑或手机上提需求、看进展、做决策。
+desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex, and OpenCode across your devices into a 24/7 agent team that builds, tests, and reviews by process while people guide and decide from desktop or mobile.
 ---
-<!-- 文案取自《NocoBase 产品定义与标准表述》的 NocoBase Studio 一节：品牌表达做 H1，定义做导语，四条核心特色各一节。
-     第一节的导语用「问题与方案」里的「并行任务很多，人确认不过来」，最后一节用「知识和经验难以沉淀和共享」。
-     四节的主图和首页 Studio 段同一批（scripts/figs/home-studio.mjs），第二节的仪表盘图在 scripts/figs/product-figs.mjs。 -->
+<!-- 文案取自《NocoBase 产品定义与标准表述》的 NocoBase Studio 一节与《Studio 版本划分》：
+     首屏品牌表达做 H1，新版工作台定义做导语，社区版开源免费包含基础功能，主 CTA 引导自助上手与在线体验；
+     正文对应新版 4 大核心特色（24 小时 Agent 团队 / 随时随地人机协作与决策 / 按流程层层把关质量 / 技能知识库项目记忆），收尾清晰列出社区版→专业版→企业版递进与私有部署。 -->
 <style>
 .ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
@@ -21,19 +21,24 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
 .ld-head h2 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
 .ld-head p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
 #tryDemo[hidden] { display: none; }
-#tryDemo .ld-head { scroll-margin-top: 16px; } /* Try It Online scrolls to the title: 16px below the 80px the site keeps for its sticky header (html scroll-padding-top) */ /* its section's heading stays in view above it, under the sticky header */
+#tryDemo .ld-head { scroll-margin-top: 16px; }
+.ed-meta { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 28px; font-size: 14.5px; color: var(--ink-2); }
+.ed-meta span { display: inline-flex; align-items: center; gap: 7px; }
+.ed-meta svg.lucide { width: 16px; height: 16px; color: var(--brand); }
 @media (max-width: 767px) { .live-demo .ld-frame { display: none; } }
 </style>
+
 <section class="phero">
   <div class="container">
     <p class="label prod"><b><i data-lucide="users-round"></i>NocoBase Studio</b></p>
     <h1><t-zh>Agent 自主推进，<span class="m">团队掌控全局。</span></t-zh><t-en>Agents keep the work moving. <span class="m">Your team stays in control.</span></t-en></h1>
-    <p class="lede"><t-zh>NocoBase Studio 是人与 Agent 协同开发的治理平台。把 Claude Code、Codex、OpenCode 组成一支 Agent 团队自主推进任务，进展一目了然，关键处由人做决策。</t-zh><t-en>NocoBase Studio is the governance platform for people and agents building software together. It brings Claude Code, Codex, and OpenCode into one agent team that moves issues forward on its own. Progress is clear at a glance, and people make the key decisions.</t-en></p>
+    <p class="lede"><t-zh>NocoBase Studio 是 NocoBase 的工作台。它把多台设备上的 Claude Code、Codex、OpenCode 等组建成一支 24 小时工作的 Agent 团队，按流程自主推进开发、测试和评审；人在电脑或手机上提需求、看进展、做决策。</t-zh><t-en>NocoBase Studio is the workbench for NocoBase. It brings Claude Code, Codex, and OpenCode across your devices into one 24/7 agent team that handles development, testing, and review by process, while people make requests, track progress, and decide from desktop or mobile.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="#tryDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
-      <a class="btn btn-sec" href="pricing.html"><t-zh>查看版本与价格</t-zh><t-en>View Editions &amp; Pricing</t-en></a>
+      <a class="btn btn-pri" href="{{DOCS}}studio/setup/" target="_blank" rel="noopener"><t-zh>免费开始使用</t-zh><t-en>Get Started Free</t-en><i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-sec" href="#tryDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
+      <a class="btn btn-sec" href="{{DOCS}}studio/" target="_blank" rel="noopener"><t-zh>Studio 文档</t-zh><t-en>Studio Docs</t-en><i data-lucide="arrow-up-right"></i></a>
     </div>
-    <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>私有部署在企业自己的服务器上</t-zh><t-en>Runs on your own servers</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex 等数十种编码工具</t-zh><t-en>Works with Claude Code, Codex, and dozens of other coding tools</t-en></span><span><i data-lucide="circle-check"></i><t-zh>在商业版中提供</t-zh><t-en>Available in the commercial editions</t-en></span></p>
+    <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>社区版开源免费，包含工作台基础功能</t-zh><t-en>Community Edition is free and includes core Studio features</t-en></span><span><i data-lucide="circle-check"></i><t-zh>私有部署在企业自己的服务器上，支持纯内网</t-zh><t-en>Self-hosted on your own servers, air-gapped ready</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex、OpenCode 等编码工具</t-zh><t-en>Works with Claude Code, Codex, OpenCode, and more</t-en></span></p>
   </div>
 </section>
 
@@ -47,7 +52,7 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
       <span class="ld-open" id="liveDemoBar"><a href="https://studio.demo-cn.nocobase.com/main" target="_blank" rel="noopener" data-ld="open"><t-zh>在新页面完整打开</t-zh><t-en>Open it in full in a new tab</t-en><i data-lucide="external-link"></i></a></span>
     </div>
     <div class="sec-body">
-    <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoBase Studio" allow="clipboard-write"></iframe></div></div>
+      <div class="sheet live-demo" id="liveDemo"><div class="ld-frame"><iframe title="NocoBase Studio" allow="clipboard-write"></iframe></div></div>
     </div>
   </div>
 </section>
@@ -56,86 +61,71 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>Agent 团队</t-zh><t-en>Agent team</t-en></b></p>
-      <h2 class="h2"><t-zh>一支持续推进的 <span class="m">Agent 团队。</span></t-zh><t-en>An agent team <span class="m">that keeps work moving.</span></t-en></h2>
-      <p class="lead"><t-zh>Studio 接入多台机器上的 Agent 统一调度，24 小时同步推进多个项目和大量任务。</t-zh><t-en>Studio connects agents across many machines and schedules them centrally. They move many projects and issues forward in parallel, around the clock.</t-en></p>
+      <h2 class="h2"><t-zh>一支 24 小时工作的 <span class="m">Agent 团队。</span></t-zh><t-en>A 24/7 <span class="m">agent team.</span></t-en></h2>
+      <p class="lead"><t-zh>把个人电脑和团队服务器上的编码工具统一接入工作台，由调度 Agent 自动分派任务，在独立环境里并行推进多个项目。</t-zh><t-en>Connect coding tools on laptops and team servers in one workbench. A coordinator assigns the work, and agents run in isolated environments across multiple projects around the clock.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="sheet">
         {{SNIP:stvTeam:1040}}
       </div>
-      <div class="cols4">
-        <div><h3><i data-lucide="server"></i><t-zh>接入多台机器上的 Agent</t-zh><t-en>Agents on many machines</t-en></h3><p><t-zh>个人电脑和团队服务器上的 Claude Code、Codex 等接入后，Studio 自动识别已登录的编码工具和模型。写明每个 Agent 擅长什么并启用，它就加入 Agent 团队。</t-zh><t-en>Connect Claude Code, Codex, and other agents on your team’s computers and servers, and Studio finds the coding tools and models signed in there. Say what each agent is good at, enable it, and it joins the agent team.</t-en></p></div>
-        <div><h3><i data-lucide="route"></i><t-zh>调度 Agent 分派工作</t-zh><t-en>A coordinator assigns the work</t-en></h3><p><t-zh>调度 Agent 按每个 Agent 的专长分派设计、开发、测试、评审工作。它不写代码、不合并代码，验收始终由人来做。</t-zh><t-en>A coordinator agent assigns design, development, testing, and review by what each agent is good at. It writes no code and merges nothing; a person always accepts the work.</t-en></p></div>
-        <div><h3><i data-lucide="git-branch"></i><t-zh>多个任务同时推进</t-zh><t-en>Many issues at once</t-en></h3><p><t-zh>每个任务在自己的分支上开发，每次运行使用独立的 worktree，多个任务同时推进、互不干扰。机器越多，能同时推进的任务越多。</t-zh><t-en>Each issue has its own branch, and every run works in a separate worktree, so many issues move at once without colliding. Add machines to run more in parallel.</t-en></p></div>
-        <div><h3><i data-lucide="messages-square"></i><t-zh>我的会话</t-zh><t-en>My sessions</t-en></h3><p><t-zh>在 Studio 里和自己电脑上的 Agent 对话，讨论和澄清需求、记录任务、跟进进展。任务开始后，由调度 Agent 安排 Agent 团队开发。</t-zh><t-en>In Studio, talk with the agent on your own computer to discuss and clarify requests, record issues, and follow their progress. Once an issue starts, the coordinator agent puts the agent team to work.</t-en></p></div>
-</div>
-    </div>
-  </div>
-</section>
-
-<section class="sec tint" id="progress">
-  <div class="container">
-    <div class="sec-head">
-      <p class="label"><b><t-zh>进展</t-zh><t-en>Progress</t-en></b></p>
-      <h2 class="h2"><t-zh>各项进展<span class="m">一目了然。</span></t-zh><t-en>Progress <span class="m">at a glance.</span></t-en></h2>
-      <p class="lead"><t-zh>项目进展、任务推进过程、Agent 工作负荷和模型用量都清晰可见。每个任务做到哪里、下一步做什么，都一目了然。</t-zh><t-en>Project progress, issue activity, agent workload, and model usage are all clearly visible. You can see at a glance where every issue stands and what comes next.</t-en></p>
-    </div>
-    <div class="sec-body">
-      <div class="sheet">
-        {{SNIP:studioDash:1120}}
-      </div>
       <div class="cols3">
-        <div><h3><i data-lucide="chart-column"></i><t-zh>项目进展</t-zh><t-en>Project progress</t-en></h3><p><t-zh>每个项目的进度，以及完成的任务、周期时间、Agent 完成占比和单任务成本，都和上一周期对比。</t-zh><t-en>Each project’s progress, plus issues completed, cycle time, the share completed by agents, and cost per issue, compared with the period before.</t-en></p></div>
-        <div><h3><i data-lucide="activity"></i><t-zh>任务推进过程</t-zh><t-en>Issue activity</t-en></h3><p><t-zh>每个任务做到哪一步、哪个 Agent 在做、接下来做什么，都显示在任务的最上方。</t-zh><t-en>Every issue shows at the top which step it is on, which agent is working on it, and what comes next.</t-en></p></div>
-        <div><h3><i data-lucide="gauge"></i><t-zh>Agent 工作负荷和模型用量</t-zh><t-en>Agent workload and model usage</t-en></h3><p><t-zh>每台机器上的 Agent 在推进哪些任务，各个模型用了多少 token、花了多少钱，随时可查。</t-zh><t-en>See which issues the agents on each machine are working on, and how many tokens each model has used at what cost.</t-en></p></div>
-</div>
+        <div><h3><i data-lucide="server"></i><t-zh>多设备、多工具统一接入</t-zh><t-en>Many devices, any coding tool</t-en></h3><p><t-zh>统一接入个人电脑和服务器上的 Claude Code、Codex、OpenCode 等编码工具，不绑定单一模型或厂商，机器越多并发越高。</t-zh><t-en>Connect Claude Code, Codex, OpenCode, and others across laptops and servers with no vendor lock-in. Add machines to run more work in parallel.</t-en></p></div>
+        <div><h3><i data-lucide="route"></i><t-zh>调度 Agent 自动分派</t-zh><t-en>Automatic dispatch by specialty</t-en></h3><p><t-zh>调度 Agent 按每个 Agent 的专长分派设计、开发、测试和评审任务，不用人逐个盯着终端会话，验收始终由人把关。</t-zh><t-en>A coordinator assigns design, build, test, and review tasks by each agent’s strengths—no babysitting terminals, while people keep final sign-off.</t-en></p></div>
+        <div><h3><i data-lucide="git-branch"></i><t-zh>独立环境并行推进</t-zh><t-en>Isolated parallel runs</t-en></h3><p><t-zh>每个任务在独立的分支、worktree 和测试环境里运行，互不干扰，24 小时同时推进多个项目和大量任务。</t-zh><t-en>Every issue runs in its own branch, worktree, and test environment so dozens of tasks move in parallel without colliding.</t-en></p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="decide">
+<section class="sec tint" id="collab">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>决策</t-zh><t-en>Decisions</t-en></b></p>
-      <h2 class="h2"><t-zh>有理有据<span class="m">做决策。</span></t-zh><t-en>Decisions <span class="m">backed by evidence.</span></t-en></h2>
-      <p class="lead"><t-zh>需要人做决策时，Agent 会附上详细的报告、清单、截图和建议，不懂代码的业务专家也可以直接拍板。</t-zh><t-en>When a decision needs a person, agents attach detailed reports, checklists, screenshots, and recommendations, so even business experts who don’t code can make the call.</t-en></p>
+      <p class="label"><b><t-zh>人机协作与决策</t-zh><t-en>Collaboration &amp; decisions</t-en></b></p>
+      <h2 class="h2"><t-zh>随时随地，<span class="m">有理有据做决策。</span></t-zh><t-en>Clear decisions, <span class="m">anywhere.</span></t-en></h2>
+      <p class="lead"><t-zh>业务人员在电脑或手机上直接提需求、看交付报告和可操作的测试环境并亲自验收；多人多项目的进展、周期和模型花费一目了然。</t-zh><t-en>Business teams submit requests and accept work from desktop or mobile with delivery reports and live test environments, while progress, cycle time, and model spend stay visible across every project.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="sheet">
         {{SNIP:stvDecide:1040}}
       </div>
       <div class="cols3">
-        <div><h3><i data-lucide="file-text"></i><t-zh>报告与清单</t-zh><t-en>Report and checklist</t-en></h3><p><t-zh>交付时写明做了什么、怎样验证的，并附上逐条的验收清单。</t-zh><t-en>Every hand-over says what changed and how it was verified, with an acceptance checklist item by item.</t-en></p></div>
-        <div><h3><i data-lucide="images"></i><t-zh>截图与预览</t-zh><t-en>Screenshots and previews</t-en></h3><p><t-zh>每个场景附上截图；需要时打开独立的预览环境，亲自试一遍。</t-zh><t-en>Each scenario comes with screenshots, and when you want to try it yourself, a separate preview environment is ready.</t-en></p></div>
-        <div><h3><i data-lucide="check-check"></i><t-zh>通过或退回</t-zh><t-en>Accept or send back</t-en></h3><p><t-zh>看完依据，通过或退回。退回时写明原因，Agent 接着改。</t-zh><t-en>With the evidence in hand, accept the work or send it back. Say why, and the agents carry on from there.</t-en></p></div>
+        <div><h3><i data-lucide="file-check-2"></i><t-zh>业务人员直接提需求、亲自验收</t-zh><t-en>Plain-language requests &amp; direct sign-off</t-en></h3><p><t-zh>用自然语言提需求并回答 Agent 追问；交付时附上报告、验收清单、截图和可操作的测试环境，不懂技术也能直接拍板。</t-zh><t-en>Describe needs in plain language and answer quick follow-ups. Every delivery brings a report, checklist, screenshots, and a live test environment.</t-en></p></div>
+        <div><h3><i data-lucide="smartphone"></i><t-zh>电脑和手机随时可用</t-zh><t-en>Ready on desktop and mobile</t-en></h3><p><t-zh>添加到手机主屏幕，随时提需求、回答 Agent 的问题、看截图并完成验收或审批；需要人做决定时及时推送提醒，不必守在电脑前。</t-zh><t-en>Add to your phone’s home screen to submit requests, answer questions, inspect screenshots, and approve from anywhere with instant notifications.</t-en></p></div>
+        <div><h3><i data-lucide="chart-column"></i><t-zh>进展、负荷与花费一目了然</t-zh><t-en>Progress, load, and spend in one place</t-en></h3><p><t-zh>所有项目的需求、讨论和交付集中在一处；仪表盘直观展示完成任务数、周期时间、返工率、Agent 负荷与单任务模型花费。</t-zh><t-en>Every project’s issues, context, and hand-overs live together, with dashboards for throughput, cycle time, rework, agent load, and cost per issue.</t-en></p></div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="feat" style="margin-top:96px">
+<section class="sec" id="process">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b><t-zh>流程与质量把关</t-zh><t-en>Process &amp; quality</t-en></b></p>
+      <h2 class="h2"><t-zh>按流程推进，<span class="m">层层把关质量。</span></t-zh><t-en>Structured process, <span class="m">quality at every gate.</span></t-en></h2>
+      <p class="lead"><t-zh>从需求、方案、开发、测试、评审到验收、上线，每一步由谁做、谁确认、交出什么都按流程执行，全程留痕。</t-zh><t-en>From request and design to build, test, review, acceptance, and release, every step has clear ownership, gates, and a complete audit trail.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <ol class="steps" style="--n:5">
+        <li><span class="bal">1</span><h4><t-zh>按项目选流程</t-zh><t-en>Right-sized workflow</t-en></h4><p><t-zh>内置从简单到完整的多种流程，小改动走轻量流程，核心系统走严格流程，也可按企业制度自定义。</t-zh><t-en>Built-in workflows from lightweight to strict, or tailor your own to match your engineering standards.</t-en></p></li>
+        <li><span class="bal">2</span><h4><t-zh>自动测试与交叉评审</t-zh><t-en>Tests &amp; cross-model review</t-en></h4><p><t-zh>每个改动先跑自动测试，再换另一家厂商的模型交叉评审；未通过自动返工重测，全过才交给人。</t-zh><t-en>Automated tests run first, followed by code review from a different model vendor; failures loop back automatically.</t-en></p></li>
+        <li><span class="bal">3</span><h4><t-zh>业务与技术双重验收</t-zh><t-en>Dual sign-off</t-en></h4><p><t-zh>业务人员在独立测试环境里做业务验收，技术负责人做技术验收，各把各的关。</t-zh><t-en>Business stakeholders verify behavior in a live preview while tech leads sign off on architecture and safety.</t-en></p></li>
+        <li><span class="bal">4</span><h4><t-zh>质量计划与回归测试</t-zh><t-en>Quality plans &amp; regression</t-en></h4><p><t-zh>上线前按质量计划对系统做功能、权限、安全、性能和代码质量回归测试，每次发版心里有底。</t-zh><t-en>Run full regression across features, permissions, security, performance, and code quality before every release.</t-en></p></li>
+        <li><span class="bal">5</span><h4><t-zh>审批上线与回滚</t-zh><t-en>Approved release &amp; rollback</t-en></h4><p><t-zh>经审批人批准才发布到生产环境，支持预发布验证与上线窗口；出了问题一键回滚到上一版本。</t-zh><t-en>Production deploys require approval, support release windows, and roll back cleanly to the last good release.</t-en></p></li>
+      </ol>
+
+      <div class="feat" style="margin-top:88px">
         <div>
-          <p class="label"><b><t-zh>业务专家</t-zh><t-en>Business experts</t-en></b></p>
-          <h3><t-zh>不懂代码的业务专家，也可以直接拍板。</t-zh><t-en>Business experts who don’t code can make the call.</t-en></h3>
-          <p><t-zh>业务专家用业务语言提需求、回答 Agent 的提问，在预览里用真实数据验收。环境、分支、测试和发布，由 Agent 和 Studio 承担。</t-zh><t-en>Business experts describe what they need in plain words, answer the agents’ questions, and check the result in a preview with real data. Environments, branches, tests, and releases are handled by the agents and Studio.</t-en></p>
-          <p><t-zh>技术负责人定规则、批准上线；业务专家定需求、负责验收。</t-zh><t-en>Tech leads set the rules and approve releases. Business experts own the requirements and the sign-off.</t-en></p>
+          <p class="label"><b><t-zh>角色分工</t-zh><t-en>Clear roles</t-en></b></p>
+          <h3><t-zh>业务人员提需求、做验收，技术负责人定规则、批准上线。</t-zh><t-en>Business teams own requirements and sign-off; tech leads own rules and releases.</t-en></h3>
+          <p><t-zh>业务人员不用懂代码，用业务语言说清规则、回答 Agent 追问，在测试环境里用真实数据验收；分支、测试、评审与部署由 Agent 和工作台承担。</t-zh><t-en>Business teams state rules in plain language and verify with real data in a test environment—branches, tests, reviews, and deploys are handled by agents and Studio.</t-en></p>
         </div>
-        <div class="sheet sm"><div class="fit" data-w="640"><div class="fit-in"><div class="win noside"><div class="mini"><div class="ph"><div><h5><t-zh>供应商分级 · PUR-23</t-zh><t-en>Supplier tiering · PUR-23</t-en></h5><p class="sub"><t-zh>负责人：采购主管周航 · 不写一行代码，从提出到上线</t-zh><t-en>Owner: Ethan Cole, procurement lead · no code, from request to release</t-en></p></div><span class="tag green"><i data-lucide="circle-check"></i><t-zh>已上线</t-zh><t-en>Live</t-en></span></div><div class="tblw"><table class="tbl"><thead><tr><th></th><th><span class="dot d-hu"></span><t-zh>周航做的</t-zh><t-en>Ethan does</t-en></th><th><span class="dot d-ag"></span><t-zh>Agent 与 Studio 承担</t-zh><t-en>Agents and Studio handle</t-en></th></tr></thead><tbody>
-          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>提出</t-zh><t-en>Ask</t-en></td><td><t-zh>用业务语言说清分级规则</t-zh><t-en>Describes the tiering rules in plain words</t-en></td><td style="color:var(--ink-2)"><t-zh>Agent 整理成规则与验收场景，拆成任务</t-zh><t-en>Agents turn them into rules, test scenarios, and issues</t-en></td></tr>
-          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>开发</t-zh><t-en>Build</t-en></td><td><t-zh>回答 2 个提问：评分权重、例外供应商</t-zh><t-en>Answers 2 questions: score weights, exempt suppliers</t-en></td><td style="color:var(--ink-2)"><t-zh>编写代码、开 PR，自动测试与检查</t-zh><t-en>Code, pull request, automated tests and checks</t-en></td></tr>
-          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>验收</t-zh><t-en>Verify</t-en></td><td><t-zh>在预览里用真实供应商走一遍</t-zh><t-en>Walks real suppliers through the preview</t-en></td><td style="color:var(--ink-2)"><t-zh>独立预览环境，附验收清单与截图</t-zh><t-en>A separate preview, with checklist and screenshots</t-en></td></tr>
-          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>上线</t-zh><t-en>Release</t-en></td><td><t-zh>确认上线时间</t-zh><t-en>Picks the release time</t-en></td><td style="color:var(--ink-2)"><t-zh>技术负责人批准发布，可回滚到上一版本</t-zh><t-en>The tech lead approves; it can roll back to the last release</t-en></td></tr>
+        <div class="sheet sm"><div class="fit" data-w="640"><div class="fit-in"><div class="win noside"><div class="mini"><div class="ph"><div><h5><t-zh>供应商分级 · PUR-23</t-zh><t-en>Supplier tiering · PUR-23</t-en></h5><p class="sub"><t-zh>发起人：采购主管周航 · 不写一行代码，从提需求到上线</t-zh><t-en>Requester: Ethan Cole, procurement lead · no code, from request to release</t-en></p></div><span class="tag green"><i data-lucide="circle-check"></i><t-zh>已上线</t-zh><t-en>Live</t-en></span></div><div class="tblw"><table class="tbl"><thead><tr><th></th><th><span class="dot d-hu"></span><t-zh>人来拍板</t-zh><t-en>People decide</t-en></th><th><span class="dot d-ag"></span><t-zh>Agent 与工作台承担</t-zh><t-en>Agents &amp; Studio handle</t-en></th></tr></thead><tbody>
+          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>提需求</t-zh><t-en>Request</t-en></td><td><t-zh>用业务语言说清分级规则</t-zh><t-en>Describes tiering rules in plain words</t-en></td><td style="color:var(--ink-2)"><t-zh>整理成规则与验收场景，拆成任务</t-zh><t-en>Turns them into rules, scenarios, and issues</t-en></td></tr>
+          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>开发</t-zh><t-en>Build</t-en></td><td><t-zh>回答 2 个提问：评分权重、例外名单</t-zh><t-en>Answers 2 questions: weights &amp; exceptions</t-en></td><td style="color:var(--ink-2)"><t-zh>写代码、跑自动测试、换模型交叉评审</t-zh><t-en>Writes code, runs tests, cross-model review</t-en></td></tr>
+          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>验收</t-zh><t-en>Accept</t-en></td><td><t-zh>在测试环境里用真实数据走一遍</t-zh><t-en>Checks real suppliers in a live test env</t-en></td><td style="color:var(--ink-2)"><t-zh>准备独立测试环境、验收报告与截图</t-zh><t-en>Spins up preview, report, and screenshots</t-en></td></tr>
+          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>上线</t-zh><t-en>Release</t-en></td><td><t-zh>技术负责人批准发布</t-zh><t-en>Tech lead approves release</t-en></td><td style="color:var(--ink-2)"><t-zh>发布到生产环境，保留回滚点</t-zh><t-en>Deploys to production with instant rollback</t-en></td></tr>
         </tbody></table></div></div></div></div></div></div>
       </div>
-
-      <div class="subhead">
-        <h3><t-zh>交到人手上之前，Studio 组织检查和评审。</t-zh><t-en>Before work reaches a person, Studio coordinates checks and reviews.</t-en></h3>
-        <p><t-zh>每次改动走同样的流程：测试和代码评审都通过，才交给人验收；经人批准，才发布到生产，出了问题可以回滚。</t-zh><t-en>Every change follows the same path. It reaches a person only after its tests and code review pass, and reaches production only after a person approves. If something goes wrong, roll it back.</t-en></p>
-      </div>
-      <ol class="steps" style="--n:5">
-        <li><span class="bal">1</span><h4><t-zh>分支与 worktree</t-zh><t-en>Branch and worktree</t-en></h4><p><t-zh>每个任务有自己的分支，每次运行在独立的 worktree 里进行；分支上的 PR 自动关联到任务。</t-zh><t-en>Each issue has its own branch, and every run works in a separate worktree. Pull requests from that branch link to the issue.</t-en></p></li>
-        <li><span class="bal">2</span><h4><t-zh>测试与评审</t-zh><t-en>Test and review</t-en></h4><p><t-zh>CI 跑检查和测试，再换一个模型评审代码，优先用另一家厂商的模型。</t-zh><t-en>CI runs checks and tests, then a different model reviews the code, from another vendor when one is available.</t-en></p></li>
-        <li><span class="bal">3</span><h4><t-zh>预览验收</t-zh><t-en>Preview</t-en></h4><p><t-zh>需要时为 PR 启动独立的预览环境，供人试用验收。</t-zh><t-en>When needed, a pull request gets its own preview environment for a person to try and sign off.</t-en></p></li>
-        <li><span class="bal">4</span><h4><t-zh>合并发布</t-zh><t-en>Merge and release</t-en></h4><p><t-zh>验收通过后合并，任务的 PR 全部合并后任务自动完成；发布到生产由人批准。</t-zh><t-en>Merged after sign-off, and the issue is done once all its pull requests merge. Releases to production need a person’s approval.</t-en></p></li>
-        <li><span class="bal">5</span><h4><t-zh>回滚</t-zh><t-en>Roll back</t-en></h4><p><t-zh>出了问题，退回上一个版本。</t-zh><t-en>If anything breaks, go back to the last release.</t-en></p></li>
-      </ol>
     </div>
   </div>
 </section>
@@ -143,37 +133,61 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
 <section class="sec tint" id="memory">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>知识沉淀</t-zh><t-en>Know-how</t-en></b></p>
+      <p class="label"><b><t-zh>团队资产</t-zh><t-en>Team know-how</t-en></b></p>
       <h2 class="h2"><t-zh>方法、经验、知识<span class="m">沉淀在团队里。</span></t-zh><t-en>Know-how <span class="m">stays with the team.</span></t-en></h2>
-      <p class="lead"><t-zh>需求背景、业务资料、项目经验散落在不同电脑的不同会话里，换人、换 Agent 就很难找到。Studio 用技能、知识库和项目记忆沉淀方法和经验，换人、换 Agent 都能无障碍交接。</t-zh><t-en>Requirement context, business documents, and lessons learned are scattered across chat sessions on different computers. When people or agents change, they are hard to find. Studio captures methods and experience in skills, the knowledge base, and project memory, so a new person or agent can pick up where the last one left off.</t-en></p>
+      <p class="lead"><t-zh>做事的方法放进技能，业务资料放进知识库，Agent 平时学到的经验记在项目记忆里。不再散落在个人电脑的会话中，换人、换模型都能接着往下做。</t-zh><t-en>Put team practices into skills, keep business material in the knowledge base, and save what agents learn in project memory—nothing gets lost when people or models change.</t-en></p>
     </div>
     <div class="sec-body">
       <div class="sheet">
         {{SNIP:stvMemory:1040}}
       </div>
       <div class="cols3">
-        <div><h3><i data-lucide="sparkles"></i><t-zh>技能</t-zh><t-en>Skills</t-en></h3><p><t-zh>技能保存做事的方法。需求澄清、开发、评审、发布的做法写成技能，分全局、项目、工作目录三级，每次运行自动带上。</t-zh><t-en>Skills hold how work gets done. Write down how you clarify, build, review, and release, at the global, project, or working-directory level, and every run carries them.</t-en></p></div>
-        <div><h3><i data-lucide="book-open"></i><t-zh>知识库</t-zh><t-en>Knowledge base</t-en></h3><p><t-zh>知识库保存业务资料。需求文档、业务规则、合同模板等由人编写或上传，Agent 工作时直接查阅。</t-zh><t-en>The knowledge base holds business documents. Requirements, business rules, contract templates, and other material are written or uploaded by people, and agents read them as they work.</t-en></p></div>
-        <div><h3><i data-lucide="lightbulb"></i><t-zh>项目记忆</t-zh><t-en>Project memory</t-en></h3><p><t-zh>项目记忆保存 Agent 自主学到的经验，存在项目的仓库里，随任务的 PR 一起评审、合并，下次开工前先读。</t-zh><t-en>Project memory holds what agents learn on their own. It lives in the project’s repository, is reviewed and merged with each issue’s pull request, and is read before the next issue starts.</t-en></p></div>
+        <div><h3><i data-lucide="sparkles"></i><t-zh>技能</t-zh><t-en>Skills</t-en></h3><p><t-zh>把开发规范、评审标准和做事方法做成技能，按全局、项目、工作目录三级生效，每次运行自动带上。</t-zh><t-en>Turn development standards, review checklists, and team habits into skills scoped globally, per project, or per directory—applied automatically on every run.</t-en></p></div>
+        <div><h3><i data-lucide="book-open"></i><t-zh>知识库</t-zh><t-en>Knowledge base</t-en></h3><p><t-zh>业务制度、规则、需求说明和合同模板集中管理，支持上传解析，供人和 Agent 工作时直接查阅。</t-zh><t-en>Keep business policies, rules, specs, and templates in one place with file parsing so both people and agents read the same source of truth.</t-en></p></div>
+        <div><h3><i data-lucide="lightbulb"></i><t-zh>项目记忆</t-zh><t-en>Project memory</t-en></h3><p><t-zh>Agent 在开发和验收反馈里学到的经验持续记在项目仓库中，随 PR 一起评审，下次开工前先读。</t-zh><t-en>Lessons agents learn during builds and reviews are saved right in the repo, reviewed in PRs, and read before the next task starts.</t-en></p></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="open">
+<section class="sec" id="editions">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>开源与私有部署</t-zh><t-en>Open source and self-hosting</t-en></b></p>
-      <h2 class="h2"><t-zh>私有部署，<span class="m">代码和数据归企业所有。</span></t-zh><t-en>Self-hosted. <span class="m">Your code and data belong to you.</span></t-en></h2>
-      <p class="lead"><t-zh>Core 和 Solution 开源免费；Studio 在商业版中提供。</t-zh><t-en>Core and Solution are free and open source. Studio is available in the commercial editions.</t-en></p>
+      <p class="label"><b><t-zh>版本与私有部署</t-zh><t-en>Editions &amp; self-hosting</t-en></b></p>
+      <h2 class="h2"><t-zh>社区版免费起步，<span class="m">随团队成长升级。</span></t-zh><t-en>Start free with Community, <span class="m">scale as your team grows.</span></t-en></h2>
+      <p class="lead"><t-zh>工作台全部部署在企业自己的服务器上，支持纯内网。个人和小团队直接免费上手，专业版与企业版一次买断、永久授权。</t-zh><t-en>Every edition self-hosts on your own servers, including air-gapped networks. Start free with Community, or upgrade with one-time perpetual licensing.</t-en></p>
     </div>
     <div class="sec-body">
-      <div class="cols3" style="margin-top:0">
-        <div><h3><i data-lucide="server"></i><t-zh>私有部署</t-zh><t-en>Self-hosted</t-en></h3><p><t-zh>Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和数据归企业所有。</t-zh><t-en>Core, Solution, and Studio all run on your own servers. Your code and data belong to you.</t-en></p></div>
-        <div><h3><i data-lucide="shuffle"></i><t-zh>模型与 Agent 自由选择</t-zh><t-en>Your choice of models and agents</t-en></h3><p><t-zh>不绑定厂商，支持 Claude Code、Codex 等编码工具和各类大模型。</t-zh><t-en>No vendor lock-in. Works with Claude Code, Codex, and other coding tools, and with a wide range of models.</t-en></p></div>
-        <div><h3><i data-lucide="box"></i><t-zh>应用独立运行</t-zh><t-en>Apps run independently</t-en></h3><p><t-zh>业务应用发布后独立运行，日常业务请求不经过 Studio。</t-zh><t-en>Once released, your business apps run on their own. Day-to-day business requests never go through Studio.</t-en></p></div>
+      <div class="start3">
+        <div class="scard pro">
+          <div class="hd"><i data-lucide="rocket"></i><b><t-zh>社区版</t-zh><t-en>Community</t-en></b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div>
+          <h3><t-zh>个人与小团队免费起步</t-zh><t-en>For individuals &amp; small teams</t-en></h3>
+          <p><t-zh>包含项目与任务、Agent 团队、运行环境、自动测试与交叉评审、验收上线、技能/知识库/项目记忆、手机做决策、运行记录与成员权限。</t-zh><t-en>Includes issues, agent teams, runtimes, tests &amp; cross-model review, preview sign-off, skills/KB/memory, mobile approvals, usage logs, and role permissions.</t-en></p>
+          <a class="btn btn-pri" href="{{DOCS}}studio/setup/" target="_blank" rel="noopener"><t-zh>免费开始使用</t-zh><t-en>Get Started Free</t-en><i data-lucide="arrow-right"></i></a>
+        </div>
+        <div class="scard">
+          <div class="hd"><i data-lucide="shield-check"></i><b><t-zh>专业版</t-zh><t-en>Pro</t-en></b><span><t-zh>一次买断</t-zh><t-en>One-time license</t-en></span></div>
+          <h3><t-zh>一个团队持续交付业务系统</t-zh><t-en>For teams shipping continuously</t-en></h3>
+          <p><t-zh>在社区版基础上，增加多角色流程（业务/技术双重验收）、部署审批、企业 SSO（飞书/钉钉/企微/SAML/LDAP）以及按项目和成员的成本预算控制。</t-zh><t-en>Adds multi-role workflows with dual sign-off, deployment approvals, enterprise SSO (SAML/LDAP/Feishu/DingTalk/WeCom), and budget limits.</t-en></p>
+          <a class="btn btn-sec" href="pricing.html"><t-zh>查看版本与价格</t-zh><t-en>Compare Editions</t-en><i data-lucide="arrow-right"></i></a>
+        </div>
+        <div class="scard">
+          <div class="hd"><i data-lucide="building-2"></i><b><t-zh>企业版</t-zh><t-en>Enterprise</t-en></b><span><t-zh>一次买断</t-zh><t-en>One-time license</t-en></span></div>
+          <h3><t-zh>多团队协作与关键业务</t-zh><t-en>For multi-team &amp; critical systems</t-en></h3>
+          <p><t-zh>在专业版基础上，增加项目级质量计划、发版自动回归测试、跨环境发布（预发布验证、上线窗口与冻结期）以及高可用与集群支持。</t-zh><t-en>Adds project quality plans, automated release regression, cross-environment promotions with release windows and freeze periods, and HA clustering.</t-en></p>
+          <a class="btn btn-sec" href="contact.html"><t-zh>联系我们</t-zh><t-en>Contact Us</t-en><i data-lucide="arrow-right"></i></a>
+        </div>
       </div>
-      <div class="links"><a class="btn btn-pri" href="pricing.html"><t-zh>查看版本与价格</t-zh><t-en>View Editions &amp; Pricing</t-en><i data-lucide="arrow-right"></i></a><a class="link" href="core.html"><t-zh>Agent 写的代码建在 NocoBase Core 上</t-zh><t-en>The code agents write is built on NocoBase Core</t-en><i data-lucide="arrow-right"></i></a></div>
+      <div class="ed-meta">
+        <span><i data-lucide="server"></i><t-zh>代码与数据全在企业自有服务器</t-zh><t-en>Code and data stay on your servers</t-en></span>
+        <span><i data-lucide="shuffle"></i><t-zh>模型与编码工具自由选择，支持本地模型</t-zh><t-en>Any model or coding tool, including local models</t-en></span>
+        <span><i data-lucide="box"></i><t-zh>业务系统发布后独立运行，请求不经过工作台</t-zh><t-en>Released apps run standalone without Studio in the request path</t-en></span>
+      </div>
+      <div class="links">
+        <a class="link" href="{{DOCS}}studio/" target="_blank" rel="noopener"><t-zh>阅读 Studio 完整文档</t-zh><t-en>Read the Studio Docs</t-en><i data-lucide="arrow-up-right"></i></a>
+        <a class="link" href="core.html"><t-zh>了解工作台背后的应用底座：NocoBase Core</t-zh><t-en>Explore the foundation behind Studio: NocoBase Core</t-en><i data-lucide="arrow-right"></i></a>
+        <a class="link" href="solutions.html"><t-zh>看看用 NocoBase 做出来的开源应用</t-zh><t-en>See open-source apps built on NocoBase</t-en><i data-lucide="arrow-right"></i></a>
+      </div>
     </div>
   </div>
 </section>
@@ -221,9 +235,8 @@ desc_en: NocoBase Studio is the governance platform for people and agents buildi
   tries.forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      a.blur(); // no focus ring left on the button once the page has scrolled away and back
+      a.blur();
       if (narrow() || !up()) { window.open(SITES[lang()], '_blank', 'noopener'); return; }
-      // Scroll first and load the demo once there: loading starts its sign-in, which puts the cursor in a field and would stop the scroll short.
       scrolling = true;
       section.querySelector('.ld-head').scrollIntoView({ behavior: 'smooth', block: 'start' });
       var done = function () { if (!scrolling) return; scrolling = false; shown = true; apply(); };

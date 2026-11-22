@@ -31,7 +31,7 @@ const { page } = Astro.props;
 </head>
 <body data-page={page.pageId || undefined} class={page.band ? 'has-band' : undefined}>
 <Fragment set:html={page.style} />
-<Header {...page.header} />
+<Header {...page.header}>{page.header.cta && <a slot="action" class="nav-cta" href={page.header.cta.href} set:html={page.header.cta.label} />}</Header>
 <main id={page.mainId}><Fragment set:html={page.main} /></main>
 <Footer {...page.footer} />
 <Fragment set:html={page.after} />
@@ -39,6 +39,7 @@ const { page } = Astro.props;
 <script>
   import '@nocobase/site-shared/shell.js';
   import '../scripts/lucide.js';
+  import '../scripts/live-figs.js';
 </script>
 </body>
 </html>

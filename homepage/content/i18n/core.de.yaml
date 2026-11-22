@@ -4,7 +4,7 @@ notes: |-
   coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
   vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
 title: NocoBase Core — Ihre Agenten kümmern sich um die Geschäftslogik
-description: NocoBase Core ist das Open-Source-Anwendungsfundament für Geschäftssysteme, die mit KI entwickelt und betrieben werden.
+description: NocoBase Core ist das Open-Source-Anwendungsfundament hinter NocoBase Studio. Berechtigungen, Workflows, Dateien und KI-Funktionen sind sofort einsatzbereit, sodass Agenten nur Ihre Geschäftslogik auf einer einheitlichen Architektur entwickeln und Apps eigenständig laufen.
 strings:
   "000": Ihre Agenten kümmern sich um die Geschäftslogik. <span class="m">Das Fundament steht bereit.</span>
   "002": Schnellstart
@@ -87,3 +87,53 @@ strings:
   "099": Loslegen
   "111": Studio entdecken
   "113": Core-Dokumentation lesen
+  "114": NocoBase Core ist das Open-Source-Anwendungsfundament hinter Studio. Mit über 20 fertigen Bausteinen für Berechtigungen, Workflows, Dateien und KI entwickeln Agenten nur das, was Ihr Geschäft ausmacht, auf einer einheitlichen Architektur – und veröffentlichte Systeme laufen eigenständig.
+  "116": Apps laufen eigenständig ohne Studio
+  "117": Über 20 bewährte Bausteine, <span class="m">sofort einsatzbereit.</span>
+  "118": Berechtigungen, Workflows, Freigaben und Dateispeicher sind komplex und verlangen höchste Zuverlässigkeit – deshalb werden sie nie von Grund auf durch KI neu geschrieben. NocoBase pflegt und aktualisiert sie laufend, während sich Agenten ganz auf Ihre Geschäftslogik konzentrieren.
+  "119": Passwörter, Zurücksetzen und Sitzungen; OIDC, Enterprise-SSO und Zwei-Faktor-Authentifizierung
+  "120": Hochladen, Speichern, Vorschau, Verbindungstests und Zugriffsrechte, verknüpft mit Datensätzen
+  "121": Workflows &amp; Freigaben
+  "122": Flussdiagramme und Ausführungsverlauf; Admins passen Genehmigende und Schwellenwerte direkt in der Oberfläche an
+  "123": Geplante Jobs</t-zh></b><span><t-zh>按时间规则执行，记录每次执行状态与日志</t-zh><t-en>Laufen nach Zeitplan, jede Ausführung wird protokolliert
+  "124": Modelldienste
+  "125": Cloud- oder lokale Modelle über eine einheitliche Schnittstelle anbinden – ohne Vendor-Lock-in
+  "126": Rund um die Uhr in Geschäftsanwendungen mit den Rechten der Verantwortlichen, bei wichtigen Aktionen mit menschlicher Bestätigung
+  "127": KI-Wissensdatenbank
+  "128": Versionierte Dokumente und Dateien mit Volltextsuche für Menschen und Agenten
+  "129": Alle Plugin-Dokumentationen ansehen
+  "130": Architektur &amp; Standards
+  "131": Eine Architektur, <span class="m">gemacht für jahrelange Weiterentwicklung.</span>
+  "132": Wechseln Entwickler, Modell oder Sitzung, driftet KI leicht ab. Core liefert ein einheitliches Projektgerüst, Architekturregeln und versionierte Entwicklungs-Skills, damit jede Person und jedes Modell exakt in derselben Struktur arbeitet.
+  "133": Jede neue App startet mit demselben Aufbau für Seiten, APIs, Migrationen und Tests und bindet die Fundament-Bausteine über <code>@nocobase/*</code> ein.
+  "134": <code>AGENTS.md</code> legt fest, wohin Geschäftscode gehört, was aus Core wiederverwendet wird und wie Migrationen und Berechtigungsprüfungen geschrieben werden.
+  "135": Skills direkt mit Core ausgeliefert
+  "136": Skills werden zusammen mit den Core-Paketen ausgeliefert und aktualisiert, sodass Claude Code, Codex und OpenCode stets nach demselben Regelwerk arbeiten.
+  "137": Integrierte KI
+  "138": KI direkt integriert <span class="m">in jedes Geschäftssystem.</span>
+  "139": Modelldienste, Fach-Agenten und eine KI-Wissensdatenbank sind fest eingebaut. Jedes auf Core aufgebaute System bringt eigene KI-Mitarbeiter mit, die rund um die Uhr Routineaufgaben übernehmen, während Menschen wichtige Aktionen bestätigen.
+  "140": Beliebige Modelle anbinden
+  "141": Binden Sie Cloud- oder selbst gehostete lokale Modelle ohne Vendor-Lock-in an – mit zentral verwalteten Secrets und Nutzungsprotokollen.
+  "142": KI-Mitarbeiter rund um die Uhr im Einsatz
+  "143": Arbeiten direkt in Ihren Geschäftsanwendungen wie digitale Kollegen – sammeln Daten, erstellen Berichte und Maßnahmenentwürfe und fragen vor wichtigen Schritten nach.
+  "144": Gesteuerte Zugriffe &amp; Wissen
+  "145": KI-Mitarbeiter bewegen sich strikt innerhalb der erteilten Datenberechtigungen und greifen direkt auf Ihre versionierte Unternehmens-Wissensdatenbank zu.
+  "146": Open Source &amp; eigenständig
+  "147": Open Source, gepflegt <span class="m">und eigenständig im Betrieb.</span>
+  "148": Der Quellcode von Core ist offen und prüfbar, mit fortlaufenden Fehlerbehebungen und Upgrades über alle Releases hinweg. Ihr Geschäftscode liegt in Ihrem eigenen Git-Repository, und veröffentlichte Apps laufen eigenständig ohne Studio im Anfragepfad.
+  "149": Open Source &amp; laufend gepflegt
+  "150": Vollständig Open Source und frei prüfbar, mit laufenden Sicherheitsfixes und Funktionserweiterungen durch das NocoBase-Team.
+  "151": Echter Quellcode in Ihrem Repository
+  "152": Standard-TypeScript-Code liegt in Ihrem eigenen Git-Repository – ganz ohne proprietäre Bindung.
+  "153": Selbst gehostet &amp; Multi-DB
+  "154": Betreiben Sie alles auf Ihrer eigenen Infrastruktur – inklusive Air-Gap-Netzwerken sowie PostgreSQL, MySQL, Oracle oder SQL Server.
+  "155": Eigenständige Produktions-Laufzeit
+  "156": Nach dem Deployment vollständig eigenständig – alltäglicher Datenverkehr berührt Studio nie, inklusive CLI-Upgrades und Rollbacks.
+  "157": Folgen Sie der Schnellstart-Anleitung, um eine App anzulegen, und lassen Sie Ihren Coding-Agenten Geschäftslogik auf dem fertigen Fundament von Core entwickeln.
+  "158": Open-Source-Apps
+  "159": Einsatzbereit &amp; anpassbar
+  "160": Installieren Sie NocoCRM, NocoITAM oder NocoReach direkt – oder passen Sie sie mit Agenten in Studio an.
+  "161": Open-Source-Apps ansehen
+  "162": Kostenlose Community-Edition
+  "163": Ein Agenten-Team rund um die Uhr steuern
+  "164": Koordinieren Sie Coding-Agenten über mehrere Geräte mit klaren Quality Gates und Freigaben am Desktop oder mobil – kostenlos zum Einstieg.

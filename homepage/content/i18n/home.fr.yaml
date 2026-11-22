@@ -4,7 +4,7 @@ notes: |-
   coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
   self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
 title: NocoBase 3 — La plateforme open source des systèmes métier créés avec l’IA
-description: NocoBase est la plateforme open source pour créer, exploiter et faire évoluer des systèmes métier avec l’IA.
+description: NocoBase est la plateforme open source qui permet aux entreprises de créer et d’exploiter des systèmes métier avec l’IA. Les humains définissent les besoins et décident, les agents écrivent le code et exécutent, et NocoBase garantit la fiabilité des systèmes et la maîtrise du processus.
 strings:
   "000": Actuelle
   "001": La plateforme de développement pour les agents
@@ -254,3 +254,72 @@ strings:
   "246": L’IA trouve des opportunités de croissance. Les agents les mettent en œuvre.
   "247": Commencer avec Core
   "248": Lire l'histoire complète
+  "249": <span class="ln">NocoBase est la plateforme open source des entreprises pour créer et exploiter des systèmes métier avec l’IA.</span><span class="ln">Les humains définissent les besoins et décident, les agents écrivent le code et exécutent, et NocoBase garantit des systèmes fiables et un processus maîtrisé.</span>
+  "250": Retour d’expérience · Sungrow
+  "251": Une nouvelle façon de travailler
+  "252": "La façon de créer et d’exploiter les systèmes métier "
+  "253": est en train de changer.
+  "254": S’appuyant conjointement sur Studio et Core, les entreprises adoptent cette nouvelle façon de travailler tout en gardant chaque système fiable et maîtrisé.
+  "255": Équipes métier
+  "256": Exprimez le besoin, validez vous-même
+  "257": "Fini les mois d’attente. Formulez votre besoin : les agents le développent en quelques heures et vous remettent un rapport de livraison et un environnement de test pour valider vous-même."
+  "258": IT et ingénierie
+  "259": Fixez les règles, validez et approuvez les mises en production
+  "260": Les équipes d’agents prennent en charge le développement et les tests, tandis que l’IT définit les standards d’architecture, valide les plans, garantit la qualité et approuve les mises en production.
+  "261": Direction
+  "262": Suivez l’avancement et les coûts à tout moment
+  "263": Plus besoin de courir après les points d’étape. Consultez l’avancement, les délais de cycle et les coûts des modèles de tous vos projets au même endroit.
+  "264": Opérations quotidiennes
+  "265": L’IA gère les tâches courantes 24h/24
+  "266": "Des agents métier sont intégrés à chaque application : ils traitent les tâches courantes 24h/24 dans le cadre des permissions de leur responsable et demandent confirmation pour les actions clés."
+  "267": Studio est l’espace de travail dédié à cette nouvelle façon de travailler. Il réunit Claude Code, Codex et OpenCode répartis sur vos machines en une équipe d’agents active 24h/24 qui gère le développement, les tests et la revue, pendant que les humains définissent les besoins, suivent l’avancement et décident sur ordinateur ou mobile.
+  "268": Une équipe d’agents active 24h/24
+  "269": Connectez Claude Code, Codex et OpenCode sur vos ordinateurs et serveurs pour faire avancer plusieurs projets en parallèle, sans dépendance à un fournisseur.
+  "270": Workflows structurés, avancement en un coup d’œil
+  "271": Chaque tâche suit votre workflow avec tests automatisés et revue de code croisée par un autre modèle, tandis que l’avancement, les délais de cycle et les coûts restent visibles au même endroit.
+  "272": Des décisions fondées sur des preuves, partout
+  "273": Soumettez vos besoins et vérifiez les résultats sur ordinateur ou mobile. Chaque livraison inclut rapports, checklists, captures d’écran et environnement de test interactif pour que chacun puisse trancher.
+  "274": Conservez les méthodes de votre équipe dans les skills, les documents métier dans la base de connaissances et ce que les agents apprennent dans la mémoire de projet. Quand les personnes ou les modèles changent, le travail reprend aussitôt.
+  "275": Documentation Studio
+  "276": "Core est le socle d’ingénierie open source derrière Studio. Plus de 20 briques (permissions, workflows, fichiers, intégration IA, etc.) sont prêtes à l’emploi : les agents ne développent que votre logique métier, sur une architecture cohérente."
+  "277": Plus de 20 briques fiables et prêtes à l’emploi
+  "278": "Utilisateurs, permissions, données, fichiers, workflows, validations et notifications sont intégrés nativement, sans jamais être régénérés de zéro : vos revues se concentrent sur la logique métier."
+  "279": Une architecture cohérente conçue pour évoluer
+  "280": Structure de projet, règles d’architecture et skills de développement sont livrés avec Core, garantissant la même structure quels que soient les développeurs, les modèles ou les sessions.
+  "281": L’IA intégrée dans chaque système métier
+  "282": Connexion aux modèles, orchestration d’agents métier et base de connaissances IA sont intégrées. Les agents métier tournent 24h/24 avec les permissions de leur responsable et font confirmer les actions clés.
+  "283": Open source, maintenu et autonome à l’exécution
+  "284": Core est open source et maintenu en continu. Votre code source métier reste dans votre propre dépôt et vos applications publiées tournent indépendamment de Studio.
+  "285": Documentation Core
+  "286": "L’édition Community est gratuite et open source : elle inclut l’essentiel de Studio et toutes les briques de Core. Les éditions commerciales sont en paiement unique avec licence perpétuelle."
+  "287": Votre code et vos données vous appartiennent
+  "288": Studio et vos applications métier tournent sur vos propres serveurs, y compris sur des réseaux sans accès à Internet.
+  "289": Aucune dépendance à un fournisseur. Utilisez Claude Code, Codex, d’autres outils de code ainsi que des modèles cloud ou locaux.
+  "290": Une fois publiées, vos applications métier fonctionnent seules. Les requêtes du quotidien ne passent jamais par Studio.
+  "291": Paiement unique
+  "292": Les éditions commerciales s’acquièrent en paiement unique avec une licence perpétuelle. Vous choisissez et réglez directement vos serveurs, modèles et outils.
+  "293": Questions fréquentes
+  "294": "Le vibe coding accélère l’écriture de code, mais les systèmes métier complexes exigent aussi un socle fiable, une architecture cohérente et une vraie gouvernance. NocoBase ne remplace pas le vibe coding : Core fournit des briques prêtes à l’emploi et des standards communs, tandis que Studio coordonne les équipes d’agents, les contrôles qualité et le savoir-faire de l’équipe pour transformer le code généré par l’IA en systèmes métier fiables."
+  "295": Quelle différence avec les plateformes low-code ?
+  "296": Les plateformes low-code reposent sur du glisser-déposer manuel, atteignent vite leurs limites sur les besoins complexes et enferment les applications dans la plateforme. Avec NocoBase, les agents écrivent du véritable code source pour vos règles complexes, intégrations et interfaces sur mesure, hébergé dans votre propre dépôt et exécuté en toute autonomie.
+  "297": "Nous utilisons déjà Claude Code, Codex ou Cursor : pourquoi NocoBase ?"
+  "298": Les outils de code répondent à la manière dont un développeur écrit du code avec l’IA ; NocoBase répond à la manière dont une équipe livre en continu des systèmes métier fiables. Studio orchestre ces outils au sein d’une équipe d’agents gouvernée, et Core leur apporte des briques prêtes à l’emploi et des standards communs pour que l’architecture ne dérive jamais.
+  "299": Les utilisateurs métier non techniques peuvent-ils participer ?
+  "300": Oui. Les utilisateurs métier décrivent leurs besoins, répondent aux questions des agents et vérifient les résultats sur de vraies données dans un environnement de test, depuis leur ordinateur ou leur mobile. Les agents et Studio prennent en charge les branches, les environnements, les tests et les mises en production.
+  "301": Les systèmes développés par l’IA sont-ils assez fiables pour la production ?
+  "302": Les permissions, validations et autres modules critiques proviennent de Core au lieu d’être générés de zéro. Chaque modification passe des tests automatisés et une revue croisée par un autre modèle avant la validation humaine, n’est déployée qu’après approbation et peut faire l’objet d’un retour arrière à tout moment.
+  "303": Nos données quittent-elles notre infrastructure ?
+  "304": NocoBase tourne sur vos propres serveurs, y compris sur des réseaux sans accès à Internet. Pendant que les agents travaillent, le code pertinent n’est envoyé qu’au fournisseur de modèle que vous choisissez, et vous pouvez utiliser des modèles hébergés localement dès que nécessaire.
+  "305": Commencez avec votre premier besoin concret.
+  "306": "L’édition Community est gratuite et open source : elle inclut l’essentiel de Studio et toutes les briques de Core."
+  "307": Édition Community
+  "308": Auto-hébergez et démarrez en quelques minutes
+  "309": Déployez NocoBase en local ou sur votre serveur, connectez vos outils de code et vos modèles, et passez directement en production.
+  "310": Guide de démarrage rapide
+  "311": Pro et Enterprise
+  "312": Paiement unique
+  "313": Conçu pour les équipes et les systèmes critiques
+  "314": Ajoute les workflows multi-rôles, l’approbation des déploiements, le SSO d’entreprise, la maîtrise des coûts, les plans qualité, les tests de non-régression et la haute disponibilité.
+  "315": Les humains définissent les besoins et décident
+  "316": Les agents écrivent le code et exécutent
+  "317": NocoBase garde vos systèmes fiables et maîtrisés

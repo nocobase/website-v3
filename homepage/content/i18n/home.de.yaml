@@ -4,7 +4,7 @@ notes: |-
   coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
   vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
 title: NocoBase 3 — Open-Source-Plattform für KI-entwickelte Geschäftssysteme
-description: NocoBase ist die Open-Source-Plattform, mit der Sie Geschäftssysteme mit KI entwickeln, betreiben und weiterentwickeln.
+description: NocoBase ist die Open-Source-Plattform, mit der Unternehmen Geschäftssysteme mit KI entwickeln und betreiben. Menschen definieren Anforderungen und treffen Entscheidungen, Agenten schreiben Code und setzen um, und NocoBase hält Systeme zuverlässig und Prozesse unter Kontrolle.
 strings:
   "000": Aktuell
   "001": Die Entwicklungsplattform für Agenten
@@ -254,3 +254,72 @@ strings:
   "246": KI findet Wachstumschancen. Agenten setzen sie um.
   "247": Mit Core starten
   "248": Ganze Geschichte lesen
+  "249": <span class="ln">NocoBase ist die Open-Source-Plattform, mit der Unternehmen Geschäftssysteme mit KI entwickeln und betreiben.</span><span class="ln">Menschen definieren Anforderungen und treffen Entscheidungen, Agenten schreiben Code und setzen um, und NocoBase hält Systeme zuverlässig und Prozesse unter Kontrolle.</span>
+  "250": Anwenderstory · Sungrow
+  "251": Eine neue Arbeitsweise
+  "252": "Wie Geschäftssysteme entwickelt und betrieben werden, "
+  "253": verändert sich.
+  "254": Im Zusammenspiel von Studio und Core setzen Unternehmen diese neue Arbeitsweise um – und behalten dabei jedes System zuverlässig und unter Kontrolle.
+  "255": Fachabteilungen
+  "256": Direkt anfordern, selbst abnehmen
+  "257": Schluss mit monatelangen Warteschlangen. Beschreiben Sie Ihren Bedarf, und Agenten setzen ihn in wenigen Stunden um – inklusive Übergabebericht und Testumgebung zur direkten Abnahme.
+  "258": IT &amp; Engineering
+  "259": Regeln setzen, prüfen und Releases freigeben
+  "260": Agenten-Teams übernehmen Entwicklung und Tests, während die IT Architekturstandards festlegt, Entwürfe prüft, die Qualität sichert und Releases freigibt.
+  "261": Management
+  "262": Fortschritt und Kosten jederzeit im Blick
+  "263": Kein Nachfragen mehr über mehrere Ebenen hinweg. Sehen Sie Fortschritt, Durchlaufzeiten und Modellkosten aller Projekte an einem Ort.
+  "264": Tagesgeschäft
+  "265": KI erledigt Routinearbeit rund um die Uhr
+  "266": Fach-Agenten arbeiten direkt in jeder App, erledigen Routineaufgaben rund um die Uhr im Rahmen der Berechtigungen ihrer Verantwortlichen und holen bei wichtigen Aktionen eine Bestätigung ein.
+  "267": Studio ist der Arbeitsbereich für diese neue Arbeitsweise. Es verbindet Claude Code, Codex und OpenCode auf Ihren Geräten zu einem rund um die Uhr arbeitenden Agenten-Team für Entwicklung, Tests und Review – während Menschen am Desktop oder mobil Anforderungen formulieren, den Fortschritt verfolgen und Entscheidungen treffen.
+  "268": Ein Agenten-Team rund um die Uhr
+  "269": Verbinden Sie Claude Code, Codex und OpenCode auf Arbeitsrechnern und Servern, um Projekte parallel und ohne Vendor-Lock-in voranzutreiben.
+  "270": Klare Abläufe, voller Überblick
+  "271": Jede Aufgabe durchläuft Ihren Workflow mit automatischen Tests und Cross-Model-Code-Review – während Fortschritt, Durchlaufzeit und Kosten zentral sichtbar bleiben.
+  "272": Fundierte Entscheidungen – überall
+  "273": Stellen Sie Anforderungen und prüfen Sie Ergebnisse am Desktop oder mobil. Jede Übergabe enthält Berichte, Checklisten, Screenshots und eine Live-Testumgebung, damit jeder sicher abnehmen kann.
+  "274": Halten Sie die Arbeitsweisen Ihres Teams in Skills, Geschäftsunterlagen in der Wissensdatenbank und die Erfahrungen der Agenten im Projektgedächtnis fest. Wechseln Menschen oder Modelle, geht die Arbeit nahtlos weiter.
+  "275": Studio-Dokumentation
+  "276": Core ist das Open-Source-Fundament hinter Studio. Über 20 Bausteine – Berechtigungen, Workflows, Dateien, KI-Anbindung und mehr – sind sofort einsatzbereit, damit Agenten ausschließlich Ihre Geschäftslogik auf einer einheitlichen Architektur entwickeln.
+  "277": Über 20 fertige, zuverlässige Bausteine
+  "278": Benutzer, Berechtigungen, Daten, Dateien, Workflows, Freigaben und Benachrichtigungen sind integriert – statt von Grund auf generiert –, sodass sich Reviews auf Ihre Geschäftslogik konzentrieren.
+  "279": Einheitliche Architektur für langfristiges Wachstum
+  "280": Projektgerüst, Architekturregeln und Entwicklungs-Skills werden mit Core ausgeliefert und halten die Struktur über Personen, Modelle und Sitzungen hinweg einheitlich.
+  "281": Integrierte KI in jedem Geschäftssystem
+  "282": Modellanbindung, Steuerung von Fach-Agenten und eine KI-Wissensdatenbank sind integriert. Fach-Agenten laufen rund um die Uhr mit den Rechten ihrer Verantwortlichen und holen bei wichtigen Aktionen eine Bestätigung ein.
+  "283": Open Source, gepflegt, eigenständig im Betrieb
+  "284": Core ist Open Source und wird laufend gepflegt. Ihr Geschäftscode bleibt in Ihrem eigenen Repository, und veröffentlichte Apps laufen unabhängig von Studio.
+  "285": Core-Dokumentation
+  "286": Die Community-Edition ist kostenlos und Open Source und umfasst die Grundfunktionen von Studio sowie alle Bausteine von Core. Kommerzielle Editionen sind ein Einmalkauf mit Dauerlizenz.
+  "287": Ihr Code und Ihre Daten gehören Ihnen
+  "288": Studio und Ihre Geschäftsanwendungen laufen auf Ihren eigenen Servern – auch in isolierten Netzwerken ohne Internetzugang (Air-Gap).
+  "289": Kein Vendor-Lock-in. Nutzen Sie Claude Code, Codex, weitere Coding-Tools sowie Cloud- oder lokale Modelle.
+  "290": Einmal veröffentlicht, laufen Ihre Geschäftsanwendungen selbstständig. Alltägliche Anfragen laufen nie über Studio.
+  "291": Einmalkauf
+  "292": Kommerzielle Editionen werden einmalig als Dauerlizenz erworben. Server, Modelle und Tools wählen Sie selbst und bezahlen die Anbieter direkt.
+  "293": Fragen &amp; Antworten
+  "294": "Vibe Coding beschleunigt das Schreiben von Code, doch komplexe Unternehmenssysteme brauchen zudem ein verlässliches Fundament, eine einheitliche Architektur und Governance. NocoBase ersetzt Vibe Coding nicht: Core liefert fertige Bausteine und Standards, während Studio Agenten-Teams, Qualitätsprüfungen und Teamwissen koordiniert – und so aus KI-generiertem Code zuverlässige Geschäftssysteme macht."
+  "295": Worin liegt der Unterschied zu Low-Code-Plattformen?
+  "296": Low-Code-Plattformen setzen auf manuelle Drag-and-Drop-Konfiguration, stoßen bei komplexen Anforderungen an Plattformgrenzen und binden Apps an die Plattform. Mit NocoBase schreiben Agenten echten Quellcode für komplexe Regeln, Integrationen und individuelle Oberflächen – gespeichert in Ihrem eigenen Repository und eigenständig lauffähig.
+  "297": Wir nutzen bereits Claude Code, Codex oder Cursor – warum zusätzlich NocoBase?
+  "298": Coding-Tools lösen, wie eine einzelne Person mit KI Code schreibt; NocoBase löst, wie ein Team kontinuierlich zuverlässige Geschäftssysteme liefert. Studio orchestriert diese Tools als gesteuertes Agenten-Team, und Core liefert fertige Bausteine sowie einheitliche Standards, damit die Architektur nie auseinanderdriftet.
+  "299": Können auch Fachanwender ohne Programmierkenntnisse mitarbeiten?
+  "300": Ja. Fachanwender beschreiben Anforderungen, beantworten Rückfragen der Agenten und nehmen Ergebnisse mit echten Daten in einer Testumgebung ab – am Desktop oder mobil. Branches, Umgebungen, Tests und Releases übernehmen die Agenten und Studio.
+  "301": Sind mit KI entwickelte Systeme zuverlässig genug für den Produktivbetrieb?
+  "302": Berechtigungen, Freigaben und andere kritische Module stammen aus Core und werden nicht von Grund auf neu generiert. Jede Änderung durchläuft automatische Tests und ein Cross-Model-Review vor der menschlichen Abnahme, geht erst nach Freigabe live und lässt sich jederzeit zurückrollen.
+  "303": Verlassen unsere Daten unsere Infrastruktur?
+  "304": NocoBase läuft auf Ihren eigenen Servern, einschließlich Air-Gap-Netzwerken. Während Agenten arbeiten, wird relevanter Code nur an den von Ihnen gewählten Modellanbieter gesendet – bei Bedarf können Sie auch lokal gehostete Modelle einsetzen.
+  "305": Starten Sie mit Ihrer ersten echten Anforderung.
+  "306": Die Community-Edition ist kostenlos und Open Source – inklusive der Grundfunktionen von Studio und aller Bausteine von Core.
+  "307": Community-Edition
+  "308": Selbst hosten und in Minuten starten
+  "309": Deployen Sie NocoBase lokal oder auf Ihrem Server, binden Sie Ihre Coding-Tools und Modelle an und gehen Sie direkt in den Produktivbetrieb.
+  "310": Schnellstart-Dokumentation
+  "311": Pro &amp; Enterprise
+  "312": Einmalkauf
+  "313": Für Teams und kritische Systeme
+  "314": Ergänzt Mehrrollen-Workflows, Deployment-Freigaben, Enterprise-SSO, Budgetkontrolle, Qualitätspläne, Regressionstests und Hochverfügbarkeit.
+  "315": Menschen definieren Bedarf und entscheiden
+  "316": Agenten schreiben Code und setzen um
+  "317": NocoBase hält Systeme zuverlässig und unter Kontrolle

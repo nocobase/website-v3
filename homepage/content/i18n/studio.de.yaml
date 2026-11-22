@@ -5,7 +5,7 @@ notes: |-
   vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
   页面用语：issue = Aufgabe；coordinator agent = Koordinations-Agent；sign-off = Abnahme；My sessions 等产品界面名称照英文
 title: NocoBase Studio — Agenten treiben die Arbeit voran. Ihr Team behält die Kontrolle.
-description: NocoBase Studio ist die Governance-Plattform für Menschen und Agenten, die gemeinsam Software entwickeln.
+description: NocoBase Studio ist der Arbeitsbereich für NocoBase. Verbinden Sie Claude Code, Codex und OpenCode auf Ihren Geräten zu einem rund um die Uhr arbeitenden Agenten-Team, das nach klaren Prozessen entwickelt, testet und prüft – während Menschen am Desktop oder mobil steuern und entscheiden.
 strings:
   "000": Agenten treiben die Arbeit voran. <span class="m">Ihr Team behält die Kontrolle.</span>
   "002": Online testen
@@ -70,3 +70,65 @@ strings:
   "072": NocoBase Studio online testen
   "073": Vollständig in neuem Tab öffnen
   "074": Sie sind mit einem Demo-Konto angemeldet. Alle Daten sind erfunden, probieren Sie also ruhig alles aus.
+  "075": NocoBase Studio ist der Arbeitsbereich für NocoBase. Es bündelt Claude Code, Codex und OpenCode auf Ihren Geräten zu einem rund um die Uhr arbeitenden Agenten-Team für Entwicklung, Tests und Review nach klaren Prozessen – während Menschen am Desktop oder mobil Anforderungen stellen, Fortschritte verfolgen und entscheiden.
+  "076": Kostenlos starten
+  "078": Die Community-Edition ist kostenlos und enthält die Grundfunktionen von Studio
+  "079": Selbst gehostet auf Ihren eigenen Servern, Air-Gap-fähig
+  "080": Funktioniert mit Claude Code, Codex, OpenCode und mehr
+  "081": Ein Agenten-Team <span class="m">rund um die Uhr.</span>
+  "082": Verbinden Sie Coding-Tools auf Laptops und Team-Servern in einem Arbeitsbereich. Ein Koordinations-Agent verteilt die Arbeit, und Agenten treiben mehrere Projekte rund um die Uhr in isolierten Umgebungen voran.
+  "083": Viele Geräte, jedes Coding-Tool
+  "084": Verbinden Sie Claude Code, Codex, OpenCode und weitere Tools auf Laptops und Servern ohne Vendor-Lock-in. Fügen Sie weitere Rechner hinzu, um mehr Aufgaben parallel laufen zu lassen.
+  "085": Automatische Zuteilung nach Stärke
+  "086": Ein Koordinations-Agent verteilt Design-, Entwicklungs-, Test- und Review-Aufgaben nach den Stärken jedes Agenten – ohne ständiges Überwachen von Terminals, während die finale Abnahme immer bei Menschen bleibt.
+  "087": Isolierte parallele Läufe
+  "088": Jede Aufgabe läuft in ihrem eigenen Branch, Worktree und einer eigenen Testumgebung, sodass Dutzende Aufgaben parallel vorankommen, ohne sich zu stören.
+  "089": Zusammenarbeit &amp; Entscheidungen
+  "090": Klare Entscheidungen, <span class="m">überall.</span>
+  "091": Fachabteilungen stellen Anforderungen und nehmen Ergebnisse am Desktop oder mobil anhand von Übergabeberichten und Live-Testumgebungen ab – während Fortschritt, Durchlaufzeit und Modellkosten über alle Projekte hinweg auf einen Blick sichtbar bleiben.
+  "092": Anforderungen in Alltagssprache &amp; direkte Abnahme
+  "093": Beschreiben Sie Anforderungen in Alltagssprache und beantworten Sie kurze Rückfragen. Jede Übergabe enthält Bericht, Checkliste, Screenshots und eine Live-Testumgebung.
+  "094": Am Desktop und mobil einsatzbereit
+  "095": Fügen Sie Studio zum Startbildschirm Ihres Smartphones hinzu, um von überall Anforderungen zu stellen, Fragen zu beantworten, Screenshots zu prüfen und mit Sofortbenachrichtigungen freizugeben.
+  "096": Fortschritt, Auslastung und Kosten im Blick
+  "097": Aufgaben, Kontext und Übergaben jedes Projekts liegen an einem Ort – mit Dashboards für Durchsatz, Durchlaufzeit, Nacharbeit, Agenten-Auslastung und Kosten pro Aufgabe.
+  "098": Prozess &amp; Qualität
+  "099": Klare Prozesse, <span class="m">Qualität an jedem Schritt.</span>
+  "100": Von der Anforderung und dem Entwurf über Entwicklung, Tests und Review bis zu Abnahme und Release hat jeder Schritt klare Zuständigkeiten, Prüfpunkte und einen lückenlosen Audit-Trail.
+  "101": Passender Workflow pro Projekt
+  "102": Integrierte Workflows von schlank bis strikt – oder passen Sie eigene Abläufe an Ihre Engineering-Standards an.
+  "103": Tests &amp; Cross-Model-Review
+  "104": Zuerst laufen automatische Tests, gefolgt vom Code-Review durch das Modell eines anderen Anbieters; bei Fehlern erfolgt automatisch eine Nachbesserung.
+  "105": Doppelte Abnahme
+  "106": Fachabteilungen prüfen das Verhalten in einer Live-Vorschau, während Tech Leads Architektur und Sicherheit abnehmen.
+  "107": Qualitätspläne &amp; Regression
+  "108": Führen Sie vor jedem Release vollständige Regressionstests über Funktionen, Berechtigungen, Sicherheit, Performance und Codequalität aus.
+  "109": Freigegebenes Release &amp; Rollback
+  "110": Produktions-Deployments erfordern eine Freigabe, unterstützen Release-Fenster und lassen sich sauber auf das letzte stabile Release zurückrollen.
+  "111": Klare Rollen
+  "112": Fachabteilungen verantworten Anforderungen und Abnahme; Tech Leads verantworten Regeln und Releases.
+  "113": Fachabteilungen formulieren Regeln in Alltagssprache und prüfen mit echten Daten in einer Testumgebung – Branches, Tests, Reviews und Deployments übernehmen die Agenten und Studio.
+  "114": Teamwissen
+  "115": Halten Sie Teampraktiken in Skills, Geschäftsunterlagen in der Wissensdatenbank und das Gelernte der Agenten im Projektgedächtnis fest – nichts geht verloren, wenn Menschen oder Modelle wechseln.
+  "116": Machen Sie Entwicklungsstandards, Review-Checklisten und Teamabläufe zu Skills – global, pro Projekt oder pro Verzeichnis –, die bei jedem Lauf automatisch greifen.
+  "117": Verwalten Sie Geschäftsrichtlinien, Regeln, Spezifikationen und Vorlagen zentral mit Datei-Parsing, damit Menschen und Agenten auf derselben Wissensbasis arbeiten.
+  "118": Erfahrungen, die Agenten bei Entwicklung und Reviews sammeln, werden direkt im Repository gespeichert, in PRs geprüft und vor der nächsten Aufgabe gelesen.
+  "119": Editionen &amp; Self-Hosting
+  "120": Kostenlos mit Community starten, <span class="m">mit Ihrem Team wachsen.</span>
+  "121": Jede Edition wird selbst auf Ihren eigenen Servern gehostet – auch in Air-Gap-Netzwerken. Starten Sie kostenlos mit Community oder wechseln Sie per Einmalkauf mit Dauerlizenz.
+  "124": Für Einzelpersonen &amp; kleine Teams
+  "125": Enthält Aufgaben, Agenten-Teams, Runtimes, Tests &amp; Cross-Model-Review, Vorschau-Abnahme, Skills/Wissensdatenbank/Projektgedächtnis, mobile Freigaben, Nutzungsprotokolle und Rollenberechtigungen.
+  "126": Pro
+  "127": Einmalige Lizenz
+  "128": Für Teams mit laufender Auslieferung
+  "129": Ergänzt Mehrrollen-Workflows mit doppelter Abnahme, Deployment-Freigaben, Enterprise-SSO (SAML/LDAP/Feishu/DingTalk/WeCom) und Budgetgrenzen.
+  "130": Editionen vergleichen
+  "131": Enterprise
+  "132": Für mehrere Teams &amp; kritische Systeme
+  "133": Ergänzt Projekt-Qualitätspläne, automatische Release-Regressionstests, umgebungsübergreifende Releases mit Release-Fenstern und Freeze-Zeiten sowie Hochverfügbarkeits-Clustering.
+  "135": Code und Daten bleiben auf Ihren Servern
+  "136": Beliebige Modelle und Coding-Tools, inklusive lokaler Modelle
+  "137": Veröffentlichte Apps laufen eigenständig ohne Studio im Anfragepfad
+  "138": Studio-Dokumentation lesen
+  "139": "Entdecken Sie das Fundament hinter Studio: NocoBase Core"
+  "140": Open-Source-Apps auf Basis von NocoBase ansehen

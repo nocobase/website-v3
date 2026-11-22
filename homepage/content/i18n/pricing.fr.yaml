@@ -5,7 +5,7 @@ notes: |-
   self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
   页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（8 000 $ US，不换行空格）；信创数据库只在中文版列出
 title: Éditions et tarifs — NocoBase 3
-description: Core et toutes les applications Solution sont gratuits et open source. Professional coûte 8 000 $ US en paiement unique, avec Studio, 1 an de mises à jour et de support, et un déploiement. Enterprise est proposé sur devis.
+description: "L’édition Community est gratuite et open source : elle inclut l’essentiel de Studio, toutes les briques de Core et toutes les applications open source. Professional coûte 8 000 $ US en paiement unique, avec la gouvernance d’équipe et 1 an de mises à jour et de support. Enterprise est proposé sur devis."
 strings:
   "001": Commencez gratuitement. <span class="m">Achetez une fois, utilisez pour toujours.</span>
   "002": Open source
@@ -207,3 +207,83 @@ strings:
   "212": Services
   "213": Cluster et haute disponibilité, architecture multi-tenant et multi-application
   "214": Journaux d’audit et livraison hors ligne
+  "215": "L’édition Community est gratuite et open source : elle inclut l’essentiel de Studio, toutes les briques de Core et toutes les applications open source. Les éditions commerciales sont en paiement unique avec licence perpétuelle, entièrement auto-hébergées sur vos propres serveurs."
+  "216": Pour les particuliers et petites équipes qui créent et exploitent des systèmes métier avec l’IA.
+  "217": Gratuit et open source · prêt pour la production et les projets clients
+  "218": Commencer gratuitement
+  "219": Projets, tâches, équipe d’agents et runtimes multi-machines
+  "220": Tests automatisés, revue croisée multi-modèles, validation sur aperçu et retour arrière
+  "221": Skills, base de connaissances, mémoire de projet et décisions sur mobile
+  "222": Historique d’exécution, suivi d’usage et des coûts, et permissions par rôle avec OIDC
+  "223": Toutes les 20+ briques de Core, les standards et les skills de développement
+  "224": Toutes les applications métier open source (NocoCRM, NocoITAM, NocoReach, etc.)
+  "225": Documentation et support communautaire
+  "226": Pour les équipes
+  "227": Pour une équipe qui développe, gouverne et livre en continu des systèmes métier avec l’IA.
+  "228": "Workflows multi-rôles : approbation technique avant développement, double validation métier et technique"
+  "229": Approbation des déploiements et retours arrière sur les environnements protégés
+  "230": "SSO d’entreprise : SAML 2.0, LDAP, WeCom, Feishu et DingTalk"
+  "231": "Maîtrise des coûts : budgets par projet, membre ou agent avec mise en pause automatique"
+  "232": 1 an de mises à jour et de support (première réponse sous 12&nbsp;heures)
+  "233": Un déploiement réalisé par l’équipe NocoBase
+  "234": Pour le multi-équipes et les systèmes critiques nécessitant plans qualité, contrôle des mises en production et haute disponibilité.
+  "235": Devis sur mesure · licence perpétuelle en paiement unique
+  "236": "Plans qualité par projet : tests boîte blanche et boîte noire couvrant fonctionnalités, permissions, sécurité, performances et code"
+  "237": Tests de non-régression automatisés avant chaque mise en production
+  "238": Promotion multi-environnements de la préproduction à la production, avec fenêtres de mise en production et périodes de gel
+  "239": Cluster et haute disponibilité, architecture multi-tenant, multi-application et multi-portail
+  "240": Journaux d’audit complets et livraison hors ligne en réseau isolé
+  "241": Support prioritaire, première réponse sous 4&nbsp;heures
+  "242": Studio et vos applications métier sont auto-hébergés sur vos propres serveurs, y compris sur des réseaux sans accès à Internet. Vous choisissez vos serveurs, vos modèles et vos outils de code, et réglez directement leurs fournisseurs.
+  "243": Détail des fonctionnalités
+  "244": Community inclut l’essentiel de Studio et l’intégralité du socle open source. Professional ajoute la gouvernance d’équipe. Enterprise ajoute la qualité des livraisons, les promotions multi-environnements et la haute disponibilité.
+  "245": Espace de travail — développement et gouvernance d’équipe avec des agents de code
+  "246": Projets et tâches
+  "247": Décrivez vos besoins en session, les agents les découpent en tâches et l’avancement reste visible sur tous les projets
+  "248": Un agent coordinateur répartit le travail entre Claude Code, Codex et d’autres agents sur vos machines
+  "249": Connectez ordinateurs personnels et serveurs d’équipe pour mener plusieurs tâches en parallèle
+  "250": Tests et revue
+  "251": Chaque tâche passe des tests et vérifications CI, plus une revue de code croisée par le modèle d’un autre fournisseur
+  "252": Validation et mise en production
+  "253": Chaque livraison inclut un rapport de validation et un environnement de test ; le responsable valide la mise en production, avec retour arrière immédiat
+  "254": Capitalisez en continu les méthodes d’équipe, documents métier et retours d’expérience
+  "255": Décider sur mobile
+  "256": Ajoutez Studio à l’écran d’accueil de votre téléphone pour soumettre des demandes, répondre aux questions et valider où que vous soyez
+  "257": Chaque exécution est journalisée avec une visibilité claire sur la consommation de tokens et les coûts
+  "258": Membres et permissions
+  "259": Connexion par mot de passe ou OIDC avec permissions par rôle ; les agents ne dépassent jamais les droits de la personne qui les sollicite
+  "260": Workflows multi-rôles
+  "261": Les utilisateurs métier soumettent leurs besoins, les responsables techniques approuvent avant le développement, avec double validation métier et technique
+  "262": Approbation des déploiements
+  "263": Les déploiements et retours arrière sur les environnements protégés nécessitent un approbateur
+  "264": Connexion à Studio via SAML 2.0, LDAP, WeCom, Feishu et DingTalk
+  "265": Définissez des budgets par projet, membre ou agent, avec mise en pause automatique dès le seuil atteint
+  "266": Tests boîte blanche et boîte noire par projet couvrant fonctionnalités, permissions, sécurité, performances et qualité du code
+  "267": Tests de non-régression
+  "268": Suites de non-régression automatisées avant chaque mise en production
+  "269": Promotion multi-environnements
+  "270": Passez en production à l’identique les versions validées en préproduction, avec fenêtres de mise en production et périodes de gel
+  "271": Socle — briques prêtes à l’emploi et architecture unique
+  "272": Traitent les tâches courantes dans les limites des permissions accordées et font confirmer les actions clés
+  "273": Générez contrats, devis et documents à partir de modèles Office
+  "274": Exécution autonome avec déploiement, mise à jour et retour arrière en ligne de commande
+  "275": Architecture multi-portail
+  "276": Applications métier open source — prêtes à l’emploi et personnalisables dans Studio
+  "278": Autres applications open source
+  "279": Support, Projets, RH et d’autres à venir
+  "280": Personnalisez avec des agents de code selon votre propre métier
+  "281": Mises à jour open source pour Community ; 1 an de versions commerciales pour Pro et Enterprise
+  "282": Open source
+  "283": Questions sur les licences et l’achat
+  "284": Comment choisir entre Community, Professional et Enterprise ?
+  "285": "Les particuliers et petites équipes peuvent démarrer gratuitement avec Community : l’édition inclut déjà les fonctionnalités essentielles de Studio, toutes les briques de Core et toutes les applications open source."
+  "286": "Choisissez Professional lorsqu’une équipe a besoin de gouvernance : l’édition ajoute les workflows multi-rôles avec double validation, l’approbation des déploiements, le SSO d’entreprise, la maîtrise des coûts, les validations avancées, un déploiement par notre équipe et un support avec première réponse sous 12 heures."
+  "287": "Choisissez Enterprise pour le multi-équipes et les systèmes critiques : l’édition ajoute les plans qualité, les tests de non-régression automatisés, les promotions multi-environnements, le cluster haute disponibilité, les architectures multi-tenant, multi-application et multi-portail, les journaux d’audit, la livraison hors ligne, 3 jours d’accompagnement et un support prioritaire avec première réponse sous 4 heures."
+  "288": Oui. Community inclut les fonctionnalités essentielles de Studio, l’intégralité de Core et toutes les applications open source, utilisables gratuitement en production et pour les projets clients.
+  "289": Elle n’expire jamais. Les éditions commerciales s’acquièrent en paiement unique, sans frais annuels ni facturation par utilisateur.
+  "290": Oui. Studio, vos agents et vos applications tournent tous sur vos propres serveurs, y compris sur des réseaux sans accès à Internet. Une fois publiées, vos applications fonctionnent de façon autonome, sans que les requêtes passent par Studio.
+  "291": Faut-il acheter Studio séparément ?
+  "292": Non. L’édition Community de Studio est déjà incluse gratuitement et en open source dans Community. Les fonctionnalités de gouvernance d’équipe et de qualité/déploiement entreprise sont directement incluses dans Professional et Enterprise.
+  "293": Puis-je déployer l’édition commerciale de Studio pour mes clients ?
+  "294": Non. L’édition commerciale de Studio (Pro/Enterprise) est réservée à l’entreprise titulaire de la licence. Vous pouvez livrer à vos clients les applications métier que vous développez, ou les laisser auto-héberger l’édition open source Community.
+  "295": Parlez-nous de votre équipe et de ce que vous souhaitez bâtir. Nous vous aidons à choisir la bonne édition et l’architecture de déploiement adaptée.

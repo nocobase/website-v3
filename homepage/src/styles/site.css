@@ -804,7 +804,7 @@ section.sec.tint { margin-top: 120px; padding-block: 104px 112px; background: ok
 .plan .for { margin-top: 6px; font-size: 14px; line-height: 1.6; color: var(--ink-2); min-height: 3.2em; }
 .plan .price { margin-top: 16px; font-size: 28px; font-weight: 650; letter-spacing: -0.015em; }
 .plan .price small { font-size: 13.5px; font-weight: 400; color: var(--muted); margin-left: 6px; letter-spacing: 0; }
-.plan .pmeta { margin-top: 4px; font-size: 13px; color: var(--muted); min-height: 1.5em; }
+.plan .pmeta { margin-top: 4px; font-size: 13px; line-height: 1.5; color: var(--muted); min-height: 3em; }
 .plan .btn { margin-top: 18px; width: 100%; }
 .plan ul { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--rule); display: grid; gap: 9px; font-size: 14px; color: var(--ink-2); }
 .plan ul li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; line-height: 1.58; }

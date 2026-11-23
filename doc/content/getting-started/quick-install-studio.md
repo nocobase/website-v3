@@ -5,12 +5,12 @@ metaDescription: "Install Studio Community Edition and a first project on your c
 
 Install Studio Community Edition and a first project on your computer with one command, then hand the first task to an Agent.
 
-## Before you begin
+## Prerequisites
 
 - macOS, Linux, or WSL on Windows with Docker Desktop
 - Docker with Compose v2, running
 - Node.js 24, Git and curl
-- At least one coding tool installed and signed in: Claude Code, Codex, OpenCode or Pi
+- At least one coding tool installed and signed in: Claude Code, Codex, OpenCode, Pi and others
 
 ## Run the installer
 
@@ -31,13 +31,13 @@ When it finishes, it prints Studio's address and the sign-in.
 
 ## Sign in to Studio
 
-Studio runs at `http://127.0.0.1:13000/main`. Open the printed address, which leads to the first project's conversation, and sign in with `admin@nocobase.com` and `admin123`. Then change the password under **Account settings › Account and security**.
+Studio runs at `http://127.0.0.1:13000/main`. Open the printed address, which leads to the first project's conversation, and sign in with the email and password the installer printed. Then change the password under **Account settings › Account and security**.
 
 The conversation holds the Agent's plan for the project and a suggested task with **Start**.
 
 ## Open the application in the test environment
 
-The Agent's first reply in the conversation starts with the test application's address, `http://127.0.0.1:13000/my-first-project-staging/`, and its sign-in. Open it and sign in with that email and password to use the NocoBase 3 application in the repository. The application stops after 10 minutes without visits and starts again on the next visit.
+The Agent's first reply in the conversation starts with the test application's address, `http://127.0.0.1:13000/my-first-project-staging/`, and its sign-in. Open it and sign in with that email and password to open the NocoBase 3 application the installer created. The application stops after 10 minutes without visits and starts again on the next visit.
 
 The test environment also shows under [Hosted environments](../studio/admin/environments.md) in Studio.
 

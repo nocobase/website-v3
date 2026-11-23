@@ -5,12 +5,12 @@ metaDescription: "用一条命令在自己的电脑上安装 Studio 社区版和
 
 用一条命令在自己的电脑上安装 Studio 社区版和首个项目，再把第一个任务交给 Agent。
 
-## 开始前
+## 前置依赖
 
 - macOS、Linux，或 Windows 上的 WSL 加 Docker Desktop
 - Docker，带 Compose v2，并已启动
 - Node.js 24、Git 和 curl
-- 至少一个已安装并登录的编码工具：Claude Code、Codex、OpenCode 或 Pi
+- 至少一个已安装并登录的编码工具：Claude Code、Codex、OpenCode 或 Pi 等
 
 ## 运行安装命令
 
@@ -31,13 +31,13 @@ curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang zh-CN --mirror regi
 
 ## 登录 Studio
 
-Studio 运行在 `http://127.0.0.1:13000/main`。打开终端输出的地址，用 `admin@nocobase.com` 和 `admin123` 登录，进入首个项目的对话。登录后在「个人设置 › 账号与安全」修改密码。
+Studio 运行在 `http://127.0.0.1:13000/main`。打开终端输出的地址，用终端给出的账号和密码登录，进入首个项目的对话。登录后在「个人设置 › 账号与安全」修改密码。
 
 对话中有 Agent 为这个项目整理的计划，以及一个带「开始」按钮的建议任务。
 
 ## 打开测试环境中的应用
 
-Agent 在对话中的第一条回复以测试应用的地址和账号开头，地址是 `http://127.0.0.1:13000/my-first-project-staging/`。打开它，用回复中的账号和密码登录，就能使用仓库里的 NocoBase 3 应用。应用 10 分钟无人访问会停止，下次打开时自动启动。
+Agent 在对话中的第一条回复以测试应用的地址和账号开头，地址是 `http://127.0.0.1:13000/my-first-project-staging/`。打开它，用回复中的账号和密码登录，就能访问初始化创建的 NocoBase 3 应用。应用 10 分钟无人访问会停止，下次打开时自动启动。
 
 这个测试环境也显示在 Studio 的[托管环境](../studio/admin/environments.md)中。
 

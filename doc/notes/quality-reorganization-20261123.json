@@ -1,0 +1,47 @@
+{
+  "zh-CN": {
+    "originalScreenshots": 9,
+    "retainedScreenshots": 9,
+    "urls": {
+      "https://static-docs.nocobase.com/studio-zh-quality-settings-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-zh-quality-scenarios-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-zh-quality-new-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-zh-quality-runs-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-zh-quality-report-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-zh-quality-dimension-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-zh-quality-follow-ups-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-zh-quality-sample-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-zh-quality-metrics-20261111-normal-2x.webp": 1
+    }
+  },
+  "en": {
+    "originalScreenshots": 9,
+    "retainedScreenshots": 9,
+    "urls": {
+      "https://static-docs.nocobase.com/studio-en-quality-settings-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-scenarios-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-new-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-runs-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-report-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-dimension-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-follow-ups-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-sample-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-metrics-20261111-normal-2x.webp": 1
+    }
+  },
+  "ja-JP": {
+    "originalScreenshots": 9,
+    "retainedScreenshots": 9,
+    "urls": {
+      "https://static-docs.nocobase.com/studio-en-quality-settings-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-scenarios-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-new-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-runs-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-report-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-dimension-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-follow-ups-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-sample-20261111-normal-2x.webp": 1,
+      "https://static-docs.nocobase.com/studio-en-quality-metrics-20261111-normal-2x.webp": 1
+    }
+  }
+}

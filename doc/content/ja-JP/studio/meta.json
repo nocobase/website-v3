@@ -163,18 +163,6 @@
         },
         {
           "type": "page",
-          "path": "quality/reports"
-        },
-        {
-          "type": "page",
-          "path": "quality/scenarios"
-        },
-        {
-          "type": "page",
-          "path": "quality/follow-ups"
-        },
-        {
-          "type": "page",
           "path": "quality/metrics"
         },
         {

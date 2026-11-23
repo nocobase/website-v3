@@ -20,6 +20,10 @@
         },
         {
           "type": "page",
+          "path": "quick-install-studio"
+        },
+        {
+          "type": "page",
           "path": "collaborate-with-studio"
         }
       ]

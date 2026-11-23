@@ -82,6 +82,6 @@ Closing a follow-up task does not rewrite earlier results. Historical reports ke
 
 <h2 id="metrics">Metrics and trends</h2>
 
-In **Quality › Metrics**, choose a test type and time range to see how each dimension's metrics change. Select a metric to see the related tests, scenarios, or findings.
+In **Quality › Metrics**, choose a test type to see how each dimension's metrics change across recent tests. Select a metric to see the related tests, scenarios, or findings.
 
 ![Metrics distinguish recorded results from unverified items](https://static-docs.nocobase.com/studio-en-quality-metrics-20261111-normal-2x.webp)

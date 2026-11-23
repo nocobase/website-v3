@@ -82,6 +82,6 @@ description: 納品レポートと評価項目ごとのレポートで証拠を�
 
 <h2 id="metrics">指標と推移</h2>
 
-**Quality › Metrics** でテストの種類と期間を選び、評価項目ごとの指標の推移を確認します。指標を選ぶと、関連するテスト、シナリオ、問題を確認できます。
+**Quality › Metrics** でテストの種類を選び、直近のテストにおける評価項目ごとの指標の推移を確認します。指標を選ぶと、関連するテスト、シナリオ、問題を確認できます。
 
 ![記録された結果と未検証の項目を区別する指標](https://static-docs.nocobase.com/studio-en-quality-metrics-20261111-normal-2x.webp)

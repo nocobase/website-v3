@@ -9,7 +9,7 @@ Tests run automatically by their [settings by test type](settings.md#settings-by
 
 - The project has a code repository.
 - An enabled Agent and an online Runner are available.
-- Automatic tests need an active project lead. The execution identity needs project management, task reading, and attachment upload permissions.
+- Automatic tests need an active project lead. Whoever starts a test (the project lead for automatic tests) needs access to the project and permission to create tasks, run quality tests, and upload attachments.
 
 ## Start a test
 

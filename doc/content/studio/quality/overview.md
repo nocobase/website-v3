@@ -13,7 +13,7 @@ Quality management is available in Studio Enterprise Edition (EE). It tests a pr
 
 Functionality, permissions, security, performance, and code quality each have a set of metrics and pass criteria, such as “unauthorized reads = 0”, “initial JS ≤ 2 MB”, and “new circular dependencies = 0”. A passing test means the tested version meets these standards.
 
-**Projects can define their own standards**: adjust performance budgets, replace the Skill a dimension uses, or add dimensions. See [Quality standards](standards.md) for the full list.
+**Projects can define their own standards**: replace the Skill a dimension uses, or add dimensions. See [Quality standards](standards.md) for the full list.
 
 ### Measured by established testing tools
 

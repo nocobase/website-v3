@@ -32,8 +32,7 @@ New tests use an updated Skill version. Existing tests keep the version frozen a
 
 ## Adjust project standards
 
-- Performance budgets: change them directly in settings; unchanged budgets keep their defaults.
-- Other standards: change or replace the dimension's Skill.
+A dimension's Skill defines its standards; change or replace the Skill to adjust them.
 
 See [Quality standards](standards.md) for the defaults. Changes take effect in new tests; existing results are never rewritten by new standards.
 

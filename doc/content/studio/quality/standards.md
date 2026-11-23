@@ -5,7 +5,7 @@ description: Metrics, default pass criteria, and test methods for the five dimen
 
 Studio includes a set of metrics and pass criteria for each dimension. During a test, the tools run and produce a result for each metric, and the server compares the results with the standards to decide whether they pass.
 
-**Projects can define their own standards**: change performance budgets in [quality settings](settings.md#adjust-project-standards). A dimension's Skill defines its other checking methods and rules; replace the Skill or add a dimension to change them.
+**Projects can define their own standards**: a dimension's Skill defines its checking methods and rules; [replace the Skill](settings.md#adjust-project-standards) or add a dimension to change them.
 
 ## Functional
 
@@ -48,8 +48,6 @@ Security tests run in an isolated environment the test prepares itself; they nev
 | API response size | ≤ 500 KB | Collection script | Record each endpoint's response size |
 | SQL statements per request | ≤ 20 | PostgreSQL | Count the SQL each request issues |
 | Slowest SQL time | ≤ 50 ms | PostgreSQL (`EXPLAIN`) | Inspect execution plans for slow SQL |
-
-These are default budgets; a project can change them in quality settings.
 
 ## Code quality
 

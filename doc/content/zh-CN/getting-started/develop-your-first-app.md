@@ -10,7 +10,7 @@ metaDescription: "创建并启动 NocoBase 应用，让 Agent 开发客户管理
 - Node.js 24 或更高版本，pnpm 11。
 - Windows 上在 WSL 中操作。下面的命令都在 Bash 等 POSIX shell 中运行。
 
-以下使用 SQLite，无需单独安装数据库服务。使用其他数据库，请参阅[使用不同数据库创建应用](../core/reference/database-configuration.md)。
+以下使用 SQLite，无需单独安装数据库服务。使用其他数据库，请参阅[使用不同数据库创建应用](../core/developing-apps/database-configuration.md)。
 
 可以交给 Agent 创建，也可以自己执行命令，任选一种。
 

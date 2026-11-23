@@ -23,18 +23,11 @@ NocoBase 提供 8 种数据库方言。方言是连接配置中 `dialect` 的取
 
 | 数据库 | 驱动包 | `dialect` | 使用条件 |
 | --- | --- | --- | --- |
-| 达梦 | `@nocobase/db-dameng` | `dameng` | 驱动目前为实验性，使用前需在目标数据库版本上验证 |
-| 人大金仓 KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 兼容模式，`DB_MODE=pg` |
-| OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 兼容租户 |
+| 达梦<br><span class="edition-badge professional" title="适用于专业版和企业版">专业版+</span> | `@nocobase/db-dameng` | `dameng` | 驱动目前为实验性，使用前需在目标数据库版本上验证 |
+| 人大金仓 KingbaseES<br><span class="edition-badge professional" title="适用于专业版和企业版">专业版+</span> | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 兼容模式，`DB_MODE=pg` |
+| OceanBase CE<br><span class="edition-badge professional" title="适用于专业版和企业版">专业版+</span> | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 兼容租户 |
 
-这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权。从授权交付方取得私有仓库地址、账号信息及具有下载权限的只读令牌（`nbr_…`）。将下方命令中的 `<nocobase-pro-registry-url>` 替换为取得的仓库地址，`<nocobase-pro-registry-host>` 替换为该地址去掉 `https://` 和末尾 `/` 后的主机名及路径，`<nocobase-pro-read-token>` 替换为令牌，再执行命令：
-
-```bash
-npm config set "@nocobase:registry" "<nocobase-pro-registry-url>"
-npm config set "//<nocobase-pro-registry-host>/:_authToken" "<nocobase-pro-read-token>"
-```
-
-这两条命令在用户的 `~/.npmrc` 中将 `@nocobase` 映射到 Pro registry 并保存令牌，npm 和 pnpm 都会读取该文件；此仓库也代理公开的 NocoBase 包，其他依赖仍使用原有 registry。不要把令牌写入文档或提交到 Git。
+这三个驱动属于 NocoBase Pro 商业包，需要相应的商业授权。安装前请先按[配置商业包的授权源](overview.md#配置商业包的授权源)完成私有仓库和只读令牌配置。
 
 ## 配置应用数据库
 
@@ -51,7 +44,7 @@ pnpm nocobase config init --dialect postgres --json
 
 命令生成 `config.yml` 和应用密钥，但不连接数据库。先在配置文件中填写真实的主机、端口、数据库名、用户名、密码及所需的 TLS 配置；各数据库的示例见[使用不同数据库创建应用](database-configuration.md)。使用其他数据库时，替换包名和 `--dialect` 值。`config init` 不会安装驱动，也不会创建数据库服务或账号。
 
-`config.yml` 可能包含密码和密钥，不提交到 Git。也可使用[配置命令](cli.md)设置连接参数。
+`config.yml` 可能包含密码和密钥，不提交到 Git。也可使用[配置命令](../reference/cli.md)设置连接参数。
 
 完成配置后检查连接：
 
@@ -76,7 +69,7 @@ pnpm nocobase config check
 | Oracle | 使用 `serviceName` 指定服务 |
 | 达梦 | 使用 `schema` 指定模式；初始化配置不生成 `database` 字段 |
 
-环境变量可能覆盖文件中的连接参数，覆盖规则见[配置项参考](configuration.md)。增加其他连接见[多数据库连接](../developing-apps/multiple-databases.md)；连接现有业务库、限制框架修改表结构见[接入已有数据库](../developing-apps/existing-databases.md)。
+环境变量可能覆盖文件中的连接参数，覆盖规则见[配置项参考](../reference/configuration.md)。增加其他连接见[多数据库连接](multiple-databases.md)；连接现有业务库、限制框架修改表结构见[接入已有数据库](existing-databases.md)。
 
 ## 数据库版本与功能限制
 
@@ -117,6 +110,6 @@ pnpm list @nocobase/app-client @nocobase/app-server @nocobase/app-cli @nocobase/
 
 ## 升级与跨平台部署
 
-升级前备份数据库、运行配置和密钥，保留锁文件；按[升级 NocoBase Core](../developing-apps/upgrade-nocobase-core.md)更新模板和依赖，并在独立环境中验证迁移、查询、事务及权限。回退代码不会自动撤销数据库结构变更，需同时准备数据恢复方案。
+升级前备份数据库、运行配置和密钥，保留锁文件；按[升级 NocoBase Core](upgrade-nocobase-core.md)更新模板和依赖，并在独立环境中验证迁移、查询、事务及权限。回退代码不会自动撤销数据库结构变更，需同时准备数据恢复方案。
 
-跨操作系统或 CPU 架构部署时，应为目标平台重新构建，避免直接复制本机的原生依赖。数据库驱动需安装在应用的生产依赖中；增加驱动后重新构建部署包。构建参数见[命令行参考](cli.md)，部署步骤见[选择部署方式](../deployment/choose-a-deployment-method.md)。
+跨操作系统或 CPU 架构部署时，应为目标平台重新构建，避免直接复制本机的原生依赖。数据库驱动需安装在应用的生产依赖中；增加驱动后重新构建部署包。构建参数见[命令行参考](../reference/cli.md)，部署步骤见[选择部署方式](../deployment/choose-a-deployment-method.md)。

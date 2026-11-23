@@ -1,6 +1,7 @@
 ---
 title: 使用 Kubernetes 部署
 description: 使用 Agent 或手动步骤在 Kubernetes 中部署应用、执行数据库更新、验证与发布，并将部署清单整理为 Helm Chart。
+minimumEdition: enterprise
 ---
 
 ## 部署前准备

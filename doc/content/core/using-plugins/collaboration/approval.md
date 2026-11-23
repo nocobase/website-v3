@@ -1,6 +1,7 @@
 ---
 title: "Approvals"
 description: "Connect human approval to record lifecycles, participants, policies and outcomes."
+minimumEdition: professional
 ---
 
 ## Capabilities

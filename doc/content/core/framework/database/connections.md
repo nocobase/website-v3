@@ -41,7 +41,7 @@ A connection is not a distributed transaction coordinator. Its transaction does 
 
 Configure SQLite filenames, network addresses, Oracle serviceName, TLS and native dependencies for the chosen dialect. Check installed drivers, fields and environment precedence before connectivity. Changing dialects does not repair or migrate existing data.
 
-`config check --no-connect` checks configuration only; connection checks do not run migrations. See [Configuration](../../reference/configuration.md) and [Database support](../../reference/compatibility.md).
+`config check --no-connect` checks configuration only; connection checks do not run migrations. See [Configuration](../../reference/configuration.md) and [Database support](../../developing-apps/compatibility.md).
 
 See [Multiple database connections](../../developing-apps/multiple-databases.md) for adding an application connection, and [Connect an existing database](../../developing-apps/existing-databases.md) for external configuration, metadata files and refresh steps.
 

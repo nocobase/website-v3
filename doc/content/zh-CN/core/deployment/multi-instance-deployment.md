@@ -1,6 +1,7 @@
 ---
 title: 多实例部署
 description: 检查应用的共享状态与后台任务，按需接入分布式插件，并使用 PM2 或 Docker Compose 运行多个实例。
+minimumEdition: enterprise
 ---
 
 当一个应用需要利用更多 CPU 核心、分担请求，或在停止一个实例时继续提供服务，可以让同一份应用运行多个实例，由反向代理把请求分配给它们。这些实例使用同一个业务数据库和访问地址，不是几套互不相关的应用。
@@ -32,7 +33,7 @@ description: 检查应用的共享状态与后台任务，按需接入分布式�
 
 在改动应用之前，先准备好各实例共同使用的资源：
 
-- **业务数据库**：所有实例连接同一个目标数据库，并使用一致的表结构。不要把单实例示例中的 SQLite 文件复制到两个容器后当作共享数据库。若现有应用使用 SQLite，先完成到适合多实例访问的数据库的迁移，并在构建前安装对应驱动；连接参数见[数据库兼容性](../reference/compatibility.md)。
+- **业务数据库**：所有实例连接同一个目标数据库，并使用一致的表结构。不要把单实例示例中的 SQLite 文件复制到两个容器后当作共享数据库。若现有应用使用 SQLite，先完成到适合多实例访问的数据库的迁移，并在构建前安装对应驱动；连接参数见[数据库兼容性](../developing-apps/compatibility.md)。
 - **Redis**：为需要共享的 Jobs、Queue、Caching、Realtime 和 Concurrency 准备可访问的 Redis。Jobs 和 Queue 需要持久化，并使用 `maxmemory-policy noeviction`，避免待处理任务因为内存淘汰而消失。容量、备份和访问控制也需要配置，不能只确认端口可连。
 - **文件存储**：用户经由实例 A 上传的文件，必须能从实例 B 下载。选择应用支持的对象存储或共享文件系统，并检查已有文件表实际选择的存储盘。仅修改默认存储不会搬走旧文件，也不会改变所有显式指定的存储盘。后台任务需要读取的附件、导入文件等，同样不能只留在提交请求的实例本地。
 - **密钥和访问地址**：各实例沿用同一套 `secrets.keys` 及已有的认证、会话密钥，使用相同的 `APP_PUBLIC_ORIGIN` 和 `APP_BASE_PATH`。不要为每个实例重新初始化一套配置。监听端口可以不同，但对外仍是同一个地址，例如 `https://apps.example.com/main/`。
@@ -96,14 +97,7 @@ Agent 无法获取兼容的商业插件，或无法连接服务器时，可以�
 | Concurrency | `@nocobase/app-plugin-concurrency-redis` |
 | Snowflake worker 自动分配 | `@nocobase/app-plugin-snowflake-worker` |
 
-将 `<读取令牌>` 替换为有权下载对应包的账号的读取令牌，配置商业包仓库。命令写入用户的 `~/.npmrc`，npm 和 pnpm 都会读取它。已有有效配置可跳过：
-
-```bash
-npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
-npm config set "//pkg-v3.nocobase.com/:_authToken" "<读取令牌>"
-```
-
-按检查结果逐个注册需要的插件。以 Jobs 为例，先查看可用版本及其依赖要求，再把 `<兼容版本>` 替换为与当前应用匹配的版本：
+先按[配置商业包的授权源](../developing-apps/overview.md#配置商业包的授权源)配置下载权限（已有有效配置可跳过），再按检查结果逐个注册需要的插件。以 Jobs 为例，先查看可用版本及其依赖要求，再把 `<兼容版本>` 替换为与当前应用匹配的版本：
 
 ```bash
 pnpm view @nocobase/app-plugin-jobs-redis versions --json

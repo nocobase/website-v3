@@ -41,7 +41,7 @@ try {
 
 SQLite のファイル名、ネットワークのアドレス、Oracle の serviceName、TLS、ネイティブの依存関係は、選んだダイアレクトに合わせて設定します。接続性を確認する前に、インストールされたドライバー、フィールド、環境変数の優先順位を確認してください。ダイアレクトを変えても、既存のデータが修復されたり移行されたりはしません。
 
-`config check --no-connect` は設定だけを確認し、接続のチェックでもマイグレーションは実行されません。[設定](../../reference/configuration.md) と [データベースの対応状況](../../reference/compatibility.md) を参照してください。
+`config check --no-connect` は設定だけを確認し、接続のチェックでもマイグレーションは実行されません。[設定](../../reference/configuration.md) と [データベースの対応状況](../../developing-apps/compatibility.md) を参照してください。
 
 アプリの接続を追加するには [複数のデータベース接続](../../developing-apps/multiple-databases.md) を、外部の設定、メタデータのファイル、更新の手順については [既存のデータベースを接続する](../../developing-apps/existing-databases.md) を参照してください。
 

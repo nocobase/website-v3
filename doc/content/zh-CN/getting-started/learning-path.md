@@ -44,6 +44,6 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 
 ## 部署维护与参考查阅
 
-准备让他人使用应用时，先读[选择部署方式](../core/deployment/choose-a-deployment-method.md)，再按[发布应用新版本](../core/deployment/publish-app-release.md)交付更新。数据库环境见[数据库兼容性](../core/reference/compatibility.md)与[数据库配置](../core/reference/database-configuration.md)。
+准备让他人使用应用时，先读[选择部署方式](../core/deployment/choose-a-deployment-method.md)，再按[发布应用新版本](../core/deployment/publish-app-release.md)交付更新。数据库环境见[数据库兼容性](../core/developing-apps/compatibility.md)与[数据库配置](../core/developing-apps/database-configuration.md)。
 
 需要查命令或设置时，直接进入 Core 的[命令行](../core/reference/cli.md)、[配置项](../core/reference/configuration.md)，或 Studio 的[命令行](../studio/reference/cli.md)、[执行机命令](../studio/reference/runner.md)和[配置项](../studio/reference/config.md)。

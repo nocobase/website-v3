@@ -9,22 +9,15 @@ metaDescription: 配置商业包源访问，创建、配置并启动多门户应
 
 准备 Node.js 24 或更高版本、pnpm 11，以及有权下载多门户商业包的账号。下列命令适用于 Bash 等 POSIX shell；Windows 可使用 WSL。
 
-先在自己的终端配置私有 npm 源，将 `<读取令牌>` 替换为商业源的读取令牌。已有有效配置时无需重复配置：
+多门户模板、管理插件和门户生成器都来自商业源。开始前先按[配置商业包的授权源](../../developing-apps/overview.md#配置商业包的授权源)完成配置，再验证当前账号可以查询多门户模板版本：
 
 ```bash
-npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
-npm config set "//pkg-v3.nocobase.com/:_authToken" "<读取令牌>"
-npm whoami --registry=https://pkg-v3.nocobase.com/
 npm view @nocobase/app-template-multi-portal@beta version --registry=https://pkg-v3.nocobase.com/
 ```
 
-这两条命令写入用户的 `~/.npmrc`，npm 和 pnpm 都会读取它。令牌由这份用户配置保存，不要写入项目文件或提交到 Git。`whoami` 成功后还要确认包版本查询成功；认证通过并不代表拥有该包的下载权限。
-
-多门户模板、管理插件和门户生成器都来自商业源。普通第三方依赖仍从公共 npm 源或你配置的镜像下载，不要把默认 registry 整体改成商业源。
-
 ## 使用 Agent 创建应用
 
-先在 Agent 实际执行命令的机器和用户环境中完成上面的商业源配置。若 Agent 运行在远程机器，本机的 npm 配置不会自动传过去。不要把读取令牌粘贴到对话中。
+先在 Agent 实际执行命令的机器和用户环境中完成[商业包授权源配置](../../developing-apps/overview.md#配置商业包的授权源)。若 Agent 运行在远程机器，本机的 npm 配置不会自动传过去。不要把读取令牌粘贴到对话中。
 
 安装全局 `nocobase-create-app` Skill，并按提示选择你使用的 Agent：
 
@@ -72,7 +65,7 @@ cd my-portals
 pnpm nocobase config init
 ```
 
-按提示选择数据库并填写连接参数；非交互环境需要显式传入 `--dialect`。驱动缺失时，先按命令提示安装对应驱动，再重新初始化。各数据库的完整配置见[使用不同数据库创建应用](../../reference/database-configuration.md)。初始化会生成 `config.yml` 和应用密钥，不要把整个配置文件替换成文档片段。
+按提示选择数据库并填写连接参数；非交互环境需要显式传入 `--dialect`。驱动缺失时，先按命令提示安装对应驱动，再重新初始化。各数据库的完整配置见[使用不同数据库创建应用](../../developing-apps/database-configuration.md)。初始化会生成 `config.yml` 和应用密钥，不要把整个配置文件替换成文档片段。
 
 如果通过局域网、域名或代理访问，将 `app.publicOrigin` 设为浏览器实际使用的协议、主机和端口，不带 `/main` 等路径。例如，先将以下占位值替换为机器实际的局域网 IP 和应用端口：
 
@@ -99,8 +92,7 @@ pnpm dev
 
 | 现象 | 处理 |
 | --- | --- |
-| 商业包返回 401、403 或查询不到版本 | 检查令牌是否已配置且有效、账号是否有包权限，以及所选版本是否可用 |
-| 第三方包从商业源下载并返回 404 | 检查默认 registry；商业源只配置到 `@nocobase` scope，修正后在现有应用中执行 `pnpm install` |
+| 商业包返回 401、403、查不到版本，或第三方包从商业源返回 404 | 按[配置商业包的授权源](../../developing-apps/overview.md#配置商业包的授权源)核对令牌、包权限及 `@nocobase` scope 配置，修正后在现有应用中执行 `pnpm install` |
 | 使用局域网地址无法登录 | 检查 `app.publicOrigin` 是否与浏览器实际使用的 origin 一致 |
 
 ## 下一步

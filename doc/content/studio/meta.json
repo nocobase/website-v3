@@ -152,6 +152,7 @@
     {
       "type": "group",
       "title": "Quality management",
+      "minimumEdition": "enterprise",
       "pages": [
         {
           "type": "page",

@@ -23,18 +23,11 @@ The default application template uses SQLite, so local development needs no sepa
 
 | Database | Driver package | `dialect` | Requirements |
 | --- | --- | --- | --- |
-| Dameng | `@nocobase/db-dameng` | `dameng` | The driver is experimental; verify it against your target database version before use |
-| KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL-compatible mode, `DB_MODE=pg` |
-| OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL-compatible tenant |
+| Dameng<br><span class="edition-badge professional" title="Available in Professional and Enterprise editions">Professional+</span> | `@nocobase/db-dameng` | `dameng` | The driver is experimental; verify it against your target database version before use |
+| KingbaseES<br><span class="edition-badge professional" title="Available in Professional and Enterprise editions">Professional+</span> | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL-compatible mode, `DB_MODE=pg` |
+| OceanBase CE<br><span class="edition-badge professional" title="Available in Professional and Enterprise editions">Professional+</span> | `@nocobase/db-oceanbase` | `oceanbase` | MySQL-compatible tenant |
 
-These three drivers are NocoBase Pro commercial packages and require the appropriate license. Obtain the private registry URL, account details and a download-enabled read token (`nbr_…`) from your license provider. In the commands below, replace `<nocobase-pro-registry-url>` with the supplied URL, `<nocobase-pro-registry-host>` with that URL's host and any path, without `https://` or the trailing `/`, and `<nocobase-pro-read-token>` with the token, then run them:
-
-```bash
-npm config set "@nocobase:registry" "<nocobase-pro-registry-url>"
-npm config set "//<nocobase-pro-registry-host>/:_authToken" "<nocobase-pro-read-token>"
-```
-
-These commands map the `@nocobase` scope to the Pro registry and store the token in your user-level `~/.npmrc`, which both npm and pnpm read. The registry also proxies public NocoBase packages; other dependencies continue to use their existing registry. Keep the token out of documentation and Git.
+These three drivers are NocoBase Pro commercial packages and require the appropriate license. Before installation, follow [Configure the commercial package registry](overview.md#configure-the-commercial-package-registry) to set up the private registry and read token.
 
 ## Configure the application database
 
@@ -51,7 +44,7 @@ pnpm nocobase config init --dialect postgres --json
 
 The command generates `config.yml` and application secrets without connecting to the database. Fill in the actual host, port, database name, username, password and required TLS settings before connecting. See [Create an app with a different database](database-configuration.md) for examples. For another database, substitute its package name and `--dialect` value. `config init` does not install drivers or create database servers or accounts.
 
-Keep `config.yml` out of Git because it can contain passwords and secrets. You can also use the [configuration commands](cli.md) to set connection parameters.
+Keep `config.yml` out of Git because it can contain passwords and secrets. You can also use the [configuration commands](../reference/cli.md) to set connection parameters.
 
 After configuration, check the connection:
 
@@ -76,7 +69,7 @@ Connections live under `database.connections.<name>`. `database.default` selects
 | Oracle | Use `serviceName` to select the service |
 | Dameng | Use `schema` to select the schema; initialization does not generate a `database` field |
 
-Environment variables can override connection settings in the file; see the [Configuration reference](configuration.md) for precedence. To add connections, see [Multiple database connections](../developing-apps/multiple-databases.md). To connect an existing business database and restrict framework schema changes, see [Connect existing databases](../developing-apps/existing-databases.md).
+Environment variables can override connection settings in the file; see the [Configuration reference](../reference/configuration.md) for precedence. To add connections, see [Multiple database connections](multiple-databases.md). To connect an existing business database and restrict framework schema changes, see [Connect existing databases](existing-databases.md).
 
 ## Database versions and feature limitations
 
@@ -117,6 +110,6 @@ pnpm list @nocobase/app-client @nocobase/app-server @nocobase/app-cli @nocobase/
 
 ## Upgrades and cross-platform deployment
 
-Before upgrading, back up the database, runtime configuration and secrets, and preserve the lockfile. Follow [Upgrade NocoBase Core](../developing-apps/upgrade-nocobase-core.md) to update the template and dependencies, and verify migrations, queries, transactions and permissions in an isolated environment. Reverting code does not undo database schema changes, so prepare a data recovery plan as well.
+Before upgrading, back up the database, runtime configuration and secrets, and preserve the lockfile. Follow [Upgrade NocoBase Core](upgrade-nocobase-core.md) to update the template and dependencies, and verify migrations, queries, transactions and permissions in an isolated environment. Reverting code does not undo database schema changes, so prepare a data recovery plan as well.
 
-When deploying to another operating system or CPU architecture, rebuild for the target platform instead of copying local native dependencies. Install database drivers in the application's production dependencies, and rebuild the deployment package after adding a driver. See the [Command-line reference](cli.md) for build options and [Choose a deployment method](../deployment/choose-a-deployment-method.md) for deployment steps.
+When deploying to another operating system or CPU architecture, rebuild for the target platform instead of copying local native dependencies. Install database drivers in the application's production dependencies, and rebuild the deployment package after adding a driver. See the [Command-line reference](../reference/cli.md) for build options and [Choose a deployment method](../deployment/choose-a-deployment-method.md) for deployment steps.

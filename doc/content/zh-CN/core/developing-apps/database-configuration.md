@@ -18,7 +18,7 @@ metaDescription: 使用已有数据库连接信息创建 NocoBase 应用，配�
 
 SQLite 使用本地文件，不需要主机、端口或账号。支持版本、功能限制和商业驱动授权见[数据库支持与版本兼容](compatibility.md)。
 
-这里配置的是新应用的主数据库，启动时会初始化应用所需的数据表。要读取已有业务表，请参阅[接入已有数据库](../developing-apps/existing-databases.md)；仅修改连接信息不会迁移其他数据库中的应用数据。
+这里配置的是新应用的主数据库，启动时会初始化应用所需的数据表。要读取已有业务表，请参阅[接入已有数据库](existing-databases.md)；仅修改连接信息不会迁移其他数据库中的应用数据。
 
 ## 创建应用项目
 
@@ -37,7 +37,7 @@ cd my-app
 
 每个示例给出完整的 `database` 分区。初始化后，用实际连接信息填写该分区，保留文件中的密钥和其他配置，不要用片段覆盖整个 `config.yml`。`db.example.com`、端口、`my_app`、账号和密码均需按实际服务替换；示例中的端口不是部署要求。
 
-`config.yml` 不提交到 Git。默认模板也支持用进程环境变量 `DB_PASSWORD` 提供主连接密码，环境变量会覆盖文件值；不要在 YAML 中写 `${DB_PASSWORD}`，它不会被替换。其他覆盖规则见[配置项参考](configuration.md)。
+`config.yml` 不提交到 Git。默认模板也支持用进程环境变量 `DB_PASSWORD` 提供主连接密码，环境变量会覆盖文件值；不要在 YAML 中写 `${DB_PASSWORD}`，它不会被替换。其他覆盖规则见[配置项参考](../reference/configuration.md)。
 
 已有 `config.yml` 时，安装需要的驱动后直接调整连接分区，保留原有密钥。驱动版本需与应用依赖兼容；下列 `@beta` 命令用于新建 beta 应用。
 
@@ -165,7 +165,7 @@ database:
 
 ### 达梦
 
-达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。商业驱动的源配置步骤见[商业数据库驱动](compatibility.md#商业数据库驱动)。
+达梦驱动需要 NocoBase Pro 商业授权和 Pro registry 访问权限，先配置仓库认证。驱动目前为实验性，需在目标数据库版本上验证后使用。商业驱动的源配置步骤见[配置商业包的授权源](overview.md#配置商业包的授权源)。
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
@@ -189,7 +189,7 @@ database:
 
 ### 人大金仓 KingbaseES
 
-确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的源配置步骤见[商业数据库驱动](compatibility.md#商业数据库驱动)。
+确认服务运行在 PostgreSQL 兼容模式（`DB_MODE=pg`），并准备数据库及 schema。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的源配置步骤见[配置商业包的授权源](overview.md#配置商业包的授权源)。
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
@@ -215,7 +215,7 @@ database:
 
 ### OceanBase
 
-使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的源配置步骤见[商业数据库驱动](compatibility.md#商业数据库驱动)。
+使用 OceanBase CE 的 MySQL 兼容租户，准备该租户下的数据库和账号。安装前需具备 NocoBase Pro 商业授权并配置 Pro registry 认证。商业驱动的源配置步骤见[配置商业包的授权源](overview.md#配置商业包的授权源)。
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta

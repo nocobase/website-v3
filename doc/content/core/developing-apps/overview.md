@@ -64,3 +64,23 @@ A typical workflow:
 An Agent can use project rules, documentation and Skills to implement business features with NocoBase's existing capabilities.
 
 Developers are primarily responsible for clarifying requirements, reviewing key design decisions and accepting the results.
+
+## Configure the commercial package registry
+
+Installing or using commercial plugins, commercial database drivers, multi-app templates or multi-portal packages requires the corresponding commercial license and an authorized commercial registry configured in the environment where installation commands run. Skip this if valid credentials are already configured.
+
+Obtain a download-enabled read token (typically prefixed with `nbr_…`) from your authorized account or license provider, replace `<read-token>` with your token, and run:
+
+```bash
+npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
+npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
+npm whoami --registry=https://pkg-v3.nocobase.com/
+```
+
+If your license provider supplies a dedicated private registry URL, replace `https://pkg-v3.nocobase.com/` with that URL and replace `//pkg-v3.nocobase.com/` with its host and any path (without `https://` or the trailing `/`).
+
+- **Storage and security**: These commands write to your user-level `~/.npmrc`, which both npm and pnpm read. Do not put tokens in project files, documentation, Git repositories or Agent chats.
+- **Scope to `@nocobase` only**: The commercial registry also proxies public `@nocobase/*` packages, while third-party dependencies continue to use public npm or your mirror. Do not change the entire default registry to the commercial source, or third-party packages may return 404.
+- **Verify package access**: `npm whoami` confirms authentication only; it does not prove download permission for a specific package. Check package visibility with `npm view <package-name> version --registry=https://pkg-v3.nocobase.com/`.
+- **Using with an Agent**: Complete this configuration on the machine and under the user account where the Agent runs commands. A remote Agent does not automatically inherit your local `~/.npmrc`.
+- **Common errors**: If a commercial package returns 401, 403 or no accessible version, check that the token is valid, the account has permission for the package and the requested version exists. If a third-party package returns 404 from the commercial registry, restore the default registry, scope the commercial source to `@nocobase` only and run `pnpm install` again.

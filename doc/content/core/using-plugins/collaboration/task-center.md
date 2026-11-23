@@ -1,6 +1,7 @@
 ---
 title: "Task Center"
 description: "Aggregate personal work across independent business sources with a default page, header count shortcut, authenticated query APIs and reusable components."
+minimumEdition: professional
 ---
 
 ## Capabilities

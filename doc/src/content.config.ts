@@ -8,7 +8,10 @@ import { contentPattern } from './lib/dev-languages.mjs';
 // The pattern is worked out on each load, because the dev server adds languages as they are requested (src/lib/dev-languages.mjs).
 const docs = defineCollection({
   loader: { name: 'docs', load: context => glob({ pattern: contentPattern(raw.languages), base: './content', generateId: ({ entry }) => entry.replace(/\.md$/, '') }).load(context) },
-  schema: z.object({ title: z.string(), description: z.string().optional(), metaDescription: z.string().optional(), status: z.string().optional() }),
+  schema: z.object({
+    title: z.string(), description: z.string().optional(), metaDescription: z.string().optional(), status: z.string().optional(),
+    minimumEdition: z.enum(['community', 'professional', 'enterprise']).optional(),
+  }),
 });
 
 export const collections = { docs };

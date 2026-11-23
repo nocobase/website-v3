@@ -47,6 +47,14 @@
     },
     {
       "type": "page",
+      "path": "collaboration/task-center"
+    },
+    {
+      "type": "page",
+      "path": "collaboration/lifecycle-coordination"
+    },
+    {
+      "type": "page",
       "path": "automation/scheduler"
     },
     {

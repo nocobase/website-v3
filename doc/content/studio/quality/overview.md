@@ -1,65 +1,68 @@
 ---
 title: Quality overview
-description: Test each project, inspect evidence, and track follow-up work.
+description: Test each project against built-in quality standards, generate reports automatically, and turn findings into follow-up tasks.
 ---
 
-Quality management is available in Studio Enterprise Edition (EE). Use the Quality workspace to maintain core scenarios, run project tests, review reports and metrics, and create follow-up tasks. [Contact us for Enterprise Edition](https://www.nocobase.com/contact/).
+Quality management is available in Studio Enterprise Edition (EE). It tests a project against an explicit set of quality standards: Agents run established testing tools, Studio generates the test reports, and findings become follow-up tasks that later tests verify. [Contact us for Enterprise Edition](https://www.nocobase.com/contact/).
 
 ![Quality testing workflow](/assets/studio/quality/quality-flow-en.svg)
 
-## Standards, tools, reports, and follow-ups
+## Key capabilities
 
-Quality management connects four activities: define standards, run checks with tools and Agents, produce evidence-based reports, and assign follow-up work.
+### Built-in quality standards that each project can customize
 
-### Standards: built in and configurable
+Functionality, permissions, security, performance, and code quality each have a set of metrics and pass criteria, such as “unauthorized reads = 0”, “initial JS ≤ 2 MB”, and “new circular dependencies = 0”. A passing test means the tested version meets these standards.
 
-The five built-in dimensions—functionality, permissions, security, performance, and code quality—define checking methods, metrics, and standards. Methods draw on references such as OWASP ASVS, Sonar way, and RAIL, with budgets chosen for the project. Running these checks does not certify compliance with those standards. Projects can override performance budgets, change a dimension's Skill, or add a dimension. See [Quality metrics and standards](metrics.md).
+**Projects can define their own standards**: adjust performance budgets, replace the Skill a dimension uses, or add dimensions. See [Quality standards](standards.md) for the full list.
 
-### Tools: measure results, with Agents coordinating the work
+### Measured by established testing tools
 
-Vitest, Playwright, Lighthouse, OWASP ZAP, and other tools produce raw results. Agents prepare environments and data, invoke tools, analyze findings, and supplement them with business UI checks and design reviews. Quantitative metrics come from actual execution, not estimates based on reading code.
+Metrics come from actual tool runs, not from an Agent estimating by reading code. Vitest and Playwright run automated tests, pnpm audit and gitleaks check dependency vulnerabilities and leaked secrets, OWASP ZAP scans for security issues, Lighthouse measures page performance, and jscpd, knip, and dependency-cruiser check code quality.
 
-### Reports: turn raw evidence into verifiable conclusions
+Each dimension prepares its own test environment and test data on a Runner. Dimensions run in parallel and do not touch the systems your team is using.
 
-Each dimension produces a report, followed by a combined delivery report. The server parses JUnit, SARIF, audit JSON, Lighthouse, and other raw results, calculates metrics, and applies the relevant rules. Missing data, incomplete tools, and parsing failures remain unverified; they do not mean zero problems.
+### Test reports generated automatically
 
-### Follow-ups: track work and verify fixes
+The server parses JUnit, SARIF, dependency audits, Lighthouse, and other raw results, calculates metrics, and applies the standards. Each dimension has a report, combined into one delivery report, with evidence for every failed and unverified item. When a tool did not finish or data is missing, the result shows as unverified, never as zero problems.
 
-Findings are grouped by cause into tasks that use the normal development, review, and acceptance workflow. People decide unclear business rules and accept delivery reports. Testing does not change product code. Later tests verify fixes after they are merged.
+### Findings become follow-up tasks
 
-Open **Development › Quality** and select a project. Review its [settings](settings.md), then [start a test](runs.md). New projects have no automatic triggers.
+Findings are grouped by cause and registered as defects, questions, test data, code cleanup, performance, or dependency tasks. They follow the normal development, review, and acceptance workflow. After a fix is merged, a later test confirms the problem is gone.
 
 ![Example project: results for functionality, permissions, security, performance, and code quality](https://static-docs.nocobase.com/studio-en-quality-sample-20261111-normal-2x.webp)
 
 ## Test types
 
-| Type | Scope and trigger |
-| --- | --- |
-| Daily | Scheduled checks of completed business tasks not yet covered; the first run or a run after a long pause looks back at most three days |
-| Release | Current tasks awaiting release; start manually or trigger at the configured task threshold |
-| Project | Core scenarios across the project; run manually, weekly, or monthly |
-| Custom | Manually select completed business tasks or test the whole project code |
+| Type | What it tests | Trigger |
+| --- | --- | --- |
+| Daily | Recently completed business tasks not yet tested | On a daily schedule, once the set number of tasks has accumulated |
+| Release | Tasks currently awaiting release | Manually, or when pending tasks reach the set number |
+| Project | Core scenarios across the project | Manually, weekly, or monthly |
+| Custom | Selected completed tasks, or the whole project code | Manually |
 
-Daily tests run only on their schedule. Use a custom test to check selected tasks now.
+Each test creates a testing task. You accept its results through the task's delivery report.
 
-## Tests and tasks
+## Dimensions
 
-Each test creates a native task. It keeps the test scope, frozen Skill versions, and execution history. You accept its delivery report on the task.
-
-Agents check each dimension and link findings to follow-up tasks. Completing a test does not resolve those findings. Continue in [Follow-ups](runs.md#follow-ups), then verify the changes in a later test.
-
-PR checks and code review still validate individual changes. Project quality tests examine a broader scope over time. See [PR checks and code review](../project/checks-and-review.md).
+| Dimension | What it checks | Main tools |
+| --- | --- | --- |
+| Functional | Whether business tasks and core scenarios behave as expected | Vitest, Playwright, browser |
+| Permissions | Anonymous access, unauthorized reads and writes | Permission engine |
+| Security | Dependency vulnerabilities, leaked secrets, code security issues, endpoint scan alerts | pnpm audit, gitleaks, OWASP ZAP |
+| Performance | Page loads, API responses, database queries | Lighthouse, autocannon, PostgreSQL |
+| Code quality | Duplication, cognitive complexity, unused code, circular dependencies | jscpd, eslint-plugin-sonarjs, knip, dependency-cruiser |
 
 ## Core scenarios
 
-Core scenarios describe expected business behavior, such as “Suspended suppliers cannot receive new orders.” Project tests and whole-project custom tests use them.
+Core scenarios describe business behavior the project must keep, such as “Suspended suppliers cannot receive new orders.” Project tests and whole-project custom tests verify them one by one. See [Maintain core scenarios](settings.md#scenarios).
 
-## Checking dimensions
+## Quality tests and PR checks
 
-| Built-in dimension | Checks |
-| --- | --- |
-| Functional | Expected behavior of business tasks and core scenarios |
-| Permissions | Account, role, and data access boundaries |
-| Security | Dependency vulnerabilities and findings reported by security scanners |
-| Performance | Page loads and API responses. Review measurements, test conditions, and risks found during code inspection |
-| Code quality | Maintainability issues and slow or unstable tests |
+PR checks and code review guard each change. Quality tests keep checking the whole project over time. See [PR checks and code review](../project/checks-and-review.md).
+
+## Get started
+
+1. [Configure quality tests](settings.md): set triggers and dimensions. New projects have no automatic triggers.
+2. [Run tests](runs.md): choose a scope, start a test, and follow its progress.
+3. [Read test reports](reports.md): check results and evidence, accept the delivery, and handle follow-ups.
+4. [Quality standards](standards.md): look up each dimension's metrics and pass criteria.

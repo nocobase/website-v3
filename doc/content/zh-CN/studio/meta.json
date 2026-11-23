@@ -163,7 +163,11 @@
         },
         {
           "type": "page",
-          "path": "quality/metrics"
+          "path": "quality/reports"
+        },
+        {
+          "type": "page",
+          "path": "quality/standards"
         },
         {
           "type": "page",

@@ -1,9 +1,11 @@
 ---
 title: Configure quality tests
-description: Configure triggers, performance budgets, dimension Skills, and core scenarios.
+description: Set triggers, dimensions, and project standards, and maintain core scenarios.
 ---
 
-Project managers configure tests under **Quality › Settings**. First confirm the project lead, repository, Agent, and runtime are available. Automatic triggers do not replace these prerequisites.
+Project managers configure tests under **Quality › Settings**. First confirm the project lead, repository, Agent, and runtime are available.
+
+![Configure triggers, dimensions, and Skills](https://static-docs.nocobase.com/studio-en-quality-settings-20261111-normal-2x.webp)
 
 ## Trigger rules
 
@@ -12,36 +14,39 @@ Project managers configure tests under **Quality › Settings**. First confirm t
 | Daily | Enable the daily schedule, choose a time, and set the minimum accumulated completed tasks |
 | Release | Enable a pending-release task threshold and set its value |
 | Project | No automatic trigger, weekly, or monthly; choose the day and time |
-| Custom | Start manually; no schedule |
+| Custom | Manual only |
 
-New projects have no automatic triggers. Choose an explicit time zone before enabling a schedule. Scheduled tests run under the project lead. Restore access first if that account is disabled or lacks permission.
+New projects have no automatic triggers. Choose a time zone before enabling a schedule and check that the time suits your team. Scheduled tests run as the project lead; if that account is disabled or lacks permission, restore it first.
 
-Scenario language controls newly generated core scenarios. If unset, it follows the instance language. Existing tests keep their frozen scope and rules.
+## Scenario language
 
-![Configure triggers, dimensions, and Skills](https://static-docs.nocobase.com/studio-en-quality-settings-20261111-normal-2x.webp)
+Scenario language controls the language of newly generated core scenarios. If unset, it follows the instance's default language.
 
 ## Dimensions and Skills
 
-See [Quality overview](overview.md) for dimension scope and [Quality metrics and standards](metrics.md) for detailed criteria.
+Functional checks are always enabled. For other dimensions, choose the applicable test types and bind a Skill; the Skill defines how the dimension tests and judges.
 
-Functional checks are always enabled. Choose the applicable test types and Skill for other dimensions. To add a dimension, enter its name, choose a library Skill, and select the test types.
+To add a dimension, enter its name, choose a Skill from the library, and select the test types.
 
-Skills define checking methods; submitted results determine metrics. New tests use updated Skill versions. Existing tests retain the versions frozen at creation.
-
-Save, then [start a test](runs.md) to verify the configuration. Resolve runtime or permission problems before leaving automatic tests enabled without anyone able to handle them.
+New tests use an updated Skill version. Existing tests keep the version frozen at creation.
 
 ## Adjust project standards
 
-Override performance budgets under **Quality › Settings**; unspecified budgets retain their defaults. Change other checking methods and decision rules through the dimension's Skill. Not every metric has a separate threshold field in the interface. See [Quality metrics and standards](metrics.md) for defaults and scope.
+- Performance budgets: change them directly in settings; unchanged budgets keep their defaults.
+- Other standards: change or replace the dimension's Skill.
 
-Start a new test after changing rules. Existing tests retain their original scope and Skill versions; new standards do not rewrite historical results.
+See [Quality standards](standards.md) for the defaults. Changes take effect in new tests; existing results are never rewritten by new standards.
 
 <h2 id="scenarios">Maintain core scenarios</h2>
 
-Open **Quality › Core scenarios** to inspect scenarios, expectations, and checkpoints by business function.
-
-Scenario assets live in `.nb-studio/scenarios/` in the tested repository. Agents maintain them as requirements change. Describe additions or corrections on a task and ask the Agent to submit the update for review. Titles can change; stable scenario keys support comparison between tests.
-
-The page shows a snapshot submitted by a test. Editing repository files does not update coverage until a later test submits a new snapshot.
+Open **Quality › Core scenarios** to see scenarios, expected results, and their latest verification results by business function.
 
 ![Core scenarios and their latest verification results](https://static-docs.nocobase.com/studio-en-quality-scenarios-20261111-normal-2x.webp)
+
+Scenarios live in `.nb-studio/scenarios/` in the tested repository:
+
+- Development tasks that change a feature update its scenarios at the same time.
+- Project tests add missing scenarios and update outdated ones.
+- To add or change a scenario, describe the business rule on a task and have an Agent update it and submit it for review.
+
+Each scenario has a stable key; titles can change, and results compare across tests by key. The page shows the snapshot from the latest test. After editing repository files, the page updates when the next test submits a new snapshot.

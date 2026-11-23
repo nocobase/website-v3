@@ -32,9 +32,11 @@ New tests use an updated Skill version. Existing tests keep the version frozen a
 
 ## Adjust project standards
 
-A dimension's Skill defines its standards; change or replace the Skill to adjust them.
+Each dimension's checking methods and pass criteria are written in the Skill it is bound to. To adjust a standard, edit that Skill in the skill library, or bind the dimension to a different Skill.
 
-See [Quality standards](standards.md) for the defaults. Changes take effect in new tests; existing results are never rewritten by new standards.
+For example, the performance dimension's budgets live in its Skill's `budgets.json`, where API P95 response time defaults to at most 500 ms. Change it to 800 ms, and later tests judge against 800 ms.
+
+Only tests started after the change use the new standard; existing tests keep the Skill version from when they were created, and their results are never rewritten. See [Quality standards](standards.md) for the defaults.
 
 <h2 id="scenarios">Maintain core scenarios</h2>
 

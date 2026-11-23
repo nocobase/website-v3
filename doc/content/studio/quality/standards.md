@@ -3,7 +3,7 @@ title: Quality standards
 description: Metrics, default pass criteria, and test methods for the five dimensions, and how a project adjusts them.
 ---
 
-Studio includes a set of metrics and pass criteria for each dimension. During a test, tools measure each metric, and the server checks the values against the standards.
+Studio includes a set of metrics and pass criteria for each dimension. During a test, the tools run and produce a result for each metric, and the server compares the results with the standards to decide whether they pass.
 
 **Projects can define their own standards**: change performance budgets in [quality settings](settings.md#adjust-project-standards). A dimension's Skill defines its other checking methods and rules; replace the Skill or add a dimension to change them.
 

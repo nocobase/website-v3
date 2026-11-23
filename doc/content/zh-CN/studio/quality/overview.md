@@ -17,7 +17,7 @@ description: 按内置的质量标准测试每个项目，自动生成报告，�
 
 ### 复用成熟的测试工具实测
 
-指标来自工具的实际运行结果，而不是 Agent 读代码估算：Vitest 和 Playwright 跑自动化用例，pnpm audit 和 gitleaks 查依赖漏洞与密钥泄露，OWASP ZAP 做安全扫描，Lighthouse 测页面性能，jscpd、knip、dependency-cruiser 检查代码质量。
+测试结果由测试工具实际运行得出，不靠 Agent 读代码估算：Vitest 和 Playwright 跑自动化用例，pnpm audit 和 gitleaks 查依赖漏洞与密钥泄露，OWASP ZAP 做安全扫描，Lighthouse 测页面性能，jscpd、knip、dependency-cruiser 检查代码质量。服务端再把结果和标准比对，判定是否达标。
 
 每个维度在 Runner 上准备独立的测试环境和测试数据，各维度并行执行，不影响团队正在使用的系统。
 

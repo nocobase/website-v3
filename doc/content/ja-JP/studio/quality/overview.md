@@ -17,7 +17,7 @@ description: 標準の品質基準でプロジェクトをテストし、レポ�
 
 ### 実績のあるテストツールで実測
 
-指標はツールの実行結果から得たもので、Agent がコードを読んで推定した値ではありません。Vitest と Playwright で自動テスト、pnpm audit と gitleaks で依存関係の脆弱性と秘密情報の漏えい、OWASP ZAP でセキュリティスキャン、Lighthouse で画面性能、jscpd・knip・dependency-cruiser でコード品質を確認します。
+テスト結果はテストツールを実際に実行して得たもので、Agent がコードを読んで推定した値ではありません。Vitest と Playwright で自動テスト、pnpm audit と gitleaks で依存関係の脆弱性と秘密情報の漏えい、OWASP ZAP でセキュリティスキャン、Lighthouse で画面性能、jscpd・knip・dependency-cruiser でコード品質を確認します。サーバーがその結果を基準と照らし合わせ、合格かどうかを判定します。
 
 評価項目ごとに Runner 上で専用のテスト環境とテストデータを用意し、並行して実行します。チームが使用中のシステムには影響しません。
 

@@ -17,7 +17,7 @@ Functionality, permissions, security, performance, and code quality each have a 
 
 ### Measured by established testing tools
 
-Metrics come from actual tool runs, not from an Agent estimating by reading code. Vitest and Playwright run automated tests, pnpm audit and gitleaks check dependency vulnerabilities and leaked secrets, OWASP ZAP scans for security issues, Lighthouse measures page performance, and jscpd, knip, and dependency-cruiser check code quality.
+Test results come from running testing tools, not from an Agent estimating by reading code. Vitest and Playwright run automated tests, pnpm audit and gitleaks check dependency vulnerabilities and leaked secrets, OWASP ZAP scans for security issues, Lighthouse measures page performance, and jscpd, knip, and dependency-cruiser check code quality. The server then compares the results with the standards to decide whether they pass.
 
 Each dimension prepares its own test environment and test data on a Runner. Dimensions run in parallel and do not touch the systems your team is using.
 

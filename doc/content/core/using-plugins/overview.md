@@ -9,7 +9,7 @@ Use the topics below to find the plugins you need. For shared installation, regi
 
 ## Find plugins by function
 
-This section covers 21 plugins. Related features are grouped by topic, while other plugins have individual entries. Each guide covers capabilities, scenarios, implementation, and AI development constraints in four chapters.
+This section covers 23 plugins. Related features are grouped by topic, while other plugins have individual entries. Each guide covers capabilities, scenarios, implementation, and AI development constraints in four chapters.
 
 | Feature | Usage guides | Main uses |
 | --- | --- | --- |
@@ -22,6 +22,8 @@ This section covers 21 plugins. Related features are grouped by topic, while oth
 | Agents | [Agents](agents-and-knowledge/agents.md) | Configure a model API or connect an Agent on a machine for conversations and task execution |
 | Knowledge base | [Knowledge base](agents-and-knowledge/knowledge.md) | Manage document spaces, versions, search and change reviews |
 | Approvals | [Approvals](collaboration/approval.md) | Configure approval policies and handle outcomes |
+| Task Center | [Task Center](collaboration/task-center.md) | Aggregate personal tasks across business sources with a default page, header count and query APIs |
+| Lifecycle Coordination | [Lifecycle Coordination](collaboration/lifecycle-coordination.md) | Coordinate parent lifecycles waiting on independent child processes with aggregation, cancellation and recovery |
 | Scheduled tasks | [Scheduled tasks](automation/scheduler.md) | Declare schedules, inspect execution records and enable or disable tasks |
 | Template printing | [Template printing](automation/template-print.md) | Use Skills to implement DOCX and PDF template printing |
 | Localization | [Localization](application-support/i18n.md) | Integrate localization and application language switching |

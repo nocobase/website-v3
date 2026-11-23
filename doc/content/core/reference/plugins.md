@@ -3,7 +3,7 @@ title: Plugin index
 description: NocoBase 3 plugins, their purposes and whether they are built in.
 ---
 
-This inventory covers application plugins in the reviewed source: 24 in the main repository and 2 in the commercial repository. Entries are alphabetical by package name, with links where source is public.
+This inventory covers application plugins in the reviewed source: 24 in the main repository and 3 in the commercial repository. Entries are alphabetical by package name, with links where source is public.
 
 “Built-in plugin” indicates whether the default template includes the plugin when creating an application. Included plugins are marked “Yes”; plugins that require separate installation are marked “No”. Check the application’s plugin registration files to determine whether a plugin is enabled. See [Manage plugins](../developing-apps/manage-plugins.md) for registration, removal and updates.
 
@@ -45,7 +45,8 @@ These commercial plugins are not included in the default template. Use is subjec
 | Package | Purpose |
 | --- | --- |
 | `@nocobase/app-plugin-approval` | Bind human approval tasks to record lifecycles, with policies and outcomes. |
-| `@nocobase/app-plugin-task-center` | Index personal tasks from multiple business sources, with query APIs and reusable UI. |
+| `@nocobase/app-plugin-lifecycle-coordination` | Coordinate parent lifecycles waiting on independent child processes with conditional branches, thresholds or strategies, cancellation and recovery. |
+| `@nocobase/app-plugin-task-center` | Index personal tasks from multiple business sources, with a default page, header count shortcut, query APIs and reusable UI. |
 
 ## Database dialects
 

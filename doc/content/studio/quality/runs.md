@@ -20,7 +20,12 @@ Tests run automatically by their [trigger rules](settings.md#trigger-rules), or 
 
 ![Choose the test scope and dimensions](https://static-docs.nocobase.com/studio-en-quality-new-20261111-normal-2x.webp)
 
-Release tests use the tasks currently awaiting release; Studio does not create a test when none qualify. Project tests and whole-project custom tests check core scenarios. Daily tests run only on their schedule; use a custom test to check selected tasks now.
+| Type | Manual start |
+| --- | --- |
+| Daily | Not supported; runs only on its schedule. To test selected tasks now, use a custom test |
+| Release | Supported when there are tasks awaiting release |
+| Project | Supported at any time |
+| Custom | Supported; select completed tasks or the whole project code |
 
 Studio freezes the scope and each dimension's Skill version when it creates the test. Later settings changes do not affect it. Start a new test to use a new scope or standard.
 

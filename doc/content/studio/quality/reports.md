@@ -28,11 +28,11 @@ Select a dimension to open its detailed report. Tabs show the dimension's result
 
 | Dimension | Report contents |
 | --- | --- |
-| Functional | Results for tasks and core scenarios, automated test results and failure causes |
-| Permissions | Access checks for each endpoint, with the identity, action, and actual result |
-| Security | Dependency vulnerabilities, secret scanning, code security review, and ZAP findings |
-| Performance | Page and API measurements, and items over budget |
-| Code quality | The value of each metric and the location of new issues |
+| Functional | Task results, core scenario results, automated test results, failure cause analysis |
+| Permissions | Access violations, evidence, unverified items and reasons, identity coverage, comparison with the last test |
+| Security | Dependency vulnerabilities, leaked secrets, code security issues, ZAP passive scan alerts, ZAP active scan alerts |
+| Performance | Page performance data, API performance data, items over budget |
+| Code quality | Metric values, locations of new issues |
 
 The report also lists the time spent on environment preparation, test data, execution, and other stages.
 

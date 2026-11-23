@@ -54,11 +54,11 @@ Each test creates a testing task. You accept its results through the task's deli
 
 ## Core scenarios
 
-Core scenarios describe business behavior the project must keep, such as “Suspended suppliers cannot receive new orders.” Project tests and whole-project custom tests verify them one by one. See [Maintain core scenarios](settings.md#scenarios).
+Core scenarios organize the project's features, module by module, into business scenarios. Each scenario states the goal a user wants to reach and the result they finally see, such as “Suspended suppliers cannot receive new orders.”
 
-## Quality tests and PR checks
-
-PR checks and code review guard each change. Quality tests keep checking the whole project over time. See [PR checks and code review](../project/checks-and-review.md).
+- **Split by one standard**: Each scenario covers exactly one user goal and one final result. Studio organizes scenarios by a built-in splitting standard and granularity, so the granularity stays consistent.
+- **The project's feature blueprint**: Project tests are built around core scenarios and verify the whole project one scenario at a time. Team members can also see here which features the project has.
+- **No manual maintenance**: Scenarios keep up with tasks and tests. Development tasks update the related scenarios when they change a feature, and project tests add missing scenarios and update outdated ones. See [Maintain core scenarios](settings.md#scenarios).
 
 ## Get started
 

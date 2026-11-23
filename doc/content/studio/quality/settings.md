@@ -47,6 +47,6 @@ Scenarios live in `.nb-studio/scenarios/` in the tested repository:
 
 - Development tasks that change a feature update its scenarios at the same time.
 - Project tests add missing scenarios and update outdated ones.
-- To add or change a scenario, describe the business rule on a task and have an Agent update it and submit it for review.
+- When a special business rule needs to be added, you can also describe it on a task, and an Agent updates it and submits it for review.
 
 Each scenario has a stable key; titles can change, and results compare across tests by key. The page shows the snapshot from the latest test. After editing repository files, the page updates when the next test submits a new snapshot.

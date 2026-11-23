@@ -3,7 +3,7 @@ title: Run tests
 description: Choose a scope, start a test, follow each dimension's progress, and resolve blockers.
 ---
 
-Tests run automatically by their [trigger rules](settings.md#trigger-rules), or you can start one at any time.
+Tests run automatically by their [settings by test type](settings.md#settings-by-test-type), or you can start one at any time.
 
 ## Prerequisites
 

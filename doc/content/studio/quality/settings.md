@@ -7,16 +7,16 @@ Project managers configure tests under **Quality › Settings**. First confirm t
 
 ![Configure triggers, dimensions, and Skills](https://static-docs.nocobase.com/studio-en-quality-settings-20261111-normal-2x.webp)
 
-## Trigger rules
+## Settings by test type
 
 | Type | Settings |
 | --- | --- |
-| Daily | Enable the daily schedule, choose a time, and set the minimum accumulated completed tasks |
-| Release | Enable a pending-release task threshold and set its value |
-| Project | No automatic trigger, weekly, or monthly; choose the day and time |
-| Custom | Manual only |
+| Daily | Whether it runs every day, the run time, the minimum number of completed tasks it needs, and which dimensions it includes |
+| Release | Whether it triggers automatically, how many new tasks awaiting release trigger it, and which dimensions it includes |
+| Project | No automatic trigger, weekly or monthly, the weekday or date, the run time, and which dimensions it includes |
+| Custom | The dimensions selected by default, which can still be changed when starting a test |
 
-New projects have no automatic triggers. Choose a time zone before enabling a schedule and check that the time suits your team. Scheduled tests run as the project lead; if that account is disabled or lacks permission, restore it first.
+New projects have no automatic triggers. Scheduled tests run as the project lead. If the project has no lead, or the lead's account is disabled, cannot see the project, or lacks permission to create tasks and start quality tests, scheduled tests are skipped and the quality overview asks you to set a project lead.
 
 ## Scenario language
 

@@ -1,6 +1,6 @@
 ---
-title: Configure quality tests
-description: Set triggers, dimensions, and project standards, and maintain core scenarios.
+title: Quality settings
+description: Configure each test type, dimensions, and project standards, and view core scenarios.
 ---
 
 Project managers configure tests under **Quality › Settings**. First confirm the project lead, repository, Agent, and runtime are available.
@@ -38,16 +38,15 @@ For example, the performance dimension's budgets live in its Skill's `budgets.js
 
 Only tests started after the change use the new standard; existing tests keep the Skill version from when they were created, and their results are never rewritten. See [Quality standards](standards.md) for the defaults.
 
-<h2 id="scenarios">Maintain core scenarios</h2>
+<h2 id="scenarios">Core scenarios</h2>
 
 Open **Quality › Core scenarios** to see scenarios, expected results, and their latest verification results by business function.
 
 ![Core scenarios and their latest verification results](https://static-docs.nocobase.com/studio-en-quality-scenarios-20261111-normal-2x.webp)
 
-Scenarios live in `.nb-studio/scenarios/` in the tested repository:
+**Studio maintains core scenarios automatically; no one needs to curate them by hand**:
 
 - Development tasks that change a feature update its scenarios at the same time.
 - Project tests add missing scenarios and update outdated ones.
-- When a special business rule needs to be added, you can also describe it on a task, and an Agent updates it and submits it for review.
 
-Each scenario has a stable key; titles can change, and results compare across tests by key. The page shows the snapshot from the latest test. After editing repository files, the page updates when the next test submits a new snapshot.
+Scenarios live in `.nb-studio/scenarios/` in the tested repository, so they are reviewed and versioned with the code. When a special business rule needs to be added, you can also describe it on a task and an Agent updates the scenarios.

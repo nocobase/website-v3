@@ -58,11 +58,11 @@ Core scenarios organize the project's features, module by module, into business 
 
 - **Split by one standard**: Each scenario covers exactly one user goal and one final result. Studio organizes scenarios by a built-in splitting standard and granularity, so the granularity stays consistent.
 - **The project's feature blueprint**: Project tests are built around core scenarios and verify the whole project one scenario at a time. Team members can also see here which features the project has.
-- **No manual maintenance**: Scenarios keep up with tasks and tests. Development tasks update the related scenarios when they change a feature, and project tests add missing scenarios and update outdated ones. See [Maintain core scenarios](settings.md#scenarios).
+- **No manual maintenance**: Scenarios keep up with tasks and tests. Development tasks update the related scenarios when they change a feature, and project tests add missing scenarios and update outdated ones. See [Core scenarios](settings.md#scenarios).
 
 ## Get started
 
-1. [Configure quality tests](settings.md): set triggers and dimensions. New projects have no automatic triggers.
+1. [Quality settings](settings.md): set triggers and dimensions. New projects have no automatic triggers.
 2. [Run tests](runs.md): choose a scope, start a test, and follow its progress.
 3. [Read test reports](reports.md): check results and evidence, accept the delivery, and handle follow-ups.
 4. [Quality standards](standards.md): look up each dimension's metrics and pass criteria.

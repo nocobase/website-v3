@@ -37,4 +37,4 @@ Scopes combine. The more specific scope takes priority for skills with the same 
 
 Document team-specific rules, such as required tests, review criteria, and delivery evidence. Keep each skill focused on one kind of work. After changing it, check subsequent runs and delivery reports to see how it is used.
 
-Quality dimensions bind their own Skills in [test settings](../quality/settings.md). Each test keeps the Skill versions captured when it was created; edits apply to later tests.
+Quality dimensions bind their own Skills in [quality settings](../quality/settings.md). Each test keeps the Skill versions captured when it was created; edits apply to later tests.

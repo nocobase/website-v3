@@ -1,6 +1,7 @@
 ---
 title: Multi-role workflow
 description: Split requirements and acceptance from starting development and merging changes.
+minimumEdition: professional
 ---
 
 Procurement wants to block new orders from suspended suppliers while still receiving goods on existing orders. The procurement manager can act as the **requester**, confirm the rule, and test the result. The **owner** takes the task, starts the Agent team, and merges the change after acceptance.

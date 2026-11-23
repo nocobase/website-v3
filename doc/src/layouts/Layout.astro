@@ -76,8 +76,8 @@ const chat = askUi[lang] || askUi.en;
 {config.ask?.endpoint ? <button slot="action" class="plain doc-chat-trigger" type="button" data-chat-open aria-label={chat.label} aria-controls="docChat" aria-expanded="false" aria-haspopup="dialog"><Icon name="sparkles" /><span>{chat.label}</span></button> : <button slot="action" class="search-btn" type="button" data-search-open aria-label={search.label}><Icon name="search" /><span class="search-text">{search.placeholder}</span>{search.shortcut && <kbd>{search.shortcut}</kbd>}</button>}
 </Header>
 <div class:list={['doc-layout', { 'no-side': !section, 'doc-home-layout': home }]}>
-{section && <aside class="doc-side"><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav></aside>}
-{section && <dialog id="docDrawer" class="doc-drawer" aria-label={ui.sidebar}><div class="doc-drawer-head"><span>{section.title}</span><button type="button" class="doc-drawer-close" aria-label={search.close}><Icon name="x" /></button></div><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} /></nav></dialog>}
+{section && <aside class="doc-side"><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} editions={ui.editions} /></nav></aside>}
+{section && <dialog id="docDrawer" class="doc-drawer" aria-label={ui.sidebar}><div class="doc-drawer-head"><span>{section.title}</span><button type="button" class="doc-drawer-close" aria-label={search.close}><Icon name="x" /></button></div><nav class="doc-nav" aria-label={ui.sidebar}><Sidebar nodes={section.tree} current={pageKey} urlOf={(k: string) => site.urlOf(lang, k)} planned={ui.planned} editions={ui.editions} /></nav></dialog>}
 {section && <script is:inline>
 // 侧栏在第一次绘制前就定好滚动位置，切换页面时不跳：先恢复同一侧栏上次的位置（按侧栏第一个链接区分板块和语言），当前页不在可视范围内再把它滚到上方三分之一处
 (() => {

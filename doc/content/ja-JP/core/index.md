@@ -18,6 +18,6 @@ Core はアプリのランタイム、ライブラリ、プラグインを提供
 
 - [デプロイ方法を選ぶ](deployment/choose-a-deployment-method.md)
 - [設定リファレンス](reference/configuration.md)
-- [異なるデータベースでアプリを作成する](reference/database-configuration.md)
+- [異なるデータベースでアプリを作成する](developing-apps/database-configuration.md)
 - [コマンドラインリファレンス](reference/cli.md)
-- [データベースの対応状況とバージョンの互換性](reference/compatibility.md)
+- [データベースの対応状況とバージョンの互換性](developing-apps/compatibility.md)

@@ -55,7 +55,7 @@ An applied migration differs from current source. Check for edits to historical 
 
 ## Does changing a dialect transfer existing data?
 
-No. It changes the connection, not data placement. Verify field types, indexes, constraints, queries, transactions and plugin behavior on the target database, then arrange data migration and validation. A tested database image is not a guarantee for every server version. See [Database support and version compatibility](compatibility.md).
+No. It changes the connection, not data placement. Verify field types, indexes, constraints, queries, transactions and plugin behavior on the target database, then arrange data migration and validation. A tested database image is not a guarantee for every server version. See [Database support and version compatibility](../developing-apps/compatibility.md).
 
 ## Should all @nocobase packages have the same version?
 

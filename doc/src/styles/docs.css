@@ -73,6 +73,14 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 .doc-nav a { display: block; padding: 5px 10px; border-radius: 6px; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
 .doc-nav a:hover { background: var(--paper-2); color: var(--ink); }
 .doc-nav a[aria-current="page"] { background: var(--brand-tint); color: var(--brand); font-weight: 500; }
+.doc-nav a.has-edition, .doc-group-title.has-edition, .doc-folder-link.has-edition { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.doc-edition { flex: none; font-size: 11px; line-height: 1.5; font-style: normal; font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; }
+.doc-edition.professional { color: var(--brand); }
+.doc-edition.enterprise { color: var(--agent-ink); }
+.edition-badge { display: inline-flex; align-items: center; padding: 2px 8px; border: 0; border-radius: 6px; font-size: 12px; line-height: 1.5; font-weight: 500; white-space: nowrap; }
+.edition-badge.professional { background: var(--brand-tint); color: var(--brand); }
+.edition-badge.enterprise { background: var(--agent-tint); color: var(--agent-ink); }
+.prose td br + .edition-badge { margin-top: 4px; }
 .doc-nav a.todo { color: var(--muted); }
 .doc-nav a.todo[aria-current="page"] { color: var(--brand); }
 .doc-planned { display: block; padding: 5px 10px; font-size: 14px; line-height: 1.55; color: var(--muted); opacity: 0.75; cursor: default; }

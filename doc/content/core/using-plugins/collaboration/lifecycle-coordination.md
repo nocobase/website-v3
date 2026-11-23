@@ -1,6 +1,7 @@
 ---
 title: "Lifecycle Coordination"
 description: "Coordinate parent lifecycles waiting on independent child processes with conditional branches, thresholds or strategies, cooperative cancellation and durable recovery."
+minimumEdition: professional
 ---
 
 ## Capabilities

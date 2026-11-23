@@ -23,18 +23,11 @@ NocoBase は 8 種類のデータベースダイアレクトを提供してい�
 
 | データベース | ドライバーパッケージ | `dialect` | 使用条件 |
 | --- | --- | --- | --- |
-| Dameng | `@nocobase/db-dameng` | `dameng` | ドライバーは実験段階です。使用前に対象のデータベースバージョンで検証してください |
-| KingbaseES | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 互換モード、`DB_MODE=pg` |
-| OceanBase CE | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 互換テナント |
+| Dameng<br><span class="edition-badge professional" title="プロフェッショナル版およびエンタープライズ版で利用可能">プロフェッショナル版+</span> | `@nocobase/db-dameng` | `dameng` | ドライバーは実験段階です。使用前に対象のデータベースバージョンで検証してください |
+| KingbaseES<br><span class="edition-badge professional" title="プロフェッショナル版およびエンタープライズ版で利用可能">プロフェッショナル版+</span> | `@nocobase/db-kingbase` | `kingbase` | PostgreSQL 互換モード、`DB_MODE=pg` |
+| OceanBase CE<br><span class="edition-badge professional" title="プロフェッショナル版およびエンタープライズ版で利用可能">プロフェッショナル版+</span> | `@nocobase/db-oceanbase` | `oceanbase` | MySQL 互換テナント |
 
-この 3 つのドライバーは NocoBase Pro の商用パッケージで、該当するライセンスが必要です。ライセンス提供元から非公開レジストリーの URL、アカウント情報、ダウンロード権限を持つ読み取り用トークン（`nbr_…`）を取得してください。以下のコマンドの `<nocobase-pro-registry-url>` を提供された URL に、`<nocobase-pro-registry-host>` をその URL から `https://` と末尾の `/` を除いたホストとパスに、`<nocobase-pro-read-token>` をトークンに置き換えて実行します。
-
-```bash
-npm config set "@nocobase:registry" "<nocobase-pro-registry-url>"
-npm config set "//<nocobase-pro-registry-host>/:_authToken" "<nocobase-pro-read-token>"
-```
-
-これらのコマンドは `@nocobase` スコープを Pro レジストリーに割り当て、トークンとともにユーザーの `~/.npmrc` に保存します。このファイルは npm と pnpm の両方が読み取ります。このレジストリーは公開 NocoBase パッケージもプロキシし、その他の依存関係は既存のレジストリーを使います。トークンをドキュメントに記載したり、Git にコミットしたりしないでください。
+この 3 つのドライバーは NocoBase Pro の商用パッケージで、該当するライセンスが必要です。インストール前に[商用パッケージの認証済みレジストリーを設定する](overview.md#商用パッケージの認証済みレジストリーを設定する)に従って非公開レジストリーと読み取りトークンを設定してください。
 
 ## アプリのデータベースを設定する
 
@@ -51,7 +44,7 @@ pnpm nocobase config init --dialect postgres --json
 
 コマンドはデータベースに接続せず、`config.yml` とアプリのシークレットを生成します。接続前に、実際のホスト、ポート、データベース名、ユーザー名、パスワード、必要な TLS 設定を入力してください。各データベースの例は[異なるデータベースでアプリを作成する](database-configuration.md)を参照してください。他のデータベースでは、パッケージ名と `--dialect` を対応する値に置き換えます。`config init` はドライバーのインストールや、データベースサーバー・アカウントの作成は行いません。
 
-`config.yml` にはパスワードやシークレットが含まれる場合があるため、Git に入れないでください。[設定コマンド](cli.md)で接続パラメーターを指定することもできます。
+`config.yml` にはパスワードやシークレットが含まれる場合があるため、Git に入れないでください。[設定コマンド](../reference/cli.md)で接続パラメーターを指定することもできます。
 
 設定後に接続を確認します。
 
@@ -76,7 +69,7 @@ pnpm nocobase config check
 | Oracle | `serviceName` でサービスを指定します |
 | Dameng | `schema` でスキーマを指定します。初期化では `database` フィールドは生成されません |
 
-環境変数はファイル内の接続設定を上書きする場合があります。優先順位は[設定リファレンス](configuration.md)を参照してください。接続の追加は[複数のデータベース接続](../developing-apps/multiple-databases.md)、既存の業務データベースへの接続とフレームワークによるテーブル構造の変更制限は[既存のデータベースに接続する](../developing-apps/existing-databases.md)を参照してください。
+環境変数はファイル内の接続設定を上書きする場合があります。優先順位は[設定リファレンス](../reference/configuration.md)を参照してください。接続の追加は[複数のデータベース接続](multiple-databases.md)、既存の業務データベースへの接続とフレームワークによるテーブル構造の変更制限は[既存のデータベースに接続する](existing-databases.md)を参照してください。
 
 ## データベースのバージョンと機能の制限
 
@@ -117,6 +110,6 @@ pnpm list @nocobase/app-client @nocobase/app-server @nocobase/app-cli @nocobase/
 
 ## アップグレードとクロスプラットフォームのデプロイ
 
-アップグレード前にデータベース、実行時の設定、シークレットをバックアップし、ロックファイルを保持してください。[NocoBase Core をアップグレードする](../developing-apps/upgrade-nocobase-core.md)に従ってテンプレートと依存関係を更新し、独立した環境でマイグレーション、クエリー、トランザクション、権限を検証します。コードを戻してもデータベース構造の変更は元に戻らないため、データの復旧手順も準備してください。
+アップグレード前にデータベース、実行時の設定、シークレットをバックアップし、ロックファイルを保持してください。[NocoBase Core をアップグレードする](upgrade-nocobase-core.md)に従ってテンプレートと依存関係を更新し、独立した環境でマイグレーション、クエリー、トランザクション、権限を検証します。コードを戻してもデータベース構造の変更は元に戻らないため、データの復旧手順も準備してください。
 
-異なる OS や CPU アーキテクチャにデプロイする場合は、ローカルのネイティブ依存関係をコピーせず、対象のプラットフォーム向けにビルドし直してください。データベースドライバーはアプリの本番依存関係に追加し、追加後にデプロイ用パッケージを再ビルドします。ビルドオプションは[コマンドラインリファレンス](cli.md)、デプロイ手順は[デプロイ方法を選ぶ](../deployment/choose-a-deployment-method.md)を参照してください。
+異なる OS や CPU アーキテクチャにデプロイする場合は、ローカルのネイティブ依存関係をコピーせず、対象のプラットフォーム向けにビルドし直してください。データベースドライバーはアプリの本番依存関係に追加し、追加後にデプロイ用パッケージを再ビルドします。ビルドオプションは[コマンドラインリファレンス](../reference/cli.md)、デプロイ手順は[デプロイ方法を選ぶ](../deployment/choose-a-deployment-method.md)を参照してください。

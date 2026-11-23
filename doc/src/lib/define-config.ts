@@ -17,6 +17,12 @@ export interface DocsUi {
   prev?: string;
   next?: string;
   website?: string;
+  editions?: {
+    pricing: string;
+    markdownLabel: string;
+    professional: { badge: string; short: string; title: string };
+    enterprise: { badge: string; short: string; title: string };
+  };
   language?: string;
   /** Names of the languages by code, in this language (used in the "read the other version" hint) */
   languageNames?: Record<string, string>;

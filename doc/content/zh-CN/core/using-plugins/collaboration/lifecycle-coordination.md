@@ -1,6 +1,7 @@
 ---
 title: "流程协调器"
 description: "协调父流程等待多个独立子流程，按条件分支、阈值或策略汇聚结果，并处理协作取消与中断恢复。"
+minimumEdition: professional
 ---
 
 ## 提供的能力

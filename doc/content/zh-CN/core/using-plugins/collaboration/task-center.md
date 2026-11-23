@@ -1,6 +1,7 @@
 ---
 title: "待办中心"
 description: "聚合多个业务来源的个人待办，提供默认待办页面、顶栏计数入口、认证查询接口和可复用组件。"
+minimumEdition: professional
 ---
 
 ## 提供的能力

@@ -51,7 +51,7 @@ Examples use `orders` with `id`, `orderNo`, `title`, `status`, `amount` and `cus
 
 Database services do not infer HTTP identity. Bind authorization-derived policies to Repositories; user filters cannot replace access control.
 
-Follow schema, data access, relations, transactions and migrations. See the [database API index](../../reference/api.md) for signatures and [Compatibility](../../reference/compatibility.md) for dialect conditions.
+Follow schema, data access, relations, transactions and migrations. See the [database API index](../../reference/api.md) for signatures and [Compatibility](../../developing-apps/compatibility.md) for dialect conditions.
 
 ## Interfaces and implementation
 

@@ -18,7 +18,7 @@ Obtain these details from your database administrator or cloud provider:
 
 SQLite uses a local file and needs no host, port or account. See [Database support and version compatibility](compatibility.md) for supported versions, feature limitations and commercial driver licensing.
 
-This guide configures the new application's main database. Startup initializes the tables the application needs. To read existing business tables, see [Connect existing databases](../developing-apps/existing-databases.md). Changing connection settings does not migrate application data from another database.
+This guide configures the new application's main database. Startup initializes the tables the application needs. To read existing business tables, see [Connect existing databases](existing-databases.md). Changing connection settings does not migrate application data from another database.
 
 ## Create the application project
 
@@ -37,7 +37,7 @@ Run the following commands in `my-app`, choosing one database section. `config i
 
 Each example provides a complete `database` section. After initialization, fill it with your actual connection details while preserving secrets and other configuration. Do not replace the entire `config.yml` with the snippet. Replace `db.example.com`, the port, `my_app`, the account and the password to match your service. Example ports are not deployment requirements.
 
-Keep `config.yml` out of Git. The default template also accepts the process environment variable `DB_PASSWORD` for the main connection password, overriding the file value. Do not write `${DB_PASSWORD}` in YAML: it is not interpolated. See the [Configuration reference](configuration.md) for other override rules.
+Keep `config.yml` out of Git. The default template also accepts the process environment variable `DB_PASSWORD` for the main connection password, overriding the file value. Do not write `${DB_PASSWORD}` in YAML: it is not interpolated. See the [Configuration reference](../reference/configuration.md) for other override rules.
 
 If `config.yml` already exists, install the required driver and edit the connection section while preserving existing secrets. Driver versions must satisfy the application's dependency requirements; the `@beta` commands below are for a new beta application.
 
@@ -165,7 +165,7 @@ Set `serviceName` to the service supplied by the administrator, such as the serv
 
 ### Dameng
 
-The Dameng driver requires a NocoBase Pro commercial license and Pro registry access. Configure registry authentication first. The driver is experimental; verify it against the target database version before use. For registry configuration steps, see [Commercial database drivers](compatibility.md#commercial-database-drivers).
+The Dameng driver requires a NocoBase Pro commercial license and Pro registry access. Configure registry authentication first. The driver is experimental; verify it against the target database version before use. For registry configuration steps, see [Configure the commercial package registry](overview.md#configure-the-commercial-package-registry).
 
 ```bash
 pnpm add @nocobase/db-dameng@beta
@@ -189,7 +189,7 @@ Use the assigned schema name in `schema`, preserving its case. The example uses 
 
 ### KingbaseES
 
-Confirm the server uses PostgreSQL-compatible mode (`DB_MODE=pg`) and prepare the database and schema. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For registry configuration steps, see [Commercial database drivers](compatibility.md#commercial-database-drivers).
+Confirm the server uses PostgreSQL-compatible mode (`DB_MODE=pg`) and prepare the database and schema. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For registry configuration steps, see [Configure the commercial package registry](overview.md#configure-the-commercial-package-registry).
 
 ```bash
 pnpm add @nocobase/db-kingbase@beta
@@ -215,7 +215,7 @@ Set `schema` to an authorized schema. TLS follows the PostgreSQL configuration: 
 
 ### OceanBase
 
-Use an OceanBase CE MySQL-compatible tenant and prepare a database and account within that tenant. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For registry configuration steps, see [Commercial database drivers](compatibility.md#commercial-database-drivers).
+Use an OceanBase CE MySQL-compatible tenant and prepare a database and account within that tenant. Installation requires a NocoBase Pro commercial license and authentication for the Pro registry. For registry configuration steps, see [Configure the commercial package registry](overview.md#configure-the-commercial-package-registry).
 
 ```bash
 pnpm add @nocobase/db-oceanbase@beta

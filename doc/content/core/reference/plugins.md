@@ -50,7 +50,7 @@ These commercial plugins are not included in the default template. Use is subjec
 
 ## Database dialects
 
-Dialects are database adapters and integrate differently from application plugins. See [Database support and version compatibility](compatibility.md) for connection modes, test versions and configuration differences, and the [Core and tool package index](packages.md) for other framework libraries and tools.
+Dialects are database adapters and integrate differently from application plugins. See [Database support and version compatibility](../developing-apps/compatibility.md) for connection modes, test versions and configuration differences, and the [Core and tool package index](packages.md) for other framework libraries and tools.
 
 `@nocobase/db` supports database integrations through the following eight dialect packages: five in the main repository and three in the commercial repository. Package names link to source where it is public.
 

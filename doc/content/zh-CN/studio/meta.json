@@ -152,6 +152,7 @@
     {
       "type": "group",
       "title": "质量管理",
+      "minimumEdition": "enterprise",
       "pages": [
         {
           "type": "page",

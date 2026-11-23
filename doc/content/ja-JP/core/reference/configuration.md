@@ -68,7 +68,7 @@ client:
 
 ## データベースの設定
 
-接続は `database.connections.<name>` に置き、`database.default` が既定を選びます。SQLite は `filename` を使います。ほかのダイアレクトでは一般に `host`、`port`、`database`、`username`、`password` を使います。ダイアレクト固有のフィールドについては [データベースの対応状況とバージョンの互換性](compatibility.md) を参照してください。
+接続は `database.connections.<name>` に置き、`database.default` が既定を選びます。SQLite は `filename` を使います。ほかのダイアレクトでは一般に `host`、`port`、`database`、`username`、`password` を使います。ダイアレクト固有のフィールドについては [データベースの対応状況とバージョンの互換性](../developing-apps/compatibility.md) を参照してください。
 
 `schemaManagement: managed` はフレームワークによるスキーマの管理を許可します。`external` は外部のデータベースに対するフレームワークのスキーマの変更を制限しますが、業務データを自動で読み取り専用にするわけではありません。アカウントの権限と認可のポリシーは引き続き適用されます。
 

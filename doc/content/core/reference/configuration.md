@@ -68,7 +68,7 @@ Preserve its database and key configuration. To allow LAN access, bind to `0.0.0
 
 ## Database configuration
 
-Connections live at `database.connections.<name>`; `database.default` selects the default. SQLite uses `filename`. Other dialects commonly use `host`, `port`, `database`, `username` and `password`; see [Database support and version compatibility](compatibility.md) for dialect-specific fields.
+Connections live at `database.connections.<name>`; `database.default` selects the default. SQLite uses `filename`. Other dialects commonly use `host`, `port`, `database`, `username` and `password`; see [Database support and version compatibility](../developing-apps/compatibility.md) for dialect-specific fields.
 
 `schemaManagement: managed` allows framework schema management. `external` restricts framework schema changes for an external database; it does not make business data automatically read-only. Account permissions and authorization policies still apply.
 

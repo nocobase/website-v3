@@ -23,7 +23,7 @@ Each dimension prepares its own test environment and test data on a Runner. Dime
 
 ### Test reports generated automatically
 
-The server parses JUnit, SARIF, dependency audits, Lighthouse, and other raw results, calculates metrics, and applies the standards. Each dimension has a report, combined into one delivery report, with evidence for every failed and unverified item. Every conclusion rests on measured evidence: a check without evidence is reported as unverified, never assumed to pass.
+The server parses JUnit, SARIF, dependency audits, Lighthouse, and other raw results, calculates metrics, and applies the standards. Each dimension has a report, combined into one delivery report, with evidence for every failed and unverified item. Every conclusion is based on measured data. Checks that could not run, for example because of the environment, are marked unverified and flagged for attention.
 
 ### Findings become follow-up tasks
 

@@ -85,5 +85,3 @@ Closing a follow-up task does not rewrite earlier results. Historical reports ke
 In **Quality › Metrics**, choose a test type and time range to see how each dimension's metrics change. Select a metric to see the related tests, scenarios, or findings.
 
 ![Metrics distinguish recorded results from unverified items](https://static-docs.nocobase.com/studio-en-quality-metrics-20261111-normal-2x.webp)
-
-Before comparing tests, check that the test type, scope, tested commit, and dimensions match. Adding or removing scenarios changes the totals; only scenarios with the same key compare across tests.

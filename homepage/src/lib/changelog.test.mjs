@@ -5,12 +5,17 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'vitest';
 import { stringify } from 'yaml';
-import { changelogPages, hasChangelog, pageId, pageNumbers, paginate, parseEntryFile, readEntries, renderNotes, sortEntries, stripAuthors } from './changelog.mjs';
+import { changelogPages, groupByDay, hasChangelog, pageId, pageNumbers, paginate, parseEntryFile, readEntries, renderNotes, sortEntries, stripAuthors } from './changelog.mjs';
 
 const release = (channel, version, extra = {}) => ({
   type: 'release', tag: `${channel === 'beta' ? 'nocobase-v3-beta' : 'release'}/${version}`, channel, version,
   title: `NocoBase v3 ${channel === 'beta' ? 'Beta ' : ''}· ${version}`, date: version.split('.')[0], publishedAt: `${version.split('.')[0]}T08:00:00Z`,
   url: `https://github.com/nocobase/nocobase/releases/tag/x`, notes: { en: `### 🐛 Bug Fixes\n\n- **[Server]** Fix ${version}. ([#1](https://github.com/nocobase/nocobase/pull/1)) by @someone` }, ...extra,
+});
+// Studio 发版条目：没有 url，版本号是 1.0.0-beta.<n>
+const studio = (version, date, extra = {}) => ({
+  type: 'release', product: 'studio', tag: `v${version}`, channel: /-beta\./.test(version) ? 'beta' : 'stable', version,
+  title: `NocoBase Studio · v${version}`, date, publishedAt: `${date}T09:00:00Z`, notes: { en: `### 🎉 New Features\n\n- **[Quality]** Studio ${version}.` }, ...extra,
 });
 // 条目对象 → 发版流程写出的文件：<id>.md（英文）和 <id>.<语言>.md，front matter 加正文
 const SUFFIX = { en: '', 'zh-CN': '.zh-CN', 'ja-JP': '.ja-JP' };
@@ -66,6 +71,12 @@ test('a malformed entry fails the build with the file name', () => {
   assert.throws(() => readEntries(dir({ a: { type: 'announcement', date: '2026-12-01', title: 'x', href: 'javascript:alert(1)' } })), /href/);
   // 只有翻译没有英文
   assert.throws(() => readEntries(dir({ a: release('beta', '2026-11-12.1', { notes: { 'zh-CN': '- 中文' } }) })), /a\.zh-CN\.md.*a\.md/);
+  assert.throws(() => readEntries(dir({ a: release('beta', '2026-11-12.1', { product: 'cloud' }) })), /a\.md.*product/);
+});
+
+test('product defaults to nocobase and may be studio', () => {
+  const entries = readEntries(dir({ 'beta-2026-11-12.1': release('beta', '2026-11-12.1'), 'studio-1.0.0-beta.90': studio('1.0.0-beta.90', '2026-11-12') }));
+  assert.deepEqual(Object.fromEntries(entries.map(e => [e.id, e.product])), { 'beta-2026-11-12.1': 'nocobase', 'studio-1.0.0-beta.90': 'studio' });
 });
 
 test('newest date first, then the release number, then publishedAt; announcements lead their day', () => {
@@ -79,6 +90,26 @@ test('newest date first, then the release number, then publishedAt; announcement
     { type: 'announcement', date: '2026-11-10', title: 'x', href: 'blog/x.html', id: 'v3-0' },
   ];
   assert.deepEqual(sortEntries(entries).map(e => e.id), ['b12-1', 'v3-0', 's10-2', 'b10-2', 'b10-1', 'b09-10', 'b09-9']);
+});
+
+test('Studio and NocoBase releases mix by publishedAt; the version number only breaks ties between NocoBase releases', () => {
+  const entries = [
+    { ...release('beta', '2026-11-17.1', { publishedAt: '2026-11-17T05:00:00Z' }), id: 'b17-1' },
+    { ...release('beta', '2026-11-17.2', { publishedAt: '2026-11-17T10:00:00Z' }), id: 'b17-2' },
+    { ...studio('1.0.0-beta.90', '2026-11-17', { publishedAt: '2026-11-17T08:00:00Z' }), id: 'studio-1.0.0-beta.90' },
+    // 同一时间发的两个 Studio 版本：版本号不参与比较，按 id
+    { ...studio('1.0.0-beta.100', '2026-11-16', { publishedAt: '2026-11-16T08:00:00Z' }), id: 'studio-1.0.0-beta.100' },
+    { ...studio('1.0.0-beta.99', '2026-11-16', { publishedAt: '2026-11-16T08:00:00Z' }), id: 'studio-1.0.0-beta.99' },
+    { ...studio('1.0.0-beta.91', '2026-11-18', { publishedAt: '2026-11-18T23:00:00Z' }), id: 'studio-1.0.0-beta.91' },
+    { type: 'announcement', date: '2026-11-17', title: 'x', href: 'blog/x.html', id: 'v3-0' },
+  ];
+  assert.deepEqual(sortEntries(entries).map(e => e.id), ['studio-1.0.0-beta.91', 'v3-0', 'b17-2', 'studio-1.0.0-beta.90', 'b17-1', 'studio-1.0.0-beta.100', 'studio-1.0.0-beta.99']);
+});
+
+test('consecutive entries of the same date form one day group', () => {
+  const days = groupByDay([{ id: 'a', date: '2026-11-17' }, { id: 'b', date: '2026-11-17' }, { id: 'c', date: '2026-11-16' }]);
+  assert.deepEqual(days.map(d => [d.date, d.entries.map(e => e.id)]), [['2026-11-17', ['a', 'b']], ['2026-11-16', ['c']]]);
+  assert.deepEqual(groupByDay([]), []);
 });
 
 test('pages hold ten entries, and there is always a first page', () => {
@@ -106,6 +137,24 @@ test('release notes keep links but never raw HTML or script links', () => {
   assert.match(html, /&lt;script&gt;/);
   assert.match(html, /<code>@nocobase\/server<\/code>/);
   assert.match(html, /href="https:\/\/github.com\/nocobase\/nocobase\/blob\/release\/2026-11-12.1\/docs\/guide.md"/);
+});
+
+test('edition markers become badges in the page language, and nothing else in braces does', () => {
+  const md = '- **[Quality]** {{edition:enterprise}} Review gates\n- **[Quality]** {{edition:professional}}\n  - Nested item\n- `{{edition:enterprise}}` {{edition:team}} {{ edition:enterprise }} {{edition:enterprise}}<script>alert(1)</script>\n- [{{edition:enterprise}}](https://example.com "{{edition:professional}}")';
+  const en = renderNotes(md, '', { product: 'studio' });
+  assert.match(en, /<strong>\[Quality\]<\/strong> <span class="edition-badge enterprise" title="Available in Enterprise edition" aria-label="Available in Enterprise edition">Enterprise<\/span> Review gates/);
+  assert.match(en, /<span class="edition-badge professional" title="Available in Professional and Enterprise editions" aria-label="Available in Professional and Enterprise editions">Professional\+<\/span><ul>\s*<li>Nested item/);
+  assert.match(renderNotes(md, '', { lang: 'zh' }), /<span class="edition-badge enterprise" title="仅适用于企业版" aria-label="仅适用于企业版">企业版<\/span>.*<span class="edition-badge professional" title="适用于专业版和企业版" aria-label="适用于专业版和企业版">专业版\+<\/span>/s);
+  assert.match(renderNotes(md, '', { lang: 'ja' }), /<span class="edition-badge enterprise" title="エンタープライズ版で利用可能" aria-label="エンタープライズ版で利用可能">エンタープライズ版<\/span>.*<span class="edition-badge professional" title="プロフェッショナル版およびエンタープライズ版で利用可能" aria-label="プロフェッショナル版およびエンタープライズ版で利用可能">プロフェッショナル版\+<\/span>/s);
+  // 代码里、链接的 title 属性里不替换；其他 {{…}} 原样当文字；标记旁边的原样 HTML 仍然转义
+  assert.match(en, /<code>\{\{edition:enterprise\}\}<\/code> \{\{edition:team\}\} \{\{ edition:enterprise \}\} <span class="edition-badge enterprise"[^>]*>Enterprise<\/span>&lt;script&gt;/);
+  assert.match(en, /title="\{\{edition:professional\}\}"/);
+  assert.doesNotMatch(en, /<script/);
+});
+
+test('Studio notes do not resolve relative links against the NocoBase repository', () => {
+  assert.doesNotMatch(renderNotes('- [guide](docs/guide.md) and [site](https://www.nocobase.com/)', 'v1.0.0', { product: 'studio' }), /href="[^"]*guide/);
+  assert.match(renderNotes('- [site](https://www.nocobase.com/)', 'v1.0.0', { product: 'studio' }), /href="https:\/\/www\.nocobase\.com\/"/);
 });
 
 test('PR author credits at the end of a line are dropped, other @ text stays', () => {
@@ -155,6 +204,48 @@ test('pages in English, Chinese and Japanese, with English notes when a language
   assert.match(second.mains.ja, /NocoBase 3\.0</);
   assert.match(second.main, /href="blog\/nocobase-3-0\.html"/);
   assert.equal(second.meta.title_zh, '更新日志 — 第 2 页 — NocoBase');
+});
+
+test('a Studio card is a release card without the GitHub footer, with edition badges in each language', () => {
+  const marked = '### 🎉 New Features\n\n- **[Quality]** {{edition:enterprise}} Review gates';
+  const [page] = changelogPages(dir({
+    'beta-2026-11-17.1': release('beta', '2026-11-17.1'),
+    'studio-1.0.0-beta.90': studio('1.0.0-beta.90', '2026-11-17', { notes: { en: marked, 'zh-CN': marked.replace('Review gates', '评审关卡') } }),
+  }));
+  const card = html => /<article class="cl-item" id="studio-1\.0\.0-beta\.90">[\s\S]*?<\/article>/.exec(html)[0];
+  const en = card(page.main);
+  assert.match(en, /<h2><a href="changelog\.html#studio-1\.0\.0-beta\.90"[^>]*>NocoBase Studio · v1\.0\.0-beta\.90<\/a><\/h2><span class="pill beta">Beta<\/span>/);
+  assert.doesNotMatch(en, /cl-gh|github/i);
+  assert.match(en, />Enterprise<\/span> Review gates/);
+  assert.match(card(page.mains.zh), />企业版<\/span> 评审关卡/);
+  // 日文缺了显示英文正文，标签按页面语言
+  assert.match(card(page.mains.ja), /lang="en"[\s\S]*>エンタープライズ版<\/span> Review gates/);
+  // NocoBase 卡片仍然有 GitHub 链接
+  assert.match(page.main, /class="cl-gh"/);
+});
+
+test('the date shows once per day on a page, and again on the next page when a day spans two', () => {
+  const files = { 'v3-0': { type: 'announcement', date: '2026-11-17', title: 'NocoBase 3.0', href: 'blog/nocobase-3-0.html' } };
+  // 11-17：公告 + 1 个 NocoBase + 1 个 Studio；11-16：1 个 NocoBase；11-05 到 11-12 各 1 个；11-04：2 个，分在第 1、2 页
+  files['beta-2026-11-17.1'] = release('beta', '2026-11-17.1');
+  files['studio-1.0.0-beta.90'] = studio('1.0.0-beta.90', '2026-11-17');
+  files['beta-2026-11-16.1'] = release('beta', '2026-11-16.1');
+  for (let d = 5; d <= 9; d++) files[`beta-2026-11-0${d}.1`] = release('beta', `2026-11-0${d}.1`);
+  files['beta-2026-11-04.2'] = release('beta', '2026-11-04.2');
+  files['beta-2026-11-04.1'] = release('beta', '2026-11-04.1');
+  const [first, second] = changelogPages(dir(files));
+  const days = html => [...html.matchAll(/<div class="cl-day( cl-day-ann)?">\n<div class="cl-date"><time datetime="([\d-]+)">/g)].map(m => m[2] + (m[1] ? '*' : ''));
+  const ids = html => [...html.matchAll(/<article class="cl-item[^"]*" id="([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(days(first.main), ['2026-11-17*', '2026-11-16', '2026-11-09', '2026-11-08', '2026-11-07', '2026-11-06', '2026-11-05', '2026-11-04']);
+  assert.equal(first.main.match(/class="cl-date"/g).length, 8);
+  assert.deepEqual(ids(first.main), ['v3-0', 'studio-1.0.0-beta.90', 'beta-2026-11-17.1', 'beta-2026-11-16.1', 'beta-2026-11-09.1', 'beta-2026-11-08.1', 'beta-2026-11-07.1', 'beta-2026-11-06.1', 'beta-2026-11-05.1', 'beta-2026-11-04.2']);
+  // 同一天的卡片在同一个组里
+  assert.match(first.main, /<div class="cl-day cl-day-ann">\n<div class="cl-date"><time datetime="2026-11-17">Nov 17, 2026<\/time><\/div>\n<div class="cl-items">\n<article class="cl-item cl-ann" id="v3-0">[\s\S]*?<article class="cl-item" id="studio-1\.0\.0-beta\.90">[\s\S]*?<article class="cl-item" id="beta-2026-11-17\.1">[\s\S]*?<\/article>\n<\/div>\n<\/div>/);
+  assert.match(first.mains.zh, /<time datetime="2026-11-17">2026年11月17日<\/time>/);
+  // 11-04 跨页：第 2 页再显示一次日期，第一页的跳页表里有它
+  assert.deepEqual(days(second.main), ['2026-11-04']);
+  assert.deepEqual(ids(second.main), ['beta-2026-11-04.1']);
+  assert.match(first.main, /"beta-2026-11-04\.1":2/);
 });
 
 test('without entries there is one page with the empty state', () => {

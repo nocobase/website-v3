@@ -1,5 +1,5 @@
 /* Course catalog: series sections with scannable cards, using the shared site tokens. */
-.docs-catalog .prose > p:first-child { margin: 12px 0 0; max-width: 780px; font-size: 16px; line-height: 1.75; color: var(--muted); }
+.docs-catalog .prose > p:first-child { margin: 12px 0 0; font-size: 16px; line-height: 1.75; color: var(--muted); }
 .docs-catalog .prose > p:first-child a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule-2); text-underline-offset: 3px; }
 .docs-catalog .prose > p:first-child a:hover { color: var(--brand); text-decoration-color: currentColor; }
 .course-section { margin-top: 36px; }
@@ -11,19 +11,20 @@
 .prose .course-section-head > p a { color: var(--brand); font-weight: 500; text-decoration: none; }
 .prose .course-section-head > p a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .prose .course-section-head > p a::after { content: " →"; }
-.prose .course-section > p { margin: 0 0 18px; max-width: 780px; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.prose .course-section > p { margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: var(--muted); }
 .prose .course-section h3 { margin: 26px 0 12px; font-size: 15px; line-height: 1.4; font-weight: 600; color: var(--ink); }
 .prose .course-section > p + h3 { margin-top: 20px; }
 
-.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+.course-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .prose .course-grid > p { display: flex; margin: 0; min-width: 0; }
-.prose .course-grid a { display: flex; flex-direction: column; width: 100%; padding: 16px 18px; border: 1px solid var(--rule-2); border-radius: 10px; background: var(--card); color: var(--ink); text-decoration: none; transition: border-color .15s, box-shadow .15s; }
+.prose .course-grid a { display: flex; flex-direction: column; width: 100%; padding: 16px 18px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); color: var(--ink); text-decoration: none; transition: border-color .15s, box-shadow .15s; }
 .prose .course-grid a:hover { border-color: var(--brand); box-shadow: var(--doc-shadow); text-decoration: none; }
 .course-grid a:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
 .course-title { display: block; margin-bottom: 6px; font-size: 15px; line-height: 1.45; font-weight: 600; color: var(--ink); }
-.course-description { display: block; font-size: 13px; line-height: 1.65; color: var(--muted); }
-.course-status { display: inline-flex; align-self: flex-start; margin-top: auto; padding: 2px 8px; padding-top: 2px; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper-2); font-size: 11px; line-height: 1.5; color: var(--muted); }
-.prose .course-grid .course-description + .course-status { margin-top: 12px; }
+.course-description { display: block; font-size: 13.5px; line-height: 1.65; color: var(--muted); }
+.prose .course-grid a:has(.is-pending) { background: var(--paper); border-color: var(--rule); opacity: 0.65; }
+.prose .course-grid a:has(.is-pending) .course-title { color: var(--muted); }
+.prose .course-grid a:has(.is-pending):hover { opacity: 0.85; border-color: var(--rule-2); box-shadow: none; }
 .prose .course-pending { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--muted); }
 
 /* Supporting example links in lesson introductions. */
@@ -55,6 +56,10 @@
 .doc-nav a.course-series-title:hover { background: var(--paper-2); color: var(--ink); }
 .doc-nav a.course-series-title[aria-current="page"] { background: transparent; color: var(--brand); font-weight: 650; }
 
+@container doc-page (max-width: 800px) {
+  .course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @container doc-page (max-width: 540px) {
   .course-section { margin-top: 28px; }
+  .course-grid { grid-template-columns: 1fr; }
 }

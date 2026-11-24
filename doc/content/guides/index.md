@@ -39,13 +39,13 @@ Use Studio across day-to-day team delivery: connect an existing repository, invo
 
 <div class="course-grid">
 
-[<span class="course-title">Connect an existing project to Studio</span><span class="course-description">Connect an existing Core repository, configure checks and PR previews, and continue iterating as a team.</span><span class="course-status">In preparation</span>](open-crm-project.md)
+[<span class="course-title is-pending">Connect an existing project to Studio</span><span class="course-description">Connect an existing Core repository, configure checks and PR previews, and continue iterating as a team.</span>](open-crm-project.md)
 
 [<span class="course-title">Involve business colleagues directly</span><span class="course-description">Invite business owners to raise requests, clarify rules and accept changes in previews without handoff loss.</span>](business-colleagues.md)
 
 [<span class="course-title">Keep business rules and development knowledge</span><span class="course-description">Store confirmed rules, design decisions and review checklists in the project knowledge base so teammates and Agents stay aligned.</span>](capture-knowledge.md)
 
-[<span class="course-title">Manage quality in Studio</span><span class="course-description">Combine continuous tests, core scenario checks and issue tracking to keep parallel Agent work reliable.</span><span class="course-status">In preparation</span>](enterprise-management.md)
+[<span class="course-title is-pending">Manage quality in Studio</span><span class="course-description">Combine continuous tests, core scenario checks and issue tracking to keep parallel Agent work reliable.</span>](enterprise-management.md)
 
 [<span class="course-title">Release updates and maintain your application</span><span class="course-description">Verify changes in previews and test environments, then upgrade production while keeping existing business data intact.</span>](release.md)
 
@@ -73,13 +73,13 @@ Learn individual Core capabilities by topic. Everyday scenarios reference the la
 
 [<span class="course-title">Role permissions and data scopes</span><span class="course-description">Enforce role permissions, owner-based record scopes and read-only sharing so staff and managers see the right data.</span>](team-permissions.md)
 
-[<span class="course-title">Configurable permission UI</span><span class="course-description">Design a runtime permission configuration screen for administrators or business owners who need flexible access control.</span><span class="course-status">Planned</span>](core-capabilities/index.md#courses)
+[<span class="course-title is-pending">Configurable permission UI</span><span class="course-description">Design a runtime permission configuration screen for administrators or business owners who need flexible access control.</span>](core-capabilities/index.md#courses)
 
-[<span class="course-title">Complex data scopes and grant rules</span><span class="course-description">Design cross-department, multi-condition data scopes and rules for combining or revoking overlapping grants.</span><span class="course-status">Planned</span>](core-capabilities/index.md#courses)
+[<span class="course-title is-pending">Complex data scopes and grant rules</span><span class="course-description">Design cross-department, multi-condition data scopes and rules for combining or revoking overlapping grants.</span>](core-capabilities/index.md#courses)
 
 [<span class="course-title">Approval workflows and to-do center</span><span class="course-description">Configure an approval flow and handle reviews, returns, rejections and status write-backs in the to-do center.</span>](quote-approvals.md)
 
-[<span class="course-title">Complex approval rules</span><span class="course-description">Design conditional branches, joint approvals, return-and-resubmit flows, timeouts, reassignment and delegation in scenarios like purchasing and expenses.</span><span class="course-status">Planned</span>](core-capabilities/index.md#courses)
+[<span class="course-title is-pending">Complex approval rules</span><span class="course-description">Design conditional branches, joint approvals, return-and-resubmit flows, timeouts, reassignment and delegation in scenarios like purchasing and expenses.</span>](core-capabilities/index.md#courses)
 
 [<span class="course-title">Business attachments and file management</span><span class="course-description">Add file upload, preview and download to business records with permission checks and temporary file cleanup.</span>](file-management.md)
 
@@ -91,13 +91,13 @@ Learn individual Core capabilities by topic. Everyday scenarios reference the la
 
 [<span class="course-title">Email integration and messaging</span><span class="course-description">Connect a personal mailbox to match correspondence by contact address and send emails with attachments from the workspace.</span>](email.md)
 
-[<span class="course-title">Connect an in-app business Agent</span><span class="course-description">Add an in-app business Agent that follows role permissions to look up records and assist daily operations.</span><span class="course-status">In preparation</span>](business-agent.md)
+[<span class="course-title is-pending">Connect an in-app business Agent</span><span class="course-description">Add an in-app business Agent that follows role permissions to look up records and assist daily operations.</span>](business-agent.md)
 
-[<span class="course-title">Assist business workflows with AI and knowledge</span><span class="course-description">Combine records and knowledge bases with AI to summarize history and draft next-step suggestions.</span><span class="course-status">In preparation</span>](ai-assistant.md)
+[<span class="course-title is-pending">Assist business workflows with AI and knowledge</span><span class="course-description">Combine records and knowledge bases with AI to summarize history and draft next-step suggestions.</span>](ai-assistant.md)
 
-[<span class="course-title">Bulk data import</span><span class="course-description">Validate and import external spreadsheet records in bulk with clear conflict handling, error reports and rollback.</span><span class="course-status">In preparation</span>](data-import.md)
+[<span class="course-title is-pending">Bulk data import</span><span class="course-description">Validate and import external spreadsheet records in bulk with clear conflict handling, error reports and rollback.</span>](data-import.md)
 
-[<span class="course-title">External APIs and system integrations</span><span class="course-description">Connect ERP, finance or third-party systems through standardized APIs with data sync, idempotency and error handling.</span><span class="course-status">In preparation</span>](external-integrations.md)
+[<span class="course-title is-pending">External APIs and system integrations</span><span class="course-description">Connect ERP, finance or third-party systems through standardized APIs with data sync, idempotency and error handling.</span>](external-integrations.md)
 
 </div>
 

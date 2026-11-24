@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'vitest';
-import { withIds } from './blog.mjs';
+import { prefixedPageLinks, withIds } from './blog.mjs';
 
 test('H2 ids keep their published numbering while deeper headings join the table of contents', () => {
   const [body, toc] = withIds('<h2>A</h2><h3>B</h3><h4>C</h4><h2>D</h2><h5>E</h5><h6>F</h6>', 'en');
@@ -19,4 +19,10 @@ test('entries keep the escaped text, drop inline tags and skip headings without 
   const [body, toc] = withIds('<h2><img src="a.gif"></h2><h2>Routes &amp; <code>/v/</code></h2>', 'en');
   assert.match(body, /<h2 id="en-1"><img/);
   assert.deepEqual(toc, [['en-2', 'Routes &amp; /v/', 0]]);
+});
+
+test('site pages written with an old language prefix become source names the build resolves per language', () => {
+  assert.equal(prefixedPageLinks('<a href="/en/core/">a</a><a href="/ja/pricing">b</a><a href="/cn/studio/#plans">c</a>'), '<a href="core.html">a</a><a href="pricing.html">b</a><a href="studio.html#plans">c</a>');
+  const untouched = '<a href="/zh-CN/core/">a</a><a href="/en/blog/x/">b</a><a href="/en/">c</a><a href="https://example.com/en/core/">d</a>';
+  assert.equal(prefixedPageLinks(untouched), untouched);
 });

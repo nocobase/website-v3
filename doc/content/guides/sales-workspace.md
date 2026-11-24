@@ -1,22 +1,20 @@
 ---
-title: Build the sales workspace UI
+title: "Build a workspace UI with UI Library"
 metaDescription: Compose a sales workspace, customer list, and detail pages with UI Library, connect follow-ups to opportunities and quotes, and verify filtering and navigation.
-lesson: 6
 ---
 
-Build a sales workspace in the [existing CRM](opportunities-and-quotes.md) to view customers, follow-ups, opportunities, and quotes together. Reuse existing records and calculation rules.
+Build a sales workspace in a CRM app with customer, follow-up, opportunity, and quote records. You can apply this directly in your own app or run the latest complete `doc-demo-crm` example to inspect the finished interface.
 
 Follow the application's shadcn component conventions. Prefer installed UI Library components and business blocks, including tables, cards, and tabs.
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#use-example-project-tags">How to use example project tags</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#example-project">How to use the complete example</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">Start</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-5"><code>lesson-5</code></a></td></tr>
-<tr><th scope="row">Finish</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-6"><code>lesson-6</code></a></td></tr>
-<tr><th scope="row">Lesson notes</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-6/docs/lesson-6.md">Installation and run instructions</a></td></tr>
-<tr><th scope="row">Modules covered</th><td><a href="../core/developing-apps/page-layouts.md">UI Library</a></td></tr>
+<tr><th scope="row">Example project</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a> (latest complete CRM app)</td></tr>
+<tr><th scope="row">Run guide</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">Installation and run instructions</a></td></tr>
+<tr><th scope="row">Modules covered</th><td><a href="../core/developing-apps/pages-and-interactions.md">UI Library</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -64,7 +62,7 @@ These components display the interface. The Agent also connects data and navigat
 
 ## Continue the customer follow-up and review the quote
 
-Open **Northstar Labs** from the workspace and walk through its tabs. If starting directly from this lesson’s tag, first prepare Annual rollout proposal using [the previous quote exercise](opportunities-and-quotes.md#create-a-quote-and-check-prices). The seeded Northstar team rollout is a separate quote.
+Open **Northstar Labs** from the workspace and walk through its tabs (if you want a quote with line items to inspect, prepare **Annual rollout proposal** using [Multi-table relations and historical snapshots](opportunities-and-quotes.md#create-opportunities-and-quotes-with-products-and-lines) or use the seeded sample data):
 
 1. Check the customer name, industry, and status; edit one field and save.
 2. Open contacts, confirm the existing contacts remain, and add another.
@@ -95,4 +93,4 @@ Ask the Agent to test combined filters, empty results, and navigation targets, t
 
 **Done when**: Workspace counts match business records, search and status filters work together, and links open the correct customer, opportunity, or quote. Saved data and the active tab survive reloading, key actions work at mobile widths, and failed loads can be retried.
 
-Continue with [Role permissions and customer access](team-permissions.md) to give each salesperson access to the appropriate records.
+To restrict which business records each salesperson can access, see [Role permissions and data scopes](team-permissions.md).

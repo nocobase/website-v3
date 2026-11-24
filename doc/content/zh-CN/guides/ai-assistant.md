@@ -1,5 +1,4 @@
 ---
-title: "AI 辅助客户跟进"
+title: "知识库与 AI 业务辅助"
 status: placeholder
-lesson: 13
 ---

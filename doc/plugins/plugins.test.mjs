@@ -8,6 +8,7 @@ import rehypeDocs, { SPECIAL_LANGS, highlightTree, codeTitleTransformer } from '
 import remarkCallouts from './remark-callouts.mjs';
 import remarkFigures from './remark-figures.mjs';
 import remarkLinks from './remark-links.mjs';
+import rehypeLinks from './rehype-links.mjs';
 
 const contentDir = mkdtempSync(join(tmpdir(), 'docs-plugins-'));
 const figuresDir = join(contentDir, 'figures');
@@ -31,7 +32,7 @@ async function render(markdown, lang = 'en', key = 'core/a') {
     syntaxHighlight: { type: 'shiki', excludeLangs: SPECIAL_LANGS },
     shikiConfig: { theme: 'css-variables', transformers: [codeTitleTransformer] },
     remarkPlugins: [[remarkFigures, opts], [remarkCallouts, opts], [remarkLinks, opts]],
-    rehypePlugins: [[rehypeDocs, opts]],
+    rehypePlugins: [[rehypeDocs, opts], [rehypeLinks, opts]],
   });
   const { code } = await processor.render(markdown, { fileURL: new URL(`file://${join(contentDir, lang === 'en' ? '' : lang, `${key}.md`)}`) });
   return code;
@@ -78,6 +79,21 @@ test('Japanese Markdown uses localized callouts, code toolbars and links', async
 });
 
 describe('links', () => {
+  test('handwritten course tables resolve links in each language and preserve other markup', async () => {
+    const markup = '<div class="course-example"><table><tbody><tr><th scope="row">Modules</th><td><a href="../a.md#x">Database</a> · <a href="https://example.com/">Source</a></td></tr></tbody></table></div>';
+    for (const lang of ['en', 'ja-JP']) {
+      const html = await render(markup, lang, 'core/b/c');
+      expect(html).toContain(`href="/${lang === 'en' ? '' : `${lang}/`}core/a/#x"`);
+      expect(html).toContain('href="https://example.com/"');
+      expect(html).toContain('<th scope="row">Modules</th>');
+      expect(html).not.toContain('.md');
+    }
+  });
+  test('missing links in handwritten HTML fail the build, while code examples stay literal', async () => {
+    await expect(render('<table><tr><td><a href="missing.md">Missing</a></td></tr></table>')).rejects.toThrow(/core\/a\.md: the link "missing\.md"/);
+    const html = await render('```html\n<a href="missing.md">Example</a>\n```');
+    expect(html).toContain('missing.md');
+  });
   test('relative .md links are resolved, and absolute ones open in a new tab', async () => {
     const html = await render('[a](../a.md#x) [c](c.md) [out](https://x.test/) [h](#here)', 'en', 'core/b/c');
     expect(html).toContain('href="/core/a/#x"');

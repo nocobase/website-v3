@@ -1,10 +1,9 @@
 ---
 title: Involve business colleagues
 metaDescription: Invite a sales manager to own the customer handover requirement, answer business questions, and accept the result.
-lesson: 17
 ---
 
-After [quote revision comparison](agent-team-request.md), sales manager Morgan wants customer handovers to retain their reason and history as well as change the owner. Let Morgan request, clarify, and accept the work directly in Studio.
+Use a Studio project connected to a CRM with customer ownership. Prepare an account for sales manager Morgan and access to invite members. In this exercise, Morgan requests that customer transfers keep their reason and history, then clarifies and accepts the work in Studio.
 
 ## Invite the sales manager
 
@@ -52,4 +51,4 @@ For a failure, Morgan sends the issue back with a concrete report, such as “Al
 
 **Done when**: The business owner has accepted the handover, access follows ownership, and business records and handover history remain intact.
 
-Next, [capture development methods and project experience](capture-knowledge.md).
+To record decisions made during the request, see [capture development methods and project experience](capture-knowledge.md).

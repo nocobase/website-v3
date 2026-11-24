@@ -1,107 +1,132 @@
 ---
-title: Model opportunity and quote data
-metaDescription: Add opportunities, products, and quotes to a customer CRM, preserve price snapshots, calculate totals, and verify existing data after upgrading.
-lesson: 5
+title: "Multi-table relations and historical snapshots"
+metaDescription: Turn business requirements into an ER model and data dictionary, apply migrations, and use a price change to understand historical quote prices.
 ---
 
-Add opportunities, products, and quotes to the [customer CRM](test-and-deliver.md). Save the quoted prices so later catalog changes do not alter past quotes.
+Add opportunities, products, and quotes to a business application that already manages customers, contacts, and follow-up records. Save the quoted prices so later catalog changes do not alter past quotes.
 
-Use an administrator account. Keep existing customers, contacts, and follow-ups to check that the new features preserve them.
+Use an administrator account and keep existing customers, contacts, and follow-ups so you can verify that the new structures preserve them.
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#use-example-project-tags">How to use example project tags</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#example-project">How to use the complete example</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">Start</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-4"><code>lesson-4</code></a></td></tr>
-<tr><th scope="row">Finish</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-5"><code>lesson-5</code></a></td></tr>
-<tr><th scope="row">Lesson notes</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-5/docs/lesson-5.md">Installation and run instructions</a></td></tr>
-<tr><th scope="row">Modules covered</th><td><a href="../core/framework/http/validation.md">Request validation</a></td></tr>
+<tr><th scope="row">Example project</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a> (latest complete CRM app)</td></tr>
+<tr><th scope="row">Run guide</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">Installation and run instructions</a></td></tr>
+<tr><th scope="row">Modules covered</th><td><a href="../core/framework/database/overview.md">Database</a></td></tr>
 </tbody>
 </table>
 </div>
 </div>
 
-## Define business relationships and calculation rules
+## Derive an ER model and data dictionary from requirements or existing materials
 
-A customer is the organization you work with. An opportunity is a potential sale, and a quote is a set of products and prices offered for that sale. One customer can have several opportunities, and an opportunity can have multiple quotes.
+Data modeling translates business entities and their relationships into database table structures.
 
-| Record      | What it stores                                                  | Relationship                                     |
-| ----------- | --------------------------------------------------------------- | ------------------------------------------------ |
-| Opportunity | A name, sales stage, and other business details                 | Belongs to one customer; can have several quotes |
-| Product     | Code, name, and current unit price                              | Can appear on different quotes                   |
-| Quote       | A name, line items, and total                                   | Belongs to one opportunity                       |
-| Quote line  | Product, quantity, quoted unit price, discount, and line amount | Belongs to one quote; preserves what was offered |
+Northstar Labs may be buying team licenses while another department discusses a separate service. The customer describes the same company, but each potential sale has its own progress and quotes. Add opportunities under the customer, then associate each quote with its opportunity.
 
-The catalog stores today's price. A quote line stores the price offered at the time, called a “price snapshot.” Later catalog changes leave that price unchanged. Core [database relations](../core/framework/database/relations.md) connect customers, opportunities, and quotes.
-
-Saving a quote must follow two rules:
-
-- The server recalculates amounts from the lines instead of accepting a total from the browser.
-- The quote and all its lines save together. An invalid line must not leave partial data.
-
-## Develop opportunities, products, and quotes
-
-Use [database migrations](../core/developing-apps/data-models-and-migrations.md) to add structures while retaining existing records. Saving or undoing the quote and its lines together is a [transaction](../core/developing-apps/transactions-and-consistency.md). For input checks, see [Request validation and errors](../core/developing-apps/request-validation-and-errors.md).
-
-Send this request to the Agent in the application root:
+In an Agent session at the application root, send:
 
 ```prompt
-Add opportunities, products, and quotes to the existing CRM. Let me open opportunities from a customer and view each quote's lines. Keep existing customers, contacts, and follow-ups. Use the English interface and fictional data.
+I want to manage opportunities and quotes in this CRM. A customer can have several opportunities, each with several quotes. The product catalog maintains names, codes, and current prices. A quote can include multiple products, each with its own quantity and discount. Later catalog price changes must leave saved quotes unchanged.
 
-Follow these business rules:
-- A customer can have multiple opportunities, each with multiple quotes.
-- Products store a name, code, and current price. Quote lines store the product, quantity, quoted price, and discount.
-- Quantities are positive integers and prices are nonnegative. Discounts range from 0–100%; 10% means one tenth off.
-- Calculate each line as quantity × unit price × (1 − discount percentage). Round half up to two decimal places, then sum the rounded amounts.
-- Catalog changes leave saved quotes unchanged. Editing quote lines recalculates amounts using their saved prices.
-- Use USD. Leave tax, shipping, currency conversion, approvals, attachments, and notifications for later.
+First draw an ER diagram and prepare a short data dictionary explaining the key fields, types, relationships, and constraints. Keep existing customers, contacts, and follow-ups. Don't change the database yet.
 ```
 
-A quote does not yet mean an approved offer or a won sale, and it is not automatically sent to the customer.
+An ER diagram shows these entities and their relationships visually. A data dictionary describes the fields each record stores and what they mean. Both express the same model, helping you confirm the Agent’s understanding before development. Follow the Agent's diagram from customer to opportunity, quote, and lines, then check how each line relates to a product:
 
-## Create a quote and check prices
+![One-to-many relationships connect customers, opportunities, quotes, and lines. Products store current prices; quote lines store quoted prices.](/assets/guides/crm-sales-er.svg)
 
-Complete this sequence as an administrator and keep these records for the next two lessons:
+A quote contains multiple products, and a product can appear on multiple quotes. **Quote lines** connect them. Quantity and discount describe this particular offer, so they belong on the line rather than in the catalog. A line stores both `productId` and its own price: a product reference alone would retrieve today's price when reopening an old quote.
 
-1. Open **Northstar Labs** in **Customers**. Reuse the existing customer, or create it and add a contact and follow-up if it is missing.
-2. In **Products**, create **Team workspace license** (code `TEAM-LICENSE`, price `100.00`) and **Onboarding workshop** (code `ONBOARDING`, price `250.00`). If you already created these during the exercise, check their details and prices.
-3. Return to Northstar Labs and open **Northstar sales workspace**. If the opportunity is missing, create it with **New opportunity**.
-4. Create **Annual rollout proposal** in this opportunity. Select the two products and enter the quantities and discounts below. Selecting a product should fill in its catalog price; saving should produce a total of `1150.00`.
+This dictionary excerpt shows what each record stores and how it connects to other records:
 
-If you loaded sample data, the opportunity also contains **Northstar team rollout**, totaling `2096.00`. That is a separate seeded quote; create Annual rollout proposal for this exercise.
+| Record | Example fields | Business purpose |
+| --- | --- | --- |
+| Product `crmProducts` | Name, code, current price | Maintain the products available for sale and their current prices |
+| Opportunity `crmOpportunities` | Customer reference, name, stage | Manage separate potential sales to the same customer |
+| Quote `crmQuotes` | Opportunity reference, name, total | Record an offer for a particular sales opportunity |
+| Quote line `crmQuoteLines` | Quote reference, product reference, quantity, quoted price, discount | Record what this offer includes, how much, and at what price |
 
-| Product                | Quantity | Quoted unit price | Discount | Line amount |
-| ---------------------- | -------- | ----------------- | -------- | ----------- |
-| Team workspace license | 10       | 100.00            | 10%      | 900.00      |
-| Onboarding workshop    | 1        | 250.00            | 0%       | 250.00      |
-| **Total**              |          |                   |          | **1150.00** |
+To generate migrations, the Agent also needs database field names, types, and constraints. See the [complete model and field notes](https://github.com/nocobase/doc-demo-crm/blob/main/docs/sales-model.md) in the complete example for those definitions.
 
-1. Reopen **Northstar Labs → Northstar sales workspace → Annual rollout proposal** and refresh. Check that the lines remain.
-2. Change the catalog price of Team workspace license to `120.00`. The saved quote still uses `100.00`; a new line uses `120.00`.
-3. Change the saved quote's first quantity from `10` to `12`, keeping its price and discount. The line amount becomes `1080.00`, and the total `1330.00`.
-4. Change the quantity back to `10`. The total returns to `1150.00`.
+Before proceeding, confirm that the model separates two sales opportunities for one customer, supports different quantities, discounts, and prices for the same product on different quotes, and preserves old prices independently of the catalog.
 
-![The quote preserves each line’s unit price and discount, totaling USD 1,150.00.](/assets/guides/quote-details.png)
+If you already have an ER diagram or dictionary, give it to the Agent and have it fill in missing relationships, types, and constraints before continuing. Prefer text or structured exports. Supply details missing from images; external SQL still needs to be adapted into an incremental migration for this project.
 
-## Check quote amounts and saved results
+## Convert the model into migrations and apply them
 
-Check these scenarios in the UI, using the quote screenshot above to compare the lines and total:
+Migrations are the Core DB mechanism for creating tables; business tables in the primary data source and subsequent schema changes must be created and managed through migrations. This requirement does not apply when connecting to external data sources.
 
-| Action                                                             | Expected result                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------ |
-| Create two opportunities for one customer, with a quote on each    | Each quote belongs to the correct opportunity          |
-| Create the quote above and refresh                                 | Line amounts are 900.00 and 250.00; total is 1150.00   |
-| Change a catalog price and reopen the saved quote                  | Its quoted price, discount, and amount stay unchanged  |
-| Change a saved quote's quantity                                    | Recalculation uses the price stored on that quote      |
-| Enter zero quantity, a negative price, or a discount above 100%    | Saving is rejected; the original quote remains intact  |
+After confirming the model, send:
 
-The Agent should check failed saves and retries and explain the business results: a failed save leaves no partial quote lines, retrying the same save creates no duplicate quotes or lines, and deleted opportunities or products cannot be used to create quotes. Screenshots can show amounts and saved lines; for behavior a screenshot cannot establish, rely on checks the Agent has actually completed.
+```prompt
+The model looks right. Add the tables for opportunities, products, quotes, and quote lines to this CRM based on the agreed ER diagram and dictionary, keeping existing records. Show me which tables and relationships will be added before making the changes.
+```
 
-Signed-out users and users without page permission cannot access these pages. Isolation between salespeople arrives in Lesson 7.
+The migrations create the four tables and their relationship constraints, then add the definitions the application uses to query related data. Once applied, the database can store these records and the application can follow customer → opportunity → quote → lines. For implementation details, see [Database migrations](../core/developing-apps/data-models-and-migrations.md) and [Database relations](../core/framework/database/relations.md).
 
-## Confirm existing customer records are intact
+Check that the pending changes add only the new structures without removing existing tables. From the application root, with the database configured, run:
 
-Open a customer created in the previous lesson. Confirm that its details, contacts, and follow-ups remain available and that you can still add a follow-up. After adding opportunities and quotes, return to the customer to find those records too.
+```bash
+pnpm nocobase db apply --dry-run
+pnpm nocobase db apply
+```
 
-Continue with [Build the sales workspace UI](sales-workspace.md) to organize these features for daily use.
+Back up the existing database first. `--dry-run` previews the work; the second command applies it. If the development server already applied the migrations, the preview may show nothing pending: check migration history instead.
+
+Check the new tables and relationships, then open an existing customer, view its contacts and follow-ups, and add a follow-up. Existing features should still work. At this point you have storage structures. A migration does not copy a product's price onto a quote line: the quote save operation must implement that business rule.
+
+## Create opportunities and quotes with products and lines
+
+Ask the Agent to connect the business operations:
+
+```prompt
+Connect these records to pages so I can maintain products, create and open opportunities from a customer, and create, view, and edit quotes. Keep the interface in English.
+
+Selecting a product should fill in its current price. Save that price on the quote and use the saved price when editing an old quote. Calculate each line from quantity, unit price, and discount, round half up to two decimal places, then add the rounded lines. A 10% discount means one tenth off.
+
+Use USD and leave out tax, shipping, and currency conversion for now. Run the result so I can create a quote.
+```
+
+The [quote save logic](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/sales.ts) in the complete example stores prices, calculates in integer cents, and uses the quote's own price during edits. The server recalculates totals instead of accepting browser-supplied totals. A [transaction](../core/developing-apps/transactions-and-consistency.md) saves the quote and its lines together, so one failed line cannot leave half a quote.
+
+As an administrator, complete these operations in the English interface:
+
+1. Open **Customers → Northstar Labs**. If it is missing, create the customer and add a contact and follow-up.
+2. In **Products**, create or update **Team workspace license** (code `TEAM-LICENSE`, price `100.00`) and **Onboarding workshop** (code `ONBOARDING`, price `250.00`).
+3. Return to the customer and use **New opportunity** to create **Northstar sales workspace**, or open it if it already exists.
+4. Create **Annual rollout proposal**, select both products, and enter the quantities and discounts below. Save, reopen, and refresh the quote.
+
+| Product | Quantity | Quoted price | Discount | Line amount |
+| --- | --- | --- | --- | --- |
+| Team workspace license | 10 | 100.00 | 10% | 900.00 |
+| Onboarding workshop | 1 | 250.00 | 0% | 250.00 |
+| **Total** | | | | **1150.00** |
+
+If sample data was loaded, **Northstar team rollout** also exists with a total of `2096.00`. It is a separate seeded quote; create Annual rollout proposal for this exercise.
+
+![Annual rollout proposal preserves two products, their prices and discounts, totaling USD 1,150.00.](/assets/guides/quote-details.png)
+
+Follow **Northstar Labs → Northstar sales workspace → Annual rollout proposal** and check its parent opportunity and two lines. This path follows the relationships you created.
+
+## Change a product price and verify historical quotes
+
+First predict what happens when Team workspace license changes from `100.00` to `120.00`. Which price should appear in the catalog, in the saved Annual rollout proposal, and in a new quote where you select the product again?
+
+Then check your prediction:
+
+| Action | Expected observation |
+| --- | --- |
+| Change the license price to `120.00` in Products | The catalog displays `120.00` |
+| Reopen and refresh the old quote | Its license price remains `100.00` and its total remains `1150.00` |
+| Create **Repriced rollout check** under the same opportunity, select both products again, use the same quantities and discounts, and save | The license price defaults to `120.00`, its line amount is `1080.00`, and the total is `1330.00` |
+| Edit the old quote's license quantity from `10` to `12`, keeping its price and discount | Recalculation uses the old price of `100.00`; the line amount is `1080.00` and the total is `1330.00` |
+| Restore the old quantity to `10`, save, and refresh | Its total returns to `1150.00` |
+
+Ten licenses on the new quote and twelve on the old quote happen to produce the same amount, but use different unit prices. Explain the result using the lines, not just the total. The product relationship identifies what was selected; the price on the line records what was offered. Both are needed.
+
+Ask the Agent to run supporting input-validation, failed-save, and existing-feature tests in an isolated database (see [verification notes](https://github.com/nocobase/doc-demo-crm/blob/main/docs/verification.md)), then review the actual results.
+
+To see how to turn existing business records into a daily workspace interface, continue with [Build a workspace UI with UI Library](sales-workspace.md).

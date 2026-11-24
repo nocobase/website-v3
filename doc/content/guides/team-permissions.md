@@ -1,24 +1,22 @@
 ---
-title: Role permissions and customer access
+title: "Role permissions and data scopes"
 metaDescription: Assign sales and manager roles, customer ownership, and read-only sharing, then verify related records, workspace summaries, and direct API access.
-lesson: 7
 ---
 
-Give salespeople and managers different customer access in the [sales workspace](sales-workspace.md). Before starting:
+Configure distinct action permissions and customer record scopes for salespeople and sales managers. Before starting:
 
 - Prepare separate accounts for an administrator, two salespeople, and a manager. Sales and manager accounts must not have administrator or other broad grants.
-- Have a manager assign owners to existing customers. Do not open unassigned customers to all signed-in users.
-- Back up the database. The new quote access fields cannot be rolled back automatically. Restore a matching backup to undo the upgrade; switching Git tags is not enough.
+- Have a manager assign owners to existing unassigned customers. Do not open unassigned customers to all signed-in users.
+- Back up the database. Migrations that add permission and record-scope fields cannot be rolled back automatically; undoing them requires restoring a matching database backup.
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#use-example-project-tags">How to use example project tags</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#example-project">How to use the complete example</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">Start</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-6"><code>lesson-6</code></a></td></tr>
-<tr><th scope="row">Finish</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-7"><code>lesson-7</code></a></td></tr>
-<tr><th scope="row">Lesson notes</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-7/docs/lesson-7.md">Installation and run instructions</a></td></tr>
-<tr><th scope="row">Modules covered</th><td><a href="../core/using-plugins/authentication/users.md">Users</a> · <a href="../core/using-plugins/authorization/permissions.md">Permission management</a> · <a href="../core/using-plugins/authorization/sharing-rules.md">Sharing rules</a></td></tr>
+<tr><th scope="row">Example project</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a> (latest complete CRM app)</td></tr>
+<tr><th scope="row">Run guide</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">Installation and run instructions</a></td></tr>
+<tr><th scope="row">Modules covered</th><td><a href="../core/using-plugins/authorization/permissions.md">Permission management</a> · <a href="../core/using-plugins/authorization/sharing-rules.md">Sharing rules</a> · <a href="../core/using-plugins/authentication/users.md">Users</a> · <a href="../core/using-plugins/authentication/sign-in.md">Authentication</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -44,11 +42,11 @@ Contacts, follow-ups, opportunities, and quotes follow their customer’s permis
 
 Roles assign responsibilities to users, action permissions determine what they can do, and record scope determines which records each action applies to. Read and edit scopes can differ: salespeople can read shared customers but edit only their own. Sharing extends record scope without granting action permissions.
 
-[Default access](../core/using-plugins/authorization/default-access.md) adds a common record scope, such as public customers, for users who already have the action permission. It does not mean “only my customers.” This lesson limits access by role and ownership, then adds sharing with a selected salesperson.
+[Default access](../core/using-plugins/authorization/default-access.md) adds a common record scope, such as public customers, for users who already have the action permission. It does not mean “only my customers.” This guide limits access by role and ownership, then adds sharing with a selected salesperson.
 
 ## Configure users and roles
 
-Assign roles through [user management](../core/using-plugins/authentication/users.md). [Authentication](../core/using-plugins/authentication/sign-in.md) identifies the current user; permission rules determine what they can read or change. Both pages and server APIs must check access.
+Assign roles through [user management](../core/using-plugins/authentication/users.md). [Authentication](../core/using-plugins/authentication/sign-in.md) identifies the current user; permission rules determine what they can read or change. Both pages and server APIs must check access. The complete example's [permission definitions](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-permissions.ts) and [access routes](https://github.com/nocobase/doc-demo-crm/blob/main/server/routes/crm-access.ts) implement these rules.
 
 Send this request to the Agent in the application root:
 
@@ -64,11 +62,11 @@ Add salesperson and sales manager roles to the CRM.
 
 After implementation, sign in as an administrator and assign roles to the test users through user management in **System settings**. Assignments should be visible and editable from user details. Inspect existing roles to ensure no other grant broadens access. Do not assign the sales role to all signed-in users.
 
-The examples below call the salespeople Alex and Taylor, and the manager Morgan. You can use different names, but use three separate users and independent browser sessions. Set their passwords in your own test environment; keep them out of source files and screenshots.
+The verification steps below call the salespeople Alex and Taylor, and the manager Morgan. You can use different names, but use three separate users and independent browser sessions. Set their passwords in your own test environment; keep them out of source files and screenshots.
 
 ## Verify salesperson and manager action permissions
 
-Sign in separately as Alex and Morgan. Use a practice product so price changes do not affect the quote exercise.
+Sign in separately as Alex and Morgan. Use a practice product so price changes do not affect existing quote data.
 
 | Action | Expected result |
 | --- | --- |
@@ -80,7 +78,7 @@ If a check fails, inspect role assignments in user details, then the actions gra
 
 ## Configure and verify customer record scope
 
-Keep using **Northstar Labs → Northstar sales workspace → Annual rollout proposal**, including the follow-up added in Lesson 6. If starting directly from this lesson’s tag, first prepare these records as an administrator using [the Lesson 5 quote exercise](opportunities-and-quotes.md#create-a-quote-and-check-prices), then complete [the Lesson 6 follow-up](sales-workspace.md#continue-the-customer-follow-up-and-review-the-quote).
+Prepare a customer record with contacts, follow-ups, and a quote (for example **Northstar Labs → Northstar sales workspace → Annual rollout proposal**—see [Multi-table relations and historical snapshots](opportunities-and-quotes.md#create-opportunities-and-quotes-with-products-and-lines) and [Build a workspace UI with UI Library](sales-workspace.md#continue-the-customer-follow-up-and-review-the-quote), or use the seeded sample data).
 
 Use independent browser sessions for Morgan, Alex, and Taylor. Complete each action and its check before moving to the next row. Start with no additional sharing grants for Northstar Labs. If other customers exist, have the manager assign their owners explicitly and judge list results against those assignments.
 
@@ -97,9 +95,9 @@ Keep Alex as the owner of Northstar Labs. Confirm that Taylor cannot read it, th
 
 | Action | Check immediately |
 | --- | --- |
-| Morgan selects Taylor in Northstar Labs **Read-only sharing** and saves, keeping Alex as owner | Taylor can read the customer, the Lesson 6 follow-up, and Annual rollout proposal, with no working edit or create controls; Harbor Design remains editable |
+| Morgan selects Taylor in Northstar Labs **Read-only sharing** and saves, keeping Alex as owner | Taylor can read the customer, existing follow-ups, and Annual rollout proposal, with no working edit or create controls; Harbor Design remains editable |
 | Morgan revokes Taylor's sharing grant for Northstar Labs | Refreshing Taylor's open customer and quote pages denies access; searches, workspace counts, and recent rows no longer include its business records. Alex can still maintain them |
-| After the revocation checks pass, Morgan transfers Northstar Labs from Alex to Taylor, without sharing it with Alex | Taylor can maintain the customer and related records; Alex loses access on refresh. Taylor sees the existing contacts, Lesson 6 follow-up, and quote, still totaling `1150.00` |
+| After the revocation checks pass, Morgan transfers Northstar Labs from Alex to Taylor, without sharing it with Alex | Taylor can maintain the customer and related records; Alex loses access on refresh. Taylor sees the existing contacts, follow-ups, and quote, still totaling `1150.00` |
 
 [Sharing rules](../core/using-plugins/authorization/sharing-rules.md) let Taylor read Northstar Labs and its related records without editing them. Taylor still needs a role that permits viewing customers.
 
@@ -128,4 +126,4 @@ When resending a request, the Agent should preserve the original identity and co
 
 **Done when**: Page and API permissions have been checked with separate salesperson, manager, and read-only sharing accounts. Revoking sharing or transferring a customer applies the new access rules immediately, old requests cannot bypass them, and existing contacts, follow-ups, and quote amounts remain intact.
 
-The next lesson uses the same quotes for [Quote approvals and tasks](quote-approvals.md).
+To add a review workflow for business records, see [Approval workflows and to-do center](quote-approvals.md).

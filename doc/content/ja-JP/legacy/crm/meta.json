@@ -1,0 +1,29 @@
+{
+  "title": "以前の CRM チュートリアル",
+  "pages": [
+    {
+      "type": "page",
+      "path": "create-app"
+    },
+    {
+      "type": "page",
+      "path": "define-requirements"
+    },
+    {
+      "type": "page",
+      "path": "customers-and-follow-ups"
+    },
+    {
+      "type": "page",
+      "path": "test-and-deliver"
+    },
+    {
+      "type": "page",
+      "path": "bring-into-studio"
+    },
+    {
+      "type": "page",
+      "path": "agent-team-request"
+    }
+  ]
+}

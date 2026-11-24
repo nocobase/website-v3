@@ -1,71 +1,21 @@
 ---
-title: Tutorials
+title: "Tutorials"
+description: "Practice NocoBase 3 through real business scenarios: coordinate team delivery with Studio and learn Core capabilities by focused topic."
 ---
 
-<p class="course-intro">Learn how to use NocoBase 3 through practical examples.</p>
+Practice NocoBase through real business scenarios: [Studio](../studio/index.md) coordinates Agents and teammates from request to release, while [Core](../core/index.md) provides the application foundation for data, UI, permissions and workflows.
 
-## Introduction
+<section class="course-intro">
 
-AI Agents can help you build the first version of a business app quickly. Keeping that app useful requires reliable data and permissions, clear development conventions, and a way to preserve requirements and business rules across a team. NocoBase 3 provides Core for developing and running apps, and Studio for collaboration.
+## First steps
 
-[NocoBase Core](../core/index.md) is an open-source foundation for AI development and running business systems. It provides shared capabilities such as data, users and permissions, files, and workflows, along with project conventions and development Skills that guide Agents in building business features. [NocoBase Studio](../studio/index.md) is a governance platform for people and Agents developing together. It organizes collaboration through tasks, checks, and reviews, and preserves team knowledge in a knowledge base and project memory. You can develop and deploy an app with Core alone, then add Studio when you need team collaboration.
-
-## Start with an example project
-
-The tutorial builds on one CRM app. Salespeople manage customers and follow-up records, then track opportunities and prepare quotes. The team controls customer access through role permissions and gradually adds approvals, attachments, notifications, and AI capabilities.
-
-Each lesson starts with a business requirement, explains how to work with an Agent to implement it, and shows how to check the result. Quick start produces a usable customer follow-up app; Hands-on practice extends the same project. Follow the lessons in order if you are new, or choose topics based on their prerequisites if you already have experience. Adapt the example requirements to your own business rules.
-
-### Use example project tags
-
-The [example project](https://github.com/nocobase/doc-demo-crm) uses `lesson-N` tags for the completed state of Lesson N, including lessons that only change requirements or design. Each lesson's introduction lists its starting and completed states: choose the starting tag to follow the development steps, or the completed tag to try the result. Lesson 1 starts from an empty directory and has no starting tag. You do not need to switch lesson tags when continuously developing your own app.
-
-Get the example in a separate directory. These commands use `lesson-1`; replace it with the tag for the stage you want:
-
-```bash
-git clone https://github.com/nocobase/doc-demo-crm.git my-crm-example
-cd my-crm-example
-git switch -c my-crm lesson-1
-pnpm install --frozen-lockfile
-```
-
-Have the Agent follow the selected version's README and `docs/lesson-N.md` to prepare configuration, the database, and startup. For a first run, the following commands use SQLite as an example; follow the project instructions to configure another database:
-
-```bash
-pnpm nocobase config init --dialect sqlite
-pnpm nocobase config check
-pnpm dev
-```
-
-Sign in at the complete `Local:` URL printed in the terminal. `lesson-1` contains only the app foundation, without customer data. See each lesson's setup notes for data preparation and specific migration restrictions.
-
-To upgrade an existing example installation, stop it and back up the database, configuration, and file storage. Retain that data, then follow the target lesson's setup notes to install dependencies, apply migrations, and start the app. Do not reinitialize or reset the database. Git tags contain source code, not configuration, secrets, business data, or uploaded files; switching tags does not roll back the database.
-
-## Core: Develop business apps
-
-The Core lessons start with an app template and introduce three areas: data models, relationships, and migrations organize business data; pages and UI components provide the interface; authentication, permissions, and shared capabilities such as workflows, files, and notifications support business rules. The app's `AGENTS.md` and development Skills guide implementation, while tests and hands-on checks verify the results. Consult the [Core manual](../core/index.md) for details on individual capabilities.
-
-<section class="course-section">
-
-<div class="course-heading">
-
-### Quick start
-
-<span class="course-range">Lessons 1–4</span>
-
-</div>
-
-Build a customer follow-up app, from project creation to testing and delivery.
+New to NocoBase 3? Start with one of the two hands-on walkthroughs below, then move on to the team delivery or focused topic tutorials:
 
 <div class="course-grid">
 
-[<span class="course-title">1. Create an app</span><span class="course-description">Start with the Core app template.</span>](create-app.md)
+[<span class="course-title">Develop your first app</span><span class="course-description">Create and run a local Core app, let an Agent build customer management, and check role permissions.</span>](../getting-started/develop-your-first-app.md)
 
-[<span class="course-title">2. Define CRM requirements</span><span class="course-description">Agree on scope, business rules, and acceptance criteria.</span>](define-requirements.md)
-
-[<span class="course-title">3. Develop customer follow-up features</span><span class="course-description">Use data and pages to track customer follow-ups.</span>](customers-and-follow-ups.md)
-
-[<span class="course-title">4. Accept and deliver the app</span><span class="course-description">Accept features against requirements, then publish and verify with your team.</span>](test-and-deliver.md)
+[<span class="course-title">Collaborate with Studio</span><span class="course-description">Submit a request in Studio, follow Agent execution, checks and review, then accept and merge the result.</span>](../getting-started/collaborate-with-studio.md)
 
 </div>
 
@@ -73,66 +23,128 @@ Build a customer follow-up app, from project creation to testing and delivery.
 
 <section class="course-section">
 
-<div class="course-heading">
+<div class="course-section-head">
 
-### Hands-on practice
+## [Team collaboration and continuous delivery](team-delivery/index.md)
 
-<span class="course-range">Lessons 5–14</span>
+[Start learning](team-delivery/index.md)
 
 </div>
 
-Explore related data, team permissions, approvals, notifications, and AI in the same CRM.
+Use Studio across day-to-day team delivery: connect an existing repository, involve business colleagues directly, capture project knowledge, track quality and ship updates safely.
 
 <div class="course-grid">
 
-[<span class="course-title">5. Model opportunity and quote data</span><span class="course-description">Use data relationships, queries, and migrations.</span>](opportunities-and-quotes.md)
+[<span class="course-title">Connect an existing project to Studio</span><span class="course-description">Connect an existing Core repository, configure checks and PR previews, and continue iterating as a team.</span><span class="course-status">In preparation</span>](open-crm-project.md)
 
-[<span class="course-title">6. Build the sales workspace UI</span><span class="course-description">Compose business pages with UI Library.</span>](sales-workspace.md)
+[<span class="course-title">Involve business colleagues directly</span><span class="course-description">Invite business owners to raise requests, clarify rules and accept changes in previews without handoff loss.</span>](business-colleagues.md)
 
-[<span class="course-title">7. Role permissions and customer access</span><span class="course-description">Combine authentication, data permissions, and sharing rules.</span>](team-permissions.md)
+[<span class="course-title">Keep business rules and development knowledge</span><span class="course-description">Store confirmed rules, design decisions and review checklists in the project knowledge base so teammates and Agents stay aligned.</span>](capture-knowledge.md)
 
-[<span class="course-title">8. Quote approvals and tasks</span><span class="course-description">Integrate workflows, approvals, and tasks.</span>](quote-approvals.md)
+[<span class="course-title">Manage quality in Studio</span><span class="course-description">Combine continuous tests, core scenario checks and issue tracking to keep parallel Agent work reliable.</span><span class="course-status">In preparation</span>](enterprise-management.md)
 
-[<span class="course-title">9. Attachments and quote documents</span><span class="course-description">Use file storage and template printing.</span>](attachments-and-documents.md)
-
-[<span class="course-title">10. In-app notifications for assignments and quotation results</span><span class="course-description">Deliver business updates with in-app notifications.</span>](notifications.md)
-
-[<span class="course-title">11. Mailbox integration and customer emails</span><span class="course-description">Connect mailbox synchronization and email sending.</span>](email.md)
-
-[<span class="course-title">12. Scheduled follow-ups and expiry reminders</span><span class="course-description">Combine scheduled jobs with notifications.</span>](scheduled-reminders.md)
-
-[<span class="course-title">13. AI-assisted customer follow-ups</span><span class="course-description">Connect knowledge, models, and business Agents.</span>](ai-assistant.md)
-
-[<span class="course-title">14. Customer imports and API integration</span><span class="course-description">Connect business data with APIs and API keys.</span>](import-and-integrations.md)
+[<span class="course-title">Release updates and maintain your application</span><span class="course-description">Verify changes in previews and test environments, then upgrade production while keeping existing business data intact.</span>](release.md)
 
 </div>
 
 </section>
-
-## Studio: Develop as a team
 
 <section class="course-section">
 
-<span class="course-range">Lessons 15–19</span>
+<div class="course-section-head">
 
-Continue the same CRM with quote revision comparison and customer handover, agreeing rules, accepting work, and releasing it as a team.
+## [Topic tutorials](core-capabilities/index.md)
+
+[Start learning](core-capabilities/index.md)
+
+</div>
+
+Learn individual Core capabilities by topic. Everyday scenarios reference the latest complete runnable CRM example; complex topics use domains such as purchasing and expenses.
+
+### Data modeling
 
 <div class="course-grid">
 
-[<span class="course-title">15. Connect to Studio</span><span class="course-description">Connect the repository, checks, and PR previews.</span>](bring-into-studio.md)
+[<span class="course-title">Multi-table relations and historical snapshots</span><span class="course-description">Model parent-child and line-item relations with migrations while preserving historical amounts after catalog updates.</span>](opportunities-and-quotes.md)
 
-[<span class="course-title">16. Work with Agents</span><span class="course-description">Develop and accept quote revision comparison.</span>](agent-team-request.md)
+</div>
 
-[<span class="course-title">17. Involve business colleagues</span><span class="course-description">Let the sales manager own customer handover.</span>](business-colleagues.md)
+### UI development
 
-[<span class="course-title">18. Capture knowledge</span><span class="course-description">Maintain rules, checklists, and project memory.</span>](capture-knowledge.md)
+<div class="course-grid">
 
-[<span class="course-title">19. Release to production</span><span class="course-description">Verify staging, upgrade production, and record its version.</span>](release.md)
+[<span class="course-title">Build a workspace UI with UI Library</span><span class="course-description">Compose lists, filters, forms and detail tabs with UI Library for high-frequency day-to-day operations.</span>](sales-workspace.md)
+
+</div>
+
+### Permissions and data scopes
+
+<div class="course-grid">
+
+[<span class="course-title">Role permissions and data scopes</span><span class="course-description">Enforce role permissions, owner-based record scopes and read-only sharing so staff and managers see the right data.</span>](team-permissions.md)
+
+[<span class="course-title">Configurable permission UI</span><span class="course-description">Design a runtime permission configuration screen for administrators or business owners who need flexible access control.</span><span class="course-status">Planned</span>](core-capabilities/index.md#permissions-and-data-scopes)
+
+[<span class="course-title">Complex data scopes and grant rules</span><span class="course-description">Design cross-department, multi-condition data scopes and rules for combining or revoking overlapping grants.</span><span class="course-status">Planned</span>](core-capabilities/index.md#permissions-and-data-scopes)
+
+</div>
+
+### Workflows and approvals
+
+<div class="course-grid">
+
+[<span class="course-title">Approval workflows and to-do center</span><span class="course-description">Configure an approval flow and handle reviews, returns, rejections and status write-backs in the to-do center.</span>](quote-approvals.md)
+
+[<span class="course-title">Complex approval rules</span><span class="course-description">Design conditional branches, joint approvals, return-and-resubmit flows, timeouts, reassignment and delegation in scenarios like purchasing and expenses.</span><span class="course-status">Planned</span>](core-capabilities/index.md#workflows-and-approvals)
+
+</div>
+
+### Files and template printing
+
+<div class="course-grid">
+
+[<span class="course-title">Business attachments and file management</span><span class="course-description">Add file upload, preview and download to business records with permission checks and temporary file cleanup.</span>](file-management.md)
+
+[<span class="course-title">Template printing and document generation</span><span class="course-description">Generate immutable DOCX documents from confirmed business records using a fixed template for preview and download.</span>](template-print.md)
+
+</div>
+
+### Notifications and scheduled tasks
+
+<div class="course-grid">
+
+[<span class="course-title">Business events and in-app notifications</span><span class="course-description">Send in-app notifications automatically when record ownership changes or approvals complete, and verify delivery logs.</span>](notifications.md)
+
+[<span class="course-title">Scheduled tasks and due reminders</span><span class="course-description">Use scheduled jobs to scan due items and pending records and notify current owners automatically.</span>](scheduled-reminders.md)
+
+</div>
+
+### Email
+
+<div class="course-grid">
+
+[<span class="course-title">Email integration and messaging</span><span class="course-description">Connect a personal mailbox to match correspondence by contact address and send emails with attachments from the workspace.</span>](email.md)
+
+</div>
+
+### Business AI
+
+<div class="course-grid">
+
+[<span class="course-title">Connect an in-app business Agent</span><span class="course-description">Add an in-app business Agent that follows role permissions to look up records and assist daily operations.</span><span class="course-status">In preparation</span>](business-agent.md)
+
+[<span class="course-title">Assist business workflows with AI and knowledge</span><span class="course-description">Combine records and knowledge bases with AI to summarize history and draft next-step suggestions.</span><span class="course-status">In preparation</span>](ai-assistant.md)
+
+</div>
+
+### Data import and integrations
+
+<div class="course-grid">
+
+[<span class="course-title">Bulk data import</span><span class="course-description">Validate and import external spreadsheet records in bulk with clear conflict handling, error reports and rollback.</span><span class="course-status">In preparation</span>](data-import.md)
+
+[<span class="course-title">External APIs and system integrations</span><span class="course-description">Connect ERP, finance or third-party systems through standardized APIs with data sync, idempotency and error handling.</span><span class="course-status">In preparation</span>](external-integrations.md)
 
 </div>
 
 </section>
-
-## Best practices
-
-Not yet written.

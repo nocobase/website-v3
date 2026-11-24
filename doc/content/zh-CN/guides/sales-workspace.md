@@ -1,22 +1,20 @@
 ---
-title: 销售工作台 UI 搭建
+title: "使用 UI Library 搭建工作台界面"
 metaDescription: 使用 UI Library 组合销售工作台、客户列表与详情，将跟进、商机和报价连接起来，并验证筛选和跳转体验。
-lesson: 6
 ---
 
-在[上一课的 CRM](opportunities-and-quotes.md)中搭建销售工作台，集中查看客户、跟进、商机和报价。沿用已有记录和金额规则，无需重新准备数据。
+在包含客户、跟进、商机和报价数据的 CRM 应用中搭建销售工作台。你可以直接在自己的应用中实践，或运行最新完整的 `doc-demo-crm` 示例对照体验。
 
 界面遵循应用现有的 shadcn 组件规范，优先使用已安装的 UI Library 组件和业务区块。UI Library 提供表格、卡片和标签页等常用界面。
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#使用示例项目的-tag">示例项目的 tag 使用说明</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#示例项目说明">完整示例使用说明</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">开始</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-5"><code>lesson-5</code></a></td></tr>
-<tr><th scope="row">完成</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-6"><code>lesson-6</code></a></td></tr>
-<tr><th scope="row">本课说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-6/docs/lesson-6.md">安装与运行说明</a></td></tr>
-<tr><th scope="row">学习模块</th><td><a href="../core/developing-apps/page-layouts.md">UI Library</a></td></tr>
+<tr><th scope="row">示例项目</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a>（最新完整 CRM 示例）</td></tr>
+<tr><th scope="row">运行说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">安装与运行说明</a></td></tr>
+<tr><th scope="row">学习模块</th><td><a href="../core/developing-apps/pages-and-interactions.md">UI Library</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -64,7 +62,7 @@ lesson: 6
 
 ## 继续跟进客户并查看报价
 
-从工作台打开 **Northstar Labs**，依次查看详情中的标签页。若直接从本课 tag 开始，先按[上一课的报价练习](opportunities-and-quotes.md#创建报价并检查价格)准备 Annual rollout proposal；预置的 Northstar team rollout 是另一份报价。
+从工作台打开 **Northstar Labs**，依次查看详情中的标签页（若需要一份包含明细的练习报价，可先按[多表关联建模与历史快照](opportunities-and-quotes.md#创建商机与报价连接产品和报价明细)准备 **Annual rollout proposal**，或直接使用示例数据中已有的客户和报价）：
 
 1. 在资料页查看客户名称、行业和状态，编辑一项资料并保存。
 2. 打开联系人，确认原来的联系人仍在，再添加一位联系人。
@@ -78,7 +76,7 @@ lesson: 6
 
 ## 检查筛选、跳转与保存结果
 
-我们准备不同状态的客户，用下列场景验收。搜索与筛选应一起生效，筛选结果的总数也要与当前条件一致。
+准备不同状态的客户，用下列场景验收。搜索与筛选应一起生效，筛选结果的总数也要与当前条件一致。
 
 | 操作                         | 应有结果                                 |
 | ---------------------------- | ---------------------------------------- |
@@ -95,4 +93,4 @@ lesson: 6
 
 **完成的标志**：工作台数量与业务记录一致，搜索和状态筛选同时生效，各入口打开正确的客户、商机和报价；保存并刷新后数据与标签页状态保留，手机宽度下可操作，加载失败后可重试。
 
-接下来，我们一起学习[角色权限与客户访问控制](team-permissions.md)，让不同销售看到与自己有关的业务数据。
+接下来，可以进一步查看[角色权限与数据范围控制](team-permissions.md)，按角色限制不同销售看到的业务数据。

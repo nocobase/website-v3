@@ -7,6 +7,7 @@ import Toc from '../components/Toc.astro';
 import PageActions from '../components/PageActions.astro';
 import '../styles/courses.css';
 import { getSite } from '../lib/site.mjs';
+import { tutorialNavigation } from '../lib/tutorial-navigation.mjs';
 
 export function getStaticPaths() {
   return getSite().pages.map(p => ({ params: { slug: p.url.replace(/^\/|\/$/g, '') || undefined }, props: { lang: p.lang, key: p.key } }));
@@ -23,12 +24,14 @@ const { Content, headings } = await render(entry);
 const section = site.sections(lang).find(s => s.id === page.section)!;
 const empty = !page.body.trim();
 const catalog = key === 'guides/index';
-const lesson = page.section === 'guides' ? Number(page.data.lesson) || 0 : 0;
+const tutorial = page.section === 'guides';
+const series = tutorial ? tutorialNavigation(section.tree, key) : undefined;
 const courseUi = {
-  en: { back: 'All courses', quick: 'Quick start', practice: 'Hands-on practice', pending: 'This lesson is being written. Please check back later.' },
-  'zh-CN': { back: '全部课程', quick: '快速上手', practice: '深入实战', pending: '本课正在编写中，敬请期待。' },
-  'ja-JP': { back: 'すべてのレッスン', quick: 'クイックスタート', practice: '実践編', pending: 'このレッスンは現在執筆中です。公開までお待ちください。' },
-}[lang] ?? { back: 'All courses', quick: 'Quick start', practice: 'Hands-on practice', pending: 'This lesson is being written. Please check back later.' };
+  en: { back: 'All tutorials', breadcrumb: 'Breadcrumb', pending: 'This tutorial is in preparation.' },
+  'zh-CN': { back: '全部教程', breadcrumb: '面包屑', pending: '这篇教程正在准备中。' },
+  'ja-JP': { back: 'すべてのチュートリアル', breadcrumb: 'パンくずリスト', pending: 'このチュートリアルは準備中です。' },
+}[lang]!;
+const tutorialHome = site.urlOf(lang, 'guides/index');
 
 // A placeholder page with no body points to the version in another language when there is one
 let hint = '';
@@ -38,33 +41,39 @@ if (page.placeholder && empty) {
   hint = other ? ui.untranslated.replace('{href}', site.urlOf(other.code, key)).replace('{current}', name(lang)).replace('{language}', name(other.code)) : ui.unwritten;
 }
 
-// Tutorial lessons have their own sequence, including pending lessons. Keep the archive
-// separate; other sections continue to navigate only between written pages.
-const order = section.order.filter(k => lesson ? Number(site.page(lang, k)!.data.lesson) > 0 :
-  !site.page(lang, k)!.placeholder && (page.section !== 'guides' || k.startsWith('guides/legacy/')));
+// Tutorial courses link explicitly to any required follow-up.
+const order = tutorial || page.section === 'legacy' ? [] : section.order.filter(k => !site.page(lang, k)!.placeholder);
 const i = order.indexOf(key);
-const link = (k?: string) => (k ? { href: site.urlOf(lang, k), title: site.page(lang, k)!.title } : undefined);
+const link = (k?: string) => (k ? { href: site.urlOf(lang, k), title: site.page(lang, k)!.label || site.page(lang, k)!.title } : undefined);
 const prev = i > 0 ? link(order[i - 1]) : undefined;
 const next = i >= 0 ? link(order[i + 1]) : undefined;
 const crumb = [section.id === config.sections[0].id ? '' : section.title, ...page.trail].filter(Boolean).join(' · ');
 ---
-<Layout home={key === 'index'} catalog={catalog} lang={lang} title={page.title} description={page.metaDescription} sectionId={key === 'index' ? undefined : page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
+<Layout sidebarNodes={series?.nodes} sidebarBack={series ? { href: tutorialHome, title: courseUi.back } : undefined} sidebarHeader={series ? { href: series.overview ? site.urlOf(lang, series.overview.key) : undefined, title: series.title, current: series.overview?.key === key } : undefined} sidebarScope={series?.overview && site.urlOf(lang, series.overview.key)} home={key === 'index'} catalog={catalog} lang={lang} title={page.title} description={page.metaDescription} sectionId={key === 'index' ? undefined : page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
 {!page.placeholder && <div hidden data-pagefind-filter="section[data-value]" data-value={section.title}></div>}
-{key !== 'index' && !lesson && (crumb || !page.placeholder) && <div class="doc-head" data-pagefind-ignore>
+{key !== 'index' && !tutorial && (crumb || !page.placeholder) && <div class="doc-head" data-pagefind-ignore>
 {crumb ? <p class="doc-crumb">{crumb}</p> : <span></span>}
 {!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
 </div>}
-{lesson > 0 && <header class="course-header">
-<a class="course-back" href={site.urlOf(lang, 'guides/index')}>← {courseUi.back}</a>
-<p class="course-label">{lesson <= 3 ? courseUi.quick : courseUi.practice}</p>
-</header>}
+{series && <div class="doc-head" data-pagefind-ignore>
+<nav class="course-breadcrumb" aria-label={courseUi.breadcrumb}>
+<a href={tutorialHome}>{section.title}</a>
+<span aria-hidden="true">/</span>
+{series.overview?.key === key ? <span aria-current="page">{series.title}</span> : <>
+{series.overview ? <a href={site.urlOf(lang, series.overview.key)}>{series.title}</a> : <span>{series.title}</span>}
+<span aria-hidden="true">/</span>
+<span aria-current="page">{page.label || page.title}</span>
+</>}
+</nav>
+{!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
+</div>}
 {key === 'index' && config.ask?.endpoint ? <HomeAsk lang={lang} title={page.title} /> : <h1>{page.title}</h1>}
 <article class:list={['prose', { 'doc-home-content': key === 'index' }]}>
-{lesson && page.placeholder && empty ? <p class="course-pending">{courseUi.pending}</p> : hint ? <p set:html={hint}></p> : <Content />}
+{series && page.placeholder && empty && hint === ui.unwritten ? <p class="course-pending">{courseUi.pending}</p> : hint ? <p set:html={hint}></p> : <Content />}
 </article>
 {key !== 'index' && !catalog && (prev || next) && <nav class="doc-pager" aria-label={ui.pager}>
 {prev ? <a class="prev" href={prev.href}><small>{ui.prev}</small>{prev.title}</a> : <span></span>}
 {next && <a class="next" href={next.href}><small>{ui.next}</small>{next.title}</a>}
 </nav>}
-{key !== 'index' && <Toc slot="toc" headings={headings} title={ui.toc} />}
+{key !== 'index' && !catalog && <Toc slot="toc" headings={headings} title={ui.toc} />}
 </Layout>

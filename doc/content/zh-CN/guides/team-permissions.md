@@ -1,24 +1,22 @@
 ---
-title: 角色权限与客户访问控制
+title: "角色权限与数据范围控制"
 metaDescription: 为销售和主管配置角色、客户归属及只读共享，验证关联记录、工作台与直接接口调用的访问范围。
-lesson: 7
 ---
 
-在[销售工作台](sales-workspace.md)中，为销售和主管设置不同的客户访问范围。开始前做好以下准备：
+在业务应用中为销售和销售主管设置不同的操作权限与客户数据范围。开始前做好以下准备：
 
 - 准备一个管理员、两位销售和一位主管的独立测试账号。销售和主管不要兼任管理员，也不要带有额外的广泛授权。
 - 没有负责人的旧客户，由主管逐条分配，不能默认向所有登录用户开放。
-- 备份数据库。本课新增的报价范围字段不能自动撤销；回退需要恢复匹配版本的备份，不能只切换 Git tag。
+- 备份数据库。新增权限与数据范围字段的迁移不可自动撤销，回退需要恢复匹配版本的数据库备份。
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#使用示例项目的-tag">示例项目的 tag 使用说明</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#示例项目说明">完整示例使用说明</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">开始</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-6"><code>lesson-6</code></a></td></tr>
-<tr><th scope="row">完成</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-7"><code>lesson-7</code></a></td></tr>
-<tr><th scope="row">本课说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-7/docs/lesson-7.md">安装与运行说明</a></td></tr>
-<tr><th scope="row">学习模块</th><td><a href="../core/using-plugins/authentication/users.md">用户管理</a> · <a href="../core/using-plugins/authorization/permissions.md">权限管理</a> · <a href="../core/using-plugins/authorization/sharing-rules.md">共享规则</a></td></tr>
+<tr><th scope="row">示例项目</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a>（最新完整 CRM 示例）</td></tr>
+<tr><th scope="row">运行说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">安装与运行说明</a></td></tr>
+<tr><th scope="row">学习模块</th><td><a href="../core/using-plugins/authorization/permissions.md">权限管理</a> · <a href="../core/using-plugins/authorization/sharing-rules.md">共享规则</a> · <a href="../core/using-plugins/authentication/users.md">用户管理</a> · <a href="../core/using-plugins/authentication/sign-in.md">登录认证</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -44,11 +42,11 @@ Core 的[权限管理](../core/using-plugins/authorization/permissions.md)同时
 
 角色把一组职责赋予用户，操作权限决定能做什么，数据范围决定能对哪些记录执行该操作。读取和修改的范围可以不同：销售能读取共享客户，却只能修改自己的客户。共享只追加记录范围，不授予操作权限。
 
-[默认数据范围](../core/using-plugins/authorization/default-access.md)用于给已有操作权限的用户追加共同可访问的记录范围，例如公开客户；它不是“只能访问自己的客户”的同义词。本课按角色和负责人限定范围，再向指定销售共享客户。
+[默认数据范围](../core/using-plugins/authorization/default-access.md)用于给已有操作权限的用户追加共同可访问的记录范围，例如公开客户；它不是“只能访问自己的客户”的同义词。本专题按角色和负责人限定范围，再向指定销售共享客户。
 
 ## 配置用户与角色
 
-通过[用户管理](../core/using-plugins/authentication/users.md)分配角色。[登录认证](../core/using-plugins/authentication/sign-in.md)识别当前用户，权限规则再决定他能查看和修改什么。页面和服务端接口都要检查权限。
+通过[用户管理](../core/using-plugins/authentication/users.md)分配角色。[登录认证](../core/using-plugins/authentication/sign-in.md)识别当前用户，权限规则再决定他能查看和修改什么。页面和服务端接口都要检查权限。完整示例中的[权限配置](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-permissions.ts)和[访问控制接口](https://github.com/nocobase/doc-demo-crm/blob/main/server/routes/crm-access.ts)实现了这些规则。
 
 在应用根目录向 Agent 发送：
 
@@ -64,11 +62,11 @@ Core 的[权限管理](../core/using-plugins/authorization/permissions.md)同时
 
 完成后，由管理员在 **系统设置** 的用户管理中给测试用户分配对应角色。角色应能从用户详情中查看和调整；检查账号已有角色，确保没有额外授权扩大访问范围。不要把销售角色批量分配给所有登录用户。
 
-两个销售账号分别用 Alex 和 Taylor 表示，主管用 Morgan 表示。名称可以替换，但验收时要使用三个不同用户和独立浏览器会话。我们在自己的测试环境中设置密码，不写入源码或截图。
+下面的验证步骤用 Alex 和 Taylor 表示两位销售，Morgan 表示主管。名称可以替换，但验收时要使用三个不同用户和独立浏览器会话。在自己的测试环境中设置密码，不写入源码或截图。
 
 ## 验证销售与主管的操作权限
 
-分别登录 Alex 和 Morgan，使用一条练习用产品，避免修改报价练习使用的产品价格。
+分别登录 Alex 和 Morgan，使用一条练习用产品，避免修改已有报价演示的产品价格。
 
 | 操作 | 应有结果 |
 | --- | --- |
@@ -80,7 +78,7 @@ Core 的[权限管理](../core/using-plugins/authorization/permissions.md)同时
 
 ## 配置并验证客户数据范围
 
-沿用前两课的 **Northstar Labs → Northstar sales workspace → Annual rollout proposal**，保留第 6 课新增的跟进记录。直接从本课 tag 开始时，先由管理员按[第 5 课的报价练习](opportunities-and-quotes.md#创建报价并检查价格)准备这些记录，并完成[第 6 课的跟进操作](sales-workspace.md#继续跟进客户并查看报价)，再执行以下步骤。
+准备一条包含联系人、跟进与报价的客户记录（例如 **Northstar Labs → Northstar sales workspace → Annual rollout proposal**，可参考[多表关联建模与历史快照](opportunities-and-quotes.md#创建商机与报价连接产品和报价明细)和[使用 UI Library 搭建工作台界面](sales-workspace.md#继续跟进客户并查看报价)准备，或直接使用示例数据）。
 
 使用 Morgan、Alex 和 Taylor 的独立浏览器会话，按顺序完成每一行的操作和验证，再进入下一行。开始时确认 Northstar Labs 没有额外共享；如已有其他客户，主管也应明确分配负责人，列表验收以各客户的实际归属为准。
 
@@ -97,9 +95,9 @@ Alex 打开自己负责的 Northstar Labs，修改一项客户资料并保存；
 
 | 操作 | 立即验证的结果 |
 | --- | --- |
-| Morgan 在 Northstar Labs 的 **只读共享** 中选择 Taylor 并保存，负责人仍为 Alex | Taylor 能查看该客户、第 6 课的跟进记录和 Annual rollout proposal，但没有可用的编辑或新增入口；Harbor Design 仍可维护 |
+| Morgan 在 Northstar Labs 的 **只读共享** 中选择 Taylor 并保存，负责人仍为 Alex | Taylor 能查看该客户、已有跟进记录和 Annual rollout proposal，但没有可用的编辑或新增入口；Harbor Design 仍可维护 |
 | Morgan 撤销 Northstar Labs 对 Taylor 的共享 | Taylor 刷新已打开的客户与报价页面后不能读取；搜索、工作台数量和最近记录也不再包含该客户的业务。Alex 仍可维护 |
-| 确认撤销检查通过后，Morgan 将 Northstar Labs 的负责人从 Alex 改为 Taylor，不再给 Alex 共享 | Taylor 可以维护客户及其关联记录；Alex 刷新后失去访问。Taylor 能看到原联系人、第 6 课的跟进和报价，报价总额仍为 `1150.00` |
+| 确认撤销检查通过后，Morgan 将 Northstar Labs 的负责人从 Alex 改为 Taylor，不再给 Alex 共享 | Taylor 可以维护客户及其关联记录；Alex 刷新后失去访问。Taylor 能看到原联系人、跟进记录和报价，报价总额仍为 `1150.00` |
 
 [共享规则](../core/using-plugins/authorization/sharing-rules.md)让 Taylor 能查看 Northstar Labs 及其相关记录，但不能修改。Taylor 仍需先拥有查看客户的角色权限。
 
@@ -128,4 +126,4 @@ Alex 打开自己负责的 Northstar Labs，修改一项客户资料并保存；
 
 **完成的标志**：已分别使用销售、主管和只读共享账号检查页面及接口权限；共享撤销和客户交接后，访问范围立即按新权限生效，旧请求不能绕过权限，原联系人、跟进与报价金额保持完整。
 
-下一课，我们围绕同一份报价学习[报价审批与待办](quote-approvals.md)。
+要为报价设置审批流程，可参考[审批流程与待办中心](quote-approvals.md)。

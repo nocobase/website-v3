@@ -1,5 +1,4 @@
 ---
-title: "商談と見積のデータ設計"
+title: "複数テーブルの関連設計と履歴スナップショット"
 status: placeholder
-lesson: 5
 ---

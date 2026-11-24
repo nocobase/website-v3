@@ -1,20 +1,18 @@
 ---
-title: "Scheduled follow-ups and due reminders"
-lesson: 12
+title: "Scheduled tasks and due reminders"
 description: "Use Core Scheduler to check customer plans and notify their current owners."
 ---
 
-Schedule customer follow-ups and response deadlines for confirmed quotations, then remind the current owner when they are due.
+Schedule customer follow-ups and response deadlines for confirmed quotations, then run a scheduled task to remind the current owner when they become due.
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#use-example-project-tags">How to use example project tags</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#example-project">How to use the complete example</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">Start</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-11"><code>lesson-11</code></a></td></tr>
-<tr><th scope="row">Finish</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-12"><code>lesson-12</code></a></td></tr>
-<tr><th scope="row">Lesson notes</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-12/docs/lesson-12.md">Installation and run instructions</a></td></tr>
-<tr><th scope="row">Modules covered</th><td><a href="../core/using-plugins/automation/scheduler.md">Scheduler</a> · <a href="../core/framework/background/jobs.md">Jobs</a></td></tr>
+<tr><th scope="row">Example project</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a> (latest complete CRM app)</td></tr>
+<tr><th scope="row">Run guide</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">Installation and run instructions</a></td></tr>
+<tr><th scope="row">Modules covered</th><td><a href="../core/using-plugins/automation/scheduler.md">Scheduler</a> · <a href="../core/using-plugins/notifications/notification.md">Notifications</a> · <a href="../core/using-plugins/notifications/in-app.md">In-app messages</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -35,7 +33,7 @@ Shared readers can view plans but cannot create, complete or cancel them. Cancel
 
 ## Connect scheduling to existing notifications
 
-[Core Scheduler](../core/using-plugins/automation/scheduler.md) supplies definitions, occurrence history and pause/resume operations. [Notification](../core/using-plugins/notifications/notification.md) handles delivery through Lesson 10's existing in-app channel. No external mailbox is required.
+[Core Scheduler](../core/using-plugins/automation/scheduler.md) supplies definitions, occurrence history and pause/resume operations. [Notification](../core/using-plugins/notifications/notification.md) handles delivery through the in-app notification channel (see [Business events and in-app notifications](notifications.md)). No external mailbox is required.
 
 ### Develop with an Agent
 
@@ -44,12 +42,12 @@ Give your development Agent the first section's rule table and access restrictio
 ```prompt
 Add customer follow-up plans and response deadlines for confirmed quotations. Implement the reminder rules and access restrictions above, using my local timezone for input. Reminders must not change issued files or quotation validity.
 
-Check every minute and notify the current owner once, without duplicates after retries or restarts. Let me schedule, receive, complete and cancel reminders, and inspect, pause and resume the task in system settings. Reuse existing in-app notifications and preserve earlier data.
+Check every minute and notify the current owner once, without duplicates after retries or restarts. Let me schedule, receive, complete and cancel reminders, and inspect, pause and resume the task in system settings. Reuse existing in-app notifications and preserve existing data.
 ```
 
 ### Understand the implementation
 
-The [reminder provider](https://github.com/nocobase/doc-demo-crm/blob/lesson-12/server/providers/crm-reminders.ts) uses `registerTarget` to register `crm.reminder-scan`, whose execution calls the business method `scan()`. It then binds that target to a minute schedule:
+In the complete example, the [reminder provider](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-reminders.ts) uses `registerTarget` to register `crm.reminder-scan`, whose execution calls the business method `scan()`. It then binds that target to a minute schedule:
 
 ```ts
 scheduler.defineSchedule({
@@ -61,12 +59,12 @@ scheduler.defineSchedule({
 });
 ```
 
-Core Scheduler supplies triggers, occurrence history and pause/resume; see [Jobs](../core/framework/background/jobs.md) for execution. CRM's `scan()` checks due times, customers and current owners, saving reminder state and an event in one transaction. [Lesson 10's notification logic](https://github.com/nocobase/doc-demo-crm/blob/lesson-12/server/providers/crm-notifications.ts) handles retries and passes delivery to Core Notification. Schedule success and notification delivery are separate outcomes.
+Core Scheduler supplies triggers, occurrence history and pause/resume; see [Jobs](../core/framework/background/jobs.md) for execution. CRM's `scan()` checks due times, customers and current owners, saving reminder state and an event in one transaction. The [CRM notification logic](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-notifications.ts) handles retries and passes delivery to Core Notification. Schedule success and notification delivery are separate outcomes.
 
 ### Try it
 
 1. Alex opens an owned customer → **Reminders**, enters **Call Casey about the implementation proposal**, selects **Customer follow-up** and chooses a time a few minutes ahead.
-2. To test quotation reminders, select **Quotation response deadline** and an existing confirmed quotation. If none is available, complete [quotation approval](quote-approvals.md) first.
+2. To test quotation reminders, select **Quotation response deadline** and an existing confirmed quotation. If none is available, confirm one first using [Approval workflows and to-do center](quote-approvals.md).
 3. Save, wait until the plan is due and the next minute check runs, then open the reminder in **Inbox** and handle the customer plan.
 
 ![Customer reminder plans and notification state](/assets/guides/crm-reminders.png)

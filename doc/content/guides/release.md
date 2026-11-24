@@ -1,7 +1,6 @@
 ---
 title: Release to production
 metaDescription: Verify the CRM changes in staging, check release scope, upgrade your own production server, and record its actual version.
-lesson: 19
 ---
 
 Quote revision comparison and customer handover are merged. Verify their combined behavior in staging, then release them to your production environment, retaining the same CRM repository and business records.
@@ -31,8 +30,6 @@ Check dependent changes together. If a required issue is missing, update staging
 ## Configure a release line
 
 Under **Settings → Code repositories → Release lines**, configure the release tag pattern, such as `v*`. Retain an existing team convention where applicable; patterns for multiple release lines must not overlap. See [Versions and releases](../studio/release/versions.md).
-
-A tutorial source tag such as `lesson-N` identifies a learning stage. A production tag such as `v1.1.0` identifies an application release. Changing course tags does not upgrade production.
 
 ## Publish a version
 

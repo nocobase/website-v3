@@ -1,19 +1,17 @@
 ---
-title: "Mailbox connections and customer email"
-lesson: 11
+title: "Email integration and messaging"
 description: "Use Core Mail to synchronize correspondence, send quotation attachments and inspect results."
 ---
 
-Connect a personal mailbox to the Lesson 10 CRM and send the issued quotation file from Lesson 9.
+Connect a personal mailbox to a business app, match correspondence by contact email address, and send an issued quotation document as an attachment.
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#use-example-project-tags">How to use example project tags</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">Example project<span class="course-example-help"><button type="button" aria-label="How to use the example project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#example-project">How to use the complete example</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">Start</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-10"><code>lesson-10</code></a></td></tr>
-<tr><th scope="row">Finish</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-11"><code>lesson-11</code></a></td></tr>
-<tr><th scope="row">Lesson notes</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-11/docs/lesson-11.md">Installation and run instructions</a></td></tr>
+<tr><th scope="row">Example project</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a> (latest complete CRM app)</td></tr>
+<tr><th scope="row">Run guide</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">Installation and run instructions</a></td></tr>
 <tr><th scope="row">Modules covered</th><td><a href="../core/using-plugins/notifications/mail.md">Mail</a></td></tr>
 </tbody>
 </table>
@@ -22,7 +20,7 @@ Connect a personal mailbox to the Lesson 10 CRM and send the issued quotation fi
 
 ## Define customer correspondence and quotation sending
 
-[Core Mail](../core/using-plugins/notifications/mail.md) provides account connections, synchronization, reading, drafts, attachments and submission records. This lesson connects those capabilities to customer details. Mailbox providers are configured separately from the system notification email channel in Lesson 10.
+[Core Mail](../core/using-plugins/notifications/mail.md) provides account connections, synchronization, reading, drafts, attachments and submission records. This guide connects those capabilities to customer details. Personal mailbox providers are configured separately from system notification email channels.
 
 Customer mail matches one contact's full email address against From, To and Cc in the current user's synchronized mail. Sharing a customer does not share a personal mailbox, including with sales managers. The same contact address on multiple customers can match the same messages; this is a filtered view, not exclusive message ownership or archiving.
 
@@ -33,16 +31,16 @@ Customer mail matches one contact's full email address against From, To and Cc i
 Give your development Agent the first section's business rules together with this prompt:
 
 ```prompt
-Add a personal Mail workspace and a customer mail tab that finds the current user's correspondence by the selected contact's full email address. Follow this lesson's customer and mailbox access rules; ask for a contact email when it is missing.
+Add a personal Mail workspace and a customer mail tab that finds the current user's correspondence by the selected contact's full email address. Follow this topic's customer and mailbox access rules; ask for a contact email when it is missing.
 
-Let me attach the quotation DOCX from Lesson 9 and send it manually after checking it. Provide sync and sending records, plus account status for administrators. Repeated clicks must not send duplicates; never automatically resend an unknown result. Preserve existing business data. Do not connect real mailboxes or send automatically.
+Let me attach an issued quotation DOCX and send it manually after checking it. Provide sync and sending records, plus account status for administrators. Repeated clicks must not send duplicates; never automatically resend an unknown result. Preserve existing business data. Do not connect real mailboxes or send automatically.
 ```
 
 ### Understand the implementation
 
-The [accounts page](https://github.com/nocobase/doc-demo-crm/blob/lesson-11/client/pages/mail/accounts.tsx) exports Core's `MailAccountsPage`. The [workspace](https://github.com/nocobase/doc-demo-crm/blob/lesson-11/client/pages/mail/workspace.tsx) embeds `MailWorkspacePage` with account and log links. Core owns connection, synchronization, composition and sending.
+In the complete example, the [accounts page](https://github.com/nocobase/doc-demo-crm/blob/main/client/pages/mail/accounts.tsx) exports Core's `MailAccountsPage`, and the [workspace](https://github.com/nocobase/doc-demo-crm/blob/main/client/pages/mail/workspace.tsx) embeds `MailWorkspacePage` with account and log links. Core owns connection, synchronization, composition and sending.
 
-The new [CRM mail endpoint](https://github.com/nocobase/doc-demo-crm/blob/lesson-11/server/routes/crm-mail.ts) checks customer access, reads a contact belonging to that customer, then calls Mail. In this excerpt, `actorId` limits the mailbox to the current user and `participant` filters by the full contact address:
+The [CRM mail endpoint](https://github.com/nocobase/doc-demo-crm/blob/main/server/routes/crm-mail.ts) checks customer access, reads a contact belonging to that customer, then calls Mail. In this excerpt, `actorId` limits the mailbox to the current user and `participant` filters by the full contact address:
 
 ```ts
 await new CrmService(connection, policies).get(customerId);
@@ -74,7 +72,7 @@ mail:
         secure: true
 ```
 
-Replace both hostnames and use the provider's ports and `secure` values. This example uses direct TLS; STARTTLS endpoints need different settings. Enter the mailbox password when connecting, not here. Keep the provider name `company-mail` stable after connecting accounts. If SMTP does not save sent copies, configure client archiving using [provider options](https://github.com/nocobase/doc-demo-crm/blob/lesson-11/docs/lesson-11.md#provider-options), which also includes Gmail and Microsoft 365 configuration shapes and callback paths.
+Replace both hostnames and use the provider's ports and `secure` values. This example uses direct TLS; STARTTLS endpoints need different settings. Enter the mailbox password when connecting, not here. Keep the provider name `company-mail` stable after connecting accounts. If SMTP does not save sent copies or you need Gmail / Microsoft 365 callback shapes, see the [Mail plugin guide](../core/using-plugins/notifications/mail.md) and [`config.example.yml`](https://github.com/nocobase/doc-demo-crm/blob/main/config.example.yml).
 
 From the project root run `pnpm nocobase config check`, restart `pnpm dev`, and open its printed `Local:` URL. **Mail → Mail accounts → Connect account** should offer `company-mail`. If absent, check the configuration path and restart. A passing configuration check means settings load; a successful account connection verifies authentication to both endpoints.
 
@@ -86,7 +84,7 @@ The screenshot uses a local test fixture that is not available in an ordinary st
 
 ## Send a quotation file and inspect the result
 
-1. Download the DOCX from the confirmed quotation created in Lesson 9. If needed, first complete [quotation document generation](attachments-and-documents.md).
+1. Download the DOCX from a confirmed quotation. If you have not generated one yet, see [Template printing and document generation](template-print.md).
 2. Open **Mail → Compose**, select your sending account, enter an authorized test recipient and message, and use **Add attachment** to upload the downloaded file.
 3. Verify the recipient, quotation version and attachment, then click **Send**. Inspect **Mail logs → Submissions**. Confirm actual receipt and attachment contents from the receiving mailbox.
 
@@ -108,7 +106,7 @@ Check these items in the UI:
 
 Administrators inspect accounts, synchronization and submissions in **System settings → Mail administration**. Sales and sales managers receive no administration grant by default.
 
-Duplicate requests, changed content under the same request key and identical attachment bytes are automated checks, not UI steps. Run the [verification commands](https://github.com/nocobase/doc-demo-crm/blob/lesson-11/docs/lesson-11.md#verification) from the project root; all should pass. They use an isolated database and local mailbox without real credentials.
+Duplicate requests, changed content under the same request key and identical attachment bytes are automated checks, not UI steps. Run `pnpm test` from the project root; all checks should pass using an isolated database and local mailbox fixture without real credentials.
 
 The Agent should automatically check mail synchronization, matching, unauthorized access, deduplication, and quotation attachment consistency, and report the actual results. External OAuth, IMAP/SMTP connections and actual recipient receipt require your own authorized test mailbox; local validation does not establish those results.
 

@@ -1,0 +1,34 @@
+{
+  "title": "Team collaboration and continuous delivery",
+  "pages": [
+    {
+      "type": "page",
+      "path": "index"
+    },
+    {
+      "type": "page",
+      "path": "../open-crm-project",
+      "title": "Connect an existing project to Studio"
+    },
+    {
+      "type": "page",
+      "path": "../business-colleagues",
+      "title": "Involve business colleagues directly"
+    },
+    {
+      "type": "page",
+      "path": "../capture-knowledge",
+      "title": "Keep business rules and development knowledge"
+    },
+    {
+      "type": "page",
+      "path": "../enterprise-management",
+      "title": "Manage quality in Studio"
+    },
+    {
+      "type": "page",
+      "path": "../release",
+      "title": "Release updates and maintain your application"
+    }
+  ]
+}

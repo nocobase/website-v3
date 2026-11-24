@@ -1,5 +1,4 @@
 ---
-title: "営業ワークスペースの UI 構築"
+title: "UI Library で業務ワークスペースを構築する"
 status: placeholder
-lesson: 6
 ---

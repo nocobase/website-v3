@@ -38,7 +38,7 @@ description: Write, restructure, or review functional topics under website-v3's 
 - 多种替代配置可以使用独立路由、测试或明确的配置切换展示。说明切换与复原方式，避免读者只能靠手工拼接片段猜测完整配置。
 - 不支持的配置用明确标注的反例和隔离测试说明，不放进正常启动路径。涉及权限、数据或状态的关键失败场景也要能复现。
 
-本 Skill 面向手册中的开发应用专题；教程使用同一个 CRM 示例及逐课 tag，不适用此处每篇独立 App 和固定提交链接的要求。
+本 Skill 面向手册中的开发应用专题；教程按仓库的教程示例约定提供明确的起点、结果和运行说明。
 
 示例项目的存放、英文界面与数据、截图、固定提交链接和 README 要求遵循 [AGENTS.md 的示例项目约定](../../../AGENTS.md#documentation-example-projects)。实现发生在 `nocobase/docs-examples-v3`，先读取该仓库及目标应用自己的指引；本文档 Skill 不替代应用开发规范。
 

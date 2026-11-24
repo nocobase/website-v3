@@ -1,10 +1,9 @@
 ---
 title: Capture knowledge
 metaDescription: Preserve CRM decisions, build a project checklist, and use project memory to help people and Agents take over.
-lesson: 18
 ---
 
-The quote revision and customer handover issues now contain agreed rules. Preserve lasting decisions so the next developer or Agent can use them.
+Start with a Studio project that has a knowledge base enabled and a set of business rules or team conventions to preserve. Using CRM quote revision and customer handover rules as an example, organize lasting decisions so the next developer or Agent can use them.
 
 | Location | What belongs there |
 | --- | --- |
@@ -68,4 +67,4 @@ Memory lives in `.nb-studio/memory/` in the repository and is reviewed and merge
 
 **Done when**: Rules have clear sources, methods are attached to the project, and lasting experience is available alongside the code for the next task.
 
-Next, [release the features and record the production version](release.md).
+To validate an update and release it to production, see [release the features and record the production version](release.md).

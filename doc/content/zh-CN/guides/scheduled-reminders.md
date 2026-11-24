@@ -1,20 +1,18 @@
 ---
-title: "定时跟进与到期提醒"
-lesson: 12
+title: "定时任务与到期提醒"
 description: "使用 Core Scheduler 检查客户跟进计划，并复用站内通知提醒负责人。"
 ---
 
-为已有客户安排跟进时间，为已确认报价设置回复期限，到期后提醒当前负责人。
+为已有客户安排跟进时间，为已确认报价设置回复期限，到期后通过定时任务向当前负责人发送提醒。
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#使用示例项目的-tag">示例项目的 tag 使用说明</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#示例项目说明">完整示例使用说明</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">开始</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-11"><code>lesson-11</code></a></td></tr>
-<tr><th scope="row">完成</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-12"><code>lesson-12</code></a></td></tr>
-<tr><th scope="row">本课说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-12/docs/lesson-12.md">安装与运行说明</a></td></tr>
-<tr><th scope="row">学习模块</th><td><a href="../core/using-plugins/automation/scheduler.md">定时任务</a> · <a href="../core/framework/background/jobs.md">Jobs</a></td></tr>
+<tr><th scope="row">示例项目</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a>（最新完整 CRM 示例）</td></tr>
+<tr><th scope="row">运行说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">安装与运行说明</a></td></tr>
+<tr><th scope="row">学习模块</th><td><a href="../core/using-plugins/automation/scheduler.md">定时任务</a> · <a href="../core/using-plugins/notifications/notification.md">通知</a> · <a href="../core/using-plugins/notifications/in-app.md">站内信</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -35,7 +33,7 @@ description: "使用 Core Scheduler 检查客户跟进计划，并复用站内�
 
 ## 整合定时任务与已有通知能力
 
-[Core Scheduler](../core/using-plugins/automation/scheduler.md)保存调度定义及执行记录，并提供暂停、恢复入口；[通知服务](../core/using-plugins/notifications/notification.md)负责实际投递。本课每分钟检查一次，使用第 10 课已有的站内渠道，不要求外部邮箱。
+[Core Scheduler](../core/using-plugins/automation/scheduler.md)保存调度定义及执行记录，并提供暂停、恢复入口；[通知服务](../core/using-plugins/notifications/notification.md)负责实际投递。本专题每分钟检查一次，复用站内通知渠道（详见[业务事件与站内通知](notifications.md)），不要求外部邮箱。
 
 ### 交给 Agent 开发
 
@@ -44,12 +42,12 @@ description: "使用 Core Scheduler 检查客户跟进计划，并复用站内�
 ```prompt
 给 CRM 客户详情增加跟进计划，也能为已确认报价设置回复期限。按前面的提醒规则表和权限说明实现，时间按我的本地时区填写；报价提醒不改变已发文件或报价效力。
 
-每分钟检查，向当前负责人提醒一次，重试和重启不能重复提醒。让我体验安排、收取提醒、完成或取消计划，并在系统设置查看执行记录、暂停和恢复任务。复用已有站内通知，保留前课数据。
+每分钟检查，向当前负责人提醒一次，重试和重启不能重复提醒。让我体验安排、收取提醒、完成或取消计划，并在系统设置查看执行记录、暂停和恢复任务。复用已有站内通知，保留现有数据。
 ```
 
 ### 理解实现
 
-[提醒 Provider](https://github.com/nocobase/doc-demo-crm/blob/lesson-12/server/providers/crm-reminders.ts)先用 `registerTarget` 注册 `crm.reminder-scan`，执行入口调用业务方法 `scan()`；再用 `defineSchedule` 把目标绑定到每分钟的调度：
+完整示例中的[提醒 Provider](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-reminders.ts)先用 `registerTarget` 注册 `crm.reminder-scan`，执行入口调用业务方法 `scan()`；再用 `defineSchedule` 把目标绑定到每分钟的调度：
 
 ```ts
 scheduler.defineSchedule({
@@ -61,12 +59,12 @@ scheduler.defineSchedule({
 });
 ```
 
-Core Scheduler 提供触发、执行记录、暂停和恢复，底层执行见 [Jobs](../core/framework/background/jobs.md)。CRM 的 `scan()` 判断到期、客户及当前负责人是否有效，在同一事务中保存提醒状态和事件；[第 10 课的通知逻辑](https://github.com/nocobase/doc-demo-crm/blob/lesson-12/server/providers/crm-notifications.ts)继续负责补发，再交给 Core Notification 投递。调度成功与通知送达是两项结果。
+Core Scheduler 提供触发、执行记录、暂停和恢复，底层执行见 [Jobs](../core/framework/background/jobs.md)。CRM 的 `scan()` 判断到期、客户及当前负责人是否有效，在同一事务中保存提醒状态和事件；[CRM 通知逻辑](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/crm-notifications.ts)继续负责补发，再交给 Core Notification 投递。调度成功与通知送达是两项结果。
 
 ### 实际体验
 
 1. Alex 打开自己负责的客户，在 **提醒计划** 填写 **Call Casey about the implementation proposal**，选择 **客户跟进**，时间设为几分钟后。
-2. 如需验证报价提醒，选择 **报价回复期限**，再选择该客户的一份已确认报价。没有可选报价时先完成[报价审批](quote-approvals.md)。
+2. 如需验证报价提醒，选择 **报价回复期限**，再选择该客户的一份已确认报价。没有可选报价时可先按[审批流程与待办中心](quote-approvals.md)确认一份报价。
 3. 保存后等待到期和下一次分钟检查，在 **收件箱** 查看提醒，再打开客户详情处理计划。
 
 ![客户详情中的跟进计划及提醒状态](/assets/guides/crm-reminders.png)

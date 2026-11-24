@@ -1,5 +1,4 @@
 ---
-title: "見積承認と対応事項"
+title: "承認ワークフローと To-do センター"
 status: placeholder
-lesson: 8
 ---

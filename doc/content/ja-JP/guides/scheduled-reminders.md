@@ -1,5 +1,4 @@
 ---
-title: "定期フォローと期限リマインダー"
+title: "定期タスクと期限リマインダー"
 status: placeholder
-lesson: 12
 ---

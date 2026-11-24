@@ -1,46 +1,21 @@
 ---
-title: チュートリアル
+title: "チュートリアル"
+description: "実際の業務シナリオで NocoBase 3 を実践します。Studio によるチーム連携・継続的デリバリーと、機能別のテーマ別実践を扱います。"
 ---
 
-<p class="course-intro">実例を通して NocoBase 3 の使い方を幅広く学びます。</p>
+実際の業務シナリオを通して NocoBase の使い方を学びます。[Studio](../studio/index.md) で Agent やチームと要件からリリースまでを進め、[Core](../core/index.md) を基盤にデータ、画面、権限、ワークフローを実装します。
 
-## はじめに
+<section class="course-intro">
 
-AI Agent を使うと、業務アプリの最初のバージョンを短期間で作れます。業務で使い続けるには、信頼できるデータ管理と権限、明確な開発規約、そしてチームで要件や業務ルールを共有する方法も必要です。NocoBase 3 は、アプリの開発と実行を支える Core と、チームの協働を支える Studio を提供します。
+## はじめての方へ
 
-[NocoBase Core](../core/index.md) は、AI による開発と業務システムの実行を支えるオープンソースのアプリ基盤です。データ、ユーザーと権限、ファイル、ワークフローなどの共通機能と、プロジェクト規約や開発 Skill を提供し、Agent による業務機能の実装を支えます。[NocoBase Studio](../studio/index.md) は、人と Agent が協働して開発するためのガバナンスプラットフォームです。タスク、チェック、レビューで協働を管理し、ナレッジベースとプロジェクトメモリーにチームの知識を蓄積します。Core だけでアプリを開発・デプロイでき、チームでの協働が必要になった段階で Studio を利用できます。
-
-## サンプルプロジェクトから始める
-
-同じ CRM アプリを少しずつ発展させます。営業担当者が顧客とフォロー記録を管理し、商談を記録して見積を作成します。チームではロール権限で顧客へのアクセスを制御し、承認、添付ファイル、通知、AI などの機能を追加していきます。
-
-各レッスンでは具体的な業務要件から始め、Agent と開発する方法と結果の確認方法を説明します。クイックスタートでは顧客フォロー用のアプリを完成させ、実践編では同じプロジェクトに機能を追加します。初めての方は順番に進めてください。経験のある方は前提条件を確認してテーマを選び、サンプルの要件を自分の業務ルールに置き換えて実践できます。
-
-## Core：業務アプリの開発
-
-Core のレッスンはアプリテンプレートから始め、三つの領域を扱います。データモデル、関連付け、マイグレーションで業務データを整理し、ページと UI コンポーネントで操作画面を作ります。認証、権限、ワークフロー、ファイル、通知などの共通機能で業務ルールを支えます。アプリの `AGENTS.md` と開発 Skill が実装の指針となり、テストと実際の操作で結果を確認します。各機能の詳細は [Core マニュアル](../core/index.md)を参照してください。
-
-<section class="course-section">
-
-<div class="course-heading">
-
-### クイックスタート
-
-<span class="course-range">第1課〜第4課</span>
-
-</div>
-
-プロジェクトの作成からテストとデプロイまで、顧客フォロー用のアプリを構築します。
+NocoBase 3 を初めて使う場合は、まず以下の入門ガイドで最初の体験を完了してから、チーム連携やテーマ別実践へ進んでください。
 
 <div class="course-grid">
 
-[<span class="course-title">1. アプリの作成</span><span class="course-description">Core のアプリテンプレートから始めます。</span>](create-app.md)
+[<span class="course-title">最初のアプリを開発する</span><span class="course-description">ローカル環境で Core アプリを作成・起動し、Agent に顧客管理を実装させて権限を確認します。</span>](../getting-started/develop-your-first-app.md)
 
-[<span class="course-title">2. CRM の要件を明確にする</span><span class="course-description">業務の範囲・ルール・受け入れ基準を決めます。</span>](define-requirements.md)
-
-[<span class="course-title">3. 顧客フォロー機能の開発</span><span class="course-description">データとページの機能で顧客フォローを実装します。</span>](customers-and-follow-ups.md)
-
-[<span class="course-title">4. アプリのテストとデプロイ</span><span class="course-description">自動テスト・ビルド・デプロイを行います。</span>](test-and-deliver.md)
+[<span class="course-title">Studio で協働開発する</span><span class="course-description">Studio で要件を提出し、Agent の開発・チェック・レビューを追って検収とマージまで体験します。</span>](../getting-started/collaborate-with-studio.md)
 
 </div>
 
@@ -48,66 +23,128 @@ Core のレッスンはアプリテンプレートから始め、三つの領域
 
 <section class="course-section">
 
-<div class="course-heading">
+<div class="course-section-head">
 
-### 実践編
+## [チーム連携と継続的デリバリー](team-delivery/index.md)
 
-<span class="course-range">第5課〜第14課</span>
+[学習を始める](team-delivery/index.md)
 
 </div>
 
-同じ CRM を題材に、関連データ、チームの権限、承認、通知、AI などの機能を学びます。
+既存プロジェクトの接続、業務担当者の参加、ルールや知見の蓄積、品質管理、安全な本番リリースまで、チームで Studio を使いこなす方法を扱います。
 
 <div class="course-grid">
 
-[<span class="course-title">5. 商談と見積のデータ設計</span><span class="course-description">データの関連付け・クエリ・マイグレーションを使います。</span>](opportunities-and-quotes.md)
+[<span class="course-title">既存プロジェクトを Studio に接続する</span><span class="course-description">既存の Core リポジトリを接続し、チェックと PR プレビューを整えてチーム開発を始めます。</span><span class="course-status">準備中</span>](open-crm-project.md)
 
-[<span class="course-title">6. 営業ワークスペースの UI 構築</span><span class="course-description">UI Library で業務ページを構成します。</span>](sales-workspace.md)
+[<span class="course-title">業務担当者が要件に直接関わる</span><span class="course-description">業務担当者が Studio で直接要件を伝え、ルール確認からプレビューでの受け入れまでを進めます。</span>](business-colleagues.md)
 
-[<span class="course-title">7. ロール権限と顧客アクセス制御</span><span class="course-description">認証・データ権限・共有ルールを組み合わせます。</span>](team-permissions.md)
+[<span class="course-title">業務ルールと開発経験を蓄積する</span><span class="course-description">確定した業務ルール、設計判断、レビュー項目をナレッジベースに残し、人や Agent が変わっても基準を保ちます。</span>](capture-knowledge.md)
 
-[<span class="course-title">8. 見積承認と対応事項</span><span class="course-description">ライフサイクル・承認・対応事項を連携させます。</span>](quote-approvals.md)
+[<span class="course-title">Studio で品質を管理する</span><span class="course-description">継続テスト、主要シナリオのチェック、課題追跡を組み合わせ、並行開発の品質を維持します。</span><span class="course-status">準備中</span>](enterprise-management.md)
 
-[<span class="course-title">9. 添付ファイル管理と見積書生成</span><span class="course-description">ファイルストレージとテンプレート印刷を使います。</span>](attachments-and-documents.md)
-
-[<span class="course-title">10. 業務通知とチャネル連携</span><span class="course-description">アプリ内通知で業務の結果を伝えます。</span>](notifications.md)
-
-[<span class="course-title">11. メールボックス連携と顧客メール</span><span class="course-description">メールボックスの同期とメール送信を連携させます。</span>](email.md)
-
-[<span class="course-title">12. 定期フォローと期限リマインダー</span><span class="course-description">定期ジョブと通知でリマインダーを送ります。</span>](scheduled-reminders.md)
-
-[<span class="course-title">13. AI による顧客フォロー支援</span><span class="course-description">ナレッジ・モデル・業務 Agent を接続します。</span>](ai-assistant.md)
-
-[<span class="course-title">14. 顧客インポートと API 連携</span><span class="course-description">データ API と API キーで外部システムと連携します。</span>](import-and-integrations.md)
+[<span class="course-title">更新をリリースしてアプリを保守する</span><span class="course-description">プレビューとテスト環境で検証した更新を、既存の業務データを保ったまま本番へ反映します。</span>](release.md)
 
 </div>
 
 </section>
-
-## Studio：チームでの開発
 
 <section class="course-section">
 
-<span class="course-range">第 15〜19 課</span>
+<div class="course-section-head">
 
-同じ CRM で見積バージョン比較と顧客引き継ぎを開発し、チームでルールの確認、受け入れ、公開を進めます。
+## [テーマ別実践](core-capabilities/index.md)
+
+[学習を始める](core-capabilities/index.md)
+
+</div>
+
+Core の各機能を独立したテーマごとに学びます。一般的なテーマは最新状態の完成版 CRM サンプルで動作を確認でき、複雑なテーマは購買や経費などのシナリオで扱います。
+
+### データモデリング
 
 <div class="course-grid">
 
-[<span class="course-title">15. Studio に接続する</span><span class="course-description">既存リポジトリ、チェック、PR プレビューを接続します。</span>](bring-into-studio.md)
+[<span class="course-title">複数テーブルの関連設計と履歴スナップショット</span><span class="course-description">親子関係や明細テーブルをマイグレーションで設計し、マスタ更新後も過去の金額スナップショットを保持します。</span><span class="course-status">他言語版あり</span>](opportunities-and-quotes.md)
 
-[<span class="course-title">16. Agent チームと開発する</span><span class="course-description">見積バージョン比較を開発して受け入れます。</span>](agent-team-request.md)
+</div>
 
-[<span class="course-title">17. 業務担当者と協働する</span><span class="course-description">営業責任者が顧客引き継ぎを依頼して確認します。</span>](business-colleagues.md)
+### UI 開発
 
-[<span class="course-title">18. 知識と経験を残す</span><span class="course-description">業務ルール、チェックリスト、記憶を維持します。</span>](capture-knowledge.md)
+<div class="course-grid">
 
-[<span class="course-title">19. 本番に公開する</span><span class="course-description">テスト後に本番を更新し、バージョンを記録します。</span>](release.md)
+[<span class="course-title">UI Library で業務ワークスペースを構築する</span><span class="course-description">UI Library で一覧、絞り込み、フォーム、詳細タブを組み合わせ、日常操作に適した業務画面を整えます。</span><span class="course-status">他言語版あり</span>](sales-workspace.md)
+
+</div>
+
+### 権限とデータ範囲
+
+<div class="course-grid">
+
+[<span class="course-title">ロール権限とデータ範囲制御</span><span class="course-description">ロールごとの操作権限、担当者ベースのデータ範囲、読み取り専用共有を設定して閲覧・操作範囲を制御します。</span><span class="course-status">他言語版あり</span>](team-permissions.md)
+
+[<span class="course-title">設定可能な権限管理画面</span><span class="course-description">運用中に柔軟な権限変更が必要な業務向けに、管理者や業務責任者向けの権限管理 UI を設計します。</span><span class="course-status">計画中</span>](core-capabilities/index.md#権限とデータ範囲)
+
+[<span class="course-title">複雑なデータ範囲と権限ルール</span><span class="course-description">部門横断・複数条件のデータ範囲と、権限の重複付与・取り消し時の評価ルールを設計します。</span><span class="course-status">計画中</span>](core-capabilities/index.md#権限とデータ範囲)
+
+</div>
+
+### ワークフローと承認
+
+<div class="course-grid">
+
+[<span class="course-title">承認ワークフローと To-do センター</span><span class="course-description">業務伝票の承認フローを構成し、To-do センターで承認・差し戻し・却下とステータス反映を行います。</span><span class="course-status">他言語版あり</span>](quote-approvals.md)
+
+[<span class="course-title">複雑な承認ルール</span><span class="course-description">購買や経費精算などを題材に、条件分岐、合議、差し戻し再申請、タイムアウト、引き継ぎと代理承認を設計します。</span><span class="course-status">計画中</span>](core-capabilities/index.md#ワークフローと承認)
+
+</div>
+
+### ファイルと帳票印刷
+
+<div class="course-grid">
+
+[<span class="course-title">業務添付ファイルとファイル管理</span><span class="course-description">業務レコードへのファイル添付・プレビュー・ダウンロードを組み込み、権限検証と一時ファイル整理を行います。</span><span class="course-status">他言語版あり</span>](file-management.md)
+
+[<span class="course-title">テンプレート印刷と帳票生成</span><span class="course-description">固定テンプレートから確定済み伝票の不変な DOCX ファイルを生成し、プレビューとダウンロードに対応します。</span><span class="course-status">他言語版あり</span>](template-print.md)
+
+</div>
+
+### 通知と定期タスク
+
+<div class="course-grid">
+
+[<span class="course-title">業務イベントとアプリ内通知</span><span class="course-description">担当変更や承認結果の更新に合わせてアプリ内通知を自動送信し、配信記録と権限境界を検証します。</span><span class="course-status">他言語版あり</span>](notifications.md)
+
+[<span class="course-title">定期タスクと期限リマインダー</span><span class="course-description">定期実行タスクで期限の近い項目や未処理レコードを検出し、現在の担当者へ自動でリマインダーを送ります。</span><span class="course-status">他言語版あり</span>](scheduled-reminders.md)
+
+</div>
+
+### メール
+
+<div class="course-grid">
+
+[<span class="course-title">メール連携と業務送受信</span><span class="course-description">個人メールボックスを接続して連絡先アドレスでやり取りを紐付け、業務画面から添付付きメールを送信します。</span><span class="course-status">他言語版あり</span>](email.md)
+
+</div>
+
+### 業務 AI
+
+<div class="course-grid">
+
+[<span class="course-title">アプリ内業務 Agent の組み込み</span><span class="course-description">ロール権限に従って業務データを扱えるアプリ内 Agent を組み込み、日常業務を支援します。</span><span class="course-status">準備中</span>](business-agent.md)
+
+[<span class="course-title">ナレッジベースと AI による業務支援</span><span class="course-description">業務データと対応履歴をもとに、AI で要約や次のアクション案を作成します。</span><span class="course-status">準備中</span>](ai-assistant.md)
+
+</div>
+
+### データ取り込みとシステム連携
+
+<div class="course-grid">
+
+[<span class="course-title">データ一括インポート</span><span class="course-description">外部スプレッドシートの業務データを一括検証・取り込みし、重複処理、エラー報告、ロールバックを整えます。</span><span class="course-status">準備中</span>](data-import.md)
+
+[<span class="course-title">外部 API とシステム連携</span><span class="course-description">標準 API で ERP や会計などの外部システムと連携し、データ同期、冪等性、エラー処理を設計します。</span><span class="course-status">準備中</span>](external-integrations.md)
 
 </div>
 
 </section>
-
-## ベストプラクティス
-
-未執筆。

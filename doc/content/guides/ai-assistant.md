@@ -1,5 +1,4 @@
 ---
-title: "AI-assisted customer follow-ups"
+title: "Assist business workflows with AI and knowledge"
 status: placeholder
-lesson: 13
 ---

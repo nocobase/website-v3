@@ -1,5 +1,4 @@
 ---
-title: "ロール権限と顧客アクセス制御"
+title: "ロール権限とデータ範囲制御"
 status: placeholder
-lesson: 7
 ---

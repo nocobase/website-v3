@@ -1,25 +1,23 @@
 ---
-title: 报价审批与待办
+title: "审批流程与待办中心"
 metaDescription: 为 CRM 报价设置折扣审批规则，通过主管待办处理报价，并验证金额快照、状态流转和客户访问范围。
-lesson: 8
 ---
 
-在[角色权限与客户访问控制](team-permissions.md)完成的 CRM 中，销售已经能保存报价。这一课，我们为报价增加明确的确认过程：普通折扣直接确认，超出门槛时交给指定主管处理。
+为业务单据增加审批确认流程。本专题以 CRM 报价为例：普通折扣直接确认，超出折扣门槛时提交给指定主管在待办中心处理，并在审批通过后锁定内容。
 
-准备管理员、销售 Alex、主管 Morgan，以及另一位销售的独立测试账号。沿用上一课的角色分配；不要用管理员代替销售测试。
+准备管理员、销售 Alex、主管 Morgan 以及另一位销售的独立测试账号（角色准备方式见[角色权限与数据范围控制](team-permissions.md#配置用户与角色)）；不要用管理员代替销售测试。
 
 > [!NOTE]
-> 升级前备份数据库。本课新增的报价锁字段不能自动撤销，回退需恢复匹配版本的备份。
+> 在已有数据库上新增审批锁定字段前先做好备份；结构迁移不能自动撤销，回退需恢复匹配版本的备份。
 
 <div class="course-example">
 <div class="table-wrap">
 <table>
-<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="index.md#使用示例项目的-tag">示例项目的 tag 使用说明</a></span></span></span></span></caption>
+<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#示例项目说明">完整示例使用说明</a></span></span></span></span></caption>
 <tbody>
-<tr><th scope="row">开始</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-7"><code>lesson-7</code></a></td></tr>
-<tr><th scope="row">完成</th><td><a href="https://github.com/nocobase/doc-demo-crm/tree/lesson-8"><code>lesson-8</code></a></td></tr>
-<tr><th scope="row">本课说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/lesson-8/docs/lesson-8.md">安装与运行说明</a></td></tr>
-<tr><th scope="row">学习模块</th><td><a href="../core/developing-apps/business-workflows.md">工作流</a> · <a href="../core/using-plugins/collaboration/approval.md">审批（商业插件）</a> · 待办中心</td></tr>
+<tr><th scope="row">示例项目</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a>（最新完整 CRM 示例）</td></tr>
+<tr><th scope="row">运行说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">安装与运行说明</a></td></tr>
+<tr><th scope="row">学习模块</th><td><a href="../core/developing-apps/business-workflows.md">工作流</a> · <a href="../core/using-plugins/collaboration/approval.md">审批（商业插件）</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -27,14 +25,14 @@ lesson: 8
 
 ## 明确报价状态与审批规则
 
-我们按**每条明细的折扣**判断是否需要审批：
+按**每条明细的折扣**判断是否需要审批：
 
 | 状态或操作 | 业务结果 |
 | --- | --- |
 | 草稿提交，所有明细折扣 ≤ 10% | 直接确认，不产生主管待办 |
 | 草稿提交，任一明细折扣 > 10% | 必须选择一位有效销售主管；申请人不能自审 |
 | 审批中 | 保存提交时的商品、单价、折扣和总额，不能修改报价 |
-| 通过 | 报价已确认，不能修改，可供下一课生成正式文件 |
+| 通过 | 报价已确认，不能修改，可用于生成正式报价单 |
 | 退回并填写原因 | 申请人修改后重新提交，保留之前的记录 |
 | 拒绝并填写原因 | 结束这份报价；需要新方案时另建报价 |
 | 撤回 | 取消当前待办，返回草稿 |
@@ -43,12 +41,12 @@ lesson: 8
 
 ## 准备审批插件并开发功能
 
-本课使用商业插件[审批](../core/using-plugins/collaboration/approval.md)（`@nocobase/app-plugin-approval`）。先取得使用授权和包访问权限，再在 **Agent 实际运行的开发环境**中登录 NocoBase 包仓库。这与登录 CRM 不同，操作见[授权与包仓库登录](../core/developing-apps/manage-plugins.md#商业插件授权与包仓库登录)。
+本专题使用商业插件[审批](../core/using-plugins/collaboration/approval.md)（`@nocobase/app-plugin-approval`）。先取得使用授权和包访问权限，再在 **Agent 实际运行的开发环境**中登录 NocoBase 包仓库。这与登录业务应用不同，操作见[授权与包仓库登录](../core/developing-apps/manage-plugins.md#商业插件授权与包仓库登录)。
 
 完成准备后，把需求交给 Agent。它会安装兼容插件，完成注册和数据库更新，再接入主管待办与报价页面。若无法下载插件，先检查该环境的授权和登录状态。
 
 > [!NOTE]
-> 审批插件负责分配审批任务和记录处理结果。报价规则与客户权限仍需在 CRM 中实现。可参考[工作流说明](../core/developing-apps/business-workflows.md)、示例的[报价状态规则](https://github.com/nocobase/doc-demo-crm/blob/lesson-8/server/lifecycles/quote-approval.ts)和[审批接入代码](https://github.com/nocobase/doc-demo-crm/blob/lesson-8/server/providers/quote-approvals.ts)。
+> 审批插件负责分配审批任务和记录处理结果。报价规则与客户权限仍需在业务应用中实现。可参考[工作流说明](../core/developing-apps/business-workflows.md)、完整示例中的[报价状态规则](https://github.com/nocobase/doc-demo-crm/blob/main/server/lifecycles/quote-approval.ts)和[审批接入代码](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/quote-approvals.ts)。
 
 在应用根目录向开发 Agent 发送：
 
@@ -68,16 +66,15 @@ lesson: 8
 在系统设置中展示流程和处理历史，运行起来让我体验。
 ```
 
-完成后，我们检查 **系统设置 → 流程管理**：能查看报价流程图、执行记录和实际生效的门槛配置。销售主管身份本身不赋予流程配置权限；由管理员管理这些设置。不要通过直接修改数据库里的状态来模拟审批。
+完成后，检查 **系统设置 → 流程管理**：能查看报价流程图、执行记录和实际生效的门槛配置。销售主管身份本身不赋予流程配置权限；由管理员管理这些设置。不要通过直接修改数据库里的状态来模拟审批。
 
 ## 在待办中心查看和处理审批
 
-保留已有数据，另外准备这份练习报价：
+准备一份练习报价并完成审批流程：
 
 1. Alex 创建客户 **Northstar Manufacturing**，再创建商机 **Regional CRM rollout**。
 2. Morgan 在产品目录新增 **CRM implementation**，单价为 `12000`。
 3. Alex 新建 **Phase one implementation** 报价，选择该产品，数量 `2`、折扣 `15%`。保存后总额应为 `20400.00`。
-
 4. Alex 打开报价，点击 **提交报价**，选择 Morgan 并提交。报价进入 **主管审批**，编辑入口消失。
 5. Morgan 打开 **我的待办**，看到一条报价审批待办，点击 **打开报价**。核对商品、数量、单价、折扣和总额，再点击 **通过** 并确认。
 6. 报价变成 **已确认**。返回待办中心，待处理数量减少；Alex 刷新报价后也能看到同一结果。
@@ -86,13 +83,13 @@ lesson: 8
 
 ![从待办打开报价，核对金额后选择通过、拒绝或退回。](/assets/guides/quote-approval-review.png)
 
-需要修改时，另建一份 15% 折扣报价，重复提交，让 Morgan 选择 **退回修改** 并填写原因。Alex 修改折扣为 `12%` 后重新提交：总额变为 `21120.00`，产生新待办，之前的退回意见仍可查看。
+需要验证退回修改时，另建一份 15% 折扣报价，重复提交，让 Morgan 选择 **退回修改** 并填写原因。Alex 修改折扣为 `12%` 后重新提交：总额变为 `21120.00`，产生新待办，之前的退回意见仍可查看。
 
 ## 检查审批结果与待办更新
 
 用独立账号体验提交、退回、拒绝和撤回。接口调用、重复请求和金额检查交给 Agent 自动测试。
 
-撤销角色和转移客户的检查，交给 Agent 用另一组账号和记录完成。退回、拒绝和撤回练习也要另建报价。保留 Morgan 的主管角色、Alex 的客户归属，以及已确认的 **Phase one implementation**，供下一课使用。
+撤销角色和转移客户的检查，交给 Agent 用另一组账号和记录完成。退回、拒绝和撤回练习也要另建报价。
 
 | 检查 | 应看到的结果 |
 | --- | --- |
@@ -105,16 +102,8 @@ lesson: 8
 | 主管角色被撤销 | 不能继续处理；申请人或仍有权限的主管可撤回 |
 | 客户转给另一销售 | 原负责人失去访问；已有记录保留，新负责人需要新方案时另建报价 |
 
-进入下一课前，确认以下状态：
-
-- **Northstar Manufacturing** 的负责人仍是 Alex，Morgan 仍有主管角色。
-- **Phase one implementation** 为 **已确认**。
-- 报价明细为 `2 × 12000`，折扣 `15%`，总额 `20400.00 USD`。
-
-如果误改了角色或归属，先由管理员恢复 Morgan 的角色，再由 Morgan 把客户转回 Alex。保留原报价的已确认状态。
-
 重复提交、越权操作和报价锁定由 Agent 在独立数据库中自动检查，并报告实际结果。页面操作还要确认待办和报价同步更新，读取失败后可以恢复。
 
-**完成的标志**：折扣阈值、审批锁定、退回重提和越权检查符合本课规则，待办与报价状态同步更新；Northstar Manufacturing 仍归 Alex 负责，Morgan 保留主管角色，Phase one implementation 已确认为 20400.00 USD，可供下一课继续使用。
+**完成的标志**：折扣阈值、审批锁定、退回重提和越权检查符合本专题规则，待办与报价状态同步更新。
 
-下一课继续[附件管理与报价单生成](attachments-and-documents.md)。
+要用已确认的报价生成正式单据文件，可参考[模板打印与单据生成](template-print.md)。

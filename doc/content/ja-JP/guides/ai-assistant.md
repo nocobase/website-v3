@@ -1,5 +1,4 @@
 ---
-title: "AI による顧客フォロー支援"
+title: "ナレッジベースと AI による業務支援"
 status: placeholder
-lesson: 13
 ---

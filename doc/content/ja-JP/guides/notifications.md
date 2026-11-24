@@ -1,5 +1,4 @@
 ---
-title: "業務通知とチャネル連携"
+title: "業務イベントとアプリ内通知"
 status: placeholder
-lesson: 10
 ---

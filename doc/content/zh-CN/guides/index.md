@@ -1,71 +1,21 @@
 ---
-title: 教程
+title: "教程"
+description: "通过真实业务场景实践 NocoBase 3：用 Studio 推进团队协作与持续交付，按独立能力专题掌握 Core 应用开发。"
 ---
 
-<p class="course-intro">通过实际案例，全面学习 NocoBase 3 的使用。</p>
+通过真实业务场景实践 NocoBase：[Studio](../studio/index.md) 组织 Agent 与团队推进需求、验收和发布，[Core](../core/index.md) 提供数据、界面、权限与流程等应用底座。
 
-## 前言
+<section class="course-intro">
 
-用 AI Agent 开发业务应用，可以很快做出第一版。要让应用持续服务于业务，还需要可靠的数据与权限、清晰的开发规范，以及在多人协作中保留需求背景和业务规则的方法。NocoBase 3 提供 Core 和 Studio，分别支持应用开发运行与团队协作。
+## 首次上手
 
-[NocoBase Core](../core/index.md) 是 AI 开发和运行业务系统的开源应用底座。它提供数据、用户与权限、文件、流程等通用能力，配合项目规范和开发 Skill，让 Agent 在已有基础上实现业务功能。[NocoBase Studio](../studio/index.md) 是人与 Agent 协同开发的治理平台，通过任务、检查与评审组织协作，并用知识库和项目记忆积累团队知识。使用 Core 即可开发和部署应用；需要团队协作时，再接入 Studio。
-
-## 从示例项目开始
-
-教程围绕一个 CRM 应用逐步展开：销售人员维护客户和跟进记录，继续记录商机、编制报价；团队通过角色权限控制客户访问，并逐步接入审批、附件、通知和 AI 等能力。
-
-每课从具体业务需求出发，说明如何与 Agent 完成开发，以及如何检查结果。快速上手先完成一个可用的客户跟进应用，深入实战在同一个项目上扩展功能。首次学习建议按顺序实践；已有基础时，可以根据各课的前置条件选择主题，并把示例需求替换成自己的业务规则。
-
-### 使用示例项目的 tag
-
-[示例项目](https://github.com/nocobase/doc-demo-crm)的 `lesson-N` tag 对应第 N 课的完成状态，包括只修改需求或设计的课程。各课开头列出开始状态和完成状态：跟着开发时选择开始 tag，体验结果时选择完成 tag。第一课从空目录开始，没有开始 tag；连续开发自己的应用时，无需切换课程 tag。
-
-在独立目录中获取示例。以下以 `lesson-1` 为例，按需要替换为对应课程的 tag：
-
-```bash
-git clone https://github.com/nocobase/doc-demo-crm.git my-crm-example
-cd my-crm-example
-git switch -c my-crm lesson-1
-pnpm install --frozen-lockfile
-```
-
-让 Agent 按所选版本的 README 和 `docs/lesson-N.md` 准备配置、数据库和启动步骤。首次运行时，以下命令以 SQLite 为例；使用其他数据库时，按项目说明选择对应配置：
-
-```bash
-pnpm nocobase config init --dialect sqlite
-pnpm nocobase config check
-pnpm dev
-```
-
-使用终端的完整 `Local:` 地址登录。`lesson-1` 只有应用底座，没有客户数据；其他课程的数据准备和特殊迁移限制见各课运行说明。
-
-升级已有示例时，先停服并备份数据库、配置和文件存储，保留这些数据，再按目标课程的运行说明安装依赖、执行迁移并启动。不要重新初始化或重置数据库。Git tag 只保存源码，不包含配置、密钥、业务数据或上传文件；切换 tag 不会自动回退数据库。
-
-## Core：开发业务应用
-
-Core 课程从应用模板开始，逐步使用三类能力：数据模型、关联和迁移组织业务数据；页面与 UI 组件呈现操作界面；认证、权限及流程、文件、通知等通用能力支撑业务规则。应用自带的 `AGENTS.md` 和开发 Skill 为 Agent 提供实现指引，测试与实际操作用于验证结果。具体能力可结合 [Core 手册](../core/index.md)查阅。
-
-<section class="course-section">
-
-<div class="course-heading">
-
-### 快速上手
-
-<span class="course-range">第 1~4 课</span>
-
-</div>
-
-从创建项目到测试交付，完成一个可以使用的客户跟进应用。
+刚接触 NocoBase 3 时，先通过下面两篇上手指南完成首次体验，再进入下方的团队协作或专题实战系列：
 
 <div class="course-grid">
 
-[<span class="course-title">1. 创建应用</span><span class="course-description">从 Core 应用模板开始搭建。</span>](create-app.md)
+[<span class="course-title">开发第一个应用</span><span class="course-description">在本地创建并启动 Core 应用，让 Agent 开发客户管理功能并检查权限。</span>](../getting-started/develop-your-first-app.md)
 
-[<span class="course-title">2. 确定 CRM 需求</span><span class="course-description">明确业务范围、规则和验收标准。</span>](define-requirements.md)
-
-[<span class="course-title">3. 开发客户跟进功能</span><span class="course-description">使用数据与页面能力实现客户跟进。</span>](customers-and-follow-ups.md)
-
-[<span class="course-title">4. 验收与交付应用</span><span class="course-description">对照需求验收功能，按团队流程发布并验证。</span>](test-and-deliver.md)
+[<span class="course-title">使用 Studio 协作开发</span><span class="course-description">在 Studio 中提出需求，跟进 Agent 分工、检查与评审，完成验收并合并代码。</span>](../getting-started/collaborate-with-studio.md)
 
 </div>
 
@@ -73,66 +23,128 @@ Core 课程从应用模板开始，逐步使用三类能力：数据模型、关
 
 <section class="course-section">
 
-<div class="course-heading">
+<div class="course-section-head">
 
-### 深入实战
+## [团队协作与持续交付](team-delivery/index.md)
 
-<span class="course-range">第 5~14 课</span>
+[进入学习](team-delivery/index.md)
 
 </div>
 
-围绕同一个 CRM，学习关联数据、团队权限、审批、通知与 AI 等能力。
+把 Studio 用到多人日常开发中：接入已有项目仓库，让业务同事直接参与需求与验收，沉淀项目知识，并稳定管理质量与发布。
 
 <div class="course-grid">
 
-[<span class="course-title">5. 商机与报价数据建模</span><span class="course-description">使用数据关联、查询与迁移能力。</span>](opportunities-and-quotes.md)
+[<span class="course-title">将已有项目接入 Studio</span><span class="course-description">连接已有 Core 代码仓库并配置检查与 PR 预览，直接进入多人协作迭代。</span><span class="course-status">准备中</span>](open-crm-project.md)
 
-[<span class="course-title">6. 销售工作台 UI 搭建</span><span class="course-description">使用 UI Library 组合业务页面。</span>](sales-workspace.md)
+[<span class="course-title">让业务同事直接参与需求</span><span class="course-description">邀请业务负责人直接在 Studio 提需求、确认规则并在预览环境验收，减少信息转述。</span>](business-colleagues.md)
 
-[<span class="course-title">7. 角色权限与客户访问控制</span><span class="course-description">整合用户认证、数据权限与共享规则。</span>](team-permissions.md)
+[<span class="course-title">沉淀业务规则与开发经验</span><span class="course-description">把业务规则、设计决定与评审清单录入项目知识库，换人或换 Agent 也能保持一致。</span>](capture-knowledge.md)
 
-[<span class="course-title">8. 报价审批与待办</span><span class="course-description">整合流程、审批与待办能力。</span>](quote-approvals.md)
+[<span class="course-title">使用 Studio 管理质量</span><span class="course-description">结合持续测试、核心场景检查与问题跟踪，把控多人与 Agent 并行开发时的交付质量。</span><span class="course-status">准备中</span>](enterprise-management.md)
 
-[<span class="course-title">9. 附件管理与报价单生成</span><span class="course-description">使用文件存储与模板打印能力。</span>](attachments-and-documents.md)
-
-[<span class="course-title">10. 客户分配与报价结果的站内通知</span><span class="course-description">通过站内通知传递业务结果。</span>](notifications.md)
-
-[<span class="course-title">11. 邮箱接入与客户邮件</span><span class="course-description">接入邮箱同步与邮件发送能力。</span>](email.md)
-
-[<span class="course-title">12. 定时跟进与到期提醒</span><span class="course-description">结合定时任务与通知自动提醒。</span>](scheduled-reminders.md)
-
-[<span class="course-title">13. AI 辅助客户跟进</span><span class="course-description">接入知识库、模型与业务 Agent。</span>](ai-assistant.md)
-
-[<span class="course-title">14. 客户导入与 API 接入</span><span class="course-description">使用数据接口与 API 密钥接入业务。</span>](import-and-integrations.md)
+[<span class="course-title">发布更新并维护已有应用</span><span class="course-description">经预览与测试环境验证后发布版本，在保留已有业务数据的前提下升级生产应用。</span>](release.md)
 
 </div>
 
 </section>
-
-## Studio：团队协作开发
 
 <section class="course-section">
 
-<span class="course-range">第 15~19 课</span>
+<div class="course-section-head">
 
-在同一个 CRM 上继续开发报价版本对比与客户交接，由团队共同确认规则、验收并发布。
+## [专题实战](core-capabilities/index.md)
+
+[进入学习](core-capabilities/index.md)
+
+</div>
+
+按独立业务能力直接学习 Core 的实战用法。常规专题配有最新状态的完整 CRM 示例项目供对照运行，复杂专题结合采购、费用等场景展开。
+
+### 数据建模
 
 <div class="course-grid">
 
-[<span class="course-title">15. 接入 Studio</span><span class="course-description">关联已有仓库，配置检查与 PR 预览。</span>](bring-into-studio.md)
+[<span class="course-title">多表关联建模与历史快照</span><span class="course-description">组织一对多与明细关联，通过 Migration 建表并在主数据更新后保留历史金额快照。</span>](opportunities-and-quotes.md)
 
-[<span class="course-title">16. Agent 团队协作</span><span class="course-description">完成报价版本对比的开发与验收。</span>](agent-team-request.md)
+</div>
 
-[<span class="course-title">17. 业务同事参与</span><span class="course-description">由销售主管提出并验收客户交接需求。</span>](business-colleagues.md)
+### 界面开发
 
-[<span class="course-title">18. 沉淀方法与经验</span><span class="course-description">维护业务规则、检查清单与项目记忆。</span>](capture-knowledge.md)
+<div class="course-grid">
 
-[<span class="course-title">19. 发布到生产</span><span class="course-description">验证测试环境，升级生产并登记版本。</span>](release.md)
+[<span class="course-title">使用 UI Library 搭建工作台界面</span><span class="course-description">借助 UI Library 组合列表、筛选、表单与详情标签页，提升高频业务页面的日常操作体验。</span>](sales-workspace.md)
+
+</div>
+
+### 权限与数据范围
+
+<div class="course-grid">
+
+[<span class="course-title">角色权限与数据范围控制</span><span class="course-description">按角色配置操作权限与数据范围，实现按负责人隔离、只读共享与主管查看团队数据。</span>](team-permissions.md)
+
+[<span class="course-title">可配置授权界面</span><span class="course-description">面向运行时需要灵活调整权限的业务，设计供管理员或业务负责人使用的授权配置界面。</span><span class="course-status">规划中</span>](core-capabilities/index.md#权限与数据范围)
+
+[<span class="course-title">复杂数据范围与授权规则</span><span class="course-description">设计跨部门、多条件组合的数据范围，以及多条授权叠加与撤销时的判定规则。</span><span class="course-status">规划中</span>](core-capabilities/index.md#权限与数据范围)
+
+</div>
+
+### 流程与审批
+
+<div class="course-grid">
+
+[<span class="course-title">审批流程与待办中心</span><span class="course-description">为业务单据配置审批流，在待办中心完成审核、退回、拒绝与状态回写。</span>](quote-approvals.md)
+
+[<span class="course-title">复杂审批规则</span><span class="course-description">结合采购、费用报销等场景，设计条件分支、会签、退回重提、超时与转交代理。</span><span class="course-status">规划中</span>](core-capabilities/index.md#流程与审批)
+
+</div>
+
+### 文件与打印
+
+<div class="course-grid">
+
+[<span class="course-title">业务附件与文件管理</span><span class="course-description">为业务记录接入附件上传、预览与下载，并落实权限校验与暂存文件清理。</span>](file-management.md)
+
+[<span class="course-title">模板打印与单据生成</span><span class="course-description">基于固定模板从已确认业务单据生成内容不变的 DOCX 文件，支持预览与下载。</span>](template-print.md)
+
+</div>
+
+### 通知与定时任务
+
+<div class="course-grid">
+
+[<span class="course-title">业务事件与站内通知</span><span class="course-description">在记录归属变更或审批结果更新时自动发送站内通知，并核对投递记录与访问边界。</span>](notifications.md)
+
+[<span class="course-title">定时任务与到期提醒</span><span class="course-description">使用定时任务扫描临期事项与待处理单据，按规则自动向当前负责人发送提醒。</span>](scheduled-reminders.md)
+
+</div>
+
+### 邮件
+
+<div class="course-grid">
+
+[<span class="course-title">邮件接入与业务收发</span><span class="course-description">连接个人邮箱，按联系人地址匹配往来邮件，并直接在业务工作台中发送带附件的邮件。</span>](email.md)
+
+</div>
+
+### 业务 AI
+
+<div class="course-grid">
+
+[<span class="course-title">应用内业务 Agent 接入</span><span class="course-description">在应用内接入遵守角色权限的业务 Agent，直接协助查询记录并推进日常业务任务。</span><span class="course-status">准备中</span>](business-agent.md)
+
+[<span class="course-title">知识库与 AI 业务辅助</span><span class="course-description">结合业务资料与历史记录，用知识库和 AI 生成沟通摘要与下一步处理建议。</span><span class="course-status">准备中</span>](ai-assistant.md)
+
+</div>
+
+### 数据导入与系统集成
+
+<div class="course-grid">
+
+[<span class="course-title">数据批量导入</span><span class="course-description">支持从表格文件批量校验与导入外部业务数据，妥善处理冲突、错误报告与回滚。</span><span class="course-status">准备中</span>](data-import.md)
+
+[<span class="course-title">外部 API 与系统集成</span><span class="course-description">通过标准化接口与 ERP、财务或第三方系统联动，设计数据同步、幂等与异常处理。</span><span class="course-status">准备中</span>](external-integrations.md)
 
 </div>
 
 </section>
-
-## 最佳实践
-
-待编写。

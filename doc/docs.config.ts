@@ -171,13 +171,14 @@ export default defineDocsConfig({
       },
     },
   ],
-  // The section tabs. A section's menu is the meta.json in its `dir`; Getting started includes the standalone docs home and getting-started/.
+  // Each section's menu is the meta.json in its `dir`; Getting started includes the standalone docs home and getting-started/.
   sections: [
     { id: 'getting-started', dir: 'getting-started', extra: ['index'], home: 'getting-started/what-is-nocobase', title: { en: 'Getting started', 'zh-CN': '开始', 'ja-JP': 'はじめに' } },
     { id: 'core', dir: 'core', home: 'core/index', title: { en: 'Core', 'zh-CN': 'Core', 'ja-JP': 'Core' } },
     { id: 'studio', dir: 'studio', home: 'studio/index', title: { en: 'Studio', 'zh-CN': 'Studio', 'ja-JP': 'Studio' } },
     { id: 'guides', dir: 'guides', home: 'guides/index', title: { en: 'Tutorials', 'zh-CN': '教程', 'ja-JP': 'チュートリアル' } },
     { id: 'faq', dir: 'faq', home: 'faq/from-v2', title: { en: 'FAQ', 'zh-CN': 'FAQ', 'ja-JP': 'FAQ' } },
+    { id: 'legacy', dir: 'legacy', home: 'legacy/itam/build-reliable-enterprise-apps', showInNav: false, title: { en: 'Archived tutorials', 'zh-CN': '旧版教程', 'ja-JP': '過去のチュートリアル' } },
   ],
   nav: {
     github: 'https://github.com/nocobase/nocobase',

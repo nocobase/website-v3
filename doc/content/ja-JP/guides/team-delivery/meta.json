@@ -1,0 +1,34 @@
+{
+  "title": "チーム連携と継続的デリバリー",
+  "pages": [
+    {
+      "type": "page",
+      "path": "index"
+    },
+    {
+      "type": "page",
+      "path": "../open-crm-project",
+      "title": "既存プロジェクトを Studio に接続する"
+    },
+    {
+      "type": "page",
+      "path": "../business-colleagues",
+      "title": "業務担当者が要件に直接関わる"
+    },
+    {
+      "type": "page",
+      "path": "../capture-knowledge",
+      "title": "業務ルールと開発経験を蓄積する"
+    },
+    {
+      "type": "page",
+      "path": "../enterprise-management",
+      "title": "Studio で品質を管理する"
+    },
+    {
+      "type": "page",
+      "path": "../release",
+      "title": "更新をリリースしてアプリを保守する"
+    }
+  ]
+}

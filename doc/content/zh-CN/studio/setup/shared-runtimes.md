@@ -12,7 +12,6 @@ description: 接入共享运行环境，让已安装并登录的编码工具执�
 | 系统 | macOS 或 Linux；Windows 使用 WSL |
 | 基础软件 | Node.js 24 或更高版本、Git。开发 NocoBase 应用还需要 pnpm 11：`npm install -g pnpm@11` |
 | 编码工具 | 安装 Claude Code、Codex 等支持的工具，并使用运行执行机的系统用户完成登录 |
-| Git 工具 | GitHub CLI `gh` |
 | 网络 | 可以访问 Studio、代码平台、模型服务和项目依赖源 |
 | 浏览器 | 需要验证界面的任务，应能运行 Chromium 及其系统依赖 |
 
@@ -20,6 +19,17 @@ description: 接入共享运行环境，让已安装并登录的编码工具执�
 
 > [!NOTE] 使用专用执行环境
 > 建议在独立的容器或虚拟机中安装编码工具和执行机，与 Studio 隔离。Agent 可以读写执行用户有权访问的文件，并运行命令。
+
+### 按 Git 平台安装命令行工具
+
+在执行机上，用运行后台服务的系统用户执行 `git --version`，确认 Git 可用。再按项目仓库所在的平台安装对应的 CLI，并运行表中的命令。输出版本号即表示该用户可以调用工具。
+
+| Git 平台 | 安装指南 | 检查命令 |
+| --- | --- | --- |
+| GitHub | [GitHub CLI](https://cli.github.com/) | `gh --version` |
+| GitLab | [GitLab CLI](https://docs.gitlab.com/cli/) | `glab --version` |
+| Gitea | [Gitea CLI](https://docs.gitea.com/cli/installation/) | `gt --version` |
+| Gitee | [Gitee CLI](https://gitee.com/oschina/gitee-cli) | `gitee --version` |
 
 ## 添加共享运行环境
 

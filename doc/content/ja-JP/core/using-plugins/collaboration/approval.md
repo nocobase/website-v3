@@ -1,6 +1,7 @@
 ---
-title: "承認（商用版）"
+title: "承認"
 description: "人による承認を、レコードのライフサイクル、参加者、方針、結果に接続します。"
+minimumEdition: professional
 ---
 
 ## 機能

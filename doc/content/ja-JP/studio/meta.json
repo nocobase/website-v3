@@ -81,11 +81,19 @@
         },
         {
           "type": "page",
+          "path": "project/checks-and-review"
+        },
+        {
+          "type": "page",
           "path": "use/accept"
         },
         {
           "type": "page",
           "path": "use/inbox"
+        },
+        {
+          "type": "page",
+          "path": "use/multi-role-workflow"
         }
       ]
     },
@@ -96,6 +104,10 @@
         {
           "type": "page",
           "path": "project/settings"
+        },
+        {
+          "type": "page",
+          "path": "configure/checks"
         },
         {
           "type": "page",
@@ -140,6 +152,7 @@
     {
       "type": "group",
       "title": "品質管理",
+      "minimumEdition": "enterprise",
       "pages": [
         {
           "type": "page",
@@ -155,27 +168,11 @@
         },
         {
           "type": "page",
-          "path": "quality/scenarios"
-        },
-        {
-          "type": "page",
-          "path": "quality/follow-ups"
-        },
-        {
-          "type": "page",
-          "path": "quality/metrics"
+          "path": "quality/standards"
         },
         {
           "type": "page",
           "path": "quality/settings"
-        },
-        {
-          "type": "page",
-          "path": "configure/checks"
-        },
-        {
-          "type": "page",
-          "path": "project/checks-and-review"
         }
       ]
     },

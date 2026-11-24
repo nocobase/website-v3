@@ -22,20 +22,40 @@ Deploy production on your own infrastructure rather than creating a production h
 
 Add a test application from its hosted environment or the project's release page, or let CI create it on its first report. The deployment dialog offers an Agent prompt, CI setup, and manual commands.
 
-Use branch-push CI for continuous testing; see [Checks and CI](../configure/checks.md). Application details provide deployment history, logs, stop, wake, and delete actions.
+Use branch-push CI for continuous testing; see [Configure repository checks and CI](../configure/checks.md). Application details provide deployment history, logs, stop, wake, and delete actions.
 
-## Configure variables
+## Configure application environment variables
 
-Environment values apply to all its applications. Application-specific values take priority. Deployment stops when required variables are missing and lists what to set. After changing values, apply them and restart the application.
+Values set on an environment apply to all its applications. To change only one test application, set its variables on the application itself. Application values take precedence.
 
-Secrets are encrypted and hidden after saving. Application variables are separate from [Agent run variables](../project/settings.md#agent-run-variables).
+The deployment page lists any missing required variables.
+
+For example, to connect an inventory test application to PostgreSQL:
+
+1. Prepare a test database the application can reach. Grant its database user the required permissions.
+2. In **Releases**, open the test application and select **Variables**. Check which variables the artifact declares and which database drivers the application includes.
+3. Enter the connection details. The example below is for an application that reads these variables. Add `DB_PASSWORD` as a secret and enter the password.
+
+   ```dotenv
+   DB_DIALECT=postgres
+   DB_HOST=db.example.com
+   DB_PORT=5432
+   DB_DATABASE=inventory_test
+   DB_USERNAME=inventory_app
+   ```
+
+4. Select **Apply & restart**. Check the startup log for database connection errors. Create a record in the test application, then refresh and read it back.
+
+   ![Apply the variable changes and restart the test application](https://static-docs.nocobase.com/studio-en-app-vars-20261119-6810922c1e.webp)
+
+These values apply to the test application. Migrate any SQLite data you want to keep before switching databases.
 
 ## Protected environments and approvals
 
-Enable protection and assign approvers when test delivery needs approval. Deployments and rollbacks become requests. An approver checks the application and artifact in the inbox before approving. API keys can submit requests; Agents cannot deploy to protected environments.
+Enable protection and assign approvers to restrict test deployments. Members with deployment access can submit a request. Another approver reviews the application and artifact in the inbox. An eligible approver can deploy directly. Agent runs use the initiating member’s access. Approvals require a person.
 
 ## Roll back
 
-Choose a previous deployment from the application history, or use `nb-studio app rollback`. Protected environments still require approval.
+Choose a previous deployment from the application history, or use `nb-studio app rollback`. The environment’s approval rules also apply to rollbacks.
 
 Rollback does not restore the database. Back up test data before deployment when it must be preserved. Studio recalculates task deployment marks without automatically changing task status.

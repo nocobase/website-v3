@@ -70,7 +70,7 @@ mkdir my-crm
 cd my-crm
 ```
 
-教程示例使用 SQLite，不需要另外安装数据库服务。自己的应用可沿用已有数据库要求，连接配置见[使用不同数据库创建应用](../../core/reference/database-configuration.md)。
+教程示例使用 SQLite，不需要另外安装数据库服务。自己的应用可沿用已有数据库要求，连接配置见[使用不同数据库创建应用](../../core/developing-apps/database-configuration.md)。
 
 ```prompt
 我想搭建一个管理客户和跟进记录的 CRM。先帮我创建一个能在本机打开和登录的 NocoBase 3 应用，具体业务功能稍后再做。

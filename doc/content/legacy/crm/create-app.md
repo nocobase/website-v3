@@ -70,7 +70,7 @@ mkdir my-crm
 cd my-crm
 ```
 
-The tutorial example uses SQLite, which needs no separate database server. Your app can follow your existing database requirements; see [Create an app with a different database](../../core/reference/database-configuration.md) for connection settings.
+The tutorial example uses SQLite, which needs no separate database server. Your app can follow your existing database requirements; see [Create an app with a different database](../../core/developing-apps/database-configuration.md) for connection settings.
 
 ```prompt
 I want a CRM for customers and follow-ups. First, create a NocoBase 3 app that I can open and sign in to on my computer. We will add the business features later.

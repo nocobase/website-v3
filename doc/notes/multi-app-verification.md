@@ -1,5 +1,50 @@
 # Multi-app documentation verification
 
+## Full local publication and HD screenshot refresh — 2026-11-16
+
+This entry supersedes the older six-guide structure and screenshot conventions below. The current eight approved guides are Overview, Quickstart, Main and runtime nodes, Child development and deployment, Build artifacts, Application instances, Single sign-on and business permissions, and Existing application integration. All three languages share English-interface screenshots with localized captions.
+
+### Baseline and isolation
+
+- Pro branch: `feat/multi-app-project-deployment-pr155`, commit `4c8c7d2c34c1c9523ad6076f55a06ea709782ab2` (PR #155).
+- OSS runtime pinned by that PR: `85d7e34150ed55b021369f6c1e1b1a33494bb767`. No framework upgrade or application source change was made for this capture.
+- Built and published all 64 required source packages to an isolated Verdaccio registry. Exact local-package rules prevented these packages from falling back to npmjs. Generated applications installed from those packages outside the workspace.
+- Local baseline versions: creator `0.1.0-beta.38`, Main template `0.1.0-beta.2`, child template `0.0.1`; deployed child version `0.0.1`, Linux x64, Node.js 24, SQLite.
+- Workspace `/tmp/pr155-docs-hd`: registry port 14875, Main 15050, runtime node 15051, local child 15052. The existing 15040 preview was preserved. Screenshots show these test ports; the adaptable guide examples retain 13230, 13231 and 13240.
+- LAN-only access, as requested. The private Main allowlist permits only the test Main HTTP origin. No temporary public tunnel was opened.
+
+### Executed walkthrough
+
+1. Published the packages locally, created `platform` from `multi-app`, initialized SQLite configuration, supplied a unique administrator password, configured the public origin and local node, and verified Main and the node were ready.
+2. Created `child-app` from `sub-app`, initialized its separate database and configuration, started it on its own explicit development port and signed in locally. The template’s local default password was replaced with a unique value for the retained preview.
+3. Ran project deployment `init`, browser authorization, `validate` and `doctor` against Main. Saved authorization remained outside source and screenshots.
+4. Ran `artifact upload --build --yes`, reviewed a create plan and executed that exact plan with `instance create --plan ... --yes --wait`. `quickstart-child` reached Running at version `0.0.1`; the deployment record and logs confirmed success. The platform entry and SSO client were provisioned automatically.
+5. Saved the generated instance administrator through the UI and acknowledged receipt. Signed in as the separate ordinary platform user `Quickstart Reader`, opened the instance through the workbench, completed the real OAuth callback, opened the application switcher and returned to Main. The child session was valid, its permission snapshot had `unrestricted: false`, and direct permission-set administration returned HTTP 403. Anonymous access returned 401. After signing out of the child, its local recovery login succeeded using the generated administrator, whose permission snapshot had `unrestricted: true`.
+6. Created an external link-only entry named `Development preview`, pointing to the independently running local child. Opening it from the ordinary user’s workbench reached that application’s own login page; no SSO sharing was claimed.
+7. Inspected the create-instance form with another instance name, package, version, node and SQLite selected, then discarded it without creating a second instance. Captured existing instance configuration, platform access, runtime logs, deployment records and version details without changing them.
+
+Archive SHA-256: `7b3791456276798cc3a2a845be3e6d15aeb9c8a027df9ec4a5ef04b9a40b4d04`. The archive excluded application `config.yml`, application runtime databases and unique test credentials. Template `config.example.yml` and third-party dependency fixtures are present; they are not evidence of packaged application runtime data.
+
+### Corrections established by the walkthrough
+
+- This pinned development CLI selects its listening port independently from `config.yml`. The guides now pass `APP_SERVER_HOST` and `APP_SERVER_PORT` explicitly, keep the public origin aligned, and start Main before the child.
+- `config init` does not ask for Main’s first-administrator password. The quickstart now sets it before startup using hidden Bash input and `config set --from-env`, with a separate child password. The command was exercised against the generated application.
+- The bare child template contains prepared user and role pages but does not register them. The SSO guide now describes the required route registration when developing business features; no nonexistent fresh-template permission UI was staged for a screenshot.
+
+### Screenshot coverage
+
+23 original PNGs use a 1440 × 900 CSS viewport at device scale factor 2, producing 2880 × 1800 pixels. They were captured from real pages with the shared preview browser, without upscaling or UI reconstruction. Generated passwords remained masked. No tokens or client secrets appear in published screenshots. The consumed CLI authorization code is no longer an active credential.
+
+The inventory is [multi-app-screenshots-20261116.json](multi-app-screenshots-20261116.json). Every guide in English, Chinese and Japanese embeds relevant images; the shared assets use the `hd-` prefix. Historical screenshots remain unmodified for old records but are not used by the new guides.
+
+### Documentation validation
+
+`pnpm doc:test` passed all 116 tests in 16 files, including shared HD dimensions and matching image order across languages. `pnpm doc:build` and `git diff --check` passed. Browser requests to all 24 localized article URLs returned HTTP 200; all 23 referenced PNGs decoded at 2880 × 1800. The Chinese quickstart was inspected in the live LAN preview with no horizontal overflow.
+
+### Verification limits
+
+This run validates local source-candidate publication and a fresh LAN SQLite installation. It does not establish public/commercial registry release availability. HTTPS/WSS proxying, remote nodes, PostgreSQL/MySQL, third-party OIDC enrollment, approvals, upgrades, data purge, backup recovery and CI deployment were not rerun. No business module or business-role assignment was implemented; the permission test establishes the ordinary-user versus local-administrator boundary on real protected APIs. No lifecycle operation was performed on existing user instances.
+
 ## Japanese translation aligned with the Chinese guides
 
 All six Japanese multi-app guides now follow the approved outline and the Chinese baseline at commit `43a7fd89`; none remain placeholders. Commands and YAML examples match the Chinese guides. All twenty screenshot references reuse the seventeen existing English-interface images, with Japanese captions and English interface labels retained alongside Japanese descriptions where needed. Chinese and English articles, navigation structure, and both screenshot sets are unchanged. This supersedes the Japanese placeholder status recorded in the earlier entries.

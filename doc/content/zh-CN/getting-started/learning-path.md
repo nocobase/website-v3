@@ -30,7 +30,7 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 
 ## 使用与管理 Studio
 
-- 成员日常工作：从[提出需求](../studio/use/raise-a-request.md)和[会话](../studio/use/sessions.md)开始，按需查[跟进进展](../studio/use/follow-progress.md)、[回答提问](../studio/use/answer.md)和[验收](../studio/use/accept.md)。
+- 成员日常工作：从[提出需求](../studio/use/raise-a-request.md)和[会话](../studio/use/sessions.md)开始，按需查[跟进进展](../studio/use/follow-progress.md)、[回答提问](../studio/use/answer.md)和[任务验收](../studio/use/accept.md)。
 - 项目负责人：查[项目设置](../studio/project/settings.md)、[知识库](../studio/project/knowledge-base.md)、[项目记忆](../studio/project/project-memory.md)和[项目进展](../studio/project/progress.md)，再了解[检查与评审](../studio/project/checks-and-review.md)及[发布](../studio/release/overview.md)。
 - 管理员：完成[安装配置](../studio/setup/index.md)，再按需管理[Agent](../studio/configure/agents.md)、[运行环境](../studio/configure/runtimes.md)、[技能](../studio/project/skills.md)、[用量](../studio/project/usage.md)、[成员与角色](../studio/admin/members-and-roles.md)及[升级备份](../studio/admin/upgrade-and-backup.md)。
 
@@ -44,6 +44,6 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 
 ## 部署维护与参考查阅
 
-准备让他人使用应用时，先读[选择部署方式](../core/deployment/choose-a-deployment-method.md)，再按[发布应用新版本](../core/deployment/publish-app-release.md)交付更新。数据库环境见[数据库兼容性](../core/reference/compatibility.md)与[数据库配置](../core/reference/database-configuration.md)。
+准备让他人使用应用时，先读[选择部署方式](../core/deployment/choose-a-deployment-method.md)，再按[发布应用新版本](../core/deployment/publish-app-release.md)交付更新。数据库环境见[数据库兼容性](../core/developing-apps/compatibility.md)与[数据库配置](../core/developing-apps/database-configuration.md)。
 
 需要查命令或设置时，直接进入 Core 的[命令行](../core/reference/cli.md)、[配置项](../core/reference/configuration.md)，或 Studio 的[命令行](../studio/reference/cli.md)、[执行机命令](../studio/reference/runner.md)和[配置项](../studio/reference/config.md)。

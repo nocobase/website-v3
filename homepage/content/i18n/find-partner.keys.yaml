@@ -303,7 +303,6 @@ items:
     en: Company name
     zh: 公司名称
     where: req
-    unused: true
   "074":
     en: Contact name
     zh: 联系人姓名
@@ -343,7 +342,80 @@ items:
     en: Email partner@nocobase.com about the system you want, and we’ll recommend partners that fit your region, industry and the services you need.
     zh: 请写邮件到 partner@nocobase.com，说说你想做的系统，我们会按地区、行业和需要的服务，为你推荐合适的伙伴。
     where: req
+    unused: true
   "082":
     en: Email us
     zh: 写邮件给我们
+    where: req
+    unused: true
+  "083":
+    en: Tell us about the system you want, your budget and timeline, and we’ll recommend an Official Partner that fits your region and the services you need. Or write to partner@nocobase.com.
+    zh: 说说你想做的系统、预算和时间，我们会按地区和需要的服务，为你推荐合适的官方伙伴。也可以直接写信到 partner@nocobase.com。
+    where: req
+    unused: true
+  "084":
+    en: Your project
+    zh: 你的需求
+    where: req
+  "085":
+    en: Services you need
+    zh: 所需服务
+    where: req
+  "086":
+    en: Country or region
+    zh: 国家或地区
+    where: req
+  "087":
+    en: Budget
+    zh: 预算
+    where: req
+  "088":
+    en: Timeline
+    zh: 时间计划
+    where: req
+  "089":
+    en: Requirements
+    zh: 具体需求
+    where: req
+  "090":
+    en: Contact details
+    zh: 联系方式
+    where: req
+  "091":
+    en: Your name
+    zh: 联系人
+    where: req
+  "092":
+    en: Email
+    zh: 邮箱
+    where: req
+  "093":
+    en: Phone
+    zh: 电话
+    where: req
+  "094":
+    en: Company
+    zh: 公司信息
+    where: req
+    unused: true
+  "095":
+    en: Optional
+    zh: 选填
+    where: req
+    unused: true
+  "096":
+    en: Submit requirements
+    zh: 提交需求
+    where: req
+  "097":
+    en: Thanks! We’ve received your requirements and will recommend a partner soon.
+    zh: 已收到你的需求，我们会尽快为你推荐合适的伙伴。
+    where: form
+  "098":
+    en: The system you want, the problem it should solve, and what you use today
+    zh: 想做什么系统、要解决什么问题、现在用什么
+    where: form
+  "099":
+    en: Tell us about the system you want, your budget and timeline, and we’ll recommend a partner that fits your region and the services you need. You can also email partner@nocobase.com.
+    zh: 说说你想做的系统、预算和时间，我们会按地区和需要的服务，为你推荐合适的合作伙伴。也可以直接写邮件到 partner@nocobase.com。
     where: req

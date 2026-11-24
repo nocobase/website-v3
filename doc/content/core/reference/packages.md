@@ -56,7 +56,7 @@ Use this index to map a capability to its package and public source. It is not a
 | [`@nocobase/db-mssql`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-mssql) | Microsoft SQL Server |
 | [`@nocobase/db-oracle`](https://github.com/nocobase/nocobase/tree/015404ecd0dbed33cc46831f73907329c577d375/packages/libs/db-oracle) | Oracle Database |
 
-Commercial dialects include `@nocobase/db-dameng`, `@nocobase/db-kingbase` and `@nocobase/db-oceanbase`. See [Database support and version compatibility](compatibility.md) for connection modes and version checks.
+Commercial dialects include `@nocobase/db-dameng`, `@nocobase/db-kingbase` and `@nocobase/db-oceanbase`. See [Database support and version compatibility](../developing-apps/compatibility.md) for connection modes and version checks.
 
 ## Agent and remote-command packages
 

@@ -2,27 +2,95 @@
   "pages": [
     {
       "type": "page",
-      "path": "from-v2"
+      "path": "index"
     },
     {
-      "type": "page",
-      "path": "core-and-studio"
+      "type": "group",
+      "title": "产品与选型",
+      "pages": [
+        {
+          "type": "page",
+          "path": "from-v2",
+          "title": "V2 与 V3"
+        },
+        {
+          "type": "page",
+          "path": "core-capabilities",
+          "title": "Core 基础能力"
+        },
+        {
+          "type": "page",
+          "path": "technology-and-databases",
+          "title": "技术栈与数据库"
+        },
+        {
+          "type": "page",
+          "path": "core-and-studio",
+          "title": "Core 与 Studio"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "coding-experience"
+      "type": "group",
+      "title": "开发与集成",
+      "pages": [
+        {
+          "type": "page",
+          "path": "coding-experience",
+          "title": "编程基础要求"
+        },
+        {
+          "type": "page",
+          "path": "human-maintenance",
+          "title": "人工接手维护"
+        },
+        {
+          "type": "page",
+          "path": "coding-agents-and-models",
+          "title": "Agent 与模型"
+        },
+        {
+          "type": "page",
+          "path": "development-skills",
+          "title": "Skills 使用"
+        },
+        {
+          "type": "page",
+          "path": "business-ai",
+          "title": "业务 AI"
+        },
+        {
+          "type": "page",
+          "path": "existing-systems",
+          "title": "现有系统集成"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "coding-agents-and-models"
-    },
-    {
-      "type": "page",
-      "path": "independent-deployment"
-    },
-    {
-      "type": "page",
-      "path": "find-help"
+      "type": "group",
+      "title": "部署与维护",
+      "pages": [
+        {
+          "type": "page",
+          "path": "independent-deployment",
+          "title": "独立部署"
+        },
+        {
+          "type": "page",
+          "path": "object-storage",
+          "title": "对象存储"
+        },
+        {
+          "type": "page",
+          "path": "backup-and-migration",
+          "title": "备份与迁移"
+        },
+        {
+          "type": "page",
+          "path": "find-help",
+          "title": "问题排查"
+        }
+      ]
     }
   ]
 }

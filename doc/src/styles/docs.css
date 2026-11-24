@@ -18,6 +18,20 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 .search-btn kbd { padding: 0 6px; border: 1px solid var(--rule); border-radius: 5px; background: var(--paper); font: 12px/20px var(--f-sans); color: var(--muted); }
 .nav .right { gap: 4px; }
 .nav .right .search-btn { margin-right: 6px; }
+/* Medium widths: the section tabs start at a fixed position, so the right side shrinks before it reaches them. First the search button drops its shortcut; then the search and Ask AI buttons and the language switch become icons; finally the GitHub star count is hidden (font-size 0 keeps it as the link's accessible name). */
+@container doc-page (min-width: 1001px) and (max-width: 1300px) {
+  .search-btn { min-width: 0; }
+  .search-btn kbd { display: none; }
+}
+@container doc-page (min-width: 1001px) and (max-width: 1200px) {
+  .nav .right .search-btn { width: 40px; padding: 0; justify-content: center; }
+  .nav .right .search-btn .search-text, .nav .doc-chat-trigger span, .nav .lang > button.plain > :not(.lucide-globe) { display: none; }
+  .nav .right .doc-chat-trigger, .nav .right .lang > button.plain { justify-content: center; width: 36px; padding: 0; }
+  .nav .lang > button.plain svg.lucide-globe { opacity: 1; }
+}
+@container doc-page (min-width: 1001px) and (max-width: 1100px) {
+  .nav .right a.plain:has(> svg) { justify-content: center; width: 36px; padding: 0; gap: 0; font-size: 0; }
+}
 @container doc-page (max-width: 1000px) {
   .search-btn { min-width: 0; width: 40px; height: 40px; padding: 0; justify-content: center; margin-right: 0; }
   .search-btn .search-text, .search-btn kbd { display: none; }
@@ -59,6 +73,14 @@ html { scroll-padding-top: calc(var(--nav-h) + 20px); }
 .doc-nav a { display: block; padding: 5px 10px; border-radius: 6px; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
 .doc-nav a:hover { background: var(--paper-2); color: var(--ink); }
 .doc-nav a[aria-current="page"] { background: var(--brand-tint); color: var(--brand); font-weight: 500; }
+.doc-nav a.has-edition, .doc-group-title.has-edition, .doc-folder-link.has-edition { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.doc-edition { flex: none; font-size: 11px; line-height: 1.5; font-style: normal; font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; }
+.doc-edition.professional { color: var(--brand); }
+.doc-edition.enterprise { color: var(--agent-ink); }
+.edition-badge { display: inline-flex; align-items: center; padding: 2px 8px; border: 0; border-radius: 6px; font-size: 12px; line-height: 1.5; font-weight: 500; white-space: nowrap; }
+.edition-badge.professional { background: var(--brand-tint); color: var(--brand); }
+.edition-badge.enterprise { background: var(--agent-tint); color: var(--agent-ink); }
+.prose td br + .edition-badge { margin-top: 4px; }
 .doc-nav a.todo { color: var(--muted); }
 .doc-nav a.todo[aria-current="page"] { color: var(--brand); }
 .doc-planned { display: block; padding: 5px 10px; font-size: 14px; line-height: 1.55; color: var(--muted); opacity: 0.75; cursor: default; }
@@ -73,18 +95,45 @@ span.doc-folder-link { font-weight: 400; }
 .doc-chevron { flex: none; width: 24px; height: 24px; margin-right: 2px; background: currentColor; color: var(--muted); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center / 14px no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6 6 6-6 6'/%3E%3C/svg%3E") center / 14px no-repeat; transition: transform 0.15s; }
 .doc-folder[open] > summary .doc-chevron { transform: rotate(90deg); }
 .doc-folder > ul, .doc-folder > .doc-group { margin-left: 12px; padding-left: 4px; border-left: 1px solid var(--rule); }
-.doc-nav-m { padding: 12px 0 0; }
-.doc-nav-m a { padding: 6px 10px; border-bottom: 0; font-size: 14px; }
-.doc-nav-m .doc-group-title { margin-top: 4px; }
 
-/* Table of contents */
+/* Narrow screens: a bar under the header with the menu (opens the sidebar as a drawer from the left) and the table of contents (drops down under the bar). Shown where the sidebar or the table of contents column is hidden, see the container queries below. */
+.doc-localnav { display: none; position: sticky; top: var(--nav-h); z-index: 30; align-items: center; justify-content: space-between; gap: 12px; height: 44px; background: oklch(0.984 0.003 255 / 0.9); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--rule); }
+.doc-localnav button { display: flex; align-items: center; gap: 8px; height: 32px; margin: 0 -8px; padding: 0 8px; border: 0; border-radius: 7px; background: none; font: inherit; font-size: 14px; color: var(--ink-2); cursor: pointer; }
+.doc-localnav button:hover, .doc-localnav button[aria-expanded="true"] { background: var(--paper-2); color: var(--ink); }
+.doc-localnav button:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+.doc-localnav svg { width: 16px; height: 16px; flex: none; }
+.doc-localnav-toc { margin-left: auto; }
+.doc-localnav-toc > button svg { color: var(--muted); transition: transform 0.15s; }
+.doc-localnav-toc > button[aria-expanded="true"] svg { transform: rotate(90deg); }
+.doc-localnav-panel { position: absolute; top: calc(100% + 6px); right: 12px; width: min(340px, calc(100% - 24px)); max-height: calc(100dvh - var(--nav-h) - 44px - 24px); overflow-y: auto; overscroll-behavior: contain; padding: 14px 16px 14px 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; box-shadow: 0 18px 40px -18px var(--shadow); font-size: 14px; }
+.doc-localnav-panel[hidden] { display: none; }
+.doc-localnav-panel .doc-toc-title { display: none; }
+
+/* The sidebar as a drawer: a modal dialog, so it sits above the header, traps focus and closes with Esc */
+.doc-drawer { position: fixed; inset: 0 auto 0 0; width: min(320px, 86vw); max-width: none; height: 100dvh; max-height: none; margin: 0; padding: env(safe-area-inset-top, 0px) 0 0; border: 0; border-right: 1px solid var(--rule); background: var(--paper); color: var(--ink); box-shadow: 0 18px 40px -18px var(--shadow); transform: translateX(-100%); transition: transform 0.22s ease, overlay 0.22s allow-discrete, display 0.22s allow-discrete; }
+.doc-drawer[open] { display: flex; flex-direction: column; transform: none; }
+@starting-style { .doc-drawer[open] { transform: translateX(-100%); } }
+.doc-drawer::backdrop { background: oklch(0.2 0.02 262 / 0); transition: background 0.22s ease, overlay 0.22s allow-discrete, display 0.22s allow-discrete; }
+.doc-drawer[open]::backdrop { background: oklch(0.2 0.02 262 / 0.32); }
+@starting-style { .doc-drawer[open]::backdrop { background: oklch(0.2 0.02 262 / 0); } }
+@media (prefers-reduced-motion: reduce) { .doc-drawer, .doc-drawer::backdrop { transition: none; } }
+html:has(.doc-drawer[open]) { overflow: hidden; }
+.doc-drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex: none; height: 56px; padding: 0 12px 0 24px; border-bottom: 1px solid var(--rule); font-size: 15px; font-weight: 600; }
+.doc-drawer-close { display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 7px; background: none; color: var(--ink-2); cursor: pointer; }
+.doc-drawer-close:hover { background: var(--paper-2); color: var(--ink); }
+.doc-drawer-close:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+.doc-drawer-close svg { width: 18px; height: 18px; }
+.doc-drawer .doc-nav { position: relative; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 14px 12px max(32px, env(safe-area-inset-bottom)) 14px; }
+
+/* Table of contents, in the right column and in the drop-down of the narrow-screen bar */
 .doc-toc-title { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--ink); }
-.doc-toc ul { margin: 0; padding: 0; list-style: none; border-left: 1px solid var(--rule); }
-.doc-toc a { display: block; margin-left: -1px; padding: 4px 0 4px 12px; border-left: 2px solid transparent; line-height: 1.5; color: var(--muted); }
-.doc-toc .toc-level-3 a { padding-left: 24px; }
-.doc-toc .toc-level-4 a { padding-left: 36px; }
-.doc-toc a:hover { color: var(--ink); }
-.doc-toc a.active { border-left-color: var(--brand); color: var(--brand); }
+:is(.doc-toc, .doc-localnav-panel) ul { margin: 0; padding: 0; list-style: none; border-left: 1px solid var(--rule); }
+:is(.doc-toc, .doc-localnav-panel) a { display: block; margin-left: -1px; padding: 4px 0 4px 12px; border-left: 2px solid transparent; line-height: 1.5; color: var(--muted); }
+.doc-localnav-panel a { padding-block: 6px; }
+:is(.doc-toc, .doc-localnav-panel) .toc-level-3 a { padding-left: 24px; }
+:is(.doc-toc, .doc-localnav-panel) .toc-level-4 a { padding-left: 36px; }
+:is(.doc-toc, .doc-localnav-panel) a:hover { color: var(--ink); }
+:is(.doc-toc, .doc-localnav-panel) a.active { border-left-color: var(--brand); color: var(--brand); }
 
 /* Prose. Links are brand-colored with an underline on hover; the shared reset removes list markers, so they are restored here. */
 .prose a, .doc-main > p a, .doc-lead a { color: var(--brand); overflow-wrap: anywhere; }
@@ -224,6 +273,94 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .request-flow .who.agent { background: #e5edff; color: #4169e1; }
 
 .prose .flow { padding: 0; }
+
+/* Task handoffs. The return line connects review back to development. */
+.prose .role-workflow {
+  --step-gap: 18px;
+  --return-line: #a46a23;
+  display: grid;
+  gap: var(--step-gap);
+  list-style: none;
+  max-width: 42rem;
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+.role-workflow .workflow-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: center;
+  column-gap: 1.3rem;
+  margin: 0;
+}
+.role-workflow .workflow-node {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--rule-2);
+  border-radius: 7px;
+  background: var(--paper);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.role-workflow .who.requester { color: #855115; background: #fff0d7; }
+.role-workflow .who.owner { color: #255d5b; background: #e4f3f1; }
+.role-workflow .workflow-stage:not(:last-child) .workflow-node::after {
+  content: "↓" / "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  color: var(--muted);
+  line-height: var(--step-gap);
+}
+.role-workflow .workflow-branch {
+  position: relative;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.role-workflow .workflow-branch b { display: block; }
+.role-workflow .workflow-branch::before {
+  content: "";
+  position: absolute;
+  right: calc(100% + 4px);
+  top: 50%;
+  width: calc(1.3rem - 5px);
+  border-top: 1px dashed var(--rule-2);
+}
+.role-workflow .work::before, .role-workflow .review::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  width: 16px;
+  border-left: 2px solid var(--return-line);
+}
+.role-workflow .work::before {
+  top: 50%;
+  bottom: calc(-1 * var(--step-gap));
+  border-top: 2px solid var(--return-line);
+  border-top-left-radius: 6px;
+}
+.role-workflow .review::before {
+  top: 0;
+  bottom: 50%;
+  border-bottom: 2px solid var(--return-line);
+  border-bottom-left-radius: 6px;
+}
+.role-workflow .work .workflow-node::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-block: 4px solid transparent;
+  border-left: 6px solid var(--return-line);
+}
+.role-workflow .review .workflow-branch b { color: var(--return-line); }
 .tag { display: inline-block; padding: 0 6px; border: 1px solid var(--rule-2); border-radius: 4px; font-size: 11.5px; line-height: 1.6; font-weight: 500; color: var(--muted); white-space: nowrap; }
 .tag.wip { border-color: transparent; background: var(--human-tint); color: var(--human-ink); }
 .tag.ok { border-color: transparent; background: var(--pass-tint); color: var(--pass-ink); }
@@ -368,12 +505,22 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .doc-search-sub .doc-search-hit { padding: 7px 12px; }
 .doc-search-sub .doc-search-hit b { font-size: 14px; font-weight: 500; }
 
-@container doc-page (max-width: 1200px) { .doc-layout { grid-template-columns: 270px minmax(0, 1fr); } .doc-toc { display: none; } }
+@container doc-page (max-width: 1200px) {
+  .doc-layout { grid-template-columns: 270px minmax(0, 1fr); }
+  .doc-toc { display: none; }
+  /* Beside the sidebar the bar only holds the table of contents, aligned with the content column */
+  .doc-localnav.has-toc { display: flex; margin: -36px -48px 28px; padding: 0 48px; }
+  .doc-localnav .doc-localnav-menu { display: none; }
+  .doc-localnav.has-toc ~ .prose [id] { scroll-margin-top: 44px; }
+}
 @container doc-page (max-width: 1000px) {
   .doc-layout { display: block; }
   .doc-side { display: none; }
   .doc-main { max-width: none; padding: 24px 16px 48px; }
   .doc-main h1 { font-size: 26px; }
+  .doc-localnav, .doc-localnav.has-toc { display: flex; margin: -24px -16px 20px; padding: 0 16px; }
+  .doc-localnav .doc-localnav-menu { display: flex; }
+  .doc-localnav ~ .prose [id] { scroll-margin-top: 44px; }
 }
 @container doc-page (max-width: 900px) {
   .pillars, .learn ul, .roles, .fig.pair, .map .row.c2, .map .row.c3 { grid-template-columns: 1fr; }
@@ -392,7 +539,7 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .layers .ly-foundation { grid-row: 4; margin-top: 0; padding: 16px; }
   .doc-pager .next { grid-column: 1; }
 }
-@media print { .nav, .doc-side, .doc-pager, .copy-button, .page-actions, .doc-page > footer { display: none !important; } .doc-layout { display: block; } }
+@media print { .nav, .doc-side, .doc-localnav, .doc-pager, .copy-button, .page-actions, .doc-page > footer { display: none !important; } .doc-layout { display: block; } }
 
 /* Use the remaining page width when the answer sidebar is open. */
 .doc-page { container: doc-page / inline-size; min-width: 0; }
@@ -401,7 +548,16 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 }
 @container doc-page (max-width: 1000px) {
   .nav .in::after { display: none; }
-  .nav .menu, .nav .right .plain, .nav .lang { display: none; }
+  .nav .menu, .nav .right .plain { display: none; }
+  /* The language switch as a globe button that opens on tap, as in shell.css for narrow screens */
+  .nav .lang { position: static; }
+  .nav .right .lang > button.plain { display: grid; place-items: center; width: 36px; padding: 0; }
+  .nav .lang > button.plain > :not(.lucide-globe) { display: none; }
+  .nav .lang > button.plain svg.lucide-globe { opacity: 1; }
+  .nav .lang .dd { top: calc(100% + 4px); right: 16px; width: min(340px, calc(100% - 32px)); min-width: 0; }
+  .nav .lang:not(.open) .dd { opacity: 0; visibility: hidden; transform: translateY(-4px); }
+  .nav .lang.open .dd { opacity: 1; visibility: visible; transform: none; }
+  .nav .lang.open > button.plain { background: var(--paper-2); color: var(--ink); }
   .nav .menu-btn { display: grid; }
   .nav.open { background: var(--paper); }
   .nav.open .mnav { display: block; }

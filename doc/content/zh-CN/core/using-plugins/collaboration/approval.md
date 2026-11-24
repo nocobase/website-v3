@@ -1,6 +1,7 @@
 ---
 title: "审批"
 description: "将人工审批接入业务记录生命周期，配置参与人、策略和处理结果。"
+minimumEdition: professional
 ---
 
 ## 提供的能力

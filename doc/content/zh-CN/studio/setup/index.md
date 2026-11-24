@@ -1,11 +1,19 @@
 ---
 title: 安装概览
-description: 管理员部署 Studio，准备项目、Agent 和检查方式，再邀请团队成员使用。
+description: 用一条命令在自己的电脑上试用 Studio，或为团队部署 Studio，准备项目、Agent 和检查方式，再邀请团队成员使用。
 ---
 
-推荐使用 Claude Code、Codex 等本地 Coding Agent 安装和配置 Studio。
+想在自己的电脑上试用 Studio，使用一键安装。为团队部署 Studio 时，推荐交给 Claude Code、Codex 等本地 Coding Agent 安装和配置。
 
 如果你已收到团队邀请，请前往[开始使用](../join/index.md)。
+
+## 一键试用
+
+```bash
+curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang zh-CN --mirror registry.cn-shanghai.aliyuncs.com --npm-registry https://registry.npmmirror.com/
+```
+
+这条命令在本机安装 Studio 社区版、本地 Git 服务、运行环境和首个项目。前提和选项见[一键安装](install.md#一键安装)。从安装到开始第一个任务的完整流程见[快速安装 Studio](../../getting-started/quick-install-studio.md)。
 
 ## 交给 Agent
 
@@ -15,11 +23,21 @@ description: 管理员部署 Studio，准备项目、Agent 和检查方式，再
 
 Agent 先检查目标环境，询问缺少的信息，再按下方步骤完成配置和验证。需要本人登录或授权时，按提示操作。
 
+## 选择版本
+
+| 版本 | 适用场景 |
+| --- | --- |
+| 社区版（CE） | 团队提出需求、调度 Agent 开发，由任务负责人验收交付 |
+| 专业版 | 支持[多角色流程](../use/multi-role-workflow.md)。需求负责人确认需求和验收交付，开发负责人启动任务并合并代码 |
+| 企业版（EE） | 包含专业版功能，并提供质量管理，可维护核心场景、定期测试、查看报告和跟进问题 |
+
+专业版和企业版的镜像及授权请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取。
+
 ## 开始前
 
-本指南使用 Docker Compose、GitHub 和一台共享运行环境。请准备：
+为团队部署时，本指南使用 Docker Compose、GitHub 和一台共享运行环境。请准备：
 
-- **镜像授权**：Studio 为商业版本，请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取镜像和访问授权。
+- **Studio 镜像**：社区版镜像为 `registry.cn-shanghai.aliyuncs.com/nocobase/studio-ce:latest`。
 - **部署环境**：服务器访问方式和 Studio 访问地址。本机试用无需域名。
 - **Git 账号**：可创建仓库、安装 GitHub App 的账号或组织。
 - **编码工具与模型账号**：如 Claude Code 或 Codex，可以继续使用已有账号。
@@ -49,7 +67,7 @@ Agent 先检查目标环境，询问缺少的信息，再按下方步骤完成�
 | 要调整的内容 | 文档所在板块 |
 | --- | --- |
 | 模型分工、执行机器、团队技能 | Agent 管理：[Agent 配置](../configure/agents.md)、[运行环境](../configure/runtimes.md)、[技能](../project/skills.md) |
-| 检查来源、CI 流水线 | 质量管理：[检查与 CI](../configure/checks.md) |
+| 检查来源、CI 流水线 | [配置仓库检查与 CI](../configure/checks.md) |
 | 项目资料、成员、默认技能 | 项目管理：[项目设置](../project/settings.md) |
 | Git 连接、其他代码平台 | 系统管理：[代码平台](../configure/git.md) |
 | 数据库、访问地址等部署参数 | 参考：[配置项](../reference/config.md) |

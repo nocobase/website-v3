@@ -27,14 +27,6 @@
     },
     {
       "type": "page",
-      "path": "compatibility"
-    },
-    {
-      "type": "page",
-      "path": "database-configuration"
-    },
-    {
-      "type": "page",
       "path": "faq"
     }
   ]

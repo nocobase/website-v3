@@ -1,0 +1,19 @@
+<ol class="role-workflow">
+  <li class="workflow-stage">
+    <div class="workflow-node"><span class="who requester">依頼者</span><strong>要件と受け入れ条件を確認</strong></div>
+  </li>
+  <li class="workflow-stage">
+    <div class="workflow-node"><span class="who owner">開発担当者</span><strong>開発を開始</strong></div>
+  </li>
+  <li class="workflow-stage work">
+    <div class="workflow-node"><span class="who agent">エージェントチーム</span><strong>実装・検証してレポートを提出</strong></div>
+    <div class="workflow-branch"><b>質問がある場合</b> 依頼者が回答します。開発担当者も代理で回答できます。</div>
+  </li>
+  <li class="workflow-stage review">
+    <div class="workflow-node"><span class="who requester">依頼者</span><strong>成果を検収</strong></div>
+    <div class="workflow-branch"><b>差し戻す場合</b> エージェントが修正し、再度検収を依頼します。</div>
+  </li>
+  <li class="workflow-stage">
+    <div class="workflow-node"><span class="who owner">開発担当者</span><strong>検収後に PR をマージ、またはタスクを完了</strong></div>
+  </li>
+</ol>

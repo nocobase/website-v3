@@ -3,7 +3,7 @@ title: 設定項目
 description: Studio の config.yml の項目、アップロード制限、環境変数を確認します。
 ---
 
-Studio の設定はデプロイ先の `config.yml` に保存し、コンテナの `/app/config.yml` にマウントします。提供されたイメージからテンプレートを取り出す手順は [Studio のデプロイ](../setup/install.md)を参照してください。
+Studio の設定はデプロイ先の `config.yml` に保存し、コンテナの `/app/config.yml` にマウントします。Studio イメージからテンプレートを取り出す手順は [Studio のデプロイ](../setup/install.md)を参照してください。
 
 ## config.yml を使う
 
@@ -38,6 +38,8 @@ Studio の既定パスは `/main` です。ランタイムと CLI の接続に�
 PostgreSQL の完全な例は [Studio のデプロイ](../setup/install.md)を参照してください。既存のデータベースでは実際のホスト、ポート、認証情報を指定します。
 
 PostgreSQL サーバーで JIT を無効にすることを推奨します。設定方法は[サービスを起動する](../setup/install.md#サービスを起動する)を参照してください。
+
+KingbaseES は PostgreSQL 互換モード（`DB_MODE=pg`）で使用します。`dialect` に `kingbase` を指定し、インスタンスに合わせてポート、データベース名、スキーマを設定します。
 
 ## 管理者とサインイン
 
@@ -116,7 +118,9 @@ Git 接続と認可は画面で設定します。[コードホスティング](.
 | --- | --- |
 | `releases.artifact` | 成果物の保存先。既定は `/app/storage/releases/artifacts`。`drive.default` とは独立 |
 | `releases.maxArtifactSizeMB` | リリース成果物の上限。既定は `256` MiB。添付ファイルの `maxFileSizeMb` とは別 |
-| `releases.host.memoryBudget` | `targetRatio` は `0.7`、`appMemoryMb` は `320`、`reserveMb` は `0` が既定。アプリのピーク使用量とサーバー容量に合わせて調整 |
+| `releases.host.memoryBudget` | `targetRatio` は `0.85`、`appMemoryMb` は `320`、`reserveMb` は `0` が既定。アプリのピーク使用量とサーバー容量に合わせて調整 |
+| `releases.host.artifactRead.idleTimeoutMs`, `releases.host.artifactRead.timeoutMs` | 圧縮ファイルの読み取り期限。既定ではデータが届かない時間は 60 秒まで、1 回の読み取り全体は 10 分まで |
+| `releases.host.artifactWorker.timeoutMs` | チェックサム検証と展開それぞれの実行期限。既定は 120 秒 |
 | `releases.host.maxActiveApps` | 実行中アプリ数の上限。メモリーチェックも適用される |
 | `releases.host.launchPrefix` | プレビュー起動コマンドのプレフィックス。Studio の設定を読めないシステムユーザーへの切り替えに使用可能 |
 | `releases.docker` | `enabled: true` で Docker 実行を有効化。固定の入口ポートとリバースプロキシを設定 |
@@ -156,6 +160,6 @@ Compose の `.env` は Compose 設定内の変数置換用です。Studio に渡
 | `API_BODY_LIMIT` / `API_TIMEOUT` | `api.bodyLimit` / `api.timeout` |
 | `STUDIO_MANAGER_IDLE_MINUTES` / `STUDIO_MANAGER_IDLE_SWEEP_MINUTES` | `studio.agents.managerIdleMinutes` / `managerIdleSweepMinutes` |
 | `RELEASES_HOST_ENABLED` | `releases.host.enabled` |
-| `APP_CONFIG_FILE` | 起動時に読む設定ファイル。提供イメージの既定は `/app/config.yml` |
-| `APP_BASE_PATH` | 起動時の公開パス。提供イメージの既定は `/main` |
-| `APP_SERVER_HOST` / `APP_SERVER_PORT` | 待ち受けアドレスとポート。提供イメージの既定は `0.0.0.0` / `13000` |
+| `APP_CONFIG_FILE` | 起動時に読む設定ファイル。Studio イメージの既定は `/app/config.yml` |
+| `APP_BASE_PATH` | 起動時の公開パス。Studio イメージの既定は `/main` |
+| `APP_SERVER_HOST` / `APP_SERVER_PORT` | 待ち受けアドレスとポート。Studio イメージの既定は `0.0.0.0` / `13000` |

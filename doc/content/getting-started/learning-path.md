@@ -30,7 +30,7 @@ For common capabilities such as authentication, files, and notifications, consul
 
 ## Use and manage Studio
 
-- Members: start with [Raising requests](../studio/use/raise-a-request.md) and [Sessions](../studio/use/sessions.md), then consult [Progress](../studio/use/follow-progress.md), [Answering questions](../studio/use/answer.md), and [Acceptance](../studio/use/accept.md).
+- Members: start with [Raising requests](../studio/use/raise-a-request.md) and [Sessions](../studio/use/sessions.md), then consult [Progress](../studio/use/follow-progress.md), [Answering questions](../studio/use/answer.md), and [Accept a task](../studio/use/accept.md).
 - Project owners: use [Settings](../studio/project/settings.md), [Knowledge base](../studio/project/knowledge-base.md), [Project memory](../studio/project/project-memory.md), and [Progress](../studio/project/progress.md), followed by [Checks and review](../studio/project/checks-and-review.md) and [Releases](../studio/release/overview.md).
 - Administrators: complete [Installation](../studio/setup/index.md), then manage [Agents](../studio/configure/agents.md), [Runtimes](../studio/configure/runtimes.md), [Skills](../studio/project/skills.md), [Usage](../studio/project/usage.md), [Members and roles](../studio/admin/members-and-roles.md), and [Upgrades and backups](../studio/admin/upgrade-and-backup.md).
 
@@ -44,6 +44,6 @@ After completing your first walkthrough, jump straight to the series or topic th
 
 ## Deploy, maintain, and look up details
 
-Before sharing an application with users, read [Choose a deployment method](../core/deployment/choose-a-deployment-method.md), then [Publish application releases](../core/deployment/publish-app-release.md). For databases, consult [Compatibility](../core/reference/compatibility.md) and [Database configuration](../core/reference/database-configuration.md).
+Before sharing an application with users, read [Choose a deployment method](../core/deployment/choose-a-deployment-method.md), then [Publish application releases](../core/deployment/publish-app-release.md). For databases, consult [Compatibility](../core/developing-apps/compatibility.md) and [Database configuration](../core/developing-apps/database-configuration.md).
 
 Look up Core [CLI commands](../core/reference/cli.md) and [Configuration](../core/reference/configuration.md), or Studio [CLI commands](../studio/reference/cli.md), [Runner commands](../studio/reference/runner.md), and [Configuration](../studio/reference/config.md) when needed.

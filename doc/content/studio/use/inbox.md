@@ -3,7 +3,7 @@ title: Inbox and reminders
 description: Read comments, mentions, and system messages, and choose sound, desktop, or push reminders.
 ---
 
-Open the inbox from its icon in the top bar. Handle task decisions in **My issues** and Agent conversation replies in **My sessions**.
+Open the inbox from the icon in the upper-right corner to see messages and pending decisions.
 
 ## Where to find updates
 
@@ -11,15 +11,17 @@ Open the inbox from its icon in the top bar. Handle task decisions in **My issue
 | --- | --- |
 | My issues | Acceptance, blockers, run failures, and ownership handoffs |
 | My sessions | Agent replies, conversation questions, and permission requests |
-| Inbox | Human comments, mentions, assignments, and non-task system messages and decisions |
+| Inbox | Human comments, mentions, assignments, system notifications, and items that need your decision |
 
 ![Read messages in the inbox and open the related work](https://static-docs.nocobase.com/studio-en-inbox-20261111-normal-2x.webp)
 
 ## Inbox views
 
 - **All**: messages and decisions.
-- **Needs my decision**: pending decisions outside tasks.
+- **To decide**: items awaiting your decision.
 - **Notifications**: informational updates.
+
+To handle a request, open **To decide**. Under **All types**, select **Requester decisions**. Open a task to [confirm requirements, answer a question, or accept delivery](multi-role-workflow.md).
 
 Use <kbd>J</kbd> / <kbd>K</kbd> to move between items. Marking a message read or deleting it affects only your inbox; it does not complete a task.
 

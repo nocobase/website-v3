@@ -1,41 +1,65 @@
 ---
 title: Overview
-description: Understand when to use multiple applications, how main and child applications work together, and what you need to get started.
 ---
 
 ## When to use multiple applications
 
-Use a multi-app architecture when several business systems need independent data, configuration, and release versions, but you want a shared entry point and sign-in experience.
+Use multiple applications when business systems need independent development, releases and maintenance, while employees need a shared entry point and identity. For example, customer and inventory systems can keep separate data and release schedules, with both available from Main's workbench.
 
-| Business need | Approach |
+For different pages, navigation and user entry points within one application, consider [multiple portals](../multi-portal/create-app.md). Multiple applications require separate instances, databases and operational maintenance.
+
+> [!NOTE]
+> These guides describe the new multi-app deployment management. Confirm that your package source provides compatible `multi-app` and `sub-app` templates and the project deployment CLI. Source candidates are not necessarily published packages. The former Releases configuration and workflow do not apply here.
+
+## Main, child applications and application instances
+
+| Term | Purpose |
 | --- | --- |
-| Several stores need the same inventory features but separate data | Run an independent inventory application for each store, with separate data and update schedules |
-| Different teams maintain customer management and purchasing on different release schedules | Develop and deploy each application separately, and access both from one workbench |
-| An existing system should keep running while gaining a shared entry point | Add it to the workbench, optionally connect single sign-on, and retain its existing deployment |
-| Several entry points share one application, dataset, and version | Use [multiple portals](../multi-portal/create-app.md) instead of splitting the system into applications |
+| Main | Provides the workbench, platform accounts, single sign-on and deployment management |
+| Child application | An independently developed business project with its own code, dependencies and versions |
+| Application instance | A deployment of an application version, with its own configuration, data and address |
 
-The platform can deploy and manage child applications or connect systems that already run independently. Applications do not automatically share business data. Integrate them through APIs with the appropriate permissions when they need to exchange data.
+Creating Main does not create children. One child project can serve several instances, such as separate customer systems for two teams. An instance name is a display label; its ID identifies it and determines its access path.
 
-## Main and child applications
+## Build artifacts, versions and runtime nodes
 
-The **main application** provides the workbench, application management, and single sign-on. After signing in, users open the applications they are allowed to access from the workbench.
+A child project produces a deployment archive. Uploading it publishes an immutable version under its application package. A runtime node executes deployments and runs instances. Creating an instance requires both a version and a node.
 
-A **child application** handles a specific business function, such as customer, inventory, or expense management. Each child has its own pages, data, configuration, and business permissions, and can be developed, deployed, and updated independently.
+The delivery flow is **child project → build artifact → published version → instance on a runtime node**. Publishing does not automatically create or upgrade instances.
 
-![The workbench shows the customer and expense applications available to the current user](/assets/core/multi-app/workbench.png)
+Main currently supports local runtime nodes, each running as an independent App Host process on the same machine. Declare nodes in Main's configuration; Main starts them automatically. The nodes page displays configuration and status. Remote-machine enrollment and Docker orchestration are outside this workflow.
 
-The main application determines which applications a user may enter. Each child determines what that user may do inside it. For example, permission to enter an inventory application does not necessarily allow an employee to adjust stock. Administrators of the main application do not automatically become child application administrators.
+## Data isolation, single sign-on and business permissions
 
-Child applications can use their own sign-in method or integrate with the main application's single sign-on (SSO). SSO does not mean sharing user tables, business data, or all permissions.
+Each instance stores its own business data, configuration, secrets and files. Instances can use the same database server, but need separate databases or isolated namespaces. Archives do not carry development databases, uploaded files or instance secrets.
+
+Single sign-on lets enabled platform users authenticate to a child. It does not copy Main's business roles. A Main administrator does not automatically become a child administrator. Each child controls pages, operations and data access; see [Single sign-on and business permissions](single-sign-on.md).
+
+## Responsibilities of Main and its plugins
+
+The Main template supplies the shell, system settings and plugin composition. Deployment provides artifacts, versions, runtime nodes, instances and deployment operations. Multi-app provides the management pages, workbench entries and platform access integration. Identity Provider and the child's Platform SSO plugin handle single sign-on.
+
+The Main and child templates include their required integrations. An existing application must integrate them through its own plugin composition; copying a login URL is not enough.
+
+## Workbench and deployment management
+
+Users enter applications from the **Workbench**. Administrators with the relevant permissions use **System settings → Deployment management**:
+
+| Entry | Main operations |
+| --- | --- |
+| Application instances | Create, configure, upgrade and operate hosted instances; connect existing applications |
+| Build artifacts | Upload archives and maintain versions |
+| Runtime nodes | Inspect configuration, availability and runtime requirements |
+| Deployment records | Follow operations, approvals and logs |
+
+Deployment management and child business permissions are separate. Users do not need management access to use their applications.
+
+![The workbench opens applications available to the signed-in platform user.](/assets/core/multi-app/hd-workbench.png)
+
+![Deployment management is grouped under System settings.](/assets/core/multi-app/hd-deployment-settings.png)
 
 ## Prerequisites
 
-Multi-app requires compatible commercial plugin versions, a valid commercial license, and package download access. The project template does not contain the commercial plugins' implementation or grant a commercial license.
+Prepare Node.js 24 or later, a pnpm version compatible with the selected templates, and access to the commercial packages. Main needs a stable address, a separate database and persistent storage. Runtime nodes must meet the artifact's operating system, CPU architecture, libc and Node.js requirements.
 
-| Plugin | Used in | Capabilities |
-| --- | --- | --- |
-| `@nocobase/app-plugin-multi-app` | Main application | Manage application templates, versions, instances, and external entries |
-| `@nocobase/app-plugin-identity-provider` | Main application | Platform identity service, OIDC clients, and membership grants |
-| `@nocobase/app-plugin-platform-sso` | Child application | Platform sign-in, session checks, and application switching |
-
-For a new project, start with the [Quickstart](quickstart.md). For an existing NocoBase 3 application, see [Connect independently deployed applications](external-apps.md).
+Follow the [Quickstart](quickstart.md) for your first child build, deployment and login. For an existing business system, see [Connect existing applications](external-apps.md).

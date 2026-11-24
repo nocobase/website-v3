@@ -40,7 +40,7 @@ Use `docs` for current commands and `--help` for arguments. `whoami --missing` g
 | `skill`, `variable`, `run` | Skills, variables, and run history |
 | `kb`, `memory` | Knowledge and project memory |
 | `git`, `pr`, `commit` | Repositories, PRs, and checks |
-| `quality` | Studio EE project tests, reports, core scenarios, metrics, and follow-ups |
+| `quality` | Project tests, reports, core scenarios, metrics, and follow-ups |
 | `app`, `deploy`, `env`, `release`, `build` | Applications, environments, artifacts, and delivery |
 | `conversation` | Runner Agent conversations |
 | `user`, `access`, `api-key` | Authorized administration operations |

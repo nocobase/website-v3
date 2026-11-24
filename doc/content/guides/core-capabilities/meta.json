@@ -6,122 +6,68 @@
       "path": "index"
     },
     {
-      "type": "group",
-      "title": "Data modeling",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../opportunities-and-quotes"
-        }
-      ]
+      "type": "page",
+      "path": "../opportunities-and-quotes"
     },
     {
-      "type": "group",
-      "title": "UI development",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../sales-workspace"
-        }
-      ]
+      "type": "page",
+      "path": "../sales-workspace"
     },
     {
-      "type": "group",
-      "title": "Permissions and data scopes",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../team-permissions"
-        },
-        {
-          "type": "planned",
-          "title": "Configurable permission UI"
-        },
-        {
-          "type": "planned",
-          "title": "Complex data scopes and grant rules"
-        }
-      ]
+      "type": "page",
+      "path": "../team-permissions"
     },
     {
-      "type": "group",
-      "title": "Workflows and approvals",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../quote-approvals"
-        },
-        {
-          "type": "planned",
-          "title": "Complex approval rules"
-        }
-      ]
+      "type": "planned",
+      "title": "Configurable permission UI"
     },
     {
-      "type": "group",
-      "title": "Files and template printing",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../file-management"
-        },
-        {
-          "type": "page",
-          "path": "../template-print"
-        }
-      ]
+      "type": "planned",
+      "title": "Complex data scopes and grant rules"
     },
     {
-      "type": "group",
-      "title": "Notifications and scheduled tasks",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../notifications"
-        },
-        {
-          "type": "page",
-          "path": "../scheduled-reminders"
-        }
-      ]
+      "type": "page",
+      "path": "../quote-approvals"
     },
     {
-      "type": "group",
-      "title": "Email",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../email"
-        }
-      ]
+      "type": "planned",
+      "title": "Complex approval rules"
     },
     {
-      "type": "group",
-      "title": "Business AI",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../business-agent"
-        },
-        {
-          "type": "page",
-          "path": "../ai-assistant"
-        }
-      ]
+      "type": "page",
+      "path": "../file-management"
     },
     {
-      "type": "group",
-      "title": "Data import and integrations",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../data-import"
-        },
-        {
-          "type": "page",
-          "path": "../external-integrations"
-        }
-      ]
+      "type": "page",
+      "path": "../template-print"
+    },
+    {
+      "type": "page",
+      "path": "../notifications"
+    },
+    {
+      "type": "page",
+      "path": "../scheduled-reminders"
+    },
+    {
+      "type": "page",
+      "path": "../email"
+    },
+    {
+      "type": "page",
+      "path": "../business-agent"
+    },
+    {
+      "type": "page",
+      "path": "../ai-assistant"
+    },
+    {
+      "type": "page",
+      "path": "../data-import"
+    },
+    {
+      "type": "page",
+      "path": "../external-integrations"
     }
   ]
 }

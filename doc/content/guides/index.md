@@ -5,9 +5,13 @@ description: "Practice NocoBase 3 through real business scenarios: coordinate te
 
 Practice NocoBase through real business scenarios: [Studio](../studio/index.md) coordinates Agents and teammates from request to release, while [Core](../core/index.md) provides the application foundation for data, UI, permissions and workflows.
 
-<section class="course-intro">
+<section class="course-section">
+
+<div class="course-section-head">
 
 ## First steps
+
+</div>
 
 New to NocoBase 3? Start with one of the two hands-on walkthroughs below, then move on to the team delivery or focused topic tutorials:
 
@@ -61,85 +65,35 @@ Use Studio across day-to-day team delivery: connect an existing repository, invo
 
 Learn individual Core capabilities by topic. Everyday scenarios reference the latest complete runnable CRM example; complex topics use domains such as purchasing and expenses.
 
-### Data modeling
-
 <div class="course-grid">
 
 [<span class="course-title">Multi-table relations and historical snapshots</span><span class="course-description">Model parent-child and line-item relations with migrations while preserving historical amounts after catalog updates.</span>](opportunities-and-quotes.md)
 
-</div>
-
-### UI development
-
-<div class="course-grid">
-
 [<span class="course-title">Build a workspace UI with UI Library</span><span class="course-description">Compose lists, filters, forms and detail tabs with UI Library for high-frequency day-to-day operations.</span>](sales-workspace.md)
-
-</div>
-
-### Permissions and data scopes
-
-<div class="course-grid">
 
 [<span class="course-title">Role permissions and data scopes</span><span class="course-description">Enforce role permissions, owner-based record scopes and read-only sharing so staff and managers see the right data.</span>](team-permissions.md)
 
-[<span class="course-title">Configurable permission UI</span><span class="course-description">Design a runtime permission configuration screen for administrators or business owners who need flexible access control.</span><span class="course-status">Planned</span>](core-capabilities/index.md#permissions-and-data-scopes)
+[<span class="course-title">Configurable permission UI</span><span class="course-description">Design a runtime permission configuration screen for administrators or business owners who need flexible access control.</span><span class="course-status">Planned</span>](core-capabilities/index.md#courses)
 
-[<span class="course-title">Complex data scopes and grant rules</span><span class="course-description">Design cross-department, multi-condition data scopes and rules for combining or revoking overlapping grants.</span><span class="course-status">Planned</span>](core-capabilities/index.md#permissions-and-data-scopes)
-
-</div>
-
-### Workflows and approvals
-
-<div class="course-grid">
+[<span class="course-title">Complex data scopes and grant rules</span><span class="course-description">Design cross-department, multi-condition data scopes and rules for combining or revoking overlapping grants.</span><span class="course-status">Planned</span>](core-capabilities/index.md#courses)
 
 [<span class="course-title">Approval workflows and to-do center</span><span class="course-description">Configure an approval flow and handle reviews, returns, rejections and status write-backs in the to-do center.</span>](quote-approvals.md)
 
-[<span class="course-title">Complex approval rules</span><span class="course-description">Design conditional branches, joint approvals, return-and-resubmit flows, timeouts, reassignment and delegation in scenarios like purchasing and expenses.</span><span class="course-status">Planned</span>](core-capabilities/index.md#workflows-and-approvals)
-
-</div>
-
-### Files and template printing
-
-<div class="course-grid">
+[<span class="course-title">Complex approval rules</span><span class="course-description">Design conditional branches, joint approvals, return-and-resubmit flows, timeouts, reassignment and delegation in scenarios like purchasing and expenses.</span><span class="course-status">Planned</span>](core-capabilities/index.md#courses)
 
 [<span class="course-title">Business attachments and file management</span><span class="course-description">Add file upload, preview and download to business records with permission checks and temporary file cleanup.</span>](file-management.md)
 
 [<span class="course-title">Template printing and document generation</span><span class="course-description">Generate immutable DOCX documents from confirmed business records using a fixed template for preview and download.</span>](template-print.md)
 
-</div>
-
-### Notifications and scheduled tasks
-
-<div class="course-grid">
-
 [<span class="course-title">Business events and in-app notifications</span><span class="course-description">Send in-app notifications automatically when record ownership changes or approvals complete, and verify delivery logs.</span>](notifications.md)
 
 [<span class="course-title">Scheduled tasks and due reminders</span><span class="course-description">Use scheduled jobs to scan due items and pending records and notify current owners automatically.</span>](scheduled-reminders.md)
 
-</div>
-
-### Email
-
-<div class="course-grid">
-
 [<span class="course-title">Email integration and messaging</span><span class="course-description">Connect a personal mailbox to match correspondence by contact address and send emails with attachments from the workspace.</span>](email.md)
-
-</div>
-
-### Business AI
-
-<div class="course-grid">
 
 [<span class="course-title">Connect an in-app business Agent</span><span class="course-description">Add an in-app business Agent that follows role permissions to look up records and assist daily operations.</span><span class="course-status">In preparation</span>](business-agent.md)
 
 [<span class="course-title">Assist business workflows with AI and knowledge</span><span class="course-description">Combine records and knowledge bases with AI to summarize history and draft next-step suggestions.</span><span class="course-status">In preparation</span>](ai-assistant.md)
-
-</div>
-
-### Data import and integrations
-
-<div class="course-grid">
 
 [<span class="course-title">Bulk data import</span><span class="course-description">Validate and import external spreadsheet records in bulk with clear conflict handling, error reports and rollback.</span><span class="course-status">In preparation</span>](data-import.md)
 

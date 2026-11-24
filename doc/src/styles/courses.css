@@ -45,10 +45,6 @@
 .course-example-help:hover .course-example-popover,
 .course-example-help:focus-within .course-example-popover { visibility: visible; }
 
-.course-intro { margin-top: 24px; padding: 18px 20px; border: 1px solid var(--rule); border-radius: 12px; background: var(--paper); }
-.prose .course-intro h2 { margin: 0 0 6px; padding: 0; border: 0; font-size: 16px; line-height: 1.4; font-weight: 600; color: var(--ink); }
-.prose .course-intro > p { margin: 0 0 14px; max-width: 780px; font-size: 14px; line-height: 1.65; color: var(--muted); }
-.course-intro .course-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
 .course-breadcrumb { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; margin: 0; font-size: 13px; color: var(--muted); }
 .course-breadcrumb a { color: inherit; }
 .course-breadcrumb a:hover { color: var(--ink); }

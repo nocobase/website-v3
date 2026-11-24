@@ -6,122 +6,68 @@
       "path": "index"
     },
     {
-      "type": "group",
-      "title": "数据建模",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../opportunities-and-quotes"
-        }
-      ]
+      "type": "page",
+      "path": "../opportunities-and-quotes"
     },
     {
-      "type": "group",
-      "title": "界面开发",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../sales-workspace"
-        }
-      ]
+      "type": "page",
+      "path": "../sales-workspace"
     },
     {
-      "type": "group",
-      "title": "权限与数据范围",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../team-permissions"
-        },
-        {
-          "type": "planned",
-          "title": "可配置授权界面"
-        },
-        {
-          "type": "planned",
-          "title": "复杂数据范围与授权规则"
-        }
-      ]
+      "type": "page",
+      "path": "../team-permissions"
     },
     {
-      "type": "group",
-      "title": "流程与审批",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../quote-approvals"
-        },
-        {
-          "type": "planned",
-          "title": "复杂审批规则"
-        }
-      ]
+      "type": "planned",
+      "title": "可配置授权界面"
     },
     {
-      "type": "group",
-      "title": "文件与打印",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../file-management"
-        },
-        {
-          "type": "page",
-          "path": "../template-print"
-        }
-      ]
+      "type": "planned",
+      "title": "复杂数据范围与授权规则"
     },
     {
-      "type": "group",
-      "title": "通知与定时任务",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../notifications"
-        },
-        {
-          "type": "page",
-          "path": "../scheduled-reminders"
-        }
-      ]
+      "type": "page",
+      "path": "../quote-approvals"
     },
     {
-      "type": "group",
-      "title": "邮件",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../email"
-        }
-      ]
+      "type": "planned",
+      "title": "复杂审批规则"
     },
     {
-      "type": "group",
-      "title": "业务 AI",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../business-agent"
-        },
-        {
-          "type": "page",
-          "path": "../ai-assistant"
-        }
-      ]
+      "type": "page",
+      "path": "../file-management"
     },
     {
-      "type": "group",
-      "title": "数据导入与系统集成",
-      "pages": [
-        {
-          "type": "page",
-          "path": "../data-import"
-        },
-        {
-          "type": "page",
-          "path": "../external-integrations"
-        }
-      ]
+      "type": "page",
+      "path": "../template-print"
+    },
+    {
+      "type": "page",
+      "path": "../notifications"
+    },
+    {
+      "type": "page",
+      "path": "../scheduled-reminders"
+    },
+    {
+      "type": "page",
+      "path": "../email"
+    },
+    {
+      "type": "page",
+      "path": "../business-agent"
+    },
+    {
+      "type": "page",
+      "path": "../ai-assistant"
+    },
+    {
+      "type": "page",
+      "path": "../data-import"
+    },
+    {
+      "type": "page",
+      "path": "../external-integrations"
     }
   ]
 }

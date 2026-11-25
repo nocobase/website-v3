@@ -41,7 +41,7 @@ try {
 
 SQLite 文件、网络数据库的 host/port、Oracle serviceName、TLS 参数和原生依赖都按方言配置。先检查安装包、连接字段和环境变量覆盖，再检查数据库可达性；不要通过切换方言来尝试“修复”已有数据。
 
-`config check --no-connect` 只检查配置；连接检查不执行迁移。详见[配置项参考](../../reference/configuration.md)和[数据库支持](../../reference/compatibility.md)。
+`config check --no-connect` 只检查配置；连接检查不执行迁移。详见[配置项参考](../../reference/configuration.md)和[数据库支持](../../developing-apps/compatibility.md)。
 
 应用中增加第二个连接见[多数据库连接](../../developing-apps/multiple-databases.md)，外部库的配置、元数据文件与刷新步骤见[接入已有数据库](../../developing-apps/existing-databases.md)。
 

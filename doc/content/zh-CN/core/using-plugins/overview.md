@@ -9,7 +9,7 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 
 ## 按功能查找插件
 
-本章介绍 21 个插件，相关功能按主题分组，其余插件提供独立入口。各插件按提供的能力、使用场景与示例、重要原理与实现、AI 开发的约束与验证四章介绍。
+本章介绍 23 个插件，相关功能按主题分组，其余插件提供独立入口。各插件按提供的能力、使用场景与示例、重要原理与实现、AI 开发的约束与验证四章介绍。
 
 | 功能 | 使用文档 | 主要用途 |
 | --- | --- | --- |
@@ -22,6 +22,8 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 | Agents | [Agents](agents-and-knowledge/agents.md) | 配置模型 API，或接入机器上的 Agent，使用对话与任务执行能力 |
 | 知识库 | [知识库](agents-and-knowledge/knowledge.md) | 管理文档空间、版本、搜索与变更审阅 |
 | 审批 | [审批](collaboration/approval.md) | 配置审批策略并处理审批结果 |
+| 待办中心 | [待办中心](collaboration/task-center.md) | 聚合多业务来源的个人待办，提供默认页面、顶栏计数与查询接口 |
+| 流程协调器 | [流程协调器](collaboration/lifecycle-coordination.md) | 协调父流程等待多个独立子流程、汇聚结果并处理取消与恢复 |
 | 定时任务 | [定时任务](automation/scheduler.md) | 声明计划任务，查看执行记录和管理启停 |
 | 模板打印 | [模板打印](automation/template-print.md) | 使用 Skills 实现 DOCX、PDF 模板打印 |
 | 多语言 | [多语言](application-support/i18n.md) | 接入多语言能力和应用语言切换 |

@@ -1,6 +1,7 @@
 ---
 title: Multi-instance deployment
 description: Review shared state and background tasks, add distributed plugins as needed, and run multiple instances with PM2 or Docker Compose.
+minimumEdition: enterprise
 ---
 
 To use more CPU cores, distribute requests, or keep serving users when one instance stops, you can run multiple instances of the same application behind a reverse proxy. These instances share a business database and a public URL; they are not separate, unrelated applications.
@@ -32,7 +33,7 @@ After the review, you should be able to list which features need cross-instance 
 
 Before changing the application, prepare the resources that all instances will use:
 
-- **Business database**: All instances connect to the same target database and use the same schema. Copying a single-instance example's SQLite file into two containers does not make it a shared database. If the application currently uses SQLite, first migrate to a database suitable for multi-instance access and install its driver before building. See [Database compatibility](../reference/compatibility.md) for connection settings.
+- **Business database**: All instances connect to the same target database and use the same schema. Copying a single-instance example's SQLite file into two containers does not make it a shared database. If the application currently uses SQLite, first migrate to a database suitable for multi-instance access and install its driver before building. See [Database compatibility](../developing-apps/compatibility.md) for connection settings.
 - **Redis**: Provide accessible Redis services for the Jobs, Queue, Caching, Realtime, and Concurrency capabilities that need to be shared. Jobs and Queue require persistence and `maxmemory-policy noeviction` to prevent pending tasks from disappearing through memory eviction. Configure capacity, backups, and access controls as well; checking that the port is reachable is not enough.
 - **File storage**: A file uploaded through instance A must be downloadable through instance B. Choose object storage or a shared filesystem supported by the application, and check which storage disk each existing file collection selects. Changing the default storage does not move existing files or change all explicitly selected disks. Attachments, import files, and other files needed by background tasks must not remain only on the instance that received the request.
 - **Keys and public URL**: All instances retain the same `secrets.keys` and existing authentication and session keys, and use the same `APP_PUBLIC_ORIGIN` and `APP_BASE_PATH`. Do not initialize a separate configuration for each instance. Listening ports can differ, but the public URL remains the same, such as `https://apps.example.com/main/`.
@@ -96,14 +97,7 @@ Change dependencies and plugin registrations in the **application's source direc
 | Concurrency | `@nocobase/app-plugin-concurrency-redis` |
 | Automatic Snowflake worker allocation | `@nocobase/app-plugin-snowflake-worker` |
 
-Configure the commercial package registry with the read token of an account authorized to download the required packages, replacing `<read-token>`. The commands write to your user-level `~/.npmrc`, which both npm and pnpm read. Skip this step if valid credentials are already configured:
-
-```bash
-npm config set "@nocobase:registry" "https://pkg-v3.nocobase.com/"
-npm config set "//pkg-v3.nocobase.com/:_authToken" "<read-token>"
-```
-
-Register the required plugins one by one based on the review. For Jobs, first check the available versions and their dependency requirements, then replace `<compatible-version>` with a version that matches the application:
+First follow [Configure the commercial package registry](../developing-apps/overview.md#configure-the-commercial-package-registry) to set up download access (skip if valid credentials are already configured), then register the required plugins one by one based on the review. For Jobs, first check the available versions and their dependency requirements, then replace `<compatible-version>` with a version that matches the application:
 
 ```bash
 pnpm view @nocobase/app-plugin-jobs-redis versions --json

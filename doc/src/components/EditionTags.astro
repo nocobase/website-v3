@@ -1,0 +1,23 @@
+---
+import type { DocsUi } from '../lib/define-config.ts';
+
+type CommercialEdition = 'professional' | 'enterprise';
+interface Props {
+  minimum: CommercialEdition;
+  labels: NonNullable<DocsUi['editions']>;
+  pricingUrl: string;
+}
+const { minimum, labels, pricingUrl } = Astro.props;
+const info = labels[minimum];
+---
+<div class="edition-banner" data-pagefind-ignore>
+  <span class:list={['edition-badge', minimum]} title={info.title} aria-label={info.title}>{info.badge}</span>
+  <a class="edition-link" href={pricingUrl} target="_blank" rel="noopener">{labels.pricing} <span aria-hidden="true">↗</span></a>
+</div>
+
+<style>
+  .edition-banner { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 10px 0 18px; font-size: 13px; line-height: 1.4; }
+  .edition-link { color: var(--muted); font-size: 12.5px; text-decoration: none; }
+  .edition-link:hover { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+  .edition-link:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 4px; }
+</style>

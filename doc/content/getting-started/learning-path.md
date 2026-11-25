@@ -44,6 +44,6 @@ Use this route for sustained practice across a whole project. If you have comple
 
 ## Deploy, maintain, and look up details
 
-Before sharing an application with users, read [Choose a deployment method](../core/deployment/choose-a-deployment-method.md), then [Publish application releases](../core/deployment/publish-app-release.md). For databases, consult [Compatibility](../core/reference/compatibility.md) and [Database configuration](../core/reference/database-configuration.md).
+Before sharing an application with users, read [Choose a deployment method](../core/deployment/choose-a-deployment-method.md), then [Publish application releases](../core/deployment/publish-app-release.md). For databases, consult [Compatibility](../core/developing-apps/compatibility.md) and [Database configuration](../core/developing-apps/database-configuration.md).
 
 Look up Core [CLI commands](../core/reference/cli.md) and [Configuration](../core/reference/configuration.md), or Studio [CLI commands](../studio/reference/cli.md), [Runner commands](../studio/reference/runner.md), and [Configuration](../studio/reference/config.md) when needed.

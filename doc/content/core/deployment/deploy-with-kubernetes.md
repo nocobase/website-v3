@@ -1,6 +1,7 @@
 ---
 title: Deploy with Kubernetes
 description: Deploy an application on Kubernetes with an Agent or manually, run database updates, verify and release changes, and package deployment manifests as a Helm chart.
+minimumEdition: enterprise
 ---
 
 ## Prerequisites

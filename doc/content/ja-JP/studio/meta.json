@@ -152,6 +152,7 @@
     {
       "type": "group",
       "title": "品質管理",
+      "minimumEdition": "enterprise",
       "pages": [
         {
           "type": "page",
@@ -167,15 +168,7 @@
         },
         {
           "type": "page",
-          "path": "quality/scenarios"
-        },
-        {
-          "type": "page",
-          "path": "quality/follow-ups"
-        },
-        {
-          "type": "page",
-          "path": "quality/metrics"
+          "path": "quality/standards"
         },
         {
           "type": "page",

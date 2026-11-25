@@ -198,6 +198,57 @@ test('metaDescription overrides the summary with description as fallback, and bo
   expect(text).toContain('metaDescription must be a string');
 });
 
+test('minimumEdition is validated, inherited from groups/folders, attached to menu nodes, and kept identical across languages', () => {
+  const valid = both({
+    ...BASE,
+    'core/index.md': { title: 'Core', front: 'minimumEdition: professional' },
+    'core/g1.md': 'G1',
+    'core/f/meta.json': { title: 'Folder', minimumEdition: 'professional', pages: [page('f1'), page('f2')] },
+    'core/f/f1.md': 'F1',
+    'core/f/f2.md': { title: 'F2', front: 'minimumEdition: enterprise' },
+    'core/meta.json': {
+      pages: [
+        page('index'),
+        { type: 'group', title: 'Enterprise group', minimumEdition: 'enterprise', pages: [page('g1')] },
+        { type: 'folder', path: 'f' },
+      ],
+    },
+  });
+  const en = load(valid).languages.get('en');
+  expect(en.pages.get('core/index').minimumEdition).toBe('professional');
+  expect(en.pages.get('core/g1').minimumEdition).toBe('enterprise');
+  expect(en.pages.get('core/f/f1').minimumEdition).toBe('professional');
+  expect(en.pages.get('core/f/f2').minimumEdition).toBe('enterprise');
+  expect(en.sections.get('core').tree[0]).toMatchObject({ key: 'core/index', minimumEdition: 'professional', explicitEdition: true });
+  expect(en.sections.get('core').tree[1]).toMatchObject({ type: 'group', minimumEdition: 'enterprise' });
+  expect(en.sections.get('core').tree[1].children[0]).toMatchObject({ key: 'core/g1', minimumEdition: 'enterprise' });
+  expect(en.sections.get('core').tree[1].children[0].explicitEdition).toBeUndefined();
+  expect(en.sections.get('core').tree[2]).toMatchObject({ type: 'folder', minimumEdition: 'professional' });
+  expect(en.sections.get('core').tree[2].children[1]).toMatchObject({ key: 'core/f/f2', minimumEdition: 'enterprise', explicitEdition: true });
+
+  const invalid = both({
+    ...BASE,
+    'core/index.md': { title: 'Core', front: 'minimumEdition: ultimate' },
+    'core/g1.md': 'G1',
+    'core/meta.json': { pages: [page('index'), { type: 'group', title: 'Bad', minimumEdition: 'vip', pages: [page('g1')] }] },
+  });
+  const invalidText = problemsOf(() => load(invalid));
+  expect(invalidText).toContain('core/index.md: minimumEdition must be one of community, professional, enterprise');
+  expect(invalidText).toContain('minimumEdition must be one of community, professional, enterprise');
+
+  const mismatch = both(
+    { ...BASE, 'core/index.md': { title: 'Core', front: 'minimumEdition: professional' } },
+    { zh: { 'core/index.md': { title: 'Core' } } },
+  );
+  expect(problemsOf(() => load(mismatch))).toContain('zh/core/index.md: minimumEdition (none) differs from core/index.md (professional)');
+
+  const groupMismatch = both(
+    { ...BASE, 'core/g1.md': 'G1', 'core/meta.json': { pages: [page('index'), { type: 'group', title: 'G', minimumEdition: 'enterprise', pages: [page('g1')] }] } },
+    { zh: { 'core/meta.json': { pages: [page('index'), { type: 'group', title: 'G', pages: [page('g1')] }] } } },
+  );
+  expect(problemsOf(() => load(groupMismatch))).toContain('group (enterprise) versus group');
+});
+
 test('diffSkeleton and listPageKeys', () => {
   expect(diffSkeleton([{ type: 'page', key: 'a' }], [{ type: 'page', key: 'a' }])).toBeNull();
   expect(diffSkeleton([{ type: 'page', key: 'a' }], [])).toContain('nothing');

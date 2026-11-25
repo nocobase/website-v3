@@ -44,6 +44,6 @@ metaDescription: "ドキュメントの全体像と、アプリ、Studio、プ�
 
 ## デプロイ、保守、詳細の参照
 
-利用者にアプリを渡す前に[デプロイ方法の選択](../core/deployment/choose-a-deployment-method.md)、更新時には[アプリのリリース](../core/deployment/publish-app-release.md)を読みます。データベースは[互換性](../core/reference/compatibility.md)と[データベース設定](../core/reference/database-configuration.md)を参照してください。
+利用者にアプリを渡す前に[デプロイ方法の選択](../core/deployment/choose-a-deployment-method.md)、更新時には[アプリのリリース](../core/deployment/publish-app-release.md)を読みます。データベースは[互換性](../core/developing-apps/compatibility.md)と[データベース設定](../core/developing-apps/database-configuration.md)を参照してください。
 
 必要に応じて Core の [CLI](../core/reference/cli.md)と[設定](../core/reference/configuration.md)、Studio の [CLI](../studio/reference/cli.md)、[実行機のコマンド](../studio/reference/runner.md)、[設定](../studio/reference/config.md)を調べます。

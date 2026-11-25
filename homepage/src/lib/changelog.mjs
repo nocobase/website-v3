@@ -1,8 +1,11 @@
 // 更新日志：content/changelog/ 里每个条目一组 Markdown 文件（<id>.md 英文，<id>.zh-CN.md、<id>.ja-JP.md 翻译，YAML front matter 加正文），生成分页的时间线 changelog、changelog/page/<n>，每页 PAGE_SIZE 条，每条直接显示完整的更新说明，没有单独的详情页。
 // 条目由 nocobase 仓库的发版流程自动提交（格式见 content/changelog/README.md）：
-// - 发版条目（type: release）：<channel>-<version>.md，front matter 是标题、渠道（beta / stable）、日期、GitHub Release 地址，正文是这个版本在 CHANGELOG.md（翻译文件对应 CHANGELOG.zh-CN.md、CHANGELOG.ja-JP.md）里的那一节。
+// - NocoBase 发版条目（type: release，product 不写或写 nocobase）：<channel>-<version>.md，front matter 是标题、渠道（beta / stable）、日期、GitHub Release 地址，正文是这个版本在 CHANGELOG.md（翻译文件对应 CHANGELOG.zh-CN.md、CHANGELOG.ja-JP.md）里的那一节。
+// - Studio 发版条目（type: release，product: studio）：studio-<version>.md，由 nocobase 仓库的 v3-studio-release.yml 提交。Studio 仓库是私有的，没有 url，卡片不显示「在 GitHub 查看」，正文里的相对链接不补全（显示成文字）。
 // - 公告条目（type: announcement）：大版本发布时手写的，只有标题和摘要（各语言文件各写各的），整张卡片链接到博客文章（href 写源文件名 blog/<slug>.html，或 https 地址）。
-// 排序：date 倒序，同一天按版本号的 <n> 倒序，再按 publishedAt 倒序；同一天的公告排在发版条目前面。
+// 两个产品的条目混在同一条时间线里。排序：date 倒序；同一天公告在前；再按 publishedAt 倒序；再按版本号的 <n> 倒序（只比 NocoBase 条目）；最后按 id。
+// 同一页里同一天的条目合成一组（.cl-day），日期只在组的左边显示一次（滚动时整组都吸顶），每张卡片仍然有自己的圆点和 id。
+// 正文里的 {{edition:professional}}、{{edition:enterprise}} 显示成版本标签（和文档站的 .edition-badge 一样），按页面语言显示文字。
 // 页面有英文、简体中文和日文（ja-JP）；某种语言的更新说明缺了显示英文。其他语言在语言菜单里链接到英文版，繁体中文链接到简体中文版。
 // 每条有 id（英文文件名去掉 .md），卡片标题链接到第一页的 #<id>；条目翻到后面的页以后，第一页的脚本按 id 跳到它所在的页，已经发出去的链接不会失效。
 // 预览：环境变量 CHANGELOG_DIR 换成另一个目录（比如示例数据），不要把假的条目提交进 content/changelog/。
@@ -22,6 +25,7 @@ const LANGS = ['en', 'zh', 'ja'];
 const NOTE_KEY = { en: 'en', zh: 'zh-CN', ja: 'ja-JP' };
 const V2 = { en: 'https://nocode.nocobase.com/en/blog/timeline', zh: 'https://nocode.nocobase.com/cn/blog/timeline', ja: 'https://nocode.nocobase.com/ja/blog/timeline' };
 const GITHUB = 'https://github.com/nocobase/nocobase';
+const PRODUCTS = ['nocobase', 'studio'];
 
 // 界面文字：[英文, 简体中文, 日文]
 const UI = {
@@ -44,6 +48,12 @@ const UI = {
   desc: ['Learn about the latest features, improvements, and bug fixes in NocoBase 3.', '了解 NocoBase 3 最新的功能、改进和问题修复。', 'NocoBase 3 の最新の機能、改善、バグ修正をご確認ください。'],
 };
 const ui = (k, lang) => UI[k][LANGS.indexOf(lang)];
+
+// 版本标签：文字和提示与文档站一致（doc/docs.config.ts 的 editions），[英文, 简体中文, 日文]
+const EDITIONS = {
+  professional: { badge: ['Professional+', '专业版+', 'プロフェッショナル版+'], title: ['Available in Professional and Enterprise editions', '适用于专业版和企业版', 'プロフェッショナル版およびエンタープライズ版で利用可能'] },
+  enterprise: { badge: ['Enterprise', '企业版', 'エンタープライズ版'], title: ['Available in Enterprise edition', '仅适用于企业版', 'エンタープライズ版で利用可能'] },
+};
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 export function fmtDate(d, lang) {
@@ -94,6 +104,8 @@ export function readEntries(dir = changelogDir()) {
     if (!/^[a-z0-9][a-z0-9.-]*$/i.test(id)) throw bad('文件名只能有字母、数字、点和连字符');
     const e = { ...en.data, id };
     if (!DATE.test(e.date || '')) throw bad('date 要写成 YYYY-MM-DD');
+    e.product ??= 'nocobase';
+    if (!PRODUCTS.includes(e.product)) throw bad('product 只能是 nocobase 或 studio（不写就是 nocobase）');
     if (e.type === 'release') {
       if (!['beta', 'stable'].includes(e.channel)) throw bad('channel 只能是 beta 或 stable');
       if (!e.title || !e.version) throw bad('发版条目要有 title 和 version');
@@ -109,11 +121,23 @@ export function readEntries(dir = changelogDir()) {
   });
 }
 
-// 版本号 <date>.<n> 里的 n；公告没有版本号，同一天排在发版条目前面
-const seq = e => (e.type === 'announcement' ? Infinity : Number(/\.(\d+)$/.exec(e.version)?.[1] ?? 0));
+// 同一天公告排在发版条目前面
+const ann = e => (e.type === 'announcement' ? 1 : 0);
+// NocoBase 版本号 <date>.<n> 里的 n；Studio 的版本号（1.0.0-beta.90）不参与，记作 0，所以 publishedAt 也相同时 NocoBase 条目在前（排序键是固定的元组，比较结果前后一致）
+const seq = e => (e.type === 'release' && e.product !== 'studio' ? Number(/\.(\d+)$/.exec(e.version)?.[1] ?? 0) : 0);
 const cmp = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 export function sortEntries(entries) {
-  return [...entries].sort((a, b) => cmp(b.date, a.date) || seq(b) - seq(a) || cmp(b.publishedAt || '', a.publishedAt || '') || cmp(a.id, b.id));
+  return [...entries].sort((a, b) => cmp(b.date, a.date) || ann(b) - ann(a) || cmp(b.publishedAt || '', a.publishedAt || '') || seq(b) - seq(a) || cmp(a.id, b.id));
+}
+
+// 把一页里排好序的条目按 date 分组（相邻且同一天的合成一组）：[{ date, entries }]
+export function groupByDay(entries) {
+  const days = [];
+  for (const e of entries) {
+    if (days.at(-1)?.date === e.date) days.at(-1).entries.push(e);
+    else days.push({ date: e.date, entries: [e] });
+  }
+  return days;
 }
 
 // 分成每页 size 条；没有条目时也有一页（空状态）
@@ -133,7 +157,7 @@ export const hasChangelog = (dir = changelogDir()) => readEntries(dir).length > 
 // ======================= Markdown =======================
 
 // 更新说明来自 CHANGELOG.md，构建时用 marked 转成 HTML。原样的 HTML 一律转义成文字（不会带进脚本或样式），
-// 链接只留 http(s) 和 mailto，相对地址按 GitHub 上这个 tag 的仓库文件补全。
+// 链接只留 http(s) 和 mailto，相对地址按 GitHub 上这个 tag 的仓库文件补全（Studio 仓库是私有的，相对地址不补全，只显示文字）。
 // 时间线上不显示 PR 作者：每行末尾的「by @用户」（含 by [@用户](…)、多个作者用逗号或 and 连起来的）去掉。发版流程生成的数据本来就不带，这里给旧数据和手写的数据兜底。
 // 作者可能是 GitHub App（@app/nocobase-studio）或机器人（@renovate[bot]）
 const USER = String.raw`@[A-Za-z0-9-]+(?:\/[A-Za-z0-9-]+)?(?:\[bot\])?`;
@@ -148,9 +172,17 @@ const safeUrl = (href, base) => {
     return null;
   }
 };
-export function renderNotes(md, tag = '') {
-  const base = `${GITHUB}/blob/${tag || 'main'}/`;
+// 版本标记：只替换这两个完全一致的字符串，其他 {{…}} 原样当文字。只在普通文字里替换（marked 的 text 已经转义过），代码、链接地址、属性里的不动
+const EDITION_MARK = /\{\{edition:(professional|enterprise)\}\}/g;
+export function editionBadge(edition, lang = 'en') {
+  const i = LANGS.indexOf(lang);
+  const { badge, title } = EDITIONS[edition];
+  return `<span class="edition-badge ${edition}" title="${escapeAttr(title[i])}" aria-label="${escapeAttr(title[i])}">${escapeText(badge[i])}</span>`;
+}
+export function renderNotes(md, tag = '', { lang = 'en', product = 'nocobase' } = {}) {
+  const base = product === 'studio' ? undefined : `${GITHUB}/blob/${tag || 'main'}/`;
   const r = new marked.Renderer();
+  r.text = t => t.replace(EDITION_MARK, (_, ed) => editionBadge(ed, lang));
   r.html = html => escapeText(html);
   r.link = (href, title, text) => {
     const u = safeUrl(href, base);
@@ -173,9 +205,8 @@ function releaseCard(e, lang) {
   const key = NOTE_KEY[lang];
   const own = typeof e.notes[key] === 'string' && e.notes[key].trim();
   const md = own ? e.notes[key] : e.notes.en;
-  const notes = renderNotes(md, e.tag);
+  const notes = renderNotes(md, e.tag, { lang, product: e.product });
   return `<article class="cl-item" id="${e.id}">
-  <div class="cl-date"><time datetime="${e.date}">${fmtDate(e.date, lang)}</time></div>
   <div class="cl-card">
     <header class="cl-hd"><h2><a href="${pageSrc(1)}#${e.id}" title="${escapeAttr(ui('permalink', lang))}">${escapeText(e.title)}</a></h2><span class="pill ${e.channel === 'stable' ? 'pass' : 'beta'}">${ui(e.channel, lang)}</span></header>
     <div class="cl-notes prose"${own ? '' : ' lang="en"'}>${notes}</div>
@@ -187,7 +218,6 @@ function releaseCard(e, lang) {
 function announcementCard(e, lang) {
   const ext = /^https:/.test(e.href);
   return `<article class="cl-item cl-ann" id="${e.id}">
-  <div class="cl-date"><time datetime="${e.date}">${fmtDate(e.date, lang)}</time></div>
   <a class="cl-card" href="${escapeAttr(e.href)}"${ext ? ' target="_blank" rel="noopener"' : ''}>
     <span class="cl-kicker"><i data-lucide="sparkles"></i>${ui('major', lang)}</span>
     <h2>${escapeText(text(e.title, lang))}</h2>
@@ -223,11 +253,13 @@ const STYLE = `<style>
 .cl-v2 a { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); }
 .cl-v2 svg.lucide { width: 14px; height: 14px; }
 .cl-empty { padding: 48px 0; color: var(--muted); font-size: 16px; }
-/* 时间线：左边日期，中间竖线和圆点，右边卡片 */
+/* 时间线：一天一组，左边日期（整组吸顶），中间竖线，右边这一天的卡片，每张卡片一个圆点 */
 .cl-tl { position: relative; display: grid; gap: 28px; }
 .cl-tl::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: 180px; width: 2px; background: var(--rule); }
-.cl-item { display: grid; grid-template-columns: 156px minmax(0, 1fr); gap: 48px; position: relative; scroll-margin-top: 90px; }
-.cl-item::before { content: ""; position: absolute; left: 175px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px var(--paper); }
+.cl-day { display: grid; grid-template-columns: 156px minmax(0, 1fr); gap: 48px; }
+.cl-items { display: grid; gap: 28px; min-width: 0; }
+.cl-item { position: relative; scroll-margin-top: 90px; }
+.cl-item::before { content: ""; position: absolute; left: -29px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px var(--paper); }
 .cl-date { position: sticky; top: 96px; align-self: start; z-index: 1; }
 .cl-date time { display: block; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); font-size: 14.5px; font-weight: 500; color: var(--ink-2); text-align: center; white-space: nowrap; }
 .cl-card { display: block; min-width: 0; padding: 26px 30px 24px; border: 1px solid var(--rule); border-radius: 14px; background: var(--card); }
@@ -247,9 +279,13 @@ const STYLE = `<style>
 .cl-gh { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 14px; }
 .cl-gh a { display: inline-flex; align-items: center; gap: 6px; color: var(--brand); }
 .cl-gh svg.lucide { width: 15px; height: 15px; }
+/* 版本标签：和文档站的 .edition-badge 一样 */
+.edition-badge { display: inline-flex; align-items: center; padding: 2px 8px; border: 0; border-radius: 6px; font-size: 12px; line-height: 1.5; font-weight: 500; white-space: nowrap; }
+.edition-badge.professional { background: var(--brand-tint); color: var(--brand); }
+.edition-badge.enterprise { background: var(--agent-tint); color: var(--agent-ink); }
 /* 大版本公告：深色卡片，整张可点 */
-.cl-ann::before { width: 18px; height: 18px; left: 172px; top: 19px; background: var(--card); border: 5px solid var(--brand); box-sizing: border-box; }
-.cl-ann .cl-date time { border-color: transparent; background: var(--brand-tint); color: var(--brand); font-weight: 600; }
+.cl-ann::before { width: 18px; height: 18px; left: -32px; top: 19px; background: var(--card); border: 5px solid var(--brand); box-sizing: border-box; }
+.cl-day-ann .cl-date time { border-color: transparent; background: var(--brand-tint); color: var(--brand); font-weight: 600; }
 .cl-ann .cl-card { padding: 30px 32px; border: 0; background: var(--deep); color: var(--on-deep); transition: background 0.15s; }
 .cl-ann .cl-card:hover { background: var(--deep-2); }
 .cl-kicker { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--deep-accent); text-transform: uppercase; }
@@ -272,12 +308,13 @@ const STYLE = `<style>
 .cl-pager svg.lucide { width: 15px; height: 15px; }
 @media (max-width: 760px) {
   .cl-tl::before { left: 5px; }
-  .cl-item { grid-template-columns: minmax(0, 1fr); gap: 10px; padding-left: 28px; }
-  .cl-item::before { left: 0; top: 9px; }
-  .cl-ann::before { left: -3px; top: 6px; }
+  .cl-day { grid-template-columns: minmax(0, 1fr); gap: 10px; padding-left: 28px; }
+  .cl-items { gap: 16px; }
+  .cl-item::before { left: -28px; top: 24px; }
+  .cl-ann::before { left: -31px; top: 21px; }
   .cl-date { position: static; }
   .cl-date time { display: inline-block; padding: 0; border: 0; background: none; text-align: left; }
-  .cl-ann .cl-date time { padding: 2px 10px; }
+  .cl-day-ann .cl-date time { padding: 2px 10px; }
   .cl-card { padding: 20px 18px; }
   .cl-ann .cl-card { padding: 22px 20px; }
   .cl-hd h2 { font-size: 18px; }
@@ -286,8 +323,19 @@ const STYLE = `<style>
 }
 </style>`;
 
+// 一天一组：左边一个日期（整组吸顶），右边是这一天的卡片；当天有公告（公告排在最前）时日期高亮
+function dayGroup({ date, entries }, lang) {
+  const cards = entries.map(e => (e.type === 'announcement' ? announcementCard(e, lang) : releaseCard(e, lang))).join('\n');
+  return `<div class="cl-day${entries[0].type === 'announcement' ? ' cl-day-ann' : ''}">
+<div class="cl-date"><time datetime="${date}">${fmtDate(date, lang)}</time></div>
+<div class="cl-items">
+${cards}
+</div>
+</div>`;
+}
+
 function render(entries, n, total, jump, lang) {
-  const items = entries.map(e => (e.type === 'announcement' ? announcementCard(e, lang) : releaseCard(e, lang))).join('\n');
+  const items = groupByDay(entries).map(d => dayGroup(d, lang)).join('\n');
   // 第一页：#<id> 不在这一页时，跳到条目所在的页（条目随新版本往后翻页，已经发出去的链接仍然有效）
   const script = jump && Object.keys(jump).length ? `
 <script>

@@ -1,6 +1,7 @@
 ---
 title: Kubernetes でデプロイする
 description: Agent または手動操作で Kubernetes にアプリをデプロイし、データベース更新、検証、リリースを行い、デプロイ用マニフェストを Helm Chart にまとめる方法。
+minimumEdition: enterprise
 ---
 
 ## デプロイ前の準備

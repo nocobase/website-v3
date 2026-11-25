@@ -18,6 +18,6 @@ Core 提供应用运行时、基础库和插件。按当前开发或维护任务
 
 - [选择部署方式](deployment/choose-a-deployment-method.md)
 - [配置项参考](reference/configuration.md)
-- [使用不同数据库创建应用](reference/database-configuration.md)
+- [使用不同数据库创建应用](developing-apps/database-configuration.md)
 - [命令行参考](reference/cli.md)
-- [数据库支持与版本兼容](reference/compatibility.md)
+- [数据库支持与版本兼容](developing-apps/compatibility.md)

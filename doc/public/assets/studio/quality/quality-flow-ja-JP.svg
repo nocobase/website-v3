@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="960" viewBox="0 0 1800 960" font-family="'PingFang SC','Microsoft YaHei','Noto Sans CJK SC','WenQuanYi Zen Hei',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f7ff" />
+      <stop offset="1" stop-color="#eaf1ff" />
+    </linearGradient>
+    <linearGradient id="engine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b6cf6" />
+      <stop offset="1" stop-color="#2447c9" />
+    </linearGradient>
+    <linearGradient id="loop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#13a36e" />
+      <stop offset="1" stop-color="#3b6cf6" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1d3a8a" flood-opacity="0.12" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7d93c9" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#13a36e" />
+    </marker>
+  </defs>
+
+  <rect width="1800" height="960" fill="url(#bg)" />
+
+  
+  <text x="900" y="62" text-anchor="middle" font-size="36" font-weight="700" fill="#14213d">NocoBase Studio 品質テスト：開始から修正まで</text>
+  <text x="900" y="100" text-anchor="middle" font-size="19" fill="#5a6785">四つの実行方法と共通エンジン。五つの評価項目を並列実行し、結果をレポートにまとめ、問題をタスク化</text>
+
+  
+  <g font-size="18" font-weight="700" fill="#2447c9">
+    <text x="190" y="152" text-anchor="middle">① テストの種類</text>
+    <text x="530" y="152" text-anchor="middle">② 共通のテストエンジン</text>
+    <text x="890" y="152" text-anchor="middle">③ テストマシンで並列実行</text>
+    <text x="1250" y="152" text-anchor="middle">④ レポートを自動生成</text>
+    <text x="1600" y="152" text-anchor="middle">⑤ 問題への対応</text>
+  </g>
+
+  
+  <g fill="none" stroke="#7d93c9" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M330 225 C370 225 370 420 406 420" />
+    <path d="M330 355 C370 355 370 420 406 420" />
+    <path d="M330 485 C370 485 370 420 406 420" />
+    <path d="M330 615 C370 615 370 420 406 420" />
+  </g>
+  
+  <g fill="none" stroke="#7d93c9" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M650 420 C690 420 690 213 726 213" />
+    <path d="M650 420 C690 420 690 313 726 313" />
+    <path d="M650 420 C690 420 690 413 726 413" />
+    <path d="M650 420 C690 420 690 513 726 513" />
+    <path d="M650 420 C690 420 690 613 726 613" />
+  </g>
+  
+  <g fill="none" stroke="#7d93c9" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M1050 213 C1090 213 1090 420 1126 420" />
+    <path d="M1050 313 C1090 313 1090 420 1126 420" />
+    <path d="M1050 413 C1090 413 1090 420 1126 420" />
+    <path d="M1050 513 C1090 513 1090 420 1126 420" />
+    <path d="M1050 613 C1090 613 1090 420 1126 420" />
+  </g>
+  
+  <g fill="none" stroke="#7d93c9" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M1370 420 C1410 420 1410 235 1446 235" />
+    <path d="M1370 420 C1410 420 1410 430 1446 430" />
+  </g>
+
+  
+  <g filter="url(#shadow)">
+    <rect x="50" y="170" width="280" height="110" rx="16" fill="#fff" />
+    <rect x="50" y="300" width="280" height="110" rx="16" fill="#fff" />
+    <rect x="50" y="430" width="280" height="110" rx="16" fill="#fff" />
+    <rect x="50" y="560" width="280" height="110" rx="16" fill="#fff" />
+  </g>
+  <g>
+    <circle cx="92" cy="212" r="20" fill="#e6edff" /><text x="92" y="219" text-anchor="middle" font-size="18" fill="#2447c9">日</text>
+    <text x="124" y="208" font-size="21" font-weight="700" fill="#14213d">日次テスト</text>
+    <text x="124" y="236" font-size="15" fill="#5a6785">新たに完了した業務タスク</text>
+    <text x="124" y="260" font-size="14" fill="#3b6cf6">毎日の定時に自動実行</text>
+
+    <circle cx="92" cy="342" r="20" fill="#e6edff" /><text x="92" y="349" text-anchor="middle" font-size="18" fill="#2447c9">発</text>
+    <text x="124" y="338" font-size="21" font-weight="700" fill="#14213d">リリーステスト</text>
+    <text x="124" y="366" font-size="15" fill="#5a6785">リリース待ちのタスク</text>
+    <text x="124" y="390" font-size="14" fill="#3b6cf6">設定した件数で自動実行</text>
+
+    <circle cx="92" cy="472" r="20" fill="#e6edff" /><text x="92" y="479" text-anchor="middle" font-size="18" fill="#2447c9">全</text>
+    <text x="124" y="468" font-size="21" font-weight="700" fill="#14213d">プロジェクトテスト</text>
+    <text x="124" y="496" font-size="15" fill="#5a6785">全体の機能とコアシナリオ</text>
+    <text x="124" y="520" font-size="14" fill="#3b6cf6">毎週または毎月に実行</text>
+
+    <circle cx="92" cy="602" r="20" fill="#e6edff" /><text x="92" y="609" text-anchor="middle" font-size="18" fill="#2447c9">選</text>
+    <text x="124" y="598" font-size="21" font-weight="700" fill="#14213d">カスタムテスト</text>
+    <text x="124" y="626" font-size="15" fill="#5a6785">タスクと評価項目を選択</text>
+    <text x="124" y="650" font-size="14" fill="#3b6cf6">必要なときに開始</text>
+  </g>
+
+  
+  <g filter="url(#shadow)">
+    <rect x="410" y="250" width="240" height="340" rx="22" fill="url(#engine)" />
+  </g>
+  <circle cx="530" cy="315" r="34" fill="#ffffff" fill-opacity="0.18" />
+  <g stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round">
+    <circle cx="530" cy="315" r="13" />
+    <path d="M530 290v8M530 332v8M505 315h8M547 315h8M512 297l6 6M542 327l6 6M512 333l6-6M542 303l6-6" />
+  </g>
+  <text x="530" y="380" text-anchor="middle" font-size="24" font-weight="700" fill="#fff" textLength="215" lengthAdjust="spacingAndGlyphs">品質テストエンジン</text>
+  <g font-size="16" fill="#e6edff" text-anchor="middle">
+    <text x="530" y="420">テスト範囲を確定</text>
+    <text x="530" y="450">対象バージョンをビルド</text>
+    <text x="530" y="480">環境とデータを準備</text>
+    <text x="530" y="510">評価項目ごとに分担</text>
+  </g>
+  <rect x="440" y="535" width="180" height="32" rx="16" fill="#ffffff" fill-opacity="0.18" />
+  <text x="530" y="557" text-anchor="middle" font-size="15" fill="#fff">標準の基準・調整可能</text>
+
+  
+  <g filter="url(#shadow)">
+    <rect x="730" y="170" width="320" height="86" rx="14" fill="#fff" />
+    <rect x="730" y="270" width="320" height="86" rx="14" fill="#fff" />
+    <rect x="730" y="370" width="320" height="86" rx="14" fill="#fff" />
+    <rect x="730" y="470" width="320" height="86" rx="14" fill="#fff" />
+    <rect x="730" y="570" width="320" height="86" rx="14" fill="#fff" />
+  </g>
+  <g>
+    <rect x="730" y="170" width="8" height="86" rx="4" fill="#3b6cf6" />
+    <text x="758" y="204" font-size="20" font-weight="700" fill="#14213d">機能</text>
+    <text x="758" y="234" font-size="14" fill="#5a6785">Playwright・Vitest・ブラウザー操作</text>
+
+    <rect x="730" y="270" width="8" height="86" rx="4" fill="#8b5cf6" />
+    <text x="758" y="304" font-size="20" font-weight="700" fill="#14213d">権限</text>
+    <text x="758" y="334" font-size="14" fill="#5a6785">権限エンジン・複数アカウントで対照</text>
+
+    <rect x="730" y="370" width="8" height="86" rx="4" fill="#ef4444" />
+    <text x="758" y="404" font-size="20" font-weight="700" fill="#14213d">セキュリティ</text>
+    <text x="758" y="434" font-size="14" fill="#5a6785">OWASP ZAP・gitleaks・pnpm audit</text>
+
+    <rect x="730" y="470" width="8" height="86" rx="4" fill="#f59e0b" />
+    <text x="758" y="504" font-size="20" font-weight="700" fill="#14213d">性能</text>
+    <text x="758" y="534" font-size="14" fill="#5a6785">Lighthouse・API 測定・SQL 分析</text>
+
+    <rect x="730" y="570" width="8" height="86" rx="4" fill="#13a36e" />
+    <text x="758" y="604" font-size="20" font-weight="700" fill="#14213d">コード品質</text>
+    <text x="758" y="634" font-size="14" fill="#5a6785">jscpd・knip・sonarjs・カバレッジ</text>
+  </g>
+  <g font-size="13" fill="#2447c9">
+    <rect x="958" y="184" width="78" height="26" rx="13" fill="#e6edff" /><text x="997" y="202" text-anchor="middle" textLength="65" lengthAdjust="spacingAndGlyphs">マシン 1</text>
+    <rect x="958" y="284" width="78" height="26" rx="13" fill="#e6edff" /><text x="997" y="302" text-anchor="middle" textLength="65" lengthAdjust="spacingAndGlyphs">マシン 2</text>
+    <rect x="958" y="384" width="78" height="26" rx="13" fill="#e6edff" /><text x="997" y="402" text-anchor="middle" textLength="65" lengthAdjust="spacingAndGlyphs">マシン 3</text>
+    <rect x="958" y="484" width="78" height="26" rx="13" fill="#e6edff" /><text x="997" y="502" text-anchor="middle" textLength="65" lengthAdjust="spacingAndGlyphs">マシン 4</text>
+    <rect x="958" y="584" width="78" height="26" rx="13" fill="#e6edff" /><text x="997" y="602" text-anchor="middle" textLength="65" lengthAdjust="spacingAndGlyphs">マシン 5</text>
+  </g>
+
+  
+  <g filter="url(#shadow)">
+    <rect x="1130" y="250" width="240" height="340" rx="22" fill="#fff" />
+  </g>
+  <text x="1250" y="292" text-anchor="middle" font-size="22" font-weight="700" fill="#14213d" textLength="215" lengthAdjust="spacingAndGlyphs">Studio 品質レポート</text>
+  <text x="1250" y="318" text-anchor="middle" font-size="14" fill="#5a6785">結果を自動収集・判定</text>
+  <g font-size="16" fill="#14213d">
+    <text x="1158" y="360">機能</text><rect x="1254" y="343" width="92" height="24" rx="12" fill="#dcfce7" /><text x="1300" y="360" text-anchor="middle" font-size="13" fill="#15803d">合格</text>
+    <text x="1158" y="396">権限</text><rect x="1254" y="379" width="92" height="24" rx="12" fill="#dcfce7" /><text x="1300" y="396" text-anchor="middle" font-size="13" fill="#15803d">合格</text>
+    <text x="1158" y="432" textLength="90" lengthAdjust="spacingAndGlyphs">セキュリティ</text><rect x="1254" y="415" width="92" height="24" rx="12" fill="#fee2e2" /><text x="1300" y="432" text-anchor="middle" font-size="13" fill="#b91c1c">問題あり</text>
+    <text x="1158" y="468">性能</text><rect x="1254" y="451" width="92" height="24" rx="12" fill="#fef3c7" /><text x="1300" y="468" text-anchor="middle" font-size="13" fill="#b45309">一部未検証</text>
+    <text x="1158" y="504">コード品質</text><rect x="1254" y="487" width="92" height="24" rx="12" fill="#dcfce7" /><text x="1300" y="504" text-anchor="middle" font-size="13" fill="#15803d">合格</text>
+  </g>
+  <line x1="1158" y1="528" x2="1342" y2="528" stroke="#e3e8f5" />
+  <text x="1250" y="560" text-anchor="middle" font-size="15" fill="#2447c9">項目別レポートと納品レポート</text>
+
+  
+  <g filter="url(#shadow)">
+    <rect x="1450" y="170" width="300" height="130" rx="16" fill="#fff" />
+    <rect x="1450" y="330" width="300" height="200" rx="16" fill="#fff" />
+  </g>
+  <rect x="1470" y="188" width="70" height="26" rx="13" fill="#fef3c7" /><text x="1505" y="206" text-anchor="middle" font-size="14" fill="#b45309">要確認</text>
+  <text x="1470" y="242" font-size="18" font-weight="700" fill="#14213d">人が判断</text>
+  <text x="1470" y="270" font-size="14" fill="#5a6785">不明確な業務ルールを決定</text>
+  <text x="1470" y="290" font-size="14" fill="#5a6785">修正するかどうかを判断</text>
+
+  <g font-size="13">
+    <rect x="1470" y="348" width="56" height="26" rx="13" fill="#fee2e2" /><text x="1498" y="366" text-anchor="middle" fill="#b91c1c">不具合</text>
+    <rect x="1534" y="348" width="56" height="26" rx="13" fill="#dcfce7" /><text x="1562" y="366" text-anchor="middle" fill="#15803d">整理</text>
+    <rect x="1598" y="348" width="56" height="26" rx="13" fill="#fef3c7" /><text x="1626" y="366" text-anchor="middle" fill="#b45309">性能</text>
+    <rect x="1662" y="348" width="68" height="26" rx="13" fill="#e6edff" /><text x="1696" y="366" text-anchor="middle" fill="#2447c9">依存</text>
+  </g>
+  <text x="1470" y="406" font-size="18" font-weight="700" fill="#14213d">開発フローへ自動登録</text>
+  <g font-size="15" fill="#5a6785">
+    <text x="1470" y="442">① Agent が修正</text>
+    <text x="1470" y="472">② Agent がレビュー</text>
+    <text x="1470" y="502">③ マージ後のテストで再検証</text>
+  </g>
+  <path d="M1600 300 V326" fill="none" stroke="#7d93c9" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)" />
+  <text x="1612" y="319" font-size="13" fill="#5a6785">修正を承認</text>
+
+  
+  <path d="M1600 530 V720 Q1600 750 1570 750 H220 Q190 750 190 720 V676" fill="none" stroke="url(#loop)" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowGreen)" />
+  <rect x="660" y="730" width="480" height="40" rx="20" fill="#fff" filter="url(#shadow)" />
+  <text x="900" y="757" text-anchor="middle" font-size="18" font-weight="700" fill="#13a36e">修正をマージ → 再テスト → 品質を改善</text>
+
+  
+  <g filter="url(#shadow)">
+    <rect x="50" y="810" width="404" height="100" rx="16" fill="#fff" />
+    <rect x="482" y="810" width="404" height="100" rx="16" fill="#fff" />
+    <rect x="914" y="810" width="404" height="100" rx="16" fill="#fff" />
+    <rect x="1346" y="810" width="404" height="100" rx="16" fill="#fff" />
+  </g>
+  <g text-anchor="middle">
+    <text x="252" y="852" font-size="21" font-weight="700" fill="#2447c9">テストの自動化</text>
+    <text x="252" y="884" font-size="15" fill="#5a6785">開始、実行、問題の登録を自動化</text>
+    <text x="684" y="852" font-size="21" font-weight="700" fill="#2447c9">共通エンジン</text>
+    <text x="684" y="884" font-size="15" fill="#5a6785">四つの実行方法で基準と手順を共有</text>
+    <text x="1116" y="852" font-size="21" font-weight="700" fill="#2447c9">五つの評価項目</text>
+    <text x="1116" y="884" font-size="15" fill="#5a6785">実測ツールを使い、項目ごとに報告</text>
+    <text x="1548" y="852" font-size="21" font-weight="700" fill="#2447c9">問題への対応</text>
+    <text x="1548" y="884" font-size="15" fill="#5a6785">タスクで修正し、後続テストで検証</text>
+  </g>
+</svg>

@@ -64,6 +64,9 @@ export function withIds(body, prefix) {
 const zip = (a, b) => a.slice(0, Math.min(a.length, b.length)).map((x, i) => [x, b[i]]);
 
 // 新官网的文章：posts.json 里打了 Customer Stories 标签的和 cs-posts.json 的（加上阳光电源）是客户案例 /customers/<slug>/，其余是博客 /blog/<slug>/，都有英文和 zh-CN 版。正文里旧博客地址的替换（lib/links.mjs 的 legacySiteLinks）按它判断。
+// 不带主机、带旧语言前缀的新官网页面（/en/core/、/ja/pricing/）换成源文件名，构建时按本页语言换成 /core/、/ja-JP/pricing/；没有这页时构建报错
+export const prefixedPageLinks = body => body.replace(/href="\/(?:en|cn|ja)\/([a-z][a-z0-9-]*)\/?(#[^"]*)?"/g, (m, name, hash = '') => `href="${name}.html${hash}"`);
+
 export function articleSlugs(allposts, cs) {
   const story = slug => allposts[slug].en.tags.includes('Customer Stories');
   // 草稿只有预览页，不当作旧链接的去处
@@ -111,12 +114,13 @@ function generate(posts, stories, site) {
     // 指向 v2 文档的旧地址换成 nocode.docs.nocobase.com，指向旧官网的换成新地址或 nocode.nocobase.com（CMS 导入时已经换过，这里再保险一次）
     body = legacySiteLinks(legacyDocLinks(body), site);
     // 不带主机的旧博客地址换成站内链接
-    return body.replace(/href="\/(?:en|cn|ja)\/blog\/([^"#?]+)"/g, (m, s) => {
+    body = body.replace(/href="\/(?:en|cn|ja)\/blog\/([^"#?]+)"/g, (m, s) => {
       const slug = s.replace(/\/+$/, '');
       if (slug in posts) return `href="blog/${slug}.html"`;
       if (slug in stories) return `href="customers/${slug}.html"`;
       return m;
     });
+    return prefixedPageLinks(body);
   }
   const src = slug => posts[slug] || stories[slug];
   const tags = slug => zip(src(slug).cn.tags, src(slug).en.tags).map(([z, x]) => `<span class="pill">${T(esc(z), esc(x))}</span>`).join('');

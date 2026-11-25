@@ -18,6 +18,6 @@ Core provides the application runtime, libraries, and plugins. Choose a manual f
 
 - [Choose a deployment method](deployment/choose-a-deployment-method.md)
 - [Configuration reference](reference/configuration.md)
-- [Create an app with a different database](reference/database-configuration.md)
+- [Create an app with a different database](developing-apps/database-configuration.md)
 - [Command-line reference](reference/cli.md)
-- [Database support and version compatibility](reference/compatibility.md)
+- [Database support and version compatibility](developing-apps/compatibility.md)

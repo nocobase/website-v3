@@ -32,7 +32,7 @@ test('the active page is highlighted in the menu, the mobile menu and nowhere el
 
 test('the GitHub star count comes from the shared config and can be overridden with GITHUB_STARS', () => {
   const stars = spec => spec.header.links[0].label;
-  assert.equal(stars(navSpec('home')), '24.6K');
+  assert.equal(stars(navSpec('home')), '25K');
   assert.equal(stars(navSpec('home', { stars: '30.1K' })), '30.1K');
   assert.equal(navSpec('home', { stars: '30.1K' }).header.mobile.at(-1).small, '30.1K');
 });

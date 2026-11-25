@@ -10,6 +10,16 @@
       "pages": [
         {
           "type": "page",
+          "path": "vibe-coding",
+          "title": "Vibe Coding との違い"
+        },
+        {
+          "type": "page",
+          "path": "low-code",
+          "title": "ローコードとの違い"
+        },
+        {
+          "type": "page",
           "path": "from-v2",
           "title": "V2 と V3"
         },

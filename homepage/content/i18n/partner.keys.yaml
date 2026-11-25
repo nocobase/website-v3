@@ -323,6 +323,7 @@ items:
     en: With 24.6K GitHub stars, NocoBase powers enterprises, governments, and universities worldwide, now upgrading to the AI era.
     zh: GitHub 24.6K Star，NocoBase 已服务全球众多企业、机构与高校，庞大存量客户正迈向 AI 时代。
     where: sec
+    unused: true
   "079":
     en: How We Support You
     zh: 我们怎么支持你
@@ -737,3 +738,7 @@ items:
     en: Anything else you’d like our partner team to know
     zh: 希望合作伙伴团队了解的其他信息
     where: form
+  "180":
+    en: With 25K GitHub stars, NocoBase powers enterprises, governments, and universities worldwide, now upgrading to the AI era.
+    zh: GitHub 25K Star，NocoBase 已服务全球众多企业、机构与高校，庞大存量客户正迈向 AI 时代。
+    where: sec

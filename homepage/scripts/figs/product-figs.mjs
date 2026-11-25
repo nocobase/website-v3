@@ -51,7 +51,7 @@ const coreStack =
   '<div class="its"><span>' + I('folder-tree') + T('项目脚手架', 'Project scaffold') + '</span><span>' + I('file-check-2') + T('架构规范', 'Architecture rules') +
   '</span><span>' + I('sparkles') + T('开发技能', 'Dev skills') + '</span></div></div>' +
   '<div class="caps">' + CAPS.map(([k, ic, zh, en, dzh, den]) => `<div data-cap="${k}"><b>${I(ic)}${T(zh, en)}</b><span>${T(dzh, den)}</span></div>`).join('') +
-  '<div class="more"><b>' + I('plus') + T('20 多项基础能力', '20+ capabilities') + '</b><span>' + T('由 NocoBase 持续维护和升级', 'Maintained and upgraded by NocoBase') + '</span></div></div>' +
+  '<div class="more"><b>' + I('plus') + T('30 多项基础能力', '30+ capabilities') + '</b><span>' + T('由 NocoBase 持续维护和升级', 'Maintained and upgraded by NocoBase') + '</span></div></div>' +
   '</div></div>';
 
 // ---------- coreRepo ----------

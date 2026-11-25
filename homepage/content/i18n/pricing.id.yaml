@@ -5,7 +5,7 @@ notes: |-
   self-hosted = self-hosted；at a glance = terlihat sekilas
   页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（US$8.000）；信创数据库只在中文版列出
 title: Edisi dan harga — NocoBase 3
-description: Core dan semua aplikasi Solution gratis dan open source. Professional seharga US$8.000 sekali bayar, dengan Studio, 1 tahun upgrade dan dukungan, serta satu kali deploy. Enterprise sesuai penawaran.
+description: Edisi Community gratis dan open source, mencakup fitur dasar Studio, seluruh kemampuan Core, dan semua aplikasi open source. Professional seharga US$8.000 sekali bayar dengan tata kelola tim serta 1 tahun upgrade dan dukungan. Enterprise disesuaikan dengan penawaran.
 strings:
   "001": Mulai gratis. <span class="m">Beli sekali, pakai selamanya.</span>
   "002": Open source
@@ -207,3 +207,84 @@ strings:
   "212": Layanan
   "213": Klaster dan ketersediaan tinggi, arsitektur multi-tenant dan multi-aplikasi
   "214": Log audit dan pengiriman air-gapped
+  "215": Edisi Community gratis dan open source, mencakup fitur dasar Studio, seluruh kemampuan Core, dan semua aplikasi open source. Edisi komersial dibeli sekali bayar dengan lisensi permanen, sepenuhnya self-hosted di server Anda sendiri.
+  "216": Untuk perorangan dan tim kecil yang membangun serta menjalankan sistem bisnis dengan AI.
+  "217": Gratis &amp; open source · siap untuk produksi dan pengiriman proyek klien
+  "218": Mulai Gratis
+  "219": Proyek, tugas, tim agen, dan runtime multi-perangkat
+  "220": Tes otomatis, review lintas model, persetujuan pratinjau, dan rollback
+  "221": Skill, basis pengetahuan, memori proyek, dan keputusan dari ponsel
+  "222": Riwayat eksekusi, log pemakaian &amp; biaya, serta izin berbasis peran dengan OIDC
+  "223": Seluruh 20+ komponen dasar Core, standar, dan skill pengembangan
+  "224": Semua aplikasi bisnis open source (NocoCRM, NocoITAM, NocoReach, dan lainnya)
+  "225": Dokumentasi dan dukungan komunitas
+  "226": Untuk tim
+  "227": Untuk satu tim yang terus mengirimkan dan mengelola sistem bisnis dengan AI.
+  "228": "Alur kerja multi-peran: persetujuan teknis sebelum pengembangan, persetujuan ganda bisnis &amp; teknis"
+  "229": Persetujuan deploy untuk lingkungan terlindungi dan rollback
+  "230": "SSO perusahaan: SAML 2.0, LDAP, WeCom, Feishu, dan DingTalk"
+  "231": "Kontrol biaya: anggaran per proyek, anggota, atau agen dengan jeda otomatis"
+  "232": 1 tahun upgrade dan dukungan (respons pertama dalam 12&nbsp;jam)
+  "233": Satu kali layanan deploy oleh tim NocoBase
+  "234": Untuk pengiriman multi-tim dan sistem kritis yang membutuhkan rencana kualitas, kontrol rilis, dan ketersediaan tinggi.
+  "235": Penawaran khusus · lisensi permanen sekali bayar
+  "236": "Rencana kualitas per proyek: pengujian white-box &amp; black-box mencakup fitur, izin akses, keamanan, performa, dan kode"
+  "237": Pengujian regresi otomatis sebelum setiap rilis
+  "238": Promosi lintas lingkungan dari staging ke produksi dengan jendela rilis dan masa pembekuan
+  "239": Klaster dan ketersediaan tinggi, arsitektur multi-tenant, multi-aplikasi, dan multi-portal
+  "240": Log audit lengkap dan pengiriman offline air-gapped
+  "241": Dukungan prioritas dengan respons pertama dalam 4&nbsp;jam
+  "242": Studio dan aplikasi bisnis Anda berjalan self-hosted di server Anda sendiri, termasuk di jaringan air-gapped. Anda memilih sendiri server, model, dan alat coding, lalu membayar langsung ke penyedianya.
+  "243": Matriks fitur
+  "244": Community mencakup fitur dasar Studio dan fondasi open source lengkap. Professional menambahkan tata kelola tim. Enterprise menambahkan kualitas rilis, promosi lintas lingkungan, dan ketersediaan tinggi.
+  "245": Ruang kerja — pengembangan tim dan tata kelola bersama agen coding
+  "246": Proyek dan tugas
+  "247": Jelaskan kebutuhan dalam sesi, agen memecahnya menjadi tugas, dan progres terlihat jelas di seluruh proyek
+  "248": Agen koordinator membagi pekerjaan ke Claude Code, Codex, dan agen lainnya di berbagai mesin Anda
+  "249": Hubungkan komputer pribadi dan server tim untuk menjalankan banyak tugas secara paralel
+  "250": Pengujian dan review
+  "251": Setiap tugas menjalankan tes dan pemeriksaan CI, ditambah review kode lintas model dari vendor berbeda
+  "252": Persetujuan dan rilis
+  "253": Pengiriman menyertakan laporan penerimaan dan lingkungan uji; pemilik memberi persetujuan untuk rilis, dengan rollback instan
+  "254": Terus mendokumentasikan cara kerja tim, materi bisnis, dan pelajaran proyek
+  "255": Putuskan dari ponsel
+  "256": Tambahkan ke layar utama ponsel untuk mengajukan permintaan, menjawab pertanyaan, dan memberi persetujuan di mana saja
+  "257": Setiap eksekusi tercatat dengan visibilitas pemakaian token dan biaya yang transparan
+  "258": Anggota dan izin akses
+  "259": Login kata sandi atau OIDC dengan izin berbasis peran; agen tidak pernah melampaui akses pemintanya
+  "260": Alur kerja multi-peran
+  "261": Pengguna bisnis mengajukan kebutuhan, tech lead menyetujui sebelum pengembangan, dengan persetujuan ganda bisnis dan teknis
+  "262": Persetujuan deploy
+  "263": Deploy dan rollback ke lingkungan terlindungi memerlukan penyetuju
+  "264": Login SAML 2.0, LDAP, WeCom, Feishu, dan DingTalk untuk Studio
+  "265": Tetapkan anggaran per proyek, anggota, atau agen dan jeda otomatis saat batas tercapai
+  "266": Pengujian white-box dan black-box tingkat proyek mencakup fitur, izin akses, keamanan, performa, dan kualitas kode
+  "267": Pengujian regresi
+  "268": Rangkaian pengujian regresi otomatis sebelum setiap rilis
+  "269": Promosi lintas lingkungan
+  "270": Promosikan build staging yang telah terverifikasi tanpa perubahan ke produksi dengan jendela rilis dan masa pembekuan
+  "271": Fondasi — komponen dasar siap pakai dan satu arsitektur
+  "272": Menangani pekerjaan rutin sesuai izin yang diberikan dan mengonfirmasi tindakan penting
+  "273": Hasilkan kontrak, penawaran harga, dan dokumen dari templat Office
+  "274": Runtime mandiri dengan deploy, upgrade, dan rollback lewat CLI
+  "275": Arsitektur multi-portal
+  "276": Aplikasi bisnis open source — langsung siap pakai dan bisa dikustomisasi di Studio
+  "278": Aplikasi open source lainnya
+  "279": Dukungan, Proyek, SDM, dan lainnya segera hadir
+  "280": Kustomisasi bersama agen coding agar sesuai dengan bisnis Anda
+  "281": Pembaruan open source untuk Community; 1 tahun rilis komersial untuk Pro &amp; Enterprise
+  "282": Open source
+  "283": FAQ lisensi &amp; pembelian
+  "284": Bagaimana cara memilih antara Community, Professional, dan Enterprise?
+  "285": "Perorangan dan tim kecil bisa mulai gratis dengan Community: sudah mencakup fitur dasar Studio, seluruh komponen dasar Core, dan semua aplikasi open source."
+  "286": "Pilih Professional saat tim membutuhkan tata kelola: menambahkan alur kerja multi-peran dengan persetujuan ganda, persetujuan deploy, SSO perusahaan, kontrol biaya, persetujuan lanjutan, satu kali layanan deploy, dan dukungan dengan respons dalam 12 jam."
+  "287": "Pilih Enterprise untuk pengiriman multi-tim dan sistem kritis: menambahkan rencana kualitas, pengujian regresi otomatis, promosi lintas lingkungan, klaster ketersediaan tinggi, arsitektur multi-tenant/multi-aplikasi/multi-portal, log audit, pengiriman air-gapped, 3 hari onboarding, dan dukungan prioritas 4 jam."
+  "288": Bisa. Community mencakup fitur dasar Studio, seluruh Core, dan semua aplikasi open source, gratis untuk produksi maupun pengerjaan proyek klien.
+  "289": Tidak pernah kedaluwarsa. Edisi komersial dibeli sekali bayar tanpa biaya tahunan dan tanpa biaya per kursi.
+  "290": Ya. Studio, agen, dan aplikasi Anda semuanya berjalan di server Anda sendiri, termasuk di jaringan air-gapped. Setelah dirilis, aplikasi berjalan sendiri tanpa melewati Studio.
+  "291": Apakah Studio perlu dibeli terpisah?
+  "292": Tidak. Studio Edisi Community sudah gratis dan open source di dalam Community. Fitur tata kelola tim serta kualitas dan rilis tingkat enterprise sudah termasuk langsung di Professional dan Enterprise.
+  "293": Bisakah saya men-deploy Studio komersial untuk klien?
+  "294": Tidak. Studio komersial (Pro/Enterprise) hanya boleh digunakan oleh perusahaan pemegang lisensi. Anda dapat menyerahkan aplikasi bisnis yang dibangun kepada klien atau meminta mereka melakukan self-host Edisi Community yang open source.
+  "295": Ceritakan tentang tim Anda dan apa yang ingin Anda bangun. Kami bantu memilih edisi dan pengaturan deployment yang tepat.
+  "316": Seluruh 30+ komponen dasar Core, standar, dan skill pengembangan

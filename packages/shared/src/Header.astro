@@ -31,6 +31,7 @@ export interface Menu {
   /** 有 items 时是下拉；没有时是普通链接，用 href */
   items?: Item[];
   href?: string;
+  external?: boolean;
   active?: boolean;
   /** 下拉分两列（解决方案菜单） */
   two?: boolean;
@@ -68,7 +69,7 @@ const current = languages.find(l => l.current) ?? languages[0];
 <div class="mi"><button type="button" aria-haspopup="true"><Fragment set:html={m.label} /><Icon name="chevron-down" /></button><div class:list={['dd', { two: m.two }]}>{m.items.map(it => (
 <HeaderItem item={it} />))}</div></div>
 ) : (
-<div class="mi"><a class:list={{ on: m.active }} href={m.href} set:html={m.label}></a></div>
+<div class="mi"><a class:list={{ on: m.active }} href={m.href} target={m.external ? '_blank' : undefined} rel={m.external ? 'noopener' : undefined} set:html={m.label}></a></div>
 ))}</nav>
 <div class="right"><slot name="action">{search && <button class="search-btn" type="button" data-search-open aria-label={search.label}><Icon name="search" /><span class="search-text">{search.placeholder}</span>{search.shortcut && <kbd>{search.shortcut}</kbd>}</button>}</slot><div class="mi lang" id="langMenu"><button class="plain" type="button" aria-haspopup="true" aria-expanded="false" aria-label={labels.language ?? 'Language'}><Icon name="globe" /><span class="lang-name">{current.name}</span><Icon name="chevron-down" /></button><div class="dd">{languages.map(l => (
 <a class:list={{ cur: l.current }} href={l.url} hreflang={l.html} lang={l.html}><Icon name="check" />{l.name}</a>))}</div></div>{links.map(l => (

@@ -5,7 +5,7 @@ notes: |-
   self-hosted = self-hosted；at a glance = terlihat sekilas
   页面用语：issue = tugas；coordinator agent = agen koordinator；My sessions 等产品界面名称照英文
 title: NocoBase Studio — Agen menggerakkan pekerjaan secara mandiri. Tim Anda tetap memegang kendali.
-description: NocoBase Studio adalah platform tata kelola untuk manusia dan agen yang membangun perangkat lunak bersama.
+description: NocoBase Studio adalah ruang kerja untuk NocoBase. Satukan Claude Code, Codex, dan OpenCode di berbagai perangkat Anda menjadi tim agen 24/7 yang membangun, menguji, dan me-review sesuai proses, sementara manusia mengarahkan dan mengambil keputusan dari desktop maupun ponsel.
 strings:
   "000": Agen menggerakkan pekerjaan secara mandiri. <span class="m">Tim Anda tetap memegang kendali.</span>
   "002": Coba online
@@ -70,3 +70,66 @@ strings:
   "072": Coba NocoBase Studio online
   "073": Buka penuh di tab baru
   "074": Anda sudah masuk dengan akun demo. Semua datanya fiktif, jadi silakan coba apa saja.
+  "075": NocoBase Studio adalah ruang kerja untuk NocoBase. Studio menyatukan Claude Code, Codex, dan OpenCode di berbagai perangkat Anda menjadi satu tim agen 24/7 yang menangani pengembangan, pengujian, dan review sesuai proses, sementara manusia mengajukan kebutuhan, memantau progres, dan mengambil keputusan dari desktop maupun ponsel.
+  "076": Mulai Gratis
+  "078": Edisi Community gratis dan mencakup fitur dasar Studio
+  "079": Self-hosted di server Anda sendiri, siap untuk jaringan air-gapped
+  "080": Bekerja dengan Claude Code, Codex, OpenCode, dan lainnya
+  "081": Tim agen <span class="m">24/7.</span>
+  "082": Hubungkan alat coding di laptop dan server tim dalam satu ruang kerja. Agen koordinator membagi pekerjaan, sementara para agen berjalan di lingkungan terisolasi di berbagai proyek sepanjang waktu.
+  "083": Banyak perangkat, alat coding apa saja
+  "084": Hubungkan Claude Code, Codex, OpenCode, dan lainnya di laptop maupun server tanpa ketergantungan vendor. Tambahkan mesin untuk menjalankan lebih banyak pekerjaan secara paralel.
+  "085": Penugasan otomatis sesuai keahlian
+  "086": Agen koordinator membagi tugas desain, pengembangan, pengujian, dan review sesuai keahlian masing-masing agen—tanpa perlu mengawasi terminal satu per satu, sementara persetujuan akhir tetap di tangan manusia.
+  "087": Eksekusi paralel terisolasi
+  "088": Setiap tugas berjalan di branch, worktree, dan lingkungan uji tersendiri sehingga puluhan tugas bergerak paralel tanpa saling bentrok.
+  "089": Kolaborasi &amp; keputusan
+  "090": Keputusan jelas, <span class="m">di mana saja.</span>
+  "091": Tim bisnis mengajukan permintaan dan menerima hasil dari desktop maupun ponsel dengan laporan pengiriman dan lingkungan uji aktif, sementara progres, waktu siklus, dan biaya model terlihat jelas di setiap proyek.
+  "092": Permintaan bahasa sehari-hari &amp; persetujuan langsung
+  "093": Jelaskan kebutuhan dengan bahasa sehari-hari dan jawab pertanyaan lanjutan singkat. Setiap pengiriman membawa laporan, checklist, tangkapan layar, dan lingkungan uji aktif.
+  "094": Siap di desktop dan ponsel
+  "095": Tambahkan ke layar utama ponsel Anda untuk mengajukan permintaan, menjawab pertanyaan, memeriksa tangkapan layar, dan memberi persetujuan dari mana saja dengan notifikasi instan.
+  "096": Progres, beban kerja, dan biaya di satu tempat
+  "097": Semua tugas, konteks, dan serah terima setiap proyek berkumpul di satu tempat, dilengkapi dasbor untuk jumlah tugas selesai, waktu siklus, pengerjaan ulang, beban agen, dan biaya per tugas.
+  "098": Proses &amp; kualitas
+  "099": Proses terstruktur, <span class="m">kualitas terjaga di setiap tahap.</span>
+  "100": Dari permintaan dan desain hingga pengembangan, pengujian, review, penerimaan, dan rilis, setiap langkah memiliki penanggung jawab yang jelas, gerbang pemeriksaan, dan jejak audit lengkap.
+  "101": Alur kerja sesuai skala proyek
+  "102": Tersedia alur kerja bawaan dari yang ringan hingga ketat, atau sesuaikan sendiri agar selaras dengan standar engineering Anda.
+  "103": Pengujian &amp; review lintas model
+  "104": Tes otomatis dijalankan terlebih dahulu, diikuti review kode oleh model dari vendor berbeda; jika gagal, perbaikan berulang otomatis.
+  "105": Persetujuan ganda
+  "106": Pemangku kepentingan bisnis memverifikasi fungsi di pratinjau aktif, sementara tech lead menyetujui arsitektur dan keamanannya.
+  "107": Rencana kualitas &amp; regresi
+  "108": Jalankan regresi menyeluruh untuk fitur, izin akses, keamanan, performa, dan kualitas kode sebelum setiap rilis.
+  "109": Rilis disetujui &amp; rollback
+  "110": Deploy produksi memerlukan persetujuan, mendukung jendela rilis, dan dapat di-rollback dengan bersih ke rilis stabil terakhir.
+  "111": Pembagian peran yang jelas
+  "112": Tim bisnis memegang kebutuhan dan persetujuan hasil; tech lead menetapkan aturan dan menyetujui rilis.
+  "113": Tim bisnis menjelaskan aturan dengan bahasa sehari-hari dan memverifikasi hasilnya dengan data nyata di lingkungan uji—branch, tes, review, dan deploy ditangani oleh agen dan Studio.
+  "114": Pengetahuan tim
+  "115": Tuangkan praktik kerja tim ke dalam skill, simpan materi bisnis di basis pengetahuan, dan catat pelajaran agen di memori proyek—tak ada yang hilang saat orang atau model berganti.
+  "116": Ubah standar pengembangan, checklist review, dan kebiasaan tim menjadi skill dengan cakupan global, per proyek, atau per direktori—diterapkan otomatis di setiap eksekusi.
+  "117": Simpan kebijakan bisnis, aturan, spesifikasi, dan templat di satu tempat lengkap dengan pemrosesan file agar manusia dan agen membaca sumber kebenaran yang sama.
+  "118": Pelajaran yang diperoleh agen selama pengembangan dan review disimpan langsung di repositori, ditinjau di PR, dan dibaca sebelum tugas berikutnya dimulai.
+  "119": Edisi &amp; self-hosting
+  "120": Mulai gratis dengan Community, <span class="m">tingkatkan seiring pertumbuhan tim.</span>
+  "121": Setiap edisi berjalan self-hosted di server Anda sendiri, termasuk di jaringan air-gapped. Mulai gratis dengan Community, atau upgrade dengan lisensi permanen sekali bayar.
+  "124": Untuk perorangan &amp; tim kecil
+  "125": Mencakup tugas, tim agen, runtime, tes &amp; review lintas model, persetujuan pratinjau, skill/basis pengetahuan/memori, persetujuan ponsel, log pemakaian, dan izin berbasis peran.
+  "126": Pro
+  "127": Lisensi sekali bayar
+  "128": Untuk tim yang merilis berkelanjutan
+  "129": Menambahkan alur kerja multi-peran dengan persetujuan ganda, persetujuan deploy, SSO enterprise (SAML/LDAP/Feishu/DingTalk/WeCom), dan batas anggaran.
+  "130": Bandingkan Edisi
+  "131": Enterprise
+  "132": Untuk multi-tim &amp; sistem kritis
+  "133": Menambahkan rencana kualitas proyek, regresi rilis otomatis, promosi lintas lingkungan dengan jendela rilis dan masa pembekuan, serta klaster ketersediaan tinggi.
+  "135": Kode dan data tetap di server Anda
+  "136": Bebas pilih model atau alat coding, termasuk model lokal
+  "137": Aplikasi yang dirilis berjalan mandiri tanpa melewati Studio
+  "138": Baca Dokumentasi Studio
+  "139": "Pelajari fondasi di balik Studio: NocoBase Core"
+  "140": Lihat aplikasi open source yang dibangun di atas NocoBase
+  "163": NocoBase Studio

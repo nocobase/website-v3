@@ -39,7 +39,7 @@ Studio は方法と経験をスキル、ナレッジベース、プロジェク�
 <div class="ly-node ly-app"><b>業務アプリ</b><strong>自社の業務システム</strong><p>コードとデータは自社で所有し、リリース後は独立して稼働。</p></div>
 <div class="ly-link ly-generate"><span>アプリ生成</span><i aria-hidden="true"></i></div>
 <div class="ly-node ly-solution"><b>Solution</b><strong>業務アプリのテンプレート</strong><p>既存のアプリから始め、業務に合わせてカスタマイズ。</p></div>
-<div class="ly-foundation"><div><b>NocoBase Core</b><span>オープンソースのアプリケーション基盤</span></div><p>権限・ワークフロー・ファイルなど 20 以上の共通機能 · 統一されたプロジェクト構成と開発規約</p></div>
+<div class="ly-foundation"><div><b>NocoBase Core</b><span>オープンソースのアプリケーション基盤</span></div><p>権限・ワークフロー・ファイルなど 30 以上の共通機能 · 統一されたプロジェクト構成と開発規約</p></div>
 </figure>
 
 ### Core：オープンソースのアプリ基盤

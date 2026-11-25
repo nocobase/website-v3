@@ -16,7 +16,7 @@ To address these problems, NocoBase 3 introduces [NocoBase Core](https://www.noc
 
 ## Core: the open-source foundation for developing and running business systems with AI
 
-**Common capabilities don't have to be built and verified from scratch.** More than 20 common capabilities, including users and permissions, data and files, workflows and approvals, messaging, and AI and agents, are ready to use, and NocoBase keeps maintaining and upgrading them. For the list of capabilities, see [NocoBase Core](../core/using-plugins/overview.md).
+**Common capabilities don't have to be built and verified from scratch.** More than 30 common capabilities, including users and permissions, data and files, workflows and approvals, messaging, and AI and agents, are ready to use, and NocoBase keeps maintaining and upgrading them. For the list of capabilities, see [NocoBase Core](../core/using-plugins/overview.md).
 
 **One architecture and one set of conventions.** A new app comes with a fixed layout, where pages, APIs, migrations and tests each have their place. `AGENTS.md` and the skills shipped with packages say where business code goes and which capabilities to use as they are. Whoever the person, model or session, the agent develops the same way. See [Project structure](../core/developing-apps/project-structure.md).
 

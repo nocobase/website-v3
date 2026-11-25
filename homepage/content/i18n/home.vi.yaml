@@ -4,7 +4,7 @@ notes: |-
   agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
   business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
 title: NocoBase 3 — Nền tảng mã nguồn mở cho hệ thống nghiệp vụ xây dựng bằng AI
-description: NocoBase là nền tảng mã nguồn mở để xây dựng, vận hành và liên tục phát triển hệ thống nghiệp vụ bằng AI.
+description: NocoBase là nền tảng mã nguồn mở giúp doanh nghiệp xây dựng và vận hành hệ thống nghiệp vụ bằng AI. Con người nêu yêu cầu và ra quyết định, agent viết code và thực thi, còn NocoBase đảm bảo hệ thống tin cậy và quy trình trong tầm kiểm soát.
 strings:
   "000": Hiện tại
   "001": Nền tảng phát triển dành cho agent
@@ -254,3 +254,76 @@ strings:
   "246": AI tìm ra cơ hội tăng trưởng. Agent biến chúng thành hành động.
   "247": Bắt đầu với Core
   "248": Đọc toàn bộ câu chuyện
+  "249": <span class="ln">NocoBase là nền tảng mã nguồn mở giúp doanh nghiệp xây dựng và vận hành hệ thống nghiệp vụ bằng AI.</span><span class="ln">Con người nêu yêu cầu và ra quyết định, agent viết code và thực thi, còn NocoBase đảm bảo hệ thống tin cậy và quy trình trong tầm kiểm soát.</span>
+  "250": Câu chuyện người dùng · Sungrow
+  "251": Cách làm việc mới
+  "252": "Cách xây dựng và vận hành hệ thống nghiệp vụ "
+  "253": đang thay đổi.
+  "254": Được hỗ trợ đồng bộ bởi Studio và Core, doanh nghiệp áp dụng cách làm việc mới này mà vẫn giữ mọi hệ thống tin cậy và quy trình trong tầm kiểm soát.
+  "255": Bộ phận nghiệp vụ
+  "256": Trực tiếp nêu yêu cầu, tự mình nghiệm thu
+  "257": Không còn chờ đợi hàng tháng trời. Chỉ cần nêu điều bạn cần, agent sẽ hoàn thiện trong vài giờ — trả về báo cáo bàn giao và môi trường kiểm thử để bạn trực tiếp nghiệm thu.
+  "258": IT &amp; kỹ thuật
+  "259": Đặt quy tắc, đánh giá và phê duyệt phát hành
+  "260": Đội agent đảm nhận lập trình và kiểm thử, còn bộ phận IT xây dựng chuẩn kiến trúc, đánh giá phương án, kiểm soát chất lượng và phê duyệt phát hành.
+  "261": Ban lãnh đạo
+  "262": Nắm bắt tiến độ và chi phí bất cứ lúc nào
+  "263": Không cần hỏi thăm báo cáo qua nhiều tầng nấc. Xem trực quan tiến độ, thời gian chu kỳ và chi phí model của mọi dự án tại một nơi.
+  "264": Vận hành hằng ngày
+  "265": AI xử lý công việc thường ngày 24/7
+  "266": Agent nghiệp vụ hoạt động ngay trong từng ứng dụng, tự động xử lý công việc thường ngày 24/7 theo quyền của người phụ trách và xin xác nhận ở các thao tác then chốt.
+  "267": Studio là không gian làm việc cho cách làm việc mới này. Studio kết nối Claude Code, Codex và OpenCode trên nhiều thiết bị thành một đội agent hoạt động 24/7, tự động đảm nhận phát triển, kiểm thử và review, trong khi con người nêu yêu cầu, theo dõi tiến độ và ra quyết định trên máy tính hoặc điện thoại.
+  "268": Một đội agent làm việc 24/7
+  "269": Kết nối Claude Code, Codex và OpenCode trên máy tính cá nhân lẫn máy chủ để thúc đẩy nhiều dự án song song mà không phụ thuộc nhà cung cấp.
+  "270": Quy trình bài bản, tiến độ rõ ràng trong nháy mắt
+  "271": Mỗi nhiệm vụ đi theo quy trình của bạn với kiểm thử tự động và review code chéo giữa các model, còn tiến độ, thời gian chu kỳ và chi phí đều hiển thị tập trung tại một nơi.
+  "272": Ra quyết định có căn cứ mọi lúc, mọi nơi
+  "273": Gửi yêu cầu và nghiệm thu trên máy tính hoặc điện thoại. Mỗi lần bàn giao đều kèm báo cáo, danh sách kiểm tra, ảnh chụp màn hình và môi trường kiểm thử trực tiếp để ai cũng có thể nghiệm thu.
+  "274": Lưu phương pháp của đội trong kỹ năng, tài liệu nghiệp vụ trong kho tri thức, và kinh nghiệm agent tích lũy trong bộ nhớ dự án. Đổi người hay đổi model, công việc vẫn tiếp nối trơn tru.
+  "275": Tài liệu Studio
+  "276": Core là nền móng kỹ thuật mã nguồn mở đứng sau Studio. Hơn 20 khối chức năng — phân quyền, quy trình, tệp tin, tích hợp AI và nhiều hơn nữa — đã sẵn sàng để agent chỉ cần xây dựng logic nghiệp vụ riêng trên một kiến trúc nhất quán.
+  "277": Hơn 20 khối chức năng sẵn có, tin cậy
+  "278": Người dùng, phân quyền, dữ liệu, tệp tin, quy trình, phê duyệt và thông báo đều được tích hợp sẵn — không để AI tạo lại từ đầu — giúp việc kiểm tra tập trung trọn vẹn vào logic nghiệp vụ.
+  "279": Kiến trúc nhất quán, sẵn sàng phát triển lâu dài
+  "280": Khung dự án, quy tắc kiến trúc và kỹ năng phát triển đi kèm sẵn với Core, giữ cấu trúc mã nguồn nhất quán dù thay đổi người, model hay phiên làm việc.
+  "281": Tích hợp sẵn AI trong mọi hệ thống nghiệp vụ
+  "282": Tích hợp sẵn kết nối model, điều phối agent nghiệp vụ và kho tri thức AI. Agent nghiệp vụ chạy 24/7 theo quyền của người phụ trách và xin xác nhận ở các thao tác then chốt.
+  "283": Mã nguồn mở, bảo trì liên tục, ứng dụng chạy độc lập
+  "284": Core mã nguồn mở và được bảo trì liên tục. Mã nguồn nghiệp vụ nằm trong kho mã của riêng bạn, và ứng dụng sau khi phát hành chạy độc lập, không phụ thuộc vào Studio.
+  "285": Tài liệu Core
+  "286": Phiên bản Community miễn phí và mã nguồn mở, gồm các tính năng cơ bản của Studio và toàn bộ năng lực của Core. Các phiên bản thương mại mua một lần, giấy phép vĩnh viễn.
+  "287": Code và dữ liệu thuộc về bạn
+  "288": Studio và các ứng dụng nghiệp vụ đều chạy trên máy chủ của bạn, hỗ trợ cả mạng nội bộ tách biệt hoàn toàn.
+  "289": Không phụ thuộc nhà cung cấp. Dùng Claude Code, Codex, các công cụ lập trình khác cùng model đám mây hoặc cục bộ.
+  "290": Sau khi phát hành, ứng dụng nghiệp vụ tự chạy độc lập. Các yêu cầu hằng ngày không bao giờ đi qua Studio.
+  "291": Mua một lần
+  "292": Các phiên bản thương mại mua một lần, giấy phép vĩnh viễn. Bạn tự chọn máy chủ, model, công cụ lập trình và thanh toán trực tiếp cho nhà cung cấp.
+  "293": Hỏi &amp; đáp
+  "294": Vibe coding giúp viết code nhanh hơn, nhưng hệ thống doanh nghiệp phức tạp còn cần một nền móng tin cậy, kiến trúc nhất quán và năng lực quản trị. NocoBase không thay thế vibe coding — Core cung cấp sẵn khối chức năng và bộ chuẩn, còn Studio điều phối đội agent, kiểm soát chất lượng và lưu giữ tri thức đội ngũ để biến code do AI viết thành hệ thống nghiệp vụ tin cậy.
+  "295": Khác gì so với các nền tảng low-code?
+  "296": Nền tảng low-code dựa vào cấu hình kéo-thả thủ công, dễ chạm trần khi gặp yêu cầu phức tạp và trói ứng dụng vào nền tảng. Với NocoBase, agent viết mã nguồn thật cho quy tắc phức tạp, tích hợp hệ thống và giao diện tùy chỉnh — lưu trong kho mã của chính bạn và chạy độc lập.
+  "297": Chúng tôi đã dùng Claude Code, Codex hay Cursor rồi — vì sao cần thêm NocoBase?
+  "298": Công cụ lập trình giải quyết cách một lập trình viên viết code bằng AI; NocoBase giải quyết cách cả đội ngũ liên tục bàn giao hệ thống nghiệp vụ tin cậy. Studio điều phối các công cụ đó thành một đội agent có quản trị, còn Core cung cấp khối chức năng sẵn có và chuẩn nhất quán để kiến trúc không bao giờ trôi dạt.
+  "299": Nhân sự nghiệp vụ không biết kỹ thuật có tham gia được không?
+  "300": Có. Nhân sự nghiệp vụ chỉ cần mô tả yêu cầu, trả lời câu hỏi của agent và nghiệm thu kết quả bằng dữ liệu thật trong môi trường kiểm thử trên máy tính hoặc điện thoại. Nhánh code, môi trường, kiểm thử và phát hành do agent và Studio đảm nhận.
+  "301": Hệ thống do AI xây dựng có đủ tin cậy cho môi trường production không?
+  "302": Phân quyền, phê duyệt và các module trọng yếu khác đến từ Core chứ không được tạo lại từ đầu. Mọi thay đổi đều phải vượt qua kiểm thử tự động và review chéo giữa các model trước khi con người nghiệm thu, chỉ phát hành sau khi được phê duyệt và có thể rollback bất cứ lúc nào.
+  "303": Dữ liệu của chúng tôi có rời khỏi hạ tầng nội bộ không?
+  "304": NocoBase chạy trên máy chủ của chính bạn, hỗ trợ cả mạng nội bộ tách biệt hoàn toàn. Khi agent làm việc, phần code liên quan chỉ gửi đến nhà cung cấp model bạn chọn, và bạn có thể dùng model tự triển khai cục bộ bất cứ khi nào cần.
+  "305": Bắt đầu từ yêu cầu thực tế đầu tiên của bạn.
+  "306": Phiên bản Community miễn phí và mã nguồn mở, gồm các tính năng cơ bản của Studio và toàn bộ năng lực của Core.
+  "307": Phiên bản Community
+  "308": Tự triển khai và bắt đầu chỉ trong vài phút
+  "309": Triển khai NocoBase trên máy cục bộ hoặc máy chủ của bạn, kết nối công cụ lập trình và model sẵn có rồi đưa thẳng vào production.
+  "310": Tài liệu bắt đầu nhanh
+  "311": Pro &amp; Enterprise
+  "312": Mua một lần
+  "313": Dành cho đội ngũ và hệ thống trọng yếu
+  "314": Bổ sung quy trình đa vai trò, phê duyệt triển khai, SSO doanh nghiệp, kiểm soát ngân sách, kế hoạch chất lượng, kiểm thử hồi quy và tính sẵn sàng cao.
+  "315": Con người nêu yêu cầu và ra quyết định
+  "316": Agent viết code và thực thi
+  "317": NocoBase giữ hệ thống tin cậy và trong tầm kiểm soát
+  "329": NocoBase Studio
+  "330": NocoBase Core
+  "331": Core là nền móng kỹ thuật mã nguồn mở đứng sau Studio. Hơn 30 khối chức năng — phân quyền, quy trình, tệp tin, tích hợp AI và nhiều hơn nữa — đã sẵn sàng để agent chỉ cần xây dựng logic nghiệp vụ riêng trên một kiến trúc nhất quán.
+  "332": Hơn 30 khối chức năng sẵn có, tin cậy

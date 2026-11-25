@@ -3,6 +3,7 @@ items:
     en: The open-source foundation for AI-built business systems
     zh: AI 开发和运行业务系统的开源应用底座
     where: site
+    unused: true
   "001":
     en: The governance platform for teams building with agents
     zh: 团队与 Agent 协同开发的治理平台
@@ -12,38 +13,47 @@ items:
     en: Agent-driven business apps
     zh: 由 Agent 驱动的企业业务应用
     where: site
+    unused: true
   "003":
     en: Sales · 6 Sales Agents
     zh: 销售管理 · 配备 6 个销售 Agent
     where: site
+    unused: true
   "004":
     en: IT Asset Management · 3 IT Agents
     zh: IT 资产台账与管理 · 配备 3 个资产 Agent
     where: site
+    unused: true
   "005":
     en: Growth · Content Agent
     zh: 内容与增长 · 配备内容运营 Agent
     where: site
+    unused: true
   "006":
     en: Support · Triage &amp; Reply Agents
     zh: 客户服务 · 配备工单与客服 Agent
     where: site
+    unused: true
   "007":
     en: Projects · Research &amp; Doc Agents
     zh: 项目协作 · 配备调研与文书 Agent
     where: site
+    unused: true
   "008":
     en: HR · Onboarding Agent
     zh: 人事管理 · 配备入职与人事 Agent
     where: site
+    unused: true
   "009":
     en: No-code
     zh: 无代码
     where: site
+    unused: true
   "010":
     en: Visual configuration platform, maintained alongside v3
     zh: 可视化配置搭建，与 NocoBase 3 并行维护
     where: site
+    unused: true
   "011":
     en: Current
     zh: 当前
@@ -52,6 +62,7 @@ items:
     en: The development platform for agents
     zh: 面向 Agent 的开发平台
     where: site
+    unused: true
   "013":
     en: AI + no-code development platform
     zh: AI + 无代码开发平台
@@ -64,6 +75,7 @@ items:
     en: Solutions
     zh: 解决方案
     where: site
+    unused: true
   "016":
     en: Resources
     zh: 资源
@@ -76,6 +88,7 @@ items:
     en: Guides, core capabilities, and API reference
     zh: 上手指南、核心能力与扩展开发参考
     where: site
+    unused: true
   "019":
     en: Customers
     zh: 客户案例
@@ -150,10 +163,12 @@ items:
     en: All Solutions
     zh: 全部解决方案
     where: site
+    unused: true
   "037":
     en: AI + NocoBase. Build reliable business systems.
     zh: AI + NocoBase，构建可靠的业务系统。
     where: site
+    unused: true
   "038":
     en: NocoBase 2 No-code ↗
     zh: NocoBase 2 无代码 ↗
@@ -186,6 +201,7 @@ items:
     en: The governance platform for people and agents building software together
     zh: 人与 Agent 协同开发的治理平台
     where: site
+    unused: true
   "046":
     en: Partnerships, product questions, and support
     zh: 商务合作、产品咨询与技术支持
@@ -210,10 +226,12 @@ items:
     en: License Agreement
     zh: 许可协议
     where: site
+    unused: true
   "052":
     en: Open source and commercial license terms
     zh: 开源与商业许可的权利和义务
     where: site
+    unused: true
   "053":
     en: 1–10 people
     zh: 1–10 人
@@ -410,3 +428,59 @@ items:
     en: Too many submissions. Please try again in a few minutes.
     zh: 提交得太频繁了，请过几分钟再试。
     where: form
+  "102":
+    en: The new way to build business software with AI
+    zh: AI 时代的企业软件开发方式
+    where: site
+  "103":
+    en: Apps
+    zh: 应用
+    where: site
+  "104":
+    en: Sales CRM · Open source, 6 Sales Agents
+    zh: 销售管理 · 开源即用，配备 6 个销售 Agent
+    where: site
+  "105":
+    en: IT Asset Management · Open source, 3 IT Agents
+    zh: IT 资产管理 · 开源即用，配备 3 个资产 Agent
+    where: site
+  "106":
+    en: Growth · Open source, Content Agent
+    zh: 内容与增长 · 开源即用，配备内容运营 Agent
+    where: site
+  "107":
+    en: All Open-Source Apps
+    zh: 全部开源应用
+    where: site
+  "108":
+    en: Install and use right away, or customize in Studio
+    zh: 装上即用，也能用 Studio 按需二次开发
+    where: site
+  "109":
+    en: Get Started
+    zh: 开始使用
+    where: site
+  "110":
+    en: The new way to build business software with AI.
+    zh: AI 时代的企业软件开发方式。
+    where: site
+  "111":
+    en: Open-Source Apps
+    zh: 开源应用
+    where: site
+  "112":
+    en: Studio
+    zh: 工作台
+    where: site
+  "113":
+    en: Core
+    zh: 底座
+    where: site
+  "114":
+    en: NocoBase Studio
+    zh: 工作台（Studio）
+    where: site
+  "115":
+    en: NocoBase Core
+    zh: 应用底座（Core）
+    where: site

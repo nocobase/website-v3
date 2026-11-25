@@ -4,7 +4,7 @@ notes: |-
   coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
   self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
 title: NocoBase Core — Laissez les agents se concentrer sur votre logique métier
-description: NocoBase Core est le socle applicatif open source des systèmes métier créés et exploités avec l’IA.
+description: "NocoBase Core est le socle applicatif open source derrière NocoBase Studio. Permissions, workflows, fichiers et capacités IA sont prêts à l’emploi : les agents ne développent que votre logique métier sur une architecture unique, et vos applications tournent en toute autonomie."
 strings:
   "000": Laissez les agents se concentrer sur votre logique métier. <span class="m">Le socle est prêt.</span>
   "002": Démarrage rapide
@@ -87,3 +87,57 @@ strings:
   "099": Commencer
   "111": Découvrir Studio
   "113": Consulter la documentation de Core
+  "114": NocoBase Core est le socle applicatif open source derrière Studio. Grâce à plus de 20 briques prêtes à l’emploi (permissions, workflows, fichiers, IA), les agents ne développent que ce qui est propre à votre métier sur une architecture unique, et vos systèmes publiés fonctionnent en toute autonomie.
+  "116": Applications autonomes, sans dépendre de Studio
+  "117": Plus de 20 briques éprouvées, <span class="m">prêtes à l’emploi.</span>
+  "118": "Permissions, workflows, validations et stockage de fichiers sont complexes et exigent une fiabilité maximale : l’IA ne les réécrit jamais de zéro. NocoBase les maintient et les fait évoluer pendant que les agents se concentrent uniquement sur votre logique métier."
+  "119": Mots de passe, réinitialisation et sessions ; OIDC, SSO d’entreprise et double authentification
+  "120": Téléversement, stockage, aperçu, contrôle de disponibilité et droits d’accès liés aux fiches
+  "121": Workflows et validations
+  "122": Diagrammes de flux et historique d’exécution ; les administrateurs ajustent valideurs et seuils depuis l’interface
+  "123": Tâches planifiées</t-zh></b><span><t-zh></t-zh><t-en>Exécution selon un planning, chaque exécution est enregistrée
+  "124": Services de modèles
+  "125": Connectez des modèles cloud ou locaux via une interface unique, sans dépendance fournisseur
+  "126": Exécution 24h/24 dans vos applications métier avec les permissions du responsable et confirmation humaine
+  "127": Base de connaissances IA
+  "128": Documents et fichiers versionnés avec recherche plein texte, pour les humains et les agents
+  "129": Consulter la documentation des plugins
+  "130": Architecture et standards
+  "131": Une architecture unique, <span class="m">conçue pour évoluer durablement.</span>
+  "132": Changez de développeur, de modèle ou de session, et l’IA dérive vite. Core fournit une structure de projet standard, des règles d’architecture et des skills de développement versionnées pour que chaque contributeur et chaque modèle écrive dans la même structure.
+  "133": Chaque nouvelle application démarre avec la même arborescence pour les pages, les API, les migrations et les tests, en important les briques du socle via <code>@nocobase/*</code>.
+  "134": <code>AGENTS.md</code> précise où placer le code métier, quoi réutiliser depuis Core, et comment écrire les migrations et les contrôles de permissions.
+  "135": Skills livrées avec Core
+  "136": "Les skills sont livrées et mises à jour avec les paquets Core : Claude Code, Codex et OpenCode suivent toujours exactement les mêmes règles."
+  "137": IA intégrée
+  "138": L’IA intégrée au cœur de <span class="m">chaque système métier.</span>
+  "139": Services de modèles, agents métier et base de connaissances IA intégrés. Chaque système bâti sur Core dispose de ses propres employés IA qui traitent les tâches courantes 24h/24, tandis que les humains confirment les actions clés.
+  "140": Le modèle de votre choix
+  "141": Connectez des modèles cloud ou locaux auto-hébergés sans dépendance fournisseur, avec gestion centralisée des secrets et suivi de la consommation.
+  "142": Des employés IA mobilisés 24h/24
+  "143": "Ils travaillent dans vos applications métier comme des coéquipiers numériques : ils rassemblent les données, préparent rapports et plans d’action, et demandent confirmation avant toute action clé."
+  "144": Accès encadrés et base de connaissances
+  "145": Les employés IA agissent strictement dans le cadre des permissions accordées et s’appuient directement sur votre base de connaissances d’entreprise versionnée.
+  "146": Open source et autonome
+  "147": Open source, maintenu <span class="m">et exécuté en toute autonomie.</span>
+  "148": Le code source de Core est ouvert et auditable, avec correctifs et évolutions livrés à chaque version. Votre code métier reste dans votre propre dépôt Git et vos applications publiées tournent en toute autonomie, sans passer par Studio.
+  "149": Open source et maintenu
+  "150": Entièrement open source et librement auditable, avec des correctifs de sécurité et de nouvelles capacités maintenus en continu par l’équipe NocoBase.
+  "151": Du vrai code dans votre dépôt
+  "152": Du code source TypeScript standard dans votre propre dépôt Git, sans aucune dépendance propriétaire.
+  "153": Auto-hébergé et multi-bases
+  "154": Auto-hébergez sur votre propre infrastructure, y compris sur des réseaux sans accès à Internet, avec PostgreSQL, MySQL, Oracle ou SQL Server.
+  "155": Exécution autonome en production
+  "156": "Tourne de façon autonome une fois déployée : le trafic quotidien ne passe jamais par Studio, avec mises à jour et retours arrière en ligne de commande."
+  "157": Suivez le démarrage rapide pour initialiser une application et laissez votre agent de code développer votre logique métier sur le socle prêt à l’emploi de Core.
+  "158": Applications open source
+  "159": Prêtes à l’emploi et personnalisables
+  "160": Installez NocoCRM, NocoITAM ou NocoReach dès maintenant, ou personnalisez-les avec des agents dans Studio.
+  "161": Voir les applications open source
+  "162": Édition Community gratuite
+  "163": Pilotez une équipe d’agents 24h/24
+  "164": Coordonnez vos agents de code sur plusieurs machines avec des portes qualité structurées et des validations sur ordinateur ou mobile, gratuitement pour démarrer.
+  "165": NocoBase Core
+  "166": NocoBase Core est le socle applicatif open source derrière Studio. Grâce à plus de 30 briques prêtes à l’emploi (permissions, workflows, fichiers, IA), les agents ne développent que ce qui est propre à votre métier sur une architecture unique, et vos systèmes publiés fonctionnent en toute autonomie.
+  "167": Plus de 30 briques éprouvées, <span class="m">prêtes à l’emploi.</span>
+  "168": <b>Plus de 30 briques</b>, maintenues et mises à jour par NocoBase.

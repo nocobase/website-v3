@@ -4,7 +4,7 @@ notes: |-
   coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
   vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
 title: NocoBase 3 — Plataforma de código abierto para sistemas empresariales creados con IA
-description: NocoBase es la plataforma de código abierto para crear, ejecutar y hacer evolucionar sistemas empresariales con IA.
+description: NocoBase es la plataforma de código abierto para que las empresas desarrollen y operen sistemas empresariales con IA. Las personas definen necesidades y toman decisiones, los agentes programan y ejecutan, y NocoBase mantiene los sistemas confiables y el proceso bajo control.
 strings:
   "000": Actual
   "001": La plataforma de desarrollo para agentes
@@ -254,3 +254,76 @@ strings:
   "246": La IA encuentra oportunidades de crecimiento. Los agentes las ponen en práctica.
   "247": Empezar con Core
   "248": Leer la historia completa
+  "249": <span class="ln">NocoBase es la plataforma de código abierto para que las empresas desarrollen y operen sistemas empresariales con IA.</span><span class="ln">Las personas definen necesidades y toman decisiones, los agentes programan y ejecutan, y NocoBase mantiene los sistemas confiables y el proceso bajo control.</span>
+  "250": Historia de cliente · Sungrow
+  "251": Una nueva forma de trabajar
+  "252": "La forma de crear y operar sistemas empresariales "
+  "253": está cambiando.
+  "254": Con Studio y Core trabajando juntos, las empresas adoptan esta nueva forma de trabajar manteniendo cada sistema confiable y bajo control.
+  "255": Equipos de negocio
+  "256": Pide directamente, valida tú mismo
+  "257": Adiós a las colas de meses. Describe lo que necesitas y los agentes lo desarrollan en horas, entregándote un informe y un entorno de pruebas para que lo valides.
+  "258": TI e ingeniería
+  "259": Fija reglas, revisa y aprueba lanzamientos
+  "260": Los equipos de agentes se encargan del código y las pruebas mientras TI define los estándares de arquitectura, revisa los planes, vela por la calidad y aprueba los lanzamientos.
+  "261": Dirección
+  "262": Ve el avance y el gasto al instante
+  "263": Sin perseguir reportes de equipo en equipo. Consulta el avance, el tiempo de ciclo y el gasto en modelos de todos los proyectos en un solo lugar.
+  "264": Operación diaria
+  "265": La IA atiende las tareas rutinarias 24/7
+  "266": Los agentes de negocio viven dentro de cada app, atienden las tareas rutinarias las 24 horas con los permisos de su responsable y piden confirmación en las acciones clave.
+  "267": Studio es el espacio de trabajo para esta nueva forma de operar. Reúne Claude Code, Codex y OpenCode de todos tus dispositivos en un equipo de agentes 24/7 que desarrolla, prueba y revisa, mientras las personas definen necesidades, siguen el avance y deciden desde computadora o móvil.
+  "268": Un equipo de agentes 24/7
+  "269": Conecta Claude Code, Codex y OpenCode desde computadoras personales y servidores para hacer avanzar varios proyectos en paralelo sin dependencia de proveedores.
+  "270": Flujos estructurados, avance claro
+  "271": Cada tarea sigue tu flujo de trabajo con pruebas automáticas y revisión de código entre modelos distintos, mientras el avance, el tiempo de ciclo y el gasto quedan visibles en un solo lugar.
+  "272": Decisiones con respaldo en cualquier lugar
+  "273": Envía requisitos y valida resultados desde computadora o móvil. Cada entrega incluye informes, listas de verificación, capturas y un entorno de pruebas en vivo para que cualquiera pueda aprobar.
+  "274": Guarda los métodos del equipo en skills, los documentos de negocio en la base de conocimiento y lo que aprenden los agentes en la memoria del proyecto. Cuando cambian las personas o los modelos, el trabajo continúa sin interrupciones.
+  "275": Documentación de Studio
+  "276": Core es la base de ingeniería de código abierto detrás de Studio. Más de 20 componentes base —permisos, flujos de trabajo, archivos, integración con IA y más— vienen listos para usar, así que los agentes solo desarrollan tu lógica de negocio sobre una arquitectura coherente.
+  "277": Más de 20 componentes base confiables y listos
+  "278": Usuarios, permisos, datos, archivos, flujos de trabajo, aprobaciones y notificaciones vienen integrados —nunca generados desde cero—, así que las revisiones se centran en tu lógica de negocio.
+  "279": Arquitectura coherente hecha para evolucionar
+  "280": La estructura inicial del proyecto, las reglas de arquitectura y las skills de desarrollo se distribuyen con Core, manteniendo la estructura coherente entre personas, modelos y sesiones.
+  "281": IA integrada en cada sistema empresarial
+  "282": Conexión de modelos, programación de agentes de negocio y base de conocimiento de IA vienen integrados. Los agentes de negocio operan 24/7 con los permisos de su responsable y piden confirmación en acciones clave.
+  "283": Código abierto, mantenido y con apps independientes
+  "284": Core es de código abierto y recibe mantenimiento continuo. El código fuente de tu negocio se queda en tu propio repositorio y las apps publicadas funcionan de forma independiente de Studio.
+  "285": Documentación de Core
+  "286": La edición Community es gratuita y de código abierto, e incluye las funciones básicas de Studio y todas las capacidades de Core. Las ediciones comerciales son de pago único con licencia perpetua.
+  "287": Tu código y tus datos te pertenecen
+  "288": Studio y tus apps empresariales se ejecutan en tus propios servidores, incluso en redes aisladas sin internet.
+  "289": Sin dependencia de proveedores. Usa Claude Code, Codex u otras herramientas de programación, con modelos en la nube o locales.
+  "290": Una vez publicadas, tus apps empresariales funcionan por sí solas. Las solicitudes del día a día nunca pasan por Studio.
+  "291": Pago único
+  "292": Las ediciones comerciales son de pago único con licencia perpetua. Tú eliges tus servidores, modelos y herramientas, y pagas directamente a sus proveedores.
+  "293": Preguntas frecuentes
+  "294": "El vibe coding acelera la escritura de código, pero los sistemas empresariales complejos también necesitan una base confiable, una arquitectura coherente y gobernanza. NocoBase no sustituye al vibe coding: Core aporta los componentes base listos para usar y los estándares, mientras Studio coordina equipos de agentes, controles de calidad y el conocimiento del equipo para convertir el código escrito por IA en sistemas empresariales confiables."
+  "295": ¿En qué se diferencia de las plataformas low-code?
+  "296": Las plataformas low-code dependen de configuración manual con arrastrar y soltar, topan con límites ante requisitos complejos y atan las apps a la plataforma. Con NocoBase, los agentes escriben código fuente real para reglas complejas, integraciones e interfaces a medida, guardado en tu propio repositorio y con ejecución independiente.
+  "297": Ya usamos Claude Code, Codex o Cursor, ¿por qué NocoBase?
+  "298": Las herramientas de programación resuelven cómo un desarrollador escribe código con IA; NocoBase resuelve cómo un equipo entrega sistemas empresariales confiables de forma continua. Studio orquesta esas herramientas como un equipo de agentes bajo gobernanza, y Core les da componentes base listos y estándares coherentes para que la arquitectura nunca se desvíe.
+  "299": ¿Pueden participar usuarios de negocio sin perfil técnico?
+  "300": Sí. Los usuarios de negocio describen requisitos, responden preguntas de los agentes y validan resultados con datos reales en un entorno de pruebas desde computadora o móvil. Los agentes y Studio se encargan de las ramas, los entornos, las pruebas y los lanzamientos.
+  "301": ¿Son suficientemente confiables para producción los sistemas creados por IA?
+  "302": Los permisos, las aprobaciones y otros módulos críticos provienen de Core en lugar de generarse desde cero. Cada cambio pasa pruebas automáticas y revisión entre modelos distintos antes de la validación humana, solo se publica tras ser aprobado y se puede revertir en cualquier momento.
+  "303": ¿Nuestros datos salen de nuestra infraestructura?
+  "304": NocoBase se ejecuta en tus propios servidores, incluso en redes aisladas sin internet. Mientras los agentes trabajan, el código relevante solo se envía al proveedor de modelos que elijas, y puedes usar modelos alojados localmente siempre que lo necesites.
+  "305": Empieza con tu primer requisito real.
+  "306": La edición Community es gratuita y de código abierto, e incluye las funciones básicas de Studio y todas las capacidades de Core.
+  "307": Edición Community
+  "308": Autoaloja y empieza en minutos
+  "309": Despliega NocoBase en local o en tu servidor, conecta tus herramientas de programación y modelos, y pásalo directo a producción.
+  "310": Guía de inicio rápido
+  "311": Pro y Enterprise
+  "312": Pago único
+  "313": Hecho para equipos y sistemas críticos
+  "314": Añade flujos con múltiples roles, aprobación de despliegues, SSO empresarial, control de presupuestos, planes de calidad, pruebas de regresión y alta disponibilidad.
+  "315": Las personas definen necesidades y deciden
+  "316": Los agentes programan y ejecutan
+  "317": NocoBase mantiene los sistemas confiables y bajo control
+  "329": NocoBase Studio
+  "330": NocoBase Core
+  "331": Core es la base de ingeniería de código abierto detrás de Studio. Más de 30 componentes base —permisos, flujos de trabajo, archivos, integración con IA y más— vienen listos para usar, así que los agentes solo desarrollan tu lógica de negocio sobre una arquitectura coherente.
+  "332": Más de 30 componentes base confiables y listos

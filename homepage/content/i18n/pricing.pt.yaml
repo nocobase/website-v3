@@ -5,7 +5,7 @@ notes: |-
   vibe coding = vibe coding；self-hosted = auto-hospedado；make the call = dar a palavra final / decidir；at a glance = à vista
   页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（US$ 8.000）；信创数据库只在中文版列出
 title: Edições e preços — NocoBase 3
-description: O Core e todos os apps do Solution são gratuitos e open source. O Professional custa US$ 8.000 em pagamento único, com Studio, 1 ano de atualizações e suporte e uma implantação. O Enterprise tem orçamento sob medida.
+description: A edição Community é gratuita e open source, incluindo os recursos essenciais do Studio, todos os recursos do Core e todos os apps open source. O Professional custa US$ 8.000 em pagamento único, com governança para equipes e 1 ano de atualizações e suporte. O Enterprise tem orçamento sob medida.
 strings:
   "001": Comece grátis. <span class="m">Compre uma vez, use para sempre.</span>
   "002": Open source
@@ -207,3 +207,84 @@ strings:
   "212": Serviços
   "213": Cluster e alta disponibilidade, arquitetura multi-tenant e multiaplicação
   "214": Logs de auditoria e entrega em ambientes isolados
+  "215": A edição Community é gratuita e open source, incluindo os recursos essenciais do Studio, todos os recursos do Core e todos os apps open source. As edições comerciais têm pagamento único e licença perpétua, totalmente auto-hospedadas nos seus próprios servidores.
+  "216": Para uso individual e pequenas equipes que criam e operam sistemas de negócio com IA.
+  "217": Gratuito e open source · pronto para produção e entregas a clientes
+  "218": Comece grátis
+  "219": Projetos, tarefas, equipe de agentes e runtimes em vários dispositivos
+  "220": Testes automáticos, revisão entre modelos, aceitação em preview e rollback
+  "221": Skills, base de conhecimento, memória do projeto e decisões pelo celular
+  "222": Histórico de execuções, registros de uso e custo e permissões por papel com OIDC
+  "223": Todos os mais de 20 componentes básicos, padrões e skills de desenvolvimento do Core
+  "224": Todos os apps de negócio open source (NocoCRM, NocoITAM, NocoReach e mais)
+  "225": Documentação e suporte da comunidade
+  "226": Para equipes
+  "227": Para uma equipe que entrega e governa sistemas de negócio continuamente com IA.
+  "228": "Fluxos com múltiplos papéis: aprovação técnica antes do desenvolvimento e aceitação dupla de negócio e tecnologia"
+  "229": Aprovação de implantações para ambientes protegidos e rollbacks
+  "230": "SSO corporativo: SAML 2.0, LDAP, WeCom, Feishu e DingTalk"
+  "231": "Controle de custos: orçamentos por projeto, membro ou agente com pausa automática"
+  "232": 1 ano de atualizações e suporte (primeira resposta em até 12&nbsp;horas)
+  "233": Um serviço de implantação realizado pela equipe da NocoBase
+  "234": Para entregas com várias equipes e sistemas críticos que exigem planos de qualidade, controle de publicações e alta disponibilidade.
+  "235": Orçamento sob medida · licença perpétua de pagamento único
+  "236": "Planos de qualidade por projeto: verificações caixa-branca e caixa-preta em funcionalidades, permissões, segurança, desempenho e código"
+  "237": Testes automáticos de regressão antes de cada publicação
+  "238": Promoção entre ambientes de staging para produção com janelas de publicação e períodos de congelamento
+  "239": Cluster e alta disponibilidade, arquitetura multi-tenant, multiaplicação e multiportal
+  "240": Logs completos de auditoria e entrega offline em ambientes isolados
+  "241": Suporte prioritário com primeira resposta em até 4&nbsp;horas
+  "242": O Studio e seus apps de negócio são auto-hospedados nos seus próprios servidores, inclusive em redes isoladas sem internet. Você escolhe seus servidores, modelos e ferramentas de código e paga diretamente aos fornecedores.
+  "243": Matriz de recursos
+  "244": O Community inclui os recursos essenciais do Studio e a base open source completa. O Professional adiciona governança para equipes. O Enterprise acrescenta qualidade de publicação, promoção entre ambientes e alta disponibilidade.
+  "245": Espaço de trabalho — desenvolvimento em equipe e governança com agentes de código
+  "246": Projetos e tarefas
+  "247": Descreva necessidades em sessões, os agentes dividem tudo em tarefas e o progresso fica visível em todos os projetos
+  "248": O agente coordenador distribui tarefas para Claude Code, Codex e outros agentes nas suas máquinas
+  "249": Conecte computadores pessoais e servidores da equipe para executar várias tarefas em paralelo
+  "250": Testes e revisão
+  "251": Cada tarefa executa testes e verificações de CI, além de revisão de código por um modelo de outro fornecedor
+  "252": Aceitação e publicação
+  "253": As entregas trazem relatório de aceitação e ambiente de teste; o responsável aprova para publicar, com rollback imediato
+  "254": Registre continuamente os métodos da equipe, os materiais de negócio e as lições do projeto
+  "255": Decida pelo celular
+  "256": Adicione à tela inicial do celular para enviar solicitações, responder perguntas e aprovar entregas de qualquer lugar
+  "257": Cada execução fica registrada, com visibilidade transparente de uso de tokens e custos
+  "258": Membros e permissões
+  "259": Login com senha ou OIDC com permissões por papel; os agentes nunca ultrapassam o acesso de quem fez a solicitação
+  "260": Fluxos com múltiplos papéis
+  "261": Usuários de negócio enviam requisitos, líderes técnicos aprovam antes do desenvolvimento e há aceitação dupla de negócio e tecnologia
+  "262": Aprovação de implantações
+  "263": Implantações e rollbacks em ambientes protegidos precisam de um aprovador
+  "264": Login no Studio via SAML 2.0, LDAP, WeCom, Feishu e DingTalk
+  "265": Defina orçamentos por projeto, membro ou agente com pausa automática ao atingir o limite
+  "266": Testes caixa-branca e caixa-preta por projeto cobrindo funcionalidades, permissões, segurança, desempenho e qualidade de código
+  "267": Testes de regressão
+  "268": Suítes automáticas de regressão antes de cada publicação
+  "269": Promoção entre ambientes
+  "270": Promova versões validadas em staging sem alterações para produção, com janelas de publicação e períodos de congelamento
+  "271": Base — componentes básicos prontos e uma única arquitetura
+  "272": Executam tarefas de rotina dentro das permissões concedidas e pedem confirmação em ações críticas
+  "273": Gere contratos, propostas e documentos a partir de modelos do Office
+  "274": Execução independente com implantação, atualização e rollback via linha de comando
+  "275": Arquitetura multiportal
+  "276": Apps de negócio open source — prontos para usar e personalizáveis no Studio
+  "278": Mais apps open source
+  "279": Suporte, Projetos, RH e mais em breve
+  "280": Personalize com agentes de código conforme as regras do seu negócio
+  "281": Atualizações open source para o Community; 1 ano de versões comerciais para Pro &amp; Enterprise
+  "282": Open source
+  "283": Dúvidas sobre licenciamento e compra
+  "284": Como escolher entre Community, Professional e Enterprise?
+  "285": "Profissionais autônomos e pequenas equipes podem começar grátis com o Community: ele já inclui os recursos essenciais do Studio, todos os componentes básicos do Core e todos os apps open source."
+  "286": "Escolha o Professional quando a equipe precisa de governança: ele adiciona fluxos com múltiplos papéis e aceitação dupla, aprovação de implantações, SSO corporativo, controle de custos, aprovações avançadas, um serviço de implantação e suporte com resposta em até 12 horas."
+  "287": "Escolha o Enterprise para entregas com várias equipes e sistemas de missão crítica: ele adiciona planos de qualidade, testes automáticos de regressão, promoção entre ambientes, cluster de alta disponibilidade, arquitetura multi-tenant, multiaplicação e multiportal, logs de auditoria, entrega em ambientes isolados, 3 dias de implantação e treinamento e suporte prioritário com resposta em até 4 horas."
+  "288": Sim. O Community inclui os recursos essenciais do Studio, todo o Core e todos os apps open source, gratuitos para produção e entregas a clientes.
+  "289": Ela nunca expira. As edições comerciais têm pagamento único, sem anuidade e sem cobrança por usuário.
+  "290": Sim. O Studio, seus agentes e seus apps rodam todos nos seus próprios servidores, inclusive em redes isoladas sem internet. Depois de publicados, os apps rodam por conta própria, sem passar pelo Studio.
+  "291": Preciso comprar o Studio separadamente?
+  "292": Não. O Studio Community Edition já é gratuito e open source no Community. Os recursos de governança para equipes e de qualidade e publicação corporativa já vêm incluídos no Professional e no Enterprise.
+  "293": Posso implantar o Studio comercial para meus clientes?
+  "294": Não. O Studio comercial (Pro/Enterprise) só pode ser usado pela empresa licenciada. Você pode entregar aos seus clientes os apps de negócio que criar ou orientá-los a auto-hospedar a edição Community open source.
+  "295": Conte sobre sua equipe e o que você quer construir. Ajudamos você a escolher a edição certa e a melhor configuração de implantação.
+  "316": Todos os mais de 30 componentes básicos, padrões e skills de desenvolvimento do Core

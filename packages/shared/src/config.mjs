@@ -13,10 +13,10 @@ export function readV2RedirectPrefixes(file = V2_REDIRECT_PREFIXES_FILE) {
   return new Set(readFileSync(file, 'utf8').split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#')));
 }
 
-// 顶部导航里的 GitHub 星标数：默认值写死在这里；构建时环境变量 GITHUB_STARS（原始数字，如 24631）存在就换成它，格式化成 24.6K。
+// 顶部导航里的 GitHub 星标数：默认值写死在这里；构建时环境变量 GITHUB_STARS（原始数字，如 25000）存在就换成它，格式化成 25.0K。
 // 星标数只在构建时读，浏览器里不请求 GitHub。
 export const GITHUB_REPO = 'nocobase/nocobase';
-export const GITHUB_STARS_DEFAULT = '24.6K';
+export const GITHUB_STARS_DEFAULT = '25K';
 
 export function formatStars(n) {
   n = Number(n);

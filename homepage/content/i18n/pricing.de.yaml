@@ -5,7 +5,7 @@ notes: |-
   vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
   页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（8.000 USD）；信创数据库只在中文版列出
 title: Editionen und Preise — NocoBase 3
-description: Community ist kostenlos und Open Source – inklusive der Grundfunktionen von Studio, aller Bausteine von Core und aller Open-Source-Apps. Professional kostet einmalig 8.000 USD mit Team-Governance sowie 1 Jahr Upgrades und Support. Enterprise auf Anfrage.
+description: Core und alle Solution-Apps sind kostenlos und Open Source, und die Studio Community-Edition ist kostenlos nutzbar (mit zwei integrierten Workflows). Professional kostet einmalig 8.000 USD mit Team-Governance, benutzerdefinierten Workflows sowie 1 Jahr Upgrades und Support. Enterprise wird nach Bedarf angeboten.
 strings:
   "001": Kostenlos starten. <span class="m">Einmal kaufen, für immer nutzen.</span>
   "002": Open Source
@@ -287,4 +287,35 @@ strings:
   "293": Kann ich die kommerzielle Studio-Edition für meine Kunden bereitstellen?
   "294": Nein. Die kommerzielle Studio-Edition (Pro/Enterprise) darf nur vom lizenzierten Unternehmen genutzt werden. Die damit entwickelten Geschäftsanwendungen können Sie an Ihre Kunden ausliefern, oder Ihre Kunden hosten selbst die Open-Source-Community-Edition.
   "295": Erzählen Sie uns von Ihrem Team und Ihrem Vorhaben. Wir helfen Ihnen bei der Wahl der passenden Edition und Deployment-Architektur.
+  "298": "Mehrrollen- &amp; eigene Workflows: technische Freigabe vor der Entwicklung, doppelte Abnahme, eigene Schritte und Zuständigkeiten"
+  "299": "Qualitätsmanagement: anpassbare Standards mit bewährten Tools für Funktionen, Smoke-Tests, Berechtigungen, Sicherheit, Performance, Codequalität und UX"
+  "300": "Automatisierte Regression &amp; geschlossene Fehlerbehebung: Kernszenarien mit täglichen, Release-, Projekt- und benutzerdefinierten Läufen, die Folgeaufgaben anlegen und erneut testen"
+  "301": Integrierte Workflows
+  "302": Enthält den schnellen und den Standard-Entwicklungsworkflow mit automatisch geladenen festen Skills
+  "304": Mehrrollen- und benutzerdefinierte Workflows
+  "305": Fachliche Anforderungen, Freigabe durch Tech Leads vor der Entwicklung, doppelte Abnahme sowie eigene Workflow-Schritte und Zuständigkeitsregeln
+  "306": Qualitätsmanagement
+  "307": Projektbezogene Standards und Regeln mit bewährten Tools für Funktionen, Smoke-Tests, Berechtigungen, Sicherheit, Performance, Codequalität und UX
+  "308": Automatisierte Regression und geschlossene Fehlerbehebung
+  "309": Zentrale Geschäftsszenarien mit täglichen, Release-, Projekt- und benutzerdefinierten Läufen, die Folgeaufgaben anlegen und nach der Behebung erneut testen
+  "311": "Wählen Sie Professional, wenn ein Team Governance braucht: Es ergänzt Mehrrollen-Workflows mit doppelter Abnahme und benutzerdefinierte Workflows, Deployment-Freigaben, Enterprise-SSO, Kostenkontrolle, erweiterte Freigaben, einen Deployment-Service sowie Support mit 12-Stunden-Reaktionszeit."
+  "312": "Wählen Sie Enterprise für teamübergreifende Lieferung und geschäftskritische Systeme: Es ergänzt Qualitätsmanagement, automatisierte Regressionstests mit geschlossener Fehlerbehebung, umgebungsübergreifende Releases, Hochverfügbarkeits-Clustering, Multi-Tenant-, Multi-App- und Multi-Portal-Architektur, Audit-Logs, Air-Gap-Auslieferung, 3 Tage Onboarding sowie priorisierten Support mit 4-Stunden-Reaktionszeit."
+  "314": Automatische Prüfungen, Cross-Model-Review, Abnahme und Rollback
+  "315": Jede Aufgabe durchläuft automatische Prüfungen sowie ein schreibgeschütztes Cross-Model-Review
   "316": Alle über 30 Bausteine, Standards und Entwicklungs-Skills von Core
+  "317": Core und alle Open-Source-Apps sind kostenlos und Open Source, und die Studio Community-Edition ist kostenlos nutzbar. Starten Sie direkt mit Core oder deployen Sie Studio; kommerzielle Editionen sind eine einmalige Dauerlizenz, selbst gehostet auf Ihren eigenen Servern.
+  "318": Für Einzelpersonen und kleine Teams – starten Sie direkt mit Core oder deployen Sie Studio.
+  "319": Core &amp; Solution Open Source · Studio Community kostenlos · produktionsreif
+  "320": Alle über 30 Core-Bausteine, Standards und Dev-Skills (eigenständiger Start)
+  "321": Zwei integrierte Workflows (einfach &amp; Standard) mit festen Skills
+  "322": Ausführungsverlauf, Nutzungs- &amp; Kostenprotokolle, OIDC-Berechtigungen und Community-Support
+  "323": Community enthält das vollständige Open-Source-Fundament und die Grundfunktionen von Studio – starten Sie mit Core oder Studio. Professional ergänzt Team-Governance. Enterprise ergänzt Release-Qualität, umgebungsübergreifende Releases und Hochverfügbarkeit.
+  "324": Open-Source-Geschäftsanwendungen — sofort einsatzbereit und mit Coding-Tools oder Studio anpassbar
+  "325": Für Ihr Unternehmen anpassen und veröffentlichen
+  "326": Mit Ihren Coding-Tools oder Agenten in Studio anpassen
+  "327": Kostenlose Updates für Community; 1 Jahr kommerzielle Releases für Pro &amp; Enterprise
+  "328": Kostenlose Updates
+  "329": "Einzelpersonen und kleine Teams können kostenlos starten: Alle Core-Bausteine und alle Open-Source-Apps sind kostenlos und Open Source, und die Studio Community-Edition ist kostenlos nutzbar (mit zwei integrierten Workflows) – starten Sie direkt mit Core oder deployen Sie Studio."
+  "330": Ja. Community enthält den gesamten Core, die Grundfunktionen von Studio und alle Open-Source-Apps – kostenlos für den Produktivbetrieb und Kundenprojekte.
+  "331": Nein. Die Studio Community-Edition ist in Community bereits kostenlos enthalten. Team-Governance, benutzerdefinierte Workflows sowie Enterprise-Funktionen für Qualität und Releases sind direkt in Professional und Enterprise enthalten.
+  "332": Nein. Die kommerzielle Studio-Edition (Pro/Enterprise) darf nur vom lizenzierten Unternehmen genutzt werden. Die damit entwickelten Geschäftsanwendungen können Sie an Ihre Kunden ausliefern, oder Ihre Kunden hosten selbst die Studio Community-Edition.

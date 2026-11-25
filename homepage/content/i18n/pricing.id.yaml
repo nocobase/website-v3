@@ -5,7 +5,7 @@ notes: |-
   self-hosted = self-hosted；at a glance = terlihat sekilas
   页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（US$8.000）；信创数据库只在中文版列出
 title: Edisi dan harga — NocoBase 3
-description: Edisi Community gratis dan open source, mencakup fitur dasar Studio, seluruh kemampuan Core, dan semua aplikasi open source. Professional seharga US$8.000 sekali bayar dengan tata kelola tim serta 1 tahun upgrade dan dukungan. Enterprise disesuaikan dengan penawaran.
+description: Core dan semua aplikasi Solution gratis dan open source, sedangkan Studio Edisi Community gratis digunakan (dengan dua alur kerja bawaan). Professional seharga US$8.000 sekali bayar dengan tata kelola tim, alur kerja kustom, serta 1 tahun upgrade dan dukungan. Enterprise disesuaikan dengan kebutuhan Anda.
 strings:
   "001": Mulai gratis. <span class="m">Beli sekali, pakai selamanya.</span>
   "002": Open source
@@ -287,4 +287,35 @@ strings:
   "293": Bisakah saya men-deploy Studio komersial untuk klien?
   "294": Tidak. Studio komersial (Pro/Enterprise) hanya boleh digunakan oleh perusahaan pemegang lisensi. Anda dapat menyerahkan aplikasi bisnis yang dibangun kepada klien atau meminta mereka melakukan self-host Edisi Community yang open source.
   "295": Ceritakan tentang tim Anda dan apa yang ingin Anda bangun. Kami bantu memilih edisi dan pengaturan deployment yang tepat.
+  "298": "Alur kerja multi-peran &amp; kustom: persetujuan teknis sebelum pengembangan, persetujuan ganda, langkah dan kepemilikan kustom"
+  "299": "Manajemen kualitas: standar kustom dengan alat teruji untuk fitur, pemeriksaan smoke, izin akses, keamanan, performa, kualitas kode, dan UX"
+  "300": "Regresi otomatis &amp; perbaikan siklus tertutup: skenario inti dengan pengujian harian, rilis, proyek, dan kustom yang membuat tugas tindak lanjut lalu menguji ulang"
+  "301": Alur kerja bawaan
+  "302": Mencakup alur kerja pengembangan cepat dan standar dengan skill tersemat yang dimuat otomatis
+  "304": Alur kerja multi-peran dan kustom
+  "305": Permintaan bisnis, persetujuan tech lead sebelum pengembangan, persetujuan ganda, serta langkah alur kerja dan aturan kepemilikan kustom
+  "306": Manajemen kualitas
+  "307": Standar dan aturan tingkat proyek menggunakan alat teruji untuk fitur, pemeriksaan smoke, izin akses, keamanan, performa, kualitas kode, dan UX
+  "308": Regresi otomatis dan perbaikan siklus tertutup
+  "309": Skenario bisnis inti dengan pengujian harian, rilis, proyek, dan kustom yang membuat tugas tindak lanjut lalu menguji ulang setelah perbaikan
+  "311": "Pilih Professional saat tim membutuhkan tata kelola: menambahkan alur kerja multi-peran dengan persetujuan ganda dan alur kerja kustom, persetujuan deploy, SSO perusahaan, kontrol biaya, persetujuan lanjutan, satu kali layanan deploy, dan dukungan dengan respons dalam 12 jam."
+  "312": "Pilih Enterprise untuk pengiriman multi-tim dan sistem kritis: menambahkan manajemen kualitas, pengujian regresi otomatis dengan perbaikan siklus tertutup, promosi lintas lingkungan, klaster ketersediaan tinggi, arsitektur multi-tenant/multi-aplikasi/multi-portal, log audit, pengiriman air-gapped, 3 hari onboarding, dan dukungan prioritas 4 jam."
+  "314": Pemeriksaan otomatis, review lintas model, persetujuan, dan rollback
+  "315": Setiap tugas menjalankan pemeriksaan otomatis ditambah review lintas model baca-saja
   "316": Seluruh 30+ komponen dasar Core, standar, dan skill pengembangan
+  "317": Core dan semua aplikasi open source gratis dan open source, sedangkan Studio Edisi Community gratis digunakan. Mulai langsung dengan Core atau deploy Studio; edisi komersial dibeli sekali bayar dengan lisensi permanen dan di-host sendiri di server Anda.
+  "318": Untuk perorangan dan tim kecil—mulai langsung dengan Core atau deploy Studio.
+  "319": Core &amp; Solution open source · Studio Community gratis · siap produksi
+  "320": Seluruh 30+ komponen dasar Core, standar, dan skill pengembangan (mulai mandiri)
+  "321": Dua alur kerja bawaan (ringkas &amp; standar) dengan skill tersemat
+  "322": Riwayat eksekusi, log pemakaian &amp; biaya, izin OIDC, dan dukungan komunitas
+  "323": Community mencakup fondasi open source lengkap dan fitur dasar Studio—mulai dengan Core atau Studio. Professional menambahkan tata kelola tim. Enterprise menambahkan kualitas rilis, promosi lintas lingkungan, dan ketersediaan tinggi.
+  "324": Aplikasi bisnis open source — langsung siap pakai dan bisa dikustomisasi dengan alat coding atau Studio
+  "325": Kustomisasi dan rilis untuk bisnis Anda
+  "326": Kustomisasi dengan alat coding Anda atau agen di Studio
+  "327": Pembaruan gratis untuk Community; 1 tahun rilis komersial untuk Pro &amp; Enterprise
+  "328": Pembaruan gratis
+  "329": "Perorangan dan tim kecil bisa mulai gratis: setiap komponen dasar Core dan semua aplikasi open source gratis dan open source, sedangkan Studio Edisi Community gratis digunakan (dengan dua alur kerja bawaan)—mulai langsung dengan Core atau deploy Studio."
+  "330": Bisa. Community mencakup seluruh Core, fitur inti Studio, dan semua aplikasi open source, gratis untuk produksi maupun pengerjaan proyek klien.
+  "331": Tidak. Studio Edisi Community sudah gratis digunakan di dalam Community. Fitur tata kelola tim, alur kerja kustom, serta kualitas dan rilis tingkat enterprise sudah termasuk langsung di Professional dan Enterprise.
+  "332": Tidak. Studio komersial (Pro/Enterprise) hanya boleh digunakan oleh perusahaan pemegang lisensi. Anda dapat menyerahkan aplikasi bisnis yang dibangun kepada klien atau meminta mereka melakukan self-host Studio Edisi Community.

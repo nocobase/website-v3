@@ -5,7 +5,7 @@ notes: |-
   vibe coding = vibe coding；self-hosted = auto-hospedado；make the call = dar a palavra final / decidir；at a glance = à vista
   页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（US$ 8.000）；信创数据库只在中文版列出
 title: Edições e preços — NocoBase 3
-description: A edição Community é gratuita e open source, incluindo os recursos essenciais do Studio, todos os recursos do Core e todos os apps open source. O Professional custa US$ 8.000 em pagamento único, com governança para equipes e 1 ano de atualizações e suporte. O Enterprise tem orçamento sob medida.
+description: O Core e todos os apps do Solution são gratuitos e open source, e o Studio Community Edition é gratuito para uso (com dois fluxos integrados). O Professional custa US$ 8.000 em pagamento único, com governança para equipes, fluxos personalizados e 1 ano de atualizações e suporte. O Enterprise tem orçamento sob medida.
 strings:
   "001": Comece grátis. <span class="m">Compre uma vez, use para sempre.</span>
   "002": Open source
@@ -287,4 +287,35 @@ strings:
   "293": Posso implantar o Studio comercial para meus clientes?
   "294": Não. O Studio comercial (Pro/Enterprise) só pode ser usado pela empresa licenciada. Você pode entregar aos seus clientes os apps de negócio que criar ou orientá-los a auto-hospedar a edição Community open source.
   "295": Conte sobre sua equipe e o que você quer construir. Ajudamos você a escolher a edição certa e a melhor configuração de implantação.
+  "298": "Fluxos com múltiplos papéis e personalizados: aprovação técnica antes do desenvolvimento, aceitação dupla, etapas e responsabilidades sob medida"
+  "299": "Gestão de qualidade: padrões personalizáveis com ferramentas comprovadas em funcionalidades, smoke tests, permissões, segurança, desempenho, qualidade de código e UX"
+  "300": "Regressão automática e correção em ciclo fechado: cenários principais com execuções diárias, de lançamento, de projeto e personalizadas que abrem tarefas de acompanhamento e retestam"
+  "301": Fluxos integrados
+  "302": Inclui fluxos de desenvolvimento rápido e padrão com skills fixas carregadas automaticamente
+  "304": Fluxos com múltiplos papéis e personalizados
+  "305": Solicitações das áreas de negócio, aprovação do líder técnico antes do desenvolvimento, aceitação dupla e etapas e regras de responsabilidade personalizadas
+  "306": Gestão de qualidade
+  "307": Padrões e regras por projeto usando ferramentas comprovadas em funcionalidades, smoke tests, permissões, segurança, desempenho, qualidade de código e UX
+  "308": Regressão automática e correção em ciclo fechado
+  "309": Cenários principais de negócio com execuções diárias, de lançamento, de projeto e personalizadas que abrem tarefas de acompanhamento e retestam após as correções
+  "311": "Escolha o Professional quando a equipe precisa de governança: ele adiciona fluxos com múltiplos papéis com aceitação dupla e fluxos personalizados, aprovação de implantações, SSO corporativo, controle de custos, aprovações avançadas, um serviço de implantação e suporte com resposta em até 12 horas."
+  "312": "Escolha o Enterprise para entregas com várias equipes e sistemas de missão crítica: ele adiciona gestão de qualidade, regressão automática com correção em ciclo fechado, promoção entre ambientes, cluster de alta disponibilidade, arquitetura multi-tenant, multiaplicação e multiportal, logs de auditoria, entrega em ambientes isolados, 3 dias de implantação e treinamento e suporte prioritário com resposta em até 4 horas."
+  "314": Verificações automáticas, revisão entre modelos, aceitação e rollback
+  "315": Cada tarefa executa verificações automáticas e revisão somente leitura entre modelos
   "316": Todos os mais de 30 componentes básicos, padrões e skills de desenvolvimento do Core
+  "317": O Core e todos os apps open source são gratuitos e open source, e o Studio Community Edition é gratuito para uso. Comece direto pelo Core ou implante o Studio; as edições comerciais têm licença perpétua de pagamento único, auto-hospedadas nos seus próprios servidores.
+  "318": Para uso individual e pequenas equipes — comece direto pelo Core ou implante o Studio.
+  "319": Core e Solution open source · Studio Community grátis · pronto para produção
+  "320": Todos os mais de 30 componentes básicos, padrões e skills de desenvolvimento do Core (comece de forma independente)
+  "321": Dois fluxos integrados (simples e padrão) com skills fixas
+  "322": Histórico de execuções, registros de uso e custo, permissões com OIDC e suporte da comunidade
+  "323": O Community inclui a base open source completa e os recursos essenciais do Studio — comece pelo Core ou pelo Studio. O Professional adiciona governança para equipes. O Enterprise acrescenta qualidade de publicação, promoção entre ambientes e alta disponibilidade.
+  "324": Apps de negócio open source — prontos para usar e personalizáveis com ferramentas de código ou no Studio
+  "325": Personalize e publique para o seu negócio
+  "326": Personalize com suas ferramentas de código ou com agentes no Studio
+  "327": Atualizações gratuitas para o Community; 1 ano de versões comerciais para Pro &amp; Enterprise
+  "328": Atualizações gratuitas
+  "329": "Profissionais autônomos e pequenas equipes podem começar grátis: todos os componentes básicos do Core e todos os apps open source são gratuitos e open source, e o Studio Community Edition é gratuito para uso (com dois fluxos integrados) — comece direto pelo Core ou implante o Studio."
+  "330": Sim. O Community inclui todo o Core, os recursos essenciais do Studio e todos os apps open source, gratuitos para produção e entregas a clientes.
+  "331": Não. O Studio Community Edition já é gratuito para uso no Community. Os recursos de governança para equipes, fluxos personalizados e qualidade e publicação corporativa já vêm incluídos no Professional e no Enterprise.
+  "332": Não. O Studio comercial (Pro/Enterprise) só pode ser usado pela empresa licenciada. Você pode entregar aos seus clientes os apps de negócio que criar ou orientá-los a auto-hospedar o Studio Community Edition.

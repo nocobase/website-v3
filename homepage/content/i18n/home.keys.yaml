@@ -616,9 +616,8 @@ items:
     unused: true
   "126":
     en: Choose your starting point.
-    zh: 选择适合你们团队的起点。
+    zh: 选择适合你们的起点。
     where: start
-    unused: true
   "127":
     en: Free &amp; Open Source
     zh: 开源免费
@@ -672,6 +671,7 @@ items:
     en: View Editions &amp; Pricing
     zh: 查看版本与价格
     where: start
+    unused: true
   "138":
     en: AI + NocoBase. Build reliable business systems.
     zh: AI + NocoBase，构建可靠的业务系统。
@@ -1215,6 +1215,7 @@ items:
     en: Powered by Studio and Core together, enterprises adopt this new workflow while keeping every system reliable and under control.
     zh: 由工作台（Studio）和应用底座（Core）共同支撑，让企业实现这些变化，同时确保系统可靠、过程可控。
     where: new-way
+    unused: true
   "255":
     en: Business teams
     zh: 业务部门
@@ -1265,7 +1266,7 @@ items:
     where: new-way
   "267":
     en: Studio is the workspace for this new way of working. It brings Claude Code, Codex, and OpenCode across your devices into a 24/7 agent team that handles development, testing, and review, while people define needs, track progress, and make decisions on desktop or mobile.
-    zh: 工作台（Studio）是新工作方式的入口。它把多台设备上的 Claude Code、Codex、OpenCode 组建成一支 24 小时工作的 Agent 团队，按流程自主推进开发、测试和评审；人在电脑或手机上提需求、看进展、做决策。
+    zh: 工作台（Studio）面向团队协作与全流程治理。它把多台设备上的 Claude Code、Codex、OpenCode 组建成一支 24 小时工作的 Agent 团队，按流程自主推进开发、评审和全自动质量测试；人在电脑或手机上提需求、看进展、做决策。
     where: studio
   "268":
     en: A 24/7 agent team
@@ -1349,6 +1350,7 @@ items:
     en: The Community Edition is free and open source, including Studio basics and every Core capability. Commercial editions are a one-time purchase with a perpetual license.
     zh: 社区版开源免费，包含工作台的基础功能和应用底座的全部基础能力；商业版一次买断、永久授权。
     where: open
+    unused: true
   "287":
     en: Your code and data belong to you
     zh: 代码和数据归企业所有
@@ -1390,6 +1392,7 @@ items:
     en: Low-code platforms rely on manual drag-and-drop configuration, hit platform ceilings on complex requirements, and lock apps to the platform. With NocoBase, agents write real source code for complex rules, integrations, and custom UIs—stored in your own repo and running independently.
     zh: 低代码平台靠人拖拽配置，复杂需求要绕开平台限制，应用依附于平台。NocoBase 由 Agent 编写真正的源码，复杂规则、系统集成、定制界面都能做；代码在企业自己的仓库里，应用独立运行。
     where: faq
+    unused: true
   "297":
     en: We already use Claude Code, Codex, or Cursor—why NocoBase?
     zh: 已经在用 Claude Code、Codex、Cursor，还需要 NocoBase 吗？
@@ -1398,6 +1401,7 @@ items:
     en: Coding tools solve how one developer writes code with AI; NocoBase solves how a team delivers reliable business systems continuously. Studio orchestrates those tools as a governed agent team, and Core gives them ready-made building blocks and consistent standards so the architecture never drifts.
     zh: 需要。这些编码工具解决的是一个人怎样用 AI 写代码，NocoBase 解决的是企业怎样用它们持续交付可靠的业务系统。工作台把这些编码工具组成一支 Agent 团队统一调度、按流程把关；应用底座提供现成的基础能力和统一规范，编码工具在上面只写业务，换人、换模型架构也不会漂移。
     where: faq
+    unused: true
   "299":
     en: Can non-technical business users participate?
     zh: 不懂代码的业务人员能用吗？
@@ -1427,26 +1431,32 @@ items:
     en: Start with your first real requirement.
     zh: 从第一个真实需求开始。
     where: start
+    unused: true
   "306":
     en: The Community Edition is free and open source, including Studio basics and every Core capability.
     zh: 社区版开源免费，包含工作台基础功能和应用底座的全部基础能力。
     where: start
+    unused: true
   "307":
     en: Community Edition
     zh: 社区版
     where: start
+    unused: true
   "308":
     en: Self-host and get started in minutes
     zh: 自行部署，立即上手体验
     where: start
+    unused: true
   "309":
     en: Deploy NocoBase locally or on your server, connect your coding tools and models, and run straight to production.
     zh: 在本地或服务器上部署 NocoBase，接入你已经在用的编码工具和模型，直接用于生产和商业交付。
     where: start
+    unused: true
   "310":
     en: Quick Start Docs
     zh: 快速开始文档
     where: start
+    unused: true
   "311":
     en: Pro &amp; Enterprise
     zh: 专业版与企业版
@@ -1455,10 +1465,12 @@ items:
     en: One-Time Purchase
     zh: 一次买断
     where: start
+    unused: true
   "313":
     en: Built for teams and critical systems
     zh: 面向企业团队与关键业务
     where: start
+    unused: true
   "314":
     en: Adds multi-role workflows, deployment approvals, enterprise SSO, budget controls, quality plans, regression testing, and high availability.
     zh: 增加多角色流程、部署审批、企业 SSO、成本控制、质量计划、回归测试与集群高可用。
@@ -1510,9 +1522,10 @@ items:
     en: Adds multi-role and custom workflows, deployment approvals, enterprise SSO, budget controls, quality management, automated regression with closed-loop fixes, and high availability.
     zh: 增加多角色与自定义流程、部署审批、企业 SSO、成本控制、质量管理、自动回归与问题闭环以及集群高可用。
     where: start
+    unused: true
   "326":
     en: Pick fast, standard, or custom workflows with pinned skills loaded on every run. Another model reviews read-only and automated CI checks pass before human sign-off.
-    zh: 按任务选用快速、标准开发或自定义流程，常驻技能每次自动加载、不可移除；换另一家模型只读评审并过 CI 自动检查后交人验收，退回自动回到 AI 执行。
+    zh: 按任务选用精简、标准或自定义流程，常驻技能每次运行自动加载；换另一家模型只读评审并过 CI 自动检查后交人验收，退回自动回到 AI 执行。
     where: studio
   "327":
     en: Vibe coding speeds up writing code, but complex enterprise systems also need a reliable foundation, structured workflows, and automated quality testing. NocoBase doesn’t replace vibe coding—Core supplies ready-made building blocks and one consistent architecture, while Studio runs every issue through workflows with pinned skills, cross-model review, and human gates, plus parallel multi-dimensional testing with proven tools and closed-loop fixes to turn AI-written code into reliable business systems.
@@ -1532,9 +1545,89 @@ items:
     where: core
   "331":
     en: Core is the open-source engineering foundation behind Studio. Over 30 building blocks—permissions, workflows, files, AI integration, and more—come ready to use so agents build only your business logic on one consistent architecture.
-    zh: 应用底座（Core）为新工作方式提供可靠的工程支撑。权限、流程、文件、AI 接入等 30 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
+    zh: 应用底座（Core）面向 AI 开发，可独立起步、独立运行。权限、登录认证、流程、文件、AI 接入等 30 多项基础能力现成可用，直接用你熟悉的编码工具就能在统一架构上写业务，也可搭配 Studio 开展团队协作。
     where: core
   "332":
     en: 30+ ready-made, reliable building blocks
     zh: 30 多项现成、可靠的基础能力
     where: core
+  "333":
+    en: Powered by Core and Studio together, enterprises adopt this new workflow while keeping every system reliable and under control.
+    zh: 由应用底座（Core）和工作台（Studio）共同支撑，让企业实现这些变化，同时确保系统可靠、过程可控。
+    where: new-way
+  "334":
+    en: Core and every Solution app are free and open source, and Studio Community Edition is free to use. Start directly with Core or deploy Studio; commercial editions are a one-time purchase with a perpetual license.
+    zh: 应用底座（Core）和全部 Solution 开源免费，工作台（Studio）社区版免费使用，可从 Core 独立起步或直接部署 Studio；商业版一次买断、永久授权。
+    where: open
+  "335":
+    en: Low-code platforms still rely on manual drag-and-drop configuration, hit limits on complex rules or custom UIs, and tie apps to the platform. With NocoBase, agents write standard source code in parallel—delivering much faster with virtually no capability ceiling. Your code lives in your own Git repo, runs standalone, and comes with built-in business agents for daily operations.
+    zh: 两者在开发速度、能力上限和运行方式上有本质区别：低代码平台仍靠人逐页拖拽配置，遇到复杂规则或深度定制往往碰壁，且应用绑定平台运行；NocoBase 由 Agent 直接编写标准源码并可 24 小时并行推进，开发速度更快、几乎没有能力上限，代码保存在企业自己的 Git 仓库里且发布后独立运行，同时业务系统天然内置业务 Agent 主动分担日常事务。
+    where: faq
+  "336":
+    en: Yes. Coding tools solve how fast code gets written; NocoBase solves how to deliver reliable business systems continuously. Start directly with Core using your existing coding tools—30+ building blocks come ready out of the box so agents focus on business logic without architecture drift. When projects multiply and you need team collaboration, business sign-off, and automated quality gates, add Studio to coordinate them as one governed agent team.
+    zh: 需要。这些编码工具解决的是写代码的速度，NocoBase 解决的是如何持续交付可靠的业务系统。你可以先直接用你手头的编码工具从 Core 起步——权限、认证、流程、数据库等 30 多项基础能力开箱就绪，Agent 按统一规范只写业务，架构不会漂移；当项目变多、需要多人协作、业务参与验收和全自动质量把关时，再接入 Studio 把这些编码工具组建成受控的 Agent 团队。
+    where: faq
+  "337":
+    en: Start directly with Core using your existing coding tools, or deploy Studio Community Edition for team collaboration—both are free to start.
+    zh: 用你手头的编码工具直接从 Core 起步，或部署 Studio 社区版开展团队协作；均可免费开始。
+    where: start
+  "338":
+    en: Start with Core
+    zh: 从 Core 起步
+    where: start
+  "339":
+    en: For developers &amp; evaluation
+    zh: 个人开发者与技术评估
+    where: start
+  "340":
+    en: Initialize an app in minutes with 30+ building blocks and consistent standards ready out of the box—build business logic right away with Claude Code, Codex, or Cursor.
+    zh: 几分钟初始化新应用，权限、登录认证、流程、数据库等 30 多项基础能力与统一规范开箱就绪，直接搭配 Claude Code、Codex、Cursor 写业务，无需先部署工作台。
+    where: start
+  "341":
+    en: Build First App
+    zh: 开发第一个应用
+    where: start
+  "342":
+    en: GitHub
+    zh: GitHub
+    where: start
+  "343":
+    en: Start with Studio
+    zh: 从 Studio 起步
+    where: start
+  "344":
+    en: Free Community
+    zh: 社区版免费
+    where: start
+  "345":
+    en: For teams &amp; workflows
+    zh: 团队协作与全流程治理
+    where: start
+  "346":
+    en: Deploy Studio Community Edition to organize coding tools into a 24/7 agent team with structured workflows, live preview sign-off, and shared team know-how.
+    zh: 部署社区版工作台，把个人电脑和团队服务器上的编码工具组建成 24 小时工作的 Agent 团队，让业务、IT 与管理层按流程协同交付、验收与沉淀知识。
+    where: start
+  "347":
+    en: Quick Install Studio
+    zh: 快速安装 Studio
+    where: start
+  "348":
+    en: Explore Studio
+    zh: 了解工作台
+    where: start
+  "349":
+    en: One-Time License
+    zh: 一次买断
+    where: start
+  "350":
+    en: For scaling teams &amp; critical apps
+    zh: 规模化团队与关键业务
+    where: start
+  "351":
+    en: Adds multi-role and custom workflows, deployment approvals, enterprise SSO, cost controls, automated regression with closed-loop fixes, cross-environment promotion, and HA clustering.
+    zh: 增加多角色与自定义流程、部署审批、企业 SSO、成本控制、项目级质量管理与自动回归闭环、跨环境发布及高可用集群，一次买断、永久授权。
+    where: start
+  "352":
+    en: View Pricing
+    zh: 查看版本与价格
+    where: start

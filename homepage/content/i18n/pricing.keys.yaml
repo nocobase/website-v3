@@ -3,8 +3,8 @@ meta:
     zh: 版本与价格 — NocoBase 3
     en: Editions &amp; Pricing — NocoBase 3
   description:
-    zh: 社区版开源免费，包含 Studio 工作台基础功能（含两种内置工作流程）、Core 全部基础能力和全部开源应用；专业版 5 万元一次买断，含多角色与自定义流程、部署审批、企业 SSO、成本控制与 1 年支持；企业版按需报价。
-    en: Community Edition is free and open source, including Studio basics with two built-in workflows, every Core capability, and all open-source apps. Professional is $8,000 one-time with team governance, custom workflows, and 1 year of upgrades and support. Enterprise is quoted to your needs.
+    zh: Core 与全部 Solution 开源免费，Studio 社区版免费使用（含工作台基础功能与两种内置工作流程）；专业版 5 万元一次买断，含多角色与自定义流程、部署审批、企业 SSO、成本控制与 1 年支持；企业版按需报价。
+    en: Core and all Solution apps are free and open source, and Studio Community Edition is free to use (with two built-in workflows). Professional is $8,000 one-time with team governance, custom workflows, and 1 year of upgrades and support. Enterprise is quoted to your needs.
 items:
   "000":
     en: Editions &amp; Pricing
@@ -18,6 +18,7 @@ items:
     en: Open source
     zh: 开源免费
     where: tight
+    unused: true
   "003":
     en: Build and run business systems with your own coding agents.
     zh: 用自己的 Coding Agent 开发和运行业务系统。
@@ -25,7 +26,7 @@ items:
     unused: true
   "004":
     en: Free
-    zh: 免费
+    zh: 社区版免费
     where: tight
   "005":
     en: Get Started
@@ -634,6 +635,7 @@ items:
     en: Customize and release in Studio
     zh: 在 Studio 中二次开发与发布
     where: tint
+    unused: true
   "138":
     en: Official updates, merged for you
     zh: 官方更新同步
@@ -991,14 +993,17 @@ items:
     en: Community Edition is free and open source, including Studio basics, every Core capability, and all open-source apps. Commercial editions are a one-time purchase with a perpetual license, fully self-hosted on your own servers.
     zh: 社区版开源免费，包含工作台（Studio）基础功能、应用底座（Core）全部基础能力和全部开源应用；商业版一次买断、永久授权，全部私有部署在企业自己的服务器上。
     where: phero
+    unused: true
   "216":
     en: For individuals and small teams building and running business systems with AI.
     zh: 适合个人和小团队，用 AI 开发和运行业务系统。
     where: tight
+    unused: true
   "217":
     en: Free &amp; open source · ready for production and client delivery
     zh: 开源免费 · 可直接用于生产和商业交付
     where: tight
+    unused: true
   "218":
     en: Get Started Free
     zh: 免费开始使用
@@ -1020,6 +1025,7 @@ items:
     en: Run history, usage &amp; cost logs, and role permissions with OIDC
     zh: 运行记录与用量、成员权限（支持 OIDC 登录）
     where: tight
+    unused: true
   "223":
     en: All 20+ Core building blocks, standards, and dev skills
     zh: Core 全部 20 多项基础能力、统一规范与开发技能
@@ -1033,6 +1039,7 @@ items:
     en: Documentation and community support
     zh: 文档与社区支持
     where: tight
+    unused: true
   "226":
     en: For teams
     zh: 团队推荐
@@ -1112,6 +1119,7 @@ items:
     en: Community includes Studio basics and the full open-source foundation. Professional adds team governance. Enterprise adds release quality, cross-environment promotions, and high availability.
     zh: 社区版开箱即得工作台基础功能与完整应用底座；专业版补齐团队协作与治理；企业版面向多团队与关键业务的质量、发布和高可用。
     where: compare
+    unused: true
   "245":
     en: Workbench — team development and governance with coding agents
     zh: 工作台 — 人与 Agent 协同开发与把关
@@ -1246,6 +1254,7 @@ items:
     en: Open-source business apps — ready out of the box and customizable in Studio
     zh: 开源业务应用 — 开箱即用，可在工作台继续定制
     where: compare
+    unused: true
   "277":
     en: Sales CRM
     zh: 销售管理
@@ -1262,14 +1271,17 @@ items:
     en: Customize with coding agents to match your own business
     zh: 用 Agent 按企业自己的业务继续定制
     where: compare
+    unused: true
   "281":
     en: Open-source updates for Community; 1 year of commercial releases for Pro &amp; Enterprise
     zh: 社区版随开源版本更新；商业版含购买后 1 年新版本
     where: compare
+    unused: true
   "282":
     en: Open-source
     zh: 开源更新
     where: compare
+    unused: true
   "283":
     en: Licensing &amp; purchasing FAQ
     zh: 购买与授权说明
@@ -1297,6 +1309,7 @@ items:
     en: Yes. Community includes Studio’s core features, all of Core, and every open-source app, free for production and client delivery.
     zh: 可以。社区版包含工作台（Studio）的基础功能、完整的 Core 底座和所有开源应用，可以直接用于生产环境和商业交付。
     where: faq
+    unused: true
   "289":
     en: It never expires. Commercial editions are a one-time purchase with no annual fees and no per-seat charges.
     zh: 永久有效。商业版一次付费，没有年费，也不按席位收费，已购版本可以一直使用。
@@ -1322,6 +1335,7 @@ items:
     en: No. Commercial Studio (Pro/Enterprise) may only be used by the licensed company. You can deliver the business apps you build to clients or have them self-host the open-source Community Edition.
     zh: 不能。商业版（专业版、企业版）Studio 仅限获得授权的公司使用。你可以把用 Studio 开发的业务应用交付给客户，或让客户自行部署开源社区版，但商业版 Studio 本身不能分发给未获授权的公司。
     where: faq
+    unused: true
   "295":
     en: Tell us about your team and what you want to build. We’ll help you choose the right edition and deployment setup.
     zh: 告诉我们你的团队规模和业务场景，我们帮你评估版本与部署方案。
@@ -1330,6 +1344,7 @@ items:
     en: Two built-in workflows (fast &amp; standard dev) with pinned skills
     zh: 两种内置工作流程（快速与标准开发）与常驻技能
     where: tight
+    unused: true
   "297":
     en: CI checks, independent read-only cross-model review, sign-off, and rollback
     zh: CI 检查、独立只读跨模型评审、验收上线与回滚
@@ -1353,7 +1368,7 @@ items:
     where: compare
   "302":
     en: Includes fast and standard development workflows with pinned skills loaded automatically
-    zh: 包含快速流程和标准开发流程，常驻技能自动加载、任务不可移除
+    zh: 包含精简流程和标准流程，常驻技能每次运行自动加载
     where: compare
   "303":
     en: Every issue runs CI checks plus independent read-only cross-model review
@@ -1388,6 +1403,7 @@ items:
     en: "Individuals and small teams can start free with Community: it already includes Studio’s core features (with two built-in workflows), every Core building block, and all open-source apps."
     zh: 个人和小团队可以直接从社区版起步：开源免费，已经包含工作台（Studio）的基础功能（含两种内置工作流程）、应用底座（Core）的全部基础能力和全部开源应用。
     where: faq
+    unused: true
   "311":
     en: "Choose Professional when a team needs governance: it adds multi-role workflows with dual sign-off and custom workflows, deployment approvals, enterprise SSO, cost controls, advanced approvals, one deployment service, and 12-hour response support."
     zh: 一个团队需要规范分工与治理，选专业版：增加多角色流程（业务与技术双重验收）与自定义流程、部署审批、企业 SSO、成本控制，以及高级审批、信创数据库与一次部署服务，技术支持首次响应不超过 12&nbsp;小时。
@@ -1400,6 +1416,7 @@ items:
     en: No. Studio Community Edition is already free and open source in Community. Team governance, custom workflows, and enterprise quality/release features are included directly in Professional and Enterprise.
     zh: 不需要。Studio 社区版已经开源免费包含在社区版里，个人和小团队可以直接部署使用；多角色与自定义流程、部署审批、企业 SSO、成本控制，以及质量管理、自动回归与问题闭环和跨环境发布等进阶功能，分别包含在专业版和企业版中。
     where: faq
+    unused: true
   "314":
     en: Automated checks, cross-model review, sign-off, and rollback
     zh: 自动检查、不同模型交叉评审、验收上线与回滚
@@ -1412,3 +1429,68 @@ items:
     en: All 30+ Core building blocks, standards, and dev skills
     zh: Core 全部 30 多项基础能力、统一规范与开发技能
     where: tight
+    unused: true
+  "317":
+    en: Core and all open-source apps are free and open source, and Studio Community Edition is free to use. Start directly with Core or deploy Studio; commercial editions are a one-time perpetual license self-hosted on your own servers.
+    zh: 应用底座（Core）和全部开源应用开源免费，工作台（Studio）社区版免费使用，可从 Core 独立起步或直接部署 Studio；商业版一次买断、永久授权，全部私有部署在企业自己的服务器上。
+    where: phero
+  "318":
+    en: For individuals and small teams—start directly with Core or deploy Studio.
+    zh: 适合个人和小团队，可从 Core 独立起步，也可直接部署 Studio。
+    where: tight
+  "319":
+    en: Core &amp; Solutions open source · Studio Community free · production ready
+    zh: Core 与 Solution 开源免费 · Studio 社区版免费 · 可用于生产
+    where: tight
+  "320":
+    en: All 30+ Core building blocks, standards, and dev skills (start standalone)
+    zh: Core 全部 30 多项基础能力、统一规范与开发技能（可独立起步）
+    where: tight
+  "321":
+    en: Two built-in workflows (simple &amp; standard) with resident skills
+    zh: 两种内置工作流程（精简与标准流程）与常驻技能
+    where: tight
+  "322":
+    en: Run history, usage &amp; cost logs, OIDC permissions, and community support
+    zh: 运行记录与用量、成员权限（支持 OIDC 登录）与社区支持
+    where: tight
+  "323":
+    en: Community includes the full open-source foundation and Studio basics—start with Core or Studio. Professional adds team governance. Enterprise adds release quality, cross-environment promotions, and high availability.
+    zh: 社区版开箱即得完整应用底座与工作台基础功能，可从 Core 起步或直接部署 Studio；专业版补齐团队协作与治理；企业版面向多团队与关键业务的质量、发布和高可用。
+    where: compare
+  "324":
+    en: Open-source business apps — ready out of the box and customizable with coding tools or Studio
+    zh: 开源业务应用 — 开箱即用，可用编码工具或在工作台继续定制
+    where: compare
+  "325":
+    en: Customize and release for your business
+    zh: 按企业业务二次开发与发布
+    where: compare
+  "326":
+    en: Customize with your coding tools or agents in Studio
+    zh: 直接用编码工具或在 Studio 中让 Agent 继续定制
+    where: compare
+  "327":
+    en: Free updates for Community; 1 year of commercial releases for Pro &amp; Enterprise
+    zh: 社区版免费获取更新；商业版含购买后 1 年新版本
+    where: compare
+  "328":
+    en: Free updates
+    zh: 免费更新
+    where: compare
+  "329":
+    en: "Individuals and small teams can start free: every Core building block and all open-source apps are free and open source, and Studio Community Edition is free to use (with two built-in workflows)—start directly with Core or deploy Studio."
+    zh: 个人和小团队可以直接免费起步：应用底座（Core）的全部基础能力和全部开源应用开源免费，工作台（Studio）社区版免费使用（含两种内置工作流程），可从 Core 独立起步或直接部署 Studio。
+    where: faq
+  "330":
+    en: Yes. Community includes all of Core, Studio’s core features, and every open-source app, free for production and client delivery.
+    zh: 可以。社区版包含完整的 Core 底座、工作台（Studio）的基础功能和所有开源应用，可以直接用于生产环境和商业交付。
+    where: faq
+  "331":
+    en: No. Studio Community Edition is already free to use in Community. Team governance, custom workflows, and enterprise quality/release features are included directly in Professional and Enterprise.
+    zh: 不需要。Studio 社区版已经免费包含在社区版里，个人和小团队可以直接部署使用；多角色与自定义流程、部署审批、企业 SSO、成本控制，以及质量管理、自动回归与问题闭环和跨环境发布等进阶功能，分别包含在专业版和企业版中。
+    where: faq
+  "332":
+    en: No. Commercial Studio (Pro/Enterprise) may only be used by the licensed company. You can deliver the business apps you build to clients or have them self-host Studio Community Edition.
+    zh: 不能。商业版（专业版、企业版）Studio 仅限获得授权的公司使用。你可以把用 Studio 开发的业务应用交付给客户，或让客户自行部署 Studio 社区版，但商业版 Studio 本身不能分发给未获授权的公司。
+    where: faq

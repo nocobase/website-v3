@@ -132,4 +132,28 @@ strings:
   "138": Ler a documentação do Studio
   "139": "Conheça a base por trás do Studio: NocoBase Core"
   "140": Veja apps open source criados no NocoBase
+  "142": Fluxos estruturados, <span class="m">pessoas nos pontos-chave.</span>
+  "144": Fluxos integrados e personalizados
+  "146": Controles claros e retrabalho automático
+  "148": Skills fixas em cada execução
+  "149": Vincule regras de desenvolvimento, critérios de revisão e formatos de relatório como skills fixas que carregam automaticamente e não podem ser removidas por tarefa, combinadas com publicações aprovadas e rollback.
+  "150": Gestão de qualidade
+  "151": Testes automáticos de qualidade, <span class="m">correção em ciclo fechado.</span>
+  "152": Ferramentas de teste comprovadas rodam em paralelo em sete dimensões — em vez de os agentes deduzirem a partir do código —, gerando relatórios automaticamente e transformando achados em tarefas de acompanhamento que corrigem e retestam em ciclo fechado.
+  "153": Ferramentas comprovadas e padrões próprios
+  "154": Cobre funcionalidades, smoke tests, permissões, segurança, desempenho, qualidade de código e UX com Playwright, motor de matriz de papéis, OWASP ZAP, gitleaks, Lighthouse, PostgreSQL EXPLAIN e jscpd. Personalize limites, skills e dimensões; pré-requisitos ausentes ficam claramente marcados como não verificados.
+  "155": Quatro gatilhos, execução em paralelo
+  "156": Execuções diárias, de lançamento, de projeto e personalizadas compartilham um só motor e conjunto de regras. Os cenários principais ficam no repositório e evoluem com o produto enquanto várias máquinas de teste executam as dimensões em paralelo.
+  "157": Relatórios automáticos e correção em ciclo fechado
+  "158": Os relatórios por dimensão se consolidam em um único relatório de entrega. Defeitos deduplicados, regressões de desempenho, achados de segurança e itens de limpeza entram no fluxo de desenvolvimento para os agentes corrigirem, revisarem e retestarem — deixando apenas regras ambíguas para as pessoas.
+  "160": Adiciona fluxos com múltiplos papéis com aceitação dupla e fluxos personalizados, aprovação de implantações, SSO corporativo (SAML/LDAP/Feishu/DingTalk/WeCom) e limites de orçamento.
+  "161": Adiciona gestão de qualidade por projeto em sete dimensões com ferramentas comprovadas, regressão automática com correção em ciclo fechado, promoção entre ambientes com janelas de publicação e períodos de congelamento, além de cluster de alta disponibilidade.
+  "162": Solicitantes e líderes técnicos conduzem o início e o fechamento, enquanto os agentes cuidam de planejamento, código, revisão somente leitura por outro modelo e verificações automáticas de CI no meio — com devoluções retornando automaticamente para correção.
   "163": NocoBase Studio
+  "164": O NocoBase Studio é o espaço de trabalho de desenvolvimento em equipe do NocoBase. Ele reúne Claude Code, Codex e OpenCode dos seus dispositivos em uma equipe de agentes 24/7 que cuida de desenvolvimento, testes e revisão por processo, enquanto as pessoas fazem solicitações, acompanham o progresso e decidem no computador ou no celular.
+  "165": Instalar Studio rápido
+  "166": Escolha para cada tarefa um fluxo simples, padrão ou personalizado com skills fixas carregadas em cada execução, mantendo responsáveis claros, ciclos automáticos de retrabalho e trilha de auditoria completa.
+  "167": O Community já vem com os fluxos simples e padrão; o Professional adiciona fluxos com múltiplos papéis, etapas personalizadas e regras configuráveis de responsabilidade.
+  "168": Community grátis
+  "169": Inclui tarefas, equipes de agentes, runtimes, dois fluxos integrados (simples e padrão) com skills fixas, verificações de CI e revisão entre modelos, aceitação em preview, base de conhecimento/memória, aprovações pelo celular e permissões por papel.
+  "170": Ou comece direto com o NocoBase Core

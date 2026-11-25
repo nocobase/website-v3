@@ -16,7 +16,7 @@ import { ALL, BY_CODE, LANGS, LEADS_ENDPOINT, ORIGIN, ZH_EN } from './config.mjs
 import { Lingo, localize } from './html.mjs';
 import * as i18n from './i18n.mjs';
 import * as links from './links.mjs';
-import { collectText, languageList, makeHref, navSpec } from './nav.mjs';
+import { collectText, languageList, makeHref, navSpec, qsModalSpec } from './nav.mjs';
 import { readHome, readPage } from './pages.mjs';
 import { CONTENT } from './paths.mjs';
 
@@ -162,8 +162,17 @@ export function renderPage(page, lang) {
   }
 
   const { header, footer } = navSpec(m.page);
+  const qsModal = qsModalSpec();
   localizeAll(header, lang);
   localizeAll(footer, lang);
+  localizeAll(qsModal, lang);
+  const qsDocsUrl = lang === 'zh' || lang === 'zh-TW'
+    ? 'https://docs.nocobase.com/zh-CN/getting-started/develop-your-first-app/'
+    : lang === 'ja'
+      ? 'https://docs.nocobase.com/ja-JP/getting-started/develop-your-first-app/'
+      : 'https://docs.nocobase.com/getting-started/develop-your-first-app/';
+  qsModal.prompt = qsModal.prompt.replace('{url}', qsDocsUrl);
+  qsModal.docsHref = qsDocsUrl;
   const href = makeHref(resolve, lang);
   mapHrefs(header, href);
   mapHrefs(footer, href);
@@ -185,7 +194,7 @@ export function renderPage(page, lang) {
     style: page.style,
     main: finish(main),
     after: deferInlineScripts(finish(page.after)),
-    header, footer,
+    header, footer, qsModal,
     stars: githubStars(),
   };
 }

@@ -4,7 +4,7 @@ notes: |-
   agent = agent；agent team = đội agent；coding agent = coding agent；business logic = logic nghiệp vụ；
   business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
 title: NocoBase Core — Để agent tập trung vào logic nghiệp vụ
-description: NocoBase Core là nền móng ứng dụng mã nguồn mở đứng sau NocoBase Studio. Phân quyền, quy trình, tệp tin và năng lực AI đều sẵn sàng để agent chỉ tập trung xây dựng logic nghiệp vụ trên một kiến trúc thống nhất, và ứng dụng chạy độc lập sau khi phát hành.
+description: NocoBase Core là nền móng ứng dụng mã nguồn mở được xây dựng cho phát triển bằng AI. Phân quyền, quy trình, tệp tin và năng lực AI đều sẵn sàng để bạn bắt đầu trực tiếp với công cụ lập trình của mình, và ứng dụng chạy độc lập.
 strings:
   "000": Để agent tập trung vào logic nghiệp vụ. <span class="m">Nền móng đã sẵn sàng.</span>
   "002": Bắt đầu nhanh
@@ -141,3 +141,5 @@ strings:
   "166": NocoBase Core là nền móng ứng dụng mã nguồn mở đứng sau Studio. Với hơn 30 khối chức năng sẵn có cho phân quyền, quy trình, tệp tin và AI, agent chỉ cần xây dựng phần đặc thù cho nghiệp vụ của bạn trên một kiến trúc thống nhất, và hệ thống sau khi phát hành chạy độc lập.
   "167": Hơn 30 khối chức năng đã kiểm chứng, <span class="m">dùng được ngay.</span>
   "168": <b>Hơn 30 khối chức năng</b>, được NocoBase bảo trì và nâng cấp.
+  "169": NocoBase Core là nền móng ứng dụng mã nguồn mở được xây dựng cho phát triển bằng AI, sẵn sàng để khởi đầu độc lập và vận hành độc lập. Với hơn 30 khối chức năng sẵn có cho phân quyền, xác thực, quy trình, tệp tin và AI, hãy xây dựng logic nghiệp vụ ngay bằng công cụ lập trình của bạn hoặc mở rộng sang cộng tác nhóm cùng Studio.
+  "170": Cài đặt và dùng ngay NocoCRM, NocoITAM hoặc NocoReach, hoặc tùy biến chúng bằng công cụ lập trình của bạn hay agent trong Studio.

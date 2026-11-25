@@ -132,4 +132,28 @@ strings:
   "138": Baca Dokumentasi Studio
   "139": "Pelajari fondasi di balik Studio: NocoBase Core"
   "140": Lihat aplikasi open source yang dibangun di atas NocoBase
+  "142": Alur kerja terstruktur, <span class="m">manusia di gerbang kendali.</span>
+  "144": Alur kerja bawaan &amp; kustom
+  "146": Gerbang jelas &amp; pengerjaan ulang otomatis
+  "148": Skill tersemat di setiap eksekusi
+  "149": Sematkan aturan pengembangan, standar penilaian review, dan format pelaporan sebagai skill tersemat yang dimuat otomatis dan tidak bisa dilepas per tugas, dipadukan dengan rilis disetujui dan rollback.
+  "150": Manajemen kualitas
+  "151": Pengujian kualitas otomatis, <span class="m">perbaikan siklus tertutup.</span>
+  "152": Alat pengujian teruji berjalan paralel di tujuh dimensi alih-alih agen menebak dari kode—menghasilkan laporan secara otomatis dan mengubah temuan menjadi tugas tindak lanjut yang diperbaiki serta diuji ulang dalam siklus tertutup.
+  "153": Alat teruji &amp; standar kustom
+  "154": Mencakup fitur, pemeriksaan smoke, izin akses, keamanan, performa, kualitas kode, dan UX dengan Playwright, mesin matriks peran, OWASP ZAP, gitleaks, Lighthouse, PostgreSQL EXPLAIN, dan jscpd. Sesuaikan ambang batas, skill, dan dimensi; prasyarat yang belum terpenuhi tetap ditandai jelas sebagai belum terverifikasi.
+  "155": Empat pemicu, eksekusi paralel
+  "156": Pengujian harian, rilis, proyek, dan kustom berbagi satu mesin dan satu set aturan. Skenario inti tersimpan di repositori dan berkembang bersama produk sementara banyak mesin uji menjalankan dimensi secara paralel.
+  "157": Laporan otomatis &amp; perbaikan siklus tertutup
+  "158": Laporan tiap dimensi dirangkum menjadi satu laporan pengiriman. Cacat yang sudah dideduplikasi, penurunan performa, temuan keamanan, dan item pembersihan kode masuk ke alur kerja pengembangan agar agen memperbaiki, me-review, dan menguji ulang—hanya aturan yang belum pasti yang diserahkan kepada manusia.
+  "160": Menambahkan alur kerja multi-peran dengan persetujuan ganda dan alur kerja kustom, persetujuan deploy, SSO enterprise (SAML/LDAP/Feishu/DingTalk/WeCom), dan batas anggaran.
+  "161": Menambahkan manajemen kualitas proyek di tujuh dimensi dengan alat teruji, pengujian regresi otomatis dengan perbaikan siklus tertutup, promosi lintas lingkungan dengan jendela rilis dan masa pembekuan, serta klaster ketersediaan tinggi.
+  "162": Peminta dan tech lead memegang tahap awal dan akhir sementara agen menangani perencanaan, penulisan kode, review baca-saja oleh model lain, dan pemeriksaan CI otomatis di antaranya—dengan penolakan yang otomatis kembali untuk diperbaiki.
   "163": NocoBase Studio
+  "164": NocoBase Studio adalah ruang kerja pengembangan tim untuk NocoBase. Studio menyatukan Claude Code, Codex, dan OpenCode di berbagai perangkat Anda menjadi satu tim agen 24/7 yang menangani pengembangan, pengujian, dan review sesuai proses, sementara manusia mengajukan permintaan, memantau progres, dan mengambil keputusan dari desktop maupun ponsel.
+  "165": Instal Cepat Studio
+  "166": Cocokkan setiap tugas dengan alur kerja ringkas, standar, atau kustom dengan skill tersemat yang dimuat di setiap eksekusi—menjaga penanggung jawab yang jelas, putaran perbaikan otomatis, dan jejak audit lengkap.
+  "167": Community dilengkapi alur kerja ringkas dan standar; Professional menambahkan alur kerja multi-peran, langkah kustom, dan aturan kepemilikan yang dapat dikonfigurasi.
+  "168": Community Gratis
+  "169": Mencakup tugas, tim agen, runtime, dua alur kerja bawaan (ringkas &amp; standar) dengan skill tersemat, pemeriksaan CI &amp; review lintas model, persetujuan pratinjau, basis pengetahuan/memori, persetujuan ponsel, dan izin berbasis peran.
+  "170": Atau mulai langsung dengan NocoBase Core

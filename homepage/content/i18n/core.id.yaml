@@ -4,7 +4,7 @@ notes: |-
   coding agent = agen coding；business logic = logika bisnis；business systems = sistem bisnis；vibe coding = vibe coding；
   self-hosted = self-hosted；at a glance = terlihat sekilas
 title: NocoBase Core — Biarkan agen fokus pada logika bisnis Anda
-description: NocoBase Core adalah fondasi aplikasi open source di balik NocoBase Studio. Izin akses, alur kerja, file, dan kemampuan AI siap pakai sehingga agen hanya membangun logika bisnis Anda di atas satu arsitektur, dan aplikasi berjalan mandiri.
+description: NocoBase Core adalah fondasi aplikasi open source yang dirancang untuk pengembangan dengan AI. Izin akses, alur kerja, file, dan kemampuan AI siap pakai sehingga Anda dapat mulai langsung dengan alat coding sendiri, dan aplikasi berjalan mandiri.
 strings:
   "000": Biarkan agen fokus pada logika bisnis Anda. <span class="m">Fondasinya sudah siap.</span>
   "002": Mulai cepat
@@ -141,3 +141,5 @@ strings:
   "166": NocoBase Core adalah fondasi aplikasi open source di balik Studio. Dengan 30+ komponen dasar siap pakai untuk izin akses, alur kerja, file, dan AI, agen hanya membangun hal yang khas bagi bisnis Anda di atas satu arsitektur, dan sistem yang dirilis berjalan mandiri.
   "167": 30+ komponen dasar teruji, <span class="m">siap pakai.</span>
   "168": <b>30+ komponen dasar</b>, dipelihara dan ditingkatkan oleh NocoBase.
+  "169": NocoBase Core adalah fondasi aplikasi open source yang dirancang untuk pengembangan dengan AI, siap dimulai secara mandiri dan berjalan mandiri. Dengan 30+ komponen dasar siap pakai untuk izin akses, autentikasi, alur kerja, file, dan AI, langsung bangun logika bisnis dengan alat coding Anda atau tingkatkan ke kolaborasi tim bersama Studio.
+  "170": Pasang NocoCRM, NocoITAM, atau NocoReach langsung siap pakai, atau kustomisasi dengan alat coding Anda maupun agen di Studio.

@@ -17,7 +17,7 @@ import { parse, unescape } from '../src/lib/html.mjs';
 import { checkAll, keysFile, langFile, PAGE_GROUPS, readKeys } from '../src/lib/i18n.mjs';
 import { renderBilingual } from '../src/lib/pages.mjs';
 import { CONTENT, HOMEPAGE } from '../src/lib/paths.mjs';
-import { collectText, navSpec } from '../src/lib/nav.mjs';
+import { collectText, navSpec, qsModalSpec } from '../src/lib/nav.mjs';
 import { readYaml, writeYaml } from '../src/lib/yaml-io.mjs';
 
 const HAN = /[一-鿿¥]/;
@@ -61,7 +61,7 @@ function pageItems(group) {
 
 function siteItems() {
   const { header, footer } = navSpec('');
-  const nav = [...collectText(header), ...collectText(footer)].map(([n, k]) => n[k]).join('\n');
+  const nav = [...collectText(header), ...collectText(footer), ...collectText(qsModalSpec())].map(([n, k]) => n[k]).join('\n');
   const items = [...nav.matchAll(/<t-zh>(.*?)<\/t-zh><t-en>(.*?)<\/t-en>/g)].map(m => ({ en: m[2], zh: m[1], where: 'site' }));
   const js = ['public-form.js', 'lead-form.js', 'partner-forms.js'].map(f => readFileSync(join(HOMEPAGE, 'src', 'scripts', f), 'utf8')).join('\n'), unq = x => x.replaceAll("\\'", "'");
   for (const m of js.matchAll(/\bT\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'\s*\)/g)) items.push({ en: unq(m[2]), zh: unq(m[1]), where: 'form' });

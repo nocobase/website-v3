@@ -4,7 +4,7 @@ notes: |-
   coding agent = agente de programación；business logic = lógica de negocio；business systems = sistemas empresariales；
   vibe coding = vibe coding；self-hosted = autoalojado；make the call = decidir；at a glance = de un vistazo
 title: NocoBase Core — Deja que los agentes se centren en tu lógica de negocio
-description: NocoBase Core es la base de aplicaciones de código abierto detrás de NocoBase Studio. Permisos, flujos de trabajo, archivos y capacidades de IA vienen listos para usar para que los agentes solo desarrollen tu lógica de negocio sobre una misma arquitectura, y las apps funcionen de forma independiente.
+description: NocoBase Core es la base de aplicaciones de código abierto diseñada para el desarrollo con IA. Permisos, flujos de trabajo, archivos y capacidades de IA vienen listos para usar para que empieces directamente con tus herramientas de programación y las apps funcionen de forma independiente.
 strings:
   "000": Deja que los agentes se centren en tu lógica de negocio. <span class="m">La base ya está lista.</span>
   "002": Inicio rápido
@@ -141,3 +141,5 @@ strings:
   "166": NocoBase Core es la base de aplicaciones de código abierto detrás de Studio. Con más de 30 componentes base listos para permisos, flujos de trabajo, archivos e IA, los agentes solo desarrollan lo propio de tu negocio sobre una misma arquitectura y los sistemas publicados funcionan de forma independiente.
   "167": Más de 30 componentes base probados, <span class="m">listos para usar.</span>
   "168": <b>Más de 30 componentes base</b>, mantenidos y actualizados por NocoBase.
+  "169": NocoBase Core es la base de aplicaciones de código abierto diseñada para el desarrollo con IA, lista para empezar por tu cuenta y ejecutarse de forma independiente. Con más de 30 componentes base listos para permisos, autenticación, flujos de trabajo, archivos e IA, desarrolla tu lógica de negocio de inmediato con tus herramientas de programación o escala a la colaboración en equipo con Studio.
+  "170": Instala NocoCRM, NocoITAM o NocoReach al instante, o personalízalas con tus herramientas de programación o con agentes en Studio.

@@ -13,10 +13,7 @@ import Header from '@nocobase/site-shared/Header.astro';
 import { ANALYTICS } from '../lib/nav.mjs';
 
 const { page } = Astro.props;
-const isZh = page.htmlLang === 'zh-CN';
-const coreQuickStartDocs = isZh
-  ? 'https://docs.nocobase.com/zh-CN/getting-started/develop-your-first-app/'
-  : 'https://docs.nocobase.com/getting-started/develop-your-first-app/';
+const { qsModal } = page;
 ---
 <!doctype html>
 <html lang={page.htmlLang}>
@@ -45,26 +42,24 @@ const coreQuickStartDocs = isZh
     <div class="qs-mhd-t">
       <span class="qs-mic" aria-hidden="true"><i data-lucide="blocks"></i></span>
       <div>
-        <h1 id="qsCoreTitle">{isZh ? '快速开始 · NocoBase Core' : 'Quick Start · NocoBase Core'}</h1>
-        <p>{isZh ? '复制下面这段提示词，在空目录发给 Claude Code、Codex、Cursor 等 Coding Agent 即可。' : 'Copy and send this prompt to Claude Code, Codex, Cursor, or any coding agent in an empty directory.'}</p>
+        <h1 id="qsCoreTitle">{qsModal.title}</h1>
+        <p>{qsModal.desc}</p>
       </div>
     </div>
-    <button type="button" class="qs-close" command="close" commandfor="qsCoreModal" aria-label={isZh ? '关闭' : 'Close'}>
+    <button type="button" class="qs-close" command="close" commandfor="qsCoreModal" aria-label={qsModal.close}>
       <i data-lucide="x"></i>
     </button>
   </div>
   <div class="qs-mbody">
     <div class="qs-prompt-box">
-      <p class="qs-prompt" id="qs-modal-prompt">{isZh
-        ? '请阅读 https://docs.nocobase.com/zh-CN/getting-started/develop-your-first-app/ ，按文档在当前空目录创建一个本地开发用的 NocoBase 3 应用（使用默认模板和 SQLite），启动后告诉我访问地址和首次登录账号。'
-        : 'Read https://docs.nocobase.com/getting-started/develop-your-first-app/ and create a local NocoBase 3 app in this empty directory using the default template and SQLite. Start it and share the local URL and initial sign-in credentials.'}</p>
+      <p class="qs-prompt" id="qs-modal-prompt">{qsModal.prompt}</p>
     </div>
     <div class="qs-macts">
       <span class="qs-copy">
-        <button type="button" class="btn btn-pri qs-btn" command="--copy" commandfor="qs-modal-prompt" autofocus><i data-lucide="copy" class="ic-copy"></i><i data-lucide="check" class="ic-ok"></i><span>{isZh ? '复制提示词' : 'Copy prompt'}</span></button>
+        <button type="button" class="btn btn-pri qs-btn" command="--copy" commandfor="qs-modal-prompt" data-copied-label={qsModal.copied} data-failed-label={qsModal.failed} autofocus><i data-lucide="copy" class="ic-copy"></i><i data-lucide="check" class="ic-ok"></i><span>{qsModal.copy}</span></button>
         <span class="qs-tip" role="status"></span>
       </span>
-      <a class="qs-doc" href={coreQuickStartDocs} target="_blank" rel="noopener">{isZh ? '查看完整起步文档' : 'Full quick start guide'}<i data-lucide="arrow-up-right"></i></a>
+      <a class="qs-doc" href={qsModal.docsHref} target="_blank" rel="noopener">{qsModal.label}<i data-lucide="arrow-up-right"></i></a>
     </div>
   </div>
 </dialog>

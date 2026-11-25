@@ -132,4 +132,28 @@ strings:
   "138": Đọc tài liệu Studio
   "139": "Tìm hiểu nền móng phía sau Studio: NocoBase Core"
   "140": Xem các ứng dụng mã nguồn mở xây dựng trên NocoBase
+  "142": Quy trình bài bản, <span class="m">con người giữ điểm kiểm soát.</span>
+  "144": Quy trình tích hợp sẵn &amp; tùy chỉnh
+  "146": Điểm kiểm soát rõ ràng &amp; tự động làm lại
+  "148": Kỹ năng cố định ở mọi lần chạy
+  "149": Gắn quy chuẩn phát triển, tiêu chí phân hạng review và mẫu báo cáo làm kỹ năng cố định để tự động nạp và không thể gỡ bỏ theo từng nhiệm vụ, đi kèm phát hành có phê duyệt và rollback.
+  "150": Quản lý chất lượng
+  "151": Kiểm thử chất lượng tự động, <span class="m">khắc phục khép kín.</span>
+  "152": Các công cụ kiểm thử đã kiểm chứng chạy song song trên bảy khía cạnh thay vì để agent đoán qua mã nguồn — tự động xuất báo cáo và chuyển các phát hiện thành nhiệm vụ theo dõi để sửa lỗi, kiểm thử lại theo vòng khép kín.
+  "153": Công cụ đã kiểm chứng &amp; chuẩn tùy chỉnh
+  "154": Bao phủ tính năng, kiểm thử smoke, phân quyền, bảo mật, hiệu năng, chất lượng code và UX bằng Playwright, công cụ ma trận phân quyền, OWASP ZAP, gitleaks, Lighthouse, PostgreSQL EXPLAIN và jscpd. Tùy chỉnh ngưỡng, kỹ năng và khía cạnh; mục thiếu điều kiện tiên quyết luôn được đánh dấu rõ là chưa kiểm chứng.
+  "155": Bốn cơ chế kích hoạt, chạy song song nhiều máy
+  "156": Các đợt chạy hằng ngày, phát hành, dự án và tùy chỉnh dùng chung một công cụ và bộ quy tắc. Kịch bản cốt lõi lưu trong kho mã và phát triển cùng sản phẩm, trong khi nhiều máy kiểm thử thực thi song song các khía cạnh.
+  "157": Báo cáo tự động &amp; khắc phục khép kín
+  "158": Báo cáo từng khía cạnh được tổng hợp thành một báo cáo bàn giao duy nhất. Các lỗi đã khử trùng lặp, suy giảm hiệu năng, phát hiện bảo mật và hạng mục dọn code đi thẳng vào quy trình phát triển để agent sửa, review và kiểm thử lại — chỉ giữ lại các quy tắc chưa rõ ràng cho con người quyết định.
+  "160": Bổ sung quy trình đa vai trò kèm nghiệm thu kép và quy trình tùy chỉnh, phê duyệt triển khai, SSO doanh nghiệp (SAML/LDAP/Feishu/DingTalk/WeCom) và giới hạn ngân sách.
+  "161": Bổ sung quản lý chất lượng cấp dự án trên bảy khía cạnh bằng công cụ đã kiểm chứng, kiểm thử hồi quy tự động kèm khắc phục khép kín, phát hành đa môi trường với khung thời gian phát hành và giai đoạn đóng băng, cùng cụm tính sẵn sàng cao.
+  "162": Người yêu cầu và trưởng nhóm kỹ thuật phụ trách đầu vào và đầu ra, còn ở giữa agent đảm nhận lập phương án, viết code, review chỉ đọc bằng model khác và kiểm tra CI tự động — tự động quay vòng xử lý khi bị trả lại.
   "163": NocoBase Studio
+  "164": NocoBase Studio là không gian phát triển nhóm cho NocoBase. Studio kết nối Claude Code, Codex và OpenCode trên nhiều thiết bị thành một đội agent 24/7 đảm nhận phát triển, kiểm thử và review theo quy trình, trong khi con người gửi yêu cầu, theo dõi tiến độ và ra quyết định từ máy tính hoặc điện thoại.
+  "165": Cài đặt nhanh Studio
+  "166": Chọn quy trình rút gọn, tiêu chuẩn hoặc tùy chỉnh cho từng nhiệm vụ với kỹ năng cố định tự động nạp ở mỗi lần chạy — giữ rõ trách nhiệm, vòng làm lại tự động và đầy đủ dấu vết kiểm toán.
+  "167": Community đi kèm quy trình rút gọn và tiêu chuẩn; Professional bổ sung quy trình đa vai trò, các bước tùy chỉnh và quy tắc phân quyền phụ trách linh hoạt.
+  "168": Community miễn phí
+  "169": Gồm nhiệm vụ, đội agent, runtimes, hai quy trình tích hợp sẵn (rút gọn &amp; tiêu chuẩn) với kỹ năng cố định, kiểm tra CI &amp; review chéo giữa các model, nghiệm thu bản xem trước, kho tri thức/bộ nhớ dự án, phê duyệt trên điện thoại và phân quyền vai trò.
+  "170": Hoặc bắt đầu trực tiếp với NocoBase Core

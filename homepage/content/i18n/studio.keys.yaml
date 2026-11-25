@@ -375,17 +375,19 @@ items:
     en: NocoBase Studio is the workbench for NocoBase. It brings Claude Code, Codex, and OpenCode across your devices into one 24/7 agent team that handles development, testing, and review by process, while people make requests, track progress, and decide from desktop or mobile.
     zh: NocoBase Studio 是 NocoBase 的工作台。它把多台设备上的 Claude Code、Codex、OpenCode 等组建成一支 24 小时工作的 Agent 团队，按流程自主推进开发、测试和评审；人在电脑或手机上提需求、看进展、做决策。
     where: phero
+    unused: true
   "076":
     en: Get Started Free
     zh: 免费开始使用
     where: phero
+    unused: true
   "077":
     en: Studio Docs
     zh: Studio 文档
     where: phero
   "078":
     en: Community Edition is free and includes core Studio features
-    zh: 社区版开源免费，包含工作台基础功能
+    zh: 社区版免费使用，包含工作台基础功能
     where: phero
   "079":
     en: Self-hosted on your own servers, air-gapped ready
@@ -580,6 +582,7 @@ items:
     en: Free &amp; Open Source
     zh: 开源免费
     where: editions
+    unused: true
   "124":
     en: For individuals &amp; small teams
     zh: 个人与小团队免费起步
@@ -647,6 +650,7 @@ items:
     en: "Explore the foundation behind Studio: NocoBase Core"
     zh: 了解工作台背后的应用底座：NocoBase Core
     where: editions
+    unused: true
   "140":
     en: See open-source apps built on NocoBase
     zh: 看看用 NocoBase 做出来的开源应用
@@ -663,6 +667,7 @@ items:
     en: Match each issue to a fast, standard, or custom workflow with pinned skills loaded on every run—keeping clear ownership, automatic rework loops, and a full audit trail.
     zh: 同一项目可按任务选用快速流程、标准开发流程或自定义流程；常驻技能每次运行自动加载、不可移除，每一步谁做、谁确认全程留痕。
     where: process
+    unused: true
   "144":
     en: Built-in &amp; custom workflows
     zh: 多流程并存，支持自定义
@@ -671,6 +676,7 @@ items:
     en: Community ships with fast and standard development workflows; Professional adds multi-role workflows, custom steps, and configurable ownership rules.
     zh: 社区版内置快速流程与标准开发流程，小改动快跑、核心改造走完整步骤；专业版支持多角色流程、自定义流程与权责规则。
     where: process
+    unused: true
   "146":
     en: Clear gates &amp; automatic rework
     zh: 清晰把关，退回自动闭环
@@ -728,6 +734,7 @@ items:
     en: Includes issues, agent teams, runtimes, two built-in workflows (fast &amp; standard dev) with pinned skills, CI checks &amp; cross-model review, preview sign-off, knowledge/memory, mobile approvals, and role permissions.
     zh: 包含项目与任务、Agent 团队、运行环境、两种内置工作流程（快速与标准开发）与常驻技能、CI 检查与跨模型评审、验收上线、知识库/项目记忆、手机决策与成员权限。
     where: editions
+    unused: true
   "160":
     en: Adds multi-role workflows with dual sign-off and custom workflows, deployment approvals, enterprise SSO (SAML/LDAP/Feishu/DingTalk/WeCom), and budget limits.
     zh: 在社区版基础上，增加多角色流程（业务/技术双重验收）与自定义流程、部署审批、企业 SSO（飞书/钉钉/企微/SAML/LDAP）以及按项目和成员的成本预算控制。
@@ -744,3 +751,31 @@ items:
     en: NocoBase Studio
     zh: 工作台 · NocoBase Studio
     where: phero
+  "164":
+    en: NocoBase Studio is the team development workbench for NocoBase. It brings Claude Code, Codex, and OpenCode across your devices into one 24/7 agent team that handles development, testing, and review by process, while people make requests, track progress, and decide from desktop or mobile.
+    zh: NocoBase Studio 是 NocoBase 的团队开发工作台。它把多台设备上的 Claude Code、Codex、OpenCode 等组建成一支 24 小时工作的 Agent 团队，按流程自主推进开发、测试和评审；人在电脑或手机上提需求、看进展、做决策。
+    where: phero
+  "165":
+    en: Quick Install Studio
+    zh: 快速安装 Studio
+    where: phero
+  "166":
+    en: Match each issue to a simple, standard, or custom workflow with resident skills loaded on every run—keeping clear ownership, automatic rework loops, and a full audit trail.
+    zh: 同一项目可按任务选用精简流程、标准流程或自定义流程；常驻技能每次运行自动加载，每一步谁做、谁确认全程留痕。
+    where: process
+  "167":
+    en: Community ships with simple and standard workflows; Professional adds multi-role workflows, custom steps, and configurable ownership rules.
+    zh: 社区版内置精简流程与标准流程，小改动快跑、核心改造走完整步骤；专业版支持多角色流程、自定义流程与权责规则。
+    where: process
+  "168":
+    en: Free Community
+    zh: 社区版免费
+    where: editions
+  "169":
+    en: Includes issues, agent teams, runtimes, two built-in workflows (simple &amp; standard) with resident skills, CI checks &amp; cross-model review, preview sign-off, knowledge/memory, mobile approvals, and role permissions.
+    zh: 包含项目与任务、Agent 团队、运行环境、两种内置工作流程（精简与标准流程）与常驻技能、CI 检查与跨模型评审、验收上线、知识库/项目记忆、手机决策与成员权限。
+    where: editions
+  "170":
+    en: Or start directly with NocoBase Core
+    zh: 也可以直接从应用底座 NocoBase Core 起步
+    where: editions

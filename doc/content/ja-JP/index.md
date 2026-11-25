@@ -1,6 +1,6 @@
 ---
 title: NocoBase 3 ドキュメント
-description: NocoBase は、AI で業務システムを継続的に開発・運用するためのオープンソースプラットフォームです。エージェントが業務コードを書き、NocoBase が基盤とガバナンスを提供し、人が目標を定めて意思決定を行います。
+description: NocoBase は、企業が AI で業務システムを開発・運用するためのオープンソースプラットフォームです。人が要件を定義して意思決定を行い、エージェントがコードを書いて実行し、NocoBase がシステムの信頼性とプロセスの統制を支えます。
 ---
 
 <div class="doc-home-modules">
@@ -9,7 +9,7 @@ description: NocoBase は、AI で業務システムを継続的に開発・運�
 
 ## [はじめに](getting-started/what-is-nocobase.md)
 
-NocoBase を知り、自分に合った使い方を見つける。
+NocoBase を知り、自分に合った使い方を見つけます。
 
 </section>
 
@@ -17,7 +17,7 @@ NocoBase を知り、自分に合った使い方を見つける。
 
 ## [Core](core/index.md)
 
-エージェントは業務開発に専念。基盤はすでに整っています。
+エージェントは業務開発に専念、基盤はもう整っています。30 以上の共通機能と統一された規約を備え、単体で始めて独立して稼働できます。
 
 </section>
 
@@ -25,7 +25,7 @@ NocoBase を知り、自分に合った使い方を見つける。
 
 ## [Studio](studio/index.md)
 
-エージェントが自律的に進め、チームが全体を掌握。
+エージェントが自律的に推進し、チームが全体を掌握します。
 
 </section>
 
@@ -33,13 +33,15 @@ NocoBase を知り、自分に合った使い方を見つける。
 
 ## [チュートリアル](guides/build-reliable-enterprise-apps.md)
 
-実践ガイドに沿ってアプリを構築する。
+実践ガイドに沿って、自分のアプリを構築します。
 
 </section>
 
 <section class="doc-home-card">
 
-## [FAQ](faq/from-v2.md)
+## [FAQ](faq/index.md)
+
+導入や利用にあたっての疑問にお答えします。
 
 </section>
 

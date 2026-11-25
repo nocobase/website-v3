@@ -468,3 +468,19 @@ items:
     en: Open-Source Apps
     zh: 开源应用
     where: site
+  "112":
+    en: Studio
+    zh: 工作台
+    where: site
+  "113":
+    en: Core
+    zh: 底座
+    where: site
+  "114":
+    en: NocoBase Studio
+    zh: 工作台（Studio）
+    where: site
+  "115":
+    en: NocoBase Core
+    zh: 应用底座（Core）
+    where: site

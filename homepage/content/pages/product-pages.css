@@ -20,7 +20,7 @@
 .phero .label.prod { margin-bottom: 18px; }
 @media (max-width: 600px) { .label.prod b { font-size: 15px; } }
 
-/* Core 图：统一的项目结构和开发规范一行，以及「20 多项基础能力」一格 */
+/* Core 图：统一的项目结构和开发规范一行，以及「30 多项基础能力」一格 */
 .caps .more { background: oklch(0.88 0.05 262 / 0.06); }
 .cx-std { display: flex; align-items: center; gap: 16px; padding: 12px 16px; border-bottom: 1px solid var(--deep-line); background: oklch(0.88 0.05 262 / 0.06); }
 .cx-std .l { display: grid; gap: 2px; min-width: 0; }

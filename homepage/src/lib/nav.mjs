@@ -54,14 +54,14 @@ export function navSpec(active, { stars = githubStars(), changelog = hasChangelo
       ],
     },
     menu: [
-      { label: 'Studio', href: 'studio.html', active: on('studio') },
-      { label: 'Core', href: 'core.html', active: on('core') },
+      { label: T('底座', 'Core'), href: 'core.html', active: on('core') },
+      { label: T('工作台', 'Studio'), href: 'studio.html', active: on('studio') },
       {
         label: T('应用', 'Apps'),
         items: [
           ...APPS.map(item),
           sep,
-          { href: 'solutions.html', icon: 'layout-grid', title: T('全部开源应用', 'All Open-Source Apps'), desc: T('装上即用，也能用 Studio 按需二次开发', 'Install and use right away, or customize in Studio'), active: on('solutions') },
+          { href: 'solutions.html', icon: 'layout-grid', title: T('全部开源应用', 'All Open-Source Apps'), desc: T('装上即用，也能用编码工具或 Studio 按需二次开发', 'Install and use right away, or customize with coding tools or Studio'), active: on('solutions') },
         ],
       },
       {
@@ -101,8 +101,8 @@ export function navSpec(active, { stars = githubStars(), changelog = hasChangelo
       {
         title: T('产品', 'Products'),
         links: [
-          { href: 'studio.html', label: 'NocoBase Studio' },
-          { href: 'core.html', label: 'NocoBase Core' },
+          { href: 'core.html', label: T('应用底座（Core）', 'NocoBase Core') },
+          { href: 'studio.html', label: T('工作台（Studio）', 'NocoBase Studio') },
           { href: 'solutions.html', label: T('开源应用', 'Open-Source Apps') },
           { href: NOCODE, label: T('NocoBase 2 无代码 ↗', 'NocoBase 2 No-code ↗'), external: true },
         ],

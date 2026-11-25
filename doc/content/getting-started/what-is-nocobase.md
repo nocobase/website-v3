@@ -39,7 +39,7 @@ Studio captures methods and experience in skills, the knowledge base, and projec
 <div class="ly-node ly-app"><b>Business apps</b><strong>Your organization’s business systems</strong><p>Own your code and data. Run independently after release.</p></div>
 <div class="ly-link ly-generate"><span>Generate</span><i aria-hidden="true"></i></div>
 <div class="ly-node ly-solution"><b>Solution</b><strong>Business app templates</strong><p>Start with a ready-made app and customize it for your business.</p></div>
-<div class="ly-foundation"><div><b>NocoBase Core</b><span>The open-source application foundation</span></div><p>20+ building blocks, including permissions, workflows, and files · Consistent project structure and development standards</p></div>
+<div class="ly-foundation"><div><b>NocoBase Core</b><span>The open-source application foundation</span></div><p>30+ building blocks, including permissions, workflows, and files · Consistent project structure and development standards</p></div>
 </figure>
 
 ### Core: the open-source app foundation

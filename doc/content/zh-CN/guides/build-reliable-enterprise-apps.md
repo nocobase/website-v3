@@ -12,11 +12,11 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 3. 并行任务多了，Agent 发来的消息和改动，人确认不过来。
 4. 需求背景、业务规则、踩过的坑散在各个会话里，换人、换 Agent 就丢了。
 
-基于此，NocoBase 3 推出了 [NocoBase Core](https://www.nocobase.com/zh-CN/core/) 和 [NocoBase Studio](https://www.nocobase.com/zh-CN/studio/)：既能够让企业在 AI Agent 时代快速开发自己的企业级应用，又能解决上述这些问题。本教程将以 IT 资产管理为例，讲述如何在 NocoBase 3 的加持下开发可靠的企业应用。
+基于此，NocoBase 3 推出了 [NocoBase Core](https://www.nocobase.com/zh-CN/core/) 和 [NocoBase Studio](https://www.nocobase.com/zh-CN/studio/)：既能够让企业在 AI Agent 时代快速开发自己的企业级应用，又能解决上述这些问题。本教程将以 IT 资产管理为例，完整演示从环境准备、用 Core 开发与上线，到接入 Studio 团队协作的全过程。如果只想先用 15 分钟快速跑通第一个应用，可以先看[开发第一个应用](../getting-started/develop-your-first-app.md)。
 
 ## Core：AI 开发和运行业务系统的开源应用底座
 
-**基础能力不用从头开发和验证。** 用户与权限、数据与文件、流程与审批、消息、AI 与 Agent 等 20 多项基础能力现成可用，由 NocoBase 持续维护和升级。能力清单见 [认识 NocoBase Core](../core/using-plugins/overview.md)。
+**基础能力不用从头开发和验证。** 用户与权限、数据与文件、流程与审批、消息、AI 与 Agent 等 30 多项基础能力现成可用，由 NocoBase 持续维护和升级。能力清单见 [认识 NocoBase Core](../core/using-plugins/overview.md)。
 
 **统一的架构和规范。** 新建的应用自带统一的目录，页面、接口、迁移、测试各有固定位置；`AGENTS.md` 和随包发布的技能写明业务代码放在哪里、哪些直接用现成能力。换人、换模型、换会话，Agent 都按同一套写法开发。见 [项目结构](../core/developing-apps/project-structure.md)。
 
@@ -35,7 +35,7 @@ metaDescription: NocoBase Core 是 AI 开发和运行业务系统的开源应用
 只用 Core 就能开发和上线完整的应用。团队要同时推进多个项目，或者业务同事要直接参与时，再用 Studio。
 
 > [!NOTE] Studio 的版本
-> Studio 仅在 NocoBase 专业版和企业版中提供，见 [版本与价格](https://www.nocobase.com/zh-CN/pricing/)。
+> Studio 社区版免费使用，完成本教程第二部分的团队协作与交付不需要购买商业版；多角色与自定义流程、部署审批、质量管理等进阶能力在专业版和企业版中提供，见[版本与价格](https://www.nocobase.com/zh-CN/pricing/)。
 
 ## 教程里的例子：IT 资产管理
 

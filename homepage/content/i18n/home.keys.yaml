@@ -1279,18 +1279,22 @@ items:
     en: Structured workflows, clear progress
     zh: 按流程推进，进展一目了然
     where: studio
+    unused: true
   "271":
     en: Every issue follows your workflow with automated tests and cross-model code review, while progress, cycle time, and spend stay visible in one place.
     zh: 每项工作按项目流程推进，自动测试并由不同模型交叉评审；所有项目的进展、周期与花费集中可见。
     where: studio
+    unused: true
   "272":
     en: Evidence-backed decisions anywhere
     zh: 随时随地，有理有据做决策
     where: studio
+    unused: true
   "273":
     en: Submit needs and verify results on desktop or mobile. Deliveries include reports, checklists, screenshots, and a live test environment so anyone can sign off.
     zh: 电脑和手机都能提需求、做验收；交付附带报告、验收清单、截图和可操作的测试环境，不懂技术也能直接拍板。
     where: studio
+    unused: true
   "274":
     en: Keep your team’s methods in skills, business documents in the knowledge base, and what agents learn in project memory. When people or models change, work picks right up.
     zh: 做事的方法放进技能，业务资料放进知识库，Agent 平时学到的经验记在项目记忆里。换人、换模型都能接着往下做。
@@ -1303,10 +1307,12 @@ items:
     en: Core is the open-source engineering foundation behind Studio. Over 20 building blocks—permissions, workflows, files, AI integration, and more—come ready to use so agents build only your business logic on one consistent architecture.
     zh: 应用底座（Core）为新工作方式提供可靠的工程支撑。权限、流程、文件、AI 接入等 20 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
     where: core
+    unused: true
   "277":
     en: 20+ ready-made, reliable building blocks
     zh: 20 多项现成、可靠的基础能力
     where: core
+    unused: true
   "278":
     en: Users, permissions, data, files, workflows, approvals, and notifications come built in—never generated from scratch—so reviews focus on your business logic.
     zh: 内置用户与权限、数据与文件、工作流与审批、消息通知等基础能力，不由 AI 从零生成，测试和安全审查集中在新增业务部分。
@@ -1375,6 +1381,7 @@ items:
     en: Vibe coding speeds up writing code, but complex enterprise systems also need a reliable foundation, consistent architecture, and governance. NocoBase doesn’t replace vibe coding—Core supplies ready-made building blocks and standards, while Studio coordinates agent teams, quality checks, and team know-how to turn AI-written code into reliable business systems.
     zh: Vibe Coding 让软件开发更加高效，但当项目涉及复杂业务、多人协作和长期迭代时，仅靠 AI 生成代码还不够。NocoBase 并不是 Vibe Coding 的替代品，而是通过应用底座（Core）提供现成的基础能力和统一规范，通过工作台（Studio）完成多 Agent 调度、质量把关和经验沉淀，把 AI 写出的代码变成可靠的业务系统。
     where: faq
+    unused: true
   "295":
     en: How is it different from low-code platforms?
     zh: 和低代码平台有什么区别？
@@ -1407,6 +1414,7 @@ items:
     en: Permissions, approvals, and other critical modules come from Core rather than being generated from scratch. Every change passes automated tests and cross-model review before human verification, ships only after approval, and can be rolled back anytime.
     zh: 权限、审批等核心基础能力由应用底座提供，不由 AI 从零生成。每个改动都经过自动测试和不同模型交叉评审，才交给人验收；经人批准才发布到生产，出了问题可以回滚。
     where: faq
+    unused: true
   "303":
     en: Does our data leave our infrastructure?
     zh: 数据会不会传到外部？
@@ -1455,6 +1463,7 @@ items:
     en: Adds multi-role workflows, deployment approvals, enterprise SSO, budget controls, quality plans, regression testing, and high availability.
     zh: 增加多角色流程、部署审批、企业 SSO、成本控制、质量计划、回归测试与集群高可用。
     where: start
+    unused: true
   "315":
     en: People define needs and make decisions
     zh: 人提需求、做决策
@@ -1467,3 +1476,65 @@ items:
     en: NocoBase keeps systems reliable and under control
     zh: NocoBase 确保系统可靠、过程可控
     where: hero-finale
+  "318":
+    en: Collaboration and decisions anywhere
+    zh: 随时随地的人机协作与决策
+    where: studio
+  "319":
+    en: Submit requests, track progress and spend, and verify results on desktop or mobile. Deliveries include reports, checklists, screenshots, and a live test environment.
+    zh: 电脑和手机都能提需求、看进展与花费并亲自验收；交付附带报告、验收清单、截图和可操作的测试环境，不懂技术也能直接拍板。
+    where: studio
+  "320":
+    en: Structured workflows, human gates
+    zh: 按流程推进，关键节点由人把关
+    where: studio
+  "321":
+    en: Pick fast, standard, or custom workflows with pinned skills loaded on every run. Independent read-only cross-model review and CI gates run before human sign-off.
+    zh: 按任务选用快速、标准开发或自定义流程，常驻技能每次自动加载、不可移除；经独立只读跨模型评审和 CI 门禁后交人验收，退回自动回到 AI 执行。
+    where: studio
+    unused: true
+  "322":
+    en: Automated testing, closed-loop fixes
+    zh: 全自动质量测试，问题闭环修复
+    where: studio
+  "323":
+    en: Daily, release, project, and custom runs execute in parallel with Playwright, OWASP ZAP, Lighthouse, and more across seven dimensions, filing follow-up issues that fix and retest automatically.
+    zh: 每日、发布、项目、自定义四种触发，多机并行用 Playwright、OWASP ZAP、Lighthouse 等成熟工具实测七个维度；问题自动转为跟进任务修复并复测。
+    where: studio
+  "324":
+    en: Permissions, approvals, and other critical modules come from Core rather than being generated from scratch. Every change runs through a structured workflow with automated tests, independent read-only cross-model review, and CI gates before human sign-off. Project-level quality testing uses proven tools across features, smoke checks, permissions, security, performance, code quality, and UX with closed-loop fixes, and releases require approval with instant rollback.
+    zh: 权限、审批等核心基础能力由应用底座提供，不由 AI 从零生成。每个改动都按工作流程经过自动测试、独立只读跨模型评审和 CI 门禁才交给人验收；项目级质量测试用成熟工具覆盖功能、冒烟、权限、安全、性能、代码质量和 UX 并自动闭环修复；经人批准才发布到生产，出了问题可以回滚。
+    where: faq
+    unused: true
+  "325":
+    en: Adds multi-role and custom workflows, deployment approvals, enterprise SSO, budget controls, quality management, automated regression with closed-loop fixes, and high availability.
+    zh: 增加多角色与自定义流程、部署审批、企业 SSO、成本控制、质量管理、自动回归与问题闭环以及集群高可用。
+    where: start
+  "326":
+    en: Pick fast, standard, or custom workflows with pinned skills loaded on every run. Another model reviews read-only and automated CI checks pass before human sign-off.
+    zh: 按任务选用快速、标准开发或自定义流程，常驻技能每次自动加载、不可移除；换另一家模型只读评审并过 CI 自动检查后交人验收，退回自动回到 AI 执行。
+    where: studio
+  "327":
+    en: Vibe coding speeds up writing code, but complex enterprise systems also need a reliable foundation, structured workflows, and automated quality testing. NocoBase doesn’t replace vibe coding—Core supplies ready-made building blocks and one consistent architecture, while Studio runs every issue through workflows with pinned skills, cross-model review, and human gates, plus parallel multi-dimensional testing with proven tools and closed-loop fixes to turn AI-written code into reliable business systems.
+    zh: Vibe Coding 让软件开发更加高效，但当项目涉及复杂业务、多人协作和长期迭代时，仅靠 AI 生成代码还不够，还需要可靠的应用底座、规范的开发流程和全自动的质量测试。NocoBase 并不是 Vibe Coding 的替代品，而是通过应用底座（Core）提供现成的基础能力和统一架构，通过工作台（Studio）按工作流程加载常驻技能、做好不同模型交叉评审和关键节点把关，并调用业界成熟测试工具从功能、冒烟、权限、安全、性能、代码质量和 UX 多维度实测、自动闭环修复，把 AI 写出的代码变成可靠的业务系统。
+    where: faq
+  "328":
+    en: Permissions, approvals, and other critical modules come from Core rather than being generated from scratch. Every change runs through a structured workflow with automated checks and cross-model review before human sign-off. Project-level quality testing uses proven tools across features, smoke checks, permissions, security, performance, code quality, and UX with closed-loop fixes, and releases require approval with instant rollback.
+    zh: 权限、审批等核心基础能力由应用底座提供，不由 AI 从零生成。每个改动都按工作流程经过自动检查和不同模型交叉评审才交给人验收；项目级质量测试用成熟工具覆盖功能、冒烟、权限、安全、性能、代码质量和 UX 并自动闭环修复；经人批准才发布到生产，出了问题可以回滚。
+    where: faq
+  "329":
+    en: NocoBase Studio
+    zh: 工作台 · NocoBase Studio
+    where: studio
+  "330":
+    en: NocoBase Core
+    zh: 应用底座 · NocoBase Core
+    where: core
+  "331":
+    en: Core is the open-source engineering foundation behind Studio. Over 30 building blocks—permissions, workflows, files, AI integration, and more—come ready to use so agents build only your business logic on one consistent architecture.
+    zh: 应用底座（Core）为新工作方式提供可靠的工程支撑。权限、流程、文件、AI 接入等 30 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
+    where: core
+  "332":
+    en: 30+ ready-made, reliable building blocks
+    zh: 30 多项现成、可靠的基础能力
+    where: core

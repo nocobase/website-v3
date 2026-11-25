@@ -3,7 +3,7 @@ meta:
     zh: NocoBase Core — 让 Agent 专心写业务，底座已经就绪
     en: NocoBase Core — Let agents focus on your business logic
   description:
-    zh: NocoBase Core 是工作台背后的开源应用底座。权限、流程、文件、AI 接入等 20 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
+    zh: NocoBase Core 是工作台背后的开源应用底座。权限、流程、文件、AI 接入等 30 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
     en: NocoBase Core is the open-source application foundation behind NocoBase Studio. Permissions, workflows, files, and AI capabilities come ready to use so agents build only your business logic on one architecture, and apps run standalone.
 items:
   "000":
@@ -318,6 +318,7 @@ items:
     en: <b>20+ building blocks</b>, maintained and upgraded by NocoBase.
     zh: <b>20 多项基础能力</b>，由 NocoBase 持续维护和升级。
     where: blocks
+    unused: true
   "073":
     en: Read the Docs for Each One
     zh: 查看每项能力的文档
@@ -515,6 +516,7 @@ items:
     en: NocoBase Core is the open-source application foundation behind Studio. With 20+ ready-made building blocks for permissions, workflows, files, and AI, agents build only what is unique to your business on one architecture, and released systems run independently.
     zh: NocoBase Core 是工作台背后的开源应用底座。权限、流程、文件、AI 接入等 20 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
     where: phero
+    unused: true
   "115":
     en: Core Docs
     zh: Core 文档
@@ -527,6 +529,7 @@ items:
     en: 20+ proven building blocks, <span class="m">ready to use.</span>
     zh: 20 多项现成、可靠的<span class="m">基础能力。</span>
     where: blocks
+    unused: true
   "118":
     en: Permissions, workflows, approvals, and file storage are complex and demand the highest reliability—so they are never rewritten from scratch by AI. NocoBase maintains and upgrades them while agents focus solely on your business logic.
     zh: 权限、工作流引擎、审批、文件存储等底层模块复杂度高、对可靠性要求最高，不由 AI 从零生成，由 NocoBase 持续维护和升级。Agent 只写业务部分，测试和安全审查也集中在新写的业务上。
@@ -715,3 +718,19 @@ items:
     en: Coordinate coding agents across devices with structured quality gates and desktop/mobile approvals—free to start.
     zh: 多设备多工具并行推进、按流程把关质量、电脑和手机随时验收，社区版开源免费起步。
     where: start
+  "165":
+    en: NocoBase Core
+    zh: 应用底座 · NocoBase Core
+    where: phero
+  "166":
+    en: NocoBase Core is the open-source application foundation behind Studio. With 30+ ready-made building blocks for permissions, workflows, files, and AI, agents build only what is unique to your business on one architecture, and released systems run independently.
+    zh: NocoBase Core 是工作台背后的开源应用底座。权限、流程、文件、AI 接入等 30 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
+    where: phero
+  "167":
+    en: 30+ proven building blocks, <span class="m">ready to use.</span>
+    zh: 30 多项现成、可靠的<span class="m">基础能力。</span>
+    where: blocks
+  "168":
+    en: <b>30+ building blocks</b>, maintained and upgraded by NocoBase.
+    zh: <b>30 多项基础能力</b>，由 NocoBase 持续维护和升级。
+    where: blocks

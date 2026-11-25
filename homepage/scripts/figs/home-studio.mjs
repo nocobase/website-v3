@@ -1,9 +1,10 @@
-// 首页 Studio 段：四条核心特色各一张图，左侧点特色、右侧换图。一张图只讲一件事，只画和这件事有关的那部分界面。
-//   team      一支持续推进的 Agent 团队：运行环境 + 调度 Agent 的分派记录
-//   progress  各项进展一目了然：我的任务（不带左侧菜单）：分组的任务列表 + 一个任务的执行计划和动态
-//   decide    有理有据做决策：一个等业务专家验收的任务，附报告、清单、截图和建议
-//   memory    方法、经验、知识沉淀在团队里：技能、知识库（人写和上传的资料，Agent 只读）、项目记忆，以及换人接手时自动带上
-// 界面字段对照 nocobase-studio 仓库（运行环境、我的任务、技能、知识库、项目记忆的中文文案）。
+// 首页 Studio 段：五条核心特色各一张图，左侧点特色、右侧换图。一张图只讲一件事，只画和这件事有关的那部分界面。
+//   team      一支 24 小时工作的 Agent 团队：运行环境 + 调度 Agent 的分派记录
+//   decide    随时随地的人机协作与决策：桌面端验收详情 + 手机画面，附报告、清单、截图和测试环境
+//   workflow  按流程推进，关键节点由人把关：项目工作流程（多流程并存、人把关两头/AI 执行中间、退回闭环）+ 不可移除的常驻技能
+//   quality   全自动质量测试，问题闭环修复：四种触发、多机并行、成熟工具多维实测、报告与跟进任务自动闭环
+//   memory    方法、经验、知识沉淀在团队里：技能、知识库、项目记忆，以及换人、换模型自动带上
+// 界面字段对照 nocobase-studio 仓库（运行环境、我的任务、工作流程、质量、技能、知识库、项目记忆的中文文案）。
 // 写进 content/pages/home.html 的 <!-- STUDIOTPL --> 标记之间（<template id="stv-…">），样式写在 src/styles/site.css 的 /* HOME-STUDIO */ 标记之间（首页也加载 site.css）；同一批图也写成 content/pages/snips/stv*.html。
 // 用法（在 html 目录下）：node scripts/figs/home-studio.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -205,7 +206,187 @@ const memory = win([['项目', 'Projects'], ['NocoCRM 定制', 'NocoCRM custom']
       '<p class="sv-note">' + T('写在仓库的 .nb-studio/memory，下次开工前先读', 'Kept in the repo’s .nb-studio/memory and read before each issue') + '</p>') +
   '</div>');
 
-const FIGS = [['team', team], ['progress', progress], ['decide', decide], ['memory', memory]];
+// ---------- 按流程推进，关键节点由人把关 ----------
+// 对照 Studio 真实「项目 › 工作流程」界面（quality-canvas-zh-CN / en-US）：
+// 项目子页签 + 分段流程切换（精简流程 默认 / 标准流程 / 🔒 质量测试）+ 右侧「+ 新建流程」+ 虚线浅蓝 AI 流程画布（含编号步骤胶囊、并行维度卡、规则/配置按钮、两侧人工门禁卡与底部虚线说明）+ 常驻技能表
+function wfGate(tone, roleZh, roleEn, ic, actZh, actEn) {
+  return `<div class="sv-wf-gate"><span class="sv-wf-role ${tone}"><i></i>${T(roleZh, roleEn)}</span><div class="sv-wf-act">${I(ic)}<b>${T(actZh, actEn)}</b></div></div>`;
+}
+function wfPill(num, zh, en) {
+  return `<div class="sv-wf-pill"><i>${num}</i><span>${T(zh, en)}</span></div>`;
+}
+function wfDim(zh, en, custom = false) {
+  return `<span class="sv-wf-dim${custom ? ' cust' : ''}"><i></i>${T(zh, en)}</span>`;
+}
+function wfSkillRow(slug, ver, scopeZh, scopeEn, descZh, descEn) {
+  return `<tr><td class="mono sv-wf-sname">${slug} · ${ver}</td><td class="sv-wf-scope">${T(scopeZh, scopeEn)}</td><td class="sv-wf-sd">${T(descZh, descEn)}</td><td class="sv-wf-op"><span>${T('查看', 'View')}</span><span>${T('移除', 'Remove')}</span></td></tr>`;
+}
+
+const wfPanelStandard =
+  '<div class="sv-wf-pane on" role="tabpanel" data-wf-panel="standard">' +
+    '<div class="sv-wf-flow">' +
+      wfGate('bl', '需求方 / 负责人', 'Requester / Lead', 'play', '需求确认', 'Confirm scope') +
+      '<span class="sv-wf-arr" aria-hidden="true">→</span>' +
+      '<div class="sv-wf-box">' +
+        '<div class="sv-wf-bhd">' +
+          '<span class="sv-wf-bic">' + I('bot') + '</span><b>' + T('标准流程', 'Standard') + '</b>' +
+          '<code class="mono">standard-flow · v12</code>' +
+          '<span class="sv-wf-bacts"><span class="sv-wf-mb">' + I('file-text') + T('查看规则', 'View rules') + '</span><span class="sv-wf-mb">' + T('编辑步骤', 'Edit steps') + '</span></span>' +
+        '</div>' +
+        '<div class="sv-wf-steps">' +
+          wfPill(1, '方案评估', 'Approach') + '<span class="sv-wf-sa" aria-hidden="true">→</span>' +
+          wfPill(2, '编码实现', 'Implement') + '<span class="sv-wf-sa" aria-hidden="true">→</span>' +
+          '<div class="sv-wf-par">' +
+            '<div class="sv-wf-parh"><span class="sv-wf-pn"><i>3</i>' + T('质量门禁', 'Quality gates') + '</span><em>' + T('2 项必过', '2 required') + '</em></div>' +
+            '<div class="sv-wf-dims">' +
+              wfDim('跨模型只读评审', 'Cross-model review') +
+              wfDim('CI 自动检查', 'CI checks') +
+            '</div>' +
+          '</div>' + '<span class="sv-wf-sa" aria-hidden="true">→</span>' +
+          wfPill(4, '提交交付', 'Hand off') +
+        '</div>' +
+        '<p class="sv-wf-bn">' + T('适合核心功能、跨模块改造与数据迁移；每次运行自动加载下方常驻技能。', 'For core features, refactors, and migrations; loads resident skills on every run.') + '</p>' +
+      '</div>' +
+      '<span class="sv-wf-arr" aria-hidden="true">→</span>' +
+      wfGate('gr', '需求方 / 负责人', 'Requester / Lead', 'file-check-2', '交付验收', 'Accept &amp; merge') +
+    '</div>' +
+    '<div class="sv-wf-cap"><span>' + T('需求方退回修改时自动回到 AI 执行阶段；关键节点始终由人把关', 'Rejected deliveries return automatically to AI execution; people stay at the gates') + '</span></div>' +
+  '</div>';
+
+const wfPanelQuality =
+  '<div class="sv-wf-pane" role="tabpanel" data-wf-panel="quality" hidden>' +
+    '<div class="sv-wf-flow">' +
+      wfGate('bl', '发起人 / 定时', 'Initiator / Schedule', 'play', '发起测试', 'Start a test') +
+      '<span class="sv-wf-arr" aria-hidden="true">→</span>' +
+      '<div class="sv-wf-box">' +
+        '<div class="sv-wf-bhd">' +
+          '<span class="sv-wf-bic">' + I('bot') + '</span><b>' + T('质量测试', 'Quality test') + '</b>' +
+          '<span class="sv-wf-lock">' + I('lock') + T('插件托管', 'Plugin managed') + '</span>' +
+          '<code class="mono">quality-flow · v1</code>' +
+          '<span class="sv-wf-bacts"><span class="sv-wf-mb">' + I('file-text') + T('查看规则', 'View rules') + '</span><span class="sv-wf-mb">' + T('配置维度', 'Configure dimensions') + I('arrow-up-right') + '</span></span>' +
+        '</div>' +
+        '<div class="sv-wf-steps">' +
+          wfPill(1, '确定范围', 'Set the scope') + '<span class="sv-wf-sa" aria-hidden="true">→</span>' +
+          '<div class="sv-wf-par">' +
+            '<div class="sv-wf-parh"><span class="sv-wf-pn"><i>2</i>' + T('多维度并行测试', 'Test dimensions in parallel') + '</span><em>' + T('已启用 6 项', '6 enabled') + '</em></div>' +
+            '<div class="sv-wf-dims">' +
+              wfDim('功能', 'Functional') +
+              wfDim('权限', 'Permissions') +
+              wfDim('安全', 'Security') +
+              wfDim('性能', 'Performance') +
+              wfDim('代码质量', 'Code quality') +
+              wfDim('Accessibility · 自定义', 'Accessibility · Custom', true) +
+            '</div>' +
+          '</div>' + '<span class="sv-wf-sa" aria-hidden="true">→</span>' +
+          wfPill(3, '汇总与跟进', 'Summarize &amp; follow up') +
+        '</div>' +
+        '<p class="sv-wf-bn">' + T('支持日常、发版、项目与自定义四类测试；测试不修改业务代码。', 'Supports daily, release, project and custom tests; a test never changes product code.') + '</p>' +
+      '</div>' +
+      '<span class="sv-wf-arr" aria-hidden="true">→</span>' +
+      wfGate('gr', '发起人', 'Initiator', 'file-check-2', '报告验收', 'Accept the report') +
+    '</div>' +
+    '<div class="sv-wf-cap"><span>' + T('由质量插件自动触发与托管，不可在任务中手动选用；问题在跟进任务中单独闭环，不退回本次测试', 'Started and managed by the quality plugin, never chosen in an issue; problems close in follow-up issues') + '</span></div>' +
+  '</div>';
+
+const wfPanelSimple =
+  '<div class="sv-wf-pane" role="tabpanel" data-wf-panel="simple" hidden>' +
+    '<div class="sv-wf-flow">' +
+      wfGate('bl', '需求方', 'Requester', 'play', '发起任务', 'Start issue') +
+      '<span class="sv-wf-arr" aria-hidden="true">→</span>' +
+      '<div class="sv-wf-box">' +
+        '<div class="sv-wf-bhd">' +
+          '<span class="sv-wf-bic">' + I('bot') + '</span><b>' + T('精简流程', 'Simple') + '</b>' +
+          '<span class="sv-wf-def">' + T('默认', 'Default') + '</span>' +
+          '<code class="mono">simple-flow · v6</code>' +
+          '<span class="sv-wf-bacts"><span class="sv-wf-mb">' + I('file-text') + T('查看规则', 'View rules') + '</span><span class="sv-wf-mb">' + T('编辑步骤', 'Edit steps') + '</span></span>' +
+        '</div>' +
+        '<div class="sv-wf-steps sv-wf-steps-sm">' +
+          wfPill(1, '编码实现', 'Implement') + '<span class="sv-wf-sa" aria-hidden="true">→</span>' +
+          wfPill(2, 'CI 检查与评审', 'CI &amp; review') + '<span class="sv-wf-sa" aria-hidden="true">→</span>' +
+          wfPill(3, '提交交付', 'Hand off') +
+        '</div>' +
+        '<p class="sv-wf-bn">' + T('适合文案调整、轻量修复与小需求快速交付；同样自动加载下方常驻技能。', 'For small fixes and lightweight changes; still loads resident skills on every run.') + '</p>' +
+      '</div>' +
+      '<span class="sv-wf-arr" aria-hidden="true">→</span>' +
+      wfGate('gr', '需求方', 'Requester', 'file-check-2', '验收合并', 'Accept &amp; merge') +
+    '</div>' +
+    '<div class="sv-wf-cap"><span>' + T('轻量改动直接走精简流程快速交付；涉及复杂改动时可随时切换为标准流程', 'Fast path for small changes; switch to Standard anytime a design approach is needed') + '</span></div>' +
+  '</div>';
+
+const workflow = win([['项目', 'Projects'], ['NocoCRM', 'NocoCRM'], ['工作流程', 'Workflow']],
+  '<div class="sv-ptabs">' +
+    '<span>' + T('概览', 'Overview') + '</span>' +
+    '<span>' + T('任务 12', 'Issues 12') + '</span>' +
+    '<span class="on">' + T('工作流程', 'Workflow') + '</span>' +
+    '<span>' + T('质量', 'Quality') + '</span>' +
+    '<span>' + T('知识库', 'Knowledge') + '</span>' +
+    '<span>' + T('记忆', 'Memory') + '</span>' +
+    '<span>' + T('发布', 'Releases') + '</span>' +
+    '<span>' + T('设置', 'Settings') + '</span>' +
+  '</div>' +
+  '<div class="sv-wf-head">' +
+    '<div><h4>' + T('工作流程', 'Workflow') + '</h4><p>' + T('本项目任务从启动到合并的完整流转：AI 执行流程前后的人工步骤，以及每次运行都加载的技能。', 'How an issue in this project moves from start to merge: people’s steps around the agent’s workflow, and the skills every run gets.') + '</p></div>' +
+  '</div>' +
+  '<div class="sv-wf-bar">' +
+    '<div class="sv-wf-seg" role="tablist" aria-label="Workflow">' +
+      '<button type="button" role="tab" class="sv-wf-tab" data-wf-tab="simple" aria-selected="false" tabindex="-1">' + T('精简流程', 'Simple') + '<em>' + T('默认', 'Default') + '</em></button>' +
+      '<button type="button" role="tab" class="sv-wf-tab" data-wf-tab="standard" aria-selected="true" tabindex="0">' + T('标准流程', 'Standard') + '</button>' +
+      '<button type="button" role="tab" class="sv-wf-tab" data-wf-tab="quality" aria-selected="false" tabindex="-1">' + I('lock') + T('质量测试', 'Quality test') + '</button>' +
+    '</div>' +
+    '<span class="st-btn p sv-wf-new">' + I('plus') + T('新建流程', 'New workflow') + '</span>' +
+  '</div>' +
+  '<div class="st-card sv-wf-canvas">' + wfPanelStandard + wfPanelQuality + wfPanelSimple + '</div>' +
+  '<div class="sv-wf-sec">' +
+    '<div class="sv-wf-sh"><div><b>' + T('常驻技能', 'Resident skills') + '</b><span>' + T('此作用域内的每次运行都会加载这些技能，与流程无关。修改从各任务的下一轮运行起生效。', 'Every run in this scope gets these skills, whatever its workflow. Changes apply on the next run.') + '</span></div>' +
+      '<span class="sv-wf-add">' + I('plus') + T('添加技能', 'Add skill') + '</span></div>' +
+    '<div class="st-card sv-wf-skills"><table class="st-tbl sv-wf-stbl"><thead><tr><th>' + T('技能', 'Skill') + '</th><th>' + T('作用域', 'Scope') + '</th><th>' + T('说明', 'Description') + '</th><th class="r">' + T('操作', 'Actions') + '</th></tr></thead><tbody>' +
+      wfSkillRow('studio-development', 'v10', '整个项目', 'The whole project', '开发与验证规范：编码实现、本地验证、CI 失败处理、评审与交付标准', 'Development standard for agents: implement, verify, handle CI failures, review &amp; deliver') +
+      wfSkillRow('studio-approach', 'v3', '整个项目', 'The whole project', '方案设计规范：实现前如何撰写设计方案、边界拆解与影响评估', 'How to write a design approach, scope breakdown, and impact plan before coding') +
+      wfSkillRow('studio-review', 'v4', '整个项目', 'The whole project', '代码评审规范：缺陷、安全与简洁性分级（must fix / should fix）与合并门禁', 'PR review standard: defects, security, severity tiers, and merge-blocking rules') +
+    '</tbody></table></div>' +
+  '</div>', '', ' data-live="studio-workflow" data-wf="standard"');
+
+// ---------- 全自动质量测试，问题闭环修复 ----------
+// 四种触发 + 闭环流程条 + 6 张覆盖七个维度的工具实测卡片（明确通过/有问题/未验证）+ 自动登记跟进任务闭环条
+function qCard(titleZh, titleEn, toolZh, toolEn, stClass, stZh, stEn, valZh, valEn, descZh, descEn, barPct, barClass) {
+  return `<div class="st-card sv-qc">` +
+    `<div class="sv-qch"><div><b>${T(titleZh, titleEn)}</b><small>${T(toolZh, toolEn)}</small></div><span class="sv-qst ${stClass}">${T(stZh, stEn)}</span></div>` +
+    `<div class="sv-qval">${T(valZh, valEn)}</div>` +
+    `<div class="sv-qbar"><i class="${barClass}" style="width:${barPct}%"></i></div>` +
+    `<p class="sv-qdesc">${T(descZh, descEn)}</p>` +
+  `</div>`;
+}
+const quality = win([['项目', 'Projects'], ['NocoCRM', 'NocoCRM'], ['质量', 'Quality']],
+  '<div class="sv-q-head">' +
+    '<div><h4>' + T('质量测试与闭环', 'Automated quality runs') + '</h4><p>' + T('四种触发共用一套引擎，多台测试机按维度并行实测，问题自动转为跟进任务', 'One engine across four triggers, parallel runners per dimension, and automatic follow-up fixes') + '</p></div>' +
+    '<div class="sv-q-ctrl">' +
+      '<div class="sv-q-seg"><span>' + T('每日', 'Daily') + '</span><span class="on">' + T('发布', 'Release') + '</span><span>' + T('项目', 'Project') + '</span><span>' + T('自定义', 'Custom') + '</span></div>' +
+      '<span class="st-btn p">' + I('play') + T('运行测试', 'Run test') + '</span>' +
+    '</div>' +
+  '</div>' +
+  '<div class="sv-q-loop">' +
+    '<span><b>1</b>' + T('定时 / 发版触发', 'Trigger run') + '</span><i>→</i>' +
+    '<span><b>2</b>' + T('多机并行实测', 'Parallel runners') + '</span><i>→</i>' +
+    '<span><b>3</b>' + T('自动汇总报告', 'Auto reports') + '</span><i>→</i>' +
+    '<span class="hi"><b>4</b>' + T('问题转跟进任务修复', 'Auto follow-up fixes') + '</span><i>→</i>' +
+    '<span><b>5</b>' + T('下次测试再验证', 'Retest & verify') + '</span>' +
+  '</div>' +
+  '<div class="sv-q-grid">' +
+    qCard('功能与冒烟', 'Features & smoke', 'Playwright · Vitest', 'Playwright · Vitest', 'ok', '通过', 'Passed', '42 / 42', '42 / 42', '核心业务与 P0 冒烟场景全部通过', 'All core & P0 smoke scenarios passed', 100, 'ok') +
+    qCard('权限', 'Permissions', '多身份权限引擎', 'Role-matrix engine', 'err', '有问题', 'Issues', '1 处读越权', '1 read leak', '非成员接口越权 · 已建跟进 #QM-41', 'Non-member read leak · Filed #QM-41', 82, 'err') +
+    qCard('安全', 'Security', 'OWASP ZAP · gitleaks · audit', 'OWASP ZAP · gitleaks · audit', 'ok', '通过', 'Passed', '0 高危', '0 critical', '依赖漏洞、密钥与主被动扫描全过', 'Audit, secrets & active/passive scans clean', 100, 'ok') +
+    qCard('性能', 'Performance', 'Lighthouse · 采样 · SQL', 'Lighthouse · API · SQL', 'err', '有问题', 'Issues', '1 条慢 SQL', '1 slow SQL', 'P95 210 ms · 已建优化 #QM-42', 'P95 210 ms · Filed #QM-42', 88, 'warn') +
+    qCard('代码质量', 'Code quality', 'jscpd · sonarjs · knip', 'jscpd · sonarjs · knip', 'ok', '通过', 'Passed', '重复率 1.8%', '1.8% dup', '0 循环依赖 · 覆盖率 86%', '0 circular deps · 86% coverage', 100, 'ok') +
+    qCard('UX 防错', 'UX safeguards', 'Playwright · 可用性检查', 'Playwright · UX checks', 'warn', '未验证', 'Unverified', '缺测试账号', 'Missing role', '不凑数通过，缺条件明确标出', 'Flagged honestly instead of false pass', 62, 'warn') +
+  '</div>' +
+  '<div class="sv-q-foot">' +
+    '<span class="sv-q-fl">' + I('refresh-cw') + '<b>' + T('自动闭环', 'Closed loop') + '</b></span>' +
+    '<span class="st-chip bl">' + SPIN + T('QM-41 权限越权 · Agent 修复中', 'QM-41 Permission leak · Agent fixing') + '</span>' +
+    '<span class="st-chip">' + si('done') + T('QM-42 慢 SQL · 跨模型评审通过', 'QM-42 Slow SQL · Review passed') + '</span>' +
+    '<span class="st-chip o">' + T('1 项待确认 · 等人拍板', '1 ambiguous rule · Human call') + '</span>' +
+  '</div>');
+
+const FIGS = [['team', team], ['decide', decide], ['workflow', workflow], ['quality', quality], ['memory', memory], ['progress', progress]];
 
 const CSS = `/* HOME-STUDIO */
 /* 首页 Studio 段：左侧四条特色，右侧换图（由 homepage/scripts/figs/home-studio.mjs 写入，改样式请改脚本） */
@@ -312,6 +493,122 @@ const CSS = `/* HOME-STUDIO */
 .sv-adv p { font-size: 12.5px; line-height: 1.65; }
 .sv-act { display: flex; gap: 8px; margin-top: 10px; }
 .sv-act .st-btn { height: 32px; }
+/* 工作流程与常驻技能（对照 Studio 真实「项目 › 工作流程」画布） */
+.sv-win[data-live="studio-workflow"] .sv-body { gap: 9px; padding: 11px 16px 13px; background: var(--card); }
+.sv-ptabs { display: flex; align-items: center; gap: 14px; border-block-end: 1px solid var(--rule); padding-block-end: 6px; font-size: 11px; color: var(--muted); overflow: clip; }
+.sv-ptabs span { position: relative; white-space: nowrap; padding-block-end: 6px; margin-block-end: -7px; }
+.sv-ptabs span.on { color: var(--ink); font-weight: 600; border-block-end: 2px solid var(--ink); }
+.sv-wf-head h4 { font-size: 14.5px; line-height: 1.3; font-weight: 650; color: var(--ink); }
+.sv-wf-head p { margin-block-start: 1px; font-size: 11px; line-height: 1.45; color: var(--muted); }
+.sv-wf-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.sv-wf-seg { display: inline-flex; align-items: center; gap: 2px; padding: 2.5px; border-radius: 8px; border: 1px solid var(--rule); background: var(--paper-2); }
+.sv-wf-tab { position: relative; display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; font: inherit; font-size: 11.5px; color: var(--ink-2); white-space: nowrap; cursor: pointer; transition: background 0.15s, color 0.15s; }
+.sv-wf-tab:hover { color: var(--ink); }
+.sv-wf-tab[aria-selected="true"] { background: var(--card); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.08); }
+.sv-wf-tab[aria-selected="true"]::after { content: ""; position: absolute; inset: auto 8px 0; border-block-end: 2px solid var(--brand); }
+.sv-wf-tab em { font-style: normal; padding: 0 5px; border-radius: 999px; background: var(--brand-tint); color: var(--brand); font-size: 9.5px; font-weight: 600; line-height: 15px; }
+.sv-wf-tab svg.lucide { width: 11.5px; height: 11.5px; color: var(--muted); }
+.sv-wf-tab[aria-selected="true"] svg.lucide { color: var(--ink); }
+.sv-wf-new { height: 27px; padding: 0 10px; font-size: 11.5px; border-radius: 7px; }
+.sv-wf-canvas { padding: 12px 13px 10px; background: var(--paper); border-radius: 10px; }
+.sv-wf-pane { display: grid; gap: 9px; align-content: space-between; min-block-size: 174px; }
+.sv-wf-pane[hidden] { display: none; }
+.sv-wf-flow { display: grid; grid-template-columns: minmax(104px, max-content) 12px minmax(0, 1fr) 12px minmax(104px, max-content); gap: 4px; align-items: center; }
+.sv-wf-gate { padding: 8px 10px; border: 1px solid var(--rule); border-radius: 9px; background: var(--card); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.04); display: grid; gap: 6px; justify-items: start; }
+.sv-wf-role { display: inline-flex; align-items: center; gap: 4px; height: 18px; padding: 0 6px; border-radius: 999px; font-size: 9.5px; font-weight: 550; white-space: nowrap; }
+.sv-wf-role i { width: 4.5px; height: 4.5px; border-radius: 50%; background: currentColor; flex: none; }
+.sv-wf-role.bl { background: var(--brand-tint); color: var(--brand); }
+.sv-wf-role.gr { background: var(--pass-tint); color: var(--pass-ink); }
+.sv-wf-act { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--ink); white-space: nowrap; }
+.sv-wf-act svg.lucide { width: 11.5px; height: 11.5px; color: var(--ink-2); flex: none; }
+.sv-wf-act b { font-weight: 600; }
+.sv-wf-arr { text-align: center; font-size: 11.5px; color: var(--muted); }
+.sv-wf-box { padding: 9px 11px 8px; border: 1.5px dashed oklch(0.66 0.14 266 / 0.48); border-radius: 10px; background: oklch(0.974 0.012 266); display: grid; gap: 8px; min-inline-size: 0; }
+.sv-wf-bhd { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; min-inline-size: 0; }
+.sv-wf-bic { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; background: var(--card); border: 1px solid oklch(0.86 0.03 266); color: var(--brand); flex: none; }
+.sv-wf-bic svg.lucide { width: 11.5px; height: 11.5px; }
+.sv-wf-bhd b { font-size: 12px; font-weight: 650; color: var(--ink); white-space: nowrap; }
+.sv-wf-lock { display: inline-flex; align-items: center; gap: 3px; height: 18px; padding: 0 6px; border-radius: 5px; background: var(--paper-2); border: 1px solid var(--rule); font-size: 9.5px; font-weight: 550; color: var(--ink-2); white-space: nowrap; }
+.sv-wf-lock svg.lucide { width: 10px; height: 10px; color: var(--muted); }
+.sv-wf-def { display: inline-flex; align-items: center; height: 18px; padding: 0 6px; border-radius: 5px; background: var(--brand-tint); font-size: 9.5px; font-weight: 600; color: var(--brand); white-space: nowrap; }
+.sv-wf-bhd code { font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-wf-bacts { margin-inline-start: auto; display: inline-flex; align-items: center; gap: 5px; flex: none; }
+.sv-wf-mb { display: inline-flex; align-items: center; gap: 3px; height: 21px; padding: 0 7px; border-radius: 5px; border: 1px solid var(--rule); background: var(--card); font-size: 10px; font-weight: 500; color: var(--ink-2); white-space: nowrap; }
+.sv-wf-mb svg.lucide { width: 10.5px; height: 10.5px; color: var(--muted); }
+.sv-wf-steps { display: flex; align-items: center; gap: 5px; min-inline-size: 0; }
+.sv-wf-steps-sm { justify-content: center; padding-block: 10px; }
+.sv-wf-pill { display: inline-flex; align-items: center; gap: 5px; height: 27px; padding: 0 9px 0 5px; border-radius: 999px; border: 1px solid var(--rule); background: var(--card); font-size: 11px; font-weight: 550; color: var(--ink); white-space: nowrap; flex: none; box-shadow: 0 1px 1px oklch(0.25 0.05 266 / 0.03); }
+.sv-wf-pill i,
+.sv-wf-pn i { display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: var(--brand-tint); color: var(--brand); font: 650 10px/1 var(--f-mono); flex: none; }
+.sv-wf-sa { font-size: 10.5px; color: var(--muted); flex: none; }
+.sv-wf-par { flex: 1; min-inline-size: 0; padding: 6px 8px 7px; border: 1px solid var(--rule); border-radius: 8px; background: var(--card); display: grid; gap: 5px; box-shadow: 0 1px 1px oklch(0.25 0.05 266 / 0.03); }
+.sv-wf-parh { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.sv-wf-pn { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.sv-wf-parh em { font-style: normal; padding: 0 5px; border-radius: 4px; background: var(--paper-2); font-size: 9.5px; color: var(--muted); line-height: 16px; white-space: nowrap; }
+.sv-wf-dims { display: flex; flex-wrap: wrap; gap: 4px; }
+.sv-wf-dim { display: inline-flex; align-items: center; gap: 4px; height: 19px; padding: 0 6px; border-radius: 5px; border: 1px solid var(--rule); background: var(--paper); font-size: 10px; color: var(--ink-2); white-space: nowrap; }
+.sv-wf-dim i { width: 4px; height: 4px; border-radius: 50%; background: var(--brand); flex: none; }
+.sv-wf-dim.cust { border-style: dashed; background: var(--card); }
+.sv-wf-bn { padding-block-start: 6px; border-block-start: 1px solid oklch(0.87 0.02 266 / 0.6); font-size: 10.5px; line-height: 1.4; color: var(--muted); }
+.sv-wf-cap { display: flex; align-items: center; gap: 8px; font-size: 10px; color: var(--muted); text-align: center; }
+.sv-wf-cap::before,
+.sv-wf-cap::after { content: ""; flex: 1; border-block-start: 1px dashed var(--rule); }
+.sv-wf-cap span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-wf-sec { display: grid; gap: 7px; }
+.sv-wf-sh { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+.sv-wf-sh b { display: block; font-size: 13px; font-weight: 650; color: var(--ink); line-height: 1.3; }
+.sv-wf-sh span:not(.sv-wf-add) { display: block; font-size: 10.5px; color: var(--muted); line-height: 1.4; }
+.sv-wf-add { display: inline-flex; align-items: center; gap: 4px; height: 24px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--rule-2); background: var(--card); font-size: 11px; font-weight: 500; color: var(--ink); white-space: nowrap; flex: none; }
+.sv-wf-add svg.lucide { width: 11px; height: 11px; color: var(--muted); }
+.sv-wf-skills { overflow: clip; }
+.sv-wf-stbl th { padding: 6px 10px; font-size: 10.5px; background: var(--paper); color: var(--ink-2); }
+.sv-wf-stbl th.r { text-align: right; }
+.sv-wf-stbl td { padding: 6.5px 10px; font-size: 11px; }
+.sv-wf-sname { font-weight: 550; color: var(--ink); white-space: nowrap; font-size: 11px !important; }
+.sv-wf-scope { color: var(--muted); white-space: nowrap; font-size: 10.5px !important; }
+.sv-wf-sd { color: var(--ink-2); font-size: 11px !important; }
+.sv-wf-op { text-align: right; white-space: nowrap; color: var(--ink-2); font-size: 10.5px !important; }
+.sv-wf-op span + span { margin-inline-start: 8px; color: var(--muted); }
+/* 全自动质量测试与闭环 */
+.sv-q-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.sv-q-head h4 { font-size: 17px; line-height: 1.3; font-weight: 650; }
+.sv-q-head p { margin-top: 2px; font-size: 12px; color: var(--muted); }
+.sv-q-ctrl { display: flex; align-items: center; gap: 8px; flex: none; }
+.sv-q-seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 7px; background: var(--card); overflow: hidden; }
+.sv-q-seg span { padding: 0 9px; height: 28px; display: inline-flex; align-items: center; font-size: 11.5px; color: var(--ink-2); border-left: 1px solid var(--rule); white-space: nowrap; }
+.sv-q-seg span:first-child { border-left: 0; }
+.sv-q-seg span.on { background: var(--brand-tint); color: var(--brand); font-weight: 600; }
+.sv-q-ctrl .st-btn { height: 28px; font-size: 12px; }
+.sv-q-loop { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 11px; border: 1px solid var(--rule); border-radius: 8px; background: var(--card); font-size: 11.5px; color: var(--ink-2); }
+.sv-q-loop span { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.sv-q-loop span.hi { color: var(--brand); font-weight: 600; }
+.sv-q-loop b { display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: var(--paper-2); color: var(--ink-2); font: 600 10px/1 var(--f-mono); }
+.sv-q-loop span.hi b { background: var(--brand); color: var(--on-brand); }
+.sv-q-loop i { font-style: normal; color: var(--muted); }
+.sv-q-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.sv-qc { padding: 10px 11px; display: grid; gap: 6px; align-content: start; }
+.sv-qch { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+.sv-qch b { display: block; font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+.sv-qch small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-qst { flex: none; padding: 1px 6px; border-radius: 5px; font-size: 10.5px; font-weight: 600; white-space: nowrap; }
+.sv-qst.ok { background: var(--pass-tint); color: var(--pass-ink); }
+.sv-qst.err { background: oklch(0.95 0.04 22); color: oklch(0.48 0.16 22); }
+.sv-qst.warn { background: var(--human-tint); color: var(--human-ink); }
+.sv-qval { font-size: 17px; font-weight: 700; line-height: 1.2; color: var(--ink); font-variant-numeric: tabular-nums; }
+.sv-qbar { height: 5px; border-radius: 999px; background: var(--paper-2); overflow: hidden; }
+.sv-qbar i { display: block; height: 100%; border-radius: 999px; }
+.sv-qbar i.ok { background: var(--pass); }
+.sv-qbar i.err { background: oklch(0.58 0.18 22); }
+.sv-qbar i.warn { background: var(--human); }
+.sv-qdesc { font-size: 11px; line-height: 1.45; color: var(--ink-2); }
+.sv-q-foot { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; padding: 8px 11px; border: 1px solid var(--rule); border-radius: 9px; background: var(--card); }
+.sv-q-fl { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--ink); margin-right: 2px; }
+.sv-q-fl svg.lucide { width: 13px; height: 13px; color: var(--brand); }
+.sv-q-foot .st-chip { height: 22px; font-size: 11px; }
+.sv-q-foot .st-chip .st-spin { width: 10px; height: 10px; border-width: 1.4px; }
+.sv-q-foot .st-chip .si { width: 11px; height: 11px; }
+.sv-q-foot .st-chip .si.done::after { left: 2.5px; top: 1px; width: 2.4px; height: 4.8px; }
+.sv-q-foot .st-chip.o { background: var(--human-tint); color: var(--human-ink); margin-left: auto; }
 /* 技能、知识库、项目记忆 */
 .sv-body:has(> .sv-know) { align-content: stretch; }
 .sv-know { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: stretch; height: 100%; }
@@ -450,6 +747,54 @@ const CSS = `/* HOME-STUDIO */
   .stv-mobile-fig .sv-mem em { font-size: 9.5px; line-height: 15px; }
   .stv-mobile-fig .sv-mem .st-a { width: 13px; height: 13px; font-size: 7px; }
   .stv-mobile-fig .sv-mem:nth-of-type(n+4) { display: none; }
+  /* 5. 工作流程与常驻技能（手机紧凑视图） */
+  .stv-mobile-fig .sv-ptabs,
+  .stv-mobile-fig .sv-wf-head,
+  .stv-mobile-fig .sv-wf-new,
+  .stv-mobile-fig .sv-wf-bacts,
+  .stv-mobile-fig .sv-wf-bn,
+  .stv-mobile-fig .sv-wf-cap,
+  .stv-mobile-fig .sv-wf-add,
+  .stv-mobile-fig .sv-wf-sh span { display: none; }
+  .stv-mobile-fig .sv-wf-tab { height: 22px; padding: 0 7px; font-size: 10px; }
+  .stv-mobile-fig .sv-wf-canvas { padding: 7px 8px; }
+  .stv-mobile-fig .sv-wf-pane { min-block-size: 0; gap: 6px; }
+  .stv-mobile-fig .sv-wf-flow { grid-template-columns: minmax(0, 1fr); gap: 5px; }
+  .stv-mobile-fig .sv-wf-gate,
+  .stv-mobile-fig .sv-wf-arr { display: none; }
+  .stv-mobile-fig .sv-wf-box { padding: 7px 8px; gap: 6px; }
+  .stv-mobile-fig .sv-wf-bhd code { display: none; }
+  .stv-mobile-fig .sv-wf-steps { flex-wrap: wrap; gap: 4px; }
+  .stv-mobile-fig .sv-wf-sa { display: none; }
+  .stv-mobile-fig .sv-wf-pill { height: 22px; font-size: 9.5px; padding: 0 7px 0 4px; }
+  .stv-mobile-fig .sv-wf-par { flex: 1 1 100%; padding: 5px 7px; }
+  .stv-mobile-fig .sv-wf-pn { font-size: 10px; }
+  .stv-mobile-fig .sv-wf-dim { height: 17px; font-size: 9px; padding: 0 5px; }
+  .stv-mobile-fig .sv-wf-sec { gap: 4px; }
+  .stv-mobile-fig .sv-wf-sh b { font-size: 11px; }
+  .stv-mobile-fig .sv-wf-stbl th:nth-child(2),
+  .stv-mobile-fig .sv-wf-stbl td:nth-child(2),
+  .stv-mobile-fig .sv-wf-stbl th:nth-child(4),
+  .stv-mobile-fig .sv-wf-stbl td:nth-child(4) { display: none; }
+  .stv-mobile-fig .sv-wf-stbl tbody tr:nth-child(n+3) { display: none; }
+  .stv-mobile-fig .sv-wf-stbl td { padding: 4px 7px; }
+  .stv-mobile-fig .sv-wf-sname { font-size: 9.5px !important; }
+  .stv-mobile-fig .sv-wf-sd { font-size: 9.5px !important; }
+  /* 6. 全自动质量测试（手机紧凑视图） */
+  .stv-mobile-fig .sv-q-head p,
+  .stv-mobile-fig .sv-q-ctrl .st-btn,
+  .stv-mobile-fig .sv-q-loop { display: none; }
+  .stv-mobile-fig .sv-q-head h4 { font-size: 13px; }
+  .stv-mobile-fig .sv-q-seg span { height: 22px; padding: 0 6px; font-size: 9.5px; }
+  .stv-mobile-fig .sv-q-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .stv-mobile-fig .sv-qc { padding: 7px 8px; gap: 4px; }
+  .stv-mobile-fig .sv-qch b { font-size: 11px; }
+  .stv-mobile-fig .sv-qch small { font-size: 9px; }
+  .stv-mobile-fig .sv-qst { font-size: 9px; padding: 1px 4px; }
+  .stv-mobile-fig .sv-qval { font-size: 13px; }
+  .stv-mobile-fig .sv-qdesc { font-size: 9.5px; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .stv-mobile-fig .sv-q-foot { padding: 6px 8px; gap: 5px; }
+  .stv-mobile-fig .sv-q-foot .st-chip:nth-of-type(n+3) { display: none; }
 }
 /* /HOME-STUDIO */
 `;

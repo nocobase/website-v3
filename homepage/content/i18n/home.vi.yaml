@@ -323,3 +323,7 @@ strings:
   "315": Con người nêu yêu cầu và ra quyết định
   "316": Agent viết code và thực thi
   "317": NocoBase giữ hệ thống tin cậy và trong tầm kiểm soát
+  "329": NocoBase Studio
+  "330": NocoBase Core
+  "331": Core là nền móng kỹ thuật mã nguồn mở đứng sau Studio. Hơn 30 khối chức năng — phân quyền, quy trình, tệp tin, tích hợp AI và nhiều hơn nữa — đã sẵn sàng để agent chỉ cần xây dựng logic nghiệp vụ riêng trên một kiến trúc nhất quán.
+  "332": Hơn 30 khối chức năng sẵn có, tin cậy

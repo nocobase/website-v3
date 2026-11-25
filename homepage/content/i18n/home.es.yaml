@@ -323,3 +323,7 @@ strings:
   "315": Las personas definen necesidades y deciden
   "316": Los agentes programan y ejecutan
   "317": NocoBase mantiene los sistemas confiables y bajo control
+  "329": NocoBase Studio
+  "330": NocoBase Core
+  "331": Core es la base de ingeniería de código abierto detrás de Studio. Más de 30 componentes base —permisos, flujos de trabajo, archivos, integración con IA y más— vienen listos para usar, así que los agentes solo desarrollan tu lógica de negocio sobre una arquitectura coherente.
+  "332": Más de 30 componentes base confiables y listos

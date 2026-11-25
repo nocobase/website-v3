@@ -3,8 +3,8 @@ meta:
     zh: 版本与价格 — NocoBase 3
     en: Editions &amp; Pricing — NocoBase 3
   description:
-    zh: 社区版开源免费，包含 Studio 工作台基础功能、Core 全部基础能力和全部开源应用；专业版 5 万元一次买断，含多角色流程、部署审批、企业 SSO、成本控制与 1 年支持；企业版按需报价。
-    en: Community Edition is free and open source, including Studio basics, every Core capability, and all open-source apps. Professional is $8,000 one-time with team governance and 1 year of upgrades and support. Enterprise is quoted to your needs.
+    zh: 社区版开源免费，包含 Studio 工作台基础功能（含两种内置工作流程）、Core 全部基础能力和全部开源应用；专业版 5 万元一次买断，含多角色与自定义流程、部署审批、企业 SSO、成本控制与 1 年支持；企业版按需报价。
+    en: Community Edition is free and open source, including Studio basics with two built-in workflows, every Core capability, and all open-source apps. Professional is $8,000 one-time with team governance, custom workflows, and 1 year of upgrades and support. Enterprise is quoted to your needs.
 items:
   "000":
     en: Editions &amp; Pricing
@@ -927,6 +927,7 @@ items:
     en: Quality plans
     zh: 质量计划
     where: tint
+    unused: true
   "203":
     en: Quality checks per project, with 8 built-in testing methods
     zh: 按项目把关质量，内置 8 种测试方式
@@ -1010,6 +1011,7 @@ items:
     en: Automated tests, cross-model review, preview sign-off, and rollback
     zh: 自动测试、跨模型交叉评审、验收上线与回滚
     where: tight
+    unused: true
   "221":
     en: Skills, knowledge base, project memory, and mobile decisions
     zh: 技能、知识库、项目记忆与在手机上做决策
@@ -1022,6 +1024,7 @@ items:
     en: All 20+ Core building blocks, standards, and dev skills
     zh: Core 全部 20 多项基础能力、统一规范与开发技能
     where: tight
+    unused: true
   "224":
     en: All open-source business apps (NocoCRM, NocoITAM, NocoReach, and more)
     zh: 全部开源业务应用（NocoCRM、NocoITAM、NocoReach 等）
@@ -1042,6 +1045,7 @@ items:
     en: "Multi-role workflows: tech approval before dev, dual business &amp; tech sign-off"
     zh: 多角色流程：业务提需求、技术审批开发，业务与技术双重验收
     where: tight
+    unused: true
   "229":
     en: Deployment approvals for protected environments and rollbacks
     zh: 部署审批：受保护环境的部署和回滚须经审批人批准
@@ -1074,10 +1078,12 @@ items:
     en: "Quality plans per project: white-box &amp; black-box checks across features, permissions, security, performance, and code"
     zh: 质量计划：按项目把关，白盒与黑盒覆盖功能、权限、安全、性能与代码质量
     where: tight
+    unused: true
   "237":
     en: Automated regression testing before every release
     zh: 回归测试：自动执行回归测试，每次发版放心操作
     where: tight
+    unused: true
   "238":
     en: Cross-environment promotion from staging to production with release windows and freeze periods
     zh: 跨环境发布：预发布验证过的版本原样上生产，规定上线窗口与冻结期
@@ -1134,6 +1140,7 @@ items:
     en: Every issue runs tests and CI checks, plus cross-model code review from a different vendor
     zh: 每个任务自带测试和 CI 检查，不同模型交叉评审
     where: compare
+    unused: true
   "252":
     en: Sign-off and release
     zh: 验收与上线
@@ -1170,10 +1177,12 @@ items:
     en: Multi-role workflows
     zh: 多角色流程
     where: compare
+    unused: true
   "261":
     en: Business users submit needs, tech leads approve before development, with dual business and technical sign-off
     zh: 业务人员提需求，技术负责人审批后才进入开发，交付后业务、技术双重验收
     where: compare
+    unused: true
   "262":
     en: Deployment approvals
     zh: 部署审批
@@ -1194,14 +1203,17 @@ items:
     en: Project-level white-box and black-box testing across features, permissions, security, performance, and code quality
     zh: 按项目把关质量，白盒、黑盒测试覆盖功能、权限、安全、性能和代码质量
     where: compare
+    unused: true
   "267":
     en: Regression testing
     zh: 回归测试
     where: compare
+    unused: true
   "268":
     en: Automated regression suites before every release
     zh: 自动执行回归测试，每次发版放心操作
     where: compare
+    unused: true
   "269":
     en: Cross-environment promotion
     zh: 跨环境发布
@@ -1270,14 +1282,17 @@ items:
     en: "Individuals and small teams can start free with Community: it already includes Studio’s core features, every Core building block, and all open-source apps."
     zh: 个人和小团队可以直接从社区版起步：开源免费，已经包含工作台（Studio）的基础功能、应用底座（Core）的全部基础能力和全部开源应用。
     where: faq
+    unused: true
   "286":
     en: "Choose Professional when a team needs governance: it adds multi-role workflows with dual sign-off, deployment approvals, enterprise SSO, cost controls, advanced approvals, one deployment service, and 12-hour response support."
     zh: 一个团队需要规范分工与治理，选专业版：增加多角色流程（业务与技术双重验收）、部署审批、企业 SSO、成本控制，以及高级审批、信创数据库与一次部署服务，技术支持首次响应不超过 12&nbsp;小时。
     where: faq
+    unused: true
   "287":
     en: "Choose Enterprise for multi-team delivery and mission-critical systems: it adds quality plans, automated regression testing, cross-environment promotions, HA clustering, multi-tenant/multi-app/multi-portal architecture, audit logs, air-gapped delivery, 3 days of onboarding, and 4-hour priority support."
     zh: 多团队协作或关键业务系统，选企业版：增加质量计划、回归测试、跨环境发布，以及集群高可用、多租户、多应用、多门户、审计日志和离线交付，包含 3 天部署、培训和实施服务，优先支持首次响应不超过 4&nbsp;小时。
     where: faq
+    unused: true
   "288":
     en: Yes. Community includes Studio’s core features, all of Core, and every open-source app, free for production and client delivery.
     zh: 可以。社区版包含工作台（Studio）的基础功能、完整的 Core 底座和所有开源应用，可以直接用于生产环境和商业交付。
@@ -1298,6 +1313,7 @@ items:
     en: No. Studio Community Edition is already free and open source in Community. Team governance and enterprise quality/release features are included directly in Professional and Enterprise.
     zh: 不需要。Studio 社区版已经开源免费包含在社区版里，个人和小团队可以直接部署使用；多角色流程、部署审批、企业 SSO、成本控制，以及质量计划、回归测试和跨环境发布等进阶功能，分别包含在专业版和企业版中。
     where: faq
+    unused: true
   "293":
     en: Can I deploy commercial Studio for my clients?
     zh: 可以把商业版 Studio 部署给客户使用吗？
@@ -1310,3 +1326,89 @@ items:
     en: Tell us about your team and what you want to build. We’ll help you choose the right edition and deployment setup.
     zh: 告诉我们你的团队规模和业务场景，我们帮你评估版本与部署方案。
     where: faq
+  "296":
+    en: Two built-in workflows (fast &amp; standard dev) with pinned skills
+    zh: 两种内置工作流程（快速与标准开发）与常驻技能
+    where: tight
+  "297":
+    en: CI checks, independent read-only cross-model review, sign-off, and rollback
+    zh: CI 检查、独立只读跨模型评审、验收上线与回滚
+    where: tight
+    unused: true
+  "298":
+    en: "Multi-role &amp; custom workflows: tech approval before dev, dual sign-off, custom steps and ownership"
+    zh: 多角色与自定义流程：技术审批开发、业务与技术双重验收，自定义步骤与权责
+    where: tight
+  "299":
+    en: "Quality management: customizable standards with proven tools across features, smoke checks, permissions, security, performance, code quality, and UX"
+    zh: 质量管理：按项目配置标准与规则，调用成熟工具实测功能、冒烟、权限、安全、性能、代码质量和 UX
+    where: tight
+  "300":
+    en: "Automated regression &amp; closed-loop fixes: core scenarios with daily, release, project, and custom runs that file follow-up issues and retest"
+    zh: 自动回归与问题闭环：维护核心场景，每日/发布/项目/自定义测试，问题自动登记为跟进任务修复并复测
+    where: tight
+  "301":
+    en: Built-in workflows
+    zh: 内置工作流程
+    where: compare
+  "302":
+    en: Includes fast and standard development workflows with pinned skills loaded automatically
+    zh: 包含快速流程和标准开发流程，常驻技能自动加载、任务不可移除
+    where: compare
+  "303":
+    en: Every issue runs CI checks plus independent read-only cross-model review
+    zh: 每个任务自带 CI 检查和独立只读跨模型评审
+    where: compare
+    unused: true
+  "304":
+    en: Multi-role and custom workflows
+    zh: 多角色流程与自定义流程
+    where: compare
+  "305":
+    en: Business requests, tech lead approval before development, dual sign-off, and custom workflow steps and ownership rules
+    zh: 业务人员提需求，技术负责人审批后进入开发，交付后业务、技术双重验收；支持按企业制度自定义流程与权责规则
+    where: compare
+  "306":
+    en: Quality management
+    zh: 质量管理
+    where: compare
+  "307":
+    en: Project-level standards and rules using proven tools across features, smoke checks, permissions, security, performance, code quality, and UX
+    zh: 按项目配置质量标准与测试规则，调用成熟工具实测功能、冒烟、权限、安全、性能、代码质量和 UX，自动生成报告
+    where: compare
+  "308":
+    en: Automated regression and closed-loop fixes
+    zh: 自动回归与问题闭环
+    where: compare
+  "309":
+    en: Core business scenarios with daily, release, project, and custom runs that file follow-up issues and retest after fixes
+    zh: 维护核心业务场景，支持每日、发布、项目和自定义测试，发现的问题自动登记为跟进任务，修复后再复测
+    where: compare
+  "310":
+    en: "Individuals and small teams can start free with Community: it already includes Studio’s core features (with two built-in workflows), every Core building block, and all open-source apps."
+    zh: 个人和小团队可以直接从社区版起步：开源免费，已经包含工作台（Studio）的基础功能（含两种内置工作流程）、应用底座（Core）的全部基础能力和全部开源应用。
+    where: faq
+  "311":
+    en: "Choose Professional when a team needs governance: it adds multi-role workflows with dual sign-off and custom workflows, deployment approvals, enterprise SSO, cost controls, advanced approvals, one deployment service, and 12-hour response support."
+    zh: 一个团队需要规范分工与治理，选专业版：增加多角色流程（业务与技术双重验收）与自定义流程、部署审批、企业 SSO、成本控制，以及高级审批、信创数据库与一次部署服务，技术支持首次响应不超过 12&nbsp;小时。
+    where: faq
+  "312":
+    en: "Choose Enterprise for multi-team delivery and mission-critical systems: it adds quality management, automated regression with closed-loop fixes, cross-environment promotions, HA clustering, multi-tenant/multi-app/multi-portal architecture, audit logs, air-gapped delivery, 3 days of onboarding, and 4-hour priority support."
+    zh: 多团队协作或关键业务系统，选企业版：增加质量管理、自动回归与问题闭环、跨环境发布，以及集群高可用、多租户、多应用、多门户、审计日志和离线交付，包含 3 天部署、培训和实施服务，优先支持首次响应不超过 4&nbsp;小时。
+    where: faq
+  "313":
+    en: No. Studio Community Edition is already free and open source in Community. Team governance, custom workflows, and enterprise quality/release features are included directly in Professional and Enterprise.
+    zh: 不需要。Studio 社区版已经开源免费包含在社区版里，个人和小团队可以直接部署使用；多角色与自定义流程、部署审批、企业 SSO、成本控制，以及质量管理、自动回归与问题闭环和跨环境发布等进阶功能，分别包含在专业版和企业版中。
+    where: faq
+  "314":
+    en: Automated checks, cross-model review, sign-off, and rollback
+    zh: 自动检查、不同模型交叉评审、验收上线与回滚
+    where: tight
+  "315":
+    en: Every issue runs automated checks plus read-only cross-model review
+    zh: 每个任务自带自动检查和不同模型交叉评审（只读审查）
+    where: compare
+  "316":
+    en: All 30+ Core building blocks, standards, and dev skills
+    zh: Core 全部 30 多项基础能力、统一规范与开发技能
+    where: tight

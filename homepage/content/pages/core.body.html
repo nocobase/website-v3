@@ -2,19 +2,19 @@ page: core
 i18n: core
 title_zh: NocoBase Core — 让 Agent 专心写业务，底座已经就绪
 title_en: NocoBase Core — Let agents focus on your business logic
-desc_zh: NocoBase Core 是工作台背后的开源应用底座。权限、流程、文件、AI 接入等 20 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
-desc_en: NocoBase Core is the open-source application foundation behind NocoBase Studio. Permissions, workflows, files, and AI capabilities come ready to use so agents build only your business logic on one architecture, and apps run standalone.
+desc_zh: NocoBase Core 是面向 AI 开发的开源应用底座。权限、流程、文件、AI 接入等 30 多项基础能力现成可用，直接搭配常用编码工具即可独立起步，发布后独立运行。
+desc_en: NocoBase Core is the open-source application foundation built for AI development. Permissions, workflows, files, and AI capabilities come ready to use so you can start directly with your own coding tools, and apps run standalone.
 ---
 <!-- 文案取自《NocoBase 产品定义与标准表述》的 NocoBase Core 一节：
-     首屏品牌表达做 H1，新版定义做导语 + 交互式架构图 coreStack；
-     正文对应新版 4 大核心特色（20 多项基础能力 + 动态多视图界面 / 统一架构与规范 / 新增：业务系统自带 AI 能力 / 开源、持续维护与独立运行），收尾衔接 Core 上手、开源应用与 Studio。 -->
+     首屏品牌表达做 H1，新版定义做导语 + 交互式真实底座界面 crvBlocks；
+     正文对应新版 4 大核心特色（30 多项基础能力 / 统一架构与规范 / 业务系统自带 AI 能力 / 开源、持续维护、可独立起步与独立运行），收尾衔接 Core 上手、开源应用与 Studio。 -->
 <section class="phero">
   <div class="container">
-    <p class="label prod"><b><i data-lucide="blocks"></i>NocoBase Core</b></p>
+    <p class="label prod"><b><i data-lucide="blocks"></i><t-zh>应用底座 · NocoBase Core</t-zh><t-en>NocoBase Core</t-en></b></p>
     <h1><t-zh>让 Agent 专心写业务，<span class="m">底座已经就绪。</span></t-zh><t-en>Let agents focus on your business logic. <span class="m">The foundation is ready.</span></t-en></h1>
-    <p class="lede"><t-zh>NocoBase Core 是工作台背后的开源应用底座。权限、流程、文件、AI 接入等 20 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。</t-zh><t-en>NocoBase Core is the open-source application foundation behind Studio. With 20+ ready-made building blocks for permissions, workflows, files, and AI, agents build only what is unique to your business on one architecture, and released systems run independently.</t-en></p>
+    <p class="lede"><t-zh>NocoBase Core 是面向 AI 开发的开源应用底座，可独立起步、独立运行。权限、登录认证、流程、文件、AI 接入等 30 多项基础能力现成可用，直接用你熟悉的编码工具就能在统一架构上开发业务系统，也可以搭配 Studio 开展团队协作。</t-zh><t-en>NocoBase Core is the open-source application foundation built for AI development, ready to start on its own and run independently. With 30+ ready-made building blocks for permissions, auth, workflows, files, and AI, build business logic right away with your coding tools or scale into team collaboration with Studio.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="{{DOCS}}getting-started/develop-your-first-app/" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a>
+      <button type="button" class="btn btn-pri" command="show-modal" commandfor="qsCoreModal"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></button>
       <a class="btn btn-sec" href="{{DOCS}}core/" target="_blank" rel="noopener"><t-zh>Core 文档</t-zh><t-en>Core Docs</t-en><i data-lucide="arrow-up-right"></i></a>
     </div>
     <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>开源免费，可直接用于生产</t-zh><t-en>Free, open source, and ready for production</t-en></span><span><i data-lucide="circle-check"></i><t-zh>代码和数据归企业所有</t-zh><t-en>Your code and data belong to you</t-en></span><span><i data-lucide="circle-check"></i><t-zh>发布后独立运行，不依赖工作台</t-zh><t-en>Apps run standalone without Studio</t-en></span></p>
@@ -28,7 +28,7 @@ desc_en: NocoBase Core is the open-source application foundation behind NocoBase
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>基础能力</t-zh><t-en>Building blocks</t-en></b></p>
-      <h2 class="h2"><t-zh>20 多项现成、可靠的<span class="m">基础能力。</span></t-zh><t-en>20+ proven building blocks, <span class="m">ready to use.</span></t-en></h2>
+      <h2 class="h2"><t-zh>30 多项现成、可靠的<span class="m">基础能力。</span></t-zh><t-en>30+ proven building blocks, <span class="m">ready to use.</span></t-en></h2>
       <p class="lead"><t-zh>权限、工作流引擎、审批、文件存储等底层模块复杂度高、对可靠性要求最高，不由 AI 从零生成，由 NocoBase 持续维护和升级。Agent 只写业务部分，测试和安全审查也集中在新写的业务上。</t-zh><t-en>Permissions, workflows, approvals, and file storage are complex and demand the highest reliability—so they are never rewritten from scratch by AI. NocoBase maintains and upgrades them while agents focus solely on your business logic.</t-en></p>
     </div>
     <div class="sec-body">
@@ -75,7 +75,7 @@ desc_en: NocoBase Core is the open-source application foundation behind NocoBase
           <li><b><t-zh>部署与升级</t-zh><t-en>Deploy and upgrade</t-en></b><span><t-zh>命令行部署、升级与回滚</t-zh><t-en>Command-line deploys, upgrades, and rollback</t-en></span></li>
         </ul></div>
       </div>
-      <p class="capfoot"><span><t-zh><b>20 多项基础能力</b>，由 NocoBase 持续维护和升级。</t-zh><t-en><b>20+ building blocks</b>, maintained and upgraded by NocoBase.</t-en></span><a class="link" href="{{DOCS}}core/using-plugins/overview/" target="_blank" rel="noopener"><t-zh>查看全部能力文档</t-zh><t-en>Explore All Plugin Docs</t-en><i data-lucide="arrow-up-right"></i></a></p>
+      <p class="capfoot"><span><t-zh><b>30 多项基础能力</b>，由 NocoBase 持续维护和升级。</t-zh><t-en><b>30+ building blocks</b>, maintained and upgraded by NocoBase.</t-en></span><a class="link" href="{{DOCS}}core/using-plugins/overview/" target="_blank" rel="noopener"><t-zh>查看全部能力文档</t-zh><t-en>Explore All Plugin Docs</t-en><i data-lucide="arrow-up-right"></i></a></p>
     </div>
   </div>
 </section>
@@ -162,18 +162,18 @@ desc_en: NocoBase Core is the open-source application foundation behind NocoBase
           <div class="hd"><i data-lucide="blocks"></i><b>NocoBase Core</b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div>
           <h3><t-zh>用 Core 开发自己的系统</t-zh><t-en>Build your own system on Core</t-en></h3>
           <p><t-zh>跟着快速开始文档初始化应用，让你熟悉的编码工具在现成底座和统一规范上直接写业务。</t-zh><t-en>Follow the quick start to scaffold an app and let your coding agent build business logic on Core’s ready-made foundation.</t-en></p>
-          <a class="btn btn-pri" href="{{DOCS}}getting-started/develop-your-first-app/" target="_blank" rel="noopener"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></a>
+          <button type="button" class="btn btn-pri" command="show-modal" commandfor="qsCoreModal"><t-zh>快速开始</t-zh><t-en>Quick Start</t-en><i data-lucide="arrow-right"></i></button>
         </div>
         <div class="scard">
           <div class="hd"><i data-lucide="layout-grid"></i><b><t-zh>开源应用</t-zh><t-en>Open-Source Apps</t-en></b><span><t-zh>装上即用 · 可二开</t-zh><t-en>Ready &amp; customizable</t-en></span></div>
           <h3><t-zh>看看基于 Core 做出来的系统</t-zh><t-en>Install a ready-made business app</t-en></h3>
-          <p><t-zh>直接安装 NocoCRM、NocoITAM、NocoReach 投入使用，也可以在工作台里让 Agent 按需二次开发。</t-zh><t-en>Install NocoCRM, NocoITAM, or NocoReach right away, or customize them with agents in Studio.</t-en></p>
+          <p><t-zh>直接安装 NocoCRM、NocoITAM、NocoReach 投入使用，也可以用你熟悉的编码工具或在工作台里让 Agent 按需二次开发。</t-zh><t-en>Install NocoCRM, NocoITAM, or NocoReach right away, or customize them with your coding tools or agents in Studio.</t-en></p>
           <a class="btn btn-sec" href="solutions.html"><t-zh>查看全部开源应用</t-zh><t-en>Explore Open Apps</t-en><i data-lucide="arrow-right"></i></a>
         </div>
         <div class="scard">
           <div class="hd"><i data-lucide="users-round"></i><b>NocoBase Studio</b><span><t-zh>社区版免费</t-zh><t-en>Free Community Edition</t-en></span></div>
           <h3><t-zh>带领 Agent 团队并行交付</t-zh><t-en>Lead a 24/7 agent team</t-en></h3>
-          <p><t-zh>多设备多工具并行推进、按流程把关质量、电脑和手机随时验收，社区版开源免费起步。</t-zh><t-en>Coordinate coding agents across devices with structured quality gates and desktop/mobile approvals—free to start.</t-en></p>
+          <p><t-zh>多设备多工具并行推进、按流程把关质量、电脑和手机随时验收，社区版免费起步。</t-zh><t-en>Coordinate coding agents across devices with structured quality gates and desktop/mobile approvals—free to start.</t-en></p>
           <a class="btn btn-sec" href="studio.html"><t-zh>了解 Studio</t-zh><t-en>Explore Studio</t-en><i data-lucide="arrow-right"></i></a>
         </div>
       </div>

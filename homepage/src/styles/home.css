@@ -333,12 +333,13 @@ html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],
 .roles4 h3 { font-size: 17px; line-height: 1.42; font-weight: 600; color: var(--ink); }
 .roles4 p { margin-top: 8px; font-size: 14.5px; line-height: 1.7; color: var(--ink-2); }
 
-.band-studio { margin-top: 96px; border-top: 1px solid var(--rule); }
-.band-core { padding-block: 100px 108px; background: var(--paper); border-bottom: 1px solid var(--rule); }
-.band-core .stv-tab[aria-selected="true"] { background: var(--card); }
+.band-core { margin-top: 96px; padding-block: 100px 108px; background: oklch(0.955 0.012 262); border-block: 1px solid var(--rule); }
+.band-core .stv-tab[aria-selected="true"] { background: oklch(1 0 0 / 0.72); }
+.band-studio { margin-top: 0; padding-block: 100px 108px; background: var(--paper); border-top: 0; border-bottom: 1px solid var(--rule); }
+.band-studio .stv-tab[aria-selected="true"] { background: var(--card); }
 @media (max-width: 900px) {
-  .band-studio { margin-top: 72px; }
-  .band-core { padding-block: 76px 84px; }
+  .band-core { margin-top: 72px; padding-block: 76px 84px; }
+  .band-studio { padding-block: 76px 84px; }
 }
 
 /* Studio / Core 三端差异化交互：
@@ -361,6 +362,7 @@ html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],
 @media (min-width: 641px) {
   .stv-runway:not(.is-pinned) .stv { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .stv-runway:not(.is-pinned) .stv-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .stv-runway:not(.is-pinned) .stv-tabs:has(.stv-tab:nth-child(5)) .stv-tab:last-child { grid-column: 1 / -1; }
   .stv-runway:not(.is-pinned) .stv-tab {
     border: 1px solid var(--rule); border-left-width: 2px; border-radius: 10px;
     background: var(--card); padding: 12px 14px;
@@ -466,8 +468,11 @@ html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],
 .faq-ans { padding: 0 4px 18px 28px; }
 .faq-ans p { font-size: 14.5px; line-height: 1.75; color: var(--ink-2); max-width: 700px; }
 
-/* 开始使用：社区版自助上手 + 商业版并排两卡 */
+/* 开始使用：三卡并列（从 Core 起步 / 从 Studio 起步 / 专业版与企业版） */
 .start2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.start2 .sacts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: auto; padding-top: 24px; }
-.start2 .scard { display: flex; flex-direction: column; }
+.start2 .sacts,
+.start3 .sacts { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: auto; padding-top: 20px; }
+.start2 .scard,
+.start3 .scard { display: flex; flex-direction: column; }
+.start3 .sacts .btn { margin-top: 0; }
 @media (max-width: 900px) { .start2 { grid-template-columns: minmax(0, 1fr); } }

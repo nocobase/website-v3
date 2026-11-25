@@ -6,8 +6,8 @@ desc_zh: NocoBase Studio 是 NocoBase 的工作台。把多台设备上的 Claud
 desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex, and OpenCode across your devices into a 24/7 agent team that builds, tests, and reviews by process while people guide and decide from desktop or mobile.
 ---
 <!-- 文案取自《NocoBase 产品定义与标准表述》的 NocoBase Studio 一节与《Studio 版本划分》：
-     首屏品牌表达做 H1，新版工作台定义做导语，社区版开源免费包含基础功能，主 CTA 引导自助上手与在线体验；
-     正文对应新版 4 大核心特色（24 小时 Agent 团队 / 随时随地人机协作与决策 / 按流程层层把关质量 / 技能知识库项目记忆），收尾清晰列出社区版→专业版→企业版递进与私有部署。 -->
+     首屏品牌表达做 H1，新版工作台定义做导语，社区版免费包含基础功能与两种内置工作流程，主 CTA 引导自助上手与在线体验；
+     正文对应新版 5 大核心特色（24 小时 Agent 团队 / 随时随地人机协作与决策 / 按流程推进与关键节点把关 / 全自动质量测试与问题闭环 / 技能知识库项目记忆），收尾清晰列出社区版→专业版→企业版递进与私有部署。 -->
 <style>
 .ld-frame { height: 720px; overflow: hidden; border: 1px solid var(--rule-2); border-radius: 14px; background: var(--paper); box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.05), 0 12px 28px -14px oklch(0.25 0.06 266 / 0.2); }
 .ld-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
@@ -30,15 +30,15 @@ desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex,
 
 <section class="phero">
   <div class="container">
-    <p class="label prod"><b><i data-lucide="users-round"></i>NocoBase Studio</b></p>
+    <p class="label prod"><b><i data-lucide="users-round"></i><t-zh>工作台 · NocoBase Studio</t-zh><t-en>NocoBase Studio</t-en></b></p>
     <h1><t-zh>Agent 自主推进，<span class="m">团队掌控全局。</span></t-zh><t-en>Agents keep the work moving. <span class="m">Your team stays in control.</span></t-en></h1>
-    <p class="lede"><t-zh>NocoBase Studio 是 NocoBase 的工作台。它把多台设备上的 Claude Code、Codex、OpenCode 等组建成一支 24 小时工作的 Agent 团队，按流程自主推进开发、测试和评审；人在电脑或手机上提需求、看进展、做决策。</t-zh><t-en>NocoBase Studio is the workbench for NocoBase. It brings Claude Code, Codex, and OpenCode across your devices into one 24/7 agent team that handles development, testing, and review by process, while people make requests, track progress, and decide from desktop or mobile.</t-en></p>
+    <p class="lede"><t-zh>NocoBase Studio 是 NocoBase 的团队开发工作台。它把多台设备上的 Claude Code、Codex、OpenCode 等组建成一支 24 小时工作的 Agent 团队，按流程自主推进开发、测试和评审；人在电脑或手机上提需求、看进展、做决策。</t-zh><t-en>NocoBase Studio is the team development workbench for NocoBase. It brings Claude Code, Codex, and OpenCode across your devices into one 24/7 agent team that handles development, testing, and review by process, while people make requests, track progress, and decide from desktop or mobile.</t-en></p>
     <div class="cta">
-      <a class="btn btn-pri" href="{{DOCS}}studio/setup/" target="_blank" rel="noopener"><t-zh>免费开始使用</t-zh><t-en>Get Started Free</t-en><i data-lucide="arrow-right"></i></a>
+      <a class="btn btn-pri" href="{{DOCS}}getting-started/quick-install-studio/" target="_blank" rel="noopener"><t-zh>快速安装 Studio</t-zh><t-en>Quick Install Studio</t-en><i data-lucide="arrow-right"></i></a>
       <a class="btn btn-sec" href="#tryDemo" data-try><t-zh>在线体验</t-zh><t-en>Try It Online</t-en><i data-lucide="arrow-down"></i></a>
       <a class="btn btn-sec" href="{{DOCS}}studio/" target="_blank" rel="noopener"><t-zh>Studio 文档</t-zh><t-en>Studio Docs</t-en><i data-lucide="arrow-up-right"></i></a>
     </div>
-    <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>社区版开源免费，包含工作台基础功能</t-zh><t-en>Community Edition is free and includes core Studio features</t-en></span><span><i data-lucide="circle-check"></i><t-zh>私有部署在企业自己的服务器上，支持纯内网</t-zh><t-en>Self-hosted on your own servers, air-gapped ready</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex、OpenCode 等编码工具</t-zh><t-en>Works with Claude Code, Codex, OpenCode, and more</t-en></span></p>
+    <p class="facts"><span><i data-lucide="circle-check"></i><t-zh>社区版免费使用，包含工作台基础功能</t-zh><t-en>Community Edition is free and includes core Studio features</t-en></span><span><i data-lucide="circle-check"></i><t-zh>私有部署在企业自己的服务器上，支持纯内网</t-zh><t-en>Self-hosted on your own servers, air-gapped ready</t-en></span><span><i data-lucide="circle-check"></i><t-zh>支持 Claude Code、Codex、OpenCode 等编码工具</t-zh><t-en>Works with Claude Code, Codex, OpenCode, and more</t-en></span></p>
   </div>
 </section>
 
@@ -100,18 +100,19 @@ desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex,
 <section class="sec" id="process">
   <div class="container">
     <div class="sec-head">
-      <p class="label"><b><t-zh>流程与质量把关</t-zh><t-en>Process &amp; quality</t-en></b></p>
-      <h2 class="h2"><t-zh>按流程推进，<span class="m">层层把关质量。</span></t-zh><t-en>Structured process, <span class="m">quality at every gate.</span></t-en></h2>
-      <p class="lead"><t-zh>从需求、方案、开发、测试、评审到验收、上线，每一步由谁做、谁确认、交出什么都按流程执行，全程留痕。</t-zh><t-en>From request and design to build, test, review, acceptance, and release, every step has clear ownership, gates, and a complete audit trail.</t-en></p>
+      <p class="label"><b><t-zh>工作流程</t-zh><t-en>Workflows</t-en></b></p>
+      <h2 class="h2"><t-zh>按流程推进，<span class="m">关键节点由人把关。</span></t-zh><t-en>Structured workflows, <span class="m">people at the gates.</span></t-en></h2>
+      <p class="lead"><t-zh>同一项目可按任务选用精简流程、标准流程或自定义流程；常驻技能每次运行自动加载，每一步谁做、谁确认全程留痕。</t-zh><t-en>Match each issue to a simple, standard, or custom workflow with resident skills loaded on every run—keeping clear ownership, automatic rework loops, and a full audit trail.</t-en></p>
     </div>
     <div class="sec-body">
-      <ol class="steps" style="--n:5">
-        <li><span class="bal">1</span><h4><t-zh>按项目选流程</t-zh><t-en>Right-sized workflow</t-en></h4><p><t-zh>内置从简单到完整的多种流程，小改动走轻量流程，核心系统走严格流程，也可按企业制度自定义。</t-zh><t-en>Built-in workflows from lightweight to strict, or tailor your own to match your engineering standards.</t-en></p></li>
-        <li><span class="bal">2</span><h4><t-zh>自动测试与交叉评审</t-zh><t-en>Tests &amp; cross-model review</t-en></h4><p><t-zh>每个改动先跑自动测试，再换另一家厂商的模型交叉评审；未通过自动返工重测，全过才交给人。</t-zh><t-en>Automated tests run first, followed by code review from a different model vendor; failures loop back automatically.</t-en></p></li>
-        <li><span class="bal">3</span><h4><t-zh>业务与技术双重验收</t-zh><t-en>Dual sign-off</t-en></h4><p><t-zh>业务人员在独立测试环境里做业务验收，技术负责人做技术验收，各把各的关。</t-zh><t-en>Business stakeholders verify behavior in a live preview while tech leads sign off on architecture and safety.</t-en></p></li>
-        <li><span class="bal">4</span><h4><t-zh>质量计划与回归测试</t-zh><t-en>Quality plans &amp; regression</t-en></h4><p><t-zh>上线前按质量计划对系统做功能、权限、安全、性能和代码质量回归测试，每次发版心里有底。</t-zh><t-en>Run full regression across features, permissions, security, performance, and code quality before every release.</t-en></p></li>
-        <li><span class="bal">5</span><h4><t-zh>审批上线与回滚</t-zh><t-en>Approved release &amp; rollback</t-en></h4><p><t-zh>经审批人批准才发布到生产环境，支持预发布验证与上线窗口；出了问题一键回滚到上一版本。</t-zh><t-en>Production deploys require approval, support release windows, and roll back cleanly to the last good release.</t-en></p></li>
-      </ol>
+      <div class="sheet">
+        {{SNIP:stvWorkflow:1040}}
+      </div>
+      <div class="cols3">
+        <div><h3><i data-lucide="git-branch"></i><t-zh>多流程并存，支持自定义</t-zh><t-en>Built-in &amp; custom workflows</t-en></h3><p><t-zh>社区版内置精简流程与标准流程，小改动快跑、核心改造走完整步骤；专业版支持多角色流程、自定义流程与权责规则。</t-zh><t-en>Community ships with simple and standard workflows; Professional adds multi-role workflows, custom steps, and configurable ownership rules.</t-en></p></div>
+        <div><h3><i data-lucide="user-check"></i><t-zh>清晰把关，退回自动闭环</t-zh><t-en>Clear gates &amp; automatic rework</t-en></h3><p><t-zh>需求方确认、开发负责人启动，中间由 AI 完成方案、编码、换另一家模型只读评审并通过 CI 自动检查；验收退回自动回到 AI 执行阶段，各节点任务数一目了然。</t-zh><t-en>Requesters and tech leads own the start and finish while agents handle planning, coding, read-only review by another model, and automated CI checks in between—with rejections looping back automatically.</t-en></p></div>
+        <div><h3><i data-lucide="pin"></i><t-zh>常驻技能自动生效，不可移除</t-zh><t-en>Pinned skills on every run</t-en></h3><p><t-zh>开发规范、评审分级标准与汇报格式作为常驻技能绑定到流程，按项目或仓库强制加载，搭配审批上线与一键回滚，确保规范落地不走样。</t-zh><t-en>Attach development, review-grading, and reporting rules as pinned skills that load automatically and cannot be dropped per issue, paired with approved releases and rollback.</t-en></p></div>
+      </div>
 
       <div class="feat" style="margin-top:88px">
         <div>
@@ -121,7 +122,7 @@ desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex,
         </div>
         <div class="sheet sm"><div class="fit" data-w="640"><div class="fit-in"><div class="win noside"><div class="mini"><div class="ph"><div><h5><t-zh>供应商分级 · PUR-23</t-zh><t-en>Supplier tiering · PUR-23</t-en></h5><p class="sub"><t-zh>发起人：采购主管周航 · 不写一行代码，从提需求到上线</t-zh><t-en>Requester: Ethan Cole, procurement lead · no code, from request to release</t-en></p></div><span class="tag green"><i data-lucide="circle-check"></i><t-zh>已上线</t-zh><t-en>Live</t-en></span></div><div class="tblw"><table class="tbl"><thead><tr><th></th><th><span class="dot d-hu"></span><t-zh>人来拍板</t-zh><t-en>People decide</t-en></th><th><span class="dot d-ag"></span><t-zh>Agent 与工作台承担</t-zh><t-en>Agents &amp; Studio handle</t-en></th></tr></thead><tbody>
           <tr><td style="white-space:nowrap;font-weight:550"><t-zh>提需求</t-zh><t-en>Request</t-en></td><td><t-zh>用业务语言说清分级规则</t-zh><t-en>Describes tiering rules in plain words</t-en></td><td style="color:var(--ink-2)"><t-zh>整理成规则与验收场景，拆成任务</t-zh><t-en>Turns them into rules, scenarios, and issues</t-en></td></tr>
-          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>开发</t-zh><t-en>Build</t-en></td><td><t-zh>回答 2 个提问：评分权重、例外名单</t-zh><t-en>Answers 2 questions: weights &amp; exceptions</t-en></td><td style="color:var(--ink-2)"><t-zh>写代码、跑自动测试、换模型交叉评审</t-zh><t-en>Writes code, runs tests, cross-model review</t-en></td></tr>
+          <tr><td style="white-space:nowrap;font-weight:550"><t-zh>开发</t-zh><t-en>Build</t-en></td><td><t-zh>回答 2 个提问：评分权重、例外名单</t-zh><t-en>Answers 2 questions: weights &amp; exceptions</t-en></td><td style="color:var(--ink-2)"><t-zh>写代码、换模型只读评审、过自动检查</t-zh><t-en>Writes code, read-only cross-model review, automated checks</t-en></td></tr>
           <tr><td style="white-space:nowrap;font-weight:550"><t-zh>验收</t-zh><t-en>Accept</t-en></td><td><t-zh>在测试环境里用真实数据走一遍</t-zh><t-en>Checks real suppliers in a live test env</t-en></td><td style="color:var(--ink-2)"><t-zh>准备独立测试环境、验收报告与截图</t-zh><t-en>Spins up preview, report, and screenshots</t-en></td></tr>
           <tr><td style="white-space:nowrap;font-weight:550"><t-zh>上线</t-zh><t-en>Release</t-en></td><td><t-zh>技术负责人批准发布</t-zh><t-en>Tech lead approves release</t-en></td><td style="color:var(--ink-2)"><t-zh>发布到生产环境，保留回滚点</t-zh><t-en>Deploys to production with instant rollback</t-en></td></tr>
         </tbody></table></div></div></div></div></div></div>
@@ -130,7 +131,27 @@ desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex,
   </div>
 </section>
 
-<section class="sec tint" id="memory">
+<section class="sec tint" id="quality">
+  <div class="container">
+    <div class="sec-head">
+      <p class="label"><b><t-zh>质量管理</t-zh><t-en>Quality management</t-en></b></p>
+      <h2 class="h2"><t-zh>全自动质量测试，<span class="m">问题闭环修复。</span></t-zh><t-en>Automated quality testing, <span class="m">closed-loop fixes.</span></t-en></h2>
+      <p class="lead"><t-zh>不靠 AI 读代码估算，而是调用业界成熟测试工具多机并行实测七个维度；测完自动生成报告，问题自动登记为跟进任务修复并复测。</t-zh><t-en>Proven testing tools run in parallel across seven dimensions instead of agents guessing from code—generating reports automatically and turning findings into follow-up issues that fix and retest in a closed loop.</t-en></p>
+    </div>
+    <div class="sec-body">
+      <div class="sheet">
+        {{SNIP:stvQuality:1040}}
+      </div>
+      <div class="cols3">
+        <div><h3><i data-lucide="gauge"></i><t-zh>成熟工具实测，标准可自定义</t-zh><t-en>Proven tools &amp; custom standards</t-en></h3><p><t-zh>覆盖功能、冒烟、权限、安全、性能、代码质量和 UX，调用 Playwright、权限引擎、OWASP ZAP、gitleaks、Lighthouse、PostgreSQL 执行计划与 jscpd 等工具实测；内置业界标准并支持自定义阈值、技能和维度，缺条件标未验证不凑数。</t-zh><t-en>Covers features, smoke checks, permissions, security, performance, code quality, and UX with Playwright, a role-matrix engine, OWASP ZAP, gitleaks, Lighthouse, PostgreSQL EXPLAIN, and jscpd. Customize thresholds, skills, and dimensions; missing prerequisites stay clearly marked unverified.</t-en></p></div>
+        <div><h3><i data-lucide="cpu"></i><t-zh>四种触发、多机并行，无人值守</t-zh><t-en>Four triggers, parallel runners</t-en></h3><p><t-zh>每日测试、发布测试、项目测试和自定义测试共用一套引擎与标准；核心业务场景随项目演进沉淀在仓库中，由多台测试机按维度并行执行，全程无需值守。</t-zh><t-en>Daily, release, project, and custom runs share one engine and rule set. Core scenarios live in the repo and evolve with the product while multiple test machines execute dimensions in parallel.</t-en></p></div>
+        <div><h3><i data-lucide="refresh-cw"></i><t-zh>自动出报告，问题闭环修复</t-zh><t-en>Auto reports &amp; closed-loop fixes</t-en></h3><p><t-zh>维度报告自动汇总为交付报告；发现的缺陷、性能、安全漏洞和代码清理问题按原因合并登记为跟进任务，进入开发流程修复、评审并在下次测试复测，仅规则不明的交人拍板。</t-zh><t-en>Dimension reports roll up into one delivery report. Deduplicated defects, performance regressions, security findings, and cleanup items enter the dev workflow for agents to fix, review, and retest—leaving only ambiguous rules for people.</t-en></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="memory">
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>团队资产</t-zh><t-en>Team know-how</t-en></b></p>
@@ -150,7 +171,7 @@ desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex,
   </div>
 </section>
 
-<section class="sec" id="editions">
+<section class="sec tint" id="editions">
   <div class="container">
     <div class="sec-head">
       <p class="label"><b><t-zh>版本与私有部署</t-zh><t-en>Editions &amp; self-hosting</t-en></b></p>
@@ -160,21 +181,21 @@ desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex,
     <div class="sec-body">
       <div class="start3">
         <div class="scard pro">
-          <div class="hd"><i data-lucide="rocket"></i><b><t-zh>社区版</t-zh><t-en>Community</t-en></b><span><t-zh>开源免费</t-zh><t-en>Free &amp; Open Source</t-en></span></div>
+          <div class="hd"><i data-lucide="rocket"></i><b><t-zh>社区版</t-zh><t-en>Community</t-en></b><span><t-zh>社区版免费</t-zh><t-en>Free Community</t-en></span></div>
           <h3><t-zh>个人与小团队免费起步</t-zh><t-en>For individuals &amp; small teams</t-en></h3>
-          <p><t-zh>包含项目与任务、Agent 团队、运行环境、自动测试与交叉评审、验收上线、技能/知识库/项目记忆、手机做决策、运行记录与成员权限。</t-zh><t-en>Includes issues, agent teams, runtimes, tests &amp; cross-model review, preview sign-off, skills/KB/memory, mobile approvals, usage logs, and role permissions.</t-en></p>
-          <a class="btn btn-pri" href="{{DOCS}}studio/setup/" target="_blank" rel="noopener"><t-zh>免费开始使用</t-zh><t-en>Get Started Free</t-en><i data-lucide="arrow-right"></i></a>
+          <p><t-zh>包含项目与任务、Agent 团队、运行环境、两种内置工作流程（精简与标准流程）与常驻技能、CI 检查与跨模型评审、验收上线、知识库/项目记忆、手机决策与成员权限。</t-zh><t-en>Includes issues, agent teams, runtimes, two built-in workflows (simple &amp; standard) with resident skills, CI checks &amp; cross-model review, preview sign-off, knowledge/memory, mobile approvals, and role permissions.</t-en></p>
+          <a class="btn btn-pri" href="{{DOCS}}getting-started/quick-install-studio/" target="_blank" rel="noopener"><t-zh>快速安装 Studio</t-zh><t-en>Quick Install Studio</t-en><i data-lucide="arrow-right"></i></a>
         </div>
         <div class="scard">
           <div class="hd"><i data-lucide="shield-check"></i><b><t-zh>专业版</t-zh><t-en>Pro</t-en></b><span><t-zh>一次买断</t-zh><t-en>One-time license</t-en></span></div>
           <h3><t-zh>一个团队持续交付业务系统</t-zh><t-en>For teams shipping continuously</t-en></h3>
-          <p><t-zh>在社区版基础上，增加多角色流程（业务/技术双重验收）、部署审批、企业 SSO（飞书/钉钉/企微/SAML/LDAP）以及按项目和成员的成本预算控制。</t-zh><t-en>Adds multi-role workflows with dual sign-off, deployment approvals, enterprise SSO (SAML/LDAP/Feishu/DingTalk/WeCom), and budget limits.</t-en></p>
+          <p><t-zh>在社区版基础上，增加多角色流程（业务/技术双重验收）与自定义流程、部署审批、企业 SSO（飞书/钉钉/企微/SAML/LDAP）以及按项目和成员的成本预算控制。</t-zh><t-en>Adds multi-role workflows with dual sign-off and custom workflows, deployment approvals, enterprise SSO (SAML/LDAP/Feishu/DingTalk/WeCom), and budget limits.</t-en></p>
           <a class="btn btn-sec" href="pricing.html"><t-zh>查看版本与价格</t-zh><t-en>Compare Editions</t-en><i data-lucide="arrow-right"></i></a>
         </div>
         <div class="scard">
           <div class="hd"><i data-lucide="building-2"></i><b><t-zh>企业版</t-zh><t-en>Enterprise</t-en></b><span><t-zh>一次买断</t-zh><t-en>One-time license</t-en></span></div>
           <h3><t-zh>多团队协作与关键业务</t-zh><t-en>For multi-team &amp; critical systems</t-en></h3>
-          <p><t-zh>在专业版基础上，增加项目级质量计划、发版自动回归测试、跨环境发布（预发布验证、上线窗口与冻结期）以及高可用与集群支持。</t-zh><t-en>Adds project quality plans, automated release regression, cross-environment promotions with release windows and freeze periods, and HA clustering.</t-en></p>
+          <p><t-zh>在专业版基础上，增加项目级质量管理（成熟工具实测七个维度）、自动回归与问题闭环、跨环境发布（预发布验证、上线窗口与冻结期）以及高可用与集群支持。</t-zh><t-en>Adds project quality management across seven dimensions with proven tools, automated regression with closed-loop fixes, cross-environment promotions with release windows and freeze periods, and HA clustering.</t-en></p>
           <a class="btn btn-sec" href="contact.html"><t-zh>联系我们</t-zh><t-en>Contact Us</t-en><i data-lucide="arrow-right"></i></a>
         </div>
       </div>
@@ -185,7 +206,7 @@ desc_en: NocoBase Studio is the workbench for NocoBase. Turn Claude Code, Codex,
       </div>
       <div class="links">
         <a class="link" href="{{DOCS}}studio/" target="_blank" rel="noopener"><t-zh>阅读 Studio 完整文档</t-zh><t-en>Read the Studio Docs</t-en><i data-lucide="arrow-up-right"></i></a>
-        <a class="link" href="core.html"><t-zh>了解工作台背后的应用底座：NocoBase Core</t-zh><t-en>Explore the foundation behind Studio: NocoBase Core</t-en><i data-lucide="arrow-right"></i></a>
+        <a class="link" href="core.html"><t-zh>也可以直接从应用底座 NocoBase Core 起步</t-zh><t-en>Or start directly with NocoBase Core</t-en><i data-lucide="arrow-right"></i></a>
         <a class="link" href="solutions.html"><t-zh>看看用 NocoBase 做出来的开源应用</t-zh><t-en>See open-source apps built on NocoBase</t-en><i data-lucide="arrow-right"></i></a>
       </div>
     </div>

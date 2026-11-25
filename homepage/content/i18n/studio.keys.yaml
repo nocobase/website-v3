@@ -467,54 +467,67 @@ items:
     en: Process &amp; quality
     zh: 流程与质量把关
     where: process
+    unused: true
   "099":
     en: Structured process, <span class="m">quality at every gate.</span>
     zh: 按流程推进，<span class="m">层层把关质量。</span>
     where: process
+    unused: true
   "100":
     en: From request and design to build, test, review, acceptance, and release, every step has clear ownership, gates, and a complete audit trail.
     zh: 从需求、方案、开发、测试、评审到验收、上线，每一步由谁做、谁确认、交出什么都按流程执行，全程留痕。
     where: process
+    unused: true
   "101":
     en: Right-sized workflow
     zh: 按项目选流程
     where: process
+    unused: true
   "102":
     en: Built-in workflows from lightweight to strict, or tailor your own to match your engineering standards.
     zh: 内置从简单到完整的多种流程，小改动走轻量流程，核心系统走严格流程，也可按企业制度自定义。
     where: process
+    unused: true
   "103":
     en: Tests &amp; cross-model review
     zh: 自动测试与交叉评审
     where: process
+    unused: true
   "104":
     en: Automated tests run first, followed by code review from a different model vendor; failures loop back automatically.
     zh: 每个改动先跑自动测试，再换另一家厂商的模型交叉评审；未通过自动返工重测，全过才交给人。
     where: process
+    unused: true
   "105":
     en: Dual sign-off
     zh: 业务与技术双重验收
     where: process
+    unused: true
   "106":
     en: Business stakeholders verify behavior in a live preview while tech leads sign off on architecture and safety.
     zh: 业务人员在独立测试环境里做业务验收，技术负责人做技术验收，各把各的关。
     where: process
+    unused: true
   "107":
     en: Quality plans &amp; regression
     zh: 质量计划与回归测试
     where: process
+    unused: true
   "108":
     en: Run full regression across features, permissions, security, performance, and code quality before every release.
     zh: 上线前按质量计划对系统做功能、权限、安全、性能和代码质量回归测试，每次发版心里有底。
     where: process
+    unused: true
   "109":
     en: Approved release &amp; rollback
     zh: 审批上线与回滚
     where: process
+    unused: true
   "110":
     en: Production deploys require approval, support release windows, and roll back cleanly to the last good release.
     zh: 经审批人批准才发布到生产环境，支持预发布验证与上线窗口；出了问题一键回滚到上一版本。
     where: process
+    unused: true
   "111":
     en: Clear roles
     zh: 角色分工
@@ -575,6 +588,7 @@ items:
     en: Includes issues, agent teams, runtimes, tests &amp; cross-model review, preview sign-off, skills/KB/memory, mobile approvals, usage logs, and role permissions.
     zh: 包含项目与任务、Agent 团队、运行环境、自动测试与交叉评审、验收上线、技能/知识库/项目记忆、手机做决策、运行记录与成员权限。
     where: editions
+    unused: true
   "126":
     en: Pro
     zh: 专业版
@@ -591,6 +605,7 @@ items:
     en: Adds multi-role workflows with dual sign-off, deployment approvals, enterprise SSO (SAML/LDAP/Feishu/DingTalk/WeCom), and budget limits.
     zh: 在社区版基础上，增加多角色流程（业务/技术双重验收）、部署审批、企业 SSO（飞书/钉钉/企微/SAML/LDAP）以及按项目和成员的成本预算控制。
     where: editions
+    unused: true
   "130":
     en: Compare Editions
     zh: 查看版本与价格
@@ -607,6 +622,7 @@ items:
     en: Adds project quality plans, automated release regression, cross-environment promotions with release windows and freeze periods, and HA clustering.
     zh: 在专业版基础上，增加项目级质量计划、发版自动回归测试、跨环境发布（预发布验证、上线窗口与冻结期）以及高可用与集群支持。
     where: editions
+    unused: true
   "134":
     en: Contact Us
     zh: 联系我们
@@ -635,3 +651,96 @@ items:
     en: See open-source apps built on NocoBase
     zh: 看看用 NocoBase 做出来的开源应用
     where: editions
+  "141":
+    en: Workflows
+    zh: 工作流程
+    where: process
+  "142":
+    en: Structured workflows, <span class="m">people at the gates.</span>
+    zh: 按流程推进，<span class="m">关键节点由人把关。</span>
+    where: process
+  "143":
+    en: Match each issue to a fast, standard, or custom workflow with pinned skills loaded on every run—keeping clear ownership, automatic rework loops, and a full audit trail.
+    zh: 同一项目可按任务选用快速流程、标准开发流程或自定义流程；常驻技能每次运行自动加载、不可移除，每一步谁做、谁确认全程留痕。
+    where: process
+  "144":
+    en: Built-in &amp; custom workflows
+    zh: 多流程并存，支持自定义
+    where: process
+  "145":
+    en: Community ships with fast and standard development workflows; Professional adds multi-role workflows, custom steps, and configurable ownership rules.
+    zh: 社区版内置快速流程与标准开发流程，小改动快跑、核心改造走完整步骤；专业版支持多角色流程、自定义流程与权责规则。
+    where: process
+  "146":
+    en: Clear gates &amp; automatic rework
+    zh: 清晰把关，退回自动闭环
+    where: process
+  "147":
+    en: Requesters and tech leads own the start and finish while agents run design, coding, independent read-only cross-model review, and CI gates in between—with rejections looping back automatically.
+    zh: 需求方确认、开发负责人启动，中间由 AI 完成方案、编码、独立只读跨模型评审与 CI 门禁；验收退回自动回到 AI 执行阶段，各节点任务数一目了然。
+    where: process
+    unused: true
+  "148":
+    en: Pinned skills on every run
+    zh: 常驻技能自动生效，不可移除
+    where: process
+  "149":
+    en: Attach development, review-grading, and reporting rules as pinned skills that load automatically and cannot be dropped per issue, paired with approved releases and rollback.
+    zh: 开发规范、评审分级标准与汇报格式作为常驻技能绑定到流程，按项目或仓库强制加载，搭配审批上线与一键回滚，确保规范落地不走样。
+    where: process
+  "150":
+    en: Quality management
+    zh: 质量管理
+    where: quality
+  "151":
+    en: Automated quality testing, <span class="m">closed-loop fixes.</span>
+    zh: 全自动质量测试，<span class="m">问题闭环修复。</span>
+    where: quality
+  "152":
+    en: Proven testing tools run in parallel across seven dimensions instead of agents guessing from code—generating reports automatically and turning findings into follow-up issues that fix and retest in a closed loop.
+    zh: 不靠 AI 读代码估算，而是调用业界成熟测试工具多机并行实测七个维度；测完自动生成报告，问题自动登记为跟进任务修复并复测。
+    where: quality
+  "153":
+    en: Proven tools &amp; custom standards
+    zh: 成熟工具实测，标准可自定义
+    where: quality
+  "154":
+    en: Covers features, smoke checks, permissions, security, performance, code quality, and UX with Playwright, a role-matrix engine, OWASP ZAP, gitleaks, Lighthouse, PostgreSQL EXPLAIN, and jscpd. Customize thresholds, skills, and dimensions; missing prerequisites stay clearly marked unverified.
+    zh: 覆盖功能、冒烟、权限、安全、性能、代码质量和 UX，调用 Playwright、权限引擎、OWASP ZAP、gitleaks、Lighthouse、PostgreSQL 执行计划与 jscpd 等工具实测；内置业界标准并支持自定义阈值、技能和维度，缺条件标未验证不凑数。
+    where: quality
+  "155":
+    en: Four triggers, parallel runners
+    zh: 四种触发、多机并行，无人值守
+    where: quality
+  "156":
+    en: Daily, release, project, and custom runs share one engine and rule set. Core scenarios live in the repo and evolve with the product while multiple test machines execute dimensions in parallel.
+    zh: 每日测试、发布测试、项目测试和自定义测试共用一套引擎与标准；核心业务场景随项目演进沉淀在仓库中，由多台测试机按维度并行执行，全程无需值守。
+    where: quality
+  "157":
+    en: Auto reports &amp; closed-loop fixes
+    zh: 自动出报告，问题闭环修复
+    where: quality
+  "158":
+    en: Dimension reports roll up into one delivery report. Deduplicated defects, performance regressions, security findings, and cleanup items enter the dev workflow for agents to fix, review, and retest—leaving only ambiguous rules for people.
+    zh: 维度报告自动汇总为交付报告；发现的缺陷、性能、安全漏洞和代码清理问题按原因合并登记为跟进任务，进入开发流程修复、评审并在下次测试复测，仅规则不明的交人拍板。
+    where: quality
+  "159":
+    en: Includes issues, agent teams, runtimes, two built-in workflows (fast &amp; standard dev) with pinned skills, CI checks &amp; cross-model review, preview sign-off, knowledge/memory, mobile approvals, and role permissions.
+    zh: 包含项目与任务、Agent 团队、运行环境、两种内置工作流程（快速与标准开发）与常驻技能、CI 检查与跨模型评审、验收上线、知识库/项目记忆、手机决策与成员权限。
+    where: editions
+  "160":
+    en: Adds multi-role workflows with dual sign-off and custom workflows, deployment approvals, enterprise SSO (SAML/LDAP/Feishu/DingTalk/WeCom), and budget limits.
+    zh: 在社区版基础上，增加多角色流程（业务/技术双重验收）与自定义流程、部署审批、企业 SSO（飞书/钉钉/企微/SAML/LDAP）以及按项目和成员的成本预算控制。
+    where: editions
+  "161":
+    en: Adds project quality management across seven dimensions with proven tools, automated regression with closed-loop fixes, cross-environment promotions with release windows and freeze periods, and HA clustering.
+    zh: 在专业版基础上，增加项目级质量管理（成熟工具实测七个维度）、自动回归与问题闭环、跨环境发布（预发布验证、上线窗口与冻结期）以及高可用与集群支持。
+    where: editions
+  "162":
+    en: Requesters and tech leads own the start and finish while agents handle planning, coding, read-only review by another model, and automated CI checks in between—with rejections looping back automatically.
+    zh: 需求方确认、开发负责人启动，中间由 AI 完成方案、编码、换另一家模型只读评审并通过 CI 自动检查；验收退回自动回到 AI 执行阶段，各节点任务数一目了然。
+    where: process
+  "163":
+    en: NocoBase Studio
+    zh: 工作台 · NocoBase Studio
+    where: phero

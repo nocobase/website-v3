@@ -10,6 +10,16 @@
       "pages": [
         {
           "type": "page",
+          "path": "vibe-coding",
+          "title": "Vibe Coding"
+        },
+        {
+          "type": "page",
+          "path": "low-code",
+          "title": "Low-code platforms"
+        },
+        {
+          "type": "page",
           "path": "from-v2",
           "title": "V2 and V3"
         },

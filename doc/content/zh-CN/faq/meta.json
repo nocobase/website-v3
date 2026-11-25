@@ -10,6 +10,16 @@
       "pages": [
         {
           "type": "page",
+          "path": "vibe-coding",
+          "title": "与 Vibe Coding 的区别"
+        },
+        {
+          "type": "page",
+          "path": "low-code",
+          "title": "与低代码平台的区别"
+        },
+        {
+          "type": "page",
           "path": "from-v2",
           "title": "V2 与 V3"
         },

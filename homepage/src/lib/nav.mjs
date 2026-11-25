@@ -120,8 +120,25 @@ export function navSpec(active, { stars = githubStars(), changelog = hasChangelo
 // 语言菜单的数据：urls 是语言代码 → 本页在该语言的地址（没有这种语言的页面给英文地址）
 export const languageList = (cur, urls) => LANGS.map(l => ({ code: l.code, name: l.name, html: l.html, url: urls[l.code], current: l.code === cur }));
 
+// Core 快速开始弹窗的文案（与导航页脚共用 site 译文组，所有 12 种语言自动本地化）
+export function qsModalSpec() {
+  return {
+    title: T('快速开始 · NocoBase Core', 'Quick Start · NocoBase Core'),
+    desc: T('复制下面这段提示词，在空目录发给 Claude Code、Codex、Cursor 等 Coding Agent 即可。', 'Copy and send this prompt to Claude Code, Codex, Cursor, or any coding agent in an empty directory.'),
+    close: T('关闭', 'Close'),
+    prompt: T(
+      '请阅读 {url} ，按文档在当前空目录创建一个本地开发用的 NocoBase 3 应用（使用默认模板和 SQLite），启动后告诉我访问地址和首次登录账号。',
+      'Read {url} and create a local NocoBase 3 app in this empty directory using the default template and SQLite. Start it and share the local URL and initial sign-in credentials.',
+    ),
+    copy: T('复制提示词', 'Copy prompt'),
+    copied: T('已复制', 'Copied'),
+    failed: T('复制失败', 'Copy failed'),
+    label: T('查看完整起步文档', 'Full quick start guide'),
+  };
+}
+
 // nav 规格里所有要翻译的字符串（标题、说明、标签），按固定顺序列出，localizeAll 靠它整体处理再放回去
-const TEXT_KEYS = ['title', 'desc', 'tag', 'label', 'small', 'tagline', 'copyright'];
+const TEXT_KEYS = ['title', 'desc', 'tag', 'label', 'small', 'tagline', 'copyright', 'close', 'prompt', 'copy', 'copied', 'failed'];
 export function collectText(node, out = []) {
   if (Array.isArray(node)) node.forEach(n => collectText(n, out));
   else if (node && typeof node === 'object') {

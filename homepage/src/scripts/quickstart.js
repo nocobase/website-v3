@@ -31,8 +31,8 @@
     button.removeAttribute('data-copied');
     button.removeAttribute('data-failed');
     var message = ok
-      ? (isZh() ? '已复制' : 'Copied')
-      : (isZh() ? '复制失败' : 'Copy failed');
+      ? (button.dataset.copiedLabel || (isZh() ? '已复制' : 'Copied'))
+      : (button.dataset.failedLabel || (isZh() ? '复制失败' : 'Copy failed'));
     if (message === lastMessage) message += '\u00A0';
     lastMessage = message;
     if (tip) tip.textContent = '';

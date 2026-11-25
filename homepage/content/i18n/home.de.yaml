@@ -323,7 +323,35 @@ strings:
   "315": Menschen definieren Bedarf und entscheiden
   "316": Agenten schreiben Code und setzen um
   "317": NocoBase hält Systeme zuverlässig und unter Kontrolle
+  "318": Zusammenarbeit und Entscheidungen – überall
+  "319": Stellen Sie Anforderungen, verfolgen Sie Fortschritt und Kosten und prüfen Sie Ergebnisse am Desktop oder mobil. Jede Übergabe enthält Berichte, Checklisten, Screenshots und eine Live-Testumgebung.
+  "320": Klare Workflows, menschliche Freigaben
+  "322": Automatisierte Tests, geschlossene Fehlerbehebung
+  "323": Tägliche, Release-, Projekt- und benutzerdefinierte Läufe prüfen parallel mit Playwright, OWASP ZAP, Lighthouse und weiteren Tools über sieben Dimensionen hinweg und legen automatisch Folgeaufgaben an, die behoben und erneut getestet werden.
+  "326": Wählen Sie schnelle, Standard- oder benutzerdefinierte Workflows mit festen Skills, die bei jedem Lauf geladen werden. Ein anderes Modell prüft schreibgeschützt, und automatische CI-Prüfungen laufen vor der menschlichen Abnahme.
+  "327": "Vibe Coding beschleunigt das Schreiben von Code, doch komplexe Unternehmenssysteme brauchen zudem ein verlässliches Fundament, strukturierte Workflows und automatisierte Qualitätstests. NocoBase ersetzt Vibe Coding nicht: Core liefert fertige Bausteine und eine einheitliche Architektur, während Studio jede Aufgabe durch Workflows mit festen Skills, Cross-Model-Review und menschlichen Freigaben führt – ergänzt durch parallele Tests über mehrere Dimensionen mit bewährten Tools und geschlossener Fehlerbehebung, um aus KI-generiertem Code zuverlässige Geschäftssysteme zu machen."
+  "328": Berechtigungen, Freigaben und andere kritische Module stammen aus Core und werden nicht von Grund auf neu generiert. Jede Änderung durchläuft einen strukturierten Workflow mit automatischen Prüfungen und Cross-Model-Review vor der menschlichen Abnahme. Qualitätstests auf Projektebene prüfen mit bewährten Tools Funktionen, Smoke-Tests, Berechtigungen, Sicherheit, Performance, Codequalität und UX inklusive geschlossener Fehlerbehebung – und Releases erfordern eine Freigabe mit sofortigem Rollback.
   "329": NocoBase Studio
   "330": NocoBase Core
   "331": Core ist das Open-Source-Fundament hinter Studio. Über 30 Bausteine – Berechtigungen, Workflows, Dateien, KI-Anbindung und mehr – sind sofort einsatzbereit, damit Agenten ausschließlich Ihre Geschäftslogik auf einer einheitlichen Architektur entwickeln.
   "332": Über 30 fertige, zuverlässige Bausteine
+  "333": Im Zusammenspiel von Core und Studio setzen Unternehmen diese neue Arbeitsweise um – und behalten dabei jedes System zuverlässig und unter Kontrolle.
+  "334": Core und alle Solution-Apps sind kostenlos und Open Source, und die Studio Community-Edition ist kostenlos nutzbar. Starten Sie direkt mit Core oder deployen Sie Studio; kommerzielle Editionen sind ein Einmalkauf mit Dauerlizenz.
+  "335": Low-Code-Plattformen setzen nach wie vor auf manuelle Drag-and-Drop-Konfiguration, stoßen bei komplexen Regeln oder individuellen Oberflächen an Grenzen und binden Apps an die Plattform. Mit NocoBase schreiben Agenten parallel Standard-Quellcode – deutlich schneller und praktisch ohne Funktionsgrenzen. Ihr Code liegt in Ihrem eigenen Git-Repository, läuft eigenständig und bringt integrierte Fach-Agenten für das Tagesgeschäft mit.
+  "336": Ja. Coding-Tools lösen, wie schnell Code entsteht; NocoBase löst, wie Teams kontinuierlich zuverlässige Geschäftssysteme liefern. Starten Sie direkt mit Core und Ihren vorhandenen Coding-Tools – über 30 Bausteine sind sofort einsatzbereit, damit sich Agenten ohne Architekturdrift auf die Geschäftslogik konzentrieren. Wenn Projekte wachsen und Teamarbeit, fachliche Abnahme und automatisierte Quality Gates nötig werden, ergänzen Sie Studio, um sie als gesteuertes Agenten-Team zu koordinieren.
+  "337": Starten Sie direkt mit Core und Ihren vorhandenen Coding-Tools oder deployen Sie die Studio Community-Edition für Teamarbeit – beides kostenlos zum Einstieg.
+  "338": Mit Core starten
+  "339": Für Entwickler &amp; Evaluierung
+  "340": Initialisieren Sie in wenigen Minuten eine App mit über 30 fertigen Bausteinen und einheitlichen Standards – und entwickeln Sie sofort Geschäftslogik mit Claude Code, Codex oder Cursor.
+  "341": Erste App bauen
+  "342": GitHub
+  "343": Mit Studio starten
+  "344": Community kostenlos
+  "345": Für Teams &amp; Workflows
+  "346": Deployen Sie die Studio Community-Edition, um Coding-Tools zu einem 24/7-Agenten-Team mit strukturierten Workflows, Live-Vorschau-Abnahme und geteiltem Teamwissen zu verbinden.
+  "347": Studio installieren
+  "348": Studio entdecken
+  "349": Einmalige Lizenz
+  "350": Für wachsende Teams &amp; kritische Apps
+  "351": Ergänzt Mehrrollen- und benutzerdefinierte Workflows, Deployment-Freigaben, Enterprise-SSO, Kostenkontrolle, automatisierte Regressionstests mit geschlossener Fehlerbehebung, umgebungsübergreifende Releases und Hochverfügbarkeits-Clustering.
+  "352": Preise ansehen

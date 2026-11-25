@@ -3,8 +3,8 @@ meta:
     zh: NocoBase Core — 让 Agent 专心写业务，底座已经就绪
     en: NocoBase Core — Let agents focus on your business logic
   description:
-    zh: NocoBase Core 是工作台背后的开源应用底座。权限、流程、文件、AI 接入等 30 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
-    en: NocoBase Core is the open-source application foundation behind NocoBase Studio. Permissions, workflows, files, and AI capabilities come ready to use so agents build only your business logic on one architecture, and apps run standalone.
+    zh: NocoBase Core 是面向 AI 开发的开源应用底座。权限、流程、文件、AI 接入等 30 多项基础能力现成可用，直接搭配常用编码工具即可独立起步，发布后独立运行。
+    en: NocoBase Core is the open-source application foundation built for AI development. Permissions, workflows, files, and AI capabilities come ready to use so you can start directly with your own coding tools, and apps run standalone.
 items:
   "000":
     en: Let agents focus on your business logic. <span class="m">The foundation is ready.</span>
@@ -702,6 +702,7 @@ items:
     en: Install NocoCRM, NocoITAM, or NocoReach right away, or customize them with agents in Studio.
     zh: 直接安装 NocoCRM、NocoITAM、NocoReach 投入使用，也可以在工作台里让 Agent 按需二次开发。
     where: start
+    unused: true
   "161":
     en: Explore Open Apps
     zh: 查看全部开源应用
@@ -716,7 +717,7 @@ items:
     where: start
   "164":
     en: Coordinate coding agents across devices with structured quality gates and desktop/mobile approvals—free to start.
-    zh: 多设备多工具并行推进、按流程把关质量、电脑和手机随时验收，社区版开源免费起步。
+    zh: 多设备多工具并行推进、按流程把关质量、电脑和手机随时验收，社区版免费起步。
     where: start
   "165":
     en: NocoBase Core
@@ -726,6 +727,7 @@ items:
     en: NocoBase Core is the open-source application foundation behind Studio. With 30+ ready-made building blocks for permissions, workflows, files, and AI, agents build only what is unique to your business on one architecture, and released systems run independently.
     zh: NocoBase Core 是工作台背后的开源应用底座。权限、流程、文件、AI 接入等 30 多项基础能力现成可用，Agent 在统一架构上只开发企业自己的业务，系统发布后独立运行。
     where: phero
+    unused: true
   "167":
     en: 30+ proven building blocks, <span class="m">ready to use.</span>
     zh: 30 多项现成、可靠的<span class="m">基础能力。</span>
@@ -734,3 +736,11 @@ items:
     en: <b>30+ building blocks</b>, maintained and upgraded by NocoBase.
     zh: <b>30 多项基础能力</b>，由 NocoBase 持续维护和升级。
     where: blocks
+  "169":
+    en: NocoBase Core is the open-source application foundation built for AI development, ready to start on its own and run independently. With 30+ ready-made building blocks for permissions, auth, workflows, files, and AI, build business logic right away with your coding tools or scale into team collaboration with Studio.
+    zh: NocoBase Core 是面向 AI 开发的开源应用底座，可独立起步、独立运行。权限、登录认证、流程、文件、AI 接入等 30 多项基础能力现成可用，直接用你熟悉的编码工具就能在统一架构上开发业务系统，也可以搭配 Studio 开展团队协作。
+    where: phero
+  "170":
+    en: Install NocoCRM, NocoITAM, or NocoReach right away, or customize them with your coding tools or agents in Studio.
+    zh: 直接安装 NocoCRM、NocoITAM、NocoReach 投入使用，也可以用你熟悉的编码工具或在工作台里让 Agent 按需二次开发。
+    where: start

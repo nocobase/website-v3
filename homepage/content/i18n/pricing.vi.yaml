@@ -5,7 +5,7 @@ notes: |-
   business systems = hệ thống nghiệp vụ；open source = mã nguồn mở；self-hosted = tự triển khai；at a glance = rõ ràng trong nháy mắt
   页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（8.000 USD）；信创数据库只在中文版列出
 title: Phiên bản và giá — NocoBase 3
-description: Phiên bản Community miễn phí và mã nguồn mở, gồm tính năng cơ bản của Studio, toàn bộ năng lực của Core và tất cả ứng dụng mã nguồn mở. Professional giá 8.000 USD trả một lần, bổ sung quản trị đội ngũ cùng 1 năm nâng cấp và hỗ trợ kỹ thuật. Enterprise báo giá theo nhu cầu.
+description: Core và mọi ứng dụng Solution đều miễn phí và mã nguồn mở, còn Studio phiên bản Community miễn phí sử dụng (với hai quy trình tích hợp sẵn). Professional giá 8.000 USD trả một lần, bổ sung quản trị đội ngũ, quy trình tùy chỉnh cùng 1 năm nâng cấp và hỗ trợ kỹ thuật. Enterprise báo giá theo nhu cầu.
 strings:
   "001": Bắt đầu miễn phí. <span class="m">Mua một lần, dùng mãi mãi.</span>
   "002": Mã nguồn mở
@@ -287,4 +287,35 @@ strings:
   "293": Tôi có thể triển khai Studio bản thương mại cho khách hàng dùng không?
   "294": Không. Studio bản thương mại (Pro/Enterprise) chỉ dành cho công ty được cấp phép sử dụng. Bạn có thể bàn giao các ứng dụng nghiệp vụ đã xây dựng cho khách hàng, hoặc để họ tự triển khai phiên bản Community mã nguồn mở.
   "295": Hãy chia sẻ về đội ngũ và hệ thống bạn muốn xây dựng. Chúng tôi sẽ giúp bạn chọn đúng phiên bản và phương án triển khai.
+  "298": "Quy trình đa vai trò &amp; tùy chỉnh: duyệt kỹ thuật trước khi phát triển, nghiệm thu kép, tùy chỉnh các bước và quyền phụ trách"
+  "299": "Quản lý chất lượng: chuẩn tùy chỉnh với công cụ đã kiểm chứng trên tính năng, kiểm thử smoke, phân quyền, bảo mật, hiệu năng, chất lượng code và UX"
+  "300": "Kiểm thử hồi quy tự động &amp; khắc phục khép kín: kịch bản cốt lõi chạy hằng ngày, phát hành, dự án và tùy chỉnh, tự tạo nhiệm vụ theo dõi và kiểm thử lại"
+  "301": Quy trình tích hợp sẵn
+  "302": Gồm quy trình phát triển nhanh và tiêu chuẩn với kỹ năng cố định tự động nạp
+  "304": Quy trình đa vai trò và quy trình tùy chỉnh
+  "305": Bộ phận nghiệp vụ gửi yêu cầu, trưởng nhóm kỹ thuật duyệt trước khi phát triển, nghiệm thu kép, cùng các bước quy trình và quy tắc phụ trách tùy chỉnh
+  "306": Quản lý chất lượng
+  "307": Chuẩn và quy tắc cấp dự án sử dụng công cụ đã kiểm chứng trên tính năng, kiểm thử smoke, phân quyền, bảo mật, hiệu năng, chất lượng code và UX
+  "308": Kiểm thử hồi quy tự động và khắc phục khép kín
+  "309": Kịch bản nghiệp vụ cốt lõi chạy hằng ngày, phát hành, dự án và tùy chỉnh, tự động tạo nhiệm vụ theo dõi và kiểm thử lại sau khi sửa
+  "311": "Chọn Professional khi đội ngũ cần quản trị bài bản: bổ sung quy trình đa vai trò kèm nghiệm thu kép và quy trình tùy chỉnh, phê duyệt triển khai, SSO doanh nghiệp, kiểm soát chi phí, phê duyệt nâng cao, một lần dịch vụ triển khai và hỗ trợ kỹ thuật phản hồi trong 12 giờ."
+  "312": "Chọn Enterprise cho mô hình nhiều đội ngũ và hệ thống trọng yếu: bổ sung quản lý chất lượng, kiểm thử hồi quy tự động kèm khắc phục khép kín, phát hành đa môi trường, cụm tính sẵn sàng cao, kiến trúc đa tenant/đa ứng dụng/đa cổng thông tin, nhật ký kiểm toán, bàn giao ngoại tuyến, 3 ngày triển khai và đào tạo cùng hỗ trợ ưu tiên phản hồi trong 4 giờ."
+  "314": Kiểm tra tự động, review chéo giữa các model, nghiệm thu và rollback
+  "315": Mỗi nhiệm vụ chạy kiểm tra tự động kèm review chéo chỉ đọc giữa các model
   "316": Toàn bộ hơn 30 khối chức năng, chuẩn phát triển và kỹ năng dev của Core
+  "317": Core và mọi ứng dụng mã nguồn mở đều miễn phí, mã nguồn mở, còn Studio phiên bản Community miễn phí sử dụng. Bắt đầu trực tiếp với Core hoặc triển khai Studio; các phiên bản thương mại mua một lần, giấy phép vĩnh viễn và tự triển khai trên máy chủ của bạn.
+  "318": Dành cho cá nhân và đội nhỏ — bắt đầu trực tiếp với Core hoặc triển khai Studio.
+  "319": Core &amp; Solution mã nguồn mở · Studio Community miễn phí · sẵn sàng cho production
+  "320": Toàn bộ hơn 30 khối chức năng, chuẩn phát triển và kỹ năng dev của Core (bắt đầu độc lập)
+  "321": Hai quy trình tích hợp sẵn (rút gọn &amp; tiêu chuẩn) với kỹ năng cố định
+  "322": Lịch sử chạy, nhật ký mức dùng &amp; chi phí, phân quyền OIDC và hỗ trợ cộng đồng
+  "323": Community gồm toàn bộ nền móng mã nguồn mở và tính năng cơ bản của Studio — bắt đầu với Core hoặc Studio. Professional bổ sung quản trị đội ngũ. Enterprise bổ sung chất lượng phát hành, phát hành đa môi trường và tính sẵn sàng cao.
+  "324": Ứng dụng nghiệp vụ mã nguồn mở — dùng ngay và tùy biến bằng công cụ lập trình hoặc Studio
+  "325": Tùy biến và phát hành cho doanh nghiệp của bạn
+  "326": Tùy biến bằng công cụ lập trình của bạn hoặc agent trong Studio
+  "327": Cập nhật miễn phí cho Community; 1 năm bản phát hành thương mại cho Pro &amp; Enterprise
+  "328": Cập nhật miễn phí
+  "329": "Cá nhân và đội nhỏ có thể bắt đầu miễn phí: mọi khối chức năng của Core và tất cả ứng dụng mã nguồn mở đều miễn phí, mã nguồn mở, còn Studio phiên bản Community miễn phí sử dụng (với hai quy trình tích hợp sẵn) — bắt đầu trực tiếp với Core hoặc triển khai Studio."
+  "330": Có. Community bao gồm toàn bộ Core, tính năng cốt lõi của Studio và mọi ứng dụng mã nguồn mở, miễn phí cho môi trường production và bàn giao khách hàng.
+  "331": Không. Studio phiên bản Community đã miễn phí sử dụng ngay trong Community. Các tính năng quản trị đội ngũ, quy trình tùy chỉnh cũng như kiểm soát chất lượng và phát hành cấp doanh nghiệp được tích hợp trực tiếp trong Professional và Enterprise.
+  "332": Không. Studio bản thương mại (Pro/Enterprise) chỉ dành cho công ty được cấp phép sử dụng. Bạn có thể bàn giao các ứng dụng nghiệp vụ đã xây dựng cho khách hàng, hoặc để họ tự triển khai Studio phiên bản Community.

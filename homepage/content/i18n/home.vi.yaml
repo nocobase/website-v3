@@ -323,7 +323,35 @@ strings:
   "315": Con người nêu yêu cầu và ra quyết định
   "316": Agent viết code và thực thi
   "317": NocoBase giữ hệ thống tin cậy và trong tầm kiểm soát
+  "318": Cộng tác và ra quyết định ở bất cứ đâu
+  "319": Gửi yêu cầu, theo dõi tiến độ và chi phí, đồng thời kiểm chứng kết quả trên máy tính hoặc điện thoại. Mỗi lần bàn giao đều kèm báo cáo, danh sách kiểm tra, ảnh chụp màn hình và môi trường kiểm thử trực tiếp.
+  "320": Quy trình bài bản, con người giữ điểm kiểm soát
+  "322": Kiểm thử tự động, khắc phục khép kín
+  "323": Các đợt chạy hằng ngày, phát hành, dự án và tùy chỉnh thực thi song song bằng Playwright, OWASP ZAP, Lighthouse cùng nhiều công cụ khác trên bảy khía cạnh, tự động tạo nhiệm vụ theo dõi để sửa lỗi và kiểm thử lại.
+  "326": Chọn quy trình nhanh, tiêu chuẩn hoặc tùy chỉnh với các kỹ năng cố định tự động nạp ở mỗi lần chạy. Một model khác sẽ review chỉ đọc và các bước kiểm tra CI tự động phải đạt trước khi con người nghiệm thu.
+  "327": Vibe coding giúp viết code nhanh hơn, nhưng hệ thống doanh nghiệp phức tạp còn cần một nền móng tin cậy, quy trình bài bản và kiểm thử chất lượng tự động. NocoBase không thay thế vibe coding — Core cung cấp sẵn các khối chức năng và một kiến trúc thống nhất, trong khi Studio đưa từng nhiệm vụ đi qua quy trình có kỹ năng cố định, review chéo giữa các model và điểm kiểm soát của con người, kết hợp kiểm thử đa chiều song song bằng công cụ đã kiểm chứng và khắc phục khép kín để biến code do AI viết thành hệ thống nghiệp vụ tin cậy.
+  "328": Phân quyền, phê duyệt và các module trọng yếu khác đến từ Core chứ không được tạo lại từ đầu. Mọi thay đổi đều đi qua quy trình bài bản với kiểm tra tự động và review chéo giữa các model trước khi con người nghiệm thu. Kiểm thử chất lượng cấp dự án sử dụng các công cụ đã kiểm chứng trên tính năng, kiểm thử smoke, phân quyền, bảo mật, hiệu năng, chất lượng code và UX với cơ chế khắc phục khép kín, còn việc phát hành đòi hỏi phê duyệt và hỗ trợ rollback tức thì.
   "329": NocoBase Studio
   "330": NocoBase Core
   "331": Core là nền móng kỹ thuật mã nguồn mở đứng sau Studio. Hơn 30 khối chức năng — phân quyền, quy trình, tệp tin, tích hợp AI và nhiều hơn nữa — đã sẵn sàng để agent chỉ cần xây dựng logic nghiệp vụ riêng trên một kiến trúc nhất quán.
   "332": Hơn 30 khối chức năng sẵn có, tin cậy
+  "333": Được hỗ trợ đồng bộ bởi Core và Studio, doanh nghiệp áp dụng cách làm việc mới này mà vẫn giữ mọi hệ thống tin cậy và quy trình trong tầm kiểm soát.
+  "334": Core và mọi ứng dụng Solution đều miễn phí, mã nguồn mở, còn Studio phiên bản Community miễn phí sử dụng. Bắt đầu trực tiếp với Core hoặc triển khai Studio; các phiên bản thương mại mua một lần, giấy phép vĩnh viễn.
+  "335": Nền tảng low-code vẫn dựa vào cấu hình kéo-thả thủ công, dễ chạm trần với các quy tắc phức tạp hay giao diện tùy chỉnh, và trói ứng dụng vào nền tảng. Với NocoBase, agent viết mã nguồn chuẩn song song — bàn giao nhanh hơn nhiều và gần như không có giới hạn năng lực. Mã nguồn nằm trong kho Git của chính bạn, chạy độc lập và tích hợp sẵn các agent nghiệp vụ cho vận hành hằng ngày.
+  "336": Có. Công cụ lập trình giải quyết tốc độ viết code; NocoBase giải quyết cách liên tục bàn giao hệ thống nghiệp vụ tin cậy. Bạn có thể bắt đầu trực tiếp với Core cùng các công cụ lập trình sẵn có — hơn 30 khối chức năng đã sẵn sàng để agent tập trung vào logic nghiệp vụ mà kiến trúc không trôi dạt. Khi số dự án tăng lên và cần cộng tác nhóm, bộ phận nghiệp vụ nghiệm thu và cổng kiểm soát chất lượng tự động, hãy bổ sung Studio để điều phối chúng thành một đội agent được quản trị thống nhất.
+  "337": Bắt đầu trực tiếp với Core bằng công cụ lập trình sẵn có của bạn, hoặc triển khai Studio phiên bản Community cho cộng tác nhóm — cả hai đều miễn phí để bắt đầu.
+  "338": Bắt đầu với Core
+  "339": Cho lập trình viên &amp; đánh giá
+  "340": Khởi tạo ứng dụng trong vài phút với hơn 30 khối chức năng và bộ chuẩn nhất quán có sẵn — bắt tay xây dựng logic nghiệp vụ ngay với Claude Code, Codex hoặc Cursor.
+  "341": Tạo ứng dụng đầu tiên
+  "342": GitHub
+  "343": Bắt đầu với Studio
+  "344": Community miễn phí
+  "345": Cho đội ngũ &amp; quy trình
+  "346": Triển khai Studio phiên bản Community để tổ chức các công cụ lập trình thành đội agent 24/7 với quy trình bài bản, nghiệm thu trên bản xem trước trực tiếp và tri thức chung của đội ngũ.
+  "347": Cài đặt nhanh Studio
+  "348": Tìm hiểu Studio
+  "349": Giấy phép mua một lần
+  "350": Cho đội ngũ mở rộng &amp; hệ thống trọng yếu
+  "351": Bổ sung quy trình đa vai trò và quy trình tùy chỉnh, phê duyệt triển khai, SSO doanh nghiệp, kiểm soát chi phí, kiểm thử hồi quy tự động kèm khắc phục khép kín, phát hành đa môi trường và cụm tính sẵn sàng cao.
+  "352": Xem bảng giá

@@ -5,7 +5,7 @@ notes: |-
   self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
   页面用语：版本名 Community、Professional、Enterprise 不译；价格用美元（8 000 $ US，不换行空格）；信创数据库只在中文版列出
 title: Éditions et tarifs — NocoBase 3
-description: "L’édition Community est gratuite et open source : elle inclut l’essentiel de Studio, toutes les briques de Core et toutes les applications open source. Professional coûte 8 000 $ US en paiement unique, avec la gouvernance d’équipe et 1 an de mises à jour et de support. Enterprise est proposé sur devis."
+description: Core et toutes les applications Solution sont gratuits et open source, et l’édition Community de Studio est gratuite à utiliser (avec deux workflows intégrés). Professional coûte 8 000 $ US en paiement unique, avec gouvernance d’équipe, workflows personnalisés et 1 an de mises à jour et de support. Enterprise est proposé sur devis.
 strings:
   "001": Commencez gratuitement. <span class="m">Achetez une fois, utilisez pour toujours.</span>
   "002": Open source
@@ -287,4 +287,35 @@ strings:
   "293": Puis-je déployer l’édition commerciale de Studio pour mes clients ?
   "294": Non. L’édition commerciale de Studio (Pro/Enterprise) est réservée à l’entreprise titulaire de la licence. Vous pouvez livrer à vos clients les applications métier que vous développez, ou les laisser auto-héberger l’édition open source Community.
   "295": Parlez-nous de votre équipe et de ce que vous souhaitez bâtir. Nous vous aidons à choisir la bonne édition et l’architecture de déploiement adaptée.
+  "298": "Workflows multi-rôles &amp; personnalisés : approbation technique avant développement, double validation, étapes et responsabilités sur mesure"
+  "299": "Gestion de la qualité : standards personnalisables avec outils éprouvés couvrant fonctionnalités, tests smoke, permissions, sécurité, performances, qualité du code et UX"
+  "300": "Non-régression automatisée &amp; correction en boucle fermée : scénarios clés avec exécutions quotidiennes, de mise en production, de projet et personnalisées qui créent des tâches de suivi et retestent"
+  "301": Workflows intégrés
+  "302": Inclut les workflows de développement rapide et standard avec skills permanentes chargées automatiquement
+  "304": Workflows multi-rôles et personnalisés
+  "305": Demandes métier, approbation technique avant le développement, double validation et règles d’étapes et de responsabilités personnalisées
+  "306": Gestion de la qualité
+  "307": Standards et règles par projet avec des outils éprouvés couvrant fonctionnalités, tests smoke, permissions, sécurité, performances, qualité du code et UX
+  "308": Non-régression automatisée et correction en boucle fermée
+  "309": Scénarios métier clés avec exécutions quotidiennes, de mise en production, de projet et personnalisées qui créent des tâches de suivi et retestent après correction
+  "311": "Choisissez Professional lorsqu’une équipe a besoin de gouvernance : l’édition ajoute les workflows multi-rôles avec double validation et les workflows personnalisés, l’approbation des déploiements, le SSO d’entreprise, la maîtrise des coûts, les validations avancées, un déploiement par notre équipe et un support avec première réponse sous 12 heures."
+  "312": "Choisissez Enterprise pour le multi-équipes et les systèmes critiques : l’édition ajoute la gestion de la qualité, la non-régression automatisée avec correction en boucle fermée, les promotions multi-environnements, le cluster haute disponibilité, les architectures multi-tenant, multi-application et multi-portail, les journaux d’audit, la livraison hors ligne, 3 jours d’accompagnement et un support prioritaire avec première réponse sous 4 heures."
+  "314": Contrôles automatisés, revue croisée multi-modèles, validation et retour arrière
+  "315": Chaque tâche passe des contrôles automatisés ainsi qu’une revue croisée en lecture seule par un autre modèle
   "316": Toutes les 30+ briques de Core, les standards et les skills de développement
+  "317": Core et toutes les applications open source sont gratuits et open source, et l’édition Community de Studio est gratuite à utiliser. Démarrez directement avec Core ou déployez Studio ; les éditions commerciales sont en paiement unique avec licence perpétuelle, auto-hébergées sur vos propres serveurs.
+  "318": "Pour les particuliers et petites équipes : démarrez directement avec Core ou déployez Studio."
+  "319": Core &amp; Solution open source · Studio Community gratuit · prêt pour la production
+  "320": Toutes les 30+ briques de Core, standards et skills de développement (démarrage autonome)
+  "321": Deux workflows intégrés (simple &amp; standard) avec skills permanentes
+  "322": Historique d’exécution, journaux d’usage &amp; de coûts, permissions OIDC et support communautaire
+  "323": "Community inclut l’intégralité du socle open source et l’essentiel de Studio : démarrez avec Core ou Studio. Professional ajoute la gouvernance d’équipe. Enterprise ajoute la qualité des livraisons, les promotions multi-environnements et la haute disponibilité."
+  "324": Applications métier open source — prêtes à l’emploi et personnalisables avec vos outils de code ou Studio
+  "325": Personnaliser et publier pour votre métier
+  "326": Personnalisez avec vos outils de code ou des agents dans Studio
+  "327": Mises à jour gratuites pour Community ; 1 an de versions commerciales pour Pro &amp; Enterprise
+  "328": Mises à jour gratuites
+  "329": "Les particuliers et petites équipes peuvent démarrer gratuitement : toutes les briques de Core et toutes les applications open source sont gratuites et open source, et l’édition Community de Studio est gratuite à utiliser (avec deux workflows intégrés) — démarrez directement avec Core ou déployez Studio."
+  "330": Oui. Community inclut l’intégralité de Core, les fonctionnalités essentielles de Studio et toutes les applications open source, utilisables gratuitement en production et pour les livraisons clients.
+  "331": Non. L’édition Community de Studio est déjà incluse gratuitement dans Community. La gouvernance d’équipe, les workflows personnalisés et les fonctionnalités entreprise de qualité et de mise en production sont directement inclus dans Professional et Enterprise.
+  "332": Non. L’édition commerciale de Studio (Pro/Enterprise) est réservée à l’entreprise titulaire de la licence. Vous pouvez livrer à vos clients les applications métier que vous développez, ou les laisser auto-héberger l’édition Community de Studio.

@@ -4,7 +4,7 @@ notes: |-
   coding agent = agent de code；business logic = logique métier；business systems = systèmes métier；vibe coding = vibe coding；
   self-hosted = auto-hébergé；make the call = trancher；at a glance = en un coup d’œil；people = les humains
 title: NocoBase Core — Laissez les agents se concentrer sur votre logique métier
-description: "NocoBase Core est le socle applicatif open source derrière NocoBase Studio. Permissions, workflows, fichiers et capacités IA sont prêts à l’emploi : les agents ne développent que votre logique métier sur une architecture unique, et vos applications tournent en toute autonomie."
+description: NocoBase Core est le socle applicatif open source conçu pour le développement avec l’IA. Permissions, workflows, fichiers et capacités IA sont prêts à l’emploi pour démarrer directement avec vos outils de code, et vos applications tournent en toute autonomie.
 strings:
   "000": Laissez les agents se concentrer sur votre logique métier. <span class="m">Le socle est prêt.</span>
   "002": Démarrage rapide
@@ -141,3 +141,5 @@ strings:
   "166": NocoBase Core est le socle applicatif open source derrière Studio. Grâce à plus de 30 briques prêtes à l’emploi (permissions, workflows, fichiers, IA), les agents ne développent que ce qui est propre à votre métier sur une architecture unique, et vos systèmes publiés fonctionnent en toute autonomie.
   "167": Plus de 30 briques éprouvées, <span class="m">prêtes à l’emploi.</span>
   "168": <b>Plus de 30 briques</b>, maintenues et mises à jour par NocoBase.
+  "169": NocoBase Core est le socle applicatif open source conçu pour le développement avec l’IA, prêt à démarrer seul et à tourner en toute autonomie. Grâce à plus de 30 briques prêtes à l’emploi (permissions, authentification, workflows, fichiers, IA), développez aussitôt votre logique métier avec vos outils de code ou passez à la collaboration d’équipe avec Studio.
+  "170": Installez NocoCRM, NocoITAM ou NocoReach dès maintenant, ou personnalisez-les avec vos outils de code ou des agents dans Studio.

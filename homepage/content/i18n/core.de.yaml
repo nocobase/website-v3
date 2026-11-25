@@ -4,7 +4,7 @@ notes: |-
   coding agent = Coding-Agent；business logic = Geschäftslogik；business systems = Geschäftssysteme；AI = KI；
   vibe coding = Vibe Coding；self-hosted = selbst gehostet；at a glance = auf einen Blick
 title: NocoBase Core — Ihre Agenten kümmern sich um die Geschäftslogik
-description: NocoBase Core ist das Open-Source-Anwendungsfundament hinter NocoBase Studio. Berechtigungen, Workflows, Dateien und KI-Funktionen sind sofort einsatzbereit, sodass Agenten nur Ihre Geschäftslogik auf einer einheitlichen Architektur entwickeln und Apps eigenständig laufen.
+description: NocoBase Core ist das Open-Source-Anwendungsfundament für die Entwicklung mit KI. Berechtigungen, Workflows, Dateien und KI-Funktionen sind sofort einsatzbereit, sodass Sie direkt mit Ihren eigenen Coding-Tools starten können – und Apps laufen eigenständig.
 strings:
   "000": Ihre Agenten kümmern sich um die Geschäftslogik. <span class="m">Das Fundament steht bereit.</span>
   "002": Schnellstart
@@ -141,3 +141,5 @@ strings:
   "166": NocoBase Core ist das Open-Source-Anwendungsfundament hinter Studio. Mit über 30 fertigen Bausteinen für Berechtigungen, Workflows, Dateien und KI entwickeln Agenten nur das, was Ihr Geschäft ausmacht, auf einer einheitlichen Architektur – und veröffentlichte Systeme laufen eigenständig.
   "167": Über 30 bewährte Bausteine, <span class="m">sofort einsatzbereit.</span>
   "168": <b>Über 30 Bausteine</b>, gepflegt und weiterentwickelt von NocoBase.
+  "169": NocoBase Core ist das Open-Source-Anwendungsfundament für die Entwicklung mit KI – sofort eigenständig nutzbar und unabhängig im Betrieb. Mit über 30 fertigen Bausteinen für Berechtigungen, Authentifizierung, Workflows, Dateien und KI entwickeln Sie sofort Geschäftslogik mit Ihren Coding-Tools oder skalieren mit Studio in die Teamarbeit.
+  "170": Installieren Sie NocoCRM, NocoITAM oder NocoReach direkt – oder passen Sie sie mit Ihren Coding-Tools oder Agenten in Studio an.

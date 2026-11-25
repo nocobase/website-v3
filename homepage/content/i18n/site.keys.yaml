@@ -456,6 +456,7 @@ items:
     en: Install and use right away, or customize in Studio
     zh: 装上即用，也能用 Studio 按需二次开发
     where: site
+    unused: true
   "109":
     en: Get Started
     zh: 开始使用
@@ -483,4 +484,40 @@ items:
   "115":
     en: NocoBase Core
     zh: 应用底座（Core）
+    where: site
+  "116":
+    en: Install and use right away, or customize with coding tools or Studio
+    zh: 装上即用，也能用编码工具或 Studio 按需二次开发
+    where: site
+  "117":
+    en: Quick Start · NocoBase Core
+    zh: 快速开始 · NocoBase Core
+    where: site
+  "118":
+    en: Copy and send this prompt to Claude Code, Codex, Cursor, or any coding agent in an empty directory.
+    zh: 复制下面这段提示词，在空目录发给 Claude Code、Codex、Cursor 等 Coding Agent 即可。
+    where: site
+  "119":
+    en: Close
+    zh: 关闭
+    where: site
+  "120":
+    en: Read {url} and create a local NocoBase 3 app in this empty directory using the default template and SQLite. Start it and share the local URL and initial sign-in credentials.
+    zh: 请阅读 {url} ，按文档在当前空目录创建一个本地开发用的 NocoBase 3 应用（使用默认模板和 SQLite），启动后告诉我访问地址和首次登录账号。
+    where: site
+  "121":
+    en: Copy prompt
+    zh: 复制提示词
+    where: site
+  "122":
+    en: Copied
+    zh: 已复制
+    where: site
+  "123":
+    en: Copy failed
+    zh: 复制失败
+    where: site
+  "124":
+    en: Full quick start guide
+    zh: 查看完整起步文档
     where: site

@@ -76,3 +76,12 @@ strings:
   "113": Core
   "114": NocoBase Studio
   "115": NocoBase Core
+  "116": Pasang dan pakai langsung, atau kustomisasi dengan alat coding atau Studio
+  "117": Mulai Cepat · NocoBase Core
+  "118": Salin dan kirim prompt ini ke Claude Code, Codex, Cursor, atau agen coding apa pun di dalam direktori kosong.
+  "119": Tutup
+  "120": Baca {url} dan buat aplikasi NocoBase 3 lokal di direktori kosong ini menggunakan templat bawaan dan SQLite. Jalankan aplikasinya lalu bagikan URL lokal dan kredensial login awalnya.
+  "121": Salin prompt
+  "122": Tersalin
+  "123": Gagal menyalin
+  "124": Panduan mulai cepat lengkap

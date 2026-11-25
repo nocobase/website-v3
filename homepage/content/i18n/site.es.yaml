@@ -82,3 +82,12 @@ strings:
   "113": Core
   "114": NocoBase Studio
   "115": NocoBase Core
+  "116": Instala y usa al instante, o personaliza con herramientas de programación o Studio
+  "117": Inicio rápido · NocoBase Core
+  "118": Copia y envía este prompt a Claude Code, Codex, Cursor o cualquier agente de programación en un directorio vacío.
+  "119": Cerrar
+  "120": Lee {url} y crea una app local de NocoBase 3 en este directorio vacío con la plantilla predeterminada y SQLite. Iníciala y compárteme la URL local y las credenciales iniciales de acceso.
+  "121": Copiar prompt
+  "122": Copiado
+  "123": Error al copiar
+  "124": Ver guía completa de inicio rápido

@@ -132,4 +132,28 @@ strings:
   "138": Lire la documentation Studio
   "139": "Découvrir le socle derrière Studio : NocoBase Core"
   "140": Découvrir les applications open source bâties sur NocoBase
+  "142": Des workflows structurés, <span class="m">les humains aux jalons clés.</span>
+  "144": Workflows intégrés &amp; personnalisés
+  "146": Jalons clairs &amp; reprise automatique
+  "148": Skills permanentes à chaque exécution
+  "149": Associez vos règles de développement, de notation en revue et de rapport en tant que skills permanentes, chargées automatiquement et impossibles à retirer par tâche, avec mises en production approuvées et retour arrière.
+  "150": Gestion de la qualité
+  "151": Tests qualité automatisés, <span class="m">correction en boucle fermée.</span>
+  "152": "Des outils de test éprouvés s’exécutent en parallèle sur sept dimensions au lieu que les agents devinent à partir du code : ils génèrent automatiquement des rapports et transforment les anomalies en tâches de suivi corrigées puis retestées en boucle fermée."
+  "153": Outils éprouvés &amp; standards personnalisés
+  "154": Couvre fonctionnalités, tests smoke, permissions, sécurité, performances, qualité du code et UX avec Playwright, un moteur de matrice de rôles, OWASP ZAP, gitleaks, Lighthouse, PostgreSQL EXPLAIN et jscpd. Personnalisez seuils, skills et dimensions ; tout prérequis manquant reste clairement signalé comme non vérifié.
+  "155": Quatre déclencheurs, exécution parallèle
+  "156": Les exécutions quotidiennes, de mise en production, de projet et personnalisées partagent un même moteur et un même jeu de règles. Les scénarios clés vivent dans le dépôt et évoluent avec le produit pendant que plusieurs machines de test exécutent les dimensions en parallèle.
+  "157": Rapports auto &amp; correction en boucle fermée
+  "158": "Les rapports par dimension se regroupent en un seul rapport de livraison. Les défauts dédupliqués, régressions de performances, alertes de sécurité et points de nettoyage entrent dans le workflow de développement pour être corrigés, relus et retestés par les agents : seuls les arbitrages ambigus reviennent aux humains."
+  "160": Ajoute les workflows multi-rôles avec double validation et les workflows personnalisés, l’approbation des déploiements, le SSO d’entreprise (SAML/LDAP/Feishu/DingTalk/WeCom) et les plafonds budgétaires.
+  "161": Ajoute la gestion de la qualité projet sur sept dimensions avec des outils éprouvés, la non-régression automatisée avec correction en boucle fermée, les promotions multi-environnements avec fenêtres de mise en production et périodes de gel, ainsi que le cluster haute disponibilité.
+  "162": "Les demandeurs et les responsables techniques pilotent le début et la fin, tandis que les agents prennent en charge la conception, le développement, la revue en lecture seule par un autre modèle et les contrôles CI automatisés entre les deux : tout rejet repart automatiquement en correction."
   "163": NocoBase Studio
+  "164": NocoBase Studio est l’espace de développement d’équipe de NocoBase. Il réunit Claude Code, Codex et OpenCode répartis sur vos appareils en une équipe d’agents active 24h/24 qui gère développement, tests et revue selon vos processus, pendant que les humains soumettent leurs demandes, suivent l’avancement et décident sur ordinateur ou mobile.
+  "165": Installer Studio
+  "166": Associez chaque tâche à un workflow simple, standard ou personnalisé avec des skills permanentes chargées à chaque exécution, pour des responsabilités claires, des reprises automatiques et une traçabilité complète.
+  "167": L’édition Community inclut les workflows simple et standard ; Professional ajoute les workflows multi-rôles, les étapes personnalisées et les règles de responsabilité configurables.
+  "168": Community gratuit
+  "169": Inclut tâches, équipes d’agents, runtimes, deux workflows intégrés (simple &amp; standard) avec skills permanentes, contrôles CI &amp; revue croisée multi-modèles, validation sur aperçu, base de connaissances/mémoire, approbations mobiles et permissions par rôle.
+  "170": Ou démarrez directement avec NocoBase Core

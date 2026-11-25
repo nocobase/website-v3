@@ -12,7 +12,7 @@ metaDescription: NocoBase Core は AI で業務システムを開発・運用す
 3. 多くのタスクが並行して進むと、エージェントからのメッセージや変更の確認に人が追いつかない。
 4. 要件の背景、業務ルール、得られた教訓が会話に散らばり、担当者やエージェントが変わると失われる。
 
-これらの問題に対処するため、NocoBase 3 は [NocoBase Core](https://www.nocobase.com/ja-JP/core/) と [NocoBase Studio](https://www.nocobase.com/ja-JP/studio/) を導入しました。これらを使えば、AI エージェントの時代に企業が自社のエンタープライズアプリをすばやく開発しつつ、上記の問題を解決できます。このチュートリアルでは IT 資産管理を例に、NocoBase 3 で信頼できるエンタープライズアプリを構築する方法を紹介します。
+これらの問題に対処するため、NocoBase 3 は [NocoBase Core](https://www.nocobase.com/ja-JP/core/) と [NocoBase Studio](https://www.nocobase.com/ja-JP/studio/) を導入しました。これらを使えば、AI エージェントの時代に企業が自社のエンタープライズアプリをすばやく開発しつつ、上記の問題を解決できます。このチュートリアルでは IT 資産管理を例に、環境準備から Core での開発・公開、Studio でのチーム協働までの一連の流れを実践します。まずは 15 分ほどで最初のアプリを動かしてみたい場合は、[最初のアプリを開発する](../getting-started/develop-your-first-app.md)から始めてみてください。
 
 ## Core：AI で業務システムを開発・運用するためのオープンソースの基盤
 
@@ -35,7 +35,7 @@ metaDescription: NocoBase Core は AI で業務システムを開発・運用す
 Core だけでも、完全なアプリを開発してリリースできます。チームで複数のプロジェクトを同時に進めるときや、業務部門の同僚に直接参加してもらいたいときに Studio を導入しましょう。
 
 > [!NOTE] Studio のエディション
-> Studio は NocoBase の Professional エディションと Enterprise エディションでのみ提供されます。[料金](https://www.nocobase.com/ja-JP/pricing/) を参照してください。
+> Studio コミュニティ版は無料で利用でき、本チュートリアルのパート 2（チーム協働とリリース）を進めるために商用版を購入する必要はありません。複数ロールやカスタムワークフロー、デプロイ承認、品質管理などの高度な機能はプロフェッショナル版およびエンタープライズ版で提供しています。詳しくは[エディションと料金](https://www.nocobase.com/ja-JP/pricing/)を参照してください。
 
 ## チュートリアルの例：IT 資産管理
 

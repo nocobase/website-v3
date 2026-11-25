@@ -12,8 +12,8 @@ If one person works on several issues in parallel, they have to jump between sev
 
 ![My issues in Studio: what's waiting for you comes first](https://static-docs.nocobase.com/20261028173135810.png)
 
-> [!NOTE] Studio is available only in the Professional and Enterprise editions
-> See [Pricing](https://www.nocobase.com/pricing/). Installing it requires a NocoBase Pro token.
+> [!NOTE] You can complete this part with the free Studio Community Edition
+> To try Studio locally on your computer, see [Quick install Studio](../getting-started/quick-install-studio.md). To deploy it for a team, see [Installation overview](../studio/setup/index.md). Advanced capabilities such as multi-role workflows, deployment approvals, and quality management are available in the Professional and Enterprise editions; see [Choose an edition](../studio/setup/index.md#choose-an-edition).
 
 ## 1. Have an agent set up Studio
 

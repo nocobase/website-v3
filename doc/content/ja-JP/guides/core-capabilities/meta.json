@@ -1,0 +1,73 @@
+{
+  "title": "テーマ別実践",
+  "pages": [
+    {
+      "type": "page",
+      "path": "index"
+    },
+    {
+      "type": "page",
+      "path": "../opportunities-and-quotes"
+    },
+    {
+      "type": "page",
+      "path": "../sales-workspace"
+    },
+    {
+      "type": "page",
+      "path": "../team-permissions"
+    },
+    {
+      "type": "planned",
+      "title": "設定可能な権限管理画面"
+    },
+    {
+      "type": "planned",
+      "title": "複雑なデータ範囲と権限ルール"
+    },
+    {
+      "type": "page",
+      "path": "../quote-approvals"
+    },
+    {
+      "type": "planned",
+      "title": "複雑な承認ルール"
+    },
+    {
+      "type": "page",
+      "path": "../file-management"
+    },
+    {
+      "type": "page",
+      "path": "../template-print"
+    },
+    {
+      "type": "page",
+      "path": "../notifications"
+    },
+    {
+      "type": "page",
+      "path": "../scheduled-reminders"
+    },
+    {
+      "type": "page",
+      "path": "../email"
+    },
+    {
+      "type": "page",
+      "path": "../business-agent"
+    },
+    {
+      "type": "page",
+      "path": "../ai-assistant"
+    },
+    {
+      "type": "page",
+      "path": "../data-import"
+    },
+    {
+      "type": "page",
+      "path": "../external-integrations"
+    }
+  ]
+}

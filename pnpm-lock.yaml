@@ -31,6 +31,9 @@ importers:
       pagefind:
         specifier: 1.5.2
         version: 1.5.2
+      rehype-raw:
+        specifier: 7.0.0
+        version: 7.0.0
       remark-parse:
         specifier: 11.0.0
         version: 11.0.0

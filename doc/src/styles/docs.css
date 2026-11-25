@@ -468,12 +468,12 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .pillar.wide { grid-column: 1 / -1; }
 
 /* Section home: learn cards */
-.learn ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 18px 0; padding: 0; list-style: none; }
-.learn li { position: relative; margin: 0; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 8px; background: var(--card); font-size: 14.5px; line-height: 1.7; color: var(--ink-2); transition: border-color .15s; }
-.learn li:hover { border-color: var(--brand); }
+.learn ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 18px 0; padding: 0; list-style: none; }
+.learn li { position: relative; margin: 0; padding: 16px 18px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); font-size: 13.5px; line-height: 1.65; color: var(--muted); transition: border-color .15s, box-shadow .15s; }
+.learn li:hover { border-color: var(--brand); box-shadow: var(--doc-shadow); }
 .learn li > p { margin: 0; }
-.learn li a { display: block; margin-bottom: 4px; font-size: 16px; color: var(--ink); text-decoration: none; }
-.learn li a::after { content: ""; position: absolute; inset: 0; border-radius: 8px; }
+.learn li a { display: block; margin-bottom: 6px; font-size: 15px; line-height: 1.45; font-weight: 600; color: var(--ink); text-decoration: none; }
+.learn li a::after { content: ""; position: absolute; inset: 0; border-radius: 10px; }
 .learn li a:focus-visible::after { outline: 2px solid var(--brand); outline-offset: 2px; }
 
 

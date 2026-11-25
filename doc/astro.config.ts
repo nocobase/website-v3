@@ -6,6 +6,7 @@ import { noindexFilter, xDefaultSerializer } from '@nocobase/site-shared/sitemap
 import remarkCallouts from './plugins/remark-callouts.mjs';
 import remarkFigures from './plugins/remark-figures.mjs';
 import remarkLinks from './plugins/remark-links.mjs';
+import rehypeLinks from './plugins/rehype-links.mjs';
 import rehypeDocs, { SPECIAL_LANGS, codeTitleTransformer } from './plugins/rehype-docs.mjs';
 import docs from './src/integrations/docs.mjs';
 import { docsFiles } from './src/lib/llms.mjs';
@@ -19,11 +20,31 @@ const site = getSite();
 const { config } = site;
 const noindex = [...site.pages.filter(p => p.placeholder).map(p => p.url), '/404.html'];
 
+// The archive moved out of Tutorials. Preserve each former reader-facing URL.
+const archivedTutorialRoutes = [
+  ...['agent-team-request', 'bring-into-studio', 'create-app', 'customers-and-follow-ups',
+      'define-requirements', 'test-and-deliver',
+  ].map(slug => [`guides/${slug}`, `legacy/crm/${slug}`]),
+  ['guides/attachments-and-documents', 'guides/file-management'],
+  ['guides/import-and-integrations', 'guides/data-import'],
+  ...['accept-agent-work', 'agent-team-request', 'best-practices',
+      'bring-into-studio', 'build-reliable-enterprise-apps', 'business-colleagues',
+      'capture-knowledge', 'choose-agent-and-model', 'create-app',
+      'deploy', 'first-feature-devices', 'prepare-environment',
+      'prompts', 'release', 'requests-and-approval',
+      'roles-and-permissions', 'upgrade-core', 'write-a-design-doc',
+  ].map(slug => [`guides/legacy/${slug}`, `legacy/itam/${slug}`]),
+];
+const archivedTutorialRedirects = Object.fromEntries(config.languages.flatMap(lang =>
+  archivedTutorialRoutes.map(([previous, archived]) => [`${lang.url}${previous}/`, `${lang.url}${archived}/`])
+));
+
 export default defineConfig({
   site: config.site.origin,
   outDir: DIST,
   trailingSlash: 'always',
   redirects: {
+    ...archivedTutorialRedirects,
     '/zh-CN/studio/quality/follow-ups/': '/zh-CN/studio/quality/reports/#follow-ups',
     '/zh-CN/studio/quality/metrics/': '/zh-CN/studio/quality/standards/',
     '/zh-CN/studio/quality/scenarios/': '/zh-CN/studio/quality/settings/#scenarios',
@@ -183,7 +204,7 @@ export default defineConfig({
       gfm: true,
       smartypants: false,
       remarkPlugins: [remarkFigures, remarkCallouts, remarkLinks],
-      rehypePlugins: [rehypeDocs],
+      rehypePlugins: [rehypeDocs, rehypeLinks],
     }),
   },
   integrations: [

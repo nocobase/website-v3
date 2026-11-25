@@ -10,7 +10,7 @@ metaDescription: "Explore the documentation map and reading routes for applicati
 | [Getting started](what-is-nocobase.md) | Concepts, your first app, Studio collaboration, learning path | Your first encounter with NocoBase 3 |
 | [Core manual](../core/index.md) | Application development, using and developing plugins, framework, deployment, reference | Look up the feature you are developing or maintaining |
 | [Studio manual](../studio/index.md) | Installation, member access, tasks, projects, Agents, quality, releases, administration, reference | Look up operations for your role |
-| [Project tutorials](../guides/build-reliable-enterprise-apps.md) | Environment and Agent selection, Core application development, Studio collaboration, best practices, appendices | Follow a project through successive stages |
+| [Tutorials](../guides/index.md) | Team collaboration and delivery, plus topic-based Core practice | Practice team workflows in Studio or specific Core capabilities in real scenarios |
 | [FAQ](../faq/from-v2.md) | NocoBase 2 and 3 differences, feature mapping, migration | Understand the relationship between versions |
 
 ## Complete your first walkthrough
@@ -36,11 +36,11 @@ For common capabilities such as authentication, files, and notifications, consul
 
 Studio's reference section contains statuses, permissions, Agent execution rules, commands, and configuration.
 
-## Follow a complete project
+## Practice with hands-on tutorials
 
-[Build reliable business systems](../guides/build-reliable-enterprise-apps.md) follows an asset-management application through environment setup, design, device management, requests and approvals, roles, acceptance, and deployment. It then introduces Studio collaboration, shared knowledge, and releases.
+[Tutorials](../guides/index.md) are organized into two series: [Team collaboration and continuous delivery](../guides/team-delivery/index.md) covers connecting an existing project to Studio, involving business colleagues, capturing knowledge, managing quality and releasing updates; [Topic tutorials](../guides/core-capabilities/index.md) focuses on individual Core capabilities—data modeling, UI, permissions, approvals, files, template printing, notifications, scheduled tasks, email and business AI—backed by a complete runnable CRM example.
 
-Use this route for sustained practice across a whole project. If you have completed the quickstart, continue from the stage that matches your experience and consult the manuals for specific mechanisms.
+After completing your first walkthrough, jump straight to the series or topic that matches your current goal rather than following a sequential lesson chain, and consult the manuals whenever you need reference details.
 
 ## Deploy, maintain, and look up details
 

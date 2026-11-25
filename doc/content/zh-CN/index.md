@@ -31,7 +31,7 @@ Agent 自主推进，团队掌控全局。
 
 <section class="doc-home-card">
 
-## [教程](guides/build-reliable-enterprise-apps.md)
+## [教程](guides/index.md)
 
 跟随实践指南，构建自己的应用。
 

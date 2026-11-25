@@ -1,0 +1,12 @@
+{
+  "pages": [
+    {
+      "type": "folder",
+      "path": "crm"
+    },
+    {
+      "type": "folder",
+      "path": "itam"
+    }
+  ]
+}

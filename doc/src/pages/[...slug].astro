@@ -6,7 +6,9 @@ import EditionTags from '../components/EditionTags.astro';
 import HomeAsk from '../components/HomeAsk.astro';
 import Toc from '../components/Toc.astro';
 import PageActions from '../components/PageActions.astro';
+import '../styles/courses.css';
 import { getSite } from '../lib/site.mjs';
+import { tutorialNavigation } from '../lib/tutorial-navigation.mjs';
 
 export function getStaticPaths() {
   return getSite().pages.map(p => ({ params: { slug: p.url.replace(/^\/|\/$/g, '') || undefined }, props: { lang: p.lang, key: p.key } }));
@@ -22,6 +24,15 @@ if (!entry) throw new Error(`The content collection has no entry ${page.relPath}
 const { Content, headings } = await render(entry);
 const section = site.sections(lang).find(s => s.id === page.section)!;
 const empty = !page.body.trim();
+const catalog = key === 'guides/index';
+const tutorial = page.section === 'guides';
+const series = tutorial ? tutorialNavigation(section.tree, key) : undefined;
+const courseUi = {
+  en: { back: 'All tutorials', breadcrumb: 'Breadcrumb', pending: 'This tutorial is in preparation.' },
+  'zh-CN': { back: '全部教程', breadcrumb: '面包屑', pending: '这篇教程正在准备中。' },
+  'ja-JP': { back: 'すべてのチュートリアル', breadcrumb: 'パンくずリスト', pending: 'このチュートリアルは準備中です。' },
+}[lang]!;
+const tutorialHome = site.urlOf(lang, 'guides/index');
 
 // A placeholder page with no body points to the version in another language when there is one
 let hint = '';
@@ -31,28 +42,40 @@ if (page.placeholder && empty) {
   hint = other ? ui.untranslated.replace('{href}', site.urlOf(other.code, key)).replace('{current}', name(lang)).replace('{language}', name(other.code)) : ui.unwritten;
 }
 
-// Previous / next: only inside the section, and only between pages that are written
-const order = section.order.filter(k => !site.page(lang, k)!.placeholder);
+// Tutorial courses link explicitly to any required follow-up.
+const order = tutorial || page.section === 'legacy' ? [] : section.order.filter(k => !site.page(lang, k)!.placeholder);
 const i = order.indexOf(key);
-const link = (k?: string) => (k ? { href: site.urlOf(lang, k), title: site.page(lang, k)!.title } : undefined);
+const link = (k?: string) => (k ? { href: site.urlOf(lang, k), title: site.page(lang, k)!.label || site.page(lang, k)!.title } : undefined);
 const prev = i > 0 ? link(order[i - 1]) : undefined;
 const next = i >= 0 ? link(order[i + 1]) : undefined;
 const crumb = [section.id === config.sections[0].id ? '' : section.title, ...page.trail].filter(Boolean).join(' · ');
 ---
-<Layout home={key === 'index'} lang={lang} title={page.title} description={page.metaDescription} sectionId={key === 'index' ? undefined : page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
+<Layout sidebarNodes={series?.nodes} sidebarBack={series ? { href: tutorialHome, title: courseUi.back } : undefined} sidebarHeader={series ? { href: series.overview ? site.urlOf(lang, series.overview.key) : undefined, title: series.title, current: series.overview?.key === key } : undefined} sidebarScope={series?.overview && site.urlOf(lang, series.overview.key)} home={key === 'index'} catalog={catalog} lang={lang} title={page.title} description={page.metaDescription} sectionId={key === 'index' ? undefined : page.section} pageKey={key} noindex={page.placeholder} searchable={!page.placeholder} sectionTitle={section.title}>
 {!page.placeholder && <div hidden data-pagefind-filter="section[data-value]" data-value={section.title}></div>}
-{key !== 'index' && (crumb || !page.placeholder) && <div class="doc-head" data-pagefind-ignore>
+{key !== 'index' && !tutorial && (crumb || !page.placeholder) && <div class="doc-head" data-pagefind-ignore>
 {crumb ? <p class="doc-crumb">{crumb}</p> : <span></span>}
+{!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
+</div>}
+{series && <div class="doc-head" data-pagefind-ignore>
+<nav class="course-breadcrumb" aria-label={courseUi.breadcrumb}>
+<a href={tutorialHome}>{section.title}</a>
+<span aria-hidden="true">/</span>
+{series.overview?.key === key ? <span aria-current="page">{series.title}</span> : <>
+{series.overview ? <a href={site.urlOf(lang, series.overview.key)}>{series.title}</a> : <span>{series.title}</span>}
+<span aria-hidden="true">/</span>
+<span aria-current="page">{page.label || page.title}</span>
+</>}
+</nav>
 {!page.placeholder && <PageActions mdUrl={page.mdUrl} mdHref={site.absolute(page.mdUrl)} ui={ui} />}
 </div>}
 {key === 'index' && config.ask?.endpoint ? <HomeAsk lang={lang} title={page.title} /> : <h1>{page.title}</h1>}
 {!page.placeholder && (page.minimumEdition === 'professional' || page.minimumEdition === 'enterprise') && ui.editions && <EditionTags minimum={page.minimumEdition} labels={ui.editions} pricingUrl={new URL('pricing/', config.byCode[lang].website).href} />}
 <article class:list={['prose', { 'doc-home-content': key === 'index' }]}>
-{hint ? <p set:html={hint}></p> : <Content />}
+{series && page.placeholder && empty && hint === ui.unwritten ? <p class="course-pending">{courseUi.pending}</p> : hint ? <p set:html={hint}></p> : <Content />}
 </article>
-{key !== 'index' && (prev || next) && <nav class="doc-pager" aria-label={ui.pager}>
+{key !== 'index' && !catalog && (prev || next) && <nav class="doc-pager" aria-label={ui.pager}>
 {prev ? <a class="prev" href={prev.href}><small>{ui.prev}</small>{prev.title}</a> : <span></span>}
 {next && <a class="next" href={next.href}><small>{ui.next}</small>{next.title}</a>}
 </nav>}
-{key !== 'index' && <Toc slot="toc" headings={headings} title={ui.toc} />}
+{key !== 'index' && !catalog && <Toc slot="toc" headings={headings} title={ui.toc} />}
 </Layout>

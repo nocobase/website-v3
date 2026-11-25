@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" role="img" aria-labelledby="title desc">
+<title id="title">CRM sales data relationships</title><desc id="desc">A customer has many opportunities. An opportunity has many quotes. A quote has many quote items. Each quote item refers to one product and stores its quoted unit price separately from the product's current unit price.</desc>
+<style>text{font-family:Arial,sans-serif;fill:#243247;font-size:16px}.heading{font-weight:700;font-size:18px}.line{fill:none;stroke:#718096;stroke-width:2}.key{fill:#245bc4;font-weight:700}</style>
+<rect width="760" height="470" rx="12" fill="#f8fafc"/>
+<path class="line" d="M230 100H275 M485 100H530 M635 150V258H380V300 M485 366H530"/>
+<g text-anchor="middle"><text x="241" y="88">1</text><text x="263" y="88">N</text><text x="497" y="88">1</text><text x="519" y="88">N</text><text x="650" y="190">1</text><text x="395" y="289">N</text><text x="497" y="354">N</text><text x="519" y="354">1</text></g>
+<rect x="20" y="40" width="210" height="84" rx="8" fill="white" stroke="#cbd5e1"/><text class="heading" x="36" y="69">Customer</text><path d="M20 83h210" stroke="#e2e8f0"/>
+<text class="field" x="36" y="109">Name</text>
+<rect x="275" y="40" width="210" height="110" rx="8" fill="white" stroke="#cbd5e1"/><text class="heading" x="291" y="69">Opportunity</text><path d="M275 83h210" stroke="#e2e8f0"/>
+<text class="field" x="291" y="109">Name</text>
+<text class="field" x="291" y="135">Sales stage</text>
+<rect x="530" y="40" width="210" height="110" rx="8" fill="white" stroke="#cbd5e1"/><text class="heading" x="546" y="69">Quote</text><path d="M530 83h210" stroke="#e2e8f0"/>
+<text class="field" x="546" y="109">Name</text>
+<text class="field" x="546" y="135">Total amount</text>
+<rect x="275" y="300" width="210" height="136" rx="8" fill="white" stroke="#cbd5e1"/><text class="heading" x="291" y="329">Quote item</text><path d="M275 343h210" stroke="#e2e8f0"/>
+<text class="field" x="291" y="369">Quantity · Discount</text>
+<text class="key" x="291" y="395">Quoted unit price</text>
+<text class="field" x="291" y="421">Line amount</text>
+<rect x="530" y="300" width="210" height="110" rx="8" fill="white" stroke="#cbd5e1"/><text class="heading" x="546" y="329">Product</text><path d="M530 343h210" stroke="#e2e8f0"/>
+<text class="field" x="546" y="369">Code · Name</text>
+<text class="key" x="546" y="395">Current unit price</text>
+<text x="22" y="449" font-size="14">1 : N = one-to-many</text></svg>

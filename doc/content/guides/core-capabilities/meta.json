@@ -1,0 +1,73 @@
+{
+  "title": "Topic tutorials",
+  "pages": [
+    {
+      "type": "page",
+      "path": "index"
+    },
+    {
+      "type": "page",
+      "path": "../opportunities-and-quotes"
+    },
+    {
+      "type": "page",
+      "path": "../sales-workspace"
+    },
+    {
+      "type": "page",
+      "path": "../team-permissions"
+    },
+    {
+      "type": "planned",
+      "title": "Configurable permission UI"
+    },
+    {
+      "type": "planned",
+      "title": "Complex data scopes and grant rules"
+    },
+    {
+      "type": "page",
+      "path": "../quote-approvals"
+    },
+    {
+      "type": "planned",
+      "title": "Complex approval rules"
+    },
+    {
+      "type": "page",
+      "path": "../file-management"
+    },
+    {
+      "type": "page",
+      "path": "../template-print"
+    },
+    {
+      "type": "page",
+      "path": "../notifications"
+    },
+    {
+      "type": "page",
+      "path": "../scheduled-reminders"
+    },
+    {
+      "type": "page",
+      "path": "../email"
+    },
+    {
+      "type": "page",
+      "path": "../business-agent"
+    },
+    {
+      "type": "page",
+      "path": "../ai-assistant"
+    },
+    {
+      "type": "page",
+      "path": "../data-import"
+    },
+    {
+      "type": "page",
+      "path": "../external-integrations"
+    }
+  ]
+}

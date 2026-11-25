@@ -1,0 +1,73 @@
+{
+  "title": "专题实战",
+  "pages": [
+    {
+      "type": "page",
+      "path": "index"
+    },
+    {
+      "type": "page",
+      "path": "../opportunities-and-quotes"
+    },
+    {
+      "type": "page",
+      "path": "../sales-workspace"
+    },
+    {
+      "type": "page",
+      "path": "../team-permissions"
+    },
+    {
+      "type": "planned",
+      "title": "可配置授权界面"
+    },
+    {
+      "type": "planned",
+      "title": "复杂数据范围与授权规则"
+    },
+    {
+      "type": "page",
+      "path": "../quote-approvals"
+    },
+    {
+      "type": "planned",
+      "title": "复杂审批规则"
+    },
+    {
+      "type": "page",
+      "path": "../file-management"
+    },
+    {
+      "type": "page",
+      "path": "../template-print"
+    },
+    {
+      "type": "page",
+      "path": "../notifications"
+    },
+    {
+      "type": "page",
+      "path": "../scheduled-reminders"
+    },
+    {
+      "type": "page",
+      "path": "../email"
+    },
+    {
+      "type": "page",
+      "path": "../business-agent"
+    },
+    {
+      "type": "page",
+      "path": "../ai-assistant"
+    },
+    {
+      "type": "page",
+      "path": "../data-import"
+    },
+    {
+      "type": "page",
+      "path": "../external-integrations"
+    }
+  ]
+}

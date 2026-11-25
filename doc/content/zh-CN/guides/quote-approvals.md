@@ -1,0 +1,109 @@
+---
+title: "审批流程与待办中心"
+metaDescription: 为 CRM 报价设置折扣审批规则，通过主管待办处理报价，并验证金额快照、状态流转和客户访问范围。
+---
+
+为业务单据增加审批确认流程。本专题以 CRM 报价为例：普通折扣直接确认，超出折扣门槛时提交给指定主管在待办中心处理，并在审批通过后锁定内容。
+
+准备管理员、销售 Alex、主管 Morgan 以及另一位销售的独立测试账号（角色准备方式见[角色权限与数据范围控制](team-permissions.md#配置用户与角色)）；不要用管理员代替销售测试。
+
+> [!NOTE]
+> 在已有数据库上新增审批锁定字段前先做好备份；结构迁移不能自动撤销，回退需恢复匹配版本的备份。
+
+<div class="course-example">
+<div class="table-wrap">
+<table>
+<caption><span class="course-example-caption"><span class="course-example-label">关联示例项目<span class="course-example-help"><button type="button" aria-label="示例项目使用说明"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></button><span class="course-example-popover"><a href="core-capabilities/index.md#示例项目说明">完整示例使用说明</a></span></span></span></span></caption>
+<tbody>
+<tr><th scope="row">示例项目</th><td><a href="https://github.com/nocobase/doc-demo-crm"><code>nocobase/doc-demo-crm</code></a>（最新完整 CRM 示例）</td></tr>
+<tr><th scope="row">运行说明</th><td><a href="https://github.com/nocobase/doc-demo-crm/blob/main/README.MD">安装与运行说明</a></td></tr>
+<tr><th scope="row">学习模块</th><td><a href="../core/developing-apps/business-workflows.md">工作流</a> · <a href="../core/using-plugins/collaboration/approval.md">审批（商业插件）</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+## 明确报价状态与审批规则
+
+按**每条明细的折扣**判断是否需要审批：
+
+| 状态或操作 | 业务结果 |
+| --- | --- |
+| 草稿提交，所有明细折扣 ≤ 10% | 直接确认，不产生主管待办 |
+| 草稿提交，任一明细折扣 > 10% | 必须选择一位有效销售主管；申请人不能自审 |
+| 审批中 | 保存提交时的商品、单价、折扣和总额，不能修改报价 |
+| 通过 | 报价已确认，不能修改，可用于生成正式报价单 |
+| 退回并填写原因 | 申请人修改后重新提交，保留之前的记录 |
+| 拒绝并填写原因 | 结束这份报价；需要新方案时另建报价 |
+| 撤回 | 取消当前待办，返回草稿 |
+
+首次提交时固定审批门槛，避免管理员调整规则后改变处理中报价的判断标准。
+
+## 准备审批插件并开发功能
+
+本专题使用商业插件[审批](../core/using-plugins/collaboration/approval.md)（`@nocobase/app-plugin-approval`）。先取得使用授权和包访问权限，再在 **Agent 实际运行的开发环境**中登录 NocoBase 包仓库。这与登录业务应用不同，操作见[授权与包仓库登录](../core/developing-apps/manage-plugins.md#商业插件授权与包仓库登录)。
+
+完成准备后，把需求交给 Agent。它会安装兼容插件，完成注册和数据库更新，再接入主管待办与报价页面。若无法下载插件，先检查该环境的授权和登录状态。
+
+> [!NOTE]
+> 审批插件负责分配审批任务和记录处理结果。报价规则与客户权限仍需在业务应用中实现。可参考[工作流说明](../core/developing-apps/business-workflows.md)、完整示例中的[报价状态规则](https://github.com/nocobase/doc-demo-crm/blob/main/server/lifecycles/quote-approval.ts)和[审批接入代码](https://github.com/nocobase/doc-demo-crm/blob/main/server/providers/quote-approvals.ts)。
+
+在应用根目录向开发 Agent 发送：
+
+```prompt
+在现有 CRM 中加入报价审批，沿用客户访问范围和只读共享规则。
+
+提交和处理规则：
+- 任一明细折扣超过 10%，由销售选择一位有效主管审批，申请人不能自审。没有合适主管时不能提交。所有明细折扣不超过 10% 时直接确认。
+- 主管在“我的待办”查看提交时的商品、价格、折扣和总额，可以通过、拒绝或退回。拒绝和退回要填写原因。
+- 审批期间和确认后不能修改报价。退回后可以修改重提，保留之前的记录。撤回取消待办并回到草稿。拒绝后需要新方案时另建报价。
+
+人员和规则变化时：
+- 主管失去资格后不能继续处理，申请人或仍有权限的主管可以撤回。
+- 客户转移后，原负责人不能再操作。新负责人需要新方案时另建报价，不接替原申请人重提。
+- 管理员可以调整新报价的审批门槛。已首次提交的报价始终沿用原门槛，包括退回重提。
+
+在系统设置中展示流程和处理历史，运行起来让我体验。
+```
+
+完成后，检查 **系统设置 → 流程管理**：能查看报价流程图、执行记录和实际生效的门槛配置。销售主管身份本身不赋予流程配置权限；由管理员管理这些设置。不要通过直接修改数据库里的状态来模拟审批。
+
+## 在待办中心查看和处理审批
+
+准备一份练习报价并完成审批流程：
+
+1. Alex 创建客户 **Northstar Manufacturing**，再创建商机 **Regional CRM rollout**。
+2. Morgan 在产品目录新增 **CRM implementation**，单价为 `12000`。
+3. Alex 新建 **Phase one implementation** 报价，选择该产品，数量 `2`、折扣 `15%`。保存后总额应为 `20400.00`。
+4. Alex 打开报价，点击 **提交报价**，选择 Morgan 并提交。报价进入 **主管审批**，编辑入口消失。
+5. Morgan 打开 **我的待办**，看到一条报价审批待办，点击 **打开报价**。核对商品、数量、单价、折扣和总额，再点击 **通过** 并确认。
+6. 报价变成 **已确认**。返回待办中心，待处理数量减少；Alex 刷新报价后也能看到同一结果。
+
+![主管在待办中心查看需要处理的报价。](/assets/guides/quote-approval-tasks.png)
+
+![从待办打开报价，核对金额后选择通过、拒绝或退回。](/assets/guides/quote-approval-review.png)
+
+需要验证退回修改时，另建一份 15% 折扣报价，重复提交，让 Morgan 选择 **退回修改** 并填写原因。Alex 修改折扣为 `12%` 后重新提交：总额变为 `21120.00`，产生新待办，之前的退回意见仍可查看。
+
+## 检查审批结果与待办更新
+
+用独立账号体验提交、退回、拒绝和撤回。接口调用、重复请求和金额检查交给 Agent 自动测试。
+
+撤销角色和转移客户的检查，交给 Agent 用另一组账号和记录完成。退回、拒绝和撤回练习也要另建报价。
+
+| 检查 | 应看到的结果 |
+| --- | --- |
+| 折扣恰好 10% | 提交后直接确认，无待办；本例总额为 `21600.00` |
+| 审批中修改报价，或直接调用编辑接口 | 服务端拒绝，保存的报价和审批金额不变 |
+| 重复提交同一次请求 | 不增加第二次申请或重复待办 |
+| 退回、修改、重提 | 新待办使用修改后的报价，旧记录保留 |
+| 拒绝或撤回 | 当前待办结束；拒绝不可继续修改，撤回回到草稿 |
+| 申请人自审、其他销售处理、只读共享用户写入 | 均被拒绝 |
+| 主管角色被撤销 | 不能继续处理；申请人或仍有权限的主管可撤回 |
+| 客户转给另一销售 | 原负责人失去访问；已有记录保留，新负责人需要新方案时另建报价 |
+
+重复提交、越权操作和报价锁定由 Agent 在独立数据库中自动检查，并报告实际结果。页面操作还要确认待办和报价同步更新，读取失败后可以恢复。
+
+**完成的标志**：折扣阈值、审批锁定、退回重提和越权检查符合本专题规则，待办与报价状态同步更新。
+
+要用已确认的报价生成正式单据文件，可参考[模板打印与单据生成](template-print.md)。

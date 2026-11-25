@@ -31,7 +31,7 @@ Administrators can deploy Community Edition, connect Git and a runtime, and conf
 
 The following walkthrough adds a supplier page. Before starting, check that:
 
-- The project's **Initialize project** task is complete.
+- The project is created and its [initial setup](../studio/setup/new-project.md) (**Initialize project** task) is complete.
 - The Lead Agent is configured and at least one runtime is online.
 - The repository has a [check source](../studio/setup/ci.md). Prepare a preview or test environment if you need to try the application.
 

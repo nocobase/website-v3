@@ -2640,6 +2640,7 @@ html:is([lang="en"],[lang="es-ES"],[lang="fr-FR"],[lang="de-DE"],[lang="pt-BR"],
 /* NocoITAM 的图用它自己的绿色（与首页 index.html 里的 .itam-theme 一致） */
 .itam-theme { --agent: #047857; --agent-ink: #065f46; --agent-tint: #ecfdf5; --brand: #047857; --brand-hover: #065f46; --brand-tint: #ecfdf5; }
 .itam-theme .sg.on { border-color: #a7f3d0; }
+/* /PRODUCT-PAGES */
 
 /* ---- Core 快速开始弹窗（点击「快速开始 / 开发第一个应用」打开） ---- */
 dialog.qs-modal { width: min(580px, calc(100vw - 32px)); max-width: none; max-height: min(90vh, 640px); margin: auto; padding: 0; border: 1px solid var(--rule-2); border-radius: 16px; background: var(--card); color: var(--ink); box-shadow: 0 24px 64px -20px oklch(0.2 0.05 266 / 0.32), 0 4px 16px -4px oklch(0.2 0.05 266 / 0.12); overflow: auto; text-align: left; }
@@ -2678,4 +2679,3 @@ dialog.qs-modal[open] { animation: pop 0.2s ease-out both; }
   dialog.qs-modal[open] { animation: none; }
   .qs-tip { transform: translate(0, -50%); transition: opacity 0.12s; }
 }
-/* /PRODUCT-PAGES */

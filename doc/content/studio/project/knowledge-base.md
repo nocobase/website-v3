@@ -24,6 +24,8 @@ Open a project's **Knowledge** tab. Project work can reference both project know
 
 Text can be extracted from PDF, Word, Excel, PowerPoint, CSV, text, Markdown, and JSON files for search and reading. Images are not processed with OCR. Original files remain available to download. Folders support up to four levels.
 
+Open a Markdown file and expand **Preview** to read it full screen. When you follow an Agent citation, **Extracted text** highlights the cited lines.
+
 Each save creates a version. Archive outdated material to exclude it from search; restore it when needed.
 
 ## Save task attachments

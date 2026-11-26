@@ -9,11 +9,11 @@ Tests run automatically by their [settings by test type](settings.md#settings-by
 
 - The project has a code repository.
 - An enabled Agent and an online Runner are available.
-- Automatic tests need an active project lead. Whoever starts a test (the project lead for automatic tests) needs access to the project and permission to create tasks, run quality tests, and upload attachments.
+- The person starting the test needs project access and permission to create tasks, run quality tests, and upload attachments. Automatic tests run as the [owner configured for that test type](settings.md).
 
 ## Start a test
 
-1. Open **Development › Quality** and select a project.
+1. Open the project and select **Quality**.
 2. Select **Run test**, then Release, Project, or Custom.
 3. For a custom test, select completed tasks or the whole project code. Adjust the dimensions if needed.
 4. Confirm and open the new testing task.

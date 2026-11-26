@@ -5,7 +5,9 @@ description: Test each project against built-in quality standards, generate repo
 
 Quality management is available in Studio Enterprise Edition (EE). It tests a project against an explicit set of quality standards: Agents run established testing tools, Studio generates the test reports, and findings become follow-up tasks that later tests verify. [Contact us for Enterprise Edition](https://www.nocobase.com/contact/).
 
-![Quality testing workflow](/assets/studio/quality/quality-flow-en.svg)
+Open a project’s **Quality** tab to see its testing tasks, core scenarios, follow-ups, and metrics. Select **Run test** to start a test if you have permission. To switch between projects, open **Quality** in the sidebar.
+
+![Quality testing workflow](https://static-docs.nocobase.com/studio-quality-flow-en-20261126-f4287fc2ea.svg)
 
 ## Key capabilities
 

@@ -30,7 +30,7 @@ Select **Fill in manually** in the new-task conversation:
 
 ![Enter the task’s title, requirements, and start option](https://static-docs.nocobase.com/studio-en-manual-task-20261111-normal-2x.webp)
 
-If the requester will confirm requirements and accept the result, assign a separate owner when you create the task. See [Multi-role workflow](multi-role-workflow.md).
+If the requester will confirm requirements and accept the result, assign a separate owner when you create the task. See [Workflows](multi-role-workflow.md#requester).
 
 ## Write a clear request
 

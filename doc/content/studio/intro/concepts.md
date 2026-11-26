@@ -28,7 +28,7 @@ See [Create your first project](../setup/new-project.md) and [Project settings](
 
 A **task** records requirements, acceptance criteria, discussions, and delivery results—for example, Supplier scoring and tiers. Subtasks divide the work; predecessor tasks express dependencies.
 
-Each task has an **owner** who answers questions, confirms tradeoffs, and accepts the result. The Lead Agent organizes execution. Design, development, and review results stay with the task. When the roles are split, the requester [confirms requirements and accepts delivery](../use/multi-role-workflow.md).
+Each task has an **owner** who answers questions, confirms tradeoffs, and accepts the result. The Lead Agent organizes execution. Design, development, and review results stay with the task. When the roles are split, the requester [confirms requirements and accepts delivery](../use/multi-role-workflow.md#requester).
 
 Tasks have six states. Common transitions are:
 

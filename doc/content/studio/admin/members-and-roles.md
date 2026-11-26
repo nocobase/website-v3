@@ -37,4 +37,6 @@ Create a role or copy an existing one, then adjust pages, settings, and business
 
 Business actions can apply to none, related records, or all records. The editor explains what related means for each action, such as projects the member leads. Page permissions control entry points; business permissions control operations.
 
+For Agents, Runtimes, Skills, and Usage, grant access to the page, then grant read or management permission on the settings the member needs. For example, a member can open Usage but needs permission to read model prices to see the pricing settings.
+
 Remove member assignments and default-role references before deleting a role. Role managers can grant powerful permissions, so reserve that ability for members responsible for access management.

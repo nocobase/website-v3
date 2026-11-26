@@ -1,6 +1,6 @@
 ---
 title: Project settings
-description: Manage project members, repositories, run variables, and default skills.
+description: Manage project members, repositories, and run variables.
 ---
 
 Project leads and administrators can change project settings. Open **Members** to manage access and **Settings** to configure development work.
@@ -24,7 +24,6 @@ Change status, priority, and dates in the project properties.
 | General | Name, description, and default commit attribution |
 | Code repositories | Repositories, checks, branch rules, and previews |
 | Agent run variables | Environment variables and secrets for development tasks |
-| Default skills | Skills used by runs in the project or a repository |
 
 ![Configure checks, branch rules, and previews on each repository](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
 
@@ -32,7 +31,7 @@ The first repository is the primary repository. Removing a link does not delete 
 
 ### Default owner
 
-Open the general project settings and set **Default owner** to the task creator, project lead, or a specific project member. This applies to new tasks. Members can override it when creating a task. See [Multi-role workflow](../use/multi-role-workflow.md).
+Open the general project settings and set **Default owner** to the task creator, project lead, or a specific project member. This applies to new tasks. Members can override it when creating a task. See [Workflows](../use/multi-role-workflow.md#requester).
 
 ![Choose the default owner for new issues](https://static-docs.nocobase.com/studio-en-multi-role-default-owner-20261119-d223c51313.webp)
 

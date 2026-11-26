@@ -63,3 +63,15 @@ Members can enter their own token in **Account settings › Git**. For browser a
 Enable webhooks when the code host can reach Studio over HTTPS. For a private network or local address, disable webhooks. Studio polls PRs and check results once per minute.
 
 Connection cards show connectivity, repository counts, and webhook status. Update credentials before they expire. To connect existing code, see [Project settings](../project/settings.md#connect-an-existing-repository).
+
+## Clone and push over SSH
+
+When configuring a GitLab, Gitee, or Gitea connection, you can use SSH for Git operations. Studio still uses the platform API credentials for merge requests and CI checks.
+
+1. Open **Settings › Git** and add or edit a connection. Select **SSH** as the clone method.
+2. Choose an existing key or select **New key** and give it a name. Copy the public key to a bot account with read and write access to the target repository.
+3. Save a new connection to test SSH automatically. For an existing connection, select **Test SSH connection**, then save. The project keeps its repository association.
+
+If the connection is awaiting its SSH test, check the account holding the public key and the SSH address. Test the connection again before retrying the task.
+
+![Create a shared key under Settings › Git › SSH keys](https://static-docs.nocobase.com/studio-en-ssh-20261126-1bb7b5be4e.webp)

@@ -25,8 +25,8 @@ https://docs.nocobase.com/ja-JP/studio/setup/ に従って NocoBase Studio を�
 
 | エディション | 用途 |
 | --- | --- |
-| コミュニティ版（CE） | チームでタスクを作成し、エージェントが開発を進め、タスク責任者が成果を確認する |
-| プロフェッショナル版 | [依頼者と開発担当者で分担できます](../use/multi-role-workflow.md)。依頼者は要件確認と検収を、開発担当者はタスクの開始とマージを担当します |
+| コミュニティ版（CE） | Standard または Simple のフローで開発し、タスク担当者が検収する |
+| プロフェッショナル版 | [依頼者と開発担当者で分担できます](../use/multi-role-workflow.md#requester)。依頼者は要件確認と検収を、開発担当者はタスクの開始とマージを担当します |
 | エンタープライズ版（EE） | プロフェッショナル版の機能に加え、品質管理でコアシナリオの管理、定期テスト、レポートの確認、問題の追跡を行う |
 
 プロフェッショナル版とエンタープライズ版のイメージおよびライセンスは、[お問い合わせください](https://www.nocobase.com/ja-JP/contact/)。
@@ -66,6 +66,6 @@ https://docs.nocobase.com/ja-JP/studio/setup/ に従って NocoBase Studio を�
 | --- | --- |
 | モデルの担当、実行マシン、共有スキル | エージェント管理：[エージェント](../configure/agents.md)、[ランタイム](../configure/runtimes.md)、[スキル](../project/skills.md) |
 | チェックの取得元と CI パイプライン | [リポジトリのチェックと CI を設定する](../configure/checks.md) |
-| プロジェクト情報、メンバー、既定のスキル | プロジェクト管理：[プロジェクト設定](../project/settings.md) |
+| プロジェクト情報とメンバー | プロジェクト管理：[プロジェクト設定](../project/settings.md) |
 | Git の接続とその他のコードプラットフォーム | システム管理：[コードプラットフォーム](../configure/git.md) |
 | データベース、アクセス URL、デプロイのパラメーター | リファレンス：[設定](../reference/config.md) |

@@ -21,7 +21,7 @@ description: "コメント、メンション、システム通知を読み、音
 - **To decide**：自分の判断を待っている項目。
 - **Notifications**：情報通知。
 
-依頼に対応するには **To decide** を開き、**All types** から **Requester decisions** を選びます。タスクを開くと、[要件の確認、質問への回答、検収](multi-role-workflow.md)ができます。
+依頼に対応するには **To decide** を開き、**All types** から **Requester decisions** を選びます。タスクを開くと、[要件の確認、質問への回答、検収](multi-role-workflow.md#requester)ができます。
 
 <kbd>J</kbd> / <kbd>K</kbd> で項目を移動します。既読や削除は自分の受信トレイにだけ反映され、タスクは完了しません。
 

@@ -22,7 +22,7 @@ Each task appears once. Canceled tasks are hidden by default; use a status filte
 
 ## Handle waiting work
 
-Use the role filter to find tasks where you are the requester or owner. Requirements and deliveries awaiting your decision appear under **Waiting for you**. See [Multi-role workflow](multi-role-workflow.md).
+Use the role filter to find tasks where you are the requester or owner. Requirements and deliveries awaiting your decision appear under **Waiting for you**. See [Workflows](multi-role-workflow.md#requester).
 
 | Prompt | Action |
 | --- | --- |

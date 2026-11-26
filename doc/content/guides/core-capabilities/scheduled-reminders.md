@@ -89,6 +89,8 @@ The Agent should automatically check time boundaries, repeated scans, delivery r
 
 These checks use one application process. Multiple instances require shared Jobs and concurrency locks plus their own runtime verification. No checks execute while every application process is stopped; the next check after restart revisits pending plans.
 
+## Summary and next steps
+
 **Done when**: Due plans notify the current owner once, while completed or canceled plans produce no new reminders. Pause and resume, repeated execution, and recovery checks pass. Execution records and actual delivery outcomes are available, and a completed follow-up still shows Completed after reloading.
 
 To connect personal mailboxes, view customer correspondence, and send formal quotations by email, continue to [Email integration and messaging](email.md).

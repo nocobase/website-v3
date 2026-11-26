@@ -118,6 +118,8 @@ Use separate accounts to verify permissions and boundaries:
 
 Automated verification covers two layers: the example's [server integration test](https://github.com/nocobase/doc-demo-crm/blob/main/tests/server/crm-assistant.test.ts) and [client component test](https://github.com/nocobase/doc-demo-crm/blob/main/tests/client/crm-assistant.test.tsx) verify missing-model handling, tool authorization, knowledge isolation, read-only sharing, and post-transfer revocation against isolated SQLite and a local OpenAI-compatible test fixture; the draft screenshot above was captured from a live running CRM instance calling local Codex through a local OpenAI-compatible bridge, with manual draft saving verified end to end. When connecting an external commercial model provider (such as DeepSeek or OpenAI) with your own API key, verify connectivity with **Test connection** and live generation in your own environment.
 
+## Summary and next steps
+
 **Done when**: An enabled chat model is configured under **AI models**, salespeople can generate follow-up drafts with accurate document version citations and missing-evidence callouts, generation writes no CRM data on its own, edited drafts save cleanly to **Follow-up records**, and unauthorized, read-only shared, and revoked-access boundaries hold in real time.
 
 Return to [Topic tutorials](index.md) to explore other Core capabilities, or read the [Agents plugin guide](../../core/using-plugins/agents-and-knowledge/agents.md) to add live chat panels, business Skills, or machine coding agents.

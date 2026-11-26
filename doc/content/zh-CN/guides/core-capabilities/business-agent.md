@@ -118,6 +118,8 @@ const draft = FollowUpDraftResult.parse(await session.get());
 
 自动化验证覆盖了两层范围：示例中的[服务端集成测试](https://github.com/nocobase/doc-demo-crm/blob/main/tests/server/crm-assistant.test.ts)与[客户端组件测试](https://github.com/nocobase/doc-demo-crm/blob/main/tests/client/crm-assistant.test.tsx)使用隔离 SQLite 与本地兼容 OpenAI 的测试夹具验证无模型提示、工具权限、知识隔离、只读共享和移交撤权；上述客户草稿截图由真实运行的 CRM 应用经本地兼容 OpenAI 桥接调用本地 Codex 实时生成，并实际验证了手动保存跟进记录。接入外部商业模型服务（如 DeepSeek、OpenAI）时，仍需在自己的环境中使用真实密钥完成 **Test connection** 和实际生成验收。
 
+## 小结与下一步
+
 **完成的标志**：已在 **AI models** 启用可用对话模型；销售在客户详情能生成带准确文档版本引用和缺口提醒的跟进草稿，生成本身不写入业务数据，经人工编辑保存后正确出现在跟进记录中，且无关销售、只读共享与移交后的权限边界均实时生效。
 
 回到[专题实战](index.md)查看其余 Core 能力专题，或前往 [Agents 插件文档](../../core/using-plugins/agents-and-knowledge/agents.md)深入了解实时聊天面板、业务 Skills 与机器编程助手的接入方式。

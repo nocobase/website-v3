@@ -74,6 +74,8 @@ Use separate accounts to verify search, history, and document-level isolation:
 
 Concurrent version conflicts (submitting a stale `expectedVersion`) and unauthorized direct API reads are covered in the example's [server integration test](https://github.com/nocobase/doc-demo-crm/blob/main/tests/server/crm-assistant.test.ts). This guide uses built-in text search; to add optional semantic indexing later, see [Search and semantic indexing](../../core/using-plugins/agents-and-knowledge/knowledge.md#search-and-semantic-indexing).
 
+## Summary and next steps
+
 **Done when**: **Product knowledge** is accessible from navigation, managers can maintain articles and accept proposals into new versions, salespeople can read, search, and propose changes without direct edit rights, and restricted documents stay hidden from unauthorized users in both the tree and search results.
 
 With product knowledge in place, continue to [Connect a business Agent](business-agent.md) so the customer detail sales assistant can combine these articles with authorized CRM records to draft follow-ups.

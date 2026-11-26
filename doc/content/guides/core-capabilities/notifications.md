@@ -80,6 +80,8 @@ The Agent should automatically check duplicate requests, unauthorized access, fa
 
 The management page only displays delivery results. For a terminal delivery failure, fix its cause and use the notification service’s authorized retry action. External channels and deployments with multiple app instances need checks in those environments.
 
+## Summary and next steps
+
 **Done when**: Assignment and quotation-result notifications reach the intended inbox, and business events can be matched to delivery records. Repeated requests do not add messages, old notifications cannot bypass current customer access, marking a message read does not close its approval task, and recovery after a temporary failure has been checked.
 
 To scan due follow-ups on a schedule and notify owners automatically, see [Scheduled tasks and due reminders](scheduled-reminders.md).

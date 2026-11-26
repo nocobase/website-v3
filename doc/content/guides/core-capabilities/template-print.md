@@ -60,6 +60,8 @@ Use separate test accounts to check document content, idempotency, and access bo
 
 Have the Agent test simultaneous generation, failed render retries, and retention of issued documents after upgrades in a separate environment, then review its report for actual results and any incomplete checks.
 
+## Summary and next steps
+
 **Done when**: A formal DOCX has been generated from a confirmed quotation, opened, and checked for the expected customer, opportunity, line items, and `20400.00 USD` total; repeated generation and master-data changes preserve the original file, and access follows customer permissions.
 
 For editable customer attachments, see [Business attachments and file management](file-management.md). To send the issued DOCX by email, see [Email integration and messaging](email.md).

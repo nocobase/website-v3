@@ -118,6 +118,8 @@ Ask the Agent to test with separate accounts and data, without using administrat
 
 When resending a request, the Agent should preserve the original identity and complete request, including its identifier, and confirm that it cannot bypass the changed permissions.
 
+## Summary and next steps
+
 **Done when**: Page and API permissions have been checked with separate salesperson, manager, and read-only sharing accounts. Revoking sharing or transferring a customer applies the new access rules immediately, old requests cannot bypass them, and existing contacts, follow-ups, and quote amounts remain intact.
 
 To add a review workflow for business records, see [Approval workflows and to-do center](approval-workflows.md).

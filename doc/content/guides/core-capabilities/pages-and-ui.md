@@ -84,6 +84,8 @@ Prepare customers with different statuses. Search and status filters should appl
 
 Ask the Agent to test combined filters, empty results, and navigation targets, then complete these flows in the browser. Use developer tools to throttle or disconnect the network when checking loading and error feedback. A visible loading indicator alone does not prove that the request eventually succeeds.
 
+## Summary and next steps
+
 **Done when**: Workspace counts match business records, search and status filters work together, and links open the correct customer, opportunity, or quote. Saved data and the active tab survive reloading, key actions work at mobile widths, and failed loads can be retried.
 
 To restrict which business records each salesperson can access, see [Role permissions and data scopes](roles-and-permissions.md).

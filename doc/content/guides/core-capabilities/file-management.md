@@ -55,6 +55,8 @@ Use separate accounts rather than an administrator to verify these behaviors:
 
 Have the Agent test failed saves, cleanup during concurrent uploads, and data retention after upgrades in a separate environment, then review its report for actual results and any incomplete checks.
 
+## Summary and next steps
+
 **Done when**: Customer attachments can be uploaded, saved, previewed, and downloaded; download access updates immediately with ownership and sharing changes; removed files and stale unlinked uploads follow the retention rules without affecting saved attachments.
 
 To generate immutable documents from confirmed records using a template, see [Template printing and document generation](template-print.md).

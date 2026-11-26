@@ -103,6 +103,8 @@ Duplicate requests, changed content under the same request key and identical att
 
 The Agent should automatically check mail synchronization, matching, unauthorized access, deduplication, and quotation attachment consistency, and report the actual results. External OAuth, IMAP/SMTP connections and actual recipient receipt require your own authorized test mailbox; local validation does not establish those results.
 
+## Summary and next steps
+
 **Done when**: Synchronization works with your own authorized test mailbox, and customer mail matches contact addresses only within the current user’s mailbox. The test recipient has actually received the quotation email with the correct attachment. Access after customer handover has been checked, and logs distinguish provider acceptance, failure, and unknown outcomes.
 
 Return to [Topic tutorials](index.md) to explore other Core capabilities, or review [Template printing and document generation](template-print.md) for how formal quotation files are generated and snapshotted.

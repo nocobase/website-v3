@@ -74,6 +74,8 @@ metaDescription: 在 CRM 中接入知识库，管理产品手册、报价政策�
 
 版本并发冲突（携带过期 `expectedVersion` 提交更新）以及越权读取受限文档的接口校验，由示例的[自动化集成测试](https://github.com/nocobase/doc-demo-crm/blob/main/tests/server/crm-assistant.test.ts)在隔离环境中验证。本专题使用内置文本检索；如需为扫描件或语义问答配置向量索引，请参阅[知识库插件文档](../../core/using-plugins/agents-and-knowledge/knowledge.md#搜索与语义索引)。
 
+## 小结与下一步
+
 **完成的标志**：产品知识库已在导航中可用，销售主管能维护文档并审阅发布新版本，销售只能浏览、检索和提交建议，单篇受限文档在目录树和搜索结果中均对未授权销售不可见。
 
 产品资料准备就绪后，继续查看[接入业务 Agent](business-agent.md)，让客户详情页的销售助手结合这些知识与客户记录生成可核对的跟进草稿。

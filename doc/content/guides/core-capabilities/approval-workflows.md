@@ -97,6 +97,8 @@ Have the Agent test reviewer-role revocation and customer transfer with isolated
 
 The Agent should automatically check duplicate submissions, unauthorized actions, and locked quotes in a separate database and report the actual results. In the browser, check that tasks and quotes refresh together and failed reads can recover.
 
+## Summary and next steps
+
 **Done when**: Discount thresholds, approval locking, return and resubmission, and access checks follow the rules above, with review tasks and quote states kept in sync.
 
 To generate a formal document from a confirmed quote, see [Template printing and document generation](template-print.md).

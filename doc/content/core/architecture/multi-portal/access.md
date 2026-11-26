@@ -8,7 +8,7 @@ metaDescription: Ask an Agent to integrate portal permissions, configure portal 
 
 ## Have the Agent implement and configure portal permissions
 
-In an application with a portal already created and installed, ask an Agent to implement portal access control using the existing permission system. This example uses Portal 1 and its Overview and Examples pages from [Develop a portal](develop.md). Give the development Agent in your application project the following request and identify two ordinary test accounts:
+In an application with a portal already created and installed, ask an Agent to implement portal access control using the existing permission system. This example uses Portal 1 and its Overview and Examples pages from [Develop a portal](develop/pages-and-navigation.md). Give the development Agent in your application project the following request and identify two ordinary test accounts:
 
 ```prompt
 Implement portal access control using this application's existing permission system. Add a portal permission section to the role editor, listing portals and pages with an entry switch for each portal and individual page checkboxes. Retain page selections when a portal is disabled, leave new pages ungranted, and preserve the other permission settings.

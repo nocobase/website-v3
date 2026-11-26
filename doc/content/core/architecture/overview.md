@@ -13,7 +13,7 @@ An app can offer portals for reagent, equipment and asset management. Each porta
 
 A portal is an entry point within an app, not an independent app or a tenant isolation boundary. Permissions still control access to business data. An app can use multiple database connections; portals do not have to store all their data in one database. Multi-portal management, the portal generator and the multi-portal app template are commercial capabilities.
 
-Start with [Create a multi-portal app](multi-portal/create-app.md), then follow the guides for portal development, access and management.
+Start with [Create a multi-portal app](multi-portal/quickstart.md), then follow the guides for portal development, access and management.
 
 ## Multi-app: independent operation, unified access
 

@@ -7,7 +7,7 @@ metaDescription: Find, install, open and uninstall portals, check operation stat
 
 Sign in as an administrator with `unrestricted` access and open **System settings → Portal management**.
 
-The list shows registered portals and their installation status. Management operates on code already included in the app; it does not download portals from npm. To add one, follow [Develop a portal](develop.md), register it and restart development. Production requires a rebuild and deployment.
+The list shows registered portals and their installation status. Management operates on code already included in the app; it does not download portals from npm. To add one, follow [Develop a portal](develop/pages-and-navigation.md), register it and restart development. Production requires a rebuild and deployment.
 
 ![Portal management showing names, descriptions, installation status and action menus](/assets/core/multi-portal/manage/list.png)
 

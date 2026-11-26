@@ -6,7 +6,7 @@ title: Overview
 
 Use multiple applications when business systems need independent development, releases and maintenance, while employees need a shared entry point and identity. For example, customer and inventory systems can keep separate data and release schedules, with both available from Main's workbench.
 
-For different pages, navigation and user entry points within one application, consider [multiple portals](../multi-portal/create-app.md). Multiple applications require separate instances, databases and operational maintenance.
+For different pages, navigation and user entry points within one application, consider [multiple portals](../multi-portal/quickstart.md). Multiple applications require separate instances, databases and operational maintenance.
 
 > [!NOTE]
 > These guides describe the new multi-app deployment management. Confirm that your package source provides compatible `multi-app` and `sub-app` templates and the project deployment CLI. Source candidates are not necessarily published packages. The former Releases configuration and workflow do not apply here.

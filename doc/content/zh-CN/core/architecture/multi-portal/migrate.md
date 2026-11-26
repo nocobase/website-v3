@@ -60,7 +60,7 @@ pnpm install
 
 ### 改用页面清单和 definePortalRoutes
 
-1. 新建 `portal-routes.ts`，把原来的路由名、相对路径和标题移进去，写法见[页面与导航](develop/pages-and-navigation.md#在页面清单中声明页面)。
+1. 新建 `portal-routes.ts`，把原来的路由名、相对路径和标题移进去，写法见[定义页面路由](develop.md#定义页面路由)。
 2. `client/routes.ts` 改用 `definePortalRoutes({ manifest, routes: portalRoutes, layout, components })`，页面组件按路由名放进 `components`。
 3. 服务端注册门户时，传入 `routeManifest: definePortalRouteManifest({ portal, routes: portalRoutes })`。
 4. 页面组件去掉外层的 `<Layout>`，只渲染自己的内容。
@@ -79,7 +79,7 @@ pnpm install
 <PortalLayout logo={<Logo title={title} />} sidebar={navigation} switcher={<PortalSwitcher />} />
 ```
 
-原来多个页面共用的包装内容移到这个布局中。语言文件中只保留页面文案；Logo 需要显示门户名称时，用 `usePortalText()` 读取。其他属性见[门户布局](develop/layout.md)。
+原来多个页面共用的包装内容移到这个布局中。语言文件中只保留页面文案；Logo 需要显示门户名称时，用 `usePortalText()` 读取。其他属性见[调整门户布局](develop.md#调整门户布局)。
 
 ### 更新链接和接口
 

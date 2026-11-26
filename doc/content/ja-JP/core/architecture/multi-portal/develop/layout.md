@@ -1,4 +1,0 @@
----
-title: ポータルレイアウト
-status: placeholder
----

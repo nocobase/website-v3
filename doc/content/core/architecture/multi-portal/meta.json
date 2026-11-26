@@ -10,7 +10,7 @@
       "path": "enable-in-existing-app"
     },
     {
-      "type": "folder",
+      "type": "page",
       "path": "develop"
     },
     {

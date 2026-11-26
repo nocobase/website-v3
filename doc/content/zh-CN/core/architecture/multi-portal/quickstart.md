@@ -93,7 +93,7 @@ PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/portal@beta inventory \
   --icon Warehouse
 ```
 
-生成器会在应用中新增 `packages/app-portal-inventory/`，安装依赖，并把门户注册到应用的 Client 和 Server。门户的名称、说明和图标写在这个包的 `package.json` 中，之后可以直接修改。生成器不会启动服务或修改数据库，也不会创建业务表。
+生成器会在应用中新增 `packages/app-portal-inventory/`，安装依赖，并把门户注册到应用的 Client 和 Server。门户的名称、说明和图标写在这个包的 `package.json` 中，之后可以直接修改。生成器不会启动服务或修改数据库，也不会创建业务表。生成的门户自带一个示例接口 `GET /api/portals/inventory/examples`，首页会调用它。
 
 门户地址为 `/portals/inventory`。在命令末尾加上 `--dry-run --json` 可以先预览生成结果，不写入文件；其他参数见 `pnpm create @nocobase/portal@beta --help`。
 
@@ -121,7 +121,6 @@ pnpm dev
 
 ## 下一步
 
-- 给门户添加页面和导航，见[页面与导航](develop/pages-and-navigation.md)；调整 Logo、导航和头部按钮，见[门户布局](develop/layout.md)。
-- 保存和读取业务数据，见[数据与接口](develop/data-and-apis.md)。
+- 给门户添加页面和导航、调整布局、定义接口并在页面中调用，见[开发门户](develop.md)。
 - 让其他成员访问门户，见[门户权限](access.md)。
 - 卸载、重试或随应用升级门户，见[管理门户](manage.md)。

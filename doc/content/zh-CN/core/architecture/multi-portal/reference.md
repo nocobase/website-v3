@@ -1,6 +1,6 @@
 ---
 title: 门户开发参考
-metaDescription: 门户清单字段、生成命令参数、页面清单字段、PortalLayout 属性、共用组件与 Hook 以及门户接口。
+metaDescription: 门户清单字段、生成命令参数、页面清单字段、PortalLayout 属性、共用组件与 Hook、接口以及门户接口的工具。
 ---
 
 ## 门户清单
@@ -113,4 +113,19 @@ metaDescription: 门户清单字段、生成命令参数、页面清单字段、
 | `GET /api/portalCenter/myPortals` | 当前成员可以进入的门户列表（`portalsListMyPortals`）。每项的 `entry` 是门户地址，`href` 是成员可进入的页面 |
 | `portalCenter` 管理接口 | 门户管理使用，需要用户会话和对应的查看、安装、卸载权限。具体请求格式以应用的 API 文档为准 |
 
-服务端业务接口检查门户访问时，使用 `portalCenterServiceToken` 解析出的服务调用 `requirePortalAccess(authz, portalId)`，见[数据与接口](develop/data-and-apis.md#检查访问权限)。
+| `/api/portals/<key>/…` | 门户自己的接口，由 `definePortalApiRoutes` 定义。依次检查登录（`401`，`PORTAL_AUTHENTICATION_REQUIRED`）、门户已安装（`404`，`PORTAL_NOT_AVAILABLE`）和门户访问权限（`403`，`PORTAL_ACCESS_DENIED`）；门户未定义的路径返回 `404`，`ROUTE_NOT_FOUND` |
+
+### 门户接口的工具
+
+| 名称 | 导入自 | 说明 |
+| --- | --- | --- |
+| `definePortalApiRoutes({ manifest, createRouter })` | `server/http` | 定义门户接口，返回值加入服务端插件的 `routes`。`createRouter` 返回 `Hono<PortalApiEnv>`，路径相对 `/api/portals/<key>`；处理函数中 `c.var.portal` 为当前门户 |
+| `placeActions(manifest, resources)` | `portalCenterServiceToken` 解析出的服务 | 把业务资源放进角色的 **多门户** 页签 |
+| `placePortalActions(manifest, resources)` | `client/routes` | 前端对应的放置，加入 Client 插件的 `serviceProviders` |
+| `usePortalApi(manifest?)` | `client/layout` | 返回 `request`、`stream` 和 `portalQueryKey(...parts)`，路径相对 `/api/portals/<key>`；不支持 `repository()` |
+| `isPortalAccessFailure(error)` | `client/layout` | 判断错误是否为分发入口的拒绝 |
+| `requirePortalAccess(context, portalId)` | `portalCenterServiceToken` 解析出的服务 | 供 `/api/portals/<key>` 以外、只服务某个门户的接口检查门户访问和安装状态 |
+
+- 导入路径均以 `@nocobase/app-plugin-multi-portal/` 开头。
+- `operationId` 以门户 key 的驼峰形式开头；门户自定义错误使用 `domain` `portalCenter` 和不冲突的原因码。
+- 写法见[定义门户接口](develop.md#定义门户接口)和[在页面中调用接口](develop.md#在页面中调用接口)。

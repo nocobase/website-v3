@@ -1,4 +1,0 @@
----
-title: ページとナビゲーション
-status: placeholder
----

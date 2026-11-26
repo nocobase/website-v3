@@ -1,6 +1,6 @@
 ---
 title: 开发门户
-metaDescription: 了解门户的目录结构，用 definePortalRoutes 定义页面和授权，用 definePortalApiRoutes 定义门户接口，并在页面中调用。
+metaDescription: 了解门户的目录结构，用 definePortalRoutes 声明页面、授权和导航，调整门户布局，用 definePortalApiRoutes 定义门户接口并在页面中调用。
 ---
 
 下面以[快速开始](quickstart.md)中生成的库存门户（`@nocobase/app-portal-inventory`，地址 `/portals/inventory`）为例，给它加一个物料页面和对应的接口。门户是应用中的本地包，随应用一起构建和部署；页面沿用 shadcn/ui 组件约定，优先复用应用已有的组件和 NocoBase UI Library。
@@ -12,11 +12,10 @@ metaDescription: 了解门户的目录结构，用 definePortalRoutes 定义页�
 ```text
 packages/app-portal-inventory/
 ├── package.json                 # 包信息，以及门户的名称、说明、图标和地址
-├── portal-routes.ts             # 页面清单：前端路由和服务端授权项共用
 ├── client/
 │   ├── plugin.ts                # 注册页面路由和语言资源
-│   ├── routes.ts                # definePortalRoutes：组合页面清单、布局和页面组件
-│   ├── layout.tsx               # PortalLayout：Logo、导航、切换器、头部按钮
+│   ├── routes.ts                # definePortalRoutes：门户的页面、授权和导航
+│   ├── layout.tsx               # PortalLayout：Logo、切换器、头部按钮
 │   ├── assets/logo.tsx          # 占位 Logo，替换为自己的图形
 │   ├── pages/overview.tsx       # 首页，调用示例接口
 │   └── locales/index.ts         # 页面文案的翻译
@@ -25,103 +24,124 @@ packages/app-portal-inventory/
 │   ├── routes.ts                # definePortalApiRoutes：门户接口，含示例接口
 │   └── providers/
 │       ├── index.ts             # 服务提供者列表
-│       └── portal-provider.ts   # 向多门户注册门户和页面授权项，默认未安装
+│       └── portal-provider.ts   # 向多门户注册门户，默认未安装
 ├── database/main/
 │   ├── migrations/              # 门户自己的表结构迁移，初始为空
 │   └── seeds/                   # 门户安装状态的初始化记录
 └── tests/server/routes.test.ts  # 示例接口的服务端测试
 ```
 
-门户按三条线组织：
+日常开发主要改三处：
 
-- **页面**：`portal-routes.ts` 列出页面，`client/routes.ts` 用 `definePortalRoutes` 把页面放进门户的布局，`client/layout.tsx` 决定门户长什么样。
-- **接口**：`server/routes.ts` 用 `definePortalApiRoutes` 定义接口，多门户把它们统一挂在 `/api/portals/inventory` 下；页面通过 `usePortalApi()` 调用。
-- **注册**：`package.json` 描述门户，`server/providers/portal-provider.ts` 把门户和页面授权项注册到多门户。生成器已经写好，通常不需要修改。
+- **页面**：`client/routes.ts` 声明门户有哪些页面、谁能打开、哪些进入菜单，`client/pages/` 放页面组件。
+- **外观**：`client/layout.tsx` 决定门户的 Logo、导航位置和头部按钮。
+- **接口**：`server/routes.ts` 定义门户接口，多门户把它们统一挂在 `/api/portals/inventory` 下，页面通过 `usePortalApi()` 调用。
 
-生成的门户自带一个示例接口 `GET /api/portals/inventory/examples` 和调用它的首页，可以对照着阅读，再替换成自己的业务。
+`package.json` 描述门户，`server/providers/portal-provider.ts` 用它把门户注册到多门户，生成器已经写好，通常不需要修改。生成的门户自带示例接口 `GET /api/portals/inventory/examples` 和调用它的首页，可以对照阅读，再替换成自己的业务。
 
 ## 定义页面路由
 
-### 页面清单（portal-routes.ts）
+### 用 definePortalRoutes 声明页面
 
-页面清单列出门户有哪些页面：
-
-```ts
-import type { PortalRouteDeclaration } from '@nocobase/app-plugin-multi-portal/shared/routes';
-
-export const portalRoutes: readonly PortalRouteDeclaration[] = [
-  { name: 'overview', path: '', breadcrumb: { title: 'overview' } },
-];
-```
-
-- `name` 是页面名，在门户内不能重复。
-- `path` 是相对门户地址的路径，`''` 是门户首页。
-- `breadcrumb.title` 是标题的翻译键，显示在门户头部，也是权限配置中这个页面的名称。
-
-清单写在单独的文件中，是因为前端和服务端都要读它：前端据此生成路由，服务端据此生成页面授权项，显示在 **角色与权限 → 多门户** 中。新增页面只改这一处，页面和授权项就能保持一致。
-
-### 用 definePortalRoutes 注册
-
-`client/routes.ts` 把页面清单、布局和页面组件组合起来：
+门户的页面写在 `client/routes.ts` 中，写法与应用的 [`defineAppRoutes`](../../developing-apps/pages-routes-and-navigation.md) 相同：
 
 ```ts
 import type { AppClientRouteContribution } from '@nocobase/app-client/plugins';
 import { definePortalRoutes } from '@nocobase/app-plugin-multi-portal/client/routes';
+import { ChartNoAxesCombined } from 'lucide-react';
 import manifest from '../package.json' with { type: 'json' };
-import { portalRoutes } from '../portal-routes.js';
 
 const routes: AppClientRouteContribution = definePortalRoutes({
   manifest,
   layout: () => import('./layout.js'),
-  routes: portalRoutes,
-  components: { overview: () => import('./pages/overview.js') },
+  routes: [
+    {
+      name: 'overview',
+      path: '',
+      navigation: { title: 'overview', icon: ChartNoAxesCombined },
+      componentLoader: () => import('./pages/overview.js'),
+    },
+  ],
 });
 export default routes;
 ```
 
-`components` 按页面名提供页面组件；清单中的页面找不到组件时，应用启动会报错。返回值交给 `client/plugin.ts` 中的 `routes`。
+- `manifest` 是门户的 `package.json`，提供门户的 key、名称和图标。
+- `layout` 是门户布局，省略时使用插件的默认 `PortalLayout`。
+- `routes` 中的 `name`、`path`、`children`、`componentLoader`、`navigation`、`breadcrumb` 与 `defineAppRoutes` 含义相同。
 
-`definePortalRoutes` 生成的路由结构如下：
+和应用页面相比，门户页面有三点不同：
 
-```text
-/portals/inventory          门户根路由
-  · 需要登录，不使用应用的侧栏和头部，改用门户自己的布局
-  · 检查门户总控：没有门户访问权限时整个门户进不去
-  · 首页显示在这个地址上
-  └─ materials              清单中的其他页面，作为子路由显示在布局的内容区
-     · 检查这个页面的授权，或“所有页面”授权，满足其一即可
+- **路径相对门户地址**：`''` 是门户首页 `/portals/inventory`，`materials` 是 `/portals/inventory/materials`。不要写 `/portals/inventory`，也不要写 `/main` 等应用基础路径。
+- **不用写 `auth`**：门户页面都要求登录。
+- **页面授权自动生成**：不用写 `authz: { resource: { type: 'page', id } }`，见[页面授权](#页面授权)。
+
+`definePortalRoutes` 生成门户根路由 `/portals/inventory`，它不使用应用的侧栏和头部，改用门户自己的布局；其他页面作为子路由显示在布局的内容区。页面组件只渲染自己的内容，不需要包一层布局，也不需要自己检查门户和页面权限。
+
+后端只用 `package.json` 注册门户，不需要页面列表：
+
+```ts
+// server/providers/portal-provider.ts
+register({ ...portalFromPackage(manifest), defaultInstalled: false });
 ```
 
-因此页面组件只渲染自己的内容，不需要再包一层布局，也不需要自己检查门户和页面权限。
+### 子页面与路径参数
 
-清单中的路径如果以 `/` 开头，或包含 `..`、`?query`、`#`、`*`，或页面名重复，应用启动时就会报错。参数加 `?` 表示可选，如 `stock/:warehouse?` 会同时注册 `stock/:warehouse` 和 `stock`。
+子页面写在 `children` 中，路径相对父页面：
+
+```ts
+{
+  name: 'materials',
+  path: 'materials',
+  navigation: { title: 'materials', icon: Package },
+  componentLoader: () => import('./pages/materials/list.js'),
+  children: [
+    {
+      name: 'materialDetail',
+      path: ':id',                        // /portals/inventory/materials/:id
+      breadcrumb: { title: 'materialDetail' },
+      componentLoader: () => import('./pages/materials/detail.js'),
+    },
+  ],
+},
+```
+
+参数加 `?` 表示可选，如 `stock/:warehouse?` 会同时注册 `stock/:warehouse` 和 `stock`。
+
+路径以 `/` 开头、包含 `..`、`?query`、`#` 或 `*`，页面名重复，或使用保留名 `portal` 时，应用启动会报错。
 
 ### 页面授权
 
-页面授权项由清单自动生成，不需要另外注册：
+每个页面默认生成一个授权项，显示在 **角色与权限 → 多门户** 中，名称取自 `navigation.title`，没有时取 `breadcrumb.title`。需要调整时，在路由上声明：
 
 | 写法 | 在权限配置中的效果 |
 | --- | --- |
-| 顶层页面 | 单独一项，名称取自 `breadcrumb.title` |
-| `group: 'materials'` | 使用同一 `group` 的页面合为一项，一起开放 |
+| 默认 | 顶层页面单独一项，授权键为 `name` |
+| `group: 'stock'` | 使用同一 `group` 的页面合为一项，一起开放 |
 | `children` 中的子页面 | 默认跟随父页面；加上 `access: 'own'` 后单独一项，并且还要能打开所有上级页面 |
-| `authz` | 使用自定义检查，不出现在权限配置中 |
+| `authz: 'skip'` | 能进入门户就能打开，不出现在权限配置中 |
 
-管理员勾选 **所有页面** 时，以上生成的授权项全部开放，包括以后新增的页面；`authz` 和业务权限不受影响。
+例如下面两个页面共用一个授权项，编辑页单独授权：
 
-授权项以页面名或 `group` 为键保存在角色中。门户发布后，修改页面名或 `group` 会让角色原来的勾选失效；需要改名时，把原来的值写成 `group`。修改门户地址不影响已有授权。管理员如何配置，见[门户权限](access.md)。
+```ts
+{ name: 'stock', path: 'stock/:warehouse?', group: 'stock', /* … */ },
+{ name: 'stockHistory', path: 'stock-history', group: 'stock', /* … */ },
+{ name: 'materialEdit', path: ':id/edit', access: 'own', /* materials 的子页面 */ },
+```
 
-## 新增页面与导航
+成员要打开门户中的页面，需要同时满足：
 
-给库存门户加一个 **Materials**（物料）页面，分四步。
+1. 角色开启了这个门户的门户访问。
+2. 至少有一个页面能打开。开启了门户访问、但没有任何可打开的页面时，整个门户都进不去，也不会出现在我的门户中。
+3. 有这个页面的授权，或者勾选了 **所有页面**。
 
-1. 在 `portal-routes.ts` 中声明页面：
+授权项以 `name` 或 `group` 为键保存在角色中。门户发布后，修改 `name` 或 `group` 会让角色原来的勾选失效；需要改名时，把原来的值写成 `group`。修改门户地址不影响已有授权。管理员如何配置，见[门户权限](access.md)。
 
-   ```ts
-   { name: 'materials', path: 'materials', breadcrumb: { title: 'materials' } },
-   ```
+## 新增页面
 
-2. 新建 `client/pages/materials.tsx`，默认导出页面组件。页面标题由布局显示，页面中不用重复；页面内容在[在页面中调用接口](#在页面中调用接口)中补全：
+给库存门户加一个 **Materials**（物料）页面：
+
+1. 新建 `client/pages/materials.tsx`，默认导出页面组件。页面标题由布局显示，页面中不用重复；内容在[在页面中调用接口](#在页面中调用接口)中补全：
 
    ```tsx
    import type { ReactElement } from 'react';
@@ -131,34 +151,44 @@ export default routes;
    }
    ```
 
-3. 在 `client/routes.ts` 的 `components` 中加上 `materials: () => import('./pages/materials.js')`。
+2. 在 `client/routes.ts` 的 `routes` 中加上路由：
 
-4. 在 `client/locales/index.ts` 中为各语言加上 `materials` 文案，例如英文 `'Materials'`；缺少翻译时显示英文。
+   ```ts
+   {
+     name: 'materials',
+     path: 'materials',
+     navigation: { title: 'materials', icon: Package },
+     componentLoader: () => import('./pages/materials.js'),
+   },
+   ```
 
-然后在 `client/layout.tsx` 的 `sidebar` 中加入导航入口：
+3. 在 `client/locales/index.ts` 中为各语言加上 `materials` 文案，例如英文 `'Materials'`；缺少翻译时显示英文。
+
+重启应用后，门户的菜单中出现 **Materials**，点击能打开页面；直接打开 `/main/portals/inventory/materials` 并刷新也能显示，应用基础路径不是 `/main` 时换成实际路径。**角色与权限 → 多门户** 中会出现这个页面。
+
+## 导航与门户布局
+
+### 由路由生成导航
+
+写了 `navigation` 的页面会按 `routes` 中的顺序进入门户的菜单，没有 `navigation` 的页面（如详情页）不进入菜单。成员没有权限打开的页面，菜单项会自动隐藏。
+
+菜单默认显示在左侧侧栏：桌面端可收起，手机上收进抽屉。改为头部横向导航时，在 `client/layout.tsx` 中设置：
 
 ```tsx
-import { ChartNoAxesCombined, Package } from 'lucide-react';
-
-sidebar={[
-  { path: portal.entry, title: t('overview'), icon: ChartNoAxesCombined, end: true },
-  { path: `${portal.entry}/materials`, title: t('materials'), icon: Package },
-]}
+<PortalLayout logo={<Logo title={title} />} navigation='top' />
 ```
 
-`portal.entry` 是门户地址 `/portals/inventory`，不要写入 `/main` 等应用基础路径；`end: true` 表示只在地址完全一致时高亮。成员没有权限打开的页面，菜单项会自动隐藏。
+需要完全自定义菜单时，传入 `sidebar` 或 `topNav`，菜单项为 `{ path, title, icon?, end? }`，`path` 写完整的门户路径，如 `` `${portal.entry}/materials` ``。
 
-重启应用后，点击 **Materials** 能打开页面；直接打开 `/main/portals/inventory/materials` 并刷新也能显示，应用基础路径不是 `/main` 时换成实际路径。**角色与权限 → 多门户** 中会出现这个页面。
-
-## 调整门户布局
+### 调整 PortalLayout
 
 `client/layout.tsx` 中的 `PortalLayout` 决定门户的外观，修改一个门户不会影响应用和其他门户：
 
 | 属性 | 作用 |
 | --- | --- |
 | `logo` | 门户的 Logo，显示在侧栏顶部，没有侧栏时显示在头部。门户不使用应用的 Logo |
-| `sidebar` | 左侧菜单 `{ path, title, icon?, end? }`。桌面端可收起，手机上收进抽屉 |
-| `topNav` | 头部横向导航，菜单项写法同 `sidebar`，与 `sidebar` 二选一 |
+| `navigation` | 菜单位置：省略时为侧栏，`'top'` 为头部横向导航 |
+| `sidebar`、`topNav` | 自定义菜单，替换由路由生成的菜单 |
 | `switcher` | 门户切换器，通常为 `<PortalSwitcher />`，列出成员的门户并提供 **返回我的门户** |
 | `headerActions` | 应用的头部按钮（站内信、Agent 等）：省略时全部显示，`{ include: [...] }`、`{ exclude: [...] }` 或 `false` |
 | `userMenu` | 头像菜单，默认包含头像、语言切换、个人设置和退出登录；`false` 不显示 |
@@ -169,14 +199,7 @@ sidebar={[
 面向外部客户的门户，常改为顶部导航并只保留头像菜单：
 
 ```tsx
-<PortalLayout
-  logo={<Logo title={title} />}
-  topNav={[
-    { path: portal.entry, title: t('overview'), end: true },
-    { path: `${portal.entry}/materials`, title: t('materials') },
-  ]}
-  headerActions={false}
-/>
+<PortalLayout logo={<Logo title={title} />} navigation='top' headerActions={false} />
 ```
 
 让门户所有页面使用同一个内容容器时，在 `children` 中用 `PortalOutlet` 包一层；只调整某个页面时，把容器写在那个页面中：
@@ -184,18 +207,18 @@ sidebar={[
 ```tsx
 import { PortalOutlet } from '@nocobase/app-plugin-multi-portal/client/layout';
 
-<PortalLayout logo={<Logo title={title} />} sidebar={navigation}>
+<PortalLayout logo={<Logo title={title} />} switcher={<PortalSwitcher />}>
   <div className='mx-auto w-full max-w-5xl'>
     <PortalOutlet />
   </div>
 </PortalLayout>
 ```
 
-`PortalLayout` 没有单独的布局类型选项，不同的外观都由这些属性组合而成。门户中新增的 Tailwind 类不生效时，检查应用的样式扫描是否包含 `packages/` 下的门户目录。
+Logo 需要显示门户名称时，用 `usePortalText(usePortal().portal)` 读取当前语言下的名称。门户中新增的 Tailwind 类不生效时，检查应用的样式扫描是否包含 `packages/` 下的门户目录。
 
 ## 定义门户接口
 
-### 接口路径与命名（definePortalApiRoutes）
+### 接口路径与命名
 
 门户的接口写在 `server/routes.ts` 中，用 `definePortalApiRoutes` 定义，并已加入 `server/plugin.ts` 的 `routes`。下面给库存门户加一个物料列表接口：
 
@@ -250,9 +273,9 @@ export default definePortalApiRoutes({
 
 `/api/portals` 由多门户专用，其他插件不能在它下面注册接口；多门户自己的接口在 `/api/portalCenter` 下。
 
-### 分发入口的检查
+### 访问检查与错误
 
-请求到达门户接口之前，多门户的分发入口按顺序检查：
+请求到达门户接口之前，多门户按顺序检查：
 
 | 顺序 | 检查 | 不满足时 |
 | --- | --- | --- |
@@ -260,9 +283,9 @@ export default definePortalApiRoutes({
 | 2 | 门户存在且已安装 | `404`，`PORTAL_NOT_AVAILABLE` |
 | 3 | 有门户访问权限；有范围限制的 API 密钥，范围内要包含这个门户 | `403`，`PORTAL_ACCESS_DENIED` |
 
-这三项错误的 `domain` 都是 `portalCenter`。门户没有定义的路径返回 `404` 和 `ROUTE_NOT_FOUND`。
+这三项错误的 `domain` 都是 `portalCenter`。门户没有定义的路径返回 `404` 和 `ROUTE_NOT_FOUND`。页面授权不参与接口的检查。
 
-通过检查后，接口自己还要检查两项：业务操作权限（如上例的 `c.var.authz.require(readMaterials)`），以及数据范围。门户总控只决定能否进入门户，不代替业务权限。
+通过检查后，接口自己还要检查两项：业务操作权限（如上例的 `c.var.authz.require(readMaterials)`），以及数据范围。门户访问只决定能否进入门户，不代替业务权限。
 
 门户接口自己定义的错误，`domain` 使用 `portalCenter`，原因码取一个不会与多门户和其他门户冲突的名称，如 `INVENTORY_MATERIAL_NOT_FOUND`。从其他插件透传的错误保留原来的 `domain` 和原因码。
 
@@ -270,7 +293,7 @@ export default definePortalApiRoutes({
 
 ### 把业务操作放进多门户页签
 
-门户的业务资源和操作照常用 `authz.resourceTypes.add` 注册。再把它们放进 **角色与权限 → 多门户** 中这个门户的分组，显示在页面权限之后；门户总控关闭时一并置灰：
+门户的业务资源和操作照常用 `authz.resourceTypes.add` 注册。再把它们放进 **角色与权限 → 多门户** 中这个门户的分组，显示在页面权限之后：
 
 ```ts
 // 服务端：在服务提供者的 boot() 中
@@ -287,6 +310,8 @@ serviceProviders: [
   placePortalActions(manifest, [{ type: 'warehouse', id: 'warehouse.outbound' }]),
 ],
 ```
+
+门户访问关闭时，这些操作一并置灰。角色从通配授权继承来的操作会标出来源，在这里只读。
 
 放进多门户页签的资源，不要再用 `authz.ui.place` 放到主工作区。门户或资源未注册、同一门户重复放置同一资源时，应用启动报错。
 
@@ -332,7 +357,7 @@ export default function MaterialsPage(): ReactElement {
 
 - **缓存键**：用 `api.portalQueryKey(...)` 生成，结果为 `['portal', <key>, <用户 ID>, ...]`，不同门户、不同用户的缓存不会混用，离开门户时这些缓存会被清除。
 - **门户外调用**：在门户之外的页面使用时，传入门户的 `package.json`：`usePortalApi(manifest)`。
-- **访问失败**：分发入口拒绝请求（未登录、门户未安装、无门户权限）时，`PortalLayout` 统一显示对应提示，页面不需要自己处理；权限变化、门户在其他标签页被安装或卸载、或成员点击重试后，页面会重新加载。页面只需处理自己的业务错误，包括从其他插件透传的未登录错误。
+- **访问失败**：多门户拒绝请求（登录过期、门户未安装、无门户访问权限）时，`PortalLayout` 统一显示对应提示，页面不需要自己处理；权限变化、门户在其他标签页被安装或卸载、或成员点击 **重试** 后，页面会重新加载。页面只需处理自己的业务错误，包括从其他插件透传的未登录错误。
 - **不支持 `repository()`**：调用会直接报错，数据表的通用读写见下一节。
 
 页面还应补充加载、空列表和保存反馈。不要在浏览器中直接连接数据库。
@@ -349,17 +374,16 @@ database: { connections: { main: {} } },
 
 - **表结构**：在 `database/main/migrations/` 中新增迁移，创建门户自己的表，如物料表。同一连接上的多个门户使用不会冲突的表名。迁移在安装门户时执行；门户已安装后，在应用启动或执行 `pnpm nocobase db apply` 时执行新增的部分。
 - **初始数据**：门户运行必需的固定数据写在新的 seed 中，演示数据不要写进 seed。不要修改生成的安装状态 seed，也不要修改已执行过的迁移和 seed。
-- **通用增删改查**：对数据表做通用读写时，继续使用框架的 `defineRepositoryApiRoutes`，地址为 `/api/<表名>/…`，不加门户前缀，由数据表权限控制访问。门户总控不保护这些接口。
+- **通用增删改查**：对数据表做通用读写时，继续使用框架的 `defineRepositoryApiRoutes`，地址为 `/api/<表名>/…`，不加门户前缀，由数据表权限控制访问，不经过门户访问的检查。
 - **其他数据库连接**：先在应用中配置连接和驱动，再在门户中声明同名连接，如 `warehouse: {}`，对应 `database/warehouse/` 下的迁移和 seed，详见[数据库连接](../../framework/database/connections.md)。安装时每个连接的任务都要成功；多个连接之间没有跨库事务，失败后保留执行历史，修复后重试。
 
 一张表只由一个门户负责创建和迁移。其他门户需要这些数据时，调用它公开的服务或接口，并在服务端注册时声明依赖：
 
 ```ts
 register({
-  ...portal,
+  ...portalFromPackage(manifest),
   defaultInstalled: false,
   dependencies: ['@nocobase/app-portal-inventory'],
-  routeManifest: definePortalRouteManifest({ portal, routes: portalRoutes }),
 });
 ```
 
@@ -377,12 +401,12 @@ pnpm openapi:check
 pnpm build
 ```
 
-生成的 `tests/server/routes.test.ts` 覆盖示例接口的四种结果：未登录返回 401，门户未安装返回 404，没有门户权限返回 403，有权限时返回 200；并断言 `findUndeclaredApiRoutes()` 为空。新增接口时按同样方式补充测试，并加上业务权限不足时被拒绝的情况。
+生成的 `tests/server/routes.test.ts` 覆盖示例接口的四种结果：未登录返回 401，门户未安装返回 404，没有门户访问权限返回 403，有权限时返回 200；并断言 `findUndeclaredApiRoutes()` 为空。新增接口时按同样方式补充测试，并加上业务权限不足时被拒绝的情况。
 
 再实际检查：
 
-- 从我的门户和切换器进入门户，导航、直接访问和刷新的结果一致。
-- 分别用管理员、有权限和无权限的账号检查页面和接口；隐藏导航不能代替接口的权限检查。
+- 从我的门户和切换器进入门户，菜单、直接访问和刷新的结果一致。
+- 分别用三类账号检查页面和接口：开放了部分页面的、开启了门户访问但没有开放页面的、关闭了门户访问的。隐藏菜单不能代替接口的权限检查。
 - 在桌面和手机宽度下检查导航、切换器和头部按钮。
 
 门户随应用交付；需要部署包时运行 `pnpm build --tar`，后续步骤见[发布应用版本](../../deployment/publish-app-release.md)。

@@ -58,11 +58,11 @@ pnpm install
 
 已执行过的 seed 不要修改。如果某个已执行的 seed 仍然导入 `portal.ts`，在原路径保留一个兼容文件供它使用。新的 seed 直接读取清单。
 
-### 改用页面清单和 definePortalRoutes
+### 改用 definePortalRoutes
 
-1. 新建 `portal-routes.ts`，把原来的路由名、相对路径和标题移进去，写法见[定义页面路由](develop.md#定义页面路由)。
-2. `client/routes.ts` 改用 `definePortalRoutes({ manifest, routes: portalRoutes, layout, components })`，页面组件按路由名放进 `components`。
-3. 服务端注册门户时，传入 `routeManifest: definePortalRouteManifest({ portal, routes: portalRoutes })`。
+1. `client/routes.ts` 改用 `definePortalRoutes({ manifest, layout, routes })`。路由的路径改为相对门户地址，去掉 `/portals/<门户>` 前缀；每个页面用 `componentLoader` 指定组件，要进入菜单的页面加上 `navigation`。写法见[定义页面路由](develop.md#定义页面路由)。
+2. 门户中如果有 `portal-routes.ts`，把其中的路由合并回 `client/routes.ts`，删除这个文件。
+3. 服务端注册门户时只传门户信息：`register({ ...portalFromPackage(manifest), defaultInstalled: false })`，删除 `routeManifest`、`modules` 和 `definePortalRouteManifest`。
 4. 页面组件去掉外层的 `<Layout>`，只渲染自己的内容。
 
 迁移时保留原来的授权：
@@ -76,10 +76,10 @@ pnpm install
 把 `client/layout.tsx` 改为使用 `@nocobase/app-plugin-multi-portal/client/layout` 中的 `PortalLayout`：
 
 ```tsx
-<PortalLayout logo={<Logo title={title} />} sidebar={navigation} switcher={<PortalSwitcher />} />
+<PortalLayout logo={<Logo title={title} />} switcher={<PortalSwitcher />} />
 ```
 
-原来多个页面共用的包装内容移到这个布局中。语言文件中只保留页面文案；Logo 需要显示门户名称时，用 `usePortalText()` 读取。其他属性见[调整门户布局](develop.md#调整门户布局)。
+菜单由路由的 `navigation` 生成，原来布局中的菜单数组可以删除。原来多个页面共用的包装内容移到这个布局中。语言文件中只保留页面文案；Logo 需要显示门户名称时，用 `usePortalText()` 读取。其他属性见[导航与门户布局](develop.md#导航与门户布局)。
 
 ### 更新链接和接口
 

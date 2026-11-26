@@ -36,7 +36,7 @@ Administrators can adjust assignment rules or restore the defaults in [Agent set
 
 ## Task workflow
 
-Skills define how each stage works and what counts as complete. The Lead Agent plans steps around these requirements, and execution Agents follow them.
+The task’s [workflow](../use/multi-role-workflow.md) determines its steps. In the Standard workflow, the Lead Agent coordinates the stages below.
 
 | Stage | How it progresses | Built-in skills |
 | --- | --- | --- |
@@ -49,7 +49,7 @@ Skills define how each stage works and what counts as complete. The Lead Agent p
 
 The Lead Agent marks a task **Blocked** when it needs a decision and explains the question. When delivery is ready, it marks the task **In review** and attaches a report. Execution Agents do not change task status.
 
-Teams can edit built-in skills or add their own. Skills can apply globally, to a project, or to a repository. See [Skills](../project/skills.md).
+Teams can write their review standards or testing requirements as [skills](../project/skills.md) that tasks in a project or repository can reuse.
 
 ## Parallel tasks
 

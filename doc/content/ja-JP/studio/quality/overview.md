@@ -5,7 +5,9 @@ description: 標準の品質基準でプロジェクトをテストし、レポ�
 
 品質管理は Studio エンタープライズ版（EE）の機能です。明確な品質基準に沿ってプロジェクトをテストします。Agent が実績のあるテストツールで実測し、Studio がテストレポートを生成し、発見事項はフォローアップタスクとして登録され、後続のテストで修正を確認します。エンタープライズ版の入手は[お問い合わせください](https://www.nocobase.com/ja-JP/contact/)。
 
-![品質テストの全体像](/assets/studio/quality/quality-flow-ja-JP.svg)
+プロジェクトの **Quality** タブで、そのプロジェクトのテストタスク、主要シナリオ、フォローアップ、指標を確認できます。実行権限があれば **Run test** で開始できます。プロジェクトを切り替える場合はサイドバーの **Quality** を開きます。
+
+![品質テストの全体像](https://static-docs.nocobase.com/studio-quality-flow-ja-JP-20261126-462d71cc3d.svg)
 
 ## 主な特長
 

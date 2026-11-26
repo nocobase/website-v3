@@ -3,9 +3,9 @@ title: Quality settings
 description: Configure each test type, dimensions, and project standards, and view core scenarios.
 ---
 
-Project managers configure tests under **Quality › Settings**. First confirm the project lead, repository, Agent, and runtime are available.
+Open the project’s **Quality › Settings** tab to configure test triggers, owners, and dimensions. You need permission to manage quality settings.
 
-![Configure triggers, dimensions, and Skills](https://static-docs.nocobase.com/studio-en-quality-settings-20261111-normal-2x.webp)
+![Select an owner for automatic daily tests](https://static-docs.nocobase.com/studio-en-quality-20261126-038f8c97d6.webp)
 
 ## Settings by test type
 
@@ -16,7 +16,9 @@ Project managers configure tests under **Quality › Settings**. First confirm t
 | Project | No automatic trigger, weekly or monthly, the weekday or date, the run time, and which dimensions it includes |
 | Custom | The dimensions selected by default, which can still be changed when starting a test |
 
-New projects have no automatic triggers. Scheduled tests run as the project lead. If the project has no lead, or the lead's account is disabled, cannot see the project, or lacks permission to create tasks and start quality tests, scheduled tests are skipped and the quality overview asks you to set a project lead.
+Automatic tests are off for new projects. After enabling a trigger, select an **Owner** in the same row and save. The default is the project lead. You can choose another member who can access the project, create tasks, and run quality tests. A custom test belongs to the person who starts it.
+
+If the owner is deactivated or loses permission, automatic runs pause for that test type. The quality overview shows why and links to the owner setting.
 
 ## Scenario language
 
@@ -32,7 +34,7 @@ New tests use an updated Skill version. Existing tests keep the version frozen a
 
 ## Adjust project standards
 
-Each dimension's checking methods and pass criteria are written in the Skill it is bound to. To adjust a standard, edit that Skill in the skill library, or bind the dimension to a different Skill.
+To change a dimension’s standards, create a skill with your team’s rules and select it in the dimension settings. The skills supplied by the quality plugin are read-only.
 
 For example, the performance dimension's budgets live in its Skill's `budgets.json`, where API P95 response time defaults to at most 500 ms. Change it to 800 ms, and later tests judge against 800 ms.
 

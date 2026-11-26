@@ -46,4 +46,4 @@ Studio は **Initialize project** タスクを作成します。コーディネ�
 
 新しいリポジトリの既定値はセルフチェックです。[チェックとプレビュー](ci.md)を確認し、[メンバーを招待します](invite.md)。
 
-プロジェクトのドキュメント、メンバー、既定のスキルは [プロジェクト設定](../project/settings.md) で管理します。モデルは [エージェントの設定](../configure/agents.md) で、実行リソースは [ランタイム](../configure/runtimes.md) で調整します。
+リポジトリとメンバーは[プロジェクト設定](../project/settings.md)、既定のフローと常時読み込むスキルは[ワークフロー](../use/multi-role-workflow.md)で設定します。モデルは [エージェントの設定](../configure/agents.md) で、実行リソースは [ランタイム](../configure/runtimes.md) で調整します。

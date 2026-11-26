@@ -25,8 +25,8 @@ The Agent checks the target environment, asks for missing information, and follo
 
 | Edition | When to use it |
 | --- | --- |
-| Community (CE) | Create tasks, coordinate development with Agents, and have the task owner accept the delivery |
-| Professional | Use the [multi-role workflow](../use/multi-role-workflow.md) to split responsibilities. The requester confirms requirements and accepts delivery. The owner starts development and merges the changes |
+| Community (CE) | Use the Standard or Simple workflow for development. The task owner accepts delivery |
+| Professional | Use the [workflow with a separate requester](../use/multi-role-workflow.md#requester) to split responsibilities. The requester confirms requirements and accepts delivery. The owner starts development and merges the changes |
 | Enterprise (EE) | Includes Professional features and the Quality workspace for core scenarios, scheduled tests, reports, and follow-up work |
 
 [Contact us](https://www.nocobase.com/contact/) for Professional or Enterprise images and licenses.
@@ -66,6 +66,6 @@ After [accepting an invitation and signing in](../join/sign-in.md), members [wal
 | --- | --- |
 | Model responsibilities, execution machines, and shared skills | Agent management: [Agents](../configure/agents.md), [Runtimes](../configure/runtimes.md), and [Skills](../project/skills.md) |
 | Check sources and CI pipelines | [Configure repository checks and CI](../configure/checks.md) |
-| Project information, members, and default skills | Project management: [Project settings](../project/settings.md) |
+| Project information and members | Project management: [Project settings](../project/settings.md) |
 | Git connections and other code platforms | Administration: [Code platforms](../configure/git.md) |
 | Databases, access URLs, and deployment parameters | Reference: [Configuration](../reference/config.md) |

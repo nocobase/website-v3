@@ -67,3 +67,15 @@ description: 连接团队的 Git 平台，配置仓库访问和状态同步。
 代码平台能访问 Studio 的 HTTPS 地址时，可开启 Webhook 接收事件。只有内网或本机地址时关闭 Webhook，Studio 每分钟查询 PR 和检查结果。
 
 连接卡片显示连接状态、仓库数和 Webhook 状态。凭据过期前更新连接；已有仓库的接入见[项目设置](../project/settings.md#接入已有仓库)。
+
+## 通过 SSH 拉取和推送
+
+为 GitLab、Gitee 或 Gitea 配置连接时，可用 SSH 访问仓库。Studio 仍使用平台的 API 凭据来查询合并请求和 CI 检查。
+
+1. 在「设置 › Git」中编辑或新建连接，克隆方式选择「SSH」。
+2. 选择已有密钥，或点「新建密钥」并填写名称。复制公钥，将它添加到代码平台上有目标仓库读写权限的机器人账号。
+3. 保存新连接，Studio 会自动测试 SSH。编辑已有连接时，点「测试 SSH 连接」，通过后保存。原项目无需重新关联仓库。
+
+如果显示「SSH 待测试」，核对公钥所属账号和 SSH 地址，再点「测试 SSH 连接」。测试通过后再重试任务。
+
+![在 Git 设置的「SSH 密钥」页新建共用密钥](https://static-docs.nocobase.com/studio-zh-ssh-20261126-8d7f477b7c.webp)

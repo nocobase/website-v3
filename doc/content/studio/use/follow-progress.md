@@ -44,7 +44,9 @@ Changed requirements affect later work. Say explicitly when you want discussion 
 | View transcript | Read the execution process and result |
 | View full prompt | Check the context the Agent received |
 | Stop | Request that active work stop; existing changes are not undone |
-| Retry | Queue a failed run again |
+| Retry | Start a new run linked from the failed run |
+
+If a run retries automatically, open its history to see the duration, outcome, and failure reason for each attempt. The total includes all attempts.
 
 After stopping, inspect completed work before explaining how to continue. See [Run failures](answer.md#run-failures).
 

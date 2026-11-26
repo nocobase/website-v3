@@ -1,6 +1,6 @@
 ---
 title: "プロジェクト設定"
-description: "メンバー、リポジトリ、実行変数、既定のスキルを管理します。"
+description: "メンバー、リポジトリ、実行変数を管理します。"
 ---
 
 プロジェクト責任者と管理者が設定を変更できます。アクセス管理は **Members**、開発作業の設定は **Settings** を開きます。
@@ -24,7 +24,6 @@ description: "メンバー、リポジトリ、実行変数、既定のスキル
 | General | 名前、説明、既定のコミット名義 |
 | Code repositories | リポジトリ、チェック、ブランチルール、プレビュー |
 | Agent run variables | 開発タスクの環境変数とシークレット |
-| Default skills | プロジェクトやリポジトリの実行で使うスキル |
 
 ![リポジトリごとにチェック、ブランチルール、プレビューを設定する](https://static-docs.nocobase.com/studio-en-project-repositories-20261111-normal-2x.webp)
 
@@ -32,7 +31,7 @@ description: "メンバー、リポジトリ、実行変数、既定のスキル
 
 ### 既定の開発担当者
 
-プロジェクトの一般設定で **Default owner** を選びます。新規タスクの作成者、プロジェクト責任者、指定したメンバーのいずれかに設定できます。タスクの作成時には別の担当者も指定できます。詳しくは[複数の担当者でタスクを進める](../use/multi-role-workflow.md)を参照してください。
+プロジェクトの一般設定で **Default owner** を選びます。新規タスクの作成者、プロジェクト責任者、指定したメンバーのいずれかに設定できます。タスクの作成時には別の担当者も指定できます。詳しくは[ワークフロー](../use/multi-role-workflow.md#requester)を参照してください。
 
 ![新しいタスクの既定の担当者を選ぶ](https://static-docs.nocobase.com/studio-en-multi-role-default-owner-20261119-d223c51313.webp)
 

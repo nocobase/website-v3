@@ -49,6 +49,8 @@ Scenarios and checkpoints have four individual outcomes:
 
 Functional results distinguish scenarios proven by automated tests from those an Agent exercised directly. Select a scenario to see its checkpoints, observations, and evidence.
 
+For project tests and custom tests covering the whole project, open **Scenarios** in the functional report to see which core scenarios were added, changed, or removed. The first test establishes the inventory.
+
 ## Accept or request changes
 
 Accept on the testing task when the scope is complete, the evidence can be checked, and every finding has a follow-up task. If scenarios or evidence are missing, request changes and say what is missing.
@@ -57,7 +59,7 @@ Accepting a testing task accepts the test's conclusions. It does not mean the fo
 
 <h2 id="follow-ups">Follow-up tasks</h2>
 
-Findings are grouped by cause and registered as follow-up tasks linked to their source test and dimension. See them all under **Quality › Follow-ups**.
+Findings are grouped by cause and registered as follow-up tasks linked to their source test and dimension. See them all under **Quality › Follow-ups**. Studio assigns new follow-up tasks to the current owner of the testing task. The owner can start work immediately.
 
 ![Follow-up tasks linked to their source tests](https://static-docs.nocobase.com/studio-en-quality-follow-ups-20261111-normal-2x.webp)
 
@@ -70,7 +72,7 @@ Findings are grouped by cause and registered as follow-up tasks linked to their 
 | Performance | Pages and endpoints over budget, grouped by cause |
 | Dependencies | Vulnerability fixes, grouped by package |
 
-Follow-up tasks use the normal owner, discussion, and acceptance flow. When an open task already covers the same problem, Studio reuses it instead of registering a duplicate.
+When an open task already covers the same problem, Studio reuses it instead of registering a duplicate.
 
 ## Fix and retest
 

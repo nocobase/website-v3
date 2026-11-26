@@ -3,7 +3,7 @@ title: Accept a task
 description: Check the delivery report and working result, then merge or request changes.
 ---
 
-Check the delivery report and test the result against the acceptance criteria. Then merge the PR, complete the task, or request changes. In a [multi-role workflow](multi-role-workflow.md), the requester accepts delivery before the owner merges or completes the task.
+Check the delivery report and test the result against the acceptance criteria. Then merge the PR, complete the task, or request changes. When [two people share responsibility](multi-role-workflow.md#requester), the requester accepts delivery before the owner merges or completes the task.
 
 ## Read the delivery report
 
@@ -58,3 +58,7 @@ The Lead Agent arranges a fix and submits the result again.
 ## Already merged on the code host
 
 Studio reads merges through webhooks or polling. Use **Mark as merged** when a manual record is necessary. Follow later delivery in [Release overview](../release/overview.md).
+
+<h2 id="reopen">Reopen a task</h2>
+
+To continue a completed or canceled task assigned to the Lead Agent, the task owner can mention the Lead Agent in a comment and describe the remaining work. The task returns to **In progress**. Resolve any pending ownership handoff first.

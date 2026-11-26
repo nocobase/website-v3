@@ -27,8 +27,8 @@ Agent 先检查目标环境，询问缺少的信息，再按下方步骤完成�
 
 | 版本 | 适用场景 |
 | --- | --- |
-| 社区版（CE） | 团队提出需求、调度 Agent 开发，由任务负责人验收交付 |
-| 专业版 | 支持[多角色流程](../use/multi-role-workflow.md)。需求负责人确认需求和验收交付，开发负责人启动任务并合并代码 |
+| 社区版（CE） | 使用标准或精简流程开发任务，由任务负责人验收交付 |
+| 专业版 | 可[分别指定需求负责人和开发负责人](../use/multi-role-workflow.md#requester)。需求负责人确认需求和验收交付，开发负责人启动任务并合并代码 |
 | 企业版（EE） | 包含专业版功能，并提供质量管理，可维护核心场景、定期测试、查看报告和跟进问题 |
 
 专业版和企业版的镜像及授权请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取。
@@ -68,6 +68,6 @@ Agent 先检查目标环境，询问缺少的信息，再按下方步骤完成�
 | --- | --- |
 | 模型分工、执行机器、团队技能 | Agent 管理：[Agent 配置](../configure/agents.md)、[运行环境](../configure/runtimes.md)、[技能](../project/skills.md) |
 | 检查来源、CI 流水线 | [配置仓库检查与 CI](../configure/checks.md) |
-| 项目资料、成员、默认技能 | 项目管理：[项目设置](../project/settings.md) |
+| 项目资料与成员 | 项目管理：[项目设置](../project/settings.md) |
 | Git 连接、其他代码平台 | 系统管理：[代码平台](../configure/git.md) |
 | 数据库、访问地址等部署参数 | 参考：[配置项](../reference/config.md) |

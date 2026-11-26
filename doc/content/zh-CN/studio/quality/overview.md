@@ -5,7 +5,9 @@ description: 按内置的质量标准测试每个项目，自动生成报告，�
 
 质量管理是 Studio 企业版（EE）的功能。它按一套明确的质量标准测试项目：由 Agent 调用成熟的测试工具实测，自动生成测试报告，再把发现的问题登记为跟进任务，修复后由后续测试确认。企业版镜像及授权请[联系我们](https://www.nocobase.com/zh-CN/contact/)获取。
 
-![质量测试全景](/assets/studio/quality/quality-flow-zh-CN.svg)
+打开项目的「质量」页签，查看本项目的测试任务、核心场景、跟进任务和指标。有测试权限时，可以直接点「运行测试」。要切换项目，可从侧栏「质量」进入。
+
+![质量测试全景](https://static-docs.nocobase.com/studio-quality-flow-zh-CN-20261126-ffd7b96884.svg)
 
 ## 核心能力
 

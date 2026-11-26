@@ -15,7 +15,7 @@ If a required check fails, open its log. The Lead Agent arranges a fix when auto
 
 ## Arrange review
 
-The default workflow prefers a suitable, available reviewer from another vendor. It can use a model from the same vendor when no suitable alternative is available. Skills such as `studio-review` define review criteria and finding severity. See [Skills](skills.md).
+The Standard workflow prefers a suitable, available reviewer from another vendor. It can use a model from the same vendor when no suitable alternative is available. Skills such as `studio-review` define review criteria and finding severity. See [Skills](skills.md).
 
 The Lead Agent returns blocking findings to the implementer. Unrelated problems should be recorded with their impact and evidence, then scheduled separately.
 
@@ -28,4 +28,4 @@ The Lead Agent returns blocking findings to the implementer. Unrelated problems 
 | Checks are pending, or the PR is conflicted or a draft | Wait or resolve the blocker |
 | The code host rejects the merge | Meet the platform's requirements |
 
-Agents cannot merge PRs. See [Accept a task](../use/accept.md) for the steps. When the requester and owner are different people, the [requester must accept delivery](../use/multi-role-workflow.md) before the owner can merge.
+Agents cannot merge PRs. See [Accept a task](../use/accept.md) for the steps. When the requester and owner are different people, the [requester must accept delivery](../use/multi-role-workflow.md#requester) before the owner can merge.

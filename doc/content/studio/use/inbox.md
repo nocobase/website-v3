@@ -21,7 +21,7 @@ Open the inbox from the icon in the upper-right corner to see messages and pendi
 - **To decide**: items awaiting your decision.
 - **Notifications**: informational updates.
 
-To handle a request, open **To decide**. Under **All types**, select **Requester decisions**. Open a task to [confirm requirements, answer a question, or accept delivery](multi-role-workflow.md).
+To handle a request, open **To decide**. Under **All types**, select **Requester decisions**. Open a task to [confirm requirements, answer a question, or accept delivery](multi-role-workflow.md#requester).
 
 Use <kbd>J</kbd> / <kbd>K</kbd> to move between items. Marking a message read or deleting it affects only your inbox; it does not complete a task.
 

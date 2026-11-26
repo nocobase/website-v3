@@ -21,6 +21,8 @@ States are fixed; projects cannot add, remove, or rename them. People with task 
 
 Use **Start** to hand a backlog task to the Lead Agent. Mentioning an Agent in a comment does not bypass this action.
 
+After a task is completed or canceled, its owner can [reopen it with a comment](../use/accept.md#reopen).
+
 ## Common permissions
 
 | Action | Member default | Admin default |

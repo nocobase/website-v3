@@ -33,21 +33,25 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 #### 确认需求并开始开发
 
+双方在任务详情顶部看到相同的阶段条。右侧「流程」显示这项任务使用的开发流程。需求负责人只读，开发负责人可以切换。
+
 **开发负责人**在「我的任务」中打开分给自己的任务。点「接手」接受指派。
 
-![开发负责人接手采购经理分配的任务](https://static-docs.nocobase.com/studio-zh-multi-role-handoff-20261119-276f41af4b.webp)
+![开发负责人接手采购经理分配的任务](https://static-docs.nocobase.com/studio-role-detail-zh-handoff-20261127-899887eaa8.webp)
 
 **需求负责人**从[收件箱的「需求待办」](inbox.md#收件箱的视图)打开任务，核对描述和验收标准，点「确认需求」。如果在「待规划」阶段修改了描述，需要再次确认。
 
-![需求负责人核对验收标准后，点「确认需求」](https://static-docs.nocobase.com/studio-zh-multi-role-confirm-20261119-90be57b521.webp)
+![需求负责人核对验收标准后，点「确认需求」](https://static-docs.nocobase.com/studio-role-detail-zh-confirm-20261127-ac00ea6422.webp)
 
 **开发负责人**看到需求已确认后，点「开始」。调度 Agent 随即安排开发。
+
+![需求已确认，开发负责人可以开始任务](https://static-docs.nocobase.com/studio-role-detail-zh-start-20261127-2c10954842.webp)
 
 #### 回答开发中的问题
 
 如果 Agent 需要确认“暂停合作前下的订单还能收货吗？”，需求负责人可以在「需求待办」中回复“可以，限制只适用于新建订单”。回答会出现在任务评论里，供 Agent 继续开发。等待回答期间，任务保持「进行中」。
 
-![任务保持「进行中」，需求负责人可以直接回复业务问题](https://static-docs.nocobase.com/studio-zh-multi-role-question-20261119-785f249342.webp)
+![任务保持「进行中」，需求负责人可以直接回复业务问题](https://static-docs.nocobase.com/studio-role-detail-zh-question-20261127-814956b6d4.webp)
 
 开发负责人了解业务规则时，也可以在任务中代为回答。
 
@@ -60,13 +64,17 @@ description: 为项目选择默认流程，为单个任务切换流程，并设�
 
 两项都符合预期，点「通过」。如果旧订单也被拦截，点「退回」，写明哪一步与预期不符，可附上截图。任务回到「进行中」，Agent 根据反馈修改。
 
-![需求负责人选择通过或退回，开发负责人稍后处理合并](https://static-docs.nocobase.com/studio-zh-multi-role-accept-20261119-abf74ac30b.webp)
+![需求负责人选择通过或退回，开发负责人稍后处理合并](https://static-docs.nocobase.com/studio-role-detail-zh-accept-20261127-fe9a4785d2.webp)
+
+此时，开发负责人看到的阶段同样是「待林悦验收」，「验收通过」按钮暂不可用。
+
+![开发负责人等待需求方验收，暂时无法完成任务](https://static-docs.nocobase.com/studio-role-detail-zh-wait-20261127-ce298510b1.webp)
 
 #### 合并代码或完成任务
 
 需求验收通过后，开发负责人核对 [PR 检查与代码评审](../project/checks-and-review.md)。满足合并条件时，点「合并」。没有 PR 的任务可直接点「验收通过」完成。
 
-![无 PR 的任务：需求负责人已通过，开发负责人可以完成任务](https://static-docs.nocobase.com/studio-zh-multi-role-complete-20261119-ede686073d.webp)
+![无 PR 的任务：需求负责人已通过，开发负责人可以完成任务](https://static-docs.nocobase.com/studio-role-detail-zh-complete-20261127-d793a3709b.webp)
 
 如果验收后又关联了新的 PR，需要需求负责人重新验收。开发负责人主动退回修改时，如果改动会影响业务行为，可勾选「需要需求负责人重新验收」。
 

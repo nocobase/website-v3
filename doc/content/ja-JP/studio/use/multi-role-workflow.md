@@ -33,21 +33,25 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 #### 要件を確認して開発を開始する
 
+タスク上部の進捗表示は依頼者と開発担当者で共通です。右側の **Workflow** には、このタスクで使う開発フローが表示されます。依頼者は閲覧でき、開発担当者は切り替えられます。
+
 **開発担当者**は **My issues** で割り当てられたタスクを開きます。**Take over** が表示されたら選択します。
 
-![開発担当者が購買担当者からタスクを引き受ける](https://static-docs.nocobase.com/studio-en-multi-role-handoff-20261119-c9a63c6ba5.webp)
+![開発担当者が購買担当者からタスクを引き受ける](https://static-docs.nocobase.com/studio-role-detail-en-handoff-20261127-a6c026e77e.webp)
 
 **依頼者**は[受信トレイの Requester decisions](inbox.md#受信トレイの表示) からタスクを開きます。説明と受け入れ条件を確認して **Confirm requirements** を選びます。Backlog の段階で説明を変更した場合は、再度確認が必要です。
 
-![依頼者が受け入れ条件を確認して Confirm requirements を選ぶ](https://static-docs.nocobase.com/studio-en-multi-role-confirm-20261119-bbba66e940.webp)
+![依頼者が受け入れ条件を確認して Confirm requirements を選ぶ](https://static-docs.nocobase.com/studio-role-detail-en-confirm-20261127-1699637b44.webp)
 
 確認が済んだら、**開発担当者**が **Start** を選びます。コーディネーターエージェントが開発作業を割り振ります。
+
+![要件の確認が済み、開発担当者がタスクを開始できる状態](https://static-docs.nocobase.com/studio-role-detail-en-start-20261127-446210da08.webp)
 
 #### 開発中の質問に答える
 
 たとえば、エージェントから「取引停止前に発注した商品は入荷処理できますか？」と質問が届きます。依頼者は **Requester decisions** で「はい。制限は新規発注だけに適用します」と回答します。回答はタスクのコメントに記録され、エージェントが作業を続けられます。回答待ちの間もタスクは In progress のままです。
 
-![開発中のタスクで依頼者が業務上の質問に回答する](https://static-docs.nocobase.com/studio-en-multi-role-question-20261119-a7eb6f2a79.webp)
+![開発中のタスクで依頼者が業務上の質問に回答する](https://static-docs.nocobase.com/studio-role-detail-en-question-20261127-4e0a9cde20.webp)
 
 開発担当者がルールを把握している場合は、タスク上で代理回答できます。
 
@@ -60,13 +64,17 @@ description: プロジェクトの既定のフロー、タスクごとの切り�
 
 両方とも期待どおりなら **Accept** を選びます。既存の注文も処理できない場合は **Send back** を選び、どの操作で問題が起きたかを入力します。必要に応じて画像を添付できます。タスクは **In progress** に戻り、エージェントが修正します。
 
-![依頼者が検収を完了するか、修正を依頼する](https://static-docs.nocobase.com/studio-en-multi-role-accept-20261119-30cc443b04.webp)
+![依頼者が検収を完了するか、修正を依頼する](https://static-docs.nocobase.com/studio-role-detail-en-accept-20261127-1787c606d2.webp)
+
+この時点で、開発担当者にも「Awaiting Avery Chen’s acceptance」と表示されます。依頼者の検収が済むまで、開発担当者はタスクを完了できません。
+
+![依頼者の検収を待っている開発担当者のタスク画面](https://static-docs.nocobase.com/studio-role-detail-en-wait-20261127-682c21d17e.webp)
 
 #### マージまたはタスクを完了する
 
 検収後、開発担当者は [PR のチェックとコードレビュー](../project/checks-and-review.md)を確認します。条件を満たしたら **Merge** を選びます。PR のないタスクは成果を確認してそのまま完了できます。
 
-![PR のないタスクでは、依頼者による検収後に開発担当者が完了できる](https://static-docs.nocobase.com/studio-en-multi-role-complete-20261119-233bbcfacd.webp)
+![PR のないタスクでは、依頼者による検収後に開発担当者が完了できる](https://static-docs.nocobase.com/studio-role-detail-en-complete-20261127-0f6274d433.webp)
 
 検収後に別の PR を追加した場合は、依頼者による再検収が必要です。開発担当者が差し戻す際、修正で機能の動きが変わる場合は **Require the requester to accept again** を選びます。
 

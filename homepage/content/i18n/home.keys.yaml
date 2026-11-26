@@ -218,6 +218,7 @@ items:
     en: Watch the Demo
     zh: 观看演示
     where: hero
+    unused: true
   "043":
     en: Get Started
     zh: 开始使用
@@ -1631,3 +1632,7 @@ items:
     en: View Pricing
     zh: 查看版本与价格
     where: start
+  "353":
+    en: Watch the Film
+    zh: 观看介绍
+    where: hero

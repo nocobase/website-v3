@@ -87,5 +87,5 @@ Core、Solution、Studio はすべて自社サーバーで稼働し、コード�
 ## 使い始める
 
 - 自分でアプリを開発する：[最初のアプリを開発する](develop-your-first-app.md)。
-- チームとエージェントによる開発・リリースを体験する：[Studio で協働開発する](collaborate-with-studio.md)。
+- チームとエージェントによる開発・リリースを体験する：[Studio で開発を進める](collaborate-with-studio.md)。
 - NocoBase 2 を使っていた：[NocoBase 2 と NocoBase 3](../faq/from-v2.md)。

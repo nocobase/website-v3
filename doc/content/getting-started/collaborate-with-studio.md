@@ -1,5 +1,5 @@
 ---
-title: Collaborate with Studio
+title: Develop with Studio
 metaDescription: "Submit a request in Studio, follow Agent handoffs and reviews, accept the result, and deliver a release."
 ---
 

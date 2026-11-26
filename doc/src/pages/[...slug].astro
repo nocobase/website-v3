@@ -42,8 +42,9 @@ if (page.placeholder && empty) {
   hint = other ? ui.untranslated.replace('{href}', site.urlOf(other.code, key)).replace('{current}', name(lang)).replace('{language}', name(other.code)) : ui.unwritten;
 }
 
-// Tutorial courses link explicitly to any required follow-up.
-const order = tutorial || page.section === 'legacy' ? [] : section.order.filter(k => !site.page(lang, k)!.placeholder);
+// Keep tutorial navigation within the current series, including its overview.
+const order = (tutorial ? series?.order ?? [] : page.section === 'legacy' ? [] : section.order)
+  .filter(k => !site.page(lang, k)!.placeholder);
 const i = order.indexOf(key);
 const link = (k?: string) => (k ? { href: site.urlOf(lang, k), title: site.page(lang, k)!.label || site.page(lang, k)!.title } : undefined);
 const prev = i > 0 ? link(order[i - 1]) : undefined;

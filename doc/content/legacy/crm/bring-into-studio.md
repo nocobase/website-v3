@@ -6,7 +6,7 @@ lesson: 15
 
 Your CRM already manages customers, follow-ups, opportunities, and quotes. Use Studio to turn sales feedback into issues, let an Agent team implement changes, and accept the results yourself. Continue with the same repository, configuration, and business records.
 
-The following exercises require [opportunities and quotes](../../guides/opportunities-and-quotes.md) and [customer access controls](../../guides/team-permissions.md). Complete those capabilities first if they are missing, and retain existing customers and quotes for regression checks. Studio projects and issues organize development; they are separate from the CRM's business records.
+The following exercises require [opportunities and quotes](../../guides/core-capabilities/data-modeling.md) and [customer access controls](../../guides/core-capabilities/roles-and-permissions.md). Complete those capabilities first if they are missing, and retain existing customers and quotes for regression checks. Studio projects and issues organize development; they are separate from the CRM's business records.
 
 You can explore the interface in the [Studio demo](https://studio.demo.nocobase.com/main). Its **CRM System** illustrates collaboration but does not allow saved changes. Use your own Studio and CRM repository for the exercises; issue identifiers and version numbers in screenshots are examples.
 
@@ -52,4 +52,4 @@ Create a PR for a small change. Verify that its checks refer to the latest commi
 
 **Done when**: Studio is connected to your CRM repository and intended default branch, existing code and data are preserved, and the runtime and Agents are available. The PR has check results for its latest commit and an accessible preview, where the owner has verified customers, quotes, and test-role access.
 
-For the general process, see [Connect an existing project to Studio](../../guides/open-crm-project.md).
+For the general process, see [Connect an existing project](../../guides/team-delivery/open-crm-project.md).

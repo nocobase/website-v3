@@ -1,5 +1,5 @@
 {
-  "title": "チーム連携と継続的デリバリー",
+  "title": "Studio で協働する",
   "pages": [
     {
       "type": "page",
@@ -7,28 +7,23 @@
     },
     {
       "type": "page",
-      "path": "../open-crm-project",
-      "title": "既存プロジェクトを Studio に接続する"
+      "path": "open-crm-project"
     },
     {
       "type": "page",
-      "path": "../business-colleagues",
-      "title": "業務担当者が要件に直接関わる"
+      "path": "business-colleagues"
     },
     {
       "type": "page",
-      "path": "../capture-knowledge",
-      "title": "業務ルールと開発経験を蓄積する"
+      "path": "capture-knowledge"
     },
     {
       "type": "page",
-      "path": "../enterprise-management",
-      "title": "Studio で品質を管理する"
+      "path": "enterprise-management"
     },
     {
       "type": "page",
-      "path": "../release",
-      "title": "更新をリリースしてアプリを保守する"
+      "path": "release"
     }
   ]
 }

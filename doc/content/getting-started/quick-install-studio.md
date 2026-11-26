@@ -51,4 +51,4 @@ Progress, changes and check results are recorded in the task; see [Follow progre
 
 - Upgrade, stop or uninstall Studio: see [Upgrade, stop and uninstall](../studio/setup/install.md#upgrade-stop-and-uninstall).
 - Deploy Studio for a team: see [Installation overview](../studio/setup/index.md).
-- See how a team raises requests, follows development and accepts results in Studio: see [Collaborate with Studio](collaborate-with-studio.md).
+- See how a team raises requests, follows development and accepts results in Studio: see [Develop with Studio](collaborate-with-studio.md).

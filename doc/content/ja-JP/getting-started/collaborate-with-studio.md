@@ -1,5 +1,5 @@
 ---
-title: Studio で協働開発する
+title: Studio で開発を進める
 metaDescription: "Studio で要件を提出し、エージェントの分担とレビューを追い、検収してリリースにつなげます。"
 ---
 

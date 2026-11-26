@@ -87,5 +87,5 @@ You choose your own models and agents, with no vendor lock-in. Claude Code, Code
 ## Get started
 
 - Build an app yourself: [Develop your first app](develop-your-first-app.md).
-- Experience team delivery with agents: [Collaborate with Studio](collaborate-with-studio.md).
+- Experience team delivery with agents: [Develop with Studio](collaborate-with-studio.md).
 - Used NocoBase 2 before: [NocoBase 2 and NocoBase 3](../faq/from-v2.md).

@@ -6,68 +6,106 @@
       "path": "index"
     },
     {
-      "type": "page",
-      "path": "../opportunities-and-quotes"
+      "type": "group",
+      "title": "应用基础",
+      "pages": [
+        {
+          "type": "page",
+          "path": "data-modeling"
+        },
+        {
+          "type": "page",
+          "path": "pages-and-ui"
+        },
+        {
+          "type": "page",
+          "path": "roles-and-permissions"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "../sales-workspace"
+      "type": "group",
+      "title": "流程与自动化",
+      "pages": [
+        {
+          "type": "page",
+          "path": "approval-workflows"
+        },
+        {
+          "type": "page",
+          "path": "scheduled-reminders"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "../team-permissions"
+      "type": "group",
+      "title": "文件与单据",
+      "pages": [
+        {
+          "type": "page",
+          "path": "file-management"
+        },
+        {
+          "type": "page",
+          "path": "template-print"
+        }
+      ]
     },
     {
-      "type": "planned",
-      "title": "可配置授权界面"
+      "type": "group",
+      "title": "通知与邮件",
+      "pages": [
+        {
+          "type": "page",
+          "path": "notifications"
+        },
+        {
+          "type": "page",
+          "path": "email"
+        }
+      ]
     },
     {
-      "type": "planned",
-      "title": "复杂数据范围与授权规则"
+      "type": "group",
+      "title": "AI 与知识库",
+      "pages": [
+        {
+          "type": "page",
+          "path": "ai-assistant"
+        },
+        {
+          "type": "page",
+          "path": "business-agent"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "../quote-approvals"
+      "type": "group",
+      "title": "数据导入与集成",
+      "pages": [
+        {
+          "type": "page",
+          "path": "data-import"
+        },
+        {
+          "type": "page",
+          "path": "external-integrations"
+        }
+      ]
     },
     {
-      "type": "planned",
-      "title": "复杂审批规则"
-    },
-    {
-      "type": "page",
-      "path": "../file-management"
-    },
-    {
-      "type": "page",
-      "path": "../template-print"
-    },
-    {
-      "type": "page",
-      "path": "../notifications"
-    },
-    {
-      "type": "page",
-      "path": "../scheduled-reminders"
-    },
-    {
-      "type": "page",
-      "path": "../email"
-    },
-    {
-      "type": "page",
-      "path": "../business-agent"
-    },
-    {
-      "type": "page",
-      "path": "../ai-assistant"
-    },
-    {
-      "type": "page",
-      "path": "../data-import"
-    },
-    {
-      "type": "page",
-      "path": "../external-integrations"
+      "type": "group",
+      "title": "复杂场景进阶",
+      "pages": [
+        {
+          "type": "planned",
+          "title": "复杂数据范围与授权配置"
+        },
+        {
+          "type": "planned",
+          "title": "复杂审批与多流程协调"
+        }
+      ]
     }
   ]
 }

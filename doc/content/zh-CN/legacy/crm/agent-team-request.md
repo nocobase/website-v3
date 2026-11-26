@@ -64,4 +64,4 @@ lesson: 16
 
 **完成的标志**：报价版本对比已验收并合入默认分支，旧客户和报价仍可使用。
 
-接下来，我们[让销售主管直接参与客户交接需求](../../guides/business-colleagues.md)。
+接下来，我们[让销售主管直接参与客户交接需求](../../guides/team-delivery/business-colleagues.md)。

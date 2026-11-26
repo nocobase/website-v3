@@ -10,7 +10,7 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 | [开始](what-is-nocobase.md) | 整体概念、开发第一个应用、Studio 协作、学习路径 | 第一次接触 NocoBase 3 时阅读 |
 | [Core 手册](../core/index.md) | 开发应用、使用插件、开发插件、框架原理、部署维护、参考 | 按正在开发或维护的功能查阅 |
 | [Studio 手册](../studio/index.md) | 安装配置、成员接入、任务开发、项目管理、Agent 管理、质量管理、发布管理、系统管理、参考 | 按角色与当前操作查阅 |
-| [教程](../guides/index.md) | 团队协作与持续交付、按能力拆分的专题实战 | 准备在真实业务场景中练习团队协作或某项 Core 能力时阅读 |
+| [教程](../guides/index.md) | 在 Studio 中协作、按能力拆分的专题实战 | 准备在真实业务场景中练习团队协作或某项 Core 能力时阅读 |
 | [FAQ](../faq/from-v2.md) | NocoBase 2 与 3 的区别、功能对应与迁移 | 需要了解版本关系时查阅 |
 
 ## 完成首次上手
@@ -18,7 +18,7 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 先读 [NocoBase 3 是什么](what-is-nocobase.md)，理解应用底座、开发治理与业务应用的关系。
 
 - 自己创建应用：按[开发第一个应用](develop-your-first-app.md)创建、启动并开发客户管理，检查角色权限后再继续迭代。
-- 已加入 Studio 团队：直接按[使用 Studio 协作开发](collaborate-with-studio.md)完成一个需求；管理员尚未准备环境时，先进入[安装与配置](../studio/setup/index.md)。
+- 已加入 Studio 团队：直接按[使用 Studio 推进开发](collaborate-with-studio.md)完成一个需求；管理员尚未准备环境时，先进入[安装与配置](../studio/setup/index.md)。
 
 两篇上手文章各自给出所需前提，无需先读完所有手册。
 
@@ -38,7 +38,7 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 
 ## 按场景学习实战教程
 
-[教程](../guides/index.md)包含两个系列：[团队协作与持续交付](../guides/team-delivery/index.md)覆盖已有项目接入 Studio、业务同事参与需求、知识沉淀、质量管理与版本发布；[专题实战](../guides/core-capabilities/index.md)按数据建模、界面开发、权限、审批、文件、打印、通知、定时任务、邮件与业务 AI 等独立能力展开，并配有最新状态的完整 CRM 示例供对照运行。
+[教程](../guides/index.md)包含两个系列：[在 Studio 中协作](../guides/team-delivery/index.md)覆盖已有项目接入 Studio、业务同事参与需求、知识沉淀、质量管理与版本发布；[专题实战](../guides/core-capabilities/index.md)按数据建模、界面开发、权限、审批、文件、打印、通知、定时任务、邮件与业务 AI 等独立能力展开，并配有最新状态的完整 CRM 示例供对照运行。
 
 完成首次上手后，可以直接进入与你当前目标匹配的系列或专题，不再要求按课号顺序从零串着做；遇到具体机制时返回对应手册查阅。
 

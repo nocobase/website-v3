@@ -87,5 +87,5 @@ Core、Solution 和 Studio 都部署在企业自己的服务器上，代码和�
 ## 开始使用
 
 - 自己动手开发一个应用：[开发第一个应用](develop-your-first-app.md)。
-- 体验团队与 Agent 协同交付：[使用 Studio 协作开发](collaborate-with-studio.md)。
+- 体验团队与 Agent 协同交付：[使用 Studio 推进开发](collaborate-with-studio.md)。
 - 用过 NocoBase 2：[NocoBase 2 与 NocoBase 3](../faq/from-v2.md)。

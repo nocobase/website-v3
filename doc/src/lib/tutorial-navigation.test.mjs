@@ -3,13 +3,17 @@ import { getSite } from './site.mjs';
 import { tutorialNavigation } from './tutorial-navigation.mjs';
 
 const courses = {
-  'team-delivery': ['open-crm-project', 'business-colleagues', 'capture-knowledge', 'enterprise-management', 'release'],
+  'team-delivery': [
+    'open-crm-project', 'business-colleagues', 'capture-knowledge', 'enterprise-management', 'release',
+  ].map(slug => `guides/team-delivery/${slug}`),
   'core-capabilities': [
-    'opportunities-and-quotes', 'sales-workspace', 'team-permissions',
-    'quote-approvals', 'file-management', 'template-print',
-    'notifications', 'scheduled-reminders', 'email',
-    'business-agent', 'ai-assistant', 'data-import', 'external-integrations',
-  ],
+    'data-modeling', 'pages-and-ui', 'roles-and-permissions',
+    'approval-workflows', 'scheduled-reminders',
+    'file-management', 'template-print',
+    'notifications', 'email',
+    'ai-assistant', 'business-agent',
+    'data-import', 'external-integrations',
+  ].map(slug => `guides/core-capabilities/${slug}`),
 };
 
 function collectPageKeys(nodes) {
@@ -25,14 +29,14 @@ test.each(['en', 'zh-CN', 'ja-JP'])('scopes tutorial navigation to the current s
   const { tree } = site.sections(lang).find(section => section.id === 'guides');
   expect(tutorialNavigation(tree, 'guides/index')).toBeUndefined();
 
-  for (const [series, slugs] of Object.entries(courses)) {
+  for (const [series, courseKeys] of Object.entries(courses)) {
     const overview = `guides/${series}/index`;
-    const courseKeys = slugs.map(slug => `guides/${slug}`);
     for (const key of [overview, ...courseKeys]) {
       const navigation = tutorialNavigation(tree, key);
       expect(navigation.overview.key).toBe(overview);
       expect(navigation.title).toBeTruthy();
       expect(collectPageKeys(navigation.nodes)).toEqual(courseKeys);
+      expect(navigation.order).toEqual([overview, ...courseKeys]);
       expect(site.page(lang, key).url).toBe(`${site.config.byCode[lang].url}${key.replace(/\/index$/, '')}/`);
     }
   }
@@ -43,7 +47,7 @@ test.each(['en', 'zh-CN', 'ja-JP'])('scopes tutorial navigation to the current s
   expect(tree.filter(node => node.type !== 'folder').map(node => node.key)).toEqual(['guides/index']);
 
   const coreNav = tutorialNavigation(tree, 'guides/core-capabilities/index');
-  expect(coreNav.nodes.filter(node => node.type === 'group')).toHaveLength(0);
+  expect(coreNav.nodes.filter(node => node.type === 'group')).toHaveLength(7);
 
   const archive = site.sections(lang).find(section => section.id === 'legacy');
   expect(archive.showInNav).toBe(false);

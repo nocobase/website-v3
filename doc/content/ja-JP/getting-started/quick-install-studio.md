@@ -51,4 +51,4 @@ Studio は `http://127.0.0.1:13000/main` で動いています。表示された
 
 - Studio のアップグレード、停止、アンインストール：[アップグレード・停止・アンインストール](../studio/setup/install.md#アップグレード停止アンインストール)
 - チーム向けに Studio をデプロイする：[インストールの概要](../studio/setup/index.md)
-- チームが Studio で要件を出し、開発を追い、検収する流れを知る：[Studio で協働開発する](collaborate-with-studio.md)
+- チームが Studio で要件を出し、開発を追い、検収する流れを知る：[Studio で開発を進める](collaborate-with-studio.md)

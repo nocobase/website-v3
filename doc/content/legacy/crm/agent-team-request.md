@@ -64,4 +64,4 @@ Click **Merge** in **Needs you**, check the target branch and commit, then confi
 
 **Done when**: Quote revision comparison is accepted and merged, and existing customers and quotes remain usable.
 
-Next, [let the sales manager participate in customer handover](../../guides/business-colleagues.md).
+Next, [let the sales manager participate in customer handover](../../guides/team-delivery/business-colleagues.md).

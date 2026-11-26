@@ -6,7 +6,7 @@ lesson: 15
 
 CRM 已有客户、跟进、商机和报价，接下来，我们用 Studio 组织持续开发：把销售反馈变成任务，由 Agent 团队实现，再由人验收。继续使用自己的 CRM 仓库、配置和业务数据，不重新创建应用。
 
-后续练习需要[商机与报价](../../guides/opportunities-and-quotes.md)和[客户访问控制](../../guides/team-permissions.md)，并保留已有客户与报价用于回归检查。尚未具备这些功能时，先完成对应课程。Studio 中的项目和任务管理开发工作，与 CRM 内的客户、商机等业务记录分别管理。
+后续练习需要[商机与报价](../../guides/core-capabilities/data-modeling.md)和[客户访问控制](../../guides/core-capabilities/roles-and-permissions.md)，并保留已有客户与报价用于回归检查。尚未具备这些功能时，先完成对应课程。Studio 中的项目和任务管理开发工作，与 CRM 内的客户、商机等业务记录分别管理。
 
 可以先在 [Studio demo](https://studio.demo.nocobase.com/main) 查看界面。demo 的 **CRM System** 展示协作过程，不能保存修改；实际练习使用自己的 Studio 和 CRM 仓库，截图中的任务编号与版本号无需照搬。
 
@@ -52,4 +52,4 @@ Studio 的许可和安装凭据要求见安装指南。需要个人登录或 Git
 
 **完成的标志**：Studio 已关联自己的 CRM 仓库和正确的默认分支，已有代码与数据保留，运行环境与 Agent 可用；PR 有最新提交的检查结果和可访问的预览，负责人已确认客户、报价及测试角色的访问范围符合预期。
 
-通用接入方式见[将已有项目接入 Studio](../../guides/open-crm-project.md)。
+通用接入方式见[接入已有项目](../../guides/team-delivery/open-crm-project.md)。

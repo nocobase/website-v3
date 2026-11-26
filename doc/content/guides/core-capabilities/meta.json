@@ -6,68 +6,106 @@
       "path": "index"
     },
     {
-      "type": "page",
-      "path": "../opportunities-and-quotes"
+      "type": "group",
+      "title": "App foundations",
+      "pages": [
+        {
+          "type": "page",
+          "path": "data-modeling"
+        },
+        {
+          "type": "page",
+          "path": "pages-and-ui"
+        },
+        {
+          "type": "page",
+          "path": "roles-and-permissions"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "../sales-workspace"
+      "type": "group",
+      "title": "Workflows and automation",
+      "pages": [
+        {
+          "type": "page",
+          "path": "approval-workflows"
+        },
+        {
+          "type": "page",
+          "path": "scheduled-reminders"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "../team-permissions"
+      "type": "group",
+      "title": "Files and documents",
+      "pages": [
+        {
+          "type": "page",
+          "path": "file-management"
+        },
+        {
+          "type": "page",
+          "path": "template-print"
+        }
+      ]
     },
     {
-      "type": "planned",
-      "title": "Configurable permission UI"
+      "type": "group",
+      "title": "Notifications and email",
+      "pages": [
+        {
+          "type": "page",
+          "path": "notifications"
+        },
+        {
+          "type": "page",
+          "path": "email"
+        }
+      ]
     },
     {
-      "type": "planned",
-      "title": "Complex data scopes and grant rules"
+      "type": "group",
+      "title": "AI and knowledge",
+      "pages": [
+        {
+          "type": "page",
+          "path": "ai-assistant"
+        },
+        {
+          "type": "page",
+          "path": "business-agent"
+        }
+      ]
     },
     {
-      "type": "page",
-      "path": "../quote-approvals"
+      "type": "group",
+      "title": "Data import and integrations",
+      "pages": [
+        {
+          "type": "page",
+          "path": "data-import"
+        },
+        {
+          "type": "page",
+          "path": "external-integrations"
+        }
+      ]
     },
     {
-      "type": "planned",
-      "title": "Complex approval rules"
-    },
-    {
-      "type": "page",
-      "path": "../file-management"
-    },
-    {
-      "type": "page",
-      "path": "../template-print"
-    },
-    {
-      "type": "page",
-      "path": "../notifications"
-    },
-    {
-      "type": "page",
-      "path": "../scheduled-reminders"
-    },
-    {
-      "type": "page",
-      "path": "../email"
-    },
-    {
-      "type": "page",
-      "path": "../business-agent"
-    },
-    {
-      "type": "page",
-      "path": "../ai-assistant"
-    },
-    {
-      "type": "page",
-      "path": "../data-import"
-    },
-    {
-      "type": "page",
-      "path": "../external-integrations"
+      "type": "group",
+      "title": "Advanced scenarios",
+      "pages": [
+        {
+          "type": "planned",
+          "title": "Complex data scopes and permission configuration"
+        },
+        {
+          "type": "planned",
+          "title": "Complex approvals and multi-workflow coordination"
+        }
+      ]
     }
   ]
 }

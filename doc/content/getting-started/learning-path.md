@@ -10,7 +10,7 @@ metaDescription: "Explore the documentation map and reading routes for applicati
 | [Getting started](what-is-nocobase.md) | Concepts, your first app, Studio collaboration, learning path | Your first encounter with NocoBase 3 |
 | [Core manual](../core/index.md) | Application development, using and developing plugins, framework, deployment, reference | Look up the feature you are developing or maintaining |
 | [Studio manual](../studio/index.md) | Installation, member access, tasks, projects, Agents, quality, releases, administration, reference | Look up operations for your role |
-| [Tutorials](../guides/index.md) | Team collaboration and delivery, plus topic-based Core practice | Practice team workflows in Studio or specific Core capabilities in real scenarios |
+| [Tutorials](../guides/index.md) | Collaborate in Studio, plus topic-based Core practice | Practice team workflows in Studio or specific Core capabilities in real scenarios |
 | [FAQ](../faq/from-v2.md) | NocoBase 2 and 3 differences, feature mapping, migration | Understand the relationship between versions |
 
 ## Complete your first walkthrough
@@ -18,7 +18,7 @@ metaDescription: "Explore the documentation map and reading routes for applicati
 Read [What is NocoBase 3](what-is-nocobase.md) to understand the application foundation, development governance, and business apps.
 
 - Creating an app yourself: follow [Develop your first app](develop-your-first-app.md) to create, start, and develop customer management, then check role permissions before refining it.
-- Joining a Studio team: go directly to [Collaborate with Studio](collaborate-with-studio.md). If the team environment is not ready, an administrator starts with [Installation and configuration](../studio/setup/index.md).
+- Joining a Studio team: go directly to [Develop with Studio](collaborate-with-studio.md). If the team environment is not ready, an administrator starts with [Installation and configuration](../studio/setup/index.md).
 
 Each walkthrough lists its own prerequisites. You do not need to read every manual first.
 
@@ -38,7 +38,7 @@ Studio's reference section contains statuses, permissions, Agent execution rules
 
 ## Practice with hands-on tutorials
 
-[Tutorials](../guides/index.md) are organized into two series: [Team collaboration and continuous delivery](../guides/team-delivery/index.md) covers connecting an existing project to Studio, involving business colleagues, capturing knowledge, managing quality and releasing updates; [Topic tutorials](../guides/core-capabilities/index.md) focuses on individual Core capabilities—data modeling, UI, permissions, approvals, files, template printing, notifications, scheduled tasks, email and business AI—backed by a complete runnable CRM example.
+[Tutorials](../guides/index.md) are organized into two series: [Collaborate in Studio](../guides/team-delivery/index.md) covers connecting an existing project to Studio, involving business colleagues, capturing knowledge, managing quality and releasing updates; [Topic tutorials](../guides/core-capabilities/index.md) focuses on individual Core capabilities—data modeling, UI, permissions, approvals, files, template printing, notifications, scheduled tasks, email and business AI—backed by a complete runnable CRM example.
 
 After completing your first walkthrough, jump straight to the series or topic that matches your current goal rather than following a sequential lesson chain, and consult the manuals whenever you need reference details.
 

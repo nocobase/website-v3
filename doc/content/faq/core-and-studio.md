@@ -6,4 +6,4 @@ No. You can use Core on its own, develop business features with coding tools suc
 
 Core provides the foundation and development conventions for your application. Studio coordinates collaboration between people and agents. It is useful when a team needs to advance multiple projects and tasks, track progress, and organize checks and acceptance. Applications built either way run on Core.
 
-To explore Studio, see [Collaborate with Studio](../getting-started/collaborate-with-studio.md). For installation and team configuration, see the [setup overview](../studio/setup/index.md).
+To explore Studio, see [Develop with Studio](../getting-started/collaborate-with-studio.md). For installation and team configuration, see the [setup overview](../studio/setup/index.md).

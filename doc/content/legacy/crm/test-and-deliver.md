@@ -74,4 +74,4 @@ Reverting the program does not necessarily restore data, and restoring a backup 
 
 ## Summary
 
-With these steps complete, the first version of your CRM is ready, and you have followed a full development cycle: requirements, agent development, acceptance, review, and release. The following lessons build on the same app, exploring data relationships, UI components, permissions, approvals, notifications, and AI in more depth. Continue with [Model opportunities and quotes](../../guides/opportunities-and-quotes.md).
+With these steps complete, the first version of your CRM is ready, and you have followed a full development cycle: requirements, agent development, acceptance, review, and release. The following lessons build on the same app, exploring data relationships, UI components, permissions, approvals, notifications, and AI in more depth. Continue with [Model opportunities and quotes](../../guides/core-capabilities/data-modeling.md).

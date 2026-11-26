@@ -64,4 +64,4 @@ lesson: 16
 
 **完了の条件**：比較機能が受け入れられてデフォルトブランチに入り、既存の顧客と見積も使えます。
 
-次は[営業責任者に顧客引き継ぎの開発へ参加してもらいます](../../guides/business-colleagues.md)。
+次は[営業責任者に顧客引き継ぎの開発へ参加してもらいます](../../guides/team-delivery/business-colleagues.md)。

@@ -1,5 +1,5 @@
 {
-  "title": "团队协作与持续交付",
+  "title": "在 Studio 中协作",
   "pages": [
     {
       "type": "page",
@@ -7,28 +7,23 @@
     },
     {
       "type": "page",
-      "path": "../open-crm-project",
-      "title": "将已有项目接入 Studio"
+      "path": "open-crm-project"
     },
     {
       "type": "page",
-      "path": "../business-colleagues",
-      "title": "让业务同事直接参与需求"
+      "path": "business-colleagues"
     },
     {
       "type": "page",
-      "path": "../capture-knowledge",
-      "title": "沉淀业务规则与开发经验"
+      "path": "capture-knowledge"
     },
     {
       "type": "page",
-      "path": "../enterprise-management",
-      "title": "使用 Studio 管理质量"
+      "path": "enterprise-management"
     },
     {
       "type": "page",
-      "path": "../release",
-      "title": "发布更新并维护已有应用"
+      "path": "release"
     }
   ]
 }

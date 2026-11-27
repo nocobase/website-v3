@@ -17,6 +17,8 @@ export interface Props {
 }
 const { title, description, url, image, type = 'website', siteName, locale } = Astro.props as Props;
 const shareable = image && /\.(?:jpe?g|png|webp|gif)$/i.test(image.split(/[?#]/)[0]);
+// og:locale 要写成「语言_地区」，hreflang 里只有语言的（英文 en）补上地区
+const ogLocale = locale === 'en' ? 'en_US' : locale.replace('-', '_');
 ---
 <meta property="og:type" content={type}>
 <meta property="og:site_name" content={siteName}>
@@ -24,6 +26,6 @@ const shareable = image && /\.(?:jpe?g|png|webp|gif)$/i.test(image.split(/[?#]/)
 {description && <meta property="og:description" content={description}>}
 {url && <meta property="og:url" content={url}>}
 <meta property="og:image" content={shareable ? image : SHARE_IMAGE}>
-<meta property="og:locale" content={locale.replace('-', '_')}>
+<meta property="og:locale" content={ogLocale}>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content={X_HANDLE}>

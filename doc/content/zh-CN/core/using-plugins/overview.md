@@ -9,7 +9,7 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 
 ## 按功能查找插件
 
-本章介绍 23 个插件，相关功能按主题分组，其余插件提供独立入口。各插件按提供的能力、使用场景与示例、重要原理与实现、AI 开发的约束与验证四章介绍。
+本章介绍 24 个插件，相关功能按主题分组，其余插件提供独立入口。
 
 | 功能 | 使用文档 | 主要用途 |
 | --- | --- | --- |
@@ -27,6 +27,7 @@ NocoBase 提供用户、认证、权限、文件、通知、Agents 等插件，�
 | 定时任务 | [定时任务](automation/scheduler.md) | 声明计划任务，查看执行记录和管理启停 |
 | 模板打印 | [模板打印](automation/template-print.md) | 使用 Skills 实现 DOCX、PDF 模板打印 |
 | 多语言 | [多语言](application-support/i18n.md) | 接入多语言能力和应用语言切换 |
+| 审计日志（企业版） | [审计日志](application-support/audit-logs.md) | 记录重要操作，在系统设置中查看、筛选和导出日志 |
 | 应用底座 | [应用底座](application-support/foundation.md) | 查看应用使用的 Core 能力与运行信息 |
 
 ## 接入前确认

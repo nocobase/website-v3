@@ -9,7 +9,7 @@ Use the topics below to find the plugins you need. For shared installation, regi
 
 ## Find plugins by function
 
-This section covers 23 plugins. Related features are grouped by topic, while other plugins have individual entries. Each guide covers capabilities, scenarios, implementation, and AI development constraints in four chapters.
+This section covers 24 plugins. Related features are grouped by topic, while other plugins have individual entries.
 
 | Feature | Usage guides | Main uses |
 | --- | --- | --- |
@@ -27,6 +27,7 @@ This section covers 23 plugins. Related features are grouped by topic, while oth
 | Scheduled tasks | [Scheduled tasks](automation/scheduler.md) | Declare schedules, inspect execution records and enable or disable tasks |
 | Template printing | [Template printing](automation/template-print.md) | Use Skills to implement DOCX and PDF template printing |
 | Localization | [Localization](application-support/i18n.md) | Integrate localization and application language switching |
+| Audit logs (Enterprise) | [Audit logs](application-support/audit-logs.md) | Record important operations, then view, filter and export logs in System settings |
 | Application foundation | [Application foundation](application-support/foundation.md) | Inspect the Core capabilities used by an application and their runtime information |
 
 ## Before integration

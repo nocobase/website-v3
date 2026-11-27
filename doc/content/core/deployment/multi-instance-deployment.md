@@ -327,7 +327,7 @@ The application does not create exchanges and queues automatically. Before using
 | `orders.dead` | Exchange | Receives messages that finally failed; bound to `orders.erp.dead` with routing key `erp` |
 | `orders.erp.dead` | Queue | Keeps messages that finally failed for investigation or redelivery |
 
-Each subscription needs its own retry queue and dead-letter queue. At startup, the application checks that these exchanges and queues exist. If any are missing, startup fails and lists the missing resources. Bindings and dead-letter settings are not checked, so the administrator needs to verify them in RabbitMQ.
+At startup, the application checks that these exchanges and queues exist. If any are missing, startup fails and lists the missing resources. Bindings and dead-letter settings are not checked, so the administrator needs to verify them in RabbitMQ.
 
 The RabbitMQ account used by the application needs only the following permissions on the corresponding vhost:
 

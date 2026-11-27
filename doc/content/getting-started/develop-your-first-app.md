@@ -1,49 +1,54 @@
 ---
 title: Build your first app with Core
-metaDescription: "Create and start a NocoBase app, develop customer management with an agent, check permissions, and keep iterating."
+metaDescription: "Create and start a NocoBase app, build customer management with a Coding Agent, check permissions, and keep iterating."
 ---
 
-Create a NocoBase application in an empty directory, then work with an agent to add customer management. Record customers, assigned sales reps, and follow-up dates, with role-based access. By the end, you can sign in, use the feature, and continue developing it.
+Create a NocoBase application in an empty directory, then work with a Coding Agent to build customer management: record customers, assigned sales reps, and follow-up dates with role-based access. By the end, you can sign in, manage customer data, and continue iterating on new requirements.
 
 ## Prepare the environment
 
-- Node.js 24 or later, and pnpm 11.
-- On Windows, use WSL. Run the commands below in a POSIX shell such as Bash.
+- Node.js 24 or later, and pnpm 11 (see [Prepare the development environment](../guides/prepare-environment.md)).
+- At least one local Coding Agent installed and signed in, such as Claude Code, Codex, or Cursor.
+- On Windows, use WSL; run the commands below in a POSIX shell such as Bash.
 
-The steps below use SQLite, which needs no separate database server. To use another database, see [Create an app with a different database](../core/developing-apps/database-configuration.md).
-
-Choose either to have an agent create the application or to run the commands yourself.
+The steps below use SQLite, which requires no separate database server. To use another database, see [Create an app with a different database](../core/developing-apps/database-configuration.md).
 
 ## Create and start the application
 
-### Create with an agent
+Choose either option below, then continue to [Sign in](#sign-in).
 
-Install the app creation Skill and select your agent when prompted:
+### Option 1: Create with a Coding Agent (recommended)
+
+Install the app-creation Skill globally (only needed once) and select your Coding Agent when prompted:
 
 ```bash
 npx skills@latest add nocobase/skills-v3 --skill nocobase-create-app -g
 ```
 
-If your agent is already open, start a new session so it can use the newly installed Skill. Then open the agent in an empty directory, such as `my-app`, and send:
+If your Coding Agent is already open, start a new session so the newly installed Skill takes effect. Create and enter an empty directory (for example `my-app`), then open your Coding Agent and send:
+
+```bash
+mkdir my-app && cd my-app
+```
 
 ```prompt
 Create a NocoBase 3 application for local development in this empty directory, using the default template and SQLite.
-Start it and tell me the URL and the initial sign-in details.
+When it is running, tell me the URL and initial login account.
 ```
 
-The agent creates the application, generates configuration and starts it, then gives you the URL and initial sign-in details.
+The Coding Agent creates the app, generates configuration, and starts it, then returns the URL and initial login credentials.
 
-### Run the commands yourself
+### Option 2: Run the commands manually
 
-Run the following where you want to keep the application. The creation tool makes a new `my-app` directory and installs dependencies:
+In the directory where you keep applications, run the command below to create `my-app` and install dependencies:
 
 ```bash
 PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm create @nocobase/app@beta my-app --template-tag=beta
 ```
 
-NocoBase 3 is in beta. `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows pnpm to install newly published versions for this command only.
+NocoBase 3 is currently in beta. `PNPM_CONFIG_MINIMUM_RELEASE_AGE=0` allows pnpm to install newly published versions for this command only.
 
-Enter the directory, generate configuration, check it and start the application:
+Enter the directory, generate and check the configuration, and start the server:
 
 ```bash
 cd my-app
@@ -52,73 +57,65 @@ pnpm nocobase config check
 pnpm dev
 ```
 
-- `config init` generates the local `config.yml` and application secrets. SQLite needs no separate database installation. Keep `config.yml` out of Git.
-- `config check` loads configuration as startup would and suggests fixes if it finds problems.
-- `pnpm dev` starts the development server and prints a `Local:` URL when ready. Keep this terminal running; closing it stops the application.
+- `config init` generates `config.yml` and application keys using SQLite, with no separate database setup. `config.yml` is not committed to Git.
+- `config check` loads the configuration the same way startup does and prints guidance if anything is wrong.
+- `pnpm dev` starts the development server and prints the `Local:` URL. Keep this terminal running; closing it stops the app.
 
-### Sign in
+## Sign in
 
-Open the application URL and sign in with the default administrator: username `nocobase`, password `admin123`. Where you get the URL depends on how you created the application:
+Open the application URL in your browser (for example `http://127.0.0.1:13000/main/`) and sign in as the default administrator: username `nocobase`, password `admin123`.
 
-- **With an agent**: use the URL the agent gives you.
-- **With manual commands**: use the `Local:` URL printed in the terminal.
+- **Option 1**: use the URL returned by your Coding Agent.
+- **Option 2**: use the `Local:` URL printed in your terminal.
 
-The URL includes an application path, such as `/main/`. Keep that path when opening it.
+Keep the application path at the end of the URL (such as `/main/`). After signing in, the home page lists built-in capabilities and example prompts:
 
-After signing in, you reach the home page. It lists built-in capabilities and example requests you can give an agent:
-
-![The newly created application home page, before adding business features.](/assets/core/tutorials/getting-started/home.png)
-
-The screenshot is from an example application using default template `1.0.0-beta.78`. The interface may differ with your installed version.
+![Home page of a newly created application before any business features are added.](/assets/core/tutorials/getting-started/home.png)
 
 ## Describe your first business requirement
 
-Open the agent in the root directory of the application you just created.
+Start a Coding Agent session in the `my-app` root directory. If you started the app manually in Option 2, keep the `pnpm dev` terminal running and open a separate terminal in `my-app` to launch your Coding Agent.
 
-Send this to the agent:
+Send this requirement:
 
 ```prompt
-Build customer management with a name, contact details, notes, sales owner and next follow-up date. Customer statuses are Lead, Following up and Won.
-Support creating, viewing, editing and deleting customers, searching by name and filtering by status.
-Sales managers can manage all customers. Sales reps can only view their own customers and update their status. Read-only users can view all customers but cannot make changes.
+Build customer management. Customers have a name, contact details, notes, assigned sales rep, next follow-up date, and status (lead, in progress, or won).
+Users can create, view, edit, and delete customers, search by name, and filter by status.
+Sales managers manage all customers; sales reps can only view customers assigned to them and update their status; read-only users can view all customers without modifying them.
 ```
 
-Describe only the business: what to record, which actions are available and who can perform them. The agent follows the project's Skills to handle user and permission management, translations, tests and its completion report.
+Describe only the business rules: what to record, which actions are needed, and who can do what. The Coding Agent uses the project's Skills to handle users, permissions, localization, tests, and reporting.
 
-## Confirm the design
-
-Before implementation, the agent presents a design for you to confirm, covering the page structure, main interactions and decisions it needs from you. Answer its questions and confirm the design so it can begin development.
+Before writing code, the Coding Agent presents a design covering the page structure, key interactions, and open questions. Answer those questions and confirm to begin development.
 
 ## Check features and permissions
 
-When development is complete, the agent runs tests, checks the application in a browser and takes screenshots. It then provides a report of what it did and anything it could not verify. If verification requires signing in, it asks you to sign in yourself.
+When development finishes, the Coding Agent runs tests, checks each item in a browser with screenshots, and hands you a report covering what was built and anything left unverified. If login is needed during verification, it asks you to sign in.
 
-Open the URL the agent provides. **Customers** appears in the sidebar. You can create customers, assign sales owners and follow-up dates, update statuses, search and filter:
+Open the application URL; **Customers** now appears in the sidebar. You can create customers, assign sales reps and follow-up dates, update statuses, search, and filter:
 
-![Customer list with statuses, sales owners, follow-up dates and pagination.](/assets/core/tutorials/crm/customer-list-en.png)
+![Customer list with status, assigned sales rep, next follow-up date, and pagination.](/assets/core/tutorials/crm/customer-list-en.png)
 
-The screenshot comes from the example application. The same request may produce different layouts each time.
+The Coding Agent also enables user and permission management. Verify what a sales rep can do:
 
-The agent also enables user and permission management. Try what a sales rep can do:
+1. Go to **System settings → Users**, add a user, and assign the sales rep role under **Permission sets** (`Sales rep` in the example app).
+2. Create a customer and assign this user as the sales rep.
+3. Sign in with this account. The customer list should show only customers assigned to this user; the user can update status but cannot edit details or delete records.
 
-1. Add a user in **System settings → Users** and assign the sales role in **Permission sets**. The example application calls it `Sales rep`.
-2. Create a customer and select this user as the sales owner.
-3. Sign in with that account. The list should show only customers owned by this user. The user can update their status but cannot edit their details or delete them.
-
-Also check with sales-manager and read-only accounts: managers should manage all customers; read-only users should see all customers but cannot create, edit, or delete them. Complete any unverified checks listed in the report before adding more features.
+Then check as a sales manager and a read-only user: managers should manage all customers; read-only users should view all customers without creating, editing, or deleting. Complete any unverified items from the report before adding more features.
 
 ## Refine and continue developing
 
-If the result is wrong or you want something different, tell the agent what you did, what happened and what you expected:
+If something does not match expectations or you want a different behavior, tell the Coding Agent what you did, what you saw, and what you expected:
 
 ```prompt
-I signed in with an account assigned only the sales rep role, but I can still see customers owned by other people.
-Sales reps should only see their own customers.
+When I sign in with an account that only has the sales rep role, I can still see customers assigned to others.
+Sales reps should only see customers assigned to them.
 ```
 
-You can also request interaction changes, such as opening customer details when you click a name, then deciding whether to edit.
+You can request UI changes directly as well, such as "Clicking a customer name should open the detail view first before editing."
 
-Next, add customer follow-up records in the agent session at the application root:
+Next, add customer follow-up records in the same Coding Agent session at the application root:
 
 ```prompt
 Add follow-up records to customers. After each contact, a sales rep records the date, method (phone, visit, or email), and notes.
@@ -127,8 +124,8 @@ Sales reps can only add follow-ups for their own customers. Sales managers can v
 Existing customers don't need historical follow-up records added.
 ```
 
-Confirm the design, then check the result as a sales rep, manager, and read-only user. Split larger requests into independently usable features, such as follow-ups, opportunities, quotes, and sales reports. Verify each before moving on.
+Confirm the design, then verify as a sales rep, manager, and read-only user. Split larger requests into independently usable features—such as follow-ups, opportunities, quotes, and sales reports—and verify each before moving on.
 
-Ask the agent to save lasting conventions, for example: “Use the company's time zone for all dates from now on, and save this in the project conventions.” These rules live in `.agents/rules/`, indexed by `AGENTS.md` for future sessions.
+Ask the Coding Agent to save lasting conventions, for example: "Use the company's time zone for all dates from now on, and save this in the project conventions." These rules are stored in `.agents/rules/` and indexed by `AGENTS.md` for future sessions.
 
-See the [CRM example source](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm) and its [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD). Consult [Project structure](../core/developing-apps/project-structure.md) to locate code, [Start with Core, scale with Studio](from-core-to-studio.md) when you are ready for frontline previews and team iteration, or the [Learning path](learning-path.md) for deployment and collaboration.
+See the [CRM example source](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm) and its [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD). Consult [Project structure](../core/developing-apps/project-structure.md) to locate code, continue to [Install and use Studio](collaborate-with-studio.md) to try the team workbench, or browse the [Learning path](learning-path.md).

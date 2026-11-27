@@ -13,7 +13,7 @@ description: 用一条命令在自己的电脑上试用 Studio，或为团队部
 curl -fsSL https://get.nocobase.com/studio | sh -s -- --lang zh-CN --mirror registry.cn-shanghai.aliyuncs.com --npm-registry https://registry.npmmirror.com/
 ```
 
-这条命令在本机安装 Studio 社区版、本地 Git 服务、运行环境和首个项目。前提和选项见[一键安装](install.md#一键安装)。从安装到开始第一个任务的完整流程见[快速安装 Studio](../../getting-started/quick-install-studio.md)。
+这条命令在本机安装 Studio 社区版、本地 Git 服务、运行环境和首个项目。前提和选项见[一键安装](install.md#一键安装)。从安装到完成首个需求的完整流程见[安装并使用 Studio](../../getting-started/collaborate-with-studio.md)。
 
 ## 交给 Agent
 

@@ -11,7 +11,7 @@ To try Studio on your own computer, use the one-command install. To deploy Studi
 curl -fsSL https://get.nocobase.com/studio | sh
 ```
 
-It installs Studio Community Edition with a local Git server, a runtime and a first project on this computer. See [Install with one command](install.md#install-with-one-command) for prerequisites and options. For the full walk-through from installing to starting the first task, see [Quick install Studio](../../getting-started/quick-install-studio.md).
+It installs Studio Community Edition with a local Git server, a runtime and a first project on this computer. See [Install with one command](install.md#install-with-one-command) for prerequisites and options. For the full walk-through from installing to delivering your first request, see [Install and use Studio](../../getting-started/collaborate-with-studio.md).
 
 ## Set up with an Agent
 

@@ -13,7 +13,7 @@ metaDescription: itam-lite を NocoBase Studio に取り込み、エージェン
 ![Studio の My issues：あなたを待っているものが先頭に表示されます](https://static-docs.nocobase.com/20261028173135810.png)
 
 > [!NOTE] 無料の Studio コミュニティ版で本パートを完了できます
-> 自分のコンピューターで手軽に試す場合は[ワンコマンドで Studio をインストール](../getting-started/quick-install-studio.md)、チーム向けにデプロイする場合は[インストールの概要](../studio/setup/index.md)、Core から Studio へ切り替えるタイミングは[Core から始めて Studio へ](../getting-started/from-core-to-studio.md)を参照してください。複数ロールのワークフロー、デプロイ承認、品質管理などの高度な機能はプロフェッショナル版またはエンタープライズ版に含まれます（詳しくは[エディションを選ぶ](../studio/setup/index.md#エディションを選ぶ)を参照してください）。
+> 自分のコンピューターで手軽に試す場合は[Studio をインストールして使う](../getting-started/collaborate-with-studio.md)、チーム向けにデプロイする場合は[インストールの概要](../studio/setup/index.md)、Core から Studio へ切り替えるタイミングは[Core から始めて Studio へ](../getting-started/from-core-to-studio.md)を参照してください。複数ロールのワークフロー、デプロイ承認、品質管理などの高度な機能はプロフェッショナル版またはエンタープライズ版に含まれます（詳しくは[エディションを選ぶ](../studio/setup/index.md#エディションを選ぶ)を参照してください）。
 
 ## 1. エージェントに Studio をセットアップさせる
 

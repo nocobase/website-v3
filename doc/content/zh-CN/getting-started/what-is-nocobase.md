@@ -21,43 +21,39 @@ Core 提供 30 多项开箱即用的基础能力，由 NocoBase 持续维护和�
 
 换人、换模型甚至换一个会话，AI 都可能随机发挥，同一个系统里逐渐出现多种写法，架构漂移、越来越难维护。
 
-Core 提供统一的项目结构、开发规范和随底座发布的开发技能，不同的人、模型和会话都在同一套架构下开发，系统能够长期稳定迭代，也随时支持人工接手维护。
+Core 提供统一的项目结构、开发规范和随底座发布的 Skill，不同的人、模型和会话都在同一套架构下开发，系统能够长期稳定迭代，也随时支持人工接手维护。
 
 ### 过程可控，质量由工具把关
 
 团队同时推进多个项目和大量任务时，各自在终端和会话之间来回切换，Agent 交回的改动越来越多，人看不过来，又不敢放手上线。
 
-Studio 按工作流程推进每个任务，常驻技能每次运行自动加载；改动经过自动检查和不同模型交叉评审后，附上交付报告、截图和可操作的测试环境再交给人验收。企业版还支持调用业界成熟工具对功能、冒烟、权限、安全、性能、代码质量和 UX 进行多维度实测，并将发现的问题自动登记为跟进任务闭环修复。
+Studio 按工作流程推进每个任务，常驻 Skill 每次运行自动加载；改动经过自动检查和不同模型交叉评审后，附上交付报告、截图和可操作的测试环境再交给人验收。企业版还支持调用业界成熟工具对功能、冒烟、权限、安全、性能、代码质量和 UX 进行多维度实测，并将发现的问题自动登记为跟进任务闭环修复。
 
 ### 协作集中，经验沉淀在团队里
 
 每个人在自己的电脑上用 AI，需求背景、业务资料、项目进展和踩过的坑散落在各自的会话里，别人看不到，换人、换模型就接不上。
 
-Studio 把所有项目的需求、讨论、进展和花费集中在一处；用技能沉淀做事方法，用知识库管理业务资料，用项目记忆持续记录踩过的坑和已确认的规则，换人、换 Agent 都能无障碍交接。
+Studio 把所有项目的需求、讨论、进展和花费集中在一处；用 Skill 沉淀做事方法，用知识库管理业务资料，用项目记忆持续记录踩过的坑和已确认的规则，换人、换 Agent 都能无障碍交接。
 
 ## NocoBase 3 的组成
 
-<figure class="arch-overview" aria-label="通过本地编码工具或 NocoBase Studio 开发业务应用，业务应用和内置业务 Agent 基于 NocoBase Core 独立运行">
-<div class="ao-zone">
-<p class="ao-zone-head"><span>开发与交付</span></p>
-<div class="ao-stack">
-<div class="ao-box"><b>本地编码工具</b><span>直接从 Core 起步</span><p>Claude Code、Codex、Cursor 等，直接开发业务系统，无需先安装 Studio。</p></div>
-<div class="ao-or">或升级为团队协作</div>
-<div class="ao-box ao-studio"><b>NocoBase Studio</b><span>团队开发工作台</span><p>组织 24 小时 Agent 团队，按流程把关交付、评审与质量测试。</p></div>
+<figure class="arch-overview" aria-label="通过本地编码工具或 NocoBase Studio 开发业务系统，业务应用与业务 Agent 运行在 NocoBase Core 应用底座上">
+<div class="ao-top">
+<div class="ao-box"><div class="ao-box-head"><b>本地编码工具</b><span class="ao-tag">从 Core 独立起步</span></div><p>用 Claude Code、Codex、Cursor 等直接开发业务系统，无需先安装 Studio。</p></div>
+<div class="ao-box ao-studio"><div class="ao-box-head"><b>NocoBase Studio</b><span class="ao-tag">团队开发工作台</span></div><p>组织 24 小时 Agent 团队，按流程推进任务、交叉评审与质量把关。</p></div>
 </div>
+<div class="ao-down"><svg viewBox="0 0 16 20" fill="none" aria-hidden="true"><path d="M8 2v14M3 11.5L8 16.5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>开发与迭代</span></div>
+<div class="ao-system">
+<div class="ao-biz-wrap">
+<div class="ao-sys-head"><b>你的业务系统</b><span class="ao-pill">独立运行 · 不经过 Studio</span></div>
+<div class="ao-biz-row">
+<div class="ao-biz-item"><b>业务应用</b><p>页面、接口、数据与业务规则，源码归企业所有。</p></div>
+<div class="ao-biz-item"><b>业务 Agent</b><p>继承负责人权限 24 小时处理日常事务，关键决策交给人。</p></div>
 </div>
-<div class="ao-link"><span>开发与迭代</span><svg viewBox="0 0 44 16" fill="none" aria-hidden="true"><path d="M2 8h36M32 2.5L39 8l-7 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-<div class="ao-zone ao-zone-sys">
-<p class="ao-zone-head"><span>企业自己的业务系统</span><span class="ao-pill">独立运行 · 不经过 Studio</span></p>
-<div class="ao-runtime">
-<div class="ao-app-row">
-<div class="ao-app-card"><b>业务应用</b><p>页面、接口、数据与业务规则，源码归企业所有。</p></div>
-<div class="ao-app-card"><b>业务 Agent</b><p>继承负责人权限 24 小时处理日常事务，关键决策交给人。</p></div>
 </div>
 <div class="ao-core">
 <div class="ao-core-head"><b>NocoBase Core</b><span>开源应用底座</span></div>
 <div class="ao-core-band"><span class="ao-chip">权限与认证</span><span class="ao-chip">流程与审批</span><span class="ao-chip">多数据库</span><span class="ao-chip">文件与通知</span><span class="ao-chip">AI 与业务 Agent</span><span class="ao-chip">统一架构规范</span></div>
-</div>
 </div>
 </div>
 </figure>
@@ -95,8 +91,7 @@ Studio 社区版免费使用，包含两种内置工作流程（精简流程与�
 ## 开始使用
 
 - 了解推荐的两阶段推进方式，看清何时从本地 Core 切入 Studio：[先用 Core，再接入 Studio](from-core-to-studio.md)
-- 从 Core 起步，直接搭配本地编码工具开发：[用 Core 开发第一个应用](develop-your-first-app.md)
-- 一条命令在本机体验免费的 Studio 社区版：[一键安装 Studio](quick-install-studio.md)
-- 在团队 Studio 中走完一个需求：[用 Studio 协作开发](collaborate-with-studio.md)
+- 从 Core 起步，直接搭配本地 Coding Agent 开发：[用 Core 开发第一个应用](develop-your-first-app.md)
+- 一条命令安装免费的 Studio 社区版并走完第一个需求：[安装并使用 Studio](collaborate-with-studio.md)
 - 跟随一个完整的 IT 资产管理项目实践：[基于 NocoBase 3 开发可靠的企业应用](../guides/build-reliable-enterprise-apps.md)
 - 对比 Vibe Coding、低代码平台或了解 NocoBase 2 与 3 的关系：[常见问题](../faq/index.md)

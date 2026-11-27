@@ -67,7 +67,7 @@ Any of the following signs means the project has moved from solo exploration int
 
 Moving from Core to Studio requires no rewrite and no structural migration. Studio operates on the exact same Core-based Git repository, using the same project layout, skills, and runtime model.
 
-Once Studio is running (try it locally with [Install Studio with one command](quick-install-studio.md), or deploy it for your team via the [Installation overview](../studio/setup/index.md)), create a project linked to your existing repository without re-initializing it, and continue right where you left off (see [Bring the project into Studio](../guides/bring-into-studio.md)).
+Once Studio is running (try it locally with [Install and use Studio](collaborate-with-studio.md), or deploy it for your team via the [Installation overview](../studio/setup/index.md)), create a project linked to your existing repository without re-initializing it, and continue right where you left off (see [Bring the project into Studio](../guides/bring-into-studio.md)).
 
 ## Stage 2: Polish in parallel and evolve with Studio
 
@@ -76,7 +76,7 @@ Inside Studio, development shifts from fast local iteration to controlled, team-
 ### Parallel delivery with process and review guardrails
 
 - **High parallel throughput**: Break frontline feedback into separate tasks. Studio coordinates an agent team to work on them concurrently in isolated branches.
-- **Structured checks protect existing behavior**: Every change goes through automated checks and independent cross-model review, arriving with a delivery report and live preview for human acceptance (see [Collaborate with Studio](collaborate-with-studio.md)).
+- **Structured checks protect existing behavior**: Every change goes through automated checks and independent cross-model review, arriving with a delivery report and live preview for human acceptance (see [Install and use Studio](collaborate-with-studio.md)).
 - **People stay in charge of decisions**: Whenever a business rule needs clarification, the task pauses in your queue with a focused question; people always decide when to merge and release.
 
 ### Grow into more modules after launch
@@ -117,6 +117,5 @@ The two-stage pattern fits most new business systems, but it is not the only way
 ## Next steps
 
 - Start Stage 1 and run your first business app locally: [Build your first app with Core](develop-your-first-app.md)
-- Try the free Studio Community Edition on your computer with one command: [Install Studio with one command](quick-install-studio.md)
-- Walk through raising requests, reviews, and acceptance in Studio: [Collaborate with Studio](collaborate-with-studio.md)
+- Install the free Studio Community Edition with one command and walk through your first request: [Install and use Studio](collaborate-with-studio.md)
 - Follow a complete end-to-end project from Core into Studio: [Build reliable enterprise apps with NocoBase 3](../guides/build-reliable-enterprise-apps.md)

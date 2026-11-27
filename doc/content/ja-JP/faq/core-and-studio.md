@@ -6,4 +6,4 @@ title: "Core を使うには Studio のインストールが必要ですか？"
 
 Core はアプリの基盤機能と開発規約を提供し、Studio は人とエージェントの共同作業を管理します。実際のプロジェクトでは、探索期にローカルのコーディングツールと Core で素早く MVP を作り、試用フィードバックが集まり始めたタイミングで同じリポジトリを移行コストゼロで Studio に接続する進め方がおすすめです。詳しくは[Core から始めて Studio へ](../getting-started/from-core-to-studio.md)を参照してください。どちらの方法でも、開発するアプリは Core 上で動作します。
 
-Studio の導入を検討する場合は、[Studio で協働開発する](../getting-started/collaborate-with-studio.md)を読むか、[ワンコマンドで Studio をインストール](../getting-started/quick-install-studio.md)から自分のコンピューターでコミュニティ版を無料で試してみてください。チーム向けのデプロイとエディションの選び方は[インストールの概要](../studio/setup/index.md)で説明しています。
+Studio の導入を検討する場合は、[Studio をインストールして使う](../getting-started/collaborate-with-studio.md)に沿って自分のコンピューターで無料のコミュニティ版を試し、最初の要件を一通り進めてみてください。チーム向けのデプロイとエディションの選び方は[インストールの概要](../studio/setup/index.md)で説明しています。

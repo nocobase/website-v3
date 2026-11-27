@@ -1,89 +1,102 @@
 ---
-title: Collaborate with Studio
-metaDescription: "Submit a request in Studio, follow Agent handoffs and reviews, accept the result, and deliver a release."
+title: Install and use Studio
+metaDescription: "Install the free Studio Community Edition and a first project on your computer with one command, then submit a request and walk through Agent handoffs, reviews, and acceptance."
 ---
 
-Studio brings requirements, Agent execution, and delivery results together in projects and tasks so the team can develop together.
+Install the free Studio Community Edition and a starter project on your own computer with one command, then walk through submitting a request, Agent-driven development, checks and review, and acceptance from start to finish.
 
-## Why use Studio
+## Prerequisites
 
-### From personal conversations to shared tasks
+- macOS, Linux, or WSL on Windows with Docker Desktop
+- Docker with Compose v2, running
+- Node.js 24, Git, and curl
+- At least one Coding Agent installed and signed in: Claude Code, Codex, OpenCode, Pi, or similar
 
-When requirements and results stay in personal conversations, colleagues rely on someone to relay progress. Studio tasks keep requirements, owners, code changes, and checks together. Business colleagues and developers can clarify rules, follow progress, and accept results in one place.
+## Install and sign in with one command
 
-### Let agents coordinate development and checks
+Run in your terminal:
 
-The Lead Agent assigns design, development, testing, and independent review to execution Agents, then arranges fixes when needed. Handoffs and results stay in the task, without people relaying every step. Tasks can advance in parallel on separate branches; see [Agent execution rules](../studio/intro/agent-team.md).
+```bash
+curl -fsSL https://get.nocobase.com/studio | sh
+```
 
-### Keep decisions, acceptance, and project knowledge with people
+For options such as interface language or mirror registries, see [Installer options](../studio/setup/install.md#installer-options).
 
-People decide business rules and accept results; the Lead Agent does not merge PRs for them. The knowledge base stores business materials, while project memory keeps agreed rules and design decisions for future requests and handoffs to other people or Agents.
+The installer sets up on your computer:
 
-## Connect to Studio
+- Studio Community Edition, with data stored in `~/.nocobase-studio/`
+- A local Git server (Gitea) for project repositories
+- This computer connected as a [personal runtime](../studio/join/personal-runtime.md), where your Coding Agents run tasks
+- **My first project**, containing a Core-based NocoBase 3 app already deployed to a test environment
 
-### Join an existing team
+When finished, the terminal prints Studio's URL and login credentials. Open `http://127.0.0.1:13000/main`, sign in with those credentials (change your password under **Account settings › Account & security**), and enter the starter project conversation.
 
-[Accept the invitation and sign in](../studio/join/sign-in.md), then open the project prepared by your administrator. You do not need to create a local application first.
+The conversation includes an initial plan prepared by the Agent and a suggested task card with a **Start** button. You can click **Start** right away, or follow the steps below to submit your own requirement.
 
-### Prepare the team environment and project
+## Open the app in the test environment
 
-Administrators can deploy Community Edition, connect Git and a runtime, and configure Agents. Once the first project is ready, invite the team. See [Installation and configuration](../studio/setup/index.md).
+The Agent's first message in the conversation starts with the test app's URL and credentials—by default `http://127.0.0.1:13000/my-first-project-staging/`.
 
-The following walkthrough adds a supplier page. Before starting, check that:
-
-- The project's **Initialize project** task is complete.
-- The Lead Agent is configured and at least one runtime is online.
-- The repository has a [check source](../studio/setup/ci.md). Prepare a preview or test environment if you need to try the application.
+Open it and sign in with the credentials from that message to view the initialized NocoBase 3 application. The test environment sleeps after 10 minutes of inactivity and starts automatically on the next visit; you can also view it under [Managed environments](../studio/admin/environments.md).
 
 ## Submit a request and confirm the plan
 
-Select **New issue** in the project and describe the goal and how you will check it. For example:
+On the project page, click **New issue** and describe your business goal and how you want to verify it. For example:
 
 ```prompt
-Add a supplier page with name, contact person, phone, and partnership status. Buyers should be able to add, edit, and view suppliers.
+Add a suppliers page with name, contact person, phone number, and status. Buyers can create, edit, and view suppliers.
 
-I want to add a supplier, change its status to suspended, and filter the list by status.
+When done, I should be able to add a supplier, set its status to paused, and filter the list by status.
 ```
 
-The Agent clarifies missing rules and creates a task. Review it and select **Start**. You can also choose **Fill in manually** to create the task directly.
+The Agent asks clarifying questions about unclear rules, then organizes the requirement into a task. Review it and click **Start** (or switch to manual entry to create the task directly).
 
-![Use a conversation to define the goal and business rules](https://static-docs.nocobase.com/studio-en-new-task-20261111-normal-2x.webp)
+![Clarifying goals and business rules in conversation when creating a new issue](https://static-docs.nocobase.com/studio-en-new-task-20261111-normal-2x.webp)
 
-The task moves to **In progress**. The Lead Agent arranges design, development, and review.
-
-Before starting, confirm the allowed supplier statuses, which suppliers buyers can access, and whether suspending a supplier only changes its partnership status. Tell the Agent which rules are undecided and record the agreed rules in the task. Attach purchasing policies or field definitions to the task or [Knowledge base](../studio/project/knowledge-base.md) for design and review.
+Once started, the task moves to **In progress**, and the Lead Agent schedules design, development, testing, and review. If you have existing policies or field definitions, attach them to the task or add them to the [Knowledge base](../studio/project/knowledge-base.md).
 
 ## Follow development, checks, and review
 
-The task header shows the active Agent, runtime, and next step. **Activity** keeps handoffs, replies, and review results. **Runs** provides execution details.
+The top of the task shows the active Agent, runtime, and next step. **Activity** records handoffs, replies, and review feedback, while **Runs** keeps detailed execution logs.
 
-![Task details show the current step and what comes next](https://static-docs.nocobase.com/studio-en-req-now-20261111-normal-2x.webp)
+![Task details showing the current step and upcoming actions](https://static-docs.nocobase.com/studio-en-req-now-20261111-normal-2x.webp)
 
-The Lead Agent arranges design and implementation according to the change. An execution Agent edits code on the task branch and creates a PR (pull request). Checks and reviews stay linked to the task. Failed checks or review findings go back for fixes and another check or review before acceptance.
-
-For example, if filtering by supplier status still includes other statuses, the behavior needs fixing and verification before delivery. Read the actual checks and unverified items in the delivery report: an In progress status does not mean every business behavior has passed verification. See [Checks and review](../studio/project/checks-and-review.md) for the mechanisms.
+Execution Agents make changes on a dedicated branch and open a PR; checks and review results stay linked to the same task. If checks fail or review raises issues, the Lead Agent schedules fixes and re-runs verification before handing the work to you. See [Checks and review](../studio/project/checks-and-review.md).
 
 ## Answer questions and accept the result
 
-When a business decision is needed, the task becomes **Blocked** and appears under **Waiting for you** in **My issues**. Reply to the **Needs you** card with the rule or missing information. The Lead Agent continues from your answer.
+When a business decision is needed, the task pauses as **Blocked** and surfaces under **My issues › Waiting for you**. Reply in the **Needs you** card and the Lead Agent resumes execution.
 
-For missing checks or previews, ask an administrator to follow [Checks and CI](../studio/configure/checks.md).
+Once the task reaches **Ready for acceptance**:
 
-When the task is **In review**:
+1. Read the delivery report to verify changes, check results, and any unverified items.
+2. Click **View changes** to inspect the PR, and test against your scenarios in the preview or test environment.
+3. Click **Merge** when satisfied, confirming the target branch and merge method.
+4. Click **Request changes** if adjustments are needed, stating what failed and what you expect.
 
-1. Read the delivery report, including changes, verification, and remaining issues.
-2. Select **View changes** to inspect the PR. Try the acceptance scenarios in a preview when available.
-3. Select **Merge** when the result meets the requirements. Confirm the target branch and merge method.
-4. Otherwise, select **Send back** and describe the problem and expected result.
+![Confirming task results with the delivery report and acceptance criteria](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
 
-![Check the delivery report against the acceptance criteria](https://static-docs.nocobase.com/studio-en-req-accept-20261111-normal-2x.webp)
-
-Development is complete when the task is **Done** and its changes are on the default branch. Follow testing and release progress in [Releases](../studio/release/overview.md).
+When the task is **Done** and the changes are on the default branch, development delivery is complete.
 
 ## Release changes and retain project knowledge
 
-Merging code does not mean it is live. A project with automated deployment can deploy merged code to a test environment through CI; otherwise, follow your team's deployment process. The owner confirms the tasks included in a release and records the production version in Studio after production deployment. See [Release management](../studio/release/overview.md).
+Merging code does not automatically deploy to production. Projects with CI update the test environment after merge; once the owner confirms which tasks belong in a release and deploys to production, they record the production version in Studio. See [Release management](../studio/release/overview.md).
 
-Save agreed purchasing rules and design decisions as [Project memory](../studio/project/project-memory.md), reviewed and merged with code. Keep original policies in the knowledge base. Agents can reuse this context when modifying supplier features later.
+Agreed business rules and design conventions can be saved to [Project memory](../studio/project/project-memory.md), while source documents stay in the knowledge base so future requests and teammates reuse the same context.
 
-After this walkthrough, use [My issues](../studio/use/my-tasks.md) for decisions and acceptance. Follow the [Learning path](learning-path.md) for team setup, project management, and reference material.
+## Connect an existing Core app
+
+If you already built an app locally in [Build your first app with Core](develop-your-first-app.md) and pushed it to a Git repository, you do not need to re-initialize a project. Because the one-command installer also installs `nb-studio`, open your Coding Agent in the app directory and say:
+
+```prompt
+Use nb-studio to create a project in Studio linked to the current repository, without initializing it. Tell me the project URL when done.
+```
+
+For full steps and PR preview setup, see [Bring the project into Studio](../guides/bring-into-studio.md).
+
+## Next steps
+
+- Upgrade, stop, or uninstall local Studio: [Upgrade, stop and uninstall](../studio/setup/install.md#upgrade-stop-and-uninstall)
+- Deploy Studio for a team on a server: [Installation overview](../studio/setup/index.md)
+- Handle ongoing decisions and acceptance: [My issues](../studio/use/my-tasks.md)
+- Follow a complete project from Core development into Studio collaboration: [Build reliable enterprise apps with NocoBase 3](../guides/build-reliable-enterprise-apps.md)

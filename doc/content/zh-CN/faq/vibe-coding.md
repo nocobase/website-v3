@@ -26,4 +26,4 @@ NocoBase 并不是 Vibe Coding 的替代品。直接用 Claude Code、Codex、Cu
 你可以按团队阶段直接把现有编码工具和 NocoBase 结合起来：
 
 - **个人开发者或小团队先跑通应用**：直接在应用目录里用 Claude Code、Codex、Cursor 等编码工具从 Core 起步，不必先部署 Studio。操作步骤见[开发第一个应用](../getting-started/develop-your-first-app.md)。
-- **多项目并行、多人协作或业务人员参与验收**：部署免费的 Studio 社区版，把个人电脑和团队服务器上的编码工具组建成一支 Agent 团队，按流程统一推进和把关。操作步骤见[快速安装 Studio](../getting-started/quick-install-studio.md) 和[使用 Core 必须安装 Studio 吗？](core-and-studio.md)。
+- **多项目并行、多人协作或业务人员参与验收**：部署免费的 Studio 社区版，把个人电脑和团队服务器上的编码工具组建成一支 Agent 团队，按流程统一推进和把关。操作步骤见[安装并使用 Studio](../getting-started/collaborate-with-studio.md) 和[使用 Core 必须安装 Studio 吗？](core-and-studio.md)。

@@ -37,27 +37,23 @@ Studio はすべてのプロジェクトの要件、議論、進捗、コスト�
 
 ## NocoBase 3 の構成
 
-<figure class="arch-overview" aria-label="ローカルのコーディングツールまたは NocoBase Studio で業務アプリを開発し、業務アプリと組み込み業務エージェントが NocoBase Core の上で独立稼働する構成">
-<div class="ao-zone">
-<p class="ao-zone-head"><span>開発とデリバリー</span></p>
-<div class="ao-stack">
-<div class="ao-box"><b>ローカルのコーディングツール</b><span>Core から直接スタート</span><p>Claude Code、Codex、Cursor などで業務システムを直接開発。Studio の事前導入は不要です。</p></div>
-<div class="ao-or">またはチーム協働へ拡張</div>
-<div class="ao-box ao-studio"><b>NocoBase Studio</b><span>チーム開発ワークスペース</span><p>24 時間稼働するエージェントチームを編成し、ワークフローに沿って納品・レビュー・品質テストを統制。</p></div>
+<figure class="arch-overview" aria-label="ローカルのコーディングツールまたは NocoBase Studio で業務システムを開発し、業務アプリと業務エージェントが NocoBase Core 基盤の上で独立稼働する構成">
+<div class="ao-top">
+<div class="ao-box"><div class="ao-box-head"><b>ローカルのコーディングツール</b><span class="ao-tag">Core から単体スタート</span></div><p>Claude Code、Codex、Cursor などで直接開発。Studio の事前導入は不要です。</p></div>
+<div class="ao-box ao-studio"><div class="ao-box-head"><b>NocoBase Studio</b><span class="ao-tag">チーム開発ワークスペース</span></div><p>24 時間稼働のエージェントチームを編成し、ワークフローとレビューで品質を統制。</p></div>
 </div>
+<div class="ao-down"><svg viewBox="0 0 16 20" fill="none" aria-hidden="true"><path d="M8 2v14M3 11.5L8 16.5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>開発と継続改善</span></div>
+<div class="ao-system">
+<div class="ao-biz-wrap">
+<div class="ao-sys-head"><b>自社の業務システム</b><span class="ao-pill">独立稼働 · Studio を経由しない</span></div>
+<div class="ao-biz-row">
+<div class="ao-biz-item"><b>業務アプリ</b><p>画面、API、データ、業務ルール。ソースコードは自社が所有します。</p></div>
+<div class="ao-biz-item"><b>業務エージェント</b><p>担当者の権限を引き継いで 24 時間日常業務を処理し、重要な判断は人に委ねます。</p></div>
 </div>
-<div class="ao-link"><span>開発と継続改善</span><svg viewBox="0 0 44 16" fill="none" aria-hidden="true"><path d="M2 8h36M32 2.5L39 8l-7 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-<div class="ao-zone ao-zone-sys">
-<p class="ao-zone-head"><span>自社の業務システム</span><span class="ao-pill">独立稼働 · Studio を経由しない</span></p>
-<div class="ao-runtime">
-<div class="ao-app-row">
-<div class="ao-app-card"><b>業務アプリ</b><p>画面、API、データ、業務ルール。ソースコードは自社が所有します。</p></div>
-<div class="ao-app-card"><b>業務エージェント</b><p>担当者の権限を引き継いで 24 時間日常業務を処理し、重要な判断は人に委ねます。</p></div>
 </div>
 <div class="ao-core">
 <div class="ao-core-head"><b>NocoBase Core</b><span>オープンソースのアプリケーション基盤</span></div>
 <div class="ao-core-band"><span class="ao-chip">権限と認証</span><span class="ao-chip">ワークフローと承認</span><span class="ao-chip">マルチデータベース</span><span class="ao-chip">ファイルと通知</span><span class="ao-chip">AI と業務エージェント</span><span class="ao-chip">統一アーキテクチャ規約</span></div>
-</div>
 </div>
 </div>
 </figure>
@@ -95,8 +91,7 @@ Studio コミュニティ版は無料で利用でき、2 種類の組み込み�
 ## はじめよう
 
 - おすすめの 2 段階の進め方と、Core から Studio へ切り替えるタイミングを確認する：[Core から始めて Studio へ](from-core-to-studio.md)
-- Core から単体で始め、ローカルのコーディングツールで開発する：[Core で最初のアプリを開発する](develop-your-first-app.md)
-- 1 つのコマンドで自分の PC に無料の Studio コミュニティ版を入れて試す：[ワンコマンドで Studio をインストール](quick-install-studio.md)
-- チームの Studio で 1 つの要件を最後まで進めてみる：[Studio で協働開発する](collaborate-with-studio.md)
+- Core から単体で始め、ローカルの Coding Agent で開発する：[Core で最初のアプリを開発する](develop-your-first-app.md)
+- 1 つのコマンドで無料の Studio コミュニティ版をインストールし、最初の要件を一通り試す：[Studio をインストールして使う](collaborate-with-studio.md)
 - IT 資産管理を題材に、本格的な開発から運用までを通して実践する：[NocoBase 3 で信頼できるエンタープライズアプリを構築する](../guides/build-reliable-enterprise-apps.md)
 - Vibe Coding やローコードプラットフォームとの違い、NocoBase 2 と 3 の関係を確認する：[よくある質問](../faq/index.md)

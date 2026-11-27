@@ -37,27 +37,23 @@ Studio keeps requests, discussions, progress, and spend across every project in 
 
 ## What makes up NocoBase 3
 
-<figure class="arch-overview" aria-label="Build business apps with local coding tools or NocoBase Studio; business apps and built-in business agents run independently on NocoBase Core">
-<div class="ao-zone">
-<p class="ao-zone-head"><span>Development &amp; delivery</span></p>
-<div class="ao-stack">
-<div class="ao-box"><b>Local coding tools</b><span>Start directly with Core</span><p>Use Claude Code, Codex, Cursor, and more to build business systems without installing Studio first.</p></div>
-<div class="ao-or">Or upgrade to team collaboration</div>
-<div class="ao-box ao-studio"><b>NocoBase Studio</b><span>Team development workbench</span><p>Coordinate a 24/7 agent team with structured workflows, review, and quality testing.</p></div>
+<figure class="arch-overview" aria-label="Build business systems with local coding tools or NocoBase Studio; business apps and business agents run independently on the NocoBase Core foundation">
+<div class="ao-top">
+<div class="ao-box"><div class="ao-box-head"><b>Local coding tools</b><span class="ao-tag">Start with Core</span></div><p>Use Claude Code, Codex, or Cursor to build directly on Core without installing Studio first.</p></div>
+<div class="ao-box ao-studio"><div class="ao-box-head"><b>NocoBase Studio</b><span class="ao-tag">Team workbench</span></div><p>Coordinate a 24/7 agent team with structured delivery, cross-model review, and quality gates.</p></div>
 </div>
+<div class="ao-down"><svg viewBox="0 0 16 20" fill="none" aria-hidden="true"><path d="M8 2v14M3 11.5L8 16.5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Build &amp; iterate</span></div>
+<div class="ao-system">
+<div class="ao-biz-wrap">
+<div class="ao-sys-head"><b>Your business systems</b><span class="ao-pill">Independent runtime · No Studio in path</span></div>
+<div class="ao-biz-row">
+<div class="ao-biz-item"><b>Business apps</b><p>Pages, APIs, data models, and business rules. Your organization owns the source code.</p></div>
+<div class="ao-biz-item"><b>Business agents</b><p>Handle routine work 24/7 within their owner's permissions, handing key decisions to people.</p></div>
 </div>
-<div class="ao-link"><span>Build &amp; iterate</span><svg viewBox="0 0 44 16" fill="none" aria-hidden="true"><path d="M2 8h36M32 2.5L39 8l-7 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-<div class="ao-zone ao-zone-sys">
-<p class="ao-zone-head"><span>Your organization's business systems</span><span class="ao-pill">Independent runtime · No Studio in path</span></p>
-<div class="ao-runtime">
-<div class="ao-app-row">
-<div class="ao-app-card"><b>Business apps</b><p>Pages, APIs, data models, and business rules. Your organization owns the source code.</p></div>
-<div class="ao-app-card"><b>Business agents</b><p>Handle routine work 24/7 within their owner's permissions, handing key decisions to people.</p></div>
 </div>
 <div class="ao-core">
 <div class="ao-core-head"><b>NocoBase Core</b><span>Open-source application foundation</span></div>
 <div class="ao-core-band"><span class="ao-chip">Permissions &amp; auth</span><span class="ao-chip">Workflows &amp; approvals</span><span class="ao-chip">Multi-database</span><span class="ao-chip">Files &amp; notifications</span><span class="ao-chip">AI &amp; business agents</span><span class="ao-chip">Consistent architecture</span></div>
-</div>
 </div>
 </div>
 </figure>
@@ -95,8 +91,7 @@ After launch, business agents can stay active inside your business systems to ha
 ## Get started
 
 - See the recommended two-stage approach and when to move from local Core to Studio: [Start with Core, scale with Studio](from-core-to-studio.md)
-- Start directly with Core and your local coding tool: [Build your first app with Core](develop-your-first-app.md)
-- Try the free Studio Community Edition on your computer with one command: [Install Studio with one command](quick-install-studio.md)
-- Walk through a request in a team Studio environment: [Collaborate with Studio](collaborate-with-studio.md)
+- Start directly with Core and your local Coding Agent: [Build your first app with Core](develop-your-first-app.md)
+- Install the free Studio Community Edition with one command and walk through your first request: [Install and use Studio](collaborate-with-studio.md)
 - Follow a complete IT asset management project from start to finish: [Build reliable enterprise apps with NocoBase 3](../guides/build-reliable-enterprise-apps.md)
 - Compare NocoBase with vibe coding and low-code platforms, or learn how NocoBase 2 relates to NocoBase 3: [Frequently asked questions](../faq/index.md)

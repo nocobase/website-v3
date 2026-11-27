@@ -3,48 +3,33 @@ title: Configure repository checks and CI
 description: Select a check source and configure verification, PR previews, and test delivery.
 ---
 
-Open **Project settings › Code repositories** and select **Checks** on a repository card. Each repository has one check source. Studio uses results from that source only.
+On the repository card in **Project settings › Code repositories**, edit **Checks** and **Previews** separately. For example, GitHub Actions can provide checks while an Agent publishes the preview for the same PR.
 
-| Source | Checks run by | Previews published by |
-| --- | --- | --- |
-| Code-host CI | GitHub Actions, GitLab CI, Gitea Actions, or the host’s pipeline | The same pipeline |
-| External CI | Jenkins or your existing CI service | The external pipeline |
-| Agent self-check | The Agent, using project scripts and instructions | The Agent working on the task |
-
-![Select a repository check source and preview configuration](https://static-docs.nocobase.com/studio-en-ci-20261111-normal-2x.webp)
+![Select GitHub Actions as the repository check source](https://static-docs.nocobase.com/studio-guide-en-checks-20261127-a6340eebb255.webp)
 
 ## Agent self-check
 
-New repositories use Agent self-checks by default. No CI file is required. The Agent runs project checks, reports each result with `nb-studio check report`, then builds and publishes a PR preview.
-
-The Agent doing the work reports these results. Use code-host or external CI when you need an independent pipeline.
+New repositories default to Agent self-checks. The Agent runs the project checks and reports each result with `nb-studio check report`. To have the Agent publish a preview as well, select **Agent build** in **Previews**.
 
 ## Code-host CI
 
-For GitHub Actions:
+If you use GitHub Actions, GitLab CI, or Gitea Actions, select the code host in **Checks** and save. Studio reads existing checks on the linked PR or MR.
 
-1. Select the source, trigger, and target environment.
-2. Enter the application directory (`.` for the repository root) and App ID.
-3. Copy the prompt for an Agent with access to the repository.
-4. Have it add the CI file and configure the secret, then check the pipeline after submission.
+To publish previews through CI as well:
 
-| Trigger | Purpose |
-| --- | --- |
-| Pull request | Create a PR preview |
-| Branch push | Update a test environment |
-| Tag | Deliver a version to a test environment |
+1. Select **CI build** in **Previews**.
+2. Store the repository CI key as the pipeline secret `NB_STUDIO_API_KEY`. Set `NB_STUDIO_URL` to a Studio URL reachable from the runner. External CI can use the same repository key to report checks and publish previews.
+3. Use the configuration shown in the drawer to add a PR build job. For an existing pipeline, follow the build and publish commands in the drawer. Save and verify with a PR.
 
-Generate one trigger configuration at a time. Set up each trigger you need. Expand the manual instructions for commands and CI files. GitHub uses the Actions secret `NB_STUDIO_API_KEY`.
+For the code host’s own CI, select the trigger, target environment, and application directory (use `.` for the repository root). Use a PR trigger for previews, or a branch push or tag to deploy to a [test environment](../admin/environments.md). Generate a configuration for each trigger. The CI runner needs network access to Studio.
 
-CI must be able to reach Studio. Cloud CI cannot reach a local address; use reachable HTTPS or a self-hosted CI runner. Configure test targets under [Hosted environments](../admin/environments.md).
-
-Gitea Actions uses the generated `.gitea/workflows/` file and the same `NB_STUDIO_API_KEY` secret. Its runner must be able to reach Studio and the actions referenced by the workflow.
+![Repository key settings and workflow options under CI build](https://static-docs.nocobase.com/studio-guide-en-ci-build-20261127-a2f2cc4abfa1.webp)
 
 ## External CI
 
-Select Jenkins or another CI system and generate the repository's CI key. Store the Studio URL and key as pipeline variables, then use the generated scripts. They report pending checks, results, and log links, and can publish previews.
+Select **External CI** in **Checks** and store the repository CI key as a pipeline secret. Use the generated script to report each check’s status and log URL. To publish previews from the pipeline, also select **CI build** in **Previews**.
 
-The key appears only when generated. Keep it out of the repository. CI keys belong to the organization and expire after 90 days by default. Leads and administrators receive expiry reminders. Update the pipeline when replacing a key.
+The key appears only when generated. Keep it out of the repository. Repository CI keys expire after 90 days by default. When you receive an expiry reminder, replace the key and update the pipeline variable.
 
 ## Configure branch rules
 
@@ -59,7 +44,7 @@ Checks not listed as advisory are required. The code host's branch protection st
 
 ## Verify the connection
 
-Submit a PR and check the repository's build records. The task's **Code & previews** tab should show results and a preview link. Open the preview and verify the application works.
+After opening a PR, check its results in the task’s **Code & previews** tab. Once a preview is published, open **Build records** from the repository’s **Previews** row to see the published app and its publisher.
 
 **Not reported yet** means the selected source has not reported results. If required variables are missing, set them on the environment or application as indicated. Tasks that do not need previews can use the **No preview needed** property; generated CI templates respect the `no-preview` label.
 

@@ -5,15 +5,17 @@ description: Test each project against built-in quality standards, generate repo
 
 Quality management is available in Studio Enterprise Edition (EE). It tests a project against an explicit set of quality standards: Agents run established testing tools, Studio generates the test reports, and findings become follow-up tasks that later tests verify. [Contact us for Enterprise Edition](https://www.nocobase.com/contact/).
 
-Open a project’s **Quality** tab to see its testing tasks, core scenarios, follow-ups, and metrics. Select **Run test** to start a test if you have permission. To switch between projects, open **Quality** in the sidebar.
+Open a project’s **Quality** tab to see its testing tasks, core scenarios, follow-ups, and metrics. Select **Run test** to start a test if you have permission. To switch between projects, open **Quality** in the sidebar. Choose 7, 30, or 90 days to see test counts, new and closed problems, pass rates, and test duration over the period.
 
-![Quality testing workflow](https://static-docs.nocobase.com/studio-quality-flow-en-20261126-f4287fc2ea.svg)
+![Test counts, findings, and pass rate over the selected period](https://static-docs.nocobase.com/studio-guide-en-quality-20261127-974c6ade0ca0.webp)
 
 ## Key capabilities
 
+![Quality testing workflow](https://static-docs.nocobase.com/studio-guide-flow-en-20261127-9b41b1faf872.svg)
+
 ### Built-in quality standards that each project can customize
 
-Functionality, permissions, security, performance, and code quality each have a set of metrics and pass criteria, such as “unauthorized reads = 0”, “initial JS ≤ 2 MB”, and “new circular dependencies = 0”. A passing test means the tested version meets these standards.
+Functionality, permissions, security, performance, code quality, and user experience each have a set of metrics and pass criteria, such as “unauthorized reads = 0”, “initial JS ≤ 2 MB”, and “new circular dependencies = 0”. A passing test means the tested version meets these standards.
 
 **Projects can define their own standards**: replace the Skill a dimension uses, or add dimensions. See [Quality standards](standards.md) for the full list.
 
@@ -30,8 +32,6 @@ The server parses JUnit, SARIF, dependency audits, Lighthouse, and other raw res
 ### Findings become follow-up tasks
 
 Findings are grouped by cause and registered as defects, questions, test data, code cleanup, performance, or dependency tasks. They follow the normal development, review, and acceptance workflow. After a fix is merged, a later test confirms the problem is gone.
-
-![Example project: results for functionality, permissions, security, performance, and code quality](https://static-docs.nocobase.com/studio-en-quality-sample-20261111-normal-2x.webp)
 
 ## Test types
 
@@ -53,6 +53,7 @@ Each test creates a testing task. You accept its results through the task's deli
 | Security | Dependency vulnerabilities, leaked secrets, code security issues, endpoint scan alerts | pnpm audit, gitleaks, OWASP ZAP |
 | Performance | Page loads, API responses, database queries | Lighthouse, autocannon, PostgreSQL |
 | Code quality | Duplication, cognitive complexity, unused code, circular dependencies | jscpd, eslint-plugin-sonarjs, knip, dependency-cruiser |
+| User experience | Desktop and mobile pages against the project’s UI standards | Browser, axe |
 
 ## Core scenarios
 

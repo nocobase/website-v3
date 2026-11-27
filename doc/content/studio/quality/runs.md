@@ -36,11 +36,13 @@ Studio freezes the scope and each dimension's Skill version when it creates the 
 3. Each dimension prepares its own test environment and data, runs its tools, and submits results and evidence against the standards.
 4. When every dimension has submitted, Studio generates the delivery report.
 
+The functional dimension runs the tests in scope. Daily, release, and custom tests for selected tasks run only test files added or modified by the relevant PRs. If no test files changed, the report records manual verification. Project tests and custom tests covering the whole codebase run the full suite.
+
 Testing does not change product code. Unclear rules are registered as questions; checks missing an environment or data are recorded as unverified with a reason.
 
 ## Follow progress
 
-Open **Quality › Testing issues** to see each test, or open it from **My issues**. The testing task shows each dimension's status, checked items, and time spent in each stage.
+Open **Quality › Testing issues** to see each test, or open it from **My issues**. The testing task shows each dimension's status, checked items, and time spent in each stage. In the project’s quality overview, select **View all** under the run records to see the remaining tests for that filter.
 
 ![Testing tasks and their execution status](https://static-docs.nocobase.com/studio-en-quality-runs-20261111-normal-2x.webp)
 

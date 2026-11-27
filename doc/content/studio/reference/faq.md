@@ -32,6 +32,7 @@ A personal Git account with read-only repository access cannot push a PR. Grant 
 | Connection looks healthy but checkout reports `HTTP Basic: Access denied` | Expand the repositories on the connection. Check which connection the project uses and compare its clone URL. If the run uses a personal Git account, check that account’s access to the private repository |
 | A task reports `glab: command not found` | On the runtime used for that run, check `glab --version` and the service PATH as the service user |
 | The check failed but the log is missing | Confirm the check came from GitLab CI. Have the Agent look up the MR pipeline within the repository task run, then read the failed job by ID. For a 404, check the project path, IDs, and the run identity’s access |
+| Cannot read an MR while linking it manually | Verify the repository path and MR number, then check that Studio’s GitLab connection can read it. Studio does not save the link if the MR is missing or unreadable. If the link is saved but checks are missing, check whether the connection can read the pipeline. |
 
 For example, to inspect MR 12 and job 345 in `inventory-team/warehouse`, substitute your own project and IDs:
 

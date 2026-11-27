@@ -3,7 +3,7 @@ title: PR previews
 description: Open the application for a PR and verify changes before merging.
 ---
 
-A PR preview is an isolated application running a specific commit. First [configure checks and previews](../configure/checks.md) on the repository. CI publishes previews for CI sources; the working Agent publishes them for Agent self-check.
+A PR preview runs the application at a specific commit. In the repository’s **Previews** settings, select **Agent build**, **CI build**, or **No build**. See [Configure repository checks and CI](../configure/checks.md).
 
 ## Open a preview
 
@@ -13,7 +13,9 @@ Use the task's **Code & previews** tab to see its URL, commit, and build status.
 
 New commits update the preview after the new build completes. Before accepting a task, confirm that the preview matches the changes being merged.
 
-Initial deployment loads sample data, not business data. Once the preview has started, people who can edit the task can select **Account** on its PR line to copy the initial administrator credentials. Set missing required variables on the preview environment or individual application as indicated.
+When sample data is enabled for the environment, both initial deployment and redeployment load any outstanding samples. To turn this off for one app, set `APP_SAMPLE_DATA=false` in its variables and select **Apply & restart**.
+
+Once the preview has started, people who can edit the task can select **Account** on its PR line to copy the initial administrator credentials. Set missing required variables on the preview environment or individual application as indicated.
 
 ## Skip a preview
 

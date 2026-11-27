@@ -33,8 +33,9 @@ Select a dimension to open its detailed report. Tabs show the dimension's result
 | Security | Dependency vulnerabilities, leaked secrets, code security issues, ZAP passive scan alerts, ZAP active scan alerts |
 | Performance | Page performance data, API performance data, items over budget |
 | Code quality | Metric values, locations of new issues |
+| User experience | Must violations, Should suggestions, unverified pages, and screenshot evidence |
 
-The report also lists the time spent on environment preparation, test data, execution, and other stages.
+The detailed notes attachment lists the time spent per stage and explains which activities took the longest. It includes ways to save time when the measurements support them.
 
 ![Inspect dimension findings and test evidence](https://static-docs.nocobase.com/studio-en-quality-dimension-20261111-normal-2x.webp)
 

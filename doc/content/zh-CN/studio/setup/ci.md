@@ -1,34 +1,23 @@
 ---
 title: 配置检查与预览
-description: 选择 Agent 自检、GitHub Actions 或外部 CI，验证任务改动并提供预览。
+description: 以 GitHub 为例，设置仓库检查来源和 PR 预览构建方式。
 ---
 
-新仓库默认使用 Agent 自检。团队已有流水线时，可在仓库设置中切换到代码平台或外部 CI。
+每个仓库分别设置检查来源和预览构建方式。下面以 GitHub 为例，让 GitHub Actions 运行检查，由 Agent 构建 PR 预览。
 
 ## 选择检查方式
 
-打开项目的「设置 › 代码仓库」，点对应仓库的「检查」。
+打开「项目设置 › 代码仓库」，在目标仓库的「检查」行点「修改」。已有 GitHub Actions 检查时，选「GitHub Actions」并保存。Studio 从 GitHub 读取结果。还没有 CI 时，可保留默认的「Agent 自检」。
 
-| 方式 | 适合什么情况 | 需要配置什么 |
-| --- | --- | --- |
-| Agent 自检 | 先由 Agent 验证改动，不搭建 CI | 选择后保存；Agent 根据项目脚本执行检查、上报结果并发布预览 |
-| GitHub Actions | 使用 GitHub 流水线统一执行检查和构建 | 添加工作流文件和 CI 密钥 |
-| 外部 CI | 已有其他 CI 服务 | 由现有流水线上报检查结果和发布预览 |
+![在仓库的「检查」中选择 GitHub Actions](https://static-docs.nocobase.com/studio-guide-zh-checks-20261127-10558ddc7784.webp)
 
-每个仓库只采用选定来源的检查结果。切换来源后，旧来源的上报不再生效。
+## 选择预览构建方式
 
-![选择检查来源、触发方式和预览环境](https://static-docs.nocobase.com/studio-zh-ci-20261111-normal-2x.webp)
+1. 回到同一张仓库卡片，修改「预览环境」。
+2. 选择「Agent 构建」并保存。Agent 交付时按项目脚本构建部署包并发布预览。无需预览的仓库可以选「不构建」。
+3. 打开有 PR 的任务，在「代码与预览」中查看检查结果。预览发布后，在同一处打开应用。
 
-## 使用 GitHub Actions
-
-1. 选择「GitHub Actions」。触发方式选「Pull request」，环境选「预览」。
-2. 应用在仓库根目录时，目录填 `.`，保留生成的应用 ID。
-3. 点「复制给 Agent 的提示词」，交给本地 Coding Agent。它会添加工作流文件、保存 CI 密钥并创建 PR。
-4. 等待工作流完成，在任务的「代码与预览」中查看检查结果并打开预览。
-
-GitHub Actions 必须能够访问 Studio。Studio 只有本机或内网地址时，使用可访问它的自托管执行机，或先配置可达的 HTTPS 地址。
-
-手动配置、外部 CI、分支或标签触发，以及密钥维护，见[配置仓库检查与 CI](../configure/checks.md)。
+![在「预览环境」中单独选择构建方式](https://static-docs.nocobase.com/studio-guide-zh-preview-20261127-121d9c6618de.webp)
 
 ## 下一步
 

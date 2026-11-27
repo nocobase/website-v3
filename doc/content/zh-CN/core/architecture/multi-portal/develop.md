@@ -119,7 +119,7 @@ register({ ...portalFromPackage(manifest), defaultInstalled: false });
 | 默认 | 顶层页面单独一项，授权键为 `name` |
 | `group: 'stock'` | 使用同一 `group` 的页面合为一项，一起开放 |
 | `children` 中的子页面 | 默认跟随父页面；加上 `access: 'own'` 后单独一项，并且还要能打开所有上级页面 |
-| `authz: 'skip'` | 能进入门户就能打开，不出现在权限配置中 |
+| `authz` | 替换这个页面的默认检查，不出现在权限配置中；`'skip'` 表示能进入门户就能打开 |
 
 例如下面两个页面共用一个授权项，编辑页单独授权：
 
@@ -170,7 +170,7 @@ register({ ...portalFromPackage(manifest), defaultInstalled: false });
 
 ### 由路由生成导航
 
-写了 `navigation` 的页面会按 `routes` 中的顺序进入门户的菜单，没有 `navigation` 的页面（如详情页）不进入菜单。成员没有权限打开的页面，菜单项会自动隐藏。
+写了 `navigation` 的页面会进入门户的菜单，同级页面按 `navigation.order` 排序，与应用菜单一致；没有 `navigation` 的页面（如详情页）不进入菜单。成员没有权限打开的页面，菜单项会自动隐藏。菜单链接使用不带参数的地址，如 `stock/:warehouse?` 的菜单项打开 `stock`。门户页面不会出现在应用的菜单中。
 
 菜单默认显示在左侧侧栏：桌面端可收起，手机上收进抽屉。改为头部横向导航时，在 `client/layout.tsx` 中设置：
 
@@ -187,7 +187,7 @@ register({ ...portalFromPackage(manifest), defaultInstalled: false });
 | 属性 | 作用 |
 | --- | --- |
 | `logo` | 门户的 Logo，显示在侧栏顶部，没有侧栏时显示在头部。门户不使用应用的 Logo |
-| `navigation` | 菜单位置：省略时为侧栏，`'top'` 为头部横向导航 |
+| `navigation` | 菜单位置：`'sidebar'`（默认）为侧栏，`'top'` 为头部横向导航 |
 | `sidebar`、`topNav` | 自定义菜单，替换由路由生成的菜单 |
 | `switcher` | 门户切换器，通常为 `<PortalSwitcher />`，列出成员的门户并提供 **返回我的门户** |
 | `headerActions` | 应用的头部按钮（站内信、Agent 等）：省略时全部显示，`{ include: [...] }`、`{ exclude: [...] }` 或 `false` |
@@ -282,8 +282,9 @@ export default definePortalApiRoutes({
 | 1 | 已登录，或使用了 API 密钥 | `401`，`PORTAL_AUTHENTICATION_REQUIRED` |
 | 2 | 门户存在且已安装 | `404`，`PORTAL_NOT_AVAILABLE` |
 | 3 | 有门户访问权限；有范围限制的 API 密钥，范围内要包含这个门户 | `403`，`PORTAL_ACCESS_DENIED` |
+| 4 | 门户已启用，并且宿主策略允许访问 | `403`，`PORTAL_ACCESS_DENIED` |
 
-这三项错误的 `domain` 都是 `portalCenter`。门户没有定义的路径返回 `404` 和 `ROUTE_NOT_FOUND`。页面授权不参与接口的检查。
+以上错误的 `domain` 都是 `portalCenter`。门户的启用状态和宿主策略见[多门户服务的方法](reference.md#多门户服务的方法)。门户没有定义的路径返回 `404` 和 `ROUTE_NOT_FOUND`。页面授权不参与接口的检查。
 
 通过检查后，接口自己还要检查两项：业务操作权限（如上例的 `c.var.authz.require(readMaterials)`），以及数据范围。门户访问只决定能否进入门户，不代替业务权限。
 
@@ -311,7 +312,7 @@ serviceProviders: [
 ],
 ```
 
-门户访问关闭时，这些操作一并置灰。角色从通配授权继承来的操作会标出来源，在这里只读。
+门户访问关闭时，这些操作一并置灰。角色对某类资源的全部记录有授权（如 `{ type: 'warehouse', id: '*' }`）时，对应操作显示为已勾选并标出来源，在这里只读，需要到原来授权的地方修改。
 
 放进多门户页签的资源，不要再用 `authz.ui.place` 放到主工作区。门户或资源未注册、同一门户重复放置同一资源时，应用启动报错。
 

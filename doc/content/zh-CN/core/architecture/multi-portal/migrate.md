@@ -85,7 +85,8 @@ pnpm install
 
 - 指向 `/workbench` 的链接改为 `/portals`。
 - 调用 `GET /api/portalCenter/workbench` 的地方改为 `GET /api/portalCenter/myPortals`。
-- 面向成员的门户链接使用返回结果中的 `href`，没有 `href` 时再用 `entry`：`entry` 是门户地址，`href` 是成员实际可以进入的页面。
+- `myPortals` 现在只返回已安装、并且成员开启了门户访问的门户，不再带 `href`、`landing` 和 `modules`。面向成员的门户链接改用 `useMyPortals()`，它返回的门户带有成员实际可以进入的 `href`。
+- 原来用 `requireModule` 保护的接口，改用 `requirePortalAccess` 加业务操作权限。如果原来只靠页面授权保护某个操作，给相关角色和 API 密钥授予对应的业务操作，再在接口中检查这个操作。
 
 ## 检查角色授权并验证
 

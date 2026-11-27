@@ -1,5 +1,5 @@
 ---
-// 官网所有页面的外壳：head（标题、canonical、hreflang、统计）、共用的导航和页脚、页面正文和页面自己的脚本。内容由 src/lib/site.mjs 的 renderPage() 给出。
+// 官网所有页面的外壳：head（标题、canonical、hreflang、分享卡片、统计）、共用的导航和页脚、页面正文和页面自己的脚本。内容由 src/lib/site.mjs 的 renderPage() 给出。
 // 页面自己的 <style>（正文开头写的，要盖过 site.css）放在 body 开头：Astro 把打包的样式表放在 head 的最后，写在 head 里会排在它前面。
 // 样式的顺序：颜色字体变量 → 字体 → 导航页脚 → 官网共用样式，首页再加 home.css（在 pages/index.astro 里引入）。
 import '@nocobase/site-shared/styles/tokens.css';
@@ -10,6 +10,7 @@ import '../styles/site.css';
 import Analytics from '@nocobase/site-shared/Analytics.astro';
 import Footer from '@nocobase/site-shared/Footer.astro';
 import Header from '@nocobase/site-shared/Header.astro';
+import SocialMeta from '@nocobase/site-shared/SocialMeta.astro';
 import { ANALYTICS } from '../lib/nav.mjs';
 
 const { page } = Astro.props;
@@ -24,6 +25,7 @@ const { qsModal } = page;
 <meta name="description" content={page.description}>
 {page.noindex ? <meta name="robots" content="noindex"> : <link rel="canonical" href={page.canonical}>}
 {page.alternates.map(([h, u]) => <link rel="alternate" hreflang={h} href={u}>)}
+<SocialMeta title={page.title} description={page.description} url={page.canonical} image={page.share.image} type={page.share.type} siteName="NocoBase" locale={page.htmlLang} />
 <script is:inline set:html={page.inline}></script>
 <Analytics {...ANALYTICS} />
 <link rel="icon" type="image/png" sizes="32x32" href="https://static-docs.nocobase.com/nocobase-favicon-32x32.png">

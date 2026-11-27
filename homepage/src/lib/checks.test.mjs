@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { test } from 'vitest';
 import { ALL } from './config.mjs';
-import { checkCounts, checkRoot, countPages, expectedFiles, isArticleUrl, makeExists, readOutput, runChecks } from './checks.mjs';
+import { checkCounts, checkRoot, checkShareTags, countPages, expectedFiles, isArticleUrl, makeExists, readOutput, runChecks } from './checks.mjs';
 import { Page } from './site.mjs';
 
 test('the output root must not contain en or api, or a directory with a dot in its name', () => {
@@ -58,6 +58,16 @@ test('runChecks reports a broken link, a missing page and a reserved root name',
   assert.ok(errors.some(e => e.includes('/nope/')), errors.join('\n'));
   assert.ok(errors.some(e => e.includes('缺少页面 /core/')), errors.join('\n'));
   assert.ok(errors.some(e => e.includes('不能有 en/')), errors.join('\n'));
+});
+
+test('every page needs an absolute JPG, PNG, WEBP or GIF og:image and a twitter:card for link previews', () => {
+  const tags = '<meta property="og:image" content="https://static-docs.nocobase.com/a.jpg"><meta name="twitter:card" content="summary_large_image">';
+  assert.deepEqual(checkShareTags({ '/': tags, '/blog/x/': tags }), []);
+  const [error] = checkShareTags({ '/': tags, '/core/': '<meta name="twitter:card" content="summary_large_image">', '/blog/x/': '<meta property="og:image" content="/a.jpg"><meta name="twitter:card" content="summary">' });
+  assert.match(error, /^2 个页面缺少分享卡片的标签.*\/blog\/x\/、\/core\//);
+  const svg = '<meta property="og:image" content="https://static-docs.nocobase.com/a.svg"><meta name="twitter:card" content="summary_large_image">';
+  assert.match(checkShareTags({ '/blog/y/': svg })[0], /\/blog\/y\//);
+  assert.deepEqual(checkShareTags({ '/': tags.replace('a.jpg', 'a.PNG?v=2') }), []);
 });
 
 test('articles are the blog, customer and changelog detail pages', () => {

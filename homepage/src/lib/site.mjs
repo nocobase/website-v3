@@ -144,7 +144,8 @@ export function deferInlineScripts(html) {
 
 /**
  * 一个页面在一种语言的全部渲染内容。
- * 返回 { code, htmlLang, title, description, canonical, alternates, noindex, inline, pageId, band, mainId, style, main, after, header, footer }
+ * 返回 { code, htmlLang, title, description, canonical, alternates, noindex, share, inline, pageId, band, mainId, style, main, after, header, footer }
+ * share：分享卡片（og:/twitter: 标签）的图片和类型，博客和客户案例的文章用自己的封面，其余页面用默认图
  */
 export function renderPage(page, lang) {
   const { byId } = getSite();
@@ -195,6 +196,7 @@ export function renderPage(page, lang) {
     title, description: desc,
     canonical: page.noindex ? null : ORIGIN + page.path(lang),
     alternates, noindex: page.noindex,
+    share: { image: m.image, type: /^(blog|customers)\//.test(page.id) ? 'article' : 'website' },
     inline,
     pageId: page.kind === 'home' ? '' : m.page,
     band: /class="(?:[^"]*\s)?band(?:\s[^"]*)?"/.test(page.main),

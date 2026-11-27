@@ -7,6 +7,7 @@
     "./Header.astro": "./src/Header.astro",
     "./Footer.astro": "./src/Footer.astro",
     "./Analytics.astro": "./src/Analytics.astro",
+    "./SocialMeta.astro": "./src/SocialMeta.astro",
     "./languages": "./src/languages.mjs",
     "./config": "./src/config.mjs",
     "./integration": "./src/integration.mjs",

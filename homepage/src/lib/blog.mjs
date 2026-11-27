@@ -140,7 +140,8 @@ function generate(posts, stories, site) {
   };
   // 每页一条：地址（blog、blog/<slug>……）、导航高亮、中英文标题和描述、正文
   // draft：CMS 草稿的预览页（scripts/cms-import.mjs），加 noindex，也就不进 sitemap
-  const build = (id, page, tz, te, dz, de, main, draft) => OUT.push({ id, meta: { page, title_zh: tz, title_en: te, desc_zh: dz, desc_en: de, ...(draft && { noindex: '1' }) }, main });
+  // image：文章封面（各语言同一张），作为分享卡片的图片（og:image）；没有的用默认图
+  const build = (id, page, tz, te, dz, de, main, draft, image) => OUT.push({ id, meta: { page, title_zh: tz, title_en: te, desc_zh: dz, desc_en: de, ...(draft && { noindex: '1' }), ...(image && { image }) }, main });
 
   // 列表页
   const alltags = [];
@@ -204,7 +205,7 @@ function generate(posts, stories, site) {
     <div class="cta"><a class="btn btn-pri" href="core.html">${T('了解 NocoBase Core', 'Explore NocoBase Core')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="contact.html#contact">${T('预约实战验证', 'Book a Pilot')}</a></div>
   </div>
 </div>`;
-    build('blog/' + slug, 'blog', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body, posts[slug].draft);
+    build('blog/' + slug, 'blog', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body, posts[slug].draft, e.image);
   }
 
   // ======================= 客户案例：独立的列表与详情 =======================
@@ -264,7 +265,7 @@ function generate(posts, stories, site) {
     <div class="cta"><a class="btn btn-pri" href="contact.html#contact">${T('预约实战验证', 'Book a Pilot')}<i data-lucide="arrow-right"></i></a><a class="btn btn-sec" href="customers.html">${T('全部客户案例', 'All customer stories')}</a></div>
   </div>
 </div>`;
-    build('customers/' + slug, 'customers', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body, stories[slug].draft);
+    build('customers/' + slug, 'customers', c.title + ' — NocoBase', e.title + ' — NocoBase', c.desc.replaceAll('\n', ' '), e.desc.replaceAll('\n', ' '), body, stories[slug].draft, e.image);
   }
   return OUT;
 }

@@ -1,0 +1,29 @@
+---
+// 分享卡片：链接发到 X、LinkedIn、Slack、微信等处时显示的标题、描述和图片（Open Graph 和 X 卡片标签），官网和文档站的 head 里各用一次。
+// 没有 og:image 时 X 只显示一条链接；image 不传，或者是 X 不支持的格式（只认 JPG、PNG、WEBP、GIF，SVG、AVIF 的封面不显示），就用 SHARE_IMAGE。
+import { SHARE_IMAGE, X_HANDLE } from './config.mjs';
+
+export interface Props {
+  title: string;
+  description?: string;
+  /** 页面的绝对地址（canonical）；noindex 的页面不传 */
+  url?: string | null;
+  /** 绝对地址 */
+  image?: string;
+  type?: 'website' | 'article';
+  siteName: string;
+  /** hreflang 写法的语言，如 zh-CN */
+  locale: string;
+}
+const { title, description, url, image, type = 'website', siteName, locale } = Astro.props as Props;
+const shareable = image && /\.(?:jpe?g|png|webp|gif)$/i.test(image.split(/[?#]/)[0]);
+---
+<meta property="og:type" content={type}>
+<meta property="og:site_name" content={siteName}>
+<meta property="og:title" content={title}>
+{description && <meta property="og:description" content={description}>}
+{url && <meta property="og:url" content={url}>}
+<meta property="og:image" content={shareable ? image : SHARE_IMAGE}>
+<meta property="og:locale" content={locale.replace('-', '_')}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content={X_HANDLE}>

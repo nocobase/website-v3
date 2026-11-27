@@ -69,15 +69,24 @@ It brings Claude Code, Codex, OpenCode, and other coding tools on personal compu
 
 Studio Community Edition is free to use and includes two built-in workflows (simple workflow and standard workflow) along with foundational collaboration features. When your team needs multi-role and custom workflows, deployment approvals, or quality management, upgrade to Professional or Enterprise. See [Choose an edition](../studio/setup/index.md#choose-an-edition).
 
-## How the way you work changes
+## What changes and how teams work
 
-### Development and delivery
+### What changes
 
-People define goals, business rules, and acceptance criteria. Coding agents build pages, APIs, data structures, and business rules on Core, with source code stored in your own repository. Changes pass automated checks, cross-model review, and human sign-off before release, and continue evolving on the existing app as business needs change.
+AI + NocoBase is changing how business systems are built and used in four places:
 
-### Business agents in daily operations
+| Area | Before | Now |
+| --- | --- | --- |
+| **Business teams: submit requests directly and sign off yourself** | Requirements went into documents handed to IT, followed by months of scheduling, development, testing, and acceptance. | Routine needs no longer wait in long queues. Business users submit requests directly, agents finish development within hours and return an acceptance report and live test environment, and business users sign off themselves. Complex core systems also take shape rapidly through continuous iteration. |
+| **IT teams: shift from writing code to setting rules and governing releases** | IT capacity was tight and mostly spent writing code. Backlogs grew while shadow apps built by departments became hard to govern. | The agent team handles development and testing, while IT sets architecture standards and approval workflows, reviews designs, governs quality, and approves releases, freeing engineers from repetitive work while protecting reliability and security. |
+| **Management: see progress and spend anytime** | Finding out where projects stood or how much they cost meant asking through layers of status updates. | View and query progress and spend across every project directly. |
+| **Day-to-day operations: AI handles routine work 24/7** | Business systems recorded data and routed forms, while people handled every operational task by hand. | Business agents work inside your business systems around the clock within their owner's permissions, and ask a person to confirm key actions. |
 
-After launch, business agents can stay active inside your business systems to handle routine operations. Connected through Core's Agents capability, these business agents inherit their owner's permissions, proactively handle routine work 24/7 following your business rules, and ask a person to confirm key actions with supporting evidence.
+### How the team works
+
+- **Business users**: Submit requests, answer agent questions, and verify results in a live test environment.
+- **Tech leads**: Define rules and standards, review plans, perform technical sign-off, and approve releases.
+- **Agents**: During development, the Coding Agent team handles design, implementation, testing, and review, handing back reports, screenshots, and a live test environment for human sign-off. After release, business agents handle routine work 24/7 within granted permissions and hand key decisions to people.
 
 ## Self-hosting and full control
 

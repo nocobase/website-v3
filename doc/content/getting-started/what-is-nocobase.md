@@ -94,8 +94,9 @@ After launch, business agents can stay active inside your business systems to ha
 
 ## Get started
 
-- Start directly with Core and your local coding tool: [Develop your first app](develop-your-first-app.md)
-- Try the free Studio Community Edition on your computer with one command: [Quick install Studio](quick-install-studio.md)
+- See the recommended two-stage approach and when to move from local Core to Studio: [Start with Core, scale with Studio](from-core-to-studio.md)
+- Start directly with Core and your local coding tool: [Build your first app with Core](develop-your-first-app.md)
+- Try the free Studio Community Edition on your computer with one command: [Install Studio with one command](quick-install-studio.md)
 - Walk through a request in a team Studio environment: [Collaborate with Studio](collaborate-with-studio.md)
 - Follow a complete IT asset management project from start to finish: [Build reliable enterprise apps with NocoBase 3](../guides/build-reliable-enterprise-apps.md)
 - Compare NocoBase with vibe coding and low-code platforms, or learn how NocoBase 2 relates to NocoBase 3: [Frequently asked questions](../faq/index.md)

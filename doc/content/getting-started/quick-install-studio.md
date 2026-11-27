@@ -1,5 +1,5 @@
 ---
-title: Quick install Studio
+title: Install Studio with one command
 metaDescription: "Install Studio Community Edition and a first project on your computer with one command, open the application in the test environment, and hand the first task to an Agent."
 ---
 

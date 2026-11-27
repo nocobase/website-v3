@@ -7,7 +7,7 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 
 | 板块 | 内容 | 使用方式 |
 | --- | --- | --- |
-| [开始](what-is-nocobase.md) | 产品介绍、开发第一个应用、快速安装 Studio、Studio 协作、学习路径 | 第一次接触 NocoBase 3 时阅读 |
+| [开始](what-is-nocobase.md) | 产品介绍、从 Core 到 Studio 的推进方式、用 Core 开发第一个应用、一键安装 Studio、用 Studio 协作开发、学习路径 | 第一次接触 NocoBase 3 时阅读 |
 | [Core 手册](../core/index.md) | Core 介绍、开发应用、内置能力与插件、开发插件、框架原理、多应用架构、部署与运维、参考 | 按正在开发或维护的功能查阅 |
 | [Studio 手册](../studio/index.md) | 安装配置、成员接入、任务开发、项目管理、Agent 管理、质量管理、发布管理、系统管理、参考 | 按当前任务与操作查阅 |
 | [完整项目教程](../guides/build-reliable-enterprise-apps.md) | 准备环境与选择 Agent、用 Core 开发应用、通过 Studio 协作、最佳实践与附录 | 希望跟随一个完整项目逐步实践时阅读 |
@@ -15,11 +15,11 @@ metaDescription: "查看文档站全貌，按应用开发、Studio 协作、完�
 
 ## 完成首次上手
 
-先读 [NocoBase 3 是什么](what-is-nocobase.md)，理解应用底座（Core）与工作台（Studio）的关系，然后按你当前想做的事选择入口：
+先读 [NocoBase 3 是什么](what-is-nocobase.md) 和 [先用 Core，再接入 Studio](from-core-to-studio.md)，理解应用底座（Core）与工作台（Studio）的关系和两阶段推进节奏，然后按你当前想做的事选择入口：
 
-- **用本地编码工具开发第一个应用**：按[开发第一个应用](develop-your-first-app.md)在本地初始化应用底座并开发客户管理，检查角色权限后再继续迭代。
-- **在本机一键试用 Studio**：按[快速安装 Studio](quick-install-studio.md)用一条命令在自己电脑上安装免费的 Studio 社区版和首个项目。
-- **在团队 Studio 中交付需求**：直接按[使用 Studio 协作开发](collaborate-with-studio.md)走完一个需求；需要为团队部署工作台时，先进入[安装与配置](../studio/setup/index.md)。
+- **用本地编码工具开发第一个应用**：按[用 Core 开发第一个应用](develop-your-first-app.md)在本地初始化应用底座并开发客户管理，检查角色权限后再继续迭代。
+- **在本机一键试用 Studio**：按[一键安装 Studio](quick-install-studio.md)用一条命令在自己电脑上安装免费的 Studio 社区版和首个项目。
+- **在团队 Studio 中交付需求**：直接按[用 Studio 协作开发](collaborate-with-studio.md)走完一个需求；需要为团队部署工作台时，先进入[安装与配置](../studio/setup/index.md)。
 
 以上起步入口各自给出所需前提，无需先读完所有手册。如果想系统走完一个涵盖台账、审批、权限、部署与团队协作的完整项目，可以直接进入[构建可靠的企业应用](../guides/build-reliable-enterprise-apps.md)。
 

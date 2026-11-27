@@ -7,7 +7,7 @@ metaDescription: "Explore the documentation map and choose a reading route for a
 
 | Section | Contents | When to use it |
 | --- | --- | --- |
-| [Getting started](what-is-nocobase.md) | Product overview, your first app, quick install Studio, Studio collaboration, learning path | Your first time with NocoBase 3 |
+| [Getting started](what-is-nocobase.md) | Product overview, Core-to-Studio progression, your first app with Core, one-command Studio install, Studio collaboration, learning path | Your first time with NocoBase 3 |
 | [Core manual](../core/index.md) | Core overview, developing apps, built-in capabilities & plugins, developing plugins, framework, multi-app architecture, deployment & operations, reference | Look up the feature you are building or maintaining |
 | [Studio manual](../studio/index.md) | Setup, member access, issues, project management, agent management, quality management, releases, administration, reference | Look up workflows and actions as you work |
 | [Complete project tutorial](../guides/build-reliable-enterprise-apps.md) | Environment & agent setup, building an app with Core, team collaboration in Studio, best practices, appendix | Follow a full project step by step |
@@ -15,10 +15,10 @@ metaDescription: "Explore the documentation map and choose a reading route for a
 
 ## Complete your first walkthrough
 
-Start with [What is NocoBase 3](what-is-nocobase.md) to understand how the application foundation (Core) and the workbench (Studio) fit together, then pick the entry point that matches what you want to do now:
+Start with [What is NocoBase 3](what-is-nocobase.md) and [Start with Core, scale with Studio](from-core-to-studio.md) to understand how the application foundation (Core) and the workbench (Studio) fit together across project stages, then pick the entry point that matches what you want to do now:
 
-- **Build your first app with a local coding tool**: Follow [Develop your first app](develop-your-first-app.md) to initialize Core locally, build customer management, and check role permissions before iterating further.
-- **Try Studio locally with one command**: Follow [Quick install Studio](quick-install-studio.md) to install the free Studio Community Edition and a first project on your own computer.
+- **Build your first app with a local coding tool**: Follow [Build your first app with Core](develop-your-first-app.md) to initialize Core locally, build customer management, and check role permissions before iterating further.
+- **Try Studio locally with one command**: Follow [Install Studio with one command](quick-install-studio.md) to install the free Studio Community Edition and a first project on your own computer.
 - **Deliver an issue in a team Studio**: Go straight to [Collaborate with Studio](collaborate-with-studio.md) to walk through a request end to end. If you need to deploy the workbench for your team first, start with [Installation overview](../studio/setup/index.md).
 
 Each starting point lists its own prerequisites, so you do not need to read every manual first. If you want to work through a complete project covering an asset register, approvals, permissions, deployment, and team collaboration, jump straight into [Build reliable enterprise apps with NocoBase 3](../guides/build-reliable-enterprise-apps.md).

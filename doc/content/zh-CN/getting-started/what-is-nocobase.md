@@ -94,8 +94,9 @@ Studio 社区版免费使用，包含两种内置工作流程（精简流程与�
 
 ## 开始使用
 
-- 从 Core 起步，直接搭配本地编码工具开发：[开发第一个应用](develop-your-first-app.md)
-- 一条命令在本机体验免费的 Studio 社区版：[快速安装 Studio](quick-install-studio.md)
-- 在团队 Studio 中走完一个需求：[使用 Studio 协作开发](collaborate-with-studio.md)
+- 了解推荐的两阶段推进方式，看清何时从本地 Core 切入 Studio：[先用 Core，再接入 Studio](from-core-to-studio.md)
+- 从 Core 起步，直接搭配本地编码工具开发：[用 Core 开发第一个应用](develop-your-first-app.md)
+- 一条命令在本机体验免费的 Studio 社区版：[一键安装 Studio](quick-install-studio.md)
+- 在团队 Studio 中走完一个需求：[用 Studio 协作开发](collaborate-with-studio.md)
 - 跟随一个完整的 IT 资产管理项目实践：[基于 NocoBase 3 开发可靠的企业应用](../guides/build-reliable-enterprise-apps.md)
 - 对比 Vibe Coding、低代码平台或了解 NocoBase 2 与 3 的关系：[常见问题](../faq/index.md)

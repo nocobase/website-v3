@@ -1,5 +1,5 @@
 ---
-title: 开发第一个应用
+title: 用 Core 开发第一个应用
 metaDescription: "创建并启动 NocoBase 应用，让 Agent 开发客户管理、检查权限，并继续迭代业务功能。"
 ---
 
@@ -131,4 +131,4 @@ Agent 会一并启用用户管理和权限管理。按下面的步骤，看看�
 
 长期适用的约定可以让 Agent 保存到项目规范，例如“以后所有日期都按公司所在的时区计算，保存到项目规范”。这些约定记录在 `.agents/rules/`，由 `AGENTS.md` 索引，供后续会话使用。
 
-查看[CRM 示例源码](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm)及其 [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD)。理解文件分工可查阅[项目结构](../core/developing-apps/project-structure.md)，后续开发、部署和团队协作见[学习路径](learning-path.md)。
+查看[CRM 示例源码](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm)及其 [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD)。理解文件分工可查阅[项目结构](../core/developing-apps/project-structure.md)；准备让一线试用、多人并行迭代时，可按[先用 Core，再接入 Studio](from-core-to-studio.md) 将仓库接入 Studio，后续路线见[学习路径](learning-path.md)。

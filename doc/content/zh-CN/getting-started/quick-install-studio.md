@@ -1,5 +1,5 @@
 ---
-title: 快速安装 Studio
+title: 一键安装 Studio
 metaDescription: "用一条命令在自己的电脑上安装 Studio 社区版和首个项目，打开测试环境中的应用，再把第一个任务交给 Agent。"
 ---
 
@@ -51,4 +51,4 @@ Agent 在对话中的第一条回复以测试应用的地址和账号开头，�
 
 - 升级、停止或卸载 Studio：见[升级、停止和卸载](../studio/setup/install.md#升级停止和卸载)。
 - 为团队部署 Studio：见[安装概览](../studio/setup/index.md)。
-- 了解团队如何在 Studio 中提出需求、跟进开发和验收：见[使用 Studio 协作开发](collaborate-with-studio.md)。
+- 了解团队如何在 Studio 中提出需求、跟进开发和验收：见[用 Studio 协作开发](collaborate-with-studio.md)。

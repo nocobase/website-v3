@@ -7,6 +7,10 @@
         {
           "type": "page",
           "path": "what-is-nocobase"
+        },
+        {
+          "type": "page",
+          "path": "from-core-to-studio"
         }
       ]
     },

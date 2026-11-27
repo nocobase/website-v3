@@ -435,6 +435,28 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .arch-overview .ao-core-ai .ao-band-k { color: #e9d5ff; }
 .arch-overview .ao-core-ai .ao-chip { background: rgb(255 255 255 / 0.16); color: #fff; font-weight: 500; }
 
+/* Two-stage Core -> Studio onboarding flow diagram */
+.two-stage-flow { margin: 22px 0 28px; display: grid; grid-template-columns: minmax(0, 1fr) 74px minmax(0, 1fr); align-items: stretch; }
+.two-stage-flow .ts-stage { min-width: 0; display: flex; flex-direction: column; padding: 14px; border: 1px solid var(--rule); border-radius: 12px; background: var(--paper); }
+.two-stage-flow .ts-stage-studio { background: linear-gradient(180deg, #fff 0%, oklch(0.985 0.008 266) 100%); border-color: color-mix(in oklch, var(--brand) 28%, var(--rule)); box-shadow: 0 6px 20px -12px oklch(0.25 0.06 266 / 0.16); }
+.two-stage-flow .ts-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 8px; margin: 0 0 11px; }
+.two-stage-flow .ts-head b { font-size: 13.5px; font-weight: 650; color: var(--ink); }
+.two-stage-flow .ts-stage-studio .ts-head b { color: var(--brand); }
+.two-stage-flow .ts-head span { font-size: 11.5px; font-weight: 500; color: var(--muted); }
+.two-stage-flow .ts-steps { display: flex; flex-direction: column; gap: 9px; flex: 1; }
+.two-stage-flow .ts-card { flex: 1; padding: 12px 13px; border: 1px solid var(--rule); border-radius: 9px; background: var(--card); }
+.two-stage-flow .ts-top { margin-bottom: 6px; }
+.two-stage-flow .ts-pill { display: inline-flex; align-items: center; padding: 1px 8px; border-radius: 999px; font-size: 11px; line-height: 1.55; font-weight: 600; }
+.two-stage-flow .ts-pill.human { background: var(--human-tint); color: var(--human-ink); }
+.two-stage-flow .ts-pill.brand { background: var(--brand-tint); color: var(--brand); }
+.two-stage-flow .ts-pill.agent { background: var(--agent-tint); color: var(--agent-ink); }
+.two-stage-flow .ts-pill.pass { background: var(--pass-tint); color: var(--pass-ink); }
+.two-stage-flow .ts-card b { display: block; font-size: 14px; font-weight: 650; line-height: 1.4; color: var(--ink); }
+.two-stage-flow .ts-card p { margin: 5px 0 0; font-size: 12.5px; line-height: 1.65; color: var(--ink-2); }
+.two-stage-flow .ts-link { min-width: 0; align-self: center; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 0 4px; color: var(--brand); }
+.two-stage-flow .ts-link span { font-size: 11px; line-height: 1.35; text-align: center; font-weight: 600; }
+.two-stage-flow .ts-link svg { width: 36px; height: 16px; display: block; }
+
 /* Core overview layered architecture diagram */
 .core-arch { --ca-deep: oklch(0.22 0.055 266); --ca-deep-2: oklch(0.28 0.065 266); margin: 22px 0 28px; display: flex; flex-direction: column; gap: 12px; }
 .core-arch .ca-layer { padding: 16px; border-radius: 12px; border: 1px solid var(--rule); background: var(--paper); }
@@ -606,10 +628,10 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .layers .ly-link i { width: 10px; height: 18px; transform: none; clip-path: polygon(45% 0, 55% 0, 55% 12px, 100% 12px, 50% 100%, 0 12px, 45% 12px); }
   .layers .ly-app { grid-column: 1 / -1; grid-row: 3; }
   .layers .ly-foundation { grid-row: 4; margin-top: 0; padding: 16px; }
-  .arch-overview { grid-template-columns: 1fr; gap: 10px; }
+  .arch-overview, .two-stage-flow { grid-template-columns: 1fr; gap: 10px; }
   .arch-overview .ao-app-row, .core-arch .ca-biz-grid, .core-arch .ca-ai-items, .core-arch .ca-cap-grid { grid-template-columns: 1fr; }
-  .arch-overview .ao-link { padding: 2px 0; }
-  .arch-overview .ao-link svg { transform: rotate(90deg); width: 24px; height: 24px; }
+  .arch-overview .ao-link, .two-stage-flow .ts-link { padding: 2px 0; }
+  .arch-overview .ao-link svg, .two-stage-flow .ts-link svg { transform: rotate(90deg); width: 24px; height: 24px; }
   .doc-pager .next { grid-column: 1; }
 }
 @media print { .nav, .doc-side, .doc-localnav, .doc-pager, .copy-button, .page-actions, .doc-page > footer { display: none !important; } .doc-layout { display: block; } }

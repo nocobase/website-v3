@@ -1,5 +1,5 @@
 ---
-title: Develop your first app
+title: Build your first app with Core
 metaDescription: "Create and start a NocoBase app, develop customer management with an agent, check permissions, and keep iterating."
 ---
 
@@ -131,4 +131,4 @@ Confirm the design, then check the result as a sales rep, manager, and read-only
 
 Ask the agent to save lasting conventions, for example: “Use the company's time zone for all dates from now on, and save this in the project conventions.” These rules live in `.agents/rules/`, indexed by `AGENTS.md` for future sessions.
 
-See the [CRM example source](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm) and its [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD). Consult [Project structure](../core/developing-apps/project-structure.md) to locate code, or the [Learning path](learning-path.md) for development, deployment, and collaboration.
+See the [CRM example source](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm) and its [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD). Consult [Project structure](../core/developing-apps/project-structure.md) to locate code, [Start with Core, scale with Studio](from-core-to-studio.md) when you are ready for frontline previews and team iteration, or the [Learning path](learning-path.md) for deployment and collaboration.

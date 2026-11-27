@@ -94,8 +94,9 @@ Studio コミュニティ版は無料で利用でき、2 種類の組み込み�
 
 ## はじめよう
 
-- Core から単体で始め、ローカルのコーディングツールで開発する：[最初のアプリを開発する](develop-your-first-app.md)
-- 1 つのコマンドで自分の PC に無料の Studio コミュニティ版を入れて試す：[Studio をすばやくインストール](quick-install-studio.md)
+- おすすめの 2 段階の進め方と、Core から Studio へ切り替えるタイミングを確認する：[Core から始めて Studio へ](from-core-to-studio.md)
+- Core から単体で始め、ローカルのコーディングツールで開発する：[Core で最初のアプリを開発する](develop-your-first-app.md)
+- 1 つのコマンドで自分の PC に無料の Studio コミュニティ版を入れて試す：[ワンコマンドで Studio をインストール](quick-install-studio.md)
 - チームの Studio で 1 つの要件を最後まで進めてみる：[Studio で協働開発する](collaborate-with-studio.md)
 - IT 資産管理を題材に、本格的な開発から運用までを通して実践する：[NocoBase 3 で信頼できるエンタープライズアプリを構築する](../guides/build-reliable-enterprise-apps.md)
 - Vibe Coding やローコードプラットフォームとの違い、NocoBase 2 と 3 の関係を確認する：[よくある質問](../faq/index.md)

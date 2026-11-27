@@ -1,5 +1,5 @@
 ---
-title: 最初のアプリを開発する
+title: Core で最初のアプリを開発する
 metaDescription: "NocoBase アプリを作成して起動し、エージェントで顧客管理を開発し、権限を確認して改善を続けます。"
 ---
 
@@ -131,4 +131,4 @@ URL には `/main/` などのアプリのパスが含まれます。開くとき
 
 継続して守るルールは、「今後、日付はすべて会社のタイムゾーンで扱い、プロジェクトの規約に保存してください」のように依頼します。規約は `.agents/rules/` に保存され、`AGENTS.md` の索引から後続のセッションで参照できます。
 
-[CRM サンプルのソース](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm)と [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD)を参照できます。コードの場所は[プロジェクト構成](../core/developing-apps/project-structure.md)、開発、デプロイ、チームでの協働の進め方は[学習の進め方](learning-path.md)を参照してください。
+[CRM サンプルのソース](https://github.com/nocobase/docs-examples-v3/tree/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm)と [README](https://github.com/nocobase/docs-examples-v3/blob/8ad953049469ab6b1e703be2a1b07f80f28ed592/apps/crm/README.MD)を参照できます。コードの場所は[プロジェクト構成](../core/developing-apps/project-structure.md)、現場での試用やチームでの並行改善へ進むタイミングは[Core から始めて Studio へ](from-core-to-studio.md)、その先の進め方は[学習の進め方](learning-path.md)を参照してください。

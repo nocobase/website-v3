@@ -37,19 +37,16 @@ Studio 把所有项目的需求、讨论、进展和花费集中在一处；用 
 
 ## NocoBase 3 的组成
 
-<figure class="arch-overview" aria-label="通过本地编码工具或 NocoBase Studio 开发业务系统，业务应用与业务 Agent 运行在 NocoBase Core 应用底座上">
+<figure class="arch-overview" aria-label="NocoBase 3 由 NocoBase Studio 工作台和 NocoBase Core 应用底座组成：通过 Studio 或本地 Coding Agent 开发业务应用，业务应用运行在 Core 底座之上">
 <div class="ao-top">
-<div class="ao-box"><div class="ao-box-head"><b>本地编码工具</b><span class="ao-tag">从 Core 独立起步</span></div><p>用 Claude Code、Codex、Cursor 等直接开发业务系统，无需先安装 Studio。</p></div>
-<div class="ao-box ao-studio"><div class="ao-box-head"><b>NocoBase Studio</b><span class="ao-tag">团队开发工作台</span></div><p>组织 24 小时 Agent 团队，按流程推进任务、交叉评审与质量把关。</p></div>
+<div class="ao-box ao-studio"><div class="ao-box-head"><b>NocoBase Studio</b><span class="ao-tag">团队开发工作台</span></div><p>组织 Agent 团队协作、按流程评审与质量把关。</p></div>
+<div class="ao-box"><div class="ao-box-head"><b>本地 Coding Agent</b><span class="ao-tag">本地直接开发</span></div><p>Claude Code、Codex、Cursor 等。</p></div>
 </div>
 <div class="ao-down"><svg viewBox="0 0 16 20" fill="none" aria-hidden="true"><path d="M8 2v14M3 11.5L8 16.5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>开发与迭代</span></div>
 <div class="ao-system">
-<div class="ao-biz-wrap">
-<div class="ao-sys-head"><b>你的业务系统</b><span class="ao-pill">独立运行 · 不经过 Studio</span></div>
-<div class="ao-biz-row">
-<div class="ao-biz-item"><b>业务应用</b><p>页面、接口、数据与业务规则，源码归企业所有。</p></div>
-<div class="ao-biz-item"><b>业务 Agent</b><p>继承负责人权限 24 小时处理日常事务，关键决策交给人。</p></div>
-</div>
+<div class="ao-app">
+<div class="ao-sys-head"><b>你的业务应用</b><span class="ao-pill">独立运行</span></div>
+<p>页面、接口、数据模型与业务规则，源码归企业所有。</p>
 </div>
 <div class="ao-core">
 <div class="ao-core-head"><b>NocoBase Core</b><span>开源应用底座</span></div>

@@ -37,19 +37,16 @@ Studio はすべてのプロジェクトの要件、議論、進捗、コスト�
 
 ## NocoBase 3 の構成
 
-<figure class="arch-overview" aria-label="ローカルのコーディングツールまたは NocoBase Studio で業務システムを開発し、業務アプリと業務エージェントが NocoBase Core 基盤の上で独立稼働する構成">
+<figure class="arch-overview" aria-label="NocoBase 3 は NocoBase Studio と NocoBase Core で構成されます。Studio またはローカルの Coding Agent で業務アプリを開発し、Core 基盤の上で独立稼働します">
 <div class="ao-top">
-<div class="ao-box"><div class="ao-box-head"><b>ローカルのコーディングツール</b><span class="ao-tag">Core から単体スタート</span></div><p>Claude Code、Codex、Cursor などで直接開発。Studio の事前導入は不要です。</p></div>
-<div class="ao-box ao-studio"><div class="ao-box-head"><b>NocoBase Studio</b><span class="ao-tag">チーム開発ワークスペース</span></div><p>24 時間稼働のエージェントチームを編成し、ワークフローとレビューで品質を統制。</p></div>
+<div class="ao-box ao-studio"><div class="ao-box-head"><b>NocoBase Studio</b><span class="ao-tag">チーム開発ワークスペース</span></div><p>エージェントチームの協働、ワークフローによるレビューと品質管理。</p></div>
+<div class="ao-box"><div class="ao-box-head"><b>ローカル Coding Agent</b><span class="ao-tag">ローカル直接開発</span></div><p>Claude Code、Codex、Cursor など。</p></div>
 </div>
 <div class="ao-down"><svg viewBox="0 0 16 20" fill="none" aria-hidden="true"><path d="M8 2v14M3 11.5L8 16.5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>開発と継続改善</span></div>
 <div class="ao-system">
-<div class="ao-biz-wrap">
-<div class="ao-sys-head"><b>自社の業務システム</b><span class="ao-pill">独立稼働 · Studio を経由しない</span></div>
-<div class="ao-biz-row">
-<div class="ao-biz-item"><b>業務アプリ</b><p>画面、API、データ、業務ルール。ソースコードは自社が所有します。</p></div>
-<div class="ao-biz-item"><b>業務エージェント</b><p>担当者の権限を引き継いで 24 時間日常業務を処理し、重要な判断は人に委ねます。</p></div>
-</div>
+<div class="ao-app">
+<div class="ao-sys-head"><b>自社の業務アプリ</b><span class="ao-pill">独立稼働</span></div>
+<p>画面、API、データモデル、業務ルール。ソースコードは自社が所有します。</p>
 </div>
 <div class="ao-core">
 <div class="ao-core-head"><b>NocoBase Core</b><span>オープンソースのアプリケーション基盤</span></div>

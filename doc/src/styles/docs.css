@@ -412,14 +412,11 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .arch-overview .ao-down { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 0; color: var(--brand); font-size: 12px; font-weight: 600; }
 .arch-overview .ao-down svg { width: 16px; height: 20px; display: block; flex: none; }
 .arch-overview .ao-system { border: 1px solid color-mix(in oklch, var(--brand) 28%, var(--rule)); border-radius: 12px; overflow: hidden; background: var(--card); box-shadow: 0 6px 20px -12px oklch(0.25 0.06 266 / 0.14); }
-.arch-overview .ao-biz-wrap { padding: 14px 16px 15px; }
-.arch-overview .ao-sys-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-.arch-overview .ao-sys-head b { font-size: 14.5px; font-weight: 650; color: var(--ink); }
+.arch-overview .ao-app { padding: 14px 16px; }
+.arch-overview .ao-sys-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.arch-overview .ao-sys-head b { font-size: 15px; font-weight: 650; color: var(--ink); }
 .arch-overview .ao-pill { padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 500; background: var(--pass-tint); color: var(--pass-ink); }
-.arch-overview .ao-biz-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.arch-overview .ao-biz-item { padding: 10px 12px; border-radius: 8px; background: var(--paper); border: 1px solid var(--rule); }
-.arch-overview .ao-biz-item b { display: block; font-size: 13.5px; font-weight: 650; color: var(--ink); }
-.arch-overview .ao-biz-item p { margin: 4px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--ink-2); }
+.arch-overview .ao-app p { margin: 5px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-2); }
 .arch-overview .ao-core { padding: 14px 16px; background: linear-gradient(160deg, var(--ao-deep-2) 0%, var(--ao-deep) 100%); color: #fff; }
 .arch-overview .ao-core-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 10px; }
 .arch-overview .ao-core-head b { font-size: 15px; font-weight: 650; letter-spacing: -0.01em; }
@@ -621,7 +618,7 @@ figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
   .layers .ly-app { grid-column: 1 / -1; grid-row: 3; }
   .layers .ly-foundation { grid-row: 4; margin-top: 0; padding: 16px; }
   .two-stage-flow { grid-template-columns: 1fr; gap: 10px; }
-  .arch-overview .ao-top, .arch-overview .ao-biz-row, .core-arch .ca-biz-grid, .core-arch .ca-ai-items, .core-arch .ca-cap-grid { grid-template-columns: 1fr; }
+  .arch-overview .ao-top, .core-arch .ca-biz-grid, .core-arch .ca-ai-items, .core-arch .ca-cap-grid { grid-template-columns: 1fr; }
   .two-stage-flow .ts-link { padding: 2px 0; }
   .two-stage-flow .ts-link svg { transform: rotate(90deg); width: 24px; height: 24px; }
   .doc-pager .next { grid-column: 1; }

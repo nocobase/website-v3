@@ -21,11 +21,12 @@ minimumEdition: enterprise
 | **Caching** | 缓存查询结果、认证临时状态，以及共享计数 | 一个实例写入或清除的状态，另一个实例看不到；登录相关操作、缓存刷新和次数限制可能表现不一致。 |
 | **Realtime** | 通知用户有新消息、任务进度变化或列表需要刷新 | 事件只能到达连接在同一个实例上的浏览器；连接在其他实例上的用户收不到更新。 |
 | **Concurrency** | 防止多个请求同时处理同一资源，例如同时更新同一份库存汇总 | 本地锁只能约束本进程。两个实例各自取得锁后，仍可能同时操作同一资源。 |
+| **Message Broker** | 在业务事务提交后发布事件、与外部系统交换消息，或让多个订阅各自处理同一条消息 | 模板默认的 `inMemory` 只在本进程内投递，其他实例上的订阅收不到消息；进程退出时，已交给它但尚未投递的消息会丢失。 |
 | **ID Generator（Snowflake）** | 为记录生成数值 ID | 多个进程使用相同的 `workerId` 时可能生成重复 ID，导致写入失败或数据冲突。 |
 
-例如，应用启用了认证插件，就要检查它使用的 Caching；通知、邮件、Scheduler 和知识索引可能使用 Jobs；站内消息和任务进度可能依赖 Realtime。Queue 与 Jobs 是两项独立能力，配置了其中一项不会改变另一项。
+例如，应用启用了认证插件，就要检查它使用的 Caching；通知、邮件、Scheduler 和知识索引可能使用 Jobs；站内消息和任务进度可能依赖 Realtime；发布业务事件或接收外部系统消息的插件使用 Message Broker，它在事务内发布的消息还依赖 Concurrency 协调发送。Queue 与 Jobs 是两项独立能力，配置了其中一项不会改变另一项。
 
-还要检查业务是否指定了单独的配置。例如，`scheduler.jobs`、`notification.jobs`、`mail.jobs` 和 `knowledge.jobs` 可以选择某个命名的 Jobs 后端。即使改了 `jobs.default`，这些业务仍可能继续使用原来的本地后端。缓存、队列和并发控制的业务调用也可能明确选择了某个配置名。
+还要检查业务是否指定了单独的配置。例如，`scheduler.jobs`、`notification.jobs`、`mail.jobs` 和 `knowledge.jobs` 可以选择某个命名的 Jobs 后端。即使改了 `jobs.default`，这些业务仍可能继续使用原来的本地后端。缓存、队列和并发控制的业务调用也可能明确选择了某个配置名；Message Broker 的发布者和订阅名称也可能已在 `server/config/message-broker.ts` 中声明到某个后端。
 
 检查完成后，应能列出“哪些业务需要跨实例协作、当前用了哪个后端、要改哪项配置”。不使用的能力可以保持不变；只用于本进程优化、不承载共享状态的缓存也不必全部迁移。
 
@@ -35,12 +36,13 @@ minimumEdition: enterprise
 
 - **业务数据库**：所有实例连接同一个目标数据库，并使用一致的表结构。不要把单实例示例中的 SQLite 文件复制到两个容器后当作共享数据库。若现有应用使用 SQLite，先完成到适合多实例访问的数据库的迁移，并在构建前安装对应驱动；连接参数见[数据库兼容性](../developing-apps/compatibility.md)。
 - **Redis**：为需要共享的 Jobs、Queue、Caching、Realtime 和 Concurrency 准备可访问的 Redis。Jobs 和 Queue 需要持久化，并使用 `maxmemory-policy noeviction`，避免待处理任务因为内存淘汰而消失。容量、备份和访问控制也需要配置，不能只确认端口可连。
+- **RabbitMQ**：应用使用 Message Broker 时，准备各实例都能访问的 RabbitMQ 和专用 vhost。应用不会创建交换机、队列和绑定，需要由 RabbitMQ 管理员按[下文的资源表](#message-broker通过-rabbitmq-在实例之间和外部系统传递消息)预先创建，并为应用账号授予相应权限。
 - **文件存储**：用户经由实例 A 上传的文件，必须能从实例 B 下载。选择应用支持的对象存储或共享文件系统，并检查已有文件表实际选择的存储盘。仅修改默认存储不会搬走旧文件，也不会改变所有显式指定的存储盘。后台任务需要读取的附件、导入文件等，同样不能只留在提交请求的实例本地。
 - **密钥和访问地址**：各实例沿用同一套 `secrets.keys` 及已有的认证、会话密钥，使用相同的 `APP_PUBLIC_ORIGIN` 和 `APP_BASE_PATH`。不要为每个实例重新初始化一套配置。监听端口可以不同，但对外仍是同一个地址，例如 `https://apps.example.com/main/`。
 
 下面的 Redis 示例使用 `redis.internal:6379`，表示实例都能访问的 Redis 地址；请替换为实际地址。容器里的 `127.0.0.1` 是容器自己，不能用它连接另一台机器或另一个容器中的 Redis。
 
-同一应用的所有实例要使用相同的命名空间和缓存前缀；测试、预发布、生产环境则应分别设置。命名空间用于避免数据混用，不代替 Redis 账号权限和网络隔离。
+同一应用的所有实例要使用相同的命名空间和缓存前缀；测试、预发布、生产环境则应分别设置。命名空间用于避免数据混用，不代替 Redis 账号权限和网络隔离。RabbitMQ 同样按环境使用不同的 vhost 和账号。
 
 下文中的 `config.yml` 均指**生产运行配置**。在原配置中合并所需部分，保留数据库、密钥和业务设置，不用片段覆盖整个文件。配置文件限制为服务账号可读，不提交到代码仓库。环境变量可能覆盖文件中的值，检查时要使用与实际进程相同的环境；直接写入 `${REDIS_PASSWORD}` 不会自动替换成密码。敏感值的输入方式见[配置项参考](../reference/configuration.md)。
 
@@ -49,7 +51,7 @@ minimumEdition: enterprise
 
 ## 使用 Agent 完成改造与部署
 
-在应用源码目录中使用开发 Agent。提前准备目标服务器、数据库、Redis、文件存储和所需商业插件的访问权限，凭据通过安全方式提供，不放进提示词。应用自身的开发、部署 Skills，以及安装后同步的插件 Skills，提供对应版本的接入说明。
+在应用源码目录中使用开发 Agent。提前准备目标服务器、数据库、Redis、文件存储、RabbitMQ（使用 Message Broker 时）和所需商业插件的访问权限，凭据通过安全方式提供，不放进提示词。应用自身的开发、部署 Skills，以及安装后同步的插件 Skills，提供对应版本的接入说明。
 
 ### 检查现有应用
 
@@ -57,7 +59,7 @@ minimumEdition: enterprise
 
 ```text
 我准备把这个应用部署为两个实例，共用一个访问地址。
-请先检查现有业务和已启用的插件，看看哪些后台任务、缓存、实时消息和并发操作需要跨实例共享，记录 ID 是否也需要调整。
+请先检查现有业务和已启用的插件，看看哪些后台任务、缓存、实时消息、消息集成和并发操作需要跨实例共享，记录 ID 是否也需要调整。
 说明保持当前配置会影响哪些功能，以及需要准备哪些共享服务和商业插件。先不要修改或部署。
 ```
 
@@ -73,11 +75,11 @@ minimumEdition: enterprise
 服务器：<SSH 用户和地址>
 部署目录：<服务器上的绝对路径>
 访问地址：<例如 https://apps.example.com/main/>
-共享数据库、Redis 和文件存储：<已准备的服务及凭据获取方式>
+共享数据库、Redis、文件存储和 RabbitMQ：<已准备的服务及凭据获取方式>
 允许停机时间：<维护时间段>
 
 保留现有用户、业务数据、文件和密钥。把需要共享的能力接入相应商业插件，先验证两个实例能协作，再切换正式访问。
-请检查登录、后台处理、实时更新和文件访问，并验证停掉一个实例后另一个仍能处理请求。告诉我检查结果和需要我处理的问题。
+请检查登录、后台处理、实时更新、消息收发和文件访问，并验证停掉一个实例后另一个仍能处理请求。告诉我检查结果和需要我处理的问题。
 ```
 
 Agent 无法获取兼容的商业插件，或无法连接服务器时，可以先完成独立的代码与配置准备，但还不能据此增加生产实例。确认交付的是实际验证结果，而不是只有配置文件或进程启动截图。
@@ -95,6 +97,7 @@ Agent 无法获取兼容的商业插件，或无法连接服务器时，可以�
 | Caching | `@nocobase/app-plugin-caching-redis` |
 | Realtime | `@nocobase/app-plugin-realtime-redis` |
 | Concurrency | `@nocobase/app-plugin-concurrency-redis` |
+| Message Broker（RabbitMQ） | `@nocobase/app-plugin-message-broker-rabbitmq` |
 | Snowflake worker 自动分配 | `@nocobase/app-plugin-snowflake-worker` |
 
 先按[配置商业包的授权源](../developing-apps/overview.md#配置商业包的授权源)配置下载权限（已有有效配置可跳过），再按检查结果逐个注册需要的插件。以 Jobs 为例，先查看可用版本及其依赖要求，再把 `<兼容版本>` 替换为与当前应用匹配的版本：
@@ -109,10 +112,11 @@ pnpm nocobase plugin register @nocobase/app-plugin-jobs-redis --version '<兼容
 
 这里替换的是**业务所使用的后端**，通常不是卸载原来的开源服务：
 
-- 保留 `server/app.ts` 中原有的 Caching、Jobs、Queue 和 ID Generator 等服务提供者。
+- 保留 `server/app.ts` 中原有的 Caching、Jobs、Queue、Message Broker 和 ID Generator 等服务提供者。
 - 保留开源的 `@nocobase/app-plugin-concurrency`，在它之后注册 `app-plugin-concurrency-redis`。
+- 保留开源的 `@nocobase/app-plugin-message-broker`，它提供事务内发布和 inbox 去重；RabbitMQ 插件只负责连接 RabbitMQ。
 - 检查 `server/plugins.ts` 的顺序，让商业后端插件位于使用它们的业务插件之前。尤其要把 Caching Redis 放在认证等启动时就访问缓存的插件之前。
-- 前五个商业插件只需要 Server 注册；Snowflake worker 还需要 `cli/plugins.ts` 中的 CLI 注册。检查注册命令的结果，完成它提示的手动修改。
+- 除 Snowflake worker 外，其他商业插件只需要 Server 注册；Snowflake worker 还需要 `cli/plugins.ts` 中的 CLI 注册。检查注册命令的结果，完成它提示的手动修改。
 
 注册完成后同步 Skills，并检查依赖、锁文件和注册文件的改动：
 
@@ -266,6 +270,83 @@ concurrency:
 
 `ttl` 的单位是毫秒，表示锁的有效期，插件会自动续期；它不是“业务最多运行多久”，也不会到时强行终止业务。网络故障时不能只靠锁保证数据正确，重要写入仍应有数据库约束、事务和防重复处理。
 
+### Message Broker：通过 RabbitMQ 在实例之间和外部系统传递消息
+
+例如，订单提交后，应用发布一条“订单已创建”消息，ERP 同步收到后把订单写入 ERP；ERP 也可以把订单变更推送回来，由应用接收处理。模板默认的 `inMemory` 后端只在当前进程内传递消息，多实例部署时需要改用 RabbitMQ。只是想在请求之外执行一项工作时使用 Jobs，需要延迟、优先级或限速时使用 Queue。
+
+业务代码不直接使用 RabbitMQ 的交换机和队列，而是使用逻辑名称：发送消息时使用发布者名称，如 `orders`；接收消息时使用订阅名称，如 `erpOrders`。部署配置负责把这些名称对应到 RabbitMQ 中的资源：
+
+```yaml
+messageBroker:
+  default: rabbitmq
+  backends:
+    rabbitmq:
+      adapter: rabbitmq
+      connection:
+        host: rabbitmq.internal
+        port: 5671
+        vhost: my-app-production
+        username: my-app
+        password: <RabbitMQ 密码>
+        tls: true
+      publishers:
+        orders:
+          exchange: orders.events
+          routingKey: order.created
+      subscriptions:
+        erpOrders:
+          queue: orders.erp
+          concurrency: 4
+          maxAttempts: 3
+          retryDelay: 30000
+          retry:
+            exchange: orders.retry
+            routingKey: erp
+            queue: orders.erp.retry
+          deadLetter:
+            exchange: orders.dead
+            routingKey: erp
+            queue: orders.erp.dead
+```
+
+按这份配置，一条消息会这样流转：
+
+1. 发布者 `orders` 把消息发送到交换机 `orders.events`，路由键为 `order.created`。交换机本身不保存消息，而是按绑定把消息转发到队列：示例中队列 `orders.erp` 以路由键 `order.created` 绑定到 `orders.events`，所以消息进入 `orders.erp`。这条绑定不在应用配置中，需要在 RabbitMQ 中创建，见下方资源表。
+2. 订阅 `erpOrders` 从 `orders.erp` 读取消息。`concurrency` 是每个实例同时处理的消息数，默认 `1`。
+3. 处理失败时，消息经交换机 `orders.retry` 进入重试队列 `orders.erp.retry`，等待 `retryDelay` 毫秒（示例为 30 秒）后回到 `orders.erp`，再处理一次。
+4. 处理次数达到 `maxAttempts`（包含第一次，默认 `3`），或业务代码明确拒绝这条消息时，消息经交换机 `orders.dead` 进入死信队列 `orders.erp.dead`，等待人工排查。
+
+应用不会自动创建交换机和队列。使用示例配置前，需要先在 RabbitMQ 中创建以下资源：
+
+| 资源 | 类型 | 用途和设置 |
+| --- | --- | --- |
+| `orders.events` | 交换机 | 接收发布者 `orders` 的消息；按路由键 `order.created` 绑定到 `orders.erp` |
+| `orders.erp` | 队列 | 订阅 `erpOrders` 从这里读取消息 |
+| `orders.retry` | 交换机 | 接收需要重试的消息；按路由键 `erp` 绑定到 `orders.erp.retry` |
+| `orders.erp.retry` | 队列 | 让消息等待到重试时间。为它设置死信交换机和路由键，使到期的消息只回到 `orders.erp`；不要设置比最大 `retryDelay` 更短的队列 TTL |
+| `orders.dead` | 交换机 | 接收最终失败的消息；按路由键 `erp` 绑定到 `orders.erp.dead` |
+| `orders.erp.dead` | 队列 | 保存最终失败的消息，供排查或重新投递 |
+
+每个订阅都需要自己的重试队列和死信队列。应用启动时会检查这些交换机和队列是否存在，缺少时启动失败，并列出缺少的资源；绑定关系和死信设置不在检查范围内，需要管理员在 RabbitMQ 中核对。
+
+应用使用的 RabbitMQ 账号在对应 vhost 上只需要：
+
+- 对上表中交换机的 **write** 权限；启用 topic 授权时，包含应用使用的路由键。
+- 对上表中队列的 **read** 权限。
+
+多个实例运行同一个订阅时，它们从同一个队列读取消息，每条消息只由其中一个实例处理。如果多个订阅都要收到每一条消息，例如 ERP 同步和客户统计，需要为每个订阅创建各自的队列，并绑定到同一个交换机。如果同一时刻只允许一个实例处理，管理员创建队列时设置 `x-single-active-consumer: true`，订阅设置 `concurrency: 1`；即便如此，重试和重新投递仍可能打乱消息顺序。
+
+在业务事务中发布消息时，消息先和业务数据一起写入数据库，事务提交后才发送到 RabbitMQ；事务回滚，消息也不会发出。每个实例都会检查待发送的消息，并通过 Concurrency 锁保证同一时间只有一个实例在发送。因此多实例部署时，Concurrency 必须使用上文的 Redis 后端，否则同一条消息可能被多个实例重复发送。
+
+即便如此，同一条消息仍可能到达不止一次。例如，实例在 RabbitMQ 确认收到消息后、在数据库中标记“已发送”前崩溃，或者处理消息时连接中断。业务需要能够处理重复消息：
+
+- 发布消息时，为每条消息设置固定的 `messageId`，例如由订单 ID 生成。
+- 处理消息时需要写数据库的订阅，设置 `inbox: true`。应用会在同一事务中记录已处理的 `messageId`，并跳过重复的消息。
+- 调用外部接口、发送邮件等不在数据库事务中的操作，需要业务自行防止重复执行。
+
+> [!TIP]
+> RabbitMQ 会限制一条消息的最长处理时间（`consumer_timeout`，支持该设置的版本通常默认为 30 分钟）。超时后 RabbitMQ 会重新投递这条消息，即使上一次处理其实已经完成。耗时较长的工作应交给 Jobs，或请管理员按实际处理时间调整该设置。
+
 ### Snowflake：为每个实例分配不同的 ID 生成编号
 
 Snowflake 在本地生成 ID，其中包含区分生成进程的 `workerId`。开源实现也能用于多实例，但需要为所有同时生成 ID 的进程手工分配互不重复的编号，并正确处理重启和编号复用。PM2 的进程序号、容器名称不会自动成为 Snowflake 的编号。
@@ -308,6 +389,7 @@ snowflake:
 | 应用代码 | 运行同一版本，使用相同的插件和业务逻辑。 |
 | 数据库 | 连接同一个业务数据库，不为每个实例复制一份。 |
 | Redis | 使用前文选定的共享后端；同一项业务的连接、命名空间或缓存前缀保持一致。 |
+| RabbitMQ | 连接同一个 vhost 和同一组交换机、队列；同一订阅的各实例消费同一个输入队列。 |
 | 业务文件 | 使用同一个对象存储或共享文件系统，确保任何实例都能访问上传文件和任务附件。 |
 | 生产配置 | 共用 `config.yml` 中的数据库、Redis、文件存储、密钥和业务设置；对外域名和应用路径也一致。 |
 | 实例运行参数 | 实例标识和本地数据空间相互独立；使用宿主机端口时避免冲突。Snowflake 编号按前文采用自动分配或独立的手工编号。 |
@@ -584,5 +666,6 @@ docker compose -p my-app up -d --scale app=4 --wait --wait-timeout 180
 | Jobs 与 Queue | 从一个实例提交的测试工作可由另一实例处理；周期任务不会仅因有两个实例就独立触发两份。验证业务结果，而不只看“提交成功”。 |
 | Realtime | 浏览器连在 B 时，A 产生的通知或进度变化能够到达；连接中断并恢复后，页面能补读最新状态。 |
 | Concurrency | 两实例同时请求同一受保护资源时，不会同时进入应当互斥的操作；等待、忙碌和重试结果符合业务约定。 |
+| Message Broker | 经 A 在业务事务中发布的消息在提交后到达 RabbitMQ，回滚的事务不发出消息；同一订阅的消息只由一个实例处理，重复投递同一 `messageId` 不会重复写入业务数据；处理失败的消息经重试队列重新投递，超过次数后进入死信队列。 |
 | Snowflake | 自动模式下运行实例取得不同编号，并发创建记录没有 ID 冲突。 |
 | 文件 | 经 A 上传的文件可以经 B 下载，权限检查仍然有效；后台任务也能读取所需文件。 |

@@ -21,11 +21,12 @@ Do not decide what to change based only on installed packages. Check the applica
 | **Caching** | Cache query results, temporary authentication state, and shared counters | State written or cleared by one instance is invisible to another. Login-related operations, cache refreshes, and usage limits may behave inconsistently. |
 | **Realtime** | Notify users about new messages, task progress, or lists that need refreshing | Events reach only browsers connected to the same instance. Users connected to other instances do not receive the updates. |
 | **Concurrency** | Prevent requests from handling the same resource simultaneously, such as updating the same inventory summary | A local lock protects only its own process. Two instances can each acquire a lock and still operate on the same resource at the same time. |
+| **Message Broker** | Publish events after a business transaction commits, exchange messages with external systems, or let several subscriptions each process the same message | The template's default `inMemory` backend delivers only within its own process, so subscriptions on other instances do not receive messages. Messages handed to it but not yet delivered are lost when the process exits. |
 | **ID Generator (Snowflake)** | Generate numeric record IDs | Processes using the same `workerId` may generate duplicate IDs, causing failed writes or data conflicts. |
 
-For example, an application with the authentication plugin needs its Caching configuration checked. Notifications, mail, Scheduler, and knowledge indexing may use Jobs; in-app messages and task progress may depend on Realtime. Queue and Jobs are separate capabilities: configuring one does not change the other.
+For example, an application with the authentication plugin needs its Caching configuration checked. Notifications, mail, Scheduler, and knowledge indexing may use Jobs; in-app messages and task progress may depend on Realtime. Plugins that publish business events or receive messages from external systems use Message Broker, and messages they publish inside a transaction also rely on Concurrency to coordinate sending. Queue and Jobs are separate capabilities: configuring one does not change the other.
 
-Also check whether individual features select their own configuration. For example, `scheduler.jobs`, `notification.jobs`, `mail.jobs`, and `knowledge.jobs` can select a named Jobs backend. These features may keep using their original local backend even after you change `jobs.default`. Calls to caching, queue, and concurrency services may also select a configuration by name.
+Also check whether individual features select their own configuration. For example, `scheduler.jobs`, `notification.jobs`, `mail.jobs`, and `knowledge.jobs` can select a named Jobs backend. These features may keep using their original local backend even after you change `jobs.default`. Calls to caching, queue, and concurrency services may also select a configuration by name. Message Broker publisher and subscription names may also already be declared for a backend in `server/config/message-broker.ts`.
 
 After the review, you should be able to list which features need cross-instance coordination, which backend each currently uses, and which settings need changing. Unused capabilities can remain as they are. Caches used only to optimize a single process, without holding shared state, do not all need to be migrated.
 
@@ -35,12 +36,13 @@ Before changing the application, prepare the resources that all instances will u
 
 - **Business database**: All instances connect to the same target database and use the same schema. Copying a single-instance example's SQLite file into two containers does not make it a shared database. If the application currently uses SQLite, first migrate to a database suitable for multi-instance access and install its driver before building. See [Database compatibility](../developing-apps/compatibility.md) for connection settings.
 - **Redis**: Provide accessible Redis services for the Jobs, Queue, Caching, Realtime, and Concurrency capabilities that need to be shared. Jobs and Queue require persistence and `maxmemory-policy noeviction` to prevent pending tasks from disappearing through memory eviction. Configure capacity, backups, and access controls as well; checking that the port is reachable is not enough.
+- **RabbitMQ**: If the application uses Message Broker, provide a RabbitMQ service accessible to every instance, with a dedicated vhost. The application does not create exchanges, queues, or bindings. A RabbitMQ administrator must create them in advance according to the [resource table below](#message-broker-deliver-messages-between-instances-and-external-systems-through-rabbitmq) and grant the application account the required permissions.
 - **File storage**: A file uploaded through instance A must be downloadable through instance B. Choose object storage or a shared filesystem supported by the application, and check which storage disk each existing file collection selects. Changing the default storage does not move existing files or change all explicitly selected disks. Attachments, import files, and other files needed by background tasks must not remain only on the instance that received the request.
 - **Keys and public URL**: All instances retain the same `secrets.keys` and existing authentication and session keys, and use the same `APP_PUBLIC_ORIGIN` and `APP_BASE_PATH`. Do not initialize a separate configuration for each instance. Listening ports can differ, but the public URL remains the same, such as `https://apps.example.com/main/`.
 
 The Redis examples below use `redis.internal:6379` to represent an address accessible to every instance. Replace it with your actual address. Inside a container, `127.0.0.1` refers to that container, not Redis on another machine or in another container.
 
-All instances of the same application must use the same namespaces and cache prefixes. Test, staging, and production environments should each use different values. Namespaces prevent data from being mixed, but do not replace Redis account permissions or network isolation.
+All instances of the same application must use the same namespaces and cache prefixes. Test, staging, and production environments should each use different values. Namespaces prevent data from being mixed, but do not replace Redis account permissions or network isolation. Likewise, use a different RabbitMQ vhost and account for each environment.
 
 Throughout this guide, `config.yml` means the **production runtime configuration**. Merge the required sections into the existing file, preserving database, key, and business settings; do not replace the entire file with a snippet. Restrict read access to the service account and do not commit the file to the code repository. Environment variables may override values in the file, so run checks with the same environment as the actual processes. Writing `${REDIS_PASSWORD}` directly into the file does not automatically substitute the password. See the [Configuration reference](../reference/configuration.md) for ways to provide sensitive values.
 
@@ -49,7 +51,7 @@ Throughout this guide, `config.yml` means the **production runtime configuration
 
 ## Use an Agent to adapt and deploy the application
 
-Use a development Agent in the application's source directory. Prepare access to the target server, database, Redis, file storage, and required commercial plugins in advance. Provide credentials securely, not in the prompt. The application's development and deployment Skills, together with plugin Skills synchronized after installation, provide integration instructions for the corresponding versions.
+Use a development Agent in the application's source directory. Prepare access to the target server, database, Redis, file storage, RabbitMQ (when using Message Broker), and required commercial plugins in advance. Provide credentials securely, not in the prompt. The application's development and deployment Skills, together with plugin Skills synchronized after installation, provide integration instructions for the corresponding versions.
 
 ### Review the existing application
 
@@ -57,7 +59,7 @@ You can first ask the Agent to review the application without changing files:
 
 ```text
 I want to deploy this application as two instances behind one public URL.
-Please review the existing features and enabled plugins. Identify which background tasks, caches, real-time messages, and concurrent operations need to work across instances, and whether record ID generation needs changing.
+Please review the existing features and enabled plugins. Identify which background tasks, caches, real-time messages, message integrations, and concurrent operations need to work across instances, and whether record ID generation needs changing.
 Explain which features would be affected if we kept the current configuration, and which shared services and commercial plugins we need to prepare. Do not change or deploy anything yet.
 ```
 
@@ -73,11 +75,11 @@ Following the plan we agreed on, adapt this application to run as two instances 
 Server: <SSH user and address>
 Deployment directory: <absolute path on the server>
 Public URL: <for example, https://apps.example.com/main/>
-Shared database, Redis, and file storage: <prepared services and how to obtain their credentials>
+Shared database, Redis, file storage, and RabbitMQ: <prepared services and how to obtain their credentials>
 Allowed downtime: <maintenance window>
 
 Preserve existing users, business data, files, and keys. Use the appropriate commercial plugins for the capabilities that need to be shared. Verify that the two instances work together before switching production traffic.
-Check login, background processing, real-time updates, and file access. Also verify that one instance can still handle requests when the other is stopped. Tell me the results and any issues I need to address.
+Check login, background processing, real-time updates, messaging, and file access. Also verify that one instance can still handle requests when the other is stopped. Tell me the results and any issues I need to address.
 ```
 
 If the Agent cannot obtain compatible commercial plugins or connect to the server, it can prepare code and configuration separately, but that is not enough to add production instances. Make sure the handover includes actual verification results, not just configuration files or screenshots of running processes.
@@ -95,6 +97,7 @@ Change dependencies and plugin registrations in the **application's source direc
 | Caching | `@nocobase/app-plugin-caching-redis` |
 | Realtime | `@nocobase/app-plugin-realtime-redis` |
 | Concurrency | `@nocobase/app-plugin-concurrency-redis` |
+| Message Broker (RabbitMQ) | `@nocobase/app-plugin-message-broker-rabbitmq` |
 | Automatic Snowflake worker allocation | `@nocobase/app-plugin-snowflake-worker` |
 
 First follow [Configure the commercial package registry](../developing-apps/overview.md#configure-the-commercial-package-registry) to set up download access (skip if valid credentials are already configured), then register the required plugins one by one based on the review. For Jobs, first check the available versions and their dependency requirements, then replace `<compatible-version>` with a version that matches the application:
@@ -109,10 +112,11 @@ Repeat the operation for other plugins using their full package names from the t
 
 You are replacing **the backends used by business features**, usually not uninstalling the existing open-source services:
 
-- Keep the existing service providers for Caching, Jobs, Queue, ID Generator, and other services in `server/app.ts`.
+- Keep the existing service providers for Caching, Jobs, Queue, Message Broker, ID Generator, and other services in `server/app.ts`.
 - Keep the open-source `@nocobase/app-plugin-concurrency` and register `app-plugin-concurrency-redis` after it.
+- Keep the open-source `@nocobase/app-plugin-message-broker`, which provides transactional publishing and inbox deduplication. The RabbitMQ plugin only handles the connection to RabbitMQ.
 - Check the order in `server/plugins.ts`. Commercial backend plugins must precede the business plugins that use them. In particular, place Caching Redis before authentication and other plugins that access the cache during startup.
-- The first five commercial plugins need only Server registration. Snowflake worker also needs CLI registration in `cli/plugins.ts`. Review the registration command's output and complete any manual changes it requests.
+- All commercial plugins except Snowflake worker need only Server registration. Snowflake worker also needs CLI registration in `cli/plugins.ts`. Review the registration command's output and complete any manual changes it requests.
 
 After registration, synchronize Skills and review changes to dependencies, the lockfile, and registration files:
 
@@ -266,6 +270,83 @@ Instances must use the same Redis database, namespace, and business lock name to
 
 `ttl` is the lock's validity period in milliseconds, and the plugin renews it automatically. It is not a maximum runtime for the business operation and does not forcibly stop the operation when it expires. A lock alone cannot ensure data correctness during network failures. Critical writes still need database constraints, transactions, and protection against duplicate processing.
 
+### Message Broker: deliver messages between instances and external systems through RabbitMQ
+
+For example, after an order is committed, the application publishes an "order created" message, and ERP synchronization receives it and writes the order to the ERP. The ERP can also push order changes back for the application to process. The template's default `inMemory` backend delivers messages only within the current process, so a multi-instance deployment needs RabbitMQ instead. If you only need to run work outside a request, use Jobs; if you need delays, priorities, or rate limits, use Queue.
+
+Business code does not use RabbitMQ exchanges and queues directly. Instead, it uses logical names: a publisher name such as `orders` to send messages, and a subscription name such as `erpOrders` to receive them. The deployment configuration maps these names to resources in RabbitMQ:
+
+```yaml
+messageBroker:
+  default: rabbitmq
+  backends:
+    rabbitmq:
+      adapter: rabbitmq
+      connection:
+        host: rabbitmq.internal
+        port: 5671
+        vhost: my-app-production
+        username: my-app
+        password: <RabbitMQ password>
+        tls: true
+      publishers:
+        orders:
+          exchange: orders.events
+          routingKey: order.created
+      subscriptions:
+        erpOrders:
+          queue: orders.erp
+          concurrency: 4
+          maxAttempts: 3
+          retryDelay: 30000
+          retry:
+            exchange: orders.retry
+            routingKey: erp
+            queue: orders.erp.retry
+          deadLetter:
+            exchange: orders.dead
+            routingKey: erp
+            queue: orders.erp.dead
+```
+
+With this configuration, a message flows as follows:
+
+1. Publisher `orders` sends the message to exchange `orders.events` with routing key `order.created`. An exchange does not store messages; it forwards them to queues according to bindings. In the example, queue `orders.erp` is bound to `orders.events` with routing key `order.created`, so the message enters `orders.erp`. This binding is not part of the application configuration and must be created in RabbitMQ; see the resource table below.
+2. Subscription `erpOrders` reads messages from `orders.erp`. `concurrency` is the number of messages each instance processes at the same time. The default is `1`.
+3. If processing fails, the message goes through exchange `orders.retry` into retry queue `orders.erp.retry`, waits `retryDelay` milliseconds (30 seconds in the example), then returns to `orders.erp` to be processed again.
+4. When the number of attempts reaches `maxAttempts` (including the first attempt; the default is `3`), or business code explicitly rejects the message, the message goes through exchange `orders.dead` into dead-letter queue `orders.erp.dead` for manual investigation.
+
+The application does not create exchanges and queues automatically. Before using the example configuration, create the following resources in RabbitMQ:
+
+| Resource | Type | Purpose and settings |
+| --- | --- | --- |
+| `orders.events` | Exchange | Receives messages from publisher `orders`; bound to `orders.erp` with routing key `order.created` |
+| `orders.erp` | Queue | Subscription `erpOrders` reads messages from it |
+| `orders.retry` | Exchange | Receives messages to retry; bound to `orders.erp.retry` with routing key `erp` |
+| `orders.erp.retry` | Queue | Holds messages until their retry time. Set a dead-letter exchange and routing key on it so that expired messages return only to `orders.erp`. Do not set a queue TTL shorter than the largest `retryDelay` |
+| `orders.dead` | Exchange | Receives messages that finally failed; bound to `orders.erp.dead` with routing key `erp` |
+| `orders.erp.dead` | Queue | Keeps messages that finally failed for investigation or redelivery |
+
+Each subscription needs its own retry queue and dead-letter queue. At startup, the application checks that these exchanges and queues exist. If any are missing, startup fails and lists the missing resources. Bindings and dead-letter settings are not checked, so the administrator needs to verify them in RabbitMQ.
+
+The RabbitMQ account used by the application needs only the following permissions on the corresponding vhost:
+
+- **write** on the exchanges in the table above. With topic authorization, include the routing keys the application uses.
+- **read** on the queues in the table above.
+
+When multiple instances run the same subscription, they read from the same queue, and each message is processed by only one of them. If several subscriptions each need to receive every message, such as ERP synchronization and customer statistics, create a separate queue for each subscription and bind them all to the same exchange. If only one instance may process messages at a time, have the administrator create the queue with `x-single-active-consumer: true`, and set `concurrency: 1` on the subscription. Even then, retries and redeliveries can change the message order.
+
+When a message is published inside a business transaction, it is first written to the database together with the business data, and sent to RabbitMQ only after the transaction commits. If the transaction rolls back, the message is not sent. Every instance checks for messages waiting to be sent, and a Concurrency lock ensures that only one instance sends at a time. Therefore, in a multi-instance deployment, Concurrency must use the Redis backend described above; otherwise, multiple instances may send the same message.
+
+Even so, the same message may still arrive more than once. For example, an instance may crash after RabbitMQ confirms receipt but before the message is marked as sent in the database, or the connection may drop while a message is being processed. Business logic must be able to handle duplicate messages:
+
+- When publishing, give each message a stable `messageId`, for example one derived from the order ID.
+- For subscriptions that write to the database while processing messages, set `inbox: true`. The application records the processed `messageId` in the same transaction and skips duplicate messages.
+- Operations outside the database transaction, such as calling external APIs or sending email, need their own protection against duplicate execution.
+
+> [!TIP]
+> RabbitMQ limits how long a single message can be processed (`consumer_timeout`, usually 30 minutes by default in versions that support it). After the timeout, RabbitMQ redelivers the message, even if the previous processing has actually completed. Move long-running work to Jobs, or ask the administrator to adjust this setting to match the actual processing time.
+
 ### Snowflake: assign a distinct worker ID to each instance
 
 Snowflake generates IDs locally and includes a `workerId` to distinguish the generating process. The open-source implementation also supports multiple instances, but you must manually assign distinct worker IDs to all processes generating IDs at the same time, and handle restarts and ID reuse correctly. PM2 process numbers and container names do not automatically become Snowflake worker IDs.
@@ -308,6 +389,7 @@ The following example uses two instances on one server, with the public URL `htt
 | Application code | Run the same version with the same plugins and business logic. |
 | Database | Connect to the same business database instead of copying it for each instance. |
 | Redis | Use the shared backends selected earlier. Keep connections, namespaces, or cache prefixes consistent for the same feature. |
+| RabbitMQ | Connect to the same vhost and the same exchanges and queues. Instances running the same subscription consume from the same input queue. |
 | Business files | Use the same object storage or shared filesystem so that any instance can access uploads and task attachments. |
 | Production configuration | Share database, Redis, file storage, key, and business settings in `config.yml`, along with the public domain and application path. |
 | Instance runtime settings | Keep instance identifiers and local data directories separate, and avoid host-port conflicts. Use automatic Snowflake allocation or distinct manual worker IDs as described above. |
@@ -584,5 +666,6 @@ Start with two instances in a test environment and perform the checks below. If 
 | Jobs and Queue | Test work submitted through one instance can be processed by another. Recurring tasks do not run twice independently just because there are two instances. Verify business outcomes, not only successful submission. |
 | Realtime | A browser connected to B receives notifications or progress updates produced on A. After disconnection and reconnection, the page can reload the latest state. |
 | Concurrency | Simultaneous requests from both instances to the same protected resource do not enter a mutually exclusive operation at the same time. Waiting, busy responses, and retries follow the business rules. |
+| Message Broker | A message published through A inside a business transaction reaches RabbitMQ after the commit, and a rolled-back transaction sends no message. Each message for a subscription is processed by only one instance, and redelivering the same `messageId` does not write business data twice. A message that fails processing is redelivered through the retry queue and enters the dead-letter queue after the attempt limit is reached. |
 | Snowflake | In automatic mode, running instances obtain distinct worker IDs, and concurrent record creation produces no ID conflicts. |
 | Files | A file uploaded through A can be downloaded through B, with permission checks still enforced. Background tasks can also read the files they need. |

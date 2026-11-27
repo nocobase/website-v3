@@ -62,49 +62,50 @@ function coreNav(active, live = false) {
 
 // ---------- 1. 30 多项现成、可靠的基础能力（对照 Core 真实界面：流程管理 / 角色和权限 / 登录与认证 / 数据库 / 插件） ----------
 
-// 1a. 流程管理 · 合同审批与履约（对照真实流程图与流程参数）
+// 1a. 流程管理 · 合同审批与履约（严格对照产品介绍与真实 Core 界面：克制低饱和配色、纯净流程图 + 等高流程参数卡）
 const WF_SVG =
-  '<svg class="cr-wf-svg" viewBox="0 0 420 338" preserveAspectRatio="none" aria-hidden="true">' +
+  '<svg class="cr-wf-svg" viewBox="0 0 460 390" preserveAspectRatio="none" aria-hidden="true">' +
     '<defs><marker id="crWfArr" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="6" markerHeight="6" orient="auto">' +
-      '<path d="M1 1.5 L6.5 4 L1 6.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M1 1.5 L6.5 4 L1 6.5" fill="none" stroke="#8a96ad" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>' +
     '</marker></defs>' +
-    '<path d="M116 34 V44 Q116 50 110 50 H88 Q82 50 82 56 V79" marker-end="url(#crWfArr)"/>' +
-    '<path d="M82 111 V142" marker-end="url(#crWfArr)"/>' +
-    '<path d="M162 34 V44 Q162 50 168 50 H234 Q240 50 240 56 V75" marker-end="url(#crWfArr)"/>' +
-    '<path d="M240 113 V149" marker-end="url(#crWfArr)"/>' +
-    '<path d="M240 187 V223" marker-end="url(#crWfArr)"/>' +
-    '<path class="cr-wf-alt" d="M276 113 V121 Q276 127 282 127 H352 Q358 127 358 133 V203 Q358 209 352 209 H282 Q276 209 276 215 V223" marker-end="url(#crWfArr)"/>' +
-    '<path d="M240 261 V295" marker-end="url(#crWfArr)"/>' +
+    '<path vector-effect="non-scaling-stroke" d="M135 42 V54 Q135 60 129 60 H92 Q86 60 86 66 V94" marker-end="url(#crWfArr)"/>' +
+    '<path vector-effect="non-scaling-stroke" d="M86 128 V164" marker-end="url(#crWfArr)"/>' +
+    '<path vector-effect="non-scaling-stroke" d="M175 42 V54 Q175 60 181 60 H252 Q258 60 258 66 V92" marker-end="url(#crWfArr)"/>' +
+    '<path vector-effect="non-scaling-stroke" d="M258 130 V178" marker-end="url(#crWfArr)"/>' +
+    '<path vector-effect="non-scaling-stroke" d="M258 216 V264" marker-end="url(#crWfArr)"/>' +
+    '<path class="cr-wf-alt" vector-effect="non-scaling-stroke" d="M298 130 V140 Q298 146 304 146 H386 Q392 146 392 152 V240 Q392 246 386 246 H304 Q298 246 298 252 V264" marker-end="url(#crWfArr)"/>' +
+    '<path vector-effect="non-scaling-stroke" d="M258 302 V344" marker-end="url(#crWfArr)"/>' +
   '</svg>';
 
 const viewWf =
   '<div class="cr-view on" role="tabpanel" data-cr-view="wf">' +
-    '<div class="cr-ph"><div class="cr-ph-t"><h4>' + T('合同审批与履约', 'Contract approval &amp; fulfillment') + '</h4><span class="cr-ver mono">v1</span><span class="cr-meta">' + T('11 次执行（8 个进行中）', '11 runs (8 in progress)') + '</span></div>' +
-      '<p>' + T('法务审核所有合同，超过金额阈值的再由财务审核，任一环节可退回修改。签署后进入履约期。', 'Legal reviews all contracts; amounts over the threshold also route to Finance before signing.') + '</p></div>' +
+    '<div class="cr-ph"><div class="cr-ph-t"><h4>' + T('合同审批与履约', 'Contract approval &amp; fulfillment') + '</h4><span class="cr-tag b mono">v1</span><span class="cr-tag">' + T('11 次执行 · 8 个进行中', '11 runs · 8 in progress') + '</span></div>' +
+      '<p>' + T('法务审核所有合同，超过金额阈值的再由财务审核，任一环节可退回修改；签署后进入履约期。', 'Legal reviews all contracts; amounts over the threshold also route to Finance, with return allowed at any step before signing.') + '</p></div>' +
     '<div class="cr-wf-grid">' +
-      '<div class="st-card cr-wf-box">' +
-        '<div class="cr-card-hd">' + T('流程图', 'Flow diagram') + '</div>' +
+      '<div class="cr-wf-box">' +
+        '<div class="cr-wf-hd">' + T('流程图', 'Flow diagram') + '</div>' +
         '<div class="cr-wf-stage">' +
           WF_SVG +
-          '<div class="cr-wfn cr-wfn-start cr-wf-s1" style="left:32.9%;top:6.5%">' + I('play') + '<span>' + T('起草', 'Draft') + '</span></div>' +
-          '<span class="cr-wfl" style="left:19.5%;top:18.3%">' + T('作废', 'Void') + '</span>' +
-          '<span class="cr-wfl" style="left:57.1%;top:18.3%">' + T('提交审核', 'Submit') + '</span>' +
-          '<div class="cr-wfn cr-wfn-void" style="left:19.5%;top:28.4%">' + I('circle-x') + '<span>' + T('已作废', 'Voided') + '</span></div>' +
-          '<div class="cr-wfn cr-wfn-end" style="left:19.5%;top:45.6%">' + I('circle-dot') + '<span>' + T('结束', 'End') + '</span></div>' +
-          '<div class="cr-wfn cr-wfn-step cr-wf-s2" style="left:57.1%;top:28.1%"><span class="cr-wfic">' + I('user-round') + '</span><b>' + T('法务审核', 'Legal review') + '</b></div>' +
-          '<span class="cr-wfl" style="left:57.1%;top:39.3%">' + T('通过 · > 20 万', 'Pass · &gt; $200k') + '</span>' +
-          '<div class="cr-wfn cr-wfn-step cr-wf-s3" style="left:57.1%;top:50.0%"><span class="cr-wfic">' + I('user-round') + '</span><b>' + T('财务审核', 'Finance review') + '</b></div>' +
-          '<span class="cr-wfl" style="left:85.2%;top:50.0%">' + T('通过 · ≤ 20 万', 'Pass · ≤ $200k') + '</span>' +
-          '<span class="cr-wfl" style="left:57.1%;top:60.9%">' + T('财务通过', 'Finance OK') + '</span>' +
-          '<div class="cr-wfn cr-wfn-step cr-wf-s4" style="left:57.1%;top:71.9%"><span class="cr-wfic">' + I('user-round') + '</span><b>' + T('待签署', 'To sign') + '</b></div>' +
-          '<span class="cr-wfl" style="left:57.1%;top:82.5%">' + T('双方签署', 'Signed') + '</span>' +
-          '<div class="cr-wfn cr-wfn-step cr-wfn-ok cr-wf-s5" style="left:57.1%;top:92.6%"><span class="cr-wfic ok">' + I('file-check') + '</span><b>' + T('履约中', 'Active') + '</b></div>' +
+          '<div class="cr-wfn cr-wfn-start" style="left:33.7%;top:7.5%">▶ ' + T('起草', 'Draft') + '</div>' +
+          '<span class="cr-wfl" style="left:18.7%;top:20%">' + T('作废', 'Void') + '</span>' +
+          '<span class="cr-wfl" style="left:56.1%;top:20%">' + T('提交审核', 'Submit') + '</span>' +
+          '<div class="cr-wfn cr-wfn-void" style="left:18.7%;top:28.5%">' + T('已作废', 'Voided') + '</div>' +
+          '<div class="cr-wfn cr-wfn-void" style="left:18.7%;top:46%">' + T('结束', 'End') + '</div>' +
+          '<div class="cr-wfn" style="left:56.1%;top:28.5%">' + T('法务审核', 'Legal review') + '</div>' +
+          '<span class="cr-wfl" style="left:56.1%;top:40.5%">' + T('通过 · > 20 万', 'Pass · &gt; $200k') + '</span>' +
+          '<div class="cr-wfn" style="left:56.1%;top:50.5%">' + T('财务审核', 'Finance review') + '</div>' +
+          '<span class="cr-wfl" style="left:85.2%;top:50.5%">' + T('通过 · ≤ 20 万', 'Pass · ≤ $200k') + '</span>' +
+          '<span class="cr-wfl" style="left:56.1%;top:62%">' + T('财务通过', 'Finance OK') + '</span>' +
+          '<div class="cr-wfn" style="left:56.1%;top:72.5%">' + T('待签署', 'To sign') + '</div>' +
+          '<span class="cr-wfl" style="left:56.1%;top:83%">' + T('双方签署', 'Signed') + '</span>' +
+          '<div class="cr-wfn cr-wfn-ok" style="left:56.1%;top:92%">✓ ' + T('履约中', 'Active') + '</div>' +
         '</div>' +
       '</div>' +
-      '<div class="st-card cr-wf-param">' +
-        '<div class="cr-card-hd">' + T('流程参数', 'Parameters') + '</div>' +
-        '<div class="cr-param-row"><span>' + T('超过多少金额需财务审核（元）', 'Finance review threshold') + '</span><b class="mono">' + T('200000', '$200,000') + '</b></div>' +
-        '<p class="cr-param-hint">' + T('参数随流程定义在代码中声明；每张单据保留它创建时的参数值。', 'Declared in code with the workflow; each record keeps its value at creation.') + '</p>' +
+      '<div class="cr-wf-param">' +
+        '<div class="cr-wf-hd">' + T('流程参数', 'Parameters') + '</div>' +
+        '<div class="cr-param-row"><span>' + T('超过多少金额需财务审核（元）', 'Finance review threshold') + '</span><b class="mono">' + T('200,000', '$200,000') + '</b></div>' +
+        '<p class="cr-param-hint">' + T('参数随流程定义在代码中声明；管理员可按权限在界面调整阈值，每张单据保留创建时的参数值。', 'Declared in code with the workflow; admins adjust thresholds in the UI while each record keeps its creation-time value.') + '</p>' +
+        '<div class="cr-wf-audit"><b>' + T('完整留痕与审计', 'Full audit trail') + '</b><span>' + T('每次流转、审批意见和触发身份均有服务端日志记录。', 'Every transition, approval note, and actor identity is logged server-side.') + '</span></div>' +
       '</div>' +
     '</div>' +
   '</div>';
@@ -123,7 +124,7 @@ const viewRoles =
     '<div class="cr-ph"><div class="cr-ph-t"><h4>' + T('角色和权限', 'Roles &amp; permissions') + '</h4></div>' +
       '<p>' + T('设置每个角色可访问的页面和可执行的操作。', 'Configure which pages and actions each role can access.') + '</p></div>' +
     '<div class="cr-utabs"><span class="on">' + T('角色', 'Roles') + '</span><span>' + T('数据规则', 'Data rules') + '</span><span>' + T('权限检查', 'Access check') + '</span></div>' +
-    '<div class="st-card cr-split cr-roles-split">' +
+    '<div class="cr-card cr-split cr-roles-split">' +
       '<div class="cr-split-l">' +
         '<div class="cr-sbar"><span class="cr-inp">' + I('search') + T('搜索角色名称', 'Search roles') + '</span><span class="cr-plus">' + I('plus') + '</span></div>' +
         '<div class="cr-rlist">' +
@@ -152,7 +153,7 @@ const viewRoles =
     '</div>' +
   '</div>';
 
-// 1c. 登录与认证（对照真实登录方式表 + 待处理提示条 + 来源标签）
+// 1c. 登录与认证（对照真实登录方式表 + 待处理提示条 + 来源标签 + 登录页预览）
 function authRow(zh, en, subZh, subEn, cfg, on, srcZh, srcEn, srcKind = '') {
   const st = on
     ? `<span class="cr-st on"><i></i>${T('已开启', 'Enabled')}</span>`
@@ -169,7 +170,7 @@ const viewAuth =
       '<p>' + T('配置写在应用代码里随部署生效；本页显示当前生效的值和来源，并提示待处理项。', 'Settings live in app config and apply on deploy; this page shows active values, sources, and items to review.') + '</p></div>' +
     '<div class="cr-warn">' + I('alert-triangle') + '<div><b>' + T('2 项需要处理', '2 items need attention') + '</b><span>' + T('找回密码未开启；未设置 app.publicOrigin，第三方登录回调地址无法确定。', 'Password reset is off; app.publicOrigin is unset for SSO callbacks.') + '</span></div></div>' +
     '<div class="cr-utabs"><span class="on">' + T('登录方式', 'Sign-in methods') + '</span><span>' + T('注册', 'Sign-up') + '</span><span>' + T('密码与找回', 'Password') + '</span><span>' + T('会话与安全', 'Sessions') + '</span></div>' +
-    '<div class="st-card"><table class="st-tbl cr-atbl"><thead><tr><th>' + T('方式', 'Method') + '</th><th>' + T('配置项', 'Config') + '</th><th>' + T('状态', 'Status') + '</th><th>' + T('来源', 'Source') + '</th><th></th></tr></thead><tbody>' +
+    '<div class="cr-card"><table class="st-tbl cr-atbl"><thead><tr><th>' + T('方式', 'Method') + '</th><th>' + T('配置项', 'Config') + '</th><th>' + T('状态', 'Status') + '</th><th>' + T('来源', 'Source') + '</th><th></th></tr></thead><tbody>' +
       authRow('账号密码', 'Password', '邮箱或用户名 + 密码', 'Email or username', 'emailAndPassword', true, 'config.yml', 'config.yml', 'cfg') +
       authRow('命令行登录', 'CLI login', '在浏览器批准 /device 请求', 'Approve /device in browser', 'deviceAuthorization()', true, '代码', 'Code', 'code') +
       authRow('API 密钥', 'API keys', '程序调用接口，不经过登录页', 'Programmatic API access', 'apiKey()', true, '代码', 'Code', 'code') +
@@ -177,6 +178,7 @@ const viewAuth =
       authRow('两步验证', 'Two-factor (2FA)', '登录时再输入一次验证码', 'Verification code on sign-in', 'twoFactor()', false, '', '') +
       authRow('通行密钥', 'Passkeys', '用指纹、面容或安全密钥登录', 'Biometrics or security key', 'passkey()', false, '', '') +
     '</tbody></table></div>' +
+    '<div class="cr-card cr-auth-prev"><small>' + T('登录页上会显示', 'Shown on sign-in page') + '</small><div class="cr-auth-chips"><span class="on">' + T('账号密码', 'Password') + '</span><span class="on">' + T('没有账号? 注册', 'Sign up') + '</span><span>' + T('忘记密码 (不显示)', 'Forgot password (off)') + '</span><span>' + T('第三方登录按钮 (不显示)', 'SSO buttons (off)') + '</span></div></div>' +
   '</div>';
 
 // 1d. 数据库（对照真实分栏：左侧连接选择与数据表列表 + 右侧字段结构表）
@@ -191,7 +193,7 @@ const viewDb =
   '<div class="cr-view" role="tabpanel" data-cr-view="db" hidden>' +
     '<div class="cr-ph"><div class="cr-ph-t"><h4>' + T('数据库', 'Database') + '</h4></div>' +
       '<p>' + T('查看应用的数据库连接、数据表和字段。', 'Inspect database connections, tables, and fields.') + '</p></div>' +
-    '<div class="st-card cr-split cr-db-split">' +
+    '<div class="cr-card cr-split cr-db-split">' +
       '<div class="cr-split-l">' +
         '<div class="cr-db-conn">' +
           '<small>' + T('数据库连接', 'Connection') + '</small>' +
@@ -207,17 +209,19 @@ const viewDb =
           tblIt('agModelServices') +
           tblIt('contracts') +
           tblIt('customers') +
+          tblIt('orders') +
         '</div>' +
       '</div>' +
       '<div class="cr-split-r">' +
-        '<div class="cr-rh"><b class="mono">account</b><span class="cr-cnt-r">' + T('共 13 个字段', '13 fields') + '</span></div>' +
-        '<div class="cr-db-bar"><span class="cr-inp">' + I('search') + T('按字段名、标题或类型搜索', 'Search fields or types') + '</span></div>' +
+        '<div class="cr-rh"><b class="mono">account</b></div>' +
+        '<div class="cr-db-bar"><span class="cr-inp">' + I('search') + T('按字段名、标题或类型搜索', 'Search fields or types') + '</span><span class="cr-cnt-r">' + T('共 13 个字段', '13 fields') + '</span></div>' +
         '<table class="st-tbl cr-ftbl"><thead><tr><th>' + T('字段', 'Field') + '</th><th>' + T('类型', 'Type') + '</th><th>' + T('允许为空', 'Nullable') + '</th><th>' + T('引用', 'Ref') + '</th></tr></thead><tbody>' +
           fldRow('id', true, 'string', 'varchar(64)', false) +
           fldRow('accountId', false, 'string', 'varchar(320)', false) +
           fldRow('providerId', false, 'string', 'varchar(128)', false) +
           fldRow('userId', false, 'string', 'varchar(64)', false) +
           fldRow('accessToken', false, 'text', '', true) +
+          fldRow('refreshToken', false, 'text', '', true) +
           fldRow('accessTokenExpiresAt', false, 'datetime', 'TEXT', true) +
           fldRow('createdAt', false, 'datetime', 'TEXT', false) +
         '</tbody></table>' +
@@ -227,7 +231,7 @@ const viewDb =
 
 // 1e. 插件（对照真实插件清单：筛选胶囊 + 版本号 + 已启用标签 + 命令按钮）
 function plgRow(zh, en, subZh, subEn, ver) {
-  return `<tr><td><b>${T(zh, en)}</b><small>${T(subZh, subEn)}</small></td><td class="mono cr-ver-c">${ver}</td><td><span class="cr-st on">${T('已启用', 'Enabled')}</span></td><td class="r"><span class="cr-mbtn">${T('命令', 'CLI')}</span></td></tr>`;
+  return `<tr><td><b>${T(zh, en)}</b><small>${T(subZh, subEn)}</small></td><td class="mono cr-ver-c">${ver}</td><td><span class="cr-plg-st">${T('已启用', 'Enabled')}</span></td><td class="r"><span class="cr-mbtn">${T('命令', 'CLI')}</span></td></tr>`;
 }
 const viewPlugins =
   '<div class="cr-view" role="tabpanel" data-cr-view="plugins" hidden>' +
@@ -237,7 +241,7 @@ const viewPlugins =
       '<div class="cr-fpills"><span class="on">' + T('全部 21', 'All 21') + '</span><span>' + T('已启用 18', 'Enabled 18') + '</span><span>' + T('未启用 3', 'Disabled 3') + '</span></div>' +
       '<span class="cr-inp">' + I('search') + T('搜索名称或包名', 'Search plugins') + '</span>' +
     '</div>' +
-    '<div class="st-card"><table class="st-tbl cr-plgtbl"><thead><tr><th>' + T('插件', 'Plugin') + '</th><th>' + T('版本', 'Version') + '</th><th>' + T('状态', 'Status') + '</th><th></th></tr></thead><tbody>' +
+    '<div class="cr-card"><table class="st-tbl cr-plgtbl"><thead><tr><th>' + T('插件', 'Plugin') + '</th><th>' + T('版本', 'Version') + '</th><th>' + T('状态', 'Status') + '</th><th></th></tr></thead><tbody>' +
       '<tr class="cr-pgrp"><td colspan="4">' + T('已启用 18', 'Enabled 18') + '</td></tr>' +
       plgRow('并发控制', 'Concurrency', '锁和并发限制', 'Locks and concurrency limits', '0.1.0-beta.4') +
       plgRow('登录与认证', 'Authentication', '登录方式、会话和账号安全', 'Sign-in, sessions, and security', '2.0.0-beta.25') +
@@ -245,6 +249,7 @@ const viewPlugins =
       plgRow('默认访问规则', 'Default access', '新角色默认能看什么', 'Default scope for new roles', '1.0.0-beta.22') +
       plgRow('数据库', 'Database', '查看数据表和数据', 'Inspect tables and data', '1.0.0-beta.21') +
       plgRow('用户管理', 'Users', '成员、资料和邀请', 'Members, profiles, and invites', '2.0.0-beta.22') +
+      plgRow('文件存储', 'File storage', '上传、多端存储、预览与连通自检', 'Uploads, providers, preview &amp; health checks', '2.0.0-beta.14') +
       plgRow('通知', 'Notifications', '通知类型和个人接收设置', 'Types and personal channels', '2.0.0-beta.10') +
     '</tbody></table></div>' +
   '</div>';
@@ -418,174 +423,174 @@ const FIGS = [['blocks', blocks], ['arch', arch], ['ai', ai], ['ops', ops]];
 const CSS = `/* HOME-CORE */
 /* 首页 Core 段与 Core 页首屏：对照真实 Core 系统设置界面（由 homepage/scripts/figs/home-core.mjs 写入，改样式请改脚本） */
 .cr-body { padding: 14px 16px 16px; }
-/* 1. 真实 Core 双栏应用壳：左侧通栏白底菜单 + 右侧顶栏面包屑与浅蓝渐变内容区 */
-.sv-win.cr-app { display: grid; grid-template-columns: 182px minmax(0, 1fr); align-items: stretch; }
-.cr-side { display: flex; flex-direction: column; background: var(--card); border-inline-end: 1px solid var(--rule); min-inline-size: 0; }
-.cr-side-top { display: flex; align-items: center; block-size: 40px; padding-inline: 12px; border-block-end: 1px solid var(--rule); flex: none; }
+/* 1. 真实 Core 双栏应用壳：严格对照产品介绍与 NocoBase 原生低饱和配色（白底侧栏 + #fafafb 内容区 + #1231c9 克制靛蓝） */
+.sv-win.cr-app { --cr-b: #1231c9; --cr-bt: #e8ecfb; --cr-line: #e6e7eb; --cr-line-2: #d9dbe1; --cr-bg: #fafafb; --cr-ink: #17181c; --cr-ink-2: #2b2e36; --cr-muted: #7b808a; display: grid; grid-template-columns: 172px minmax(0, 1fr); align-items: stretch; background: var(--cr-bg); border-color: #dfe1e6; color: var(--cr-ink); }
+.cr-side { display: flex; flex-direction: column; background: #fff; border-inline-end: 1px solid var(--cr-line); min-inline-size: 0; }
+.cr-side-top { display: flex; align-items: center; block-size: 40px; padding-inline: 12px; border-block-end: 1px solid var(--cr-line); flex: none; }
 .cr-side-top .sv-brand img { height: 15px; width: auto; display: block; }
 .cr-nav { display: flex; flex-direction: column; gap: 1.5px; padding: 7px 8px 10px; }
-.cr-back { display: flex; align-items: center; gap: 6px; block-size: 23px; padding-inline: 7px; margin-block-end: 2px; font-size: 11px; color: var(--muted); }
+.cr-back { display: flex; align-items: center; gap: 6px; block-size: 23px; padding-inline: 7px; margin-block-end: 2px; font-size: 11px; color: #8a8f98; }
 .cr-back svg.lucide { width: 12px; height: 12px; }
-.cr-ng { padding: 7px 7px 2px; font-size: 10px; font-weight: 500; color: var(--muted); line-height: 1.25; }
-.cr-ni { display: flex; align-items: center; gap: 7px; block-size: 23px; padding-inline: 7px; border-radius: 6px; font-size: 11.5px; color: var(--ink-2); white-space: nowrap; }
+.cr-ng { padding: 7px 7px 2px; font-size: 10px; font-weight: 500; color: #8a8f98; line-height: 1.25; }
+.cr-ni { display: flex; align-items: center; gap: 7px; block-size: 23px; padding-inline: 7px; border-radius: 7px; font-size: 11.5px; color: var(--cr-ink-2); white-space: nowrap; }
 .cr-ni > span { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; }
-.cr-ni svg.lucide { width: 12.5px; height: 12.5px; color: var(--muted); flex: none; }
+.cr-ni svg.lucide { width: 12.5px; height: 12.5px; color: #8a8f98; flex: none; }
 .cr-ni-btn { position: relative; overflow: clip; inline-size: 100%; border: 0; background: none; font: inherit; font-size: 11.5px; text-align: left; cursor: pointer; transition: background 0.15s, color 0.15s; }
-.cr-ni-btn:hover { background: var(--paper-2); color: var(--ink); }
-.cr-ni-btn .cr-dot { margin-inline-start: auto; width: 4.5px; height: 4.5px; border-radius: 50%; background: var(--rule-2); flex: none; transition: background 0.15s; }
+.cr-ni-btn:hover { background: #f4f5f7; color: var(--cr-ink); }
+.cr-ni-btn .cr-dot { margin-inline-start: auto; width: 4px; height: 4px; border-radius: 50%; background: #d2d5dc; flex: none; transition: background 0.15s; }
 .cr-ni.on,
-.cr-ni-btn[aria-selected="true"] { background: var(--brand-tint); color: var(--brand); font-weight: 550; }
+.cr-ni-btn[aria-selected="true"] { background: var(--cr-bt); color: var(--cr-b); font-weight: 600; }
 .cr-ni.on svg.lucide,
-.cr-ni-btn[aria-selected="true"] svg.lucide { color: var(--brand); }
-.cr-ni-btn[aria-selected="true"] .cr-dot { background: var(--brand); }
-.cr-ni-btn[aria-selected="true"]::before { content: ""; position: absolute; inset: 4px auto 4px 0; border-inline-start: 2px solid var(--brand); }
-.cr-ni-btn[aria-selected="true"]::after { content: ""; position: absolute; inset: auto 0 0; border-block-end: 1.5px solid oklch(0.52 0.2 266 / 0.45); transform-origin: left; animation: crBar 3s linear; }
+.cr-ni-btn[aria-selected="true"] svg.lucide { color: var(--cr-b); }
+.cr-ni-btn[aria-selected="true"] .cr-dot { background: var(--cr-b); }
+.cr-ni-btn[aria-selected="true"]::after { content: ""; position: absolute; inset: auto 0 0; border-block-end: 1.5px solid rgba(18, 49, 201, 0.28); transform-origin: left; animation: crBar 3s linear; }
 @keyframes crBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-.cr-stage { display: flex; flex-direction: column; min-inline-size: 0; background: var(--paper); }
-.cr-top { block-size: 40px; padding-inline: 14px; background: var(--card); gap: 7px; font-size: 12px; }
+.cr-stage { display: flex; flex-direction: column; min-inline-size: 0; background: var(--cr-bg); }
+.cr-top { block-size: 40px; padding-inline: 14px; background: var(--cr-bg); border-block-end: 1px solid var(--cr-line); gap: 7px; font-size: 12px; color: var(--cr-ink-2); }
 .cr-top-mbrand { display: none; }
-.cr-tog { display: inline-flex; align-items: center; color: var(--muted); padding-inline-end: 4px; border-inline-end: 1px solid var(--rule); }
+.cr-tog { display: inline-flex; align-items: center; color: #8a8f98; padding-inline-end: 4px; border-inline-end: 1px solid var(--cr-line); }
 .cr-tog svg.lucide { width: 13px; height: 13px; }
 .cr-crumb { display: inline-flex; align-items: center; gap: 5px; min-inline-size: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cr-crumb svg.lucide { width: 12px; height: 12px; color: var(--rule-2); flex: none; }
-.cr-uico { display: inline-grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; border: 1px solid var(--rule); color: var(--ink-2); }
+.cr-crumb b { color: var(--cr-ink); font-weight: 600; }
+.cr-crumb svg.lucide { width: 12px; height: 12px; color: #b5bac4; flex: none; }
+.cr-uico { display: inline-grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; border: 1px solid var(--cr-line); background: #fff; color: #555a66; }
 .cr-uico svg.lucide { width: 11.5px; height: 11.5px; }
-.cr-top .st-av { width: 23px; height: 23px; font-size: 10px; }
-.cr-canvas { flex: 1; display: grid; align-content: start; gap: 10px; padding: 14px 18px 16px; background: radial-gradient(240px 140px at 96% 4%, oklch(0.52 0.2 266 / 0.085), transparent 70%), linear-gradient(180deg, oklch(0.955 0.018 266 / 0.52) 0%, var(--paper) 108px); min-inline-size: 0; }
+.cr-top .st-av { width: 23px; height: 23px; font-size: 10px; background: #eceef2; color: #555; border: 0; }
+.cr-canvas { flex: 1; display: grid; align-content: start; gap: 10px; padding: 14px 18px 16px; background: var(--cr-bg); min-inline-size: 0; }
 .cr-msw { display: none; }
-.cr-views { display: grid; min-inline-size: 0; }
+.cr-views { display: grid; min-inline-size: 0; min-block-size: 444px; }
 .cr-view { display: grid; gap: 10px; align-content: start; min-inline-size: 0; }
 .cr-view[hidden] { display: none; }
-/* 真实页面头：粗体标题 + 一句说明 + 细底线二级导航 */
-.cr-ph { display: grid; gap: 3px; }
-.cr-ph-t { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-.cr-ph h4 { font-size: 16.5px; line-height: 1.3; font-weight: 650; color: var(--ink); letter-spacing: -0.01em; }
-.cr-ph p { font-size: 11.5px; line-height: 1.5; color: var(--muted); }
-.cr-ver { display: inline-flex; align-items: center; height: 18px; padding: 0 5px; border-radius: 4px; background: var(--paper-2); border: 1px solid var(--rule); font-size: 10.5px; color: var(--ink-2); }
-.cr-meta { font-size: 11px; color: var(--muted); }
-.cr-utabs { display: flex; align-items: center; gap: 16px; border-block-end: 1px solid var(--rule); padding-block-end: 6px; font-size: 11.5px; color: var(--muted); }
+.cr-card { background: #fff; border: 1px solid var(--cr-line); border-radius: 10px; overflow: clip; }
+/* 真实页面头：克制标题 + 柔和胶囊 + 说明 */
+.cr-ph { display: grid; gap: 2px; }
+.cr-ph-t { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cr-ph h4 { font-size: 17px; line-height: 1.3; font-weight: 700; color: var(--cr-ink); letter-spacing: -0.01em; }
+.cr-ph p { font-size: 11.5px; line-height: 1.5; color: var(--cr-muted); }
+.cr-tag { display: inline-flex; align-items: center; gap: 4px; block-size: 19px; padding-inline: 8px; border-radius: 999px; background: #f1f2f5; font-size: 10.5px; font-weight: 600; color: #555; white-space: nowrap; }
+.cr-tag.b { background: var(--cr-bt); color: var(--cr-b); }
+.cr-utabs { display: flex; align-items: center; gap: 16px; border-block-end: 1px solid var(--cr-line); padding-block-end: 6px; font-size: 11.5px; color: #555; }
 .cr-utabs span { position: relative; padding-block-end: 6px; margin-block-end: -7px; white-space: nowrap; }
-.cr-utabs span.on { color: var(--ink); font-weight: 600; border-block-end: 2px solid var(--ink); }
-.cr-card-hd { padding: 9px 12px; font-size: 12px; font-weight: 600; color: var(--ink); border-block-end: 1px solid var(--rule); }
-/* 1a. 流程管理：合同审批与履约（真实状态流程图 + 右侧流程参数卡） */
-.cr-wf-grid { display: grid; grid-template-columns: minmax(0, 1fr) 222px; gap: 11px; align-items: start; }
-.cr-wf-box { overflow: clip; }
-.cr-wf-stage { position: relative; block-size: 342px; background: radial-gradient(var(--rule) 0.75px, transparent 0.75px) 0 0 / 15px 15px, var(--paper); overflow: clip; }
-.cr-wf-svg { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; color: var(--rule-2); pointer-events: none; }
-.cr-wf-svg path { fill: none; stroke: currentColor; stroke-width: 1.25; }
-.cr-wf-svg path.cr-wf-alt { stroke: oklch(0.72 0.04 262); }
-.cr-wfn { position: absolute; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; background: var(--card); border: 1px solid var(--rule-2); border-radius: 8px; box-shadow: 0 1px 2px oklch(0.25 0.05 266 / 0.04); transition: border-color 0.25s; }
-.cr-wfn-start { height: 28px; padding: 0 16px; border-radius: 999px; font-size: 11.5px; font-weight: 550; color: var(--ink); }
-.cr-wfn-start svg.lucide { width: 11px; height: 11px; color: var(--ink-2); }
-.cr-wfn-void { height: 28px; padding: 0 12px; border-radius: 999px; border-style: dashed; border-color: oklch(0.75 0.1 25); background: var(--risk-tint); color: var(--risk-ink); font-size: 11.5px; font-weight: 550; box-shadow: none; }
-.cr-wfn-void svg.lucide { width: 11.5px; height: 11.5px; }
-.cr-wfn-end { height: 22px; padding: 0 8px; border: 0; background: transparent; box-shadow: none; font-size: 11px; color: var(--muted); gap: 4px; }
-.cr-wfn-end svg.lucide { width: 11.5px; height: 11.5px; }
-.cr-wfn-step { min-inline-size: 114px; height: 34px; padding: 0 12px 0 8px; }
-.cr-wfn-step b { font-size: 11.5px; font-weight: 600; color: var(--ink); }
-.cr-wfic { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 5px; background: var(--brand); color: var(--on-brand); flex: none; }
-.cr-wfic.ok { background: var(--pass); }
-.cr-wfic svg.lucide { width: 11.5px; height: 11.5px; }
-.cr-wfl { position: absolute; transform: translate(-50%, -50%); padding: 1px 6px; border-radius: 4px; background: var(--paper-2); border: 1px solid var(--rule); font-size: 9.5px; color: var(--ink-2); white-space: nowrap; line-height: 1.4; }
-.cr-view.on .cr-wf-s1 { animation: wfStep 3s ease infinite 0s; }
-.cr-view.on .cr-wf-s2 { animation: wfStep 3s ease infinite 0.55s; }
-.cr-view.on .cr-wf-s3 { animation: wfStep 3s ease infinite 1.1s; }
-.cr-view.on .cr-wf-s4 { animation: wfStep 3s ease infinite 1.65s; }
-.cr-view.on .cr-wf-s5 { animation: wfStep 3s ease infinite 2.2s; }
-@keyframes wfStep { 0%, 26%, 100% { border-color: var(--rule-2); } 10%, 18% { border-color: var(--brand); } }
-.cr-wf-param { padding-block-end: 12px; }
-.cr-param-row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 10px 11px 6px; font-size: 10.5px; color: var(--ink-2); }
-.cr-param-row span { white-space: nowrap; }
-.cr-param-row b { font-size: 11.5px; font-weight: 650; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.cr-param-hint { padding: 0 11px; font-size: 10.5px; line-height: 1.5; color: var(--muted); }
+.cr-utabs span.on { color: var(--cr-ink); font-weight: 600; border-block-end: 2px solid var(--cr-ink); }
+.cr-wf-hd { font-size: 12px; font-weight: 600; color: #64748b; line-height: 1.3; }
+/* 1a. 流程管理：合同审批与履约（与产品介绍 .cwf-* 保持一致的低饱和原生风格） */
+.cr-wf-grid { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 12px; align-items: stretch; }
+.cr-wf-box { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; background: #fff; border: 1px solid var(--cr-line); border-radius: 10px; overflow: clip; min-inline-size: 0; }
+.cr-wf-stage { position: relative; flex: 1 1 auto; min-block-size: 372px; background: #fafbfd; border: 1px solid #eef0f4; border-radius: 8px; overflow: clip; }
+.cr-wf-svg { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; pointer-events: none; }
+.cr-wf-svg path { fill: none; stroke: #9aa6bc; stroke-width: 1.5; }
+.cr-wf-svg path.cr-wf-alt { stroke-dasharray: 4 3; }
+.cr-wfn { position: absolute; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 8px; border: 1px solid #dbe2ef; background: #fff; font-size: 11.5px; font-weight: 600; color: var(--cr-ink); white-space: nowrap; box-shadow: 0 2px 6px -4px rgba(15, 23, 42, 0.15); }
+.cr-wfn-start { border-radius: 999px; background: var(--cr-bt); border-color: #c2cff9; color: var(--cr-b); box-shadow: none; }
+.cr-wfn-void { border-radius: 999px; background: #f3f4f6; border-color: #dcdfe6; color: #6b7280; box-shadow: none; }
+.cr-wfn-ok { background: #e1f6e8; border-color: #a4e3bc; color: #0a7a3d; box-shadow: none; }
+.cr-wfl { position: absolute; transform: translate(-50%, -50%); padding: 1px 7px; border-radius: 999px; background: #fff; border: 1px solid #e2e6ef; font-size: 10px; color: #525a69; white-space: nowrap; line-height: 1.45; }
+.cr-wf-param { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; background: #fff; border: 1px solid var(--cr-line); border-radius: 10px; min-inline-size: 0; }
+.cr-param-row { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 8px; background: #f8fafc; border: 1px solid #e8ebf2; }
+.cr-param-row span { font-size: 11px; line-height: 1.4; color: #64748b; }
+.cr-param-row b { font-size: 19px; line-height: 1.25; font-weight: 700; color: var(--cr-b); font-variant-numeric: tabular-nums; }
+.cr-param-hint { font-size: 11px; line-height: 1.55; color: var(--cr-muted); }
+.cr-wf-audit { margin-block-start: auto; padding-block-start: 10px; border-block-start: 1px dashed var(--cr-line); display: grid; gap: 2px; }
+.cr-wf-audit b { font-size: 11px; font-weight: 600; color: var(--cr-ink); }
+.cr-wf-audit span { font-size: 11px; line-height: 1.5; color: #64748b; }
 /* 1b & 1d 共用分栏卡片（角色列表 / 数据库表列表） */
 .cr-split { display: grid; overflow: clip; }
 .cr-roles-split { grid-template-columns: 152px minmax(0, 1fr); }
 .cr-db-split { grid-template-columns: 162px minmax(0, 1fr); }
-.cr-split-l { display: flex; flex-direction: column; gap: 6px; padding: 9px 8px; border-inline-end: 1px solid var(--rule); background: var(--card); min-inline-size: 0; }
-.cr-split-r { display: flex; flex-direction: column; min-inline-size: 0; background: var(--card); }
+.cr-split-l { display: flex; flex-direction: column; gap: 6px; padding: 9px 8px; border-inline-end: 1px solid var(--cr-line); background: #fff; min-inline-size: 0; }
+.cr-split-r { display: flex; flex-direction: column; min-inline-size: 0; background: #fff; }
 .cr-sbar { display: flex; align-items: center; gap: 5px; }
-.cr-inp { display: inline-flex; align-items: center; gap: 5px; flex: 1; min-inline-size: 0; height: 24px; padding: 0 7px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); font-size: 10.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cr-inp { display: inline-flex; align-items: center; gap: 5px; flex: 1; min-inline-size: 0; height: 24px; padding: 0 7px; border: 1px solid var(--cr-line); border-radius: 6px; background: #fafafb; font-size: 10.5px; color: #8a8f98; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cr-inp svg.lucide { width: 11px; height: 11px; flex: none; }
-.cr-plus { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--brand); color: var(--on-brand); flex: none; }
+.cr-plus { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--cr-b); color: #fff; flex: none; }
 .cr-plus svg.lucide { width: 12px; height: 12px; }
 .cr-rlist { display: grid; gap: 2px; }
 .cr-role-it { display: flex; align-items: center; justify-content: space-between; gap: 4px; padding: 5px 7px; border-radius: 6px; }
-.cr-role-it.on { background: var(--brand-tint); }
-.cr-role-it b { display: block; font-size: 11px; font-weight: 550; color: var(--ink); line-height: 1.3; }
-.cr-role-it.on b { color: var(--brand); }
-.cr-role-it small { display: block; font-size: 9.5px; color: var(--muted); line-height: 1.25; }
-.cr-rbadge { padding: 1px 5px; border-radius: 4px; background: var(--paper-2); border: 1px solid var(--rule); font-size: 9.5px; color: var(--ink-2); white-space: nowrap; }
+.cr-role-it.on { background: var(--cr-bt); }
+.cr-role-it b { display: block; font-size: 11px; font-weight: 600; color: var(--cr-ink); line-height: 1.3; }
+.cr-role-it.on b { color: var(--cr-b); }
+.cr-role-it small { display: block; font-size: 9.5px; color: #8a8f98; line-height: 1.25; }
+.cr-rbadge { padding: 1px 5px; border-radius: 4px; background: #f1f2f5; border: 1px solid var(--cr-line); font-size: 9.5px; color: #555; white-space: nowrap; }
 .cr-rh { display: flex; align-items: baseline; gap: 7px; padding: 9px 12px 6px; }
-.cr-rh b { font-size: 13px; font-weight: 650; color: var(--ink); }
-.cr-rh span { font-size: 10.5px; color: var(--muted); }
+.cr-rh b { font-size: 13px; font-weight: 650; color: var(--cr-ink); }
+.cr-rh span { font-size: 10.5px; color: #8a8f98; }
 .cr-cnt-r { margin-inline-start: auto; }
-.cr-stabs { display: flex; align-items: center; gap: 12px; padding: 0 12px 6px; border-block-end: 1px solid var(--rule); font-size: 11px; color: var(--muted); }
+.cr-stabs { display: flex; align-items: center; gap: 12px; padding: 0 12px 6px; border-block-end: 1px solid var(--cr-line); font-size: 11px; color: #64748b; }
 .cr-stabs span { display: inline-flex; align-items: center; gap: 4px; position: relative; padding-block-end: 6px; margin-block-end: -7px; white-space: nowrap; }
 .cr-stabs svg.lucide { width: 11.5px; height: 11.5px; }
-.cr-stabs span.on { color: var(--brand); font-weight: 600; border-block-end: 2px solid var(--brand); }
+.cr-stabs span.on { color: var(--cr-b); font-weight: 600; border-block-end: 2px solid var(--cr-b); }
+.cr-app .st-tbl th { background: #f5f6f8; color: var(--cr-ink-2); border-block-end: 1px solid var(--cr-line); font-weight: 600; }
+.cr-app .st-tbl td { border-block-end: 1px solid #eef0f3; color: var(--cr-ink-2); }
+.cr-app .st-tbl tr:last-child td { border-block-end: 0; }
 .cr-ptbl th, .cr-ptbl td { padding: 5.5px 9px; font-size: 11px; }
-.cr-ptbl td b { display: inline; font-size: 11px; font-weight: 550; }
-.cr-cnt { font-size: 10px; color: var(--muted); margin-inline-start: 2px; }
-.cr-pgrp td { padding: 4.5px 9px !important; background: var(--paper); font-size: 10.5px !important; font-weight: 600; color: var(--ink-2); }
-.cr-pgrp em { font-style: normal; font-weight: 400; color: var(--muted); margin-inline-start: 4px; }
+.cr-ptbl td b { display: inline; font-size: 11px; font-weight: 600; color: var(--cr-ink); }
+.cr-cnt { font-size: 10px; color: #8a8f98; margin-inline-start: 2px; }
+.cr-pgrp td { padding: 4.5px 9px !important; background: #fafafb; font-size: 10.5px !important; font-weight: 600; color: var(--cr-ink-2); }
+.cr-pgrp em { font-style: normal; font-weight: 400; color: #8a8f98; margin-inline-start: 4px; }
 .cr-chks { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
-.cr-chk { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--ink-2); white-space: nowrap; }
-.cr-chk i { display: inline-grid; place-items: center; width: 11px; height: 11px; border-radius: 3px; border: 1px solid var(--rule-2); background: var(--card); flex: none; }
-.cr-chk.on i { border-color: var(--brand); background: var(--brand); }
-.cr-chk.on i::after { content: ""; width: 5px; height: 3px; border-left: 1.5px solid var(--on-brand); border-bottom: 1.5px solid var(--on-brand); transform: rotate(-45deg) translate(0.5px, -0.5px); }
-.cr-risk { font-style: normal; padding: 0 4px; border-radius: 3px; background: var(--risk-tint); color: var(--risk-ink); font-size: 9px; font-weight: 600; line-height: 15px; }
-.cr-risk.w { background: var(--human-tint); color: var(--human-ink); }
+.cr-chk { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--cr-ink-2); white-space: nowrap; }
+.cr-chk i { display: inline-grid; place-items: center; width: 11px; height: 11px; border-radius: 3px; border: 1px solid #cfd3dc; background: #fff; flex: none; }
+.cr-chk.on i { border-color: var(--cr-b); background: var(--cr-b); }
+.cr-chk.on i::after { content: ""; width: 5px; height: 3px; border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: rotate(-45deg) translate(0.5px, -0.5px); }
+.cr-risk { font-style: normal; padding: 0 4px; border-radius: 3px; background: #ffe7e4; color: #b3261e; font-size: 9px; font-weight: 600; line-height: 15px; }
+.cr-risk.w { background: #fff0d6; color: #a35b00; }
 /* 1c. 登录与认证：提示条 + 登录方式表 */
-.cr-warn { display: flex; align-items: flex-start; gap: 8px; padding: 7px 10px; border: 1px solid oklch(0.84 0.08 82); border-radius: 8px; background: var(--human-tint); color: var(--on-human); font-size: 11px; line-height: 1.45; }
-.cr-warn svg.lucide { width: 13px; height: 13px; color: var(--human-ink); margin-block-start: 2px; flex: none; }
-.cr-warn b { font-weight: 600; margin-inline-end: 6px; }
-.cr-warn span { color: var(--human-ink); }
+.cr-warn { display: flex; align-items: flex-start; gap: 8px; padding: 8px 11px; border: 1px solid #f2d7a0; border-radius: 9px; background: #fff5e3; color: #7c4a03; font-size: 11px; line-height: 1.45; }
+.cr-warn svg.lucide { width: 13px; height: 13px; color: #b25a00; margin-block-start: 2px; flex: none; }
+.cr-warn b { font-weight: 600; margin-inline-end: 6px; color: #5c3700; }
+.cr-warn span { color: #7c4a03; }
 .cr-atbl th, .cr-atbl td,
 .cr-plgtbl th, .cr-plgtbl td,
 .cr-ftbl th, .cr-ftbl td { padding: 6px 10px; font-size: 11px; }
-.cr-atbl td b, .cr-plgtbl td b { font-size: 11.5px; }
-.cr-atbl td small, .cr-plgtbl td small { font-size: 10px; }
-.cr-code { display: inline-block; padding: 1px 6px; border-radius: 4px; background: var(--paper-2); font: 500 10.5px/1.45 var(--f-mono); color: var(--ink-2); white-space: nowrap; }
-.cr-st { display: inline-flex; align-items: center; gap: 4px; height: 19px; padding: 0 7px; border-radius: 999px; background: var(--paper-2); font-size: 10px; font-weight: 550; color: var(--muted); white-space: nowrap; }
+.cr-atbl td b, .cr-plgtbl td b { font-size: 11.5px; color: var(--cr-ink); }
+.cr-atbl td small, .cr-plgtbl td small { font-size: 10px; color: #8a8f98; }
+.cr-code { display: inline-block; padding: 1px 6px; border-radius: 4px; background: #f3f4f6; font: 500 10.5px/1.45 var(--f-mono); color: #374151; white-space: nowrap; }
+.cr-st { display: inline-flex; align-items: center; gap: 4px; height: 19px; padding: 0 7px; border-radius: 999px; background: #f1f2f5; font-size: 10px; font-weight: 550; color: #6b7280; white-space: nowrap; }
 .cr-st i { width: 5px; height: 5px; border-radius: 50%; border: 1.2px solid currentColor; flex: none; }
-.cr-st.on { background: var(--pass-tint); color: var(--pass-ink); }
-.cr-st.on i { background: var(--pass); border-color: var(--pass); }
+.cr-st.on { background: #e1f6e8; color: #0a7a3d; }
+.cr-st.on i { background: #0a7a3d; border-color: #0a7a3d; }
 .cr-src-pill { display: inline-flex; align-items: center; height: 19px; padding: 0 7px; border-radius: 5px; font-size: 10px; font-weight: 550; white-space: nowrap; }
-.cr-src-pill.cfg { background: var(--info-tint); color: var(--info-ink); }
-.cr-src-pill.code { background: var(--brand-tint); color: var(--brand); }
-.cr-dash { color: var(--rule-2); }
-.cr-mbtn { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 5px; border: 1px solid var(--rule-2); background: var(--card); font-size: 10.5px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.cr-src-pill.cfg { background: #eaf4ff; color: #1d5ca8; }
+.cr-src-pill.code { background: var(--cr-bt); color: var(--cr-b); }
+.cr-dash { color: #c5c9d2; }
+.cr-mbtn { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--cr-line-2); background: #fff; font-size: 10.5px; font-weight: 500; color: var(--cr-ink); white-space: nowrap; }
 .cr-atbl td.r, .cr-plgtbl td.r { text-align: right; }
+.cr-auth-prev { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 11px; flex-wrap: wrap; }
+.cr-auth-prev small { font-size: 10.5px; font-weight: 600; color: var(--cr-ink-2); white-space: nowrap; }
+.cr-auth-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.cr-auth-chips span { display: inline-flex; align-items: center; block-size: 20px; padding-inline: 8px; border-radius: 6px; border: 1px solid var(--cr-line); background: #fafafb; font-size: 10px; color: #8a8f98; white-space: nowrap; }
+.cr-auth-chips span.on { background: #fff; border-color: var(--cr-line-2); color: var(--cr-ink); font-weight: 500; }
 /* 1d. 数据库：左侧连接与表清单 + 右侧字段表 */
-.cr-db-conn { display: grid; gap: 4px; padding-block-end: 6px; border-block-end: 1px solid var(--rule); }
-.cr-db-conn small { font-size: 10px; font-weight: 600; color: var(--ink-2); }
-.cr-sel { display: flex; align-items: center; justify-content: space-between; height: 24px; padding: 0 8px; border: 1px solid var(--rule-2); border-radius: 6px; background: var(--card); font-size: 11px; color: var(--ink); }
-.cr-sel svg.lucide { width: 12px; height: 12px; color: var(--muted); }
-.cr-db-meta { display: flex; align-items: center; gap: 5px; font-size: 9.5px; color: var(--muted); }
-.cr-db-meta em { font-style: normal; padding: 0 4px; border-radius: 3px; background: var(--paper-2); color: var(--ink-2); font-weight: 550; }
+.cr-db-conn { display: grid; gap: 4px; padding-block-end: 6px; border-block-end: 1px solid var(--cr-line); }
+.cr-db-conn small { font-size: 10px; font-weight: 600; color: var(--cr-ink-2); }
+.cr-sel { display: flex; align-items: center; justify-content: space-between; height: 24px; padding: 0 8px; border: 1px solid var(--cr-line-2); border-radius: 6px; background: #fff; font-size: 11px; color: var(--cr-ink); }
+.cr-sel svg.lucide { width: 12px; height: 12px; color: #8a8f98; }
+.cr-db-meta { display: flex; align-items: center; gap: 5px; font-size: 9.5px; color: #8a8f98; }
+.cr-db-meta em { font-style: normal; padding: 0 4px; border-radius: 3px; background: #f1f2f5; color: #555; font-weight: 550; }
 .cr-db-s { display: grid; gap: 4px; }
-.cr-db-s small { font-size: 10px; color: var(--muted); padding-inline: 2px; }
+.cr-db-s small { font-size: 10px; color: #8a8f98; padding-inline: 2px; }
 .cr-tlist { display: grid; gap: 1px; }
-.cr-tbit { display: flex; align-items: center; gap: 6px; height: 24px; padding-inline: 7px; border-radius: 6px; font-size: 11px; color: var(--ink-2); }
-.cr-tbit svg.lucide { width: 11.5px; height: 11.5px; color: var(--muted); flex: none; }
-.cr-tbit.on { background: var(--brand-tint); color: var(--brand); font-weight: 600; }
-.cr-tbit.on svg.lucide { color: var(--brand); }
-.cr-db-bar { padding: 0 12px 8px; display: flex; }
-.cr-fname { font-size: 11px; font-weight: 550; color: var(--ink); }
-.cr-pk { display: inline-flex; align-items: center; gap: 2px; margin-inline-start: 5px; padding: 0 5px; border-radius: 4px; background: var(--paper-2); font-size: 9.5px; color: var(--ink-2); vertical-align: 1px; }
-.cr-pk svg.lucide { width: 9.5px; height: 9.5px; color: var(--muted); }
-.cr-raw { font-size: 10px; color: var(--muted); margin-inline-start: 3px; }
+.cr-tbit { display: flex; align-items: center; gap: 6px; height: 24px; padding-inline: 7px; border-radius: 6px; font-size: 11px; color: var(--cr-ink-2); }
+.cr-tbit svg.lucide { width: 11.5px; height: 11.5px; color: #8a8f98; flex: none; }
+.cr-tbit.on { background: var(--cr-bt); color: var(--cr-b); font-weight: 600; }
+.cr-tbit.on svg.lucide { color: var(--cr-b); }
+.cr-db-bar { padding: 0 12px 8px; display: flex; align-items: center; gap: 10px; }
+.cr-db-bar .cr-cnt-r { font-size: 10.5px; color: #8a8f98; white-space: nowrap; }
+.cr-fname { font-size: 11px; font-weight: 550; color: var(--cr-ink); }
+.cr-pk { display: inline-flex; align-items: center; gap: 2px; margin-inline-start: 5px; padding: 0 5px; border-radius: 4px; background: #f1f2f5; font-size: 9.5px; color: #555; vertical-align: 1px; }
+.cr-pk svg.lucide { width: 9.5px; height: 9.5px; color: #8a8f98; }
+.cr-raw { font-size: 10px; color: #8a8f98; margin-inline-start: 3px; }
 /* 1e. 插件：筛选胶囊 + 清单表 */
 .cr-pbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.cr-pbar .cr-inp { flex: 0 1 170px; background: var(--card); }
+.cr-pbar .cr-inp { flex: 0 1 170px; background: #fff; }
 .cr-fpills { display: flex; align-items: center; gap: 6px; }
-.cr-fpills span { display: inline-flex; align-items: center; height: 23px; padding: 0 9px; border-radius: 999px; border: 1px solid var(--rule); background: var(--card); font-size: 11px; color: var(--ink-2); }
-.cr-fpills span.on { border-color: var(--rule-2); background: var(--paper-2); color: var(--ink); font-weight: 600; }
+.cr-fpills span { display: inline-flex; align-items: center; height: 23px; padding: 0 9px; border-radius: 999px; border: 1px solid var(--cr-line); background: #fff; font-size: 11px; color: #555; }
+.cr-fpills span.on { border-color: var(--cr-line-2); background: #f1f2f5; color: var(--cr-ink); font-weight: 600; }
+.cr-plg-st { display: inline-flex; align-items: center; block-size: 20px; padding-inline: 8px; border-radius: 5px; background: #e1f6e8; font-size: 10px; font-weight: 600; color: #0a7a3d; white-space: nowrap; }
 .cr-ver-c { font-size: 10.5px !important; color: var(--ink-2); white-space: nowrap; }
 .cr-src { display: inline-flex; align-items: center; height: 18px; padding: 0 6px; border-radius: 4px; border: 1px solid var(--rule); background: var(--paper); font: 500 10.5px/1 var(--f-mono); color: var(--ink-2); vertical-align: 1px; margin-inline-start: 4px; }
 .cr-pane { display: flex; flex-direction: column; overflow: clip; }
-@media (prefers-reduced-motion: reduce) { .cr-ni-btn[aria-selected="true"]::after, .cr-view.on [class*="cr-wf-s"] { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .cr-ni-btn[aria-selected="true"]::after { animation: none; } }
 /* 统一架构 */
 .cr-arch { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; align-items: stretch; }
 .cr-tree { padding: 6px 12px 10px; display: grid; gap: 1px; }
@@ -719,23 +724,22 @@ const CSS = `/* HOME-CORE */
   .stv-mobile-fig .cr-msw button { position: relative; flex: none; scroll-snap-align: start; height: 23px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; font: 550 10px/1 var(--f-sans); color: var(--ink-2); cursor: pointer; white-space: nowrap; }
   .stv-mobile-fig .cr-msw button[aria-selected="true"] { background: var(--card); color: var(--brand); }
   .stv-mobile-fig .cr-msw button[aria-selected="true"]::after { content: ""; position: absolute; inset: auto 6px 1px; border-block-end: 2px solid var(--brand); }
+  .stv-mobile-fig .cr-views { min-block-size: 0; }
   .stv-mobile-fig .cr-ph,
   .stv-mobile-fig .cr-utabs,
-  .stv-mobile-fig .cr-warn { display: none; }
+  .stv-mobile-fig .cr-warn,
+  .stv-mobile-fig .cr-auth-prev { display: none; }
   .stv-mobile-fig .cr-view { gap: 6px; }
   /* 移动端流程图 */
   .stv-mobile-fig .cr-wf-grid { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .stv-mobile-fig .cr-wf-param { display: none; }
-  .stv-mobile-fig .cr-card-hd { padding: 5px 9px; font-size: 10.5px; }
-  .stv-mobile-fig .cr-wf-stage { block-size: 222px; }
-  .stv-mobile-fig .cr-wfn-start { height: 22px; padding: 0 10px; font-size: 9.5px; }
-  .stv-mobile-fig .cr-wfn-void { height: 22px; padding: 0 8px; font-size: 9.5px; }
-  .stv-mobile-fig .cr-wfn-end { font-size: 9px; }
-  .stv-mobile-fig .cr-wfn-step { min-inline-size: 86px; height: 26px; padding: 0 8px 0 5px; gap: 4px; border-radius: 6px; }
-  .stv-mobile-fig .cr-wfn-step b { font-size: 9.5px; }
-  .stv-mobile-fig .cr-wfic { width: 15px; height: 15px; border-radius: 4px; }
-  .stv-mobile-fig .cr-wfic svg.lucide { width: 9px; height: 9px; }
-  .stv-mobile-fig .cr-wfl { font-size: 8px; padding: 0 4px; }
+  .stv-mobile-fig .cr-wf-box { padding: 7px 8px 8px; gap: 5px; }
+  .stv-mobile-fig .cr-wf-hd { font-size: 10.5px; }
+  .stv-mobile-fig .cr-wf-stage { min-block-size: 228px; block-size: 228px; }
+  .stv-mobile-fig .cr-wfn { padding: 3px 8px; font-size: 9.5px; border-radius: 6px; }
+  .stv-mobile-fig .cr-wfn-start,
+  .stv-mobile-fig .cr-wfn-void { border-radius: 999px; }
+  .stv-mobile-fig .cr-wfl { font-size: 8px; padding: 0 5px; }
   /* 移动端分栏视图（角色 / 数据库）隐藏左侧列表、聚焦右侧主表 */
   .stv-mobile-fig .cr-roles-split,
   .stv-mobile-fig .cr-db-split { grid-template-columns: minmax(0, 1fr); }
